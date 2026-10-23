@@ -45,7 +45,7 @@ async function doBattleInner(attKey, att) {
   const bound = blockers.filter(b => !fxImmune(D, b, { p: A, src: att }));
   const must = bound.length > 0 && flagActive(A, 'MUST_BLOCK', att);
   if (must) log(`${CARDS[att.id].name}: opposing Spirits must block if possible.`);
-  if (blockers.length) blk = D.cpu ? (cpuChooseBlock(D, att) || (must ? bound.slice().sort((x, y) => bpOf(x) - bpOf(y))[0] : null)) : await askBlock(att, D, blockers, must);
+  if (blockers.length) blk = await askBlock(att, D, blockers, must, bound);   // v0.105.0 (M6 step 1): CPU seats answer the port too; cpuAnswer routes this pick to the same cpuChooseBlock
   if (blk && !(await payAbTax(D, blk, 'block'))) blk = null;
   if (blk) {
     blk.exhausted = true; G.blocker = blk;

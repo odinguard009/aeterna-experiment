@@ -1,4 +1,5 @@
 // v0.83.0 (phase F3 = monorepo step M3 part 1): every human prompt is a decision record through io.decide.
+// v0.105.0 (M6 step 1): CPU seats are asked as well - their picks (block, only one routed so far) carry the cpu flag.
 // Records and answers: packages/engine/src/05b-decide.js. Hosts: apps/web/src/13e-host.js (modals) and
 // packages/engine/headless.mjs (scripted answers, human seat).
 import { test, after } from 'node:test';
@@ -15,7 +16,10 @@ test('H83-01 headless human seat: its prompts reach the host as serializable rec
     const r = await playHeadless({ seed, deckA: a, deckB: b, human: true, timeoutMs: 30000 });
     assert.deepEqual(r.errors, [], `${a} vs ${b}`);
     assert.ok(r.over && (r.winner === 'player' || r.winner === 'opponent'), `${a} vs ${b} did not finish`);
-    for (const d of r.decisions) { assert.equal(d.seat, 'player', 'only the human seat is asked'); kinds[d.kind] = (kinds[d.kind] || 0) + 1; }
+    for (const d of r.decisions) {
+      if (d.seat === 'player') kinds[d.kind] = (kinds[d.kind] || 0) + 1;
+      else assert.ok(d.cpu && d.kind === 'pick', 'an opponent ask must be a cpu-marked pick (M6 step 1): ' + JSON.stringify(d));
+    }
   }
   assert.ok(kinds.choice > 20, 'choices: ' + JSON.stringify(kinds));
   assert.ok(kinds.pick >= 1, 'field picks: ' + JSON.stringify(kinds));
@@ -26,8 +30,9 @@ test('H83-02 scripted answers reproduce the match; another script changes it', a
   const first = await playHeadless({ seed, deckA: a, deckB: b, human: true });
   assert.ok(first.over && first.decisions.length > 10);
   let i = 0;
-  const script = first.decisions.map(d => d.v);
-  const again = await playHeadless({ seed, deckA: a, deckB: b, human: true, answer: (seat, d) => { assert.equal(d.kind, first.decisions[i].kind, `decision ${i}`); return script[i++]; } });
+  const human = first.decisions.filter(d => d.seat === 'player');      // CPU picks never call answer() (the host answers them with cpuAnswer)
+  const script = human.map(d => d.v);
+  const again = await playHeadless({ seed, deckA: a, deckB: b, human: true, answer: (seat, d) => { assert.equal(d.kind, human[i].kind, `decision ${i}`); return script[i++]; } });
   assert.equal(i, script.length, 'every scripted answer was asked for');
   assert.deepEqual([again.winner, again.turn, again.hash, again.log], [first.winner, first.turn, first.hash, first.log]);
   // decline every optional choice (the last usable button, usually "No" / "Pass"): still a clean, different match

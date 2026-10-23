@@ -279,7 +279,7 @@ const FX_ACTIONS = {
       let d = null;
       if (o.cpu) d = cpuKeepMagicOrPay(o, c, M);
       else {
-        const v = await ask({ title: `✨ ${nm}`, peek: true, html: `Discard a Magic card from your Hand to stop this effect?`, buttons: M.slice(0, 12).map(x => ({ label: `Discard ${CARDS[x.id].name}`, cls: 'primary', value: x.uid })).concat([{ label: 'Do not discard', value: 'no' }]) });
+        const v = await ask({ title: `✨ ${nm}`, peek: true, html: `Discard a Magic card from your Hand to stop this effect?`, buttons: M.slice(0, 12).map(x => ({ label: `Discard ${CARDS[x.id].name}`, cls: 'primary', value: x.uid })).concat([{ label: 'Do not discard', value: 'no' }]) }, o.key || 'player');   // v0.105.0 (M6 step 1): ask for the owner's seat - the port marks CPU seats by it and the attacking seat may be a CPU
         d = M.find(x => x.uid === v) || null;
       }
       if (!d) { c.ctx.did = true; log(`${nm}: ${who(o)} ${o.cpu ? 'does' : 'do'} not discard a Magic card.`); return; }

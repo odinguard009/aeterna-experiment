@@ -19,6 +19,8 @@ const cardIds = L => (L || []).map(x => (typeof x === 'string' ? x : x.id)).filt
 async function portAsk(seat, d) {
   const g = G, r = g && g.prec && g.prec.s === SESSION && !g.over ? g.prec : null;
   if (r) r.wait = { s: seat, k: d.kind };
+  const P = g && g.p && g.p[seat];
+  d.cpu = !!(P && P.cpu);                       // v0.105.0 (M6 step 1): CPU seats answer the port too; the host replies via cpuAnswer() (05c-intent.js)
   const v = await io.decide(seat, d);
   if (r && G === g && r.s === SESSION) { r.wait = null; r.answers.push({ s: seat, k: d.kind, v: v === undefined ? null : JSON.parse(JSON.stringify(v)) }); }
   return v;
@@ -30,13 +32,18 @@ function ask(cfg, seat) { return decide(seat || 'player', Object.assign({ kind: 
 function info(title, html, seat) { return portAsk(seat || 'player', { kind: 'info', title, html }); }
 /** Tap a glowing card on the field: {text, uids, mark?, buttons?}. */
 function pickFromField(cfg, seat) { return decide(seat || 'player', Object.assign({ kind: 'pick' }, cfg, { uids: Array.from(cfg.uids || []) })); }
-async function askBlock(att, D, blockers, must) {
+async function askBlock(att, D, blockers, must, bound) {
   const sym = CARDS[att.id].symbols;
-  const v = await pickFromField({
+  const cfg = {
     text: `🛡 <b>${must ? 'You must block!' : 'Block?'}</b> ${esc(CARDS[att.id].name)} attacks with ${bpOf(att)} BP (${sym} symbol${sym === 1 ? '' : 's'}). Your Life: ${D.life}.<br>Tap a glowing Spirit to block with it.`,
     uids: blockers.map(b => b.uid), mark: att.uid, buttons: must ? [] : [{ label: 'Do not block', cls: 'cancel', value: 'none' }]
-  }, D.key || 'player');
-  return blockers.find(b => b.uid === v) || (must ? blockers[0] : null);
+  };
+  if (D.cpu) cfg.cpuK = 'block';                // v0.105.0 (M6 step 1): cpuAnswer() answers this pick with cpuChooseBlock (unchanged policy)
+  const v = await pickFromField(cfg, D.key || 'player');
+  const found = blockers.find(b => b.uid === v);
+  if (found) return found;
+  if (D.cpu) return must ? (bound || blockers).slice().sort((x, y) => bpOf(x) - bpOf(y))[0] : null;   // the same fallback the inline CPU had in 08-battle.js
+  return must ? blockers[0] : null;
 }
 /** Which cores pay a cost the Reserve cannot cover: the host lets the player choose (web: the payment dialog). */
 function askPayment(card, c, L) { return decide('player', { kind: 'payment', card: card.id, cost: c, L: L || 0 }); }

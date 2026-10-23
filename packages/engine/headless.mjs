@@ -80,11 +80,12 @@ export async function playHeadless({ seed = 1, deckA = 'red', deckB = 'mitra', t
     async decide(seat, d) {
       if (!d || !E.DECISION_KINDS.includes(d.kind)) throw new Error('unknown decision record ' + JSON.stringify(d));
       const rec = JSON.parse(JSON.stringify(d));        // every record is serializable (M4 replays, M6 server)
-      let v = human === 'pass' && d.kind === 'action' ? { type: 'end' } : await answer(seat, rec);
+      let v = rec.cpu ? E.cpuAnswer(seat, rec)      // v0.105.0 (M6 step 1): CPU seats answer the port exactly as their inline CPU did
+        : human === 'pass' && d.kind === 'action' ? { type: 'end' } : await answer(seat, rec);
       if (v === undefined) v = E.cpuAnswer(seat, rec);
       if (d.kind === 'action' && !(v && E.INTENT_TYPES.includes(v.type))) throw new Error('not an intent record: ' + JSON.stringify(v));
       if (JSON.stringify(v === undefined ? null : v) === undefined) throw new Error('answer is not serializable');
-      decisions.push({ seat, kind: d.kind, v: v === undefined ? null : v });
+      decisions.push({ seat, kind: d.kind, cpu: !!d.cpu, v: v === undefined ? null : v });
       return v === undefined ? null : v;
     }
   });

@@ -5,7 +5,9 @@
      {v: 2, build, seed, format, sim, watch, deckA, deckB, human: [seat], cpu: {profiles, fuzz} | null,
       answers: [{s: seat, k: kind, v: answer}], wait: {s, k} | null (a decision is open), final: matchSummary() | absent}
    Answers come from 05b-decide.js (portAsk): choices, picks, payments, info, and the action intents of 05c-intent.js.
-   The CPU seat decides inline and needs no answers. portRecord() adds `cut` {log, hash} (the log count and hash at a
+   CPU seats answer the port too (v0.105.0, M6 step 1); the replay re-derives their decisions locally with cpuAnswer - a
+   record holds each CPU answer only as the witness of a port round. Records of older builds have no CPU answers and
+   replay the same way. portRecord() adds `cut` {log, hash} (the log count and hash at a
    moment a decision is open), so a record of an unfinished match is checked up to that moment. The record depends on the
    engine version (`build`); the v1 record of v0.26 (G.rec, web clicks) stays for the browser replay.
    Viewer replay (v 1): {v: 1, kind: 'aeterna-viewer', build, seed, frames: [boardSnapshot()]}: plain board frames that
@@ -52,10 +54,14 @@ async function runPortRecord(rec, opts) {
     log() {},
     decide(seat, d) {
       if (stop) return never();
+      // v0.105.0 (M6 step 1): CPU seats are re-derived here exactly as the answering host did (cpuAnswer). The record
+      // holds those answers as the witness only - consuming them would skip the inner CPU RNG draws (the fuzzer) and shift the stream.
+      if (d && d.cpu) return Promise.resolve(cpuAnswer(seat, d));
+      if (rec.human) while (i < rec.answers.length && !rec.human.includes(rec.answers[i].s)) i++;   // skip the CPU witness entries
       const a = rec.answers[i];
+      if (a && a.s === seat && a.k === d.kind) { i++; return Promise.resolve(a.v); }
       if (!a) { stop = 'end'; return never(); }                     // the record ends: the match waits here
-      if (a.s !== seat || a.k !== d.kind) { stop = `diverged at answer ${i}: the engine asks ${seat} for ${d.kind}, the record has ${a.s} ${a.k}`; return never(); }
-      i++; return Promise.resolve(a.v);
+      stop = `diverged at answer ${i}: the engine asks ${seat} for ${d.kind}, the record has ${a.s} ${a.k}`; return never();
     }
   });
   const fast = REPLAY, simH = SIM_HUMAN, prof = CPU_SIM_PROFILES, fz = FUZZ;
@@ -71,7 +77,8 @@ async function runPortRecord(rec, opts) {
     const over = !!(G && G.over), final = over ? matchSummary() : null, cut = G ? { log: G.hn || 0, hash: (G.hh >>> 0).toString(16) } : null;
     const same = !!(rec.final && final && ['winner', 'turn', 'log', 'hash'].every(k => rec.final[k] === final[k]));
     const sameCut = !!(rec.cut && cut && stop === 'end' && rec.cut.log === cut.log && rec.cut.hash === cut.hash);
-    const reason = errors.length ? 'error: ' + errors[0] : stop && stop !== 'end' ? stop : !over && !stop ? 'time limit' : over && i < rec.answers.length ? `${rec.answers.length - i} answers are left after the end of the match` : '';
+    const humanN = rec.human ? rec.answers.filter(x => rec.human.includes(x.s)).length : rec.answers.length;      // v0.105.0 (M6 step 1): only the human answers are consumed; a CPU witness may stay over
+    const reason = errors.length ? 'error: ' + errors[0] : stop && stop !== 'end' ? stop : !over && !stop ? 'time limit' : over && i < humanN ? `${humanN - i} answers are left after the end of the match` : '';
     res = { ok: !reason, reason, at: i, total: rec.answers.length, over, final, same, cut, sameCut, build: VERSION, recBuild: rec.build };
     if (opts.viewer) res.frames = frames;
   } finally {

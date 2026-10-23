@@ -239,7 +239,13 @@ function cpuAnswer(seat, d) {
     case 'action': return p ? cpuIntent(seat) : { type: 'end' };
     case 'payment': return p ? cpuPaymentPlan(p, d.cost, d.L) : null;
     case 'choice': { const b = (d.buttons || []).find(x => !x.hidden && !x.dis); return b ? b.value : null; }
-    case 'pick': return d.uids && d.uids.length ? d.uids[0] : (d.buttons && d.buttons[0] ? d.buttons[0].value : null);
+    case 'pick':
+      if (d.cpuK === 'block') {                 // v0.105.0 (M6 step 1): the block pick of a CPU defender (08-battle.js askBlock); a uid, like every pick answer
+        const att = (G.p[other(seat)].spirits || []).find(s => s && s.uid === d.mark);
+        const b = att ? cpuChooseBlock(p, att) : null;
+        return b && b.uid ? b.uid : null;
+      }
+      return d.uids && d.uids.length ? d.uids[0] : (d.buttons && d.buttons[0] ? d.buttons[0].value : null);
     default: return null;
   }
 }

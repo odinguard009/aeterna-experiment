@@ -4,7 +4,7 @@
    Node runner, later the server). Every record passed through the port is a plain, serializable object.
      io.view(ev)            the board or a screen changed; the host draws (web) or ignores it (headless)
      io.log(text)           one game log line was written (G.history keeps the text; hosts may react, e.g. sounds)
-     io.decide(seat, d)     v0.83.0 (M3 part 1): every prompt of a human seat, as a decision record (kinds and answers:
+     io.decide(seat, d)     v0.83.0 (M3 part 1): every prompt of a seat as a decision record (kinds and answers:
                             packages/engine/src/05b-decide.js); resolves the answer; v0.84.0: board actions too (action -> intent records, packages/engine/src/05c-intent.js)
    View records (`type`):
      board                  redraw the playmat from G

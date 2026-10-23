@@ -69,6 +69,11 @@ function choiceHTML(d) {
   return (d.html || '') + cardStripHTML(d.cards, d.cardsHead);
 }
 function webDecide(seat, d) {
+  if (d && d.cpu) {                             // v0.105.0 (M6 step 1): CPU seats answer the port (no UI; the same policy as their inline CPU)
+    const log = (window.__cpuDecideLog = window.__cpuDecideLog || []);
+    if (log.length < 400) log.push({ s: seat, kind: d.kind, cpuK: d.cpuK || null });
+    return Promise.resolve(cpuAnswer(seat, d));
+  }
   switch (d && d.kind) {
     case 'choice': return modal({ title: d.title, html: choiceHTML(d), buttons: d.buttons, peek: d.peek, wide: d.wide });
     case 'pick': return webPick(d);

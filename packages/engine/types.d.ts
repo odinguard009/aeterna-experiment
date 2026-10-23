@@ -33,5 +33,7 @@ interface PortRunResult {
   sameCut?: boolean; build?: string; recBuild?: string; frames?: any[];
 }
 /* Web-only globals written by apps/web (never the engine): the test-hook object `window.BS` (16-events.js) and the
-   dev board refs `window.SC` the same part exposes. Declared so `window.*` uses in the web parts type-check. */
-interface Window { BS?: unknown; SC?: unknown }
+   dev board refs `window.SC` the same part expose, and `window.__cpuDecideLog` (13e-host.js, v0.105.0 M6 step 1:
+   one { s, kind, cpuK } entry per cpu-marked decision the web host answered, for the tests). Declared so `window.*`
+   uses in the web parts type-check. */
+interface Window { BS?: unknown; SC?: unknown; __cpuDecideLog?: { s: string; kind: string; cpuK: string | null }[] }

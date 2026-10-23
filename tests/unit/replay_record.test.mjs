@@ -24,8 +24,9 @@ test('R85-01 a headless match with a human seat replays from its port record (sa
 test('R85-02 fuzzed CPU-vs-CPU sims (headless and browser) replay headless from the record alone', async () => {
   const fz = { player: true, opponent: true };
   const h = await playHeadless({ seed: 77, deckA: 'green', deckB: 'blue', fuzz: fz, timeoutMs: 30000 });
-  assert.ok(h.over); assert.deepEqual(h.port.cpu.fuzz, fz); assert.equal(h.port.answers.length, 0);
-  const x = await replayPort(h.port); assert.ok(x.ok && x.same, x.reason);
+  assert.ok(h.over); assert.deepEqual(h.port.cpu.fuzz, fz);
+  assert.ok(h.port.answers.length > 0, 'the CPU picks go through the port too (v0.105.0, M6 step 1): ' + h.port.answers.length);
+  const x = await replayPort(h.port); assert.ok(x.ok && x.same, x.reason);   // the replay re-derives the CPU picks; the record only witnesses them
   const b = await simMatch(596, { mode: 'yellowpurple', fuzz: fz, timeoutMs: 60000 });
   assert.ok(b.over && b.port, 'browser sim finished');
   const y = await replayPort({ port: b.port });                // a fuzz case file carries the record as `port`
