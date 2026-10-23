@@ -40,4 +40,4 @@ Fan-made, offline single-file trading-card-game simulator (human vs CPU). `index
 - `gh` is installed but not logged in — `gh auth login` once (owner) before issue reads or Regression dispatches.
 - `tools/lint.mjs` fails hard with an install hint when `node_modules/typescript` is missing (no more false clean); the checker must be at 0 errors (`tools/type-baseline.json` empty).
 - Hooks are enabled in this clone (`core.hooksPath=.githooks`); the commit identity is the owner's noreply address.
-- `origin` is `odinguard009/aeterna-experiment`, while `docs/ai/release.md` and the issue/Regression commands target `odinguard009/aeterna`. Confirm which repo before dispatching workflows or creating releases.
+- `origin` is `odinguard009/aeterna-experiment`, and every doc, skill and tool targets that repo only (full switch, 2026-10-23). The retired `odinguard009/aeterna` repo is never pushed, dispatched, or used for issues or releases.

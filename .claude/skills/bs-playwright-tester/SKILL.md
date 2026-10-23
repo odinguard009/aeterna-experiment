@@ -5,7 +5,7 @@ description: "Use when testing or hunting hidden bugs in the Aeterna HTML game w
 
 # Aeterna tester (v0.30+)
 
-Repo: odinguard009/aeterna. `index.html` is BUILT from `packages/` and `apps/web/` (`node tools/build.mjs`); never edit it by hand. CLAUDE.md loads automatically: do not re-read it. Release copies go to `/mnt/user-data/outputs/aeterna-vX.Y.Z.html`.
+Repo: odinguard009/aeterna-experiment. `index.html` is BUILT from `packages/` and `apps/web/` (`node tools/build.mjs`); never edit it by hand. CLAUDE.md loads automatically: do not re-read it. Release copies go to `/mnt/user-data/outputs/aeterna-vX.Y.Z.html`.
 
 ## Two test layers (cheapest first)
 1. **Node layer** (`tests/unit/*.test.mjs`, `node --test`, headless Chromium, nothing to install):
@@ -34,4 +34,4 @@ Engine (triggers, actions, conditions, once, optional human prompt, validation r
 - Layout: test both viewports (PC `layout-pc`, phone `layout-mobile`). The phone UI must not change when fixing PC.
 
 ## Bugs
-File real bugs as GitHub Issues (`gh api repos/odinguard009/aeterna/issues -f title=... -f body=...`, REST only) with the seed or replay, label `bug`. Record failures honestly, with the failing scenario, before fixing. Report briefly to the user in Indonesian; test code and logs in English.
+File real bugs as GitHub Issues (`gh api repos/odinguard009/aeterna-experiment/issues -f title=... -f body=...`, REST only) with the seed or replay, label `bug`. Record failures honestly, with the failing scenario, before fixing. Report briefly to the user in Indonesian; test code and logs in English.

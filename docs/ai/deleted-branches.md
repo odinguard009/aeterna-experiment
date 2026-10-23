@@ -20,7 +20,7 @@ The rows from before 2026-10-17 belonged to the owner's private vault repo (its 
 The owner decided to keep all `backup/v*` branches, `wip/v0.80.0`, `tooling/dev-tools` and the three old claude.ai account skills in case they are needed later. Sessions do not list them as owner steps any more; the list stays as a reference only.
 
 ## Reference list (2026-10-21, v0.96.0)
-- Every `backup/v*` branch except the newest 3 (23 existed on 2026-10-21; list them with `gh api repos/odinguard009/aeterna/branches --paginate -q '.[].name' | grep '^backup/' | sort -V`).
+- Every `backup/v*` branch except the newest 3 (23 existed on 2026-10-21; list them with `gh api repos/odinguard009/aeterna-experiment/branches --paginate -q '.[].name' | grep '^backup/' | sort -V`).
 - `wip/v0.80.0` (merged in v0.80.0).
 - `tooling/dev-tools` (optional tool guide, unused).
 

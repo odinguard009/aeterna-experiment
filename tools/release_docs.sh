@@ -12,7 +12,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 if [ "${1:-}" = "--end" ]; then
-  REPO=odinguard009/aeterna; OUT=${OUT:-/mnt/user-data/outputs}; ver=$(node -p "require('./package.json').version")
+  REPO=odinguard009/aeterna-experiment; OUT=${OUT:-/mnt/user-data/outputs}; ver=$(node -p "require('./package.json').version")
   head=$(git rev-parse HEAD)
   # CI ignores docs/**, *.md and .claude/** (ci.yml paths-ignore): a docs-only HEAD never gets a CI run, so wait on the newest commit that CI does run on
   # (v0.90 time review: waiting on the docs-only HEAD burned the full ~15 min timeout in every release); fall back to HEAD when none is in the clone

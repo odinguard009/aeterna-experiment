@@ -15,7 +15,7 @@
 # A lane word on LOCK/MANUAL/UNLOCK (ui | card) is still read by the evaluator (parallel lanes were removed in v0.96.0; nothing writes it any more).
 #   any other text      owner activity: restarts the idle timer, like a new session
 # Commands (no clone needed for check/on/off/status/switch):
-#   gh api repos/odinguard009/aeterna/contents/tools/session_gate.sh --jq .content | base64 -d | bash -s <command>
+#   gh api repos/odinguard009/aeterna-experiment/contents/tools/session_gate.sh --jq .content | base64 -d | bash -s <command>
 #   check opus|sonnet  scheduled runs, BEFORE the clone: prints "GO" or "STOP <reason>" (exit 0 either way; exit 1 = gate error, treat as STOP).
 #                    Owner 2026-10-17: every session runs on Opus, so only "check opus" can GO (the Sonnet task is disabled).
 #   check opus [lane]  with a lane only sessions of that lane (or without a lane) count as "running"
@@ -34,7 +34,7 @@
 #   busy [lane]      exit 3 when a LOCK or MANUAL session is active (in that lane; used by session_start.sh)
 # Offline test: GATE_FIXTURE=1 with COMMENTS / COMMITS (tab-separated "time<TAB>first line") and GATE_NOW skips gh
 #   for the evaluator (tests/unit/gate.test.mjs); posting commands still need gh.
-R=odinguard009/aeterna; L=1
+R=odinguard009/aeterna-experiment; L=1
 LANES="ui card"
 lane_ok() { [ -z "${1:-}" ] || case " $LANES " in *" $1 "*) return 0 ;; *) echo "unknown lane '$1' (use: $LANES)" >&2; return 1 ;; esac; }
 IDLE_MIN=0       # min idle minutes since the last session/owner activity; 0 = no wait (owner, 2026-10-20, was 20)

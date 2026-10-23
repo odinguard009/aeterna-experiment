@@ -2,7 +2,7 @@
 # Triggers: "Run workflow" (Claude starts it through the REST dispatch API when tools/regression_due.sh says DUE), a release tag
 # pushed by the user, and a weekly scheduled run (Sunday 03:17 WIB, 30 sims + 20 fuzz) as the safety net for sessions that skip it
 # (process cleanup, owner 2026-10-19). The 5 Python parts and the fuzz job run in parallel.
-# Claude checks the result with: gh api repos/odinguard009/aeterna/actions/runs?per_page=3
+# Claude checks the result with: gh api repos/odinguard009/aeterna-experiment/actions/runs?per_page=3
 name: Regression
 on:
   push:

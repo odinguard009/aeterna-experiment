@@ -13,7 +13,7 @@ A fan-made, single-file web simulator for a trading card game. You play against 
 Card images are not included; you can import your own in the game (Library).
 
 ## Status
-Current build: **v0.104.0** (6,890 of 8,709 cards playable, 780 complete). Download `aeterna-v0.104.0.html` from the [latest release](https://github.com/odinguard009/aeterna/releases/latest) and open it in Chrome or Edge; release notes are in [CHANGELOG.md](CHANGELOG.md).
+Current build: **v0.104.0** (6,890 of 8,709 cards playable, 780 complete). Download `aeterna-v0.104.0.html` from the [latest release](https://github.com/odinguard009/aeterna-experiment/releases/latest) and open it in Chrome or Edge; release notes are in [CHANGELOG.md](CHANGELOG.md).
 
 Next: card sessions that add the mechanics unlocking the most cards, alternating with the move to a TypeScript workspace (server and online play later). Open items: [`docs/ai/roadmap-open.md`](docs/ai/roadmap-open.md); progress page: [`docs/progress.html`](docs/progress.html); mind map: [`docs/roadmap.html`](docs/roadmap.html).
 

@@ -10,7 +10,7 @@
 #     these get 30 sims; everything else gets 10
 # gh failure = DUE sims=30 (never skip by accident).
 set -u
-REPO=odinguard009/aeterna
+REPO=odinguard009/aeterna-experiment
 CORE='^packages/(protocol/src|engine/src/(0[5-8]|09|15|02a|02c|02d))'
 last=$(gh api "repos/$REPO/actions/workflows/regression.yml/runs?branch=main&per_page=10" \
   --jq '[.workflow_runs[] | select(.status=="completed" and .conclusion!="cancelled")][0] | "\(.head_sha) \(.conclusion)"' 2>/dev/null) \

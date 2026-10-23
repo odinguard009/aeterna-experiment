@@ -2,7 +2,7 @@
 # One-call session setup for Aeterna.
 #
 # Usage (inside an existing clone):   bash tools/session_start.sh
-# Usage (fresh machine, no clone yet): bash <(curl -fsSL https://raw.githubusercontent.com/odinguard009/aeterna/main/tools/session_start.sh)
+# Usage (fresh machine, no clone yet): bash <(curl -fsSL https://raw.githubusercontent.com/odinguard009/aeterna-experiment/main/tools/session_start.sh)
 #   (on a fresh session the repo must be attached first; then the clone
 #    line below is what this script runs for you when it is started outside a clone.)
 #
@@ -16,7 +16,7 @@
 # Optional: --with-sources adds data/sources (only needed for the Fandom import).
 set -euo pipefail
 
-REPO_URL="https://github.com/odinguard009/aeterna"
+REPO_URL="https://github.com/odinguard009/aeterna-experiment"
 DEST="${BS_DEST:-aeterna}"
 WITH_SOURCES=0; FORCE=0; BUSY=""
 for a in "$@"; do
@@ -81,18 +81,18 @@ while IFS="|" read -r D MSG; do if [ -n "$D" ] && [ "$(date +%s)" -ge "$(date -d
 2027-03-01|Standard rotation on 2027-04-01 (block A only until 2027-03-31, kb SJP:deck): read the official announcement, update STANDARD_BLOCKS in packages/engine/src/00-config.js and the Standard decks
 CAL
 if command -v gh >/dev/null 2>&1; then
-  gh api "repos/odinguard009/aeterna/issues?state=open" --jq '.[] | "[session_start] issue #\(.number) \(.title)"' 2>/dev/null || echo "[session_start] open issues: use list_issues (gh failed)"
+  gh api "repos/odinguard009/aeterna-experiment/issues?state=open" --jq '.[] | "[session_start] issue #\(.number) \(.title)"' 2>/dev/null || echo "[session_start] open issues: use list_issues (gh failed)"
 else echo "[session_start] open issues: gh not available here, use the GitHub tools (list_issues)"; fi
 # v0.60.2: Regression is not awaited at session end; the next session reads it here (failure = fix first)
 if command -v gh >/dev/null 2>&1; then
-  gh api "repos/odinguard009/aeterna/actions/workflows/regression.yml/runs?per_page=1" --jq '.workflow_runs[0] | "[session_start] last Regression: \(.status) \(.conclusion // "-") on \(.head_sha[0:7]) run \(.id)"' 2>/dev/null || echo "[session_start] last Regression: unknown (gh failed)"
+  gh api "repos/odinguard009/aeterna-experiment/actions/workflows/regression.yml/runs?per_page=1" --jq '.workflow_runs[0] | "[session_start] last Regression: \(.status) \(.conclusion // "-") on \(.head_sha[0:7]) run \(.id)"' 2>/dev/null || echo "[session_start] last Regression: unknown (gh failed)"
 fi
 # v0.69.3 (P0 B3): chain-stop state, Mode hemat and the newest handoff, so the skill's start steps 2, 4 and the hemat call are one call
 if [ -f docs/ai/chain-stop.md ]; then echo "[session_start] CHAIN-STOP: docs/ai/chain-stop.md exists - stop unless the owner is present and has answered (then delete it)"; else echo "[session_start] chain-stop: none"; fi
 bash tools/session_gate.sh hemat status 2>/dev/null | sed 's/^/[session_start] /' || echo "[session_start] Mode hemat: unknown (gate error = treat as ON)"
 if command -v gh >/dev/null 2>&1; then
   # only a handoff newer than the newest release commit matters (older ones were finished by a later session)
-  HO=$(gh api "repos/odinguard009/aeterna/issues/comments?sort=created&direction=desc&per_page=100" \
+  HO=$(gh api "repos/odinguard009/aeterna-experiment/issues/comments?sort=created&direction=desc&per_page=100" \
     --jq '[.[] | select((.issue_url|endswith("/issues/3")) and (.body|test("^\\s*Handoff";"i")))][0] | if . == null then "" else "\(.created_at)\t\(.body|gsub("\\s+";" ")|.[0:300])" end' 2>/dev/null) || HO="?"
   RELT=$(git log -1 --format=%ct --grep='^v[0-9]' 2>/dev/null); RELT=${RELT:-$(git log -1 --format=%ct)}   # light clone (depth 1): HEAD time
   if [ "$HO" = "?" ]; then echo "[session_start] newest handoff: unknown (gh failed)"

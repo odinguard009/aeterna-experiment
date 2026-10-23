@@ -41,10 +41,10 @@ if (!args.includes('--no-backup')) {
 }
 if (!args.includes('--no-release')) {
   const gh = a => spawnSync('gh', ['api', ...a], { encoding: 'utf8' });
-  const r = gh([`repos/odinguard009/aeterna/releases/tags/v${ver}`, '--jq', '[.assets[].name] | join(",")']);
+  const r = gh([`repos/odinguard009/aeterna-experiment/releases/tags/v${ver}`, '--jq', '[.assets[].name] | join(",")']);
   if (r.status === 0 && r.stdout.includes(`aeterna-v${ver}.html`)) ok(`GitHub Release v${ver} has aeterna-v${ver}.html`);
   else {
-    const w = gh(['repos/odinguard009/aeterna/actions/workflows/release.yml/runs?per_page=1', '--jq', '.workflow_runs[0] | "\(.status) \(.conclusion // "-") on \(.head_sha[0:7]) run \(.id)"']);
+    const w = gh(['repos/odinguard009/aeterna-experiment/actions/workflows/release.yml/runs?per_page=1', '--jq', '.workflow_runs[0] | "\(.status) \(.conclusion // "-") on \(.head_sha[0:7]) run \(.id)"']);
     console.log(`WARN GitHub Release v${ver} without aeterna-v${ver}.html yet (it runs after CI on main); newest Release run: ${(w.stdout || 'unknown (gh failed)').trim()}. Re-run this check after CI; still missing = name it in the final message`);
   }
 }
