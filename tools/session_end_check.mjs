@@ -24,7 +24,8 @@ else {
   const html = readFileSync(file, 'utf8');
   if (!html.includes(`const VERSION = '${ver}'`)) fail(`${file} does not embed VERSION ${ver} (stale copy?)`);
   else ok(`game file ${file} embeds ${ver}`);
-  const r = spawnSync('npm', ['run', '-s', 'test:release'], { env: { ...process.env, RELEASE_FILE: file }, encoding: 'utf8' });
+  const win = process.platform === 'win32';                 // npm is only a .cmd shim there: spawn it through the shell (Node blocks that auto-resolution since the 2024 CVE fix)
+  const r = spawnSync(win ? 'npm.cmd' : 'npm', ['run', '-s', 'test:release'], { env: { ...process.env, RELEASE_FILE: file }, encoding: 'utf8', shell: win });
   if (r.status !== 0) fail('npm run -s test:release failed:\n' + ((r.stdout || '') + (r.stderr || '')).split('\n').filter(l => /not ok|Error/.test(l)).slice(0, 8).join('\n'));
   else ok('test:release passed on the game file');
 }
