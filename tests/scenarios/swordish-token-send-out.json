@@ -1,0 +1,18 @@
+{
+  "name": "swordish-token-send-out",
+  "about": "Standard block A token Swordish (26RSD10-T001): Green Token Spirit, BP 2000, 1 Lv1 core, cost 0, 0 symbols, not allowed in Deck. Placed onto the field via sendToken, returns to Token supply when removed.",
+  "turn": 3,
+  "active": "player",
+  "step": 3,
+  "players": {
+    "player": {
+      "reserve": 5,
+      "hand": [],
+      "spirits": []
+    },
+    "opponent": {
+      "reserve": 3,
+      "spirits": []
+    }
+  }
+}

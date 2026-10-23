@@ -17,7 +17,7 @@ function validateDeck(d, format, key) {
   if (key != null) {                     // Key Spirit (Aeterna house rule, v0.103.0): optional 3rd argument; the marked key must be a Spirit with at least one copy in the deck
     const kc = CARDS[key];
     if (!kc) errors.push(`Key Spirit: unknown card (${key}).`);
-    else if (kc.type !== 'Spirit') errors.push(`${kc.name} (${key}) cannot be the Key Spirit: a Spirit card is required.`);
+    else if (kc.type !== 'Spirit' || kc.token) errors.push(`${kc.name} (${key}) cannot be the Key Spirit: a Spirit card is required.`);
     else if (!(d[key] > 0)) errors.push(`${kc.name} (${key}) must be in the Deck to mark it as the Key Spirit.`);
   }
   const byName = {};
@@ -34,10 +34,10 @@ function validateDeck(d, format, key) {
 /* Key Spirit (Aeterna house rule, v0.103.0): a marked key resolves only while it is a Spirit with at least one copy in the deck;
    decks without one draw exactly as before. pickKey is the CPU's deterministic pick (most copies, then the smallest id) for a
    player-built deck it uses without a marked key. */
-const keyOfDeck = (d, key) => key != null && CARDS[key] && CARDS[key].type === 'Spirit' && (d && d[key]) > 0 ? key : null;
+const keyOfDeck = (d, key) => key != null && CARDS[key] && CARDS[key].type === 'Spirit' && !CARDS[key].token && (d && d[key]) > 0 ? key : null;
 const pickKey = d => {
   let best = null, bn = 0;
-  for (const [id, n] of Object.entries(d || {})) if (n > 0 && CARDS[id] && CARDS[id].type === 'Spirit' && (n > bn || (n === bn && id < best))) { best = id; bn = n; }
+  for (const [id, n] of Object.entries(d || {})) if (n > 0 && CARDS[id] && CARDS[id].type === 'Spirit' && !CARDS[id].token && (n > bn || (n === bn && id < best))) { best = id; bn = n; }
   return best;
 };
 const fmtName = f => (f === 'standard' ? 'STANDARD' : 'ETERNAL');

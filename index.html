@@ -4143,7 +4143,7 @@ function registerPack() {                                // built-in Saga 15-17 
   }
 }
 registerPack();
-/*TOKENS_START*/const BUILTIN_TOKENS = [{"id":"SD69-TOKEN-RAD","name":"Rig Avatar Dragon","type":"Token Spirit","color":"red","cost":0,"symbols":0,"reduction":{},"levels":[{"cores":1,"bp":4000}],"families":["Ancient Dragon","Creation"],"text":"This card can't be put into deck. [LV1](When Attacks) +1 core to one of your \"Contractor Brahma\" Grandwalker Nexuses. Also, during this battle, this Spirit gains an extra Red symbol.","source":"battle-spirits.fandom.com/wiki/Rig_Avatar_Dragon, read in the owner's own browser on 2026-10-14 at the owner's request; verify against a card image when one is available","note":"Loaded by tools/build.mjs (BUILTIN_TOKENS) since v0.35; registered as a Spirit with token:true, never allowed in a Deck. Used by SD69-CX01, BS76-006, BS76-060, BS76-CP01.","effects":[{"trigger":"ATTACKS","lv":[1],"actions":[{"do":"CORE_TO_NEXUS","n":1,"match":{"name":["Contractor Brahma"]}},{"do":"SYMBOL_PLUS","n":1}]}],"fxComplete":true}];/*TOKENS_END*/
+/*TOKENS_START*/const BUILTIN_TOKENS = [{"id":"SD69-TOKEN-RAD","name":"Rig Avatar Dragon","type":"Token Spirit","color":"red","cost":0,"symbols":0,"reduction":{},"levels":[{"cores":1,"bp":4000}],"families":["Ancient Dragon","Creation"],"text":"This card can't be put into deck. [LV1](When Attacks) +1 core to one of your \"Contractor Brahma\" Grandwalker Nexuses. Also, during this battle, this Spirit gains an extra Red symbol.","source":"battle-spirits.fandom.com/wiki/Rig_Avatar_Dragon, read in the owner's own browser on 2026-10-14 at the owner's request; verify against a card image when one is available","note":"Loaded by tools/build.mjs (BUILTIN_TOKENS) since v0.35; registered as a Spirit with token:true, never allowed in a Deck. Used by SD69-CX01, BS76-006, BS76-060, BS76-CP01.","effects":[{"trigger":"ATTACKS","lv":[1],"actions":[{"do":"CORE_TO_NEXUS","n":1,"match":{"name":["Contractor Brahma"]}},{"do":"SYMBOL_PLUS","n":1}]}],"fxComplete":true},{"id":"26RSD10-T001","name":"Swordish","name_jp":"ソーディッシュ","type":"Token Spirit","color":"green","cost":0,"symbols":0,"reduction":{},"levels":[{"lv":1,"cores":1,"bp":2000}],"families":["Abyssen"],"text":"This card can't be put into deck. [LV1] (Your Turn) This Spirit gains an extra Green symbol.","source":"https://battle-spirits.fandom.com/wiki/Swordish","note":"Loaded by tools/build.mjs (BUILTIN_TOKENS); registered as a Spirit with token:true, never allowed in a Deck. Used by 26RBS03-029, 26RBS03-078, 26RBS03-X07, 26RSD10-002, 26RSD10-013, 26RSD10-X01, 26RSD10-X02.","residual":["[LV1] (Your Turn) This Spirit gains an extra Green symbol."],"fxComplete":false}];/*TOKENS_END*/
 /* Token cards (v0.35): registered as Spirits with token:true ("Token Spirit" on the card); never listed in the deck builder or allowed in a Deck */
 const TOKEN_IDS = new Set();
 function registerTokens() {
@@ -4151,7 +4151,8 @@ function registerTokens() {
     if (o.type !== 'Token Spirit') continue;
     const r = parseCard(Object.assign({}, o, { type: 'Spirit' })); if (!r.card) continue;
     registerImported(r.card); delete IMPORTED[r.card.id];
-    Object.assign(CARDS[r.card.id], { imported: false, token: true });   // not a pack card: never in the deck builder or the 63-card pack audit TOKEN_IDS.add(r.card.id);
+    Object.assign(CARDS[r.card.id], { imported: false, token: true });   // not a pack card: never in the deck builder or the 63-card pack audit
+    TOKEN_IDS.add(r.card.id);
   }
 }
 registerTokens();
@@ -4178,7 +4179,7 @@ function validateDeck(d, format, key) {
   if (key != null) {                     // Key Spirit (Aeterna house rule, v0.103.0): optional 3rd argument; the marked key must be a Spirit with at least one copy in the deck
     const kc = CARDS[key];
     if (!kc) errors.push(`Key Spirit: unknown card (${key}).`);
-    else if (kc.type !== 'Spirit') errors.push(`${kc.name} (${key}) cannot be the Key Spirit: a Spirit card is required.`);
+    else if (kc.type !== 'Spirit' || kc.token) errors.push(`${kc.name} (${key}) cannot be the Key Spirit: a Spirit card is required.`);
     else if (!(d[key] > 0)) errors.push(`${kc.name} (${key}) must be in the Deck to mark it as the Key Spirit.`);
   }
   const byName = {};
@@ -4195,10 +4196,10 @@ function validateDeck(d, format, key) {
 /* Key Spirit (Aeterna house rule, v0.103.0): a marked key resolves only while it is a Spirit with at least one copy in the deck;
    decks without one draw exactly as before. pickKey is the CPU's deterministic pick (most copies, then the smallest id) for a
    player-built deck it uses without a marked key. */
-const keyOfDeck = (d, key) => key != null && CARDS[key] && CARDS[key].type === 'Spirit' && (d && d[key]) > 0 ? key : null;
+const keyOfDeck = (d, key) => key != null && CARDS[key] && CARDS[key].type === 'Spirit' && !CARDS[key].token && (d && d[key]) > 0 ? key : null;
 const pickKey = d => {
   let best = null, bn = 0;
-  for (const [id, n] of Object.entries(d || {})) if (n > 0 && CARDS[id] && CARDS[id].type === 'Spirit' && (n > bn || (n === bn && id < best))) { best = id; bn = n; }
+  for (const [id, n] of Object.entries(d || {})) if (n > 0 && CARDS[id] && CARDS[id].type === 'Spirit' && !CARDS[id].token && (n > bn || (n === bn && id < best))) { best = id; bn = n; }
   return best;
 };
 const fmtName = f => (f === 'standard' ? 'STANDARD' : 'ETERNAL');

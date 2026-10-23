@@ -205,7 +205,8 @@ function registerTokens() {
     if (o.type !== 'Token Spirit') continue;
     const r = parseCard(Object.assign({}, o, { type: 'Spirit' })); if (!r.card) continue;
     registerImported(r.card); delete IMPORTED[r.card.id];
-    Object.assign(CARDS[r.card.id], { imported: false, token: true });   // not a pack card: never in the deck builder or the 63-card pack audit TOKEN_IDS.add(r.card.id);
+    Object.assign(CARDS[r.card.id], { imported: false, token: true });   // not a pack card: never in the deck builder or the 63-card pack audit
+    TOKEN_IDS.add(r.card.id);
   }
 }
 registerTokens();
