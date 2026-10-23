@@ -230,10 +230,20 @@ async function cpuAdvents(p) {
     let did = false;
     for (const h of p.hand.concat(cadvSources(p).filter(x => p.soulState.includes(x)))) {
       const card = CARDS[h.id];
-      if (card.manifest) { const T = manifestTargets(p, h); if (T.length) { await doManifest(p, h, T[0]); did = true; break; } }
-      else if (card.contractAdvent) {
-        const T = contractAdventTargets(p, h, 'main').filter(t => CARDS[h.id].levels[0].bp > CARDS[t.id].levels[0].bp);
-        if (T.length) { await doContractAdvent(p, h, T.sort((a, b) => bpOf(b) - bpOf(a))[0], 'main'); did = true; break; }
+      let Mt = null, Ct = null;
+      if (card.manifest) Mt = manifestTargets(p, h);
+      else if (card.contractAdvent) Ct = contractAdventTargets(p, h, 'main').filter(t => CARDS[h.id].levels[0].bp > CARDS[t.id].levels[0].bp);
+      if (Mt && Mt.length) {
+        const v = await portCpu(p.key, 'advent', [h.uid]);                // v0.105.0 (M6 step 3): the host's cpuAnswer re-derives {uid, targetUid}
+        const tg = v && v.uid === h.uid && v.targetUid != null ? Mt.find(t => t.uid === v.targetUid) : null;
+        if (tg) { await doManifest(p, h, tg); did = true; }
+        break;
+      }
+      if (Ct && Ct.length) {
+        const v = await portCpu(p.key, 'advent', [h.uid]);
+        const tg = v && v.uid === h.uid && v.targetUid != null ? Ct.find(t => t.uid === v.targetUid) : null;
+        if (tg) { await doContractAdvent(p, h, tg, 'main'); did = true; }
+        break;
       }
     }
     if (!did) break;
@@ -313,7 +323,10 @@ async function cpuActivate(p) {
     let did = false;
     for (const f of fieldList(p).slice()) {
       const a = activatable(p, f, 'MAIN').find(x => !x.e.cpuSkip && !x.e.silverWheel && (!x.e.invoke || cpuInvokeOK(p, f, x.e, 'MAIN')));   // v0.50: Silver Wheel waits for the opposing Attack Step (cpuSilverWheel)
-      if (a) { await activateFx(p, f, a.idx); did = true; break; }
+      if (!a) continue;
+      const v = await portCpu(p.key, 'activate', [f.uid]);                // v0.105.0 (M6 step 3): the host's cpuAnswer re-derives {uid, idx}
+      if (v && v.idx === a.idx) { await activateFx(p, f, v.idx); did = true; }
+      break;
     }
     if (!did) break;
   }
@@ -334,5 +347,14 @@ async function doRevive(p, inst) {
   io.view({ type: 'board' }); await wait(300); await flushBursts();
   return true;
 }
-async function cpuRevive(p) { for (let g = 0; g < 3 && !G.over; g++) { const t = reviveTargets(p)[0]; if (!t) break; await doRevive(p, t); } }
+async function cpuRevive(p) {
+  for (let g = 0; g < 3 && !G.over; g++) {
+    const T = reviveTargets(p);
+    if (!T.length) break;
+    const v = await portCpu(p.key, 'revive', [T[0].uid]);                // v0.105.0 (M6 step 3): the host's cpuAnswer re-derives the uid
+    const t = T.find(x => x.uid === v);
+    if (!t) break;
+    await doRevive(p, t);
+  }
+}
 

@@ -249,6 +249,27 @@ function cpuAnswer(seat, d) {
         const c = cpuPlayChoice(p, summonableOpts(p));
         return c && c.uid != null ? c.uid : null;
       }
+      if (d.cpuK === 'activate') {              // v0.105.0 (M6 step 3): the CPU activation pick of the main step (02d-effects-resolve.js cpuActivate)
+        for (const f of fieldList(p)) {
+          const a = activatable(p, f, 'MAIN').find(x => !x.e.cpuSkip && !x.e.silverWheel && (!x.e.invoke || cpuInvokeOK(p, f, x.e, 'MAIN')));
+          if (a) return { uid: f.uid, idx: a.idx };
+        }
+        return null;
+      }
+      if (d.cpuK === 'revive') {                // v0.105.0 (M6 step 3): the CPU Revive pick (02d-effects-resolve.js cpuRevive)
+        return (reviveTargets(p)[0] || {}).uid ?? null;
+      }
+      if (d.cpuK === 'advent') {                // v0.105.0 (M6 step 3): the CPU Manifest / Contract Advent pick (02d-effects-resolve.js cpuAdvents)
+        for (const h of p.hand.concat(cadvSources(p).filter(x => p.soulState.includes(x)))) {
+          const card = CARDS[h.id];
+          if (card.manifest) { const T = manifestTargets(p, h); if (T.length) return { uid: h.uid, targetUid: T[0].uid }; }
+          else if (card.contractAdvent) {
+            const T = contractAdventTargets(p, h, 'main').filter(t => CARDS[h.id].levels[0].bp > CARDS[t.id].levels[0].bp);
+            if (T.length) return { uid: h.uid, targetUid: T.sort((a, b) => bpOf(b) - bpOf(a))[0].uid };
+          }
+        }
+        return null;
+      }
       return d.uids && d.uids.length ? d.uids[0] : (d.buttons && d.buttons[0] ? d.buttons[0].value : null);
     default: return null;
   }

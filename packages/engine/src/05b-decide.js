@@ -39,6 +39,11 @@ async function portPick(seat, cpuK, uids) {
   const v = await decide(seat, d);
   return v == null ? null : (uids.find(x => x.uid === v) || null);
 }
+/** v0.105.0 (M6 step 3): the same port round for a plain-value answer ({uid, idx}, {uid, targetUid}): the record's
+ *  uids are the witness candidates; the engine applies the host's answer as its own decision without recomputing. */
+async function portCpu(seat, cpuK, offer) {
+  return decide(seat, { kind: 'pick', cpuK, uids: (offer || []).map(x => (x && x.uid != null) ? x.uid : x) });
+}
 
 async function askBlock(att, D, blockers, must, bound) {
   const sym = CARDS[att.id].symbols;

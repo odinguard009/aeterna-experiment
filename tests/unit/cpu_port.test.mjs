@@ -11,17 +11,19 @@ import { closeBrowser, openGame } from './lib/game.mjs';
 after(async () => { await closeBrowser(); });
 
 test('M6-01 CPU decisions answer the port with the unchanged CPU policy: sims stay bit-identical', async () => {
-  for (const [seed, winner, hash, block, summon] of [
-    [2, 'player', '1dd0b275', 1, 10], [3, 'opponent', '28020066', 1, 8],
-    [8, 'player', 'ac0aeae3', 3, 9], [11, 'opponent', '921a7697', 4, 14],
+  for (const [seed, winner, hash, asks] of [
+    [2, 'player', '1dd0b275', { block: 1, summon: 10, activate: 5, revive: 0, advent: 0 }],
+    [3, 'opponent', '28020066', { block: 1, summon: 8, activate: 6, revive: 0, advent: 2 }],
+    [8, 'player', 'ac0aeae3', { block: 3, summon: 9, activate: 5, revive: 0, advent: 0 }],
+    [11, 'opponent', '921a7697', { block: 4, summon: 14, activate: 3, revive: 0, advent: 0 }],
   ]) {
     const r = await playHeadless({ seed });
     assert.deepEqual(r.errors, [], 'seed ' + seed);
     assert.equal(r.winner, winner, seed);
     assert.equal(r.hash, hash, 'the routed CPU changed the match (seed ' + seed + ')');
-    const picks = k => r.decisions.filter(d => d.cpu && d.kind === 'pick' && d.cpuK === k).length;
-    assert.equal(picks('block'), block, 'block picks routed through the port (seed ' + seed + ')');
-    assert.equal(picks('summon'), summon, 'summon picks routed through the port (seed ' + seed + ')');
+    for (const [k, n] of Object.entries(asks)) {
+      assert.equal(r.decisions.filter(d => d.cpu && d.cpuK === k).length, n, k + ' picks routed through the port (seed ' + seed + ')');
+    }
   }
 });
 
