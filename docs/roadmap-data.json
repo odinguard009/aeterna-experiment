@@ -2,10 +2,10 @@
  "root": {
   "title": "Aeterna",
   "tagline": "From tested engine to a simulator that plays like Aegis",
-  "waitingHtml": "<b>Waiting on you:</b> the mockup v12 approval (deferred UI work), the M6 hosting decision, and one <code>gh auth login</code> so sessions can create the GitHub Release.",
+  "waitingHtml": "<b>Waiting on you:</b> the mockup v12 approval (deferred UI work) and the online (M7/M8) hosting decision.",
   "updated": "23 Oct 2026",
-  "updatedAt": "0.104.0",
-  "next": "next: U/I queue M6 server prep, M7 database + Docker, M8 online client, card images, then cards with Standard first (the first Standard K session adds the missing Swordish token 26RSD10-T001 and the heavy-exhaust trigger); layout and animation work deferred until the owner lifts it; audit round done v0.104.0 (Windows tooling, UTF-8/LF writers, lint panic + 74 checker errors fixed, card-count rule, replay recording, U94-2); playable 6,890 of 8,709, complete 780"
+  "updatedAt": "0.105.0",
+  "next": "next: U/I queue M7 database + Docker, M8 online client, card images, then cards with Standard first (the first Standard K session adds the missing Swordish token 26RSD10-T001 and the heavy-exhaust trigger); layout and animation work deferred until the owner lifts it; audit round done v0.104.0 (Windows tooling, UTF-8/LF writers, lint panic + 74 checker errors fixed, card-count rule, replay recording, U94-2); playable 6,890 of 8,709, complete 780"
  },
  "phases": [
   {
@@ -643,8 +643,12 @@
      "t": "M5 types (ts-check first)"
     },
     {
+     "s": "done",
+     "t": "M6 server (v0.105.0): apps/server rooms vs the bot over the ws port - seat token reconnect, seat-filtered frames, room records replay their own run; local only, no hosting"
+    },
+    {
      "s": "later",
-     "t": "M6 server, M7 Postgres + Docker (local and CI), M8 online client"
+     "t": "M7 Postgres + Docker (local and CI), M8 online client"
     }
    ]
   },
@@ -1271,9 +1275,14 @@
    "calls": null,
    "basis": "not counted (no gate counter in this harness)",
    "note": "Audit-fix session (owner-approved): Windows portability + UTF-8/LF tooling, lint hard-fails without TypeScript and all 74 web checker errors fixed, card-count rule (flag-mechanic cards complete; BS33-022 + BS54-021 partial), UI-only modals out of the replay record, U94-2 waits state-based, Playwright + TypeScript as pinned devDependencies."
+  },
+  {
+   "ver": "v0.105.0",
+   "date": "23 Oct 2026",
+   "tokens": null,
+   "calls": null,
+   "basis": "not counted (no gate counter in this harness)",
+   "note": "M6 server prep: apps/server rooms vs the bot (seat token reconnect, seat-filtered frames, replay-safe records) with two scripted CI clients over one full ws match; a concrete deckB fixed the replay-determinism root bug; the U/I queue continues with M7."
   }
- ],
- "updated": "22 Oct 2026",
- "updatedAt": "0.103.0",
- "next": "next (audit fixes, owner 2026-10-21): M6-M8, card images, then cards with Standard first; layout and animation work deferred; Standard rules v0.98.0, U8a v0.99.0, rules base + card verify (Q3/Q4) v0.100.0, M5 types ratchet v0.101.0, CPU benchmark v0.102.0, Key Spirit v0.103.0; playable 6,890 of 8,709, complete 771"
+ ]
 }

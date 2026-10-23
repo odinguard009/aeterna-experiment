@@ -4,6 +4,17 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.105.0
+- Lane: U/I
+- Time: ~170 min (11:11 session start → 14:05 release, incl. the replay-determinism hunt), GLM 5.3 Flash; tokens not counted (no gate counter in this harness).
+- **M6 server prep done (`apps/server`: rooms vs the server's bot over WebSocket; the plan's first three M6 steps were committed before this session's step 5 batch; no hosting until the owner decides - the U/I queue continues with M7 database + Docker).**
+  - Rooms (`apps/server/src/rooms.mjs`): the human seat is `player`, claimed once with a deck and reopened by a token (mid-decision reconnect re-delivers the open decision - CI drill M6-26b); spectators join seatless; seat `opponent` is refused - it is the server's bot (`cpuAnswer` through the port, M6 steps 1-4). A room's rules = the page's default format (standard) and a concrete bot deck (default `std03`, a join may pick its own).
+  - Replay determinism (the root bug of the flaky finds): the room start now **requires a concrete `deckB`** - the engine's own CPU pick (`cpuDeckFor`) consumes seed randomness whenever the settings deck is illegal in the room format (std03 is not usable in eternal), which shifts every draw and the run then never replays the record it just wrote. With both decks given, a room record replays to the same log hash (pinned M6-22 and M6-26).
+  - Seat-filtered frames (`views.mjs` + engine `boardSnapshot(viewerKey)`): a seat sees its own Hand/Burst and the opponent's only as counts; a spectator sees every Hand as a count; hidden card ids never leave the server (`leaks()` guard drops a broken frame instead of sending it), and no decision message ever goes to a non-seat client. The no-argument call keeps the v0.104 viewer semantics exactly.
+  - Wrapper (`run.mjs`): join/answer/welcome/ready|over|error messages over `ws@8` (one `loadEngine` context per room, no engine write into the record beyond the port content), decide timeout answered by the bot like the page's v1 policy, `recordOf(roomId)` for the replay checks; the server close stops every room (`engine closeMatch()`, an ABORT-shape match drop) and terminates its sockets, so tests and CI never hang on a half-played match. A start-time decide double-delivery is fixed (a fresh start's register loop already covers the joiner).
+  - Tests: `tests/unit/server_rooms.test.mjs` M6-21..25 (rooms claim/reconnect/refusals, replay-safe start + record replay, timeout continues, frame discipline, one-engine-per-room load probe: 5 fresh engines = 3.8 s / +46 MB heap - the room limit waits for a real fleet measurement) and `tests/unit/server_clients.test.mjs` M6-26/-26b (the CI flow: two scripted clients drive a match to over, no leaks, one summary, the record replays; ws@8 installed `--no-save` like playwright locally and in ci.yml). `npm run -s loop`, pre-push and `npm run check` green.
+  - Revert note: `git revert` the M6 commits in reverse order (through `1ce4492`); the web page's behavior is unchanged (boardSnapshot keeps local semantics; closeMatch is unused by the page), old saves and replays load either way.
+
 ## v0.104.0
 - Lane: U/I
 - Time: ~550 min wall-clock (23:56 Oct 22 session start → 09:05 release, incl. the owner's away gaps), GLM 5.3 Flash; tokens not counted (no gate counter in this harness).
