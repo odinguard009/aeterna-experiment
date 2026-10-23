@@ -128,7 +128,9 @@ async function showCardDetail(id, ctx, uid) {
     if (inst) buttons = handButtons(G.p.player, inst, false);
   }
   buttons.push({ label: 'Close', cls: 'cancel', value: null });
-  const v = await modal({ uiOnly: true, title: '🎴 Card Detail', html: cardDetailHTML(card), buttons });
+  /* v0.105.1 fix (regression R15): with inst (a hand card mid-match) this menu carries the played action, so it records again -
+     v0.104's uiOnly tagging was for view-only dialogs and wrongly swallowed these action menus (the replay diverged at a hand tap) */
+  const v = await modal({ uiOnly: !inst, title: '🎴 Card Detail', html: cardDetailHTML(card), buttons });
   if (inst) { runHandAction(G.p.player, inst, v); return; }
   if (ctx === 'deck' && (v === 'add' || v === 'sub')) {
     dbChange(id, v === 'add' ? 1 : -1); showCardDetail(id, 'deck');
@@ -139,7 +141,9 @@ async function openHandModal(uid) {
   const card = CARDS[inst.id], c = effCost(p, card);
   const buttons = handButtons(p, inst, true);
   buttons.push({ label: '✖ Cancel', cls: 'cancel', value: null });
-  const v = await modal({ uiOnly: true, title: card.name, wide: true, html: cardStripHTML([inst]) + effectTextHTML(card, true) + `<div class="fx-pay">You pay ${c} (after reduction)</div>`, buttons });
+  /* v0.105.1 fix (regression R15): the tap menu chooses the played action (summon/soul/magic/...) - it must record its answer,
+     else the replay cannot drive a hand tap and diverges at the open menu (v0.104's uiOnly tagging was view-only scope) */
+  const v = await modal({ title: card.name, wide: true, html: cardStripHTML([inst]) + effectTextHTML(card, true) + `<div class="fx-pay">You pay ${c} (after reduction)</div>`, buttons });
   if (!G || !G.p.player.hand.includes(inst)) return;
   if (v === 'detail') showCardDetail(inst.id, 'hand', inst.uid);
   else runHandAction(p, inst, v);
@@ -185,7 +189,9 @@ async function openFieldModal(key, kind, uid) {
     else buttons.push({ label: '⚔ Attack', cls: 'primary', value: 'attack' });
   }
   buttons.push({ label: '✖ Cancel', cls: 'cancel', value: null });
-  const v = await modal({ uiOnly: true, title: card.name, wide: f.under.length > 0, html, buttons });
+  /* v0.105.1 fix (regression R15): the field menu also carries intents (activate/attack/cores) - its answer records again
+     (viewing closures answer null and are harmless in the record); v0.104's uiOnly tagging was view-only scope */
+  const v = await modal({ title: card.name, wide: f.under.length > 0, html, buttons });
   if (!G || G.over) return;
   if (v === 'detail') { showCardDetail(f.id); return; }
   if (!mine) return;

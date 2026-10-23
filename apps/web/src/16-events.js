@@ -152,6 +152,7 @@ async function runReplay(rec, opts) {
     if (G.over) return R.i >= inputs.length ? done(true) : done(false, `${inputs.length - R.i} recorded inputs are left after the end of the match`);
     if (!x && (MODAL || PICK) && Date.now() - idle > limit) return done(true, 'the record ends here (the match waits for a prompt)');
     if (MODAL) {
+      if (MODAL.cfg.uiOnly) { closeModal(null); continue; }      // v0.105.1 fix: view-only dialogs (zone views, the leave confirm) sit outside the record - the replay closes them itself
       if (x && 'm' in x) { R.i++; idle = Date.now(); closeModal(x.m); }
       else if (Date.now() - idle > limit) return done(false, `diverged at input ${R.i}: a prompt "${MODAL.cfg.title}" is open but the record has ${desc(x)}`);
       continue;
