@@ -7397,6 +7397,15 @@ function libAction(a) {
 /* ---------------------------------------------------------------------
    MATCH START / END
    --------------------------------------------------------------------- */
+/** v0.105.0 (M6 server prep): drops the running match - pending waits, port decisions and seat loops throw ABORT (the
+ *  replay drop and the web page's leave do the same) - so a wrapper that shuts down can stop the engine for good. */
+function closeMatch() {
+  if (!G) return;
+  SESSION++;
+  io.view({ type: 'reset' });
+  G = null;
+}
+
 async function startNewGame(opts) {
   opts = opts || {};
   SESSION++; io.view({ type: 'reset' });
@@ -7482,13 +7491,17 @@ function portRecord() {
   delete r.wait;
   return r;
 }
-/** One viewer-replay frame: the visible board as plain data (the CPU seat's Hand and Burst only as counts / "set"). */
-function boardSnapshot() {
+/** One viewer-replay frame: the visible board as plain data. No argument keeps the local viewer semantics of v0.104:
+ *  a CPU seat's Hand and Burst are a count / "set", the human's own are shown. M6 server (v0.105.0): pass the room seat
+ *  key ('player' / 'opponent') to stream that seat its full Hand and Burst only, or null for a spectator who is shown
+ *  every Hand as a count and every Burst as "set" - hidden-card ids never leave the server through this filter. */
+function boardSnapshot(viewerKey) {
   const fc = f => ({ id: f.id, uid: f.uid, c: f.cores, s: f.soul ? 1 : 0, x: f.exhausted ? 1 : 0, lv: lvNo(f), u: f.under.length ? f.under.map(x => x.id) : undefined, b: f.brave ? f.brave.id : undefined });
+  const local = viewerKey === undefined;         // the same call as every viewer replay up to v0.104
   const side = p => ({
     name: p.name, life: p.life, ls: p.lifeSoul ? 1 : 0, res: p.reserve.n, rs: p.reserve.soul ? 1 : 0, tc: p.trashCores.n, ts: p.trashCores.soul ? 1 : 0, count: p.count, deck: p.deck.length,
-    hand: p.cpu ? p.hand.length : p.hand.map(h => h.id), spirits: p.spirits.map(fc), nexus: p.nexus.map(fc), trash: p.trash.map(x => x.id), soulState: p.soulState.map(x => x.id),
-    removed: p.removed.map(x => x.id), burst: p.burst ? (p.cpu ? 'set' : p.burst.id) : null, mirage: p.mirage ? p.mirage.id : null
+    hand: local ? (p.cpu ? p.hand.length : p.hand.map(h => h.id)) : (p.key === viewerKey ? p.hand.map(h => h.id) : p.hand.length), spirits: p.spirits.map(fc), nexus: p.nexus.map(fc), trash: p.trash.map(x => x.id), soulState: p.soulState.map(x => x.id),
+    removed: p.removed.map(x => x.id), burst: p.burst ? (local ? (p.cpu ? 'set' : p.burst.id) : (p.key === viewerKey ? p.burst.id : 'set')) : null, mirage: p.mirage ? p.mirage.id : null
   });
   return { t: G.turnNo, st: G.step, sn: G.steps[G.step] || '', a: G.active, n: G.hn || 0, last: G.history.length ? G.history[G.history.length - 1] : '', over: !!G.over, w: G.winner || null, p: { player: side(G.p.player), opponent: side(G.p.opponent) } };
 }

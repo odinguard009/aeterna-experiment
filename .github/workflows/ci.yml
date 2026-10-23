@@ -21,8 +21,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Install dev tools (Playwright + TypeScript only; TypeScript pinned to the version the type baseline was counted with)
-        run: npm install --no-save playwright typescript@6.0.3 && npx playwright install --with-deps chromium
+      - name: Install dev tools (Playwright + TypeScript only; TypeScript pinned to the version the type baseline was counted with; ws runs the M6 server clients test)
+        run: npm install --no-save playwright typescript@6.0.3 ws@8 && npx playwright install --with-deps chromium
       - name: index.html is the build of its sources
         run: npm run check
       - name: Lint

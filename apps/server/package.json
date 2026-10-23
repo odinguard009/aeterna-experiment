@@ -1,0 +1,6 @@
+{
+  "name": "@aeterna/server",
+  "private": true,
+  "type": "module",
+  "description": "Aeterna M6 server prep: authoritative rooms over the engine port (packages/engine/headless.mjs loadEngine, one node:vm context per room). Pure parts (rooms, views, host) import no packages; the WebSocket wrapper (run.mjs) installs ws only in CI (docs/ai/monorepo-plan.md M6)."
+}

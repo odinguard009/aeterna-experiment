@@ -28,7 +28,7 @@ export function firstAnswer(seat, d) {
 }
 
 const EXPORTS = `
-;globalThis.__engine = { io, bindHost, VIEW_TYPES, DECISION_KINDS, cpuTurn, cpuAnswer, applyIntent, INTENT_TYPES, portRecord, boardSnapshot, runPortRecord, setFormat, ABORT,
+;globalThis.__engine = { io, bindHost, VIEW_TYPES, DECISION_KINDS, cpuTurn, cpuAnswer, applyIntent, INTENT_TYPES, portRecord, boardSnapshot, runPortRecord, setFormat, closeMatch, ABORT,
   setReplayFast() { REPLAY = { fast: true, i: 0 }; }, get FORMAT() { return FORMAT; }, startNewGame, PREBUILT, PRESET_DECK, VERSION, CARDS, matchSummary, checkInvariants,
   setSimDeckB(d) { SIM_DECK_B = d; }, canPlayCard, abTaxOK, STEPS, setSimHuman(v) { SIM_HUMAN = !!v; }, setSimProfiles(o) { CPU_SIM_PROFILES = Object.assign({}, o || {}); }, setFuzz(o) { FUZZ = Object.assign({}, o || {}); },
   get G() { return G; }, get SIM() { return SIM; } };

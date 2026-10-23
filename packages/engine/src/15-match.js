@@ -1,6 +1,15 @@
 /* ---------------------------------------------------------------------
    MATCH START / END
    --------------------------------------------------------------------- */
+/** v0.105.0 (M6 server prep): drops the running match - pending waits, port decisions and seat loops throw ABORT (the
+ *  replay drop and the web page's leave do the same) - so a wrapper that shuts down can stop the engine for good. */
+function closeMatch() {
+  if (!G) return;
+  SESSION++;
+  io.view({ type: 'reset' });
+  G = null;
+}
+
 async function startNewGame(opts) {
   opts = opts || {};
   SESSION++; io.view({ type: 'reset' });
