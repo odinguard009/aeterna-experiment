@@ -32,6 +32,14 @@ function ask(cfg, seat) { return decide(seat || 'player', Object.assign({ kind: 
 function info(title, html, seat) { return portAsk(seat || 'player', { kind: 'info', title, html }); }
 /** Tap a glowing card on the field: {text, uids, mark?, buttons?}. */
 function pickFromField(cfg, seat) { return decide(seat || 'player', Object.assign({ kind: 'pick' }, cfg, { uids: Array.from(cfg.uids || []) })); }
+/** v0.105.0 (M6 step 2): a CPU decision through the port: the record asks for a uid; the host's cpuAnswer recomputes
+ *  the engine's own policy (09a-cpu-eval.js), so sims bit-identical to the inline loop (docs/ai/monorepo-plan.md M6). */
+async function portPick(seat, cpuK, uids) {
+  const d = { kind: 'pick', cpuK, uids: uids.map(x => x.uid) };
+  const v = await decide(seat, d);
+  return v == null ? null : (uids.find(x => x.uid === v) || null);
+}
+
 async function askBlock(att, D, blockers, must, bound) {
   const sym = CARDS[att.id].symbols;
   const cfg = {

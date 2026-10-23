@@ -245,6 +245,10 @@ function cpuAnswer(seat, d) {
         const b = att ? cpuChooseBlock(p, att) : null;
         return b && b.uid ? b.uid : null;
       }
+      if (d.cpuK === 'summon') {                // v0.105.0 (M6 step 2): the summon pick of a CPU main step (09-cpu.js cpuMain)
+        const c = cpuPlayChoice(p, summonableOpts(p));
+        return c && c.uid != null ? c.uid : null;
+      }
       return d.uids && d.uids.length ? d.uids[0] : (d.buttons && d.buttons[0] ? d.buttons[0].value : null);
     default: return null;
   }

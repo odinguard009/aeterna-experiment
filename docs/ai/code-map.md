@@ -77,10 +77,10 @@ deckTotal, cleanDeck, validateDeck, keyOfDeck, pickKey, fmtName, fmtButton, setF
 ## packages/engine/src/05-state.js (68 lines, ~1.3k tokens) — GAME STATE
 SET_KEY, SETTINGS, SPEEDS, saveSettings, G, fnv, recIn, SIM_DECK_B, SIM_DECK_B_KEY, SIM_HUMAN, DELAYS, delay, engineIdle, wait, log, mkInst, newPlayer, contractToDeck, redrawHand, cpuWantsRedraw, newGame
 
-## packages/engine/src/05b-decide.js (98 lines, ~2.3k tokens) — DECISIONS (v0.83.0, phase F3 = monorepo step M3 part 1; docs/ai/monorepo-plan.md "Design" 1)
-DECISION_KINDS, cardIds, portAsk, decide, ask, info, pickFromField, askBlock, askPayment, uniqById, prepareHumanMagic, humanFlashChoice
+## packages/engine/src/05b-decide.js (106 lines, ~2.4k tokens) — DECISIONS (v0.83.0, phase F3 = monorepo step M3 part 1; docs/ai/monorepo-plan.md "Design" 1)
+DECISION_KINDS, cardIds, portAsk, decide, ask, info, pickFromField, portPick, askBlock, askPayment, uniqById, prepareHumanMagic, humanFlashChoice
 
-## packages/engine/src/05c-intent.js (251 lines, ~4k tokens) — INTENTS (v0.84.0, phase F3 part 2 = monorepo step M3 rest; docs/ai/monorepo-plan.md "Design" 1)
+## packages/engine/src/05c-intent.js (255 lines, ~4k tokens) — INTENTS (v0.84.0, phase F3 part 2 = monorepo step M3 rest; docs/ai/monorepo-plan.md "Design" 1)
 INTENT_TYPES, CORE_OPS, INTENT_MAX, SEAT_LOOP, seatCan, seatLoopOpen, boardView, endTurnNow, seatTurn, handOf, fieldOf, intentNext, intentSummon, intentCast, intentMirage, intentBraveSummon, intentBraveField, intentCore, intentAttack, applyIntent, cpuPaymentPlan, cpuIntent, cpuAnswer
 
 ## packages/engine/src/06-rules.js (471 lines, ~8.7k tokens) — RULES HELPERS
@@ -92,8 +92,8 @@ isMainStep, setStep, beginTurn, endStep, win, matchLoop, checkInvariants
 ## packages/engine/src/08-battle.js (167 lines, ~3.5k tokens) — BATTLE
 successor, flashTiming, battleEndAttack, attackStepOver, doBattle, doBattleInner, maybeBurst, burstFlash, flushBursts
 
-## packages/engine/src/09-cpu.js (161 lines, ~2.6k tokens) — CPU
-cpuCanPlay, cpuLevelUp, cpuBurstFlash, cpuFlashChoice, cpuCastMain, cpuMain, cpuBrave, cpuAttack, startAttackFx, cpuTurn
+## packages/engine/src/09-cpu.js (165 lines, ~2.7k tokens) — CPU
+cpuCanPlay, cpuLevelUp, cpuBurstFlash, cpuFlashChoice, summonableOpts, cpuCastMain, cpuMain, cpuBrave, cpuAttack, startAttackFx, cpuTurn
 
 ## packages/engine/src/09a-cpu-eval.js (120 lines, ~2k tokens) — CPU EVALUATION POLICY (v0.32, Aegis study point 7)
 CPU_PROFILES, CPU_PROFILE_NAMES, CPU_SIM_PROFILES, cpuProfileName, cpuW, lifeValue, lifeLoss, symOf, unitValue, cpuEval, cpuPlayScore, FUZZ, fuzzPick, cpuPlayChoice, cpuKeepMagicOrPay, cpuLethal, guardNeed, cpuAttackScore, cpuAttackChoice, cpuBlockScore, cpuChooseBlock, setCpuProfile

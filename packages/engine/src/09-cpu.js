@@ -87,6 +87,10 @@ function cpuFlashChoice(p, attKey, att, blk) {
   return null;
 }
 /* CPU Main: cast Main Magic that is clearly worth it (Flash-only Magic is held for battles) */
+/* v0.105.0 (M6 step 2): the summonable options of a CPU seat - the builder the site and cpuAnswer (05c-intent.js) share */
+function summonableOpts(p) {
+  return p.hand.filter(h => cpuCanPlay(p, h) && h !== p.burst && (CARDS[h.id].type !== 'Brave' || isSpiritForm(CARDS[h.id]))).concat(removedSummonable(p).filter(h => cpuCanPlay(p, h)));   // v0.50: Accel Spirits from the Removed Zone
+}
 async function cpuCastMain(p) {
   for (let g = 0; g < 4 && !G.over; g++) {
     let best = null;
@@ -116,9 +120,9 @@ async function cpuMain(p) {
   }
   if (!p.burstSetThisTurn && !p.burst) { const b = p.hand.find(h => CARDS[h.id].burst); if (b) { setBurst(p, b); io.view({ type: 'board' }); await wait(400); } }
   for (let g = 0; g < 14 && !G.over; g++) {
-    const opts = p.hand.filter(h => cpuCanPlay(p, h) && h !== p.burst && (CARDS[h.id].type !== 'Brave' || isSpiritForm(CARDS[h.id]))).concat(removedSummonable(p).filter(h => cpuCanPlay(p, h)));   // v0.50: Accel Spirits from the Removed Zone
+    const opts = summonableOpts(p);                                       // v0.105.0 (M6 step 2): shared with the cpuAnswer summon route
     if (!opts.length) break;
-    const pick = cpuPlayChoice(p, opts);
+    const pick = await portPick(p.key, 'summon', opts);
     if (!pick) break;
     summon(p, pick, null); io.view({ type: 'board' }); await wait(450);
     await fireFx(p, 'SUMMONED', pick);

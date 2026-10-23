@@ -10,17 +10,18 @@ import { closeBrowser, openGame } from './lib/game.mjs';
 
 after(async () => { await closeBrowser(); });
 
-test('M6-01 CPU block decisions answer the port with the unchanged CPU policy: sims stay bit-identical', async () => {
-  for (const [seed, winner, hash, cpuPicks] of [
-    [2, 'player', '1dd0b275', 1], [3, 'opponent', '28020066', 1],
-    [8, 'player', 'ac0aeae3', 3], [11, 'opponent', '921a7697', 4],
+test('M6-01 CPU decisions answer the port with the unchanged CPU policy: sims stay bit-identical', async () => {
+  for (const [seed, winner, hash, block, summon] of [
+    [2, 'player', '1dd0b275', 1, 10], [3, 'opponent', '28020066', 1, 8],
+    [8, 'player', 'ac0aeae3', 3, 9], [11, 'opponent', '921a7697', 4, 14],
   ]) {
     const r = await playHeadless({ seed });
     assert.deepEqual(r.errors, [], 'seed ' + seed);
     assert.equal(r.winner, winner, seed);
     assert.equal(r.hash, hash, 'the routed CPU changed the match (seed ' + seed + ')');
-    const picks = r.decisions.filter(d => d.cpu && d.kind === 'pick');
-    assert.equal(picks.length, cpuPicks, 'block picks routed through the port (seed ' + seed + ')');
+    const picks = k => r.decisions.filter(d => d.cpu && d.kind === 'pick' && d.cpuK === k).length;
+    assert.equal(picks('block'), block, 'block picks routed through the port (seed ' + seed + ')');
+    assert.equal(picks('summon'), summon, 'summon picks routed through the port (seed ' + seed + ')');
   }
 });
 
@@ -34,7 +35,7 @@ test('M6-02 a human seat vs CPU: the CPU defender block pick reaches the host as
     assert.equal(r.winner, winner, seed + ' winner');
     assert.equal(r.hash, hash, 'the routed CPU changed the match (' + deckA + ' vs ' + deckB + ')');
     assert.ok(cpu.length >= asks, 'CPU asks reached the host (' + deckA + ' vs ' + deckB + '): ' + cpu.length);
-    for (const d of cpu) assert.ok(d.kind === 'pick', 'only block picks are routed yet: ' + JSON.stringify(d));
+    for (const d of cpu) assert.ok(d.kind === 'pick', 'a cpu ask must be a pick record (block or summon): ' + JSON.stringify(d));
   }
 });
 
@@ -45,7 +46,7 @@ test('M6-03 the web host answers cpu-marked records without UI and keeps sims pl
   assert.deepEqual(errors, []);
   const log = await page.evaluate(() => window.__cpuDecideLog || []);
   assert.ok(log.length >= 1, 'cpu-marked records reached the web host in the sim');
-  for (const d of log) assert.ok(d.kind === 'pick', 'only block picks are routed yet: ' + JSON.stringify(d));
+  for (const d of log) assert.ok(d.kind === 'pick', 'a cpu ask must be a pick record (block or summon): ' + JSON.stringify(d));
 });
 
 test('M6-04 real-match records keep replaying: full record and an old-shape record without CPU answers', async () => {

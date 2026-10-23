@@ -85,7 +85,7 @@ export async function playHeadless({ seed = 1, deckA = 'red', deckB = 'mitra', t
       if (v === undefined) v = E.cpuAnswer(seat, rec);
       if (d.kind === 'action' && !(v && E.INTENT_TYPES.includes(v.type))) throw new Error('not an intent record: ' + JSON.stringify(v));
       if (JSON.stringify(v === undefined ? null : v) === undefined) throw new Error('answer is not serializable');
-      decisions.push({ seat, kind: d.kind, cpu: !!d.cpu, v: v === undefined ? null : v });
+      decisions.push({ seat, kind: d.kind, cpu: !!d.cpu, cpuK: d.cpuK || null, v: v === undefined ? null : v });
       return v === undefined ? null : v;
     }
   });

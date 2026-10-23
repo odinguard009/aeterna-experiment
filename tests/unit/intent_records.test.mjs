@@ -18,7 +18,7 @@ test('I84-01 a headless human seat plays its own turns with intents (the CPU ans
     assert.ok(r.over && (r.winner === 'player' || r.winner === 'opponent'), `${a} vs ${b} did not finish`);
     const t = types(r); for (const [k, n] of Object.entries(t)) all[k] = (all[k] || 0) + n;
     assert.ok(r.acted.ok >= r.decisions.filter(d => d.kind === 'action').length - r.acted.refused, 'every intent is acknowledged');
-    for (const d of r.decisions) assert.equal(d.seat, 'player');
+    for (const d of r.decisions) assert.ok(d.seat === 'player' || (d.cpu && d.kind === 'pick'), 'a cpu ask must be a cpu-marked pick (M6): ' + JSON.stringify(d));
   }
   assert.ok(all.summon >= 3, 'summons: ' + JSON.stringify(all));
   assert.ok(all.attack >= 3, 'attacks: ' + JSON.stringify(all));
@@ -30,8 +30,9 @@ test('I84-02 recorded intents and answers reproduce the match exactly', async ()
   const first = await playHeadless({ seed, deckA: a, deckB: b, human: true });
   assert.ok(first.over && first.decisions.some(d => d.kind === 'action'));
   let i = 0;
-  const again = await playHeadless({ seed, deckA: a, deckB: b, human: true, answer: (seat, d) => { assert.equal(d.kind, first.decisions[i].kind, `decision ${i}`); return first.decisions[i++].v; } });
-  assert.equal(i, first.decisions.length);
+  const human = first.decisions.filter(d => d.seat === 'player');      // CPU picks are answered by the host's cpuAnswer, never by this script
+  const again = await playHeadless({ seed, deckA: a, deckB: b, human: true, answer: (seat, d) => { assert.equal(d.kind, human[i].kind, `decision ${i}`); return human[i++].v; } });
+  assert.equal(i, human.length);
   assert.deepEqual([again.winner, again.turn, again.hash, again.log], [first.winner, first.turn, first.hash, first.log]);
 });
 

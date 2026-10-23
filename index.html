@@ -4361,6 +4361,14 @@ function ask(cfg, seat) { return decide(seat || 'player', Object.assign({ kind: 
 function info(title, html, seat) { return portAsk(seat || 'player', { kind: 'info', title, html }); }
 /** Tap a glowing card on the field: {text, uids, mark?, buttons?}. */
 function pickFromField(cfg, seat) { return decide(seat || 'player', Object.assign({ kind: 'pick' }, cfg, { uids: Array.from(cfg.uids || []) })); }
+/** v0.105.0 (M6 step 2): a CPU decision through the port: the record asks for a uid; the host's cpuAnswer recomputes
+ *  the engine's own policy (09a-cpu-eval.js), so sims bit-identical to the inline loop (docs/ai/monorepo-plan.md M6). */
+async function portPick(seat, cpuK, uids) {
+  const d = { kind: 'pick', cpuK, uids: uids.map(x => x.uid) };
+  const v = await decide(seat, d);
+  return v == null ? null : (uids.find(x => x.uid === v) || null);
+}
+
 async function askBlock(att, D, blockers, must, bound) {
   const sym = CARDS[att.id].symbols;
   const cfg = {
@@ -4671,6 +4679,10 @@ function cpuAnswer(seat, d) {
         const att = (G.p[other(seat)].spirits || []).find(s => s && s.uid === d.mark);
         const b = att ? cpuChooseBlock(p, att) : null;
         return b && b.uid ? b.uid : null;
+      }
+      if (d.cpuK === 'summon') {                // v0.105.0 (M6 step 2): the summon pick of a CPU main step (09-cpu.js cpuMain)
+        const c = cpuPlayChoice(p, summonableOpts(p));
+        return c && c.uid != null ? c.uid : null;
       }
       return d.uids && d.uids.length ? d.uids[0] : (d.buttons && d.buttons[0] ? d.buttons[0].value : null);
     default: return null;
@@ -5473,6 +5485,10 @@ function cpuFlashChoice(p, attKey, att, blk) {
   return null;
 }
 /* CPU Main: cast Main Magic that is clearly worth it (Flash-only Magic is held for battles) */
+/* v0.105.0 (M6 step 2): the summonable options of a CPU seat - the builder the site and cpuAnswer (05c-intent.js) share */
+function summonableOpts(p) {
+  return p.hand.filter(h => cpuCanPlay(p, h) && h !== p.burst && (CARDS[h.id].type !== 'Brave' || isSpiritForm(CARDS[h.id]))).concat(removedSummonable(p).filter(h => cpuCanPlay(p, h)));   // v0.50: Accel Spirits from the Removed Zone
+}
 async function cpuCastMain(p) {
   for (let g = 0; g < 4 && !G.over; g++) {
     let best = null;
@@ -5502,9 +5518,9 @@ async function cpuMain(p) {
   }
   if (!p.burstSetThisTurn && !p.burst) { const b = p.hand.find(h => CARDS[h.id].burst); if (b) { setBurst(p, b); io.view({ type: 'board' }); await wait(400); } }
   for (let g = 0; g < 14 && !G.over; g++) {
-    const opts = p.hand.filter(h => cpuCanPlay(p, h) && h !== p.burst && (CARDS[h.id].type !== 'Brave' || isSpiritForm(CARDS[h.id]))).concat(removedSummonable(p).filter(h => cpuCanPlay(p, h)));   // v0.50: Accel Spirits from the Removed Zone
+    const opts = summonableOpts(p);                                       // v0.105.0 (M6 step 2): shared with the cpuAnswer summon route
     if (!opts.length) break;
-    const pick = cpuPlayChoice(p, opts);
+    const pick = await portPick(p.key, 'summon', opts);
     if (!pick) break;
     summon(p, pick, null); io.view({ type: 'board' }); await wait(450);
     await fireFx(p, 'SUMMONED', pick);
