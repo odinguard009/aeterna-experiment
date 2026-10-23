@@ -1,0 +1,1543 @@
+<title>Aeterna Theme Preview v13</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<!-- Mockup proposal v13 (2026-10-22), update round on v12 per owner feedback:
+     * control split into DESKTOP / PHONE tabs, then screen tabs inside each device
+     * every page has a phone layout (the missing pieces are now shown)
+     * player profile page + login-entry mock (for online later) + avatar chip + popover
+     * card info page (PC + phone) with entry points and actions
+     * casing enforced by CSS (uniform label style inside every field and pop up)
+     * animations stay CrossOver-styled with an explicit performance budget
+     * every button works (overlay dialog system, Esc closes, toasts, steps, builder)
+     Proposal only: nothing is built before the owner approves. List + status:
+     docs/design/ui-inventory.md. -->
+<style>
+:root{
+  --page:#0d1015; --page-fg:#eef1f5; --page-muted:#a9b2c1; --page-line:#ffffff24; --page-panel:#161a22;
+  --board1:#1b2029; --board2:#11141a; --lattice:#ffffff08;
+  --panel1:#232935; --panel2:#161a22; --line:#ffffff1a; --line2:#ffffff40;
+  --text:#eef1f5; --text2:#a9b2c1; --text3:#7d8696; --text4:#5d6676;
+  --chip:#1d222c; --bar:#07090c; --head:#0b0e13; --rowbg:#0f1218b3; --strip:#000000cc;
+  --card1:#3b4352; --card2:#1a1e26; --cardline:#ffffff40; --bpstroke:#000;
+  --cpu:#d8344b; --cpu-ink:#ffffff;
+  --you:#17b897; --you-ink:#04211b; --you-soft:#17b89733;
+  --gem1:#bfe9ff; --gem2:#3aa0ff; --gem3:#0b4f9a;
+  --yes:#ffd447; --yes-ink:#2a1f00;
+  color-scheme:dark;
+}
+:root[data-mode="light"]{
+  --page:#e4e8ee; --page-fg:#141922; --page-muted:#4d5666; --page-line:#0000001f; --page-panel:#f4f6f9;
+  --board1:#eef1f5; --board2:#dfe4eb; --lattice:#0b1a3010;
+  --panel1:#ffffff; --panel2:#eef1f5; --line:#0b1a301f; --line2:#0b1a3040;
+  --text:#141922; --text2:#4d5666; --text3:#6b7484; --text4:#8a93a3;
+  --chip:#e3e8ef; --bar:#1b2029; --head:#ffffff; --rowbg:#ffffffb3; --strip:#141922e6;
+  --card1:#5b6474; --card2:#2a303b; --cardline:#0b1a3055; --bpstroke:#000;
+  --cpu:#c42b40;
+  color-scheme:light;
+}
+body{background:var(--page);color:var(--page-fg);font-family:"Segoe UI",Roboto,-apple-system,"Noto Sans",sans-serif}
+.wrap{padding-block:16px 28px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:14px;max-width:1440px;margin:0 auto}
+.ctrl{display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center;padding:12px 14px;background:var(--page-panel);border:1px solid var(--page-line);border-radius:8px}
+.ctrl h1{margin:0;font-size:16px;font-weight:800;letter-spacing:.04em;flex:1 1 240px;min-width:0}
+.ctrl h1 small{display:block;font-size:12px;font-weight:400;color:var(--page-muted);letter-spacing:0;margin-top:2px}
+.grp{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.lbl{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--page-muted)}
+.seg{display:inline-flex;border:1px solid var(--page-line);border-radius:6px;overflow:hidden}
+.seg button{border:0;background:transparent;color:var(--page-fg);font:inherit;font-size:13px;font-weight:700;padding:7px 12px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--you);color:var(--you-ink)}
+.seg button:focus-visible,.sw:focus-visible{outline:2px solid var(--page-fg);outline-offset:2px}
+.sws{display:flex;gap:6px;flex-wrap:wrap}
+.sw{width:30px;height:30px;border:0;padding:0;cursor:pointer;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);background:var(--c);position:relative}
+.sw[aria-pressed="true"]{outline:2px solid var(--page-fg);outline-offset:3px}
+.note{font-size:13px;color:var(--page-muted);line-height:1.5;max-width:96ch;margin:0}
+.note b{color:var(--page-fg)}
+.stage{position:relative;width:100%;overflow:hidden;border-radius:8px;border:1px solid var(--page-line)}
+.scaler{transform-origin:0 0;position:absolute;left:0;top:0}
+
+/* ===== game screens (fixed size, scaled) ===== */
+.scr{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--board1),var(--board2));color:var(--text);font-family:"Segoe UI",Roboto,-apple-system,"Noto Sans",sans-serif;font-size:14px}
+.lat{position:absolute;inset:0;background:repeating-linear-gradient(60deg,var(--lattice) 0 1px,transparent 1px 46px),repeating-linear-gradient(-60deg,var(--lattice) 0 1px,transparent 1px 46px);pointer-events:none}
+.sk{display:inline-block;transform:skewX(-18deg)}.sk>span{display:inline-block;transform:skewX(18deg)}
+.tagY,.tagC{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:2px 12px}
+.tagY{background:var(--you);color:var(--you-ink)}.tagC{background:var(--cpu);color:var(--cpu-ink)}
+.plate{position:relative;background:linear-gradient(180deg,var(--panel1),var(--panel2));clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;text-align:center;box-shadow:inset 0 0 0 1px var(--line)}
+.pv{font-size:12px;color:var(--text2);font-variant-numeric:tabular-nums}.pv b{color:var(--text);font-size:16px}
+.dia{width:34px;height:34px;transform:rotate(45deg);display:flex;align-items:center;justify-content:center}
+.dia b{transform:rotate(-45deg);font-size:16px;font-weight:900;color:#fff;text-shadow:0 1px 2px #0008}
+.diaY{background:var(--you);box-shadow:0 0 0 2px var(--board2),0 0 0 3px var(--you),0 0 14px var(--you-soft)}
+.diaC{background:var(--cpu);box-shadow:0 0 0 2px var(--board2),0 0 0 3px var(--cpu)}
+.gem{display:inline-block;width:10px;height:10px;transform:rotate(45deg);background:linear-gradient(135deg,var(--gem1),var(--gem2) 55%,var(--gem3))}
+.soul{background:linear-gradient(135deg,#fff,#c9d0da 50%,#7b8494)}
+.row{position:relative;background:var(--rowbg);box-shadow:inset 0 0 0 1px var(--line)}
+.slot{width:56px;height:62px;border:1px dashed var(--line2)}
+.sl{font-size:9px;font-weight:800;letter-spacing:.14em;color:var(--text3)}
+.ci{position:relative;width:76px;height:106px;border-radius:4px;flex:none;overflow:hidden;background:linear-gradient(160deg,var(--card1),var(--card2));box-shadow:0 0 0 1px var(--cardline),0 4px 10px #0006}
+.ci::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(45deg,#ffffff0a 0 4px,transparent 4px 8px)}
+.ci .cost{position:absolute;left:3px;top:3px;width:18px;height:18px;border-radius:50%;background:#0f1218;box-shadow:0 0 0 1px #fff;font-size:11px;font-weight:800;color:#fff;display:flex;align-items:center;justify-content:center}
+.ci .bp{position:absolute;left:0;right:0;bottom:2px;text-align:center;font-size:16px;font-weight:900;color:#fff;-webkit-text-stroke:3px var(--bpstroke);paint-order:stroke;font-variant-numeric:tabular-nums}
+.ci .img{position:absolute;left:0;right:0;top:34%;text-align:center;font-size:9px;letter-spacing:.12em;color:#ffffff66}
+.you{box-shadow:0 0 0 2px var(--you),0 0 16px var(--you)}
+.foe{box-shadow:0 0 0 2px var(--cpu),0 0 16px var(--cpu)}
+.st{font-size:11px;font-weight:800;letter-spacing:.12em;padding:7px 14px;background:var(--chip);color:var(--text3);box-shadow:inset 0 0 0 1px var(--line)}
+.st.on{background:var(--you);color:var(--you-ink);box-shadow:0 0 14px var(--you-soft)}
+.st.nx{color:var(--text)}
+.ib{height:32px;padding:0 16px;border:0;background:var(--chip);box-shadow:inset 0 0 0 1px var(--line2);color:var(--text);font-size:12px;font-weight:700;letter-spacing:.08em}
+.next{border:0;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);background:var(--you);color:var(--you-ink);font-weight:900;letter-spacing:.1em}
+.head{position:relative;display:flex;align-items:center;background:var(--head);box-shadow:inset 0 -2px 0 var(--you)}
+.turn{height:100%;display:flex;align-items:center;gap:10px;padding:0 26px 0 14px;background:var(--you);color:var(--you-ink);clip-path:polygon(0 0,100% 0,calc(100% - 18px) 100%,0 100%)}
+.stepname{height:100%;display:flex;align-items:center;padding:0 30px 0 26px;margin-left:-14px;background:var(--chip);clip-path:polygon(18px 0,100% 0,calc(100% - 18px) 100%,0 100%);font-weight:800;letter-spacing:.16em}
+.narr{padding:5px 26px;background:var(--strip);color:#eef1f5;clip-path:polygon(14px 0,calc(100% - 14px) 0,100% 50%,calc(100% - 14px) 100%,14px 100%,0 50%)}
+.narr b{color:#7cc8ff}
+
+/* lobby */
+.nav a{font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--text2);text-decoration:none;padding:10px 22px}
+.nav a.on{background:var(--you);color:var(--you-ink)}
+.gbtn{position:relative;width:38px;height:38px;border:0;background:var(--chip);clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);color:var(--text);display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer}
+.gbtn .dot{width:16px;height:16px;transform:rotate(45deg);background:var(--you);box-shadow:0 0 0 2px var(--head)}
+.pop{padding:14px;background:var(--panel1);box-shadow:inset 0 0 0 1px var(--line2),0 20px 40px #0008;display:flex;flex-direction:column;gap:12px}
+.pop .bar{height:4px;margin:-14px -14px 0;background:linear-gradient(90deg,var(--turn,var(--you)),transparent)}
+.pop h3{margin:0;font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+.pgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 6px}
+.pcol{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px;color:var(--text2);background:none;border:0;cursor:pointer;padding:0;font-family:inherit}
+.pcol i{width:30px;height:30px;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);background:var(--c)}
+.pcol[aria-pressed="true"]{color:var(--text);font-weight:800}
+.pcol[aria-pressed="true"] i{box-shadow:inset 0 0 0 3px var(--panel1)}
+.msx{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.toggle{display:inline-flex;background:var(--chip);box-shadow:inset 0 0 0 1px var(--line2);padding:3px;gap:3px}
+.toggle button{border:0;background:transparent;color:var(--text2);font:inherit;font-size:12px;font-weight:800;letter-spacing:.1em;padding:6px 14px;cursor:pointer}
+.toggle button[aria-pressed="true"]{background:var(--you);color:var(--you-ink)}
+.btnp{height:50px;padding:0 34px;border:0;background:var(--you);color:var(--you-ink);font-size:15px;font-weight:900;letter-spacing:.16em;box-shadow:0 0 22px var(--you-soft)}
+.btns{height:50px;padding:0 34px;border:0;background:var(--chip);box-shadow:inset 0 0 0 1px var(--line2);color:var(--text);font-size:15px;font-weight:900;letter-spacing:.16em}
+.btny{height:50px;padding:0 30px;border:0;background:var(--yes);color:var(--yes-ink);font-size:15px;font-weight:900;letter-spacing:.16em}
+.btnd{height:50px;padding:0 30px;border:0;background:var(--cpu);color:#fff;font-size:15px;font-weight:900;letter-spacing:.16em}
+.tile{display:flex;align-items:center;gap:14px;padding:16px 18px;color:var(--text);background:linear-gradient(180deg,var(--panel1),var(--panel2));clip-path:polygon(14px 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%,0 14px);box-shadow:inset 0 0 0 1px var(--line)}
+.tile .ic{width:44px;height:44px;flex:none;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);background:var(--you);color:var(--you-ink);display:flex;align-items:center;justify-content:center}
+.tile b{display:block;font-size:15px;letter-spacing:.06em}.tile span{font-size:13px;color:var(--text2)}
+.foot{position:absolute;left:0;right:0;bottom:0;height:30px;display:flex;align-items:center;gap:22px;padding:0 28px;background:var(--bar);font-size:12px;color:#a9b2c1}
+/* settings */
+.side a{display:block;padding:10px 14px;font-size:14px;color:var(--text2);text-decoration:none}
+.side a.on{background:var(--you-soft);color:var(--text);box-shadow:inset 3px 0 0 var(--you)}
+.card{background:linear-gradient(180deg,var(--panel1),var(--panel2));box-shadow:inset 0 0 0 1px var(--line);clip-path:polygon(14px 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%,0 14px)}
+.srow{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px 0;border-top:1px solid var(--line)}
+.srow b{display:block;font-size:15px}.srow span{font-size:13px;color:var(--text2)}
+
+/* battle pieces */
+.rlab{position:absolute;left:12px;top:5px;font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--cpu)}
+.pill{position:absolute;top:6px;left:50%;transform:translateX(-50%);font-size:11px;padding:3px 12px;background:var(--head);box-shadow:inset 0 0 0 1px var(--line2);color:var(--text2);letter-spacing:.08em}.pill b{color:var(--you)}
+.sbox{display:flex;flex-direction:column;align-items:center;gap:3px}
+.oc{position:relative;width:76px;height:106px;border-radius:5px;flex:none;overflow:hidden;background:linear-gradient(160deg,var(--card1),var(--card2));box-shadow:0 0 0 1px var(--cardline),0 4px 10px #0006;color:#fff}
+.oc::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(45deg,#ffffff0a 0 4px,transparent 4px 8px)}
+.ocost{position:absolute;left:3px;top:3px;width:17px;height:17px;border-radius:50%;background:#0f1218;box-shadow:0 0 0 1px #fff;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.otyp{position:absolute;right:3px;top:4px;font-size:8px;font-weight:800;letter-spacing:.08em;padding:2px 4px;background:#000b;border-radius:2px}
+.oimg{position:absolute;left:0;right:0;top:22%;text-align:center;font-size:8px;letter-spacing:.12em;color:#ffffff55}
+.onm{position:absolute;left:3px;right:3px;top:40%;text-align:center;font-size:9px;font-weight:800;line-height:1.15;text-shadow:0 1px 2px #000}
+.cbar{position:absolute;left:8px;right:8px;bottom:26px;text-align:center;font-size:9px;font-weight:800;color:#06210f;background:var(--you);border-radius:2px;padding:1px 0}
+.omag{position:absolute;left:3px;bottom:4px;width:15px;height:15px;border-radius:50%;background:#0f1218;box-shadow:0 0 0 1px #ffffff88}
+.omag::after{content:"";position:absolute;left:4px;top:4px;width:5px;height:5px;border-radius:50%;box-shadow:0 0 0 1.5px #fff}
+.obp{position:absolute;left:0;right:0;bottom:2px;text-align:center;font-size:14px;font-weight:900;color:#fff;-webkit-text-stroke:3px var(--bpstroke);paint-order:stroke;font-variant-numeric:tabular-nums}
+.olv{position:absolute;right:3px;bottom:3px;width:16px;height:16px;transform:rotate(45deg);background:var(--you);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:900;color:var(--you-ink)}
+.olv b{display:block;transform:rotate(-45deg);font-size:9px}
+.foe .olv,.foe .cbar{background:var(--cpu);color:#fff}
+.band{position:relative;background:var(--head);box-shadow:inset 0 0 0 1px var(--turn,var(--you)),0 0 18px color-mix(in srgb,var(--turn,var(--you)) 30%,transparent);display:grid;grid-template-columns:130px 1fr 120px;align-items:center;padding:0 12px;background:linear-gradient(90deg,color-mix(in srgb,var(--turn,var(--you)) 22%,var(--head)),var(--head) 40%)}
+.band.cpu-turn{--turn:var(--cpu)}
+.bandlbl{font-size:18px;font-weight:900;font-style:italic;color:var(--turn,var(--you));line-height:1.05}
+.steps{display:flex;gap:4px;align-items:center;position:relative}
+.st{cursor:pointer;border:0;font-family:inherit}
+.st.done{opacity:.55}
+.st.on{transform:skewX(-18deg) scale(1.12);animation:glow 1.6s ease-in-out infinite}
+@keyframes glow{50%{box-shadow:0 0 22px var(--turn,var(--you))}}
+.st.shake{animation:shake .35s}
+@keyframes shake{25%{translate:-5px 0}75%{translate:5px 0}}
+.phscroll{overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 22%,#000 78%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 22%,#000 78%,transparent 100%)}
+.phscroll::-webkit-scrollbar{display:none}
+.phscroll .steps{padding:4px 50%;width:max-content}
+.warn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:4;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 34px;background:var(--cpu);color:#fff;clip-path:polygon(16px 0,calc(100% - 16px) 0,100% 50%,calc(100% - 16px) 100%,16px 100%,0 50%);box-shadow:0 10px 30px #0008;white-space:nowrap}
+.warn[hidden]{display:none}
+.warn b{font-size:15px;font-style:italic;letter-spacing:.14em}.warn span{font-size:12px}
+.sgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}
+.sc{height:24px;background:var(--chip);box-shadow:inset 0 0 0 1px var(--line);display:flex;align-items:center;justify-content:center;gap:4px;font-size:12px;font-weight:800;color:var(--text);font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden}
+.sc em{font-style:normal;color:var(--text2);font-size:11px}
+.sc.hl{box-shadow:inset 0 0 0 1px var(--h)}.sc.hl em{color:var(--h)}
+@media (prefers-reduced-motion:reduce){.st.on,.st.shake{animation:none}}
+
+/* cores, soul core, sleeves, turn colour */
+:root{--core1:#cfe8ff;--core2:#3a8cf0;--core3:#0b3f8a;--soul1:#ffd0d0;--soul2:#e5484d;--soul3:#7a0f16;--turn:var(--you)}
+.gems{display:flex;gap:3px;align-items:center;justify-content:center;flex-wrap:wrap}
+.g-core,.g-soul{position:relative;display:inline-block;flex:none;border-radius:50%}
+.g-core{width:13px;height:13px;border-radius:0;clip-path:polygon(50% 0,100% 38%,81% 100%,19% 100%,0 38%);background:conic-gradient(from 18deg at 50% 56%,var(--core1) 0 72deg,var(--core2) 72deg 144deg,var(--core3) 144deg 216deg,var(--core2) 216deg 288deg,var(--core1) 288deg);filter:drop-shadow(0 0 3px var(--core2))}
+.g-soul{width:16px;height:16px;border-radius:0;clip-path:polygon(50% 0,100% 38%,81% 100%,19% 100%,0 38%);background:linear-gradient(150deg,#ffffff,#b9c0ca 35%,#eef1f5 55%,#6f7887 100%);filter:drop-shadow(0 0 4px var(--soul2))}
+.g-soul::after{content:"";position:absolute;inset:22% 22% 18%;clip-path:polygon(50% 0,100% 38%,81% 100%,19% 100%,0 38%);background:radial-gradient(circle at 40% 35%,var(--soul1) 0 12%,var(--soul2) 45%,var(--soul3) 100%)}
+.gems.sm .g-core{width:8px;height:8px}
+.cbar{display:flex;gap:2px;justify-content:center;align-items:center;left:6px;right:6px;bottom:24px;padding:2px 0;background:#000000a0!important}
+.cbar .g-core{width:9px;height:9px}.cbar .g-soul{width:11px;height:11px}
+.sleeve{position:relative;display:inline-block;width:22px;height:30px;flex:none;border-radius:2px;background:var(--sl-bg,#0b0b0b);box-shadow:2px -2px 0 -0.5px var(--board1),2px -2px 0 0 var(--line2),4px -4px 0 -0.5px var(--board1),4px -4px 0 0 var(--line2)}
+.sleeve::before{content:"";position:absolute;inset:2px;border:1px solid var(--sl-line,#cfcfcf);border-radius:1px;background:repeating-linear-gradient(60deg,transparent 0 5px,var(--sl-lat,#ffffff18) 5px 6px),repeating-linear-gradient(-60deg,transparent 0 5px,var(--sl-lat,#ffffff18) 5px 6px)}
+.sleeve::after{content:"";position:absolute;left:50%;top:50%;width:8px;height:8px;transform:translate(-50%,-50%) rotate(45deg);border:1px solid var(--sl-line,#cfcfcf);background:var(--sl-mid,#000)}
+.sleeve.mini{width:12px;height:16px;box-shadow:none;margin-right:2px}.sleeve.mini::after{width:4px;height:4px}
+.sleeve.big{width:60px;height:84px;box-shadow:none}.sleeve.big::after{width:20px;height:20px}.sleeve.big::before{inset:4px}
+.deckv{display:flex;align-items:center;gap:10px}
+.steps{position:relative}
+.slot.set{position:relative;border:0;background:none;display:flex;align-items:center;justify-content:center}
+.sleeve.fill{width:100%;height:100%;box-shadow:none}.sleeve.fill::after{width:30%;height:auto;aspect-ratio:1}
+.btag{position:absolute;left:-4px;right:-4px;top:50%;transform:translateY(-50%);background:var(--cpu);color:#fff;font-size:8px;font-weight:900;letter-spacing:.1em;text-align:center;padding:2px 0}
+.oc.cover{width:100%;height:100%;box-shadow:0 0 0 1px #c39bff,0 0 10px #c39bff66}
+.oc.cover .onm{font-size:8px}
+.slot .cnt{position:absolute;right:-6px;bottom:-6px;min-width:18px;height:18px;padding:0 4px;background:var(--head);box-shadow:inset 0 0 0 1px var(--line2);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.stile{display:inline-flex;align-items:center;gap:8px}
+.tabbar svg{width:24px;height:24px}
+.matimg{position:absolute;inset:0;background:var(--mat,none) center/cover no-repeat;pointer-events:none}
+.matimg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--board1),var(--board2));opacity:var(--mat-dim,1)}
+.sleeve.has-img{background:#050505 var(--slimg) center/cover no-repeat;border-radius:3px}
+.sleeve.has-img::before,.sleeve.has-img::after{display:none}
+:root.has-mat{--rowbg:#0f121866}
+:root.has-mat[data-mode="light"]{--rowbg:#ffffff73}
+.upbtn{position:relative;overflow:hidden}
+.upbtn input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.pcslot{width:76px;height:106px;display:flex;align-items:center;justify-content:center}
+.slot.pcslot:not(.set) .sl{font-size:9px}
+.ib,.okchip,.dtn,.lnk{white-space:nowrap}.tbar .search{width:190px}.tbar .achip{padding:4px 6px}
+.narr{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;max-width:100%;box-sizing:border-box}
+.pb{background:var(--you);color:var(--you-ink);box-shadow:none}
+.icb{min-width:32px;height:32px;border:0;background:var(--chip);box-shadow:inset 0 0 0 1px var(--line2);color:var(--text);font:inherit;font-size:16px;font-weight:800;cursor:pointer}
+.okchip{font-size:11px;font-weight:800;letter-spacing:.08em;padding:3px 8px;color:var(--you);box-shadow:inset 0 0 0 1px var(--you)}
+.tbar{display:flex;align-items:center;gap:8px;flex-wrap:nowrap;min-width:0}
+.search{height:32px;display:flex;align-items:center;gap:8px;padding:0 12px;background:var(--chip);box-shadow:inset 0 0 0 1px var(--line2);color:var(--text3);font-size:12px;width:260px;box-sizing:border-box;flex:none}
+.badge{font-style:normal;display:inline-flex;align-items:center;justify-content:center;min-width:16px;height:16px;margin-left:6px;background:var(--you);color:var(--you-ink);font-size:10px;font-weight:900}
+.pb .badge{background:var(--you-ink);color:var(--you)}
+.achip{font-size:11px;font-weight:700;padding:4px 8px;background:var(--you-soft);box-shadow:inset 0 0 0 1px var(--you);color:var(--text);white-space:nowrap}.achip b{color:var(--you);margin-left:4px}
+.lnk{background:none;border:0;color:var(--you);font:inherit;font-size:12px;font-weight:700;cursor:pointer;text-decoration:underline}
+.fpanel{position:absolute;left:0;right:0;top:132px;z-index:5;background:var(--panel1);box-shadow:0 18px 40px #000a,inset 0 2px 0 var(--you);padding:14px 16px;display:flex;flex-direction:column;gap:12px}
+.fpanel[hidden],.pane[hidden]{display:none!important}
+.fgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 18px}
+.fg .sl{margin-bottom:6px}.fgrid>.fg:first-child{grid-column:1 / -1}.fchips{display:flex;flex-wrap:wrap;gap:6px}
+.fchip{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border:0;background:var(--chip);box-shadow:inset 0 0 0 1px var(--line2);color:var(--text2);font:inherit;font-size:12px;font-weight:700;cursor:pointer}
+.fchip.on{background:var(--you-soft);box-shadow:inset 0 0 0 1.5px var(--you);color:var(--text)}
+.fact{display:flex;align-items:center;gap:10px;padding-top:10px;border-top:1px solid var(--line)}
+.dot{display:inline-block;width:12px;height:12px;background:var(--c);clip-path:polygon(50% 0,100% 38%,81% 100%,19% 100%,0 38%)}
+.dtabs{display:flex;gap:2px;box-shadow:inset 0 -1px 0 var(--line)}
+.dtabs button{flex:1;height:34px;border:0;background:none;color:var(--text2);font:inherit;font-size:11px;font-weight:800;letter-spacing:.1em;cursor:pointer}
+.dtabs button.on{color:var(--you);box-shadow:inset 0 -3px 0 var(--you)}
+.pane{overflow:auto;min-height:0;display:flex;flex-direction:column;gap:4px;scrollbar-width:thin}
+.dlh{display:flex;justify-content:space-between;font-size:10px;font-weight:800;letter-spacing:.14em;color:var(--text3);padding:6px 2px 2px}.dlh b{color:var(--you)}
+.dlr{display:flex;align-items:center;gap:8px;height:30px;padding:0 4px 0 0;background:var(--chip);box-shadow:inset 3px 0 0 var(--you)}
+.dlr.key{box-shadow:inset 3px 0 0 var(--yes)}
+.dlc{width:22px;text-align:center;font-weight:900;font-size:12px}.dln{flex:1;min-width:0;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dlq{width:16px;text-align:center;font-size:13px}
+.dlb{width:24px;height:24px;border:0;background:var(--panel2);box-shadow:inset 0 0 0 1px var(--line2);color:var(--text);font-weight:900;cursor:pointer}.dlb:disabled{opacity:.35;cursor:default}
+.curve{display:flex;align-items:flex-end;gap:8px;padding:8px 2px 0}
+.cv{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px}.cv i{width:100%;background:linear-gradient(180deg,var(--you),var(--you-soft))}.cv span{color:var(--text3);font-weight:800}
+.dgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.dtile{position:relative;display:flex;gap:14px;padding:14px;background:linear-gradient(180deg,var(--panel1),var(--panel2));box-shadow:inset 0 0 0 1px var(--line)}
+.dtile.act{box-shadow:inset 0 0 0 2px var(--you),0 0 18px var(--you-soft)}
+.dti{display:flex;flex-direction:column;gap:5px;min-width:0;flex:1}
+.dtn{font-size:17px;font-weight:900;font-style:italic;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.actb{font-size:9px;font-weight:900;letter-spacing:.12em;padding:2px 6px;background:var(--you);color:var(--you-ink)}
+.keyb{font-size:9px;font-weight:900;letter-spacing:.12em;padding:2px 6px;background:var(--yes);color:var(--yes-ink)}
+.dots{display:flex;gap:4px}
+.dst{font-size:12px;font-weight:700}.dst.ok{color:var(--you)}.dst.bad{color:#e08a00}.dst.bad::before{content:"! "}
+.dta{display:flex;gap:6px;margin-top:4px}.dta .ib:disabled{opacity:.4}
+.drow{display:flex;align-items:center;gap:10px;padding:8px 8px 8px 10px;background:linear-gradient(180deg,var(--panel1),var(--panel2));box-shadow:inset 0 0 0 1px var(--line)}
+.drow.act{box-shadow:inset 0 0 0 2px var(--you)}
+.tabbar{display:flex;background:var(--head);box-shadow:inset 0 2px 0 var(--you)}
+.tabbar a{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:9px 0 8px;font-size:10px;font-weight:800;letter-spacing:.1em;color:var(--text2);text-decoration:none}
+.tabbar a.on{color:var(--you);background:linear-gradient(180deg,var(--you-soft),transparent)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ===== v12 additions (friendliness update; proposal) ===== */
+/* text size: Normal / Large / Larger on the battle screens (Settings row; no layout change) */
+.scr[data-ts="2"] .pv,.scr[data-ts="2"] .narr,.scr[data-ts="2"] .sc{font-size:14px}
+.scr[data-ts="2"] .pv b{font-size:19px}
+.scr[data-ts="2"] .sl,.scr[data-ts="2"] .st{font-size:10px}
+.scr[data-ts="2"] .obp{font-size:16px}
+.scr[data-ts="3"] .pv,.scr[data-ts="3"] .narr,.scr[data-ts="3"] .sc{font-size:16px}
+.scr[data-ts="3"] .pv b{font-size:22px}
+.scr[data-ts="3"] .sl,.scr[data-ts="3"] .st{font-size:11px}
+.scr[data-ts="3"] .obp{font-size:18px}
+/* battle PC: card panel on the right */
+.cpanel{position:relative;display:flex;flex-direction:column;gap:8px;background:linear-gradient(180deg,var(--panel1),var(--panel2));clip-path:polygon(12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%,0 12px);box-shadow:inset 0 0 0 1px var(--line);padding:12px;overflow:hidden}
+.cpanel .bigcard{width:200px;height:280px;border-radius:6px;flex:none}
+.cpanel .fx{font-size:14px;line-height:1.5;color:var(--text);max-height:132px;overflow:hidden}
+.cpanel .fx .kw{display:inline-block;padding:0 5px;background:var(--chip);box-shadow:inset 0 0 0 1px var(--line2);color:#ffd447;font-weight:800;font-size:12px}
+.cpanel .fx .fl{color:#7cc8ff;font-weight:700;font-size:12px}
+.cpanel .fx .res{color:#e08a00;font-size:12px}
+.clog{font-size:12px;color:var(--text2);line-height:1.45;display:flex;flex-direction:column;gap:3px}
+.clog b{color:var(--text)}
+.clog .k{color:var(--you);font-weight:800}
+.cpt{font-size:10px;font-weight:800;letter-spacing:.14em;color:var(--text3)}
+/* full words on PC: plates keep their labels; hand counter */
+/* classes used by templates without own rules yet */
+.oc.big{width:92px;height:126px}
+.cpu-sleeve{--sl-mid:var(--cpu);--sl-line:#ffb0b8;--sl-lat:#ffffff10}
+/* hint bar (CrossOver black key bar) */
+.hintbar{position:absolute;left:0;right:0;bottom:0;height:30px;display:flex;align-items:center;gap:24px;padding:0 22px;background:var(--bar);font-size:12px;color:#a9b2c1;z-index:3}
+.hintbar b{color:#fff;font-weight:800}
+.hintbar .k{display:inline-block;min-width:26px;text-align:center;padding:2px 7px;background:var(--chip);box-shadow:inset 0 0 0 1px var(--line2);color:#fff;font-weight:800;font-size:11px}
+/* step hint line (one line: what to do now) */
+.stepline{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text)}
+.stepline .arrow{color:var(--turn,var(--you));font-weight:900;font-style:italic}
+/* thumb-zone bottom sheets (phone dialogs) */
+.tsback{position:absolute;inset:0;background:#000a;z-index:7}
+.tsheet{position:absolute;left:0;right:0;bottom:0;z-index:8;padding:10px 12px 16px;background:var(--panel1);box-shadow:0 -18px 44px #000b,inset 0 2px 0 var(--turn,var(--you));border-radius:16px 16px 0 0;display:flex;flex-direction:column;gap:10px}
+.tsheet .grab{width:44px;height:4px;border-radius:2px;background:var(--line2);align-self:center}
+.tsheet h3{margin:0;font-size:15px;font-weight:800}
+.tsheet .q{font-size:14px;color:var(--text2);line-height:1.45}
+.b50{height:50px;border:0;font-family:inherit;font-size:15px;font-weight:900;letter-spacing:.1em;cursor:pointer;flex:none}
+.b50.pri{background:var(--turn,var(--you));color:var(--you-ink)}
+.b50.sec{background:var(--chip);box-shadow:inset 0 0 0 1px var(--line2);color:var(--text)}
+.b50.yes{background:var(--yes);color:var(--yes-ink)}
+.b50.dgr{background:var(--cpu);color:#fff}
+/* dialog gallery (Dialogs screen) */
+.gal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;padding:20px 24px;align-items:start}
+.gal .pop{pointer-events:auto;position:relative;width:100%;box-sizing:border-box}
+.gal .pop .bar{position:absolute}
+.kchip{font-size:10px;font-weight:800;letter-spacing:.14em;padding:2px 10px;background:var(--chip);box-shadow:inset 0 0 0 1px var(--line2);color:var(--text3)}
+.kchip.kfl{color:#b7a6ff}.kchip.kpay{color:var(--you)}.kchip.kml{color:#f0a6ff}
+.pop .q{font-size:14px;line-height:1.5;color:var(--text)}
+.pop .sub{font-size:12px;color:var(--text3);line-height:1.4}
+.pop .brow{display:flex;gap:10px}
+.pop .brow .sk{height:40px;padding:0 22px;font-size:13px;border:0;font-weight:900;letter-spacing:.08em;cursor:pointer;font-family:inherit}
+.gpay{display:flex;gap:4px;justify-content:center;padding:6px 0}
+.gpay .g-core{width:18px;height:18px}
+.gpay .mv{animation:tpulse 1.1s ease-in-out infinite}
+@keyframes tpulse{50%{transform:translateY(-4px) scale(1.15);filter:drop-shadow(0 0 8px var(--core2))}}
+@media (prefers-reduced-motion:reduce){.gpay .mv{animation:none}}
+.erow{display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--chip);box-shadow:inset 0 0 0 1px var(--line);font-size:13px}
+.zl{display:flex;align-items:center;gap:10px;padding:6px 8px;background:var(--chip);box-shadow:inset 0 0 0 1px var(--line);font-size:12px}
+.mrow{display:grid;grid-template-columns:repeat(4,64px);gap:8px;justify-content:center}
+.toss{display:flex;flex-direction:column;align-items:center;gap:6px;padding:8px 0}
+.coin{width:52px;height:52px;border-radius:50%;background:conic-gradient(from 0deg,#2a3140 0 25%,#444e63 0 50%,#2a3140 0 75%,#444e63 0 100%);box-shadow:0 0 0 3px var(--line2),0 6px 16px #0007;display:grid;place-items:center;color:#fff;font-weight:900;transform:rotate(45deg)}
+.coin b{transform:rotate(-45deg);font-size:15px}
+/* toast stack */
+.toasts{display:flex;flex-direction:column;gap:8px;width:280px}
+.toast{padding:9px 12px;background:var(--head);box-shadow:inset 0 0 0 1px var(--line2),0 8px 22px #0008;font-size:12px;color:var(--text);display:flex;gap:8px;align-items:center}
+.toast i{width:8px;height:8px;transform:rotate(45deg);background:var(--you);flex:none}
+.toast.c i{background:var(--cpu)}
+/* banners row */
+.bigr{display:flex;flex-direction:column;gap:10px;padding:20px 24px;align-items:flex-start}
+.rib{font-size:20px;font-weight:900;font-style:italic;letter-spacing:.14em;padding:10px 40px;background:linear-gradient(90deg,color-mix(in srgb,var(--turn,var(--you)) 30%,#0000),color-mix(in srgb,var(--turn,var(--you)) 30%,#0000)),var(--head);box-shadow:inset 0 0 0 1px var(--turn,var(--you));color:#fff;clip-path:polygon(10px 0,calc(100% - 10px) 0,100% 50%,calc(100% - 10px) 100%,10px 100%,0 50%)}
+.rib.y{color:var(--you);box-shadow:inset 0 0 0 1px var(--you)}
+.rib.c{color:var(--cpu);--turn:var(--cpu);box-shadow:inset 0 0 0 1px var(--cpu)}
+.chevrow{width:100%;display:flex;justify-content:center;background:linear-gradient(180deg,#000c,#0000);clip-path:polygon(24px 0,calc(100% - 24px) 0,100% 50%,calc(100% - 24px) 100%,24px 100%,0 50%);color:#fff;font-weight:900;font-style:italic;letter-spacing:.18em;font-size:15px;padding:9px 0}
+.rev{display:flex;gap:10px;align-items:center}
+/* animations screen */
+.astage{position:relative;width:100%;height:300px;background:linear-gradient(180deg,var(--board1),var(--board2));box-shadow:inset 0 0 0 1px var(--line);overflow:hidden}
+.astage .g-soul,.astage .g-core{position:absolute}
+.anim{display:flex;flex-direction:column;gap:10px}
+.anim .abtn{display:flex;align-items:center;gap:12px;padding:9px 12px;background:var(--chip);box-shadow:inset 0 0 0 1px var(--line);border:0;color:var(--text);font:inherit;font-size:13px;cursor:pointer;text-align:left}
+.anim .abtn i{width:26px;height:26px;flex:none;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);background:var(--you)}
+.anim .abtn b{font-size:13px}.anim .abtn span{display:block;font-size:11px;color:var(--text2)}
+/* play setup */
+.pchip{display:flex;align-items:center;gap:14px;padding:12px 16px;background:linear-gradient(180deg,var(--panel1),var(--panel2));box-shadow:inset 0 0 0 1px var(--line)}
+.modegrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.mode{position:relative;display:flex;flex-direction:column;gap:6px;padding:18px;background:linear-gradient(180deg,var(--panel1),var(--panel2));box-shadow:inset 0 0 0 1px var(--line);color:var(--text);cursor:pointer}
+.mode.on{box-shadow:inset 0 0 0 2px var(--you),0 0 18px var(--you-soft)}
+.mode .mi{width:44px;height:44px;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);background:var(--you);color:var(--you-ink);display:grid;place-items:center;margin-bottom:6px}
+.mode .mi g,.mode .mi path{stroke:currentColor}
+.mode b{font-size:17px}.mode span{font-size:13px;color:var(--text2)}
+.mode .ok{position:absolute;right:12px;top:12px;color:var(--you);font-weight:900}
+.steps3{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.sc3{display:flex;align-items:center;gap:8px;padding:8px 14px;background:var(--chip);box-shadow:inset 0 0 0 1px var(--line2);font-size:13px;color:var(--text2)}
+.sc3 i{width:22px;height:22px;transform:rotate(45deg);display:grid;place-items:center;background:var(--you);color:var(--you-ink);font-style:normal;font-weight:900;font-size:11px}
+.sc3 i b{transform:rotate(-45deg)}
+.sc3.on{box-shadow:inset 0 0 0 1.5px var(--you);color:var(--text);background:var(--you-soft)}
+.setupnote{font-size:14px;color:var(--text2)}
+.setupnote b{color:var(--text)}
+/* ===== v13 additions: device split, working controls, profile, card info, phone pieces ===== */
+/* casing is enforced by CSS so typed text stays normal (owner rule: no mixed case in one field) */
+.tagY,.tagC,.sl,.kchip,.cpt,.st,.btag,.dst,.actb,.keyb,.lbl,.okchip{ text-transform:uppercase }
+.ib,.btnp,.btns,.btny,.btnd,.b50,.next,.fchip,.achip,.abtn b,.stile{ text-transform:uppercase }
+.pop h3,.tsheet h3,.pop .q,.pop .sub,.tile b,.tile span{ text-transform:none }
+.pop h3,.tsheet h3{ font-size:15px; letter-spacing:.02em }
+/* every control gets a pointer + focus; plates act as buttons (zone viewers) */
+.plate{ cursor:pointer; border:0; font:inherit; color:inherit }
+.plate:hover,.plate:focus-visible{ box-shadow:inset 0 0 0 1px var(--line),0 0 0 2px var(--turn,var(--you)) }
+button{ touch-action:manipulation }
+/* working overlay dialogs (PC centred, PHONE bottom sheet) */
+.dlayer{ position:absolute; inset:0; background:#000a; z-index:10; display:flex; align-items:center; justify-content:center; padding:24px }
+.dlayer.end{ align-items:flex-end; padding:0 }
+.dlayer[hidden]{ display:none }
+.dlayer .pop{ position:relative; width:380px; max-height:86%; overflow:auto; margin:0 }
+.dlayer.end .pop{ width:100%; max-height:74%; box-shadow:0 -18px 44px #000b,inset 0 2px 0 var(--turn,var(--you)); padding:12px 12px calc(14px + env(safe-area-inset-bottom)) }
+.dlayer .brow{ display:flex; gap:10px; margin-top:2px }
+.dlayer .brow .ib{ height:40px }
+/* match log drawer (battle LOG button) */
+.logframe{ position:absolute; right:8px; top:48px; bottom:64px; width:300px; z-index:9; background:linear-gradient(180deg,var(--panel1),var(--panel2)); box-shadow:0 16px 40px #000a,inset 0 0 0 1px var(--line); padding:12px; display:flex; flex-direction:column; gap:8px }
+.logframe[hidden],.ppop[hidden],.fsheet[hidden],.decksheet[hidden]{ display:none }
+.lrows{ flex:1; overflow:auto; display:flex; flex-direction:column; gap:6px; scrollbar-width:thin }
+.lrow{ font-size:12px; line-height:1.45; padding:6px 8px; background:var(--chip); box-shadow:inset 0 0 0 1px var(--line) }
+.lrow b{ color:var(--you); font-weight:800; margin-right:4px }
+.lrow.c b{ color:var(--cpu) }
+/* profile avatar chip + popover */
+.avatar{ position:relative; width:26px; height:36px; flex:none; border-radius:3px; background:#050505; box-shadow:0 0 0 1px var(--line2); overflow:hidden }
+.avatar img,.avatar::before{ content:""; position:absolute; inset:0; background:var(--slimg,none) center/cover no-repeat }
+.avatar::after{ content:""; position:absolute; left:50%; top:50%; width:10px; height:10px; transform:translate(-50%,-50%) rotate(45deg); border:1px solid #cfcfcf; background:var(--sl-mid,var(--you)) }
+.ppop{ position:absolute; top:50px; right:10px; z-index:11; width:236px; padding:10px }
+.ppop .who{ display:flex; gap:10px; align-items:center; padding-bottom:8px }
+.ppop nav{ display:flex; flex-direction:column; border-top:1px solid var(--line) }
+.ppop nav a{ padding:10px 10px; font-size:13px; font-weight:700; color:var(--text); text-decoration:none; border-bottom:1px solid var(--line); cursor:pointer }
+.ppop nav a:hover{ background:var(--you-soft) }
+/* profile page */
+.ppage{ position:relative; display:grid; grid-template-columns:300px 1fr; gap:20px; padding:18px 26px; height:100%; box-sizing:border-box }
+.idcard{ display:flex; flex-direction:column; gap:12px; padding:16px; align-items:flex-start }
+.idcard .bigavatar{ width:120px; height:166px; border-radius:8px; background:#050505 var(--slimg,none) center/cover; box-shadow:0 0 0 1px var(--line2),0 10px 30px #0006; overflow:hidden; position:relative }
+.bigavatar::after{ content:""; position:absolute; left:50%; top:44%; width:40px; height:40px; transform:translate(-50%,-50%) rotate(45deg); border:3px solid #cfcfcf; background:var(--sl-mid,var(--you)); box-shadow:0 0 22px var(--you-soft) }
+.statgrid{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px }
+.stat{ padding:12px 14px; background:var(--chip); box-shadow:inset 0 0 0 1px var(--line) }
+.stat b{ display:block; font-size:24px; font-variant-numeric:tabular-nums }
+.stat span{ font-size:12px; color:var(--text2) }
+/* card info page */
+.cinfo{ position:relative; display:grid; grid-template-columns:330px 1fr; gap:22px; padding:18px 26px; height:100%; box-sizing:border-box; overflow:hidden }
+.cinfoL{ display:flex; flex-direction:column; gap:10px; align-items:center; min-width:0 }
+.cinfoR{ display:flex; flex-direction:column; gap:10px; min-height:0; overflow:auto; padding-right:6px; scrollbar-width:thin }
+.bigart{ position:relative; width:300px; height:416px; flex:none; border-radius:10px; overflow:hidden; background:linear-gradient(160deg,var(--card1),var(--card2)); box-shadow:0 0 0 1px var(--cardline),0 16px 40px #0008 }
+.bigart::before{ content:""; position:absolute; inset:0; background:repeating-linear-gradient(45deg,#ffffff0a 0 6px,transparent 6px 12px) }
+.bigart .txt{ position:absolute; left:14px; right:14px; top:52%; text-align:center; font-size:10px; letter-spacing:.2em; color:#ffffff55 }
+.bigart .nm{ position:absolute; left:14px; right:14px; top:60%; text-align:center; font-size:18px; font-weight:900; line-height:1.2; text-shadow:0 1px 3px #000 }
+.bigart .bpb{ position:absolute; left:0; right:0; bottom:16px; text-align:center; font-size:24px; font-weight:900; color:#fff; -webkit-text-stroke:4px var(--bpstroke); paint-order:stroke }
+.bigart .co{ position:absolute; left:14px; top:14px; width:34px; height:34px; border-radius:50%; background:#0f1218; box-shadow:0 0 0 2px #fff; color:#fff; font-size:17px; font-weight:900; display:grid; place-items:center }
+.bigart .lvb{ position:absolute; right:14px; top:14px; background:var(--you); color:var(--you-ink); font-size:12px; font-weight:900; padding:3px 10px; clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%) }
+.lvl{ display:flex; gap:12px; align-items:flex-start; padding:10px 12px; background:var(--chip); box-shadow:inset 0 0 0 1px var(--line) }
+.lvl .lv{ min-width:70px; font-weight:900; color:var(--you); flex:none }
+.lvl .lv em{ display:block; font-style:normal; font-size:11px; color:var(--text3); font-weight:800 }
+.lvl p{ margin:0; font-size:14px; line-height:1.5; color:var(--text) }
+.kwd{ display:inline-block; padding:0 6px; background:var(--head); box-shadow:inset 0 0 0 1px var(--line2); color:#ffd447; font-size:12px; font-weight:800 }
+.ok .fl{ color:#7cc8ff; font-weight:700; font-size:12px }
+.lgl{ display:flex; flex-wrap:wrap; gap:6px; font-size:12px; color:var(--text2) }
+.lgl b{ color:var(--text) }
+.cnav{ display:flex; gap:8px; align-items:center }
+.stact{ display:flex; gap:10px; margin-top:auto; padding-top:12px; flex-wrap:wrap }
+.cnum{ font-size:12px; color:var(--text3) }
+/* toasts stack (working confirmations) */
+.toastsx{ position:absolute; left:50%; transform:translateX(-50%); bottom:40px; z-index:12; display:flex; flex-direction:column; gap:8px; pointer-events:none }
+.toastx{ padding:8px 14px; background:var(--head); box-shadow:inset 0 0 0 1px var(--line2),0 8px 22px #0008; font-size:12px; color:var(--text); animation:toastin .2s ease-out }
+@keyframes toastin{ from{ opacity:0; translate:0 10px } to{ opacity:1 } }
+/* budget chips on the animation screen */
+.bud{ display:inline-block; padding:2px 8px; background:var(--chip); box-shadow:inset 0 0 0 1px var(--line); color:var(--text3); font-size:10px; font-weight:800; letter-spacing:.08em; text-transform:uppercase }
+/* native accordion for docs/glossary (works without JS) */
+.acc{ display:flex; flex-direction:column }
+.acc details{ border-top:1px solid var(--line) }
+.acc summary{ padding:10px 2px; font-weight:800; cursor:pointer; list-style:none }
+.acc summary::-webkit-details-marker{ display:none }
+.acc summary::after{ content:"+"; float:right; color:var(--you); font-weight:900 }
+.acc details[open] summary::after{ content:"−" }
+.acc p{ margin:0 0 10px; font-size:13px; color:var(--text2); line-height:1.5 }
+/* phone deck builder: filter sheet + deck sheet */
+.fsheet{ position:absolute; left:0; right:0; bottom:0; z-index:7; max-height:60%; overflow:auto; background:var(--panel1); box-shadow:0 -16px 40px #000b,inset 0 2px 0 var(--you); border-radius:16px 16px 0 0; padding:12px 12px 16px; display:flex; flex-direction:column; gap:10px }
+.decksheet{ position:absolute; left:0; right:0; bottom:0; height:196px; z-index:6; background:var(--panel1); box-shadow:0 -14px 30px #000a,inset 0 2px 0 var(--you); display:flex; flex-direction:column }
+.decksheet .grab{ width:46px; height:4px; border-radius:2px; background:var(--line2); align-self:center; margin:7px 0 5px; cursor:pointer }
+.decksheet .dh{ display:flex; align-items:center; gap:10px; padding:0 12px 6px }
+.decksheet .min .deckbody,.decksheet.min .deckbody{ display:none }
+.decksheet.min .grab{ margin-bottom:0 }
+.deckbody{ flex:1; overflow:auto; padding:0 12px 12px; display:flex; flex-direction:column; gap:4px; min-height:0 }
+.deckbody .dlr{ height:26px }
+.dh .sl{ color:var(--you) }
+/* phone account row on lobby header uses .avatar */
+@media (prefers-reduced-motion:reduce){ .toastx{ animation:none } }
+/* generic button-shaped demo pieces keep their look, not UA chrome */
+button.sc,button.chevrow,button.oc,button.drow,button.tile,button.dlr,button.mode{ font-family:inherit;color:inherit;border:0;cursor:pointer }
+.dlayer.end .ib{ height:44px }
+.dlayer.end .brow{ flex-direction:column }
+.dlayer.end .brow .ib,.dlayer.end .brow .b50{ width:100% }
+/* animation demo fx (transform/opacity only, one-shot, budget: see inventory L.) */
+.fxline{ position:absolute;height:3px;height:max(3px,0.3vh);background:linear-gradient(90deg,transparent,var(--turn,#fff),transparent);transform-origin:left center;animation:fxbeam .5s ease-out forwards;pointer-events:none }
+@keyframes fxbeam{ 0%{ transform:scaleX(0); opacity:0 } 20%{ opacity:1 } 100%{ transform:scaleX(1); opacity:0 } }
+.fxring{ position:absolute;width:12px;height:12px;border-radius:50%;box-shadow:0 0 0 2px var(--turn,#fff);transform:translate(-50%,-50%);animation:fxring .45s ease-out forwards;pointer-events:none }
+@keyframes fxring{ from{ scale:.4; opacity:1 } to{ scale:3.2; opacity:0 } }
+.fxfloat{ position:absolute;font-size:15px;font-weight:900;font-style:italic;color:var(--turn,var(--you));text-shadow:0 1px 2px #000;animation:fxfloat .6s ease-out forwards;pointer-events:none }
+@keyframes fxfloat{ from{ translate:0 0; opacity:1 } to{ translate:0 -26px; opacity:0 } }
+.fxghost{ position:absolute;animation:fxghost .55s ease-in forwards;pointer-events:none }
+@keyframes fxghost{ to{ translate:0 26px; rotate:6deg; opacity:0 } }
+.fxvign{ position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 90px 34px #d8344baa;opacity:0;animation:fxvign .5s ease-out forwards }
+@keyframes fxvign{ 15%{ opacity:1 } 100%{ opacity:0 } }
+.fxcut{ position:absolute;left:0;right:0;top:42%;padding:10px 26px;background:linear-gradient(90deg,#000e,#0000 88%);font-size:26px;font-weight:900;font-style:italic;color:var(--turn,var(--you));animation:fxcut .7s ease-out forwards;pointer-events:none;white-space:nowrap }
+@keyframes fxcut{ from{ translate:-40px 0; opacity:0 } 20%{ translate:0 0; opacity:1 } 80%{ opacity:1 } 100%{ opacity:0 } }
+.fxban{ position:absolute;left:0;right:0;top:30%;text-align:center;font-size:38px;font-weight:900;font-style:italic;letter-spacing:.14em;color:#fff;text-shadow:0 0 18px var(--turn,var(--you));animation:fxban .9s ease-out forwards;pointer-events:none }
+@keyframes fxban{ from{ translate:0 40px; scale:.9; opacity:0 } 25%{ translate:0 0; scale:1; opacity:1 } 75%{ opacity:1 } 100%{ translate:0 -14px; opacity:0 } }
+.fxshake{ animation:fxshake .35s }
+@keyframes fxshake{ 20%{ translate:-6px 2px } 40%{ translate:5px -2px } 60%{ translate:-4px 1px } 80%{ translate:3px 0 } }
+.fxfly{ position:absolute;pointer-events:none;animation:fxfly .55s ease-in-out forwards }
+@keyframes fxfly{ from{ translate:0 0 } to{ translate:var(--fx,0) var(--fy,0) } }
+@media (prefers-reduced-motion:reduce){ .fxline,.fxring,.fxfloat,.fxghost,.fxvign,.fxcut,.fxban,.fxshake,.fxfly{ animation-duration:.01s } }
+</style>
+
+<div class="wrap">
+  <div class="ctrl">
+    <h1>Aeterna theme preview v13<small>Update round on v12: DESKTOP / PHONE tabs (screen tabs inside), every page has a phone layout, player profile + login mock, card info page, uniform label casing, CrossOver-style animations with a performance budget, all buttons work (popup overlay, Esc closes, toasts).</small></h1>
+    <div class="grp"><span class="lbl">Device</span>
+      <div class="seg" role="group" aria-label="Device">
+        <button data-dev="desktop" aria-pressed="true">Desktop</button>
+        <button data-dev="phone" aria-pressed="false">Phone</button>
+      </div></div>
+    <div class="grp"><span class="lbl">Screen</span>
+      <div class="seg" id="scrseg" role="group" aria-label="Screen"></div></div>
+    <div class="grp"><span class="lbl">Text size</span>
+      <div class="seg" role="group" aria-label="Text size">
+        <button data-ts="1" aria-pressed="true">Normal</button>
+        <button data-ts="2" aria-pressed="false">Large</button>
+        <button data-ts="3" aria-pressed="false">Larger</button>
+      </div></div>
+    <div class="grp"><span class="lbl">Mode</span>
+      <div class="seg" role="group" aria-label="Mode"><button data-m="dark" aria-pressed="true">Dark</button><button data-m="light" aria-pressed="false">Light</button></div></div>
+    <div class="grp"><span class="lbl">Your colour</span><div class="sws" id="sws"></div></div>
+  </div>
+  <p class="note"><b>v13 is a proposal.</b> Every screen, pop up and small piece from <b>docs/design/ui-inventory.md</b> has a place here now; phones get the same pages, not fewer. Label casing is uniform by CSS rule (K. in the inventory). Click any plate, chip or button — popups open and close with the shown buttons or Esc.</p>
+  <div class="stage" id="stage"><div class="scaler" id="scaler"></div></div>
+</div>
+<template id="d-lobby">
+<div class="scr" style="width:1366px;height:768px">
+  <div class="lat"></div>
+  <nav class="nav head" aria-label="Main" style="height:64px;gap:4px;padding:0 28px">
+    <span style="font-size:22px;font-weight:900;font-style:italic;letter-spacing:.1em;margin-right:26px">AETERNA</span>
+    <a href="#" class="sk on"><span>Home</span></a><a href="#" class="sk"><span>Play</span></a><a href="#" class="sk"><span>Decks</span></a><a href="#" class="sk"><span>Library</span></a><a href="#" class="sk"><span>How to play</span></a>
+    <span style="flex-grow:1"></span>
+    <span style="display:flex;gap:6px;align-items:center">
+      <button class="gbtn" aria-label="Your colour"><span class="dot"></span></button>
+      <span class="toggle" role="group" aria-label="Mode"><button data-m="dark">DARK</button><button data-m="light">LIGHT</button></span>
+      <button class="gbtn js-open" data-open="history" aria-label="Match history"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5M12 7v5l3 2"/></svg></button>
+      <button class="gbtn" aria-label="Settings" data-goto="settings"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></button>
+      <span style="display:flex;align-items:center;gap:8px;padding:4px 12px 4px 4px;background:var(--chip);box-shadow:inset 0 0 0 1px var(--line2);cursor:pointer" class="js-open" data-open="popmenu" role="button" tabindex="0" aria-label="Open profile">
+        <span class="avatar" style="width:30px;height:40px"></span>
+        <span style="display:flex;flex-direction:column;line-height:1.15"><b style="font-size:13px" class="js-pname">Arda</b><span class="pv" style="font-size:10px">offline profile</span></span>
+      </span>
+    </span>
+  </nav>
+  <main style="position:relative;padding:56px 64px 0;display:flex;flex-direction:column;gap:16px;max-width:820px">
+    <div style="display:flex"><span style="padding:5px 22px 5px 14px;background:var(--you);color:var(--you-ink);font-size:12px;font-weight:900;letter-spacing:.18em;clip-path:polygon(0 0,100% 0,calc(100% - 12px) 100%,0 100%)">CARD BATTLE VS CPU</span><span style="padding:5px 22px;margin-left:-8px;background:var(--chip);font-size:12px;font-weight:800;letter-spacing:.18em;clip-path:polygon(12px 0,100% 0,calc(100% - 12px) 100%,0 100%)">OFFLINE · ONE FILE</span></div>
+    <h2 style="margin:0;font-size:74px;line-height:.95;font-weight:900;font-style:italic;letter-spacing:.02em">GATE OPEN,<br><span style="color:var(--you)">RELEASE!</span></h2>
+    <p style="margin:0;font-size:17px;line-height:1.5;color:var(--text2)">Three small steps to your first match: choose a deck, choose an opponent, start. Your profile, decks and card images stay on this device.</p>
+    <div style="display:flex;gap:18px;margin-top:4px"><button class="btnp sk js-goto" data-goto="play"><span>▶ PLAY NOW</span></button><button class="btns sk js-goto" data-goto="builder"><span>BUILD A DECK</span></button></div>
+    <span style="font-size:13px;color:var(--text3)">Last deck: <b style="color:var(--text)">Lionheart Green</b> · Standard · 40 cards · legal</span>
+    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"><span class="okchip">WHAT'S NEW v0.103.0</span><span class="pv">Key Spirit is in! Read the one note inside.</span></div>
+  </main>
+  <div style="position:absolute;left:64px;right:64px;bottom:64px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px">
+    <div class="tile js-goto" data-goto="play" style="cursor:pointer"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M14.5 17.5L3 6V3h3l11.5 11.5M13 19l6-6M16 16l4 4"/></svg></span><span style="flex:1"><b>MATCH VS CPU</b><span>Deck, opponent, rules</span></span>›</div>
+    <div class="tile js-goto" data-goto="decks" style="cursor:pointer"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span><span style="flex:1"><b>MY DECKS</b><span>6 of 30 slots used</span></span>›</div>
+    <div class="tile js-goto" data-goto="libhelp" style="cursor:pointer"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h14v16H6a2 2 0 0 0-2 2z"/></svg></span><span style="flex:1"><b>CARD DATA &amp; HELP</b><span>Library, rules, glossary</span></span>›</div>
+  </div>
+  <div class="foot"><button class="lnk js-open" data-open="whatsnew" style="cursor:pointer">v0.103.0 · what's new</button><button class="lnk js-goto" data-goto="libhelp" style="cursor:pointer">Rules coverage</button><span style="flex-grow:1"></span><span>Unofficial non-commercial fan project</span></div>
+</div>
+</template>
+
+<template id="d-play">
+<div class="scr" style="width:1366px;height:768px">
+  <div class="lat"></div>
+  <nav class="nav head" aria-label="Main" style="height:64px;gap:4px;padding:0 28px">
+    <span style="font-size:22px;font-weight:900;font-style:italic;letter-spacing:.1em;margin-right:26px">AETERNA</span>
+    <a href="#" class="sk"><span>Home</span></a><a href="#" class="sk on"><span>Play</span></a><a href="#" class="sk"><span>Decks</span></a><a href="#" class="sk"><span>Library</span></a><a href="#" class="sk"><span>How to play</span></a>
+    <span style="flex-grow:1"></span>
+    <span style="display:flex;align-items:center;gap:8px;padding:4px 12px 4px 4px;background:var(--chip);box-shadow:inset 0 0 0 1px var(--line2);cursor:pointer" class="js-open" data-open="popmenu" role="button" tabindex="0" aria-label="Open profile"><span class="avatar" style="width:26px;height:36px"></span><b style="font-size:13px" class="js-pname">Arda</b></span>
+  </nav>
+  <div style="position:relative;padding:18px 64px 0;display:flex;flex-direction:column;gap:12px;max-height:704px">
+    <div class="card" style="padding:12px 20px;display:flex;flex-direction:column;gap:10px">
+      <div class="steps3"><span class="sc3 on"><i><b>1</b></i> DECK — your deck for the match</span><span class="sc3"><i><b>2</b></i> OPPONENT</span><span class="sc3"><i><b>3</b></i> RULES</span><span style="flex:1"></span><span class="pv">Everything is remembered for the next match.</span></div>
+      <div style="display:flex;align-items:center;gap:16px">
+        <span class="sleeve big has-img"></span>
+        <div style="display:flex;flex-direction:column;gap:4px;min-width:0"><b style="font-size:20px;font-style:italic;font-weight:900">Lionheart Green</b>
+          <span style="display:flex;gap:10px;align-items:center"><span class="dots"><i class="dot" style="--c:#2fbf71"></i></span><span class="pv"><b>40</b> / 40 cards · <span style="color:var(--you);font-weight:800">legal for Standard</span></span><span class="okchip">ACTIVE</span><span class="keyb">KEY SPIRIT · SISYPHUS</span></span></div>
+        <span style="flex:1"></span>
+        <button class="ib sk js-goto" data-goto="decks"><span>Change deck</span></button>
+      </div>
+    </div>
+    <div class="card" style="padding:12px 20px;display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:center;gap:14px"><span class="sl" style="color:var(--you)">2 · OPPONENT</span><span style="flex:1"></span><span class="pv">The names and style presets come from the CPU decks you give it.</span></div>
+      <div class="modegrid">
+        <div class="mode on js-mode"><span class="ok">✓</span><span class="mi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M14.5 17.5L3 6V3h3l11.5 11.5M13 19l6-6M16 16l4 4"/></svg></span><b>Match vs CPU</b><span>Play the match yourself.</span><span class="pv">Starter 26RSD03 · style balanced</span></div>
+        <div class="mode js-mode"><span class="mi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M2 12h3M19 12h3M12 2v3M12 19v3"/></svg></span><b>Watch CPU vs CPU</b><span>Two CPU decks play; you watch.</span><span class="pv">Good for learning the flow</span></div>
+        <div class="mode js-mode"><span class="mi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span><b>Two of your decks</b><span>One of your other decks plays the opponent.</span></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span class="sl" style="color:var(--text3)">STYLE</span><button class="ib sk pb js-chip"><span>Balanced</span></button><button class="ib sk js-chip"><span>Aggressive</span></button><button class="ib sk js-chip"><span>Defensive</span></button><span class="sl" style="color:var(--text3);margin-left:14px">SPEED</span><button class="ib sk"><span>Normal</span></button><span class="pv">CPU style and speed come from the real Play chips.</span></div>
+    </div>
+    <div class="card" style="padding:12px 20px;display:flex;flex-direction:column;gap:8px">
+      <span class="sl" style="color:var(--you)">3 · RULES</span>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><button class="ib sk pb js-chip"><span>Format: Standard</span></button><button class="ib sk js-chip"><span>Eternal (preview)</span></button><span class="pv">Ban lists are per format; the note shows which list applies.</span></div>
+      <span class="pv"><b style="color:var(--text)">Key Spirit (Aeterna rule)</b>: your deck's marked Spirit is a little more likely to be drawn until one copy is in your Hand or on the Field. <a href="#" class="lnk js-goto" data-goto="libhelp">Full rule text</a></span>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px;padding:2px 4px 22px">
+      <span class="setupnote">You will play <b>Lionheart Green</b> vs <b>CPU · 26RSD03</b>, Standard, style balanced.<br>Change anything above, or start.</span>
+      <span style="flex:1"></span>
+      <button class="btnp sk js-goto" data-goto="battle" style="width:230px"><span>▶ MATCH START</span></button>
+    </div>
+  </div>
+</div>
+</template>
+
+<template id="d-battle">
+<div class="scr" style="width:1366px;height:768px;padding:6px;box-sizing:border-box;display:flex;flex-direction:column;gap:5px">
+  <div class="matimg"></div><div class="lat"></div>
+  <header class="head" style="height:38px;flex:none;padding:0 8px 0 0">
+    <div class="turn"><span style="font-size:15px;font-weight:900;font-style:italic;letter-spacing:.06em">AETERNA</span></div>
+    <span style="flex-grow:1"></span>
+    <button class="ib sk" aria-label="Toggle match log" data-log><span>Log</span></button>&nbsp;&nbsp;<button class="ib sk" aria-label="Concede the match" data-concede><span>Concede…</span></button>
+  </header>
+  <div style="position:relative;flex:1;display:grid;grid-template-columns:112px 1fr 96px 238px;gap:5px;min-height:0">
+    <div style="display:grid;grid-template-rows:repeat(6,1fr) 1.6fr;gap:5px">
+      <button class="plate js-zone" data-zone="cpu-trash" aria-label="Open CPU trash"><span class="tagC sk"><span>Trash</span></span><span class="pv"><b>0</b></span></button><button class="plate js-zone" data-zone="cpu-deck" aria-label="Open CPU deck"><span class="tagC sk"><span>Deck</span></span><span class="deckv"><span class="sleeve cpu-sleeve"></span><span class="pv"><b>35</b></span></span></button><button class="plate" disabled style="opacity:.85"><span class="tagC sk"><span>Count</span></span><span class="pv"><b>0</b></span></button>
+      <button class="plate js-zone" data-zone="life-cpu" aria-label="Open CPU Life"><span class="tagC sk"><span>Life</span></span><span class="gems"><i class="g-core"></i><i class="g-core"></i><i class="g-core"></i><i class="g-core"></i><i class="g-core"></i></span><span class="pv"><b>5</b></span></button>
+      <button class="plate js-zone" data-zone="cpu-reserve" aria-label="Open CPU reserve"><span class="tagC sk"><span>Reserve</span></span><span class="gems"><i class="g-soul"></i></span><span class="pv"><b>0</b> + Soul</span></button>
+      <button class="plate" disabled style="opacity:.85"><span class="tagC sk"><span>Void</span></span><span class="pv"><b>0</b></span></button><button class="plate js-zone" data-zone="cpu-banished" aria-label="Open CPU banished cards"><span class="tagC sk"><span>Banished</span></span><span class="deckv"><span class="sleeve cpu-sleeve"></span><span class="pv"><b>1</b></span></span></button>
+    </div>
+    <div style="display:grid;grid-template-rows:0.9fr 1.25fr 128px 1.25fr 1fr 1.6fr;gap:5px;min-height:0">
+      <div class="row" style="display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--text4)"><span class="rlab">NEXUS</span><span class="pill">HAND <b>3</b></span>No Nexus</div>
+      <div class="row" style="display:grid;grid-template-columns:96px 1fr 96px;align-items:center"><span class="rlab" style="left:96px">SPIRITS</span>
+        <div class="sbox"><span class="sl" style="color:#c39bff">Soul State</span><div class="slot pcslot"><span class="sl">Empty</span></div></div>
+        <div style="display:flex;justify-content:center;gap:12px"><div class="oc foe big"><span class="ocost">2</span><span class="otyp">SPIRIT</span><span class="oimg">CARD IMAGE</span><span class="onm">Flame Hound</span><span class="cbar"><i class="g-soul"></i></span><span class="omag" aria-hidden="true"></span><span class="obp">2000</span><span class="olv"><b>1</b></span></div><div class="oc big"><span class="ocost">1</span><span class="otyp">SPIRIT</span><span class="oimg">CARD IMAGE</span><span class="onm">Ember Pup</span><span class="cbar"><i class="g-core"></i></span><span class="omag" aria-hidden="true"></span><span class="obp">2000</span><span class="olv"><b>1</b></span></div></div>
+        <div class="sbox"><span class="sl" style="color:#f0a6ff">Burst · Mirage</span><div class="slot set pcslot"><span class="sleeve cpu-sleeve fill"></span><span class="btag">BURST SET</span></div></div></div>
+      <div class="band">
+        <div class="bandlbl js-turnlbl">PLAYER<br>TURN<small class="js-pname2">ARDA · LIONHEART GREEN</small></div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:center;min-width:0">
+          <div class="steps js-steps"><button class="st sk js-st" data-step="0"><span>START</span></button><button class="st sk js-st" data-step="1"><span>CORE</span></button><button class="st sk js-st" data-step="2"><span>DRAW</span></button><button class="st sk js-st" data-step="3"><span>REFRESH</span></button><button class="st sk js-st" data-step="4"><span>MAIN</span></button><button class="st sk js-st" data-step="5"><span>ATTACK</span></button><button class="st sk js-st" data-step="6"><span>END</span></button></div>
+          <div class="narr js-narr" style="font-size:14px;width:min(100%,820px);text-align:center">The SwiftContractor Hermes: <b>+2 cores</b>.</div>
+          <div class="stepline"><span class="arrow">▶ now:</span> Summon Spirits, cast Magic with Flash, or press NEXT to end the turn.</div>
+        </div>
+        <div style="display:flex;justify-content:flex-end"><button class="next js-next" aria-label="Next step" style="width:84px;height:84px;font-size:11px">▶<br>NEXT</button></div>
+        <div class="warn js-warn" hidden><b>ILLEGAL MOVE</b><span class="js-warntext"></span></div>
+      </div>
+      <div class="row" style="display:grid;grid-template-columns:96px 1fr 96px;align-items:center"><span class="rlab" style="left:96px;color:var(--you)">SPIRITS</span>
+        <div class="sbox"><span class="sl" style="color:#f0a6ff">Burst · Mirage</span><div class="slot pcslot"><span class="sl">Empty</span></div></div>
+        <div class="js-drops" style="display:flex;justify-content:center;gap:12px;min-height:126px;align-items:center"><span style="text-align:center;font-size:13px;color:var(--text4)">No Spirits yet — summon from your Hand in the Main Step.</span></div>
+        <div class="sbox"><span class="sl" style="color:#c39bff">Soul State</span><div class="slot set pcslot"><div class="oc cover"><span class="ocost">4</span><span class="oimg">CARD IMAGE</span><span class="onm">Seeds of the Secret City Plant</span></div><span class="cnt">2</span></div></div></div>
+      <div class="row" style="display:flex;align-items:center;justify-content:center"><span class="rlab" style="color:var(--you)">NEXUS</span><div class="oc big you"><span class="ocost">2</span><span class="otyp">NEXUS</span><span class="oimg">CARD IMAGE</span><span class="onm">The SwiftContractor Hermes</span><span class="cbar"><i class="g-core"></i><i class="g-core"></i></span><span class="omag" aria-hidden="true"></span><span class="obp" style="opacity:.75">Lv1</span><span class="olv"><b>1</b></span></div></div>
+      <div class="row js-summonrow" style="display:flex;align-items:center;justify-content:center;gap:10px">
+        <div class="oc big you"><span class="ocost">3</span><span class="otyp">SPIRIT</span><span class="oimg">CARD IMAGE</span><span class="onm">The StrongArm Lionheart Sisyphus</span><span class="omag" aria-hidden="true"></span><span class="obp">3000</span><span class="olv"><b>1</b></span></div><div class="oc big you"><span class="ocost">4</span><span class="otyp">SPIRIT</span><span class="oimg">CARD IMAGE</span><span class="onm">The Lionheart Centurion Iphicles</span><span class="omag" aria-hidden="true"></span><span class="obp">3000</span><span class="olv"><b>1</b></span></div><div class="oc big you"><span class="ocost">3</span><span class="otyp">SPIRIT</span><span class="oimg">CARD IMAGE</span><span class="onm">The Quick Sword Lionheart Stichiox</span><span class="omag" aria-hidden="true"></span><span class="obp">4000</span><span class="olv"><b>1</b></span></div><div class="oc big you"><span class="ocost">6</span><span class="otyp">SPIRIT</span><span class="oimg">CARD IMAGE</span><span class="onm">The True Shadow Lionheart Autolycus</span><span class="omag" aria-hidden="true"></span><span class="obp">4000</span><span class="olv"><b>1</b></span></div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-rows:repeat(6,1fr) 1.6fr;gap:5px">
+      <button class="plate" disabled style="opacity:.85"><span class="tagY sk"><span>Void</span></span><span class="pv"><b>0</b></span></button><button class="plate js-zone" data-zone="reserve" aria-label="Open your reserve"><span class="tagY sk"><span>Reserve</span></span><span class="pv"><b>0</b></span></button>
+      <button class="plate js-zone" data-zone="life" aria-label="Open your Life"><span class="tagY sk"><span>Life</span></span><span class="gems"><i class="g-core"></i><i class="g-core"></i><i class="g-core"></i><i class="g-core"></i><i class="g-core"></i></span><span class="pv"><b>5</b></span></button>
+      <button class="plate" disabled style="opacity:.85"><span class="tagY sk"><span>Count</span></span><span class="pv"><b>0</b></span></button><button class="plate js-zone" data-zone="deck" aria-label="Open your deck"><span class="tagY sk"><span>Deck</span></span><span class="deckv"><span class="sleeve"></span><span class="pv"><b class="js-deckcnt">32</b></span></span></button><button class="plate js-zone" data-zone="trash" aria-label="Open your trash"><span class="tagY sk"><span>Trash</span></span><span class="deckv"><span class="sleeve"></span><span class="pv"><b>3</b></span></span></button><button class="plate js-open" data-open="hand" aria-label="Open your hand"><span class="tagY sk"><span>Hand</span></span><span class="pv"><b>4</b></span></button>
+    </div>
+    <div class="cpanel" style="height:100%;box-sizing:border-box">
+      <span class="cpt">CARD PANEL — hover any card</span>
+      <div class="oc bigcard you" style="font-size:12px"><span class="ocost" style="width:26px;height:26px;font-size:14px">3</span><span class="otyp" style="font-size:9px">SPIRIT</span><span class="oimg" style="top:18%;font-size:10px">CARD IMAGE</span><span class="onm" style="top:36%;font-size:12px">The StrongArm Lionheart Sisyphus</span><span class="cbar" style="bottom:44px"><i class="g-core"></i><i class="g-core"></i></span><span class="obp" style="bottom:18px;font-size:18px">3000 · LV1</span></div>
+      <div class="fx"><span class="fl">(Your Main Step)</span><br><span class="kw">Summon</span> by paying the cost. <span class="fl">(When Attacks)</span> Draw one card from the bottom of the Deck.</div>
+      <div class="clog"><span><b class="k">MAIN</b> You summoned Lionheart Sisyphus (paid 3).</span><span><b class="k">MAIN</b> Hermes: +2 cores.</span><span><b class="k">SETUP</b> Standard · starter 26RSD03 · seed 8f2a</span></div>
+      <button class="ib sk js-cardinfo" style="margin-top:auto;height:30px"><span>Full info (J.)</span></button>
+    </div>
+  </div>
+  <div class="hintbar"><span class="k">L</span> Log<span class="k">Space</span> Next step<span class="k">Esc</span> Back / close<span class="k">Click</span> a pile to view it<span style="flex:1"></span><span style="color:var(--text3)">Steps are buttons; illegal moves explain the rule.</span></div>
+  <div class="logframe" hidden>
+    <div style="display:flex;align-items:center;gap:8px"><span class="sl" style="color:var(--you)">Match log</span><span style="flex:1"></span><button class="ib sk" data-log style="height:26px"><span>Close</span></button></div>
+    <div class="lrows">
+      <div class="lrow"><b>SETUP</b> Standard format · starter 26RSD03 · seed 8f2a · coin toss: you first.</div>
+      <div class="lrow"><b>MAIN</b> Hermes: +2 cores.</div>
+      <div class="lrow"><b>MAIN</b> You summoned The StrongArm Lionheart Sisyphus (paid 3 cores).</div>
+      <div class="lrow c"><b>CPU MAIN</b> CPU summoned Flame Hound (paid 2).</div>
+      <div class="lrow c"><b>CPU MAIN</b> CPU set a Burst.</div>
+    </div>
+  </div>
+</div>
+</template>
+<template id="d-dialogs">
+<div class="scr" style="width:1366px;height:768px;display:flex;flex-direction:column">
+  <div class="lat"></div>
+  <header class="head" style="height:40px;flex:none;padding:0 12px 0 14px;gap:10px">
+    <span class="kchip">Dialog gallery</span><span class="pv">Casing rule (K.): chips and buttons are UPPERCASE, dialog titles are sentence case. Click any demo to open it as a real working popup; Esc closes.</span>
+  </header>
+  <div class="gal">
+    <div class="pop"><span class="kchip kpay" style="align-self:flex-start">Payment</span>
+      <div class="q">Pay the cost of <b>Lionheart Sisyphus</b> — 4 cores.</div>
+      <div class="gpay"><i class="g-core mv"></i><i class="g-core mv"></i><i class="g-core"></i><i class="g-core"></i></div>
+      <div class="sub">The gems that will move pulse first (cost preview). Reserve and Soul Core choices underline in blue / violet.</div>
+      <div class="brow"><button class="ib sk pb js-open" data-open="pay"><span>Open demo</span></button></div>
+    </div>
+    <div class="pop"><span class="kchip kfl" style="align-self:flex-start">Flash timing</span>
+      <div class="q">Your Flash Timing after the CPU's Magic.</div>
+      <div class="sub">Cast a Magic from your Hand, use an Accel, or continue.</div>
+      <div class="brow"><button class="ib sk js-open" data-open="flash"><span>Open demo</span></button></div>
+    </div>
+    <div class="pop"><span class="kchip" style="align-self:flex-start">Effect order</span>
+      <div class="q">Choose the order of your two triggers.</div>
+      <div class="erow">First — <b>Lionheart Sisyphus</b>: (When Attacks) "Draw a card from the bottom of the Deck."</div>
+      <div class="erow">Second — <b>Hermes</b>: your Main Step +2 cores.</div>
+      <div class="brow"><button class="ib sk js-open" data-open="order"><span>Open demo</span></button></div>
+    </div>
+    <div class="pop"><span class="kchip" style="align-self:flex-start">Result</span>
+      <div style="text-align:center;padding:4px 0"><b style="font-size:30px;font-style:italic;font-weight:900;color:var(--you)">WIN</b><br><span class="pv">Player · Life 2 remaining · 7 turns · log saved</span></div>
+      <div class="brow"><button class="ib sk js-open" data-open="result"><span>Open demo</span></button></div>
+    </div>
+    <div class="pop"><span class="kchip" style="align-self:flex-start">Match setup</span>
+      <div class="erow">Deck <b>Lionheart Green</b> · Standard · legal</div>
+      <div class="erow">Opponent <b>CPU 26RSD03</b> · style balanced</div>
+      <div class="brow"><button class="ib sk js-open" data-open="setup"><span>Open demo</span></button></div>
+    </div>
+    <div class="pop"><span class="kchip" style="align-self:flex-start">Starting hand</span>
+      <div class="q">Your starting hand — keep it, or redraw all 5?</div>
+      <div class="sub">v13: KEEP HAND is the primary button; the phone version lays the cards out in the thumb zone.</div>
+      <div class="brow"><button class="ib sk js-open" data-open="mul"><span>Open demo</span></button></div>
+    </div>
+    <div class="pop"><span class="kchip" style="align-self:flex-start">Card (zoom)</span>
+      <div class="q">Zoomed card with actions.</div>
+      <div class="brow"><button class="ib sk js-cardinfo"><span>Open card info page</span></button></div>
+    </div>
+    <div class="pop"><span class="kchip" style="align-self:flex-start">Zone (deck top)</span>
+      <div class="q">Deck viewer with rows.</div>
+      <div class="brow"><button class="ib sk js-open" data-open="zone"><span>Open demo</span></button></div>
+    </div>
+    <div class="pop"><span class="kchip" style="align-self:flex-start">Info (glossary)</span>
+      <div class="erow" style="flex-direction:column;align-items:flex-start;gap:4px"><b>Lv2 and later timings</b><span class="sub">The text under a level only acts while that Spirit is at or above that level.</span></div>
+      <div class="brow"><button class="ib sk js-goto" data-goto="libhelp"><span>Open help page</span></button></div>
+    </div>
+    <div class="pop"><span class="kchip" style="align-self:flex-start">Confirm (danger)</span>
+      <div class="q">Delete <b>Ice Machine</b>?</div>
+      <div class="sub">The deck is removed from this device; there is no undo. Export the deck code first to keep a copy.</div>
+      <div class="brow"><button class="ib sk js-open" data-open="delete"><span>Open demo</span></button></div>
+    </div>
+    <div class="pop"><span class="kchip" style="align-self:flex-start">Toasts</span>
+      <div class="q">State changes only; never a needed choice.</div>
+      <div class="brow"><button class="ib sk" data-toast="CPU lost a Life core — 4 left."><span>Fire a toast</span></button></div>
+    </div>
+    <div class="pop"><span class="kchip" style="align-self:flex-start">Concede + illegal</span>
+      <div class="sub">Concede asks first; illegal moves explain the next legal step in the CPU colour.</div>
+      <div class="brow"><button class="ib sk js-open" data-open="concede"><span>Open demo</span></button><button class="ib sk js-goto" data-goto="battle"><span>Try in battle</span></button></div>
+    </div>
+  </div>
+  <div class="bigr">
+    <span class="rib y">PLAYER TURN 3</span>
+    <span class="rib c">YOUR FLASH TIMING</span>
+    <span class="chevrow">BLOCK?</span>
+    <span class="rib" style="font-size:22px">MATCH START · GATE OPEN, RELEASE!</span>
+  </div>
+</div>
+</template>
+
+<template id="d-decks">
+<div class="scr" style="width:1366px;height:768px">
+  <div class="lat"></div>
+  <nav class="nav head" aria-label="Main" style="height:64px;gap:4px;padding:0 28px"><span style="font-size:22px;font-weight:900;font-style:italic;letter-spacing:.1em;margin-right:26px">AETERNA</span><a href="#" class="sk"><span>Home</span></a><a href="#" class="sk"><span>Play</span></a><a href="#" class="sk on"><span>Decks</span></a><a href="#" class="sk"><span>Library</span></a><a href="#" class="sk"><span>How to play</span></a></nav>
+  <div style="position:relative;padding:16px 28px;display:flex;flex-direction:column;gap:12px">
+    <div class="card" style="padding:12px 18px;display:flex;align-items:center;gap:14px"><span class="sl" style="color:var(--you)">MY DECKS</span><span style="font-size:24px;font-weight:900;font-style:italic">6 decks</span><span class="pv">of 30 slots · the ACTIVE deck is used in Play</span><span style="flex:1"></span><button class="ib sk" data-toast="Import a deck code by pasting the text."><span>Import code</span></button><button class="ib sk pb js-open" data-open="newdeck"><span>+ New deck</span></button></div>
+    <div class="dgrid">
+      <div class="dtile act"><span class="sleeve big has-img" data-tint="#6fe0b8"></span><div class="dti"><div style="display:flex;align-items:center;gap:8px"><b class="dtn">Lionheart Green</b><span class="actb">ACTIVE</span><span class="keyb">KEY · SISYPHUS</span></div><div class="dots"><i class="dot" style="--c:#2fbf71"></i></div><div class="dst ok">40 / 40 · Ready · Standard legal</div><div class="pv" style="font-size:11px">edited 1 min ago</div><div class="dta"><button class="ib sk pb js-goto" data-goto="builder"><span>Edit</span></button><button class="ib sk js-goto" data-goto="play"><span>Play</span></button><button class="icb js-open" data-open="deckmenu" aria-label="More actions">⋯</button></div></div></div>
+      <div class="dtile"><span class="sleeve big has-img" data-tint="#ff6b7d"></span><div class="dti"><div style="display:flex;align-items:center;gap:8px"><b class="dtn">Dragon Rush</b><span class="keyb">KEY · RUSH MASTER</span></div><div class="dots"><i class="dot" style="--c:#e5484d"></i></div><div class="dst ok">40 / 40 · Ready</div><div class="pv" style="font-size:11px">edited yesterday</div><div class="dta"><button class="ib sk pb js-goto" data-goto="builder"><span>Edit</span></button><button class="ib sk js-goto" data-goto="play"><span>Play</span></button><button class="icb js-open" data-open="deckmenu" aria-label="More actions">⋯</button></div></div></div>
+      <div class="dtile"><span class="sleeve big has-img" data-tint="#7fb4ff"></span><div class="dti"><div style="display:flex;align-items:center;gap:8px"><b class="dtn">Ice Machine</b></div><div class="dots"><i class="dot" style="--c:#3b82f6"></i><i class="dot" style="--c:#e9edf2"></i></div><div class="dst bad">37 / 40 · add 3 cards</div><div class="pv" style="font-size:11px">deck code imported</div><div class="dta"><button class="ib sk pb js-goto" data-goto="builder"><span>Edit</span></button><button class="ib sk" disabled><span>Play</span></button><button class="icb js-open" data-open="deckmenu" aria-label="More actions">⋯</button></div></div></div>
+      <div class="dtile"><span class="sleeve big has-img" data-tint="#e9c46a"></span><div class="dti"><div style="display:flex;align-items:center;gap:8px"><b class="dtn">Gold Dawn</b></div><div class="dots"><i class="dot" style="--c:#ffe14a"></i></div><div class="dst ok">40 / 40 · Ready</div><div class="pv" style="font-size:11px">Eternal · preview format</div><div class="dta"><button class="ib sk pb js-goto" data-goto="builder"><span>Edit</span></button><button class="ib sk js-goto" data-goto="play"><span>Play</span></button><button class="icb js-open" data-open="deckmenu" aria-label="More actions">⋯</button></div></div></div>
+    </div>
+    <div class="card" style="padding:10px 18px;display:flex;align-items:center;gap:14px"><span class="sl" style="color:var(--text3)">Starter decks</span><span class="pv">official decks, read-only — copy puts the recipe into one of your slots</span><span style="flex:1"></span><span class="stile"><span class="sleeve has-img" data-tint="#2fbf71"></span><span>26RSD05 Green</span><button class="ib sk js-toast" data-toast="Copied 26RSD05 into a free slot."><span>Copy</span></button></span><span class="stile"><span class="sleeve has-img" data-tint="#3b82f6"></span><span>26RSD07 Blue</span><button class="ib sk js-toast" data-toast="Copied 26RSD07 into a free slot."><span>Copy</span></button></span></div>
+  </div>
+</div>
+</template>
+
+<template id="d-builder">
+<div class="scr" style="width:1366px;height:768px">
+  <div class="lat"></div>
+  <nav class="nav head" aria-label="Main" style="height:64px;gap:4px;padding:0 28px"><span style="font-size:22px;font-weight:900;font-style:italic;letter-spacing:.1em;margin-right:26px">AETERNA</span><a href="#" class="sk"><span>Home</span></a><a href="#" class="sk"><span>Play</span></a><a href="#" class="sk on"><span>Decks</span></a><a href="#" class="sk"><span>Library</span></a><a href="#" class="sk"><span>How to play</span></a></nav>
+  <div style="position:relative;padding:16px 28px;display:grid;grid-template-columns:1fr 470px;gap:18px;height:704px;box-sizing:border-box">
+    <div style="display:flex;flex-direction:column;gap:10px;min-width:0;position:relative">
+      <div class="card" style="padding:10px 16px;display:flex;align-items:center;gap:12px">
+        <button class="ib sk js-goto" data-goto="decks" aria-label="Back to My decks"><span>‹ My decks</span></button>
+        <span style="font-size:22px;font-weight:900;font-style:italic;white-space:nowrap">Lionheart Green</span><button class="icb js-toast" data-toast="Rename field opens." aria-label="Rename deck">✎</button>
+        <span class="okchip js-cnt">40 / 40 · READY</span><span class="keyb">KEY · SISYPHUS</span><span style="flex:1"></span><span class="pv" style="white-space:nowrap">Saved 1 min ago</span>
+        <button class="ib sk pb js-toast" data-toast="This deck is now the ACTIVE deck."><span>Set active</span></button><button class="ib sk js-goto" data-goto="battle"><span>Play</span></button>
+      </div>
+      <div class="tbar"><div class="search">⌕ <span>Search cards</span></div><button class="ib sk" data-filters><span>Filters <em class="badge">3</em></span></button><span class="achip">● Green <b>×</b></span><span class="achip">Spirit <b>×</b></span><span class="achip">Playable only <b>×</b></span><button class="lnk" data-toast="All filters cleared.">Clear all</button><span style="flex:1"></span><span class="pv" style="white-space:nowrap">186 cards</span><button class="ib sk" data-toast="Sort menu: cost, name, type."><span>Sort: cost ↑</span></button></div>
+      <div class="fpanel" hidden>
+        <div class="fgrid">
+          <div class="fg"><div class="sl">Colour</div><div class="fchips"><button class="fchip"><i class="dot" style="--c:#e5484d"></i>Red</button><button class="fchip on"><i class="dot" style="--c:#2fbf71"></i>Green</button><button class="fchip"><i class="dot" style="--c:#ffe14a"></i>Yellow</button></div></div>
+          <div class="fg"><div class="sl">Type</div><div class="fchips"><button class="fchip on">Spirit</button><button class="fchip">Magic</button><button class="fchip">Nexus</button></div></div>
+          <div class="fg"><div class="sl">Cost</div><div class="fchips"><button class="fchip">1</button><button class="fchip">2</button><button class="fchip">3</button></div></div>
+          <div class="fg"><div class="sl">Format</div><div class="fchips"><button class="fchip on">Standard</button><button class="fchip">Eternal</button><button class="fchip on">Playable only</button></div></div>
+        </div>
+        <div class="fact"><button class="ib sk pb" data-filters><span>Show 186 cards</span></button><button class="ib sk js-toast" data-toast="Filters reset."><span>Reset</span></button></div>
+      </div>
+      <div style="flex:1;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:10px;grid-auto-rows:max-content;align-content:start;overflow:hidden;position:relative">
+        <div class="oc big you jl-card" role="button" tabindex="0" aria-label="Open card info"><span class="ocost">3</span><span class="otyp">SPIRIT</span><span class="oimg">CARD IMAGE</span><span class="onm">Sisyphus</span><span class="obp">3000</span></div>
+        <div class="oc big you jl-card" role="button" tabindex="0" aria-label="Open card info"><span class="ocost">4</span><span class="otyp">SPIRIT</span><span class="oimg">CARD IMAGE</span><span class="onm">Iphicles</span><span class="obp">3000</span></div>
+        <div class="oc big you jl-card" role="button" tabindex="0" aria-label="Open card info"><span class="ocost">3</span><span class="otyp">SPIRIT</span><span class="oimg">CARD IMAGE</span><span class="onm">Stichiox</span><span class="obp">4000</span></div>
+        <div class="oc big you jl-card" role="button" tabindex="0" aria-label="Open card info"><span class="ocost">6</span><span class="otyp">SPIRIT</span><span class="oimg">CARD IMAGE</span><span class="onm">Autolycus</span><span class="obp">4000</span></div>
+        <div class="oc big jl-card" role="button" tabindex="0" aria-label="Open card info"><span class="ocost">1</span><span class="otyp">MAGIC</span><span class="oimg">CARD IMAGE</span><span class="onm">Dana Draw</span></div>
+        <div class="oc big jl-card" role="button" tabindex="0" aria-label="Open card info"><span class="ocost">2</span><span class="otyp">MAGIC</span><span class="oimg">CARD IMAGE</span><span class="onm">Whirling Tide</span></div>
+        <div class="oc big jl-card" role="button" tabindex="0" aria-label="Open card info"><span class="ocost">2</span><span class="otyp">NEXUS</span><span class="oimg">CARD IMAGE</span><span class="onm">Hermes</span></div>
+        <div class="oc big jl-card" role="button" tabindex="0" aria-label="Open card info" style="opacity:.55"><span class="ocost">5</span><span class="otyp">MAGIC</span><span class="oimg">CARD IMAGE</span><span class="onm">Flame Storm</span></div>
+      </div>
+    </div>
+    <div class="rpanel" style="display:flex;flex-direction:column;gap:10px;min-height:0">
+      <div class="dtabs"><button class="on" data-pane="list">Deck list</button><button data-pane="curve">Curve and check</button><button data-pane="look">Deck look</button></div>
+      <div class="pane" data-pane="list" style="flex:1;display:flex;flex-direction:column;gap:4px;overflow:auto">
+        <div class="dlh"><span>Grouped · 40 cards</span><b>Tap ‹ to choose the Key Spirit</b></div>
+        <div class="dlr key" data-c="3"><span class="dlq">★</span><span class="dln" style="font-weight:800">The StrongArm Lionheart Sisyphus</span><span class="keyb" style="height:18px;display:inline-flex;align-items:center">KEY</span><button class="dlb jskey" aria-label="Choose as Key Spirit">‹</button><button class="dlb js-minus" aria-label="Remove one copy">−</button><span class="dlc">3</span><button class="dlb js-plus" aria-label="Add one copy">+</button></div>
+        <div class="dlr" data-c="3"><span class="dln">The Lionheart Centurion Iphicles</span><button class="dlb jskey" aria-label="Choose as Key Spirit">‹</button><button class="dlb js-minus" aria-label="Remove one copy">−</button><span class="dlc">3</span><button class="dlb js-plus" aria-label="Add one copy">+</button></div>
+        <div class="dlr" data-c="2"><span class="dln">The Quick Sword Lionheart Stichiox</span><button class="dlb jskey" aria-label="Choose as Key Spirit">‹</button><button class="dlb js-minus" aria-label="Remove one copy">−</button><span class="dlc">2</span><button class="dlb js-plus" aria-label="Add one copy">+</button></div>
+        <div class="dlr" data-c="3"><span class="dln">Dana Draw (Magic)</span><button class="dlb jskey" aria-label="Choose as Key Spirit">‹</button><button class="dlb js-minus" aria-label="Remove one copy">−</button><span class="dlc">3</span><button class="dlb js-plus" aria-label="Add one copy">+</button></div>
+        <div class="dlr" style="opacity:.85" data-c="2"><span class="dln">Flame Storm (Magic) — "!" 3 clauses not implemented yet</span><button class="dlb jskey" aria-label="Choose as Key Spirit">‹</button><button class="dlb js-minus" aria-label="Remove one copy">−</button><span class="dlc">2</span><button class="dlb js-plus" aria-label="Add one copy">+</button></div>
+        <div class="dlh"><span>Deck check</span></div>
+        <div class="zl" style="color:var(--you)">40 / 40 cards · Standard legal · no banned cards</div>
+        <div class="zl">Key Spirit: <b>Sisyphus</b> — while no copy is in the Hand or on the Field, draws favour its copies</div>
+      </div>
+      <div class="pane" data-pane="curve" hidden style="flex:1;display:flex;flex-direction:column;gap:8px;overflow:auto">
+        <div class="dlh"><span>Cost curve</span><b>40 cards</b></div>
+        <div class="curve" style="gap:6px;padding:10px 2px 0"><div class="cv" style="flex:0 0 40px"><i style="height:16px"></i><span>×2</span></div><div class="cv" style="flex:0 0 40px"><i style="height:32px"></i><span>×5</span></div><div class="cv" style="flex:0 0 40px"><i style="height:46px"></i><span>×8</span></div><div class="cv" style="flex:0 0 40px"><i style="height:38px"></i><span>×6</span></div><div class="cv" style="flex:0 0 40px"><i style="height:24px"></i><span>×4</span></div><div class="cv" style="flex:0 0 40px"><i style="height:12px"></i><span>×2</span></div></div>
+        <div class="dlh"><span>Type split</span></div>
+        <div class="park" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px"><span class="zl">Spirits <b>28</b></span><span class="zl">Magic <b>8</b></span><span class="zl">Nexus <b>4</b></span></div>
+        <div class="dlh"><span>Symbols</span></div>
+        <div class="park" style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px"><span class="zl"><i class="g-core" style="display:inline-block;vertical-align:-2px"></i> Soul core users <b>18</b></span><span class="zl">Reduce-only <b>14</b></span></div>
+      </div>
+      <div class="pane" data-pane="look" hidden style="flex:1;display:flex;flex-direction:column;gap:10px;overflow:auto">
+        <div class="dlh"><span>Deck look</span><b>sleeve + mat + core colour</b></div>
+        <div style="display:flex;gap:10px;align-items:center"><span class="sleeve big has-img"></span><div style="display:flex;flex-direction:column;gap:6px"><span class="pv">Sleeve tint</span><div style="display:flex;gap:6px"><button class="fchip on"><i class="dot" style="--c:#6fe0b8"></i></button><button class="fchip"><i class="dot" style="--c:#ff6b7d"></i></button><button class="fchip"><i class="dot" style="--c:#7fb4ff"></i></button><button class="fchip"><i class="dot" style="--c:#e9c46a"></i></button><label class="fchip upbtn" style="cursor:pointer">Upload<input type="file" accept="image/*" aria-label="Upload sleeve image"></label></div></div></div>
+        <div style="display:flex;gap:10px;align-items:center"><span class="g-core" style="width:22px;height:22px"></span><span class="pv">Core colour follows your player colour (Settings) — preview on the right.</span></div>
+        <div class="mini" style="display:flex;gap:10px;align-items:flex-end;padding:14px;background:linear-gradient(180deg,var(--board1),var(--board2));box-shadow:inset 0 0 0 1px var(--line)"><div class="oc mini you" style="width:64px;height:89px"><span class="ocost">3</span><span class="onm" style="font-size:8px">Sisyphus</span><span class="cbar" style="bottom:16px"><i class="g-core"></i></span><span class="obp" style="font-size:12px">3000</span></div><div class="oc mini" style="width:64px;height:89px"><span class="ocost">4</span><span class="onm" style="font-size:8px">Iphicles</span><span class="obp" style="font-size:12px">3000</span></div><span class="pv" style="align-self:center">battle preview</span></div>
+      </div>
+      <div class="drow" style="gap:8px"><button class="ib sk js-open" data-open="import" style="height:30px"><span>Import</span></button><button class="ib sk js-open" data-open="export" style="height:30px"><span>Export</span></button><span style="flex:1"></span><button class="ib sk js-toast" data-toast="Deck code copied — share it with a friend." style="height:30px"><span>Copy code</span></button><button class="ib sk js-open" data-open="delete" style="height:30px;color:var(--cpu)"><span>Delete…</span></button></div>
+    </div>
+  </div>
+</div>
+</template>
+
+<template id="d-cardinfo">
+<div class="scr js-cardinfo" style="width:1366px;height:768px">
+  <div class="lat"></div>
+  <nav class="nav head" aria-label="Main" style="height:64px;gap:4px;padding:0 28px"><span style="font-size:22px;font-weight:900;font-style:italic;letter-spacing:.1em;margin-right:26px">AETERNA</span><a href="#" class="sk"><span>Home</span></a><a href="#" class="sk"><span>Play</span></a><a href="#" class="sk"><span>Decks</span></a><a href="#" class="sk on"><span>Library</span></a><a href="#" class="sk"><span>How to play</span></a></nav>
+  <div class="cinfo">
+    <div class="cinfoL">
+      <div class="bigart"><span class="co js-ci-cost">3</span><span class="lvb js-ci-lv">LV1</span><span class="txt">CARD IMAGE</span><span class="nm js-ci-name">The StrongArm Lionheart Sisyphus</span><span class="bpb js-ci-bp">3000</span></div>
+      <div class="cnav"><button class="ib sk js-prev" aria-label="Previous card"><span>‹ Prev</span></button><span class="cnum js-ci-num">26RDB01-003 · Standard · legal</span><button class="ib sk js-next" aria-label="Next card"><span>Next ›</span></button></div>
+      <div class="lgl"><b>Reduce cost:</b> green 1 · symbols: <i class="g-core" style="display:inline-block;vertical-align:-2px"></i> colour gem · copies in pages: 4 / 4 images</div>
+    </div>
+    <div class="cinfoR">
+      <div style="display:flex;align-items:baseline;gap:12px"><b style="font-size:26px;font-style:italic;font-weight:900" class="js-ci-name2">The StrongArm Lionheart Sisyphus</b><span class="kchip">Spirit · Green</span><span class="kchip kpay">Standard legal</span></div>
+      <div class="lvl"><span class="lv">LV1 <em>core 1</em></span><p><span class="kwd">Summon</span> for 3 cores. <span class="fl">(When Attacks)</span> Draw one card from the bottom of the Deck.</p></div>
+      <div class="lvl"><span class="lv">LV2 <em>core 3</em></span><p>Keep the LV1 text. <span class="fl">(When Attacks)</span> In addition, one opposing LV1 Spirit goes to its owner's Trash at <b>end of attacks</b>.</p></div>
+      <div class="lvl"><span class="lv">BURST <em>while set</em></span><p><span class="kwd">Burst</span> after your Life is reduced: destroy one opposing BP 3000 or less Spirit.</p></div>
+      <div class="lvl" style="box-shadow:inset 0 0 0 1px #e08a00"><span class="lv" style="color:#e08a00">"!" NOTE</span><p>3 effect clauses of this card are not implemented yet — the real card check shows exactly which ones ("!" legend in the Library).</p></div>
+      <div class="lgl"><b>Keywords in this card:</b> <a href="#" class="lnk js-goto" data-goto="libhelp">Summon</a> · <a href="#" class="lnk js-goto" data-goto="libhelp">When Attacks</a> · <a href="#" class="lnk js-goto" data-goto="libhelp">Burst</a></div>
+      <div class="stact">
+        <button class="btnp sk js-open" data-open="deckpick" style="height:44px;padding:0 22px"><span>＋ Add to deck</span></button>
+        <button class="btns sk js-goto" data-goto="builder" style="height:44px;padding:0 22px"><span>Open in builder</span></button>
+        <button class="btns sk js-toast" data-toast="Card image for 26RDB01-003 was set from the imported pack." style="height:44px;padding:0 22px"><span>Import image…</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+</template>
+
+<template id="d-profile">
+<div class="scr" style="width:1366px;height:768px">
+  <div class="lat"></div>
+  <nav class="nav head" aria-label="Main" style="height:64px;gap:4px;padding:0 28px"><span style="font-size:22px;font-weight:900;font-style:italic;letter-spacing:.1em;margin-right:26px">AETERNA</span><a href="#" class="sk"><span>Home</span></a><a href="#" class="sk"><span>Play</span></a><a href="#" class="sk"><span>Decks</span></a><a href="#" class="sk"><span>Library</span></a><a href="#" class="sk"><span>How to play</span></a><span style="flex-grow:1"></span><button class="ib sk" data-goto="lobby" aria-label="Back"><span>‹ Back</span></button></nav>
+  <div class="ppage">
+    <div class="card idcard">
+      <span class="sl" style="color:var(--you)">PLAYER PROFILE</span>
+      <span class="bigavatar"></span>
+      <b style="font-size:22px;font-style:italic;font-weight:900" class="js-pname3">Arda</b>
+      <span class="pv">Sleeve in this picture = your deck look ("deck look" tab in the builder) or any uploaded image.</span>
+      <div style="display:flex;gap:8px"><button class="ib sk js-toast" data-toast="Name field opens inline (max 16 letters)."><span>Rename</span></button><button class="ib sk js-open" data-open="avatar"><span>Change avatar</span></button></div>
+      <span class="pv" style="color:var(--text3);font-size:11px">Saved on this device · no account server yet</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+      <div class="card" style="padding:14px 18px;display:flex;flex-direction:column;gap:12px">
+        <span class="sl" style="color:var(--you)">MATCH RECORD (from saved replays)</span>
+        <div class="statgrid">
+          <div class="stat"><b>37</b><span>matches played</span></div>
+          <div class="stat"><b style="color:var(--you)">21</b><span>wins (57%)</span></div>
+          <div class="stat"><b>Green</b><span>your favourite colour</span></div>
+          <div class="stat"><b>Lionheart</b><span>most used deck</span></div>
+        </div>
+      </div>
+      <div class="card" style="padding:14px 18px;display:flex;flex-direction:column;gap:10px">
+        <span class="sl" style="color:var(--you)">ACCOUNT &amp; SIGN-IN (MOCK)</span>
+        <div class="srow"><div><b>Offline profile</b><span>decks, replays and pictures stay on this device — nothing leaves it today</span></div><span class="okchip">ACTIVE</span></div>
+        <div class="srow"><div><b>Online sign-in</b><span>arrives with the online phase (M6-M8): the same name + avatar become your login; the form below is the mock</span></div><button class="ib sk js-open" data-open="signin"><span>Preview login…</span></button></div>
+        <div class="srow"><div><b>Data controls</b><span>export everything as one file (decks + replays + profile), or wipe this device's data</span></div><span style="display:flex;gap:8px"><button class="ib sk js-toast" data-toast="profile-export.json saved (mock)."><span>Export</span></button><button class="ib sk js-open" data-open="wipe" style="color:var(--cpu)"><span>Wipe…</span></button></span></div>
+      </div>
+      <div class="card" style="padding:12px 18px"><span class="pv" style="line-height:1.5"><b style="color:var(--text)">In battle</b> your name shows in the turn band and on hover of your side; the CPU shows as "CPU · deck name". Opponent profiles only matter when online play arrives.</span></div>
+    </div>
+  </div>
+</div>
+</template>
+
+<template id="d-settings">
+<div class="scr" style="width:1366px;height:768px">
+  <div class="lat"></div>
+  <nav class="nav head" aria-label="Main" style="height:64px;gap:4px;padding:0 28px"><span style="font-size:22px;font-weight:900;font-style:italic;letter-spacing:.1em;margin-right:26px">AETERNA</span><a href="#" class="sk"><span>Home</span></a><a href="#" class="sk"><span>Play</span></a><a href="#" class="sk"><span>Decks</span></a><a href="#" class="sk"><span>Library</span></a><a href="#" class="sk"><span>How to play</span></a></nav>
+  <div style="position:relative;padding:22px 64px;display:flex;flex-direction:column;gap:14px">
+    <div class="card" style="padding:16px 22px"><span class="sl" style="color:var(--you)">SETTINGS</span><div style="font-size:28px;font-weight:900;font-style:italic">Preferences</div><span style="font-size:13px;color:var(--text2)">Saved on this device.</span></div>
+    <div style="display:grid;grid-template-columns:220px 1fr;gap:20px;align-items:start">
+      <div class="side card" style="padding:6px 0"><a href="#" class="on">Appearance</a><a href="#" data-toast="Section menu (demo).">Game speed</a><a href="#" data-toast="Section menu (demo).">Sound</a><a href="#" data-toast="Section menu (demo).">CPU style</a><a href="#" data-toast="Section menu (demo).">Card images</a><a href="#" data-toast="Section menu (demo).">Profile</a><a href="#" data-toast="Section menu (demo).">Saved data</a><a href="#" data-toast="Section menu (demo).">Match history</a></div>
+      <div class="card" style="padding:14px 22px 4px">
+        <div style="font-size:19px;font-weight:900;font-style:italic;margin-bottom:4px">Appearance</div>
+        <div class="srow"><div><b>Mode</b><span>Dark or light board and menus.</span></div><span class="toggle" role="group" aria-label="Mode"><button data-m="dark">DARK</button><button data-m="light">LIGHT</button></span></div>
+        <div class="srow"><div><b>Text size in battle</b><span>Normal / Large / Larger — the layout stays, numbers and labels grow.</span></div><span class="toggle" role="group" aria-label="Text size"><button data-tsb="1">NORMAL</button><button data-tsb="2">LARGE</button><button data-tsb="3">LARGER</button></span></div>
+        <div class="srow"><div><b>Animations</b><span>Full / Reduced / Off. Reduced keeps fades; Off in tests, watches and benchmarks. The engine never waits on an animation.</span></div><span class="toggle" role="group" aria-label="Animations"><button class="on">FULL</button><button class="js-chip">REDUCED</button><button class="js-chip">OFF</button></span></div>
+        <div class="srow" style="align-items:flex-start"><div><b>Your colour</b><span>Marks your side: turn band, tags, Life, card glow.</span></div><div class="pgrid js-pgrid2" style="width:330px"></div></div>
+        <div class="srow" style="align-items:flex-start"><div><b>Playmat image</b><span>your picture behind the battle board</span></div><span style="display:flex;gap:8px"><label class="ib sk upbtn" style="display:inline-flex;align-items:center"><span>Upload</span><input type="file" accept="image/*" class="js-upmat" aria-label="Upload playmat image"></label><button class="ib sk js-toast" data-toast="Playmat removed."><span>Remove</span></button></span></div>
+        <div class="srow"><div><b>CPU colour</b><span>Crimson; turns blue when your colour is red so the sides never match.</span></div><b class="js-cpuname">Crimson</b></div>
+        <div class="srow" style="border-bottom:0"><div><b>Sound</b><span>attack, block, Life loss and Burst cues — off by default until the owners test them.</span></div><span class="toggle" role="group" aria-label="Sound"><button class="js-chip">ON</button><button class="on">OFF</button></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</template>
+
+<template id="d-anim">
+<div class="scr" style="width:1366px;height:768px;display:flex;flex-direction:column">
+  <div class="lat"></div>
+  <header class="head" style="height:40px;flex:none;padding:0 12px 0 14px;gap:10px">
+    <span class="kchip">Animations · proposals</span><span class="pv">CrossOver look, engine budget: CSS keyframes only, ≤ 600 ms, ≤ 6 movers, rects read once, Off in tests / watches / benchmarks.</span>
+  </header>
+  <div style="position:relative;flex:1;display:grid;grid-template-columns:1fr 380px;gap:16px;padding:14px 20px;min-height:0">
+    <div style="display:flex;flex-direction:column;gap:10px;min-height:0">
+      <div class="astage js-stage">
+        <div style="position:absolute;left:40px;top:96px" class="oc you js-card"><span class="ocost">3</span><span class="otyp">SPIRIT</span><span class="oimg">CARD IMAGE</span><span class="onm">The StrongArm<br>Lionheart Sisyphus</span><span class="omag"></span><span class="obp">3000</span><span class="olv"><b>1</b></span></div>
+        <div style="position:absolute;right:60px;top:96px" class="oc foe js-card2"><span class="ocost">2</span><span class="otyp">SPIRIT</span><span class="oimg">CARD IMAGE</span><span class="onm">Flame Hound</span><span class="obp">2000</span><span class="olv"><b>1</b></span></div>
+        <div style="position:absolute;right:36px;top:12px" class="gems js-life"><i class="g-core"></i><i class="g-core"></i><i class="g-core"></i><i class="g-core"></i><i class="g-core"></i></div>
+        <span style="position:absolute;left:46px;top:12px" class="sl js-res">Reserve</span>
+        <i class="g-core" style="position:absolute;left:60px;bottom:40px" class="js-resgem"></i>
+      </div>
+      <span class="pv">▶ every demo runs on this stage; the engine never waits on animations (they only read the render).</span>
+    </div>
+    <div class="anim" style="overflow:auto">
+      <button class="abtn" data-an="beam"><i></i><span><b>Attack beam</b> <em style="color:var(--you);font-style:normal">shipped</em><span>attacker → blocker or Life, side colour</span></span></button>
+      <button class="abtn" data-an="shatter"><i></i><span><b>Life core shatter</b> <em style="color:var(--you);font-style:normal">shipped</em><span>6 shards, transform only</span></span></button>
+      <button class="abtn" data-an="summon"><i></i><span><b>Summon flash</b> <em style="color:var(--you);font-style:normal">shipped</em><span>one pulse under the card</span></span></button>
+      <button class="abtn" data-an="destroy"><i></i><span><b>Destroy ghost</b> <em style="color:var(--you);font-style:normal">shipped</em><span>fade + drop</span></span></button>
+      <button class="abtn" data-an="bp"><i></i><span><b>BP pop</b> <em style="color:var(--you);font-style:normal">shipped</em><span>＋N / −N floats up</span></span></button>
+      <button class="abtn" data-an="pillar"><i></i><span><b>Core flight (v13)</b><span>one gem flies Reserve → card on a core move</span></span></button>
+      <button class="abtn" data-an="flip"><i></i><span><b>Burst flip (v13)</b><span>face-down sleeve → 3D reveal</span></span></button>
+      <button class="abtn" data-an="cutin"><i></i><span><b>Ace cut-in (v13)</b><span>attacker's name card cuts in, CrossOver look</span></span></button>
+      <button class="abtn" data-an="edge"><i></i><span><b>Life edge flash (v13)</b><span>red vignette when your Life is reduced</span></span></button>
+      <button class="abtn" data-an="banner"><i></i><span><b>Match-start banner (v13 slide)</b><span>"GATE OPEN, RELEASE!"</span></span></button>
+      <button class="abtn" data-an="shake"><i></i><span><b>Screen shake (v13, Full only)</b><span>big destroy only; slots stay locked (X1)</span></span></button>
+      <span class="pv" style="line-height:1.5">Budget per cue: <span class="bud">≤ 600 ms</span> <span class="bud">≤ 6 movers</span> <span class="bud">CSS keyframes</span> <span class="bud">no per-frame JS</span> <span class="bud">Off in watches/sim</span> <span class="bud">bench: same with Off</span></span>
+    </div>
+  </div>
+</div>
+</template>
+
+<template id="d-libhelp">
+<div class="scr" style="width:1366px;height:768px;display:flex;flex-direction:column">
+  <div class="lat"></div>
+  <nav class="nav head" aria-label="Main" style="height:64px;gap:4px;padding:0 28px"><span style="font-size:22px;font-weight:900;font-style:italic;letter-spacing:.1em;margin-right:26px">AETERNA</span><a href="#" class="sk"><span>Home</span></a><a href="#" class="sk"><span>Play</span></a><a href="#" class="sk"><span>Decks</span></a><a href="#" class="sk on"><span>Library</span></a><a href="#" class="sk"><span>How to play</span></a><span style="flex-grow:1"></span><span style="display:flex;align-items:center;gap:8px;padding:4px 12px 4px 4px;background:var(--chip);box-shadow:inset 0 0 0 1px var(--line2);cursor:pointer" class="js-open" data-open="popmenu" role="button" tabindex="0"><span class="avatar" style="width:26px;height:36px"></span><b style="font-size:13px" class="js-pname">Arda</b></span></nav>
+  <div style="position:relative;padding:16px 40px;display:grid;grid-template-columns:1fr 1fr;gap:18px;flex:1;min-height:0;box-sizing:border-box">
+    <div class="card" style="padding:14px 18px;display:flex;flex-direction:column;gap:10px;min-height:0">
+      <div style="display:flex;align-items:center;gap:10px"><span class="sl" style="color:var(--you)">CARD DATA (library)</span><span style="flex:1"></span><span class="pv">178 playable · 61 complete · 117 "!"</span></div>
+      <div class="search" style="width:100%">⌕ <span>search cards — opens the grid below (v13 replaces the plain counts with a real list)</span></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="ib sk pb js-chip"><span>All kinds</span></button><button class="ib sk js-chip"><span>Spirits</span></button><button class="ib sk js-chip"><span>Magic</span></button><button class="ib sk js-chip"><span>Nexus</span></button></div>
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;overflow:auto;min-height:0">
+        <div class="oc jl-card" role="button" tabindex="0" aria-label="Open card info"><span class="ocost">3</span><span class="onm" style="font-size:8px">Sisyphus</span><span class="obp">3000</span></div>
+        <div class="oc jl-card" role="button" tabindex="0" aria-label="Open card info"><span class="ocost">4</span><span class="onm" style="font-size:8px">Iphicles</span><span class="obp">3000</span></div>
+        <div class="oc jl-card" role="button" tabindex="0" aria-label="Open card info"><span class="ocost">3</span><span class="onm" style="font-size:8px">Stichiox</span><span class="obp">4000</span></div>
+        <div class="oc jl-card" role="button" tabindex="0" aria-label="Open card info" style="opacity:.7"><span class="ocost">5</span><span class="otyp" style="font-size:6px">MAGIC</span><span class="onm" style="font-size:8px">Flame Storm</span></div>
+        <div class="oc jl-card" role="button" tabindex="0" aria-label="Open card info"><span class="ocost">1</span><span class="otyp" style="font-size:6px">MAGIC</span><span class="onm" style="font-size:8px">Dana Draw</span></div>
+        <div class="oc jl-card" role="button" tabindex="0" aria-label="Open card info"><span class="ocost">2</span><span class="otyp" style="font-size:6px">NEXUS</span><span class="onm" style="font-size:8px">Hermes</span></div>
+      </div>
+      <div class="acc">
+        <details><summary>Image import — where the card images come from</summary><p>Import a pack image or scan; the tool crops, names files by card number and the page shows which copies already have art ("images 4 / 4").</p></details>
+        <details><summary>"!" legend — effect not fully implemented</summary><p>A "!" on a card means some clauses of the printed text are not implemented yet; the card info page lists exactly which ones. The game never uses an unimplemented clause in a decision.</p></details>
+      </div>
+    </div>
+    <div class="card" style="padding:14px 18px;display:flex;flex-direction:column;gap:10px;min-height:0">
+      <span class="sl" style="color:var(--you)">HOW TO PLAY</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="ib sk pb js-chip"><span>Basics</span></button><button class="ib sk js-chip"><span>Your first match</span></button><button class="ib sk js-chip"><span>Aeterna rules</span></button></div>
+      <div class="acc" style="flex:1;overflow:auto;min-height:0">
+        <details open><summary>Your first match in five steps</summary><p>1. Pick a starter deck. 2. Play → Match vs CPU → Start. 3. Keep the drawn hand. 4. Core, Draw and Refresh run by themselves; you act in Main and Attack. 5. Reduce the CPU's Life from 5 to 0.</p></details>
+        <details><summary>Aeterna house rule: Key Spirit</summary><p>One Spirit of the deck is marked KEY in the builder. While no copy is in your Hand or on the Field, draws from the Deck favour its copies. Draws stay on the match's seeded RNG, so replays never change.</p></details>
+        <details><summary>The steps of a turn</summary><p>Start → Core → Draw → Refresh → Main → Attack → End. The band shows all seven; illegal moves explain the next legal one.</p></details>
+        <details><summary>Flash timing</summary><p>After any Magic is cast, each player may answer with their own Magic before it resolves — the FLASH TIMING prompt appears with your options.</p></details>
+        <details><summary>Glossary keywords</summary><p>Summon · When Attacks · Burst · Mirage · Core Boost · Life · Opposing — every one opens its glossary entry; chip look marks them inside card text.</p></details>
+      </div>
+      <div class="drow" style="gap:8px"><button class="ib sk js-goto" data-goto="cardinfo" style="height:30px"><span>Open an example card</span></button><span class="pv" style="margin-left:8px">every keyword chip leads here too</span></div>
+    </div>
+  </div>
+</div>
+</template>
+<template id="p-lobby">
+<div class="scr" style="width:390px;height:844px;display:flex;flex-direction:column">
+  <div class="lat"></div>
+  <header class="head" style="height:58px;flex:none;padding:0 8px 0 14px;gap:6px">
+    <span style="font-size:19px;font-weight:900;font-style:italic;letter-spacing:.1em">AETERNA</span><span style="flex-grow:1"></span>
+    <button class="gbtn" aria-label="Match history" data-open="history"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5M12 7v5l3 2"/></svg></button>
+    <button class="gbtn" aria-label="Your colour"><span class="dot"></span></button>
+    <span class="toggle" role="group" aria-label="Mode"><button data-m="dark">DARK</button><button data-m="light">LIGHT</button></span>
+    <button class="gbtn" aria-label="Settings" data-goto="settings"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></button>
+    <span style="display:flex;align-items:center;gap:6px;padding:3px 10px 3px 3px;background:var(--chip);box-shadow:inset 0 0 0 1px var(--line2);cursor:pointer" class="js-open" data-open="popmenu" role="button" tabindex="0" aria-label="Profile menu"><span class="avatar" style="width:22px;height:30px"></span><b class="js-pname" style="font-size:11px">Arda</b></span>
+  </header>
+  <main style="position:relative;flex:1;padding:20px 16px 0;display:flex;flex-direction:column;gap:11px;min-height:0;overflow:hidden">
+    <div style="display:flex"><span style="padding:4px 16px 4px 10px;background:var(--you);color:var(--you-ink);font-size:11px;font-weight:900;letter-spacing:.16em;clip-path:polygon(0 0,100% 0,calc(100% - 10px) 100%,0 100%)">CARD BATTLE VS CPU</span><span style="padding:4px 16px;margin-left:-6px;background:var(--chip);font-size:11px;font-weight:800;letter-spacing:.16em;clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%)">OFFLINE</span></div>
+    <h2 style="margin:0;font-size:44px;line-height:.95;font-weight:900;font-style:italic">GATE OPEN,<br><span style="color:var(--you)">RELEASE!</span></h2>
+    <p style="margin:0;font-size:14px;line-height:1.5;color:var(--text2)">Your profile, decks and card images stay on this device.</p>
+    <button class="btnp sk js-goto" data-goto="play" style="width:100%"><span>▶ PLAY NOW</span></button>
+    <button class="btns sk js-goto" data-goto="builder" style="width:100%"><span>BUILD A DECK</span></button>
+    <button class="tile js-goto" data-goto="play" style="padding:12px 14px;cursor:pointer;text-align:left;font:inherit"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M14.5 17.5L3 6V3h3l11.5 11.5M13 19l6-6M16 16l4 4"/></svg></span><span style="flex:1;text-align:left"><b>MATCH VS CPU</b><span>Lionheart Green · Standard</span></span>›</button>
+    <button class="tile js-goto" data-goto="decks" style="padding:12px 14px;cursor:pointer;text-align:left;font:inherit"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span><span style="flex:1;text-align:left"><b>MY DECKS</b><span>6 of 30 slots used</span></span>›</button>
+    <button class="tile js-goto" data-goto="libhelp" style="padding:12px 14px;cursor:pointer;text-align:left;font:inherit"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h14v16H6a2 2 0 0 0-2 2z"/></svg></span><span style="flex:1;text-align:left"><b>CARD DATA &amp; HELP</b><span>Library, rules, glossary</span></span>›</button>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button class="okchip js-open" data-open="whatsnew" style="cursor:pointer;font:inherit"><span>WHAT'S NEW v0.103.0</span></button><span class="pv" style="font-size:11px">Key Spirit is in!</span></div>
+  </main>
+  <nav class="tabbar" aria-label="Main" style="position:relative;flex:none"><a href="#" class="js-goto" data-goto="lobby" data-tab="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V10a8 8 0 0 1 16 0v11"/><path d="M8 21v-9a4 4 0 0 1 8 0v9"/><path d="M2 21h20"/><path d="M12 2.5v2"/></svg>HOME</a><a href="#" class="js-goto" data-goto="play"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l9.5 7-3.6 11.5H6.1L2.5 9z"/><path d="M10 8.5l5 3.5-5 3.5z" fill="currentColor"/></svg>PLAY</a><a href="#" class="js-goto" data-goto="decks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="10" height="15" rx="1.5" transform="rotate(12 14 10.5)"/><rect x="5" y="5" width="10" height="15" rx="1.5"/><path d="M10 10.5l2 2-2 2-2-2z"/></svg>DECKS</a><a href="#" class="js-goto" data-goto="libhelp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="11" height="16" rx="1.5"/><path d="M6 7h5M6 10h5"/><circle cx="16.5" cy="15.5" r="3.5"/><path d="M19 18l2.5 2.5"/></svg>LIBRARY</a><a href="#" class="js-open" data-open="popmenu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l9.5 7-3.6 11.5H6.1L2.5 9z"/><path d="M9.8 10a2.3 2.3 0 1 1 3.3 2.1c-.7.4-1.1 1-1.1 1.7v.4"/><path d="M12 17.2h.01"/></svg>PROFILE</a></nav>
+</div>
+</template>
+
+<template id="p-play">
+<div class="scr" style="width:390px;height:844px;display:flex;flex-direction:column">
+  <div class="lat"></div>
+  <header class="head" style="height:52px;flex:none;padding:0 10px 0 14px;gap:8px"><span style="font-size:16px;font-weight:900;font-style:italic">Play</span><span style="flex-grow:1"></span><button class="ib sk" data-goto="libhelp" style="padding:0 10px"><span>How to play</span></button></header>
+  <main style="position:relative;flex:1;padding:12px 12px 0;display:flex;flex-direction:column;gap:10px;min-height:0;overflow:hidden">
+    <div class="pchip" style="padding:10px 12px"><span class="sleeve has-img" style="width:34px;height:47px"></span><div style="min-width:0;flex:1"><b style="font-size:15px;font-weight:900;font-style:italic">Lionheart Green</b><span class="pv" style="display:block"><b>40</b> / 40 · Standard · <span style="color:var(--you)">legal</span></span></div><button class="ib sk" data-goto="decks" style="padding:0 10px"><span>Change</span></button></div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap"><span class="sc3 on" style="font-size:11px;padding:6px 10px"><i style="width:18px;height:18px"><b style="font-size:8px">1</b></i>Deck</span><span class="sc3" style="font-size:11px;padding:6px 10px"><i style="width:18px;height:18px"><b style="font-size:8px">2</b></i>Opponent</span><span class="sc3" style="font-size:11px;padding:6px 10px"><i style="width:18px;height:18px"><b style="font-size:8px">3</b></i>Rules</span></div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <button class="mode on js-mode" style="padding:11px;text-align:left;font:inherit"><span class="ok">✓</span><span class="mi" style="width:34px;height:34px"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M14.5 17.5L3 6V3h3l11.5 11.5M13 19l6-6M16 16l4 4"/></svg></span><span style="display:flex;flex-direction:column;align-items:flex-start"><b style="font-size:14px">Match vs CPU</b><span style="font-size:12px">Starter 26RSD03 · style <b class="js-stylelbl">Balanced</b></span></span></button>
+      <button class="mode js-mode" style="padding:11px;text-align:left;font:inherit"><span class="mi" style="width:34px;height:34px"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M2 12h3M19 12h3M12 2v3M12 19v3"/></svg></span><span style="display:flex;flex-direction:column;align-items:flex-start"><b style="font-size:14px">Watch CPU vs CPU</b><span style="font-size:12px">Learn the flow; no hands shown.</span></span></button>
+      <button class="mode js-mode" style="padding:11px;text-align:left;font:inherit"><span class="mi" style="width:34px;height:34px"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span><span style="display:flex;flex-direction:column;align-items:flex-start"><b style="font-size:14px">Two of your decks</b><span style="font-size:12px">Your other deck plays the opponent.</span></span></button>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><span class="sl">Style</span><button class="ib sk pb js-chip"><span>Balanced</span></button><button class="ib sk js-chip"><span>Aggressive</span></button><button class="ib sk js-chip"><span>Defensive</span></button></div>
+    <div class="card" style="padding:10px 12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="sl" style="color:var(--you)">Rules</span><button class="ib sk pb js-chip"><span>Format: Standard</span></button><button class="ib sk js-chip"><span>Eternal (preview)</span></button></div>
+    <span class="pv" style="line-height:1.45"><b style="color:var(--text)">Key Spirit</b> draws favour the marked Spirit until one copy appears. <a href="#" class="lnk js-goto" data-goto="libhelp">Full rule</a></span>
+    <p class="setupnote" style="margin:0;font-size:13px">You will play <b>Lionheart Green</b> vs <b>CPU · 26RSD03</b>, Standard.</p>
+    <span style="flex:1"></span>
+  </main>
+  <div style="position:relative;flex:none;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:var(--head)"><button class="btnp sk js-goto" data-goto="battle" style="width:100%;height:54px"><span>▶ MATCH START</span></button></div>
+  <nav class="tabbar" aria-label="Main" style="position:relative;flex:none"><a href="#" class="js-goto" data-goto="lobby"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V10a8 8 0 0 1 16 0v11"/><path d="M8 21v-9a4 4 0 0 1 8 0v9"/><path d="M2 21h20"/><path d="M12 2.5v2"/></svg>HOME</a><a href="#" class="on js-goto" data-goto="play"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l9.5 7-3.6 11.5H6.1L2.5 9z"/><path d="M10 8.5l5 3.5-5 3.5z" fill="currentColor"/></svg>PLAY</a><a href="#" class="js-goto" data-goto="decks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="10" height="15" rx="1.5" transform="rotate(12 14 10.5)"/><rect x="5" y="5" width="10" height="15" rx="1.5"/><path d="M10 10.5l2 2-2 2-2-2z"/></svg>DECKS</a><a href="#" class="js-goto" data-goto="libhelp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="11" height="16" rx="1.5"/><path d="M6 7h5M6 10h5"/><circle cx="16.5" cy="15.5" r="3.5"/><path d="M19 18l2.5 2.5"/></svg>LIBRARY</a><a href="#" class="js-open" data-open="popmenu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l9.5 7-3.6 11.5H6.1L2.5 9z"/><path d="M9.8 10a2.3 2.3 0 1 1 3.3 2.1c-.7.4-1.1 1-1.1 1.7v.4"/><path d="M12 17.2h.01"/></svg>PROFILE</a></nav>
+</div>
+</template>
+
+<template id="p-battle">
+<div class="scr" style="width:390px;height:844px;padding:6px;box-sizing:border-box;display:flex;flex-direction:column;gap:5px">
+  <div class="matimg"></div><div class="lat"></div>
+  <header class="head" style="height:40px;flex:none;padding:0 6px 0 0">
+    <div class="turn" style="padding:0 18px 0 10px"><span style="font-size:14px;font-weight:900;font-style:italic">AETERNA</span></div>
+    <span style="flex-grow:1"></span><button class="ib sk" data-open="log" style="padding:0 10px"><span>Log</span></button>&nbsp;<button class="ib sk" data-open="concede" style="padding:0 10px"><span>Concede…</span></button>
+  </header>
+  <div class="row" style="flex:none;padding:6px;display:flex;flex-direction:column;gap:6px">
+    <div class="sgrid"><button class="sc js-zone" data-zone="cpu-banished" style="font-family:inherit;border:0"><em>Banished:</em> 1</button><button class="sc js-zone" data-zone="cpu-void" style="font-family:inherit;border:0"><em>Void:</em> 0</button><span class="sc"><em>Count:</em> 0</span><button class="sc js-zone" data-zone="cpu-trash" style="font-family:inherit;border:0"><em>Trash:</em> 0</button><button class="sc js-zone" data-zone="cpu-deck" style="font-family:inherit;border:0"><em>Deck</em><span class="sleeve cpu-sleeve mini"></span>35</button><span class="sc"><em>Hand:</em> 3</span><span class="sc hl" style="--h:var(--cpu)"><em>Reserve:</em> 0</span><span class="sc hl" style="--h:var(--cpu)"><em>Life</em><span class="gems sm"><i class="g-core"></i><i class="g-core"></i><i class="g-core"></i><i class="g-core"></i><i class="g-core"></i></span></span></div>
+    <div style="display:grid;grid-template-columns:52px 1fr 52px;align-items:center">
+      <div class="sbox"><span class="sl" style="color:#c39bff">Soul State</span><div class="slot" style="width:42px;height:58px"></div><span class="sl">Empty</span></div>
+      <div style="display:flex;gap:8px;justify-content:center"><button class="oc foe js-open" data-open="inspect" style="font:inherit;cursor:pointer"><span class="ocost" style="position:absolute;left:3px;top:3px;width:17px;height:17px;border-radius:50%;background:#0f1218;box-shadow:0 0 0 1px #fff;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center">2</span><span class="otyp" style="position:absolute;right:3px;top:4px;font-size:8px;font-weight:800;padding:2px 4px;background:#000b">SPIRIT</span><span class="oimg">CARD IMAGE</span><span class="onm">Flame Hound</span><span class="cbar"><i class="g-soul"></i></span><span class="omag" aria-hidden="true"></span><span class="obp">2000</span><span class="olv"><b>1</b></span></button><div class="oc" style="width:84px;height:116px"><span class="ocost">1</span><span class="otyp">SPIRIT</span><span class="oimg">CARD IMAGE</span><span class="onm">Ember Pup</span><span class="cbar"><i class="g-core"></i></span><span class="omag" aria-hidden="true"></span><span class="obp">2000</span><span class="olv"><b>1</b></span></div></div>
+      <div class="sbox"><span class="sl" style="color:#f0a6ff">Burst · Mirage</span><div class="slot set" style="width:42px;height:58px"><span class="sleeve cpu-sleeve fill"></span><span class="btag">BURST SET</span></div><span class="sl">Set</span></div>
+    </div>
+  </div>
+  <div class="band" style="flex:none;grid-template-columns:62px 1fr 64px;padding:8px;gap:6px;height:auto">
+    <div class="bandlbl js-turnlbl" style="font-size:13px;line-height:1.05">PLAYER<br>TURN<small class="js-pname2" style="display:block;font-size:9px;letter-spacing:.08em;font-weight:700;color:var(--text2)">ARDA · LIONHEART GREEN</small></div>
+    <div class="phscroll js-scroll"><div class="steps js-steps"><button class="st sk js-st" data-step="0"><span>START</span></button><button class="st sk js-st" data-step="1"><span>CORE</span></button><button class="st sk js-st" data-step="2"><span>DRAW</span></button><button class="st sk js-st" data-step="3"><span>REFRESH</span></button><button class="st sk js-st" data-step="4"><span>MAIN</span></button><button class="st sk js-st" data-step="5"><span>ATTACK</span></button><button class="st sk js-st" data-step="6"><span>END</span></button></div></div>
+    <button class="next js-next" aria-label="Next step" style="width:64px;height:64px;font-size:10px">▶<br>NEXT</button>
+    <div class="narr js-narr" style="grid-column:1 / -1;font-size:13px;text-align:center">The SwiftContractor Hermes: <b>+2 cores</b>.</div>
+    <div class="stepline" style="grid-column:1 / -1;justify-content:center;font-size:12px"><span class="arrow">▶ now:</span> Summon, cast Magic, or NEXT to end.</div>
+    <div class="warn js-warn" hidden><b>ILLEGAL MOVE</b><span class="js-warntext"></span></div>
+  </div>
+  <button class="chevrow js-open" data-open="block" style="flex:none;border:0;font-family:inherit;cursor:pointer"><span>CPU ATTACKS — BLOCK? (tap to preview the sheet)</span></button>
+  <div class="row" style="flex:1;padding:6px;display:flex;flex-direction:column;gap:6px;min-height:0">
+    <div style="flex:1;display:grid;grid-template-columns:52px 1fr 52px;align-items:center">
+      <div class="sbox"><span class="sl" style="color:#f0a6ff">Burst · Mirage</span><div class="slot" style="width:42px;height:58px"></div><span class="sl">Empty</span></div>
+      <div style="display:flex;justify-content:center"><div class="oc you js-summoned" style="width:96px;height:132px"><span class="ocost">2</span><span class="otyp">NEXUS</span><span class="oimg">CARD IMAGE</span><span class="onm">The SwiftContractor Hermes</span><span class="cbar"><i class="g-core"></i><i class="g-core"></i></span><span class="omag" aria-hidden="true"></span><span class="obp" style="opacity:.75">Lv1</span><span class="olv"><b>1</b></span></div></div>
+      <div class="sbox"><span class="sl" style="color:#c39bff">Soul State</span><button class="slot set js-drop" style="font:inherit;cursor:pointer;background:none"><span class="sl">Play here</span></button></div>
+    </div>
+    <div class="sgrid"><span class="sc hl" style="--h:var(--you)"><em>Life</em><span class="gems sm"><i class="g-core"></i><i class="g-core"></i><i class="g-core"></i><i class="g-core"></i><i class="g-core"></i></span></span><button class="sc hl js-zone" data-zone="reserve" style="--h:var(--you);font-family:inherit;border:0"><em>Reserve:</em> <i class="g-soul"></i> 0</button><button class="sc js-open" data-open="hand" style="font-family:inherit;border:0"><em>Hand:</em> 4</button><button class="sc js-zone" data-zone="deck" style="font-family:inherit;border:0"><em>Deck</em><span class="sleeve mini" style="margin:0 2px"></span><b class="js-deckcnt" style="margin-left:2px">32</b></button><button class="sc js-zone" data-zone="trash" style="font-family:inherit;border:0"><em>Trash:</em> 3</button><span class="sc"><em>Count:</em> 0</span><button class="sc js-zone" data-zone="yvoid" style="font-family:inherit;border:0"><em>Void:</em> 0</button><button class="sc js-zone" data-zone="banished" style="font-family:inherit;border:0"><em>Banished:</em> 1</button></div>
+  </div>
+</div>
+</template>
+
+<template id="p-dialogs">
+<div class="scr" style="width:390px;height:844px;display:flex;flex-direction:column">
+  <div class="lat"></div>
+  <header class="head" style="height:48px;flex:none;padding:0 10px 0 14px;gap:8px"><button class="ib sk" data-goto="lobby" aria-label="Back"><span>‹</span></button><span style="font-size:15px;font-weight:900;font-style:italic">Dialog gallery</span><span style="flex-grow:1"></span><span class="pv" style="font-size:10px;text-align:right">sheets rise from the bottom · Esc closes</span></header>
+  <main style="position:relative;flex:1;padding:12px;display:flex;flex-direction:column;gap:8px;min-height:0;overflow:hidden">
+    <span class="sl" style="color:var(--you)">Working pop ups (each opens a real sheet)</span>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;overflow:auto;min-height:0">
+      <button class="drow js-open" data-open="pay" style="font:inherit;cursor:pointer"><span class="kchip kpay">Payment</span></button>
+      <button class="drow js-open" data-open="flash" style="font:inherit;cursor:pointer"><span class="kchip kfl">Flash timing</span></button>
+      <button class="drow js-open" data-open="order" style="font:inherit;cursor:pointer"><span class="kchip">Effect order</span></button>
+      <button class="drow js-open" data-open="block" style="font:inherit;cursor:pointer"><span class="kchip kml">Block?</span></button>
+      <button class="drow js-open" data-open="mul" style="font:inherit;cursor:pointer"><span class="kchip">Starting hand</span></button>
+      <button class="drow js-open" data-open="zone" style="font:inherit;cursor:pointer"><span class="kchip">Zone viewer</span></button>
+      <button class="drow js-open" data-open="hand" style="font:inherit;cursor:pointer"><span class="kchip">Hand viewer</span></button>
+      <button class="drow js-open" data-open="inspect" style="font:inherit;cursor:pointer"><span class="kchip">Card zoom</span></button>
+      <button class="drow js-open" data-open="concede" style="font:inherit;cursor:pointer"><span class="kchip">Concede</span></button>
+      <button class="drow js-open" data-open="delete" style="font:inherit;cursor:pointer"><span class="kchip">Delete (danger)</span></button>
+      <button class="drow js-open" data-open="setup" style="font:inherit;cursor:pointer"><span class="kchip">Match setup</span></button>
+      <button class="drow js-open" data-open="result" style="font:inherit;cursor:pointer"><span class="kchip">Result</span></button>
+      <button class="drow js-open" data-open="history" style="font:inherit;cursor:pointer"><span class="kchip">History</span></button>
+      <button class="drow js-open" data-open="whatsnew" style="font:inherit;cursor:pointer"><span class="kchip">What's new</span></button>
+      <button class="drow js-open" data-open="popmenu" style="font:inherit;cursor:pointer"><span class="kchip">Profile menu</span></button>
+      <button class="drow js-open" data-open="signin" style="font:inherit;cursor:pointer"><span class="kchip">Sign-in mock</span></button>
+    </div>
+    <span class="sl" style="color:var(--you)">Toasts</span>
+    <button class="drow" data-toast="CPU lost a Life core — 4 left." style="font:inherit;cursor:pointer"><span class="pv">State changes only; never a needed choice.</span><span style="flex:1"></span><span class="kchip">Fire demo</span></button>
+    <span class="sl" style="color:var(--you)">Banners and strips</span>
+    <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start"><span class="rib y" style="font-size:15px;padding:8px 26px">PLAYER TURN 3</span><span class="rib c" style="font-size:15px;padding:8px 26px">YOUR FLASH TIMING</span><span class="chevrow" style="font-size:13px">BLOCK?</span></div>
+    <span class="pv" style="line-height:1.45">Casing rule (inventory K.): chips, tags and buttons UPPERCASE by CSS; dialog titles stay sentence case.</span>
+  </main>
+</div>
+</template>
+
+<template id="p-decks">
+<div class="scr" style="width:390px;height:844px;display:flex;flex-direction:column">
+  <div class="lat"></div>
+  <header class="head" style="height:52px;flex:none;padding:0 10px 0 14px;gap:8px"><span style="font-size:16px;font-weight:900;font-style:italic">My decks</span><span class="pv" style="font-size:11px">6 of 30</span><span style="flex-grow:1"></span><button class="ib sk" data-open="import" style="padding:0 10px"><span>Import</span></button></header>
+  <main style="position:relative;flex:1;padding:12px;display:flex;flex-direction:column;gap:8px;min-height:0;overflow:hidden">
+    <div style="display:flex;flex-direction:column;gap:8px;overflow:auto;min-height:0">
+      <button class="drow act js-open" data-open="deckmenu" style="cursor:pointer"><span class="sleeve has-img" data-tint="#6fe0b8" style="width:30px;height:42px"></span><span style="flex:1;display:flex;flex-direction:column;align-items:flex-start"><b class="dtn" style="font-size:14px">Lionheart Green</b><span class="dst ok" style="font-size:11px">40 / 40 · Ready · Standard legal</span></span><span class="actb">Active</span>›</button>
+      <button class="drow js-open" data-open="deckmenu" style="cursor:pointer"><span class="sleeve has-img" data-tint="#ff6b7d" style="width:30px;height:42px"></span><span style="flex:1;display:flex;flex-direction:column;align-items:flex-start"><b class="dtn" style="font-size:14px">Dragon Rush</b><span class="dst ok" style="font-size:11px">40 / 40 · Ready</span></span><span class="keyb">Key</span>›</button>
+      <button class="drow js-open" data-open="deckmenu" style="cursor:pointer"><span class="sleeve has-img" data-tint="#7fb4ff" style="width:30px;height:42px"></span><span style="flex:1;display:flex;flex-direction:column;align-items:flex-start"><b class="dtn" style="font-size:14px">Ice Machine</b><span class="dst bad" style="font-size:11px">37 / 40 · add 3 cards</span></span>›</button>
+      <button class="drow js-open" data-open="deckmenu" style="cursor:pointer"><span class="sleeve has-img" data-tint="#e9c46a" style="width:30px;height:42px"></span><span style="flex:1;display:flex;flex-direction:column;align-items:flex-start"><b class="dtn" style="font-size:14px">Gold Dawn</b><span class="dst ok" style="font-size:11px">40 / 40 · Ready</span></span>›</button>
+    </div>
+    <button class="btns sk js-open" data-open="newdeck" style="width:100%"><span>＋ New deck</span></button>
+    <span class="sl" style="color:var(--you);margin-top:2px">Starter decks (read-only)</span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="stile"><span class="sleeve has-img" data-tint="#2fbf71" style="width:20px;height:28px"></span><span style="font-size:12px;font-weight:700">26RSD05 Green</span><button class="ib sk" data-toast="Copied 26RSD05 into a free slot." style="padding:0 10px"><span>Copy</span></button></span><span class="stile"><span class="sleeve has-img" data-tint="#3b82f6" style="width:20px;height:28px"></span><span style="font-size:12px;font-weight:700">26RSD07 Blue</span><button class="ib sk" data-toast="Copied 26RSD07 into a free slot." style="padding:0 10px"><span>Copy</span></button></span></div>
+    <span style="flex:1"></span>
+    <span class="pv" style="font-size:11px">Tap a deck for: Play · Edit · Set active · Rename · Duplicate · Look · Copy code · Delete (sheet).</span>
+  </main>
+  <nav class="tabbar" aria-label="Main" style="position:relative;flex:none"><a href="#" class="js-goto" data-goto="lobby"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V10a8 8 0 0 1 16 0v11"/><path d="M8 21v-9a4 4 0 0 1 8 0v9"/><path d="M2 21h20"/><path d="M12 2.5v2"/></svg>HOME</a><a href="#" class="js-goto" data-goto="play"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l9.5 7-3.6 11.5H6.1L2.5 9z"/><path d="M10 8.5l5 3.5-5 3.5z" fill="currentColor"/></svg>PLAY</a><a href="#" class="on js-goto" data-goto="decks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="10" height="15" rx="1.5" transform="rotate(12 14 10.5)"/><rect x="5" y="5" width="10" height="15" rx="1.5"/><path d="M10 10.5l2 2-2 2-2-2z"/></svg>DECKS</a><a href="#" class="js-goto" data-goto="libhelp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="11" height="16" rx="1.5"/><path d="M6 7h5M6 10h5"/><circle cx="16.5" cy="15.5" r="3.5"/><path d="M19 18l2.5 2.5"/></svg>LIBRARY</a><a href="#" class="js-open" data-open="popmenu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l9.5 7-3.6 11.5H6.1L2.5 9z"/><path d="M9.8 10a2.3 2.3 0 1 1 3.3 2.1c-.7.4-1.1 1-1.1 1.7v.4"/><path d="M12 17.2h.01"/></svg>PROFILE</a></nav>
+</div>
+</template>
+
+<template id="p-builder">
+<div class="scr" style="width:390px;height:844px;display:flex;flex-direction:column">
+  <div class="lat"></div>
+  <header class="head" style="height:46px;flex:none;padding:0 10px 0 12px;gap:8px">
+    <button class="ib sk" data-goto="decks" aria-label="Back to My decks" style="padding:0 8px"><span>‹</span></button>
+    <span style="display:flex;flex-direction:column;line-height:1.05;min-width:0"><b style="font-size:13px;font-weight:900;font-style:italic;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Lionheart Green</b><span class="pv js-cnt" style="font-size:10px">40 / 40 · READY</span></span>
+    <span style="flex-grow:1"></span><button class="ib sk" data-toast="This deck is now the ACTIVE deck." style="padding:0 8px"><span>Set active</span></button><button class="ib sk" data-goto="battle" style="padding:0 8px;color:var(--you)"><span>Play</span></button>
+  </header>
+  <div class="tbar" style="flex:none;padding:8px 10px"><div class="search" style="flex:1;width:auto">⌕ <span>Search cards</span></div><button class="ib sk" data-filters style="padding:0 10px"><span>Filters <em class="badge">3</em></span></button></div>
+  <div style="position:relative;flex:1;padding:8px 10px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;grid-auto-rows:max-content;align-content:start;overflow:hidden;min-height:0">
+    <div class="oc jl-card" role="button" tabindex="0" aria-label="Open card info"><span class="ocost">3</span><span class="otyp">SPIRIT</span><span class="oimg">CARD IMAGE</span><span class="onm">Sisyphus</span><span class="obp">3000</span></div>
+    <div class="oc jl-card" role="button" tabindex="0" aria-label="Open card info"><span class="ocost">4</span><span class="otyp">SPIRIT</span><span class="oimg">CARD IMAGE</span><span class="onm">Iphicles</span><span class="obp">3000</span></div>
+    <div class="oc jl-card" role="button" tabindex="0" aria-label="Open card info"><span class="ocost">3</span><span class="otyp">SPIRIT</span><span class="oimg">CARD IMAGE</span><span class="onm">Stichiox</span><span class="obp">4000</span></div>
+    <div class="oc jl-card" role="button" tabindex="0" aria-label="Open card info"><span class="ocost">6</span><span class="otyp">SPIRIT</span><span class="oimg">CARD IMAGE</span><span class="onm">Autolycus</span><span class="obp">4000</span></div>
+    <div class="oc jl-card" role="button" tabindex="0" aria-label="Open card info"><span class="ocost">1</span><span class="otyp">MAGIC</span><span class="oimg">CARD IMAGE</span><span class="onm">Dana Draw</span></div>
+    <div class="oc jl-card" role="button" tabindex="0" aria-label="Open card info"><span class="ocost">2</span><span class="otyp">MAGIC</span><span class="oimg">CARD IMAGE</span><span class="onm">Whirling Tide</span></div>
+    <div class="oc jl-card" role="button" tabindex="0" aria-label="Open card info"><span class="ocost">2</span><span class="otyp">NEXUS</span><span class="oimg">CARD IMAGE</span><span class="onm">Hermes</span></div>
+    <div class="oc jl-card" role="button" tabindex="0" aria-label="Open card info" style="opacity:.55"><span class="ocost">5</span><span class="otyp">MAGIC</span><span class="oimg">CARD IMAGE</span><span class="onm">Flame Storm</span></div>
+  </div>
+  <div class="fsheet" hidden>
+    <span class="sl" style="color:var(--you)">Filter the card pool</span>
+    <div class="fg"><div class="sl">Colour</div><div class="fchips"><button class="fchip"><i class="dot" style="--c:#e5484d"></i>Red</button><button class="fchip on"><i class="dot" style="--c:#2fbf71"></i>Green</button><button class="fchip"><i class="dot" style="--c:#ffe14a"></i>Yellow</button></div></div>
+    <div class="fg"><div class="sl">Type</div><div class="fchips"><button class="fchip on">Spirit</button><button class="fchip">Magic</button><button class="fchip">Nexus</button></div></div>
+    <div class="fg"><div class="sl">Format</div><div class="fchips"><button class="fchip on">Standard</button><button class="fchip on">Playable only</button></div></div>
+    <div class="fact"><button class="ib sk pb" data-filters><span>Show 186 cards</span></button><button class="ib sk" data-toast="Filters reset."><span>Reset</span></button></div>
+  </div>
+  <div class="decksheet">
+    <button class="grab" aria-label="Minimize or expand the deck list" style="border:0;font:inherit"></button>
+    <div class="dh"><span class="sl" style="color:var(--you);font-size:10px">Deck list — tap ‹ on a row to make it the Key Spirit</span><span style="flex:1"></span><span class="keyb">KEY · SISYPHUS</span></div>
+    <div class="deckbody">
+      <div class="dlr key" data-c="3"><span class="dlq">★</span><span class="dln">The StrongArm Lionheart Sisyphus</span><button class="dlb jskey" aria-label="Make key">‹</button><button class="dlb js-minus" aria-label="Remove one copy">−</button><span class="dlc">3</span><button class="dlb js-plus" aria-label="Add one copy">+</button></div>
+      <div class="dlr" data-c="3"><span class="dln">The Lionheart Centurion Iphicles</span><button class="dlb jskey" aria-label="Make key">‹</button><button class="dlb js-minus" aria-label="Remove one copy">−</button><span class="dlc">3</span><button class="dlb js-plus" aria-label="Add one copy">+</button></div>
+      <div class="dlr" data-c="2"><span class="dln">Dana Draw (Magic)</span><button class="dlb jskey" aria-label="Make key">‹</button><button class="dlb js-minus" aria-label="Remove one copy">−</button><span class="dlc">2</span><button class="dlb js-plus" aria-label="Add one copy">+</button></div>
+      <div class="dlh"><span>40 cards · Standard legal · Key: Sisyphus</span></div>
+    </div>
+  </div>
+</div>
+</template>
+
+<template id="p-cardinfo">
+<div class="scr" style="width:390px;height:844px;display:flex;flex-direction:column">
+  <div class="lat"></div>
+  <header class="head" style="height:48px;flex:none;padding:0 10px 0 12px;gap:8px"><button class="ib sk" data-goto="libhelp" aria-label="Back" style="padding:0 8px"><span>‹</span></button><span style="font-size:15px;font-weight:900;font-style:italic">Card info</span><span style="flex-grow:1"></span><button class="ib sk" data-goto="builder" style="padding:0 8px"><span>Builder</span></button></header>
+  <main style="position:relative;flex:1;display:flex;flex-direction:column;gap:10px;overflow:auto;min-height:0;padding:12px">
+    <div class="cinfoL">
+      <div class="bigart" style="width:190px;height:264px"><span class="co js-ci-cost" style="width:24px;height:24px;font-size:12px;left:10px;top:10px">3</span><span class="lvb js-ci-lv" style="right:10px;top:10px;font-size:10px">LV1</span><span class="txt" style="top:48%;font-size:8px">CARD IMAGE</span><span class="nm js-ci-name" style="top:56%;font-size:13px">The StrongArm Lionheart Sisyphus</span><span class="bpb js-ci-bp" style="bottom:12px;font-size:17px">3000</span></div>
+      <div class="cnav" style="width:100%"><button class="ib sk js-prev" aria-label="Previous card"><span>‹ Prev</span></button><span class="cnum js-ci-num" style="flex:1;text-align:center;font-size:10px">26RDB01-003</span><button class="ib sk js-next" aria-label="Next card"><span>Next ›</span></button></div>
+    </div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center"><b style="font-size:16px;font-style:italic;font-weight:900" class="js-ci-name2">The StrongArm Lionheart Sisyphus</b><span class="kchip">Spirit · Green</span><span class="kchip kpay">Standard</span></div>
+    <div class="lvl"><span class="lv">LV1 <em>core 1</em></span><p>Keep 1000 on the field… <span class="fl">(When Attacks)</span> Draw one card from the bottom of the Deck.</p></div>
+    <div class="lvl"><span class="lv">LV2 <em>core 3</em></span><p>Keep the LV1 text. <span class="fl">(When Attacks)</span> One opposing LV1 Spirit goes to its owner's Trash at <b>end of attacks</b>.</p></div>
+    <div class="lvl"><span class="lv">BURST <em>while set</em></span><p><span class="kwd">Burst</span> after your Life is reduced: destroy one opposing BP 3000 or less Spirit.</p></div>
+    <div class="lvl" style="box-shadow:inset 0 0 0 1px #e08a00"><span class="lv" style="color:#e08a00">"!" NOTE</span><p>3 clauses not implemented yet — the page lists exactly which ones.</p></div>
+    <div class="lgl" style="font-size:10px"><b>Reduce:</b> green 1 · gem <i class="g-core" style="display:inline-block;vertical-align:-2px"></i> · keywords: <a href="#" class="lnk js-goto" data-goto="libhelp">Summon</a> <a href="#" class="lnk js-goto" data-goto="libhelp">When Attacks</a> <a href="#" class="lnk js-goto" data-goto="libhelp">Burst</a></div>
+    <span class="pv" style="font-size:10px">Entry points: Library grid, long-press a card anywhere, zoom dialog → "Full info".</span>
+    <span style="flex:1"></span>
+  </main>
+  <div style="flex:none;display:flex;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:var(--head)"><button class="b50 pri sk js-open" data-open="deckpick" style="flex:1.2"><span>＋ Add to deck</span></button><button class="b50 sec sk js-goto" data-goto="builder" style="flex:1"><span>Open in builder</span></button></div>
+</div>
+</template>
+
+<template id="p-profile">
+<div class="scr" style="width:390px;height:844px;display:flex;flex-direction:column">
+  <div class="lat"></div>
+  <header class="head" style="height:48px;flex:none;padding:0 10px 0 12px;gap:8px"><button class="ib sk" data-goto="lobby" aria-label="Back" style="padding:0 8px"><span>‹</span></button><span style="font-size:15px;font-weight:900;font-style:italic">Player profile</span><span style="flex-grow:1"></span></header>
+  <main style="position:relative;flex:1;padding:12px;display:flex;flex-direction:column;gap:12px;min-height:0;overflow:hidden">
+    <div class="card" style="padding:14px;display:flex;flex-direction:column;gap:8px;align-items:flex-start">
+      <span class="sl" style="color:var(--you)">Player profile</span>
+      <span class="bigavatar" style="width:84px;height:116px"></span>
+      <b style="font-size:18px;font-style:italic;font-weight:900" class="js-pname3">Arda</b>
+      <span class="pv" style="font-size:11px">Sleeve picture = deck look, or upload your own.</span>
+      <div style="display:flex;gap:8px"><button class="ib sk" data-toast="Name field opens inline (max 16 letters)."><span>Rename</span></button><button class="ib sk js-open" data-open="avatar"><span>Change avatar</span></button></div>
+      <span class="pv" style="font-size:10px;color:var(--text3)">Saved on this device · no account server yet</span>
+    </div>
+    <div class="card" style="padding:12px 14px">
+      <span class="sl" style="color:var(--you)">Match record</span>
+      <div class="statgrid" style="grid-template-columns:repeat(2,1fr);gap:8px;margin-top:8px">
+        <div class="stat"><b>37</b><span>matches played</span></div>
+        <div class="stat"><b style="color:var(--you)">21</b><span>wins (57%)</span></div>
+        <div class="stat"><b style="font-size:18px">Green</b><span>favourite colour</span></div>
+        <div class="stat"><b style="font-size:18px">Lionheart</b><span>most used deck</span></div>
+      </div>
+    </div>
+    <div class="card" style="padding:12px 14px;display:flex;flex-direction:column;gap:0">
+      <span class="sl" style="color:var(--you)">Account &amp; sign-in (mock)</span>
+      <div class="srow" style="padding:10px 0"><div><b style="font-size:13px">Offline profile</b><span style="font-size:11px">decks, replays, pictures stay on this device</span></div><span class="okchip">Active</span></div>
+      <div class="srow" style="padding:10px 0"><div><b style="font-size:13px">Online sign-in</b><span style="font-size:11px">same name + avatar become your login later (M6-M8)</span></div><button class="ib sk js-open" data-open="signin" style="padding:0 10px"><span>Preview</span></button></div>
+      <div class="srow" style="padding:10px 0;border-bottom:0"><div><b style="font-size:13px">Data controls</b><span style="font-size:11px">export everything, or wipe this device</span></div><span style="display:flex;gap:6px"><button class="ib sk" data-toast="profile-export.json saved (mock)." style="padding:0 8px"><span>Export</span></button><button class="ib sk js-open" data-open="wipe" style="padding:0 8px;color:var(--cpu)"><span>Wipe…</span></button></span></div>
+    </div>
+    <div class="card" style="padding:10px 14px"><span class="pv" style="font-size:11px;line-height:1.5"><b style="color:var(--text)">In battle</b> your name shows in the turn band; the CPU shows as "CPU · deck name".</span></div>
+    <span style="flex:1"></span>
+  </main>
+</div>
+</template>
+
+<template id="p-settings">
+<div class="scr" style="width:390px;height:844px;display:flex;flex-direction:column">
+  <div class="lat"></div>
+  <header class="head" style="height:48px;flex:none;padding:0 10px 0 12px;gap:8px"><button class="ib sk" data-goto="lobby" aria-label="Back" style="padding:0 8px"><span>‹</span></button><span style="font-size:15px;font-weight:900;font-style:italic">Settings</span><span style="flex-grow:1"></span></header>
+  <main style="position:relative;flex:1;padding:12px;display:flex;flex-direction:column;gap:10px;min-height:0;overflow:hidden">
+    <div class="card" style="padding:12px 14px;display:flex;flex-direction:column;gap:0">
+      <div class="srow" style="padding:12px 0;border-top:0"><div><b style="font-size:14px">Mode</b><span style="font-size:12px">dark or light board and menus</span></div><span class="toggle"><button data-m="dark">DARK</button><button data-m="light">LIGHT</button></span></div>
+      <div class="srow" style="padding:12px 0"><div><b style="font-size:14px">Text size in battle</b><span style="font-size:12px">numbers and labels grow, the layout stays</span></div><span class="toggle"><button data-tsb="1">NORMAL</button><button data-tsb="2">LARGE</button><button data-tsb="3">LARGER</button></span></div>
+      <div class="srow" style="padding:12px 0"><div><b style="font-size:14px">Animations</b><span style="font-size:12px">Full / Reduced / Off — the engine never waits on one</span></div><span class="toggle"><button class="on">FULL</button><button class="js-chip">REDUCED</button><button class="js-chip">OFF</button></span></div>
+      <div class="srow" style="padding:12px 0;align-items:flex-start"><div><b style="font-size:14px">Your colour</b><span style="font-size:12px">marks your side everywhere</span></div></div>
+      <div class="pgrid js-pgrid2" style="grid-template-columns:repeat(6,1fr);gap:6px 2px;padding:0 0 10px;width:100%"></div>
+      <div class="srow" style="padding:12px 0"><div><b style="font-size:14px">Playmat image</b><span style="font-size:12px">your picture behind the board</span></div><span style="display:flex;gap:6px"><label class="ib sk upbtn" style="display:inline-flex;align-items:center;padding:0 10px"><span>Upload</span><input type="file" accept="image/*" class="js-upmat" aria-label="Upload playmat"></label><button class="ib sk" data-toast="Playmat removed." style="padding:0 8px"><span>Remove</span></button></span></div>
+      <div class="srow" style="padding:12px 0"><div><b style="font-size:14px">CPU colour</b><span style="font-size:12px">turns blue when yours is red</span></div><b class="js-cpuname" style="font-size:13px">Crimson</b></div>
+      <div class="srow" style="padding:12px 0;border-bottom:0"><div><b style="font-size:14px">Sound</b><span style="font-size:12px">attack, block, Life loss, Burst cues</span></div><span class="toggle"><button class="js-chip">ON</button><button class="on">OFF</button></span></div>
+    </div>
+    <span class="pv" style="font-size:11px">All switches here really change the screens behind the tabs.</span>
+    <span style="flex:1"></span>
+  </main>
+</div>
+</template>
+
+<template id="p-libhelp">
+<div class="scr" style="width:390px;height:844px;display:flex;flex-direction:column">
+  <div class="lat"></div>
+  <header class="head" style="height:52px;flex:none;padding:0 10px 0 14px;gap:8px"><span style="font-size:16px;font-weight:900;font-style:italic">Card data &amp; help</span><span class="pv" style="font-size:11px">178 playable · 61 full</span></header>
+  <main style="position:relative;flex:1;padding:12px;display:flex;flex-direction:column;gap:10px;min-height:0;overflow:hidden">
+    <div class="search" style="width:100%">⌕ <span>Search cards, rules and glossary</span></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="ib sk pb js-chip"><span>All kinds</span></button><button class="ib sk js-chip"><span>Spirits</span></button><button class="ib sk js-chip"><span>Magic</span></button><button class="ib sk js-chip"><span>Nexus</span></button></div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+      <div class="oc jl-card" role="button" tabindex="0" aria-label="Open card info"><span class="ocost">3</span><span class="onm" style="font-size:8px">Sisyphus</span><span class="obp">3000</span></div>
+      <div class="oc jl-card" role="button" tabindex="0" aria-label="Open card info"><span class="ocost">4</span><span class="onm" style="font-size:8px">Iphicles</span><span class="obp">3000</span></div>
+      <div class="oc jl-card" role="button" tabindex="0" aria-label="Open card info"><span class="ocost">3</span><span class="otyp" style="font-size:7px">MAGIC</span><span class="onm" style="font-size:8px">Dana Draw</span></div>
+      <div class="oc jl-card" role="button" tabindex="0" aria-label="Open card info" style="opacity:.7"><span class="ocost">5</span><span class="otyp" style="font-size:7px">MAGIC</span><span class="onm" style="font-size:8px">Flame Storm<span style="color:#e08a00;font-weight:900"> !</span></span></div>
+    </div>
+    <div class="acc" style="overflow:auto;min-height:0">
+      <details><summary>Your first match in five steps</summary><p>1. Pick a starter deck. 2. Play → Match vs CPU → Start. 3. Keep the drawn hand. 4. Core, Draw, Refresh run by themselves — you act in Main and Attack. 5. Reduce the CPU's Life from 5 to 0.</p></details>
+      <details><summary>Aeterna house rule: Key Spirit</summary><p>One Spirit of the deck is marked KEY in the builder. While no copy is in your Hand or on the Field, draws favour its copies — and replays never change (seeded RNG).</p></details>
+      <details><summary>Image import</summary><p>Import a pack image or scan; the tool crops and names files by card number; the library shows which copies have art ("images 4 / 4").</p></details>
+      <details><summary>"!" legend — effect not fully implemented</summary><p>A "!" lists printed clauses that are not implemented yet; the card info page shows exactly which. The game never decides with an unimplemented clause.</p></details>
+      <details><summary>Glossary keywords</summary><p>Summon · When Attacks · Burst · Mirage · Core Boost · Life · Opposing — chips in card text open the same entry.</p></details>
+    </div>
+    <span style="flex:1"></span>
+  </main>
+  <nav class="tabbar" aria-label="Main" style="position:relative;flex:none"><a href="#" class="js-goto" data-goto="lobby"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V10a8 8 0 0 1 16 0v11"/><path d="M8 21v-9a4 4 0 0 1 8 0v9"/><path d="M2 21h20"/><path d="M12 2.5v2"/></svg>HOME</a><a href="#" class="js-goto" data-goto="play"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l9.5 7-3.6 11.5H6.1L2.5 9z"/><path d="M10 8.5l5 3.5-5 3.5z" fill="currentColor"/></svg>PLAY</a><a href="#" class="js-goto" data-goto="decks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="10" height="15" rx="1.5" transform="rotate(12 14 10.5)"/><rect x="5" y="5" width="10" height="15" rx="1.5"/><path d="M10 10.5l2 2-2 2-2-2z"/></svg>DECKS</a><a href="#" class="on js-goto" data-goto="libhelp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="11" height="16" rx="1.5"/><path d="M6 7h5M6 10h5"/><circle cx="16.5" cy="15.5" r="3.5"/><path d="M19 18l2.5 2.5"/></svg>LIBRARY</a><a href="#" class="js-open" data-open="popmenu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l9.5 7-3.6 11.5H6.1L2.5 9z"/><path d="M9.8 10a2.3 2.3 0 1 1 3.3 2.1c-.7.4-1.1 1-1.1 1.7v.4"/><path d="M12 17.2h.01"/></svg>PROFILE</a></nav>
+</div>
+</template>
+<template id="p-pay"><div class="pop"><span class="kchip kpay" style="align-self:flex-start">Payment</span><h3>Pay the cost — Lionheart Sisyphus</h3><div class="gpay"><i class="g-core mv"></i><i class="g-core mv"></i><i class="g-core"></i><i class="g-core"></i></div><div class="sub">The gems that will move pulse first. Reserve picks underlie in blue, Soul Core picks in violet; the match is saved on a seed either way.</div><div class="brow"><button class="ib sk pb" data-close data-summon><span>Pay 4 cores</span></button><button class="ib sk" data-close><span>Cancel</span></button></div></div></template>
+<template id="p-block"><div class="pop"><span class="kchip kml" style="align-self:flex-start">Attack reply</span><h3>Block the attack?</h3><div class="q">Flame Hound (BP 2000) attacks. Without a blocker you lose a Life core (5 → 4).</div><div class="brow"><button class="ib sk pb" data-close data-toast="Blocked — the match will ask you to pick a fitting Spirit."><span>Block</span></button><button class="ib sk" data-close data-toast="You lose a Life core (4 left)."><span>No block, take the hit</span></button></div></div></template>
+<template id="p-flash"><div class="pop"><span class="kchip kfl" style="align-self:flex-start">Flash timing</span><h3>Your Flash Timing</h3><div class="q">The CPU cast a Magic. You may answer with a Magic of your own, an Accel, or continue.</div><div class="brow"><button class="ib sk pb" data-close data-toast="Pick a Magic card from your Hand."><span>Cast a Magic</span></button><button class="ib sk" data-close data-toast="Accel: place a Nexus from your Hand onto your Field."><span>Use an Accel</span></button><button class="ib sk" data-close><span>Continue</span></button></div></div></template>
+<template id="p-order"><div class="pop"><span class="kchip" style="align-self:flex-start">Effect order</span><h3>Choose the trigger order</h3><div class="erow">First — <b>Lionheart Sisyphus</b>: draw from the bottom of the Deck.</div><div class="erow">Second — <b>Hermes</b>: your Main Step +2 cores.</div><div class="brow"><button class="ib sk pb" data-close><span>Confirm</span></button><button class="ib sk" style="color:var(--cpu)" data-close><span>Dismiss (illegal order)</span></button></div><div class="sub">The player always picks the order of their own triggers.</div></div></template>
+<template id="p-mul"><div class="pop"><span class="kchip" style="align-self:flex-start">Starting hand</span><h3>Starting Hand</h3><div class="mrow"><div class="ci"><span class="cost">1</span><span class="bp">—</span><span class="img">CARD IMAGE</span></div><div class="ci"><span class="cost">2</span><span class="bp">—</span><span class="img">CARD IMAGE</span></div><div class="ci"><span class="cost">3</span><span class="bp">3000</span><span class="img">CARD IMAGE</span></div><div class="ci"><span class="cost">4</span><span class="bp">3000</span><span class="img">CARD IMAGE</span></div></div><div class="toss"><span class="coin"><b>YOU</b></span><span class="pv">Coin toss: you take the first turn (or choose).</span></div><div class="brow"><button class="ib sk pb" data-close data-toast="Match starts."><span>Keep hand</span></button><button class="ib sk" data-close data-toast="All five cards are redrawn (once per match)."><span>Redraw</span></button></div></div></template>
+<template id="p-setup"><div class="pop"><span class="kchip" style="align-self:flex-start">Match setup</span><h3>Today's setup</h3><div class="erow">Deck <b>Lionheart Green</b> · Standard · Key: Sisyphus</div><div class="erow">Opponent <b>CPU · 26RSD03</b> · style balanced · speed normal</div><div class="erow">Animations <b>Full</b> · Sleep never blocks the engine</div><div class="brow"><button class="ib sk pb" data-goto="battle" data-toast="GATE OPEN, RELEASE!"><span>Start</span></button><button class="ib sk" data-close><span>Cancel</span></button></div></div></template>
+<template id="p-result"><div class="pop"><span class="kchip" style="align-self:flex-start">Result</span><div style="text-align:center;padding:2px 0 2px"><b style="font-size:34px;font-style:italic;font-weight:900;color:var(--you)">WIN</b><br><span class="pv">Life 2 left · 7 turns · 21st win (57%)</span></div><div class="erow">Match log saved to the History page —</div><div class="erow">Replay opens with the same seed, so it repeats exactly.</div><div class="brow"><button class="ib sk pb" data-close><span>Match again</span></button><button class="ib sk" data-goto="lobby" data-toast="Back in the lobby."><span>Lobby</span></button><button class="ib sk" data-toast="Replay viewer opens (seeded)."><span>Replay</span></button></div></div></template>
+<template id="p-zone"><div class="pop"><span class="kchip" style="align-self:flex-start">Zone viewer</span><h3 class="js-ztitle">Your Deck — learning viewer</h3><div class="zl"><b class="dlq">1</b><span class="dln">The StrongArm Lionheart Sisyphus (Key)</span><span class="pv" style="font-size:11px">top</span></div><div class="zl"><b class="dlq">2</b><span class="dln">The Lionheart Centurion Iphicles</span></div><div class="zl"><b class="dlq">3</b><span class="dln">Dana Draw (Magic)</span></div><div class="sub">In a real match only your own piles open; the CPU Deck stays hidden (the viewer then shows the card count + shuffle position only).</div><div class="brow"><button class="ib sk pb" data-close><span>Close</span></button></div></div></template>
+<template id="p-hand"><div class="pop"><span class="kchip" style="align-self:flex-start">Hand</span><h3>Your hand — 4 cards</h3><div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><div class="oc you"><span class="ocost">3</span><span class="otyp">SPIRIT</span><span class="oimg">CARD IMAGE</span><span class="onm">Sisyphus</span><span class="obp">3000</span></div><div class="oc you"><span class="ocost">1</span><span class="otyp">MAGIC</span><span class="oimg">CARD IMAGE</span><span class="onm">Dana Draw</span></div><div class="oc you"><span class="ocost">2</span><span class="otyp">NEXUS</span><span class="oimg">CARD IMAGE</span><span class="onm">Hermes</span></div><div class="oc you"><span class="ocost">6</span><span class="otyp">SPIRIT</span><span class="oimg">CARD IMAGE</span><span class="onm">Autolycus</span><span class="obp">4000</span></div></div><div class="brow"><button class="ib sk pb" data-close data-toast="In Main Step: click the card, then pay its cost."><span>Play a Spirit</span></button><button class="ib sk" data-close data-toast="Slotted face-down in your Burst zone."><span>Set a Burst</span></button><button class="ib sk" data-close><span>Close</span></button></div></div></template>
+<template id="p-inspect"><div class="pop"><span class="kchip" style="align-self:flex-start">Card zoom</span><h3>Flame Hound — CPU Spirit</h3><div style="display:flex;gap:12px;align-items:flex-start"><div class="oc bigcard foe" style="width:120px;height:170px;flex:none"><span class="ocost" style="width:24px;height:24px;font-size:13px">2</span><span class="otyp">SPIRIT</span><span class="oimg">CARD IMAGE</span><span class="onm" style="top:36%;font-size:12px">Flame Hound</span><span class="cbar" style="bottom:44px"><i class="g-soul"></i></span><span class="obp" style="bottom:16px;font-size:16px">2000</span></div><div class="fx" style="font-size:13px;line-height:1.5"><span class="fl">(Your Main Step)</span><br>Keep 1000 on the Field…<br><span class="fl">(When Attacks)</span> 2000 BP.</div></div><div class="brow"><button class="ib sk pb js-cardinfo"><span>Full info page</span></button><button class="ib sk" data-close><span>Close</span></button></div></div></template>
+<template id="p-concede"><div class="pop"><span class="kchip" style="align-self:flex-start">Concede</span><h3>Concede the match?</h3><div class="sub">The log is kept with its seed so the match can be replayed or reviewed. Nothing is deleted.</div><div class="brow"><button class="ib sk pb" data-close><span>Keep playing</span></button><button class="ib sk" style="color:var(--cpu)" data-goto="lobby" data-toast="Conceded — the log is saved."><span>Concede</span></button></div></div></template>
+<template id="p-delete"><div class="pop"><span class="kchip" style="align-self:flex-start">Confirm</span><h3>Delete Ice Machine?</h3><div class="sub">The deck is removed from this device; there is no undo. Export the deck code first to keep a copy.</div><div class="brow"><button class="ib sk pb" data-close><span>Keep</span></button><button class="ib sk" style="color:var(--cpu)" data-close data-toast="Deck deleted (mockup only)."><span>Delete</span></button></div></div></template>
+<template id="p-history"><div class="pop"><span class="kchip" style="align-self:flex-start">History</span><h3>Match history — 3 saved</h3><div class="zl"><b class="dlq">▶</b><span class="dln">WIN · vs CPU 26RSD03 · 7 turns · today</span></div><div class="zl"><b class="dlq">▶</b><span class="dln">LOSS · vs Dragon Rush · 9 turns · yesterday</span></div><div class="zl"><b class="dlq">▶</b><span class="dln">WIN · Watch CPU vs CPU · 11 turns</span></div><div class="brow"><button class="ib sk pb" data-close data-toast="Replay opens with the seed — it repeats exactly."><span>Watch</span></button><button class="ib sk" data-close><span>Close</span></button></div></div></template>
+<template id="p-whatsnew"><div class="pop"><span class="kchip" style="align-self:flex-start">What's new</span><h3>v0.103.0 — Key Spirit</h3><div class="erow">Key Spirit: mark one Spirit, draws favour its copies.</div><div class="erow">Deck builder: curve tab and a "deck look" preview.</div><div class="erow">Phone layouts for every page (v13 proposal list).</div><div class="brow"><button class="ib sk pb" data-close><span>Close</span></button></div></div></template>
+<template id="p-popmenu"><div class="pop" style="width:230px"><div class="who" style="display:flex;gap:10px;align-items:center"><span class="avatar" style="width:26px;height:36px"></span><div><b class="js-pname" style="font-size:13px">Arda</b><br><span class="pv" style="font-size:10px">offline profile</span></div></div><nav style="display:flex;flex-direction:column;border-top:1px solid var(--line)"><a href="#" class="js-goto" data-goto="profile" style="padding:10px;font-size:13px;font-weight:700;color:var(--text);border-bottom:1px solid var(--line);text-decoration:none">Profile</a><a href="#" class="js-goto" data-goto="settings" style="padding:10px;font-size:13px;font-weight:700;color:var(--text);border-bottom:1px solid var(--line);text-decoration:none">Settings</a><a href="#" class="js-open" data-open="signin" style="padding:10px;font-size:13px;font-weight:700;color:var(--text);border-bottom:1px solid var(--line);text-decoration:none">Sign in (preview)</a><a href="#" class="js-open" data-open="wipe" style="padding:10px;font-size:13px;font-weight:700;color:var(--cpu);text-decoration:none">Wipe data…</a></nav></div></template>
+<template id="p-signin"><div class="pop"><span class="kchip" style="align-self:flex-start">Sign-in mock</span><h3>Sign in — preview for the online phase</h3><div class="erow" style="display:flex;flex-direction:column;align-items:flex-start;gap:4px"><b style="font-size:12px">Player name</b><span style="font-size:13px;color:var(--text3);width:100%">Arda (from your offline profile)</span></div><div class="erow" style="display:flex;flex-direction:column;align-items:flex-start;gap:4px"><b style="font-size:12px">Passcode</b><span style="font-size:13px;color:var(--text3)">••••••••</span></div><div class="erow"><span class="pv">Stay signed in on this device</span><span style="flex:1"></span><span class="toggle"><button class="on">YES</button><button class="js-chip">NO</button></span></div><div class="sub">The login itself lands with the online milestone (M6-M8): today nothing leaves the device; the same name + avatar are reused for it.</div><div class="brow"><button class="ib sk pb" data-close data-toast="Mockup: name and avatar will become your login."><span>Log in</span></button><button class="ib sk" data-close><span>Play offline</span></button></div></div></template>
+<template id="p-avatar"><div class="pop"><span class="kchip" style="align-self:flex-start">Avatar</span><h3>Choose your avatar</h3><div class="pgrid" style="grid-template-columns:repeat(4,1fr)" id="avgrid"></div><div class="sub">Frames use your sleeve picture, a deck's art, or an upload.</div><div class="brow"><button class="ib sk pb" data-close data-toast="Avatar saved to this device."><span>Save</span></button><label class="ib sk upbtn" style="display:inline-flex;align-items:center;cursor:pointer"><span>Upload</span><input type="file" accept="image/*" aria-label="Upload avatar image"></label></div></div></template>
+<template id="p-wipe"><div class="pop"><span class="kchip" style="align-self:flex-start;border-color:var(--cpu);box-shadow:inset 0 0 0 1px var(--cpu);color:var(--cpu)">Danger</span><h3>Wipe this device?</h3><div class="sub">Removes all decks, replays, uploaded images and the profile from this device, and can't be undone. Export your data first.</div><div class="brow"><button class="ib sk pb" data-close><span>Cancel</span></button><button class="ib sk" style="color:var(--cpu)" data-close data-toast="All data on this device is wiped (mockup)."><span>Wipe everything</span></button></div></div></template>
+<template id="p-deckpick"><div class="pop"><span class="kchip" style="align-self:flex-start">Add to deck</span><h3>Add Sisyphus to which deck?</h3><button class="zl js-open" style="width:100%;font:inherit;cursor:pointer" data-toast="Added to Lionheart Green — 41/40 is marked as an over-count."><span class="dln">Lionheart Green</span><span class="pv" style="font-size:11px">40 / 40</span></button><button class="zl js-open" style="width:100%;font:inherit;cursor:pointer" data-toast="Added to Dragon Rush — 41/40."><span class="dln">Dragon Rush</span><span class="pv" style="font-size:11px">40 / 40</span></button><button class="zl js-open" style="width:100%;font:inherit;cursor:pointer" data-toast="Added to Ice Machine — 38/40."><span class="dln">Ice Machine</span><span class="pv" style="font-size:11px">37 / 40</span></button><button class="zl js-open" style="width:100%;font:inherit;cursor:pointer" data-toast="New empty deck created with this card."><span class="dln">New deck with this card</span></button><div class="brow"><button class="ib sk" data-close><span>Cancel</span></button></div></div></template>
+<template id="p-deckmenu"><div class="pop" style="width:250px"><span class="kchip" style="align-self:flex-start">Deck actions</span><h3>Lionheart Green</h3><nav style="display:flex;flex-direction:column"><a href="#" class="js-goto" data-goto="play" style="padding:9px 8px;font-size:13px;font-weight:700;color:var(--text);border-top:1px solid var(--line);text-decoration:none">Play</a><a href="#" class="js-goto" data-goto="builder" style="padding:9px 8px;font-size:13px;font-weight:700;color:var(--text);border-top:1px solid var(--line);text-decoration:none">Edit in builder</a><a href="#" class="js-toast" data-toast="This deck is now the ACTIVE one." style="padding:9px 8px;font-size:13px;font-weight:700;color:var(--text);border-top:1px solid var(--line);text-decoration:none;cursor:pointer">Set active</a><a href="#" class="js-toast" data-toast="Rename field opens (max 24 letters)." style="padding:9px 8px;font-size:13px;font-weight:700;color:var(--text);border-top:1px solid var(--line);text-decoration:none;cursor:pointer">Rename</a><a href="#" class="js-toast" data-toast="Duplicated into a free slot." style="padding:9px 8px;font-size:13px;font-weight:700;color:var(--text);border-top:1px solid var(--line);text-decoration:none;cursor:pointer">Duplicate</a><a href="#" class="js-toast" data-toast="Deck code copied." style="padding:9px 8px;font-size:13px;font-weight:700;color:var(--text);border-top:1px solid var(--line);text-decoration:none;cursor:pointer">Copy code</a><a href="#" class="js-open" data-open="delete" style="padding:9px 8px;font-size:13px;font-weight:700;color:var(--cpu);text-decoration:none;cursor:pointer">Delete…</a></nav></div></template>
+<template id="p-import"><div class="pop"><span class="kchip" style="align-self:flex-start">Import</span><h3>Import a deck code</h3><div class="erow" style="min-height:70px;align-items:flex-start"><span style="font-size:12px;color:var(--text3);font-family:ui-monospace,monospace;line-height:1.5">AE2-BD1-TH4-SIS… paste the shared deck code here; the builder shows what it makes before anything is saved.</span></div><div class="brow"><button class="ib sk pb" data-close data-toast="Deck code parsed — new deck Ice Machine (37/40)."><span>Import</span></button><button class="ib sk" data-close><span>Cancel</span></button></div></div></template>
+<template id="p-export"><div class="pop"><span class="kchip" style="align-self:flex-start">Export</span><h3>Export — Lionheart Green</h3><div class="erow" style="font-family:ui-monospace,monospace;font-size:12px;line-height:1.5">AE2-BD1-TH4-SIS-96QA-M2VN…KE9</div><div class="brow"><button class="ib sk pb" data-toast="Deck code copied."><span>Copy code</span></button><button class="ib sk" data-close><span>Close</span></button></div></div></template>
+<template id="p-newdeck"><div class="pop"><span class="kchip" style="align-self:flex-start">New deck</span><h3>New deck</h3><div class="erow"><span style="font-size:13px;color:var(--text3)">Name</span><span style="text-align:right;margin-left:auto"><b>New Nine Beasts</b></span></div><div class="fchips" style="justify-content:flex-start"><button class="fchip on"><i class="dot" style="--c:#2fbf71"></i>Green</button><button class="fchip"><i class="dot" style="--c:#e5484d"></i>Red</button><button class="fchip"><i class="dot" style="--c:#e9edf2"></i>White</button><button class="fchip"><i class="dot" style="--c:#3b82f6"></i>Blue</button></div><div class="brow"><button class="ib sk pb" data-goto="builder" data-toast="Empty deck created — open in the builder."><span>Create</span></button><button class="ib sk" data-close><span>Cancel</span></button></div></div></template>
+<template id="p-log"><div class="pop"><span class="kchip" style="align-self:flex-start">Log</span><h3>Match log</h3><div class="lrows" style="max-height:240px"><div class="lrow"><b>SETUP</b> Standard format · starter 26RSD03 · seed 8f2a · coin toss: you first.</div><div class="lrow"><b>MAIN</b> Hermes: +2 cores.</div><div class="lrow"><b>MAIN</b> You summoned The StrongArm Lionheart Sisyphus (paid 3 cores).</div><div class="lrow c"><b>CPU MAIN</b> CPU summoned Flame Hound (paid 2).</div><div class="lrow c"><b>CPU MAIN</b> CPU set a Burst.</div></div><div class="brow"><button class="ib sk pb" data-close><span>Close</span></button></div></div></template>
+
+<script>
+(() => {
+"use strict";
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const ROOT = document.documentElement;
+const stage = $("#stage"), scaler = $("#scaler"), segBox = $("#scrseg"), swsBox = $("#sws");
+const SCREENS = {
+  desktop: ["lobby", "play", "battle", "dialogs", "decks", "builder", "cardinfo", "profile", "settings", "anim", "libhelp"],
+  phone: ["lobby", "play", "battle", "dialogs", "decks", "builder", "cardinfo", "profile", "settings", "libhelp"]
+};
+const st = { dev: "desktop", cur: { desktop: "lobby", phone: "lobby" }, ts: 1, scale: 1 };
+const LBL = { lobby: "Lobby", play: "Play", battle: "Battle", dialogs: "Dialogs", decks: "My decks", builder: "Builder", cardinfo: "Card info", profile: "Profile", settings: "Settings", anim: "Animations", libhelp: "Library & help" };
+const PAL = [["#17b897", "Teal"], ["#d8344b", "Crimson"], ["#e08a00", "Amber"], ["#f2c14e", "Yellow"], ["#3aa0ff", "Cobalt"], ["#8b5cf6", "Violet"], ["#ec5fa0", "Pink"], ["#5fb8a5", "Sage"]];
+const NARR = ["Setup done — you start.", "Place cores from your Reserve.", "Draw 1 card.", "Refresh: your used cores come back.", "Main Step: summon, cast Magic with Flash, set a Burst.", "Attack Step: one attack at a time.", "End Step: check limits and pass."];
+const NOWS = ["Start of your turn.", "Core Step: place gems.", "Draw plays.", "Core refresh done.", "Summon Spirits, cast Magic with Flash, or press NEXT.", "Attacks go one by one.", "Type NEXT to end your turn."];
+const ZT = { trash: "Your Trash", deck: "Your Deck — learning viewer", life: "Your Life", reserve: "Your Reserve", banished: "Your Banished pile", yvoid: "Your Void", "cpu-trash": "CPU Trash", "cpu-deck": "CPU Deck — hidden in a real match", "cpu-life": "CPU Life", "cpu-reserve": "CPU Reserve", "cpu-void": "CPU Void", "cpu-banished": "CPU Banished" };
+const CARDS = [
+  { num: "26RDB01-003 · Standard · legal", name: "The StrongArm Lionheart Sisyphus", cost: "3", lv: "LV1", bp: "3000" },
+  { num: "26RDB01-014 · Standard · legal", name: "The Lionheart Centurion Iphicles", cost: "4", lv: "LV1", bp: "3000" },
+  { num: "26RDB01-021 · Standard · legal", name: "The Quick Sword Lionheart Stichiox", cost: "3", lv: "LV2", bp: "4000" }
+];
+let ciIdx = 0;
+function ciStep(dir) {
+  ciIdx = (ciIdx + dir + CARDS.length) % CARDS.length;
+  const s = scr(), c = CARDS[ciIdx];
+  if (!s || !c) return;
+  const set = (cl, v) => $$(cl, s).forEach(el => el.textContent = v);
+  set(".js-ci-cost", c.cost); set(".js-ci-lv", c.lv); set(".js-ci-name", c.name); set(".js-ci-name2", c.name); set(".js-ci-bp", c.bp); set(".js-ci-num", c.num);
+}
+let popEl = null, lastStep = 4;
+const cur = () => scaler.firstElementChild;
+const scr = () => { const n = cur(); if (!n) return null; return n.classList.contains("scr") ? n : (n.querySelector(".scr") || null); };
+
+function lum(hex) { const n = parseInt(hex.slice(1), 16); return (0.299 * (n >> 16) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255)) / 255; }
+function applyColor(c) {
+  ROOT.style.setProperty("--you", c);
+  ROOT.style.setProperty("--you-soft", c + "33");
+  ROOT.style.setProperty("--you-ink", lum(c) > 0.62 ? "#111620" : "#04210f");
+  const redFam = c === "#d8344b" || c === "#e5484d" || c === "#ec5fa0";
+  const cpu = redFam ? "#2f7df6" : "#d8344b";
+  ROOT.style.setProperty("--cpu", cpu);
+  $$(".js-cpuname").forEach(el => el.textContent = redFam ? "Cobalt" : "Crimson");
+  $$("[data-col]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.col === c)));
+}
+function fillSws() {
+  if (!swsBox) return;
+  PAL.forEach(([c, n]) => {
+    const b = document.createElement("button");
+    b.className = "sw"; b.type = "button"; b.dataset.col = c;
+    b.style.setProperty("--c", c);
+    b.setAttribute("aria-label", n);
+    b.setAttribute("aria-pressed", "false");
+    swsBox.appendChild(b);
+  });
+  swsBox.firstElementChild.setAttribute("aria-pressed", "true");
+}
+function fillPickers(root = document) {
+  $$(".js-pgrid2", root).forEach(box => {
+    PAL.forEach(([c, n]) => {
+      const b = document.createElement("button");
+      b.className = "pcol"; b.type = "button"; b.dataset.col = c;
+      const i = document.createElement("i"); i.style.setProperty("--c", c);
+      const s = document.createElement("span"); s.textContent = n;
+      b.append(i, s);
+      box.appendChild(b);
+    });
+  });
+}
+function nameFill(n) {
+  $$(".js-pname").forEach(el => el.textContent = n);
+  $$(".js-pname2").forEach(el => el.textContent = (n + " · LIONHEART GREEN").toUpperCase());
+  $$(".js-pname3").forEach(el => el.textContent = n);
+}
+function renderSeg() {
+  if (!segBox) return;
+  segBox.innerHTML = "";
+  SCREENS[st.dev].forEach(v => {
+    const b = document.createElement("button");
+    b.type = "button"; b.dataset.v = v; b.textContent = LBL[v];
+    b.setAttribute("aria-pressed", String(v === st.cur[st.dev]));
+    segBox.appendChild(b);
+  });
+}
+function layout() {
+  const n = cur(); if (!n) return;
+  const w = n.offsetWidth || 1366, h = n.offsetHeight || 768;
+  st.scale = Math.min((stage.clientWidth - 2) / w, Math.max(420, Math.round(window.innerHeight * 0.66)) / h);
+  stage.style.height = Math.round(h * st.scale) + "px";
+  scaler.style.transform = "scale(" + st.scale + ")";
+}
+function syncToggle(btn) {
+  const row = btn.closest(".toggle, .seg");
+  if (row) $$("button[data-m], button[data-ts], button[data-tsb]", row).forEach(b => b.setAttribute("aria-pressed", String(b === btn)));
+}
+function markSteps(node, idx) {
+  const steps = $$(".js-st", node);
+  if (!steps.length) return false;
+  steps.forEach((b, i) => { b.classList.toggle("done", i < idx); b.classList.toggle("on", i === idx); });
+  const w = node.querySelector(".js-warn"); if (w) w.hidden = true;
+  lastStep = idx;
+  const nl = node.querySelector(".js-narr"); if (nl) nl.textContent = NARR[idx];
+  const sl = node.querySelector(".stepline"); if (sl) sl.innerHTML = '<span class="arrow">▶ now:</span> ' + NOWS[idx];
+  return true;
+}
+function show() {
+  const v = st.cur[st.dev];
+  const tpl = $("#" + st.dev[0] + "-" + v);
+  if (!tpl) return;
+  scaler.innerHTML = "";
+  const node = tpl.content.firstElementChild.cloneNode(true);
+  node.setAttribute("data-ts", String(st.ts));
+  scaler.appendChild(node);
+  fillPickers(node);
+  markSteps(node, 4);
+  renderSeg();
+  closePop();
+  layout();
+}
+function goto(name) {
+  const ok = SCREENS[st.dev].includes(name);
+  st.cur[st.dev] = ok ? name : (st.dev === "desktop" ? "lobby" : "lobby");
+  show();
+}
+function switchDev(d) {
+  if (!SCREENS[d]) return;
+  st.dev = d;
+  $$("button[data-dev]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.dev === d)));
+  show();
+}
+function openPop(kind, title) {
+  const s = scr(); if (!s) return;
+  closePop();
+  const tpl = $("#p-" + kind);
+  if (!tpl) return;
+  const layer = document.createElement("div");
+  layer.className = "dlayer" + (st.dev === "phone" ? " end" : "");
+  layer.dataset.pop = kind;
+  layer.appendChild(tpl.content.firstElementChild.cloneNode(true));
+  if (title) { const h = layer.querySelector("h3"); if (h) h.textContent = title; }
+  s.appendChild(layer);
+  popEl = layer;
+  layer.addEventListener("click", ev => { if (ev.target === layer) closePop(); });
+}
+function closePop() { if (popEl) { popEl.remove(); popEl = null; } }
+function toast(msg) {
+  const s = scr(); if (!s || !msg) return;
+  let box = s.querySelector(".toastsx");
+  if (!box) { box = document.createElement("div"); box.className = "toastsx"; s.appendChild(box); }
+  const t = document.createElement("div");
+  t.className = "toastx"; t.textContent = msg;
+  box.appendChild(t);
+  setTimeout(() => t.remove(), 2800);
+}
+function stepTo(btn) {
+  const s = scr(); if (!s || !btn) return;
+  const steps = $$(".js-st", s);
+  const idx = +btn.dataset.step;
+  if (idx > lastStep + 1) {
+    const w = s.querySelector(".js-warn");
+    if (w) { w.hidden = false; const sp = w.querySelector(".js-warntext"); if (sp) sp.textContent = " — click " + steps[Math.min(lastStep + 1, 6)].textContent.trim() + " first."; }
+    btn.classList.add("shake");
+    setTimeout(() => btn.classList.remove("shake"), 420);
+    return;
+  }
+  markSteps(s, idx);
+}
+function tabPane(btn) {
+  const tabs = btn.closest(".dtabs");
+  const box = tabs.parentElement;
+  $$("button", tabs).forEach(b => b.classList.toggle("on", b === btn));
+  $$(".pane", box).forEach(p => { const want = p.dataset.pane === btn.dataset.pane; p.hidden = !want; });
+}
+function count(btn) {
+  const row = btn.closest(".dlr"); if (!row) return;
+  const s = scr(); if (!s) return;
+  if (!s.dataset.off) s.dataset.off = String(40 - $$(".dlr[data-c]", s).reduce((a, r) => a + (+r.dataset.c || 0), 0));
+  let c = +row.dataset.c || 0;
+  c += btn.classList.contains("js-plus") ? 1 : -1;
+  row.dataset.c = String(Math.max(0, Math.min(9, c)));
+  const span = row.querySelector(".dlc"); if (span) span.textContent = String(c);
+  const tot = $$(".dlr[data-c]", s).reduce((a, r) => a + (+r.dataset.c || 0), 0);
+  const full = tot + (+s.dataset.off || 0);
+  $$(".js-cnt", s).forEach(el => el.textContent = full + " / 40 · " + (full === 40 ? "READY" : (full > 40 ? full - 40 + " OVER" : "ADD " + (40 - full) + " CARDS")));
+}
+function setKey(btn) {
+  const row = btn.closest(".dlr"); if (!row) return;
+  const box = row.parentElement;
+  $$(".dlr", box).forEach(r => {
+    if (r !== row) {
+      r.classList.remove("key");
+      const q = r.querySelector(".dlq"); if (q) q.remove();
+    }
+  });
+  row.classList.add("key");
+  if (!row.querySelector(".dlq")) { const q = document.createElement("span"); q.className = "dlq"; q.textContent = "★"; row.prepend(q); }
+  toast("Key Spirit set — draws favour this card.");
+}
+function summonCard() {
+  const s = scr(); if (!s) return;
+  const drops = s.querySelector(".js-drops");
+  if (drops) {
+    const el = document.createElement("div");
+    el.className = "oc big you";
+    el.innerHTML = '<span class="ocost">3</span><span class="otyp">SPIRIT</span><span class="oimg">CARD IMAGE</span><span class="onm">The StrongArm Lionheart Sisyphus</span><span class="omag" aria-hidden="true"></span><span class="obp">3000</span><span class="olv"><b>1</b></span>';
+    const hint = drops.firstElementChild;
+    if (hint && hint.tagName === "SPAN") hint.remove();
+    drops.prepend(el);
+  }
+  const dc = s.querySelector(".js-deckcnt");
+  if (dc) dc.textContent = String(Math.max(0, +dc.textContent - 1));
+  toast("Sisyphus summoned — deck 31, log kept.");
+}
+function doAnim(kind) {
+  const s = scr(); if (!s) return;
+  const asg = s.querySelector(".js-stage") || s.querySelector(".astage");
+  if (!asg) return;
+  const you = asg.querySelector(".js-card"), foe = asg.querySelector(".js-card2"), life = asg.querySelector(".js-life"), res = asg.querySelector(".js-res");
+  const loc = el => { const a = el.getBoundingClientRect(), b = asg.getBoundingClientRect(); return { x: (a.left - b.left) / st.scale, y: (a.top - b.top) / st.scale, w: a.width / st.scale, h: a.height / st.scale }; };
+  const put = (tag, cls, sty) => {
+    const el = document.createElement(tag);
+    el.className = cls;
+    for (const k in sty) el.style.setProperty(k, sty[k]);
+    asg.appendChild(el);
+    setTimeout(() => el.remove(), 1000);
+    return el;
+  };
+  switch (kind) {
+    case "beam": { const a = loc(you), f = loc(foe); put("span", "fxline", { left: (a.x + a.w) + "px", top: (a.y + a.h / 2 - 1.5) + "px", width: Math.max(20, f.x - (a.x + a.w)) + "px" }); break; }
+    case "shatter": { const g = loc(life); for (let i = 0; i < 6; i++) put("i", "g-core fxghost", { left: (g.x + i * g.w / 5 - 4) + "px", top: g.y + "px" }); break; }
+    case "summon": { const a = loc(you); put("span", "fxring", { left: (a.x + a.w / 2) + "px", top: (a.y + a.h / 2) + "px" }); break; }
+    case "destroy": { const f = loc(foe); const c = foe.cloneNode(true); c.style.cssText = "position:absolute;left:" + f.x + "px;top:" + f.y + "px;width:" + f.w + "px"; c.classList.add("fxghost"); asg.appendChild(c); setTimeout(() => c.remove(), 1000); break; }
+    case "bp": { const a = loc(you); put("span", "fxfloat", { left: (a.x + a.w / 2 - 22) + "px", top: a.y + "px" }).textContent = "+1000"; break; }
+    case "pillar": { const r = loc(res), a = loc(you); const g = put("i", "g-core fxfly", { left: r.x + "px", top: (r.y + r.h / 2) + "px" }); g.style.setProperty("--fx", (a.x + a.w / 2 - r.x) + "px"); g.style.setProperty("--fy", (a.y + a.h / 2 - (r.y + r.h / 2)) + "px"); break; }
+    case "flip": { you.style.transition = "transform .6s ease"; you.style.transform = "rotateY(180deg)"; setTimeout(() => { you.style.transform = "rotateY(0deg)"; }, 700); break; }
+    case "cutin": { put("span", "fxcut", {}).textContent = String(you.querySelector(".onm").textContent).replace(/\s+/g, " ").trim(); break; }
+    case "edge": put("span", "fxvign", {}); break;
+    case "banner": put("span", "fxban", {}).textContent = "GATE OPEN, RELEASE!"; break;
+    case "shake": asg.classList.add("fxshake"); asg.addEventListener("animationend", () => asg.classList.remove("fxshake"), { once: true }); break;
+  }
+}
+document.addEventListener("click", e => {
+  if (e.target.closest("a[href='#']")) e.preventDefault();
+  const t = e.target;
+  const n = sel => t.closest(sel);
+  let m;
+  if ((m = n("button[data-dev]"))) { switchDev(m.dataset.dev); return; }
+  if ((m = n("[data-col]"))) { applyColor(m.dataset.col); return; }
+  if ((m = n("[data-v]"))) { if (SCREENS[st.dev].includes(m.dataset.v)) { st.cur[st.dev] = m.dataset.v; show(); } return; }
+  if ((m = n("[data-ts]:not(.scr), [data-tsb]:not(.scr)"))) { st.ts = +(m.dataset.ts || m.dataset.tsb) || 1; const s = scr(); if (s) s.setAttribute("data-ts", String(st.ts)); syncToggle(m); return; }
+  if ((m = n("[data-m]"))) { ROOT.dataset.mode = m.dataset.m === "light" ? "light" : ""; syncToggle(m); return; }
+  if (n("[data-close]")) closePop();
+  if ((m = n("[data-zone]")) && m.dataset.zone) { openPop("zone", ZT[m.dataset.zone] || "Zone"); return; }
+  if ((m = n("[data-open]"))) { openPop(m.dataset.open); return; }
+  if ((m = n("[data-concede]"))) { openPop("concede"); return; }
+  if ((m = n("[data-log]"))) { const s = scr(); const f = s && s.querySelector(".logframe"); if (f) f.hidden = !f.hidden; return; }
+  if ((m = n("[data-filters]"))) { const s = scr(); if (s) { const f = s.querySelector(".fpanel"), fs = s.querySelector(".fsheet"); if (f) f.hidden = !f.hidden; if (fs) fs.hidden = !fs.hidden; } return; }
+  if ((m = n(".cnav .js-next"))) { ciStep(1); return; }
+  if ((m = n(".cnav .js-prev"))) { ciStep(-1); return; }
+  if ((m = n(".js-next"))) {
+    const s = scr();
+    const steps = s ? $$(".js-st", s) : [];
+    const nx = steps[Math.min(lastStep + 1, 6)];
+    if (nx) stepTo(nx);
+    return;
+  }
+  if ((m = n(".js-st"))) { stepTo(m); return; }
+  if ((m = n(".dtabs button[data-pane]"))) { tabPane(m); return; }
+  if ((m = n(".js-plus"))) { count(m); return; }
+  if ((m = n(".js-minus"))) { count(m); return; }
+  if ((m = n(".jskey"))) { setKey(m); return; }
+  if ((m = n(".grab"))) { const ds = m.closest(".decksheet"); if (ds) ds.classList.toggle("min"); return; }
+  if ((m = n(".jl-card")) || (m = n(".js-cardinfo"))) { goto("cardinfo"); return; }
+  if ((m = n(".js-drop"))) { openPop("hand"); return; }
+  if ((m = n("[data-summon]"))) { summonCard(); return; }
+  if ((m = n("[data-an]"))) { doAnim(m.dataset.an); return; }
+  if ((m = n(".js-chip"))) {
+    if (m.closest(".toggle")) { syncToggle(m); return; }
+    const row = m.parentElement;
+    $$("button.ib", row).forEach(b => b.classList.remove("pb"));
+    m.classList.add("pb");
+    const s = scr(); const lbl = s && s.querySelector(".js-stylelbl");
+    if (lbl) lbl.textContent = m.textContent.trim();
+    return;
+  }
+  if ((m = n("[data-goto]"))) { goto(m.dataset.goto); if (m.dataset.toast) toast(m.dataset.toast); return; }
+  if ((m = n("[data-toast]"))) { toast(m.dataset.toast); return; }
+});
+document.addEventListener("keydown", e => { if (e.key === "Escape") closePop(); });
+fillSws();
+fillPickers();
+ROOT.style.setProperty("--slimg", "linear-gradient(150deg,#19b573 0%,#2fbf71 45%,#0a2417 110%)");
+$$("[data-tint]").forEach(el => el.style.setProperty("--slimg", "linear-gradient(150deg," + el.dataset.tint + " 0%,#07090c 170%)"));
+nameFill("Arda");
+$$("button[data-dev]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.dev === "desktop")));
+show();
+})();
+</script>
