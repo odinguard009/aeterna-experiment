@@ -134,17 +134,19 @@ async function cpuMain(p) {
 /* Brave: combine a Brave from the Hand (direct summon) or from the Field with the strongest fitting Spirit (manual p. 34-35) */
 async function cpuBrave(p) {
   for (let g = 0; g < 6 && !G.over; g++) {
-    const strongest = L => L.slice().sort((a, b) => bpOf(b) - bpOf(a))[0];
-    const fb = p.spirits.find(b => CARDS[b.id].brave && braveTargets(p, b).length);
-    if (fb) { combineBrave(p, fb, strongest(braveTargets(p, fb))); io.view({ type: 'board' }); await wait(400); continue; }
-    const hb = p.hand.find(h => CARDS[h.id].brave && h !== p.burst && braveTargets(p, h).length && cpuCanPlay(p, h));
-    if (!hb) break;
-    braveSummon(p, hb, strongest(braveTargets(p, hb)), null); io.view({ type: 'board' }); await braveSummonedFx(p, hb); await wait(450);
+    const v = await portCpu(p.key, 'brave', []);                        // v0.105.0 (M6 step 4): the host's cpuAnswer re-derives {mode, uid, targetUid}
+    if (!v || (v.mode !== 'combine' && v.mode !== 'summon')) break;
+    const src = (v.mode === 'combine' ? p.spirits : p.hand).find(x => x.uid === v.uid);
+    const tg = src && v.targetUid != null ? braveTargets(p, src).find(x => x.uid === v.targetUid) : null;
+    if (!src || !tg) break;
+    if (v.mode === 'combine') { combineBrave(p, src, tg); io.view({ type: 'board' }); await wait(400); }
+    else { braveSummon(p, src, tg, null); io.view({ type: 'board' }); await braveSummonedFx(p, src); await wait(450); }
   }
 }
 async function cpuAttack(p) {
   for (let g = 0; g < 14 && !G.over; g++) {
-    const choice = cpuAttackChoice(p);
+    const v = await portCpu(p.key, 'attack', []);                       // v0.105.0 (M6 step 4): the host's cpuAnswer re-derives the attacker uid
+    const choice = v ? p.spirits.find(s => s.uid === v) : null;
     if (!choice) break;
     await doBattle(p.key, choice);
     await wait(450);

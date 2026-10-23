@@ -12,10 +12,10 @@ after(async () => { await closeBrowser(); });
 
 test('M6-01 CPU decisions answer the port with the unchanged CPU policy: sims stay bit-identical', async () => {
   for (const [seed, winner, hash, asks] of [
-    [2, 'player', '1dd0b275', { block: 1, summon: 10, activate: 5, revive: 0, advent: 0 }],
-    [3, 'opponent', '28020066', { block: 1, summon: 8, activate: 6, revive: 0, advent: 2 }],
-    [8, 'player', 'ac0aeae3', { block: 3, summon: 9, activate: 5, revive: 0, advent: 0 }],
-    [11, 'opponent', '921a7697', { block: 4, summon: 14, activate: 3, revive: 0, advent: 0 }],
+    [2, 'player', '1dd0b275', { block: 1, summon: 10, activate: 5, revive: 0, advent: 0, brave: 8, attack: 11 }],
+    [3, 'opponent', '28020066', { block: 1, summon: 8, activate: 6, revive: 0, advent: 2, brave: 7, attack: 12 }],
+    [8, 'player', 'ac0aeae3', { block: 3, summon: 9, activate: 5, revive: 0, advent: 0, brave: 6, attack: 12 }],
+    [11, 'opponent', '921a7697', { block: 4, summon: 14, activate: 3, revive: 0, advent: 0, brave: 9, attack: 16 }],
   ]) {
     const r = await playHeadless({ seed });
     assert.deepEqual(r.errors, [], 'seed ' + seed);

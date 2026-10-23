@@ -80,7 +80,7 @@ SET_KEY, SETTINGS, SPEEDS, saveSettings, G, fnv, recIn, SIM_DECK_B, SIM_DECK_B_K
 ## packages/engine/src/05b-decide.js (111 lines, ~2.5k tokens) — DECISIONS (v0.83.0, phase F3 = monorepo step M3 part 1; docs/ai/monorepo-plan.md "Design" 1)
 DECISION_KINDS, cardIds, portAsk, decide, ask, info, pickFromField, portPick, portCpu, askBlock, askPayment, uniqById, prepareHumanMagic, humanFlashChoice
 
-## packages/engine/src/05c-intent.js (276 lines, ~4.4k tokens) — INTENTS (v0.84.0, phase F3 part 2 = monorepo step M3 rest; docs/ai/monorepo-plan.md "Design" 1)
+## packages/engine/src/05c-intent.js (285 lines, ~4.6k tokens) — INTENTS (v0.84.0, phase F3 part 2 = monorepo step M3 rest; docs/ai/monorepo-plan.md "Design" 1)
 INTENT_TYPES, CORE_OPS, INTENT_MAX, SEAT_LOOP, seatCan, seatLoopOpen, boardView, endTurnNow, seatTurn, handOf, fieldOf, intentNext, intentSummon, intentCast, intentMirage, intentBraveSummon, intentBraveField, intentCore, intentAttack, applyIntent, cpuPaymentPlan, cpuIntent, cpuAnswer
 
 ## packages/engine/src/06-rules.js (471 lines, ~8.7k tokens) — RULES HELPERS
@@ -92,7 +92,7 @@ isMainStep, setStep, beginTurn, endStep, win, matchLoop, checkInvariants
 ## packages/engine/src/08-battle.js (167 lines, ~3.5k tokens) — BATTLE
 successor, flashTiming, battleEndAttack, attackStepOver, doBattle, doBattleInner, maybeBurst, burstFlash, flushBursts
 
-## packages/engine/src/09-cpu.js (165 lines, ~2.7k tokens) — CPU
+## packages/engine/src/09-cpu.js (167 lines, ~2.8k tokens) — CPU
 cpuCanPlay, cpuLevelUp, cpuBurstFlash, cpuFlashChoice, summonableOpts, cpuCastMain, cpuMain, cpuBrave, cpuAttack, startAttackFx, cpuTurn
 
 ## packages/engine/src/09a-cpu-eval.js (120 lines, ~2k tokens) — CPU EVALUATION POLICY (v0.32, Aegis study point 7)

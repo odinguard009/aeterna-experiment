@@ -270,6 +270,15 @@ function cpuAnswer(seat, d) {
         }
         return null;
       }
+      if (d.cpuK === 'brave') {                 // v0.105.0 (M6 step 4): the CPU Brave pick (09-cpu.js cpuBrave)
+        const strongest = L => L.slice().sort((a, b) => bpOf(b) - bpOf(a))[0];
+        const fb = p.spirits.find(b => CARDS[b.id].brave && braveTargets(p, b).length);
+        if (fb) return { mode: 'combine', uid: fb.uid, targetUid: strongest(braveTargets(p, fb)).uid };
+        const hb = p.hand.find(h => CARDS[h.id].brave && h !== p.burst && braveTargets(p, h).length && cpuCanPlay(p, h));
+        if (hb) return { mode: 'summon', uid: hb.uid, targetUid: strongest(braveTargets(p, hb)).uid };
+        return null;
+      }
+      if (d.cpuK === 'attack') return (cpuAttackChoice(p) || {}).uid ?? null;   // v0.105.0 (M6 step 4): the CPU attacker pick (09-cpu.js cpuAttack)
       return d.uids && d.uids.length ? d.uids[0] : (d.buttons && d.buttons[0] ? d.buttons[0].value : null);
     default: return null;
   }
