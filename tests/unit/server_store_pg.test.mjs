@@ -87,3 +87,28 @@ test('SP04 the Postgres store answers what the memory store answers (same contra
   const d2 = await mem.decks.put({ ...d, accountId: a2.id });
   assert.deepEqual(Object.keys(d1).sort(), Object.keys(d2).sort());
 });
+
+test('SP05 login tokens are single use and sessions are keyed by their hash', { skip: SKIP }, async () => {
+  const s = await pg();
+  const { hashToken } = await import('../../apps/server/src/accounts.mjs');
+  const acc = await s.accounts.create({ id: uid(), email: `login-${uid().slice(0, 8)}@example.com`, displayName: 'Login PG' });
+  const raw = 'token-' + uid();
+  const hash = hashToken(raw), later = new Date(Date.now() + 60_000).toISOString(), past = new Date(Date.now() - 60_000).toISOString();
+  await s.auth.putLogin({ tokenHash: hash, accountId: acc.id, expiresAt: later });
+  assert.equal(await s.auth.takeLogin(hash, new Date().toISOString()), acc.id, 'the first redemption works');
+  assert.equal(await s.auth.takeLogin(hash, new Date().toISOString()), null, 'and the second does not');
+
+  const expired = hashToken('expired-' + uid());
+  await s.auth.putLogin({ tokenHash: expired, accountId: acc.id, expiresAt: new Date(Date.now() + 1).toISOString() });
+  assert.equal(await s.auth.takeLogin(expired, new Date(Date.now() + 5000).toISOString()), null, 'an expired link never redeems');
+
+  const sess = hashToken('sess-' + uid());
+  await s.auth.putSession({ tokenHash: sess, accountId: acc.id, expiresAt: later });
+  assert.equal(await s.auth.session(sess, new Date().toISOString()), acc.id);
+  assert.equal(await s.auth.session(sess, new Date(Date.now() + 120_000).toISOString()), null, 'a session past its TTL is refused');
+  assert.equal(await s.auth.dropSession(sess), true);
+  assert.equal(await s.auth.session(sess, new Date().toISOString()), null);
+
+  // the FK keeps a token from pointing at nothing (delete cascades with the account)
+  await assert.rejects(() => s.auth.putLogin({ tokenHash: hashToken('orphan-' + uid()), accountId: uid(), expiresAt: later }), /foreign key|violates/i);
+});

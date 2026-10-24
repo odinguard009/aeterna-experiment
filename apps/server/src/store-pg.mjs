@@ -12,7 +12,7 @@
      * writes of one match (the row, its two seats and the replay) are one
        transaction, so a half-recorded match cannot exist.
    --------------------------------------------------------------------- */
-import { checkAccount, checkDeckSlot, checkMatch } from './store.mjs';
+import { checkAccount, checkDeckSlot, checkMatch, checkAuthRow } from './store.mjs';
 
 const clone = (v) => JSON.parse(JSON.stringify(v));
 
@@ -80,6 +80,38 @@ export async function pgStore({ connectionString = process.env.DATABASE_URL, ssl
       async list(accountId) {
         const r = await q('SELECT id, account_id, slot, name, format, cards, key_card, sleeve FROM deck_slots WHERE account_id = $1 ORDER BY slot', [accountId]);
         return r.rows.map(slot);
+      },
+    },
+    // login tokens and sessions: hashes only, expiry checked by the query that reads them
+    auth: {
+      async putLogin(r) {
+        const row = checkAuthRow(r, 'login token');
+        await q('INSERT INTO login_tokens (token_hash, account_id, expires_at) VALUES ($1,$2,$3)', [row.tokenHash, row.accountId, row.expiresAt]);
+        return { tokenHash: row.tokenHash, accountId: row.accountId, expiresAt: row.expiresAt };
+      },
+      /** Single use: the UPDATE is the gate, so two parallel clicks cannot both log in. */
+      async takeLogin(tokenHash, nowIso = new Date().toISOString()) {
+        const r = await q(`UPDATE login_tokens SET used_at = $2
+                           WHERE token_hash = $1 AND used_at IS NULL AND expires_at > $2::timestamptz
+                           RETURNING account_id`, [tokenHash, nowIso]);
+        return r.rows.length ? r.rows[0].account_id : null;
+      },
+      async putSession(r) {
+        const row = checkAuthRow(r, 'session');
+        await q('INSERT INTO sessions (token_hash, account_id, expires_at) VALUES ($1,$2,$3)', [row.tokenHash, row.accountId, row.expiresAt]);
+        return { tokenHash: row.tokenHash, accountId: row.accountId, expiresAt: row.expiresAt };
+      },
+      async session(tokenHash, nowIso = new Date().toISOString()) {
+        const r = await q('SELECT account_id FROM sessions WHERE token_hash = $1 AND expires_at > $2::timestamptz', [tokenHash, nowIso]);
+        return r.rows.length ? r.rows[0].account_id : null;
+      },
+      async dropSession(tokenHash) {
+        const r = await q('DELETE FROM sessions WHERE token_hash = $1', [tokenHash]);
+        return r.rowCount > 0;
+      },
+      async dropAccountSessions(accountId) {
+        const r = await q('DELETE FROM sessions WHERE account_id = $1', [accountId]);
+        return r.rowCount;
       },
     },
     matches: {

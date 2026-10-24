@@ -52,6 +52,19 @@ export function checkDeckSlot(d) {
   return d;
 }
 
+/**
+ * Login token / session row: addressed by the sha256 of the token, never by the token itself.
+ * expiresAt is passed in so the caller owns the clock (a test needs no sleep).
+ */
+export function checkAuthRow(r, what) {
+  if (!isObj(r)) fail(what + ' must be an object');
+  if (!/^[0-9a-f]{64}$/.test(String(r.tokenHash || ''))) fail(what + ' tokenHash must be a sha256 hex');
+  if (!isStr(r.accountId, 8, 64)) fail(what + ' accountId must be a uuid string');
+  const at = Date.parse(r.expiresAt);
+  if (!Number.isFinite(at)) fail(what + ' expiresAt must be an ISO timestamp');
+  return r;
+}
+
 /** Match shape check: the inputs plus the outcome, never derived state. */
 export function checkMatch(m) {
   if (!isObj(m)) fail('match must be an object');
@@ -89,6 +102,8 @@ export function memoryStore() {
   const accounts = new Map();          // id -> account
   const decks = new Map();             // `${accountId}:${slot}` -> deck slot
   const matches = new Map();           // id -> { ...match, seats, replay }
+  const logins = new Map();            // tokenHash -> login token row
+  const sessions = new Map();          // tokenHash -> session row
 
   return {
     kind: 'memory',
@@ -118,6 +133,40 @@ export function memoryStore() {
       },
       async list(accountId) {
         return [...decks.values()].filter((d) => d.accountId === accountId).sort((a, b) => a.slot - b.slot).map(clone);
+      },
+    },
+    // login tokens (magic links) and sessions: both single-purpose rows keyed by a token hash
+    auth: {
+      async putLogin(r) {
+        const row = checkAuthRow({ usedAt: null, ...r }, 'login token');
+        if (logins.has(row.tokenHash)) fail('login token already exists');
+        logins.set(row.tokenHash, clone(row));
+        return clone(row);
+      },
+      /** Single use: a token that is expired, unknown or already used answers null. */
+      async takeLogin(tokenHash, nowIso = new Date().toISOString()) {
+        const row = logins.get(tokenHash);
+        if (!row || row.usedAt || Date.parse(row.expiresAt) <= Date.parse(nowIso)) return null;
+        row.usedAt = nowIso;
+        return row.accountId;
+      },
+      async putSession(r) {
+        const row = checkAuthRow(r, 'session');
+        sessions.set(row.tokenHash, clone(row));
+        return clone(row);
+      },
+      /** Live session -> account id; an expired row is dropped on the way out. */
+      async session(tokenHash, nowIso = new Date().toISOString()) {
+        const row = sessions.get(tokenHash);
+        if (!row) return null;
+        if (Date.parse(row.expiresAt) <= Date.parse(nowIso)) { sessions.delete(tokenHash); return null; }
+        return row.accountId;
+      },
+      async dropSession(tokenHash) { return sessions.delete(tokenHash); },
+      async dropAccountSessions(accountId) {
+        let n = 0;
+        for (const [h, r] of sessions) if (r.accountId === accountId) { sessions.delete(h); n++; }
+        return n;
       },
     },
     matches: {

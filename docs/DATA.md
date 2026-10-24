@@ -40,6 +40,8 @@ Postgres 16. Schema: `db/migrations/0001_init.sql`. Runner: `db/migrate.sh`. Loc
 | `matches` | One played match | `format`, `seed`, `deck_a`, `deck_b`, `key_a`, `key_b`, `build`, `winner`, `turns` | the room host when a match ends | match history, bench marks |
 | `match_seats` | One row per seat, guest-friendly | `(match_id, seat)`, `account_id` (nullable), `display_name`, `is_bot` | the room host at match start | history, per-account records |
 | `match_replays` | The replay of a match | `match_id`, `record` (port record v2), `log_hash` | the room host when a match ends | the replay viewer, the fuzz/Regression checks |
+| `login_tokens` | A magic link, single use | `token_hash` (pk, sha256 of the token), `account_id`, `expires_at`, `used_at` | `apps/server/src/accounts.mjs` on `requestLogin` | the same module on `consumeLogin` |
+| `sessions` | A logged-in session | `token_hash` (pk, sha256 of the cookie value), `account_id`, `expires_at` | `accounts.mjs` after a redeemed link | `accountFromCookie` on every request |
 
 Why these and not more: the engine is authoritative for rules, so the database stores inputs
 (seed, decks, decisions) and the outcome, never derived game state. That keeps a schema change
@@ -61,9 +63,16 @@ CHECK constraints on purpose, and `tests/unit/server_store.test.mjs` fails if th
 `tests/unit/server_store_pg.test.mjs`, which skips itself when `DATABASE_URL` is absent - so the
 live half only ever runs where a server exists.
 
+Done in step 3 (`db/migrations/0002_sessions.sql`, `apps/server/src/accounts.mjs`): magic-link login
+and sessions, with no password and no external service. The token is 32 random bytes and only its
+sha256 reaches the database, so a dump is not a set of working links; a login token is single use
+(the store's `takeLogin` marks it used atomically, so two clicks cannot both log in) and lives 15
+minutes; the session is a separate token in an `HttpOnly; SameSite=Lax` cookie for 30 days, `Secure`
+unless the server runs on plain http locally. The clock and the store are injected, which is what
+lets AA01-AA08 check expiry without sleeping.
+
 Still owed:
 
-- Accounts: Discord OAuth and email magic links, sessions and cookies (the schema and the store hold
-  the accounts; the login flow is not written).
+- Discord OAuth as a second way in (the account table already carries `discord_id`).
 - API routes over the store in `apps/server/src/run.mjs`, and room records written through it.
 - `docker/compose.yml` for the server itself once there is a server image to run.
