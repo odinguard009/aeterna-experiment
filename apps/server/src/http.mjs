@@ -10,6 +10,7 @@
      GET  /health                -> { ok: true }
      GET  /api/config            -> { wsUrl } (the room server's WebSocket endpoint; the online client asks this first)
      GET  /  (staticHtml set)    -> the built single-file client (M8: the server serves the online client)
+     GET  /assets/card-images/*   -> official card art, mirrored on demand from the Fandom wiki (v0.112.0)
      POST /api/login   {email}   -> asks accounts for a one-time link; without a
                                     mailer the link is returned so a local run works
      GET  /api/login?t=<token>   -> redeems the link, Set-Cookie, redirects to /
@@ -39,7 +40,7 @@ const readBody = (req) => new Promise((resolve) => {
  *          built client at / (M8 online client) when the server runs the web app itself; wsUrl is the room
  *          server's WebSocket endpoint, told to the client through /api/config.
  */
-export function createApi({ accounts, store = null, origin = 'http://localhost:8080', mailer = null, discord = null, staticHtml = null, wsUrl = null } = {}) {
+export function createApi({ accounts, store = null, origin = 'http://localhost:8080', mailer = null, discord = null, staticHtml = null, wsUrl = null, cardImages = null } = {}) {
   if (!accounts || !accounts.requestLogin || !accounts.consumeLogin || !accounts.accountFromCookie) {
     throw new Error('createApi: an accounts service is required');
   }
@@ -52,6 +53,14 @@ export function createApi({ accounts, store = null, origin = 'http://localhost:8
     const m = (req.method || 'GET').toUpperCase();
     try {
       if (p === '/health' && m === 'GET') return send(res, 200, { ok: true });
+
+      // v0.112.0 (card images online): the on-demand mirror for official card art. Opt-in: only
+      // mounted when the caller passes a `cardImages` handler (serve.mjs does; the tests may not).
+      if (cardImages && p.startsWith('/assets/card-images/')) {
+        await cardImages(req, res, p);
+        return;
+      }
+
       // M8 part 2: discord tells the online lobby whether to offer the "Continue with Discord" sign-in
       // (the OAuth routes answer 501 without a provider, so the client hides the button instead).
       if (p === '/api/config' && m === 'GET') return send(res, 200, { ok: true, wsUrl: wsUrl || null, discord: !!discord });

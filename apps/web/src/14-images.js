@@ -61,8 +61,18 @@ async function importImages(files) {
   return { ok, miss };
 }
 async function clearImages() { Object.keys(IMG).forEach(id => { URL.revokeObjectURL(IMG[id]); delete IMG[id]; }); await idbTx('readwrite', st => { st.clear(); if (MAT.blob) st.put(MAT.blob, MAT_KEY); for (const i of Object.keys(SLEEVE_BLOB)) st.put(SLEEVE_BLOB[i], '~sleeve:' + i); }); }   // the playmat is not a card image: it stays
-const imgCls = id => (IMG[id] ? ' has-img' : '');
-const imgSty = id => (IMG[id] ? `;background-image:url('${IMG[id]}')` : '');
+/* v0.112.0 (card images online): the card image URL for an id. The player's own image (IndexedDB
+   blob) always wins; otherwise, when an online server is present, the official art mirrored at
+   /assets/card-images/<card.image> (Aegis-style). Empty when neither is available (offline, no image). */
+function cardImgSrc(id) {
+  if (IMG[id]) return IMG[id];
+  const c = CARDS[id];
+  if (!c || !c.image) return '';
+  const origin = (typeof onlineOrigin === 'function') ? onlineOrigin() : null;
+  return origin ? `${origin}/assets/card-images/${encodeURIComponent(c.image)}` : '';
+}
+const imgCls = id => (cardImgSrc(id) ? ' has-img' : '');
+const imgSty = id => { const s = cardImgSrc(id); return s ? `;background-image:url('${s}')` : ''; };
 function refreshViews() {
   renderLobby();
   if ($('view-deckbuilder').classList.contains('active')) renderDeckBuilder();

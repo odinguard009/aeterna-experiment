@@ -16,6 +16,7 @@
 import { readFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { createApi } from './http.mjs';
+import { cardImageRoute } from './card-images.mjs';
 import { startServer } from './run.mjs';
 import { memoryStore } from './store.mjs';
 import { accounts } from './accounts.mjs';
@@ -59,7 +60,9 @@ export async function serve({
     : null);
   // M8: the ws server starts first so its endpoint (ws.url) is told to the client through /api/config.
   const ws = await startServer({ port: Number(wsPort) || 0, store, accounts: svc });
-  const api = createApi({ accounts: svc, store, origin: origin0, mailer, discord: discordProvider, staticHtml: CLIENT_HTML, wsUrl: ws.url });
+  // v0.112.0 (card images online): the on-demand mirror for official card art (git-ignored cache dir).
+  const cardImages = cardImageRoute({ mirrorDir: process.env.CARD_IMAGES_DIR || fileURLToPath(new URL('../.card-images', import.meta.url)) });
+  const api = createApi({ accounts: svc, store, origin: origin0, mailer, discord: discordProvider, staticHtml: CLIENT_HTML, wsUrl: ws.url, cardImages });
   await new Promise((res, rej) => { api.once('error', rej); api.listen(port0, '0.0.0.0', res); });
   const close = async () => {
     await ws.close();
