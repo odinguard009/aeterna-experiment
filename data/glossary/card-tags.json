@@ -5052,7 +5052,8 @@
   "A_TRASH_TO_RESERVE",
   "A_RETURN_TRASH",
   "C_LEVEL",
-  "K_BRAVE"
+  "K_BRAVE",
+  "T_MAGIC_USED"
  ],
  "BS12-059": [],
  "BS12-060": [
@@ -7233,12 +7234,14 @@
  ],
  "BS17-038": [
   "A_BP_PLUS",
-  "C_LEVEL"
+  "C_LEVEL",
+  "T_MAGIC_USED"
  ],
  "BS17-039": [
   "T_ATTACKS",
   "A_EXHAUST",
-  "C_LEVEL"
+  "C_LEVEL",
+  "T_MAGIC_USED"
  ],
  "BS17-040": [],
  "BS17-041": [
@@ -7249,7 +7252,8 @@
  "BS17-042": [
   "T_ATTACKS",
   "A_REFRESH",
-  "C_LEVEL"
+  "C_LEVEL",
+  "T_MAGIC_USED"
  ],
  "BS17-043": [
   "C_LEVEL",
@@ -7395,7 +7399,8 @@
  "BS17-070": [
   "A_DRAW",
   "C_LEVEL",
-  "K_BURST"
+  "K_BURST",
+  "T_MAGIC_USED"
  ],
  "BS17-071": [
   "A_VOID",
@@ -7449,7 +7454,8 @@
   "C_LIFE",
   "C_LEVEL",
   "K_BURST",
-  "M_OPTIONAL"
+  "M_OPTIONAL",
+  "T_MAGIC_USED"
  ],
  "BS17-X06": [
   "T_SUMMONED",
@@ -7851,7 +7857,8 @@
   "C_LEVEL",
   "K_BURST",
   "T_DESTROYED",
-  "M_OPTIONAL"
+  "M_OPTIONAL",
+  "T_MAGIC_USED"
  ],
  "BS18-X06": [
   "T_SUMMONED",
@@ -8092,7 +8099,8 @@
   "C_LEVEL",
   "K_BRAVE",
   "M_OPTIONAL",
-  "A_BP_MINUS"
+  "A_BP_MINUS",
+  "T_MAGIC_USED"
  ],
  "BS19-054": [
   "A_EXHAUST",
@@ -8193,7 +8201,8 @@
  ],
  "BS19-076": [
   "K_BRAVE",
-  "A_BP_MINUS"
+  "A_BP_MINUS",
+  "T_MAGIC_USED"
  ],
  "BS19-078": [
   "K_BRAVE"
@@ -13203,7 +13212,8 @@
   "T_SUMMONED",
   "C_LEVEL",
   "K_ULTIMATE",
-  "T_BATTLE_WIN"
+  "T_BATTLE_WIN",
+  "T_MAGIC_USED"
  ],
  "BS29-032": [
   "T_SUMMONED",
@@ -13220,7 +13230,8 @@
   "K_ULTIMATE",
   "T_DESTROYED",
   "T_BATTLE_WIN",
-  "T_DESTROYED_OPP"
+  "T_DESTROYED_OPP",
+  "T_MAGIC_USED"
  ],
  "BS29-034": [
   "T_ATTACKS",
@@ -13407,7 +13418,8 @@
   "K_ULTIMATE",
   "M_OPTIONAL",
   "A_BP_MINUS",
-  "T_BATTLE_WIN"
+  "T_BATTLE_WIN",
+  "T_MAGIC_USED"
  ],
  "BS29-X02": [
   "T_SUMMONED",
@@ -13629,7 +13641,8 @@
  "BS30-027": [
   "C_LEVEL",
   "K_ULTIMATE",
-  "T_BATTLE_WIN"
+  "T_BATTLE_WIN",
+  "T_MAGIC_USED"
  ],
  "BS30-028": [
   "C_LEVEL",
@@ -13655,7 +13668,8 @@
   "T_ATTACKS",
   "C_LEVEL",
   "K_ULTIMATE",
-  "T_BATTLE_WIN"
+  "T_BATTLE_WIN",
+  "T_MAGIC_USED"
  ],
  "BS30-032": [
   "C_LEVEL",
@@ -14218,7 +14232,8 @@
  "BS31-058": [
   "C_LEVEL",
   "K_ULTIMATE",
-  "T_BATTLE_WIN"
+  "T_BATTLE_WIN",
+  "T_MAGIC_USED"
  ],
  "BS31-059": [
   "T_ATTACKS",
@@ -14349,7 +14364,8 @@
   "T_ATTACKS",
   "A_TRASH_TO_RESERVE",
   "A_RETURN_TRASH",
-  "C_LEVEL"
+  "C_LEVEL",
+  "T_MAGIC_USED"
  ],
  "BS31-083": [
   "T_ATTACKS",
@@ -14419,7 +14435,8 @@
   "A_VOID_TO_LIFE"
  ],
  "BS31-094": [
-  "C_LEVEL"
+  "C_LEVEL",
+  "T_MAGIC_USED"
  ],
  "BS31-095": [
   "A_BP_PLUS",
@@ -14516,7 +14533,8 @@
  "BS31-X05": [
   "A_SUMMON_FREE",
   "C_LEVEL",
-  "M_OPTIONAL"
+  "M_OPTIONAL",
+  "T_MAGIC_USED"
  ],
  "BS31-X06": [
   "T_ATTACKS",
@@ -14745,14 +14763,16 @@
  ],
  "BS32-037": [],
  "BS32-038": [
-  "C_LEVEL"
+  "C_LEVEL",
+  "T_MAGIC_USED"
  ],
  "BS32-039": [
   "A_EXHAUST",
   "C_LEVEL",
   "T_DESTROYED",
   "M_OPTIONAL",
-  "A_REMOVED_ZONE"
+  "A_REMOVED_ZONE",
+  "T_MAGIC_USED"
  ],
  "BS32-040": [
   "A_END_ATTACK",
@@ -14795,7 +14815,8 @@
   "C_LEVEL",
   "K_BURST",
   "K_ULTIMATE",
-  "A_BP_MINUS"
+  "A_BP_MINUS",
+  "T_MAGIC_USED"
  ],
  "BS32-046": [
   "T_ALLY_LOST",
@@ -14924,7 +14945,8 @@
   "A_BP_PLUS",
   "C_LEVEL",
   "K_ULTIMATE",
-  "M_BY_DOING"
+  "M_BY_DOING",
+  "T_MAGIC_USED"
  ],
  "BS32-070": [
   "T_SUMMONED",
@@ -14991,7 +15013,8 @@
   "A_SUMMON_FREE",
   "C_LEVEL",
   "M_OPTIONAL",
-  "A_CANT_ATTACK_BLOCK"
+  "A_CANT_ATTACK_BLOCK",
+  "T_MAGIC_USED"
  ],
  "BS32-X06": [
   "T_ATTACKS",
@@ -15286,7 +15309,8 @@
   "T_ATTACKS",
   "A_SUMMON_FREE",
   "C_LEVEL",
-  "M_OPTIONAL"
+  "M_OPTIONAL",
+  "T_MAGIC_USED"
  ],
  "BS33-051": [
   "C_LEVEL",
@@ -15955,7 +15979,8 @@
   "A_RETURN_TRASH",
   "A_SYMBOL",
   "C_LEVEL",
-  "A_SYMBOL_PLUS"
+  "A_SYMBOL_PLUS",
+  "T_MAGIC_USED"
  ],
  "BS34-X06": [
   "T_ATTACKS",
@@ -16325,7 +16350,8 @@
   "A_RETURN_TRASH",
   "C_LEVEL",
   "K_BRAVE",
-  "M_REPLACEMENT"
+  "M_REPLACEMENT",
+  "T_MAGIC_USED"
  ],
  "BS35-054": [
   "T_SUMMONED",
@@ -22361,7 +22387,8 @@
   "M_OPTIONAL"
  ],
  "BS43-086": [
-  "C_LEVEL"
+  "C_LEVEL",
+  "T_MAGIC_USED"
  ],
  "BS43-087": [
   "A_REVEAL_DECK",
@@ -24918,7 +24945,8 @@
  "BS48-087": [
   "A_EXHAUST",
   "C_LEVEL",
-  "K_ULTIMATE"
+  "K_ULTIMATE",
+  "T_MAGIC_USED"
  ],
  "BS48-090": [
   "A_EXHAUST",
@@ -28765,7 +28793,8 @@
   "M_OPTIONAL",
   "M_IF_YOU_DO",
   "M_UP_TO",
-  "A_DRAW_BOTTOM"
+  "A_DRAW_BOTTOM",
+  "T_MAGIC_USED"
  ],
  "BS56-050": [
   "A_SUMMON_FREE",
@@ -29331,7 +29360,8 @@
   "C_LEVEL",
   "K_MIRAGE",
   "M_UP_TO",
-  "M_REPLACEMENT"
+  "M_REPLACEMENT",
+  "T_MAGIC_USED"
  ],
  "BS57-041": [
   "T_SUMMONED",
@@ -29975,7 +30005,8 @@
   "S_UNAFFECTED",
   "K_MIRAGE",
   "M_OPTIONAL",
-  "M_REPLACEMENT"
+  "M_REPLACEMENT",
+  "T_MAGIC_USED"
  ],
  "BS58-044": [
   "T_ATTACKS",
@@ -30608,7 +30639,8 @@
   "K_ACCEL",
   "M_REPLACEMENT",
   "A_REMOVED_ZONE",
-  "A_BP_MINUS"
+  "A_BP_MINUS",
+  "T_MAGIC_USED"
  ],
  "BS59-045": [
   "T_SUMMONED",
@@ -32990,7 +33022,8 @@
   "C_LEVEL",
   "K_ADVENT",
   "M_OPTIONAL",
-  "M_BY_DOING"
+  "M_BY_DOING",
+  "T_MAGIC_USED"
  ],
  "BS62-050": [
   "T_ADVENT",
@@ -35577,7 +35610,8 @@
   "C_LEVEL",
   "K_MIRAGE",
   "M_OPTIONAL",
-  "A_DRAW_BOTTOM"
+  "A_DRAW_BOTTOM",
+  "T_MAGIC_USED"
  ],
  "BS65-034": [
   "T_SUMMONED",
@@ -35863,7 +35897,8 @@
   "M_OPTIONAL",
   "M_IF_YOU_DO",
   "M_THEN",
-  "A_DRAW_BOTTOM"
+  "A_DRAW_BOTTOM",
+  "T_MAGIC_USED"
  ],
  "BS65-075": [
   "A_COUNTER",
@@ -36001,7 +36036,8 @@
   "M_OPTIONAL",
   "A_SYMBOL_PLUS",
   "T_DURING_BRAVE",
-  "A_DRAW_BOTTOM"
+  "A_DRAW_BOTTOM",
+  "T_MAGIC_USED"
  ],
  "BS65-X09": [
   "T_ATTACKS",
@@ -36064,7 +36100,8 @@
   "M_OPTIONAL",
   "M_BY_DOING",
   "M_THEN",
-  "T_DURING_BRAVE"
+  "T_DURING_BRAVE",
+  "T_MAGIC_USED"
  ],
  "BS65-XV05": [
   "T_ATTACKS",
@@ -41878,7 +41915,8 @@
   "C_LEVEL",
   "K_GRANDWALKER",
   "M_OPTIONAL",
-  "M_UP_TO"
+  "M_UP_TO",
+  "T_MAGIC_USED"
  ],
  "BS74-075": [
   "A_CORE_TO_SELF",
@@ -44492,11 +44530,13 @@
  ],
  "26RBS01-061": [
   "A_BP_PLUS",
-  "C_LEVEL"
+  "C_LEVEL",
+  "T_MAGIC_USED"
  ],
  "26RBS01-062": [
   "A_BP_PLUS",
-  "C_LEVEL"
+  "C_LEVEL",
+  "T_MAGIC_USED"
  ],
  "26RBS01-063": [
   "A_VOID",
@@ -44505,23 +44545,28 @@
  ],
  "26RBS01-064": [],
  "26RBS01-065": [
-  "A_BP_PLUS"
+  "A_BP_PLUS",
+  "T_MAGIC_USED"
  ],
  "26RBS01-066": [
   "T_ATTACKS",
   "A_REFRESH",
   "C_LEVEL",
   "M_THEN",
-  "A_BP_MINUS"
+  "A_BP_MINUS",
+  "C_MAGIC_USED_TURN"
  ],
  "26RBS01-067": [
-  "A_REFRESH"
+  "A_REFRESH",
+  "T_MAGIC_USED"
  ],
  "26RBS01-068": [
   "T_SUMMONED",
   "A_DRAW",
   "A_BP_PLUS",
-  "C_LEVEL"
+  "C_LEVEL",
+  "T_MAGIC_USED",
+  "C_MAGIC_USED_TURN"
  ],
  "26RBS01-069": [
   "T_ATTACKS",
@@ -44558,7 +44603,8 @@
  "26RBS01-074": [
   "T_SUMMONED",
   "A_BP_PLUS",
-  "C_LEVEL"
+  "C_LEVEL",
+  "T_MAGIC_USED"
  ],
  "26RBS01-075": [
   "A_SUMMON_FREE",
@@ -44709,13 +44755,15 @@
   "A_EXHAUST",
   "C_LEVEL",
   "M_OPTIONAL",
-  "K_STANDARD_INVOKE"
+  "K_STANDARD_INVOKE",
+  "T_MAGIC_USED"
  ],
  "26RBS01-104": [
   "A_BP_PLUS",
   "C_OPP_TURN",
   "C_LEVEL",
-  "M_OPTIONAL"
+  "M_OPTIONAL",
+  "T_MAGIC_USED"
  ],
  "26RBS01-105": [
   "A_BP_PLUS",
@@ -44885,7 +44933,8 @@
   "A_EXHAUST",
   "C_LEVEL",
   "M_OPTIONAL",
-  "K_STANDARD_INVOKE"
+  "K_STANDARD_INVOKE",
+  "T_MAGIC_USED"
  ],
  "26RBS01-X14": [
   "T_SUMMONED",
@@ -44893,7 +44942,8 @@
   "M_OPTIONAL",
   "M_THEN",
   "M_UP_TO",
-  "A_BP_MINUS"
+  "A_BP_MINUS",
+  "T_MAGIC_USED"
  ],
  "26RBS01-X15": [
   "A_SUMMON_FREE",
@@ -44901,7 +44951,8 @@
   "C_LEVEL",
   "M_OPTIONAL",
   "A_SYMBOL_PLUS",
-  "K_STANDARD_INVOKE"
+  "K_STANDARD_INVOKE",
+  "T_MAGIC_USED"
  ],
  "26RBS01-X16": [
   "T_SUMMONED",
@@ -46520,7 +46571,8 @@
   "T_ATTACKS",
   "A_SUMMON_FREE",
   "C_LEVEL",
-  "M_OPTIONAL"
+  "M_OPTIONAL",
+  "T_MAGIC_USED"
  ],
  "26RCB01-X06": [
   "T_ATTACKS",
@@ -47292,7 +47344,8 @@
   "M_THEN",
   "M_UNSTACKABLE",
   "F_OTHER_NOSTACK",
-  "A_BP_MINUS"
+  "A_BP_MINUS",
+  "T_MAGIC_USED"
  ],
  "26RSD05-007": [
   "T_SUMMONED",
@@ -47565,13 +47618,15 @@
   "A_SYMBOL",
   "C_LEVEL",
   "M_OPTIONAL",
-  "A_SYMBOL_PLUS"
+  "A_SYMBOL_PLUS",
+  "C_MAGIC_USED_TURN"
  ],
  "26RSD08-011": [
   "A_BP_PLUS",
   "A_EXHAUST",
   "C_LEVEL",
-  "K_STANDARD_INVOKE"
+  "K_STANDARD_INVOKE",
+  "C_MAGIC_USED_TURN"
  ],
  "26RSD08-012": [
   "A_REFRESH",
@@ -47589,7 +47644,8 @@
   "C_LEVEL",
   "M_THEN",
   "A_BP_MINUS",
-  "K_STANDARD_INVOKE"
+  "K_STANDARD_INVOKE",
+  "C_MAGIC_USED_TURN"
  ],
  "26RSD08-X02": [
   "T_ATTACKS",

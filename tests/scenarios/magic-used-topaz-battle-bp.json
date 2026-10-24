@@ -1,0 +1,39 @@
+{
+  "name": "magic-used-topaz-battle-bp",
+  "about": "v0.116.0: (Opposing Attack Step) 'When you use a \"Topaz\" family Magic card, during this battle, this Spirit gains +2000 BP' = trigger MAGIC_USED with match {type Magic, family Topaz}, fired once the Magic has resolved; BP_TARGET battle:true keeps the bonus inside that battle. Stodol (26RBS01-061, LV2) watches; Life Link (26RBS01-121, a Topaz Magic) is cast in the opposing Attack Step.",
+  "rules": [
+    "SJP:main-step@594336f8"
+  ],
+  "turn": 3,
+  "active": "opponent",
+  "step": 5,
+  "players": {
+    "player": {
+      "hand": [
+        {
+          "id": "26RBS01-121",
+          "as": "magic"
+        }
+      ],
+      "reserve": 10,
+      "soul": "trash",
+      "spirits": [
+        {
+          "id": "26RBS01-061",
+          "cores": 2,
+          "as": "stodol"
+        }
+      ]
+    },
+    "opponent": {
+      "reserve": 3,
+      "spirits": [
+        {
+          "id": "26RBS01-001",
+          "cores": 1,
+          "as": "attacker"
+        }
+      ]
+    }
+  }
+}

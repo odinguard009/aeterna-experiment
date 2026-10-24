@@ -4,6 +4,14 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.116.0
+- Lane: K
+- Time: ~45 min (session start → release), deepseek-v4-flash-vision-exp; tokens not counted (no gate counter in this harness).
+- **Standard block A keyword head 1: "When you use a Magic card" (trigger `MAGIC_USED`) + condition `magicUsed`.** The 26RBS01 pack's `(Opposing Attack Step)` watchers had no engine event for a Magic being used, so their clauses sat in `residual`. The trigger fires once the Magic has resolved (the card is in the Trash by then, as after a summon), carries the used card as `ctx.subject` so `match` filters it (`{type:"Magic",family:["Topaz"]}` / `{type:"Magic",color:"yellow"}`), and is skipped for a Burst (a Burst activation is not a use of a Magic card). `magicUsed` answers "if you used a X Magic card this turn" from the per-turn record the same hook writes.
+  - +6 complete cards, all in Standard block A: 26RBS01-061 Stodol, -062 Aloucast, -065 Terra-Cotta, -067 Thunder Squatch, -068 Snakrowley (both its clauses), -074 The HeavyThunder Enurai (LV2 clause; its LV1-2 reveal already ran). 26RBS01-062 and -068 now carry `trueRelease: true`, which their printed `[LV2] (True Release)` head states.
+  - Engine: `FX_TRIGGERS` + `FX_TRIGGER_TEXT` + `FX_COND_KEYS` (`02a-effects-base.js`), the subject-match branch in `fxValid` (`02d-effects-resolve.js`), `castMagic` writes the per-turn record and fires the trigger (`06-rules.js`), and `parseCond` accepts the new condition (`02c-effects-parse.js`) — a condition missing from that list drops the card at load, which is how 26RBS01-068 was caught.
+  - Effect schema **v5** (`tools/fx_schema.mjs`): 28 triggers, 37 conditions (additions only, every v4 card stays valid). Scenario `tests/scenarios/magic-used-topaz-battle-bp.json`, tests M116-01..05 (`tests/unit/magic_used_trigger.test.mjs`): the battle BP applies only inside that battle, another family does not fire it, the condition reads the turn record, and 068 draws two only after a Topaz Magic was used.
+
 ## v0.115.0
 - Lane: U/I
 - Time: ~20 min (session start → release), deepseek-v4-pro; tokens not counted (no gate counter in this harness).

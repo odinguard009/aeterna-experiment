@@ -2796,11 +2796,35 @@
   "block": "A",
   "saga": 50,
   "ex_symbols": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (Opposing Attack Step) When you use a \"Topaz\" family Magic card, during this battle, this Spirit gains +2000 BP."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "residual": [],
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Every printed clause runs (v0.116.0: the \"when you use a Magic card\" trigger, MAGIC_USED, and condition magicUsed).",
+  "effects": [
+   {
+    "trigger": "MAGIC_USED",
+    "lv": [
+     2
+    ],
+    "match": {
+     "type": "Magic",
+     "family": [
+      "Topaz"
+     ]
+    },
+    "if": {
+     "oppTurn": true,
+     "step": "ATTACK"
+    },
+    "actions": [
+     {
+      "do": "BP_TARGET",
+      "to": "self",
+      "n": 2000,
+      "battle": true
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RBS01-062",
@@ -2832,11 +2856,36 @@
   "block": "A",
   "saga": 50,
   "ex_symbols": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (True Release) (Opposing Attack Step) When you use a \"Topaz\" family Magic card, during this battle, this Spirit gains +2000 BP."
+  "fxComplete": true,
+  "residual": [],
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Every printed clause runs (v0.116.0: the \"when you use a Magic card\" trigger, MAGIC_USED, and condition magicUsed).",
+  "effects": [
+   {
+    "trigger": "MAGIC_USED",
+    "lv": [
+     2
+    ],
+    "match": {
+     "type": "Magic",
+     "family": [
+      "Topaz"
+     ]
+    },
+    "if": {
+     "oppTurn": true,
+     "step": "ATTACK"
+    },
+    "actions": [
+     {
+      "do": "BP_TARGET",
+      "to": "self",
+      "n": 2000,
+      "battle": true
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "trueRelease": true
  },
  {
   "id": "26RBS01-063",
@@ -2936,11 +2985,36 @@
   "block": "A",
   "saga": 50,
   "ex_symbols": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (Opposing Attack Step) When you use a \"Topaz\" family Magic card, during this battle, this Spirit gains +2000 BP."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "residual": [],
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Every printed clause runs (v0.116.0: the \"when you use a Magic card\" trigger, MAGIC_USED, and condition magicUsed).",
+  "effects": [
+   {
+    "trigger": "MAGIC_USED",
+    "lv": [
+     1,
+     2
+    ],
+    "match": {
+     "type": "Magic",
+     "family": [
+      "Topaz"
+     ]
+    },
+    "if": {
+     "oppTurn": true,
+     "step": "ATTACK"
+    },
+    "actions": [
+     {
+      "do": "BP_TARGET",
+      "to": "self",
+      "n": 2000,
+      "battle": true
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RBS01-066",
@@ -3022,11 +3096,34 @@
   "block": "A",
   "saga": 50,
   "ex_symbols": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (Opposing Attack Step) When you use any \"Topaz\" family Magic card, this Spirit can refresh."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "residual": [],
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Every printed clause runs (v0.116.0: the \"when you use a Magic card\" trigger, MAGIC_USED, and condition magicUsed).",
+  "effects": [
+   {
+    "trigger": "MAGIC_USED",
+    "lv": [
+     1,
+     2
+    ],
+    "match": {
+     "type": "Magic",
+     "family": [
+      "Topaz"
+     ]
+    },
+    "optional": true,
+    "if": {
+     "oppTurn": true,
+     "step": "ATTACK"
+    },
+    "actions": [
+     {
+      "do": "REFRESH"
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RBS01-068",
@@ -3057,12 +3154,56 @@
   "image": "26RBS01-068.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Summoned) If you used any \"Topaz\" family Magic card this turn, draw two cards.",
-   "[LV2] (True Release) (Opposing Attack Step) When you use any \"Topaz\" family Magic card, during this battle, this Spirit gains +2000 BP."
+  "fxComplete": true,
+  "residual": [],
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Every printed clause runs (v0.116.0: the \"when you use a Magic card\" trigger, MAGIC_USED, and condition magicUsed).",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "magicUsed": {
+      "family": [
+       "Topaz"
+      ]
+     }
+    },
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 2
+     }
+    ]
+   },
+   {
+    "trigger": "MAGIC_USED",
+    "lv": [
+     2
+    ],
+    "match": {
+     "type": "Magic",
+     "family": [
+      "Topaz"
+     ]
+    },
+    "if": {
+     "oppTurn": true,
+     "step": "ATTACK"
+    },
+    "actions": [
+     {
+      "do": "BP_TARGET",
+      "to": "self",
+      "n": 2000,
+      "battle": true
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "trueRelease": true
  },
  {
   "id": "26RBS01-069",
@@ -3357,13 +3498,32 @@
       "rest": "bottom"
      }
     ]
+   },
+   {
+    "trigger": "MAGIC_USED",
+    "lv": [
+     2
+    ],
+    "match": {
+     "type": "Magic",
+     "color": "yellow"
+    },
+    "if": {
+     "attackStep": true,
+     "oppTurn": false
+    },
+    "actions": [
+     {
+      "do": "BP_TARGET",
+      "to": "self",
+      "n": 2000
+     }
+    ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (Your Attack Step) When you use any Yellow Magic card, during this turn, give this Spirit +2000 BP."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "residual": [],
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Every printed clause runs (v0.116.0: the \"when you use a Magic card\" trigger, MAGIC_USED, and condition magicUsed)."
  },
  {
   "id": "26RBS01-075",

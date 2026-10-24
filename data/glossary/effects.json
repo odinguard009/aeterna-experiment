@@ -1398,5 +1398,25 @@
     "status": "wired",
     "example": "{\"do\":\"END_BATTLE\",\"then\":[{\"do\":\"DESTROY_PICKED\"}]}",
     "rule": "Engine reading of the Standard card texts: a delayed effect of a used Magic card; it resolves at the end of the battle even though the card is in the Trash."
+  },
+  {
+    "id": "T_MAGIC_USED",
+    "kind": "trigger",
+    "meaning": "(When you use a Magic card)",
+    "pattern": "[Ww]hen you use (a |any |an? )[^\\.]*Magic card",
+    "engine": "MAGIC_USED",
+    "status": "wired",
+    "example": "{\"trigger\":\"MAGIC_USED\",\"match\":{\"type\":\"Magic\",\"family\":[\"Topaz\"]}}",
+    "rule": "Standard Comprehensive Rules 12-2 (Common Effects) has no entry for this event: using a Magic card is an ordinary game action (SJP:main-step). The engine fires it after the Magic resolved and does not fire it for a Burst."
+  },
+  {
+    "id": "C_MAGIC_USED_TURN",
+    "kind": "condition",
+    "meaning": "If you used a X Magic card this turn",
+    "pattern": "If you used (a |any |an? )[^\\.]*Magic card this turn",
+    "engine": "magicUsed",
+    "status": "wired",
+    "example": "{\"if\":{\"magicUsed\":{\"family\":[\"Topaz\"]}}}",
+    "rule": "Standard Comprehensive Rules 12-2 has no numbered entry for using a Magic card (it is an ordinary game action, SJP:main-step); the engine records every Magic the player uses this turn (MAGIC_USED) and this condition reads that record."
   }
 ]

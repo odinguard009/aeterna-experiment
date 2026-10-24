@@ -441,6 +441,12 @@ async function castMagic(p, ch) {                         // ch = { inst, target
   if (fromTrash) { toRemoved(p, inst); log(`${card.name} is banished (used from the Trash).`); }
   else if (!fromBurst) p.trash.push(inst);
   if (G && G.attacker && G.battleMagic) G.battleMagic.push({ key: p.key, inst });      // v0.78 Brilliance: Magic used during this battle
+  /* v0.116 "When you use a <family>/<colour> Magic card": the Magic is in the Trash by now; a Burst is not a use of a Magic card */
+  if (!fromBurst && G && !G.over) {
+    p.magicTurn = (p.magicTurn && p.magicTurn.turn === G.turnNo) ? p.magicTurn : { turn: G.turnNo, cards: [] };
+    p.magicTurn.cards.push(inst.id);
+    await fireFx(p, 'MAGIC_USED', null, { subject: inst });
+  }
   checkDepletion(p); checkDepletion(opp);
 }
 
