@@ -1,0 +1,10 @@
+# Files the codebase-memory index must skip (gitignore syntax), on top of .gitignore.
+#
+# index.html is a BUILD ARTIFACT: tools/build.mjs concatenates packages/protocol/src,
+# packages/engine/src and apps/web/src into it and embeds the card pack. Indexing it
+# copied every engine and web symbol a second time (~800 symbols, 5% of the graph),
+# so one lookup returned two answers ("parseCard" appeared both as
+# packages/engine/src/03-imported-cards.parseCard and as index.html.parseCard) and
+# agents spent tokens reading the build output. CLAUDE.md already says: never read
+# index.html. build/ is excluded through .gitignore.
+index.html
