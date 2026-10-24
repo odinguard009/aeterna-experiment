@@ -1,0 +1,59 @@
+# Local Postgres for the database step of the monorepo plan (M7).
+#
+# Nothing here is deployed: hosting, a domain and the email sender stay the owner's decision
+# (docs/ai/monorepo-plan.md). This file exists so the schema and the migration runner can be
+# exercised on a laptop with one command:
+#
+#   docker compose -f docker/compose.yml up -d db
+#   docker compose -f docker/compose.yml run --rm migrate
+#   docker compose -f docker/compose.yml run --rm psql        # a shell with psql against the db
+#   docker compose -f docker/compose.yml down                 # keeps the volume; add -v to drop it
+#
+# The credentials are local-only defaults on purpose and are not reused anywhere else.
+name: aeterna
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: aeterna
+      POSTGRES_PASSWORD: aeterna
+      POSTGRES_DB: aeterna
+    ports:
+      - "5432:5432"
+    volumes:
+      - aeterna-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U aeterna -d aeterna"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  # One-shot migration runner: the same script a CI service container would call.
+  migrate:
+    image: postgres:16-alpine
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://aeterna:aeterna@db:5432/aeterna
+    volumes:
+      - ../db:/db:ro
+    entrypoint: ["/bin/sh", "/db/migrate.sh"]
+    restart: "no"
+
+  # Handy shell for poking at the schema without installing a client locally.
+  psql:
+    image: postgres:16-alpine
+    profiles: ["tools"]
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PGPASSWORD: aeterna
+    entrypoint: ["psql", "postgres://aeterna@db:5432/aeterna"]
+    stdin_open: true
+    tty: true
+
+volumes:
+  aeterna-db:

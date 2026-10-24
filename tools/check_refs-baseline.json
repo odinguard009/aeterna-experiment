@@ -1,6 +1,6 @@
 {
  "note": "Tolerated broken doc references (tools/check_refs.mjs --check). This list may only SHRINK: fix a reference by fixing the doc, never by adding a line here.",
- "count": 21,
+ "count": 19,
  "refs": [
   ".claude/skills/bs-card-image-reader/SKILL.md claude/red-cards-BS75-BS76.json",
   ".claude/skills/bs-card-image-reader/SKILL.md claude/saga-map.md",
@@ -12,8 +12,6 @@
   "docs/aegis-study.md deckCardCoverage.test.ts",
   "docs/aegis-study.md packages/shared/src/cards/cardPool.ts",
   "docs/ai/monorepo-plan.md COLLECTIONS.md",
-  "docs/ai/monorepo-plan.md docker/compose.yml",
-  "docs/ai/monorepo-plan.md docs/DATA.md",
   "docs/ai/owner-instructions.md claude/layout-proposal.html",
   "docs/ai/owner-instructions.md docs/ai/lanes/README.md",
   "docs/ai/owner-instructions.md docs/ai/repo-cleanup-plan.md",

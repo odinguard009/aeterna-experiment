@@ -116,5 +116,7 @@ Until v1.0 the public name is the neutral codename. `tools/brand_guard.mjs` (loo
 ## 9. Planned
 The monorepo move (TypeScript workspace, server/client, database, online play) is planned in `docs/ai/monorepo-plan.md`; until it lands, the single built HTML file stays the product.
 
+M7 step 1 (v0.106.0): the database half exists without touching the offline game. `db/migrations/0001_init.sql` holds accounts, deck slots, matches, match seats and match replays; `db/migrate.sh` is the only runner (append-only, checksum-guarded, one transaction per file); `docker/compose.yml` runs Postgres and the runner locally. `docs/DATA.md` documents the tables. The schema stores inputs and outcomes only - seed, decks, decisions and the log hash - so the engine stays authoritative and a stored match can be replayed to the same hash. Accounts, repositories, API routes and the CI service container are the next M7 step; nothing is hosted.
+
 ## Rules knowledge base (v0.68.0)
 Rules KB: `docs/rules/kb.json` + `tools/rules_kb.py`, schema in `docs/rules/README.md` (official rule sections with ids, pages, paraphrases and SHA-256 fingerprints; `--list-cited` checks every engine citation, `--check` flags changed manual sections).
