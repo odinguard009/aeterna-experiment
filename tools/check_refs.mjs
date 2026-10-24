@@ -38,6 +38,9 @@ const EXT = /\.(?:md|json|mjs|js|ts|py|sh|yml|yaml|html|css|txt)$/;
 const RUNTIME = /^(?:tests\/last-run\.json|docs\/ai\/chain-stop\.md)$/;
 // The docs name "the next file of this kind" with a placeholder (`saga-NN.json`, `vNN_tests.py`).
 const PLACEHOLDER = /(?:NN|XX|YY|ZZ|X\.Y\.Z)/;
+// The release artifact the README links to is named after the version, so it is never a repo file;
+// matching it as a pattern keeps the baseline from churning on every release.
+const ARTIFACT = /^aeterna(?:-v\d+\.\d+\.\d+)?\.html$/;
 
 const walk = (dir, out = []) => {
   for (const e of readdirSync(dir, { withFileTypes: true })) {
@@ -78,6 +81,7 @@ function broken() {
         if (/[[\]?]/.test(ref)) continue;                                    // a naming pattern (`NN[a-z]?-name.js`), not a path
         if (PLACEHOLDER.test(ref)) continue;                                 // a pattern for the next file of a kind
         if (RUNTIME.test(ref)) continue;                                     // exists only while a run or a release is going
+        if (ARTIFACT.test(ref)) continue;                                    // the release artifact, named after the version
         if (/^(?:https?:|mailto:|\/|\.\.\/\.\.|\.)/.test(ref)) continue;      // URL, absolute, or a bare extension (`.md`)
         if (ref.startsWith('./') || ref.startsWith('build/')) continue;      // run-time script path / a generated, never-committed file
         if (resolves(ref, doc)) continue;
