@@ -4,6 +4,16 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.112.0
+- Lane: U/I
+- Time: ~45 min (session start → release), deepseek-v4-pro; tokens not counted (no gate counter in this harness).
+- **Card images online, part 1 (Aegis-style official art): the server mirror + client fallback chain.** (`docs/reports/card-image-plan.md`)
+  - `apps/server` gains `GET /assets/card-images/<file>`: it resolves a card's `image` field (the Fandom wiki `File:` name) through the MediaWiki API, downloads and caches the art in a git-ignored mirror dir, and serves it — the type is sniffed from bytes, so the wiki's WebP transcode of a `.png`/`.jpg` name is served correctly. On-demand + cache: the first request for a card pays one wiki fetch, later ones are served from disk.
+  - The client's `cardImgSrc(id)` now falls back **player image (IndexedDB) → the online server's mirror → nothing (the text/colour placeholder)**, wired into `imgCls`/`imgSty` (hand, field, deck builder, library, online board) and `cardFaceHTML` (zoom, strips, details). The player's own image always wins; offline play is unchanged (no server → player images only).
+  - The Fandom CDN blocks hotlinks without a `Referer` header (403), so the mirror fetch sends one; the wiki is the already-approved read-only source.
+- Tests: `server_card_images` CIMG-S1..S4 (download + disk cache, missing → 404, path traversal + 405, opt-in route) and `card_images_client` CIMG-2 (player > mirror > placeholder precedence); full quick suite green.
+- Left for a later U/I session (optional, in the plan): bulk pre-fetch + `cwebp` re-encode, an offline URL manifest, alternate-art / per-language art.
+
 ## v0.111.0
 - Lane: U/I
 - Time: ~40 min (session start → release), deepseek-v4-pro; tokens not counted (no gate counter in this harness).
