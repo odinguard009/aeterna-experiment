@@ -34,9 +34,11 @@ What the session does instead, so nothing depends on the broken trigger:
 
 - after `git push`, dispatch CI by hand: `gh workflow run CI --ref main`, then watch it
   (`gh run list --workflow CI --limit 1`);
-- `Release` now fires on any green CI run on `main`, not only a push-triggered one, so a manual
-  dispatch is enough for the release step to run by itself; `tools/make_releases.sh` still only
-  creates versions missing from `CHANGELOG.md`, so a green run on an older commit is harmless;
+- **the release is created by hand** after CI is green: `CI_OK=1 bash tools/make_releases.sh HEAD <version>`.
+  `workflow_run` does not fire either (measured: the `Release` workflow did not start after a green CI
+  on `8441d3d`), so `release.yml`'s relaxed condition and CI's nightly `schedule` are forward-looking
+  settings, not something a session may rely on. They cost nothing and start working the day the
+  account-level cause is fixed; until then the session is the trigger;
 - CI also runs nightly at 19:23 UTC, so `main` is verified even in a week with no session;
 - `Regression` stays a manual dispatch (`tools/regression_due.sh` decides), and `v0.106.0` widened
   its "core engine" rule to every `packages/engine` and `packages/protocol` source.
