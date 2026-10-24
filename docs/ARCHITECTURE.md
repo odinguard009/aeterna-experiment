@@ -91,6 +91,7 @@ What to build next (v0.69.1): `python3 tools/pack_plan.py` orders the compile_v2
 | Node unit + engine tests | `tests/unit/*.test.mjs` (quiet board via `BS.testSetup()`) | `npm test`; quick subset `npm run -s loop` |
 | Property tests | `tests/unit/props.test.mjs` | `npm run test:props` |
 | Generated action tests (v0.69.2) | `tests/unit/fx_generated_cases.test.mjs` + `tests/unit/lib/fx-props.mjs`: one quiet board per action of every shipped card with complete effects, built from the action JSON (synthetic `FXP-` fixtures); uncovered shapes listed by FX01 | `node --test tests/unit/fx_generated_cases.test.mjs` |
+| Engine coverage ratchet (v0.106.0) | `tools/coverage.mjs`: V8 block coverage over ten seeded headless flows (both formats, every colour, a human seat) -> which **top-level function names** each engine part actually runs; floor in `tools/coverage-baseline.json` (raise, never lower), report `docs/reports/engine-coverage.md` | `npm run -s coverage`; `--check` in CI |
 | Scenarios | `tests/scenarios/*.json`, loaded with `BS.loadScenario(spec)` | used by unit and Python tests |
 | Python Playwright suites (UI flows, sims) | `tests/suites`, `tests/legacy` | `python3 tests/run_all.py --only <names>`; full run only on GitHub |
 | Release file check | `tests/unit/release.test.mjs` | `RELEASE_FILE=... npm run -s test:release` |
