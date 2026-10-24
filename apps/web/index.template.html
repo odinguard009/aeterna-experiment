@@ -45,7 +45,7 @@
     <header class="ae-phead"><div class="tx"><span class="ae-eyebrow">SETTINGS</span><h1>PREFERENCES</h1><p>Saved on this device.</p></div>
       <button class="ae-ghost" data-a="go-lobby">◄ HOME</button></header>
     <div class="set-grid">
-      <nav class="set-menu" id="set-menu" aria-label="Settings sections"><button data-a="set-sec" data-v="appearance" aria-current="true">Appearance</button><button data-a="set-sec" data-v="speed">Game speed</button><button data-a="set-sec" data-v="sound">Sound</button><button data-a="set-sec" data-v="cpu">CPU style</button><button data-a="set-sec" data-v="images">Card images</button><button data-a="set-sec" data-v="data">Saved data</button><button data-a="set-sec" data-v="history">Match history</button></nav>
+      <nav class="set-menu" id="set-menu" aria-label="Settings sections"><button data-a="set-sec" data-v="appearance" aria-current="true">Appearance</button><button data-a="set-sec" data-v="speed">Game speed</button><button data-a="set-sec" data-v="sound">Sound</button><button data-a="set-sec" data-v="cpu">CPU style</button><button data-a="set-sec" data-v="online">Online</button><button data-a="set-sec" data-v="images">Card images</button><button data-a="set-sec" data-v="data">Saved data</button><button data-a="set-sec" data-v="history">Match history</button></nav>
       <div class="set-body">
         <section class="set-card" id="set-s-appearance" aria-labelledby="set-h-appearance"><h2 id="set-h-appearance">Appearance</h2>
           <div class="srow"><div class="tx"><b id="set-l-mode">Mode</b><span>Dark or light board and menus.</span></div><span class="ae-toggle" id="set-mode" role="group" aria-labelledby="set-l-mode"><button data-a="theme-mode" data-v="dark" aria-pressed="true">DARK</button><button data-a="theme-mode" data-v="light" aria-pressed="false">LIGHT</button></span></div>
@@ -59,6 +59,8 @@
           <div class="srow"><div class="tx"><b>Sound effects</b><span>Short synthesized sounds for attacks, hits, summons and draws (no audio files).</span></div><select id="set-sound" class="sel" aria-label="Sound"><option value="off">Off</option><option value="on">On</option></select></div></section>
         <section class="set-card" id="set-s-cpu" aria-labelledby="set-h-cpu"><h2 id="set-h-cpu">CPU style</h2>
           <div class="srow"><div class="tx"><b>Style</b><span>How the CPU weighs attacks, blocks and plays (balanced is the default).</span></div><select id="set-cpu" class="sel" aria-label="CPU style"></select></div></section>
+        <section class="set-card" id="set-s-online" aria-labelledby="set-h-online"><h2 id="set-h-online">Online</h2>
+          <div class="srow"><div class="tx"><b>Server URL</b><span>Base address of the Aeterna server (http, no trailing slash). Leave empty to use this page's own address when the server serves it; the online room connects to the WebSocket one port up. Online rooms play Standard.</span></div><input id="set-online-url" class="sel" type="url" placeholder="http://localhost:8080" autocomplete="off" spellcheck="false"></div></section>
         <section class="set-card" id="set-s-images" aria-labelledby="set-h-images"><h2 id="set-h-images">Card images</h2>
           <div class="srow"><div class="tx"><b>Your card images</b><span id="set-imgs">Pictures you add in the Library. They stay on this device.</span></div><button class="ae-ghost" data-a="go-lib">OPEN LIBRARY</button></div></section>
         <section class="set-card" id="set-s-data" aria-labelledby="set-h-data"><h2 id="set-h-data">Saved data</h2>
@@ -118,6 +120,7 @@
     <div class="pl-modes">
       <button class="menu-btn primary ae-mode" data-a="start"><span class="ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M14.5 17.5L3 6V3h3l11.5 11.5M13 19l6-6M16 16l4 4"/></svg></span><span class="tx"><b>MATCH VS CPU</b><span>You play your deck, the CPU answers</span></span><span class="chev" aria-hidden="true">›</span></button>
       <button class="ae-mode" data-a="watch"><span class="ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span><span class="tx"><b>WATCH CPU VS CPU</b><span>The CPU plays your deck against the CPU deck</span></span><span class="chev" aria-hidden="true">›</span></button>
+      <button class="ae-mode" data-a="online"><span class="ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></span><span class="tx"><b>ONLINE VS BOT</b><span>Play through the Aeterna server (Standard; your deck vs the server bot)</span></span><span class="chev" aria-hidden="true">›</span></button>
     </div>
     <h2 class="ae-sec"><span>SETUP</span></h2>
     <div class="pl-setup">

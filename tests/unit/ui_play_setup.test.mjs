@@ -34,7 +34,7 @@ for (const screen of ['pc', 'phone']) {
     });
     assert.ok(r.head && r.deck && r.fmt && r.cpu, 'header, deck select, format button and CPU deck select visible');
     assert.match(r.status, /legal in ETERNAL/);
-    assert.deepEqual(r.modes, ['start', 'watch']);
+    assert.deepEqual(r.modes, ['start', 'watch', 'online']);
     assert.deepEqual(r.styles, await page.evaluate(() => Object.keys(BS.CPU_PROFILES)));
     assert.deepEqual(r.speeds, ['normal', 'fast', 'instant']);
     assert.deepEqual(r.pressed, ['balanced', 'normal']);

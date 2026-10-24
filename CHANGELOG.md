@@ -4,6 +4,18 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.108.0
+- Lane: U/I
+- Time: ~75 min (session start → release), deepseek-v4-pro; tokens not counted (no gate counter in this harness).
+- **M8 online client, part 1 (roadmap M8, `docs/ai/monorepo-plan.md`): the ONLINE VS BOT mode plays through the server.**
+  - `apps/web/src/13i-online.js`: a thin terminal that connects to the room server over WebSocket, renders its seat-filtered frames and answers its decision records (choice / pick / payment / info / action). Board actions send intents by uid and the server's `applyIntent` is authoritative — a refusal re-delivers the decision and an `acted ok:false` note marks the move illegal. The offline single-file game is untouched (its host is still `13e-host.js`).
+  - The server now serves the built client at `/` (`serve.mjs` reads the repo-root `index.html`; `http.mjs` got a static route) and tells the client its WebSocket endpoint through `GET /api/config` (`serve.mjs` starts the ws first and passes `wsUrl`), so one `node apps/server/src/serve.mjs` is enough to open the online client in a browser.
+  - `boardSnapshot` (engine) gained `steps` (the step list), `hu` (the seat's hand uids, so hand taps send intents by uid) and `h` + `bp` (each field card's heavy flag and its current BP as the engine computes it) — the online board draws correct BP without running the engine; the viewer replay ignores the new fields.
+  - `rooms.mjs` accepts the player's own deck as a card map (capped 120 entries / 4 copies), not only a prebuilt id, so a custom deck plays online; `host.mjs` broadcasts `acted` so the client learns an intent was refused.
+  - Board actions offered in part 1: NEXT + step chips, summon / cast / burst / mirage / brave from the hand, attack and core add/remove on the field. Accel, Contract Advent, Manifest, effect activations, the game log, the lobby with quick match / private room codes and the account panel are the part 2 follow-ups.
+- **Size budget raised with a note:** B01 700 → 725 KB and B02 200 → 208 KB (gzip), because the online client is a second board renderer — the offline renderer reads the live engine `G`, the online one reads the server frames, so its HTML builders are new code.
+- Tests: `tests/unit/online_client.test.mjs` (M8-40 the frame carries `steps`/`hu`/`h`/`bp`; M8-41 the served client plays a whole online match against the server bot to the end, auto-answered), plus `server_rooms`/`server_http`/`server_serve`/`server_clients` still green; `npm run -s loop -- --full`, `npm run check` and lint green.
+
 ## v0.107.0
 - Lane: U/I
 - Time: ~40 min (release session 16:20 → 17:00 WIB, wrapping the M7 steps 2-7 committed earlier today), deepseek-v4-pro; tokens not counted (no gate counter in this harness).

@@ -49,6 +49,7 @@ function renderSetPage() {
   if (g) g.innerHTML = THEME_COLS.map(c => `<button class="pcol" data-a="theme-color" data-v="${c.id}" aria-pressed="${c.id === THEME.color}" style="--c:${THEME.mode === 'light' ? c.l : c.d}"><i></i>${esc(c.name.replace(/ \(.*\)$/, ''))}</button>`).join('');
   dqa('#set-mode [data-a="theme-mode"]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === THEME.mode)));
   const cc = $('set-cpucol'); if (cc) cc.textContent = THEME.color === 'red' ? 'Blue' : 'Crimson';
+  const ou = $('set-online-url'); if (ou) ou.value = SETTINGS.onlineUrl || '';
   const mc = $('set-mat-clear'); if (mc) mc.disabled = !MAT.url;
   const im = $('set-imgs'); if (im) { const n = Object.keys(IMG).length; im.textContent = `${n} image${n === 1 ? '' : 's'} loaded. Add or remove them in the Library; they stay on this device.`; }
 }

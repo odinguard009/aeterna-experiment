@@ -31,14 +31,18 @@ function portRecord() {
  *  key ('player' / 'opponent') to stream that seat its full Hand and Burst only, or null for a spectator who is shown
  *  every Hand as a count and every Burst as "set" - hidden-card ids never leave the server through this filter. */
 function boardSnapshot(viewerKey) {
-  const fc = f => ({ id: f.id, uid: f.uid, c: f.cores, s: f.soul ? 1 : 0, x: f.exhausted ? 1 : 0, lv: lvNo(f), u: f.under.length ? f.under.map(x => x.id) : undefined, b: f.brave ? f.brave.id : undefined });
+  // h / bp (v0.108.0, M8 online client): the online board reads a frame without the engine, so a field card carries its
+  // heavy flag and its current BP as the engine computes them (buffs, Brave and Over Count included) - display only.
+  const fc = f => ({ id: f.id, uid: f.uid, c: f.cores, s: f.soul ? 1 : 0, x: f.exhausted ? 1 : 0, h: f.heavy ? 1 : 0, lv: lvNo(f), bp: bpOf(f), u: f.under.length ? f.under.map(x => x.id) : undefined, b: f.brave ? f.brave.id : undefined });
   const local = viewerKey === undefined;         // the same call as every viewer replay up to v0.104
   const side = p => ({
     name: p.name, life: p.life, ls: p.lifeSoul ? 1 : 0, res: p.reserve.n, rs: p.reserve.soul ? 1 : 0, tc: p.trashCores.n, ts: p.trashCores.soul ? 1 : 0, count: p.count, deck: p.deck.length,
-    hand: local ? (p.cpu ? p.hand.length : p.hand.map(h => h.id)) : (p.key === viewerKey ? p.hand.map(h => h.id) : p.hand.length), spirits: p.spirits.map(fc), nexus: p.nexus.map(fc), trash: p.trash.map(x => x.id), soulState: p.soulState.map(x => x.id),
+    hand: local ? (p.cpu ? p.hand.length : p.hand.map(h => h.id)) : (p.key === viewerKey ? p.hand.map(h => h.id) : p.hand.length),
+    hu: !local && p.key === viewerKey ? p.hand.map(h => h.uid) : undefined,   // v0.108.0 (M8): the seat's hand uids, same order as `hand`, so the online client can send intents by uid
+    spirits: p.spirits.map(fc), nexus: p.nexus.map(fc), trash: p.trash.map(x => x.id), soulState: p.soulState.map(x => x.id),
     removed: p.removed.map(x => x.id), burst: p.burst ? (local ? (p.cpu ? 'set' : p.burst.id) : (p.key === viewerKey ? p.burst.id : 'set')) : null, mirage: p.mirage ? p.mirage.id : null
   });
-  return { t: G.turnNo, st: G.step, sn: G.steps[G.step] || '', a: G.active, n: G.hn || 0, last: G.history.length ? G.history[G.history.length - 1] : '', over: !!G.over, w: G.winner || null, p: { player: side(G.p.player), opponent: side(G.p.opponent) } };
+  return { t: G.turnNo, st: G.step, sn: G.steps[G.step] || '', steps: G.steps.slice(), a: G.active, n: G.hn || 0, last: G.history.length ? G.history[G.history.length - 1] : '', over: !!G.over, w: G.winner || null, p: { player: side(G.p.player), opponent: side(G.p.opponent) } };
 }
 /** Re-runs a port record in this engine (any host: headless, or the web page when no match is open). Every decision is
  *  answered from the record in order (same seat and kind, else "diverged at answer N"); the host is restored afterwards.
