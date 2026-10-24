@@ -6,12 +6,14 @@
 # Due when any of:
 #   - no earlier Regression run is found, or the newest one did not succeed (the fix must be confirmed)
 #   - 3+ release commits (subject "vX.Y.Z ..." or, since v0.80, "docs: vX.Y.Z release docs"; fixed v0.94.0) on main since the commit the newest Regression ran on
-#   - core engine files changed since then (turn, battle, rules, state, zones, match, CPU, effect base/parse/resolve):
-#     these get 30 sims; everything else gets 10
+#   - core engine files changed since then: these get 30 sims; everything else gets 10.
+#     v0.106.0: "core" is the whole engine, not a hand-kept list of parts. The old regex named
+#     02a/02c/02d but not 02b (the action table) or 02k-02t, so a change to the effect actions -
+#     exactly the kind that broke the immunity wrapper this session - asked for only 10 sims.
 # gh failure = DUE sims=30 (never skip by accident).
 set -u
 REPO=odinguard009/aeterna-experiment
-CORE='^packages/(protocol/src|engine/src/(0[5-8]|09|15|02a|02c|02d))'
+CORE='^packages/(protocol/src|engine/src|engine/)'
 last=$(gh api "repos/$REPO/actions/workflows/regression.yml/runs?branch=main&per_page=10" \
   --jq '[.workflow_runs[] | select(.status=="completed" and .conclusion!="cancelled")][0] | "\(.head_sha) \(.conclusion)"' 2>/dev/null) \
   || { echo "DUE sims=30 (gh failed: run it to be safe)"; exit 0; }
