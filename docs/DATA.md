@@ -71,8 +71,18 @@ minutes; the session is a separate token in an `HttpOnly; SameSite=Lax` cookie f
 unless the server runs on plain http locally. The clock and the store are injected, which is what
 lets AA01-AA08 check expiry without sleeping.
 
+Done in step 4 (`apps/server/src/http.mjs`, tests API01-API06): the HTTP API over the store and the
+accounts service, a tiny `node:http` router with no new dependency. `/health`, `POST /api/login`
+(asks for a one-time link; without a mailer it returns the link so a local run can follow it),
+`GET /api/login?t=` (redeems the link, sets the session cookie, redirects to `/`), `/api/me`,
+`POST /api/logout`, and the two session-scoped library routes `GET /api/decks` and `GET /api/matches`.
+The account id is never read from a query string or a body - only from the session cookie, which is
+what API06 pins. The link path is an option on `accounts()`, so the router's `/api/login` and the
+mail are always the same route.
+
 Still owed:
 
 - Discord OAuth as a second way in (the account table already carries `discord_id`).
-- API routes over the store in `apps/server/src/run.mjs`, and room records written through it.
+- Wire the WebSocket room server (`apps/server/src/run.mjs`) to the store, so a finished room writes
+  its match and replay instead of dropping them.
 - `docker/compose.yml` for the server itself once there is a server image to run.

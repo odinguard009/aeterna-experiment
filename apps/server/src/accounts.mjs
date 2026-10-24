@@ -48,7 +48,7 @@ export function readCookie(header, name = COOKIE) {
  * @param {{ store: object, now?: () => number, origin?: string, secure?: boolean,
  *           loginTtlMs?: number, sessionTtlMs?: number, mailer?: (msg:{to:string,url:string})=>Promise<void>|void }} deps
  */
-export function accounts({ store, now = () => Date.now(), origin = 'http://localhost:8080', secure = true, loginTtlMs = LOGIN_TTL_MS, sessionTtlMs = SESSION_TTL_MS, mailer = null } = {}) {
+export function accounts({ store, now = () => Date.now(), origin = 'http://localhost:8080', secure = true, loginTtlMs = LOGIN_TTL_MS, sessionTtlMs = SESSION_TTL_MS, mailer = null, linkPath = '/login?t=' } = {}) {
   if (!store || !store.auth || !store.accounts) throw new Error('accounts: a store with accounts and auth is required');
   const iso = (ms) => new Date(ms).toISOString();
 
@@ -67,7 +67,7 @@ export function accounts({ store, now = () => Date.now(), origin = 'http://local
       }
       const token = newToken();
       await store.auth.putLogin({ tokenHash: hashToken(token), accountId: account.id, expiresAt: iso(now() + loginTtlMs) });
-      const url = `${origin.replace(/\/+$/, '')}/login?t=${token}`;
+      const url = `${origin.replace(/\/+$/, '')}${linkPath}${token}`;
       if (mailer) await mailer({ to: email, url });
       // Without a mailer (local runs, tests) the caller gets the link; a deployment always mails it.
       return { accountId: account.id, created, url, token: mailer ? null : token };
