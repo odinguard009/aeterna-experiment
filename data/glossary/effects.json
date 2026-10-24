@@ -26,7 +26,8 @@
     "pattern": "When your .{0,40} attacks",
     "engine": "ALLY_ATTACKS",
     "status": "wired",
-    "example": "{\"trigger\":\"ALLY_ATTACKS\",\"match\":{\"name\":[\"Crimson\"]}}"
+    "example": "{\"trigger\":\"ALLY_ATTACKS\",\"match\":{\"name\":[\"Crimson\"]}}",
+    "rule": "Eternal Rule Manual p. 58 (ETR:effects.simultaneous): effects that activate on one event are ordered here (constant before timed, the turn player orders the rest); the trigger itself is card text naming the ally."
   },
   {
     "id": "T_ALLY_BLOCKED",
@@ -35,7 +36,8 @@
     "pattern": "is blocked",
     "engine": "ALLY_BLOCKED",
     "status": "wired",
-    "example": ""
+    "example": "",
+    "rule": "Eternal Rule Manual p. 30 (ETR:battle.block): block-timing effects trigger after the block is declared and performed, which is the event this card text watches."
   },
   {
     "id": "T_ALLY_SUMMONED",
@@ -44,7 +46,8 @@
     "pattern": "is summoned|Neo-Core Charge",
     "engine": "ALLY_SUMMONED",
     "status": "wired",
-    "example": ""
+    "example": "",
+    "rule": "Eternal Rule Manual p. 24 (ETR:cost.paying): the summon it watches pays its cost and puts cores on the card; Neo-Core Charge itself is card text (docs/manual-notes.md \"Blue Nuadha card-text terms\")."
   },
   {
     "id": "T_ADVENT",
@@ -53,7 +56,8 @@
     "pattern": "When Advents|\\(When Advent\\)",
     "engine": "ADVENT",
     "status": "wired",
-    "example": ""
+    "example": "",
+    "rule": "Eternal Rule Manual p. 58 (ETR:effects.simultaneous): Advent is not a summon (keyword glossary in packages/engine/src/00-config.js; docs/manual-notes.md \"Costs and summons\"), and the (When Advents) trigger is card text that resolves as a timed effect."
   },
   {
     "id": "T_START_ATTACK",
@@ -62,7 +66,8 @@
     "pattern": "Start of Your Attack Step",
     "engine": "START_ATTACK",
     "status": "wired",
-    "example": ""
+    "example": "",
+    "rule": "Standard Rule Manual p. 5, JP ver 1.1 (SJP:turn): the step list and what each step does; a start-of-step head is card text that fires once when the step begins."
   },
   {
     "id": "T_ALLY_LIFE_HIT",
@@ -71,7 +76,8 @@
     "pattern": "reduces the opposing Life",
     "engine": "ALLY_LIFE_HIT",
     "status": "wired",
-    "example": ""
+    "example": "",
+    "rule": "Eternal Rule Manual p. 30 (ETR:battle.resolution): an unblocked attack takes Life equal to the attacker symbols; a trigger on that event is card text."
   },
   {
     "id": "T_ALLY_LOST",
@@ -80,7 +86,8 @@
     "pattern": "destroyed by the opponent|depleted by the opponent",
     "engine": "ALLY_LOST",
     "status": "partial",
-    "example": "Burst version uses ALLY_DESTROYED"
+    "example": "Burst version uses ALLY_DESTROYED",
+    "rule": "Standard Comprehensive Rules 12-2-1-12 (STD:12-2-1-12): \"destroyed by the opponent\" needs an opposing effect or a BP comparison with an opposing Spirit; depletion is not destruction (ETR:cores.depletion)."
   },
   {
     "id": "T_OPP_HAND_UP",
@@ -89,7 +96,8 @@
     "pattern": "opposing Hand increases",
     "engine": "OPP_HAND_UP",
     "status": "wired",
-    "example": ""
+    "example": "",
+    "rule": "Eternal Rule Manual p. 10 (ETR:setup): the opening hand and the Draw Step (SJP:turn) are the only draws; watching an opposing Hand increase is card text."
   },
   {
     "id": "T_MIRAGE_LIFE",
@@ -98,7 +106,8 @@
     "pattern": "During Set",
     "engine": "MIRAGE_OWN_LIFE / MIRAGE_OPP_LIFE",
     "status": "partial",
-    "example": "Other Mirage triggers (Flash, Soul State) are not wired"
+    "example": "Other Mirage triggers (Flash, Soul State) are not wired",
+    "rule": "Eternal Rule Manual p. 49 (ETR:burst-area): a Mirage sits in the Burst Area outside the Field; a [During Set] effect that watches a Life decrease is card text."
   },
   {
     "id": "T_REVEALED",
@@ -147,7 +156,8 @@
     "pattern": "draw (one|two|three|\\d) cards?",
     "engine": "DRAW",
     "status": "wired",
-    "example": ""
+    "example": "",
+    "rule": "Eternal Rule Manual p. 10 (ETR:setup): Deck to Hand at setup and in the Draw Step (SJP:turn); an effect draws the same way (SJP:effects)."
   },
   {
     "id": "A_COUNTER",
@@ -176,7 +186,8 @@
     "pattern": "destroy an opposing Nexus",
     "engine": "DESTROY nexus:true",
     "status": "wired",
-    "example": ""
+    "example": "",
+    "rule": "Eternal Rule Manual p. 22 (ETR:main.nexus): Nexus deployment; destroying a Nexus by an effect follows the card text, while Spirit destruction follows ETR:battle.destruction."
   },
   {
     "id": "A_BOUNCE",
@@ -185,7 +196,8 @@
     "pattern": "return an opposing .{0,20}to the Hand",
     "engine": "BOUNCE_OPP",
     "status": "wired",
-    "example": ""
+    "example": "",
+    "rule": "Eternal Rule Manual p. 31 (ETR:battle.destruction): returning a card to the Hand is not destruction, and a card leaving the Field waits in Standby first (docs/manual-notes.md, JP 17.0 revision notice item 4)."
   },
   {
     "id": "A_BANISH",
@@ -204,7 +216,8 @@
     "pattern": "\\+\\d+ ?BP|gain \\+\\d+",
     "engine": "BP_PLUS / STATIC bp",
     "status": "wired",
-    "example": ""
+    "example": "",
+    "rule": "Eternal Rule Manual p. 68 (ETR:faq.bp): BP changes stack on the current level and a Spirit at 0 BP is destroyed only by a card clause; printed numbers never go below zero (STD:1-4-6)."
   },
   {
     "id": "A_REFRESH",
@@ -223,7 +236,8 @@
     "pattern": "\\+\\d core",
     "engine": "CORE_TO_SELF",
     "status": "wired",
-    "example": ""
+    "example": "",
+    "rule": "Eternal Rule Manual p. 22 (ETR:main.moving-cores): cores move from the Reserve or the Void (ETR:cost.paying); Count cores are a separate pool outside the Field (ETR:count)."
   },
   {
     "id": "A_TRASH_TO_RESERVE",
@@ -232,7 +246,8 @@
     "pattern": "from your Trash to",
     "engine": "TRASH_CORES_TO",
     "status": "wired",
-    "example": "onlyCards, toAttacker, thenDestroyNexus"
+    "example": "onlyCards, toAttacker, thenDestroyNexus",
+    "rule": "Eternal Rule Manual p. 20 (ETR:turn.refresh-step): Trash cores return to the Reserve at the Refresh Step; an effect may make that move earlier (card text)."
   },
   {
     "id": "A_VOID",
@@ -281,7 +296,8 @@
     "pattern": "from your Trash to the Hand|from the Trash to the Hand",
     "engine": "RETURN_TRASH",
     "status": "wired",
-    "example": ""
+    "example": "",
+    "rule": "Standard Rule Manual p. 4, JP ver 1.1 (SJP:basics): the Trash is a public pile and cards leave it only by an effect."
   },
   {
     "id": "A_REVEAL_DECK",
@@ -290,7 +306,8 @@
     "pattern": "reveal (three|four|five|\\d) cards",
     "engine": "SOUL_ENTER src:reveal / REVEAL_DEPLOY / REVEAL_ADD (Magic)",
     "status": "partial",
-    "example": "Spirit/Nexus reveal-and-deploy not generic yet"
+    "example": "Spirit/Nexus reveal-and-deploy not generic yet",
+    "rule": "Eternal Rule Manual p. 58 (ETR:effects.simultaneous): revealing Deck cards is an effect; the ruling since v0.33 is that it resolves at once inside the revealing effect (docs/manual-notes.md \"Effects\")."
   },
   {
     "id": "A_AWAKEN",
@@ -299,7 +316,8 @@
     "pattern": "Awaken",
     "engine": "AWAKEN",
     "status": "wired",
-    "example": ""
+    "example": "",
+    "rule": "Eternal Rule Manual p. 22 (ETR:main.moving-cores): cores move between your cards in the Main Step; \"Awaken\" with its printed limit is card text."
   },
   {
     "id": "A_LIFE_TO_RESERVE",
@@ -308,7 +326,8 @@
     "pattern": "Life .{0,30}Reserve",
     "engine": "LIFE_TO_RESERVE",
     "status": "wired",
-    "example": ""
+    "example": "",
+    "rule": "Eternal Rule Manual p. 30 (ETR:battle.resolution): a reduced Life sends its cores to the Reserve; the same move by an effect is card text."
   },
   {
     "id": "A_EXHAUST",
@@ -327,7 +346,8 @@
     "pattern": "opponent discards|discard.{0,20}opposing",
     "engine": "DISCARD_OPP_BURST only",
     "status": "partial",
-    "example": ""
+    "example": "",
+    "rule": "Standard Rule Manual p. 4, JP ver 1.1 (SJP:basics): a card leaves a hidden Hand for the Trash by an effect, and its owner picks."
   },
   {
     "id": "A_SYMBOL",
@@ -336,7 +356,8 @@
     "pattern": "extra .{0,12}symbol",
     "engine": "SYMBOL_PLUS (this battle) / SYMBOL_PLUS_TURN (this turn, coloured)",
     "status": "partial",
-    "example": "Magma Call Flash"
+    "example": "Magma Call Flash",
+    "rule": "Eternal Rule Manual p. 13 (ETR:card.symbols): symbols drive cost reduction and Life damage and include God and Ultimate symbols; extra or changed symbols are card text."
   },
   {
     "id": "A_END_ATTACK",
@@ -345,7 +366,8 @@
     "pattern": "end the Attack Step",
     "engine": "END_ATTACK_AFTER_BATTLE / STATIC NO_END_ATTACK",
     "status": "wired",
-    "example": "Meteor Defense Flash"
+    "example": "Meteor Defense Flash",
+    "rule": "Standard Rule Manual p. 5, JP ver 1.1 (SJP:turn): the Attack Step and where it sits; effects already pending resolve first (ETR:effects.simultaneous); ending the step early is card text."
   },
   {
     "id": "A_SEAL",
@@ -364,7 +386,8 @@
     "pattern": "[Ll]ife is (at )?(\\w+) or less",
     "engine": "lifeLe / lifeGe",
     "status": "wired",
-    "example": ""
+    "example": "",
+    "rule": "Eternal Rule Manual p. 10 (ETR:setup): Life is a core count in the Life area; a condition on it is card text."
   },
   {
     "id": "C_COUNTER",
@@ -373,7 +396,8 @@
     "pattern": "C\\d+ or more|counter .{0,10}or more",
     "engine": "counterGe",
     "status": "wired",
-    "example": ""
+    "example": "",
+    "rule": "Eternal Rule Manual p. 22 (ETR:main.nexus): counters are put on Nexuses by effects; Count cores are a separate Void-fed pool (ETR:count); a counter threshold is card text."
   },
   {
     "id": "C_CONTROL",
@@ -382,7 +406,8 @@
     "pattern": "if you control any",
     "engine": "controlName / hasName",
     "status": "wired",
-    "example": ""
+    "example": "",
+    "rule": "Eternal Rule Manual p. 54 (ETR:contract.soul-state): \"control\" means on your Field and a Soul State card is not on the Field, which is why the engine has an explicit incl.-Soul-State form."
   },
   {
     "id": "C_ONCE",
@@ -401,7 +426,8 @@
     "pattern": "Your Turn|Opposing Turn|opposing turn",
     "engine": "oppTurn",
     "status": "partial",
-    "example": "Your Turn limit on Flash only partly"
+    "example": "Your Turn limit on Flash only partly",
+    "rule": "Standard Rule Manual p. 5, JP ver 1.1 (SJP:turn): one seat holds the turn at a time; \"opposing turn\" is a card-text timing."
   },
   {
     "id": "C_LEVEL",
@@ -410,7 +436,8 @@
     "pattern": "\\[LV\\d\\]",
     "engine": "lv",
     "status": "wired",
-    "example": ""
+    "example": "",
+    "rule": "Eternal Rule Manual p. 27 (ETR:cores.depletion): levels are core thresholds and too few cores is depletion, not destruction; a [LV1][LV2] head is printed on the card."
   },
   {
     "id": "S_MUST_BLOCK",
@@ -419,7 +446,8 @@
     "pattern": "must block",
     "engine": "STATIC flag MUST_BLOCK",
     "status": "wired",
-    "example": ""
+    "example": "",
+    "rule": "Eternal Rule Manual p. 30 (ETR:battle.block): one untapped Spirit or Ultimate may block; \"must block if possible\" is card text on top of that."
   },
   {
     "id": "S_NO_RETURN",
@@ -428,7 +456,8 @@
     "pattern": "can't be returned|cannot be returned",
     "engine": "STATIC flag NO_RETURN",
     "status": "wired",
-    "example": ""
+    "example": "",
+    "rule": "Eternal Rule Manual p. 31 (ETR:battle.destruction): every way of leaving the Field goes through Standby first (docs/manual-notes.md, JP 17.0 revision notice item 4); a lock against being returned is card text."
   },
   {
     "id": "S_CORES_DRAW",
@@ -437,7 +466,8 @@
     "pattern": "When cores are sent to this Spirit",
     "engine": "STATIC flag CORES_DRAW",
     "status": "wired",
-    "example": ""
+    "example": "",
+    "rule": "Eternal Rule Manual p. 22 (ETR:main.moving-cores): cores moving onto a Field card; drawing on that event is card text."
   },
   {
     "id": "S_UNAFFECTED",
@@ -456,7 +486,8 @@
     "pattern": "can't be prevent|cannot be prevent",
     "engine": "action flag ignoreImmune (DESTROY coresLe since v0.39; every cands list honours it since v0.58)",
     "status": "partial",
-    "example": ""
+    "example": "",
+    "rule": "Eternal Rule Manual p. 62 (ETR:faq.effects-q3): effect priority: \"cannot\" beats \"must\" beats \"may/do\"; \"cannot be prevented\" beats \"unaffected\" beats \"cannot activate\" (ETR:faq.effects-q4)."
   },
   {
     "id": "K_BURST",
@@ -475,7 +506,8 @@
     "pattern": "by paying the cost, activate this card's \\(Flash\\)",
     "engine": "burst.thenFlash (burstFlash)",
     "status": "wired",
-    "example": ""
+    "example": "",
+    "rule": "Eternal Rule Manual p. 46 (ETR:burst): a Burst activates with the other effects of its event and the Flash timings follow (SJP:flash); paying to use the Flash effect after the Burst is card text."
   },
   {
     "id": "K_MIRAGE",
@@ -514,7 +546,8 @@
     "pattern": "Revive",
     "engine": "revive:true",
     "status": "wired",
-    "example": ""
+    "example": "",
+    "rule": "Revive is not covered by any manual chunk read so far (docs/rules/kb.json known_gaps), so the Eternal Rule Manual and Standard Comprehensive Rules offer no text here; the engine follows the printed card text (docs/manual-notes.md \"Not found in the online text yet\")."
   },
   {
     "id": "K_CONTRACT",
@@ -523,7 +556,8 @@
     "pattern": "Contract Field|Contract Skill",
     "engine": "ACTIVATE + CONTRACT_FIELD_ADVENT",
     "status": "wired",
-    "example": ""
+    "example": "",
+    "rule": "Eternal Rule Manual p. 44 (ETR:gw.contract): and the Contract card at setup (ETR:contract.setup); the printed Contract Skill cost is card text (docs/manual-notes.md \"Nexus Brave Contract Skill N\")."
   },
   {
     "id": "K_GRANDWALKER",
@@ -592,7 +626,8 @@
     "pattern": "Succession|Soul Magic|Shinkai",
     "engine": "(not wired)",
     "status": "missing",
-    "example": ""
+    "example": "",
+    "rule": "Standard Comprehensive Rules 12-2-1-2 (STD:12-2-1-2): Soul Magic also per SJP:soul-magic; Inherit (Succession) Summon per SJP:inherit; Shinkai-ho is not covered by a manual chunk and follows the printed text."
   },
   {
     "id": "K_SEAL",
