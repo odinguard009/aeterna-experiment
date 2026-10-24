@@ -4,6 +4,7 @@ __pycache__/
 tests/last-run.json
 node_modules/
 build/
+apps/server/.card-images/
 repomix-output*
 brand/
 # Editor/agent folders: per-machine state, never shared. .vscode/settings.json used

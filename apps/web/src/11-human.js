@@ -57,11 +57,18 @@ function cardDetailHTML(card, noArt) {
       <b>Effect text:</b>${effectTextHTML(card, false)}${card.implemented ? '' : card.partial ? '<div class="warn-note">⚠ Only part of this effect text is implemented in this build yet.' + residualHTML(card) + '</div>' : '<div class="warn-note">⚠ This effect is not implemented in this build yet.</div>'}</div>`;
 }
 const residualHTML = card => (card.residual && card.residual.length ? '<br>Not implemented yet:<ul style="margin:2px 0 0 14px;padding:0;">' + card.residual.map(r => `<li>${esc(r)}</li>`).join('') + '</ul>' : '');
+function cardFacePlaceholder(card, withCost, col, extra) {
+  const bp = card.levels[0] && card.levels[0].bp != null ? card.levels[0].bp + ' BP' : card.brave ? 'Brave +' + card.brave.bp + ' BP' : '';
+  return `<div class="cface ph" style="--card-col:${col}${extra ? ';' + extra : ''}"><div class="ph-name">${esc(card.name)}</div><div class="ph-sub">${esc(card.token ? 'Token Spirit' : card.type)} · ${esc(cap(card.symbol))}${withCost ? ' · Cost ' + card.cost : ''}</div><div class="ph-txt">${slashBreak(esc(card.desc))}</div><div class="ph-bp">${bp}</div></div>`;
+}
 function cardFaceHTML(card, withCost) {
   const col = `var(--color-${card.symbol})`;
-  if (IMG[card.id]) return `<img class="cface" style="--card-col:${col}" src="${IMG[card.id]}" alt="${esc(card.name)}">`;
-  const bp = card.levels[0] && card.levels[0].bp != null ? card.levels[0].bp + ' BP' : card.brave ? 'Brave +' + card.brave.bp + ' BP' : '';
-  return `<div class="cface ph" style="--card-col:${col}"><div class="ph-name">${esc(card.name)}</div><div class="ph-sub">${esc(card.token ? 'Token Spirit' : card.type)} · ${esc(cap(card.symbol))}${withCost ? ' · Cost ' + card.cost : ''}</div><div class="ph-txt">${slashBreak(esc(card.desc))}</div><div class="ph-bp">${bp}</div></div>`;
+  const src = cardImgSrc(card.id);                              // v0.112.0: player image first, then the online mirror
+  if (!src) return cardFacePlaceholder(card, withCost, col);
+  // A player blob never fails; the mirrored URL may 404 (the wiki lacks that card), so it carries an
+  // onerror that swaps to the text placeholder rendered right behind it.
+  if (IMG[card.id]) return `<img class="cface" style="--card-col:${col}" src="${src}" alt="${esc(card.name)}">`;
+  return `<img class="cface" style="--card-col:${col}" src="${src}" alt="${esc(card.name)}" onerror="this.style.display='none';this.nextElementSibling.style.display=''">${cardFacePlaceholder(card, withCost, col, 'display:none')}`;
 }
 /* v0.27: card images for a list of cards (instances or ids), in a strip that scrolls sideways */
 function cardStripHTML(list, head) {
