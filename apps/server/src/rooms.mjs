@@ -12,8 +12,10 @@ export function newRegistry() {
 export function roomOf(reg, id) {
   return (id != null && reg.rooms.get(String(id))) || null;
 }
-/** Join or rejoin a room. msg = { room?, seat?: 'player', token?, deck?, key?, seed? }.
- *  - seat 'player': claims the seat on the first join (a deck is required) and answers reconnects by token.
+/** Join or rejoin a room. msg = { room?, seat?: 'player', token?, deck?, key?, seed?, accountId?, displayName? }.
+ *  - seat 'player': claims the seat on the first join (a deck is required) and answers reconnects by token;
+ *    accountId/displayName are optional and recorded with the seat (run.mjs resolves them from a session, not
+ *    from the wire) so a finished match can name the player who signed in.
  *  - no seat: a spectator (fits any number of clients).
  *  Resolves { ok, room, seat, viewerKey, token, again, seats } or { ok: false, reason }. */export function joinRoom(reg, msg) {
   msg = msg || {};
@@ -38,7 +40,15 @@ export function roomOf(reg, id) {
       return { ok: false, reason: 'the player seat needs a deck (a prebuilt deck id)' };
     }
     const token = 'r' + room.seq + '-' + Math.random().toString(36).slice(2, 12);
-    room.seats.player = { token, deck: String(msg.deck).slice(0, 80), key: msg.key != null ? String(msg.key).slice(0, 80) : null };
+    // accountId/displayName are optional and only ever resolved server-side (run.mjs passes them from the
+    // session cookie, never from the wire): a guest seat keeps both null and records with a "Player" name.
+    room.seats.player = {
+      token,
+      deck: String(msg.deck).slice(0, 80),
+      key: msg.key != null ? String(msg.key).slice(0, 80) : null,
+      accountId: msg.accountId != null ? String(msg.accountId).slice(0, 64) : null,
+      displayName: msg.displayName != null ? String(msg.displayName).slice(0, 40) : null,
+    };
     return { ok: true, room, seat: 'player', viewerKey: 'player', token, again: false, seats: { player: true } };
   }
   return { ok: true, room, seat: null, viewerKey: null, token: null, again: false, seats: { player: !!room.seats.player } };

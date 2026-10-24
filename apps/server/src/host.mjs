@@ -5,6 +5,8 @@
    port through the engine's own cpuAnswer (the M6 plan), and the human seat's open decision is delivered to the
    transport and awaits the reply; a configured timeout answers it with cpuAnswer as well (v1 policy, never hangs).
    No transports, no packages: the ws wrapper (run.mjs) is the only caller besides the tests.
+   opts.onOver(host) (optional, async) runs once when the match ends, after summary/record are set - the M7
+   hook that lets run.mjs write the finished match + replay to the store; H.saved awaits it.
    --------------------------------------------------------------------- */
 import { frameFor, leaks } from './views.mjs';
 
@@ -15,9 +17,10 @@ export function newRoomHost(E, opts) {
   const send = opts.send || (() => {});                       // send(msg, viewerKey): route to the viewers of that key
   const now = opts.now || (() => Date.now());
   const decideTimeoutMs = opts.decideTimeoutMs != null ? opts.decideTimeoutMs : null;   // null: wait forever
+  const onOver = opts.onOver || null;                            // optional async(host): a finished match writes its record (M7)
   const viewers = new Set();
   const H = {
-    E, started: null, over: false, error: null, summary: null, record: null, open: null, timedOut: 0, flushes: 0,
+    E, started: null, over: false, error: null, summary: null, record: null, open: null, saved: null, timedOut: 0, flushes: 0,
     start: null, answer: null, answerCPU: null, snapshot: null, pending: null, register: null, unregister: null, stop: null
   };
   let dirty = false, flushTimer = null;
@@ -40,6 +43,11 @@ export function newRoomHost(E, opts) {
       H.summary = E.matchSummary();
       try { H.record = E.portRecord(); } catch (e) { H.record = null; H.error = H.error || 'record: ' + e.message; }
       broadcast({ t: 'over', summary: H.summary });
+      // M7: the finished match is handed to the room's recorder (run.mjs writes it to the store). It is
+      // fire-and-forget here - the summary/record are already broadcast - and H.saved lets a test await it.
+      H.saved = onOver
+        ? Promise.resolve().then(() => onOver(H)).catch(e => { H.error = H.error || 'onOver: ' + (e && e.message ? e.message : String(e)); return null; })
+        : Promise.resolve(null);
     }
     for (const key of viewers) pushFrame(key);
   };

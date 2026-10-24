@@ -80,9 +80,21 @@ The account id is never read from a query string or a body - only from the sessi
 what API06 pins. The link path is an option on `accounts()`, so the router's `/api/login` and the
 mail are always the same route.
 
+Done in step 5 (`apps/server/src/run.mjs`, `host.mjs`, `rooms.mjs`): the WebSocket room server now
+writes a finished match instead of dropping it. `startServer({ store, accounts })` passes the room
+host an `onOver` hook; when the match ends the hook assembles the match (inputs from the port record
+- seed, both decks, keys, build, format - plus the outcome and both seats) and the replay (the v2 port
+record and its 8-hex zero-padded log hash) and calls `store.matches.record`. The player's account is
+resolved from the session cookie of the WebSocket upgrade request through the accounts service, never
+from the join message; a guest seat records `accountId: null` and the name "Player", and the opponent
+is always the server's bot (`isBot: true`, named after its deck). A broken match (no record or
+summary) writes nothing. `host.mjs` exposes the hook as `opts.onOver(host)` plus an awaited `H.saved`;
+`run.mjs` returns `recordOf(roomId)` (the raw record) and `savedOf(roomId)` (the store write). Pinned
+by M6-27 (the hook) and M7-31/M7-32 (a full WebSocket match writes the match + replay to the memory
+store, and a signed-in seat is recorded under its account from the cookie alone - replaying the stored
+record reproduces the stored hash).
+
 Still owed:
 
 - Discord OAuth as a second way in (the account table already carries `discord_id`).
-- Wire the WebSocket room server (`apps/server/src/run.mjs`) to the store, so a finished room writes
-  its match and replay instead of dropping them.
 - `docker/compose.yml` for the server itself once there is a server image to run.

@@ -107,6 +107,21 @@ test('M6-24 frames on the wire: the seat sees its own side only, the spectator o
   assert.ok(withHand > 0, 'the seat saw its own hand ids at least once');
 });
 
+test('M6-27 room host: onOver fires once at the end with the summary and the v2 record (the M7 store hook)', async () => {
+  const E = roomEngine();
+  const calls = [];
+  const H = newRoomHost(E, { send: () => {}, onOver: h => { calls.push({ summary: h.summary, record: h.record }); } });
+  H.register('player');
+  assert.equal(H.start({ seed: 3, deck: 'std01', deckB: 'std03' }).ok, true);
+  assert.equal(H.saved, null, 'no write is pending before the match ends');
+  await scriptToOver(H);
+  const saved = await H.saved;                                  // the hook ran fire-and-forget; H.saved awaits it
+  assert.equal(calls.length, 1, 'onOver fired exactly once');
+  assert.ok(calls[0].summary && calls[0].summary.winner, 'onOver saw the summary');
+  assert.ok(calls[0].record && calls[0].record.v === 2, 'onOver saw the v2 record');
+  assert.equal(saved, undefined, 'a void hook resolves undefined');
+});
+
 test('M6-25 one engine context per room: the load cost into memory and time is printed once to pick a room limit', async () => {
   const h0 = process.memoryUsage().heapUsed;
   const t0 = Date.now();

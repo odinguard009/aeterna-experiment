@@ -6,6 +6,8 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { leaks } from '../../apps/server/src/views.mjs';
 import { firstAnswer, replayPort } from '../../packages/engine/headless.mjs';
+import { memoryStore } from '../../apps/server/src/store.mjs';
+import { accounts, newToken, hashToken } from '../../apps/server/src/accounts.mjs';
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 let ws = null;
@@ -19,7 +21,8 @@ const DECK = 'std01';                                       // room rules: stand
 function connect(url, room, opts = {}) {
   opts = opts || {};
   return new Promise((open, fail) => {
-    const c = { sock: new ws(url), msgs: [], seat: opts.seat || null, token: null, hold: !!opts.hold, closed: false };
+    const sock = opts.headers ? new ws(url, { headers: opts.headers }) : new ws(url);   // headers: the ws handshake cookie for the account drill
+    const c = { sock, msgs: [], seat: opts.seat || null, token: null, hold: !!opts.hold, closed: false };
     c.send = m => c.sock.send(JSON.stringify(m));
     c.close = () => { if (!c.closed) { c.closed = true; c.sock.close(); } };
     c.sock.on('message', raw => {
@@ -112,6 +115,65 @@ test('M6-26b CI: killing the seat mid-decision and reconnecting by token re-deli
   } finally {
     if (frozen && frozen.sock.readyState <= 1) frozen.sock.close();
     if (again) again.close();
+    await sv.close();
+  }
+});
+
+// M7 store wiring (v0.107.0): a finished room writes its match + replay through the store instead of dropping
+// them. Both drills run the same full match as M6-26, so they skip without ws and run in CI.
+
+test('M7-31 CI: a finished room writes its match and replay to the store (guest player, bot opponent)', { skip: SKIP }, async () => {
+  const store = memoryStore();
+  const { startServer } = await import('../../apps/server/src/run.mjs');
+  const sv = await startServer({ port: 0, decideTimeoutMs: 20000, store });
+  let seat = null;
+  try {
+    seat = await connect(sv.url, 'G1', { seat: 'player', deck: DECK, seed: 5 });
+    await waitUntil(() => seat.msgs.some(x => x.t === 'over'), 40000, 'the match ended');
+    const saved = await sv.savedOf('G1');
+    assert.ok(saved, 'the finished match was written to the store');
+    assert.equal(saved.roomCode, 'G1', 'the room id is the room code');
+    assert.equal(saved.format, 'standard');
+    assert.equal(saved.seed, 5);
+    assert.deepEqual(saved.deckA, saved.deckA && typeof saved.deckA === 'object' ? saved.deckA : null, 'deckA is a card map');
+    assert.ok(['player', 'opponent'].includes(saved.winner), 'the winner is a seat');
+    assert.ok(Number.isInteger(saved.turns) && saved.turns >= 0, 'the turn count is a whole number');
+    assert.deepEqual(saved.seats[0], { seat: 'player', accountId: null, displayName: 'Player', isBot: false });
+    assert.equal(saved.seats[1].seat, 'opponent');
+    assert.equal(saved.seats[1].accountId, null);
+    assert.equal(saved.seats[1].isBot, true);
+    assert.ok(saved.seats[1].displayName.length >= 1 && saved.seats[1].displayName.length <= 40, 'the bot seat names its deck');
+    assert.ok(saved.replay && saved.replay.record && saved.replay.record.v === 2, 'the replay keeps the v2 port record');
+    assert.equal(saved.replay.logHash.length, 8, 'the log hash is the 8-hex zero-padded hash');
+    const rp = await replayPort(saved.replay.record);
+    assert.equal(rp.ok, true, rp.reason);
+    assert.equal(String(rp.final.hash).padStart(8, '0'), saved.replay.logHash, 'replaying the stored record reproduces the stored hash');
+  } finally {
+    if (seat) seat.close();
+    await sv.close();
+  }
+});
+
+test('M7-32 CI: a signed-in seat is recorded under its account, resolved from the session cookie only', { skip: SKIP }, async () => {
+  const store = memoryStore();
+  const ACC = { id: '99999999-9999-4999-8999-999999999999', email: 'odin@example.com', displayName: 'Odin' };
+  await store.accounts.create(ACC);
+  const session = newToken();
+  await store.auth.putSession({ tokenHash: hashToken(session), accountId: ACC.id, expiresAt: new Date(Date.now() + 120000).toISOString() });
+  const { startServer } = await import('../../apps/server/src/run.mjs');
+  const sv = await startServer({ port: 0, decideTimeoutMs: 20000, store, accounts: accounts({ store }) });
+  let seat = null;
+  try {
+    seat = await connect(sv.url, 'G2', { seat: 'player', deck: DECK, seed: 5, headers: { cookie: 'aeterna_session=' + session } });
+    await waitUntil(() => seat.msgs.some(x => x.t === 'over'), 40000, 'the match ended');
+    const saved = await sv.savedOf('G2');
+    assert.ok(saved, 'the finished match was written to the store');
+    assert.deepEqual(saved.seats[0], { seat: 'player', accountId: ACC.id, displayName: 'Odin', isBot: false }, 'the account came from the cookie, not the join');
+    const list = await store.matches.listOf(ACC.id);
+    assert.equal(list.length, 1, 'the account history lists the match');
+    assert.equal(list[0].id, saved.id);
+  } finally {
+    if (seat) seat.close();
     await sv.close();
   }
 });
