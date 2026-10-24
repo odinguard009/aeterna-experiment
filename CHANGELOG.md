@@ -4,6 +4,18 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.107.0
+- Lane: U/I
+- Time: ~40 min (release session 16:20 → 17:00 WIB, wrapping the M7 steps 2-7 committed earlier today), deepseek-v4-pro; tokens not counted (no gate counter in this harness).
+- **M7 database + Docker done (steps 2-7): server accounts, HTTP API, match/replay store, Discord OAuth and the compose image.**
+  - Store contract and Postgres binding (step 2): `apps/server/src/store.mjs` + `store-pg.mjs` (SV01-SV05 contract tests, live SP01-SP04), and the `db` CI job applies the migrations twice against a Postgres 16 service container.
+  - Magic-link login and sessions (step 3): `db/migrations/0002_sessions.sql` + `apps/server/src/accounts.mjs` — single-use hashed tokens, `HttpOnly` sessions (AA01-AA08), SP05 for the live half.
+  - HTTP API (step 4): `apps/server/src/http.mjs` — the account and library routes, cookie-only auth (API01-API06).
+  - A finished room writes its match and replay through the store (step 5).
+  - Discord OAuth login and the server image for compose (step 6-7): `apps/server/src/oauth-discord.mjs`, `apps/server/Dockerfile`, `docker/compose.yml`.
+- **Release tooling:** releases are created by hand after a green CI run (`tools/make_releases.sh`); push-triggered workflows still do not fire in this repository (account-level cause, documented in `docs/ai/release.md`).
+- Tests: `server_store`, `server_store_pg`, `server_accounts`, `server_http`, `server_oauth_discord`, `server_serve` plus `server_clients`/`server_rooms` extended; `npm run check`, lint and the loop green.
+
 ## v0.106.0
 - Lane: U/I
 - Time: ~45 min (09:27 WIB analysis start -> 10:12 release), deepseek-v4-flash-vision-exp; tokens not counted (no gate counter in this harness).
