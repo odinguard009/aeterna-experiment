@@ -17,12 +17,13 @@ Read `docs/manual-notes.md`; fetch the official PDF only for a rule that is miss
 
 ## Workflow
 1. Read the card text exactly; write the card's `effects` JSON in `data/cards/saga-NN.json` before touching engine code (data: the Fandom export in the repo first, `data/import` and `data/sources` (needs `git sparse-checkout add data/sources`), then the official card list; card images only when those cannot settle it; never AI guesses).
-2. If a trigger/action/condition is missing, add it to the tables with a validation rule so bad JSON is rejected. This changes the effect format (`docs/ai/effect-format.md`): raise `SCHEMA_VERSION` in `tools/fx_schema.mjs`, run `node tools/fx_schema.mjs`, commit `packages/engine/fx-schema.json` and add a line under "Versions" there (the loop's `fx validate` step fails until then).
+2. If a trigger/action/condition is missing, add it to the tables with a validation rule so bad JSON is rejected. This changes the effect format (`docs/ai/effect-format.md`): raise `SCHEMA_VERSION` in `tools/fx_schema.mjs`, run `node tools/fx_schema.mjs`, commit `packages/engine/fx-schema.json` and add a line under "Versions" there (the loop's `fx validate` step fails until then). Also run `node tools/compiler_wiring.mjs` (`docs/reports/compiler-wiring.md` lists the engine actions the compilers still cannot emit).
 3. Expose new helpers through `window.BS` (in `16-events.js`) when tests need them.
-4. `python3 tools/build_cards.py && python3 tools/tag_effects.py && npm run -s loop` (loop = build + lint + smoke tests + changed test files).
-5. Tests, cheapest first: Node engine tests in the style of `tests/unit/engine.test.mjs` (quiet board via `BS.testSetup()`; positive, negative/condition false, once-per-turn, human prompt vs CPU) -> `npm run test:quick`; a scenario (`tests/scenarios`, `BS.loadScenario`) or a `tests/suites/vNN_tests.py` case for UI prompts; `npm run test:props` for CPU-vs-CPU with the card in a deck. Then the release gate in `docs/ai/release.md`.
-6. If the glossary entry is listed in `tests/unit/known-gaps.json`, remove it once it has a rule note (the ratchet test enforces this).
-7. Close the matching GitHub issue (`Fixes #N` in the commit; tick the checklist in the roadmap issue).
+4. `python3 tools/build_cards.py && python3 tools/tag_effects.py && python3 tools/residual_tags.py && npm run -s loop` (loop = build + lint + smoke tests + changed test files).
+5. **Verify against the source text (the compiler is a measurement tool, never the source of correctness):** for each promoted card run `python3 tools/card_verify.py <id>` and confirm every printed clause maps to an action or is named in `residual`; a clause that is neither is a false complete. `fxComplete: true` must mean every printed effect runs.
+6. Tests, cheapest first: Node engine tests in the style of `tests/unit/engine.test.mjs` (quiet board via `BS.testSetup()`; positive, negative/condition false, once-per-turn, human prompt vs CPU) -> `npm run test:quick`; a scenario (`tests/scenarios`, `BS.loadScenario`) or a `tests/suites/vNN_tests.py` case for UI prompts; `npm run test:props` for CPU-vs-CPU with the card in a deck. Then the release gate in `docs/ai/release.md`.
+7. If the glossary entry is listed in `tests/unit/known-gaps.json`, remove it once it has a rule note (the ratchet test enforces this).
+8. Close the matching GitHub issue (`Fixes #N` in the commit; tick the checklist in the roadmap issue).
 
 ## Roadmap
 Open items live in `docs/ai/roadmap-open.md` (read the lines for the mechanic you touch; delete an item there when done) and in GitHub Issues. Rules follow the latest official manuals (Eternal 17.x, Standard 1.x); re-read them when in doubt rather than relying on memory.

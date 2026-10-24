@@ -4,6 +4,16 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.115.0
+- Lane: U/I
+- Time: ~20 min (session start → release), deepseek-v4-pro; tokens not counted (no gate counter in this harness).
+- **Card-session prep tooling (pipeline review follow-ups).** The effect-input / engine-update pipeline is already sound (effects as data + a source-generated schema + dual validation + the honest partial-card `residual`), so this adds the review's four follow-ups instead of touching the format:
+  - `tools/residual_tags.py` → `data/glossary/residual-tags.json` + `docs/reports/residual-blockers.md`: classifies each partial card's `residual` clauses with the glossary patterns and ranks the partial/missing blockers by how many cards they keep incomplete — the "what to build next" signal without a scratch recompile.
+  - `tools/compiler_wiring.mjs` → `docs/reports/compiler-wiring.md`: lists the engine actions the two text compilers cannot emit (hand-write only), so a card session knows which actions are data-only vs engine work.
+  - `docs/ai/effect-format.md` now states that `npm run loop` runs `fx_validate --static` and the live `BS.parseCard` gate is test FS03 (pre-push / CI).
+  - `python3 tools/card_verify.py` is named in the promotion path (`tools/promote_compiled.mjs`, skill `bs-effect-mechanic-adder`): the compiler is a measurement tool, never the source of correctness.
+  - Freshness is gated by `tests/unit/tooling_reports.test.mjs` (full set only, so the ~15 s loop stays fast). No change to the shipped game file.
+
 ## v0.114.0
 - Lane: U/I
 - Time: ~30 min (session start → release), deepseek-v4-pro; tokens not counted (no gate counter in this harness).

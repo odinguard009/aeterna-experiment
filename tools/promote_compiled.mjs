@@ -8,7 +8,10 @@
 //   node tools/promote_compiled.mjs build/compiled.json --dry    -> check only
 //   add --v2 when the file comes from tools/compile_v2.py (v0.61.0; the note names it); v0.79.0: --partial output
 //   (fxComplete false + residual) is promoted the same way, with a note naming the residual
-// Then: python3 tools/tag_effects.py && npm run -s loop
+// Then: python3 tools/tag_effects.py && python3 tools/residual_tags.py && npm run -s loop
+// Semantic fidelity (the compiler is a measurement tool, never the source of correctness): before a batch is final,
+// run `python3 tools/card_verify.py <id>` for each newly promoted `fxComplete: true` card and confirm every printed
+// clause maps to an action or is named in `residual`; a clause that is neither is a false complete.
 import { readFileSync, writeFileSync, unlinkSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { join, dirname } from 'node:path';
