@@ -126,3 +126,17 @@ test('API08 without a Discord provider the OAuth routes answer 501, never crash'
   assert.equal((await j('/api/login/discord')).status, 501);
   assert.equal((await j('/api/login/discord/callback?code=c&state=s')).status, 501);
 });
+
+test('API09 /api/config reports the ws endpoint and whether Discord sign-in is offered', async () => {
+  // The base server has no ws URL and no Discord provider.
+  assert.deepEqual((await j('/api/config')).data, { ok: true, wsUrl: null, discord: false });
+  const discord = discordOAuth({ clientId: 'cid', clientSecret: 'secret', redirectUri: 'https://play.example/cb' });
+  const srv = createApi({ accounts: svc, store, origin: 'http://127.0.0.1', discord, wsUrl: 'ws://127.0.0.1:9000' });
+  await new Promise((res) => srv.listen(0, '127.0.0.1', res));
+  try {
+    const b = `http://127.0.0.1:${srv.address().port}`;
+    assert.deepEqual(await fetch(b + '/api/config').then((r) => r.json()), { ok: true, wsUrl: 'ws://127.0.0.1:9000', discord: true });
+  } finally {
+    await new Promise((res) => srv.close(res));
+  }
+});

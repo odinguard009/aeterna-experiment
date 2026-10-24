@@ -323,6 +323,7 @@ function switchView(id) {
   $(id).classList.add('active');
   navSync(id);
   if (id === 'view-lobby' || id === 'view-play') renderLobby();
+  if (id === 'view-online') renderOnlineLobby();                        // v0.109.0 M8 part 2: the online lobby + account (13j-online-lobby.js)
   if (id === 'view-deckbuilder') { dbSheet(''); renderDeckBuilder(); }
   if (id === 'view-library') renderLibrary();
   if (id === 'view-decks') renderDecks();

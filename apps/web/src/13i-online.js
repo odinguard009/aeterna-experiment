@@ -347,8 +347,13 @@ function connectOnline(base, roomId) {
   sock.onerror = () => { /* the onclose follows */ };
   sock.onclose = () => { if (ON.sock === sock && !ON.over && !ON.connecting) onlineFail('the connection closed'); else if (ON.sock === sock && ON.connecting) onlineFail('the server is unreachable'); };
 }
-async function onlineStart() {
-  const origin = SETTINGS.onlineUrl || ((location.protocol === 'http:' || location.protocol === 'https:') ? location.origin : null);
+/** The http origin the online client talks to: SETTINGS.onlineUrl when set, else the page's own origin; null when the
+ *  page is opened as a file. The lobby (13j-online-lobby.js) reuses it for /api/config, /api/me and the sign-in flow. */
+function onlineOrigin() {
+  return SETTINGS.onlineUrl || ((location.protocol === 'http:' || location.protocol === 'https:') ? location.origin : null);
+}
+async function onlineStart(code) {
+  const origin = onlineOrigin();
   if (!origin) {
     await uiInfo('Online', 'Online play needs the page served over http. Run the server (node apps/server/src/serve.mjs) and open http://localhost:8080 — or set an online server URL in Settings.');
     return;
@@ -364,13 +369,13 @@ async function onlineStart() {
     if (r.ok) { const j = await r.json(); if (j && j.wsUrl) base = j.wsUrl; }
   } catch (e) { /* offline or blocked: keep the derived endpoint */ }
   SESSION++; clearPick(); closeModal(null); G = null;
-  connectOnline(base, 'local-' + Math.random().toString(36).slice(2, 8));
+  connectOnline(base, code || 'local-' + Math.random().toString(36).slice(2, 8));
 }
 /* expose hooks for the tests and the console. 16-events.js reassigns window.BS after this module loads (this part
    sorts before it), so the hooks attach on a microtask, once the whole script has finished running. */
 Promise.resolve().then(() => {
   if (window.BS) Object.assign(window.BS, {
-    onlineStart, onlineWsBase, onlineAvailable,
+    onlineStart, onlineOrigin, onlineWsBase, onlineAvailable,
     online: () => ON,
     onlineAuto: on => { ONL_AUTO = !!on; return ONL_AUTO; }
   });
