@@ -6,3 +6,8 @@ node_modules/
 build/
 repomix-output*
 brand/
+# Editor/agent folders: per-machine state, never shared. .vscode/settings.json used
+# to carry a `deepseekHarness.mcpServers` block the DSH extension never reads (the
+# codebase-memory MCP is registered in the profile patch instead, see .cbmignore).
+.vscode/
+.idea/
