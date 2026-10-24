@@ -1,0 +1,27 @@
+{
+ "note": "Tolerated broken doc references (tools/check_refs.mjs --check). This list may only SHRINK: fix a reference by fixing the doc, never by adding a line here.",
+ "count": 21,
+ "refs": [
+  ".claude/skills/bs-card-image-reader/SKILL.md claude/red-cards-BS75-BS76.json",
+  ".claude/skills/bs-card-image-reader/SKILL.md claude/saga-map.md",
+  ".claude/skills/bs-card-image-reader/SKILL.md saga_card_index.json",
+  ".claude/skills/bs-effect-mechanic-adder/SKILL.md claude/CLAUDE.md",
+  ".claude/skills/bs-effect-mechanic-adder/SKILL.md claude/card-list.md",
+  ".claude/skills/web-design-guidelines/SKILL.md command.md",
+  "README.md aeterna-v0.105.0.html",
+  "docs/aegis-study.md deckCardCoverage.test.ts",
+  "docs/aegis-study.md packages/shared/src/cards/cardPool.ts",
+  "docs/ai/monorepo-plan.md COLLECTIONS.md",
+  "docs/ai/monorepo-plan.md docker/compose.yml",
+  "docs/ai/monorepo-plan.md docs/DATA.md",
+  "docs/ai/owner-instructions.md claude/layout-proposal.html",
+  "docs/ai/owner-instructions.md docs/ai/lanes/README.md",
+  "docs/ai/owner-instructions.md docs/ai/repo-cleanup-plan.md",
+  "docs/ai/owner-instructions.md tests/unit/lane803.test.mjs",
+  "docs/ai/release.md aeterna.html",
+  "docs/ai/roadmap-open.md claude/card-image-plan.md",
+  "docs/ai/roadmap-open.md claude/layout-proposal.html",
+  "docs/manual-notes.md page02/04/05/09.html",
+  "docs/manual-notes.md page03.html"
+ ]
+}

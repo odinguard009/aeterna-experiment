@@ -60,7 +60,7 @@ Condensed in v0.69.3 (P0 B8); the full measurements stay in git history (this fi
 
 ## 9. Test cleanup (owner, 2026-10-19: "too many tests")
 - Measured: the quick set had grown to 1,214 tests (~3 min) and ran at session start, after every task and in the pre-push hook; local `npm test` repeated what CI runs; Regression ran every session.
-- Now: loop = smoke + changed test files (~15 s), full quick set once in the pre-push hook, no local `npm test`, Regression only when `tools/regression_due.sh` says DUE (+ weekly scheduled run), player-view pass at backups and UI changes, no new-test quotas. Details and the open proposals B1-B10: `docs/ai/process-plan.md`.
+- Now: loop = smoke + changed test files (~15 s), full quick set once in the pre-push hook, no local `npm test`, Regression only when `tools/regression_due.sh` says DUE (+ weekly scheduled run), player-view pass at backups and UI changes, no new-test quotas. Details and the open proposals B1-B10 are archived in `docs/ai/roadmap-archive.md`.
 
 ## 10. Per-step savings (owner, 2026-10-20: "lakukan itu")
 No per-step measurement existed; these follow from where a card session spends its calls (estimate: build loop ~40-50%, card checks at promotion ~15-25%, end steps ~10-15%, sizing ~5-10%, start ~5%).

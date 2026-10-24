@@ -105,6 +105,7 @@ Match fuzzer (v0.59.6): `node tools/fuzz.mjs [--runs N] [--seed S]` plays CPU-vs
 - `tools/session_start.sh`: overlap guard, hooks, baseline loop, version, Next line, playable count, open issues.
 - `tools/session_gate.sh`: auto-mode switch and session lock (`check`, `lock`, `manual`, `switch`, `done`, `unlock`, `on`/`off`/`status`); rules in `docs/ai/next-session-prompt.md`.
 - `tools/session_end_check.mjs`: game file, embedded version, release test, fresh mind map, backup branch.
+- `tools/check_refs.mjs` (v0.106.0, runs in `tools/loop.mjs`): every `` `path` `` reference a living doc makes must resolve, or sit in `tools/check_refs-baseline.json`, which only shrinks.
 - Mind map: `docs/roadmap-data.json` -> `node tools/gen_roadmap.mjs` -> `docs/roadmap.html`; `docs/progress.html` from the CLAUDE.md Roadmap, `docs/ai/roadmap-open.md` and `CHANGELOG.md`.
 - `node tools/pack_ai.mjs [--docs|--full]`: packs the project into one Markdown file for another AI chat. `node tools/screens.mjs`: the README screenshots in `docs/images/` (removed from the README until v1.0, owner 2026-10-17).
 - Skills in `.claude/skills/` (session runner, effect mechanic adder, Playwright tester, card data check, card verify, card image reader, doc convention).

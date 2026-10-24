@@ -26,6 +26,7 @@ const steps = [
   ['build', ['tools/build.mjs']],
   ['lint', ['tools/lint.mjs']],
   ['brand guard', ['tools/brand_guard.mjs']],
+  ['doc refs', ['tools/check_refs.mjs']],                       // v0.106.0: every backticked file reference in the living docs resolves (or is in the shrink-only baseline)
   ['fx validate', ['tools/fx_validate.mjs', '--static']],      // v0.81 F1: effect format schema + shipped cards (engine parse: test FS03)
   [FULL ? 'quick tests' : 'smoke + changed tests', testArgs],
 ];
