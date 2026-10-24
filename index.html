@@ -1347,7 +1347,7 @@ function bindHost(h) {
    type: 'Spirit' | 'Nexus' | 'Magic'      symbol: card color     symbols: number of symbols
    reduction: {color: n}         levels: [{cores, bp}]  (Nexus levels have no bp)
    --------------------------------------------------------------------- */
-const VERSION = '0.113.0';
+const VERSION = '0.114.0';
 const CARDS = {};
 function defCard(o) {
   CARDS[o.id] = Object.assign({ type: 'Spirit', reduction: {}, symbols: 1, families: [], keywords: [], implemented: true, desc: 'Vanilla test card (no effect).', block: 'A' }, o);
@@ -7932,13 +7932,15 @@ async function importImages(files) {
 async function clearImages() { Object.keys(IMG).forEach(id => { URL.revokeObjectURL(IMG[id]); delete IMG[id]; }); await idbTx('readwrite', st => { st.clear(); if (MAT.blob) st.put(MAT.blob, MAT_KEY); for (const i of Object.keys(SLEEVE_BLOB)) st.put(SLEEVE_BLOB[i], '~sleeve:' + i); }); }   // the playmat is not a card image: it stays
 /* v0.112.0 (card images online): the card image URL for an id. The player's own image (IndexedDB
    blob) always wins; otherwise, when an online server is present, the official art mirrored at
-   /assets/card-images/<card.image> (Aegis-style). Empty when neither is available (offline, no image). */
+   /assets/card-images/<card.id> (Aegis-style). v0.114.0: the key is the card id (not the Fandom
+   File: name) because the official battlespirits.com image URL is derived directly from it.
+   Empty when neither is available (offline, no image). */
 function cardImgSrc(id) {
   if (IMG[id]) return IMG[id];
   const c = CARDS[id];
-  if (!c || !c.image) return '';
+  if (!c || !c.id) return '';
   const origin = (typeof onlineOrigin === 'function') ? onlineOrigin() : null;
-  return origin ? `${origin}/assets/card-images/${encodeURIComponent(c.image)}` : '';
+  return origin ? `${origin}/assets/card-images/${encodeURIComponent(c.id)}` : '';
 }
 const imgCls = id => (cardImgSrc(id) ? ' has-img' : '');
 const imgSty = id => { const s = cardImgSrc(id); return s ? `;background-image:url('${s}')` : ''; };

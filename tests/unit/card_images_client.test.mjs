@@ -31,9 +31,9 @@ test('CIMG-2 cardImgSrc prefers the player image, then the online mirror, then n
     cls: BS.imgCls('BS01-001'),
     sty: BS.imgSty('BS01-001'),
   }));
-  assert.equal(online.src, 'http://localhost:8080/assets/card-images/Gora.jpg');
+  assert.equal(online.src, 'http://localhost:8080/assets/card-images/BS01-001');
   assert.equal(online.cls, ' has-img');
-  assert.equal(online.sty, `;background-image:url('http://localhost:8080/assets/card-images/Gora.jpg')`);
+  assert.equal(online.sty, `;background-image:url('http://localhost:8080/assets/card-images/BS01-001')`);
 
   // The player's own image always wins over the mirror.
   await page.evaluate(() => { BS.IMG['BS01-001'] = 'blob:player-supplied'; });

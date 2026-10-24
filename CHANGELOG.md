@@ -4,6 +4,16 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.114.0
+- Lane: U/I
+- Time: ~30 min (session start → release), deepseek-v4-pro; tokens not counted (no gate counter in this harness).
+- **Card images online, part 3: switch the art source to the official battlespirits.com card database.** The Fandom wiki `File:` names were stale for most old sagas (about 5 of 18 sampled cards resolved; `File:Gora.jpg` is `missing`), so many cards stayed on the placeholder. The official card list serves every card directly by number, so the image URL is now derived from the card id — no wiki / MediaWiki API resolution:
+  - The client's `cardImgSrc(id)` keys on the **card id** (not the `image` field), so `/assets/card-images/<card-id>`; the Cloudflare Pages Function and the Node server (`apps/server/src/card-images.mjs`) both proxy `https://www.battlespirits.com/images/cardlist/<card-id>.webp?v2` (WebP, uniform size) on demand and cache for a day.
+  - This also fixes the Ultimate-card crop in the Library grid: the official images are all the same aspect ratio, while the wiki's Ultimate scans varied and `object-fit: cover` clipped them to a sliver.
+  - The Fandom `image` field stays in the card data as metadata; the image-serving path no longer uses it. A card the official site lacks (unknown id) is a 404 and the client still falls back to its text/colour placeholder.
+- Tests: `server_card_images` CIMG-S1..S4 rewritten for the official-URL proxy (proxied + disk cache, missing → 404, separators/dot-files/extensions refused + 405, opt-in route) and `card_images_client` CIMG-2 updated to the card-id URL; full quick suite green.
+- Left optional (in the plan): bulk pre-fetch + `cwebp` re-encode, an offline URL manifest, alternate-art / per-language art.
+
 ## v0.113.0
 - Lane: U/I
 - Time: ~20 min (session start → release), deepseek-v4-pro; tokens not counted (no gate counter in this harness).

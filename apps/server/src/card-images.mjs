@@ -1,77 +1,51 @@
 /* ---------------------------------------------------------------------
-   CARD IMAGE MIRROR (v0.112.0, card images online / Aegis-style)
+   CARD IMAGE MIRROR (v0.112.0, official source v0.114.0)
 
-   Serves official Battle Spirits card art from a local mirror directory, downloading and
-   caching it from the Fandom wiki on demand (the first request for a card pays one wiki
-   fetch). The mirror dir is a git-ignored build artifact; a card the wiki lacks is a 404
-   and the client falls back to its text/colour placeholder.
+   Serves official Battle Spirits card art from a local mirror directory, proxying the official
+   battlespirits.com card database on demand (the first request for a card pays one upstream fetch).
+   The mirror dir is a git-ignored build artifact; a card the official site lacks is a 404 and the
+   client falls back to its text/colour placeholder.
 
-   Route: GET /assets/card-images/<filename>   (filename = a card's `image` field, e.g. BS76-001.png)
+   Route: GET /assets/card-images/<card-id>   (card-id = a card's `id`, e.g. BS76-001)
 
-   The image filename is the wiki's `File:` name, so the URL is resolved through the
-   MediaWiki imageinfo API, exactly like tools/import_fandom.py reads the wiki. The offline
-   single-file game never imports this module; it only runs inside the online server.
+   The official image URL is derived directly from the card id:
+       https://www.battlespirits.com/images/cardlist/<card-id>.webp?v2   (WebP, uniform size)
+   The offline single-file game never imports this module; it only runs inside the online server.
    --------------------------------------------------------------------- */
 import { existsSync, readFileSync, writeFileSync, renameSync, mkdirSync } from 'node:fs';
-import { join, resolve, basename, extname } from 'node:path';
+import { join, resolve } from 'node:path';
 
-const WIKI_API = 'https://battle-spirits.fandom.com/api.php';
-const WIKI_ORIGIN = 'https://battle-spirits.fandom.com';
+const OFFICIAL_IMG = 'https://www.battlespirits.com/images/cardlist/';
 const USER_AGENT = 'AeternaCardArtSync/1.0 (unofficial fan project; read-only)';
-const MIME = { '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.gif': 'image/gif' };
 const PREFIX = '/assets/card-images/';
-// The wiki's CDN blocks hotlinks without a Referer header (403 otherwise). It also transcodes the
-// "latest" revision to WebP regardless of the file extension, so the served type is sniffed from bytes.
-const HEADERS = { 'user-agent': USER_AGENT, referer: WIKI_ORIGIN + '/' };
-
-function sniffMime(buf, filename) {
-  const ascii = (a, b) => buf.toString('ascii', a, b);
-  if (buf.length > 12 && ascii(0, 4) === 'RIFF' && ascii(8, 12) === 'WEBP') return 'image/webp';
-  if (buf.length > 8 && buf[0] === 0x89 && ascii(1, 4) === 'PNG') return 'image/png';
-  if (buf.length > 3 && buf[0] === 0xff && buf[1] === 0xd8 && buf[2] === 0xff) return 'image/jpeg';
-  if (buf.length > 6 && (ascii(0, 6) === 'GIF87a' || ascii(0, 6) === 'GIF89a')) return 'image/gif';
-  return MIME[extname(filename).toLowerCase()] || 'application/octet-stream';
-}
 
 /**
- * @param {{ mirrorDir: string, wikiApi?: string, fetchImpl?: typeof fetch, timeoutMs?: number }} deps
+ * @param {{ mirrorDir: string, officialImg?: string, fetchImpl?: typeof fetch, timeoutMs?: number }} deps
  * @returns an async `(req, res, pathname) => Promise<boolean>` HTTP handler (true when it handled the path).
  */
-export function cardImageRoute({ mirrorDir, wikiApi = WIKI_API, fetchImpl = globalThis.fetch, timeoutMs = 30_000 } = {}) {
+export function cardImageRoute({ mirrorDir, officialImg = OFFICIAL_IMG, fetchImpl = globalThis.fetch, timeoutMs = 30_000 } = {}) {
   const dir = resolve(mirrorDir);
-  const inflight = new Map();   // filename -> Promise<Buffer|null>, dedupes concurrent first requests
+  const inflight = new Map();   // card id -> Promise<Buffer|null>, dedupes concurrent first requests
 
-  async function resolveWikiUrl(filename) {
-    const api = `${wikiApi}?action=query&titles=${encodeURIComponent('File:' + filename)}&prop=imageinfo&iiprop=url&format=json&formatversion=2`;
-    const res = await fetchImpl(api, { headers: HEADERS, signal: AbortSignal.timeout(timeoutMs) });
-    if (!res.ok) return null;
-    const data = await res.json();
-    const page = data && data.query && Array.isArray(data.query.pages) ? data.query.pages[0] : null;
-    const ii = page && Array.isArray(page.imageinfo) ? page.imageinfo[0] : null;
-    return ii && typeof ii.url === 'string' ? ii.url : null;
-  }
-
-  async function download(filename) {
-    const url = await resolveWikiUrl(filename);
-    if (!url) return null;
-    const res = await fetchImpl(url, { headers: HEADERS, signal: AbortSignal.timeout(timeoutMs) });
+  async function download(id) {
+    const res = await fetchImpl(`${officialImg}${id}.webp?v2`, { headers: { 'user-agent': USER_AGENT }, signal: AbortSignal.timeout(timeoutMs) });
     if (!res.ok) return null;
     const buf = Buffer.from(await res.arrayBuffer());
     if (!buf.length) return null;
     mkdirSync(dir, { recursive: true, mode: 0o755 });
-    const tmp = join(dir, `.${filename}.partial`);          // atomic write so a crash never leaves a half file
+    const tmp = join(dir, `.${id}.webp.partial`);          // atomic write so a crash never leaves a half file
     writeFileSync(tmp, buf, { mode: 0o644 });
-    renameSync(tmp, join(dir, filename));
+    renameSync(tmp, join(dir, `${id}.webp`));
     return buf;
   }
 
-  async function getBytes(filename) {
-    const target = join(dir, filename);
+  async function getBytes(id) {
+    const target = join(dir, `${id}.webp`);
     if (existsSync(target)) return readFileSync(target);
-    if (inflight.has(filename)) return inflight.get(filename);
-    const p = download(filename).catch(() => null);
-    inflight.set(filename, p);
-    p.finally(() => { if (inflight.get(filename) === p) inflight.delete(filename); });
+    if (inflight.has(id)) return inflight.get(id);
+    const p = download(id).catch(() => null);
+    inflight.set(id, p);
+    p.finally(() => { if (inflight.get(id) === p) inflight.delete(id); });
     return p;
   }
 
@@ -82,14 +56,14 @@ export function cardImageRoute({ mirrorDir, wikiApi = WIKI_API, fetchImpl = glob
     let raw;
     try { raw = decodeURIComponent(pathname.slice(PREFIX.length)); }
     catch (e) { res.writeHead(400); res.end(); return true; }
-    // Only a bare filename (no separators, no leading dot, with an extension) reaches the disk.
-    if (!raw || raw !== basename(raw) || /[\\/]/.test(raw) || raw.startsWith('.') || !extname(raw)) {
+    // Card ids are letters/digits/hyphens; anything else (separators, leading dot, an extension) is refused.
+    if (!raw || !/^[A-Za-z0-9][A-Za-z0-9-]*$/.test(raw)) {
       res.writeHead(404); res.end(); return true;
     }
     const bytes = await getBytes(raw);
     if (!bytes) { res.writeHead(404); res.end(); return true; }
     res.writeHead(200, {
-      'Content-Type': sniffMime(bytes, raw),
+      'Content-Type': 'image/webp',
       'Content-Length': bytes.length,
       'Cache-Control': 'public, max-age=86400',
     });

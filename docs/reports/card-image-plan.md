@@ -31,19 +31,25 @@ store) stay the **top-priority override**; the offline single-file game keeps wo
 - **P1b (v0.113.0):** the static Cloudflare Pages deployment. The Pages site has no Node process,
   so a Pages Function (`functions/assets/card-images/[file].js`) mirrors the same route at the edge
   and the deploy stages `functions/` beside `index.html`. Official art now loads on the Pages URL.
+- **P1c (v0.114.0):** switch the art source to the **official battlespirits.com card database**.
+  The Fandom `File:` names were stale for most old sagas (about 5 of 18 sampled cards resolved), so
+  the client now keys on the **card id** and the Function + Node server proxy the directly-derived
+  official URL `/images/cardlist/<card-id>.webp?v2` (WebP, uniform size — this also fixed the
+  Ultimate-card crop in the grid). The wiki is no longer the image source; the `image` field stays
+  in the card data as metadata only.
 - **P2 (later):** a bulk pre-fetch tool (concurrency + resume) so a deploy can warm the mirror;
   optional `cwebp` re-encode to 430px WebP for bandwidth.
 - **P3 (later, optional):** offline hotlink via a committed URL manifest, alternate-art
   printings, per-language art — only if the owner wants them.
 
 ## Decisions
-- **Online only for now.** The offline file cannot bundle ~6,300 images (size), and the wiki
-  static URL needs a resolved hash path (not derivable from the filename), so offline hotlink
-  needs a committed manifest first (P3).
-- **No re-encode in P1.** Serve the wiki's original PNG/JPG. `cwebp`/`sharp` are unavailable
-  (npm/pip blocked); P2 adds re-encoding if bandwidth matters.
+- **Online only for now.** The offline file cannot bundle ~6,300 images (size), so offline art
+  needs a committed URL manifest first (P3).
+- **Official source, not the wiki (v0.114.0).** `battlespirits.com/images/cardlist/<id>.webp?v2`
+  is derived from the card id and serves every card in uniform WebP, so no MediaWiki API round-trip
+  and no stale-name gaps. `cwebp`/`sharp` re-encode is no longer needed (the official art is already WebP).
 - **On-demand + cache**, not a cron job. The mirror fills as cards are viewed; a first view
-  costs one wiki fetch. A bulk warm-up is P2.
+  costs one upstream fetch. A bulk warm-up is P2.
 
 ## Reversibility
 - All changes are additive: the route is opt-in (a `cardImages` dep on `createApi`), the
