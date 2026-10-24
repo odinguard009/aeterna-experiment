@@ -42,7 +42,11 @@ function boardSnapshot(viewerKey) {
     spirits: p.spirits.map(fc), nexus: p.nexus.map(fc), trash: p.trash.map(x => x.id), soulState: p.soulState.map(x => x.id),
     removed: p.removed.map(x => x.id), burst: p.burst ? (local ? (p.cpu ? 'set' : p.burst.id) : (p.key === viewerKey ? p.burst.id : 'set')) : null, mirage: p.mirage ? p.mirage.id : null
   });
-  return { t: G.turnNo, st: G.step, sn: G.steps[G.step] || '', steps: G.steps.slice(), a: G.active, n: G.hn || 0, last: G.history.length ? G.history[G.history.length - 1] : '', over: !!G.over, w: G.winner || null, p: { player: side(G.p.player), opponent: side(G.p.opponent) } };
+  // v0.110.0 (M8 part 3): log = the recent game log for the online client's log panel. Only for a seat view
+  // (local viewer replays keep their own record and need no log); capped so the frame stays bounded. The log
+  // is shared public text (face-down Bursts and draws are never logged by name), so it carries no hidden cards.
+  const log = !local ? G.history.slice(-200) : undefined;
+  return { t: G.turnNo, st: G.step, sn: G.steps[G.step] || '', steps: G.steps.slice(), a: G.active, n: G.hn || 0, last: G.history.length ? G.history[G.history.length - 1] : '', log, over: !!G.over, w: G.winner || null, p: { player: side(G.p.player), opponent: side(G.p.opponent) } };
 }
 /** Re-runs a port record in this engine (any host: headless, or the web page when no match is open). Every decision is
  *  answered from the record in order (same seat and kind, else "diverged at answer N"); the host is restored afterwards.
