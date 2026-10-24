@@ -13,7 +13,7 @@
   "packages/engine/src/02h-effects-magic.js": 8,
   "packages/engine/src/02i-effects-keywords.js": 3,
   "packages/engine/src/02j-effects-accel.js": 7,
-  "packages/engine/src/02k-effects-immunity.js": 1,
+  "packages/engine/src/02k-effects-immunity.js": 2,
   "packages/engine/src/02l-effects-invoke.js": 8,
   "packages/engine/src/02o-effects-battle-end.js": 0,
   "packages/engine/src/02p-effects-shared-shapes.js": 3,

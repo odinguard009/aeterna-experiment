@@ -80,3 +80,8 @@ Object.assign(FX_ACTIONS, {
       if (counter) await FX_ACTIONS.COUNTER.run(c, { n: 1 }); else await FX_ACTIONS.CORE_TO_SELF.run(c, { n: 1 });
     } }
 });
+
+/* This part loads after 02k, whose load-time pass wraps every action's cands() with the immunity
+   filter (trash-safe cards, opposing cards unaffected by this effect). Run it again so the entries
+   defined here get the same wrapper; it is idempotent. */
+wrapImmunity(Object.values(FX_ACTIONS));

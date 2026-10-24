@@ -89,3 +89,8 @@ Object.assign(FX_ACTIONS, {
       c.ctx.did = k > 0; if (k) log(`${CARDS[c.src.id].name}: ${CARDS[t.id].name} gets +${k} core${k === 1 ? '' : 's'}.`);
     } }
 });
+
+/* This part loads after 02k, whose load-time pass wraps every action's cands() with the immunity
+   filter (trash-safe cards, opposing cards unaffected by this effect). Run it again so the entries
+   defined here get the same wrapper; it is idempotent. */
+wrapImmunity(Object.values(FX_ACTIONS));

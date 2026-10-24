@@ -50,8 +50,8 @@ highSpeedOK, highSpeedSources, highSpeedSummon, cpuHighSpeed, _nmK
 ## packages/engine/src/02j-effects-accel.js (109 lines, ~1.8k tokens) — v0.50 KEYWORD EFFECTS part 2 (session D): Accel and Silver Wheel.
 accelList, accelCost, accelMainStep, accelOK, accelSources, accelLabel, useAccel, removedSummonable, summonFromRemoved, humanAccel, cpuAccelScore, cpuAccelMain, cpuAccelFlash, cpuSilverWheel
 
-## packages/engine/src/02k-effects-immunity.js (21 lines, ~0.4k tokens)
-trashSafe
+## packages/engine/src/02k-effects-immunity.js (27 lines, ~0.4k tokens)
+trashSafe, wrapImmunity
 
 ## packages/engine/src/02l-effects-invoke.js (174 lines, ~3.8k tokens) — v0.68 INVOKE (Standard activations): "{{Invoke|Flash}}" / "{{Invoke|Main}}" + "<cost> ▶ <effect>".
 INVOKE_WHEN, INVOKE_COSTS, invokeMatchOK, invokeParse, invokeWhenOK, exhaustOwnCands, discardCands, invokeCostOK, payInvokeCost, usedThisBattle, markUsedBattle, bpBattle, addBattleBp, invokeCostText, ownTargetCands, cpuInvokeOK
@@ -68,16 +68,16 @@ endOfBattle
 ## packages/engine/src/02p-effects-shared-shapes.js (187 lines, ~3.8k tokens)
 cardTeams, allHaveShapeOK, allHaveOK
 
-## packages/engine/src/02q-effects-actions-own.js (91 lines, ~2.1k tokens)
+## packages/engine/src/02q-effects-actions-own.js (96 lines, ~2.2k tokens)
 
 
-## packages/engine/src/02r-effects-actions-deck.js (82 lines, ~2.4k tokens)
+## packages/engine/src/02r-effects-actions-deck.js (87 lines, ~2.5k tokens)
 
 
-## packages/engine/src/02s-effects-actions-soul.js (140 lines, ~3.4k tokens)
+## packages/engine/src/02s-effects-actions-soul.js (145 lines, ~3.5k tokens)
 
 
-## packages/engine/src/02t-effects-actions-opp.js (151 lines, ~3.6k tokens)
+## packages/engine/src/02t-effects-actions-opp.js (156 lines, ~3.6k tokens)
 
 
 ## packages/engine/src/03-imported-cards.js (230 lines, ~5.9k tokens) — IMPORTED CARD DATA

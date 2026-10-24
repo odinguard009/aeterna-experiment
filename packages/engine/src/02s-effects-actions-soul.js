@@ -138,3 +138,8 @@ Object.assign(FX_ACTIONS, {
       if (moved && a.thenDestroyNexus && c.opp.nexus.some(n => !fxImmune(c.opp, n))) { const lst = c.opp.nexus.filter(n => !fxImmune(c.opp, n)); const nx = c.p.cpu ? lst[0] : await fxPickTarget(c, lst, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap an opposing Nexus to destroy (glowing).`); if (nx) removeNexus(c.opp, nx, 'destroyed'); }
     } }
 });
+
+/* This part loads after 02k, whose load-time pass wraps every action's cands() with the immunity
+   filter (trash-safe cards, opposing cards unaffected by this effect). Run it again so the entries
+   defined here get the same wrapper; it is idempotent. */
+wrapImmunity(Object.values(FX_ACTIONS));

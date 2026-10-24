@@ -1307,7 +1307,7 @@ function bindHost(h) {
    type: 'Spirit' | 'Nexus' | 'Magic'      symbol: card color     symbols: number of symbols
    reduction: {color: n}         levels: [{cores, bp}]  (Nexus levels have no bp)
    --------------------------------------------------------------------- */
-const VERSION = '0.105.0';
+const VERSION = '0.106.0';
 const CARDS = {};
 function defCard(o) {
   CARDS[o.id] = Object.assign({ type: 'Spirit', reduction: {}, symbols: 1, families: [], keywords: [], implemented: true, desc: 'Vanilla test card (no effect).', block: 'A' }, o);
@@ -2978,7 +2978,11 @@ function cpuSilverWheel(p, attKey, att, blk) {
    Trash: a card with trashUnaffected ("this card in Trash is unaffected by any effects") is never picked from a Trash by an effect.
    ===================================================================== */
 const trashSafe = t => !!(t && CARDS[t.id] && CARDS[t.id].trashUnaffected);
-for (const A of Object.values(FX_ACTIONS)) {
+/* v0.106.0: this used to be a bare loop. The action table is now split over 02b and 02q-02t,
+   so the parts that load after this one call wrapImmunity() again once they have added their
+   entries (the flag makes it idempotent, so calling it more often costs nothing). */
+function wrapImmunity(actions) {
+for (const A of actions) {
   if (typeof A.cands !== 'function' || A.cands.immunityWrapped) continue;
   const raw = A.cands;
   A.cands = function (c, ...rest) {
@@ -2991,6 +2995,8 @@ for (const A of Object.values(FX_ACTIONS)) {
   };
   A.cands.immunityWrapped = true;
 }
+}
+wrapImmunity(Object.values(FX_ACTIONS));
 /* ---------------------------------------------------------------------
    v0.68 INVOKE (Standard activations): "{{Invoke|Flash}}" / "{{Invoke|Main}}" + "<cost> ▶ <effect>".
    Rules (Standard manual "FAQ on Effects" Q11; data/glossary/mechanics.json kind:invoke): the part before ▶ is the cost; it must
@@ -3603,6 +3609,11 @@ Object.assign(FX_ACTIONS, {
       c.ctx.did = k > 0; if (k) log(`${CARDS[c.src.id].name}: ${CARDS[t.id].name} gets +${k} core${k === 1 ? '' : 's'}.`);
     } }
 });
+
+/* This part loads after 02k, whose load-time pass wraps every action's cands() with the immunity
+   filter (trash-safe cards, opposing cards unaffected by this effect). Run it again so the entries
+   defined here get the same wrapper; it is idempotent. */
+wrapImmunity(Object.values(FX_ACTIONS));
 /* ---- FX_ACTIONS, part 3 of 5 (v0.106.0 split of the old 516-line 02b-effects-actions.js) ----
    The Deck and the Hand: reveal and pick, summon from the Hand, Loot and the Void core moves.
    Object.assign keeps the original entry order. Only the entries that 02m and 02p capture at
@@ -3685,6 +3696,11 @@ Object.assign(FX_ACTIONS, {
       if (counter) await FX_ACTIONS.COUNTER.run(c, { n: 1 }); else await FX_ACTIONS.CORE_TO_SELF.run(c, { n: 1 });
     } }
 });
+
+/* This part loads after 02k, whose load-time pass wraps every action's cands() with the immunity
+   filter (trash-safe cards, opposing cards unaffected by this effect). Run it again so the entries
+   defined here get the same wrapper; it is idempotent. */
+wrapImmunity(Object.values(FX_ACTIONS));
 /* ---- FX_ACTIONS, part 4 of 5 (v0.106.0 split of the old 516-line 02b-effects-actions.js) ----
    The Soul Core and the Trash: Soul State moves, Seal, Awaken, Contract Field Advent, deck-to-Trash cores.
    Object.assign keeps the original entry order. Only the entries that 02m and 02p capture at
@@ -3825,6 +3841,11 @@ Object.assign(FX_ACTIONS, {
       if (moved && a.thenDestroyNexus && c.opp.nexus.some(n => !fxImmune(c.opp, n))) { const lst = c.opp.nexus.filter(n => !fxImmune(c.opp, n)); const nx = c.p.cpu ? lst[0] : await fxPickTarget(c, lst, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap an opposing Nexus to destroy (glowing).`); if (nx) removeNexus(c.opp, nx, 'destroyed'); }
     } }
 });
+
+/* This part loads after 02k, whose load-time pass wraps every action's cands() with the immunity
+   filter (trash-safe cards, opposing cards unaffected by this effect). Run it again so the entries
+   defined here get the same wrapper; it is idempotent. */
+wrapImmunity(Object.values(FX_ACTIONS));
 /* ---- FX_ACTIONS, part 5 of 5 (v0.106.0 split of the old 516-line 02b-effects-actions.js) ----
    The opponent's side: burst and Magic discard, opposing Life, the block lock, and the by-doing connector.
    Object.assign keeps the original entry order. Only the entries that 02m and 02p capture at
@@ -3976,6 +3997,11 @@ Object.assign(FX_ACTIONS, {
       c.ctx.did = true;
     } }
 });
+
+/* This part loads after 02k, whose load-time pass wraps every action's cands() with the immunity
+   filter (trash-safe cards, opposing cards unaffected by this effect). Run it again so the entries
+   defined here get the same wrapper; it is idempotent. */
+wrapImmunity(Object.values(FX_ACTIONS));
 /* ---------------------------------------------------------------------
    IMPORTED CARD DATA  (user supplied JSON; validated, stored in localStorage)
    --------------------------------------------------------------------- */

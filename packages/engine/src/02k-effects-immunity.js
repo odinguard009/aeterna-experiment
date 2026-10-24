@@ -6,7 +6,11 @@
    Trash: a card with trashUnaffected ("this card in Trash is unaffected by any effects") is never picked from a Trash by an effect.
    ===================================================================== */
 const trashSafe = t => !!(t && CARDS[t.id] && CARDS[t.id].trashUnaffected);
-for (const A of Object.values(FX_ACTIONS)) {
+/* v0.106.0: this used to be a bare loop. The action table is now split over 02b and 02q-02t,
+   so the parts that load after this one call wrapImmunity() again once they have added their
+   entries (the flag makes it idempotent, so calling it more often costs nothing). */
+function wrapImmunity(actions) {
+for (const A of actions) {
   if (typeof A.cands !== 'function' || A.cands.immunityWrapped) continue;
   const raw = A.cands;
   A.cands = function (c, ...rest) {
@@ -19,3 +23,5 @@ for (const A of Object.values(FX_ACTIONS)) {
   };
   A.cands.immunityWrapped = true;
 }
+}
+wrapImmunity(Object.values(FX_ACTIONS));

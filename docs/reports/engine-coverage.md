@@ -2,7 +2,7 @@
 
 Top-level names of `packages/protocol` + `packages/engine` that the smoke flows in `tools/coverage.mjs` reach, measured with V8 block coverage over the headless engine. The web parts are out of scope (they never load headless; the Playwright suites are their gate).
 
-10 flows, 277/365 names = **76%**. The ratchet floor lives in `tools/coverage-baseline.json` and may only rise.
+10 flows, 278/366 names = **76%**. The ratchet floor lives in `tools/coverage-baseline.json` and may only rise.
 
 | Part | Named | Reached | Share | Never reached |
 |---|---|---|---|---|
@@ -17,7 +17,7 @@ Top-level names of `packages/protocol` + `packages/engine` that the smoke flows 
 | `packages/engine/src/02h-effects-magic.js` | 8 | 10 | 80% | _matchTxt, gwCorePlus |
 | `packages/engine/src/02i-effects-keywords.js` | 3 | 5 | 60% | highSpeedSummon, _nmK |
 | `packages/engine/src/02j-effects-accel.js` | 7 | 14 | 50% | accelCost, accelOK, accelLabel, useAccel, summonFromRemoved, humanAccel, cpuAccelScore |
-| `packages/engine/src/02k-effects-immunity.js` | 1 | 1 | 100% | - |
+| `packages/engine/src/02k-effects-immunity.js` | 2 | 2 | 100% | - |
 | `packages/engine/src/02l-effects-invoke.js` | 8 | 14 | 57% | exhaustOwnCands, payInvokeCost, usedThisBattle, markUsedBattle, addBattleBp, cpuInvokeOK |
 | `packages/engine/src/02o-effects-battle-end.js` | 0 | 1 | 0% | endOfBattle |
 | `packages/engine/src/02p-effects-shared-shapes.js` | 3 | 3 | 100% | - |
