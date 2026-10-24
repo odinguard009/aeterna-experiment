@@ -25,8 +25,11 @@ const packLen = between('/*PACK_START*/', '/*PACK_END*/'), code = html.slice(0, 
 // v0.109.0 (M8 part 2): raised 725 -> 730 KB (B01) on purpose: the online lobby + account panel (apps/web/src/13j-online-lobby.js
 // plus the view-online template) are new client code beside the match terminal - the lobby, the private-room entry and
 // the sign-in UI. B02 stays 208 KB (the same addition gzips well).
-test('B01 index.html without the card pack stays under 730 KB', () => assert.ok(Buffer.byteLength(code) < 730e3, Buffer.byteLength(code)));
-test('B02 index.html without the card pack, gzipped, stays under 208 KB', () => { const n = gzipSync(code, { level: 9 }).length; assert.ok(n < 208e3, n); });
+// v0.111.0 (card images): raised 730 -> 740 KB (B01) and 208 -> 212 KB (B02) on purpose: the Library browse grid
+// (apps/web/src/14-images.js + the Library section of the template) is a windowed, searchable grid of every card - the
+// card-images feature's browsable view. It reuses the deck builder's index and grid CSS but adds its own filter/window.
+test('B01 index.html without the card pack stays under 740 KB', () => assert.ok(Buffer.byteLength(code) < 740e3, Buffer.byteLength(code)));
+test('B02 index.html without the card pack, gzipped, stays under 212 KB', () => { const n = gzipSync(code, { level: 9 }).length; assert.ok(n < 212e3, n); });
 test('B03 the embedded card pack stays under 1.6 MB (room for all cards; never embed staging data)', () => assert.ok(packLen < 1.6e6, packLen));
 // v0.93.0 (U6): raised 90 -> 96 KB on purpose (roadmap item U allows it with a note): U6-U8 add the My decks page and the
 // deck builder restyle; unused rules were trimmed first in v0.92.0. The next raise needs the same kind of note.

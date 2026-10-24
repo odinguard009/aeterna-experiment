@@ -230,6 +230,15 @@
       <p>One card per line: <b translate="no">3 BS44-001</b> or <b>3x Card Name</b>. Lines starting with # are ignored.</p>
       <textarea id="lib-deck" class="lib-area" spellcheck="false" aria-label="Deck list" name="deck-list" autocomplete="off" placeholder="3 BS44-001&#10;3x Card Name…"></textarea>
       <div class="doc-acts"><button class="ae-ghost" data-a="lib-deck-import">IMPORT AS MY DECK</button><button class="ae-ghost" data-a="lib-deck-export">EXPORT MY DECK</button></div></section>
+    <section class="doc-card"><h2><span class="no" aria-hidden="true">4</span>Browse cards</h2>
+      <p>Every card, with your card images where you added them. Tap a card to enlarge it.</p>
+      <div class="lib-tools">
+        <input id="lib-search" class="sel" type="search" placeholder="Search name, ID or effect…" autocomplete="off" spellcheck="false">
+        <select id="lib-set" class="sel" title="Set" aria-label="Set"><option value="">All sets</option></select>
+        <select id="lib-type" class="sel" title="Type" aria-label="Type"><option value="">All types</option><option value="Spirit">Spirit</option><option value="Nexus">Nexus</option><option value="Magic">Magic</option><option value="Brave">Brave</option><option value="Contract">Contract</option></select>
+        <span id="lib-count" class="doc-note" role="status"></span>
+      </div>
+      <div class="db-grid lib-grid" id="lib-grid"></div></section>
     <div id="lib-msg" class="lib-msg" role="status"></div>
   </main>
 </div>

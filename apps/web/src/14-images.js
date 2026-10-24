@@ -75,7 +75,64 @@ function libMsg(t, bad) { const m = $('lib-msg'); m.textContent = t; m.className
 function renderLibrary() {
   const ids = Object.keys(CARDS).filter(id => !CARDS[id].token && !id.startsWith('TRAIN-')), part = ids.filter(id => fxMarked(CARDS[id])).length;      // v0.79.0 (A1): two counts; v0.80.1: built-in Training cards are not counted
   $('lib-imgcount').textContent = `${Object.keys(IMG).length} image(s) loaded · ${ids.length.toLocaleString('en-US')} card(s) known: ${(ids.length - part).toLocaleString('en-US')} complete, ${part.toLocaleString('en-US')} marked "!" (effect not fully implemented)`;
+  renderLibraryGrid();                                     // v0.111.0 (card images): the browsable card grid below
 }
+
+/* ---------- library card grid (v0.111.0, card images) ----------
+   A browsable, searchable grid of every card (the deck builder's `dbIndex`/`dbWindow` pattern, reusing its card
+   index and grid CSS). It shows the player's card images where they were added and zooms a card on tap. */
+const LIBV = { list: [], from: -1, to: -1, cols: 0, rowH: 0, raf: 0, timer: 0, key: '' };
+const LIB_GAP = 8, LIB_BUF = 2;
+const libSetOf = id => String(id).replace(/-.*$/, '');
+function libFilter() {
+  const q = (($('lib-search') || {}).value || '').trim().toLowerCase();
+  const set = (($('lib-set') || {}).value) || '';
+  const type = (($('lib-type') || {}).value) || '';
+  const key = [CARDS_VER, q, set, type].join('|');
+  if (key === LIBV.key) return LIBV.list;
+  LIBV.key = key;
+  let l = dbIndex().filter(e => {
+    if (q && !e.s.includes(q)) return false;
+    if (set && libSetOf(e.id) !== set) return false;
+    if (type) { const c = CARDS[e.id], t = c.contract ? 'Contract' : c.type; if (t !== type) return false; }
+    return true;
+  });
+  l = l.slice().sort((a, b) => DB_COLL.compare(a.id, b.id));   // set + number order for a stable browse
+  LIBV.list = l.map(e => e.id);
+  const cnt = $('lib-count'); if (cnt) cnt.textContent = `${LIBV.list.length.toLocaleString('en-US')} card(s) shown`;
+  return LIBV.list;
+}
+function libCardHTML(id) {
+  const c = CARDS[id], bp = c.levels[0] && c.levels[0].bp != null ? c.levels[0].bp : c.brave ? '+' + c.brave.bp : '-';
+  return `<div class="tcg-card${cardCls(c)}${imgCls(id)}" style="${colorSty(c)}${imgSty(id)}" data-a="libcard" data-v="${id}" title="${esc(c.name)} (${id})${fxMarked(c) ? ' - ' + FX_MARK_LBL : ''}: tap to enlarge">
+    <div class="cost">${c.cost}</div><div class="type-badge">${c.contract ? 'CON' : c.type.substring(0, 3).toUpperCase()}${rebMark(c)}</div>
+    <div class="name">${nameHTML(c.name)}</div><div class="bp">${bp}</div>${fxMarkHTML(c)}${symBadgeHTML(id)}</div>`;
+}
+function libWindow(force) {
+  const el = $('lib-grid'); if (!el) return;
+  const list = LIBV.list, n = list.length;
+  if (!n) { el.innerHTML = '<div class="empty-note">No cards match.</div>'; LIBV.from = LIBV.to = -1; return; }
+  const cs = getComputedStyle(el), cols = Math.max(1, cs.gridTemplateColumns.split(' ').filter(Boolean).length);
+  const rowH = LIBV.rowH || 106, rows = Math.ceil(n / cols), top = el.scrollTop, vis = Math.ceil((el.clientHeight || 600) / rowH);
+  const r0 = Math.max(0, Math.min(rows - 1, Math.floor(top / rowH) - LIB_BUF)), r1 = Math.min(rows, r0 + vis + 2 * LIB_BUF + 1);
+  const from = r0 * cols, to = Math.min(n, r1 * cols);
+  if (!force && from === LIBV.from && to === LIBV.to && cols === LIBV.cols) return;
+  LIBV.from = from; LIBV.to = to; LIBV.cols = cols;
+  const pad = h => h > 0 ? `<div class="db-spacer" style="grid-column:1/-1;height:${h}px"></div>` : '';
+  el.innerHTML = pad(r0 * rowH - LIB_GAP) + list.slice(from, to).map(libCardHTML).join('') + pad((rows - r1) * rowH - LIB_GAP);
+  el.scrollTop = top;
+  const first = elq(el, '.tcg-card'), h = first ? first.offsetHeight + LIB_GAP : 0;
+  if (h && h !== LIBV.rowH) { LIBV.rowH = h; libWindow(true); }
+}
+function renderLibraryGrid() {
+  if (!dbIndex().length) return;
+  const setSel = $('lib-set');
+  if (setSel && !setSel.dataset.done) { setSel.dataset.done = '1'; setSel.innerHTML = '<option value="">All sets</option>' + dbSets().map(s => `<option value="${s}">${esc(s)}</option>`).join(''); }
+  libFilter();
+  libWindow(true);
+}
+function libScroll() { if (!LIBV.raf) LIBV.raf = requestAnimationFrame(() => { LIBV.raf = 0; if ($('view-library').classList.contains('active')) libWindow(false); }); }
+function libSearchInput() { clearTimeout(LIBV.timer); LIBV.timer = setTimeout(() => { LIBV.timer = 0; renderLibraryGrid(); }, 120); }
 function deckToText(d, key) {          // key: the deck's marked Key Spirit (v0.103.0) becomes a "KEY <id>" line
   d = d || PLAYER_DECK;
   const lines = Object.keys(d).filter(id => d[id] > 0 && CARDS[id]).map(id => `${d[id]} ${id}   # ${CARDS[id].name}`);
@@ -138,9 +195,10 @@ document.addEventListener('change', async e => {
   else if (t.id === 'set-mode') { setTheme('mode', t.value); navTools(); if (G) render(); }
   else if (t.id === 'set-anim') { if (['full', 'reduced', 'off'].includes(t.value)) SETTINGS.anim = t.value; else delete SETTINGS.anim; saveSettings(); }
   else if (t.id === 'set-sound') { SETTINGS.sound = t.value === 'on'; saveSettings(); navTools(); if (SETTINGS.sound) sfx('summon'); }
+  else if (t.id === 'lib-set' || t.id === 'lib-type') { $('lib-grid').scrollTop = 0; renderLibraryGrid(); }   // v0.111.0 (card images): the Library browse grid filters
 });
-document.addEventListener('input', e => { if (evT(e).id === 'db-search') dbSearchInput(); });
-document.addEventListener('scroll', e => { const t = /** @type {HTMLElement} */ (e.target); if (t && t.id === 'db-card-list') dbScroll(); }, true);
+document.addEventListener('input', e => { if (evT(e).id === 'db-search') dbSearchInput(); else if (evT(e).id === 'lib-search') libSearchInput(); });
+document.addEventListener('scroll', e => { const t = /** @type {HTMLElement} */ (e.target); if (t && t.id === 'db-card-list') dbScroll(); else if (t && t.id === 'lib-grid') libScroll(); }, true);
 window.addEventListener('resize', () => { if ($('view-deckbuilder').classList.contains('active')) { DBV.rowH = 0; dbWindow(true); } });
 function libAction(a) {
   if (a === 'lib-template') {
