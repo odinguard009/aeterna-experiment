@@ -4,6 +4,16 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.109.0
+- Lane: U/I
+- Time: ~45 min (session start → release), deepseek-v4-pro; tokens not counted (no gate counter in this harness).
+- **M8 online client, part 2 (roadmap M8): the online lobby with quick match / private room codes and the account panel.**
+  - New `view-online` lobby (`apps/web/index.template.html` + `apps/web/src/13j-online-lobby.js`): **quick match** (a fresh room vs the server bot, auto code), **private room** (enter a code to join — or create — that room; the room id is the shareable code), and the **account panel** beside them. The Play page's ONLINE mode now opens this lobby; the match terminal (`13i-online.js`) is unchanged.
+  - Account panel over the existing HTTP API: it shows the signed-in account from `/api/me`, signs in by magic link (`POST /api/login`; a local run without a mailer returns the link so it can be opened directly, a deployment mails it) or by Discord (the button is offered only when the server configured OAuth), and signs out (`POST /api/logout`). `/api/config` now also reports `discord` so the lobby can hide the Discord button without a provider.
+  - `onlineStart(code)` takes an optional room code; without one it keeps the auto `local-…` code.
+  - Size budget B01 raised 725 → 730 KB with a note (the lobby + account panel are new client code beside the match terminal; B02 stays 208 KB).
+- Tests: `online_client` M8-42 (the lobby renders the account state and a private room code joins that exact room), `server_http` API09 (`/api/config` reports the ws endpoint and the Discord flag), plus the existing online/server suites; `npm run -s loop`, lint and `npm run check` green.
+
 ## v0.108.0
 - Lane: U/I
 - Time: ~75 min (session start → release), deepseek-v4-pro; tokens not counted (no gate counter in this harness).

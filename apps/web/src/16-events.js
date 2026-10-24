@@ -105,7 +105,13 @@ document.addEventListener('click', e => {
   else if (a === 'zoominfo') return;
   else if (a === 'zoomclose') $('zoom-overlay').classList.remove('active');
   else if (a === 'gloss') uiInfo(`GLOSSARY: ${v}`, esc(KEYWORD_GLOSSARY[v] || ''));
-  else if (a === 'online') onlineStart();                                  // v0.108.0 M8: the online client (13i-online.js)
+  else if (a === 'online') { switchView('view-online'); renderOnlineLobby(); }   // v0.109.0 M8 part 2: the online lobby (13j-online-lobby.js)
+  else if (a === 'onl-quick') onlQuick();
+  else if (a === 'onl-join') onlJoin();
+  else if (a === 'onl-login') onlLogin();
+  else if (a === 'onl-logout') onlLogout();
+  else if (a === 'onl-discord') onlDiscord();
+  else if (a === 'onl-reload') renderOnlineLobby();
   else if (a === 'onext') onlineIntent({ type: 'next' });
   else if (a === 'ostep') onlineIntent({ type: 'next' });
   else if (a === 'ohand') onlineHandMenu(v);

@@ -69,3 +69,41 @@ test('M8-41 browser: the served client plays a whole online match against the se
     await s.close();
   }
 });
+
+test('M8-42 browser: the online lobby renders account state and a private room code joins that room', { skip: SKIP }, async () => {
+  const { serve } = await import('../../apps/server/src/serve.mjs');
+  const { getBrowser, closeBrowser } = await import('./lib/game.mjs');
+  const s = await serve({ port: 0, wsPort: 0 });
+  let page = null;
+  try {
+    page = await (await getBrowser()).newPage();
+    const errors = [];
+    page.on('pageerror', e => errors.push(e.message.slice(0, 200)));
+    await page.goto(`http://127.0.0.1:${s.httpPort}/`);
+    await page.waitForFunction(() => !!window.BS && typeof BS.renderOnlineLobby === 'function');
+    // The lobby: server reachable, no session, the active deck is Standard-legal.
+    await page.evaluate(() => BS.renderOnlineLobby());
+    await page.waitForFunction(() => {
+      const el = document.getElementById('onl-account');
+      return !!el && /Not signed in/.test(el.textContent || '');
+    });
+    const lobby = await page.evaluate(() => ({
+      account: BS.onlineAccount(),
+      server: document.getElementById('onl-server').textContent,
+      deck: document.getElementById('onl-deck').textContent,
+    }));
+    assert.equal(lobby.account, null, 'no session -> the account panel reads "not signed in"');
+    assert.match(lobby.server, /Reachable/);
+    assert.match(lobby.deck, /legal in STANDARD/);
+    // A private room code joins that exact room (the room id is the shareable code).
+    await page.evaluate(() => { BS.onlineAuto(true); return BS.onlineStart('ABCD12'); });
+    await page.waitForFunction(() => { const o = BS.online(); return o && o.room === 'ABCD12' && o.seat === 'player'; });
+    const joined = await page.evaluate(() => { const o = BS.online(); return { room: o.room, seat: o.seat }; });
+    assert.deepEqual(joined, { room: 'ABCD12', seat: 'player' });
+    assert.deepEqual(errors, [], 'no page errors while rendering the lobby and joining the room');
+  } finally {
+    if (page) await page.close();
+    await closeBrowser();
+    await s.close();
+  }
+});

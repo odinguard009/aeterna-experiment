@@ -52,7 +52,9 @@ export function createApi({ accounts, store = null, origin = 'http://localhost:8
     const m = (req.method || 'GET').toUpperCase();
     try {
       if (p === '/health' && m === 'GET') return send(res, 200, { ok: true });
-      if (p === '/api/config' && m === 'GET') return send(res, 200, { ok: true, wsUrl: wsUrl || null });
+      // M8 part 2: discord tells the online lobby whether to offer the "Continue with Discord" sign-in
+      // (the OAuth routes answer 501 without a provider, so the client hides the button instead).
+      if (p === '/api/config' && m === 'GET') return send(res, 200, { ok: true, wsUrl: wsUrl || null, discord: !!discord });
 
       // M8 online client: the server serves the built single file at / and /index.html. Without a build it
       // answers a small JSON banner (the API routes below are unaffected; /health stays the liveness probe).
