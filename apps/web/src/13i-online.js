@@ -370,6 +370,13 @@ function connectOnline(base, roomId) {
 function onlineOrigin() {
   return SETTINGS.onlineUrl || ((location.protocol === 'http:' || location.protocol === 'https:') ? location.origin : null);
 }
+/** v0.117.0: a quick-match room code without Math.random - the seeded RNG is the engine's alone (test offline_bundle, Python
+ *  seed_replay [5]), and a room id is not game state. crypto when the page has it, else the clock. */
+function onlineRoomCode() {
+  let n = Date.now() >>> 0;
+  try { if (window.crypto && crypto.getRandomValues) n = crypto.getRandomValues(new Uint32Array(1))[0] >>> 0; } catch (e) { /* keep the clock */ }
+  return 'local-' + n.toString(36).slice(0, 6);
+}
 async function onlineStart(code) {
   const origin = onlineOrigin();
   if (!origin) {
@@ -387,7 +394,7 @@ async function onlineStart(code) {
     if (r.ok) { const j = await r.json(); if (j && j.wsUrl) base = j.wsUrl; }
   } catch (e) { /* offline or blocked: keep the derived endpoint */ }
   SESSION++; clearPick(); closeModal(null); G = null;
-  connectOnline(base, code || 'local-' + Math.random().toString(36).slice(2, 8));
+  connectOnline(base, code || onlineRoomCode());
 }
 /* expose hooks for the tests and the console. 16-events.js reassigns window.BS after this module loads (this part
    sorts before it), so the hooks attach on a microtask, once the whole script has finished running. */

@@ -61,7 +61,22 @@ with sync_playwright() as p:
     # ---- D. security / privacy
     chk('D1 no network request other than the page itself', all(u.startswith('file://') or u.startswith('data:') for u in reqs), [u for u in reqs if not (u.startswith('file://') or u.startswith('data:'))][:3])
     src = open('/mnt/user-data/outputs/wip.html', encoding='utf-8').read()
-    chk('D2 source has no fetch/XHR/WebSocket/eval/Function constructor', not re.search(r'\bfetch\(|XMLHttpRequest|WebSocket|\beval\(|new Function|sendBeacon|importScripts', src))
+    # v0.117.0: the page now carries the opt-in ONLINE mode (13i-online.js + 13j-online-lobby.js), the only code allowed to
+    # reach the network; a local match must stay request-free (D1 measures that live). The scan is scoped instead of dropped,
+    # and the same invariant runs in the quick loop as tests/unit/offline_bundle.test.mjs (this Python-only check missed the
+    # regressions from v0.108.0 to v0.116.0).
+    NET = re.compile(r'\bfetch\s*\(|\bWebSocket\s*\(|XMLHttpRequest|\beval\s*\(|new\s+Function\s*\(|sendBeacon\s*\(|importScripts\s*\(')
+    ONLINE_MODULES = {'13i-online.js', '13j-online-lobby.js'}
+    def _read(p): return open(p, encoding='utf-8').read()
+    engine_net = []
+    for d in ('packages/protocol/src', 'packages/engine/src'):
+        for f in sorted(_os_c.listdir(d)):
+            if f.endswith('.js') and NET.search(_read(_os_c.path.join(d, f))): engine_net.append(d + '/' + f)
+    chk('D2a the engine and protocol never touch the network or eval', not engine_net, engine_net[:3])
+    web = {f: len(NET.findall(_read(_os_c.path.join('apps/web/src', f)))) for f in sorted(_os_c.listdir('apps/web/src')) if f.endswith('.js')}
+    extra_net = [f for f, n in web.items() if n and f not in ONLINE_MODULES]
+    chk('D2b only the opt-in online modules make network calls', not extra_net, extra_net[:3])
+    chk('D2c every network call in the page comes from those two modules', len(NET.findall(src)) == sum(web.get(f, 0) for f in ONLINE_MODULES), (len(NET.findall(src)), sum(web.get(f, 0) for f in ONLINE_MODULES)))
     chk('D3 no external script or stylesheet tags', not re.search(r'<script[^>]+src=|<link[^>]+href="http', src))
     xss = [{"id": "XSS-1", "name": "<img src=x onerror=window.__x=1>", "type": "Spirit", "color": "red", "cost": 1, "levels": [{"cores": 1, "bp": 1000}], "text": "<script>window.__x=1</script>", "families": ["<b>x</b>"]}]
     ev(pg, "BS.importCards(%s)" % json.dumps(json.dumps(xss)))

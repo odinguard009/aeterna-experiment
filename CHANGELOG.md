@@ -4,6 +4,16 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.117.0
+- Lane: U/I
+- Time: ~40 min (two tasks: the unfinished v0.116.0 release tail, then the gate repair), deepseek-v4-flash-vision-exp; tokens not counted (no gate counter in this harness).
+- **Regression gate green again: the offline-single-file invariant now runs in the quick loop, and the online room code left `Math.random` alone.** Every tag Regression run from v0.108.0 to v0.116.0 came back red on the same two checks — `cleanup_review_tests` D2 ("source has no fetch/XHR/WebSocket/eval/Function constructor") and `seed_replay_tests` [5] ("game logic no longer uses Math.random") — while CI stayed green, because both checks live only in the Python suites and no local loop runs them. The invariant is still right (a local match must not touch the network; only the seed generator may use `Math.random`), so it is scoped to the one opt-in exception instead of forbidding the feature:
+  - `tests/unit/offline_bundle.test.mjs` (new, OB-01..OB-05, so `npm run loop` and CI fail on a regression): the engine and protocol parts never fetch, open a socket or eval; only `13i-online.js` and `13j-online-lobby.js` may; every call site in the built page comes from those two; `Math.random` appears exactly once (the seed generator in `00-config.js`); and only the online modules start an online match, so a `file://` game stays offline.
+  - `cleanup_review_tests` D2 becomes D2a-D2c (engine clean / only the online modules / the page's call sites add up) with a "call site, not the bare word" pattern: the How-to-play text names the WebSocket the online room uses.
+  - `13i-online.js`: a quick-match room code comes from `crypto.getRandomValues` (clock fallback) instead of `Math.random`, so the seeded RNG stays the engine's own — a room id is not game state. `seed_replay` [5] then passes unchanged.
+- **Housekeeping from the unfinished v0.116.0 tail:** that version's GitHub Release had never been created, so it is created now (tag `v0.116.0`, asset `aeterna-v0.116.0.html`), and the 39 releases `v0.69.1`-`v0.103.0` that the `Release` workflow has never managed to create are backfilled — all 77 versions from `v0.57.1` on now have one (the workflow's 403 is account-level, see `docs/ai/release.md`; a session runs `tools/make_releases.sh` instead). The 39 tag pushes started 39 Regression runs; they were cancelled, since `tools/regression_due.sh` ignores a `cancelled` run. Trap recorded in `docs/ai/release.md`.
+- Tests: new OB-01..OB-05; `npm run -s loop` green. Python Playwright is not installed in this environment, so the scoped D2 and `seed_replay` [5] were verified against the rebuilt page with the same patterns locally, and the Regression dispatch is the confirmation.
+
 ## v0.116.0
 - Lane: K
 - Time: ~45 min (session start → release), deepseek-v4-flash-vision-exp; tokens not counted (no gate counter in this harness).

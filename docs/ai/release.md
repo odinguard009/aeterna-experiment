@@ -44,3 +44,11 @@ What the session does instead, so nothing depends on the broken trigger:
 - CI also runs nightly at 19:23 UTC, so `main` is verified even in a week with no session;
 - `Regression` stays a manual dispatch (`tools/regression_due.sh` decides), and `v0.106.0` widened
   its "core engine" rule to every `packages/engine` and `packages/protocol` source.
+- **Backfill trap (measured v0.117.0, 2026-10-24):** `tools/make_releases.sh` with no version list creates every missing
+  version, and each release it creates pushes a tag — `regression.yml` starts on `push: tags: ['v*']`, so a 39-version
+  backfill queued 39 Regression runs at once. Create one release at a time
+  (`bash tools/make_releases.sh "$(git rev-parse origin/main)" <version>`) when only the current version is wanted, and
+  after a backfill cancel the old-version runs (`gh run cancel <id>`; a `cancelled` run is what `regression_due.sh`
+  skips). The same day: the v0.108.0-v0.116.0 tag runs had been red on two Python-only checks (cleanup D2 network scan,
+  seed [5] `Math.random`) while CI was green — that invariant now also runs in the quick loop as
+  `tests/unit/offline_bundle.test.mjs`, so a broken offline bundle fails before the push.
