@@ -86,6 +86,7 @@ document.addEventListener('click', e => {
   else if (a === 'go-lib') switchView('view-library');
   else if (a === 'set-sec') setSection(v);
   else if (a === 'set-mat-clear') matClear();
+  else if (a === 'libcard') openZoom(v);                                    // v0.111.0 (card images): the Library browse grid
   else if (a.startsWith('lib-')) libAction(a);
   else if (a === 'format') setFormat(FORMAT === 'eternal' ? 'standard' : 'eternal');
   else if (a === 'rules') showRules();

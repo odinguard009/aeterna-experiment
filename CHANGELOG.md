@@ -4,6 +4,15 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.111.0
+- Lane: U/I
+- Time: ~40 min (session start → release), deepseek-v4-pro; tokens not counted (no gate counter in this harness).
+- **Card images, part 1 (roadmap U/I "card images"): the Library browse grid — a browsable, searchable grid of every card.**
+  - The Library gains a "Browse cards" section: a windowed grid (the deck builder's index + grid CSS) of every non-token card, filtered by search (name / ID / effect text), set and type, with the player's card images where they were added and a tap that zooms the card.
+  - This closes the "the Library has no card grid" gap and makes the player-supplied card-image feature browsable; the rest of the feature (import → IndexedDB → display in hand / field / deck / zoom / strips / the online board) was already in place.
+  - Size budget B01 raised 730 → 740 KB and B02 208 → 212 KB with a note (the grid is new client code).
+- Tests: `library_grid` CIMG-1 (the grid renders, filters by search/set and zooms a card); full quick suite 1478 passes; lint and `npm run check` green.
+
 ## v0.110.0
 - Lane: U/I
 - Time: ~35 min (session start → release), deepseek-v4-pro; tokens not counted (no gate counter in this harness).

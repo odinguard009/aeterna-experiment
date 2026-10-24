@@ -315,6 +315,12 @@
   .lib-msg { font-size: 10px; color: #6fcf97; white-space: pre-wrap; min-height: 14px; }
   .lib-msg.bad { color: #eb5757; }
   .lib-area { width: 100%; height: 110px; background: rgba(0,0,0,.5); color: var(--text-main); border: 1px solid var(--border-line); border-radius: 4px; font-size: 10px; padding: 4px; user-select: text; font-family: monospace; }
+  /* v0.111.0 (card images): the Library browse grid reuses the deck builder's `.db-grid` card grid, capped so it scrolls */
+  .lib-tools { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0 6px; }
+  .lib-tools .sel { flex: 1 1 150px; min-width: 0; }
+  .lib-tools .doc-note { flex: 1 1 100%; margin: 0; font-size: 11px; color: var(--text-muted); }
+  .lib-grid { max-height: 64vh; margin-top: 4px; border: 1px solid var(--border-line); border-radius: 6px; background: rgba(0,0,0,.18); }
+  .lib-grid .tcg-card { cursor: zoom-in; }
   .db-search { background: var(--ae-chip); color: var(--text-main); border: 1px solid var(--border-line); border-radius: 4px; font-size: 11px; padding: 4px 6px; width: 130px; user-select: text; }
   .db-filters { display: flex; gap: 8px; align-items: center; font-size: 10px; color: var(--text-muted); flex-wrap: wrap; }
 
