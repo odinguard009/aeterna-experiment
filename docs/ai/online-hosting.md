@@ -9,12 +9,12 @@ Owner decision 2026-10-24: host on Cloudflare — Pages for the static single-fi
 Owner setup (once):
 
 1. Sign up at cloudflare.com (free plan, no credit card).
-2. Create a Pages project named `aeterna-experiment` (dashboard > Workers & Pages > Create > Pages). Direct upload is fine: the workflow deploys by API, not by the Git integration.
-3. Create an API token: My Profile > API Tokens > Create Token > "Edit Cloudflare Workers" template (needs Account > Cloudflare Pages > Edit).
-4. Add two GitHub secrets (repo Settings > Secrets and variables > Actions):
+2. Create an API token: My Profile > API Tokens > Create Token > **Create Custom Token** > Permissions **Account** > **Cloudflare Pages** > **Edit** > Continue to summary > Create Token. Copy the token.
+3. Find your account id: dashboard (right sidebar, **API** section) or the Workers & Pages page.
+4. Add two GitHub secrets (repo Settings > Secrets and variables > Actions > New repository secret):
    - `CLOUDFLARE_API_TOKEN` = the token
-   - `CLOUDFLARE_ACCOUNT_ID` = the account id (dashboard right sidebar)
-5. Run "Deploy Pages" once (Actions > Deploy Pages > Run workflow). The game goes live at `aeterna-experiment.pages.dev`; attach a custom domain in the Pages project when wanted.
+   - `CLOUDFLARE_ACCOUNT_ID` = the account id
+5. Run "Deploy Pages" once (Actions > Deploy Pages > Run workflow). The first run creates the Pages project `aeterna-experiment` automatically. The game goes live at `aeterna-experiment.pages.dev`; attach a custom domain in the Pages project when wanted.
 
 ## Online server (M8, later)
 

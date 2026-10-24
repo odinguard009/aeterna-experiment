@@ -1,8 +1,8 @@
 # Deploys the built single-file game (index.html) to Cloudflare Pages after a green CI on main,
 # and by hand via "Run workflow". index.html is self-contained and is already verified by CI
 # ("index.html is the build of its sources"), so the committed file is deployed as-is.
-# Owner setup once: create the Pages project "aeterna-experiment", add the secrets
-# CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID; see docs/ai/online-hosting.md.
+# The first deploy creates the Pages project "aeterna-experiment" automatically (wrangler pages deploy).
+# Owner setup once: add the secrets CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID; see docs/ai/online-hosting.md.
 name: Deploy Pages
 on:
   workflow_run:
@@ -15,6 +15,7 @@ concurrency:
   cancel-in-progress: false
 permissions:
   contents: read
+  deployments: write
 jobs:
   deploy:
     if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
@@ -25,10 +26,9 @@ jobs:
       - name: Stage the deploy directory (only the single file is served)
         run: mkdir -p dist && cp index.html dist/
       - name: Deploy to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
+        uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: aeterna-experiment
-          directory: dist
+          command: pages deploy dist --project-name=aeterna-experiment
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
