@@ -20,7 +20,12 @@ permissions:
   contents: write
 jobs:
   release:
-    if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push')
+    # v0.106.0: any green CI on main may release, not only a push-triggered one. Pushes to this
+    # repository never start a workflow run (verified 2026-10-24: a clean push to main produced no
+    # run at all, and the whole run history is workflow_dispatch), so requiring event == 'push' meant
+    # the release step could never run by itself. make_releases.sh only creates versions that are
+    # missing from CHANGELOG.md, so a green CI on an older commit is still safe.
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:

@@ -9,6 +9,10 @@ on:
   pull_request:
     paths-ignore: ['docs/**', '**.md', '.claude/**']
   workflow_dispatch:
+  # v0.106.0: a nightly run on main. Pushes do not start this workflow in this repository (see the
+  # note in release.yml), so without a schedule `main` is only tested when a session dispatches it.
+  schedule:
+    - cron: '23 19 * * *'
 concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true

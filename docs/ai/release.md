@@ -20,3 +20,23 @@
 
 ## Docs travel with the release (owner, 2026-10-20)
 Generated docs (unlock report, pack plan with measured yield, mechanic inventory, mind map) are produced by `bash tools/release_docs.sh` before the push and amended into the last task commit: one commit and one pre-push run per release instead of a separate `docs:` commit. Docs-only pushes start no CI either way (paths-ignore), so this saves calls and tokens, not Actions minutes.
+
+## Triggers in this repository (v0.106.0)
+
+Pushes to `main` do **not** start a workflow run here. Verified on 2026-10-24: a clean push
+(`94bbf9f..b1ede8d`) produced no run within a minute, and the whole run history of the repository is
+`workflow_dispatch` - no `push`, `pull_request`, `schedule` or `workflow_run` run has ever been
+recorded. The workflow files, the token scopes (`repo`, `workflow`) and the repository's Actions
+setting (`enabled`, `allowed_actions: all`) are all correct, so the cause sits above the repository
+(account or GitHub App level) and is not something a session can change.
+
+What the session does instead, so nothing depends on the broken trigger:
+
+- after `git push`, dispatch CI by hand: `gh workflow run CI --ref main`, then watch it
+  (`gh run list --workflow CI --limit 1`);
+- `Release` now fires on any green CI run on `main`, not only a push-triggered one, so a manual
+  dispatch is enough for the release step to run by itself; `tools/make_releases.sh` still only
+  creates versions missing from `CHANGELOG.md`, so a green run on an older commit is harmless;
+- CI also runs nightly at 19:23 UTC, so `main` is verified even in a week with no session;
+- `Regression` stays a manual dispatch (`tools/regression_due.sh` decides), and `v0.106.0` widened
+  its "core engine" rule to every `packages/engine` and `packages/protocol` source.
