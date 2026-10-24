@@ -44,6 +44,22 @@ def family(k):
     return next((n for n, rx in FAMILIES if re.search(rx, k)), 'other')
 
 
+def zero_line(meas):
+    """v0.106.0: how many measured rows delivered nothing, so the New column is not read as a forecast."""
+    if not meas:
+        return ('**No measurement in this report:** run with `--measure` before sizing a pack from the New column '
+                '(a scratch recompile is the only honest estimate, item T.2).')
+    rows = [(k, v) for k, v in meas.items() if v and v[0]]
+    zero = [k for k, v in rows if v[1] == 0]
+    if not rows:
+        return '**No measurement in this report:** run with `--measure` before sizing a pack from the New column.'
+    if not zero:
+        return f'**Measured reality:** all {len(rows)} measured rows delivered at least one compiled card.'
+    return (f'**Measured reality (read this before sizing a pack):** {len(zero)} of {len(rows)} measured rows delivered '
+            f'**zero** compiled cards (Measured 0/x). The New column is a ceiling on what the text promises, never a forecast '
+            f'of what a session will build; size the next pack with a scratch recompile (item T.2).')
+
+
 def main(a):
     steps = int(a[a.index('--steps') + 1]) if '--steps' in a else 60
     pool = list(v2.v1.staged())
@@ -96,9 +112,10 @@ def main(a):
          '**Upper bound:** `blockers()` lists only the first failing sentence of each paragraph, so real unlocks are lower; '
          'measure each pack by a scratch recompile after it is built. Rule sources: `data/glossary/wiki-rules-map.json` '
          '(`python3 tools/wiki_rules.py --for "<blocker>"`, index `docs/reports/wiki-rules-index.md`).', '',
-         '## Greedy order', '', '"New" = cards whose last open blocker is this row; "Block A" = of those, Standard block A; '
-         '"Touches" = open cards that still list it.', '',
-         '| Step | Blocker | Family | New | Block A | Total | Touches |' + (' Measured | Est. real |' if meas else '') + ' Rule source |',
+         zero_line(meas), '',
+         '## Greedy order', '', '"New (upper)" = cards whose last open blocker is this row; "Block A (upper)" = of those, Standard '
+         'block A; "Touches" = open cards that still list it. The "(upper)" marks are there because both columns are ceilings, not forecasts.', '',
+         '| Step | Blocker | Family | New (upper) | Block A (upper) | Total | Touches |' + (' Measured | Est. real |' if meas else '') + ' Rule source |',
          '|---|---|---|---|---|---|---|' + ('---|---|' if meas else '') + '---|']
     est = {}
     for n, (k, new, a_, tot, t) in enumerate(rows, 1):

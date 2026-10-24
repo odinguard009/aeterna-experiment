@@ -4,11 +4,13 @@ Staged pool 7,793 cards; compile_v2 compiles 2 new (not promoted yet), 7,791 sta
 
 **Upper bound:** `blockers()` lists only the first failing sentence of each paragraph, so real unlocks are lower; measure each pack by a scratch recompile after it is built. Rule sources: `data/glossary/wiki-rules-map.json` (`python3 tools/wiki_rules.py --for "<blocker>"`, index `docs/reports/wiki-rules-index.md`).
 
+**Measured reality (read this before sizing a pack):** 29 of 47 measured rows delivered **zero** compiled cards (Measured 0/x). The New column is a ceiling on what the text promises, never a forecast of what a session will build; size the next pack with a scratch recompile (item T.2).
+
 ## Greedy order
 
-"New" = cards whose last open blocker is this row; "Block A" = of those, Standard block A; "Touches" = open cards that still list it.
+"New (upper)" = cards whose last open blocker is this row; "Block A (upper)" = of those, Standard block A; "Touches" = open cards that still list it. The "(upper)" marks are there because both columns are ceilings, not forecasts.
 
-| Step | Blocker | Family | New | Block A | Total | Touches | Measured | Est. real | Rule source |
+| Step | Blocker | Family | New (upper) | Block A (upper) | Total | Touches | Measured | Est. real | Rule source |
 |---|---|---|---|---|---|---|---|---|---|
 | 1 | wiki template {{Mirage}} | keyword template | 48 | 0 | 48 | 201 | 0/48 | 0 | Mirage |
 | 2 | wiki template {{Rush}} | keyword template | 48 | 0 | 96 | 65 | 2/47 | 2 | Rush |
