@@ -33,3 +33,37 @@ jobs:
         run: npm run -s coverage:check
       - name: Unit and property tests
         run: npm test
+  # v0.106.0 (roadmap M7 step 2): the live half of the database work. The schema, the migration
+  # runner and the Postgres binding of the store are exercised here, because `pg` and a server only
+  # exist in CI (the plan keeps npm installs out of the sessions). tests/unit/server_store_pg.test.mjs
+  # skips itself when DATABASE_URL is absent, so this job is the only place it runs.
+  db:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: aeterna
+          POSTGRES_PASSWORD: aeterna
+          POSTGRES_DB: aeterna
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U aeterna -d aeterna"
+          --health-interval 5s --health-timeout 5s --health-retries 20
+    env:
+      DATABASE_URL: postgres://aeterna:aeterna@localhost:5432/aeterna
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install the Postgres client for the tests
+        run: npm install --no-save pg@8
+      - name: Apply the migrations with the repository runner
+        run: sh db/migrate.sh
+      - name: The runner is idempotent (a second run applies nothing)
+        run: sh db/migrate.sh
+      - name: Store contract against Postgres
+        run: node --test tests/unit/server_store_pg.test.mjs

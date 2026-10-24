@@ -48,9 +48,22 @@ cheap and makes a stored match auditable: replaying `record` must reproduce `log
 Not stored on purpose: card text and card data (they ship with the game), card images (player
 supplied), passwords (login is Discord OAuth or an emailed magic link), and any per-turn state.
 
-## 3. What a session still owes M7
+## 3. State of M7
 
-- Accounts: Discord OAuth and email magic links, sessions and cookies.
-- Repositories in `apps/server` (the plan keeps the rules out of the server), plus the API routes.
-- A CI job with a Postgres service container that runs the migrations and the repository tests.
+Done in v0.106.0 (step 1): the schema, the append-only runner, the local compose file, these tables.
+
+Done in step 2 (`apps/server/src/store.mjs`, `store-pg.mjs`): the persistence **contract** and two
+implementations of it. `memoryStore()` is the reference (pure JS, no package, used by tests and by a
+server without a database); `pgStore()` answers the same calls over the schema, importing `pg`
+lazily so nothing else needs the package. The validation in `store.mjs` mirrors the migration's
+CHECK constraints on purpose, and `tests/unit/server_store.test.mjs` fails if the two lists drift
+(SV04). CI job `db` brings up Postgres, runs `db/migrate.sh` twice (it must be idempotent) and runs
+`tests/unit/server_store_pg.test.mjs`, which skips itself when `DATABASE_URL` is absent - so the
+live half only ever runs where a server exists.
+
+Still owed:
+
+- Accounts: Discord OAuth and email magic links, sessions and cookies (the schema and the store hold
+  the accounts; the login flow is not written).
+- API routes over the store in `apps/server/src/run.mjs`, and room records written through it.
 - `docker/compose.yml` for the server itself once there is a server image to run.
