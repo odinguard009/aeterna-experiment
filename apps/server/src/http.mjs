@@ -8,6 +8,8 @@
 
    Routes:
      GET  /health                -> { ok: true }
+     GET  /api/config            -> { wsUrl } (the room server's WebSocket endpoint; the online client asks this first)
+     GET  /  (staticHtml set)    -> the built single-file client (M8: the server serves the online client)
      POST /api/login   {email}   -> asks accounts for a one-time link; without a
                                     mailer the link is returned so a local run works
      GET  /api/login?t=<token>   -> redeems the link, Set-Cookie, redirects to /
@@ -32,10 +34,12 @@ const readBody = (req) => new Promise((resolve) => {
 });
 
 /**
- * @param {{ accounts: object, store?: object, origin?: string, mailer?: function }} deps
- * @returns an http.Server. The store is only used for the deck and match list routes.
+ * @param {{ accounts: object, store?: object, origin?: string, mailer?: function, staticHtml?: string, wsUrl?: string }} deps
+ * @returns an http.Server. The store is only used for the deck and match list routes; staticHtml serves the
+ *          built client at / (M8 online client) when the server runs the web app itself; wsUrl is the room
+ *          server's WebSocket endpoint, told to the client through /api/config.
  */
-export function createApi({ accounts, store = null, origin = 'http://localhost:8080', mailer = null, discord = null } = {}) {
+export function createApi({ accounts, store = null, origin = 'http://localhost:8080', mailer = null, discord = null, staticHtml = null, wsUrl = null } = {}) {
   if (!accounts || !accounts.requestLogin || !accounts.consumeLogin || !accounts.accountFromCookie) {
     throw new Error('createApi: an accounts service is required');
   }
@@ -48,6 +52,17 @@ export function createApi({ accounts, store = null, origin = 'http://localhost:8
     const m = (req.method || 'GET').toUpperCase();
     try {
       if (p === '/health' && m === 'GET') return send(res, 200, { ok: true });
+      if (p === '/api/config' && m === 'GET') return send(res, 200, { ok: true, wsUrl: wsUrl || null });
+
+      // M8 online client: the server serves the built single file at / and /index.html. Without a build it
+      // answers a small JSON banner (the API routes below are unaffected; /health stays the liveness probe).
+      if ((p === '/' || p === '/index.html') && m === 'GET') {
+        if (staticHtml) {
+          res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-cache' });
+          return res.end(staticHtml);
+        }
+        if (p === '/') return send(res, 200, { ok: true, service: 'aeterna-server', note: 'no client build served (run tools/build.mjs)' });
+      }
 
       if (p === '/api/login' && m === 'POST') {
         const body = await readBody(req);

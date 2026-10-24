@@ -13,11 +13,23 @@
      DATABASE_URL=postgres://... node apps/server/src/serve.mjs
      DISCORD_CLIENT_ID=.. DISCORD_CLIENT_SECRET=.. DISCORD_REDIRECT_URI=.. node apps/server/src/serve.mjs
    --------------------------------------------------------------------- */
+import { readFileSync, existsSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { createApi } from './http.mjs';
 import { startServer } from './run.mjs';
 import { memoryStore } from './store.mjs';
 import { accounts } from './accounts.mjs';
 import { discordOAuth } from './oauth-discord.mjs';
+
+// M8 online client: the server serves the built single file (the repo root index.html) at /, so `node
+// apps/server/src/serve.mjs` alone is enough to open the online client in a browser. Absent (not built), the
+// API still answers JSON at / and the ws server still runs; the offline file is untouched either way.
+const CLIENT_HTML = (() => {
+  try {
+    const path = fileURLToPath(new URL('../../../index.html', import.meta.url));
+    return existsSync(path) ? readFileSync(path, 'utf8') : null;
+  } catch (e) { return null; }
+})();
 
 export async function serve({
   port = Number(process.env.PORT) || 8080,
@@ -45,8 +57,9 @@ export async function serve({
         redirectUri: process.env.DISCORD_REDIRECT_URI || `${origin0}/api/login/discord/callback`,
       })
     : null);
-  const api = createApi({ accounts: svc, store, origin: origin0, mailer, discord: discordProvider });
+  // M8: the ws server starts first so its endpoint (ws.url) is told to the client through /api/config.
   const ws = await startServer({ port: Number(wsPort) || 0, store, accounts: svc });
+  const api = createApi({ accounts: svc, store, origin: origin0, mailer, discord: discordProvider, staticHtml: CLIENT_HTML, wsUrl: ws.url });
   await new Promise((res, rej) => { api.once('error', rej); api.listen(port0, '0.0.0.0', res); });
   const close = async () => {
     await ws.close();

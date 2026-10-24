@@ -105,6 +105,15 @@ document.addEventListener('click', e => {
   else if (a === 'zoominfo') return;
   else if (a === 'zoomclose') $('zoom-overlay').classList.remove('active');
   else if (a === 'gloss') uiInfo(`GLOSSARY: ${v}`, esc(KEYWORD_GLOSSARY[v] || ''));
+  else if (a === 'online') onlineStart();                                  // v0.108.0 M8: the online client (13i-online.js)
+  else if (a === 'onext') onlineIntent({ type: 'next' });
+  else if (a === 'ostep') onlineIntent({ type: 'next' });
+  else if (a === 'ohand') onlineHandMenu(v);
+  else if (a === 'ofield') onlineFieldTap(v);
+  else if (a === 'ozone') onlineZoneMenu(v);
+  else if (a === 'opk') onlinePickButton(Number(v));
+  else if (a === 'opay') onlinePayButton(v);
+  else if (a === 'oleave') { onlineDisconnect(); switchView('view-lobby'); renderLobby(); }
   else if (!G) return;
   else if (a === 'field' && PICK) { const u = Number(v.split(':')[2]); if (PICK.uids.has(u)) PICK.res(u); }
   else if (a === 'log') openLogModal();

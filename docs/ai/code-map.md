@@ -131,7 +131,7 @@ NAV_HIDDEN, navSync, navTools, themePop, navTheme, navSound, navHistory, fmtTitl
 ## apps/web/src/13c-play.js (22 lines, ~0.4k tokens) — PLAY SETUP PAGE (v0.67.0, UI/UX overhaul U3; docs/DESIGN.md section 0 "Play = deck chip + mode cards + setup chips")
 PLAY_SPEEDS, playChips, renderPlay, playSet
 
-## apps/web/src/13d-pages.js (54 lines, ~1k tokens) — SETTINGS, HOW TO PLAY, LIBRARY PAGES (v0.68.0, UI/UX overhaul U4; docs/DESIGN.md section 0, mockup docs/design/mockup-v11.html "Settings")
+## apps/web/src/13d-pages.js (55 lines, ~1k tokens) — SETTINGS, HOW TO PLAY, LIBRARY PAGES (v0.68.0, UI/UX overhaul U4; docs/DESIGN.md section 0, mockup docs/design/mockup-v11.html "Settings")
 MAT_KEY, MAT, matUse, shrinkMat, matSet, matClear, setMsg, setSection, renderSetPage
 
 ## apps/web/src/13e-host.js (86 lines, ~1.3k tokens) — WEB HOST (v0.82.0, phase F2 = M2): the browser answers the engine's port (packages/protocol/src/00p-protocol.js).
@@ -146,14 +146,17 @@ animMode, ANIM, rectOf, visEl, aeFx, aeBeam, animCues
 ## apps/web/src/13h-decks.js (97 lines, ~2.2k tokens) — v0.93.0 U6 MY DECKS (docs/DESIGN.md section 0, mockup docs/design/mockup-v11.html "My decks PC / phone")
 DK_MENU, dkCards, dkUsed, dkFree, dkStatus, dkColors, dkTile, renderDecks, dkMenu, dkNewSlot, dkAct
 
+## apps/web/src/13i-online.js (382 lines, ~6.9k tokens) — ONLINE CLIENT (v0.108.0, roadmap M8 part 1; docs/ai/monorepo-plan.md M8)
+ONL_DEF, ON, ONL_AUTO, onlineWsBase, onlineAvailable, onlineLifeTxt, onlineLifePlate, onlineResPlate, onlineFieldCard, onlineHandCard, onlineRow, onlineFieldArea, renderOnlineStatus, renderOnline, onlineSend, onlineIntent, onlineDecide, onlinePick, clearOnlinePick, onlinePickButton, onlinePayment, onlinePayButton, onlineHandMenu, onlineFieldTap, onlineFieldMenu, onlineZoneMenu, onlineDisconnect, onlineFail, onlineOver, onlineMsg, connectOnline, onlineStart
+
 ## apps/web/src/14-images.js (164 lines, ~2.9k tokens) — CARD IMAGES
 IMG, IDB, normKey, idbOpen, idbTx, setImg, loadImages, shrinkImage, stripExt, findCardByFile, findCardByKey, importImages, clearImages, imgCls, imgSty, refreshViews, libMsg, renderLibrary, deckToText, textToDeck, downloadText, readFileText, libAction
 
 ## packages/engine/src/15-match.js (69 lines, ~1.4k tokens) — MATCH START / END
 closeMatch, startNewGame, matchSummary
 
-## packages/engine/src/15b-replay.js (101 lines, ~2.2k tokens) — REPLAY RECORDS (v0.85.0, phase F4 = monorepo step M4 part 1; docs/ai/monorepo-plan.md "Design" 2)
+## packages/engine/src/15b-replay.js (105 lines, ~2.4k tokens) — REPLAY RECORDS (v0.85.0, phase F4 = monorepo step M4 part 1; docs/ai/monorepo-plan.md "Design" 2)
 newPortRecord, portRecord, boardSnapshot, runPortRecord, viewerReplayOf
 
-## apps/web/src/16-events.js (217 lines, ~4.7k tokens) — EVENTS (delegation)
+## apps/web/src/16-events.js (226 lines, ~4.9k tokens) — EVENTS (delegation)
 hScrollable, HDRAG, GAME_ACTS, gameAct, replayOf, lastReplay, runReplay, loadScenario, testSetup, defBuiltin

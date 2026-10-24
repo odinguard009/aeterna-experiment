@@ -78,6 +78,7 @@ export function newRoomHost(E, opts) {
     name: 'server',
     view(ev) {
       if (!ev || !E.VIEW_TYPES.includes(ev.type)) { H.error = 'unknown view record ' + JSON.stringify(ev); return; }   // never throw inside the engine's sync path
+      if (ev.type === 'acted') broadcast({ t: 'acted', seat: ev.seat, ok: !!ev.ok });   // v0.108.0 (M8): the online client learns an intent was refused
       schedule();
     },
     log() {},

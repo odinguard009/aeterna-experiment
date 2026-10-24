@@ -35,16 +35,29 @@ export function roomOf(reg, id) {
       if (room.seats.player.token === msg.token) return { ok: true, room, seat: 'player', viewerKey: 'player', token: msg.token, again: true, seats: { player: true } };
       return { ok: false, reason: 'seat taken (wrong token)' };
     }
-    if (!msg.deck) {
+    // v0.108.0 (M8 online client): the deck may be a prebuilt id (string) or the player's own card map
+    // ({cardId: count}); an object is kept as-is so a custom deck plays through the room (host.mjs deckOf
+    // passes objects to the engine unchanged). A card map is capped at 120 entries and 4 copies per card.
+    let deck;
+    if (typeof msg.deck === 'string') deck = String(msg.deck).slice(0, 80);
+    else if (msg.deck && typeof msg.deck === 'object' && !Array.isArray(msg.deck)) {
+      deck = {};
+      for (const [cid, n] of Object.entries(msg.deck).slice(0, 120)) {
+        const k = Number(n);
+        if (Number.isInteger(k) && k >= 0 && k <= 4) deck[String(cid).slice(0, 40)] = k;
+      }
+      if (!Object.keys(deck).length) deck = null;
+    }
+    if (!deck) {
       if (created) reg.rooms.delete(id);                     // a fresh room that never claimed its seat does not linger
-      return { ok: false, reason: 'the player seat needs a deck (a prebuilt deck id)' };
+      return { ok: false, reason: 'the player seat needs a deck (a prebuilt deck id or a card map)' };
     }
     const token = 'r' + room.seq + '-' + Math.random().toString(36).slice(2, 12);
     // accountId/displayName are optional and only ever resolved server-side (run.mjs passes them from the
     // session cookie, never from the wire): a guest seat keeps both null and records with a "Player" name.
     room.seats.player = {
       token,
-      deck: String(msg.deck).slice(0, 80),
+      deck,
       key: msg.key != null ? String(msg.key).slice(0, 80) : null,
       accountId: msg.accountId != null ? String(msg.accountId).slice(0, 64) : null,
       displayName: msg.displayName != null ? String(msg.displayName).slice(0, 40) : null,
