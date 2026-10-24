@@ -37,7 +37,9 @@ for v in "${versions[@]}"; do
   if [ -z "${DRY_RUN:-}" ] && gh release view "v$v" >/dev/null 2>&1; then skipped=$((skipped + 1)); continue; fi
   notes="$out/v$v.md"
   awk -v h="## v$v" '$0 == h {f = 1; next} f && /^## / {exit} f' CHANGELOG.md CHANGELOG-archive.md | sed -e '/./,$!d' > "$out/body.md"
-  title=$(grep -v '^- Lane:' "$out/body.md" | grep -m1 '^- ' | sed -E 's/^- //; s/\*\*//g; s/`//g; s/[(:].*$//; s/[ .,;]+$//' | cut -c1-70)
+  # v0.106.0: the first two bullets are always "- Lane:" and "- Time:", so skip both for the title
+  # (the releases up to v0.105.0 are all titled "Time" because of that)
+  title=$(grep -vE '^- (Lane|Time):' "$out/body.md" | grep -m1 '^- ' | sed -E 's/^- //; s/\*\*//g; s/`//g; s/[(:].*$//; s/[ .,;]+$//' | cut -c1-70)
   # v0.96.0: data/cards/all-cards.json left git; cardsAtRev reads the old file at older commits and joins the Saga files at newer ones
   n=$(node -e "import('./tools/all_cards.mjs').then(m => console.log(m.cardsAtRev(process.argv[1]).length.toLocaleString('en-US')))" "$c")
   {
