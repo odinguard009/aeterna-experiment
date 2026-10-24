@@ -1,0 +1,91 @@
+/* ---- FX_ACTIONS, part 2 of 5 (v0.106.0 split of the old 516-line 02b-effects-actions.js) ----
+   Your own board: draw, counters, tokens, symbols, BP, cores, refresh, set-as-Mirage and self-deploy.
+   Object.assign keeps the original entry order. Only the entries that 02m and 02p capture at
+   load time must load before those parts, which is why the targeting actions stay in 02b;
+   every other entry here is read from inside a function.
+   ------------------------------------------------------------------------------------ */
+Object.assign(FX_ACTIONS, {
+  DRAW: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5, txt: a => `draw ${a.n} card${a.n === 1 ? '' : 's'}`,
+    run: async (c, a) => { const k = draw(c.p, a.n); log(`${CARDS[c.src.id].name}: ${who(c.p)} ${c.p.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'}.`); handUp(c.p, k); } },
+  COUNTER: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && (a.max == null || (Number.isInteger(a.max) && a.max >= 1 && a.max <= 30)), txt: a => `counter +${a.n}${a.max ? ' (max ' + a.max + ' counters)' : ''}`,
+    run: async (c, a) => {
+      const n = a.max != null ? Math.max(0, Math.min(a.n, a.max - c.p.count)) : a.n;
+      if (!n) { c.ctx.did = false; log(`${CARDS[c.src.id].name}: the counter is already at its maximum.`); return; }
+      takeFromVoid(c.p, n); c.p.count += n; log(`${CARDS[c.src.id].name}: counter +${n}.`);      // official: Count Area cores come from the Void
+    } },
+  /* v0.35 Tokens: "send out (up to) N of your <Token>" — no cost, cores for Lv1 from the Field/Reserve, not a summon; ask:true = "you can" inside the effect */
+  SEND_TOKEN: { chk: a => typeof a.token === 'string' && /^[A-Z0-9-]{3,30}$/.test(a.token) && Number.isInteger(a.n) && a.n >= 1 && a.n <= 3 && (a.ask == null || typeof a.ask === 'boolean'),
+    txt: a => `${a.ask ? 'you can ' : ''}send out ${a.n === 1 ? 'one' : 'up to ' + a.n} of your "${CARDS[a.token] ? CARDS[a.token].name : a.token}" Token${a.n === 1 ? '' : 's'}`,
+    can: (c, a) => canSendToken(c.p, a.token),
+    run: async (c, a) => {
+      if (!canSendToken(c.p, a.token)) { c.ctx.did = false; return; }
+      let want = a.n;
+      if (!c.p.cpu && (a.ask || a.n > 1)) {
+        const buttons = [];
+        for (let k = a.n; k >= 1; k--) buttons.push({ label: `Send out ${k}`, cls: 'primary', value: k });
+        if (a.ask) buttons.push({ label: 'Skip', cls: 'cancel', value: 0 });
+        want = await ask({ title: `✨ ${CARDS[c.src.id].name}`, peek: true, html: `Send out "${esc(CARDS[a.token].name)}" Token${a.n === 1 ? '' : 's'}? (${c.p.tokens[a.token]} left in your Token supply)`, buttons });
+      }
+      let k = 0; for (let j = 0; j < (want || 0); j++) if (sendToken(c.p, a.token)) k++;
+      c.ctx.did = k > 0;
+    } },
+  /* "during this battle, this Spirit gains N extra symbol(s)" (cleared when the battle ends) */
+  SYMBOL_PLUS: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 3, txt: a => `during this battle, this Spirit gains ${a.n} extra symbol${a.n === 1 ? '' : 's'}`,
+    can: c => c.p.spirits.includes(c.src) && !!G.attacker,
+    run: async (c, a) => { c.src.symBattle = (c.src.symBattle || 0) + a.n; log(`${CARDS[c.src.id].name} gains ${a.n} extra symbol${a.n === 1 ? '' : 's'} during this battle.`); } },
+  BP_PLUS: { chk: a => Number.isInteger(a.n) && a.n >= 1000 && ['self', 'attacker', 'own'].includes(a.to || 'self') && (a.per == null || perOk(a.per)), txt: a => `${a.to === 'own' ? 'your matching Spirits' : a.to === 'attacker' ? 'the attacking Spirit' : 'this Spirit'} gain +${a.n} BP${a.per ? ' for each matching card you control' : ''} this turn`,
+    run: async (c, a) => {
+      const L = (a.to || 'self') === 'self' ? [c.src] : a.to === 'attacker' ? (c.ctx.attacker ? [c.ctx.attacker] : []) : c.p.spirits.filter(s => fxMatch(CARDS[s.id], a.match));
+      const n = a.per ? a.n * perCount(c.p, a.per) : a.n;     // v0.72 per: counted when it resolves
+      if (n) for (const s of L) { s.bpMod = (s.bpMod || 0) + n; log(`${CARDS[s.id].name} gets +${n} BP.`); }
+    } },
+  CORE_TO_SELF: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5, txt: a => `+${a.n} core to this card`,
+    can: c => c.p.reserve.n > 0,
+    run: async (c, a) => { let k = 0; for (let j = 0; j < a.n; j++) if (addCore(c.p, c.src)) k++; if (k) log(`${CARDS[c.src.id].name} gets +${k} core${k === 1 ? '' : 's'}.`); } },
+  REFRESH_SPIRIT: { chk: a => a.match == null || hasMatch(a.match), txt: a => `refresh one of your ${a.match ? 'matching ' : ''}Spirits`,
+    cands: (c, a) => c.p.spirits.filter(s => s.exhausted && (!a || !a.match || fxMatch(CARDS[s.id], a.match))),
+    can: (c, a) => FX_ACTIONS.REFRESH_SPIRIT.cands(c, a).length > 0,
+    run: async (c, a) => {
+      const t = await fxPickTarget(c, FX_ACTIONS.REFRESH_SPIRIT.cands(c, a), `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your exhausted Spirits to refresh (glowing).`);
+      if (!t) return; refreshOne(t); log(`${CARDS[t.id].name} is refreshed.`);
+    } },
+  /* v0.33 effects of a card that is not on the field: revealed from the deck, or in the Hand */
+  RETURN_TRASH: { chk: a => a.match && (a.match.name || a.match.family), txt: a => `return a matching ${a.anyType ? 'card' : 'Spirit'} from your Trash to your Hand`,
+    cands: (c, a) => c.p.trash.filter(t => (a.anyType || CARDS[t.id].type === 'Spirit') && fxMatch(CARDS[t.id], a.match)),
+    can: (c, a) => FX_ACTIONS.RETURN_TRASH.cands(c, a).length > 0,
+    run: async (c, a) => {
+      const L = FX_ACTIONS.RETURN_TRASH.cands(c, a); if (!L.length) return;
+      let t;
+      if (c.p.cpu) t = L.slice().sort((x, y) => CARDS[y.id].cost - CARDS[x.id].cost)[0];
+      else {
+        const ids = Array.from(new Set(L.map(x => x.id))).slice(0, 8);
+        const id = await ask({ title: `✨ ${CARDS[c.src.id].name}`, peek: true, wide: true, html: 'Choose a card to return from your Trash to your Hand.', cards: cardIds(ids), buttons: ids.map(i => ({ label: CARDS[i].name, value: i })) });
+        t = L.find(x => x.id === id) || L[0];
+      }
+      removeFrom(c.p.trash, t); c.p.hand.push(t); c.ctx.returned = t; handUp(c.p, 1); log(`${CARDS[c.src.id].name}: ${CARDS[t.id].name} returns from the Trash to the Hand.`);
+    } },
+  MIRAGE_SET: { chk: () => true, txt: () => 'set this card as a Mirage without paying the cost (only if you have no Mirage set)',
+    can: c => !c.p.mirage && !!CARDS[c.src.id].mirage && (c.p.revealed.includes(c.src) || c.p.hand.includes(c.src)),
+    run: async c => {
+      if (!FX_ACTIONS.MIRAGE_SET.can(c)) { c.ctx.did = false; return; }
+      removeFrom(c.p.revealed, c.src); removeFrom(c.p.hand, c.src); c.src.mirage = true; c.p.mirage = c.src;
+      log(`${who(c.p)} ${c.p.cpu ? 'sets' : 'set'} a Mirage face up without paying the cost: ${CARDS[c.src.id].name}.`);
+    } },
+  DEPLOY_SELF: { chk: () => true, txt: () => 'summon/deploy this card without paying the cost',
+    can: c => (c.p.revealed.includes(c.src) || c.p.hand.includes(c.src)) && canPlaceFree(c.p, c.src),
+    run: async c => {
+      if (!FX_ACTIONS.DEPLOY_SELF.can(c)) { c.ctx.did = false; return; }
+      removeFrom(c.p.revealed, c.src); await summonFree(c.p, c.src); c.ctx.did = fieldList(c.p).includes(c.src);
+    } },
+  /* reveal n cards, add one matching card to the Hand, the rest go to the Trash or the bottom of the Deck (v0.33, e.g. Rainydle) */
+  CORE_TO_NEXUS: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && hasMatch(a.match) && (a.perDestroyedCost == null || (a.perDestroyedCost === true && Number.isInteger(a.max) && a.max >= 1 && a.max <= 30)), txt: a => `+${a.n} core to one of your matching Nexuses`,
+    cands: (c, a) => c.p.nexus.filter(x => fxMatch(CARDS[x.id], a.match)),
+    can: (c, a) => c.p.reserve.n > 0 && FX_ACTIONS.CORE_TO_NEXUS.cands(c, a).length > 0,
+    run: async (c, a) => {
+      const L = FX_ACTIONS.CORE_TO_NEXUS.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
+      const t = await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the Nexus that receives +${a.n} core (glowing).`); let k = 0;
+      const total = a.perDestroyedCost ? Math.min(c.ctx.destroyedCost || 0, a.max) : a.n;          // v0.37: +1 core per cost of the Spirit destroyed by the previous action
+      for (let j = 0; j < total; j++) if (addCore(c.p, t)) k++;
+      c.ctx.did = k > 0; if (k) log(`${CARDS[c.src.id].name}: ${CARDS[t.id].name} gets +${k} core${k === 1 ? '' : 's'}.`);
+    } }
+});
