@@ -99,7 +99,7 @@ test('SP05 login tokens are single use and sessions are keyed by their hash', { 
   assert.equal(await s.auth.takeLogin(hash, new Date().toISOString()), null, 'and the second does not');
 
   const expired = hashToken('expired-' + uid());
-  await s.auth.putLogin({ tokenHash: expired, accountId: acc.id, expiresAt: new Date(Date.now() + 1).toISOString() });
+  await s.auth.putLogin({ tokenHash: expired, accountId: acc.id, expiresAt: new Date(Date.now() + 2000).toISOString() });
   assert.equal(await s.auth.takeLogin(expired, new Date(Date.now() + 5000).toISOString()), null, 'an expired link never redeems');
 
   const sess = hashToken('sess-' + uid());
