@@ -11,6 +11,8 @@
      POST /api/login   {email}   -> asks accounts for a one-time link; without a
                                     mailer the link is returned so a local run works
      GET  /api/login?t=<token>   -> redeems the link, Set-Cookie, redirects to /
+     GET  /api/login/discord           -> the Discord OAuth2 authorize URL (needs `discord`)
+     GET  /api/login/discord/callback  -> exchanges the code, Set-Cookie, redirects to /
      GET  /api/me                -> the logged-in account, or 401
      POST /api/logout            -> drops the session cookie
      GET  /api/decks             -> the account's deck slots (401 without a session)
@@ -33,9 +35,12 @@ const readBody = (req) => new Promise((resolve) => {
  * @param {{ accounts: object, store?: object, origin?: string, mailer?: function }} deps
  * @returns an http.Server. The store is only used for the deck and match list routes.
  */
-export function createApi({ accounts, store = null, origin = 'http://localhost:8080', mailer = null } = {}) {
+export function createApi({ accounts, store = null, origin = 'http://localhost:8080', mailer = null, discord = null } = {}) {
   if (!accounts || !accounts.requestLogin || !accounts.consumeLogin || !accounts.accountFromCookie) {
     throw new Error('createApi: an accounts service is required');
+  }
+  if (discord && typeof accounts.loginWithDiscord !== 'function') {
+    throw new Error('createApi: Discord OAuth needs accounts.loginWithDiscord');
   }
   const self = http.createServer(async (req, res) => {
     const url = new URL(req.url, origin);
@@ -55,6 +60,26 @@ export function createApi({ accounts, store = null, origin = 'http://localhost:8
       if (p === '/api/login' && m === 'GET') {
         const out = await accounts.consumeLogin(url.searchParams.get('t'));
         if (!out) return send(res, 401, { error: 'this link is unknown, used or expired' });
+        res.writeHead(302, { Location: '/', 'Set-Cookie': out.cookie });
+        return res.end();
+      }
+
+      // Discord OAuth: start the dance, then its callback. Both need the provider; without one the
+      // route answers 501 (the store and the accounts service keep working with magic links alone).
+      if (p === '/api/login/discord' && m === 'GET') {
+        if (!discord) return send(res, 501, { error: 'Discord OAuth is not configured' });
+        res.writeHead(302, { Location: discord.authorizeUrl(discord.newState()) });
+        return res.end();
+      }
+      if (p === '/api/login/discord/callback' && m === 'GET') {
+        if (!discord) return send(res, 501, { error: 'Discord OAuth is not configured' });
+        const code = url.searchParams.get('code');
+        const state = url.searchParams.get('state');
+        if (!code || !state || !discord.validState(state)) return send(res, 400, { error: 'bad Discord callback (missing or bad code/state)' });
+        let user;
+        try { user = await discord.exchange(code); }
+        catch (e) { return send(res, 401, { error: String(e && e.message) }); }
+        const out = await accounts.loginWithDiscord(user);
         res.writeHead(302, { Location: '/', 'Set-Cookie': out.cookie });
         return res.end();
       }

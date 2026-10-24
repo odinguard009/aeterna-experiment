@@ -94,7 +94,21 @@ by M6-27 (the hook) and M7-31/M7-32 (a full WebSocket match writes the match + r
 store, and a signed-in seat is recorded under its account from the cookie alone - replaying the stored
 record reproduces the stored hash).
 
-Still owed:
+Done in step 6 (`apps/server/src/oauth-discord.mjs`, `accounts.mjs` `loginWithDiscord`, `http.mjs`
+routes): Discord OAuth as a second way in. The provider half only proves identity - it mints a CSRF
+state (a random nonce plus its HMAC under the client secret, with a 10-minute timestamp, so nothing
+is stored server-side), builds the authorize URL and exchanges the code for `{ discordId, username }`
+with an injected `fetch`, so the whole flow runs against a fake in the tests and against
+https://discord.com in a deployment. `accounts.loginWithDiscord` upserts the account by `discord_id`
+and opens a session exactly like a redeemed magic link; `GET /api/login/discord` redirects to the
+provider and `GET /api/login/discord/callback` exchanges the code, sets the cookie and redirects home
+(501 when no provider is configured). Pinned by DO01-DO05 and API07/API08.
 
-- Discord OAuth as a second way in (the account table already carries `discord_id`).
-- `docker/compose.yml` for the server itself once there is a server image to run.
+Done in step 7 (`apps/server/src/serve.mjs`, `apps/server/Dockerfile`, `.dockerignore`, the `server`
+service in `docker/compose.yml`): the server entry point and its image. `serve.mjs` wires the store
+(Postgres when `DATABASE_URL` is set, the in-memory reference otherwise), the accounts service, the
+HTTP API and the WebSocket room server into one process. `apps/server/Dockerfile` builds the image
+(`node:22-alpine`, only `ws` and `pg` installed, the engine joined from source at startup - the
+repository root is the build context, so the root `.dockerignore` is the build filter) and the
+`server` service in `docker/compose.yml` runs it against the local `db`. Nothing is deployed -
+hosting, a domain and the email sender stay the owner's decision. Pinned by SERVE01.

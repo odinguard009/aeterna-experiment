@@ -1,11 +1,12 @@
-# Local Postgres for the database step of the monorepo plan (M7).
+# Local Postgres + the game server for the database step of the monorepo plan (M7).
 #
 # Nothing here is deployed: hosting, a domain and the email sender stay the owner's decision
-# (docs/ai/monorepo-plan.md). This file exists so the schema and the migration runner can be
-# exercised on a laptop with one command:
+# (docs/ai/monorepo-plan.md). This file exists so the schema, the migration runner and the server
+# can be exercised on a laptop with one command:
 #
 #   docker compose -f docker/compose.yml up -d db
 #   docker compose -f docker/compose.yml run --rm migrate
+#   docker compose -f docker/compose.yml up --build server    # the game server (HTTP + WebSocket)
 #   docker compose -f docker/compose.yml run --rm psql        # a shell with psql against the db
 #   docker compose -f docker/compose.yml down                 # keeps the volume; add -v to drop it
 #
@@ -54,6 +55,24 @@ services:
     entrypoint: ["psql", "postgres://aeterna@db:5432/aeterna"]
     stdin_open: true
     tty: true
+
+  # The game server itself (M7): builds apps/server/Dockerfile (the repository root is the build
+  # context) and serves the HTTP API + WebSocket rooms, backed by the db above. It is not part of the
+  # default `up -d db` flow; bring it up after the db is healthy and the migrations have run.
+  server:
+    build:
+      context: ..
+      dockerfile: apps/server/Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://aeterna:aeterna@db:5432/aeterna
+      PORT: 8080
+      ORIGIN: http://localhost:8080
+    ports:
+      - "8080:8080"
+      - "8081:8081"
 
 volumes:
   aeterna-db:

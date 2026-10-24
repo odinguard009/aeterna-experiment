@@ -86,6 +86,19 @@ export function accounts({ store, now = () => Date.now(), origin = 'http://local
       return { account, session: { token: sessionToken, expiresAt, userAgent }, cookie: cookieFor(sessionToken, sessionTtlMs) };
     },
 
+    /** Discord OAuth: the identity is already proved (discordId + username) - upsert the account by its
+     *  Discord id and open a session exactly like a redeemed magic link. No link is sent: Discord vouched
+     *  for the user, so the callback goes straight to a session cookie. */
+    async loginWithDiscord({ discordId, username } = {}) {
+      if (typeof discordId !== 'string' || discordId.length < 5 || discordId.length > 40) throw new TypeError('accounts: a valid discordId is required');
+      let account = await store.accounts.byLogin({ discordId });
+      if (!account) account = await store.accounts.create({ id: cryptoId(), discordId, displayName: (username || 'Discord user').slice(0, 40) });
+      const sessionToken = newToken();
+      const expiresAt = iso(now() + sessionTtlMs);
+      await store.auth.putSession({ tokenHash: hashToken(sessionToken), accountId: account.id, expiresAt });
+      return { account, session: { token: sessionToken, expiresAt }, cookie: cookieFor(sessionToken, sessionTtlMs) };
+    },
+
     /** The account behind a request, or null. */
     async accountFromCookie(header) {
       const token = readCookie(header);

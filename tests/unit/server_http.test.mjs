@@ -6,6 +6,7 @@ import assert from 'node:assert/strict';
 import { memoryStore } from '../../apps/server/src/store.mjs';
 import { accounts, COOKIE } from '../../apps/server/src/accounts.mjs';
 import { createApi } from '../../apps/server/src/http.mjs';
+import { discordOAuth } from '../../apps/server/src/oauth-discord.mjs';
 
 let base = null, server = null, svc = null, store = null;
 const t0 = Date.parse('2026-10-24T06:00:00Z');
@@ -86,4 +87,42 @@ test('API06 cookie-only auth: the account id is never taken from a query string'
   const cookie = await login('odin@example.com');
   assert.equal((await j('/api/me?accountId=whatever', { cookie })).status, 200, 'query params are ignored');
   assert.equal((await j('/api/me')).status, 401, 'and without a cookie they do not help');
+});
+
+test('API07 the Discord OAuth routes: authorize redirects to the provider; the callback exchanges and logs in', async () => {
+  const discord = discordOAuth({
+    clientId: 'cid', clientSecret: 'secret', redirectUri: 'https://play.example/cb',
+    fetchImpl: async (url) => {
+      if (String(url).endsWith('/api/oauth2/token')) return { ok: true, json: async () => ({ access_token: 'tok' }) };
+      return { ok: true, json: async () => ({ id: '987654321', username: 'OdinDiscord' }) };
+    }
+  });
+  const srv = createApi({ accounts: svc, store, origin: 'http://127.0.0.1', discord });
+  await new Promise((res) => srv.listen(0, '127.0.0.1', res));
+  const b = `http://127.0.0.1:${srv.address().port}`;
+  try {
+    const start = await fetch(b + '/api/login/discord', { redirect: 'manual' });
+    assert.equal(start.status, 302);
+    const loc = new URL(start.headers.get('location'));
+    assert.equal(loc.origin + loc.pathname, 'https://discord.com/oauth2/authorize');
+    const state = loc.searchParams.get('state');
+    assert.equal(discord.validState(state), true);
+
+    const cb = await fetch(b + '/api/login/discord/callback?code=c&state=' + encodeURIComponent(state), { redirect: 'manual' });
+    assert.equal(cb.status, 302);
+    assert.equal(cb.headers.get('location'), '/');
+    const cookie = cb.headers.get('set-cookie').split(';')[0];
+    const me = await fetch(b + '/api/me', { headers: { Cookie: cookie } }).then((r) => r.json());
+    assert.equal(me.account.displayName, 'OdinDiscord');
+    assert.equal(me.account.email, null, 'a Discord account carries no email');
+
+    assert.equal((await fetch(b + '/api/login/discord/callback?code=c&state=nope', { redirect: 'manual' })).status, 400, 'a forged state is refused');
+  } finally {
+    await new Promise((res) => srv.close(res));
+  }
+});
+
+test('API08 without a Discord provider the OAuth routes answer 501, never crash', async () => {
+  assert.equal((await j('/api/login/discord')).status, 501);
+  assert.equal((await j('/api/login/discord/callback?code=c&state=s')).status, 501);
 });

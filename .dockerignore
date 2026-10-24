@@ -1,0 +1,18 @@
+# Build context for the server image (apps/server/Dockerfile). The server runs the real engine, so the
+# source and the card data are copied; everything heavy or machine-local is not. The offline single file
+# (index.html) is never in the image - the server loads packages/ + data/ directly.
+.git
+.gitignore
+node_modules
+build
+.dsh-worktrees
+.vscode
+.idea
+__pycache__
+*.pyc
+tests
+docs/images
+docs/design
+docs/screenshots
+data/sources
+*.tgz
