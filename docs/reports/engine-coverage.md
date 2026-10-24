@@ -2,7 +2,7 @@
 
 Top-level names of `packages/protocol` + `packages/engine` that the smoke flows in `tools/coverage.mjs` reach, measured with V8 block coverage over the headless engine. The web parts are out of scope (they never load headless; the Playwright suites are their gate).
 
-10 flows, 273/363 names = **75%**. The ratchet floor lives in `tools/coverage-baseline.json` and may only rise.
+10 flows, 275/363 names = **76%**. The ratchet floor lives in `tools/coverage-baseline.json` and may only rise.
 
 | Part | Named | Reached | Share | Never reached |
 |---|---|---|---|---|
@@ -32,5 +32,5 @@ Top-level names of `packages/protocol` + `packages/engine` that the smoke flows 
 | `packages/engine/src/09-cpu.js` | 11 | 11 | 100% | - |
 | `packages/engine/src/09a-cpu-eval.js` | 15 | 18 | 83% | cpuEval, cpuKeepMagicOrPay, setCpuProfile |
 | `packages/engine/src/15-match.js` | 2 | 3 | 67% | closeMatch |
-| `packages/engine/src/15b-replay.js` | 2 | 5 | 40% | boardSnapshot, runPortRecord, viewerReplayOf |
+| `packages/engine/src/15b-replay.js` | 4 | 5 | 80% | viewerReplayOf |
 | `packages/protocol/src/00p-protocol.js` | 1 | 1 | 100% | - |

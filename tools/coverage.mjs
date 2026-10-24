@@ -70,7 +70,7 @@ function nameOwners() {
 
 /** Child side: play the flows (Node writes the V8 coverage file on exit). */
 async function collect() {
-  const { playHeadless } = await import('../packages/engine/headless.mjs');
+  const { playHeadless, replayPort } = await import('../packages/engine/headless.mjs');
   let played = 0;
   for (const f of FLOWS) {
     const r = await playHeadless({ seed: f.seed, deckA: f.deckA, deckB: f.deckB, format: f.format, human: !!f.human, timeoutMs: 20000 });
@@ -79,8 +79,16 @@ async function collect() {
       process.exitCode = 1;
     } else played++;
   }
+  // The port record round trip: the replay viewer, the M6 server and the fuzz cases all
+  // depend on it, and none of the plain matches above reaches 15b-replay.js.
+  const m = await playHeadless({ seed: 7, deckA: 'red', deckB: 'mitra', format: 'eternal', timeoutMs: 20000 });
+  if (m.over && m.port) {
+    const rep = await replayPort(m.port, { viewer: true });          // runPortRecord + viewerReplayOf + boardSnapshot
+    if (!rep.ok || !rep.same) { console.error(`[coverage] port round trip failed: ${rep.reason || 'recorded result differs'}`); process.exitCode = 1; }
+    else played++;
+  }
   if (!process.env.NODE_V8_COVERAGE) console.error('[coverage] NODE_V8_COVERAGE is not set; run through the parent command');
-  else console.error(`[coverage] played ${played}/${FLOWS.length} smoke flows`);
+  else console.error(`[coverage] ${played} ok (${FLOWS.length} smoke flows + the port round trip)`);
 }
 
 /** Parent side: union of the engine functions the flows entered. */

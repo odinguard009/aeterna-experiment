@@ -28,7 +28,7 @@
   "packages/engine/src/09-cpu.js": 11,
   "packages/engine/src/09a-cpu-eval.js": 15,
   "packages/engine/src/15-match.js": 2,
-  "packages/engine/src/15b-replay.js": 2,
+  "packages/engine/src/15b-replay.js": 4,
   "packages/protocol/src/00p-protocol.js": 1
  }
 }
