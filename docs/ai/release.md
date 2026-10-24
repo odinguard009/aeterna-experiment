@@ -32,10 +32,12 @@ setting (`enabled`, `allowed_actions: all`) are all correct, so the cause sits a
 
 What the session does instead, so nothing depends on the broken trigger:
 
-- after `git push`, dispatch CI by hand: `gh workflow run CI --ref main`, then watch it
-  (`gh run list --workflow CI --limit 1`);
-- **the release is created by hand** after CI is green: `CI_OK=1 bash tools/make_releases.sh HEAD <version>`.
-  `workflow_run` does not fire either (measured: the `Release` workflow did not start after a green CI
+- **one command does the release tail** (`tools/release.sh`, v0.107.0): `bash tools/release.sh <version>`
+  dispatches CI, waits for it to turn green, then creates the release via `tools/make_releases.sh`
+  (idempotent - skips versions that already exist - and fails loudly when CI is red). Run it after the
+  version bump + CHANGELOG + roadmap are committed and pushed; on a memory-tight Codespace push with
+  `BS_TEST_CONC=1 git push` so the pre-push quick tests run serially;
+- `workflow_run` does not fire either (measured: the `Release` workflow did not start after a green CI
   on `8441d3d`), so `release.yml`'s relaxed condition and CI's nightly `schedule` are forward-looking
   settings, not something a session may rely on. They cost nothing and start working the day the
   account-level cause is fixed; until then the session is the trigger;
