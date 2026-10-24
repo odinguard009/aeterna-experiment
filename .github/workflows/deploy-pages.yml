@@ -23,8 +23,8 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-      - name: Stage the deploy directory (only the single file is served)
-        run: mkdir -p dist && cp index.html dist/
+      - name: Stage the deploy directory (the single file + Pages Functions)
+        run: mkdir -p dist && cp index.html dist/ && cp -r functions dist/
       - name: Ensure the Pages project exists (the first run creates it)
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

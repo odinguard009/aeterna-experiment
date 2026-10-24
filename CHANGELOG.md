@@ -4,6 +4,15 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.113.0
+- Lane: U/I
+- Time: ~20 min (session start → release), deepseek-v4-pro; tokens not counted (no gate counter in this harness).
+- **Card images online, part 2: the static Cloudflare Pages deployment now serves official art.** The Pages site has no Node process, so the v0.112.0 mirror (which only runs in `apps/server`) could not serve `/assets/card-images/<file>` — the route fell back to `index.html` and the client showed its text/colour placeholder. Fix:
+  - A Cloudflare Pages Function `functions/assets/card-images/[file].js` mirrors the same route at the edge: it resolves the card's `image` field (the Fandom wiki `File:` name) through the MediaWiki API, downloads the art with the Referer the wiki CDN requires (a browser cannot), sniffs the type from bytes, and caches the response in the Cloudflare cache for a day. Missing / malformed names are a 404 and the client still falls back gracefully.
+  - `.github/workflows/deploy-pages.yml` now stages `functions/` beside `index.html` (`cp -r functions dist/`), so `wrangler pages deploy` ships the Function with the static file. No change to the offline single-file game.
+- Tests: the Function mirrors the already-tested `apps/server/src/card-images.mjs` logic (`server_card_images` CIMG-S1..S4); verified end-to-end on the deployed Pages URL (`/assets/card-images/<file>` returns the image bytes, not the SPA fallback).
+- Left optional (in the plan): bulk pre-fetch + `cwebp` re-encode, an offline URL manifest, alternate-art / per-language art.
+
 ## v0.112.0
 - Lane: U/I
 - Time: ~45 min (session start → release), deepseek-v4-pro; tokens not counted (no gate counter in this harness).

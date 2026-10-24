@@ -22,4 +22,11 @@ Owner setup (once):
 
 ## Card images
 
-The "feature off until v1.0" gate is removed (owner 2026-10-24). Card images stay player-supplied and on-device (IndexedDB); putting card images on a public server remains an owner decision before any deploy (`docs/ai/monorepo-plan.md`).
+The "feature off until v1.0" gate is removed (owner 2026-10-24). Card images stay player-supplied and on-device (IndexedDB).
+
+Official art on the Pages deployment (v0.113.0): a Cloudflare Pages Function
+(`functions/assets/card-images/[file].js`) proxies `GET /assets/card-images/<file>` to the Fandom
+wiki (with the Referer the wiki CDN requires) and caches the bytes for a day, so the static site can
+serve the art without a Node process. The client already falls back player image → mirror → text
+placeholder (v0.112.0). The same route also runs in `apps/server/src/card-images.mjs` for the local /
+room server; both are opt-in and read-only, and the mirror cache is not committed.
