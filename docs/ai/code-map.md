@@ -146,8 +146,8 @@ animMode, ANIM, rectOf, visEl, aeFx, aeBeam, animCues
 ## apps/web/src/13h-decks.js (97 lines, ~2.2k tokens) — v0.93.0 U6 MY DECKS (docs/DESIGN.md section 0, mockup docs/design/mockup-v11.html "My decks PC / phone")
 DK_MENU, dkCards, dkUsed, dkFree, dkStatus, dkColors, dkTile, renderDecks, dkMenu, dkNewSlot, dkAct
 
-## apps/web/src/13i-online.js (387 lines, ~7k tokens) — ONLINE CLIENT (v0.108.0, roadmap M8 part 1; docs/ai/monorepo-plan.md M8)
-ONL_DEF, ON, ONL_AUTO, onlineWsBase, onlineAvailable, onlineLifeTxt, onlineLifePlate, onlineResPlate, onlineFieldCard, onlineHandCard, onlineRow, onlineFieldArea, renderOnlineStatus, renderOnline, onlineSend, onlineIntent, onlineDecide, onlinePick, clearOnlinePick, onlinePickButton, onlinePayment, onlinePayButton, onlineHandMenu, onlineFieldTap, onlineFieldMenu, onlineZoneMenu, onlineDisconnect, onlineFail, onlineOver, onlineMsg, connectOnline, onlineOrigin, onlineStart
+## apps/web/src/13i-online.js (405 lines, ~7.5k tokens) — ONLINE CLIENT (v0.108.0, roadmap M8 part 1; docs/ai/monorepo-plan.md M8)
+ONL_DEF, ON, ONL_AUTO, onlineWsBase, onlineAvailable, onlineLifeTxt, onlineLifePlate, onlineResPlate, onlineFieldCard, onlineHandCard, onlineRow, onlineFieldArea, renderOnlineStatus, renderOnline, onlineSend, onlineIntent, onlineDecide, onlinePick, clearOnlinePick, onlinePickButton, onlinePayment, onlinePayButton, onlineHandMenu, onlineFieldTap, onlineFieldMenu, onlineZoneMenu, onlineLog, onlineDisconnect, onlineFail, onlineOver, onlineMsg, connectOnline, onlineOrigin, onlineStart
 
 ## apps/web/src/13j-online-lobby.js (104 lines, ~1.7k tokens) — ONLINE LOBBY + ACCOUNT (v0.109.0, roadmap M8 part 2; docs/ai/monorepo-plan.md M8)
 ONL_CFG, ONL_ACCOUNT, onlConfig, onlAccount, onlAccountHTML, renderOnlineLobby, onlQuick, onlJoin, onlLogin, onlLogout, onlDiscord
@@ -158,8 +158,8 @@ IMG, IDB, normKey, idbOpen, idbTx, setImg, loadImages, shrinkImage, stripExt, fi
 ## packages/engine/src/15-match.js (69 lines, ~1.4k tokens) — MATCH START / END
 closeMatch, startNewGame, matchSummary
 
-## packages/engine/src/15b-replay.js (105 lines, ~2.4k tokens) — REPLAY RECORDS (v0.85.0, phase F4 = monorepo step M4 part 1; docs/ai/monorepo-plan.md "Design" 2)
+## packages/engine/src/15b-replay.js (109 lines, ~2.5k tokens) — REPLAY RECORDS (v0.85.0, phase F4 = monorepo step M4 part 1; docs/ai/monorepo-plan.md "Design" 2)
 newPortRecord, portRecord, boardSnapshot, runPortRecord, viewerReplayOf
 
-## apps/web/src/16-events.js (232 lines, ~5k tokens) — EVENTS (delegation)
+## apps/web/src/16-events.js (233 lines, ~5k tokens) — EVENTS (delegation)
 hScrollable, HDRAG, GAME_ACTS, gameAct, replayOf, lastReplay, runReplay, loadScenario, testSetup, defBuiltin

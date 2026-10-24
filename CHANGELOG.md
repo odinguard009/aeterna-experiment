@@ -4,6 +4,15 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.110.0
+- Lane: U/I
+- Time: ~35 min (session start → release), deepseek-v4-pro; tokens not counted (no gate counter in this harness).
+- **M8 online client, part 3 (roadmap M8): the Accel / Contract Advent / Manifest / activation intents and the game log — M8 done.**
+  - The online hand menu now offers **Contract Advent** (`cadvent`) and **Manifest** (`manifest`) for cards that carry them, plus one **Accel** entry per Accel effect; the online field menu offers **Activate** (`act`) for each activated [Main] effect and **Brave combine / separate** (`bcombine`/`bseparate`). These intents were already accepted by the server's authoritative `applyIntent` (v0.108.0); part 3 only completes the menus — a refusal still re-delivers the decision with the `acted ok:false` note.
+  - The seat frame now carries `log` (the last 200 game-log entries) in `boardSnapshot`, and the online header has a 📜 LOG button that opens the game log. The log is shared public text (face-down Bursts and draws are never logged by name), so no hidden card leaves the server; local viewer replays keep their own record and gain no `log`.
+  - Remaining online board gaps (outside M8's lobby/room/account scope) are noted in the roadmap for a later session: core move / Soul Core moves (`core` with `move|soul|unsoul|swaphere|swapsoul`), Revive from Soul State and summon-from-Removed.
+- Tests: `online_client` M8-40 now also asserts the seat frame carries a non-empty `log`; the full online match (M8-41) and the lobby (M8-42) stay green; full quick suite 1477 passes; lint and `npm run check` green.
+
 ## v0.109.0
 - Lane: U/I
 - Time: ~45 min (session start → release), deepseek-v4-pro; tokens not counted (no gate counter in this harness).

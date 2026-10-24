@@ -112,6 +112,7 @@ document.addEventListener('click', e => {
   else if (a === 'onl-logout') onlLogout();
   else if (a === 'onl-discord') onlDiscord();
   else if (a === 'onl-reload') renderOnlineLobby();
+  else if (a === 'olog') onlineLog();                                        // v0.110.0 M8 part 3: the online game log
   else if (a === 'onext') onlineIntent({ type: 'next' });
   else if (a === 'ostep') onlineIntent({ type: 'next' });
   else if (a === 'ohand') onlineHandMenu(v);

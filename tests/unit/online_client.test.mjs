@@ -26,12 +26,15 @@ test('M8-40 the server frame carries the online fields: steps, the seat hand uid
   H.stop();
   const withField = frames.find(f => f.frame.p.player.spirits.length + f.frame.p.player.nexus.length + f.frame.p.opponent.spirits.length + f.frame.p.opponent.nexus.length > 0);
   assert.ok(withField, 'a field card appeared within the first few turns');
-  let withHu = 0;
+  let withHu = 0, withLog = 0;
   for (const { key, frame } of frames) {
     assert.ok(Array.isArray(frame.steps) && frame.steps.length >= 5, 'every frame carries the step list');
+    assert.ok(Array.isArray(frame.log), 'every seat frame carries the game log (v0.110.0)');
     if (key === 'player' && Array.isArray(frame.p.player.hand) && Array.isArray(frame.p.player.hu) && frame.p.player.hu.length === frame.p.player.hand.length) withHu++;
+    if (Array.isArray(frame.log) && frame.log.length > 0) withLog++;
   }
   assert.ok(withHu > 0, 'the seat frames carry hand uids matching the hand ids');
+  assert.ok(withLog > 0, 'the seat frames carry a non-empty game log');
   for (const f of withField.frame.p.player.spirits.concat(withField.frame.p.player.nexus, withField.frame.p.opponent.spirits, withField.frame.p.opponent.nexus)) {
     assert.equal(typeof f.h, 'number', 'the heavy flag is present');
     assert.equal(typeof f.bp, 'number', 'the current BP is present');

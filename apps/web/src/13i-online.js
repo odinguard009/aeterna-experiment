@@ -101,7 +101,7 @@ function renderOnline() {
   const handCards = Array.isArray(P.hand) ? P.hand.map((id, i) => onlineHandCard(id, P.hu ? P.hu[i] : null, !handMain)).join('') : '';
   app.innerHTML = `
     <header class="ae-head"><div class="ae-turn"><h1 translate="no">Aeterna</h1><span class="ae-ver">v${VERSION}</span>${f.over ? '' : `<span class="ae-turnno">${cpuTurn ? 'OPPONENT' : 'PLAYER'} TURN ${f.t}</span>`}</div><span class="ae-step"><span>${f.over ? 'GAME OVER' : esc(f.sn)}</span></span><span class="ae-fill"></span>
-      <span class="ae-tools"><button class="btn-nav-small ae-btn" data-a="oleave" title="Leave the online match"><span>EXIT TO LOBBY</span></button></span></header>
+      <span class="ae-tools"><button class="btn-nav-small ae-btn" data-a="olog" title="Game log"><span>📜 LOG</span></button><button class="btn-nav-small ae-btn" data-a="oleave" title="Leave the online match"><span>EXIT TO LOBBY</span></button></span></header>
     <div class="playmat-layout">
       <div class="half-field">
         <div class="side-flank-pc">
@@ -241,7 +241,10 @@ function onlineHandMenu(uidStr) {
     else {
       if (isSpiritForm(card) || card.type === 'Nexus') buttons.push({ label: card.type === 'Nexus' ? '🎴 Deploy (Nexus)' : '🎴 Summon', cls: 'primary', value: 'summon' });
       if (card.brave) buttons.push({ label: '🗡 Summon combined with a Spirit (Brave)', cls: 'primary', value: 'brave' });
+      if (card.contractAdvent) buttons.push({ label: '✨ Contract Advent (Soul Core to Trash)', cls: 'purple', value: 'cadvent' });
+      if (card.manifest) buttons.push({ label: '✨ Manifest (Soul Core to Trash)', cls: 'purple', value: 'manifest' });
     }
+    for (const { e, idx } of accelList(card)) buttons.push({ label: `⚡ Accel: ${fxDescribe(e)}`.slice(0, 140), cls: 'primary', value: 'accel:' + idx });
     if (card.burst) buttons.push({ label: '🂠 Set as Burst', cls: 'blue', value: 'burst' });
     if (card.mirage) buttons.push({ label: `🌀 Set as Mirage (Pay ${card.mirage.cost})`, cls: 'purple', value: 'mirage' });
   }
@@ -250,7 +253,9 @@ function onlineHandMenu(uidStr) {
   modal({ title: card.name, wide: true, html: cardStripHTML([id]) + effectTextHTML(card, true), buttons }).then(v => {
     if (v === 'detail') { openZoom(id); return; }
     if (!ON.frame || !ON.myTurn) return;
-    const intent = { cast: { type: 'cast', uid }, summon: { type: 'summon', uid }, brave: { type: 'brave', uid }, burst: { type: 'burst', uid }, mirage: { type: 'mirage', uid } }[v];
+    const intent = typeof v === 'string' && v.startsWith('accel:')
+      ? { type: 'accel', uid, idx: Number(v.slice(6)) }
+      : { cast: { type: 'cast', uid }, summon: { type: 'summon', uid }, brave: { type: 'brave', uid }, burst: { type: 'burst', uid }, mirage: { type: 'mirage', uid }, cadvent: { type: 'cadvent', uid }, manifest: { type: 'manifest', uid } }[v];
     if (intent) onlineIntent(intent);
   });
 }
@@ -271,6 +276,12 @@ function onlineFieldMenu(key, uid) {
   if (mine && ON.myTurn) {
     if (att && isSpiritForm(card)) buttons.push({ label: '⚔ Attack', cls: 'primary', value: 'attack' });
     if (main) {
+      // v0.110.0 (M8 part 3): activated [Main] effects, Brave combine/separate on the field, and the core moves.
+      for (const { e, idx } of (card.effects || []).map((e, i) => ({ e, idx: i })).filter(x => x.e.trigger === 'ACTIVATE' && x.e.timing && x.e.timing.includes('MAIN'))) {
+        buttons.push({ label: `⚡ Activate: ${fxDescribe(e)}`.slice(0, 140), cls: 'primary', value: 'act:' + idx });
+      }
+      if (card.type === 'Brave' && card.brave && !f.b) buttons.push({ label: '🗡 Combine with a Spirit (Brave)…', cls: 'primary', value: 'bcombine' });
+      if (f.b) buttons.push({ label: `🗡 Separate ${esc(CARDS[f.b] ? CARDS[f.b].name : f.b)}`, cls: 'blue', value: 'bseparate' });
       buttons.push({ label: '💎 Add Core (+1 from Reserve)', cls: 'primary', value: 'add' });
       if (f.c > 0) buttons.push({ label: '📤 Remove Core (-1)', cls: 'blue', value: 'remove' });
     }
@@ -278,9 +289,11 @@ function onlineFieldMenu(key, uid) {
   buttons.push({ label: '✖ Cancel', cls: 'cancel', value: null });
   modal({ title: card.name, wide: false, html, buttons }).then(v => {
     if (v === 'detail') { openZoom(f.id); return; }
-    if (v === 'attack') onlineIntent({ type: 'attack', uid });
+    if (typeof v === 'string' && v.startsWith('act:')) onlineIntent({ type: 'act', uid, idx: Number(v.slice(4)) });
+    else if (v === 'attack') onlineIntent({ type: 'attack', uid });
     else if (v === 'add') onlineIntent({ type: 'core', op: 'add', uid });
     else if (v === 'remove') onlineIntent({ type: 'core', op: 'remove', uid });
+    else if (v === 'bcombine' || v === 'bseparate') onlineIntent({ type: v, uid });
   });
 }
 function onlineZoneMenu(vStr) {
@@ -297,6 +310,11 @@ function onlineZoneMenu(vStr) {
   else if (zone === 'burst') html = `<div>${side.burst === 'set' ? 'A Burst is set face down.' : side.mirage ? 'Mirage set.' : 'Empty.'}</div>`;
   else html = `<div>${esc(zone)}: ${side[zone] != null ? esc(String(side[zone])) : ''}</div>`;
   modal({ uiOnly: true, title: `${key === 'player' ? 'Your' : "CPU's"} ${zone}`, html, buttons: [{ label: 'Close', cls: 'cancel', value: null }] });
+}
+/** v0.110.0 (M8 part 3): the game log — the recent entries the frame carries (15b-replay.js boardSnapshot `log`), newest first. */
+function onlineLog() {
+  const log = (ON.frame && ON.frame.log) || [];
+  uiInfo('Game Log', `<div class="log-list">${log.length ? log.slice(-60).reverse().map(t => `<div>${esc(t)}</div>`).join('') : '<div class="empty-note">No log yet.</div>'}</div>`);
 }
 
 /* ---------- lifecycle ---------- */
