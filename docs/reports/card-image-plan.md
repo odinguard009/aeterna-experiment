@@ -28,8 +28,11 @@ store) stay the **top-priority override**; the offline single-file game keeps wo
 ## Phases
 - **P1 (this session, v0.112.0):** server mirror route + client fallback chain + tests.
   Online matches show official art; offline stays player-supplied-only.
-- **P2 (later):** bulk pre-fetch tool (`tools/fetch_card_images.mjs`, concurrency + resume)
-  so a deploy can warm the mirror; optional `cwebp` re-encode to 430px WebP for bandwidth.
+- **P1b (v0.113.0):** the static Cloudflare Pages deployment. The Pages site has no Node process,
+  so a Pages Function (`functions/assets/card-images/[file].js`) mirrors the same route at the edge
+  and the deploy stages `functions/` beside `index.html`. Official art now loads on the Pages URL.
+- **P2 (later):** a bulk pre-fetch tool (concurrency + resume) so a deploy can warm the mirror;
+  optional `cwebp` re-encode to 430px WebP for bandwidth.
 - **P3 (later, optional):** offline hotlink via a committed URL manifest, alternate-art
   printings, per-language art — only if the owner wants them.
 
