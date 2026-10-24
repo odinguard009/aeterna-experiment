@@ -149,7 +149,9 @@ export function buildSchema() {
   // 4. effect, Burst and card fields read by the parsers
   const effectFields = uniq(fieldsIn(fnBody(all, 'parseEffects'), 'e').concat(fieldsIn(fnBody(all, 'invokeParse'), 'e')));
   const burstFields = uniq(fieldsIn(fnBody(all, 'parseBurst'), 'b').concat(['when', 'actions']));
-  const pc = fnBody(all, 'parseCard');
+  // parseCard delegates its levels and Magic sections to parseLevels / parseMagicOf (v0.106.0 split),
+  // so the card and Magic fields are the union of the three bodies.
+  const pc = [fnBody(all, 'parseCard'), fnBody(all, 'parseMagicOf'), fnBody(all, 'parseLevels')].join('\n');
   const cardFields = uniq(fieldsIn(pc, 'o').concat(fieldsIn(pc, 'c')).filter((x) => !['length', 'some', 'map', 'trim'].includes(x)));
   const magicFields = uniq(fieldsIn(pc, 'm'));
   const matchFields = uniq(fieldsIn(fnBody(all, 'fxMatch'), 'm'));

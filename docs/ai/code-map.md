@@ -80,8 +80,8 @@ cardTeams, allHaveShapeOK, allHaveOK
 ## packages/engine/src/02t-effects-actions-opp.js (151 lines, ~3.6k tokens)
 
 
-## packages/engine/src/03-imported-cards.js (216 lines, ~5.7k tokens) — IMPORTED CARD DATA
-COLORS, BUILTIN_IDS, CARDS_KEY, IMPORTED, CARDS_VER, parseCard, registerImported, saveImported, importCards, clearImported, PACK_IDS, registerPack, TOKEN_IDS, registerTokens
+## packages/engine/src/03-imported-cards.js (230 lines, ~5.9k tokens) — IMPORTED CARD DATA
+COLORS, BUILTIN_IDS, CARDS_KEY, IMPORTED, CARDS_VER, parseLevels, parseMagicOf, parseCard, registerImported, saveImported, importCards, clearImported, PACK_IDS, registerPack, TOKEN_IDS, registerTokens
 
 ## packages/engine/src/04-decks.js (122 lines, ~3.4k tokens) — DECK STORAGE AND VALIDATION
 deckTotal, cleanDeck, validateDeck, keyOfDeck, pickKey, fmtName, fmtButton, setFormat, errSummary, stdDeck, prebuiltFmt, prebuiltOrder, prebuiltLabel, PREBUILT, defaultDeck, SLOT_KEY, SLOTS, ACTIVE_SLOT, loadSlots, PLAYER_DECK, saveDeck, switchSlot, loadPrebuilt, CPU_DECK_NAME, cpuDeckFor

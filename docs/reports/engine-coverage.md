@@ -2,7 +2,7 @@
 
 Top-level names of `packages/protocol` + `packages/engine` that the smoke flows in `tools/coverage.mjs` reach, measured with V8 block coverage over the headless engine. The web parts are out of scope (they never load headless; the Playwright suites are their gate).
 
-10 flows, 275/363 names = **76%**. The ratchet floor lives in `tools/coverage-baseline.json` and may only rise.
+10 flows, 277/365 names = **76%**. The ratchet floor lives in `tools/coverage-baseline.json` and may only rise.
 
 | Part | Named | Reached | Share | Never reached |
 |---|---|---|---|---|
@@ -21,7 +21,7 @@ Top-level names of `packages/protocol` + `packages/engine` that the smoke flows 
 | `packages/engine/src/02l-effects-invoke.js` | 8 | 14 | 57% | exhaustOwnCands, payInvokeCost, usedThisBattle, markUsedBattle, addBattleBp, cpuInvokeOK |
 | `packages/engine/src/02o-effects-battle-end.js` | 0 | 1 | 0% | endOfBattle |
 | `packages/engine/src/02p-effects-shared-shapes.js` | 3 | 3 | 100% | - |
-| `packages/engine/src/03-imported-cards.js` | 4 | 7 | 57% | saveImported, importCards, clearImported |
+| `packages/engine/src/03-imported-cards.js` | 6 | 9 | 67% | saveImported, importCards, clearImported |
 | `packages/engine/src/04-decks.js` | 7 | 19 | 37% | pickKey, fmtName, fmtButton, setFormat, errSummary, prebuiltFmt, prebuiltOrder, prebuiltLabel, saveDeck, switchSlot, loadPrebuilt, cpuDeckFor |
 | `packages/engine/src/05-state.js` | 9 | 13 | 69% | saveSettings, recIn, engineIdle, contractToDeck |
 | `packages/engine/src/05b-decide.js` | 12 | 13 | 92% | info |

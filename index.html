@@ -3984,6 +3984,78 @@ const BUILTIN_IDS = new Set(Object.keys(CARDS));
 const CARDS_KEY = 'bse.cards.v4';
 let IMPORTED = {};   // id -> normalized card object
 let CARDS_VER = 0;   // v0.52.1: bumped whenever CARDS changes (deck builder search index)
+/* parseCard is the gate every imported, built-in and staged card passes, and it also decides
+   whether a card counts as complete (registerImported reads the result). Its two biggest
+   sections are lifted here so each can be read on its own. The helpers append to the
+   caller's err / err2 arrays instead of returning messages, so the error order the importer
+   reports stays exactly as parseCard defined it. */
+function parseLevels(o, type, err, int) {
+    let levels = [];
+    if (type === 'Magic') levels = [{ cores: 0 }];
+    else if (Array.isArray(o.levels) && o.levels.length >= 1 && o.levels.length <= 6) {
+      let last = -1;
+      for (const L of o.levels) {
+        const cores = Number(L && L.cores), bp = L && L.bp != null ? Number(L.bp) : null;
+        if (!int(cores, 0, 30) || cores < last) { err.push('levels need ascending whole-number "cores"'); break; }
+        const sp = type === 'Spirit' || type === 'Brave' || type === 'Ultimate';
+        if (sp && (!int(bp, 0, 99999))) { err.push('every Spirit/Brave/Ultimate level needs a numeric "bp"'); break; }
+        levels.push(sp ? { cores, bp } : { cores }); last = cores;
+      }
+      if ((type === 'Spirit' || type === 'Ultimate') && levels.length && levels[0].cores < 1) err.push(type + ' first level needs at least 1 core');
+    } else if (type === 'Nexus' && (o.levels == null || (Array.isArray(o.levels) && !o.levels.length))) levels = [{ cores: 0 }];     // v0.51.2: the Fandom export has no Nexus level data (760 cards): load at LV1 only; tools/compile_effects keeps cards with [LV2]+ text staged
+    else if (type === 'Brave' && (o.levels == null || (Array.isArray(o.levels) && !o.levels.length))) levels = [];     // no Spirit-form data yet: only direct combining
+    else err.push('"levels" must be a list of 1-6 levels');
+  return levels;
+}
+function parseMagicOf(o, type, text, err2, int) {
+    let magic = null;
+    if (type === 'Magic') {
+      const m = o.magic && typeof o.magic === 'object' ? o.magic : {};
+      let timing = Array.isArray(m.timing) ? m.timing.map(x => String(x).toUpperCase()) : null;
+      if (!timing) timing = /\bflash\b/i.test(text) ? (/\bmain\b/i.test(text) ? ['MAIN', 'FLASH'] : ['FLASH']) : ['MAIN'];
+      if (!timing.length || timing.some(x => !MAGIC_TIMINGS.includes(x))) err2.push('"magic.timing" must be a list of MAIN and/or FLASH');
+      const effect = m.effect == null ? null : String(m.effect).toUpperCase();
+      if (effect && !MAGIC_FX[effect]) err2.push(`unknown "magic.effect" "${effect}" (use ${Object.keys(MAGIC_FX).join(', ')})`);
+      const value = m.value == null ? 0 : Number(m.value);
+      if (!int(value, 0, 99999)) err2.push('invalid "magic.value"');
+      magic = /** @type {MagicSpec} */ ({ timing: Array.from(new Set(timing)), effect, value });
+      if (m.noMain === true) magic.noMain = true;           // v0.44 "(Can't Use in Main)"
+      if (m.trashUse != null) {                              // v0.47 "while you control X, you can use this card from the Trash" (+ "when used from the Trash, instead ...", then banish)
+        const t = m.trashUse, o2 = {};
+        if (!t || typeof t !== 'object' || Array.isArray(t)) err2.push('"magic.trashUse" must look like {"if":{...},"actions":[...]}');
+        else {
+          if (t.if != null) { const cr = parseCond(t.if); if (cr.error) err2.push('magic.trashUse: ' + cr.error); else o2.if = cr.cond; }
+          if (t.actions != null) { const r = parseActionList(Array.isArray(t.actions) ? t.actions : []); if (r.error || !r.actions.length) err2.push('"magic.trashUse.actions": ' + (r.error || 'is empty')); else o2.actions = r.actions; }
+          magic.trashUse = o2;
+        }
+      }
+      if (m.oppAttackHand != null) {                         // v0.47 Thunder Counter: "at the start of the opposing Attack Step, by sending N cores from your X Grandwalker Nexus to the Void, pay the cost to use this card from the Hand"
+        const h = m.oppAttackHand;
+        if (!h || !Number.isInteger(h.gwToVoid) || h.gwToVoid < 0 || h.gwToVoid > 5 || !hasMatch(h.match)) err2.push('"magic.oppAttackHand" must look like {"gwToVoid":2,"match":{"name":[...]}}');
+        else magic.oppAttackHand = { gwToVoid: h.gwToVoid, match: h.match };
+      }
+      if (effect === 'ACTIONS') { const r = parseActionList(Array.isArray(m.actions) ? m.actions : []); if (r.error || !r.actions.length) err2.push('"magic.actions": ' + (r.error || 'is empty')); else magic.actions = r.actions; }
+      if (m.by != null) {
+        if (typeof m.by !== 'object' || Array.isArray(m.by) || !Object.keys(m.by).length || Object.keys(m.by).some(k => !MAGIC_TIMINGS.includes(k))) err2.push('"magic.by" must look like {"MAIN":{...},"FLASH":{...}}');
+        else {
+          magic.by = {};
+          for (const [k, b] of Object.entries(m.by)) {
+            const e2 = b && String(b.effect || '').toUpperCase();
+            if (!b || !MAGIC_FX[e2]) { err2.push(`unknown "magic.by.${k}.effect"`); continue; }
+            if (!int(Number(b.value == null ? 0 : b.value), 0, 99999)) { err2.push(`invalid "magic.by.${k}.value"`); continue; }
+            const o2 = { effect: e2, value: Number(b.value == null ? 0 : b.value) };
+            if (e2 === 'ACTIONS') { const r = parseActionList(Array.isArray(b.actions) ? b.actions : []); if (r.error || !r.actions.length) { err2.push(`"magic.by.${k}.actions": ` + (r.error || 'is empty')); continue; } o2.actions = r.actions; }
+            if (b.match != null) { if (typeof b.match !== 'object' || [].concat(b.match.name || [], b.match.family || []).some(x => typeof x !== 'string')) { err2.push(`invalid "magic.by.${k}.match"`); continue; } o2.match = b.match; }
+            if (b.if != null) { const cr = parseCond(b.if); if (cr.error) { err2.push(cr.error); continue; } o2.if = cr.cond; }
+            magic.by[k] = o2;
+          }
+          if (!magic.timing.every(t => magic.by[t]) ) err2.push('"magic.by" needs an entry for every timing');
+        }
+      }
+    }
+  return magic;
+}
+
 function parseCard(o) {
   const err = [], err2 = [], int = (v, lo, hi) => Number.isInteger(v) && v >= lo && v <= hi;
   if (!o || typeof o !== 'object') return { errors: ['not an object'] };
@@ -4018,68 +4090,10 @@ function parseCard(o) {
     if (typeof o.reduction !== 'object') err.push('"reduction" must be an object like {"red":2}');
     else for (const [k, v] of Object.entries(o.reduction)) { if (!(COLORS.includes(k) || k === 'all' || SYMBOL_KINDS.includes(k)) || !int(Number(v), 0, 10)) err.push(`invalid reduction "${k}"`); else if (Number(v) > 0) reduction[k] = Number(v); }
   }
-  let levels = [];
-  if (type === 'Magic') levels = [{ cores: 0 }];
-  else if (Array.isArray(o.levels) && o.levels.length >= 1 && o.levels.length <= 6) {
-    let last = -1;
-    for (const L of o.levels) {
-      const cores = Number(L && L.cores), bp = L && L.bp != null ? Number(L.bp) : null;
-      if (!int(cores, 0, 30) || cores < last) { err.push('levels need ascending whole-number "cores"'); break; }
-      const sp = type === 'Spirit' || type === 'Brave' || type === 'Ultimate';
-      if (sp && (!int(bp, 0, 99999))) { err.push('every Spirit/Brave/Ultimate level needs a numeric "bp"'); break; }
-      levels.push(sp ? { cores, bp } : { cores }); last = cores;
-    }
-    if ((type === 'Spirit' || type === 'Ultimate') && levels.length && levels[0].cores < 1) err.push(type + ' first level needs at least 1 core');
-  } else if (type === 'Nexus' && (o.levels == null || (Array.isArray(o.levels) && !o.levels.length))) levels = [{ cores: 0 }];     // v0.51.2: the Fandom export has no Nexus level data (760 cards): load at LV1 only; tools/compile_effects keeps cards with [LV2]+ text staged
-  else if (type === 'Brave' && (o.levels == null || (Array.isArray(o.levels) && !o.levels.length))) levels = [];     // no Spirit-form data yet: only direct combining
-  else err.push('"levels" must be a list of 1-6 levels');
+  const levels = parseLevels(o, type, err, int);
   if (err.length) return { errors: err };
   const text = String(o.text || o.desc || '').slice(0, 1500);
-  let magic = null;
-  if (type === 'Magic') {
-    const m = o.magic && typeof o.magic === 'object' ? o.magic : {};
-    let timing = Array.isArray(m.timing) ? m.timing.map(x => String(x).toUpperCase()) : null;
-    if (!timing) timing = /\bflash\b/i.test(text) ? (/\bmain\b/i.test(text) ? ['MAIN', 'FLASH'] : ['FLASH']) : ['MAIN'];
-    if (!timing.length || timing.some(x => !MAGIC_TIMINGS.includes(x))) err2.push('"magic.timing" must be a list of MAIN and/or FLASH');
-    const effect = m.effect == null ? null : String(m.effect).toUpperCase();
-    if (effect && !MAGIC_FX[effect]) err2.push(`unknown "magic.effect" "${effect}" (use ${Object.keys(MAGIC_FX).join(', ')})`);
-    const value = m.value == null ? 0 : Number(m.value);
-    if (!int(value, 0, 99999)) err2.push('invalid "magic.value"');
-    magic = /** @type {MagicSpec} */ ({ timing: Array.from(new Set(timing)), effect, value });
-    if (m.noMain === true) magic.noMain = true;           // v0.44 "(Can't Use in Main)"
-    if (m.trashUse != null) {                              // v0.47 "while you control X, you can use this card from the Trash" (+ "when used from the Trash, instead ...", then banish)
-      const t = m.trashUse, o2 = {};
-      if (!t || typeof t !== 'object' || Array.isArray(t)) err2.push('"magic.trashUse" must look like {"if":{...},"actions":[...]}');
-      else {
-        if (t.if != null) { const cr = parseCond(t.if); if (cr.error) err2.push('magic.trashUse: ' + cr.error); else o2.if = cr.cond; }
-        if (t.actions != null) { const r = parseActionList(Array.isArray(t.actions) ? t.actions : []); if (r.error || !r.actions.length) err2.push('"magic.trashUse.actions": ' + (r.error || 'is empty')); else o2.actions = r.actions; }
-        magic.trashUse = o2;
-      }
-    }
-    if (m.oppAttackHand != null) {                         // v0.47 Thunder Counter: "at the start of the opposing Attack Step, by sending N cores from your X Grandwalker Nexus to the Void, pay the cost to use this card from the Hand"
-      const h = m.oppAttackHand;
-      if (!h || !Number.isInteger(h.gwToVoid) || h.gwToVoid < 0 || h.gwToVoid > 5 || !hasMatch(h.match)) err2.push('"magic.oppAttackHand" must look like {"gwToVoid":2,"match":{"name":[...]}}');
-      else magic.oppAttackHand = { gwToVoid: h.gwToVoid, match: h.match };
-    }
-    if (effect === 'ACTIONS') { const r = parseActionList(Array.isArray(m.actions) ? m.actions : []); if (r.error || !r.actions.length) err2.push('"magic.actions": ' + (r.error || 'is empty')); else magic.actions = r.actions; }
-    if (m.by != null) {
-      if (typeof m.by !== 'object' || Array.isArray(m.by) || !Object.keys(m.by).length || Object.keys(m.by).some(k => !MAGIC_TIMINGS.includes(k))) err2.push('"magic.by" must look like {"MAIN":{...},"FLASH":{...}}');
-      else {
-        magic.by = {};
-        for (const [k, b] of Object.entries(m.by)) {
-          const e2 = b && String(b.effect || '').toUpperCase();
-          if (!b || !MAGIC_FX[e2]) { err2.push(`unknown "magic.by.${k}.effect"`); continue; }
-          if (!int(Number(b.value == null ? 0 : b.value), 0, 99999)) { err2.push(`invalid "magic.by.${k}.value"`); continue; }
-          const o2 = { effect: e2, value: Number(b.value == null ? 0 : b.value) };
-          if (e2 === 'ACTIONS') { const r = parseActionList(Array.isArray(b.actions) ? b.actions : []); if (r.error || !r.actions.length) { err2.push(`"magic.by.${k}.actions": ` + (r.error || 'is empty')); continue; } o2.actions = r.actions; }
-          if (b.match != null) { if (typeof b.match !== 'object' || [].concat(b.match.name || [], b.match.family || []).some(x => typeof x !== 'string')) { err2.push(`invalid "magic.by.${k}.match"`); continue; } o2.match = b.match; }
-          if (b.if != null) { const cr = parseCond(b.if); if (cr.error) { err2.push(cr.error); continue; } o2.if = cr.cond; }
-          magic.by[k] = o2;
-        }
-        if (!magic.timing.every(t => magic.by[t]) ) err2.push('"magic.by" needs an entry for every timing');
-      }
-    }
-  }
+  const magic = parseMagicOf(o, type, text, err2, int);
   let costAlt = null;
   if (o.costAlt != null) {
     const a = o.costAlt;

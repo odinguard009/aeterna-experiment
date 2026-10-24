@@ -17,7 +17,7 @@
   "packages/engine/src/02l-effects-invoke.js": 8,
   "packages/engine/src/02o-effects-battle-end.js": 0,
   "packages/engine/src/02p-effects-shared-shapes.js": 3,
-  "packages/engine/src/03-imported-cards.js": 4,
+  "packages/engine/src/03-imported-cards.js": 6,
   "packages/engine/src/04-decks.js": 7,
   "packages/engine/src/05-state.js": 9,
   "packages/engine/src/05b-decide.js": 12,
