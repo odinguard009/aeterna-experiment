@@ -4,6 +4,15 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.127.0
+- Lane: U/I
+- Time: ~45 min (session start → release), claude-sonnet-5-5; tokens not counted (no gate counter in this harness).
+- **U14e part 1 Battle phone: the header fits again.** Seventh step of the v14 redesign. The Options (v0.122.0) and Emote (v0.125.0) buttons pushed EXIT TO LOBBY off the right edge of the phone header; found by the three-width screenshot pass this release.
+  - **Header:** on phone the tools show icons (LOG, emoticon, gear, EXIT) with accessible names; PC keeps the words. The version label hides on phone. Checked at 360 / 390 / 430: every tool inside the screen, no sideways scroll.
+  - **Tried and reverted:** hiding the zoom corner on phone field cards; U24 / U27 use it on phone.
+  - **Tried and reverted:** five square cells per row. With the Burst / Soul areas on both sides the row is about 300 px, so five cells make 43 px cards whose name and BP are unreadable; the existing swipeable row stays (X1 test unchanged). The five-cell fit needs those areas moved: queued as U14e2 with the centred step strip and the two-column command menu.
+  - Tests: `tests/unit/ui_battle_phone_v14.test.mjs` (PH360 / PH390 / PH430). Backup branch `backup/v0.126.0`.
+
 ## v0.126.0
 - Lane: U/I
 - Time: ~35 min (session start → release), claude-sonnet-5-5 (the item is listed for Opus; the engine part is two display-only records); tokens not counted (no gate counter in this harness).

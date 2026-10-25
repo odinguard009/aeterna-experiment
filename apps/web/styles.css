@@ -1009,3 +1009,10 @@
   .ae-a-fly.soul { background: linear-gradient(150deg, #fff, #b9c0ca 35%, #eef1f5 55%, #6f7887); filter: drop-shadow(0 0 6px var(--ae-soul2)); }
   .ae-a-flip { overflow: hidden; animation: aeFlip .8s ease-out both; } .ae-a-flip .cface { width: 100%; height: 100%; }
   @keyframes aeFlip { 0% { transform: perspective(500px) rotateY(90deg) scale(.6); opacity: 0; } 35% { transform: perspective(500px) rotateY(0) scale(1); opacity: 1; } 80% { opacity: 1; } 100% { transform: scale(1.05); opacity: 0; } }
+
+  /* ---- U14e battle phone (v0.127.0) ---- */
+  .ae-tools .s { display: none; }
+  html.layout-mobile #view-playmat .ae-tools .l { display: none; } html.layout-mobile #view-playmat .ae-tools .s { display: inline; }
+  html.layout-mobile #view-playmat .ae-tools { gap: 3px; flex: none; margin-left: auto; }
+  html.layout-mobile #view-playmat .ae-tools .btn-nav-small { padding-inline: 10px; min-height: 28px; font-size: 11px; }
+  html.layout-mobile #view-playmat .ae-ver { display: none; }
