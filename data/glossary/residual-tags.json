@@ -40596,11 +40596,6 @@
   "A_BP_PLUS",
   "M_REPLACEMENT"
  ],
- "26RBS03-049": [
-  "C_LEVEL",
-  "S1_ALL_HAVE",
-  "T_DESTROYED"
- ],
  "26RBS03-050": [
   "A_BP_PLUS",
   "C_LEVEL",
@@ -40621,11 +40616,6 @@
   "C_LEVEL",
   "M_THEN",
   "T_SUMMONED"
- ],
- "26RBS03-055": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "S1_ALL_HAVE"
  ],
  "26RBS03-056": [
   "A_BP_MINUS",
@@ -41003,11 +40993,6 @@
   "A_SUMMON_FREE",
   "K_STANDARD_INVOKE",
   "M_OPTIONAL"
- ],
- "26RCB01-027": [
-  "A_VOID",
-  "S1_ALL_HAVE",
-  "T_DESTROYED"
  ],
  "26RCB01-028": [
   "A_REFRESH",

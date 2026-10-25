@@ -62,6 +62,14 @@ def sentences(body):
 # ---------- sentence -> action(s) ----------
 def bp(s): return int(s.replace(',', ''))
 
+
+def all_have_cond(x):
+    """v0.131 "all your Spirits are Cost 2/4/6/8 with the "X" family" / "all your Spirits/Nexuses have the "X" family" -> engine allHave"""
+    m = re.fullmatch(r'all your spirits are cost ((?:\d/)*\d) with the "([^"]+)" family', x.strip(), re.I)
+    if m: return {'allHave': {'family': m.group(2), 'costIn': [int(v) for v in m.group(1).split('/')], 'spiritsOnly': True}}
+    m = re.fullmatch(r'all your spirits/nexuses have the "([^"]+)" family', x.strip(), re.I)
+    return {'allHave': {'family': m.group(1)}} if m else None
+
 def bpm(s):
     n = bp(s)
     if n % 1000 or not 1000 <= n <= 30000: raise Review(f'BP minus {n} (engine: 1000-30000 in steps of 1000)')
@@ -487,6 +495,12 @@ def spirit_paragraph_main(p, card, rush):
         mm = re.match(r'^\(Your Attack Step\)\s*All attacking Spirits you control (?:gain|get) \+(\d[\d,]*) ?BP\.?$', p, re.I)
         if mm:
             e = {'trigger': 'STATIC', 'bp': bp(mm.group(1)), 'to': 'own', 'attackingOnly': True}
+            if lv: e['lv'] = lv
+            return [e], flags
+        mm = re.match(r'^If (.+?), this Spirit (?:gains|gets) \+(\d[\d,]*) ?BP\.?$', p, re.I)
+        cond = all_have_cond(mm.group(1)) if mm else None
+        if cond:      # v0.131 conditional static BP (house reading of allHave: no card on the Field = not met)
+            e = {'trigger': 'STATIC', 'bp': bp(mm.group(2)), 'to': 'self', 'if': cond}
             if lv: e['lv'] = lv
             return [e], flags
         sw = step_window(p, card, lv, rush)      # v0.70: generic step window head

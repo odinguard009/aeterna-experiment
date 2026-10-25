@@ -536,6 +536,8 @@ def cond_of(x):
     if re.fullmatch(r'you control fewer spirits than (?:the|your) opponent', x, re.I): return {'fewerSpirits': True}      # v0.77
     m = re.fullmatch(r'you control (?:an?|any) (red|purple|green|white|yellow|blue) nexus', x, re.I)
     if m: return {'nexusGe': {'n': 1, 'colors': [m.group(1).lower()]}}      # v0.77
+    c = v1.all_have_cond(x)
+    if c: return c
     m = CTRL_ANY.fullmatch(x)
     if m:
         q = {'n': 1, 'type': 'Both' if '/' in m.group(4) else m.group(4).capitalize()}
