@@ -65,7 +65,8 @@ document.addEventListener('click', e => {
   else if (a === 'db-tab') dbTab(v);
   else if (a === 'db-look') dbLook(v);
   else if (a === 'db-sl-clear') dbSleeveClear();
-  else if (a === 'go-decks') { DK_MENU = -1; if ($('view-deckbuilder')) dbSheet(''); switchView('view-decks'); }   // v0.99 U8a: also from the phone deck sheet
+  else if (a === 'db-save') dbSave();                                                                              // v0.119.0: explicit Save (auto-save stays)
+  else if (a === 'go-decks') { DK_MENU = -1; if ($('view-deckbuilder')) { dbSheet(''); dbSave(true); } switchView('view-decks'); }   // v0.99 U8a: also from the phone deck sheet
   else if (a.startsWith('dk-')) { if (a !== 'dk-more' && $('dk-msg')) $('dk-msg').textContent = ''; dkAct(a, v); }
   else if (a === 'go-lobby') switchView('view-lobby');
   else if (a === 'go-play') switchView('view-play');

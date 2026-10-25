@@ -7,7 +7,9 @@
 const DB_COLORS = ['red', 'purple', 'green', 'white', 'yellow', 'blue'];
 const DB_TYPES = ['Spirit', 'Ultimate', 'Brave', 'Nexus', 'Magic', 'Contract'];
 const DB_COSTS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
-const DBF = { colors: new Set(), costs: new Set(), types: new Set(), set: '', family: '', legal: false, complete: false, sort: 'default' };
+/* v0.119.0: mechanic groupings the Type / Colour filters cannot express (owner: Mirage, Rebirth, all-colour/rainbow + the other modelled groups) */
+const DB_GROUPS = [['multi', 'All colour'], ['mirage', 'Mirage'], ['rebirth', 'Rebirth'], ['legacy', 'Legacy'], ['ex', 'EX symbol']];
+const DBF = { colors: new Set(), costs: new Set(), types: new Set(), groups: new Set(), set: '', family: '', legal: false, complete: false, sort: 'default' };
 const DB_UNDO = [];
 let DB_IO = '';
 const dbArr = v => v == null || v === '' ? [] : Array.isArray(v) ? v : v instanceof Set ? [...v] : [String(v)];
@@ -20,6 +22,17 @@ function dbFilterOK(c, color, cost, type) {
   if (co.length && !co.some(k => (k === '10' ? c.cost >= 10 : c.cost === Number(k)))) return false;
   if (ty.length && !ty.some(t => (t === 'Contract' ? !!c.contract : c.type === t && !c.contract))) return false;
   return true;
+}
+/* v0.119.0: mechanic-group test. multi = all-colour (rainbow) card; mirage / rebirth / legacy / ex read the modelled card fields. */
+function dbGroupOK(c, g) {
+  switch (g) {
+    case 'multi': return isMulti(c);
+    case 'mirage': return !!c.mirage;
+    case 'rebirth': return !!(c.rebirthTo || c.rebirthSide);
+    case 'legacy': return !!c.legacy;
+    case 'ex': return !!c.exSymbols;
+    default: return false;
+  }
 }
 /* v0.52.1: a search index is built once per card-data change (CARDS_VER); the filtered list is recomputed only when a
    filter, the sort or the deck (for "In deck only") changes; the grid is windowed (spacer rows keep the scroll height). */
@@ -34,7 +47,7 @@ function dbIndex() {
   return DBV.idx;
 }
 function dbSets() { return [...new Set(dbIndex().map(e => dbSetOf(e.id)))].sort(DB_COLL.compare); }
-function dbActiveCount() { return DBF.colors.size + DBF.costs.size + DBF.types.size + (DBF.set ? 1 : 0) + (DBF.family ? 1 : 0) + (DBF.legal ? 1 : 0) + (DBF.complete ? 1 : 0) + ($('db-only').checked ? 1 : 0); }
+function dbActiveCount() { return DBF.colors.size + DBF.costs.size + DBF.types.size + DBF.groups.size + (DBF.set ? 1 : 0) + (DBF.family ? 1 : 0) + (DBF.legal ? 1 : 0) + (DBF.complete ? 1 : 0) + ($('db-only').checked ? 1 : 0); }
 const DB_SORTS = {
   cost: (a, b) => CARDS[a.id].cost - CARDS[b.id].cost || DB_COLL.compare(a.id, b.id),
   name: (a, b) => DB_COLL.compare(CARDS[a.id].name, CARDS[b.id].name) || DB_COLL.compare(a.id, b.id),
@@ -43,10 +56,10 @@ const DB_SORTS = {
 };
 function dbFilter() {
   const q = ($('db-search').value || '').trim().toLowerCase(), only = $('db-only').checked, fam = DBF.family.trim().toLowerCase();
-  const idx = dbIndex(), key = [CARDS_VER, q, only ? Object.keys(PLAYER_DECK).filter(id => PLAYER_DECK[id]).sort().join(',') : '', [...DBF.colors].join(), [...DBF.costs].join(), [...DBF.types].join(), DBF.set, fam, DBF.legal, DBF.complete, DBF.sort, FORMAT].join('|');
+  const idx = dbIndex(), key = [CARDS_VER, q, only ? Object.keys(PLAYER_DECK).filter(id => PLAYER_DECK[id]).sort().join(',') : '', [...DBF.colors].join(), [...DBF.costs].join(), [...DBF.types].join(), [...DBF.groups].join(), DBF.set, fam, DBF.legal, DBF.complete, DBF.sort, FORMAT].join('|');
   if (key === DBV.key) return DBV.list;
   DBV.key = key;
-  let l = idx.filter(e => (!only || PLAYER_DECK[e.id]) && (!q || e.s.includes(q)) && (!fam || e.f.includes(fam)) && (!DBF.set || dbSetOf(e.id) === DBF.set) && dbFilterOK(CARDS[e.id], DBF.colors, DBF.costs, DBF.types) && (!DBF.legal || !legalityOf(e.id, FORMAT)) && (!DBF.complete || !fxMarked(CARDS[e.id])));
+  let l = idx.filter(e => (!only || PLAYER_DECK[e.id]) && (!q || e.s.includes(q)) && (!fam || e.f.includes(fam)) && (!DBF.set || dbSetOf(e.id) === DBF.set) && dbFilterOK(CARDS[e.id], DBF.colors, DBF.costs, DBF.types) && ([...DBF.groups].every(g => dbGroupOK(CARDS[e.id], g))) && (!DBF.legal || !legalityOf(e.id, FORMAT)) && (!DBF.complete || !fxMarked(CARDS[e.id])));
   if (DB_SORTS[DBF.sort]) l = l.slice().sort(DB_SORTS[DBF.sort]);
   DBV.list = l.map(e => e.id);
   const tr = DBV.list.filter(id => id.startsWith('TRAIN-')).length;      // v0.99 U8a: Home counts real cards only; say which extra cards the builder shows
@@ -88,6 +101,7 @@ function renderDbRail() {
   $('db-f-colors').innerHTML = DB_COLORS.map(c => dbChip('colors', c, cap(c), DBF.colors.has(c), `--chip:${colorVar(c)}`)).join('');
   $('db-f-costs').innerHTML = DB_COSTS.map(k => dbChip('costs', k, k === '10' ? '10+' : k, DBF.costs.has(k))).join('');
   $('db-f-types').innerHTML = DB_TYPES.map(t => dbChip('types', t, t, DBF.types.has(t))).join('');
+  $('db-f-groups').innerHTML = DB_GROUPS.map(([g, l]) => dbChip('groups', g, l, DBF.groups.has(g))).join('');
   const st = $('db-set'), sets = dbSets(), sig = sets.join();
   if (st.dataset.sig !== sig) { st.innerHTML = '<option value="">All sets</option>' + sets.map(s => `<option value="${esc(s)}">${esc(s)}</option>`).join(''); st.dataset.sig = sig; }
   st.value = DBF.set; $('db-sort').value = DBF.sort; $('db-legal').checked = DBF.legal; $('db-complete').checked = DBF.complete;
@@ -99,6 +113,7 @@ function renderDbRail() {
 function renderDbChips() {
   const c = [], chip = (g, v, l) => c.push(`<button class="db-achip" data-a="db-unchip" data-v="${g}:${esc(v)}" aria-label="Remove filter ${esc(l)}">${esc(l)} <b aria-hidden="true">×</b></button>`);
   DBF.colors.forEach(v => chip('colors', v, cap(v))); DBF.costs.forEach(v => chip('costs', v, 'Cost ' + (v === '10' ? '10+' : v))); DBF.types.forEach(v => chip('types', v, v));
+  DBF.groups.forEach(v => chip('groups', v, (DB_GROUPS.find(g => g[0] === v) || [v, v])[1]));
   if (DBF.set) chip('set', DBF.set, 'Set ' + DBF.set); if (DBF.family) chip('family', DBF.family, 'Family: ' + DBF.family);
   if (DBF.legal) chip('legal', 1, 'Legal in format'); if (DBF.complete) chip('complete', 1, 'Complete effects'); if ($('db-only').checked) chip('only', 1, 'In deck only');
   $('db-achips').innerHTML = c.length ? c.join('') + '<button class="db-aclear" data-a="db-freset">Clear all</button>' : '';
@@ -141,8 +156,19 @@ function dbLook(v) {
 }
 function dbToggle(group, v) { const s = DBF[group]; if (s.has(v)) s.delete(v); else s.add(v); renderDeckBuilder(); }
 function dbResetFilters() {
-  DBF.colors.clear(); DBF.costs.clear(); DBF.types.clear(); DBF.set = ''; DBF.family = ''; DBF.legal = false; DBF.complete = false; DBF.sort = 'default';
+  DBF.colors.clear(); DBF.costs.clear(); DBF.types.clear(); DBF.groups.clear(); DBF.set = ''; DBF.family = ''; DBF.legal = false; DBF.complete = false; DBF.sort = 'default';
   $('db-only').checked = false; $('db-search').value = ''; $('db-card-list').scrollTop = 0; renderDeckBuilder();
+}
+/* v0.119.0: an explicit Save (the deck already auto-saves, but the owner wanted a visible button). It also captures the
+   name input before persisting, and flashes "SAVED ✓" unless silent (the back button calls it silently). */
+let DB_SAVE_T = 0;
+function dbSave(silent) {
+  const nm = $('db-name');
+  if (nm) { SLOTS[ACTIVE_SLOT].name = (nm.value.trim() || 'Deck ' + (ACTIVE_SLOT + 1)).slice(0, 24); nm.value = SLOTS[ACTIVE_SLOT].name; }
+  saveDeck();
+  if (silent) return;
+  const b = $('db-save');
+  if (b) { b.textContent = 'SAVED ✓'; b.classList.add('saved'); clearTimeout(DB_SAVE_T); DB_SAVE_T = setTimeout(() => { b.textContent = 'SAVE'; b.classList.remove('saved'); }, 1400); }
 }
 
 /* ---------- deck changes (with undo) ---------- */
@@ -211,7 +237,9 @@ function dbRowsHTML() {
     const tot = g.reduce((s, id) => s + PLAYER_DECK[id], 0);
     return `<div class="db-grp"><div class="db-grp-h">${t} <span>${tot}</span></div>` + g.map(id => {
       const c = CARDS[id], n = PLAYER_DECK[id], bad = legalityOf(id, FORMAT), isKey = SLOTS[ACTIVE_SLOT].key === id;
-      return `<div class="db-row${bad ? ' bad' : ''}" style="${colorSty(c)}"><span class="db-row-cost">${c.cost}</span><button class="db-row-name" data-a="dbinfo" data-v="${id}" title="${esc(id)}">${esc(c.name)}${fxMarkHTML(c)}${bad ? ' 🚫' : ''}</button>
+      const img = cardImgSrc(id);
+      const im = img ? `<span class="db-row-img has-img" style="background-image:url('${img}')" aria-hidden="true"></span>` : `<span class="db-row-img" aria-hidden="true">${c.type.substring(0, 1).toUpperCase()}</span>`;
+      return `<div class="db-row${bad ? ' bad' : ''}" style="${colorSty(c)}">${im}<span class="db-row-cost">${c.cost}</span><button class="db-row-name" data-a="dbinfo" data-v="${id}" title="${esc(id)}">${esc(c.name)}${fxMarkHTML(c)}${bad ? ' 🚫' : ''}</button>
         ${c.type === 'Spirit' ? `<button class="db-row-key${isKey ? ' on' : ''}" data-a="db-key" data-v="${id}" aria-pressed="${isKey}" aria-label="${isKey ? 'Unmark ' : 'Mark '}${esc(c.name)} as the deck's Key Spirit" title="${isKey ? 'Draws favour this Spirit: tap to unmark' : 'Mark this Spirit: while no copy is in the Hand or on the Field, draws favour it'}">KEY</button>` : ''}<button class="db-row-btn" data-a="db-row" data-v="${id}:-1" aria-label="Remove one ${esc(c.name)}">−</button><span class="db-row-n">${n}</span><button class="db-row-btn" data-a="db-row" data-v="${id}:1" aria-label="Add one ${esc(c.name)}"${dbCanAdd(id) ? '' : ' disabled'}>+</button></div>`;
     }).join('') + '</div>';
   }).join('');

@@ -299,7 +299,7 @@ img.cface{object-fit:cover;display:block;}
 .tcg-card .sym-badge{position:absolute;right:2px;bottom:2px;z-index:3;width:18px;height:18px;border-radius:50%;border:1px solid rgba(0,0,0,.6);box-shadow:0 0 0 1px rgba(255,255,255,.55);color:#fff;font-size:10px;font-weight:bold;line-height:16px;text-align:center;text-shadow:0 0 2px #000,0 0 2px #000;pointer-events:none;}
 .tcg-card.exhausted .sym-badge{transform:rotate(-90deg);}
 .db-grid .tcg-card .qty-badge{right:auto;left:2px;}
-.tcg-card.ult{background:linear-gradient(160deg,color-mix(in srgb,var(--color-ultimate) 38%,var(--bg-card)) 0%,var(--bg-card) 50%);box-shadow:0 0 0 2px var(--color-ultimate),0 2px 6px rgba(0,0,0,.6),0 0 8px var(--color-ultimate);}
+.tcg-card.ult{background-image:linear-gradient(160deg,color-mix(in srgb,var(--color-ultimate) 38%,var(--bg-card)) 0%,var(--bg-card) 50%);box-shadow:0 0 0 2px var(--color-ultimate),0 2px 6px rgba(0,0,0,.6),0 0 8px var(--color-ultimate);}
 .tcg-card.ult .cost{background:conic-gradient(var(--card-color,var(--color-red)) 0 50%,var(--color-ultimate) 50% 100%);}
 .tcg-card.multi{border-color:var(--card-color) var(--card-color2) var(--card-color2) var(--card-color);box-shadow:0 2px 6px rgba(0,0,0,0.6),-2px -2px 5px -1px var(--card-color),2px 2px 5px -1px var(--card-color2);}
 .tcg-card.multi .cost{background:conic-gradient(var(--card-color) 0 50%,var(--card-color2) 50% 100%);}
@@ -360,6 +360,8 @@ html.layout-pc .phase-steps{padding:0;}
 .db-row{display:flex;align-items:center;gap:4px;font-size:11px;border-left:3px solid var(--card-color,var(--color-red));padding:1px 0 1px 5px;}
 .db-row.bad{background:rgba(235,87,87,.12);}
 .db-row-cost{width:16px;text-align:center;font-weight:700;color:var(--accent);flex:none;}
+.db-row-img{width:30px;height:42px;flex:none;border-radius:2px;border:1px solid var(--card-color,var(--border-line));background:var(--card-color,var(--bg-card));color:rgba(0,0,0,.65);display:grid;place-items:center;font-size:10px;font-weight:900;overflow:hidden;}
+.db-row-img.has-img{background-size:cover;background-position:center;background-repeat:no-repeat;color:transparent;}
 .db-row-name{flex:1;min-width:0;text-align:left;background:none;border:0;color:var(--text-main);font-size:11px;padding:2px 0;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .db-row-btn{width:24px;height:22px;flex:none;border-radius:4px;border:1px solid var(--border-line);background:rgba(255,255,255,.06);color:var(--text-main);font-size:14px;line-height:1;cursor:pointer;padding:0;}
 .db-row-btn:disabled{opacity:.3;cursor:default;}
@@ -574,6 +576,9 @@ html.layout-mobile .modal-overlay{align-items:flex-end;}
 html.layout-mobile .modal-box{width:100%;max-width:none;max-height:86vh;padding-bottom:max(16px,env(safe-area-inset-bottom));clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%);}
 #view-deckbuilder{--bg-main:var(--ae-board2);--bg-panel:var(--ae-panel1);--accent:var(--you);--text-main:var(--ae-text);--text-muted:var(--ae-text2);--border-line:var(--ae-line2);color:var(--ae-text);background:linear-gradient(180deg,var(--ae-board1),var(--ae-board2))}
 .db-back.ae-ghost{min-height:34px;padding:0 12px;flex:none}
+.db-save{font-weight:900;letter-spacing:.12em;background:var(--you);color:var(--you-ink);border-color:transparent}
+.db-save:hover{background:var(--you-soft);color:var(--you)}
+.db-save.saved{background:var(--ae-success);color:#06200f}
 .db-filter-btn{display:inline-flex;align-items:center;gap:6px;font-weight:900;letter-spacing:.12em}
 .db-filter-btn .badge{font-style:normal;min-width:18px;padding:0 5px;background:var(--you);color:var(--you-ink);font-size:11px;text-align:center}
 #view-deckbuilder.db-rail-off .db-rail{display:none}
@@ -1021,7 +1026,8 @@ html.layout-pc .doc-card{padding:18px 24px 20px;}
       <select id="db-preset" class="sel" title="Load a ready-made deck into this slot"></select>
       <button class="btn-nav-small" data-a="db-reset">Default deck</button>
       <button class="btn-nav-small" data-a="db-clear">Clear</button>
-      <button class="btn-nav-small" data-a="go-lobby">◄ Back to Lobby</button>
+      <button class="btn-nav-small db-save" id="db-save" data-a="db-save" title="Save this deck">SAVE</button>
+      <button class="btn-nav-small" data-a="go-decks" title="Save and back to My decks">‹ Back to My decks</button>
     </div>
   </div>
   <div class="db-body">
@@ -1030,6 +1036,7 @@ html.layout-pc .doc-card{padding:18px 24px 20px;}
       <div class="db-fh">Colour</div><div class="db-chips" id="db-f-colors"></div>
       <div class="db-fh">Cost</div><div class="db-chips" id="db-f-costs"></div>
       <div class="db-fh">Type</div><div class="db-chips" id="db-f-types"></div>
+      <div class="db-fh">Group</div><div class="db-chips" id="db-f-groups"></div>
       <div class="db-fh">Set</div><select id="db-set" class="sel" title="Set"></select>
       <div class="db-fh">Family</div><input id="db-family" class="sel" type="search" placeholder="e.g. Dragon" autocomplete="off" title="Family">
       <label class="db-tog"><input type="checkbox" id="db-legal"> Legal in format</label>
@@ -1052,7 +1059,7 @@ html.layout-pc .doc-card{padding:18px 24px 20px;}
       <div class="db-dk-list" id="db-dk-list" data-pane="list" role="tabpanel"></div>
       <div class="db-pane" data-pane="curve" role="tabpanel"><ul class="db-check" id="db-check"></ul><div class="db-dk-stats" id="db-dk-stats"></div></div>
       <div class="db-pane" data-pane="look" role="tabpanel"><div id="db-look" class="db-look"></div></div>
-      <div class="db-dk-actions"><button class="btn-nav-small" id="db-undo" data-a="db-undo">↶ Undo</button><button class="btn-nav-small" data-a="db-import">Import text</button><button class="btn-nav-small" data-a="db-export">Export text</button></div>
+      <div class="db-dk-actions"><button class="btn-nav-small db-save" data-a="db-save" title="Save this deck">SAVE</button><button class="btn-nav-small" id="db-undo" data-a="db-undo">↶ Undo</button><button class="btn-nav-small" data-a="db-import">Import text</button><button class="btn-nav-small" data-a="db-export">Export text</button></div>
     </aside>
   </div>
   <button class="db-deckbar" id="db-deckbar" data-a="db-sheet" data-v="deck"></button>
@@ -1348,7 +1355,7 @@ function bindHost(h) {
    type: 'Spirit' | 'Nexus' | 'Magic'      symbol: card color     symbols: number of symbols
    reduction: {color: n}         levels: [{cores, bp}]  (Nexus levels have no bp)
    --------------------------------------------------------------------- */
-const VERSION = '0.118.0';
+const VERSION = '0.119.0';
 const CARDS = {};
 function defCard(o) {
   CARDS[o.id] = Object.assign({ type: 'Spirit', reduction: {}, symbols: 1, families: [], keywords: [], implemented: true, desc: 'Vanilla test card (no effect).', block: 'A' }, o);
@@ -6669,7 +6676,9 @@ function renderLobby() {
 const DB_COLORS = ['red', 'purple', 'green', 'white', 'yellow', 'blue'];
 const DB_TYPES = ['Spirit', 'Ultimate', 'Brave', 'Nexus', 'Magic', 'Contract'];
 const DB_COSTS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
-const DBF = { colors: new Set(), costs: new Set(), types: new Set(), set: '', family: '', legal: false, complete: false, sort: 'default' };
+/* v0.119.0: mechanic groupings the Type / Colour filters cannot express (owner: Mirage, Rebirth, all-colour/rainbow + the other modelled groups) */
+const DB_GROUPS = [['multi', 'All colour'], ['mirage', 'Mirage'], ['rebirth', 'Rebirth'], ['legacy', 'Legacy'], ['ex', 'EX symbol']];
+const DBF = { colors: new Set(), costs: new Set(), types: new Set(), groups: new Set(), set: '', family: '', legal: false, complete: false, sort: 'default' };
 const DB_UNDO = [];
 let DB_IO = '';
 const dbArr = v => v == null || v === '' ? [] : Array.isArray(v) ? v : v instanceof Set ? [...v] : [String(v)];
@@ -6682,6 +6691,17 @@ function dbFilterOK(c, color, cost, type) {
   if (co.length && !co.some(k => (k === '10' ? c.cost >= 10 : c.cost === Number(k)))) return false;
   if (ty.length && !ty.some(t => (t === 'Contract' ? !!c.contract : c.type === t && !c.contract))) return false;
   return true;
+}
+/* v0.119.0: mechanic-group test. multi = all-colour (rainbow) card; mirage / rebirth / legacy / ex read the modelled card fields. */
+function dbGroupOK(c, g) {
+  switch (g) {
+    case 'multi': return isMulti(c);
+    case 'mirage': return !!c.mirage;
+    case 'rebirth': return !!(c.rebirthTo || c.rebirthSide);
+    case 'legacy': return !!c.legacy;
+    case 'ex': return !!c.exSymbols;
+    default: return false;
+  }
 }
 /* v0.52.1: a search index is built once per card-data change (CARDS_VER); the filtered list is recomputed only when a
    filter, the sort or the deck (for "In deck only") changes; the grid is windowed (spacer rows keep the scroll height). */
@@ -6696,7 +6716,7 @@ function dbIndex() {
   return DBV.idx;
 }
 function dbSets() { return [...new Set(dbIndex().map(e => dbSetOf(e.id)))].sort(DB_COLL.compare); }
-function dbActiveCount() { return DBF.colors.size + DBF.costs.size + DBF.types.size + (DBF.set ? 1 : 0) + (DBF.family ? 1 : 0) + (DBF.legal ? 1 : 0) + (DBF.complete ? 1 : 0) + ($('db-only').checked ? 1 : 0); }
+function dbActiveCount() { return DBF.colors.size + DBF.costs.size + DBF.types.size + DBF.groups.size + (DBF.set ? 1 : 0) + (DBF.family ? 1 : 0) + (DBF.legal ? 1 : 0) + (DBF.complete ? 1 : 0) + ($('db-only').checked ? 1 : 0); }
 const DB_SORTS = {
   cost: (a, b) => CARDS[a.id].cost - CARDS[b.id].cost || DB_COLL.compare(a.id, b.id),
   name: (a, b) => DB_COLL.compare(CARDS[a.id].name, CARDS[b.id].name) || DB_COLL.compare(a.id, b.id),
@@ -6705,10 +6725,10 @@ const DB_SORTS = {
 };
 function dbFilter() {
   const q = ($('db-search').value || '').trim().toLowerCase(), only = $('db-only').checked, fam = DBF.family.trim().toLowerCase();
-  const idx = dbIndex(), key = [CARDS_VER, q, only ? Object.keys(PLAYER_DECK).filter(id => PLAYER_DECK[id]).sort().join(',') : '', [...DBF.colors].join(), [...DBF.costs].join(), [...DBF.types].join(), DBF.set, fam, DBF.legal, DBF.complete, DBF.sort, FORMAT].join('|');
+  const idx = dbIndex(), key = [CARDS_VER, q, only ? Object.keys(PLAYER_DECK).filter(id => PLAYER_DECK[id]).sort().join(',') : '', [...DBF.colors].join(), [...DBF.costs].join(), [...DBF.types].join(), [...DBF.groups].join(), DBF.set, fam, DBF.legal, DBF.complete, DBF.sort, FORMAT].join('|');
   if (key === DBV.key) return DBV.list;
   DBV.key = key;
-  let l = idx.filter(e => (!only || PLAYER_DECK[e.id]) && (!q || e.s.includes(q)) && (!fam || e.f.includes(fam)) && (!DBF.set || dbSetOf(e.id) === DBF.set) && dbFilterOK(CARDS[e.id], DBF.colors, DBF.costs, DBF.types) && (!DBF.legal || !legalityOf(e.id, FORMAT)) && (!DBF.complete || !fxMarked(CARDS[e.id])));
+  let l = idx.filter(e => (!only || PLAYER_DECK[e.id]) && (!q || e.s.includes(q)) && (!fam || e.f.includes(fam)) && (!DBF.set || dbSetOf(e.id) === DBF.set) && dbFilterOK(CARDS[e.id], DBF.colors, DBF.costs, DBF.types) && ([...DBF.groups].every(g => dbGroupOK(CARDS[e.id], g))) && (!DBF.legal || !legalityOf(e.id, FORMAT)) && (!DBF.complete || !fxMarked(CARDS[e.id])));
   if (DB_SORTS[DBF.sort]) l = l.slice().sort(DB_SORTS[DBF.sort]);
   DBV.list = l.map(e => e.id);
   const tr = DBV.list.filter(id => id.startsWith('TRAIN-')).length;      // v0.99 U8a: Home counts real cards only; say which extra cards the builder shows
@@ -6750,6 +6770,7 @@ function renderDbRail() {
   $('db-f-colors').innerHTML = DB_COLORS.map(c => dbChip('colors', c, cap(c), DBF.colors.has(c), `--chip:${colorVar(c)}`)).join('');
   $('db-f-costs').innerHTML = DB_COSTS.map(k => dbChip('costs', k, k === '10' ? '10+' : k, DBF.costs.has(k))).join('');
   $('db-f-types').innerHTML = DB_TYPES.map(t => dbChip('types', t, t, DBF.types.has(t))).join('');
+  $('db-f-groups').innerHTML = DB_GROUPS.map(([g, l]) => dbChip('groups', g, l, DBF.groups.has(g))).join('');
   const st = $('db-set'), sets = dbSets(), sig = sets.join();
   if (st.dataset.sig !== sig) { st.innerHTML = '<option value="">All sets</option>' + sets.map(s => `<option value="${esc(s)}">${esc(s)}</option>`).join(''); st.dataset.sig = sig; }
   st.value = DBF.set; $('db-sort').value = DBF.sort; $('db-legal').checked = DBF.legal; $('db-complete').checked = DBF.complete;
@@ -6761,6 +6782,7 @@ function renderDbRail() {
 function renderDbChips() {
   const c = [], chip = (g, v, l) => c.push(`<button class="db-achip" data-a="db-unchip" data-v="${g}:${esc(v)}" aria-label="Remove filter ${esc(l)}">${esc(l)} <b aria-hidden="true">×</b></button>`);
   DBF.colors.forEach(v => chip('colors', v, cap(v))); DBF.costs.forEach(v => chip('costs', v, 'Cost ' + (v === '10' ? '10+' : v))); DBF.types.forEach(v => chip('types', v, v));
+  DBF.groups.forEach(v => chip('groups', v, (DB_GROUPS.find(g => g[0] === v) || [v, v])[1]));
   if (DBF.set) chip('set', DBF.set, 'Set ' + DBF.set); if (DBF.family) chip('family', DBF.family, 'Family: ' + DBF.family);
   if (DBF.legal) chip('legal', 1, 'Legal in format'); if (DBF.complete) chip('complete', 1, 'Complete effects'); if ($('db-only').checked) chip('only', 1, 'In deck only');
   $('db-achips').innerHTML = c.length ? c.join('') + '<button class="db-aclear" data-a="db-freset">Clear all</button>' : '';
@@ -6803,8 +6825,19 @@ function dbLook(v) {
 }
 function dbToggle(group, v) { const s = DBF[group]; if (s.has(v)) s.delete(v); else s.add(v); renderDeckBuilder(); }
 function dbResetFilters() {
-  DBF.colors.clear(); DBF.costs.clear(); DBF.types.clear(); DBF.set = ''; DBF.family = ''; DBF.legal = false; DBF.complete = false; DBF.sort = 'default';
+  DBF.colors.clear(); DBF.costs.clear(); DBF.types.clear(); DBF.groups.clear(); DBF.set = ''; DBF.family = ''; DBF.legal = false; DBF.complete = false; DBF.sort = 'default';
   $('db-only').checked = false; $('db-search').value = ''; $('db-card-list').scrollTop = 0; renderDeckBuilder();
+}
+/* v0.119.0: an explicit Save (the deck already auto-saves, but the owner wanted a visible button). It also captures the
+   name input before persisting, and flashes "SAVED ✓" unless silent (the back button calls it silently). */
+let DB_SAVE_T = 0;
+function dbSave(silent) {
+  const nm = $('db-name');
+  if (nm) { SLOTS[ACTIVE_SLOT].name = (nm.value.trim() || 'Deck ' + (ACTIVE_SLOT + 1)).slice(0, 24); nm.value = SLOTS[ACTIVE_SLOT].name; }
+  saveDeck();
+  if (silent) return;
+  const b = $('db-save');
+  if (b) { b.textContent = 'SAVED ✓'; b.classList.add('saved'); clearTimeout(DB_SAVE_T); DB_SAVE_T = setTimeout(() => { b.textContent = 'SAVE'; b.classList.remove('saved'); }, 1400); }
 }
 
 /* ---------- deck changes (with undo) ---------- */
@@ -6873,7 +6906,9 @@ function dbRowsHTML() {
     const tot = g.reduce((s, id) => s + PLAYER_DECK[id], 0);
     return `<div class="db-grp"><div class="db-grp-h">${t} <span>${tot}</span></div>` + g.map(id => {
       const c = CARDS[id], n = PLAYER_DECK[id], bad = legalityOf(id, FORMAT), isKey = SLOTS[ACTIVE_SLOT].key === id;
-      return `<div class="db-row${bad ? ' bad' : ''}" style="${colorSty(c)}"><span class="db-row-cost">${c.cost}</span><button class="db-row-name" data-a="dbinfo" data-v="${id}" title="${esc(id)}">${esc(c.name)}${fxMarkHTML(c)}${bad ? ' 🚫' : ''}</button>
+      const img = cardImgSrc(id);
+      const im = img ? `<span class="db-row-img has-img" style="background-image:url('${img}')" aria-hidden="true"></span>` : `<span class="db-row-img" aria-hidden="true">${c.type.substring(0, 1).toUpperCase()}</span>`;
+      return `<div class="db-row${bad ? ' bad' : ''}" style="${colorSty(c)}">${im}<span class="db-row-cost">${c.cost}</span><button class="db-row-name" data-a="dbinfo" data-v="${id}" title="${esc(id)}">${esc(c.name)}${fxMarkHTML(c)}${bad ? ' 🚫' : ''}</button>
         ${c.type === 'Spirit' ? `<button class="db-row-key${isKey ? ' on' : ''}" data-a="db-key" data-v="${id}" aria-pressed="${isKey}" aria-label="${isKey ? 'Unmark ' : 'Mark '}${esc(c.name)} as the deck's Key Spirit" title="${isKey ? 'Draws favour this Spirit: tap to unmark' : 'Mark this Spirit: while no copy is in the Hand or on the Field, draws favour it'}">KEY</button>` : ''}<button class="db-row-btn" data-a="db-row" data-v="${id}:-1" aria-label="Remove one ${esc(c.name)}">−</button><span class="db-row-n">${n}</span><button class="db-row-btn" data-a="db-row" data-v="${id}:1" aria-label="Add one ${esc(c.name)}"${dbCanAdd(id) ? '' : ' disabled'}>+</button></div>`;
     }).join('') + '</div>';
   }).join('');
@@ -8380,7 +8415,8 @@ document.addEventListener('click', e => {
   else if (a === 'db-tab') dbTab(v);
   else if (a === 'db-look') dbLook(v);
   else if (a === 'db-sl-clear') dbSleeveClear();
-  else if (a === 'go-decks') { DK_MENU = -1; if ($('view-deckbuilder')) dbSheet(''); switchView('view-decks'); }   // v0.99 U8a: also from the phone deck sheet
+  else if (a === 'db-save') dbSave();                                                                              // v0.119.0: explicit Save (auto-save stays)
+  else if (a === 'go-decks') { DK_MENU = -1; if ($('view-deckbuilder')) { dbSheet(''); dbSave(true); } switchView('view-decks'); }   // v0.99 U8a: also from the phone deck sheet
   else if (a.startsWith('dk-')) { if (a !== 'dk-more' && $('dk-msg')) $('dk-msg').textContent = ''; dkAct(a, v); }
   else if (a === 'go-lobby') switchView('view-lobby');
   else if (a === 'go-play') switchView('view-play');

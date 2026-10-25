@@ -4,6 +4,15 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.119.0
+- Lane: U/I
+- Time: ~60 min (session start → release), deepseek-v4-pro; tokens not counted (no gate counter in this harness).
+- **Deck builder (owner request): mechanic groupings, a visible Save, back to My decks, and card images.** The filter rail gains a **Group** section with chips **All colour** (rainbow = a card with two or more colours), **Mirage**, **Rebirth**, **Legacy** and **EX symbol** — each reads the modelled card field (`colors` / `mirage` / `rebirthTo|rebirthSide` / `legacy` / `exSymbols`), with the same removable-chips + Clear-all behaviour as the other filters.
+  - **Save deck**: the deck already auto-saved, but there was no visible button, so the header tools and the deck panel now carry a **SAVE** button that also captures the name input and flashes "SAVED ✓". The "◄ Back to Lobby" tool is replaced by **‹ Back to My decks** (saves first, then opens the My decks page); the header "‹ MY DECKS" stays.
+  - **Ultimate cards showed only a top-left corner** of their art: `.tcg-card.ult`'s `background:` shorthand reset `.has-img`'s `cover`/`center` (the shorthand re-set `background-size` to `auto` and `background-position` to the corner). It is now `background-image:`, so an Ultimate with art covers the card face centred.
+  - **The deck list now shows a card thumbnail** (the card image where one is loaded, else a colour swatch with the type letter) before each name.
+- Tests: `tests/unit/deckbuilder_groups_images.test.mjs` (DBG-01..04: the group chips, the rainbow filter, the deck-row thumbnails, and the Ultimate cover/center fix); the deck-builder control list in `ui_card_name_wrap` N08 now measures SAVE + back-to-My-decks instead of Back-to-Lobby. `npm run -s loop -- --full` green (1504).
+
 ## v0.118.0
 - Lane: K
 - Time: ~70 min (session start → release), deepseek-v4-pro; tokens not counted (no gate counter in this harness).

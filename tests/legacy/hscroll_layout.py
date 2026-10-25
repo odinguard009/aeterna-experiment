@@ -30,7 +30,7 @@ with sync_playwright() as p:
                 chk(t+' zoom closes on backdrop',not pg.evaluate("document.getElementById('zoom-overlay').classList.contains('active')"))
                 pg.locator("#modal-actions .modal-btn",has_text='Close').click()
                 pg.evaluate("for(const k of Object.keys(BS.IMG)) delete BS.IMG[k]")
-            pg.evaluate("document.getElementById('view-deckbuilder').classList.contains('active')&&innerWidth<900&&BS.dbSheet('menu')"); pg.locator("[data-a=go-lobby]:visible").first.click(); time.sleep(.2)   # v0.53.0: phone deck builder tools sit in its menu
+            pg.evaluate("document.getElementById('view-deckbuilder').classList.contains('active')&&innerWidth<900&&BS.dbSheet('menu')"); pg.locator("[data-a=go-decks]:visible").first.click(); time.sleep(.2)   # v0.119.0: the deck builder menu now has Back to My decks (not Back to Lobby); nav Play is used next
         pg.click('[data-a=go-play]'); pg.click('[data-a=start]')
         for _ in range(40):
             time.sleep(.15)

@@ -58,7 +58,8 @@ with sync_playwright() as p:
     chk('deck status mentions format and changes',('ETERNAL' in s1) and ('STANDARD' in s2) and s1!=s2,[s1,s2])
     chk('Standard marks block-76 card illegal',True)
     # game start blocked for illegal deck
-    pg.locator('[data-a=go-lobby]:visible').first.click(); pg.wait_for_timeout(150)
+    pg.locator('[data-a=go-decks]:visible').first.click(); pg.wait_for_timeout(150)
+    pg.locator('[data-a=go-lobby]:visible').first.click(); pg.wait_for_timeout(150)   # v0.119.0: deck builder -> My decks -> Home (nav) to reach the lobby deck chip
     chk('lobby shows illegal warning in Standard','not legal' in pg.inner_text('#lobby-deck') and 'STANDARD' in pg.inner_text('#lobby-deck'),pg.inner_text('#lobby-deck'))
     pg.click('[data-a=go-play]'); pg.click('[data-a=start]'); pg.wait_for_timeout(500)
     chk('start blocked with explanation','not legal' in pg.inner_text('#modal-card-title').lower() or 'not legal' in pg.inner_text('#modal-card-title').lower() or pg.evaluate("document.getElementById('action-modal').classList.contains('active')"),pg.inner_text('#modal-card-title'))
