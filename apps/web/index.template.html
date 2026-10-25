@@ -166,7 +166,8 @@
       <select id="db-preset" class="sel" title="Load a ready-made deck into this slot"></select>
       <button class="btn-nav-small" data-a="db-reset">Default deck</button>
       <button class="btn-nav-small" data-a="db-clear">Clear</button>
-      <button class="btn-nav-small" data-a="go-lobby">◄ Back to Lobby</button>
+      <button class="btn-nav-small db-save" id="db-save" data-a="db-save" title="Save this deck">SAVE</button>
+      <button class="btn-nav-small" data-a="go-decks" title="Save and back to My decks">‹ Back to My decks</button>
     </div>
   </div>
   <div class="db-body">
@@ -175,6 +176,7 @@
       <div class="db-fh">Colour</div><div class="db-chips" id="db-f-colors"></div>
       <div class="db-fh">Cost</div><div class="db-chips" id="db-f-costs"></div>
       <div class="db-fh">Type</div><div class="db-chips" id="db-f-types"></div>
+      <div class="db-fh">Group</div><div class="db-chips" id="db-f-groups"></div>
       <div class="db-fh">Set</div><select id="db-set" class="sel" title="Set"></select>
       <div class="db-fh">Family</div><input id="db-family" class="sel" type="search" placeholder="e.g. Dragon" autocomplete="off" title="Family">
       <label class="db-tog"><input type="checkbox" id="db-legal"> Legal in format</label>
@@ -197,7 +199,7 @@
       <div class="db-dk-list" id="db-dk-list" data-pane="list" role="tabpanel"></div>
       <div class="db-pane" data-pane="curve" role="tabpanel"><ul class="db-check" id="db-check"></ul><div class="db-dk-stats" id="db-dk-stats"></div></div>
       <div class="db-pane" data-pane="look" role="tabpanel"><div id="db-look" class="db-look"></div></div>
-      <div class="db-dk-actions"><button class="btn-nav-small" id="db-undo" data-a="db-undo">↶ Undo</button><button class="btn-nav-small" data-a="db-import">Import text</button><button class="btn-nav-small" data-a="db-export">Export text</button></div>
+      <div class="db-dk-actions"><button class="btn-nav-small db-save" data-a="db-save" title="Save this deck">SAVE</button><button class="btn-nav-small" id="db-undo" data-a="db-undo">↶ Undo</button><button class="btn-nav-small" data-a="db-import">Import text</button><button class="btn-nav-small" data-a="db-export">Export text</button></div>
     </aside>
   </div>
   <button class="db-deckbar" id="db-deckbar" data-a="db-sheet" data-v="deck"></button>

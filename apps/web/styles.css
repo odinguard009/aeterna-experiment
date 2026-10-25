@@ -333,7 +333,7 @@
   .tcg-card .sym-badge { position: absolute; right: 2px; bottom: 2px; z-index: 3; width: 18px; height: 18px; border-radius: 50%; border: 1px solid rgba(0,0,0,.6); box-shadow: 0 0 0 1px rgba(255,255,255,.55); color: #fff; font-size: 10px; font-weight: bold; line-height: 16px; text-align: center; text-shadow: 0 0 2px #000, 0 0 2px #000; pointer-events: none; }
   .tcg-card.exhausted .sym-badge { transform: rotate(-90deg); }
   .db-grid .tcg-card .qty-badge { right: auto; left: 2px; }
-  .tcg-card.ult { background: linear-gradient(160deg, color-mix(in srgb, var(--color-ultimate) 38%, var(--bg-card)) 0%, var(--bg-card) 50%); box-shadow: 0 0 0 2px var(--color-ultimate), 0 2px 6px rgba(0,0,0,.6), 0 0 8px var(--color-ultimate); }
+  .tcg-card.ult { background-image: linear-gradient(160deg, color-mix(in srgb, var(--color-ultimate) 38%, var(--bg-card)) 0%, var(--bg-card) 50%); box-shadow: 0 0 0 2px var(--color-ultimate), 0 2px 6px rgba(0,0,0,.6), 0 0 8px var(--color-ultimate); } /* v0.119.0: background-image (not the shorthand) so .has-img's cover/center still wins and an Ultimate shows its full art, not a top-left corner */
   .tcg-card.ult .cost { background: conic-gradient(var(--card-color, var(--color-red)) 0 50%, var(--color-ultimate) 50% 100%); }
   .tcg-card.multi { border-color: var(--card-color) var(--card-color2) var(--card-color2) var(--card-color); box-shadow: 0 2px 6px rgba(0,0,0,0.6), -2px -2px 5px -1px var(--card-color), 2px 2px 5px -1px var(--card-color2); }
   .tcg-card.multi .cost { background: conic-gradient(var(--card-color) 0 50%, var(--card-color2) 50% 100%); }
@@ -398,6 +398,8 @@
   .db-row { display: flex; align-items: center; gap: 4px; font-size: 11px; border-left: 3px solid var(--card-color, var(--color-red)); padding: 1px 0 1px 5px; }
   .db-row.bad { background: rgba(235,87,87,.12); }
   .db-row-cost { width: 16px; text-align: center; font-weight: 700; color: var(--accent); flex: none; }
+  .db-row-img { width: 30px; height: 42px; flex: none; border-radius: 2px; border: 1px solid var(--card-color, var(--border-line)); background: var(--card-color, var(--bg-card)); color: rgba(0,0,0,.65); display: grid; place-items: center; font-size: 10px; font-weight: 900; overflow: hidden; }
+  .db-row-img.has-img { background-size: cover; background-position: center; background-repeat: no-repeat; color: transparent; }
   .db-row-name { flex: 1; min-width: 0; text-align: left; background: none; border: 0; color: var(--text-main); font-size: 11px; padding: 2px 0; cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .db-row-btn { width: 24px; height: 22px; flex: none; border-radius: 4px; border: 1px solid var(--border-line); background: rgba(255,255,255,.06); color: var(--text-main); font-size: 14px; line-height: 1; cursor: pointer; padding: 0; }
   .db-row-btn:disabled { opacity: .3; cursor: default; }
@@ -647,6 +649,9 @@
   /* v0.94.0 U7 deck builder in the mockup v11 style (apps/web/src/13a-deckbuilder.js): tokens, back to My decks, FILTERS with count, filter chips, panel tabs, Deck look */
   #view-deckbuilder{--bg-main:var(--ae-board2);--bg-panel:var(--ae-panel1);--accent:var(--you);--text-main:var(--ae-text);--text-muted:var(--ae-text2);--border-line:var(--ae-line2);color:var(--ae-text);background:linear-gradient(180deg,var(--ae-board1),var(--ae-board2))}
   .db-back.ae-ghost{min-height:34px;padding:0 12px;flex:none}
+  .db-save{font-weight:900;letter-spacing:.12em;background:var(--you);color:var(--you-ink);border-color:transparent}
+  .db-save:hover{background:var(--you-soft);color:var(--you)}
+  .db-save.saved{background:var(--ae-success);color:#06200f}
   .db-filter-btn{display:inline-flex;align-items:center;gap:6px;font-weight:900;letter-spacing:.12em}
   .db-filter-btn .badge{font-style:normal;min-width:18px;padding:0 5px;background:var(--you);color:var(--you-ink);font-size:11px;text-align:center}
   #view-deckbuilder.db-rail-off .db-rail{display:none}
