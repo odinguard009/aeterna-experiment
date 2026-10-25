@@ -181,8 +181,8 @@ function renderBoard() {
   const turnLbl = G.over ? '<span>GAME</span> <span>OVER</span>' : cpuTurn ? '<span>OPPONENT</span> <span>TURN</span>' : '<span>PLAYER</span> <span>TURN</span>';
   app.innerHTML = `
     <header class="ae-head"><div class="ae-turn"><h1 translate="no">Aeterna</h1><span class="ae-ver">v${VERSION}</span>${G.over ? '' : `<span class="ae-turnno">${cpuTurn ? 'OPPONENT' : 'PLAYER'} TURN ${G.turnNo}</span>`}</div><span class="ae-step"><span>${G.over ? 'GAME OVER' : esc(stepName)}</span></span><span class="ae-fill"></span>
-      <span class="ae-tools"><button class="btn-nav-small ae-btn" data-a="log-toggle" title="Game log (L)"><span>LOG</span></button><button class="btn-nav-small ae-btn" data-a="leave"><span>EXIT TO LOBBY</span></button></span></header>
-    <div class="playmat-layout">
+      <span class="ae-tools"><button class="btn-nav-small ae-btn" data-a="log-toggle" title="Game log (L)"><span>LOG</span></button><button class="btn-nav-small ae-btn" data-a="options" title="Settings (the match waits)"><span>OPTIONS</span></button><button class="btn-nav-small ae-btn" data-a="leave"><span>EXIT TO LOBBY</span></button></span></header>
+    <div class="playmat-layout${isPC() ? ' has-cp' : ''}">${isPC() ? cardPanelHTML() : ''}
       <div class="half-field">
         <div class="side-flank-pc">
           ${zoneBox('opponent', 'trash', 'Trash', pileHTML(O.trash.length, 'cpu-sleeve'))}
@@ -330,7 +330,7 @@ function switchView(id) {
   if (id === 'view-settings') renderSettings();
 }
 function renderSettings() { $('set-hist').innerHTML = histHTML(); $('set-cpu').innerHTML = CPU_PROFILE_NAMES.map(n => `<option value="${n}">${cap(n)}</option>`).join(''); $('set-cpu').value = cpuProfileName(null); $('set-speed').value = SETTINGS.speed; $('set-sound').value = SETTINGS.sound ? 'on' : 'off'; $('set-anim').value = SETTINGS.anim || 'auto';
-  renderSetPage(); }   // v0.68.0 U4: colour grid, Dark/Light, playmat and CPU colour rows (13d-pages.js)
+  renderSetPage(); $('set-back').hidden = !G || !!G.over; }   // v0.122.0 U14b: Options from a running match shows BACK TO MATCH; v0.68.0 U4: colour grid, Dark/Light, playmat and CPU colour rows (13d-pages.js)
 function renderLobby() {
   renderHome();
   const v = validateDeck(PLAYER_DECK), el = $('lobby-deck');

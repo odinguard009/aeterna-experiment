@@ -879,6 +879,13 @@ border-radius:0;clip-path:var(--par);padding-inline:calc(var(--sk) + 4px);}
 .modal-btn{min-height:var(--btn-h);}.btn-nav-small,.db-chip,.sel,.db-search{min-height:var(--btn-h-s);}
 .inline-next-btn{width:64px;height:44px;border:0;}
 .inline-next-btn:focus-visible,.modal-btn:focus-visible{outline-offset:-4px;}
+html.layout-pc #view-playmat .playmat-layout.has-cp{display:grid;grid-template-columns:236px minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto minmax(0,1fr) auto;column-gap:4px;row-gap:4px;}
+html.layout-pc #view-playmat .playmat-layout.has-cp > :not(#card-panel){grid-column:2;min-width:0;}
+#card-panel{grid-column:1;grid-row:1 / -1;min-height:0;overflow-y:auto;padding:10px;background:linear-gradient(180deg,var(--ae-panel1),var(--ae-panel2));box-shadow:inset 0 0 0 1px var(--ae-line);color:var(--ae-text);}
+#card-panel .cp-face{width:100%;cursor:zoom-in;--zw:200px;}
+#card-panel .cp-face .cface{width:100%;}
+#card-panel .cp-info{margin-top:8px;font-size:11px;line-height:1.4;}
+#card-panel .cp-hint{color:var(--ae-text2);font-size:12px;text-align:center;padding:24px 6px;}
 </style>
 </head>
 <body>
@@ -916,7 +923,7 @@ border-radius:0;clip-path:var(--par);padding-inline:calc(var(--sk) + 4px);}
 <div id="view-settings" class="app-view ae-view">
   <main class="ae-page set">
     <header class="ae-phead"><div class="tx"><span class="ae-eyebrow">SETTINGS</span><h1>PREFERENCES</h1><p>Saved on this device.</p></div>
-      <button class="ae-ghost" data-a="go-lobby">◄ HOME</button></header>
+      <button class="ae-ghost" id="set-back" data-a="options-back" hidden>◄ BACK TO MATCH</button><button class="ae-ghost" data-a="go-lobby">◄ HOME</button></header>
     <div class="set-grid">
       <nav class="set-menu" id="set-menu" aria-label="Settings sections"><button data-a="set-sec" data-v="appearance" aria-current="true">Appearance</button><button data-a="set-sec" data-v="speed">Game speed</button><button data-a="set-sec" data-v="sound">Sound</button><button data-a="set-sec" data-v="cpu">CPU style</button><button data-a="set-sec" data-v="online">Online</button><button data-a="set-sec" data-v="images">Card images</button><button data-a="set-sec" data-v="data">Saved data</button><button data-a="set-sec" data-v="history">Match history</button></nav>
       <div class="set-body">
@@ -1369,7 +1376,7 @@ function bindHost(h) {
    type: 'Spirit' | 'Nexus' | 'Magic'      symbol: card color     symbols: number of symbols
    reduction: {color: n}         levels: [{cores, bp}]  (Nexus levels have no bp)
    --------------------------------------------------------------------- */
-const VERSION = '0.121.0';
+const VERSION = '0.122.0';
 const CARDS = {};
 function defCard(o) {
   CARDS[o.id] = Object.assign({ type: 'Spirit', reduction: {}, symbols: 1, families: [], keywords: [], implemented: true, desc: 'Vanilla test card (no effect).', block: 'A' }, o);
@@ -6516,8 +6523,8 @@ function renderBoard() {
   const turnLbl = G.over ? '<span>GAME</span> <span>OVER</span>' : cpuTurn ? '<span>OPPONENT</span> <span>TURN</span>' : '<span>PLAYER</span> <span>TURN</span>';
   app.innerHTML = `
     <header class="ae-head"><div class="ae-turn"><h1 translate="no">Aeterna</h1><span class="ae-ver">v${VERSION}</span>${G.over ? '' : `<span class="ae-turnno">${cpuTurn ? 'OPPONENT' : 'PLAYER'} TURN ${G.turnNo}</span>`}</div><span class="ae-step"><span>${G.over ? 'GAME OVER' : esc(stepName)}</span></span><span class="ae-fill"></span>
-      <span class="ae-tools"><button class="btn-nav-small ae-btn" data-a="log-toggle" title="Game log (L)"><span>LOG</span></button><button class="btn-nav-small ae-btn" data-a="leave"><span>EXIT TO LOBBY</span></button></span></header>
-    <div class="playmat-layout">
+      <span class="ae-tools"><button class="btn-nav-small ae-btn" data-a="log-toggle" title="Game log (L)"><span>LOG</span></button><button class="btn-nav-small ae-btn" data-a="options" title="Settings (the match waits)"><span>OPTIONS</span></button><button class="btn-nav-small ae-btn" data-a="leave"><span>EXIT TO LOBBY</span></button></span></header>
+    <div class="playmat-layout${isPC() ? ' has-cp' : ''}">${isPC() ? cardPanelHTML() : ''}
       <div class="half-field">
         <div class="side-flank-pc">
           ${zoneBox('opponent', 'trash', 'Trash', pileHTML(O.trash.length, 'cpu-sleeve'))}
@@ -6665,7 +6672,7 @@ function switchView(id) {
   if (id === 'view-settings') renderSettings();
 }
 function renderSettings() { $('set-hist').innerHTML = histHTML(); $('set-cpu').innerHTML = CPU_PROFILE_NAMES.map(n => `<option value="${n}">${cap(n)}</option>`).join(''); $('set-cpu').value = cpuProfileName(null); $('set-speed').value = SETTINGS.speed; $('set-sound').value = SETTINGS.sound ? 'on' : 'off'; $('set-anim').value = SETTINGS.anim || 'auto';
-  renderSetPage(); }   // v0.68.0 U4: colour grid, Dark/Light, playmat and CPU colour rows (13d-pages.js)
+  renderSetPage(); $('set-back').hidden = !G || !!G.over; }   // v0.122.0 U14b: Options from a running match shows BACK TO MATCH; v0.68.0 U4: colour grid, Dark/Light, playmat and CPU colour rows (13d-pages.js)
 function renderLobby() {
   renderHome();
   const v = validateDeck(PLAYER_DECK), el = $('lobby-deck');
@@ -7952,6 +7959,32 @@ Promise.resolve().then(() => {
   if (window.BS) Object.assign(window.BS, { renderOnlineLobby, onlConfig, onlAccount, onlineAccount: () => ONL_ACCOUNT });
 });
 /* ---------------------------------------------------------------------
+   CARD PANEL (v0.122.0, U14b battle PC; docs/design/mockup-v14.html)
+   PC only: a panel left of the board shows the card under the pointer (hand or field), or the last one you pointed at.
+   Display only: nothing here touches the rules. Tap the picture for the full card (the zoom).
+   --------------------------------------------------------------------- */
+let PANEL_ID = null;
+function cardPanelHTML() {
+  const card = PANEL_ID && CARDS[PANEL_ID];
+  const body = card ? `<div class="cp-face" data-a="zoom" data-v="${esc(card.id)}" title="Tap to enlarge">${cardFaceHTML(card, true)}</div><div class="cp-info">${cardDetailHTML(card, true)}</div>`
+    : '<div class="cp-hint">Point at a card in your hand or on the field to read it here.</div>';
+  return `<aside id="card-panel" aria-label="Card panel">${body}</aside>`;
+}
+/** @param {HTMLElement} el */
+function panelCardOf(el) {
+  const a = el.dataset.a, v = el.dataset.v || '';
+  if (!G) return null;
+  if (a === 'hand') { const i = G.p.player.hand.find(x => String(x.uid) === v); return i ? i.id : null; }
+  const uid = v.split(':')[2], f = fieldList(G.p.player).concat(fieldList(G.p.opponent)).find(x => String(x.uid) === uid);
+  return f ? f.id : null;
+}
+if (typeof document !== 'undefined') document.addEventListener('mouseover', e => {
+  const t = /** @type {HTMLElement|null} */ ((/** @type {HTMLElement} */ (e.target)).closest('#view-playmat [data-a="hand"], #view-playmat [data-a="field"]')), p = $('card-panel');
+  if (!t || !p) return;
+  const id = panelCardOf(t); if (!id || id === PANEL_ID) return;
+  PANEL_ID = id; p.outerHTML = cardPanelHTML();
+});
+/* ---------------------------------------------------------------------
    CARD IMAGES  (user supplied files kept in IndexedDB, never uploaded)
    --------------------------------------------------------------------- */
 const IMG = {};           // card id -> blob: URL
@@ -8435,7 +8468,8 @@ document.addEventListener('click', e => {
   else if (a.startsWith('dk-')) { if (a !== 'dk-more' && $('dk-msg')) $('dk-msg').textContent = ''; dkAct(a, v); }
   else if (a === 'go-lobby') switchView('view-lobby');
   else if (a === 'go-play') switchView('view-play');
-  else if (a === 'go-settings') switchView('view-settings');
+  else if (a === 'go-settings' || a === 'options') switchView('view-settings');
+  else if (a === 'options-back') { switchView('view-playmat'); if (G) render(); }
   else if (a === 'go-howto') switchView('view-howto');
   else if (a === 'go-history') navHistory();
   else if (a === 'theme-pop') themePop();

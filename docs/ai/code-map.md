@@ -119,7 +119,7 @@ humanCan, legalityHTML, FX_KW_START, FX_LINE_STOP, effectLines, fxMark, slashBre
 ## apps/web/src/12-zones.js (70 lines, ~1.6k tokens) — ZONES, LOG, RULES COVERAGE
 openZoneModal, openLogModal, showRules
 
-## apps/web/src/13-render.js (349 lines, ~7.7k tokens) — RENDERING
+## apps/web/src/13-render.js (349 lines, ~7.8k tokens) — RENDERING
 nameHTML, isPC, applyLayout, _rz, colorVar, cardColors, isMulti, colorSty, symSlices, symCount, isUltimate, cardCls, rebMark, symBadgeHTML, handCardHTML, gemsHTML, fieldCardHTML, rowHTML, burstAreaHTML, soulAreaHTML, fieldAreaHTML, zoneBox, pv, pileHTML, lifePlate, resPlate, STEP_WARN, stepTargets, stepWarn, stepClick, SLEEVE_TINTS, CORE_LOOKS, deckLook, coreVars, SLEEVE_IMG, sleeveImgCss, applyLook, renderBoard, render, CUE, fxCueReset, aeRibbon, aeStrip, fxCues, LOG_OPEN, updateLogDrawer, toggleLog, magBtnHTML, liveStatusHTML, HIST_KEY, HISTORY, recordMatch, histHTML, lifeTxt, switchView, renderSettings, renderLobby
 
 ## apps/web/src/13a-deckbuilder.js (302 lines, ~6.4k tokens) — DECK BUILDER (v0.53.0 redesign; list performance from v0.52.1)
@@ -152,6 +152,9 @@ ONL_DEF, ON, ONL_AUTO, onlineWsBase, onlineAvailable, onlineLifeTxt, onlineLifeP
 ## apps/web/src/13j-online-lobby.js (104 lines, ~1.7k tokens) — ONLINE LOBBY + ACCOUNT (v0.109.0, roadmap M8 part 2; docs/ai/monorepo-plan.md M8)
 ONL_CFG, ONL_ACCOUNT, onlConfig, onlAccount, onlAccountHTML, renderOnlineLobby, onlQuick, onlJoin, onlLogin, onlLogout, onlDiscord
 
+## apps/web/src/13k-cardpanel.js (26 lines, ~0.4k tokens) — CARD PANEL (v0.122.0, U14b battle PC; docs/design/mockup-v14.html)
+PANEL_ID, cardPanelHTML, panelCardOf
+
 ## apps/web/src/14-images.js (234 lines, ~4.1k tokens) — CARD IMAGES
 IMG, IDB, normKey, idbOpen, idbTx, setImg, loadImages, shrinkImage, stripExt, findCardByFile, findCardByKey, importImages, clearImages, cardImgSrc, imgCls, imgSty, refreshViews, libMsg, renderLibrary, LIBV, LIB_GAP, libSetOf, libFilter, libCardHTML, libWindow, renderLibraryGrid, libScroll, libSearchInput, deckToText, textToDeck, downloadText, readFileText, libAction
 
@@ -161,5 +164,5 @@ closeMatch, startNewGame, matchSummary
 ## packages/engine/src/15b-replay.js (109 lines, ~2.5k tokens) — REPLAY RECORDS (v0.85.0, phase F4 = monorepo step M4 part 1; docs/ai/monorepo-plan.md "Design" 2)
 newPortRecord, portRecord, boardSnapshot, runPortRecord, viewerReplayOf
 
-## apps/web/src/16-events.js (235 lines, ~5.1k tokens) — EVENTS (delegation)
+## apps/web/src/16-events.js (236 lines, ~5.1k tokens) — EVENTS (delegation)
 hScrollable, HDRAG, GAME_ACTS, gameAct, replayOf, lastReplay, runReplay, loadScenario, testSetup, defBuiltin

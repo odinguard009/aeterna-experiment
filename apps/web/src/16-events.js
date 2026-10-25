@@ -70,7 +70,8 @@ document.addEventListener('click', e => {
   else if (a.startsWith('dk-')) { if (a !== 'dk-more' && $('dk-msg')) $('dk-msg').textContent = ''; dkAct(a, v); }
   else if (a === 'go-lobby') switchView('view-lobby');
   else if (a === 'go-play') switchView('view-play');
-  else if (a === 'go-settings') switchView('view-settings');
+  else if (a === 'go-settings' || a === 'options') switchView('view-settings');
+  else if (a === 'options-back') { switchView('view-playmat'); if (G) render(); }
   else if (a === 'go-howto') switchView('view-howto');
   else if (a === 'go-history') navHistory();
   else if (a === 'theme-pop') themePop();

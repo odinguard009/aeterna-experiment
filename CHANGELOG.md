@@ -4,6 +4,15 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.122.0
+- Lane: U/I
+- Time: ~35 min (session start → release), claude-sonnet-5-5; tokens not counted (no gate counter in this harness).
+- **U14b Battle PC: a Card Panel left of the board and an Options button.** Second step of the v14 redesign (`docs/design/mockup-v14.html`).
+  - **Card Panel (PC only):** a panel left of the board shows the card under the pointer (hand or field) with its face and effect text; it keeps the last card across re-renders and a tap on the picture opens the full card. New part `apps/web/src/13k-cardpanel.js`; the board layout becomes a two-column grid only when the panel is drawn (`.playmat-layout.has-cp`), so the phone and the online board are unchanged.
+  - **Options:** a header button opens Settings from a running match; **BACK TO MATCH** returns to the same match. It is not a replay input.
+  - **Already in earlier releases, checked and left alone:** locked field cells (X1), step band with the log line and GAME OVER label (U1), the Deck plate in your sleeve picture (U7). The separate field-background upload is left out: the Playmat image setting already fills the board.
+  - Tests: `tests/unit/ui_card_panel.test.mjs` (CP01-CP04). Backup branch `backup/v0.121.0`.
+
 ## v0.121.0
 - Lane: U/I
 - Time: ~45 min (session start → release), claude-sonnet-5-5; tokens not counted (no gate counter in this harness).
