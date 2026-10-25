@@ -4,6 +4,14 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.123.0
+- Lane: U/I
+- Time: ~25 min (session start → release), claude-sonnet-5-5 (the item is listed for Opus; it turned out to be naming only); tokens not counted (no gate counter in this harness).
+- **U14c Battle commands: the card menu uses the mockup names.** Third step of the v14 redesign. The tap menu on a hand or field card already carried every command through intents (`packages/engine/src/05c-intent.js`), so this release only renames them: **Place Nexus** (was Deploy), **+ Core (from Reserve)**, **− Core (to Reserve)**, **Card Info** (was Full Card Details); the online board uses the same words.
+  - **Checked and left alone:** every step is shown in order for both sides (`07-turn.js`, `09-cpu.js`), and the turn-1 rule (Core step skipped, Draw still happens, Attack and Second Main skipped in Standard) is already in `05c-intent.js`.
+  - **Not added on purpose:** a manual Exhaust / Refresh command. The rules only exhaust a card through an attack or an effect, so a free toggle would break them; recorded in `docs/ai/roadmap-open.md`.
+  - Tests: `tests/unit/ui_command_menu.test.mjs` (CM01-CM02); `tests/legacy/burst_layout.py` reads "Card Info". Backup branch `backup/v0.122.0`.
+
 ## v0.122.0
 - Lane: U/I
 - Time: ~35 min (session start → release), claude-sonnet-5-5; tokens not counted (no gate counter in this harness).

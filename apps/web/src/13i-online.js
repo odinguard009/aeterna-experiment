@@ -282,8 +282,8 @@ function onlineFieldMenu(key, uid) {
       }
       if (card.type === 'Brave' && card.brave && !f.b) buttons.push({ label: '🗡 Combine with a Spirit (Brave)…', cls: 'primary', value: 'bcombine' });
       if (f.b) buttons.push({ label: `🗡 Separate ${esc(CARDS[f.b] ? CARDS[f.b].name : f.b)}`, cls: 'blue', value: 'bseparate' });
-      buttons.push({ label: '💎 Add Core (+1 from Reserve)', cls: 'primary', value: 'add' });
-      if (f.c > 0) buttons.push({ label: '📤 Remove Core (-1)', cls: 'blue', value: 'remove' });
+      buttons.push({ label: '💎 + Core (from Reserve)', cls: 'primary', value: 'add' });
+      if (f.c > 0) buttons.push({ label: '📤 − Core (to Reserve)', cls: 'blue', value: 'remove' });
     }
   }
   buttons.push({ label: '✖ Cancel', cls: 'cancel', value: null });

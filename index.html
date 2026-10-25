@@ -1376,7 +1376,7 @@ function bindHost(h) {
    type: 'Spirit' | 'Nexus' | 'Magic'      symbol: card color     symbols: number of symbols
    reduction: {color: n}         levels: [{cores, bp}]  (Nexus levels have no bp)
    --------------------------------------------------------------------- */
-const VERSION = '0.122.0';
+const VERSION = '0.123.0';
 const CARDS = {};
 function defCard(o) {
   CARDS[o.id] = Object.assign({ type: 'Spirit', reduction: {}, symbols: 1, families: [], keywords: [], implemented: true, desc: 'Vanilla test card (no effect).', block: 'A' }, o);
@@ -6150,7 +6150,7 @@ function openZoom(id, uid) {
 }
 function handButtons(p, inst, withDetail) {
   const card = CARDS[inst.id], c = effCost(p, card), buttons = [];
-  if (withDetail) buttons.push({ label: '🔎 Full Card Details', cls: 'blue', value: 'detail' });
+  if (withDetail) buttons.push({ label: '🔎 Card Info', cls: 'blue', value: 'detail' });
   if (humanCan() && isMainStep()) {
     if (card.type === 'Magic') {
       const ok = magicUsable(p, inst, 'main'), t = magicTargets(p, inst, 'main');
@@ -6162,7 +6162,7 @@ function handButtons(p, inst, withDetail) {
     if (card.brave) { const bok = braveAfford(p, inst) && braveTargets(p, inst).length > 0;
       buttons.push({ label: bok ? `🗡 Summon combined with a Spirit (Pay ${c})` : (braveTargets(p, inst).length ? `Not enough cores (needs ${c})` : 'Brave: no Spirit meets the Brave condition'), cls: 'primary', value: 'brave', dis: !bok }); }
     const afford = canPlayCard(p, inst);
-    if (isSpiritForm(card) || card.type === 'Nexus') buttons.push({ label: afford ? `🎴 ${card.type === 'Nexus' ? 'Deploy' : 'Summon'} (Pay ${c})` : `Not enough cores (needs ${c + minCores(card)})`, cls: 'primary', value: 'play', dis: !afford });
+    if (isSpiritForm(card) || card.type === 'Nexus') buttons.push({ label: afford ? `🎴 ${card.type === 'Nexus' ? 'Place Nexus' : 'Summon'} (Pay ${c})` : `Not enough cores (needs ${c + minCores(card)})`, cls: 'primary', value: 'play', dis: !afford });
     }
     for (const { e, idx } of accelList(card)) { const ok = accelOK(p, inst, idx, 'MAIN');   // v0.50 Accel
       buttons.push({ label: ok ? `⚡ Accel (Pay ${accelCost(p, e)}): ${fxDescribe(e)}`.slice(0, 140) : `Accel: not usable now (needs ${accelCost(p, e)} cores and a target)`, cls: 'primary', value: 'accel:' + idx, dis: !ok }); }
@@ -6222,16 +6222,16 @@ async function openFieldModal(key, kind, uid) {
   const stack = f.under.length ? cardStripHTML(f.under, 'Under this card') : '';
   const html = `${esc(card.token ? 'Token Spirit' : card.type)} · Lv${k + lvBase(card)}${isSpiritForm(card) ? ' · ' + bpOf(f) + ' BP' : ''} · Cores ${f.cores}${f.soul ? ' + Soul Core' : ''}${f.exhausted ? ' · Exhausted' : ''}${f.brave ? ' · Brave: ' + esc(CARDS[f.brave.id].name) + ' (+' + CARDS[f.brave.id].brave.bp + ' BP)' : ''}${ocActive(f) ? ' · Over Count active' : ''}${stack}`;
   /** the empty-cell + info buttons: cls is optional (plain disabled info buttons have none). */
-  const buttons = /** @type {{label: string, cls?: string, value: string | null, dis?: boolean, hidden?: boolean}[]} */ ([{ label: '🔎 Full Card Details', cls: 'blue', value: 'detail' }]);
+  const buttons = /** @type {{label: string, cls?: string, value: string | null, dis?: boolean, hidden?: boolean}[]} */ ([{ label: '🔎 Card Info', cls: 'blue', value: 'detail' }]);
   if (mine && isMainStep()) {
     for (const { idx, e } of activatable(p, f, 'MAIN')) buttons.push({ label: `⚡ Activate: ${fxDescribe(e)}`.slice(0, 140), cls: 'primary', value: 'act:' + idx });
     if (card.type === 'Brave' && card.brave && p.spirits.includes(f)) buttons.push({ label: '🗡 Combine with a Spirit (Brave)…', cls: 'primary', value: 'bcombine', dis: !braveTargets(p, f).length });
     if (f.brave) buttons.push({ label: `🗡 Separate ${CARDS[f.brave.id].name}`, cls: 'blue', value: 'bseparate', dis: !canSeparate(p, f) });
     if (isGW(f)) buttons.push({ label: 'ℹ Grandwalker cores cannot be moved or used to pay costs', cls: 'blue', value: 'x', dis: true });
-    else buttons.push({ label: '💎 Add Core (+1 from Reserve)', cls: 'primary', value: 'add', dis: p.reserve.n < 1 });
+    else buttons.push({ label: '💎 + Core (from Reserve)', cls: 'primary', value: 'add', dis: p.reserve.n < 1 });
     if (f.cores > 0 && !isGW(f)) {
       const dep = isSpiritForm(card) && totalCores(f) - 1 < minCores(card);
-      buttons.push({ label: `📤 Remove Core (-1)${dep ? ' — depletes!' : ''}`, cls: 'blue', value: 'remove' });
+      buttons.push({ label: `📤 − Core (to Reserve)${dep ? ' — depletes!' : ''}`, cls: 'blue', value: 'remove' });
     }
     const others = fieldList(p).filter(x => x !== f && !isGW(x));      // nothing can be moved onto a Grandwalker Nexus (p. 22)
     if (f.cores > 0 && !isGW(f) && others.length) {
@@ -7726,8 +7726,8 @@ function onlineFieldMenu(key, uid) {
       }
       if (card.type === 'Brave' && card.brave && !f.b) buttons.push({ label: '🗡 Combine with a Spirit (Brave)…', cls: 'primary', value: 'bcombine' });
       if (f.b) buttons.push({ label: `🗡 Separate ${esc(CARDS[f.b] ? CARDS[f.b].name : f.b)}`, cls: 'blue', value: 'bseparate' });
-      buttons.push({ label: '💎 Add Core (+1 from Reserve)', cls: 'primary', value: 'add' });
-      if (f.c > 0) buttons.push({ label: '📤 Remove Core (-1)', cls: 'blue', value: 'remove' });
+      buttons.push({ label: '💎 + Core (from Reserve)', cls: 'primary', value: 'add' });
+      if (f.c > 0) buttons.push({ label: '📤 − Core (to Reserve)', cls: 'blue', value: 'remove' });
     }
   }
   buttons.push({ label: '✖ Cancel', cls: 'cancel', value: null });
