@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 7777,
+  "cards": 7774,
   "per_saga": {
    "1": 787,
    "2": 333,
@@ -19,23 +19,23 @@
    "15": 357,
    "16": 334,
    "17": 110,
-   "50": 473
+   "50": 470
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 929,
+  "skipped_curated": 932,
   "number_conflicts": 5,
   "nexus_levels_added": 716,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 565,
+  "image_problems": 562,
   "merged": 110,
   "brave_unparsed": 171,
   "ut_lines_added": 119,
   "odd_reduction": 809,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 563
+  "without_image": 560
  },
  "tokens": [
   "BS73-T001",
@@ -897,6 +897,7 @@
   "26RCB01-018",
   "26RCB01-025",
   "26RCB01-026",
+  "26RCB01-027",
   "26RCB01-029",
   "26RCB01-033",
   "26RCB01-034",
@@ -959,7 +960,9 @@
   "26RBS03-014",
   "26RBS03-021",
   "26RBS03-025",
+  "26RBS03-049",
   "26RBS03-052",
+  "26RBS03-055",
   "26RBS03-061",
   "26RBS03-063",
   "26RBS03-065",
@@ -4108,11 +4111,6 @@
    "problem": "ambiguous name (2 files, none in set 26RCB01)"
   },
   {
-   "id": "26RCB01-027",
-   "name": "Kamen Rider Knight",
-   "problem": "ambiguous name (2 files, none in set 26RCB01)"
-  },
-  {
    "id": "26RCB01-030",
    "name": "Kamen Rider Raia",
    "problem": "ambiguous name (2 files, none in set 26RCB01)"
@@ -4443,11 +4441,6 @@
    "problem": "no image"
   },
   {
-   "id": "26RBS03-049",
-   "name": "Calunis",
-   "problem": "no image"
-  },
-  {
    "id": "26RBS03-050",
    "name": "The GrandMaster Marmonta",
    "problem": "no image"
@@ -4465,11 +4458,6 @@
   {
    "id": "26RBS03-054",
    "name": "The BlindOgre Madoc",
-   "problem": "no image"
-  },
-  {
-   "id": "26RBS03-055",
-   "name": "Lamykin",
    "problem": "no image"
   },
   {
