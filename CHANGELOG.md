@@ -4,6 +4,15 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.130.0
+- Lane: U/I
+- Time: ~40 min (session start → release), claude-sonnet-5-5; tokens not counted (no gate counter in this harness).
+- **U14f3 Deck builder: Group and Colour dropdowns.** Tenth step of the v14 redesign; closes the deck builder item U14f.
+  - **Group** is a dropdown on every screen (one group at a time); **Colour** is a dropdown on phone and keeps its chip row on PC. When chips set more than one value the dropdown reads "Several". The hidden chips stay in the page, so the filter code and the old tests still work.
+  - The dropdowns are 44 px tall (the touch target the D09 test checks); D09 now measures the visible chips and the dropdowns.
+  - **Moved / left:** the alternative art picker goes to U14g (it needs a per-card list of alternative images); the sideways-scrolling phone toolbar rows stay as they are, the header menu already holds them.
+  - Tests: `tests/unit/deckbuilder_v14_part3.test.mjs` (DD1-DD2); `deckbuilder_layout` D09 updated. Backup branch `backup/v0.129.0`.
+
 ## v0.129.0
 - Lane: U/I
 - Time: ~25 min (session start → release), claude-sonnet-5-5; tokens not counted (no gate counter in this harness).

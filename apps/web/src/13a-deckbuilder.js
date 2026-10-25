@@ -97,11 +97,20 @@ function dbSearchInput() { clearTimeout(DBV.timer); DBV.timer = setTimeout(() =>
 
 /* ---------- filter rail (PC column / phone bottom sheet) ---------- */
 function dbChip(group, v, label, on, sty) { return `<button class="db-chip${on ? ' on' : ''}" data-a="db-chip" data-v="${group}:${v}" aria-pressed="${on}"${sty ? ` style="${sty}"` : ''}>${label}</button>`; }
+/* v0.130.0 U14f3: Group (all screens) and Colour (phone) as dropdowns: one pick, "Several" when more than one chip is on */
+function dbDropdown(id, group, any, list) {
+  const e = $(id), s = DBF[group], val = s.size === 1 ? [...s][0] : s.size > 1 ? '*' : '';
+  e.innerHTML = `<option value="">${any}</option>` + (s.size > 1 ? '<option value="*" disabled>Several</option>' : '') + list.map(([v, l]) => `<option value="${v}">${esc(l)}</option>`).join('');
+  e.value = val;
+}
+function dbPick(group, v) { if (v === '*') return; DBF[group].clear(); if (v) DBF[group].add(v); renderDeckBuilder(); }
 function renderDbRail() {
   $('db-f-colors').innerHTML = DB_COLORS.map(c => dbChip('colors', c, cap(c), DBF.colors.has(c), `--chip:${colorVar(c)}`)).join('');
   $('db-f-costs').innerHTML = DB_COSTS.map(k => dbChip('costs', k, k === '10' ? '10+' : k, DBF.costs.has(k))).join('');
   $('db-f-types').innerHTML = DB_TYPES.map(t => dbChip('types', t, t, DBF.types.has(t))).join('');
   $('db-f-groups').innerHTML = DB_GROUPS.map(([g, l]) => dbChip('groups', g, l, DBF.groups.has(g))).join('');
+  dbDropdown('db-dd-colors', 'colors', 'Any colour', DB_COLORS.map(c => [c, cap(c)]));   // v0.130.0 U14f3: one pick; the chips (several at once) stay for the PC colour row
+  dbDropdown('db-dd-groups', 'groups', 'Any group', DB_GROUPS);
   const st = $('db-set'), sets = dbSets(), sig = sets.join();
   if (st.dataset.sig !== sig) { st.innerHTML = '<option value="">All sets</option>' + sets.map(s => `<option value="${esc(s)}">${esc(s)}</option>`).join(''); st.dataset.sig = sig; }
   st.value = DBF.set; $('db-sort').value = DBF.sort; $('db-legal').checked = DBF.legal; $('db-complete').checked = DBF.complete;

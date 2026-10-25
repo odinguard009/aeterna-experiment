@@ -192,6 +192,8 @@ document.addEventListener('change', async e => {
   } else if (t.id === 'db-only') renderDeckBuilder();
   else if (t.id === 'db-legal') { DBF.legal = t.checked; renderDeckBuilder(); }
   else if (t.id === 'db-complete') { DBF.complete = t.checked; renderDeckBuilder(); }
+  else if (t.id === 'db-dd-colors') dbPick('colors', t.value);
+  else if (t.id === 'db-dd-groups') dbPick('groups', t.value);
   else if (t.id === 'db-set') { DBF.set = t.value; renderDeckBuilder(); }
   else if (t.id === 'db-sort') { DBF.sort = t.value; $('db-card-list').scrollTop = 0; renderDeckBuilder(); }
   else if (t.id === 'play-deck') { switchSlot(Number(t.value)); renderLobby(); }

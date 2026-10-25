@@ -5,7 +5,7 @@
   "waitingHtml": "<b>Waiting on you:</b> nothing; Report Bug and missions / ranks / avatars are decided (2026-10-25).",
   "updated": "25 Oct 2026",
   "updatedAt": "0.121.0",
-  "next": "next: the v14 UI/UX redesign U14f3-U14i ( card commands, animations, battle phone, deck builder, library + lore, pages, dialogs + Report Bug), then card sessions (K) with Standard first"
+  "next": "next: the v14 UI/UX redesign U14g-U14i ( card commands, animations, battle phone, deck builder, library + lore, pages, dialogs + Report Bug), then card sessions (K) with Standard first"
  },
  "phases": [
   {
@@ -843,8 +843,8 @@
      "t": "U14f2 (v0.129.0): fly-to-deck add, long-press for card info (setting)"
     },
     {
-     "s": "next",
-     "t": "U14f3 Deck builder: Group / Colour dropdowns, phone toolbar rows (alternative art moves to U14g)"
+     "s": "done",
+     "t": "U14f3 (v0.130.0): Group dropdown on every screen, Colour dropdown on phone"
     },
     {
      "s": "next",

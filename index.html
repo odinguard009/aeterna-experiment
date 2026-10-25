@@ -919,6 +919,10 @@ html.layout-mobile .db-size{display:none;}
 #db-peek{position:fixed;z-index:80;width:260px;padding:8px;display:flex;gap:8px;background:var(--ae-panel1);color:var(--ae-text);box-shadow:inset 0 0 0 1px var(--ae-line2),0 10px 30px #0008;pointer-events:none;}
 #db-peek .dbp-face{flex:none;width:96px;}#db-peek .dbp-face .cface{width:100%;}#db-peek .dbp-fx{font-size:10px;line-height:1.35;max-height:180px;overflow:hidden;}
 .ae-a-flyc{position:fixed;width:28px;height:38px;pointer-events:none;background:linear-gradient(160deg,var(--card-color,#888),#1a1e26);box-shadow:0 0 0 1px #fff8,0 4px 10px #0008;clip-path:var(--par);}
+#db-rail .db-dd{width:100%;min-height:44px;height:44px;}
+#db-f-groups{display:none;}
+.db-dd-phone{display:none;}
+html.layout-mobile .db-dd-phone{display:block;}html.layout-mobile #db-f-colors{display:none;}
 </style>
 </head>
 <body>
@@ -1086,10 +1090,10 @@ html.layout-mobile .db-size{display:none;}
   <div class="db-body">
     <aside class="db-rail" id="db-rail" aria-label="Filters">
       <div class="db-sheet-head"><b>Filters</b><button class="btn-nav-small" data-a="db-sheet" data-v="">Done</button></div>
-      <div class="db-fh">Colour</div><div class="db-chips" id="db-f-colors"></div>
+      <div class="db-fh">Colour</div><select id="db-dd-colors" class="sel db-dd db-dd-phone" aria-label="Colour"></select><div class="db-chips" id="db-f-colors"></div>
       <div class="db-fh">Cost</div><div class="db-chips" id="db-f-costs"></div>
       <div class="db-fh">Type</div><div class="db-chips" id="db-f-types"></div>
-      <div class="db-fh">Group</div><div class="db-chips" id="db-f-groups"></div>
+      <div class="db-fh">Group</div><select id="db-dd-groups" class="sel db-dd" aria-label="Group"></select><div class="db-chips" id="db-f-groups"></div>
       <div class="db-fh">Set</div><select id="db-set" class="sel" title="Set"></select>
       <div class="db-fh">Family</div><input id="db-family" class="sel" type="search" placeholder="e.g. Dragon" autocomplete="off" title="Family">
       <label class="db-tog"><input type="checkbox" id="db-legal"> Legal in format</label>
@@ -1412,7 +1416,7 @@ function bindHost(h) {
    type: 'Spirit' | 'Nexus' | 'Magic'      symbol: card color     symbols: number of symbols
    reduction: {color: n}         levels: [{cores, bp}]  (Nexus levels have no bp)
    --------------------------------------------------------------------- */
-const VERSION = '0.129.0';
+const VERSION = '0.130.0';
 const CARDS = {};
 function defCard(o) {
   CARDS[o.id] = Object.assign({ type: 'Spirit', reduction: {}, symbols: 1, families: [], keywords: [], implemented: true, desc: 'Vanilla test card (no effect).', block: 'A' }, o);
@@ -6829,11 +6833,20 @@ function dbSearchInput() { clearTimeout(DBV.timer); DBV.timer = setTimeout(() =>
 
 /* ---------- filter rail (PC column / phone bottom sheet) ---------- */
 function dbChip(group, v, label, on, sty) { return `<button class="db-chip${on ? ' on' : ''}" data-a="db-chip" data-v="${group}:${v}" aria-pressed="${on}"${sty ? ` style="${sty}"` : ''}>${label}</button>`; }
+/* v0.130.0 U14f3: Group (all screens) and Colour (phone) as dropdowns: one pick, "Several" when more than one chip is on */
+function dbDropdown(id, group, any, list) {
+  const e = $(id), s = DBF[group], val = s.size === 1 ? [...s][0] : s.size > 1 ? '*' : '';
+  e.innerHTML = `<option value="">${any}</option>` + (s.size > 1 ? '<option value="*" disabled>Several</option>' : '') + list.map(([v, l]) => `<option value="${v}">${esc(l)}</option>`).join('');
+  e.value = val;
+}
+function dbPick(group, v) { if (v === '*') return; DBF[group].clear(); if (v) DBF[group].add(v); renderDeckBuilder(); }
 function renderDbRail() {
   $('db-f-colors').innerHTML = DB_COLORS.map(c => dbChip('colors', c, cap(c), DBF.colors.has(c), `--chip:${colorVar(c)}`)).join('');
   $('db-f-costs').innerHTML = DB_COSTS.map(k => dbChip('costs', k, k === '10' ? '10+' : k, DBF.costs.has(k))).join('');
   $('db-f-types').innerHTML = DB_TYPES.map(t => dbChip('types', t, t, DBF.types.has(t))).join('');
   $('db-f-groups').innerHTML = DB_GROUPS.map(([g, l]) => dbChip('groups', g, l, DBF.groups.has(g))).join('');
+  dbDropdown('db-dd-colors', 'colors', 'Any colour', DB_COLORS.map(c => [c, cap(c)]));   // v0.130.0 U14f3: one pick; the chips (several at once) stay for the PC colour row
+  dbDropdown('db-dd-groups', 'groups', 'Any group', DB_GROUPS);
   const st = $('db-set'), sets = dbSets(), sig = sets.join();
   if (st.dataset.sig !== sig) { st.innerHTML = '<option value="">All sets</option>' + sets.map(s => `<option value="${esc(s)}">${esc(s)}</option>`).join(''); st.dataset.sig = sig; }
   st.value = DBF.set; $('db-sort').value = DBF.sort; $('db-legal').checked = DBF.legal; $('db-complete').checked = DBF.complete;
@@ -8339,6 +8352,8 @@ document.addEventListener('change', async e => {
   } else if (t.id === 'db-only') renderDeckBuilder();
   else if (t.id === 'db-legal') { DBF.legal = t.checked; renderDeckBuilder(); }
   else if (t.id === 'db-complete') { DBF.complete = t.checked; renderDeckBuilder(); }
+  else if (t.id === 'db-dd-colors') dbPick('colors', t.value);
+  else if (t.id === 'db-dd-groups') dbPick('groups', t.value);
   else if (t.id === 'db-set') { DBF.set = t.value; renderDeckBuilder(); }
   else if (t.id === 'db-sort') { DBF.sort = t.value; $('db-card-list').scrollTop = 0; renderDeckBuilder(); }
   else if (t.id === 'play-deck') { switchSlot(Number(t.value)); renderLobby(); }
@@ -8794,7 +8809,7 @@ function testSetup() {            // dev hook: a quiet board with no match loop 
   switchView('view-playmat'); render(); return G;
 }
 const defBuiltin = o => { defCard(o); BUILTIN_IDS.add(o.id); };      // test fixtures register through this so their ids stay reserved
-window.BS = { dbTap, dbRedo, dbSize, dbTestHand, get DB_SIZE() { return DB_SIZE; }, io, bindHost, removeCore, moveSoulTo, returnSoul, EMOTES, emoteLeft, emoteSend, setEmoteClock: f => { EMOTE_NOW = f; }, BAN_LIST_INFO, webPick, maxCopies, prebuiltLabel, fmtButton, defaultDeck, get CPU_DECK_NAME() { return CPU_DECK_NAME; }, SLEEVE_IMG, renderDecks, animMode, fxCueReset, aeRibbon, endOfBattle, MAT, matUse, setSection, navSync, renderHome, themePop, soulMagicOK, soulMagicHolder, soulMagicPick, THEME, THEME_COLS, setTheme, stepClick, stepTargets, get FX_STRICT() { return FX_STRICT; }, setFxStrict(v) { FX_STRICT = !!v; }, FX_WARNED, collectFx, setFuzz(o) { FUZZ = Object.assign({}, o || {}); }, get FUZZ() { return FUZZ; }, fuzzPick, ERR_LOG, errReport, onGameError, releaseStandby, leaveStandby, renderDeckBuilder, dbChange, dbUndo, dbSheet, DBF, get DB_UNDO() { return DB_UNDO.length; }, accelList, accelCost, accelOK, accelSources, useAccel, removedSummonable, summonFromRemoved, cpuAccelScore, cpuAccelMain, cpuAccelFlash, cpuSilverWheel, highSpeedOK, highSpeedSources, highSpeedSummon, cpuHighSpeed, isSealed, soulToLife, lifeTake, braveSummonedFx, abTaxOK, payAbTax, oppAttackHandFx, sentToTrashFx, magicFxAt, summonOK, lvNo, isUlt, noBlockActive, burstFlash, cpuBurstFlash, humanAttack, cpuAttack, attackStepOver, endAttackLocked, battleEndAttack, isGW, freeCores, moveCore, swapSoul, payCost, cpuCanPlay, coresAvailable, addCore, cpuKeepMagicOrPay, nameHTML, switchView, SET_KEY, dbFilterOK, cardColors, contractToDeck, redrawHand, cpuWantsRedraw, setHeavy, refreshOne, toRemoved, fxIf, costDestroyBonus, sendToken, canSendToken, tokenHome, attackSymbols, TOKEN_SUPPLY, isSpiritForm, ocActive, braveFits, braveTargets, combineBrave, braveSummon, separateBrave, canSeparate, braveRecheck, braveAfford, cpuBrave, handButtons, minCores, openFieldModal, cpuMain, VERSION, defBuiltin, beginTurn, endStep, newGame, takeFromVoid, checkDepletion, removeSpirit, lvIndex, mirageUsable, cpuCastMain, magicFx, magicText, costAltActive, flagActive, coresSent, startAttackFx, win, recordMatch, HISTORY: () => HISTORY, toggleLog, effectTextHTML, effectLines, titleCase, liveStatusHTML, openZoom, modal, closeModal, startPeek, SETTINGS, SLOTS: () => SLOTS, loadSlots, get ACTIVE_SLOT() { return ACTIVE_SLOT; }, switchSlot, loadPrebuilt, PREBUILT, cpuDeckFor, saveSettings, PACK_IDS, registerPack, clearImported, summonPaid, reviveTargets, doRevive, handUp, contractAdventTargets, doContractAdvent, manifestTargets, doManifest, soulCoreHolder, rng, seedRng, newSeed, runReplay, lastReplay, fireFxMulti, asResolving, replayOf, loadScenario, gameAct, matchSummary, get REPLAY() { return REPLAY; }, soulSource, soulToNexus, fxImmune, residualHTML, cardDetailHTML, setSimDeckB(d, key) { SIM_DECK_B = d; SIM_DECK_B_KEY = key || null; }, activatable, activateFx, cpuActivate, toSoulState, bounceCard, runActions, maybeBurst, flushBursts, summonFree, parseBurst, parseActionList, BURST_WHEN, fireFx, parseEffects, staticBp, FX_ACTIONS, removeNexus, magicUsable, magicTargets, castMagic, flashTiming, cpuFlashChoice, setFormat, validateDeck, legalityOf, banStatus, get FORMAT() { return FORMAT; }, isPC, applyLayout, testSetup, mkInst, draw, keyOfDeck, pickKey, render, takeCores, IMG, cardImgSrc, imgCls, imgSty, importCards, importImages, textToDeck, deckToText, parseCard, loadImages, get PLAYER_DECK() { return PLAYER_DECK; }, get G() { return G; }, startNewGame, checkInvariants, CARDS, PRESET_DECK, humanCan, onNext, engineIdle, runPortRecord, viewerReplayOf, openViewer, replayFromRecord, portRecord, boardSnapshot, sendIntent, applyIntent, seatLoopOpen, cpuAnswer, INTENT_TYPES, cpuTurn, doBattle, summon, effCost, legacyPlan, legacyPay, canBlockState, canPlayCard, setBurst, fieldList, bpOf, get SESSION() { return SESSION; }, CPU_PROFILES, cpuProfileName, cpuEval, cpuPlayScore, cpuPlayChoice, cpuLethal, cpuAttackScore, cpuAttackChoice, cpuBlockScore, cpuChooseBlock, setCpuProfile, setSimProfiles(o) { CPU_SIM_PROFILES = Object.assign({}, o || {}); }, lifeValue, symbolAttrs, fieldSymbols, symbolsOn, reductionOf, extraReduction };
+window.BS = { dbResetFilters, dbTap, dbRedo, dbSize, dbTestHand, get DB_SIZE() { return DB_SIZE; }, io, bindHost, removeCore, moveSoulTo, returnSoul, EMOTES, emoteLeft, emoteSend, setEmoteClock: f => { EMOTE_NOW = f; }, BAN_LIST_INFO, webPick, maxCopies, prebuiltLabel, fmtButton, defaultDeck, get CPU_DECK_NAME() { return CPU_DECK_NAME; }, SLEEVE_IMG, renderDecks, animMode, fxCueReset, aeRibbon, endOfBattle, MAT, matUse, setSection, navSync, renderHome, themePop, soulMagicOK, soulMagicHolder, soulMagicPick, THEME, THEME_COLS, setTheme, stepClick, stepTargets, get FX_STRICT() { return FX_STRICT; }, setFxStrict(v) { FX_STRICT = !!v; }, FX_WARNED, collectFx, setFuzz(o) { FUZZ = Object.assign({}, o || {}); }, get FUZZ() { return FUZZ; }, fuzzPick, ERR_LOG, errReport, onGameError, releaseStandby, leaveStandby, renderDeckBuilder, dbChange, dbUndo, dbSheet, DBF, get DB_UNDO() { return DB_UNDO.length; }, accelList, accelCost, accelOK, accelSources, useAccel, removedSummonable, summonFromRemoved, cpuAccelScore, cpuAccelMain, cpuAccelFlash, cpuSilverWheel, highSpeedOK, highSpeedSources, highSpeedSummon, cpuHighSpeed, isSealed, soulToLife, lifeTake, braveSummonedFx, abTaxOK, payAbTax, oppAttackHandFx, sentToTrashFx, magicFxAt, summonOK, lvNo, isUlt, noBlockActive, burstFlash, cpuBurstFlash, humanAttack, cpuAttack, attackStepOver, endAttackLocked, battleEndAttack, isGW, freeCores, moveCore, swapSoul, payCost, cpuCanPlay, coresAvailable, addCore, cpuKeepMagicOrPay, nameHTML, switchView, SET_KEY, dbFilterOK, cardColors, contractToDeck, redrawHand, cpuWantsRedraw, setHeavy, refreshOne, toRemoved, fxIf, costDestroyBonus, sendToken, canSendToken, tokenHome, attackSymbols, TOKEN_SUPPLY, isSpiritForm, ocActive, braveFits, braveTargets, combineBrave, braveSummon, separateBrave, canSeparate, braveRecheck, braveAfford, cpuBrave, handButtons, minCores, openFieldModal, cpuMain, VERSION, defBuiltin, beginTurn, endStep, newGame, takeFromVoid, checkDepletion, removeSpirit, lvIndex, mirageUsable, cpuCastMain, magicFx, magicText, costAltActive, flagActive, coresSent, startAttackFx, win, recordMatch, HISTORY: () => HISTORY, toggleLog, effectTextHTML, effectLines, titleCase, liveStatusHTML, openZoom, modal, closeModal, startPeek, SETTINGS, SLOTS: () => SLOTS, loadSlots, get ACTIVE_SLOT() { return ACTIVE_SLOT; }, switchSlot, loadPrebuilt, PREBUILT, cpuDeckFor, saveSettings, PACK_IDS, registerPack, clearImported, summonPaid, reviveTargets, doRevive, handUp, contractAdventTargets, doContractAdvent, manifestTargets, doManifest, soulCoreHolder, rng, seedRng, newSeed, runReplay, lastReplay, fireFxMulti, asResolving, replayOf, loadScenario, gameAct, matchSummary, get REPLAY() { return REPLAY; }, soulSource, soulToNexus, fxImmune, residualHTML, cardDetailHTML, setSimDeckB(d, key) { SIM_DECK_B = d; SIM_DECK_B_KEY = key || null; }, activatable, activateFx, cpuActivate, toSoulState, bounceCard, runActions, maybeBurst, flushBursts, summonFree, parseBurst, parseActionList, BURST_WHEN, fireFx, parseEffects, staticBp, FX_ACTIONS, removeNexus, magicUsable, magicTargets, castMagic, flashTiming, cpuFlashChoice, setFormat, validateDeck, legalityOf, banStatus, get FORMAT() { return FORMAT; }, isPC, applyLayout, testSetup, mkInst, draw, keyOfDeck, pickKey, render, takeCores, IMG, cardImgSrc, imgCls, imgSty, importCards, importImages, textToDeck, deckToText, parseCard, loadImages, get PLAYER_DECK() { return PLAYER_DECK; }, get G() { return G; }, startNewGame, checkInvariants, CARDS, PRESET_DECK, humanCan, onNext, engineIdle, runPortRecord, viewerReplayOf, openViewer, replayFromRecord, portRecord, boardSnapshot, sendIntent, applyIntent, seatLoopOpen, cpuAnswer, INTENT_TYPES, cpuTurn, doBattle, summon, effCost, legacyPlan, legacyPay, canBlockState, canPlayCard, setBurst, fieldList, bpOf, get SESSION() { return SESSION; }, CPU_PROFILES, cpuProfileName, cpuEval, cpuPlayScore, cpuPlayChoice, cpuLethal, cpuAttackScore, cpuAttackChoice, cpuBlockScore, cpuChooseBlock, setCpuProfile, setSimProfiles(o) { CPU_SIM_PROFILES = Object.assign({}, o || {}); }, lifeValue, symbolAttrs, fieldSymbols, symbolsOn, reductionOf, extraReduction };
 navSync();
 renderLobby();
 loadImages();

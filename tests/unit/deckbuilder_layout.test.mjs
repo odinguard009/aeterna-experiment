@@ -133,7 +133,7 @@ test('D09-phone sheets: Filters opens the filter sheet, the deck bar the deck sh
     const wait = () => new Promise(r => setTimeout(r, 260));
     const vis = id => { const e = document.getElementById(id), s = getComputedStyle(e), b = e.getBoundingClientRect(); return s.visibility !== 'hidden' && b.top < innerHeight - 10; };
     document.getElementById('db-filter-btn').click(); await wait(); const f = vis('db-rail');
-    const chipH = Math.min(...[...document.querySelectorAll('#db-rail .db-chip')].map(e => e.getBoundingClientRect().height));
+    const chipH = Math.min(...[...document.querySelectorAll('#db-rail .db-chip, #db-rail .db-dd')].filter(e => e.getBoundingClientRect().width > 0).map(e => e.getBoundingClientRect().height));   // v0.130.0: the hidden Colour / Group chips are replaced by dropdowns; those count too
     document.querySelector('.db-backdrop').click(); const fClosed = !document.getElementById('view-deckbuilder').classList.contains('db-open-filters');
     document.getElementById('db-deckbar').click();
     const rowH = Math.min(...[...document.querySelectorAll('#db-deck .db-row-btn')].map(e => e.getBoundingClientRect().height));
