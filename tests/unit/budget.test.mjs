@@ -30,20 +30,28 @@ const packLen = between('/*PACK_START*/', '/*PACK_END*/'), code = html.slice(0, 
 // card-images feature's browsable view. It reuses the deck builder's index and grid CSS but adds its own filter/window.
 // v0.118.0 (Rumble keyword): raised 740 -> 745 KB (B01) on purpose: the RUMBLE action + KEYWORD_GLOSSARY entry are the
 // first Standard keyword head of the K lane; a new mechanic is engine code, not dead weight.
-test('B01 index.html without the card pack stays under 745 KB', () => assert.ok(Buffer.byteLength(code) < 745e3, Buffer.byteLength(code)));
-test('B02 index.html without the card pack, gzipped, stays under 212 KB', () => { const n = gzipSync(code, { level: 9 }).length; assert.ok(n < 212e3, n); });
+// v0.121.0 (U14a): the three embedded UI fonts (SIL OFL Latin subsets, ~52 KB) have their own budget B14, so B01/B02/B04 measure the page without them.
+// B01 raised 745 -> 750 KB on purpose in the same release: the U14a foundations CSS (tokens, parallelogram shape, soft light palette).
+const FONT_URL = /url\(data:font\/woff2;base64,[A-Za-z0-9+/=]+\)/g, noFont = t => t.replace(FONT_URL, 'url()');
+test('B01 index.html without the card pack stays under 750 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 750e3, Buffer.byteLength(noFont(code))));
+test('B02 index.html without the card pack, gzipped, stays under 212 KB', () => { const n = gzipSync(noFont(code), { level: 9 }).length; assert.ok(n < 212e3, n); });
 test('B03 the embedded card pack stays under 1.6 MB (room for all cards; never embed staging data)', () => assert.ok(packLen < 1.6e6, packLen));
 // v0.93.0 (U6): raised 90 -> 96 KB on purpose (roadmap item U allows it with a note): U6-U8 add the My decks page and the
 // deck builder restyle; unused rules were trimmed first in v0.92.0. The next raise needs the same kind of note.
 test('B04 the stylesheet stays under 96 KB', () => {
-  const css = (html.match(/<style[\s\S]*?<\/style>/g) || []).reduce((n, s) => n + s.length, 0);
+  const css = (noFont(html).match(/<style[\s\S]*?<\/style>/g) || []).reduce((n, s) => n + s.length, 0);
   assert.ok(css < 96e3, css);
 });
 test('B05 the page has exactly one script and no external requests', () => {
   assert.equal((html.match(/<script/g) || []).length, 1);
   assert.doesNotMatch(html, /<(?:script|link|img)[^>]+(?:src|href)=["']https?:/);
 });
-test('B06 no base64 data URIs in the page', () => assert.doesNotMatch(html, /data:[a-z/+-]+;base64,/));
+test('B06 no base64 data URIs in the page except the three UI fonts', () => assert.doesNotMatch(html, /data:(?!font\/woff2;)[a-z0-9/+-]+;base64,/));
+test('B14 the embedded fonts: exactly Oxanium, Saira, Orbitron, under 80 KB together', () => {
+  const f = html.match(FONT_URL) || [];
+  assert.equal(f.length, 3); assert.ok(f.reduce((n, u) => n + u.length, 0) < 80e3 * 4 / 3, f.length);
+  for (const n of ['Oxanium', 'Saira', 'Orbitron']) assert.ok(html.includes('@font-face{font-family:"' + n + '"'), n);
+});
 test('B07 staging data (data/import) is never read by the build', () => {
   for (const f of ['tools/build.mjs', 'tools/build_cards.py']) assert.doesNotMatch(readFileSync(join(ROOT, f), 'utf8'), /data\/import/, f);
 });

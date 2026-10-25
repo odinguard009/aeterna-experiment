@@ -4,6 +4,17 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.121.0
+- Lane: U/I
+- Time: ~45 min (session start → release), claude-sonnet-5-5; tokens not counted (no gate counter in this harness).
+- **U14a Foundations: three embedded fonts, parallelogram controls, soft light palette.** First step of the v14 redesign (`docs/design/mockup-v14.html`).
+  - **Fonts:** Oxanium (display), Saira (text) and Orbitron (numbers), SIL OFL, Latin subsets in `apps/web/fonts/` (~52 KB, licences beside them); `tools/build.mjs` inlines them as `@font-face` data URIs, so the file still has no network request. Tokens `--f-display`, `--f-text`, `--f-num`.
+  - **Shape:** buttons, chips, pills and selects use one parallelogram (`--par` clip-path, text stays upright) and the button scale PC 40 / 34, phone 46 / 42; the NEXT button is a parallelogram too. Round dots, gems and card badges keep their circles.
+  - **Light mode:** panels, heads and row backgrounds are soft grey (`#e7eaee`, `#e1e5ea`), never pure white.
+  - **Budget:** B01/B02/B04 now measure the page without the fonts; new B14 caps the fonts (exactly the three, under 80 KB); B06 allows only `data:font/woff2`. B01 raised 745 → 750 KB for the foundations CSS.
+  - **Not in this release:** the Title Case sweep. Tests read the visible upper-case text, so each page converts its labels when U14b-U14i rebuild it.
+  - Backup branch `backup/v0.120.0`.
+
 ## v0.120.0
 - Lane: K
 - Time: ~90 min (session start → release), deepseek-v4-pro; tokens not counted (no gate counter in this harness).

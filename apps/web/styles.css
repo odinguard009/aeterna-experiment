@@ -472,10 +472,10 @@
     --ae-soulstate: #c39bff; --ae-burst: #f0a6ff;
   }
   :root[data-mode="light"] {
-    --ae-board1: #eef1f5; --ae-board2: #dfe4eb; --ae-lattice: #0b1a3010;
-    --ae-panel1: #ffffff; --ae-panel2: #eef1f5; --ae-line: #0b1a301f; --ae-line2: #0b1a3040;
+    --ae-board1: #dfe3e8; --ae-board2: #cdd3da; --ae-lattice: #0b1a3012;   /* U14a: soft grey, never pure white */
+    --ae-panel1: #e7eaee; --ae-panel2: #d9dee4; --ae-line: #0b1a302a; --ae-line2: #0b1a3052;
     --ae-text: #141922; --ae-text2: #4d5666; --ae-text3: #6b7484; --ae-text4: #8a93a3;
-    --ae-chip: #e3e8ef; --ae-head: #ffffff; --ae-rowbg: #ffffffb3; --ae-strip: #141922e6;
+    --ae-chip: #cbd1d9; --ae-head: #e1e5ea; --ae-rowbg: #e7eaeeb3; --ae-strip: #141922e6;
     --ae-card1: #5b6474; --ae-card2: #2a303b; --ae-cardline: #0b1a3055;
     --ae-soulstate: #7b45cf; --ae-burst: #a3329e;
   }
@@ -961,5 +961,19 @@
   :root.has-mat #view-playmat::before { background: linear-gradient(180deg, var(--ae-board1), var(--ae-board2)); opacity: .35; }
   :root.has-mat[data-mode="light"] #view-playmat::before { opacity: .3; }
   :root.has-mat { --ae-rowbg: #0f121866; }
-  :root.has-mat[data-mode="light"] { --ae-rowbg: #ffffff73; }
+  :root.has-mat[data-mode="light"] { --ae-rowbg: #e7eaee73; }
   .pcol[data-v="white"]:not([aria-pressed="true"]) i { box-shadow: inset 0 0 0 1px var(--ae-line2); }   /* white diamond stays visible in Light mode */
+
+  /* ---- U14a foundations (v0.121.0; docs/design/mockup-v14.html) ----
+     Three embedded fonts (tools/build.mjs): Oxanium display, Saira text, Orbitron numbers. One shape for controls: the parallelogram
+     (clip-path, so the text stays upright). Button scale: PC 40 / 34, phone 46 / 42. Round dots, gems and card badges keep their circles. */
+  :root { --f-display: "Oxanium", "Segoe UI", system-ui, sans-serif; --f-text: "Saira", "Segoe UI", system-ui, sans-serif; --f-num: "Orbitron", "Segoe UI", system-ui, sans-serif; --sk: 10px; --btn-h: 40px; --btn-h-s: 34px; --par: polygon(var(--sk) 0, 100% 0, calc(100% - var(--sk)) 100%, 0 100%); }
+  html.layout-mobile { --btn-h: 46px; --btn-h-s: 42px; }
+  html, body { font-family: var(--f-text); }
+  button, .modal-title, .ae-brand, .ae-tab, .turn-title, .ba-title, .step-chip, .ae-step, .ae-turn, .set-menu button, .db-chip, .zone-label { font-family: var(--f-display); }
+  .tcg-card .cost, .tcg-card .bp, .stat-pill, .db-topcount, .opp-hand-pill, .ae-a-bp, .qty-badge, .stack-badge { font-family: var(--f-num); font-variant-numeric: tabular-nums; }
+  .modal-btn, .btn-nav-small, .pay-btn, .db-chip, .db-row-btn, .opp-hand-pill, .db-topcount, .sel-badge, .stat-pill, #err-notice button, .sel, .db-search, .inline-next-btn {
+    border-radius: 0; clip-path: var(--par); padding-inline: calc(var(--sk) + 4px); }
+  .modal-btn { min-height: var(--btn-h); } .btn-nav-small, .db-chip, .sel, .db-search { min-height: var(--btn-h-s); }
+  .inline-next-btn { width: 64px; height: 44px; border: 0; }
+  .inline-next-btn:focus-visible, .modal-btn:focus-visible { outline-offset: -4px; }

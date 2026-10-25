@@ -64,6 +64,9 @@ export function engineScript(opts = {}) {
   const parts = srcParts(ROOT).filter(p => !p.rel.startsWith('apps/'));
   return joinScript(parts, opts.cards || allCards());
 }
+// v0.121.0 U14a: the three UI fonts (SIL OFL, Latin subsets in apps/web/fonts) ride inside the page as data URIs; no network
+const FONTS = [['Oxanium', 400, 800], ['Saira', 400, 800], ['Orbitron', 400, 900]];
+const fontFaces = () => FONTS.map(([n, a, b]) => `@font-face{font-family:"${n}";font-weight:${a} ${b};font-display:swap;src:url(data:font/woff2;base64,${readFileSync(join(ROOT, 'apps/web/fonts', n + '.woff2')).toString('base64')}) format("woff2")}`).join('\n') + '\n';
 export function buildParts(opts = {}) {   // opts.cards: build with another card list (load-time test of the full pack)
   const parts = srcParts(ROOT), files = parts.map(p => p.name);
   const cards = opts.cards || allCards();
@@ -71,7 +74,7 @@ export function buildParts(opts = {}) {   // opts.cards: build with another card
   const tpl = rd('apps/web/index.template.html');
   for (const m of ['/*@@CSS@@*/\n', '/*@@JS@@*/\n']) if (tpl.split(m).length !== 2) throw new Error('template marker missing: ' + m.trim());
   // v0.86.0: the page carries the stylesheet without comments and indentation (apps/web/styles.css keeps both; budget B04)
-  const css = cssShrink(rd('apps/web/styles.css').replace(/\/\*[\s\S]*?\*\//g, '').replace(/^[ \t]+/gm, '').replace(/\n{2,}/g, '\n'));
+  const css = fontFaces() + cssShrink(rd('apps/web/styles.css').replace(/\/\*[\s\S]*?\*\//g, '').replace(/^[ \t]+/gm, '').replace(/\n{2,}/g, '\n'));
   const html = tpl.replace('/*@@CSS@@*/\n', () => css).replace('/*@@JS@@*/\n', () => js);
   return { html, js, files, cards: cards.length };
 }
