@@ -1003,3 +1003,9 @@
   #emote-pop { position: absolute; right: 8px; top: 48px; z-index: 60; width: 232px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; padding: 8px; background: var(--ae-panel1); color: var(--ae-text); box-shadow: inset 0 0 0 1px var(--ae-line2), 0 10px 30px #0008; }
   #emote-pop .em-wait { grid-column: 1 / -1; font-size: 11px; color: var(--ae-text2); text-align: center; }
   #emote-pop button { min-height: 44px; font-size: 24px; background: var(--ae-chip); border: 0; cursor: pointer; } #emote-pop button:disabled { opacity: .4; cursor: default; }
+
+  /* ---- U14d3 (v0.126.0): cores flying between zones, the Burst flip ---- */
+  .ae-a-fly { position: fixed; pointer-events: none; background: linear-gradient(135deg, var(--ae-core1), var(--ae-core2) 55%, var(--ae-core3)); clip-path: polygon(50% 0, 100% 38%, 81% 100%, 19% 100%, 0 38%); filter: drop-shadow(0 0 5px var(--ae-core2)); }
+  .ae-a-fly.soul { background: linear-gradient(150deg, #fff, #b9c0ca 35%, #eef1f5 55%, #6f7887); filter: drop-shadow(0 0 6px var(--ae-soul2)); }
+  .ae-a-flip { overflow: hidden; animation: aeFlip .8s ease-out both; } .ae-a-flip .cface { width: 100%; height: 100%; }
+  @keyframes aeFlip { 0% { transform: perspective(500px) rotateY(90deg) scale(.6); opacity: 0; } 35% { transform: perspective(500px) rotateY(0) scale(1); opacity: 1; } 80% { opacity: 1; } 100% { transform: scale(1.05); opacity: 0; } }

@@ -451,27 +451,30 @@ async function castMagic(p, ch) {                         // ch = { inst, target
 }
 
 /* manual core movement during the Main Step */
-function addCore(p, f) { if (p.reserve.n > 0) { p.reserve.n--; f.cores++; return true; } return false; }
-function removeCore(p, f) { if (f.cores > 0) { f.cores--; p.reserve.n++; checkDepletion(p); return true; } return false; }
+/* v0.126.0 U14d3: display-only record of one core moving (a uid or 'reserve' at each end); the web host flies it, other hosts ignore it */
+const coreEv = (p, kind, from, to) => io.view({ type: 'core', side: p.key, kind, from, to });
+function addCore(p, f) { if (p.reserve.n > 0) { coreEv(p, 'core', 'reserve', f.uid); p.reserve.n--; f.cores++; return true; } return false; }
+function removeCore(p, f) { if (f.cores > 0) { coreEv(p, 'core', f.uid, 'reserve'); f.cores--; p.reserve.n++; checkDepletion(p); return true; } return false; }
 function moveSoulTo(p, f) {
   if (f.soul) return 'already';
-  if (p.reserve.soul) { p.reserve.soul = false; f.soul = true; return 'ok'; }
+  if (p.reserve.soul) { coreEv(p, 'soul', 'reserve', f.uid); p.reserve.soul = false; f.soul = true; return 'ok'; }
   const from = fieldList(p).find(x => x.soul);
   if (!from) return 'none';
   if (spare(from) < 1) return 'deplete';
-  from.soul = false; f.soul = true; return 'ok';
+  coreEv(p, 'soul', from.uid, f.uid); from.soul = false; f.soul = true; return 'ok';
 }
 function moveCore(p, from, to) {
   if (from === to || from.cores < 1 || isGW(from) || isGW(to)) return false;     // manual p. 22: Grandwalker cores cannot be moved, nor moved onto one
-  from.cores--; to.cores++; checkDepletion(p); return true;
+  coreEv(p, 'core', from.uid, to.uid); from.cores--; to.cores++; checkDepletion(p); return true;
 }
 function swapSoul(p, withSoul, other) {       // Soul Core and a normal core trade places (totals unchanged, nothing depletes)
   if (!withSoul.soul || other.cores < 1 || withSoul === other || isGW(other) || isGW(withSoul)) return false;
+  coreEv(p, 'soul', withSoul.uid, other.uid); coreEv(p, 'core', other.uid, withSoul.uid);
   withSoul.soul = false; withSoul.cores++; other.cores--; other.soul = true; return true;
 }
 function returnSoul(p, f) {
   if (!f.soul) return 'none';
   if (isSpiritForm(CARDS[f.id]) && spare(f) < 1) return 'deplete';
-  f.soul = false; p.reserve.soul = true; return 'ok';
+  coreEv(p, 'soul', f.uid, 'reserve'); f.soul = false; p.reserve.soul = true; return 'ok';
 }
 

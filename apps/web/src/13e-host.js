@@ -59,6 +59,8 @@ function webView(ev) {
     case 'reset': actFlush(); clearPick(); closeModal(null); break;
     case 'matchEnd': actFlush(); if (!SIM) { recordMatch(ev.winner); showGameOver(); } break;
     case 'effect': effectPanel(ev); break;
+    case 'core': coreFly(ev); break;
+    case 'burst': burstFlip(ev); break;
     case 'acted': { const d = ACT_DONE; ACT_DONE = null; if (d) d(ev.ok); break; }
     default: throw new Error('unknown view record: ' + JSON.stringify(ev));
   }

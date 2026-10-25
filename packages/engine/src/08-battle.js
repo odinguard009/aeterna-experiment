@@ -96,6 +96,7 @@ async function maybeBurst(owner, trigger, ctx) {
     buttons: [{ label: 'Activate Burst', cls: 'primary', value: true }, { label: 'Keep it set', cls: 'cancel', value: false }]
   }));
   if (!use || owner.burst !== b) return false;
+  io.view({ type: 'burst', side: owner.key, id: b.id });   // v0.126.0 U14d3: display only, before the card leaves the Burst Area
   owner.burst = null; owner.limbo = b;                // the card is flipped and leaves the Burst Area while its effect resolves
   log(`${who(owner)} ${owner.cpu ? 'activates' : 'activate'} Burst: ${CARDS[b.id].name}!`);
   io.view({ type: 'board' });

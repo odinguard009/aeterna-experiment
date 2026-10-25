@@ -899,6 +899,10 @@ html.layout-pc #view-playmat .playmat-layout.has-cp > :not(#card-panel){grid-col
 #emote-pop{position:absolute;right:8px;top:48px;z-index:60;width:232px;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:8px;background:var(--ae-panel1);color:var(--ae-text);box-shadow:inset 0 0 0 1px var(--ae-line2),0 10px 30px #0008;}
 #emote-pop .em-wait{grid-column:1 / -1;font-size:11px;color:var(--ae-text2);text-align:center;}
 #emote-pop button{min-height:44px;font-size:24px;background:var(--ae-chip);border:0;cursor:pointer;}#emote-pop button:disabled{opacity:.4;cursor:default;}
+.ae-a-fly{position:fixed;pointer-events:none;background:linear-gradient(135deg,var(--ae-core1),var(--ae-core2) 55%,var(--ae-core3));clip-path:polygon(50% 0,100% 38%,81% 100%,19% 100%,0 38%);filter:drop-shadow(0 0 5px var(--ae-core2));}
+.ae-a-fly.soul{background:linear-gradient(150deg,#fff,#b9c0ca 35%,#eef1f5 55%,#6f7887);filter:drop-shadow(0 0 6px var(--ae-soul2));}
+.ae-a-flip{overflow:hidden;animation:aeFlip .8s ease-out both;}.ae-a-flip .cface{width:100%;height:100%;}
+@keyframes aeFlip{0%{transform:perspective(500px) rotateY(90deg) scale(.6);opacity:0;}35%{transform:perspective(500px) rotateY(0) scale(1);opacity:1;}80%{opacity:1;}100%{transform:scale(1.05);opacity:0;}}
 </style>
 </head>
 <body>
@@ -1366,9 +1370,11 @@ applyTheme();
      reset                  a new match starts: drop open prompts and field picks of the previous one
      matchEnd {winner}      the match is over (G.over, G.winner set; after the last board view)
      effect {side, id, text} v0.125.0 (U14d2): an effect of the card `id` (of seat `side`) starts resolving; display only (the Effect Active panel), hosts may ignore it
+     core {side, kind, from, to}  v0.126.0 (U14d3): one core ('core' | 'soul') moved; from / to = a card uid or 'reserve'; sent just before the board is redrawn so a host can fly it; display only
+     burst {side, id}       v0.126.0 (U14d3): the set Burst of `side` is flipped to resolve; display only
      acted {seat, ok}       v0.84.0: the seat's intent (answer to an action decision) was applied (ok) or refused
    --------------------------------------------------------------------- */
-const VIEW_TYPES = ['board', 'decks', 'screen', 'reset', 'matchEnd', 'acted', 'effect'];
+const VIEW_TYPES = ['board', 'decks', 'screen', 'reset', 'matchEnd', 'acted', 'effect', 'core', 'burst'];
 /** @typedef {{ type: string, id?: string, winner?: string }} ViewRecord */
 /** @typedef {{ name: string, view: (ev: ViewRecord) => void, log: (text: string) => void, decide: (p: any, d: any) => Promise<any> }} Host */
 /** @type {Host} */
@@ -1390,7 +1396,7 @@ function bindHost(h) {
    type: 'Spirit' | 'Nexus' | 'Magic'      symbol: card color     symbols: number of symbols
    reduction: {color: n}         levels: [{cores, bp}]  (Nexus levels have no bp)
    --------------------------------------------------------------------- */
-const VERSION = '0.125.0';
+const VERSION = '0.126.0';
 const CARDS = {};
 function defCard(o) {
   CARDS[o.id] = Object.assign({ type: 'Spirit', reduction: {}, symbols: 1, families: [], keywords: [], implemented: true, desc: 'Vanilla test card (no effect).', block: 'A' }, o);
@@ -5376,28 +5382,31 @@ async function castMagic(p, ch) {                         // ch = { inst, target
 }
 
 /* manual core movement during the Main Step */
-function addCore(p, f) { if (p.reserve.n > 0) { p.reserve.n--; f.cores++; return true; } return false; }
-function removeCore(p, f) { if (f.cores > 0) { f.cores--; p.reserve.n++; checkDepletion(p); return true; } return false; }
+/* v0.126.0 U14d3: display-only record of one core moving (a uid or 'reserve' at each end); the web host flies it, other hosts ignore it */
+const coreEv = (p, kind, from, to) => io.view({ type: 'core', side: p.key, kind, from, to });
+function addCore(p, f) { if (p.reserve.n > 0) { coreEv(p, 'core', 'reserve', f.uid); p.reserve.n--; f.cores++; return true; } return false; }
+function removeCore(p, f) { if (f.cores > 0) { coreEv(p, 'core', f.uid, 'reserve'); f.cores--; p.reserve.n++; checkDepletion(p); return true; } return false; }
 function moveSoulTo(p, f) {
   if (f.soul) return 'already';
-  if (p.reserve.soul) { p.reserve.soul = false; f.soul = true; return 'ok'; }
+  if (p.reserve.soul) { coreEv(p, 'soul', 'reserve', f.uid); p.reserve.soul = false; f.soul = true; return 'ok'; }
   const from = fieldList(p).find(x => x.soul);
   if (!from) return 'none';
   if (spare(from) < 1) return 'deplete';
-  from.soul = false; f.soul = true; return 'ok';
+  coreEv(p, 'soul', from.uid, f.uid); from.soul = false; f.soul = true; return 'ok';
 }
 function moveCore(p, from, to) {
   if (from === to || from.cores < 1 || isGW(from) || isGW(to)) return false;     // manual p. 22: Grandwalker cores cannot be moved, nor moved onto one
-  from.cores--; to.cores++; checkDepletion(p); return true;
+  coreEv(p, 'core', from.uid, to.uid); from.cores--; to.cores++; checkDepletion(p); return true;
 }
 function swapSoul(p, withSoul, other) {       // Soul Core and a normal core trade places (totals unchanged, nothing depletes)
   if (!withSoul.soul || other.cores < 1 || withSoul === other || isGW(other) || isGW(withSoul)) return false;
+  coreEv(p, 'soul', withSoul.uid, other.uid); coreEv(p, 'core', other.uid, withSoul.uid);
   withSoul.soul = false; withSoul.cores++; other.cores--; other.soul = true; return true;
 }
 function returnSoul(p, f) {
   if (!f.soul) return 'none';
   if (isSpiritForm(CARDS[f.id]) && spare(f) < 1) return 'deplete';
-  f.soul = false; p.reserve.soul = true; return 'ok';
+  coreEv(p, 'soul', f.uid, 'reserve'); f.soul = false; p.reserve.soul = true; return 'ok';
 }
 
 /* ---------------------------------------------------------------------
@@ -5568,6 +5577,7 @@ async function maybeBurst(owner, trigger, ctx) {
     buttons: [{ label: 'Activate Burst', cls: 'primary', value: true }, { label: 'Keep it set', cls: 'cancel', value: false }]
   }));
   if (!use || owner.burst !== b) return false;
+  io.view({ type: 'burst', side: owner.key, id: b.id });   // v0.126.0 U14d3: display only, before the card leaves the Burst Area
   owner.burst = null; owner.limbo = b;                // the card is flipped and leaves the Burst Area while its effect resolves
   log(`${who(owner)} ${owner.cpu ? 'activates' : 'activate'} Burst: ${CARDS[b.id].name}!`);
   io.view({ type: 'board' });
@@ -7204,6 +7214,8 @@ function webView(ev) {
     case 'reset': actFlush(); clearPick(); closeModal(null); break;
     case 'matchEnd': actFlush(); if (!SIM) { recordMatch(ev.winner); showGameOver(); } break;
     case 'effect': effectPanel(ev); break;
+    case 'core': coreFly(ev); break;
+    case 'burst': burstFlip(ev); break;
     case 'acted': { const d = ACT_DONE; ACT_DONE = null; if (d) d(ev.ok); break; }
     default: throw new Error('unknown view record: ' + JSON.stringify(ev));
   }
@@ -7322,6 +7334,25 @@ function aeBeam(a, b, cpu, still) {               // a, b: rects; v0.124.0 U14d:
   const x1 = a.x + a.w / 2, y1 = a.y + a.h / 2, dx = b.x + b.w / 2 - x1, dy = b.y + b.h / 2 - y1, len = Math.hypot(dx, dy);
   const d = aeFx(`ae-a-beam${cpu ? ' cpu' : ''}${still ? ' still' : ' arrow'}`, { x: x1, y: y1 - 11, w: len, h: 22 }, '', 850);
   if (d) d.style.setProperty('--r', `rotate(${Math.atan2(dy, dx)}rad)`);
+}
+/* v0.126.0 U14d3: engine records 'core' and 'burst' (06-rules.js, 08-battle.js) arrive just before the board is redrawn, so the old DOM still
+   holds both ends: a gem flies from one rect to the other (Full only; Reduced and Off draw nothing), and a flipped Burst turns face up where it was set. */
+function coreFly(ev) {
+  if (SIM || animMode() !== 'full') return;
+  const end = (x, side) => x === 'reserve' ? rectOf(visEl(`[data-a="zone"][data-v="${side}:reserve"]`)) : rectOf(document.querySelector(`[data-a="field"][data-v$=":${x}"]`));
+  const a = end(ev.from, ev.side), b = end(ev.to, ev.side), L = $('ae-fx'); if (!a || !b || !L) return;
+  const d = document.createElement('div'); d.className = 'ae-a-fly' + (ev.kind === 'soul' ? ' soul' : '') + (ev.side === 'opponent' ? ' cpu' : '');
+  d.style.cssText = `left:${a.x + a.w / 2 - 9}px;top:${a.y + a.h / 2 - 9}px;width:18px;height:18px`;
+  L.appendChild(d);
+  const run = d.animate([{ transform: 'translate(0,0)', opacity: 1 }, { transform: `translate(${b.x + b.w / 2 - a.x - a.w / 2}px,${b.y + b.h / 2 - a.y - a.h / 2}px)`, opacity: .9 }], { duration: 420, easing: 'ease-in-out' });
+  run.onfinish = () => d.remove(); setTimeout(() => d.remove(), 800);
+}
+function burstFlip(ev) {
+  if (SIM || animMode() !== 'full' || !CARDS[ev.id]) return;
+  const mid = innerHeight / 2, all = [...document.querySelectorAll('#view-playmat .ba-card.set-burst')].map(rectOf).filter(r => r && (ev.side === 'opponent') === (r.y + r.h / 2 < mid));
+  const r = all[0], L = $('ae-fx'); if (!r || !L) return;
+  const d = aeFx('ae-a-flip', { x: r.x - r.w * .3, y: r.y - r.h * .3, w: r.w * 1.6, h: r.h * 1.6 }, cardFaceHTML(CARDS[ev.id], true), 800);
+  if (d) d.style.setProperty('--w', Math.round(r.w * 1.6) + 'px');
 }
 function animCues() {
   if (SIM || !G) { ANIM = null; return; }
@@ -8689,7 +8720,7 @@ function testSetup() {            // dev hook: a quiet board with no match loop 
   switchView('view-playmat'); render(); return G;
 }
 const defBuiltin = o => { defCard(o); BUILTIN_IDS.add(o.id); };      // test fixtures register through this so their ids stay reserved
-window.BS = { io, bindHost, EMOTES, emoteLeft, emoteSend, setEmoteClock: f => { EMOTE_NOW = f; }, BAN_LIST_INFO, webPick, maxCopies, prebuiltLabel, fmtButton, defaultDeck, get CPU_DECK_NAME() { return CPU_DECK_NAME; }, SLEEVE_IMG, renderDecks, animMode, fxCueReset, aeRibbon, endOfBattle, MAT, matUse, setSection, navSync, renderHome, themePop, soulMagicOK, soulMagicHolder, soulMagicPick, THEME, THEME_COLS, setTheme, stepClick, stepTargets, get FX_STRICT() { return FX_STRICT; }, setFxStrict(v) { FX_STRICT = !!v; }, FX_WARNED, collectFx, setFuzz(o) { FUZZ = Object.assign({}, o || {}); }, get FUZZ() { return FUZZ; }, fuzzPick, ERR_LOG, errReport, onGameError, releaseStandby, leaveStandby, renderDeckBuilder, dbChange, dbUndo, dbSheet, DBF, get DB_UNDO() { return DB_UNDO.length; }, accelList, accelCost, accelOK, accelSources, useAccel, removedSummonable, summonFromRemoved, cpuAccelScore, cpuAccelMain, cpuAccelFlash, cpuSilverWheel, highSpeedOK, highSpeedSources, highSpeedSummon, cpuHighSpeed, isSealed, soulToLife, lifeTake, braveSummonedFx, abTaxOK, payAbTax, oppAttackHandFx, sentToTrashFx, magicFxAt, summonOK, lvNo, isUlt, noBlockActive, burstFlash, cpuBurstFlash, humanAttack, cpuAttack, attackStepOver, endAttackLocked, battleEndAttack, isGW, freeCores, moveCore, swapSoul, payCost, cpuCanPlay, coresAvailable, addCore, cpuKeepMagicOrPay, nameHTML, switchView, SET_KEY, dbFilterOK, cardColors, contractToDeck, redrawHand, cpuWantsRedraw, setHeavy, refreshOne, toRemoved, fxIf, costDestroyBonus, sendToken, canSendToken, tokenHome, attackSymbols, TOKEN_SUPPLY, isSpiritForm, ocActive, braveFits, braveTargets, combineBrave, braveSummon, separateBrave, canSeparate, braveRecheck, braveAfford, cpuBrave, handButtons, minCores, openFieldModal, cpuMain, VERSION, defBuiltin, beginTurn, endStep, newGame, takeFromVoid, checkDepletion, removeSpirit, lvIndex, mirageUsable, cpuCastMain, magicFx, magicText, costAltActive, flagActive, coresSent, startAttackFx, win, recordMatch, HISTORY: () => HISTORY, toggleLog, effectTextHTML, effectLines, titleCase, liveStatusHTML, openZoom, modal, closeModal, startPeek, SETTINGS, SLOTS: () => SLOTS, loadSlots, get ACTIVE_SLOT() { return ACTIVE_SLOT; }, switchSlot, loadPrebuilt, PREBUILT, cpuDeckFor, saveSettings, PACK_IDS, registerPack, clearImported, summonPaid, reviveTargets, doRevive, handUp, contractAdventTargets, doContractAdvent, manifestTargets, doManifest, soulCoreHolder, rng, seedRng, newSeed, runReplay, lastReplay, fireFxMulti, asResolving, replayOf, loadScenario, gameAct, matchSummary, get REPLAY() { return REPLAY; }, soulSource, soulToNexus, fxImmune, residualHTML, cardDetailHTML, setSimDeckB(d, key) { SIM_DECK_B = d; SIM_DECK_B_KEY = key || null; }, activatable, activateFx, cpuActivate, toSoulState, bounceCard, runActions, maybeBurst, flushBursts, summonFree, parseBurst, parseActionList, BURST_WHEN, fireFx, parseEffects, staticBp, FX_ACTIONS, removeNexus, magicUsable, magicTargets, castMagic, flashTiming, cpuFlashChoice, setFormat, validateDeck, legalityOf, banStatus, get FORMAT() { return FORMAT; }, isPC, applyLayout, testSetup, mkInst, draw, keyOfDeck, pickKey, render, takeCores, IMG, cardImgSrc, imgCls, imgSty, importCards, importImages, textToDeck, deckToText, parseCard, loadImages, get PLAYER_DECK() { return PLAYER_DECK; }, get G() { return G; }, startNewGame, checkInvariants, CARDS, PRESET_DECK, humanCan, onNext, engineIdle, runPortRecord, viewerReplayOf, openViewer, replayFromRecord, portRecord, boardSnapshot, sendIntent, applyIntent, seatLoopOpen, cpuAnswer, INTENT_TYPES, cpuTurn, doBattle, summon, effCost, legacyPlan, legacyPay, canBlockState, canPlayCard, setBurst, fieldList, bpOf, get SESSION() { return SESSION; }, CPU_PROFILES, cpuProfileName, cpuEval, cpuPlayScore, cpuPlayChoice, cpuLethal, cpuAttackScore, cpuAttackChoice, cpuBlockScore, cpuChooseBlock, setCpuProfile, setSimProfiles(o) { CPU_SIM_PROFILES = Object.assign({}, o || {}); }, lifeValue, symbolAttrs, fieldSymbols, symbolsOn, reductionOf, extraReduction };
+window.BS = { io, bindHost, removeCore, moveSoulTo, returnSoul, EMOTES, emoteLeft, emoteSend, setEmoteClock: f => { EMOTE_NOW = f; }, BAN_LIST_INFO, webPick, maxCopies, prebuiltLabel, fmtButton, defaultDeck, get CPU_DECK_NAME() { return CPU_DECK_NAME; }, SLEEVE_IMG, renderDecks, animMode, fxCueReset, aeRibbon, endOfBattle, MAT, matUse, setSection, navSync, renderHome, themePop, soulMagicOK, soulMagicHolder, soulMagicPick, THEME, THEME_COLS, setTheme, stepClick, stepTargets, get FX_STRICT() { return FX_STRICT; }, setFxStrict(v) { FX_STRICT = !!v; }, FX_WARNED, collectFx, setFuzz(o) { FUZZ = Object.assign({}, o || {}); }, get FUZZ() { return FUZZ; }, fuzzPick, ERR_LOG, errReport, onGameError, releaseStandby, leaveStandby, renderDeckBuilder, dbChange, dbUndo, dbSheet, DBF, get DB_UNDO() { return DB_UNDO.length; }, accelList, accelCost, accelOK, accelSources, useAccel, removedSummonable, summonFromRemoved, cpuAccelScore, cpuAccelMain, cpuAccelFlash, cpuSilverWheel, highSpeedOK, highSpeedSources, highSpeedSummon, cpuHighSpeed, isSealed, soulToLife, lifeTake, braveSummonedFx, abTaxOK, payAbTax, oppAttackHandFx, sentToTrashFx, magicFxAt, summonOK, lvNo, isUlt, noBlockActive, burstFlash, cpuBurstFlash, humanAttack, cpuAttack, attackStepOver, endAttackLocked, battleEndAttack, isGW, freeCores, moveCore, swapSoul, payCost, cpuCanPlay, coresAvailable, addCore, cpuKeepMagicOrPay, nameHTML, switchView, SET_KEY, dbFilterOK, cardColors, contractToDeck, redrawHand, cpuWantsRedraw, setHeavy, refreshOne, toRemoved, fxIf, costDestroyBonus, sendToken, canSendToken, tokenHome, attackSymbols, TOKEN_SUPPLY, isSpiritForm, ocActive, braveFits, braveTargets, combineBrave, braveSummon, separateBrave, canSeparate, braveRecheck, braveAfford, cpuBrave, handButtons, minCores, openFieldModal, cpuMain, VERSION, defBuiltin, beginTurn, endStep, newGame, takeFromVoid, checkDepletion, removeSpirit, lvIndex, mirageUsable, cpuCastMain, magicFx, magicText, costAltActive, flagActive, coresSent, startAttackFx, win, recordMatch, HISTORY: () => HISTORY, toggleLog, effectTextHTML, effectLines, titleCase, liveStatusHTML, openZoom, modal, closeModal, startPeek, SETTINGS, SLOTS: () => SLOTS, loadSlots, get ACTIVE_SLOT() { return ACTIVE_SLOT; }, switchSlot, loadPrebuilt, PREBUILT, cpuDeckFor, saveSettings, PACK_IDS, registerPack, clearImported, summonPaid, reviveTargets, doRevive, handUp, contractAdventTargets, doContractAdvent, manifestTargets, doManifest, soulCoreHolder, rng, seedRng, newSeed, runReplay, lastReplay, fireFxMulti, asResolving, replayOf, loadScenario, gameAct, matchSummary, get REPLAY() { return REPLAY; }, soulSource, soulToNexus, fxImmune, residualHTML, cardDetailHTML, setSimDeckB(d, key) { SIM_DECK_B = d; SIM_DECK_B_KEY = key || null; }, activatable, activateFx, cpuActivate, toSoulState, bounceCard, runActions, maybeBurst, flushBursts, summonFree, parseBurst, parseActionList, BURST_WHEN, fireFx, parseEffects, staticBp, FX_ACTIONS, removeNexus, magicUsable, magicTargets, castMagic, flashTiming, cpuFlashChoice, setFormat, validateDeck, legalityOf, banStatus, get FORMAT() { return FORMAT; }, isPC, applyLayout, testSetup, mkInst, draw, keyOfDeck, pickKey, render, takeCores, IMG, cardImgSrc, imgCls, imgSty, importCards, importImages, textToDeck, deckToText, parseCard, loadImages, get PLAYER_DECK() { return PLAYER_DECK; }, get G() { return G; }, startNewGame, checkInvariants, CARDS, PRESET_DECK, humanCan, onNext, engineIdle, runPortRecord, viewerReplayOf, openViewer, replayFromRecord, portRecord, boardSnapshot, sendIntent, applyIntent, seatLoopOpen, cpuAnswer, INTENT_TYPES, cpuTurn, doBattle, summon, effCost, legacyPlan, legacyPay, canBlockState, canPlayCard, setBurst, fieldList, bpOf, get SESSION() { return SESSION; }, CPU_PROFILES, cpuProfileName, cpuEval, cpuPlayScore, cpuPlayChoice, cpuLethal, cpuAttackScore, cpuAttackChoice, cpuBlockScore, cpuChooseBlock, setCpuProfile, setSimProfiles(o) { CPU_SIM_PROFILES = Object.assign({}, o || {}); }, lifeValue, symbolAttrs, fieldSymbols, symbolsOn, reductionOf, extraReduction };
 navSync();
 renderLobby();
 loadImages();

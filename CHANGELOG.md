@@ -4,6 +4,14 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.126.0
+- Lane: U/I
+- Time: ~35 min (session start → release), claude-sonnet-5-5 (the item is listed for Opus; the engine part is two display-only records); tokens not counted (no gate counter in this harness).
+- **U14d3 Cores fly between zones and a Burst flips face up.** Sixth step of the v14 redesign; closes U8b.
+  - **Engine:** two display-only view records, both in `VIEW_TYPES`: `core {side, kind, from, to}` (kind `core` or `soul`; from / to = a card uid or `reserve`) sent by `addCore`, `removeCore`, `moveCore`, `moveSoulTo`, `swapSoul` and `returnSoul` in `packages/engine/src/06-rules.js`, and `burst {side, id}` sent when a set Burst is flipped (`maybeBurst`, `08-battle.js`). They change no state and are not part of the match record; the headless and server hosts ignore them.
+  - **Web:** the records arrive just before the board is redrawn, so a gem flies from one rect to the other (Soul Core silver) and a flipped Burst turns face up where it was set. Full only: Reduced and Off draw nothing, sims draw nothing.
+  - Budget: no change. Tests: `tests/unit/core_fly_burst_flip.test.mjs` (CF01-CF03); `headless_engine` expects the two new view types. Backup branch `backup/v0.125.0`.
+
 ## v0.125.0
 - Lane: U/I
 - Time: ~40 min (session start → release), claude-sonnet-5-5; tokens not counted (no gate counter in this harness).

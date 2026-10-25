@@ -30,6 +30,25 @@ function aeBeam(a, b, cpu, still) {               // a, b: rects; v0.124.0 U14d:
   const d = aeFx(`ae-a-beam${cpu ? ' cpu' : ''}${still ? ' still' : ' arrow'}`, { x: x1, y: y1 - 11, w: len, h: 22 }, '', 850);
   if (d) d.style.setProperty('--r', `rotate(${Math.atan2(dy, dx)}rad)`);
 }
+/* v0.126.0 U14d3: engine records 'core' and 'burst' (06-rules.js, 08-battle.js) arrive just before the board is redrawn, so the old DOM still
+   holds both ends: a gem flies from one rect to the other (Full only; Reduced and Off draw nothing), and a flipped Burst turns face up where it was set. */
+function coreFly(ev) {
+  if (SIM || animMode() !== 'full') return;
+  const end = (x, side) => x === 'reserve' ? rectOf(visEl(`[data-a="zone"][data-v="${side}:reserve"]`)) : rectOf(document.querySelector(`[data-a="field"][data-v$=":${x}"]`));
+  const a = end(ev.from, ev.side), b = end(ev.to, ev.side), L = $('ae-fx'); if (!a || !b || !L) return;
+  const d = document.createElement('div'); d.className = 'ae-a-fly' + (ev.kind === 'soul' ? ' soul' : '') + (ev.side === 'opponent' ? ' cpu' : '');
+  d.style.cssText = `left:${a.x + a.w / 2 - 9}px;top:${a.y + a.h / 2 - 9}px;width:18px;height:18px`;
+  L.appendChild(d);
+  const run = d.animate([{ transform: 'translate(0,0)', opacity: 1 }, { transform: `translate(${b.x + b.w / 2 - a.x - a.w / 2}px,${b.y + b.h / 2 - a.y - a.h / 2}px)`, opacity: .9 }], { duration: 420, easing: 'ease-in-out' });
+  run.onfinish = () => d.remove(); setTimeout(() => d.remove(), 800);
+}
+function burstFlip(ev) {
+  if (SIM || animMode() !== 'full' || !CARDS[ev.id]) return;
+  const mid = innerHeight / 2, all = [...document.querySelectorAll('#view-playmat .ba-card.set-burst')].map(rectOf).filter(r => r && (ev.side === 'opponent') === (r.y + r.h / 2 < mid));
+  const r = all[0], L = $('ae-fx'); if (!r || !L) return;
+  const d = aeFx('ae-a-flip', { x: r.x - r.w * .3, y: r.y - r.h * .3, w: r.w * 1.6, h: r.h * 1.6 }, cardFaceHTML(CARDS[ev.id], true), 800);
+  if (d) d.style.setProperty('--w', Math.round(r.w * 1.6) + 'px');
+}
 function animCues() {
   if (SIM || !G) { ANIM = null; return; }
   const mode = animMode(), cards = new Map();

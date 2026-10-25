@@ -11,7 +11,7 @@ $, dq, dqa, elq, evT, evC, evV, ERR_LOG, errReport, errNotice, onGameError
 ## apps/web/src/00c-theme.js (41 lines, ~0.7k tokens) — THEME (v0.63.0, UI/UX overhaul U1; docs/DESIGN.md section 0)
 THEME_KEY, THEME_COLS, THEME, applyTheme, setTheme
 
-## packages/protocol/src/00p-protocol.js (34 lines, ~0.6k tokens) — HOST PORT (v0.82.0, phase F2 = monorepo step M2; docs/ai/monorepo-plan.md "Design" 1)
+## packages/protocol/src/00p-protocol.js (36 lines, ~0.7k tokens) — HOST PORT (v0.82.0, phase F2 = monorepo step M2; docs/ai/monorepo-plan.md "Design" 1)
 VIEW_TYPES, HOST_NONE, io, bindHost
 
 ## packages/engine/src/01-cards.js (33 lines, ~0.6k tokens) — CARD DATABASE (Training cards + the built-in pack is registered further below)
@@ -95,13 +95,13 @@ DECISION_KINDS, cardIds, portAsk, decide, ask, info, pickFromField, portPick, po
 ## packages/engine/src/05c-intent.js (285 lines, ~4.6k tokens) — INTENTS (v0.84.0, phase F3 part 2 = monorepo step M3 rest; docs/ai/monorepo-plan.md "Design" 1)
 INTENT_TYPES, CORE_OPS, INTENT_MAX, SEAT_LOOP, seatCan, seatLoopOpen, boardView, endTurnNow, seatTurn, handOf, fieldOf, intentNext, intentSummon, intentCast, intentMirage, intentBraveSummon, intentBraveField, intentCore, intentAttack, applyIntent, cpuPaymentPlan, cpuIntent, cpuAnswer
 
-## packages/engine/src/06-rules.js (477 lines, ~8.8k tokens) — RULES HELPERS
-fieldList, isGW, freeCores, freeTotal, totalCores, reserveTotal, minCores, isSpiritForm, isUlt, lvBase, lvNo, summonOK, spare, coresAvailable, isCountLv, lvIndex, bpOf, ocActive, braveBp, braveFits, braveTargets, combineBrave, canSeparate, separateBrave, braveAfford, braveSummon, braveRecheck, shedBrave, TOKEN_SUPPLY, tokenIdsOf, prepareTokens, tokenCoreRoom, canSendToken, sendToken, tokenHome, symTurnCols, symZeroAllOn, attackSymbols, symAttrs, symbolAttrs, fieldSymbols, symbolsOn, reductionOf, noBlockActive, costAltActive, extraReduction, legacyPlan, effCost, legacyPay, canPlayCard, takeCores, payCost, checkDepletion, leaveEvent, removeSpirit, lostHeard, leaveStandby, releaseStandby, poss, who, keyDrawActive, drawKeyFirst, draw, handUp, summon, setBurst, mirageUsable, magicFx, magicFromTrash, magicFxAt, magicTrashOK, magicSources, magicTargets, soulMagicHolder, soulMagicOK, soulMagicPick, magicUsable, magicText, castMagic, addCore, removeCore, moveSoulTo, moveCore, swapSoul, returnSoul
+## packages/engine/src/06-rules.js (480 lines, ~8.9k tokens) — RULES HELPERS
+fieldList, isGW, freeCores, freeTotal, totalCores, reserveTotal, minCores, isSpiritForm, isUlt, lvBase, lvNo, summonOK, spare, coresAvailable, isCountLv, lvIndex, bpOf, ocActive, braveBp, braveFits, braveTargets, combineBrave, canSeparate, separateBrave, braveAfford, braveSummon, braveRecheck, shedBrave, TOKEN_SUPPLY, tokenIdsOf, prepareTokens, tokenCoreRoom, canSendToken, sendToken, tokenHome, symTurnCols, symZeroAllOn, attackSymbols, symAttrs, symbolAttrs, fieldSymbols, symbolsOn, reductionOf, noBlockActive, costAltActive, extraReduction, legacyPlan, effCost, legacyPay, canPlayCard, takeCores, payCost, checkDepletion, leaveEvent, removeSpirit, lostHeard, leaveStandby, releaseStandby, poss, who, keyDrawActive, drawKeyFirst, draw, handUp, summon, setBurst, mirageUsable, magicFx, magicFromTrash, magicFxAt, magicTrashOK, magicSources, magicTargets, soulMagicHolder, soulMagicOK, soulMagicPick, magicUsable, magicText, castMagic, coreEv, addCore, removeCore, moveSoulTo, moveCore, swapSoul, returnSoul
 
 ## packages/engine/src/07-turn.js (70 lines, ~1.1k tokens) — TURN FLOW
 isMainStep, setStep, beginTurn, endStep, win, matchLoop, checkInvariants
 
-## packages/engine/src/08-battle.js (167 lines, ~3.5k tokens) — BATTLE
+## packages/engine/src/08-battle.js (168 lines, ~3.5k tokens) — BATTLE
 successor, flashTiming, battleEndAttack, attackStepOver, doBattle, doBattleInner, maybeBurst, burstFlash, flushBursts
 
 ## packages/engine/src/09-cpu.js (167 lines, ~2.8k tokens) — CPU
@@ -134,14 +134,14 @@ PLAY_SPEEDS, playChips, renderPlay, playSet
 ## apps/web/src/13d-pages.js (55 lines, ~1k tokens) — SETTINGS, HOW TO PLAY, LIBRARY PAGES (v0.68.0, UI/UX overhaul U4; docs/DESIGN.md section 0, mockup docs/design/mockup-v11.html "Settings")
 MAT_KEY, MAT, matUse, shrinkMat, matSet, matClear, setMsg, setSection, renderSetPage
 
-## apps/web/src/13e-host.js (87 lines, ~1.4k tokens) — WEB HOST (v0.82.0, phase F2 = M2): the browser answers the engine's port (packages/protocol/src/00p-protocol.js).
+## apps/web/src/13e-host.js (89 lines, ~1.4k tokens) — WEB HOST (v0.82.0, phase F2 = M2): the browser answers the engine's port (packages/protocol/src/00p-protocol.js).
 AUDIO, sfx, showGameOver, ACT, ACT_Q, actFlush, webAction, sendIntent, webView, sfxOf, choiceHTML, webDecide
 
 ## apps/web/src/13f-replay.js (61 lines, ~1.4k tokens) — REPLAY VIEWER (v0.86.0, phase F4 part 2 = monorepo step M4 rest; formats: packages/engine/src/15b-replay.js)
 rvName, rvCards, rvField, rvSideHTML, rvFrameHTML, openViewer, replayFromRecord, replayWatch, replaySave, replayOpenFile
 
-## apps/web/src/13g-anim.js (79 lines, ~1.5k tokens) — v0.92.0 U5b LIGHT BATTLE ANIMATIONS (roadmap item U, owner 2026-10-21; docs/DESIGN.md section 0, U5b)
-animMode, ANIM, rectOf, visEl, aeFx, aeBeam, animCues
+## apps/web/src/13g-anim.js (98 lines, ~1.9k tokens) — v0.92.0 U5b LIGHT BATTLE ANIMATIONS (roadmap item U, owner 2026-10-21; docs/DESIGN.md section 0, U5b)
+animMode, ANIM, rectOf, visEl, aeFx, aeBeam, coreFly, burstFlip, animCues
 
 ## apps/web/src/13h-decks.js (97 lines, ~2.2k tokens) — v0.93.0 U6 MY DECKS (docs/DESIGN.md section 0, mockup docs/design/mockup-v11.html "My decks PC / phone")
 DK_MENU, dkCards, dkUsed, dkFree, dkStatus, dkColors, dkTile, renderDecks, dkMenu, dkNewSlot, dkAct
@@ -167,5 +167,5 @@ closeMatch, startNewGame, matchSummary
 ## packages/engine/src/15b-replay.js (109 lines, ~2.5k tokens) — REPLAY RECORDS (v0.85.0, phase F4 = monorepo step M4 part 1; docs/ai/monorepo-plan.md "Design" 2)
 newPortRecord, portRecord, boardSnapshot, runPortRecord, viewerReplayOf
 
-## apps/web/src/16-events.js (238 lines, ~5.1k tokens) — EVENTS (delegation)
+## apps/web/src/16-events.js (238 lines, ~5.2k tokens) — EVENTS (delegation)
 hScrollable, HDRAG, GAME_ACTS, gameAct, replayOf, lastReplay, runReplay, loadScenario, testSetup, defBuiltin

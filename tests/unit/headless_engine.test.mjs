@@ -59,7 +59,7 @@ test('H82-05 the browser binds the web host; the port rejects unknown records; a
   });
   await page.close();
   assert.equal(r.name, 'web'); assert.match(r.e || '', /unknown view record/);
-  assert.deepEqual(r.types, ['board', 'decks', 'screen', 'reset', 'matchEnd', 'acted', 'effect']);
+  assert.deepEqual(r.types, ['board', 'decks', 'screen', 'reset', 'matchEnd', 'acted', 'effect', 'core', 'burst']);
   assert.deepEqual(errors, []);
   const E = loadEngine();
   assert.equal(E.io.host.name, 'none');
