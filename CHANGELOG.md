@@ -4,6 +4,18 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.128.0
+- Lane: U/I
+- Time: ~50 min (session start → release), claude-sonnet-5-5 (U14f is listed for Opus; this part is UI only); tokens not counted (no gate counter in this harness).
+- **U14f part 1 Deck builder: Redo, Test hand, card size, count ring, hover peek.** Eighth step of the v14 redesign (also closes U14e2 by checking it).
+  - **Redo** next to Undo (a new change empties it). **Test hand** deals the 4-card starting Hand from the deck in a dialog; Draw again reshuffles (it uses `crypto.getRandomValues`, never the match RNG; OB-04 still allows one `Math.random`).
+  - **Card size S / M / L** (PC; saved on the device) for the card grid; the phone keeps its three columns.
+  - **Count ring:** the N/40 pill gets a progress ring (amber while the deck is not legal) and is a parallelogram like the other controls.
+  - **Hover peek (PC):** the card, enlarged with its effect text, after a short pause over a grid card.
+  - **U14e2 checked, nothing to build:** the phone command menu is already a two-column bottom sheet and the step strip already centres the active step. The five locked cells per side stay BLOCKED until the owner decides how the Burst / Soul areas move (five cells make 43 px cards at the current layout).
+  - **Left for U14f2:** fly-to-deck add, alternative art picker, long-press card info setting, Group / Colour dropdowns, the phone toolbar rows.
+  - Budget: B01 760 → 772 KB and B04 96 → 100 KB (note in the test). Tests: `tests/unit/deckbuilder_v14_part1.test.mjs` (DB1-DB4). Backup branch `backup/v0.127.0`.
+
 ## v0.127.0
 - Lane: U/I
 - Time: ~45 min (session start → release), claude-sonnet-5-5; tokens not counted (no gate counter in this harness).

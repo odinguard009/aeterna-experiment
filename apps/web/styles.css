@@ -1016,3 +1016,15 @@
   html.layout-mobile #view-playmat .ae-tools { gap: 3px; flex: none; margin-left: auto; }
   html.layout-mobile #view-playmat .ae-tools .btn-nav-small { padding-inline: 10px; min-height: 28px; font-size: 11px; }
   html.layout-mobile #view-playmat .ae-ver { display: none; }
+
+  /* ---- U14f deck builder part 1 (v0.128.0): card size, progress ring, hover peek ---- */
+  html.layout-pc .db-grid#db-card-list { grid-template-columns: repeat(auto-fill, minmax(var(--db-cw, 70px), 1fr)); }
+  html.layout-pc .db-grid#db-card-list .tcg-card { --card-w: var(--db-cw, 70px); width: var(--db-cw, 70px); }
+  html.layout-mobile .db-size { display: none; }
+  .db-size { display: inline-flex; gap: 2px; margin-left: 6px; } .db-size .btn-nav-small { min-width: 30px; padding-inline: 12px; }
+  .db-size [aria-pressed="true"] { background: var(--you); color: var(--you-ink); }
+  .db-topcount { display: inline-flex; align-items: center; gap: 6px; }
+  .db-topcount::before { content: ''; width: 16px; height: 16px; border-radius: 50%; background: conic-gradient(var(--ring, var(--you)) var(--p, 0%), var(--ae-line2) 0); -webkit-mask: radial-gradient(closest-side, transparent 58%, #000 62%); mask: radial-gradient(closest-side, transparent 58%, #000 62%); }
+  .db-topcount.bad::before { --ring: #e0a030; }
+  #db-peek { position: fixed; z-index: 80; width: 260px; padding: 8px; display: flex; gap: 8px; background: var(--ae-panel1); color: var(--ae-text); box-shadow: inset 0 0 0 1px var(--ae-line2), 0 10px 30px #0008; pointer-events: none; }
+  #db-peek .dbp-face { flex: none; width: 96px; } #db-peek .dbp-face .cface { width: 100%; } #db-peek .dbp-fx { font-size: 10px; line-height: 1.35; max-height: 180px; overflow: hidden; }

@@ -188,7 +188,7 @@
     </aside>
     <section class="db-pool">
       <div class="db-filters"><input id="db-search" class="db-search" type="search" placeholder="Search name, ID or text  ( / )" autocomplete="off">
-        <button id="db-filter-btn" class="btn-nav-small db-filter-btn" data-a="db-sheet" data-v="filters" aria-controls="db-rail" aria-expanded="true">FILTERS</button><span id="db-count"></span></div>
+        <button id="db-filter-btn" class="btn-nav-small db-filter-btn" data-a="db-sheet" data-v="filters" aria-controls="db-rail" aria-expanded="true">FILTERS</button><span id="db-count"></span><span class="db-size" role="group" aria-label="Card size"><button class="btn-nav-small" data-a="db-size" data-v="s" aria-pressed="false">S</button><button class="btn-nav-small" data-a="db-size" data-v="m" aria-pressed="true">M</button><button class="btn-nav-small" data-a="db-size" data-v="l" aria-pressed="false">L</button></span></div>
       <div class="db-achips" id="db-achips" aria-label="Active filters"></div>
       <div class="db-grid" id="db-card-list"></div>
     </section>
@@ -199,7 +199,7 @@
       <div class="db-dk-list" id="db-dk-list" data-pane="list" role="tabpanel"></div>
       <div class="db-pane" data-pane="curve" role="tabpanel"><ul class="db-check" id="db-check"></ul><div class="db-dk-stats" id="db-dk-stats"></div></div>
       <div class="db-pane" data-pane="look" role="tabpanel"><div id="db-look" class="db-look"></div></div>
-      <div class="db-dk-actions"><button class="btn-nav-small db-save" data-a="db-save" title="Save this deck">SAVE</button><button class="btn-nav-small" id="db-undo" data-a="db-undo">↶ Undo</button><button class="btn-nav-small" data-a="db-import">Import text</button><button class="btn-nav-small" data-a="db-export">Export text</button></div>
+      <div class="db-dk-actions"><button class="btn-nav-small db-save" data-a="db-save" title="Save this deck">SAVE</button><button class="btn-nav-small" id="db-undo" data-a="db-undo">↶ Undo</button><button class="btn-nav-small" id="db-redo" data-a="db-redo">↷ Redo</button><button class="btn-nav-small" data-a="db-test">Test hand</button><button class="btn-nav-small" data-a="db-import">Import text</button><button class="btn-nav-small" data-a="db-export">Export text</button></div>
     </aside>
   </div>
   <button class="db-deckbar" id="db-deckbar" data-a="db-sheet" data-v="deck"></button>

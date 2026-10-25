@@ -10,7 +10,7 @@ const DB_COSTS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
 /* v0.119.0: mechanic groupings the Type / Colour filters cannot express (owner: Mirage, Rebirth, all-colour/rainbow + the other modelled groups) */
 const DB_GROUPS = [['multi', 'All colour'], ['mirage', 'Mirage'], ['rebirth', 'Rebirth'], ['legacy', 'Legacy'], ['ex', 'EX symbol']];
 const DBF = { colors: new Set(), costs: new Set(), types: new Set(), groups: new Set(), set: '', family: '', legal: false, complete: false, sort: 'default' };
-const DB_UNDO = [];
+const DB_UNDO = [], DB_REDO = [];   // v0.128.0 U14f: Redo; any new change empties it
 let DB_IO = '';
 const dbArr = v => v == null || v === '' ? [] : Array.isArray(v) ? v : v instanceof Set ? [...v] : [String(v)];
 const dbTypeOf = c => c.contract ? 'Contract' : c.type;
@@ -172,7 +172,7 @@ function dbSave(silent) {
 }
 
 /* ---------- deck changes (with undo) ---------- */
-function dbSnap() { DB_UNDO.push(JSON.stringify(PLAYER_DECK)); if (DB_UNDO.length > 30) DB_UNDO.shift(); }
+function dbSnap() { DB_UNDO.push(JSON.stringify(PLAYER_DECK)); DB_REDO.length = 0; if (DB_UNDO.length > 30) DB_UNDO.shift(); }
 function dbCanAdd(id) { const n = PLAYER_DECK[id] || 0; return !legalityOf(id, FORMAT) && n < maxCopies(id, FORMAT); }
 function dbChange(id, d) {
   const n = PLAYER_DECK[id] || 0;
@@ -189,7 +189,41 @@ async function dbClear() {                       // v0.99 U8a: Clear asks first 
   if (n && !(await modal({ uiOnly: true, title: 'Clear the deck?', html: `All ${n} cards leave this deck. Undo brings them back.`, buttons: [{ label: 'Clear deck', cls: 'danger', value: 1 }, { label: 'Cancel', cls: 'cancel', value: 0 }] }))) return;
   dbSheet(''); SLOTS[ACTIVE_SLOT].key = null; dbReplace({});
 }
-function dbUndo() { if (!DB_UNDO.length) return; PLAYER_DECK = JSON.parse(DB_UNDO.pop()); saveDeck(); renderDeckBuilder(); }
+function dbUndo() { if (!DB_UNDO.length) return; DB_REDO.push(JSON.stringify(PLAYER_DECK)); PLAYER_DECK = JSON.parse(DB_UNDO.pop()); saveDeck(); renderDeckBuilder(); }
+function dbRedo() { if (!DB_REDO.length) return; DB_UNDO.push(JSON.stringify(PLAYER_DECK)); PLAYER_DECK = JSON.parse(DB_REDO.pop()); saveDeck(); renderDeckBuilder(); }
+/* v0.128.0 U14f: Test hand = the starting Hand of 4 drawn from this deck (never the match RNG); Draw again reshuffles */
+async function dbTestHand() {
+  const all = []; for (const [id, n] of Object.entries(PLAYER_DECK)) for (let i = 0; i < n; i++) all.push(id);
+  if (all.length < 4) { await uiInfo('Test hand', 'Add at least 4 cards to this deck first.'); return; }
+  for (;;) {
+    const a = all.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(crypto.getRandomValues(new Uint32Array(1))[0] / 4294967296 * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+    const v = await modal({ uiOnly: true, title: 'Test hand', html: `Starting Hand: 4 of ${all.length} cards` + cardStripHTML(a.slice(0, 4).map(id => ({ id, uid: 0 }))), buttons: [{ label: 'Draw again', cls: 'primary', value: 1 }, { label: 'Close', cls: 'cancel', value: null }] });
+    if (!v) return;
+  }
+}
+/* card size S / M / L (saved per device) */
+const DB_SIZE_KEY = 'aeterna.dbsize.v1', DB_SIZES = { s: 56, m: 70, l: 96 };
+let DB_SIZE = (() => { try { const v = localStorage.getItem(DB_SIZE_KEY); return DB_SIZES[v] ? v : 'm'; } catch (e) { return 'm'; } })();
+function dbSize(v) {
+  if (!DB_SIZES[v]) return; DB_SIZE = v;
+  try { localStorage.setItem(DB_SIZE_KEY, v); } catch (e) { /* blocked: this visit only */ }
+  dqa('[data-a="db-size"]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === v)));
+  const g = $('db-card-list'); g.style.setProperty('--db-cw', DB_SIZES[v] + 'px'); DBV.rowH = 0; renderDeckBuilder();
+}
+/* hover peek (PC): the card enlarged beside the pointer after a short pause */
+let DB_PEEK = 0;
+function dbPeekHide() { clearTimeout(DB_PEEK); const p = $('db-peek'); if (p) p.remove(); }
+document.addEventListener('mouseover', e => {
+  const c = evC(e, '#db-card-list [data-a="dbcard"]'); dbPeekHide();
+  if (!c || !isPC() || !CARDS[c.dataset.v]) return;
+  DB_PEEK = setTimeout(() => {
+    const r = c.getBoundingClientRect(), p = document.createElement('div'); p.id = 'db-peek';
+    p.innerHTML = `<div class="dbp-face">${cardFaceHTML(CARDS[c.dataset.v], true)}</div><div class="dbp-fx">${effectTextHTML(CARDS[c.dataset.v], false)}</div>`;
+    p.style.left = Math.min(innerWidth - 270, r.right + 8) + 'px'; p.style.top = Math.max(8, Math.min(innerHeight - 340, r.top - 40)) + 'px';
+    document.body.appendChild(p);
+  }, 350);
+});
+document.addEventListener('scroll', dbPeekHide, true);
 function dbTap(id) { if (!dbChange(id, 1)) showCardDetail(id, 'deck'); }   // illegal or at max: the detail says why
 function dbKey(id) {                // the deck's Key Spirit mark: one Spirit per deck; unmark by pressing again (v0.103.0)
   if (!CARDS[id] || CARDS[id].type !== 'Spirit') return;
@@ -253,7 +287,8 @@ function renderDbDeck(v) {
   const chk = [[v.total >= 40, `${v.total} cards (40 or more)`]].concat(v.errors.filter(e => !/^Needs at least/.test(e)).slice(0, 6).map(e => [false, e]));
   if (v.ok) chk.push([true, `Legal in ${fmtName(FORMAT)}`]);
   $('db-check').innerHTML = chk.map(([ok, t]) => `<li class="${ok ? 'ok' : 'bad'}">${esc(t)}</li>`).join('');
-  $('db-undo').disabled = !DB_UNDO.length;
+  $('db-undo').disabled = !DB_UNDO.length; $('db-redo').disabled = !DB_REDO.length;
+  $('db-topcount').style.setProperty('--p', Math.min(100, Math.round(v.total / 40 * 100)) + '%');
   const L = deckLook(ACTIVE_SLOT);
   $('db-deckbar').innerHTML = `<span class="db-mini" aria-hidden="true"><span class="sleeve mini" style="--sl-tint:${SLEEVE_TINTS[L.sleeve]}"></span><i class="g-core" style="${coreVars('core', L.core)}"></i><i class="g-soul" style="${coreVars('soul', L.soul)}"></i></span><span>Deck <b>${v.total}</b>/40</span><span class="${ok ? 'ok' : 'bad'}">${ok ? 'legal' : 'not legal'}</span><span class="db-deckbar-up">▲</span>`;
   $('db-deckbar').className = 'db-deckbar ' + (ok ? 'ok' : 'bad'); $('db-deckbar').title = txt;
@@ -269,6 +304,7 @@ function dbSheet(which) {             // phone: open 'filters', 'deck' or 'menu'
 }
 
 function renderDeckBuilder() {
+  { const g = $('db-card-list'); if (g && !g.style.getPropertyValue('--db-cw')) { g.style.setProperty('--db-cw', DB_SIZES[DB_SIZE] + 'px'); dqa('[data-a="db-size"]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === DB_SIZE))); } }
   const v = validateDeck(PLAYER_DECK, null, SLOTS[ACTIVE_SLOT].key);
   const fb = $('db-format'); if (fb) fb.textContent = fmtButton(FORMAT);
   const ds = $('db-slot');
