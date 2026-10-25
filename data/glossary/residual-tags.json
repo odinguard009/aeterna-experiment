@@ -39567,22 +39567,9 @@
   "M_OPTIONAL",
   "T_ATTACKS"
  ],
- "26RBS01-048": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "K_STANDARD_INVOKE"
- ],
  "26RBS01-049": [
+  "K_AMPLIFY",
   "T_SUMMONED"
- ],
- "26RBS01-050": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "K_STANDARD_INVOKE"
- ],
- "26RBS01-051": [
-  "A_BP_PLUS",
-  "K_STANDARD_INVOKE"
  ],
  "26RBS01-053": [
   "A_REFRESH",
@@ -39591,37 +39578,21 @@
   "M_UP_TO"
  ],
  "26RBS01-054": [
-  "A_BP_PLUS",
   "A_REFRESH",
-  "C_LEVEL",
-  "K_STANDARD_INVOKE"
+  "C_LEVEL"
  ],
  "26RBS01-055": [
   "C_LEVEL",
+  "K_AMPLIFY",
   "M_OPTIONAL",
   "M_REPLACEMENT"
  ],
- "26RBS01-056": [
-  "A_BP_PLUS",
-  "K_STANDARD_INVOKE"
- ],
  "26RBS01-057": [
-  "A_BP_PLUS",
   "A_REFRESH",
-  "C_LEVEL",
-  "K_STANDARD_INVOKE"
+  "C_LEVEL"
  ],
  "26RBS01-058": [
   "M_OPTIONAL"
- ],
- "26RBS01-059": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "K_STANDARD_INVOKE"
- ],
- "26RBS01-060": [
-  "A_BP_PLUS",
-  "K_STANDARD_INVOKE"
  ],
  "26RBS01-063": [
   "A_EXHAUST",
@@ -39744,6 +39715,7 @@
   "A_BP_PLUS",
   "A_REFRESH",
   "C_LEVEL",
+  "K_AMPLIFY",
   "K_STANDARD_INVOKE"
  ],
  "26RBS01-101": [
@@ -39755,7 +39727,8 @@
  ],
  "26RBS01-102": [
   "A_TRASH_TO_RESERVE",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_AMPLIFY"
  ],
  "26RBS01-103": [
   "A_EXHAUST",
@@ -39863,13 +39836,12 @@
  ],
  "26RBS01-X10": [
   "C_LEVEL",
+  "K_AMPLIFY",
   "T_SUMMONED"
  ],
  "26RBS01-X11": [
-  "A_BP_PLUS",
   "A_REFRESH",
-  "C_LEVEL",
-  "K_STANDARD_INVOKE"
+  "C_LEVEL"
  ],
  "26RBS01-X12": [
   "A_SYMBOL",
@@ -40070,11 +40042,13 @@
  "26RBS02-040": [
   "A_BP_PLUS",
   "C_LEVEL",
+  "K_AMPLIFY",
   "K_STANDARD_INVOKE"
  ],
  "26RBS02-041": [
   "A_VOID",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_AMPLIFY"
  ],
  "26RBS02-042": [
   "A_BP_PLUS",
@@ -40254,7 +40228,8 @@
  ],
  "26RBS02-080": [
   "A_BP_PLUS",
-  "C_LEVEL"
+  "C_LEVEL",
+  "K_AMPLIFY"
  ],
  "26RBS02-081": [
   "A_REFRESH",
@@ -40370,6 +40345,7 @@
  "26RBS02-X11": [
   "A_BP_PLUS",
   "C_LEVEL",
+  "K_AMPLIFY",
   "K_STANDARD_INVOKE"
  ],
  "26RBS02-X12": [

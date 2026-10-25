@@ -95,8 +95,8 @@ const invokeCostText = c => !c ? '' : c.pay ? `pay ${c.pay} cost${c.pay === 1 ? 
 const ownTargetCands = (c, a) => c.p.spirits.filter(s => fxMatch(CARDS[s.id], a.match) && (!a.attacking || s === G.attacker) && !fxImmune(c.p, s, c));
 Object.assign(FX_ACTIONS, {
   /* "during this battle/turn, this Spirit gains +N BP" (to:self) / "Target one of your [attacking] X Spirits. ... it gains +N BP" (to:pick) */
-  BP_TARGET: { chk: a => Number.isInteger(a.n) && a.n >= 1000 && a.n <= 30000 && ['self', 'pick'].includes(a.to) && (a.battle == null || a.battle === true) && (a.attacking == null || a.attacking === true) && invokeMatchOK(a.match),
-    txt: a => `${a.to === 'self' ? 'this Spirit gains' : 'one of your ' + (a.attacking ? 'attacking ' : '') + (a.match && a.match.family ? '"' + a.match.family.join('"/"') + '" ' : '') + 'Spirits gains'} +${a.n} BP during this ${a.battle ? 'battle' : 'turn'}`,
+  BP_TARGET: { chk: a => Number.isInteger(a.n) && a.n >= 1000 && a.n <= 30000 && ['self', 'pick'].includes(a.to) && (a.battle == null || a.battle === true) && (a.attacking == null || a.attacking === true) && invokeMatchOK(a.match) && (a.per == null || perOk(a.per)),
+    txt: a => `${a.to === 'self' ? 'this Spirit gains' : 'one of your ' + (a.attacking ? 'attacking ' : '') + (a.match && a.match.family ? '"' + a.match.family.join('"/"') + '" ' : '') + 'Spirits gains'} +${a.n} BP${a.per ? ' for each matching card you control' : ''} during this ${a.battle ? 'battle' : 'turn'}`,
     can: (c, a) => (!a.battle || !!G.attacker) && (a.to === 'self' ? c.p.spirits.includes(c.src) : ownTargetCands(c, a).length > 0),
     run: async (c, a) => {
       let t = c.src;
@@ -107,8 +107,9 @@ Object.assign(FX_ACTIONS, {
         if (!t) { c.ctx.did = false; return; }
       } else if (!c.p.spirits.includes(t)) { c.ctx.did = false; return; }
       c.ctx.picked = t;      // v0.88 S1: "When this battle ends, destroy it" (DESTROY_PICKED, 02p)
-      if (a.battle) addBattleBp(t, a.n); else t.bpMod = (t.bpMod || 0) + a.n;
-      log(`${CARDS[t.id].name} gets +${a.n} BP during this ${a.battle ? 'battle' : 'turn'}.`);
+      const n = a.per ? a.n * perCount(c.p, a.per) : a.n;      // v0.120.0 Amplify: "for each <family> Spirit you control" (the source itself counts)
+      if (a.battle) addBattleBp(t, n); else t.bpMod = (t.bpMod || 0) + n;
+      log(`${CARDS[t.id].name} gets +${n} BP during this ${a.battle ? 'battle' : 'turn'}.`);
     } },
   /* "Target one of your X Spirits. During this battle, it gains an extra <colour> symbol." (cleared when the battle ends, like SYMBOL_PLUS) */
   SYMBOL_TARGET: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 3 && invokeMatchOK(a.match) && (a.attacking == null || a.attacking === true),
@@ -150,7 +151,7 @@ function cpuInvokeOK(p, f, e, timing) {
     const a = e.actions.find(x => x.do === 'BP_TARGET');
     if (a.to === 'self' && mine !== f) return false;
     if (a.to === 'pick' && !ownTargetCands({ p, opp, src: f, ctx: {} }, a).includes(mine)) return false;
-    const me = bpOf(mine), them = bpOf(theirs), n = e.actions.filter(x => x.do === 'BP_TARGET').reduce((t, x) => t + x.n, 0);
+    const me = bpOf(mine), them = bpOf(theirs), n = e.actions.filter(x => x.do === 'BP_TARGET').reduce((t, x) => t + x.n * (x.per ? perCount(p, x.per) : 1), 0);      // v0.120.0 Amplify per-count
     return me <= them && me + n > them;
   }
   if (acts.some(x => x === 'SYMBOL_TARGET' || x === 'SYMBOL_PLUS')) {

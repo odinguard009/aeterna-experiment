@@ -63,7 +63,8 @@ const KEYWORD_GLOSSARY = {
   'HEAVY_EXHAUST': 'Card turned upside down. It cannot attack or block, and one Refresh turns it into a normal Exhausted card.',
   'FLASH': 'An effect usable in your Main Step and in the Flash Timing during battle.',
   'MAGIC': 'Magic cards are cast from your Hand: pay the cost, use the effect, then the card goes to the Trash. [Main] Magic is cast in your Main Step. [Flash] Magic can also be cast in the Flash Timings of a battle, by either player.',
-  'RUMBLE': 'During Attack: at the end of the battle, discard X cards from the opposing decktop, minus the cost of the blocking Spirit card that is now in the opposing Trash (the attacker must still be on the Field).'
+  'RUMBLE': 'During Attack: at the end of the battle, discard X cards from the opposing decktop, minus the cost of the blocking Spirit card that is now in the opposing Trash (the attacker must still be on the Field).',
+  'AMPLIFY': 'Amplify: for each matching Spirit you control, during this battle, this Spirit gains +N BP (printed as {{Amplify|family +N}}).'
 };
 /* Magic effects (data driven; imported Magic cards pick one of these in their "magic" field) */
 const MAGIC_FX = {

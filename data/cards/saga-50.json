@@ -2227,11 +2227,9 @@
   "mechanics": [
    "Amplify"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (True Release){{Amplify|Leucomyst +1000}} (During Attack/Block){{Invoke|Flash}} (Once Per Battle) Pay one cost ▶ For each \"Leucomyst\" family Spirit you control, during this battle, this Spirit gains +1000 BP."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "residual": [],
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image.",
   "effects": [
    {
     "trigger": "BATTLE_WIN",
@@ -2249,8 +2247,41 @@
       "n": 1
      }
     ]
+   },
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN",
+     "FLASH"
+    ],
+    "when": "duringAttackBlock",
+    "once": true,
+    "oncePer": "battle",
+    "lv": [
+     2
+    ],
+    "cost": {
+     "pay": 1
+    },
+    "actions": [
+     {
+      "do": "BP_TARGET",
+      "n": 1000,
+      "to": "self",
+      "battle": true,
+      "per": {
+       "type": "Spirit",
+       "family": "Leucomyst"
+      }
+     }
+    ]
    }
-  ]
+  ],
+  "keywords": [
+   "Amplify"
+  ],
+  "trueRelease": true
  },
  {
   "id": "26RBS01-049",
@@ -2320,11 +2351,44 @@
   "mechanics": [
    "Amplify"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (True Release){{Amplify|Leucomyst +1000}} (During Attack/Block){{Invoke|Flash}} (Once Per Battle) Pay one cost ▶ For each \"Leucomyst\" family Spirit you control, during this battle, this Spirit gains +1000 BP."
+  "fxComplete": true,
+  "residual": [],
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image.",
+  "keywords": [
+   "Amplify"
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "effects": [
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN",
+     "FLASH"
+    ],
+    "when": "duringAttackBlock",
+    "once": true,
+    "oncePer": "battle",
+    "lv": [
+     2
+    ],
+    "cost": {
+     "pay": 1
+    },
+    "actions": [
+     {
+      "do": "BP_TARGET",
+      "n": 1000,
+      "to": "self",
+      "battle": true,
+      "per": {
+       "type": "Spirit",
+       "family": "Leucomyst"
+      }
+     }
+    ]
+   }
+  ],
+  "trueRelease": true
  },
  {
   "id": "26RBS01-051",
@@ -2358,11 +2422,9 @@
   "mechanics": [
    "Amplify"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] {{Amplify|Leucomyst +1000}} (During Attack/Block){{Invoke|Flash}} (Once Per Battle) Pay one cost ▶ For each \"Leucomyst\" family Spirit you control, during this battle, this Spirit gains +1000 BP."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "residual": [],
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image.",
   "effects": [
    {
     "trigger": "BATTLE_WIN",
@@ -2377,7 +2439,40 @@
       "to": "anySpirit"
      }
     ]
+   },
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN",
+     "FLASH"
+    ],
+    "when": "duringAttackBlock",
+    "once": true,
+    "oncePer": "battle",
+    "lv": [
+     1,
+     2
+    ],
+    "cost": {
+     "pay": 1
+    },
+    "actions": [
+     {
+      "do": "BP_TARGET",
+      "n": 1000,
+      "to": "self",
+      "battle": true,
+      "per": {
+       "type": "Spirit",
+       "family": "Leucomyst"
+      }
+     }
+    ]
    }
+  ],
+  "keywords": [
+   "Amplify"
   ]
  },
  {
@@ -2498,10 +2593,44 @@
   ],
   "fxComplete": false,
   "residual": [
-   "[LV1-2] {{Amplify|Leucomyst +1000}} (During Attack/Block){{Invoke|Flash}} (Once Per Battle) Pay one cost ▶For each \"Leucomyst\" family Spirit you control, during this battle, this Spirit gains +1000 BP.",
    "[LV2] (Your End Step) This Spirit can refresh."
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "keywords": [
+   "Amplify"
+  ],
+  "effects": [
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN",
+     "FLASH"
+    ],
+    "when": "duringAttackBlock",
+    "once": true,
+    "oncePer": "battle",
+    "lv": [
+     1,
+     2
+    ],
+    "cost": {
+     "pay": 1
+    },
+    "actions": [
+     {
+      "do": "BP_TARGET",
+      "n": 1000,
+      "to": "self",
+      "battle": true,
+      "per": {
+       "type": "Spirit",
+       "family": "Leucomyst"
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RBS01-055",
@@ -2572,11 +2701,44 @@
   "mechanics": [
    "Amplify"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] {{Amplify|Leucomyst +1000}} (During Attack/Block){{Invoke|Flash}} (Once Per Battle) Pay one cost ▶For each \"Leucomyst\" family Spirit you control, during this battle, this Spirit gains +1000 BP."
+  "fxComplete": true,
+  "residual": [],
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image.",
+  "keywords": [
+   "Amplify"
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "effects": [
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN",
+     "FLASH"
+    ],
+    "when": "duringAttackBlock",
+    "once": true,
+    "oncePer": "battle",
+    "lv": [
+     1,
+     2
+    ],
+    "cost": {
+     "pay": 1
+    },
+    "actions": [
+     {
+      "do": "BP_TARGET",
+      "n": 1000,
+      "to": "self",
+      "battle": true,
+      "per": {
+       "type": "Spirit",
+       "family": "Leucomyst"
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RBS01-057",
@@ -2612,10 +2774,45 @@
   ],
   "fxComplete": false,
   "residual": [
-   "[LV1-2] {{Amplify|Leucomyst +1000}} (During Attack/Block){{Invoke|Flash}} (Once Per Battle) Pay one cost ▶For each \"Leucomyst\" family Spirit you control, during this battle, this Spirit gains +1000 BP.",
    "[LV2] (True Release) (Your End Step) This Spirit can refresh."
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "keywords": [
+   "Amplify"
+  ],
+  "effects": [
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN",
+     "FLASH"
+    ],
+    "when": "duringAttackBlock",
+    "once": true,
+    "oncePer": "battle",
+    "lv": [
+     1,
+     2
+    ],
+    "cost": {
+     "pay": 1
+    },
+    "actions": [
+     {
+      "do": "BP_TARGET",
+      "n": 1000,
+      "to": "self",
+      "battle": true,
+      "per": {
+       "type": "Spirit",
+       "family": "Leucomyst"
+      }
+     }
+    ]
+   }
+  ],
+  "trueRelease": true
  },
  {
   "id": "26RBS01-058",
@@ -2704,13 +2901,44 @@
       "bpLe": 8000
      }
     ]
+   },
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN",
+     "FLASH"
+    ],
+    "when": "duringAttackBlock",
+    "once": true,
+    "oncePer": "battle",
+    "lv": [
+     2
+    ],
+    "cost": {
+     "pay": 1
+    },
+    "actions": [
+     {
+      "do": "BP_TARGET",
+      "n": 1000,
+      "to": "self",
+      "battle": true,
+      "per": {
+       "type": "Spirit",
+       "family": "Leucomyst"
+      }
+     }
+    ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (True Release){{Amplify|Leucomyst +1000}} (During Attack/Block){{Invoke|Flash}} (Once Per Battle) Pay one cost ▶For each \"Leucomyst\" family Spirit you control, during this battle, this Spirit gains +1000 BP."
+  "fxComplete": true,
+  "residual": [],
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image.",
+  "keywords": [
+   "Amplify"
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "trueRelease": true
  },
  {
   "id": "26RBS01-060",
@@ -2745,11 +2973,9 @@
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] {{Amplify|Leucomyst +1000}} (During Attack/Block){{Invoke|Flash}} (Once Per Battle) Pay one cost ▶For each \"Leucomyst\" family Spirit you control, during this battle, this Spirit gains +1000 BP."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "residual": [],
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image.",
   "effects": [
    {
     "trigger": "ATTACKS",
@@ -2763,7 +2989,40 @@
       "to": "anySpirit"
      }
     ]
+   },
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN",
+     "FLASH"
+    ],
+    "when": "duringAttackBlock",
+    "once": true,
+    "oncePer": "battle",
+    "lv": [
+     1,
+     2
+    ],
+    "cost": {
+     "pay": 1
+    },
+    "actions": [
+     {
+      "do": "BP_TARGET",
+      "n": 1000,
+      "to": "self",
+      "battle": true,
+      "per": {
+       "type": "Spirit",
+       "family": "Leucomyst"
+      }
+     }
+    ]
    }
+  ],
+  "keywords": [
+   "Amplify"
   ]
  },
  {
@@ -6282,10 +6541,45 @@
   ],
   "fxComplete": false,
   "residual": [
-   "[LV1-2] {{Amplify|Leucomyst +1000}} (During Attack/Block){{Invoke|Flash}} (Once Per Battle) Pay one cost ▶For each \"Leucomyst\" family Spirit you control, during this battle, this Spirit gains +1000 BP.",
    "[LV2] (True Release) (During Attack) (Once Per Turn) When this Spirit's BP becomes 12000 or more, this Spirit can refresh."
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "keywords": [
+   "Amplify"
+  ],
+  "effects": [
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN",
+     "FLASH"
+    ],
+    "when": "duringAttackBlock",
+    "once": true,
+    "oncePer": "battle",
+    "lv": [
+     1,
+     2
+    ],
+    "cost": {
+     "pay": 1
+    },
+    "actions": [
+     {
+      "do": "BP_TARGET",
+      "n": 1000,
+      "to": "self",
+      "battle": true,
+      "per": {
+       "type": "Spirit",
+       "family": "Leucomyst"
+      }
+     }
+    ]
+   }
+  ],
+  "trueRelease": true
  },
  {
   "id": "26RBS01-X12",

@@ -2,7 +2,7 @@
 
 Top-level names per source part. Find the part here, then `grep -n "<name>" <part path>` and read only that range.
 
-## packages/engine/src/00-config.js (96 lines, ~2.9k tokens)
+## packages/engine/src/00-config.js (97 lines, ~3k tokens)
 SIM, STEPS, STEPS_STANDARD, FORMAT_KEY, FORMAT, STANDARD_BLOCKS, BAN_LIST_INFO, BANNED, LIMITED1, normCardNo, BAN_LISTS, banStatus, maxCopies, standardLegal, legalityOf, ABORT, other, esc, cap, TC_MINOR, titleCase, RNG_STATE, KEY_WEIGHT, seedRng, rng, newSeed, shuffle, removeFrom, KEYWORD_GLOSSARY, MAGIC_FX, MAGIC_TIMINGS, SYMBOL_KINDS
 
 ## apps/web/src/00b-errors.js (57 lines, ~1.1k tokens) — IN-GAME ERROR CATCHER (v0.59.5, Q1 quality bundle, Aegis idea)
@@ -20,13 +20,13 @@ VERSION, CARDS, defCard, TRAIN, PRESET_DECK
 ## packages/engine/src/01a-card-pack.js (166 lines, ~2.4k tokens) — CARD PACK CODEC (v0.51.0; this part must load before 03-imported-cards.js: its consts are used at load): compact, synchronous format of the built-in card pack
 packBlockOf, packCards, unpackCards, INF_LBASE, INF_LEXT, INF_DBASE, INF_DEXT, INF_ORDER, inflateRaw, packBytes, loadPack
 
-## packages/engine/src/02a-effects-base.js (241 lines, ~5.8k tokens) — EFFECT ENGINE
+## packages/engine/src/02a-effects-base.js (241 lines, ~5.9k tokens) — EFFECT ENGINE
 FX_STRICT, FX_WARNED, fxUnknown, FX_COND_KEYS, FX_TRIGGERS, FX_TRIGGER_TEXT, BR_IDX, fxEntries, fxMatch, canBlockState, fxIf, ctrlCount, spiritCount, PER_TYPES, perOk, perCount, ownerOf, STATIC_FLAGS, fxImmune, unaffectedBy, flagActive, costDestroyBonus, coresSent, staticBp, takeFromVoid, releaseCores, removeNexus, fxPickTarget, toSoulState, chooseCard, bounceCard, SOUL_SRC, hasMatch
 
 ## packages/engine/src/02b-effects-actions.js (84 lines, ~3.1k tokens)
 FX_ACTIONS
 
-## packages/engine/src/02c-effects-parse.js (160 lines, ~4.5k tokens)
+## packages/engine/src/02c-effects-parse.js (160 lines, ~4.6k tokens)
 canPlaceFree, canPlaceBraveFree, summonFree, canPlacePaid, canPlaceBy, summonPaid, summonBy, fxDescribe, BURST_WHEN, parseCond, parseActionList, parseBurst, parseEffects
 
 ## packages/engine/src/02d-effects-resolve.js (360 lines, ~6.6k tokens)
@@ -53,7 +53,7 @@ accelList, accelCost, accelMainStep, accelOK, accelSources, accelLabel, useAccel
 ## packages/engine/src/02k-effects-immunity.js (27 lines, ~0.4k tokens)
 trashSafe, wrapImmunity
 
-## packages/engine/src/02l-effects-invoke.js (174 lines, ~3.8k tokens) — v0.68 INVOKE (Standard activations): "{{Invoke|Flash}}" / "{{Invoke|Main}}" + "<cost> ▶ <effect>".
+## packages/engine/src/02l-effects-invoke.js (175 lines, ~3.9k tokens) — v0.68 INVOKE (Standard activations): "{{Invoke|Flash}}" / "{{Invoke|Main}}" + "<cost> ▶ <effect>".
 INVOKE_WHEN, INVOKE_COSTS, invokeMatchOK, invokeParse, invokeWhenOK, exhaustOwnCands, discardCands, invokeCostOK, payInvokeCost, usedThisBattle, markUsedBattle, bpBattle, addBattleBp, invokeCostText, ownTargetCands, cpuInvokeOK
 
 ## packages/engine/src/02m-effects-destroy-filters.js (30 lines, ~0.6k tokens)

@@ -964,14 +964,16 @@
  {
   "id": "kw:amplify",
   "name": "Amplify",
-  "status": "missing",
-  "glossary": [],
+  "status": "done",
+  "glossary": [
+   "K_AMPLIFY"
+  ],
   "prep": {
-   "rules": "",
-   "data": "",
-   "lever": ""
+   "rules": "Fandom keyword page \"Amplify\": the {{Amplify|family +N}} head = for each [family] Spirit you control, during this battle, this Spirit gains +N BP",
+   "data": "Fandom export text ({{Amplify|Leucomyst +1000}} in 26RBS01)",
+   "lever": "v0.120.0 (BP_TARGET battle:true per-count + match.keyword via the keywords list in 02l-effects-invoke.js / 02a-effects-base.js)"
   },
-  "note": "no engine/compiler/test match (A4 grep 2026-10-19)",
+  "note": "test AMP-01..04; +6 complete (26RBS01-048/050/051/056/059/060)",
   "verified": true
  },
  {

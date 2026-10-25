@@ -1428,5 +1428,15 @@
     "status": "wired",
     "example": "{\"trigger\":\"ATTACKS\",\"lv\":[1,2],\"actions\":[{\"do\":\"RUMBLE\",\"n\":3}]}",
     "rule": "Standard keyword; official Q&A 31592-31594, 31621 (read via the Fandom \"Rumble\" page). Engine: action RUMBLE {n:1-7}."
+  },
+  {
+    "id": "K_AMPLIFY",
+    "kind": "keyword",
+    "meaning": "Amplify: for each matching Spirit you control, during this battle, this Spirit gains +N BP",
+    "pattern": "\\bAmplify\\b",
+    "engine": "BP_TARGET {battle:true, per:{type:'Spirit',family}} on an ACTIVATE Invoke; the card carries keywords ['Amplify']",
+    "status": "wired",
+    "example": "{\"trigger\":\"ACTIVATE\",\"invoke\":true,\"timing\":[\"FLASH\"],\"when\":\"duringAttackBlock\",\"once\":true,\"oncePer\":\"battle\",\"lv\":[2],\"cost\":{\"pay\":1},\"actions\":[{\"do\":\"BP_TARGET\",\"n\":1000,\"to\":\"self\",\"battle\":true,\"per\":{\"type\":\"Spirit\",\"family\":\"Leucomyst\"}}]}",
+    "rule": "Standard keyword (Fandom \"Amplify\" page): the {{Amplify|family +N}} head reads 'for each [family] Spirit you control, during this battle, this Spirit gains +N BP'. Engine: BP_TARGET {battle:true, per:{type:'Spirit',family}}."
   }
 ]

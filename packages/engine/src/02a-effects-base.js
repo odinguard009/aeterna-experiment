@@ -42,7 +42,7 @@ function fxMatch(card, m) {
   if (m.type && card.type !== m.type) return false;
   if (m.symbolsGe != null && !((card.symbols || 0) >= m.symbolsGe)) return false;      // v0.78 "your Spirit with two or more symbols"
   if (m.familyAll && !m.familyAll.every(n => (card.families || []).includes(n))) return false;      // v0.88 S1 '"RYUKI" & "Kamen" family' (every listed family)
-  if (m.keyword && !new RegExp('(^|[\\]\\)\\s])' + String(m.keyword).replace(/[^A-Za-z ]/g, '') + ' \\(').test(card.desc || card.text || '')) return false;      // v0.90 S1 'a Spirit with Clash' (the keyword head 'Clash (During Attack)')
+  if (m.keyword) { const kw = String(m.keyword).toUpperCase(); if (!(card.keywords || []).some(k => String(k).toUpperCase() === kw) && !new RegExp('(^|[\\]\\)\\s])' + String(m.keyword).replace(/[^A-Za-z ]/g, '') + ' \\(').test(card.desc || card.text || '')) return false; }      // v0.90 S1 'a Spirit with Clash'; v0.120.0 Amplify: the card's keywords list is authoritative ({{Amplify|...}} prints no "(...)" head)
   if (m.noText) { const t = String(card.desc || card.text || '').trim(); if (t && t !== 'Vanilla card (no effect text).') return false; }      // v0.90 S1 'with no printed effects'
   if (!m.name && !m.family) return true;
   return (m.name || []).some(n => card.name.toLowerCase().includes(n.toLowerCase())) || (m.family || []).some(n => (card.families || []).includes(n));

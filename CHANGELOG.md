@@ -4,6 +4,18 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.120.0
+- Lane: K
+- Time: ~90 min (session start → release), deepseek-v4-pro; tokens not counted (no gate counter in this harness).
+- **Standard block A keyword head Amplify (`{{Amplify|family +N}}`): +6 complete.** The head reads "for each [family] Spirit you control, during this battle, this Spirit gains +N BP". Engine pieces, in one commit:
+  - `BP_TARGET` gains a `per` field (`{type:'Spirit'|'Nexus', family|colors|name}`), counted when the Invoke resolves and the source itself counts — the Leucomyst Amplify cards use `{"trigger":"ACTIVATE","invoke":true,"timing":["MAIN","FLASH"],"when":"duringAttackBlock","once":true,"oncePer":"battle","cost":{"pay":1},"actions":[{"do":"BP_TARGET","n":1000,"to":"self","battle":true,"per":{"type":"Spirit","family":"Leucomyst"}}]}`.
+  - `match.keyword` ("a Spirit with Amplify") now reads the card's `keywords` list first (the `{{Amplify|…}}` head prints no "(…)" suffix), falling back to the old text regex.
+  - The effect-level `match` parser now keeps `keyword` / `familyAll` / `noText`, which it used to drop silently (an effect match with only `keyword` matched *everything*).
+  - `AMPLIFY` registered in `KEYWORD_GLOSSARY` and `data/glossary/mechanics.json` `kw:amplify` marked done. Effect format bumped to schema v7.
+- **Complete (+6):** 26RBS01-048 Goztaurus, 050 Claydoro, 051 Meztaurus, 056 Stelgatgun, 059 The HollowRadiance Pepper's Dragon, 060 Mudoro (all `Leucomyst` Amplify + their already-compiled clauses). 054 / 057 / X11 get their Amplify wired but stay `!` (their "Your End Step: refresh" / "when this Spirit's BP becomes N or more" clauses still need mechanics). The True Release head on 048/050/057/059/X11 is now the `trueRelease` flag.
+- **Promotion track (owner: "promosi bertahap" in parallel):** bulk promotion of the remaining 1,819 staged cards is *not* a batch operation — `tools/compile_v2.py --partial` rejects the "ready" pool per card (745 A1 data gate: missing/broken levels or cost; malformed export text; Magic paragraphs without Main/Flash; grammar gaps like `{{sumcon|…}}`). So promotion stays per-card hand-wiring (read → effects JSON → `card_verify` → promote), the same path this Amplify head used. No new playable cards this release; `playable 6,890 / 8,709, complete 796`.
+- Tests: `tests/unit/amplify.test.mjs` (AMP-01..04: per-count, the source counts, the battle bonus ends with the battle, and `match.keyword` via the keywords list); scenario `tests/scenarios/amplify-leucomyst-bp.json` (rules `ETR:faq.bp@134528fb`). Full suite green (1504 + 4 new).
+
 ## v0.119.0
 - Lane: U/I
 - Time: ~60 min (session start → release), deepseek-v4-pro; tokens not counted (no gate counter in this harness).
