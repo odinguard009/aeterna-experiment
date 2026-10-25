@@ -2,7 +2,7 @@
  "root": {
   "title": "Aeterna",
   "tagline": "From tested engine to a simulator that plays like Aegis",
-  "waitingHtml": "<b>Waiting on you:</b> how Report Bug reaches GitHub (token or a pre-filled issue page), and the scope of missions / ranks / avatars (not in the schedule).",
+  "waitingHtml": "<b>Waiting on you:</b> nothing; Report Bug and missions / ranks / avatars are decided (2026-10-25).",
   "updated": "25 Oct 2026",
   "updatedAt": "0.118.0",
   "next": "next: the v14 UI/UX redesign U14a-U14i (fonts and shapes, battle PC, card commands, animations, battle phone, deck builder, library + lore, pages, dialogs + Report Bug), then card sessions (K) with Standard first"
@@ -836,15 +836,19 @@
     },
     {
      "s": "next",
-     "t": "U14i Dialogs + Report Bug (delivery needs your decision)"
+     "t": "U14i Dialogs + Report Bug (pre-filled GitHub issue page, no token in the file)"
     },
     {
-     "s": "you",
-     "t": "Decide how Report Bug reaches GitHub (pre-filled issue page by default, or a forwarding service)"
+     "s": "done",
+     "t": "Owner decision 2026-10-25: Report Bug opens a pre-filled new-issue page of the repository (user sends it with their own GitHub login); a forwarding service stays optional for later"
+    },
+    {
+     "s": "next",
+     "t": "U15 Missions, ranks, achievements, avatars, daily missions (owner approved 2026-10-25; local progress first, after U14a-U14i)"
     },
     {
      "s": "later",
-     "t": "Missions, ranks, avatars, 16-chapter tutorial, online lobby (need approval)"
+     "t": "16-chapter tutorial, online lobby (need approval)"
     }
    ]
   }
