@@ -187,3 +187,18 @@ One home for the complete UI list. Structure from `docs/DESIGN.md`; build target
 - Live study: aegis-digi.online home + play page, PC 1280x800 (screens 2026-10-22; pattern: deck chip (+ mode -> setup -> one START) and one confirm sentence before the primary button).
 - CrossOver, the licensed console game by FuRyu (Nov 2024): repo's own studied notes in `docs/DESIGN.md` section 0 (17:04, board / banners / ribbons / prompts / effect panel / result) + official art (announcement image, mood only).
 - Limitation recorded: YouTube frame capture is blocked headless ("Sign in to confirm you're not a bot", 2026-10-22), so no new video frames were taken; the CrossOver reference stands on the repo's earlier live study.
+
+## N. v14 additions (owner review of `mockup-v14.html`, 2026-10-25; schedule = items U14a-U14i in `docs/ai/roadmap-open.md`)
+| Piece | Where | Status |
+|---|---|---|
+| Three fonts (display / text / numbers), one parallelogram shape for every button and area, Title Case, soft light palette | all pages | v14 (U14a) |
+| Battle PC: Card Panel left, locked five-cell fields, step band with the log under the steps, Options button, field background upload | `13-render.js` | v14 (U14b) |
+| Card command menu (Summon / Cast / Place, Set as Burst, Attack, + / - Core, Soul Core, Exhaust / Refresh, Card Info) | battle | v14 (U14c) |
+| Per-step highlight on every turn (both sides), turn-1 skips, Standard 8 steps | battle | v14 (U14c) |
+| Arrow attack after the attacker turns sideways, destroy shatter, exhaust / heavy exhaust / refresh, Soul Core move, effect notice, emoticons (one per 30 s) | `13g-anim.js` | v14 (U14d) |
+| Battle phone: two statistic grids, step strip centred on the active step, horizontal hand row | battle phone | v14 (U14e) |
+| Deck builder: art grid S / M / L, peek, fly-to-deck, progress ring, stats, test hand, undo / redo, Group and Colour dropdowns, rainbow colour, deck-list row thumbnails, alternative art, long-press info | `13a-deckbuilder.js` | v14 (U14f) |
+| Library grid, card page, alternative art, Lore tab | `14-images.js`, new | v14 (U14g) |
+| Card of the Day, Play in three steps, My decks tiles, Profile, regrouped Settings, Learn glossary | `13b-nav.js`, `13c-play.js`, `13d-pages.js`, `13h-decks.js` | v14 (U14h) |
+| Dialog family, Effect Active dialog, Report Bug on every page | `10-modals.js` | v14 (U14i) |
+| Daily missions, ranks, achievements, avatars, online lobby, 16-chapter tutorial | mockup only | open (needs owner approval) |

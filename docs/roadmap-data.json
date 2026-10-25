@@ -2,10 +2,10 @@
  "root": {
   "title": "Aeterna",
   "tagline": "From tested engine to a simulator that plays like Aegis",
-  "waitingHtml": "<b>Waiting on you:</b> the mockup v12 approval (deferred UI work) and the online (M8) hosting decision.",
-  "updated": "24 Oct 2026",
+  "waitingHtml": "<b>Waiting on you:</b> how Report Bug reaches GitHub (token or a pre-filled issue page), and the scope of missions / ranks / avatars (not in the schedule).",
+  "updated": "25 Oct 2026",
   "updatedAt": "0.118.0",
-  "next": "next: card sessions (K) with Standard first (the U/I queue is done: M8 online client in v0.108.0-v0.110.0, card images in v0.111.0, card images online in v0.112.0, card images online (Pages) in v0.113.0, card images official source in v0.114.0; Swordish token 26RSD10-T001 registered; the 26RBS01 keyword heads Amplify / Rumble / Shamanism / Current next, after the \"when you use a Magic card\" trigger (v0.116.0)); layout and animation work deferred until the owner lifts it; M7 database + Docker done in v0.107.0; audit round done v0.104.0 (Windows tooling, UTF-8/LF writers, lint panic + 74 checker errors fixed, card-count rule, replay recording, U94-2); playable 6,890 of 8,709, complete 790"
+  "next": "next: the v14 UI/UX redesign U14a-U14i (fonts and shapes, battle PC, card commands, animations, battle phone, deck builder, library + lore, pages, dialogs + Report Bug), then card sessions (K) with Standard first"
  },
  "phases": [
   {
@@ -786,6 +786,65 @@
     {
      "s": "later",
      "t": "Online matches (large, optional)"
+    }
+   ]
+  },
+  {
+   "phase": {
+    "name": "UI v14 redesign (owner, 25 Oct 2026)",
+    "sub": "Phone first-class. Mockup reviewed over 9 rounds; the phase area stays as in Aeterna.",
+    "ver": "U14a-U14i",
+    "open": true,
+    "kind": "leaves"
+   },
+   "items": [
+    {
+     "s": "done",
+     "t": "mockup-v14.html: 13 screens, 32 dialogs, battle demo, animation lab (docs/design)"
+    },
+    {
+     "s": "next",
+     "t": "U14a Foundations: 3 fonts, parallelogram shape, Title Case, soft light palette"
+    },
+    {
+     "s": "next",
+     "t": "U14b Battle PC: card panel left, locked cells, step band + log, Options, field background"
+    },
+    {
+     "s": "next",
+     "t": "U14c Battle commands: card menu, per-step highlight, turn-1 rule"
+    },
+    {
+     "s": "next",
+     "t": "U14d Battle animation: arrow attack, destroy shatter, exhaust levels, soul core, emoticons"
+    },
+    {
+     "s": "next",
+     "t": "U14e Battle phone: stat grids, centred step strip, horizontal hand"
+    },
+    {
+     "s": "next",
+     "t": "U14f Deck builder: art grid, peek, ring, stats, test hand, dropdowns, alt art"
+    },
+    {
+     "s": "next",
+     "t": "U14g Library, card page, Lore tab (flavor data tool)"
+    },
+    {
+     "s": "next",
+     "t": "U14h Lobby: Card of the Day, Play 3 steps, decks, profile, settings"
+    },
+    {
+     "s": "next",
+     "t": "U14i Dialogs + Report Bug (delivery needs your decision)"
+    },
+    {
+     "s": "you",
+     "t": "Decide how Report Bug reaches GitHub (pre-filled issue page by default, or a forwarding service)"
+    },
+    {
+     "s": "later",
+     "t": "Missions, ranks, avatars, 16-chapter tutorial, online lobby (need approval)"
     }
    ]
   }
