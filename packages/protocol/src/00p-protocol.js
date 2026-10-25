@@ -12,9 +12,10 @@
      screen  {id}           show an app screen ('view-playmat', 'view-deckbuilder', 'view-lobby')
      reset                  a new match starts: drop open prompts and field picks of the previous one
      matchEnd {winner}      the match is over (G.over, G.winner set; after the last board view)
+     effect {side, id, text} v0.125.0 (U14d2): an effect of the card `id` (of seat `side`) starts resolving; display only (the Effect Active panel), hosts may ignore it
      acted {seat, ok}       v0.84.0: the seat's intent (answer to an action decision) was applied (ok) or refused
    --------------------------------------------------------------------- */
-const VIEW_TYPES = ['board', 'decks', 'screen', 'reset', 'matchEnd', 'acted'];
+const VIEW_TYPES = ['board', 'decks', 'screen', 'reset', 'matchEnd', 'acted', 'effect'];
 /** @typedef {{ type: string, id?: string, winner?: string }} ViewRecord */
 /** @typedef {{ name: string, view: (ev: ViewRecord) => void, log: (text: string) => void, decide: (p: any, d: any) => Promise<any> }} Host */
 /** @type {Host} */

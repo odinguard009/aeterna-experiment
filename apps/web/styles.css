@@ -993,3 +993,13 @@
   .ae-a-flash { background: radial-gradient(closest-side, #fff, #fff0); animation: aeFade .35s ease-out both; }
   .ae-a-card-shard { background: linear-gradient(135deg, #fff, var(--ae-card1)); clip-path: polygon(0 0, 100% 30%, 60% 100%); animation: aeShard .7s ease-out both; }
   @keyframes aeArrow { 0% { transform: var(--r) scaleX(0); opacity: 0; } 40% { opacity: 1; transform: var(--r); } 100% { opacity: 0; transform: var(--r); } }
+
+  /* ---- U14d2 (v0.125.0): Effect Active panel and emoticons ---- */
+  .ae-eff { position: fixed; left: 50%; top: 22%; transform: translateX(-50%); width: min(92vw, 420px); padding: 8px 18px; display: flex; flex-direction: column; gap: 2px; background: linear-gradient(180deg, var(--ae-panel1), var(--ae-panel2)); color: var(--ae-text); box-shadow: inset 4px 0 0 var(--you), 0 10px 30px #0008; clip-path: var(--par); pointer-events: none; animation: aeFade 1.4s ease-out both; }
+  .ae-eff.cpu { box-shadow: inset 4px 0 0 var(--cpu), 0 10px 30px #0008; }
+  .ae-eff .ae-eff-h { font-size: 10px; font-weight: 900; letter-spacing: .2em; color: var(--you); } .ae-eff.cpu .ae-eff-h { color: var(--cpu); }
+  .ae-eff span:last-child { font-size: 12px; color: var(--ae-text2); }
+  .ae-emote { position: fixed; left: 50%; bottom: 30%; font-size: 54px; line-height: 1; pointer-events: none; animation: aePop 2s ease-out both; }
+  #emote-pop { position: absolute; right: 8px; top: 48px; z-index: 60; width: 232px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; padding: 8px; background: var(--ae-panel1); color: var(--ae-text); box-shadow: inset 0 0 0 1px var(--ae-line2), 0 10px 30px #0008; }
+  #emote-pop .em-wait { grid-column: 1 / -1; font-size: 11px; color: var(--ae-text2); text-align: center; }
+  #emote-pop button { min-height: 44px; font-size: 24px; background: var(--ae-chip); border: 0; cursor: pointer; } #emote-pop button:disabled { opacity: .4; cursor: default; }

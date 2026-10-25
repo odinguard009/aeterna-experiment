@@ -4,6 +4,16 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.125.0
+- Lane: U/I
+- Time: ~40 min (session start → release), claude-sonnet-5-5; tokens not counted (no gate counter in this harness).
+- **U14d2 Effect Active panel and emoticons.** Fifth step of the v14 redesign.
+  - **Engine:** a new display-only view record `{type:'effect', side, id, text}` is sent when a card effect starts resolving (`runActions`, `packages/engine/src/02d-effects-resolve.js`); it is in `VIEW_TYPES` (protocol), so the headless and server hosts accept it and ignore it. It changes no game state and is not part of the match record.
+  - **Panel:** the web host shows "Effect Active" with the card and what the effect does for 1.4 s in the overlay layer (never blocks a tap; nothing under Animations Off or in sims).
+  - **Emoticons:** an EMOTE button in the battle header opens 12 icons; one every 30 s (the picker shows the wait), the pick floats above the board for 2 s. New part `apps/web/src/13l-emote.js`.
+  - **Left for U14d3 (Opus):** cores flying between zones, the Burst flip and the Soul Core move.
+  - Budget: B02 raised 212 → 218 KB (note in the test). Tests: `tests/unit/effect_panel_emote.test.mjs` (EF01-02, EM01-02); `headless_engine` expects the new view type. Backup branch `backup/v0.124.0`.
+
 ## v0.124.0
 - Lane: U/I
 - Time: ~25 min (session start → release), claude-sonnet-5-5; tokens not counted (no gate counter in this harness).

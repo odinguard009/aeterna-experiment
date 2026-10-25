@@ -891,6 +891,14 @@ html.layout-pc #view-playmat .playmat-layout.has-cp > :not(#card-panel){grid-col
 .ae-a-flash{background:radial-gradient(closest-side,#fff,#fff0);animation:aeFade .35s ease-out both;}
 .ae-a-card-shard{background:linear-gradient(135deg,#fff,var(--ae-card1));clip-path:polygon(0 0,100% 30%,60% 100%);animation:aeShard .7s ease-out both;}
 @keyframes aeArrow{0%{transform:var(--r) scaleX(0);opacity:0;}40%{opacity:1;transform:var(--r);}100%{opacity:0;transform:var(--r);}}
+.ae-eff{position:fixed;left:50%;top:22%;transform:translateX(-50%);width:min(92vw,420px);padding:8px 18px;display:flex;flex-direction:column;gap:2px;background:linear-gradient(180deg,var(--ae-panel1),var(--ae-panel2));color:var(--ae-text);box-shadow:inset 4px 0 0 var(--you),0 10px 30px #0008;clip-path:var(--par);pointer-events:none;animation:aeFade 1.4s ease-out both;}
+.ae-eff.cpu{box-shadow:inset 4px 0 0 var(--cpu),0 10px 30px #0008;}
+.ae-eff .ae-eff-h{font-size:10px;font-weight:900;letter-spacing:.2em;color:var(--you);}.ae-eff.cpu .ae-eff-h{color:var(--cpu);}
+.ae-eff span:last-child{font-size:12px;color:var(--ae-text2);}
+.ae-emote{position:fixed;left:50%;bottom:30%;font-size:54px;line-height:1;pointer-events:none;animation:aePop 2s ease-out both;}
+#emote-pop{position:absolute;right:8px;top:48px;z-index:60;width:232px;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:8px;background:var(--ae-panel1);color:var(--ae-text);box-shadow:inset 0 0 0 1px var(--ae-line2),0 10px 30px #0008;}
+#emote-pop .em-wait{grid-column:1 / -1;font-size:11px;color:var(--ae-text2);text-align:center;}
+#emote-pop button{min-height:44px;font-size:24px;background:var(--ae-chip);border:0;cursor:pointer;}#emote-pop button:disabled{opacity:.4;cursor:default;}
 </style>
 </head>
 <body>
@@ -1357,9 +1365,10 @@ applyTheme();
      screen  {id}           show an app screen ('view-playmat', 'view-deckbuilder', 'view-lobby')
      reset                  a new match starts: drop open prompts and field picks of the previous one
      matchEnd {winner}      the match is over (G.over, G.winner set; after the last board view)
+     effect {side, id, text} v0.125.0 (U14d2): an effect of the card `id` (of seat `side`) starts resolving; display only (the Effect Active panel), hosts may ignore it
      acted {seat, ok}       v0.84.0: the seat's intent (answer to an action decision) was applied (ok) or refused
    --------------------------------------------------------------------- */
-const VIEW_TYPES = ['board', 'decks', 'screen', 'reset', 'matchEnd', 'acted'];
+const VIEW_TYPES = ['board', 'decks', 'screen', 'reset', 'matchEnd', 'acted', 'effect'];
 /** @typedef {{ type: string, id?: string, winner?: string }} ViewRecord */
 /** @typedef {{ name: string, view: (ev: ViewRecord) => void, log: (text: string) => void, decide: (p: any, d: any) => Promise<any> }} Host */
 /** @type {Host} */
@@ -1381,7 +1390,7 @@ function bindHost(h) {
    type: 'Spirit' | 'Nexus' | 'Magic'      symbol: card color     symbols: number of symbols
    reduction: {color: n}         levels: [{cores, bp}]  (Nexus levels have no bp)
    --------------------------------------------------------------------- */
-const VERSION = '0.124.0';
+const VERSION = '0.125.0';
 const CARDS = {};
 function defCard(o) {
   CARDS[o.id] = Object.assign({ type: 'Spirit', reduction: {}, symbols: 1, families: [], keywords: [], implemented: true, desc: 'Vanilla test card (no effect).', block: 'A' }, o);
@@ -2065,6 +2074,7 @@ function fxCan(c, e) { return e.actions.some(a => { const d = FX_ACTIONS[a.do]; 
 /* run the actions of one effect. Each action sets ctx.did = false when it could not do anything; the next action can test {"prev":true/false} */
 async function runActions(c, e, trg) {
   let last = false;
+  if (c.src && c.src.id) { let text = ''; try { text = fxDescribe(e); } catch (x) { /* an unknown action name: the strict / release handling below reports it */ } io.view({ type: 'effect', side: c.p.key, id: c.src.id, text }); }   // v0.125.0 U14d2: the Effect Active panel (display only, never changes the match)
   for (const a of e.actions) {
     if (G.over) return;
     c.ctx.prev = last; last = false;
@@ -6528,7 +6538,7 @@ function renderBoard() {
   const turnLbl = G.over ? '<span>GAME</span> <span>OVER</span>' : cpuTurn ? '<span>OPPONENT</span> <span>TURN</span>' : '<span>PLAYER</span> <span>TURN</span>';
   app.innerHTML = `
     <header class="ae-head"><div class="ae-turn"><h1 translate="no">Aeterna</h1><span class="ae-ver">v${VERSION}</span>${G.over ? '' : `<span class="ae-turnno">${cpuTurn ? 'OPPONENT' : 'PLAYER'} TURN ${G.turnNo}</span>`}</div><span class="ae-step"><span>${G.over ? 'GAME OVER' : esc(stepName)}</span></span><span class="ae-fill"></span>
-      <span class="ae-tools"><button class="btn-nav-small ae-btn" data-a="log-toggle" title="Game log (L)"><span>LOG</span></button><button class="btn-nav-small ae-btn" data-a="options" title="Settings (the match waits)"><span>OPTIONS</span></button><button class="btn-nav-small ae-btn" data-a="leave"><span>EXIT TO LOBBY</span></button></span></header>
+      <span class="ae-tools"><button class="btn-nav-small ae-btn" data-a="log-toggle" title="Game log (L)"><span>LOG</span></button><button class="btn-nav-small ae-btn" data-a="emote" title="Emoticon (one every 30 s)"><span>EMOTE</span></button><button class="btn-nav-small ae-btn" data-a="options" title="Settings (the match waits)"><span>OPTIONS</span></button><button class="btn-nav-small ae-btn" data-a="leave"><span>EXIT TO LOBBY</span></button></span></header>
     <div class="playmat-layout${isPC() ? ' has-cp' : ''}">${isPC() ? cardPanelHTML() : ''}
       <div class="half-field">
         <div class="side-flank-pc">
@@ -7193,6 +7203,7 @@ function webView(ev) {
     case 'screen': switchView(ev.id); break;
     case 'reset': actFlush(); clearPick(); closeModal(null); break;
     case 'matchEnd': actFlush(); if (!SIM) { recordMatch(ev.winner); showGameOver(); } break;
+    case 'effect': effectPanel(ev); break;
     case 'acted': { const d = ACT_DONE; ACT_DONE = null; if (d) d(ev.ok); break; }
     default: throw new Error('unknown view record: ' + JSON.stringify(ev));
   }
@@ -7999,6 +8010,41 @@ if (typeof document !== 'undefined') document.addEventListener('mouseover', e =>
   PANEL_ID = id; p.outerHTML = cardPanelHTML();
 });
 /* ---------------------------------------------------------------------
+   EFFECT ACTIVE PANEL + EMOTICONS (v0.125.0, U14d2; docs/design/mockup-v14.html)
+   effectPanel: the engine's 'effect' view record shows the card and what its effect does for about 1.4 s in the shared overlay
+   layer #ae-fx (never blocks a tap; Off and sims show nothing). Emoticons: 12 icons, one every 30 s, shown above your side
+   for 2 s; display only, never part of the match record.
+   --------------------------------------------------------------------- */
+const EMOTES = ['😀', '😎', '😮', '😢', '😡', '👍', '👏', '🙏', '🔥', '❄️', '⚔️', '🏳️'];
+const EMOTE_GAP = 30000;
+let EMOTE_AT = 0, EMOTE_NOW = () => Date.now();
+const emoteLeft = () => Math.max(0, Math.ceil((EMOTE_AT + EMOTE_GAP - EMOTE_NOW()) / 1000));
+function effectPanel(ev) {
+  if (SIM || animMode() === 'off') return;
+  const L = $('ae-fx'), c = CARDS[ev.id]; if (!L || !c) return;
+  L.querySelectorAll('.ae-eff').forEach(e => e.remove());
+  const d = document.createElement('div'); d.className = 'ae-eff' + (ev.side === 'opponent' ? ' cpu' : '');
+  d.innerHTML = `<span class="ae-eff-h">EFFECT ACTIVE</span><b>${esc(c.name)}</b><span>${esc(String(ev.text || '').slice(0, 160))}</span>`;
+  L.appendChild(d); setTimeout(() => d.remove(), 1400);
+}
+function emotePop() {
+  /** @type {HTMLElement} */ let p = $('emote-pop');
+  if (p) { p.remove(); return; }
+  p = document.createElement('div'); p.id = 'emote-pop'; p.setAttribute('role', 'dialog'); p.setAttribute('aria-label', 'Emoticons');
+  const wait = emoteLeft();
+  p.innerHTML = (wait ? `<div class="em-wait">Next emoticon in ${wait} s</div>` : '') + EMOTES.map((e, i) => `<button data-a="emote-pick" data-v="${i}"${wait ? ' disabled' : ''} aria-label="Emoticon ${i + 1}">${e}</button>`).join('');
+  $('view-playmat').appendChild(p);
+}
+function emoteSend(i) {
+  if (!EMOTES[i] || emoteLeft() > 0) return false;
+  EMOTE_AT = EMOTE_NOW();
+  const p = $('emote-pop'); if (p) p.remove();
+  const L = $('ae-fx'); if (!L) return true;
+  const d = document.createElement('div'); d.className = 'ae-emote'; d.textContent = EMOTES[i];
+  L.appendChild(d); setTimeout(() => d.remove(), 2000);
+  return true;
+}
+/* ---------------------------------------------------------------------
    CARD IMAGES  (user supplied files kept in IndexedDB, never uploaded)
    --------------------------------------------------------------------- */
 const IMG = {};           // card id -> blob: URL
@@ -8483,6 +8529,8 @@ document.addEventListener('click', e => {
   else if (a === 'go-lobby') switchView('view-lobby');
   else if (a === 'go-play') switchView('view-play');
   else if (a === 'go-settings' || a === 'options') switchView('view-settings');
+  else if (a === 'emote') emotePop();
+  else if (a === 'emote-pick') emoteSend(Number(v));
   else if (a === 'options-back') { switchView('view-playmat'); if (G) render(); }
   else if (a === 'go-howto') switchView('view-howto');
   else if (a === 'go-history') navHistory();
@@ -8641,7 +8689,7 @@ function testSetup() {            // dev hook: a quiet board with no match loop 
   switchView('view-playmat'); render(); return G;
 }
 const defBuiltin = o => { defCard(o); BUILTIN_IDS.add(o.id); };      // test fixtures register through this so their ids stay reserved
-window.BS = { BAN_LIST_INFO, webPick, maxCopies, prebuiltLabel, fmtButton, defaultDeck, get CPU_DECK_NAME() { return CPU_DECK_NAME; }, SLEEVE_IMG, renderDecks, animMode, fxCueReset, aeRibbon, endOfBattle, MAT, matUse, setSection, navSync, renderHome, themePop, soulMagicOK, soulMagicHolder, soulMagicPick, THEME, THEME_COLS, setTheme, stepClick, stepTargets, get FX_STRICT() { return FX_STRICT; }, setFxStrict(v) { FX_STRICT = !!v; }, FX_WARNED, collectFx, setFuzz(o) { FUZZ = Object.assign({}, o || {}); }, get FUZZ() { return FUZZ; }, fuzzPick, ERR_LOG, errReport, onGameError, releaseStandby, leaveStandby, renderDeckBuilder, dbChange, dbUndo, dbSheet, DBF, get DB_UNDO() { return DB_UNDO.length; }, accelList, accelCost, accelOK, accelSources, useAccel, removedSummonable, summonFromRemoved, cpuAccelScore, cpuAccelMain, cpuAccelFlash, cpuSilverWheel, highSpeedOK, highSpeedSources, highSpeedSummon, cpuHighSpeed, isSealed, soulToLife, lifeTake, braveSummonedFx, abTaxOK, payAbTax, oppAttackHandFx, sentToTrashFx, magicFxAt, summonOK, lvNo, isUlt, noBlockActive, burstFlash, cpuBurstFlash, humanAttack, cpuAttack, attackStepOver, endAttackLocked, battleEndAttack, isGW, freeCores, moveCore, swapSoul, payCost, cpuCanPlay, coresAvailable, addCore, cpuKeepMagicOrPay, nameHTML, switchView, SET_KEY, dbFilterOK, cardColors, contractToDeck, redrawHand, cpuWantsRedraw, setHeavy, refreshOne, toRemoved, fxIf, costDestroyBonus, sendToken, canSendToken, tokenHome, attackSymbols, TOKEN_SUPPLY, isSpiritForm, ocActive, braveFits, braveTargets, combineBrave, braveSummon, separateBrave, canSeparate, braveRecheck, braveAfford, cpuBrave, handButtons, minCores, openFieldModal, cpuMain, VERSION, defBuiltin, beginTurn, endStep, newGame, takeFromVoid, checkDepletion, removeSpirit, lvIndex, mirageUsable, cpuCastMain, magicFx, magicText, costAltActive, flagActive, coresSent, startAttackFx, win, recordMatch, HISTORY: () => HISTORY, toggleLog, effectTextHTML, effectLines, titleCase, liveStatusHTML, openZoom, modal, closeModal, startPeek, SETTINGS, SLOTS: () => SLOTS, loadSlots, get ACTIVE_SLOT() { return ACTIVE_SLOT; }, switchSlot, loadPrebuilt, PREBUILT, cpuDeckFor, saveSettings, PACK_IDS, registerPack, clearImported, summonPaid, reviveTargets, doRevive, handUp, contractAdventTargets, doContractAdvent, manifestTargets, doManifest, soulCoreHolder, rng, seedRng, newSeed, runReplay, lastReplay, fireFxMulti, asResolving, replayOf, loadScenario, gameAct, matchSummary, get REPLAY() { return REPLAY; }, soulSource, soulToNexus, fxImmune, residualHTML, cardDetailHTML, setSimDeckB(d, key) { SIM_DECK_B = d; SIM_DECK_B_KEY = key || null; }, activatable, activateFx, cpuActivate, toSoulState, bounceCard, runActions, maybeBurst, flushBursts, summonFree, parseBurst, parseActionList, BURST_WHEN, fireFx, parseEffects, staticBp, FX_ACTIONS, removeNexus, magicUsable, magicTargets, castMagic, flashTiming, cpuFlashChoice, setFormat, validateDeck, legalityOf, banStatus, get FORMAT() { return FORMAT; }, isPC, applyLayout, testSetup, mkInst, draw, keyOfDeck, pickKey, render, takeCores, IMG, cardImgSrc, imgCls, imgSty, importCards, importImages, textToDeck, deckToText, parseCard, loadImages, get PLAYER_DECK() { return PLAYER_DECK; }, get G() { return G; }, startNewGame, checkInvariants, CARDS, PRESET_DECK, humanCan, onNext, engineIdle, runPortRecord, viewerReplayOf, openViewer, replayFromRecord, portRecord, boardSnapshot, sendIntent, applyIntent, seatLoopOpen, cpuAnswer, INTENT_TYPES, cpuTurn, doBattle, summon, effCost, legacyPlan, legacyPay, canBlockState, canPlayCard, setBurst, fieldList, bpOf, get SESSION() { return SESSION; }, CPU_PROFILES, cpuProfileName, cpuEval, cpuPlayScore, cpuPlayChoice, cpuLethal, cpuAttackScore, cpuAttackChoice, cpuBlockScore, cpuChooseBlock, setCpuProfile, setSimProfiles(o) { CPU_SIM_PROFILES = Object.assign({}, o || {}); }, lifeValue, symbolAttrs, fieldSymbols, symbolsOn, reductionOf, extraReduction };
+window.BS = { io, bindHost, EMOTES, emoteLeft, emoteSend, setEmoteClock: f => { EMOTE_NOW = f; }, BAN_LIST_INFO, webPick, maxCopies, prebuiltLabel, fmtButton, defaultDeck, get CPU_DECK_NAME() { return CPU_DECK_NAME; }, SLEEVE_IMG, renderDecks, animMode, fxCueReset, aeRibbon, endOfBattle, MAT, matUse, setSection, navSync, renderHome, themePop, soulMagicOK, soulMagicHolder, soulMagicPick, THEME, THEME_COLS, setTheme, stepClick, stepTargets, get FX_STRICT() { return FX_STRICT; }, setFxStrict(v) { FX_STRICT = !!v; }, FX_WARNED, collectFx, setFuzz(o) { FUZZ = Object.assign({}, o || {}); }, get FUZZ() { return FUZZ; }, fuzzPick, ERR_LOG, errReport, onGameError, releaseStandby, leaveStandby, renderDeckBuilder, dbChange, dbUndo, dbSheet, DBF, get DB_UNDO() { return DB_UNDO.length; }, accelList, accelCost, accelOK, accelSources, useAccel, removedSummonable, summonFromRemoved, cpuAccelScore, cpuAccelMain, cpuAccelFlash, cpuSilverWheel, highSpeedOK, highSpeedSources, highSpeedSummon, cpuHighSpeed, isSealed, soulToLife, lifeTake, braveSummonedFx, abTaxOK, payAbTax, oppAttackHandFx, sentToTrashFx, magicFxAt, summonOK, lvNo, isUlt, noBlockActive, burstFlash, cpuBurstFlash, humanAttack, cpuAttack, attackStepOver, endAttackLocked, battleEndAttack, isGW, freeCores, moveCore, swapSoul, payCost, cpuCanPlay, coresAvailable, addCore, cpuKeepMagicOrPay, nameHTML, switchView, SET_KEY, dbFilterOK, cardColors, contractToDeck, redrawHand, cpuWantsRedraw, setHeavy, refreshOne, toRemoved, fxIf, costDestroyBonus, sendToken, canSendToken, tokenHome, attackSymbols, TOKEN_SUPPLY, isSpiritForm, ocActive, braveFits, braveTargets, combineBrave, braveSummon, separateBrave, canSeparate, braveRecheck, braveAfford, cpuBrave, handButtons, minCores, openFieldModal, cpuMain, VERSION, defBuiltin, beginTurn, endStep, newGame, takeFromVoid, checkDepletion, removeSpirit, lvIndex, mirageUsable, cpuCastMain, magicFx, magicText, costAltActive, flagActive, coresSent, startAttackFx, win, recordMatch, HISTORY: () => HISTORY, toggleLog, effectTextHTML, effectLines, titleCase, liveStatusHTML, openZoom, modal, closeModal, startPeek, SETTINGS, SLOTS: () => SLOTS, loadSlots, get ACTIVE_SLOT() { return ACTIVE_SLOT; }, switchSlot, loadPrebuilt, PREBUILT, cpuDeckFor, saveSettings, PACK_IDS, registerPack, clearImported, summonPaid, reviveTargets, doRevive, handUp, contractAdventTargets, doContractAdvent, manifestTargets, doManifest, soulCoreHolder, rng, seedRng, newSeed, runReplay, lastReplay, fireFxMulti, asResolving, replayOf, loadScenario, gameAct, matchSummary, get REPLAY() { return REPLAY; }, soulSource, soulToNexus, fxImmune, residualHTML, cardDetailHTML, setSimDeckB(d, key) { SIM_DECK_B = d; SIM_DECK_B_KEY = key || null; }, activatable, activateFx, cpuActivate, toSoulState, bounceCard, runActions, maybeBurst, flushBursts, summonFree, parseBurst, parseActionList, BURST_WHEN, fireFx, parseEffects, staticBp, FX_ACTIONS, removeNexus, magicUsable, magicTargets, castMagic, flashTiming, cpuFlashChoice, setFormat, validateDeck, legalityOf, banStatus, get FORMAT() { return FORMAT; }, isPC, applyLayout, testSetup, mkInst, draw, keyOfDeck, pickKey, render, takeCores, IMG, cardImgSrc, imgCls, imgSty, importCards, importImages, textToDeck, deckToText, parseCard, loadImages, get PLAYER_DECK() { return PLAYER_DECK; }, get G() { return G; }, startNewGame, checkInvariants, CARDS, PRESET_DECK, humanCan, onNext, engineIdle, runPortRecord, viewerReplayOf, openViewer, replayFromRecord, portRecord, boardSnapshot, sendIntent, applyIntent, seatLoopOpen, cpuAnswer, INTENT_TYPES, cpuTurn, doBattle, summon, effCost, legacyPlan, legacyPay, canBlockState, canPlayCard, setBurst, fieldList, bpOf, get SESSION() { return SESSION; }, CPU_PROFILES, cpuProfileName, cpuEval, cpuPlayScore, cpuPlayChoice, cpuLethal, cpuAttackScore, cpuAttackChoice, cpuBlockScore, cpuChooseBlock, setCpuProfile, setSimProfiles(o) { CPU_SIM_PROFILES = Object.assign({}, o || {}); }, lifeValue, symbolAttrs, fieldSymbols, symbolsOn, reductionOf, extraReduction };
 navSync();
 renderLobby();
 loadImages();
