@@ -1031,14 +1031,14 @@
  {
   "id": "kw:rumble",
   "name": "Rumble",
-  "status": "missing",
-  "glossary": [],
+  "status": "done",
+  "glossary": ["K_RUMBLE"],
   "prep": {
-   "rules": "",
-   "data": "",
-   "lever": ""
+   "rules": "Fandom keyword page \"Rumble\" (FAQ 31592-31594, 31621)",
+   "data": "Fandom export text ({{Rumble|X}} in 26RBS01 / 26RBS02)",
+   "lever": "v0.118.0 (action RUMBLE {n:1-7} in 02o-effects-battle-end.js)"
   },
-  "note": "no engine/compiler/test match (A4 grep 2026-10-19)",
+  "note": "test RUM-01..05; +4 complete (26RBS01-079/084/087, 26RBS02-067)",
   "verified": true
  },
  {

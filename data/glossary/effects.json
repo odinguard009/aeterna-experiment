@@ -1418,5 +1418,15 @@
     "status": "wired",
     "example": "{\"if\":{\"magicUsed\":{\"family\":[\"Topaz\"]}}}",
     "rule": "Standard Comprehensive Rules 12-2 has no numbered entry for using a Magic card (it is an ordinary game action, SJP:main-step); the engine records every Magic the player uses this turn (MAGIC_USED) and this condition reads that record."
+  },
+  {
+    "id": "K_RUMBLE",
+    "kind": "keyword",
+    "meaning": "Rumble (During Attack): at the end of battle, discard X cards from the opposing decktop, minus the cost of the blocking Spirit in the opposing Trash",
+    "pattern": "\\bRumble\\b",
+    "engine": "action RUMBLE {n:1-7} (queued at ATTACKS, resolved at the end of battle)",
+    "status": "wired",
+    "example": "{\"trigger\":\"ATTACKS\",\"lv\":[1,2],\"actions\":[{\"do\":\"RUMBLE\",\"n\":3}]}",
+    "rule": "Standard keyword; official Q&A 31592-31594, 31621 (read via the Fandom \"Rumble\" page). Engine: action RUMBLE {n:1-7}."
   }
 ]

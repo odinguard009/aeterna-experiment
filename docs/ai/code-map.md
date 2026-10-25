@@ -2,7 +2,7 @@
 
 Top-level names per source part. Find the part here, then `grep -n "<name>" <part path>` and read only that range.
 
-## packages/engine/src/00-config.js (95 lines, ~2.9k tokens)
+## packages/engine/src/00-config.js (96 lines, ~2.9k tokens)
 SIM, STEPS, STEPS_STANDARD, FORMAT_KEY, FORMAT, STANDARD_BLOCKS, BAN_LIST_INFO, BANNED, LIMITED1, normCardNo, BAN_LISTS, banStatus, maxCopies, standardLegal, legalityOf, ABORT, other, esc, cap, TC_MINOR, titleCase, RNG_STATE, KEY_WEIGHT, seedRng, rng, newSeed, shuffle, removeFrom, KEYWORD_GLOSSARY, MAGIC_FX, MAGIC_TIMINGS, SYMBOL_KINDS
 
 ## apps/web/src/00b-errors.js (57 lines, ~1.1k tokens) — IN-GAME ERROR CATCHER (v0.59.5, Q1 quality bundle, Aegis idea)
@@ -62,7 +62,7 @@ INVOKE_WHEN, INVOKE_COSTS, invokeMatchOK, invokeParse, invokeWhenOK, exhaustOwnC
 ## packages/engine/src/02n-effects-void-destinations.js (64 lines, ~1.4k tokens)
 
 
-## packages/engine/src/02o-effects-battle-end.js (66 lines, ~1.3k tokens)
+## packages/engine/src/02o-effects-battle-end.js (83 lines, ~1.6k tokens)
 endOfBattle
 
 ## packages/engine/src/02p-effects-shared-shapes.js (187 lines, ~3.8k tokens)

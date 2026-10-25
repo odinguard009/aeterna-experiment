@@ -4,6 +4,15 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.118.0
+- Lane: K
+- Time: ~70 min (session start → release), deepseek-v4-pro; tokens not counted (no gate counter in this harness).
+- **Rumble keyword head (`{{Rumble|X}}`), the Blue deck's mill mechanic — first Standard block A keyword of the K lane.** `{{Rumble|X}} (During Attack)`: at the end of the battle, discard X cards from the opposing decktop, minus the cost of the blocking Spirit card when it is now in the opposing Trash (Fandom keyword page "Rumble", official Q&A 31592-31594/31621). Engine:
+  - Action `RUMBLE {n:1-7}` in `02o-effects-battle-end.js`, queued at the `ATTACKS` trigger and resolved in `endOfBattle()` next to Curse/Brilliance, so it shares their timing and survival rules: the attacker must still be on the Field, only a Spirit blocker that reached the Trash reduces the mill (a bounced blocker or an Ultimate blocker does not), and the mill is clamped at 0 when the blocker's cost covers X.
+  - `RUMBLE` added to `KEYWORD_GLOSSARY`, and the 10 `{{Rumble|X}}` cards carry `keywords: ["Rumble"]` so the later "Spirit with Rumble" support cards can match them. Effect schema **v6** (84 actions; addition only).
+  - **+4 complete**: 26RBS01-079 Fergus, -084 Ganasha, -087 Madra-Magona, 26RBS02-067 Phalotes. Six more Rumble holders now run their Rumble clause and keep only their other residual (26RBS01-077/-081/-082/-089/-X18, 26RBS02-070 — "Your End Step refresh", "two or more Blue symbols", "draw two then return two", and "when discarded by your Rumble").
+- Tests: `tests/unit/rumble.test.mjs` RUM-01..05 (unblocked full mill, blocker cost covers X → 0, cost 1 → X−1, attacker destroyed → no mill, shipped cards carry the keyword/effect), scenario `tests/scenarios/rumble-end-of-battle-mill.json`; size budget B01 raised 740 → 745 KB (the first Standard keyword head is new engine code). `npm run -s loop` and `fx_validate --static` green.
+
 ## v0.117.0
 - Lane: U/I
 - Time: ~40 min (two tasks: the unfinished v0.116.0 release tail, then the gate repair), deepseek-v4-flash-vision-exp; tokens not counted (no gate counter in this harness).

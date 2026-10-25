@@ -24,6 +24,13 @@
     run: async c => queue(c, { curse: true }) };
   FX_ACTIONS.BRILLIANCE = { chk: () => true, txt: () => 'Brilliance: at the end of this battle, return every Magic card you used during this battle to your Hand', can: () => inBattle(),
     run: async c => queue(c, { brilliance: true }) };
+  /* v0.118.0 Rumble {{Rumble|X}} (During Attack): at the end of the battle, discard X cards from the opposing decktop,
+     minus the cost of the Spirit card that blocked, when that blocker is now in the opposing Trash (FAQ 31592-31594, 31621:
+     only a Spirit blocker counts; a returned / bounced blocker does not reduce; the attacker must still be on the Field). */
+  FX_ACTIONS.RUMBLE = { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 7,
+    txt: a => `Rumble ${a.n}: at the end of this battle, discard ${a.n} cards from the opposing decktop, minus the cost of the blocking Spirit in their Trash`,
+    can: () => inBattle(),
+    run: async (c, a) => queue(c, { rumble: a.n }) };
   FX_ACTIONS.DESTROY_SELF = { chk: () => true, txt: () => 'destroy this Spirit', can: c => c.p.spirits.includes(c.src),
     run: async c => { if (!c.p.spirits.includes(c.src)) { c.ctx.did = false; return; } log(`${CARDS[c.src.id].name} is destroyed by its own effect.`); removeSpirit(c.p, c.src, 'destroyed', false); checkDepletion(c.p); } };
   const R = FX_ACTIONS.REFRESH, rChk = R.chk, rCan = R.can, rRun = R.run, rTxt = R.txt;
@@ -57,6 +64,16 @@ async function endOfBattle() {
       for (const m of back) { removeFrom(q.p.trash, m); q.p.hand.push(m); }
       if (back.length) { log(`${name}: Brilliance returns ${back.map(m => CARDS[m.id].name).join(', ')} to the Hand.`); handUp(q.p, back.length); }
       continue;
+    }
+    if (q.rumble) {
+      let n = q.rumble;
+      const b = G.blocker;
+      if (b && q.opp.trash.includes(b) && CARDS[b.id].type === 'Spirit') n -= CARDS[b.id].cost;   // FAQ 31592/31621: only a Spirit blocker in the Trash reduces the mill
+      if (n <= 0) { log(`${name}: Rumble discards nothing (the blocker's cost covers it).`); continue; }
+      const top = q.opp.deck.splice(0, Math.min(n, q.opp.deck.length));
+      for (const x of top) q.opp.trash.push(x);
+      log(`${name}: Rumble discards ${top.length} card${top.length === 1 ? '' : 's'} from ${poss(q.opp)} Deck.`);
+      io.view({ type: 'board' }); continue;
     }
     await asResolving(() => runActions({ p: q.p, opp: q.opp, src: q.src, ctx: q.ctx }, { actions: q.then }, 'END_BATTLE'));
     io.view({ type: 'board' });

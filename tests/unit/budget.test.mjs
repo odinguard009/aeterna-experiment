@@ -28,7 +28,9 @@ const packLen = between('/*PACK_START*/', '/*PACK_END*/'), code = html.slice(0, 
 // v0.111.0 (card images): raised 730 -> 740 KB (B01) and 208 -> 212 KB (B02) on purpose: the Library browse grid
 // (apps/web/src/14-images.js + the Library section of the template) is a windowed, searchable grid of every card - the
 // card-images feature's browsable view. It reuses the deck builder's index and grid CSS but adds its own filter/window.
-test('B01 index.html without the card pack stays under 740 KB', () => assert.ok(Buffer.byteLength(code) < 740e3, Buffer.byteLength(code)));
+// v0.118.0 (Rumble keyword): raised 740 -> 745 KB (B01) on purpose: the RUMBLE action + KEYWORD_GLOSSARY entry are the
+// first Standard keyword head of the K lane; a new mechanic is engine code, not dead weight.
+test('B01 index.html without the card pack stays under 745 KB', () => assert.ok(Buffer.byteLength(code) < 745e3, Buffer.byteLength(code)));
 test('B02 index.html without the card pack, gzipped, stays under 212 KB', () => { const n = gzipSync(code, { level: 9 }).length; assert.ok(n < 212e3, n); });
 test('B03 the embedded card pack stays under 1.6 MB (room for all cards; never embed staging data)', () => assert.ok(packLen < 1.6e6, packLen));
 // v0.93.0 (U6): raised 90 -> 96 KB on purpose (roadmap item U allows it with a note): U6-U8 add the My decks page and the
