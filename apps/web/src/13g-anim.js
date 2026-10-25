@@ -24,10 +24,10 @@ function aeFx(cls, r, html, ms) {
   L.appendChild(d); setTimeout(() => d.remove(), ms || 700);
   return d;
 }
-function aeBeam(a, b, cpu, still) {               // a, b: rects; a line from centre to centre, scaled in from the attacker
+function aeBeam(a, b, cpu, still) {               // a, b: rects; v0.124.0 U14d: a thick arrow from centre to centre (after the attacker has turned), scaled in from the attacker
   if (!a || !b) return;
   const x1 = a.x + a.w / 2, y1 = a.y + a.h / 2, dx = b.x + b.w / 2 - x1, dy = b.y + b.h / 2 - y1, len = Math.hypot(dx, dy);
-  const d = aeFx(`ae-a-beam${cpu ? ' cpu' : ''}${still ? ' still' : ''}`, { x: x1, y: y1 - 5, w: len, h: 10 }, '', 650);
+  const d = aeFx(`ae-a-beam${cpu ? ' cpu' : ''}${still ? ' still' : ' arrow'}`, { x: x1, y: y1 - 11, w: len, h: 22 }, '', 850);
   if (d) d.style.setProperty('--r', `rotate(${Math.atan2(dy, dx)}rad)`);
 }
 function animCues() {
@@ -36,7 +36,7 @@ function animCues() {
   if (mode === 'off') { ANIM = null; return; }
   for (const k of ['player', 'opponent']) for (const f of fieldList(G.p[k])) {
     const c = CARDS[f.id]; if (!c) continue;
-    cards.set(f.uid, { k, bp: isSpiritForm(c) ? bpOf(f) : null, lv: isSpiritForm(c) ? lvNo(f) : null, r: rectOf(document.querySelector(`[data-a="field"][data-v$=":${f.uid}"]`)) });
+    cards.set(f.uid, { k, ex: f.heavy ? 180 : f.exhausted ? 90 : 0, bp: isSpiritForm(c) ? bpOf(f) : null, lv: isSpiritForm(c) ? lvNo(f) : null, r: rectOf(document.querySelector(`[data-a="field"][data-v$=":${f.uid}"]`)) });
   }
   const now = { g: G, cards, hand: new Set(G.p.player.hand.map(h => h.uid)), life: { player: G.p.player.life, opponent: G.p.opponent.life },
     att: G.attacker ? G.attacker.uid : null, blk: G.blocker ? G.blocker.uid : null };
@@ -46,10 +46,19 @@ function animCues() {
   for (const [uid, c] of cards) {
     const o = prev.cards.get(uid);
     if (!o) { aeFx('ae-a-sum' + (c.k === 'opponent' ? ' cpu' : ''), c.r, '', 500); continue; }
+    if (full && c.ex !== o.ex) { const e = document.querySelector(`[data-a="field"][data-v$=":${uid}"]`); if (e && e.animate) e.animate([{ transform: `rotate(${o.ex}deg)` }, { transform: `rotate(${c.ex}deg)` }], { duration: 280, easing: 'ease-out' }); }   // one Refresh = one level (180 -> 90 -> 0)
     if (c.lv != null && o.lv != null && c.lv > o.lv) aeFx('ae-a-lv', c.r, '', 600);
     if (c.bp != null && o.bp != null && c.bp !== o.bp) aeFx('ae-a-bp' + (c.bp < o.bp ? ' down' : ''), c.r, `${c.bp > o.bp ? '+' : '−'}${Math.abs(c.bp - o.bp)}`, 650);
   }
-  for (const [uid, o] of prev.cards) if (!cards.has(uid)) aeFx('ae-a-die', o.r, '', 550);
+  for (const [uid, o] of prev.cards) if (!cards.has(uid)) {
+    aeFx('ae-a-die', o.r, '', 550);
+    if (!full || !o.r) continue;                    // v0.124.0 U14d: flash, shards and dust where the card stood
+    aeFx('ae-a-flash', o.r, '', 350);
+    for (let i = 0; i < 6; i++) {
+      const d = aeFx('ae-a-card-shard', { x: o.r.x + o.r.w / 2 - 6, y: o.r.y + o.r.h / 2 - 6, w: 12, h: 12 }, '', 700), a = i * Math.PI / 3 + 0.3;
+      if (d) { d.style.setProperty('--dx', Math.round(Math.cos(a) * 54) + 'px'); d.style.setProperty('--dy', Math.round(Math.sin(a) * 54 + 10) + 'px'); }
+    }
+  }
   for (const k of ['player', 'opponent']) {
     if (!(now.life[k] < prev.life[k])) continue;
     const r = rectOf(visEl(`[data-a="zone"][data-v="${k}:life"]`)); if (!r) continue;

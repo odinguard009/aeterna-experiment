@@ -5,7 +5,7 @@
   "waitingHtml": "<b>Waiting on you:</b> nothing; Report Bug and missions / ranks / avatars are decided (2026-10-25).",
   "updated": "25 Oct 2026",
   "updatedAt": "0.121.0",
-  "next": "next: the v14 UI/UX redesign U14d-U14i ( card commands, animations, battle phone, deck builder, library + lore, pages, dialogs + Report Bug), then card sessions (K) with Standard first"
+  "next": "next: the v14 UI/UX redesign U14d2-U14i ( card commands, animations, battle phone, deck builder, library + lore, pages, dialogs + Report Bug), then card sessions (K) with Standard first"
  },
  "phases": [
   {
@@ -815,8 +815,12 @@
      "t": "U14c Battle commands (v0.123.0): menu names Summon / Place Nexus / + Core / - Core / Card Info; no manual Exhaust (rules); the rest was already in"
     },
     {
+     "s": "done",
+     "t": "U14d part 1 (v0.124.0): arrow attack, destroy flash + shards, exhaust / heavy exhaust turn"
+    },
+    {
      "s": "next",
-     "t": "U14d Battle animation: arrow attack, destroy shatter, exhaust levels, soul core, emoticons"
+     "t": "U14d2 (engine events): core moves, Burst, Soul Core move, effect notice panel, emoticons (30 s limit)"
     },
     {
      "s": "next",

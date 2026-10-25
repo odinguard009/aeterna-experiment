@@ -32,8 +32,9 @@ const packLen = between('/*PACK_START*/', '/*PACK_END*/'), code = html.slice(0, 
 // first Standard keyword head of the K lane; a new mechanic is engine code, not dead weight.
 // v0.121.0 (U14a): the three embedded UI fonts (SIL OFL Latin subsets, ~52 KB) have their own budget B14, so B01/B02/B04 measure the page without them.
 // B01 raised 745 -> 750 KB on purpose in the same release: the U14a foundations CSS (tokens, parallelogram shape, soft light palette).
+// v0.124.0 (U14d): raised 750 -> 760 KB on purpose: the Card Panel (U14b) and the arrow / shatter / exhaust-turn cues; U14e-U14i add more, each with a note.
 const FONT_URL = /url\(data:font\/woff2;base64,[A-Za-z0-9+/=]+\)/g, noFont = t => t.replace(FONT_URL, 'url()');
-test('B01 index.html without the card pack stays under 750 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 750e3, Buffer.byteLength(noFont(code))));
+test('B01 index.html without the card pack stays under 760 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 760e3, Buffer.byteLength(noFont(code))));
 test('B02 index.html without the card pack, gzipped, stays under 212 KB', () => { const n = gzipSync(noFont(code), { level: 9 }).length; assert.ok(n < 212e3, n); });
 test('B03 the embedded card pack stays under 1.6 MB (room for all cards; never embed staging data)', () => assert.ok(packLen < 1.6e6, packLen));
 // v0.93.0 (U6): raised 90 -> 96 KB on purpose (roadmap item U allows it with a note): U6-U8 add the My decks page and the

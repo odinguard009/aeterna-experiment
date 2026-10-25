@@ -4,6 +4,16 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.124.0
+- Lane: U/I
+- Time: ~25 min (session start → release), claude-sonnet-5-5; tokens not counted (no gate counter in this harness).
+- **U14d part 1 Battle animation: arrow attack, destroy shatter, exhaust turn.** Fourth step of the v14 redesign; board-diff cues only (`apps/web/src/13g-anim.js`), no engine change.
+  - **Arrow attack:** the old thin beam is a thick arrow with a head that shoots after the attacker has turned (0.18 s delay); Reduced keeps the still fade.
+  - **Destroy:** a flash and six shards where the card stood, on top of the existing fade (Full only).
+  - **Exhaust:** a card that exhausts turns 90 degrees, a heavy exhaust 180, and a Refresh turns it back one level, as a Web Animation on the card (transform only, the locked cells never move). Reduced and Off do not animate.
+  - **Part 2 (U14d2, Opus) stays queued:** core moves, Burst and Soul Core move need engine events, plus the effect notice panel and the emoticons with the 30 s limit.
+  - Budget: B01 raised 750 → 760 KB (note in the test). Tests: `tests/unit/battle_animations_v14.test.mjs` (AN01-AN03). No screenshot: the cues last under a second and tests assert them in the overlay. Backup branch `backup/v0.123.0`.
+
 ## v0.123.0
 - Lane: U/I
 - Time: ~25 min (session start → release), claude-sonnet-5-5 (the item is listed for Opus; it turned out to be naming only); tokens not counted (no gate counter in this harness).

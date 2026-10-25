@@ -986,3 +986,10 @@
   #card-panel .cp-face .cface { width: 100%; }
   #card-panel .cp-info { margin-top: 8px; font-size: 11px; line-height: 1.4; }
   #card-panel .cp-hint { color: var(--ae-text2); font-size: 12px; text-align: center; padding: 24px 6px; }
+
+  /* ---- U14d battle animation (v0.124.0): arrow attack, destroy flash + shards ---- */
+  .ae-a-beam.arrow { clip-path: polygon(0 38%, calc(100% - 26px) 38%, calc(100% - 26px) 0, 100% 50%, calc(100% - 26px) 100%, calc(100% - 26px) 62%, 0 62%); background: linear-gradient(90deg, transparent, var(--you) 25%, #fff); animation: aeArrow .8s ease-out both; animation-delay: .18s; }
+  .ae-a-beam.arrow.cpu { background: linear-gradient(90deg, transparent, var(--cpu) 25%, #fff); }
+  .ae-a-flash { background: radial-gradient(closest-side, #fff, #fff0); animation: aeFade .35s ease-out both; }
+  .ae-a-card-shard { background: linear-gradient(135deg, #fff, var(--ae-card1)); clip-path: polygon(0 0, 100% 30%, 60% 100%); animation: aeShard .7s ease-out both; }
+  @keyframes aeArrow { 0% { transform: var(--r) scaleX(0); opacity: 0; } 40% { opacity: 1; transform: var(--r); } 100% { opacity: 0; transform: var(--r); } }

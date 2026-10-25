@@ -140,7 +140,7 @@ AUDIO, sfx, showGameOver, ACT, ACT_Q, actFlush, webAction, sendIntent, webView, 
 ## apps/web/src/13f-replay.js (61 lines, ~1.4k tokens) — REPLAY VIEWER (v0.86.0, phase F4 part 2 = monorepo step M4 rest; formats: packages/engine/src/15b-replay.js)
 rvName, rvCards, rvField, rvSideHTML, rvFrameHTML, openViewer, replayFromRecord, replayWatch, replaySave, replayOpenFile
 
-## apps/web/src/13g-anim.js (70 lines, ~1.3k tokens) — v0.92.0 U5b LIGHT BATTLE ANIMATIONS (roadmap item U, owner 2026-10-21; docs/DESIGN.md section 0, U5b)
+## apps/web/src/13g-anim.js (79 lines, ~1.5k tokens) — v0.92.0 U5b LIGHT BATTLE ANIMATIONS (roadmap item U, owner 2026-10-21; docs/DESIGN.md section 0, U5b)
 animMode, ANIM, rectOf, visEl, aeFx, aeBeam, animCues
 
 ## apps/web/src/13h-decks.js (97 lines, ~2.2k tokens) — v0.93.0 U6 MY DECKS (docs/DESIGN.md section 0, mockup docs/design/mockup-v11.html "My decks PC / phone")
