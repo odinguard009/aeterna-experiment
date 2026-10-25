@@ -4,6 +4,15 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.129.0
+- Lane: U/I
+- Time: ~25 min (session start → release), claude-sonnet-5-5; tokens not counted (no gate counter in this harness).
+- **U14f2 Deck builder: fly-to-deck and long-press for card info.** Ninth step of the v14 redesign.
+  - **Fly-to-deck:** adding a card from the grid flies a small card to the deck panel (Full animations only; Reduced and Off show nothing).
+  - **Long-press for card info (touch):** holding a grid card for about half a second opens its card detail instead of adding it, and the tap that ends the hold adds nothing. A new Settings row **Long-press for card info** (On by default) turns it off; PC clicks are unchanged.
+  - **Moved:** the alternative art picker needs a per-card list of alternative images, which U14g builds, so it moves there. **Left for U14f3:** Group / Colour dropdowns and the phone toolbar rows that scroll sideways.
+  - Tests: `tests/unit/deckbuilder_v14_part2.test.mjs` (LP1-LP2, FL1, ST1). Backup branch `backup/v0.128.0`.
+
 ## v0.128.0
 - Lane: U/I
 - Time: ~50 min (session start → release), claude-sonnet-5-5 (U14f is listed for Opus; this part is UI only); tokens not counted (no gate counter in this harness).

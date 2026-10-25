@@ -180,7 +180,9 @@ function dbChange(id, d) {
   if (d < 0 && n <= 0) return false;
   dbSnap();
   if (n + d > 0) PLAYER_DECK[id] = n + d; else { delete PLAYER_DECK[id]; if (SLOTS[ACTIVE_SLOT].key === id) delete SLOTS[ACTIVE_SLOT].key; }   // the last copy leaves: the Key mark goes with it (v0.103.0)
+  const from = d > 0 ? dbFlyFrom(id) : null;
   saveDeck(); DBV.pulse = d > 0 ? id : ''; renderDeckBuilder(); DBV.pulse = '';
+  if (from) dbFlyTo(id, from);
   return true;
 }
 function dbReplace(deck) { dbSnap(); PLAYER_DECK = deck; saveDeck(); renderDeckBuilder(); }
@@ -210,6 +212,22 @@ function dbSize(v) {
   dqa('[data-a="db-size"]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === v)));
   const g = $('db-card-list'); g.style.setProperty('--db-cw', DB_SIZES[v] + 'px'); DBV.rowH = 0; renderDeckBuilder();
 }
+/* v0.129.0 U14f2: a small card flies from the grid to the deck panel when you add it (Full animations only) */
+function dbFlyFrom(id) { if (animMode() !== 'full') return null; const e = document.querySelector(`#db-card-list [data-v="${id}"]`); return e ? rectOf(e) : null; }
+function dbFlyTo(id, a) {
+  const t = rectOf(visEl('#db-deck .db-rows')) || rectOf(visEl('#db-deck')), L = $('ae-fx'); if (!t || !L) return;
+  const d = document.createElement('div'); d.className = 'ae-a-flyc'; d.style.cssText = `left:${a.x + a.w / 2 - 14}px;top:${a.y + a.h / 2 - 19}px;--card-color:${colorVar(CARDS[id].symbol)}`; L.appendChild(d);
+  const run = d.animate([{ transform: 'translate(0,0) scale(1)', opacity: 1 }, { transform: `translate(${t.x + 30 - a.x - a.w / 2}px,${t.y + 20 - a.y - a.h / 2}px) scale(.5)`, opacity: .6 }], { duration: 380, easing: 'ease-in' });
+  run.onfinish = () => d.remove(); setTimeout(() => d.remove(), 800);
+}
+/* long-press (touch): hold a grid card to read it; the tap that follows is ignored (setting "Long-press for card info") */
+let DB_LP = 0, DB_LP_AT = 0;
+document.addEventListener('pointerdown', e => {
+  const c = evC(e, '#db-card-list [data-a="dbcard"]'); clearTimeout(DB_LP);
+  if (!c || e.pointerType !== 'touch' || SETTINGS.longpress === 'off') return;
+  DB_LP = setTimeout(() => { DB_LP_AT = Date.now(); showCardDetail(c.dataset.v, 'deck'); }, 550);
+});
+['pointerup', 'pointercancel', 'pointermove', 'scroll'].forEach(n => document.addEventListener(n, () => clearTimeout(DB_LP), true));
 /* hover peek (PC): the card enlarged beside the pointer after a short pause */
 let DB_PEEK = 0;
 function dbPeekHide() { clearTimeout(DB_PEEK); const p = $('db-peek'); if (p) p.remove(); }
@@ -224,7 +242,7 @@ document.addEventListener('mouseover', e => {
   }, 350);
 });
 document.addEventListener('scroll', dbPeekHide, true);
-function dbTap(id) { if (!dbChange(id, 1)) showCardDetail(id, 'deck'); }   // illegal or at max: the detail says why
+function dbTap(id) { if (Date.now() - DB_LP_AT < 800) return; if (!dbChange(id, 1)) showCardDetail(id, 'deck'); }   // illegal or at max: the detail says why
 function dbKey(id) {                // the deck's Key Spirit mark: one Spirit per deck; unmark by pressing again (v0.103.0)
   if (!CARDS[id] || CARDS[id].type !== 'Spirit') return;
   if (SLOTS[ACTIVE_SLOT].key === id) delete SLOTS[ACTIVE_SLOT].key;

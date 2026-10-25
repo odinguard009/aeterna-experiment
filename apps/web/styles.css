@@ -1028,3 +1028,6 @@
   .db-topcount.bad::before { --ring: #e0a030; }
   #db-peek { position: fixed; z-index: 80; width: 260px; padding: 8px; display: flex; gap: 8px; background: var(--ae-panel1); color: var(--ae-text); box-shadow: inset 0 0 0 1px var(--ae-line2), 0 10px 30px #0008; pointer-events: none; }
   #db-peek .dbp-face { flex: none; width: 96px; } #db-peek .dbp-face .cface { width: 100%; } #db-peek .dbp-fx { font-size: 10px; line-height: 1.35; max-height: 180px; overflow: hidden; }
+
+  /* ---- U14f2 (v0.129.0): fly-to-deck ---- */
+  .ae-a-flyc { position: fixed; width: 28px; height: 38px; pointer-events: none; background: linear-gradient(160deg, var(--card-color, #888), #1a1e26); box-shadow: 0 0 0 1px #fff8, 0 4px 10px #0008; clip-path: var(--par); }
