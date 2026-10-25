@@ -1037,3 +1037,10 @@
   #db-f-groups { display: none; }
   .db-dd-phone { display: none; }
   html.layout-mobile .db-dd-phone { display: block; } html.layout-mobile #db-f-colors { display: none; }
+
+  /* ---- U14g Lore (v0.131.0) ---- */
+  .lore-list { display: grid; gap: 6px; margin-top: 8px; }
+  .lore-item { display: grid; grid-template-columns: 1fr auto; gap: 2px 10px; padding: 8px 12px; background: var(--ae-panel2); color: var(--ae-text); box-shadow: inset 4px 0 0 var(--lc, var(--you)), inset 0 0 0 1px var(--ae-line); cursor: pointer; user-select: text; }
+  .lore-item b { font-family: var(--f-display); } .lore-item .lore-id { font-size: 11px; color: var(--ae-text3); }
+  .lore-item p { grid-column: 1 / -1; font-style: italic; font-size: 13px; color: var(--ae-text2); }
+  .lore-item:focus-visible { outline: 2px solid var(--you); outline-offset: -2px; }

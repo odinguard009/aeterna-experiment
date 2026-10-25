@@ -5,7 +5,7 @@
   "waitingHtml": "<b>Waiting on you:</b> nothing; Report Bug and missions / ranks / avatars are decided (2026-10-25).",
   "updated": "25 Oct 2026",
   "updatedAt": "0.121.0",
-  "next": "next: the v14 UI/UX redesign U14g-U14i ( card commands, animations, battle phone, deck builder, library + lore, pages, dialogs + Report Bug), then card sessions (K) with Standard first"
+  "next": "next: the v14 UI/UX redesign U14g2-U14i ( card commands, animations, battle phone, deck builder, library + lore, pages, dialogs + Report Bug), then card sessions (K) with Standard first"
  },
  "phases": [
   {
@@ -847,8 +847,12 @@
      "t": "U14f3 (v0.130.0): Group dropdown on every screen, Colour dropdown on phone"
     },
     {
+     "s": "done",
+     "t": "U14g part 1 (v0.131.0): Lore section of the Library + flavor data tool (5,462 cards)"
+    },
+    {
      "s": "next",
-     "t": "U14g Library, card page, Lore tab (flavor data tool)"
+     "t": "U14g2 Card page (tilt, levels, related, used in decks) and the alternative art picker"
     },
     {
      "s": "next",

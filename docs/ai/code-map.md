@@ -17,8 +17,8 @@ VIEW_TYPES, HOST_NONE, io, bindHost
 ## packages/engine/src/01-cards.js (33 lines, ~0.6k tokens) — CARD DATABASE (Training cards + the built-in pack is registered further below)
 VERSION, CARDS, defCard, TRAIN, PRESET_DECK
 
-## packages/engine/src/01a-card-pack.js (166 lines, ~2.4k tokens) — CARD PACK CODEC (v0.51.0; this part must load before 03-imported-cards.js: its consts are used at load): compact, synchronous format of the built-in card pack
-packBlockOf, packCards, unpackCards, INF_LBASE, INF_LEXT, INF_DBASE, INF_DEXT, INF_ORDER, inflateRaw, packBytes, loadPack
+## packages/engine/src/01a-card-pack.js (167 lines, ~2.4k tokens) — CARD PACK CODEC (v0.51.0; this part must load before 03-imported-cards.js: its consts are used at load): compact, synchronous format of the built-in card pack
+packBlockOf, packCards, unpackCards, INF_LBASE, INF_LEXT, INF_DBASE, INF_DEXT, INF_ORDER, inflateRaw, packBytes, loadFlavor, loadPack
 
 ## packages/engine/src/02a-effects-base.js (241 lines, ~5.9k tokens) — EFFECT ENGINE
 FX_STRICT, FX_WARNED, fxUnknown, FX_COND_KEYS, FX_TRIGGERS, FX_TRIGGER_TEXT, BR_IDX, fxEntries, fxMatch, canBlockState, fxIf, ctrlCount, spiritCount, PER_TYPES, perOk, perCount, ownerOf, STATIC_FLAGS, fxImmune, unaffectedBy, flagActive, costDestroyBonus, coresSent, staticBp, takeFromVoid, releaseCores, removeNexus, fxPickTarget, toSoulState, chooseCard, bounceCard, SOUL_SRC, hasMatch
@@ -158,7 +158,10 @@ PANEL_ID, cardPanelHTML, panelCardOf
 ## apps/web/src/13l-emote.js (35 lines, ~0.6k tokens) — EFFECT ACTIVE PANEL + EMOTICONS (v0.125.0, U14d2; docs/design/mockup-v14.html)
 EMOTES, EMOTE_GAP, EMOTE_AT, emoteLeft, effectPanel, emotePop, emoteSend
 
-## apps/web/src/14-images.js (237 lines, ~4.2k tokens) — CARD IMAGES
+## apps/web/src/13m-lore.js (23 lines, ~0.5k tokens) — LORE (v0.131.0, U14g; docs/design/mockup-v14.html): the English flavor texts of the cards, read in order by series.
+LORE_SET, lore, loreSeries, renderLore
+
+## apps/web/src/14-images.js (239 lines, ~4.3k tokens) — CARD IMAGES
 IMG, IDB, normKey, idbOpen, idbTx, setImg, loadImages, shrinkImage, stripExt, findCardByFile, findCardByKey, importImages, clearImages, cardImgSrc, imgCls, imgSty, refreshViews, libMsg, renderLibrary, LIBV, LIB_GAP, libSetOf, libFilter, libCardHTML, libWindow, renderLibraryGrid, libScroll, libSearchInput, deckToText, textToDeck, downloadText, readFileText, libAction
 
 ## packages/engine/src/15-match.js (69 lines, ~1.4k tokens) — MATCH START / END

@@ -8,7 +8,7 @@
 //                           across both folders as ONE classic script (tools/src_parts.mjs)
 //                           (top-level functions stay global: inline handlers, window.BS and tests rely on that)
 // The built-in card pack comes from build/all-cards.json (the Saga files joined; tools/all_cards.mjs writes it) (between /*PACK_START*/ and /*PACK_END*/).
-import { readFileSync, writeFileSync, readdirSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { deflateRawSync } from 'node:zlib';
@@ -56,6 +56,12 @@ function joinScript(parts, cards) {
   const tokens = JSON.parse(rd('data/cards/tokens.json'));
   if (js.split('/*TOKENS_START*//*TOKENS_END*/').length !== 2) throw new Error('expected exactly one empty token marker in the script parts');
   js = js.replace('/*TOKENS_START*//*TOKENS_END*/', () => '/*TOKENS_START*/const BUILTIN_TOKENS = ' + packBlob(tokens) + ';/*TOKENS_END*/');
+  // v0.131.0 U14g: English flavor text per card id (data/index/flavor.json, tools/fetch_flavor.py), a compressed blob for the Lore tab;
+  // only the web parts carry the marker, the headless engine script does not
+  if (js.includes('/*FLAVOR_START*//*FLAVOR_END*/')) {
+    const fp = join(ROOT, 'data/index/flavor.json'), fl = existsSync(fp) ? readFileSync(fp, 'utf8') : '{}';
+    js = js.replace('/*FLAVOR_START*//*FLAVOR_END*/', () => '/*FLAVOR_START*/const BUILTIN_FLAVOR = "' + deflateRawSync(Buffer.from(JSON.stringify(JSON.parse(fl)), 'utf8'), { level: 9 }).toString('base64') + '";/*FLAVOR_END*/');
+  }
   return js;
 }
 // v0.82.0 (F2 = M2): the script without the web host (packages/protocol + packages/engine parts only), for the

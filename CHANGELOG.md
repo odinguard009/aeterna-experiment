@@ -4,6 +4,15 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.131.0
+- Lane: U/I
+- Time: ~60 min (session start → release), claude-sonnet-5-5; tokens not counted (no gate counter in this harness).
+- **U14g part 1 Library: the Lore section.** Eleventh step of the v14 redesign. The flavor texts printed on the cards, read in order by series, with a series dropdown; tapping an entry opens that card.
+  - **Data tool:** `tools/fetch_flavor.py` reads the English flavor text (`enflavorN`) of every library card from the Fandom wiki through its MediaWiki API (read-only GET, 50 titles per call, cached in `build/flavor-cache.json`, `--offline` re-parses the cache) and writes `data/index/flavor.json` (card id → text; 5,462 of 6,892 cards have one). The printing whose set matches the card id is used. Flavor text is card text, so it stays data, not code.
+  - **In the page:** the index rides as a compressed blob (`BUILTIN_FLAVOR`, built by `tools/build.mjs`, about 0.4 MB) and is decoded only when the Library page opens (`apps/web/src/13m-lore.js`); the headless engine script does not carry it. New budget B15 (blob under 500 KB, decoded lazily); B01 / B02 / B04 measure the page without it.
+  - **Left for U14g2:** the card page (tilt, levels, related cards, used in decks) and the alternative art picker with its per-card image list.
+  - Tests: `tests/unit/library_lore.test.mjs` (LO1-LO4). Backup branch `backup/v0.130.0`.
+
 ## v0.130.0
 - Lane: U/I
 - Time: ~40 min (session start → release), claude-sonnet-5-5; tokens not counted (no gate counter in this harness).

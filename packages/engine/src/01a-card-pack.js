@@ -163,4 +163,5 @@ function inflateRaw(src) {
 }
 function packBytes(b64) { const s = atob(b64), u = new Uint8Array(s.length); for (let i = 0; i < s.length; i++) u[i] = s.charCodeAt(i); return u; }
 // the embedded pack: base64 of the raw DEFLATE of JSON.stringify(packCards(cards)) -> card list
+function loadFlavor(b64) { return JSON.parse(new TextDecoder().decode(inflateRaw(packBytes(b64)))); }   // v0.131.0 U14g: the Lore tab's flavor index
 function loadPack(b64) { return unpackCards(JSON.parse(new TextDecoder().decode(inflateRaw(packBytes(b64))))); }

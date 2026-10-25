@@ -35,7 +35,7 @@ const packLen = between('/*PACK_START*/', '/*PACK_END*/'), code = html.slice(0, 
 // v0.124.0 (U14d): raised 750 -> 760 KB on purpose: the Card Panel (U14b) and the arrow / shatter / exhaust-turn cues; U14e-U14i add more, each with a note.
 // v0.128.0 (U14f): raised B01 760 -> 772 KB and B04 96 -> 100 KB on purpose: deck builder Redo, Test hand, card size, ring, hover peek (U14g-U14i add more).
 // v0.125.0 (U14d2): B02 raised 212 -> 218 KB on purpose: the Effect Active panel, the emoticons and the 'effect' view record.
-const FONT_URL = /url\(data:font\/woff2;base64,[A-Za-z0-9+/=]+\)/g, noFont = t => t.replace(FONT_URL, 'url()');
+const FONT_URL = /url\(data:font\/woff2;base64,[A-Za-z0-9+/=]+\)/g, FLAVOR_RE = /\/\*FLAVOR_START\*\/const BUILTIN_FLAVOR = "[A-Za-z0-9+\/=]*";\/\*FLAVOR_END\*\//, noFont = t => t.replace(FONT_URL, 'url()').replace(FLAVOR_RE, '/*FLAVOR*/');   // v0.131.0 U14g: the Lore flavor blob is data like the pack: its own budget B15
 test('B01 index.html without the card pack stays under 772 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 772e3, Buffer.byteLength(noFont(code))));
 test('B02 index.html without the card pack, gzipped, stays under 218 KB', () => { const n = gzipSync(noFont(code), { level: 9 }).length; assert.ok(n < 218e3, n); });
 test('B03 the embedded card pack stays under 1.6 MB (room for all cards; never embed staging data)', () => assert.ok(packLen < 1.6e6, packLen));
@@ -95,4 +95,8 @@ test('B13 with all cards in the pack the phone layout is ready in under 4 s with
     assert.ok(r.pack > 6000, String(r.pack));
     assert.ok(r.ms < 4000, String(r.ms));
   } finally { await ctx.close(); rmSync(dir, { recursive: true, force: true }); }
+});
+test('B15 the Lore flavor blob (compressed English flavor texts) stays under 500 KB and is decoded lazily', () => {
+  const m = html.match(FLAVOR_RE); assert.ok(m, 'blob present'); assert.ok(m[0].length < 500e3, m[0].length);
+  assert.match(html, /const lore = \(\) => LORE_DATA \|\|/);
 });
