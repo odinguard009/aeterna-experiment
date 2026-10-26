@@ -40922,15 +40922,6 @@
   "M_OPTIONAL",
   "T_SUMMONED"
  ],
- "26RCB01-011": [
-  "A_EXHAUST",
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "K_STANDARD_INVOKE",
-  "M_OPTIONAL",
-  "M_REPLACEMENT",
-  "T_SUMMONED"
- ],
  "26RCB01-013": [
   "A_BP_PLUS",
   "A_EXHAUST",
@@ -41142,10 +41133,6 @@
   "M_THEN"
  ],
  "26RCB01-071": [],
- "26RCB01-X02": [
-  "M_REPLACEMENT",
-  "T_SUMMONED"
- ],
  "26RCB01-X03": [
   "A_EXHAUST",
   "C_LEVEL",
@@ -41604,7 +41591,6 @@
   "A_SYMBOL_PLUS",
   "C_LEVEL"
  ],
- "26RSD02-010": [],
  "26RSD02-011": [
   "A_VOID",
   "S1_DESTROY_OWN"

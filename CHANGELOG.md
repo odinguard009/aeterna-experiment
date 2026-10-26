@@ -4,6 +4,18 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.135.0
+- Lane: K
+- Time: ~90 min, claude-sonnet-5-5; tokens not counted.
+- **Standard block A: Form Change, "If C, B instead" pairs and (When Deployed): +11 complete (799 -> 810).** Effect schema **v9** (85 actions, 39 conditions; additions only).
+  - **Form Change** `{{F Change|"X" & Cost N}} {{Invoke|Main}}`: action `FORM_CHANGE {match, costIn}` returns the exhausted source Spirit to the Hand and summons a Cost N card of the named group with a different name from the Hand without paying; the effect is not usable unless such a card is in the Hand (nothing is bounced for nothing) and is limited to once per turn per card name (`sameName`). The summoned card carries `viaFC` while its When Summoned effects resolve; every other summon path and a bounce clear it.
+  - **Conditions `viaFormChange` ("If summoned via Form Change") and `not`** (`{"not": {one condition}}`, no nesting). `A. If C, B instead.` compiles to A with `if: {not: C}` and B with `if: C`; B may also be "the targeting BP / cost becomes N or less" (A with its number swapped). The compiler (`tools/compile_v2.py`) reads this pair for every condition it already knows, and `{{F Change}}` in `tools/compile_effects.py`.
+  - **`(When Deployed)`** (the Nexus form of When Summoned) maps to the SUMMONED trigger.
+  - **`sameName` once-per-turn is now keyed by the printed card name** (it was the card id), so two printings of one card share the limit, as the text says.
+  - **Complete (+11):** Form Change heads 26RCB01-019, -021, -024, 26RSD07-004, -005, -007, -X02; "instead" 26RSD07-009 (draw two), 26RCB01-011 and -X02 (destroy BP up to 6000 / 10000); (When Deployed) 26RSD02-010.
+  - **House readings (no rule page covers them):** the returned Spirit's cores go to the Reserve first and may pay the summoned card's Lv1 cores; "Parado" in `{{F Change|"Parado" ...}}` is read as the Para-DX cards (their data family is EX-AID; no card name contains "Parado"; 26RCB01-048 / -049 stay in review on other clauses). Three Eternal cards the new grammar also compiled (BS12-063, BS33-022, BS54-021) were NOT promoted: the first reads "send a core from any opposing Spirits" ambiguously and the two High Speed cards drop a printed refresh / reduction clause.
+- Tests: `tests/unit/form_change.test.mjs` (FC-01..FC-06: bounce + free summon + flag, every refusal, once per name, flag cleared, real cards, the `not` pair), scenario `tests/scenarios/form-change-summon.json`. Budgets: B01 790 -> 796 KB, B02 224 -> 226 KB. Promotion sample read in full (8 of 8, seed 135).
+
 ## v0.134.1
 - Lane: U/I
 - Time: ~20 min, claude-sonnet-5-5.

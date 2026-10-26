@@ -15,6 +15,9 @@ const FIX = [
   { id: 'TF-SAME', name: 'Zed Alpha', type: 'Spirit', color: 'red', cost: 3, symbols: 1, levels: [{ cores: 1, bp: 4000 }] },
   { id: 'TF-C4', name: 'Zed Gamma', type: 'Spirit', color: 'red', cost: 4, symbols: 1, levels: [{ cores: 1, bp: 5000 }] },
   { id: 'TF-OTHER', name: 'Nobody', type: 'Spirit', color: 'red', cost: 3, symbols: 1, levels: [{ cores: 1, bp: 1000 }] },
+  { id: 'TF-D', name: 'Zed Delta', type: 'Spirit', color: 'red', cost: 3, symbols: 1, levels: [{ cores: 1, bp: 4000 }],
+    effects: [{ trigger: 'SUMMONED', lv: [1], actions: [{ do: 'DESTROY', bpLe: 3000, if: { not: { viaFormChange: true } } }, { do: 'DESTROY', bpLe: 6000, if: { viaFormChange: true } }] }] },
+  { id: 'TF-OPP', name: 'Opposing Five', type: 'Spirit', color: 'blue', cost: 3, symbols: 1, levels: [{ cores: 1, bp: 5000 }] },
   { id: 'TF-FILL', name: 'Filler', type: 'Spirit', color: 'red', cost: 1, symbols: 1, levels: [{ cores: 1, bp: 500 }] },
 ];
 before(async () => {
@@ -70,4 +73,12 @@ test('FC-05 real cards: Nox Wolf Shadow (26RCB01-019) becomes Nox Gun Shadow (26
     const idx = BS.CARDS['26RCB01-019'].effects.findIndex(e => e.invoke); const ok = await BS.activateFx(P, a, idx);
     return { ok, field: P.spirits.map(x => x.id), hand: P.hand.map(x => x.id).sort(), again: BS.activatable(P, P.spirits[0], 'MAIN').length, reserve: P.reserve.n };`);
   assert.deepEqual([r.ok, r.field, r.hand, r.again], [true, ['26RCB01-021'], ['26RCB01-018', '26RCB01-019'], 0]);
+});
+test('FC-06 "If C, B instead" pair with the not condition: a normal summon destroys BP <= 3000 only, via Form Change BP <= 6000', async () => {
+  const r = await ev(`const out = {}; const o = BS.mkInst('TF-OPP'); o.cores = 1; O.spirits.push(o);
+    const d = hand('TF-D'); await BS.summonFree(P, d, {}); out.normal = O.spirits.length;
+    BS.bounceCard(P, P.spirits[0], 'hand'); const d2 = P.hand.find(x => x.id === 'TF-D'); await BS.summonFree(P, d2, { formChange: true }); out.viaFC = O.spirits.length;
+    out.bad = BS.parseCard({ id: 'X-1', name: 'x', type: 'Spirit', color: 'red', cost: 1, symbols: 1, levels: [{ cores: 1, bp: 1000 }], effects: [{ trigger: 'SUMMONED', actions: [{ do: 'DRAW', n: 1, if: { not: { not: { prev: true } } } }] }] }).errors ? 'rejected' : 'accepted';
+    return out;`);
+  assert.deepEqual(r, { normal: 1, viaFC: 0, bad: 'rejected' });
 });

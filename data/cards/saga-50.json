@@ -16300,19 +16300,67 @@
    "GAIM",
    "Kamen"
   ],
-  "text": "[LV1-2] (When Summoned)\nTarget an opposing 3000 BP or less Spirit. Destroy it. If summoned via Form Change, the targeting BP becomes 6000 or less instead.\n\n[LV2] {{F Change|\"Gaim\" & Cost 8}} {{Invoke|Main}}\nReturn this exhausted Spirit to the Hand, and you must summon a Cost 8 \"Gaim\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn.",
+  "text": "[LV1][LV2] (When Summoned)\nTarget an opposing 3000 BP or less Spirit. Destroy it. If summoned via Form Change, the targeting BP becomes 6000 or less instead.\n\n[LV2] {{F Change|\"Gaim\" & Cost 8}} {{Invoke|Main}}\nReturn this exhausted Spirit to the Hand, and you must summon a Cost 8 \"Gaim\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn.",
   "image": null,
   "block": "A",
   "saga": 50,
   "mechanics": [
    "Form Change"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Summoned) Target an opposing 3000 BP or less Spirit. Destroy it. If summoned via Form Change, the targeting BP becomes 6000 or less instead.",
-   "[LV2] {{F Change|\"Gaim\" & Cost 8}} {{Invoke|Main}} Return this exhausted Spirit to the Hand, and you must summon a Cost 8 \"Gaim\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn."
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "bpLe": 3000,
+      "if": {
+       "not": {
+        "viaFormChange": true
+       }
+      }
+     },
+     {
+      "do": "DESTROY",
+      "bpLe": 6000,
+      "if": {
+       "viaFormChange": true
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN"
+    ],
+    "once": true,
+    "sameName": true,
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "FORM_CHANGE",
+      "match": {
+       "name": [
+        "Gaim"
+       ]
+      },
+      "costIn": [
+       8
+      ]
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RCB01-012",
@@ -18985,7 +19033,7 @@
    "GAIM",
    "Kamen"
   ],
-  "text": "(Legacy)\n[LV1-2] (When Summoned)\nTarget an opposing 5000 BP or less Spirit, destroy it. If summoned via Form Change, the targeting BP becomes 10000 or less instead.\n\n[LV2] (True Release) (Either Attack Step) {{Invoke|Flash}}\nExhaust one of your \"GAIM\" family Spirits ▶ During this turn, this Spirit gains +5000 BP.",
+  "text": "(Legacy)\n[LV1][LV2] (When Summoned)\nTarget an opposing 5000 BP or less Spirit, destroy it. If summoned via Form Change, the targeting BP becomes 10000 or less instead.\n\n[LV2] (True Release) (Either Attack Step) {{Invoke|Flash}}\nExhaust one of your \"GAIM\" family Spirits ▶ During this turn, this Spirit gains +5000 BP.",
   "image": null,
   "block": "A",
   "saga": 50,
@@ -18995,6 +19043,31 @@
   "legacy": true,
   "trueRelease": true,
   "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "bpLe": 5000,
+      "if": {
+       "not": {
+        "viaFormChange": true
+       }
+      }
+     },
+     {
+      "do": "DESTROY",
+      "bpLe": 10000,
+      "if": {
+       "viaFormChange": true
+      }
+     }
+    ]
+   },
    {
     "trigger": "ACTIVATE",
     "invoke": true,
@@ -19025,11 +19098,8 @@
     ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Summoned) Target an opposing 5000 BP or less Spirit, destroy it. If summoned via Form Change, the targeting BP becomes 10000 or less instead."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RCB01-X03",
@@ -23265,11 +23335,25 @@
   "families": [
    "Bloodrouse"
   ],
-  "text": "[LV1-2] (When Deployed)\nTarget an opposing Spirit. Send a core, besides , from it to the Reserve.\n\n[LV2] {{Invoke|Main}}\nDestroy this Nexus ▶ Target an opposing Cost 3 or less Spirit. Send cores from it to the Reserve until one core remains. (The opponent chooses which cores to send.)",
+  "text": "[LV1][LV2] (When Deployed)\nTarget an opposing Spirit. Send a core, besides , from it to the Reserve.\n\n[LV2] {{Invoke|Main}}\nDestroy this Nexus ▶ Target an opposing Cost 3 or less Spirit. Send cores from it to the Reserve until one core remains. (The opponent chooses which cores to send.)",
   "image": "26RSD02-010.png",
   "block": "A",
   "saga": 50,
   "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "OPP_CORES_TO_RESERVE",
+      "targets": 1,
+      "each": 1
+     }
+    ]
+   },
    {
     "trigger": "ACTIVATE",
     "invoke": true,
@@ -23294,11 +23378,8 @@
     ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Deployed) Target an opposing Spirit. Send a core, besides , from it to the Reserve."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RSD02-011",

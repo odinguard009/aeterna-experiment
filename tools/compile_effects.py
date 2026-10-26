@@ -171,6 +171,7 @@ TRIGGERS = [
     (r'\(When Attacks/Blocks\)|\(When Attacks or Blocks\)', ['ATTACKS+BLOCKS']),
     (r'\(When Battles\)(?=\s*At the end of (?:the )?battle,)', ['ATTACKS+BLOCKS']),      # v0.78: (When Battles) = this Spirit attacks or blocks (house reading, only with an end-of-battle body)
     (r'\(When Summoned\)', ['SUMMONED']),
+    (r'\(When Deployed\)', ['SUMMONED']),      # v0.135: the Nexus form of When Summoned (the engine fires SUMMONED for a deployed Nexus)
     (r'\(When Attacks\)', ['ATTACKS']),
     (r'\(When Blocks\)|\(When Blocking\)', ['BLOCKS']),
 ]

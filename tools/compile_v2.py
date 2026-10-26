@@ -570,7 +570,27 @@ EOB_TRIG = {'ATTACKS', 'BLOCKS', 'ATTACKS+BLOCKS'}
 SUBJ_REFRESH = re.compile(r'^refresh (?:that spirit|the (?:blocking|attacking|battling) spirit)(?: you control)?\.?$', re.I)
 
 
-FC_INSTEAD = re.compile(r'^(.+?\.)\s+If summoned via Form Change, (.+?) instead\.?$', re.I)
+INSTEAD_PAIR = re.compile(r'^(.+?\.)\s+If ([^,.]+), ([^.]+?) instead\.?$', re.I)
+SUBST_BP = re.compile(r'^(?:change )?the targeting (BP|cost) (?:becomes|to) (\d[\d,]*)(?: (?:BP|cost))? or (less|more)$', re.I)
+
+
+def instead_pair(m, ctx):
+    """v0.135 "A. If C, B instead.": A runs unless C (`not`), B runs when C. B is a whole action on its own, or "the targeting BP/cost becomes N or less"
+    (A with its number swapped). Anything else stays in review (more than one action, an optional clause, a condition the engine lacks)."""
+    cond = cond_of(m.group(2))
+    if not cond: raise Review('sentence: ' + m.group(0)[:140])
+    first, b0 = m.group(1).strip(), m.group(3).strip()
+    sb = SUBST_BP.match(b0)
+    if sb:
+        kind, n, rel = sb.group(1).lower(), sb.group(2), sb.group(3).lower()
+        pat = r'(\d[\d,]*)( ?BP or %s)' % rel if kind == 'bp' else r'(Cost )(\d+)( or %s)' % rel
+        if kind == 'bp': second, k = re.subn(pat, n + r'\2', first, count=1, flags=re.I)
+        else: second, k = re.subn(pat, r'\g<1>' + n + r'\3', first, count=1, flags=re.I)
+        if k != 1: raise Review('sentence: ' + m.group(0)[:140])
+    else: second = b0[0].upper() + b0[1:]
+    a1, o1 = action_of(first, ctx); a2, o2 = action_of(second, ctx)
+    if o1 or o2 or not a1 or len(a1) != len(a2) or len(a1) > 2 or any('if' in y for y in a1 + a2): raise Review('sentence: ' + m.group(0)[:140])
+    return [dict(y, **{'if': {'not': cond}}) for y in a1] + [dict(y, **{'if': dict(cond)}) for y in a2], False
 
 
 def action_of(s, ctx):
@@ -585,11 +605,8 @@ def action_of(s, ctx):
         return [{'do': 'DESTROY_SELF'}], False      # v0.78 the source destroys itself (own effect)
     if 'ALLY_BATTLE_WIN' in trig and SUBJ_REFRESH.match(s.strip()):      # v0.78 your Spirit that won the battle
         return [{'do': 'REFRESH', 'to': 'subject'}], False
-    m = FC_INSTEAD.match(s.strip())
-    if m:      # v0.135 "A. If summoned via Form Change, B instead.": A runs unless summoned via Form Change, B runs when it was (both must read on their own)
-        a1, o1 = action_of(m.group(1).strip(), ctx); b0 = m.group(2).strip(); a2, o2 = action_of(b0[0].upper() + b0[1:], ctx)
-        if o1 or o2 or len(a1) != 1 or len(a2) != 1 or any('if' in y for y in a1 + a2): raise Review('sentence: ' + s[:140])
-        return [dict(a1[0], **{'if': {'viaFormChange': False}}), dict(a2[0], **{'if': {'viaFormChange': True}})], False
+    m = INSTEAD_PAIR.match(s.strip())
+    if m: return instead_pair(m, ctx)
     m = COND_LEAD.match(s.strip())
     cond = cond_of(m.group(1)) if m else None
     if cond:
@@ -629,7 +646,7 @@ def sentences(body):
             out[-1] = out[-1] + ' ' + x      # v0.68: "... give it -N BP. Then, if it has 0 BP, destroy it." is one effect
         elif out and REVEAL_HEAD.match(out[-1]) and not REVEAL_REST.search(out[-1]):
             out[-1] = out[-1] + ' ' + x      # v0.69: "Reveal N cards from your decktop." + "Among them, add ..." + "Return any remaining cards ..." is one effect
-        elif out and re.fullmatch(r'If summoned via Form Change, .+ instead\.?', x.strip(), re.I) and out[-1].endswith('.'):
+        elif out and re.fullmatch(r'If [^,.]+, [^.]+? instead\.?', x.strip(), re.I) and out[-1].endswith('.') and 'instead' not in out[-1]:
             out[-1] = out[-1] + ' ' + x      # v0.135: the replacement belongs to the sentence before it
         elif out and re.fullmatch(WHEN_FX_TAIL + r'\.?', x.strip(), re.I) and out[-1].endswith('.'):
             out[-1] = out[-1] + ' ' + x      # v0.77: "When this effect destroys any Spirit, draw a card." belongs to the sentence before it

@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 7766,
+  "cards": 7763,
   "per_saga": {
    "1": 787,
    "2": 333,
@@ -19,23 +19,23 @@
    "15": 357,
    "16": 334,
    "17": 110,
-   "50": 462
+   "50": 459
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 940,
+  "skipped_curated": 943,
   "number_conflicts": 5,
   "nexus_levels_added": 716,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 562,
+  "image_problems": 560,
   "merged": 110,
   "brave_unparsed": 171,
   "ut_lines_added": 119,
   "odd_reduction": 809,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 560
+  "without_image": 558
  },
  "tokens": [
   "BS73-T001",
@@ -987,7 +987,10 @@
   "26RSD07-004",
   "26RSD07-005",
   "26RCB01-019",
-  "26RCB01-024"
+  "26RCB01-024",
+  "26RCB01-011",
+  "26RCB01-X02",
+  "26RSD02-010"
  ],
  "number_conflicts": [
   {
