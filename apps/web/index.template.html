@@ -59,36 +59,18 @@
     </div>
   </div>
 </div>
-<div id="view-howto" class="app-view ae-view">
-  <main class="ae-page doc">
-    <header class="ae-phead"><div class="tx"><span class="ae-eyebrow">HOW TO PLAY</span><h1>THE BASICS</h1><p>A match in five minutes: goal, turn, cores, special cards and controls.</p></div>
-      <button class="ae-ghost" data-a="go-lobby">◄ HOME</button></header>
-    <div class="doc-grid">
-      <section class="doc-card"><h2>Goal</h2><p>Reduce the opposing Life from 5 to 0 by attacking with your Spirits, or make the opponent run out of cards at the start of their turn.</p></section>
-      <section class="doc-card"><h2>A turn</h2><ul>
-        <li><b>Start / Core:</b> you gain a core (the first player skips it on turn 1).</li>
-        <li><b>Draw:</b> draw one card. <b>Refresh:</b> exhausted cards stand up and Trash cores return to the Reserve. The Spirit you marked as <b>Key Spirit</b> in the Deck Builder is a little more likely to be drawn while no copy of it is in your Hand or on your Field (Aeterna house rule).</li>
-        <li><b>Main:</b> summon Spirits, deploy Nexuses, cast Magic, set a Burst, move cores, use effects. Press <b>NEXT</b> to move on.</li>
-        <li><b>Attack:</b> choose a Spirit to attack. The defender may block with one ready Spirit; the higher BP wins (ties destroy both). An unblocked attack removes Life equal to its symbols.</li>
-        <li><b>End:</b> the turn passes. In Standard there is also a second Main step.</li></ul></section>
-      <section class="doc-card"><h2>Cores and costs</h2><ul>
-        <li>Pay a card's cost with Reserve cores (or cores from your Spirits). Matching-color cards on your field reduce the cost.</li>
-        <li>A Spirit's <b>level</b> depends on the cores on it; more cores means more BP. A Spirit with too few cores is depleted and goes to the Trash.</li>
-        <li>The <b>Soul Core</b> is a special core; some effects send it to the Trash, a Nexus or the Void.</li></ul></section>
-      <section class="doc-card"><h2>Special cards</h2><ul>
-        <li><b>Burst:</b> set a card face down in the Burst area; it flips by itself when its condition happens.</li>
-        <li><b>Flash:</b> Magic and effects usable during the two Flash windows of a battle (defender first).</li>
-        <li><b>Advent / Contract Advent / Manifest:</b> stack or summon a stronger card using the Soul Core. Buttons appear on the card in your Hand.</li>
-        <li><b>Soul State / Void:</b> extra zones shown in the top-right corner (Soul State) and the side panel (Void).</li></ul></section>
-      <section class="doc-card"><h2>Controls</h2><ul>
-        <li>Tap a card to open its actions; tap a zone (Trash, Soul State, Burst…) to look inside it. Long-press a card to zoom it.</li>
-        <li>On a PC, hover a card to read it. Keyboard: <kbd>Space</kbd> or <kbd>Enter</kbd> = Next step, <kbd>L</kbd> = game log, <kbd>Esc</kbd> = close.</li>
-        <li>The game log (📜) lists everything that happened. Settings let you change the game speed and sounds.</li></ul></section>
-      <section class="doc-card"><h2>Glossary</h2><p>Keywords you meet on cards.</p><div class="gl-list" id="howto-gloss"></div></section>
-      <section class="doc-card"><h2>Your cards</h2><p>Open the <b>Library</b> to import card data and your own card images (they stay on your device). The Deck Builder has 8 deck slots and ready-made decks.</p>
-        <div class="doc-acts"><button class="ae-ghost" data-a="go-lib">OPEN LIBRARY</button><button class="ae-ghost" data-a="rules">RULES COVERAGE</button></div></section>
-    </div>
-  </main>
+<div id="view-howto" class="app-view">
+  <div class="pg scroll">
+    <div class="card hdcard" style="background:linear-gradient(90deg,var(--you-soft),transparent)"><div class="grow"><span class="eyebrow">New and not sure how to play?</span><h2 class="hd">Learn the game in 16 short chapters</h2><span class="sub">From the opening coin toss to your first win. About 25 minutes.</span><div class="row" id="learn-bars" style="gap:3px;margin-top:8px"></div></div><button class="btn yes lg" id="learn-cont" data-a="learn-open" data-v="0">&#9654; Continue &middot; chapter 1</button></div>
+    <div class="dgrid" id="learn-tiles" style="grid-template-columns:repeat(4,1fr)"></div>
+    <div class="sec">Controls</div>
+    <div class="card flat" style="padding:10px 14px"><span class="sub">Tap a card to open its actions; tap a zone (Trash, Soul State, Burst) to look inside it. Long-press a card to zoom it. On a PC hover a card to read it. Keyboard: <b>Space</b> or <b>Enter</b> = Next step, <b>L</b> = game log, <b>Esc</b> = close.</span></div>
+    <div class="sec">Glossary</div>
+    <div class="search" style="max-width:380px"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input class="in" id="gl-q" placeholder="Search a rule word" style="width:100%" aria-label="Search glossary"></div>
+    <div class="dgrid" id="howto-gloss" style="grid-template-columns:repeat(2,1fr)"></div>
+    <div class="sec">Your cards</div>
+    <div class="card flat row" style="padding:10px 14px;gap:10px;flex-wrap:wrap"><span class="sub grow">Open the Library to import card data and your own card images (they stay on your device).</span><button class="btn sm" data-a="go-lib">Open Library</button><button class="btn sm" data-a="rules">Rules coverage</button></div>
+  </div>
 </div>
 
 <div id="view-play" class="app-view">

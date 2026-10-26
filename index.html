@@ -2178,36 +2178,18 @@ body.mk > .ae-pop{position:absolute;top:62px;right:24px;z-index:20}
     </div>
   </div>
 </div>
-<div id="view-howto" class="app-view ae-view">
-  <main class="ae-page doc">
-    <header class="ae-phead"><div class="tx"><span class="ae-eyebrow">HOW TO PLAY</span><h1>THE BASICS</h1><p>A match in five minutes: goal, turn, cores, special cards and controls.</p></div>
-      <button class="ae-ghost" data-a="go-lobby">◄ HOME</button></header>
-    <div class="doc-grid">
-      <section class="doc-card"><h2>Goal</h2><p>Reduce the opposing Life from 5 to 0 by attacking with your Spirits, or make the opponent run out of cards at the start of their turn.</p></section>
-      <section class="doc-card"><h2>A turn</h2><ul>
-        <li><b>Start / Core:</b> you gain a core (the first player skips it on turn 1).</li>
-        <li><b>Draw:</b> draw one card. <b>Refresh:</b> exhausted cards stand up and Trash cores return to the Reserve. The Spirit you marked as <b>Key Spirit</b> in the Deck Builder is a little more likely to be drawn while no copy of it is in your Hand or on your Field (Aeterna house rule).</li>
-        <li><b>Main:</b> summon Spirits, deploy Nexuses, cast Magic, set a Burst, move cores, use effects. Press <b>NEXT</b> to move on.</li>
-        <li><b>Attack:</b> choose a Spirit to attack. The defender may block with one ready Spirit; the higher BP wins (ties destroy both). An unblocked attack removes Life equal to its symbols.</li>
-        <li><b>End:</b> the turn passes. In Standard there is also a second Main step.</li></ul></section>
-      <section class="doc-card"><h2>Cores and costs</h2><ul>
-        <li>Pay a card's cost with Reserve cores (or cores from your Spirits). Matching-color cards on your field reduce the cost.</li>
-        <li>A Spirit's <b>level</b> depends on the cores on it; more cores means more BP. A Spirit with too few cores is depleted and goes to the Trash.</li>
-        <li>The <b>Soul Core</b> is a special core; some effects send it to the Trash, a Nexus or the Void.</li></ul></section>
-      <section class="doc-card"><h2>Special cards</h2><ul>
-        <li><b>Burst:</b> set a card face down in the Burst area; it flips by itself when its condition happens.</li>
-        <li><b>Flash:</b> Magic and effects usable during the two Flash windows of a battle (defender first).</li>
-        <li><b>Advent / Contract Advent / Manifest:</b> stack or summon a stronger card using the Soul Core. Buttons appear on the card in your Hand.</li>
-        <li><b>Soul State / Void:</b> extra zones shown in the top-right corner (Soul State) and the side panel (Void).</li></ul></section>
-      <section class="doc-card"><h2>Controls</h2><ul>
-        <li>Tap a card to open its actions; tap a zone (Trash, Soul State, Burst…) to look inside it. Long-press a card to zoom it.</li>
-        <li>On a PC, hover a card to read it. Keyboard: <kbd>Space</kbd> or <kbd>Enter</kbd> = Next step, <kbd>L</kbd> = game log, <kbd>Esc</kbd> = close.</li>
-        <li>The game log (📜) lists everything that happened. Settings let you change the game speed and sounds.</li></ul></section>
-      <section class="doc-card"><h2>Glossary</h2><p>Keywords you meet on cards.</p><div class="gl-list" id="howto-gloss"></div></section>
-      <section class="doc-card"><h2>Your cards</h2><p>Open the <b>Library</b> to import card data and your own card images (they stay on your device). The Deck Builder has 8 deck slots and ready-made decks.</p>
-        <div class="doc-acts"><button class="ae-ghost" data-a="go-lib">OPEN LIBRARY</button><button class="ae-ghost" data-a="rules">RULES COVERAGE</button></div></section>
-    </div>
-  </main>
+<div id="view-howto" class="app-view">
+  <div class="pg scroll">
+    <div class="card hdcard" style="background:linear-gradient(90deg,var(--you-soft),transparent)"><div class="grow"><span class="eyebrow">New and not sure how to play?</span><h2 class="hd">Learn the game in 16 short chapters</h2><span class="sub">From the opening coin toss to your first win. About 25 minutes.</span><div class="row" id="learn-bars" style="gap:3px;margin-top:8px"></div></div><button class="btn yes lg" id="learn-cont" data-a="learn-open" data-v="0">&#9654; Continue &middot; chapter 1</button></div>
+    <div class="dgrid" id="learn-tiles" style="grid-template-columns:repeat(4,1fr)"></div>
+    <div class="sec">Controls</div>
+    <div class="card flat" style="padding:10px 14px"><span class="sub">Tap a card to open its actions; tap a zone (Trash, Soul State, Burst) to look inside it. Long-press a card to zoom it. On a PC hover a card to read it. Keyboard: <b>Space</b> or <b>Enter</b> = Next step, <b>L</b> = game log, <b>Esc</b> = close.</span></div>
+    <div class="sec">Glossary</div>
+    <div class="search" style="max-width:380px"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input class="in" id="gl-q" placeholder="Search a rule word" style="width:100%" aria-label="Search glossary"></div>
+    <div class="dgrid" id="howto-gloss" style="grid-template-columns:repeat(2,1fr)"></div>
+    <div class="sec">Your cards</div>
+    <div class="card flat row" style="padding:10px 14px;gap:10px;flex-wrap:wrap"><span class="sub grow">Open the Library to import card data and your own card images (they stay on your device).</span><button class="btn sm" data-a="go-lib">Open Library</button><button class="btn sm" data-a="rules">Rules coverage</button></div>
+  </div>
 </div>
 
 <div id="view-play" class="app-view">
@@ -7956,7 +7938,7 @@ function switchView(id) {
   if (id === 'view-library') renderLibrary();
   if (id === 'view-decks') renderDecks();
   if (id === 'view-settings') renderSettings();
-  if (id === 'view-howto') renderGlossary();
+  if (id === 'view-howto') renderLearn();
 }
 function renderSettings() { renderProfile(); $('set-hist').innerHTML = histHTML(); $('set-cpu').innerHTML = CPU_PROFILE_NAMES.map(n => `<option value="${n}">${cap(n)}</option>`).join(''); $('set-cpu').value = cpuProfileName(null); $('set-speed').value = SETTINGS.speed; $('set-sound').value = SETTINGS.sound ? 'on' : 'off'; $('set-anim').value = SETTINGS.anim || 'auto'; $('set-lp').value = SETTINGS.longpress === 'off' ? 'off' : 'on';
   renderSetPage(); $('set-back').hidden = !G || !!G.over; }   // v0.122.0 U14b: Options from a running match shows BACK TO MATCH; v0.68.0 U4: colour grid, Dark/Light, playmat and CPU colour rows (13d-pages.js)
@@ -8449,6 +8431,7 @@ function renderHomeMore() {
     : '<span class="sub" style="font-size:.84em">No match played yet.</span><button class="btn sm" style="align-self:flex-start" data-a="go-play">Play one</button>';
 }
 if (typeof document !== 'undefined') {
+  document.addEventListener('input', e => { if (evC(e, '#gl-q')) renderGlossary(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && $('theme-pop') && !$('theme-pop').hidden) { themePop(false); $('theme-btn').focus(); } });
   document.addEventListener('click', e => { const p = $('theme-pop'); if (p && !p.hidden && !evC(e, '#theme-pop, #theme-btn')) themePop(false); });
 }
@@ -9578,7 +9561,9 @@ function renderProfile() {
 }
 function renderGlossary() {
   const el = $('howto-gloss'); if (!el) return;
-  el.innerHTML = Object.keys(KEYWORD_GLOSSARY).sort().map(k => `<div class="gl-item"><b>${esc(k)}</b><p>${esc(KEYWORD_GLOSSARY[k])}</p></div>`).join('');
+  const q = (($('gl-q') || {}).value || '').toLowerCase();
+  const ks = Object.keys(KEYWORD_GLOSSARY).sort().filter(k => (k + KEYWORD_GLOSSARY[k]).toLowerCase().includes(q));
+  el.innerHTML = ks.map(k => `<div class="card flat" style="padding:10px 14px"><b>${esc(k)}</b><br><span class="sub">${esc(KEYWORD_GLOSSARY[k])}</span></div>`).join('') || '<span class="mut">No rule word matches.</span>';   // v0.137.0: mockup glossary cards + search
 }
 /* ---------------------------------------------------------------------
    REPORT A BUG (v0.134.0, U14i): a form on every page that opens a pre-filled "new issue" page of the repository. The player sends it
@@ -9647,6 +9632,48 @@ function renderProgress() {
     + `<h3>Avatar</h3><div class="pg-avs">${AVATARS.map((c, k) => `<button class="pg-av${c === AVATAR ? ' on' : ''}" data-a="avatar" data-v="${c}" style="--lc:${colorVar(c)}" aria-label="${esc(cap(c))}" aria-pressed="${c === AVATAR}"${AVATAR_RANK[k] > r.i ? ' disabled title="Unlocks at ' + esc(RANKS[AVATAR_RANK[k]].n) + '"' : ''}></button>`).join('')}</div>`
     + `<h3>Today's missions</h3><ul class="pg-list">${ms.map(m => `<li class="${m.done ? 'done' : ''}"><span>${esc(m.txt)}</span><b>${m.v}/${m.goal}</b></li>`).join('')}</ul>`
     + `<h3>Achievements</h3><ul class="pg-list">${ACHIEVEMENTS.map(({ n, f }) => `<li class="${f(s) ? 'done' : ''}"><span>${esc(n)}</span><b>${f(s) ? 'Done' : '-'}</b></li>`).join('')}</ul>`;
+}
+/* ---------------------------------------------------------------------
+   LEARN (v0.137.0, mockup parity): 16 short chapters with saved progress, a Continue button and a searchable glossary.
+   Text only: the mockup's practice boards are not built (reported to the owner). Display only: no rules here.
+   --------------------------------------------------------------------- */
+const LEARN_KEY = 'aeterna.learn.v1';
+/** @type {Array<[string, string]>} */
+const LEARN_CHAPS = [
+  ['Your goal', 'Reduce the opposing Life from 5 to 0 by attacking with your Spirits. You also win if the opponent has no card to draw at the start of their turn.'],
+  ['The board', 'Your Hand, Deck, Field (Spirits and Nexuses), Reserve (free cores), Trash, Life, Burst area and Void. Tap a zone to look inside it.'],
+  ['Cores', 'Cores pay for cards and sit on Spirits to give them levels. Free cores wait in your Reserve; cores spent on a cost go to the Trash and return to the Reserve at Refresh.'],
+  ['Turn steps', 'Start → Core → Draw → Refresh → Main → Attack → End. In the Main Step you summon Spirits and cast Magic. Press NEXT to move to the following step. In Standard there is also a second Main step.'],
+  ['Summoning', 'Pay a Spirit\'s cost with Reserve cores; matching-colour cards on your Field reduce it. Put at least one core on the new Spirit: a Spirit with too few cores is depleted and goes to the Trash.'],
+  ['Level up', 'A Spirit\'s level depends on the cores on it. More cores means a higher level and more BP. Move cores between your Spirits in the Main Step.'],
+  ['Attacking', 'In the Attack Step choose a ready Spirit to attack. It becomes exhausted. An unblocked attack removes Life equal to its symbols.'],
+  ['Blocking', 'The defender may block with one ready Spirit. The higher BP wins; on a tie both are destroyed.'],
+  ['Life and Burst', 'Each Life point is a core in your Life. When your Life is hit a Burst card you set face down can flip by itself if its condition is met.'],
+  ['Flash Timing', 'Magic and effects with Flash can be used in the two Flash windows of a battle, the defender first. The game asks you when one is possible.'],
+  ['Magic', 'Magic cards are cast in the Main Step (or in a Flash window if they have Flash), do their effect and go to the Trash.'],
+  ['Nexus', 'A Nexus is a permanent you deploy in the Main Step. It supports your Spirits as long as it stays on the Field.'],
+  ['Soul Core', 'The Soul Core is a special core that counts as any colour. Advent, Contract Advent and Manifest use it; some effects send it to the Trash, a Nexus or the Void.'],
+  ['Key Spirit', 'In the Deck Builder mark one Spirit as your Key Spirit. While no copy of it is in your Hand or Field, it is a little more likely to be drawn (an Aeterna house rule).'],
+  ['Deck rules', 'A deck has 40 cards, at most 3 copies of a card, and a Key Spirit if you like. The Deck Builder checks your deck and shows what is missing.'],
+  ['First match', 'Open Play, pick a deck, an opponent and the rules, then press Start. Tap a card to open its actions; long-press a card to read it. Space or Enter = Next step, Esc = close.'],
+];
+function learnDone() { try { const a = JSON.parse(localStorage.getItem(LEARN_KEY)); return Array.isArray(a) ? a.filter(n => Number.isInteger(n) && n >= 0 && n < 16) : []; } catch (e) { return []; } }
+function learnSave(a) { try { localStorage.setItem(LEARN_KEY, JSON.stringify(a)); } catch (e) { /* blocked: this visit only */ } }
+function learnNext(d = learnDone()) { const i = LEARN_CHAPS.findIndex((_, k) => !d.includes(k)); return i; }
+function renderLearn() {
+  const el = $('learn-tiles'); if (!el) return;
+  const d = learnDone(), nx = learnNext(d);
+  $('learn-bars').innerHTML = LEARN_CHAPS.map((_, i) => `<i style="width:18px;height:6px;background:${d.includes(i) ? 'var(--you)' : 'var(--chip)'}"></i>`).join('') + `<span class="mut" style="font-size:.76em;margin-left:8px">${d.length} / 16 done</span>`;
+  const cont = $('learn-cont'); cont.hidden = nx < 0; cont.dataset.v = String(nx); cont.textContent = `▶ Continue · chapter ${nx + 1}`;
+  el.innerHTML = LEARN_CHAPS.map((c, i) => `<button class="card tile2" style="min-height:74px" data-a="learn-open" data-v="${i}"><span class="ic" style="${d.includes(i) ? '' : i === nx ? 'background:var(--yes);color:var(--yes-ink)' : 'background:var(--chip);color:var(--text3)'}">${d.includes(i) ? '✓' : i + 1}</span><span><b>${esc(c[0])}</b><span>${d.includes(i) ? 'Done' : i === nx ? 'Next · 2 min' : '2 min'}</span></span></button>`).join('');
+  renderGlossary();
+}
+async function learnOpen(i) {
+  const c = LEARN_CHAPS[i]; if (!c) return;
+  const done = learnDone().includes(i);
+  const r = await modal({ uiOnly: true, title: `Chapter ${i + 1} of 16 · ${c[0]}`, html: `<p>${esc(c[1])}</p>`, buttons: [{ label: 'Later', cls: 'cancel', value: null }, { label: done ? 'Read again' : 'Mark as done', cls: 'primary', value: 'done' }] });
+  if (r === 'done' && !done) learnSave(learnDone().concat(i));
+  renderLearn();
 }
 /* ---------------------------------------------------------------------
    CARD IMAGES  (user supplied files kept in IndexedDB, never uploaded)
@@ -10196,6 +10223,7 @@ document.addEventListener('click', e => {
   else if (a === 'emote-pick') emoteSend(Number(v));
   else if (a === 'options-back') { switchView('view-playmat'); if (G) render(); }
   else if (a === 'go-howto') switchView('view-howto');
+  else if (a === 'learn-open') learnOpen(Number(v));
   else if (a === 'go-history') navHistory();
   else if (a === 'theme-pop') themePop();
   else if (a === 'theme-mode') { navTheme('mode', v); if (G) render(); }

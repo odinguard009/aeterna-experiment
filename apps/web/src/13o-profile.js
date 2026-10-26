@@ -20,5 +20,7 @@ function renderProfile() {
 }
 function renderGlossary() {
   const el = $('howto-gloss'); if (!el) return;
-  el.innerHTML = Object.keys(KEYWORD_GLOSSARY).sort().map(k => `<div class="gl-item"><b>${esc(k)}</b><p>${esc(KEYWORD_GLOSSARY[k])}</p></div>`).join('');
+  const q = (($('gl-q') || {}).value || '').toLowerCase();
+  const ks = Object.keys(KEYWORD_GLOSSARY).sort().filter(k => (k + KEYWORD_GLOSSARY[k]).toLowerCase().includes(q));
+  el.innerHTML = ks.map(k => `<div class="card flat" style="padding:10px 14px"><b>${esc(k)}</b><br><span class="sub">${esc(KEYWORD_GLOSSARY[k])}</span></div>`).join('') || '<span class="mut">No rule word matches.</span>';   // v0.137.0: mockup glossary cards + search
 }

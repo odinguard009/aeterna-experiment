@@ -79,6 +79,7 @@ function renderHomeMore() {
     : '<span class="sub" style="font-size:.84em">No match played yet.</span><button class="btn sm" style="align-self:flex-start" data-a="go-play">Play one</button>';
 }
 if (typeof document !== 'undefined') {
+  document.addEventListener('input', e => { if (evC(e, '#gl-q')) renderGlossary(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && $('theme-pop') && !$('theme-pop').hidden) { themePop(false); $('theme-btn').focus(); } });
   document.addEventListener('click', e => { const p = $('theme-pop'); if (p && !p.hidden && !evC(e, '#theme-pop, #theme-btn')) themePop(false); });
 }

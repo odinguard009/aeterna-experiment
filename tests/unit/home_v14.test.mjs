@@ -27,7 +27,7 @@ test('HM4 profile statistics come from the history; the glossary lists every key
   const r = await page.evaluate(() => {
     const h = [{ won: true, fmt: 'eternal', turns: 6 }, { won: true, fmt: 'standard', turns: 8 }, { won: false, fmt: 'eternal', turns: 10 }, { won: true, fmt: 'eternal', turns: 4 }, { won: true, fmt: 'eternal', turns: 2 }];
     const s = BS.profileStats(h); BS.switchView('view-howto');
-    return { s, gl: document.querySelectorAll('#howto-gloss .gl-item').length, kw: Object.keys(KEYWORD_GLOSSARY).length, empty: BS.profileStats([]).rate };
+    return { s, gl: document.querySelectorAll('#howto-gloss .card').length, kw: Object.keys(KEYWORD_GLOSSARY).length, empty: BS.profileStats([]).rate };
   });
   assert.deepEqual([r.s.n, r.s.won, r.s.rate, r.s.streak, r.s.best, r.s.turns], [5, 4, 80, 2, 2, 6]); assert.deepEqual(r.s.byFmt.eternal, [3, 1]);
   assert.equal(r.gl, r.kw); assert.equal(r.empty, 0);

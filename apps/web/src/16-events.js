@@ -81,6 +81,7 @@ document.addEventListener('click', e => {
   else if (a === 'emote-pick') emoteSend(Number(v));
   else if (a === 'options-back') { switchView('view-playmat'); if (G) render(); }
   else if (a === 'go-howto') switchView('view-howto');
+  else if (a === 'learn-open') learnOpen(Number(v));
   else if (a === 'go-history') navHistory();
   else if (a === 'theme-pop') themePop();
   else if (a === 'theme-mode') { navTheme('mode', v); if (G) render(); }

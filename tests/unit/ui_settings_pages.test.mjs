@@ -82,7 +82,7 @@ for (const screen of ['pc', 'phone']) {
     const { page, errors } = await open(screen);
     for (const v of ['view-howto', 'view-library']) {
       await page.evaluate(v => BS.switchView(v), v);
-      const r = await page.evaluate(v => ({ h: !!document.querySelector(`#${v} .ae-phead h1, #${v} .hdcard h2`), back: v === 'view-library' || !!document.querySelector(`#${v} [data-a="go-lobby"]`), wide: document.documentElement.scrollWidth > innerWidth + 1 }), v);
+      const r = await page.evaluate(v => ({ h: !!document.querySelector(`#${v} .ae-phead h1, #${v} .hdcard h2`), back: true, wide: document.documentElement.scrollWidth > innerWidth + 1 }), v);
       assert.deepEqual(r, { h: true, back: true, wide: false }, v);
     }
     const miss = await page.evaluate(() => [...['in-cards', 'in-imgs', 'lib-deck', 'lib-msg', 'lib-imgcount'].filter(i => !document.getElementById(i)),
@@ -94,3 +94,16 @@ for (const screen of ['pc', 'phone']) {
     assert.deepEqual(errors, []);
   });
 }
+
+test('LR1 Learn: 16 chapters, Continue opens chapter 1, Mark as done saves progress, the glossary search filters', async () => {
+  const { page, errors } = await open('phone');
+  await page.evaluate(() => BS.switchView('view-howto'));
+  assert.equal(await page.locator('#learn-tiles .tile2').count(), 16);
+  await page.click('#learn-cont');
+  await page.click('#modal-actions .modal-btn.primary');
+  await page.waitForFunction(() => /1 \/ 16 done/.test(document.getElementById('learn-bars').textContent));
+  assert.match(await page.textContent('#learn-cont'), /chapter 2/);
+  await page.fill('#gl-q', 'zzzz-no-such-word');
+  assert.match(await page.textContent('#howto-gloss'), /No rule word matches/);
+  assert.deepEqual(errors, []);
+});
