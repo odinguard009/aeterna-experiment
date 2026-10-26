@@ -1,0 +1,11 @@
+/* v0.137.0 mockup parity: how the mockup's .frame sits in the page. The body is the frame; the views are its .page. Hand-written, small. */
+body.mk{display:flex;flex-direction:column;height:100vh;height:100dvh;margin:0;padding:0}
+body.mk .app-view{display:none}
+body.mk.has-nav .app-view,html.layout-pc body.mk.has-nav .app-view{position:relative;inset:auto;top:auto;bottom:auto;width:100%;height:auto;min-height:0}
+body.mk .app-view.active{display:flex;flex-direction:column;flex:1;min-height:0;overflow:auto}
+body.mk:not(.has-nav) .nav,body.mk:not(.has-nav) .phonebar,body.mk:not(.has-nav) .tabbar,body.mk:not(.has-nav) .foot,body.mk:not(.has-nav) .bugfab{display:none}
+body:not(.mk) .nav,body:not(.mk) .phonebar,body:not(.mk) .tabbar,body:not(.mk) .foot,body:not(.mk) .bugfab{display:none}
+.mk #app-tabs{display:contents}
+body.mk > .ae-pop{position:absolute;top:62px;right:24px;z-index:20}
+@container fr (max-width:700px){body.mk > .ae-pop{top:52px;right:14px}}
+.mk .nv[aria-current="page"],.mk .tabbar button[aria-current="page"]{}

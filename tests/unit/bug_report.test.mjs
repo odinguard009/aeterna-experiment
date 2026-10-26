@@ -21,11 +21,11 @@ test('BR1 the URL is the repository issue page with title, body, label and optio
 });
 test('BR2 the form opens from the header on any page, submit opens the issue page in a new tab, Escape closes', async () => {
   await page.evaluate(() => BS.switchView('view-library'));
-  await page.click('#app-nav [data-a="bug-open"]');
+  await page.click('#mk-bugfab');
   assert.equal(await hidden(), false);
   await page.keyboard.press('Escape');
   assert.equal(await hidden(), true);
-  await page.click('#app-nav [data-a="bug-open"]');
+  await page.click('#mk-bugfab');
   await page.fill('#bug-title', 'Crash on level up'); await page.fill('#bug-text', 'Steps...');
   await page.evaluate(() => { window.__opened = []; window.open = (u, t, f) => { window.__opened.push([u, t, f]); return null; }; });
   await page.click('#bug-form button[type="submit"]');
@@ -37,7 +37,7 @@ test('BR2 the form opens from the header on any page, submit opens the issue pag
 test('BR3 phone: the form fits and the page does not scroll sideways', async () => {
   await ctx.close();
   await open({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
-  await page.click('#app-nav [data-a="bug-open"]');
+  await page.click('#mk-bugfab');
   const r = await page.evaluate(() => ({ sw: document.documentElement.scrollWidth, vw: innerWidth, fit: document.querySelector('#bug-form').getBoundingClientRect().width <= innerWidth }));
   assert.equal(r.sw, r.vw); assert.equal(r.fit, true);
 });

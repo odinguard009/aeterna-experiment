@@ -738,9 +738,7 @@
      PC: one 64px top bar. Phone: 58px header + 64px bottom tab bar. Tokens from the U1 block above.
      ===================================================================== */
   :root { color-scheme: dark; } :root[data-mode="light"] { color-scheme: light; }   /* v0.99 U8a: form controls and scrollbars follow the mode everywhere (was per view) */
-  #app-nav { display: none; }
   #app-nav button, .ae-tile, .home-foot button { -webkit-tap-highlight-color: transparent; }
-  body.has-nav #app-nav { display: flex; }
   .ae-nav { position: fixed; z-index: 30; left: 0; right: 0; top: 0; height: 58px; align-items: center; gap: 6px; padding: 0 10px 0 16px; padding-top: env(safe-area-inset-top); background: var(--ae-head); color: var(--ae-text); box-shadow: inset 0 -1px 0 var(--ae-line); border: 0; border-radius: 0; justify-content: flex-start; }
   .ae-brand { font-size: 19px; font-weight: 900; font-style: italic; letter-spacing: .1em; margin-right: auto; white-space: nowrap; }
   .ae-tools { display: flex; align-items: center; gap: 6px; }

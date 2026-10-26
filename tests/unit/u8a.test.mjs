@@ -72,7 +72,7 @@ test('U8A-4 the deck Rename field does not offer browser autofill', async () => 
 test('U8A-5 the deck builder count without filters = the Home count plus the Training cards, which it names', async () => {
   const { page } = await open();
   await page.evaluate(() => { BS.switchView('view-lobby'); return 1; });
-  const home = await page.evaluate(() => +(document.getElementById('home-sub').textContent.match(/[\d,]+/) || ['0'])[0].replace(/,/g, ''));
+  const home = await page.evaluate(() => +document.querySelector('#home-tiles [data-a="go-lib"] span span').textContent.match(/[\d,]+/)[0].replace(/,/g, ''));
   await page.evaluate(() => { BS.switchView('view-deckbuilder'); return 1; });
   const db = await page.evaluate(() => document.getElementById('db-count').textContent);
   const tr = await page.evaluate(() => Object.keys(BS.CARDS).filter(id => id.startsWith('TRAIN-') && !BS.CARDS[id].token).length);

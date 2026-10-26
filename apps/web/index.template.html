@@ -9,44 +9,31 @@
 </style>
 </head>
 <body>
-
-<header id="app-nav" class="ae-nav">
-  <span class="ae-brand" translate="no">AETERNA</span>
-  <nav id="app-tabs" class="ae-tabs" aria-label="Main"><button class="ae-tab" data-a="go-lobby" data-nav="view-lobby"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V10a8 8 0 0 1 16 0v11"/><path d="M8 21v-9a4 4 0 0 1 8 0v9"/><path d="M2 21h20"/><path d="M12 2.5v2"/></svg><span class="t-pc">Home</span><span class="t-ph">Home</span></button><button class="ae-tab" data-a="go-play" data-nav="view-play"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l9.5 7-3.6 11.5H6.1L2.5 9z"/><path d="M10 8.5l5 3.5-5 3.5z" fill="currentColor"/></svg><span class="t-pc">Play</span><span class="t-ph">Play</span></button><button class="ae-tab" data-a="go-decks" data-nav="view-decks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="10" height="15" rx="1.5" transform="rotate(12 14 10.5)"/><rect x="5" y="5" width="10" height="15" rx="1.5"/><path d="M10 10.5l2 2-2 2-2-2z"/></svg><span class="t-pc">Decks</span><span class="t-ph">Decks</span></button><button class="ae-tab" data-a="go-lib" data-nav="view-library"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="11" height="16" rx="1.5"/><path d="M6 7h5M6 10h5"/><circle cx="16.5" cy="15.5" r="3.5"/><path d="M19 18l2.5 2.5"/></svg><span class="t-pc">Library</span><span class="t-ph">Library</span></button><button class="ae-tab" data-a="go-howto" data-nav="view-howto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l9.5 7-3.6 11.5H6.1L2.5 9z"/><path d="M9.8 10a2.3 2.3 0 1 1 3.3 2.1c-.7.4-1.1 1-1.1 1.7v.4"/><path d="M12 17.2h.01"/></svg><span class="t-pc">How to play</span><span class="t-ph">Help</span></button></nav>
-  <span class="ae-tools">
-    <button class="gbtn" id="theme-btn" data-a="theme-pop" aria-label="Your colour" title="Your colour" aria-expanded="false" aria-controls="theme-pop"><span class="dot"></span></button>
-    <span class="ae-toggle" role="group" aria-label="Mode"><button data-a="theme-mode" data-v="dark" aria-pressed="true">DARK</button><button data-a="theme-mode" data-v="light" aria-pressed="false">LIGHT</button></span>
-    <button class="gbtn t-pcf" data-a="go-history" aria-label="Match history" title="Match history"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5M12 7v5l3 2"/></svg></button>
-    <button class="gbtn t-pcf" id="sound-btn" data-a="sound-toggle" aria-label="Sound" title="Sound" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></button>
-    <button class="gbtn" data-a="bug-open" aria-label="Report a bug" title="Report a bug"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 9a4 4 0 0 1 8 0v6a4 4 0 0 1-8 0zM4 13h4M16 13h4M5 7l3 2M19 7l-3 2M5 19l3-2M19 19l-3-2"/></svg></button>
-    <button class="gbtn" data-a="go-settings" aria-label="Settings" title="Settings"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg></button>
-  </span>
-  <div id="theme-pop" class="ae-pop" role="dialog" aria-label="Your colour" hidden><div class="bar"></div><h3>Your colour</h3><div id="theme-grid" class="pgrid"></div>
-    <div class="mswitch"><b>Mode</b><span class="ae-toggle" role="group" aria-label="Mode"><button data-a="theme-mode" data-v="dark" aria-pressed="true">DARK</button><button data-a="theme-mode" data-v="light" aria-pressed="false">LIGHT</button></span></div></div>
-</header>
+<nav id="app-nav" class="nav" aria-label="Main"><span class="logo" translate="no" data-a="go-lobby">AETERNA</span><span id="app-tabs" class="mk-tabs"><button class="nv" data-a="go-lobby" data-nav="view-lobby">Home</button><button class="nv" data-a="go-play" data-nav="view-play">Play</button><button class="nv" data-a="go-decks" data-nav="view-decks">Decks</button><button class="nv" data-a="go-lib" data-nav="view-library">Library</button><button class="nv" data-a="go-howto" data-nav="view-howto">Learn</button></span><span class="sp"></span>
+  <button class="ibtn colb" id="theme-btn" data-a="theme-pop" aria-label="Your colour" title="Your colour" aria-expanded="false" aria-controls="theme-pop"></button>
+  <div class="seg mini" role="group" aria-label="Mode"><button data-a="theme-mode" data-v="dark" aria-pressed="true">Dark</button><button data-a="theme-mode" data-v="light" aria-pressed="false">Light</button></div>
+  <button class="ibtn" data-a="go-history" aria-label="Match history" title="History">↺</button><button class="ibtn" data-a="go-settings" aria-label="Settings" title="Settings">⚙</button>
+  <button class="pchip" data-a="go-settings"><span class="av">A</span><span><b>Player</b><br><span class="mut">Offline</span></span></button>
+</nav>
+<div class="phonebar"><span class="logo" style="font-size:17px;margin:0" data-a="go-lobby">AETERNA</span><span class="grow" id="pb-title" style="text-align:center;font-weight:800;font-size:.86em;letter-spacing:.12em;text-transform:uppercase;color:var(--text2)">Home</span><button class="ibtn colb" data-a="theme-pop" aria-label="Your colour"></button><button class="ibtn" data-a="go-settings" aria-label="Settings">⚙</button><button class="pchip" style="padding:3px" data-a="go-settings" aria-label="Profile"><span class="av" style="width:28px;height:28px">A</span></button></div>
+<div id="theme-pop" class="ae-pop" role="dialog" aria-label="Your colour" hidden><div class="bar"></div><h3>Your colour</h3><div id="theme-grid" class="pgrid"></div></div>
 
 <div id="view-lobby" class="app-view active">
-  <main class="home">
-    <div class="home-hero"><div class="home-main">
-    <div class="home-tags"><span class="tag-you">Card Battle vs CPU</span><span class="tag-chip">Offline<span class="t-pc"> · One File</span></span></div>
-    <h1 class="home-motto">Gate Open,<br><span>Release!</span></h1>
-    <p class="home-sub" id="home-sub">Decks and card images stay on this device.</p>
-    <div class="home-cta"><button class="menu-btn primary ae-btnp" data-a="go-play">▶ Play Now</button><button class="menu-btn ae-btns" data-a="go-deck">Build a Deck</button></div>
-    <span class="home-last" id="home-last"></span>
-    </div>
-    <aside class="home-side hm-card" aria-label="Card of the Day"><h2>Card of the Day</h2><div id="home-cotd"></div></aside></div>
-    <div class="home-tiles">
-      <button class="ae-tile" data-a="go-play"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M14.5 17.5L3 6V3h3l11.5 11.5M13 19l6-6M16 16l4 4"/></svg></span><span class="tx"><b>Match vs CPU</b><span id="tile-play-sub">Deck, format, CPU deck</span></span><span class="chev" aria-hidden="true">›</span></button>
-      <button class="ae-tile" data-a="go-deck"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span><span class="tx"><b>Deck Builder</b><span>8 slots, ready-made decks</span></span><span class="chev" aria-hidden="true">›</span></button>
-      <button class="ae-tile" data-a="go-lib"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h14v16H6a2 2 0 0 0-2 2z"/></svg></span><span class="tx"><b>Card Library</b><span id="tile-lib-sub">Card data and your card images</span></span><span class="chev" aria-hidden="true">›</span></button>
-    </div>
-    <section class="home-more" aria-label="Today">
-      <div class="hm-card"><h2>Play in three steps</h2><ol class="hm-steps"><li><b>Pick a deck</b> below or build one.</li><li><b>Pick a format</b> and the CPU deck.</li><li><b>Press Play Now</b> and win by taking all 5 Life.</li></ol><p class="hm-sum" id="home-sum"></p></div>
-      <div class="hm-card"><h2>Today's missions</h2><ul class="pg-list" id="home-missions"></ul></div>
-      <div class="hm-card wide"><h2>My decks</h2><div class="hm-decks" id="home-decks"></div></div>
-    </section>
-  </main>
-  <footer class="home-foot"><span id="home-ver" translate="no">Aeterna</span><button data-a="go-howto">HOW TO PLAY</button><button data-a="bug-open">REPORT A BUG</button><button data-a="go-settings">SETTINGS &amp; HISTORY</button><button data-a="rules">RULES COVERAGE</button><span class="t-pcf">Unofficial non-commercial fan project</span></footer>
+  <div class="hero scroll" style="flex-direction:column">
+    <div style="display:flex;flex:1;min-height:0;position:relative" class="herotop">
+      <div class="glow" style="right:80px;top:20px;width:420px;height:420px;background:var(--you)"></div><div class="glow" style="right:380px;top:200px;width:300px;height:300px;background:var(--cpu);opacity:.2"></div>
+      <div class="l"><div class="row" style="gap:8px;flex-wrap:wrap"><span class="tag">Card Battle vs CPU</span><span class="tag dim">Offline · One File</span></div>
+        <h1>Gate Open,<em>Release!</em></h1>
+        <p class="sub" style="font-size:1.05em;max-width:46ch;margin:0" id="home-sub">Three small steps to your first match: pick a deck, pick an opponent, start. Your profile, decks and card images stay on this device.</p>
+        <div class="row" style="gap:12px;flex-wrap:wrap;margin-top:6px"><button class="btn pri lg" data-a="go-play">▶ Play Now</button><button class="btn lg" data-a="go-deck">Build A Deck</button></div>
+        <div class="row card flat" style="padding:8px 12px;gap:12px;align-self:flex-start;margin-top:4px" id="home-cont"></div></div>
+      <div class="cotd" id="cotd"></div></div>
+    <div class="tiles" id="home-tiles"></div>
+    <div class="tiles" style="grid-template-columns:1.2fr 1fr 1fr;padding-bottom:24px">
+      <div class="card news"><span class="sec" style="margin:0">Daily missions</span><div id="home-missions"></div></div>
+      <div class="card news"><span class="sec" style="margin:0">What's new</span><b>Key Spirit is in</b><span class="sub" style="font-size:.84em">Pick one Key Spirit per deck; draws favour its copies.</span><button class="btn sm" style="align-self:flex-start" data-a="go-howto">Read the note</button></div>
+      <div class="card news" id="home-last-card"><span class="sec" style="margin:0">Last match</span><div id="home-last"></div></div></div>
+  </div>
 </div>
 
 <div id="view-settings" class="app-view ae-view">
@@ -277,6 +264,10 @@
   </form>
 </div>
 <div id="ae-fx" aria-hidden="true"><div class="ae-strip" hidden></div></div>
+<div class="tabbar" id="mk-tabbar"><button data-a="go-lobby" data-nav="view-lobby"><svg viewBox="0 0 24 24"><path d="M4 20V10l8-6 8 6v10M9 20v-6h6v6"/></svg>Home</button><button data-a="go-play" data-nav="view-play"><svg viewBox="0 0 24 24"><path d="M12 3l8 6-3 11H7L4 9z"/><path d="M10 9l5 3-5 3z"/></svg>Play</button><button data-a="go-decks" data-nav="view-decks"><svg viewBox="0 0 24 24"><rect x="4" y="6" width="11" height="15" rx="2"/><path d="M8 3h9a3 3 0 013 3v11"/></svg>Decks</button><button data-a="go-lib" data-nav="view-library"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="12" height="17" rx="2"/><circle cx="16" cy="16" r="3.5"/><path d="M19 19l2 2"/></svg>Library</button><button data-a="go-howto" data-nav="view-howto"><svg viewBox="0 0 24 24"><path d="M12 3l8 6-8 6-8-6z"/><path d="M7 13v4c3 3 7 3 10 0v-4"/></svg>Learn</button></div>
+<div class="foot" id="mk-foot"><span id="home-ver" translate="no">Aeterna</span><a style="color:var(--you-text)" href="#" data-a="bug-open">Report A Bug</a><span class="grow"></span><span>Unofficial non-commercial fan project</span></div>
+<button class="bugfab" id="mk-bugfab" data-a="bug-open" aria-label="Report a bug" title="Report A Bug"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7a3 3 0 016 0M7 11h10M12 11v9M5 8l3 2M19 8l-3 2M4 14h3M17 14h3M5 20l3-3M19 20l-3-3"/><rect x="7" y="8" width="10" height="11" rx="5"/></svg><span>Report Bug</span></button>
+
 <div id="action-modal" class="modal-overlay">
   <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-card-title">
     <div id="modal-card-title" class="modal-title">Zone Details</div>

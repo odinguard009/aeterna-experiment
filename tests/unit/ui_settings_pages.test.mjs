@@ -24,7 +24,7 @@ async function open(screen, clear = true) {
 for (const screen of ['pc', 'phone']) {
   test(`U68-1 ${screen}: Settings has the header card, section menu and every old control`, async () => {
     const { page, errors } = await open(screen);
-    await page.click('#app-nav [data-a="go-settings"]');
+    await page.locator(screen === 'pc' ? '#app-nav .ibtn[data-a="go-settings"]' : '.phonebar [data-a="go-settings"]').first().click();
     const r = await page.evaluate(() => ({
       head: document.querySelector('#view-settings .ae-phead h1').textContent,
       menu: [...document.querySelectorAll('#set-menu [data-a="set-sec"]')].map(b => b.dataset.v),
@@ -49,7 +49,7 @@ for (const screen of ['pc', 'phone']) {
     const r = await page.evaluate(() => ({
       t: JSON.parse(localStorage.getItem('aeterna.theme.v1')), mode: document.documentElement.dataset.mode,
       pressed: document.querySelector('#set-color [aria-pressed="true"]').dataset.v, cpu: document.getElementById('set-cpucol').textContent,
-      head: document.querySelector('#app-nav .ae-toggle [aria-pressed="true"]').dataset.v,
+      head: document.querySelector('#app-nav .seg [aria-pressed="true"]').dataset.v,
     }));
     assert.deepEqual(r, { t: { color: 'red', mode: 'light' }, mode: 'light', pressed: 'red', cpu: 'Blue', head: 'light' });
     await page.selectOption('#set-speed', 'fast'); await page.selectOption('#set-sound', 'on'); await page.selectOption('#set-cpu', 'defensive');

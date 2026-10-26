@@ -11,17 +11,17 @@ test('HM1 Card of the Day is stable within a day, changes the next day and opens
   await open({ viewport: { width: 1366, height: 768 } });
   const r = await page.evaluate(() => { const d = new Date(Date.UTC(2026, 9, 26, 3)), e = new Date(Date.UTC(2026, 9, 26, 20)), f = new Date(Date.UTC(2026, 9, 27, 3)); return [BS.cardOfDay(d) === BS.cardOfDay(e), BS.cardOfDay(d) !== BS.cardOfDay(f), !!CARDS[BS.cardOfDay()]]; });
   assert.deepEqual(r, [true, true, true]);
-  await page.click('#home-cotd .hm-cotd'); await page.waitForSelector('#zoom-overlay.active');
+  await page.click('#cotd .cfw'); await page.waitForSelector('#zoom-overlay.active');
 });
-test('HM2 deck tiles list every slot, the active one is marked and a tap switches', async () => {
+test('HM2 the Continue panel names the active deck and the four tiles are shown', async () => {
   await page.evaluate(() => document.getElementById('zoom-overlay').classList.remove('active'));
-  const r = await page.evaluate(() => { const n = document.querySelectorAll('#home-decks .hm-deck').length, on = document.querySelector('#home-decks .on').dataset.v; document.querySelectorAll('#home-decks .hm-deck')[2].click(); return { n, on, now: ACTIVE_SLOT, sum: document.getElementById('home-sum').textContent }; });
-  assert.equal(r.n, 8); assert.equal(r.now, 2); assert.match(r.sum, /Deck 3/);
+  const r = await page.evaluate(() => { BS.switchSlot(2); BS.switchView('view-lobby'); return { cont: document.getElementById('home-cont').textContent, tiles: document.querySelectorAll('#home-tiles .tile2').length }; });
+  assert.match(r.cont, /Continue with/); assert.equal(r.tiles, 4);
 });
 test('HM3 phone: the home page fits the width', async () => {
   await ctx.close(); await open({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
-  const w = await page.evaluate(() => [document.documentElement.scrollWidth, innerWidth, document.querySelectorAll('.hm-steps li').length]);
-  assert.equal(w[0], w[1]); assert.equal(w[2], 3);
+  const w = await page.evaluate(() => [document.documentElement.scrollWidth, innerWidth, document.querySelectorAll('#home-tiles .tile2').length]);
+  assert.equal(w[0], w[1]); assert.equal(w[2], 4);
 });
 test('HM4 profile statistics come from the history; the glossary lists every keyword', async () => {
   const r = await page.evaluate(() => {
