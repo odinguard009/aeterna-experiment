@@ -9,3 +9,7 @@ body:not(.mk) .nav,body:not(.mk) .phonebar,body:not(.mk) .tabbar,body:not(.mk) .
 body.mk > .ae-pop{position:absolute;top:62px;right:24px;z-index:20}
 @container fr (max-width:700px){body.mk > .ae-pop{top:52px;right:14px}}
 .mk .nv[aria-current="page"],.mk .tabbar button[aria-current="page"]{}
+
+/* Play deck boxes: the real card face (image or text placeholder) fills a 5:7 frame like the mockup's .cf */
+.mk .dbox .cface,.mk .dbox .cf{flex:none;display:block;width:100%;aspect-ratio:5/7;height:auto;object-fit:cover;overflow:hidden;border-radius:7px;box-sizing:border-box;font-size:.78em}
+.mk .decksel{flex:none}

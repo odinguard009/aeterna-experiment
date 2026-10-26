@@ -104,27 +104,29 @@
 </div>
 
 <div id="view-play" class="app-view">
-  <main class="ae-page play pl3">
-    <header class="ae-phead"><div class="tx"><span class="ae-eyebrow">Play</span><h1>Start a Match</h1><p>1 · Deck &nbsp; 2 · Opponent &nbsp; 3 · Rules &nbsp; then press Start.</p></div>
-      <span class="pl-stats" id="pl-stats"></span><button class="ae-ghost" data-a="go-lobby">◄ Home</button></header>
-    <div class="pl-steps">
-      <section class="pl-step" aria-labelledby="pl-h1"><h2 id="pl-h1"><span class="no">1</span>Your Deck</h2>
-        <label class="pl-pick"><span class="pl-lab">Deck</span><select id="play-deck" class="sel"></select></label>
-        <span id="lobby-deck" class="lobby-deck" role="status"></span>
-        <button class="ae-ghost" data-a="go-deck">Edit Deck</button>
-      </section>
-      <section class="pl-step" aria-labelledby="pl-h2"><h2 id="pl-h2"><span class="no">2</span>Opponent</h2>
-        <div class="ae-chips" id="pl-mode" role="group" aria-label="Mode"></div>
-        <label class="pl-pick"><span class="pl-lab">CPU Deck</span><select id="play-cpu" class="sel"></select></label>
-        <span class="pl-lab" id="pl-style-l">CPU Style</span><div class="ae-chips" id="pl-style" role="group" aria-labelledby="pl-style-l"></div>
-      </section>
-      <section class="pl-step" aria-labelledby="pl-h3"><h2 id="pl-h3"><span class="no">3</span>Rules</h2>
-        <span class="pl-lab">Format</span><div><button class="ae-chipbtn" data-a="format" id="format-btn">Format: Standard</button></div>
-        <span class="pl-lab" id="pl-speed-l">Game Speed</span><div class="ae-chips" id="pl-speed" role="group" aria-labelledby="pl-speed-l"></div>
-      </section>
-    </div>
-    <div class="pl-ready"><div class="pl-sum" id="pl-sum"></div><button class="menu-btn primary pl-start" data-a="start">▶ Start Match</button></div>
-  </main>
+  <div class="pg scroll">
+    <div class="card hdcard"><div class="grow"><span class="eyebrow">Play</span><h2 class="hd">Start a match</h2><span class="sub">1 · Deck &nbsp; 2 · Opponent &nbsp; 3 · Rules &nbsp; then press Start.</span></div>
+      <div class="row" id="pl-stats" style="gap:18px;font-size:.8em;color:var(--text2)"></div></div>
+    <div class="steps3">
+      <div class="card stepc"><div class="row"><span class="no">1</span><b>Your deck</b><span class="grow"></span><button class="btn sm" data-a="go-decks">All decks</button></div>
+        <div class="decksel scroll" id="play-decks"></div>
+        <span id="lobby-deck" class="sub lobby-deck" role="status" style="font-size:.8em"></span>
+        <button class="btn sm" data-a="go-deck" style="align-self:flex-start">Edit deck</button></div>
+      <div class="card stepc"><div class="row"><span class="no">2</span><b>Opponent</b></div>
+        <div class="row" id="pl-mode" role="group" aria-label="Mode" style="gap:6px;flex-wrap:wrap"></div>
+        <span class="sub" style="font-size:.78em;font-weight:800;letter-spacing:.14em">CPU STYLE</span>
+        <div class="col" id="pl-style" role="group" aria-label="CPU style" style="gap:6px"></div>
+        <span class="sub" style="font-size:.78em;font-weight:800;letter-spacing:.14em">STRENGTH</span>
+        <div class="seg" id="pl-level" role="group" aria-label="Strength" style="border-color:var(--line2)"></div>
+        <span class="sub" style="font-size:.78em;font-weight:800;letter-spacing:.14em">CPU DECK</span>
+        <select id="play-cpu" class="in" aria-label="CPU deck"></select></div>
+      <div class="card stepc"><div class="row"><span class="no">3</span><b>Rules</b></div>
+        <span class="sub" style="font-size:.78em;font-weight:800;letter-spacing:.14em">FORMAT</span><div class="row" id="pl-fmt" role="group" aria-label="Format" style="gap:6px;flex-wrap:wrap"></div>
+        <span class="sub" style="font-size:.78em;font-weight:800;letter-spacing:.14em">FIRST TURN</span><div class="row" id="pl-first" role="group" aria-label="First turn" style="gap:6px;flex-wrap:wrap"></div>
+        <span class="sub" style="font-size:.78em;font-weight:800;letter-spacing:.14em">GAME SPEED</span><div class="row" id="pl-speed" role="group" aria-label="Game speed" style="gap:6px;flex-wrap:wrap"></div>
+        <div class="setrow" style="border:0;padding:4px 0"><div class="grow"><b>Learning hints</b><span class="sub" style="font-size:.8em">Shows what you can do now.</span></div><button class="sw2" id="pl-hints" data-a="play-hints" aria-label="Learning hints"></button></div></div></div>
+    <div class="card readybox"><div class="sumgrid" id="pl-sum"></div><button class="btn yes lg startb pl-start" data-a="start">&#9654; Start Match</button></div>
+  </div>
 </div>
 
 <div id="view-online" class="app-view ae-view">

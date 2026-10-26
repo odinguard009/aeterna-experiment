@@ -171,6 +171,12 @@ function applyLook() {                                // your side of the board 
   let s = $('ae-look'); if (!s) { s = document.createElement('style'); s.id = 'ae-look'; document.head.appendChild(s); }
   if (s.textContent !== css) s.textContent = css;
 }
+/* v0.137.0 Learning hints (play setup switch, mockup "Shows what you can do now"): one line under the log while it is your Main or Attack Step */
+function hintText() {
+  if (!G || G.over || SETTINGS.hints === false || !humanCan()) return '';
+  if (isMainStep()) return 'Main Step: tap a card in your hand to summon or cast it, then press NEXT to attack.';
+  return G.step === 5 ? 'Attack Step: tap a ready Spirit to attack, or press NEXT to end your turn.' : '';
+}
 function renderBoard() {
   const app = $('app'); if (!app || !G) return;
   applyLook();
@@ -204,6 +210,7 @@ function renderBoard() {
           <div class="next-btn-wrapper"><button class="inline-next-btn" data-a="next" aria-label="Next step" ${nextOff ? 'disabled' : ''}><span class="ic">▶</span><span class="tx">NEXT</span></button></div>
         </div>
         <div class="control-log-row" data-a="log" title="Tap to see the game log">${esc(G.last)}</div>
+        ${hintText() ? `<div class="step-hint" role="note">${hintText()}</div>` : ''}
         <div class="step-warn" role="status" aria-live="polite"${STEP_WARN && Date.now() - STEP_WARN.at < 2200 ? '' : ' hidden'}><b>ILLEGAL MOVE</b><span class="sw-t">${STEP_WARN ? esc(STEP_WARN.text) : ''}</span></div>
       </div>
       <div class="half-field">
@@ -337,10 +344,7 @@ function renderLobby() {
   const v = validateDeck(PLAYER_DECK), el = $('lobby-deck');
   el.className = 'lobby-deck' + (v.ok ? '' : ' bad');
   el.textContent = v.ok ? `Your deck: ${v.total} cards · legal in ${fmtName(FORMAT)}` : `Your deck is not legal in ${fmtName(FORMAT)}: ${errSummary(v)}`;
-  const fb = $('format-btn'); if (fb) fb.textContent = `Format: ${fmtButton(FORMAT)}`;
-  const pd = $('play-deck');
-  if (pd) {
-    pd.innerHTML = SLOTS.map((sl, i) => { const t = deckTotal(sl.cards), ok = t && validateDeck(sl.cards, FORMAT).ok; return `<option value="${i}"${i === ACTIVE_SLOT ? ' selected' : ''}>${esc(sl.name)} · ${t} cards${t ? (ok ? ' ✓' : ' ✗') : ''}</option>`; }).join('');
+  if ($('play-cpu')) {
     $('play-cpu').innerHTML = [...prebuiltOrder(FORMAT).map(({ d }) => `<option value="${d.id}">${esc(prebuiltLabel(d))}${validateDeck(d.cards, FORMAT).ok ? (d.missing ? ' (random instead)' : '') : ' (not legal in ' + fmtName(FORMAT) + ': random instead)'}</option>`), '<option value="random">Random legal deck</option>', '<option value="mine">Mirror: copy of your deck</option>'].join('');
     $('play-cpu').value = SETTINGS.cpuDeck;
   }

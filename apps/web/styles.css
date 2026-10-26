@@ -1139,3 +1139,6 @@
   @media (max-width: 800px) { html.layout-pc .ae-tab { padding: 0 9px; letter-spacing: .04em; font-size: 12px; } }
   @media (max-width: 380px) { .ae-tools > .ae-toggle { display: none; } }   /* the colour pop-up keeps a Dark / Light switch */
   .bug-box, .bug-box label { text-align: left; } .bug-box .modal-title, .bug-box .bug-note { text-align: center; }
+
+/* v0.137.0 Learning hints line under the match log */
+.step-hint{align-self:center;max-width:min(100%,860px);box-sizing:border-box;padding:3px 14px;font-size:12px;color:var(--text-main);background:var(--you-soft,rgba(80,160,255,.16));border-left:3px solid var(--you,#4aa3ff);border-radius:3px;text-align:center}

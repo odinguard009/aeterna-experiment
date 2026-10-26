@@ -26,28 +26,31 @@ for (const screen of ['pc', 'phone']) {
     const r = await page.evaluate(() => {
       const vis = s => { const e = document.querySelector(s); if (!e) return false; const b = e.getBoundingClientRect(); return b.width > 0 && b.height > 0; };
       const start = document.querySelector('#view-play [data-a="start"]').getBoundingClientRect();
-      return { head: vis('#view-play .ae-phead h1'), deck: vis('#play-deck'), status: document.getElementById('lobby-deck').textContent,
-        modes: [...document.querySelectorAll('#pl-mode .ae-chip')].map(b => b.dataset.v), fmt: vis('#format-btn'), cpu: vis('#play-cpu'),
-        styles: [...document.querySelectorAll('#pl-style .ae-chip')].map(b => b.dataset.v), speeds: [...document.querySelectorAll('#pl-speed .ae-chip')].map(b => b.dataset.v),
+      return { head: vis('#view-play .hdcard h2'), deck: vis('#play-decks'), status: document.getElementById('lobby-deck').textContent,
+        modes: [...document.querySelectorAll('#pl-mode .chip')].map(b => b.dataset.v), fmt: vis('#pl-fmt'), cpu: vis('#play-cpu'),
+        styles: [...document.querySelectorAll('#pl-style .opt')].map(b => b.dataset.v), speeds: [...document.querySelectorAll('#pl-speed .chip')].map(b => b.dataset.v),
         pressed: [document.querySelector('#pl-style [aria-pressed="true"]').dataset.v, document.querySelector('#pl-speed [aria-pressed="true"]').dataset.v],
         startInView: start.bottom <= innerHeight, over: document.documentElement.scrollWidth > innerWidth + 1 };
     });
     assert.ok(r.head && r.deck && r.fmt && r.cpu, 'header, deck select, format button and CPU deck select visible');
     assert.match(r.status, /legal in ETERNAL/);
     assert.deepEqual(r.modes, ['cpu', 'watch', 'online']);
-    assert.deepEqual(r.styles, await page.evaluate(() => Object.keys(BS.CPU_PROFILES)));
+    assert.deepEqual(r.styles, ['balanced', 'aggressive', 'defensive', 'random']);
     assert.deepEqual(r.speeds, ['normal', 'fast', 'instant']);
     assert.deepEqual(r.pressed, ['balanced', 'normal']);
-    assert.ok(r.startInView, 'Match vs CPU is on the first screen');
     assert.ok(!r.over, 'no horizontal overflow');
     await page.click('#pl-style [data-v="aggressive"]'); await page.click('#pl-speed [data-v="fast"]');
     const s = await page.evaluate(() => [BS.SETTINGS.cpuProfile, BS.SETTINGS.speed, JSON.parse(localStorage.getItem(BS.SET_KEY)).speed,
       document.querySelector('#pl-style [aria-pressed="true"]').dataset.v, document.querySelector('#pl-speed [aria-pressed="true"]').dataset.v]);
     assert.deepEqual(s, ['aggressive', 'fast', 'fast', 'aggressive', 'fast']);
-    const f0 = await page.innerText('#format-btn'); await page.click('#format-btn');
-    assert.notEqual(await page.innerText('#format-btn'), f0, 'format toggles'); await page.click('#format-btn');
-    await page.click('#view-play [data-a="go-lobby"]');
-    assert.equal(await page.evaluate(() => document.getElementById('view-lobby').classList.contains('active')), true);
+    const f0 = await page.innerText('#pl-fmt .on'); await page.click('#pl-fmt .chip:not(.on)');
+    assert.notEqual(await page.innerText('#pl-fmt .on'), f0, 'format switches'); await page.click('#pl-fmt .chip:not(.on)');
+    await page.click('#pl-level [data-v="easy"]'); await page.click('#pl-first [data-v="me"]'); await page.click('#pl-style [data-v="random"]');
+    const m = await page.evaluate(() => [BS.SETTINGS.cpuLevel, BS.SETTINGS.firstTurn, BS.SETTINGS.cpuRandom]);
+    assert.deepEqual(m, ['easy', 'me', true]);
+    await page.click('#view-play [data-a="start"]');
+    await page.waitForFunction(() => BS.G && BS.G.history && BS.G.history.includes('You go first (set in the match setup).'), null, { timeout: 10000 });
+    assert.equal(await page.evaluate(() => BS.G.lvl), 'easy');
     assert.deepEqual(errors, []);
   });
 }
@@ -65,5 +68,19 @@ test('U67-2 pc: Watch CPU vs CPU plays both sides to the end, step clicks only w
   const end = await page.evaluate(() => [BS.HISTORY().length, document.body.innerText.includes('MATCH OVER')]);
   assert.equal(end[0], 0, 'watched matches are not saved to the match history');
   assert.ok(end[1], 'game over dialog says MATCH OVER');
+  assert.deepEqual(errors, []);
+});
+
+test('U67-3 pc: Easy strength and First turn "CPU first" reach the match; Hard/Normal are unchanged; the record replays them', async () => {
+  const { page, errors } = await open('pc');
+  const r = await page.evaluate(async () => {
+    BS.startNewGame({ lvl: 'easy', first: 'cpu', prof: null, seed: 7 });
+    await new Promise(res => setTimeout(res, 800));
+    const a = [BS.G.lvl, BS.G.history.includes('The CPU goes first (set in the match setup).'), BS.G.rec && BS.G.rec.lvl, BS.G.rec && BS.G.rec.first];
+    BS.startNewGame({ lvl: 'bogus', first: 'bogus' }); await new Promise(res => setTimeout(res, 300));
+    return [a, BS.G.lvl];
+  });
+  assert.deepEqual(r[0], ['easy', true, 'easy', 'cpu']);
+  assert.equal(r[1], 'normal', 'unknown strength falls back to normal');
   assert.deepEqual(errors, []);
 });

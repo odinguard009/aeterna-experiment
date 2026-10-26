@@ -62,6 +62,11 @@ document.addEventListener('click', e => {
   else if (a === 'play-mode') playSet('mode', v);
   else if (a === 'play-style') playSet('style', v);
   else if (a === 'play-speed') playSet('speed', v);
+  else if (a === 'play-level') playSet('level', v);
+  else if (a === 'play-first') playSet('first', v);
+  else if (a === 'play-fmt') { playSet('fmt', v); renderLobby(); }
+  else if (a === 'play-slot') playSet('slot', v);
+  else if (a === 'play-hints') playSet('hints');
   else if (a === 'go-deck') switchView('view-deckbuilder');
   else if (a === 'db-unchip') dbUnchip(v);
   else if (a === 'db-tab') dbTab(v);
@@ -88,7 +93,7 @@ document.addEventListener('click', e => {
   else if (a === 'rv-watch') replayWatch(Number(v));
   else if (a === 'rv-save') replaySave(Number(v));
   else if (a === 'hist-clear') { HISTORY = []; try { localStorage.removeItem(HIST_KEY); } catch (e) { /* blocked */ } renderSettings(); }
-  else if (a === 'set-reset') { SETTINGS.speed = 'normal'; SETTINGS.sound = false; delete SETTINGS.anim; SETTINGS.cpuDeck = 'std03'; SETTINGS.cpuProfile = 'balanced'; saveSettings(); renderSettings(); $('set-msg').textContent = 'Settings reset.'; }
+  else if (a === 'set-reset') { SETTINGS.speed = 'normal'; SETTINGS.sound = false; delete SETTINGS.anim; SETTINGS.cpuDeck = 'std03'; SETTINGS.cpuProfile = 'balanced'; delete SETTINGS.cpuRandom; delete SETTINGS.cpuLevel; delete SETTINGS.firstTurn; delete SETTINGS.hints; saveSettings(); renderSettings(); $('set-msg').textContent = 'Settings reset.'; }
   else if (a === 'go-lib') switchView('view-library');
   else if (a === 'set-sec') setSection(v);
   else if (a === 'set-mat-clear') matClear();
@@ -157,7 +162,7 @@ function gameAct(a, v) {
 }
 
 /* ---- v0.26: replay of an input record, and named test scenarios (ideas from the Aegis study) ---- */
-function replayOf(g) { const r = g.rec; return { v: r.v, build: r.build, seed: r.seed, format: r.format, sim: !!r.sim, deckA: r.deckA, deckB: r.deckB, inputs: r.inputs.slice(), lossy: !!r.lossy, final: r.final || null, keyA: r.keyA || null, keyB: r.keyB || null }; }
+function replayOf(g) { const r = g.rec; return { v: r.v, build: r.build, seed: r.seed, format: r.format, sim: !!r.sim, deckA: r.deckA, deckB: r.deckB, inputs: r.inputs.slice(), lossy: !!r.lossy, final: r.final || null, keyA: r.keyA || null, keyB: r.keyB || null, lvl: r.lvl || 'normal', first: r.first || 'coin', prof: r.prof || null }; }
 function lastReplay() { if (G && G.rec) return replayOf(G); for (let i = HISTORY.length - 1; i >= 0; i--) if (HISTORY[i].replay) return HISTORY[i].replay; return null; }
 /* replays a record: same seed and decks, then every recorded prompt answer / pick / board action in order.
    Resolves {ok, reason, at, total, over, final, same}: "same" compares the final result and the hash of the whole log with the recorded match. */
@@ -172,7 +177,7 @@ async function runReplay(rec, opts) {
     const same = !!(rec.final && final && rec.final.winner === final.winner && rec.final.turn === final.turn && rec.final.hash === final.hash && rec.final.log === final.log);
     return { ok, reason: reason || '', at: R.i, total: inputs.length, over: !!(G && G.over), final, same };
   };
-  startNewGame({ seed: rec.seed, deckA: rec.deckA, deckB: rec.deckB, noHistory: true });
+  startNewGame({ seed: rec.seed, deckA: rec.deckA, deckB: rec.deckB, noHistory: true, lvl: rec.lvl || 'normal', first: rec.first || 'coin', prof: rec.prof || null });
   const t0 = Date.now(); let idle = Date.now();
   const desc = x => (x ? JSON.stringify(x).slice(0, 80) : 'nothing');
   while (Date.now() - t0 < (opts.timeoutMs || 180000)) {

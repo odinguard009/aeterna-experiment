@@ -42,7 +42,9 @@ function cpuPlayScore(p, h, W = cpuW(p)) {
    (or passes) at its play, attack and block decisions, drawing from the seeded game rng, so a fuzzed match replays from its seed +
    the same FUZZ setting (tools/fuzz.mjs, tests/fuzz-cases). Off in normal play. */
 let FUZZ = {};
-function fuzzPick(p, opts) { if (!p || !FUZZ[p.key] || !opts.length) return undefined; const i = Math.floor(rng() * (opts.length + 1)); return i < opts.length ? opts[i] : null; }
+/* v0.137.0 CPU strength (play setup, mockup "Strength"): on Easy the CPU seat slips on 3 of 10 play, attack and block decisions (the same random pick as the fuzzer, from the seeded rng so the match still replays); Normal and Hard draw nothing */
+const cpuSlips = p => !!(G && G.lvl === 'easy' && p.cpu && p.key === 'opponent' && rng() < 0.3);
+function fuzzPick(p, opts) { if (!p || !opts.length || (!FUZZ[p.key] && !cpuSlips(p))) return undefined; const i = Math.floor(rng() * (opts.length + 1)); return i < opts.length ? opts[i] : null; }
 function cpuPlayChoice(p, opts) {
   const fz = fuzzPick(p, opts); if (fz !== undefined) return fz;
   let best = null;

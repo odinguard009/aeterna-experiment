@@ -1009,6 +1009,7 @@ span.pg-av{cursor:default;}.pg-avs{display:flex;flex-wrap:wrap;gap:8px;}.pg-avs 
 @media (max-width:800px){html.layout-pc .ae-tab{padding:0 9px;letter-spacing:.04em;font-size:12px;}}
 @media (max-width:380px){.ae-tools > .ae-toggle{display:none;}}
 .bug-box,.bug-box label{text-align:left;}.bug-box .modal-title,.bug-box .bug-note{text-align:center;}
+.step-hint{align-self:center;max-width:min(100%,860px);box-sizing:border-box;padding:3px 14px;font-size:12px;color:var(--text-main);background:var(--you-soft,rgba(80,160,255,.16));border-left:3px solid var(--you,#4aa3ff);border-radius:3px;text-align:center}
 .mk{--page:#0d1015;--page-fg:#eef1f5;--page-muted:#a9b2c1;--page-line:#ffffff24;--page-panel:#161a22;
 --bg1:#1b2029;--bg2:#11141a;--lattice:#ffffff08;
 --panel:#232935;--panel2:#161a22;--panel3:#0f1218;--line:#ffffff1a;--line2:#ffffff40;
@@ -2179,6 +2180,8 @@ body:not(.mk) .nav,body:not(.mk) .phonebar,body:not(.mk) .tabbar,body:not(.mk) .
 body.mk > .ae-pop{position:absolute;top:62px;right:24px;z-index:20}
 @container fr (max-width:700px){body.mk > .ae-pop{top:52px;right:14px}}
 .mk .nv[aria-current="page"],.mk .tabbar button[aria-current="page"]{}
+.mk .dbox .cface,.mk .dbox .cf{flex:none;display:block;width:100%;aspect-ratio:5/7;height:auto;object-fit:cover;overflow:hidden;border-radius:7px;box-sizing:border-box;font-size:.78em}
+.mk .decksel{flex:none}
 </style>
 </head>
 <body>
@@ -2277,27 +2280,29 @@ body.mk > .ae-pop{position:absolute;top:62px;right:24px;z-index:20}
 </div>
 
 <div id="view-play" class="app-view">
-  <main class="ae-page play pl3">
-    <header class="ae-phead"><div class="tx"><span class="ae-eyebrow">Play</span><h1>Start a Match</h1><p>1 · Deck &nbsp; 2 · Opponent &nbsp; 3 · Rules &nbsp; then press Start.</p></div>
-      <span class="pl-stats" id="pl-stats"></span><button class="ae-ghost" data-a="go-lobby">◄ Home</button></header>
-    <div class="pl-steps">
-      <section class="pl-step" aria-labelledby="pl-h1"><h2 id="pl-h1"><span class="no">1</span>Your Deck</h2>
-        <label class="pl-pick"><span class="pl-lab">Deck</span><select id="play-deck" class="sel"></select></label>
-        <span id="lobby-deck" class="lobby-deck" role="status"></span>
-        <button class="ae-ghost" data-a="go-deck">Edit Deck</button>
-      </section>
-      <section class="pl-step" aria-labelledby="pl-h2"><h2 id="pl-h2"><span class="no">2</span>Opponent</h2>
-        <div class="ae-chips" id="pl-mode" role="group" aria-label="Mode"></div>
-        <label class="pl-pick"><span class="pl-lab">CPU Deck</span><select id="play-cpu" class="sel"></select></label>
-        <span class="pl-lab" id="pl-style-l">CPU Style</span><div class="ae-chips" id="pl-style" role="group" aria-labelledby="pl-style-l"></div>
-      </section>
-      <section class="pl-step" aria-labelledby="pl-h3"><h2 id="pl-h3"><span class="no">3</span>Rules</h2>
-        <span class="pl-lab">Format</span><div><button class="ae-chipbtn" data-a="format" id="format-btn">Format: Standard</button></div>
-        <span class="pl-lab" id="pl-speed-l">Game Speed</span><div class="ae-chips" id="pl-speed" role="group" aria-labelledby="pl-speed-l"></div>
-      </section>
-    </div>
-    <div class="pl-ready"><div class="pl-sum" id="pl-sum"></div><button class="menu-btn primary pl-start" data-a="start">▶ Start Match</button></div>
-  </main>
+  <div class="pg scroll">
+    <div class="card hdcard"><div class="grow"><span class="eyebrow">Play</span><h2 class="hd">Start a match</h2><span class="sub">1 · Deck &nbsp; 2 · Opponent &nbsp; 3 · Rules &nbsp; then press Start.</span></div>
+      <div class="row" id="pl-stats" style="gap:18px;font-size:.8em;color:var(--text2)"></div></div>
+    <div class="steps3">
+      <div class="card stepc"><div class="row"><span class="no">1</span><b>Your deck</b><span class="grow"></span><button class="btn sm" data-a="go-decks">All decks</button></div>
+        <div class="decksel scroll" id="play-decks"></div>
+        <span id="lobby-deck" class="sub lobby-deck" role="status" style="font-size:.8em"></span>
+        <button class="btn sm" data-a="go-deck" style="align-self:flex-start">Edit deck</button></div>
+      <div class="card stepc"><div class="row"><span class="no">2</span><b>Opponent</b></div>
+        <div class="row" id="pl-mode" role="group" aria-label="Mode" style="gap:6px;flex-wrap:wrap"></div>
+        <span class="sub" style="font-size:.78em;font-weight:800;letter-spacing:.14em">CPU STYLE</span>
+        <div class="col" id="pl-style" role="group" aria-label="CPU style" style="gap:6px"></div>
+        <span class="sub" style="font-size:.78em;font-weight:800;letter-spacing:.14em">STRENGTH</span>
+        <div class="seg" id="pl-level" role="group" aria-label="Strength" style="border-color:var(--line2)"></div>
+        <span class="sub" style="font-size:.78em;font-weight:800;letter-spacing:.14em">CPU DECK</span>
+        <select id="play-cpu" class="in" aria-label="CPU deck"></select></div>
+      <div class="card stepc"><div class="row"><span class="no">3</span><b>Rules</b></div>
+        <span class="sub" style="font-size:.78em;font-weight:800;letter-spacing:.14em">FORMAT</span><div class="row" id="pl-fmt" role="group" aria-label="Format" style="gap:6px;flex-wrap:wrap"></div>
+        <span class="sub" style="font-size:.78em;font-weight:800;letter-spacing:.14em">FIRST TURN</span><div class="row" id="pl-first" role="group" aria-label="First turn" style="gap:6px;flex-wrap:wrap"></div>
+        <span class="sub" style="font-size:.78em;font-weight:800;letter-spacing:.14em">GAME SPEED</span><div class="row" id="pl-speed" role="group" aria-label="Game speed" style="gap:6px;flex-wrap:wrap"></div>
+        <div class="setrow" style="border:0;padding:4px 0"><div class="grow"><b>Learning hints</b><span class="sub" style="font-size:.8em">Shows what you can do now.</span></div><button class="sw2" id="pl-hints" data-a="play-hints" aria-label="Learning hints"></button></div></div></div>
+    <div class="card readybox"><div class="sumgrid" id="pl-sum"></div><button class="btn yes lg startb pl-start" data-a="start">&#9654; Start Match</button></div>
+  </div>
 </div>
 
 <div id="view-online" class="app-view ae-view">
@@ -7184,7 +7189,9 @@ function cpuPlayScore(p, h, W = cpuW(p)) {
    (or passes) at its play, attack and block decisions, drawing from the seeded game rng, so a fuzzed match replays from its seed +
    the same FUZZ setting (tools/fuzz.mjs, tests/fuzz-cases). Off in normal play. */
 let FUZZ = {};
-function fuzzPick(p, opts) { if (!p || !FUZZ[p.key] || !opts.length) return undefined; const i = Math.floor(rng() * (opts.length + 1)); return i < opts.length ? opts[i] : null; }
+/* v0.137.0 CPU strength (play setup, mockup "Strength"): on Easy the CPU seat slips on 3 of 10 play, attack and block decisions (the same random pick as the fuzzer, from the seeded rng so the match still replays); Normal and Hard draw nothing */
+const cpuSlips = p => !!(G && G.lvl === 'easy' && p.cpu && p.key === 'opponent' && rng() < 0.3);
+function fuzzPick(p, opts) { if (!p || !opts.length || (!FUZZ[p.key] && !cpuSlips(p))) return undefined; const i = Math.floor(rng() * (opts.length + 1)); return i < opts.length ? opts[i] : null; }
 function cpuPlayChoice(p, opts) {
   const fz = fuzzPick(p, opts); if (fz !== undefined) return fz;
   let best = null;
@@ -7864,6 +7871,12 @@ function applyLook() {                                // your side of the board 
   let s = $('ae-look'); if (!s) { s = document.createElement('style'); s.id = 'ae-look'; document.head.appendChild(s); }
   if (s.textContent !== css) s.textContent = css;
 }
+/* v0.137.0 Learning hints (play setup switch, mockup "Shows what you can do now"): one line under the log while it is your Main or Attack Step */
+function hintText() {
+  if (!G || G.over || SETTINGS.hints === false || !humanCan()) return '';
+  if (isMainStep()) return 'Main Step: tap a card in your hand to summon or cast it, then press NEXT to attack.';
+  return G.step === 5 ? 'Attack Step: tap a ready Spirit to attack, or press NEXT to end your turn.' : '';
+}
 function renderBoard() {
   const app = $('app'); if (!app || !G) return;
   applyLook();
@@ -7897,6 +7910,7 @@ function renderBoard() {
           <div class="next-btn-wrapper"><button class="inline-next-btn" data-a="next" aria-label="Next step" ${nextOff ? 'disabled' : ''}><span class="ic">▶</span><span class="tx">NEXT</span></button></div>
         </div>
         <div class="control-log-row" data-a="log" title="Tap to see the game log">${esc(G.last)}</div>
+        ${hintText() ? `<div class="step-hint" role="note">${hintText()}</div>` : ''}
         <div class="step-warn" role="status" aria-live="polite"${STEP_WARN && Date.now() - STEP_WARN.at < 2200 ? '' : ' hidden'}><b>ILLEGAL MOVE</b><span class="sw-t">${STEP_WARN ? esc(STEP_WARN.text) : ''}</span></div>
       </div>
       <div class="half-field">
@@ -8030,10 +8044,7 @@ function renderLobby() {
   const v = validateDeck(PLAYER_DECK), el = $('lobby-deck');
   el.className = 'lobby-deck' + (v.ok ? '' : ' bad');
   el.textContent = v.ok ? `Your deck: ${v.total} cards · legal in ${fmtName(FORMAT)}` : `Your deck is not legal in ${fmtName(FORMAT)}: ${errSummary(v)}`;
-  const fb = $('format-btn'); if (fb) fb.textContent = `Format: ${fmtButton(FORMAT)}`;
-  const pd = $('play-deck');
-  if (pd) {
-    pd.innerHTML = SLOTS.map((sl, i) => { const t = deckTotal(sl.cards), ok = t && validateDeck(sl.cards, FORMAT).ok; return `<option value="${i}"${i === ACTIVE_SLOT ? ' selected' : ''}>${esc(sl.name)} · ${t} cards${t ? (ok ? ' ✓' : ' ✗') : ''}</option>`; }).join('');
+  if ($('play-cpu')) {
     $('play-cpu').innerHTML = [...prebuiltOrder(FORMAT).map(({ d }) => `<option value="${d.id}">${esc(prebuiltLabel(d))}${validateDeck(d.cards, FORMAT).ok ? (d.missing ? ' (random instead)' : '') : ' (not legal in ' + fmtName(FORMAT) + ': random instead)'}</option>`), '<option value="random">Random legal deck</option>', '<option value="mine">Mirror: copy of your deck</option>'].join('');
     $('play-cpu').value = SETTINGS.cpuDeck;
   }
@@ -8495,26 +8506,42 @@ if (typeof document !== 'undefined') {
    setup rows (format toggle, CPU deck select, CPU style and speed chips). Display only: the match code is in 15-match.js.
    --------------------------------------------------------------------- */
 const PLAY_SPEEDS = [['normal', 'Normal'], ['fast', 'Fast'], ['instant', 'Instant']];
+const PLAY_STYLES = [['balanced', 'Balanced', 'Plays a bit of everything.'], ['aggressive', 'Aggro', 'Attacks early and often.'], ['defensive', 'Control', 'Holds cards, blocks, waits.'], ['random', 'Random', 'Surprises you.']];
+const PLAY_LEVELS = [['easy', 'Easy'], ['normal', 'Normal'], ['hard', 'Hard']];
+const PLAY_FIRST = [['coin', 'Coin toss'], ['me', 'Me first'], ['cpu', 'CPU first']];
 function playChips(id, list, cur, act) {
   const el = $(id); if (!el) return;
-  el.innerHTML = list.map(([v, l]) => `<button class="ae-chip" data-a="${act}" data-v="${v}" aria-pressed="${v === cur}">${esc(l)}</button>`).join('');
+  el.innerHTML = list.map(([v, l]) => `<button class="chip${v === cur ? ' on' : ''}" data-a="${act}" data-v="${v}" aria-pressed="${v === cur}">${esc(l)}</button>`).join('');
 }
 let PLAY_MODE = 'cpu';                                  // what Start does: 'cpu' (match), 'watch' (CPU vs CPU) or 'online' (online lobby)
 function playGo() { if (PLAY_MODE === 'watch') startNewGame({ watch: true }); else if (PLAY_MODE === 'online') { switchView('view-online'); renderOnlineLobby(); } else startNewGame(); }
 function renderPlay() {
   if (typeof document === 'undefined' || !$('pl-style')) return;
   playChips('pl-mode', [['cpu', 'vs CPU'], ['watch', 'Watch CPU vs CPU'], ['online', 'Online vs Bot']], PLAY_MODE, 'play-mode');
-  const sl = SLOTS[ACTIVE_SLOT];
+  const sl = SLOTS[ACTIVE_SLOT], prof = SETTINGS.cpuRandom ? 'random' : cpuProfileName(null), lvl = SETTINGS.cpuLevel || 'normal', first = SETTINGS.firstTurn || 'coin';
   $('pl-stats').innerHTML = `<span><b>${HISTORY.length}</b> matches played</span>`;
-  $('pl-sum').innerHTML = [['Deck', sl ? sl.name : 'Deck'], ['Opponent', PLAY_MODE === 'watch' ? 'CPU vs CPU' : PLAY_MODE === 'online' ? 'Server bot' : cap(cpuProfileName(null)) + ' CPU'], ['Format', fmtTitle()], ['Speed', cap(SETTINGS.speed)]].map(([k, v]) => `<div class="sbox"><span>${k}</span><b>${esc(v)}</b></div>`).join('');
-  playChips('pl-style', CPU_PROFILE_NAMES.map(n => [n, cap(n)]), cpuProfileName(null), 'play-style');
+  const sty = PLAY_STYLES.find(x => x[0] === prof) || PLAY_STYLES[0];
+  $('pl-sum').innerHTML = [['Deck', sl ? sl.name : 'Deck'], ['Opponent', PLAY_MODE === 'watch' ? 'CPU vs CPU' : PLAY_MODE === 'online' ? 'Server bot' : sty[1] + ' CPU · ' + cap(lvl)], ['Format', fmtTitle()], ['First Turn', (PLAY_FIRST.find(x => x[0] === first) || PLAY_FIRST[0])[1]], ['Speed', cap(SETTINGS.speed)]].map(([k, v]) => `<div class="sbox"><span>${k}</span><b>${esc(v)}</b></div>`).join('');
+  $('play-decks').innerHTML = SLOTS.map((x, i) => { const t = deckTotal(x.cards), ok = t && validateDeck(x.cards, FORMAT).ok, top = Object.keys(x.cards).filter(id => CARDS[id] && x.cards[id]).sort((a, b) => x.cards[b] - x.cards[a])[0];
+    return `<button class="dbox${i === ACTIVE_SLOT ? ' on' : ''}" data-a="play-slot" data-v="${i}" aria-pressed="${i === ACTIVE_SLOT}">${top ? cardFaceHTML(CARDS[top], false) : '<div class="cf"></div>'}<b>${esc(x.name)}</b><small>${t}/40 · ${t ? (ok ? 'legal' : 'not ready') : 'empty'}</small></button>`; }).join('');
+  $('pl-style').innerHTML = PLAY_STYLES.map(([v, l, d]) => `<button class="opt${v === prof ? ' on' : ''}" data-a="play-style" data-v="${v}" aria-pressed="${v === prof}"><span><b>${l}</b><span>${d}</span></span></button>`).join('');
+  $('pl-level').innerHTML = PLAY_LEVELS.map(([v, l]) => `<button data-a="play-level" data-v="${v}" aria-pressed="${v === lvl}" style="flex:1">${l}</button>`).join('');
+  playChips('pl-fmt', [['standard', 'Standard'], ['eternal', 'Eternal']], FORMAT, 'play-fmt');
+  playChips('pl-first', PLAY_FIRST, first, 'play-first');
   playChips('pl-speed', PLAY_SPEEDS, SETTINGS.speed, 'play-speed');
+  $('pl-hints').setAttribute('aria-pressed', String(SETTINGS.hints !== false));
   const ok = validateDeck(PLAYER_DECK).ok;
   document.querySelectorAll('#view-play .pl-start').forEach(b => b.classList.toggle('blocked', !ok));   // still clickable: start explains why
 }
 function playSet(kind, v) {
   if (kind === 'mode') PLAY_MODE = v;
-  else if (kind === 'style' && CPU_PROFILES[v]) setCpuProfile(v);
+  else if (kind === 'style' && v === 'random') { SETTINGS.cpuRandom = true; saveSettings(); }
+  else if (kind === 'style' && CPU_PROFILES[v]) { SETTINGS.cpuRandom = false; setCpuProfile(v); }
+  else if (kind === 'level' && PLAY_LEVELS.some(x => x[0] === v)) { SETTINGS.cpuLevel = v; saveSettings(); }
+  else if (kind === 'first' && PLAY_FIRST.some(x => x[0] === v)) { SETTINGS.firstTurn = v; saveSettings(); }
+  else if (kind === 'fmt') setFormat(v);
+  else if (kind === 'hints') { SETTINGS.hints = SETTINGS.hints === false; saveSettings(); }
+  else if (kind === 'slot') { switchSlot(Number(v)); renderLobby(); return; }
   else if (kind === 'speed' && SPEEDS[v]) { SETTINGS.speed = v; saveSettings(); }
   renderPlay();
 }
@@ -9847,7 +9874,6 @@ document.addEventListener('change', async e => {
   else if (t.id === 'db-dd-groups') dbPick('groups', t.value);
   else if (t.id === 'db-set') { DBF.set = t.value; renderDeckBuilder(); }
   else if (t.id === 'db-sort') { DBF.sort = t.value; $('db-card-list').scrollTop = 0; renderDeckBuilder(); }
-  else if (t.id === 'play-deck') { switchSlot(Number(t.value)); renderLobby(); }
   else if (t.id === 'play-cpu') { SETTINGS.cpuDeck = t.value; saveSettings(); renderLobby(); }
   else if (t.id === 'db-slot') { switchSlot(Number(t.value)); DB_UNDO.length = 0; renderDeckBuilder(); }
   else if (t.id === 'db-name') { SLOTS[ACTIVE_SLOT].name = (t.value.trim() || 'Deck ' + (ACTIVE_SLOT + 1)).slice(0, 24); saveDeck(); renderDeckBuilder(); }
@@ -9903,19 +9929,23 @@ async function startNewGame(opts) {
   SESSION++; io.view({ type: 'reset' });
   const seed = opts.seed != null ? ((opts.seed >>> 0) || 1) : newSeed();
   seedRng(seed); UID = 0;
+  const lvl = SIM && !opts.lvl ? 'normal' : (['easy', 'normal', 'hard'].includes(opts.lvl) ? opts.lvl : ['easy', 'normal', 'hard'].includes(SETTINGS.cpuLevel) ? SETTINGS.cpuLevel : 'normal');   // v0.137.0: CPU strength
+  const firstOpt = ['me', 'cpu'].includes(opts.first) ? opts.first : (SIM || opts.first === 'coin' || opts.deckA ? 'coin' : (['me', 'cpu'].includes(SETTINGS.firstTurn) ? SETTINGS.firstTurn : 'coin'));   // v0.137.0: First turn (play setup)
   const deckA = opts.deckA || (SIM ? PRESET_DECK : PLAYER_DECK);
   const v = validateDeck(deckA);
   if (!v.ok && !SIM && !opts.deckA) { await info(`Your deck is not legal in ${fmtName(FORMAT)}`, esc(errSummary(v)) + (v.errors.length > 3 ? '<br>Open the Deck Builder to see all issues.' : '')); io.view({ type: 'screen', id: 'view-deckbuilder' }); return; }
   const my = SESSION;
   const deckB = opts.deckB || (SIM ? (SIM_DECK_B || PRESET_DECK) : cpuDeckFor(FORMAT));
-  G = newGame(deckA, deckB, FORMAT);
+  G = newGame(deckA, deckB, FORMAT); G.lvl = lvl;
+  const prof = CPU_PROFILES[opts.prof] ? opts.prof : (!SIM && opts.prof !== null && SETTINGS.cpuRandom ? CPU_PROFILE_NAMES[seed % CPU_PROFILE_NAMES.length] : null);   // v0.137.0: CPU Style "Random" = one fixed style per match, from the seed
+  if (prof) G.p.opponent.cpuProfile = prof;
   // Key Spirit (Aeterna house rule, v0.103.0): a recorded key wins (replay/port); else the deck's marked key — the CPU seat's key is already resolved by cpuDeckFor/setSimDeckB
   const keyA = opts.keyA != null ? keyOfDeck(deckA, opts.keyA) : (!SIM && !opts.deckA ? keyOfDeck(PLAYER_DECK, SLOTS[ACTIVE_SLOT].key) : null);
   const keyB = opts.keyB != null ? keyOfDeck(deckB, opts.keyB) : keyOfDeck(deckB, SIM ? SIM_DECK_B_KEY : CPU_KEY);
   G.p.player.keySpirit = keyA || null; G.p.opponent.keySpirit = keyB || null;
   const W = !SIM && !!opts.watch;   // U3 "Watch CPU vs CPU": the CPU plays your deck too, at the chosen speed, no history entry
   if (W) { G.watch = true; G.p.player.cpu = true; G.p.player.name = 'Your deck'; }
-  G.rec = { v: 1, build: VERSION, seed, format: FORMAT, sim: SIM, deckA: Object.assign({}, deckA), deckB: Object.assign({}, deckB), inputs: [], keyA: keyA || null, keyB: keyB || null, keyW: KEY_WEIGHT };
+  G.rec = { v: 1, build: VERSION, seed, format: FORMAT, sim: SIM, deckA: Object.assign({}, deckA), deckB: Object.assign({}, deckB), inputs: [], lvl, first: firstOpt, prof, keyA: keyA || null, keyB: keyB || null, keyW: KEY_WEIGHT };
   G.prec = newPortRecord(seed, deckA, deckB, W, keyA || null, keyB || null);         // v0.85.0 (F4 = M4): the host-independent input record, 15b-replay.js
   if (!SIM && !W && !opts.noHistory) G.meta = { fmt: FORMAT, you: opts.deckA ? 'Replay' : SLOTS[ACTIVE_SLOT].name, cpu: opts.deckB ? 'Replay' : CPU_DECK_NAME, done: false };
   io.view({ type: 'screen', id: 'view-playmat' });
@@ -9923,6 +9953,7 @@ async function startNewGame(opts) {
   try {
     let first;
     if (SIM || W) { first = rng() < 0.5 ? 'player' : 'opponent'; if (W) log('Watching: the CPU plays both sides.'); log(`${G.p[first].name} goes first.`); }
+    else if (firstOpt !== 'coin') { first = firstOpt === 'me' ? 'player' : 'opponent'; log(first === 'player' ? 'You go first (set in the match setup).' : 'The CPU goes first (set in the match setup).'); }
     else {
       const call = await ask({ title: '🪙 Coin Toss', html: 'Pick a side. The winner chooses who goes first.', buttons: [{ label: 'HEADS', cls: 'primary', value: 'h' }, { label: 'TAILS', cls: 'primary', value: 't' }] });
       const heads = rng() < 0.5, won = (call === 'h') === heads;
@@ -9972,7 +10003,7 @@ const matchSummary = () => ({ winner: G.winner, turn: G.turnNo, life: [G.p.playe
    --------------------------------------------------------------------- */
 function newPortRecord(seed, deckA, deckB, watch, keyA, keyB) {
   const human = ['player', 'opponent'].filter(k => G.p[k] && !G.p[k].cpu);
-  return { v: 2, build: VERSION, s: SESSION, seed, format: FORMAT, sim: SIM, watch: !!watch, deckA: Object.assign({}, deckA), deckB: Object.assign({}, deckB), human, keyA: keyA || null, keyB: keyB || null, keyW: KEY_WEIGHT,
+  return { v: 2, build: VERSION, s: SESSION, seed, format: FORMAT, sim: SIM, watch: !!watch, deckA: Object.assign({}, deckA), deckB: Object.assign({}, deckB), human, lvl: G.lvl, first: G.rec.first, prof: G.rec.prof, keyA: keyA || null, keyB: keyB || null, keyW: KEY_WEIGHT,
     cpu: SIM ? { profiles: Object.assign({}, CPU_SIM_PROFILES), fuzz: Object.assign({}, FUZZ) } : null, answers: [], wait: null };
 }
 /** A copy of the current match's port record; `cut` when a decision is open now (the match waits for a host). */
@@ -10041,7 +10072,7 @@ async function runPortRecord(rec, opts) {
   /** @type {PortRunResult} */
   let res;
   try {
-    startNewGame({ seed: rec.seed, deckA: rec.deckA, deckB: rec.deckB, noHistory: true, watch: !!rec.watch, keyA: rec.keyA, keyB: rec.keyB }).catch(e => { if (e !== ABORT && errors.length < 3) errors.push(String(e && e.message)); });
+    startNewGame({ seed: rec.seed, deckA: rec.deckA, deckB: rec.deckB, noHistory: true, watch: !!rec.watch, keyA: rec.keyA, keyB: rec.keyB, lvl: rec.lvl || 'normal', first: rec.first || 'coin', prof: rec.prof || null }).catch(e => { if (e !== ABORT && errors.length < 3) errors.push(String(e && e.message)); });
     while (!(G && G.over) && !stop && !errors.length && Date.now() - t0 < timeoutMs) await new Promise(r => setTimeout(r, 2));
     const over = !!(G && G.over), final = over ? matchSummary() : null, cut = G ? { log: G.hn || 0, hash: (G.hh >>> 0).toString(16) } : null;
     const same = !!(rec.final && final && ['winner', 'turn', 'log', 'hash'].every(k => rec.final[k] === final[k]));
@@ -10128,6 +10159,11 @@ document.addEventListener('click', e => {
   else if (a === 'play-mode') playSet('mode', v);
   else if (a === 'play-style') playSet('style', v);
   else if (a === 'play-speed') playSet('speed', v);
+  else if (a === 'play-level') playSet('level', v);
+  else if (a === 'play-first') playSet('first', v);
+  else if (a === 'play-fmt') { playSet('fmt', v); renderLobby(); }
+  else if (a === 'play-slot') playSet('slot', v);
+  else if (a === 'play-hints') playSet('hints');
   else if (a === 'go-deck') switchView('view-deckbuilder');
   else if (a === 'db-unchip') dbUnchip(v);
   else if (a === 'db-tab') dbTab(v);
@@ -10154,7 +10190,7 @@ document.addEventListener('click', e => {
   else if (a === 'rv-watch') replayWatch(Number(v));
   else if (a === 'rv-save') replaySave(Number(v));
   else if (a === 'hist-clear') { HISTORY = []; try { localStorage.removeItem(HIST_KEY); } catch (e) { /* blocked */ } renderSettings(); }
-  else if (a === 'set-reset') { SETTINGS.speed = 'normal'; SETTINGS.sound = false; delete SETTINGS.anim; SETTINGS.cpuDeck = 'std03'; SETTINGS.cpuProfile = 'balanced'; saveSettings(); renderSettings(); $('set-msg').textContent = 'Settings reset.'; }
+  else if (a === 'set-reset') { SETTINGS.speed = 'normal'; SETTINGS.sound = false; delete SETTINGS.anim; SETTINGS.cpuDeck = 'std03'; SETTINGS.cpuProfile = 'balanced'; delete SETTINGS.cpuRandom; delete SETTINGS.cpuLevel; delete SETTINGS.firstTurn; delete SETTINGS.hints; saveSettings(); renderSettings(); $('set-msg').textContent = 'Settings reset.'; }
   else if (a === 'go-lib') switchView('view-library');
   else if (a === 'set-sec') setSection(v);
   else if (a === 'set-mat-clear') matClear();
@@ -10223,7 +10259,7 @@ function gameAct(a, v) {
 }
 
 /* ---- v0.26: replay of an input record, and named test scenarios (ideas from the Aegis study) ---- */
-function replayOf(g) { const r = g.rec; return { v: r.v, build: r.build, seed: r.seed, format: r.format, sim: !!r.sim, deckA: r.deckA, deckB: r.deckB, inputs: r.inputs.slice(), lossy: !!r.lossy, final: r.final || null, keyA: r.keyA || null, keyB: r.keyB || null }; }
+function replayOf(g) { const r = g.rec; return { v: r.v, build: r.build, seed: r.seed, format: r.format, sim: !!r.sim, deckA: r.deckA, deckB: r.deckB, inputs: r.inputs.slice(), lossy: !!r.lossy, final: r.final || null, keyA: r.keyA || null, keyB: r.keyB || null, lvl: r.lvl || 'normal', first: r.first || 'coin', prof: r.prof || null }; }
 function lastReplay() { if (G && G.rec) return replayOf(G); for (let i = HISTORY.length - 1; i >= 0; i--) if (HISTORY[i].replay) return HISTORY[i].replay; return null; }
 /* replays a record: same seed and decks, then every recorded prompt answer / pick / board action in order.
    Resolves {ok, reason, at, total, over, final, same}: "same" compares the final result and the hash of the whole log with the recorded match. */
@@ -10238,7 +10274,7 @@ async function runReplay(rec, opts) {
     const same = !!(rec.final && final && rec.final.winner === final.winner && rec.final.turn === final.turn && rec.final.hash === final.hash && rec.final.log === final.log);
     return { ok, reason: reason || '', at: R.i, total: inputs.length, over: !!(G && G.over), final, same };
   };
-  startNewGame({ seed: rec.seed, deckA: rec.deckA, deckB: rec.deckB, noHistory: true });
+  startNewGame({ seed: rec.seed, deckA: rec.deckA, deckB: rec.deckB, noHistory: true, lvl: rec.lvl || 'normal', first: rec.first || 'coin', prof: rec.prof || null });
   const t0 = Date.now(); let idle = Date.now();
   const desc = x => (x ? JSON.stringify(x).slice(0, 80) : 'nothing');
   while (Date.now() - t0 < (opts.timeoutMs || 180000)) {

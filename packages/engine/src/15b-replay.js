@@ -15,7 +15,7 @@
    --------------------------------------------------------------------- */
 function newPortRecord(seed, deckA, deckB, watch, keyA, keyB) {
   const human = ['player', 'opponent'].filter(k => G.p[k] && !G.p[k].cpu);
-  return { v: 2, build: VERSION, s: SESSION, seed, format: FORMAT, sim: SIM, watch: !!watch, deckA: Object.assign({}, deckA), deckB: Object.assign({}, deckB), human, keyA: keyA || null, keyB: keyB || null, keyW: KEY_WEIGHT,
+  return { v: 2, build: VERSION, s: SESSION, seed, format: FORMAT, sim: SIM, watch: !!watch, deckA: Object.assign({}, deckA), deckB: Object.assign({}, deckB), human, lvl: G.lvl, first: G.rec.first, prof: G.rec.prof, keyA: keyA || null, keyB: keyB || null, keyW: KEY_WEIGHT,
     cpu: SIM ? { profiles: Object.assign({}, CPU_SIM_PROFILES), fuzz: Object.assign({}, FUZZ) } : null, answers: [], wait: null };
 }
 /** A copy of the current match's port record; `cut` when a decision is open now (the match waits for a host). */
@@ -84,7 +84,7 @@ async function runPortRecord(rec, opts) {
   /** @type {PortRunResult} */
   let res;
   try {
-    startNewGame({ seed: rec.seed, deckA: rec.deckA, deckB: rec.deckB, noHistory: true, watch: !!rec.watch, keyA: rec.keyA, keyB: rec.keyB }).catch(e => { if (e !== ABORT && errors.length < 3) errors.push(String(e && e.message)); });
+    startNewGame({ seed: rec.seed, deckA: rec.deckA, deckB: rec.deckB, noHistory: true, watch: !!rec.watch, keyA: rec.keyA, keyB: rec.keyB, lvl: rec.lvl || 'normal', first: rec.first || 'coin', prof: rec.prof || null }).catch(e => { if (e !== ABORT && errors.length < 3) errors.push(String(e && e.message)); });
     while (!(G && G.over) && !stop && !errors.length && Date.now() - t0 < timeoutMs) await new Promise(r => setTimeout(r, 2));
     const over = !!(G && G.over), final = over ? matchSummary() : null, cut = G ? { log: G.hn || 0, hash: (G.hh >>> 0).toString(16) } : null;
     const same = !!(rec.final && final && ['winner', 'turn', 'log', 'hash'].every(k => rec.final[k] === final[k]));
