@@ -22,7 +22,7 @@ async function open(screen) {
 for (const screen of ['pc', 'phone']) {
   test(`U67-1 ${screen}: Play page shows header, deck chip, two mode cards and the setup rows; chips save`, async () => {
     const { page, errors } = await open(screen);
-    await page.click('#app-tabs [data-nav="view-play"]');
+    await page.click('[data-nav="view-play"]:visible');
     const r = await page.evaluate(() => {
       const vis = s => { const e = document.querySelector(s); if (!e) return false; const b = e.getBoundingClientRect(); return b.width > 0 && b.height > 0; };
       const start = document.querySelector('#view-play [data-a="start"]').getBoundingClientRect();
@@ -54,7 +54,7 @@ for (const screen of ['pc', 'phone']) {
 
 test('U67-2 pc: Watch CPU vs CPU plays both sides to the end, step clicks only warn, no history entry', async () => {
   const { page, errors } = await open('pc');
-  await page.click('#app-tabs [data-nav="view-play"]');
+  await page.click('[data-nav="view-play"]:visible');
   await page.click('#pl-speed [data-v="instant"]');
   await page.click('#pl-mode [data-v="watch"]'); await page.click('#view-play [data-a="start"]');
   await page.waitForFunction(() => BS.G && BS.G.turnNo >= 1, null, { timeout: 15000 });

@@ -27,8 +27,8 @@ const answer = (page, label, text) => page.evaluate(([l, t]) => { const i = docu
 for (const screen of ['pc', 'phone']) {
   test(`U93-1 ${screen}: the Decks tab opens My decks with the active deck, status, Edit and Play`, async () => {
     const { page, errors } = await open(screen);
-    await page.click('#app-tabs [data-nav="view-decks"]');
-    const r = await page.evaluate(() => ({ on: document.getElementById('view-decks').classList.contains('active'), cur: document.querySelector('#app-tabs [aria-current="page"]').dataset.nav,
+    await page.click('[data-nav="view-decks"]:visible');
+    const r = await page.evaluate(() => ({ on: document.getElementById('view-decks').classList.contains('active'), cur: document.querySelector('[data-nav][aria-current="page"]').dataset.nav,
       h1: document.querySelector('#view-decks .ae-phead h1').textContent, count: document.getElementById('dk-count').textContent, wide: document.documentElement.scrollWidth > innerWidth + 1,
       starters: document.querySelectorAll('#dk-starters .dk-tile').length, pre: BS.PREBUILT.length, sleeve: !!document.querySelector('#dk-list .dk-tile .sleeve'), dots: document.querySelectorAll('#dk-list .dk-tile .dk-dot').length }));
     assert.deepEqual([r.on, r.cur, r.h1, r.count, r.wide, r.starters === r.pre, r.sleeve, r.dots > 0], [true, 'view-decks', 'My Decks', '1 / 8', false, true, true, true]);

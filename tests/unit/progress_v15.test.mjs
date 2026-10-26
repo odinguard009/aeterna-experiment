@@ -33,7 +33,7 @@ test('PG3 avatars: locked ones cannot be picked, an unlocked pick is stored and 
   assert.equal(r.locked, 5); assert.equal(r.afterLocked, 'red'); assert.deepEqual([r.now, r.stored, r.on], ['blue', 'blue', 'blue']); assert.ok(r.ach >= 5);
 });
 test('PG4 home shows today\'s missions; phone fits the width', async () => {
-  const n = await page.evaluate(() => { BS.switchView('view-lobby'); return document.querySelectorAll('#home-missions li').length; });
+  const n = await page.evaluate(() => { BS.switchView('view-lobby'); return document.querySelectorAll('#home-missions .mission').length; });
   assert.equal(n, 3);
   await ctx.close(); await open({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
   await page.evaluate(() => BS.switchView('view-settings'));
