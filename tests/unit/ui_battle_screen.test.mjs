@@ -64,9 +64,9 @@ test('U08 PC plates: no Tr/Cnt/Vd prefixes and no "Your"/"CPU" in zone labels; L
     const P = BS.G.p.player; return [t, document.querySelectorAll('.zone-box[data-v="player:life"] .g-core').length + document.querySelectorAll('.zone-box[data-v="player:life"] .g-soul').length, P.life]; });
   assert.doesNotMatch(r[0], /\b(Tr|Cnt|Vd|Core):|\bYOUR\b|\bCPU\b/i); assert.equal(r[1], r[2]);
 });
-test('U09 phone: the CPU stat grid is the point mirror of yours and the field tags are hidden', async () => {
+test('U09 phone: the CPU stat grid is the point mirror of yours and the field captions show (mockup)', async () => {
   const r = await ev(() => { BS.testSetup(); const bars = [...document.querySelectorAll('.mobile-stats-bar')].map(b => [...b.querySelectorAll('.stat-pill')].map(p => p.dataset.v.split(':')[1]));
-    const tag = document.querySelector('.row-header-badge').getBoundingClientRect(); return [bars, tag.width <= 1 && tag.height <= 1]; }, null, 'phone');
+    const tag = document.querySelector('.row-header-badge').getBoundingClientRect(); return [bars, tag.width > 1 && tag.height > 1]; }, null, 'phone');
   assert.deepEqual(r[0][1], ['life', 'reserve', 'hand', 'deck', 'trash', 'count', 'void', 'removed']);
   assert.deepEqual(r[0][0], r[0][1].slice().reverse()); assert.equal(r[1], true);
 });

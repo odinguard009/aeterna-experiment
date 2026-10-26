@@ -458,7 +458,7 @@
   #view-playmat .field-row-wrapper { background: var(--ae-rowbg); border-radius: 0; box-shadow: inset 0 0 0 1px var(--ae-line); }
   #view-playmat .row-header-badge { background: transparent; border: 0; color: var(--you); font-size: 9.5px; font-weight: 800; letter-spacing: .14em; padding: 2px 8px 0; }
   #view-playmat .side-cpu .row-header-badge { color: var(--cpu); }
-  html.layout-mobile #view-playmat .row-header-badge { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  html.layout-mobile #view-playmat .row-header-badge { padding: 0 8px; font-size: 9px; }   /* v0.137.0: the "CPU Field" / "Your Field" caption shows again, like the mockup */
   #view-playmat .empty-note { color: var(--ae-text4); opacity: 1; font-size: 12px; }
   #view-playmat .opp-hand-pill { background: var(--ae-head); border: 0; border-radius: 0; box-shadow: inset 0 0 0 1px var(--ae-line2); color: var(--ae-text2); letter-spacing: .08em; }
   #view-playmat .opp-hand-pill b { color: var(--cpu); }
@@ -979,7 +979,9 @@
   html.layout-mobile #view-playmat .ae-tools .l { display: none; } html.layout-mobile #view-playmat .ae-tools .s { display: inline; }
   html.layout-mobile #view-playmat .ae-tools { gap: 3px; flex: none; margin-left: auto; }
   html.layout-mobile #view-playmat .ae-tools .btn-nav-small { padding-inline: 10px; min-height: 28px; font-size: 11px; }
+  @media (max-width: 400px) { html.layout-mobile #view-playmat .ae-tools .btn-nav-small { padding-inline: 6px; font-size: 10px; } html.layout-mobile #view-playmat .ae-brand { font-size: 14px; letter-spacing: .03em; } }
   html.layout-mobile #view-playmat .ae-ver { display: none; }
+  #view-playmat .ae-btn.dng { background: var(--cpu); color: #fff; }   /* v0.137.0: Concede is red like the mockup */
 
   /* ---- U14f deck builder part 1 (v0.128.0): card size, progress ring, hover peek ---- */
   html.layout-pc .db-grid#db-card-list { grid-template-columns: repeat(auto-fill, minmax(var(--db-cw, 70px), 1fr)); }

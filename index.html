@@ -402,7 +402,7 @@ html.layout-pc #view-playmat .pc-hand-flank .sub-text{font-size:11px !important;
 #view-playmat .field-row-wrapper{background:var(--ae-rowbg);border-radius:0;box-shadow:inset 0 0 0 1px var(--ae-line);}
 #view-playmat .row-header-badge{background:transparent;border:0;color:var(--you);font-size:9.5px;font-weight:800;letter-spacing:.14em;padding:2px 8px 0;}
 #view-playmat .side-cpu .row-header-badge{color:var(--cpu);}
-html.layout-mobile #view-playmat .row-header-badge{position:absolute !important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+html.layout-mobile #view-playmat .row-header-badge{padding:0 8px;font-size:9px;}
 #view-playmat .empty-note{color:var(--ae-text4);opacity:1;font-size:12px;}
 #view-playmat .opp-hand-pill{background:var(--ae-head);border:0;border-radius:0;box-shadow:inset 0 0 0 1px var(--ae-line2);color:var(--ae-text2);letter-spacing:.08em;}
 #view-playmat .opp-hand-pill b{color:var(--cpu);}
@@ -869,7 +869,9 @@ html.layout-pc #view-playmat .playmat-layout.has-cp > :not(#card-panel){grid-col
 html.layout-mobile #view-playmat .ae-tools .l{display:none;}html.layout-mobile #view-playmat .ae-tools .s{display:inline;}
 html.layout-mobile #view-playmat .ae-tools{gap:3px;flex:none;margin-left:auto;}
 html.layout-mobile #view-playmat .ae-tools .btn-nav-small{padding-inline:10px;min-height:28px;font-size:11px;}
+@media (max-width:400px){html.layout-mobile #view-playmat .ae-tools .btn-nav-small{padding-inline:6px;font-size:10px;}html.layout-mobile #view-playmat .ae-brand{font-size:14px;letter-spacing:.03em;}}
 html.layout-mobile #view-playmat .ae-ver{display:none;}
+#view-playmat .ae-btn.dng{background:var(--cpu);color:#fff;}
 html.layout-pc .db-grid#db-card-list{grid-template-columns:repeat(auto-fill,minmax(var(--db-cw,70px),1fr));}
 html.layout-pc .db-grid#db-card-list .tcg-card{--card-w:var(--db-cw,70px);width:var(--db-cw,70px);}
 html.layout-mobile .db-size{display:none;}
@@ -7796,7 +7798,7 @@ function renderBoard() {
   const turnLbl = G.over ? '<span>GAME</span> <span>OVER</span>' : cpuTurn ? '<span>OPPONENT</span> <span>TURN</span>' : '<span>PLAYER</span> <span>TURN</span>';
   app.innerHTML = `
     <header class="ae-head"><div class="ae-turn"><h1 translate="no">Aeterna</h1><span class="ae-ver">v${VERSION}</span>${G.over ? '' : `<span class="ae-turnno">${cpuTurn ? 'OPPONENT' : 'PLAYER'} TURN ${G.turnNo}</span>`}</div><span class="ae-step"><span>${G.over ? 'GAME OVER' : esc(stepName)}</span></span><span class="ae-fill"></span>
-      <span class="ae-tools"><button class="btn-nav-small ae-btn" data-a="log-toggle" title="Game log (L)"><span>LOG</span></button><button class="btn-nav-small ae-btn" data-a="emote" title="Emoticon (one every 30 s)" aria-label="Emoticon"><span class="l">EMOTE</span><span class="s" aria-hidden="true">☺</span></button><button class="btn-nav-small ae-btn" data-a="options" title="Settings (the match waits)" aria-label="Options"><span class="l">OPTIONS</span><span class="s" aria-hidden="true">⚙</span></button><button class="btn-nav-small ae-btn" data-a="leave" aria-label="Exit to lobby"><span class="l">EXIT TO LOBBY</span><span class="s">EXIT</span></button></span></header>
+      <span class="ae-tools"><button class="btn-nav-small ae-btn" data-a="log-toggle" title="Game log (L)"><span class="l">LOG</span><span class="s">Log</span></button><button class="btn-nav-small ae-btn" data-a="emote" title="Emoticon (one every 30 s)" aria-label="Emoticon"><span class="l">EMOTE</span><span class="s" aria-hidden="true">☺</span></button><button class="btn-nav-small ae-btn" data-a="options" title="Settings (the match waits)" aria-label="Options"><span class="l">OPTIONS</span><span class="s">Options</span></button><button class="btn-nav-small ae-btn" data-a="bug-open" aria-label="Report a bug" title="Report A Bug"><span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 7a3 3 0 016 0M7 11h10M12 11v9M5 8l3 2M19 8l-3 2M4 14h3M17 14h3M5 20l3-3M19 20l-3-3"/><rect x="7" y="8" width="10" height="11" rx="5"/></svg></span></button><button class="btn-nav-small ae-btn dng" data-a="leave" aria-label="Concede and leave the match"><span class="l">CONCEDE</span><span class="s">Concede</span></button></span></header>
     <div class="playmat-layout${isPC() ? ' has-cp' : ''}">${isPC() ? cardPanelHTML() : ''}
       <div class="half-field">
         <div class="side-flank-pc">
@@ -10339,7 +10341,7 @@ function gameAct(a, v) {
   else if (a === 'zone') { const [k, z] = v.split(':'); openZoneModal(k, z); }
   else if (a === 'next') onNext();
   else if (a === 'leave') {
-    modal({ uiOnly: true, title: 'Leave the match?', html: 'The current match will be lost.', buttons: [{ label: 'Stay', cls: 'primary', value: false }, { label: 'Exit to Lobby', cls: 'cancel', value: true }] })
+    modal({ uiOnly: true, title: 'Concede the match?', html: 'The current match will be lost and you return to the lobby.', buttons: [{ label: 'Stay', cls: 'primary', value: false }, { label: 'Concede', cls: 'cancel', value: true }] })
       .then(r => { if (r) { SESSION++; clearPick(); G = null; switchView('view-lobby'); } });
   }
 }
