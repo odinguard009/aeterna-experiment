@@ -960,6 +960,11 @@ span.pg-av{cursor:default;}.pg-avs{display:flex;flex-wrap:wrap;gap:8px;}.pg-avs 
 .pg-list{margin:0;padding:0;list-style:none;display:grid;gap:4px;}.pg-list li{display:flex;justify-content:space-between;padding:6px 10px;font-size:13px;background:var(--ae-panel2);box-shadow:inset 4px 0 0 var(--ae-line2);}
 .pg-list li.done{box-shadow:inset 4px 0 0 var(--you);}.pg-list li.done b{color:var(--you);}
 #set-profile ~ .pf-h,.pf-h,#set-s-profile h3{margin:12px 0 6px;font-family:var(--f-display);font-size:12px;color:var(--ae-text2);}
+@media (max-width:1100px){html.layout-pc .ae-nav{padding:0 12px;}html.layout-pc .ae-brand{margin-right:10px;}html.layout-pc .ae-tab{padding:0 12px;letter-spacing:.08em;}html.layout-pc .t-pcf{display:none;}}
+@media (max-width:420px){.ae-brand{font-size:17px;letter-spacing:.06em;}.ae-nav{padding-left:12px;padding-right:8px;gap:4px;}.ae-tools{gap:4px;}}
+@media (max-width:800px){html.layout-pc .ae-tab{padding:0 9px;letter-spacing:.04em;font-size:12px;}}
+@media (max-width:380px){.ae-tools > .ae-toggle{display:none;}}
+.bug-box,.bug-box label{text-align:left;}.bug-box .modal-title,.bug-box .bug-note{text-align:center;}
 </style>
 </head>
 <body>
@@ -1476,7 +1481,7 @@ function bindHost(h) {
    type: 'Spirit' | 'Nexus' | 'Magic'      symbol: card color     symbols: number of symbols
    reduction: {color: n}         levels: [{cores, bp}]  (Nexus levels have no bp)
    --------------------------------------------------------------------- */
-const VERSION = '0.134.0';
+const VERSION = '0.134.1';
 const CARDS = {};
 function defCard(o) {
   CARDS[o.id] = Object.assign({ type: 'Spirit', reduction: {}, symbols: 1, families: [], keywords: [], implemented: true, desc: 'Vanilla test card (no effect).', block: 'A' }, o);

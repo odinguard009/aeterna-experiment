@@ -4,6 +4,15 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.134.1
+- Lane: U/I
+- Time: ~20 min, claude-sonnet-5-5.
+- **Frontend audit fixes.** A scripted pass over every page at 320 to 1366 px (console errors, sideways scroll, clipped controls, unnamed buttons, duplicate ids) found only the header: the Report a Bug button of v0.134.0 made it wider than the screen, so on a 820 px tablet the new button and the sound / history buttons sat off-screen, and on small phones (320-380 px) the header was 3-46 px too wide.
+  - **Header fit:** between 768 and 1100 px the tabs get tighter padding and the history / sound shortcuts are hidden (Settings still has them); on phones up to 420 px the brand and gaps shrink, and up to 380 px the Dark / Light switch is hidden from the header (the colour pop-up keeps it). Checked at 11 widths: no overflow, tabs never run into the tools.
+  - **Report a Bug form:** field labels are left-aligned (they inherited the dialog's centring).
+  - **Test:** U68-3 (playmat survives a reload) reloaded the page before the picture was written to the image store, which failed twice in CI; it now waits for the "Playmat set" message that comes after the write.
+- No rule or data change. Full UI test set green (231).
+
 ## v0.134.0
 - Lane: U/I
 - Time: ~50 min (two items, one batch), claude-sonnet-5-5.

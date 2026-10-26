@@ -61,7 +61,7 @@ for (const screen of ['pc', 'phone']) {
     const { page, errors } = await open(screen);
     await page.evaluate(() => BS.switchView('view-settings'));
     await page.setInputFiles('#set-mat', { name: 'mat.png', mimeType: 'image/png', buffer: PNG });
-    await page.waitForFunction(() => document.documentElement.classList.contains('has-mat'));
+    await page.waitForFunction(() => document.documentElement.classList.contains('has-mat') && /^Playmat set/.test(document.getElementById('set-msg').textContent));   // the message comes after the store write finished: a reload before it could drop the picture
     // the image store read after a reload is idle-tolerant: under the parallel quick loop a bare 5 s timed out on a 2-core box
     await page.reload(); await page.waitForFunction(() => !!window.BS);
     await page.waitForFunction(() => document.documentElement.classList.contains('has-mat'), null, { timeout: 20000 });
