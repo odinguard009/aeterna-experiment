@@ -12,7 +12,7 @@ const rows = (list) => list.map(([min, body]) => `${ago(min)}\t${body}`).join('\
 function gate(args, comments, commits = [], extraEnv = {}) {
   const r = spawnSync(BASH, [join(ROOT, 'tools/session_gate.sh'), ...args], {
     encoding: 'utf8',
-    env: { ...process.env, GATE_FIXTURE: '1', GATE_NOW: NOW, COMMENTS: rows(comments), COMMITS: rows(commits), STOP_FILE: '0', ...extraEnv },
+    env: { ...process.env, GATE_FIXTURE: '1', GATE_RANTAI_MAX: '600000', GATE_NOW: NOW, COMMENTS: rows(comments), COMMITS: rows(commits), STOP_FILE: '0', ...extraEnv },
   });
   return { out: r.stdout.trim(), code: r.status, err: r.stderr.trim() };
 }
@@ -85,7 +85,7 @@ test('G20 hemat switch: default ON, newest HEMAT comment wins, ON/OFF auto comme
 });
 
 // 2026-10-20 (owner): chain mode "rantai"; default OFF; a chain = the newest DONE plus the DONEs it continues ("rantai" tag);
-// GO while the chain is under the budget; one session over the budget turns the switch OFF (fixture budget 600000).
+// GO while the chain is under the budget; one session over the budget turns the switch OFF (fixture budget 600000 via GATE_RANTAI_MAX; the real default is unlimited since 2026-10-26).
 test('G21 rantai: default OFF, chain sum, budget reached, single session over the budget', () => {
   const RON = [300, 'RANTAI ON'];
   assert.equal(gate(['rantai'], [ON]).out, 'Mode rantai: OFF | rantai terakhir: 0 / 600.000 token (0 sesi)');
