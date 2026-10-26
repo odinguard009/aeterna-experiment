@@ -18,6 +18,7 @@
     <span class="ae-toggle" role="group" aria-label="Mode"><button data-a="theme-mode" data-v="dark" aria-pressed="true">DARK</button><button data-a="theme-mode" data-v="light" aria-pressed="false">LIGHT</button></span>
     <button class="gbtn t-pcf" data-a="go-history" aria-label="Match history" title="Match history"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5M12 7v5l3 2"/></svg></button>
     <button class="gbtn t-pcf" id="sound-btn" data-a="sound-toggle" aria-label="Sound" title="Sound" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></button>
+    <button class="gbtn" data-a="bug-open" aria-label="Report a bug" title="Report a bug"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 9a4 4 0 0 1 8 0v6a4 4 0 0 1-8 0zM4 13h4M16 13h4M5 7l3 2M19 7l-3 2M5 19l3-2M19 19l-3-2"/></svg></button>
     <button class="gbtn" data-a="go-settings" aria-label="Settings" title="Settings"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg></button>
   </span>
   <div id="theme-pop" class="ae-pop" role="dialog" aria-label="Your colour" hidden><div class="bar"></div><h3>Your colour</h3><div id="theme-grid" class="pgrid"></div>
@@ -42,7 +43,7 @@
       <div class="hm-card wide"><h2>My decks</h2><div class="hm-decks" id="home-decks"></div></div>
     </section>
   </main>
-  <footer class="home-foot"><span id="home-ver" translate="no">Aeterna</span><button data-a="go-howto">HOW TO PLAY</button><button data-a="go-settings">SETTINGS &amp; HISTORY</button><button data-a="rules">RULES COVERAGE</button><span class="t-pcf">Unofficial non-commercial fan project</span></footer>
+  <footer class="home-foot"><span id="home-ver" translate="no">Aeterna</span><button data-a="go-howto">HOW TO PLAY</button><button data-a="bug-open">REPORT A BUG</button><button data-a="go-settings">SETTINGS &amp; HISTORY</button><button data-a="rules">RULES COVERAGE</button><span class="t-pcf">Unofficial non-commercial fan project</span></footer>
 </div>
 
 <div id="view-settings" class="app-view ae-view">
@@ -262,6 +263,17 @@
 <div id="peek-bar"><div id="peek-text"></div><div id="peek-btns"></div></div>
 <div id="pick-bar"><div id="pick-text" role="status" aria-live="polite"></div><div id="pick-btns"></div></div>
 <div id="zoom-overlay" data-a="zoomclose"></div>
+<div id="bug-overlay" class="bug-ov" role="dialog" aria-modal="true" aria-labelledby="bug-h" hidden>
+  <form class="modal-box bug-box" id="bug-form" autocomplete="off">
+    <h2 class="modal-title" id="bug-h">Report a Bug</h2>
+    <p class="bug-note">Opens a pre-filled issue on GitHub. You send it with your own GitHub login; nothing leaves this device until you do.</p>
+    <label>Type<select id="bug-kind" class="sel"><option value="bug">Bug</option><option value="card">Wrong card text or effect</option><option value="idea">Idea</option></select></label>
+    <label>Summary<input id="bug-title" class="se" maxlength="100" required></label>
+    <label>What happened<textarea id="bug-text" rows="5" maxlength="2000"></textarea></label>
+    <label class="bug-chk"><input type="checkbox" id="bug-info" checked> Add version, page and screen size</label>
+    <div class="modal-btns"><button type="button" class="modal-btn cancel" data-a="bug-close">Cancel</button><button type="submit" class="modal-btn primary">Open on GitHub</button></div>
+  </form>
+</div>
 <div id="ae-fx" aria-hidden="true"><div class="ae-strip" hidden></div></div>
 <div id="action-modal" class="modal-overlay">
   <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-card-title">
