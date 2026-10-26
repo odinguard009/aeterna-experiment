@@ -81,6 +81,8 @@ document.addEventListener('click', e => {
   else if (a === 'emote-pick') emoteSend(Number(v));
   else if (a === 'options-back') { switchView('view-playmat'); if (G) render(); }
   else if (a === 'go-howto') switchView('view-howto');
+  else if (a === 'go-profile') switchView('view-profile');
+  else if (a === 'pf-avatars') { const b = $('pf-avs'); if (b) b.hidden = !b.hidden; }
   else if (a === 'learn-open') learnOpen(Number(v));
   else if (a === 'go-history') navHistory();
   else if (a === 'theme-pop') themePop();
@@ -123,7 +125,7 @@ document.addEventListener('click', e => {
   else if (a === 'zoom') openZoom(v);
   else if (a === 'art') { const zid = $('zoom-overlay').dataset.id; setArt(zid, v === zid ? '' : v); openZoom(zid); refreshViews(); }
   else if (a === 'home-deck') { switchSlot(Number(v)); renderLobby(); }
-  else if (a === 'avatar') { setAvatar(v); renderProgress(); }
+  else if (a === 'avatar') { setAvatar(v); renderProfilePage(); }
   else if (a === 'bug-open') bugOpen(true);
   else if (a === 'bug-close') bugOpen(false);
   else if (a === 'zoominfo') return;

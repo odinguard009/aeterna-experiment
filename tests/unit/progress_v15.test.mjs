@@ -24,11 +24,11 @@ test('PG2 daily missions: three per day, count only matches of today, rotate by 
 });
 test('PG3 avatars: locked ones cannot be picked, an unlocked pick is stored and shown', async () => {
   const r = await page.evaluate(() => {
-    BS.switchView('view-settings');
-    const locked = document.querySelectorAll('#set-progress .pg-avs button:disabled').length;
+    BS.switchView('view-profile');
+    const locked = document.querySelectorAll('#pf-avs .pg-avs button:disabled').length;
     BS.setAvatar('god'); const afterLocked = BS.AVATAR;
-    document.querySelector('#set-progress [data-v="blue"]').click();
-    return { locked, afterLocked, now: BS.AVATAR, stored: localStorage.getItem('bse.avatar.v1'), on: document.querySelector('#set-progress .pg-avs .on').dataset.v, ach: BS.ACHIEVEMENTS.length };
+    document.querySelector('#pf-avs [data-v="blue"]').click();
+    return { locked, afterLocked, now: BS.AVATAR, stored: localStorage.getItem('bse.avatar.v1'), on: document.querySelector('#pf-avs .pg-avs .on').dataset.v, ach: BS.ACHIEVEMENTS.length };
   });
   assert.equal(r.locked, 5); assert.equal(r.afterLocked, 'red'); assert.deepEqual([r.now, r.stored, r.on], ['blue', 'blue', 'blue']); assert.ok(r.ach >= 5);
 });

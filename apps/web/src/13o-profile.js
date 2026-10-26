@@ -9,15 +9,6 @@ function profileStats(h = HISTORY) {
   let streak = 0; for (let i = n - 1; i >= 0 && h[i].won; i--) streak++;
   return { n, won, lost: n - won, rate: n ? Math.round(won * 100 / n) : 0, streak, best, turns: n ? Math.round(h.reduce((a, x) => a + (x.turns || 0), 0) / n) : 0, byFmt };
 }
-function renderProfile() {
-  renderProgress();
-  const el = $('set-profile'); if (!el) return;
-  const s = profileStats();
-  if (!s.n) { el.innerHTML = '<div class="empty-note">Play a match to fill your profile.</div>'; return; }
-  const tile = (k, v) => `<div class="pf-tile"><b>${v}</b><span>${k}</span></div>`;
-  el.innerHTML = `<div class="pf-grid">${tile('Matches', s.n)}${tile('Wins', s.won)}${tile('Win rate', s.rate + '%')}${tile('Win streak', s.streak)}${tile('Best streak', s.best)}${tile('Avg. turns', s.turns)}</div>`
-    + `<div class="pf-fmt">${Object.entries(s.byFmt).map(([f, [w, l]]) => `<span>${esc(f.toUpperCase())}: ${w} W / ${l} L</span>`).join('')}</div>`;
-}
 function renderGlossary() {
   const el = $('howto-gloss'); if (!el) return;
   const q = (($('gl-q') || {}).value || '').toLowerCase();

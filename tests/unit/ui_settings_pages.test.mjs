@@ -107,3 +107,11 @@ test('LR1 Learn: 16 chapters, Continue opens chapter 1, Mark as done saves progr
   assert.match(await page.textContent('#howto-gloss'), /No rule word matches/);
   assert.deepEqual(errors, []);
 });
+
+test('PF1 Profile page: the header chip opens it with the KPIs, achievements and missions', async () => {
+  const { page, errors } = await open('phone');
+  await page.click('.phonebar .pchip');
+  const r = await page.evaluate(() => ({ v: document.querySelector('.app-view.active').id, kpi: document.querySelectorAll('#pf-page .kpi .card').length, ach: document.querySelectorAll('#pf-page .steps3 .av').length > 0, wide: document.documentElement.scrollWidth > innerWidth + 1 }));
+  assert.deepEqual(r, { v: 'view-profile', kpi: 4, ach: true, wide: false });
+  assert.deepEqual(errors, []);
+});

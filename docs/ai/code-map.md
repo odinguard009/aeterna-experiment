@@ -122,7 +122,7 @@ humanCan, legalityHTML, FX_KW_START, FX_LINE_STOP, effectLines, fxMark, slashBre
 ## apps/web/src/12-zones.js (70 lines, ~1.6k tokens) — ZONES, LOG, RULES COVERAGE
 openZoneModal, openLogModal, showRules
 
-## apps/web/src/13-render.js (354 lines, ~7.9k tokens) — RENDERING
+## apps/web/src/13-render.js (355 lines, ~7.9k tokens) — RENDERING
 nameHTML, isPC, applyLayout, _rz, colorVar, cardColors, isMulti, colorSty, symSlices, symCount, isUltimate, cardCls, rebMark, symBadgeHTML, handCardHTML, gemsHTML, fieldCardHTML, rowHTML, burstAreaHTML, soulAreaHTML, fieldAreaHTML, zoneBox, pv, pileHTML, lifePlate, resPlate, STEP_WARN, stepTargets, stepWarn, stepClick, SLEEVE_TINTS, CORE_LOOKS, deckLook, coreVars, SLEEVE_IMG, sleeveImgCss, applyLook, hintText, renderBoard, render, CUE, fxCueReset, aeRibbon, aeStrip, fxCues, LOG_OPEN, updateLogDrawer, toggleLog, magBtnHTML, liveStatusHTML, HIST_KEY, HISTORY, recordMatch, histHTML, lifeTxt, switchView, renderSettings, renderLobby
 
 ## apps/web/src/13a-deckbuilder.js (395 lines, ~9k tokens) — DECK BUILDER (v0.53.0 redesign; list performance from v0.52.1)
@@ -167,14 +167,14 @@ LORE_SET, lore, loreSeries, LORE_FS, renderLore
 ## apps/web/src/13n-cardpage.js (26 lines, ~0.6k tokens) — CARD PAGE (v0.132.0, U14g2; docs/design/mockup-v14.html): what the Library's card zoom adds under the card detail: the same
 ART_KEY, ART_ALT, sameName, usedInDecks, setArt, cardPageHTML, cardTilt
 
-## apps/web/src/13o-profile.js (26 lines, ~0.5k tokens) — PROFILE and GLOSSARY (v0.133.0, U14h): statistics read from the saved match history only, and the Learn page's keyword glossary.
-profileStats, renderProfile, renderGlossary
+## apps/web/src/13o-profile.js (17 lines, ~0.4k tokens) — PROFILE and GLOSSARY (v0.133.0, U14h): statistics read from the saved match history only, and the Learn page's keyword glossary.
+profileStats, renderGlossary
 
 ## apps/web/src/13p-bugreport.js (26 lines, ~0.4k tokens) — REPORT A BUG (v0.134.0, U14i): a form on every page that opens a pre-filled "new issue" page of the repository. The player sends it
 BUG_REPO, BUG_LABEL, bugURL, bugOpen, bugSend
 
-## apps/web/src/13q-progress.js (42 lines, ~1k tokens) — PROGRESS (v0.134.0, U15): rank, daily missions, achievements and avatars. Everything is derived from the saved match history on this
-RANKS, AVATARS, AVATAR_KEY, AVATAR, dayNo, MISSIONS, ACHIEVEMENTS, rankOf, dailyMissions, setAvatar, renderProgress
+## apps/web/src/13q-progress.js (53 lines, ~1.9k tokens) — PROGRESS (v0.134.0, U15): rank, daily missions, achievements and avatars. Everything is derived from the saved match history on this
+RANKS, AVATARS, AVATAR_KEY, AVATAR, dayNo, MISSIONS, ACHIEVEMENTS, rankOf, dailyMissions, setAvatar, renderProfilePage
 
 ## apps/web/src/13r-learn.js (42 lines, ~1.3k tokens) — LEARN (v0.137.0, mockup parity): 16 short chapters with saved progress, a Continue button and a searchable glossary.
 LEARN_KEY, LEARN_CHAPS, learnDone, learnSave, learnNext, renderLearn, learnOpen
@@ -188,5 +188,5 @@ closeMatch, startNewGame, matchSummary
 ## packages/engine/src/15b-replay.js (109 lines, ~2.5k tokens) — REPLAY RECORDS (v0.85.0, phase F4 = monorepo step M4 part 1; docs/ai/monorepo-plan.md "Design" 2)
 newPortRecord, portRecord, boardSnapshot, runPortRecord, viewerReplayOf
 
-## apps/web/src/16-events.js (257 lines, ~5.6k tokens) — EVENTS (delegation)
+## apps/web/src/16-events.js (259 lines, ~5.6k tokens) — EVENTS (delegation)
 hScrollable, HDRAG, GAME_ACTS, gameAct, replayOf, lastReplay, runReplay, loadScenario, testSetup, defBuiltin
