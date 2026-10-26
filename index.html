@@ -2123,6 +2123,8 @@ body.mk > .ae-pop{position:absolute;top:62px;right:24px;z-index:20}
 .mk #db-check li.ok{color:var(--yes-text)}
 .mk .db-lkg{display:grid;grid-template-columns:repeat(auto-fill,minmax(70px,1fr));gap:6px;margin-bottom:8px}
 .mk #db-card-list{--cols:6}
+.mk .drow .thumb .cface.ph{overflow:hidden;aspect-ratio:5/7;padding:2px}
+.mk .drow .thumb .cface.ph *{font-size:3.5px!important;line-height:1.1;margin:0}
 </style>
 </head>
 <body>
@@ -8386,7 +8388,7 @@ document.addEventListener('input', e => {
    --------------------------------------------------------------------- */
 const NAV_HIDDEN = ['view-playmat'];
 const MK_OFF = ['view-playmat'];   // not ported yet (battle)
-const MK_TITLES = { 'view-lobby': 'Home', 'view-play': 'Play', 'view-decks': 'My decks', 'view-library': 'Library', 'view-settings': 'Settings', 'view-howto': 'Learn', 'view-online': 'Online' };
+const MK_TITLES = { 'view-lobby': 'Home', 'view-play': 'Play', 'view-decks': 'My decks', 'view-library': 'Library', 'view-deckbuilder': 'Deck builder', 'view-settings': 'Settings', 'view-howto': 'Learn', 'view-online': 'Online' };
 function navSync(id) {
   if (typeof document === 'undefined') return;
   const v = id || (document.querySelector('.app-view.active') || {}).id || 'view-lobby';
