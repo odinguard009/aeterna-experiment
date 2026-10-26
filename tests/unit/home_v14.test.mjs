@@ -11,7 +11,8 @@ test('HM1 Card of the Day is stable within a day, changes the next day and opens
   await open({ viewport: { width: 1366, height: 768 } });
   const r = await page.evaluate(() => { const d = new Date(Date.UTC(2026, 9, 26, 3)), e = new Date(Date.UTC(2026, 9, 26, 20)), f = new Date(Date.UTC(2026, 9, 27, 3)); return [BS.cardOfDay(d) === BS.cardOfDay(e), BS.cardOfDay(d) !== BS.cardOfDay(f), !!CARDS[BS.cardOfDay()]]; });
   assert.deepEqual(r, [true, true, true]);
-  await page.click('#cotd .cfw'); await page.waitForSelector('#zoom-overlay.active');
+  await page.click('#cotd .cfw'); await page.waitForSelector('#view-card.active');   // v0.141.0: the card opens its page, like the mockup
+  assert.equal(await page.locator('#cotd [data-a="dbcard"]').count(), 1); await page.evaluate(() => BS.switchView('view-lobby'));
 });
 test('HM2 the Continue panel names the active deck and the four tiles are shown', async () => {
   await page.evaluate(() => document.getElementById('zoom-overlay').classList.remove('active'));
