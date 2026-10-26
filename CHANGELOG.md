@@ -4,6 +4,11 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.141.0
+- Lane: U/I
+- **Logo, loading screen and favicon follow the chosen colour; lobby Card of the Day matches the mockup.** UI only. The logo, loader and tab icon take the accent colour of the theme (the choice is also stored so the loader is tinted from the first paint); the Card of the Day shows the mockup card face (generated art, cost gem, type chip, LV/BP footer; a real picture still wins) with "Card Page" and "+ Add To Deck" buttons.
+  - Tests: B05/B07 now allow a second, tiny early script in the head (accent colour). Checked: PC and phone 390 px screenshots against the mockup, purple theme recolour, no page errors. Not checked: the loader on a real phone
+
 ## v0.140.0
 - Lane: U/I
 - **Battle header fix (PC).** UI only. The short button labels (Log, Options, Concede) showed next to the long ones on PC ("LOGLog"); the PC header now shows one label per button, as in the mockup. Phone unchanged.

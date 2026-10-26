@@ -126,6 +126,7 @@ document.addEventListener('click', e => {
   else if (a === 'db-size') dbSize(v);
   else if (a === 'db-import') dbImport();
   else if (a === 'db-export') dbExport();
+  else if (a === 'cp-open') openCardPage(v);
   else if (a === 'zoom') openZoom(v);
   else if (a === 'art') { const pg = $('view-card').classList.contains('active'), zid = pg ? CP_ID : $('zoom-overlay').dataset.id; setArt(zid, v === zid ? '' : v); if (pg) renderCardPage(); else openZoom(zid); refreshViews(); }
   else if (a === 'home-deck') { switchSlot(Number(v)); renderLobby(); }

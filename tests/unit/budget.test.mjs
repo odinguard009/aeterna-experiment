@@ -54,8 +54,8 @@ test('B04 the stylesheet stays under 205 KB', () => {
   const css = (noFont(html).match(/<style[\s\S]*?<\/style>/g) || []).reduce((n, s) => n + s.length, 0);
   assert.ok(css < 205e3, css);
 });
-test('B05 the page has exactly one script and no external requests', () => {
-  assert.equal((html.match(/<script/g) || []).length, 1);
+test('B05 the page has one app script plus the tiny early theme script, and no external requests', () => {
+  assert.equal((html.match(/<script/g) || []).length, 2);   // v0.141.0: the second one only paints the saved theme colour before boot (loading screen)
   assert.doesNotMatch(html, /<(?:script|link|img)[^>]+(?:src|href)=["']https?:/);
 });
 test('B06 no base64 data URIs in the page except the three UI fonts', () => assert.doesNotMatch(html, /data:(?!font\/woff2;)[a-z0-9/+-]+;base64,/));

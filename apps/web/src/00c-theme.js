@@ -30,6 +30,10 @@ function applyTheme() {
   r.style.setProperty('--you-soft', c.id === 'white' && light ? '#0b1a3022' : v + '40');
   r.style.setProperty('--cpu', c.id === 'red' ? (light ? '#1f6fd9' : '#3a8cf0') : (light ? '#c42b40' : '#d8344b'));
   r.style.setProperty('--cpu-ink', '#ffffff');
+  // U16b: the favicon and the early-paint colour of the loading screen follow the chosen colour
+  const ic = /** @type {HTMLLinkElement|null} */ (document.querySelector('link[rel="icon"]'));
+  if (ic) { if (!ic.dataset.h) ic.dataset.h = ic.getAttribute('href') || ''; const mix = k => '%23' + [1, 3, 5].map(i => Math.round(parseInt(v.substr(i, 2), 16) * (1 - k) + 255 * k).toString(16).padStart(2, '0')).join(''); ic.setAttribute('href', ic.dataset.h.replace(/%2317b897/gi, '%23' + v.slice(1)).replace(/%239fe8d8/gi, mix(.4))); }
+  try { localStorage.setItem('aeterna.accent', v); } catch (e) { /* blocked: the loader stays teal */ }
 }
 function setTheme(key, val) {
   if (key === 'color' && THEME_COLS.some(c => c.id === val)) THEME.color = val;

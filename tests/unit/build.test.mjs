@@ -35,9 +35,9 @@ test('B06 the template has the CSS and JS markers once each and is a full page',
   assert.equal(t.split('/*@@CSS@@*/\n').length, 2); assert.equal(t.split('/*@@JS@@*/\n').length, 2);
   assert.match(t, /^<!DOCTYPE html>/i); assert.match(t, /<\/html>\n$/);
 });
-test('B07 the built page has exactly one <script> and one <style> block', () => {
+test('B07 the built page has the app <script> plus the early theme script and one <style> block', () => {
   const h = buildParts().html;
-  assert.equal((h.match(/<script>/g) || []).length, 1); assert.equal((h.match(/<style>/g) || []).length, 1);
+  assert.equal((h.match(/<script>/g) || []).length, 2); assert.equal((h.match(/<style>/g) || []).length, 1);
 });
 test('B08 VERSION is declared once and matches package.json', () => {
   const js = buildParts().js, m = js.match(/const VERSION = '([^']+)'/g) || [];

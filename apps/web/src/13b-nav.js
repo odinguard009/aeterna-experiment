@@ -65,13 +65,34 @@ function cardOfDay(d = new Date()) {
   const ids = Object.keys(CARDS).filter(id => !CARDS[id].token && !id.startsWith('TRAIN-')).sort(DB_COLL.compare);
   return ids.length ? ids[(Math.floor(d.getTime() / 864e5) * 7919) % ids.length] : '';
 }
+// v0.141.0: the mockup card face (generated art, cost gem, type chip, name, footer) for the Card of the Day; a real picture still wins
+const MK_COL = { red: ['r', '#e5484d'], purple: ['p', '#9b5de5'], green: ['g', '#2fbf71'], white: ['w', '#dfe6ee'], yellow: ['y', '#ffd447'], blue: ['b', '#3aa0ff'] };
+function mkMix(a, b, t) { const n = h => [1, 3, 5].map(i => parseInt(h.substr(i, 2), 16)), x = n(a), y = n(b); return '#' + x.map((v, i) => Math.round(v * (1 - t) + y[i] * t).toString(16).padStart(2, '0')).join(''); }
+function mkArt(card, hex) {
+  let h = 7; for (const ch of card.id) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+  const r = () => (h = (h * 1664525 + 1013904223) >>> 0) / 4294967296, dk = mkMix(hex, '#000000', .78), md = mkMix(hex, '#000000', .5), lt = mkMix(hex, '#ffffff', .35), g = 'ma' + h;
+  let s = `<defs><linearGradient id="${g}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${md}"/><stop offset="1" stop-color="${dk}"/></linearGradient><radialGradient id="${g}g" cx=".5" cy=".42" r=".6"><stop offset="0" stop-color="${lt}" stop-opacity=".85"/><stop offset="1" stop-color="${hex}" stop-opacity="0"/></radialGradient></defs><rect width="100" height="140" fill="url(#${g})"/><circle cx="${40 + r() * 20}" cy="${46 + r() * 8}" r="${30 + r() * 8}" fill="url(#${g}g)"/>`;
+  for (let i = 0; i < 3; i++) { let d = 'M0 140 L0 ' + (88 + i * 8 + r() * 10); for (let x = 12; x <= 100; x += 12 + r() * 10) d += ` L${x} ${80 + i * 10 + r() * 22}`; s += `<path d="${d} L100 140Z" fill="${mkMix(hex, '#000000', .55 + i * .14)}" opacity=".85"/>`; }
+  if (card.type === 'Magic') { for (let i = 0; i < 4; i++) s += `<circle cx="50" cy="60" r="${10 + i * 9}" fill="none" stroke="${lt}" stroke-width="${1.6 - i * .3}" opacity="${.9 - i * .18}" stroke-dasharray="${4 + i * 3} 3"/>`; }
+  else if (card.type === 'Nexus') s += `<path d="M30 112 L30 60 L38 60 L38 44 L46 44 L46 30 L50 22 L54 30 L54 44 L62 44 L62 60 L70 60 L70 112Z" fill="${mkMix(hex, '#000000', .82)}" stroke="${lt}" stroke-width=".8"/><rect x="44" y="70" width="12" height="18" rx="6" fill="${lt}" opacity=".8"/>`;
+  else { const w = 12 + r() * 10; s += `<polygon points="50,38 ${50 + w},58 ${68 + w},42 ${48 + w},80 56,96 44,96 ${52 - w},80 ${32 - w},42 ${50 - w},58" fill="${mkMix(hex, '#000000', .86)}" stroke="${lt}" stroke-width=".8"/><circle cx="46" cy="50" r="1.6" fill="${lt}"/><circle cx="54" cy="50" r="1.6" fill="${lt}"/>`; }
+  for (let i = 0; i < 14; i++) s += `<circle cx="${r() * 100}" cy="${r() * 90}" r="${r() * 1.1 + .3}" fill="#fff" opacity="${.3 + r() * .6}"/>`;
+  return `<svg class="art" viewBox="0 0 100 140" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${s}</svg>`;
+}
+function mkFace(card) {
+  if (cardImgSrc(card.id)) return cardFaceHTML(card, false);
+  const [k, hex] = MK_COL[card.symbol] || MK_COL.green, sp = card.type === 'Spirit' || card.type === 'Brave', bp = card.levels[0] && card.levels[0].bp != null ? card.levels[0].bp : '';
+  const ft = sp ? `<span class="lv">LV1</span><span class="bp">${bp}</span>` : `<span class="lv">${esc(card.type)}</span><span class="bp" style="font-size:.7em;color:var(--text2)">${esc(((card.families || [])[0] || '').slice(0, 14))}</span>`;
+  return `<div class="cf foil" data-c="${k}">${mkArt(card, hex)}<span class="cost"><span>${card.cost}</span></span><span class="ty">${esc(card.type)}</span><span class="nm">${esc(card.name)}</span><span class="ft">${ft}</span></div>`;
+}
 function renderHomeMore() {
   const id = cardOfDay(), c = CARDS[id], fl = c && lore()[id];
-  const cf = c ? `<button class="cfw" style="border:0;background:none;padding:0" data-a="zoom" data-v="${esc(id)}" aria-label="Open ${esc(c.name)}">${cardFaceHTML(c, true)}</button>` : '';
+  const cf = c ? `<button class="cfw" style="border:0;background:none;padding:0" data-a="cp-open" data-v="${esc(id)}" aria-label="Open ${esc(c.name)}">${mkFace(c)}</button>` : '';
   const left = (() => { const t = Math.max(0, Math.floor((864e5 - (Date.now() % 864e5)) / 1000)); return [Math.floor(t / 3600), Math.floor(t % 3600 / 60), t % 60].map(n => String(n).padStart(2, '0')).join(':'); })();
+  const btns = `<div class="row" style="gap:8px;flex-wrap:wrap"><button class="btn sm pri" data-a="cp-open" data-v="${esc(id)}">Card Page</button><button class="btn sm" data-a="dbcard" data-v="${esc(id)}">+ Add To Deck</button></div>`;
   const foot = `<span class="sub" style="font-size:.76em">New card at 00:00 UTC · in <span class="cd" id="cd">${left}</span></span>`;
   $('cotd').className = 'cotd' + (fl ? '' : ' solo');
-  $('cotd').innerHTML = fl ? `${cf}<div class="card qb"><span class="eyebrow">Card Of The Day</span><div class="qm">“</div><div class="qt">${esc(fl).replace(/\n/g, '<br>')}</div><span class="mut" style="font-size:.8em">Flavor Text · ${esc(c.name)} · ${esc(id)}</span>${foot}</div>`
+  $('cotd').innerHTML = fl ? `${cf}<div class="card qb"><span class="eyebrow">Card Of The Day</span><div class="qm">“</div><div class="qt">${esc(fl).replace(/\n/g, '<br>')}</div><span class="mut" style="font-size:.8em">Flavor Text · ${esc(c.name)} · ${esc(id)}</span>${btns}${foot}</div>`
     : `<div class="col cinfo"><span class="eyebrow">Card Of The Day</span><span class="sub">${c ? 'No flavor text on this card.' : ''}</span>${foot}</div>${cf}`;
   $('home-missions').innerHTML = dailyMissions().map(m => `<div class="mission"><span class="grow">${esc(m.txt)}</span><div class="bar" style="max-width:90px"><i style="width:${Math.min(100, m.v / m.goal * 100)}%"></i></div><b style="width:36px;text-align:right">${m.v}/${m.goal}</b></div>`).join('') + '<span class="mut" style="font-size:.74em">Resets at 00:00 UTC.</span>';
   const h = HISTORY && HISTORY[HISTORY.length - 1];

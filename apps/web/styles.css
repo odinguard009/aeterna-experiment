@@ -1079,7 +1079,7 @@
 /* v0.137.0 Learning hints line under the match log */
 .step-hint{align-self:center;max-width:min(100%,860px);box-sizing:border-box;padding:3px 14px;font-size:12px;color:var(--text-main);background:var(--you-soft,rgba(80,160,255,.16));border-left:3px solid var(--you,#4aa3ff);border-radius:3px;text-align:center}
 /* v0.139.0 U16: loading screen + header logo */
-#loader{--bg:#0d1015;--teal:#17b897;--mint:#9fe8d8;--ink:#eef1f5;z-index:9999;position:fixed;inset:0;display:grid;place-items:center;align-content:center;gap:28px;background:radial-gradient(ellipse at 50% 42%,#14221f 0,var(--bg) 62%);transition:opacity .6s ease,visibility .6s}
+#loader{--bg:#0d1015;--teal:var(--lg1);--mint:var(--lg2);--ink:#eef1f5;z-index:9999;position:fixed;inset:0;display:grid;place-items:center;align-content:center;gap:28px;background:radial-gradient(ellipse at 50% 42%,#14221f 0,var(--bg) 62%);transition:opacity .6s ease,visibility .6s}
 #loader.now{transition:none}
 #loader.done{opacity:0;visibility:hidden;pointer-events:none}
 #loader svg{width:min(70vw,52vh,420px);height:auto;overflow:visible}
@@ -1107,14 +1107,15 @@
 @keyframes grow{to{transform:scaleX(1)}}
 @keyframes drop{to{opacity:1;transform:none}}
 @keyframes pop{60%{opacity:1}to{opacity:1;transform:scale(1)}}
-@keyframes glow{50%{filter:drop-shadow(0 0 8px #17b897aa)}}
+@keyframes glow{50%{filter:drop-shadow(0 0 8px color-mix(in srgb,var(--lg1) 67%,transparent))}}
 @keyframes breathe{50%{opacity:.55;transform:scale(1.12)}}
 @keyframes flash{0%,88%,100%{filter:none}94%{filter:brightness(1.5) drop-shadow(0 0 6px #fff8)}}
 @keyframes slide{0%{transform:translateX(-100%)}100%{transform:translateX(265%)}}
 @media (prefers-reduced-motion:reduce){#loader *{animation-duration:.01s!important;animation-delay:0s!important;animation-iteration-count:1!important}#loader .bar.indet i{animation:none;width:100%}}
 .brand{display:inline-flex;align-items:center;gap:9px;margin-right:22px;cursor:pointer}
-.brand .lg{width:46px;height:39px;flex:none;filter:drop-shadow(0 0 6px #17b89955)}
+.brand .lg{width:46px;height:39px;flex:none;filter:drop-shadow(0 0 6px var(--you-soft,#17b89955))}
 .mk .brand .logo{margin-right:0}
 .phonebar .brand{margin-right:0;gap:7px}
 .phonebar .brand .lg{width:36px;height:30px}
 #view-playmat .ae-tools .ae-btn > .s{display:none}   /* v0.140.0: the short label was shown next to the long one on PC (LOGLog) */
+:root{--lg1:var(--you,#17b897);--lg2:color-mix(in srgb,var(--lg1) 40%,#fff);--lg3:color-mix(in srgb,var(--lg1) 20%,#fff);--lg0:color-mix(in srgb,var(--lg1) 60%,#000)}   /* v0.141.0: logo + loader follow the chosen theme colour */
