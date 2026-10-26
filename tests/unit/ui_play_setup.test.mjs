@@ -36,7 +36,7 @@ for (const screen of ['pc', 'phone']) {
     assert.match(r.status, /legal in ETERNAL/);
     assert.deepEqual(r.modes, ['cpu', 'watch', 'online']);
     assert.deepEqual(r.styles, ['balanced', 'aggressive', 'defensive', 'random']);
-    assert.deepEqual(r.speeds, ['normal', 'fast', 'instant']);
+    assert.deepEqual(r.speeds, ['slow', 'normal', 'fast', 'instant']);
     assert.deepEqual(r.pressed, ['balanced', 'normal']);
     assert.ok(!r.over, 'no horizontal overflow');
     await page.click('#pl-style [data-v="aggressive"]'); await page.click('#pl-speed [data-v="fast"]');

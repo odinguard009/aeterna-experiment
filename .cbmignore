@@ -8,3 +8,10 @@
 # agents spent tokens reading the build output. CLAUDE.md already says: never read
 # index.html. build/ is excluded through .gitignore.
 index.html
+
+# Card data: thousands of JSON/TSV records indexed as ~630k symbols made the full index stall.
+# Query it with one-line python/jq as CLAUDE.md says, not through the graph.
+data/sources/
+data/import/
+data/cards/
+data/index/
