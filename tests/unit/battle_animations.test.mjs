@@ -32,6 +32,7 @@ test('U92-1 Settings has Animations Full / Reduced / Off; automation defaults to
   const r = await page.evaluate(() => ({ def: BS.SETTINGS.anim || null, eff: BS.animMode(), opts: [...document.querySelectorAll('#set-anim option')].map(o => o.value) }));
   assert.deepEqual(r, { def: null, eff: 'off', opts: ['auto', 'full', 'reduced', 'off'] });
   await page.click('#app-nav [data-a="go-settings"]');
+  await page.click('#set-menu [data-v="sound"]');
   await page.selectOption('#set-anim', 'reduced');
   assert.equal(await page.evaluate(() => [BS.SETTINGS.anim, BS.animMode(), JSON.parse(localStorage.getItem(BS.SET_KEY)).anim].join()), 'reduced,reduced,reduced');
   assert.deepEqual(errors, []);

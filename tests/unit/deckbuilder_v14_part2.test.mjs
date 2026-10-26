@@ -41,6 +41,7 @@ test('FL1 adding a card flies a small card to the deck in Full, nothing in Off',
 });
 test('ST1 Settings has the Long-press row and it is saved', async () => {
   await page.evaluate(() => BS.switchView('view-settings'));
+  await page.click('#set-menu [data-v="access"]');
   await page.selectOption('#set-lp', 'off');
   assert.equal(await page.evaluate(() => BS.SETTINGS.longpress), 'off');
   await page.selectOption('#set-lp', 'on');

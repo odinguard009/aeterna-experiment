@@ -35,6 +35,7 @@ test('U8A-1 an explicit "Animations: Full" wins over the device asking for reduc
 test('U8A-2 choosing Auto removes the saved choice; choosing Full saves it', async () => {
   const { page } = await open();
   await page.click('#app-nav [data-a="go-settings"]');
+  await page.click('#set-menu [data-v="sound"]');
   await page.selectOption('#set-anim', 'full');
   assert.equal(await page.evaluate(() => [BS.SETTINGS.anim, JSON.parse(localStorage.getItem(BS.SET_KEY)).anim].join()), 'full,full');
   await page.selectOption('#set-anim', 'auto');
