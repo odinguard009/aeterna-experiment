@@ -39,11 +39,12 @@ const packLen = between('/*PACK_START*/', '/*PACK_END*/'), code = html.slice(0, 
 // v0.133.0 (U14h): raised B01 780 -> 790 KB and B02 220 -> 224 KB on purpose: home extras, Profile, Glossary.
 // v0.136.0 (mockup parity part 1): raised B01 796 -> 806 KB, B02 226 -> 229 KB and B04 104 -> 110 KB on purpose: the Play, My Decks and Library pages follow the v14 mockup (markup + CSS).
 // v0.137.0 (mockup parity part 2): raised B01 806 -> 900 KB, B02 229 -> 248 KB and B04 110 -> 205 KB on purpose: the v14 mockup stylesheet is ported whole (apps/web/mockup.css, 94 KB, generated) beside the old one; the old rules are deleted screen by screen as each page is ported, then these budgets drop again. Play page (Strength, First turn, Hints, deck boxes) raised B01 900 -> 915 KB. My Decks page (tiles, stats, sort) raised B02 248 -> 252 KB.
+// v0.137.0 (mockup parity parts 8-12): raised B01 900 -> 935 KB and B02 248 -> 256 KB on purpose: deck builder, Settings and Learn follow the mockup (markup, 16 chapters); the old stylesheet is trimmed once every screen is ported.
 // v0.135.0 (Form Change): raised B01 790 -> 796 KB and B02 224 -> 226 KB on purpose: the FORM_CHANGE action, the viaFormChange condition and 8 more complete cards.
 // v0.125.0 (U14d2): B02 raised 212 -> 218 KB on purpose: the Effect Active panel, the emoticons and the 'effect' view record.
 const FONT_URL = /url\(data:font\/woff2;base64,[A-Za-z0-9+/=]+\)/g, FLAVOR_RE = /\/\*FLAVOR_START\*\/const BUILTIN_FLAVOR = "[A-Za-z0-9+\/=]*";\/\*FLAVOR_END\*\//, noFont = t => t.replace(FONT_URL, 'url()').replace(FLAVOR_RE, '/*FLAVOR*/');   // v0.131.0 U14g: the Lore flavor blob is data like the pack: its own budget B15
-test('B01 index.html without the card pack stays under 915 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 915e3, Buffer.byteLength(noFont(code))));
-test('B02 index.html without the card pack, gzipped, stays under 252 KB', () => { const n = gzipSync(noFont(code), { level: 9 }).length; assert.ok(n < 252e3, n); });
+test('B01 index.html without the card pack stays under 935 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 935e3, Buffer.byteLength(noFont(code))));
+test('B02 index.html without the card pack, gzipped, stays under 256 KB', () => { const n = gzipSync(noFont(code), { level: 9 }).length; assert.ok(n < 256e3, n); });
 test('B03 the embedded card pack stays under 1.6 MB (room for all cards; never embed staging data)', () => assert.ok(packLen < 1.6e6, packLen));
 // v0.93.0 (U6): raised 90 -> 96 KB on purpose (roadmap item U allows it with a note): U6-U8 add the My decks page and the
 // deck builder restyle; unused rules were trimmed first in v0.92.0. The next raise needs the same kind of note.
