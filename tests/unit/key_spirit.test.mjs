@@ -211,15 +211,15 @@ test('KEY-8 deck builder: the KEY button toggles the mark, the last copy leaving
 test('KEY-9 My decks: tiles show the KEY badge, Copy and Duplicate bring it along', async () => {
   const r = await ev(async () => {
     BS.switchView('view-decks'); BS.renderDecks();
-    const mineKey = !!document.querySelector('#dk-list .dk-tile .dk-key');
-    const startKeys = document.querySelectorAll('#dk-starters .dk-tile .dk-key').length;
-    const startBtn = document.querySelector('#dk-starters .dk-tile [data-a="dk-copy"]');
+    const mineKey = !!document.querySelector('#dk-list .dtile[data-v] .tag.dim');
+    const startKeys = document.querySelectorAll('#dk-starters .dk-st-row .tag.dim').length;
+    const startBtn = document.querySelector('#dk-starters .dk-st-row [data-a="dk-copy"]');
     const startId = startBtn ? Number(startBtn.getAttribute('data-v')) : -1;
     startBtn.click(); await new Promise(x => setTimeout(x, 10));
     const starterKey = (BS.PREBUILT[startId] || {}).key || null;
     const copied = BS.SLOTS().findIndex((s, i) => s.key === starterKey && s.key);
     BS.renderDecks();
-    const copyTile = [...document.querySelectorAll('#dk-list .dk-tile')].find(t => t.querySelector('.dk-key') && t.getAttribute('data-v') == String(copied));
+    const copyTile = [...document.querySelectorAll('#dk-list .dtile[data-v]')].find(t => t.querySelector('.tag.dim') && t.getAttribute('data-v') == String(copied));
     const copyBadge = !!copyTile;
     const more = document.querySelector(`#dk-list [data-a="dk-more"][data-v="${copied}"]`);
     more.click(); await new Promise(x => setTimeout(x, 10));

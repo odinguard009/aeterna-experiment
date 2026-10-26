@@ -21,19 +21,32 @@ function dkColors(cards) {                          // the deck's colours, most 
   for (const [id, k] of Object.entries(cards)) { const c = CARDS[id]; if (c && k) for (const col of cardColors(c)) if (COLORS.includes(col)) n[col] = (n[col] || 0) + k; }
   return Object.keys(n).sort((a, b) => n[b] - n[a]).slice(0, 3);
 }
-function dkFan(cards) {                              // PC tile art: the deck's three most-played cards, fanned (mockup-v14 .stack)
+function dkFan(cards) {                              // tile art: the deck's three most-played cards, fanned (mockup .stack)
   const top = Object.keys(cards).filter(id => CARDS[id] && cards[id]).sort((a, b) => cards[b] - cards[a]).slice(0, 3);
-  return `<div class="dk-fan" aria-hidden="true">${top.map(id => `<div class="dk-fc">${cardFaceHTML(CARDS[id], false)}</div>`).join('')}</div>`;
+  return `<div class="stack" aria-hidden="true">${top.map(id => `<div class="cf">${cardFaceHTML(CARDS[id], false)}</div>`).join('')}</div>`;
+}
+function dkStats(name) {                             // win rate and last played from the match history, matched by deck name
+  const h = HISTORY.filter(m => m.you === name);
+  if (!h.length) return { wr: null, last: 0, n: 0 };
+  return { wr: Math.round(100 * h.filter(m => m.won).length / h.length), last: h[h.length - 1].t || 0, n: h.length };
+}
+function dkAgo(t) {
+  if (!t) return '—';
+  const d = Math.floor((Date.now() - t) / 864e5);
+  return d <= 0 ? 'Today' : d === 1 ? 'Yesterday' : d < 30 ? `${d} days ago` : 'Long ago';
 }
 function dkTile(i, name, cards, starter) {
   const key = starter ? ((PREBUILT[i] || {}).key || null) : (SLOTS[i] && SLOTS[i].key || null);
-  const st = dkStatus(cards, key), act = !starter && i === ACTIVE_SLOT, open = !starter && DK_MENU === i, nm = esc(name), kb = key && CARDS[key] ? '<span class="dk-key" title="Key Spirit: draws favour it">KEY</span>' : '';
-  const dots = dkColors(cards).map(c => `<i class="dk-dot" style="--c:${colorVar(c)}" title="${cap(c)}"></i>`).join('');
-  const item = (a, l, cls) => `<button class="${cls || ''}" role="menuitem" data-a="${a}" data-v="${i}">${l}</button>`;
-  const menu = open ? `<div class="dk-menu" role="menu" aria-label="${nm}"><div class="dk-mh">${nm}</div>${item('dk-edit', 'Edit cards')}${item('dk-play', 'Play with this deck')}${act ? '' : item('dk-active', 'Set active')}${item('dk-rename', 'Rename…')}${item('dk-dup', 'Duplicate')}${item('dk-look', 'Deck look')}${item('dk-code', 'Copy deck code')}${item('dk-del', 'Delete…', 'del')}<button class="dk-x" data-a="dk-more" data-v="-1">Cancel</button></div>` : '';
-  const btns = starter ? `<button class="ae-ghost primary" data-a="dk-copy" data-v="${i}" aria-label="Copy ${nm} to my decks">COPY</button>`
-    : `<button class="ae-ghost" data-a="dk-edit" data-v="${i}" aria-label="Edit ${nm}">EDIT</button><button class="ae-ghost primary" data-a="dk-play" data-v="${i}" aria-label="Play with ${nm}"${st.ok ? '' : ' disabled'}>PLAY</button><button class="dk-more" data-a="dk-more" data-v="${i}" aria-label="More actions for ${nm}" aria-haspopup="menu" aria-expanded="${open}">⋯</button>`;
-  return `<article class="dk-tile${starter ? ' st' : ''}${act ? ' on' : ''}${open ? ' open' : ''}" data-v="${i}">${dkFan(cards)}<span class="sleeve dk-sl" style="--sl-tint:${SLEEVE_TINTS[starter ? 'silver' : deckLook(i).sleeve]}" aria-hidden="true"></span><div class="dk-main"><div class="dk-top"><b class="dk-name" title="${nm}">${nm}</b>${kb}${act ? '<span class="dk-act">Active</span>' : ''}</div><div class="dk-dots">${dots}</div><div class="dk-st ${st.ok ? 'ok' : 'bad'}">${esc(st.txt)}</div></div><div class="dk-btns">${btns}</div>${menu}</article>`;
+  const st = dkStatus(cards, key), act = !starter && i === ACTIVE_SLOT, open = !starter && DK_MENU === i, nm = esc(name), kb = key && CARDS[key] ? '<span class="tag dim" title="Key Spirit: draws favour it">Key</span>' : '';
+  const dots = dkColors(cards).map(c => `<i class="dot" style="display:inline-block;width:11px;height:11px;background:${colorVar(c)};clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)" title="${cap(c)}"></i>`).join('');
+  const item = (a, l, cls) => `<button class="opt ${cls || ''}" role="menuitem" data-a="${a}" data-v="${i}"><b>${l}</b></button>`;
+  const menu = open ? `<div class="dk-menu" role="menu" aria-label="${nm}"><div class="dk-mh">${nm}</div>${item('dk-edit', 'Edit cards')}${item('dk-play', 'Play with this deck')}${act ? '' : item('dk-active', 'Set active')}${item('dk-rename', 'Rename…')}${item('dk-dup', 'Duplicate')}${item('dk-look', 'Deck look')}${item('dk-code', 'Copy deck code')}${item('dk-del', 'Delete…', 'del')}<button class="btn sm dk-x" data-a="dk-more" data-v="-1">Cancel</button></div>` : '';
+  const ds = starter ? null : dkStats(name);
+  const stat = `<div class="stat"><span>${deckTotal(cards)}/40 cards</span>${ds ? `<span>${ds.wr == null ? 'No matches' : 'Win ' + ds.wr + '%'}</span><span>${dkAgo(ds.last)}</span>` : ''}</div>`;
+  const btns = starter ? `<button class="btn sm grow" data-a="dk-copy" data-v="${i}" aria-label="Copy ${nm} to my decks">Copy</button>`
+    : `<button class="btn sm grow" data-a="dk-edit" data-v="${i}" aria-label="Edit ${nm}">Edit</button><button class="btn sm pri grow" data-a="dk-play" data-v="${i}" aria-label="Play with ${nm}"${st.ok ? '' : ' disabled'}>Play</button><button class="ibtn sq dk-more" data-a="dk-more" data-v="${i}" aria-label="More actions for ${nm}" aria-haspopup="menu" aria-expanded="${open}">⋯</button>`;
+  if (starter) return `<div class="card flat row dk-st-row" data-v="${i}" style="padding:10px 14px;gap:12px"><div style="width:42px;flex:none">${(k => k ? cardFaceHTML(CARDS[k], false) : '')(Object.keys(cards).filter(id => CARDS[id] && cards[id]).sort((a, b) => cards[b] - cards[a])[0])}</div><div class="grow"><b>${nm}</b> ${kb}<br><span class="mut" style="font-size:.78em">${esc(st.txt)}</span></div><span class="grow"></span>${btns}</div>`;
+  return `<div class="card dtile${act ? ' on' : ''}${open ? ' open' : ''}" data-v="${i}">${dkFan(cards)}<div class="row"><b class="grow" style="font-size:1.02em" title="${nm}">${nm}</b>${kb}${act ? '<span class="tag">Active</span>' : ''}</div><div class="row" style="gap:6px">${dots}<span class="grow"></span><span class="${st.ok ? 'vc' : 'vc warn'}">${st.ok ? '✓ Legal' : deckTotal(cards) < 40 ? 'Needs ' + (40 - deckTotal(cards)) + ' more' : 'Not legal'}</span></div>${stat}<div class="row" style="gap:6px">${btns}</div>${menu}</div>`;
 }
 function renderDecks() {
   if (!$('dk-list')) return;
@@ -41,9 +54,12 @@ function renderDecks() {
   const used = SLOTS.map((s, i) => i).filter(dkUsed);
   $('dk-count').textContent = `${used.length} / ${SLOTS.length}`;
   const q = DK_Q.trim().toLowerCase(), shown = used.filter(i => !q || SLOTS[i].name.toLowerCase().includes(q));
+  const sk = i => dkStats(SLOTS[i].name);
   if (DK_SORT === 'name') shown.sort((a, b) => SLOTS[a].name.localeCompare(SLOTS[b].name));
   else if (DK_SORT === 'cards') shown.sort((a, b) => deckTotal(dkCards(b)) - deckTotal(dkCards(a)));
-  $('dk-list').innerHTML = shown.map(i => dkTile(i, SLOTS[i].name, dkCards(i))).join('') + (!q && dkFree() >= 0 ? '<button class="dk-add" data-a="dk-new"><span>+</span><b>New Deck</b><i>Blank, from a starter, or import</i></button>' : '');
+  else if (DK_SORT === 'played') shown.sort((a, b) => sk(b).last - sk(a).last);
+  else if (DK_SORT === 'wr') shown.sort((a, b) => (sk(b).wr == null ? -1 : sk(b).wr) - (sk(a).wr == null ? -1 : sk(a).wr));
+  $('dk-list').innerHTML = shown.map(i => dkTile(i, SLOTS[i].name, dkCards(i))).join('') + (!q && dkFree() >= 0 ? '<button class="card flat dtile dk-add" data-a="dk-new" style="border:2px dashed var(--line2);align-items:center;justify-content:center;min-height:250px;color:var(--text2);background:transparent"><span style="font-size:42px">+</span><b>New deck</b><span class="sub" style="font-size:.8em">Blank, from a starter, or import</span></button>' : '');
   if ($('dk-sub')) $('dk-sub').textContent = `${used.includes(ACTIVE_SLOT) ? 1 : 0} active`;
   $('dk-starters').innerHTML = prebuiltOrder(FORMAT).map(({ d, i }) => dkTile(i, prebuiltLabel(d), d.cards, true)).join('');
   $('dk-fmt').textContent = fmtTitle();

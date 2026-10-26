@@ -1,24 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 256" role="img" aria-label="Aeterna"><defs>
-<linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff0a8"/><stop offset=".5" stop-color="#ffd447"/><stop offset="1" stop-color="#b8860b"/></linearGradient>
-<linearGradient id="portal" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#bfe9ff"/><stop offset=".5" stop-color="#17b897"/><stop offset="1" stop-color="#06302a"/></linearGradient>
-<radialGradient id="bg" cx=".5" cy=".4" r=".7"><stop offset="0" stop-color="#1b2029"/><stop offset="1" stop-color="#0d1015"/></radialGradient>
-<radialGradient id="orb" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset=".25" stop-color="#fff" stop-opacity=".15"/><stop offset="1" stop-color="#000" stop-opacity=".45"/></radialGradient>
-<radialGradient id="soul" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff"/><stop offset=".45" stop-color="#ffd447"/><stop offset="1" stop-color="#ffd447" stop-opacity="0"/></radialGradient>
-<linearGradient id="t" x1="0" x2="1"><stop offset="0" stop-color="#eef1f5"/><stop offset="1" stop-color="#17b897"/></linearGradient></defs>
-<circle cx="128" cy="128" r="120" fill="url(#bg)"/>
-<circle cx="128" cy="128" r="120" fill="none" stroke="url(#gold)" stroke-width="6"/>
-<circle cx="128" cy="128" r="109" fill="none" stroke="#17b897" stroke-opacity=".5" stroke-width="1.5"/>
-<rect x="49" y="130" width="14" height="72" fill="url(#gold)"/><rect x="193" y="130" width="14" height="72" fill="url(#gold)"/>
-<path d="M56 130A72 72 0 0 1 200 130" fill="none" stroke="url(#gold)" stroke-width="9"/>
-<rect x="97" y="98" width="62" height="88" rx="6" fill="url(#portal)" stroke="url(#gold)" stroke-width="3"/>
-<g stroke="#fff" stroke-opacity=".3" stroke-width="2"><path d="M128 186 108 104M128 186 128 104M128 186 148 104"/></g>
-<circle cx="128" cy="140" r="26" fill="url(#soul)"/><circle cx="128" cy="140" r="11" fill="#fff"/><circle cx="128" cy="140" r="11" fill="url(#orb)"/>
-<rect x="40" y="202" width="176" height="9" rx="2" fill="url(#gold)"/><rect x="52" y="211" width="152" height="7" rx="2" fill="#b8860b"/>
-<circle cx="56.0" cy="130.0" r="14" fill="#e5484d" stroke="#0d1015" stroke-width="2"/><circle cx="56.0" cy="130.0" r="14" fill="url(#orb)"/>
-<circle cx="69.8" cy="87.7" r="14" fill="#9b6bff" stroke="#0d1015" stroke-width="2"/><circle cx="69.8" cy="87.7" r="14" fill="url(#orb)"/>
-<circle cx="105.8" cy="61.5" r="14" fill="#2fbf71" stroke="#0d1015" stroke-width="2"/><circle cx="105.8" cy="61.5" r="14" fill="url(#orb)"/>
-<circle cx="150.2" cy="61.5" r="14" fill="#dfe3ea" stroke="#0d1015" stroke-width="2"/><circle cx="150.2" cy="61.5" r="14" fill="url(#orb)"/>
-<circle cx="186.2" cy="87.7" r="14" fill="#f2c14e" stroke="#0d1015" stroke-width="2"/><circle cx="186.2" cy="87.7" r="14" fill="url(#orb)"/>
-<circle cx="200.0" cy="130.0" r="14" fill="#3aa0ff" stroke="#0d1015" stroke-width="2"/><circle cx="200.0" cy="130.0" r="14" fill="url(#orb)"/>
-<text x="270" y="158" font-family="Montserrat,Segoe UI,Arial,sans-serif" font-size="92" font-weight="900" font-style="italic" letter-spacing="9" fill="url(#t)">AETERNA</text>
-<text x="274" y="196" font-family="Segoe UI,Arial,sans-serif" font-size="17" letter-spacing="9" fill="#a9b2c1">CARD BATTLE SIMULATOR</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 256" role="img" aria-label="Aeterna"><rect width="800" height="256" rx="48" fill="#0d1015"/><defs>
+<linearGradient id="lt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#17b897" stop-opacity=".25"/><stop offset="1" stop-color="#bff5ea"/></linearGradient>
+<linearGradient id="fr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef1f5"/><stop offset="1" stop-color="#9fe8d8"/></linearGradient>
+</defs>
+<path d="M84 216V122C84 90 110 66 128 52C146 66 172 90 172 122V216Z" fill="url(#lt)"/>
+<path d="M72 216V112Q92 108 114 132V200Z" fill="#12312d"/><path d="M184 216V112Q164 108 142 132V200Z" fill="#12312d"/>
+<path d="M72 216V112Q92 108 114 132V200Z" fill="none" stroke="#17b897" stroke-width="3" stroke-linejoin="round"/><path d="M184 216V112Q164 108 142 132V200Z" fill="none" stroke="#17b897" stroke-width="3" stroke-linejoin="round"/>
+<path d="M72 216V120C72 80 106 52 128 36C150 52 184 80 184 120V216" fill="none" stroke="url(#fr)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M58 216H198" stroke="#eef1f5" stroke-width="6" stroke-linecap="round"/>
+<g font-family="Montserrat,Segoe UI,Arial,sans-serif" font-weight="800" font-style="italic" font-size="38" fill="#eef1f5" text-anchor="middle"><text x="94" y="184">B</text><text x="162" y="184">S</text></g><text x="290" y="150" font-family="Montserrat,Segoe UI,Arial,sans-serif" font-size="76" font-weight="700" font-style="italic" letter-spacing="14" fill="#eef1f5">AETERNA</text></svg>

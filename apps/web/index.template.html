@@ -203,14 +203,16 @@
   <div class="db-backdrop" data-a="db-sheet" data-v=""></div>
 </div>
 
-<div id="view-decks" class="app-view ae-view">
-  <main class="ae-page dk-page">
-    <header class="ae-phead"><div class="tx"><span class="ae-eyebrow">Decks · <span id="dk-fmt">Standard</span></span><h1>My Decks</h1><p>Your decks stay on this device · <b id="dk-count">0 / 8</b> slots in use · <span id="dk-sub">1 active</span></p><p id="dk-msg" class="dk-msg" role="status" aria-live="polite"></p></div>
-      <div class="dk-hacts"><input id="dk-q" class="dk-in dk-q" type="search" placeholder="Search Decks" aria-label="Search decks" autocomplete="off"><select id="dk-sort" class="dk-in dk-sort" aria-label="Sort"><option value="slot">Slot</option><option value="name">Name</option><option value="cards">Cards</option></select><button class="ae-ghost" data-a="dk-import">Import</button><button class="ae-ghost primary" data-a="dk-new">+ New Deck</button></div></header>
-    <section class="dk-list" id="dk-list" aria-label="My decks"></section>
-    <h2 class="dk-h">Starter Decks <span>read-only · Copy to edit</span></h2>
-    <section class="dk-list" id="dk-starters" aria-label="Starter decks"></section>
-  </main>
+<div id="view-decks" class="app-view">
+  <div class="pg scroll">
+    <div class="card hdcard"><div class="grow"><span class="eyebrow">Decks · <span id="dk-fmt">Standard</span></span><h2 class="hd">My decks</h2><span class="sub"><span id="dk-count">0 / 8</span> slots in use · <span id="dk-sub">1 active</span></span><span id="dk-msg" class="sub dk-msg" role="status" aria-live="polite" style="font-size:.8em"></span></div>
+      <div class="search" style="width:220px;flex:none"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="dk-q" class="in" type="search" placeholder="Search decks" style="width:100%" aria-label="Search decks" autocomplete="off"></div>
+      <select id="dk-sort" class="in" aria-label="Sort"><option value="slot">Slot</option><option value="played">Last played</option><option value="name">Name</option><option value="wr">Win rate</option><option value="cards">Cards</option></select>
+      <button class="btn" data-a="dk-import">Import</button><button class="btn pri" data-a="dk-new">+ New deck</button></div>
+    <div class="dgrid" id="dk-list" aria-label="My decks"></div>
+    <div class="sec">Starter decks · read only</div>
+    <div class="row" id="dk-starters" style="gap:12px;flex-wrap:wrap" aria-label="Starter decks"></div>
+  </div>
 </div>
 <div id="view-library" class="app-view ae-view">
   <main class="ae-page doc">

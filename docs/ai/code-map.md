@@ -146,8 +146,8 @@ rvName, rvCards, rvField, rvSideHTML, rvFrameHTML, openViewer, replayFromRecord,
 ## apps/web/src/13g-anim.js (98 lines, ~1.9k tokens) — v0.92.0 U5b LIGHT BATTLE ANIMATIONS (roadmap item U, owner 2026-10-21; docs/DESIGN.md section 0, U5b)
 animMode, ANIM, rectOf, visEl, aeFx, aeBeam, coreFly, burstFlip, animCues
 
-## apps/web/src/13h-decks.js (107 lines, ~2.6k tokens) — v0.93.0 U6 MY DECKS (docs/DESIGN.md section 0, mockup docs/design/mockup-v11.html "My decks PC / phone")
-DK_MENU, dkCards, dkUsed, dkFree, dkStatus, dkColors, dkFan, dkTile, renderDecks, dkMenu, dkNewSlot, dkAct
+## apps/web/src/13h-decks.js (123 lines, ~3k tokens) — v0.93.0 U6 MY DECKS (docs/DESIGN.md section 0, mockup docs/design/mockup-v11.html "My decks PC / phone")
+DK_MENU, dkCards, dkUsed, dkFree, dkStatus, dkColors, dkFan, dkStats, dkAgo, dkTile, renderDecks, dkMenu, dkNewSlot, dkAct
 
 ## apps/web/src/13i-online.js (412 lines, ~7.6k tokens) — ONLINE CLIENT (v0.108.0, roadmap M8 part 1; docs/ai/monorepo-plan.md M8)
 ONL_DEF, ON, ONL_AUTO, onlineWsBase, onlineAvailable, onlineLifeTxt, onlineLifePlate, onlineResPlate, onlineFieldCard, onlineHandCard, onlineRow, onlineFieldArea, renderOnlineStatus, renderOnline, onlineSend, onlineIntent, onlineDecide, onlinePick, clearOnlinePick, onlinePickButton, onlinePayment, onlinePayButton, onlineHandMenu, onlineFieldTap, onlineFieldMenu, onlineZoneMenu, onlineLog, onlineDisconnect, onlineFail, onlineOver, onlineMsg, connectOnline, onlineOrigin, onlineRoomCode, onlineStart

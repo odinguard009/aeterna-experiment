@@ -94,7 +94,7 @@ test('U8A-7 phone: a long deck name gets the row width (buttons below it) and wr
   const { page } = await open('phone');
   const r = await page.evaluate(() => {
     const s = BS.SLOTS()[BS.ACTIVE_SLOT], old = s.name; s.name = 'Crimson Dragon Rush Deck'; BS.switchView('view-decks'); BS.renderDecks();
-    const e = [...document.querySelectorAll('#dk-list .dk-name')].find(x => x.textContent === s.name);
+    const e = [...document.querySelectorAll('#dk-list .dtile .row b')].find(x => x.textContent === s.name);
     const fs = parseFloat(getComputedStyle(e).fontSize), lh = parseFloat(getComputedStyle(e).lineHeight) || fs * 1.3;
     const out = { lines: Math.round(e.getBoundingClientRect().height / lh), cut: e.scrollHeight > e.clientHeight + 1, title: e.title };
     s.name = old; BS.renderDecks(); return out;
