@@ -98,14 +98,14 @@ for (const screen of ['pc', 'phone']) {
       assert.deepEqual(errors, []);
     });
   }
-  test(`U65-4 ${screen}: the Learn tile and the profile chip open Learn and Settings`, async () => {
+  test(`U65-4 ${screen}: the Learn tile and the profile chip open Learn and Profile`, async () => {
     const { page, errors } = await sp(screen);
     await page.evaluate(() => BS.switchView('view-lobby'));
     await page.click('#home-tiles [data-a="go-howto"]');   // v0.137.0: the mockup Home has the Learn tile; the rules-coverage link has no place there yet (returns with the Learn page)
     assert.equal(await page.evaluate(() => document.getElementById('view-howto').classList.contains('active')), true);
     await page.evaluate(() => BS.switchView('view-lobby'));
-    await page.locator(screen === 'pc' ? '#app-nav .pchip' : '.phonebar [data-a="go-settings"]').first().click();
-    assert.equal(await page.evaluate(() => document.getElementById('view-settings').classList.contains('active')), true);
+    await page.locator(screen === 'pc' ? '#app-nav .pchip' : '.phonebar .pchip').first().click();   // v0.137.0: the profile chip opens the Profile page
+    assert.equal(await page.evaluate(() => document.getElementById('view-profile').classList.contains('active')), true);
     await page.evaluate(() => BS.switchView('view-lobby'));
     assert.deepEqual(errors, []);
   });
