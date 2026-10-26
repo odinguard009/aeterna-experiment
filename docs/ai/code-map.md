@@ -125,8 +125,8 @@ openZoneModal, openLogModal, showRules
 ## apps/web/src/13-render.js (354 lines, ~7.9k tokens) — RENDERING
 nameHTML, isPC, applyLayout, _rz, colorVar, cardColors, isMulti, colorSty, symSlices, symCount, isUltimate, cardCls, rebMark, symBadgeHTML, handCardHTML, gemsHTML, fieldCardHTML, rowHTML, burstAreaHTML, soulAreaHTML, fieldAreaHTML, zoneBox, pv, pileHTML, lifePlate, resPlate, STEP_WARN, stepTargets, stepWarn, stepClick, SLEEVE_TINTS, CORE_LOOKS, deckLook, coreVars, SLEEVE_IMG, sleeveImgCss, applyLook, hintText, renderBoard, render, CUE, fxCueReset, aeRibbon, aeStrip, fxCues, LOG_OPEN, updateLogDrawer, toggleLog, magBtnHTML, liveStatusHTML, HIST_KEY, HISTORY, recordMatch, histHTML, lifeTxt, switchView, renderSettings, renderLobby
 
-## apps/web/src/13a-deckbuilder.js (365 lines, ~7.8k tokens) — DECK BUILDER (v0.53.0 redesign; list performance from v0.52.1)
-DB_COLORS, DB_TYPES, DB_COSTS, DB_GROUPS, DBF, DB_UNDO, DB_IO, dbArr, dbTypeOf, dbSetOf, dbFilterOK, dbGroupOK, DBV, DB_GAP, DB_COLL, dbIndex, dbSets, dbActiveCount, DB_SORTS, dbFilter, fxMarked, FX_MARK_LBL, fxMarkHTML, dbCardHTML, dbWindow, dbScroll, dbSearchInput, dbChip, dbDropdown, dbPick, renderDbRail, renderDbChips, dbUnchip, DB_TAB, dbTab, renderDbLook, SLEEVE_BLOB, dbSleeveSet, dbSleeveClear, dbLook, dbToggle, dbResetFilters, DB_SAVE_T, dbSave, dbSnap, dbCanAdd, dbChange, dbReplace, dbClear, dbUndo, dbRedo, dbTestHand, DB_SIZE_KEY, DB_SIZE, dbSize, dbFlyFrom, dbFlyTo, DB_LP, DB_PEEK, dbPeekHide, dbTap, dbKey, dbImport, dbExport, dbStatsHTML, dbRowsHTML, renderDbDeck, dbSheet, renderDeckBuilder
+## apps/web/src/13a-deckbuilder.js (395 lines, ~9k tokens) — DECK BUILDER (v0.53.0 redesign; list performance from v0.52.1)
+DB_COLORS, DB_TYPES, DB_COSTS, DB_GROUPS, DBF, DB_UNDO, DB_IO, dbArr, dbTypeOf, dbSetOf, dbFilterOK, dbGroupOK, DBV, DB_GAP, DB_COLL, dbIndex, dbSets, dbActiveCount, DB_SORTS, dbFilter, fxMarked, FX_MARK_LBL, fxMarkHTML, dbCardHTML, dbWindow, dbScroll, dbSearchInput, dbBar, dbMenu, dbDd, DB_TAB, dbTab, renderDbLook, dbCover, SLEEVE_BLOB, dbSleeveSet, dbSleeveClear, dbLook, dbToggle, dbResetFilters, DB_SAVE_T, dbSaved, dbNameInput, dbSave, dbSnap, dbCanAdd, dbChange, dbReplace, dbClear, dbUndo, dbRedo, dbTestHand, DB_SIZE_KEY, DB_SIZE, dbSize, dbFlyFrom, dbFlyTo, DB_LP, DB_PEEK, dbPeekHide, dbTap, dbKey, dbImport, dbExport, DB_COLCH, dbRingHTML, dbChips, dbStatsHTML, dbRowsHTML, renderDbDeck, dbPlayNow, dbSheet, renderDeckBuilder
 
 ## apps/web/src/13b-nav.js (84 lines, ~2k tokens) — APP NAVIGATION + HOME (v0.65.0, UI/UX overhaul U2; docs/DESIGN.md section 0, mockup docs/design/mockup-v11.html)
 NAV_HIDDEN, MK_OFF, MK_TITLES, navSync, navTools, themePop, navTheme, navSound, navHistory, fmtTitle, MK_TILES, renderHome, cardOfDay, renderHomeMore
@@ -176,7 +176,7 @@ BUG_REPO, BUG_LABEL, bugURL, bugOpen, bugSend
 ## apps/web/src/13q-progress.js (42 lines, ~1k tokens) — PROGRESS (v0.134.0, U15): rank, daily missions, achievements and avatars. Everything is derived from the saved match history on this
 RANKS, AVATARS, AVATAR_KEY, AVATAR, dayNo, MISSIONS, ACHIEVEMENTS, rankOf, dailyMissions, setAvatar, renderProgress
 
-## apps/web/src/14-images.js (287 lines, ~5.6k tokens) — CARD IMAGES
+## apps/web/src/14-images.js (282 lines, ~5.6k tokens) — CARD IMAGES
 IMG, IDB, normKey, idbOpen, idbTx, setImg, loadImages, shrinkImage, stripExt, findCardByFile, findCardByKey, importImages, clearImages, cardImgSrc, imgCls, imgSty, refreshViews, libMsg, renderLibrary, LIBV, LIB_GAP, libSetOf, LIBF, LIB_SIZES, libActive, libFilter, libBar, libMenu, libTool, libCardHTML, libWindow, renderLibraryGrid, libScroll, libSearchInput, deckToText, textToDeck, downloadText, readFileText, libAction
 
 ## packages/engine/src/15-match.js (74 lines, ~1.7k tokens) — MATCH START / END
@@ -185,5 +185,5 @@ closeMatch, startNewGame, matchSummary
 ## packages/engine/src/15b-replay.js (109 lines, ~2.5k tokens) — REPLAY RECORDS (v0.85.0, phase F4 = monorepo step M4 part 1; docs/ai/monorepo-plan.md "Design" 2)
 newPortRecord, portRecord, boardSnapshot, runPortRecord, viewerReplayOf
 
-## apps/web/src/16-events.js (254 lines, ~5.5k tokens) — EVENTS (delegation)
+## apps/web/src/16-events.js (256 lines, ~5.6k tokens) — EVENTS (delegation)
 hScrollable, HDRAG, GAME_ACTS, gameAct, replayOf, lastReplay, runReplay, loadScenario, testSetup, defBuiltin

@@ -240,12 +240,7 @@ document.addEventListener('change', async e => {
     const r = await importImages(Array.from(t.files));
     libMsg(`Matched ${r.ok} image(s).${r.miss.length ? `\nNo card found for ${r.miss.length} file(s): ` + r.miss.slice(0, 10).join(', ') + (r.miss.length > 10 ? ', …' : '') : ''}`, r.ok === 0);
     t.value = ''; refreshViews();
-  } else if (t.id === 'db-only') renderDeckBuilder();
-  else if (t.id === 'db-legal') { DBF.legal = t.checked; renderDeckBuilder(); }
-  else if (t.id === 'db-complete') { DBF.complete = t.checked; renderDeckBuilder(); }
-  else if (t.id === 'db-dd-colors') dbPick('colors', t.value);
-  else if (t.id === 'db-dd-groups') dbPick('groups', t.value);
-  else if (t.id === 'db-set') { DBF.set = t.value; renderDeckBuilder(); }
+  } else if (t.id === 'db-set') { DBF.set = t.value; renderDeckBuilder(); }
   else if (t.id === 'db-sort') { DBF.sort = t.value; $('db-card-list').scrollTop = 0; renderDeckBuilder(); }
   else if (t.id === 'play-cpu') { SETTINGS.cpuDeck = t.value; saveSettings(); renderLobby(); }
   else if (t.id === 'db-slot') { switchSlot(Number(t.value)); DB_UNDO.length = 0; renderDeckBuilder(); }

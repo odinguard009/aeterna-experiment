@@ -329,86 +329,6 @@ html.layout-pc .phase-steps{padding:0;}
 #view-deckbuilder select,#view-deckbuilder input:not([type=checkbox]),#view-deckbuilder button{min-height:34px;}
 #view-deckbuilder input[type=checkbox]{width:20px;height:20px;}
 }
-#view-deckbuilder{position:absolute;overflow:hidden;}
-.db-topcount,.db-menu-btn{display:none;}
-.db-topcount{font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;background:rgba(255,255,255,.08);}
-.db-topcount.ok,.db-deckbar .ok{color:#6fcf97;}
-.db-topcount.bad,.db-deckbar .bad{color:#eb5757;}
-.db-body{flex:1;min-height:0;display:flex;gap:10px;}
-.db-pool{flex:1;min-width:0;min-height:0;display:flex;flex-direction:column;gap:6px;}
-.db-search{flex:1 1 160px;max-width:320px;}
-.db-rail,.db-deck{background:linear-gradient(180deg,var(--ae-panel1),var(--ae-panel2));box-shadow:inset 0 0 0 1px var(--ae-line);padding:8px;overflow-y:auto;min-height:0;}
-.db-rail{width:220px;flex:none;display:flex;flex-direction:column;gap:5px;font-size:11px;}
-.db-deck{width:300px;flex:none;display:flex;flex-direction:column;gap:8px;}
-.db-fh{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin-top:4px;}
-.db-chips{display:flex;flex-wrap:wrap;gap:4px;}
-.db-chip{--chip:var(--text-muted);min-height:26px;padding:2px 9px;border-radius:13px;border:1px solid var(--border-line);background:var(--ae-chip);color:var(--text-main);font-size:11px;cursor:pointer;display:inline-flex;align-items:center;gap:5px;}
-.db-chip[style]::before{content:'';width:9px;height:9px;border-radius:50%;background:var(--chip);}
-.db-chip.on{background:var(--you);border-color:var(--you);color:var(--you-ink);font-weight:700;}
-.db-chip:focus-visible,.db-row-btn:focus-visible,.db-row-key:focus-visible,.db-info:focus-visible{outline:2px solid var(--accent);outline-offset:1px;}
-.db-tog{display:flex;align-items:center;gap:6px;color:var(--text-main);margin-top:3px;}
-.db-rail .sel{width:100%;}
-.db-freset{margin-top:6px;}
-.db-sheet-head,.db-deckbar,.db-backdrop{display:none;}
-.db-grid .tcg-card{position:relative;cursor:pointer;}
-.db-grid .tcg-card .db-info{position:absolute;top:17px;right:2px;width:16px;height:16px;min-height:0;padding:0;border-radius:50%;border:1px solid rgba(0,0,0,.35);background:rgba(16,26,36,.85);color:#fff;font:italic 700 10px/1 Georgia,serif;cursor:pointer;z-index:2;opacity:.85;}
-.db-grid .tcg-card .db-info::after{content:'';position:absolute;inset:-8px;}
-.db-pulse .qty-badge{animation:db-pulse .45s ease-out;}
-@keyframes db-pulse{0%{transform:scale(1.7);}100%{transform:scale(1);}}
-.db-dk-head{display:flex;flex-direction:column;gap:2px;}
-.db-counter{font-size:13px;color:var(--text-muted);}
-.db-counter b{font-size:20px;color:var(--text-main);}
-.db-dk-list{flex:1 1 auto;min-height:60px;overflow-y:auto;display:flex;flex-direction:column;gap:6px;}
-.db-grp-h{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);display:flex;justify-content:space-between;border-bottom:1px solid var(--border-line);padding-bottom:2px;margin-bottom:2px;}
-.db-row{display:flex;align-items:center;gap:4px;font-size:11px;border-left:3px solid var(--card-color,var(--color-red));padding:1px 0 1px 5px;}
-.db-row.bad{background:rgba(235,87,87,.12);}
-.db-row-cost{width:16px;text-align:center;font-weight:700;color:var(--accent);flex:none;}
-.db-row-img{width:30px;height:42px;flex:none;border-radius:2px;border:1px solid var(--card-color,var(--border-line));background:var(--card-color,var(--bg-card));color:rgba(0,0,0,.65);display:grid;place-items:center;font-size:10px;font-weight:900;overflow:hidden;}
-.db-row-img.has-img{background-size:cover;background-position:center;background-repeat:no-repeat;color:transparent;}
-.db-row-name{flex:1;min-width:0;text-align:left;background:none;border:0;color:var(--text-main);font-size:11px;padding:2px 0;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.db-row-btn{width:24px;height:22px;flex:none;border-radius:4px;border:1px solid var(--border-line);background:rgba(255,255,255,.06);color:var(--text-main);font-size:14px;line-height:1;cursor:pointer;padding:0;}
-.db-row-btn:disabled{opacity:.3;cursor:default;}
-.db-row-key{width:34px;height:22px;flex:none;border-radius:4px;border:1px solid var(--border-line);background:none;color:var(--text-muted);font-size:10px;font-weight:800;letter-spacing:.08em;line-height:1;cursor:pointer;padding:0;}
-.db-row-key.on{border-color:var(--accent);color:var(--accent);background:rgba(255,255,255,.05);}
-.db-row-n{width:16px;text-align:center;font-weight:700;flex:none;}
-.db-empty{opacity:.7;padding:6px 0;}
-.db-stat-h{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin-top:4px;}
-.db-curve{display:grid;grid-template-columns:repeat(11,1fr);gap:2px;height:64px;align-items:end;}
-.db-bar{height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;font-size:9px;color:var(--text-muted);}
-.db-bar i{display:block;width:100%;min-height:1px;background:var(--accent);border-radius:2px 2px 0 0;opacity:.85;}
-.db-bar-n{color:var(--text-main);min-height:11px;}
-.db-splits{display:flex;flex-wrap:wrap;gap:4px 8px;font-size:11px;}
-.db-split{--chip:transparent;display:inline-flex;align-items:center;gap:4px;}
-.db-split[style]::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--chip);}
-.db-dk-actions{display:flex;flex-wrap:wrap;gap:6px;}
-.db-io-hint{font-size:11px;margin-bottom:6px;}
-@media (max-width:899px){
-#view-deckbuilder .db-header{flex-wrap:nowrap;}
-.db-topcount,.db-menu-btn,.db-filter-btn{display:inline-flex;align-items:center;}
-.db-menu-btn{margin-left:auto;}
-#view-deckbuilder .db-header .db-tools{display:none;position:absolute;top:46px;right:10px;z-index:45;flex-direction:column;align-items:stretch;background:var(--ae-panel1);border:1px solid var(--accent);border-radius:6px;padding:8px;width:min(300px,calc(100% - 20px));}
-#view-deckbuilder.db-open-menu .db-header .db-tools{display:flex;}
-.db-rail,.db-deck{position:absolute;left:0;right:0;bottom:0;z-index:40;width:auto;border-radius:12px 12px 0 0;border:0;border-top:1px solid var(--accent);padding:10px 12px 16px;background:var(--ae-panel1);transform:translateY(105%);transition:transform .18s ease-out;visibility:hidden;}
-.db-rail{max-height:82%;}
-.db-deck{top:0;border-radius:0;}
-.db-open-filters .db-rail,.db-open-deck .db-deck{transform:none;visibility:visible;}
-.db-sheet-head{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--accent);}
-.db-sheet-head .db-sheet-back{margin-left:auto;margin-right:6px;}
-.db-backdrop{position:absolute;inset:0;z-index:30;background:rgba(0,0,0,.55);}
-.db-open-filters .db-backdrop,.db-open-deck .db-backdrop,.db-open-menu .db-backdrop{display:block;}
-.db-open-menu .db-header{position:relative;z-index:45;}
-#view-deckbuilder .db-deckbar{display:flex;flex:none;align-items:center;justify-content:space-between;gap:8px;min-height:46px;padding:0 14px;border-radius:8px;border:1px solid var(--accent);background:var(--bg-panel);color:var(--text-main);font-size:13px;cursor:pointer;}
-.db-deckbar b{font-size:15px;}
-.db-grid{grid-template-columns:repeat(3,minmax(0,1fr));}
-.db-grid .tcg-card{--card-w:min(100px,26vw);width:var(--card-w);}
-.db-search{max-width:none;}
-#view-deckbuilder .db-chip{min-height:44px;padding:2px 13px;font-size:13px;}
-.db-row{font-size:13px;}
-.db-row-name{font-size:13px;min-height:44px;}
-#view-deckbuilder .db-row-btn{width:44px;height:44px;min-height:44px;font-size:18px;}
-.db-tog{min-height:44px;font-size:13px;}
-}
-#view-deckbuilder .db-grid .db-info{min-height:0;}
 .mull-note{margin-top:6px;padding:6px 8px;border-radius:6px;background:rgba(255,200,80,.12);border:1px solid rgba(255,200,80,.35);font-size:.9em}
 #err-notice{position:fixed;top:8px;left:50%;transform:translateX(-50%);z-index:10000;width:min(560px,calc(100vw - 32px));
 display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:10px 12px;border-radius:8px;
@@ -2190,6 +2110,19 @@ body.mk > .ae-pop{position:absolute;top:62px;right:24px;z-index:20}
 .mk #lib-tbar{position:relative}
 .mk #lib-chips,.mk #lib-types,.mk #view-library .btool .r2{flex-wrap:wrap}
 .mk #lib-types{max-width:100%;min-width:0}
+.mk #db-tbar{position:relative}
+.mk #db-chips,.mk #db-types,.mk #view-deckbuilder .btool .r2{flex-wrap:wrap}
+.mk #db-types{max-width:100%;min-width:0}
+.mk .dopt{display:none;flex-direction:column;gap:8px;padding:8px 12px;border-bottom:1px solid var(--line)}
+.mk .bld.dopen .dopt{display:flex}
+.mk .bdeck .dpane{display:none}
+.mk .bdeck.tab-list .dpane[data-pane=list],.mk .bdeck.tab-curve .dpane[data-pane=curve],.mk .bdeck.tab-look .dpane[data-pane=look]{display:block}
+.mk .tile .fx-mark{position:absolute;top:4px;left:4px;z-index:2}
+.mk #db-check{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:4px;font-size:.82em}
+.mk #db-check li.bad{color:var(--no-text,#c0392b)}
+.mk #db-check li.ok{color:var(--yes-text)}
+.mk .db-lkg{display:grid;grid-template-columns:repeat(auto-fill,minmax(70px,1fr));gap:6px;margin-bottom:8px}
+.mk #db-card-list{--cols:6}
 </style>
 </head>
 <body>
@@ -2337,54 +2270,37 @@ body.mk > .ae-pop{position:absolute;top:62px;right:24px;z-index:20}
 </div>
 
 <div id="view-deckbuilder" class="app-view">
-  <div class="db-header">
-    <button class="db-back ae-ghost" data-a="go-decks" aria-label="Back to My decks">‹ My Decks</button><h2>Deck Builder</h2><span id="db-topcount" class="db-topcount"></span>
-    <button class="db-menu-btn btn-nav-small" data-a="db-sheet" data-v="menu" aria-label="Deck menu">⋯ Menu</button>
-    <div class="db-tools">
-      <button class="btn-nav-small" data-a="format" id="db-format" title="Switch format">STANDARD</button>
-      <select id="db-slot" class="sel" title="Deck slot"></select>
-      <input id="db-name" class="sel" maxlength="24" size="10" title="Deck name" autocomplete="off">
-      <select id="db-preset" class="sel" title="Load a ready-made deck into this slot"></select>
-      <button class="btn-nav-small" data-a="db-reset">Default deck</button>
-      <button class="btn-nav-small" data-a="db-clear">Clear</button>
-      <button class="btn-nav-small db-save" id="db-save" data-a="db-save" title="Save this deck">SAVE</button>
-      <button class="btn-nav-small" data-a="go-decks" title="Save and back to My decks">‹ Back to My Decks</button>
-    </div>
-  </div>
-  <div class="db-body">
-    <aside class="db-rail" id="db-rail" aria-label="Filters">
-      <div class="db-sheet-head"><b>Filters</b><button class="btn-nav-small" data-a="db-sheet" data-v="">Done</button></div>
-      <div class="db-fh">Colour</div><select id="db-dd-colors" class="sel db-dd db-dd-phone" aria-label="Colour"></select><div class="db-chips" id="db-f-colors"></div>
-      <div class="db-fh">Cost</div><div class="db-chips" id="db-f-costs"></div>
-      <div class="db-fh">Type</div><div class="db-chips" id="db-f-types"></div>
-      <div class="db-fh">Group</div><select id="db-dd-groups" class="sel db-dd" aria-label="Group"></select><div class="db-chips" id="db-f-groups"></div>
-      <div class="db-fh">Set</div><select id="db-set" class="sel" title="Set"></select>
-      <div class="db-fh">Family</div><input id="db-family" class="sel" type="search" placeholder="e.g. Dragon" autocomplete="off" title="Family">
-      <label class="db-tog"><input type="checkbox" id="db-legal"> Legal in format</label>
-      <label class="db-tog"><input type="checkbox" id="db-only"> In deck only</label>
-      <label class="db-tog"><input type="checkbox" id="db-complete"> Complete effects only</label>
-      <div class="db-legend"><span class="fx-mark" aria-hidden="true">!</span> Effect not fully implemented (missing parts simply do not happen)</div>
-      <div class="db-fh">Sort</div><select id="db-sort" class="sel" title="Sort"><option value="default">Default order</option><option value="set">Set number</option><option value="cost">Cost</option><option value="name">Name</option><option value="colour">Colour</option></select>
-      <button class="btn-nav-small db-freset" data-a="db-freset">Reset filters</button>
-    </aside>
-    <section class="db-pool">
-      <div class="db-filters"><input id="db-search" class="db-search" type="search" placeholder="Search name, ID or text  ( / )" autocomplete="off">
-        <button id="db-filter-btn" class="btn-nav-small db-filter-btn" data-a="db-sheet" data-v="filters" aria-controls="db-rail" aria-expanded="true">Filters</button><span id="db-count"></span><span class="db-size" role="group" aria-label="Card size"><button class="btn-nav-small" data-a="db-size" data-v="s" aria-pressed="false">S</button><button class="btn-nav-small" data-a="db-size" data-v="m" aria-pressed="true">M</button><button class="btn-nav-small" data-a="db-size" data-v="l" aria-pressed="false">L</button></span></div>
-      <div class="db-achips" id="db-achips" aria-label="Active filters"></div>
-      <div class="db-grid" id="db-card-list"></div>
+  <div class="bld" id="bld">
+    <section class="bpool" aria-label="Card pool">
+      <div class="btool" id="db-tbar">
+        <div class="r1"><div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="db-search" class="in" type="search" placeholder="Search name, code or text" aria-label="Search cards ( / )" autocomplete="off" spellcheck="false" style="width:100%"></div>
+          <select id="db-sort" class="in hidem" aria-label="Sort"><option value="default">Sort: default</option><option value="set">Sort: set</option><option value="cost">Sort: cost</option><option value="name">Sort: name</option><option value="colour">Sort: colour</option></select>
+          <select id="db-set" class="in hidem" title="Set" aria-label="Set"></select>
+          <input id="db-family" class="in hidem" type="search" placeholder="Family" aria-label="Family" autocomplete="off" style="max-width:150px">
+          <div class="seg hidem" role="group" aria-label="Card size" id="db-size"></div></div>
+        <div class="r2"><span id="db-colbtn"></span><div class="pips" id="db-pips"></div><span class="vsep"></span><span id="db-types" class="row" style="gap:7px"></span><span class="vsep"></span><div class="costs" id="db-costs"></div></div>
+        <div class="r2"><span id="db-groups" class="row" style="gap:7px"></span><button class="chip" id="db-play" data-a="db-chip" data-v="flag:complete" aria-pressed="false">✓ Playable Only</button><button class="chip" id="db-in" data-a="db-chip" data-v="flag:only" aria-pressed="false">In Deck</button><button class="chip" id="db-legal" data-a="db-chip" data-v="flag:legal" aria-pressed="false">Legal Only</button><span id="db-clear-f"></span><span class="grow"></span><span id="db-count" class="sub hidem" role="status" style="font-size:.78em"></span></div></div>
+      <div class="pgrid scroll" id="db-card-list" style="--cols:6" aria-label="Cards"></div>
     </section>
-    <aside class="db-deck tab-list" id="db-deck" aria-label="Deck">
-      <div class="db-sheet-head"><b>Deck</b><button class="btn-nav-small db-sheet-back" data-a="go-decks" aria-label="Back to My decks">‹ My decks</button><button class="btn-nav-small" data-a="db-sheet" data-v="">Close</button></div>
-      <div class="db-dk-head"><div class="db-counter" id="db-counter"></div><div class="db-status" id="db-status"></div></div>
-      <div class="db-tabs" role="tablist" aria-label="Deck panel"><button role="tab" data-a="db-tab" data-v="list" aria-selected="true">Deck List</button><button role="tab" data-a="db-tab" data-v="curve" aria-selected="false">Curve And Check</button><button role="tab" data-a="db-tab" data-v="look" aria-selected="false">Deck Look</button></div>
-      <div class="db-dk-list" id="db-dk-list" data-pane="list" role="tabpanel"></div>
-      <div class="db-pane" data-pane="curve" role="tabpanel"><ul class="db-check" id="db-check"></ul><div class="db-dk-stats" id="db-dk-stats"></div></div>
-      <div class="db-pane" data-pane="look" role="tabpanel"><div id="db-look" class="db-look"></div></div>
-      <div class="db-dk-actions"><button class="btn-nav-small db-save" data-a="db-save" title="Save this deck">Save</button><button class="btn-nav-small" id="db-undo" data-a="db-undo">↶ Undo</button><button class="btn-nav-small" id="db-redo" data-a="db-redo">↷ Redo</button><button class="btn-nav-small" data-a="db-test">Test hand</button><button class="btn-nav-small" data-a="db-import">Import text</button><button class="btn-nav-small" data-a="db-export">Export text</button></div>
+    <div class="scrim" data-a="db-sheet" data-v=""></div>
+    <aside class="bdeck tab-list" id="db-deck" aria-label="Deck">
+      <div class="shh"><span style="width:44px;height:5px;border-radius:3px;background:var(--line2);margin:0 auto"></span></div>
+      <div class="dhead"><div class="ring" id="db-ring"></div>
+        <div class="grow col" style="gap:4px"><input id="db-name" class="dname" maxlength="24" autocomplete="off" aria-label="Deck name"><div class="row" style="gap:8px"><span class="savedot" id="db-savedot"><i></i><span>Saved</span></span><span class="grow"></span>
+          <button class="ibtn sq" id="db-undo" data-a="db-undo" aria-label="Undo" title="Undo">↶</button><button class="ibtn sq" id="db-redo" data-a="db-redo" aria-label="Redo" title="Redo">↷</button><button class="ibtn sq" id="db-menu-btn" data-a="db-sheet" data-v="menu" aria-label="Deck options" title="Deck options" aria-expanded="false">⋯</button><button class="ibtn sq shc" data-a="db-sheet" data-v="" aria-label="Close deck">✕</button></div></div></div>
+      <div class="dopt" id="db-opt">
+        <div class="row" style="gap:8px;flex-wrap:wrap"><button class="btn sm" data-a="go-decks">‹ My decks</button><button class="btn sm" data-a="format" id="db-format" title="Switch format">STANDARD</button><select id="db-slot" class="in" title="Deck slot" aria-label="Deck slot"></select></div>
+        <div class="row" style="gap:8px;flex-wrap:wrap"><select id="db-preset" class="in" title="Load a ready-made deck into this slot" aria-label="Load ready-made" style="flex:1;min-width:0"></select><button class="btn sm" data-a="db-reset">Default deck</button><button class="btn sm" data-a="db-clear">Clear</button></div>
+      </div>
+      <div class="vchips" id="db-status"></div>
+      <div class="dtabs" role="tablist" aria-label="Deck panel"><button role="tab" data-a="db-tab" data-v="list" aria-selected="true">Deck list</button><button role="tab" data-a="db-tab" data-v="curve" aria-selected="false">Stats</button><button role="tab" data-a="db-tab" data-v="look" aria-selected="false">Look</button></div>
+      <div class="dpane scroll db-dk-list" id="db-dk-list" data-pane="list" role="tabpanel"></div>
+      <div class="dpane scroll db-pane" data-pane="curve" role="tabpanel"><div id="db-dk-stats"></div><ul class="db-check" id="db-check"></ul></div>
+      <div class="dpane scroll db-pane" data-pane="look" role="tabpanel"><div id="db-look" class="db-look"></div></div>
+      <div class="dact"><button class="btn sm" id="db-save" data-a="db-save" title="Save this deck">Save</button><button class="btn sm" data-a="db-import">Import</button><button class="btn sm" data-a="db-export">Export</button><button class="btn sm" data-a="db-test">Test Hand</button><span class="grow"></span><button class="btn yes sm" data-a="db-play-now" id="db-play-now">Play ▶</button></div>
     </aside>
+    <div class="mbar" id="db-deckbar" data-a="db-sheet" data-v="deck" role="button" tabindex="0"></div>
   </div>
-  <button class="db-deckbar" id="db-deckbar" data-a="db-sheet" data-v="deck"></button>
-  <div class="db-backdrop" data-a="db-sheet" data-v=""></div>
 </div>
 
 <div id="view-decks" class="app-view">
@@ -8078,7 +7994,7 @@ const DB_TYPES = ['Spirit', 'Ultimate', 'Brave', 'Nexus', 'Magic', 'Contract'];
 const DB_COSTS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
 /* v0.119.0: mechanic groupings the Type / Colour filters cannot express (owner: Mirage, Rebirth, all-colour/rainbow + the other modelled groups) */
 const DB_GROUPS = [['multi', 'All colour'], ['mirage', 'Mirage'], ['rebirth', 'Rebirth'], ['legacy', 'Legacy'], ['ex', 'EX symbol']];
-const DBF = { colors: new Set(), costs: new Set(), types: new Set(), groups: new Set(), set: '', family: '', legal: false, complete: false, sort: 'default' };
+const DBF = { colors: new Set(), costs: new Set(), types: new Set(), groups: new Set(), set: '', family: '', legal: false, complete: false, only: false, dd: '', sort: 'default' };
 const DB_UNDO = [], DB_REDO = [];   // v0.128.0 U14f: Redo; any new change empties it
 let DB_IO = '';
 const dbArr = v => v == null || v === '' ? [] : Array.isArray(v) ? v : v instanceof Set ? [...v] : [String(v)];
@@ -8106,7 +8022,7 @@ function dbGroupOK(c, g) {
 /* v0.52.1: a search index is built once per card-data change (CARDS_VER); the filtered list is recomputed only when a
    filter, the sort or the deck (for "In deck only") changes; the grid is windowed (spacer rows keep the scroll height). */
 const DBV = { idx: null, ver: -1, key: '', list: [], from: -1, to: -1, cols: 0, rowH: 0, raf: 0, timer: 0, pulse: '' };
-const DB_GAP = 8, DB_BUF = 2;
+const DB_GAP = 16, DB_BUF = 2;
 const DB_COLL = new Intl.Collator('en', { numeric: true, sensitivity: 'base' });
 function dbIndex() {
   if (!DBV.idx || DBV.ver !== CARDS_VER) {
@@ -8116,7 +8032,7 @@ function dbIndex() {
   return DBV.idx;
 }
 function dbSets() { return [...new Set(dbIndex().map(e => dbSetOf(e.id)))].sort(DB_COLL.compare); }
-function dbActiveCount() { return DBF.colors.size + DBF.costs.size + DBF.types.size + DBF.groups.size + (DBF.set ? 1 : 0) + (DBF.family ? 1 : 0) + (DBF.legal ? 1 : 0) + (DBF.complete ? 1 : 0) + ($('db-only').checked ? 1 : 0); }
+function dbActiveCount() { return DBF.colors.size + DBF.costs.size + DBF.types.size + DBF.groups.size + (DBF.set ? 1 : 0) + (DBF.family ? 1 : 0) + (DBF.legal ? 1 : 0) + (DBF.complete ? 1 : 0) + (DBF.only ? 1 : 0) + ((($('db-search') || {}).value) ? 1 : 0); }
 const DB_SORTS = {
   cost: (a, b) => CARDS[a.id].cost - CARDS[b.id].cost || DB_COLL.compare(a.id, b.id),
   name: (a, b) => DB_COLL.compare(CARDS[a.id].name, CARDS[b.id].name) || DB_COLL.compare(a.id, b.id),
@@ -8124,7 +8040,7 @@ const DB_SORTS = {
   set: (a, b) => DB_COLL.compare(a.id, b.id),
 };
 function dbFilter() {
-  const q = ($('db-search').value || '').trim().toLowerCase(), only = $('db-only').checked, fam = DBF.family.trim().toLowerCase();
+  const q = ($('db-search').value || '').trim().toLowerCase(), only = DBF.only, fam = DBF.family.trim().toLowerCase();
   const idx = dbIndex(), key = [CARDS_VER, q, only ? Object.keys(PLAYER_DECK).filter(id => PLAYER_DECK[id]).sort().join(',') : '', [...DBF.colors].join(), [...DBF.costs].join(), [...DBF.types].join(), [...DBF.groups].join(), DBF.set, fam, DBF.legal, DBF.complete, DBF.sort, FORMAT].join('|');
   if (key === DBV.key) return DBV.list;
   DBV.key = key;
@@ -8132,7 +8048,7 @@ function dbFilter() {
   if (DB_SORTS[DBF.sort]) l = l.slice().sort(DB_SORTS[DBF.sort]);
   DBV.list = l.map(e => e.id);
   const tr = DBV.list.filter(id => id.startsWith('TRAIN-')).length;      // v0.99 U8a: Home counts real cards only; say which extra cards the builder shows
-  $('db-count').textContent = `${DBV.list.length} card(s) shown` + (tr ? ` (${tr} Training)` : '');
+  $('db-count').textContent = `${DBV.list.length.toLocaleString('en-US')} card(s) shown` + (tr ? ` (${tr} Training)` : '');
   return DBV.list;
 }
 // v0.79.0 (A1, owner 2026-10-20): a card whose printed effect is not fully implemented carries a "!" mark in the deck builder
@@ -8140,11 +8056,10 @@ function dbFilter() {
 const fxMarked = c => !!c && c.implemented === false;
 const FX_MARK_LBL = 'Effect not fully implemented';
 const fxMarkHTML = c => fxMarked(c) ? `<span class="fx-mark" role="img" aria-label="${FX_MARK_LBL}" title="${FX_MARK_LBL}">!</span>` : '';
-function dbCardHTML(id) {
-  const c = CARDS[id], n = PLAYER_DECK[id] || 0, bp = c.levels[0] && c.levels[0].bp != null ? c.levels[0].bp : c.brave ? '+' + c.brave.bp : '-';
-  return `<div class="tcg-card ${n ? '' : 'dim'}${cardCls(c)}${imgCls(id)}${DBV.pulse === id ? ' db-pulse' : ''}" style="${colorSty(c)}${imgSty(id)}" data-a="dbcard" data-v="${id}" title="${esc(c.name)} (${id})${fxMarked(c) ? ' - ' + FX_MARK_LBL : ''}: tap to add">
-      <div class="cost">${c.cost}</div><div class="type-badge">${c.contract ? 'CON' : c.type.substring(0, 3).toUpperCase()}${rebMark(c)}</div>
-      <div class="name">${nameHTML(c.name)}</div><div class="bp">${bp}</div>${fxMarkHTML(c)}${symBadgeHTML(id)}${n ? `<div class="qty-badge">×${n}</div>` : ''}${legalityOf(id, FORMAT) ? '<div class="ban-badge" title="Not legal in this format">🚫</div>' : banStatus(id, FORMAT) === 'limit1' ? '<div class="ban-badge lim">1</div>' : ''}<button class="db-info" data-a="dbinfo" data-v="${id}" aria-label="Card detail" title="Card detail">i</button></div>`;
+function dbCardHTML(id) {             // v0.137.0: the mockup tile (card face, hover buttons - / i / +, copy pips, "max" ring)
+  const c = CARDS[id], n = PLAYER_DECK[id] || 0, mx = maxCopies(id, FORMAT), banned = legalityOf(id, FORMAT);
+  const bd = [0, 1, 2].map(i => `<i${i < n ? ' class="f"' : ''}></i>`).join('');
+  return `<div class="tile${n && n >= mx ? ' max' : ''}${DBV.pulse === id ? ' pulse' : ''}" data-a="dbcard" data-v="${id}" title="${esc(c.name)} (${id})${fxMarked(c) ? ' - ' + FX_MARK_LBL : ''}: tap to add" tabindex="0">${cardFaceHTML(c, false)}${fxMarkHTML(c)}${banned ? '<div class="ban-badge" title="Not legal in this format">🚫</div>' : banStatus(id, FORMAT) === 'limit1' ? '<div class="ban-badge lim">1</div>' : ''}<div class="ov"><button class="m" data-a="db-row" data-v="${id}:-1" aria-label="Remove one copy">−</button><button class="m" data-a="dbinfo" data-v="${id}" aria-label="Card details" style="font-size:15px">i</button><button data-a="db-row" data-v="${id}:1" aria-label="Add one copy">+</button></div><button class="inf" data-a="dbinfo" data-v="${id}" aria-label="Card details">i</button><div class="bd">${bd}</div></div>`;
 }
 function dbWindow(force) {             // renders the rows around the visible part of the grid
   const el = $('db-card-list'), list = DBV.list, n = list.length;
@@ -8158,47 +8073,44 @@ function dbWindow(force) {             // renders the rows around the visible pa
   const pad = h => h > 0 ? `<div class="db-spacer" style="grid-column:1/-1;height:${h}px"></div>` : '';
   el.innerHTML = pad(r0 * rowH - DB_GAP) + list.slice(from, to).map(dbCardHTML).join('') + pad((rows - r1) * rowH - DB_GAP);
   el.scrollTop = top;
-  const first = elq(el, '.tcg-card'), h = first ? first.offsetHeight + DB_GAP : 0;
+  const first = elq(el, '.tile'), h = first ? first.offsetHeight + DB_GAP : 0;
   if (h > DB_GAP && Math.abs(h - DBV.rowH) > 0.5) { DBV.rowH = h; dbWindow(true); }   // first measurement (or a layout change)
 }
 function dbScroll() { if (!DBV.raf) DBV.raf = requestAnimationFrame(() => { DBV.raf = 0; if ($('view-deckbuilder').classList.contains('active')) dbWindow(false); }); }
 function dbSearchInput() { clearTimeout(DBV.timer); DBV.timer = setTimeout(() => { DBV.timer = 0; renderDeckBuilder(); }, 120); }
 
-/* ---------- filter rail (PC column / phone bottom sheet) ---------- */
-function dbChip(group, v, label, on, sty) { return `<button class="db-chip${on ? ' on' : ''}" data-a="db-chip" data-v="${group}:${v}" aria-pressed="${on}"${sty ? ` style="${sty}"` : ''}>${label}</button>`; }
-/* v0.130.0 U14f3: Group (all screens) and Colour (phone) as dropdowns: one pick, "Several" when more than one chip is on */
-function dbDropdown(id, group, any, list) {
-  const e = $(id), s = DBF[group], val = s.size === 1 ? [...s][0] : s.size > 1 ? '*' : '';
-  e.innerHTML = `<option value="">${any}</option>` + (s.size > 1 ? '<option value="*" disabled>Several</option>' : '') + list.map(([v, l]) => `<option value="${v}">${esc(l)}</option>`).join('');
-  e.value = val;
-}
-function dbPick(group, v) { if (v === '*') return; DBF[group].clear(); if (v) DBF[group].add(v); renderDeckBuilder(); }
-function renderDbRail() {
-  $('db-f-colors').innerHTML = DB_COLORS.map(c => dbChip('colors', c, cap(c), DBF.colors.has(c), `--chip:${colorVar(c)}`)).join('');
-  $('db-f-costs').innerHTML = DB_COSTS.map(k => dbChip('costs', k, k === '10' ? '10+' : k, DBF.costs.has(k))).join('');
-  $('db-f-types').innerHTML = DB_TYPES.map(t => dbChip('types', t, t, DBF.types.has(t))).join('');
-  $('db-f-groups').innerHTML = DB_GROUPS.map(([g, l]) => dbChip('groups', g, l, DBF.groups.has(g))).join('');
-  dbDropdown('db-dd-colors', 'colors', 'Any colour', DB_COLORS.map(c => [c, cap(c)]));   // v0.130.0 U14f3: one pick; the chips (several at once) stay for the PC colour row
-  dbDropdown('db-dd-groups', 'groups', 'Any group', DB_GROUPS);
-  const st = $('db-set'), sets = dbSets(), sig = sets.join();
-  if (st.dataset.sig !== sig) { st.innerHTML = '<option value="">All sets</option>' + sets.map(s => `<option value="${esc(s)}">${esc(s)}</option>`).join(''); st.dataset.sig = sig; }
-  st.value = DBF.set; $('db-sort').value = DBF.sort; $('db-legal').checked = DBF.legal; $('db-complete').checked = DBF.complete;
+/* ---------- toolbar (mockup: colour pips, type chips, cost buttons, group / colour dropdowns, flag chips, Clear N) ---------- */
+function dbBar() {
+  const on = (s, v) => s.has(v), set = $('db-set'), sets = dbSets(), sig = sets.join();
+  $('db-pips').innerHTML = DB_COLORS.map(c => `<button class="pip${on(DBF.colors, c) ? ' on' : ''}" style="--c:${colorVar(c)}" data-a="db-chip" data-v="colors:${c}" aria-label="${cap(c)}" aria-pressed="${on(DBF.colors, c)}" title="${cap(c)}"><i></i></button>`).join('');
+  $('db-types').innerHTML = DB_TYPES.map(t => `<button class="chip${on(DBF.types, t) ? ' on' : ''}" data-a="db-chip" data-v="types:${t}" aria-pressed="${on(DBF.types, t)}">${t}</button>`).join('');
+  $('db-costs').innerHTML = DB_COSTS.map(k => `<button class="cbtn${on(DBF.costs, k) ? ' on' : ''}" data-a="db-chip" data-v="costs:${k}" aria-pressed="${on(DBF.costs, k)}" aria-label="Cost ${k}">${k === '10' ? '10+' : k}</button>`).join('');
+  const ddb = (n, l, sel) => `<button class="chip ddb${n === 'colour' ? ' ddphone' : ''}${sel.length ? ' on' : ''}" data-a="db-dd" data-v="${n}" aria-haspopup="true" aria-expanded="${DBF.dd === n}">${l}: ${sel.length ? sel.join(', ') : 'All'} ▾</button>`;
+  $('db-colbtn').innerHTML = ddb('colour', 'Colour', [...DBF.colors].map(cap));
+  $('db-groups').innerHTML = ddb('group', 'Group', DB_GROUPS.filter(([g]) => DBF.groups.has(g)).map(x => x[1]));
+  [['db-play', 'complete'], ['db-in', 'only'], ['db-legal', 'legal']].forEach(([id, k]) => { const b = $(id); b.classList.toggle('on', DBF[k]); b.setAttribute('aria-pressed', String(DBF[k])); });
+  dbMenu();
+  if (set.dataset.sig !== sig) { set.innerHTML = '<option value="">All sets</option>' + sets.map(x => `<option value="${esc(x)}">${esc(x)}</option>`).join(''); set.dataset.sig = sig; }
+  set.value = DBF.set; $('db-sort').value = DBF.sort;
   if (document.activeElement !== $('db-family')) $('db-family').value = DBF.family;
-  const n = dbActiveCount(); $('db-filter-btn').innerHTML = n ? `FILTERS <em class="badge">${n}</em>` : 'FILTERS';
-  renderDbChips();
+  $('db-size').innerHTML = DB_SIZE_LIST.map(([v, l]) => `<button data-a="db-size" data-v="${v}" aria-pressed="${DB_SIZE === v}">${l}</button>`).join('');
+  const n = dbActiveCount(); $('db-clear-f').innerHTML = n ? `<button class="chip" data-a="db-freset">Clear ${n} ✕</button>` : '';
 }
-/* v0.94.0 U7: the active filters as removable chips under the search, with Clear all (mockup v11 deck builder) */
-function renderDbChips() {
-  const c = [], chip = (g, v, l) => c.push(`<button class="db-achip" data-a="db-unchip" data-v="${g}:${esc(v)}" aria-label="Remove filter ${esc(l)}">${esc(l)} <b aria-hidden="true">×</b></button>`);
-  DBF.colors.forEach(v => chip('colors', v, cap(v))); DBF.costs.forEach(v => chip('costs', v, 'Cost ' + (v === '10' ? '10+' : v))); DBF.types.forEach(v => chip('types', v, v));
-  DBF.groups.forEach(v => chip('groups', v, (DB_GROUPS.find(g => g[0] === v) || [v, v])[1]));
-  if (DBF.set) chip('set', DBF.set, 'Set ' + DBF.set); if (DBF.family) chip('family', DBF.family, 'Family: ' + DBF.family);
-  if (DBF.legal) chip('legal', 1, 'Legal in format'); if (DBF.complete) chip('complete', 1, 'Complete effects'); if ($('db-only').checked) chip('only', 1, 'In deck only');
-  $('db-achips').innerHTML = c.length ? c.join('') + '<button class="db-aclear" data-a="db-freset">Clear all</button>' : '';
+function dbMenu() {                   // the dropdown menu (Colour on phone, Group everywhere)
+  document.querySelectorAll('#db-tbar .ddmenu').forEach(m => m.remove());
+  const tb = $('db-tbar'), btn = DBF.dd && tb.querySelector(`[data-a="db-dd"][data-v="${DBF.dd}"]`); if (!btn) return;
+  const colour = DBF.dd === 'colour', set = colour ? DBF.colors : DBF.groups, items = colour ? DB_COLORS.map(c => [c, cap(c)]) : DB_GROUPS;
+  const m = document.createElement('div'); m.className = 'ddmenu scroll'; m.setAttribute('role', 'menu');
+  m.innerHTML = items.map(([k, l]) => `<button class="ddi${set.has(k) ? ' on' : ''}" data-a="db-ddpick" data-v="${k}" role="menuitemcheckbox" aria-checked="${set.has(k)}"><span class="ddc">${set.has(k) ? '✓' : ''}</span>${colour ? `<i class="dot" style="background:${colorVar(k)}"></i>` : ''}<span class="grow">${l}</span></button>`).join('') + '<button class="ddi clr" data-a="db-ddclear">Clear</button>';
+  tb.appendChild(m);
+  const r = btn.getBoundingClientRect(), t = tb.getBoundingClientRect(), w = Math.max(r.width, 210);
+  m.style.width = w + 'px'; m.style.left = Math.max(6, Math.min(t.width - w - 6, r.left - t.left)) + 'px'; m.style.top = (r.bottom - t.top + 4) + 'px';
 }
-function dbUnchip(v) {
-  const i = v.indexOf(':'), g = v.slice(0, i), x = v.slice(i + 1);
-  if (DBF[g] instanceof Set) DBF[g].delete(x); else if (g === 'set' || g === 'family') DBF[g] = ''; else if (g === 'only') $('db-only').checked = false; else DBF[g] = false;
+document.addEventListener('click', e => { if (DBF.dd && !(/** @type {Element} */ (e.target)).closest('.ddmenu,[data-a="db-dd"]')) { DBF.dd = ''; dbMenu(); } });
+function dbDd(a, v) {
+  if (a === 'db-dd') { DBF.dd = DBF.dd === v ? '' : v; dbBar(); return; }
+  const s = DBF.dd === 'colour' ? DBF.colors : DBF.groups;
+  if (a === 'db-ddpick') { if (s.has(v)) s.delete(v); else s.add(v); } else { s.clear(); DBF.dd = ''; }
   renderDeckBuilder();
 }
 /* v0.94.0 U7: deck panel tabs and the Deck look (sleeve tint, core and Soul Core colours; saved per deck slot, used on the board) */
@@ -8210,12 +8122,19 @@ function dbTab(v) {
   if (DB_TAB === 'look') renderDbLook();
 }
 function renderDbLook() {
-  const L = deckLook(ACTIVE_SLOT), grid = (k, list, sw) => `<div class="db-lk"><div class="db-stat-h">${k === 'soul' ? 'Soul Core' : k === 'core' ? 'Core' : 'Sleeve'}</div><div class="db-lkg">${Object.keys(list).map(n =>
-    `<button class="db-lkb" data-a="db-look" data-v="${k}:${n}" aria-pressed="${L[k] === n}" title="${cap(n)}">${sw(n)}<span>${cap(n)}</span></button>`).join('')}</div></div>`;
-  $('db-look').innerHTML = `<div class="db-lkup"><label class="ae-ghost ae-upl"><span>UPLOAD SLEEVE</span><input id="db-sl-up" type="file" accept="image/*" aria-label="Upload a sleeve picture"></label>${SLEEVE_IMG[ACTIVE_SLOT] ? '<span class="db-mini"><span class="sleeve" aria-hidden="true"></span></span><button class="ae-ghost" data-a="db-sl-clear">REMOVE</button>' : ''}</div>` + grid('sleeve', SLEEVE_TINTS, n => `<span class="sleeve" style="--sl-tint:${SLEEVE_TINTS[n]}" aria-hidden="true"></span>`)
+  const L = deckLook(ACTIVE_SLOT), tint = SLEEVE_TINTS[L.sleeve] || '#aab3c2', sp = Object.keys(PLAYER_DECK).filter(id => CARDS[id] && PLAYER_DECK[id] && CARDS[id].type === 'Spirit' && !CARDS[id].contract).slice(0, 6), cov = SLOTS[ACTIVE_SLOT].cover;
+  const grid = (k, list, sw) => `<div class="dgrp"><span>${k === 'soul' ? 'Soul Core' : 'Core'}</span></div><div class="db-lkg">${Object.keys(list).map(n =>
+    `<button class="db-lkb" data-a="db-look" data-v="${k}:${n}" aria-pressed="${L[k] === n}" title="${cap(n)}">${sw(n)}<span>${cap(n)}</span></button>`).join('')}</div>`;
+  const img = SLEEVE_IMG[ACTIVE_SLOT];
+  $('db-look').innerHTML = `<div class="dgrp"><span>Sleeve</span><b>${cap(L.sleeve)}</b></div><div class="row" style="gap:12px;flex-wrap:wrap"><div style="width:74px"><div class="cf back${img ? ' up' : ''}" style="--sl:${tint};${img ? `--sleeveimg:url('${img}')` : ''}"></div></div>
+    <div class="row" style="gap:8px;flex-wrap:wrap;flex:1">${Object.keys(SLEEVE_TINTS).map(n => `<button class="pip${L.sleeve === n ? ' on' : ''}" style="--c:${SLEEVE_TINTS[n]}" data-a="db-look" data-v="sleeve:${n}" aria-pressed="${L.sleeve === n}" aria-label="Sleeve ${cap(n)}" title="${cap(n)}"><i></i></button>`).join('')}
+    <label class="btn sm ae-upl"><span>Upload</span><input id="db-sl-up" type="file" accept="image/*" aria-label="Upload a sleeve picture"></label>${img ? '<button class="btn sm" data-a="db-sl-clear">Remove</button>' : ''}</div></div>`
+    + `<div class="dgrp"><span>Deck cover</span><b>shown in My decks</b></div>` + (sp.length ? `<div class="row" style="gap:8px;overflow:auto;padding:4px 2px 10px">${sp.map(id => `<button style="border:0;background:none;padding:0;width:58px;flex:none;${cov === id ? 'outline:3px solid var(--yes);outline-offset:2px;border-radius:7px' : ''}" data-a="db-cover" data-v="${id}" aria-pressed="${cov === id}" aria-label="Cover: ${esc(CARDS[id].name)}">${cardFaceHTML(CARDS[id], false)}</button>`).join('')}</div>` : '<div class="sub">Add a Spirit to pick a cover.</div>')
     + grid('core', CORE_LOOKS, n => `<i class="g-core" style="${coreVars('core', n)}" aria-hidden="true"></i>`)
-    + grid('soul', CORE_LOOKS, n => `<i class="g-soul" style="${coreVars('soul', n)}" aria-hidden="true"></i>`);
+    + grid('soul', CORE_LOOKS, n => `<i class="g-soul" style="${coreVars('soul', n)}" aria-hidden="true"></i>`)
+    + `<div class="dgrp"><span>Preview on the playmat</span></div><div class="card flat" style="padding:12px;display:flex;gap:10px;align-items:flex-end;background:linear-gradient(180deg,var(--bg1),var(--bg2))"><div style="width:56px"><div class="cf back${img ? ' up' : ''}" style="--sl:${tint};${img ? `--sleeveimg:url('${img}')` : ''}"></div></div>${sp.slice(0, 3).map(id => `<div style="width:56px">${cardFaceHTML(CARDS[id], false)}</div>`).join('')}</div>`;
 }
+function dbCover(id) { const sl = SLOTS[ACTIVE_SLOT]; if (sl.cover === id) delete sl.cover; else if (PLAYER_DECK[id]) sl.cover = id; saveDeck(); renderDbLook(); }
 const SLEEVE_BLOB = {};
 async function dbSleeveSet(file) {                   // v0.95.0: longest side 600 px; same store as the card images and the playmat
   if (!file || !/^image\//.test(file.type)) return uiInfo('Not an image', 'Choose a picture file (PNG, JPEG, WebP) for the sleeve.');
@@ -8232,21 +8151,30 @@ function dbLook(v) {
   const [k, n] = v.split(':'); if (!['sleeve', 'core', 'soul'].includes(k) || !(k === 'sleeve' ? SLEEVE_TINTS : CORE_LOOKS)[n]) return;
   SLOTS[ACTIVE_SLOT].look = Object.assign(deckLook(ACTIVE_SLOT), { [k]: n }); saveDeck(); applyLook(); renderDbLook();
 }
-function dbToggle(group, v) { const s = DBF[group]; if (s.has(v)) s.delete(v); else s.add(v); renderDeckBuilder(); }
+function dbToggle(group, v) {
+  if (group === 'flag') { if (v in { complete: 1, only: 1, legal: 1 }) DBF[v] = !DBF[v]; }
+  else { const s = DBF[group]; if (s.has(v)) s.delete(v); else s.add(v); }
+  renderDeckBuilder();
+}
 function dbResetFilters() {
-  DBF.colors.clear(); DBF.costs.clear(); DBF.types.clear(); DBF.groups.clear(); DBF.set = ''; DBF.family = ''; DBF.legal = false; DBF.complete = false; DBF.sort = 'default';
-  $('db-only').checked = false; $('db-search').value = ''; $('db-card-list').scrollTop = 0; renderDeckBuilder();
+  DBF.colors.clear(); DBF.costs.clear(); DBF.types.clear(); DBF.groups.clear(); DBF.set = ''; DBF.family = ''; DBF.legal = false; DBF.complete = false; DBF.only = false; DBF.dd = ''; DBF.sort = 'default';
+  $('db-search').value = ''; $('db-card-list').scrollTop = 0; renderDeckBuilder();
 }
 /* v0.119.0: an explicit Save (the deck already auto-saves, but the owner wanted a visible button). It also captures the
    name input before persisting, and flashes "SAVED ✓" unless silent (the back button calls it silently). */
-let DB_SAVE_T = 0;
+let DB_SAVE_T = 0, DB_NAME_T = 0;
+function dbSaved(ok) { const d = $('db-savedot'); if (d) { d.classList.toggle('busy', !ok); d.lastElementChild.textContent = ok ? 'Saved' : 'Saving…'; } }
+function dbNameInput(v) {                            // the deck name saves while you type (mockup: Saving… / Saved)
+  dbSaved(false); clearTimeout(DB_NAME_T);
+  DB_NAME_T = setTimeout(() => { SLOTS[ACTIVE_SLOT].name = (v.trim() || 'Deck ' + (ACTIVE_SLOT + 1)).slice(0, 24); saveDeck(); dbSaved(true); }, 400);
+}
 function dbSave(silent) {
   const nm = $('db-name');
   if (nm) { SLOTS[ACTIVE_SLOT].name = (nm.value.trim() || 'Deck ' + (ACTIVE_SLOT + 1)).slice(0, 24); nm.value = SLOTS[ACTIVE_SLOT].name; }
-  saveDeck();
+  saveDeck(); dbSaved(true);
   if (silent) return;
   const b = $('db-save');
-  if (b) { b.textContent = 'SAVED ✓'; b.classList.add('saved'); clearTimeout(DB_SAVE_T); DB_SAVE_T = setTimeout(() => { b.textContent = 'SAVE'; b.classList.remove('saved'); }, 1400); }
+  if (b) { b.textContent = 'Saved ✓'; b.classList.add('saved'); clearTimeout(DB_SAVE_T); DB_SAVE_T = setTimeout(() => { b.textContent = 'Save'; b.classList.remove('saved'); }, 1400); }
 }
 
 /* ---------- deck changes (with undo) ---------- */
@@ -8282,18 +8210,17 @@ async function dbTestHand() {
   }
 }
 /* card size S / M / L (saved per device) */
-const DB_SIZE_KEY = 'aeterna.dbsize.v1', DB_SIZES = { s: 56, m: 70, l: 96 };
+const DB_SIZE_KEY = 'aeterna.dbsize.v1', DB_SIZES = { s: 8, m: 6, l: 4 }, DB_SIZE_LIST = [['s', 'S'], ['m', 'M'], ['l', 'L']];   // columns of the card grid (the phone always shows 3)
 let DB_SIZE = (() => { try { const v = localStorage.getItem(DB_SIZE_KEY); return DB_SIZES[v] ? v : 'm'; } catch (e) { return 'm'; } })();
 function dbSize(v) {
   if (!DB_SIZES[v]) return; DB_SIZE = v;
   try { localStorage.setItem(DB_SIZE_KEY, v); } catch (e) { /* blocked: this visit only */ }
-  dqa('[data-a="db-size"]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === v)));
-  const g = $('db-card-list'); g.style.setProperty('--db-cw', DB_SIZES[v] + 'px'); DBV.rowH = 0; renderDeckBuilder();
+  DBV.rowH = 0; renderDeckBuilder();
 }
 /* v0.129.0 U14f2: a small card flies from the grid to the deck panel when you add it (Full animations only) */
 function dbFlyFrom(id) { if (animMode() !== 'full') return null; const e = document.querySelector(`#db-card-list [data-v="${id}"]`); return e ? rectOf(e) : null; }
 function dbFlyTo(id, a) {
-  const t = rectOf(visEl('#db-deck .db-rows')) || rectOf(visEl('#db-deck')), L = $('ae-fx'); if (!t || !L) return;
+  const t = rectOf(visEl('#db-dk-list')) || rectOf(visEl('#db-deckbar')) || rectOf(visEl('#db-deck')), L = $('ae-fx'); if (!t || !L) return;
   const d = document.createElement('div'); d.className = 'ae-a-flyc'; d.style.cssText = `left:${a.x + a.w / 2 - 14}px;top:${a.y + a.h / 2 - 19}px;--card-color:${colorVar(CARDS[id].symbol)}`; L.appendChild(d);
   const run = d.animate([{ transform: 'translate(0,0) scale(1)', opacity: 1 }, { transform: `translate(${t.x + 30 - a.x - a.w / 2}px,${t.y + 20 - a.y - a.h / 2}px) scale(.5)`, opacity: .6 }], { duration: 380, easing: 'ease-in' });
   run.onfinish = () => d.remove(); setTimeout(() => d.remove(), 800);
@@ -8344,63 +8271,81 @@ async function dbExport(d) {
 }
 
 /* ---------- deck panel (PC column / phone full-height sheet) ---------- */
+const DB_COLCH = { red: 'r', purple: 'p', green: 'g', white: 'w', yellow: 'y', blue: 'b' };
+function dbRingHTML(n) { const C = 201.06; return `<svg viewBox="0 0 80 80"><circle class="tr" cx="40" cy="40" r="32" fill="none" stroke-width="8"/><circle class="pr" cx="40" cy="40" r="32" fill="none" stroke-width="8" stroke-dasharray="${C}" stroke-dashoffset="${(C * (1 - Math.min(n, 40) / 40)).toFixed(2)}"/></svg><b><span>${n}<small>of 40</small></span></b>`; }
+function dbChips(v) {                 // the validation chips under the deck name (mockup .vchips)
+  const n = v.total, parts = Object.keys(PLAYER_DECK).filter(id => PLAYER_DECK[id] && fxMarked(CARDS[id])).length, cols = new Set(Object.keys(PLAYER_DECK).filter(id => PLAYER_DECK[id] && CARDS[id]).flatMap(id => cardColors(CARDS[id]))).size;
+  const over = Object.keys(PLAYER_DECK).some(id => PLAYER_DECK[id] > maxCopies(id, FORMAT)), a = [];
+  a.push(n >= 40 ? ['', `✓ ${n} cards`] : ['warn', `Add ${40 - n} more`]);
+  a.push(over ? ['bad', '! Over the copy limit'] : ['', '✓ Max 3 copies']);
+  a.push(SLOTS[ACTIVE_SLOT].key ? ['', '★ Key Spirit set'] : ['warn', '★ Pick a Key Spirit']);
+  a.push(v.ok ? ['', `✓ ${fmtName(FORMAT)} legal`] : ['bad', `! ${fmtName(FORMAT)}: ${v.errors.filter(e => !/^Needs at least/.test(e)).length || 1} issue(s)`, errSummary(v)]);
+  if (parts) a.push(['warn', `! ${parts} partly implemented`]);
+  if (cols > 2) a.push(['warn', `${cols} colours`]);
+  return a.map(([c, t, tt]) => `<span class="vc ${c}"${tt ? ` title="${esc(tt)}"` : ''}>${esc(t)}</span>`).join('');
+}
 function dbStatsHTML(v) {
-  const curve = DB_COSTS.map(() => 0), cols = {}, types = {};
+  const bins = Array(8).fill(0), cols = {}, types = {}; let sum = 0, soul = 0;
   for (const [id, n] of Object.entries(PLAYER_DECK)) {
     const c = CARDS[id]; if (!c || !n) continue;
-    curve[Math.min(10, c.cost)] += n;
+    bins[Math.min(7, c.cost)] += n; sum += c.cost * n;
     for (const k of cardColors(c)) cols[k] = (cols[k] || 0) + n;
     types[dbTypeOf(c)] = (types[dbTypeOf(c)] || 0) + n;
+    if (/soul core/i.test(c.desc || '')) soul += n;
   }
-  const mx = Math.max(1, ...curve);
-  const bars = curve.map((n, i) => `<div class="db-bar" title="Cost ${i === 10 ? '10+' : i}: ${n}"><span class="db-bar-n">${n || ''}</span><i style="height:${Math.round(n / mx * 100)}%"></i><span class="db-bar-k">${i === 10 ? '10+' : i}</span></div>`).join('');
-  const colTxt = DB_COLORS.filter(k => cols[k]).map(k => `<span class="db-split" style="--chip:${colorVar(k)}">${cap(k)} ${cols[k]}</span>`).join('') || '<span class="db-split-none">-</span>';
-  const tyTxt = DB_TYPES.filter(t => types[t]).map(t => `<span class="db-split">${t} ${types[t]}</span>`).join('') || '<span class="db-split-none">-</span>';
-  return `<div class="db-stat-h">Cost curve</div><div class="db-curve">${bars}</div><div class="db-stat-h">Colours</div><div class="db-splits">${colTxt}</div><div class="db-stat-h">Types</div><div class="db-splits">${tyTxt}</div>`;
+  const mx = Math.max(1, ...bins), tot = v.total || 1, keyC = CARDS[SLOTS[ACTIVE_SLOT].key], ck = DB_COLORS.filter(k => cols[k]);
+  const parts = Object.keys(PLAYER_DECK).filter(id => PLAYER_DECK[id] && fxMarked(CARDS[id])).reduce((t, id) => t + PLAYER_DECK[id], 0);
+  return `<div class="dgrp"><span>Cost curve</span><b>avg ${(sum / tot).toFixed(1)}</b></div>
+    <div class="curve">${bins.map(n => `<div class="cb"><span>${n || ''}</span><i style="height:${Math.round(n / mx * 96)}px"></i></div>`).join('')}</div>
+    <div class="curvelbl">${bins.map((_, i) => `<span>${i === 7 ? '7+' : i}</span>`).join('')}</div>
+    <div class="dgrp"><span>Colour split</span></div><div class="split">${ck.map(k => `<i style="--c:${colorVar(k)};flex:${cols[k]}" title="${cap(k)} ${cols[k]}"></i>`).join('')}</div>
+    <div class="row" style="gap:12px;flex-wrap:wrap;margin-top:6px;font-size:.78em">${ck.map(k => `<span><i class="dot" style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${colorVar(k)}"></i> ${cap(k)} <b>${cols[k]}</b></span>`).join('')}</div>
+    <div class="dgrp"><span>Card types</span></div>
+    <div class="kpi" style="grid-template-columns:repeat(${DB_TYPES.length},1fr);gap:6px">${DB_TYPES.map(t => `<div class="card flat" style="padding:8px 10px"><b style="font-size:1.4em">${types[t] || 0}</b><span class="mut" style="font-size:.74em">${t}s</span></div>`).join('')}</div>
+    <div class="dgrp"><span>Checks</span></div><div style="display:flex;flex-direction:column;gap:6px;font-size:.84em">
+      <span>Soul Core users: <b>${soul}</b></span><span>★ Key Spirit: <b>${keyC ? esc(keyC.name) : 'none'}</b></span><span>! Partly implemented: <b>${parts}</b></span></div>`;
 }
 function dbRowsHTML() {
   const ids = Object.keys(PLAYER_DECK).filter(id => CARDS[id] && PLAYER_DECK[id]);
-  if (!ids.length) return '<div class="empty-note db-empty">The deck is empty. Tap a card to add it.</div>';
+  if (!ids.length) return '<div class="db-empty" style="text-align:center;padding:40px 10px;color:var(--text3)"><div style="font-size:40px">🂠</div>The deck is empty.<br>Tap a card to add it.</div>';
   return DB_TYPES.map(t => {
     const g = ids.filter(id => dbTypeOf(CARDS[id]) === t).sort((a, b) => CARDS[a].cost - CARDS[b].cost || DB_COLL.compare(CARDS[a].name, CARDS[b].name));
     if (!g.length) return '';
     const tot = g.reduce((s, id) => s + PLAYER_DECK[id], 0);
-    return `<div class="db-grp"><div class="db-grp-h">${t} <span>${tot}</span></div>` + g.map(id => {
-      const c = CARDS[id], n = PLAYER_DECK[id], bad = legalityOf(id, FORMAT), isKey = SLOTS[ACTIVE_SLOT].key === id;
-      const img = cardImgSrc(id);
-      const im = img ? `<span class="db-row-img has-img" style="background-image:url('${img}')" aria-hidden="true"></span>` : `<span class="db-row-img" aria-hidden="true">${c.type.substring(0, 1).toUpperCase()}</span>`;
-      return `<div class="db-row${bad ? ' bad' : ''}" style="${colorSty(c)}">${im}<span class="db-row-cost">${c.cost}</span><button class="db-row-name" data-a="dbinfo" data-v="${id}" title="${esc(id)}">${esc(c.name)}${fxMarkHTML(c)}${bad ? ' 🚫' : ''}</button>
-        ${c.type === 'Spirit' ? `<button class="db-row-key${isKey ? ' on' : ''}" data-a="db-key" data-v="${id}" aria-pressed="${isKey}" aria-label="${isKey ? 'Unmark ' : 'Mark '}${esc(c.name)} as the deck's Key Spirit" title="${isKey ? 'Draws favour this Spirit: tap to unmark' : 'Mark this Spirit: while no copy is in the Hand or on the Field, draws favour it'}">KEY</button>` : ''}<button class="db-row-btn" data-a="db-row" data-v="${id}:-1" aria-label="Remove one ${esc(c.name)}">−</button><span class="db-row-n">${n}</span><button class="db-row-btn" data-a="db-row" data-v="${id}:1" aria-label="Add one ${esc(c.name)}"${dbCanAdd(id) ? '' : ' disabled'}>+</button></div>`;
-    }).join('') + '</div>';
+    return `<div class="dgrp"><span>${t}s</span><b>${tot}</b></div>` + g.map(id => {
+      const c = CARDS[id], n = PLAYER_DECK[id], bad = legalityOf(id, FORMAT), isKey = SLOTS[ACTIVE_SLOT].key === id, nm = esc(c.name);
+      return `<div class="drow${bad ? ' bad' : ''}" data-c="${cardColors(c).length > 1 ? 'x' : DB_COLCH[cardColors(c)[0]] || 'g'}" data-id="${id}"><button class="thumb" data-a="dbinfo" data-v="${id}" aria-label="Card info: ${nm}">${cardFaceHTML(c, false)}</button><span class="k">${c.cost}</span><button class="n" data-a="dbinfo" data-v="${id}" title="${esc(id)}">${nm}${fxMarked(c) ? ' <b style="color:var(--yes-text)">!</b>' : ''}${bad ? ' 🚫' : ''}</button>${c.type === 'Spirit' ? `<button class="st${isKey ? ' on' : ''}" data-a="db-key" data-v="${id}" aria-pressed="${isKey}" aria-label="${isKey ? 'Unmark ' : 'Mark '}${nm} as the deck's Key Spirit" title="${isKey ? 'Draws favour this Spirit: tap to unmark' : 'Mark this Spirit: while no copy is in the Hand or on the Field, draws favour it'}">${isKey ? '★' : '☆'}</button>` : ''}<button class="pm" data-a="db-row" data-v="${id}:-1" aria-label="Remove one ${nm}">−</button><span class="q">${n}</span><button class="pm" data-a="db-row" data-v="${id}:1" aria-label="Add one ${nm}"${dbCanAdd(id) ? '' : ' disabled'}>+</button></div>`;
+    }).join('');
   }).join('');
 }
 function renderDbDeck(v) {
-  const ok = v.ok, txt = ok ? `legal in ${fmtName(FORMAT)}` : errSummary(v);
-  $('db-counter').innerHTML = `<b>${v.total}</b> / 40+`;
-  const st = $('db-status'); st.className = 'db-status ' + (ok ? 'ok' : 'bad'); st.textContent = `${fmtName(FORMAT)} · ${v.total} cards · ${ok ? 'legal' : errSummary(v)}`;
+  const ok = v.ok, n = v.total, rg = $('db-ring');
+  rg.className = 'ring' + (n === 40 ? ' full' : ''); rg.innerHTML = dbRingHTML(n);
+  $('db-status').innerHTML = dbChips(v);
   $('db-dk-list').innerHTML = dbRowsHTML();
   $('db-dk-stats').innerHTML = dbStatsHTML(v);
   const chk = [[v.total >= 40, `${v.total} cards (40 or more)`]].concat(v.errors.filter(e => !/^Needs at least/.test(e)).slice(0, 6).map(e => [false, e]));
   if (v.ok) chk.push([true, `Legal in ${fmtName(FORMAT)}`]);
-  $('db-check').innerHTML = chk.map(([ok, t]) => `<li class="${ok ? 'ok' : 'bad'}">${esc(t)}</li>`).join('');
+  $('db-check').innerHTML = chk.map(([k, t]) => `<li class="${k ? 'ok' : 'bad'}">${esc(t)}</li>`).join('');
   $('db-undo').disabled = !DB_UNDO.length; $('db-redo').disabled = !DB_REDO.length;
-  $('db-topcount').style.setProperty('--p', Math.min(100, Math.round(v.total / 40 * 100)) + '%');
-  const L = deckLook(ACTIVE_SLOT);
-  $('db-deckbar').innerHTML = `<span class="db-mini" aria-hidden="true"><span class="sleeve mini" style="--sl-tint:${SLEEVE_TINTS[L.sleeve]}"></span><i class="g-core" style="${coreVars('core', L.core)}"></i><i class="g-soul" style="${coreVars('soul', L.soul)}"></i></span><span>Deck <b>${v.total}</b>/40</span><span class="${ok ? 'ok' : 'bad'}">${ok ? 'legal' : 'not legal'}</span><span class="db-deckbar-up">▲</span>`;
-  $('db-deckbar').className = 'db-deckbar ' + (ok ? 'ok' : 'bad'); $('db-deckbar').title = txt;
-  $('db-topcount').textContent = `${v.total}/40`; $('db-topcount').className = 'db-topcount ' + (ok ? 'ok' : 'bad');
+  $('db-play-now').disabled = !ok;
+  const db = $('db-deckbar'); db.className = 'mbar'; db.title = ok ? '' : errSummary(v);
+  db.innerHTML = `<div class="ring${n === 40 ? ' full' : ''}">${dbRingHTML(n)}</div><div class="grow"><b>${esc(SLOTS[ACTIVE_SLOT].name)}</b><br><span class="sub">${ok ? 'Ready to play' : n < 40 ? 'Add ' + (40 - n) + ' more cards' : 'Deck not legal'}</span></div><span class="btn pri sm">View deck ▲</span>`;
 }
-function dbSheet(which) {             // phone: open 'filters', 'deck' or 'menu'; '' closes all (PC: FILTERS shows / hides the filter column)
-  const vw = $('view-deckbuilder');
-  if (which === 'filters' && isPC()) { const off = vw.classList.toggle('db-rail-off'); $('db-filter-btn').setAttribute('aria-expanded', String(!off)); return; }
-  vw.classList.toggle('db-open-filters', which === 'filters');
-  if (!isPC()) $('db-filter-btn').setAttribute('aria-expanded', String(which === 'filters'));
-  vw.classList.toggle('db-open-deck', which === 'deck');
-  vw.classList.toggle('db-open-menu', which === 'menu');
+function dbPlayNow() {                // Play: the same gate as the My decks tile
+  const v = validateDeck(PLAYER_DECK, null, SLOTS[ACTIVE_SLOT].key);
+  if (!v.ok) return uiInfo('Deck not ready', esc(errSummary(v)));
+  dbSave(true); dbSheet(''); switchView('view-play');
+}
+function dbSheet(which) {             // phone: 'deck' opens the deck sheet, '' closes it; 'menu' (the ... button) toggles the deck options
+  const vw = $('view-deckbuilder'), b = $('bld');
+  if (which === 'menu') { const o = !b.classList.contains('dopen'); b.classList.toggle('dopen', o); vw.classList.toggle('db-open-menu', o); $('db-menu-btn').setAttribute('aria-expanded', String(o)); return; }
+  b.classList.remove('dopen'); vw.classList.remove('db-open-menu'); $('db-menu-btn').setAttribute('aria-expanded', 'false');
+  b.classList.toggle('sheet', which === 'deck'); vw.classList.toggle('db-open-deck', which === 'deck');
 }
 
 function renderDeckBuilder() {
-  { const g = $('db-card-list'); if (g && !g.style.getPropertyValue('--db-cw')) { g.style.setProperty('--db-cw', DB_SIZES[DB_SIZE] + 'px'); dqa('[data-a="db-size"]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === DB_SIZE))); } }
+  $('db-card-list').style.setProperty('--cols', String(DB_SIZES[DB_SIZE]));
   const v = validateDeck(PLAYER_DECK, null, SLOTS[ACTIVE_SLOT].key);
   const fb = $('db-format'); if (fb) fb.textContent = fmtButton(FORMAT);
   const ds = $('db-slot');
@@ -8409,7 +8354,7 @@ function renderDeckBuilder() {
     if (document.activeElement !== $('db-name')) $('db-name').value = SLOTS[ACTIVE_SLOT].name;
     $('db-preset').innerHTML = '<option value="">Load ready-made…</option>' + prebuiltOrder(FORMAT).map(({ d }) => `<option value="${d.id}">${esc(prebuiltLabel(d))}</option>`).join('');
   }
-  renderDbRail(); renderDbDeck(v); dbTab(DB_TAB);
+  dbBar(); renderDbDeck(v); dbTab(DB_TAB);
   dbFilter(); dbWindow(true);
 }
 document.addEventListener('contextmenu', e => {
@@ -8431,6 +8376,7 @@ document.addEventListener('input', e => {
   const t = evV(e);
   if (t.id === 'db-io') DB_IO = t.value;
   else if (t.id === 'db-family') { DBF.family = t.value; dbSearchInput(); }
+  else if (t.id === 'db-name') dbNameInput(t.value);
 });
 /* ---------------------------------------------------------------------
    APP NAVIGATION + HOME (v0.65.0, UI/UX overhaul U2; docs/DESIGN.md section 0, mockup docs/design/mockup-v11.html)
@@ -8438,8 +8384,8 @@ document.addEventListener('input', e => {
    phone = header (brand, colour, Dark/Light, settings) + the same tabs as a bottom tab bar with our own icons.
    Hidden on the battle screen and in the deck builder (its own layout until U6). Display only: no rules here.
    --------------------------------------------------------------------- */
-const NAV_HIDDEN = ['view-playmat', 'view-deckbuilder'];
-const MK_OFF = ['view-playmat', 'view-deckbuilder'];   // not ported yet (battle, deck builder)
+const NAV_HIDDEN = ['view-playmat'];
+const MK_OFF = ['view-playmat'];   // not ported yet (battle)
 const MK_TITLES = { 'view-lobby': 'Home', 'view-play': 'Play', 'view-decks': 'My decks', 'view-library': 'Library', 'view-settings': 'Settings', 'view-howto': 'Learn', 'view-online': 'Online' };
 function navSync(id) {
   if (typeof document === 'undefined') return;
@@ -9954,12 +9900,7 @@ document.addEventListener('change', async e => {
     const r = await importImages(Array.from(t.files));
     libMsg(`Matched ${r.ok} image(s).${r.miss.length ? `\nNo card found for ${r.miss.length} file(s): ` + r.miss.slice(0, 10).join(', ') + (r.miss.length > 10 ? ', …' : '') : ''}`, r.ok === 0);
     t.value = ''; refreshViews();
-  } else if (t.id === 'db-only') renderDeckBuilder();
-  else if (t.id === 'db-legal') { DBF.legal = t.checked; renderDeckBuilder(); }
-  else if (t.id === 'db-complete') { DBF.complete = t.checked; renderDeckBuilder(); }
-  else if (t.id === 'db-dd-colors') dbPick('colors', t.value);
-  else if (t.id === 'db-dd-groups') dbPick('groups', t.value);
-  else if (t.id === 'db-set') { DBF.set = t.value; renderDeckBuilder(); }
+  } else if (t.id === 'db-set') { DBF.set = t.value; renderDeckBuilder(); }
   else if (t.id === 'db-sort') { DBF.sort = t.value; $('db-card-list').scrollTop = 0; renderDeckBuilder(); }
   else if (t.id === 'play-cpu') { SETTINGS.cpuDeck = t.value; saveSettings(); renderLobby(); }
   else if (t.id === 'db-slot') { switchSlot(Number(t.value)); DB_UNDO.length = 0; renderDeckBuilder(); }
@@ -10252,7 +10193,6 @@ document.addEventListener('click', e => {
   else if (a === 'play-slot') playSet('slot', v);
   else if (a === 'play-hints') playSet('hints');
   else if (a === 'go-deck') switchView('view-deckbuilder');
-  else if (a === 'db-unchip') dbUnchip(v);
   else if (a === 'db-tab') dbTab(v);
   else if (a === 'db-look') dbLook(v);
   else if (a === 'db-sl-clear') dbSleeveClear();
@@ -10294,6 +10234,9 @@ document.addEventListener('click', e => {
   else if (a === 'db-row') { const i = v.lastIndexOf(':'); dbChange(v.slice(0, i), Number(v.slice(i + 1))); }
   else if (a === 'db-key') dbKey(v);
   else if (a === 'db-freset') dbResetFilters();
+  else if (/^db-dd/.test(a)) dbDd(a, v);
+  else if (a === 'db-cover') dbCover(v);
+  else if (a === 'db-play-now') dbPlayNow();
   else if (a === 'db-sheet') dbSheet(v || '');
   else if (a === 'db-undo') dbUndo();
   else if (a === 'db-redo') dbRedo();

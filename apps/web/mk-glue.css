@@ -22,3 +22,17 @@ body.mk > .ae-pop{position:absolute;top:62px;right:24px;z-index:20}
 .mk #lib-tbar{position:relative}
 .mk #lib-chips,.mk #lib-types,.mk #view-library .btool .r2{flex-wrap:wrap}
 .mk #lib-types{max-width:100%;min-width:0}
+/* v0.137.0 deck builder (mockup parity) */
+.mk #db-tbar{position:relative}
+.mk #db-chips,.mk #db-types,.mk #view-deckbuilder .btool .r2{flex-wrap:wrap}
+.mk #db-types{max-width:100%;min-width:0}
+.mk .dopt{display:none;flex-direction:column;gap:8px;padding:8px 12px;border-bottom:1px solid var(--line)}
+.mk .bld.dopen .dopt{display:flex}
+.mk .bdeck .dpane{display:none}
+.mk .bdeck.tab-list .dpane[data-pane=list],.mk .bdeck.tab-curve .dpane[data-pane=curve],.mk .bdeck.tab-look .dpane[data-pane=look]{display:block}
+.mk .tile .fx-mark{position:absolute;top:4px;left:4px;z-index:2}
+.mk #db-check{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:4px;font-size:.82em}
+.mk #db-check li.bad{color:var(--no-text,#c0392b)}
+.mk #db-check li.ok{color:var(--yes-text)}
+.mk .db-lkg{display:grid;grid-template-columns:repeat(auto-fill,minmax(70px,1fr));gap:6px;margin-bottom:8px}
+.mk #db-card-list{--cols:6}

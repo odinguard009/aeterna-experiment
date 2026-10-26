@@ -153,54 +153,37 @@
 </div>
 
 <div id="view-deckbuilder" class="app-view">
-  <div class="db-header">
-    <button class="db-back ae-ghost" data-a="go-decks" aria-label="Back to My decks">‹ My Decks</button><h2>Deck Builder</h2><span id="db-topcount" class="db-topcount"></span>
-    <button class="db-menu-btn btn-nav-small" data-a="db-sheet" data-v="menu" aria-label="Deck menu">⋯ Menu</button>
-    <div class="db-tools">
-      <button class="btn-nav-small" data-a="format" id="db-format" title="Switch format">STANDARD</button>
-      <select id="db-slot" class="sel" title="Deck slot"></select>
-      <input id="db-name" class="sel" maxlength="24" size="10" title="Deck name" autocomplete="off">
-      <select id="db-preset" class="sel" title="Load a ready-made deck into this slot"></select>
-      <button class="btn-nav-small" data-a="db-reset">Default deck</button>
-      <button class="btn-nav-small" data-a="db-clear">Clear</button>
-      <button class="btn-nav-small db-save" id="db-save" data-a="db-save" title="Save this deck">SAVE</button>
-      <button class="btn-nav-small" data-a="go-decks" title="Save and back to My decks">‹ Back to My Decks</button>
-    </div>
-  </div>
-  <div class="db-body">
-    <aside class="db-rail" id="db-rail" aria-label="Filters">
-      <div class="db-sheet-head"><b>Filters</b><button class="btn-nav-small" data-a="db-sheet" data-v="">Done</button></div>
-      <div class="db-fh">Colour</div><select id="db-dd-colors" class="sel db-dd db-dd-phone" aria-label="Colour"></select><div class="db-chips" id="db-f-colors"></div>
-      <div class="db-fh">Cost</div><div class="db-chips" id="db-f-costs"></div>
-      <div class="db-fh">Type</div><div class="db-chips" id="db-f-types"></div>
-      <div class="db-fh">Group</div><select id="db-dd-groups" class="sel db-dd" aria-label="Group"></select><div class="db-chips" id="db-f-groups"></div>
-      <div class="db-fh">Set</div><select id="db-set" class="sel" title="Set"></select>
-      <div class="db-fh">Family</div><input id="db-family" class="sel" type="search" placeholder="e.g. Dragon" autocomplete="off" title="Family">
-      <label class="db-tog"><input type="checkbox" id="db-legal"> Legal in format</label>
-      <label class="db-tog"><input type="checkbox" id="db-only"> In deck only</label>
-      <label class="db-tog"><input type="checkbox" id="db-complete"> Complete effects only</label>
-      <div class="db-legend"><span class="fx-mark" aria-hidden="true">!</span> Effect not fully implemented (missing parts simply do not happen)</div>
-      <div class="db-fh">Sort</div><select id="db-sort" class="sel" title="Sort"><option value="default">Default order</option><option value="set">Set number</option><option value="cost">Cost</option><option value="name">Name</option><option value="colour">Colour</option></select>
-      <button class="btn-nav-small db-freset" data-a="db-freset">Reset filters</button>
-    </aside>
-    <section class="db-pool">
-      <div class="db-filters"><input id="db-search" class="db-search" type="search" placeholder="Search name, ID or text  ( / )" autocomplete="off">
-        <button id="db-filter-btn" class="btn-nav-small db-filter-btn" data-a="db-sheet" data-v="filters" aria-controls="db-rail" aria-expanded="true">Filters</button><span id="db-count"></span><span class="db-size" role="group" aria-label="Card size"><button class="btn-nav-small" data-a="db-size" data-v="s" aria-pressed="false">S</button><button class="btn-nav-small" data-a="db-size" data-v="m" aria-pressed="true">M</button><button class="btn-nav-small" data-a="db-size" data-v="l" aria-pressed="false">L</button></span></div>
-      <div class="db-achips" id="db-achips" aria-label="Active filters"></div>
-      <div class="db-grid" id="db-card-list"></div>
+  <div class="bld" id="bld">
+    <section class="bpool" aria-label="Card pool">
+      <div class="btool" id="db-tbar">
+        <div class="r1"><div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="db-search" class="in" type="search" placeholder="Search name, code or text" aria-label="Search cards ( / )" autocomplete="off" spellcheck="false" style="width:100%"></div>
+          <select id="db-sort" class="in hidem" aria-label="Sort"><option value="default">Sort: default</option><option value="set">Sort: set</option><option value="cost">Sort: cost</option><option value="name">Sort: name</option><option value="colour">Sort: colour</option></select>
+          <select id="db-set" class="in hidem" title="Set" aria-label="Set"></select>
+          <input id="db-family" class="in hidem" type="search" placeholder="Family" aria-label="Family" autocomplete="off" style="max-width:150px">
+          <div class="seg hidem" role="group" aria-label="Card size" id="db-size"></div></div>
+        <div class="r2"><span id="db-colbtn"></span><div class="pips" id="db-pips"></div><span class="vsep"></span><span id="db-types" class="row" style="gap:7px"></span><span class="vsep"></span><div class="costs" id="db-costs"></div></div>
+        <div class="r2"><span id="db-groups" class="row" style="gap:7px"></span><button class="chip" id="db-play" data-a="db-chip" data-v="flag:complete" aria-pressed="false">✓ Playable Only</button><button class="chip" id="db-in" data-a="db-chip" data-v="flag:only" aria-pressed="false">In Deck</button><button class="chip" id="db-legal" data-a="db-chip" data-v="flag:legal" aria-pressed="false">Legal Only</button><span id="db-clear-f"></span><span class="grow"></span><span id="db-count" class="sub hidem" role="status" style="font-size:.78em"></span></div></div>
+      <div class="pgrid scroll" id="db-card-list" style="--cols:6" aria-label="Cards"></div>
     </section>
-    <aside class="db-deck tab-list" id="db-deck" aria-label="Deck">
-      <div class="db-sheet-head"><b>Deck</b><button class="btn-nav-small db-sheet-back" data-a="go-decks" aria-label="Back to My decks">‹ My decks</button><button class="btn-nav-small" data-a="db-sheet" data-v="">Close</button></div>
-      <div class="db-dk-head"><div class="db-counter" id="db-counter"></div><div class="db-status" id="db-status"></div></div>
-      <div class="db-tabs" role="tablist" aria-label="Deck panel"><button role="tab" data-a="db-tab" data-v="list" aria-selected="true">Deck List</button><button role="tab" data-a="db-tab" data-v="curve" aria-selected="false">Curve And Check</button><button role="tab" data-a="db-tab" data-v="look" aria-selected="false">Deck Look</button></div>
-      <div class="db-dk-list" id="db-dk-list" data-pane="list" role="tabpanel"></div>
-      <div class="db-pane" data-pane="curve" role="tabpanel"><ul class="db-check" id="db-check"></ul><div class="db-dk-stats" id="db-dk-stats"></div></div>
-      <div class="db-pane" data-pane="look" role="tabpanel"><div id="db-look" class="db-look"></div></div>
-      <div class="db-dk-actions"><button class="btn-nav-small db-save" data-a="db-save" title="Save this deck">Save</button><button class="btn-nav-small" id="db-undo" data-a="db-undo">↶ Undo</button><button class="btn-nav-small" id="db-redo" data-a="db-redo">↷ Redo</button><button class="btn-nav-small" data-a="db-test">Test hand</button><button class="btn-nav-small" data-a="db-import">Import text</button><button class="btn-nav-small" data-a="db-export">Export text</button></div>
+    <div class="scrim" data-a="db-sheet" data-v=""></div>
+    <aside class="bdeck tab-list" id="db-deck" aria-label="Deck">
+      <div class="shh"><span style="width:44px;height:5px;border-radius:3px;background:var(--line2);margin:0 auto"></span></div>
+      <div class="dhead"><div class="ring" id="db-ring"></div>
+        <div class="grow col" style="gap:4px"><input id="db-name" class="dname" maxlength="24" autocomplete="off" aria-label="Deck name"><div class="row" style="gap:8px"><span class="savedot" id="db-savedot"><i></i><span>Saved</span></span><span class="grow"></span>
+          <button class="ibtn sq" id="db-undo" data-a="db-undo" aria-label="Undo" title="Undo">↶</button><button class="ibtn sq" id="db-redo" data-a="db-redo" aria-label="Redo" title="Redo">↷</button><button class="ibtn sq" id="db-menu-btn" data-a="db-sheet" data-v="menu" aria-label="Deck options" title="Deck options" aria-expanded="false">⋯</button><button class="ibtn sq shc" data-a="db-sheet" data-v="" aria-label="Close deck">✕</button></div></div></div>
+      <div class="dopt" id="db-opt">
+        <div class="row" style="gap:8px;flex-wrap:wrap"><button class="btn sm" data-a="go-decks">‹ My decks</button><button class="btn sm" data-a="format" id="db-format" title="Switch format">STANDARD</button><select id="db-slot" class="in" title="Deck slot" aria-label="Deck slot"></select></div>
+        <div class="row" style="gap:8px;flex-wrap:wrap"><select id="db-preset" class="in" title="Load a ready-made deck into this slot" aria-label="Load ready-made" style="flex:1;min-width:0"></select><button class="btn sm" data-a="db-reset">Default deck</button><button class="btn sm" data-a="db-clear">Clear</button></div>
+      </div>
+      <div class="vchips" id="db-status"></div>
+      <div class="dtabs" role="tablist" aria-label="Deck panel"><button role="tab" data-a="db-tab" data-v="list" aria-selected="true">Deck list</button><button role="tab" data-a="db-tab" data-v="curve" aria-selected="false">Stats</button><button role="tab" data-a="db-tab" data-v="look" aria-selected="false">Look</button></div>
+      <div class="dpane scroll db-dk-list" id="db-dk-list" data-pane="list" role="tabpanel"></div>
+      <div class="dpane scroll db-pane" data-pane="curve" role="tabpanel"><div id="db-dk-stats"></div><ul class="db-check" id="db-check"></ul></div>
+      <div class="dpane scroll db-pane" data-pane="look" role="tabpanel"><div id="db-look" class="db-look"></div></div>
+      <div class="dact"><button class="btn sm" id="db-save" data-a="db-save" title="Save this deck">Save</button><button class="btn sm" data-a="db-import">Import</button><button class="btn sm" data-a="db-export">Export</button><button class="btn sm" data-a="db-test">Test Hand</button><span class="grow"></span><button class="btn yes sm" data-a="db-play-now" id="db-play-now">Play ▶</button></div>
     </aside>
+    <div class="mbar" id="db-deckbar" data-a="db-sheet" data-v="deck" role="button" tabindex="0"></div>
   </div>
-  <button class="db-deckbar" id="db-deckbar" data-a="db-sheet" data-v="deck"></button>
-  <div class="db-backdrop" data-a="db-sheet" data-v=""></div>
 </div>
 
 <div id="view-decks" class="app-view">

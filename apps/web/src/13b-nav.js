@@ -4,8 +4,8 @@
    phone = header (brand, colour, Dark/Light, settings) + the same tabs as a bottom tab bar with our own icons.
    Hidden on the battle screen and in the deck builder (its own layout until U6). Display only: no rules here.
    --------------------------------------------------------------------- */
-const NAV_HIDDEN = ['view-playmat', 'view-deckbuilder'];
-const MK_OFF = ['view-playmat', 'view-deckbuilder'];   // not ported yet (battle, deck builder)
+const NAV_HIDDEN = ['view-playmat'];
+const MK_OFF = ['view-playmat'];   // not ported yet (battle)
 const MK_TITLES = { 'view-lobby': 'Home', 'view-play': 'Play', 'view-decks': 'My decks', 'view-library': 'Library', 'view-settings': 'Settings', 'view-howto': 'Learn', 'view-online': 'Online' };
 function navSync(id) {
   if (typeof document === 'undefined') return;

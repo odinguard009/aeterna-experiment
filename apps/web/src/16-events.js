@@ -68,7 +68,6 @@ document.addEventListener('click', e => {
   else if (a === 'play-slot') playSet('slot', v);
   else if (a === 'play-hints') playSet('hints');
   else if (a === 'go-deck') switchView('view-deckbuilder');
-  else if (a === 'db-unchip') dbUnchip(v);
   else if (a === 'db-tab') dbTab(v);
   else if (a === 'db-look') dbLook(v);
   else if (a === 'db-sl-clear') dbSleeveClear();
@@ -110,6 +109,9 @@ document.addEventListener('click', e => {
   else if (a === 'db-row') { const i = v.lastIndexOf(':'); dbChange(v.slice(0, i), Number(v.slice(i + 1))); }
   else if (a === 'db-key') dbKey(v);
   else if (a === 'db-freset') dbResetFilters();
+  else if (/^db-dd/.test(a)) dbDd(a, v);
+  else if (a === 'db-cover') dbCover(v);
+  else if (a === 'db-play-now') dbPlayNow();
   else if (a === 'db-sheet') dbSheet(v || '');
   else if (a === 'db-undo') dbUndo();
   else if (a === 'db-redo') dbRedo();
