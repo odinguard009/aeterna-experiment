@@ -128,11 +128,11 @@ nameHTML, isPC, applyLayout, _rz, colorVar, cardColors, isMulti, colorSty, symSl
 ## apps/web/src/13a-deckbuilder.js (365 lines, ~7.8k tokens) — DECK BUILDER (v0.53.0 redesign; list performance from v0.52.1)
 DB_COLORS, DB_TYPES, DB_COSTS, DB_GROUPS, DBF, DB_UNDO, DB_IO, dbArr, dbTypeOf, dbSetOf, dbFilterOK, dbGroupOK, DBV, DB_GAP, DB_COLL, dbIndex, dbSets, dbActiveCount, DB_SORTS, dbFilter, fxMarked, FX_MARK_LBL, fxMarkHTML, dbCardHTML, dbWindow, dbScroll, dbSearchInput, dbChip, dbDropdown, dbPick, renderDbRail, renderDbChips, dbUnchip, DB_TAB, dbTab, renderDbLook, SLEEVE_BLOB, dbSleeveSet, dbSleeveClear, dbLook, dbToggle, dbResetFilters, DB_SAVE_T, dbSave, dbSnap, dbCanAdd, dbChange, dbReplace, dbClear, dbUndo, dbRedo, dbTestHand, DB_SIZE_KEY, DB_SIZE, dbSize, dbFlyFrom, dbFlyTo, DB_LP, DB_PEEK, dbPeekHide, dbTap, dbKey, dbImport, dbExport, dbStatsHTML, dbRowsHTML, renderDbDeck, dbSheet, renderDeckBuilder
 
-## apps/web/src/13b-nav.js (73 lines, ~1.4k tokens) — APP NAVIGATION + HOME (v0.65.0, UI/UX overhaul U2; docs/DESIGN.md section 0, mockup docs/design/mockup-v11.html)
+## apps/web/src/13b-nav.js (74 lines, ~1.4k tokens) — APP NAVIGATION + HOME (v0.65.0, UI/UX overhaul U2; docs/DESIGN.md section 0, mockup docs/design/mockup-v11.html)
 NAV_HIDDEN, navSync, navTools, themePop, navTheme, navSound, navHistory, fmtTitle, renderHome, cardOfDay, renderHomeMore
 
-## apps/web/src/13c-play.js (22 lines, ~0.4k tokens) — PLAY SETUP PAGE (v0.67.0, UI/UX overhaul U3; docs/DESIGN.md section 0 "Play = deck chip + mode cards + setup chips")
-PLAY_SPEEDS, playChips, renderPlay, playSet
+## apps/web/src/13c-play.js (29 lines, ~0.6k tokens) — PLAY SETUP PAGE (v0.67.0, UI/UX overhaul U3; docs/DESIGN.md section 0 "Play = deck chip + mode cards + setup chips")
+PLAY_SPEEDS, playChips, PLAY_MODE, playGo, renderPlay, playSet
 
 ## apps/web/src/13d-pages.js (55 lines, ~1k tokens) — SETTINGS, HOW TO PLAY, LIBRARY PAGES (v0.68.0, UI/UX overhaul U4; docs/DESIGN.md section 0, mockup docs/design/mockup-v11.html "Settings")
 MAT_KEY, MAT, matUse, shrinkMat, matSet, matClear, setMsg, setSection, renderSetPage
@@ -146,8 +146,8 @@ rvName, rvCards, rvField, rvSideHTML, rvFrameHTML, openViewer, replayFromRecord,
 ## apps/web/src/13g-anim.js (98 lines, ~1.9k tokens) — v0.92.0 U5b LIGHT BATTLE ANIMATIONS (roadmap item U, owner 2026-10-21; docs/DESIGN.md section 0, U5b)
 animMode, ANIM, rectOf, visEl, aeFx, aeBeam, coreFly, burstFlip, animCues
 
-## apps/web/src/13h-decks.js (97 lines, ~2.2k tokens) — v0.93.0 U6 MY DECKS (docs/DESIGN.md section 0, mockup docs/design/mockup-v11.html "My decks PC / phone")
-DK_MENU, dkCards, dkUsed, dkFree, dkStatus, dkColors, dkTile, renderDecks, dkMenu, dkNewSlot, dkAct
+## apps/web/src/13h-decks.js (107 lines, ~2.6k tokens) — v0.93.0 U6 MY DECKS (docs/DESIGN.md section 0, mockup docs/design/mockup-v11.html "My decks PC / phone")
+DK_MENU, dkCards, dkUsed, dkFree, dkStatus, dkColors, dkFan, dkTile, renderDecks, dkMenu, dkNewSlot, dkAct
 
 ## apps/web/src/13i-online.js (412 lines, ~7.6k tokens) — ONLINE CLIENT (v0.108.0, roadmap M8 part 1; docs/ai/monorepo-plan.md M8)
 ONL_DEF, ON, ONL_AUTO, onlineWsBase, onlineAvailable, onlineLifeTxt, onlineLifePlate, onlineResPlate, onlineFieldCard, onlineHandCard, onlineRow, onlineFieldArea, renderOnlineStatus, renderOnline, onlineSend, onlineIntent, onlineDecide, onlinePick, clearOnlinePick, onlinePickButton, onlinePayment, onlinePayButton, onlineHandMenu, onlineFieldTap, onlineFieldMenu, onlineZoneMenu, onlineLog, onlineDisconnect, onlineFail, onlineOver, onlineMsg, connectOnline, onlineOrigin, onlineRoomCode, onlineStart
@@ -185,5 +185,5 @@ closeMatch, startNewGame, matchSummary
 ## packages/engine/src/15b-replay.js (109 lines, ~2.5k tokens) — REPLAY RECORDS (v0.85.0, phase F4 = monorepo step M4 part 1; docs/ai/monorepo-plan.md "Design" 2)
 newPortRecord, portRecord, boardSnapshot, runPortRecord, viewerReplayOf
 
-## apps/web/src/16-events.js (247 lines, ~5.4k tokens) — EVENTS (delegation)
+## apps/web/src/16-events.js (248 lines, ~5.4k tokens) — EVENTS (delegation)
 hScrollable, HDRAG, GAME_ACTS, gameAct, replayOf, lastReplay, runReplay, loadScenario, testSetup, defBuiltin
