@@ -27,18 +27,20 @@
 
 <div id="view-lobby" class="app-view active">
   <main class="home">
-    <div class="home-tags"><span class="tag-you">CARD BATTLE VS CPU</span><span class="tag-chip">OFFLINE<span class="t-pc"> · ONE FILE</span></span></div>
-    <h1 class="home-motto">GATE OPEN,<br><span>RELEASE!</span></h1>
+    <div class="home-hero"><div class="home-main">
+    <div class="home-tags"><span class="tag-you">Card Battle vs CPU</span><span class="tag-chip">Offline<span class="t-pc"> · One File</span></span></div>
+    <h1 class="home-motto">Gate Open,<br><span>Release!</span></h1>
     <p class="home-sub" id="home-sub">Decks and card images stay on this device.</p>
-    <div class="home-cta"><button class="menu-btn primary ae-btnp" data-a="go-play">▶ PLAY NOW</button><button class="menu-btn ae-btns" data-a="go-deck">BUILD A DECK</button></div>
+    <div class="home-cta"><button class="menu-btn primary ae-btnp" data-a="go-play">▶ Play Now</button><button class="menu-btn ae-btns" data-a="go-deck">Build a Deck</button></div>
     <span class="home-last" id="home-last"></span>
+    </div>
+    <aside class="home-side hm-card" aria-label="Card of the Day"><h2>Card of the Day</h2><div id="home-cotd"></div></aside></div>
     <div class="home-tiles">
-      <button class="ae-tile" data-a="go-play"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M14.5 17.5L3 6V3h3l11.5 11.5M13 19l6-6M16 16l4 4"/></svg></span><span class="tx"><b>MATCH VS CPU</b><span id="tile-play-sub">Deck, format, CPU deck</span></span><span class="chev" aria-hidden="true">›</span></button>
-      <button class="ae-tile" data-a="go-deck"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span><span class="tx"><b>DECK BUILDER</b><span>8 slots, ready-made decks</span></span><span class="chev" aria-hidden="true">›</span></button>
-      <button class="ae-tile" data-a="go-lib"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h14v16H6a2 2 0 0 0-2 2z"/></svg></span><span class="tx"><b>CARD LIBRARY</b><span id="tile-lib-sub">Card data and your card images</span></span><span class="chev" aria-hidden="true">›</span></button>
+      <button class="ae-tile" data-a="go-play"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M14.5 17.5L3 6V3h3l11.5 11.5M13 19l6-6M16 16l4 4"/></svg></span><span class="tx"><b>Match vs CPU</b><span id="tile-play-sub">Deck, format, CPU deck</span></span><span class="chev" aria-hidden="true">›</span></button>
+      <button class="ae-tile" data-a="go-deck"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span><span class="tx"><b>Deck Builder</b><span>8 slots, ready-made decks</span></span><span class="chev" aria-hidden="true">›</span></button>
+      <button class="ae-tile" data-a="go-lib"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h14v16H6a2 2 0 0 0-2 2z"/></svg></span><span class="tx"><b>Card Library</b><span id="tile-lib-sub">Card data and your card images</span></span><span class="chev" aria-hidden="true">›</span></button>
     </div>
     <section class="home-more" aria-label="Today">
-      <div class="hm-card"><h2>Card of the Day</h2><div id="home-cotd"></div></div>
       <div class="hm-card"><h2>Play in three steps</h2><ol class="hm-steps"><li><b>Pick a deck</b> below or build one.</li><li><b>Pick a format</b> and the CPU deck.</li><li><b>Press Play Now</b> and win by taking all 5 Life.</li></ol><p class="hm-sum" id="home-sum"></p></div>
       <div class="hm-card"><h2>Today's missions</h2><ul class="pg-list" id="home-missions"></ul></div>
       <div class="hm-card wide"><h2>My decks</h2><div class="hm-decks" id="home-decks"></div></div>
@@ -126,7 +128,7 @@
     </section>
     <h2 class="ae-sec"><span>MODE</span></h2>
     <div class="pl-modes">
-      <button class="menu-btn primary ae-mode" data-a="start"><span class="ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M14.5 17.5L3 6V3h3l11.5 11.5M13 19l6-6M16 16l4 4"/></svg></span><span class="tx"><b>MATCH VS CPU</b><span>You play your deck, the CPU answers</span></span><span class="chev" aria-hidden="true">›</span></button>
+      <button class="menu-btn primary ae-mode" data-a="start"><span class="ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M14.5 17.5L3 6V3h3l11.5 11.5M13 19l6-6M16 16l4 4"/></svg></span><span class="tx"><b>Match vs CPU</b><span>You play your deck, the CPU answers</span></span><span class="chev" aria-hidden="true">›</span></button>
       <button class="ae-mode" data-a="watch"><span class="ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span><span class="tx"><b>WATCH CPU VS CPU</b><span>The CPU plays your deck against the CPU deck</span></span><span class="chev" aria-hidden="true">›</span></button>
       <button class="ae-mode" data-a="online"><span class="ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></span><span class="tx"><b>ONLINE VS BOT</b><span>Play through the Aeterna server (Standard; your deck vs the server bot)</span></span><span class="chev" aria-hidden="true">›</span></button>
     </div>

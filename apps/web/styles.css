@@ -759,20 +759,19 @@
   html.layout-pc .t-pc { display: inline; }
   html.layout-pc .t-pcf { display: inline-flex; }
   html.layout-pc .t-ph { display: none; }
-  html.layout-pc .ae-nav { height: 64px; gap: 4px; padding: 0 28px; }
-  html.layout-pc .ae-brand { font-size: 22px; margin-right: 26px; }
-  html.layout-pc .ae-tabs { position: static; background: none; box-shadow: none; padding: 0; gap: 4px; margin-right: auto; height: 100%; align-items: center; }
-  html.layout-pc .ae-tab { flex: none; min-height: 40px; flex-direction: row; padding: 0 20px; font-size: 13px; letter-spacing: .14em; transform: skewX(-18deg); }
-  html.layout-pc .ae-tab > * { transform: skewX(18deg); }
+  html.layout-pc .ae-nav { height: 62px; gap: 6px; padding: 0 24px; box-shadow: none; border-bottom: 2px solid var(--you); }
+  html.layout-pc .ae-brand { font-size: 21px; letter-spacing: .12em; margin-right: 22px; background: linear-gradient(90deg, var(--ae-text), var(--you)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  html.layout-pc .ae-tabs { position: static; background: none; box-shadow: none; padding: 0; gap: 0; margin-right: auto; height: 100%; align-items: stretch; }
+  html.layout-pc .ae-tab { flex: none; min-height: 62px; flex-direction: row; padding: 0 16px; font-size: 11.8px; letter-spacing: .14em; text-transform: capitalize; background: transparent; }
   html.layout-pc .ae-tab svg { display: none; }
-  html.layout-pc .ae-tab:hover { color: var(--ae-text); background: var(--ae-chip); }
-  html.layout-pc .ae-tab[aria-current="page"] { background: var(--you); color: var(--you-ink); }
+  html.layout-pc .ae-tab:hover { color: var(--ae-text); background: transparent; }
+  html.layout-pc .ae-tab[aria-current="page"] { background: var(--you); color: var(--you-ink); clip-path: polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%); }
   html.layout-pc .gbtn { width: 38px; height: 38px; }
   html.layout-pc .ae-toggle { margin: 0 6px; }
   html.layout-pc .ae-pop { right: 28px; }
   /* menu screens sit between the header and (phone) the tab bar */
   body.has-nav .app-view { top: calc(58px + env(safe-area-inset-top)); bottom: calc(64px + env(safe-area-inset-bottom)); height: auto; }
-  html.layout-pc body.has-nav .app-view { top: 64px; bottom: 0; }
+  html.layout-pc body.has-nav .app-view { top: 62px; bottom: 0; }
   /* Home */
   #view-lobby { background: linear-gradient(180deg, var(--ae-board1), var(--ae-board2)); color: var(--ae-text); overflow-y: auto; overflow-x: hidden; }
   #view-lobby::before { content: ""; position: fixed; inset: 0; pointer-events: none; background: repeating-linear-gradient(60deg, var(--ae-lattice) 0 1px, transparent 1px 46px), repeating-linear-gradient(-60deg, var(--ae-lattice) 0 1px, transparent 1px 46px); }
@@ -811,6 +810,16 @@
   html.layout-pc .home-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: auto; padding-top: 18px; }
   html.layout-pc .ae-tile { padding: 16px 18px; }
   html.layout-pc .home-foot { padding: 6px 28px; flex-wrap: nowrap; gap: 22px; }
+  /* mockup-v14 lobby: Title Case hero on the left, Card of the Day panel on the right */
+  .home-main { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+  .home-side { margin-top: 10px; }
+  .hm-flav { margin: 0 0 10px; padding: 0; font-style: italic; font-size: 15px; line-height: 1.5; color: var(--ae-text); }
+  "“"; display: block; font-size: 38px; line-height: .6; color: var(--you); font-style: normal; font-weight: 900; }
+  .home-tags > span, .home-motto, #view-lobby .home-cta .menu-btn, .ae-tile b, .home-foot button { text-transform: capitalize; }
+  html.layout-pc .home { max-width: 1280px; }
+  html.layout-pc .home-hero { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 40px; align-items: start; }
+  html.layout-pc .home-side { margin-top: 0; padding: 18px 22px; transform: perspective(900px) rotateY(-4deg); background: linear-gradient(180deg, var(--ae-panel1), var(--ae-panel2)); }
+  html.layout-pc .home-side h2 { color: var(--you); font-size: 12px; letter-spacing: .12em; text-transform: capitalize; }
   @media (prefers-reduced-motion: reduce) { #view-lobby .home-cta .menu-btn, .ae-tile { transition: none; } }
   /* =====================================================================
      v0.67.0 U3: Play setup page (docs/DESIGN.md section 0: header card, deck chip, mode cards, setup chips).
