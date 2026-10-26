@@ -1134,3 +1134,9 @@ html[data-cb] .cbm[data-s=purple],html[data-cb] .sym-purple::after{border-radius
 html[data-cb] .cbm[data-s=white],html[data-cb] .sym-white::after{background:transparent;border:3px solid #fff;border-radius:50%;box-sizing:border-box;box-shadow:0 0 0 1.5px #000,inset 0 0 0 1.5px #000}
 html[data-hc] .tcg-card{border-width:3px}
 html[data-hc] :focus-visible{outline:3px solid #fff;outline-offset:2px;box-shadow:0 0 0 5px #000}
+
+/* v0.144.0 deck Share Code dialog (mockup DLG.share) */
+.db-share { display: flex; gap: 14px; align-items: center; }
+.db-qr { flex: none; width: 96px; height: 96px; border: 6px solid var(--text-main); opacity: .9; background: repeating-conic-gradient(var(--text-main) 0 25%, transparent 0 50%) 0 0/20px 20px; }
+.db-share .lib-area { height: auto; margin: 6px 0; font-size: 14px; }
+@media (max-width: 480px) { .db-share { flex-direction: column; align-items: stretch; } .db-qr { align-self: center; } }

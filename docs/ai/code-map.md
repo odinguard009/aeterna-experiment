@@ -125,8 +125,8 @@ openZoneModal, openLogModal, showRules
 ## apps/web/src/13-render.js (359 lines, ~8.2k tokens) — RENDERING
 nameHTML, isPC, applyLayout, _rz, colorVar, cardColors, isMulti, colorSty, symSlices, symCount, isUltimate, cardCls, rebMark, symBadgeHTML, handCardHTML, gemsHTML, fieldCardHTML, rowHTML, burstAreaHTML, soulAreaHTML, fieldAreaHTML, zoneBox, pv, pileHTML, lifePlate, resPlate, STEP_WARN, stepTargets, stepWarn, stepClick, SLEEVE_TINTS, CORE_LOOKS, deckLook, coreVars, SLEEVE_IMG, sleeveImgCss, applyLook, hintText, renderBoard, render, CUE, fxCueReset, aeRibbon, aeStrip, fxCues, LOG_OPEN, updateLogDrawer, toggleLog, magBtnHTML, liveStatusHTML, HIST_KEY, HISTORY, recordMatch, histHTML, lifeTxt, switchView, renderSettings, renderLobby
 
-## apps/web/src/13a-deckbuilder.js (395 lines, ~9k tokens) — DECK BUILDER (v0.53.0 redesign; list performance from v0.52.1)
-DB_COLORS, DB_TYPES, DB_COSTS, DB_GROUPS, DBF, DB_UNDO, DB_IO, dbArr, dbTypeOf, dbSetOf, dbFilterOK, dbGroupOK, DBV, DB_GAP, DB_COLL, dbIndex, dbSets, dbActiveCount, DB_SORTS, dbFilter, fxMarked, FX_MARK_LBL, fxMarkHTML, dbCardHTML, dbWindow, dbScroll, dbSearchInput, dbBar, dbMenu, dbDd, DB_TAB, dbTab, renderDbLook, dbCover, SLEEVE_BLOB, dbSleeveSet, dbSleeveClear, dbLook, dbToggle, dbResetFilters, DB_SAVE_T, dbSaved, dbNameInput, dbSave, dbSnap, dbCanAdd, dbChange, dbReplace, dbClear, dbUndo, dbRedo, dbTestHand, DB_SIZE_KEY, DB_SIZE, dbSize, dbFlyFrom, dbFlyTo, DB_LP, DB_PEEK, dbPeekHide, dbTap, dbKey, dbImport, dbExport, DB_COLCH, dbRingHTML, dbChips, dbStatsHTML, dbRowsHTML, renderDbDeck, dbPlayNow, dbSheet, renderDeckBuilder
+## apps/web/src/13a-deckbuilder.js (414 lines, ~9.5k tokens) — DECK BUILDER (v0.53.0 redesign; list performance from v0.52.1)
+DB_COLORS, DB_TYPES, DB_COSTS, DB_GROUPS, DBF, DB_UNDO, DB_IO, dbArr, dbTypeOf, dbSetOf, dbFilterOK, dbGroupOK, DBV, DB_GAP, DB_COLL, dbIndex, dbSets, dbActiveCount, DB_SORTS, dbFilter, fxMarked, FX_MARK_LBL, fxMarkHTML, dbCardHTML, dbWindow, dbScroll, dbSearchInput, dbBar, dbMenu, dbDd, DB_TAB, dbTab, renderDbLook, dbCover, SLEEVE_BLOB, dbSleeveSet, dbSleeveClear, dbLook, dbToggle, dbResetFilters, DB_SAVE_T, dbSaved, dbNameInput, dbSave, dbSnap, dbCanAdd, dbChange, dbReplace, dbClear, dbUndo, dbRedo, dbTestHand, DB_SIZE_KEY, DB_SIZE, dbSize, dbFlyFrom, dbFlyTo, DB_LP, DB_PEEK, dbPeekHide, dbTap, dbKey, dbImport, dbExport, dbShareCode, dbShareResolve, dbShare, DB_COLCH, dbRingHTML, dbChips, dbStatsHTML, dbRowsHTML, renderDbDeck, dbPlayNow, dbSheet, renderDeckBuilder
 
 ## apps/web/src/13b-nav.js (106 lines, ~2.9k tokens) — APP NAVIGATION + HOME (v0.65.0, UI/UX overhaul U2; docs/DESIGN.md section 0, mockup docs/design/mockup-v11.html)
 NAV_HIDDEN, MK_OFF, MK_TITLES, navSync, navTools, themePop, navTheme, navSound, navHistory, fmtTitle, MK_TILES, renderHome, cardOfDay, MK_COL, mkMix, mkArt, mkFace, renderHomeMore
@@ -191,5 +191,5 @@ closeMatch, startNewGame, matchSummary
 ## packages/engine/src/15b-replay.js (109 lines, ~2.5k tokens) — REPLAY RECORDS (v0.85.0, phase F4 = monorepo step M4 part 1; docs/ai/monorepo-plan.md "Design" 2)
 newPortRecord, portRecord, boardSnapshot, runPortRecord, viewerReplayOf
 
-## apps/web/src/16-events.js (268 lines, ~5.9k tokens) — EVENTS (delegation)
+## apps/web/src/16-events.js (269 lines, ~6k tokens) — EVENTS (delegation)
 hScrollable, HDRAG, GAME_ACTS, gameAct, replayOf, lastReplay, runReplay, loadScenario, testSetup, defBuiltin

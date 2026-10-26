@@ -4,6 +4,11 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.144.0
+- Lane: U/I
+- **Deck Share Code dialog (mockup parity).** New Share button in the deck builder shows a code like AET-XXXX-XXXX-XXXX, a QR placeholder as in the mockup, and Copy code. The deck list is kept on this device under the code; pasting the code into Import restores it. Honest limit: codes work on this device only until online play exists.
+  - Checked: share then import round-trip test (PC and phone), loop green. Not checked: screenshot against the mockup, other devices
+
 ## v0.143.0
 - Lane: U/I
 - **Colour-blind markers and high contrast edges (Settings > Accessibility).** UI only, both off by default. With markers on, every card shows a small shape for its colour (triangle red, circle blue, diamond green, star yellow, square purple, ring white); high contrast thickens card borders and focus rings.

@@ -1001,6 +1001,10 @@ html[data-cb] .cbm[data-s=purple],html[data-cb] .sym-purple::after{border-radius
 html[data-cb] .cbm[data-s=white],html[data-cb] .sym-white::after{background:transparent;border:3px solid #fff;border-radius:50%;box-sizing:border-box;box-shadow:0 0 0 1.5px #000,inset 0 0 0 1.5px #000}
 html[data-hc] .tcg-card{border-width:3px}
 html[data-hc] :focus-visible{outline:3px solid #fff;outline-offset:2px;box-shadow:0 0 0 5px #000}
+.db-share{display:flex;gap:14px;align-items:center;}
+.db-qr{flex:none;width:96px;height:96px;border:6px solid var(--text-main);opacity:.9;background:repeating-conic-gradient(var(--text-main) 0 25%,transparent 0 50%) 0 0/20px 20px;}
+.db-share .lib-area{height:auto;margin:6px 0;font-size:14px;}
+@media (max-width:480px){.db-share{flex-direction:column;align-items:stretch;}.db-qr{align-self:center;}}
 .mk{--page:#0d1015;--page-fg:#eef1f5;--page-muted:#a9b2c1;--page-line:#ffffff24;--page-panel:#161a22;
 --bg1:#1b2029;--bg2:#11141a;--lattice:#ffffff08;
 --panel:#232935;--panel2:#161a22;--panel3:#0f1218;--line:#ffffff1a;--line2:#ffffff40;
@@ -2399,7 +2403,7 @@ html[data-ts="large"] .mk{font-size:16px;}html[data-ts="larger"] .mk{font-size:1
       <div class="dpane scroll db-dk-list" id="db-dk-list" data-pane="list" role="tabpanel"></div>
       <div class="dpane scroll db-pane" data-pane="curve" role="tabpanel"><div id="db-dk-stats"></div><ul class="db-check" id="db-check"></ul></div>
       <div class="dpane scroll db-pane" data-pane="look" role="tabpanel"><div id="db-look" class="db-look"></div></div>
-      <div class="dact"><button class="btn sm" id="db-save" data-a="db-save" title="Save this deck">Save</button><button class="btn sm" data-a="db-import">Import</button><button class="btn sm" data-a="db-export">Export</button><button class="btn sm" data-a="db-test">Test Hand</button><span class="grow"></span><button class="btn yes sm" data-a="db-play-now" id="db-play-now">Play ▶</button></div>
+      <div class="dact"><button class="btn sm" id="db-save" data-a="db-save" title="Save this deck">Save</button><button class="btn sm" data-a="db-import">Import</button><button class="btn sm" data-a="db-export">Export</button><button class="btn sm" data-a="db-share">Share</button><button class="btn sm" data-a="db-test">Test Hand</button><span class="grow"></span><button class="btn yes sm" data-a="db-play-now" id="db-play-now">Play ▶</button></div>
     </aside>
     <div class="mbar" id="db-deckbar" data-a="db-sheet" data-v="deck" role="button" tabindex="0"></div>
   </div>
@@ -2729,7 +2733,7 @@ function bindHost(h) {
    type: 'Spirit' | 'Nexus' | 'Magic'      symbol: card color     symbols: number of symbols
    reduction: {color: n}         levels: [{cores, bp}]  (Nexus levels have no bp)
    --------------------------------------------------------------------- */
-const VERSION = '0.143.0';
+const VERSION = '0.144.0';
 const CARDS = {};
 function defCard(o) {
   CARDS[o.id] = Object.assign({ type: 'Spirit', reduction: {}, symbols: 1, families: [], keywords: [], implemented: true, desc: 'Vanilla test card (no effect).', block: 'A' }, o);
@@ -8379,7 +8383,7 @@ async function dbImport() {
   DB_IO = '';
   const v = await modal({ uiOnly: true, title: 'Import deck list', html: '<div class="db-io-hint">One card per line: <b>3 BS44-001</b> or <b>3x Card Name</b>. The current cards in this slot are replaced (Undo brings them back).</div><textarea id="db-io" class="lib-area" spellcheck="false"></textarea>', buttons: [{ label: 'Import', cls: 'primary', value: 'ok' }, { label: 'Cancel', cls: 'cancel', value: null }] });
   if (v !== 'ok') return;
-  const r = textToDeck(DB_IO);
+  const r = textToDeck(dbShareResolve(DB_IO));
   if (!deckTotal(r.deck)) { uiInfo('Nothing imported', 'No cards recognised.' + (r.bad.length ? '<br>' + r.bad.slice(0, 8).map(esc).join('<br>') : '')); return; }
   SLOTS[ACTIVE_SLOT].key = r.key && CARDS[r.key] ? r.key : null;      // the KEY line marks the deck's Key Spirit (v0.103.0)
   dbReplace(r.deck);
@@ -8389,6 +8393,25 @@ async function dbExport(d) {
   const txt = deckToText(d, SLOTS[ACTIVE_SLOT].key);
   const v = await modal({ uiOnly: true, title: 'Export deck list', html: `<textarea id="db-io" class="lib-area" spellcheck="false" readonly>${esc(txt)}</textarea>`, buttons: [{ label: 'Copy', cls: 'primary', value: 'copy' }, { label: 'Close', cls: 'cancel', value: null }] });
   if (v === 'copy') { try { await navigator.clipboard.writeText(txt); } catch (e) { /* clipboard blocked: the text stays selectable in the box */ } }
+}
+
+/* Share code (mockup DLG.share): AET-XXXX-XXXX-XXXX from the deck list; the list stays on this device until online play exists. */
+function dbShareCode(txt) {
+  let h = 2166136261, h2 = 5381;
+  for (let i = 0; i < txt.length; i++) { h = Math.imul(h ^ txt.charCodeAt(i), 16777619) >>> 0; h2 = (Math.imul(h2, 33) + txt.charCodeAt(i)) >>> 0; }
+  const a = (h.toString(36).toUpperCase() + h2.toString(36).toUpperCase() + '000000000000').replace(/[^A-Z0-9]/g, '').slice(0, 12);
+  return `AET-${a.slice(0, 4)}-${a.slice(4, 8)}-${a.slice(8, 12)}`;
+}
+function dbShareResolve(t) {            // a pasted share code gives back the list saved on this device; anything else passes through
+  const m = /^\s*AET-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}\s*$/i.exec(t || '');
+  if (!m) return t;
+  try { return localStorage.getItem('aeterna.share.' + m[0].trim().toUpperCase()) || t; } catch (e) { return t; }
+}
+async function dbShare(d) {
+  const txt = deckToText(d, SLOTS[ACTIVE_SLOT].key), code = dbShareCode(txt);
+  try { localStorage.setItem('aeterna.share.' + code, txt); } catch (e) { /* storage blocked: the code still shows */ }
+  const v = await modal({ uiOnly: true, title: 'Share this deck', html: `<div class="db-share"><div class="db-qr" role="img" aria-label="QR code placeholder"></div><div><div class="db-io-hint">Anyone with the code can copy the deck into their own decks.</div><input id="db-code" class="lib-area" readonly value="${code}"><div class="db-io-hint">Stays on this device until online play exists.</div></div></div>`, buttons: [{ label: 'Copy code', cls: 'primary', value: 'copy' }, { label: 'Close', cls: 'cancel', value: null }] });
+  if (v === 'copy') { try { await navigator.clipboard.writeText(code); } catch (e) { /* clipboard blocked: the code stays selectable */ } uiInfo('Share code', 'Code copied.'); }
 }
 
 /* ---------- deck panel (PC column / phone full-height sheet) ---------- */
@@ -10496,6 +10519,7 @@ document.addEventListener('click', e => {
   else if (a === 'db-size') dbSize(v);
   else if (a === 'db-import') dbImport();
   else if (a === 'db-export') dbExport();
+  else if (a === 'db-share') dbShare();
   else if (a === 'cp-open') openCardPage(v);
   else if (a === 'zoom') openZoom(v);
   else if (a === 'art') { const pg = $('view-card').classList.contains('active'), zid = pg ? CP_ID : $('zoom-overlay').dataset.id; setArt(zid, v === zid ? '' : v); if (pg) renderCardPage(); else openZoom(zid); refreshViews(); }

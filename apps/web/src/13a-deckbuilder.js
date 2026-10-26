@@ -273,7 +273,7 @@ async function dbImport() {
   DB_IO = '';
   const v = await modal({ uiOnly: true, title: 'Import deck list', html: '<div class="db-io-hint">One card per line: <b>3 BS44-001</b> or <b>3x Card Name</b>. The current cards in this slot are replaced (Undo brings them back).</div><textarea id="db-io" class="lib-area" spellcheck="false"></textarea>', buttons: [{ label: 'Import', cls: 'primary', value: 'ok' }, { label: 'Cancel', cls: 'cancel', value: null }] });
   if (v !== 'ok') return;
-  const r = textToDeck(DB_IO);
+  const r = textToDeck(dbShareResolve(DB_IO));
   if (!deckTotal(r.deck)) { uiInfo('Nothing imported', 'No cards recognised.' + (r.bad.length ? '<br>' + r.bad.slice(0, 8).map(esc).join('<br>') : '')); return; }
   SLOTS[ACTIVE_SLOT].key = r.key && CARDS[r.key] ? r.key : null;      // the KEY line marks the deck's Key Spirit (v0.103.0)
   dbReplace(r.deck);
@@ -283,6 +283,25 @@ async function dbExport(d) {
   const txt = deckToText(d, SLOTS[ACTIVE_SLOT].key);
   const v = await modal({ uiOnly: true, title: 'Export deck list', html: `<textarea id="db-io" class="lib-area" spellcheck="false" readonly>${esc(txt)}</textarea>`, buttons: [{ label: 'Copy', cls: 'primary', value: 'copy' }, { label: 'Close', cls: 'cancel', value: null }] });
   if (v === 'copy') { try { await navigator.clipboard.writeText(txt); } catch (e) { /* clipboard blocked: the text stays selectable in the box */ } }
+}
+
+/* Share code (mockup DLG.share): AET-XXXX-XXXX-XXXX from the deck list; the list stays on this device until online play exists. */
+function dbShareCode(txt) {
+  let h = 2166136261, h2 = 5381;
+  for (let i = 0; i < txt.length; i++) { h = Math.imul(h ^ txt.charCodeAt(i), 16777619) >>> 0; h2 = (Math.imul(h2, 33) + txt.charCodeAt(i)) >>> 0; }
+  const a = (h.toString(36).toUpperCase() + h2.toString(36).toUpperCase() + '000000000000').replace(/[^A-Z0-9]/g, '').slice(0, 12);
+  return `AET-${a.slice(0, 4)}-${a.slice(4, 8)}-${a.slice(8, 12)}`;
+}
+function dbShareResolve(t) {            // a pasted share code gives back the list saved on this device; anything else passes through
+  const m = /^\s*AET-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}\s*$/i.exec(t || '');
+  if (!m) return t;
+  try { return localStorage.getItem('aeterna.share.' + m[0].trim().toUpperCase()) || t; } catch (e) { return t; }
+}
+async function dbShare(d) {
+  const txt = deckToText(d, SLOTS[ACTIVE_SLOT].key), code = dbShareCode(txt);
+  try { localStorage.setItem('aeterna.share.' + code, txt); } catch (e) { /* storage blocked: the code still shows */ }
+  const v = await modal({ uiOnly: true, title: 'Share this deck', html: `<div class="db-share"><div class="db-qr" role="img" aria-label="QR code placeholder"></div><div><div class="db-io-hint">Anyone with the code can copy the deck into their own decks.</div><input id="db-code" class="lib-area" readonly value="${code}"><div class="db-io-hint">Stays on this device until online play exists.</div></div></div>`, buttons: [{ label: 'Copy code', cls: 'primary', value: 'copy' }, { label: 'Close', cls: 'cancel', value: null }] });
+  if (v === 'copy') { try { await navigator.clipboard.writeText(code); } catch (e) { /* clipboard blocked: the code stays selectable */ } uiInfo('Share code', 'Code copied.'); }
 }
 
 /* ---------- deck panel (PC column / phone full-height sheet) ---------- */

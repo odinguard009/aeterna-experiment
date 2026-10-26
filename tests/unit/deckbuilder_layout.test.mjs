@@ -124,6 +124,18 @@ for (const screen of ['pc', 'phone']) {
     });
     assert.deepEqual(r, { was: 40, imported: 3, warn: true, back: 40, has: true });
   });
+  test(`D07b-${screen} Share shows a code that Import turns back into the deck`, async () => {
+    const r = await ev(screen, async () => {
+      const total = () => Object.values(BS.PLAYER_DECK).reduce((s, n) => s + n, 0), was = total();
+      document.querySelector('[data-a="db-share"]').click(); await new Promise(r => setTimeout(r, 20));
+      const code = document.getElementById('db-code').value; BS.closeModal();
+      document.querySelector('[data-a="db-import"]').click(); await new Promise(r => setTimeout(r, 20));
+      const ta = document.getElementById('db-io'); ta.value = code; ta.dispatchEvent(new Event('input', { bubbles: true }));
+      document.querySelector('#action-modal [data-mi="0"]').click(); await new Promise(r => setTimeout(r, 30)); BS.closeModal();
+      return { fmt: /^AET-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(code), same: total() === was };
+    });
+    assert.deepEqual(r, { fmt: true, same: true });
+  });
   test(`D08-${screen} no horizontal scroll; no errors`, async () => {
     const r = await ev(screen, () => ({ sw: document.documentElement.scrollWidth, w: innerWidth, grid: document.getElementById('db-card-list').scrollWidth <= document.getElementById('db-card-list').clientWidth + 1 }));
     assert.ok(r.sw <= r.w && r.grid, JSON.stringify(r));
