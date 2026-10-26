@@ -155,7 +155,7 @@ test('D10-pc keyboard: "/" focuses search, Esc clears it', async () => {
   await page.keyboard.press('Escape');
   assert.equal(await page.evaluate(() => document.getElementById('db-search').value), '');
 });
-test('D11-phone the Card Library header keeps its Back button (deck builder menu CSS is scoped)', async () => {
-  const h = await ev('phone', () => { BS.switchView('view-library'); const b = document.querySelector('#view-library [data-a="go-lobby"]').getBoundingClientRect().height; BS.switchView('view-deckbuilder'); return b; });
+test('D11-phone the Card Library header header stays visible (deck builder menu CSS is scoped)', async () => {
+  const h = await ev('phone', () => { BS.switchView('view-library'); const b = document.querySelector('#view-library .hdcard h2').getBoundingClientRect().height; BS.switchView('view-deckbuilder'); return b; });
   assert.ok(h > 0);
 });
