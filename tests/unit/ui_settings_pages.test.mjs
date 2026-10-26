@@ -26,15 +26,15 @@ for (const screen of ['pc', 'phone']) {
     const { page, errors } = await open(screen);
     await page.locator(screen === 'pc' ? '#app-nav .ibtn[data-a="go-settings"]' : '.phonebar [data-a="go-settings"]').first().click();
     const r = await page.evaluate(() => ({
-      head: document.querySelector('#view-settings .ae-phead h1').textContent,
+      head: document.querySelector('#view-settings .hdcard h2').textContent,
       menu: [...document.querySelectorAll('#set-menu [data-a="set-sec"]')].map(b => b.dataset.v),
       ids: ['set-speed', 'set-sound', 'set-cpu', 'set-hist', 'set-msg', 'set-color', 'set-mode', 'set-mat'].filter(i => !document.getElementById(i)),
       acts: ['set-reset', 'hist-clear', 'set-mat-clear'].filter(a => !document.querySelector(`#view-settings [data-a="${a}"]`)),
-      cols: document.querySelectorAll('#set-color .pcol').length,
+      cols: document.querySelectorAll('#set-color .sw').length,
       wide: document.documentElement.scrollWidth > innerWidth + 1,
     }));
     assert.equal(r.head, 'Settings');
-    assert.deepEqual(r.menu, ['appearance', 'game', 'sound', 'access', 'data']);
+    assert.deepEqual(r.menu, ['appearance', 'game', 'sound', 'access', 'data', 'profile', 'history']);
     assert.deepEqual([r.ids, r.acts, r.cols, r.wide], [[], [], 9, false]);
     await page.click('#set-menu [data-v="access"]');
     assert.equal(await page.evaluate(() => document.querySelector('#set-menu [aria-current="true"]').dataset.v), 'access');
@@ -52,7 +52,8 @@ for (const screen of ['pc', 'phone']) {
       head: document.querySelector('#app-nav .seg [aria-pressed="true"]').dataset.v,
     }));
     assert.deepEqual(r, { t: { color: 'red', mode: 'light' }, mode: 'light', pressed: 'red', cpu: 'Blue', head: 'light' });
-    await page.selectOption('#set-speed', 'fast'); await page.selectOption('#set-sound', 'on'); await page.selectOption('#set-cpu', 'defensive');
+    await page.click('#set-menu [data-v="game"]'); await page.selectOption('#set-speed', 'fast'); await page.selectOption('#set-cpu', 'defensive');
+    await page.click('#set-menu [data-v="sound"]'); await page.selectOption('#set-sound', 'on');
     assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem(BS.SET_KEY))).then(s => [s.speed, s.sound, s.cpuProfile]), ['fast', true, 'defensive']);
     assert.deepEqual(errors, []);
   });

@@ -44,7 +44,7 @@ function navSound() {
 }
 function navHistory() {
   switchView('view-settings');
-  const h = $('set-hist'); if (h && h.scrollIntoView) h.scrollIntoView({ block: 'start' });
+  setSection('history');
 }
 const fmtTitle = () => cap(String(fmtButton(FORMAT)).toLowerCase());
 // Home (v0.137.0, mockup parity): hero, "Continue with" deck panel, four tiles, Daily missions / What's new / Last match cards
