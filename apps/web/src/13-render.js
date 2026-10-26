@@ -27,7 +27,7 @@ const symCount = c => symbolAttrs(c).length;
 /* Ultimate cards: base colour + gold (frame, cost circle, symbol ring). Rebirth cards: a flip mark on the type badge,
    the rebirth side also gets a double frame. Display only until the Ultimate/Rebirth rules exist (issue #4). */
 const isUltimate = c => c.type === 'Ultimate';
-function cardCls(c) { return (isUltimate(c) ? ' ult' : '') + (isMulti(c) ? ' multi' : '') + (c.rebirthSide ? ' reb-side' : c.rebirthTo ? ' reb' : ''); }
+function cardCls(c) { return (isUltimate(c) ? ' ult' : '') + (isMulti(c) ? ' multi' : '') + (c.rebirthSide ? ' reb-side' : c.rebirthTo ? ' reb' : '') + ' sym-' + c.symbol; }
 function rebMark(c) { return c.rebirthSide ? '<span class="reb-mark" title="Rebirth side">↻</span>' : c.rebirthTo ? '<span class="reb-mark" title="Rebirth card: can flip to its rebirth side">↻</span>' : ''; }
 function symBadgeHTML(id) {
   const c = CARDS[id]; if (!c || c.type === 'Magic') return '';          // Spirits, Ultimates, Nexuses (Grandwalker too) and Braves carry symbols; Magic never
@@ -342,7 +342,7 @@ function switchView(id) {
   if (id === 'view-profile') renderProfilePage();
   if (id === 'view-card') renderCardPage();
 }
-function renderSettings() { $('set-hist').innerHTML = histHTML(); $('set-cpu').innerHTML = CPU_PROFILE_NAMES.map(n => `<option value="${n}">${cap(n)}</option>`).join(''); $('set-cpu').value = cpuProfileName(null); $('set-speed').value = SETTINGS.speed; $('set-sound').value = SETTINGS.sound ? 'on' : 'off'; $('set-anim').value = SETTINGS.anim || 'auto'; $('set-lp').value = SETTINGS.longpress === 'off' ? 'off' : 'on'; $('set-ts').value = SETTINGS.textSize || 'normal';
+function renderSettings() { $('set-hist').innerHTML = histHTML(); $('set-cpu').innerHTML = CPU_PROFILE_NAMES.map(n => `<option value="${n}">${cap(n)}</option>`).join(''); $('set-cpu').value = cpuProfileName(null); $('set-speed').value = SETTINGS.speed; $('set-sound').value = SETTINGS.sound ? 'on' : 'off'; $('set-anim').value = SETTINGS.anim || 'auto'; $('set-lp').value = SETTINGS.longpress === 'off' ? 'off' : 'on'; $('set-cb').value = SETTINGS.cbShapes ? 'on' : 'off'; $('set-hc').value = SETTINGS.hiContrast ? 'on' : 'off'; $('set-ts').value = SETTINGS.textSize || 'normal';
   renderSetPage(); $('set-back').hidden = !G || !!G.over; }   // v0.122.0 U14b: Options from a running match shows BACK TO MATCH; v0.68.0 U4: colour grid, Dark/Light, playmat and CPU colour rows (13d-pages.js)
 function renderLobby() {
   renderHome();

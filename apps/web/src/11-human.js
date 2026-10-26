@@ -63,12 +63,13 @@ function cardFacePlaceholder(card, withCost, col, extra) {
 }
 function cardFaceHTML(card, withCost) {
   const col = `var(--color-${card.symbol})`;
+  const cbm = `<span class="cbm" data-s="${card.symbol}" aria-hidden="true"></span>`;   // v0.143.0: colour-blind shape marker, shown only when the setting is on
   const src = cardImgSrc(card.id);                              // v0.112.0: player image first, then the online mirror
-  if (!src) return cardFacePlaceholder(card, withCost, col);
+  if (!src) return cbm + cardFacePlaceholder(card, withCost, col);
   // A player blob never fails; the mirrored URL may 404 (the wiki lacks that card), so it carries an
   // onerror that swaps to the text placeholder rendered right behind it.
-  if (IMG[card.id]) return `<img class="cface" style="--card-col:${col}" src="${src}" alt="${esc(card.name)}">`;
-  return `<img class="cface" style="--card-col:${col}" src="${src}" alt="${esc(card.name)}" onerror="this.style.display='none';this.nextElementSibling.style.display=''">${cardFacePlaceholder(card, withCost, col, 'display:none')}`;
+  if (IMG[card.id]) return `${cbm}<img class="cface" style="--card-col:${col}" src="${src}" alt="${esc(card.name)}">`;
+  return `${cbm}<img class="cface" style="--card-col:${col}" src="${src}" alt="${esc(card.name)}" onerror="this.style.display='none';this.nextElementSibling.style.display=''">${cardFacePlaceholder(card, withCost, col, 'display:none')}`;
 }
 /* v0.27: card images for a list of cards (instances or ids), in a strip that scrolls sideways */
 function cardStripHTML(list, head) {

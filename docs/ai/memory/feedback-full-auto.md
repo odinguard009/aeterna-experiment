@@ -13,3 +13,5 @@ Owner (2026-10-26): for everything on the Aeterna project, do not ask for the ow
 **Update 2026-10-26 (owner going offline 5-8 h, desktop stays on):** owner granted permission and access for any Aeterna work. Any session, dialog or pop-up that needs the owner: pick the best option myself, automatically. The chain (rantai ON) keeps running without pause; do not end a turn while roadmap work remains. Run `bash tools/regression_due.sh` at the end of every release and dispatch Regression when DUE (missed after v0.121.0-v0.138.0). Harness safety rules still win over this grant.
 
 **Owner 2026-10-27:** run automatic + chain mode even while the owner is off; never stop when a session/release finishes (the gate's STOP for a missing `tokens=` is not a reason to stop; keep the roadmap going).
+
+**Owner 2026-10-27:** automatic mode checks every 30 minutes. Implemented as local scheduled task `aeterna-roadmap-auto` (cron `*/30 * * * *`, desktop app must stay on); the old remote triggers in the account are all disabled. Task asks `session_gate.sh check` first so it never overlaps an active session.

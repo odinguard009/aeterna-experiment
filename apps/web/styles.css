@@ -1121,3 +1121,16 @@
 :root{--lg1:var(--you,#17b897);--lg2:color-mix(in srgb,var(--lg1) 40%,#fff);--lg3:color-mix(in srgb,var(--lg1) 20%,#fff);--lg0:color-mix(in srgb,var(--lg1) 60%,#000)}   /* v0.141.0: logo + loader follow the chosen theme colour */
 /* v0.142.0: phone board shows dashed empty slots like the mockup */
 #view-playmat .ph-slot{flex:1 1 0;min-width:0;max-width:64px;max-height:92%;aspect-ratio:5/7;border:1.5px dashed var(--ae-line2,rgba(255,255,255,.22));border-radius:7px;display:grid;place-items:center;color:var(--ae-text4,#6b7a8c);font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin:0 3px}
+/* v0.143.0: colour-blind shape markers (top-left of a card) and high contrast edges, both off by default */
+.cbm{display:none}
+html[data-cb] .cbm,html[data-cb] .tcg-card::after{content:"";display:block;position:absolute;top:4px;left:26px;width:12px;height:12px;z-index:3;background:#fff;box-shadow:0 0 0 1.5px #000;pointer-events:none}
+html[data-cb] .tcg-card{position:relative}
+html[data-cb] .tcg-card.sym-undefined::after,html[data-cb] .tcg-card.sym-ultimate::after,html[data-cb] .tcg-card.sym-god::after{display:none}
+html[data-cb] .cbm[data-s=red],html[data-cb] .sym-red::after{clip-path:polygon(50% 0,100% 100%,0 100%);box-shadow:none}
+html[data-cb] .cbm[data-s=blue],html[data-cb] .sym-blue::after{border-radius:50%}
+html[data-cb] .cbm[data-s=green],html[data-cb] .sym-green::after{clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);box-shadow:none}
+html[data-cb] .cbm[data-s=yellow],html[data-cb] .sym-yellow::after{clip-path:polygon(50% 0,62% 36%,100% 38%,70% 60%,80% 100%,50% 76%,20% 100%,30% 60%,0 38%,38% 36%);box-shadow:none}
+html[data-cb] .cbm[data-s=purple],html[data-cb] .sym-purple::after{border-radius:2px}
+html[data-cb] .cbm[data-s=white],html[data-cb] .sym-white::after{background:transparent;border:3px solid #fff;border-radius:50%;box-sizing:border-box;box-shadow:0 0 0 1.5px #000,inset 0 0 0 1.5px #000}
+html[data-hc] .tcg-card{border-width:3px}
+html[data-hc] :focus-visible{outline:3px solid #fff;outline-offset:2px;box-shadow:0 0 0 5px #000}

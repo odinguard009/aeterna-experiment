@@ -4,6 +4,11 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.143.0
+- Lane: U/I
+- **Colour-blind markers and high contrast edges (Settings > Accessibility).** UI only, both off by default. With markers on, every card shows a small shape for its colour (triangle red, circle blue, diamond green, star yellow, square purple, ring white); high contrast thickens card borders and focus rings.
+  - Checked: phone 390 px battle with markers on (hand and field), loop green. Not checked: marker on card images in the library/deck builder, PC screenshot, the online board
+
 ## v0.142.0
 - Lane: U/I
 - **Phone battle board shows dashed empty slots.** UI only. Each field on the phone shows up to four dashed "Empty" slots after the cards (as in the mockup) instead of one "Empty field" note.

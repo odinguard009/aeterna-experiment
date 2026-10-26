@@ -989,6 +989,18 @@ span.pg-av{cursor:default;}.pg-avs{display:flex;flex-wrap:wrap;gap:8px;}.pg-avs 
 #view-playmat .ae-tools .ae-btn > .s{display:none}
 :root{--lg1:var(--you,#17b897);--lg2:color-mix(in srgb,var(--lg1) 40%,#fff);--lg3:color-mix(in srgb,var(--lg1) 20%,#fff);--lg0:color-mix(in srgb,var(--lg1) 60%,#000)}
 #view-playmat .ph-slot{flex:1 1 0;min-width:0;max-width:64px;max-height:92%;aspect-ratio:5/7;border:1.5px dashed var(--ae-line2,rgba(255,255,255,.22));border-radius:7px;display:grid;place-items:center;color:var(--ae-text4,#6b7a8c);font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin:0 3px}
+.cbm{display:none}
+html[data-cb] .cbm,html[data-cb] .tcg-card::after{content:"";display:block;position:absolute;top:4px;left:26px;width:12px;height:12px;z-index:3;background:#fff;box-shadow:0 0 0 1.5px #000;pointer-events:none}
+html[data-cb] .tcg-card{position:relative}
+html[data-cb] .tcg-card.sym-undefined::after,html[data-cb] .tcg-card.sym-ultimate::after,html[data-cb] .tcg-card.sym-god::after{display:none}
+html[data-cb] .cbm[data-s=red],html[data-cb] .sym-red::after{clip-path:polygon(50% 0,100% 100%,0 100%);box-shadow:none}
+html[data-cb] .cbm[data-s=blue],html[data-cb] .sym-blue::after{border-radius:50%}
+html[data-cb] .cbm[data-s=green],html[data-cb] .sym-green::after{clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);box-shadow:none}
+html[data-cb] .cbm[data-s=yellow],html[data-cb] .sym-yellow::after{clip-path:polygon(50% 0,62% 36%,100% 38%,70% 60%,80% 100%,50% 76%,20% 100%,30% 60%,0 38%,38% 36%);box-shadow:none}
+html[data-cb] .cbm[data-s=purple],html[data-cb] .sym-purple::after{border-radius:2px}
+html[data-cb] .cbm[data-s=white],html[data-cb] .sym-white::after{background:transparent;border:3px solid #fff;border-radius:50%;box-sizing:border-box;box-shadow:0 0 0 1.5px #000,inset 0 0 0 1.5px #000}
+html[data-hc] .tcg-card{border-width:3px}
+html[data-hc] :focus-visible{outline:3px solid #fff;outline-offset:2px;box-shadow:0 0 0 5px #000}
 .mk{--page:#0d1015;--page-fg:#eef1f5;--page-muted:#a9b2c1;--page-line:#ffffff24;--page-panel:#161a22;
 --bg1:#1b2029;--bg2:#11141a;--lattice:#ffffff08;
 --panel:#232935;--panel2:#161a22;--panel3:#0f1218;--line:#ffffff1a;--line2:#ffffff40;
@@ -2277,7 +2289,7 @@ html[data-ts="large"] .mk{font-size:16px;}html[data-ts="larger"] .mk{font-size:1
         <section class="set-card" id="set-s-appearance" aria-label="Appearance"><div class="setrow"><div class="grow"><b id="set-l-mode">Mode</b><span class="sub" style="font-size:.84em">Dark or light board and menus.</span></div><div class="ctl"><span class="seg" id="set-mode" role="group" aria-labelledby="set-l-mode" style="border-color:var(--line2)"><button data-a="theme-mode" data-v="dark" aria-pressed="true">Dark</button><button data-a="theme-mode" data-v="light" aria-pressed="false">Light</button></span></div></div><div class="setrow"><div class="grow"><b id="set-l-color">Your colour</b><span class="sub" style="font-size:.84em">Marks your side: turn banner, zone tags, Life, card glow, buttons. Teal by default, or one of the eight card symbol colours.</span></div><div class="ctl"><div class="sws" id="set-color" role="group" aria-labelledby="set-l-color"></div></div></div><div class="setrow"><div class="grow"><b>Playmat image</b><span class="sub" style="font-size:.84em">Your own picture behind the battle board. It fills the board; edges are trimmed when the shape differs, the centre stays.</span></div><div class="ctl"><label class="btn sm ae-upl"><span>Upload</span><input id="set-mat" type="file" accept="image/*" aria-label="Upload playmat image" hidden></label><button class="btn sm" data-a="set-mat-clear" id="set-mat-clear">Remove</button></div></div><div class="setrow"><div class="grow"><b>CPU colour</b><span class="sub" style="font-size:.84em">Crimson; blue when your colour is red, so the two sides never match.</span></div><div class="ctl"><span class="set-val" id="set-cpucol">Crimson</span></div></div></section>
         <section class="set-card" id="set-s-game" aria-label="Game" hidden><div class="setrow"><div class="grow"><b>Speed</b><span class="sub" style="font-size:.84em">Animation and CPU pause length.</span></div><div class="ctl"><select id="set-speed" class="in" aria-label="Game speed"><option value="slow">Slow</option><option value="normal">Normal</option><option value="fast">Fast</option><option value="instant">Instant</option></select></div></div><div class="setrow"><div class="grow"><b>Style</b><span class="sub" style="font-size:.84em">How the CPU weighs attacks, blocks and plays (balanced is the default).</span></div><div class="ctl"><select id="set-cpu" class="in" aria-label="CPU style"></select></div></div><div class="setrow"><div class="grow"><b>Server URL</b><span class="sub" style="font-size:.84em">Base address of the Aeterna server (http, no trailing slash). Leave empty to use this page's own address when the server serves it; the online room connects to the WebSocket one port up. Online rooms play Standard.</span></div><div class="ctl"><input id="set-online-url" class="in" type="url" placeholder="http://localhost:8080" autocomplete="off" spellcheck="false"></div></div></section>
         <section class="set-card" id="set-s-sound" aria-label="Animation And Sound" hidden><div class="setrow"><div class="grow"><b>Animations</b><span class="sub" style="font-size:.84em">Attack beam, Life shatter and other short battle cues. Reduced keeps only fades. Auto follows the device's reduced-motion setting.</span></div><div class="ctl"><select id="set-anim" class="in" aria-label="Animations"><option value="auto">Auto (device)</option><option value="full">Full</option><option value="reduced">Reduced</option><option value="off">Off</option></select></div></div><div class="setrow"><div class="grow"><b>Sound effects</b><span class="sub" style="font-size:.84em">Short synthesized sounds for attacks, hits, summons and draws (no audio files).</span></div><div class="ctl"><select id="set-sound" class="in" aria-label="Sound"><option value="off">Off</option><option value="on">On</option></select></div></div></section>
-        <section class="set-card" id="set-s-access" aria-label="Accessibility" hidden><div class="setrow"><div class="grow"><b>Long-press for card info</b><span class="sub" style="font-size:.84em">Deck builder on a touch screen: hold a card to read it instead of adding it.</span></div><div class="ctl"><select id="set-lp" class="in" aria-label="Long-press for card info"><option value="on">On</option><option value="off">Off</option></select></div></div><div class="setrow"><div class="grow"><b>Text size</b><span class="sub" style="font-size:.84em">Bigger text on the menu screens (Home, Decks, Library, Settings).</span></div><div class="ctl"><select id="set-ts" class="in" aria-label="Text size"><option value="normal">Normal</option><option value="large">Large</option><option value="larger">Larger</option></select></div></div><div class="setrow"><div class="grow"><b>Keyboard shortcuts</b><span class="sub" style="font-size:.84em">Also opens with the ? key.</span></div><div class="ctl"><button class="btn sm" data-a="shortcuts">Show list</button></div></div></section>
+        <section class="set-card" id="set-s-access" aria-label="Accessibility" hidden><div class="setrow"><div class="grow"><b>Long-press for card info</b><span class="sub" style="font-size:.84em">Deck builder on a touch screen: hold a card to read it instead of adding it.</span></div><div class="ctl"><select id="set-lp" class="in" aria-label="Long-press for card info"><option value="on">On</option><option value="off">Off</option></select></div></div><div class="setrow"><div class="grow"><b>Text size</b><span class="sub" style="font-size:.84em">Bigger text on the menu screens (Home, Decks, Library, Settings).</span></div><div class="ctl"><select id="set-ts" class="in" aria-label="Text size"><option value="normal">Normal</option><option value="large">Large</option><option value="larger">Larger</option></select></div></div><div class="setrow"><div class="grow"><b>Colour-blind markers</b><span class="sub" style="font-size:.84em">Adds a shape to each card colour so colours are never the only signal.</span></div><div class="ctl"><select id="set-cb" class="in" aria-label="Colour-blind markers"><option value="off">Off</option><option value="on">On</option></select></div></div><div class="setrow"><div class="grow"><b>High contrast edges</b><span class="sub" style="font-size:.84em">Thicker card borders and focus rings.</span></div><div class="ctl"><select id="set-hc" class="in" aria-label="High contrast edges"><option value="off">Off</option><option value="on">On</option></select></div></div><div class="setrow"><div class="grow"><b>Keyboard shortcuts</b><span class="sub" style="font-size:.84em">Also opens with the ? key.</span></div><div class="ctl"><button class="btn sm" data-a="shortcuts">Show list</button></div></div></section>
         <section class="set-card" id="set-s-data" aria-label="Cards And Saved Data" hidden><div class="setrow"><div class="grow"><b>Your card images</b><span class="sub" style="font-size:.84em"><span id="set-imgs">Pictures you add in the Library. They stay on this device.</span></span></div><div class="ctl"><button class="btn sm" data-a="go-lib">Open Library</button></div></div><div class="setrow"><div class="grow"><b>Reset settings</b><span class="sub" style="font-size:.84em">Decks, imported cards, images and settings stay in this browser only. Reset puts speed, sound, CPU deck and CPU style back to the defaults.</span></div><div class="ctl"><button class="btn sm dng" data-a="set-reset">Reset</button></div></div></section>
                 <section class="set-card" id="set-s-history" aria-label="Match history" hidden><h3 class="pf-h">Match history</h3>
           <div id="set-hist" class="set-hist"></div>
@@ -2717,7 +2729,7 @@ function bindHost(h) {
    type: 'Spirit' | 'Nexus' | 'Magic'      symbol: card color     symbols: number of symbols
    reduction: {color: n}         levels: [{cores, bp}]  (Nexus levels have no bp)
    --------------------------------------------------------------------- */
-const VERSION = '0.142.0';
+const VERSION = '0.143.0';
 const CARDS = {};
 function defCard(o) {
   CARDS[o.id] = Object.assign({ type: 'Spirit', reduction: {}, symbols: 1, families: [], keywords: [], implemented: true, desc: 'Vanilla test card (no effect).', block: 'A' }, o);
@@ -7514,12 +7526,13 @@ function cardFacePlaceholder(card, withCost, col, extra) {
 }
 function cardFaceHTML(card, withCost) {
   const col = `var(--color-${card.symbol})`;
+  const cbm = `<span class="cbm" data-s="${card.symbol}" aria-hidden="true"></span>`;   // v0.143.0: colour-blind shape marker, shown only when the setting is on
   const src = cardImgSrc(card.id);                              // v0.112.0: player image first, then the online mirror
-  if (!src) return cardFacePlaceholder(card, withCost, col);
+  if (!src) return cbm + cardFacePlaceholder(card, withCost, col);
   // A player blob never fails; the mirrored URL may 404 (the wiki lacks that card), so it carries an
   // onerror that swaps to the text placeholder rendered right behind it.
-  if (IMG[card.id]) return `<img class="cface" style="--card-col:${col}" src="${src}" alt="${esc(card.name)}">`;
-  return `<img class="cface" style="--card-col:${col}" src="${src}" alt="${esc(card.name)}" onerror="this.style.display='none';this.nextElementSibling.style.display=''">${cardFacePlaceholder(card, withCost, col, 'display:none')}`;
+  if (IMG[card.id]) return `${cbm}<img class="cface" style="--card-col:${col}" src="${src}" alt="${esc(card.name)}">`;
+  return `${cbm}<img class="cface" style="--card-col:${col}" src="${src}" alt="${esc(card.name)}" onerror="this.style.display='none';this.nextElementSibling.style.display=''">${cardFacePlaceholder(card, withCost, col, 'display:none')}`;
 }
 /* v0.27: card images for a list of cards (instances or ids), in a strip that scrolls sideways */
 function cardStripHTML(list, head) {
@@ -7761,7 +7774,7 @@ const symCount = c => symbolAttrs(c).length;
 /* Ultimate cards: base colour + gold (frame, cost circle, symbol ring). Rebirth cards: a flip mark on the type badge,
    the rebirth side also gets a double frame. Display only until the Ultimate/Rebirth rules exist (issue #4). */
 const isUltimate = c => c.type === 'Ultimate';
-function cardCls(c) { return (isUltimate(c) ? ' ult' : '') + (isMulti(c) ? ' multi' : '') + (c.rebirthSide ? ' reb-side' : c.rebirthTo ? ' reb' : ''); }
+function cardCls(c) { return (isUltimate(c) ? ' ult' : '') + (isMulti(c) ? ' multi' : '') + (c.rebirthSide ? ' reb-side' : c.rebirthTo ? ' reb' : '') + ' sym-' + c.symbol; }
 function rebMark(c) { return c.rebirthSide ? '<span class="reb-mark" title="Rebirth side">↻</span>' : c.rebirthTo ? '<span class="reb-mark" title="Rebirth card: can flip to its rebirth side">↻</span>' : ''; }
 function symBadgeHTML(id) {
   const c = CARDS[id]; if (!c || c.type === 'Magic') return '';          // Spirits, Ultimates, Nexuses (Grandwalker too) and Braves carry symbols; Magic never
@@ -8076,7 +8089,7 @@ function switchView(id) {
   if (id === 'view-profile') renderProfilePage();
   if (id === 'view-card') renderCardPage();
 }
-function renderSettings() { $('set-hist').innerHTML = histHTML(); $('set-cpu').innerHTML = CPU_PROFILE_NAMES.map(n => `<option value="${n}">${cap(n)}</option>`).join(''); $('set-cpu').value = cpuProfileName(null); $('set-speed').value = SETTINGS.speed; $('set-sound').value = SETTINGS.sound ? 'on' : 'off'; $('set-anim').value = SETTINGS.anim || 'auto'; $('set-lp').value = SETTINGS.longpress === 'off' ? 'off' : 'on'; $('set-ts').value = SETTINGS.textSize || 'normal';
+function renderSettings() { $('set-hist').innerHTML = histHTML(); $('set-cpu').innerHTML = CPU_PROFILE_NAMES.map(n => `<option value="${n}">${cap(n)}</option>`).join(''); $('set-cpu').value = cpuProfileName(null); $('set-speed').value = SETTINGS.speed; $('set-sound').value = SETTINGS.sound ? 'on' : 'off'; $('set-anim').value = SETTINGS.anim || 'auto'; $('set-lp').value = SETTINGS.longpress === 'off' ? 'off' : 'on'; $('set-cb').value = SETTINGS.cbShapes ? 'on' : 'off'; $('set-hc').value = SETTINGS.hiContrast ? 'on' : 'off'; $('set-ts').value = SETTINGS.textSize || 'normal';
   renderSetPage(); $('set-back').hidden = !G || !!G.over; }   // v0.122.0 U14b: Options from a running match shows BACK TO MATCH; v0.68.0 U4: colour grid, Dark/Light, playmat and CPU colour rows (13d-pages.js)
 function renderLobby() {
   renderHome();
@@ -9877,6 +9890,8 @@ async function learnOpen(i) {
 const TEXT_SIZES = ['normal', 'large', 'larger'];
 function applyTextSize() { if (typeof document !== 'undefined') document.documentElement.dataset.ts = TEXT_SIZES.includes(SETTINGS.textSize) ? SETTINGS.textSize : 'normal'; }
 applyTextSize();
+function applyAccess() { if (typeof document !== 'undefined') { const d = document.documentElement.dataset; if (SETTINGS.cbShapes) d.cb = '1'; else delete d.cb; if (SETTINGS.hiContrast) d.hc = '1'; else delete d.hc; } }   // v0.143.0: colour-blind shapes, high contrast edges
+applyAccess();
 const SHORTCUTS = [['?', 'Open this list'], ['Space / Enter', 'Battle: next step (the Next button)'], ['L', 'Battle: open or close the log'], ['Esc', 'Close a dialog, the log or a menu'], ['Tab / Shift+Tab', 'Move between buttons and cards'], ['Enter / Space', 'Press the focused button or card']];
 function shortcutsDialog() {
   if ($('action-modal').classList.contains('active')) return;
@@ -10142,6 +10157,7 @@ document.addEventListener('change', async e => {
   else if (t.id === 'set-mode') { setTheme('mode', t.value); navTools(); if (G) render(); }
   else if (t.id === 'set-anim') { if (['full', 'reduced', 'off'].includes(t.value)) SETTINGS.anim = t.value; else delete SETTINGS.anim; saveSettings(); }
   else if (t.id === 'set-ts') { if (TEXT_SIZES.includes(t.value) && t.value !== 'normal') SETTINGS.textSize = t.value; else delete SETTINGS.textSize; saveSettings(); applyTextSize(); }
+  else if (t.id === 'set-cb' || t.id === 'set-hc') { const k = t.id === 'set-cb' ? 'cbShapes' : 'hiContrast'; if (t.value === 'on') SETTINGS[k] = true; else delete SETTINGS[k]; saveSettings(); applyAccess(); }
   else if (t.id === 'set-lp') { if (t.value === 'off') SETTINGS.longpress = 'off'; else delete SETTINGS.longpress; saveSettings(); }
   else if (t.id === 'set-sound') { SETTINGS.sound = t.value === 'on'; saveSettings(); navTools(); if (SETTINGS.sound) sfx('summon'); }
   else if (t.id === 'lib-set' || t.id === 'lib-sort') { if (t.id === 'lib-sort') LIBF.sort = t.value; $('lib-grid').scrollTop = 0; renderLibrary(); }   // v0.111.0 (card images): the Library browse grid filters
@@ -10453,7 +10469,7 @@ document.addEventListener('click', e => {
   else if (a === 'rv-watch') replayWatch(Number(v));
   else if (a === 'rv-save') replaySave(Number(v));
   else if (a === 'hist-clear') { HISTORY = []; try { localStorage.removeItem(HIST_KEY); } catch (e) { /* blocked */ } renderSettings(); }
-  else if (a === 'set-reset') { SETTINGS.speed = 'normal'; SETTINGS.sound = false; delete SETTINGS.anim; delete SETTINGS.textSize; applyTextSize(); SETTINGS.cpuDeck = 'std03'; SETTINGS.cpuProfile = 'balanced'; delete SETTINGS.cpuRandom; delete SETTINGS.cpuLevel; delete SETTINGS.firstTurn; delete SETTINGS.hints; saveSettings(); renderSettings(); $('set-msg').textContent = 'Settings reset.'; }
+  else if (a === 'set-reset') { SETTINGS.speed = 'normal'; SETTINGS.sound = false; delete SETTINGS.anim; delete SETTINGS.textSize; delete SETTINGS.cbShapes; delete SETTINGS.hiContrast; applyTextSize(); applyAccess(); SETTINGS.cpuDeck = 'std03'; SETTINGS.cpuProfile = 'balanced'; delete SETTINGS.cpuRandom; delete SETTINGS.cpuLevel; delete SETTINGS.firstTurn; delete SETTINGS.hints; saveSettings(); renderSettings(); $('set-msg').textContent = 'Settings reset.'; }
   else if (a === 'go-lib') switchView('view-library');
   else if (a === 'set-sec') setSection(v);
   else if (a === 'set-mat-clear') matClear();

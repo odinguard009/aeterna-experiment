@@ -5,6 +5,8 @@
 const TEXT_SIZES = ['normal', 'large', 'larger'];
 function applyTextSize() { if (typeof document !== 'undefined') document.documentElement.dataset.ts = TEXT_SIZES.includes(SETTINGS.textSize) ? SETTINGS.textSize : 'normal'; }
 applyTextSize();
+function applyAccess() { if (typeof document !== 'undefined') { const d = document.documentElement.dataset; if (SETTINGS.cbShapes) d.cb = '1'; else delete d.cb; if (SETTINGS.hiContrast) d.hc = '1'; else delete d.hc; } }   // v0.143.0: colour-blind shapes, high contrast edges
+applyAccess();
 const SHORTCUTS = [['?', 'Open this list'], ['Space / Enter', 'Battle: next step (the Next button)'], ['L', 'Battle: open or close the log'], ['Esc', 'Close a dialog, the log or a menu'], ['Tab / Shift+Tab', 'Move between buttons and cards'], ['Enter / Space', 'Press the focused button or card']];
 function shortcutsDialog() {
   if ($('action-modal').classList.contains('active')) return;
