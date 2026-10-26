@@ -331,7 +331,7 @@ function summon(p, inst, plan) {
   const card = CARDS[inst.id], c = effCost(p, card); legacyPay(p, inst);
   removeFrom(p.hand, inst); removeFrom(p.soulState, inst); removeFrom(p.removed, inst); inst.inSoulState = false; inst.mirage = false;   // v0.50: Accel Spirits are summoned from the Removed Zone
   payCost(p, c, plan);
-  inst.cores = 0; inst.soul = false; inst.exhausted = false; inst.heavy = false; inst.noAB = false; inst.summonedTurn = G.turnNo; inst.bpMod = 0;
+  inst.viaFC = false; inst.cores = 0; inst.soul = false; inst.exhausted = false; inst.heavy = false; inst.noAB = false; inst.summonedTurn = G.turnNo; inst.bpMod = 0;
   if (isSpiritForm(card)) {
     const got = takeCores(p, card.levels[0].cores, inst.uid);
     inst.cores += got.n; if (got.soul) inst.soul = true;

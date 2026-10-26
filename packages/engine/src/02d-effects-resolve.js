@@ -6,7 +6,7 @@ async function runActions(c, e, trg) {
   if (c.src && c.src.id) { let text = ''; try { text = fxDescribe(e); } catch (x) { /* an unknown action name: the strict / release handling below reports it */ } io.view({ type: 'effect', side: c.p.key, id: c.src.id, text }); }   // v0.125.0 U14d2: the Effect Active panel (display only, never changes the match)
   for (const a of e.actions) {
     if (G.over) return;
-    c.ctx.prev = last; last = false;
+    c.ctx.prev = last; last = false; if (c.ctx.viaFC == null && c.src) c.ctx.viaFC = !!c.src.viaFC;
     if (!fieldList(c.p).includes(c.src) && trg !== 'SUMMONED' && a.do === 'REFRESH') continue;
     if (a.if && !fxIf(c.p, c.opp, a.if, c.ctx)) continue;
     if (!FX_ACTIONS[a.do]) { fxUnknown('action', a.do); continue; }             // v0.59.4 strict effects (release: skip it)
@@ -56,7 +56,7 @@ function fxValid(it) {
   if (e.blockingOnly && (trg === 'BATTLE_WIN' || trg === 'ALLY_BATTLE_WIN') && ctx.attacking) return false;     // v0.74 (When Blocks) battle result: only as the blocker
   if (trg === 'ALLY_SUMMONED' && subj && CARDS[subj.id].type === 'Brave' && !(e.match && e.match.type === 'Brave')) return false;     // a Brave summon is not a Spirit summon (manual p. 35)
   if (e.once && usedThisTurn(owner, f, idx, e)) return false;
-  if (!fxIf(owner, opp, e.if, ctx)) return false;
+  if (!fxIf(owner, opp, e.if, ctx.viaFC == null ? Object.assign({}, ctx, { viaFC: !!f.viaFC }) : ctx)) return false;
   return fxCan({ p: owner, opp, src: f, ctx }, e);
 }
 async function fireFxMulti(events) {
@@ -251,7 +251,7 @@ async function cpuAdvents(p) {
   }
 }
 /* ACTIVATE effects: a button on the field card (Main Step; Flash windows for Spirits are not wired yet) */
-const onceKey = (f, idx) => `${f.id}#${idx}`;
+const onceKey = (f, idx) => `${CARDS[f.id].name}#${idx}`;      // v0.135: "the same card name once per turn" is the printed name, so two printings of one card share the limit
 /* e.onceKey (v0.33): effects of one card that share a name share one "once per turn" (e.g. "(When Summoned/Attacks) (Once per Turn)") */
 function usedThisTurn(p, f, idx, e) { const k = e.onceKey || idx; return e.sameName ? !!p.onceUsed && p.onceUsed[onceKey(f, k)] === G.turnNo : !!f.fxUsed && f.fxUsed[k] === G.turnNo; }
 function markUsed(p, f, idx, e) { const k = e.onceKey || idx; if (e.sameName) { p.onceUsed = p.onceUsed || {}; p.onceUsed[onceKey(f, k)] = G.turnNo; } else { f.fxUsed = f.fxUsed || {}; f.fxUsed[k] = G.turnNo; } }

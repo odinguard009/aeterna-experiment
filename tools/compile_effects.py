@@ -714,7 +714,15 @@ INVOKE_HEADS = {'(Your Attack Step)': 'yourAttack', '(Opposing Attack Step)': 'o
                 '(Your Turn)': 'yourTurn', '(During Attack)': 'duringAttack', '(During Block)': 'duringBlock', '(During Attack/Block)': 'duringAttackBlock'}
 
 
+# v0.135 Form Change: {{F Change|"Gaim" & Cost 6}} {{Invoke|Main}} -> a marker the Invoke paragraph reads (schema v8 FORM_CHANGE)
+FC_TPL = re.compile(r'\{\{\s*F Change\s*\|\s*"([^"]+)"\s*&\s*Cost\s*(\d+(?:/\d+)*)\s*\}\}\s*', re.I)
+FC_MARK = re.compile(r'⟦FC:([^:⟧]+):([\d/]+)⟧')
+FC_NAME = {'Parado': 'Para-DX'}      # house reading: the printed "Parado" is the Para-DX cards (their data family is EX-AID; no card name contains "Parado")
+FC_BODY = re.compile(r'^Return this exhausted Spirit to the Hand, and you must summon a Cost ([\d/]+) "([^"]+)" with a different name from your Hand, without paying the cost\.?$', re.I)
+
+
 def invoke_mark(t):
+    t = FC_TPL.sub(lambda m: ' ⟦FC:%s:%s⟧ ' % (m.group(1), m.group(2)), t or '') if t else t
     return INVOKE_TPL.sub(lambda m: ' \u27e6INVOKE:%s\u27e7 ' % m.group(1).upper(), t or '') if t else t
 
 
@@ -740,6 +748,8 @@ def invoke_para(p, card, lv, rush):
     if rush: raise Review('Rush with Invoke')
     m = re.match(r'^(.*?)\u27e6INVOKE:(FLASH|MAIN)\u27e7\s*(\(Once Per (Turn|Battle)\))?\s*(.*)$', p)
     pre, kind, oncep, body = m.group(1).strip(), m.group(2), m.group(4), m.group(5).strip()
+    fc = FC_MARK.search(pre)
+    if fc: pre = FC_MARK.sub('', pre).strip()
     when, main_only = None, False
     for h in re.findall(r'\([^)]*\)', pre):
         if h in INVOKE_HEADS and when is None: when = INVOKE_HEADS[h]
@@ -754,6 +764,11 @@ def invoke_para(p, card, lv, rush):
     same, acts = False, []
     for s in sentences(body):
         if re.fullmatch(r'You can only use this effect of the same card name once per turn\.?', s.strip(), re.I): same = True; continue
+        if fc:      # v0.135 Form Change: the one body sentence must agree with the template, then it is one FORM_CHANGE action
+            b = FC_BODY.match(s.strip())
+            if not b or b.group(1) != fc.group(2) or b.group(2) != fc.group(1) or kind != 'MAIN' or cost: raise Review('Form Change body: ' + s[:100])
+            acts.append({'do': 'FORM_CHANGE', 'match': {'name': [FC_NAME.get(fc.group(1), fc.group(1))]}, 'costIn': [int(x) for x in fc.group(2).split('/')]})
+            continue
         a, _o = action_of(s, {'trigger': ['ACTIVATE']})
         acts += a
     if not acts: raise Review('Invoke without an effect')

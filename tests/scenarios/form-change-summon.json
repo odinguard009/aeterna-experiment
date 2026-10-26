@@ -1,0 +1,24 @@
+{
+  "name": "form-change-summon",
+  "about": "v0.135.0: {{F Change|\"Nox\" & Cost 5}} {{Invoke|Main}} - the exhausted Kamen Rider Nox Wolf Shadow (26RCB01-019) returns to the Hand and the Cost 5 \"Nox\" card in the Hand (Kamen Rider Nox Gun Shadow, 26RCB01-021) is summoned without paying; the effect is limited to once per turn per card name.",
+  "rules": [
+    "ETR:faq.effects-q9@36e11865"
+  ],
+  "turn": 3,
+  "active": "player",
+  "step": 4,
+  "players": {
+    "player": {
+      "reserve": 4,
+      "hand": [
+        { "id": "26RCB01-021", "as": "target" }
+      ],
+      "spirits": [
+        { "id": "26RCB01-019", "cores": 1, "exhausted": true, "as": "source" }
+      ]
+    },
+    "opponent": {
+      "reserve": 3
+    }
+  }
+}

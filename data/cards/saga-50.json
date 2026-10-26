@@ -16658,7 +16658,7 @@
    "ZEZTZ",
    "Kamen"
   ],
-  "text": "[LV1-2] {{F Change|\"Nox\" & Cost 5}} {{Invoke|Main}}\nReturn this exhausted Spirit to the Hand, and you must summon a Cost 5 \"Nox\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn.",
+  "text": "[LV1][LV2] {{F Change|\"Nox\" & Cost 5}} {{Invoke|Main}}\nReturn this exhausted Spirit to the Hand, and you must summon a Cost 5 \"Nox\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn.",
   "image": "26RCB01-019.png",
   "block": "A",
   "saga": 50,
@@ -16666,11 +16666,36 @@
   "mechanics": [
    "Form Change"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] {{F Change|\"Nox\" & Cost 5}} {{Invoke|Main}} Return this exhausted Spirit to the Hand, and you must summon a Cost 5 \"Nox\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn."
+  "effects": [
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN"
+    ],
+    "once": true,
+    "sameName": true,
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "FORM_CHANGE",
+      "match": {
+       "name": [
+        "Nox"
+       ]
+      },
+      "costIn": [
+       5
+      ]
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RCB01-020",
@@ -16732,7 +16757,7 @@
    "ZEZTZ",
    "Kamen"
   ],
-  "text": "[LV1-2] (During Attack)\nThis Spirit gains +1000 BP.\n\n[LV2] {{F Change|\"Nox\" & Cost 6}} {{Invoke|Main}}\nReturn this exhausted Spirit to the Hand, and you must summon a Cost 6 \"Nox\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn.",
+  "text": "[LV1][LV2] (During Attack)\nThis Spirit gains +1000 BP.\n\n[LV2] {{F Change|\"Nox\" & Cost 6}} {{Invoke|Main}}\nReturn this exhausted Spirit to the Hand, and you must summon a Cost 6 \"Nox\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn.",
   "image": "26RCB01-021.png",
   "block": "A",
   "saga": 50,
@@ -16749,13 +16774,35 @@
      1,
      2
     ]
+   },
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN"
+    ],
+    "once": true,
+    "sameName": true,
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "FORM_CHANGE",
+      "match": {
+       "name": [
+        "Nox"
+       ]
+      },
+      "costIn": [
+       6
+      ]
+     }
+    ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV2] {{F Change|\"Nox\" & Cost 6}} {{Invoke|Main}} Return this exhausted Spirit to the Hand, and you must summon a Cost 6 \"Nox\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RCB01-022",
@@ -16869,7 +16916,7 @@
    "ZEZTZ",
    "Kamen"
   ],
-  "text": "(Legacy)\n[LV1-2] {{F Change|\"Zeztz\" & Cost 7}} {{Invoke|Main}}\nReturn this exhausted Spirit to the Hand, and you must summon a Cost 7 \"Zeztz\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn.\n\n[LV2] (When Attacks)\nTarget an opposing Cost 5 or less Spirit. Send cores from it to the Reserve until one core remains. (The opponent chooses which cores to send)",
+  "text": "(Legacy)\n[LV1][LV2] {{F Change|\"Zeztz\" & Cost 7}} {{Invoke|Main}}\nReturn this exhausted Spirit to the Hand, and you must summon a Cost 7 \"Zeztz\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn.\n\n[LV2] (When Attacks)\nTarget an opposing Cost 5 or less Spirit. Send cores from it to the Reserve until one core remains. (The opponent chooses which cores to send)",
   "image": "26RCB01-024.png",
   "block": "A",
   "saga": 50,
@@ -16878,6 +16925,32 @@
   ],
   "legacy": true,
   "effects": [
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN"
+    ],
+    "once": true,
+    "sameName": true,
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "FORM_CHANGE",
+      "match": {
+       "name": [
+        "Zeztz"
+       ]
+      },
+      "costIn": [
+       7
+      ]
+     }
+    ]
+   },
    {
     "trigger": "ATTACKS",
     "lv": [
@@ -16894,11 +16967,8 @@
     ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] {{F Change|\"Zeztz\" & Cost 7}} {{Invoke|Main}} Return this exhausted Spirit to the Hand, and you must summon a Cost 7 \"Zeztz\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RCB01-025",
@@ -26423,7 +26493,7 @@
    "ZEZTZ",
    "Kamen"
   ],
-  "text": "[LV1-2] {{F Change|\"Zeztz\" & Cost 3}} {{Invoke|Main}}\nReturn this exhausted Spirit to the Hand, and you must summon a Cost 3 \"Zeztz\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn.",
+  "text": "[LV1][LV2] {{F Change|\"Zeztz\" & Cost 3}} {{Invoke|Main}}\nReturn this exhausted Spirit to the Hand, and you must summon a Cost 3 \"Zeztz\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn.",
   "image": "26RSD07-004.png",
   "block": "A",
   "saga": 50,
@@ -26431,11 +26501,36 @@
   "mechanics": [
    "Form Change"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] {{F Change|\"Zeztz\" & Cost 3}} {{Invoke|Main}} Return this exhausted Spirit to the Hand, and you must summon a Cost 3 \"Zeztz\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn."
+  "effects": [
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN"
+    ],
+    "once": true,
+    "sameName": true,
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "FORM_CHANGE",
+      "match": {
+       "name": [
+        "Zeztz"
+       ]
+      },
+      "costIn": [
+       3
+      ]
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RSD07-005",
@@ -26462,7 +26557,7 @@
    "ZEZTZ",
    "Kamen"
   ],
-  "text": "[LV1-2] {{F Change|\"Zeztz\" & Cost 4}} {{Invoke|Main}}\nReturn this exhausted Spirit to the Hand, and you must summon a Cost 4 \"Zeztz\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn.\n\n[LV2] (During Attack)\nThis Spirit gains +2000 BP.",
+  "text": "[LV1][LV2] {{F Change|\"Zeztz\" & Cost 4}} {{Invoke|Main}}\nReturn this exhausted Spirit to the Hand, and you must summon a Cost 4 \"Zeztz\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn.\n\n[LV2] (During Attack)\nThis Spirit gains +2000 BP.",
   "image": "26RSD07-005.png",
   "block": "A",
   "saga": 50,
@@ -26470,6 +26565,32 @@
    "Form Change"
   ],
   "effects": [
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN"
+    ],
+    "once": true,
+    "sameName": true,
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "FORM_CHANGE",
+      "match": {
+       "name": [
+        "Zeztz"
+       ]
+      },
+      "costIn": [
+       4
+      ]
+     }
+    ]
+   },
    {
     "trigger": "STATIC",
     "bp": 2000,
@@ -26480,11 +26601,8 @@
     ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] {{F Change|\"Zeztz\" & Cost 4}} {{Invoke|Main}} Return this exhausted Spirit to the Hand, and you must summon a Cost 4 \"Zeztz\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RSD07-006",
@@ -26544,18 +26662,43 @@
    "ZEZTZ",
    "Kamen"
   ],
-  "text": "[LV1-2] {{F Change|\"Zeztz\" & Cost 5}} {{Invoke|Main}}\nReturn this exhausted Spirit to the Hand, and you must summon a Cost 5 \"Zeztz\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn.",
+  "text": "[LV1][LV2] {{F Change|\"Zeztz\" & Cost 5}} {{Invoke|Main}}\nReturn this exhausted Spirit to the Hand, and you must summon a Cost 5 \"Zeztz\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn.",
   "image": "26RSD07-007.png",
   "block": "A",
   "saga": 50,
   "mechanics": [
    "Form Change"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] {{F Change|\"Zeztz\" & Cost 5}} {{Invoke|Main}} Return this exhausted Spirit to the Hand, and you must summon a Cost 5 \"Zeztz\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn."
+  "effects": [
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN"
+    ],
+    "once": true,
+    "sameName": true,
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "FORM_CHANGE",
+      "match": {
+       "name": [
+        "Zeztz"
+       ]
+      },
+      "costIn": [
+       5
+      ]
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RSD07-008",
@@ -26618,15 +26761,37 @@
    "ZEZTZ",
    "Kamen"
   ],
-  "text": "[LV1-2] (When Summoned)\nDraw a card. If summoned via Form Change, draw two cards instead.",
+  "text": "[LV1][LV2] (When Summoned)\nDraw a card. If summoned via Form Change, draw two cards instead.",
   "image": "26RSD07-009.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Summoned) Draw a card. If summoned via Form Change, draw two cards instead."
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1,
+      "if": {
+       "viaFormChange": false
+      }
+     },
+     {
+      "do": "DRAW",
+      "n": 2,
+      "if": {
+       "viaFormChange": true
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RSD07-010",
@@ -26908,7 +27073,7 @@
    "ZEZTZ",
    "Kamen"
   ],
-  "text": "(Legacy)\n[LV1-2] {{F Change|\"Zeztz\" & Cost 8/9}} {{Invoke|Main}}\nReturn this exhausted Spirit to the Hand, and you must summon a Cost 8/9 \"Zeztz\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn.\n\n[LV2] (True Release) (When Attacks)\nTarget an opposing Spirit. Send a core, besides , from it to the Reserve.",
+  "text": "(Legacy)\n[LV1][LV2] {{F Change|\"Zeztz\" & Cost 8/9}} {{Invoke|Main}}\nReturn this exhausted Spirit to the Hand, and you must summon a Cost 8/9 \"Zeztz\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn.\n\n[LV2] (True Release) (When Attacks)\nTarget an opposing Spirit. Send a core, besides , from it to the Reserve.",
   "image": "26RSD07-X02.png",
   "block": "A",
   "saga": 50,
@@ -26918,6 +27083,33 @@
   "legacy": true,
   "trueRelease": true,
   "effects": [
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN"
+    ],
+    "once": true,
+    "sameName": true,
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "FORM_CHANGE",
+      "match": {
+       "name": [
+        "Zeztz"
+       ]
+      },
+      "costIn": [
+       8,
+       9
+      ]
+     }
+    ]
+   },
    {
     "trigger": "ATTACKS",
     "lv": [
@@ -26932,11 +27124,8 @@
     ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] {{F Change|\"Zeztz\" & Cost 8/9}} {{Invoke|Main}} Return this exhausted Spirit to the Hand, and you must summon a Cost 8/9 \"Zeztz\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RSD08-001",

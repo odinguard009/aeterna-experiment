@@ -3,7 +3,7 @@ const canPlaceBraveFree = (p, inst) => CARDS[inst.id].type === 'Brave' && minCor
 async function summonFree(p, inst, opts) {           // summon/deploy without paying the cost (Lv1 cores still come from your cores)
   const card = CARDS[inst.id];
   removeFrom(p.hand, inst); removeFrom(p.soulState, inst); removeFrom(p.trash, inst); removeFrom(p.standby, inst); inst.inSoulState = false; if (p.limbo === inst) p.limbo = null;       // a Burst card that is summoned leaves the resolving zone
-  inst.mirage = false; inst.cores = 0; inst.soul = false; inst.exhausted = false; inst.heavy = false; inst.noAB = false; inst.summonedTurn = G.turnNo; inst.bpMod = 0;
+  inst.viaFC = !!(opts && opts.formChange); inst.mirage = false; inst.cores = 0; inst.soul = false; inst.exhausted = false; inst.heavy = false; inst.noAB = false; inst.summonedTurn = G.turnNo; inst.bpMod = 0;
   if (card.type === 'Spirit' || card.type === 'Brave' || card.type === 'Ultimate') {
     if (opts && opts.soul) inst.soul = true;                                   // v0.46 Ultra Manifest: the Soul Core is already on this card
     const got = takeCores(p, Math.max(0, card.levels[0].cores - (inst.soul ? 1 : 0)), inst.uid);
@@ -42,7 +42,7 @@ function parseCond(c) {
     const okStr = (k === 'controlName' || k === 'hasName' || k === 'soulOn' || k === 'nexusBraved') && typeof v === 'string' && v.length > 0 && v.length <= 60;
     const okCol = k === 'hasSymbol' && COLORS.includes(v);
     const okStep = k === 'step' && STEPS.includes(v);
-    const okBool = (k === 'byOpp' || k === 'byOppFx' || k === 'utHit' || k === 'prev' || k === 'sealed' || k === 'oppTurn' || k === 'attackStep' || k === 'oppRemovedSpirit' || k === 'oppNoAB' || k === 'burstSet' || k === 'oppBurstSet' || k === 'fewerSpirits') && typeof v === 'boolean';
+    const okBool = (k === 'byOpp' || k === 'byOppFx' || k === 'utHit' || k === 'prev' || k === 'sealed' || k === 'oppTurn' || k === 'attackStep' || k === 'oppRemovedSpirit' || k === 'oppNoAB' || k === 'burstSet' || k === 'oppBurstSet' || k === 'fewerSpirits' || k === 'viaFormChange') && typeof v === 'boolean';
     const okNexus = k === 'nexusGe' && v && typeof v === 'object' && (v.n == null || (Number.isInteger(v.n) && v.n >= 1 && v.n <= 5)) && (v.colors == null || (Array.isArray(v.colors) && v.colors.length && v.colors.every(y => COLORS.includes(y))))
       && (v.family == null || (typeof v.family === 'string' && v.family)) && Object.keys(v).every(y => ['n', 'colors', 'family'].includes(y));   // v0.77
     const okCtrl = k === 'ctrl' && [].concat(v).length > 0 && [].concat(v).every(x => x && typeof x === 'object' && ['Spirit', 'Ultimate', 'Both'].includes(x.type) && (x.n == null || (Number.isInteger(x.n) && x.n >= 1 && x.n <= 5))

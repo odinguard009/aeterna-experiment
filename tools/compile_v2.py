@@ -538,6 +538,7 @@ def cond_of(x):
     if m: return {'nexusGe': {'n': 1, 'colors': [m.group(1).lower()]}}      # v0.77
     c = v1.all_have_cond(x)
     if c: return c
+    if re.fullmatch(r'(?:you )?(?:are |is |was )?summoned via form change', x, re.I): return {'viaFormChange': True}      # v0.135 (schema v8)
     m = CTRL_ANY.fullmatch(x)
     if m:
         q = {'n': 1, 'type': 'Both' if '/' in m.group(4) else m.group(4).capitalize()}
@@ -569,6 +570,9 @@ EOB_TRIG = {'ATTACKS', 'BLOCKS', 'ATTACKS+BLOCKS'}
 SUBJ_REFRESH = re.compile(r'^refresh (?:that spirit|the (?:blocking|attacking|battling) spirit)(?: you control)?\.?$', re.I)
 
 
+FC_INSTEAD = re.compile(r'^(.+?\.)\s+If summoned via Form Change, (.+?) instead\.?$', re.I)
+
+
 def action_of(s, ctx):
     trig = set((ctx or {}).get('trigger') or ()) if isinstance(ctx, dict) else set()
     m = EOB_LEAD.match(s.strip())
@@ -581,6 +585,11 @@ def action_of(s, ctx):
         return [{'do': 'DESTROY_SELF'}], False      # v0.78 the source destroys itself (own effect)
     if 'ALLY_BATTLE_WIN' in trig and SUBJ_REFRESH.match(s.strip()):      # v0.78 your Spirit that won the battle
         return [{'do': 'REFRESH', 'to': 'subject'}], False
+    m = FC_INSTEAD.match(s.strip())
+    if m:      # v0.135 "A. If summoned via Form Change, B instead.": A runs unless summoned via Form Change, B runs when it was (both must read on their own)
+        a1, o1 = action_of(m.group(1).strip(), ctx); b0 = m.group(2).strip(); a2, o2 = action_of(b0[0].upper() + b0[1:], ctx)
+        if o1 or o2 or len(a1) != 1 or len(a2) != 1 or any('if' in y for y in a1 + a2): raise Review('sentence: ' + s[:140])
+        return [dict(a1[0], **{'if': {'viaFormChange': False}}), dict(a2[0], **{'if': {'viaFormChange': True}})], False
     m = COND_LEAD.match(s.strip())
     cond = cond_of(m.group(1)) if m else None
     if cond:
@@ -620,6 +629,8 @@ def sentences(body):
             out[-1] = out[-1] + ' ' + x      # v0.68: "... give it -N BP. Then, if it has 0 BP, destroy it." is one effect
         elif out and REVEAL_HEAD.match(out[-1]) and not REVEAL_REST.search(out[-1]):
             out[-1] = out[-1] + ' ' + x      # v0.69: "Reveal N cards from your decktop." + "Among them, add ..." + "Return any remaining cards ..." is one effect
+        elif out and re.fullmatch(r'If summoned via Form Change, .+ instead\.?', x.strip(), re.I) and out[-1].endswith('.'):
+            out[-1] = out[-1] + ' ' + x      # v0.135: the replacement belongs to the sentence before it
         elif out and re.fullmatch(WHEN_FX_TAIL + r'\.?', x.strip(), re.I) and out[-1].endswith('.'):
             out[-1] = out[-1] + ' ' + x      # v0.77: "When this effect destroys any Spirit, draw a card." belongs to the sentence before it
         elif out and re.match(r'^(?:if you control [^,.]+, )?(?:(?:you can|you may) )?target ', out[-1], re.I) and out[-1].endswith('.'):
