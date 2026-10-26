@@ -261,3 +261,7 @@ navSync();
 renderLobby();
 loadImages();
 if (SIM) startNewGame();
+{   // U16: the loading screen (first element of the page) fades out when boot is done; removed at once in sims, tests and reduced / off animation
+  const ld = $('loader');
+  if (ld) { if (SIM || navigator.webdriver || animMode() !== 'full') ld.remove(); else { ld.classList.add('done'); setTimeout(() => ld.remove(), 700); } }
+}

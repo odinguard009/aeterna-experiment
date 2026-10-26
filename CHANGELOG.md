@@ -4,6 +4,15 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.139.0
+- Lane: U/I
+- **Brand logo, favicon and loading screen (U16).** UI only; no engine change. Backup: `backup/v0.138.0`.
+  - **Logo:** the approved torii + six-gem emblem (`docs/design/aeterna-sigil-torii-gems-v2.svg`, no text inside) now sits left of the AETERNA wordmark in the PC header and the phone header (inline SVG symbol, symbol silhouettes only).
+  - **Favicon:** simplified variant (torii + ring only, `docs/design/aeterna-favicon.svg`, embedded as an SVG data URI); checked at 16, 32 and 180 px. No `apple-touch-icon`: a PNG would break the "no base64 images" budget B06.
+  - **Loading screen:** the approved animation (ring draws, torii rises, gems pop) is the first element of the page, pure inline SVG + CSS, transform / opacity only, no network. Boot is synchronous, so the screen fades out (0.6 s) the moment the app is ready; it is removed at once in sims, under automation and when animation is Reduced / Off or the device asks for reduced motion. The standalone `setProgress` API of the design file is not used (nothing to measure during a synchronous boot).
+  - Size budgets B01 935 -> 965 KB and B02 264 -> 275 KB raised on purpose (~17 KB for loader + logo symbol).
+  - Not checked: the loader animation on a real phone (screenshots from a 390 px desktop emulation only).
+
 ## v0.138.0
 - Lane: U/I
 - **Step animations, Slow speed, Text size, shortcuts list, dialogs in the mockup style.** Engine: display-only view records, no rule change. Backup: `backup/v0.137.0`.

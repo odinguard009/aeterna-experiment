@@ -3,8 +3,8 @@
   "title": "Aeterna",
   "tagline": "From tested engine to a simulator that plays like Aegis",
   "waitingHtml": "<b>Waiting on you:</b> nothing; Report Bug and missions / ranks / avatars are decided (2026-10-25).",
-  "updated": "25 Oct 2026",
-  "updatedAt": "0.134.0",
+  "updated": "27 Oct 2026",
+  "updatedAt": "0.139.0",
   "next": "next: card sessions (K) with Standard first; the v14 UI/UX redesign is done ( card commands, animations, battle phone, deck builder, library + lore, pages, dialogs + Report Bug), then card sessions (K) with Standard first"
  },
  "phases": [
@@ -871,8 +871,8 @@
      "t": "U15 (v0.134.0) Missions, ranks, achievements, avatars, daily missions (owner approved 2026-10-25; local progress first, after U14a-U14i)"
     },
     {
-     "s": "next",
-     "t": "U16 Brand logo + loading screen (owner 2026-10-26): torii + six-gem logo in header and favicon, inline loader as start screen; after the mockup-parity series, BEFORE the frontend audit"
+     "s": "done",
+     "t": "U16 (v0.139.0) Brand logo in both headers, simplified favicon, inline loading screen (owner 2026-10-26); next: frontend audit, then fix all findings"
     },
     {
      "s": "later",
