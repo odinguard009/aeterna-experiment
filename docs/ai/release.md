@@ -23,24 +23,25 @@ Generated docs (unlock report, pack plan with measured yield, mechanic inventory
 
 ## Triggers in this repository (v0.106.0)
 
-Pushes to `main` do **not** start a workflow run here. Verified on 2026-10-24: a clean push
-(`94bbf9f..b1ede8d`) produced no run within a minute, and the whole run history of the repository is
-`workflow_dispatch` - no `push`, `pull_request`, `schedule` or `workflow_run` run has ever been
-recorded. The workflow files, the token scopes (`repo`, `workflow`) and the repository's Actions
-setting (`enabled`, `allowed_actions: all`) are all correct, so the cause sits above the repository
-(account or GitHub App level) and is not something a session can change.
+**Update 2026-10-26 (v0.137.1): pushes to `main` start CI and `workflow_run` fires again.** Measured on the v0.137.0 release
+push (`3a71282`): a `push` run of CI started, and `Release` / `Deploy Pages` started as `workflow_run` (skipped by their
+conditions, which is fine). The earlier finding (2026-10-24: no `push`, `schedule` or `workflow_run` run ever started) no
+longer holds, so do not rely on it.
 
-What the session does instead, so nothing depends on the broken trigger:
+Since the same day the `Release` workflow (`workflow_run` after a green CI) creates the GitHub Release by itself (v0.137.0 was made that way, then `release.sh` was redundant); check `gh release list` before running `release.sh`.
 
-- **one command does the release tail** (`tools/release.sh`, v0.107.0): `bash tools/release.sh <version>`
-  dispatches CI, waits for it to turn green, then creates the release via `tools/make_releases.sh`
-  (idempotent - skips versions that already exist - and fails loudly when CI is red). Run it after the
-  version bump + CHANGELOG + roadmap are committed and pushed; on a memory-tight Codespace push with
+Rules that follow:
+
+- **never dispatch CI on top of a running or green run of the same commit**: `ci.yml` has `cancel-in-progress: true`, so a
+  dispatch and the push run cancel each other and `release.sh` saw "cancelled". `tools/release.sh` now dispatches only when
+  no non-cancelled CI run exists for the commit, and ignores cancelled runs while waiting;
+- **one command does the release tail** (`tools/release.sh`, v0.107.0): `bash tools/release.sh <version>` waits for the CI
+  run of the commit to turn green (dispatching one only if none exists), then creates the release via
+  `tools/make_releases.sh` (idempotent - skips versions that already exist - and fails loudly when CI is red). Run it after
+  the version bump + CHANGELOG + roadmap are committed and pushed; on a memory-tight Codespace push with
   `BS_TEST_CONC=1 git push` so the pre-push quick tests run serially;
-- `workflow_run` does not fire either (measured: the `Release` workflow did not start after a green CI
-  on `8441d3d`), so `release.yml`'s relaxed condition and CI's nightly `schedule` are forward-looking
-  settings, not something a session may rely on. They cost nothing and start working the day the
-  account-level cause is fixed; until then the session is the trigger;
+- **do not push anything under `tools/`, `packages/`, `apps/` while a release CI run is in progress** (it cancels that run);
+  docs-only pushes are ignored by CI (`paths-ignore`);
 - CI also runs nightly at 19:23 UTC, so `main` is verified even in a week with no session;
 - `Regression` stays a manual dispatch (`tools/regression_due.sh` decides), and `v0.106.0` widened
   its "core engine" rule to every `packages/engine` and `packages/protocol` source.
