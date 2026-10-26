@@ -84,9 +84,9 @@ function openZoom(id, uid) {
   /* Aegis-style: landscape / PC = card left, scrolling detail panel right; portrait = card on top, scrolling panel below */
   const W = window.innerWidth, H = window.innerHeight, land = W >= H * 1.1;
   const zw = land ? Math.round(Math.max(150, Math.min(420, (H - 32) / 1.4, W * 0.4))) : Math.round(Math.max(150, Math.min(360, W * 0.62, H * 0.45 / 1.4)));
-  z.style.setProperty('--zw', zw + 'px'); z.classList.toggle('land', land);
-  z.innerHTML = `<div class="zc-card">${cardFaceHTML(card, true)}</div><div class="zc-side"><div class="zc-info" data-a="zoominfo">${uid != null && G ? liveStatusHTML(fieldList(G.p.player).concat(fieldList(G.p.opponent)).find(x => x.uid === uid)) : ''}${cardDetailHTML(card, true)}</div><button class="modal-btn cancel zc-close" data-a="zoomclose">Close</button></div>`;
-  z.classList.add('active');
+  z.dataset.id = id; z.style.setProperty('--zw', zw + 'px'); z.classList.toggle('land', land);
+  z.innerHTML = `<div class="zc-card">${cardFaceHTML(card, true)}</div><div class="zc-side"><div class="zc-info" data-a="zoominfo">${uid != null && G ? liveStatusHTML(fieldList(G.p.player).concat(fieldList(G.p.opponent)).find(x => x.uid === uid)) : ''}${cardDetailHTML(card, true)}${uid == null && $('view-library').classList.contains('active') ? cardPageHTML(id) : ''}</div><button class="modal-btn cancel zc-close" data-a="zoomclose">Close</button></div>`;
+  z.classList.add('active'); cardTilt(z.querySelector('.zc-card'));
 }
 function handButtons(p, inst, withDetail) {
   const card = CARDS[inst.id], c = effCost(p, card), buttons = [];

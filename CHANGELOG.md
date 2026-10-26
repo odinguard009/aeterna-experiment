@@ -4,6 +4,13 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.132.0
+- Lane: U/I
+- Time: ~25 min (session start → release), claude-sonnet-5-5.
+- **U14g2 Library card page.** Opening a card from the Library now shows, under the card detail: **Related cards** (other printings with the same name, tap to switch), **Used in decks** (your saved decks that hold the card, with the count) and **Alternative art** (pick the picture of another printing for this card; kept in this browser, one tap returns to the original). The card face tilts with the pointer when animations are Full.
+  - Only in the Library, never during a match. Display only: no rule changes. The art list is the printings the card data already knows; no new image source was added.
+  - Budgets: B01 772 -> 780 KB and B02 218 -> 220 KB on purpose. Tests: `tests/unit/library_cardpage.test.mjs` (CP1-CP3).
+
 ## v0.131.0
 - Lane: U/I
 - Time: ~60 min (session start → release), claude-sonnet-5-5; tokens not counted (no gate counter in this harness).

@@ -113,7 +113,7 @@ CPU_PROFILES, CPU_PROFILE_NAMES, CPU_SIM_PROFILES, cpuProfileName, cpuW, lifeVal
 ## apps/web/src/10-modals.js (149 lines, ~2.5k tokens) — MODALS (promise based)
 modalKind, paintModal, uiInfo, modal, PEEK, endPeek, paintPeek, startPeek, peekRefresh, closeModal, modalPress, PICK, clearPick, webPick, webPayment
 
-## apps/web/src/11-human.js (212 lines, ~4.7k tokens) — HUMAN ACTIONS: the dialogs of the human seat. Board actions are intent records (v0.84.0, F3 = M3 rest):
+## apps/web/src/11-human.js (212 lines, ~4.8k tokens) — HUMAN ACTIONS: the dialogs of the human seat. Board actions are intent records (v0.84.0, F3 = M3 rest):
 humanCan, legalityHTML, FX_KW_START, FX_LINE_STOP, effectLines, fxMark, slashBreak, effectTextHTML, cardDetailHTML, residualHTML, cardFacePlaceholder, cardFaceHTML, cardStripHTML, mullCardHTML, openZoom, handButtons, HAND_INTENTS, runHandAction, humanCast, humanAttack, onNext, showCardDetail, openHandModal, openFieldModal
 
 ## apps/web/src/12-zones.js (70 lines, ~1.6k tokens) — ZONES, LOG, RULES COVERAGE
@@ -161,7 +161,10 @@ EMOTES, EMOTE_GAP, EMOTE_AT, emoteLeft, effectPanel, emotePop, emoteSend
 ## apps/web/src/13m-lore.js (23 lines, ~0.5k tokens) — LORE (v0.131.0, U14g; docs/design/mockup-v14.html): the English flavor texts of the cards, read in order by series.
 LORE_SET, lore, loreSeries, renderLore
 
-## apps/web/src/14-images.js (239 lines, ~4.3k tokens) — CARD IMAGES
+## apps/web/src/13n-cardpage.js (26 lines, ~0.6k tokens) — CARD PAGE (v0.132.0, U14g2; docs/design/mockup-v14.html): what the Library's card zoom adds under the card detail: the same
+ART_KEY, ART_ALT, sameName, usedInDecks, setArt, cardPageHTML, cardTilt
+
+## apps/web/src/14-images.js (240 lines, ~4.3k tokens) — CARD IMAGES
 IMG, IDB, normKey, idbOpen, idbTx, setImg, loadImages, shrinkImage, stripExt, findCardByFile, findCardByKey, importImages, clearImages, cardImgSrc, imgCls, imgSty, refreshViews, libMsg, renderLibrary, LIBV, LIB_GAP, libSetOf, libFilter, libCardHTML, libWindow, renderLibraryGrid, libScroll, libSearchInput, deckToText, textToDeck, downloadText, readFileText, libAction
 
 ## packages/engine/src/15-match.js (69 lines, ~1.4k tokens) — MATCH START / END
@@ -170,5 +173,5 @@ closeMatch, startNewGame, matchSummary
 ## packages/engine/src/15b-replay.js (109 lines, ~2.5k tokens) — REPLAY RECORDS (v0.85.0, phase F4 = monorepo step M4 part 1; docs/ai/monorepo-plan.md "Design" 2)
 newPortRecord, portRecord, boardSnapshot, runPortRecord, viewerReplayOf
 
-## apps/web/src/16-events.js (241 lines, ~5.2k tokens) — EVENTS (delegation)
+## apps/web/src/16-events.js (242 lines, ~5.3k tokens) — EVENTS (delegation)
 hScrollable, HDRAG, GAME_ACTS, gameAct, replayOf, lastReplay, runReplay, loadScenario, testSetup, defBuiltin

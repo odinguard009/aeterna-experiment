@@ -67,8 +67,9 @@ async function clearImages() { Object.keys(IMG).forEach(id => { URL.revokeObject
    File: name) because the official battlespirits.com image URL is derived directly from it.
    Empty when neither is available (offline, no image). */
 function cardImgSrc(id) {
-  if (IMG[id]) return IMG[id];
-  const c = CARDS[id];
+  const k = ART_ALT[id] && CARDS[ART_ALT[id]] ? ART_ALT[id] : id;           // v0.132.0 U14g2: the picture picked for this card
+  if (IMG[k]) return IMG[k];
+  const c = CARDS[k];
   if (!c || !c.id) return '';
   const origin = (typeof onlineOrigin === 'function') ? onlineOrigin() : null;
   return origin ? `${origin}/assets/card-images/${encodeURIComponent(c.id)}` : '';
