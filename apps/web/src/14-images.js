@@ -99,7 +99,7 @@ function renderLibrary() {
 const LIBV = { list: [], from: -1, to: -1, cols: 0, rowH: 0, raf: 0, timer: 0, key: '' };
 const LIB_GAP = 16, LIB_BUF = 2;
 const libSetOf = id => String(id).replace(/-.*$/, '');
-const LIBF = { colors: new Set(), costs: new Set(), types: new Set(), groups: new Set(), family: '', complete: true, sort: 'set', size: 'm', tab: 'cards' };   // mockup toolbar state (v0.137.0)
+const LIBF = { colors: new Set(), costs: new Set(), types: new Set(), groups: new Set(), family: '', complete: true, dd: '', sort: 'set', size: 'm', tab: 'cards' };   // mockup toolbar state (v0.137.0)
 const LIB_SIZES = [['s', 'S', 8], ['m', 'M', 6], ['l', 'L', 4]];
 function libActive() { return LIBF.colors.size + LIBF.costs.size + LIBF.types.size + LIBF.groups.size + (LIBF.family ? 1 : 0) + ((($('lib-set') || {}).value) ? 1 : 0) + (($('lib-search') || {}).value ? 1 : 0); }
 function libFilter() {
@@ -126,7 +126,11 @@ function libBar() {                                   // the mockup toolbar: col
   $('lib-pips').innerHTML = DB_COLORS.map(c => `<button class="pip${on(LIBF.colors, c) ? ' on' : ''}" style="--c:${colorVar(c)}" data-a="lib-f" data-v="colors:${c}" aria-label="${cap(c)}" aria-pressed="${on(LIBF.colors, c)}" title="${cap(c)}"><i></i></button>`).join('');
   $('lib-types').innerHTML = DB_TYPES.map(t => `<button class="chip${on(LIBF.types, t) ? ' on' : ''}" data-a="lib-f" data-v="types:${t}" aria-pressed="${on(LIBF.types, t)}">${t}</button>`).join('');
   $('lib-costs').innerHTML = DB_COSTS.map(k => `<button class="cbtn${on(LIBF.costs, k) ? ' on' : ''}" data-a="lib-f" data-v="costs:${k}" aria-pressed="${on(LIBF.costs, k)}" aria-label="Cost ${k}">${k === '10' ? '10+' : k}</button>`).join('');
-  $('lib-groups').innerHTML = DB_GROUPS.map(([g, l]) => `<button class="chip${on(LIBF.groups, g) ? ' on' : ''}" data-a="lib-f" data-v="groups:${g}" aria-pressed="${on(LIBF.groups, g)}">${l}</button>`).join('');
+  const ddb = (n, l, sel) => `<button class="chip ddb${n === 'colour' ? ' ddphone' : ''}${sel.length ? ' on' : ''}" data-a="lib-dd" data-v="${n}" aria-haspopup="true" aria-expanded="${LIBF.dd === n}">${l}: ${sel.length ? sel.join(', ') : 'All'} ▾</button>`;
+  $('lib-colbtn').innerHTML = ddb('colour', 'Colour', [...LIBF.colors].map(cap));
+  $('lib-groups').innerHTML = ddb('group', 'Group', DB_GROUPS.filter(([g]) => LIBF.groups.has(g)).map(x => x[1]));
+  $('lib-play').classList.toggle('on', LIBF.complete);
+  libMenu();
   $('lib-size').innerHTML = LIB_SIZES.map(([v, l]) => `<button data-a="lib-size" data-v="${v}" aria-pressed="${LIBF.size === v}">${l}</button>`).join('');
   $('lib-sort').value = LIBF.sort; if (document.activeElement !== $('lib-family')) $('lib-family').value = LIBF.family;
   $('lib-complete').classList.toggle('on', LIBF.complete); $('lib-complete').setAttribute('aria-pressed', String(LIBF.complete));
@@ -138,8 +142,22 @@ function libBar() {                                   // the mockup toolbar: col
   $('lib-sub').textContent = tab ? 'The flavor texts of the cards, read in series order.' : 'Search and filter the whole card data. Click a card for its page.';
   document.querySelectorAll('#lib-tabs button').forEach(b => b.setAttribute('aria-pressed', String(/** @type {HTMLElement} */ (b).dataset.v === LIBF.tab)));
 }
-function libTool(a, v) {                              // toolbar actions (data-a lib-f / lib-size / lib-tab / lib-complete / lib-clear / lib-lore-*)
-  if (a === 'lib-f') { const [g, x] = v.split(':'), s = LIBF[g]; if (s) { if (s.has(x)) s.delete(x); else s.add(x); } }
+function libMenu() {                                  // the mockup dropdown menu (Colour on phone, Group everywhere)
+  document.querySelectorAll('#lib-tbar .ddmenu').forEach(m => m.remove());
+  const tb = $('lib-tbar'), btn = LIBF.dd && tb.querySelector(`[data-a="lib-dd"][data-v="${LIBF.dd}"]`); if (!btn) return;
+  const colour = LIBF.dd === 'colour', set = colour ? LIBF.colors : LIBF.groups, items = colour ? DB_COLORS.map(c => [c, cap(c)]) : DB_GROUPS;
+  const m = document.createElement('div'); m.className = 'ddmenu scroll'; m.setAttribute('role', 'menu');
+  m.innerHTML = items.map(([k, l]) => `<button class="ddi${set.has(k) ? ' on' : ''}" data-a="lib-ddpick" data-v="${k}" role="menuitemcheckbox" aria-checked="${set.has(k)}"><span class="ddc">${set.has(k) ? '✓' : ''}</span>${colour ? `<i class="dot" style="background:${colorVar(k)}"></i>` : ''}<span class="grow">${l}</span></button>`).join('') + '<button class="ddi clr" data-a="lib-ddclear">Clear</button>';
+  tb.appendChild(m);
+  const r = btn.getBoundingClientRect(), t = tb.getBoundingClientRect(), w = Math.max(r.width, 210);
+  m.style.width = w + 'px'; m.style.left = Math.max(6, Math.min(t.width - w - 6, r.left - t.left)) + 'px'; m.style.top = (r.bottom - t.top + 4) + 'px';
+}
+document.addEventListener('click', e => { if (LIBF.dd && !(/** @type {Element} */ (e.target)).closest('.ddmenu,[data-a="lib-dd"]')) { LIBF.dd = ''; libMenu(); } });
+function libTool(a, v) {
+  if (a === 'lib-dd') { LIBF.dd = LIBF.dd === v ? '' : v; libBar(); return; }
+  if (a === 'lib-ddpick') { const s = LIBF.dd === 'colour' ? LIBF.colors : LIBF.groups; if (s.has(v)) s.delete(v); else s.add(v); }
+  else if (a === 'lib-ddclear') { (LIBF.dd === 'colour' ? LIBF.colors : LIBF.groups).clear(); LIBF.dd = ''; }
+  else if (a === 'lib-f') { const [g, x] = v.split(':'), s = LIBF[g]; if (s) { if (s.has(x)) s.delete(x); else s.add(x); } }
   else if (a === 'lib-size') LIBF.size = v;
   else if (a === 'lib-tab') LIBF.tab = v === 'lore' ? 'lore' : 'cards';
   else if (a === 'lib-complete') LIBF.complete = !LIBF.complete;

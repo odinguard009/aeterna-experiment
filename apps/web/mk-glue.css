@@ -19,3 +19,6 @@ body.mk > .ae-pop{position:absolute;top:62px;right:24px;z-index:20}
 .mk .lorenav button{display:flex;justify-content:space-between;width:100%;text-align:left}
 .mk .lorenav button.on{background:var(--you);color:var(--you-ink)}
 .mk .lore[hidden],.mk #lib-cards-pane[hidden]{display:none!important}
+.mk #lib-tbar{position:relative}
+.mk #lib-chips,.mk #lib-types,.mk #view-library .btool .r2{flex-wrap:wrap}
+.mk #lib-types{max-width:100%;min-width:0}

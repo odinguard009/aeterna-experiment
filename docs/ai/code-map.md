@@ -176,8 +176,8 @@ BUG_REPO, BUG_LABEL, bugURL, bugOpen, bugSend
 ## apps/web/src/13q-progress.js (42 lines, ~1k tokens) — PROGRESS (v0.134.0, U15): rank, daily missions, achievements and avatars. Everything is derived from the saved match history on this
 RANKS, AVATARS, AVATAR_KEY, AVATAR, dayNo, MISSIONS, ACHIEVEMENTS, rankOf, dailyMissions, setAvatar, renderProgress
 
-## apps/web/src/14-images.js (269 lines, ~5.2k tokens) — CARD IMAGES
-IMG, IDB, normKey, idbOpen, idbTx, setImg, loadImages, shrinkImage, stripExt, findCardByFile, findCardByKey, importImages, clearImages, cardImgSrc, imgCls, imgSty, refreshViews, libMsg, renderLibrary, LIBV, LIB_GAP, libSetOf, LIBF, LIB_SIZES, libActive, libFilter, libBar, libTool, libCardHTML, libWindow, renderLibraryGrid, libScroll, libSearchInput, deckToText, textToDeck, downloadText, readFileText, libAction
+## apps/web/src/14-images.js (287 lines, ~5.6k tokens) — CARD IMAGES
+IMG, IDB, normKey, idbOpen, idbTx, setImg, loadImages, shrinkImage, stripExt, findCardByFile, findCardByKey, importImages, clearImages, cardImgSrc, imgCls, imgSty, refreshViews, libMsg, renderLibrary, LIBV, LIB_GAP, libSetOf, LIBF, LIB_SIZES, libActive, libFilter, libBar, libMenu, libTool, libCardHTML, libWindow, renderLibraryGrid, libScroll, libSearchInput, deckToText, textToDeck, downloadText, readFileText, libAction
 
 ## packages/engine/src/15-match.js (74 lines, ~1.7k tokens) — MATCH START / END
 closeMatch, startNewGame, matchSummary
