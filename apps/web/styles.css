@@ -566,6 +566,20 @@
   #action-modal .modal-btns { position: sticky; bottom: -16px; z-index: 2; margin: 0 -18px -16px; padding: 10px 18px 16px; background: var(--ae-panel2); }
   html.layout-mobile .modal-overlay { align-items: flex-end; }
   html.layout-mobile .modal-box { width: 100%; max-width: none; max-height: 86vh; padding-bottom: max(16px, env(safe-area-inset-bottom)); clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%); }
+  /* v0.138.0 mockup parity: the dialog family of the mockup (.pop): colour bar on top, left-aligned outlined kind chip, italic title, buttons on the right; phone = bottom sheet */
+  .modal-box { text-align: left; border-top: 4px solid var(--you); box-shadow: inset 0 0 0 1px var(--ae-line2); padding: 20px 22px 18px; animation: popin .28s var(--ease, ease); }
+  .modal-box.lose { border-top-color: var(--cpu); box-shadow: inset 0 0 0 1px var(--ae-line2); }
+  .modal-box[data-kind]::before { display: block; width: fit-content; margin: 0 0 8px; padding: 3px 10px; background: transparent; color: var(--you); border: 1px solid var(--you); clip-path: none; font-size: 10.5px; letter-spacing: .1em; font-weight: 800; text-transform: capitalize; }
+  .modal-box.lose::before { background: transparent; color: var(--cpu); border-color: var(--cpu); }
+  .modal-title { font-size: 1.35em; font-style: italic; letter-spacing: 0; margin-bottom: 8px; }
+  .modal-box[data-kind="RESULT"] .modal-title { font-size: 1.9em; }
+  #action-modal .modal-btns { justify-content: flex-end; }
+  .modal-btn { flex: 0 1 auto; min-width: 110px; padding-inline: 18px; }
+  @keyframes popin { from { opacity: 0; transform: translateY(18px) scale(.96); } }
+  @keyframes sheetin { from { transform: translateY(100%); } }
+  html.layout-mobile .modal-box { animation: sheetin .32s var(--ease, ease); border-radius: 18px 18px 0 0; clip-path: none; }
+  html.layout-mobile #action-modal .modal-btns { justify-content: stretch; } html.layout-mobile .modal-btn { flex: 1 1 120px; }
+  @media (prefers-reduced-motion: reduce) { .modal-box { animation: none !important; } }
   /* v0.94.0 U7 deck builder in the mockup v11 style (apps/web/src/13a-deckbuilder.js): tokens, back to My decks, FILTERS with count, filter chips, panel tabs, Deck look */
   #view-deckbuilder{--bg-main:var(--ae-board2);--bg-panel:var(--ae-panel1);--accent:var(--you);--text-main:var(--ae-text);--text-muted:var(--ae-text2);--border-line:var(--ae-line2);color:var(--ae-text);background:linear-gradient(180deg,var(--ae-board1),var(--ae-board2))}
   .db-back.ae-ghost{min-height:34px;padding:0 12px;flex:none}
