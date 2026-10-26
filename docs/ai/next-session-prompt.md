@@ -20,9 +20,9 @@
 ## Chain mode (owner, 2026-10-20)
 - Switch: chat `rantai on`, `rantai off`, `rantai status` (Claude runs the same gate one-liner with `rantai on|off|status`, no clone), or a comment `RANTAI ON` / `RANTAI OFF` on issue #1, or the Actions workflow "Auto mode" (mode `rantai-on` / `rantai-off`). Default without a switch comment: OFF. Independent of auto mode: it chains manual and scheduled sessions alike.
 - Every session ends with `done vX.Y.Z next=Opus|Sonnet start=<Token awal> sub=<subagent tokens> budget=<counter now>` (owner, 2026-10-21: `sub=` = the sum of the `subagent_tokens` lines the session's subagents reported; the gate adds it to `tokens=`, so the chain counter includes subagents); the gate posts `tokens=N` (N = the budget-counter difference incl. cache re-reads, so an estimate; item T 2026-10-21: copied numbers, no mental subtraction; `lock|manual budget=N` also stores the start; an explicit `tokens=N` still works) and adds the word `rantai` when it was a chain continuation. Then `rantai next`:
-  - `GO`: the chain (the newest DONE plus the DONEs it continues) is under 600,000 tokens: start the next roadmap session in the same chat at once (skill `bs-session-runner` End step 6).
-  - `STOP chain budget reached`: the chain total is 600,000 or more; the mode stays ON for the next chain.
-  - A single session over 600,000 tokens: the gate posts `RANTAI OFF auto: ...`, the mode is OFF for every next session until the owner turns it on again.
+  - `GO`: the chain (the newest DONE plus the DONEs it continues) is under unlimited (owner 2026-10-26; the default ceiling is effectively infinite) tokens: start the next roadmap session in the same chat at once (skill `bs-session-runner` End step 6).
+  - `STOP chain budget reached`: the chain total is unlimited (owner 2026-10-26; the default ceiling is effectively infinite) or more; the mode stays ON for the next chain.
+  - A single session over unlimited (owner 2026-10-26; the default ceiling is effectively infinite) tokens: the gate posts `RANTAI OFF auto: ...`, the mode is OFF for every next session until the owner turns it on again.
   - `STOP` for any other reason (mode OFF, no `tokens=` on the last DONE, gate error): end as usual.
 - A chained session in the same chat carries the earlier sessions' context, so its token count grows faster than a fresh run's; the limit is `RANTAI_MAX` in `tools/session_gate.sh`.
 - The final summary of every session shows the `Mode rantai: ON|OFF | rantai terakhir: X / 600.000 token (k sesi)` line.
