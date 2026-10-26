@@ -946,6 +946,20 @@ span.cp-chip{cursor:default;}.cp-chip.on{box-shadow:inset 0 0 0 2px var(--you);}
 .pf-tile{padding:8px 10px;background:var(--ae-panel2);box-shadow:inset 0 0 0 1px var(--ae-line);}.pf-tile b{display:block;font-family:var(--f-display);font-size:20px;}.pf-tile span{font-size:11px;color:var(--ae-text3);}
 .pf-fmt{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:8px;font-size:12px;color:var(--ae-text2);}
 .gl-list{display:grid;gap:6px;}.gl-item{padding:6px 10px;background:var(--ae-panel2);box-shadow:inset 4px 0 0 var(--you);}.gl-item b{font-family:var(--f-display);font-size:12px;}.gl-item p{margin:2px 0 0;font-size:12px;color:var(--ae-text2);}
+.bug-ov{position:fixed;inset:0;z-index:300;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.6);padding:12px;}
+.bug-ov[hidden]{display:none;}
+.bug-box{display:flex;flex-direction:column;gap:10px;width:min(480px,100%);max-height:92vh;overflow-y:auto;}
+.bug-box label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--ae-text2);}
+.bug-box textarea,.bug-box .se{font:inherit;padding:8px;background:var(--ae-panel2);color:var(--ae-text);border:0;box-shadow:inset 0 0 0 1px var(--ae-line2);}
+.bug-box .bug-chk{flex-direction:row;align-items:center;gap:8px;}.bug-note{margin:0;font-size:12px;color:var(--ae-text3);}
+html.layout-mobile .bug-ov{align-items:flex-end;padding:0;}html.layout-mobile .bug-box{width:100%;}
+.pg-rank{display:flex;align-items:center;gap:12px;}.pg-rank b{display:block;font-family:var(--f-display);font-size:18px;}.pg-rank span:not(.pg-av){font-size:12px;color:var(--ae-text2);}
+.pg-bar{display:block;height:6px;margin-top:4px;background:var(--ae-chip);width:200px;max-width:100%;}.pg-bar u{display:block;height:100%;background:var(--you);}
+.pg-av{width:40px;height:40px;flex:none;border:0;background:var(--lc,var(--you));clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);cursor:pointer;}
+span.pg-av{cursor:default;}.pg-avs{display:flex;flex-wrap:wrap;gap:8px;}.pg-avs .pg-av.on{outline:2px solid var(--ae-text);}.pg-avs .pg-av:disabled{opacity:.3;cursor:not-allowed;}
+.pg-list{margin:0;padding:0;list-style:none;display:grid;gap:4px;}.pg-list li{display:flex;justify-content:space-between;padding:6px 10px;font-size:13px;background:var(--ae-panel2);box-shadow:inset 4px 0 0 var(--ae-line2);}
+.pg-list li.done{box-shadow:inset 4px 0 0 var(--you);}.pg-list li.done b{color:var(--you);}
+#set-profile ~ .pf-h,.pf-h,#set-s-profile h3{margin:12px 0 6px;font-family:var(--f-display);font-size:12px;color:var(--ae-text2);}
 </style>
 </head>
 <body>
@@ -958,6 +972,7 @@ span.cp-chip{cursor:default;}.cp-chip.on{box-shadow:inset 0 0 0 2px var(--you);}
     <span class="ae-toggle" role="group" aria-label="Mode"><button data-a="theme-mode" data-v="dark" aria-pressed="true">DARK</button><button data-a="theme-mode" data-v="light" aria-pressed="false">LIGHT</button></span>
     <button class="gbtn t-pcf" data-a="go-history" aria-label="Match history" title="Match history"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5M12 7v5l3 2"/></svg></button>
     <button class="gbtn t-pcf" id="sound-btn" data-a="sound-toggle" aria-label="Sound" title="Sound" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></button>
+    <button class="gbtn" data-a="bug-open" aria-label="Report a bug" title="Report a bug"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 9a4 4 0 0 1 8 0v6a4 4 0 0 1-8 0zM4 13h4M16 13h4M5 7l3 2M19 7l-3 2M5 19l3-2M19 19l-3-2"/></svg></button>
     <button class="gbtn" data-a="go-settings" aria-label="Settings" title="Settings"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg></button>
   </span>
   <div id="theme-pop" class="ae-pop" role="dialog" aria-label="Your colour" hidden><div class="bar"></div><h3>Your colour</h3><div id="theme-grid" class="pgrid"></div>
@@ -979,10 +994,11 @@ span.cp-chip{cursor:default;}.cp-chip.on{box-shadow:inset 0 0 0 2px var(--you);}
     <section class="home-more" aria-label="Today">
       <div class="hm-card"><h2>Card of the Day</h2><div id="home-cotd"></div></div>
       <div class="hm-card"><h2>Play in three steps</h2><ol class="hm-steps"><li><b>Pick a deck</b> below or build one.</li><li><b>Pick a format</b> and the CPU deck.</li><li><b>Press Play Now</b> and win by taking all 5 Life.</li></ol><p class="hm-sum" id="home-sum"></p></div>
+      <div class="hm-card"><h2>Today's missions</h2><ul class="pg-list" id="home-missions"></ul></div>
       <div class="hm-card wide"><h2>My decks</h2><div class="hm-decks" id="home-decks"></div></div>
     </section>
   </main>
-  <footer class="home-foot"><span id="home-ver" translate="no">Aeterna</span><button data-a="go-howto">HOW TO PLAY</button><button data-a="go-settings">SETTINGS &amp; HISTORY</button><button data-a="rules">RULES COVERAGE</button><span class="t-pcf">Unofficial non-commercial fan project</span></footer>
+  <footer class="home-foot"><span id="home-ver" translate="no">Aeterna</span><button data-a="go-howto">HOW TO PLAY</button><button data-a="bug-open">REPORT A BUG</button><button data-a="go-settings">SETTINGS &amp; HISTORY</button><button data-a="rules">RULES COVERAGE</button><span class="t-pcf">Unofficial non-commercial fan project</span></footer>
 </div>
 
 <div id="view-settings" class="app-view ae-view">
@@ -1008,7 +1024,8 @@ span.cp-chip{cursor:default;}.cp-chip.on{box-shadow:inset 0 0 0 2px var(--you);}
           <div class="srow"><div class="tx"><b>Your card images</b><span id="set-imgs">Pictures you add in the Library. They stay on this device.</span></div><button class="ae-ghost" data-a="go-lib">OPEN LIBRARY</button></div>
           <div class="srow"><div class="tx"><b>Reset settings</b><span>Decks, imported cards, images and settings stay in this browser only. Reset puts speed, sound, CPU deck and CPU style back to the defaults.</span></div><button class="ae-ghost" data-a="set-reset">RESET</button></div></section>
         <section class="set-card" id="set-s-profile" aria-labelledby="set-h-profile"><h2 id="set-h-profile">Profile</h2>
-          <div id="set-profile"></div></section>
+          <div id="set-progress"></div>
+          <h3 class="pf-h">Statistics</h3><div id="set-profile"></div></section>
         <section class="set-card" id="set-s-history" aria-labelledby="set-h-history"><h2 id="set-h-history">Match history</h2>
           <div id="set-hist" class="set-hist"></div>
           <div class="srow"><div class="tx"><b>Clear history</b><span>Removes the list of finished matches.</span></div><button class="ae-ghost" data-a="hist-clear">CLEAR</button></div>
@@ -1202,6 +1219,17 @@ span.cp-chip{cursor:default;}.cp-chip.on{box-shadow:inset 0 0 0 2px var(--you);}
 <div id="peek-bar"><div id="peek-text"></div><div id="peek-btns"></div></div>
 <div id="pick-bar"><div id="pick-text" role="status" aria-live="polite"></div><div id="pick-btns"></div></div>
 <div id="zoom-overlay" data-a="zoomclose"></div>
+<div id="bug-overlay" class="bug-ov" role="dialog" aria-modal="true" aria-labelledby="bug-h" hidden>
+  <form class="modal-box bug-box" id="bug-form" autocomplete="off">
+    <h2 class="modal-title" id="bug-h">Report a Bug</h2>
+    <p class="bug-note">Opens a pre-filled issue on GitHub. You send it with your own GitHub login; nothing leaves this device until you do.</p>
+    <label>Type<select id="bug-kind" class="sel"><option value="bug">Bug</option><option value="card">Wrong card text or effect</option><option value="idea">Idea</option></select></label>
+    <label>Summary<input id="bug-title" class="se" maxlength="100" required></label>
+    <label>What happened<textarea id="bug-text" rows="5" maxlength="2000"></textarea></label>
+    <label class="bug-chk"><input type="checkbox" id="bug-info" checked> Add version, page and screen size</label>
+    <div class="modal-btns"><button type="button" class="modal-btn cancel" data-a="bug-close">Cancel</button><button type="submit" class="modal-btn primary">Open on GitHub</button></div>
+  </form>
+</div>
 <div id="ae-fx" aria-hidden="true"><div class="ae-strip" hidden></div></div>
 <div id="action-modal" class="modal-overlay">
   <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-card-title">
@@ -1448,7 +1476,7 @@ function bindHost(h) {
    type: 'Spirit' | 'Nexus' | 'Magic'      symbol: card color     symbols: number of symbols
    reduction: {color: n}         levels: [{cores, bp}]  (Nexus levels have no bp)
    --------------------------------------------------------------------- */
-const VERSION = '0.133.0';
+const VERSION = '0.134.0';
 const CARDS = {};
 function defCard(o) {
   CARDS[o.id] = Object.assign({ type: 'Spirit', reduction: {}, symbols: 1, families: [], keywords: [], implemented: true, desc: 'Vanilla test card (no effect).', block: 'A' }, o);
@@ -7198,6 +7226,7 @@ function cardOfDay(d = new Date()) {
 function renderHomeMore() {
   const id = cardOfDay(), c = CARDS[id], ok = validateDeck(PLAYER_DECK, FORMAT).ok;
   $('home-cotd').innerHTML = c ? `<button class="hm-cotd" data-a="zoom" data-v="${esc(id)}" style="--lc:${colorVar(c.symbol)}"><b>${esc(c.name)}</b><span translate="no">${esc(id)} · ${esc(c.contract ? 'Contract' : c.type)} · Cost ${c.cost}</span></button>` : '';
+  $('home-missions').innerHTML = dailyMissions().map(m => `<li class="${m.done ? 'done' : ''}"><span>${esc(m.txt)}</span><b>${m.v}/${m.goal}</b></li>`).join('');
   $('home-sum').textContent = `Deck: ${SLOTS[ACTIVE_SLOT].name} (${ok ? 'legal' : 'not ready'}) · Format: ${fmtTitle()} · CPU: ${SETTINGS.cpuDeck}`;
   $('home-decks').innerHTML = SLOTS.map((s, i) => { const t = deckTotal(s.cards); return `<button class="hm-deck${i === ACTIVE_SLOT ? ' on' : ''}" data-a="home-deck" data-v="${i}"><b>${esc(s.name)}</b><span>${t ? t + ' cards' : 'empty'}${t && validateDeck(s.cards, FORMAT).ok ? ' · legal' : ''}</span></button>`; }).join('');
 }
@@ -8265,6 +8294,7 @@ function profileStats(h = HISTORY) {
   return { n, won, lost: n - won, rate: n ? Math.round(won * 100 / n) : 0, streak, best, turns: n ? Math.round(h.reduce((a, x) => a + (x.turns || 0), 0) / n) : 0, byFmt };
 }
 function renderProfile() {
+  renderProgress();
   const el = $('set-profile'); if (!el) return;
   const s = profileStats();
   if (!s.n) { el.innerHTML = '<div class="empty-note">Play a match to fill your profile.</div>'; return; }
@@ -8275,6 +8305,74 @@ function renderProfile() {
 function renderGlossary() {
   const el = $('howto-gloss'); if (!el) return;
   el.innerHTML = Object.keys(KEYWORD_GLOSSARY).sort().map(k => `<div class="gl-item"><b>${esc(k)}</b><p>${esc(KEYWORD_GLOSSARY[k])}</p></div>`).join('');
+}
+/* ---------------------------------------------------------------------
+   REPORT A BUG (v0.134.0, U14i): a form on every page that opens a pre-filled "new issue" page of the repository. The player sends it
+   with their own GitHub login; no token or server is involved and nothing is sent from here. Display only: nothing touches the rules.
+   --------------------------------------------------------------------- */
+const BUG_REPO = 'https://github.com/odinguard009/aeterna-experiment/issues/new';
+const BUG_LABEL = { bug: 'bug', card: 'card data', idea: 'idea' };
+function bugURL(kind, title, text, withInfo, view) {
+  const info = withInfo ? `
+
+---
+Version: v${VERSION}
+Page: ${view || '?'}
+Screen: ${innerWidth}x${innerHeight}` : '';
+  const q = new URLSearchParams({ title: String(title).trim().slice(0, 100), body: (String(text).trim().slice(0, 2000) + info).slice(0, 4000), labels: BUG_LABEL[kind] || 'bug' });
+  return BUG_REPO + '?' + q.toString();
+}
+function bugOpen(on) {
+  const o = $('bug-overlay'); if (!o) return;
+  o.hidden = !on;
+  if (on) $('bug-title').focus();
+}
+function bugSend() {   // the three fields below are inputs of the form
+  const view = (document.querySelector('.app-view.active') || {}).id || '';
+  const url = bugURL($('bug-kind').value, $('bug-title').value, $('bug-text').value, $('bug-info').checked, view);
+  window.open(url, '_blank', 'noopener'); bugOpen(false); /** @type {any} */ ($("bug-form")).reset();
+}
+/* ---------------------------------------------------------------------
+   PROGRESS (v0.134.0, U15): rank, daily missions, achievements and avatars. Everything is derived from the saved match history on this
+   device (no server, no rewards that touch the rules); the only stored value is the chosen avatar. Display only.
+   --------------------------------------------------------------------- */
+const RANKS = [{ n: 'Rookie', w: 0 }, { n: 'Apprentice', w: 3 }, { n: 'Adept', w: 10 }, { n: 'Veteran', w: 25 }, { n: 'Master', w: 50 }, { n: 'Legend', w: 100 }];   // by wins
+const AVATARS = ['red', 'blue', 'green', 'yellow', 'purple', 'white', 'ultimate', 'god'], AVATAR_RANK = [0, 0, 0, 1, 2, 3, 4, 5];   // colour -> rank index that unlocks it
+const AVATAR_KEY = 'bse.avatar.v1';
+let AVATAR = (() => { try { const v = localStorage.getItem(AVATAR_KEY); return AVATARS.includes(v) ? v : 'red'; } catch (e) { return 'red'; } })();
+const dayNo = (d = new Date()) => Math.floor((d.getTime() - d.getTimezoneOffset() * 6e4) / 864e5);   // local calendar day
+const MISSIONS = [
+  { id: 'play2', txt: 'Play 2 matches', goal: 2, val: t => t.length },
+  { id: 'win1', txt: 'Win a match', goal: 1, val: t => t.filter(x => x.won).length },
+  { id: 'win2', txt: 'Win 2 matches', goal: 2, val: t => t.filter(x => x.won).length },
+  { id: 'std', txt: 'Play a Standard match', goal: 1, val: t => t.filter(x => x.fmt === 'standard').length },
+  { id: 'fast', txt: 'Win a match in 8 turns or fewer', goal: 1, val: t => t.filter(x => x.won && x.turns <= 8).length },
+  { id: 'eternal', txt: 'Play an Eternal match', goal: 1, val: t => t.filter(x => x.fmt === 'eternal').length },
+];
+const ACHIEVEMENTS = [
+  { n: 'First win', f: s => s.won >= 1 }, { n: '10 wins', f: s => s.won >= 10 }, { n: '50 wins', f: s => s.won >= 50 }, { n: '25 matches', f: s => s.n >= 25 },
+  { n: '3 wins in a row', f: s => s.best >= 3 }, { n: '5 wins in a row', f: s => s.best >= 5 }, { n: 'Played both formats', f: s => !!(s.byFmt.eternal && s.byFmt.standard) },
+];
+function rankOf(wins) {
+  let i = 0; RANKS.forEach((r, k) => { if (wins >= r.w) i = k; });
+  const next = RANKS[i + 1];
+  return { i, name: RANKS[i].n, next: next ? next.n : '', left: next ? next.w - wins : 0, pct: next ? Math.round((wins - RANKS[i].w) * 100 / (next.w - RANKS[i].w)) : 100 };
+}
+function dailyMissions(h = HISTORY, d = new Date()) {
+  const day = dayNo(d), today = h.filter(x => dayNo(new Date(x.t)) === day);
+  return [0, 1, 2].map(k => { const m = MISSIONS[(day + k) % MISSIONS.length], v = Math.min(m.goal, m.val(today)); return { id: m.id, txt: m.txt, goal: m.goal, v, done: v >= m.goal }; });
+}
+function setAvatar(c) {
+  if (!AVATARS.includes(c) || AVATAR_RANK[AVATARS.indexOf(c)] > rankOf(profileStats().won).i) return;
+  AVATAR = c; try { localStorage.setItem(AVATAR_KEY, c); } catch (e) { /* blocked: this visit only */ }
+}
+function renderProgress() {
+  const el = $('set-progress'); if (!el) return;
+  const s = profileStats(), r = rankOf(s.won), ms = dailyMissions();
+  el.innerHTML = `<div class="pg-rank"><span class="pg-av" style="--lc:${colorVar(AVATAR)}" aria-hidden="true"></span><div><b>${esc(r.name)}</b><span>${r.next ? r.left + ' more win' + (r.left === 1 ? '' : 's') + ' to ' + esc(r.next) : 'Top rank reached'}</span><i class="pg-bar"><u style="width:${r.pct}%"></u></i></div></div>`
+    + `<h3>Avatar</h3><div class="pg-avs">${AVATARS.map((c, k) => `<button class="pg-av${c === AVATAR ? ' on' : ''}" data-a="avatar" data-v="${c}" style="--lc:${colorVar(c)}" aria-label="${esc(cap(c))}" aria-pressed="${c === AVATAR}"${AVATAR_RANK[k] > r.i ? ' disabled title="Unlocks at ' + esc(RANKS[AVATAR_RANK[k]].n) + '"' : ''}></button>`).join('')}</div>`
+    + `<h3>Today's missions</h3><ul class="pg-list">${ms.map(m => `<li class="${m.done ? 'done' : ''}"><span>${esc(m.txt)}</span><b>${m.v}/${m.goal}</b></li>`).join('')}</ul>`
+    + `<h3>Achievements</h3><ul class="pg-list">${ACHIEVEMENTS.map(({ n, f }) => `<li class="${f(s) ? 'done' : ''}"><span>${esc(n)}</span><b>${f(s) ? 'Done' : '-'}</b></li>`).join('')}</ul>`;
 }
 /* ---------------------------------------------------------------------
    CARD IMAGES  (user supplied files kept in IndexedDB, never uploaded)
@@ -8733,7 +8831,8 @@ document.addEventListener('click', e => {
   const mg = e.target instanceof Element ? evC(e, '[data-a="mag"]') : null; if (!mg) return;
   e.stopPropagation(); e.preventDefault(); openZoom(mg.dataset.v, mg.dataset.u != null ? Number(mg.dataset.u) : null);
 }, true);
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { const z = $('zoom-overlay'); if (z) z.classList.remove('active'); } });
+document.addEventListener('submit', e => { if (/** @type {any} */ (e.target).id === 'bug-form') { e.preventDefault(); bugSend(); } });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { bugOpen(false); const z = $('zoom-overlay'); if (z) z.classList.remove('active'); } });
 document.addEventListener('click', e => {
   const peekBtn = evC(e, '[data-peek]');
   if (peekBtn) { startPeek(); return; }
@@ -8808,6 +8907,9 @@ document.addEventListener('click', e => {
   else if (a === 'zoom') openZoom(v);
   else if (a === 'art') { const zid = $('zoom-overlay').dataset.id; setArt(zid, v === zid ? '' : v); openZoom(zid); refreshViews(); }
   else if (a === 'home-deck') { switchSlot(Number(v)); renderLobby(); }
+  else if (a === 'avatar') { setAvatar(v); renderProgress(); }
+  else if (a === 'bug-open') bugOpen(true);
+  else if (a === 'bug-close') bugOpen(false);
   else if (a === 'zoominfo') return;
   else if (a === 'zoomclose') $('zoom-overlay').classList.remove('active');
   else if (a === 'gloss') uiInfo(`GLOSSARY: ${v}`, esc(KEYWORD_GLOSSARY[v] || ''));
@@ -8932,7 +9034,7 @@ function testSetup() {            // dev hook: a quiet board with no match loop 
   switchView('view-playmat'); render(); return G;
 }
 const defBuiltin = o => { defCard(o); BUILTIN_IDS.add(o.id); };      // test fixtures register through this so their ids stay reserved
-window.BS = { profileStats, cardOfDay, ART_ALT, setArt, cardPageHTML, DB_COLL, lore, loreSeries, renderLore, dbResetFilters, dbTap, dbRedo, dbSize, dbTestHand, get DB_SIZE() { return DB_SIZE; }, io, bindHost, removeCore, moveSoulTo, returnSoul, EMOTES, emoteLeft, emoteSend, setEmoteClock: f => { EMOTE_NOW = f; }, BAN_LIST_INFO, webPick, maxCopies, prebuiltLabel, fmtButton, defaultDeck, get CPU_DECK_NAME() { return CPU_DECK_NAME; }, SLEEVE_IMG, renderDecks, animMode, fxCueReset, aeRibbon, endOfBattle, MAT, matUse, setSection, navSync, renderHome, themePop, soulMagicOK, soulMagicHolder, soulMagicPick, THEME, THEME_COLS, setTheme, stepClick, stepTargets, get FX_STRICT() { return FX_STRICT; }, setFxStrict(v) { FX_STRICT = !!v; }, FX_WARNED, collectFx, setFuzz(o) { FUZZ = Object.assign({}, o || {}); }, get FUZZ() { return FUZZ; }, fuzzPick, ERR_LOG, errReport, onGameError, releaseStandby, leaveStandby, renderDeckBuilder, dbChange, dbUndo, dbSheet, DBF, get DB_UNDO() { return DB_UNDO.length; }, accelList, accelCost, accelOK, accelSources, useAccel, removedSummonable, summonFromRemoved, cpuAccelScore, cpuAccelMain, cpuAccelFlash, cpuSilverWheel, highSpeedOK, highSpeedSources, highSpeedSummon, cpuHighSpeed, isSealed, soulToLife, lifeTake, braveSummonedFx, abTaxOK, payAbTax, oppAttackHandFx, sentToTrashFx, magicFxAt, summonOK, lvNo, isUlt, noBlockActive, burstFlash, cpuBurstFlash, humanAttack, cpuAttack, attackStepOver, endAttackLocked, battleEndAttack, isGW, freeCores, moveCore, swapSoul, payCost, cpuCanPlay, coresAvailable, addCore, cpuKeepMagicOrPay, nameHTML, switchView, SET_KEY, dbFilterOK, cardColors, contractToDeck, redrawHand, cpuWantsRedraw, setHeavy, refreshOne, toRemoved, fxIf, costDestroyBonus, sendToken, canSendToken, tokenHome, attackSymbols, TOKEN_SUPPLY, isSpiritForm, ocActive, braveFits, braveTargets, combineBrave, braveSummon, separateBrave, canSeparate, braveRecheck, braveAfford, cpuBrave, handButtons, minCores, openFieldModal, cpuMain, VERSION, defBuiltin, beginTurn, endStep, newGame, takeFromVoid, checkDepletion, removeSpirit, lvIndex, mirageUsable, cpuCastMain, magicFx, magicText, costAltActive, flagActive, coresSent, startAttackFx, win, recordMatch, HISTORY: () => HISTORY, toggleLog, effectTextHTML, effectLines, titleCase, liveStatusHTML, openZoom, modal, closeModal, startPeek, SETTINGS, SLOTS: () => SLOTS, loadSlots, get ACTIVE_SLOT() { return ACTIVE_SLOT; }, switchSlot, loadPrebuilt, PREBUILT, cpuDeckFor, saveSettings, PACK_IDS, registerPack, clearImported, summonPaid, reviveTargets, doRevive, handUp, contractAdventTargets, doContractAdvent, manifestTargets, doManifest, soulCoreHolder, rng, seedRng, newSeed, runReplay, lastReplay, fireFxMulti, asResolving, replayOf, loadScenario, gameAct, matchSummary, get REPLAY() { return REPLAY; }, soulSource, soulToNexus, fxImmune, residualHTML, cardDetailHTML, setSimDeckB(d, key) { SIM_DECK_B = d; SIM_DECK_B_KEY = key || null; }, activatable, activateFx, cpuActivate, toSoulState, bounceCard, runActions, maybeBurst, flushBursts, summonFree, parseBurst, parseActionList, BURST_WHEN, fireFx, parseEffects, staticBp, FX_ACTIONS, removeNexus, magicUsable, magicTargets, castMagic, flashTiming, cpuFlashChoice, setFormat, validateDeck, legalityOf, banStatus, get FORMAT() { return FORMAT; }, isPC, applyLayout, testSetup, mkInst, draw, keyOfDeck, pickKey, render, takeCores, IMG, cardImgSrc, imgCls, imgSty, importCards, importImages, textToDeck, deckToText, parseCard, loadImages, get PLAYER_DECK() { return PLAYER_DECK; }, get G() { return G; }, startNewGame, checkInvariants, CARDS, PRESET_DECK, humanCan, onNext, engineIdle, runPortRecord, viewerReplayOf, openViewer, replayFromRecord, portRecord, boardSnapshot, sendIntent, applyIntent, seatLoopOpen, cpuAnswer, INTENT_TYPES, cpuTurn, doBattle, summon, effCost, legacyPlan, legacyPay, canBlockState, canPlayCard, setBurst, fieldList, bpOf, get SESSION() { return SESSION; }, CPU_PROFILES, cpuProfileName, cpuEval, cpuPlayScore, cpuPlayChoice, cpuLethal, cpuAttackScore, cpuAttackChoice, cpuBlockScore, cpuChooseBlock, setCpuProfile, setSimProfiles(o) { CPU_SIM_PROFILES = Object.assign({}, o || {}); }, lifeValue, symbolAttrs, fieldSymbols, symbolsOn, reductionOf, extraReduction };
+window.BS = { rankOf, dailyMissions, setAvatar, get AVATAR() { return AVATAR; }, ACHIEVEMENTS, dayNo, bugURL, profileStats, cardOfDay, ART_ALT, setArt, cardPageHTML, DB_COLL, lore, loreSeries, renderLore, dbResetFilters, dbTap, dbRedo, dbSize, dbTestHand, get DB_SIZE() { return DB_SIZE; }, io, bindHost, removeCore, moveSoulTo, returnSoul, EMOTES, emoteLeft, emoteSend, setEmoteClock: f => { EMOTE_NOW = f; }, BAN_LIST_INFO, webPick, maxCopies, prebuiltLabel, fmtButton, defaultDeck, get CPU_DECK_NAME() { return CPU_DECK_NAME; }, SLEEVE_IMG, renderDecks, animMode, fxCueReset, aeRibbon, endOfBattle, MAT, matUse, setSection, navSync, renderHome, themePop, soulMagicOK, soulMagicHolder, soulMagicPick, THEME, THEME_COLS, setTheme, stepClick, stepTargets, get FX_STRICT() { return FX_STRICT; }, setFxStrict(v) { FX_STRICT = !!v; }, FX_WARNED, collectFx, setFuzz(o) { FUZZ = Object.assign({}, o || {}); }, get FUZZ() { return FUZZ; }, fuzzPick, ERR_LOG, errReport, onGameError, releaseStandby, leaveStandby, renderDeckBuilder, dbChange, dbUndo, dbSheet, DBF, get DB_UNDO() { return DB_UNDO.length; }, accelList, accelCost, accelOK, accelSources, useAccel, removedSummonable, summonFromRemoved, cpuAccelScore, cpuAccelMain, cpuAccelFlash, cpuSilverWheel, highSpeedOK, highSpeedSources, highSpeedSummon, cpuHighSpeed, isSealed, soulToLife, lifeTake, braveSummonedFx, abTaxOK, payAbTax, oppAttackHandFx, sentToTrashFx, magicFxAt, summonOK, lvNo, isUlt, noBlockActive, burstFlash, cpuBurstFlash, humanAttack, cpuAttack, attackStepOver, endAttackLocked, battleEndAttack, isGW, freeCores, moveCore, swapSoul, payCost, cpuCanPlay, coresAvailable, addCore, cpuKeepMagicOrPay, nameHTML, switchView, SET_KEY, dbFilterOK, cardColors, contractToDeck, redrawHand, cpuWantsRedraw, setHeavy, refreshOne, toRemoved, fxIf, costDestroyBonus, sendToken, canSendToken, tokenHome, attackSymbols, TOKEN_SUPPLY, isSpiritForm, ocActive, braveFits, braveTargets, combineBrave, braveSummon, separateBrave, canSeparate, braveRecheck, braveAfford, cpuBrave, handButtons, minCores, openFieldModal, cpuMain, VERSION, defBuiltin, beginTurn, endStep, newGame, takeFromVoid, checkDepletion, removeSpirit, lvIndex, mirageUsable, cpuCastMain, magicFx, magicText, costAltActive, flagActive, coresSent, startAttackFx, win, recordMatch, HISTORY: () => HISTORY, toggleLog, effectTextHTML, effectLines, titleCase, liveStatusHTML, openZoom, modal, closeModal, startPeek, SETTINGS, SLOTS: () => SLOTS, loadSlots, get ACTIVE_SLOT() { return ACTIVE_SLOT; }, switchSlot, loadPrebuilt, PREBUILT, cpuDeckFor, saveSettings, PACK_IDS, registerPack, clearImported, summonPaid, reviveTargets, doRevive, handUp, contractAdventTargets, doContractAdvent, manifestTargets, doManifest, soulCoreHolder, rng, seedRng, newSeed, runReplay, lastReplay, fireFxMulti, asResolving, replayOf, loadScenario, gameAct, matchSummary, get REPLAY() { return REPLAY; }, soulSource, soulToNexus, fxImmune, residualHTML, cardDetailHTML, setSimDeckB(d, key) { SIM_DECK_B = d; SIM_DECK_B_KEY = key || null; }, activatable, activateFx, cpuActivate, toSoulState, bounceCard, runActions, maybeBurst, flushBursts, summonFree, parseBurst, parseActionList, BURST_WHEN, fireFx, parseEffects, staticBp, FX_ACTIONS, removeNexus, magicUsable, magicTargets, castMagic, flashTiming, cpuFlashChoice, setFormat, validateDeck, legalityOf, banStatus, get FORMAT() { return FORMAT; }, isPC, applyLayout, testSetup, mkInst, draw, keyOfDeck, pickKey, render, takeCores, IMG, cardImgSrc, imgCls, imgSty, importCards, importImages, textToDeck, deckToText, parseCard, loadImages, get PLAYER_DECK() { return PLAYER_DECK; }, get G() { return G; }, startNewGame, checkInvariants, CARDS, PRESET_DECK, humanCan, onNext, engineIdle, runPortRecord, viewerReplayOf, openViewer, replayFromRecord, portRecord, boardSnapshot, sendIntent, applyIntent, seatLoopOpen, cpuAnswer, INTENT_TYPES, cpuTurn, doBattle, summon, effCost, legacyPlan, legacyPay, canBlockState, canPlayCard, setBurst, fieldList, bpOf, get SESSION() { return SESSION; }, CPU_PROFILES, cpuProfileName, cpuEval, cpuPlayScore, cpuPlayChoice, cpuLethal, cpuAttackScore, cpuAttackChoice, cpuBlockScore, cpuChooseBlock, setCpuProfile, setSimProfiles(o) { CPU_SIM_PROFILES = Object.assign({}, o || {}); }, lifeValue, symbolAttrs, fieldSymbols, symbolsOn, reductionOf, extraReduction };
 navSync();
 renderLobby();
 loadImages();

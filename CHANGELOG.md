@@ -4,6 +4,15 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.134.0
+- Lane: U/I
+- Time: ~50 min (two items, one batch), claude-sonnet-5-5.
+- **U14i Report a Bug and U15 progress; the U/I queue is done.** First release built as a batch (one push, one CI wait).
+  - **Report a Bug (U14i):** a button in the header (every page) and in the home footer opens a form (type, summary, what happened, optional version / page / screen size). Send opens a pre-filled "new issue" page of the repository in a new tab; the player sends it with their own GitHub login. Nothing is sent from the app and no token is in the file. Escape or Cancel closes it; on a phone it is a bottom sheet.
+  - **Progress (U15):** Settings > Profile now shows a **rank** (Rookie, Apprentice, Adept, Veteran, Master, Legend, by wins, with the way to the next one), **8 avatars** (the first three are free, the rest unlock with rank), **3 daily missions** (rotate by calendar day, count only today's matches; also shown on the home page) and **7 achievements**. All of it is derived from the saved match history on the device; the only stored value is the chosen avatar. No server, nothing touches the rules.
+  - The other dialogs already share one shape with bottom sheets on phones (U5 / U14d2), so no further dialog work was needed.
+  - Budgets: B04 100 -> 104 KB on purpose. Tests: `tests/unit/bug_report.test.mjs` (BR1-BR3), `tests/unit/progress_v15.test.mjs` (PG1-PG4). Backup branch `backup/v0.133.0`.
+
 ## v0.133.0
 - Lane: U/I
 - Time: ~25 min (session start → release), claude-sonnet-5-5.

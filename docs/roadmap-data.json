@@ -4,8 +4,8 @@
   "tagline": "From tested engine to a simulator that plays like Aegis",
   "waitingHtml": "<b>Waiting on you:</b> nothing; Report Bug and missions / ranks / avatars are decided (2026-10-25).",
   "updated": "25 Oct 2026",
-  "updatedAt": "0.121.0",
-  "next": "next: the v14 UI/UX redesign U14i ( card commands, animations, battle phone, deck builder, library + lore, pages, dialogs + Report Bug), then card sessions (K) with Standard first"
+  "updatedAt": "0.134.0",
+  "next": "next: card sessions (K) with Standard first; the v14 UI/UX redesign is done ( card commands, animations, battle phone, deck builder, library + lore, pages, dialogs + Report Bug), then card sessions (K) with Standard first"
  },
  "phases": [
   {
@@ -859,16 +859,16 @@
      "t": "U14h (v0.133.0): Card of the Day, three steps, deck tiles, Profile, Glossary, Settings regrouped"
     },
     {
-     "s": "next",
-     "t": "U14i Dialogs + Report Bug (pre-filled GitHub issue page, no token in the file)"
+     "s": "done",
+     "t": "U14i (v0.134.0) Dialogs + Report Bug (pre-filled GitHub issue page, no token in the file)"
     },
     {
      "s": "done",
      "t": "Owner decision 2026-10-25: Report Bug opens a pre-filled new-issue page of the repository (user sends it with their own GitHub login); a forwarding service stays optional for later"
     },
     {
-     "s": "next",
-     "t": "U15 Missions, ranks, achievements, avatars, daily missions (owner approved 2026-10-25; local progress first, after U14a-U14i)"
+     "s": "done",
+     "t": "U15 (v0.134.0) Missions, ranks, achievements, avatars, daily missions (owner approved 2026-10-25; local progress first, after U14a-U14i)"
     },
     {
      "s": "later",
