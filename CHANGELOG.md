@@ -4,6 +4,18 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.136.0
+- Lane: U/I
+- **Mockup parity part 1 (`docs/design/mockup-v14.html`): header, Lobby, Play, My Decks, Library, Settings, deck builder labels.** UI only; no engine change.
+  - Header: 62px nav with the teal rule, gradient logo, Title Case tabs. Lobby: hero plus Card of the Day panel.
+  - **Play** is three step cards (Your Deck, Opponent, Rules) with mode chips (VS CPU, Watch, Online vs Bot) and a ready box with Start Match (sticky on a phone). Not in the game: First Turn control (the engine has none), "Slow" speed, deck carousel.
+  - **My Decks**: vertical tiles with a fan of the deck's three most-played cards (PC), Search Decks, Sort (Slot / Name / Cards), a dashed New Deck tile, Title Case labels. Win rate / last played from the mockup are not built.
+  - **Library** opens with All Cards (browse grid, then Lore, then the data tools). The mockup's colour / cost chips and the Cards / Lore toggle are not built.
+  - **Settings** and deck builder: Title Case labels. The deck builder layout (left filter rail, header bar) still differs from the mockup (top filter row, ring counter); not 1:1.
+  - Phone: the Home button no longer squeezes the page title.
+  - Tests updated for the new texts (My Decks, Settings, motto case). Audit: no horizontal overflow, no console errors at 1366 / 820 / 390.
+  - The audit's "clip" and 16x16 `.db-info` findings were false positives (the `::after` touch area widens scroll width; the info button already has a 32px hit area).
+
 ## v0.135.0
 - Lane: K
 - Time: ~90 min, claude-sonnet-5-5; tokens not counted.

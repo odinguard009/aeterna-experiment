@@ -97,8 +97,8 @@ async function dkAct(a, v) {
   }
 }
 if (typeof document !== 'undefined') {
-  document.addEventListener('input', e => { if (evT(e).id === 'dk-q') { DK_Q = evT(e).value; renderDecks(); const q = $('dk-q'); if (q) { q.focus({ preventScroll: true }); q.setSelectionRange(DK_Q.length, DK_Q.length); } } });
-  document.addEventListener('change', e => { if (evT(e).id === 'dk-sort') { DK_SORT = evT(e).value; renderDecks(); } });
+  document.addEventListener('input', e => { const t = /** @type {HTMLInputElement} */ (evT(e)); if (t.id === 'dk-q') { DK_Q = t.value; renderDecks(); const q = /** @type {HTMLInputElement} */ ($('dk-q')); if (q) { q.focus({ preventScroll: true }); q.setSelectionRange(DK_Q.length, DK_Q.length); } } });
+  document.addEventListener('change', e => { const t = /** @type {HTMLSelectElement} */ (evT(e)); if (t.id === 'dk-sort') { DK_SORT = t.value; renderDecks(); } });
   document.addEventListener('keydown', e => {   // Rename: Enter saves; Escape closes the Rename / Delete dialogs (not engine decisions)
     if (MODAL && /^(Rename deck|Delete this deck\?)$/.test(MODAL.cfg.title)) { if (e.key === 'Escape') closeModal(null); else if (e.key === 'Enter' && evT(e).id === 'dk-name-in') modalPress(0); }
   });

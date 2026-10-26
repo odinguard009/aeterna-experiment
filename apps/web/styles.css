@@ -694,6 +694,7 @@
   .dk-h{margin:10px 0 0;font-size:13px;font-weight:900;letter-spacing:.16em;color:var(--ae-text)}.dk-h span{font-weight:400;letter-spacing:0;color:var(--ae-text3);margin-left:8px}
   .dk-in{width:100%;height:40px;padding:0 10px;background:var(--ae-chip);color:var(--ae-text);border:0;box-shadow:inset 0 0 0 1px var(--ae-line2);font:inherit;font-size:15px}
   .modal-btn.danger{background:var(--cpu);color:var(--cpu-ink)}
+  html.layout-mobile .ae-phead:has([data-a="go-lobby"]){flex-wrap:wrap}html.layout-mobile .ae-phead:has([data-a="go-lobby"]) .tx{flex:1 1 100%}   /* v0.136.0: the Home button no longer squeezes the title on a phone */
   .dk-fan{display:none}
   .dk-q{width:200px;height:40px}.dk-sort{width:auto;height:40px}
   .dk-add{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:96px;background:transparent;border:2px dashed var(--ae-line2);color:var(--ae-text2);font:inherit;cursor:pointer}.dk-add span{font-size:34px;line-height:1}.dk-add i{font-style:normal;font-size:12px}.dk-add:hover{color:var(--ae-text);border-color:var(--you)}

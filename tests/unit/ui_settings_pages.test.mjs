@@ -33,7 +33,7 @@ for (const screen of ['pc', 'phone']) {
       cols: document.querySelectorAll('#set-color .pcol').length,
       wide: document.documentElement.scrollWidth > innerWidth + 1,
     }));
-    assert.equal(r.head, 'PREFERENCES');
+    assert.equal(r.head, 'Settings');
     assert.deepEqual(r.menu, ['appearance', 'game', 'sound', 'access', 'data']);
     assert.deepEqual([r.ids, r.acts, r.cols, r.wide], [[], [], 9, false]);
     await page.click('#set-menu [data-v="access"]');

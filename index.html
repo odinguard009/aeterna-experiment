@@ -623,6 +623,7 @@ html.layout-mobile .modal-box{width:100%;max-width:none;max-height:86vh;padding-
 .dk-h{margin:10px 0 0;font-size:13px;font-weight:900;letter-spacing:.16em;color:var(--ae-text)}.dk-h span{font-weight:400;letter-spacing:0;color:var(--ae-text3);margin-left:8px}
 .dk-in{width:100%;height:40px;padding:0 10px;background:var(--ae-chip);color:var(--ae-text);border:0;box-shadow:inset 0 0 0 1px var(--ae-line2);font:inherit;font-size:15px}
 .modal-btn.danger{background:var(--cpu);color:var(--cpu-ink)}
+html.layout-mobile .ae-phead:has([data-a="go-lobby"]){flex-wrap:wrap}html.layout-mobile .ae-phead:has([data-a="go-lobby"]) .tx{flex:1 1 100%}
 .dk-fan{display:none}
 .dk-q{width:200px;height:40px}.dk-sort{width:auto;height:40px}
 .dk-add{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:96px;background:transparent;border:2px dashed var(--ae-line2);color:var(--ae-text2);font:inherit;cursor:pointer}.dk-add span{font-size:34px;line-height:1}.dk-add i{font-style:normal;font-size:12px}.dk-add:hover{color:var(--ae-text);border-color:var(--you)}
@@ -1055,10 +1056,10 @@ span.pg-av{cursor:default;}.pg-avs{display:flex;flex-wrap:wrap;gap:8px;}.pg-avs 
 
 <div id="view-settings" class="app-view ae-view">
   <main class="ae-page set">
-    <header class="ae-phead"><div class="tx"><span class="ae-eyebrow">SETTINGS</span><h1>PREFERENCES</h1><p>Saved on this device.</p></div>
+    <header class="ae-phead"><div class="tx"><span class="ae-eyebrow">Preferences</span><h1>Settings</h1><p>Saved on this device. Changes apply at once.</p></div>
       <button class="ae-ghost" id="set-back" data-a="options-back" hidden>◄ BACK TO MATCH</button><button class="ae-ghost" data-a="go-lobby">◄ HOME</button></header>
     <div class="set-grid">
-      <nav class="set-menu" id="set-menu" aria-label="Settings sections"><button data-a="set-sec" data-v="appearance" aria-current="true">Appearance</button><button data-a="set-sec" data-v="game">Game</button><button data-a="set-sec" data-v="sound">Animation and sound</button><button data-a="set-sec" data-v="access">Accessibility</button><button data-a="set-sec" data-v="data">Cards and saved data</button></nav>
+      <nav class="set-menu" id="set-menu" aria-label="Settings sections"><button data-a="set-sec" data-v="appearance" aria-current="true">Appearance</button><button data-a="set-sec" data-v="game">Game</button><button data-a="set-sec" data-v="sound">Animation And Sound</button><button data-a="set-sec" data-v="access">Accessibility</button><button data-a="set-sec" data-v="data">Cards And Saved Data</button></nav>
       <div class="set-body">
         <section class="set-card" id="set-s-appearance" aria-labelledby="set-h-appearance"><h2 id="set-h-appearance">Appearance</h2>
           <div class="srow"><div class="tx"><b id="set-l-mode">Mode</b><span>Dark or light board and menus.</span></div><span class="ae-toggle" id="set-mode" role="group" aria-labelledby="set-l-mode"><button data-a="theme-mode" data-v="dark" aria-pressed="true">DARK</button><button data-a="theme-mode" data-v="light" aria-pressed="false">LIGHT</button></span></div>
@@ -1068,11 +1069,11 @@ span.pg-av{cursor:default;}.pg-avs{display:flex;flex-wrap:wrap;gap:8px;}.pg-avs 
         </section>
         <section class="set-card" id="set-s-game" aria-labelledby="set-h-game"><h2 id="set-h-game">Game</h2>
           <div class="srow"><div class="tx"><b>Speed</b><span>Animation and CPU pause length.</span></div><select id="set-speed" class="sel" aria-label="Game speed"><option value="normal">Normal</option><option value="fast">Fast</option><option value="instant">Instant</option></select></div>          <div class="srow"><div class="tx"><b>Style</b><span>How the CPU weighs attacks, blocks and plays (balanced is the default).</span></div><select id="set-cpu" class="sel" aria-label="CPU style"></select></div>          <div class="srow"><div class="tx"><b>Server URL</b><span>Base address of the Aeterna server (http, no trailing slash). Leave empty to use this page's own address when the server serves it; the online room connects to the WebSocket one port up. Online rooms play Standard.</span></div><input id="set-online-url" class="sel" type="url" placeholder="http://localhost:8080" autocomplete="off" spellcheck="false"></div></section>
-        <section class="set-card" id="set-s-sound" aria-labelledby="set-h-sound"><h2 id="set-h-sound">Animation and sound</h2>
+        <section class="set-card" id="set-s-sound" aria-labelledby="set-h-sound"><h2 id="set-h-sound">Animation And Sound</h2>
 <div class="srow"><div class="tx"><b>Animations</b><span>Attack beam, Life shatter and other short battle cues. Reduced keeps only fades. Auto follows the device's reduced-motion setting.</span></div><select id="set-anim" class="sel" aria-label="Animations"><option value="auto">Auto (device)</option><option value="full">Full</option><option value="reduced">Reduced</option><option value="off">Off</option></select></div>          <div class="srow"><div class="tx"><b>Sound effects</b><span>Short synthesized sounds for attacks, hits, summons and draws (no audio files).</span></div><select id="set-sound" class="sel" aria-label="Sound"><option value="off">Off</option><option value="on">On</option></select></div></section>
         <section class="set-card" id="set-s-access" aria-labelledby="set-h-access"><h2 id="set-h-access">Accessibility</h2>
 <div class="srow"><div class="tx"><b>Long-press for card info</b><span>Deck builder on a touch screen: hold a card to read it instead of adding it.</span></div><select id="set-lp" class="sel" aria-label="Long-press for card info"><option value="on">On</option><option value="off">Off</option></select></div></section>
-        <section class="set-card" id="set-s-data" aria-labelledby="set-h-data"><h2 id="set-h-data">Cards and saved data</h2>
+        <section class="set-card" id="set-s-data" aria-labelledby="set-h-data"><h2 id="set-h-data">Cards And Saved Data</h2>
           <div class="srow"><div class="tx"><b>Your card images</b><span id="set-imgs">Pictures you add in the Library. They stay on this device.</span></div><button class="ae-ghost" data-a="go-lib">OPEN LIBRARY</button></div>
           <div class="srow"><div class="tx"><b>Reset settings</b><span>Decks, imported cards, images and settings stay in this browser only. Reset puts speed, sound, CPU deck and CPU style back to the defaults.</span></div><button class="ae-ghost" data-a="set-reset">RESET</button></div></section>
         <section class="set-card" id="set-s-profile" aria-labelledby="set-h-profile"><h2 id="set-h-profile">Profile</h2>
@@ -1526,7 +1527,7 @@ function bindHost(h) {
    type: 'Spirit' | 'Nexus' | 'Magic'      symbol: card color     symbols: number of symbols
    reduction: {color: n}         levels: [{cores, bp}]  (Nexus levels have no bp)
    --------------------------------------------------------------------- */
-const VERSION = '0.135.0';
+const VERSION = '0.136.0';
 const CARDS = {};
 function defCard(o) {
   CARDS[o.id] = Object.assign({ type: 'Spirit', reduction: {}, symbols: 1, families: [], keywords: [], implemented: true, desc: 'Vanilla test card (no effect).', block: 'A' }, o);
@@ -7751,8 +7752,8 @@ async function dkAct(a, v) {
   }
 }
 if (typeof document !== 'undefined') {
-  document.addEventListener('input', e => { if (evT(e).id === 'dk-q') { DK_Q = evT(e).value; renderDecks(); const q = $('dk-q'); if (q) { q.focus({ preventScroll: true }); q.setSelectionRange(DK_Q.length, DK_Q.length); } } });
-  document.addEventListener('change', e => { if (evT(e).id === 'dk-sort') { DK_SORT = evT(e).value; renderDecks(); } });
+  document.addEventListener('input', e => { const t = /** @type {HTMLInputElement} */ (evT(e)); if (t.id === 'dk-q') { DK_Q = t.value; renderDecks(); const q = /** @type {HTMLInputElement} */ ($('dk-q')); if (q) { q.focus({ preventScroll: true }); q.setSelectionRange(DK_Q.length, DK_Q.length); } } });
+  document.addEventListener('change', e => { const t = /** @type {HTMLSelectElement} */ (evT(e)); if (t.id === 'dk-sort') { DK_SORT = t.value; renderDecks(); } });
   document.addEventListener('keydown', e => {   // Rename: Enter saves; Escape closes the Rename / Delete dialogs (not engine decisions)
     if (MODAL && /^(Rename deck|Delete this deck\?)$/.test(MODAL.cfg.title)) { if (e.key === 'Escape') closeModal(null); else if (e.key === 'Enter' && evT(e).id === 'dk-name-in') modalPress(0); }
   });
