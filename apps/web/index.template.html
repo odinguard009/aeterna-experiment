@@ -216,10 +216,10 @@
 
 <div id="view-decks" class="app-view ae-view">
   <main class="ae-page dk-page">
-    <header class="ae-phead"><div class="tx"><span class="ae-eyebrow">DECKS · <span id="dk-fmt">Standard</span></span><h1>MY DECKS</h1><p>Your decks stay on this device. <b id="dk-count">0 / 8</b> slots in use.</p><p id="dk-msg" class="dk-msg" role="status" aria-live="polite"></p></div>
-      <div class="dk-hacts"><button class="ae-ghost" data-a="dk-import">IMPORT CODE</button><button class="ae-ghost primary" data-a="dk-new">+ NEW DECK</button></div></header>
+    <header class="ae-phead"><div class="tx"><span class="ae-eyebrow">Decks · <span id="dk-fmt">Standard</span></span><h1>My Decks</h1><p>Your decks stay on this device · <b id="dk-count">0 / 8</b> slots in use · <span id="dk-sub">1 active</span></p><p id="dk-msg" class="dk-msg" role="status" aria-live="polite"></p></div>
+      <div class="dk-hacts"><input id="dk-q" class="dk-in dk-q" type="search" placeholder="Search Decks" aria-label="Search decks" autocomplete="off"><select id="dk-sort" class="dk-in dk-sort" aria-label="Sort"><option value="slot">Slot</option><option value="name">Name</option><option value="cards">Cards</option></select><button class="ae-ghost" data-a="dk-import">Import</button><button class="ae-ghost primary" data-a="dk-new">+ New Deck</button></div></header>
     <section class="dk-list" id="dk-list" aria-label="My decks"></section>
-    <h2 class="dk-h">STARTER DECKS <span>read-only · Copy to edit</span></h2>
+    <h2 class="dk-h">Starter Decks <span>read-only · Copy to edit</span></h2>
     <section class="dk-list" id="dk-starters" aria-label="Starter decks"></section>
   </main>
 </div>

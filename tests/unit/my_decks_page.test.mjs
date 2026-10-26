@@ -31,7 +31,7 @@ for (const screen of ['pc', 'phone']) {
     const r = await page.evaluate(() => ({ on: document.getElementById('view-decks').classList.contains('active'), cur: document.querySelector('#app-tabs [aria-current="page"]').dataset.nav,
       h1: document.querySelector('#view-decks .ae-phead h1').textContent, count: document.getElementById('dk-count').textContent, wide: document.documentElement.scrollWidth > innerWidth + 1,
       starters: document.querySelectorAll('#dk-starters .dk-tile').length, pre: BS.PREBUILT.length, sleeve: !!document.querySelector('#dk-list .dk-tile .sleeve'), dots: document.querySelectorAll('#dk-list .dk-tile .dk-dot').length }));
-    assert.deepEqual([r.on, r.cur, r.h1, r.count, r.wide, r.starters === r.pre, r.sleeve, r.dots > 0], [true, 'view-decks', 'MY DECKS', '1 / 8', false, true, true, true]);
+    assert.deepEqual([r.on, r.cur, r.h1, r.count, r.wide, r.starters === r.pre, r.sleeve, r.dots > 0], [true, 'view-decks', 'My Decks', '1 / 8', false, true, true, true]);
     const t = await tiles(page);
     assert.equal(t.length, 1); assert.equal(t[0].act, true); assert.match(t[0].st, /Ready/); assert.equal(t[0].play, true);
     await page.click('#dk-list [data-a="dk-edit"]');

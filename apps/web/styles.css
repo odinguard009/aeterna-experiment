@@ -694,6 +694,18 @@
   .dk-h{margin:10px 0 0;font-size:13px;font-weight:900;letter-spacing:.16em;color:var(--ae-text)}.dk-h span{font-weight:400;letter-spacing:0;color:var(--ae-text3);margin-left:8px}
   .dk-in{width:100%;height:40px;padding:0 10px;background:var(--ae-chip);color:var(--ae-text);border:0;box-shadow:inset 0 0 0 1px var(--ae-line2);font:inherit;font-size:15px}
   .modal-btn.danger{background:var(--cpu);color:var(--cpu-ink)}
+  .dk-fan{display:none}
+  .dk-q{width:200px;height:40px}.dk-sort{width:auto;height:40px}
+  .dk-add{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:96px;background:transparent;border:2px dashed var(--ae-line2);color:var(--ae-text2);font:inherit;cursor:pointer}.dk-add span{font-size:34px;line-height:1}.dk-add i{font-style:normal;font-size:12px}.dk-add:hover{color:var(--ae-text);border-color:var(--you)}
+  html.layout-pc .dk-list:not(#dk-starters){grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+  html.layout-pc .dk-list:not(#dk-starters) .dk-tile{flex-direction:column;align-items:stretch;padding:14px;gap:8px}
+  html.layout-pc .dk-list:not(#dk-starters) .dk-tile .dk-sl{display:none}
+  html.layout-pc .dk-list:not(#dk-starters) .dk-fan{display:flex;position:relative;height:150px;align-items:center;justify-content:center}
+  html.layout-pc .dk-fc{position:absolute;width:86px;transition:transform .35s}
+  html.layout-pc .dk-fc:nth-child(1){transform:translateX(-34px) rotate(-10deg)}html.layout-pc .dk-fc:nth-child(3){transform:translateX(34px) rotate(10deg)}
+  html.layout-pc .dk-tile:hover .dk-fc:nth-child(1){transform:translateX(-50px) rotate(-16deg)}html.layout-pc .dk-tile:hover .dk-fc:nth-child(3){transform:translateX(50px) rotate(16deg)}
+  html.layout-pc .dk-list:not(#dk-starters) .dk-btns .ae-ghost{flex:1}
+  html.layout-pc .dk-list:not(#dk-starters) .dk-add{min-height:250px}
   html.layout-mobile .dk-list{grid-template-columns:minmax(0,1fr)}
   html.layout-mobile .dk-tile{padding:10px;gap:10px;flex-wrap:wrap}html.layout-mobile .dk-btns{flex-basis:100%;justify-content:flex-end}html.layout-mobile .dk-top{flex-direction:column;align-items:flex-start;gap:2px}html.layout-mobile .dk-name{max-width:100%;white-space:normal;overflow-wrap:anywhere;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2}
   html.layout-mobile .dk-tile.open{z-index:70}html.layout-mobile #view-decks .ae-phead{flex-wrap:wrap}html.layout-mobile .dk-hacts{width:100%}html.layout-mobile .dk-hacts .ae-ghost{flex:1}

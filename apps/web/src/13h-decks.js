@@ -6,7 +6,7 @@
    prebuilt decks are read-only starters with Copy. A slot is listed when it has cards, a name of its own, the used mark
    (New / Import / Copy) or is the active slot.
    --------------------------------------------------------------------- */
-let DK_MENU = -1;                                   // slot whose more menu / action sheet is open
+let DK_MENU = -1, DK_Q = '', DK_SORT = 'slot';                                   // slot whose more menu / action sheet is open
 const dkCards = i => (i === ACTIVE_SLOT ? PLAYER_DECK : SLOTS[i].cards);
 const dkUsed = i => i === ACTIVE_SLOT || !!SLOTS[i].used || deckTotal(dkCards(i)) > 0 || !/^Deck \d+$/.test(SLOTS[i].name);
 const dkFree = () => SLOTS.findIndex((s, i) => !dkUsed(i));
@@ -21,6 +21,10 @@ function dkColors(cards) {                          // the deck's colours, most 
   for (const [id, k] of Object.entries(cards)) { const c = CARDS[id]; if (c && k) for (const col of cardColors(c)) if (COLORS.includes(col)) n[col] = (n[col] || 0) + k; }
   return Object.keys(n).sort((a, b) => n[b] - n[a]).slice(0, 3);
 }
+function dkFan(cards) {                              // PC tile art: the deck's three most-played cards, fanned (mockup-v14 .stack)
+  const top = Object.keys(cards).filter(id => CARDS[id] && cards[id]).sort((a, b) => cards[b] - cards[a]).slice(0, 3);
+  return `<div class="dk-fan" aria-hidden="true">${top.map(id => `<div class="dk-fc">${cardFaceHTML(CARDS[id], false)}</div>`).join('')}</div>`;
+}
 function dkTile(i, name, cards, starter) {
   const key = starter ? ((PREBUILT[i] || {}).key || null) : (SLOTS[i] && SLOTS[i].key || null);
   const st = dkStatus(cards, key), act = !starter && i === ACTIVE_SLOT, open = !starter && DK_MENU === i, nm = esc(name), kb = key && CARDS[key] ? '<span class="dk-key" title="Key Spirit: draws favour it">KEY</span>' : '';
@@ -29,14 +33,18 @@ function dkTile(i, name, cards, starter) {
   const menu = open ? `<div class="dk-menu" role="menu" aria-label="${nm}"><div class="dk-mh">${nm}</div>${item('dk-edit', 'Edit cards')}${item('dk-play', 'Play with this deck')}${act ? '' : item('dk-active', 'Set active')}${item('dk-rename', 'Rename…')}${item('dk-dup', 'Duplicate')}${item('dk-look', 'Deck look')}${item('dk-code', 'Copy deck code')}${item('dk-del', 'Delete…', 'del')}<button class="dk-x" data-a="dk-more" data-v="-1">Cancel</button></div>` : '';
   const btns = starter ? `<button class="ae-ghost primary" data-a="dk-copy" data-v="${i}" aria-label="Copy ${nm} to my decks">COPY</button>`
     : `<button class="ae-ghost" data-a="dk-edit" data-v="${i}" aria-label="Edit ${nm}">EDIT</button><button class="ae-ghost primary" data-a="dk-play" data-v="${i}" aria-label="Play with ${nm}"${st.ok ? '' : ' disabled'}>PLAY</button><button class="dk-more" data-a="dk-more" data-v="${i}" aria-label="More actions for ${nm}" aria-haspopup="menu" aria-expanded="${open}">⋯</button>`;
-  return `<article class="dk-tile${starter ? ' st' : ''}${act ? ' on' : ''}${open ? ' open' : ''}" data-v="${i}"><span class="sleeve dk-sl" style="--sl-tint:${SLEEVE_TINTS[starter ? 'silver' : deckLook(i).sleeve]}" aria-hidden="true"></span><div class="dk-main"><div class="dk-top"><b class="dk-name" title="${nm}">${nm}</b>${kb}${act ? '<span class="dk-act">ACTIVE</span>' : ''}</div><div class="dk-dots">${dots}</div><div class="dk-st ${st.ok ? 'ok' : 'bad'}">${esc(st.txt)}</div></div><div class="dk-btns">${btns}</div>${menu}</article>`;
+  return `<article class="dk-tile${starter ? ' st' : ''}${act ? ' on' : ''}${open ? ' open' : ''}" data-v="${i}">${dkFan(cards)}<span class="sleeve dk-sl" style="--sl-tint:${SLEEVE_TINTS[starter ? 'silver' : deckLook(i).sleeve]}" aria-hidden="true"></span><div class="dk-main"><div class="dk-top"><b class="dk-name" title="${nm}">${nm}</b>${kb}${act ? '<span class="dk-act">Active</span>' : ''}</div><div class="dk-dots">${dots}</div><div class="dk-st ${st.ok ? 'ok' : 'bad'}">${esc(st.txt)}</div></div><div class="dk-btns">${btns}</div>${menu}</article>`;
 }
 function renderDecks() {
   if (!$('dk-list')) return;
   applyLook();
   const used = SLOTS.map((s, i) => i).filter(dkUsed);
   $('dk-count').textContent = `${used.length} / ${SLOTS.length}`;
-  $('dk-list').innerHTML = used.map(i => dkTile(i, SLOTS[i].name, dkCards(i))).join('');
+  const q = DK_Q.trim().toLowerCase(), shown = used.filter(i => !q || SLOTS[i].name.toLowerCase().includes(q));
+  if (DK_SORT === 'name') shown.sort((a, b) => SLOTS[a].name.localeCompare(SLOTS[b].name));
+  else if (DK_SORT === 'cards') shown.sort((a, b) => deckTotal(dkCards(b)) - deckTotal(dkCards(a)));
+  $('dk-list').innerHTML = shown.map(i => dkTile(i, SLOTS[i].name, dkCards(i))).join('') + (!q && dkFree() >= 0 ? '<button class="dk-add" data-a="dk-new"><span>+</span><b>New Deck</b><i>Blank, from a starter, or import</i></button>' : '');
+  if ($('dk-sub')) $('dk-sub').textContent = `${used.includes(ACTIVE_SLOT) ? 1 : 0} active`;
   $('dk-starters').innerHTML = prebuiltOrder(FORMAT).map(({ d, i }) => dkTile(i, prebuiltLabel(d), d.cards, true)).join('');
   $('dk-fmt').textContent = fmtTitle();
 }
@@ -89,6 +97,8 @@ async function dkAct(a, v) {
   }
 }
 if (typeof document !== 'undefined') {
+  document.addEventListener('input', e => { if (evT(e).id === 'dk-q') { DK_Q = evT(e).value; renderDecks(); const q = $('dk-q'); if (q) { q.focus({ preventScroll: true }); q.setSelectionRange(DK_Q.length, DK_Q.length); } } });
+  document.addEventListener('change', e => { if (evT(e).id === 'dk-sort') { DK_SORT = evT(e).value; renderDecks(); } });
   document.addEventListener('keydown', e => {   // Rename: Enter saves; Escape closes the Rename / Delete dialogs (not engine decisions)
     if (MODAL && /^(Rename deck|Delete this deck\?)$/.test(MODAL.cfg.title)) { if (e.key === 'Escape') closeModal(null); else if (e.key === 'Enter' && evT(e).id === 'dk-name-in') modalPress(0); }
   });
