@@ -4,6 +4,14 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.137.0
+- Lane: U/I
+- **Mockup parity part 2 (`docs/design/mockup-v14.html`): the whole app now uses the mockup stylesheet and markup, PC and phone.** UI only; no engine change. Backup: `backup/v0.136.0`.
+  - Ported screens: Home (hero, Continue with, tiles, Daily missions, What's new, Last match), Play, My Decks, Library (+ Cards / Lore), deck builder, Settings (section menu, setrows), Learn (16 chapters, saved progress, glossary search), Profile (rank card, KPIs, win-rate chart, achievements, recent matches), Library card page (tilt, tags, effect text, art picker, level table, Add to deck, Copy Link, prev/next) and the battle header (Log, Emote, Options, Bug, red Concede; field captions on the phone).
+  - Battle board layout stays as it was (old stylesheet); only the header and captions follow the mockup.
+  - **Deviations from the mockup (report):** builder has 6 card-type chips and no Share / Set Active dialogs; Settings uses selects where the mockup has switches and omits mock-only settings; Learn has no practice boards; Profile name is fixed "Player", rank is wins-based, no XP; card page related cards = same-name printings, no family line, Copy Link has no `#card=` opener yet; Concede leaves the match without recording a loss; "Effects" animation menu, the 32 dialogs, the New features page and the Animation lab are mock-only and not built.
+  - Tests follow the new markup (Settings sections, card page, Profile, battle captions); size budgets raised on purpose.
+
 ## v0.136.0
 - Lane: U/I
 - **Mockup parity part 1 (`docs/design/mockup-v14.html`): header, Lobby, Play, My Decks, Library, Settings, deck builder labels.** UI only; no engine change.
