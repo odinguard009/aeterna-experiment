@@ -933,6 +933,19 @@ html.layout-mobile .db-dd-phone{display:block;}html.layout-mobile #db-f-colors{d
 .cp-chip{padding:4px 10px;font-size:11px;background:var(--ae-panel2);color:var(--ae-text);box-shadow:inset 0 0 0 1px var(--ae-line);border:0;cursor:pointer;}
 span.cp-chip{cursor:default;}.cp-chip.on{box-shadow:inset 0 0 0 2px var(--you);}
 #zoom-overlay .zc-card{transition:transform .12s ease-out;}
+.home-more{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px;}
+.hm-card{padding:12px 14px;background:var(--ae-panel2);box-shadow:inset 0 0 0 1px var(--ae-line);}
+.hm-card h2{margin:0 0 8px;font-family:var(--f-display);font-size:13px;letter-spacing:.08em;}
+.hm-steps{margin:0;padding-left:20px;font-size:13px;color:var(--ae-text2);}.hm-sum{margin:8px 0 0;font-size:12px;color:var(--ae-text3);}
+.hm-cotd,.hm-deck{display:flex;flex-direction:column;gap:2px;width:100%;padding:8px 12px;border:0;text-align:left;font:inherit;color:var(--ae-text);background:var(--ae-chip);box-shadow:inset 4px 0 0 var(--lc,var(--you));cursor:pointer;}
+.hm-cotd span,.hm-deck span{font-size:12px;color:var(--ae-text3);}
+.hm-decks{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px;}
+.hm-deck.on{box-shadow:inset 4px 0 0 var(--you),inset 0 0 0 2px var(--you);}
+@media (min-width:900px){.home-more{grid-template-columns:1fr 1fr;}.hm-card.wide{grid-column:1 / -1;}}
+.pf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:6px;}
+.pf-tile{padding:8px 10px;background:var(--ae-panel2);box-shadow:inset 0 0 0 1px var(--ae-line);}.pf-tile b{display:block;font-family:var(--f-display);font-size:20px;}.pf-tile span{font-size:11px;color:var(--ae-text3);}
+.pf-fmt{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:8px;font-size:12px;color:var(--ae-text2);}
+.gl-list{display:grid;gap:6px;}.gl-item{padding:6px 10px;background:var(--ae-panel2);box-shadow:inset 4px 0 0 var(--you);}.gl-item b{font-family:var(--f-display);font-size:12px;}.gl-item p{margin:2px 0 0;font-size:12px;color:var(--ae-text2);}
 </style>
 </head>
 <body>
@@ -963,6 +976,11 @@ span.cp-chip{cursor:default;}.cp-chip.on{box-shadow:inset 0 0 0 2px var(--you);}
       <button class="ae-tile" data-a="go-deck"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span><span class="tx"><b>DECK BUILDER</b><span>8 slots, ready-made decks</span></span><span class="chev" aria-hidden="true">›</span></button>
       <button class="ae-tile" data-a="go-lib"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h14v16H6a2 2 0 0 0-2 2z"/></svg></span><span class="tx"><b>CARD LIBRARY</b><span id="tile-lib-sub">Card data and your card images</span></span><span class="chev" aria-hidden="true">›</span></button>
     </div>
+    <section class="home-more" aria-label="Today">
+      <div class="hm-card"><h2>Card of the Day</h2><div id="home-cotd"></div></div>
+      <div class="hm-card"><h2>Play in three steps</h2><ol class="hm-steps"><li><b>Pick a deck</b> below or build one.</li><li><b>Pick a format</b> and the CPU deck.</li><li><b>Press Play Now</b> and win by taking all 5 Life.</li></ol><p class="hm-sum" id="home-sum"></p></div>
+      <div class="hm-card wide"><h2>My decks</h2><div class="hm-decks" id="home-decks"></div></div>
+    </section>
   </main>
   <footer class="home-foot"><span id="home-ver" translate="no">Aeterna</span><button data-a="go-howto">HOW TO PLAY</button><button data-a="go-settings">SETTINGS &amp; HISTORY</button><button data-a="rules">RULES COVERAGE</button><span class="t-pcf">Unofficial non-commercial fan project</span></footer>
 </div>
@@ -972,7 +990,7 @@ span.cp-chip{cursor:default;}.cp-chip.on{box-shadow:inset 0 0 0 2px var(--you);}
     <header class="ae-phead"><div class="tx"><span class="ae-eyebrow">SETTINGS</span><h1>PREFERENCES</h1><p>Saved on this device.</p></div>
       <button class="ae-ghost" id="set-back" data-a="options-back" hidden>◄ BACK TO MATCH</button><button class="ae-ghost" data-a="go-lobby">◄ HOME</button></header>
     <div class="set-grid">
-      <nav class="set-menu" id="set-menu" aria-label="Settings sections"><button data-a="set-sec" data-v="appearance" aria-current="true">Appearance</button><button data-a="set-sec" data-v="speed">Game speed</button><button data-a="set-sec" data-v="sound">Sound</button><button data-a="set-sec" data-v="cpu">CPU style</button><button data-a="set-sec" data-v="online">Online</button><button data-a="set-sec" data-v="images">Card images</button><button data-a="set-sec" data-v="data">Saved data</button><button data-a="set-sec" data-v="history">Match history</button></nav>
+      <nav class="set-menu" id="set-menu" aria-label="Settings sections"><button data-a="set-sec" data-v="appearance" aria-current="true">Appearance</button><button data-a="set-sec" data-v="speed">Game speed</button><button data-a="set-sec" data-v="sound">Sound</button><button data-a="set-sec" data-v="cpu">CPU style</button><button data-a="set-sec" data-v="online">Online</button><button data-a="set-sec" data-v="images">Card images</button><button data-a="set-sec" data-v="data">Saved data</button><button data-a="set-sec" data-v="profile">Profile</button><button data-a="set-sec" data-v="history">Match history</button></nav>
       <div class="set-body">
         <section class="set-card" id="set-s-appearance" aria-labelledby="set-h-appearance"><h2 id="set-h-appearance">Appearance</h2>
           <div class="srow"><div class="tx"><b id="set-l-mode">Mode</b><span>Dark or light board and menus.</span></div><span class="ae-toggle" id="set-mode" role="group" aria-labelledby="set-l-mode"><button data-a="theme-mode" data-v="dark" aria-pressed="true">DARK</button><button data-a="theme-mode" data-v="light" aria-pressed="false">LIGHT</button></span></div>
@@ -992,6 +1010,8 @@ span.cp-chip{cursor:default;}.cp-chip.on{box-shadow:inset 0 0 0 2px var(--you);}
           <div class="srow"><div class="tx"><b>Your card images</b><span id="set-imgs">Pictures you add in the Library. They stay on this device.</span></div><button class="ae-ghost" data-a="go-lib">OPEN LIBRARY</button></div></section>
         <section class="set-card" id="set-s-data" aria-labelledby="set-h-data"><h2 id="set-h-data">Saved data</h2>
           <div class="srow"><div class="tx"><b>Reset settings</b><span>Decks, imported cards, images and settings stay in this browser only. Reset puts speed, sound, CPU deck and CPU style back to the defaults.</span></div><button class="ae-ghost" data-a="set-reset">RESET</button></div></section>
+        <section class="set-card" id="set-s-profile" aria-labelledby="set-h-profile"><h2 id="set-h-profile">Profile</h2>
+          <div id="set-profile"></div></section>
         <section class="set-card" id="set-s-history" aria-labelledby="set-h-history"><h2 id="set-h-history">Match history</h2>
           <div id="set-hist" class="set-hist"></div>
           <div class="srow"><div class="tx"><b>Clear history</b><span>Removes the list of finished matches.</span></div><button class="ae-ghost" data-a="hist-clear">CLEAR</button></div>
@@ -1027,6 +1047,7 @@ span.cp-chip{cursor:default;}.cp-chip.on{box-shadow:inset 0 0 0 2px var(--you);}
         <li>Tap a card to open its actions; tap a zone (Trash, Soul State, Burst…) to look inside it. Long-press a card to zoom it.</li>
         <li>On a PC, hover a card to read it. Keyboard: <kbd>Space</kbd> or <kbd>Enter</kbd> = Next step, <kbd>L</kbd> = game log, <kbd>Esc</kbd> = close.</li>
         <li>The game log (📜) lists everything that happened. Settings let you change the game speed and sounds.</li></ul></section>
+      <section class="doc-card"><h2>Glossary</h2><p>Keywords you meet on cards.</p><div class="gl-list" id="howto-gloss"></div></section>
       <section class="doc-card"><h2>Your cards</h2><p>Open the <b>Library</b> to import card data and your own card images (they stay on your device). The Deck Builder has 8 deck slots and ready-made decks.</p>
         <div class="doc-acts"><button class="ae-ghost" data-a="go-lib">OPEN LIBRARY</button><button class="ae-ghost" data-a="rules">RULES COVERAGE</button></div></section>
     </div>
@@ -1430,7 +1451,7 @@ function bindHost(h) {
    type: 'Spirit' | 'Nexus' | 'Magic'      symbol: card color     symbols: number of symbols
    reduction: {color: n}         levels: [{cores, bp}]  (Nexus levels have no bp)
    --------------------------------------------------------------------- */
-const VERSION = '0.132.0';
+const VERSION = '0.133.0';
 const CARDS = {};
 function defCard(o) {
   CARDS[o.id] = Object.assign({ type: 'Spirit', reduction: {}, symbols: 1, families: [], keywords: [], implemented: true, desc: 'Vanilla test card (no effect).', block: 'A' }, o);
@@ -6730,8 +6751,9 @@ function switchView(id) {
   if (id === 'view-library') renderLibrary();
   if (id === 'view-decks') renderDecks();
   if (id === 'view-settings') renderSettings();
+  if (id === 'view-howto') renderGlossary();
 }
-function renderSettings() { $('set-hist').innerHTML = histHTML(); $('set-cpu').innerHTML = CPU_PROFILE_NAMES.map(n => `<option value="${n}">${cap(n)}</option>`).join(''); $('set-cpu').value = cpuProfileName(null); $('set-speed').value = SETTINGS.speed; $('set-sound').value = SETTINGS.sound ? 'on' : 'off'; $('set-anim').value = SETTINGS.anim || 'auto'; $('set-lp').value = SETTINGS.longpress === 'off' ? 'off' : 'on';
+function renderSettings() { renderProfile(); $('set-hist').innerHTML = histHTML(); $('set-cpu').innerHTML = CPU_PROFILE_NAMES.map(n => `<option value="${n}">${cap(n)}</option>`).join(''); $('set-cpu').value = cpuProfileName(null); $('set-speed').value = SETTINGS.speed; $('set-sound').value = SETTINGS.sound ? 'on' : 'off'; $('set-anim').value = SETTINGS.anim || 'auto'; $('set-lp').value = SETTINGS.longpress === 'off' ? 'off' : 'on';
   renderSetPage(); $('set-back').hidden = !G || !!G.over; }   // v0.122.0 U14b: Options from a running match shows BACK TO MATCH; v0.68.0 U4: colour grid, Dark/Light, playmat and CPU colour rows (13d-pages.js)
 function renderLobby() {
   renderHome();
@@ -7169,6 +7191,18 @@ function renderHome() {
   const tp = $('tile-play-sub'); if (tp) tp.textContent = `${sl ? sl.name : 'Deck'} · ${fmtTitle()}`;
   const tl = $('tile-lib-sub'); if (tl) tl.textContent = `${n.toLocaleString('en-US')} cards, your card images`;
   $('home-ver').textContent = 'Aeterna v' + VERSION;
+  renderHomeMore();
+}
+// v0.133.0 U14h: Card of the Day (the same card all day, from the date), the three-step summary and the deck tiles
+function cardOfDay(d = new Date()) {
+  const ids = Object.keys(CARDS).filter(id => !CARDS[id].token && !id.startsWith('TRAIN-')).sort(DB_COLL.compare);
+  return ids.length ? ids[(Math.floor(d.getTime() / 864e5) * 7919) % ids.length] : '';
+}
+function renderHomeMore() {
+  const id = cardOfDay(), c = CARDS[id], ok = validateDeck(PLAYER_DECK, FORMAT).ok;
+  $('home-cotd').innerHTML = c ? `<button class="hm-cotd" data-a="zoom" data-v="${esc(id)}" style="--lc:${colorVar(c.symbol)}"><b>${esc(c.name)}</b><span translate="no">${esc(id)} · ${esc(c.contract ? 'Contract' : c.type)} · Cost ${c.cost}</span></button>` : '';
+  $('home-sum').textContent = `Deck: ${SLOTS[ACTIVE_SLOT].name} (${ok ? 'legal' : 'not ready'}) · Format: ${fmtTitle()} · CPU: ${SETTINGS.cpuDeck}`;
+  $('home-decks').innerHTML = SLOTS.map((s, i) => { const t = deckTotal(s.cards); return `<button class="hm-deck${i === ACTIVE_SLOT ? ' on' : ''}" data-a="home-deck" data-v="${i}"><b>${esc(s.name)}</b><span>${t ? t + ' cards' : 'empty'}${t && validateDeck(s.cards, FORMAT).ok ? ' · legal' : ''}</span></button>`; }).join('');
 }
 if (typeof document !== 'undefined') {
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && $('theme-pop') && !$('theme-pop').hidden) { themePop(false); $('theme-btn').focus(); } });
@@ -8223,6 +8257,29 @@ function cardTilt(el) {                              // pointer tilt of the card
   el.addEventListener('pointerleave', () => { el.style.transform = ''; });
 }
 /* ---------------------------------------------------------------------
+   PROFILE and GLOSSARY (v0.133.0, U14h): statistics read from the saved match history only, and the Learn page's keyword glossary.
+   Display only: nothing here touches the rules.
+   --------------------------------------------------------------------- */
+function profileStats(h = HISTORY) {
+  const n = h.length, won = h.filter(x => x.won).length, byFmt = {};
+  for (const x of h) { const k = String(x.fmt || '?'); (byFmt[k] = byFmt[k] || [0, 0])[x.won ? 0 : 1]++; }
+  let best = 0, run = 0; for (const x of h) { run = x.won ? run + 1 : 0; best = Math.max(best, run); }
+  let streak = 0; for (let i = n - 1; i >= 0 && h[i].won; i--) streak++;
+  return { n, won, lost: n - won, rate: n ? Math.round(won * 100 / n) : 0, streak, best, turns: n ? Math.round(h.reduce((a, x) => a + (x.turns || 0), 0) / n) : 0, byFmt };
+}
+function renderProfile() {
+  const el = $('set-profile'); if (!el) return;
+  const s = profileStats();
+  if (!s.n) { el.innerHTML = '<div class="empty-note">Play a match to fill your profile.</div>'; return; }
+  const tile = (k, v) => `<div class="pf-tile"><b>${v}</b><span>${k}</span></div>`;
+  el.innerHTML = `<div class="pf-grid">${tile('Matches', s.n)}${tile('Wins', s.won)}${tile('Win rate', s.rate + '%')}${tile('Win streak', s.streak)}${tile('Best streak', s.best)}${tile('Avg. turns', s.turns)}</div>`
+    + `<div class="pf-fmt">${Object.entries(s.byFmt).map(([f, [w, l]]) => `<span>${esc(f.toUpperCase())}: ${w} W / ${l} L</span>`).join('')}</div>`;
+}
+function renderGlossary() {
+  const el = $('howto-gloss'); if (!el) return;
+  el.innerHTML = Object.keys(KEYWORD_GLOSSARY).sort().map(k => `<div class="gl-item"><b>${esc(k)}</b><p>${esc(KEYWORD_GLOSSARY[k])}</p></div>`).join('');
+}
+/* ---------------------------------------------------------------------
    CARD IMAGES  (user supplied files kept in IndexedDB, never uploaded)
    --------------------------------------------------------------------- */
 const IMG = {};           // card id -> blob: URL
@@ -8753,6 +8810,7 @@ document.addEventListener('click', e => {
   else if (a === 'db-export') dbExport();
   else if (a === 'zoom') openZoom(v);
   else if (a === 'art') { const zid = $('zoom-overlay').dataset.id; setArt(zid, v === zid ? '' : v); openZoom(zid); refreshViews(); }
+  else if (a === 'home-deck') { switchSlot(Number(v)); renderLobby(); }
   else if (a === 'zoominfo') return;
   else if (a === 'zoomclose') $('zoom-overlay').classList.remove('active');
   else if (a === 'gloss') uiInfo(`GLOSSARY: ${v}`, esc(KEYWORD_GLOSSARY[v] || ''));
@@ -8877,7 +8935,7 @@ function testSetup() {            // dev hook: a quiet board with no match loop 
   switchView('view-playmat'); render(); return G;
 }
 const defBuiltin = o => { defCard(o); BUILTIN_IDS.add(o.id); };      // test fixtures register through this so their ids stay reserved
-window.BS = { ART_ALT, setArt, cardPageHTML, DB_COLL, lore, loreSeries, renderLore, dbResetFilters, dbTap, dbRedo, dbSize, dbTestHand, get DB_SIZE() { return DB_SIZE; }, io, bindHost, removeCore, moveSoulTo, returnSoul, EMOTES, emoteLeft, emoteSend, setEmoteClock: f => { EMOTE_NOW = f; }, BAN_LIST_INFO, webPick, maxCopies, prebuiltLabel, fmtButton, defaultDeck, get CPU_DECK_NAME() { return CPU_DECK_NAME; }, SLEEVE_IMG, renderDecks, animMode, fxCueReset, aeRibbon, endOfBattle, MAT, matUse, setSection, navSync, renderHome, themePop, soulMagicOK, soulMagicHolder, soulMagicPick, THEME, THEME_COLS, setTheme, stepClick, stepTargets, get FX_STRICT() { return FX_STRICT; }, setFxStrict(v) { FX_STRICT = !!v; }, FX_WARNED, collectFx, setFuzz(o) { FUZZ = Object.assign({}, o || {}); }, get FUZZ() { return FUZZ; }, fuzzPick, ERR_LOG, errReport, onGameError, releaseStandby, leaveStandby, renderDeckBuilder, dbChange, dbUndo, dbSheet, DBF, get DB_UNDO() { return DB_UNDO.length; }, accelList, accelCost, accelOK, accelSources, useAccel, removedSummonable, summonFromRemoved, cpuAccelScore, cpuAccelMain, cpuAccelFlash, cpuSilverWheel, highSpeedOK, highSpeedSources, highSpeedSummon, cpuHighSpeed, isSealed, soulToLife, lifeTake, braveSummonedFx, abTaxOK, payAbTax, oppAttackHandFx, sentToTrashFx, magicFxAt, summonOK, lvNo, isUlt, noBlockActive, burstFlash, cpuBurstFlash, humanAttack, cpuAttack, attackStepOver, endAttackLocked, battleEndAttack, isGW, freeCores, moveCore, swapSoul, payCost, cpuCanPlay, coresAvailable, addCore, cpuKeepMagicOrPay, nameHTML, switchView, SET_KEY, dbFilterOK, cardColors, contractToDeck, redrawHand, cpuWantsRedraw, setHeavy, refreshOne, toRemoved, fxIf, costDestroyBonus, sendToken, canSendToken, tokenHome, attackSymbols, TOKEN_SUPPLY, isSpiritForm, ocActive, braveFits, braveTargets, combineBrave, braveSummon, separateBrave, canSeparate, braveRecheck, braveAfford, cpuBrave, handButtons, minCores, openFieldModal, cpuMain, VERSION, defBuiltin, beginTurn, endStep, newGame, takeFromVoid, checkDepletion, removeSpirit, lvIndex, mirageUsable, cpuCastMain, magicFx, magicText, costAltActive, flagActive, coresSent, startAttackFx, win, recordMatch, HISTORY: () => HISTORY, toggleLog, effectTextHTML, effectLines, titleCase, liveStatusHTML, openZoom, modal, closeModal, startPeek, SETTINGS, SLOTS: () => SLOTS, loadSlots, get ACTIVE_SLOT() { return ACTIVE_SLOT; }, switchSlot, loadPrebuilt, PREBUILT, cpuDeckFor, saveSettings, PACK_IDS, registerPack, clearImported, summonPaid, reviveTargets, doRevive, handUp, contractAdventTargets, doContractAdvent, manifestTargets, doManifest, soulCoreHolder, rng, seedRng, newSeed, runReplay, lastReplay, fireFxMulti, asResolving, replayOf, loadScenario, gameAct, matchSummary, get REPLAY() { return REPLAY; }, soulSource, soulToNexus, fxImmune, residualHTML, cardDetailHTML, setSimDeckB(d, key) { SIM_DECK_B = d; SIM_DECK_B_KEY = key || null; }, activatable, activateFx, cpuActivate, toSoulState, bounceCard, runActions, maybeBurst, flushBursts, summonFree, parseBurst, parseActionList, BURST_WHEN, fireFx, parseEffects, staticBp, FX_ACTIONS, removeNexus, magicUsable, magicTargets, castMagic, flashTiming, cpuFlashChoice, setFormat, validateDeck, legalityOf, banStatus, get FORMAT() { return FORMAT; }, isPC, applyLayout, testSetup, mkInst, draw, keyOfDeck, pickKey, render, takeCores, IMG, cardImgSrc, imgCls, imgSty, importCards, importImages, textToDeck, deckToText, parseCard, loadImages, get PLAYER_DECK() { return PLAYER_DECK; }, get G() { return G; }, startNewGame, checkInvariants, CARDS, PRESET_DECK, humanCan, onNext, engineIdle, runPortRecord, viewerReplayOf, openViewer, replayFromRecord, portRecord, boardSnapshot, sendIntent, applyIntent, seatLoopOpen, cpuAnswer, INTENT_TYPES, cpuTurn, doBattle, summon, effCost, legacyPlan, legacyPay, canBlockState, canPlayCard, setBurst, fieldList, bpOf, get SESSION() { return SESSION; }, CPU_PROFILES, cpuProfileName, cpuEval, cpuPlayScore, cpuPlayChoice, cpuLethal, cpuAttackScore, cpuAttackChoice, cpuBlockScore, cpuChooseBlock, setCpuProfile, setSimProfiles(o) { CPU_SIM_PROFILES = Object.assign({}, o || {}); }, lifeValue, symbolAttrs, fieldSymbols, symbolsOn, reductionOf, extraReduction };
+window.BS = { profileStats, cardOfDay, ART_ALT, setArt, cardPageHTML, DB_COLL, lore, loreSeries, renderLore, dbResetFilters, dbTap, dbRedo, dbSize, dbTestHand, get DB_SIZE() { return DB_SIZE; }, io, bindHost, removeCore, moveSoulTo, returnSoul, EMOTES, emoteLeft, emoteSend, setEmoteClock: f => { EMOTE_NOW = f; }, BAN_LIST_INFO, webPick, maxCopies, prebuiltLabel, fmtButton, defaultDeck, get CPU_DECK_NAME() { return CPU_DECK_NAME; }, SLEEVE_IMG, renderDecks, animMode, fxCueReset, aeRibbon, endOfBattle, MAT, matUse, setSection, navSync, renderHome, themePop, soulMagicOK, soulMagicHolder, soulMagicPick, THEME, THEME_COLS, setTheme, stepClick, stepTargets, get FX_STRICT() { return FX_STRICT; }, setFxStrict(v) { FX_STRICT = !!v; }, FX_WARNED, collectFx, setFuzz(o) { FUZZ = Object.assign({}, o || {}); }, get FUZZ() { return FUZZ; }, fuzzPick, ERR_LOG, errReport, onGameError, releaseStandby, leaveStandby, renderDeckBuilder, dbChange, dbUndo, dbSheet, DBF, get DB_UNDO() { return DB_UNDO.length; }, accelList, accelCost, accelOK, accelSources, useAccel, removedSummonable, summonFromRemoved, cpuAccelScore, cpuAccelMain, cpuAccelFlash, cpuSilverWheel, highSpeedOK, highSpeedSources, highSpeedSummon, cpuHighSpeed, isSealed, soulToLife, lifeTake, braveSummonedFx, abTaxOK, payAbTax, oppAttackHandFx, sentToTrashFx, magicFxAt, summonOK, lvNo, isUlt, noBlockActive, burstFlash, cpuBurstFlash, humanAttack, cpuAttack, attackStepOver, endAttackLocked, battleEndAttack, isGW, freeCores, moveCore, swapSoul, payCost, cpuCanPlay, coresAvailable, addCore, cpuKeepMagicOrPay, nameHTML, switchView, SET_KEY, dbFilterOK, cardColors, contractToDeck, redrawHand, cpuWantsRedraw, setHeavy, refreshOne, toRemoved, fxIf, costDestroyBonus, sendToken, canSendToken, tokenHome, attackSymbols, TOKEN_SUPPLY, isSpiritForm, ocActive, braveFits, braveTargets, combineBrave, braveSummon, separateBrave, canSeparate, braveRecheck, braveAfford, cpuBrave, handButtons, minCores, openFieldModal, cpuMain, VERSION, defBuiltin, beginTurn, endStep, newGame, takeFromVoid, checkDepletion, removeSpirit, lvIndex, mirageUsable, cpuCastMain, magicFx, magicText, costAltActive, flagActive, coresSent, startAttackFx, win, recordMatch, HISTORY: () => HISTORY, toggleLog, effectTextHTML, effectLines, titleCase, liveStatusHTML, openZoom, modal, closeModal, startPeek, SETTINGS, SLOTS: () => SLOTS, loadSlots, get ACTIVE_SLOT() { return ACTIVE_SLOT; }, switchSlot, loadPrebuilt, PREBUILT, cpuDeckFor, saveSettings, PACK_IDS, registerPack, clearImported, summonPaid, reviveTargets, doRevive, handUp, contractAdventTargets, doContractAdvent, manifestTargets, doManifest, soulCoreHolder, rng, seedRng, newSeed, runReplay, lastReplay, fireFxMulti, asResolving, replayOf, loadScenario, gameAct, matchSummary, get REPLAY() { return REPLAY; }, soulSource, soulToNexus, fxImmune, residualHTML, cardDetailHTML, setSimDeckB(d, key) { SIM_DECK_B = d; SIM_DECK_B_KEY = key || null; }, activatable, activateFx, cpuActivate, toSoulState, bounceCard, runActions, maybeBurst, flushBursts, summonFree, parseBurst, parseActionList, BURST_WHEN, fireFx, parseEffects, staticBp, FX_ACTIONS, removeNexus, magicUsable, magicTargets, castMagic, flashTiming, cpuFlashChoice, setFormat, validateDeck, legalityOf, banStatus, get FORMAT() { return FORMAT; }, isPC, applyLayout, testSetup, mkInst, draw, keyOfDeck, pickKey, render, takeCores, IMG, cardImgSrc, imgCls, imgSty, importCards, importImages, textToDeck, deckToText, parseCard, loadImages, get PLAYER_DECK() { return PLAYER_DECK; }, get G() { return G; }, startNewGame, checkInvariants, CARDS, PRESET_DECK, humanCan, onNext, engineIdle, runPortRecord, viewerReplayOf, openViewer, replayFromRecord, portRecord, boardSnapshot, sendIntent, applyIntent, seatLoopOpen, cpuAnswer, INTENT_TYPES, cpuTurn, doBattle, summon, effCost, legacyPlan, legacyPay, canBlockState, canPlayCard, setBurst, fieldList, bpOf, get SESSION() { return SESSION; }, CPU_PROFILES, cpuProfileName, cpuEval, cpuPlayScore, cpuPlayChoice, cpuLethal, cpuAttackScore, cpuAttackChoice, cpuBlockScore, cpuChooseBlock, setCpuProfile, setSimProfiles(o) { CPU_SIM_PROFILES = Object.assign({}, o || {}); }, lifeValue, symbolAttrs, fieldSymbols, symbolsOn, reductionOf, extraReduction };
 navSync();
 renderLobby();
 loadImages();

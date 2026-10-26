@@ -5,7 +5,7 @@
   "waitingHtml": "<b>Waiting on you:</b> nothing; Report Bug and missions / ranks / avatars are decided (2026-10-25).",
   "updated": "25 Oct 2026",
   "updatedAt": "0.121.0",
-  "next": "next: the v14 UI/UX redesign U14h-U14i ( card commands, animations, battle phone, deck builder, library + lore, pages, dialogs + Report Bug), then card sessions (K) with Standard first"
+  "next": "next: the v14 UI/UX redesign U14h2-U14i ( card commands, animations, battle phone, deck builder, library + lore, pages, dialogs + Report Bug), then card sessions (K) with Standard first"
  },
  "phases": [
   {
@@ -855,8 +855,8 @@
      "t": "U14g2 (v0.132.0) Card page (tilt, levels, related, used in decks) and the alternative art picker"
     },
     {
-     "s": "next",
-     "t": "U14h Lobby: Card of the Day, Play 3 steps, decks, profile, settings"
+     "s": "done",
+     "t": "U14h part 1 (v0.133.0): Card of the Day, Play in three steps, deck tiles, Profile, Glossary"
     },
     {
      "s": "next",

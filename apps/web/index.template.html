@@ -36,6 +36,11 @@
       <button class="ae-tile" data-a="go-deck"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span><span class="tx"><b>DECK BUILDER</b><span>8 slots, ready-made decks</span></span><span class="chev" aria-hidden="true">›</span></button>
       <button class="ae-tile" data-a="go-lib"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h14v16H6a2 2 0 0 0-2 2z"/></svg></span><span class="tx"><b>CARD LIBRARY</b><span id="tile-lib-sub">Card data and your card images</span></span><span class="chev" aria-hidden="true">›</span></button>
     </div>
+    <section class="home-more" aria-label="Today">
+      <div class="hm-card"><h2>Card of the Day</h2><div id="home-cotd"></div></div>
+      <div class="hm-card"><h2>Play in three steps</h2><ol class="hm-steps"><li><b>Pick a deck</b> below or build one.</li><li><b>Pick a format</b> and the CPU deck.</li><li><b>Press Play Now</b> and win by taking all 5 Life.</li></ol><p class="hm-sum" id="home-sum"></p></div>
+      <div class="hm-card wide"><h2>My decks</h2><div class="hm-decks" id="home-decks"></div></div>
+    </section>
   </main>
   <footer class="home-foot"><span id="home-ver" translate="no">Aeterna</span><button data-a="go-howto">HOW TO PLAY</button><button data-a="go-settings">SETTINGS &amp; HISTORY</button><button data-a="rules">RULES COVERAGE</button><span class="t-pcf">Unofficial non-commercial fan project</span></footer>
 </div>
@@ -45,7 +50,7 @@
     <header class="ae-phead"><div class="tx"><span class="ae-eyebrow">SETTINGS</span><h1>PREFERENCES</h1><p>Saved on this device.</p></div>
       <button class="ae-ghost" id="set-back" data-a="options-back" hidden>◄ BACK TO MATCH</button><button class="ae-ghost" data-a="go-lobby">◄ HOME</button></header>
     <div class="set-grid">
-      <nav class="set-menu" id="set-menu" aria-label="Settings sections"><button data-a="set-sec" data-v="appearance" aria-current="true">Appearance</button><button data-a="set-sec" data-v="speed">Game speed</button><button data-a="set-sec" data-v="sound">Sound</button><button data-a="set-sec" data-v="cpu">CPU style</button><button data-a="set-sec" data-v="online">Online</button><button data-a="set-sec" data-v="images">Card images</button><button data-a="set-sec" data-v="data">Saved data</button><button data-a="set-sec" data-v="history">Match history</button></nav>
+      <nav class="set-menu" id="set-menu" aria-label="Settings sections"><button data-a="set-sec" data-v="appearance" aria-current="true">Appearance</button><button data-a="set-sec" data-v="speed">Game speed</button><button data-a="set-sec" data-v="sound">Sound</button><button data-a="set-sec" data-v="cpu">CPU style</button><button data-a="set-sec" data-v="online">Online</button><button data-a="set-sec" data-v="images">Card images</button><button data-a="set-sec" data-v="data">Saved data</button><button data-a="set-sec" data-v="profile">Profile</button><button data-a="set-sec" data-v="history">Match history</button></nav>
       <div class="set-body">
         <section class="set-card" id="set-s-appearance" aria-labelledby="set-h-appearance"><h2 id="set-h-appearance">Appearance</h2>
           <div class="srow"><div class="tx"><b id="set-l-mode">Mode</b><span>Dark or light board and menus.</span></div><span class="ae-toggle" id="set-mode" role="group" aria-labelledby="set-l-mode"><button data-a="theme-mode" data-v="dark" aria-pressed="true">DARK</button><button data-a="theme-mode" data-v="light" aria-pressed="false">LIGHT</button></span></div>
@@ -65,6 +70,8 @@
           <div class="srow"><div class="tx"><b>Your card images</b><span id="set-imgs">Pictures you add in the Library. They stay on this device.</span></div><button class="ae-ghost" data-a="go-lib">OPEN LIBRARY</button></div></section>
         <section class="set-card" id="set-s-data" aria-labelledby="set-h-data"><h2 id="set-h-data">Saved data</h2>
           <div class="srow"><div class="tx"><b>Reset settings</b><span>Decks, imported cards, images and settings stay in this browser only. Reset puts speed, sound, CPU deck and CPU style back to the defaults.</span></div><button class="ae-ghost" data-a="set-reset">RESET</button></div></section>
+        <section class="set-card" id="set-s-profile" aria-labelledby="set-h-profile"><h2 id="set-h-profile">Profile</h2>
+          <div id="set-profile"></div></section>
         <section class="set-card" id="set-s-history" aria-labelledby="set-h-history"><h2 id="set-h-history">Match history</h2>
           <div id="set-hist" class="set-hist"></div>
           <div class="srow"><div class="tx"><b>Clear history</b><span>Removes the list of finished matches.</span></div><button class="ae-ghost" data-a="hist-clear">CLEAR</button></div>
@@ -100,6 +107,7 @@
         <li>Tap a card to open its actions; tap a zone (Trash, Soul State, Burst…) to look inside it. Long-press a card to zoom it.</li>
         <li>On a PC, hover a card to read it. Keyboard: <kbd>Space</kbd> or <kbd>Enter</kbd> = Next step, <kbd>L</kbd> = game log, <kbd>Esc</kbd> = close.</li>
         <li>The game log (📜) lists everything that happened. Settings let you change the game speed and sounds.</li></ul></section>
+      <section class="doc-card"><h2>Glossary</h2><p>Keywords you meet on cards.</p><div class="gl-list" id="howto-gloss"></div></section>
       <section class="doc-card"><h2>Your cards</h2><p>Open the <b>Library</b> to import card data and your own card images (they stay on your device). The Deck Builder has 8 deck slots and ready-made decks.</p>
         <div class="doc-acts"><button class="ae-ghost" data-a="go-lib">OPEN LIBRARY</button><button class="ae-ghost" data-a="rules">RULES COVERAGE</button></div></section>
     </div>

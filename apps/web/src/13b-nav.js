@@ -53,6 +53,18 @@ function renderHome() {
   const tp = $('tile-play-sub'); if (tp) tp.textContent = `${sl ? sl.name : 'Deck'} · ${fmtTitle()}`;
   const tl = $('tile-lib-sub'); if (tl) tl.textContent = `${n.toLocaleString('en-US')} cards, your card images`;
   $('home-ver').textContent = 'Aeterna v' + VERSION;
+  renderHomeMore();
+}
+// v0.133.0 U14h: Card of the Day (the same card all day, from the date), the three-step summary and the deck tiles
+function cardOfDay(d = new Date()) {
+  const ids = Object.keys(CARDS).filter(id => !CARDS[id].token && !id.startsWith('TRAIN-')).sort(DB_COLL.compare);
+  return ids.length ? ids[(Math.floor(d.getTime() / 864e5) * 7919) % ids.length] : '';
+}
+function renderHomeMore() {
+  const id = cardOfDay(), c = CARDS[id], ok = validateDeck(PLAYER_DECK, FORMAT).ok;
+  $('home-cotd').innerHTML = c ? `<button class="hm-cotd" data-a="zoom" data-v="${esc(id)}" style="--lc:${colorVar(c.symbol)}"><b>${esc(c.name)}</b><span translate="no">${esc(id)} · ${esc(c.contract ? 'Contract' : c.type)} · Cost ${c.cost}</span></button>` : '';
+  $('home-sum').textContent = `Deck: ${SLOTS[ACTIVE_SLOT].name} (${ok ? 'legal' : 'not ready'}) · Format: ${fmtTitle()} · CPU: ${SETTINGS.cpuDeck}`;
+  $('home-decks').innerHTML = SLOTS.map((s, i) => { const t = deckTotal(s.cards); return `<button class="hm-deck${i === ACTIVE_SLOT ? ' on' : ''}" data-a="home-deck" data-v="${i}"><b>${esc(s.name)}</b><span>${t ? t + ' cards' : 'empty'}${t && validateDeck(s.cards, FORMAT).ok ? ' · legal' : ''}</span></button>`; }).join('');
 }
 if (typeof document !== 'undefined') {
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && $('theme-pop') && !$('theme-pop').hidden) { themePop(false); $('theme-btn').focus(); } });
