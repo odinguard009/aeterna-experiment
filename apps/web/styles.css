@@ -1140,3 +1140,9 @@ html[data-hc] :focus-visible{outline:3px solid #fff;outline-offset:2px;box-shado
 .db-qr { flex: none; width: 96px; height: 96px; border: 6px solid var(--text-main); opacity: .9; background: repeating-conic-gradient(var(--text-main) 0 25%, transparent 0 50%) 0 0/20px 20px; }
 .db-share .lib-area { height: auto; margin: 6px 0; font-size: 14px; }
 @media (max-width: 480px) { .db-share { flex-direction: column; align-items: stretch; } .db-qr { align-self: center; } }
+
+/* v0.145.0 coin toss: the spinning coin of the mockup */
+.coin-wrap { perspective: 600px; height: 96px; display: grid; place-items: center; }
+.coin-d { width: 78px; height: 78px; border-radius: 50%; display: grid; place-items: center; font-size: 32px; font-weight: 900; color: #5a3a05; background: radial-gradient(circle at 35% 30%, #fff3b0, #e0a92a 60%, #8a5a10); box-shadow: 0 8px 20px #000a, inset 0 0 0 5px #ffffff40; animation: coin-spin 1.5s ease-out forwards; }
+@keyframes coin-spin { to { transform: rotateY(1260deg); } }
+@media (prefers-reduced-motion: reduce) { .coin-d { animation: none; } }

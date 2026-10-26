@@ -1005,6 +1005,10 @@ html[data-hc] :focus-visible{outline:3px solid #fff;outline-offset:2px;box-shado
 .db-qr{flex:none;width:96px;height:96px;border:6px solid var(--text-main);opacity:.9;background:repeating-conic-gradient(var(--text-main) 0 25%,transparent 0 50%) 0 0/20px 20px;}
 .db-share .lib-area{height:auto;margin:6px 0;font-size:14px;}
 @media (max-width:480px){.db-share{flex-direction:column;align-items:stretch;}.db-qr{align-self:center;}}
+.coin-wrap{perspective:600px;height:96px;display:grid;place-items:center;}
+.coin-d{width:78px;height:78px;border-radius:50%;display:grid;place-items:center;font-size:32px;font-weight:900;color:#5a3a05;background:radial-gradient(circle at 35% 30%,#fff3b0,#e0a92a 60%,#8a5a10);box-shadow:0 8px 20px #000a,inset 0 0 0 5px #ffffff40;animation:coin-spin 1.5s ease-out forwards;}
+@keyframes coin-spin{to{transform:rotateY(1260deg);}}
+@media (prefers-reduced-motion:reduce){.coin-d{animation:none;}}
 .mk{--page:#0d1015;--page-fg:#eef1f5;--page-muted:#a9b2c1;--page-line:#ffffff24;--page-panel:#161a22;
 --bg1:#1b2029;--bg2:#11141a;--lattice:#ffffff08;
 --panel:#232935;--panel2:#161a22;--panel3:#0f1218;--line:#ffffff1a;--line2:#ffffff40;
@@ -2733,7 +2737,7 @@ function bindHost(h) {
    type: 'Spirit' | 'Nexus' | 'Magic'      symbol: card color     symbols: number of symbols
    reduction: {color: n}         levels: [{cores, bp}]  (Nexus levels have no bp)
    --------------------------------------------------------------------- */
-const VERSION = '0.144.0';
+const VERSION = '0.145.0';
 const CARDS = {};
 function defCard(o) {
   CARDS[o.id] = Object.assign({ type: 'Spirit', reduction: {}, symbols: 1, families: [], keywords: [], implemented: true, desc: 'Vanilla test card (no effect).', block: 'A' }, o);
@@ -10251,10 +10255,10 @@ async function startNewGame(opts) {
     if (SIM || W) { first = rng() < 0.5 ? 'player' : 'opponent'; if (W) log('Watching: the CPU plays both sides.'); log(`${G.p[first].name} goes first.`); }
     else if (firstOpt !== 'coin') { first = firstOpt === 'me' ? 'player' : 'opponent'; log(first === 'player' ? 'You go first (set in the match setup).' : 'The CPU goes first (set in the match setup).'); }
     else {
-      const call = await ask({ title: '🪙 Coin Toss', html: 'Pick a side. The winner chooses who goes first.', buttons: [{ label: 'HEADS', cls: 'primary', value: 'h' }, { label: 'TAILS', cls: 'primary', value: 't' }] });
+      const call = await ask({ title: '🪙 Coin Toss', html: '<div class="coin-wrap"><div class="coin-d">?</div></div>Pick a side. The winner chooses who goes first.', buttons: [{ label: 'HEADS', cls: 'primary', value: 'h' }, { label: 'TAILS', cls: 'primary', value: 't' }] });
       const heads = rng() < 0.5, won = (call === 'h') === heads;
       if (won) {
-        first = await ask({ title: `Coin: ${heads ? 'HEADS' : 'TAILS'} — you win!`, html: 'Do you want to go first or second?', buttons: [{ label: 'FIRST', cls: 'primary', value: 'player' }, { label: 'SECOND', cls: 'primary', value: 'opponent' }] });
+        first = await ask({ title: `Coin: ${heads ? 'HEADS' : 'TAILS'} — you win!`, html: `<div class="coin-wrap"><div class="coin-d">${heads ? 'H' : 'T'}</div></div>Do you want to go first or second?`, buttons: [{ label: 'FIRST', cls: 'primary', value: 'player' }, { label: 'SECOND', cls: 'primary', value: 'opponent' }] });
         log(first === 'player' ? 'You won the coin toss and go first.' : 'You won the coin toss and go second.');
       } else { first = 'opponent'; log(`Coin: ${heads ? 'HEADS' : 'TAILS'}. CPU won the toss and goes first.`); }
       io.view({ type: 'board' });

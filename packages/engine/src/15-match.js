@@ -41,10 +41,10 @@ async function startNewGame(opts) {
     if (SIM || W) { first = rng() < 0.5 ? 'player' : 'opponent'; if (W) log('Watching: the CPU plays both sides.'); log(`${G.p[first].name} goes first.`); }
     else if (firstOpt !== 'coin') { first = firstOpt === 'me' ? 'player' : 'opponent'; log(first === 'player' ? 'You go first (set in the match setup).' : 'The CPU goes first (set in the match setup).'); }
     else {
-      const call = await ask({ title: '🪙 Coin Toss', html: 'Pick a side. The winner chooses who goes first.', buttons: [{ label: 'HEADS', cls: 'primary', value: 'h' }, { label: 'TAILS', cls: 'primary', value: 't' }] });
+      const call = await ask({ title: '🪙 Coin Toss', html: '<div class="coin-wrap"><div class="coin-d">?</div></div>Pick a side. The winner chooses who goes first.', buttons: [{ label: 'HEADS', cls: 'primary', value: 'h' }, { label: 'TAILS', cls: 'primary', value: 't' }] });
       const heads = rng() < 0.5, won = (call === 'h') === heads;
       if (won) {
-        first = await ask({ title: `Coin: ${heads ? 'HEADS' : 'TAILS'} — you win!`, html: 'Do you want to go first or second?', buttons: [{ label: 'FIRST', cls: 'primary', value: 'player' }, { label: 'SECOND', cls: 'primary', value: 'opponent' }] });
+        first = await ask({ title: `Coin: ${heads ? 'HEADS' : 'TAILS'} — you win!`, html: `<div class="coin-wrap"><div class="coin-d">${heads ? 'H' : 'T'}</div></div>Do you want to go first or second?`, buttons: [{ label: 'FIRST', cls: 'primary', value: 'player' }, { label: 'SECOND', cls: 'primary', value: 'opponent' }] });
         log(first === 'player' ? 'You won the coin toss and go first.' : 'You won the coin toss and go second.');
       } else { first = 'opponent'; log(`Coin: ${heads ? 'HEADS' : 'TAILS'}. CPU won the toss and goes first.`); }
       io.view({ type: 'board' });

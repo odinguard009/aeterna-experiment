@@ -4,6 +4,11 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.145.0
+- Lane: U/I
+- **Spinning coin in the Coin Toss dialogs (mockup parity).** The pick-a-side and first/second dialogs now show the gold coin of the mockup spinning once (shows H or T for the result); off with reduced motion. No rule change.
+  - Checked: loop green. Not checked: screenshot against the mockup, phone width
+
 ## v0.144.0
 - Lane: U/I
 - **Deck Share Code dialog (mockup parity).** New Share button in the deck builder shows a code like AET-XXXX-XXXX-XXXX, a QR placeholder as in the mockup, and Copy code. The deck list is kept on this device under the code; pasting the code into Import restores it. Honest limit: codes work on this device only until online play exists.
