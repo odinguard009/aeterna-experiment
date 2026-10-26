@@ -1,6 +1,6 @@
 // v0.79.0 (roadmap item A1, owner 2026-10-20): partial promotion. A card may enter the library with part of its printed
 // effect missing: fxComplete false + a `residual` list; it shows a "!" mark in the deck builder grid and deck rows, the
-// "Complete effects only" filter hides it, prebuilt and CPU decks keep complete cards only, and the two counts (playable =
+// "Complete only" filter hides it, prebuilt and CPU decks keep complete cards only, and the two counts (playable =
 // in the library, complete = every effect runs) agree between tools/card_counts.py and the engine's `implemented` flag.
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
@@ -65,7 +65,7 @@ test('PA03 a partial card plays without errors and its compiled paragraph fires'
 });
 
 for (const [name, vp] of [['PC', { width: 1366, height: 768 }], ['phone', { width: 390, height: 844 }]]) {
-  test(`PA04 deck builder (${name}): "!" on partial cards only, legend shown, "Complete effects only" hides them`, async () => {
+  test(`PA04 deck builder (${name}): "!" on partial cards only, legend shown, "Complete only" hides them`, async () => {
     const { page, errors } = await open(vp);
     const r = await page.evaluate(async () => {
       BS.switchView('view-deckbuilder'); await new Promise(r => requestAnimationFrame(() => setTimeout(r)));
