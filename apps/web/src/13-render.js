@@ -337,7 +337,7 @@ function renderLobby() {
   const v = validateDeck(PLAYER_DECK), el = $('lobby-deck');
   el.className = 'lobby-deck' + (v.ok ? '' : ' bad');
   el.textContent = v.ok ? `Your deck: ${v.total} cards · legal in ${fmtName(FORMAT)}` : `Your deck is not legal in ${fmtName(FORMAT)}: ${errSummary(v)}`;
-  const fb = $('format-btn'); if (fb) fb.textContent = `FORMAT: ${fmtButton(FORMAT)}`;
+  const fb = $('format-btn'); if (fb) fb.textContent = `Format: ${fmtButton(FORMAT)}`;
   const pd = $('play-deck');
   if (pd) {
     pd.innerHTML = SLOTS.map((sl, i) => { const t = deckTotal(sl.cards), ok = t && validateDeck(sl.cards, FORMAT).ok; return `<option value="${i}"${i === ACTIVE_SLOT ? ' selected' : ''}>${esc(sl.name)} · ${t} cards${t ? (ok ? ' ✓' : ' ✗') : ''}</option>`; }).join('');

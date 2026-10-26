@@ -27,14 +27,14 @@ for (const screen of ['pc', 'phone']) {
       const vis = s => { const e = document.querySelector(s); if (!e) return false; const b = e.getBoundingClientRect(); return b.width > 0 && b.height > 0; };
       const start = document.querySelector('#view-play [data-a="start"]').getBoundingClientRect();
       return { head: vis('#view-play .ae-phead h1'), deck: vis('#play-deck'), status: document.getElementById('lobby-deck').textContent,
-        modes: [...document.querySelectorAll('#view-play .ae-mode')].map(b => b.dataset.a), fmt: vis('#format-btn'), cpu: vis('#play-cpu'),
+        modes: [...document.querySelectorAll('#pl-mode .ae-chip')].map(b => b.dataset.v), fmt: vis('#format-btn'), cpu: vis('#play-cpu'),
         styles: [...document.querySelectorAll('#pl-style .ae-chip')].map(b => b.dataset.v), speeds: [...document.querySelectorAll('#pl-speed .ae-chip')].map(b => b.dataset.v),
         pressed: [document.querySelector('#pl-style [aria-pressed="true"]').dataset.v, document.querySelector('#pl-speed [aria-pressed="true"]').dataset.v],
         startInView: start.bottom <= innerHeight, over: document.documentElement.scrollWidth > innerWidth + 1 };
     });
     assert.ok(r.head && r.deck && r.fmt && r.cpu, 'header, deck select, format button and CPU deck select visible');
     assert.match(r.status, /legal in ETERNAL/);
-    assert.deepEqual(r.modes, ['start', 'watch', 'online']);
+    assert.deepEqual(r.modes, ['cpu', 'watch', 'online']);
     assert.deepEqual(r.styles, await page.evaluate(() => Object.keys(BS.CPU_PROFILES)));
     assert.deepEqual(r.speeds, ['normal', 'fast', 'instant']);
     assert.deepEqual(r.pressed, ['balanced', 'normal']);
@@ -56,7 +56,7 @@ test('U67-2 pc: Watch CPU vs CPU plays both sides to the end, step clicks only w
   const { page, errors } = await open('pc');
   await page.click('#app-tabs [data-nav="view-play"]');
   await page.click('#pl-speed [data-v="instant"]');
-  await page.click('#view-play [data-a="watch"]');
+  await page.click('#pl-mode [data-v="watch"]'); await page.click('#view-play [data-a="start"]');
   await page.waitForFunction(() => BS.G && BS.G.turnNo >= 1, null, { timeout: 15000 });
   const st = await page.evaluate(() => { BS.stepClick(4); return [BS.G.watch, BS.G.p.player.cpu, BS.G.p.player.name, BS.humanCan()]; });
   assert.deepEqual(st.slice(0, 3), [true, true, 'Your deck']);

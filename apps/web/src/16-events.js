@@ -57,8 +57,9 @@ document.addEventListener('click', e => {
   if (mi) { modalPress(Number(mi.dataset.mi)); return; }
   const el = evC(e, '[data-a]'); if (!el) return;
   const a = el.dataset.a, v = el.dataset.v;
-  if (a === 'start') startNewGame();
+  if (a === 'start') playGo();
   else if (a === 'watch') startNewGame({ watch: true });
+  else if (a === 'play-mode') playSet('mode', v);
   else if (a === 'play-style') playSet('style', v);
   else if (a === 'play-speed') playSet('speed', v);
   else if (a === 'go-deck') switchView('view-deckbuilder');
