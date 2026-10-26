@@ -577,7 +577,7 @@
   .modal-btn { flex: 0 1 auto; min-width: 110px; padding-inline: 18px; }
   @keyframes popin { from { opacity: 0; transform: translateY(18px) scale(.96); } }
   @keyframes sheetin { from { transform: translateY(100%); } }
-  html.layout-mobile .modal-box { animation: sheetin .32s var(--ease, ease); border-radius: 18px 18px 0 0; clip-path: none; }
+  html.layout-mobile .modal-box { animation: sheetin .32s var(--ease, ease); }
   html.layout-mobile #action-modal .modal-btns { justify-content: stretch; } html.layout-mobile .modal-btn { flex: 1 1 120px; }
   @media (prefers-reduced-motion: reduce) { .modal-box { animation: none !important; } }
   /* v0.94.0 U7 deck builder in the mockup v11 style (apps/web/src/13a-deckbuilder.js): tokens, back to My decks, FILTERS with count, filter chips, panel tabs, Deck look */
