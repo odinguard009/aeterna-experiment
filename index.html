@@ -2193,6 +2193,10 @@ body.mk > .ae-pop{position:absolute;top:62px;right:24px;z-index:20}
   <div class="pg scroll" id="pf-page"></div>
 </div>
 
+<div id="view-card" class="app-view">
+  <div class="pg scroll" id="cp-page"></div>
+</div>
+
 <div id="view-play" class="app-view">
   <div class="pg scroll">
     <div class="card hdcard"><div class="grow"><span class="eyebrow">Play</span><h2 class="hd">Start a match</h2><span class="sub">1 · Deck &nbsp; 2 · Opponent &nbsp; 3 · Rules &nbsp; then press Start.</span></div>
@@ -7403,6 +7407,7 @@ function mullCardHTML(card) {
 }
 function openZoom(id, uid) {
   const card = CARDS[id], z = $('zoom-overlay'); if (!card || !z) return;
+  if (uid == null && (['view-library', 'view-card'].some(v => $(v).classList.contains('active')))) return openCardPage(id);   // v0.137.0: the Library card is a page
   /* Aegis-style: landscape / PC = card left, scrolling detail panel right; portrait = card on top, scrolling panel below */
   const W = window.innerWidth, H = window.innerHeight, land = W >= H * 1.1;
   const zw = land ? Math.round(Math.max(150, Math.min(420, (H - 32) / 1.4, W * 0.4))) : Math.round(Math.max(150, Math.min(360, W * 0.62, H * 0.45 / 1.4)));
@@ -7941,6 +7946,7 @@ function switchView(id) {
   if (id === 'view-settings') renderSettings();
   if (id === 'view-howto') renderLearn();
   if (id === 'view-profile') renderProfilePage();
+  if (id === 'view-card') renderCardPage();
 }
 function renderSettings() { $('set-hist').innerHTML = histHTML(); $('set-cpu').innerHTML = CPU_PROFILE_NAMES.map(n => `<option value="${n}">${cap(n)}</option>`).join(''); $('set-cpu').value = cpuProfileName(null); $('set-speed').value = SETTINGS.speed; $('set-sound').value = SETTINGS.sound ? 'on' : 'off'; $('set-anim').value = SETTINGS.anim || 'auto'; $('set-lp').value = SETTINGS.longpress === 'off' ? 'off' : 'on';
   renderSetPage(); $('set-back').hidden = !G || !!G.over; }   // v0.122.0 U14b: Options from a running match shows BACK TO MATCH; v0.68.0 U4: colour grid, Dark/Light, playmat and CPU colour rows (13d-pages.js)
@@ -8360,7 +8366,7 @@ document.addEventListener('input', e => {
    --------------------------------------------------------------------- */
 const NAV_HIDDEN = ['view-playmat'];
 const MK_OFF = ['view-playmat'];   // not ported yet (battle)
-const MK_TITLES = { 'view-lobby': 'Home', 'view-play': 'Play', 'view-decks': 'My decks', 'view-library': 'Library', 'view-deckbuilder': 'Deck builder', 'view-settings': 'Settings', 'view-profile': 'Profile', 'view-howto': 'Learn', 'view-online': 'Online' };
+const MK_TITLES = { 'view-lobby': 'Home', 'view-play': 'Play', 'view-decks': 'My decks', 'view-library': 'Library', 'view-deckbuilder': 'Deck builder', 'view-settings': 'Settings', 'view-profile': 'Profile', 'view-card': 'Card', 'view-howto': 'Learn', 'view-online': 'Online' };
 function navSync(id) {
   if (typeof document === 'undefined') return;
   const v = id || (document.querySelector('.app-view.active') || {}).id || 'view-lobby';
@@ -8368,7 +8374,7 @@ function navSync(id) {
   document.body.classList.toggle('has-nav', !NAV_HIDDEN.includes(v));
   document.body.classList.toggle('mk', !MK_OFF.includes(v));         // v0.137.0: the pages ported from the mockup take its stylesheet; the others keep the old one until ported
   const pt = $('pb-title'); if (pt) pt.textContent = MK_TITLES[v] || '';
-  dqa('#app-tabs [data-nav], #mk-tabbar [data-nav]').forEach(b => { if (b.dataset.nav === v) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
+  dqa('#app-tabs [data-nav], #mk-tabbar [data-nav]').forEach(b => { if (b.dataset.nav === (v === 'view-card' ? 'view-library' : v)) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
   document.querySelectorAll('#app-nav .ibtn[data-a="go-settings"]').forEach(b => { if (v === 'view-settings') b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
   themePop(false);
   navTools();
@@ -9541,6 +9547,28 @@ function cardTilt(el) {                              // pointer tilt of the card
   el.addEventListener('pointermove', e => { const r = el.getBoundingClientRect(); el.style.transform = `perspective(700px) rotateY(${((e.clientX - r.left) / r.width - .5) * 14}deg) rotateX(${(.5 - (e.clientY - r.top) / r.height) * 14}deg)`; });
   el.addEventListener('pointerleave', () => { el.style.transform = ''; });
 }
+
+// v0.137.0 (mockup parity): the Library card opens as a page (card with tilt, name, tags, effect text, art picker, level table, Add to deck, Copy Link, related)
+let CP_ID = '';
+const cpIds = id => { const l = typeof LIBV !== 'undefined' && LIBV.list.includes(id) ? LIBV.list : Object.keys(CARDS).filter(x => !CARDS[x].token && !x.startsWith('TRAIN-')).sort(DB_COLL.compare); return l; };
+function openCardPage(id) { if (!CARDS[id]) return; CP_ID = id; if (!$('view-card').classList.contains('active')) switchView('view-card'); else renderCardPage(); }
+function renderCardPage() {
+  const el = $('cp-page'), c = CARDS[CP_ID]; if (!el || !c) return;
+  const ids = cpIds(CP_ID), at = Math.max(0, ids.indexOf(CP_ID)), art = ART_ALT[CP_ID] && CARDS[ART_ALT[CP_ID]] ? CARDS[ART_ALT[CP_ID]] : c;
+  const lv = c.type !== 'Magic' && c.levels && c.levels.some(L => L.bp != null) ? c.levels : null;
+  const std = !legalityOf(CP_ID, 'standard'), ete = !legalityOf(CP_ID, 'eternal');
+  const tags = `<span class="tag${std ? '' : ' cpu'}">${std ? 'Standard Legal' : 'Not Standard Legal'}</span><span class="tag${ete ? ' dim' : ' cpu'}">${ete ? 'Eternal Legal' : 'Not Eternal Legal'}</span><span class="tag dim">Cost ${c.cost}</span>${c.implemented ? '<span class="tag dim">Effects Complete</span>' : '<span class="tag yes">! Partly Implemented</span>'}`;
+  const sl = SLOTS[ACTIVE_SLOT], used = usedInDecks(CP_ID), can = dbCanAdd(CP_ID);
+  const rows = lv ? lv.map((L, i) => `<tr><td><b>LV${i + 1}</b></td><td>${c.countLv ? 'Count ' : ''}${L.cores} ${L.cores === 1 ? 'Core' : 'Cores'}</td><td>${L.bp == null ? '-' : L.bp}</td></tr>`).join('') : '';
+  el.innerHTML = `<div class="row" style="gap:10px;flex-wrap:wrap"><button class="btn sm" data-a="go-lib">‹ Library</button><span class="grow"></span><button class="ibtn sq" data-a="cp-nav" data-v="-1" aria-label="Previous card">‹</button><span class="mut" style="font-size:.8em">${at + 1} / ${ids.length}</span><button class="ibtn sq" data-a="cp-nav" data-v="1" aria-label="Next card">›</button></div>
+  <div class="ciw" style="display:grid;grid-template-columns:330px 1fr;gap:30px;align-items:start"><div class="tilt" id="cp-tilt"><div class="cibig" style="width:300px;margin:0 auto">${cardFaceHTML(art, true)}</div><span class="mut hidem" style="display:block;text-align:center;font-size:.74em;margin-top:10px">Move the pointer over the card - it tilts and shines.</span></div>
+  <div class="col" style="gap:12px;min-width:0"><div><span class="eyebrow">${esc(c.token ? 'Token Spirit' : c.type)} · ${esc(cap(c.symbol))}</span><h2 class="hd" style="font-size:1.9em">${esc(c.name)}</h2><span class="mut">${esc(c.id)}</span></div>
+   <div class="row" style="gap:6px;flex-wrap:wrap">${tags}</div>
+   <div class="card flat" style="padding:14px 16px;line-height:1.6">${effectTextHTML(c, false)}${c.implemented ? '' : residualHTML(c)}</div>${cardPageHTML(CP_ID)}
+   ${lv ? `<div class="card flat" style="padding:8px 12px"><table class="tb"><tr><th>Level</th><th>Cores To Reach</th><th>BP</th></tr>${rows}</table></div>` : ''}
+   <div class="row" style="gap:8px;flex-wrap:wrap"><button class="btn pri" data-a="cp-add"${can ? '' : ' disabled'}>+ Add To “${esc(sl.name)}”</button><button class="btn" data-a="cp-link">Copy Link</button></div><span class="sub" id="cp-msg" role="status" style="font-size:.84em"></span></div></div>`;
+  cardTilt(elq(el, '#cp-tilt .cibig'));
+}
 /* ---------------------------------------------------------------------
    PROFILE and GLOSSARY (v0.133.0, U14h): statistics read from the saved match history only, and the Learn page's keyword glossary.
    Display only: nothing here touches the rules.
@@ -10227,6 +10255,9 @@ document.addEventListener('click', e => {
   else if (a === 'emote-pick') emoteSend(Number(v));
   else if (a === 'options-back') { switchView('view-playmat'); if (G) render(); }
   else if (a === 'go-howto') switchView('view-howto');
+  else if (a === 'cp-nav') { const l = cpIds(CP_ID); openCardPage(l[(l.indexOf(CP_ID) + Number(v) + l.length) % l.length]); }
+  else if (a === 'cp-add') { if (dbCanAdd(CP_ID)) { PLAYER_DECK[CP_ID] = (PLAYER_DECK[CP_ID] || 0) + 1; saveDeck(); renderCardPage(); $('cp-msg').textContent = `Added to ${SLOTS[ACTIVE_SLOT].name}: ${PLAYER_DECK[CP_ID]} ${PLAYER_DECK[CP_ID] === 1 ? 'copy' : 'copies'}.`; } }
+  else if (a === 'cp-link') { const u = location.href.split('#')[0] + '#card=' + encodeURIComponent(CP_ID); (navigator.clipboard ? navigator.clipboard.writeText(u) : Promise.reject()).then(() => 'Link to this card copied.', () => u).then(t => { $('cp-msg').textContent = t; }); }
   else if (a === 'go-profile') switchView('view-profile');
   else if (a === 'pf-avatars') { const b = $('pf-avs'); if (b) b.hidden = !b.hidden; }
   else if (a === 'learn-open') learnOpen(Number(v));
@@ -10269,7 +10300,7 @@ document.addEventListener('click', e => {
   else if (a === 'db-import') dbImport();
   else if (a === 'db-export') dbExport();
   else if (a === 'zoom') openZoom(v);
-  else if (a === 'art') { const zid = $('zoom-overlay').dataset.id; setArt(zid, v === zid ? '' : v); openZoom(zid); refreshViews(); }
+  else if (a === 'art') { const pg = $('view-card').classList.contains('active'), zid = pg ? CP_ID : $('zoom-overlay').dataset.id; setArt(zid, v === zid ? '' : v); if (pg) renderCardPage(); else openZoom(zid); refreshViews(); }
   else if (a === 'home-deck') { switchSlot(Number(v)); renderLobby(); }
   else if (a === 'avatar') { setAvatar(v); renderProfilePage(); }
   else if (a === 'bug-open') bugOpen(true);
