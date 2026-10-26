@@ -985,6 +985,7 @@ span.pg-av{cursor:default;}.pg-avs{display:flex;flex-wrap:wrap;gap:8px;}.pg-avs 
 .mk .brand .logo{margin-right:0}
 .phonebar .brand{margin-right:0;gap:7px}
 .phonebar .brand .lg{width:36px;height:30px}
+#view-playmat .ae-tools .ae-btn > .s{display:none}
 .mk{--page:#0d1015;--page-fg:#eef1f5;--page-muted:#a9b2c1;--page-line:#ffffff24;--page-panel:#161a22;
 --bg1:#1b2029;--bg2:#11141a;--lattice:#ffffff08;
 --panel:#232935;--panel2:#161a22;--panel3:#0f1218;--line:#ffffff1a;--line2:#ffffff40;
@@ -2709,7 +2710,7 @@ function bindHost(h) {
    type: 'Spirit' | 'Nexus' | 'Magic'      symbol: card color     symbols: number of symbols
    reduction: {color: n}         levels: [{cores, bp}]  (Nexus levels have no bp)
    --------------------------------------------------------------------- */
-const VERSION = '0.139.0';
+const VERSION = '0.140.0';
 const CARDS = {};
 function defCard(o) {
   CARDS[o.id] = Object.assign({ type: 'Spirit', reduction: {}, symbols: 1, families: [], keywords: [], implemented: true, desc: 'Vanilla test card (no effect).', block: 'A' }, o);

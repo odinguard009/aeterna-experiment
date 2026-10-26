@@ -4,6 +4,11 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.140.0
+- Lane: U/I
+- **Battle header fix (PC).** UI only. The short button labels (Log, Options, Concede) showed next to the long ones on PC ("LOGLog"); the PC header now shows one label per button, as in the mockup. Phone unchanged.
+  - Checked: PC and phone 390 px screenshots of a live match, no page errors. Not checked: the full mockup-parity walk of the phone battle board (band, 4 slots) against `mockup-v14.html`.
+
 ## v0.139.0
 - Lane: U/I
 - **Brand logo, favicon and loading screen (U16).** UI only; no engine change. Backup: `backup/v0.138.0`.

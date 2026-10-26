@@ -1117,3 +1117,4 @@
 .mk .brand .logo{margin-right:0}
 .phonebar .brand{margin-right:0;gap:7px}
 .phonebar .brand .lg{width:36px;height:30px}
+#view-playmat .ae-tools .ae-btn > .s{display:none}   /* v0.140.0: the short label was shown next to the long one on PC (LOGLog) */
