@@ -165,7 +165,7 @@
 
 <div id="view-deckbuilder" class="app-view">
   <div class="db-header">
-    <button class="db-back ae-ghost" data-a="go-decks" aria-label="Back to My decks">‹ MY DECKS</button><h2>Deck Builder</h2><span id="db-topcount" class="db-topcount"></span>
+    <button class="db-back ae-ghost" data-a="go-decks" aria-label="Back to My decks">‹ My Decks</button><h2>Deck Builder</h2><span id="db-topcount" class="db-topcount"></span>
     <button class="db-menu-btn btn-nav-small" data-a="db-sheet" data-v="menu" aria-label="Deck menu">⋯ Menu</button>
     <div class="db-tools">
       <button class="btn-nav-small" data-a="format" id="db-format" title="Switch format">STANDARD</button>
@@ -175,7 +175,7 @@
       <button class="btn-nav-small" data-a="db-reset">Default deck</button>
       <button class="btn-nav-small" data-a="db-clear">Clear</button>
       <button class="btn-nav-small db-save" id="db-save" data-a="db-save" title="Save this deck">SAVE</button>
-      <button class="btn-nav-small" data-a="go-decks" title="Save and back to My decks">‹ Back to My decks</button>
+      <button class="btn-nav-small" data-a="go-decks" title="Save and back to My decks">‹ Back to My Decks</button>
     </div>
   </div>
   <div class="db-body">
@@ -196,18 +196,18 @@
     </aside>
     <section class="db-pool">
       <div class="db-filters"><input id="db-search" class="db-search" type="search" placeholder="Search name, ID or text  ( / )" autocomplete="off">
-        <button id="db-filter-btn" class="btn-nav-small db-filter-btn" data-a="db-sheet" data-v="filters" aria-controls="db-rail" aria-expanded="true">FILTERS</button><span id="db-count"></span><span class="db-size" role="group" aria-label="Card size"><button class="btn-nav-small" data-a="db-size" data-v="s" aria-pressed="false">S</button><button class="btn-nav-small" data-a="db-size" data-v="m" aria-pressed="true">M</button><button class="btn-nav-small" data-a="db-size" data-v="l" aria-pressed="false">L</button></span></div>
+        <button id="db-filter-btn" class="btn-nav-small db-filter-btn" data-a="db-sheet" data-v="filters" aria-controls="db-rail" aria-expanded="true">Filters</button><span id="db-count"></span><span class="db-size" role="group" aria-label="Card size"><button class="btn-nav-small" data-a="db-size" data-v="s" aria-pressed="false">S</button><button class="btn-nav-small" data-a="db-size" data-v="m" aria-pressed="true">M</button><button class="btn-nav-small" data-a="db-size" data-v="l" aria-pressed="false">L</button></span></div>
       <div class="db-achips" id="db-achips" aria-label="Active filters"></div>
       <div class="db-grid" id="db-card-list"></div>
     </section>
     <aside class="db-deck tab-list" id="db-deck" aria-label="Deck">
       <div class="db-sheet-head"><b>Deck</b><button class="btn-nav-small db-sheet-back" data-a="go-decks" aria-label="Back to My decks">‹ My decks</button><button class="btn-nav-small" data-a="db-sheet" data-v="">Close</button></div>
       <div class="db-dk-head"><div class="db-counter" id="db-counter"></div><div class="db-status" id="db-status"></div></div>
-      <div class="db-tabs" role="tablist" aria-label="Deck panel"><button role="tab" data-a="db-tab" data-v="list" aria-selected="true">DECK LIST</button><button role="tab" data-a="db-tab" data-v="curve" aria-selected="false">CURVE AND CHECK</button><button role="tab" data-a="db-tab" data-v="look" aria-selected="false">DECK LOOK</button></div>
+      <div class="db-tabs" role="tablist" aria-label="Deck panel"><button role="tab" data-a="db-tab" data-v="list" aria-selected="true">Deck List</button><button role="tab" data-a="db-tab" data-v="curve" aria-selected="false">Curve And Check</button><button role="tab" data-a="db-tab" data-v="look" aria-selected="false">Deck Look</button></div>
       <div class="db-dk-list" id="db-dk-list" data-pane="list" role="tabpanel"></div>
       <div class="db-pane" data-pane="curve" role="tabpanel"><ul class="db-check" id="db-check"></ul><div class="db-dk-stats" id="db-dk-stats"></div></div>
       <div class="db-pane" data-pane="look" role="tabpanel"><div id="db-look" class="db-look"></div></div>
-      <div class="db-dk-actions"><button class="btn-nav-small db-save" data-a="db-save" title="Save this deck">SAVE</button><button class="btn-nav-small" id="db-undo" data-a="db-undo">↶ Undo</button><button class="btn-nav-small" id="db-redo" data-a="db-redo">↷ Redo</button><button class="btn-nav-small" data-a="db-test">Test hand</button><button class="btn-nav-small" data-a="db-import">Import text</button><button class="btn-nav-small" data-a="db-export">Export text</button></div>
+      <div class="db-dk-actions"><button class="btn-nav-small db-save" data-a="db-save" title="Save this deck">Save</button><button class="btn-nav-small" id="db-undo" data-a="db-undo">↶ Undo</button><button class="btn-nav-small" id="db-redo" data-a="db-redo">↷ Redo</button><button class="btn-nav-small" data-a="db-test">Test hand</button><button class="btn-nav-small" data-a="db-import">Import text</button><button class="btn-nav-small" data-a="db-export">Export text</button></div>
     </aside>
   </div>
   <button class="db-deckbar" id="db-deckbar" data-a="db-sheet" data-v="deck"></button>
@@ -225,22 +225,9 @@
 </div>
 <div id="view-library" class="app-view ae-view">
   <main class="ae-page doc">
-    <header class="ae-phead"><div class="tx"><span class="ae-eyebrow" id="lib-eyebrow">CARD LIBRARY</span><h1>LIBRARY</h1><p>Card data, your card images and deck lists. Everything stays on this device.</p></div>
-      <button class="ae-ghost" data-a="go-lobby">◄ HOME</button></header>
-    <section class="doc-card"><h2><span class="no" aria-hidden="true">1</span>Card data (JSON)</h2>
-      <p>Load your own card list. Only Spirit and Nexus cards work in this build. Imported cards have no coded effect, so their text is shown for reference only.</p>
-      <div class="doc-acts"><label class="ae-ghost ae-upl primary"><span>IMPORT CARD DATA</span><input id="in-cards" type="file" accept=".json,application/json"></label>
-      <button class="ae-ghost" data-a="lib-template">DOWNLOAD TEMPLATE</button><button class="ae-ghost" data-a="lib-cards-clear">REMOVE IMPORTED CARDS</button></div></section>
-    <section class="doc-card"><h2><span class="no" aria-hidden="true">2</span>Card images</h2>
-      <p>Pick image files from your own device. A file is matched to a card by (1) the <b>image</b> field in your card data, so any file name works, (2) the card ID (for example <b translate="no">BS76-001.png</b>), or (3) the exact card name. Images stay in this browser only and are never uploaded.</p>
-      <div class="doc-acts"><label class="ae-ghost ae-upl primary"><span>IMPORT IMAGES</span><input id="in-imgs" type="file" accept="image/*" multiple></label>
-      <button class="ae-ghost" data-a="lib-imgs-clear">REMOVE ALL IMAGES</button></div>
-      <span id="lib-imgcount" class="doc-note" role="status"></span></section>
-    <section class="doc-card"><h2><span class="no" aria-hidden="true">3</span>Deck list (text)</h2>
-      <p>One card per line: <b translate="no">3 BS44-001</b> or <b>3x Card Name</b>. Lines starting with # are ignored.</p>
-      <textarea id="lib-deck" class="lib-area" spellcheck="false" aria-label="Deck list" name="deck-list" autocomplete="off" placeholder="3 BS44-001&#10;3x Card Name…"></textarea>
-      <div class="doc-acts"><button class="ae-ghost" data-a="lib-deck-import">IMPORT AS MY DECK</button><button class="ae-ghost" data-a="lib-deck-export">EXPORT MY DECK</button></div></section>
-    <section class="doc-card"><h2><span class="no" aria-hidden="true">4</span>Browse cards</h2>
+    <header class="ae-phead"><div class="tx"><span class="ae-eyebrow" id="lib-eyebrow">Library</span><h1>All Cards</h1><p>Search and filter the whole card data. Tap a card for its page. Your card data, images and deck lists stay on this device.</p></div>
+      <button class="ae-ghost" data-a="go-lobby">◄ Home</button></header>
+    <section class="doc-card"><h2><span class="no" aria-hidden="true">1</span>Browse cards</h2>
       <p>Every card, with your card images where you added them. Tap a card to enlarge it.</p>
       <div class="lib-tools">
         <input id="lib-search" class="sel" type="search" placeholder="Search name, ID or effect…" autocomplete="off" spellcheck="false">
@@ -249,10 +236,23 @@
         <span id="lib-count" class="doc-note" role="status"></span>
       </div>
       <div class="db-grid lib-grid" id="lib-grid"></div></section>
-    <section class="doc-card" id="lib-lore-card"><h2><span class="no" aria-hidden="true">5</span>Lore</h2>
+    <section class="doc-card" id="lib-lore-card"><h2><span class="no" aria-hidden="true">2</span>Lore</h2>
       <p>The flavor text printed on the cards, read in order by series. Tap an entry to open its card.</p>
       <div class="lib-tools"><select id="lib-lore-set" class="sel" title="Series" aria-label="Series"></select></div>
       <div class="lore-list" id="lib-lore"></div></section>
+    <section class="doc-card"><h2><span class="no" aria-hidden="true">5</span>Card data (JSON)</h2>
+      <p>Load your own card list. Only Spirit and Nexus cards work in this build. Imported cards have no coded effect, so their text is shown for reference only.</p>
+      <div class="doc-acts"><label class="ae-ghost ae-upl primary"><span>Import Card Data</span><input id="in-cards" type="file" accept=".json,application/json"></label>
+      <button class="ae-ghost" data-a="lib-template">Download Template</button><button class="ae-ghost" data-a="lib-cards-clear">Remove Imported Cards</button></div></section>
+    <section class="doc-card"><h2><span class="no" aria-hidden="true">4</span>Card images</h2>
+      <p>Pick image files from your own device. A file is matched to a card by (1) the <b>image</b> field in your card data, so any file name works, (2) the card ID (for example <b translate="no">BS76-001.png</b>), or (3) the exact card name. Images stay in this browser only and are never uploaded.</p>
+      <div class="doc-acts"><label class="ae-ghost ae-upl primary"><span>Import Images</span><input id="in-imgs" type="file" accept="image/*" multiple></label>
+      <button class="ae-ghost" data-a="lib-imgs-clear">Remove All Images</button></div>
+      <span id="lib-imgcount" class="doc-note" role="status"></span></section>
+    <section class="doc-card"><h2><span class="no" aria-hidden="true">3</span>Deck list (text)</h2>
+      <p>One card per line: <b translate="no">3 BS44-001</b> or <b>3x Card Name</b>. Lines starting with # are ignored.</p>
+      <textarea id="lib-deck" class="lib-area" spellcheck="false" aria-label="Deck list" name="deck-list" autocomplete="off" placeholder="3 BS44-001&#10;3x Card Name…"></textarea>
+      <div class="doc-acts"><button class="ae-ghost" data-a="lib-deck-import">Import As My Deck</button><button class="ae-ghost" data-a="lib-deck-export">Export My Deck</button></div></section>
     <div id="lib-msg" class="lib-msg" role="status"></div>
   </main>
 </div>

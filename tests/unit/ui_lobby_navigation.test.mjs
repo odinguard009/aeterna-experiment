@@ -35,7 +35,7 @@ for (const screen of ['pc', 'phone']) {
     assert.ok(r.nav, 'nav visible');
     assert.deepEqual(r.tabs, ['view-lobby', 'view-play', 'view-decks', 'view-library', 'view-howto']);   // v0.93.0 U6: Decks opens My decks
     assert.equal(r.cur, 'view-lobby');
-    assert.match(r.motto, /GATE OPEN,\s*RELEASE!/);
+    assert.match(r.motto, /gate open,\s*release!/i);
     assert.match(r.sub, /^\d[\d,]* playable cards/);
     assert.ok(r.play && r.build, 'Play now + Build a deck visible');
     assert.equal(r.ver, 'Aeterna v' + await page.evaluate(() => BS.VERSION));

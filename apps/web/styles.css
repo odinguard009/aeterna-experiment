@@ -1066,6 +1066,8 @@
   html.layout-pc .db-grid#db-card-list { grid-template-columns: repeat(auto-fill, minmax(var(--db-cw, 70px), 1fr)); }
   html.layout-pc .db-grid#db-card-list .tcg-card { --card-w: var(--db-cw, 70px); width: var(--db-cw, 70px); }
   html.layout-mobile .db-size { display: none; }
+  .db-header .btn-nav-small, .db-pool .btn-nav-small, .db-dk-actions .btn-nav-small, .db-rail .btn-nav-small, .db-tabs button { text-transform: none; letter-spacing: .03em; white-space: nowrap; }   /* v0.136.0: mockup-v14 Title Case; the skewed corners no longer clip the label */
+  .db-size .btn-nav-small { padding-inline: 14px; } .db-size { white-space: nowrap; }
   .db-size { display: inline-flex; gap: 2px; margin-left: 6px; } .db-size .btn-nav-small { min-width: 30px; padding-inline: 12px; }
   .db-size [aria-pressed="true"] { background: var(--you); color: var(--you-ink); }
   .db-topcount { display: inline-flex; align-items: center; gap: 6px; }

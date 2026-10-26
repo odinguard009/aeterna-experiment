@@ -68,7 +68,7 @@ for (const screen of ['pc', 'phone']) {
     assert.deepEqual(await ribbons(page), [], 'never under a dialog');
     await page.evaluate(() => { BS.closeModal(null); BS.render(); return 1; });
     const ban = await ribbons(page);
-    assert.equal(ban.length, 1); assert.match(ban[0], /GATE OPEN, RELEASE!/);
+    assert.equal(ban.length, 1); assert.match(ban[0], /gate open, release!/i);
     await page.evaluate(() => { BS.G.turnNo = 2; BS.G.active = 'opponent'; BS.G.step = 0; BS.render(); return 1; });
     assert.deepEqual(await ribbons(page), ['OPPONENT TURN 2'], 'one ribbon at a time');
     await page.evaluate(() => { BS.G.active = 'player'; BS.G.turnNo = 3; BS.render(); BS.G.step = 4; BS.render(); return 1; });
