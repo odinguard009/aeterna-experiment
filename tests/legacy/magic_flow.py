@@ -167,7 +167,7 @@ with sync_playwright() as p:
     # detail view shows timing
     pg.evaluate("BS.G.p.player.hand=[BS.mkInst('TST-MG3')]; BS.render()")
     pg.locator("#view-playmat .hand-area .tcg-card").first.click(); pg.wait_for_timeout(200)
-    pg.locator("#modal-actions .modal-btn",has_text='Full Card').click(); pg.wait_for_timeout(200)
+    pg.locator("#modal-actions .modal-btn",has_text='Card Info').click(); pg.wait_for_timeout(200)
     chk('detail shows Timing',"Timing: Main / Flash" in modal(pg),modal(pg)[:200])
     pg.screenshot(path='/tmp/claude-0/t/mag_detail.png')
     chk('no page errors (import)',errs==[],errs)

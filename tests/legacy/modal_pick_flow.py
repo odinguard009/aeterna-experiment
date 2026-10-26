@@ -35,8 +35,8 @@ with sync_playwright() as p:
     # D. deck builder shows Magic cards, detail works
     pg.evaluate("switchView('view-deckbuilder')"); pg.wait_for_timeout(200)
     pg.fill("#db-search","Flame Burst"); pg.wait_for_timeout(200)
-    chk('D magic listed in deck builder',pg.locator("#db-card-list .tcg-card").count()==1)
-    pg.locator("#db-card-list .tcg-card [data-a=dbinfo]").first.click(); pg.wait_for_timeout(200)
+    chk('D magic listed in deck builder',pg.locator("#db-card-list [data-a=dbcard]").count()==1)
+    pg.locator("#db-card-list [data-a=dbcard] [data-a=dbinfo]").first.dispatch_event("click"); pg.wait_for_timeout(200)
     t=pg.inner_text('#action-modal'); chk('D detail has Timing and legality','Timing: Main' in t and 'Eternal' in t,t[:150])
     pg.locator("#modal-actions .modal-btn",has_text='Close').click()
     chk('D no errors',errs==[],errs)

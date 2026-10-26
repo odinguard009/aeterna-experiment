@@ -18,11 +18,11 @@ with sync_playwright() as p:
             pg.locator(f"[data-a={v}]:visible").first.click(); time.sleep(.2)
             chk(t+' '+v+' no hscroll',ov()<=1,ov())
             if v=='go-deck':
-                pg.locator('[data-a=dbcard] [data-a=dbinfo]').first.click(); time.sleep(.2)
+                pg.locator('[data-a=dbcard] [data-a=dbinfo]').first.dispatch_event('click'); time.sleep(.2)
                 chk(t+' deck detail has thumb',pg.locator('.art-thumb').count()==1)
                 pg.evaluate("(a)=>{for(const id of Object.keys(BS.CARDS)) BS.IMG[id]=a}",art)
                 pg.locator("#modal-actions .modal-btn",has_text='Close').click()
-                pg.locator('[data-a=dbcard] [data-a=dbinfo]').first.click(); time.sleep(.2)
+                pg.locator('[data-a=dbcard] [data-a=dbinfo]').first.dispatch_event('click'); time.sleep(.2)
                 pg.locator('.art-thumb').click(); time.sleep(.2)
                 r=pg.evaluate("(()=>{const e=document.querySelector('#zoom-overlay .zc-card').getBoundingClientRect(),i=document.querySelector('#zoom-overlay .zc-close').getBoundingClientRect();return [e.top>=0,i.bottom<=innerHeight+1,e.width]})()")
                 chk(t+' zoom fits viewport',r[0] and r[1],r)
@@ -30,8 +30,8 @@ with sync_playwright() as p:
                 chk(t+' zoom closes on backdrop',not pg.evaluate("document.getElementById('zoom-overlay').classList.contains('active')"))
                 pg.locator("#modal-actions .modal-btn",has_text='Close').click()
                 pg.evaluate("for(const k of Object.keys(BS.IMG)) delete BS.IMG[k]")
-            pg.evaluate("document.getElementById('view-deckbuilder').classList.contains('active')&&innerWidth<900&&BS.dbSheet('menu')"); pg.locator("[data-a=go-decks]:visible").first.click(); time.sleep(.2)   # v0.119.0: the deck builder menu now has Back to My decks (not Back to Lobby); nav Play is used next
-        pg.click('[data-a=go-play]'); pg.click('[data-a=start]')
+            pg.evaluate("document.getElementById('view-deckbuilder').classList.contains('active')&&innerWidth<900&&BS.dbSheet('menu')"); pg.locator("[data-a=go-decks]:visible").first.dispatch_event("click"); time.sleep(.2)   # v0.119.0: the deck builder menu now has Back to My decks (not Back to Lobby); nav Play is used next
+        pg.locator('[data-a=go-play]:visible').first.click(); pg.click('[data-a=start]')
         for _ in range(40):
             time.sleep(.15)
             ti=pg.inner_text("#modal-card-title") if act(pg) else ''

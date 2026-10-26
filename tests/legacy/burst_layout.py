@@ -61,7 +61,7 @@ with sync_playwright() as p:
         chk(T+'invariants',_o(INV)=='ok',_o(INV))
         # tap area opens detail with button
         pg.locator(".burst-area").nth(1).click(); pg.wait_for_timeout(200)
-        chk(T+'area tap shows Mirage + details button','Mirage set face up' in modal() and 'Card Info' in modal(),modal()[:100])
+        chk(T+'area tap shows Mirage + details button','Mirage set face up' in modal() and 'Full Card Details' in modal(),modal()[:100])
         pg.locator("#modal-actions .modal-btn",has_text='Full Card').click(); pg.wait_for_timeout(200)
         chk(T+'details open',('Timing' in modal()) or 'Mirage Wisp' in modal(),modal()[:60])
         pg.locator("#modal-actions .modal-btn",has_text='Close').click()

@@ -10,7 +10,7 @@ def clear_modals(pg,n=8):
 def start(b,w,h,hover=True):
     ctx=b.new_context(viewport={'width':w,'height':h}); pg=ctx.new_page(); errs=[]
     pg.on("pageerror",lambda e:errs.append(str(e)[:200])); pg.goto(F); ready(pg)
-    pg.click('[data-a=go-play]'); pg.click('[data-a=start]'); settle(pg); clear_modals(pg); settle(pg); clear_modals(pg)
+    pg.locator('[data-a=go-play]:visible').first.click(); pg.click('[data-a=start]'); settle(pg); clear_modals(pg); settle(pg); clear_modals(pg)
     return ctx,pg,errs
 with sync_playwright() as p:
     b=p.chromium.launch()
@@ -72,7 +72,7 @@ with sync_playwright() as p:
     pg.on("pageerror",lambda e:errs.append(str(e)[:200])); pg.goto(F); ready(pg)
     pg.evaluate("localStorage.setItem('bse.history.v1', JSON.stringify(Array.from({length:130},(_,i)=>({t:Date.now(),fmt:'eternal',you:'A',cpu:'B',won:i%2==0,turns:i}))))"); pg.reload(); ready(pg)
     chk('history: loaded capped to 100', pg.evaluate("BS.HISTORY().length")==100)
-    pg.click('[data-a=go-settings]') if pg.locator('[data-a=go-settings]').count() else pg.evaluate("document.querySelector('#view-lobby').querySelectorAll('button').forEach(b=>{if(/SETTINGS/.test(b.textContent))b.click()})")
+    pg.locator('[data-a=go-settings]:visible').first.click(); pg.click('#set-menu [data-v=history]')   # v0.68.0: History is a Settings section
     settle(pg)
     txt=pg.inner_text('#set-hist')
     chk('settings: history summary + table rows', '50 wins' in txt and '50 losses' in txt and pg.locator('#set-hist tr').count()==11, txt[:120])
@@ -81,10 +81,10 @@ with sync_playwright() as p:
     pg.evaluate("localStorage.setItem('bse.history.v1','garbage{')"); pg.reload(); ready(pg)
     chk('history: corrupt storage tolerated', pg.evaluate("BS.HISTORY().length")==0 and not errs, errs)
     # how to play
-    pg.evaluate("document.querySelectorAll('#view-lobby button').forEach(b=>{if(/HOW TO PLAY/.test(b.textContent))b.click()})"); settle(pg)
+    pg.locator('[data-a=go-howto]:visible').first.click(); settle(pg)
     chk('how-to-play page opens with content', pg.locator('#view-howto').is_visible() and len(pg.inner_text('#view-howto'))>300)
-    chk('how-to-play has a back button', pg.locator('#view-howto [data-a=go-lobby]').count()>=1)
-    pg.click('#view-howto [data-a=go-lobby]'); chk('how-to-play back to lobby', pg.locator('#view-lobby').is_visible())
+    chk('how-to-play has a way back (Home tab)', pg.locator('[data-a=go-lobby]:visible').count()>=1)
+    pg.locator('[data-a=go-lobby]:visible').first.click(); chk('how-to-play back to lobby', pg.locator('#view-lobby').is_visible())
     ctx.close()
     # phone suite
     ctx,pg,errs=start(b,390,844)
@@ -97,16 +97,16 @@ with sync_playwright() as p:
     ctx.close()
     for w,h in [(390,844),(1280,800)]:
         ctx=b.new_context(viewport={'width':w,'height':h}); pg=ctx.new_page(); pg.goto(F); ready(pg)
-        for btn in ['SETTINGS','HOW TO PLAY']:
-            pg.evaluate("t=>document.querySelectorAll('#view-lobby button').forEach(b=>{if(b.textContent.includes(t))b.click()})",btn); settle(pg)
+        for btn,act in [('SETTINGS','go-settings'),('HOW TO PLAY','go-howto')]:
+            pg.locator(f'[data-a={act}]:visible').first.click(); settle(pg)
             chk(f'{w}x{h}: {btn} page no h-overflow', pg.evaluate("document.documentElement.scrollWidth<=innerWidth+1"))
-            pg.evaluate("document.querySelector('.app-view.active [data-a=go-lobby]').click()")
+            pg.locator('[data-a=go-lobby]:visible').first.click()
         ctx.close()
     # full CPU game history recorded via real win, 5 runs
     for i in range(5):
         ctx=b.new_context(viewport={'width':1280,'height':800}); pg=ctx.new_page(); errs=[]
         pg.on("pageerror",lambda e:errs.append(str(e)[:200])); pg.goto(F); ready(pg)
-        pg.click('[data-a=go-play]'); pg.click('[data-a=start]'); settle(pg); clear_modals(pg)
+        pg.locator('[data-a=go-play]:visible').first.click(); pg.click('[data-a=start]'); settle(pg); clear_modals(pg)
         pg.evaluate("BS.win(%s,'t')"%("'opponent'" if i%2 else "'player'")); settle(pg)
         hs=pg.evaluate("BS.HISTORY()")
         chk(f'run {i}: result recorded correctly', len(hs)==1 and hs[0]['won']==(i%2==0) and not errs, (hs,errs))

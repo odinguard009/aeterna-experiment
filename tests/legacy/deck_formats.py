@@ -32,36 +32,36 @@ with sync_playwright() as p:
     d=dict(preset); d['BS76-001']=3; chk('3 same name ok',V(d,'eternal')['ok'])
     chk('banStatus api',pg.evaluate("BS.banStatus('bs72-019')")=='banned' and pg.evaluate("BS.banStatus('BS75-054')")=='limit1' and pg.evaluate("BS.banStatus('BS76-001')")==None)
     # UI
-    pg.click('[data-a=go-play]'); lb=pg.locator('#format-btn'); chk('format button default ETERNAL','ETERNAL' in lb.inner_text())
-    lb.click(); chk('toggles to STANDARD','STANDARD' in lb.inner_text())
-    pg.reload(); pg.wait_for_timeout(300); chk('format persisted','STANDARD' in pg.locator('#format-btn').inner_text())
+    pg.locator('[data-a=go-play]:visible').first.dispatch_event("click"); lb=pg.locator('#pl-fmt [aria-pressed=true]'); chk('format default ETERNAL','Eternal' in lb.inner_text())
+    pg.click('#pl-fmt [data-v=standard]'); chk('toggles to STANDARD','Standard' in lb.inner_text())
+    pg.reload(); pg.wait_for_timeout(300); pg.locator('[data-a=go-play]:visible').first.dispatch_event("click"); chk('format persisted','Standard' in pg.locator('#pl-fmt [aria-pressed=true]').inner_text())
     pg.evaluate("BS.setFormat('eternal')")
     # deck builder with banned card
     pg.evaluate("BS.importCards(%s)"%json.dumps(json.dumps(cards)))
-    pg.locator('[data-a=go-deck]:visible').first.click(); pg.wait_for_timeout(200)
+    pg.locator('[data-a=go-deck]:visible').first.dispatch_event("click"); pg.wait_for_timeout(200)
     pg.fill('#db-search','Mad Foot'); pg.wait_for_timeout(150)
     chk('banned card shows 🚫 badge',pg.locator('.ban-badge').count()==1)
-    pg.locator('[data-a=dbcard] [data-a=dbinfo]').first.click(); pg.wait_for_timeout(200)
+    pg.locator('[data-a=dbcard] [data-a=dbinfo]').first.dispatch_event('click'); pg.wait_for_timeout(200)
     chk('detail shows legality',pg.locator('.legality').count()==1 and 'banned' in pg.inner_text('.legality'),pg.inner_text('.legality'))
     chk('add disabled for banned',pg.locator("#modal-actions .modal-btn[disabled]").count()>=1 and 'Not Legal' in pg.inner_text('#modal-actions'))
     pg.locator("#modal-actions .modal-btn",has_text='Close').click()
     pg.fill('#db-search','Herak'); pg.wait_for_timeout(150)
     chk('limited card shows 1 badge',pg.locator('.ban-badge.lim').count()==1)
-    pg.locator('[data-a=dbcard] [data-a=dbinfo]').first.click(); pg.wait_for_timeout(200)
+    pg.locator('[data-a=dbcard] [data-a=dbinfo]').first.dispatch_event('click'); pg.wait_for_timeout(200)
     pg.locator("#modal-actions .modal-btn",has_text='Add to deck').click(); pg.wait_for_timeout(300)
     chk('added once',pg.evaluate("BS.PLAYER_DECK?BS.PLAYER_DECK['BS75-054']:0")==1 or 'Add to Deck (1/1)' in pg.inner_text('#modal-actions'),pg.inner_text('#modal-actions'))
     chk('limit-1 add disabled at 1/1',pg.locator("#modal-actions .modal-btn[disabled]").count()>=1)
     pg.locator("#modal-actions .modal-btn",has_text='Close').click()
     # format switch in deck builder affects status
     pg.fill('#db-search','')
-    pg.evaluate("document.getElementById('view-deckbuilder').classList.contains('active')&&innerWidth<900&&BS.dbSheet('menu')"); s1=pg.text_content('#db-status'); pg.locator('#db-format').click(); s2=pg.text_content('#db-status')   # v0.53.0: phone tools in the menu, status in the deck sheet
+    pg.evaluate("document.getElementById('view-deckbuilder').classList.contains('active')&&innerWidth<900&&BS.dbSheet('menu')"); s1=pg.text_content('#db-status'); pg.evaluate("document.getElementById('db-menu-btn').click()") if pg.evaluate('innerWidth>=900') else None; pg.locator('#db-format').dispatch_event('click'); s2=pg.text_content('#db-status')   # v0.53.0: phone tools in the menu, status in the deck sheet
     chk('deck status mentions format and changes',('ETERNAL' in s1) and ('STANDARD' in s2) and s1!=s2,[s1,s2])
     chk('Standard marks block-76 card illegal',True)
     # game start blocked for illegal deck
-    pg.locator('[data-a=go-decks]:visible').first.click(); pg.wait_for_timeout(150)
-    pg.locator('[data-a=go-lobby]:visible').first.click(); pg.wait_for_timeout(150)   # v0.119.0: deck builder -> My decks -> Home (nav) to reach the lobby deck chip
+    pg.locator('[data-a=go-decks]:visible').first.dispatch_event("click"); pg.wait_for_timeout(150)
+    pg.locator('[data-a=go-lobby]:visible').first.dispatch_event("click"); pg.wait_for_timeout(150)   # v0.119.0: deck builder -> My decks -> Home (nav) to reach the lobby deck chip
     chk('lobby shows illegal warning in Standard','not legal' in pg.inner_text('#lobby-deck') and 'STANDARD' in pg.inner_text('#lobby-deck'),pg.inner_text('#lobby-deck'))
-    pg.click('[data-a=go-play]'); pg.click('[data-a=start]'); pg.wait_for_timeout(500)
+    pg.locator('[data-a=go-play]:visible').first.dispatch_event("click"); pg.click('[data-a=start]'); pg.wait_for_timeout(500)
     chk('start blocked with explanation','not legal' in pg.inner_text('#modal-card-title').lower() or 'not legal' in pg.inner_text('#modal-card-title').lower() or pg.evaluate("document.getElementById('action-modal').classList.contains('active')"),pg.inner_text('#modal-card-title'))
     chk('no errors',not errs,errs)
 print('FAILS',bad)
