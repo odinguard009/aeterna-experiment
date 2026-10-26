@@ -62,9 +62,9 @@ function fieldCardHTML(key, kind, f) {
     ${selB}<div class="cost">${card.cost}</div><div class="type-badge">${f.under.length ? 'ADV' : card.contract ? 'CON' : card.token ? 'TOK' : card.type.substring(0, 3).toUpperCase()}${rebMark(card)}</div>
     <div class="name">${nameHTML(card.name)}</div><div class="core-tag${f.soul ? ' soul-active' : ''}${f.cores ? '' : ' none'}" title="${f.cores} core${f.cores === 1 ? '' : 's'}${f.soul ? ' (Soul Core included)' : ''}"><span class="gems">${gemsHTML(plain, f.soul, 6)}</span><span class="sr-only">C:${f.cores}${f.soul ? ' S' : ''}</span></div>${stack}<div class="bp">${bp}</div>${isSpiritForm(card) ? `<span class="lv-dia" aria-hidden="true" title="Level ${lvNo(f)}"><b>${lvNo(f)}</b></span>` : ''}${magBtnHTML(f.id, f.uid)}${symBadgeHTML(f.id)}</div></div>`;
 }
-function rowHTML(title, scroll, key, items, emptyText, cls) {       // items: [{kind, f}]
+function rowHTML(title, scroll, key, items, emptyText, cls, pad) {       // items: [{kind, f}]
   return `<div class="field-row-wrapper ${cls || ''}"><div class="row-header-badge"><span>${title}</span></div>
-    <div class="field-row" data-scroll="${scroll}">${items.length ? items.map(o => fieldCardHTML(key, o.kind, o.f)).join('') : `<span class="empty-note">${emptyText}</span>`}</div></div>`;
+    <div class="field-row" data-scroll="${scroll}">${items.length ? items.map(o => fieldCardHTML(key, o.kind, o.f)).join('') + (pad || '') : (pad || `<span class="empty-note">${emptyText}</span>`)}</div></div>`;
 }
 /* Burst / Mirage Area (top-left corner of each field): sleeve = Burst set face down, card face = Mirage set face up */
 function burstAreaHTML(p) {
@@ -90,7 +90,8 @@ function fieldAreaHTML(p, isPlayer) {
     const spiritRow = rowHTML('SPIRITS', k + '-spirits', k, sp, 'No Spirits');
     rows = isPlayer ? spiritRow + nexusRow : nexusRow + spiritRow;
   } else {                                       // phone: one swipeable row (Spirits, then Nexus)
-    rows = rowHTML(isPlayer ? 'YOUR FIELD ↔' : 'CPU FIELD ↔', k + '-field', k, sp.concat(nx), 'Empty field');
+    const all = sp.concat(nx), ph = '<span class="ph-slot" aria-hidden="true">Empty</span>'.repeat(Math.max(0, 4 - all.length));   // v0.142.0: mockup shows dashed empty slots up to four
+    rows = rowHTML(isPlayer ? 'YOUR FIELD ↔' : 'CPU FIELD ↔', k + '-field', k, all, '', '', ph);
   }
   /* v0.63.0 (U1): the CPU grid is the point mirror of yours (your Life top-left, the CPU's Life bottom-right) */
   const lifeGems = `<span class="gems sm">${gemsHTML(p.life - (p.lifeSoul ? 1 : 0), !!p.lifeSoul, 10)}</span>`;

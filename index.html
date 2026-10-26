@@ -988,6 +988,7 @@ span.pg-av{cursor:default;}.pg-avs{display:flex;flex-wrap:wrap;gap:8px;}.pg-avs 
 .phonebar .brand .lg{width:36px;height:30px}
 #view-playmat .ae-tools .ae-btn > .s{display:none}
 :root{--lg1:var(--you,#17b897);--lg2:color-mix(in srgb,var(--lg1) 40%,#fff);--lg3:color-mix(in srgb,var(--lg1) 20%,#fff);--lg0:color-mix(in srgb,var(--lg1) 60%,#000)}
+#view-playmat .ph-slot{flex:1 1 0;min-width:0;max-width:64px;max-height:92%;aspect-ratio:5/7;border:1.5px dashed var(--ae-line2,rgba(255,255,255,.22));border-radius:7px;display:grid;place-items:center;color:var(--ae-text4,#6b7a8c);font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin:0 3px}
 .mk{--page:#0d1015;--page-fg:#eef1f5;--page-muted:#a9b2c1;--page-line:#ffffff24;--page-panel:#161a22;
 --bg1:#1b2029;--bg2:#11141a;--lattice:#ffffff08;
 --panel:#232935;--panel2:#161a22;--panel3:#0f1218;--line:#ffffff1a;--line2:#ffffff40;
@@ -2716,7 +2717,7 @@ function bindHost(h) {
    type: 'Spirit' | 'Nexus' | 'Magic'      symbol: card color     symbols: number of symbols
    reduction: {color: n}         levels: [{cores, bp}]  (Nexus levels have no bp)
    --------------------------------------------------------------------- */
-const VERSION = '0.141.0';
+const VERSION = '0.142.0';
 const CARDS = {};
 function defCard(o) {
   CARDS[o.id] = Object.assign({ type: 'Spirit', reduction: {}, symbols: 1, families: [], keywords: [], implemented: true, desc: 'Vanilla test card (no effect).', block: 'A' }, o);
@@ -7795,9 +7796,9 @@ function fieldCardHTML(key, kind, f) {
     ${selB}<div class="cost">${card.cost}</div><div class="type-badge">${f.under.length ? 'ADV' : card.contract ? 'CON' : card.token ? 'TOK' : card.type.substring(0, 3).toUpperCase()}${rebMark(card)}</div>
     <div class="name">${nameHTML(card.name)}</div><div class="core-tag${f.soul ? ' soul-active' : ''}${f.cores ? '' : ' none'}" title="${f.cores} core${f.cores === 1 ? '' : 's'}${f.soul ? ' (Soul Core included)' : ''}"><span class="gems">${gemsHTML(plain, f.soul, 6)}</span><span class="sr-only">C:${f.cores}${f.soul ? ' S' : ''}</span></div>${stack}<div class="bp">${bp}</div>${isSpiritForm(card) ? `<span class="lv-dia" aria-hidden="true" title="Level ${lvNo(f)}"><b>${lvNo(f)}</b></span>` : ''}${magBtnHTML(f.id, f.uid)}${symBadgeHTML(f.id)}</div></div>`;
 }
-function rowHTML(title, scroll, key, items, emptyText, cls) {       // items: [{kind, f}]
+function rowHTML(title, scroll, key, items, emptyText, cls, pad) {       // items: [{kind, f}]
   return `<div class="field-row-wrapper ${cls || ''}"><div class="row-header-badge"><span>${title}</span></div>
-    <div class="field-row" data-scroll="${scroll}">${items.length ? items.map(o => fieldCardHTML(key, o.kind, o.f)).join('') : `<span class="empty-note">${emptyText}</span>`}</div></div>`;
+    <div class="field-row" data-scroll="${scroll}">${items.length ? items.map(o => fieldCardHTML(key, o.kind, o.f)).join('') + (pad || '') : (pad || `<span class="empty-note">${emptyText}</span>`)}</div></div>`;
 }
 /* Burst / Mirage Area (top-left corner of each field): sleeve = Burst set face down, card face = Mirage set face up */
 function burstAreaHTML(p) {
@@ -7823,7 +7824,8 @@ function fieldAreaHTML(p, isPlayer) {
     const spiritRow = rowHTML('SPIRITS', k + '-spirits', k, sp, 'No Spirits');
     rows = isPlayer ? spiritRow + nexusRow : nexusRow + spiritRow;
   } else {                                       // phone: one swipeable row (Spirits, then Nexus)
-    rows = rowHTML(isPlayer ? 'YOUR FIELD ↔' : 'CPU FIELD ↔', k + '-field', k, sp.concat(nx), 'Empty field');
+    const all = sp.concat(nx), ph = '<span class="ph-slot" aria-hidden="true">Empty</span>'.repeat(Math.max(0, 4 - all.length));   // v0.142.0: mockup shows dashed empty slots up to four
+    rows = rowHTML(isPlayer ? 'YOUR FIELD ↔' : 'CPU FIELD ↔', k + '-field', k, all, '', '', ph);
   }
   /* v0.63.0 (U1): the CPU grid is the point mirror of yours (your Life top-left, the CPU's Life bottom-right) */
   const lifeGems = `<span class="gems sm">${gemsHTML(p.life - (p.lifeSoul ? 1 : 0), !!p.lifeSoul, 10)}</span>`;

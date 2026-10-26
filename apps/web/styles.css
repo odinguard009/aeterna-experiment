@@ -1119,3 +1119,5 @@
 .phonebar .brand .lg{width:36px;height:30px}
 #view-playmat .ae-tools .ae-btn > .s{display:none}   /* v0.140.0: the short label was shown next to the long one on PC (LOGLog) */
 :root{--lg1:var(--you,#17b897);--lg2:color-mix(in srgb,var(--lg1) 40%,#fff);--lg3:color-mix(in srgb,var(--lg1) 20%,#fff);--lg0:color-mix(in srgb,var(--lg1) 60%,#000)}   /* v0.141.0: logo + loader follow the chosen theme colour */
+/* v0.142.0: phone board shows dashed empty slots like the mockup */
+#view-playmat .ph-slot{flex:1 1 0;min-width:0;max-width:64px;max-height:92%;aspect-ratio:5/7;border:1.5px dashed var(--ae-line2,rgba(255,255,255,.22));border-radius:7px;display:grid;place-items:center;color:var(--ae-text4,#6b7a8c);font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin:0 3px}

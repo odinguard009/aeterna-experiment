@@ -4,6 +4,11 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.142.0
+- Lane: U/I
+- **Phone battle board shows dashed empty slots.** UI only. Each field on the phone shows up to four dashed "Empty" slots after the cards (as in the mockup) instead of one "Empty field" note.
+  - Checked: phone 390 px screenshot of a live match, no page errors. Not checked: other phone widths, the online board (unchanged)
+
 ## v0.141.0
 - Lane: U/I
 - **Logo, loading screen and favicon follow the chosen colour; lobby Card of the Day matches the mockup.** UI only. The logo, loader and tab icon take the accent colour of the theme (the choice is also stored so the loader is tinted from the first paint); the Card of the Day shows the mockup card face (generated art, cost gem, type chip, LV/BP footer; a real picture still wins) with "Card Page" and "+ Add To Deck" buttons.
