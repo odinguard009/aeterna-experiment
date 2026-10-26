@@ -40,6 +40,7 @@
     <section class="home-more" aria-label="Today">
       <div class="hm-card"><h2>Card of the Day</h2><div id="home-cotd"></div></div>
       <div class="hm-card"><h2>Play in three steps</h2><ol class="hm-steps"><li><b>Pick a deck</b> below or build one.</li><li><b>Pick a format</b> and the CPU deck.</li><li><b>Press Play Now</b> and win by taking all 5 Life.</li></ol><p class="hm-sum" id="home-sum"></p></div>
+      <div class="hm-card"><h2>Today's missions</h2><ul class="pg-list" id="home-missions"></ul></div>
       <div class="hm-card wide"><h2>My decks</h2><div class="hm-decks" id="home-decks"></div></div>
     </section>
   </main>
@@ -69,7 +70,8 @@
           <div class="srow"><div class="tx"><b>Your card images</b><span id="set-imgs">Pictures you add in the Library. They stay on this device.</span></div><button class="ae-ghost" data-a="go-lib">OPEN LIBRARY</button></div>
           <div class="srow"><div class="tx"><b>Reset settings</b><span>Decks, imported cards, images and settings stay in this browser only. Reset puts speed, sound, CPU deck and CPU style back to the defaults.</span></div><button class="ae-ghost" data-a="set-reset">RESET</button></div></section>
         <section class="set-card" id="set-s-profile" aria-labelledby="set-h-profile"><h2 id="set-h-profile">Profile</h2>
-          <div id="set-profile"></div></section>
+          <div id="set-progress"></div>
+          <h3 class="pf-h">Statistics</h3><div id="set-profile"></div></section>
         <section class="set-card" id="set-s-history" aria-labelledby="set-h-history"><h2 id="set-h-history">Match history</h2>
           <div id="set-hist" class="set-hist"></div>
           <div class="srow"><div class="tx"><b>Clear history</b><span>Removes the list of finished matches.</span></div><button class="ae-ghost" data-a="hist-clear">CLEAR</button></div>

@@ -10,6 +10,7 @@ function profileStats(h = HISTORY) {
   return { n, won, lost: n - won, rate: n ? Math.round(won * 100 / n) : 0, streak, best, turns: n ? Math.round(h.reduce((a, x) => a + (x.turns || 0), 0) / n) : 0, byFmt };
 }
 function renderProfile() {
+  renderProgress();
   const el = $('set-profile'); if (!el) return;
   const s = profileStats();
   if (!s.n) { el.innerHTML = '<div class="empty-note">Play a match to fill your profile.</div>'; return; }

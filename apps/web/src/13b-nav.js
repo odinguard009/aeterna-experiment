@@ -63,6 +63,7 @@ function cardOfDay(d = new Date()) {
 function renderHomeMore() {
   const id = cardOfDay(), c = CARDS[id], ok = validateDeck(PLAYER_DECK, FORMAT).ok;
   $('home-cotd').innerHTML = c ? `<button class="hm-cotd" data-a="zoom" data-v="${esc(id)}" style="--lc:${colorVar(c.symbol)}"><b>${esc(c.name)}</b><span translate="no">${esc(id)} · ${esc(c.contract ? 'Contract' : c.type)} · Cost ${c.cost}</span></button>` : '';
+  $('home-missions').innerHTML = dailyMissions().map(m => `<li class="${m.done ? 'done' : ''}"><span>${esc(m.txt)}</span><b>${m.v}/${m.goal}</b></li>`).join('');
   $('home-sum').textContent = `Deck: ${SLOTS[ACTIVE_SLOT].name} (${ok ? 'legal' : 'not ready'}) · Format: ${fmtTitle()} · CPU: ${SETTINGS.cpuDeck}`;
   $('home-decks').innerHTML = SLOTS.map((s, i) => { const t = deckTotal(s.cards); return `<button class="hm-deck${i === ACTIVE_SLOT ? ' on' : ''}" data-a="home-deck" data-v="${i}"><b>${esc(s.name)}</b><span>${t ? t + ' cards' : 'empty'}${t && validateDeck(s.cards, FORMAT).ok ? ' · legal' : ''}</span></button>`; }).join('');
 }

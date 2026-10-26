@@ -1077,3 +1077,12 @@
   .bug-box textarea, .bug-box .se { font: inherit; padding: 8px; background: var(--ae-panel2); color: var(--ae-text); border: 0; box-shadow: inset 0 0 0 1px var(--ae-line2); }
   .bug-box .bug-chk { flex-direction: row; align-items: center; gap: 8px; } .bug-note { margin: 0; font-size: 12px; color: var(--ae-text3); }
   html.layout-mobile .bug-ov { align-items: flex-end; padding: 0; } html.layout-mobile .bug-box { width: 100%; }
+
+  /* ---- U15 progress: rank, avatars, missions, achievements (v0.134.0) ---- */
+  .pg-rank { display: flex; align-items: center; gap: 12px; } .pg-rank b { display: block; font-family: var(--f-display); font-size: 18px; } .pg-rank span:not(.pg-av) { font-size: 12px; color: var(--ae-text2); }
+  .pg-bar { display: block; height: 6px; margin-top: 4px; background: var(--ae-chip); width: 200px; max-width: 100%; } .pg-bar u { display: block; height: 100%; background: var(--you); }
+  .pg-av { width: 40px; height: 40px; flex: none; border: 0; background: var(--lc, var(--you)); clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); cursor: pointer; }
+  span.pg-av { cursor: default; } .pg-avs { display: flex; flex-wrap: wrap; gap: 8px; } .pg-avs .pg-av.on { outline: 2px solid var(--ae-text); } .pg-avs .pg-av:disabled { opacity: .3; cursor: not-allowed; }
+  .pg-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; } .pg-list li { display: flex; justify-content: space-between; padding: 6px 10px; font-size: 13px; background: var(--ae-panel2); box-shadow: inset 4px 0 0 var(--ae-line2); }
+  .pg-list li.done { box-shadow: inset 4px 0 0 var(--you); } .pg-list li.done b { color: var(--you); }
+  #set-profile ~ .pf-h, .pf-h, #set-s-profile h3 { margin: 12px 0 6px; font-family: var(--f-display); font-size: 12px; color: var(--ae-text2); }
