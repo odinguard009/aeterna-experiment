@@ -253,6 +253,7 @@ document.addEventListener('change', async e => {
   else if (t.id === 'set-color') { setTheme('color', t.value); navTools(); if (G) render(); }
   else if (t.id === 'set-mode') { setTheme('mode', t.value); navTools(); if (G) render(); }
   else if (t.id === 'set-anim') { if (['full', 'reduced', 'off'].includes(t.value)) SETTINGS.anim = t.value; else delete SETTINGS.anim; saveSettings(); }
+  else if (t.id === 'set-ts') { if (TEXT_SIZES.includes(t.value) && t.value !== 'normal') SETTINGS.textSize = t.value; else delete SETTINGS.textSize; saveSettings(); applyTextSize(); }
   else if (t.id === 'set-lp') { if (t.value === 'off') SETTINGS.longpress = 'off'; else delete SETTINGS.longpress; saveSettings(); }
   else if (t.id === 'set-sound') { SETTINGS.sound = t.value === 'on'; saveSettings(); navTools(); if (SETTINGS.sound) sfx('summon'); }
   else if (t.id === 'lib-set' || t.id === 'lib-sort') { if (t.id === 'lib-sort') LIBF.sort = t.value; $('lib-grid').scrollTop = 0; renderLibrary(); }   // v0.111.0 (card images): the Library browse grid filters

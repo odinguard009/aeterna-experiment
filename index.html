@@ -2140,6 +2140,10 @@ body.mk > .ae-pop{position:absolute;top:62px;right:24px;z-index:20}
 .mk #db-card-list{--cols:6}
 .mk .drow .thumb .cface.ph{overflow:hidden;aspect-ratio:5/7;padding:2px}
 .mk .drow .thumb .cface.ph *{font-size:3.5px!important;line-height:1.1;margin:0}
+html[data-ts="large"] .mk{font-size:16px;}html[data-ts="larger"] .mk{font-size:18px;}
+.kbd-list{display:grid;gap:8px;text-align:left;}
+.kbd-row{display:flex;align-items:center;gap:12px;}
+.kbd-row kbd{flex:none;min-width:112px;padding:4px 10px;text-align:center;font:800 .82em var(--f-num,inherit);background:var(--ae-panel2,#0001);box-shadow:inset 0 0 0 1px var(--ae-line2);clip-path:var(--par,none);}
 </style>
 </head>
 <body>
@@ -2177,9 +2181,9 @@ body.mk > .ae-pop{position:absolute;top:62px;right:24px;z-index:20}
       <div class="col" id="set-menu" role="group" aria-label="Settings sections" style="gap:4px;position:sticky;top:0;align-self:start"><button class="opt on" data-a="set-sec" data-v="appearance" style="padding:10px 12px" aria-current="true"><b>Appearance</b></button><button class="opt" data-a="set-sec" data-v="game" style="padding:10px 12px"><b>Game</b></button><button class="opt" data-a="set-sec" data-v="sound" style="padding:10px 12px"><b>Animation And Sound</b></button><button class="opt" data-a="set-sec" data-v="access" style="padding:10px 12px"><b>Accessibility</b></button><button class="opt" data-a="set-sec" data-v="data" style="padding:10px 12px"><b>Cards And Saved Data</b></button><button class="opt" data-a="set-sec" data-v="history" style="padding:10px 12px"><b>Match history</b></button></div>
       <div class="card set-body" style="padding:6px 20px 14px">
         <section class="set-card" id="set-s-appearance" aria-label="Appearance"><div class="setrow"><div class="grow"><b id="set-l-mode">Mode</b><span class="sub" style="font-size:.84em">Dark or light board and menus.</span></div><div class="ctl"><span class="seg" id="set-mode" role="group" aria-labelledby="set-l-mode" style="border-color:var(--line2)"><button data-a="theme-mode" data-v="dark" aria-pressed="true">Dark</button><button data-a="theme-mode" data-v="light" aria-pressed="false">Light</button></span></div></div><div class="setrow"><div class="grow"><b id="set-l-color">Your colour</b><span class="sub" style="font-size:.84em">Marks your side: turn banner, zone tags, Life, card glow, buttons. Teal by default, or one of the eight card symbol colours.</span></div><div class="ctl"><div class="sws" id="set-color" role="group" aria-labelledby="set-l-color"></div></div></div><div class="setrow"><div class="grow"><b>Playmat image</b><span class="sub" style="font-size:.84em">Your own picture behind the battle board. It fills the board; edges are trimmed when the shape differs, the centre stays.</span></div><div class="ctl"><label class="btn sm ae-upl"><span>Upload</span><input id="set-mat" type="file" accept="image/*" aria-label="Upload playmat image" hidden></label><button class="btn sm" data-a="set-mat-clear" id="set-mat-clear">Remove</button></div></div><div class="setrow"><div class="grow"><b>CPU colour</b><span class="sub" style="font-size:.84em">Crimson; blue when your colour is red, so the two sides never match.</span></div><div class="ctl"><span class="set-val" id="set-cpucol">Crimson</span></div></div></section>
-        <section class="set-card" id="set-s-game" aria-label="Game" hidden><div class="setrow"><div class="grow"><b>Speed</b><span class="sub" style="font-size:.84em">Animation and CPU pause length.</span></div><div class="ctl"><select id="set-speed" class="in" aria-label="Game speed"><option value="normal">Normal</option><option value="fast">Fast</option><option value="instant">Instant</option></select></div></div><div class="setrow"><div class="grow"><b>Style</b><span class="sub" style="font-size:.84em">How the CPU weighs attacks, blocks and plays (balanced is the default).</span></div><div class="ctl"><select id="set-cpu" class="in" aria-label="CPU style"></select></div></div><div class="setrow"><div class="grow"><b>Server URL</b><span class="sub" style="font-size:.84em">Base address of the Aeterna server (http, no trailing slash). Leave empty to use this page's own address when the server serves it; the online room connects to the WebSocket one port up. Online rooms play Standard.</span></div><div class="ctl"><input id="set-online-url" class="in" type="url" placeholder="http://localhost:8080" autocomplete="off" spellcheck="false"></div></div></section>
+        <section class="set-card" id="set-s-game" aria-label="Game" hidden><div class="setrow"><div class="grow"><b>Speed</b><span class="sub" style="font-size:.84em">Animation and CPU pause length.</span></div><div class="ctl"><select id="set-speed" class="in" aria-label="Game speed"><option value="slow">Slow</option><option value="normal">Normal</option><option value="fast">Fast</option><option value="instant">Instant</option></select></div></div><div class="setrow"><div class="grow"><b>Style</b><span class="sub" style="font-size:.84em">How the CPU weighs attacks, blocks and plays (balanced is the default).</span></div><div class="ctl"><select id="set-cpu" class="in" aria-label="CPU style"></select></div></div><div class="setrow"><div class="grow"><b>Server URL</b><span class="sub" style="font-size:.84em">Base address of the Aeterna server (http, no trailing slash). Leave empty to use this page's own address when the server serves it; the online room connects to the WebSocket one port up. Online rooms play Standard.</span></div><div class="ctl"><input id="set-online-url" class="in" type="url" placeholder="http://localhost:8080" autocomplete="off" spellcheck="false"></div></div></section>
         <section class="set-card" id="set-s-sound" aria-label="Animation And Sound" hidden><div class="setrow"><div class="grow"><b>Animations</b><span class="sub" style="font-size:.84em">Attack beam, Life shatter and other short battle cues. Reduced keeps only fades. Auto follows the device's reduced-motion setting.</span></div><div class="ctl"><select id="set-anim" class="in" aria-label="Animations"><option value="auto">Auto (device)</option><option value="full">Full</option><option value="reduced">Reduced</option><option value="off">Off</option></select></div></div><div class="setrow"><div class="grow"><b>Sound effects</b><span class="sub" style="font-size:.84em">Short synthesized sounds for attacks, hits, summons and draws (no audio files).</span></div><div class="ctl"><select id="set-sound" class="in" aria-label="Sound"><option value="off">Off</option><option value="on">On</option></select></div></div></section>
-        <section class="set-card" id="set-s-access" aria-label="Accessibility" hidden><div class="setrow"><div class="grow"><b>Long-press for card info</b><span class="sub" style="font-size:.84em">Deck builder on a touch screen: hold a card to read it instead of adding it.</span></div><div class="ctl"><select id="set-lp" class="in" aria-label="Long-press for card info"><option value="on">On</option><option value="off">Off</option></select></div></div></section>
+        <section class="set-card" id="set-s-access" aria-label="Accessibility" hidden><div class="setrow"><div class="grow"><b>Long-press for card info</b><span class="sub" style="font-size:.84em">Deck builder on a touch screen: hold a card to read it instead of adding it.</span></div><div class="ctl"><select id="set-lp" class="in" aria-label="Long-press for card info"><option value="on">On</option><option value="off">Off</option></select></div></div><div class="setrow"><div class="grow"><b>Text size</b><span class="sub" style="font-size:.84em">Bigger text on the menu screens (Home, Decks, Library, Settings).</span></div><div class="ctl"><select id="set-ts" class="in" aria-label="Text size"><option value="normal">Normal</option><option value="large">Large</option><option value="larger">Larger</option></select></div></div><div class="setrow"><div class="grow"><b>Keyboard shortcuts</b><span class="sub" style="font-size:.84em">Also opens with the ? key.</span></div><div class="ctl"><button class="btn sm" data-a="shortcuts">Show list</button></div></div></section>
         <section class="set-card" id="set-s-data" aria-label="Cards And Saved Data" hidden><div class="setrow"><div class="grow"><b>Your card images</b><span class="sub" style="font-size:.84em"><span id="set-imgs">Pictures you add in the Library. They stay on this device.</span></span></div><div class="ctl"><button class="btn sm" data-a="go-lib">Open Library</button></div></div><div class="setrow"><div class="grow"><b>Reset settings</b><span class="sub" style="font-size:.84em">Decks, imported cards, images and settings stay in this browser only. Reset puts speed, sound, CPU deck and CPU style back to the defaults.</span></div><div class="ctl"><button class="btn sm dng" data-a="set-reset">Reset</button></div></div></section>
                 <section class="set-card" id="set-s-history" aria-label="Match history" hidden><h3 class="pf-h">Match history</h3>
           <div id="set-hist" class="set-hist"></div>
@@ -2588,11 +2592,12 @@ applyTheme();
      reset                  a new match starts: drop open prompts and field picks of the previous one
      matchEnd {winner}      the match is over (G.over, G.winner set; after the last board view)
      effect {side, id, text} v0.125.0 (U14d2): an effect of the card `id` (of seat `side`) starts resolving; display only (the Effect Active panel), hosts may ignore it
-     core {side, kind, from, to}  v0.126.0 (U14d3): one core ('core' | 'soul') moved; from / to = a card uid or 'reserve'; sent just before the board is redrawn so a host can fly it; display only
+     core {side, kind, from, to}  v0.126.0 (U14d3): one core ('core' | 'soul') moved; from / to = a card uid or a zone ('reserve', 'void', 'trash'; v0.138.0 Core and Refresh Steps; nth = stagger index); sent just before the board is redrawn so a host can fly it; display only
+     draw {side}            v0.138.0: the Draw Step of `side` is about to add a card (a host may fly one from the deck); display only
      burst {side, id}       v0.126.0 (U14d3): the set Burst of `side` is flipped to resolve; display only
      acted {seat, ok}       v0.84.0: the seat's intent (answer to an action decision) was applied (ok) or refused
    --------------------------------------------------------------------- */
-const VIEW_TYPES = ['board', 'decks', 'screen', 'reset', 'matchEnd', 'acted', 'effect', 'core', 'burst'];
+const VIEW_TYPES = ['board', 'decks', 'screen', 'reset', 'matchEnd', 'acted', 'effect', 'core', 'draw', 'burst'];
 /** @typedef {{ type: string, id?: string, winner?: string }} ViewRecord */
 /** @typedef {{ name: string, view: (ev: ViewRecord) => void, log: (text: string) => void, decide: (p: any, d: any) => Promise<any> }} Host */
 /** @type {Host} */
@@ -2614,7 +2619,7 @@ function bindHost(h) {
    type: 'Spirit' | 'Nexus' | 'Magic'      symbol: card color     symbols: number of symbols
    reduction: {color: n}         levels: [{cores, bp}]  (Nexus levels have no bp)
    --------------------------------------------------------------------- */
-const VERSION = '0.137.0';
+const VERSION = '0.138.0';
 const CARDS = {};
 function defCard(o) {
   CARDS[o.id] = Object.assign({ type: 'Spirit', reduction: {}, symbols: 1, families: [], keywords: [], implemented: true, desc: 'Vanilla test card (no effect).', block: 'A' }, o);
@@ -5725,7 +5730,7 @@ function cpuDeckFor(format) {                          // the CPU deck: the chos
 /* ---- settings (saved in this browser) ---- */
 const SET_KEY = 'bse.settings.v1';
 const SETTINGS = Object.assign({ speed: 'normal', sound: false, cpuDeck: 'std03' }, (() => { try { const o = JSON.parse(localStorage.getItem(SET_KEY)); return o && typeof o === 'object' ? o : {}; } catch (e) { return {}; } })());
-const SPEEDS = { normal: 1, fast: 0.45, instant: 0.08 };
+const SPEEDS = { slow: 1.8, normal: 1, fast: 0.45, instant: 0.08 };   // v0.138.0: every pause (CPU thinking, steps) and every animation scales by this factor
 if (!SPEEDS[SETTINGS.speed]) SETTINGS.speed = 'normal';
 SETTINGS.sound = SETTINGS.sound === true;
 function saveSettings() { try { localStorage.setItem(SET_KEY, JSON.stringify(SETTINGS)); } catch (e) { /* blocked */ } }
@@ -6676,15 +6681,22 @@ async function beginTurn(key) {
   if (p.deck.length === 0) { win(other(key), `${poss(p)} deck is empty at the start step`); return; }
   setStep(1);
   if (G.turnNo === 1) log('First turn: the Core Step is skipped.');
-  else { takeFromVoid(p, 1); p.reserve.n++; log(`${who(p)} ${p.cpu ? 'adds' : 'add'} 1 core from the Void to the Reserve.`); }   // Comprehensive Rules 7-3-2
-  await wait(300);
-  setStep(2); draw(p, 1); log(`${who(p)} ${p.cpu ? 'draws' : 'draw'} a card.`); await wait(300);
+  else {
+    io.view({ type: 'core', side: key, kind: 'core', from: 'void', to: 'reserve' });   // v0.138.0: display cue, the old board still shows the core in the Void
+    takeFromVoid(p, 1); p.reserve.n++; log(`${who(p)} ${p.cpu ? 'adds' : 'add'} 1 core from the Void to the Reserve.`);   // Comprehensive Rules 7-3-2
+    io.view({ type: 'board' });
+  }
+  await wait(450);
+  setStep(2); io.view({ type: 'draw', side: key }); draw(p, 1); log(`${who(p)} ${p.cpu ? 'draws' : 'draw'} a card.`); io.view({ type: 'board' }); await wait(450);
   setStep(3);
+  const back = Math.min(p.trashCores.n + (p.trashCores.soul ? 1 : 0), 5);
+  for (let i = 0; i < back; i++) io.view({ type: 'core', side: key, kind: i === back - 1 && p.trashCores.soul ? 'soul' : 'core', from: 'trash', to: 'reserve', nth: i });
   for (const f of fieldList(p)) refreshOne(f);
   p.reserve.n += p.trashCores.n; p.trashCores.n = 0;
   if (p.trashCores.soul) { p.reserve.soul = true; p.trashCores.soul = false; }
   log('Refresh Step: cards refreshed, Trash cores returned to the Reserve.');
-  await wait(300);
+  io.view({ type: 'board' });
+  await wait(450);
   setStep(4);
 }
 async function endStep(key) {
@@ -7879,7 +7891,9 @@ function aeRibbon(text, opt) {
   r.className = 'ae-rib' + (opt.cpu ? ' cpu' : '') + (opt.banner ? ' banner' : '');
   r.innerHTML = (opt.eyebrow ? `<span class="ae-rib-e">${esc(opt.eyebrow)}</span>` : '') + `<b>${esc(text)}</b>`;
   L.appendChild(r);
-  aeRibbon.t = setTimeout(() => r.remove(), opt.banner ? 1800 : 1200);
+  const f = SPEEDS[SETTINGS.speed] || 1;
+  aeRibbon.t = setTimeout(() => r.remove(), (opt.banner ? 1800 : 1200) * f);
+  if (f !== 1 && r.getAnimations) r.getAnimations().forEach(a => { a.updatePlaybackRate(1 / f); });
 }
 aeRibbon.t = 0;   // the timer id lives on the function; initialized so the checker accepts the property
 function aeStrip(text) {
@@ -7963,7 +7977,7 @@ function switchView(id) {
   if (id === 'view-profile') renderProfilePage();
   if (id === 'view-card') renderCardPage();
 }
-function renderSettings() { $('set-hist').innerHTML = histHTML(); $('set-cpu').innerHTML = CPU_PROFILE_NAMES.map(n => `<option value="${n}">${cap(n)}</option>`).join(''); $('set-cpu').value = cpuProfileName(null); $('set-speed').value = SETTINGS.speed; $('set-sound').value = SETTINGS.sound ? 'on' : 'off'; $('set-anim').value = SETTINGS.anim || 'auto'; $('set-lp').value = SETTINGS.longpress === 'off' ? 'off' : 'on';
+function renderSettings() { $('set-hist').innerHTML = histHTML(); $('set-cpu').innerHTML = CPU_PROFILE_NAMES.map(n => `<option value="${n}">${cap(n)}</option>`).join(''); $('set-cpu').value = cpuProfileName(null); $('set-speed').value = SETTINGS.speed; $('set-sound').value = SETTINGS.sound ? 'on' : 'off'; $('set-anim').value = SETTINGS.anim || 'auto'; $('set-lp').value = SETTINGS.longpress === 'off' ? 'off' : 'on'; $('set-ts').value = SETTINGS.textSize || 'normal';
   renderSetPage(); $('set-back').hidden = !G || !!G.over; }   // v0.122.0 U14b: Options from a running match shows BACK TO MATCH; v0.68.0 U4: colour grid, Dark/Light, playmat and CPU colour rows (13d-pages.js)
 function renderLobby() {
   renderHome();
@@ -8463,7 +8477,7 @@ if (typeof document !== 'undefined') {
    Deck chip (slot select + legality line + Edit), mode cards (Match vs CPU, Watch CPU vs CPU),
    setup rows (format toggle, CPU deck select, CPU style and speed chips). Display only: the match code is in 15-match.js.
    --------------------------------------------------------------------- */
-const PLAY_SPEEDS = [['normal', 'Normal'], ['fast', 'Fast'], ['instant', 'Instant']];
+const PLAY_SPEEDS = [['slow', 'Slow'], ['normal', 'Normal'], ['fast', 'Fast'], ['instant', 'Instant']];
 const PLAY_STYLES = [['balanced', 'Balanced', 'Plays a bit of everything.'], ['aggressive', 'Aggro', 'Attacks early and often.'], ['defensive', 'Control', 'Holds cards, blocks, waits.'], ['random', 'Random', 'Surprises you.']];
 const PLAY_LEVELS = [['easy', 'Easy'], ['normal', 'Normal'], ['hard', 'Hard']];
 const PLAY_FIRST = [['coin', 'Coin toss'], ['me', 'Me first'], ['cpu', 'CPU first']];
@@ -8620,6 +8634,7 @@ function webView(ev) {
     case 'matchEnd': actFlush(); if (!SIM) { recordMatch(ev.winner); showGameOver(); } break;
     case 'effect': effectPanel(ev); break;
     case 'core': coreFly(ev); break;
+    case 'draw': drawFly(ev); break;
     case 'burst': burstFlip(ev); break;
     case 'acted': { const d = ACT_DONE; ACT_DONE = null; if (d) d(ev.ok); break; }
     default: throw new Error('unknown view record: ' + JSON.stringify(ev));
@@ -8717,7 +8732,9 @@ document.addEventListener('change', e => { const t = /** @type {HTMLInputElement
    them, so the engine and the CPU never slow down. Settings "Animations": Full / Reduced (fades only, no travel) / Off;
    reduced motion turns Full into Reduced; the default is Off under automation (tests) and nothing plays in sims (?sim=1).
    --------------------------------------------------------------------- */
+const spdF = () => SPEEDS[SETTINGS.speed] || 1;     // v0.138.0: Slow 1.8 / Normal 1 / Fast .45 / Instant .08 scales every cue below as it scales the engine's pauses
 function animMode() {                              // v0.99 U8a: an explicit choice wins; only Auto (no choice) follows the device's reduced motion
+  if (SETTINGS.speed === 'instant') return 'off';  // Instant plays no cue: the board just changes
   const m = SETTINGS.anim;
   if (m === 'full' || m === 'reduced' || m === 'off') return m;
   if (navigator.webdriver) return 'off';
@@ -8731,7 +8748,9 @@ function aeFx(cls, r, html, ms) {
   const d = document.createElement('div'); d.className = cls;
   d.style.cssText = `left:${r.x}px;top:${r.y}px;width:${r.w}px;height:${r.h}px`;
   if (html) d.innerHTML = html;
-  L.appendChild(d); setTimeout(() => d.remove(), ms || 700);
+  const f = spdF(); ms = (ms || 700) * f;
+  L.appendChild(d); setTimeout(() => d.remove(), ms);
+  if (f !== 1 && d.getAnimations) d.getAnimations().forEach(a => { a.updatePlaybackRate(1 / f); });   // the CSS cues keep their look, only their pace follows the speed
   return d;
 }
 function aeBeam(a, b, cpu, still) {               // a, b: rects; v0.124.0 U14d: a thick arrow from centre to centre (after the attacker has turned), scaled in from the attacker
@@ -8744,13 +8763,22 @@ function aeBeam(a, b, cpu, still) {               // a, b: rects; v0.124.0 U14d:
    holds both ends: a gem flies from one rect to the other (Full only; Reduced and Off draw nothing), and a flipped Burst turns face up where it was set. */
 function coreFly(ev) {
   if (SIM || animMode() !== 'full') return;
-  const end = (x, side) => x === 'reserve' ? rectOf(visEl(`[data-a="zone"][data-v="${side}:reserve"]`)) : rectOf(document.querySelector(`[data-a="field"][data-v$=":${x}"]`));
+  const end = (x, side) => ['reserve', 'void', 'trash'].includes(x) ? rectOf(visEl(`[data-a="zone"][data-v="${side}:${x}"]`)) : rectOf(document.querySelector(`[data-a="field"][data-v$=":${x}"]`));
   const a = end(ev.from, ev.side), b = end(ev.to, ev.side), L = $('ae-fx'); if (!a || !b || !L) return;
   const d = document.createElement('div'); d.className = 'ae-a-fly' + (ev.kind === 'soul' ? ' soul' : '') + (ev.side === 'opponent' ? ' cpu' : '');
   d.style.cssText = `left:${a.x + a.w / 2 - 9}px;top:${a.y + a.h / 2 - 9}px;width:18px;height:18px`;
   L.appendChild(d);
-  const run = d.animate([{ transform: 'translate(0,0)', opacity: 1 }, { transform: `translate(${b.x + b.w / 2 - a.x - a.w / 2}px,${b.y + b.h / 2 - a.y - a.h / 2}px)`, opacity: .9 }], { duration: 420, easing: 'ease-in-out' });
-  run.onfinish = () => d.remove(); setTimeout(() => d.remove(), 800);
+  const run = d.animate([{ transform: 'translate(0,0)', opacity: 1 }, { transform: `translate(${b.x + b.w / 2 - a.x - a.w / 2}px,${b.y + b.h / 2 - a.y - a.h / 2}px)`, opacity: .9 }], { duration: 420 * spdF(), delay: (ev.nth || 0) * 110 * spdF(), fill: 'backwards', easing: 'ease-in-out' });
+  run.onfinish = () => d.remove(); setTimeout(() => d.remove(), 800 * spdF() + (ev.nth || 0) * 110 * spdF());
+}
+/* v0.138.0: Draw Step, a card back slides from the deck to the hand (the opponent's pile to its hand pill) */
+function drawFly(ev) {
+  if (SIM || animMode() !== 'full') return;
+  const a = rectOf(visEl(`[data-a="zone"][data-v="${ev.side}:deck"]`)), b = ev.side === 'player' ? rectOf(visEl('.hand-area')) : rectOf(visEl('.opp-hand-pill')), L = $('ae-fx'); if (!a || !b || !L) return;
+  const d = document.createElement('div'); d.className = 'ae-a-flyc' + (ev.side === 'opponent' ? ' cpu' : '');
+  d.style.cssText = `left:${a.x + a.w / 2 - 14}px;top:${a.y + a.h / 2 - 19}px`; L.appendChild(d);
+  const f = spdF(), run = d.animate([{ transform: 'translate(0,0) scale(1.3)', opacity: 1 }, { transform: `translate(${b.x + b.w / 2 - a.x - a.w / 2}px,${b.y + b.h / 2 - a.y - a.h / 2}px) scale(.8)`, opacity: .6 }], { duration: 460 * f, easing: 'ease-in-out' });
+  run.onfinish = () => d.remove(); setTimeout(() => d.remove(), 900 * f);
 }
 function burstFlip(ev) {
   if (SIM || animMode() !== 'full' || !CARDS[ev.id]) return;
@@ -8775,7 +8803,7 @@ function animCues() {
   for (const [uid, c] of cards) {
     const o = prev.cards.get(uid);
     if (!o) { aeFx('ae-a-sum' + (c.k === 'opponent' ? ' cpu' : ''), c.r, '', 500); continue; }
-    if (full && c.ex !== o.ex) { const e = document.querySelector(`[data-a="field"][data-v$=":${uid}"]`); if (e && e.animate) e.animate([{ transform: `rotate(${o.ex}deg)` }, { transform: `rotate(${c.ex}deg)` }], { duration: 280, easing: 'ease-out' }); }   // one Refresh = one level (180 -> 90 -> 0)
+    if (full && c.ex !== o.ex) { const e = document.querySelector(`[data-a="field"][data-v$=":${uid}"]`); if (e && e.animate) e.animate([{ transform: `rotate(${o.ex}deg)` }, { transform: `rotate(${c.ex}deg)` }], { duration: 280 * spdF(), easing: 'ease-out' }); }   // one Refresh = one level (180 -> 90 -> 0)
     if (c.lv != null && o.lv != null && c.lv > o.lv) aeFx('ae-a-lv', c.r, '', 600);
     if (c.bp != null && o.bp != null && c.bp !== o.bp) aeFx('ae-a-bp' + (c.bp < o.bp ? ' down' : ''), c.r, `${c.bp > o.bp ? '+' : '−'}${Math.abs(c.bp - o.bp)}`, 650);
   }
@@ -9723,6 +9751,22 @@ async function learnOpen(i) {
   renderLearn();
 }
 /* ---------------------------------------------------------------------
+   v0.138.0 ACCESSIBILITY (mockup "New features"): Text size (Normal / Large / Larger, menu screens) and the keyboard shortcuts list
+   (press ? anywhere, or Settings > Accessibility). Display only; the battle keys themselves live in 13-render.js.
+   --------------------------------------------------------------------- */
+const TEXT_SIZES = ['normal', 'large', 'larger'];
+function applyTextSize() { if (typeof document !== 'undefined') document.documentElement.dataset.ts = TEXT_SIZES.includes(SETTINGS.textSize) ? SETTINGS.textSize : 'normal'; }
+applyTextSize();
+const SHORTCUTS = [['?', 'Open this list'], ['Space / Enter', 'Battle: next step (the Next button)'], ['L', 'Battle: open or close the log'], ['Esc', 'Close a dialog, the log or a menu'], ['Tab / Shift+Tab', 'Move between buttons and cards'], ['Enter / Space', 'Press the focused button or card']];
+function shortcutsDialog() {
+  if ($('action-modal').classList.contains('active')) return;
+  uiInfo('Keyboard shortcuts', `<div class="kbd-list">${SHORTCUTS.map(([k, d]) => `<div class="kbd-row"><kbd>${esc(k)}</kbd><span>${esc(d)}</span></div>`).join('')}</div>`);
+}
+if (typeof document !== 'undefined') document.addEventListener('keydown', e => {
+  const t = evT(e), tag = t.tagName; if (tag === 'INPUT' || tag === 'SELECT' || tag === 'TEXTAREA' || t.isContentEditable || e.ctrlKey || e.metaKey || e.altKey) return;
+  if (e.key === '?') { e.preventDefault(); shortcutsDialog(); }
+});
+/* ---------------------------------------------------------------------
    CARD IMAGES  (user supplied files kept in IndexedDB, never uploaded)
    --------------------------------------------------------------------- */
 const IMG = {};           // card id -> blob: URL
@@ -9977,6 +10021,7 @@ document.addEventListener('change', async e => {
   else if (t.id === 'set-color') { setTheme('color', t.value); navTools(); if (G) render(); }
   else if (t.id === 'set-mode') { setTheme('mode', t.value); navTools(); if (G) render(); }
   else if (t.id === 'set-anim') { if (['full', 'reduced', 'off'].includes(t.value)) SETTINGS.anim = t.value; else delete SETTINGS.anim; saveSettings(); }
+  else if (t.id === 'set-ts') { if (TEXT_SIZES.includes(t.value) && t.value !== 'normal') SETTINGS.textSize = t.value; else delete SETTINGS.textSize; saveSettings(); applyTextSize(); }
   else if (t.id === 'set-lp') { if (t.value === 'off') SETTINGS.longpress = 'off'; else delete SETTINGS.longpress; saveSettings(); }
   else if (t.id === 'set-sound') { SETTINGS.sound = t.value === 'on'; saveSettings(); navTools(); if (SETTINGS.sound) sfx('summon'); }
   else if (t.id === 'lib-set' || t.id === 'lib-sort') { if (t.id === 'lib-sort') LIBF.sort = t.value; $('lib-grid').scrollTop = 0; renderLibrary(); }   // v0.111.0 (card images): the Library browse grid filters
@@ -10269,6 +10314,7 @@ document.addEventListener('click', e => {
   else if (a === 'emote') emotePop();
   else if (a === 'emote-pick') emoteSend(Number(v));
   else if (a === 'options-back') { switchView('view-playmat'); if (G) render(); }
+  else if (a === 'shortcuts') shortcutsDialog();
   else if (a === 'go-howto') switchView('view-howto');
   else if (a === 'cp-nav') { const l = cpIds(CP_ID); openCardPage(l[(l.indexOf(CP_ID) + Number(v) + l.length) % l.length]); }
   else if (a === 'cp-add') { if (dbCanAdd(CP_ID)) { PLAYER_DECK[CP_ID] = (PLAYER_DECK[CP_ID] || 0) + 1; saveDeck(); renderCardPage(); $('cp-msg').textContent = `Added to ${SLOTS[ACTIVE_SLOT].name}: ${PLAYER_DECK[CP_ID]} ${PLAYER_DECK[CP_ID] === 1 ? 'copy' : 'copies'}.`; } }
@@ -10287,7 +10333,7 @@ document.addEventListener('click', e => {
   else if (a === 'rv-watch') replayWatch(Number(v));
   else if (a === 'rv-save') replaySave(Number(v));
   else if (a === 'hist-clear') { HISTORY = []; try { localStorage.removeItem(HIST_KEY); } catch (e) { /* blocked */ } renderSettings(); }
-  else if (a === 'set-reset') { SETTINGS.speed = 'normal'; SETTINGS.sound = false; delete SETTINGS.anim; SETTINGS.cpuDeck = 'std03'; SETTINGS.cpuProfile = 'balanced'; delete SETTINGS.cpuRandom; delete SETTINGS.cpuLevel; delete SETTINGS.firstTurn; delete SETTINGS.hints; saveSettings(); renderSettings(); $('set-msg').textContent = 'Settings reset.'; }
+  else if (a === 'set-reset') { SETTINGS.speed = 'normal'; SETTINGS.sound = false; delete SETTINGS.anim; delete SETTINGS.textSize; applyTextSize(); SETTINGS.cpuDeck = 'std03'; SETTINGS.cpuProfile = 'balanced'; delete SETTINGS.cpuRandom; delete SETTINGS.cpuLevel; delete SETTINGS.firstTurn; delete SETTINGS.hints; saveSettings(); renderSettings(); $('set-msg').textContent = 'Settings reset.'; }
   else if (a === 'go-lib') switchView('view-library');
   else if (a === 'set-sec') setSection(v);
   else if (a === 'set-mat-clear') matClear();

@@ -3,7 +3,7 @@
    Deck chip (slot select + legality line + Edit), mode cards (Match vs CPU, Watch CPU vs CPU),
    setup rows (format toggle, CPU deck select, CPU style and speed chips). Display only: the match code is in 15-match.js.
    --------------------------------------------------------------------- */
-const PLAY_SPEEDS = [['normal', 'Normal'], ['fast', 'Fast'], ['instant', 'Instant']];
+const PLAY_SPEEDS = [['slow', 'Slow'], ['normal', 'Normal'], ['fast', 'Fast'], ['instant', 'Instant']];
 const PLAY_STYLES = [['balanced', 'Balanced', 'Plays a bit of everything.'], ['aggressive', 'Aggro', 'Attacks early and often.'], ['defensive', 'Control', 'Holds cards, blocks, waits.'], ['random', 'Random', 'Surprises you.']];
 const PLAY_LEVELS = [['easy', 'Easy'], ['normal', 'Normal'], ['hard', 'Hard']];
 const PLAY_FIRST = [['coin', 'Coin toss'], ['me', 'Me first'], ['cpu', 'CPU first']];

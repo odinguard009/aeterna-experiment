@@ -255,7 +255,9 @@ function aeRibbon(text, opt) {
   r.className = 'ae-rib' + (opt.cpu ? ' cpu' : '') + (opt.banner ? ' banner' : '');
   r.innerHTML = (opt.eyebrow ? `<span class="ae-rib-e">${esc(opt.eyebrow)}</span>` : '') + `<b>${esc(text)}</b>`;
   L.appendChild(r);
-  aeRibbon.t = setTimeout(() => r.remove(), opt.banner ? 1800 : 1200);
+  const f = SPEEDS[SETTINGS.speed] || 1;
+  aeRibbon.t = setTimeout(() => r.remove(), (opt.banner ? 1800 : 1200) * f);
+  if (f !== 1 && r.getAnimations) r.getAnimations().forEach(a => { a.updatePlaybackRate(1 / f); });
 }
 aeRibbon.t = 0;   // the timer id lives on the function; initialized so the checker accepts the property
 function aeStrip(text) {
@@ -339,7 +341,7 @@ function switchView(id) {
   if (id === 'view-profile') renderProfilePage();
   if (id === 'view-card') renderCardPage();
 }
-function renderSettings() { $('set-hist').innerHTML = histHTML(); $('set-cpu').innerHTML = CPU_PROFILE_NAMES.map(n => `<option value="${n}">${cap(n)}</option>`).join(''); $('set-cpu').value = cpuProfileName(null); $('set-speed').value = SETTINGS.speed; $('set-sound').value = SETTINGS.sound ? 'on' : 'off'; $('set-anim').value = SETTINGS.anim || 'auto'; $('set-lp').value = SETTINGS.longpress === 'off' ? 'off' : 'on';
+function renderSettings() { $('set-hist').innerHTML = histHTML(); $('set-cpu').innerHTML = CPU_PROFILE_NAMES.map(n => `<option value="${n}">${cap(n)}</option>`).join(''); $('set-cpu').value = cpuProfileName(null); $('set-speed').value = SETTINGS.speed; $('set-sound').value = SETTINGS.sound ? 'on' : 'off'; $('set-anim').value = SETTINGS.anim || 'auto'; $('set-lp').value = SETTINGS.longpress === 'off' ? 'off' : 'on'; $('set-ts').value = SETTINGS.textSize || 'normal';
   renderSetPage(); $('set-back').hidden = !G || !!G.over; }   // v0.122.0 U14b: Options from a running match shows BACK TO MATCH; v0.68.0 U4: colour grid, Dark/Light, playmat and CPU colour rows (13d-pages.js)
 function renderLobby() {
   renderHome();

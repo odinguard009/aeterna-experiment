@@ -11,15 +11,22 @@ async function beginTurn(key) {
   if (p.deck.length === 0) { win(other(key), `${poss(p)} deck is empty at the start step`); return; }
   setStep(1);
   if (G.turnNo === 1) log('First turn: the Core Step is skipped.');
-  else { takeFromVoid(p, 1); p.reserve.n++; log(`${who(p)} ${p.cpu ? 'adds' : 'add'} 1 core from the Void to the Reserve.`); }   // Comprehensive Rules 7-3-2
-  await wait(300);
-  setStep(2); draw(p, 1); log(`${who(p)} ${p.cpu ? 'draws' : 'draw'} a card.`); await wait(300);
+  else {
+    io.view({ type: 'core', side: key, kind: 'core', from: 'void', to: 'reserve' });   // v0.138.0: display cue, the old board still shows the core in the Void
+    takeFromVoid(p, 1); p.reserve.n++; log(`${who(p)} ${p.cpu ? 'adds' : 'add'} 1 core from the Void to the Reserve.`);   // Comprehensive Rules 7-3-2
+    io.view({ type: 'board' });
+  }
+  await wait(450);
+  setStep(2); io.view({ type: 'draw', side: key }); draw(p, 1); log(`${who(p)} ${p.cpu ? 'draws' : 'draw'} a card.`); io.view({ type: 'board' }); await wait(450);
   setStep(3);
+  const back = Math.min(p.trashCores.n + (p.trashCores.soul ? 1 : 0), 5);
+  for (let i = 0; i < back; i++) io.view({ type: 'core', side: key, kind: i === back - 1 && p.trashCores.soul ? 'soul' : 'core', from: 'trash', to: 'reserve', nth: i });
   for (const f of fieldList(p)) refreshOne(f);
   p.reserve.n += p.trashCores.n; p.trashCores.n = 0;
   if (p.trashCores.soul) { p.reserve.soul = true; p.trashCores.soul = false; }
   log('Refresh Step: cards refreshed, Trash cores returned to the Reserve.');
-  await wait(300);
+  io.view({ type: 'board' });
+  await wait(450);
   setStep(4);
 }
 async function endStep(key) {

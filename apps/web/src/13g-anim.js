@@ -7,7 +7,9 @@
    them, so the engine and the CPU never slow down. Settings "Animations": Full / Reduced (fades only, no travel) / Off;
    reduced motion turns Full into Reduced; the default is Off under automation (tests) and nothing plays in sims (?sim=1).
    --------------------------------------------------------------------- */
+const spdF = () => SPEEDS[SETTINGS.speed] || 1;     // v0.138.0: Slow 1.8 / Normal 1 / Fast .45 / Instant .08 scales every cue below as it scales the engine's pauses
 function animMode() {                              // v0.99 U8a: an explicit choice wins; only Auto (no choice) follows the device's reduced motion
+  if (SETTINGS.speed === 'instant') return 'off';  // Instant plays no cue: the board just changes
   const m = SETTINGS.anim;
   if (m === 'full' || m === 'reduced' || m === 'off') return m;
   if (navigator.webdriver) return 'off';
@@ -21,7 +23,9 @@ function aeFx(cls, r, html, ms) {
   const d = document.createElement('div'); d.className = cls;
   d.style.cssText = `left:${r.x}px;top:${r.y}px;width:${r.w}px;height:${r.h}px`;
   if (html) d.innerHTML = html;
-  L.appendChild(d); setTimeout(() => d.remove(), ms || 700);
+  const f = spdF(); ms = (ms || 700) * f;
+  L.appendChild(d); setTimeout(() => d.remove(), ms);
+  if (f !== 1 && d.getAnimations) d.getAnimations().forEach(a => { a.updatePlaybackRate(1 / f); });   // the CSS cues keep their look, only their pace follows the speed
   return d;
 }
 function aeBeam(a, b, cpu, still) {               // a, b: rects; v0.124.0 U14d: a thick arrow from centre to centre (after the attacker has turned), scaled in from the attacker
@@ -34,13 +38,22 @@ function aeBeam(a, b, cpu, still) {               // a, b: rects; v0.124.0 U14d:
    holds both ends: a gem flies from one rect to the other (Full only; Reduced and Off draw nothing), and a flipped Burst turns face up where it was set. */
 function coreFly(ev) {
   if (SIM || animMode() !== 'full') return;
-  const end = (x, side) => x === 'reserve' ? rectOf(visEl(`[data-a="zone"][data-v="${side}:reserve"]`)) : rectOf(document.querySelector(`[data-a="field"][data-v$=":${x}"]`));
+  const end = (x, side) => ['reserve', 'void', 'trash'].includes(x) ? rectOf(visEl(`[data-a="zone"][data-v="${side}:${x}"]`)) : rectOf(document.querySelector(`[data-a="field"][data-v$=":${x}"]`));
   const a = end(ev.from, ev.side), b = end(ev.to, ev.side), L = $('ae-fx'); if (!a || !b || !L) return;
   const d = document.createElement('div'); d.className = 'ae-a-fly' + (ev.kind === 'soul' ? ' soul' : '') + (ev.side === 'opponent' ? ' cpu' : '');
   d.style.cssText = `left:${a.x + a.w / 2 - 9}px;top:${a.y + a.h / 2 - 9}px;width:18px;height:18px`;
   L.appendChild(d);
-  const run = d.animate([{ transform: 'translate(0,0)', opacity: 1 }, { transform: `translate(${b.x + b.w / 2 - a.x - a.w / 2}px,${b.y + b.h / 2 - a.y - a.h / 2}px)`, opacity: .9 }], { duration: 420, easing: 'ease-in-out' });
-  run.onfinish = () => d.remove(); setTimeout(() => d.remove(), 800);
+  const run = d.animate([{ transform: 'translate(0,0)', opacity: 1 }, { transform: `translate(${b.x + b.w / 2 - a.x - a.w / 2}px,${b.y + b.h / 2 - a.y - a.h / 2}px)`, opacity: .9 }], { duration: 420 * spdF(), delay: (ev.nth || 0) * 110 * spdF(), fill: 'backwards', easing: 'ease-in-out' });
+  run.onfinish = () => d.remove(); setTimeout(() => d.remove(), 800 * spdF() + (ev.nth || 0) * 110 * spdF());
+}
+/* v0.138.0: Draw Step, a card back slides from the deck to the hand (the opponent's pile to its hand pill) */
+function drawFly(ev) {
+  if (SIM || animMode() !== 'full') return;
+  const a = rectOf(visEl(`[data-a="zone"][data-v="${ev.side}:deck"]`)), b = ev.side === 'player' ? rectOf(visEl('.hand-area')) : rectOf(visEl('.opp-hand-pill')), L = $('ae-fx'); if (!a || !b || !L) return;
+  const d = document.createElement('div'); d.className = 'ae-a-flyc' + (ev.side === 'opponent' ? ' cpu' : '');
+  d.style.cssText = `left:${a.x + a.w / 2 - 14}px;top:${a.y + a.h / 2 - 19}px`; L.appendChild(d);
+  const f = spdF(), run = d.animate([{ transform: 'translate(0,0) scale(1.3)', opacity: 1 }, { transform: `translate(${b.x + b.w / 2 - a.x - a.w / 2}px,${b.y + b.h / 2 - a.y - a.h / 2}px) scale(.8)`, opacity: .6 }], { duration: 460 * f, easing: 'ease-in-out' });
+  run.onfinish = () => d.remove(); setTimeout(() => d.remove(), 900 * f);
 }
 function burstFlip(ev) {
   if (SIM || animMode() !== 'full' || !CARDS[ev.id]) return;
@@ -65,7 +78,7 @@ function animCues() {
   for (const [uid, c] of cards) {
     const o = prev.cards.get(uid);
     if (!o) { aeFx('ae-a-sum' + (c.k === 'opponent' ? ' cpu' : ''), c.r, '', 500); continue; }
-    if (full && c.ex !== o.ex) { const e = document.querySelector(`[data-a="field"][data-v$=":${uid}"]`); if (e && e.animate) e.animate([{ transform: `rotate(${o.ex}deg)` }, { transform: `rotate(${c.ex}deg)` }], { duration: 280, easing: 'ease-out' }); }   // one Refresh = one level (180 -> 90 -> 0)
+    if (full && c.ex !== o.ex) { const e = document.querySelector(`[data-a="field"][data-v$=":${uid}"]`); if (e && e.animate) e.animate([{ transform: `rotate(${o.ex}deg)` }, { transform: `rotate(${c.ex}deg)` }], { duration: 280 * spdF(), easing: 'ease-out' }); }   // one Refresh = one level (180 -> 90 -> 0)
     if (c.lv != null && o.lv != null && c.lv > o.lv) aeFx('ae-a-lv', c.r, '', 600);
     if (c.bp != null && o.bp != null && c.bp !== o.bp) aeFx('ae-a-bp' + (c.bp < o.bp ? ' down' : ''), c.r, `${c.bp > o.bp ? '+' : '−'}${Math.abs(c.bp - o.bp)}`, 650);
   }

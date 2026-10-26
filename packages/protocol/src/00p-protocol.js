@@ -13,11 +13,12 @@
      reset                  a new match starts: drop open prompts and field picks of the previous one
      matchEnd {winner}      the match is over (G.over, G.winner set; after the last board view)
      effect {side, id, text} v0.125.0 (U14d2): an effect of the card `id` (of seat `side`) starts resolving; display only (the Effect Active panel), hosts may ignore it
-     core {side, kind, from, to}  v0.126.0 (U14d3): one core ('core' | 'soul') moved; from / to = a card uid or 'reserve'; sent just before the board is redrawn so a host can fly it; display only
+     core {side, kind, from, to}  v0.126.0 (U14d3): one core ('core' | 'soul') moved; from / to = a card uid or a zone ('reserve', 'void', 'trash'; v0.138.0 Core and Refresh Steps; nth = stagger index); sent just before the board is redrawn so a host can fly it; display only
+     draw {side}            v0.138.0: the Draw Step of `side` is about to add a card (a host may fly one from the deck); display only
      burst {side, id}       v0.126.0 (U14d3): the set Burst of `side` is flipped to resolve; display only
      acted {seat, ok}       v0.84.0: the seat's intent (answer to an action decision) was applied (ok) or refused
    --------------------------------------------------------------------- */
-const VIEW_TYPES = ['board', 'decks', 'screen', 'reset', 'matchEnd', 'acted', 'effect', 'core', 'burst'];
+const VIEW_TYPES = ['board', 'decks', 'screen', 'reset', 'matchEnd', 'acted', 'effect', 'core', 'draw', 'burst'];
 /** @typedef {{ type: string, id?: string, winner?: string }} ViewRecord */
 /** @typedef {{ name: string, view: (ev: ViewRecord) => void, log: (text: string) => void, decide: (p: any, d: any) => Promise<any> }} Host */
 /** @type {Host} */

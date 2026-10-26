@@ -11,7 +11,7 @@ $, dq, dqa, elq, evT, evC, evV, ERR_LOG, errReport, errNotice, onGameError
 ## apps/web/src/00c-theme.js (41 lines, ~0.7k tokens) — THEME (v0.63.0, UI/UX overhaul U1; docs/DESIGN.md section 0)
 THEME_KEY, THEME_COLS, THEME, applyTheme, setTheme
 
-## packages/protocol/src/00p-protocol.js (36 lines, ~0.7k tokens) — HOST PORT (v0.82.0, phase F2 = monorepo step M2; docs/ai/monorepo-plan.md "Design" 1)
+## packages/protocol/src/00p-protocol.js (37 lines, ~0.8k tokens) — HOST PORT (v0.82.0, phase F2 = monorepo step M2; docs/ai/monorepo-plan.md "Design" 1)
 VIEW_TYPES, HOST_NONE, io, bindHost
 
 ## packages/engine/src/01-cards.js (33 lines, ~0.6k tokens) — CARD DATABASE (Training cards + the built-in pack is registered further below)
@@ -101,7 +101,7 @@ INTENT_TYPES, CORE_OPS, INTENT_MAX, SEAT_LOOP, seatCan, seatLoopOpen, boardView,
 ## packages/engine/src/06-rules.js (480 lines, ~8.9k tokens) — RULES HELPERS
 fieldList, isGW, freeCores, freeTotal, totalCores, reserveTotal, minCores, isSpiritForm, isUlt, lvBase, lvNo, summonOK, spare, coresAvailable, isCountLv, lvIndex, bpOf, ocActive, braveBp, braveFits, braveTargets, combineBrave, canSeparate, separateBrave, braveAfford, braveSummon, braveRecheck, shedBrave, TOKEN_SUPPLY, tokenIdsOf, prepareTokens, tokenCoreRoom, canSendToken, sendToken, tokenHome, symTurnCols, symZeroAllOn, attackSymbols, symAttrs, symbolAttrs, fieldSymbols, symbolsOn, reductionOf, noBlockActive, costAltActive, extraReduction, legacyPlan, effCost, legacyPay, canPlayCard, takeCores, payCost, checkDepletion, leaveEvent, removeSpirit, lostHeard, leaveStandby, releaseStandby, poss, who, keyDrawActive, drawKeyFirst, draw, handUp, summon, setBurst, mirageUsable, magicFx, magicFromTrash, magicFxAt, magicTrashOK, magicSources, magicTargets, soulMagicHolder, soulMagicOK, soulMagicPick, magicUsable, magicText, castMagic, coreEv, addCore, removeCore, moveSoulTo, moveCore, swapSoul, returnSoul
 
-## packages/engine/src/07-turn.js (70 lines, ~1.1k tokens) — TURN FLOW
+## packages/engine/src/07-turn.js (77 lines, ~1.2k tokens) — TURN FLOW
 isMainStep, setStep, beginTurn, endStep, win, matchLoop, checkInvariants
 
 ## packages/engine/src/08-battle.js (168 lines, ~3.5k tokens) — BATTLE
@@ -122,7 +122,7 @@ humanCan, legalityHTML, FX_KW_START, FX_LINE_STOP, effectLines, fxMark, slashBre
 ## apps/web/src/12-zones.js (70 lines, ~1.6k tokens) — ZONES, LOG, RULES COVERAGE
 openZoneModal, openLogModal, showRules
 
-## apps/web/src/13-render.js (356 lines, ~8.1k tokens) — RENDERING
+## apps/web/src/13-render.js (358 lines, ~8.1k tokens) — RENDERING
 nameHTML, isPC, applyLayout, _rz, colorVar, cardColors, isMulti, colorSty, symSlices, symCount, isUltimate, cardCls, rebMark, symBadgeHTML, handCardHTML, gemsHTML, fieldCardHTML, rowHTML, burstAreaHTML, soulAreaHTML, fieldAreaHTML, zoneBox, pv, pileHTML, lifePlate, resPlate, STEP_WARN, stepTargets, stepWarn, stepClick, SLEEVE_TINTS, CORE_LOOKS, deckLook, coreVars, SLEEVE_IMG, sleeveImgCss, applyLook, hintText, renderBoard, render, CUE, fxCueReset, aeRibbon, aeStrip, fxCues, LOG_OPEN, updateLogDrawer, toggleLog, magBtnHTML, liveStatusHTML, HIST_KEY, HISTORY, recordMatch, histHTML, lifeTxt, switchView, renderSettings, renderLobby
 
 ## apps/web/src/13a-deckbuilder.js (395 lines, ~9k tokens) — DECK BUILDER (v0.53.0 redesign; list performance from v0.52.1)
@@ -137,14 +137,14 @@ PLAY_SPEEDS, PLAY_STYLES, PLAY_LEVELS, PLAY_FIRST, playChips, PLAY_MODE, playGo,
 ## apps/web/src/13d-pages.js (55 lines, ~1k tokens) — SETTINGS, HOW TO PLAY, LIBRARY PAGES (v0.68.0, UI/UX overhaul U4; docs/DESIGN.md section 0, mockup docs/design/mockup-v11.html "Settings")
 MAT_KEY, MAT, matUse, shrinkMat, matSet, matClear, setMsg, setSection, renderSetPage
 
-## apps/web/src/13e-host.js (89 lines, ~1.4k tokens) — WEB HOST (v0.82.0, phase F2 = M2): the browser answers the engine's port (packages/protocol/src/00p-protocol.js).
+## apps/web/src/13e-host.js (90 lines, ~1.4k tokens) — WEB HOST (v0.82.0, phase F2 = M2): the browser answers the engine's port (packages/protocol/src/00p-protocol.js).
 AUDIO, sfx, showGameOver, ACT, ACT_Q, actFlush, webAction, sendIntent, webView, sfxOf, choiceHTML, webDecide
 
 ## apps/web/src/13f-replay.js (61 lines, ~1.4k tokens) — REPLAY VIEWER (v0.86.0, phase F4 part 2 = monorepo step M4 rest; formats: packages/engine/src/15b-replay.js)
 rvName, rvCards, rvField, rvSideHTML, rvFrameHTML, openViewer, replayFromRecord, replayWatch, replaySave, replayOpenFile
 
-## apps/web/src/13g-anim.js (98 lines, ~1.9k tokens) — v0.92.0 U5b LIGHT BATTLE ANIMATIONS (roadmap item U, owner 2026-10-21; docs/DESIGN.md section 0, U5b)
-animMode, ANIM, rectOf, visEl, aeFx, aeBeam, coreFly, burstFlip, animCues
+## apps/web/src/13g-anim.js (111 lines, ~2.3k tokens) — v0.92.0 U5b LIGHT BATTLE ANIMATIONS (roadmap item U, owner 2026-10-21; docs/DESIGN.md section 0, U5b)
+spdF, animMode, ANIM, rectOf, visEl, aeFx, aeBeam, coreFly, drawFly, burstFlip, animCues
 
 ## apps/web/src/13h-decks.js (123 lines, ~3k tokens) — v0.93.0 U6 MY DECKS (docs/DESIGN.md section 0, mockup docs/design/mockup-v11.html "My decks PC / phone")
 DK_MENU, dkCards, dkUsed, dkFree, dkStatus, dkColors, dkFan, dkStats, dkAgo, dkTile, renderDecks, dkMenu, dkNewSlot, dkAct
@@ -179,7 +179,10 @@ RANKS, AVATARS, AVATAR_KEY, AVATAR, dayNo, MISSIONS, ACHIEVEMENTS, rankOf, daily
 ## apps/web/src/13r-learn.js (42 lines, ~1.3k tokens) — LEARN (v0.137.0, mockup parity): 16 short chapters with saved progress, a Continue button and a searchable glossary.
 LEARN_KEY, LEARN_CHAPS, learnDone, learnSave, learnNext, renderLearn, learnOpen
 
-## apps/web/src/14-images.js (282 lines, ~5.6k tokens) — CARD IMAGES
+## apps/web/src/13s-access.js (16 lines, ~0.4k tokens) — v0.138.0 ACCESSIBILITY (mockup "New features"): Text size (Normal / Large / Larger, menu screens) and the keyboard shortcuts list
+TEXT_SIZES, applyTextSize, SHORTCUTS, shortcutsDialog
+
+## apps/web/src/14-images.js (283 lines, ~5.6k tokens) — CARD IMAGES
 IMG, IDB, normKey, idbOpen, idbTx, setImg, loadImages, shrinkImage, stripExt, findCardByFile, findCardByKey, importImages, clearImages, cardImgSrc, imgCls, imgSty, refreshViews, libMsg, renderLibrary, LIBV, LIB_GAP, libSetOf, LIBF, LIB_SIZES, libActive, libFilter, libBar, libMenu, libTool, libCardHTML, libWindow, renderLibraryGrid, libScroll, libSearchInput, deckToText, textToDeck, downloadText, readFileText, libAction
 
 ## packages/engine/src/15-match.js (74 lines, ~1.7k tokens) — MATCH START / END
@@ -188,5 +191,5 @@ closeMatch, startNewGame, matchSummary
 ## packages/engine/src/15b-replay.js (109 lines, ~2.5k tokens) — REPLAY RECORDS (v0.85.0, phase F4 = monorepo step M4 part 1; docs/ai/monorepo-plan.md "Design" 2)
 newPortRecord, portRecord, boardSnapshot, runPortRecord, viewerReplayOf
 
-## apps/web/src/16-events.js (262 lines, ~5.8k tokens) — EVENTS (delegation)
+## apps/web/src/16-events.js (263 lines, ~5.8k tokens) — EVENTS (delegation)
 hScrollable, HDRAG, GAME_ACTS, gameAct, replayOf, lastReplay, runReplay, loadScenario, testSetup, defBuiltin

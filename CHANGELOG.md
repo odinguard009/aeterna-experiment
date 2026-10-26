@@ -4,6 +4,16 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.138.0
+- Lane: U/I
+- **Step animations, Slow speed, Text size, shortcuts list, dialogs in the mockup style.** Engine: display-only view records, no rule change. Backup: `backup/v0.137.0`.
+  - **Core Step:** a core flies from the Void to the Reserve. **Draw Step:** a card slides from the deck to the hand. **Refresh Step:** up to 5 Trash cores fly (one by one) to the Reserve and heavy / exhausted cards turn back upright. The CPU's turn shows the same cues (Full animation mode only; Reduced and Off draw nothing). New view record `draw`; `core` now also takes the zones `void` and `trash` (protocol doc updated).
+  - **Speed order is now Slow - Normal - Fast - Instant** (Settings > Game and the Play page). Slow is 1.8x Normal. The speed scales the step pauses, the CPU's thinking pauses and every animation (flights, turns, cues, ribbons); Instant plays no animation at all.
+  - **Text size** (Normal / Large / Larger) in Settings > Accessibility scales the menu screens (not the battle board). **Keyboard shortcuts** list: press `?` or Settings > Accessibility > Show list.
+  - Dialogs follow the mockup family: colour bar, outlined kind chip, italic title, right-aligned buttons, bottom sheet on phone.
+  - **Not built (mockup "New features" items needing more than UI):** colour-blind shape markers, share code / QR, coin toss / mulligan card flips, "Saved" builder indicator.
+  - Tests: step cue order and state, Slow order, Text size, `?` dialog (`step_anim_speed.test.mjs`); size budget B02 raised 256 -> 264 KB on purpose.
+
 ## v0.137.0
 - Lane: U/I
 - **Mockup parity part 2 (`docs/design/mockup-v14.html`): the whole app now uses the mockup stylesheet and markup, PC and phone.** UI only; no engine change. Backup: `backup/v0.136.0`.

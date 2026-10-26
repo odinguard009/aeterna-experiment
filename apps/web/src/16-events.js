@@ -80,6 +80,7 @@ document.addEventListener('click', e => {
   else if (a === 'emote') emotePop();
   else if (a === 'emote-pick') emoteSend(Number(v));
   else if (a === 'options-back') { switchView('view-playmat'); if (G) render(); }
+  else if (a === 'shortcuts') shortcutsDialog();
   else if (a === 'go-howto') switchView('view-howto');
   else if (a === 'cp-nav') { const l = cpIds(CP_ID); openCardPage(l[(l.indexOf(CP_ID) + Number(v) + l.length) % l.length]); }
   else if (a === 'cp-add') { if (dbCanAdd(CP_ID)) { PLAYER_DECK[CP_ID] = (PLAYER_DECK[CP_ID] || 0) + 1; saveDeck(); renderCardPage(); $('cp-msg').textContent = `Added to ${SLOTS[ACTIVE_SLOT].name}: ${PLAYER_DECK[CP_ID]} ${PLAYER_DECK[CP_ID] === 1 ? 'copy' : 'copies'}.`; } }
@@ -98,7 +99,7 @@ document.addEventListener('click', e => {
   else if (a === 'rv-watch') replayWatch(Number(v));
   else if (a === 'rv-save') replaySave(Number(v));
   else if (a === 'hist-clear') { HISTORY = []; try { localStorage.removeItem(HIST_KEY); } catch (e) { /* blocked */ } renderSettings(); }
-  else if (a === 'set-reset') { SETTINGS.speed = 'normal'; SETTINGS.sound = false; delete SETTINGS.anim; SETTINGS.cpuDeck = 'std03'; SETTINGS.cpuProfile = 'balanced'; delete SETTINGS.cpuRandom; delete SETTINGS.cpuLevel; delete SETTINGS.firstTurn; delete SETTINGS.hints; saveSettings(); renderSettings(); $('set-msg').textContent = 'Settings reset.'; }
+  else if (a === 'set-reset') { SETTINGS.speed = 'normal'; SETTINGS.sound = false; delete SETTINGS.anim; delete SETTINGS.textSize; applyTextSize(); SETTINGS.cpuDeck = 'std03'; SETTINGS.cpuProfile = 'balanced'; delete SETTINGS.cpuRandom; delete SETTINGS.cpuLevel; delete SETTINGS.firstTurn; delete SETTINGS.hints; saveSettings(); renderSettings(); $('set-msg').textContent = 'Settings reset.'; }
   else if (a === 'go-lib') switchView('view-library');
   else if (a === 'set-sec') setSection(v);
   else if (a === 'set-mat-clear') matClear();

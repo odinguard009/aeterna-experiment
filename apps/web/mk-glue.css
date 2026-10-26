@@ -40,3 +40,9 @@ body.mk > .ae-pop{position:absolute;top:62px;right:24px;z-index:20}
 /* deck row thumbs: a card without art shows its text face; shrink it so it stays inside the 32px thumb */
 .mk .drow .thumb .cface.ph{overflow:hidden;aspect-ratio:5/7;padding:2px}
 .mk .drow .thumb .cface.ph *{font-size:3.5px!important;line-height:1.1;margin:0}
+
+/* v0.138.0 Text size (Settings > Accessibility): the menu screens scale from their 14px base; the battle keeps its own sizes */
+html[data-ts="large"] .mk { font-size: 16px; } html[data-ts="larger"] .mk { font-size: 18px; }
+.kbd-list { display: grid; gap: 8px; text-align: left; }
+.kbd-row { display: flex; align-items: center; gap: 12px; }
+.kbd-row kbd { flex: none; min-width: 112px; padding: 4px 10px; text-align: center; font: 800 .82em var(--f-num, inherit); background: var(--ae-panel2, #0001); box-shadow: inset 0 0 0 1px var(--ae-line2); clip-path: var(--par, none); }
