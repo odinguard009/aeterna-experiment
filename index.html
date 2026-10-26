@@ -2183,6 +2183,10 @@ body.mk > .ae-pop{position:absolute;top:62px;right:24px;z-index:20}
 .mk .dbox .cface,.mk .dbox .cf{flex:none;display:block;width:100%;aspect-ratio:5/7;height:auto;object-fit:cover;overflow:hidden;border-radius:7px;box-sizing:border-box;font-size:.78em}
 .mk .decksel{flex:none}
 .mk .dtile.open{position:relative;z-index:30}.mk .dtile .dk-menu{z-index:31}
+.mk #view-library .pgrid{padding:18px 20px 20px;grid-auto-rows:max-content;flex:none;height:max(420px,calc(100vh - 340px))}
+.mk .lorenav button{display:flex;justify-content:space-between;width:100%;text-align:left}
+.mk .lorenav button.on{background:var(--you);color:var(--you-ink)}
+.mk .lore[hidden],.mk #lib-cards-pane[hidden]{display:none!important}
 </style>
 </head>
 <body>
@@ -2391,40 +2395,45 @@ body.mk > .ae-pop{position:absolute;top:62px;right:24px;z-index:20}
     <div class="row" id="dk-starters" style="gap:12px;flex-wrap:wrap" aria-label="Starter decks"></div>
   </div>
 </div>
-<div id="view-library" class="app-view ae-view">
-  <main class="ae-page doc">
-    <header class="ae-phead"><div class="tx"><span class="ae-eyebrow" id="lib-eyebrow">Library</span><h1>All Cards</h1><p>Search and filter the whole card data. Tap a card for its page. Your card data, images and deck lists stay on this device.</p></div>
-      <button class="ae-ghost" data-a="go-lobby">◄ Home</button></header>
-    <section class="doc-card"><h2><span class="no" aria-hidden="true">1</span>Browse cards</h2>
-      <p>Every card, with your card images where you added them. Tap a card to enlarge it.</p>
-      <div class="lib-tools">
-        <input id="lib-search" class="sel" type="search" placeholder="Search name, ID or effect…" autocomplete="off" spellcheck="false">
-        <select id="lib-set" class="sel" title="Set" aria-label="Set"><option value="">All sets</option></select>
-        <select id="lib-type" class="sel" title="Type" aria-label="Type"><option value="">All types</option><option value="Spirit">Spirit</option><option value="Nexus">Nexus</option><option value="Magic">Magic</option><option value="Brave">Brave</option><option value="Contract">Contract</option></select>
-        <span id="lib-count" class="doc-note" role="status"></span>
-      </div>
-      <div class="db-grid lib-grid" id="lib-grid"></div></section>
-    <section class="doc-card" id="lib-lore-card"><h2><span class="no" aria-hidden="true">2</span>Lore</h2>
-      <p>The flavor text printed on the cards, read in order by series. Tap an entry to open its card.</p>
-      <div class="lib-tools"><select id="lib-lore-set" class="sel" title="Series" aria-label="Series"></select></div>
-      <div class="lore-list" id="lib-lore"></div></section>
-    <section class="doc-card"><h2><span class="no" aria-hidden="true">5</span>Card data (JSON)</h2>
+<div id="view-library" class="app-view"><div class="pg scroll" style="padding:0">
+  <div class="card flat hdcard lib-hd" style="margin:16px 20px 0"><div class="grow"><span class="eyebrow" id="lib-eyebrow">Library</span><h2 class="hd" id="lib-title">All Cards</h2><span class="sub" id="lib-sub">Search and filter the whole card data. Click a card for its page.</span></div>
+    <div class="seg" role="group" aria-label="Library view" id="lib-tabs"><button data-a="lib-tab" data-v="cards" aria-pressed="true">Cards</button><button data-a="lib-tab" data-v="lore" aria-pressed="false">Lore</button></div>
+    <span id="lib-chips" class="row" style="gap:8px"><button class="chip on" id="lib-complete" data-a="lib-complete" aria-pressed="true">Complete Effects Only</button><span class="chip"><b style="color:var(--yes-text)">!</b> Partly Implemented</span></span></div>
+  <section id="lib-cards-pane" class="bpool" style="border:0;display:flex;flex-direction:column;min-height:0;flex:1">
+    <div class="btool" id="lib-tbar">
+      <div class="r1"><div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="lib-search" class="in" type="search" placeholder="Search name, code or text" aria-label="Search cards" autocomplete="off" spellcheck="false" style="width:100%"></div>
+        <select id="lib-sort" class="in hidem" aria-label="Sort"><option value="set">Sort: set</option><option value="cost">Sort: cost</option><option value="name">Sort: name</option><option value="colour">Sort: colour</option></select>
+        <select id="lib-set" class="in hidem" title="Set" aria-label="Set"><option value="">All sets</option></select>
+        <input id="lib-family" class="in hidem" type="search" placeholder="Family" aria-label="Family" autocomplete="off" style="max-width:150px">
+        <div class="seg hidem" role="group" aria-label="Card size" id="lib-size"></div></div>
+      <div class="r2"><div class="pips" id="lib-pips"></div><span class="vsep"></span><span id="lib-types" class="row" style="gap:7px"></span><span class="vsep"></span><div class="costs" id="lib-costs"></div></div>
+      <div class="r2"><span id="lib-groups" class="row" style="gap:7px"></span><span id="lib-clear"></span><span class="grow"></span><span id="lib-count" class="sub hidem" role="status" style="font-size:.78em"></span></div></div>
+    <div class="pgrid scroll" id="lib-grid" style="--cols:6" aria-label="Cards"></div>
+    <details class="card flat" style="margin:12px 20px 20px;padding:10px 16px"><summary style="cursor:pointer;font-weight:700">Import &amp; export · card data, images, deck list</summary>
+      <div class="col" style="gap:14px;margin-top:10px">
+      <section class="card flat"><b>Card data (JSON)</b>
       <p>Load your own card list. Only Spirit and Nexus cards work in this build. Imported cards have no coded effect, so their text is shown for reference only.</p>
-      <div class="doc-acts"><label class="ae-ghost ae-upl primary"><span>Import Card Data</span><input id="in-cards" type="file" accept=".json,application/json"></label>
-      <button class="ae-ghost" data-a="lib-template">Download Template</button><button class="ae-ghost" data-a="lib-cards-clear">Remove Imported Cards</button></div></section>
-    <section class="doc-card"><h2><span class="no" aria-hidden="true">4</span>Card images</h2>
+      <div class="row"><label class="btn pri ae-upl"><span>Import Card Data</span><input id="in-cards" type="file" accept=".json,application/json"></label>
+      <button class="btn" data-a="lib-template">Download Template</button><button class="btn" data-a="lib-cards-clear">Remove Imported Cards</button></div></section>
+    <section class="card flat"><b>Card images</b>
       <p>Pick image files from your own device. A file is matched to a card by (1) the <b>image</b> field in your card data, so any file name works, (2) the card ID (for example <b translate="no">BS76-001.png</b>), or (3) the exact card name. Images stay in this browser only and are never uploaded.</p>
-      <div class="doc-acts"><label class="ae-ghost ae-upl primary"><span>Import Images</span><input id="in-imgs" type="file" accept="image/*" multiple></label>
-      <button class="ae-ghost" data-a="lib-imgs-clear">Remove All Images</button></div>
-      <span id="lib-imgcount" class="doc-note" role="status"></span></section>
-    <section class="doc-card"><h2><span class="no" aria-hidden="true">3</span>Deck list (text)</h2>
+      <div class="row"><label class="btn pri ae-upl"><span>Import Images</span><input id="in-imgs" type="file" accept="image/*" multiple></label>
+      <button class="btn" data-a="lib-imgs-clear">Remove All Images</button></div>
+      <span id="lib-imgcount" class="sub" role="status"></span></section>
+    <section class="card flat"><b>Deck list (text)</b>
       <p>One card per line: <b translate="no">3 BS44-001</b> or <b>3x Card Name</b>. Lines starting with # are ignored.</p>
       <textarea id="lib-deck" class="lib-area" spellcheck="false" aria-label="Deck list" name="deck-list" autocomplete="off" placeholder="3 BS44-001&#10;3x Card Name…"></textarea>
-      <div class="doc-acts"><button class="ae-ghost" data-a="lib-deck-import">Import As My Deck</button><button class="ae-ghost" data-a="lib-deck-export">Export My Deck</button></div></section>
-    <div id="lib-msg" class="lib-msg" role="status"></div>
-  </main>
-</div>
-
+      <div class="row"><button class="btn" data-a="lib-deck-import">Import As My Deck</button><button class="btn" data-a="lib-deck-export">Export My Deck</button></div></section>
+    
+      <div id="lib-msg" class="lib-msg" role="status"></div></div></details>
+  </section>
+  <div id="lib-lore-pane" class="lore" hidden>
+    <aside class="lorenav"><span class="lbl2">Series In Reading Order</span><div class="loreser scroll" id="lib-lore-nav"></div><select id="lib-lore-set" class="in" aria-label="Series" hidden></select></aside>
+    <section class="lorebody"><div class="row" style="gap:8px;flex-wrap:wrap"><div class="grow"><span class="eyebrow">Card Lore</span><h2 class="hd" style="font-size:1.5em" id="lib-lore-h">-</h2><span class="sub" id="lib-lore-sub"></span></div><div class="seg" role="group" aria-label="Text size" id="lib-lore-fs"></div></div>
+      <div class="pbar" style="margin:4px 0 8px"><i id="lib-lore-bar" style="width:0"></i></div>
+      <div class="loretexts scroll" id="lib-lore"></div>
+      <div class="row" style="gap:8px;margin-top:8px"><button class="btn" data-a="lib-lore-mv" data-v="-1" id="lib-lore-prev">‹ Previous Series</button><span class="grow"></span><button class="btn pri" data-a="lib-lore-mv" data-v="1" id="lib-lore-next">Next Series ›</button></div></section></div>
+</div></div>
 <div id="view-playmat" class="app-view">
   <div id="app" class="viewport"></div>
 </div>
@@ -9565,13 +9574,20 @@ function loreSeries() {                              // { set prefix: [card ids 
   const keys = Object.keys(m).sort(DB_COLL.compare);
   return keys.map(k => [k, m[k].sort(DB_COLL.compare)]);
 }
+let LORE_FS = 1;
 function renderLore() {
   const sel = $('lib-lore-set'), out = $('lib-lore'); if (!sel || !out) return;
   const series = loreSeries();
-  if (!series.length) { out.innerHTML = '<p class="empty-note">No flavor texts in this build.</p>'; sel.innerHTML = ''; return; }
+  if (!series.length) { out.innerHTML = '<p class="empty-note">No flavor texts in this build.</p>'; sel.innerHTML = ''; $('lib-lore-nav').innerHTML = ''; return; }
   if (!series.some(s => s[0] === LORE_SET)) LORE_SET = series[0][0];
   sel.innerHTML = series.map(([k, ids]) => `<option value="${esc(k)}">${esc(k)} (${ids.length})</option>`).join(''); sel.value = LORE_SET;
-  const ids = (series.find(s => s[0] === LORE_SET) || [LORE_SET, []])[1];
+  const at = series.findIndex(s => s[0] === LORE_SET), ids = series[at][1];
+  $('lib-lore-nav').innerHTML = series.map(([k, l]) => `<button class="${k === LORE_SET ? 'on' : ''}" data-a="lib-lore-set" data-v="${esc(k)}" aria-pressed="${k === LORE_SET}"><b>${esc(k)}</b><span>${l.length} texts</span></button>`).join('');
+  $('lib-lore-h').textContent = `Series ${LORE_SET}`; $('lib-lore-sub').textContent = `${ids.length} flavor texts · series ${at + 1} of ${series.length}`;
+  $('lib-lore-bar').style.width = `${Math.round(100 * (at + 1) / series.length)}%`;
+  $('lib-lore-prev').disabled = at === 0; $('lib-lore-next').disabled = at === series.length - 1;
+  $('lib-lore-fs').innerHTML = [[0.9, 'A−'], [1, 'A'], [1.15, 'A+']].map(([v, l]) => `<button data-a="lib-lore-fs" data-v="${v}" aria-pressed="${LORE_FS === v}">${l}</button>`).join('');
+  out.style.fontSize = `${LORE_FS}em`;
   out.innerHTML = ids.map(id => `<article class="lore-item" data-a="zoom" data-v="${esc(id)}" style="--lc:${colorVar(CARDS[id].symbol)}" tabindex="0"><b>${esc(CARDS[id].name)}</b><span class="lore-id" translate="no">${esc(id)}</span><p>“${esc(lore()[id])}”</p></article>`).join('');
 }
 /* ---------------------------------------------------------------------
@@ -9782,6 +9798,7 @@ function libMsg(t, bad) { const m = $('lib-msg'); m.textContent = t; m.className
 function renderLibrary() {
   const ids = Object.keys(CARDS).filter(id => !CARDS[id].token && !id.startsWith('TRAIN-')), part = ids.filter(id => fxMarked(CARDS[id])).length;      // v0.79.0 (A1): two counts; v0.80.1: built-in Training cards are not counted
   $('lib-imgcount').textContent = `${Object.keys(IMG).length} image(s) loaded · ${ids.length.toLocaleString('en-US')} card(s) known: ${(ids.length - part).toLocaleString('en-US')} complete, ${part.toLocaleString('en-US')} marked "!" (effect not fully implemented)`;
+  libBar();
   renderLore();                                            // v0.131.0 U14g: the Lore section
   renderLibraryGrid();                                     // v0.111.0 (card images): the browsable card grid below
 }
@@ -9790,31 +9807,61 @@ function renderLibrary() {
    A browsable, searchable grid of every card (the deck builder's `dbIndex`/`dbWindow` pattern, reusing its card
    index and grid CSS). It shows the player's card images where they were added and zooms a card on tap. */
 const LIBV = { list: [], from: -1, to: -1, cols: 0, rowH: 0, raf: 0, timer: 0, key: '' };
-const LIB_GAP = 8, LIB_BUF = 2;
+const LIB_GAP = 16, LIB_BUF = 2;
 const libSetOf = id => String(id).replace(/-.*$/, '');
+const LIBF = { colors: new Set(), costs: new Set(), types: new Set(), groups: new Set(), family: '', complete: true, sort: 'set', size: 'm', tab: 'cards' };   // mockup toolbar state (v0.137.0)
+const LIB_SIZES = [['s', 'S', 8], ['m', 'M', 6], ['l', 'L', 4]];
+function libActive() { return LIBF.colors.size + LIBF.costs.size + LIBF.types.size + LIBF.groups.size + (LIBF.family ? 1 : 0) + ((($('lib-set') || {}).value) ? 1 : 0) + (($('lib-search') || {}).value ? 1 : 0); }
 function libFilter() {
-  const q = (($('lib-search') || {}).value || '').trim().toLowerCase();
+  const q = (($('lib-search') || {}).value || '').trim().toLowerCase(), fam = LIBF.family.trim().toLowerCase();
   const set = (($('lib-set') || {}).value) || '';
-  const type = (($('lib-type') || {}).value) || '';
-  const key = [CARDS_VER, q, set, type].join('|');
+  const key = [CARDS_VER, q, set, fam, [...LIBF.colors], [...LIBF.costs], [...LIBF.types], [...LIBF.groups], LIBF.complete, LIBF.sort].join('|');
   if (key === LIBV.key) return LIBV.list;
   LIBV.key = key;
   let l = dbIndex().filter(e => {
     if (q && !e.s.includes(q)) return false;
+    if (fam && !e.f.includes(fam)) return false;
     if (set && libSetOf(e.id) !== set) return false;
-    if (type) { const c = CARDS[e.id], t = c.contract ? 'Contract' : c.type; if (t !== type) return false; }
-    return true;
+    const c = CARDS[e.id];
+    if (LIBF.complete && fxMarked(c)) return false;
+    return dbFilterOK(c, LIBF.colors, LIBF.costs, LIBF.types) && [...LIBF.groups].every(g => dbGroupOK(c, g));
   });
-  l = l.slice().sort((a, b) => DB_COLL.compare(a.id, b.id));   // set + number order for a stable browse
+  l = l.slice().sort(DB_SORTS[LIBF.sort] || DB_SORTS.set);
   LIBV.list = l.map(e => e.id);
   const cnt = $('lib-count'); if (cnt) cnt.textContent = `${LIBV.list.length.toLocaleString('en-US')} card(s) shown`;
   return LIBV.list;
 }
+function libBar() {                                   // the mockup toolbar: colour pips, type chips, cost buttons, group chips, clear
+  const on = (s, v) => s.has(v);
+  $('lib-pips').innerHTML = DB_COLORS.map(c => `<button class="pip${on(LIBF.colors, c) ? ' on' : ''}" style="--c:${colorVar(c)}" data-a="lib-f" data-v="colors:${c}" aria-label="${cap(c)}" aria-pressed="${on(LIBF.colors, c)}" title="${cap(c)}"><i></i></button>`).join('');
+  $('lib-types').innerHTML = DB_TYPES.map(t => `<button class="chip${on(LIBF.types, t) ? ' on' : ''}" data-a="lib-f" data-v="types:${t}" aria-pressed="${on(LIBF.types, t)}">${t}</button>`).join('');
+  $('lib-costs').innerHTML = DB_COSTS.map(k => `<button class="cbtn${on(LIBF.costs, k) ? ' on' : ''}" data-a="lib-f" data-v="costs:${k}" aria-pressed="${on(LIBF.costs, k)}" aria-label="Cost ${k}">${k === '10' ? '10+' : k}</button>`).join('');
+  $('lib-groups').innerHTML = DB_GROUPS.map(([g, l]) => `<button class="chip${on(LIBF.groups, g) ? ' on' : ''}" data-a="lib-f" data-v="groups:${g}" aria-pressed="${on(LIBF.groups, g)}">${l}</button>`).join('');
+  $('lib-size').innerHTML = LIB_SIZES.map(([v, l]) => `<button data-a="lib-size" data-v="${v}" aria-pressed="${LIBF.size === v}">${l}</button>`).join('');
+  $('lib-sort').value = LIBF.sort; if (document.activeElement !== $('lib-family')) $('lib-family').value = LIBF.family;
+  $('lib-complete').classList.toggle('on', LIBF.complete); $('lib-complete').setAttribute('aria-pressed', String(LIBF.complete));
+  const n = libActive(); $('lib-clear').innerHTML = n ? `<button class="chip" data-a="lib-clear">Clear ${n} ✕</button>` : '';
+  $('lib-grid').style.setProperty('--cols', String((LIB_SIZES.find(x => x[0] === LIBF.size) || LIB_SIZES[1])[2]));
+  const tab = LIBF.tab === 'lore';
+  $('lib-cards-pane').hidden = tab; $('lib-lore-pane').hidden = !tab; $('lib-chips').hidden = tab;
+  $('lib-eyebrow').textContent = tab ? 'Library · Lore' : 'Library'; $('lib-title').textContent = tab ? 'Card Lore' : 'All Cards';
+  $('lib-sub').textContent = tab ? 'The flavor texts of the cards, read in series order.' : 'Search and filter the whole card data. Click a card for its page.';
+  document.querySelectorAll('#lib-tabs button').forEach(b => b.setAttribute('aria-pressed', String(/** @type {HTMLElement} */ (b).dataset.v === LIBF.tab)));
+}
+function libTool(a, v) {                              // toolbar actions (data-a lib-f / lib-size / lib-tab / lib-complete / lib-clear / lib-lore-*)
+  if (a === 'lib-f') { const [g, x] = v.split(':'), s = LIBF[g]; if (s) { if (s.has(x)) s.delete(x); else s.add(x); } }
+  else if (a === 'lib-size') LIBF.size = v;
+  else if (a === 'lib-tab') LIBF.tab = v === 'lore' ? 'lore' : 'cards';
+  else if (a === 'lib-complete') LIBF.complete = !LIBF.complete;
+  else if (a === 'lib-clear') { ['colors', 'costs', 'types', 'groups'].forEach(g => LIBF[g].clear()); LIBF.family = ''; $('lib-set').value = ''; $('lib-search').value = ''; }
+  else if (a === 'lib-lore-mv') { const ks = loreSeries().map(x => x[0]), i = ks.indexOf(LORE_SET) + Number(v); if (ks[i]) LORE_SET = ks[i]; }
+  else if (a === 'lib-lore-set') LORE_SET = v;
+  else if (a === 'lib-lore-fs') LORE_FS = Number(v);
+  renderLibrary();
+}
 function libCardHTML(id) {
-  const c = CARDS[id], bp = c.levels[0] && c.levels[0].bp != null ? c.levels[0].bp : c.brave ? '+' + c.brave.bp : '-';
-  return `<div class="tcg-card${cardCls(c)}${imgCls(id)}" style="${colorSty(c)}${imgSty(id)}" data-a="libcard" data-v="${id}" title="${esc(c.name)} (${id})${fxMarked(c) ? ' - ' + FX_MARK_LBL : ''}: tap to enlarge">
-    <div class="cost">${c.cost}</div><div class="type-badge">${c.contract ? 'CON' : c.type.substring(0, 3).toUpperCase()}${rebMark(c)}</div>
-    <div class="name">${nameHTML(c.name)}</div><div class="bp">${bp}</div>${fxMarkHTML(c)}${symBadgeHTML(id)}</div>`;
+  const c = CARDS[id];
+  return `<div class="tile" data-a="libcard" data-v="${id}" title="${esc(c.name)} (${id})${fxMarked(c) ? ' - ' + FX_MARK_LBL : ''}: tap to open" tabindex="0">${cardFaceHTML(c, false)}</div>`;
 }
 function libWindow(force) {
   const el = $('lib-grid'); if (!el) return;
@@ -9829,7 +9876,7 @@ function libWindow(force) {
   const pad = h => h > 0 ? `<div class="db-spacer" style="grid-column:1/-1;height:${h}px"></div>` : '';
   el.innerHTML = pad(r0 * rowH - LIB_GAP) + list.slice(from, to).map(libCardHTML).join('') + pad((rows - r1) * rowH - LIB_GAP);
   el.scrollTop = top;
-  const first = elq(el, '.tcg-card'), h = first ? first.offsetHeight + LIB_GAP : 0;
+  const first = elq(el, '.tile'), h = first ? first.offsetHeight + LIB_GAP : 0;
   if (h && h !== LIBV.rowH) { LIBV.rowH = h; libWindow(true); }
 }
 function renderLibraryGrid() {
@@ -9840,7 +9887,7 @@ function renderLibraryGrid() {
   libWindow(true);
 }
 function libScroll() { if (!LIBV.raf) LIBV.raf = requestAnimationFrame(() => { LIBV.raf = 0; if ($('view-library').classList.contains('active')) libWindow(false); }); }
-function libSearchInput() { clearTimeout(LIBV.timer); LIBV.timer = setTimeout(() => { LIBV.timer = 0; renderLibraryGrid(); }, 120); }
+function libSearchInput() { clearTimeout(LIBV.timer); LIBV.timer = setTimeout(() => { LIBV.timer = 0; libBar(); renderLibraryGrid(); }, 120); }
 function deckToText(d, key) {          // key: the deck's marked Key Spirit (v0.103.0) becomes a "KEY <id>" line
   d = d || PLAYER_DECK;
   const lines = Object.keys(d).filter(id => d[id] > 0 && CARDS[id]).map(id => `${d[id]} ${id}   # ${CARDS[id].name}`);
@@ -9888,7 +9935,6 @@ document.addEventListener('change', async e => {
   } else if (t.id === 'db-only') renderDeckBuilder();
   else if (t.id === 'db-legal') { DBF.legal = t.checked; renderDeckBuilder(); }
   else if (t.id === 'db-complete') { DBF.complete = t.checked; renderDeckBuilder(); }
-  else if (t.id === 'lib-lore-set') { LORE_SET = t.value; renderLore(); }
   else if (t.id === 'db-dd-colors') dbPick('colors', t.value);
   else if (t.id === 'db-dd-groups') dbPick('groups', t.value);
   else if (t.id === 'db-set') { DBF.set = t.value; renderDeckBuilder(); }
@@ -9906,9 +9952,9 @@ document.addEventListener('change', async e => {
   else if (t.id === 'set-anim') { if (['full', 'reduced', 'off'].includes(t.value)) SETTINGS.anim = t.value; else delete SETTINGS.anim; saveSettings(); }
   else if (t.id === 'set-lp') { if (t.value === 'off') SETTINGS.longpress = 'off'; else delete SETTINGS.longpress; saveSettings(); }
   else if (t.id === 'set-sound') { SETTINGS.sound = t.value === 'on'; saveSettings(); navTools(); if (SETTINGS.sound) sfx('summon'); }
-  else if (t.id === 'lib-set' || t.id === 'lib-type') { $('lib-grid').scrollTop = 0; renderLibraryGrid(); }   // v0.111.0 (card images): the Library browse grid filters
+  else if (t.id === 'lib-set' || t.id === 'lib-sort') { if (t.id === 'lib-sort') LIBF.sort = t.value; $('lib-grid').scrollTop = 0; renderLibrary(); }   // v0.111.0 (card images): the Library browse grid filters
 });
-document.addEventListener('input', e => { if (evT(e).id === 'db-search') dbSearchInput(); else if (evT(e).id === 'lib-search') libSearchInput(); });
+document.addEventListener('input', e => { if (evT(e).id === 'db-search') dbSearchInput(); else if (evT(e).id === 'lib-search') libSearchInput(); else if (evT(e).id === 'lib-family') { LIBF.family = /** @type {HTMLInputElement} */ (evT(e)).value; libSearchInput(); } });
 document.addEventListener('scroll', e => { const t = /** @type {HTMLElement} */ (e.target); if (t && t.id === 'db-card-list') dbScroll(); else if (t && t.id === 'lib-grid') libScroll(); }, true);
 window.addEventListener('resize', () => { if ($('view-deckbuilder').classList.contains('active')) { DBV.rowH = 0; dbWindow(true); } });
 function libAction(a) {
@@ -10214,6 +10260,7 @@ document.addEventListener('click', e => {
   else if (a === 'set-sec') setSection(v);
   else if (a === 'set-mat-clear') matClear();
   else if (a === 'libcard') openZoom(v);                                    // v0.111.0 (card images): the Library browse grid
+  else if (/^lib-(f|size|tab|complete|clear|lore-)/.test(a)) libTool(a, v);
   else if (a.startsWith('lib-')) libAction(a);
   else if (a === 'format') setFormat(FORMAT === 'eternal' ? 'standard' : 'eternal');
   else if (a === 'rules') showRules();

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Loading</title>
+<style>
+:root{--bg:#0d1015;--teal:#17b897;--mint:#9fe8d8;--ink:#eef1f5}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font-family:Montserrat,"Segoe UI",system-ui,sans-serif}
+#loader{position:fixed;inset:0;display:grid;place-items:center;align-content:center;gap:28px;background:radial-gradient(ellipse at 50% 42%,#14221f 0,var(--bg) 62%);transition:opacity .6s ease,visibility .6s}
+#loader.done{opacity:0;visibility:hidden}
+svg{width:min(86vw,62vh,560px);height:auto;overflow:visible}
+svg .ticks,svg .sun,svg .pillar,svg .nuki,svg .stub,svg .kasa,svg .tip,svg .pop{transform-box:fill-box}
+.ring{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.3s cubic-bezier(.65,0,.35,1) .1s forwards,glow 3.2s ease-in-out 1.6s infinite}
+.ring2{opacity:0;animation:fade .8s ease .9s forwards}
+.ticks{opacity:0;transform-origin:center;animation:fade .9s ease 1s forwards}
+.core{opacity:0;animation:fade 1s ease .6s forwards}
+.sun{opacity:0;transform-origin:center;animation:fade 1s ease 1.8s forwards,breathe 3.6s ease-in-out 2.8s infinite}
+.pillar{transform-origin:50% 100%;transform:scaleY(0);animation:rise .7s cubic-bezier(.2,.8,.2,1) 1.1s forwards}
+.pillar.b{animation-delay:1.25s}
+.nuki{transform-origin:center;transform:scaleX(0);animation:grow .5s ease-out 1.75s forwards}
+.stub{transform-origin:50% 100%;transform:scaleY(0);animation:rise .3s ease-out 2s forwards}
+.kasa{opacity:0;transform:translateY(-34px);animation:drop .7s cubic-bezier(.2,.9,.25,1.1) 2s forwards}
+.tip{opacity:0;transform-origin:center;animation:pop .45s cubic-bezier(.2,1.6,.4,1) 2.5s forwards}
+.pop{opacity:0;transform-origin:center;transform:scale(0);animation:pop .6s cubic-bezier(.2,1.5,.4,1) calc(2.3s + var(--i)*.14s) forwards,flash 3.6s ease-in-out calc(3.4s + var(--i)*.5s) infinite}
+.scan{opacity:0;animation:fade .8s ease 2.4s forwards}
+.bar{width:min(60vw,240px);height:3px;border-radius:3px;background:#ffffff14;overflow:hidden;opacity:0;animation:fade .6s ease 2.2s forwards}
+.bar i{display:block;height:100%;width:100%;transform-origin:0 50%;transform:scaleX(0);border-radius:3px;background:linear-gradient(90deg,var(--teal),var(--mint));transition:transform .35s ease}
+.bar.indet i{width:38%;transform:none;animation:slide 1.4s ease-in-out infinite}
+.lbl{font-size:11px;letter-spacing:.42em;text-indent:.42em;font-weight:600;color:#9fb3ad;text-transform:uppercase;opacity:0;animation:fade .6s ease 2.2s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fade{to{opacity:1}}
+@keyframes rise{to{transform:scaleY(1)}}
+@keyframes grow{to{transform:scaleX(1)}}
+@keyframes drop{to{opacity:1;transform:none}}
+@keyframes pop{60%{opacity:1}to{opacity:1;transform:scale(1)}}
+@keyframes glow{50%{filter:drop-shadow(0 0 8px #17b897aa)}}
+@keyframes breathe{50%{opacity:.55;transform:scale(1.12)}}
+@keyframes flash{0%,88%,100%{filter:none}94%{filter:brightness(1.5) drop-shadow(0 0 6px #fff8)}}
+@keyframes slide{0%{transform:translateX(-100%)}100%{transform:translateX(265%)}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important;animation-delay:0s!important;animation-iteration-count:1!important}.bar.indet i{animation:none;width:100%}}
+</style></head><body>
+<div id="loader" role="status" aria-live="polite" aria-label="Loading">
+<svg viewBox="60 30 520 440" aria-hidden="true">
+<defs><radialGradient id="sun" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#bff5ea"/><stop offset="1" stop-color="#17b897" stop-opacity="0"/></radialGradient><linearGradient id="pl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#17b897"/><stop offset="1" stop-color="#0b6b5a"/></linearGradient><linearGradient id="fr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef1f5"/><stop offset="1" stop-color="#9fe8d8"/></linearGradient>
+<radialGradient id="orb" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#fff"/><stop offset=".45" stop-color="#9fe8d8"/><stop offset="1" stop-color="#17b897"/></radialGradient>
+<radialGradient id="core" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#17b897" stop-opacity=".4"/><stop offset=".7" stop-color="#0d1015" stop-opacity=".9"/><stop offset="1" stop-color="#0d1015"/></radialGradient>
+<linearGradient id="sp" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef1f5"/><stop offset="1" stop-color="#17b897"/></linearGradient>
+<linearGradient id="lt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#17b897" stop-opacity=".3"/><stop offset="1" stop-color="#bff5ea"/></linearGradient>
+<filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<circle class="core" cx="320" cy="250" r="150" fill="url(#core)"/>
+<circle class="ring2 scan" cx="320" cy="250" r="168" fill="none" stroke="#17b897" stroke-width="1.5" stroke-dasharray="2 14" opacity=".7"><animateTransform attributeName="transform" type="rotate" from="0 320 250" to="360 320 250" dur="60s" repeatCount="indefinite"/></circle>
+<circle class="ring" pathLength="1" cx="320" cy="250" r="150" fill="none" stroke="#17b897" stroke-width="5" filter="url(#glow)" transform="rotate(-90 320 250)"/>
+<circle class="ring2" cx="320" cy="250" r="136" fill="none" stroke="#9fe8d8" stroke-width="1.5"/>
+<g class="ticks"><line x1="460.0" y1="250.0" x2="468.0" y2="250.0" stroke="#17b897" stroke-width="2"/><line x1="455.2" y1="286.2" x2="463.0" y2="288.3" stroke="#17b897" stroke-width="2"/><line x1="441.2" y1="320.0" x2="448.2" y2="324.0" stroke="#17b897" stroke-width="2"/><line x1="419.0" y1="349.0" x2="424.7" y2="354.7" stroke="#17b897" stroke-width="2"/><line x1="390.0" y1="371.2" x2="394.0" y2="378.2" stroke="#17b897" stroke-width="2"/><line x1="356.2" y1="385.2" x2="358.3" y2="393.0" stroke="#17b897" stroke-width="2"/><line x1="320.0" y1="390.0" x2="320.0" y2="398.0" stroke="#17b897" stroke-width="2"/><line x1="283.8" y1="385.2" x2="281.7" y2="393.0" stroke="#17b897" stroke-width="2"/><line x1="250.0" y1="371.2" x2="246.0" y2="378.2" stroke="#17b897" stroke-width="2"/><line x1="221.0" y1="349.0" x2="215.3" y2="354.7" stroke="#17b897" stroke-width="2"/><line x1="198.8" y1="320.0" x2="191.8" y2="324.0" stroke="#17b897" stroke-width="2"/><line x1="184.8" y1="286.2" x2="177.0" y2="288.3" stroke="#17b897" stroke-width="2"/><line x1="180.0" y1="250.0" x2="172.0" y2="250.0" stroke="#17b897" stroke-width="2"/><line x1="184.8" y1="213.8" x2="177.0" y2="211.7" stroke="#17b897" stroke-width="2"/><line x1="198.8" y1="180.0" x2="191.8" y2="176.0" stroke="#17b897" stroke-width="2"/><line x1="221.0" y1="151.0" x2="215.3" y2="145.3" stroke="#17b897" stroke-width="2"/><line x1="250.0" y1="128.8" x2="246.0" y2="121.8" stroke="#17b897" stroke-width="2"/><line x1="283.8" y1="114.8" x2="281.7" y2="107.0" stroke="#17b897" stroke-width="2"/><line x1="320.0" y1="110.0" x2="320.0" y2="102.0" stroke="#17b897" stroke-width="2"/><line x1="356.2" y1="114.8" x2="358.3" y2="107.0" stroke="#17b897" stroke-width="2"/><line x1="390.0" y1="128.8" x2="394.0" y2="121.8" stroke="#17b897" stroke-width="2"/><line x1="419.0" y1="151.0" x2="424.7" y2="145.3" stroke="#17b897" stroke-width="2"/><line x1="441.2" y1="180.0" x2="448.2" y2="176.0" stroke="#17b897" stroke-width="2"/><line x1="455.2" y1="213.8" x2="463.0" y2="211.7" stroke="#17b897" stroke-width="2"/></g>
+<g transform="translate(320 255) scale(0.82) translate(-320 -255)">
+<circle class="sun" cx="320" cy="262" r="62" fill="url(#sun)"/>
+<path class="pillar" d="M256 362L270 362L274 190L262 190Z" fill="url(#pl)" stroke="#9fe8d8" stroke-width="2" stroke-linejoin="round"/>
+<path class="pillar b" d="M384 362L370 362L366 190L378 190Z" fill="url(#pl)" stroke="#9fe8d8" stroke-width="2" stroke-linejoin="round"/>
+<rect class="stub" x="314" y="188" width="12" height="32" fill="url(#pl)" stroke="#9fe8d8" stroke-width="2"/>
+<rect class="nuki" x="238" y="218" width="164" height="14" rx="2" fill="url(#pl)" stroke="#9fe8d8" stroke-width="2"/>
+<path class="kasa" d="M196 150Q320 186 444 150L436 172Q320 202 204 172Z" fill="url(#fr)" stroke="#eef1f5" stroke-width="2" stroke-linejoin="round" filter="url(#glow)"/>
+<circle class="tip" cx="198" cy="152" r="8" fill="url(#orb)" stroke="#bff5ea" stroke-width="2" filter="url(#glow)"/><circle class="tip" cx="442" cy="152" r="8" fill="url(#orb)" stroke="#bff5ea" stroke-width="2" filter="url(#glow)"/><circle class="tip" cx="263" cy="362" r="8" fill="url(#orb)" stroke="#bff5ea" stroke-width="2" filter="url(#glow)"/><circle class="tip" cx="377" cy="362" r="8" fill="url(#orb)" stroke="#bff5ea" stroke-width="2" filter="url(#glow)"/>
+</g>
+<g><animateTransform attributeName="transform" type="rotate" from="0 320 250" to="360 320 250" dur="48s" repeatCount="indefinite"/>
+<g transform="translate(395.0 120.1)"><g><animateTransform attributeName="transform" type="rotate" from="0" to="-360" dur="48s" repeatCount="indefinite"/><g class="pop" style="--i:0"><circle r="23" fill="#0d1015" stroke="#17b897" stroke-width="2"/><g fill="#e5484d" stroke="#eef1f5" stroke-width="1.5" stroke-linejoin="round" transform="scale(.95)"><polygon points="-16,0 -8,-16 8,-16 16,0 8,16 -8,16"/><polygon points="-8,0 -4,-8 4,-8 8,0 4,8 -4,8" stroke="#ffffff" stroke-opacity=".6" stroke-width="1.2" fill="none" stroke-linejoin="round"/><path d="M-16 0H-8M16 0H8M-8-16L-4-8M8-16L4-8M-8 16L-4 8M8 16L4 8" stroke="#ffffff" stroke-opacity=".6" stroke-width="1.2" fill="none" stroke-linejoin="round"/></g></g></g></g><g transform="translate(470.0 250.0)"><g><animateTransform attributeName="transform" type="rotate" from="0" to="-360" dur="48s" repeatCount="indefinite"/><g class="pop" style="--i:1"><circle r="23" fill="#0d1015" stroke="#17b897" stroke-width="2"/><g fill="#2fbf71" stroke="#eef1f5" stroke-width="1.5" stroke-linejoin="round" transform="scale(.95)"><polygon points="-8,-16 8,-16 14,-9 14,9 8,16 -8,16 -14,9 -14,-9"/><polygon points="-5,-10 5,-10 8,-6 8,6 5,10 -5,10 -8,6 -8,-6" stroke="#ffffff" stroke-opacity=".6" stroke-width="1.2" fill="none" stroke-linejoin="round"/></g></g></g></g><g transform="translate(395.0 379.9)"><g><animateTransform attributeName="transform" type="rotate" from="0" to="-360" dur="48s" repeatCount="indefinite"/><g class="pop" style="--i:2"><circle r="23" fill="#0d1015" stroke="#17b897" stroke-width="2"/><g fill="#9b5de5" stroke="#eef1f5" stroke-width="1.5" stroke-linejoin="round" transform="scale(.95)"><ellipse rx="13.4" ry="16"/><ellipse rx="7" ry="9.5" stroke="#ffffff" stroke-opacity=".6" stroke-width="1.2" fill="none" stroke-linejoin="round"/><path d="M0-16V-9.5M0 16V9.5M-13.4 0H-7M13.4 0H7" stroke="#ffffff" stroke-opacity=".6" stroke-width="1.2" fill="none" stroke-linejoin="round"/></g></g></g></g><g transform="translate(245.0 379.9)"><g><animateTransform attributeName="transform" type="rotate" from="0" to="-360" dur="48s" repeatCount="indefinite"/><g class="pop" style="--i:3"><circle r="23" fill="#0d1015" stroke="#17b897" stroke-width="2"/><g fill="#eef1f5" stroke="#eef1f5" stroke-width="1.5" stroke-linejoin="round" transform="scale(.95)"><polygon points="-16,0 -11,-11.5 0,-16 11,-11.5 16,0 11,11.5 0,16 -11,11.5"/><path d="M0-16V16M-16 0H16M-11-11.5L11 11.5M11-11.5L-11 11.5" stroke="#6b7a88" stroke-opacity=".8" stroke-width="1.2" fill="none" stroke-linejoin="round"/><polygon points="-6,-6 0,-8 6,-6 8,0 6,6 0,8 -6,6 -8,0" stroke="#6b7a88" stroke-opacity=".8" stroke-width="1.2" fill="none" stroke-linejoin="round"/></g></g></g></g><g transform="translate(170.0 250.0)"><g><animateTransform attributeName="transform" type="rotate" from="0" to="-360" dur="48s" repeatCount="indefinite"/><g class="pop" style="--i:4"><circle r="23" fill="#0d1015" stroke="#17b897" stroke-width="2"/><g fill="#3aa0ff" stroke="#eef1f5" stroke-width="1.5" stroke-linejoin="round" transform="scale(.95)"><polygon points="0,-16 13.4,-8 13.4,8 0,16 -13.4,8 -13.4,-8"/><path d="M0-16V16M-13.4-8L13.4 8M13.4-8L-13.4 8" stroke="#ffffff" stroke-opacity=".6" stroke-width="1.2" fill="none" stroke-linejoin="round"/><polygon points="0,-8 7,-4 7,4 0,8 -7,4 -7,-4" stroke="#ffffff" stroke-opacity=".6" stroke-width="1.2" fill="none" stroke-linejoin="round"/></g></g></g></g><g transform="translate(245.0 120.1)"><g><animateTransform attributeName="transform" type="rotate" from="0" to="-360" dur="48s" repeatCount="indefinite"/><g class="pop" style="--i:5"><circle r="23" fill="#0d1015" stroke="#17b897" stroke-width="2"/><g fill="#ffd447" stroke="#eef1f5" stroke-width="1.5" stroke-linejoin="round" transform="scale(.95)"><ellipse rx="13.4" ry="16"/><ellipse cx="-3.5" cy="-6" rx="4" ry="6" fill="#fff" fill-opacity=".45" stroke="none" transform="rotate(-18 -3.5 -6)"/></g></g></g></g>
+</g>
+</svg>
+<div class="bar indet" id="bar"><i id="fill"></i></div>
+<div class="lbl">Loading</div>
+</div>
+<script>
+// API: AeternaLoader.setProgress(0..1) switches to determinate; AeternaLoader.hide() fades out and removes.
+window.AeternaLoader=(function(){var l=document.getElementById('loader'),b=document.getElementById('bar'),f=document.getElementById('fill');
+return{setProgress:function(p){b.classList.remove('indet');f.style.transform='scaleX('+Math.max(0,Math.min(1,p))+')'},
+hide:function(){l.classList.add('done');setTimeout(function(){l.remove()},700)}}})();
+</script>
+</body></html>

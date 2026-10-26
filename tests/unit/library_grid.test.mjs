@@ -13,22 +13,23 @@ test('CIMG-1 the Library browse grid shows every card, filters by search and zoo
   const g = await openGame();
   const page = g.page;
   await page.click('#app-nav [data-a="go-lib"]');
-  await page.waitForFunction(() => document.querySelectorAll('#lib-grid .tcg-card').length > 0);
+  await page.waitForFunction(() => document.querySelectorAll('#lib-grid .tile').length > 0);
   const initial = await page.evaluate(() => ({
-    cards: document.querySelectorAll('#lib-grid .tcg-card').length,
+    cards: document.querySelectorAll('#lib-grid .tile').length,
     sets: document.querySelectorAll('#lib-set option').length,
-    types: [...document.querySelectorAll('#lib-type option')].map(o => o.value),
+    types: [...document.querySelectorAll('#lib-types .chip')].map(o => o.textContent),
     count: document.getElementById('lib-count').textContent,
   }));
   assert.ok(initial.cards > 0, 'the grid renders a window of cards');
   assert.ok(initial.sets > 10, 'the set selector is populated');
-  assert.deepEqual(initial.types, ['', 'Spirit', 'Nexus', 'Magic', 'Brave', 'Contract']);
+  assert.deepEqual(initial.types, ['Spirit', 'Ultimate', 'Brave', 'Nexus', 'Magic', 'Contract']);
   assert.match(initial.count, /\d[\d,]* card\(s\) shown/, 'the count note reports how many cards are shown');
 
   // search narrows the grid to the one card (its id is the unique search key)
+  await page.click('#lib-complete');   // the page starts on "Complete Effects Only"; the card below may be a "!" card
   await page.fill('#lib-search', 'BS44-001');
   await page.waitForFunction(() => /1 card\(s\) shown/.test(document.getElementById('lib-count').textContent));
-  const narrowed = await page.evaluate(() => document.querySelectorAll('#lib-grid .tcg-card').length);
+  const narrowed = await page.evaluate(() => document.querySelectorAll('#lib-grid .tile').length);
   assert.ok(narrowed <= 2, 'search narrowed the grid to the matching card');
 
   // the set filter also narrows, then clearing restores the full grid
@@ -39,10 +40,18 @@ test('CIMG-1 the Library browse grid shows every card, filters by search and zoo
     return /card\(s\) shown/.test(t) && t !== before;
   }, initial.count);
   await page.selectOption('#lib-set', '');
-  await page.waitForFunction(() => document.querySelectorAll('#lib-grid .tcg-card').length > 0);
+  await page.waitForFunction(() => document.querySelectorAll('#lib-grid .tile').length > 0);
+
+  // toolbar: a type chip narrows, "Clear" restores, the Complete-only chip widens to the "!" cards
+  const all = await page.evaluate(() => document.getElementById('lib-count').textContent);
+  await page.click('#lib-types [data-v="types:Magic"]');
+  await page.waitForFunction(b => document.getElementById('lib-count').textContent !== b, all);
+  assert.ok(await page.evaluate(() => [...document.querySelectorAll('#lib-grid .tile')].length > 0), 'Magic cards listed');
+  await page.click('#lib-clear [data-a="lib-clear"]');
+  await page.waitForFunction(b => document.getElementById('lib-count').textContent === b, all);
 
   // tapping a card opens the zoom overlay with the card face
-  await page.click('#lib-grid .tcg-card');
+  await page.click('#lib-grid .tile');
   await page.waitForFunction(() => document.getElementById('zoom-overlay').classList.contains('active'));
   const zoom = await page.evaluate(() => ({
     active: document.getElementById('zoom-overlay').classList.contains('active'),

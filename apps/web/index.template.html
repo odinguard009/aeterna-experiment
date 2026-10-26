@@ -214,40 +214,45 @@
     <div class="row" id="dk-starters" style="gap:12px;flex-wrap:wrap" aria-label="Starter decks"></div>
   </div>
 </div>
-<div id="view-library" class="app-view ae-view">
-  <main class="ae-page doc">
-    <header class="ae-phead"><div class="tx"><span class="ae-eyebrow" id="lib-eyebrow">Library</span><h1>All Cards</h1><p>Search and filter the whole card data. Tap a card for its page. Your card data, images and deck lists stay on this device.</p></div>
-      <button class="ae-ghost" data-a="go-lobby">◄ Home</button></header>
-    <section class="doc-card"><h2><span class="no" aria-hidden="true">1</span>Browse cards</h2>
-      <p>Every card, with your card images where you added them. Tap a card to enlarge it.</p>
-      <div class="lib-tools">
-        <input id="lib-search" class="sel" type="search" placeholder="Search name, ID or effect…" autocomplete="off" spellcheck="false">
-        <select id="lib-set" class="sel" title="Set" aria-label="Set"><option value="">All sets</option></select>
-        <select id="lib-type" class="sel" title="Type" aria-label="Type"><option value="">All types</option><option value="Spirit">Spirit</option><option value="Nexus">Nexus</option><option value="Magic">Magic</option><option value="Brave">Brave</option><option value="Contract">Contract</option></select>
-        <span id="lib-count" class="doc-note" role="status"></span>
-      </div>
-      <div class="db-grid lib-grid" id="lib-grid"></div></section>
-    <section class="doc-card" id="lib-lore-card"><h2><span class="no" aria-hidden="true">2</span>Lore</h2>
-      <p>The flavor text printed on the cards, read in order by series. Tap an entry to open its card.</p>
-      <div class="lib-tools"><select id="lib-lore-set" class="sel" title="Series" aria-label="Series"></select></div>
-      <div class="lore-list" id="lib-lore"></div></section>
-    <section class="doc-card"><h2><span class="no" aria-hidden="true">5</span>Card data (JSON)</h2>
+<div id="view-library" class="app-view"><div class="pg scroll" style="padding:0">
+  <div class="card flat hdcard lib-hd" style="margin:16px 20px 0"><div class="grow"><span class="eyebrow" id="lib-eyebrow">Library</span><h2 class="hd" id="lib-title">All Cards</h2><span class="sub" id="lib-sub">Search and filter the whole card data. Click a card for its page.</span></div>
+    <div class="seg" role="group" aria-label="Library view" id="lib-tabs"><button data-a="lib-tab" data-v="cards" aria-pressed="true">Cards</button><button data-a="lib-tab" data-v="lore" aria-pressed="false">Lore</button></div>
+    <span id="lib-chips" class="row" style="gap:8px"><button class="chip on" id="lib-complete" data-a="lib-complete" aria-pressed="true">Complete Effects Only</button><span class="chip"><b style="color:var(--yes-text)">!</b> Partly Implemented</span></span></div>
+  <section id="lib-cards-pane" class="bpool" style="border:0;display:flex;flex-direction:column;min-height:0;flex:1">
+    <div class="btool" id="lib-tbar">
+      <div class="r1"><div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="lib-search" class="in" type="search" placeholder="Search name, code or text" aria-label="Search cards" autocomplete="off" spellcheck="false" style="width:100%"></div>
+        <select id="lib-sort" class="in hidem" aria-label="Sort"><option value="set">Sort: set</option><option value="cost">Sort: cost</option><option value="name">Sort: name</option><option value="colour">Sort: colour</option></select>
+        <select id="lib-set" class="in hidem" title="Set" aria-label="Set"><option value="">All sets</option></select>
+        <input id="lib-family" class="in hidem" type="search" placeholder="Family" aria-label="Family" autocomplete="off" style="max-width:150px">
+        <div class="seg hidem" role="group" aria-label="Card size" id="lib-size"></div></div>
+      <div class="r2"><div class="pips" id="lib-pips"></div><span class="vsep"></span><span id="lib-types" class="row" style="gap:7px"></span><span class="vsep"></span><div class="costs" id="lib-costs"></div></div>
+      <div class="r2"><span id="lib-groups" class="row" style="gap:7px"></span><span id="lib-clear"></span><span class="grow"></span><span id="lib-count" class="sub hidem" role="status" style="font-size:.78em"></span></div></div>
+    <div class="pgrid scroll" id="lib-grid" style="--cols:6" aria-label="Cards"></div>
+    <details class="card flat" style="margin:12px 20px 20px;padding:10px 16px"><summary style="cursor:pointer;font-weight:700">Import &amp; export · card data, images, deck list</summary>
+      <div class="col" style="gap:14px;margin-top:10px">
+      <section class="card flat"><b>Card data (JSON)</b>
       <p>Load your own card list. Only Spirit and Nexus cards work in this build. Imported cards have no coded effect, so their text is shown for reference only.</p>
-      <div class="doc-acts"><label class="ae-ghost ae-upl primary"><span>Import Card Data</span><input id="in-cards" type="file" accept=".json,application/json"></label>
-      <button class="ae-ghost" data-a="lib-template">Download Template</button><button class="ae-ghost" data-a="lib-cards-clear">Remove Imported Cards</button></div></section>
-    <section class="doc-card"><h2><span class="no" aria-hidden="true">4</span>Card images</h2>
+      <div class="row"><label class="btn pri ae-upl"><span>Import Card Data</span><input id="in-cards" type="file" accept=".json,application/json"></label>
+      <button class="btn" data-a="lib-template">Download Template</button><button class="btn" data-a="lib-cards-clear">Remove Imported Cards</button></div></section>
+    <section class="card flat"><b>Card images</b>
       <p>Pick image files from your own device. A file is matched to a card by (1) the <b>image</b> field in your card data, so any file name works, (2) the card ID (for example <b translate="no">BS76-001.png</b>), or (3) the exact card name. Images stay in this browser only and are never uploaded.</p>
-      <div class="doc-acts"><label class="ae-ghost ae-upl primary"><span>Import Images</span><input id="in-imgs" type="file" accept="image/*" multiple></label>
-      <button class="ae-ghost" data-a="lib-imgs-clear">Remove All Images</button></div>
-      <span id="lib-imgcount" class="doc-note" role="status"></span></section>
-    <section class="doc-card"><h2><span class="no" aria-hidden="true">3</span>Deck list (text)</h2>
+      <div class="row"><label class="btn pri ae-upl"><span>Import Images</span><input id="in-imgs" type="file" accept="image/*" multiple></label>
+      <button class="btn" data-a="lib-imgs-clear">Remove All Images</button></div>
+      <span id="lib-imgcount" class="sub" role="status"></span></section>
+    <section class="card flat"><b>Deck list (text)</b>
       <p>One card per line: <b translate="no">3 BS44-001</b> or <b>3x Card Name</b>. Lines starting with # are ignored.</p>
       <textarea id="lib-deck" class="lib-area" spellcheck="false" aria-label="Deck list" name="deck-list" autocomplete="off" placeholder="3 BS44-001&#10;3x Card Name…"></textarea>
-      <div class="doc-acts"><button class="ae-ghost" data-a="lib-deck-import">Import As My Deck</button><button class="ae-ghost" data-a="lib-deck-export">Export My Deck</button></div></section>
-    <div id="lib-msg" class="lib-msg" role="status"></div>
-  </main>
-</div>
-
+      <div class="row"><button class="btn" data-a="lib-deck-import">Import As My Deck</button><button class="btn" data-a="lib-deck-export">Export My Deck</button></div></section>
+    
+      <div id="lib-msg" class="lib-msg" role="status"></div></div></details>
+  </section>
+  <div id="lib-lore-pane" class="lore" hidden>
+    <aside class="lorenav"><span class="lbl2">Series In Reading Order</span><div class="loreser scroll" id="lib-lore-nav"></div><select id="lib-lore-set" class="in" aria-label="Series" hidden></select></aside>
+    <section class="lorebody"><div class="row" style="gap:8px;flex-wrap:wrap"><div class="grow"><span class="eyebrow">Card Lore</span><h2 class="hd" style="font-size:1.5em" id="lib-lore-h">-</h2><span class="sub" id="lib-lore-sub"></span></div><div class="seg" role="group" aria-label="Text size" id="lib-lore-fs"></div></div>
+      <div class="pbar" style="margin:4px 0 8px"><i id="lib-lore-bar" style="width:0"></i></div>
+      <div class="loretexts scroll" id="lib-lore"></div>
+      <div class="row" style="gap:8px;margin-top:8px"><button class="btn" data-a="lib-lore-mv" data-v="-1" id="lib-lore-prev">‹ Previous Series</button><span class="grow"></span><button class="btn pri" data-a="lib-lore-mv" data-v="1" id="lib-lore-next">Next Series ›</button></div></section></div>
+</div></div>
 <div id="view-playmat" class="app-view">
   <div id="app" class="viewport"></div>
 </div>

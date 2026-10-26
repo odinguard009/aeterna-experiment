@@ -11,6 +11,7 @@ const open = async (vp) => {
   ctx = await (await getBrowser()).newContext(vp); page = await ctx.newPage();
   await page.goto(GAME_URL); await page.waitForFunction(() => !!window.BS);
   await page.evaluate(() => { BS.switchView('view-library'); return 1; });
+  await page.click('#lib-tabs [data-v="lore"]');
 };
 
 test('LO1 the flavor index is data: ids of the library, plain English text, no wiki markup', () => {
@@ -25,8 +26,8 @@ test('LO2 PC: the Lore section lists the first series in order and a card opens 
   await page.click('#lib-lore .lore-item >> nth=0');
   await page.waitForSelector('#zoom-overlay.active');
 });
-test('LO3 the series dropdown switches the list; the text is the flavor of that card', async () => {
-  const r = await page.evaluate(() => { const s = BS.loreSeries(), pick = s[s.length - 1]; const sel = document.getElementById('lib-lore-set'); sel.value = pick[0]; sel.dispatchEvent(new Event('change', { bubbles: true })); const it = document.querySelector('#lib-lore .lore-item'); return { shown: document.querySelectorAll('#lib-lore .lore-item').length, want: pick[1].length, ok: it.querySelector('p').textContent === '“' + BS.lore()[it.dataset.v] + '”' }; });
+test('LO3 the series list switches the list; the text is the flavor of that card', async () => {
+  const r = await page.evaluate(() => { const s = BS.loreSeries(), pick = s[s.length - 1]; document.querySelector(`#lib-lore-nav [data-v="${pick[0]}"]`).click(); const it = document.querySelector('#lib-lore .lore-item'); return { shown: document.querySelectorAll('#lib-lore .lore-item').length, want: pick[1].length, ok: it.querySelector('p').textContent === '“' + BS.lore()[it.dataset.v] + '”' }; });
   assert.equal(r.shown, r.want); assert.equal(r.ok, true);
 });
 test('LO4 phone: the Lore section fits the screen', async () => {

@@ -88,6 +88,7 @@ function libMsg(t, bad) { const m = $('lib-msg'); m.textContent = t; m.className
 function renderLibrary() {
   const ids = Object.keys(CARDS).filter(id => !CARDS[id].token && !id.startsWith('TRAIN-')), part = ids.filter(id => fxMarked(CARDS[id])).length;      // v0.79.0 (A1): two counts; v0.80.1: built-in Training cards are not counted
   $('lib-imgcount').textContent = `${Object.keys(IMG).length} image(s) loaded · ${ids.length.toLocaleString('en-US')} card(s) known: ${(ids.length - part).toLocaleString('en-US')} complete, ${part.toLocaleString('en-US')} marked "!" (effect not fully implemented)`;
+  libBar();
   renderLore();                                            // v0.131.0 U14g: the Lore section
   renderLibraryGrid();                                     // v0.111.0 (card images): the browsable card grid below
 }
@@ -96,31 +97,61 @@ function renderLibrary() {
    A browsable, searchable grid of every card (the deck builder's `dbIndex`/`dbWindow` pattern, reusing its card
    index and grid CSS). It shows the player's card images where they were added and zooms a card on tap. */
 const LIBV = { list: [], from: -1, to: -1, cols: 0, rowH: 0, raf: 0, timer: 0, key: '' };
-const LIB_GAP = 8, LIB_BUF = 2;
+const LIB_GAP = 16, LIB_BUF = 2;
 const libSetOf = id => String(id).replace(/-.*$/, '');
+const LIBF = { colors: new Set(), costs: new Set(), types: new Set(), groups: new Set(), family: '', complete: true, sort: 'set', size: 'm', tab: 'cards' };   // mockup toolbar state (v0.137.0)
+const LIB_SIZES = [['s', 'S', 8], ['m', 'M', 6], ['l', 'L', 4]];
+function libActive() { return LIBF.colors.size + LIBF.costs.size + LIBF.types.size + LIBF.groups.size + (LIBF.family ? 1 : 0) + ((($('lib-set') || {}).value) ? 1 : 0) + (($('lib-search') || {}).value ? 1 : 0); }
 function libFilter() {
-  const q = (($('lib-search') || {}).value || '').trim().toLowerCase();
+  const q = (($('lib-search') || {}).value || '').trim().toLowerCase(), fam = LIBF.family.trim().toLowerCase();
   const set = (($('lib-set') || {}).value) || '';
-  const type = (($('lib-type') || {}).value) || '';
-  const key = [CARDS_VER, q, set, type].join('|');
+  const key = [CARDS_VER, q, set, fam, [...LIBF.colors], [...LIBF.costs], [...LIBF.types], [...LIBF.groups], LIBF.complete, LIBF.sort].join('|');
   if (key === LIBV.key) return LIBV.list;
   LIBV.key = key;
   let l = dbIndex().filter(e => {
     if (q && !e.s.includes(q)) return false;
+    if (fam && !e.f.includes(fam)) return false;
     if (set && libSetOf(e.id) !== set) return false;
-    if (type) { const c = CARDS[e.id], t = c.contract ? 'Contract' : c.type; if (t !== type) return false; }
-    return true;
+    const c = CARDS[e.id];
+    if (LIBF.complete && fxMarked(c)) return false;
+    return dbFilterOK(c, LIBF.colors, LIBF.costs, LIBF.types) && [...LIBF.groups].every(g => dbGroupOK(c, g));
   });
-  l = l.slice().sort((a, b) => DB_COLL.compare(a.id, b.id));   // set + number order for a stable browse
+  l = l.slice().sort(DB_SORTS[LIBF.sort] || DB_SORTS.set);
   LIBV.list = l.map(e => e.id);
   const cnt = $('lib-count'); if (cnt) cnt.textContent = `${LIBV.list.length.toLocaleString('en-US')} card(s) shown`;
   return LIBV.list;
 }
+function libBar() {                                   // the mockup toolbar: colour pips, type chips, cost buttons, group chips, clear
+  const on = (s, v) => s.has(v);
+  $('lib-pips').innerHTML = DB_COLORS.map(c => `<button class="pip${on(LIBF.colors, c) ? ' on' : ''}" style="--c:${colorVar(c)}" data-a="lib-f" data-v="colors:${c}" aria-label="${cap(c)}" aria-pressed="${on(LIBF.colors, c)}" title="${cap(c)}"><i></i></button>`).join('');
+  $('lib-types').innerHTML = DB_TYPES.map(t => `<button class="chip${on(LIBF.types, t) ? ' on' : ''}" data-a="lib-f" data-v="types:${t}" aria-pressed="${on(LIBF.types, t)}">${t}</button>`).join('');
+  $('lib-costs').innerHTML = DB_COSTS.map(k => `<button class="cbtn${on(LIBF.costs, k) ? ' on' : ''}" data-a="lib-f" data-v="costs:${k}" aria-pressed="${on(LIBF.costs, k)}" aria-label="Cost ${k}">${k === '10' ? '10+' : k}</button>`).join('');
+  $('lib-groups').innerHTML = DB_GROUPS.map(([g, l]) => `<button class="chip${on(LIBF.groups, g) ? ' on' : ''}" data-a="lib-f" data-v="groups:${g}" aria-pressed="${on(LIBF.groups, g)}">${l}</button>`).join('');
+  $('lib-size').innerHTML = LIB_SIZES.map(([v, l]) => `<button data-a="lib-size" data-v="${v}" aria-pressed="${LIBF.size === v}">${l}</button>`).join('');
+  $('lib-sort').value = LIBF.sort; if (document.activeElement !== $('lib-family')) $('lib-family').value = LIBF.family;
+  $('lib-complete').classList.toggle('on', LIBF.complete); $('lib-complete').setAttribute('aria-pressed', String(LIBF.complete));
+  const n = libActive(); $('lib-clear').innerHTML = n ? `<button class="chip" data-a="lib-clear">Clear ${n} ✕</button>` : '';
+  $('lib-grid').style.setProperty('--cols', String((LIB_SIZES.find(x => x[0] === LIBF.size) || LIB_SIZES[1])[2]));
+  const tab = LIBF.tab === 'lore';
+  $('lib-cards-pane').hidden = tab; $('lib-lore-pane').hidden = !tab; $('lib-chips').hidden = tab;
+  $('lib-eyebrow').textContent = tab ? 'Library · Lore' : 'Library'; $('lib-title').textContent = tab ? 'Card Lore' : 'All Cards';
+  $('lib-sub').textContent = tab ? 'The flavor texts of the cards, read in series order.' : 'Search and filter the whole card data. Click a card for its page.';
+  document.querySelectorAll('#lib-tabs button').forEach(b => b.setAttribute('aria-pressed', String(/** @type {HTMLElement} */ (b).dataset.v === LIBF.tab)));
+}
+function libTool(a, v) {                              // toolbar actions (data-a lib-f / lib-size / lib-tab / lib-complete / lib-clear / lib-lore-*)
+  if (a === 'lib-f') { const [g, x] = v.split(':'), s = LIBF[g]; if (s) { if (s.has(x)) s.delete(x); else s.add(x); } }
+  else if (a === 'lib-size') LIBF.size = v;
+  else if (a === 'lib-tab') LIBF.tab = v === 'lore' ? 'lore' : 'cards';
+  else if (a === 'lib-complete') LIBF.complete = !LIBF.complete;
+  else if (a === 'lib-clear') { ['colors', 'costs', 'types', 'groups'].forEach(g => LIBF[g].clear()); LIBF.family = ''; $('lib-set').value = ''; $('lib-search').value = ''; }
+  else if (a === 'lib-lore-mv') { const ks = loreSeries().map(x => x[0]), i = ks.indexOf(LORE_SET) + Number(v); if (ks[i]) LORE_SET = ks[i]; }
+  else if (a === 'lib-lore-set') LORE_SET = v;
+  else if (a === 'lib-lore-fs') LORE_FS = Number(v);
+  renderLibrary();
+}
 function libCardHTML(id) {
-  const c = CARDS[id], bp = c.levels[0] && c.levels[0].bp != null ? c.levels[0].bp : c.brave ? '+' + c.brave.bp : '-';
-  return `<div class="tcg-card${cardCls(c)}${imgCls(id)}" style="${colorSty(c)}${imgSty(id)}" data-a="libcard" data-v="${id}" title="${esc(c.name)} (${id})${fxMarked(c) ? ' - ' + FX_MARK_LBL : ''}: tap to enlarge">
-    <div class="cost">${c.cost}</div><div class="type-badge">${c.contract ? 'CON' : c.type.substring(0, 3).toUpperCase()}${rebMark(c)}</div>
-    <div class="name">${nameHTML(c.name)}</div><div class="bp">${bp}</div>${fxMarkHTML(c)}${symBadgeHTML(id)}</div>`;
+  const c = CARDS[id];
+  return `<div class="tile" data-a="libcard" data-v="${id}" title="${esc(c.name)} (${id})${fxMarked(c) ? ' - ' + FX_MARK_LBL : ''}: tap to open" tabindex="0">${cardFaceHTML(c, false)}</div>`;
 }
 function libWindow(force) {
   const el = $('lib-grid'); if (!el) return;
@@ -135,7 +166,7 @@ function libWindow(force) {
   const pad = h => h > 0 ? `<div class="db-spacer" style="grid-column:1/-1;height:${h}px"></div>` : '';
   el.innerHTML = pad(r0 * rowH - LIB_GAP) + list.slice(from, to).map(libCardHTML).join('') + pad((rows - r1) * rowH - LIB_GAP);
   el.scrollTop = top;
-  const first = elq(el, '.tcg-card'), h = first ? first.offsetHeight + LIB_GAP : 0;
+  const first = elq(el, '.tile'), h = first ? first.offsetHeight + LIB_GAP : 0;
   if (h && h !== LIBV.rowH) { LIBV.rowH = h; libWindow(true); }
 }
 function renderLibraryGrid() {
@@ -146,7 +177,7 @@ function renderLibraryGrid() {
   libWindow(true);
 }
 function libScroll() { if (!LIBV.raf) LIBV.raf = requestAnimationFrame(() => { LIBV.raf = 0; if ($('view-library').classList.contains('active')) libWindow(false); }); }
-function libSearchInput() { clearTimeout(LIBV.timer); LIBV.timer = setTimeout(() => { LIBV.timer = 0; renderLibraryGrid(); }, 120); }
+function libSearchInput() { clearTimeout(LIBV.timer); LIBV.timer = setTimeout(() => { LIBV.timer = 0; libBar(); renderLibraryGrid(); }, 120); }
 function deckToText(d, key) {          // key: the deck's marked Key Spirit (v0.103.0) becomes a "KEY <id>" line
   d = d || PLAYER_DECK;
   const lines = Object.keys(d).filter(id => d[id] > 0 && CARDS[id]).map(id => `${d[id]} ${id}   # ${CARDS[id].name}`);
@@ -194,7 +225,6 @@ document.addEventListener('change', async e => {
   } else if (t.id === 'db-only') renderDeckBuilder();
   else if (t.id === 'db-legal') { DBF.legal = t.checked; renderDeckBuilder(); }
   else if (t.id === 'db-complete') { DBF.complete = t.checked; renderDeckBuilder(); }
-  else if (t.id === 'lib-lore-set') { LORE_SET = t.value; renderLore(); }
   else if (t.id === 'db-dd-colors') dbPick('colors', t.value);
   else if (t.id === 'db-dd-groups') dbPick('groups', t.value);
   else if (t.id === 'db-set') { DBF.set = t.value; renderDeckBuilder(); }
@@ -212,9 +242,9 @@ document.addEventListener('change', async e => {
   else if (t.id === 'set-anim') { if (['full', 'reduced', 'off'].includes(t.value)) SETTINGS.anim = t.value; else delete SETTINGS.anim; saveSettings(); }
   else if (t.id === 'set-lp') { if (t.value === 'off') SETTINGS.longpress = 'off'; else delete SETTINGS.longpress; saveSettings(); }
   else if (t.id === 'set-sound') { SETTINGS.sound = t.value === 'on'; saveSettings(); navTools(); if (SETTINGS.sound) sfx('summon'); }
-  else if (t.id === 'lib-set' || t.id === 'lib-type') { $('lib-grid').scrollTop = 0; renderLibraryGrid(); }   // v0.111.0 (card images): the Library browse grid filters
+  else if (t.id === 'lib-set' || t.id === 'lib-sort') { if (t.id === 'lib-sort') LIBF.sort = t.value; $('lib-grid').scrollTop = 0; renderLibrary(); }   // v0.111.0 (card images): the Library browse grid filters
 });
-document.addEventListener('input', e => { if (evT(e).id === 'db-search') dbSearchInput(); else if (evT(e).id === 'lib-search') libSearchInput(); });
+document.addEventListener('input', e => { if (evT(e).id === 'db-search') dbSearchInput(); else if (evT(e).id === 'lib-search') libSearchInput(); else if (evT(e).id === 'lib-family') { LIBF.family = /** @type {HTMLInputElement} */ (evT(e)).value; libSearchInput(); } });
 document.addEventListener('scroll', e => { const t = /** @type {HTMLElement} */ (e.target); if (t && t.id === 'db-card-list') dbScroll(); else if (t && t.id === 'lib-grid') libScroll(); }, true);
 window.addEventListener('resize', () => { if ($('view-deckbuilder').classList.contains('active')) { DBV.rowH = 0; dbWindow(true); } });
 function libAction(a) {

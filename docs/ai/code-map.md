@@ -161,8 +161,8 @@ PANEL_ID, cardPanelHTML, panelCardOf
 ## apps/web/src/13l-emote.js (35 lines, ~0.6k tokens) — EFFECT ACTIVE PANEL + EMOTICONS (v0.125.0, U14d2; docs/design/mockup-v14.html)
 EMOTES, EMOTE_GAP, EMOTE_AT, emoteLeft, effectPanel, emotePop, emoteSend
 
-## apps/web/src/13m-lore.js (23 lines, ~0.5k tokens) — LORE (v0.131.0, U14g; docs/design/mockup-v14.html): the English flavor texts of the cards, read in order by series.
-LORE_SET, lore, loreSeries, renderLore
+## apps/web/src/13m-lore.js (30 lines, ~0.7k tokens) — LORE (v0.131.0, U14g; docs/design/mockup-v14.html): the English flavor texts of the cards, read in order by series.
+LORE_SET, lore, loreSeries, LORE_FS, renderLore
 
 ## apps/web/src/13n-cardpage.js (26 lines, ~0.6k tokens) — CARD PAGE (v0.132.0, U14g2; docs/design/mockup-v14.html): what the Library's card zoom adds under the card detail: the same
 ART_KEY, ART_ALT, sameName, usedInDecks, setArt, cardPageHTML, cardTilt
@@ -176,8 +176,8 @@ BUG_REPO, BUG_LABEL, bugURL, bugOpen, bugSend
 ## apps/web/src/13q-progress.js (42 lines, ~1k tokens) — PROGRESS (v0.134.0, U15): rank, daily missions, achievements and avatars. Everything is derived from the saved match history on this
 RANKS, AVATARS, AVATAR_KEY, AVATAR, dayNo, MISSIONS, ACHIEVEMENTS, rankOf, dailyMissions, setAvatar, renderProgress
 
-## apps/web/src/14-images.js (239 lines, ~4.3k tokens) — CARD IMAGES
-IMG, IDB, normKey, idbOpen, idbTx, setImg, loadImages, shrinkImage, stripExt, findCardByFile, findCardByKey, importImages, clearImages, cardImgSrc, imgCls, imgSty, refreshViews, libMsg, renderLibrary, LIBV, LIB_GAP, libSetOf, libFilter, libCardHTML, libWindow, renderLibraryGrid, libScroll, libSearchInput, deckToText, textToDeck, downloadText, readFileText, libAction
+## apps/web/src/14-images.js (269 lines, ~5.2k tokens) — CARD IMAGES
+IMG, IDB, normKey, idbOpen, idbTx, setImg, loadImages, shrinkImage, stripExt, findCardByFile, findCardByKey, importImages, clearImages, cardImgSrc, imgCls, imgSty, refreshViews, libMsg, renderLibrary, LIBV, LIB_GAP, libSetOf, LIBF, LIB_SIZES, libActive, libFilter, libBar, libTool, libCardHTML, libWindow, renderLibraryGrid, libScroll, libSearchInput, deckToText, textToDeck, downloadText, readFileText, libAction
 
 ## packages/engine/src/15-match.js (74 lines, ~1.7k tokens) — MATCH START / END
 closeMatch, startNewGame, matchSummary
@@ -185,5 +185,5 @@ closeMatch, startNewGame, matchSummary
 ## packages/engine/src/15b-replay.js (109 lines, ~2.5k tokens) — REPLAY RECORDS (v0.85.0, phase F4 = monorepo step M4 part 1; docs/ai/monorepo-plan.md "Design" 2)
 newPortRecord, portRecord, boardSnapshot, runPortRecord, viewerReplayOf
 
-## apps/web/src/16-events.js (253 lines, ~5.5k tokens) — EVENTS (delegation)
+## apps/web/src/16-events.js (254 lines, ~5.5k tokens) — EVENTS (delegation)
 hScrollable, HDRAG, GAME_ACTS, gameAct, replayOf, lastReplay, runReplay, loadScenario, testSetup, defBuiltin

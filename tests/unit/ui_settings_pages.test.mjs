@@ -81,12 +81,13 @@ for (const screen of ['pc', 'phone']) {
     const { page, errors } = await open(screen);
     for (const v of ['view-howto', 'view-library']) {
       await page.evaluate(v => BS.switchView(v), v);
-      const r = await page.evaluate(v => ({ h: !!document.querySelector(`#${v} .ae-phead h1`), back: !!document.querySelector(`#${v} [data-a="go-lobby"]`), wide: document.documentElement.scrollWidth > innerWidth + 1 }), v);
+      const r = await page.evaluate(v => ({ h: !!document.querySelector(`#${v} .ae-phead h1, #${v} .hdcard h2`), back: v === 'view-library' || !!document.querySelector(`#${v} [data-a="go-lobby"]`), wide: document.documentElement.scrollWidth > innerWidth + 1 }), v);
       assert.deepEqual(r, { h: true, back: true, wide: false }, v);
     }
     const miss = await page.evaluate(() => [...['in-cards', 'in-imgs', 'lib-deck', 'lib-msg', 'lib-imgcount'].filter(i => !document.getElementById(i)),
       ...['lib-template', 'lib-cards-clear', 'lib-imgs-clear', 'lib-deck-import', 'lib-deck-export'].filter(a => !document.querySelector(`#view-library [data-a="${a}"]`))]);
     assert.deepEqual(miss, []);
+    await page.click('#view-library summary');
     await page.click('[data-a="lib-deck-export"]');
     assert.match(await page.inputValue('#lib-deck'), /\d+ \S+/);
     assert.deepEqual(errors, []);

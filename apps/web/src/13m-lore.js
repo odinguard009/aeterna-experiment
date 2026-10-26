@@ -12,12 +12,19 @@ function loreSeries() {                              // { set prefix: [card ids 
   const keys = Object.keys(m).sort(DB_COLL.compare);
   return keys.map(k => [k, m[k].sort(DB_COLL.compare)]);
 }
+let LORE_FS = 1;
 function renderLore() {
   const sel = $('lib-lore-set'), out = $('lib-lore'); if (!sel || !out) return;
   const series = loreSeries();
-  if (!series.length) { out.innerHTML = '<p class="empty-note">No flavor texts in this build.</p>'; sel.innerHTML = ''; return; }
+  if (!series.length) { out.innerHTML = '<p class="empty-note">No flavor texts in this build.</p>'; sel.innerHTML = ''; $('lib-lore-nav').innerHTML = ''; return; }
   if (!series.some(s => s[0] === LORE_SET)) LORE_SET = series[0][0];
   sel.innerHTML = series.map(([k, ids]) => `<option value="${esc(k)}">${esc(k)} (${ids.length})</option>`).join(''); sel.value = LORE_SET;
-  const ids = (series.find(s => s[0] === LORE_SET) || [LORE_SET, []])[1];
+  const at = series.findIndex(s => s[0] === LORE_SET), ids = series[at][1];
+  $('lib-lore-nav').innerHTML = series.map(([k, l]) => `<button class="${k === LORE_SET ? 'on' : ''}" data-a="lib-lore-set" data-v="${esc(k)}" aria-pressed="${k === LORE_SET}"><b>${esc(k)}</b><span>${l.length} texts</span></button>`).join('');
+  $('lib-lore-h').textContent = `Series ${LORE_SET}`; $('lib-lore-sub').textContent = `${ids.length} flavor texts · series ${at + 1} of ${series.length}`;
+  $('lib-lore-bar').style.width = `${Math.round(100 * (at + 1) / series.length)}%`;
+  $('lib-lore-prev').disabled = at === 0; $('lib-lore-next').disabled = at === series.length - 1;
+  $('lib-lore-fs').innerHTML = [[0.9, 'A−'], [1, 'A'], [1.15, 'A+']].map(([v, l]) => `<button data-a="lib-lore-fs" data-v="${v}" aria-pressed="${LORE_FS === v}">${l}</button>`).join('');
+  out.style.fontSize = `${LORE_FS}em`;
   out.innerHTML = ids.map(id => `<article class="lore-item" data-a="zoom" data-v="${esc(id)}" style="--lc:${colorVar(CARDS[id].symbol)}" tabindex="0"><b>${esc(CARDS[id].name)}</b><span class="lore-id" translate="no">${esc(id)}</span><p>“${esc(lore()[id])}”</p></article>`).join('');
 }
