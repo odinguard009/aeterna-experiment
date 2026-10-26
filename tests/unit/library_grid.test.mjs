@@ -50,14 +50,14 @@ test('CIMG-1 the Library browse grid shows every card, filters by search and zoo
   await page.click('#lib-clear [data-a="lib-clear"]');
   await page.waitForFunction(b => document.getElementById('lib-count').textContent === b, all);
 
-  // tapping a card opens the zoom overlay with the card face
+  // tapping a card opens the card page (v0.137.0) with the card face
   await page.click('#lib-grid .tile');
-  await page.waitForFunction(() => document.getElementById('zoom-overlay').classList.contains('active'));
+  await page.waitForFunction(() => document.getElementById('view-card').classList.contains('active'));
   const zoom = await page.evaluate(() => ({
-    active: document.getElementById('zoom-overlay').classList.contains('active'),
-    hasFace: !!document.querySelector('#zoom-overlay .cface'),
+    active: document.getElementById('view-card').classList.contains('active'),
+    hasFace: !!document.querySelector('#cp-page .cface, #cp-page .ph'),
   }));
-  assert.equal(zoom.active, true, 'the zoom overlay opened');
-  assert.equal(zoom.hasFace, true, 'the zoom shows the card face');
+  assert.equal(zoom.active, true, 'the card page opened');
+  assert.equal(zoom.hasFace, true, 'the page shows the card face');
   assert.deepEqual(g.errors, [], 'no page errors while browsing the Library grid');
 });

@@ -28,9 +28,23 @@ test('CP2 the saved decks that hold the card are listed with their count', async
   assert.ok(r.txt.includes(r.name + ' ×' + r.n), r.txt);
 });
 test('CP3 no card page during a match; phone fits', async () => {
-  const r = await page.evaluate(() => { BS.switchView('view-lobby'); openZoom('BS01-X01'); return document.querySelectorAll('.cpage').length; });
+  const r = await page.evaluate(() => { BS.switchView('view-lobby'); openZoom('BS01-X01'); return document.querySelectorAll('#zoom-overlay .cpage').length; });   // v0.137.0: in the Library the card is a page, elsewhere the overlay has none
   assert.equal(r, 0);
   await ctx.close(); await open({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
-  const w = await page.evaluate(() => { openZoom('BS01-X01'); return [document.documentElement.scrollWidth, innerWidth, document.querySelectorAll('.cpage').length]; });
+  const w = await page.evaluate(() => { openZoom('BS01-X01'); return [document.documentElement.scrollWidth, innerWidth, document.querySelectorAll('#cp-page .cpage').length]; });
   assert.equal(w[0], w[1]); assert.equal(w[2], 1);
+});
+test('CP4 the Library card is a page: prev/next, Add to deck and the back button', async () => {
+  const r = await page.evaluate(() => {
+    openZoom('BS01-X01');
+    const v = document.querySelector('.app-view.active').id, n = document.querySelector('#cp-page .mut').textContent;
+    document.querySelector('#cp-page [data-a="cp-nav"][data-v="1"]').click();
+    const nx = document.querySelector('#cp-page .mut').textContent;
+    const id = document.querySelector('#cp-page h2 + span').textContent, before = PLAYER_DECK[id] || 0;
+    document.querySelector('#cp-page [data-a="cp-add"]').click();
+    const added = (PLAYER_DECK[id] || 0) - before;
+    document.querySelector('#cp-page [data-a="go-lib"]').click();
+    return { v, moved: n !== nx, added, back: document.querySelector('.app-view.active').id };
+  });
+  assert.deepEqual(r, { v: 'view-card', moved: true, added: 1, back: 'view-library' });
 });

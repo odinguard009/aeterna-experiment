@@ -337,6 +337,7 @@ function switchView(id) {
   if (id === 'view-settings') renderSettings();
   if (id === 'view-howto') renderLearn();
   if (id === 'view-profile') renderProfilePage();
+  if (id === 'view-card') renderCardPage();
 }
 function renderSettings() { $('set-hist').innerHTML = histHTML(); $('set-cpu').innerHTML = CPU_PROFILE_NAMES.map(n => `<option value="${n}">${cap(n)}</option>`).join(''); $('set-cpu').value = cpuProfileName(null); $('set-speed').value = SETTINGS.speed; $('set-sound').value = SETTINGS.sound ? 'on' : 'off'; $('set-anim').value = SETTINGS.anim || 'auto'; $('set-lp').value = SETTINGS.longpress === 'off' ? 'off' : 'on';
   renderSetPage(); $('set-back').hidden = !G || !!G.over; }   // v0.122.0 U14b: Options from a running match shows BACK TO MATCH; v0.68.0 U4: colour grid, Dark/Light, playmat and CPU colour rows (13d-pages.js)

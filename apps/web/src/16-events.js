@@ -81,6 +81,9 @@ document.addEventListener('click', e => {
   else if (a === 'emote-pick') emoteSend(Number(v));
   else if (a === 'options-back') { switchView('view-playmat'); if (G) render(); }
   else if (a === 'go-howto') switchView('view-howto');
+  else if (a === 'cp-nav') { const l = cpIds(CP_ID); openCardPage(l[(l.indexOf(CP_ID) + Number(v) + l.length) % l.length]); }
+  else if (a === 'cp-add') { if (dbCanAdd(CP_ID)) { PLAYER_DECK[CP_ID] = (PLAYER_DECK[CP_ID] || 0) + 1; saveDeck(); renderCardPage(); $('cp-msg').textContent = `Added to ${SLOTS[ACTIVE_SLOT].name}: ${PLAYER_DECK[CP_ID]} ${PLAYER_DECK[CP_ID] === 1 ? 'copy' : 'copies'}.`; } }
+  else if (a === 'cp-link') { const u = location.href.split('#')[0] + '#card=' + encodeURIComponent(CP_ID); (navigator.clipboard ? navigator.clipboard.writeText(u) : Promise.reject()).then(() => 'Link to this card copied.', () => u).then(t => { $('cp-msg').textContent = t; }); }
   else if (a === 'go-profile') switchView('view-profile');
   else if (a === 'pf-avatars') { const b = $('pf-avs'); if (b) b.hidden = !b.hidden; }
   else if (a === 'learn-open') learnOpen(Number(v));
@@ -123,7 +126,7 @@ document.addEventListener('click', e => {
   else if (a === 'db-import') dbImport();
   else if (a === 'db-export') dbExport();
   else if (a === 'zoom') openZoom(v);
-  else if (a === 'art') { const zid = $('zoom-overlay').dataset.id; setArt(zid, v === zid ? '' : v); openZoom(zid); refreshViews(); }
+  else if (a === 'art') { const pg = $('view-card').classList.contains('active'), zid = pg ? CP_ID : $('zoom-overlay').dataset.id; setArt(zid, v === zid ? '' : v); if (pg) renderCardPage(); else openZoom(zid); refreshViews(); }
   else if (a === 'home-deck') { switchSlot(Number(v)); renderLobby(); }
   else if (a === 'avatar') { setAvatar(v); renderProfilePage(); }
   else if (a === 'bug-open') bugOpen(true);

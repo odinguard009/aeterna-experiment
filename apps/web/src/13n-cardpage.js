@@ -24,3 +24,25 @@ function cardTilt(el) {                              // pointer tilt of the card
   el.addEventListener('pointermove', e => { const r = el.getBoundingClientRect(); el.style.transform = `perspective(700px) rotateY(${((e.clientX - r.left) / r.width - .5) * 14}deg) rotateX(${(.5 - (e.clientY - r.top) / r.height) * 14}deg)`; });
   el.addEventListener('pointerleave', () => { el.style.transform = ''; });
 }
+
+// v0.137.0 (mockup parity): the Library card opens as a page (card with tilt, name, tags, effect text, art picker, level table, Add to deck, Copy Link, related)
+let CP_ID = '';
+const cpIds = id => { const l = typeof LIBV !== 'undefined' && LIBV.list.includes(id) ? LIBV.list : Object.keys(CARDS).filter(x => !CARDS[x].token && !x.startsWith('TRAIN-')).sort(DB_COLL.compare); return l; };
+function openCardPage(id) { if (!CARDS[id]) return; CP_ID = id; if (!$('view-card').classList.contains('active')) switchView('view-card'); else renderCardPage(); }
+function renderCardPage() {
+  const el = $('cp-page'), c = CARDS[CP_ID]; if (!el || !c) return;
+  const ids = cpIds(CP_ID), at = Math.max(0, ids.indexOf(CP_ID)), art = ART_ALT[CP_ID] && CARDS[ART_ALT[CP_ID]] ? CARDS[ART_ALT[CP_ID]] : c;
+  const lv = c.type !== 'Magic' && c.levels && c.levels.some(L => L.bp != null) ? c.levels : null;
+  const std = !legalityOf(CP_ID, 'standard'), ete = !legalityOf(CP_ID, 'eternal');
+  const tags = `<span class="tag${std ? '' : ' cpu'}">${std ? 'Standard Legal' : 'Not Standard Legal'}</span><span class="tag${ete ? ' dim' : ' cpu'}">${ete ? 'Eternal Legal' : 'Not Eternal Legal'}</span><span class="tag dim">Cost ${c.cost}</span>${c.implemented ? '<span class="tag dim">Effects Complete</span>' : '<span class="tag yes">! Partly Implemented</span>'}`;
+  const sl = SLOTS[ACTIVE_SLOT], used = usedInDecks(CP_ID), can = dbCanAdd(CP_ID);
+  const rows = lv ? lv.map((L, i) => `<tr><td><b>LV${i + 1}</b></td><td>${c.countLv ? 'Count ' : ''}${L.cores} ${L.cores === 1 ? 'Core' : 'Cores'}</td><td>${L.bp == null ? '-' : L.bp}</td></tr>`).join('') : '';
+  el.innerHTML = `<div class="row" style="gap:10px;flex-wrap:wrap"><button class="btn sm" data-a="go-lib">‹ Library</button><span class="grow"></span><button class="ibtn sq" data-a="cp-nav" data-v="-1" aria-label="Previous card">‹</button><span class="mut" style="font-size:.8em">${at + 1} / ${ids.length}</span><button class="ibtn sq" data-a="cp-nav" data-v="1" aria-label="Next card">›</button></div>
+  <div class="ciw" style="display:grid;grid-template-columns:330px 1fr;gap:30px;align-items:start"><div class="tilt" id="cp-tilt"><div class="cibig" style="width:300px;margin:0 auto">${cardFaceHTML(art, true)}</div><span class="mut hidem" style="display:block;text-align:center;font-size:.74em;margin-top:10px">Move the pointer over the card - it tilts and shines.</span></div>
+  <div class="col" style="gap:12px;min-width:0"><div><span class="eyebrow">${esc(c.token ? 'Token Spirit' : c.type)} · ${esc(cap(c.symbol))}</span><h2 class="hd" style="font-size:1.9em">${esc(c.name)}</h2><span class="mut">${esc(c.id)}</span></div>
+   <div class="row" style="gap:6px;flex-wrap:wrap">${tags}</div>
+   <div class="card flat" style="padding:14px 16px;line-height:1.6">${effectTextHTML(c, false)}${c.implemented ? '' : residualHTML(c)}</div>${cardPageHTML(CP_ID)}
+   ${lv ? `<div class="card flat" style="padding:8px 12px"><table class="tb"><tr><th>Level</th><th>Cores To Reach</th><th>BP</th></tr>${rows}</table></div>` : ''}
+   <div class="row" style="gap:8px;flex-wrap:wrap"><button class="btn pri" data-a="cp-add"${can ? '' : ' disabled'}>+ Add To “${esc(sl.name)}”</button><button class="btn" data-a="cp-link">Copy Link</button></div><span class="sub" id="cp-msg" role="status" style="font-size:.84em"></span></div></div>`;
+  cardTilt(elq(el, '#cp-tilt .cibig'));
+}

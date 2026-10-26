@@ -81,6 +81,7 @@ function mullCardHTML(card) {
 }
 function openZoom(id, uid) {
   const card = CARDS[id], z = $('zoom-overlay'); if (!card || !z) return;
+  if (uid == null && (['view-library', 'view-card'].some(v => $(v).classList.contains('active')))) return openCardPage(id);   // v0.137.0: the Library card is a page
   /* Aegis-style: landscape / PC = card left, scrolling detail panel right; portrait = card on top, scrolling panel below */
   const W = window.innerWidth, H = window.innerHeight, land = W >= H * 1.1;
   const zw = land ? Math.round(Math.max(150, Math.min(420, (H - 32) / 1.4, W * 0.4))) : Math.round(Math.max(150, Math.min(360, W * 0.62, H * 0.45 / 1.4)));

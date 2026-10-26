@@ -24,7 +24,7 @@ test('LO2 PC: the Lore section lists the first series in order and a card opens 
   assert.ok(r.n > 5 && r.shown === r.first && r.opt === r.n, JSON.stringify([r.n, r.first, r.shown, r.opt]));
   const sorted = await page.evaluate(k => k.slice().sort(BS.DB_COLL.compare).join() === k.join(), r.keys); assert.equal(sorted, true);
   await page.click('#lib-lore .lore-item >> nth=0');
-  await page.waitForSelector('#zoom-overlay.active');
+  await page.waitForSelector('#view-card.active');
 });
 test('LO3 the series list switches the list; the text is the flavor of that card', async () => {
   const r = await page.evaluate(() => { const s = BS.loreSeries(), pick = s[s.length - 1]; document.querySelector(`#lib-lore-nav [data-v="${pick[0]}"]`).click(); const it = document.querySelector('#lib-lore .lore-item'); return { shown: document.querySelectorAll('#lib-lore .lore-item').length, want: pick[1].length, ok: it.querySelector('p').textContent === '“' + BS.lore()[it.dataset.v] + '”' }; });

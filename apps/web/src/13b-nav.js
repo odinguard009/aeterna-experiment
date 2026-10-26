@@ -6,7 +6,7 @@
    --------------------------------------------------------------------- */
 const NAV_HIDDEN = ['view-playmat'];
 const MK_OFF = ['view-playmat'];   // not ported yet (battle)
-const MK_TITLES = { 'view-lobby': 'Home', 'view-play': 'Play', 'view-decks': 'My decks', 'view-library': 'Library', 'view-deckbuilder': 'Deck builder', 'view-settings': 'Settings', 'view-profile': 'Profile', 'view-howto': 'Learn', 'view-online': 'Online' };
+const MK_TITLES = { 'view-lobby': 'Home', 'view-play': 'Play', 'view-decks': 'My decks', 'view-library': 'Library', 'view-deckbuilder': 'Deck builder', 'view-settings': 'Settings', 'view-profile': 'Profile', 'view-card': 'Card', 'view-howto': 'Learn', 'view-online': 'Online' };
 function navSync(id) {
   if (typeof document === 'undefined') return;
   const v = id || (document.querySelector('.app-view.active') || {}).id || 'view-lobby';
@@ -14,7 +14,7 @@ function navSync(id) {
   document.body.classList.toggle('has-nav', !NAV_HIDDEN.includes(v));
   document.body.classList.toggle('mk', !MK_OFF.includes(v));         // v0.137.0: the pages ported from the mockup take its stylesheet; the others keep the old one until ported
   const pt = $('pb-title'); if (pt) pt.textContent = MK_TITLES[v] || '';
-  dqa('#app-tabs [data-nav], #mk-tabbar [data-nav]').forEach(b => { if (b.dataset.nav === v) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
+  dqa('#app-tabs [data-nav], #mk-tabbar [data-nav]').forEach(b => { if (b.dataset.nav === (v === 'view-card' ? 'view-library' : v)) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
   document.querySelectorAll('#app-nav .ibtn[data-a="go-settings"]').forEach(b => { if (v === 'view-settings') b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
   themePop(false);
   navTools();
