@@ -48,7 +48,7 @@ for (const screen of ['pc', 'phone']) {
       assert.deepEqual(st, [true, nav, true], nav);
     }
     await page.click(`${TABSEL(screen)} [data-nav="view-decks"]`); await page.click('#view-decks [data-a="dk-edit"]');   // v0.93.0: the builder opens from My decks
-    assert.equal(await page.evaluate(() => [document.getElementById('view-deckbuilder').classList.contains('active'), getComputedStyle(document.getElementById('app-nav')).display].join()), 'true,none', 'deck builder keeps its own layout (nav hidden)');
+    assert.equal(await page.evaluate(() => [document.getElementById('view-deckbuilder').classList.contains('active'), getComputedStyle(document.getElementById('app-nav')).display].join()), screen === 'pc' ? 'true,flex' : 'true,none', 'deck builder follows the mockup: PC keeps the nav, phone uses the bottom bar (v0.137.0)');
     await page.evaluate(() => BS.switchView('view-lobby'));
     assert.deepEqual(errors, []);
   });

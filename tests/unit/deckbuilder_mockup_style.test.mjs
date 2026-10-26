@@ -22,26 +22,17 @@ async function open(screen) {
 after(async () => { for (const c of ctxs) await c.close(); await closeBrowser(); });
 
 for (const screen of ['pc', 'phone']) {
-  test(`U94-1 ${screen}: back to My decks; FILTERS shows the count; chips remove one filter; Clear all resets`, async () => {
+  test(`U94-1 ${screen}: back to My decks; Clear N shows the count and resets all filters`, async () => {
     const { page, errors } = await open(screen);
     await page.evaluate(() => { BS.DBF.colors.add('red'); BS.DBF.types.add('Spirit'); BS.DBF.legal = true; BS.renderDeckBuilder(); return 1; });
-    const r = await page.evaluate(() => ({ btn: document.getElementById('db-filter-btn').textContent, chips: [...document.querySelectorAll('#db-achips [data-a="db-unchip"]')].map(c => c.textContent.replace('×', '').trim()),
-      clear: !!document.querySelector('#db-achips [data-a="db-freset"]') }));
-    assert.match(r.btn, /FILTERS\s*3/); assert.deepEqual(r.chips, ['Red', 'Spirit', 'Legal in format']); assert.equal(r.clear, true);
-    const n0 = await page.evaluate(() => parseInt(document.getElementById('db-count').textContent, 10));
-    await page.click('#db-achips [data-a="db-unchip"][data-v="colors:red"]');
-    const r2 = await page.evaluate(() => ({ red: BS.DBF.colors.has('red'), n: parseInt(document.getElementById('db-count').textContent, 10), chips: document.querySelectorAll('#db-achips [data-a="db-unchip"]').length }));
-    assert.deepEqual([r2.red, r2.chips], [false, 2]); assert.ok(r2.n > n0);
-    await page.click('#db-achips [data-a="db-freset"]');
-    assert.deepEqual(await page.evaluate(() => [BS.DBF.types.size, BS.DBF.legal, document.querySelectorAll('#db-achips [data-a="db-unchip"]').length, document.getElementById('db-filter-btn').textContent.trim()]), [0, false, 0, 'FILTERS']);
-    if (screen === 'pc') {
-      const vis = () => page.evaluate(() => document.getElementById('db-rail').getBoundingClientRect().width > 0);
-      assert.equal(await vis(), true);
-      await page.click('#db-filter-btn'); assert.equal(await vis(), false, 'FILTERS hides the column');
-      assert.equal(await page.evaluate(() => document.getElementById('db-filter-btn').getAttribute('aria-expanded')), 'false');
-      await page.click('#db-filter-btn'); assert.equal(await vis(), true);
-    }
-    await page.click('#view-deckbuilder [data-a="go-decks"]');
+    assert.equal(await page.textContent('#db-clear-f'), 'Clear 3 ✕');
+    const n0 = await page.evaluate(() => parseInt(document.getElementById('db-count').textContent.replace(/,/g, ''), 10));
+    await page.evaluate(() => document.querySelector('#db-pips [data-v="colors:red"]').click());   // the pips are hidden on a phone (the Colour dropdown replaces them)
+    assert.equal(await page.textContent('#db-clear-f'), 'Clear 2 ✕');
+    assert.ok(await page.evaluate(() => parseInt(document.getElementById('db-count').textContent.replace(/,/g, ''), 10)) > n0);
+    await page.click('#db-clear-f [data-a="db-freset"]');
+    assert.deepEqual(await page.evaluate(() => [BS.DBF.types.size, BS.DBF.legal, document.getElementById('db-clear-f').textContent.trim()]), [0, false, '']);
+    await page.evaluate(() => document.querySelector('#view-deckbuilder [data-a="go-decks"]').click());   // lives in the options row (hidden until the ... button)
     assert.equal(await page.evaluate(() => document.getElementById('view-decks').classList.contains('active')), true);
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1), false);
     assert.deepEqual(errors, []);

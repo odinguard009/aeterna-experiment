@@ -71,17 +71,17 @@ for (const [name, vp] of [['PC', { width: 1366, height: 768 }], ['phone', { widt
       BS.switchView('view-deckbuilder'); await new Promise(r => requestAnimationFrame(() => setTimeout(r)));
       const faces = [...document.querySelectorAll('#db-card-list [data-a="dbcard"]')];
       const bad = faces.filter(f => !!f.querySelector('.fx-mark') !== (BS.CARDS[f.dataset.v].implemented === false)).map(f => f.dataset.v);
-      const s = document.getElementById('db-search'); s.value = ''; const all = parseInt(document.getElementById('db-count').textContent, 10);
-      const cb = document.getElementById('db-complete'); cb.checked = true; cb.dispatchEvent(new Event('change', { bubbles: true }));
+      const s = document.getElementById('db-search'); s.value = ''; const all = parseInt(document.getElementById('db-count').textContent.replace(/,/g, ''), 10);
+      const cb = document.getElementById('db-play'); cb.click();   // v0.137.0: the Playable Only chip
       await new Promise(r => setTimeout(r, 50));
-      const only = parseInt(document.getElementById('db-count').textContent, 10);
+      const only = parseInt(document.getElementById('db-count').textContent.replace(/,/g, ''), 10);
       const marked = document.querySelectorAll('#db-card-list .fx-mark').length;
       const expect = Object.keys(BS.CARDS).filter(k => !BS.CARDS[k].token && BS.CARDS[k].implemented !== false).length;
-      cb.checked = false; cb.dispatchEvent(new Event('change', { bubbles: true }));
+      cb.click();
       const pid = Object.keys(BS.CARDS).find(k => BS.CARDS[k].implemented === false);
       s.value = pid; BS.renderDeckBuilder(); await new Promise(r => requestAnimationFrame(() => setTimeout(r)));
       const mk = document.querySelector(`#db-card-list [data-v="${pid}"] .fx-mark`); s.value = ''; BS.renderDeckBuilder();
-      return { pc: BS.isPC(), faces: faces.length, bad, all, only, marked, expect, legend: !!document.querySelector('.db-legend .fx-mark'), label: mk && mk.getAttribute('aria-label') };
+      return { pc: BS.isPC(), faces: faces.length, bad, all, only, marked, expect, label: mk && mk.getAttribute('aria-label') };
     });
     assert.equal(r.pc, name === 'PC');
     assert.ok(r.faces > 10, JSON.stringify(r));
@@ -89,7 +89,6 @@ for (const [name, vp] of [['PC', { width: 1366, height: 768 }], ['phone', { widt
     assert.ok(r.only < r.all, JSON.stringify(r));
     assert.equal(r.only, r.expect);
     assert.equal(r.marked, 0);
-    assert.equal(r.legend, true);
     assert.equal(r.label, 'Effect not fully implemented');
     assert.deepEqual(errors, []);
   });
@@ -103,7 +102,7 @@ test('PA05 deck rows carry the mark; the two counts agree between tools/card_cou
     const part = inPack.find(id => BS.CARDS[id].implemented === false && BS.CARDS[id].type === 'Spirit' && !BS.legalityOf(id, BS.FORMAT));
     BS.switchView('view-deckbuilder');
     BS.dbChange(part, 1); await new Promise(r => setTimeout(r, 30));
-    const row = [...document.querySelectorAll('.db-row')].find(x => x.querySelector(`[data-v="${part}"]`));
+    const row = [...document.querySelectorAll('#db-dk-list .drow')].find(x => x.dataset.id === part);
     const out = { n: inPack.length, complete: inPack.filter(id => BS.CARDS[id].implemented !== false).length, rowMark: !!(row && row.querySelector('.fx-mark')) };
     BS.dbUndo(); return out;
   }, DATA.map(c => c.id));

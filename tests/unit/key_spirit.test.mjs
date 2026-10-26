@@ -181,13 +181,13 @@ test('KEY-8 deck builder: the KEY button toggles the mark, the last copy leaving
     BS.loadPrebuilt('std01');
     BS.switchView('view-deckbuilder'); BS.renderDeckBuilder();
     const onId = '26RSD01-001';
-    const btn = () => document.querySelector(`.db-row-key[data-v="${onId}"]`);
+    const btn = () => document.querySelector(`#db-dk-list .st[data-v="${onId}"]`);
     const wasOn = btn().classList.contains('on'), pressed = btn().getAttribute('aria-pressed');
     btn().click();
     const off = !BS.SLOTS()[BS.ACTIVE_SLOT].key, offOn = !btn().classList.contains('on'), offPressed = btn().getAttribute('aria-pressed') === 'false';
-    const ids = [...document.querySelectorAll('#db-dk-list .db-row-key')].map(x => x.dataset.v).filter(id => id !== onId);
-    document.querySelector(`.db-row-key[data-v="${ids[0]}"]`).click();
-    const setKey = BS.SLOTS()[BS.ACTIVE_SLOT].key, setOn = document.querySelector(`.db-row-key[data-v="${ids[0]}"]`).classList.contains('on');
+    const ids = [...document.querySelectorAll('#db-dk-list .st')].map(x => x.dataset.v).filter(id => id !== onId);
+    document.querySelector(`#db-dk-list .st[data-v="${ids[0]}"]`).click();
+    const setKey = BS.SLOTS()[BS.ACTIVE_SLOT].key, setOn = document.querySelector(`#db-dk-list .st[data-v="${ids[0]}"]`).classList.contains('on');
     while ((BS.PLAYER_DECK[setKey] || 0) > 0) BS.dbChange(setKey, -1);
     const cleared = !BS.SLOTS()[BS.ACTIVE_SLOT].key;
     document.querySelector('[data-a="db-import"]').click(); await new Promise(x => setTimeout(x, 20));

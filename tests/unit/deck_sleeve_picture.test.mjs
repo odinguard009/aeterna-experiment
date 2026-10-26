@@ -37,10 +37,10 @@ test('U95-1 upload a sleeve picture: saved per slot, tinted on your side of the 
   assert.deepEqual(errors, []);
 });
 
-test('U95-2 phone: the deck bar shows a mini preview of the deck look', async () => {
+test('U95-2 phone: the Look tab previews the deck look (sleeve tint, selected cores)', async () => {
   const { page, errors } = await open({ width: 390, height: 844 }, true);
-  await page.evaluate(() => { BS.SLOTS()[BS.ACTIVE_SLOT].look = { sleeve: 'gold', core: 'green', soul: 'purple' }; BS.switchView('view-deckbuilder'); return 1; });
-  const r = await page.evaluate(() => { const m = document.querySelector('#db-deckbar .db-mini'); return m && { vis: m.getBoundingClientRect().width > 0, sl: m.querySelector('.sleeve').style.getPropertyValue('--sl-tint'), core: m.querySelector('.g-core').style.getPropertyValue('--ae-core2') }; });
-  assert.deepEqual(r, { vis: true, sl: '#e9c46a', core: '#2fbf71' });
+  await page.evaluate(() => { BS.SLOTS()[BS.ACTIVE_SLOT].look = { sleeve: 'gold', core: 'green', soul: 'purple' }; BS.switchView('view-deckbuilder'); document.querySelector('[data-a="db-tab"][data-v="look"]').click(); return 1; });
+  const r = await page.evaluate(() => { const m = document.querySelector('#db-look .cf.back'); return m && { sl: m.style.getPropertyValue('--sl'), on: [...document.querySelectorAll('#db-look .db-lkb[aria-pressed="true"]')].map(b => b.dataset.v) }; });
+  assert.deepEqual(r, { sl: '#e9c46a', on: ['core:green', 'soul:purple'] });
   assert.deepEqual(errors, []);
 });

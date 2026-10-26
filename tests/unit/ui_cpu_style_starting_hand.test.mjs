@@ -42,7 +42,7 @@ for (const screen of ['pc', 'phone']) {
     assert.equal(v, 'balanced');
   });
   test(`U04-${screen} the deck builder has colour, cost and type filters`, async () => {
-    const r = await ev(() => { BS.switchView('view-deckbuilder'); return ['db-f-colors', 'db-f-costs', 'db-f-types'].map(i => document.querySelectorAll('#' + i + ' [data-a="db-chip"]').length > 0); }, null, screen);   // v0.53.0: chips replace the selects
+    const r = await ev(() => { BS.switchView('view-deckbuilder'); return ['db-pips', 'db-costs', 'db-types'].map(i => document.querySelectorAll('#' + i + ' [data-a="db-chip"]').length > 0); }, null, screen);   // v0.137.0: the mockup toolbar
     assert.deepEqual(r, [true, true, true]);
     await shot(screen, 'deckbuilder');
   });
@@ -73,9 +73,9 @@ for (const screen of ['pc', 'phone']) {
     assert.equal(hi, true);
     await ev(chip, ['types', 'Magic'], screen);
     const txt = await ev(() => document.getElementById('db-count').textContent, null, screen);
-    assert.match(txt, /^0 card\(s\) shown|^\d+ card\(s\) shown/);
+    assert.match(txt, /^[\d,]+ card\(s\) shown/);
     await ev(chip, ['colors', ''], screen); await ev(chip, ['costs', ''], screen); await ev(chip, ['types', ''], screen);
-    const all = await ev(() => parseInt(document.getElementById('db-count').textContent, 10), null, screen);   // v0.52.1: the grid is windowed
+    const all = await ev(() => parseInt(document.getElementById('db-count').textContent.replace(/,/g, ''), 10), null, screen);   // v0.52.1: the grid is windowed
     assert.ok(all > 100);
   });
   test(`U09-${screen} Heavy Exhaust is drawn upside down in a portrait slot; plain Exhaust stays sideways`, async () => {

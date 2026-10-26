@@ -106,17 +106,15 @@ test('S15 cards without symbolColors keep their printed colour and count (built-
   const r = await ev(() => [BS.CARDS['BS75-X03'].symbols, BS.CARDS['BS75-X03'].symbolColors, BS.CARDS['BS74-047'].symbols]);
   assert.deepEqual(r, [2, undefined, 1]);
 });
-test('S16 deck builder shows the badge; the copy count sits bottom-left so they do not overlap', async () => {
+test('S16 deck builder tile (mockup): the copy pips sit under the tile and follow the deck count', async () => {   // v0.137.0: the mockup tile has no symbol badge, only the three copy pips
   const r = await ev(() => { BS.testSetup(); document.querySelector('[data-a="go-deck"]').click();
-    const only = document.getElementById('db-only'); only.checked = true; only.dispatchEvent(new Event('change', { bubbles: true }));   // v0.52.1: windowed grid
-    const cards = [...document.querySelectorAll('#db-card-list .tcg-card')];
-    const card = cards.find(x => x.querySelector('.qty-badge') && x.querySelector('.sym-badge'));
-    if (!card) return { badges: cards.filter(x => x.querySelector('.sym-badge')).length, both: false };
-    const q = card.querySelector('.qty-badge').getBoundingClientRect(), s = card.querySelector('.sym-badge').getBoundingClientRect();
-    return { badges: cards.filter(x => x.querySelector('.sym-badge')).length, both: true, apart: q.right <= s.left }; });
-  assert.ok(r.badges > 10, JSON.stringify(r));
-  assert.deepEqual([r.both, r.apart], [true, true]);
-  await ev(() => { const only = document.getElementById('db-only'); only.checked = false; only.dispatchEvent(new Event('change', { bubbles: true })); });
+    document.getElementById('db-in').click();
+    const t = document.querySelector('#db-card-list .tile .bd i.f') && document.querySelector('#db-card-list .tile .bd i.f').closest('.tile');
+    if (!t) return { found: false };
+    const id = t.dataset.v, filled = t.querySelectorAll('.bd i.f').length, all = t.querySelectorAll('.bd i').length, b = t.querySelector('.bd').getBoundingClientRect(), tb = t.getBoundingClientRect();
+    document.getElementById('db-in').click();
+    return { found: true, ok: filled === Math.min(3, BS.PLAYER_DECK[id]) && all === 3, below: b.top >= tb.top + tb.height * 0.8 }; });
+  assert.deepEqual([r.found, r.ok, r.below], [true, true, true], JSON.stringify(r));
 });
 test('S17 deck builder CSS keeps the copy count away from the symbol badge', async () => {
   const r = await ev(() => [...document.styleSheets].flatMap(s => [...s.cssRules]).some(x => x.selectorText === '.db-grid .tcg-card .qty-badge' && x.style.left === '2px'));

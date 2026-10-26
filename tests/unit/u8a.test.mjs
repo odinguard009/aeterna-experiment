@@ -46,6 +46,7 @@ test('U8A-3 deck builder Clear asks first; Cancel keeps the deck, Clear empties 
   const total = () => page.evaluate(() => Object.values(BS.PLAYER_DECK).reduce((t, x) => t + x, 0));
   await page.evaluate(() => { BS.switchView('view-deckbuilder'); return 1; });
   const n = await total(); assert.ok(n > 0);
+  await page.evaluate(() => { BS.dbSheet('deck'); return 1; }); await page.click('#db-menu-btn');   // Clear lives in the deck options (...)
   await page.click('[data-a="db-clear"]:visible');
   await page.waitForFunction(() => /Clear the deck\?/.test((document.querySelector('#action-modal.active') || {}).textContent || ''));
   assert.equal(await total(), n, 'nothing happens before the answer');
@@ -77,13 +78,14 @@ test('U8A-5 the deck builder count without filters = the Home count plus the Tra
   const db = await page.evaluate(() => document.getElementById('db-count').textContent);
   const tr = await page.evaluate(() => Object.keys(BS.CARDS).filter(id => id.startsWith('TRAIN-') && !BS.CARDS[id].token).length);
   assert.ok(tr > 0);
-  assert.equal(db, `${home + tr} card(s) shown (${tr} Training)`);
+  assert.equal(db, `${(home + tr).toLocaleString('en-US')} card(s) shown (${tr} Training)`);
 });
 
 test('U8A-6 phone: the open deck sheet has a way back to My decks, and leaving closes the sheet', async () => {
   const { page, errors } = await open('phone');
   await page.evaluate(() => { BS.switchView('view-deckbuilder'); BS.dbSheet('deck'); return 1; });
-  const b = page.locator('#view-deckbuilder.db-open-deck .db-sheet-back:visible');
+  await page.click('#db-menu-btn');   // the options row holds "My decks"
+  const b = page.locator('#view-deckbuilder.db-open-deck [data-a="go-decks"]:visible');
   assert.equal(await b.count(), 1);
   await b.click();
   assert.deepEqual(await page.evaluate(() => [document.querySelector('.app-view.active').id, document.getElementById('view-deckbuilder').classList.contains('db-open-deck')]), ['view-decks', false]);

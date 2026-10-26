@@ -32,14 +32,14 @@ test('DB2 Test hand shows 4 cards and Draw again deals another hand', async () =
 });
 test('DB3 card size S / M / L is applied to the grid and saved', async () => {
   await page.click('[data-a="db-size"][data-v="l"]');
-  assert.equal(await page.evaluate(() => document.getElementById('db-card-list').style.getPropertyValue('--db-cw')), '96px');
+  assert.equal(await page.evaluate(() => document.getElementById('db-card-list').style.getPropertyValue('--cols')), '4');   // v0.137.0: the size sets the column count
   assert.equal(await page.evaluate(() => localStorage.getItem('aeterna.dbsize.v1')), 'l');
   assert.equal(await page.getAttribute('[data-a="db-size"][data-v="l"]', 'aria-pressed'), 'true');
   await page.click('[data-a="db-size"][data-v="m"]');
 });
 test('DB4 the count ring follows the deck size and a hover shows the peek', async () => {
-  const p = await page.evaluate(() => document.getElementById('db-topcount').style.getPropertyValue('--p'));
-  assert.equal(p, '20%');
+  const p = await page.evaluate(() => document.querySelector('#db-ring b span').firstChild.textContent);   // v0.137.0: the mockup ring shows the count
+  assert.equal(p, '8');
   await page.hover('#db-card-list [data-a="dbcard"] >> nth=0');
   await page.waitForSelector('#db-peek', { timeout: 3000 });
   await page.mouse.move(5, 5);

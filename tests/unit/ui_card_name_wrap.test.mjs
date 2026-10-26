@@ -71,13 +71,13 @@ for (const screen of ['pc', 'phone']) {
     else assert.notEqual(r.mask, 'none');
   });
   test(`N08-${screen} deck builder controls: >= 34 px high on phones, not smaller than before on PC`, async () => {
-    const r = await ev(() => { BS.switchView('view-deckbuilder'); BS.dbSheet(innerWidth < 900 ? 'menu' : ''); const ids = ['db-format', 'db-slot', 'db-name', 'db-preset', 'db-reset', 'db-clear', 'db-save', 'go-decks', 'db-search'];   // v0.53.0: phone tools sit in the menu; v0.119.0: SAVE + back-to-My-decks replace Back to Lobby
+    const r = await ev(() => { BS.switchView('view-deckbuilder'); BS.dbSheet('menu'); const ids = ['db-format', 'db-slot', 'db-name', 'db-preset', 'db-reset', 'db-clear', 'db-save', 'go-decks', 'db-search'];   // v0.53.0: phone tools sit in the menu; v0.119.0: SAVE + back-to-My-decks replace Back to Lobby
       const out = ids.map(id => { const e = document.querySelector(['#' + id, '[data-a="' + id + '"]', '.' + id].map(x => '#view-deckbuilder ' + x).join(',')); return { id, h: e ? Math.round(e.getBoundingClientRect().height) : -1 }; }); BS.dbSheet(''); return out; }, null, screen);
     for (const x of r) { assert.ok(x.h > 0, x.id + ' missing'); assert.ok(x.h >= (screen === 'phone' ? 34 : 20), `${x.id} ${x.h}px`); }
     await shot(screen, 'deck');
   });
-  test(`N09-${screen} the "only" checkbox is at least 18 px on phones`, async () => {
-    const h = await ev(() => { BS.switchView('view-deckbuilder'); BS.dbSheet(innerWidth < 900 ? 'filters' : ''); const v = Math.round(document.querySelector('#db-only,[data-a="db-only"]').getBoundingClientRect().height); BS.dbSheet(''); return v; }, null, screen);   // v0.53.0: phone filters sit in a sheet
+  test(`N09-${screen} the In Deck chip is at least 18 px on phones`, async () => {
+    const h = await ev(() => { BS.switchView('view-deckbuilder'); const v = Math.round(document.querySelector('#db-in').getBoundingClientRect().height); BS.dbSheet(''); return v; }, null, screen);   // v0.53.0: phone filters sit in a sheet
     assert.ok(h >= (screen === 'phone' ? 18 : 12), h + 'px');
   });
   test(`N10-${screen} header and navigation buttons have a larger touch area (same look)`, async () => {

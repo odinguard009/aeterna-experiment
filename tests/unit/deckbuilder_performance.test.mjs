@@ -23,11 +23,11 @@ const openTime = () => page.evaluate(async () => {
   await new Promise(r => requestAnimationFrame(() => setTimeout(r)));
   return performance.now() - t0;
 });
-const shown = () => page.evaluate(() => ({ count: parseInt(document.getElementById('db-count').textContent, 10), dom: document.querySelectorAll('#db-card-list .tcg-card').length }));
+const shown = () => page.evaluate(() => ({ count: parseInt(document.getElementById('db-count').textContent.replace(/,/g, ''), 10), dom: document.querySelectorAll('#db-card-list .tile').length }));
 const search = q => page.evaluate(async q => {
   const s = document.getElementById('db-search'); s.value = q; s.dispatchEvent(new Event('input', { bubbles: true }));
   await new Promise(r => setTimeout(r, 160));
-  return parseInt(document.getElementById('db-count').textContent, 10);
+  return parseInt(document.getElementById('db-count').textContent.replace(/,/g, ''), 10);
 }, q);
 
 test('B14 all staged cards are in the game (8,000+ cards)', async () => {
@@ -61,7 +61,7 @@ test('B17 a search keystroke filters in <= 100 ms (PC) and is debounced', { skip
     for (const q of ['d', 'dr', 'dra']) { s.value = q; s.dispatchEvent(new Event('input', { bubbles: true })); }
     const mid = document.getElementById('db-count').textContent;
     await new Promise(r => setTimeout(r, 160));
-    return { same: mid === before, after: parseInt(document.getElementById('db-count').textContent, 10) };
+    return { same: mid === before, after: parseInt(document.getElementById('db-count').textContent.replace(/,/g, ''), 10) };
   });
   assert.equal(n.same, true);
   assert.ok(n.after > 0);
@@ -82,7 +82,7 @@ test('B18 scrolling to the end shows the last cards; scroll height matches all r
 });
 test('B19 search matches name and ID; filters still combine', async () => {
   assert.equal(await search('bs05-001'), 1);       // v0.62.0: 'bs01-001' also matches 26RBS01-001
-  const n = await page.evaluate(() => { document.querySelector('[data-a="db-chip"][data-v="colors:red"]').click(); return parseInt(document.getElementById('db-count').textContent, 10); });
+  const n = await page.evaluate(() => { document.querySelector('[data-a="db-chip"][data-v="colors:red"]').click(); return parseInt(document.getElementById('db-count').textContent.replace(/,/g, ''), 10); });
   assert.ok(n <= 1);
   await page.evaluate(() => document.querySelector('[data-a="db-chip"][data-v="colors:red"]').click());
   await search('');
