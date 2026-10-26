@@ -7,8 +7,8 @@ Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.m
 ## v0.133.0
 - Lane: U/I
 - Time: ~25 min (session start → release), claude-sonnet-5-5.
-- **U14h part 1 Lobby and pages.** Home: **Card of the Day** (the same card all day, chosen from the date; tap to open it), **Play in three steps** with a one-line summary of your deck, format and CPU deck, and **My decks** tiles (all 8 slots with card count and legal mark; tap one to make it the active deck). Settings: a **Profile** section with statistics read from the saved match history only (matches, wins, win rate, win streak, best streak, average turns, wins and losses per format). How to Play: a **Glossary** of every card keyword.
-  - **Left for U14h2:** Settings regrouped into Appearance, Game, Animation and sound, Accessibility, Cards and saved data (the current sections stay until then).
+- **U14h Lobby and pages.** Home: **Card of the Day** (the same card all day, chosen from the date; tap to open it), **Play in three steps** with a one-line summary of your deck, format and CPU deck, and **My decks** tiles (all 8 slots with card count and legal mark; tap one to make it the active deck). Settings: a **Profile** section with statistics read from the saved match history only (matches, wins, win rate, win streak, best streak, average turns, wins and losses per format). How to Play: a **Glossary** of every card keyword.
+  - **U14h2 Settings regrouped** into Appearance, Game (speed, CPU style, online server), Animation and sound, Accessibility (long-press) and Cards and saved data (card images, reset, then Profile and Match history); every control and id is unchanged, only the grouping and menu changed.
   - Budgets: B01 780 -> 790 KB and B02 220 -> 224 KB on purpose. Tests: `tests/unit/home_v14.test.mjs` (HM1-HM4). Backup branch `backup/v0.132.0`.
 
 ## v0.132.0

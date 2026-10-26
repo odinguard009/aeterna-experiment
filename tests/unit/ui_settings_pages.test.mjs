@@ -34,10 +34,10 @@ for (const screen of ['pc', 'phone']) {
       wide: document.documentElement.scrollWidth > innerWidth + 1,
     }));
     assert.equal(r.head, 'PREFERENCES');
-    assert.deepEqual(r.menu, ['appearance', 'speed', 'sound', 'cpu', 'online', 'images', 'data', 'history']);
+    assert.deepEqual(r.menu, ['appearance', 'game', 'sound', 'access', 'data']);
     assert.deepEqual([r.ids, r.acts, r.cols, r.wide], [[], [], 9, false]);
-    await page.click('#set-menu [data-v="history"]');
-    assert.equal(await page.evaluate(() => document.querySelector('#set-menu [aria-current="true"]').dataset.v), 'history');
+    await page.click('#set-menu [data-v="access"]');
+    assert.equal(await page.evaluate(() => document.querySelector('#set-menu [aria-current="true"]').dataset.v), 'access');
     assert.deepEqual(errors, []);
   });
 
