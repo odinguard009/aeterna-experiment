@@ -2208,6 +2208,7 @@ html[data-ts="large"] .mk{font-size:16px;}html[data-ts="larger"] .mk{font-size:1
 .kbd-list{display:grid;gap:8px;text-align:left;}
 .kbd-row{display:flex;align-items:center;gap:12px;}
 .kbd-row kbd{flex:none;min-width:112px;padding:4px 10px;text-align:center;font:800 .82em var(--f-num,inherit);background:var(--ae-panel2,#0001);box-shadow:inset 0 0 0 1px var(--ae-line2);clip-path:var(--par,none);}
+.mk .inf{min-width:24px}
 </style>
 </head>
 <body>
@@ -2737,7 +2738,7 @@ function bindHost(h) {
    type: 'Spirit' | 'Nexus' | 'Magic'      symbol: card color     symbols: number of symbols
    reduction: {color: n}         levels: [{cores, bp}]  (Nexus levels have no bp)
    --------------------------------------------------------------------- */
-const VERSION = '0.145.0';
+const VERSION = '0.146.0';
 const CARDS = {};
 function defCard(o) {
   CARDS[o.id] = Object.assign({ type: 'Spirit', reduction: {}, symbols: 1, families: [], keywords: [], implemented: true, desc: 'Vanilla test card (no effect).', block: 'A' }, o);

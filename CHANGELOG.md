@@ -4,6 +4,11 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.146.0
+- Lane: U/I
+- **Frontend audit, part 1.** Scripted pass over 10 screens at 390 px and 1280 px: no console errors, no page-wide horizontal scroll, no unnamed buttons, no images without alt. One finding fixed: the deck builder card info (i) buttons were 22 px wide, now 24 px (WCAG 2.2 minimum).
+  - Checked: scripted pass above, loop green. Not checked: contrast per theme colour, keyboard order, screen reader, battle screen
+
 ## v0.145.0
 - Lane: U/I
 - **Spinning coin in the Coin Toss dialogs (mockup parity).** The pick-a-side and first/second dialogs now show the gold coin of the mockup spinning once (shows H or T for the result); off with reduced motion. No rule change.
