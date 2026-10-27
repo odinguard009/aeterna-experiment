@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 7731,
+  "cards": 7723,
   "per_saga": {
    "1": 785,
    "2": 332,
@@ -19,23 +19,23 @@
    "15": 356,
    "16": 334,
    "17": 110,
-   "50": 436
+   "50": 428
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 975,
+  "skipped_curated": 983,
   "number_conflicts": 5,
   "nexus_levels_added": 715,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 556,
+  "image_problems": 554,
   "merged": 109,
   "brave_unparsed": 171,
   "ut_lines_added": 119,
   "odd_reduction": 808,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 554
+  "without_image": 552
  },
  "tokens": [
   "BS73-T001",
@@ -785,6 +785,7 @@
   "BS76-X01",
   "BS76-X02",
   "BS77-040",
+  "26RSD01-001",
   "26RSD01-002",
   "26RSD01-003",
   "26RSD01-004",
@@ -848,6 +849,7 @@
   "26RBS01-003",
   "26RBS01-005",
   "26RBS01-006",
+  "26RBS01-009",
   "26RBS01-010",
   "26RBS01-011",
   "26RBS01-012",
@@ -857,6 +859,7 @@
   "26RBS01-018",
   "26RBS01-019",
   "26RBS01-020",
+  "26RBS01-022",
   "26RBS01-023",
   "26RBS01-027",
   "26RBS01-029",
@@ -893,6 +896,7 @@
   "26RBS01-088",
   "26RBS01-090",
   "26RBS01-097",
+  "26RBS01-100",
   "26RBS01-109",
   "26RBS01-110",
   "26RBS01-111",
@@ -925,6 +929,7 @@
   "26RCB01-010",
   "26RCB01-011",
   "26RCB01-012",
+  "26RCB01-015",
   "26RCB01-018",
   "26RCB01-019",
   "26RCB01-020",
@@ -956,8 +961,10 @@
   "26RCB01-X01",
   "26RCB01-X02",
   "26RBS02-002",
+  "26RBS02-003",
   "26RBS02-004",
   "26RBS02-008",
+  "26RBS02-011",
   "26RBS02-015",
   "26RBS02-020",
   "26RBS02-024",
@@ -1008,6 +1015,7 @@
   "26RBS03-055",
   "26RBS03-061",
   "26RBS03-063",
+  "26RBS03-064",
   "26RBS03-065",
   "26RBS03-066",
   "26RBS03-068",
@@ -4138,11 +4146,6 @@
    "problem": "ambiguous name (2 files, none in set 26RCB01)"
   },
   {
-   "id": "26RCB01-015",
-   "name": "Kamen Rider Ryugen-Yomi Yomotsuheguri Arms",
-   "problem": "ambiguous name (2 files, none in set 26RCB01)"
-  },
-  {
    "id": "26RCB01-017",
    "name": "Kamen Rider Duke Dragon Energy Arms",
    "problem": "ambiguous name (2 files, none in set 26RCB01)"
@@ -4500,11 +4503,6 @@
   {
    "id": "26RBS03-062",
    "name": "Euus-Callus",
-   "problem": "no image"
-  },
-  {
-   "id": "26RBS03-064",
-   "name": "The PowerWings Megaropsis",
    "problem": "no image"
   },
   {

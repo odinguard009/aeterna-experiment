@@ -546,6 +546,19 @@ def cond_of(x):
     if m and m.group(1).lower() not in ('current',): return {'ctrl': {'n': 1, 'type': 'Spirit', 'keyword': m.group(1).capitalize()}}
     m = re.fullmatch(r'you control another "([^"]+)" family spirit', x, re.I)      # v0.150 "another X family Spirit" (engine ctrl.other = not the source)
     if m: return {'ctrl': {'n': 1, 'type': 'Spirit', 'family': m.group(1), 'other': True}}
+    m = re.fullmatch(r'you control (?:an?|any) (?:(red|purple|green|white|yellow|blue) )?spirit with (\d[\d,]*) BP or more', x, re.I)      # v0.167 (engine ctrl.bpGe)
+    if m:
+        q = {'n': 1, 'type': 'Spirit', 'bpGe': bpv(m.group(2))}
+        if m.group(1): q['colors'] = [m.group(1).lower()]
+        return {'ctrl': q}
+    m = re.fullmatch(r'you control (?:an?|any) (?:(red|purple|green|white|yellow|blue) )?spirit with no printed effects', x, re.I)      # v0.167 (engine ctrl.noText)
+    if m:
+        q = {'n': 1, 'type': 'Spirit', 'noText': True}
+        if m.group(1): q['colors'] = [m.group(1).lower()]
+        return {'ctrl': q}
+    m = re.fullmatch(r'you control (?:an?|any) (exhausted )?"([^"]+)"', x, re.I)      # v0.167 a card name, optionally exhausted (engine ctrl.name)
+    if m and m.group(1):
+        return {'ctrl': {'n': 1, 'type': 'Spirit', 'name': m.group(2).strip(), 'exhausted': True}}
     m = CTRL_ANY.fullmatch(x)
     if m:
         q = {'n': 1, 'type': 'Both' if '/' in m.group(4) else m.group(4).capitalize()}
@@ -588,6 +601,12 @@ def instead_pair(m, ctx):
     if not cond: raise Review('sentence: ' + m.group(0)[:140])
     first, b0 = m.group(1).strip(), (m.group(3) or m.group(4)).strip()
     sb = SUBST_BP.match(b0)
+    two = re.fullmatch(r'target (two|three)(?: instead)?', b0, re.I)      # v0.167 "If C, target two instead.": the same single-target action, run N times (each run picks a still-legal target)
+    if two:
+        a1, o1 = action_of(first, ctx)
+        if o1 or not a1 or len(a1) != 1 or 'if' in a1[0] or a1[0].get('do') not in ('DESTROY', 'BOUNCE_OPP', 'BP_MINUS'): raise Review('sentence: ' + m.group(0)[:140])
+        k = n_of(two.group(1).lower())
+        return [dict(a1[0], **{'if': {'not': cond}})] + [dict(a1[0], **{'if': dict(cond)}) for _ in range(k)], False
     if sb:
         kind, n, rel = sb.group(1).lower(), sb.group(2), sb.group(3).lower()
         pat = r'(\d[\d,]*)( ?BP or %s)' % rel if kind == 'bp' else r'(Cost )(\d+)( or %s)' % rel

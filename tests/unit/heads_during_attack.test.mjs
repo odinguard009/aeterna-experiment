@@ -35,7 +35,7 @@ test('DA72-02 compiler: "For each X you control, this Spirit gains +N BP" (stati
   assert.deepEqual(compile('[LV1] For each "Ryuman"-named Spirit you control, this Spirit gains +2000 BP.').effects[0].per, { type: 'Spirit', name: 'Ryuman' });
   const a = compile('[LV1][LV2] (When Attacks) For each "Dragon" family Spirit you control, this Spirit gains +2000 BP.');
   assert.deepEqual(a.effects, [{ trigger: 'ATTACKS', lv: [1, 2], actions: [{ do: 'BP_PLUS', n: 2000, per: { type: 'Spirit', family: 'Dragon' } }] }], JSON.stringify(a));
-  assert.match(compile('[LV1] (During Attack) For each Spirit with Legacy you control, this Spirit gains +2000 BP.').review || '', /./, 'keyword counts stay in review');
+  assert.deepEqual(compile('[LV1] (During Attack) For each Spirit with Legacy you control, this Spirit gains +2000 BP.').effects[0].per, { type: 'Spirit', keyword: 'Legacy' });      // v0.167: keyword counts (engine per.keyword)
 });
 
 let g;

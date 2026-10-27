@@ -4,6 +4,11 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.167.0
+- Lane: K
+- **Lane K: 8 more Standard cards complete, 850 of 8,709; new `ctrl` qualifiers `bpGe` / `noText` / `name`, `per.keyword`, and Legacy / Shamanism detection.** Engine: a control condition can ask for a Spirit with N BP or more (`bpGe`), with no printed effects (`noText`) or with a card name (`name`, with `exhausted`); "for each Spirit with <Keyword> you control" counts by keyword (`per.keyword`); `cardHasKeyword` (and so every `match.keyword`) now recognises Legacy (the `legacy` flag / head line) and Shamanism (the `{{Shaman|...}}` holder), which no keyword list carried. Compiler: "If you control any Spirit with 10000 BP or more / any Blue Spirit with no printed effects / any exhausted \"X\", change the targeting BP/cost ... instead" and "target two instead" (the same target action run twice), "All your Spirits with <Keyword> gain +N BP" (also in Opposing Attack Step), "(During Attack) At the end of battle, X" (the attacker's end-of-battle effect). Cards: The RedGuide Shaniel, Centicade, The Dual Flow Desert, Striares, The HornPower Bullfal, The PowerWings Megaropsis, Kamen Rider Ryugen-Yomi Yomotsuheguri Arms, Mushakko.
+  - Checked: loop, `ctrl_bp_name_filters` (5 tests), `compiler_v2` C167-01, promotion smoke 8 / 8, `card_verify` on four of the cards. Not checked: full pre-push set and Regression (CI), a real device. Revert note: `git revert` the v0.167.0 commit.
+
 ## v0.166.0
 - Lane: K
 - **Lane K: 2 more Standard cards complete, 842 of 8,709; new condition `handLe`.** "If your Hand is five or less" is an engine condition (the owner's Hand size when the action resolves), and the compiler reads "(During Attack) If <condition>, this Spirit gains +N BP" as a conditional STATIC `attackingOnly` BP, with every condition the v2 reader knows (a hook from v1 to `cond_of`). Cards: Faltex 26RSD09-004 (was partial: True Release draw), 26RBS01-018 (Shamanism). Effect format v12 (addition only).

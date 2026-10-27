@@ -92,7 +92,7 @@ def action_of(s, ctx):
     fam = [   # v0.54: family names keep their case
         (r'^refresh an? "([^"]+)" family spirit (?:you control|of yours)$', lambda m: [{'do': 'REFRESH_SPIRIT', 'match': {'family': [m.group(1)]}}]),
         (r'^(?:during this turn, )?' + PER_NP + r',? (?:during this turn,? )?this spirit (?:gains|gets) \+(\d[\d,]*) ?bp(?: (?:until (?:the )?end of (?:the )?turn|during this turn))?$',
-         lambda m: [{'do': 'BP_PLUS', 'n': bp(m.group(5)), 'per': per_of(m)}]),      # v0.72 "For each X you control, this Spirit gains +N BP"; v0.163 also "..., during this turn, this Spirit gains" (the clause after the count)
+         lambda m: [{'do': 'BP_PLUS', 'n': bp(m.group(6)), 'per': per_of(m)}]),      # v0.72 "For each X you control, this Spirit gains +N BP"; v0.163 also "..., during this turn, this Spirit gains" (the clause after the count)
         (r'^this spirit (?:gains|gets) \+(\d[\d,]*) ?bp ' + PER_NP + r'(?: (?:until (?:the )?end of (?:the )?turn|during this turn))?$',
          lambda m: [{'do': 'BP_PLUS', 'n': bp(m.group(1)), 'per': per_of(re.match(PER_NP, m.group(0)[m.group(0).lower().index('for each'):], re.I))}]),      # v0.163 "This Spirit gains +N BP for each X you control"
     ]
@@ -143,13 +143,14 @@ def action_of(s, ctx):
 
 
 # v0.72 "for each <colour> <"F" family | "N"-named> Spirit/Nexus you control" -> engine "per" {type, colors, family, name}
-PER_NP = r'for each (?:(red|purple|green|white|yellow|blue) )?(?:"([^"]+)" family |"([^"]+)"-named )?(spirit|nexus)(?:es|s)? (?:you control|on your field)'
+PER_NP = r'for each (?:(red|purple|green|white|yellow|blue) )?(?:"([^"]+)" family |"([^"]+)"-named )?(spirit|nexus)(?:es|s)?(?: with ([A-Z][a-z]+))? (?:you control|on your field)'
 
 def per_of(m):
     q = {'type': m.group(4).capitalize()}
     if m.group(1): q['colors'] = [m.group(1).lower()]
     if m.group(2): q['family'] = m.group(2)
     if m.group(3): q['name'] = m.group(3)
+    if m.group(5): q['keyword'] = m.group(5)      # v0.167 "for each Spirit with Legacy you control" (engine per.keyword)
     return q
 
 PER_STATIC = re.compile(r'^(\(During Attack\)\s*)?' + PER_NP + r',? this spirit (?:gains|gets) \+(\d[\d,]*) ?bp\.?$', re.I)
@@ -305,7 +306,7 @@ STEP_HEAD = re.compile(r'^\((Your|Opposing|Either) (Start|Core|Draw|Refresh|Main
 WIN_KEYS = ('step', 'attackStep', 'oppTurn')
 OPP_ATT_BODY = re.compile(r'^When an opposing (?:Cost (\d+) or less )?Spirit(/Ultimate)? attacks,\s*')
 ALLY_ATT_BODY = re.compile(r'^When (?:one of )?your (?:"([^"]+)" family |(Red|Purple|Green|White|Yellow|Blue) )?Spirits? attacks?,\s*')
-OWN_BP_BODY = re.compile(r'^All (?:of )?your (?:"([^"]+)" family )?Spirits (?:gain|get) \+(\d[\d,]*) ?BP\.?$', re.I)
+OWN_BP_BODY = re.compile(r'^All (?:of )?your (?:"([^"]+)" family )?Spirits (?:with (?P<kw>[A-Z][A-Za-z]+) )?(?:gain|get) \+(\d[\d,]*) ?BP\.?$', re.I)
 SELF_BP_BODY = re.compile(r'^This Spirit (?:gains|gets) \+(\d[\d,]*) ?BP\.?$', re.I)
 BURST_WHILE = re.compile(r"^While you (don't )?have an? (?:set Burst|Burst set),\s*", re.I)
 BLOCK_EXH_BODY = re.compile(r'^This Spirit can block (?:opposing Spirits )?while exhausted\.?$', re.I)
@@ -343,8 +344,9 @@ def step_window(p, card, lv, rush):
         if mm:
             if rush: raise Review('Rush with a step-window constant effect')
             own = mm.re is OWN_BP_BODY
-            x = {'trigger': 'STATIC', 'bp': bp(mm.group(2) if own else mm.group(1)), 'to': 'own' if own else 'self'}
+            x = {'trigger': 'STATIC', 'bp': bp(mm.group(3) if own else mm.group(1)), 'to': 'own' if own else 'self'}
             if own and mm.group(1): x['match'] = {'family': [mm.group(1)]}
+            if own and mm.group('kw'): x['match'] = dict(x.get('match') or {}, keyword=mm.group('kw'))      # v0.167 "All your Spirits with Shamanism gain +N BP"
             e = [x]
         elif BLOCK_EXH_BODY.match(body):
             if rush: raise Review('Rush with a step-window constant effect')
@@ -458,12 +460,13 @@ def spirit_paragraph_main(p, card, rush):
     if nostack: p = p[ns.end():]      # v0.164 "(Can't Stack) When ..." = noStack on the triggered effect (engine 02d: one activation per card name and effect)
     aw = ally_win(p)
     if aw: p, tmatch, extra = aw; trig = ['ALLY_BATTLE_WIN']; tmatch = tmatch or None; extra = extra or None
+    if not trig: p = re.sub(r'^\(During Attack\)\s*(?=At the end of battle,)', '(When Attacks) ', p)      # v0.167 "(During Attack) At the end of battle, X" = the attacker's end-of-battle effect
     for rx, ts, ex in ([] if trig else BATTLE_HEADS):
         mm = re.match(r'^' + rx + r'\s*', p)
         if mm: trig, extra, p = ts, ex, p[mm.end():]; break
     mm = None if trig else PER_STATIC.match(p)
     if mm:      # v0.72 static "for each X you control" BP (with (During Attack): only while attacking)
-        e = {'trigger': 'STATIC', 'bp': bp(mm.group(6)), 'to': 'self'}
+        e = {'trigger': 'STATIC', 'bp': bp(mm.group(7)), 'to': 'self'}
         if lv: e['lv'] = lv
         if mm.group(1): e['attackingOnly'] = True
         q = re.match(PER_NP, p[mm.end(1) if mm.group(1) else 0:], re.I)
@@ -479,10 +482,11 @@ def spirit_paragraph_main(p, card, rush):
         mm = None if trig else re.match(r'^\(Opposing Attack Step\)\s*When an opposing Spirit attacks,\s*', p)
         if mm: trig, tmatch, p = ['OPP_ATTACKS'], {'noUlt': True}, p[mm.end():]
     if trig is None:
-        mm = re.match(r'^\(Your Attack Step\)\s*All (?:your|of your) (?:"([^"]+)" family )?Spirits (?:gain|get) \+(\d[\d,]*) ?BP\.?$', p, re.I)
+        mm = re.match(r'^\(Your Attack Step\)\s*All (?:your|of your) (?:"([^"]+)" family )?Spirits (?:with (?P<kw>[A-Z][A-Za-z]+) )?(?:gain|get) \+(\d[\d,]*) ?BP\.?$', p, re.I)
         if mm:      # v0.54: static BP for your Spirits during your Attack Step
-            e = {'trigger': 'STATIC', 'bp': bp(mm.group(2)), 'to': 'own', 'if': dict(ATTACK_STEP['(Your Attack Step)'])}
+            e = {'trigger': 'STATIC', 'bp': bp(mm.group(3)), 'to': 'own', 'if': dict(ATTACK_STEP['(Your Attack Step)'])}
             if mm.group(1): e['match'] = {'family': [mm.group(1)]}
+            if mm.group('kw'): e['match'] = dict(e.get('match') or {}, keyword=mm.group('kw'))      # v0.167
             if lv: e['lv'] = lv
             return [e], flags
         mm = re.match(r'^\(Your Attack Step\)\s*This Spirit (?:gains|gets) \+(\d[\d,]*) ?BP\.?$', p, re.I)

@@ -106,3 +106,17 @@ test('C166-01 "(During Attack) If <condition>, this Spirit gains +N BP" and "If 
   assert.deepEqual(r.effects[0], { trigger: 'STATIC', bp: 2000, to: 'self', if: { ctrl: { n: 1, type: 'Spirit', keyword: 'Shamanism' } }, attackingOnly: true, lv: [1] });
   assert.deepEqual(acts('[LV1] (When Attacks) If your Hand is five or less, draw a card.'), [{ do: 'DRAW', n: 1, if: { handLe: 5 } }]);
 });
+
+test('C167-01 ctrl bpGe / noText / name conditions, "target two instead", "Spirits with <Keyword>" statics, per.keyword, (During Attack) At the end of battle (v0.167.0)', () => {
+  assert.deepEqual(acts('[LV1] (When Attacks) Target an opposing 3000 BP or less Spirit. Destroy it. If you control any Spirit with 10000 BP or more, change the targeting BP to 5000 or less instead.'), [
+    { do: 'DESTROY', bpLe: 3000, if: { not: { ctrl: { n: 1, type: 'Spirit', bpGe: 10000 } } } },
+    { do: 'DESTROY', bpLe: 5000, if: { ctrl: { n: 1, type: 'Spirit', bpGe: 10000 } } }]);
+  assert.deepEqual(acts('[LV1] (When Summoned) Target an opposing Cost 3 or less Spirit. Destroy it. If you control any Blue Spirit with no printed effects, the targeting cost becomes 5 or less instead.')[1],
+    { do: 'DESTROY', costLe: 5, if: { ctrl: { n: 1, type: 'Spirit', noText: true, colors: ['blue'] } } });
+  const two = acts('[LV1] (When Summoned) Target an opposing 5000 BP or less Spirit. Destroy it. If you control any exhausted "Kamen Rider Gaim", target two instead.');
+  assert.equal(two.length, 3);      // one run without the condition, two with it
+  assert.deepEqual(two[1].if, { ctrl: { n: 1, type: 'Spirit', name: 'Kamen Rider Gaim', exhausted: true } });
+  assert.deepEqual(compile('[LV1] (Your Attack Step) All your Spirits with Shamanism gain +1000 BP.').effects[0].match, { keyword: 'Shamanism' });
+  assert.deepEqual(compile('[LV1] (During Attack) For each Spirit with Legacy you control, this Spirit gains +2000 BP.').effects[0].per, { type: 'Spirit', keyword: 'Legacy' });
+  assert.deepEqual(acts('[LV2] (During Attack) At the end of battle, if your Hand is five or less, draw a card.'), [{ do: 'END_BATTLE', then: [{ do: 'DRAW', n: 1, if: { handLe: 5 } }] }]);
+});

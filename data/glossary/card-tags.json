@@ -44331,7 +44331,8 @@
   "M_OPTIONAL"
  ],
  "26RBS01-022": [
-  "A_BP_PLUS"
+  "A_BP_PLUS",
+  "C_LEVEL"
  ],
  "26RBS01-023": [
   "T_ATTACKS",
@@ -45017,7 +45018,8 @@
  ],
  "26RBS02-002": [],
  "26RBS02-003": [
-  "A_BP_PLUS"
+  "A_BP_PLUS",
+  "C_LEVEL"
  ],
  "26RBS02-004": [
   "T_SUMMONED",
@@ -45062,6 +45064,7 @@
  ],
  "26RBS02-011": [
   "T_ATTACKS",
+  "C_LEVEL",
   "M_REPLACEMENT"
  ],
  "26RBS02-012": [
@@ -45953,6 +45956,7 @@
   "A_REVEAL_ADD"
  ],
  "26RBS03-064": [
+  "C_LEVEL",
   "T_DESTROYED",
   "M_REPLACEMENT"
  ],
@@ -46302,6 +46306,7 @@
  "26RCB01-015": [
   "T_SUMMONED",
   "A_EXHAUST",
+  "C_LEVEL",
   "M_REPLACEMENT"
  ],
  "26RCB01-016": [
