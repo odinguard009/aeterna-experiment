@@ -36,12 +36,12 @@ function symBadgeHTML(id) {
   const bg = kinds.length === 1 ? colorVar(kinds[0]) : `conic-gradient(${cols.map((s, i) => `${colorVar(s)} ${Math.round(i * 360 / k)}deg ${Math.round((i + 1) * 360 / k)}deg`).join(', ')})`;
   return `<div class="sym-badge${god ? ' god' : ''}" style="background:${bg}" title="${n} symbol${n > 1 ? 's' : ''}: ${kinds.join(', ')}${god ? ' (God)' : ''}">${n}</div>`;
 }
-function handCardHTML(inst) {
+function handCardHTML(inst, i, n) {
   const card = CARDS[inst.id], p = G.p.player;
   const can = humanCan() && isMainStep();
   const ok = can && (card.type === 'Magic' ? magicUsable(p, inst, 'main') : (canPlayCard(p, inst) || (card.burst && !p.burstSetThisTurn) || mirageUsable(p, inst)));
   const bp = card.levels[0] && card.levels[0].bp != null ? card.levels[0].bp : card.brave ? '+' + card.brave.bp : '-';
-  return `<div class="tcg-card ${ok ? '' : 'dim'}${cardCls(card)}${imgCls(inst.id)}" style="${colorSty(card)}${imgSty(inst.id)}" data-a="hand" data-v="${inst.uid}">
+  return `<div class="tcg-card ${ok ? '' : 'dim'}${cardCls(card)}${imgCls(inst.id)}" style="${colorSty(card)}${imgSty(inst.id)}${n > 1 ? `;--rot:${((i - (n - 1) / 2) * 3).toFixed(1)}deg` : ''}" data-a="hand" data-v="${inst.uid}">
     <div class="cost">${card.cost}</div><div class="type-badge">${card.contract ? 'CON' : card.token ? 'TOK' : card.type.substring(0, 3).toUpperCase()}${rebMark(card)}</div>
     <div class="name">${nameHTML(card.name)}</div><div class="bp">${bp}</div>${magBtnHTML(inst.id, inst.uid)}${symBadgeHTML(inst.id)}</div>`;
 }
@@ -62,14 +62,14 @@ function fieldCardHTML(key, kind, f) {
     ${selB}<div class="cost">${card.cost}</div><div class="type-badge">${f.under.length ? 'ADV' : card.contract ? 'CON' : card.token ? 'TOK' : card.type.substring(0, 3).toUpperCase()}${rebMark(card)}</div>
     <div class="name">${nameHTML(card.name)}</div><div class="core-tag${f.soul ? ' soul-active' : ''}${f.cores ? '' : ' none'}" title="${f.cores} core${f.cores === 1 ? '' : 's'}${f.soul ? ' (Soul Core included)' : ''}"><span class="gems">${gemsHTML(plain, f.soul, 6)}</span><span class="sr-only">C:${f.cores}${f.soul ? ' S' : ''}</span></div>${stack}<div class="bp">${bp}</div>${isSpiritForm(card) ? `<span class="lv-dia" aria-hidden="true" title="Level ${lvNo(f)}"><b>${lvNo(f)}</b></span>` : ''}${magBtnHTML(f.id, f.uid)}${symBadgeHTML(f.id)}</div></div>`;
 }
-function rowHTML(title, scroll, key, items, emptyText, cls, pad) {       // items: [{kind, f}]
-  return `<div class="field-row-wrapper ${cls || ''}"><div class="row-header-badge"><span>${title}</span></div>
+function rowHTML(title, scroll, key, items, emptyText, cls, pad, tag) {       // items: [{kind, f}]; tag (v0.155.0): the hand-count tag beside a Nexus
+  return `<div class="field-row-wrapper ${cls || ''}"><div class="row-header-badge"><span>${title}</span></div>${tag || ''}
     <div class="field-row" data-scroll="${scroll}">${items.length ? items.map(o => fieldCardHTML(key, o.kind, o.f)).join('') + (pad || '') : (pad || `<span class="empty-note">${emptyText}</span>`)}</div></div>`;
 }
 /* Burst / Mirage Area (top-left corner of each field): sleeve = Burst set face down, card face = Mirage set face up */
 function burstAreaHTML(p) {
   const b = p.burst, m = p.mirage; let title = 'BURST·MIR', card = '<div class="ba-card"></div>', lab = '<div class="ba-lab empty">EMPTY</div>';
-  if (m) { const c = CARDS[m.id]; title = b ? 'MIRAGE+BURST' : 'MIRAGE'; card = `<div class="ba-card set-mirage" style="--card-col:${colorVar(c.symbol)}">${cardFaceHTML(c, false)}</div>`; lab = `<div class="ba-lab set">${b ? 'SET +B' : 'SET'}</div>`; }
+  if (m) { const c = CARDS[m.id]; title = b ? 'MIRAGE+BURST' : 'MIRAGE'; card = `<div class="ba-card set-mirage" style="--card-col:${colorVar(c.symbol)}">${cardFaceHTML(c, false)}<span class="btag">MIRAGE SET</span></div>`; lab = `<div class="ba-lab set">${b ? 'SET +B' : 'SET'}</div>`; }
   else if (b) { title = 'BURST'; card = '<div class="ba-card set-burst"><span class="sleeve fill" aria-hidden="true"></span><span class="btag">BURST SET</span></div>'; lab = '<div class="ba-lab set">SET</div>'; }
   return `<div class="burst-area" data-a="zone" data-v="${p.key}:burst" title="Burst / Mirage Area"><div class="ba-title">${title}</div>${card}${lab}</div>`;
 }
@@ -87,7 +87,8 @@ function fieldAreaHTML(p, isPlayer) {
   const sp = p.spirits.map(f => ({ kind: 'spirit', f })), nx = p.nexus.map(f => ({ kind: 'nexus', f }));
   let rows;
   if (isPC()) {                                  // PC: two rows, Spirits and Nexus
-    const nexusRow = rowHTML('NEXUS', k + '-nexus', k, nx, 'No Nexus', 'nexus-row');      // v0.63.0: the side colour of the label says whose row it is
+    const handTag = isPlayer ? `<span class="nx-tag you" data-a="zone" data-v="${k}:hand">Your Hand ${p.hand.length}</span>` : `<div class="opp-hand-pill nx-tag cpu" data-a="zone" data-v="${k}:hand" title="Cards in the CPU's Hand">CPU Hand <b>${p.hand.length}</b></div>`;   // v0.155.0: the mockup's "CPU Hand 4" / "Your Hand n" tag sits beside the Nexus
+    const nexusRow = rowHTML('NEXUS', k + '-nexus', k, nx, 'No Nexus', 'nexus-row', '', handTag);      // v0.63.0: the side colour of the label says whose row it is
     const spiritRow = rowHTML('SPIRITS', k + '-spirits', k, sp, 'No Spirits');
     rows = isPlayer ? spiritRow + nexusRow : nexusRow + spiritRow;
   } else {                                       // phone: one swipeable row (Spirits, then Nexus)
@@ -102,7 +103,7 @@ function fieldAreaHTML(p, isPlayer) {
   /* phone: the CPU panel sits above its field, yours sits below your field (mirrored, next to your hand) */
   /* the two mats face each other: your Burst Area is at the top-left of your field, the CPU's at the bottom-right of its field; the panels span the full width and stay centered */
   /* PC: the CPU's hand count sits at the top centre of its field (the player's is in the hand flank) */
-  const oppHand = !isPlayer && isPC() ? `<div class="opp-hand-pill" data-a="zone" data-v="${k}:hand" title="Cards in the CPU's Hand">HAND <b>${p.hand.length}</b></div>` : '';
+  const oppHand = '';   // v0.155.0: moved into the Nexus row (nx-tag)
   const body = `<div class="fc-body ${isPlayer ? '' : 'mir'}">${burstAreaHTML(p)}<div class="fc-main">${oppHand}${rows}</div>${soulAreaHTML(p)}</div>`;
   return `<div class="field-container-dual ${isPlayer ? 'side-you' : 'side-cpu'}">${isPlayer ? body + stats : stats + body}</div>`;
 }
@@ -230,7 +231,7 @@ function renderBoard() {
       </div>
       <div class="hand-container-wrapper">
         <div class="pc-hand-flank side-you" data-a="zone" data-v="player:removed"><div class="zone-label"><span>Banished</span></div><span class="sub-text">${pileHTML(P.removed.length)}</span></div>
-        <div class="hand-area" data-scroll="hand">${P.hand.map(handCardHTML).join('')}</div>
+        <div class="hand-area" data-scroll="hand">${P.hand.map((h, i) => handCardHTML(h, i, P.hand.length)).join('')}</div>
         <div class="pc-hand-flank side-you" data-a="zone" data-v="player:hand"><div class="zone-label"><span>Hand Cnt</span></div><span class="sub-text">${pv(P.hand.length)}</span></div>
       </div>
     </div>`;

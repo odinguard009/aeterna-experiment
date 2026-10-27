@@ -75,6 +75,8 @@ for (const screen of ['pc', 'phone']) {
 test('U65-3 pc: history button (the mockup nav has no sound button; Settings keeps the toggle), settings gear marked, nav hidden in a match', async () => {
   const { page, errors } = await open('pc');
   await page.click('#app-nav .ibtn[data-a="go-history"]');
+  assert.equal(await page.evaluate(() => document.getElementById('modal-card-title').textContent), 'Match history');   // v0.155.0: a dialog like the mockup; "All matches" opens the Settings list
+  await page.click('#modal-actions .modal-btn.primary');
   assert.deepEqual(await page.evaluate(() => [document.getElementById('view-settings').classList.contains('active'), document.querySelector('#app-nav .ibtn[data-a="go-settings"]').getAttribute('aria-current')]), [true, 'page']);
   await page.evaluate(() => { BS.SETTINGS.speed = 'instant'; BS.testSetup(); BS.switchView('view-playmat'); });
   assert.equal(await page.evaluate(() => getComputedStyle(document.getElementById('app-nav')).display), 'none', 'battle screen has no nav');

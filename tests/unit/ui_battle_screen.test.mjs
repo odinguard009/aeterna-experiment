@@ -60,7 +60,7 @@ test('U07 player colour and mode: red turns the CPU blue, light mode sets data-m
   assert.deepEqual(r, ['#e5484d', '#3a8cf0', 'light', 'light', 'red', '#17b897', '#d8344b']);
 });
 test('U08 PC plates: no Tr/Cnt/Vd prefixes and no "Your"/"CPU" in zone labels; Life shows one gem per Life', async () => {
-  const r = await ev(() => { BS.testSetup(); const t = [...document.querySelectorAll('.side-flank-pc, .pc-hand-flank, .row-header-badge, .opp-hand-pill')].map(e => e.innerText).join(' ');
+  const r = await ev(() => { BS.testSetup(); const t = [...document.querySelectorAll('.side-flank-pc, .pc-hand-flank, .row-header-badge')].map(e => e.innerText).join(' ');
     const P = BS.G.p.player; return [t, document.querySelectorAll('.zone-box[data-v="player:life"] .g-core').length + document.querySelectorAll('.zone-box[data-v="player:life"] .g-soul').length, P.life]; });
   assert.doesNotMatch(r[0], /\b(Tr|Cnt|Vd|Core):|\bYOUR\b|\bCPU\b/i); assert.equal(r[1], r[2]);
 });

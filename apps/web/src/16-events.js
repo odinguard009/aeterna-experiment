@@ -92,9 +92,9 @@ document.addEventListener('click', e => {
   else if (a === 'cp-add') { if (dbCanAdd(CP_ID)) { PLAYER_DECK[CP_ID] = (PLAYER_DECK[CP_ID] || 0) + 1; saveDeck(); renderCardPage(); $('cp-msg').textContent = `Added to ${SLOTS[ACTIVE_SLOT].name}: ${PLAYER_DECK[CP_ID]} ${PLAYER_DECK[CP_ID] === 1 ? 'copy' : 'copies'}.`; } }
   else if (a === 'cp-link') { const u = location.href.split('#')[0] + '#card=' + encodeURIComponent(CP_ID); (navigator.clipboard ? navigator.clipboard.writeText(u) : Promise.reject()).then(() => 'Link to this card copied.', () => u).then(t => { $('cp-msg').textContent = t; }); }
   else if (a === 'go-profile') switchView('view-profile');
-  else if (a === 'pf-avatars') { const b = $('pf-avs'); if (b) b.hidden = !b.hidden; }
+  else if (a === 'pf-avatars') avatarDialog();
   else if (a === 'learn-open') learnOpen(Number(v));
-  else if (a === 'go-history') navHistory();
+  else if (a === 'go-history') historyDialog();
   else if (a === 'theme-pop') themePop();
   else if (a === 'theme-mode') { navTheme('mode', v); if (G) render(); }
   else if (a === 'theme-color') { navTheme('color', v); if (G) render(); }
@@ -142,7 +142,7 @@ document.addEventListener('click', e => {
   else if (a === 'zoom') openZoom(v);
   else if (a === 'art') { const pg = $('view-card').classList.contains('active'), zid = pg ? CP_ID : $('zoom-overlay').dataset.id; setArt(zid, v === zid ? '' : v); if (pg) renderCardPage(); else openZoom(zid); refreshViews(); }
   else if (a === 'home-deck') { switchSlot(Number(v)); renderLobby(); }
-  else if (a === 'avatar') { setAvatar(v); renderProfilePage(); }
+  else if (a === 'avatar') { setAvatar(v); renderProfilePage(); if (MODAL && MODAL.cfg.title === 'Choose your avatar') closeModal(null); }
   else if (a === 'bug-open') bugOpen(true);
   else if (a === 'bug-close') bugOpen(false);
   else if (a === 'zoominfo') return;

@@ -45,7 +45,7 @@ for (const screen of ['pc', 'phone']) {
     assert.ok(b.slice(0, 4).every(Boolean)); assert.equal(b[4], null);
   });
   test(`S02-${screen} badge sits in the bottom-right corner inside the card`, async () => {
-    const r = await ev(() => { const el = document.querySelector('[data-a="hand"]'), c = el.getBoundingClientRect(), b = el.querySelector('.sym-badge').getBoundingClientRect();
+    const r = await ev(() => { const el = document.querySelector('[data-a="hand"]'); el.style.transition = 'none'; el.style.transform = 'none'; const c = el.getBoundingClientRect(), b = el.querySelector('.sym-badge').getBoundingClientRect();   // v0.155.0: the PC hand is a fan (rotated cards), measure it upright
       return { dr: c.right - b.right, db: c.bottom - b.bottom, w: b.width, cw: c.width }; }, null, screen);
     assert.ok(r.dr >= 0 && r.dr <= 6 && r.db >= 0 && r.db <= 6, JSON.stringify(r));
     assert.ok(r.w >= 14 && r.w < r.cw / 2, JSON.stringify(r));
@@ -286,16 +286,16 @@ test('L02 PC: the CPU right flank reads VOID, RES, LIFE from the top (mirror of 
   assert.deepEqual(r[1], ['opponent:void', 'opponent:reserve', 'opponent:life']);
   assert.deepEqual(r[2], ['player:life', 'player:reserve', 'player:void']);
 });
-test('L03 PC: the CPU hand count sits at the top centre of the CPU field', async () => {
+test('L03 PC: the CPU hand count is the tag beside the CPU Nexus (v0.155.0, mockup)', async () => {
   const r = await ev(() => { BS.testSetup(); const O = BS.G.p.opponent; O.hand = ['BS74-047', 'BS74-047', 'BS74-047'].map(id => BS.mkInst(id)); BS.render();
-    const p = document.querySelector('.opp-hand-pill'), f = p.closest('.fc-main').getBoundingClientRect(), b = p.getBoundingClientRect();
-    return { t: p.textContent, dx: Math.abs((b.left + b.right) / 2 - (f.left + f.right) / 2), dy: b.top - f.top, v: p.dataset.v }; });
-  assert.equal(r.t, 'HAND 3');   // v0.63.0 (U1): no "CPU" in zone labels, the side colour says whose assert.ok(r.dx < 2 && r.dy >= 0 && r.dy < 8, JSON.stringify(r)); assert.equal(r.v, 'opponent:hand');
+    const p = document.querySelector('.opp-hand-pill'), n = p.closest('.nexus-row').getBoundingClientRect(), b = p.getBoundingClientRect();
+    return { t: p.textContent, inside: b.left >= n.left && b.right <= n.right && b.top >= n.top - 1 && b.bottom <= n.bottom + 1, v: p.dataset.v }; });
+  assert.equal(r.t, 'CPU Hand 3'); assert.ok(r.inside, JSON.stringify(r)); assert.equal(r.v, 'opponent:hand');
 });
 test('L04 PC: the CPU hand count follows the hand and opens the count-only zone view', async () => {
   const r = await ev(() => { BS.G.p.opponent.hand.pop(); BS.render(); const p = document.querySelector('.opp-hand-pill'); const t = p.textContent; p.click();
     const m = document.body.innerText.includes('Hand: 2 cards'); BS.closeModal(null); return [t, m]; });
-  assert.deepEqual(r, ['HAND 2', true]);
+  assert.deepEqual(r, ['CPU Hand 2', true]);
 });
 test('L05 phone: no extra CPU hand pill (the HD stat already shows it)', async () => {
   assert.equal(await ev(() => { BS.testSetup(); BS.render(); return document.querySelectorAll('.opp-hand-pill').length; }, null, 'phone'), 0);

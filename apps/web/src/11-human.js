@@ -57,9 +57,35 @@ function cardDetailHTML(card, noArt) {
       <b>Effect text:</b>${effectTextHTML(card, false)}${card.implemented ? '' : card.partial ? '<div class="warn-note">⚠ Only part of this effect text is implemented in this build yet.' + residualHTML(card) + '</div>' : '<div class="warn-note">⚠ This effect is not implemented in this build yet.</div>'}</div>`;
 }
 const residualHTML = card => (card.residual && card.residual.length ? '<br>Not implemented yet:<ul style="margin:2px 0 0 14px;padding:0;">' + card.residual.map(r => `<li>${esc(r)}</li>`).join('') + '</ul>' : '');
+/* v0.155.0 (batch 4, mockup art()): a card without a picture gets generated art (colour glow, ridges, a silhouette by type); drawn by code from the card id, no printed artwork */
+const ART_HEX = { red: '#d9383a', purple: '#9b51e0', green: '#27ae60', yellow: '#f5e50a', blue: '#2f80ed', white: '#e0e0e0', ultimate: '#d4af37', god: '#b8c4d6' };
+const ART_CACHE = new Map();
+function artMix(a, b, t) { const x = [1, 3, 5].map(i => parseInt(a.slice(i, i + 2), 16)), y = [1, 3, 5].map(i => parseInt(b.slice(i, i + 2), 16)); return '#' + x.map((v, i) => Math.round(v + (y[i] - v) * t).toString(16).padStart(2, '0')).join(''); }
+function cardArtSVG(card) {
+  const hit = ART_CACHE.get(card.id); if (hit) return hit;
+  let h = 7; for (const ch of card.id) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+  const r = () => { h = (h * 1664525 + 1013904223) >>> 0; return h / 4294967296; };
+  const col = ART_HEX[card.symbol] || '#8a93a3', dk = artMix(col, '#000000', .78), md = artMix(col, '#000000', .5), lt = artMix(col, '#ffffff', .35), gid = 'ga' + (h % 1e6) + card.id.replace(/\W/g, '');
+  let s = `<defs><linearGradient id="${gid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${md}"/><stop offset="1" stop-color="${dk}"/></linearGradient><radialGradient id="${gid}g" cx=".5" cy=".42" r=".6"><stop offset="0" stop-color="${lt}" stop-opacity=".85"/><stop offset="1" stop-color="${col}" stop-opacity="0"/></radialGradient></defs><rect width="100" height="140" fill="url(#${gid})"/><circle cx="${40 + r() * 20}" cy="${46 + r() * 8}" r="${30 + r() * 8}" fill="url(#${gid}g)"/>`;
+  for (let i = 0; i < 3; i++) { let d = 'M0 140 L0 ' + (88 + i * 8 + r() * 10); for (let x = 12; x <= 100; x += 12 + r() * 10) d += ` L${x} ${80 + i * 10 + r() * 22}`; s += `<path d="${d} L100 140Z" fill="${artMix(col, '#000000', .55 + i * .14)}" opacity=".85"/>`; }
+  const P = a => a.map(p => p.join(',')).join(' '), fill = artMix(col, '#000000', .86), cx = 50, cy = 62;
+  if (card.type === 'Spirit' || card.type === 'Ultimate' || card.type === 'Brave') {
+    const w = 12 + r() * 10, k = Math.floor(r() * 3);
+    if (k === 0) s += `<polygon points="${P([[cx, cy - 24], [cx + w, cy - 4], [cx + w + 18 + r() * 8, cy - 20 - r() * 10], [cx + w - 2, cy + 18], [cx + 6, cy + 34], [cx - 6, cy + 34], [cx - w + 2, cy + 18], [cx - w - 18 - r() * 8, cy - 20 - r() * 10], [cx - w, cy - 4]])}" fill="${fill}" stroke="${lt}" stroke-width=".8"/>`;
+    else if (k === 1) s += `<polygon points="${P([[cx - 30, cy + 26], [cx - 28, cy + 2], [cx - 16, cy - 10], [cx - 20, cy - 26], [cx - 10, cy - 14], [cx + 4, cy - 16], [cx + 10, cy - 30], [cx + 14, cy - 12], [cx + 30, cy - 4], [cx + 34, cy + 26], [cx + 22, cy + 26], [cx + 18, cy + 8], [cx - 12, cy + 8], [cx - 16, cy + 26]])}" fill="${fill}" stroke="${lt}" stroke-width=".8"/>`;
+    else s += `<polygon points="${P([[cx, cy - 34], [cx + 7, cy - 22], [cx + 8, cy - 8], [cx + 30, cy + 34], [cx + 6, cy + 18], [cx, cy + 36], [cx - 6, cy + 18], [cx - 30, cy + 34], [cx - 8, cy - 8], [cx - 7, cy - 22]])}" fill="${fill}" stroke="${lt}" stroke-width=".8"/>`;
+    s += `<circle cx="${cx - 4}" cy="${cy - 12}" r="1.6" fill="${lt}"/><circle cx="${cx + 4}" cy="${cy - 12}" r="1.6" fill="${lt}"/>`;
+  } else if (card.type === 'Magic') {
+    for (let i = 0; i < 4; i++) s += `<circle cx="50" cy="60" r="${10 + i * 9}" fill="none" stroke="${lt}" stroke-width="${1.6 - i * .3}" opacity="${.9 - i * .18}" stroke-dasharray="${4 + i * 3} 3"/>`;
+    for (let i = 0; i < 10; i++) { const a = i * 36 * Math.PI / 180; s += `<path d="M50 60 L${50 + Math.cos(a) * 46} ${60 + Math.sin(a) * 46}" stroke="${lt}" stroke-width=".6" opacity=".5"/>`; }
+  } else s += `<path d="M30 112 L30 60 L38 60 L38 44 L46 44 L46 30 L50 22 L54 30 L54 44 L62 44 L62 60 L70 60 L70 112Z" fill="${artMix(col, '#000000', .82)}" stroke="${lt}" stroke-width=".8"/><rect x="44" y="70" width="12" height="18" rx="6" fill="${lt}" opacity=".8"/>`;
+  for (let i = 0; i < 14; i++) s += `<circle cx="${r() * 100}" cy="${r() * 90}" r="${r() * 1.1 + .3}" fill="#fff" opacity="${.3 + r() * .6}"/>`;
+  const out = `<svg class="ph-art" viewBox="0 0 100 140" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${s}</svg>`;
+  ART_CACHE.set(card.id, out); return out;
+}
 function cardFacePlaceholder(card, withCost, col, extra) {
   const bp = card.levels[0] && card.levels[0].bp != null ? card.levels[0].bp + ' BP' : card.brave ? 'Brave +' + card.brave.bp + ' BP' : '';
-  return `<div class="cface ph" style="--card-col:${col}${extra ? ';' + extra : ''}"><div class="ph-name">${esc(card.name)}</div><div class="ph-sub">${esc(card.token ? 'Token Spirit' : card.type)} · ${esc(cap(card.symbol))}${withCost ? ' · Cost ' + card.cost : ''}</div><div class="ph-txt">${slashBreak(esc(card.desc))}</div><div class="ph-bp">${bp}</div></div>`;
+  return `<div class="cface ph" style="--card-col:${col}${extra ? ';' + extra : ''}">${cardArtSVG(card)}<div class="ph-name">${esc(card.name)}</div><div class="ph-sub">${esc(card.token ? 'Token Spirit' : card.type)} · ${esc(cap(card.symbol))}${withCost ? ' · Cost ' + card.cost : ''}</div><div class="ph-txt">${slashBreak(esc(card.desc))}</div><div class="ph-bp">${bp}</div></div>`;
 }
 function cardFaceHTML(card, withCost) {
   const col = `var(--color-${card.symbol})`;
@@ -78,8 +104,8 @@ function cardStripHTML(list, head) {
   const ids = list.map(x => (typeof x === 'string' ? x : x.id)).filter(id => CARDS[id]);
   return `${head ? `<div class="strip-head">${esc(head)} (${ids.length})</div>` : ''}<div class="card-strip">${ids.map(id => mullCardHTML(CARDS[id])).join('')}</div>`;
 }
-function mullCardHTML(card) {
-  return `<div class="mull-card" data-a="zoom" data-v="${esc(card.id)}" title="Tap to enlarge">${cardFaceHTML(card, false)}<div class="nm">${esc(card.name)}</div></div>`;
+function mullCardHTML(card, mark) {   // mark (v0.155.0, mockup mulligan): an "Easy" tag on cards that cost 3 or less, payable from the first Reserve
+  return `<div class="mull-card" data-a="zoom" data-v="${esc(card.id)}" title="Tap to enlarge">${cardFaceHTML(card, false)}${mark && card.cost <= 3 ? '<span class="tag mull-easy">Easy</span>' : ''}<div class="nm">${esc(card.name)}</div></div>`;
 }
 function openZoom(id, uid) {
   const card = CARDS[id], z = $('zoom-overlay'); if (!card || !z) return;

@@ -283,9 +283,27 @@ function dbKey(id) {                // the deck's Key Spirit mark: one Spirit pe
   else SLOTS[ACTIVE_SLOT].key = PLAYER_DECK[id] > 0 ? id : undefined;
   saveDeck(); renderDeckBuilder();
 }
+/* v0.155.0 (batch 4, mockup DLG.import / DLG.export): Import shows the detected format live; Export has Text / Code / Image / CSV tabs */
+function dbDetect(t) {
+  t = String(t || '').trim(); if (!t) return '';
+  const n = t.split(/\r?\n/).filter(x => x.trim()).length;
+  if (/^AET-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/i.test(t)) return '✓ Format detected: deck code';
+  if (/^\s*(qty|count|id)\b.*,/i.test(t) || t.split(/\r?\n/).filter(x => x.trim()).every(l => /^\s*\d+\s*,/.test(l))) return `✓ Format detected: CSV · ${n} lines`;
+  return `✓ Format detected: list · ${n} line${n === 1 ? '' : 's'}`;
+}
+function dbCsv(d) { return 'qty,id,name\n' + Object.keys(d).filter(id => d[id] && CARDS[id]).map(id => `${d[id]},${id},"${CARDS[id].name.replace(/"/g, '""')}"`).join('\n'); }
+function dbDeckPng(d, name) {          // a plain deck sheet drawn on a canvas (no card art, so it works without images)
+  const ids = Object.keys(d).filter(id => d[id] && CARDS[id]), cv = document.createElement('canvas'), W = 640, H = 90 + ids.length * 26; cv.width = W; cv.height = H;
+  const c = cv.getContext('2d'); c.fillStyle = '#0f1218'; c.fillRect(0, 0, W, H); c.fillStyle = '#e8ecf2'; c.font = 'bold 22px sans-serif'; c.fillText(name, 20, 38);
+  c.font = '13px sans-serif'; c.fillStyle = '#8b94a3'; c.fillText(`${deckTotal(d)} cards · Aeterna`, 20, 60); c.font = '15px sans-serif';
+  ids.forEach((id, i) => { c.fillStyle = '#e8ecf2'; c.fillText(`${d[id]}×  ${CARDS[id].name}`, 20, 94 + i * 26); c.fillStyle = '#8b94a3'; c.fillText(id, W - 120, 94 + i * 26); });
+  return cv.toDataURL('image/png');
+}
 async function dbImport() {
   DB_IO = '';
-  const v = await modal({ uiOnly: true, title: 'Import deck list', html: '<div class="db-io-hint">One card per line: <b>3 BS44-001</b> or <b>3x Card Name</b>. The current cards in this slot are replaced (Undo brings them back).</div><textarea id="db-io" class="lib-area" spellcheck="false"></textarea>', buttons: [{ label: 'Import', cls: 'primary', value: 'ok' }, { label: 'Cancel', cls: 'cancel', value: null }] });
+  const p = modal({ uiOnly: true, title: 'Import deck list', html: '<div class="db-io-hint">Paste a deck code or a plain list (one card per line: <b>3 BS44-001</b> or <b>3x Card Name</b>). The current cards in this slot are replaced (Undo brings them back).</div><textarea id="db-io" class="lib-area" spellcheck="false"></textarea><div class="vc" id="db-fmt" aria-live="polite"></div>', buttons: [{ label: 'Import', cls: 'primary', value: 'ok' }, { label: 'Cancel', cls: 'cancel', value: null }] });
+  const ta = $('db-io'); if (ta) ta.addEventListener('input', () => { const f = $('db-fmt'); if (f) f.textContent = dbDetect(ta.value); });
+  const v = await p;
   if (v !== 'ok') return;
   const r = textToDeck(dbShareResolve(DB_IO));
   if (!deckTotal(r.deck)) { uiInfo('Nothing imported', 'No cards recognised.' + (r.bad.length ? '<br>' + r.bad.slice(0, 8).map(esc).join('<br>') : '')); return; }
@@ -294,9 +312,20 @@ async function dbImport() {
   if (r.bad.length) uiInfo('Imported with skipped lines', esc(r.bad.slice(0, 8).join('\n')).replace(/\n/g, '<br>'));
 }
 async function dbExport(d) {
-  const txt = deckToText(d, SLOTS[ACTIVE_SLOT].key);
-  const v = await modal({ uiOnly: true, title: 'Export deck list', html: `<textarea id="db-io" class="lib-area" spellcheck="false" readonly>${esc(txt)}</textarea>`, buttons: [{ label: 'Copy', cls: 'primary', value: 'copy' }, { label: 'Close', cls: 'cancel', value: null }] });
-  if (v === 'copy') { try { await navigator.clipboard.writeText(txt); } catch (e) { /* clipboard blocked: the text stays selectable in the box */ } }
+  d = d || PLAYER_DECK;
+  const nm = SLOTS[ACTIVE_SLOT].name || 'Deck', txt = deckToText(d, SLOTS[ACTIVE_SLOT].key), code = dbShareCode(txt);
+  try { localStorage.setItem('aeterna.share.' + code, txt); } catch (e) { /* storage blocked: the code still shows */ }
+  const tabs = { text: ['Text list', txt], code: ['Deck code', code], image: ['Image', ''], csv: ['CSV', dbCsv(d)] };
+  let tab = 'text';
+  const body = () => tab === 'image' ? `<img id="db-img" alt="Deck sheet" style="width:100%;max-height:260px;object-fit:contain;background:#0f1218" src="${dbDeckPng(d, nm)}">` : `<textarea id="db-io" class="lib-area" spellcheck="false" readonly>${esc(tabs[tab][1])}</textarea>`;
+  const html = () => `<div class="row db-xtabs" role="tablist" style="gap:8px;flex-wrap:wrap">${Object.keys(tabs).map(k => `<button class="chip${k === tab ? ' on' : ''}" role="tab" aria-selected="${k === tab}" data-x="${k}">${tabs[k][0]}</button>`).join('')}</div><div id="db-xbody" style="margin-top:8px">${body()}</div>`;
+  const cfg = { uiOnly: true, title: `Export “${nm}”`, html: html(), buttons: [{ label: 'Copy', cls: 'primary', value: 'copy' }, { label: 'Close', cls: 'cancel', value: null }] };
+  const p = modal(cfg);
+  const wire = () => dqa('.db-xtabs [data-x]').forEach(b => b.addEventListener('click', () => { tab = /** @type {HTMLElement} */ (b).dataset.x || 'text'; cfg.html = html(); $('modal-card-desc').innerHTML = cfg.html; cfg.buttons[0].label = tab === 'image' ? 'Save PNG' : 'Copy'; const pb = dq('#modal-actions .modal-btn.primary'); if (pb) pb.textContent = cfg.buttons[0].label; wire(); }));
+  wire();
+  const v = await p;
+  if (v === 'copy' && tab === 'image') { const a = document.createElement('a'); a.href = dbDeckPng(d, nm); a.download = nm.replace(/[^\w-]+/g, '_') + '.png'; a.click(); }
+  else if (v === 'copy') { try { await navigator.clipboard.writeText(tabs[tab][1]); } catch (e) { /* clipboard blocked: the text stays selectable in the box */ } }
 }
 
 /* Share code (mockup DLG.share): AET-XXXX-XXXX-XXXX from the deck list; the list stays on this device until online play exists. */

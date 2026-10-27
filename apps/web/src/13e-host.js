@@ -69,7 +69,7 @@ function webView(ev) {
 const sfxOf = t => (/attacks with/.test(t) ? 'attack' : /destroyed|depleted/.test(t) ? 'destroy' : /lose[s]? \d+ Life/.test(t) ? 'hit' : /summon|deploy/.test(t) ? 'summon' : /draw/.test(t) ? 'card' : '');
 function choiceHTML(d) {
   if (!d.cards || !d.cards.length) return d.html || '';
-  if (d.cardsStyle === 'mull') return `<div class="mull-list">${d.cards.map(id => mullCardHTML(CARDS[id])).join('')}</div>` + (d.html || '');
+  if (d.cardsStyle === 'mull') return `<div class="mull-list">${d.cards.map(id => mullCardHTML(CARDS[id], /Starting Hand/.test(d.title || ''))).join('')}</div>` + (d.html || '');
   return (d.html || '') + cardStripHTML(d.cards, d.cardsHead);
 }
 function webDecide(seat, d) {

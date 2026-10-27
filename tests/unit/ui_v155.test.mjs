@@ -93,3 +93,23 @@ test('V155-9 battle PC: Card Panel on the right, area sizes do not change with c
   await page.keyboard.press('ArrowDown'); await page.waitForTimeout(500);
   assert.ok(await page.evaluate(() => document.getElementById('card-panel').scrollTop > 0), 'ArrowDown scrolls the Card Panel');
 });
+test('V155-10 batch 4 dialogs: Export has Text / Code / Image / CSV tabs, Import shows the detected format, Avatar and History are dialogs, the mulligan text and Easy tag', async () => {
+  await open(1366, 768);
+  const r = await page.evaluate(async () => {
+    const w = ms => new Promise(x => setTimeout(x, ms)), out = {};
+    BS.switchView('view-deckbuilder'); await w(200);
+    dbExport(PLAYER_DECK); await w(100);
+    const tabs = [...document.querySelectorAll('.db-xtabs [data-x]')].map(b => b.textContent); out.tabs = tabs.join('|');
+    document.querySelector('.db-xtabs [data-x="csv"]').click(); out.csv = /^qty,id,name/.test(document.getElementById('db-io').value);
+    document.querySelector('.db-xtabs [data-x="image"]').click(); out.img = (document.getElementById('db-img') || {}).src?.startsWith('data:image/png');
+    document.querySelector('.db-xtabs [data-x="code"]').click(); out.code = /^AET-/.test(document.getElementById('db-io').value);
+    BS.closeModal ? BS.closeModal(null) : document.querySelector('#modal-actions .cancel').click(); await w(100);
+    dbImport(); await w(100); const ta = document.getElementById('db-io'); ta.value = '3 Foo\n2 Bar'; ta.dispatchEvent(new Event('input')); out.fmt = document.getElementById('db-fmt').textContent;
+    document.querySelector('#modal-actions .cancel').click(); await w(100);
+    avatarDialog(); await w(100); out.av = document.querySelectorAll('#modal-card-desc .pg-av').length; document.querySelector('#modal-actions .cancel').click(); await w(100);
+    historyDialog(); await w(100); out.hist = document.getElementById('modal-card-title').textContent; document.querySelector('#modal-actions .cancel').click();
+    return out;
+  });
+  assert.equal(r.tabs, 'Text list|Deck code|Image|CSV'); assert.ok(r.csv && r.img && r.code, JSON.stringify(r));
+  assert.match(r.fmt, /Format detected: list · 2 lines/); assert.equal(r.av, 8); assert.equal(r.hist, 'Match history');
+});

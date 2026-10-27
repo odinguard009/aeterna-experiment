@@ -4,6 +4,12 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.156.0
+- Lane: U/I
+- **Mockup parity, batch 4.** Export dialog has Text / Code / Image / CSV tabs (Image = a plain deck sheet PNG drawn on a canvas); Import shows "Format detected" live (deck code, list or CSV, with the line count); Avatar and Match history open as dialogs like the mockup (history keeps an "All matches" button to the Settings list); the starting-hand dialog reads "You may redraw the whole hand once. Cards you can pay for on turn 1–2 are marked." with an "Easy" tag on cards that cost 3 or less; battle (PC): the hand-count tag sits beside each Nexus ("CPU Hand n" / "Your Hand n"), a "Mirage Set" tag on a set Mirage, the hand is a fan; card faces without a picture get generated art (glow, ridges, a silhouette by type; drawn by code, no printed artwork).
+  - Not done: the battle screen still uses the old stylesheet (`MK_OFF`); moving it onto `mockup.css` means renaming the board markup and its many test selectors, so it is a separate release. The "Easy" mark uses cost only (it ignores reduction and the first-turn Reserve of 3 + Soul Core). Generated art appears on faces drawn by `cardFaceHTML` (Library, dialogs, Card Panel, mulligan); the hand and field cards still use their own compact frame. The "card images" item was read as the mockup's generated art; real card pictures stay off until v1.0 (card-image plan).
+  - Checked: loop, tests V155-10 and the updated L03 / L04 / S02 / U65-3, screenshots of the battle and the Library at 1366 px. Not checked: phone layout of the new dialogs, Android.
+
 ## v0.155.0
 - Lane: U/I
 - **Owner review round (28 comments on the HTML preview).** Play (PC): Start box under "Play a Match"; Home: the Aeterna logo as backdrop on the theme colour, with an upload / reset option for an own picture; Quick Match overlap fixed; starter decks in equal cells (phone: Key card and deck name only, one card, title and buttons tidied, panel maximize / minimize button, action row scrolls in one line).

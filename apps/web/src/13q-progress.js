@@ -32,6 +32,15 @@ function setAvatar(c) {
   if (!AVATARS.includes(c) || AVATAR_RANK[AVATARS.indexOf(c)] > rankOf(profileStats().won).i) return;
   AVATAR = c; try { localStorage.setItem(AVATAR_KEY, c); } catch (e) { /* blocked: this visit only */ }
 }
+// v0.155.0 (batch 4, mockup DLG.avatar / DLG.history): the Avatar chooser and the Match history open as dialogs
+function avatarDialog() {
+  const r = rankOf(profileStats().won), btn = AVATARS.map((c, k) => `<button class="pg-av${c === AVATAR ? ' on' : ''}" data-a="avatar" data-v="${c}" style="--lc:${colorVar(c)}" aria-label="${esc(cap(c))}" aria-pressed="${c === AVATAR}"${AVATAR_RANK[k] > r.i ? ' disabled title="Locked: finish missions and win matches to unlock"' : ''}>${AVATAR_RANK[k] > r.i ? '🔒' : esc(cap(c)[0])}</button>`).join('');
+  return modal({ uiOnly: true, title: 'Choose your avatar', html: `<div class="pg-avs">${btn}</div><div class="db-io-hint" style="margin-top:8px">Locked avatars open as your rank rises.</div>`, buttons: [{ label: 'Close', cls: 'cancel', value: null }] });
+}
+function historyDialog() {
+  const rows = HISTORY.slice(-8).map((h, i, a) => ({ h, k: HISTORY.length - a.length + i })).reverse().map(({ h, k }) => `<tr><td><span class="tag ${h.won ? '' : 'cpu'}">${h.won ? 'Win' : 'Loss'}</span></td><td>${esc(h.you || '')}</td><td>${esc(h.cpu || '')}</td><td>${h.turns || ''}</td><td>${h.port ? `<button class="btn sm" data-a="rv-watch" data-v="${k}">Replay</button>` : ''}</td></tr>`).join('');
+  return modal({ uiOnly: true, title: 'Match history', html: rows ? `<table class="tb"><tr><th>Result</th><th>Deck</th><th>Opponent</th><th>Turns</th><th></th></tr>${rows}</table>` : '<div class="empty-note">No finished matches yet.</div>', buttons: [{ label: 'All matches', cls: 'primary', value: 'all' }, { label: 'Close', cls: 'cancel', value: null }] }).then(v => { if (v === 'all') navHistory(); });
+}
 // v0.137.0 (mockup parity): the Profile page (header card with rank, KPIs, win-rate chart, achievements, recent matches, missions)
 function renderProfilePage() {
   const el = $('pf-page'); if (!el) return;

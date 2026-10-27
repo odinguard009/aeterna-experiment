@@ -152,3 +152,27 @@ html.layout-pc #view-playmat .playmat-layout.has-cp > #card-panel { overflow-y: 
 html.layout-pc .ae-step > span:first-child { display: inline-block; min-width: 9ch; text-align: center; }   /* "GAME OVER" and the step names share one width */
 html.layout-pc:has(#view-playmat.active .has-cp) #ae-fx { right: 240px; }   /* cues centre on the board, never over the Card Panel */
 html.layout-pc #view-playmat .g-core, html.layout-pc #view-playmat .core-gem { max-width: 100%; }
+
+/* ---- v0.155.0 batch 4: dialogs (Export tabs, Import format line, Avatar, History) and the mulligan "Easy" tag ---- */
+.mull-card { position: relative; } .mull-easy { position: absolute; left: 50%; bottom: 14px; translate: -50% 0; font-size: 9px; z-index: 2; }
+#modal-card-desc .vc { margin-top: 8px; display: inline-block; } #modal-card-desc .vc:empty { display: none; }
+#modal-card-desc .pg-avs { display: flex; flex-wrap: wrap; gap: 12px; } #modal-card-desc .pg-av { width: 56px; height: 56px; font-size: 1.3em; }
+#modal-card-desc .db-xtabs .chip { min-height: 34px; }
+
+/* ---- v0.155.0 batch 4: battle PC toward the mockup (Nexus row with its hand tag, fan hand, Mirage Set tag) ---- */
+html.layout-pc #view-playmat .field-row-wrapper.nexus-row { position: relative; }
+html.layout-pc #view-playmat .nx-tag { position: absolute; left: calc(50% + 74px); top: 50%; transform: translateY(-50%); z-index: 4; padding: 3px 14px; font-size: 11px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; clip-path: var(--par); border: 0; cursor: pointer; }
+html.layout-pc #view-playmat .nx-tag.cpu { background: var(--cpu); color: #fff; } html.layout-pc #view-playmat .nx-tag.cpu b { color: #fff; font-size: 11px; }
+html.layout-pc #view-playmat .nx-tag.you { background: var(--you); color: var(--you-ink); }
+#view-playmat .ba-card.set-mirage { position: relative; }
+#view-playmat .ba-card.set-mirage .btag { position: absolute; left: -3px; right: -3px; bottom: -2px; z-index: 2; background: var(--you); color: var(--you-ink); font-size: .8em; font-weight: 900; letter-spacing: .06em; text-align: center; }
+#view-playmat .side-cpu .ba-card.set-mirage .btag { background: var(--cpu); color: #fff; }
+html.layout-pc #view-playmat .hand-area .tcg-card { transform: rotate(var(--rot, 0deg)); transform-origin: 50% 130%; transition: transform .15s; }
+html.layout-pc #view-playmat .hand-area .tcg-card:hover, html.layout-pc #view-playmat .hand-area .tcg-card.sel, html.layout-pc #view-playmat .hand-area .tcg-card:focus-visible { transform: rotate(0deg) translateY(-8px); z-index: 3; }
+@media (prefers-reduced-motion: reduce) { html.layout-pc #view-playmat .hand-area .tcg-card { transition: none; } }
+
+/* ---- v0.155.0 batch 4: generated card art behind the text of a card face without a picture ---- */
+.cface.ph { position: relative; overflow: hidden; isolation: isolate; }
+.cface.ph .ph-art { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; opacity: .75; }
+.cface.ph .ph-name, .cface.ph .ph-sub, .cface.ph .ph-bp { text-shadow: 0 1px 3px #000c; }
+.cface.ph .ph-txt { background: #0b0e1355; padding: 2px 3px; border-radius: 2px; text-shadow: 0 1px 2px #000; }
