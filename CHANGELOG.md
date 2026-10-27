@@ -4,6 +4,12 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.159.0
+- Lane: K
+- Staging import (`data/import`) regenerated without the 4 promoted cards.
+- **4 more Standard cards complete; LOOT to deckbottom, During Block.** Cards: 26RCB01-037 Kamen Rider Knight Survive, 26RBS01-088 The Honorable Saintar, 26RCB01-048 Kamen Rider Para-DX Puzzle Gamer Level 50, 26RSD06-006 Svarris. Two new pieces of vocabulary: `LOOT` can take `to:"deckBottom"` ("draw N, then return M cards from your Hand to the deckbottom") and a STATIC effect can carry `blockingOnly` ("During Block"). Effect schema v10 (additions only; `docs/ai/effect-format.md`).
+  - Checked: loop, `fx_validate` (6892/6892), `card_verify` on all four, promotion sample (all four read in full, seed 64080), new tests `during_block_static_bp` and `loot_deckbottom`. Not checked: the Saintar ALLY_LIFE_HIT trigger and its Lv2 attack bonus, and the Para-DX form-change branch, run only through `fx_validate` (no scenario test). Yield is 4 cards, below the 12+ aim; the remaining packs ("use the flash", "if you control" variants, "During Attack") were not started.
+
 ## v0.158.0
 - Lane: U/I
 - **Owner review round 3 (22 comments).** Phone Lobby: background button moved to the end of the hero (no longer blocks buttons), logo centred (PC too), tiles show the title only. Phone Deck: size button top-right (44 px), long deck names and "Ready to play" no longer overrun, deck-list rows shrunk so spirit names are readable; Type and Cost are dropdowns like Colour and Group. Phone Library: "! Partly Implemented" is a real toggle filter, chips / Saga list / lore head can be minimised, Saga buttons uniform with the count under the title. Phone Learn: library row tidied.

@@ -47467,7 +47467,8 @@
  ],
  "26RSD06-005": [],
  "26RSD06-006": [
-  "T_SUMMONED"
+  "T_SUMMONED",
+  "C_LEVEL"
  ],
  "26RSD06-007": [
   "A_BP_PLUS",

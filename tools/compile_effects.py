@@ -120,6 +120,7 @@ def action_of(s, ctx):
         # v0.54 patterns (existing engine actions only)
         (r'^refresh (?:a spirit you control|one of your spirits|a spirit of yours)$', lambda m: [{'do': 'REFRESH_SPIRIT'}]),
         (r'^send (?:a|one) core from (?:any |an |one )?opposing spirits? to (?:their|the|its owner\'s|the opposing) reserve$', lambda m: [{'do': 'OPP_CORES_TO_RESERVE', 'targets': 1, 'each': 1}]),
+        (r'^draw ' + W + r' cards?, then return ' + W + r' cards? from your hand to the deck ?bottom(?: in any order)?$', lambda m: [{'do': 'LOOT', 'draw': num(m.group(1)), 'discard': num(m.group(2)), 'to': 'deckBottom'}]),   # v0.159
         (r'^draw ' + W + r' cards?, then discard ' + W + r' cards? from your hand$', lambda m: [{'do': 'LOOT', 'draw': num(m.group(1)), 'discard': num(m.group(2))}]),
         (r'^draw ' + W + r' cards? from (?:the|your) deck ?bottom$|^draw ' + W + r' cards? from the bottom of your deck$', lambda m: [{'do': 'DRAW_BOTTOM', 'n': num(m.group(1) or m.group(2))}]),
         (r'^draw ' + W + r' cards? from your deck$', lambda m: [{'do': 'DRAW', 'n': num(m.group(1))}]),
@@ -485,6 +486,11 @@ def spirit_paragraph_main(p, card, rush):
         mm = re.match(r'^\(During Attack\)\s*This Spirit (?:gains|gets) \+(\d[\d,]*) ?BP\.?$', p, re.I)
         if mm:      # v0.66: (During Attack) = active as long as this Spirit is attacking (Standard manual, Examples on Activation Timings)
             e = {'trigger': 'STATIC', 'bp': bp(mm.group(1)), 'to': 'self', 'attackingOnly': True}
+            if lv: e['lv'] = lv
+            return [e], flags
+        mm = re.match(r'^\(During Block\)\s*This Spirit (?:gains|gets) \+(\d[\d,]*) ?BP\.?$', p, re.I)
+        if mm:      # v0.159: (During Block) = active as long as this Spirit is blocking
+            e = {'trigger': 'STATIC', 'bp': bp(mm.group(1)), 'to': 'self', 'blockingOnly': True}
             if lv: e['lv'] = lv
             return [e], flags
         mm = re.match(r"^This Spirit's colou?r and symbols? are also treated as (Red|Purple|Green|White|Yellow|Blue)\.?$", p)

@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 7757,
+  "cards": 7753,
   "per_saga": {
    "1": 786,
    "2": 332,
@@ -19,23 +19,23 @@
    "15": 357,
    "16": 334,
    "17": 110,
-   "50": 459
+   "50": 455
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 949,
+  "skipped_curated": 953,
   "number_conflicts": 5,
   "nexus_levels_added": 715,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 560,
+  "image_problems": 558,
   "merged": 110,
   "brave_unparsed": 171,
   "ut_lines_added": 119,
   "odd_reduction": 809,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 558
+  "without_image": 556
  },
  "tokens": [
   "BS73-T001",
@@ -828,6 +828,7 @@
   "26RSD06-003",
   "26RSD06-004",
   "26RSD06-005",
+  "26RSD06-006",
   "26RSD06-007",
   "26RSD06-013",
   "26RBS01-001",
@@ -874,6 +875,7 @@
   "26RBS01-085",
   "26RBS01-086",
   "26RBS01-087",
+  "26RBS01-088",
   "26RBS01-090",
   "26RBS01-097",
   "26RBS01-109",
@@ -918,9 +920,11 @@
   "26RCB01-033",
   "26RCB01-034",
   "26RCB01-036",
+  "26RCB01-037",
   "26RCB01-040",
   "26RCB01-041",
   "26RCB01-044",
+  "26RCB01-048",
   "26RCB01-061",
   "26RCB01-062",
   "26RCB01-063",
@@ -4142,11 +4146,6 @@
    "problem": "ambiguous name (2 files, none in set 26RCB01)"
   },
   {
-   "id": "26RCB01-037",
-   "name": "Kamen Rider Knight Survive",
-   "problem": "ambiguous name (2 files, none in set 26RCB01)"
-  },
-  {
    "id": "26RCB01-038",
    "name": "Kamen Rider Odin",
    "problem": "ambiguous name (2 files, none in set 26RCB01)"
@@ -4174,11 +4173,6 @@
   {
    "id": "26RCB01-047",
    "name": "Kamen Rider Brave Fantasy Gamer Level 50",
-   "problem": "ambiguous name (2 files, none in set 26RCB01)"
-  },
-  {
-   "id": "26RCB01-048",
-   "name": "Kamen Rider Para-DX Puzzle Gamer Level 50",
    "problem": "ambiguous name (2 files, none in set 26RCB01)"
   },
   {

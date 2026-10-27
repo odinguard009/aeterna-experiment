@@ -178,6 +178,7 @@ function staticBp(i) {
       if (e.oc && !ocActive(src)) continue;
       if ((e.to || 'self') === 'self' ? src !== i : !fxMatch(CARDS[i.id], e.match)) continue;
       if (e.attackingOnly && G.attacker !== i) continue;
+      if (e.blockingOnly && G.blocker !== i) continue;           // v0.159 (During Block)
       if (!fxIf(o, opp, e.if)) continue;
       sum += e.per ? e.bp * perCount(o, e.per) : e.bp;      // v0.72 "For each X you control, this Spirit gains +N BP" (per)
     }

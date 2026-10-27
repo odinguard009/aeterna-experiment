@@ -122,7 +122,7 @@ function parseEffects(arr) {
       }
     } else if (e.trigger === 'STATIC') {
       if (!Number.isInteger(e.bp) || e.bp === 0 || Math.abs(e.bp) > 30000) return { error: 'STATIC effect needs a whole-number "bp"' };
-      o.bp = e.bp; o.to = e.to === 'own' ? 'own' : 'self'; if (e.attackingOnly) o.attackingOnly = true; if (e.braved === true) o.braved = true;
+      o.bp = e.bp; o.to = e.to === 'own' ? 'own' : 'self'; if (e.attackingOnly) o.attackingOnly = true; if (e.blockingOnly) o.blockingOnly = true; if (e.braved === true) o.braved = true;
       if (e.per != null) { if (!perOk(e.per) || o.to !== 'self') return { error: 'STATIC "per" must look like {"type":"Spirit","family":"X"} (to: self)' }; o.per = JSON.parse(JSON.stringify(e.per)); }   // v0.72
     } else {
       if (!Array.isArray(e.actions) || !e.actions.length || e.actions.length > 6) return { error: 'every triggered effect needs 1-6 "actions"' };

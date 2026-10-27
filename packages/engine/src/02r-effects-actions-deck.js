@@ -46,8 +46,8 @@ Object.assign(FX_ACTIONS, {
   /* "destroy any number of opposing Spirits up to a total of X BP" (the destroyed cards are kept in ctx.destroyed) */
   LOOT: { chk: a => Number.isInteger(a.draw) && a.draw >= 1 && a.draw <= 5 && Number.isInteger(a.discard) && a.discard >= 1 && a.discard <= 5
       && (a.drawPlus == null || (a.drawPlus && Number.isInteger(a.drawPlus.n) && a.drawPlus.n >= 1 && a.drawPlus.n <= 3 && a.drawPlus.if && !parseCond(a.drawPlus.if).error))
-      && (a.discardLessPerName == null || (typeof a.discardLessPerName === 'string' && a.discardLessPerName.length > 0)) && (a.famCostDestroy == null || (typeof a.famCostDestroy === 'string' && a.famCostDestroy.length > 0)),
-    txt: a => `draw ${a.draw}${a.drawPlus ? ' (+' + a.drawPlus.n + ' in a set condition)' : ''}, then discard ${a.discard}${a.discardLessPerName ? ' (-1 for each ' + a.discardLessPerName + ' you control)' : ''}${a.famCostDestroy ? '; a discarded ' + a.famCostDestroy + ' card lets you destroy a Spirit with cost equal or less' : ''}`,
+      && (a.to == null || a.to === 'deckBottom') && (a.discardLessPerName == null || (typeof a.discardLessPerName === 'string' && a.discardLessPerName.length > 0)) && (a.famCostDestroy == null || (typeof a.famCostDestroy === 'string' && a.famCostDestroy.length > 0)),
+    txt: a => `draw ${a.draw}${a.drawPlus ? ' (+' + a.drawPlus.n + ' in a set condition)' : ''}, then ${a.to === 'deckBottom' ? 'return' : 'discard'} ${a.discard}${a.to === 'deckBottom' ? ' to the deckbottom' : ''}${a.discardLessPerName ? ' (-1 for each ' + a.discardLessPerName + ' you control)' : ''}${a.famCostDestroy ? '; a discarded ' + a.famCostDestroy + ' card lets you destroy a Spirit with cost equal or less' : ''}`,
     run: async (c, a) => {
       const nm = CARDS[c.src.id].name, n = a.draw + (a.drawPlus && fxIf(c.p, c.opp, a.drawPlus.if, c.ctx) ? a.drawPlus.n : 0);
       const k = draw(c.p, n); log(`${nm}: ${who(c.p)} ${c.p.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'}.`); handUp(c.p, k);
@@ -57,10 +57,11 @@ Object.assign(FX_ACTIONS, {
         let d;
         if (c.p.cpu) d = c.p.hand.slice().sort((x, y) => (CARDS[x.id].cost - CARDS[y.id].cost) || (+(CARDS[x.id].type === 'Nexus') - +(CARDS[y.id].type === 'Nexus')))[0];
         else {
-          const v = await ask({ title: `✨ ${nm}`, peek: true, html: `Discard a card from your Hand (${m - j} left).`, buttons: c.p.hand.slice(0, 12).map(x => ({ label: `${CARDS[x.id].name} (cost ${CARDS[x.id].cost})`, cls: 'primary', value: x.uid })) });
+          const v = await ask({ title: `✨ ${nm}`, peek: true, html: `${a.to === 'deckBottom' ? 'Return a card from your Hand to the deckbottom' : 'Discard a card from your Hand'} (${m - j} left).`, buttons: c.p.hand.slice(0, 12).map(x => ({ label: `${CARDS[x.id].name} (cost ${CARDS[x.id].cost})`, cls: 'primary', value: x.uid })) });
           d = c.p.hand.find(x => x.uid === v) || c.p.hand[0];
         }
-        removeFrom(c.p.hand, d); c.p.trash.push(d); last = d; log(`${nm}: ${who(c.p)} ${c.p.cpu ? 'discards' : 'discard'} ${CARDS[d.id].name}.`);
+        removeFrom(c.p.hand, d); (a.to === 'deckBottom' ? c.p.deck : c.p.trash).push(d); last = d;
+        log(a.to === 'deckBottom' ? `${nm}: ${who(c.p)} ${c.p.cpu ? 'returns' : 'return'} a card from the Hand to the deckbottom.` : `${nm}: ${who(c.p)} ${c.p.cpu ? 'discards' : 'discard'} ${CARDS[d.id].name}.`);
       }
       if (a.famCostDestroy) { const hit = !!last && (CARDS[last.id].families || []).includes(a.famCostDestroy); c.ctx.discardedCost = hit ? CARDS[last.id].cost : null; c.ctx.did = hit; }
     } },
