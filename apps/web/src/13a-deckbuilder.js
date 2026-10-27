@@ -41,7 +41,7 @@ const DB_GAP = 16, DB_BUF = 2;
 const DB_COLL = new Intl.Collator('en', { numeric: true, sensitivity: 'base' });
 function dbIndex() {
   if (!DBV.idx || DBV.ver !== CARDS_VER) {
-    DBV.idx = Object.keys(CARDS).filter(id => !CARDS[id].token).map((id, i) => { const c = CARDS[id]; return { id, i, s: (id + '\n' + c.name + '\n' + (c.desc || '')).toLowerCase(), f: (c.families || []).join(' / ').toLowerCase() }; });
+    DBV.idx = Object.keys(CARDS).filter(id => !CARDS[id].token && !id.startsWith('TRAIN-')).map((id, i) => { const c = CARDS[id]; return { id, i, s: (id + '\n' + c.name + '\n' + (c.desc || '')).toLowerCase(), f: (c.families || []).join(' / ').toLowerCase() }; });
     DBV.ver = CARDS_VER; DBV.key = '';
   }
   return DBV.idx;

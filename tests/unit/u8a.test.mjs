@@ -77,9 +77,7 @@ test('U8A-5 the deck builder count without filters = the Home count plus the Tra
   const home = await page.evaluate(() => +document.querySelector('#home-tiles [data-a="go-lib"] span span').textContent.match(/[\d,]+/)[0].replace(/,/g, ''));
   await page.evaluate(() => { BS.switchView('view-deckbuilder'); return 1; });
   const db = await page.evaluate(() => document.getElementById('db-count').textContent);
-  const tr = await page.evaluate(() => Object.keys(BS.CARDS).filter(id => id.startsWith('TRAIN-') && !BS.CARDS[id].token).length);
-  assert.ok(tr > 0);
-  assert.equal(db, `${(home + tr).toLocaleString('en-US')} card(s) shown (${tr} Training)`);
+  assert.equal(db, `${home.toLocaleString('en-US')} card(s) shown`);   // v0.148.0: the Training test cards are no longer listed in the builder
 });
 
 test('U8A-6 phone: the open deck sheet has a way back to My decks, and leaving closes the sheet', async () => {

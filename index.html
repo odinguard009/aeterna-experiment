@@ -2740,7 +2740,7 @@ function bindHost(h) {
    type: 'Spirit' | 'Nexus' | 'Magic'      symbol: card color     symbols: number of symbols
    reduction: {color: n}         levels: [{cores, bp}]  (Nexus levels have no bp)
    --------------------------------------------------------------------- */
-const VERSION = '0.147.0';
+const VERSION = '0.148.0';
 const CARDS = {};
 function defCard(o) {
   CARDS[o.id] = Object.assign({ type: 'Spirit', reduction: {}, symbols: 1, families: [], keywords: [], implemented: true, desc: 'Vanilla test card (no effect).', block: 'A' }, o);
@@ -8158,7 +8158,7 @@ const DB_GAP = 16, DB_BUF = 2;
 const DB_COLL = new Intl.Collator('en', { numeric: true, sensitivity: 'base' });
 function dbIndex() {
   if (!DBV.idx || DBV.ver !== CARDS_VER) {
-    DBV.idx = Object.keys(CARDS).filter(id => !CARDS[id].token).map((id, i) => { const c = CARDS[id]; return { id, i, s: (id + '\n' + c.name + '\n' + (c.desc || '')).toLowerCase(), f: (c.families || []).join(' / ').toLowerCase() }; });
+    DBV.idx = Object.keys(CARDS).filter(id => !CARDS[id].token && !id.startsWith('TRAIN-')).map((id, i) => { const c = CARDS[id]; return { id, i, s: (id + '\n' + c.name + '\n' + (c.desc || '')).toLowerCase(), f: (c.families || []).join(' / ').toLowerCase() }; });
     DBV.ver = CARDS_VER; DBV.key = '';
   }
   return DBV.idx;

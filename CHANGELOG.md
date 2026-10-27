@@ -4,6 +4,11 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.148.0
+- Lane: U/I
+- **Generated test cards no longer clutter the deck builder.** The 14 built-in Training cards (TRAIN-01..12, N1, N2; the grey cards without art) were the only program-made vanilla cards; all 4 other ids missing from the official source data are tokens/Contract cards and stay. The library, Home count and card page already hid them; the deck builder list now does too. The cards stay inside the engine for the sim, the first-run fallback deck and the tests; no official vanilla card was touched (all 8,709 official ids are in the source data).
+  - Checked: id comparison against data/sources, deck builder tests. Not checked: full removal from the engine (needs a rewrite of the legacy suites)
+
 ## v0.147.0
 - Lane: U/I
 - **Frontend audit, part 2.** Two real findings fixed: (1) white text on the Red, Purple and Blue accent colours in dark mode read at only 3.4-3.9:1; the accent ink now falls back to black when its own ink is below 4.5:1 (checked on lobby, Play and Decks for all 9 colours). (2) Lobby Card of the Day showed no name and no buttons on a card without flavor text; it now shows the name, Card Page and + Add To Deck (this also fixed test HM1 failing today and blocking the v0.146.0 push).
