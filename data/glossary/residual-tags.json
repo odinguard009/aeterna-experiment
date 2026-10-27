@@ -780,11 +780,6 @@
   "C_LEVEL",
   "T_BLOCKS"
  ],
- "BS03-046": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "T_BLOCKS"
- ],
  "BS03-047": [
   "C_LEVEL"
  ],
@@ -4557,11 +4552,6 @@
   "M_UP_TO",
   "T_ATTACKS",
   "T_SUMMONED"
- ],
- "BS14-001": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "T_ATTACKS"
  ],
  "BS14-003": [
   "A_BP_PLUS",
@@ -39597,11 +39587,6 @@
   "K_STANDARD_INVOKE",
   "M_OPTIONAL"
  ],
- "26RBS01-076": [
-  "A_VOID",
-  "K_RUMBLE",
-  "T_SUMMONED"
- ],
  "26RBS01-077": [
   "A_REFRESH",
   "C_LEVEL"
@@ -41603,11 +41588,6 @@
   "M_UP_TO",
   "T_SUMMONED"
  ],
- "26RSD04-001": [
-  "A_VOID",
-  "C_LEVEL",
-  "T_BLOCKS"
- ],
  "26RSD04-002": [
   "A_BP_PLUS",
   "C_LEVEL"
@@ -41623,12 +41603,6 @@
   "F_OTHER_NOSTACK",
   "M_OPTIONAL",
   "M_UNSTACKABLE"
- ],
- "26RSD04-006": [
-  "A_BP_PLUS",
-  "A_VOID",
-  "C_LEVEL",
-  "T_SUMMONED"
  ],
  "26RSD04-007": [
   "A_REFRESH"
@@ -41705,14 +41679,6 @@
   "M_THEN",
   "T_START_ATTACK"
  ],
- "26RSD06-001": [
-  "A_VOID",
-  "T_DESTROYED"
- ],
- "26RSD06-008": [
-  "A_BP_PLUS",
-  "T_SUMMONED"
- ],
  "26RSD06-009": [
   "A_BP_PLUS",
   "A_REFRESH",
@@ -41733,7 +41699,6 @@
   "F_OTHER_NOSTACK",
   "M_UNSTACKABLE"
  ],
- "26RSD06-012": [],
  "26RSD06-013": [
   "M_OPTIONAL",
   "M_REPLACEMENT"

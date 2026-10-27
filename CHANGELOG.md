@@ -4,6 +4,11 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.163.0
+- Lane: K
+- **Lane K: 8 more cards complete (6 Standard, 2 Eternal), 828 of 8,709.** Compiler forms, no engine change: (1) own-side pairs "Target a/an <family/colour> Spirit/Nexus you control. Put a core from the Void to it." read as `VOID_TO_CARD` (`anySpirit` / `anyNexus` + `match`), also with a keyword ("a Spirit with Rumble", `match.keyword`); (2) the BP per-count spellings "For each X you control, during this turn, this Spirit gains +N BP" and "This Spirit gets +N BP for each X you control" read as `BP_PLUS` with `per`. Cards: Atun, Dabity, Nausa, The TreeShadow Felio, Tamink, Feeding Draw (26RSD04-001, 26RSD04-006, 26RSD06-001, 26RSD06-008, 26RBS01-076, 26RSD06-012), The Unicorn Einhorn (BS03-046), Ryzard (BS14-001). "Target" with "another", "besides", "up to N" and "each of them" stays in review.
+  - Checked: loop (88 tests), `compiler_v2` test C163-01, promotion smoke 8 / 8, `card_verify` on the Rumble, Legacy and Magic cards. Not checked: full pre-push set and Regression (CI), a real device. Revert note: `git revert` the v0.163.0 commit.
+
 ## v0.162.0
 - Lane: U/I
 - **Generated vanilla test cards no longer appear anywhere in the UI.** The "Training Red (generic vanilla cards)" preset is flagged `hidden` and filtered out of the Decks starters, the deck builder "Load ready-made" list, the CPU deck picker and the "Choose a starter deck" dialog (the TRAIN cards were already hidden from the Library, deck builder and card pages). They stay in the engine as internal fixtures for sims and tests (`BS.loadPrebuilt('train')` still works), because ~25 test suites pin their ids; deleting them outright is left for a dedicated refactor.

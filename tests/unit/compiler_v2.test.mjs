@@ -67,3 +67,15 @@ test('C61-05 the v2 promotion (v0.61.0) is in the card data', () => {
   const r = py(`print(json.dumps({c['id']: c.get('note', '') for c in json.load(open('build/all-cards.json', encoding='utf-8')) if 'compile_v2' in c.get('note', '')}))`);
   for (const id of ['BS22-066', 'BS23-012', 'BS25-039', 'BS26-024', 'BS27-024', 'BS34-011', 'BS36-014', 'BS36-030', 'BS48-090', 'BS59-022']) assert.ok(id in r, id);
 });
+
+test('C163-01 own-side "Target X you control. Put a core from the Void to it." and the BP per-count spellings (v0.163.0)', () => {
+  assert.deepEqual(acts('[LV1] (When Summoned) Target a "Mineroid" family Spirit you control. Put a core from the Void to it.'),
+    [{ do: 'VOID_TO_CARD', n: 1, to: 'anySpirit', match: { family: ['Mineroid'] } }]);
+  assert.deepEqual(acts('[LV2] (When Blocks) Target an "Mineroid" family Nexus you control. Put a core from the Void to it.'),
+    [{ do: 'VOID_TO_CARD', n: 1, to: 'anyNexus', match: { family: ['Mineroid'] } }]);
+  assert.deepEqual(acts('[LV1] (When Summoned) Target a Spirit with Rumble you control. Put a core from the Void to it.'),
+    [{ do: 'VOID_TO_CARD', n: 1, to: 'anySpirit', match: { keyword: 'Rumble' } }]);
+  assert.deepEqual(acts('[LV1] (When Summoned) For each Nexus you control, during this turn, this Spirit gains +1000 BP.'),
+    [{ do: 'BP_PLUS', n: 1000, per: { type: 'Nexus' } }]);
+  assert.equal(acts('[LV1] (When Summoned) Target another Spirit you control. Put a core from the Void to it.').review !== undefined, true);      // "another" stays in review
+});

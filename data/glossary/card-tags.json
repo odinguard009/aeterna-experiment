@@ -44624,6 +44624,7 @@
  "26RBS01-076": [
   "T_SUMMONED",
   "A_VOID",
+  "C_LEVEL",
   "K_RUMBLE"
  ],
  "26RBS01-077": [
@@ -47445,6 +47446,7 @@
  ],
  "26RSD06-001": [
   "A_VOID",
+  "C_LEVEL",
   "T_DESTROYED"
  ],
  "26RSD06-002": [
@@ -47478,7 +47480,8 @@
  ],
  "26RSD06-008": [
   "T_SUMMONED",
-  "A_BP_PLUS"
+  "A_BP_PLUS",
+  "C_LEVEL"
  ],
  "26RSD06-009": [
   "A_BP_PLUS",

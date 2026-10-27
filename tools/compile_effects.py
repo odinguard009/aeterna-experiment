@@ -89,8 +89,10 @@ def action_of(s, ctx):
     if 'opposing' in L: L = L.replace('spirit/ultimate', 'spirit')      # v0.54: the engine's opposing targets already include Ultimates
     fam = [   # v0.54: family names keep their case
         (r'^refresh an? "([^"]+)" family spirit (?:you control|of yours)$', lambda m: [{'do': 'REFRESH_SPIRIT', 'match': {'family': [m.group(1)]}}]),
-        (r'^(?:during this turn, )?' + PER_NP + r',? this spirit (?:gains|gets) \+(\d[\d,]*) ?bp(?: (?:until (?:the )?end of (?:the )?turn|during this turn))?$',
-         lambda m: [{'do': 'BP_PLUS', 'n': bp(m.group(5)), 'per': per_of(m)}]),      # v0.72 "For each X you control, this Spirit gains +N BP"
+        (r'^(?:during this turn, )?' + PER_NP + r',? (?:during this turn,? )?this spirit (?:gains|gets) \+(\d[\d,]*) ?bp(?: (?:until (?:the )?end of (?:the )?turn|during this turn))?$',
+         lambda m: [{'do': 'BP_PLUS', 'n': bp(m.group(5)), 'per': per_of(m)}]),      # v0.72 "For each X you control, this Spirit gains +N BP"; v0.163 also "..., during this turn, this Spirit gains" (the clause after the count)
+        (r'^this spirit (?:gains|gets) \+(\d[\d,]*) ?bp ' + PER_NP + r'(?: (?:until (?:the )?end of (?:the )?turn|during this turn))?$',
+         lambda m: [{'do': 'BP_PLUS', 'n': bp(m.group(1)), 'per': per_of(re.match(PER_NP, m.group(0)[m.group(0).lower().index('for each'):], re.I))}]),      # v0.163 "This Spirit gains +N BP for each X you control"
     ]
     if 'ALLY_ATTACKS' in (ctx.get('trigger') or ()):      # v0.59: "that Spirit" = the attacking ally (engine target 'attacker')
         m = re.match(r'^that spirit (?:gains|gets) \+(\d[\d,]*) ?bp(?: (?:during|until the end of) this turn)?$', L)

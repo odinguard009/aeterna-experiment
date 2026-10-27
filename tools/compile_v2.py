@@ -379,7 +379,7 @@ def when_fx(m, ctx):
 VOID_CORES = re.compile(r'^put (a|one|two|three|\d) cores? from (?:the )?void (each )?(?:to|on|onto|in|into) (.+)$', re.I)
 _VCOL = r'(?:(' + COL + r'(?:/' + COL + r')*) )?'
 _VS_NP = _VCOL + r'(?:"([^"]+(?:"\s*/\s*"[^"]+)*)" family )?(spirits?|nexus(?:es)?)'
-VOID_SPIRIT = re.compile(r'^(?:(?:any (?:one )?of your|one of your|your) ' + _VS_NP + r'|(?:any|a) ' + _VS_NP + r' you control)$')      # an own-side marker is required (an unmarked "a Spirit" is not guessed)
+VOID_SPIRIT = re.compile(r'^(?:(?:any (?:one )?of your|one of your|your) ' + _VS_NP + r'|(?:any|an?) ' + _VS_NP + r' you control)$')      # an own-side marker is required (an unmarked "a Spirit" is not guessed)
 VOID_EACH = re.compile(r'^(?:every|all|each|all of your|each of your) ' + _VS_NP + r'(?: you control)?$')
 
 
@@ -597,7 +597,18 @@ def instead_pair(m, ctx):
     return [dict(y, **{'if': {'not': cond}}) for y in a1] + [dict(y, **{'if': dict(cond)}) for y in a2], False
 
 
+TGT_VOID = re.compile(r'^target (?:an?|one) (.+? you control)\.\s*put (a|one|two|three|\d) cores? from (?:the )?void to it\.?$', re.I)      # v0.163
+
+
 def action_of(s, ctx):
+    m = TGT_VOID.match(s.strip())
+    kw = re.fullmatch(r'(?:(' + COL + r') )?(spirit) with ([A-Za-z]+) you control', m.group(1), re.I) if m else None
+    if kw and kw.group(3).lower() not in ('no', 'a', 'an', 'the', 'any'):      # v0.163 "Target a Spirit with Rumble you control. Put a core from the Void to it." (match.keyword)
+        mt = {'keyword': kw.group(3).capitalize()}
+        if kw.group(1): mt['color'] = kw.group(1).lower()
+        return [{'do': 'VOID_TO_CARD', 'n': n_of(m.group(2).lower()), 'to': 'anySpirit', 'match': mt}], False
+    if m and not re.search(r'\b(?:with|besides|except|other|another)\b', m.group(1), re.I):      # v0.163 "Target a <X> you control. Put a core from the Void to it." = "Put a core from the Void to a <X> you control." (VOID_TO_CARD, own side)
+        return action_of('Put %s core from the Void to a %s.' % (m.group(2), m.group(1)), ctx)
     trig = set((ctx or {}).get('trigger') or ()) if isinstance(ctx, dict) else set()
     m = EOB_LEAD.match(s.strip())
     if m and trig and trig <= EOB_TRIG:      # v0.78 "At the end of (the) battle, X." = X waits for the end of this battle (END_BATTLE)
