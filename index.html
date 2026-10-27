@@ -2507,10 +2507,12 @@ html.layout-pc #view-playmat .ae-sub{display:inline}
   <form class="modal-box bug-box" id="bug-form" autocomplete="off">
     <h2 class="modal-title" id="bug-h">Report a Bug</h2>
     <p class="bug-note">Opens a pre-filled issue on GitHub. You send it with your own GitHub login; nothing leaves this device until you do.</p>
-    <label>Type<select id="bug-kind" class="sel"><option value="bug">Bug</option><option value="card">Wrong card text or effect</option><option value="idea">Idea</option></select></label>
+    <label>Type<select id="bug-kind" class="sel"><option value="bug">Bug</option><option value="display">Display or layout problem</option><option value="card">Wrong card text or effect</option><option value="idea">Idea</option></select></label>
     <label>Summary<input id="bug-title" class="se" maxlength="100" required></label>
-    <label>What happened<textarea id="bug-text" rows="5" maxlength="2000"></textarea></label>
+    <label>What happened<textarea id="bug-text" rows="4" maxlength="1500"></textarea></label>
+    <label>Steps to reproduce (optional)<textarea id="bug-steps" rows="3" maxlength="800" placeholder="1. Open … 2. Tap …"></textarea></label>
     <label class="bug-chk"><input type="checkbox" id="bug-info" checked> Add version, page and screen size</label>
+    <label class="bug-chk"><input type="checkbox" id="bug-log"> Add the last lines of the match log (during a match)</label>
     <div class="modal-btns"><button type="button" class="modal-btn cancel" data-a="bug-close">Cancel</button><button type="submit" class="modal-btn primary">Open on GitHub</button></div>
   </form>
 </div>
@@ -2771,7 +2773,7 @@ function bindHost(h) {
    type: 'Spirit' | 'Nexus' | 'Magic'      symbol: card color     symbols: number of symbols
    reduction: {color: n}         levels: [{cores, bp}]  (Nexus levels have no bp)
    --------------------------------------------------------------------- */
-const VERSION = '0.152.0';
+const VERSION = '0.153.0';
 const CARDS = {};
 function defCard(o) {
   CARDS[o.id] = Object.assign({ type: 'Spirit', reduction: {}, symbols: 1, families: [], keywords: [], implemented: true, desc: 'Vanilla test card (no effect).', block: 'A' }, o);
@@ -9154,7 +9156,17 @@ function dkNewSlot(name, cards, keep, key) {        // the first free slot (made
 async function dkAct(a, v) {
   const i = Number(v); if (a !== 'dk-more') DK_MENU = -1;
   if (a === 'dk-more') return dkMenu(i);
-  if (a === 'dk-new') { if (dkNewSlot()) switchView('view-deckbuilder'); return; }
+  if (a === 'dk-new') {                 // mockup New Deck dialog: Blank / From a starter deck / Import a list
+    if (dkFree() < 0) { uiInfo('No free deck slot', `All ${SLOTS.length} deck slots are in use. Delete a deck first.`); return; }
+    const c = await modal({ uiOnly: true, title: 'New deck', html: 'Start from an empty list, copy one of the starter decks, or paste a deck list.', buttons: [{ label: 'Blank deck', cls: 'primary', value: 'blank' }, { label: 'From a starter deck', value: 'starter' }, { label: 'Import a list', value: 'import' }, { label: 'Cancel', cls: 'cancel', value: null }] });
+    if (c === 'blank') { if (dkNewSlot()) switchView('view-deckbuilder'); }
+    else if (c === 'import') return dkAct('dk-import', v);
+    else if (c === 'starter') {
+      const k = await modal({ uiOnly: true, title: 'Choose a starter deck', html: 'The copy is yours to edit; the starter itself stays unchanged.', buttons: /** @type {any[]} */ (PREBUILT.map((d, n) => ({ label: d.name, value: 's' + n }))).concat([{ label: 'Cancel', cls: 'cancel', value: null }]) });
+      const d = PREBUILT[Number(String(k).slice(1))]; if (k && d) { if (dkNewSlot(d.name, d.cards, false, d.key)) switchView('view-deckbuilder'); }
+    }
+    return;
+  }
   if (a === 'dk-import') {
     const back = ACTIVE_SLOT; if (!dkNewSlot()) return;
     await dbImport();
@@ -9881,15 +9893,15 @@ function renderGlossary() {
    with their own GitHub login; no token or server is involved and nothing is sent from here. Display only: nothing touches the rules.
    --------------------------------------------------------------------- */
 const BUG_REPO = 'https://github.com/odinguard009/aeterna-experiment/issues/new';
-const BUG_LABEL = { bug: 'bug', card: 'card data', idea: 'idea' };
-function bugURL(kind, title, text, withInfo, view) {
+const BUG_LABEL = { bug: 'bug', display: 'bug', card: 'card data', idea: 'idea' };
+function bugURL(kind, title, text, withInfo, view, steps, log) {
   const info = withInfo ? `
 
 ---
 Version: v${VERSION}
 Page: ${view || '?'}
 Screen: ${innerWidth}x${innerHeight}` : '';
-  const q = new URLSearchParams({ title: String(title).trim().slice(0, 100), body: (String(text).trim().slice(0, 2000) + info).slice(0, 4000), labels: BUG_LABEL[kind] || 'bug' });
+  const q = new URLSearchParams({ title: String(title).trim().slice(0, 100), body: (String(text).trim().slice(0, 1500) + (steps && String(steps).trim() ? '\n\nSteps to reproduce:\n' + String(steps).trim().slice(0, 800) : '') + (log ? '\n\nRecent match log:\n' + String(log).slice(0, 700) : '') + info).slice(0, 4000), labels: BUG_LABEL[kind] || 'bug' });
   return BUG_REPO + '?' + q.toString();
 }
 function bugOpen(on) {
@@ -9899,7 +9911,8 @@ function bugOpen(on) {
 }
 function bugSend() {   // the three fields below are inputs of the form
   const view = (document.querySelector('.app-view.active') || {}).id || '';
-  const url = bugURL($('bug-kind').value, $('bug-title').value, $('bug-text').value, $('bug-info').checked, view);
+  const log = $('bug-log').checked && typeof G !== 'undefined' && G && G.history ? G.history.slice(-8).map(h => '- ' + String(h && h.text || h).replace(/<[^>]*>/g, '')).join('\n') : '';
+  const url = bugURL($('bug-kind').value, $('bug-title').value, $('bug-text').value, $('bug-info').checked, view, $('bug-steps').value, log);
   window.open(url, '_blank', 'noopener'); bugOpen(false); /** @type {any} */ ($("bug-form")).reset();
 }
 /* ---------------------------------------------------------------------
@@ -10658,7 +10671,7 @@ function gameAct(a, v) {
   else if (a === 'zone') { const [k, z] = v.split(':'); openZoneModal(k, z); }
   else if (a === 'next') onNext();
   else if (a === 'leave') {
-    modal({ uiOnly: true, title: 'Concede the match?', html: 'The current match will be lost and you return to the lobby.', buttons: [{ label: 'Stay', cls: 'primary', value: false }, { label: 'Concede', cls: 'cancel', value: true }] })
+    modal({ uiOnly: true, title: 'Concede the match?', html: 'It counts as a loss. You can replay it from History.', buttons: [{ label: 'Keep Playing', cls: 'primary', value: false }, { label: 'Concede', cls: 'danger', value: true }] })
       .then(r => { if (r) { SESSION++; clearPick(); G = null; switchView('view-lobby'); } });
   }
 }

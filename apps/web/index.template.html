@@ -276,10 +276,12 @@
   <form class="modal-box bug-box" id="bug-form" autocomplete="off">
     <h2 class="modal-title" id="bug-h">Report a Bug</h2>
     <p class="bug-note">Opens a pre-filled issue on GitHub. You send it with your own GitHub login; nothing leaves this device until you do.</p>
-    <label>Type<select id="bug-kind" class="sel"><option value="bug">Bug</option><option value="card">Wrong card text or effect</option><option value="idea">Idea</option></select></label>
+    <label>Type<select id="bug-kind" class="sel"><option value="bug">Bug</option><option value="display">Display or layout problem</option><option value="card">Wrong card text or effect</option><option value="idea">Idea</option></select></label>
     <label>Summary<input id="bug-title" class="se" maxlength="100" required></label>
-    <label>What happened<textarea id="bug-text" rows="5" maxlength="2000"></textarea></label>
+    <label>What happened<textarea id="bug-text" rows="4" maxlength="1500"></textarea></label>
+    <label>Steps to reproduce (optional)<textarea id="bug-steps" rows="3" maxlength="800" placeholder="1. Open … 2. Tap …"></textarea></label>
     <label class="bug-chk"><input type="checkbox" id="bug-info" checked> Add version, page and screen size</label>
+    <label class="bug-chk"><input type="checkbox" id="bug-log"> Add the last lines of the match log (during a match)</label>
     <div class="modal-btns"><button type="button" class="modal-btn cancel" data-a="bug-close">Cancel</button><button type="submit" class="modal-btn primary">Open on GitHub</button></div>
   </form>
 </div>

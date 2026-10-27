@@ -146,7 +146,7 @@ rvName, rvCards, rvField, rvSideHTML, rvFrameHTML, openViewer, replayFromRecord,
 ## apps/web/src/13g-anim.js (143 lines, ~2.9k tokens) — v0.92.0 U5b LIGHT BATTLE ANIMATIONS (roadmap item U, owner 2026-10-21; docs/DESIGN.md section 0, U5b)
 spdF, animMode, ANIM, rectOf, visEl, aeFx, aeBeam, CF_SEEN, flyGem, coreEnd, coreFly, coreFlows, drawFly, burstFlip, animCues
 
-## apps/web/src/13h-decks.js (123 lines, ~3k tokens) — v0.93.0 U6 MY DECKS (docs/DESIGN.md section 0, mockup docs/design/mockup-v11.html "My decks PC / phone")
+## apps/web/src/13h-decks.js (133 lines, ~3.3k tokens) — v0.93.0 U6 MY DECKS (docs/DESIGN.md section 0, mockup docs/design/mockup-v11.html "My decks PC / phone")
 DK_MENU, dkCards, dkUsed, dkFree, dkStatus, dkColors, dkFan, dkStats, dkAgo, dkTile, renderDecks, dkMenu, dkNewSlot, dkAct
 
 ## apps/web/src/13i-online.js (412 lines, ~7.6k tokens) — ONLINE CLIENT (v0.108.0, roadmap M8 part 1; docs/ai/monorepo-plan.md M8)
@@ -170,7 +170,7 @@ ART_KEY, ART_ALT, sameName, usedInDecks, setArt, cardPageHTML, cardTilt, CP_ID, 
 ## apps/web/src/13o-profile.js (17 lines, ~0.4k tokens) — PROFILE and GLOSSARY (v0.133.0, U14h): statistics read from the saved match history only, and the Learn page's keyword glossary.
 profileStats, renderGlossary
 
-## apps/web/src/13p-bugreport.js (26 lines, ~0.4k tokens) — REPORT A BUG (v0.134.0, U14i): a form on every page that opens a pre-filled "new issue" page of the repository. The player sends it
+## apps/web/src/13p-bugreport.js (27 lines, ~0.5k tokens) — REPORT A BUG (v0.134.0, U14i): a form on every page that opens a pre-filled "new issue" page of the repository. The player sends it
 BUG_REPO, BUG_LABEL, bugURL, bugOpen, bugSend
 
 ## apps/web/src/13q-progress.js (53 lines, ~1.9k tokens) — PROGRESS (v0.134.0, U15): rank, daily missions, achievements and avatars. Everything is derived from the saved match history on this

@@ -173,7 +173,7 @@ function gameAct(a, v) {
   else if (a === 'zone') { const [k, z] = v.split(':'); openZoneModal(k, z); }
   else if (a === 'next') onNext();
   else if (a === 'leave') {
-    modal({ uiOnly: true, title: 'Concede the match?', html: 'The current match will be lost and you return to the lobby.', buttons: [{ label: 'Stay', cls: 'primary', value: false }, { label: 'Concede', cls: 'cancel', value: true }] })
+    modal({ uiOnly: true, title: 'Concede the match?', html: 'It counts as a loss. You can replay it from History.', buttons: [{ label: 'Keep Playing', cls: 'primary', value: false }, { label: 'Concede', cls: 'danger', value: true }] })
       .then(r => { if (r) { SESSION++; clearPick(); G = null; switchView('view-lobby'); } });
   }
 }

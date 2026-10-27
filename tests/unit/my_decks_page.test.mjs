@@ -43,6 +43,7 @@ for (const screen of ['pc', 'phone']) {
     const { page, errors } = await open(screen);
     await page.evaluate(() => { BS.switchView('view-decks'); window.__clip = null; navigator.clipboard.writeText = async t => { window.__clip = t; }; return 1; });
     await page.click('#view-decks [data-a="dk-new"]');
+    await page.click('#action-modal.active .modal-btn.primary');          // New deck dialog: Blank deck
     assert.deepEqual(await page.evaluate(() => [document.getElementById('view-deckbuilder').classList.contains('active'), BS.ACTIVE_SLOT]), [true, 1], 'New deck = first empty slot, opened in the builder');
     await page.evaluate(() => { BS.switchView('view-decks'); return 1; });
     let t = await tiles(page);

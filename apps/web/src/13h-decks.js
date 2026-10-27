@@ -82,7 +82,17 @@ function dkNewSlot(name, cards, keep, key) {        // the first free slot (made
 async function dkAct(a, v) {
   const i = Number(v); if (a !== 'dk-more') DK_MENU = -1;
   if (a === 'dk-more') return dkMenu(i);
-  if (a === 'dk-new') { if (dkNewSlot()) switchView('view-deckbuilder'); return; }
+  if (a === 'dk-new') {                 // mockup New Deck dialog: Blank / From a starter deck / Import a list
+    if (dkFree() < 0) { uiInfo('No free deck slot', `All ${SLOTS.length} deck slots are in use. Delete a deck first.`); return; }
+    const c = await modal({ uiOnly: true, title: 'New deck', html: 'Start from an empty list, copy one of the starter decks, or paste a deck list.', buttons: [{ label: 'Blank deck', cls: 'primary', value: 'blank' }, { label: 'From a starter deck', value: 'starter' }, { label: 'Import a list', value: 'import' }, { label: 'Cancel', cls: 'cancel', value: null }] });
+    if (c === 'blank') { if (dkNewSlot()) switchView('view-deckbuilder'); }
+    else if (c === 'import') return dkAct('dk-import', v);
+    else if (c === 'starter') {
+      const k = await modal({ uiOnly: true, title: 'Choose a starter deck', html: 'The copy is yours to edit; the starter itself stays unchanged.', buttons: /** @type {any[]} */ (PREBUILT.map((d, n) => ({ label: d.name, value: 's' + n }))).concat([{ label: 'Cancel', cls: 'cancel', value: null }]) });
+      const d = PREBUILT[Number(String(k).slice(1))]; if (k && d) { if (dkNewSlot(d.name, d.cards, false, d.key)) switchView('view-deckbuilder'); }
+    }
+    return;
+  }
   if (a === 'dk-import') {
     const back = ACTIVE_SLOT; if (!dkNewSlot()) return;
     await dbImport();

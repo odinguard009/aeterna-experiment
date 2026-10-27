@@ -4,6 +4,11 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.153.0
+- Lane: U/I
+- **Mockup parity part 2.** (1) Concede dialog: "It counts as a loss. You can replay it from History.", buttons Keep Playing (primary) and Concede (red). (2) New deck now asks Blank deck / From a starter deck / Import a list (a full set of slots still says so first). (3) Report a Bug: new "Display or layout problem" type, an optional "Steps to reproduce" box and an optional "last lines of the match log" box; all parts are capped so the issue link stays under the URL limit.
+  - Checked: loop, tests V153-1..3, U93 deck tests updated for the chooser. Not checked / still different from the mockup: export tabs (Text / Code / Image / CSV), Import "format detected", Avatar and History dialogs, mulligan "cards you can pay for are marked", full battle re-skin, card art. B01 budget raised 975 -> 985 KB on purpose (noted in the test).
+
 ## v0.152.0
 - Lane: U/I
 - **Battle screen, mockup parity part 1.** PC: the turn band reads "Player Turn 5" with the turn number; the title bar names the format and CPU style ("Standard · vs Balanced CPU"); the Card Panel has a frame with the hint "Hover Or Tap A Card To Read It Here." and the last three log lines at its bottom. Phone: the stat cells read as full words (Life, Reserve, Hand, Deck, Trash, Count, Void, Banished; "Res." at 360 px) while the text keeps the short labels the tests read. Same session: owner switched chain mode on ("Rantai on").
