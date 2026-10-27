@@ -75,7 +75,7 @@ test('B18 scrolling to the end shows the last cards; scroll height matches all r
     const top = el.scrollTop; el.scrollTop = 0; await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
     return { last: ids[ids.length - 1], top, firstNow: el.querySelector('[data-a="dbcard"]').dataset.v };
   });
-  const order = await page.evaluate(() => Object.keys(BS.CARDS).filter(id => !BS.CARDS[id].token));
+  const order = await page.evaluate(() => Object.keys(BS.CARDS).filter(id => !BS.CARDS[id].token && !id.startsWith('TRAIN-')));
   assert.equal(r.last, order[order.length - 1]);
   assert.equal(r.firstNow, order[0]);
   assert.ok(r.top > 10000, JSON.stringify(r));
