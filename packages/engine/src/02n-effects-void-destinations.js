@@ -55,7 +55,7 @@
     const floor = (a.keepOne || a.untilOne) ? totalCores(t) - 1 : Infinity;
     const m = Math.max(0, Math.min(a.untilOne ? Infinity : a.each, t.cores, floor));
     if (!m) { c.ctx.did = false; return; }
-    t.cores -= m; c.opp.reserve.n += m;
+    coreEvN(c.opp, t.uid, 'reserve', m, false); t.cores -= m; c.opp.reserve.n += m;
     log(`${CARDS[c.src.id].name}: ${m} core${m === 1 ? '' : 's'} from ${poss(c.opp)} ${CARDS[t.id].name} go to the Reserve.`);
     checkDepletion(c.opp);
     if (a.drawPerDepleted && !c.opp.spirits.includes(t)) { const k = draw(c.p, 1); log(`${who(c.p)} ${c.p.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'}.`); handUp(c.p, k); }

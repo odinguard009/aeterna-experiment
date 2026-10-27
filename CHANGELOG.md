@@ -4,6 +4,11 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.149.0
+- Lane: U/I
+- **Battle: core animations, Depletion safety net, phone field.** (1) Every core/Soul Core move now emits a view event and flies as a gem in Full animation: Life to Reserve (damage), Reserve to Spirit, Spirit to Reserve (destroy/deplete), Spirit to Spirit, Reserve/Spirit to Trash (cost payment), Void and Trash zones included. (2) A Spirit below its Lv1 cores is now also depleted at every Intent and step change (safety net next to the existing checks after payments, battle and effects). (3) Phone: the Life indicator shows one core icon instead of up to five, so the field no longer changes size when Life drops; the first Spirit/Nexus starts in the middle of the row and the row scrolls when it overflows. Size budget B01 raised to 975 KB.
+  - Checked: loop (build, lint, smoke). Not checked: the reported 0-core Spirit could not be reproduced in the engine; full quick tests run in pre-push; no live player-view pass
+
 ## v0.148.0
 - Lane: U/I
 - **Generated test cards no longer clutter the deck builder.** The 14 built-in Training cards (TRAIN-01..12, N1, N2; the grey cards without art) were the only program-made vanilla cards; all 4 other ids missing from the official source data are tokens/Contract cards and stay. The library, Home count and card page already hid them; the deck builder list now does too. The cards stay inside the engine for the sim, the first-run fallback deck and the tests; no official vanilla card was touched (all 8,709 official ids are in the source data).

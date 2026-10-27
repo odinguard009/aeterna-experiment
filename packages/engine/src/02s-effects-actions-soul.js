@@ -79,7 +79,7 @@ Object.assign(FX_ACTIONS, {
         n = Number.isInteger(v) ? v : 0;
       }
       let moved = 0;
-      for (const x of src.sort((p, q) => spare(q) - spare(p))) { while (moved < n && spare(x) > 0 && x.cores > 0) { x.cores--; c.src.cores++; moved++; } }
+      for (const x of src.sort((p, q) => spare(q) - spare(p))) { while (moved < n && spare(x) > 0 && x.cores > 0) { coreEv(c.p, 'core', x.uid, c.src.uid, moved); x.cores--; c.src.cores++; moved++; } }
       c.ctx.did = moved > 0; if (!moved) return;
       log(`${CARDS[c.src.id].name}: Awaken, ${moved} core${moved === 1 ? '' : 's'} sent from other Spirits.`);
       coresSent(c.p, c.src, moved);

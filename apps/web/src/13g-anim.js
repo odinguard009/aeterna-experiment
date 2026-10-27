@@ -38,7 +38,7 @@ function aeBeam(a, b, cpu, still) {               // a, b: rects; v0.124.0 U14d:
    holds both ends: a gem flies from one rect to the other (Full only; Reduced and Off draw nothing), and a flipped Burst turns face up where it was set. */
 function coreFly(ev) {
   if (SIM || animMode() !== 'full') return;
-  const end = (x, side) => ['reserve', 'void', 'trash'].includes(x) ? rectOf(visEl(`[data-a="zone"][data-v="${side}:${x}"]`)) : rectOf(document.querySelector(`[data-a="field"][data-v$=":${x}"]`));
+  const end = (x, side) => ['reserve', 'void', 'trash', 'life', 'count'].includes(x) ? rectOf(visEl(`[data-a="zone"][data-v="${side}:${x}"]`)) : rectOf(document.querySelector(`[data-a="field"][data-v$=":${x}"]`));
   const a = end(ev.from, ev.side), b = end(ev.to, ev.side), L = $('ae-fx'); if (!a || !b || !L) return;
   const d = document.createElement('div'); d.className = 'ae-a-fly' + (ev.kind === 'soul' ? ' soul' : '') + (ev.side === 'opponent' ? ' cpu' : '');
   d.style.cssText = `left:${a.x + a.w / 2 - 9}px;top:${a.y + a.h / 2 - 9}px;width:18px;height:18px`;

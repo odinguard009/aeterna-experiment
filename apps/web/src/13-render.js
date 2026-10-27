@@ -90,11 +90,11 @@ function fieldAreaHTML(p, isPlayer) {
     const spiritRow = rowHTML('SPIRITS', k + '-spirits', k, sp, 'No Spirits');
     rows = isPlayer ? spiritRow + nexusRow : nexusRow + spiritRow;
   } else {                                       // phone: one swipeable row (Spirits, then Nexus)
-    const all = sp.concat(nx), ph = '<span class="ph-slot" aria-hidden="true">Empty</span>'.repeat(Math.max(0, 4 - all.length));   // v0.142.0: mockup shows dashed empty slots up to four
+    const all = sp.concat(nx), ph = all.length ? '' : '<span class="ph-slot" aria-hidden="true">Empty</span>';   // v0.149.0: cards start in the middle (auto margins), one dashed slot only when the field is empty
     rows = rowHTML(isPlayer ? 'YOUR FIELD ↔' : 'CPU FIELD ↔', k + '-field', k, all, '', '', ph);
   }
   /* v0.63.0 (U1): the CPU grid is the point mirror of yours (your Life top-left, the CPU's Life bottom-right) */
-  const lifeGems = `<span class="gems sm">${gemsHTML(p.life - (p.lifeSoul ? 1 : 0), !!p.lifeSoul, 10)}</span>`;
+  const lifeGems = '<span class="gems sm"><i class="g-core" aria-hidden="true"></i></span>';      // v0.149.0: one core icon, so the pill never changes size as Life drops
   const pills = [pill('LIFE', lifeTxt(p), 'life', lifeGems), pill('RES', p.reserve.n + (p.reserve.soul ? '+S' : ''), 'reserve', p.reserve.soul ? '<i class="g-soul" aria-hidden="true"></i>' : ''), pill('HD', p.hand.length, 'hand'), pill('DECK', p.deck.length, 'deck', '<span class="sleeve mini" aria-hidden="true"></span>'),
     pill('TR', p.trash.length, 'trash'), pill('CNT', p.count, 'count'), pill('VD', p.void, 'void'), pill('BAN', p.removed.length, 'removed')];
   const stats = `<div class="mobile-stats-bar ${isPlayer ? 'side-you' : 'side-cpu'}">${(isPlayer ? pills : pills.slice().reverse()).join('')}</div>`;

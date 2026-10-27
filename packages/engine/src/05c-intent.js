@@ -26,7 +26,7 @@ let SEAT_LOOP = null;                                 // {key, s: SESSION} while
 /** The seat may act now: its own turn, not busy (an attack or the Start of the Attack Step resolving), a human seat. */
 const seatCan = key => !!G && !G.over && !G.busy && G.active === key && !!G.p[key] && !G.p[key].cpu;
 const seatLoopOpen = key => !!SEAT_LOOP && SEAT_LOOP.key === key && SEAT_LOOP.s === SESSION;
-const boardView = () => io.view({ type: 'board' });
+const boardView = () => { if (G && !G.over) { checkDepletion(G.p.player); checkDepletion(G.p.opponent); } io.view({ type: 'board' }); };      // v0.149.0: a Spirit below its Lv1 cores never survives an intent (Depletion safety net)
 /** Ends the current turn of the seat (the old finishTurn of the web UI). */
 function endTurnNow() { const r = G.turnResolver; G.turnResolver = null; G.busy = true; boardView(); if (r) r(); }
 async function seatTurn(key) {

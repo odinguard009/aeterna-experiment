@@ -46,7 +46,7 @@ Object.assign(FX_ACTIONS, {
     can: c => FX_ACTIONS.OPP_CORES_TO_RESERVE.cands(c).length > 0,
     run: async (c, a) => {
       const hit = new Set(); let moved = 0;
-      const take = (t, k) => { const m = Math.min(k, t.cores); t.cores -= m; c.opp.reserve.n += m; moved += m; hit.add(t); log(`${_pn(c)}: ${m} core${m === 1 ? '' : 's'} from ${poss(c.opp)} ${CARDS[t.id].name} go to the Reserve.`); };
+      const take = (t, k) => { const m = Math.min(k, t.cores); coreEvN(c.opp, t.uid, 'reserve', m, false); t.cores -= m; c.opp.reserve.n += m; moved += m; hit.add(t); log(`${_pn(c)}: ${m} core${m === 1 ? '' : 's'} from ${poss(c.opp)} ${CARDS[t.id].name} go to the Reserve.`); };
       if (a.total) {
         for (let j = 0; j < a.total; j++) {
           const L = FX_ACTIONS.OPP_CORES_TO_RESERVE.cands(c); if (!L.length) break;

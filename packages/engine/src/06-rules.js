@@ -234,6 +234,9 @@ function takeCores(p, n, excludeUid) {
 }
 function payCost(p, c, plan) {
   if (plan) {
+    coreEvN(p, 'reserve', 'trash', plan.reserve, plan.rsoul);
+    for (const [u, k] of Object.entries(plan.by)) coreEvN(p, Number(u), 'trash', k, false);
+    if (plan.fsoul) coreEv(p, 'soul', plan.fsoul, 'trash');
     p.reserve.n -= plan.reserve; p.trashCores.n += plan.reserve;
     for (const [u, k] of Object.entries(plan.by)) { const f = fieldList(p).find(x => x.uid === Number(u)); f.cores -= k; p.trashCores.n += k; }
     if (plan.rsoul) { p.reserve.soul = false; p.trashCores.soul = true; }
@@ -267,6 +270,7 @@ function removeSpirit(p, s, why, byOpponent) {
   if (why === 'destroyed' && !s.noFx && G && G.evQ && (CARDS[s.id].effects || []).some(e => e.trigger === 'DESTROYED')) G.evQ.push({ type: 'DESTROYED', key: p.key, inst: s, byOpp: !!byOpponent, byOppFx: oppFx });
   leaveEvent(p, s, !!byOpponent || oppFx, oppFx);   // (When Destroyed), manual p. 31; noFx = "the effects of the destroyed target can't activate"
   delete s.noFx;
+  coreEvN(p, s.uid, 'reserve', s.cores, s.soul);          // v0.149.0: the cores of a destroyed / depleted Spirit fly to the Reserve
   p.reserve.n += s.cores; if (s.soul) p.reserve.soul = true;
   s.cores = 0; s.soul = false; s.exhausted = false; s.heavy = false; s.noAB = false; s.bpMod = 0; s.bpB = null; s.fxBattle = null;      // v0.68: battle BP / Once Per Battle end when it leaves
   const under = s.under; s.under = [];
@@ -452,7 +456,8 @@ async function castMagic(p, ch) {                         // ch = { inst, target
 
 /* manual core movement during the Main Step */
 /* v0.126.0 U14d3: display-only record of one core moving (a uid or 'reserve' at each end); the web host flies it, other hosts ignore it */
-const coreEv = (p, kind, from, to) => io.view({ type: 'core', side: p.key, kind, from, to });
+const coreEv = (p, kind, from, to, nth) => io.view({ type: 'core', side: p.key, kind, from, to, nth });
+const coreEvN = (p, from, to, n, soul) => { for (let i = 0; i < Math.min(n, 5); i++) coreEv(p, 'core', from, to, i); if (soul) coreEv(p, 'soul', from, to, Math.min(n, 5)); };   // v0.149.0: n gems fly one after the other (display cue only)
 function addCore(p, f) { if (p.reserve.n > 0) { coreEv(p, 'core', 'reserve', f.uid); p.reserve.n--; f.cores++; return true; } return false; }
 function removeCore(p, f) { if (f.cores > 0) { coreEv(p, 'core', f.uid, 'reserve'); f.cores--; p.reserve.n++; checkDepletion(p); return true; } return false; }
 function moveSoulTo(p, f) {

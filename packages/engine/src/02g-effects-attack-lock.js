@@ -76,7 +76,7 @@ Object.assign(FX_ACTIONS, {
     run: async (c, a) => {
       const L = FX_ACTIONS.NEXUS_CORES_TO_SELF.cands(c, a); if (!L.length || !c.p.spirits.includes(c.src)) { c.ctx.did = false; return; }
       const t = L.length === 1 ? L[0] : await fxPickTarget(c, L, `✨ <b>${esc(_pn(c))}</b><br>Tap the Nexus that sends ${a.n} cores to this Spirit (glowing).`);
-      t.cores -= a.n; c.src.cores += a.n; log(`${_pn(c)}: ${a.n} cores move from ${CARDS[t.id].name} to ${_pn(c)}.`); io.view({ type: 'board' });
+      coreEvN(c.p, t.uid, c.src.uid, a.n, false); t.cores -= a.n; c.src.cores += a.n; log(`${_pn(c)}: ${a.n} cores move from ${CARDS[t.id].name} to ${_pn(c)}.`); io.view({ type: 'board' });
     } },
   /* return this Spirit to the Hand (Togevajdra) */
   SELF_TO_HAND: { chk: () => true, txt: () => 'return this Spirit to your Hand',

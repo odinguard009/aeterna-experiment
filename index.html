@@ -2740,7 +2740,7 @@ function bindHost(h) {
    type: 'Spirit' | 'Nexus' | 'Magic'      symbol: card color     symbols: number of symbols
    reduction: {color: n}         levels: [{cores, bp}]  (Nexus levels have no bp)
    --------------------------------------------------------------------- */
-const VERSION = '0.148.0';
+const VERSION = '0.149.0';
 const CARDS = {};
 function defCard(o) {
   CARDS[o.id] = Object.assign({ type: 'Spirit', reduction: {}, symbols: 1, families: [], keywords: [], implemented: true, desc: 'Vanilla test card (no effect).', block: 'A' }, o);
@@ -3556,6 +3556,7 @@ function soulToLife(p, holder) {
 function lifeTake(p, m, dest) {                          // m Life cores leave to 'reserve' | 'trash' | a card on the Field; returns how many left
   m = Math.min(m, p.life); if (m <= 0) return 0;
   const soul = p.lifeSoul && m >= p.life, n = m - (soul ? 1 : 0);
+  coreEvN(p, 'life', dest === 'reserve' || dest === 'trash' ? dest : dest.uid, n, soul);          // v0.149.0: Life cores fly to where they go
   p.life -= m; if (soul) p.lifeSoul = false; p.lifeRedTurn = G.turnNo;      // v0.88 S1: condition lifeReduced
   if (dest === 'reserve') { p.reserve.n += n; if (soul) p.reserve.soul = true; }
   else if (dest === 'trash') { p.trashCores.n += n; if (soul) p.trashCores.soul = true; }
@@ -3980,7 +3981,7 @@ Object.assign(FX_ACTIONS, {
     can: c => FX_ACTIONS.OPP_CORES_TO_RESERVE.cands(c).length > 0,
     run: async (c, a) => {
       const hit = new Set(); let moved = 0;
-      const take = (t, k) => { const m = Math.min(k, t.cores); t.cores -= m; c.opp.reserve.n += m; moved += m; hit.add(t); log(`${_pn(c)}: ${m} core${m === 1 ? '' : 's'} from ${poss(c.opp)} ${CARDS[t.id].name} go to the Reserve.`); };
+      const take = (t, k) => { const m = Math.min(k, t.cores); coreEvN(c.opp, t.uid, 'reserve', m, false); t.cores -= m; c.opp.reserve.n += m; moved += m; hit.add(t); log(`${_pn(c)}: ${m} core${m === 1 ? '' : 's'} from ${poss(c.opp)} ${CARDS[t.id].name} go to the Reserve.`); };
       if (a.total) {
         for (let j = 0; j < a.total; j++) {
           const L = FX_ACTIONS.OPP_CORES_TO_RESERVE.cands(c); if (!L.length) break;
@@ -4085,7 +4086,7 @@ Object.assign(FX_ACTIONS, {
     run: async (c, a) => {
       const L = FX_ACTIONS.NEXUS_CORES_TO_SELF.cands(c, a); if (!L.length || !c.p.spirits.includes(c.src)) { c.ctx.did = false; return; }
       const t = L.length === 1 ? L[0] : await fxPickTarget(c, L, `✨ <b>${esc(_pn(c))}</b><br>Tap the Nexus that sends ${a.n} cores to this Spirit (glowing).`);
-      t.cores -= a.n; c.src.cores += a.n; log(`${_pn(c)}: ${a.n} cores move from ${CARDS[t.id].name} to ${_pn(c)}.`); io.view({ type: 'board' });
+      coreEvN(c.p, t.uid, c.src.uid, a.n, false); t.cores -= a.n; c.src.cores += a.n; log(`${_pn(c)}: ${a.n} cores move from ${CARDS[t.id].name} to ${_pn(c)}.`); io.view({ type: 'board' });
     } },
   /* return this Spirit to the Hand (Togevajdra) */
   SELF_TO_HAND: { chk: () => true, txt: () => 'return this Spirit to your Hand',
@@ -4700,7 +4701,7 @@ function cpuInvokeOK(p, f, e, timing) {
     const floor = (a.keepOne || a.untilOne) ? totalCores(t) - 1 : Infinity;
     const m = Math.max(0, Math.min(a.untilOne ? Infinity : a.each, t.cores, floor));
     if (!m) { c.ctx.did = false; return; }
-    t.cores -= m; c.opp.reserve.n += m;
+    coreEvN(c.opp, t.uid, 'reserve', m, false); t.cores -= m; c.opp.reserve.n += m;
     log(`${CARDS[c.src.id].name}: ${m} core${m === 1 ? '' : 's'} from ${poss(c.opp)} ${CARDS[t.id].name} go to the Reserve.`);
     checkDepletion(c.opp);
     if (a.drawPerDepleted && !c.opp.spirits.includes(t)) { const k = draw(c.p, 1); log(`${who(c.p)} ${c.p.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'}.`); handUp(c.p, k); }
@@ -4931,7 +4932,7 @@ Object.assign(FX_ACTIONS, {
       const L = FX_ACTIONS.SOUL_HOLDER_CORE.cands(c); if (!L.length) { c.ctx.did = false; return; }
       const t = await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the opposing Spirit with the Soul Core (glowing).`);
       if (!t) { c.ctx.did = false; return; }
-      if (t.cores > 0) { t.cores -= 1; c.opp.reserve.n += 1; log(`${CARDS[c.src.id].name}: a core from ${poss(c.opp)} ${CARDS[t.id].name} goes to the Reserve.`); }
+      if (t.cores > 0) { coreEv(c.opp, 'core', t.uid, 'reserve'); t.cores -= 1; c.opp.reserve.n += 1; log(`${CARDS[c.src.id].name}: a core from ${poss(c.opp)} ${CARDS[t.id].name} goes to the Reserve.`); }
       else { t.soul = false; c.opp.reserve.soul = true; log(`${CARDS[c.src.id].name}: the Soul Core on ${poss(c.opp)} ${CARDS[t.id].name} goes to the Reserve.`); }
       checkDepletion(c.opp); io.view({ type: 'board' });
     } } });
@@ -5241,7 +5242,7 @@ Object.assign(FX_ACTIONS, {
         n = Number.isInteger(v) ? v : 0;
       }
       let moved = 0;
-      for (const x of src.sort((p, q) => spare(q) - spare(p))) { while (moved < n && spare(x) > 0 && x.cores > 0) { x.cores--; c.src.cores++; moved++; } }
+      for (const x of src.sort((p, q) => spare(q) - spare(p))) { while (moved < n && spare(x) > 0 && x.cores > 0) { coreEv(c.p, 'core', x.uid, c.src.uid, moved); x.cores--; c.src.cores++; moved++; } }
       c.ctx.did = moved > 0; if (!moved) return;
       log(`${CARDS[c.src.id].name}: Awaken, ${moved} core${moved === 1 ? '' : 's'} sent from other Spirits.`);
       coresSent(c.p, c.src, moved);
@@ -5393,12 +5394,12 @@ Object.assign(FX_ACTIONS, {
       }
       let k = 0;
       const pick = async (lst, what) => fxPickTarget(c, lst.slice().sort((x, y) => y.cores - x.cores), `✨ <b>${esc(nm)}</b><br>Tap the opposing Nexus ${what} (glowing).`);
-      if (all) { const t = await pick(L, 'whose cores all go to the Void'); if (t) { k = t.cores; c.opp.void += t.cores; t.cores = 0; } }
-      else if (!a.spread) { const t = await pick(L, `that loses ${a.n} core${a.n === 1 ? '' : 's'}`); if (t) { k = Math.min(a.n, t.cores); t.cores -= k; c.opp.void += k; } }
+      if (all) { const t = await pick(L, 'whose cores all go to the Void'); if (t) { k = t.cores; coreEvN(c.opp, t.uid, 'void', k, false); c.opp.void += t.cores; t.cores = 0; } }
+      else if (!a.spread) { const t = await pick(L, `that loses ${a.n} core${a.n === 1 ? '' : 's'}`); if (t) { k = Math.min(a.n, t.cores); coreEvN(c.opp, t.uid, 'void', k, false); t.cores -= k; c.opp.void += k; } }
       else for (let j = 0; j < a.n; j++) {
         const lst = L.filter(x => x.cores > 0 && c.opp.nexus.includes(x)); if (!lst.length) break;
         const t = await pick(lst, `that loses core ${j + 1} of ${a.n}`); if (!t) break;
-        t.cores--; c.opp.void++; k++;
+        coreEv(c.opp, 'core', t.uid, 'void'); t.cores--; c.opp.void++; k++;
       }
       c.ctx.did = k > 0; if (k) log(`${nm}: ${k} core${k === 1 ? '' : 's'} are sent to the opposing Void.`);
     } },
@@ -6052,7 +6053,7 @@ let SEAT_LOOP = null;                                 // {key, s: SESSION} while
 /** The seat may act now: its own turn, not busy (an attack or the Start of the Attack Step resolving), a human seat. */
 const seatCan = key => !!G && !G.over && !G.busy && G.active === key && !!G.p[key] && !G.p[key].cpu;
 const seatLoopOpen = key => !!SEAT_LOOP && SEAT_LOOP.key === key && SEAT_LOOP.s === SESSION;
-const boardView = () => io.view({ type: 'board' });
+const boardView = () => { if (G && !G.over) { checkDepletion(G.p.player); checkDepletion(G.p.opponent); } io.view({ type: 'board' }); };      // v0.149.0: a Spirit below its Lv1 cores never survives an intent (Depletion safety net)
 /** Ends the current turn of the seat (the old finishTurn of the web UI). */
 function endTurnNow() { const r = G.turnResolver; G.turnResolver = null; G.busy = true; boardView(); if (r) r(); }
 async function seatTurn(key) {
@@ -6545,6 +6546,9 @@ function takeCores(p, n, excludeUid) {
 }
 function payCost(p, c, plan) {
   if (plan) {
+    coreEvN(p, 'reserve', 'trash', plan.reserve, plan.rsoul);
+    for (const [u, k] of Object.entries(plan.by)) coreEvN(p, Number(u), 'trash', k, false);
+    if (plan.fsoul) coreEv(p, 'soul', plan.fsoul, 'trash');
     p.reserve.n -= plan.reserve; p.trashCores.n += plan.reserve;
     for (const [u, k] of Object.entries(plan.by)) { const f = fieldList(p).find(x => x.uid === Number(u)); f.cores -= k; p.trashCores.n += k; }
     if (plan.rsoul) { p.reserve.soul = false; p.trashCores.soul = true; }
@@ -6578,6 +6582,7 @@ function removeSpirit(p, s, why, byOpponent) {
   if (why === 'destroyed' && !s.noFx && G && G.evQ && (CARDS[s.id].effects || []).some(e => e.trigger === 'DESTROYED')) G.evQ.push({ type: 'DESTROYED', key: p.key, inst: s, byOpp: !!byOpponent, byOppFx: oppFx });
   leaveEvent(p, s, !!byOpponent || oppFx, oppFx);   // (When Destroyed), manual p. 31; noFx = "the effects of the destroyed target can't activate"
   delete s.noFx;
+  coreEvN(p, s.uid, 'reserve', s.cores, s.soul);          // v0.149.0: the cores of a destroyed / depleted Spirit fly to the Reserve
   p.reserve.n += s.cores; if (s.soul) p.reserve.soul = true;
   s.cores = 0; s.soul = false; s.exhausted = false; s.heavy = false; s.noAB = false; s.bpMod = 0; s.bpB = null; s.fxBattle = null;      // v0.68: battle BP / Once Per Battle end when it leaves
   const under = s.under; s.under = [];
@@ -6763,7 +6768,8 @@ async function castMagic(p, ch) {                         // ch = { inst, target
 
 /* manual core movement during the Main Step */
 /* v0.126.0 U14d3: display-only record of one core moving (a uid or 'reserve' at each end); the web host flies it, other hosts ignore it */
-const coreEv = (p, kind, from, to) => io.view({ type: 'core', side: p.key, kind, from, to });
+const coreEv = (p, kind, from, to, nth) => io.view({ type: 'core', side: p.key, kind, from, to, nth });
+const coreEvN = (p, from, to, n, soul) => { for (let i = 0; i < Math.min(n, 5); i++) coreEv(p, 'core', from, to, i); if (soul) coreEv(p, 'soul', from, to, Math.min(n, 5)); };   // v0.149.0: n gems fly one after the other (display cue only)
 function addCore(p, f) { if (p.reserve.n > 0) { coreEv(p, 'core', 'reserve', f.uid); p.reserve.n--; f.cores++; return true; } return false; }
 function removeCore(p, f) { if (f.cores > 0) { coreEv(p, 'core', f.uid, 'reserve'); f.cores--; p.reserve.n++; checkDepletion(p); return true; } return false; }
 function moveSoulTo(p, f) {
@@ -6793,7 +6799,7 @@ function returnSoul(p, f) {
    TURN FLOW
    --------------------------------------------------------------------- */
 const isMainStep = () => !!G && (G.step === 4 || (G.format === 'standard' && G.step === 6));   // moved from 11-human.js (v0.82.0)
-function setStep(i) { G.step = i; io.view({ type: 'board' }); }
+function setStep(i) { G.step = i; checkDepletion(G.p.player); checkDepletion(G.p.opponent); io.view({ type: 'board' }); }
 async function beginTurn(key) {
   const p = G.p[key];
   G.active = key; G.turnNo++; p.burstSetThisTurn = false; p.mirageSetThisTurn = false; G.burstQ.length = 0; releaseStandby(true); G.evQ.length = 0;
@@ -7848,11 +7854,11 @@ function fieldAreaHTML(p, isPlayer) {
     const spiritRow = rowHTML('SPIRITS', k + '-spirits', k, sp, 'No Spirits');
     rows = isPlayer ? spiritRow + nexusRow : nexusRow + spiritRow;
   } else {                                       // phone: one swipeable row (Spirits, then Nexus)
-    const all = sp.concat(nx), ph = '<span class="ph-slot" aria-hidden="true">Empty</span>'.repeat(Math.max(0, 4 - all.length));   // v0.142.0: mockup shows dashed empty slots up to four
+    const all = sp.concat(nx), ph = all.length ? '' : '<span class="ph-slot" aria-hidden="true">Empty</span>';   // v0.149.0: cards start in the middle (auto margins), one dashed slot only when the field is empty
     rows = rowHTML(isPlayer ? 'YOUR FIELD ↔' : 'CPU FIELD ↔', k + '-field', k, all, '', '', ph);
   }
   /* v0.63.0 (U1): the CPU grid is the point mirror of yours (your Life top-left, the CPU's Life bottom-right) */
-  const lifeGems = `<span class="gems sm">${gemsHTML(p.life - (p.lifeSoul ? 1 : 0), !!p.lifeSoul, 10)}</span>`;
+  const lifeGems = '<span class="gems sm"><i class="g-core" aria-hidden="true"></i></span>';      // v0.149.0: one core icon, so the pill never changes size as Life drops
   const pills = [pill('LIFE', lifeTxt(p), 'life', lifeGems), pill('RES', p.reserve.n + (p.reserve.soul ? '+S' : ''), 'reserve', p.reserve.soul ? '<i class="g-soul" aria-hidden="true"></i>' : ''), pill('HD', p.hand.length, 'hand'), pill('DECK', p.deck.length, 'deck', '<span class="sleeve mini" aria-hidden="true"></span>'),
     pill('TR', p.trash.length, 'trash'), pill('CNT', p.count, 'count'), pill('VD', p.void, 'void'), pill('BAN', p.removed.length, 'removed')];
   const stats = `<div class="mobile-stats-bar ${isPlayer ? 'side-you' : 'side-cpu'}">${(isPlayer ? pills : pills.slice().reverse()).join('')}</div>`;
@@ -8926,7 +8932,7 @@ function aeBeam(a, b, cpu, still) {               // a, b: rects; v0.124.0 U14d:
    holds both ends: a gem flies from one rect to the other (Full only; Reduced and Off draw nothing), and a flipped Burst turns face up where it was set. */
 function coreFly(ev) {
   if (SIM || animMode() !== 'full') return;
-  const end = (x, side) => ['reserve', 'void', 'trash'].includes(x) ? rectOf(visEl(`[data-a="zone"][data-v="${side}:${x}"]`)) : rectOf(document.querySelector(`[data-a="field"][data-v$=":${x}"]`));
+  const end = (x, side) => ['reserve', 'void', 'trash', 'life', 'count'].includes(x) ? rectOf(visEl(`[data-a="zone"][data-v="${side}:${x}"]`)) : rectOf(document.querySelector(`[data-a="field"][data-v$=":${x}"]`));
   const a = end(ev.from, ev.side), b = end(ev.to, ev.side), L = $('ae-fx'); if (!a || !b || !L) return;
   const d = document.createElement('div'); d.className = 'ae-a-fly' + (ev.kind === 'soul' ? ' soul' : '') + (ev.side === 'opponent' ? ' cpu' : '');
   d.style.cssText = `left:${a.x + a.w / 2 - 9}px;top:${a.y + a.h / 2 - 9}px;width:18px;height:18px`;

@@ -2,7 +2,7 @@
    TURN FLOW
    --------------------------------------------------------------------- */
 const isMainStep = () => !!G && (G.step === 4 || (G.format === 'standard' && G.step === 6));   // moved from 11-human.js (v0.82.0)
-function setStep(i) { G.step = i; io.view({ type: 'board' }); }
+function setStep(i) { G.step = i; checkDepletion(G.p.player); checkDepletion(G.p.opponent); io.view({ type: 'board' }); }
 async function beginTurn(key) {
   const p = G.p[key];
   G.active = key; G.turnNo++; p.burstSetThisTurn = false; p.mirageSetThisTurn = false; G.burstQ.length = 0; releaseStandby(true); G.evQ.length = 0;
