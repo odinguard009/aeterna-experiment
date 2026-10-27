@@ -2929,7 +2929,7 @@ function bindHost(h) {
    type: 'Spirit' | 'Nexus' | 'Magic'      symbol: card color     symbols: number of symbols
    reduction: {color: n}         levels: [{cores, bp}]  (Nexus levels have no bp)
    --------------------------------------------------------------------- */
-const VERSION = '0.161.0';
+const VERSION = '0.162.0';
 const CARDS = {};
 function defCard(o) {
   CARDS[o.id] = Object.assign({ type: 'Spirit', reduction: {}, symbols: 1, families: [], keywords: [], implemented: true, desc: 'Vanilla test card (no effect).', block: 'A' }, o);
@@ -5975,10 +5975,10 @@ const stdDeck = (id, name, recipe, key) => ({
   get missing() { let m = 0; for (const [k, n] of Object.entries(recipe)) if (!CARDS[k]) m += n; return m; },
 });
 const prebuiltFmt = d => d.format || 'eternal';
-const prebuiltOrder = format => PREBUILT.map((d, i) => ({ d, i })).sort((a, b) => +(prebuiltFmt(b.d) === format) - +(prebuiltFmt(a.d) === format) || a.i - b.i);      // decks of the chosen format first, index kept for COPY
+const prebuiltOrder = format => PREBUILT.map((d, i) => ({ d, i })).filter(e => !e.d.hidden).sort((a, b) => +(prebuiltFmt(b.d) === format) - +(prebuiltFmt(a.d) === format) || a.i - b.i);      // decks of the chosen format first, index kept for COPY
 const prebuiltLabel = d => d.name + (d.missing ? ` (incomplete, ${d.missing} missing)` : '');
 const PREBUILT = [
-  { id: 'train', name: 'Training Red (generic vanilla cards)', cards: PRESET_DECK },
+  { id: 'train', hidden: true, name: 'Training Red (generic vanilla cards)', cards: PRESET_DECK },      // v0.162.0: internal sim fixture, no longer listed anywhere in the UI (still loadable by id for tests)
   stdDeck('std01', 'Red: Windfang (Entry Deck 26RSD01)', { '26RSD01-001': 3, '26RSD01-002': 3, '26RSD01-003': 2, '26RSD01-004': 3, '26RSD01-005': 3, '26RSD01-006': 2, '26RSD01-007': 2, '26RSD01-008': 2, '26RSD01-009': 2, '26RSD01-010': 3, '26RSD01-011': 3, '26RSD01-012': 3, '26RSD01-013': 3, '26RSD01-014': 2, '26RSD01-X01': 2, '26RSD01-X02': 2 }, '26RSD01-001'),
   stdDeck('std02', 'Purple: Bloodrouse (Entry Deck 26RSD02)', { '26RSD02-001': 3, '26RSD02-002': 3, '26RSD02-003': 3, '26RSD02-004': 2, '26RSD02-005': 3, '26RSD02-006': 2, '26RSD02-007': 2, '26RSD02-008': 3, '26RSD02-009': 3, '26RSD02-010': 3, '26RSD02-011': 3, '26RSD02-012': 2, '26RSD02-013': 2, '26RSD02-014': 2, '26RSD02-X01': 2, '26RSD02-X02': 2 }, '26RSD02-001'),
   stdDeck('std03', 'Green: Armored Fish (Entry Deck 26RSD03)', { '26RSD03-001': 2, '26RSD03-002': 3, '26RSD03-003': 2, '26RSD03-004': 3, '26RSD03-005': 3, '26RSD03-006': 2, '26RSD03-007': 2, '26RSD03-008': 3, '26RSD03-009': 2, '26RSD03-010': 3, '26RSD03-011': 3, '26RSD03-012': 3, '26RSD03-013': 3, '26RSD03-014': 2, '26RSD03-X01': 2, '26RSD03-X02': 2 }, '26RSD03-002'),
@@ -9441,7 +9441,7 @@ async function dkAct(a, v) {
     if (c === 'blank') { if (dkNewSlot()) switchView('view-deckbuilder'); }
     else if (c === 'import') return dkAct('dk-import', v);
     else if (c === 'starter') {
-      const k = await modal({ uiOnly: true, title: 'Choose a starter deck', html: 'The copy is yours to edit; the starter itself stays unchanged.', buttons: /** @type {any[]} */ (PREBUILT.map((d, n) => ({ label: d.name, value: 's' + n }))).concat([{ label: 'Cancel', cls: 'cancel', value: null }]) });
+      const k = await modal({ uiOnly: true, title: 'Choose a starter deck', html: 'The copy is yours to edit; the starter itself stays unchanged.', buttons: /** @type {any[]} */ (PREBUILT.map((d, n) => ({ d, n })).filter(e => !e.d.hidden).map(({ d, n }) => ({ label: d.name, value: 's' + n }))).concat([{ label: 'Cancel', cls: 'cancel', value: null }]) });
       const d = PREBUILT[Number(String(k).slice(1))]; if (k && d) { if (dkNewSlot(d.name, d.cards, false, d.key)) switchView('view-deckbuilder'); }
     }
     return;

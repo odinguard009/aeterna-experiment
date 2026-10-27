@@ -4,6 +4,11 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.162.0
+- Lane: U/I
+- **Generated vanilla test cards no longer appear anywhere in the UI.** The "Training Red (generic vanilla cards)" preset is flagged `hidden` and filtered out of the Decks starters, the deck builder "Load ready-made" list, the CPU deck picker and the "Choose a starter deck" dialog (the TRAIN cards were already hidden from the Library, deck builder and card pages). They stay in the engine as internal fixtures for sims and tests (`BS.loadPrebuilt('train')` still works), because ~25 test suites pin their ids; deleting them outright is left for a dedicated refactor.
+  - Checked: loop, `std_decks97`, `my_decks_page` (updated to count non-hidden starters). Not checked: full pre-push set and Python suites (CI / Regression), a real device. Revert note: `git revert` the v0.162.0 commit.
+
 ## v0.161.0
 - Lane: U/I
 - **Frontend audit (web-design-guidelines): accessibility labels.** The payment − / + buttons (local and online) now say what they change ("Fewer / More <cost source>"), and the lone inputs without a visible label got an `aria-label`: online server URL, import deck list, deck list (export), deck code, sign-in email. Attribute-only change, no visual difference. Already clean: focus styles replace every `outline: none`, no `transition: all`, reduced-motion handling, `color-scheme` and `theme-color`, image alt text, bug-report form labels.

@@ -89,7 +89,7 @@ async function dkAct(a, v) {
     if (c === 'blank') { if (dkNewSlot()) switchView('view-deckbuilder'); }
     else if (c === 'import') return dkAct('dk-import', v);
     else if (c === 'starter') {
-      const k = await modal({ uiOnly: true, title: 'Choose a starter deck', html: 'The copy is yours to edit; the starter itself stays unchanged.', buttons: /** @type {any[]} */ (PREBUILT.map((d, n) => ({ label: d.name, value: 's' + n }))).concat([{ label: 'Cancel', cls: 'cancel', value: null }]) });
+      const k = await modal({ uiOnly: true, title: 'Choose a starter deck', html: 'The copy is yours to edit; the starter itself stays unchanged.', buttons: /** @type {any[]} */ (PREBUILT.map((d, n) => ({ d, n })).filter(e => !e.d.hidden).map(({ d, n }) => ({ label: d.name, value: 's' + n }))).concat([{ label: 'Cancel', cls: 'cancel', value: null }]) });
       const d = PREBUILT[Number(String(k).slice(1))]; if (k && d) { if (dkNewSlot(d.name, d.cards, false, d.key)) switchView('view-deckbuilder'); }
     }
     return;

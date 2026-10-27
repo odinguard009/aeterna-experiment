@@ -30,7 +30,7 @@ for (const screen of ['pc', 'phone']) {
     await page.click('[data-nav="view-decks"]:visible');
     const r = await page.evaluate(() => ({ on: document.getElementById('view-decks').classList.contains('active'), cur: document.querySelector('[data-nav][aria-current="page"]').dataset.nav,
       h1: document.querySelector('#view-decks .hdcard h2').textContent, count: document.getElementById('dk-count').textContent, wide: document.documentElement.scrollWidth > innerWidth + 1,
-      starters: document.querySelectorAll('#dk-starters .dk-st-row').length, pre: BS.PREBUILT.length, sleeve: true, dots: document.querySelectorAll('#dk-list .dtile[data-v] .dot').length }));
+      starters: document.querySelectorAll('#dk-starters .dk-st-row').length, pre: BS.PREBUILT.filter(d => !d.hidden).length, sleeve: true, dots: document.querySelectorAll('#dk-list .dtile[data-v] .dot').length }));
     assert.deepEqual([r.on, r.cur, r.h1, r.count, r.wide, r.starters === r.pre, r.sleeve, r.dots > 0], [true, 'view-decks', 'My decks', '1 / 8', false, true, true, true]);
     const t = await tiles(page);
     assert.equal(t.length, 1); assert.equal(t[0].act, true); assert.match(t[0].st, /Legal/); assert.equal(t[0].play, true);
@@ -75,7 +75,7 @@ for (const screen of ['pc', 'phone']) {
     assert.equal(t.length, 2); assert.match(t[1].name, /^Red/); assert.match(t[1].st, /Legal/);
     assert.equal(await page.evaluate(() => document.querySelectorAll('#dk-starters [data-a="dk-del"], #dk-starters [data-a="dk-rename"]').length), 0, 'starters cannot be changed');
     await page.click('#view-decks [data-a="dk-import"]');
-    await page.evaluate(() => { const a = document.getElementById('db-io'); a.value = '3 ' + Object.keys(BS.PREBUILT[0].cards)[0]; a.dispatchEvent(new Event('input', { bubbles: true })); return 1; });
+    await page.evaluate(() => { const a = document.getElementById('db-io'); a.value = '3 ' + Object.keys(BS.PREBUILT.find(d => !d.hidden).cards)[0]; a.dispatchEvent(new Event('input', { bubbles: true })); return 1; });
     await answer(page, 'Import');
     await page.evaluate(() => { BS.switchView('view-decks'); return 1; });
     t = await tiles(page);
