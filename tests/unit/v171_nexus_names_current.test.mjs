@@ -1,6 +1,6 @@
 // v0.171.0: ctrl.nexus ("Spirit/Nexus"), controlName list ("[A]/[B]"), keyword Current as a holder,
 // SELF_TO_HAND from the Trash under a destroyed trigger, "put the core to this Spirit instead".
-// rules: ETR:effects.targets@d20adf64
+// rules: ETR:battle.destruction@698b8d5e
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { openGame, closeBrowser } from './lib/game.mjs';
