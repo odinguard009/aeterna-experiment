@@ -12,6 +12,7 @@
 </style>
 </head>
 <body>
+<a class="skip-link" href="#app">Skip to content</a>
 <div id="loader" role="status" aria-live="polite" aria-label="Loading">
 <svg role="presentation" viewBox="60 30 520 440" aria-hidden="true">
 <defs><radialGradient id="sun" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="var(--lg3)"/><stop offset="1" stop-color="var(--lg1)" stop-opacity="0"/></radialGradient><linearGradient id="pl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--lg1)"/><stop offset="1" stop-color="var(--lg0)"/></linearGradient><linearGradient id="fr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef1f5"/><stop offset="1" stop-color="var(--lg2)"/></linearGradient>
@@ -174,7 +175,7 @@
     <section class="set-card" aria-labelledby="onl-room-h">
       <h2 id="onl-room-h">PRIVATE ROOM</h2>
       <div class="srow"><div class="tx"><b>Room code</b><span>Enter a code to join (or create) that room. Today every seat plays vs the server bot; the code keeps the room addressable and shareable.</span></div>
-        <span class="set-acts"><input id="onl-code" class="sel" maxlength="16" placeholder="e.g. ABC123" autocomplete="off" spellcheck="false"><button class="ae-ghost" data-a="onl-join">JOIN</button></span></div>
+        <span class="set-acts"><input id="onl-code" aria-label="Room code" class="sel" maxlength="16" placeholder="e.g. ABC123" autocomplete="off" spellcheck="false"><button class="ae-ghost" data-a="onl-join">JOIN</button></span></div>
       <div class="srow"><div class="tx"><b>Server</b><span id="onl-server">Checking the server…</span></div><button class="ae-ghost" data-a="onl-reload">REFRESH</button></div>
     </section>
   </main>
@@ -193,7 +194,7 @@
         <div class="r2"><span id="db-groups" class="row" style="gap:7px"></span><button class="chip" id="db-play" data-a="db-chip" data-v="flag:complete" aria-pressed="false">✓ Playable Only</button><button class="chip" id="db-in" data-a="db-chip" data-v="flag:only" aria-pressed="false">In Deck</button><button class="chip" id="db-legal" data-a="db-chip" data-v="flag:legal" aria-pressed="false">Legal Only</button><span id="db-clear-f"></span><span class="grow"></span><span id="db-count" class="sub hidem" role="status" style="font-size:.78em"></span></div></div>
       <div class="pgrid scroll" id="db-card-list" style="--cols:6" aria-label="Cards"></div>
     </section>
-    <div class="scrim" data-a="db-sheet" data-v=""></div>
+    <div class="scrim" data-a="db-sheet" data-v="" aria-hidden="true"></div>
     <aside class="bdeck tab-list" id="db-deck" aria-label="Deck">
       <div class="shh"><span style="width:44px;height:5px;border-radius:3px;background:var(--line2);margin:0 auto"></span></div>
       <div class="dhead"><div class="ring" id="db-ring"></div>
@@ -265,7 +266,7 @@
       <div class="row" style="gap:8px;margin-top:8px"><button class="btn" data-a="lib-lore-mv" data-v="-1" id="lib-lore-prev">‹ Previous Series</button><span class="grow"></span><button class="btn pri" data-a="lib-lore-mv" data-v="1" id="lib-lore-next">Next Series ›</button></div></section></div>
 </div></div>
 <div id="view-playmat" class="app-view">
-  <div id="app" class="viewport"></div>
+  <div id="app" class="viewport" tabindex="-1"></div>
 </div>
 
 <div id="log-drawer"><div class="ld-head"><span>📜 Game Log</span><button class="btn-nav-small" data-a="log-close">Close ✕</button></div><div class="ld-body" id="ld-body"></div></div>

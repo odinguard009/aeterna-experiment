@@ -4,6 +4,11 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.154.0
+- Lane: U/I
+- **Front-end audit (Web Interface Guidelines) and fixes.** Checked every main page at 1366 and 390 px for: controls without an accessible name, clickable non-buttons, images without alt, keyboard focus visibility (Tab through Lobby, Play, Decks, Library, Settings), `transition: all`, reduced motion, skip link. Fixed: Room code input had no label; the deck-sheet scrim is now hidden from assistive tech; added a "Skip to content" link; `transition: all` replaced by explicit properties (7 places); scroll-behavior respects reduced motion app-wide.
+  - Checked: loop, the probes above (no remaining findings on those pages). Not checked: screen-reader output, the battle board's many small controls under keyboard-only play, Android TalkBack, contrast of every theme combination (the earlier contrast pass stays valid).
+
 ## v0.153.0
 - Lane: U/I
 - **Mockup parity part 2.** (1) Concede dialog: "It counts as a loss. You can replay it from History.", buttons Keep Playing (primary) and Concede (red). (2) New deck now asks Blank deck / From a starter deck / Import a list (a full set of slots still says so first). (3) Report a Bug: new "Display or layout problem" type, an optional "Steps to reproduce" box and an optional "last lines of the match log" box; all parts are capped so the issue link stays under the URL limit.
