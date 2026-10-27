@@ -76,7 +76,7 @@ for (const [name, vp] of [['PC', { width: 1366, height: 768 }], ['phone', { widt
       await new Promise(r => setTimeout(r, 50));
       const only = parseInt(document.getElementById('db-count').textContent.replace(/,/g, ''), 10);
       const marked = document.querySelectorAll('#db-card-list .fx-mark').length;
-      const expect = Object.keys(BS.CARDS).filter(k => !BS.CARDS[k].token && BS.CARDS[k].implemented !== false).length;
+      const expect = Object.keys(BS.CARDS).filter(k => !BS.CARDS[k].token && !k.startsWith('TRAIN-') && BS.CARDS[k].implemented !== false).length;
       cb.click();
       const pid = Object.keys(BS.CARDS).find(k => BS.CARDS[k].implemented === false);
       s.value = pid; BS.renderDeckBuilder(); await new Promise(r => requestAnimationFrame(() => setTimeout(r)));
