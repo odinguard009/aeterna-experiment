@@ -164,6 +164,16 @@ Object.assign(FX_ACTIONS, {
       if (!t) { c.ctx.did = false; return; }
       t.blockExB = G.battleNo; log(`${CARDS[c.src.id].name}: ${poss(c.opp)} ${CARDS[t.id].name} can block even while exhausted during this battle.`);
     } } });
+// v0.172.0: marks on a targeted opposing Spirit: noRefreshT (skips the next opposing Refresh Step), noBlockB (can't block this battle)
+const fxOppMark = (k, key, f, val, ask, txt) => ({ chk: () => true, txt: () => txt, cands: c => c.opp.spirits.filter(t => f(t) && !fxImmune(c.opp, t)),
+  can: c => FX_ACTIONS[k].cands(c).length > 0,
+  run: async c => {
+    const L = FX_ACTIONS[k].cands(c), t = L.length && await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the ${ask} (glowing).`);
+    if (!t) { c.ctx.did = false; return; }
+    t[key] = val(); log(`${CARDS[c.src.id].name}: ${CARDS[t.id].name} ${txt}.`);
+  } });
+FX_ACTIONS.NO_REFRESH_OPP = { ...fxOppMark('NO_REFRESH_OPP', 'noRefreshT', t => t.exhausted, () => G.turnNo + 1, 'exhausted opposing Spirit', "can't refresh next Refresh Step") };
+FX_ACTIONS.CANT_BLOCK_OPP = { ...fxOppMark('CANT_BLOCK_OPP', 'noBlockB', () => G.attacker, () => G.battleNo, 'opposing Spirit', "can't block this battle") };
 (() => {
   const S = FX_ACTIONS.SUMMON_HAND, sChk = S.chk, sRun = S.run;
   S.chk = a => sChk(a) || (!!a.match && (a.match.color != null || a.match.noText === true) && sChk(Object.assign({}, a, { match: Object.assign({}, a.match, { name: ['-'] }) })));

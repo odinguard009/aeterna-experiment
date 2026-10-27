@@ -4,6 +4,12 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.172.0
+- Lane: K
+- **Lane K: 3 more cards complete (1 Standard, 2 older), 913 of 8,709; two targeted opposing-Spirit marks: "that Spirit can't block" (this battle) and "can't refresh on the next Refresh Step".** Engine: `CANT_BLOCK_OPP` (marker `noBlockB`, honoured by `canBlockState`) and `NO_REFRESH_OPP` (marker `noRefreshT`, honoured by the Refresh Step, with a log line). Compiler: the two sentences. The build now strips full-line comments from the shipped `index.html` (sources unchanged) to stay inside the size budget B01. Cards: The FairyKnight Peter, Kaimeiju, Janome-Shielder. Effect format v17 (addition only).
+  - Not built this run: other "target an opposing" cards (Illusiona, Smowg, Garizarot, Hammergrau, 26R Legacy / True Release) each need a second mechanic; "(Once Per Turn)", "(Can't Stack)" and "(During Attack)" heads measured 0 of about 10.
+  - Checked: loop, `v172_cant_block_no_refresh` (2 tests), promotion smoke 3 / 3, `card_verify` on the three cards. Not checked: full pre-push set and Regression (CI), a real device. Revert note: `git revert` the v0.172.0 commit.
+
 ## v0.171.0
 - Lane: K
 - **Lane K: 11 more cards complete (4 Standard, 7 older), 910 of 8,709; "Spirit/Nexus" family conditions, "[A]/[B]" name lists, Current as a holder, "return this Spirit to the Hand" from the Trash, "put the core to this Spirit instead".** Engine: `ctrl.nexus` counts the owner's Nexus too ("any X family Spirit/Nexus, besides this Spirit" with `other`), `controlName` may be a list of names, `cardHasKeyword` recognises Current (the `{{Current|...}}` holder) so `ctrl.keyword` / `match.keyword` work, and `SELF_TO_HAND` under a destroyed trigger takes the card out of the Standby / Trash (it was Field-only, which kept every "(When Destroyed) return this Spirit to your Hand" card partial). Compiler: the besides forms (prefix and inline, "this one"), the name list, `Put the core to this Spirit` in an instead pair, "Target up to N Spirits with <Keyword> you control. Put a core from the Void to each of them." (`VOID_TO_MATCHING`). Cards: Gawrm, The Ripper Headiless, Lady-Frankelly, Lailaps-Chaser, The Macaroni Pentan, Salakka, Tokkaricca, The SeaMonster Morgawler, The Cannoneer Golek, Kamen Rider Baron Banana Arms, Kamen Rider Gaim Jimber Lemon Arms. Schema v16.

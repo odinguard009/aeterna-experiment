@@ -2741,10 +2741,6 @@
   "C_LEVEL",
   "T_BLOCKS"
  ],
- "BS09-042": [
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
  "BS09-043": [
   "C_LEVEL",
   "T_DESTROYED",
@@ -3527,12 +3523,6 @@
  "BS11-054": [
   "A_REFRESH",
   "T_ALLY_BLOCKED"
- ],
- "BS11-055": [
-  "A_EXHAUST",
-  "A_REFRESH",
-  "C_LEVEL",
-  "T_SUMMONED"
  ],
  "BS11-056": [
   "A_BOUNCE",
@@ -5519,9 +5509,6 @@
   "K_BURST",
   "S_UNAFFECTED",
   "T_SUMMONED"
- ],
- "BS16-059": [
-  "K_BRAVE"
  ],
  "BS16-060": [
   "A_DISCARD_OPP",

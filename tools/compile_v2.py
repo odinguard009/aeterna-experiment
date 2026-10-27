@@ -307,6 +307,9 @@ def own_grammar(s, ctx=None):
         sel = selector('an opposing ' + low(m.group(1)))
         if not sel or sel['kind'] != 'spirit' or sel['f']: raise Review('v2 bp minus: ' + m.group(1)[:40])
         return [{'do': 'BP_MINUS', 'n': v1.bpm(m.group(2)), 'zeroDestroy': True}]
+    if re.fullmatch(r"target an opposing exhausted spirit\.\s*the targeted spirit can't refresh on the next \(opposing refresh step\)", x, re.I): return [{'do': 'NO_REFRESH_OPP'}]      # v0.172 Janome-Shielder
+    m = re.match(r'^target an opposing spirit\.\s*during this battle, that spirit can\'t block$', x, re.I)
+    if m: return [{'do': 'CANT_BLOCK_OPP'}]      # v0.172 targeted "can't block this battle"
     m = OPP_CORES_T.match(x)
     if m: return opp_cores_t(m)
     m = re.match(r'^target an opposing (.+?)\.\s*send (a|one|two|three) cores?,? besides ,? from it to (?:the|their|its owner\'?s) reserve$', x, re.I)
