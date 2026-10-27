@@ -58,7 +58,7 @@ function fieldCardHTML(key, kind, f) {
   const sel = PEEK && PEEK.cfg.selected ? PEEK.cfg.selected(f.uid) : 0;
   const pk = PICK ? (PICK.uids.has(f.uid) ? ' pickable' : PICK.mark === f.uid ? ' pick-att' : '') : (PEEK && PEEK.cfg.tappable && PEEK.cfg.tappable(f.uid) ? ' pickable' : '');
   const selB = sel ? `<span class="sel-badge">−${sel}</span>` : '';
-  return `<div class="slot ${f.exhausted && !f.heavy ? 'ex' : ''}"><div class="tcg-card ${f.exhausted ? 'exhausted' : ''}${f.heavy ? ' heavy' : ''} ${f.soul ? 'has-soul-core' : ''}${pk}${cardCls(card)}${imgCls(f.id)}" style="${colorSty(card)}${imgSty(f.id)}" data-a="field" data-v="${key}:${kind}:${f.uid}">
+  return `<div class="fslot ${f.exhausted && !f.heavy ? 'ex' : ''}"><div class="tcg-card ${f.exhausted ? 'exhausted' : ''}${f.heavy ? ' heavy' : ''} ${f.soul ? 'has-soul-core' : ''}${pk}${cardCls(card)}${imgCls(f.id)}" style="${colorSty(card)}${imgSty(f.id)}" data-a="field" data-v="${key}:${kind}:${f.uid}">
     ${selB}<div class="cost">${card.cost}</div><div class="type-badge">${f.under.length ? 'ADV' : card.contract ? 'CON' : card.token ? 'TOK' : card.type.substring(0, 3).toUpperCase()}${rebMark(card)}</div>
     <div class="name">${nameHTML(card.name)}</div><div class="core-tag${f.soul ? ' soul-active' : ''}${f.cores ? '' : ' none'}" title="${f.cores} core${f.cores === 1 ? '' : 's'}${f.soul ? ' (Soul Core included)' : ''}"><span class="gems">${gemsHTML(plain, f.soul, 6)}</span><span class="sr-only">C:${f.cores}${f.soul ? ' S' : ''}</span></div>${stack}<div class="bp">${bp}</div>${isSpiritForm(card) ? `<span class="lv-dia" aria-hidden="true" title="Level ${lvNo(f)}"><b>${lvNo(f)}</b></span>` : ''}${magBtnHTML(f.id, f.uid)}${symBadgeHTML(f.id)}</div></div>`;
 }

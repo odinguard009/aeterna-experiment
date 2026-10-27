@@ -164,9 +164,9 @@ html.layout-pc .inline-next-btn{width:54px;height:54px;}
 .field-row .tcg-card{height:90%;width:auto;aspect-ratio:63 / 88;}
 .tcg-card.exhausted{transform:rotate(90deg);opacity:0.85;filter:grayscale(20%);}
 .tcg-card.exhausted.heavy{transform:rotate(180deg);opacity:0.8;filter:grayscale(35%);}
-.field-row .slot{flex:none;height:min(92%,calc(var(--card-w) * 1.38 + 6px));aspect-ratio:1 / 1;display:grid;place-items:center;scroll-snap-align:center;}
-.field-row:has(> .slot){gap:0;}
-.field-row .slot .tcg-card{height:100%;width:auto;margin:0;}
+.field-row .fslot{flex:none;height:min(92%,calc(var(--card-w) * 1.38 + 6px));aspect-ratio:1 / 1;display:grid;place-items:center;scroll-snap-align:center;}
+.field-row:has(> .fslot){gap:0;}
+.field-row .fslot .tcg-card{height:100%;width:auto;margin:0;}
 .tcg-card.has-soul-core{border:2px solid #e6e6e6 !important;box-shadow:0 0 8px #ff2a2a,inset 0 0 6px #c0c0c0,0 0 12px rgba(255,42,42,0.8) !important;animation:soulPulse 2s infinite alternate;}
 @keyframes soulPulse{0%{box-shadow:0 0 6px #ff2a2a,inset 0 0 4px #e6e6e6;}100%{box-shadow:0 0 12px #ff4d4d,inset 0 0 8px #ffffff;}}
 .tcg-card .cost{background:var(--card-color,var(--color-red));color:white;text-shadow:0 0 2px #000,0 0 2px #000;box-shadow:inset 0 0 0 1px rgba(0,0,0,.45);border-radius:50%;width:21cqw;height:21cqw;display:grid;place-items:center;font-weight:bold;font-size:13cqw;flex:none;}
@@ -2929,7 +2929,7 @@ function bindHost(h) {
    type: 'Spirit' | 'Nexus' | 'Magic'      symbol: card color     symbols: number of symbols
    reduction: {color: n}         levels: [{cores, bp}]  (Nexus levels have no bp)
    --------------------------------------------------------------------- */
-const VERSION = '0.159.0';
+const VERSION = '0.160.0';
 const CARDS = {};
 function defCard(o) {
   CARDS[o.id] = Object.assign({ type: 'Spirit', reduction: {}, symbols: 1, families: [], keywords: [], implemented: true, desc: 'Vanilla test card (no effect).', block: 'A' }, o);
@@ -8044,7 +8044,7 @@ function fieldCardHTML(key, kind, f) {
   const sel = PEEK && PEEK.cfg.selected ? PEEK.cfg.selected(f.uid) : 0;
   const pk = PICK ? (PICK.uids.has(f.uid) ? ' pickable' : PICK.mark === f.uid ? ' pick-att' : '') : (PEEK && PEEK.cfg.tappable && PEEK.cfg.tappable(f.uid) ? ' pickable' : '');
   const selB = sel ? `<span class="sel-badge">−${sel}</span>` : '';
-  return `<div class="slot ${f.exhausted && !f.heavy ? 'ex' : ''}"><div class="tcg-card ${f.exhausted ? 'exhausted' : ''}${f.heavy ? ' heavy' : ''} ${f.soul ? 'has-soul-core' : ''}${pk}${cardCls(card)}${imgCls(f.id)}" style="${colorSty(card)}${imgSty(f.id)}" data-a="field" data-v="${key}:${kind}:${f.uid}">
+  return `<div class="fslot ${f.exhausted && !f.heavy ? 'ex' : ''}"><div class="tcg-card ${f.exhausted ? 'exhausted' : ''}${f.heavy ? ' heavy' : ''} ${f.soul ? 'has-soul-core' : ''}${pk}${cardCls(card)}${imgCls(f.id)}" style="${colorSty(card)}${imgSty(f.id)}" data-a="field" data-v="${key}:${kind}:${f.uid}">
     ${selB}<div class="cost">${card.cost}</div><div class="type-badge">${f.under.length ? 'ADV' : card.contract ? 'CON' : card.token ? 'TOK' : card.type.substring(0, 3).toUpperCase()}${rebMark(card)}</div>
     <div class="name">${nameHTML(card.name)}</div><div class="core-tag${f.soul ? ' soul-active' : ''}${f.cores ? '' : ' none'}" title="${f.cores} core${f.cores === 1 ? '' : 's'}${f.soul ? ' (Soul Core included)' : ''}"><span class="gems">${gemsHTML(plain, f.soul, 6)}</span><span class="sr-only">C:${f.cores}${f.soul ? ' S' : ''}</span></div>${stack}<div class="bp">${bp}</div>${isSpiritForm(card) ? `<span class="lv-dia" aria-hidden="true" title="Level ${lvNo(f)}"><b>${lvNo(f)}</b></span>` : ''}${magBtnHTML(f.id, f.uid)}${symBadgeHTML(f.id)}</div></div>`;
 }
@@ -8839,7 +8839,7 @@ document.addEventListener('input', e => {
    Hidden on the battle screen and in the deck builder (its own layout until U6). Display only: no rules here.
    --------------------------------------------------------------------- */
 const NAV_HIDDEN = ['view-playmat'];
-const MK_OFF = ['view-playmat'];   // not ported yet (battle)
+const MK_OFF = [];   // v0.160.0: every view is ported; the list stays as the switch for a view that must keep the old stylesheet
 const MK_TITLES = { 'view-lobby': 'Home', 'view-play': 'Play', 'view-decks': 'My decks', 'view-library': 'Library', 'view-deckbuilder': 'Deck builder', 'view-settings': 'Settings', 'view-profile': 'Profile', 'view-card': 'Card', 'view-howto': 'Learn', 'view-online': 'Online' };
 function navSync(id) {
   if (typeof document === 'undefined') return;

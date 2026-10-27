@@ -4,7 +4,7 @@
   "tagline": "From tested engine to a simulator that plays like Aegis",
   "waitingHtml": "<b>Waiting on you:</b> nothing; Report Bug and missions / ranks / avatars are decided (2026-10-25).",
   "updated": "27 Oct 2026",
-  "updatedAt": "0.139.0",
+  "updatedAt": "0.160.0",
   "next": "next: card sessions (K) with Standard first; the v14 UI/UX redesign is done ( card commands, animations, battle phone, deck builder, library + lore, pages, dialogs + Report Bug), then card sessions (K) with Standard first"
  },
  "phases": [
@@ -875,6 +875,10 @@
      "t": "U16 (v0.139.0) Brand logo in both headers, simplified favicon, inline loading screen (owner 2026-10-26); next: frontend audit, then fix all findings"
     },
     {
+     "s": "done",
+     "t": "Mockup parity finished (v0.160.0): battle screen leaves MK_OFF, old field wrapper renamed fslot; next: frontend audit, then remove generated vanilla test cards, then Lane K"
+    },
+    {
      "s": "later",
      "t": "16-chapter tutorial, online lobby (need approval)"
     }
@@ -1387,5 +1391,6 @@
    "basis": "not counted (no gate counter in this harness)",
    "note": "M7 database + Docker (steps 2-7): store contract + Postgres binding, magic-link accounts, HTTP API, room match/replay to store, Discord OAuth + server image."
   }
- ]
+ ],
+ "updatedAt": "0.160.0"
 }

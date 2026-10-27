@@ -5,7 +5,7 @@
    Hidden on the battle screen and in the deck builder (its own layout until U6). Display only: no rules here.
    --------------------------------------------------------------------- */
 const NAV_HIDDEN = ['view-playmat'];
-const MK_OFF = ['view-playmat'];   // not ported yet (battle)
+const MK_OFF = [];   // v0.160.0: every view is ported; the list stays as the switch for a view that must keep the old stylesheet
 const MK_TITLES = { 'view-lobby': 'Home', 'view-play': 'Play', 'view-decks': 'My decks', 'view-library': 'Library', 'view-deckbuilder': 'Deck builder', 'view-settings': 'Settings', 'view-profile': 'Profile', 'view-card': 'Card', 'view-howto': 'Learn', 'view-online': 'Online' };
 function navSync(id) {
   if (typeof document === 'undefined') return;

@@ -18,7 +18,7 @@ for (const w of [360, 390, 430]) {
       G.p.player.spirits = [mk(), mk(), mk(), mk()]; G.p.player.hand = [BS.mkInst(ids[1])];
       const nx = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Nexus'); G.p.player.nexus = [BS.mkInst(nx)];
       BS.render();
-      const row = document.querySelector('.side-you .field-row') || [...document.querySelectorAll('.field-row')].pop(), slots = [...row.querySelectorAll('.slot')].map(s => s.getBoundingClientRect()), rr = row.getBoundingClientRect();
+      const row = document.querySelector('.side-you .field-row') || [...document.querySelectorAll('.field-row')].pop(), slots = [...row.querySelectorAll('.fslot')].map(s => s.getBoundingClientRect()), rr = row.getBoundingClientRect();
       const tools = [...document.querySelectorAll('#view-playmat .ae-tools .btn-nav-small')].map(b => { const q = b.getBoundingClientRect(); return [Math.round(q.left), Math.round(q.right), q.width > 0]; });
       return { n: slots.length, inside: slots.every(s => s.left >= rr.left - 1 && s.right <= rr.right + 1), same: new Set(slots.map(s => Math.round(s.width))).size, tools, vw: innerWidth, sw: document.documentElement.scrollWidth };
     });

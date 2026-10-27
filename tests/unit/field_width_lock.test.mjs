@@ -36,7 +36,7 @@ const measure = page => page.evaluate(() => {
   q('.field-row').forEach(e => { e.style.scrollBehavior = 'auto'; e.scrollLeft = 0; });
   const out = {};
   for (const s of ['.half-field', '.field-container-dual', '.fc-body', '.fc-main', '.field-row-wrapper', '.field-row', '.zone-box', '.side-flank-pc', '.hand-area', '.burst-area', '.soul-area']) out[s] = q(s).map(box);
-  out.slots = q('.field-row .slot').map(box);
+  out.slots = q('.field-row .fslot').map(box);
   out.rowScroll = q('.field-row').map(e => e.scrollWidth);
   return out;
 });
@@ -66,7 +66,7 @@ test('X1-css: one square slot footprint, the card (either way up) fits inside it
   const { page } = await board('pc', 2);
   await turn(page, 'half');
   // per row (the PC Nexus row is a little lower than the Spirit row): one square size, and the card fits either way up
-  const rows = await page.evaluate(() => [...document.querySelectorAll('#view-playmat .field-row')].filter(r => r.querySelector('.slot')).map(r => [...r.querySelectorAll('.slot')].map(s => { const b = s.getBoundingClientRect(), c = s.querySelector('.tcg-card'); return [Math.round(b.width), Math.round(b.height), Math.max(c.offsetWidth, c.offsetHeight) <= Math.min(b.width, b.height) + 1]; })));
+  const rows = await page.evaluate(() => [...document.querySelectorAll('#view-playmat .field-row')].filter(r => r.querySelector('.fslot')).map(r => [...r.querySelectorAll('.fslot')].map(s => { const b = s.getBoundingClientRect(), c = s.querySelector('.tcg-card'); return [Math.round(b.width), Math.round(b.height), Math.max(c.offsetWidth, c.offsetHeight) <= Math.min(b.width, b.height) + 1]; })));
   assert.equal(rows.length, 4);
   for (const r of rows) assert.ok(r.every(x => x[0] === x[1] && x[0] === r[0][0] && x[1] === r[0][1] && x[2]), JSON.stringify(r));
 });

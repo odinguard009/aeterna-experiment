@@ -4,6 +4,11 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.160.0
+- Lane: U/I
+- **Mockup parity finished: the battle screen now uses the mockup stylesheet.** `MK_OFF` is empty, so every view runs on `mockup.css` + `mk-glue.css`. The one real collision was the class name `slot`: the old field-card wrapper clashed with the mockup's locked-cell `.slot` (squeezed cards, dashed outlines), so the wrapper is now `fslot` (render, `styles.css`, two tests). PC and phone layouts are unchanged (phone keeps its single swipeable row).
+  - Checked: loop, the 13 battle / UI unit test files, screenshots at 1366x768 (PC) and 390 px (phone) before and after. Not checked: the read-only player-view pass, other PC sizes, a real Android device. Revert note: put `'view-playmat'` back into `MK_OFF` in `13b-nav.js`; the `slot` -> `fslot` rename is harmless to keep. Backup branch: `backup/v0.159.0`.
+
 ## v0.159.0
 - Lane: K
 - Staging import (`data/import`) regenerated without the 4 promoted cards.
