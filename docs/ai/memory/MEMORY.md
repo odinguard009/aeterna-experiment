@@ -7,3 +7,4 @@
 - [Logo + loader U16](project-logo-loader-u16.md) — approved logo/loader planned before frontend audit
 - [Order: audit last](feedback-order-audit-last.md) — no chain token limit; mockup parts → U16 → audit → fix all findings → Lane K (no stop before K)
 - [Full auto](feedback-full-auto.md) — no questions to owner; web + project actions pre-approved for Aeterna; safety rules still apply
+- [Never end turn mid-chain](feedback-never-end-turn-chain.md) — push dies if turn ends; keep going until GO/STOP
