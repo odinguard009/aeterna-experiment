@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 7740,
+  "cards": 7733,
   "per_saga": {
    "1": 785,
    "2": 332,
@@ -19,23 +19,23 @@
    "15": 356,
    "16": 334,
    "17": 110,
-   "50": 445
+   "50": 438
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 966,
+  "skipped_curated": 973,
   "number_conflicts": 5,
   "nexus_levels_added": 715,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 557,
+  "image_problems": 556,
   "merged": 110,
   "brave_unparsed": 171,
   "ut_lines_added": 119,
   "odd_reduction": 808,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 555
+  "without_image": 554
  },
  "tokens": [
   "BS73-T001",
@@ -818,6 +818,8 @@
   "26RSD04-005",
   "26RSD04-006",
   "26RSD04-008",
+  "26RSD04-011",
+  "26RSD04-012",
   "26RSD04-013",
   "26RSD04-014",
   "26RSD05-001",
@@ -826,7 +828,9 @@
   "26RSD05-004",
   "26RSD05-005",
   "26RSD05-008",
+  "26RSD05-011",
   "26RSD05-012",
+  "26RSD05-013",
   "26RSD05-014",
   "26RSD05-X02",
   "26RSD06-001",
@@ -911,6 +915,7 @@
   "26RSD07-006",
   "26RSD07-007",
   "26RSD07-009",
+  "26RSD07-010",
   "26RSD07-013",
   "26RSD07-014",
   "26RSD07-X02",
@@ -921,12 +926,14 @@
   "26RCB01-012",
   "26RCB01-018",
   "26RCB01-019",
+  "26RCB01-020",
   "26RCB01-021",
   "26RCB01-024",
   "26RCB01-025",
   "26RCB01-026",
   "26RCB01-027",
   "26RCB01-029",
+  "26RCB01-030",
   "26RCB01-033",
   "26RCB01-034",
   "26RCB01-036",
@@ -4136,11 +4143,6 @@
   {
    "id": "26RCB01-017",
    "name": "Kamen Rider Duke Dragon Energy Arms",
-   "problem": "ambiguous name (2 files, none in set 26RCB01)"
-  },
-  {
-   "id": "26RCB01-030",
-   "name": "Kamen Rider Raia",
    "problem": "ambiguous name (2 files, none in set 26RCB01)"
   },
   {

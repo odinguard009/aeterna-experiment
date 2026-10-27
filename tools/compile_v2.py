@@ -282,7 +282,7 @@ def own_grammar(s, ctx=None):
         if att: a['attacking'] = True
         if match: a['match'] = match
         return [a]
-    m = re.match(r'^(?:(?:you can|you may) )?target an opposing (.+?)\.\s*during this turn, give it -(\d[\d,]*) ?bp\.?\s*then,? if it has 0 ?bp,? destroy it$', x, re.I)
+    m = re.match(r'^(?:(?:you can|you may) )?target an opposing (.+?)\.\s*during this turn, give it -(\d[\d,]*) ?bp\.?\s*then,? (?:if it has 0 ?bp,? destroy it|destroy it if it has 0 ?bp)$', x, re.I)
     if m:      # v0.68 BP_MINUS zeroDestroy (Standard: 0 BP alone does not destroy, the text does)
         sel = selector('an opposing ' + low(m.group(1)))
         if not sel or sel['kind'] != 'spirit' or sel['f']: raise Review('v2 bp minus: ' + m.group(1)[:40])
@@ -598,12 +598,30 @@ def instead_pair(m, ctx):
     return [dict(y, **{'if': {'not': cond}}) for y in a1] + [dict(y, **{'if': dict(cond)}) for y in a2], False
 
 
+SHOW_RET = re.compile(r'^(you can )?show (a|an|up to (one|two|three)) (?:(' + COL + r') )?"([^"]+)" family (?:(' + COL + r') )?cards? from (?:your|the) hand to the opponent(?:\.\s*return (?:them|it) to the deckbottom(?: in any order)?|,? and return (?:them|it) to the deckbottom)\.?((?:\s*(?:for each card returned, draw a card|if (?:one|two|three) cards? (?:is|are) returned, draw (?:a|one|two|three|four|five) cards?)\.?)?)$', re.I)      # v0.165
+MILL_OWN = re.compile(r'^(you can )?discard (a|one|two|three|four|five|\d) cards? from (?:your|the) decktop\.?$', re.I)      # v0.165
 SUMMON_FREE = re.compile(r'^(you can )?summon (?:a|an|one) (?:cost (\d+) or less )?"([^"]+)" family spirit card from your (hand|trash), without paying the cost\.?$', re.I)      # v0.164
 TGT_VOID_OWN = re.compile(r'^target one of your (.+?)\.\s*put (a|one|two|three|\d) cores? from (?:the )?void to it\.?$', re.I)      # v0.164
 TGT_VOID = re.compile(r'^target (?:an?|one) (.+? you control)\.\s*put (a|one|two|three|\d) cores? from (?:the )?void to it\.?$', re.I)      # v0.163
 
 
 def action_of(s, ctx):
+    sh = SHOW_RET.match(s.strip())
+    if sh:      # v0.165 "Show up to N <X> cards from your Hand to the opponent. Return them to the deckbottom. For each card returned, draw a card." = SHOW_RETURN
+        col1, fam, col2 = sh.group(4), sh.group(5), sh.group(6)
+        a = {'do': 'SHOW_RETURN', 'max': 1 if sh.group(3) is None else n_of(sh.group(3).lower()), 'match': {'family': [fam]}}
+        if col1 or col2: a['match']['color'] = (col1 or col2).lower()
+        tail = (sh.group(7) or '').lower()
+        if 'for each card returned' in tail: a['drawEach'] = True
+        mi = re.search(r'if (one|two|three) cards? (?:is|are) returned, draw (a|one|two|three|four|five) cards?', tail)
+        if mi: a['drawIf'] = {'n': n_of(mi.group(1)), 'draw': n_of(mi.group(2))}
+        if sh.group(1) is None and (a.get('drawEach') or a.get('drawIf')) is None and False: pass
+        return [a], bool(sh.group(1))
+    if re.match(r'^if returned, ', s.strip(), re.I):      # v0.165 "If returned, X" = "Then, X" (only when the previous action returned a card)
+        return action_of('Then, ' + re.sub(r'^if returned, ', '', s.strip(), flags=re.I), ctx)
+    mm_ = MILL_OWN.match(s.strip())
+    if mm_ and n_of(mm_.group(2).lower()) <= 5:      # v0.165 "(You can) discard N card(s) from your decktop" = MILL (own Deck to Trash)
+        return [{'do': 'MILL', 'n': n_of(mm_.group(2).lower())}], bool(mm_.group(1))
     ms = SUMMON_FREE.match(s.strip())
     if ms:      # v0.164 "You can summon a Cost N or less "X" family Spirit card from your Hand/Trash, without paying the cost." = SUMMON_HAND (optional when "you can")
         a = {'do': 'SUMMON_HAND', 'match': {'family': [ms.group(3)]}, 'from': ms.group(4).lower()}
@@ -671,15 +689,17 @@ def action_of(s, ctx):
 def sentences(body):
     out = []
     for x in _V1_SENTENCES(body):
-        if out and re.fullmatch(r'then,? if it has 0 ?bp,? destroy it\.?', x.strip(), re.I) and re.search(r'-\d[\d,]* ?bp\.$', out[-1], re.I):
+        if out and re.fullmatch(r'then,? (?:if it has 0 ?bp,? destroy it|destroy it if it has 0 ?bp)\.?', x.strip(), re.I) and re.search(r'-\d[\d,]* ?bp\.$', out[-1], re.I):
             out[-1] = out[-1] + ' ' + x      # v0.68: "... give it -N BP. Then, if it has 0 BP, destroy it." is one effect
+        elif out and re.match(r'^(?:you can )?show ', out[-1], re.I) and re.fullmatch(r'(?:return (?:them|it) to the deckbottom(?: in any order)?|for each card returned, draw a card|if (?:one|two|three) cards? (?:is|are) returned, draw (?:a|one|two|three|four|five) cards?)\.?', x.strip(), re.I):
+            out[-1] = out[-1].rstrip() + ' ' + x      # v0.165: "Show ... to the opponent." + "Return them to the deckbottom." + "For each card returned, draw a card." is one effect
         elif out and REVEAL_HEAD.match(out[-1]) and not REVEAL_REST.search(out[-1]):
             out[-1] = out[-1] + ' ' + x      # v0.69: "Reveal N cards from your decktop." + "Among them, add ..." + "Return any remaining cards ..." is one effect
         elif out and re.fullmatch(r'If [^,.]+, (?:[^.]+? instead|instead,[^.]+)\.?', x.strip(), re.I) and out[-1].endswith('.') and 'instead' not in out[-1]:
             out[-1] = out[-1] + ' ' + x      # v0.135: the replacement belongs to the sentence before it
         elif out and re.fullmatch(WHEN_FX_TAIL + r'\.?', x.strip(), re.I) and out[-1].endswith('.'):
             out[-1] = out[-1] + ' ' + x      # v0.77: "When this effect destroys any Spirit, draw a card." belongs to the sentence before it
-        elif out and re.match(r'^(?:if you control [^,.]+, )?(?:(?:you can|you may) )?target ', out[-1], re.I) and out[-1].endswith('.'):
+        elif out and re.match(r'^(?:if (?:you control [^,.]+|returned), )?(?:(?:you can|you may) )?target ', out[-1], re.I) and out[-1].endswith('.'):
             out[-1] = out[-1] + ' ' + x      # join "Target X." with its action sentence
         else:
             out.append(x)

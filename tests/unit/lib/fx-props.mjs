@@ -160,6 +160,10 @@ function simple(card, a) {
       if (a.to === 'own') return { onField: true, body: `const t = sp(${J(FILL)}, P, 1), b = [BS.bpOf(src), BS.bpOf(t)], o = sp(${J(FILL)}, O, 1); await run(src, RA);
       if (BS.bpOf(src) !== b[0] + A.n || BS.bpOf(t) !== b[1] + A.n) return 'own Spirits: ' + b + ' -> ' + [BS.bpOf(src), BS.bpOf(t)]; return BS.bpOf(o) === 1000 ? '' : 'an opposing Spirit got BP';` };
       return { onField: true, body: `const b = BS.bpOf(src); await run(src, RA, A.to === 'attacker' ? { attacker: src } : {}); return BS.bpOf(src) === b + A.n ? '' : 'BP ' + b + ' -> ' + BS.bpOf(src);` };
+    case 'SHOW_RETURN':
+      if (!only(a, ['max', 'match', 'drawEach', 'drawIf']) || !okMatch(a.match)) return null;      // v0.165 the CPU returns every matching card up to max
+      return { fix: [{ m: a.match }], body: `for (let i = 0; i < A.max; i++) P.hand.push(BS.mkInst(${J(mid(a.match))})); for (let j = 0; j < 6; j++) dk(${J(FILL)}); await run(src, RA);
+        const drew = A.drawEach ? A.max : (A.drawIf && A.drawIf.n === A.max ? A.drawIf.draw : 0); return P.hand.length === drew && P.deck.length === 6 + A.max - drew ? '' : 'hand ' + P.hand.length + ', deck ' + P.deck.length + ', want hand ' + drew;` };
     case 'REFRESH':
       if (a.to === 'subject' && only(a, ['to'])) return { onField: true, body: `const t = sp(${J(FILL)}, P, 1); t.exhausted = true; await run(src, RA, { subject: t }); return t.exhausted ? 'the winning Spirit is still exhausted' : '';` };      // v0.78 ALLY_BATTLE_WIN subject
       return only(a, []) && (spirit || card.type === 'Nexus') && { onField: true, body: `src.exhausted = true; await run(src, RA); return src.exhausted ? 'still exhausted' : '';` };

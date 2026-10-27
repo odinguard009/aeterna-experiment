@@ -40885,11 +40885,6 @@
  "26RCB01-017": [
   "T_SUMMONED"
  ],
- "26RCB01-020": [
-  "A_EXHAUST",
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
  "26RCB01-022": [
   "A_DRAW",
   "M_OPTIONAL",
@@ -40909,11 +40904,6 @@
   "A_SYMBOL",
   "A_SYMBOL_PLUS",
   "C_LEVEL"
- ],
- "26RCB01-030": [
-  "M_OPTIONAL",
-  "M_UP_TO",
-  "T_SUMMONED"
  ],
  "26RCB01-031": [
   "A_BP_PLUS",
@@ -41606,12 +41596,6 @@
   "A_VOID",
   "C_LEVEL"
  ],
- "26RSD04-011": [
-  "M_UP_TO"
- ],
- "26RSD04-012": [
-  "M_UP_TO"
- ],
  "26RSD04-X01": [
   "A_REFRESH",
   "C_LEVEL",
@@ -41649,16 +41633,8 @@
   "C_LEVEL",
   "M_OPTIONAL"
  ],
- "26RSD05-011": [
-  "A_BP_MINUS",
-  "M_THEN"
- ],
  "26RSD05-012": [
   "M_OPTIONAL"
- ],
- "26RSD05-013": [
-  "A_DRAW",
-  "M_UP_TO"
  ],
  "26RSD05-X01": [
   "A_BP_MINUS",
@@ -41709,14 +41685,6 @@
  ],
  "26RSD07-008": [
   "T_SUMMONED"
- ],
- "26RSD07-010": [
-  "A_EXHAUST",
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "K_STANDARD_INVOKE",
-  "M_OPTIONAL",
-  "T_ATTACKS"
  ],
  "26RSD07-011": [
   "A_EXHAUST",

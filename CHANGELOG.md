@@ -4,6 +4,11 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.165.0
+- Lane: K
+- **Lane K: 7 more cards complete, 840 of 8,709 (all Standard); new action `SHOW_RETURN`.** "Show up to N <X> cards from your Hand to the opponent. Return them to the deckbottom. For each card returned, draw a card." (also "If two cards are returned, draw three cards" and the single-card "You can show ... and return it to the deckbottom. If returned, ...") is one engine action; the human picks each card (or Done), the CPU returns the cheapest matching cards; showing itself is only logged. Compiler: "If returned, X" = "Then, X", "Then, destroy it if it has 0 BP", "(You can) discard N cards from your decktop" (`MILL`, no card needed it alone yet). Cards: 26RCB01-020, 26RCB01-030, 26RSD04-011, 26RSD04-012, 26RSD05-011, 26RSD05-013, 26RSD07-010. Effect format v11 (addition only).
+  - Checked: loop, `show_return` (4 tests, new mechanic), `compiler_v2` C165-01, FX01-FX03 with a SHOW_RETURN generator, promotion smoke 7 / 7. Not checked: full pre-push set and Regression (CI), a real device. Revert note: `git revert` the v0.165.0 commit.
+
 ## v0.164.0
 - Lane: K
 - **Lane K: 5 more cards complete, 833 of 8,709 (4 Standard, 1 Eternal).** Compiler forms, no engine change: "Target one of your <X>. Put a core from the Void to it" and the singular "Target a Spirit you control. ..." pairs (`VOID_TO_CARD`), own-target BP with a keyword ("Spirits with Shamanism", `match.keyword`), "You can summon a Cost N or less \"X\" family Spirit card from your Hand/Trash, without paying the cost" (`SUMMON_HAND`), and the `(Can't Stack)` head (`noStack`; no card needed it alone yet). Cards: Ogre Wizard card BS70-022, 26RBS01-017, 26RBS02-063, 26RBS03-024, 26RSD10-008.

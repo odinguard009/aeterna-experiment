@@ -46327,6 +46327,7 @@
  "26RCB01-020": [
   "T_SUMMONED",
   "A_EXHAUST",
+  "C_LEVEL",
   "M_OPTIONAL"
  ],
  "26RCB01-021": [
@@ -46386,6 +46387,7 @@
  "26RCB01-029": [],
  "26RCB01-030": [
   "T_SUMMONED",
+  "C_LEVEL",
   "M_OPTIONAL",
   "M_UP_TO"
  ],

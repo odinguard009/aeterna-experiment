@@ -90,3 +90,13 @@ test('C164-01 one-of-your Void targets, Spirits with a keyword, free summon from
   assert.deepEqual(s.effects[0], { trigger: 'SUMMONED', lv: [1], optional: true, actions: [{ do: 'SUMMON_HAND', match: { family: ['Ogre Wizard'] }, from: 'trash', costLe: 8 }] });
   assert.equal(compile('[LV1] (Can\'t Stack) (When Summoned) Draw a card.').effects[0].noStack, true);
 });
+
+test('C165-01 show-and-return-to-deckbottom pairs, "If returned", destroy-if-0-BP order, decktop discard (v0.165.0)', () => {
+  assert.deepEqual(acts('[LV1] (When Summoned) Show up to two White "Mineroid" family cards from your Hand to the opponent. Return them to the deckbottom in any order. For each card returned, draw a card.'),
+    [{ do: 'SHOW_RETURN', max: 2, match: { family: ['Mineroid'], color: 'white' }, drawEach: true }]);
+  const r = compile('[LV1] (When Summoned) You can show a "ZEZTZ" family card from the Hand to the opponent and return it to the deckbottom. If returned, target an opposing exhausted Spirit with two cores or less on it. Destroy it.');
+  assert.deepEqual(r.effects[0].actions, [{ do: 'SHOW_RETURN', max: 1, match: { family: ['ZEZTZ'] } }, { do: 'DESTROY', coresLe: 2, exhaustedOnly: true, if: { prev: true } }]);
+  assert.equal(r.effects[0].optional, true);
+  assert.deepEqual(acts('[LV1] (When Summoned) Target an opposing Spirit. During this turn, give it -2000 BP. Then, destroy it if it has 0 BP.'), acts('[LV1] (When Summoned) Target an opposing Spirit. During this turn, give it -2000 BP. Then, if it has 0 BP, destroy it.'));
+  assert.deepEqual(acts('[LV1] (When Summoned) Discard two cards from your decktop.'), [{ do: 'MILL', n: 2 }]);
+});
