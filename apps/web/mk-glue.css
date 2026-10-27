@@ -230,7 +230,7 @@ html:not(.layout-pc) .lorenav .seg button{flex:1;min-height:36px;width:auto;just
 /* ---- v0.158.0 (owner review round 3): battle PC. The hand row follows the card height (no empty strip under the hand; the field gets the rest),
    the Trash area is bigger and split in two, every area keeps its size and its contents scale to it ---- */
 html.layout-pc #view-playmat .playmat-layout.has-cp { grid-template-rows: minmax(0, 1fr) 64px minmax(0, 1fr) auto; }
-html.layout-pc #view-playmat .hand-container-wrapper { height: auto; }
+html.layout-pc #view-playmat .hand-container-wrapper { height: calc(clamp(112px, 17vh, 168px) + 9px); }
 html.layout-pc #view-playmat .hand-area { height: auto; align-items: center; padding: 4px; }
 html.layout-pc #view-playmat .hand-area .tcg-card { height: clamp(112px, 17vh, 168px); width: auto; aspect-ratio: 63 / 88; flex: none; }
 html.layout-pc #view-playmat .pc-hand-flank { height: auto; align-self: stretch; }
