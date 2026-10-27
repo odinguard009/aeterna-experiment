@@ -40,8 +40,8 @@ test('U04 End from Main runs the Attack Step (no attacks) and ends the turn thro
   assert.deepEqual(await page.evaluate(() => [BS.G.step, BS.G.active]), [5, 'player']);
 });
 test('U05 during the CPU turn every step button says the CPU is playing', async () => {
-  const r = await ev(w => { BS.testSetup(); BS.G.active = 'opponent'; BS.render(); BS.stepClick(5); return [BS.G.step, (0, eval)('(' + w + ')')(), document.querySelector('.full-center-divider').classList.contains('cpu-turn'), document.querySelector('.turn-title').innerText.replace(/\s+/g, ' ')]; }, warnText.toString());
-  assert.equal(r[0], 4); assert.match(r[1], /CPU is playing/); assert.equal(r[2], true); assert.equal(r[3], 'OPPONENT TURN');
+  const r = await ev(w => { BS.testSetup(); BS.G.active = 'opponent'; BS.render(); BS.stepClick(5); return [BS.G.step, (0, eval)('(' + w + ')')(), document.querySelector('.full-center-divider').classList.contains('cpu-turn'), document.querySelector(".turn-title").innerText.replace(/\s+/g, ' ')]; }, warnText.toString());
+  assert.equal(r[0], 4); assert.match(r[1], /CPU is playing/); assert.equal(r[2], true); assert.match(r[3], /^OPPONENT TURN \d+$/);
 });
 test('U06 a step that is not next says which step is legal', async () => {
   const r = await ev(w => { BS.testSetup(); BS.G.format = 'standard'; BS.G.steps = ['START', 'CORE', 'DRAW', 'REFRESH', 'MAIN', 'ATTACK', 'MAIN 2', 'END']; BS.render(); BS.stepClick(6);
