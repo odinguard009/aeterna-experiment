@@ -39,7 +39,7 @@ test('B71-02 compiler: condition clauses become the action "if"; "instead" and o
   assert.deepEqual(compile('[LV1] (When Summoned) When you have a Burst set, destroy an opposing 3000 BP or less Spirit.').effects[0].actions[0].if, { burstSet: true });
   assert.deepEqual(compile('[LV1] (When Summoned)\nIf you have three counters or more, draw two cards.').effects[0].actions[0].if, { counterGe: 3 });
   assert.deepEqual(compile("[LV1] (When Summoned)\nIf the opponent doesn't have a Burst set, draw a card.").effects[0].actions[0].if, { oppBurstSet: false });
-  assert.match(compile('[LV1] (When Attacks)\nDraw a card. If you control any Ultimate, instead, draw two cards.').review, /^sentence/);
+  assert.match(compile('[LV1] (When Attacks)\nDraw a card. If the opponent has two or more Spirits, instead, draw two cards.').review, /^sentence/);
   assert.match(compile('[LV1] (When Attacks)\nDiscard an opposing Burst.').review, /^Burst sentence/);
 });
 
