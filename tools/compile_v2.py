@@ -539,6 +539,10 @@ def cond_of(x):
     c = v1.all_have_cond(x)
     if c: return c
     if re.fullmatch(r'(?:you )?(?:are |is |was )?summoned via form change', x, re.I): return {'viaFormChange': True}      # v0.135 (schema v8)
+    m = re.fullmatch(r'you control (?:an?|any) spirit with ([A-Za-z]+)', x, re.I)      # v0.150 "a Spirit with Evolution" (engine ctrl.keyword)
+    if m and m.group(1).lower() not in ('current',): return {'ctrl': {'n': 1, 'type': 'Spirit', 'keyword': m.group(1).capitalize()}}
+    m = re.fullmatch(r'you control another "([^"]+)" family spirit', x, re.I)      # v0.150 "another X family Spirit" (engine ctrl.other = not the source)
+    if m: return {'ctrl': {'n': 1, 'type': 'Spirit', 'family': m.group(1), 'other': True}}
     m = CTRL_ANY.fullmatch(x)
     if m:
         q = {'n': 1, 'type': 'Both' if '/' in m.group(4) else m.group(4).capitalize()}
@@ -570,7 +574,7 @@ EOB_TRIG = {'ATTACKS', 'BLOCKS', 'ATTACKS+BLOCKS'}
 SUBJ_REFRESH = re.compile(r'^refresh (?:that spirit|the (?:blocking|attacking|battling) spirit)(?: you control)?\.?$', re.I)
 
 
-INSTEAD_PAIR = re.compile(r'^(.+?\.)\s+If ([^,.]+), ([^.]+?) instead\.?$', re.I)
+INSTEAD_PAIR = re.compile(r'^(.+?\.)\s+If ([^,.]+), (?:([^.]+?) instead|instead,\s*([^.]+?))\.?$', re.I)      # v0.150: also "If C, instead, B." (group 4)
 SUBST_BP = re.compile(r'^(?:change )?the targeting (BP|cost) (?:becomes|to) (\d[\d,]*)(?: (?:BP|cost))? or (less|more)$', re.I)
 
 
@@ -579,7 +583,7 @@ def instead_pair(m, ctx):
     (A with its number swapped). Anything else stays in review (more than one action, an optional clause, a condition the engine lacks)."""
     cond = cond_of(m.group(2))
     if not cond: raise Review('sentence: ' + m.group(0)[:140])
-    first, b0 = m.group(1).strip(), m.group(3).strip()
+    first, b0 = m.group(1).strip(), (m.group(3) or m.group(4)).strip()
     sb = SUBST_BP.match(b0)
     if sb:
         kind, n, rel = sb.group(1).lower(), sb.group(2), sb.group(3).lower()
@@ -646,7 +650,7 @@ def sentences(body):
             out[-1] = out[-1] + ' ' + x      # v0.68: "... give it -N BP. Then, if it has 0 BP, destroy it." is one effect
         elif out and REVEAL_HEAD.match(out[-1]) and not REVEAL_REST.search(out[-1]):
             out[-1] = out[-1] + ' ' + x      # v0.69: "Reveal N cards from your decktop." + "Among them, add ..." + "Return any remaining cards ..." is one effect
-        elif out and re.fullmatch(r'If [^,.]+, [^.]+? instead\.?', x.strip(), re.I) and out[-1].endswith('.') and 'instead' not in out[-1]:
+        elif out and re.fullmatch(r'If [^,.]+, (?:[^.]+? instead|instead,[^.]+)\.?', x.strip(), re.I) and out[-1].endswith('.') and 'instead' not in out[-1]:
             out[-1] = out[-1] + ' ' + x      # v0.135: the replacement belongs to the sentence before it
         elif out and re.fullmatch(WHEN_FX_TAIL + r'\.?', x.strip(), re.I) and out[-1].endswith('.'):
             out[-1] = out[-1] + ' ' + x      # v0.77: "When this effect destroys any Spirit, draw a card." belongs to the sentence before it

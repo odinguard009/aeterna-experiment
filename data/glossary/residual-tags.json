@@ -1049,11 +1049,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "BS04-001": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
  "BS04-002": [
   "C_LEVEL"
  ],
@@ -4012,9 +4007,6 @@
   "A_EXHAUST",
   "C_LEVEL",
   "K_BRAVE"
- ],
- "BS12-063": [
-  "C_LEVEL"
  ],
  "BS12-064": [
   "A_EXHAUST",
@@ -8442,13 +8434,6 @@
   "K_BURST",
   "K_ULTIMATE"
  ],
- "BS24-009": [
-  "A_DESTROY_BP",
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "M_REPLACEMENT",
-  "T_SUMMONED"
- ],
  "BS24-010": [
   "A_BP_PLUS",
   "C_LEVEL",
@@ -10570,15 +10555,6 @@
  ],
  "BS28-010": [
   "C_LEVEL"
- ],
- "BS28-011": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "K_BURST",
-  "K_ULTIMATE",
-  "M_REPLACEMENT",
-  "T_DESTROYED",
-  "T_DESTROYED_OPP"
  ],
  "BS28-012": [
   "C_LEVEL",
@@ -12944,9 +12920,6 @@
  "BS33-021": [
   "C_LEVEL",
   "K_ULTIMATE"
- ],
- "BS33-022": [
-  "A_REFRESH"
  ],
  "BS33-023": [
   "C_LEVEL",
@@ -24427,9 +24400,6 @@
   "M_OPTIONAL",
   "M_THEN",
   "T_SUMMONED"
- ],
- "BS54-021": [
-  "C_COUNTER"
  ],
  "BS54-022": [
   "A_SYMBOL",

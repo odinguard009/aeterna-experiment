@@ -82,7 +82,7 @@ function fxIf(owner, opp, c, ctx) {
   if (c.utHit != null && !!(ctx && ctx.utHit) !== c.utHit) return false;               // v0.56 Ultimate Trigger hit
   if (c.burstSet != null && !!(owner.burst && !owner.burst.mirage) !== c.burstSet) return false;      // v0.71 "if/while you have a (set) Burst" (Fandom Burst: a face-down card in the Burst Area)
   if (c.oppBurstSet != null && !!(opp.burst && !opp.burst.mirage) !== c.oppBurstSet) return false;   // v0.71 "while the opponent has a set Burst"
-  if (c.ctrl != null && ![].concat(c.ctrl).every(q => ctrlCount(owner, q) >= (q.n == null ? 1 : q.n))) return false;   // v0.56 Ultimate summon conditions
+  if (c.ctrl != null && ![].concat(c.ctrl).every(q => q.nLe != null ? ctrlCount(owner, q, ctx) <= q.nLe : ctrlCount(owner, q, ctx) >= (q.n == null ? 1 : q.n))) return false;   // v0.56 Ultimate summon conditions
   if (c.fewerSpirits != null && (spiritCount(owner) < spiritCount(opp)) !== c.fewerSpirits) return false;   // v0.77 "if you control fewer Spirits than the opponent" (Spirits only, counted when it resolves)
   if (c.nexusGe != null && !(perCount(owner, Object.assign({ type: 'Nexus' }, c.nexusGe, { n: undefined })) >= (c.nexusGe.n || 1))) return false;   // v0.77 "if you control a <colour> Nexus"
   if (c.lifeReduced != null && (owner.lifeRedTurn === G.turnNo) !== c.lifeReduced) return false;   // v0.88 S1 "if your Life was reduced (during) this turn"
@@ -95,7 +95,10 @@ function fxIf(owner, opp, c, ctx) {
 }
 /* v0.56 "you control N or more <colour/cost/family> Spirits/Ultimates" (Ultimate summon conditions, {{Sumcon|...}}):
    q = { n, type: 'Spirit'|'Ultimate'|'Both', colors: [any of], costGe, family }; counts the owner's Spirit-form cards on the Field */
-const ctrlCount = (owner, q) => owner.spirits.filter(f => { const k = CARDS[f.id], u = k.type === 'Ultimate';
+const cardHasKeyword = (card, kw) => (card.keywords || []).some(k => String(k).toUpperCase() === String(kw).toUpperCase()) || new RegExp('(^|[\\]\\)\\s])' + String(kw).replace(/[^A-Za-z ]/g, '') + ' \\(').test(card.desc || card.text || '');
+const ctrlCount = (owner, q, ctx) => owner.spirits.filter(f => { const k = CARDS[f.id], u = k.type === 'Ultimate';
+  if (q.other && ctx && ctx.selfUid === f.uid) return false;      // v0.150 "another / besides this Spirit"
+  if (q.keyword && !cardHasKeyword(k, q.keyword)) return false;      // v0.150 "a Spirit with Evolution"
   return (q.type === 'Both' || (q.type === 'Ultimate') === u) && (!q.colors || q.colors.some(x => (k.colors || [k.symbol]).includes(x)))
     && (q.costGe == null || k.cost >= q.costGe) && (!q.family || (k.families || []).includes(q.family)) && (!q.exhausted || f.exhausted); }).length;      // v0.76 exhausted: "any exhausted X"
 const spiritCount = q => q.spirits.filter(f => CARDS[f.id].type !== 'Ultimate').length;      // v0.77 fewerSpirits

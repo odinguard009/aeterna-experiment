@@ -4,6 +4,11 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.150.0
+- Lane: K
+- **+6 complete cards** (BS04-001 Kunanomi, BS12-063, BS24-009 Flame-Gundragna, BS28-011, BS33-022, BS54-021). The condition "if you control" gained three forms: "a Spirit with <keyword>" (`ctrl.keyword`), "another <family> Spirit" (`ctrl.other`, not the source) and "N or less Spirits" (`ctrl.nLe`, engine only); the compiler also reads "If C, instead, B." replacement pairs.
+  - Checked: scratch recompile of the staged pool, promote smoke check, card_verify on all six (stats and text match the export), test CK01-CK03. Not checked: card images; the other 4 cards of the "if you control" row need Current, Nexus counting or other mechanics and stay staged
+
 ## v0.149.0
 - Lane: U/I
 - **Battle: core animations, Depletion safety net, phone field.** (1) Every core/Soul Core move now emits a view event and flies as a gem in Full animation: Life to Reserve (damage), Reserve to Spirit, Spirit to Reserve (destroy/deplete), Spirit to Spirit, Reserve/Spirit to Trash (cost payment), Void and Trash zones included. (2) A Spirit below its Lv1 cores is now also depleted at every Intent and step change (safety net next to the existing checks after payments, battle and effects). (3) Phone: the Life indicator shows one core icon instead of up to five, so the field no longer changes size when Life drops; the first Spirit/Nexus starts in the middle of the row and the row scrolls when it overflows. Size budget B01 raised to 975 KB.

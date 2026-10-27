@@ -4,74 +4,103 @@ Staged pool 459 cards; compile_v2 compiles 0 new (everything it can compile is a
 
 **Upper bound:** `blockers()` lists only the first failing sentence of each paragraph, so real unlocks are lower; measure each pack by a scratch recompile after it is built. Rule sources: `data/glossary/wiki-rules-map.json` (`python3 tools/wiki_rules.py --for "<blocker>"`, index `docs/reports/wiki-rules-index.md`).
 
-**No measurement in this report:** run with `--measure` before sizing a pack from the New column (a scratch recompile is the only honest estimate, item T.2).
+**Measured reality (read this before sizing a pack):** 28 of 32 measured rows delivered **zero** compiled cards (Measured 0/x). The New column is a ceiling on what the text promises, never a forecast of what a session will build; size the next pack with a scratch recompile (item T.2).
 
 ## Greedy order
 
 "New (upper)" = cards whose last open blocker is this row; "Block A (upper)" = of those, Standard block A; "Touches" = open cards that still list it. The "(upper)" marks are there because both columns are ceilings, not forecasts.
 
-| Step | Blocker | Family | New (upper) | Block A (upper) | Total | Touches | Rule source |
-|---|---|---|---|---|---|---|---|
-| 1 | sentence: target an opposing | sentence verb | 18 | 18 | 18 | 41 | Comprehensive Rules/Effect Texts #Targets of Effects; Comprehensive Rules/Effect Texts #Do as Much as Possible |
-| 2 | no trigger: (During Attack) | event trigger head | 15 | 15 | 33 | 51 | - |
-| 3 | sentence: target one of | sentence verb | 14 | 14 | 47 | 24 | Comprehensive Rules/Effect Texts #Targets of Effects; Comprehensive Rules/Effect Texts #Do as Much as Possible |
-| 4 | no trigger: (Once Per Turn) | event trigger head | 8 | 8 | 55 | 24 | Comprehensive Rules/Categories of Effects #"(Once Per Turn: Same Name)" and "Once Per Turn, ..." |
-| 5 | no trigger: (Start of Your Attack Step) | step timing head | 8 | 8 | 63 | 12 | Comprehensive Rules/Categories of Effects #Effects Which Activate During Specific Steps; Comprehensive Rules/Categories of Effects #"At the Beginning of the Step"/"At the End of the Step"; Official Rule Manual (Standard) #Turn Procedures |
-| 6 | no trigger: (Can't Stack) | event trigger head | 7 | 7 | 70 | 23 | Comprehensive Rules/Effect Texts #Denial Effects (～できない) |
-| 7 | no trigger: If you control | event trigger head | 7 | 7 | 77 | 11 | - |
-| 8 | Invoke cost | other | 7 | 7 | 84 | 24 | - |
-| 9 | no trigger: (CSOPT) | event trigger head | 7 | 7 | 91 | 19 | - |
-| 10 | no trigger: You can target | event trigger head | 7 | 7 | 98 | 17 | - |
-| 11 | sentence: if you control | sentence verb | 7 | 7 | 105 | 15 | Comprehensive Rules/Effect Texts #Do as Much as Possible |
-| 12 | sentence: besides this spirit, | sentence verb | 6 | 6 | 111 | 9 | - |
-| 13 | sentence: target up to | sentence verb | 6 | 6 | 117 | 10 | Comprehensive Rules/Effect Texts #Targets of Effects; Comprehensive Rules/Effect Texts #Do as Much as Possible |
-| 14 | wiki template {{Shaman}} | keyword template | 6 | 6 | 123 | 7 | - |
-| 15 | sentence: (once per turn) | duration / connective | 5 | 5 | 128 | 13 | Comprehensive Rules/Categories of Effects #"(Once Per Turn: Same Name)" and "Once Per Turn, ..." |
-| 16 | no trigger: All your Spirits | event trigger head | 5 | 5 | 133 | 9 | - |
-| 17 | no trigger: All your attacking | event trigger head | 5 | 5 | 138 | 8 | - |
-| 18 | keyword | card kind | 5 | 5 | 143 | 7 | - |
-| 19 | no trigger: [Team: Red Stella] | event trigger head | 4 | 4 | 147 | 8 | - |
-| 20 | no trigger: (Your Turn) | turn / while head | 4 | 4 | 151 | 7 | Comprehensive Rules/Categories of Effects #Constant Effects |
-| 21 | wiki template {{Current}} | keyword template | 4 | 4 | 155 | 6 | - |
-| 22 | sentence: the opponent targets | sentence verb | 5 | 5 | 160 | 5 | - |
-| 23 | no trigger: (During Block) | event trigger head | 4 | 4 | 164 | 8 | - |
-| 24 | wiki template {{Camou}} | keyword template | 5 | 5 | 169 | 6 | - |
-| 25 | sentence: show a "zeztz" | sentence verb | 4 | 4 | 173 | 4 | - |
-| 26 | sentence: if all your | sentence verb | 3 | 3 | 176 | 11 | Comprehensive Rules/Effect Texts #Do as Much as Possible |
-| 27 | no trigger: [Teams: Red Stella/Shiny | event trigger head | 5 | 5 | 181 | 6 | - |
-| 28 | no trigger: [Team: Blue Beat] | event trigger head | 3 | 3 | 184 | 11 | - |
-| 29 | no trigger: If all your | event trigger head | 5 | 5 | 189 | 6 | - |
-| 30 | no trigger: When you're summoning | event trigger head | 3 | 3 | 192 | 7 | - |
-| 31 | no trigger: [Team: Yellow Rise] | event trigger head | 3 | 3 | 195 | 9 | - |
-| 32 | wiki template {{Rumble}} | keyword template | 3 | 3 | 198 | 6 | - |
-| 33 | sentence: draw two cards, | sentence verb | 4 | 4 | 202 | 5 | - |
-| 34 | sentence: use the flash | sentence verb | 3 | 3 | 205 | 6 | - |
-| 35 | no trigger: (Start of Opposing Attack Step) | step timing head | 4 | 4 | 209 | 6 | - |
-| 36 | no trigger: When summoning this | event trigger head | 3 | 3 | 212 | 5 | Comprehensive Rules/Categories of Effects #"When Summoned/[[Advent|Advents]]" Effects and "When Deployed" Effects; Comprehensive Rules/Categories of Effects #Summoning or Deploying via Effects |
-| 37 | sentence: target a cost | sentence verb | 3 | 3 | 215 | 4 | Comprehensive Rules/Effect Texts #Targets of Effects; Comprehensive Rules/Effect Texts #Do as Much as Possible |
-| 38 | wiki template {{Magirrate}} | keyword template | 3 | 3 | 218 | 4 | - |
-| 39 | no trigger: All your Cost | event trigger head | 3 | 3 | 221 | 4 | - |
-| 40 | no trigger: [Teams: Yellow Rise/Shiny | event trigger head | 3 | 3 | 224 | 4 | - |
-| 41 | sentence: target a spirit | sentence verb | 3 | 3 | 227 | 3 | Comprehensive Rules/Effect Texts #Targets of Effects; Comprehensive Rules/Effect Texts #Do as Much as Possible |
-| 42 | no trigger: (During Attacks) | event trigger head | 3 | 3 | 230 | 3 | - |
-| 43 | v2 reveal: no "remaining cards" ending | sentence verb | 3 | 3 | 233 | 3 | Comprehensive Rules/Effect Texts #"Remaining Cards" & "Otherwise" (「残ったカード」と「それ以外」/「他のカード」); Comprehensive Rules/Other Explanations of Rules #Revealed Cards |
-| 44 | sentence: target two opposing | sentence verb | 3 | 3 | 236 | 3 | Comprehensive Rules/Effect Texts #Targets of Effects; Comprehensive Rules/Effect Texts #Do as Much as Possible |
-| 45 | sentence: show up to | sentence verb | 3 | 3 | 239 | 3 | - |
-| 46 | no trigger: [Team: Green Wave] | event trigger head | 2 | 2 | 241 | 10 | - |
-| 47 | wiki template {{Amplify}} | keyword template | 2 | 2 | 243 | 5 | - |
-| 48 | no trigger: This Spirit can | event trigger head | 4 | 4 | 247 | 4 | - |
-| 49 | no trigger: Flash - (Opposing | step timing head | 2 | 2 | 249 | 5 | Comprehensive Rules/Categories of Effects #Effects Which Activate During Specific Steps; Comprehensive Rules/Categories of Effects #Interruptive Effects |
-| 50 | no trigger: [Teams: Blue Beat/Pretty | event trigger head | 2 | 2 | 251 | 4 | - |
-| 51 | sentence: put a core | sentence verb | 2 | 2 | 253 | 3 | - |
-| 52 | sentence: if your life | sentence verb | 2 | 2 | 255 | 3 | Comprehensive Rules/Effect Texts #Do as Much as Possible |
-| 53 | no trigger: When your Spirit | event trigger head | 2 | 2 | 257 | 3 | - |
-| 54 | no trigger: [Teams: Green Wave/Absolutes] | event trigger head | 2 | 2 | 259 | 3 | - |
-| 55 | no trigger: Give all your | event trigger head | 2 | 2 | 261 | 3 | - |
-| 56 | no trigger: (Start of Your Main Step) | step timing head | 2 | 2 | 263 | 3 | - |
-| 57 | no trigger: This Spirit can't | event trigger head | 2 | 2 | 265 | 2 | Comprehensive Rules/Effect Texts #Denial Effects (～できない) |
-| 58 | no trigger: If you used | event trigger head | 2 | 2 | 267 | 2 | - |
-| 59 | sentence: target a "topaz" | sentence verb | 2 | 2 | 269 | 2 | Comprehensive Rules/Effect Texts #Targets of Effects; Comprehensive Rules/Effect Texts #Do as Much as Possible |
-| 60 | no trigger: If this Spirit | event trigger head | 2 | 2 | 271 | 2 | - |
+| Step | Blocker | Family | New (upper) | Block A (upper) | Total | Touches | Measured | Est. real | Rule source |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | sentence: target an opposing | sentence verb | 18 | 18 | 18 | 41 | 0/18 | 0 | Comprehensive Rules/Effect Texts #Targets of Effects; Comprehensive Rules/Effect Texts #Do as Much as Possible |
+| 2 | no trigger: (During Attack) | event trigger head | 15 | 15 | 33 | 51 | 0/12 | 0 | - |
+| 3 | sentence: target one of | sentence verb | 14 | 14 | 47 | 24 | 0/11 | 0 | Comprehensive Rules/Effect Texts #Targets of Effects; Comprehensive Rules/Effect Texts #Do as Much as Possible |
+| 4 | no trigger: (Once Per Turn) | event trigger head | 8 | 8 | 55 | 24 | 0/7 | 0 | Comprehensive Rules/Categories of Effects #"(Once Per Turn: Same Name)" and "Once Per Turn, ..." |
+| 5 | no trigger: (Start of Your Attack Step) | step timing head | 8 | 8 | 63 | 12 | 0/2 | 0 | Comprehensive Rules/Categories of Effects #Effects Which Activate During Specific Steps; Comprehensive Rules/Categories of Effects #"At the Beginning of the Step"/"At the End of the Step"; Official Rule Manual (Standard) #Turn Procedures |
+| 6 | no trigger: (Can't Stack) | event trigger head | 7 | 7 | 70 | 23 | 0/4 | 0 | Comprehensive Rules/Effect Texts #Denial Effects (～できない) |
+| 7 | no trigger: If you control | event trigger head | 7 | 7 | 77 | 11 | 0/5 | 0 | - |
+| 8 | Invoke cost | other | 7 | 7 | 84 | 24 | - | ~0 | - |
+| 9 | no trigger: (CSOPT) | event trigger head | 7 | 7 | 91 | 19 | 0/1 | 0 | - |
+| 10 | no trigger: You can target | event trigger head | 7 | 7 | 98 | 17 | - | ~0 | - |
+| 11 | sentence: if you control | sentence verb | 7 | 7 | 105 | 15 | 2/3 | 5 | Comprehensive Rules/Effect Texts #Do as Much as Possible |
+| 12 | sentence: besides this spirit, | sentence verb | 6 | 6 | 111 | 9 | 0/3 | 0 | - |
+| 13 | sentence: target up to | sentence verb | 6 | 6 | 117 | 10 | 0/2 | 0 | Comprehensive Rules/Effect Texts #Targets of Effects; Comprehensive Rules/Effect Texts #Do as Much as Possible |
+| 14 | wiki template {{Shaman}} | keyword template | 6 | 6 | 123 | 7 | 0/4 | 0 | - |
+| 15 | sentence: (once per turn) | duration / connective | 5 | 5 | 128 | 13 | - | ~0 | Comprehensive Rules/Categories of Effects #"(Once Per Turn: Same Name)" and "Once Per Turn, ..." |
+| 16 | no trigger: All your Spirits | event trigger head | 5 | 5 | 133 | 9 | - | ~0 | - |
+| 17 | no trigger: All your attacking | event trigger head | 5 | 5 | 138 | 8 | - | ~0 | - |
+| 18 | keyword | card kind | 5 | 5 | 143 | 7 | - | ~0 | - |
+| 19 | no trigger: [Team: Red Stella] | event trigger head | 4 | 4 | 147 | 8 | - | ~0 | - |
+| 20 | no trigger: (Your Turn) | turn / while head | 4 | 4 | 151 | 7 | 0/1 | 0 | Comprehensive Rules/Categories of Effects #Constant Effects |
+| 21 | wiki template {{Current}} | keyword template | 4 | 4 | 155 | 6 | 0/3 | 0 | - |
+| 22 | sentence: the opponent targets | sentence verb | 5 | 5 | 160 | 5 | 0/2 | 0 | - |
+| 23 | no trigger: (During Block) | event trigger head | 4 | 4 | 164 | 8 | 1/2 | 2 | - |
+| 24 | wiki template {{Camou}} | keyword template | 5 | 5 | 169 | 6 | 0/1 | 0 | - |
+| 25 | sentence: show a "zeztz" | sentence verb | 4 | 4 | 173 | 4 | 0/3 | 0 | - |
+| 26 | sentence: if all your | sentence verb | 3 | 3 | 176 | 11 | - | ~0 | Comprehensive Rules/Effect Texts #Do as Much as Possible |
+| 27 | no trigger: [Teams: Red Stella/Shiny | event trigger head | 5 | 5 | 181 | 6 | - | ~0 | - |
+| 28 | no trigger: [Team: Blue Beat] | event trigger head | 3 | 3 | 184 | 11 | - | ~0 | - |
+| 29 | no trigger: If all your | event trigger head | 5 | 5 | 189 | 6 | - | ~0 | - |
+| 30 | no trigger: When you're summoning | event trigger head | 3 | 3 | 192 | 7 | 0/1 | 0 | - |
+| 31 | no trigger: [Team: Yellow Rise] | event trigger head | 3 | 3 | 195 | 9 | - | ~0 | - |
+| 32 | wiki template {{Rumble}} | keyword template | 3 | 3 | 198 | 6 | - | ~0 | - |
+| 33 | sentence: draw two cards, | sentence verb | 4 | 4 | 202 | 5 | 2/3 | 3 | - |
+| 34 | sentence: use the flash | sentence verb | 3 | 3 | 205 | 6 | 1/1 | 3 | - |
+| 35 | no trigger: (Start of Opposing Attack Step) | step timing head | 4 | 4 | 209 | 6 | - | ~0 | - |
+| 36 | no trigger: When summoning this | event trigger head | 3 | 3 | 212 | 5 | 0/1 | 0 | Comprehensive Rules/Categories of Effects #"When Summoned/[[Advent|Advents]]" Effects and "When Deployed" Effects; Comprehensive Rules/Categories of Effects #Summoning or Deploying via Effects |
+| 37 | sentence: target a cost | sentence verb | 3 | 3 | 215 | 4 | 0/1 | 0 | Comprehensive Rules/Effect Texts #Targets of Effects; Comprehensive Rules/Effect Texts #Do as Much as Possible |
+| 38 | wiki template {{Magirrate}} | keyword template | 3 | 3 | 218 | 4 | 0/2 | 0 | - |
+| 39 | no trigger: All your Cost | event trigger head | 3 | 3 | 221 | 4 | - | ~0 | - |
+| 40 | no trigger: [Teams: Yellow Rise/Shiny | event trigger head | 3 | 3 | 224 | 4 | - | ~0 | - |
+| 41 | sentence: target a spirit | sentence verb | 3 | 3 | 227 | 3 | 0/2 | 0 | Comprehensive Rules/Effect Texts #Targets of Effects; Comprehensive Rules/Effect Texts #Do as Much as Possible |
+| 42 | no trigger: (During Attacks) | event trigger head | 3 | 3 | 230 | 3 | - | ~0 | - |
+| 43 | v2 reveal: no "remaining cards" ending | sentence verb | 3 | 3 | 233 | 3 | - | ~0 | Comprehensive Rules/Effect Texts #"Remaining Cards" & "Otherwise" (「残ったカード」と「それ以外」/「他のカード」); Comprehensive Rules/Other Explanations of Rules #Revealed Cards |
+| 44 | sentence: target two opposing | sentence verb | 3 | 3 | 236 | 3 | 0/2 | 0 | Comprehensive Rules/Effect Texts #Targets of Effects; Comprehensive Rules/Effect Texts #Do as Much as Possible |
+| 45 | sentence: show up to | sentence verb | 3 | 3 | 239 | 3 | 0/2 | 0 | - |
+| 46 | no trigger: [Team: Green Wave] | event trigger head | 2 | 2 | 241 | 10 | - | ~0 | - |
+| 47 | wiki template {{Amplify}} | keyword template | 2 | 2 | 243 | 5 | - | ~0 | - |
+| 48 | no trigger: This Spirit can | event trigger head | 4 | 4 | 247 | 4 | - | ~0 | - |
+| 49 | no trigger: Flash - (Opposing | step timing head | 2 | 2 | 249 | 5 | - | ~0 | Comprehensive Rules/Categories of Effects #Effects Which Activate During Specific Steps; Comprehensive Rules/Categories of Effects #Interruptive Effects |
+| 50 | no trigger: [Teams: Blue Beat/Pretty | event trigger head | 2 | 2 | 251 | 4 | - | ~0 | - |
+| 51 | sentence: put a core | sentence verb | 2 | 2 | 253 | 3 | 0/2 | 0 | - |
+| 52 | sentence: if your life | sentence verb | 2 | 2 | 255 | 3 | - | ~0 | Comprehensive Rules/Effect Texts #Do as Much as Possible |
+| 53 | no trigger: When your Spirit | event trigger head | 2 | 2 | 257 | 3 | 0/1 | 0 | - |
+| 54 | no trigger: [Teams: Green Wave/Absolutes] | event trigger head | 2 | 2 | 259 | 3 | - | ~0 | - |
+| 55 | no trigger: Give all your | event trigger head | 2 | 2 | 261 | 3 | - | ~0 | - |
+| 56 | no trigger: (Start of Your Main Step) | step timing head | 2 | 2 | 263 | 3 | 0/1 | 0 | - |
+| 57 | no trigger: This Spirit can't | event trigger head | 2 | 2 | 265 | 2 | - | ~0 | Comprehensive Rules/Effect Texts #Denial Effects (～できない) |
+| 58 | no trigger: If you used | event trigger head | 2 | 2 | 267 | 2 | 0/1 | 0 | - |
+| 59 | sentence: target a "topaz" | sentence verb | 2 | 2 | 269 | 2 | 0/1 | 0 | Comprehensive Rules/Effect Texts #Targets of Effects; Comprehensive Rules/Effect Texts #Do as Much as Possible |
+| 60 | no trigger: If this Spirit | event trigger head | 2 | 2 | 271 | 2 | - | ~0 | - |
+
+## Measured order (real yield first)
+
+Measured = of the cards whose ONLY blocker is the row, how many compile once its head is swapped for a head the compiler already reads (`tools/pack_measure.py`); this tests the BODY under the head, the part the upper bound ignores (v0.70.0 step window: ~300 promised, +4 built). Est. real = New x measured ratio; "~" = no pure single-blocker sample or no head to swap, so the median ratio of the family is used. It is an estimate: the pack still has to teach the engine the head itself.
+
+| Rank | Blocker | Est. real | Upper bound | Next blockers revealed (bundle these) |
+|---|---|---|---|---|
+| 1 | sentence: if you control | 5 | 7 | sentence: heavy exhaust it. (1) |
+| 2 | sentence: use the flash | 3 | 3 | - |
+| 3 | sentence: draw two cards, | 3 | 4 | sentence: draw two cards, (1) |
+| 4 | no trigger: (During Block) | 2 | 4 | sentence: if you have (1) |
+| 5 | sentence: target an opposing | 0 | 18 | sentence: destroy it. (6); sentence: destroy it. if (5); sentence: target an opposing (2) |
+| 6 | no trigger: (During Attack) | 0 | 15 | no trigger: (During Attack) (3); sentence: at the end (2); sentence: if you control (1) |
+| 7 | sentence: target one of | 0 | 14 | sentence: send a core, (4); sentence: put a core (3); sentence: refresh it. (2) |
+| 8 | no trigger: (Once Per Turn) | 0 | 8 | sentence: when your "kamen (2); sentence: when your spirit (1); sentence: when your "wailwraith"/"hexcra (1) |
+| 9 | no trigger: (Start of Your Attack Step) | 0 | 8 | sentence: (can't stack) target (1); sentence: target one of (1) |
+| 10 | no trigger: (Can't Stack) | 0 | 7 | no trigger: (Can't Stack) (1); sentence: when your "bloodrouse" (1); sentence: when your life (1) |
+| 11 | no trigger: If you control | 0 | 7 | sentence: this spirit can't (2); sentence: draw until your (1); sentence: this card in (1) |
+| 12 | Invoke cost | 0 | 7 | - |
+| 13 | no trigger: (CSOPT) | 0 | 7 | sentence: when the opposing (1) |
+| 14 | no trigger: You can target | 0 | 7 | - |
+| 15 | sentence: besides this spirit, | 0 | 6 | sentence: besides this spirit, (2); sentence: put a core (1) |
+| 16 | sentence: target up to | 0 | 6 | sentence: send up to (1); sentence: put one core (1) |
+| 17 | wiki template {{Shaman}} | 0 | 6 | sentence: target a cost (4) |
+| 18 | sentence: (once per turn) | 0 | 5 | - |
+| 19 | no trigger: All your Spirits | 0 | 5 | - |
+| 20 | no trigger: All your attacking | 0 | 5 | - |
+
+**Suggested bundle for one release (owner, 2026-10-20: 3-4 packs per release):** sentence: if you control; sentence: use the flash; sentence: draw two cards,; no trigger: (During Block) (about 12 cards by estimate).
 
 ## By family (cards completed inside the table)
 
