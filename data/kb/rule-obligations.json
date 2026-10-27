@@ -21,7 +21,7 @@
       "rule": "A Contract card is taken from the Deck before shuffling, the player draws 3 and adds the Contract card (4 in Hand).",
       "source": "Eternal manual pp. 12, 55",
       "status": "partial",
-      "note": "Adding the Contract card is optional in the manual; the engine always adds it (no choice prompt yet, UI change needs the user's approval).",
+      "note": "Adding the Contract card is optional in the manual: the human player gets an \"Add to Hand / Keep in Deck\" prompt (15-match.js, covered by void_supply_rules_tests.py and tests/unit/engine.test.mjs); the CPU always adds it (policy, not a rule gap). Re-checked 2026-10-27.",
       "test": "void_supply_rules_tests.py:[SETUP-CONTRACT]"
     },
     {

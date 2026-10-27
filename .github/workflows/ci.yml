@@ -26,7 +26,7 @@ jobs:
         with:
           node-version: 22
       - name: Install dev tools (Playwright + TypeScript only; TypeScript pinned to the version the type baseline was counted with; ws runs the M6 server clients test)
-        run: npm install --no-save playwright typescript@6.0.3 ws@8 && npx playwright install --with-deps chromium
+        run: npm ci && npx playwright install --with-deps chromium
       - name: index.html is the build of its sources
         run: npm run check
       - name: Lint
@@ -64,7 +64,7 @@ jobs:
         with:
           node-version: 22
       - name: Install the Postgres client for the tests
-        run: npm install --no-save pg@8
+        run: npm ci
       - name: Apply the migrations with the repository runner
         run: sh db/migrate.sh
       - name: The runner is idempotent (a second run applies nothing)

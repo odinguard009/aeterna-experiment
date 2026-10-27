@@ -3,6 +3,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
+import { readFileSync } from 'node:fs';
 import { join, delimiter } from 'node:path';
 import { ROOT, BASH } from './lib/game.mjs';
 
@@ -129,4 +130,22 @@ test('G-T2 item T: start= on the done line is used when the marker has no budget
   const P = { GATE_PRINT: '1' };
   assert.match(gate(['done', 'v0.90.0', 'next=Opus', 'start=15000000', 'budget=14900000'], [ON, [60, 'LOCK']], [], P).out, /^POST DONE v0\.90\.0 next=Opus tokens=100000$/m);
   assert.match(gate(['done', 'v0.90.0', 'next=Opus', 'start=15000000', 'budget=14900000', 'rantai'], [ON, [60, 'LOCK budget=1']], [], P).out, /tokens=100000$/m, 'start= on the line wins over the marker');
+});
+
+/* G30 (audit 2026-10-27): issue #1 of a public repo takes comments from anyone, so the switch and the session markers may only be read
+   from the owner's account and the "Auto mode" workflow (github-actions[bot]). */
+const GATE_SRC = readFileSync(join(ROOT, 'tools/session_gate.sh'), 'utf8');
+test('G30 every read of the issue comments goes through the trusted-author filter', () => {
+  const reads = GATE_SRC.split('\n').filter(l => /issues\/\$L\/comments\?/.test(l) && !/^post\(\)/.test(l));
+  assert.ok(reads.length >= 4, 'expected the comment reads in session_gate.sh, found ' + reads.length);
+  for (const l of reads) assert.match(l, /"\$TRUSTED_JQ"/, 'unfiltered comment read: ' + l.trim().slice(0, 90));
+});
+test('G31 the filter keeps the owner and the Actions bot and drops a stranger\'s ON / RANTAI ON', () => {
+  const m = /^TRUSTED_JQ='(.*)'$/m.exec(GATE_SRC);
+  assert.ok(m, 'TRUSTED_JQ not found');
+  const sample = [['odinguard009', 'OFF'], ['github-actions[bot]', 'RANTAI OFF (Actions)'], ['stranger', 'ON'], ['stranger2', 'RANTAI ON'], ['odinguard009-fake', 'DONE v9.9.9']]
+    .map(([login, body]) => ({ user: { login }, body, created_at: '2026-10-27T00:00:00Z' }));
+  const r = spawnSync('jq', ['-r', m[1] + ' | .body'], { input: JSON.stringify(sample), encoding: 'utf8' });
+  if (r.error) return;                                    // jq is not installed on this machine (the gate itself runs through gh --jq)
+  assert.deepEqual(r.stdout.trim().split('\n'), ['OFF', 'RANTAI OFF (Actions)']);
 });

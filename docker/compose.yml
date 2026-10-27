@@ -21,7 +21,7 @@ services:
       POSTGRES_PASSWORD: aeterna
       POSTGRES_DB: aeterna
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"      # local only: the default credentials must not be reachable from the network (audit 2026-10-27)
     volumes:
       - aeterna-db:/var/lib/postgresql/data
     healthcheck:

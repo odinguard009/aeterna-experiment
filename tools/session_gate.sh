@@ -35,6 +35,9 @@
 # Offline test: GATE_FIXTURE=1 with COMMENTS / COMMITS (tab-separated "time<TAB>first line") and GATE_NOW skips gh
 #   for the evaluator (tests/unit/gate.test.mjs); posting commands still need gh.
 R=odinguard009/aeterna-experiment; L=1
+# Issue #1 of a public repo takes comments from anyone: only the owner's account and the "Auto mode" workflow (github-actions[bot]) can
+# switch auto / chain mode or write session markers (audit 2026-10-27). Every read of the issue comments goes through this filter.
+TRUSTED_JQ='.[] | select(.user.login == "odinguard009" or .user.login == "github-actions[bot]")'
 LANES="ui card"
 lane_ok() { [ -z "${1:-}" ] || case " $LANES " in *" $1 "*) return 0 ;; *) echo "unknown lane '$1' (use: $LANES)" >&2; return 1 ;; esac; }
 IDLE_MIN=0       # min idle minutes since the last session/owner activity; 0 = no wait (owner, 2026-10-20, was 20)
@@ -50,7 +53,7 @@ post() { if [ "${GATE_PRINT:-}" = 1 ]; then echo "POST $1"; return 0; fi; gh api
 start_budget() { # budget=N of the newest LOCK / MANUAL marker; empty when that marker has none
   local c
   if [ "${GATE_FIXTURE:-}" = 1 ]; then c="${COMMENTS:-}"
-  else c=$(pages "repos/$R/issues/$L/comments?per_page=100&since=$(date -u -d '-2 days' +%Y-%m-%dT%H:%M:%SZ)" '.[] | [.created_at, (.body | split("\n")[0])] | @tsv') || return 1; fi
+  else c=$(pages "repos/$R/issues/$L/comments?per_page=100&since=$(date -u -d '-2 days' +%Y-%m-%dT%H:%M:%SZ)" "$TRUSTED_JQ"' | [.created_at, (.body | split("\n")[0])] | @tsv') || return 1; fi
   printf '%s\n' "$c" | sort | awk -F'\t' '$2 ~ /^(LOCK|MANUAL)( |$)/ { b = ""; if (match($2, /budget=[0-9]+/)) b = substr($2, RSTART + 7, RLENGTH - 7); last = b } END { print last }'
 }
 split_budget() { # $1 = args; prints "<args without budget=/start=>|<budget N>|<start N>"; a lane word stays
@@ -71,7 +74,7 @@ evaluate() { # prints one line: <verdict> <reason...>; verdicts GO, STOP, AUTOOF
     comments="${COMMENTS:-}"; commits="${COMMITS:-}"; stop_file="${STOP_FILE:-0}"
   else
     since=$(date -u -d '-7 days' +%Y-%m-%dT%H:%M:%SZ)
-    comments=$(pages "repos/$R/issues/$L/comments?per_page=100&since=$since" '.[] | [.created_at, (.body | split("\n")[0])] | @tsv') || return 1
+    comments=$(pages "repos/$R/issues/$L/comments?per_page=100&since=$since" "$TRUSTED_JQ"' | [.created_at, (.body | split("\n")[0])] | @tsv') || return 1
     commits=$(gh api "repos/$R/commits?per_page=100&since=$since" --jq '.[] | [.commit.committer.date, (.commit.message | split("\n")[0])] | @tsv') || return 1
     stop_file=0; gh api "repos/$R/contents/docs/ai/chain-stop.md" >/dev/null 2>&1 && stop_file=1
   fi
@@ -141,13 +144,13 @@ PY
 hemat_state() { # newest "HEMAT ON|OFF" comment on issue #1 (whole history: the switch can be older than 7 days); none = ON
   local rows
   if [ "${GATE_FIXTURE:-}" = 1 ]; then rows=$(printf '%s\n' "${COMMENTS:-}" | cut -f2-)
-  else rows=$(pages "repos/$R/issues/$L/comments?per_page=100" '.[] | .body | split("\n")[0]') || return 1; fi
+  else rows=$(pages "repos/$R/issues/$L/comments?per_page=100" "$TRUSTED_JQ"' | .body | split("\n")[0]') || return 1; fi
   printf '%s\n' "$rows" | grep -iE '^HEMAT[[:space:]]+(ON|OFF)\b' | tail -1 | awk '{v=toupper($2)} END {print (v=="OFF" ? "OFF" : "ON")}'
 }
 rantai_eval() { # chain mode; $1 = status|next; prints one line (next: GO|STOP|AUTOOFF ...)
   local rows
   if [ "${GATE_FIXTURE:-}" = 1 ]; then rows="${COMMENTS:-}"
-  else rows=$(pages "repos/$R/issues/$L/comments?per_page=100" '.[] | [.created_at, (.body | split("\n")[0])] | @tsv') || return 1; fi
+  else rows=$(pages "repos/$R/issues/$L/comments?per_page=100" "$TRUSTED_JQ"' | [.created_at, (.body | split("\n")[0])] | @tsv') || return 1; fi
   MODE="$1" MAXT=$RANTAI_MAX ROWS="$rows" python3 - <<'PY'
 import os, re
 E = os.environ; MAXT = int(E["MAXT"])

@@ -62,7 +62,7 @@ jobs:
         with:
           node-version: 22
       - name: Install dev tools (Playwright only)
-        run: npm install --no-save playwright && npx playwright install --with-deps chromium
+        run: npm ci && npx playwright install --with-deps chromium
       - name: Fuzzed matches
         run: |
           n="${{ github.event.inputs.fuzz || '20' }}"
