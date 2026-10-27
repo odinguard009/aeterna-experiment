@@ -150,7 +150,7 @@ async function intentCore(p, f, op) {
 async function intentAttack(key, f) {
   const p = G.p[key];
   if (!p.spirits.includes(f) || !isSpiritForm(CARDS[f.id])) return false;
-  if (G.step !== 5 || G.turnNo === 1 || f.exhausted || f.noAB || !abTaxOK(p, f) || attackStepOver()) return false;
+  if (G.step !== 5 || G.turnNo === 1 || f.exhausted || cantAttack(p, f) || !abTaxOK(p, f) || attackStepOver()) return false;
   G.busy = true; boardView();
   await doBattle(key, f);
   if (!G.over && attackStepOver()) { G.busy = false; await intentNext(key); return true; }   // v0.43: an effect ended the Attack Step

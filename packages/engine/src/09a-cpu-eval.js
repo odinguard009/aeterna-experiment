@@ -61,7 +61,7 @@ function cpuKeepMagicOrPay(p, c, M) {
 }
 function cpuLethal(p) {
   const o = G.p[other(p.key)];
-  const att = p.spirits.filter(s => !s.exhausted && !s.noAB && symOf(s) > 0).sort((a, b) => symOf(b) - symOf(a));
+  const att = p.spirits.filter(s => !s.exhausted && !cantAttack(p, s) && symOf(s) > 0).sort((a, b) => symOf(b) - symOf(a));
   const blocks = o.spirits.filter(s => canBlockState(o, s)).length;
   const through = att.slice(blocks).reduce((n, s) => n + symOf(s), 0);
   return att.length > 0 && through >= o.life;
@@ -84,7 +84,7 @@ function cpuAttackScore(p, a, W = cpuW(p)) {
   return dmg * 0.25 - W.risk * W.unit * unitValue(a, W) - (abp === maxB ? 0 : 1);                                         // a stronger blocker waits
 }
 function cpuAttackChoice(p) {
-  const ready = p.spirits.filter(s => !s.exhausted && !s.noAB && abTaxOK(p, s)).sort((a, b) => bpOf(b) - bpOf(a));
+  const ready = p.spirits.filter(s => !s.exhausted && !cantAttack(p, s) && abTaxOK(p, s)).sort((a, b) => bpOf(b) - bpOf(a));
   if (!ready.length) return null;
   const fz = fuzzPick(p, ready); if (fz !== undefined) return fz;
   if (cpuLethal(p)) return ready.slice().sort((a, b) => symOf(b) - symOf(a) || bpOf(b) - bpOf(a))[0];

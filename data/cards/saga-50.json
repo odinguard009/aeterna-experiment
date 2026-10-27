@@ -1509,11 +1509,18 @@
   "image": "26RBS01-031.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1] This Spirit can't attack."
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "CANT_ATTACK",
+    "to": "self",
+    "lv": [
+     1
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-032",
@@ -1676,11 +1683,39 @@
   "mechanics": [
    "Current"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (True Release) {{Current|Oceanic Green & Cost 8 or more}} (Your Attack Step) {{Invoke|Flash}} Exhaust this Spirit ▶ Target one of your Cost 8 or more \"Oceanic Green\" family Spirits. During this battle, it gains an extra Green symbol."
+  "trueRelease": true,
+  "effects": [
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN",
+     "FLASH"
+    ],
+    "when": "yourAttack",
+    "once": false,
+    "lv": [
+     2
+    ],
+    "cost": {
+     "exhaustSelf": true
+    },
+    "actions": [
+     {
+      "do": "SYMBOL_TARGET",
+      "n": 1,
+      "match": {
+       "family": [
+        "Oceanic Green"
+       ],
+       "costGe": 8
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-036",
@@ -1816,7 +1851,7 @@
    "Oceanic Green",
    "Fierce Wave"
   ],
-  "text": "[LV1-2] {{Current|Oceanic Green & Cost 8 or more}} (Your Attack Step) {{Invoke|Flash}}\nExhaust this Spirit ▶ Target one of your Cost 8 or more \"Oceanic Green\" family Spirits. During this battle, it gains an extra Green symbol.\n\n[LV2] (True Release) (During Block)\nThis Spirit gains +2000 BP.",
+  "text": "[LV1][LV2] {{Current|Oceanic Green & Cost 8 or more}} (Your Attack Step) {{Invoke|Flash}}\nExhaust this Spirit ▶ Target one of your Cost 8 or more \"Oceanic Green\" family Spirits. During this battle, it gains an extra Green symbol.\n\n[LV2] (True Release) (During Block)\nThis Spirit gains +2000 BP.",
   "image": "26RBS01-038.png",
   "block": "A",
   "saga": 50,
@@ -1824,11 +1859,7 @@
   "mechanics": [
    "Current"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (True Release) (During Block) This Spirit gains +2000 BP."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "trueRelease": true,
   "effects": [
    {
     "trigger": "ACTIVATE",
@@ -1858,8 +1889,19 @@
       }
      }
     ]
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 2000,
+    "to": "self",
+    "blockingOnly": true,
+    "lv": [
+     2
+    ]
    }
-  ]
+  ],
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-039",
@@ -1920,7 +1962,7 @@
    "Oceanic Green",
    "Amorphite"
   ],
-  "text": "[LV1-2] {{Current|Oceanic Green & Cost 8 or more}} (Your Attack Step) {{Invoke|Flash}}\nExhaust this Spirit ▶ Target one of your Cost 8 or more \"Oceanic Green\" family Spirits. During this battle, it gains an extra Green symbol.",
+  "text": "[LV1][LV2] {{Current|Oceanic Green & Cost 8 or more}} (Your Attack Step) {{Invoke|Flash}}\nExhaust this Spirit ▶ Target one of your Cost 8 or more \"Oceanic Green\" family Spirits. During this battle, it gains an extra Green symbol.",
   "image": "26RBS01-040.png",
   "block": "A",
   "saga": 50,
@@ -1928,11 +1970,39 @@
   "mechanics": [
    "Current"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] {{Current|Oceanic Green & Cost 8 or more}} (Your Attack Step) {{Invoke|Flash}} Exhaust this Spirit ▶ Target one of your Cost 8 or more \"Oceanic Green\" family Spirits. During this battle, it gains an extra Green symbol."
+  "effects": [
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN",
+     "FLASH"
+    ],
+    "when": "yourAttack",
+    "once": false,
+    "lv": [
+     1,
+     2
+    ],
+    "cost": {
+     "exhaustSelf": true
+    },
+    "actions": [
+     {
+      "do": "SYMBOL_TARGET",
+      "n": 1,
+      "match": {
+       "family": [
+        "Oceanic Green"
+       ],
+       "costGe": 8
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-041",
@@ -1959,7 +2029,7 @@
    "Oceanic Green",
    "Vortexite"
   ],
-  "text": "[LV1-2] {{Current|Oceanic Green & Cost 8 or more}} (Your Attack Step) {{Invoke|Flash}}\nExhaust this Spirit ▶ Target one of your Cost 8 or more \"Oceanic Green\" family Spirits. During this battle, it gains an extra Green symbol.\n\n[LV2] (True Release) (When Blocks) (Once Per Turn)\nYou can refresh this Spirit.",
+  "text": "[LV1][LV2] {{Current|Oceanic Green & Cost 8 or more}} (Your Attack Step) {{Invoke|Flash}}\nExhaust this Spirit ▶ Target one of your Cost 8 or more \"Oceanic Green\" family Spirits. During this battle, it gains an extra Green symbol.\n\n[LV2] (True Release) (When Blocks) (Once Per Turn)\nYou can refresh this Spirit.",
   "image": "26RBS01-041.png",
   "block": "A",
   "saga": 50,
@@ -1967,8 +2037,7 @@
   "mechanics": [
    "Current"
   ],
-  "fxComplete": false,
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder. A2 pilot (v0.80.0): the Invoke body runs; the Current head is not modelled.",
+  "trueRelease": true,
   "effects": [
    {
     "trigger": "ACTIVATE",
@@ -2013,9 +2082,8 @@
     ]
    }
   ],
-  "residual": [
-   "[LV1-2] {{Current|Oceanic Green & Cost 8 or more}} (Your Attack Step) {{Invoke|Flash}} Exhaust this Spirit ▶ Target one of your Cost 8 or more \"Oceanic Green\" family Spirits. During this battle, it gains an extra Green symbol. (the Invoke body runs; the Current condition is not modelled yet)"
-  ]
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-042",
@@ -6610,13 +6678,14 @@
    "Oceanic Green",
    "Vortexite"
   ],
-  "text": "[LV1-2] (When Summoned)\nPut a core from the Void to this Spirit.\n\n[LV2] (True Release) {{Current|Oceanic Green & Cost 8 or more}} (Your Attack Step) {{Invoke|Flash}}\nExhaust this Spirit ▶ Target one of your Cost 8 or more \"Oceanic Green\" family Spirits. During this battle, it gains an extra Green symbol.",
+  "text": "[LV1][LV2] (When Summoned)\nPut a core from the Void to this Spirit.\n\n[LV2] (True Release) {{Current|Oceanic Green & Cost 8 or more}} (Your Attack Step) {{Invoke|Flash}}\nExhaust this Spirit ▶ Target one of your Cost 8 or more \"Oceanic Green\" family Spirits. During this battle, it gains an extra Green symbol.",
   "image": "26RBS01-X08.png",
   "block": "A",
   "saga": 50,
   "mechanics": [
    "Current"
   ],
+  "trueRelease": true,
   "effects": [
    {
     "trigger": "SUMMONED",
@@ -6631,13 +6700,38 @@
       "to": "self"
      }
     ]
+   },
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN",
+     "FLASH"
+    ],
+    "when": "yourAttack",
+    "once": false,
+    "lv": [
+     2
+    ],
+    "cost": {
+     "exhaustSelf": true
+    },
+    "actions": [
+     {
+      "do": "SYMBOL_TARGET",
+      "n": 1,
+      "match": {
+       "family": [
+        "Oceanic Green"
+       ],
+       "costGe": 8
+      }
+     }
+    ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (True Release) {{Current|Oceanic Green & Cost 8 or more}} (Your Attack Step) {{Invoke|Flash}} Exhaust this Spirit ▶ Target one of your Cost 8 or more \"Oceanic Green\" family Spirits. During this battle, it gains an extra Green symbol."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-X09",
@@ -8347,7 +8441,7 @@
    "Oceanic Green",
    "Armored Fish"
   ],
-  "text": "[LV1-2] {{Current|Oceanic Green & Cost 8 or more}} (Your Attack Step) {{Invoke|Flash}}\nExhaust this Spirit ▶ Target one of your Cost 8 or more \"Oceanic Green\" family Spirits. During this battle, it gains an extra Green symbol.\n\n[LV2] (When Destroyed)\nThe opponent targets a refreshed Spirit they control. Exhaust it.",
+  "text": "[LV1][LV2] {{Current|Oceanic Green & Cost 8 or more}} (Your Attack Step) {{Invoke|Flash}}\nExhaust this Spirit ▶ Target one of your Cost 8 or more \"Oceanic Green\" family Spirits. During this battle, it gains an extra Green symbol.\n\n[LV2] (When Destroyed)\nThe opponent targets a refreshed Spirit they control. Exhaust it.",
   "image": "26RBS02-028.png",
   "block": "A",
   "saga": 50,
@@ -8355,12 +8449,52 @@
   "mechanics": [
    "Current"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] {{Current|Oceanic Green & Cost 8 or more}} (Your Attack Step) {{Invoke|Flash}} Exhaust this Spirit ▶ Target one of your Cost 8 or more \"Oceanic Green\" family Spirits. During this battle, it gains an extra Green symbol.",
-   "[LV2] (When Destroyed) The opponent targets a refreshed Spirit they control. Exhaust it."
+  "effects": [
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN",
+     "FLASH"
+    ],
+    "when": "yourAttack",
+    "once": false,
+    "lv": [
+     1,
+     2
+    ],
+    "cost": {
+     "exhaustSelf": true
+    },
+    "actions": [
+     {
+      "do": "SYMBOL_TARGET",
+      "n": 1,
+      "match": {
+       "family": [
+        "Oceanic Green"
+       ],
+       "costGe": 8
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "EXHAUST_OPP",
+      "n": 1,
+      "oppChooses": true
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS02-029",
@@ -11834,6 +11968,14 @@
   "saga": 50,
   "effects": [
    {
+    "trigger": "STATIC",
+    "flag": "CANT_ATTACK",
+    "to": "self",
+    "lv": [
+     1
+    ]
+   },
+   {
     "trigger": "DESTROYED",
     "lv": [
      2
@@ -11846,11 +11988,8 @@
     ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1] This Spirit can't attack."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS03-002",
@@ -13508,15 +13647,28 @@
    "Wollaguard",
    "Mineroid"
   ],
-  "text": "[LV1-2] (When Blocks) (Once Per Turn)\nThis Spirit can refresh.",
+  "text": "[LV1][LV2] (When Blocks) (Once Per Turn)\nThis Spirit can refresh.",
   "image": null,
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Blocks) (Once Per Turn) This Spirit can refresh."
+  "effects": [
+   {
+    "trigger": "BLOCKS",
+    "lv": [
+     1,
+     2
+    ],
+    "once": true,
+    "optional": true,
+    "actions": [
+     {
+      "do": "REFRESH"
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS03-043",

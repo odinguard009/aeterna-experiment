@@ -532,6 +532,12 @@ def spirit_paragraph_main(p, card, rush):
             if mm.group(1): e['blockingOnly' if re.search(r'block', mm.group(1), re.I) else 'attackingOnly'] = True      # v0.168 "(During Block)" prefix
             if lv: e['lv'] = lv
             return [e], flags
+        mm = re.match(r"^(?:\((?:Your|Opposing|Either) Attack Step\)\s*)?This Spirit can't (attack|block)(?: opposing Spirits)?\.?$", p, re.I)
+        if mm:      # v0.170 printed "can't attack" / "can't block" as a STATIC flag (the Attack Step head only names when it matters)
+            if rush: raise Review('Rush with a can\'t attack/block flag')
+            e = [{'trigger': 'STATIC', 'flag': 'CANT_' + mm.group(1).upper(), 'to': 'self'}]
+            if lv: e[0]['lv'] = lv
+            return e, flags
         sw = step_window(p, card, lv, rush)      # v0.70: generic step window head
         if sw is not None: e, f2 = sw; flags.update(f2); return e, flags
         raise Review('no trigger: ' + p[:100])
@@ -543,6 +549,8 @@ def trig_effects(p, card, trig, tmatch, lv, rush, flags, extra=None):
     mo = re.match(r'^\(Once per Turn: Same Name\)\s*', p, re.I)
     if mo:      # v0.76: the limit in front of a triggered body (CR Categories of Effects "(Once Per Turn: Same Name)"): once per turn for all cards of this name
         p = p[mo.end():]; extra = dict(extra or {}, once=True, sameName=True)
+    p = p.lstrip(); mo = re.match(r'^\(Once Per Turn\)\s*', p, re.I)
+    if mo: p = p[mo.end():]; extra = dict(extra or {}, once=True)      # v0.170: the plain limit (Na-Nascita "(When Blocks) (Once Per Turn) You can refresh this Spirit"), per card, not per name
     if rush and not p: raise Review('Rush without a main effect')
     for s in sentences(p):
         a, o = action_of(s, {'trigger': trig})
@@ -750,7 +758,11 @@ FC_NAME = {'Parado': 'Para-DX'}      # house reading: the printed "Parado" is th
 FC_BODY = re.compile(r'^Return this exhausted Spirit to the Hand, and you must summon a Cost ([\d/]+) "([^"]+)" with a different name from your Hand, without paying the cost\.?$', re.I)
 
 
+CUR_TPL = re.compile(r'\{\{\s*Current\s*\|[^}]*\}\}\s*', re.I)      # v0.170 Current: reminder template of the Invoke effect below it; the body sentence carries the rule, so it is dropped
+
+
 def invoke_mark(t):
+    if t and INVOKE_TPL.search(t): t = CUR_TPL.sub('', t)
     t = FC_TPL.sub(lambda m: ' ⟦FC:%s:%s⟧ ' % (m.group(1), m.group(2)), t or '') if t else t
     return INVOKE_TPL.sub(lambda m: ' \u27e6INVOKE:%s\u27e7 ' % m.group(1).upper(), t or '') if t else t
 

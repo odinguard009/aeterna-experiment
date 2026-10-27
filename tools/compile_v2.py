@@ -277,6 +277,7 @@ def own_grammar(s, ctx=None):
     x = s.strip().rstrip('.')
     battle_ok = ctx is None or bool(ctx.get('battle')) or bool(BATTLE_TRIGGERS & set(ctx.get('trigger') or ()))
     if re.search(r'during this battle', x, re.I) and not battle_ok: raise Review('v2 battle effect outside a battle trigger')      # A7 review
+    if re.fullmatch(r'the opponent targets a refreshed spirit they control\.\s*exhaust it', x, re.I): return [{'do': 'EXHAUST_OPP', 'n': 1, 'oppChooses': True}]      # v0.170 (engine oppChooses, schema v3)
     m = CORE_BP.match(x)
     if m: return [{'do': 'BP_TARGET', 'n': bpv(m.group(2)), 'to': 'pick', 'battle': True, 'coreFromSelf': True, 'match': {'name': re.findall(r'"([^"]+)"', m.group(1))}}]
     m = re.fullmatch(r'for each "([^"]+)" family spirit you control, during this battle, this spirit (?:gains|gets) \+(\d[\d,]*) ?bp', x, re.I)
@@ -764,6 +765,8 @@ def sentences(body):
             out[-1] = out[-1] + ' ' + x      # v0.135: the replacement belongs to the sentence before it
         elif out and re.fullmatch(WHEN_FX_TAIL + r'\.?', x.strip(), re.I) and out[-1].endswith('.'):
             out[-1] = out[-1] + ' ' + x      # v0.77: "When this effect destroys any Spirit, draw a card." belongs to the sentence before it
+        elif out and re.fullmatch(r'The opponent targets a refreshed Spirit they control\.', out[-1].strip(), re.I) and re.fullmatch(r'Exhaust it\.?', x.strip(), re.I):
+            out[-1] = out[-1] + ' ' + x      # v0.170: "The opponent targets a refreshed Spirit they control. Exhaust it." is one effect
         elif out and re.match(r'^(?:if (?:you control [^,.]+|returned), )?(?:(?:you can|you may) )?target ', out[-1], re.I) and out[-1].endswith('.'):
             out[-1] = out[-1] + ' ' + x      # join "Target X." with its action sentence
         else:
