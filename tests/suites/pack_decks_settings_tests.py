@@ -99,7 +99,7 @@ with sync_playwright() as p:
         pg, errs, ctx = page(b, w, h)
         pg.locator('[data-a=go-play]:visible').first.click(); settle(pg)
         chk(f'{lab} PLAY: CPU select, format buttons and start button visible (v0.136.0 Play page)', all(pg.locator(s).is_visible() for s in ['#play-cpu', '#pl-fmt', '#view-play [data-a=start]']))
-        chk(f'{lab} PLAY: CPU list has every ready-made deck + random + mirror', pg.locator('#play-cpu option').count()==ev(pg, 'BS.PREBUILT.length')+2)
+        chk(f'{lab} PLAY: CPU list has every ready-made deck + random + mirror', pg.locator('#play-cpu option').count()==ev(pg, 'BS.PREBUILT.filter(d=>!d.hidden).length')+2)
         pg.select_option('#play-cpu', 'mitra'); settle(pg)
         chk(f'{lab} PLAY: the CPU deck choice is saved', ev(pg, "BS.SETTINGS.cpuDeck")=='mitra' and 'mitra' in ev(pg, "localStorage.getItem('bse.settings.v1')"))
         pg.reload(); ready(pg); pg.locator('[data-a=go-play]:visible').first.click()
