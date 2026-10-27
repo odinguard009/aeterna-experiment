@@ -29,6 +29,7 @@ test('CIMG-1 the Library browse grid shows every card, filters by search and zoo
   await page.click('#lib-complete');   // the page starts on "Complete Effects Only"; the card below may be a "!" card
   await page.fill('#lib-search', 'BS44-001');
   await page.waitForFunction(() => /1 card\(s\) shown/.test(document.getElementById('lib-count').textContent));
+  await page.waitForFunction(() => document.querySelectorAll('#lib-grid .tile').length <= 2, null, { timeout: 5000 }).catch(() => {});      // v0.164: the count note updates before the grid has re-rendered
   const narrowed = await page.evaluate(() => document.querySelectorAll('#lib-grid .tile').length);
   assert.ok(narrowed <= 2, 'search narrowed the grid to the matching card');
 
