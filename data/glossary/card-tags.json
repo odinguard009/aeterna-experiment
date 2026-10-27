@@ -39499,6 +39499,17 @@
   "M_OPTIONAL",
   "M_IF_YOU_DO"
  ],
+ "BS70-022": [
+  "T_SUMMONED",
+  "T_ATTACKS",
+  "A_SUMMON_FREE",
+  "C_ONCE",
+  "C_LEVEL",
+  "K_ULTIMATE",
+  "M_OPTIONAL",
+  "A_DESTROY_COST",
+  "A_DESTROY_CORES_LE"
+ ],
  "BS70-024": [
   "T_ATTACKS",
   "A_DRAW",
@@ -45341,7 +45352,8 @@
  ],
  "26RBS02-063": [
   "T_SUMMONED",
-  "A_VOID"
+  "A_VOID",
+  "C_LEVEL"
  ],
  "26RBS02-064": [
   "A_SUMMON_FREE",
@@ -45728,7 +45740,8 @@
  ],
  "26RBS03-024": [
   "T_SUMMONED",
-  "A_VOID"
+  "A_VOID",
+  "C_LEVEL"
  ],
  "26RBS03-025": [],
  "26RBS03-026": [

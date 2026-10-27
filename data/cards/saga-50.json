@@ -803,11 +803,27 @@
   "block": "A",
   "saga": 50,
   "ex_symbols": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Destroyed) Target one of your Spirits with Shamanism. During this turn, give it +3000 BP."
+  "effects": [
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "BP_TARGET",
+      "n": 3000,
+      "to": "pick",
+      "match": {
+       "keyword": "Shamanism"
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-018",
@@ -9567,15 +9583,33 @@
    "Cyantree",
    "Rampaleg"
   ],
-  "text": "[LV1-2] (When Summoned)\nTarget one of your \"Cyantree\" family Nexuses. Put a core from the Void to it.",
+  "text": "[LV1][LV2] (When Summoned)\nTarget one of your \"Cyantree\" family Nexuses. Put a core from the Void to it.",
   "image": "26RBS02-063.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Summoned) Target one of your \"Cyantree\" family Nexuses. Put a core from the Void to it."
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "anyNexus",
+      "match": {
+       "family": [
+        "Cyantree"
+       ]
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS02-064",
@@ -12486,15 +12520,33 @@
    "Oceanic Green",
    "Vortexite"
   ],
-  "text": "[LV1-2] (When Summoned)\nTarget one of your \"Abyssen\" family Spirits. Put a core from the Void to it.",
+  "text": "[LV1][LV2] (When Summoned)\nTarget one of your \"Abyssen\" family Spirits. Put a core from the Void to it.",
   "image": null,
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Summoned) Target one of your \"Abyssen\" family Spirits. Put a core from the Void to it."
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "anySpirit",
+      "match": {
+       "family": [
+        "Abyssen"
+       ]
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS03-025",
@@ -28900,7 +28952,7 @@
    "Oceanic Green",
    "Abyssen"
   ],
-  "text": "(Legacy)\n[LV1-2] (When Summoned)\nTarget one of your Spirits. Put a core from the Void to it.\n\n[LV2] (True Release) (When Attacks)\nYou can target an opposing Cost 4 or less Spirit. Exhaust it.",
+  "text": "(Legacy)\n[LV1][LV2] (When Summoned)\nTarget one of your Spirits. Put a core from the Void to it.\n\n[LV2] (True Release) (When Attacks)\nYou can target an opposing Cost 4 or less Spirit. Exhaust it.",
   "image": "26RSD10-008.png",
   "block": "A",
   "saga": 50,
@@ -28910,6 +28962,20 @@
   "legacy": true,
   "trueRelease": true,
   "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "anySpirit"
+     }
+    ]
+   },
    {
     "trigger": "ATTACKS",
     "lv": [
@@ -28925,11 +28991,8 @@
     ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Summoned) Target one of your Spirits. Put a core from the Void to it."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RSD10-009",

@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 7745,
+  "cards": 7740,
   "per_saga": {
    "1": 785,
    "2": 332,
@@ -16,26 +16,26 @@
    "12": 328,
    "13": 395,
    "14": 431,
-   "15": 357,
+   "15": 356,
    "16": 334,
    "17": 110,
-   "50": 449
+   "50": 445
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 961,
+  "skipped_curated": 966,
   "number_conflicts": 5,
   "nexus_levels_added": 715,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 558,
+  "image_problems": 557,
   "merged": 110,
   "brave_unparsed": 171,
   "ut_lines_added": 119,
-  "odd_reduction": 809,
+  "odd_reduction": 808,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 556
+  "without_image": 555
  },
  "tokens": [
   "BS73-T001",
@@ -670,6 +670,7 @@
   "BS69-052",
   "BS69-071",
   "BS69-CX02",
+  "BS70-022",
   "BS70-028",
   "BS70-031",
   "BS70-034",
@@ -848,6 +849,7 @@
   "26RBS01-012",
   "26RBS01-015",
   "26RBS01-016",
+  "26RBS01-017",
   "26RBS01-019",
   "26RBS01-020",
   "26RBS01-023",
@@ -960,6 +962,7 @@
   "26RBS02-049",
   "26RBS02-051",
   "26RBS02-058",
+  "26RBS02-063",
   "26RBS02-064",
   "26RBS02-067",
   "26RBS02-087",
@@ -982,12 +985,14 @@
   "26RSD10-005",
   "26RSD10-006",
   "26RSD10-007",
+  "26RSD10-008",
   "26RSD10-012",
   "26RBS03-010",
   "26RBS03-011",
   "26RBS03-012",
   "26RBS03-014",
   "26RBS03-021",
+  "26RBS03-024",
   "26RBS03-025",
   "26RBS03-049",
   "26RBS03-052",
@@ -4326,11 +4331,6 @@
   {
    "id": "26RBS03-023",
    "name": "The Unyielding Salisrola",
-   "problem": "no image"
-  },
-  {
-   "id": "26RBS03-024",
-   "name": "Lumenil",
    "problem": "no image"
   },
   {
@@ -8656,12 +8656,6 @@
   },
   {
    "id": "BS70-021",
-   "dropped": [
-    "god"
-   ]
-  },
-  {
-   "id": "BS70-022",
    "dropped": [
     "god"
    ]

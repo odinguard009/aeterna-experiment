@@ -79,3 +79,14 @@ test('C163-01 own-side "Target X you control. Put a core from the Void to it." a
     [{ do: 'BP_PLUS', n: 1000, per: { type: 'Nexus' } }]);
   assert.equal(acts('[LV1] (When Summoned) Target another Spirit you control. Put a core from the Void to it.').review !== undefined, true);      // "another" stays in review
 });
+
+test('C164-01 one-of-your Void targets, Spirits with a keyword, free summon from Hand/Trash, (Can\'t Stack) head (v0.164.0)', () => {
+  assert.deepEqual(acts('[LV1] (When Summoned) Target one of your "Cyantree" family Nexuses. Put a core from the Void to it.'),
+    [{ do: 'VOID_TO_CARD', n: 1, to: 'anyNexus', match: { family: ['Cyantree'] } }]);
+  assert.deepEqual(acts('[LV1] (When Summoned) Target a Spirit you control. Put a core from the Void to it.'), [{ do: 'VOID_TO_CARD', n: 1, to: 'anySpirit' }]);
+  assert.deepEqual(acts('[LV1] (When Destroyed) Target one of your Spirits with Shamanism. During this turn, give it +3000 BP.'),
+    [{ do: 'BP_TARGET', n: 3000, to: 'pick', match: { keyword: 'Shamanism' } }]);
+  const s = compile('[LV1] (When Summoned) You can summon a Cost 8 or less "Ogre Wizard" family Spirit card from your Trash, without paying the cost.');
+  assert.deepEqual(s.effects[0], { trigger: 'SUMMONED', lv: [1], optional: true, actions: [{ do: 'SUMMON_HAND', match: { family: ['Ogre Wizard'] }, from: 'trash', costLe: 8 }] });
+  assert.equal(compile('[LV1] (Can\'t Stack) (When Summoned) Draw a card.').effects[0].noStack, true);
+});

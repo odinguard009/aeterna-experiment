@@ -39433,11 +39433,6 @@
  "26RBS01-014": [
   "T_SUMMONED"
  ],
- "26RBS01-017": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "T_DESTROYED"
- ],
  "26RBS01-018": [
   "A_BP_PLUS"
  ],
@@ -40098,10 +40093,6 @@
   "M_THEN",
   "T_ALLY_ATTACKS"
  ],
- "26RBS02-063": [
-  "A_VOID",
-  "T_SUMMONED"
- ],
  "26RBS02-065": [
   "A_SUMMON_FREE",
   "T_DESTROYED"
@@ -40422,10 +40413,6 @@
  ],
  "26RBS03-023": [
   "M_OPTIONAL"
- ],
- "26RBS03-024": [
-  "A_VOID",
-  "T_SUMMONED"
  ],
  "26RBS03-026": [
   "A_BP_PLUS"
@@ -41892,10 +41879,6 @@
   "K_TOKEN",
   "M_OPTIONAL",
   "T_DESTROYED"
- ],
- "26RSD10-008": [
-  "A_VOID",
-  "T_SUMMONED"
  ],
  "26RSD10-009": [],
  "26RSD10-010": [

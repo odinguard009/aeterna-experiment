@@ -4,6 +4,12 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.164.0
+- Lane: K
+- **Lane K: 5 more cards complete, 833 of 8,709 (4 Standard, 1 Eternal).** Compiler forms, no engine change: "Target one of your <X>. Put a core from the Void to it" and the singular "Target a Spirit you control. ..." pairs (`VOID_TO_CARD`), own-target BP with a keyword ("Spirits with Shamanism", `match.keyword`), "You can summon a Cost N or less \"X\" family Spirit card from your Hand/Trash, without paying the cost" (`SUMMON_HAND`), and the `(Can't Stack)` head (`noStack`; no card needed it alone yet). Cards: Ogre Wizard card BS70-022, 26RBS01-017, 26RBS02-063, 26RBS03-024, 26RSD10-008.
+  - Chain limit set to 1,000,000 tokens per chain and per session (owner, 2026-10-27, `RANTAI_MAX`). Regression part 3 test fixed in v0.163.0 (CPU deck list counts non-hidden decks).
+  - Checked: loop, `compiler_v2` C164-01, FX01-FX03, promotion smoke 5 / 5. Not checked: full pre-push set and Regression (CI), a real device. Revert note: `git revert` the v0.164.0 commit.
+
 ## v0.163.0
 - Lane: K
 - **Lane K: 8 more cards complete (6 Standard, 2 Eternal), 828 of 8,709.** Compiler forms, no engine change: (1) own-side pairs "Target a/an <family/colour> Spirit/Nexus you control. Put a core from the Void to it." read as `VOID_TO_CARD` (`anySpirit` / `anyNexus` + `match`), also with a keyword ("a Spirit with Rumble", `match.keyword`); (2) the BP per-count spellings "For each X you control, during this turn, this Spirit gains +N BP" and "This Spirit gets +N BP for each X you control" read as `BP_PLUS` with `per`. Cards: Atun, Dabity, Nausa, The TreeShadow Felio, Tamink, Feeding Draw (26RSD04-001, 26RSD04-006, 26RSD06-001, 26RSD06-008, 26RBS01-076, 26RSD06-012), The Unicorn Einhorn (BS03-046), Ryzard (BS14-001). "Target" with "another", "besides", "up to N" and "each of them" stays in review.

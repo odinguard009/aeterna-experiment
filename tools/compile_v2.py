@@ -245,9 +245,10 @@ SELF_BATTLE_SYM = re.compile(r'^during this battle, this spirit gains an extra '
 
 def own_np(np):
     """v0.68: "[attacking] [Cost N or more] ["X" family] Spirits" (one of your ...) -> (match, attacking)"""
-    m = re.match(r'^(attacking )?(?:cost (\d+) or more )?(?:"([^"]+)" family )?spirits?$', low(np.strip()))
-    if not m: raise Review('v2 own target: ' + np[:60])
+    m = re.match(r'^(attacking )?(?:cost (\d+) or more )?(?:"([^"]+)" family )?spirits?(?: with ([a-z]+))?$', low(np.strip()))
+    if not m or (m.group(4) in ('no', 'a', 'an', 'the', 'any')): raise Review('v2 own target: ' + np[:60])
     match = {}
+    if m.group(4): match['keyword'] = m.group(4).capitalize()      # v0.164 "Spirits with Clash" (fxMatch keyword)
     if m.group(3): match['family'] = [m.group(3)]
     if m.group(2): match['costGe'] = int(m.group(2))
     return match, bool(m.group(1))
@@ -597,10 +598,23 @@ def instead_pair(m, ctx):
     return [dict(y, **{'if': {'not': cond}}) for y in a1] + [dict(y, **{'if': dict(cond)}) for y in a2], False
 
 
+SUMMON_FREE = re.compile(r'^(you can )?summon (?:a|an|one) (?:cost (\d+) or less )?"([^"]+)" family spirit card from your (hand|trash), without paying the cost\.?$', re.I)      # v0.164
+TGT_VOID_OWN = re.compile(r'^target one of your (.+?)\.\s*put (a|one|two|three|\d) cores? from (?:the )?void to it\.?$', re.I)      # v0.164
 TGT_VOID = re.compile(r'^target (?:an?|one) (.+? you control)\.\s*put (a|one|two|three|\d) cores? from (?:the )?void to it\.?$', re.I)      # v0.163
 
 
 def action_of(s, ctx):
+    ms = SUMMON_FREE.match(s.strip())
+    if ms:      # v0.164 "You can summon a Cost N or less "X" family Spirit card from your Hand/Trash, without paying the cost." = SUMMON_HAND (optional when "you can")
+        a = {'do': 'SUMMON_HAND', 'match': {'family': [ms.group(3)]}, 'from': ms.group(4).lower()}
+        if ms.group(2): a['costLe'] = int(ms.group(2))
+        return [a], bool(ms.group(1))
+    sn = re.match(r'^target (?:an?|one) ((?:"[^"]+" family )?spirit) you control\.\s*(.+)$', s.strip(), re.I)
+    if sn and re.match(r'(?:refresh it|during (?:this|the) (?:turn|battle)|put )', sn.group(2), re.I):      # v0.164 "Target a Spirit you control. <X>" = "Target one of your Spirits. <X>"
+        return action_of('Target one of your %ss. %s' % (sn.group(1), sn.group(2)), ctx)
+    mo = TGT_VOID_OWN.match(s.strip())
+    if mo and not re.search(r'\b(?:with|besides|except|other|another)\b', mo.group(1), re.I):      # v0.164 "Target one of your <X>. Put a core from the Void to it." (own side by wording)
+        return action_of('Put %s core from the Void to one of your %s.' % (mo.group(2), mo.group(1)), ctx)
     m = TGT_VOID.match(s.strip())
     kw = re.fullmatch(r'(?:(' + COL + r') )?(spirit) with ([A-Za-z]+) you control', m.group(1), re.I) if m else None
     if kw and kw.group(3).lower() not in ('no', 'a', 'an', 'the', 'any'):      # v0.163 "Target a Spirit with Rumble you control. Put a core from the Void to it." (match.keyword)

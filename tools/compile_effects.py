@@ -451,6 +451,9 @@ def spirit_paragraph_main(p, card, rush):
         return [e], flags
     # trigger
     trig, tmatch, extra = None, None, None
+    ns = re.match(r"^\(Can't Stack\)\s*", p, re.I)
+    nostack = bool(ns and any(re.match(r'^' + rx_ + r'\s*', p[ns.end():]) for rx_, _ts in TRIGGERS))
+    if nostack: p = p[ns.end():]      # v0.164 "(Can't Stack) When ..." = noStack on the triggered effect (engine 02d: one activation per card name and effect)
     aw = ally_win(p)
     if aw: p, tmatch, extra = aw; trig = ['ALLY_BATTLE_WIN']; tmatch = tmatch or None; extra = extra or None
     for rx, ts, ex in ([] if trig else BATTLE_HEADS):
@@ -515,7 +518,7 @@ def spirit_paragraph_main(p, card, rush):
         sw = step_window(p, card, lv, rush)      # v0.70: generic step window head
         if sw is not None: e, f2 = sw; flags.update(f2); return e, flags
         raise Review('no trigger: ' + p[:100])
-    return trig_effects(p, card, trig, tmatch, lv, rush, flags, extra)
+    return trig_effects(p, card, trig, tmatch, lv, rush, flags, dict(extra or {}, noStack=True) if nostack else extra)
 
 
 def trig_effects(p, card, trig, tmatch, lv, rush, flags, extra=None):
