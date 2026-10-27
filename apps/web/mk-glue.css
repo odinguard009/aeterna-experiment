@@ -144,7 +144,7 @@ html:not(.layout-pc) .lob-ctl{right:12px;bottom:8px}
 .cp-rel .cface.ph{font-size:5px}
 
 /* ---- v0.155.0 batch 3: battle PC. Card Panel on the right, fixed area sizes, core gems shrink to fit, step cues stay off the panel ---- */
-html.layout-pc #view-playmat .playmat-layout.has-cp { grid-template-columns: minmax(0, 1fr) 236px; grid-template-rows: minmax(0, 1fr) 64px minmax(0, 1fr) 150px; }
+html.layout-pc #view-playmat .playmat-layout.has-cp { grid-template-columns: minmax(0, 1fr) 236px; }
 html.layout-pc #view-playmat .playmat-layout.has-cp > :not(#card-panel) { grid-column: 1; }
 html.layout-pc #view-playmat .playmat-layout.has-cp > #card-panel { grid-column: 2; grid-row: 1 / -1; }
 html.layout-pc #view-playmat .playmat-layout.has-cp > * { overflow: hidden; min-height: 0; }
@@ -167,8 +167,8 @@ html.layout-pc #view-playmat .nx-tag.you { background: var(--you); color: var(--
 #view-playmat .ba-card.set-mirage { position: relative; }
 #view-playmat .ba-card.set-mirage .btag { position: absolute; left: -3px; right: -3px; bottom: -2px; z-index: 2; background: var(--you); color: var(--you-ink); font-size: .8em; font-weight: 900; letter-spacing: .06em; text-align: center; }
 #view-playmat .side-cpu .ba-card.set-mirage .btag { background: var(--cpu); color: #fff; }
-html.layout-pc #view-playmat .hand-area .tcg-card { transform: rotate(var(--rot, 0deg)); transform-origin: 50% 130%; transition: transform .15s; }
-html.layout-pc #view-playmat .hand-area .tcg-card:hover, html.layout-pc #view-playmat .hand-area .tcg-card.sel, html.layout-pc #view-playmat .hand-area .tcg-card:focus-visible { transform: rotate(0deg) translateY(-8px); z-index: 3; }
+html.layout-pc #view-playmat .hand-area .tcg-card { transition: transform .15s; }
+html.layout-pc #view-playmat .hand-area .tcg-card:hover, html.layout-pc #view-playmat .hand-area .tcg-card.sel, html.layout-pc #view-playmat .hand-area .tcg-card:focus-visible { transform: translateY(-6px); z-index: 3; }
 @media (prefers-reduced-motion: reduce) { html.layout-pc #view-playmat .hand-area .tcg-card { transition: none; } }
 
 /* ---- v0.155.0 batch 4: generated card art behind the text of a card face without a picture ---- */
@@ -180,3 +180,67 @@ html.layout-pc #view-playmat .hand-area .tcg-card:hover, html.layout-pc #view-pl
 /* ---- v0.157.0: battle PC rows show the locked cells as dashed "Empty" slots (mockup .slot) ---- */
 html.layout-pc #view-playmat .field-row .slot-ph { flex: none; height: 90%; aspect-ratio: 63 / 88; display: flex; align-items: center; justify-content: center; border: 1px dashed var(--ae-line2, #ffffff40); color: var(--ae-text2); font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; opacity: .8; }
 html.layout-pc #view-playmat .field-row { justify-content: center; }
+
+/* ---- v0.158.0 (owner review round 3): Lobby, Deck, Library and Learn on phone; Lobby logo centred ---- */
+#view-lobby>.lob-bg .lob-logo{left:50%;right:auto;transform:translate(-50%,-50%)}
+html:not(.layout-pc) #view-lobby .lob-ctl{position:static;order:99;align-self:center;margin:10px 0 4px;right:auto;bottom:auto}
+html:not(.layout-pc) #view-lobby .herotop{flex-direction:column}
+html:not(.layout-pc) #home-tiles .tile2 b+span,html:not(.layout-pc) #home-tiles .tile2 span>span{display:none}   /* tiles: the title only */
+html:not(.layout-pc) #home-tiles .tile2{min-height:56px}
+/* Deck builder phone: sheet size button in the top-right corner, a roomy target; names and bars never run into lines */
+html:not(.layout-pc) #db-deck #db-size-btn{position:absolute;top:8px;right:10px;width:44px;height:44px;z-index:5;font-size:1.25em}
+html:not(.layout-pc) #db-deck .dhead{padding-top:34px}
+html:not(.layout-pc) #db-deck .dname{min-width:0;text-overflow:ellipsis;overflow:hidden}
+html:not(.layout-pc) #db-deckbar>.grow{min-width:0;overflow:hidden}
+html:not(.layout-pc) #db-deckbar>.grow b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html:not(.layout-pc) #db-deckbar>.grow br{display:none}
+html:not(.layout-pc) #db-deckbar>.grow .sub{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.2}
+html:not(.layout-pc) #db-deckbar{align-items:center;padding-top:2px;box-sizing:border-box}
+html:not(.layout-pc) #db-deckbar .ring{width:40px;height:40px;flex:none;margin-top:0}
+html:not(.layout-pc) #db-dk-list .drow .thumb{width:30px;height:42px;flex:none}
+html:not(.layout-pc) #db-dk-list .drow .k{margin-left:2px;width:20px;height:20px;flex:none}
+html:not(.layout-pc) #db-dk-list .drow .n{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.15;font-size:.84em}
+html:not(.layout-pc) #db-dk-list .drow .st,html:not(.layout-pc) #db-dk-list .drow .pm{width:30px;height:30px;flex:none;padding:0}
+html:not(.layout-pc) #db-dk-list .drow .q{min-width:18px}
+/* Type and Cost are dropdowns on phone (like Colour and Group): the chip rows go away */
+@container fr (max-width:700px){.mk #db-types,.mk #lib-types,.mk .btool .costs,.mk #db-tbar .vsep,.mk #lib-tbar .vsep{display:none}}
+/* Library phone: minimize buttons, the Lore header and lists */
+#view-library.lib-min #lib-chips{display:none}
+.lore-minb{display:none;align-self:flex-start}
+html:not(.layout-pc) .lore-minb{display:inline-flex}
+html:not(.layout-pc) #lib-lore-pane.lore-nav-min .lorenav .seg,html:not(.layout-pc) #lib-lore-pane.lore-nav-min .lorenav .lbl2,html:not(.layout-pc) #lib-lore-pane.lore-nav-min #lib-lore-nav{display:none}
+html:not(.layout-pc) #lib-lore-pane.lore-head-min .lorebody>.row .eyebrow,html:not(.layout-pc) #lib-lore-pane.lore-head-min .lorebody>.row .sub,html:not(.layout-pc) #lib-lore-pane.lore-head-min .lorebody>.row .seg,html:not(.layout-pc) #lib-lore-pane.lore-head-min .lorebody>.pbar{display:none}
+html:not(.layout-pc) .lorebody>.row{gap:6px}
+html:not(.layout-pc) .lorebody>.row .hd{font-size:1.15em!important;margin:0}
+html:not(.layout-pc) .lorebody>.row .seg button{min-height:32px;padding-inline:10px;font-size:.8em}
+html:not(.layout-pc) .loreser{flex-direction:row;overflow-x:auto;gap:6px;padding:0 0 6px}
+html:not(.layout-pc) .mk .lorenav .loreser button,html:not(.layout-pc) .lorenav .loreser button{flex:none;width:auto;min-width:92px;max-width:150px;min-height:44px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:1px;padding:4px 14px;font-size:.78em}
+html:not(.layout-pc) .lorenav .loreser button b{font-size:1em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+html:not(.layout-pc) .lorenav .loreser button b em{display:block;font-style:normal;font-weight:600;font-size:.88em;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html:not(.layout-pc) .lorenav .loreser button span{opacity:.75;font-size:.9em}
+.lorenav .loreser button b em{font-style:normal;font-weight:600;opacity:.85}
+.lorenav button{flex-direction:column;align-items:flex-start;gap:1px}
+/* Learn phone: the Library note stacks (text, then two equal buttons) */
+html:not(.layout-pc) .learn-lib{flex-direction:column;align-items:stretch}
+html:not(.layout-pc) .learn-lib .btn{width:100%}
+html:not(.layout-pc) .lorenav .seg{display:flex;flex-direction:row;gap:6px;width:100%}
+html:not(.layout-pc) .lorenav .seg button{flex:1;min-height:36px;width:auto;justify-content:center;align-items:center;flex-direction:row;font-size:.85em}
+.lorenav .lore-minb{width:auto;flex-direction:row;align-items:center;min-height:32px}
+
+/* ---- v0.158.0 (owner review round 3): battle PC. The hand row follows the card height (no empty strip under the hand; the field gets the rest),
+   the Trash area is bigger and split in two, every area keeps its size and its contents scale to it ---- */
+html.layout-pc #view-playmat .playmat-layout.has-cp { grid-template-rows: minmax(0, 1fr) 64px minmax(0, 1fr) auto; }
+html.layout-pc #view-playmat .hand-container-wrapper { height: auto; }
+html.layout-pc #view-playmat .hand-area { height: auto; align-items: center; padding: 4px; }
+html.layout-pc #view-playmat .hand-area .tcg-card { height: clamp(112px, 17vh, 168px); width: auto; aspect-ratio: 63 / 88; flex: none; }
+html.layout-pc #view-playmat .pc-hand-flank { height: auto; align-self: stretch; }
+html.layout-pc #view-playmat .zone-box { container-type: size; overflow: hidden; }
+html.layout-pc #view-playmat .zone-box .zone-label { font-size: clamp(7px, 16cqh, 10px) !important; padding-inline: clamp(4px, 8cqw, 10px); }
+html.layout-pc #view-playmat .zone-box .pv b { font-size: clamp(11px, 30cqh, 20px); }
+html.layout-pc #view-playmat .zone-box .pv { font-size: clamp(8px, 20cqh, 12px); }
+html.layout-pc #view-playmat .side-flank-pc .zone-box.trash2 { flex: 2.1 1 0; display: grid; grid-template-rows: 1fr 1fr; grid-template-columns: 100%; justify-content: stretch; padding: 0; gap: 0; container-type: normal; align-items: stretch; justify-items: stretch; }
+html.layout-pc #view-playmat .side-flank-pc .zone-box:not(.trash2) { flex: 1 1 0; min-height: 0; }
+html.layout-pc #view-playmat .trash2 .tr-half { container-type: size; width: 100%; height: 100%; align-self: stretch; justify-self: stretch; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; min-height: 0; overflow: hidden; cursor: pointer; }
+html.layout-pc #view-playmat .trash2 .tr-half + .tr-half { border-top: 1px dashed var(--ae-line2, #ffffff30); }
+html.layout-pc #view-playmat .trash2 .tr-half:hover { background: #ffffff0d; }
+html.layout-pc #view-playmat .trash2 .gems { max-width: 100%; }

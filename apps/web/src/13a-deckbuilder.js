@@ -17,6 +17,24 @@ const filterPipsHTML = (S, act) => DB_COLORS.map(c => `<button class="pip${S.col
   + `<button class="pip rainbow${S.groups.has('multi') ? ' on' : ''}" style="--c:${RAINBOW}" data-a="${act}" data-v="groups:multi" aria-label="All colour (cards with more than one colour)" aria-pressed="${S.groups.has('multi')}" title="All colour (more than one colour)"><i></i></button>`;
 const filterTypesHTML = (S, act) => DB_TYPES.map(t => `<button class="chip${S.types.has(t) ? ' on' : ''}" data-a="${act}" data-v="types:${t}" aria-pressed="${S.types.has(t)}">${t}</button>`).join('')
   + DB_TYPE_GROUPS.map(([g, l]) => `<button class="chip${S.groups.has(g) ? ' on' : ''}" data-a="${act}" data-v="groups:${g}" aria-pressed="${S.groups.has(g)}">${l}</button>`).join('');
+/* v0.158.0 (owner review, phone): one dropdown per filter group - Colour, Type, Cost and Group - shared by the Deck Builder and the Library.
+   Each entry knows the Set it toggles in (colors / types / costs / groups), so the menu, the button label and Clear work the same everywhere. */
+function ddList(S, kind) {
+  if (kind === 'colour') return DB_COLORS.map(c => ({ l: cap(c), set: S.colors, v: c, dot: colorVar(c) })).concat([{ l: 'All colour', set: S.groups, v: 'multi', dot: RAINBOW }]);
+  if (kind === 'type') return DB_TYPES.map(t => ({ l: t, set: S.types, v: t })).concat(DB_TYPE_GROUPS.map(([g, l]) => ({ l, set: S.groups, v: g })));
+  if (kind === 'cost') return DB_COSTS.map(c => ({ l: c === '10' ? '10+' : c, set: S.costs, v: c }));
+  return DB_GROUPS.map(([g, l]) => ({ l, set: S.groups, v: g }));
+}
+const ddSel = (S, kind) => ddList(S, kind).filter(i => i.set.has(i.v)).map(i => i.l);
+const ddButton = (S, kind, label, act) => { const sel = ddSel(S, kind); return `<button class="chip ddb${kind === 'group' ? '' : ' ddphone'}${sel.length ? ' on' : ''}" data-a="${act}" data-v="${kind}" aria-haspopup="true" aria-expanded="${S.dd === kind}">${label}: ${sel.length > 2 ? sel.length + ' selected' : sel.length ? sel.join(', ') : 'All'} ▾</button>`; };
+function ddMenuEl(S, tb, btn, pick, clear) {
+  const items = ddList(S, S.dd), m = document.createElement('div'); m.className = 'ddmenu scroll'; m.setAttribute('role', 'menu');
+  m.innerHTML = items.map(i => `<button class="ddi${i.set.has(i.v) ? ' on' : ''}" data-a="${pick}" data-v="${i.v}" role="menuitemcheckbox" aria-checked="${i.set.has(i.v)}"><span class="ddc">${i.set.has(i.v) ? '✓' : ''}</span>${i.dot ? `<i class="dot" style="background:${i.dot}"></i>` : ''}<span class="grow">${i.l}</span></button>`).join('') + `<button class="ddi clr" data-a="${clear}">Clear</button>`;
+  tb.appendChild(m);
+  const r = btn.getBoundingClientRect(), t = tb.getBoundingClientRect(), w = Math.max(r.width, 210);
+  m.style.width = w + 'px'; m.style.left = Math.max(6, Math.min(t.width - w - 6, r.left - t.left)) + 'px'; m.style.top = (r.bottom - t.top + 4) + 'px';
+}
+function ddPick(S, v, clear) { const items = ddList(S, S.dd); if (clear) items.forEach(i => i.set.delete(i.v)); else { const i = items.find(x => x.v === v); if (i) { if (i.set.has(i.v)) i.set.delete(i.v); else i.set.add(i.v); } } }
 const DBF = { colors: new Set(), costs: new Set(), types: new Set(), groups: new Set(), set: '', family: '', legal: false, complete: false, only: false, dd: '', sort: 'default' };
 const DB_UNDO = [], DB_REDO = [];   // v0.128.0 U14f: Redo; any new change empties it
 let DB_IO = '';
@@ -113,9 +131,8 @@ function dbBar() {
   $('db-pips').innerHTML = filterPipsHTML(DBF, 'db-chip');
   $('db-types').innerHTML = filterTypesHTML(DBF, 'db-chip');
   $('db-costs').innerHTML = DB_COSTS.map(k => `<button class="cbtn${on(DBF.costs, k) ? ' on' : ''}" data-a="db-chip" data-v="costs:${k}" aria-pressed="${on(DBF.costs, k)}" aria-label="Cost ${k}">${k === '10' ? '10+' : k}</button>`).join('');
-  const ddb = (n, l, sel) => `<button class="chip ddb${n === 'colour' ? ' ddphone' : ''}${sel.length ? ' on' : ''}" data-a="db-dd" data-v="${n}" aria-haspopup="true" aria-expanded="${DBF.dd === n}">${l}: ${sel.length ? sel.join(', ') : 'All'} ▾</button>`;
-  $('db-colbtn').innerHTML = ddb('colour', 'Colour', [...DBF.colors].map(cap).concat(DBF.groups.has('multi') ? ['All colour'] : []));
-  $('db-groups').innerHTML = ddb('group', 'Group', DB_GROUPS.filter(([g]) => DBF.groups.has(g)).map(x => x[1]));
+  $('db-colbtn').innerHTML = ddButton(DBF, 'colour', 'Colour', 'db-dd') + ddButton(DBF, 'type', 'Type', 'db-dd') + ddButton(DBF, 'cost', 'Cost', 'db-dd');
+  $('db-groups').innerHTML = ddButton(DBF, 'group', 'Group', 'db-dd');
   [['db-play', 'complete'], ['db-in', 'only'], ['db-legal', 'legal']].forEach(([id, k]) => { const b = $(id); b.classList.toggle('on', DBF[k]); b.setAttribute('aria-pressed', String(DBF[k])); });
   dbMenu();
   if (set.dataset.sig !== sig) { set.innerHTML = '<option value="">All sets</option>' + sets.map(x => `<option value="${esc(x)}">${esc(x)}</option>`).join(''); set.dataset.sig = sig; }
@@ -124,22 +141,15 @@ function dbBar() {
   $('db-size').innerHTML = DB_SIZE_LIST.map(([v, l]) => `<button data-a="db-size" data-v="${v}" aria-pressed="${DB_SIZE === v}">${l}</button>`).join('');
   const n = dbActiveCount(); $('db-clear-f').innerHTML = n ? `<button class="chip" data-a="db-freset">Clear ${n} ✕</button>` : '';
 }
-function dbMenu() {                   // the dropdown menu (Colour on phone, Group everywhere)
+function dbMenu() {                   // the dropdown menu (Colour, Type and Cost on phone, Group everywhere)
   document.querySelectorAll('#db-tbar .ddmenu').forEach(m => m.remove());
   const tb = $('db-tbar'), btn = DBF.dd && tb.querySelector(`[data-a="db-dd"][data-v="${DBF.dd}"]`); if (!btn) return;
-  const colour = DBF.dd === 'colour', set = colour ? DBF.colors : DBF.groups, items = colour ? DB_COLORS.map(c => [c, cap(c)]).concat([['multi', 'All colour']]) : DB_GROUPS;
-  const m = document.createElement('div'); m.className = 'ddmenu scroll'; m.setAttribute('role', 'menu');
-  const has = k => colour && k === 'multi' ? DBF.groups.has('multi') : set.has(k);
-  m.innerHTML = items.map(([k, l]) => `<button class="ddi${has(k) ? ' on' : ''}" data-a="db-ddpick" data-v="${k}" role="menuitemcheckbox" aria-checked="${has(k)}"><span class="ddc">${has(k) ? '✓' : ''}</span>${colour ? `<i class="dot" style="background:${k === 'multi' ? RAINBOW : colorVar(k)}"></i>` : ''}<span class="grow">${l}</span></button>`).join('') + '<button class="ddi clr" data-a="db-ddclear">Clear</button>';
-  tb.appendChild(m);
-  const r = btn.getBoundingClientRect(), t = tb.getBoundingClientRect(), w = Math.max(r.width, 210);
-  m.style.width = w + 'px'; m.style.left = Math.max(6, Math.min(t.width - w - 6, r.left - t.left)) + 'px'; m.style.top = (r.bottom - t.top + 4) + 'px';
+  ddMenuEl(DBF, tb, btn, 'db-ddpick', 'db-ddclear');
 }
 document.addEventListener('click', e => { if (DBF.dd && !(/** @type {Element} */ (e.target)).closest('.ddmenu,[data-a="db-dd"]')) { DBF.dd = ''; dbMenu(); } });
 function dbDd(a, v) {
   if (a === 'db-dd') { DBF.dd = DBF.dd === v ? '' : v; dbBar(); return; }
-  const s = DBF.dd === 'colour' && v !== 'multi' ? DBF.colors : DBF.groups;
-  if (a === 'db-ddpick') { if (s.has(v)) s.delete(v); else s.add(v); } else { s.clear(); if (DBF.dd === 'colour') DBF.groups.delete('multi'); DBF.dd = ''; }
+  if (a === 'db-ddpick') ddPick(DBF, v, false); else { ddPick(DBF, v, true); DBF.dd = ''; }
   renderDeckBuilder();
 }
 /* v0.94.0 U7: deck panel tabs and the Deck look (sleeve tint, core and Soul Core colours; saved per deck slot, used on the board) */

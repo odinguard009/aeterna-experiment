@@ -8,6 +8,7 @@ function openZoneModal(key, zone) {
     case 'life': desc = `Life: ${p.life}${p.lifeSoul ? ' (one is your Soul Core: Sealed)' : ''}`; break;
     case 'reserve': desc = `Reserve: ${p.reserve.n} core${p.reserve.n === 1 ? '' : 's'}${p.reserve.soul ? ' + Soul Core' : ''}`; break;
     case 'count': desc = `Count Area: ${p.count} cores`; break;
+    case 'trashcards':
     case 'trash': desc = `Trash: ${p.trash.length} cards, ${p.trashCores.n}${p.trashCores.soul ? ' + Soul' : ''} cores`; list = p.trash.slice().reverse(); break;
     case 'deck': desc = `Deck: ${p.deck.length} cards`; break;
     case 'hand': desc = `Hand: ${p.hand.length} cards`; if (mine) list = p.hand.slice(); break;
@@ -41,7 +42,7 @@ function openZoneModal(key, zone) {
       }
       break; }
   }
-  const head = zone === 'trash' ? 'Cards (newest first)' : 'Cards';
+  const head = zone === 'trash' || zone === 'trashcards' ? 'Cards (newest first)' : 'Cards';
   modal({ uiOnly: true, title: `${label} ${zone.toUpperCase()}`, wide: list.length > 0, html: esc(desc) + cardStripHTML(list, head), buttons: [{ label: 'Close', cls: 'cancel', value: null }] });
 }
 function openLogModal() {

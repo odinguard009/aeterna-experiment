@@ -41,7 +41,7 @@ function handCardHTML(inst, i, n) {
   const can = humanCan() && isMainStep();
   const ok = can && (card.type === 'Magic' ? magicUsable(p, inst, 'main') : (canPlayCard(p, inst) || (card.burst && !p.burstSetThisTurn) || mirageUsable(p, inst)));
   const bp = card.levels[0] && card.levels[0].bp != null ? card.levels[0].bp : card.brave ? '+' + card.brave.bp : '-';
-  return `<div class="tcg-card ${ok ? '' : 'dim'}${cardCls(card)}${imgCls(inst.id)}" style="${colorSty(card)}${imgSty(inst.id)}${n > 1 ? `;--rot:${((i - (n - 1) / 2) * 3).toFixed(1)}deg` : ''}" data-a="hand" data-v="${inst.uid}">
+  return `<div class="tcg-card ${ok ? '' : 'dim'}${cardCls(card)}${imgCls(inst.id)}" style="${colorSty(card)}${imgSty(inst.id)}" data-a="hand" data-v="${inst.uid}">
     <div class="cost">${card.cost}</div><div class="type-badge">${card.contract ? 'CON' : card.token ? 'TOK' : card.type.substring(0, 3).toUpperCase()}${rebMark(card)}</div>
     <div class="name">${nameHTML(card.name)}</div><div class="bp">${bp}</div>${magBtnHTML(inst.id, inst.uid)}${symBadgeHTML(inst.id)}</div>`;
 }
@@ -112,6 +112,11 @@ function zoneBox(key, zone, label, valueHTML) {
   return `<div class="zone-box ${key === 'player' ? 'side-you' : 'side-cpu'}" data-a="zone" data-v="${key}:${zone}"><div class="zone-label"><span>${label}</span></div>${valueHTML}</div>`;
 }
 const pv = n => `<span class="pv"><b>${n}</b></span>`;
+/* v0.158.0 (owner review): the Trash area is bigger and split in two - the cards (Trash) and the cores (Core Trash); the core half keeps data-v "trash" (core flights land there, its zone view lists both) */
+function trashBox(key, p, mark) {
+  const tc = p.trashCores, mine = key === 'player';
+  return `<div class="zone-box trash2 ${mine ? 'side-you' : 'side-cpu'}"><div class="tr-half" data-a="zone" data-v="${key}:trashcards"><div class="zone-label"><span>Trash</span></div>${pileHTML(p.trash.length, mark)}</div><div class="tr-half" data-a="zone" data-v="${key}:trash"><div class="zone-label"><span>Core Trash</span></div><span class="gems sm">${gemsHTML(tc.n, !!tc.soul, 6)}</span>${pv(tc.n + (tc.soul ? '+S' : ''))}</div></div>`;
+}
 const pileHTML = (n, mark) => `<span class="deckv">${n ? `<span class="sleeve${mark ? ' ' + mark : ''}" aria-hidden="true"></span>` : ''}${pv(n)}</span>`;
 const lifePlate = p => `<span class="gems">${gemsHTML(p.life - (p.lifeSoul ? 1 : 0), !!p.lifeSoul, 10)}</span>${pv(lifeTxt(p))}`;
 const resPlate = p => `<span class="gems">${gemsHTML(p.reserve.n, !!p.reserve.soul, 10)}</span>${pv(p.reserve.n + (p.reserve.soul ? '+S' : ''))}`;
@@ -194,7 +199,7 @@ function renderBoard() {
     <div class="playmat-layout${isPC() ? ' has-cp' : ''}">${isPC() ? cardPanelHTML() : ''}
       <div class="half-field">
         <div class="side-flank-pc">
-          ${zoneBox('opponent', 'trash', 'Trash', pileHTML(O.trash.length, 'cpu-sleeve'))}
+          ${trashBox('opponent', O, 'cpu-sleeve')}
           ${zoneBox('opponent', 'deck', 'Deck', pileHTML(O.deck.length, 'cpu-sleeve'))}
           ${zoneBox('opponent', 'count', 'Count', pv(O.count))}
         </div>
@@ -226,7 +231,7 @@ function renderBoard() {
         <div class="side-flank-pc">
           ${zoneBox('player', 'count', 'Count', pv(P.count))}
           ${zoneBox('player', 'deck', 'Deck', pileHTML(P.deck.length))}
-          ${zoneBox('player', 'trash', 'Trash', pileHTML(P.trash.length))}
+          ${trashBox('player', P, '')}
         </div>
       </div>
       <div class="hand-container-wrapper">

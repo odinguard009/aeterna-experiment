@@ -4,6 +4,12 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.158.0
+- Lane: U/I
+- **Owner review round 3 (22 comments).** Phone Lobby: background button moved to the end of the hero (no longer blocks buttons), logo centred (PC too), tiles show the title only. Phone Deck: size button top-right (44 px), long deck names and "Ready to play" no longer overrun, deck-list rows shrunk so spirit names are readable; Type and Cost are dropdowns like Colour and Group. Phone Library: "! Partly Implemented" is a real toggle filter, chips / Saga list / lore head can be minimised, Saga buttons uniform with the count under the title. Phone Learn: library row tidied.
+- **Battle (PC):** hand cards are no longer a fan; the empty strip under the hand is gone and the field cards use the space (`clamp(112px,17vh,168px)`); every Trash area is bigger and split into Trash (cards) and Core Trash (cores); zone boxes keep a fixed size and the indicators inside shrink to fit (container queries, `fitGems`), which also stops the COUNT plate being clipped.
+  - Checked: loop, screenshots at 1366x768 and 1920x1080 (battle PC, phone lobby/deck/library/lore/learn at 390 px), new test `ui_v158`. Not checked: smaller PC windows, the last phone lore seg-button tweak, a real Android device. Not done: battle screen is still on the old stylesheet (`MK_OFF`).
+
 ## v0.157.0
 - Lane: U/I
 - **Battle (PC): locked cells shown.** Each Spirit row shows its five cells and each Nexus row its one cell as dashed "Empty" slots (mockup `.slot`) instead of the "No Spirits" / "No Nexus" text; a placed card takes the first cell. Phone is unchanged (one swipeable row).

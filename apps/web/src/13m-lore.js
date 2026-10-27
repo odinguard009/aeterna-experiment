@@ -34,7 +34,7 @@ function renderLore() {
   if (!series.some(s => s[0] === LORE_SET)) LORE_SET = series[0][0];
   sel.innerHTML = series.map(([k, ids]) => `<option value="${esc(k)}">${esc(k)} (${ids.length})</option>`).join(''); sel.value = LORE_SET;
   const at = series.findIndex(s => s[0] === LORE_SET), ids = series[at][1];
-  $('lib-lore-nav').innerHTML = series.map(([k, l]) => `<button class="${k === LORE_SET ? 'on' : ''}" data-a="lib-lore-set" data-v="${esc(k)}" aria-pressed="${k === LORE_SET}"><b>${esc(k)}</b><span>${l.length} texts${LORE_BY === 'saga' && /^Saga/.test(k) ? ' · ' + esc(loreTitle(k)) : ''}</span></button>`).join('');
+  $('lib-lore-nav').innerHTML = series.map(([k, l]) => `<button class="${k === LORE_SET ? 'on' : ''}" data-a="lib-lore-set" data-v="${esc(k)}" aria-pressed="${k === LORE_SET}"><b>${esc(k)}${LORE_BY === 'saga' && /^Saga/.test(k) ? ' <em>' + esc(loreTitle(k).replace(/^Saga \d+\s*[·:-]?\s*/, '')) + '</em>' : ''}</b><span>${l.length} texts</span></button>`).join('');
   $('lib-lore-h').textContent = loreTitle(LORE_SET); $('lib-lore-sub').textContent = `${ids.length} flavor texts · ${LORE_BY === 'saga' ? 'saga' : 'series'} ${at + 1} of ${series.length}`;
   $('lib-lore-by').innerHTML = [['series', 'By series'], ['saga', 'By Saga']].map(([v, l]) => `<button data-a="lib-lore-by" data-v="${v}" aria-pressed="${LORE_BY === v}">${l}</button>`).join(''); $('lib-lore-ord').textContent = LORE_BY === 'saga' ? 'Sagas In Reading Order' : 'Series In Reading Order';
   $('lib-lore-bar').style.width = `${Math.round(100 * (at + 1) / series.length)}%`;

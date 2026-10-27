@@ -99,13 +99,13 @@ function renderLibrary() {
 const LIBV = { list: [], from: -1, to: -1, cols: 0, rowH: 0, raf: 0, timer: 0, key: '' };
 const LIB_GAP = 16, LIB_BUF = 2;
 const libSetOf = id => String(id).replace(/-.*$/, '');
-const LIBF = { colors: new Set(), costs: new Set(), types: new Set(), groups: new Set(), family: '', complete: true, dd: '', sort: 'set', size: 'm', tab: 'cards', min: false };   // mockup toolbar state (v0.137.0)
+const LIBF = { colors: new Set(), costs: new Set(), types: new Set(), groups: new Set(), family: '', complete: true, partly: false, dd: '', sort: 'set', size: 'm', tab: 'cards', min: false };   // mockup toolbar state (v0.137.0)
 const LIB_SIZES = [['s', 'S', 8], ['m', 'M', 6], ['l', 'L', 4]];
 function libActive() { return LIBF.colors.size + LIBF.costs.size + LIBF.types.size + LIBF.groups.size + (LIBF.family ? 1 : 0) + ((($('lib-set') || {}).value) ? 1 : 0) + (($('lib-search') || {}).value ? 1 : 0); }
 function libFilter() {
   const q = (($('lib-search') || {}).value || '').trim().toLowerCase(), fam = LIBF.family.trim().toLowerCase();
   const set = (($('lib-set') || {}).value) || '';
-  const key = [CARDS_VER, q, set, fam, [...LIBF.colors], [...LIBF.costs], [...LIBF.types], [...LIBF.groups], LIBF.complete, LIBF.sort].join('|');
+  const key = [CARDS_VER, q, set, fam, [...LIBF.colors], [...LIBF.costs], [...LIBF.types], [...LIBF.groups], LIBF.complete, LIBF.partly, LIBF.sort].join('|');
   if (key === LIBV.key) return LIBV.list;
   LIBV.key = key;
   let l = dbIndex().filter(e => {
@@ -114,6 +114,7 @@ function libFilter() {
     if (set && libSetOf(e.id) !== set) return false;
     const c = CARDS[e.id];
     if (LIBF.complete && fxMarked(c)) return false;
+    if (LIBF.partly && !fxMarked(c)) return false;   // v0.158.0: the "! Partly Implemented" chip is a filter (only the cards marked "!")
     return dbFilterOK(c, LIBF.colors, LIBF.costs, LIBF.types) && [...LIBF.groups].every(g => dbGroupOK(c, g));
   });
   l = l.slice().sort(DB_SORTS[LIBF.sort] || DB_SORTS.set);
@@ -126,14 +127,15 @@ function libBar() {                                   // the mockup toolbar: col
   $('lib-pips').innerHTML = filterPipsHTML(LIBF, 'lib-f');
   $('lib-types').innerHTML = filterTypesHTML(LIBF, 'lib-f');
   $('lib-costs').innerHTML = DB_COSTS.map(k => `<button class="cbtn${on(LIBF.costs, k) ? ' on' : ''}" data-a="lib-f" data-v="costs:${k}" aria-pressed="${on(LIBF.costs, k)}" aria-label="Cost ${k}">${k === '10' ? '10+' : k}</button>`).join('');
-  const ddb = (n, l, sel) => `<button class="chip ddb${n === 'colour' ? ' ddphone' : ''}${sel.length ? ' on' : ''}" data-a="lib-dd" data-v="${n}" aria-haspopup="true" aria-expanded="${LIBF.dd === n}">${l}: ${sel.length ? sel.join(', ') : 'All'} ▾</button>`;
-  $('lib-colbtn').innerHTML = ddb('colour', 'Colour', [...LIBF.colors].map(cap).concat(LIBF.groups.has('multi') ? ['All colour'] : []));
-  $('lib-groups').innerHTML = ddb('group', 'Group', DB_GROUPS.filter(([g]) => LIBF.groups.has(g)).map(x => x[1]));
+  $('lib-colbtn').innerHTML = ddButton(LIBF, 'colour', 'Colour', 'lib-dd') + ddButton(LIBF, 'type', 'Type', 'lib-dd') + ddButton(LIBF, 'cost', 'Cost', 'lib-dd');
+  $('lib-groups').innerHTML = ddButton(LIBF, 'group', 'Group', 'lib-dd');
   $('lib-play').classList.toggle('on', LIBF.complete);
   libMenu();
   $('lib-size').innerHTML = LIB_SIZES.map(([v, l]) => `<button data-a="lib-size" data-v="${v}" aria-pressed="${LIBF.size === v}">${l}</button>`).join('');
   $('lib-sort').value = LIBF.sort; if (document.activeElement !== $('lib-family')) $('lib-family').value = LIBF.family;
   $('lib-complete').classList.toggle('on', LIBF.complete); $('lib-complete').setAttribute('aria-pressed', String(LIBF.complete));
+  $('lib-partly').classList.toggle('on', LIBF.partly); $('lib-partly').setAttribute('aria-pressed', String(LIBF.partly));
+  dqa('#lib-lore-pane [data-a="lib-lore-min"]').forEach(b => { const k = b.dataset.v === 'head' ? 'lore-head-min' : 'lore-nav-min', m = $('lib-lore-pane').classList.contains(k); b.setAttribute('aria-pressed', String(m)); b.textContent = (m ? '▼ Show ' : '▲ Hide ') + (b.dataset.v === 'head' ? 'details' : 'list'); });
   const n = libActive(); $('lib-clear').innerHTML = n ? `<button class="chip" data-a="lib-clear">Clear ${n} ✕</button>` : '';
   $('lib-grid').style.setProperty('--cols', String((LIB_SIZES.find(x => x[0] === LIBF.size) || LIB_SIZES[1])[2]));
   $('view-library').classList.toggle('lib-min', !!LIBF.min); { const mb = $('lib-min'); mb.setAttribute('aria-pressed', String(!!LIBF.min)); mb.textContent = LIBF.min ? '▼ Show filters' : '▲ Hide filters'; }
@@ -143,27 +145,23 @@ function libBar() {                                   // the mockup toolbar: col
   $('lib-sub').textContent = tab ? 'The flavor texts of the cards, read in series order.' : 'Search and filter the whole card data. Click a card for its page.';
   document.querySelectorAll('#lib-tabs button').forEach(b => b.setAttribute('aria-pressed', String(/** @type {HTMLElement} */ (b).dataset.v === LIBF.tab)));
 }
-function libMenu() {                                  // the mockup dropdown menu (Colour on phone, Group everywhere)
+function libMenu() {                                  // the mockup dropdown menu (Colour, Type and Cost on phone, Group everywhere)
   document.querySelectorAll('#lib-tbar .ddmenu').forEach(m => m.remove());
   const tb = $('lib-tbar'), btn = LIBF.dd && tb.querySelector(`[data-a="lib-dd"][data-v="${LIBF.dd}"]`); if (!btn) return;
-  const colour = LIBF.dd === 'colour', set = colour ? LIBF.colors : LIBF.groups, items = colour ? DB_COLORS.map(c => [c, cap(c)]).concat([['multi', 'All colour']]) : DB_GROUPS;
-  const has = k => colour && k === 'multi' ? LIBF.groups.has('multi') : set.has(k);
-  const m = document.createElement('div'); m.className = 'ddmenu scroll'; m.setAttribute('role', 'menu');
-  m.innerHTML = items.map(([k, l]) => `<button class="ddi${has(k) ? ' on' : ''}" data-a="lib-ddpick" data-v="${k}" role="menuitemcheckbox" aria-checked="${has(k)}"><span class="ddc">${has(k) ? '✓' : ''}</span>${colour ? `<i class="dot" style="background:${k === 'multi' ? RAINBOW : colorVar(k)}"></i>` : ''}<span class="grow">${l}</span></button>`).join('') + '<button class="ddi clr" data-a="lib-ddclear">Clear</button>';
-  tb.appendChild(m);
-  const r = btn.getBoundingClientRect(), t = tb.getBoundingClientRect(), w = Math.max(r.width, 210);
-  m.style.width = w + 'px'; m.style.left = Math.max(6, Math.min(t.width - w - 6, r.left - t.left)) + 'px'; m.style.top = (r.bottom - t.top + 4) + 'px';
+  ddMenuEl(LIBF, tb, btn, 'lib-ddpick', 'lib-ddclear');
 }
 document.addEventListener('click', e => { if (LIBF.dd && !(/** @type {Element} */ (e.target)).closest('.ddmenu,[data-a="lib-dd"]')) { LIBF.dd = ''; libMenu(); } });
 function libTool(a, v) {
   if (a === 'lib-dd') { LIBF.dd = LIBF.dd === v ? '' : v; libBar(); return; }
-  if (a === 'lib-ddpick') { const s = LIBF.dd === 'colour' && v !== 'multi' ? LIBF.colors : LIBF.groups; if (s.has(v)) s.delete(v); else s.add(v); }
-  else if (a === 'lib-ddclear') { (LIBF.dd === 'colour' ? LIBF.colors : LIBF.groups).clear(); if (LIBF.dd === 'colour') LIBF.groups.delete('multi'); LIBF.dd = ''; }
+  if (a === 'lib-ddpick') ddPick(LIBF, v, false);
+  else if (a === 'lib-ddclear') { ddPick(LIBF, v, true); LIBF.dd = ''; }
   else if (a === 'lib-f') { const [g, x] = v.split(':'), s = LIBF[g]; if (s) { if (s.has(x)) s.delete(x); else s.add(x); } }
   else if (a === 'lib-size') LIBF.size = v;
   else if (a === 'lib-min') LIBF.min = !LIBF.min;
   else if (a === 'lib-tab') LIBF.tab = v === 'lore' ? 'lore' : 'cards';
-  else if (a === 'lib-complete') LIBF.complete = !LIBF.complete;
+  else if (a === 'lib-complete') { LIBF.complete = !LIBF.complete; if (LIBF.complete) LIBF.partly = false; }
+  else if (a === 'lib-partly') { LIBF.partly = !LIBF.partly; if (LIBF.partly) LIBF.complete = false; }
+  else if (a === 'lib-lore-min') { const k = v === 'head' ? 'lore-head-min' : 'lore-nav-min'; $('lib-lore-pane').classList.toggle(k); }
   else if (a === 'lib-clear') { ['colors', 'costs', 'types', 'groups'].forEach(g => LIBF[g].clear()); LIBF.family = ''; $('lib-set').value = ''; $('lib-search').value = ''; }
   else if (a === 'lib-lore-mv') { const ks = loreSeries().map(x => x[0]), i = ks.indexOf(LORE_SET) + Number(v); if (ks[i]) LORE_SET = ks[i]; }
   else if (a === 'lib-lore-by') { LORE_BY = v === 'saga' ? 'saga' : 'series'; LORE_SET = ''; }

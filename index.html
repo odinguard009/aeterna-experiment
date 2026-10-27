@@ -2309,7 +2309,7 @@ html:not(.layout-pc) .lob-ctl{right:12px;bottom:8px}
 .cp-art .cface.ph .ph-txt,.cp-art .cface.ph .ph-sub,.cp-rel .cface.ph .ph-txt,.cp-rel .cface.ph .ph-sub{display:none}
 .cp-rel{flex:none;width:84px;aspect-ratio:5/7;overflow:hidden;border:0;padding:0;background:none;border-radius:6px;cursor:pointer}
 .cp-rel .cface.ph{font-size:5px}
-html.layout-pc #view-playmat .playmat-layout.has-cp{grid-template-columns:minmax(0,1fr) 236px;grid-template-rows:minmax(0,1fr) 64px minmax(0,1fr) 150px;}
+html.layout-pc #view-playmat .playmat-layout.has-cp{grid-template-columns:minmax(0,1fr) 236px;}
 html.layout-pc #view-playmat .playmat-layout.has-cp > :not(#card-panel){grid-column:1;}
 html.layout-pc #view-playmat .playmat-layout.has-cp > #card-panel{grid-column:2;grid-row:1 / -1;}
 html.layout-pc #view-playmat .playmat-layout.has-cp > *{overflow:hidden;min-height:0;}
@@ -2328,8 +2328,8 @@ html.layout-pc #view-playmat .nx-tag.you{background:var(--you);color:var(--you-i
 #view-playmat .ba-card.set-mirage{position:relative;}
 #view-playmat .ba-card.set-mirage .btag{position:absolute;left:-3px;right:-3px;bottom:-2px;z-index:2;background:var(--you);color:var(--you-ink);font-size:.8em;font-weight:900;letter-spacing:.06em;text-align:center;}
 #view-playmat .side-cpu .ba-card.set-mirage .btag{background:var(--cpu);color:#fff;}
-html.layout-pc #view-playmat .hand-area .tcg-card{transform:rotate(var(--rot,0deg));transform-origin:50% 130%;transition:transform .15s;}
-html.layout-pc #view-playmat .hand-area .tcg-card:hover,html.layout-pc #view-playmat .hand-area .tcg-card.sel,html.layout-pc #view-playmat .hand-area .tcg-card:focus-visible{transform:rotate(0deg) translateY(-8px);z-index:3;}
+html.layout-pc #view-playmat .hand-area .tcg-card{transition:transform .15s;}
+html.layout-pc #view-playmat .hand-area .tcg-card:hover,html.layout-pc #view-playmat .hand-area .tcg-card.sel,html.layout-pc #view-playmat .hand-area .tcg-card:focus-visible{transform:translateY(-6px);z-index:3;}
 @media (prefers-reduced-motion:reduce){html.layout-pc #view-playmat .hand-area .tcg-card{transition:none;}}
 .cface.ph{position:relative;overflow:hidden;isolation:isolate;}
 .cface.ph .ph-art{position:absolute;inset:0;width:100%;height:100%;z-index:-1;opacity:.75;}
@@ -2337,6 +2337,61 @@ html.layout-pc #view-playmat .hand-area .tcg-card:hover,html.layout-pc #view-pla
 .cface.ph .ph-txt{background:#0b0e1355;padding:2px 3px;border-radius:2px;text-shadow:0 1px 2px #000;}
 html.layout-pc #view-playmat .field-row .slot-ph{flex:none;height:90%;aspect-ratio:63 / 88;display:flex;align-items:center;justify-content:center;border:1px dashed var(--ae-line2,#ffffff40);color:var(--ae-text2);font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;opacity:.8;}
 html.layout-pc #view-playmat .field-row{justify-content:center;}
+#view-lobby>.lob-bg .lob-logo{left:50%;right:auto;transform:translate(-50%,-50%)}
+html:not(.layout-pc) #view-lobby .lob-ctl{position:static;order:99;align-self:center;margin:10px 0 4px;right:auto;bottom:auto}
+html:not(.layout-pc) #view-lobby .herotop{flex-direction:column}
+html:not(.layout-pc) #home-tiles .tile2 b+span,html:not(.layout-pc) #home-tiles .tile2 span>span{display:none}
+html:not(.layout-pc) #home-tiles .tile2{min-height:56px}
+html:not(.layout-pc) #db-deck #db-size-btn{position:absolute;top:8px;right:10px;width:44px;height:44px;z-index:5;font-size:1.25em}
+html:not(.layout-pc) #db-deck .dhead{padding-top:34px}
+html:not(.layout-pc) #db-deck .dname{min-width:0;text-overflow:ellipsis;overflow:hidden}
+html:not(.layout-pc) #db-deckbar>.grow{min-width:0;overflow:hidden}
+html:not(.layout-pc) #db-deckbar>.grow b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html:not(.layout-pc) #db-deckbar>.grow br{display:none}
+html:not(.layout-pc) #db-deckbar>.grow .sub{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.2}
+html:not(.layout-pc) #db-deckbar{align-items:center;padding-top:2px;box-sizing:border-box}
+html:not(.layout-pc) #db-deckbar .ring{width:40px;height:40px;flex:none;margin-top:0}
+html:not(.layout-pc) #db-dk-list .drow .thumb{width:30px;height:42px;flex:none}
+html:not(.layout-pc) #db-dk-list .drow .k{margin-left:2px;width:20px;height:20px;flex:none}
+html:not(.layout-pc) #db-dk-list .drow .n{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.15;font-size:.84em}
+html:not(.layout-pc) #db-dk-list .drow .st,html:not(.layout-pc) #db-dk-list .drow .pm{width:30px;height:30px;flex:none;padding:0}
+html:not(.layout-pc) #db-dk-list .drow .q{min-width:18px}
+@container fr (max-width:700px){.mk #db-types,.mk #lib-types,.mk .btool .costs,.mk #db-tbar .vsep,.mk #lib-tbar .vsep{display:none}}
+#view-library.lib-min #lib-chips{display:none}
+.lore-minb{display:none;align-self:flex-start}
+html:not(.layout-pc) .lore-minb{display:inline-flex}
+html:not(.layout-pc) #lib-lore-pane.lore-nav-min .lorenav .seg,html:not(.layout-pc) #lib-lore-pane.lore-nav-min .lorenav .lbl2,html:not(.layout-pc) #lib-lore-pane.lore-nav-min #lib-lore-nav{display:none}
+html:not(.layout-pc) #lib-lore-pane.lore-head-min .lorebody>.row .eyebrow,html:not(.layout-pc) #lib-lore-pane.lore-head-min .lorebody>.row .sub,html:not(.layout-pc) #lib-lore-pane.lore-head-min .lorebody>.row .seg,html:not(.layout-pc) #lib-lore-pane.lore-head-min .lorebody>.pbar{display:none}
+html:not(.layout-pc) .lorebody>.row{gap:6px}
+html:not(.layout-pc) .lorebody>.row .hd{font-size:1.15em!important;margin:0}
+html:not(.layout-pc) .lorebody>.row .seg button{min-height:32px;padding-inline:10px;font-size:.8em}
+html:not(.layout-pc) .loreser{flex-direction:row;overflow-x:auto;gap:6px;padding:0 0 6px}
+html:not(.layout-pc) .mk .lorenav .loreser button,html:not(.layout-pc) .lorenav .loreser button{flex:none;width:auto;min-width:92px;max-width:150px;min-height:44px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:1px;padding:4px 14px;font-size:.78em}
+html:not(.layout-pc) .lorenav .loreser button b{font-size:1em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+html:not(.layout-pc) .lorenav .loreser button b em{display:block;font-style:normal;font-weight:600;font-size:.88em;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html:not(.layout-pc) .lorenav .loreser button span{opacity:.75;font-size:.9em}
+.lorenav .loreser button b em{font-style:normal;font-weight:600;opacity:.85}
+.lorenav button{flex-direction:column;align-items:flex-start;gap:1px}
+html:not(.layout-pc) .learn-lib{flex-direction:column;align-items:stretch}
+html:not(.layout-pc) .learn-lib .btn{width:100%}
+html:not(.layout-pc) .lorenav .seg{display:flex;flex-direction:row;gap:6px;width:100%}
+html:not(.layout-pc) .lorenav .seg button{flex:1;min-height:36px;width:auto;justify-content:center;align-items:center;flex-direction:row;font-size:.85em}
+.lorenav .lore-minb{width:auto;flex-direction:row;align-items:center;min-height:32px}
+html.layout-pc #view-playmat .playmat-layout.has-cp{grid-template-rows:minmax(0,1fr) 64px minmax(0,1fr) auto;}
+html.layout-pc #view-playmat .hand-container-wrapper{height:auto;}
+html.layout-pc #view-playmat .hand-area{height:auto;align-items:center;padding:4px;}
+html.layout-pc #view-playmat .hand-area .tcg-card{height:clamp(112px,17vh,168px);width:auto;aspect-ratio:63 / 88;flex:none;}
+html.layout-pc #view-playmat .pc-hand-flank{height:auto;align-self:stretch;}
+html.layout-pc #view-playmat .zone-box{container-type:size;overflow:hidden;}
+html.layout-pc #view-playmat .zone-box .zone-label{font-size:clamp(7px,16cqh,10px) !important;padding-inline:clamp(4px,8cqw,10px);}
+html.layout-pc #view-playmat .zone-box .pv b{font-size:clamp(11px,30cqh,20px);}
+html.layout-pc #view-playmat .zone-box .pv{font-size:clamp(8px,20cqh,12px);}
+html.layout-pc #view-playmat .side-flank-pc .zone-box.trash2{flex:2.1 1 0;display:grid;grid-template-rows:1fr 1fr;grid-template-columns:100%;justify-content:stretch;padding:0;gap:0;container-type:normal;align-items:stretch;justify-items:stretch;}
+html.layout-pc #view-playmat .side-flank-pc .zone-box:not(.trash2){flex:1 1 0;min-height:0;}
+html.layout-pc #view-playmat .trash2 .tr-half{container-type:size;width:100%;height:100%;align-self:stretch;justify-self:stretch;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;min-height:0;overflow:hidden;cursor:pointer;}
+html.layout-pc #view-playmat .trash2 .tr-half + .tr-half{border-top:1px dashed var(--ae-line2,#ffffff30);}
+html.layout-pc #view-playmat .trash2 .tr-half:hover{background:#ffffff0d;}
+html.layout-pc #view-playmat .trash2 .gems{max-width:100%;}
 </style>
 </head>
 <body>
@@ -2450,7 +2505,7 @@ html.layout-pc #view-playmat .field-row{justify-content:center;}
     <div class="search" style="max-width:380px"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input class="in" id="gl-q" placeholder="Search a rule word" style="width:100%" aria-label="Search glossary"></div>
     <div class="dgrid" id="howto-gloss" style="grid-template-columns:repeat(2,1fr)"></div>
     <div class="sec">Your cards</div>
-    <div class="card flat row" style="padding:10px 14px;gap:10px;flex-wrap:wrap"><span class="sub grow">Open the Library to import card data and your own card images (they stay on your device).</span><button class="btn sm" data-a="go-lib">Open Library</button><button class="btn sm" data-a="rules">Rules coverage</button></div>
+    <div class="card flat row learn-lib" style="padding:10px 14px;gap:10px;flex-wrap:wrap"><span class="sub grow">Open the Library to import card data and your own card images (they stay on your device).</span><button class="btn sm" data-a="go-lib">Open Library</button><button class="btn sm" data-a="rules">Rules coverage</button></div>
   </div>
 </div>
 
@@ -2560,7 +2615,7 @@ html.layout-pc #view-playmat .field-row{justify-content:center;}
   <div class="card flat hdcard lib-hd" style="margin:16px 20px 0"><div class="grow"><span class="eyebrow" id="lib-eyebrow">Library</span><h2 class="hd" id="lib-title">All Cards</h2><span class="sub" id="lib-sub">Search and filter the whole card data. Click a card for its page.</span></div>
     <div class="seg" role="group" aria-label="Library view" id="lib-tabs"><button data-a="lib-tab" data-v="cards" aria-pressed="true">Cards</button><button data-a="lib-tab" data-v="lore" aria-pressed="false">Lore</button></div>
     <button class="btn sm" id="lib-min" data-a="lib-min" aria-pressed="false" title="Hide the header and the filter rows to see more cards">▲ Hide filters</button>
-    <span id="lib-chips" class="row" style="gap:8px"><button class="chip on" id="lib-complete" data-a="lib-complete" aria-pressed="true">Complete Effects Only</button><span class="chip"><b style="color:var(--yes-text)">!</b> Partly Implemented</span></span></div>
+    <span id="lib-chips" class="row" style="gap:8px"><button class="chip on" id="lib-complete" data-a="lib-complete" aria-pressed="true">Complete Effects Only</button><button class="chip" id="lib-partly" data-a="lib-partly" aria-pressed="false"><b style="color:var(--yes-text)">!</b> Partly Implemented</button></span></div>
   <section id="lib-cards-pane" class="bpool" style="border:0;display:flex;flex-direction:column;min-height:0;flex:1">
     <div class="btool" id="lib-tbar">
       <div class="r1"><div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="lib-search" class="in" type="search" placeholder="Search name, code or text" aria-label="Search cards" autocomplete="off" spellcheck="false" style="width:100%"></div>
@@ -2590,8 +2645,8 @@ html.layout-pc #view-playmat .field-row{justify-content:center;}
       <div id="lib-msg" class="lib-msg" role="status"></div></div></details>
   </section>
   <div id="lib-lore-pane" class="lore" hidden>
-    <aside class="lorenav"><div class="seg" role="group" aria-label="Reading order" id="lib-lore-by"></div><span class="lbl2" id="lib-lore-ord">Series In Reading Order</span><div class="loreser scroll" id="lib-lore-nav"></div><select id="lib-lore-set" class="in" aria-label="Series" hidden></select></aside>
-    <section class="lorebody"><div class="row" style="gap:8px;flex-wrap:wrap"><div class="grow"><span class="eyebrow">Card Lore</span><h2 class="hd" style="font-size:1.5em" id="lib-lore-h">-</h2><span class="sub" id="lib-lore-sub"></span></div><div class="seg" role="group" aria-label="Text size" id="lib-lore-fs"></div></div>
+    <aside class="lorenav"><div class="seg" role="group" aria-label="Reading order" id="lib-lore-by"></div><span class="lbl2" id="lib-lore-ord">Series In Reading Order</span><button class="btn sm lore-minb" data-a="lib-lore-min" data-v="nav" aria-pressed="false">▲ Hide list</button><div class="loreser scroll" id="lib-lore-nav"></div><select id="lib-lore-set" class="in" aria-label="Series" hidden></select></aside>
+    <section class="lorebody"><div class="row" style="gap:8px;flex-wrap:wrap"><div class="grow"><span class="eyebrow">Card Lore</span><h2 class="hd" style="font-size:1.5em" id="lib-lore-h">-</h2><span class="sub" id="lib-lore-sub"></span></div><button class="btn sm lore-minb" data-a="lib-lore-min" data-v="head" aria-pressed="false">▲ Hide details</button><div class="seg" role="group" aria-label="Text size" id="lib-lore-fs"></div></div>
       <div class="pbar" style="margin:4px 0 8px"><i id="lib-lore-bar" style="width:0"></i></div>
       <div class="loretexts scroll" id="lib-lore"></div>
       <div class="row" style="gap:8px;margin-top:8px"><button class="btn" data-a="lib-lore-mv" data-v="-1" id="lib-lore-prev">‹ Previous Series</button><span class="grow"></span><button class="btn pri" data-a="lib-lore-mv" data-v="1" id="lib-lore-next">Next Series ›</button></div></section></div>
@@ -2874,7 +2929,7 @@ function bindHost(h) {
    type: 'Spirit' | 'Nexus' | 'Magic'      symbol: card color     symbols: number of symbols
    reduction: {color: n}         levels: [{cores, bp}]  (Nexus levels have no bp)
    --------------------------------------------------------------------- */
-const VERSION = '0.157.0';
+const VERSION = '0.158.0';
 const CARDS = {};
 function defCard(o) {
   CARDS[o.id] = Object.assign({ type: 'Spirit', reduction: {}, symbols: 1, families: [], keywords: [], implemented: true, desc: 'Vanilla test card (no effect).', block: 'A' }, o);
@@ -7866,6 +7921,7 @@ function openZoneModal(key, zone) {
     case 'life': desc = `Life: ${p.life}${p.lifeSoul ? ' (one is your Soul Core: Sealed)' : ''}`; break;
     case 'reserve': desc = `Reserve: ${p.reserve.n} core${p.reserve.n === 1 ? '' : 's'}${p.reserve.soul ? ' + Soul Core' : ''}`; break;
     case 'count': desc = `Count Area: ${p.count} cores`; break;
+    case 'trashcards':
     case 'trash': desc = `Trash: ${p.trash.length} cards, ${p.trashCores.n}${p.trashCores.soul ? ' + Soul' : ''} cores`; list = p.trash.slice().reverse(); break;
     case 'deck': desc = `Deck: ${p.deck.length} cards`; break;
     case 'hand': desc = `Hand: ${p.hand.length} cards`; if (mine) list = p.hand.slice(); break;
@@ -7899,7 +7955,7 @@ function openZoneModal(key, zone) {
       }
       break; }
   }
-  const head = zone === 'trash' ? 'Cards (newest first)' : 'Cards';
+  const head = zone === 'trash' || zone === 'trashcards' ? 'Cards (newest first)' : 'Cards';
   modal({ uiOnly: true, title: `${label} ${zone.toUpperCase()}`, wide: list.length > 0, html: esc(desc) + cardStripHTML(list, head), buttons: [{ label: 'Close', cls: 'cancel', value: null }] });
 }
 function openLogModal() {
@@ -7969,7 +8025,7 @@ function handCardHTML(inst, i, n) {
   const can = humanCan() && isMainStep();
   const ok = can && (card.type === 'Magic' ? magicUsable(p, inst, 'main') : (canPlayCard(p, inst) || (card.burst && !p.burstSetThisTurn) || mirageUsable(p, inst)));
   const bp = card.levels[0] && card.levels[0].bp != null ? card.levels[0].bp : card.brave ? '+' + card.brave.bp : '-';
-  return `<div class="tcg-card ${ok ? '' : 'dim'}${cardCls(card)}${imgCls(inst.id)}" style="${colorSty(card)}${imgSty(inst.id)}${n > 1 ? `;--rot:${((i - (n - 1) / 2) * 3).toFixed(1)}deg` : ''}" data-a="hand" data-v="${inst.uid}">
+  return `<div class="tcg-card ${ok ? '' : 'dim'}${cardCls(card)}${imgCls(inst.id)}" style="${colorSty(card)}${imgSty(inst.id)}" data-a="hand" data-v="${inst.uid}">
     <div class="cost">${card.cost}</div><div class="type-badge">${card.contract ? 'CON' : card.token ? 'TOK' : card.type.substring(0, 3).toUpperCase()}${rebMark(card)}</div>
     <div class="name">${nameHTML(card.name)}</div><div class="bp">${bp}</div>${magBtnHTML(inst.id, inst.uid)}${symBadgeHTML(inst.id)}</div>`;
 }
@@ -8040,6 +8096,11 @@ function zoneBox(key, zone, label, valueHTML) {
   return `<div class="zone-box ${key === 'player' ? 'side-you' : 'side-cpu'}" data-a="zone" data-v="${key}:${zone}"><div class="zone-label"><span>${label}</span></div>${valueHTML}</div>`;
 }
 const pv = n => `<span class="pv"><b>${n}</b></span>`;
+/* v0.158.0 (owner review): the Trash area is bigger and split in two - the cards (Trash) and the cores (Core Trash); the core half keeps data-v "trash" (core flights land there, its zone view lists both) */
+function trashBox(key, p, mark) {
+  const tc = p.trashCores, mine = key === 'player';
+  return `<div class="zone-box trash2 ${mine ? 'side-you' : 'side-cpu'}"><div class="tr-half" data-a="zone" data-v="${key}:trashcards"><div class="zone-label"><span>Trash</span></div>${pileHTML(p.trash.length, mark)}</div><div class="tr-half" data-a="zone" data-v="${key}:trash"><div class="zone-label"><span>Core Trash</span></div><span class="gems sm">${gemsHTML(tc.n, !!tc.soul, 6)}</span>${pv(tc.n + (tc.soul ? '+S' : ''))}</div></div>`;
+}
 const pileHTML = (n, mark) => `<span class="deckv">${n ? `<span class="sleeve${mark ? ' ' + mark : ''}" aria-hidden="true"></span>` : ''}${pv(n)}</span>`;
 const lifePlate = p => `<span class="gems">${gemsHTML(p.life - (p.lifeSoul ? 1 : 0), !!p.lifeSoul, 10)}</span>${pv(lifeTxt(p))}`;
 const resPlate = p => `<span class="gems">${gemsHTML(p.reserve.n, !!p.reserve.soul, 10)}</span>${pv(p.reserve.n + (p.reserve.soul ? '+S' : ''))}`;
@@ -8122,7 +8183,7 @@ function renderBoard() {
     <div class="playmat-layout${isPC() ? ' has-cp' : ''}">${isPC() ? cardPanelHTML() : ''}
       <div class="half-field">
         <div class="side-flank-pc">
-          ${zoneBox('opponent', 'trash', 'Trash', pileHTML(O.trash.length, 'cpu-sleeve'))}
+          ${trashBox('opponent', O, 'cpu-sleeve')}
           ${zoneBox('opponent', 'deck', 'Deck', pileHTML(O.deck.length, 'cpu-sleeve'))}
           ${zoneBox('opponent', 'count', 'Count', pv(O.count))}
         </div>
@@ -8154,7 +8215,7 @@ function renderBoard() {
         <div class="side-flank-pc">
           ${zoneBox('player', 'count', 'Count', pv(P.count))}
           ${zoneBox('player', 'deck', 'Deck', pileHTML(P.deck.length))}
-          ${zoneBox('player', 'trash', 'Trash', pileHTML(P.trash.length))}
+          ${trashBox('player', P, '')}
         </div>
       </div>
       <div class="hand-container-wrapper">
@@ -8315,6 +8376,24 @@ const filterPipsHTML = (S, act) => DB_COLORS.map(c => `<button class="pip${S.col
   + `<button class="pip rainbow${S.groups.has('multi') ? ' on' : ''}" style="--c:${RAINBOW}" data-a="${act}" data-v="groups:multi" aria-label="All colour (cards with more than one colour)" aria-pressed="${S.groups.has('multi')}" title="All colour (more than one colour)"><i></i></button>`;
 const filterTypesHTML = (S, act) => DB_TYPES.map(t => `<button class="chip${S.types.has(t) ? ' on' : ''}" data-a="${act}" data-v="types:${t}" aria-pressed="${S.types.has(t)}">${t}</button>`).join('')
   + DB_TYPE_GROUPS.map(([g, l]) => `<button class="chip${S.groups.has(g) ? ' on' : ''}" data-a="${act}" data-v="groups:${g}" aria-pressed="${S.groups.has(g)}">${l}</button>`).join('');
+/* v0.158.0 (owner review, phone): one dropdown per filter group - Colour, Type, Cost and Group - shared by the Deck Builder and the Library.
+   Each entry knows the Set it toggles in (colors / types / costs / groups), so the menu, the button label and Clear work the same everywhere. */
+function ddList(S, kind) {
+  if (kind === 'colour') return DB_COLORS.map(c => ({ l: cap(c), set: S.colors, v: c, dot: colorVar(c) })).concat([{ l: 'All colour', set: S.groups, v: 'multi', dot: RAINBOW }]);
+  if (kind === 'type') return DB_TYPES.map(t => ({ l: t, set: S.types, v: t })).concat(DB_TYPE_GROUPS.map(([g, l]) => ({ l, set: S.groups, v: g })));
+  if (kind === 'cost') return DB_COSTS.map(c => ({ l: c === '10' ? '10+' : c, set: S.costs, v: c }));
+  return DB_GROUPS.map(([g, l]) => ({ l, set: S.groups, v: g }));
+}
+const ddSel = (S, kind) => ddList(S, kind).filter(i => i.set.has(i.v)).map(i => i.l);
+const ddButton = (S, kind, label, act) => { const sel = ddSel(S, kind); return `<button class="chip ddb${kind === 'group' ? '' : ' ddphone'}${sel.length ? ' on' : ''}" data-a="${act}" data-v="${kind}" aria-haspopup="true" aria-expanded="${S.dd === kind}">${label}: ${sel.length > 2 ? sel.length + ' selected' : sel.length ? sel.join(', ') : 'All'} ▾</button>`; };
+function ddMenuEl(S, tb, btn, pick, clear) {
+  const items = ddList(S, S.dd), m = document.createElement('div'); m.className = 'ddmenu scroll'; m.setAttribute('role', 'menu');
+  m.innerHTML = items.map(i => `<button class="ddi${i.set.has(i.v) ? ' on' : ''}" data-a="${pick}" data-v="${i.v}" role="menuitemcheckbox" aria-checked="${i.set.has(i.v)}"><span class="ddc">${i.set.has(i.v) ? '✓' : ''}</span>${i.dot ? `<i class="dot" style="background:${i.dot}"></i>` : ''}<span class="grow">${i.l}</span></button>`).join('') + `<button class="ddi clr" data-a="${clear}">Clear</button>`;
+  tb.appendChild(m);
+  const r = btn.getBoundingClientRect(), t = tb.getBoundingClientRect(), w = Math.max(r.width, 210);
+  m.style.width = w + 'px'; m.style.left = Math.max(6, Math.min(t.width - w - 6, r.left - t.left)) + 'px'; m.style.top = (r.bottom - t.top + 4) + 'px';
+}
+function ddPick(S, v, clear) { const items = ddList(S, S.dd); if (clear) items.forEach(i => i.set.delete(i.v)); else { const i = items.find(x => x.v === v); if (i) { if (i.set.has(i.v)) i.set.delete(i.v); else i.set.add(i.v); } } }
 const DBF = { colors: new Set(), costs: new Set(), types: new Set(), groups: new Set(), set: '', family: '', legal: false, complete: false, only: false, dd: '', sort: 'default' };
 const DB_UNDO = [], DB_REDO = [];   // v0.128.0 U14f: Redo; any new change empties it
 let DB_IO = '';
@@ -8411,9 +8490,8 @@ function dbBar() {
   $('db-pips').innerHTML = filterPipsHTML(DBF, 'db-chip');
   $('db-types').innerHTML = filterTypesHTML(DBF, 'db-chip');
   $('db-costs').innerHTML = DB_COSTS.map(k => `<button class="cbtn${on(DBF.costs, k) ? ' on' : ''}" data-a="db-chip" data-v="costs:${k}" aria-pressed="${on(DBF.costs, k)}" aria-label="Cost ${k}">${k === '10' ? '10+' : k}</button>`).join('');
-  const ddb = (n, l, sel) => `<button class="chip ddb${n === 'colour' ? ' ddphone' : ''}${sel.length ? ' on' : ''}" data-a="db-dd" data-v="${n}" aria-haspopup="true" aria-expanded="${DBF.dd === n}">${l}: ${sel.length ? sel.join(', ') : 'All'} ▾</button>`;
-  $('db-colbtn').innerHTML = ddb('colour', 'Colour', [...DBF.colors].map(cap).concat(DBF.groups.has('multi') ? ['All colour'] : []));
-  $('db-groups').innerHTML = ddb('group', 'Group', DB_GROUPS.filter(([g]) => DBF.groups.has(g)).map(x => x[1]));
+  $('db-colbtn').innerHTML = ddButton(DBF, 'colour', 'Colour', 'db-dd') + ddButton(DBF, 'type', 'Type', 'db-dd') + ddButton(DBF, 'cost', 'Cost', 'db-dd');
+  $('db-groups').innerHTML = ddButton(DBF, 'group', 'Group', 'db-dd');
   [['db-play', 'complete'], ['db-in', 'only'], ['db-legal', 'legal']].forEach(([id, k]) => { const b = $(id); b.classList.toggle('on', DBF[k]); b.setAttribute('aria-pressed', String(DBF[k])); });
   dbMenu();
   if (set.dataset.sig !== sig) { set.innerHTML = '<option value="">All sets</option>' + sets.map(x => `<option value="${esc(x)}">${esc(x)}</option>`).join(''); set.dataset.sig = sig; }
@@ -8422,22 +8500,15 @@ function dbBar() {
   $('db-size').innerHTML = DB_SIZE_LIST.map(([v, l]) => `<button data-a="db-size" data-v="${v}" aria-pressed="${DB_SIZE === v}">${l}</button>`).join('');
   const n = dbActiveCount(); $('db-clear-f').innerHTML = n ? `<button class="chip" data-a="db-freset">Clear ${n} ✕</button>` : '';
 }
-function dbMenu() {                   // the dropdown menu (Colour on phone, Group everywhere)
+function dbMenu() {                   // the dropdown menu (Colour, Type and Cost on phone, Group everywhere)
   document.querySelectorAll('#db-tbar .ddmenu').forEach(m => m.remove());
   const tb = $('db-tbar'), btn = DBF.dd && tb.querySelector(`[data-a="db-dd"][data-v="${DBF.dd}"]`); if (!btn) return;
-  const colour = DBF.dd === 'colour', set = colour ? DBF.colors : DBF.groups, items = colour ? DB_COLORS.map(c => [c, cap(c)]).concat([['multi', 'All colour']]) : DB_GROUPS;
-  const m = document.createElement('div'); m.className = 'ddmenu scroll'; m.setAttribute('role', 'menu');
-  const has = k => colour && k === 'multi' ? DBF.groups.has('multi') : set.has(k);
-  m.innerHTML = items.map(([k, l]) => `<button class="ddi${has(k) ? ' on' : ''}" data-a="db-ddpick" data-v="${k}" role="menuitemcheckbox" aria-checked="${has(k)}"><span class="ddc">${has(k) ? '✓' : ''}</span>${colour ? `<i class="dot" style="background:${k === 'multi' ? RAINBOW : colorVar(k)}"></i>` : ''}<span class="grow">${l}</span></button>`).join('') + '<button class="ddi clr" data-a="db-ddclear">Clear</button>';
-  tb.appendChild(m);
-  const r = btn.getBoundingClientRect(), t = tb.getBoundingClientRect(), w = Math.max(r.width, 210);
-  m.style.width = w + 'px'; m.style.left = Math.max(6, Math.min(t.width - w - 6, r.left - t.left)) + 'px'; m.style.top = (r.bottom - t.top + 4) + 'px';
+  ddMenuEl(DBF, tb, btn, 'db-ddpick', 'db-ddclear');
 }
 document.addEventListener('click', e => { if (DBF.dd && !(/** @type {Element} */ (e.target)).closest('.ddmenu,[data-a="db-dd"]')) { DBF.dd = ''; dbMenu(); } });
 function dbDd(a, v) {
   if (a === 'db-dd') { DBF.dd = DBF.dd === v ? '' : v; dbBar(); return; }
-  const s = DBF.dd === 'colour' && v !== 'multi' ? DBF.colors : DBF.groups;
-  if (a === 'db-ddpick') { if (s.has(v)) s.delete(v); else s.add(v); } else { s.clear(); if (DBF.dd === 'colour') DBF.groups.delete('multi'); DBF.dd = ''; }
+  if (a === 'db-ddpick') ddPick(DBF, v, false); else { ddPick(DBF, v, true); DBF.dd = ''; }
   renderDeckBuilder();
 }
 /* v0.94.0 U7: deck panel tabs and the Deck look (sleeve tint, core and Soul Core colours; saved per deck slot, used on the board) */
@@ -10035,7 +10106,7 @@ function renderLore() {
   if (!series.some(s => s[0] === LORE_SET)) LORE_SET = series[0][0];
   sel.innerHTML = series.map(([k, ids]) => `<option value="${esc(k)}">${esc(k)} (${ids.length})</option>`).join(''); sel.value = LORE_SET;
   const at = series.findIndex(s => s[0] === LORE_SET), ids = series[at][1];
-  $('lib-lore-nav').innerHTML = series.map(([k, l]) => `<button class="${k === LORE_SET ? 'on' : ''}" data-a="lib-lore-set" data-v="${esc(k)}" aria-pressed="${k === LORE_SET}"><b>${esc(k)}</b><span>${l.length} texts${LORE_BY === 'saga' && /^Saga/.test(k) ? ' · ' + esc(loreTitle(k)) : ''}</span></button>`).join('');
+  $('lib-lore-nav').innerHTML = series.map(([k, l]) => `<button class="${k === LORE_SET ? 'on' : ''}" data-a="lib-lore-set" data-v="${esc(k)}" aria-pressed="${k === LORE_SET}"><b>${esc(k)}${LORE_BY === 'saga' && /^Saga/.test(k) ? ' <em>' + esc(loreTitle(k).replace(/^Saga \d+\s*[·:-]?\s*/, '')) + '</em>' : ''}</b><span>${l.length} texts</span></button>`).join('');
   $('lib-lore-h').textContent = loreTitle(LORE_SET); $('lib-lore-sub').textContent = `${ids.length} flavor texts · ${LORE_BY === 'saga' ? 'saga' : 'series'} ${at + 1} of ${series.length}`;
   $('lib-lore-by').innerHTML = [['series', 'By series'], ['saga', 'By Saga']].map(([v, l]) => `<button data-a="lib-lore-by" data-v="${v}" aria-pressed="${LORE_BY === v}">${l}</button>`).join(''); $('lib-lore-ord').textContent = LORE_BY === 'saga' ? 'Sagas In Reading Order' : 'Series In Reading Order';
   $('lib-lore-bar').style.width = `${Math.round(100 * (at + 1) / series.length)}%`;
@@ -10366,13 +10437,13 @@ function renderLibrary() {
 const LIBV = { list: [], from: -1, to: -1, cols: 0, rowH: 0, raf: 0, timer: 0, key: '' };
 const LIB_GAP = 16, LIB_BUF = 2;
 const libSetOf = id => String(id).replace(/-.*$/, '');
-const LIBF = { colors: new Set(), costs: new Set(), types: new Set(), groups: new Set(), family: '', complete: true, dd: '', sort: 'set', size: 'm', tab: 'cards', min: false };   // mockup toolbar state (v0.137.0)
+const LIBF = { colors: new Set(), costs: new Set(), types: new Set(), groups: new Set(), family: '', complete: true, partly: false, dd: '', sort: 'set', size: 'm', tab: 'cards', min: false };   // mockup toolbar state (v0.137.0)
 const LIB_SIZES = [['s', 'S', 8], ['m', 'M', 6], ['l', 'L', 4]];
 function libActive() { return LIBF.colors.size + LIBF.costs.size + LIBF.types.size + LIBF.groups.size + (LIBF.family ? 1 : 0) + ((($('lib-set') || {}).value) ? 1 : 0) + (($('lib-search') || {}).value ? 1 : 0); }
 function libFilter() {
   const q = (($('lib-search') || {}).value || '').trim().toLowerCase(), fam = LIBF.family.trim().toLowerCase();
   const set = (($('lib-set') || {}).value) || '';
-  const key = [CARDS_VER, q, set, fam, [...LIBF.colors], [...LIBF.costs], [...LIBF.types], [...LIBF.groups], LIBF.complete, LIBF.sort].join('|');
+  const key = [CARDS_VER, q, set, fam, [...LIBF.colors], [...LIBF.costs], [...LIBF.types], [...LIBF.groups], LIBF.complete, LIBF.partly, LIBF.sort].join('|');
   if (key === LIBV.key) return LIBV.list;
   LIBV.key = key;
   let l = dbIndex().filter(e => {
@@ -10381,6 +10452,7 @@ function libFilter() {
     if (set && libSetOf(e.id) !== set) return false;
     const c = CARDS[e.id];
     if (LIBF.complete && fxMarked(c)) return false;
+    if (LIBF.partly && !fxMarked(c)) return false;   // v0.158.0: the "! Partly Implemented" chip is a filter (only the cards marked "!")
     return dbFilterOK(c, LIBF.colors, LIBF.costs, LIBF.types) && [...LIBF.groups].every(g => dbGroupOK(c, g));
   });
   l = l.slice().sort(DB_SORTS[LIBF.sort] || DB_SORTS.set);
@@ -10393,14 +10465,15 @@ function libBar() {                                   // the mockup toolbar: col
   $('lib-pips').innerHTML = filterPipsHTML(LIBF, 'lib-f');
   $('lib-types').innerHTML = filterTypesHTML(LIBF, 'lib-f');
   $('lib-costs').innerHTML = DB_COSTS.map(k => `<button class="cbtn${on(LIBF.costs, k) ? ' on' : ''}" data-a="lib-f" data-v="costs:${k}" aria-pressed="${on(LIBF.costs, k)}" aria-label="Cost ${k}">${k === '10' ? '10+' : k}</button>`).join('');
-  const ddb = (n, l, sel) => `<button class="chip ddb${n === 'colour' ? ' ddphone' : ''}${sel.length ? ' on' : ''}" data-a="lib-dd" data-v="${n}" aria-haspopup="true" aria-expanded="${LIBF.dd === n}">${l}: ${sel.length ? sel.join(', ') : 'All'} ▾</button>`;
-  $('lib-colbtn').innerHTML = ddb('colour', 'Colour', [...LIBF.colors].map(cap).concat(LIBF.groups.has('multi') ? ['All colour'] : []));
-  $('lib-groups').innerHTML = ddb('group', 'Group', DB_GROUPS.filter(([g]) => LIBF.groups.has(g)).map(x => x[1]));
+  $('lib-colbtn').innerHTML = ddButton(LIBF, 'colour', 'Colour', 'lib-dd') + ddButton(LIBF, 'type', 'Type', 'lib-dd') + ddButton(LIBF, 'cost', 'Cost', 'lib-dd');
+  $('lib-groups').innerHTML = ddButton(LIBF, 'group', 'Group', 'lib-dd');
   $('lib-play').classList.toggle('on', LIBF.complete);
   libMenu();
   $('lib-size').innerHTML = LIB_SIZES.map(([v, l]) => `<button data-a="lib-size" data-v="${v}" aria-pressed="${LIBF.size === v}">${l}</button>`).join('');
   $('lib-sort').value = LIBF.sort; if (document.activeElement !== $('lib-family')) $('lib-family').value = LIBF.family;
   $('lib-complete').classList.toggle('on', LIBF.complete); $('lib-complete').setAttribute('aria-pressed', String(LIBF.complete));
+  $('lib-partly').classList.toggle('on', LIBF.partly); $('lib-partly').setAttribute('aria-pressed', String(LIBF.partly));
+  dqa('#lib-lore-pane [data-a="lib-lore-min"]').forEach(b => { const k = b.dataset.v === 'head' ? 'lore-head-min' : 'lore-nav-min', m = $('lib-lore-pane').classList.contains(k); b.setAttribute('aria-pressed', String(m)); b.textContent = (m ? '▼ Show ' : '▲ Hide ') + (b.dataset.v === 'head' ? 'details' : 'list'); });
   const n = libActive(); $('lib-clear').innerHTML = n ? `<button class="chip" data-a="lib-clear">Clear ${n} ✕</button>` : '';
   $('lib-grid').style.setProperty('--cols', String((LIB_SIZES.find(x => x[0] === LIBF.size) || LIB_SIZES[1])[2]));
   $('view-library').classList.toggle('lib-min', !!LIBF.min); { const mb = $('lib-min'); mb.setAttribute('aria-pressed', String(!!LIBF.min)); mb.textContent = LIBF.min ? '▼ Show filters' : '▲ Hide filters'; }
@@ -10410,27 +10483,23 @@ function libBar() {                                   // the mockup toolbar: col
   $('lib-sub').textContent = tab ? 'The flavor texts of the cards, read in series order.' : 'Search and filter the whole card data. Click a card for its page.';
   document.querySelectorAll('#lib-tabs button').forEach(b => b.setAttribute('aria-pressed', String(/** @type {HTMLElement} */ (b).dataset.v === LIBF.tab)));
 }
-function libMenu() {                                  // the mockup dropdown menu (Colour on phone, Group everywhere)
+function libMenu() {                                  // the mockup dropdown menu (Colour, Type and Cost on phone, Group everywhere)
   document.querySelectorAll('#lib-tbar .ddmenu').forEach(m => m.remove());
   const tb = $('lib-tbar'), btn = LIBF.dd && tb.querySelector(`[data-a="lib-dd"][data-v="${LIBF.dd}"]`); if (!btn) return;
-  const colour = LIBF.dd === 'colour', set = colour ? LIBF.colors : LIBF.groups, items = colour ? DB_COLORS.map(c => [c, cap(c)]).concat([['multi', 'All colour']]) : DB_GROUPS;
-  const has = k => colour && k === 'multi' ? LIBF.groups.has('multi') : set.has(k);
-  const m = document.createElement('div'); m.className = 'ddmenu scroll'; m.setAttribute('role', 'menu');
-  m.innerHTML = items.map(([k, l]) => `<button class="ddi${has(k) ? ' on' : ''}" data-a="lib-ddpick" data-v="${k}" role="menuitemcheckbox" aria-checked="${has(k)}"><span class="ddc">${has(k) ? '✓' : ''}</span>${colour ? `<i class="dot" style="background:${k === 'multi' ? RAINBOW : colorVar(k)}"></i>` : ''}<span class="grow">${l}</span></button>`).join('') + '<button class="ddi clr" data-a="lib-ddclear">Clear</button>';
-  tb.appendChild(m);
-  const r = btn.getBoundingClientRect(), t = tb.getBoundingClientRect(), w = Math.max(r.width, 210);
-  m.style.width = w + 'px'; m.style.left = Math.max(6, Math.min(t.width - w - 6, r.left - t.left)) + 'px'; m.style.top = (r.bottom - t.top + 4) + 'px';
+  ddMenuEl(LIBF, tb, btn, 'lib-ddpick', 'lib-ddclear');
 }
 document.addEventListener('click', e => { if (LIBF.dd && !(/** @type {Element} */ (e.target)).closest('.ddmenu,[data-a="lib-dd"]')) { LIBF.dd = ''; libMenu(); } });
 function libTool(a, v) {
   if (a === 'lib-dd') { LIBF.dd = LIBF.dd === v ? '' : v; libBar(); return; }
-  if (a === 'lib-ddpick') { const s = LIBF.dd === 'colour' && v !== 'multi' ? LIBF.colors : LIBF.groups; if (s.has(v)) s.delete(v); else s.add(v); }
-  else if (a === 'lib-ddclear') { (LIBF.dd === 'colour' ? LIBF.colors : LIBF.groups).clear(); if (LIBF.dd === 'colour') LIBF.groups.delete('multi'); LIBF.dd = ''; }
+  if (a === 'lib-ddpick') ddPick(LIBF, v, false);
+  else if (a === 'lib-ddclear') { ddPick(LIBF, v, true); LIBF.dd = ''; }
   else if (a === 'lib-f') { const [g, x] = v.split(':'), s = LIBF[g]; if (s) { if (s.has(x)) s.delete(x); else s.add(x); } }
   else if (a === 'lib-size') LIBF.size = v;
   else if (a === 'lib-min') LIBF.min = !LIBF.min;
   else if (a === 'lib-tab') LIBF.tab = v === 'lore' ? 'lore' : 'cards';
-  else if (a === 'lib-complete') LIBF.complete = !LIBF.complete;
+  else if (a === 'lib-complete') { LIBF.complete = !LIBF.complete; if (LIBF.complete) LIBF.partly = false; }
+  else if (a === 'lib-partly') { LIBF.partly = !LIBF.partly; if (LIBF.partly) LIBF.complete = false; }
+  else if (a === 'lib-lore-min') { const k = v === 'head' ? 'lore-head-min' : 'lore-nav-min'; $('lib-lore-pane').classList.toggle(k); }
   else if (a === 'lib-clear') { ['colors', 'costs', 'types', 'groups'].forEach(g => LIBF[g].clear()); LIBF.family = ''; $('lib-set').value = ''; $('lib-search').value = ''; }
   else if (a === 'lib-lore-mv') { const ks = loreSeries().map(x => x[0]), i = ks.indexOf(LORE_SET) + Number(v); if (ks[i]) LORE_SET = ks[i]; }
   else if (a === 'lib-lore-by') { LORE_BY = v === 'saga' ? 'saga' : 'series'; LORE_SET = ''; }
@@ -10855,7 +10924,7 @@ document.addEventListener('click', e => {
   else if (a === 'set-mat-clear') matClear();
   else if (a === 'lobby-bg-clear') lobbyBgClear();
   else if (a === 'libcard') openZoom(v);                                    // v0.111.0 (card images): the Library browse grid
-  else if (/^lib-(f|size|tab|min|complete|clear|lore-|dd)/.test(a)) libTool(a, v);
+  else if (/^lib-(f|size|tab|min|complete|partly|clear|lore-|dd)/.test(a)) libTool(a, v);
   else if (a.startsWith('lib-')) libAction(a);
   else if (a === 'format') setFormat(FORMAT === 'eternal' ? 'standard' : 'eternal');
   else if (a === 'rules') showRules();
