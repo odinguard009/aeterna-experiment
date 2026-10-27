@@ -4,6 +4,11 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.166.0
+- Lane: K
+- **Lane K: 2 more Standard cards complete, 842 of 8,709; new condition `handLe`.** "If your Hand is five or less" is an engine condition (the owner's Hand size when the action resolves), and the compiler reads "(During Attack) If <condition>, this Spirit gains +N BP" as a conditional STATIC `attackingOnly` BP, with every condition the v2 reader knows (a hook from v1 to `cond_of`). Cards: Faltex 26RSD09-004 (was partial: True Release draw), 26RBS01-018 (Shamanism). Effect format v12 (addition only).
+  - Checked: loop, `hand_le_condition`, `compiler_v2` C166-01, `strict_effects` (condition key list), promotion smoke 2 / 2. Not checked: full pre-push set and Regression (CI), a real device. Revert note: `git revert` the v0.166.0 commit.
+
 ## v0.165.0
 - Lane: K
 - **Lane K: 7 more cards complete, 840 of 8,709 (all Standard); new action `SHOW_RETURN`.** "Show up to N <X> cards from your Hand to the opponent. Return them to the deckbottom. For each card returned, draw a card." (also "If two cards are returned, draw three cards" and the single-card "You can show ... and return it to the deckbottom. If returned, ...") is one engine action; the human picks each card (or Done), the CPU returns the cheapest matching cards; showing itself is only logged. Compiler: "If returned, X" = "Then, X", "Then, destroy it if it has 0 BP", "(You can) discard N cards from your decktop" (`MILL`, no card needed it alone yet). Cards: 26RCB01-020, 26RCB01-030, 26RSD04-011, 26RSD04-012, 26RSD05-011, 26RSD05-013, 26RSD07-010. Effect format v11 (addition only).

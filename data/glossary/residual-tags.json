@@ -39433,9 +39433,6 @@
  "26RBS01-014": [
   "T_SUMMONED"
  ],
- "26RBS01-018": [
-  "A_BP_PLUS"
- ],
  "26RBS01-021": [
   "M_OPTIONAL",
   "T_SUMMONED"
@@ -41785,10 +41782,6 @@
   "T_ATTACKS"
  ],
  "26RSD09-001": [],
- "26RSD09-004": [
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
  "26RSD09-006": [
   "A_BP_PLUS",
   "C_LEVEL",

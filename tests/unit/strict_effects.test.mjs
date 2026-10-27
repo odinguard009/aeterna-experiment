@@ -49,7 +49,7 @@ test('S594-03 release: unknown names are skipped (condition not met, no effects)
 });
 test('S594-04 every condition key the parser accepts is known to fxIf', async () => {
   const bad = await run(() => {
-    const keys = ['byOpp', 'hasSymbol', 'lifeLe', 'anyLifeLe', 'counterGe', 'soulGe', 'oppHandGe', 'voidGe', 'soulLe', 'putGe', 'lifeGe', 'oppRemovedGe', 'removedGe', 'oppSpiritsLe', 'oppNexusGe', 'oppNoAB', 'oppRemovedSpirit', 'controlName', 'hasName', 'soulOn', 'nexusBraved', 'oppTurn', 'attackStep', 'prev', 'utHit', 'sealed'];
+    const keys = ['handLe', 'byOpp', 'hasSymbol', 'lifeLe', 'anyLifeLe', 'counterGe', 'soulGe', 'oppHandGe', 'voidGe', 'soulLe', 'putGe', 'lifeGe', 'oppRemovedGe', 'removedGe', 'oppSpiritsLe', 'oppNexusGe', 'oppNoAB', 'oppRemovedSpirit', 'controlName', 'hasName', 'soulOn', 'nexusBraved', 'oppTurn', 'attackStep', 'prev', 'utHit', 'sealed'];
     const P = BS.G.p.player, O = BS.G.p.opponent, out = [];
     for (const k of keys) { try { BS.fxIf(P, O, { [k]: k === 'hasSymbol' ? 'red' : /Name|soulOn|nexusBraved/.test(k) ? 'x' : /Ge$|Le$/.test(k) ? 1 : true }, {}); } catch (e) { out.push(k + ': ' + e.message); } }
     return out;

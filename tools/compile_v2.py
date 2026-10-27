@@ -524,6 +524,8 @@ def cond_of(x):
     if m: return {'oppBurstSet': not m.group(1)}
     m = re.fullmatch(r'you control (?:an? |any )?\[([^\]/]+)\]', x, re.I)
     if m: return {'controlName': m.group(1).strip()}
+    m = re.fullmatch(r'your hand is (one|two|three|four|five|six|seven|\d) or less', x, re.I)
+    if m: return {'handLe': n_of(m.group(1).lower())}      # v0.166 (engine fxIf handLe)
     m = re.fullmatch(r'you have (one|two|three|four|five|\d) counters? or more', x, re.I)
     if m: return {'counterGe': n_of(m.group(1).lower())}
     m = re.fullmatch(r'you control (one|two|three|four|five|six|\d) or more (?:(red|purple|green|white|yellow|blue) )?(?:"([^"]+)" family )?(spirit/ultimate|spirit|ultimate)s', x, re.I)
@@ -754,10 +756,12 @@ def install():
     v1.action_of = action_of
     v1.sentences = sentences
     v1.clean = clean
+    v1.COND_HOOK = cond_of
 
 
 def uninstall():
     v1.action_of, v1.sentences, v1.clean = _V1_ACTION_OF, _V1_SENTENCES, _V1_CLEAN
+    v1.COND_HOOK = None
 
 
 def units(t):

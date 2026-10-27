@@ -70,6 +70,8 @@ def all_have_cond(x):
     m = re.fullmatch(r'all your spirits/nexuses have the "([^"]+)" family', x.strip(), re.I)
     return {'allHave': {'family': m.group(1)}} if m else None
 
+COND_HOOK = None      # v0.166: set by compile_v2.install() to its cond_of (the fxIf condition reader)
+
 def bpm(s):
     n = bp(s)
     if n % 1000 or not 1000 <= n <= 30000: raise Review(f'BP minus {n} (engine: 1000-30000 in steps of 1000)')
@@ -509,10 +511,11 @@ def spirit_paragraph_main(p, card, rush):
             e = {'trigger': 'STATIC', 'bp': bp(mm.group(1)), 'to': 'own', 'attackingOnly': True}
             if lv: e['lv'] = lv
             return [e], flags
-        mm = re.match(r'^If (.+?), this Spirit (?:gains|gets) \+(\d[\d,]*) ?BP\.?$', p, re.I)
-        cond = all_have_cond(mm.group(1)) if mm else None
-        if cond:      # v0.131 conditional static BP (house reading of allHave: no card on the Field = not met)
-            e = {'trigger': 'STATIC', 'bp': bp(mm.group(2)), 'to': 'self', 'if': cond}
+        mm = re.match(r'^(\(During Attack\)\s*)?If (.+?), this Spirit (?:gains|gets) \+(\d[\d,]*) ?BP\.?$', p, re.I)
+        cond = (all_have_cond(mm.group(2)) or (COND_HOOK(mm.group(2)) if COND_HOOK else None)) if mm else None
+        if cond:      # v0.131 conditional static BP (house reading of allHave: no card on the Field = not met); v0.166 "(During Attack)" prefix and the v2 condition reader
+            e = {'trigger': 'STATIC', 'bp': bp(mm.group(3)), 'to': 'self', 'if': cond}
+            if mm.group(1): e['attackingOnly'] = True
             if lv: e['lv'] = lv
             return [e], flags
         sw = step_window(p, card, lv, rush)      # v0.70: generic step window head

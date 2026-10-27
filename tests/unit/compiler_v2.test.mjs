@@ -100,3 +100,9 @@ test('C165-01 show-and-return-to-deckbottom pairs, "If returned", destroy-if-0-B
   assert.deepEqual(acts('[LV1] (When Summoned) Target an opposing Spirit. During this turn, give it -2000 BP. Then, destroy it if it has 0 BP.'), acts('[LV1] (When Summoned) Target an opposing Spirit. During this turn, give it -2000 BP. Then, if it has 0 BP, destroy it.'));
   assert.deepEqual(acts('[LV1] (When Summoned) Discard two cards from your decktop.'), [{ do: 'MILL', n: 2 }]);
 });
+
+test('C166-01 "(During Attack) If <condition>, this Spirit gains +N BP" and "If your Hand is five or less" (handLe) (v0.166.0)', () => {
+  const r = compile('[LV1] (During Attack)\nIf you control any Spirit with Shamanism, this Spirit gains +2000 BP.');
+  assert.deepEqual(r.effects[0], { trigger: 'STATIC', bp: 2000, to: 'self', if: { ctrl: { n: 1, type: 'Spirit', keyword: 'Shamanism' } }, attackingOnly: true, lv: [1] });
+  assert.deepEqual(acts('[LV1] (When Attacks) If your Hand is five or less, draw a card.'), [{ do: 'DRAW', n: 1, if: { handLe: 5 } }]);
+});
