@@ -2335,6 +2335,8 @@ html.layout-pc #view-playmat .hand-area .tcg-card:hover,html.layout-pc #view-pla
 .cface.ph .ph-art{position:absolute;inset:0;width:100%;height:100%;z-index:-1;opacity:.75;}
 .cface.ph .ph-name,.cface.ph .ph-sub,.cface.ph .ph-bp{text-shadow:0 1px 3px #000c;}
 .cface.ph .ph-txt{background:#0b0e1355;padding:2px 3px;border-radius:2px;text-shadow:0 1px 2px #000;}
+html.layout-pc #view-playmat .field-row .slot-ph{flex:none;height:90%;aspect-ratio:63 / 88;display:flex;align-items:center;justify-content:center;border:1px dashed var(--ae-line2,#ffffff40);color:var(--ae-text2);font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;opacity:.8;}
+html.layout-pc #view-playmat .field-row{justify-content:center;}
 </style>
 </head>
 <body>
@@ -2872,7 +2874,7 @@ function bindHost(h) {
    type: 'Spirit' | 'Nexus' | 'Magic'      symbol: card color     symbols: number of symbols
    reduction: {color: n}         levels: [{cores, bp}]  (Nexus levels have no bp)
    --------------------------------------------------------------------- */
-const VERSION = '0.156.0';
+const VERSION = '0.157.0';
 const CARDS = {};
 function defCard(o) {
   CARDS[o.id] = Object.assign({ type: 'Spirit', reduction: {}, symbols: 1, families: [], keywords: [], implemented: true, desc: 'Vanilla test card (no effect).', block: 'A' }, o);
@@ -7988,9 +7990,9 @@ function fieldCardHTML(key, kind, f) {
     ${selB}<div class="cost">${card.cost}</div><div class="type-badge">${f.under.length ? 'ADV' : card.contract ? 'CON' : card.token ? 'TOK' : card.type.substring(0, 3).toUpperCase()}${rebMark(card)}</div>
     <div class="name">${nameHTML(card.name)}</div><div class="core-tag${f.soul ? ' soul-active' : ''}${f.cores ? '' : ' none'}" title="${f.cores} core${f.cores === 1 ? '' : 's'}${f.soul ? ' (Soul Core included)' : ''}"><span class="gems">${gemsHTML(plain, f.soul, 6)}</span><span class="sr-only">C:${f.cores}${f.soul ? ' S' : ''}</span></div>${stack}<div class="bp">${bp}</div>${isSpiritForm(card) ? `<span class="lv-dia" aria-hidden="true" title="Level ${lvNo(f)}"><b>${lvNo(f)}</b></span>` : ''}${magBtnHTML(f.id, f.uid)}${symBadgeHTML(f.id)}</div></div>`;
 }
-function rowHTML(title, scroll, key, items, emptyText, cls, pad, tag) {       // items: [{kind, f}]; tag (v0.155.0): the hand-count tag beside a Nexus
+function rowHTML(title, scroll, key, items, emptyText, cls, pad, tag, cells) {       // items: [{kind, f}]; tag (v0.155.0): the hand-count tag beside a Nexus
   return `<div class="field-row-wrapper ${cls || ''}"><div class="row-header-badge"><span>${title}</span></div>${tag || ''}
-    <div class="field-row" data-scroll="${scroll}">${items.length ? items.map(o => fieldCardHTML(key, o.kind, o.f)).join('') + (pad || '') : (pad || `<span class="empty-note">${emptyText}</span>`)}</div></div>`;
+    <div class="field-row" data-scroll="${scroll}">${cells ? items.map(o => fieldCardHTML(key, o.kind, o.f)).join('') + '<div class="slot-ph" aria-hidden="true">Empty</div>'.repeat(Math.max(0, cells - items.length)) : items.length ? items.map(o => fieldCardHTML(key, o.kind, o.f)).join('') + (pad || '') : (pad || `<span class="empty-note">${emptyText}</span>`)}</div></div>`;   // v0.157.0: PC rows show their locked cells (5 Spirits, 1 Nexus) as dashed "Empty" slots, like the mockup
 }
 /* Burst / Mirage Area (top-left corner of each field): sleeve = Burst set face down, card face = Mirage set face up */
 function burstAreaHTML(p) {
@@ -8014,8 +8016,8 @@ function fieldAreaHTML(p, isPlayer) {
   let rows;
   if (isPC()) {                                  // PC: two rows, Spirits and Nexus
     const handTag = isPlayer ? `<span class="nx-tag you" data-a="zone" data-v="${k}:hand">Your Hand ${p.hand.length}</span>` : `<div class="opp-hand-pill nx-tag cpu" data-a="zone" data-v="${k}:hand" title="Cards in the CPU's Hand">CPU Hand <b>${p.hand.length}</b></div>`;   // v0.155.0: the mockup's "CPU Hand 4" / "Your Hand n" tag sits beside the Nexus
-    const nexusRow = rowHTML('NEXUS', k + '-nexus', k, nx, 'No Nexus', 'nexus-row', '', handTag);      // v0.63.0: the side colour of the label says whose row it is
-    const spiritRow = rowHTML('SPIRITS', k + '-spirits', k, sp, 'No Spirits');
+    const nexusRow = rowHTML('NEXUS', k + '-nexus', k, nx, 'No Nexus', 'nexus-row', '', handTag, 1);      // v0.63.0: the side colour of the label says whose row it is
+    const spiritRow = rowHTML('SPIRITS', k + '-spirits', k, sp, 'No Spirits', '', '', '', 5);
     rows = isPlayer ? spiritRow + nexusRow : nexusRow + spiritRow;
   } else {                                       // phone: one swipeable row (Spirits, then Nexus)
     const all = sp.concat(nx), ph = all.length ? '' : '<span class="ph-slot" aria-hidden="true">Empty</span>';   // v0.149.0: cards start in the middle (auto margins), one dashed slot only when the field is empty

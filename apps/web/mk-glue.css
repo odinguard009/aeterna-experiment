@@ -176,3 +176,7 @@ html.layout-pc #view-playmat .hand-area .tcg-card:hover, html.layout-pc #view-pl
 .cface.ph .ph-art { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; opacity: .75; }
 .cface.ph .ph-name, .cface.ph .ph-sub, .cface.ph .ph-bp { text-shadow: 0 1px 3px #000c; }
 .cface.ph .ph-txt { background: #0b0e1355; padding: 2px 3px; border-radius: 2px; text-shadow: 0 1px 2px #000; }
+
+/* ---- v0.157.0: battle PC rows show the locked cells as dashed "Empty" slots (mockup .slot) ---- */
+html.layout-pc #view-playmat .field-row .slot-ph { flex: none; height: 90%; aspect-ratio: 63 / 88; display: flex; align-items: center; justify-content: center; border: 1px dashed var(--ae-line2, #ffffff40); color: var(--ae-text2); font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; opacity: .8; }
+html.layout-pc #view-playmat .field-row { justify-content: center; }

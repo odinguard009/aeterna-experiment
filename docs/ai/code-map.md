@@ -122,7 +122,7 @@ humanCan, legalityHTML, FX_KW_START, FX_LINE_STOP, effectLines, fxMark, slashBre
 ## apps/web/src/12-zones.js (70 lines, ~1.6k tokens) — ZONES, LOG, RULES COVERAGE
 openZoneModal, openLogModal, showRules
 
-## apps/web/src/13-render.js (370 lines, ~8.7k tokens) — RENDERING
+## apps/web/src/13-render.js (370 lines, ~8.8k tokens) — RENDERING
 nameHTML, isPC, applyLayout, _rz, colorVar, cardColors, isMulti, colorSty, symSlices, symCount, isUltimate, cardCls, rebMark, symBadgeHTML, handCardHTML, gemsHTML, fieldCardHTML, rowHTML, burstAreaHTML, soulAreaHTML, PILL_FULL, fieldAreaHTML, zoneBox, pv, pileHTML, lifePlate, resPlate, STEP_WARN, stepTargets, stepWarn, stepClick, SLEEVE_TINTS, CORE_LOOKS, deckLook, coreVars, SLEEVE_IMG, sleeveImgCss, applyLook, hintText, renderBoard, fitGems, render, CUE, fxCueReset, aeRibbon, aeStrip, fxCues, LOG_OPEN, updateLogDrawer, toggleLog, magBtnHTML, liveStatusHTML, HIST_KEY, HISTORY, recordMatch, histHTML, lifeTxt, switchView, renderSettings, renderLobby
 
 ## apps/web/src/13a-deckbuilder.js (463 lines, ~10.9k tokens) — DECK BUILDER (v0.53.0 redesign; list performance from v0.52.1)

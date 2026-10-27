@@ -4,6 +4,11 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.157.0
+- Lane: U/I
+- **Battle (PC): locked cells shown.** Each Spirit row shows its five cells and each Nexus row its one cell as dashed "Empty" slots (mockup `.slot`) instead of the "No Spirits" / "No Nexus" text; a placed card takes the first cell. Phone is unchanged (one swipeable row).
+  - Checked: loop, screenshot at 1366 px. Not checked: the full Playwright suite beyond the pre-push run, phone, Android. Not done: moving the battle screen onto `mockup.css` (`MK_OFF`) - the markup stays on the old stylesheet.
+
 ## v0.156.0
 - Lane: U/I
 - **Mockup parity, batch 4.** Export dialog has Text / Code / Image / CSV tabs (Image = a plain deck sheet PNG drawn on a canvas); Import shows "Format detected" live (deck code, list or CSV, with the line count); Avatar and Match history open as dialogs like the mockup (history keeps an "All matches" button to the Settings list); the starting-hand dialog reads "You may redraw the whole hand once. Cards you can pay for on turn 1–2 are marked." with an "Easy" tag on cards that cost 3 or less; battle (PC): the hand-count tag sits beside each Nexus ("CPU Hand n" / "Your Hand n"), a "Mirage Set" tag on a set Mirage, the hand is a fan; card faces without a picture get generated art (glow, ridges, a silhouette by type; drawn by code, no printed artwork).
