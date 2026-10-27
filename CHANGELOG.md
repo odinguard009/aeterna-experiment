@@ -4,6 +4,11 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.147.0
+- Lane: U/I
+- **Frontend audit, part 2.** Two real findings fixed: (1) white text on the Red, Purple and Blue accent colours in dark mode read at only 3.4-3.9:1; the accent ink now falls back to black when its own ink is below 4.5:1 (checked on lobby, Play and Decks for all 9 colours). (2) Lobby Card of the Day showed no name and no buttons on a card without flavor text; it now shows the name, Card Page and + Add To Deck (this also fixed test HM1 failing today and blocking the v0.146.0 push).
+  - Checked: contrast script over 3 screens x 9 colours, quick tests. Not checked: contrast on other screens and the battle board, keyboard order
+
 ## v0.146.0
 - Lane: U/I
 - **Frontend audit, part 1.** Scripted pass over 10 screens at 390 px and 1280 px: no console errors, no page-wide horizontal scroll, no unnamed buttons, no images without alt. One finding fixed: the deck builder card info (i) buttons were 22 px wide, now 24 px (WCAG 2.2 minimum).

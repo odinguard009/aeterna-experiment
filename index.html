@@ -2679,7 +2679,9 @@ function applyTheme() {
   const c = THEME_COLS.find(x => x.id === THEME.color) || THEME_COLS[0], light = THEME.mode === 'light', v = light ? c.l : c.d, r = document.documentElement;
   r.setAttribute('data-mode', THEME.mode);
   r.style.setProperty('--you', v);
-  r.style.setProperty('--you-ink', light && c.lk ? c.lk : c.ink);   // v0.99 U8a lk: light-mode ink that reaches 4.5:1 on the darker light colour
+  const lum = h => { const [R, G, B] = [1, 3, 5].map(i => { const x = parseInt(h.slice(i, i + 2), 16) / 255; return x <= .03928 ? x / 12.92 : Math.pow((x + .055) / 1.055, 2.4); }); return .2126 * R + .7152 * G + .0722 * B; };
+  const cr = (a, b) => (Math.max(lum(a), lum(b)) + .05) / (Math.min(lum(a), lum(b)) + .05), ink0 = light && c.lk ? c.lk : c.ink;
+  r.style.setProperty('--you-ink', cr(ink0, v) >= 4.5 ? ink0 : '#000000');   // v0.147 audit: the colour's own ink when it reads at 4.5:1, else black (Red, Purple, Blue in dark mode); v0.99 U8a lk: light-mode ink on the darker light colour
   r.style.setProperty('--you-soft', c.id === 'white' && light ? '#0b1a3022' : v + '40');
   r.style.setProperty('--cpu', c.id === 'red' ? (light ? '#1f6fd9' : '#3a8cf0') : (light ? '#c42b40' : '#d8344b'));
   r.style.setProperty('--cpu-ink', '#ffffff');
@@ -2738,7 +2740,7 @@ function bindHost(h) {
    type: 'Spirit' | 'Nexus' | 'Magic'      symbol: card color     symbols: number of symbols
    reduction: {color: n}         levels: [{cores, bp}]  (Nexus levels have no bp)
    --------------------------------------------------------------------- */
-const VERSION = '0.146.0';
+const VERSION = '0.147.0';
 const CARDS = {};
 function defCard(o) {
   CARDS[o.id] = Object.assign({ type: 'Spirit', reduction: {}, symbols: 1, families: [], keywords: [], implemented: true, desc: 'Vanilla test card (no effect).', block: 'A' }, o);
@@ -8622,7 +8624,7 @@ function renderHomeMore() {
   const foot = `<span class="sub" style="font-size:.76em">New card at 00:00 UTC · in <span class="cd" id="cd">${left}</span></span>`;
   $('cotd').className = 'cotd' + (fl ? '' : ' solo');
   $('cotd').innerHTML = fl ? `${cf}<div class="card qb"><span class="eyebrow">Card Of The Day</span><div class="qm">“</div><div class="qt">${esc(fl).replace(/\n/g, '<br>')}</div><span class="mut" style="font-size:.8em">Flavor Text · ${esc(c.name)} · ${esc(id)}</span>${btns}${foot}</div>`
-    : `<div class="col cinfo"><span class="eyebrow">Card Of The Day</span><span class="sub">${c ? 'No flavor text on this card.' : ''}</span>${foot}</div>${cf}`;
+    : `<div class="col cinfo"><span class="eyebrow">Card Of The Day</span>${c ? `<b>${esc(c.name)}</b><span class="sub">No flavor text on this card.</span>${btns}` : ''}${foot}</div>${cf}`;
   $('home-missions').innerHTML = dailyMissions().map(m => `<div class="mission"><span class="grow">${esc(m.txt)}</span><div class="bar" style="max-width:90px"><i style="width:${Math.min(100, m.v / m.goal * 100)}%"></i></div><b style="width:36px;text-align:right">${m.v}/${m.goal}</b></div>`).join('') + '<span class="mut" style="font-size:.74em">Resets at 00:00 UTC.</span>';
   const h = HISTORY && HISTORY[HISTORY.length - 1];
   $('home-last').innerHTML = h ? `<div class="row"><span class="tag">${esc(h.won ? 'Win' : 'Loss')}</span><b>vs ${esc(h.cpu || 'CPU')}</b></div><span class="sub" style="font-size:.84em">Turn ${h.turns || '?'} · ${esc(h.you || '')}</span><button class="btn sm" style="align-self:flex-start" data-a="go-history">History</button>`

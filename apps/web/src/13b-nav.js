@@ -93,7 +93,7 @@ function renderHomeMore() {
   const foot = `<span class="sub" style="font-size:.76em">New card at 00:00 UTC · in <span class="cd" id="cd">${left}</span></span>`;
   $('cotd').className = 'cotd' + (fl ? '' : ' solo');
   $('cotd').innerHTML = fl ? `${cf}<div class="card qb"><span class="eyebrow">Card Of The Day</span><div class="qm">“</div><div class="qt">${esc(fl).replace(/\n/g, '<br>')}</div><span class="mut" style="font-size:.8em">Flavor Text · ${esc(c.name)} · ${esc(id)}</span>${btns}${foot}</div>`
-    : `<div class="col cinfo"><span class="eyebrow">Card Of The Day</span><span class="sub">${c ? 'No flavor text on this card.' : ''}</span>${foot}</div>${cf}`;
+    : `<div class="col cinfo"><span class="eyebrow">Card Of The Day</span>${c ? `<b>${esc(c.name)}</b><span class="sub">No flavor text on this card.</span>${btns}` : ''}${foot}</div>${cf}`;
   $('home-missions').innerHTML = dailyMissions().map(m => `<div class="mission"><span class="grow">${esc(m.txt)}</span><div class="bar" style="max-width:90px"><i style="width:${Math.min(100, m.v / m.goal * 100)}%"></i></div><b style="width:36px;text-align:right">${m.v}/${m.goal}</b></div>`).join('') + '<span class="mut" style="font-size:.74em">Resets at 00:00 UTC.</span>';
   const h = HISTORY && HISTORY[HISTORY.length - 1];
   $('home-last').innerHTML = h ? `<div class="row"><span class="tag">${esc(h.won ? 'Win' : 'Loss')}</span><b>vs ${esc(h.cpu || 'CPU')}</b></div><span class="sub" style="font-size:.84em">Turn ${h.turns || '?'} · ${esc(h.you || '')}</span><button class="btn sm" style="align-self:flex-start" data-a="go-history">History</button>`

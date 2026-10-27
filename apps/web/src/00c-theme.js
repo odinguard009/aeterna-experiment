@@ -26,7 +26,9 @@ function applyTheme() {
   const c = THEME_COLS.find(x => x.id === THEME.color) || THEME_COLS[0], light = THEME.mode === 'light', v = light ? c.l : c.d, r = document.documentElement;
   r.setAttribute('data-mode', THEME.mode);
   r.style.setProperty('--you', v);
-  r.style.setProperty('--you-ink', light && c.lk ? c.lk : c.ink);   // v0.99 U8a lk: light-mode ink that reaches 4.5:1 on the darker light colour
+  const lum = h => { const [R, G, B] = [1, 3, 5].map(i => { const x = parseInt(h.slice(i, i + 2), 16) / 255; return x <= .03928 ? x / 12.92 : Math.pow((x + .055) / 1.055, 2.4); }); return .2126 * R + .7152 * G + .0722 * B; };
+  const cr = (a, b) => (Math.max(lum(a), lum(b)) + .05) / (Math.min(lum(a), lum(b)) + .05), ink0 = light && c.lk ? c.lk : c.ink;
+  r.style.setProperty('--you-ink', cr(ink0, v) >= 4.5 ? ink0 : '#000000');   // v0.147 audit: the colour's own ink when it reads at 4.5:1, else black (Red, Purple, Blue in dark mode); v0.99 U8a lk: light-mode ink on the darker light colour
   r.style.setProperty('--you-soft', c.id === 'white' && light ? '#0b1a3022' : v + '40');
   r.style.setProperty('--cpu', c.id === 'red' ? (light ? '#1f6fd9' : '#3a8cf0') : (light ? '#c42b40' : '#d8344b'));
   r.style.setProperty('--cpu-ink', '#ffffff');
