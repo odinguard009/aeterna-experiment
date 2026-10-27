@@ -44,7 +44,7 @@ IDLE_MIN=0       # min idle minutes since the last session/owner activity; 0 = n
 STALE_H=5        # a LOCK older than this is a crashed auto session
 MANUAL_H=3       # a MANUAL older than this is a crashed manual session
 NOPROG=0         # auto sessions without a new v* commit before the switch goes OFF by itself; 0 = never (owner, 2026-10-20, was 3)
-RANTAI_MAX=${GATE_RANTAI_MAX:-999999999999}  # chain budget and single-session ceiling in tokens (owner, 2026-10-20)
+RANTAI_MAX=${GATE_RANTAI_MAX:-1000000}  # chain budget and single-session ceiling in tokens (owner, 2026-10-27: 1,000,000; was unlimited since 2026-10-26)
 MAX_AUTO_24H=${GATE_MAX_AUTO_24H:-0}   # max auto sessions (LOCK) in 24 hours; 0 = unlimited (owner, 2026-10-20); GATE_MAX_AUTO_24H only lets the test exercise the cap
 post() { if [ "${GATE_PRINT:-}" = 1 ]; then echo "POST $1"; return 0; fi; gh api -X POST "repos/$R/issues/$L/comments" -f body="$1" --jq .created_at >/dev/null; }   # GATE_PRINT=1: tests see the body
 # Item T (owner, 2026-10-21): the session writes the budget counter it sees at the start ("lock|manual [lane] budget=N") and at the end
