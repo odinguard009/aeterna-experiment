@@ -8,12 +8,21 @@ const open = async () => { ctx = await (await getBrowser()).newContext({ viewpor
 after(async () => { if (ctx) await ctx.close(); await closeBrowser(); });
 const clear = () => page.evaluate(() => document.querySelectorAll('#ae-fx .ae-eff, #ae-fx .ae-emote').forEach(e => e.remove()));
 
-test('EF01 an effect record shows the panel in Full, not in Off', async () => {
+test('EF01 an effect record shows an info pop-up in every animation mode; Off in Settings hides it; X and the 5 s timer remove it', async () => {
   await open();
   await page.evaluate(() => { BS.testSetup(); });
-  const fire = m => page.evaluate(m => { BS.SETTINGS.anim = m; const id = Object.keys(BS.CARDS)[0]; BS.io.view({ type: 'effect', side: 'player', id, text: 'Draw 1 card' }); return document.querySelectorAll('#ae-fx .ae-eff').length; }, m);
+  const fire = m => page.evaluate(m => { BS.SETTINGS.anim = m; const id = Object.keys(BS.CARDS)[0]; BS.io.view({ type: 'effect', side: 'player', id, text: 'Draw 1 card', trg: 'SUMMONED' }); return document.querySelectorAll('#ae-fx .ae-eff').length; }, m);
   assert.equal(await fire('full'), 1); await clear();
-  assert.equal(await fire('off'), 0);
+  assert.equal(await fire('off'), 1);                                   // info, not an animation: it shows even with animations Off
+  assert.equal(await page.locator('#ae-fx .ae-eff .ae-eff-h').innerText(), 'YOU · EFFECT · When Summoned');
+  await page.click('#ae-fx .ae-eff-x');
+  assert.equal(await page.locator('#ae-fx .ae-eff').count(), 0);        // the X closes it at once
+  await page.evaluate(() => { BS.SETTINGS.effPop = 'off'; });
+  assert.equal(await fire('full'), 0); await clear();                   // Settings > Game > Effect pop-ups = Off
+  await page.evaluate(() => { delete BS.SETTINGS.effPop; });
+  assert.equal(await fire('full'), 1);
+  assert.equal(await fire('full'), 1);                                  // the same effect again refreshes the pop-up instead of stacking
+  await page.waitForFunction(() => !document.querySelector('#ae-fx .ae-eff'), null, { timeout: 7000 });   // gone after 5 s on its own
 });
 test('EF02 the engine emits it when a card effect resolves', async () => {
   await clear();

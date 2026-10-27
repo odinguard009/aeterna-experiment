@@ -49,3 +49,12 @@ html[data-ts="large"] .mk { font-size: 16px; } html[data-ts="larger"] .mk { font
 
 /* v0.146.0 audit: info buttons reach the 24 px minimum target size (WCAG 2.2) */
 .mk .inf{min-width:24px}
+/* v0.151.0 UI audit fixes (2026-10-27) */
+.mk .phonebar #pb-title{min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+@media (max-width:380px){.mk .phonebar{gap:6px;padding:0 10px}.mk .phonebar .brand .logo{display:none}}      /* 360 px phones: the title no longer runs into the colour diamond */
+#db-types,#lib-types{flex-wrap:wrap}                                                                         /* Spirit / Ultimate / Brave / Nexus ... wrap instead of being cut at the edge */
+[data-mode="light"] .mk .foot a{color:#8ff0d8;text-decoration:underline}                                      /* the footer bar stays dark in Light mode: the link needs a light colour */
+#home-cont > div:first-child{aspect-ratio:5/7;overflow:hidden;border-radius:4px}                              /* the 36 px thumbnail never shows overflowing text */
+#home-cont > div:first-child .cface.ph{font-size:4px;padding:2px;overflow:hidden}
+#home-cont > div:first-child .cface.ph .ph-txt,#home-cont > div:first-child .cface.ph .ph-sub,#home-cont > div:first-child .cface.ph .ph-bp{display:none}
+#home-cont > div:first-child .cface.ph .ph-name{font-size:7px;line-height:1.05}

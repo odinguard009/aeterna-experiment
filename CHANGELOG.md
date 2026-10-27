@@ -4,6 +4,11 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.151.0
+- Lane: U/I
+- **UI audit fixes, core move gems for every move, effect pop-ups.** (1) Esc now closes view-only dialogs on every page (it only worked in the deck builder; the shortcuts list already promised it). (2) 360 px phones: the page title no longer runs into the colour button (the wordmark hides under 380 px, the title is cut with an ellipsis). (3) Light mode: the footer "Report A Bug" link is readable. (4) The type filter chips (Spirit, Ultimate, Brave, ...) wrap instead of being cut. (5) The "Continue with" thumbnail no longer shows overflowing text. (6) Every core move now flies as a gem, also the ones the engine sends no cue for (summon payment, destroyed Spirit, Void, Life, Count and effect moves): the board is compared with the last one and places that lost cores send gems to places that gained them (net moves, Full animation only); the place a core lands on flashes. (7) New effect pop-ups in battle: an info card for every effect that runs (card, side, trigger, effect text), never a question; PC at the bottom of the left card column, phone under the top bar, never over the field; gone after 5 s or with its X; Settings > Game > Effect pop-ups turns it off. It replaces the old centred "Effect Active" panel and shows in every animation mode. The phone Life area already shows one core icon since v0.149.0 (field height measured constant at 360-844 px); tests added.
+  - Checked: loop, tests V151-1..4, EF01 rewritten, screenshots (PC, phone) of the pop-up and the gems. Not checked: continuous (static) effects such as passive BP gains do not send an effect record, so they show no pop-up; gems only in Full animation; no live player-view pass; the battle screen is still the old stylesheet (mockup parity open).
+
 ## v0.150.0
 - Lane: K
 - **+6 complete cards** (BS04-001 Kunanomi, BS12-063, BS24-009 Flame-Gundragna, BS28-011, BS33-022, BS54-021). The condition "if you control" gained three forms: "a Spirit with <keyword>" (`ctrl.keyword`), "another <family> Spirit" (`ctrl.other`, not the source) and "N or less Spirits" (`ctrl.nLe`, engine only); the compiler also reads "If C, instead, B." replacement pairs.

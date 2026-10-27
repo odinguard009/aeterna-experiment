@@ -50,9 +50,10 @@ test('B02 index.html without the card pack, gzipped, stays under 275 KB', () => 
 test('B03 the embedded card pack stays under 1.6 MB (room for all cards; never embed staging data)', () => assert.ok(packLen < 1.6e6, packLen));
 // v0.93.0 (U6): raised 90 -> 96 KB on purpose (roadmap item U allows it with a note): U6-U8 add the My decks page and the
 // deck builder restyle; unused rules were trimmed first in v0.92.0. The next raise needs the same kind of note.
-test('B04 the stylesheet stays under 205 KB', () => {
+// v0.151.0: raised B04 205 -> 210 KB on purpose: effect pop-ups, core landing flash and the UI audit fixes (~2 KB).
+test('B04 the stylesheet stays under 210 KB', () => {
   const css = (noFont(html).match(/<style[\s\S]*?<\/style>/g) || []).reduce((n, s) => n + s.length, 0);
-  assert.ok(css < 205e3, css);
+  assert.ok(css < 210e3, css);
 });
 test('B05 the page has one app script plus the tiny early theme script, and no external requests', () => {
   assert.equal((html.match(/<script/g) || []).length, 2);   // v0.141.0: the second one only paints the saved theme colour before boot (loading screen)

@@ -8,13 +8,22 @@ const EMOTES = ['😀', '😎', '😮', '😢', '😡', '👍', '👏', '🙏', 
 const EMOTE_GAP = 30000;
 let EMOTE_AT = 0, EMOTE_NOW = () => Date.now();
 const emoteLeft = () => Math.max(0, Math.ceil((EMOTE_AT + EMOTE_GAP - EMOTE_NOW()) / 1000));
+/* v0.151.0: effect pop-ups (owner 2026-10-27, like Aegis): an info card for every effect that runs, never a question. PC: bottom of the left card panel column;
+   phone: under the top bar (over the CPU stats row), one at a time. Never over the field. Closes after 5 s or with the X; Settings > Game > Effect pop-ups turns it off. */
+const EFF_MS = 5000;
 function effectPanel(ev) {
-  if (SIM || animMode() === 'off') return;
+  if (SIM || SETTINGS.effPop === 'off') return;
   const L = $('ae-fx'), c = CARDS[ev.id]; if (!L || !c) return;
-  L.querySelectorAll('.ae-eff').forEach(e => e.remove());
-  const d = document.createElement('div'); d.className = 'ae-eff' + (ev.side === 'opponent' ? ' cpu' : '');
-  d.innerHTML = `<span class="ae-eff-h">EFFECT ACTIVE</span><b>${esc(c.name)}</b><span>${esc(String(ev.text || '').slice(0, 160))}</span>`;
-  L.appendChild(d); setTimeout(() => d.remove(), 1400);
+  /** @type {HTMLElement} */ let st = $('ae-eff-stack'); if (!st) { st = document.createElement('div'); st.id = 'ae-eff-stack'; st.setAttribute('role', 'status'); st.setAttribute('aria-live', 'polite'); L.appendChild(st); }
+  const text = String(ev.text || '').slice(0, 200), trg = (typeof FX_TRIGGER_TEXT !== 'undefined' && FX_TRIGGER_TEXT[ev.trg]) || '';
+  const dup = /** @type {HTMLElement[]} */ ([...st.children]).find(e => e.dataset.k === ev.id + '|' + text);        // the same effect again within 5 s refreshes its timer instead of stacking
+  if (dup) { clearTimeout(+dup.dataset.t); dup.dataset.t = String(setTimeout(() => dup.remove(), EFF_MS)); return; }
+  const max = isPC() ? 3 : 1; while (st.children.length >= max) st.firstElementChild.remove();
+  const d = document.createElement('div'); d.className = 'ae-eff' + (ev.side === 'opponent' ? ' cpu' : ''); d.dataset.k = ev.id + '|' + text;
+  d.innerHTML = `<span class="ae-eff-h">${ev.side === 'opponent' ? 'CPU' : 'YOU'} · EFFECT${trg ? ' · ' + esc(trg) : ''}</span><b>${esc(c.name)}</b><span class="ae-eff-t">${esc(text)}</span><button class="ae-eff-x" type="button" aria-label="Close this effect pop-up">✕</button>`;
+  d.querySelector('button').addEventListener('click', e => { e.stopPropagation(); clearTimeout(+d.dataset.t); d.remove(); });
+  d.dataset.t = String(setTimeout(() => d.remove(), EFF_MS));
+  st.appendChild(d);
 }
 function emotePop() {
   /** @type {HTMLElement} */ let p = $('emote-pop');

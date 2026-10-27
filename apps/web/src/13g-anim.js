@@ -36,15 +36,45 @@ function aeBeam(a, b, cpu, still) {               // a, b: rects; v0.124.0 U14d:
 }
 /* v0.126.0 U14d3: engine records 'core' and 'burst' (06-rules.js, 08-battle.js) arrive just before the board is redrawn, so the old DOM still
    holds both ends: a gem flies from one rect to the other (Full only; Reduced and Off draw nothing), and a flipped Burst turns face up where it was set. */
+const CF_SEEN = {};                                // v0.151.0: explicit engine core cues of this board update ("side|from|to" -> count), so the board diff below never repeats them
+function flyGem(a, b, side, soul, nth) {            // a, b: rects; one core gem travels from a to b (Full only)
+  const L = $('ae-fx'); if (!a || !b || !L) return;
+  const d = document.createElement('div'); d.className = 'ae-a-fly' + (soul ? ' soul' : '') + (side === 'opponent' ? ' cpu' : '');
+  d.style.cssText = `left:${a.x + a.w / 2 - 10}px;top:${a.y + a.h / 2 - 10}px;width:20px;height:20px`;
+  L.appendChild(d);
+  const f = spdF(), dx = b.x + b.w / 2 - a.x - a.w / 2, dy = b.y + b.h / 2 - a.y - a.h / 2;
+  const run = d.animate([{ transform: 'translate(0,0) scale(1.35)', opacity: 1 }, { transform: `translate(${dx}px,${dy}px) scale(.9)`, opacity: .95 }], { duration: 480 * f, delay: (nth || 0) * 110 * f, fill: 'backwards', easing: 'cubic-bezier(.3,.1,.2,1)' });
+  const land = () => { d.remove(); aeFx('ae-a-land' + (side === 'opponent' ? ' cpu' : ''), { x: b.x, y: b.y, w: b.w, h: b.h }, '', 350); };
+  run.onfinish = land; setTimeout(() => d.remove(), 900 * f + (nth || 0) * 110 * f);
+}
+const coreEnd = (x, side) => ['reserve', 'void', 'trash', 'life', 'count'].includes(x) ? rectOf(visEl(`[data-a="zone"][data-v="${side}:${x}"]`)) : rectOf(document.querySelector(`[data-a="field"][data-v$=":${x}"]`));
 function coreFly(ev) {
   if (SIM || animMode() !== 'full') return;
-  const end = (x, side) => ['reserve', 'void', 'trash', 'life', 'count'].includes(x) ? rectOf(visEl(`[data-a="zone"][data-v="${side}:${x}"]`)) : rectOf(document.querySelector(`[data-a="field"][data-v$=":${x}"]`));
-  const a = end(ev.from, ev.side), b = end(ev.to, ev.side), L = $('ae-fx'); if (!a || !b || !L) return;
-  const d = document.createElement('div'); d.className = 'ae-a-fly' + (ev.kind === 'soul' ? ' soul' : '') + (ev.side === 'opponent' ? ' cpu' : '');
-  d.style.cssText = `left:${a.x + a.w / 2 - 9}px;top:${a.y + a.h / 2 - 9}px;width:18px;height:18px`;
-  L.appendChild(d);
-  const run = d.animate([{ transform: 'translate(0,0)', opacity: 1 }, { transform: `translate(${b.x + b.w / 2 - a.x - a.w / 2}px,${b.y + b.h / 2 - a.y - a.h / 2}px)`, opacity: .9 }], { duration: 420 * spdF(), delay: (ev.nth || 0) * 110 * spdF(), fill: 'backwards', easing: 'ease-in-out' });
-  run.onfinish = () => d.remove(); setTimeout(() => d.remove(), 800 * spdF() + (ev.nth || 0) * 110 * spdF());
+  const k = `${ev.side}|${ev.from}|${ev.to}`; CF_SEEN[k] = (CF_SEEN[k] || 0) + 1;
+  flyGem(coreEnd(ev.from, ev.side), coreEnd(ev.to, ev.side), ev.side, ev.kind === 'soul', ev.nth);
+}
+/* v0.151.0: every other core move (summon payment, destroyed Spirit, Void and Life moves, effects without a cue) is found by comparing the cores in each place
+   with the last board: places that lost cores send gems to places that gained them. Net moves only; cues the engine already sent are skipped. */
+function coreFlows(prev, now, full) {
+  if (!full) return;
+  for (const side of ['player', 'opponent']) {
+    const src = [], dst = [], P = prev.zn[side], N = now.zn[side];
+    for (const z of ['reserve', 'trash', 'void', 'count', 'life']) { const d = N[z] - P[z]; if (d) (d < 0 ? src : dst).push({ id: z, n: Math.abs(d), r: rectOf(visEl(`[data-a="zone"][data-v="${side}:${z}"]`)) }); }
+    const uids = new Set(); for (const m of [prev.cards, now.cards]) for (const [u, c] of m) if (c.k === side) uids.add(u);
+    for (const u of uids) {
+      const a = prev.cards.get(u), b = now.cards.get(u), d = (b ? b.co : 0) - (a ? a.co : 0);
+      if (d) (d < 0 ? src : dst).push({ id: u, n: Math.abs(d), r: (b || a).r });
+    }
+    let nth = 0;
+    for (const s of src) for (const t of dst) {
+      while (s.n > 0 && t.n > 0 && nth < 8) {
+        s.n--; t.n--;
+        const key = `${side}|${s.id}|${t.id}`;
+        if (CF_SEEN[key] > 0) { CF_SEEN[key]--; continue; }
+        flyGem(s.r, t.r, side, false, nth++);
+      }
+    }
+  }
 }
 /* v0.138.0: Draw Step, a card back slides from the deck to the hand (the opponent's pile to its hand pill) */
 function drawFly(ev) {
@@ -68,13 +98,15 @@ function animCues() {
   if (mode === 'off') { ANIM = null; return; }
   for (const k of ['player', 'opponent']) for (const f of fieldList(G.p[k])) {
     const c = CARDS[f.id]; if (!c) continue;
-    cards.set(f.uid, { k, ex: f.heavy ? 180 : f.exhausted ? 90 : 0, bp: isSpiritForm(c) ? bpOf(f) : null, lv: isSpiritForm(c) ? lvNo(f) : null, r: rectOf(document.querySelector(`[data-a="field"][data-v$=":${f.uid}"]`)) });
+    cards.set(f.uid, { k, co: (f.cores || 0) + (f.soul ? 1 : 0), ex: f.heavy ? 180 : f.exhausted ? 90 : 0, bp: isSpiritForm(c) ? bpOf(f) : null, lv: isSpiritForm(c) ? lvNo(f) : null, r: rectOf(document.querySelector(`[data-a="field"][data-v$=":${f.uid}"]`)) });
   }
-  const now = { g: G, cards, hand: new Set(G.p.player.hand.map(h => h.uid)), life: { player: G.p.player.life, opponent: G.p.opponent.life },
+  const zn = {}; for (const k of ['player', 'opponent']) { const p = G.p[k]; zn[k] = { reserve: p.reserve.n + (p.reserve.soul ? 1 : 0), trash: p.trashCores.n + (p.trashCores.soul ? 1 : 0), void: p.void, count: p.count, life: p.life }; }
+  const now = { g: G, cards, zn, hand: new Set(G.p.player.hand.map(h => h.uid)), life: { player: G.p.player.life, opponent: G.p.opponent.life },
     att: G.attacker ? G.attacker.uid : null, blk: G.blocker ? G.blocker.uid : null };
   const prev = ANIM; ANIM = now;
-  if (!prev || prev.g !== G || G.over) return;      // the first board of a match sets the baseline
+  if (!prev || prev.g !== G || G.over) { for (const k in CF_SEEN) delete CF_SEEN[k]; return; }      // the first board of a match sets the baseline
   const full = mode === 'full';
+  coreFlows(prev, now, full); for (const k in CF_SEEN) delete CF_SEEN[k];
   for (const [uid, c] of cards) {
     const o = prev.cards.get(uid);
     if (!o) { aeFx('ae-a-sum' + (c.k === 'opponent' ? ' cpu' : ''), c.r, '', 500); continue; }

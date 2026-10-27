@@ -143,8 +143,8 @@ AUDIO, sfx, showGameOver, ACT, ACT_Q, actFlush, webAction, sendIntent, webView, 
 ## apps/web/src/13f-replay.js (61 lines, ~1.4k tokens) — REPLAY VIEWER (v0.86.0, phase F4 part 2 = monorepo step M4 rest; formats: packages/engine/src/15b-replay.js)
 rvName, rvCards, rvField, rvSideHTML, rvFrameHTML, openViewer, replayFromRecord, replayWatch, replaySave, replayOpenFile
 
-## apps/web/src/13g-anim.js (111 lines, ~2.3k tokens) — v0.92.0 U5b LIGHT BATTLE ANIMATIONS (roadmap item U, owner 2026-10-21; docs/DESIGN.md section 0, U5b)
-spdF, animMode, ANIM, rectOf, visEl, aeFx, aeBeam, coreFly, drawFly, burstFlip, animCues
+## apps/web/src/13g-anim.js (143 lines, ~2.9k tokens) — v0.92.0 U5b LIGHT BATTLE ANIMATIONS (roadmap item U, owner 2026-10-21; docs/DESIGN.md section 0, U5b)
+spdF, animMode, ANIM, rectOf, visEl, aeFx, aeBeam, CF_SEEN, flyGem, coreEnd, coreFly, coreFlows, drawFly, burstFlip, animCues
 
 ## apps/web/src/13h-decks.js (123 lines, ~3k tokens) — v0.93.0 U6 MY DECKS (docs/DESIGN.md section 0, mockup docs/design/mockup-v11.html "My decks PC / phone")
 DK_MENU, dkCards, dkUsed, dkFree, dkStatus, dkColors, dkFan, dkStats, dkAgo, dkTile, renderDecks, dkMenu, dkNewSlot, dkAct
@@ -158,8 +158,8 @@ ONL_CFG, ONL_ACCOUNT, onlConfig, onlAccount, onlAccountHTML, renderOnlineLobby, 
 ## apps/web/src/13k-cardpanel.js (26 lines, ~0.4k tokens) — CARD PANEL (v0.122.0, U14b battle PC; docs/design/mockup-v14.html)
 PANEL_ID, cardPanelHTML, panelCardOf
 
-## apps/web/src/13l-emote.js (35 lines, ~0.6k tokens) — EFFECT ACTIVE PANEL + EMOTICONS (v0.125.0, U14d2; docs/design/mockup-v14.html)
-EMOTES, EMOTE_GAP, EMOTE_AT, emoteLeft, effectPanel, emotePop, emoteSend
+## apps/web/src/13l-emote.js (44 lines, ~0.9k tokens) — EFFECT ACTIVE PANEL + EMOTICONS (v0.125.0, U14d2; docs/design/mockup-v14.html)
+EMOTES, EMOTE_GAP, EMOTE_AT, emoteLeft, EFF_MS, effectPanel, emotePop, emoteSend
 
 ## apps/web/src/13m-lore.js (30 lines, ~0.7k tokens) — LORE (v0.131.0, U14g; docs/design/mockup-v14.html): the English flavor texts of the cards, read in order by series.
 LORE_SET, lore, loreSeries, LORE_FS, renderLore
@@ -182,7 +182,7 @@ LEARN_KEY, LEARN_CHAPS, learnDone, learnSave, learnNext, renderLearn, learnOpen
 ## apps/web/src/13s-access.js (18 lines, ~0.5k tokens) — v0.138.0 ACCESSIBILITY (mockup "New features"): Text size (Normal / Large / Larger, menu screens) and the keyboard shortcuts list
 TEXT_SIZES, applyTextSize, applyAccess, SHORTCUTS, shortcutsDialog
 
-## apps/web/src/14-images.js (284 lines, ~5.7k tokens) — CARD IMAGES
+## apps/web/src/14-images.js (285 lines, ~5.7k tokens) — CARD IMAGES
 IMG, IDB, normKey, idbOpen, idbTx, setImg, loadImages, shrinkImage, stripExt, findCardByFile, findCardByKey, importImages, clearImages, cardImgSrc, imgCls, imgSty, refreshViews, libMsg, renderLibrary, LIBV, LIB_GAP, libSetOf, LIBF, LIB_SIZES, libActive, libFilter, libBar, libMenu, libTool, libCardHTML, libWindow, renderLibraryGrid, libScroll, libSearchInput, deckToText, textToDeck, downloadText, readFileText, libAction
 
 ## packages/engine/src/15-match.js (74 lines, ~1.7k tokens) — MATCH START / END
@@ -191,5 +191,5 @@ closeMatch, startNewGame, matchSummary
 ## packages/engine/src/15b-replay.js (109 lines, ~2.5k tokens) — REPLAY RECORDS (v0.85.0, phase F4 = monorepo step M4 part 1; docs/ai/monorepo-plan.md "Design" 2)
 newPortRecord, portRecord, boardSnapshot, runPortRecord, viewerReplayOf
 
-## apps/web/src/16-events.js (269 lines, ~6k tokens) — EVENTS (delegation)
+## apps/web/src/16-events.js (274 lines, ~6.1k tokens) — EVENTS (delegation)
 hScrollable, HDRAG, GAME_ACTS, gameAct, replayOf, lastReplay, runReplay, loadScenario, testSetup, defBuiltin

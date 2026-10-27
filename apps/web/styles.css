@@ -973,10 +973,18 @@
   @keyframes aeArrow { 0% { transform: var(--r) scaleX(0); opacity: 0; } 40% { opacity: 1; transform: var(--r); } 100% { opacity: 0; transform: var(--r); } }
 
   /* ---- U14d2 (v0.125.0): Effect Active panel and emoticons ---- */
-  .ae-eff { position: fixed; left: 50%; top: 22%; transform: translateX(-50%); width: min(92vw, 420px); padding: 8px 18px; display: flex; flex-direction: column; gap: 2px; background: linear-gradient(180deg, var(--ae-panel1), var(--ae-panel2)); color: var(--ae-text); box-shadow: inset 4px 0 0 var(--you), 0 10px 30px #0008; clip-path: var(--par); pointer-events: none; animation: aeFade 1.4s ease-out both; }
-  .ae-eff.cpu { box-shadow: inset 4px 0 0 var(--cpu), 0 10px 30px #0008; }
-  .ae-eff .ae-eff-h { font-size: 10px; font-weight: 900; letter-spacing: .2em; color: var(--you); } .ae-eff.cpu .ae-eff-h { color: var(--cpu); }
-  .ae-eff span:last-child { font-size: 12px; color: var(--ae-text2); }
+  /* v0.151.0: effect pop-ups, info only (stack at the bottom of the left card column on PC, under the top bar on phones; never over the field) */
+  #ae-eff-stack { position: fixed; left: 8px; bottom: 8px; width: 224px; display: flex; flex-direction: column; gap: 6px; z-index: 5; pointer-events: none; }
+  .ae-eff { position: relative; padding: 7px 30px 7px 12px; display: flex; flex-direction: column; gap: 1px; background: linear-gradient(180deg, var(--ae-panel1), var(--ae-panel2)); color: var(--ae-text); box-shadow: inset 4px 0 0 var(--you), 0 6px 18px #0008; pointer-events: auto; animation: aeFade2 .25s ease-out both; }
+  .ae-eff.cpu { box-shadow: inset 4px 0 0 var(--cpu), 0 6px 18px #0008; }
+  .ae-eff .ae-eff-h { font-size: 9px; font-weight: 900; letter-spacing: .14em; color: var(--you); } .ae-eff.cpu .ae-eff-h { color: var(--cpu); }
+  .ae-eff b { font-size: 13px; } .ae-eff .ae-eff-t { font-size: 11.5px; line-height: 1.3; color: var(--ae-text2); }
+  .ae-eff .ae-eff-x { position: absolute; top: 3px; right: 3px; width: 26px; height: 26px; border: 0; background: #fff1; color: inherit; font-size: 13px; cursor: pointer; border-radius: 3px; }
+  .ae-eff .ae-eff-x:hover { background: #fff3; }
+  @keyframes aeFade2 { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .ae-eff { animation: none; } }
+  html:not(.layout-pc) #ae-eff-stack { left: 6px; right: 6px; top: 40px; bottom: auto; width: auto; }
+  html:not(.layout-pc) .ae-eff { padding: 4px 30px 4px 10px; } html:not(.layout-pc) .ae-eff .ae-eff-t { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 11px; }
   .ae-emote { position: fixed; left: 50%; bottom: 30%; font-size: 54px; line-height: 1; pointer-events: none; animation: aePop 2s ease-out both; }
   #emote-pop { position: absolute; right: 8px; top: 48px; z-index: 60; width: 232px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; padding: 8px; background: var(--ae-panel1); color: var(--ae-text); box-shadow: inset 0 0 0 1px var(--ae-line2), 0 10px 30px #0008; }
   #emote-pop .em-wait { grid-column: 1 / -1; font-size: 11px; color: var(--ae-text2); text-align: center; }
@@ -984,6 +992,9 @@
 
   /* ---- U14d3 (v0.126.0): cores flying between zones, the Burst flip ---- */
   .ae-a-fly { position: fixed; pointer-events: none; background: linear-gradient(135deg, var(--ae-core1), var(--ae-core2) 55%, var(--ae-core3)); clip-path: polygon(50% 0, 100% 38%, 81% 100%, 19% 100%, 0 38%); filter: drop-shadow(0 0 5px var(--ae-core2)); }
+  .ae-a-land { position: fixed; pointer-events: none; border-radius: 4px; box-shadow: 0 0 0 2px var(--you), 0 0 14px var(--you); animation: ae-land .35s ease-out forwards; }   /* v0.151.0: a core arrives: the place it lands on flashes */
+  .ae-a-land.cpu { box-shadow: 0 0 0 2px var(--cpu), 0 0 14px var(--cpu); }
+  @keyframes ae-land { from { opacity: .95; transform: scale(1); } to { opacity: 0; transform: scale(1.1); } }
   .ae-a-fly.soul { background: linear-gradient(150deg, #fff, #b9c0ca 35%, #eef1f5 55%, #6f7887); filter: drop-shadow(0 0 6px var(--ae-soul2)); }
   .ae-a-flip { overflow: hidden; animation: aeFlip .8s ease-out both; } .ae-a-flip .cface { width: 100%; height: 100%; }
   @keyframes aeFlip { 0% { transform: perspective(500px) rotateY(90deg) scale(.6); opacity: 0; } 35% { transform: perspective(500px) rotateY(0) scale(1); opacity: 1; } 80% { opacity: 1; } 100% { transform: scale(1.05); opacity: 0; } }

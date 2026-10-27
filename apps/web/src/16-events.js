@@ -38,7 +38,12 @@ document.addEventListener('click', e => {
   e.stopPropagation(); e.preventDefault(); openZoom(mg.dataset.v, mg.dataset.u != null ? Number(mg.dataset.u) : null);
 }, true);
 document.addEventListener('submit', e => { if (/** @type {any} */ (e.target).id === 'bug-form') { e.preventDefault(); bugSend(); } });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { bugOpen(false); const z = $('zoom-overlay'); if (z) z.classList.remove('active'); } });
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  bugOpen(false); const z = $('zoom-overlay'); if (z) z.classList.remove('active');
+  /* v0.151.0: Esc closes a view-only dialog on every page (shortcuts, zone views, deck list tools, card detail outside a match); engine decisions are never closed by a key */
+  if ($('action-modal').classList.contains('active') && MODAL && MODAL.cfg.uiOnly && (MODAL.cfg.buttons || []).some(b => b.value === null && !b.dis)) { e.preventDefault(); closeModal(null); }
+});
 document.addEventListener('click', e => {
   const peekBtn = evC(e, '[data-peek]');
   if (peekBtn) { startPeek(); return; }
@@ -99,7 +104,7 @@ document.addEventListener('click', e => {
   else if (a === 'rv-watch') replayWatch(Number(v));
   else if (a === 'rv-save') replaySave(Number(v));
   else if (a === 'hist-clear') { HISTORY = []; try { localStorage.removeItem(HIST_KEY); } catch (e) { /* blocked */ } renderSettings(); }
-  else if (a === 'set-reset') { SETTINGS.speed = 'normal'; SETTINGS.sound = false; delete SETTINGS.anim; delete SETTINGS.textSize; delete SETTINGS.cbShapes; delete SETTINGS.hiContrast; applyTextSize(); applyAccess(); SETTINGS.cpuDeck = 'std03'; SETTINGS.cpuProfile = 'balanced'; delete SETTINGS.cpuRandom; delete SETTINGS.cpuLevel; delete SETTINGS.firstTurn; delete SETTINGS.hints; saveSettings(); renderSettings(); $('set-msg').textContent = 'Settings reset.'; }
+  else if (a === 'set-reset') { SETTINGS.speed = 'normal'; SETTINGS.sound = false; delete SETTINGS.anim; delete SETTINGS.effPop; delete SETTINGS.textSize; delete SETTINGS.cbShapes; delete SETTINGS.hiContrast; applyTextSize(); applyAccess(); SETTINGS.cpuDeck = 'std03'; SETTINGS.cpuProfile = 'balanced'; delete SETTINGS.cpuRandom; delete SETTINGS.cpuLevel; delete SETTINGS.firstTurn; delete SETTINGS.hints; saveSettings(); renderSettings(); $('set-msg').textContent = 'Settings reset.'; }
   else if (a === 'go-lib') switchView('view-library');
   else if (a === 'set-sec') setSection(v);
   else if (a === 'set-mat-clear') matClear();

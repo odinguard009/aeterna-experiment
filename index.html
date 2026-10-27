@@ -869,15 +869,25 @@ html.layout-pc #view-playmat .playmat-layout.has-cp > :not(#card-panel){grid-col
 .ae-a-flash{background:radial-gradient(closest-side,#fff,#fff0);animation:aeFade .35s ease-out both;}
 .ae-a-card-shard{background:linear-gradient(135deg,#fff,var(--ae-card1));clip-path:polygon(0 0,100% 30%,60% 100%);animation:aeShard .7s ease-out both;}
 @keyframes aeArrow{0%{transform:var(--r) scaleX(0);opacity:0;}40%{opacity:1;transform:var(--r);}100%{opacity:0;transform:var(--r);}}
-.ae-eff{position:fixed;left:50%;top:22%;transform:translateX(-50%);width:min(92vw,420px);padding:8px 18px;display:flex;flex-direction:column;gap:2px;background:linear-gradient(180deg,var(--ae-panel1),var(--ae-panel2));color:var(--ae-text);box-shadow:inset 4px 0 0 var(--you),0 10px 30px #0008;clip-path:var(--par);pointer-events:none;animation:aeFade 1.4s ease-out both;}
-.ae-eff.cpu{box-shadow:inset 4px 0 0 var(--cpu),0 10px 30px #0008;}
-.ae-eff .ae-eff-h{font-size:10px;font-weight:900;letter-spacing:.2em;color:var(--you);}.ae-eff.cpu .ae-eff-h{color:var(--cpu);}
-.ae-eff span:last-child{font-size:12px;color:var(--ae-text2);}
+#ae-eff-stack{position:fixed;left:8px;bottom:8px;width:224px;display:flex;flex-direction:column;gap:6px;z-index:5;pointer-events:none;}
+.ae-eff{position:relative;padding:7px 30px 7px 12px;display:flex;flex-direction:column;gap:1px;background:linear-gradient(180deg,var(--ae-panel1),var(--ae-panel2));color:var(--ae-text);box-shadow:inset 4px 0 0 var(--you),0 6px 18px #0008;pointer-events:auto;animation:aeFade2 .25s ease-out both;}
+.ae-eff.cpu{box-shadow:inset 4px 0 0 var(--cpu),0 6px 18px #0008;}
+.ae-eff .ae-eff-h{font-size:9px;font-weight:900;letter-spacing:.14em;color:var(--you);}.ae-eff.cpu .ae-eff-h{color:var(--cpu);}
+.ae-eff b{font-size:13px;}.ae-eff .ae-eff-t{font-size:11.5px;line-height:1.3;color:var(--ae-text2);}
+.ae-eff .ae-eff-x{position:absolute;top:3px;right:3px;width:26px;height:26px;border:0;background:#fff1;color:inherit;font-size:13px;cursor:pointer;border-radius:3px;}
+.ae-eff .ae-eff-x:hover{background:#fff3;}
+@keyframes aeFade2{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+@media (prefers-reduced-motion:reduce){.ae-eff{animation:none;}}
+html:not(.layout-pc) #ae-eff-stack{left:6px;right:6px;top:40px;bottom:auto;width:auto;}
+html:not(.layout-pc) .ae-eff{padding:4px 30px 4px 10px;}html:not(.layout-pc) .ae-eff .ae-eff-t{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:11px;}
 .ae-emote{position:fixed;left:50%;bottom:30%;font-size:54px;line-height:1;pointer-events:none;animation:aePop 2s ease-out both;}
 #emote-pop{position:absolute;right:8px;top:48px;z-index:60;width:232px;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:8px;background:var(--ae-panel1);color:var(--ae-text);box-shadow:inset 0 0 0 1px var(--ae-line2),0 10px 30px #0008;}
 #emote-pop .em-wait{grid-column:1 / -1;font-size:11px;color:var(--ae-text2);text-align:center;}
 #emote-pop button{min-height:44px;font-size:24px;background:var(--ae-chip);border:0;cursor:pointer;}#emote-pop button:disabled{opacity:.4;cursor:default;}
 .ae-a-fly{position:fixed;pointer-events:none;background:linear-gradient(135deg,var(--ae-core1),var(--ae-core2) 55%,var(--ae-core3));clip-path:polygon(50% 0,100% 38%,81% 100%,19% 100%,0 38%);filter:drop-shadow(0 0 5px var(--ae-core2));}
+.ae-a-land{position:fixed;pointer-events:none;border-radius:4px;box-shadow:0 0 0 2px var(--you),0 0 14px var(--you);animation:ae-land .35s ease-out forwards;}
+.ae-a-land.cpu{box-shadow:0 0 0 2px var(--cpu),0 0 14px var(--cpu);}
+@keyframes ae-land{from{opacity:.95;transform:scale(1);}to{opacity:0;transform:scale(1.1);}}
 .ae-a-fly.soul{background:linear-gradient(150deg,#fff,#b9c0ca 35%,#eef1f5 55%,#6f7887);filter:drop-shadow(0 0 6px var(--ae-soul2));}
 .ae-a-flip{overflow:hidden;animation:aeFlip .8s ease-out both;}.ae-a-flip .cface{width:100%;height:100%;}
 @keyframes aeFlip{0%{transform:perspective(500px) rotateY(90deg) scale(.6);opacity:0;}35%{transform:perspective(500px) rotateY(0) scale(1);opacity:1;}80%{opacity:1;}100%{transform:scale(1.05);opacity:0;}}
@@ -2209,6 +2219,14 @@ html[data-ts="large"] .mk{font-size:16px;}html[data-ts="larger"] .mk{font-size:1
 .kbd-row{display:flex;align-items:center;gap:12px;}
 .kbd-row kbd{flex:none;min-width:112px;padding:4px 10px;text-align:center;font:800 .82em var(--f-num,inherit);background:var(--ae-panel2,#0001);box-shadow:inset 0 0 0 1px var(--ae-line2);clip-path:var(--par,none);}
 .mk .inf{min-width:24px}
+.mk .phonebar #pb-title{min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+@media (max-width:380px){.mk .phonebar{gap:6px;padding:0 10px}.mk .phonebar .brand .logo{display:none}}
+#db-types,#lib-types{flex-wrap:wrap}
+[data-mode="light"] .mk .foot a{color:#8ff0d8;text-decoration:underline}
+#home-cont > div:first-child{aspect-ratio:5/7;overflow:hidden;border-radius:4px}
+#home-cont > div:first-child .cface.ph{font-size:4px;padding:2px;overflow:hidden}
+#home-cont > div:first-child .cface.ph .ph-txt,#home-cont > div:first-child .cface.ph .ph-sub,#home-cont > div:first-child .cface.ph .ph-bp{display:none}
+#home-cont > div:first-child .cface.ph .ph-name{font-size:7px;line-height:1.05}
 </style>
 </head>
 <body>
@@ -2296,7 +2314,7 @@ html[data-ts="large"] .mk{font-size:16px;}html[data-ts="larger"] .mk{font-size:1
       <div class="col" id="set-menu" role="group" aria-label="Settings sections" style="gap:4px;position:sticky;top:0;align-self:start"><button class="opt on" data-a="set-sec" data-v="appearance" style="padding:10px 12px" aria-current="true"><b>Appearance</b></button><button class="opt" data-a="set-sec" data-v="game" style="padding:10px 12px"><b>Game</b></button><button class="opt" data-a="set-sec" data-v="sound" style="padding:10px 12px"><b>Animation And Sound</b></button><button class="opt" data-a="set-sec" data-v="access" style="padding:10px 12px"><b>Accessibility</b></button><button class="opt" data-a="set-sec" data-v="data" style="padding:10px 12px"><b>Cards And Saved Data</b></button><button class="opt" data-a="set-sec" data-v="history" style="padding:10px 12px"><b>Match history</b></button></div>
       <div class="card set-body" style="padding:6px 20px 14px">
         <section class="set-card" id="set-s-appearance" aria-label="Appearance"><div class="setrow"><div class="grow"><b id="set-l-mode">Mode</b><span class="sub" style="font-size:.84em">Dark or light board and menus.</span></div><div class="ctl"><span class="seg" id="set-mode" role="group" aria-labelledby="set-l-mode" style="border-color:var(--line2)"><button data-a="theme-mode" data-v="dark" aria-pressed="true">Dark</button><button data-a="theme-mode" data-v="light" aria-pressed="false">Light</button></span></div></div><div class="setrow"><div class="grow"><b id="set-l-color">Your colour</b><span class="sub" style="font-size:.84em">Marks your side: turn banner, zone tags, Life, card glow, buttons. Teal by default, or one of the eight card symbol colours.</span></div><div class="ctl"><div class="sws" id="set-color" role="group" aria-labelledby="set-l-color"></div></div></div><div class="setrow"><div class="grow"><b>Playmat image</b><span class="sub" style="font-size:.84em">Your own picture behind the battle board. It fills the board; edges are trimmed when the shape differs, the centre stays.</span></div><div class="ctl"><label class="btn sm ae-upl"><span>Upload</span><input id="set-mat" type="file" accept="image/*" aria-label="Upload playmat image" hidden></label><button class="btn sm" data-a="set-mat-clear" id="set-mat-clear">Remove</button></div></div><div class="setrow"><div class="grow"><b>CPU colour</b><span class="sub" style="font-size:.84em">Crimson; blue when your colour is red, so the two sides never match.</span></div><div class="ctl"><span class="set-val" id="set-cpucol">Crimson</span></div></div></section>
-        <section class="set-card" id="set-s-game" aria-label="Game" hidden><div class="setrow"><div class="grow"><b>Speed</b><span class="sub" style="font-size:.84em">Animation and CPU pause length.</span></div><div class="ctl"><select id="set-speed" class="in" aria-label="Game speed"><option value="slow">Slow</option><option value="normal">Normal</option><option value="fast">Fast</option><option value="instant">Instant</option></select></div></div><div class="setrow"><div class="grow"><b>Style</b><span class="sub" style="font-size:.84em">How the CPU weighs attacks, blocks and plays (balanced is the default).</span></div><div class="ctl"><select id="set-cpu" class="in" aria-label="CPU style"></select></div></div><div class="setrow"><div class="grow"><b>Server URL</b><span class="sub" style="font-size:.84em">Base address of the Aeterna server (http, no trailing slash). Leave empty to use this page's own address when the server serves it; the online room connects to the WebSocket one port up. Online rooms play Standard.</span></div><div class="ctl"><input id="set-online-url" class="in" type="url" placeholder="http://localhost:8080" autocomplete="off" spellcheck="false"></div></div></section>
+        <section class="set-card" id="set-s-game" aria-label="Game" hidden><div class="setrow"><div class="grow"><b>Speed</b><span class="sub" style="font-size:.84em">Animation and CPU pause length.</span></div><div class="ctl"><select id="set-speed" class="in" aria-label="Game speed"><option value="slow">Slow</option><option value="normal">Normal</option><option value="fast">Fast</option><option value="instant">Instant</option></select></div></div><div class="setrow"><div class="grow"><b>Effect pop-ups</b><span class="sub" style="font-size:.84em">A short info card when a Spirit or card effect runs. It never asks anything and closes after 5 seconds or with its X.</span></div><div class="ctl"><select id="set-effpop" class="in" aria-label="Effect pop-ups"><option value="on">On</option><option value="off">Off</option></select></div></div><div class="setrow"><div class="grow"><b>Style</b><span class="sub" style="font-size:.84em">How the CPU weighs attacks, blocks and plays (balanced is the default).</span></div><div class="ctl"><select id="set-cpu" class="in" aria-label="CPU style"></select></div></div><div class="setrow"><div class="grow"><b>Server URL</b><span class="sub" style="font-size:.84em">Base address of the Aeterna server (http, no trailing slash). Leave empty to use this page's own address when the server serves it; the online room connects to the WebSocket one port up. Online rooms play Standard.</span></div><div class="ctl"><input id="set-online-url" class="in" type="url" placeholder="http://localhost:8080" autocomplete="off" spellcheck="false"></div></div></section>
         <section class="set-card" id="set-s-sound" aria-label="Animation And Sound" hidden><div class="setrow"><div class="grow"><b>Animations</b><span class="sub" style="font-size:.84em">Attack beam, Life shatter and other short battle cues. Reduced keeps only fades. Auto follows the device's reduced-motion setting.</span></div><div class="ctl"><select id="set-anim" class="in" aria-label="Animations"><option value="auto">Auto (device)</option><option value="full">Full</option><option value="reduced">Reduced</option><option value="off">Off</option></select></div></div><div class="setrow"><div class="grow"><b>Sound effects</b><span class="sub" style="font-size:.84em">Short synthesized sounds for attacks, hits, summons and draws (no audio files).</span></div><div class="ctl"><select id="set-sound" class="in" aria-label="Sound"><option value="off">Off</option><option value="on">On</option></select></div></div></section>
         <section class="set-card" id="set-s-access" aria-label="Accessibility" hidden><div class="setrow"><div class="grow"><b>Long-press for card info</b><span class="sub" style="font-size:.84em">Deck builder on a touch screen: hold a card to read it instead of adding it.</span></div><div class="ctl"><select id="set-lp" class="in" aria-label="Long-press for card info"><option value="on">On</option><option value="off">Off</option></select></div></div><div class="setrow"><div class="grow"><b>Text size</b><span class="sub" style="font-size:.84em">Bigger text on the menu screens (Home, Decks, Library, Settings).</span></div><div class="ctl"><select id="set-ts" class="in" aria-label="Text size"><option value="normal">Normal</option><option value="large">Large</option><option value="larger">Larger</option></select></div></div><div class="setrow"><div class="grow"><b>Colour-blind markers</b><span class="sub" style="font-size:.84em">Adds a shape to each card colour so colours are never the only signal.</span></div><div class="ctl"><select id="set-cb" class="in" aria-label="Colour-blind markers"><option value="off">Off</option><option value="on">On</option></select></div></div><div class="setrow"><div class="grow"><b>High contrast edges</b><span class="sub" style="font-size:.84em">Thicker card borders and focus rings.</span></div><div class="ctl"><select id="set-hc" class="in" aria-label="High contrast edges"><option value="off">Off</option><option value="on">On</option></select></div></div><div class="setrow"><div class="grow"><b>Keyboard shortcuts</b><span class="sub" style="font-size:.84em">Also opens with the ? key.</span></div><div class="ctl"><button class="btn sm" data-a="shortcuts">Show list</button></div></div></section>
         <section class="set-card" id="set-s-data" aria-label="Cards And Saved Data" hidden><div class="setrow"><div class="grow"><b>Your card images</b><span class="sub" style="font-size:.84em"><span id="set-imgs">Pictures you add in the Library. They stay on this device.</span></span></div><div class="ctl"><button class="btn sm" data-a="go-lib">Open Library</button></div></div><div class="setrow"><div class="grow"><b>Reset settings</b><span class="sub" style="font-size:.84em">Decks, imported cards, images and settings stay in this browser only. Reset puts speed, sound, CPU deck and CPU style back to the defaults.</span></div><div class="ctl"><button class="btn sm dng" data-a="set-reset">Reset</button></div></div></section>
@@ -2740,7 +2758,7 @@ function bindHost(h) {
    type: 'Spirit' | 'Nexus' | 'Magic'      symbol: card color     symbols: number of symbols
    reduction: {color: n}         levels: [{cores, bp}]  (Nexus levels have no bp)
    --------------------------------------------------------------------- */
-const VERSION = '0.150.0';
+const VERSION = '0.151.0';
 const CARDS = {};
 function defCard(o) {
   CARDS[o.id] = Object.assign({ type: 'Spirit', reduction: {}, symbols: 1, families: [], keywords: [], implemented: true, desc: 'Vanilla test card (no effect).', block: 'A' }, o);
@@ -3431,7 +3449,7 @@ function fxCan(c, e) { return e.actions.some(a => { const d = FX_ACTIONS[a.do]; 
 /* run the actions of one effect. Each action sets ctx.did = false when it could not do anything; the next action can test {"prev":true/false} */
 async function runActions(c, e, trg) {
   let last = false;
-  if (c.src && c.src.id) { let text = ''; try { text = fxDescribe(e); } catch (x) { /* an unknown action name: the strict / release handling below reports it */ } io.view({ type: 'effect', side: c.p.key, id: c.src.id, text }); }   // v0.125.0 U14d2: the Effect Active panel (display only, never changes the match)
+  if (c.src && c.src.id) { let text = ''; try { text = fxDescribe(e); } catch (x) { /* an unknown action name: the strict / release handling below reports it */ } io.view({ type: 'effect', side: c.p.key, id: c.src.id, text, trg: trg || '' }); }   // v0.125.0 U14d2: the Effect Active panel (display only, never changes the match)
   for (const a of e.actions) {
     if (G.over) return;
     c.ctx.prev = last; last = false; if (c.ctx.viaFC == null && c.src) c.ctx.viaFC = !!c.src.viaFC;
@@ -8109,7 +8127,7 @@ function switchView(id) {
   if (id === 'view-profile') renderProfilePage();
   if (id === 'view-card') renderCardPage();
 }
-function renderSettings() { $('set-hist').innerHTML = histHTML(); $('set-cpu').innerHTML = CPU_PROFILE_NAMES.map(n => `<option value="${n}">${cap(n)}</option>`).join(''); $('set-cpu').value = cpuProfileName(null); $('set-speed').value = SETTINGS.speed; $('set-sound').value = SETTINGS.sound ? 'on' : 'off'; $('set-anim').value = SETTINGS.anim || 'auto'; $('set-lp').value = SETTINGS.longpress === 'off' ? 'off' : 'on'; $('set-cb').value = SETTINGS.cbShapes ? 'on' : 'off'; $('set-hc').value = SETTINGS.hiContrast ? 'on' : 'off'; $('set-ts').value = SETTINGS.textSize || 'normal';
+function renderSettings() { $('set-hist').innerHTML = histHTML(); $('set-cpu').innerHTML = CPU_PROFILE_NAMES.map(n => `<option value="${n}">${cap(n)}</option>`).join(''); $('set-cpu').value = cpuProfileName(null); $('set-speed').value = SETTINGS.speed; $('set-sound').value = SETTINGS.sound ? 'on' : 'off'; $('set-anim').value = SETTINGS.anim || 'auto'; $('set-effpop').value = SETTINGS.effPop === 'off' ? 'off' : 'on'; $('set-lp').value = SETTINGS.longpress === 'off' ? 'off' : 'on'; $('set-cb').value = SETTINGS.cbShapes ? 'on' : 'off'; $('set-hc').value = SETTINGS.hiContrast ? 'on' : 'off'; $('set-ts').value = SETTINGS.textSize || 'normal';
   renderSetPage(); $('set-back').hidden = !G || !!G.over; }   // v0.122.0 U14b: Options from a running match shows BACK TO MATCH; v0.68.0 U4: colour grid, Dark/Light, playmat and CPU colour rows (13d-pages.js)
 function renderLobby() {
   renderHome();
@@ -8933,15 +8951,45 @@ function aeBeam(a, b, cpu, still) {               // a, b: rects; v0.124.0 U14d:
 }
 /* v0.126.0 U14d3: engine records 'core' and 'burst' (06-rules.js, 08-battle.js) arrive just before the board is redrawn, so the old DOM still
    holds both ends: a gem flies from one rect to the other (Full only; Reduced and Off draw nothing), and a flipped Burst turns face up where it was set. */
+const CF_SEEN = {};                                // v0.151.0: explicit engine core cues of this board update ("side|from|to" -> count), so the board diff below never repeats them
+function flyGem(a, b, side, soul, nth) {            // a, b: rects; one core gem travels from a to b (Full only)
+  const L = $('ae-fx'); if (!a || !b || !L) return;
+  const d = document.createElement('div'); d.className = 'ae-a-fly' + (soul ? ' soul' : '') + (side === 'opponent' ? ' cpu' : '');
+  d.style.cssText = `left:${a.x + a.w / 2 - 10}px;top:${a.y + a.h / 2 - 10}px;width:20px;height:20px`;
+  L.appendChild(d);
+  const f = spdF(), dx = b.x + b.w / 2 - a.x - a.w / 2, dy = b.y + b.h / 2 - a.y - a.h / 2;
+  const run = d.animate([{ transform: 'translate(0,0) scale(1.35)', opacity: 1 }, { transform: `translate(${dx}px,${dy}px) scale(.9)`, opacity: .95 }], { duration: 480 * f, delay: (nth || 0) * 110 * f, fill: 'backwards', easing: 'cubic-bezier(.3,.1,.2,1)' });
+  const land = () => { d.remove(); aeFx('ae-a-land' + (side === 'opponent' ? ' cpu' : ''), { x: b.x, y: b.y, w: b.w, h: b.h }, '', 350); };
+  run.onfinish = land; setTimeout(() => d.remove(), 900 * f + (nth || 0) * 110 * f);
+}
+const coreEnd = (x, side) => ['reserve', 'void', 'trash', 'life', 'count'].includes(x) ? rectOf(visEl(`[data-a="zone"][data-v="${side}:${x}"]`)) : rectOf(document.querySelector(`[data-a="field"][data-v$=":${x}"]`));
 function coreFly(ev) {
   if (SIM || animMode() !== 'full') return;
-  const end = (x, side) => ['reserve', 'void', 'trash', 'life', 'count'].includes(x) ? rectOf(visEl(`[data-a="zone"][data-v="${side}:${x}"]`)) : rectOf(document.querySelector(`[data-a="field"][data-v$=":${x}"]`));
-  const a = end(ev.from, ev.side), b = end(ev.to, ev.side), L = $('ae-fx'); if (!a || !b || !L) return;
-  const d = document.createElement('div'); d.className = 'ae-a-fly' + (ev.kind === 'soul' ? ' soul' : '') + (ev.side === 'opponent' ? ' cpu' : '');
-  d.style.cssText = `left:${a.x + a.w / 2 - 9}px;top:${a.y + a.h / 2 - 9}px;width:18px;height:18px`;
-  L.appendChild(d);
-  const run = d.animate([{ transform: 'translate(0,0)', opacity: 1 }, { transform: `translate(${b.x + b.w / 2 - a.x - a.w / 2}px,${b.y + b.h / 2 - a.y - a.h / 2}px)`, opacity: .9 }], { duration: 420 * spdF(), delay: (ev.nth || 0) * 110 * spdF(), fill: 'backwards', easing: 'ease-in-out' });
-  run.onfinish = () => d.remove(); setTimeout(() => d.remove(), 800 * spdF() + (ev.nth || 0) * 110 * spdF());
+  const k = `${ev.side}|${ev.from}|${ev.to}`; CF_SEEN[k] = (CF_SEEN[k] || 0) + 1;
+  flyGem(coreEnd(ev.from, ev.side), coreEnd(ev.to, ev.side), ev.side, ev.kind === 'soul', ev.nth);
+}
+/* v0.151.0: every other core move (summon payment, destroyed Spirit, Void and Life moves, effects without a cue) is found by comparing the cores in each place
+   with the last board: places that lost cores send gems to places that gained them. Net moves only; cues the engine already sent are skipped. */
+function coreFlows(prev, now, full) {
+  if (!full) return;
+  for (const side of ['player', 'opponent']) {
+    const src = [], dst = [], P = prev.zn[side], N = now.zn[side];
+    for (const z of ['reserve', 'trash', 'void', 'count', 'life']) { const d = N[z] - P[z]; if (d) (d < 0 ? src : dst).push({ id: z, n: Math.abs(d), r: rectOf(visEl(`[data-a="zone"][data-v="${side}:${z}"]`)) }); }
+    const uids = new Set(); for (const m of [prev.cards, now.cards]) for (const [u, c] of m) if (c.k === side) uids.add(u);
+    for (const u of uids) {
+      const a = prev.cards.get(u), b = now.cards.get(u), d = (b ? b.co : 0) - (a ? a.co : 0);
+      if (d) (d < 0 ? src : dst).push({ id: u, n: Math.abs(d), r: (b || a).r });
+    }
+    let nth = 0;
+    for (const s of src) for (const t of dst) {
+      while (s.n > 0 && t.n > 0 && nth < 8) {
+        s.n--; t.n--;
+        const key = `${side}|${s.id}|${t.id}`;
+        if (CF_SEEN[key] > 0) { CF_SEEN[key]--; continue; }
+        flyGem(s.r, t.r, side, false, nth++);
+      }
+    }
+  }
 }
 /* v0.138.0: Draw Step, a card back slides from the deck to the hand (the opponent's pile to its hand pill) */
 function drawFly(ev) {
@@ -8965,13 +9013,15 @@ function animCues() {
   if (mode === 'off') { ANIM = null; return; }
   for (const k of ['player', 'opponent']) for (const f of fieldList(G.p[k])) {
     const c = CARDS[f.id]; if (!c) continue;
-    cards.set(f.uid, { k, ex: f.heavy ? 180 : f.exhausted ? 90 : 0, bp: isSpiritForm(c) ? bpOf(f) : null, lv: isSpiritForm(c) ? lvNo(f) : null, r: rectOf(document.querySelector(`[data-a="field"][data-v$=":${f.uid}"]`)) });
+    cards.set(f.uid, { k, co: (f.cores || 0) + (f.soul ? 1 : 0), ex: f.heavy ? 180 : f.exhausted ? 90 : 0, bp: isSpiritForm(c) ? bpOf(f) : null, lv: isSpiritForm(c) ? lvNo(f) : null, r: rectOf(document.querySelector(`[data-a="field"][data-v$=":${f.uid}"]`)) });
   }
-  const now = { g: G, cards, hand: new Set(G.p.player.hand.map(h => h.uid)), life: { player: G.p.player.life, opponent: G.p.opponent.life },
+  const zn = {}; for (const k of ['player', 'opponent']) { const p = G.p[k]; zn[k] = { reserve: p.reserve.n + (p.reserve.soul ? 1 : 0), trash: p.trashCores.n + (p.trashCores.soul ? 1 : 0), void: p.void, count: p.count, life: p.life }; }
+  const now = { g: G, cards, zn, hand: new Set(G.p.player.hand.map(h => h.uid)), life: { player: G.p.player.life, opponent: G.p.opponent.life },
     att: G.attacker ? G.attacker.uid : null, blk: G.blocker ? G.blocker.uid : null };
   const prev = ANIM; ANIM = now;
-  if (!prev || prev.g !== G || G.over) return;      // the first board of a match sets the baseline
+  if (!prev || prev.g !== G || G.over) { for (const k in CF_SEEN) delete CF_SEEN[k]; return; }      // the first board of a match sets the baseline
   const full = mode === 'full';
+  coreFlows(prev, now, full); for (const k in CF_SEEN) delete CF_SEEN[k];
   for (const [uid, c] of cards) {
     const o = prev.cards.get(uid);
     if (!o) { aeFx('ae-a-sum' + (c.k === 'opponent' ? ' cpu' : ''), c.r, '', 500); continue; }
@@ -9681,13 +9731,22 @@ const EMOTES = ['😀', '😎', '😮', '😢', '😡', '👍', '👏', '🙏', 
 const EMOTE_GAP = 30000;
 let EMOTE_AT = 0, EMOTE_NOW = () => Date.now();
 const emoteLeft = () => Math.max(0, Math.ceil((EMOTE_AT + EMOTE_GAP - EMOTE_NOW()) / 1000));
+/* v0.151.0: effect pop-ups (owner 2026-10-27, like Aegis): an info card for every effect that runs, never a question. PC: bottom of the left card panel column;
+   phone: under the top bar (over the CPU stats row), one at a time. Never over the field. Closes after 5 s or with the X; Settings > Game > Effect pop-ups turns it off. */
+const EFF_MS = 5000;
 function effectPanel(ev) {
-  if (SIM || animMode() === 'off') return;
+  if (SIM || SETTINGS.effPop === 'off') return;
   const L = $('ae-fx'), c = CARDS[ev.id]; if (!L || !c) return;
-  L.querySelectorAll('.ae-eff').forEach(e => e.remove());
-  const d = document.createElement('div'); d.className = 'ae-eff' + (ev.side === 'opponent' ? ' cpu' : '');
-  d.innerHTML = `<span class="ae-eff-h">EFFECT ACTIVE</span><b>${esc(c.name)}</b><span>${esc(String(ev.text || '').slice(0, 160))}</span>`;
-  L.appendChild(d); setTimeout(() => d.remove(), 1400);
+  /** @type {HTMLElement} */ let st = $('ae-eff-stack'); if (!st) { st = document.createElement('div'); st.id = 'ae-eff-stack'; st.setAttribute('role', 'status'); st.setAttribute('aria-live', 'polite'); L.appendChild(st); }
+  const text = String(ev.text || '').slice(0, 200), trg = (typeof FX_TRIGGER_TEXT !== 'undefined' && FX_TRIGGER_TEXT[ev.trg]) || '';
+  const dup = /** @type {HTMLElement[]} */ ([...st.children]).find(e => e.dataset.k === ev.id + '|' + text);        // the same effect again within 5 s refreshes its timer instead of stacking
+  if (dup) { clearTimeout(+dup.dataset.t); dup.dataset.t = String(setTimeout(() => dup.remove(), EFF_MS)); return; }
+  const max = isPC() ? 3 : 1; while (st.children.length >= max) st.firstElementChild.remove();
+  const d = document.createElement('div'); d.className = 'ae-eff' + (ev.side === 'opponent' ? ' cpu' : ''); d.dataset.k = ev.id + '|' + text;
+  d.innerHTML = `<span class="ae-eff-h">${ev.side === 'opponent' ? 'CPU' : 'YOU'} · EFFECT${trg ? ' · ' + esc(trg) : ''}</span><b>${esc(c.name)}</b><span class="ae-eff-t">${esc(text)}</span><button class="ae-eff-x" type="button" aria-label="Close this effect pop-up">✕</button>`;
+  d.querySelector('button').addEventListener('click', e => { e.stopPropagation(); clearTimeout(+d.dataset.t); d.remove(); });
+  d.dataset.t = String(setTimeout(() => d.remove(), EFF_MS));
+  st.appendChild(d);
 }
 function emotePop() {
   /** @type {HTMLElement} */ let p = $('emote-pop');
@@ -10194,6 +10253,7 @@ document.addEventListener('change', async e => {
   else if (t.id === 'set-cpu') setCpuProfile(t.value);
   else if (t.id === 'set-color') { setTheme('color', t.value); navTools(); if (G) render(); }
   else if (t.id === 'set-mode') { setTheme('mode', t.value); navTools(); if (G) render(); }
+  else if (t.id === 'set-effpop') { if (t.value === 'off') SETTINGS.effPop = 'off'; else delete SETTINGS.effPop; saveSettings(); }
   else if (t.id === 'set-anim') { if (['full', 'reduced', 'off'].includes(t.value)) SETTINGS.anim = t.value; else delete SETTINGS.anim; saveSettings(); }
   else if (t.id === 'set-ts') { if (TEXT_SIZES.includes(t.value) && t.value !== 'normal') SETTINGS.textSize = t.value; else delete SETTINGS.textSize; saveSettings(); applyTextSize(); }
   else if (t.id === 'set-cb' || t.id === 'set-hc') { const k = t.id === 'set-cb' ? 'cbShapes' : 'hiContrast'; if (t.value === 'on') SETTINGS[k] = true; else delete SETTINGS[k]; saveSettings(); applyAccess(); }
@@ -10447,7 +10507,12 @@ document.addEventListener('click', e => {
   e.stopPropagation(); e.preventDefault(); openZoom(mg.dataset.v, mg.dataset.u != null ? Number(mg.dataset.u) : null);
 }, true);
 document.addEventListener('submit', e => { if (/** @type {any} */ (e.target).id === 'bug-form') { e.preventDefault(); bugSend(); } });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { bugOpen(false); const z = $('zoom-overlay'); if (z) z.classList.remove('active'); } });
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  bugOpen(false); const z = $('zoom-overlay'); if (z) z.classList.remove('active');
+  /* v0.151.0: Esc closes a view-only dialog on every page (shortcuts, zone views, deck list tools, card detail outside a match); engine decisions are never closed by a key */
+  if ($('action-modal').classList.contains('active') && MODAL && MODAL.cfg.uiOnly && (MODAL.cfg.buttons || []).some(b => b.value === null && !b.dis)) { e.preventDefault(); closeModal(null); }
+});
 document.addEventListener('click', e => {
   const peekBtn = evC(e, '[data-peek]');
   if (peekBtn) { startPeek(); return; }
@@ -10508,7 +10573,7 @@ document.addEventListener('click', e => {
   else if (a === 'rv-watch') replayWatch(Number(v));
   else if (a === 'rv-save') replaySave(Number(v));
   else if (a === 'hist-clear') { HISTORY = []; try { localStorage.removeItem(HIST_KEY); } catch (e) { /* blocked */ } renderSettings(); }
-  else if (a === 'set-reset') { SETTINGS.speed = 'normal'; SETTINGS.sound = false; delete SETTINGS.anim; delete SETTINGS.textSize; delete SETTINGS.cbShapes; delete SETTINGS.hiContrast; applyTextSize(); applyAccess(); SETTINGS.cpuDeck = 'std03'; SETTINGS.cpuProfile = 'balanced'; delete SETTINGS.cpuRandom; delete SETTINGS.cpuLevel; delete SETTINGS.firstTurn; delete SETTINGS.hints; saveSettings(); renderSettings(); $('set-msg').textContent = 'Settings reset.'; }
+  else if (a === 'set-reset') { SETTINGS.speed = 'normal'; SETTINGS.sound = false; delete SETTINGS.anim; delete SETTINGS.effPop; delete SETTINGS.textSize; delete SETTINGS.cbShapes; delete SETTINGS.hiContrast; applyTextSize(); applyAccess(); SETTINGS.cpuDeck = 'std03'; SETTINGS.cpuProfile = 'balanced'; delete SETTINGS.cpuRandom; delete SETTINGS.cpuLevel; delete SETTINGS.firstTurn; delete SETTINGS.hints; saveSettings(); renderSettings(); $('set-msg').textContent = 'Settings reset.'; }
   else if (a === 'go-lib') switchView('view-library');
   else if (a === 'set-sec') setSection(v);
   else if (a === 'set-mat-clear') matClear();
