@@ -144,10 +144,18 @@ function simple(card, a) {
       if (a.orReserve && only(a, ['n', 'to', 'orReserve']) && ['self', 'anySpirit'].includes(a.to)) return (spirit || a.to === 'anySpirit') && { onField: a.to === 'self', body: `const t = A.to === 'self' ? src : sp(${J(FILL)}, P, 1), c0 = t.cores, r = P.reserve.n; await run(src, RA);
       if (t.cores !== c0 + A.n || P.reserve.n !== r) return 'the CPU did not put the core on the Spirit: ' + c0 + ' -> ' + t.cores;
       ${PRE_RESET} P.spirits = []; const r2 = P.reserve.n; await run(src, RA); return P.reserve.n === r2 + A.n ? '' : 'no Spirit: reserve ' + r2 + ' -> ' + P.reserve.n;` };      // v0.77: CPU takes the Spirit, else the Reserve
+      if (only(a, ['n', 'to', 'match']) && ['anySpirit', 'anyNexus'].includes(a.to) && a.match && Object.keys(a.match).every(k => k === 'family') && okMatch(a.match)) {      // v0.163 "Target a <family> Spirit/Nexus you control. Put a core from the Void to it."
+        const m = a.to === 'anyNexus' ? Object.assign({}, a.match, { type: 'Nexus' }) : a.match;
+        return { fix: [{ m }], body: `const t = A.to === 'anyNexus' ? nx(${J(mid(m))}) : sp(${J(mid(m))}, P, 1), o = sp(${J(FILL)}, P, 1), c0 = t.cores; await run(src, RA); return t.cores === c0 + A.n && o.cores === 1 ? '' : 'matching ' + c0 + ' -> ' + t.cores + ', other ' + o.cores;` };
+      }
       if (!only(a, ['n', 'to'])) return null;
       if (a.to === 'self') return spirit && { onField: true, body: `const c0 = src.cores, r = P.reserve.n; await run(src, RA); if (src.cores !== c0 + A.n) return 'cores ' + c0 + ' -> ' + src.cores; return P.reserve.n === r ? '' : 'the cores came from the Reserve';` };
       return a.to === 'anySpirit' && { body: `const t = sp(${J(FILL)}, P, 1); await run(src, RA); return t.cores === 1 + A.n ? '' : 'cores 1 -> ' + t.cores;` };
     case 'BP_PLUS':
+      if (only(a, ['n', 'per']) && spirit && a.per && ['Spirit', 'Nexus'].includes(a.per.type) && Object.keys(a.per).every(k => k === 'type')) {      // v0.163 "For each Nexus you control, this Spirit gains +N BP": counted when it resolves
+        const nex = a.per.type === 'Nexus';
+        return { onField: true, fix: nex ? [{ n: 2 }] : [], body: `${nex ? `nx(${J(nid(2))}); nx(${J(nid(2))});` : `sp(${J(FILL)}, P, 1); sp(${J(FILL)}, P, 1);`} const want = ${nex ? 2 : 'P.spirits.length'}, b = BS.bpOf(src); await run(src, RA); return BS.bpOf(src) === b + A.n * want ? '' : 'BP ' + b + ' -> ' + BS.bpOf(src) + ', want +' + A.n * want;` };
+      }
       if (!only(a, ['n', 'to']) || !spirit || !['self', 'attacker', 'own', undefined].includes(a.to)) return null;
       if (a.to === 'own') return { onField: true, body: `const t = sp(${J(FILL)}, P, 1), b = [BS.bpOf(src), BS.bpOf(t)], o = sp(${J(FILL)}, O, 1); await run(src, RA);
       if (BS.bpOf(src) !== b[0] + A.n || BS.bpOf(t) !== b[1] + A.n) return 'own Spirits: ' + b + ' -> ' + [BS.bpOf(src), BS.bpOf(t)]; return BS.bpOf(o) === 1000 ? '' : 'an opposing Spirit got BP';` };
