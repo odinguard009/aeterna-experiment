@@ -73,8 +73,10 @@
 <div id="theme-pop" class="ae-pop" role="dialog" aria-label="Your colour" hidden><div class="bar"></div><h3>Your colour</h3><div id="theme-grid" class="pgrid"></div></div>
 
 <div id="view-lobby" class="app-view active">
+  <div class="lob-bg" aria-hidden="true"><svg class="lob-logo"><use href="#ae-logo"/></svg></div>
   <div class="hero scroll" style="flex-direction:column">
     <div style="display:flex;flex:1;min-height:0;position:relative" class="herotop">
+      <div class="lob-ctl"><label class="btn sm ae-upl" title="Use your own picture as the Home background"><span>Background picture</span><input id="lobby-bg-up" type="file" accept="image/*" aria-label="Choose a Home background picture"></label><button class="btn sm" id="lobby-bg-clear" data-a="lobby-bg-clear" hidden>Reset</button></div>
       <div class="glow" style="right:80px;top:20px;width:420px;height:420px;background:var(--you)"></div><div class="glow" style="right:380px;top:200px;width:300px;height:300px;background:var(--cpu);opacity:.2"></div>
       <div class="l"><div class="row" style="gap:8px;flex-wrap:wrap"><span class="tag">Card Battle vs CPU</span><span class="tag dim">Offline · One File</span></div>
         <h1>Gate Open,<em>Release!</em></h1>
@@ -199,7 +201,7 @@
       <div class="shh"><span style="width:44px;height:5px;border-radius:3px;background:var(--line2);margin:0 auto"></span></div>
       <div class="dhead"><div class="ring" id="db-ring"></div>
         <div class="grow col" style="gap:4px"><input id="db-name" class="dname" maxlength="24" autocomplete="off" aria-label="Deck name"><div class="row" style="gap:8px"><span class="savedot" id="db-savedot"><i></i><span>Saved</span></span><span class="grow"></span>
-          <button class="ibtn sq" id="db-undo" data-a="db-undo" aria-label="Undo" title="Undo">↶</button><button class="ibtn sq" id="db-redo" data-a="db-redo" aria-label="Redo" title="Redo">↷</button><button class="ibtn sq" id="db-menu-btn" data-a="db-sheet" data-v="menu" aria-label="Deck options" title="Deck options" aria-expanded="false">⋯</button><button class="ibtn sq shc" data-a="db-sheet" data-v="" aria-label="Close deck">✕</button></div></div></div>
+          <button class="ibtn sq" id="db-undo" data-a="db-undo" aria-label="Undo" title="Undo">↶</button><button class="ibtn sq" id="db-redo" data-a="db-redo" aria-label="Redo" title="Redo">↷</button><button class="ibtn sq" id="db-menu-btn" data-a="db-sheet" data-v="menu" aria-label="Deck options" title="Deck options" aria-expanded="false">⋯</button><button class="ibtn sq shc" id="db-size-btn" data-a="db-sheet" data-v="size" aria-label="Maximize the deck panel" title="Maximize / minimize the deck panel">⤢</button><button class="ibtn sq shc" data-a="db-sheet" data-v="" aria-label="Close deck">✕</button></div></div></div>
       <div class="dopt" id="db-opt">
         <div class="row" style="gap:8px;flex-wrap:wrap"><button class="btn sm" data-a="go-decks">‹ My decks</button><button class="btn sm" data-a="format" id="db-format" title="Switch format">STANDARD</button><select id="db-slot" class="in" title="Deck slot" aria-label="Deck slot"></select></div>
         <div class="row" style="gap:8px;flex-wrap:wrap"><select id="db-preset" class="in" title="Load a ready-made deck into this slot" aria-label="Load ready-made" style="flex:1;min-width:0"></select><button class="btn sm" data-a="db-reset">Default deck</button><button class="btn sm" data-a="db-clear">Clear</button></div>
@@ -223,12 +225,13 @@
       <button class="btn" data-a="dk-import">Import</button><button class="btn pri" data-a="dk-new">+ New deck</button></div>
     <div class="dgrid" id="dk-list" aria-label="My decks"></div>
     <div class="sec">Starter decks · read only</div>
-    <div class="row" id="dk-starters" style="gap:12px;flex-wrap:wrap" aria-label="Starter decks"></div>
+    <div id="dk-starters" aria-label="Starter decks"></div>
   </div>
 </div>
 <div id="view-library" class="app-view"><div class="pg scroll" style="padding:0">
   <div class="card flat hdcard lib-hd" style="margin:16px 20px 0"><div class="grow"><span class="eyebrow" id="lib-eyebrow">Library</span><h2 class="hd" id="lib-title">All Cards</h2><span class="sub" id="lib-sub">Search and filter the whole card data. Click a card for its page.</span></div>
     <div class="seg" role="group" aria-label="Library view" id="lib-tabs"><button data-a="lib-tab" data-v="cards" aria-pressed="true">Cards</button><button data-a="lib-tab" data-v="lore" aria-pressed="false">Lore</button></div>
+    <button class="btn sm" id="lib-min" data-a="lib-min" aria-pressed="false" title="Hide the header and the filter rows to see more cards">▲ Hide filters</button>
     <span id="lib-chips" class="row" style="gap:8px"><button class="chip on" id="lib-complete" data-a="lib-complete" aria-pressed="true">Complete Effects Only</button><span class="chip"><b style="color:var(--yes-text)">!</b> Partly Implemented</span></span></div>
   <section id="lib-cards-pane" class="bpool" style="border:0;display:flex;flex-direction:column;min-height:0;flex:1">
     <div class="btool" id="lib-tbar">
@@ -259,7 +262,7 @@
       <div id="lib-msg" class="lib-msg" role="status"></div></div></details>
   </section>
   <div id="lib-lore-pane" class="lore" hidden>
-    <aside class="lorenav"><span class="lbl2">Series In Reading Order</span><div class="loreser scroll" id="lib-lore-nav"></div><select id="lib-lore-set" class="in" aria-label="Series" hidden></select></aside>
+    <aside class="lorenav"><div class="seg" role="group" aria-label="Reading order" id="lib-lore-by"></div><span class="lbl2" id="lib-lore-ord">Series In Reading Order</span><div class="loreser scroll" id="lib-lore-nav"></div><select id="lib-lore-set" class="in" aria-label="Series" hidden></select></aside>
     <section class="lorebody"><div class="row" style="gap:8px;flex-wrap:wrap"><div class="grow"><span class="eyebrow">Card Lore</span><h2 class="hd" style="font-size:1.5em" id="lib-lore-h">-</h2><span class="sub" id="lib-lore-sub"></span></div><div class="seg" role="group" aria-label="Text size" id="lib-lore-fs"></div></div>
       <div class="pbar" style="margin:4px 0 8px"><i id="lib-lore-bar" style="width:0"></i></div>
       <div class="loretexts scroll" id="lib-lore"></div>
@@ -269,7 +272,7 @@
   <div id="app" class="viewport" tabindex="-1"></div>
 </div>
 
-<div id="log-drawer"><div class="ld-head"><span>📜 Game Log</span><button class="btn-nav-small" data-a="log-close">Close ✕</button></div><div class="ld-body" id="ld-body"></div></div>
+<div id="log-drawer"><div class="ld-head"><span>📜 Game Log</span><span class="ld-acts"><button class="btn-nav-small" data-a="log-copy" id="log-copy">Copy</button><button class="btn-nav-small" data-a="log-close">Close ✕</button></span></div><div class="ld-body" id="ld-body"></div></div>
 <div id="peek-bar"><div id="peek-text"></div><div id="peek-btns"></div></div>
 <div id="pick-bar"><div id="pick-text" role="status" aria-live="polite"></div><div id="pick-btns"></div></div>
 <div id="zoom-overlay" data-a="zoomclose"></div>

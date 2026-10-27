@@ -243,7 +243,15 @@ function renderBoard() {
   }
   if (SIM) checkInvariants();
 }
-function render() { renderBoard(); updateLogDrawer(); fxCues(); animCues(); }
+/* v0.155.0: fixed-size areas; when the gems of a plate or a card tag do not fit, they shrink (zoom, down to 45 %) instead of growing the area */
+function fitGems() {
+  dqa('#view-playmat .gems, #view-playmat .core-tag').forEach(e => {
+    const h = /** @type {HTMLElement} */ (e); h.style.zoom = '';
+    const box = h.parentElement; if (!box) return;
+    let z = 1; while (z > .45 && (h.scrollWidth > h.clientWidth + 1 || h.scrollHeight > h.clientHeight + 1 || h.offsetWidth > box.clientWidth + 1)) { z -= .1; h.style.zoom = String(z); }
+  });
+}
+function render() { renderBoard(); updateLogDrawer(); fxCues(); animCues(); fitGems(); }
 /* ---- v0.91.0 U5: one shared overlay layer #ae-fx (index.template.html) above the board, under every dialog, never hit by a tap.
    Ribbons (turn, Main / Attack step, your Flash Timing) and the match-start banner with the motto run about 1.2 s, one at a time;
    the block strip stays while the block pick is open. Sims (?sim=1) draw nothing; reduced motion keeps them static (CSS). U5b adds the animations. */
@@ -304,6 +312,7 @@ document.addEventListener('keydown', e => {
   const modalOpen = $('action-modal').classList.contains('active');
   if (e.key === 'l' || e.key === 'L') { toggleLog(); return; }
   if (e.key === 'Escape' && LOG_OPEN) { toggleLog(false); return; }
+  if ((e.key === 'ArrowUp' || e.key === 'ArrowDown') && !modalOpen && isPC()) { const cp = $('card-panel'); if (cp && cp.scrollHeight > cp.clientHeight) { e.preventDefault(); cp.scrollBy({ top: e.key === 'ArrowUp' ? -80 : 80, behavior: 'smooth' }); } return; }
   if ((e.key === ' ' || e.key === 'Enter') && !modalOpen && !PICK && !PEEK) { const b = /** @type {HTMLButtonElement} */ (dq('.inline-next-btn')); if (b && !b.disabled && humanCan()) { e.preventDefault(); b.click(); } }
 });
 /* ---- match history ---- */

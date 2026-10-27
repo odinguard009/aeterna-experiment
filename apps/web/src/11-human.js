@@ -45,7 +45,7 @@ function cardDetailHTML(card, noArt) {
   const pills = (card.keywords || []).map(k => `<span class="glossary-pill" data-a="gloss" data-v="${k}">${k}</span>`).join(' ');
   const lv = card.type === 'Magic' ? `Timing: ${(card.magic ? card.magic.timing : ['MAIN']).map(x => x === 'MAIN' ? 'Main' : 'Flash').join(' / ')}` : card.levels.map((L, i) => card.countLv ? `LV${i + 1}: Count ${L.cores}` : `LV${i + lvBase(card)}: ${L.cores} core${L.cores === 1 ? '' : 's'}${L.bp != null ? ' / ' + L.bp + ' BP' : ''}`).join('<br>');
   const red = Object.entries(card.reduction || {}).map(([k, n]) => `${cap(k)} ×${n}`).join(', ') || 'none';
-  const art = noArt ? '' : `<div class="art-thumb" data-a="zoom" data-v="${esc(card.id)}" title="Tap to enlarge">${cardFaceHTML(card, false).replace('class="cface', 'class="cface in')}<span class="zoom-ic">🔍</span></div>`;
+  const art = noArt ? '' : `<div class="art-thumb" data-a="zoom" data-v="${esc(card.id)}" title="Tap to enlarge">${cardFaceHTML(card, false)}<span class="zoom-ic">🔍</span></div>`;
   return `${art}<div class="cd-info" style="border:2px solid ${col};border-radius:6px;padding:8px;text-align:left;margin-bottom:8px;">
       <div style="display:flex;justify-content:space-between;align-items:center;"><b>${esc(card.name)}</b>
         <span class="cd-cost" style="background:${col};color:${['yellow', 'white'].includes(card.symbol) ? '#141922' : '#fff'};">Cost ${card.cost}</span></div>
@@ -64,11 +64,12 @@ function cardFacePlaceholder(card, withCost, col, extra) {
 function cardFaceHTML(card, withCost) {
   const col = `var(--color-${card.symbol})`;
   const cbm = `<span class="cbm" data-s="${card.symbol}" aria-hidden="true"></span>`;   // v0.143.0: colour-blind shape marker, shown only when the setting is on
-  const src = cardImgSrc(card.id);                              // v0.112.0: player image first, then the online mirror
+  const aid = (typeof ART_ALT !== 'undefined' && ART_ALT[card.id] && CARDS[ART_ALT[card.id]]) ? ART_ALT[card.id] : card.id;   // v0.155.0: the art picked on the card page is used everywhere (an unavailable picture falls back to the card's own)
+  const src = cardImgSrc(aid) || (aid !== card.id ? cardImgSrc(card.id) : '');                              // v0.112.0: player image first, then the online mirror
   if (!src) return cbm + cardFacePlaceholder(card, withCost, col);
   // A player blob never fails; the mirrored URL may 404 (the wiki lacks that card), so it carries an
   // onerror that swaps to the text placeholder rendered right behind it.
-  if (IMG[card.id]) return `${cbm}<img class="cface" style="--card-col:${col}" src="${src}" alt="${esc(card.name)}">`;
+  if (IMG[aid] || IMG[card.id]) return `${cbm}<img class="cface" style="--card-col:${col}" src="${src}" alt="${esc(card.name)}">`;
   return `${cbm}<img class="cface" style="--card-col:${col}" src="${src}" alt="${esc(card.name)}" onerror="this.style.display='none';this.nextElementSibling.style.display=''">${cardFacePlaceholder(card, withCost, col, 'display:none')}`;
 }
 /* v0.27: card images for a list of cards (instances or ids), in a strip that scrolls sideways */

@@ -16,6 +16,24 @@ function matUse(blob) {
   r.classList.toggle('has-mat', !!MAT.url);
   if (MAT.url) r.style.setProperty('--ae-mat', `url("${MAT.url}")`); else r.style.removeProperty('--ae-mat');
 }
+/* Home background (owner review 2026-10-27): the Aeterna logo on the theme colour; the player can pick their own picture instead (same store, key '~lobbybg'). */
+const LOBBYBG_KEY = '~lobbybg';
+const LOBBYBG = { blob: null, url: '' };
+function lobbyBgUse(blob) {
+  if (LOBBYBG.url) URL.revokeObjectURL(LOBBYBG.url);
+  LOBBYBG.blob = blob || null; LOBBYBG.url = blob ? URL.createObjectURL(blob) : '';
+  if (typeof document === 'undefined') return;
+  const r = document.documentElement;
+  r.classList.toggle('has-lobbybg', !!LOBBYBG.url);
+  if (LOBBYBG.url) r.style.setProperty('--ae-lobbybg', `url("${LOBBYBG.url}")`); else r.style.removeProperty('--ae-lobbybg');
+  const b = document.getElementById('lobby-bg-clear'); if (b) b.hidden = !LOBBYBG.url;
+}
+async function lobbyBgSet(file) {
+  if (!file || !/^image\//.test(file.type)) return;
+  const blob = await shrinkMat(file);
+  lobbyBgUse(blob); await idbTx('readwrite', st => st.put(blob, LOBBYBG_KEY));
+}
+async function lobbyBgClear() { lobbyBgUse(null); await idbTx('readwrite', st => st.delete(LOBBYBG_KEY)); }
 // keep a big playmat light: longest side at most 1600 px, JPEG (the board is at most a full screen)
 async function shrinkMat(file, max) {
   try {

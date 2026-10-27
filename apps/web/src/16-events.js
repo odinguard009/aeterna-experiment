@@ -88,6 +88,7 @@ document.addEventListener('click', e => {
   else if (a === 'shortcuts') shortcutsDialog();
   else if (a === 'go-howto') switchView('view-howto');
   else if (a === 'cp-nav') { const l = cpIds(CP_ID); openCardPage(l[(l.indexOf(CP_ID) + Number(v) + l.length) % l.length]); }
+  else if (a === 'cp-open') openCardPage(v);
   else if (a === 'cp-add') { if (dbCanAdd(CP_ID)) { PLAYER_DECK[CP_ID] = (PLAYER_DECK[CP_ID] || 0) + 1; saveDeck(); renderCardPage(); $('cp-msg').textContent = `Added to ${SLOTS[ACTIVE_SLOT].name}: ${PLAYER_DECK[CP_ID]} ${PLAYER_DECK[CP_ID] === 1 ? 'copy' : 'copies'}.`; } }
   else if (a === 'cp-link') { const u = location.href.split('#')[0] + '#card=' + encodeURIComponent(CP_ID); (navigator.clipboard ? navigator.clipboard.writeText(u) : Promise.reject()).then(() => 'Link to this card copied.', () => u).then(t => { $('cp-msg').textContent = t; }); }
   else if (a === 'go-profile') switchView('view-profile');
@@ -100,6 +101,10 @@ document.addEventListener('click', e => {
   else if (a === 'sound-toggle') navSound();
   else if (a === 'log-toggle') toggleLog();
   else if (a === 'log-close') toggleLog(false);
+  else if (a === 'log-copy') {      // owner review 2026-10-27: copy the whole match log as plain text
+    const txt = G ? G.history.join('\n') : '', b = $('log-copy');
+    (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(() => 'Copied', () => 'Select + copy').then(m => { if (b) { b.textContent = m; setTimeout(() => { b.textContent = 'Copy'; }, 1500); } });
+  }
   else if (a === 'step') stepClick(v);
   else if (a === 'rv-watch') replayWatch(Number(v));
   else if (a === 'rv-save') replaySave(Number(v));
@@ -108,8 +113,9 @@ document.addEventListener('click', e => {
   else if (a === 'go-lib') switchView('view-library');
   else if (a === 'set-sec') setSection(v);
   else if (a === 'set-mat-clear') matClear();
+  else if (a === 'lobby-bg-clear') lobbyBgClear();
   else if (a === 'libcard') openZoom(v);                                    // v0.111.0 (card images): the Library browse grid
-  else if (/^lib-(f|size|tab|complete|clear|lore-|dd)/.test(a)) libTool(a, v);
+  else if (/^lib-(f|size|tab|min|complete|clear|lore-|dd)/.test(a)) libTool(a, v);
   else if (a.startsWith('lib-')) libAction(a);
   else if (a === 'format') setFormat(FORMAT === 'eternal' ? 'standard' : 'eternal');
   else if (a === 'rules') showRules();

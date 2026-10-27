@@ -99,6 +99,11 @@ Read the lines for the colour or mechanic you touch before starting. Newest firs
 - **How it runs (no extra sessions):** every card session's prep (sizing by main, research subagent when needed) takes (a) the next heads in the order below and (b) the highest "Waiting" rows whose prep is not `RDL`;  unverified rows each session; results go into `mechanics.json`. The order of the build sessions stays "cards unlocked per token" (measured levers), so a large mechanic like Rebirth is placed by its measured unlocks once its prep is `RDL`, not by its tag count.
 - **Done when:** every row is `done`, or `missing`/`partial` with prep `RDL` and a place in the session order; nothing "(unverified)".
 
+## Open ideas from the v0.155.0 review (owner, 2026-10-27)
+- **Learn: one animated PNG per chapter** showing what to look at (U/I queue, after parity). Needs a small PNG sequence per chapter; keep the page budget (load on demand).
+- **Lore by story arc** next to Series and Saga: needs a reachable source (Fandom / official site were blocked in the v0.155.0 session); retry then.
+- **Every new card adds lore:** each card pack that enters the library must also add its flavor text / lore entry (checked with the pack's data, listed in the CHANGELOG).
+
 ## Card priority and compiler v2 (owner, 2026-10-18)
 - **Priority:** newest cards first: Standard block A (official format since April 2026, ~700 card numbers, only 6 in the data), then Eternal by Saga from 17 down; inside a tier whole decks per colour (target 40 distinct playable cards per colour) before totals. Report: `python3 tools/priority_report.py` -> `docs/reports/priority-report.md`. Version marks (XV, LT, RV, X) are new cards with their own text, not reprints.
 - **No manual mode** for unsupported cards (owner, 2026-10-18: it would confuse the game). Aegis has none either. Partial cards marked "!" are allowed since 2026-10-20 (item A): missing clauses do not happen, nothing is resolved by hand.

@@ -46,15 +46,16 @@ const packLen = between('/*PACK_START*/', '/*PACK_END*/'), code = html.slice(0, 
 // v0.125.0 (U14d2): B02 raised 212 -> 218 KB on purpose: the Effect Active panel, the emoticons and the 'effect' view record.
 const FONT_URL = /url\(data:font\/woff2;base64,[A-Za-z0-9+/=]+\)/g, FLAVOR_RE = /\/\*FLAVOR_START\*\/const BUILTIN_FLAVOR = "[A-Za-z0-9+\/=]*";\/\*FLAVOR_END\*\//, noFont = t => t.replace(FONT_URL, 'url()').replace(FLAVOR_RE, '/*FLAVOR*/');   // v0.131.0 U14g: the Lore flavor blob is data like the pack: its own budget B15
 // v0.153.0 (mockup parity part 2): raised B01 975 -> 985 KB on purpose: New Deck chooser, richer bug report form and concede wording (~2 KB) on top of the v0.151-v0.152 UI work.
-test('B01 index.html without the card pack stays under 985 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 985e3, Buffer.byteLength(noFont(code))));
+// v0.155.0 (owner review batch): raised B01 985 -> 1005 KB and B04 210 -> 225 KB on purpose: ~30 review items (Home background, deck-sheet sizes, filter groups, card-page and battle-layout CSS) are mostly stylesheet.
+test('B01 index.html without the card pack stays under 1005 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 1005e3, Buffer.byteLength(noFont(code))));
 test('B02 index.html without the card pack, gzipped, stays under 275 KB', () => { const n = gzipSync(noFont(code), { level: 9 }).length; assert.ok(n < 275e3, n); });
 test('B03 the embedded card pack stays under 1.6 MB (room for all cards; never embed staging data)', () => assert.ok(packLen < 1.6e6, packLen));
 // v0.93.0 (U6): raised 90 -> 96 KB on purpose (roadmap item U allows it with a note): U6-U8 add the My decks page and the
 // deck builder restyle; unused rules were trimmed first in v0.92.0. The next raise needs the same kind of note.
 // v0.151.0: raised B04 205 -> 210 KB on purpose: effect pop-ups, core landing flash and the UI audit fixes (~2 KB).
-test('B04 the stylesheet stays under 210 KB', () => {
+test('B04 the stylesheet stays under 225 KB', () => {
   const css = (noFont(html).match(/<style[\s\S]*?<\/style>/g) || []).reduce((n, s) => n + s.length, 0);
-  assert.ok(css < 210e3, css);
+  assert.ok(css < 225e3, css);
 });
 test('B05 the page has one app script plus the tiny early theme script, and no external requests', () => {
   assert.equal((html.match(/<script/g) || []).length, 2);   // v0.141.0: the second one only paints the saved theme colour before boot (loading screen)

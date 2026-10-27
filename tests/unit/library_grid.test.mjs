@@ -22,7 +22,7 @@ test('CIMG-1 the Library browse grid shows every card, filters by search and zoo
   }));
   assert.ok(initial.cards > 0, 'the grid renders a window of cards');
   assert.ok(initial.sets > 10, 'the set selector is populated');
-  assert.deepEqual(initial.types, ['Spirit', 'Ultimate', 'Brave', 'Nexus', 'Magic', 'Contract']);
+  assert.deepEqual(initial.types, ['Spirit', 'Ultimate', 'Brave', 'Nexus', 'Magic', 'Contract', 'Mirage', 'Rebirth']);
   assert.match(initial.count, /\d[\d,]* card\(s\) shown/, 'the count note reports how many cards are shown');
 
   // search narrows the grid to the one card (its id is the unique search key)

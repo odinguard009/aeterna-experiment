@@ -18,11 +18,11 @@ test('DD1 PC: the Group dropdown filters by one group; the colour dropdown is ph
   assert.equal(await page.isVisible('#db-colbtn .ddb'), false);
   await page.click('#db-groups .ddb');
   const opts = await page.$$eval('#db-tbar .ddmenu .ddi', o => o.map(x => x.textContent.replace('✓', '').trim()));
-  assert.ok(opts.includes('Mirage'), opts.join());
-  await page.click('#db-tbar .ddmenu [data-v="mirage"]');
-  assert.deepEqual(await page.evaluate(() => [...BS.DBF.groups]), ['mirage']);
-  assert.match(await page.textContent('#db-groups .ddb'), /Mirage/);
-  await page.click('#db-tbar .ddmenu [data-v="mirage"]');
+  assert.ok(opts.includes('Legacy'), opts.join());
+  await page.click('#db-tbar .ddmenu [data-v="legacy"]');
+  assert.deepEqual(await page.evaluate(() => [...BS.DBF.groups]), ['legacy']);
+  assert.match(await page.textContent('#db-groups .ddb'), /Legacy/);
+  await page.click('#db-tbar .ddmenu [data-v="legacy"]');
   assert.equal(await page.evaluate(() => BS.DBF.groups.size), 0);
 });
 test('DD2 phone: both dropdowns show; picks add up and the button lists them', async () => {

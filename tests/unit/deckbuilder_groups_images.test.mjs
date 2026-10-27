@@ -20,7 +20,8 @@ test('DBG-01 the Group dropdown lists the mechanic groupings', async () => {
     const save = document.querySelectorAll('#view-deckbuilder [data-a="db-save"]').length;
     return { labels, save };
   });
-  assert.deepEqual(r.labels, ['All colour', 'Mirage', 'Rebirth', 'Legacy', 'EX symbol']);
+  // v0.155.0 (owner review): All colour is the rainbow pip, Mirage and Rebirth sit with the types; Burst, True Release, Manifest, High Speed and Token are new groups
+  assert.deepEqual(r.labels, ['Legacy', 'EX symbol', 'Burst', 'True Release', 'Manifest', 'High Speed', 'Token']);
   assert.equal(r.save, 1, 'a Save button in the deck panel actions');
 });
 

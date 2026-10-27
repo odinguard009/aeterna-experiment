@@ -72,3 +72,83 @@ html.layout-pc #view-playmat .ae-sub{display:inline}
 .mobile-stats-bar .stat-pill .pl{font-size:0}
 .mobile-stats-bar .stat-pill .pl::after{content:attr(data-f);font-size:10px;letter-spacing:0;text-transform:none;font-weight:700}
 @media (max-width:380px){.mobile-stats-bar .stat-pill .pl[data-f="Reserve"]::after{content:"Res."}}
+/* v0.155.0 owner review batch 1 (2026-10-27) */
+html.layout-pc #view-play .pg>.hdcard{order:-2}                                                              /* Play (PC): the Start box sits right under the page header */
+html.layout-pc #view-play .pg>.readybox{order:-1}
+#view-online .menu-btn{display:flex;align-items:center;gap:14px;text-align:left;width:min(100%,520px)}      /* Quick Match: icon, title and note no longer run into each other */
+#view-online .menu-btn .ic{flex:none;display:grid;place-items:center}
+#view-online .menu-btn .tx{display:flex;flex-direction:column;align-items:flex-start;gap:3px;min-width:0;flex:1}
+#view-online .menu-btn .tx span{font-size:.82em;font-weight:600;white-space:normal;opacity:.9}
+#view-online .menu-btn .chev{margin-left:auto;flex:none}
+#dk-starters{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}                /* starter decks: equal cells, one area each */
+.dk-st-row{display:grid;grid-template-columns:44px minmax(0,1fr) auto;align-items:center;gap:12px;padding:10px 14px;min-height:84px}
+.dk-st-th{width:44px;aspect-ratio:5/7;overflow:hidden;border-radius:4px}
+.dk-st-th .cface{width:100%;height:100%;object-fit:cover}
+.dk-st-th .cface.ph{font-size:4px;padding:2px;overflow:hidden}
+.dk-st-th .cface.ph .ph-txt,.dk-st-th .cface.ph .ph-sub,.dk-st-th .cface.ph .ph-bp{display:none}
+.dk-st-th .cface.ph .ph-name{font-size:7px;line-height:1.05}
+.dk-st-nm{min-width:0;overflow-wrap:anywhere}
+.dk-st-sub{display:block;font-size:.78em;opacity:.7;margin-top:2px}
+.dk-st-row .btn{min-width:72px}
+html:not(.layout-pc) #dk-starters{grid-template-columns:1fr}                                                 /* phone: Key card + deck name only (and Copy) */
+html:not(.layout-pc) .dk-st-sub,html:not(.layout-pc) .dk-st-nm .tag{display:none}
+html:not(.layout-pc) .dk-st-row{min-height:72px}
+html:not(.layout-pc) .mk .dgrid .dtile{grid-template-columns:76px minmax(0,1fr);align-items:start}          /* phone deck tile: one card, the buttons get their own full-width row */
+html:not(.layout-pc) .mk .dgrid .dtile .stack{grid-row:1 / span 3;height:106px;display:block;margin-left:0}
+html:not(.layout-pc) .mk .dgrid .dtile .stack .cf{position:absolute;left:0;top:0;width:64px;transform:none!important}
+html:not(.layout-pc) .mk .dgrid .dtile .stack .cf:nth-child(n+2){display:none}
+html:not(.layout-pc) .mk .dgrid .dtile>*:nth-child(5){grid-column:1 / -1}
+html:not(.layout-pc) .mk .dgrid .dtile .row .btn{flex:1 1 0;min-width:0;white-space:nowrap;padding-inline:8px;overflow:visible}
+html:not(.layout-pc) .mk .dgrid .dtile .row b.grow{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#modal-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}                         /* dialog buttons: an even grid, a last odd button spans the row */
+#modal-actions .modal-btn{min-width:0;width:100%;margin:0;white-space:normal;line-height:1.2;padding:8px 10px}
+#modal-actions .modal-btn:last-child:nth-child(odd){grid-column:1 / -1}
+.modal-box,.bug-box,#modal-card-desc{font-weight:600}                                                         /* dialog text was too thin */
+.modal-box .modal-btn,.bug-box button{font-weight:800}
+.bug-box label,.modal-box label{font-weight:700}
+.bug-box input,.bug-box select,.bug-box textarea,.modal-box input,.modal-box textarea{font-weight:600}
+#view-library.lib-min .lib-hd .eyebrow,#view-library.lib-min .lib-hd .hd,#view-library.lib-min .lib-hd .sub,#view-library.lib-min #lib-tbar .r2{display:none}   /* Library: "Hide filters" */
+#view-library.lib-min .lib-hd{padding-block:8px}
+.mk .g-core{background:radial-gradient(circle at 35% 30%,var(--ae-core1,var(--gem1)),var(--ae-core2,var(--gem2)) 55%,var(--ae-core3,var(--gem3)))}   /* the chosen core colour reaches the lobby / builder gems */
+.mk .g-soul::after{background:radial-gradient(circle at 40% 35%,var(--ae-soul1,#ffd0d0) 0 12%,var(--ae-soul2,#e5484d) 45%,var(--ae-soul3,#7a0f16))}
+.ld-acts{display:flex;gap:6px}
+html:not(.layout-pc) #dk-list .dk-add{min-height:92px}
+/* phone deck sheet: maximize / minimize button; the action row is one scrollable line; the type chips scroll instead of being cut */
+html:not(.layout-pc) .mk .bld.sheet[data-size="max"] .bdeck{height:100%;border-radius:0}
+html:not(.layout-pc) .mk .bld.sheet[data-size="min"] .bdeck{height:176px}
+html:not(.layout-pc) .mk .bld.sheet[data-size="min"] .dtabs,html:not(.layout-pc) .mk .bld.sheet[data-size="min"] .dpane,html:not(.layout-pc) .mk .bld.sheet[data-size="min"] .dact,html:not(.layout-pc) .mk .bld.sheet[data-size="min"] .dopt{display:none}
+html:not(.layout-pc) .mk .bld.sheet[data-size="min"] .scrim{opacity:0;pointer-events:none}
+html:not(.layout-pc) .mk .dact{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+html:not(.layout-pc) .mk .dact .btn,html:not(.layout-pc) .mk .dact .btn.yes,html:not(.layout-pc) .mk .dact .btn.pri{flex:none;white-space:nowrap;scroll-snap-align:start}
+html:not(.layout-pc) #db-types,html:not(.layout-pc) #lib-types{flex:1 1 100%;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+html:not(.layout-pc) #db-types .chip,html:not(.layout-pc) #lib-types .chip{flex:none}
+/* Home background: the Aeterna logo on the theme colour; an own picture replaces the logo (v0.155.0) */
+#view-lobby{position:relative}
+#view-lobby>.lob-bg{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:linear-gradient(135deg,color-mix(in srgb,var(--you) 22%,var(--bg1)),color-mix(in srgb,var(--you) 8%,var(--bg2)))}
+#view-lobby>.lob-bg .lob-logo{position:absolute;right:-4%;top:50%;width:min(78vh,62%);aspect-ratio:520/440;transform:translateY(-50%);opacity:.2}
+html.has-lobbybg #view-lobby>.lob-bg{background:linear-gradient(0deg,#0009,#0004),var(--ae-lobbybg) center/cover no-repeat}
+html.has-lobbybg #view-lobby>.lob-bg .lob-logo{display:none}
+#view-lobby>.hero{position:relative;z-index:1}
+.lob-ctl{position:absolute;right:18px;bottom:14px;z-index:3;display:flex;gap:8px}
+html:not(.layout-pc) .lob-ctl{right:12px;bottom:8px}
+/* card page (mockup parity): art picker thumbnails, related cards */
+.cp-h{display:block;font-size:.74em;font-weight:800;letter-spacing:.14em;text-transform:uppercase;opacity:.75;margin-bottom:8px}
+.cp-arts{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.cp-art{display:flex;flex-direction:column;align-items:center;gap:4px;width:72px;padding:4px;border:0;background:none;color:inherit;font-size:.66em;cursor:pointer}
+.cp-art .cp-art-f{display:block;width:64px;aspect-ratio:5/7;overflow:hidden;border-radius:5px;box-shadow:0 0 0 2px transparent}
+.cp-art.on .cp-art-f{box-shadow:0 0 0 2px var(--you)}
+.cp-art .cface,.cp-rel .cface{width:100%;height:100%;object-fit:cover}
+.cp-art .cface.ph,.cp-rel .cface.ph{font-size:4px;padding:2px;overflow:hidden}
+.cp-art .cface.ph .ph-txt,.cp-art .cface.ph .ph-sub,.cp-rel .cface.ph .ph-txt,.cp-rel .cface.ph .ph-sub{display:none}
+.cp-rel{flex:none;width:84px;aspect-ratio:5/7;overflow:hidden;border:0;padding:0;background:none;border-radius:6px;cursor:pointer}
+.cp-rel .cface.ph{font-size:5px}
+
+/* ---- v0.155.0 batch 3: battle PC. Card Panel on the right, fixed area sizes, core gems shrink to fit, step cues stay off the panel ---- */
+html.layout-pc #view-playmat .playmat-layout.has-cp { grid-template-columns: minmax(0, 1fr) 236px; grid-template-rows: minmax(0, 1fr) 64px minmax(0, 1fr) 150px; }
+html.layout-pc #view-playmat .playmat-layout.has-cp > :not(#card-panel) { grid-column: 1; }
+html.layout-pc #view-playmat .playmat-layout.has-cp > #card-panel { grid-column: 2; grid-row: 1 / -1; }
+html.layout-pc #view-playmat .playmat-layout.has-cp > * { overflow: hidden; min-height: 0; }
+html.layout-pc #view-playmat .playmat-layout.has-cp > #card-panel { overflow-y: auto; }
+html.layout-pc .ae-step > span:first-child { display: inline-block; min-width: 9ch; text-align: center; }   /* "GAME OVER" and the step names share one width */
+html.layout-pc:has(#view-playmat.active .has-cp) #ae-fx { right: 240px; }   /* cues centre on the board, never over the Card Panel */
+html.layout-pc #view-playmat .g-core, html.layout-pc #view-playmat .core-gem { max-width: 100%; }

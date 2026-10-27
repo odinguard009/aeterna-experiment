@@ -4,6 +4,16 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.155.0
+- Lane: U/I
+- **Owner review round (28 comments on the HTML preview).** Play (PC): Start box under "Play a Match"; Home: the Aeterna logo as backdrop on the theme colour, with an upload / reset option for an own picture; Quick Match overlap fixed; starter decks in equal cells (phone: Key card and deck name only, one card, title and buttons tidied, panel maximize / minimize button, action row scrolls in one line).
+- **Card dialog and cards.** Cards are no longer cut into a parallelogram (cause: the `in` class clashed with `.mk .in`); Add / Remove / Close laid out in a grid; dialog text bold; core and Soul Core colours differ again (`.mk .g-core` overrode the colour variables).
+- **Filters.** Rainbow pip for "All coloured spirits"; new groups Burst, True Release, Manifest, High Speed, Token; Mirage and Rebirth moved to the type column; the Library uses the same filter board as the Deck Builder (shared builders) and can hide it ("Hide filters").
+- **Card page and lore.** Card page reworked toward the mockup (family line, flavor text, Art block, related cards); alternative art is used everywhere a card face is drawn. Lore can be read by Series or by Saga (17 Sagas, from `docs/saga-map.md`). Game log can be copied.
+- **Battle (PC).** Card Panel moved to the right; area and row sizes are fixed (they do not change with contents, "GAME OVER" included); core gems shrink to fit Life, Reserve and card tags; Up / Down arrows scroll the Card Panel; turn / step cues centre on the board and never cover the Card Panel.
+  - Not done / not checked: reading order by story arc (no reachable source in this session; Fandom and official pages were blocked); alternative art only appears with card images on the device and only for same-name printings; per-chapter animated PNGs for Learn are planned (roadmap-open item L); phone battle layout not changed; no real-device (Android) check. Every new card adds lore, so the lore lists grow with each card pack.
+  - Checked: loop, tests V155-1 to V155-9, screenshots at 1366 and 390 px.
+
 ## v0.154.0
 - Lane: U/I
 - **Front-end audit (Web Interface Guidelines) and fixes.** Checked every main page at 1366 and 390 px for: controls without an accessible name, clickable non-buttons, images without alt, keyboard focus visibility (Tab through Lobby, Play, Decks, Library, Settings), `transition: all`, reduced motion, skip link. Fixed: Room code input had no label; the deck-sheet scrim is now hidden from assistive tech; added a "Skip to content" link; `transition: all` replaced by explicit properties (7 places); scroll-behavior respects reduced motion app-wide.

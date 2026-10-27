@@ -23,7 +23,7 @@ async function loadImages() {
   await new Promise(res => {
     try {
       const tx = IDB.transaction('img', 'readonly'), rq = tx.objectStore('img').openCursor();
-      rq.onsuccess = () => { const c = rq.result; if (c) { if (c.key === MAT_KEY) matUse(c.value); else if (/^~sleeve:\d$/.test(c.key)) { SLEEVE_IMG[+c.key.slice(8)] = URL.createObjectURL(c.value); SLEEVE_BLOB[+c.key.slice(8)] = c.value; } else if (CARDS[c.key]) setImg(c.key, c.value); c.continue(); } };   // v0.68.0: the playmat shares the store
+      rq.onsuccess = () => { const c = rq.result; if (c) { if (c.key === MAT_KEY) matUse(c.value); else if (c.key === LOBBYBG_KEY) lobbyBgUse(c.value); else if (/^~sleeve:\d$/.test(c.key)) { SLEEVE_IMG[+c.key.slice(8)] = URL.createObjectURL(c.value); SLEEVE_BLOB[+c.key.slice(8)] = c.value; } else if (CARDS[c.key]) setImg(c.key, c.value); c.continue(); } };   // v0.68.0: the playmat shares the store
       tx.oncomplete = tx.onerror = tx.onabort = () => res();
     } catch (e) { res(); }
   });
@@ -60,7 +60,7 @@ async function importImages(files) {
   }
   return { ok, miss };
 }
-async function clearImages() { Object.keys(IMG).forEach(id => { URL.revokeObjectURL(IMG[id]); delete IMG[id]; }); await idbTx('readwrite', st => { st.clear(); if (MAT.blob) st.put(MAT.blob, MAT_KEY); for (const i of Object.keys(SLEEVE_BLOB)) st.put(SLEEVE_BLOB[i], '~sleeve:' + i); }); }   // the playmat is not a card image: it stays
+async function clearImages() { Object.keys(IMG).forEach(id => { URL.revokeObjectURL(IMG[id]); delete IMG[id]; }); await idbTx('readwrite', st => { st.clear(); if (MAT.blob) st.put(MAT.blob, MAT_KEY); if (LOBBYBG.blob) st.put(LOBBYBG.blob, LOBBYBG_KEY); for (const i of Object.keys(SLEEVE_BLOB)) st.put(SLEEVE_BLOB[i], '~sleeve:' + i); }); }   // the playmat is not a card image: it stays
 /* v0.112.0 (card images online): the card image URL for an id. The player's own image (IndexedDB
    blob) always wins; otherwise, when an online server is present, the official art mirrored at
    /assets/card-images/<card.id> (Aegis-style). v0.114.0: the key is the card id (not the Fandom
@@ -99,7 +99,7 @@ function renderLibrary() {
 const LIBV = { list: [], from: -1, to: -1, cols: 0, rowH: 0, raf: 0, timer: 0, key: '' };
 const LIB_GAP = 16, LIB_BUF = 2;
 const libSetOf = id => String(id).replace(/-.*$/, '');
-const LIBF = { colors: new Set(), costs: new Set(), types: new Set(), groups: new Set(), family: '', complete: true, dd: '', sort: 'set', size: 'm', tab: 'cards' };   // mockup toolbar state (v0.137.0)
+const LIBF = { colors: new Set(), costs: new Set(), types: new Set(), groups: new Set(), family: '', complete: true, dd: '', sort: 'set', size: 'm', tab: 'cards', min: false };   // mockup toolbar state (v0.137.0)
 const LIB_SIZES = [['s', 'S', 8], ['m', 'M', 6], ['l', 'L', 4]];
 function libActive() { return LIBF.colors.size + LIBF.costs.size + LIBF.types.size + LIBF.groups.size + (LIBF.family ? 1 : 0) + ((($('lib-set') || {}).value) ? 1 : 0) + (($('lib-search') || {}).value ? 1 : 0); }
 function libFilter() {
@@ -123,11 +123,11 @@ function libFilter() {
 }
 function libBar() {                                   // the mockup toolbar: colour pips, type chips, cost buttons, group chips, clear
   const on = (s, v) => s.has(v);
-  $('lib-pips').innerHTML = DB_COLORS.map(c => `<button class="pip${on(LIBF.colors, c) ? ' on' : ''}" style="--c:${colorVar(c)}" data-a="lib-f" data-v="colors:${c}" aria-label="${cap(c)}" aria-pressed="${on(LIBF.colors, c)}" title="${cap(c)}"><i></i></button>`).join('');
-  $('lib-types').innerHTML = DB_TYPES.map(t => `<button class="chip${on(LIBF.types, t) ? ' on' : ''}" data-a="lib-f" data-v="types:${t}" aria-pressed="${on(LIBF.types, t)}">${t}</button>`).join('');
+  $('lib-pips').innerHTML = filterPipsHTML(LIBF, 'lib-f');
+  $('lib-types').innerHTML = filterTypesHTML(LIBF, 'lib-f');
   $('lib-costs').innerHTML = DB_COSTS.map(k => `<button class="cbtn${on(LIBF.costs, k) ? ' on' : ''}" data-a="lib-f" data-v="costs:${k}" aria-pressed="${on(LIBF.costs, k)}" aria-label="Cost ${k}">${k === '10' ? '10+' : k}</button>`).join('');
   const ddb = (n, l, sel) => `<button class="chip ddb${n === 'colour' ? ' ddphone' : ''}${sel.length ? ' on' : ''}" data-a="lib-dd" data-v="${n}" aria-haspopup="true" aria-expanded="${LIBF.dd === n}">${l}: ${sel.length ? sel.join(', ') : 'All'} ▾</button>`;
-  $('lib-colbtn').innerHTML = ddb('colour', 'Colour', [...LIBF.colors].map(cap));
+  $('lib-colbtn').innerHTML = ddb('colour', 'Colour', [...LIBF.colors].map(cap).concat(LIBF.groups.has('multi') ? ['All colour'] : []));
   $('lib-groups').innerHTML = ddb('group', 'Group', DB_GROUPS.filter(([g]) => LIBF.groups.has(g)).map(x => x[1]));
   $('lib-play').classList.toggle('on', LIBF.complete);
   libMenu();
@@ -136,6 +136,7 @@ function libBar() {                                   // the mockup toolbar: col
   $('lib-complete').classList.toggle('on', LIBF.complete); $('lib-complete').setAttribute('aria-pressed', String(LIBF.complete));
   const n = libActive(); $('lib-clear').innerHTML = n ? `<button class="chip" data-a="lib-clear">Clear ${n} ✕</button>` : '';
   $('lib-grid').style.setProperty('--cols', String((LIB_SIZES.find(x => x[0] === LIBF.size) || LIB_SIZES[1])[2]));
+  $('view-library').classList.toggle('lib-min', !!LIBF.min); { const mb = $('lib-min'); mb.setAttribute('aria-pressed', String(!!LIBF.min)); mb.textContent = LIBF.min ? '▼ Show filters' : '▲ Hide filters'; }
   const tab = LIBF.tab === 'lore';
   $('lib-cards-pane').hidden = tab; $('lib-lore-pane').hidden = !tab; $('lib-chips').hidden = tab;
   $('lib-eyebrow').textContent = tab ? 'Library · Lore' : 'Library'; $('lib-title').textContent = tab ? 'Card Lore' : 'All Cards';
@@ -145,9 +146,10 @@ function libBar() {                                   // the mockup toolbar: col
 function libMenu() {                                  // the mockup dropdown menu (Colour on phone, Group everywhere)
   document.querySelectorAll('#lib-tbar .ddmenu').forEach(m => m.remove());
   const tb = $('lib-tbar'), btn = LIBF.dd && tb.querySelector(`[data-a="lib-dd"][data-v="${LIBF.dd}"]`); if (!btn) return;
-  const colour = LIBF.dd === 'colour', set = colour ? LIBF.colors : LIBF.groups, items = colour ? DB_COLORS.map(c => [c, cap(c)]) : DB_GROUPS;
+  const colour = LIBF.dd === 'colour', set = colour ? LIBF.colors : LIBF.groups, items = colour ? DB_COLORS.map(c => [c, cap(c)]).concat([['multi', 'All colour']]) : DB_GROUPS;
+  const has = k => colour && k === 'multi' ? LIBF.groups.has('multi') : set.has(k);
   const m = document.createElement('div'); m.className = 'ddmenu scroll'; m.setAttribute('role', 'menu');
-  m.innerHTML = items.map(([k, l]) => `<button class="ddi${set.has(k) ? ' on' : ''}" data-a="lib-ddpick" data-v="${k}" role="menuitemcheckbox" aria-checked="${set.has(k)}"><span class="ddc">${set.has(k) ? '✓' : ''}</span>${colour ? `<i class="dot" style="background:${colorVar(k)}"></i>` : ''}<span class="grow">${l}</span></button>`).join('') + '<button class="ddi clr" data-a="lib-ddclear">Clear</button>';
+  m.innerHTML = items.map(([k, l]) => `<button class="ddi${has(k) ? ' on' : ''}" data-a="lib-ddpick" data-v="${k}" role="menuitemcheckbox" aria-checked="${has(k)}"><span class="ddc">${has(k) ? '✓' : ''}</span>${colour ? `<i class="dot" style="background:${k === 'multi' ? RAINBOW : colorVar(k)}"></i>` : ''}<span class="grow">${l}</span></button>`).join('') + '<button class="ddi clr" data-a="lib-ddclear">Clear</button>';
   tb.appendChild(m);
   const r = btn.getBoundingClientRect(), t = tb.getBoundingClientRect(), w = Math.max(r.width, 210);
   m.style.width = w + 'px'; m.style.left = Math.max(6, Math.min(t.width - w - 6, r.left - t.left)) + 'px'; m.style.top = (r.bottom - t.top + 4) + 'px';
@@ -155,14 +157,16 @@ function libMenu() {                                  // the mockup dropdown men
 document.addEventListener('click', e => { if (LIBF.dd && !(/** @type {Element} */ (e.target)).closest('.ddmenu,[data-a="lib-dd"]')) { LIBF.dd = ''; libMenu(); } });
 function libTool(a, v) {
   if (a === 'lib-dd') { LIBF.dd = LIBF.dd === v ? '' : v; libBar(); return; }
-  if (a === 'lib-ddpick') { const s = LIBF.dd === 'colour' ? LIBF.colors : LIBF.groups; if (s.has(v)) s.delete(v); else s.add(v); }
-  else if (a === 'lib-ddclear') { (LIBF.dd === 'colour' ? LIBF.colors : LIBF.groups).clear(); LIBF.dd = ''; }
+  if (a === 'lib-ddpick') { const s = LIBF.dd === 'colour' && v !== 'multi' ? LIBF.colors : LIBF.groups; if (s.has(v)) s.delete(v); else s.add(v); }
+  else if (a === 'lib-ddclear') { (LIBF.dd === 'colour' ? LIBF.colors : LIBF.groups).clear(); if (LIBF.dd === 'colour') LIBF.groups.delete('multi'); LIBF.dd = ''; }
   else if (a === 'lib-f') { const [g, x] = v.split(':'), s = LIBF[g]; if (s) { if (s.has(x)) s.delete(x); else s.add(x); } }
   else if (a === 'lib-size') LIBF.size = v;
+  else if (a === 'lib-min') LIBF.min = !LIBF.min;
   else if (a === 'lib-tab') LIBF.tab = v === 'lore' ? 'lore' : 'cards';
   else if (a === 'lib-complete') LIBF.complete = !LIBF.complete;
   else if (a === 'lib-clear') { ['colors', 'costs', 'types', 'groups'].forEach(g => LIBF[g].clear()); LIBF.family = ''; $('lib-set').value = ''; $('lib-search').value = ''; }
   else if (a === 'lib-lore-mv') { const ks = loreSeries().map(x => x[0]), i = ks.indexOf(LORE_SET) + Number(v); if (ks[i]) LORE_SET = ks[i]; }
+  else if (a === 'lib-lore-by') { LORE_BY = v === 'saga' ? 'saga' : 'series'; LORE_SET = ''; }
   else if (a === 'lib-lore-set') LORE_SET = v;
   else if (a === 'lib-lore-fs') LORE_FS = Number(v);
   renderLibrary();
@@ -247,6 +251,7 @@ document.addEventListener('change', async e => {
   else if (t.id === 'db-name') { SLOTS[ACTIVE_SLOT].name = (t.value.trim() || 'Deck ' + (ACTIVE_SLOT + 1)).slice(0, 24); saveDeck(); renderDeckBuilder(); }
   else if (t.id === 'db-preset') { const id = t.value; t.value = ''; if (id) { if (deckTotal(PLAYER_DECK) > 0) { const ok = await modal({ uiOnly: true, title: 'Replace this deck?', html: `Load "${esc((PREBUILT.find(d => d.id === id) || {}).name || id)}" into slot ${ACTIVE_SLOT + 1}? The current cards in the slot are replaced.`, buttons: [{ label: 'Replace', cls: 'primary', value: true }, { label: 'Cancel', cls: 'cancel', value: false }] }); if (!ok) return; } dbSnap(); loadPrebuilt(id); renderDeckBuilder(); } }
   else if (t.id === 'db-sl-up' && t.files && t.files[0]) { const f = t.files[0]; t.value = ''; await dbSleeveSet(f); }
+  else if (t.id === 'lobby-bg-up' && t.files && t.files[0]) { const f = t.files[0]; t.value = ''; await lobbyBgSet(f); }
   else if (t.id === 'set-mat' && t.files && t.files[0]) { const f = t.files[0]; t.value = ''; await matSet(f); }
   else if (t.id === 'set-speed') { SETTINGS.speed = SPEEDS[t.value] ? t.value : 'normal'; saveSettings(); }
   else if (t.id === 'set-cpu') setCpuProfile(t.value);

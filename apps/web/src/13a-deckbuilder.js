@@ -8,7 +8,15 @@ const DB_COLORS = ['red', 'purple', 'green', 'white', 'yellow', 'blue'];
 const DB_TYPES = ['Spirit', 'Ultimate', 'Brave', 'Nexus', 'Magic', 'Contract'];
 const DB_COSTS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
 /* v0.119.0: mechanic groupings the Type / Colour filters cannot express (owner: Mirage, Rebirth, all-colour/rainbow + the other modelled groups) */
-const DB_GROUPS = [['multi', 'All colour'], ['mirage', 'Mirage'], ['rebirth', 'Rebirth'], ['legacy', 'Legacy'], ['ex', 'EX symbol']];
+const DB_GROUP_ALL = [['multi', 'All colour'], ['mirage', 'Mirage'], ['rebirth', 'Rebirth'], ['legacy', 'Legacy'], ['ex', 'EX symbol'], ['burst', 'Burst'], ['trueRelease', 'True Release'], ['manifest', 'Manifest'], ['highSpeed', 'High Speed'], ['token', 'Token']];
+const DB_TYPE_GROUPS = DB_GROUP_ALL.filter(([g]) => g === 'mirage' || g === 'rebirth');          // v0.155.0 (owner review): Mirage and Rebirth sit with the types
+const DB_GROUPS = DB_GROUP_ALL.filter(([g]) => !['multi', 'mirage', 'rebirth'].includes(g));      // the Group menu; "All colour" has the rainbow pip
+const RAINBOW = 'conic-gradient(#e53935,#fdd835,#43a047,#1e88e5,#8e24aa,#e53935)';
+/** the colour pips, then the rainbow "All colour" pip; the chips of the types row, then Mirage / Rebirth (shared by the deck builder and the Library) */
+const filterPipsHTML = (S, act) => DB_COLORS.map(c => `<button class="pip${S.colors.has(c) ? ' on' : ''}" style="--c:${colorVar(c)}" data-a="${act}" data-v="colors:${c}" aria-label="${cap(c)}" aria-pressed="${S.colors.has(c)}" title="${cap(c)}"><i></i></button>`).join('')
+  + `<button class="pip rainbow${S.groups.has('multi') ? ' on' : ''}" style="--c:${RAINBOW}" data-a="${act}" data-v="groups:multi" aria-label="All colour (cards with more than one colour)" aria-pressed="${S.groups.has('multi')}" title="All colour (more than one colour)"><i></i></button>`;
+const filterTypesHTML = (S, act) => DB_TYPES.map(t => `<button class="chip${S.types.has(t) ? ' on' : ''}" data-a="${act}" data-v="types:${t}" aria-pressed="${S.types.has(t)}">${t}</button>`).join('')
+  + DB_TYPE_GROUPS.map(([g, l]) => `<button class="chip${S.groups.has(g) ? ' on' : ''}" data-a="${act}" data-v="groups:${g}" aria-pressed="${S.groups.has(g)}">${l}</button>`).join('');
 const DBF = { colors: new Set(), costs: new Set(), types: new Set(), groups: new Set(), set: '', family: '', legal: false, complete: false, only: false, dd: '', sort: 'default' };
 const DB_UNDO = [], DB_REDO = [];   // v0.128.0 U14f: Redo; any new change empties it
 let DB_IO = '';
@@ -31,6 +39,11 @@ function dbGroupOK(c, g) {
     case 'rebirth': return !!(c.rebirthTo || c.rebirthSide);
     case 'legacy': return !!c.legacy;
     case 'ex': return !!c.exSymbols;
+    case 'burst': return !!c.burst;
+    case 'trueRelease': return !!c.trueRelease;
+    case 'manifest': return !!c.manifest;
+    case 'highSpeed': return !!c.highSpeed;
+    case 'token': return !!c.token;
     default: return false;
   }
 }
@@ -97,11 +110,11 @@ function dbSearchInput() { clearTimeout(DBV.timer); DBV.timer = setTimeout(() =>
 /* ---------- toolbar (mockup: colour pips, type chips, cost buttons, group / colour dropdowns, flag chips, Clear N) ---------- */
 function dbBar() {
   const on = (s, v) => s.has(v), set = $('db-set'), sets = dbSets(), sig = sets.join();
-  $('db-pips').innerHTML = DB_COLORS.map(c => `<button class="pip${on(DBF.colors, c) ? ' on' : ''}" style="--c:${colorVar(c)}" data-a="db-chip" data-v="colors:${c}" aria-label="${cap(c)}" aria-pressed="${on(DBF.colors, c)}" title="${cap(c)}"><i></i></button>`).join('');
-  $('db-types').innerHTML = DB_TYPES.map(t => `<button class="chip${on(DBF.types, t) ? ' on' : ''}" data-a="db-chip" data-v="types:${t}" aria-pressed="${on(DBF.types, t)}">${t}</button>`).join('');
+  $('db-pips').innerHTML = filterPipsHTML(DBF, 'db-chip');
+  $('db-types').innerHTML = filterTypesHTML(DBF, 'db-chip');
   $('db-costs').innerHTML = DB_COSTS.map(k => `<button class="cbtn${on(DBF.costs, k) ? ' on' : ''}" data-a="db-chip" data-v="costs:${k}" aria-pressed="${on(DBF.costs, k)}" aria-label="Cost ${k}">${k === '10' ? '10+' : k}</button>`).join('');
   const ddb = (n, l, sel) => `<button class="chip ddb${n === 'colour' ? ' ddphone' : ''}${sel.length ? ' on' : ''}" data-a="db-dd" data-v="${n}" aria-haspopup="true" aria-expanded="${DBF.dd === n}">${l}: ${sel.length ? sel.join(', ') : 'All'} ▾</button>`;
-  $('db-colbtn').innerHTML = ddb('colour', 'Colour', [...DBF.colors].map(cap));
+  $('db-colbtn').innerHTML = ddb('colour', 'Colour', [...DBF.colors].map(cap).concat(DBF.groups.has('multi') ? ['All colour'] : []));
   $('db-groups').innerHTML = ddb('group', 'Group', DB_GROUPS.filter(([g]) => DBF.groups.has(g)).map(x => x[1]));
   [['db-play', 'complete'], ['db-in', 'only'], ['db-legal', 'legal']].forEach(([id, k]) => { const b = $(id); b.classList.toggle('on', DBF[k]); b.setAttribute('aria-pressed', String(DBF[k])); });
   dbMenu();
@@ -114,9 +127,10 @@ function dbBar() {
 function dbMenu() {                   // the dropdown menu (Colour on phone, Group everywhere)
   document.querySelectorAll('#db-tbar .ddmenu').forEach(m => m.remove());
   const tb = $('db-tbar'), btn = DBF.dd && tb.querySelector(`[data-a="db-dd"][data-v="${DBF.dd}"]`); if (!btn) return;
-  const colour = DBF.dd === 'colour', set = colour ? DBF.colors : DBF.groups, items = colour ? DB_COLORS.map(c => [c, cap(c)]) : DB_GROUPS;
+  const colour = DBF.dd === 'colour', set = colour ? DBF.colors : DBF.groups, items = colour ? DB_COLORS.map(c => [c, cap(c)]).concat([['multi', 'All colour']]) : DB_GROUPS;
   const m = document.createElement('div'); m.className = 'ddmenu scroll'; m.setAttribute('role', 'menu');
-  m.innerHTML = items.map(([k, l]) => `<button class="ddi${set.has(k) ? ' on' : ''}" data-a="db-ddpick" data-v="${k}" role="menuitemcheckbox" aria-checked="${set.has(k)}"><span class="ddc">${set.has(k) ? '✓' : ''}</span>${colour ? `<i class="dot" style="background:${colorVar(k)}"></i>` : ''}<span class="grow">${l}</span></button>`).join('') + '<button class="ddi clr" data-a="db-ddclear">Clear</button>';
+  const has = k => colour && k === 'multi' ? DBF.groups.has('multi') : set.has(k);
+  m.innerHTML = items.map(([k, l]) => `<button class="ddi${has(k) ? ' on' : ''}" data-a="db-ddpick" data-v="${k}" role="menuitemcheckbox" aria-checked="${has(k)}"><span class="ddc">${has(k) ? '✓' : ''}</span>${colour ? `<i class="dot" style="background:${k === 'multi' ? RAINBOW : colorVar(k)}"></i>` : ''}<span class="grow">${l}</span></button>`).join('') + '<button class="ddi clr" data-a="db-ddclear">Clear</button>';
   tb.appendChild(m);
   const r = btn.getBoundingClientRect(), t = tb.getBoundingClientRect(), w = Math.max(r.width, 210);
   m.style.width = w + 'px'; m.style.left = Math.max(6, Math.min(t.width - w - 6, r.left - t.left)) + 'px'; m.style.top = (r.bottom - t.top + 4) + 'px';
@@ -124,8 +138,8 @@ function dbMenu() {                   // the dropdown menu (Colour on phone, Gro
 document.addEventListener('click', e => { if (DBF.dd && !(/** @type {Element} */ (e.target)).closest('.ddmenu,[data-a="db-dd"]')) { DBF.dd = ''; dbMenu(); } });
 function dbDd(a, v) {
   if (a === 'db-dd') { DBF.dd = DBF.dd === v ? '' : v; dbBar(); return; }
-  const s = DBF.dd === 'colour' ? DBF.colors : DBF.groups;
-  if (a === 'db-ddpick') { if (s.has(v)) s.delete(v); else s.add(v); } else { s.clear(); DBF.dd = ''; }
+  const s = DBF.dd === 'colour' && v !== 'multi' ? DBF.colors : DBF.groups;
+  if (a === 'db-ddpick') { if (s.has(v)) s.delete(v); else s.add(v); } else { s.clear(); if (DBF.dd === 'colour') DBF.groups.delete('multi'); DBF.dd = ''; }
   renderDeckBuilder();
 }
 /* v0.94.0 U7: deck panel tabs and the Deck look (sleeve tint, core and Soul Core colours; saved per deck slot, used on the board) */
@@ -374,6 +388,12 @@ function dbPlayNow() {                // Play: the same gate as the My decks til
 function dbSheet(which) {             // phone: 'deck' opens the deck sheet, '' closes it; 'menu' (the ... button) toggles the deck options
   const vw = $('view-deckbuilder'), b = $('bld');
   if (which === 'menu') { const o = !b.classList.contains('dopen'); b.classList.toggle('dopen', o); vw.classList.toggle('db-open-menu', o); $('db-menu-btn').setAttribute('aria-expanded', String(o)); return; }
+  if (which === 'size') {                // phone deck sheet: normal -> maximized -> minimized (header only) -> normal (owner review 2026-10-27)
+    const next = { '': 'max', max: 'min', min: '' }[b.dataset.size || ''] || '', btn = $('db-size-btn');
+    b.dataset.size = next; vw.dataset.dsize = next;
+    btn.textContent = { '': '⤢', max: '▾', min: '▴' }[next]; btn.setAttribute('aria-label', { '': 'Maximize the deck panel', max: 'Minimize the deck panel', min: 'Restore the deck panel' }[next]);
+    return;
+  }
   b.classList.remove('dopen'); vw.classList.remove('db-open-menu'); $('db-menu-btn').setAttribute('aria-expanded', 'false');
   b.classList.toggle('sheet', which === 'deck'); vw.classList.toggle('db-open-deck', which === 'deck');
 }
