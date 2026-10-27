@@ -14,7 +14,7 @@ const deal = () => page.evaluate(() => { BS.testSetup(); const p = BS.G.p.player
 test('CP01 PC: the panel exists, starts with a hint, and a hover shows the hovered card', async () => {
   await open({ width: 1366, height: 768 });
   const ids = await deal();
-  assert.match(await page.textContent('#card-panel'), /Point at a card/);
+  assert.match(await page.textContent('#card-panel'), /Hover Or Tap A Card/);
   await page.hover('.hand-area .tcg-card >> nth=1');
   const name = await page.evaluate(i => BS.CARDS[i].name, ids[1]);
   assert.ok((await page.textContent('#card-panel')).includes(name));

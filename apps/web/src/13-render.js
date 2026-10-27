@@ -81,8 +81,9 @@ function soulAreaHTML(p) {
   const lab = n ? `<div class="ba-lab set">${n} IN</div>` : '<div class="ba-lab empty">EMPTY</div>';
   return `<div class="soul-area" data-a="zone" data-v="${p.key}:soulstate" title="Soul State Area (no card limit)"><div class="ba-title">SOUL STATE</div>${card}${lab}</div>`;
 }
+const PILL_FULL = {LIFE:'Life',RES:'Reserve',HD:'Hand',DECK:'Deck',TR:'Trash',CNT:'Count',VD:'Void',BAN:'Banished'};   // v0.152.0: the phone stat cells read as full words (CSS shows data-f; the text itself keeps the short label)
 function fieldAreaHTML(p, isPlayer) {
-  const k = p.key, pill = (label, val, z, pre) => `<div class="stat-pill${z === 'life' || z === 'reserve' ? ' hl' : ''}" data-a="zone" data-v="${k}:${z}">${label}: ${pre || ''}<b>${val}</b></div>`;
+  const k = p.key, pill = (label, val, z, pre) => `<div class="stat-pill${z === 'life' || z === 'reserve' ? ' hl' : ''}" data-a="zone" data-v="${k}:${z}"><span class="pl" data-f="${PILL_FULL[label] || label}">${label}:</span> ${pre || ''}<b>${val}</b></div>`;
   const sp = p.spirits.map(f => ({ kind: 'spirit', f })), nx = p.nexus.map(f => ({ kind: 'nexus', f }));
   let rows;
   if (isPC()) {                                  // PC: two rows, Spirits and Nexus
@@ -185,9 +186,9 @@ function renderBoard() {
   dqa('[data-scroll]').forEach(e => { keep[e.dataset.scroll] = e.scrollLeft; });
   const P = G.p.player, O = G.p.opponent, stepName = G.steps[G.step];
   const cpuTurn = G.active !== 'player', nextOff = !humanCan() || !(G.step === 4 || G.step === 5 || (G.format === 'standard' && G.step === 6));
-  const turnLbl = G.over ? '<span>GAME</span> <span>OVER</span>' : cpuTurn ? '<span>OPPONENT</span> <span>TURN</span>' : '<span>PLAYER</span> <span>TURN</span>';
+  const turnLbl = G.over ? '<span>GAME</span> <span>OVER</span>' : cpuTurn ? `<span>OPPONENT</span> <span>TURN ${G.turnNo}</span>` : `<span>PLAYER</span> <span>TURN ${G.turnNo}</span>`;   // v0.152.0: the band carries the turn number, like the mockup
   app.innerHTML = `
-    <header class="ae-head"><div class="ae-turn"><h1 translate="no">Aeterna</h1><span class="ae-ver">v${VERSION}</span>${G.over ? '' : `<span class="ae-turnno">${cpuTurn ? 'OPPONENT' : 'PLAYER'} TURN ${G.turnNo}</span>`}</div><span class="ae-step"><span>${G.over ? 'GAME OVER' : esc(stepName)}</span></span><span class="ae-fill"></span>
+    <header class="ae-head"><div class="ae-turn"><h1 translate="no">Aeterna</h1><span class="ae-ver">v${VERSION}</span>${G.over ? '' : `<span class="ae-turnno">${cpuTurn ? 'OPPONENT' : 'PLAYER'} TURN ${G.turnNo}</span>`}</div><span class="ae-step"><span>${G.over ? 'GAME OVER' : esc(stepName)}</span></span><span class="ae-fill"><span class="ae-sub">${G.format === 'standard' ? 'Standard' : 'Eternal'} · vs ${esc(cap(cpuProfileName(null)))} CPU</span></span>
       <span class="ae-tools"><button class="btn-nav-small ae-btn" data-a="log-toggle" title="Game log (L)"><span class="l">LOG</span><span class="s">Log</span></button><button class="btn-nav-small ae-btn" data-a="emote" title="Emoticon (one every 30 s)" aria-label="Emoticon"><span class="l">EMOTE</span><span class="s" aria-hidden="true">☺</span></button><button class="btn-nav-small ae-btn" data-a="options" title="Settings (the match waits)" aria-label="Options"><span class="l">OPTIONS</span><span class="s">Options</span></button><button class="btn-nav-small ae-btn" data-a="bug-open" aria-label="Report a bug" title="Report A Bug"><span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 7a3 3 0 016 0M7 11h10M12 11v9M5 8l3 2M19 8l-3 2M4 14h3M17 14h3M5 20l3-3M19 20l-3-3"/><rect x="7" y="8" width="10" height="11" rx="5"/></svg></span></button><button class="btn-nav-small ae-btn dng" data-a="leave" aria-label="Concede and leave the match"><span class="l">CONCEDE</span><span class="s">Concede</span></button></span></header>
     <div class="playmat-layout${isPC() ? ' has-cp' : ''}">${isPC() ? cardPanelHTML() : ''}
       <div class="half-field">

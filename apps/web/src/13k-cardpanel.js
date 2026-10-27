@@ -7,8 +7,10 @@ let PANEL_ID = null;
 function cardPanelHTML() {
   const card = PANEL_ID && CARDS[PANEL_ID];
   const body = card ? `<div class="cp-face" data-a="zoom" data-v="${esc(card.id)}" title="Tap to enlarge">${cardFaceHTML(card, true)}</div><div class="cp-info">${cardDetailHTML(card, true)}</div>`
-    : '<div class="cp-hint">Point at a card in your hand or on the field to read it here.</div>';
-  return `<aside id="card-panel" aria-label="Card panel">${body}</aside>`;
+    : '<div class="cp-ph" aria-hidden="true"></div><div class="cp-hint">Hover Or Tap A Card To Read It Here.</div>';
+  const lines = G ? G.history.slice(-3) : [];      // v0.152.0: the last three log lines at the bottom of the panel (mockup)
+  const log = lines.length ? `<div class="cp-log"><div class="cp-lh">Log</div>${lines.map(t => `<div>${esc(t)}</div>`).join('')}</div>` : '';
+  return `<aside id="card-panel" aria-label="Card panel"><span class="cp-title">Card Panel</span>${body}${log}</aside>`;
 }
 /** @param {HTMLElement} el */
 function panelCardOf(el) {
