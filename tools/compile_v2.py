@@ -249,18 +249,21 @@ TARGET = re.compile(r'^(?:(?:you can|you may) )?target (.+?)\.\s*(?:then,? )?(\w
 COLW = r'(red|purple|green|white|yellow|blue)'
 OWN_BP = re.compile(r'^target one of your (.+?)\.\s*during this (battle|turn), (?:it gains|it gets|give it) \+(\d[\d,]*) ?bp$', re.I)
 OWN_SYM = re.compile(r'^target one of your (.+?)\.\s*during this battle, it gains an extra ' + COLW + r' symbol$', re.I)
-OWN_REFRESH = re.compile(r'^target one of your (.+?)\.\s*refresh it$', re.I)
+OWN_REFRESH = re.compile(r'^(?:(?:you can|you may) )?target (?:one of your |an? |one )?(?:up to (two|three) (?:of your )?)?(?!opposing\b)(.+?)(?: you control)?\.\s*refresh (it|them)$', re.I)      # v0.169: "a Spirit you control", "up to two <X> you control" (REFRESH_SPIRIT n)
+OWN_REFRESH_ALL = re.compile(r'^(?:(?:you can|you may) )?refresh all your (.+)$', re.I)
+CORE_BP = re.compile(r'^target one of your ("[^"]+"(?:\s*/\s*"[^"]+")*)\.\s*send (?:a|one) cores?,? besides ,? from this spirit to it,? and during this battle, it gains \+(\d[\d,]*) ?bp$', re.I)      # v0.169 (the export drops the Soul Core icon after "besides")
 SELF_BATTLE_BP = re.compile(r'^during this battle, this spirit (?:gains|gets) \+(\d[\d,]*) ?bp$', re.I)
 SELF_BATTLE_SYM = re.compile(r'^during this battle, this spirit gains an extra ' + COLW + r' symbol$', re.I)
 
 
 def own_np(np):
     """v0.68: "[attacking] [Cost N or more | Cost A/B] ["X" family] Spirits [with Kw | with the "Y" family]" (one of your ...) -> (match, attacking)"""
-    m = re.match(r'^(attacking )?(?:cost (\d+) or more |cost (\d+(?:/\d+)+) )?(?:"([^"]+)" family )?spirits?(?: with (?:the "([^"]+)" family|([a-z]+)))?$', low(np.strip()))
-    if not m or (m.group(6) in ('no', 'a', 'an', 'the', 'any')): raise Review('v2 own target: ' + np[:60])
+    m = re.match(r'^(attacking )?(?:cost (\d+) or more |cost (\d+(?:/\d+)+) )?(?:(red|purple|green|white|yellow|blue) )?(?:"([^"]+)" family )?spirits?(?: with (?:the "([^"]+)" family|([a-z]+)))?$', low(np.strip()))
+    if not m or (m.group(7) in ('no', 'a', 'an', 'the', 'any')): raise Review('v2 own target: ' + np[:60])
     match = {}
-    if m.group(6): match['keyword'] = m.group(6).capitalize()      # v0.164 "Spirits with Clash" (fxMatch keyword)
-    if m.group(4) or m.group(5): match['family'] = [m.group(4) or m.group(5)]      # v0.168 'with the "Topaz" family' = the same family filter
+    if m.group(4): match['color'] = m.group(4)      # v0.169 "one of your Green Spirits" (fxMatch color)
+    if m.group(7): match['keyword'] = m.group(7).capitalize()      # v0.164 "Spirits with Clash" (fxMatch keyword)
+    if m.group(5) or m.group(6): match['family'] = [m.group(5) or m.group(6)]      # v0.168 'with the "Topaz" family' = the same family filter
     if m.group(2): match['costGe'] = int(m.group(2))
     if m.group(3): match['costIn'] = [int(y) for y in m.group(3).split('/')]      # v0.168 "Cost 6/8"
     return match, bool(m.group(1))
@@ -274,6 +277,10 @@ def own_grammar(s, ctx=None):
     x = s.strip().rstrip('.')
     battle_ok = ctx is None or bool(ctx.get('battle')) or bool(BATTLE_TRIGGERS & set(ctx.get('trigger') or ()))
     if re.search(r'during this battle', x, re.I) and not battle_ok: raise Review('v2 battle effect outside a battle trigger')      # A7 review
+    m = CORE_BP.match(x)
+    if m: return [{'do': 'BP_TARGET', 'n': bpv(m.group(2)), 'to': 'pick', 'battle': True, 'coreFromSelf': True, 'match': {'name': re.findall(r'"([^"]+)"', m.group(1))}}]
+    m = re.fullmatch(r'for each "([^"]+)" family spirit you control, during this battle, this spirit (?:gains|gets) \+(\d[\d,]*) ?bp', x, re.I)
+    if m: return [{'do': 'BP_TARGET', 'n': bpv(m.group(2)), 'to': 'self', 'battle': True, 'per': {'type': 'Spirit', 'family': m.group(1)}}]      # v0.169 Amplify (engine BP_TARGET.per, v0.120)
     m = SELF_BATTLE_BP.match(x)
     if m: return [{'do': 'BP_TARGET', 'n': bpv(m.group(1)), 'to': 'self', 'battle': True}]
     if SELF_BATTLE_SYM.match(x): return [{'do': 'SYMBOL_PLUS', 'n': 1}]
@@ -318,10 +325,20 @@ def own_grammar(s, ctx=None):
         if m.group(5): mt['keyword'] = m.group(5).title()
         return [{'do': 'RETURN_TRASH', 'match': mt}]
     m = OWN_REFRESH.match(x)
-    if m:
+    if m and (m.group(1) is None) == (m.group(3).lower() == 'it'):
+        match, att = own_np(m.group(2))
+        if att or 'costGe' in match: raise Review('v2 refresh: filter')
+        a = {'do': 'REFRESH_SPIRIT'}
+        if match: a['match'] = match
+        if m.group(1): a['n'] = n_of(m.group(1).lower())
+        return [a]
+    m = OWN_REFRESH_ALL.match(x)
+    if m:      # v0.169 "Refresh all your <X> Spirits" (REFRESH_SPIRIT all)
         match, att = own_np(m.group(1))
         if att or 'costGe' in match: raise Review('v2 refresh: filter')
-        return [{'do': 'REFRESH_SPIRIT', 'match': match}] if match else [{'do': 'REFRESH_SPIRIT'}]
+        a = {'do': 'REFRESH_SPIRIT', 'all': True}
+        if match: a['match'] = match
+        return [a]
     m = WHEN_FX.match(x)
     if m:      # v0.77 "<Destroy X | Send a core from an opposing Spirit ...>. When this effect destroys / depletes any Spirit, draw a card."
         return when_fx(m, ctx)
@@ -354,6 +371,7 @@ def own_grammar(s, ctx=None):
 # ---------- v0.77: "Target an opposing <X> Spirit. Send N core(s) | cores ... until one core remains ... from it to the Reserve." ----------
 OPP_CORES_T = re.compile(r'^target an opposing (?P<np>.+?)\.\s*send (?:(?P<n>a|one|two|three) cores?(?:,? besides)?\s*,?\s*from it to (?:the|their|its owner\'?s) reserve'
                          r'(?P<keep>\.\s*its number of cores can\'t be brought to (?:less than one|below one|0))?|cores from it to (?:the|their) reserve until one core remains)'
+                         r'(?P<up>\.\s*if (?:there are three or more cores in the opposing reserve,\s*(?:the target becomes any opposing spirit|send one core from it to the reserve)|summoned via form change,\s*send a core from it to the reserve) instead)?'      # v0.169 upgrade
                          r'(?:\.?\s*\(the opponent chooses which cores? to send\.?\))?'
                          r'(?:\.\s*(?P<dep>if it depletes|when this effect depletes (?:it|that spirit|any spirit)),? draw a card)?\.?$', re.I)
 
@@ -369,6 +387,10 @@ def opp_cores_t(m):
         if k in sel['f']: a[k] = sel['f'][k]
     if sel['f'].get('exhausted'): a['exhaustedOnly'] = True
     if m.group('dep'): a['drawPerDepleted'] = True
+    if m.group('up'):      # v0.169 "If there are three or more cores in the opposing Reserve, the target becomes any opposing Spirit / send one core from it instead", "If summoned via Form Change, send a core from it instead"
+        u = m.group('up').lower()
+        a['upgrade'] = {'when': 'viaFC' if 'form change' in u else 'oppReserveGe3'}
+        a['upgrade']['anyTarget' if 'the target becomes' in u else 'soul'] = True
     return [a]
 
 
@@ -543,11 +565,13 @@ def cond_of(x):
     if m: return {'handLe': n_of(m.group(1).lower())}      # v0.166 (engine fxIf handLe)
     m = re.fullmatch(r'you have (one|two|three|four|five|\d) counters? or more', x, re.I)
     if m: return {'counterGe': n_of(m.group(1).lower())}
-    m = re.fullmatch(r'you control (one|two|three|four|five|six|\d) or more (?:(red|purple|green|white|yellow|blue) )?(?:"([^"]+)" family )?(spirit/ultimate|spirit|ultimate)s', x, re.I)
+    m = re.fullmatch(r'you control (one|two|three|four|five|six|\d) or more (?:(red|purple|green|white|yellow|blue) )?(?:("[^"]+"(?:\s*/\s*"[^"]+")*) family )?(spirit/ultimate|spirit|ultimate)s', x, re.I)
     if m:
         q = {'n': n_of(m.group(1).lower()), 'type': 'Both' if '/' in m.group(4) else m.group(4).capitalize()}
         if m.group(2): q['colors'] = [m.group(2).lower()]
-        if m.group(3): q['family'] = m.group(3)
+        if m.group(3):
+            fams = re.findall(r'"([^"]+)"', m.group(3))
+            q['family'] = fams[0] if len(fams) == 1 else fams      # v0.169 '"A"/"B" family' = either family (engine ctrl.family may be a list)
         return {'ctrl': q} if q['n'] <= 5 else None
     m = re.fullmatch(r'you control (?:an? |any )?"([^"]+)"', x, re.I)      # v0.76: a quoted card name (part of the name, like [Name])
     if m: return {'controlName': m.group(1).strip()}
@@ -658,6 +682,8 @@ def action_of(s, ctx):
         return [a], bool(sh.group(1))
     if re.match(r'^if returned, ', s.strip(), re.I):      # v0.165 "If returned, X" = "Then, X" (only when the previous action returned a card)
         return action_of('Then, ' + re.sub(r'^if returned, ', '', s.strip(), flags=re.I), ctx)
+    if re.fullmatch(r'this spirit can refresh\.?', s.strip(), re.I): return [{'do': 'REFRESH'}], True      # v0.169 "(Your End Step) This Spirit can refresh." (optional REFRESH on this card)
+    if re.fullmatch(r'refresh this spirit\.?', s.strip(), re.I): return [{'do': 'REFRESH'}], False      # v0.169 "If <condition>, refresh this Spirit."
     mm_ = MILL_OWN.match(s.strip())
     if mm_ and n_of(mm_.group(2).lower()) <= 5:      # v0.165 "(You can) discard N card(s) from your decktop" = MILL (own Deck to Trash)
         return [{'do': 'MILL', 'n': n_of(mm_.group(2).lower())}], bool(mm_.group(1))
@@ -691,7 +717,7 @@ def action_of(s, ctx):
         return [{'do': 'DESTROY_SELF'}], False      # v0.78 the source destroys itself (own effect)
     if 'ALLY_BATTLE_WIN' in trig and SUBJ_REFRESH.match(s.strip()):      # v0.78 your Spirit that won the battle
         return [{'do': 'REFRESH', 'to': 'subject'}], False
-    m = INSTEAD_PAIR.match(s.strip())
+    m = None if OPP_CORES_T.match(s.strip().rstrip('.')) else INSTEAD_PAIR.match(s.strip())      # v0.169: the core-removal upgrade clause is read by OPP_CORES_T itself
     if m: return instead_pair(m, ctx)
     m = COND_LEAD.match(s.strip())
     cond = cond_of(m.group(1)) if m else None
@@ -763,8 +789,15 @@ def burst_norm(t):
     return re.sub(r'\u263c\s*\[\s*Burst:\s*([^\]]+?)\s*\]', lambda m: '{{Burst|' + m.group(1) + '}}', t) if t and '\u263c' in t else t
 
 
+AMPLIFY_TPL = re.compile(r'\{\{\s*Amplify\s*\|[^{}]*\}\}\s*', re.I)
+
+
 def compile_card(c):
     t = c.get('text')
+    if t and AMPLIFY_TPL.search(t):      # v0.169 {{Amplify|<family> +N}}: the printed "Pay one cost > For each ..." sentence carries the effect; the card gets keywords ['Amplify'] (match.keyword, Rock Pit)
+        n = compile_card(dict(c, text=AMPLIFY_TPL.sub('', t)))
+        n['keywords'] = sorted(set(n.get('keywords') or []) | {'Amplify'}); n['text'] = t
+        return n
     t2 = burst_norm(t)
     if t2 != t: c = dict(c, text=t2); t = t2
     if t and '{{Rush|' in t:
@@ -888,6 +921,7 @@ def run(cards, partial=False):
 def blockers(c):
     """every reason a staged card is not compiled (one per paragraph / template), for the lever table.
     Must run with install() active. [] = the card compiles."""
+    if c.get('text') and AMPLIFY_TPL.search(c['text']): c = dict(c, text=AMPLIFY_TPL.sub('', c['text']))      # v0.169
     try:
         compile_card(c); return []
     except Review as e:

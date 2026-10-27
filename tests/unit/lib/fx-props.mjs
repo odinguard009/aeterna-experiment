@@ -182,7 +182,16 @@ function simple(card, a) {
       if (P.revealed.length) return 'cards stay revealed';
       ${miss} return '';` };
     }
+    case 'BP_TARGET':      // v0.169 battle-length BP on this Spirit (to:self) or on one of your fighting Spirits (to:pick, the CPU boosts its attacker)
+      if (!only(a, ['n', 'to', 'battle']) || a.battle !== true || !['self', 'pick'].includes(a.to) || (a.to === 'self' && !spirit)) return null;
+      return { onField: a.to === 'self', body: `const foe = sp(${J(FILL)}, O, 1), t = A.to === 'self' ? src : sp(${J(FILL)}, P, 1); G.attacker = t; G.blocker = foe; G.battleNo = 1;
+        const b = BS.bpOf(t); await run(src, RA); const got = BS.bpOf(t) - b; G.attacker = null; G.blocker = null; return got === A.n ? '' : 'battle BP +' + got + ', want +' + A.n;` };
     case 'REFRESH_SPIRIT':
+      if (only(a, ['match', 'n', 'all']) && (a.n != null || a.all) && (a.match == null || okMatch(a.match)) && !(a.n != null && a.all)) {      // v0.169 up to N / all matching exhausted Spirits
+        const M = a.match ? mid(a.match) : FILL, k = a.all ? 3 : a.n;
+        return { fix: a.match ? [{ m: a.match }] : [], body: `const ts = []; for (let j = 0; j < ${k + (a.all ? 0 : 1)}; j++) { const t = sp(${J(M)}, P, 1); t.exhausted = true; ts.push(t); } await run(src, RA);
+        const done = ts.filter(t => !t.exhausted).length; return done === ${a.all ? k : a.n} ? '' : 'refreshed ' + done + ' of ' + ts.length + ', want ' + ${a.all ? k : a.n};` };
+      }
       if (only(a, ['match']) && okMatch(a.match)) return { fix: [{ m: a.match }], body: `const t = sp(${J(mid(a.match))}, P, 1); t.exhausted = true; await run(src, RA); if (t.exhausted) return 'the matching Spirit is still exhausted';
       ${fillMatches(a.match) ? '' : `${PRE_RESET} const f = sp(${J(FILL)}, P, 1); f.exhausted = true; await run(src, RA); if (!f.exhausted) return 'a Spirit that does not match was refreshed';`} return '';` };
       return only(a, []) && { body: `const t = sp(${J(FILL)}, P, 1); t.exhausted = true; await run(src, RA); return t.exhausted ? 'still exhausted' : '';` };

@@ -20,6 +20,7 @@ const INVOKE_WHEN = {
 };
 const INVOKE_COSTS = ['pay', 'exhaustSelf', 'destroySelf', 'exhaustOwn', 'discard'];
 const invokeMatchOK = m => m == null || (typeof m === 'object' && (m.family == null || (Array.isArray(m.family) && m.family.length > 0 && m.family.every(x => typeof x === 'string' && x)))
+  && (m.name == null || (Array.isArray(m.name) && m.name.length > 0 && m.name.every(x => typeof x === 'string' && x)))      // v0.169: a card-name list ("Kamen Rider Bravo")
   && (m.costGe == null || Number.isInteger(m.costGe)) && (m.color == null || COLORS.includes(m.color)));
 /* parse hook (02c): returns an error text or null; copies the checked fields onto o */
 function invokeParse(e, o) {
@@ -92,7 +93,7 @@ function addBattleBp(s, n) { if (!(s.bpB && s.bpB.b === G.battleNo)) s.bpB = { n
 const invokeCostText = c => !c ? '' : c.pay ? `pay ${c.pay} cost${c.pay === 1 ? '' : 's'}` : c.exhaustSelf ? 'exhaust this card' : c.destroySelf ? 'destroy this card'
   : c.exhaustOwn ? `exhaust one of your ${c.exhaustOwn.match && c.exhaustOwn.match.family ? '"' + c.exhaustOwn.match.family.join('"/"') + '" ' : ''}${c.exhaustOwn.kind === 'nexus' ? 'Nexuses' : 'Spirits'}`
   : c.discard ? `discard a ${c.discard.match && c.discard.match.family ? '"' + c.discard.match.family.join('"/"') + '" family ' : ''}card` : '';
-const ownTargetCands = (c, a) => c.p.spirits.filter(s => fxMatch(CARDS[s.id], a.match) && (!a.attacking || s === G.attacker) && !fxImmune(c.p, s, c));
+const ownTargetCands = (c, a) => c.p.spirits.filter(s => fxMatch(CARDS[s.id], a.match) && (!a.attacking || s === G.attacker) && (!a.coreFromSelf || s !== c.src) && !fxImmune(c.p, s, c));
 Object.assign(FX_ACTIONS, {
   /* "during this battle/turn, this Spirit gains +N BP" (to:self) / "Target one of your [attacking] X Spirits. ... it gains +N BP" (to:pick) */
   BP_TARGET: { chk: a => Number.isInteger(a.n) && a.n >= 1000 && a.n <= 30000 && ['self', 'pick'].includes(a.to) && (a.battle == null || a.battle === true) && (a.attacking == null || a.attacking === true) && invokeMatchOK(a.match) && (a.per == null || perOk(a.per)),
@@ -136,6 +137,27 @@ Object.assign(FX_ACTIONS, {
   B.cands = (c, a) => bCands(c, a).filter(t => (a.bpLe == null || bpOf(t) <= a.bpLe) && (!a.attackingOnly || t === G.attacker));
   B.txt = a => bTxt(a).replace(/^return an opposing /, `return an opposing ${a.attackingOnly ? 'attacking ' : ''}`) + (a.bpLe != null ? ` (${a.bpLe} BP or less)` : '');
 })();
+/* v0.169 "Target one of your "X". Send a core, besides <Soul Core>, from this Spirit to it, and during this battle, it gains +N BP." = BP_TARGET (to:pick, battle) with coreFromSelf:
+   one normal core moves from this Spirit to the target first (the Soul Core stays); the source may be depleted by it (the player's choice; the CPU avoids it). */
+(() => {
+  const T = FX_ACTIONS.BP_TARGET, tChk = T.chk, tCan = T.can, tRun = T.run, tTxt = T.txt;
+  T.chk = a => (a.coreFromSelf == null || (a.coreFromSelf === true && a.to === 'pick')) && tChk(a);
+  T.txt = a => tTxt(a) + (a.coreFromSelf ? ' (a core is sent from this Spirit to it first)' : '');
+  T.can = (c, a) => tCan(c, a) && (!a.coreFromSelf || (c.p.spirits.includes(c.src) && c.src.cores > 0));
+  T.run = async (c, a) => {
+    if (!a.coreFromSelf) return tRun(c, a);
+    const L = ownTargetCands(c, a);
+    if (!L.length || !c.p.spirits.includes(c.src) || c.src.cores < 1) { c.ctx.did = false; return; }
+    const fight = L.find(s => s === G.attacker || s === G.blocker);
+    const t = c.p.cpu && fight ? fight : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your Spirits to receive a core and +${a.n} BP (glowing).`);
+    if (!t) { c.ctx.did = false; return; }
+    coreEvN(c.p, c.src.uid, t.uid, 1, false); c.src.cores--; t.cores++;
+    log(`${CARDS[c.src.id].name}: a core moves to ${CARDS[t.id].name}.`);
+    checkDepletion(c.p);
+    c.ctx.picked = t; addBattleBp(t, a.n);
+    log(`${CARDS[t.id].name} gets +${a.n} BP during this battle.`);
+  };
+})();
 /* CPU: use an Invoke only when it clearly helps (timing is 'MAIN' or 'FLASH'; in a Flash Timing G.attacker / G.blocker are the fighters) */
 function cpuInvokeOK(p, f, e, timing) {
   const c = e.cost || {}, acts = e.actions.map(a => a.do), opp = G.p[other(p.key)];
@@ -149,6 +171,7 @@ function cpuInvokeOK(p, f, e, timing) {
     const mine = G.active === p.key ? G.attacker : G.blocker, theirs = mine === G.attacker ? G.blocker : G.attacker;
     if (!p.spirits.includes(mine) || !opp.spirits.includes(theirs)) return false;
     const a = e.actions.find(x => x.do === 'BP_TARGET');
+    if (a.coreFromSelf && (f.cores < 1 || totalCores(f) - 1 < CARDS[f.id].levels[0].cores)) return false;      // v0.169: do not deplete the Spirit that pays the core
     if (a.to === 'self' && mine !== f) return false;
     if (a.to === 'pick' && !ownTargetCands({ p, opp, src: f, ctx: {} }, a).includes(mine)) return false;
     const me = bpOf(mine), them = bpOf(theirs), n = e.actions.filter(x => x.do === 'BP_TARGET').reduce((t, x) => t + x.n * (x.per ? perCount(p, x.per) : 1), 0);      // v0.120.0 Amplify per-count

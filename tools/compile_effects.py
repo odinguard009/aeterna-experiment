@@ -180,6 +180,8 @@ TRIGGERS = [
     (r'\(When Deployed\)', ['SUMMONED']),      # v0.135: the Nexus form of When Summoned (the engine fires SUMMONED for a deployed Nexus)
     (r'\(When Attacks\)', ['ATTACKS']),
     (r'\(When Blocks\)|\(When Blocking\)', ['BLOCKS']),
+    (r'\(Your End Step\)', ['END_STEP']),      # v0.169: fired by the engine at the owner's End Step (07-turn endStep)
+    (r'\(Start of Your Attack Step\)', ['START_ATTACK']),      # v0.169: the engine trigger already existed (hand-written cards); the compiler reads the head now
 ]
 SELF_ACTS = ('REFRESH', 'VOID_TO_CARD', 'BP_PLUS', 'SELF_TO_HAND', 'CRUSH', 'AWAKEN')   # these need the Spirit on the Field
 ATTACK_STEP = {'(Your Attack Step)': {'attackStep': True, 'oppTurn': False}}
@@ -455,6 +457,7 @@ def spirit_paragraph_main(p, card, rush):
         return [e], flags
     # trigger
     trig, tmatch, extra = None, None, None
+    p = re.sub(r'^\(During (Attack|Block)s\)', r'(During \1)', p)      # v0.169 "(During Blocks)" / "(During Attacks)" are the same heads as the singular ones
     ns = re.match(r"^\(Can't Stack\)\s*", p, re.I)
     nostack = bool(ns and any(re.match(r'^' + rx_ + r'\s*', p[ns.end():]) for rx_, _ts in TRIGGERS))
     if nostack: p = p[ns.end():]      # v0.164 "(Can't Stack) When ..." = noStack on the triggered effect (engine 02d: one activation per card name and effect)

@@ -31,16 +31,20 @@
    costLe / exhaustedOnly / coresLe  the target filter of "Target an opposing <Cost N or less | exhausted | with N cores or less on it> Spirit."
    keepOne   "Its number of cores can't be brought to less than one." (send at most all but one)
    untilOne  "Send cores from it to the Reserve until one core remains." (each is ignored; all but one)
-   A Soul Core stays when the text says "besides" (normal cores only, like before) and is kept last otherwise (the opponent chooses). */
+   A Soul Core stays when the text says "besides" (normal cores only, like before) and is kept last otherwise (the opponent chooses).
+   v0.169 upgrade {when:'oppReserveGe3'|'viaFC', anyTarget?, soul?}: "If there are three or more cores in the opposing Reserve / If summoned via Form Change, <the target becomes any opposing Spirit | send one core (the Soul Core too) from it> instead";
+   the Soul Core goes only when no normal core is left on the target (house reading of "the opponent chooses": nobody gives up the Soul Core first). */
 (() => {
   const O = FX_ACTIONS.OPP_CORES_TO_RESERVE, oChk = O.chk, oTxt = O.txt, oCands = O.cands, oCan = O.can, oRun = O.run;
-  const NEW = ['costLe', 'exhaustedOnly', 'coresLe', 'keepOne', 'untilOne'];
+  const NEW = ['costLe', 'exhaustedOnly', 'coresLe', 'keepOne', 'untilOne', 'upgrade'];
+  const upOk = u => u == null || (typeof u === 'object' && ['oppReserveGe3', 'viaFC'].includes(u.when) && (u.anyTarget == null || u.anyTarget === true) && (u.soul == null || u.soul === true) && (u.anyTarget === true || u.soul === true));
+  const upOn = (c, a) => !!a.upgrade && (a.upgrade.when === 'viaFC' ? !!(c.src && c.src.viaFC) : (c.opp.reserve.n + (c.opp.reserve.soul ? 1 : 0)) >= 3);
   const has = a => !!a && NEW.some(k => a[k] != null);
   const ok = a => a.targets === 1 && (a.costLe == null || (Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30)) && (a.coresLe == null || (Number.isInteger(a.coresLe) && a.coresLe >= 1 && a.coresLe <= 10))
-    && [a.exhaustedOnly, a.keepOne, a.untilOne].every(v => v == null || v === true);
+    && [a.exhaustedOnly, a.keepOne, a.untilOne].every(v => v == null || v === true) && upOk(a.upgrade);
   const base = a => { const o = Object.assign({}, a); for (const k of NEW) delete o[k]; if (a.untilOne) o.each = 1; return o; };
   O.chk = a => has(a) ? ok(a) && oChk(base(a)) : oChk(a);
-  O.cands = (c, a) => has(a) ? oCands(c).filter(t => (a.costLe == null || CARDS[t.id].cost <= a.costLe) && (!a.exhaustedOnly || t.exhausted)
+  O.cands = (c, a) => has(a) ? (upOn(c, a) && a.upgrade.soul ? c.opp.spirits.filter(t => (t.cores > 0 || t.soul) && !fxImmune(c.opp, t)) : oCands(c)).filter(t => (a.costLe == null || CARDS[t.id].cost <= a.costLe) && (!a.exhaustedOnly || t.exhausted || (upOn(c, a) && a.upgrade.anyTarget))
     && (a.coresLe == null || totalCores(t) <= a.coresLe) && (!(a.keepOne || a.untilOne) || totalCores(t) > 1)) : oCands(c);
   O.can = (c, a) => has(a) ? O.cands(c, a).length > 0 : oCan(c, a);
   O.txt = a => has(a) ? (a.untilOne ? 'send cores from an opposing ' : `send ${a.each} core${a.each === 1 ? '' : 's'} from an opposing `)
@@ -52,6 +56,11 @@
     const L = O.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
     const [t] = await pickOppSpirits(c, L, 1, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the opposing Spirit to send cores from (glowing).`);
     if (!t) { c.ctx.did = false; return; }
+    if (upOn(c, a) && a.upgrade.soul && t.cores < 1 && t.soul) {      // v0.169: only the Soul Core is left on the target and the text lets it go
+      coreEvN(c.opp, t.uid, 'reserve', 0, true); t.soul = false; c.opp.reserve.soul = true;
+      log(`${CARDS[c.src.id].name}: the Soul Core of ${poss(c.opp)} ${CARDS[t.id].name} goes to the Reserve.`);
+      checkDepletion(c.opp); io.view({ type: 'board' }); return;
+    }
     const floor = (a.keepOne || a.untilOne) ? totalCores(t) - 1 : Infinity;
     const m = Math.max(0, Math.min(a.untilOne ? Infinity : a.each, t.cores, floor));
     if (!m) { c.ctx.did = false; return; }

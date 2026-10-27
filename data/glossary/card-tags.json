@@ -3727,6 +3727,9 @@
   "A_DRAW",
   "A_BP_PLUS"
  ],
+ "BS09-075": [
+  "A_REFRESH"
+ ],
  "BS09-077": [
   "T_ACTIVATE",
   "A_BP_PLUS",
@@ -45731,6 +45734,7 @@
  ],
  "26RBS03-020": [
   "T_SUMMONED",
+  "C_LEVEL",
   "M_REPLACEMENT"
  ],
  "26RBS03-021": [],
@@ -46247,10 +46251,12 @@
  ],
  "26RCB01-003": [
   "A_BP_PLUS",
+  "C_LEVEL",
   "K_STANDARD_INVOKE"
  ],
  "26RCB01-004": [
   "A_BP_PLUS",
+  "C_LEVEL",
   "K_STANDARD_INVOKE"
  ],
  "26RCB01-005": [

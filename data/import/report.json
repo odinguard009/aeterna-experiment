@@ -1,15 +1,15 @@
 {
  "stats": {
-  "cards": 7713,
+  "cards": 7692,
   "per_saga": {
-   "1": 785,
+   "1": 783,
    "2": 332,
    "3": 406,
-   "4": 417,
+   "4": 415,
    "5": 669,
    "6": 370,
-   "7": 538,
-   "8": 498,
+   "7": 537,
+   "8": 497,
    "9": 496,
    "10": 499,
    "11": 331,
@@ -19,23 +19,23 @@
    "15": 356,
    "16": 334,
    "17": 110,
-   "50": 418
+   "50": 403
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 993,
+  "skipped_curated": 1014,
   "number_conflicts": 5,
-  "nexus_levels_added": 715,
+  "nexus_levels_added": 713,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 551,
+  "image_problems": 545,
   "merged": 109,
   "brave_unparsed": 171,
   "ut_lines_added": 119,
   "odd_reduction": 808,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 549
+  "without_image": 543
  },
  "tokens": [
   "BS73-T001",
@@ -218,6 +218,7 @@
   "BS05-077",
   "BS06-002",
   "BS06-004",
+  "BS06-006",
   "BS06-007",
   "BS06-008",
   "BS06-009",
@@ -273,6 +274,7 @@
   "BS09-020",
   "BS09-041",
   "BS09-069",
+  "BS09-075",
   "BS09-078",
   "BS10-003",
   "BS10-004",
@@ -445,6 +447,7 @@
   "BS19-067",
   "BS19-071",
   "BS19-073",
+  "BS19-086",
   "BS19-109",
   "BS20-001",
   "BS20-005",
@@ -465,6 +468,7 @@
   "BS20-053",
   "BS20-055",
   "BS20-057",
+  "BS20-060",
   "BS20-074",
   "BS21-005",
   "BS21-008",
@@ -586,6 +590,7 @@
   "BS37-019",
   "BS37-024",
   "BS37-031",
+  "BS37-042",
   "BS37-046",
   "BS37-048",
   "BS37-067",
@@ -595,6 +600,7 @@
   "BS40-001",
   "BS40-012",
   "BS40-014",
+  "BS40-076",
   "BS41-003",
   "BS41-037",
   "BS41-049",
@@ -820,6 +826,7 @@
   "26RSD04-002",
   "26RSD04-005",
   "26RSD04-006",
+  "26RSD04-007",
   "26RSD04-008",
   "26RSD04-011",
   "26RSD04-012",
@@ -870,6 +877,7 @@
   "26RBS01-032",
   "26RBS01-033",
   "26RBS01-036",
+  "26RBS01-037",
   "26RBS01-043",
   "26RBS01-045",
   "26RBS01-046",
@@ -878,7 +886,10 @@
   "26RBS01-050",
   "26RBS01-051",
   "26RBS01-052",
+  "26RBS01-053",
+  "26RBS01-054",
   "26RBS01-056",
+  "26RBS01-057",
   "26RBS01-059",
   "26RBS01-060",
   "26RBS01-061",
@@ -929,7 +940,11 @@
   "26RSD07-014",
   "26RSD07-X02",
   "26RCB01-001",
+  "26RCB01-002",
+  "26RCB01-003",
+  "26RCB01-004",
   "26RCB01-006",
+  "26RCB01-007",
   "26RCB01-010",
   "26RCB01-011",
   "26RCB01-012",
@@ -939,6 +954,7 @@
   "26RCB01-019",
   "26RCB01-020",
   "26RCB01-021",
+  "26RCB01-023",
   "26RCB01-024",
   "26RCB01-025",
   "26RCB01-026",
@@ -954,6 +970,7 @@
   "26RCB01-042",
   "26RCB01-044",
   "26RCB01-048",
+  "26RCB01-060",
   "26RCB01-061",
   "26RCB01-062",
   "26RCB01-063",
@@ -982,6 +999,7 @@
   "26RBS02-034",
   "26RBS02-038",
   "26RBS02-043",
+  "26RBS02-047",
   "26RBS02-049",
   "26RBS02-051",
   "26RBS02-058",
@@ -1016,6 +1034,8 @@
   "26RBS03-011",
   "26RBS03-012",
   "26RBS03-014",
+  "26RBS03-016",
+  "26RBS03-020",
   "26RBS03-021",
   "26RBS03-024",
   "26RBS03-025",
@@ -1023,6 +1043,7 @@
   "26RBS03-052",
   "26RBS03-053",
   "26RBS03-055",
+  "26RBS03-057",
   "26RBS03-061",
   "26RBS03-063",
   "26RBS03-064",
@@ -1313,7 +1334,6 @@
   "BS19-083",
   "BS19-084",
   "BS19-085",
-  "BS19-086",
   "BS19-087",
   "BS19-088",
   "BS19-089",
@@ -1507,7 +1527,6 @@
   "BS40-073",
   "BS40-074",
   "BS40-075",
-  "BS40-076",
   "BS40-077",
   "BS41-072",
   "BS41-073",
@@ -4116,23 +4135,8 @@
    "problem": "no image"
   },
   {
-   "id": "26RCB01-003",
-   "name": "Kamen Rider Knuckle Kurumi Arms",
-   "problem": "ambiguous name (2 files, none in set 26RCB01)"
-  },
-  {
-   "id": "26RCB01-004",
-   "name": "Kamen Rider Ryugen Budou Arms",
-   "problem": "ambiguous name (2 files, none in set 26RCB01)"
-  },
-  {
    "id": "26RCB01-005",
    "name": "Kamen Rider Baron Banana Arms",
-   "problem": "ambiguous name (2 files, none in set 26RCB01)"
-  },
-  {
-   "id": "26RCB01-007",
-   "name": "Kamen Rider Marika Peach Energy Arms",
    "problem": "ambiguous name (2 files, none in set 26RCB01)"
   },
   {
@@ -4306,11 +4310,6 @@
    "problem": "no image"
   },
   {
-   "id": "26RBS03-016",
-   "name": "The CurseLady Pienetta",
-   "problem": "no image"
-  },
-  {
    "id": "26RBS03-017",
    "name": "Maskthorn",
    "problem": "no image"
@@ -4323,11 +4322,6 @@
   {
    "id": "26RBS03-019",
    "name": "The Hatredfiend Jackalpio",
-   "problem": "no image"
-  },
-  {
-   "id": "26RBS03-020",
-   "name": "The WaspArmor Menotera",
    "problem": "no image"
   },
   {
@@ -4473,11 +4467,6 @@
   {
    "id": "26RBS03-056",
    "name": "The NewlyFledged Kolulu",
-   "problem": "no image"
-  },
-  {
-   "id": "26RBS03-057",
-   "name": "The WarningWhistle Flustle",
    "problem": "no image"
   },
   {

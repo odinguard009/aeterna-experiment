@@ -91,6 +91,27 @@ Object.assign(FX_ACTIONS, {
     } }
 });
 
+/* v0.169 REFRESH_SPIRIT n (1-3): "Target up to two <X> you control. Refresh them." (each pick is a still-exhausted matching Spirit); all: "Refresh all your <X> Spirits." */
+(() => {
+  const R = FX_ACTIONS.REFRESH_SPIRIT, rChk = R.chk, rTxt = R.txt, rRun = R.run;
+  R.chk = a => (a.n == null || (Number.isInteger(a.n) && a.n >= 1 && a.n <= 3)) && (a.all == null || a.all === true) && (!(a.all && a.n != null)) && rChk(a);
+  R.txt = a => a.all ? `refresh all your ${a.match ? 'matching ' : ''}Spirits` : a.n > 1 ? `refresh up to ${a.n} of your ${a.match ? 'matching ' : ''}Spirits` : rTxt(a);
+  R.run = async (c, a) => {
+    if (a.all) {
+      const L = R.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
+      for (const t of L) { refreshOne(t); log(`${CARDS[t.id].name} is refreshed.`); }
+      return;
+    }
+    if (!(a.n > 1)) return rRun(c, a);
+    let k = 0;
+    for (let j = 0; j < a.n; j++) {
+      const L = R.cands(c, a); if (!L.length) break;
+      const t = await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap an exhausted Spirit to refresh (${j + 1}/${a.n}, glowing).`);
+      if (!t) break; refreshOne(t); k++; log(`${CARDS[t.id].name} is refreshed.`);
+    }
+    if (!k) c.ctx.did = false;
+  };
+})();
 /* This part loads after 02k, whose load-time pass wraps every action's cands() with the immunity
    filter (trash-safe cards, opposing cards unaffected by this effect). Run it again so the entries
    defined here get the same wrapper; it is idempotent. */
