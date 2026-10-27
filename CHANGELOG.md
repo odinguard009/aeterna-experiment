@@ -4,6 +4,11 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.161.0
+- Lane: U/I
+- **Frontend audit (web-design-guidelines): accessibility labels.** The payment − / + buttons (local and online) now say what they change ("Fewer / More <cost source>"), and the lone inputs without a visible label got an `aria-label`: online server URL, import deck list, deck list (export), deck code, sign-in email. Attribute-only change, no visual difference. Already clean: focus styles replace every `outline: none`, no `transition: all`, reduced-motion handling, `color-scheme` and `theme-color`, image alt text, bug-report form labels.
+  - Checked: loop (82 tests). Not checked: the read-only player-view pass (no layout change, so skipped), a screen reader. Revert note: `git revert` the v0.161.0 commit; only `aria-label` attributes were added.
+
 ## v0.160.0
 - Lane: U/I
 - **Mockup parity finished: the battle screen now uses the mockup stylesheet.** `MK_OFF` is empty, so every view runs on `mockup.css` + `mk-glue.css`. The one real collision was the class name `slot`: the old field-card wrapper clashed with the mockup's locked-cell `.slot` (squeezed cards, dashed outlines), so the wrapper is now `fslot` (render, `styles.css`, two tests). PC and phone layouts are unchanged (phone keeps its single swipeable row).

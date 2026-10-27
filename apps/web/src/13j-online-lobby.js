@@ -44,7 +44,7 @@ function onlAccountHTML() {
   }
   const discordBtn = ONL_CFG.discord ? `<button class="ae-ghost" data-a="onl-discord">CONTINUE WITH DISCORD</button>` : '';
   return `<div class="srow"><div class="tx"><b>Not signed in</b><span>Optional for casual play. A one-time link signs you in — no password.</span></div></div>
-    <div class="srow"><input id="onl-email" class="sel" type="email" placeholder="you@example.com" autocomplete="off" spellcheck="false"><button class="ae-ghost" data-a="onl-login">EMAIL ME A SIGN-IN LINK</button>${discordBtn}</div>
+    <div class="srow"><input id="onl-email" aria-label="Email address" class="sel" type="email" placeholder="you@example.com" autocomplete="off" spellcheck="false"><button class="ae-ghost" data-a="onl-login">EMAIL ME A SIGN-IN LINK</button>${discordBtn}</div>
     <div id="onl-account-msg" class="lib-msg" role="status"></div>`;
 }
 /** Render the whole online lobby: the deck line, the server reachability and the account panel. */

@@ -200,7 +200,7 @@ async function onlinePayment(d) {
   const sel = {}; src.forEach(s => { sel[s.key] = 0; });
   const total = () => src.reduce((a, s) => a + sel[s.key], 0);
   const build = () => {
-    const rows = src.map((s, i) => `<div class="pay-row"><span class="l">${esc(s.label)} — ${s.max}</span><button class="pay-btn" data-a="opay" data-v="${i}:d">−</button><b>${sel[s.key]}</b><button class="pay-btn" data-a="opay" data-v="${i}:i">+</button></div>`).join('');
+    const rows = src.map((s, i) => `<div class="pay-row"><span class="l">${esc(s.label)} — ${s.max}</span><button class="pay-btn" data-a="opay" data-v="${i}:d" aria-label="Fewer ${esc(s.label)}">−</button><b>${sel[s.key]}</b><button class="pay-btn" data-a="opay" data-v="${i}:i" aria-label="More ${esc(s.label)}">+</button></div>`).join('');
     return { html: `Choose ${c} core${c === 1 ? '' : 's'} to pay (selected ${total()}/${c}).${L ? ` The new card then takes ${L} more core${L === 1 ? '' : 's'} automatically.` : ''}${rows}`, buttons: [{ label: 'Pay', cls: 'primary', value: 'ok', dis: total() !== c }, { label: 'Cancel', cls: 'cancel', value: null }] };
   };
   // the payment state rides MODAL.cfg so the +/- buttons (data-a="opay") can update and repaint it

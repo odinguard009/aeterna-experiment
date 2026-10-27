@@ -311,7 +311,7 @@ function dbDeckPng(d, name) {          // a plain deck sheet drawn on a canvas (
 }
 async function dbImport() {
   DB_IO = '';
-  const p = modal({ uiOnly: true, title: 'Import deck list', html: '<div class="db-io-hint">Paste a deck code or a plain list (one card per line: <b>3 BS44-001</b> or <b>3x Card Name</b>). The current cards in this slot are replaced (Undo brings them back).</div><textarea id="db-io" class="lib-area" spellcheck="false"></textarea><div class="vc" id="db-fmt" aria-live="polite"></div>', buttons: [{ label: 'Import', cls: 'primary', value: 'ok' }, { label: 'Cancel', cls: 'cancel', value: null }] });
+  const p = modal({ uiOnly: true, title: 'Import deck list', html: '<div class="db-io-hint">Paste a deck code or a plain list (one card per line: <b>3 BS44-001</b> or <b>3x Card Name</b>). The current cards in this slot are replaced (Undo brings them back).</div><textarea id="db-io" aria-label="Deck list to import" class="lib-area" spellcheck="false"></textarea><div class="vc" id="db-fmt" aria-live="polite"></div>', buttons: [{ label: 'Import', cls: 'primary', value: 'ok' }, { label: 'Cancel', cls: 'cancel', value: null }] });
   const ta = $('db-io'); if (ta) ta.addEventListener('input', () => { const f = $('db-fmt'); if (f) f.textContent = dbDetect(ta.value); });
   const v = await p;
   if (v !== 'ok') return;
@@ -327,7 +327,7 @@ async function dbExport(d) {
   try { localStorage.setItem('aeterna.share.' + code, txt); } catch (e) { /* storage blocked: the code still shows */ }
   const tabs = { text: ['Text list', txt], code: ['Deck code', code], image: ['Image', ''], csv: ['CSV', dbCsv(d)] };
   let tab = 'text';
-  const body = () => tab === 'image' ? `<img id="db-img" alt="Deck sheet" style="width:100%;max-height:260px;object-fit:contain;background:#0f1218" src="${dbDeckPng(d, nm)}">` : `<textarea id="db-io" class="lib-area" spellcheck="false" readonly>${esc(tabs[tab][1])}</textarea>`;
+  const body = () => tab === 'image' ? `<img id="db-img" alt="Deck sheet" style="width:100%;max-height:260px;object-fit:contain;background:#0f1218" src="${dbDeckPng(d, nm)}">` : `<textarea id="db-io" aria-label="Deck list" class="lib-area" spellcheck="false" readonly>${esc(tabs[tab][1])}</textarea>`;
   const html = () => `<div class="row db-xtabs" role="tablist" style="gap:8px;flex-wrap:wrap">${Object.keys(tabs).map(k => `<button class="chip${k === tab ? ' on' : ''}" role="tab" aria-selected="${k === tab}" data-x="${k}">${tabs[k][0]}</button>`).join('')}</div><div id="db-xbody" style="margin-top:8px">${body()}</div>`;
   const cfg = { uiOnly: true, title: `Export “${nm}”`, html: html(), buttons: [{ label: 'Copy', cls: 'primary', value: 'copy' }, { label: 'Close', cls: 'cancel', value: null }] };
   const p = modal(cfg);
@@ -353,7 +353,7 @@ function dbShareResolve(t) {            // a pasted share code gives back the li
 async function dbShare(d) {
   const txt = deckToText(d, SLOTS[ACTIVE_SLOT].key), code = dbShareCode(txt);
   try { localStorage.setItem('aeterna.share.' + code, txt); } catch (e) { /* storage blocked: the code still shows */ }
-  const v = await modal({ uiOnly: true, title: 'Share this deck', html: `<div class="db-share"><div class="db-qr" role="img" aria-label="QR code placeholder"></div><div><div class="db-io-hint">Anyone with the code can copy the deck into their own decks.</div><input id="db-code" class="lib-area" readonly value="${code}"><div class="db-io-hint">Stays on this device until online play exists.</div></div></div>`, buttons: [{ label: 'Copy code', cls: 'primary', value: 'copy' }, { label: 'Close', cls: 'cancel', value: null }] });
+  const v = await modal({ uiOnly: true, title: 'Share this deck', html: `<div class="db-share"><div class="db-qr" role="img" aria-label="QR code placeholder"></div><div><div class="db-io-hint">Anyone with the code can copy the deck into their own decks.</div><input id="db-code" aria-label="Deck code" class="lib-area" readonly value="${code}"><div class="db-io-hint">Stays on this device until online play exists.</div></div></div>`, buttons: [{ label: 'Copy code', cls: 'primary', value: 'copy' }, { label: 'Close', cls: 'cancel', value: null }] });
   if (v === 'copy') { try { await navigator.clipboard.writeText(code); } catch (e) { /* clipboard blocked: the code stays selectable */ } uiInfo('Share code', 'Code copied.'); }
 }
 

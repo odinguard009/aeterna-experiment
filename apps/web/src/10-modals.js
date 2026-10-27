@@ -105,7 +105,7 @@ async function webPayment(card, c, L) {
     const perCard = {}; src.forEach(s => { if (s.f) perCard[s.f.uid] = (perCard[s.f.uid] || 0) + sel[s.key]; });
     const warn = fieldList(p).filter(f => perCard[f.uid] > 0 && isSpiritForm(CARDS[f.id]) && totalCores(f) - perCard[f.uid] < minCores(CARDS[f.id]))
       .map(f => `<div class="warn-note">${esc(CARDS[f.id].name)} will be depleted.</div>`).join('');
-    const rows = src.map((s, i) => `<div class="pay-row"><span class="l">${esc(s.label)} — ${s.max}</span><button class="pay-btn" data-mi="${2 * i}">−</button><b>${sel[s.key]}</b><button class="pay-btn" data-mi="${2 * i + 1}">+</button></div>`).join('');
+    const rows = src.map((s, i) => `<div class="pay-row"><span class="l">${esc(s.label)} — ${s.max}</span><button class="pay-btn" data-mi="${2 * i}" aria-label="Fewer ${esc(s.label)}">−</button><b>${sel[s.key]}</b><button class="pay-btn" data-mi="${2 * i + 1}" aria-label="More ${esc(s.label)}">+</button></div>`).join('');
     const btns = [];
     src.forEach(s => { btns.push({ value: 'dec:' + s.key, hidden: true }); btns.push({ value: 'inc:' + s.key, hidden: true }); });
     btns.push({ label: 'Pay', cls: 'primary', value: 'ok', dis: total() !== c });
