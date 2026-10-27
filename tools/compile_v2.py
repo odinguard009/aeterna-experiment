@@ -51,10 +51,10 @@ def bpv(s): return int(s.replace(',', ''))
 SEL = re.compile(
     r'^(?P<count>an|a|one|two|three|up to (?:one|two|three|\d)|all|every|each|any number of)?\s*'
     r'(?P<owner>opposing|of the opposing|your|one of your|of your)\s+'
-    r'(?P<mods>(?:(?:cost \d+ or (?:less|more)|\d[\d,]* ?bp or (?:less|more)|exhausted|refreshed|attacking/blocking|attacking|blocking|lv\d(?:/lv?\d)*|'
+    r'(?P<mods>(?:(?:cost \d+ or (?:less|more)|cost \d+(?:/\d+)+|non-attacking|\d[\d,]* ?bp or (?:less|more)|exhausted|refreshed|attacking/blocking|attacking|blocking|lv\d(?:/lv?\d)*|'
     + COL + r'(?:/' + COL + r')*|"[^"]+" family|non-braved|braved)\s+)*)'
     r'(?P<kind>spirits?/ultimates?|spirits?/nexus(?:es)?|spirits?|ultimates?|nexus(?:es)?|cards?)'
-    r'(?P<post>(?:,? (?:with|that ha(?:s|ve)) [^,]+?)*)'
+    r'(?P<post>(?:,? (?:with|that ha(?:s|ve)) [^,]+?|,? that is blocking this spirit)*)'
     r'(?P<own> you control| the opponent controls| your opponent controls)?$')
 
 
@@ -71,8 +71,11 @@ def selector(np):
     kind = 'spirit' if re.match(r'spirits?(/ultimates?)?$', kind) else 'any' if 'nexus' in kind and 'spirit' in kind else \
         'nexus' if 'nexus' in kind else 'ultimate' if 'ultimate' in kind else 'card'
     f = {}
-    for x in re.findall(r'cost \d+ or (?:less|more)|\d[\d,]* ?bp or (?:less|more)|exhausted|refreshed|attacking/blocking|attacking|blocking|lv\d(?:/lv?\d)*|'
+    for x in re.findall(r'cost \d+ or (?:less|more)|cost \d+(?:/\d+)+|non-attacking|\d[\d,]* ?bp or (?:less|more)|exhausted|refreshed|attacking/blocking|attacking|blocking|lv\d(?:/lv?\d)*|'
                         + COL + r'(?:/' + COL + r')*|"[^"]+" family|non-braved|braved', m.group('mods')):
+        if x == 'non-attacking': f['notAttacking'] = True; continue      # v0.168
+        mm = re.fullmatch(r'cost (\d+(?:/\d+)+)', x)
+        if mm: f['costIn'] = [int(y) for y in mm.group(1).split('/')]; continue      # v0.168 "Cost 1/2" = cost 1 or 2
         mm = re.match(r'cost (\d+) or (less|more)', x)
         if mm: f['costLe' if mm.group(2) == 'less' else 'costGe'] = int(mm.group(1)); continue
         mm = re.match(r'(\d[\d,]*) ?bp or (less|more)', x)
@@ -81,7 +84,8 @@ def selector(np):
         if mm: f['family'] = mm.group(1); continue
         if re.match(COL, x): f['color'] = x.split('/'); continue
         f[x] = True
-    for x in re.findall(r'(?:with|that ha(?:s|ve)) ([^,]+?)(?=,? (?:with|that ha)|$)', m.group('post') or ''):
+    if re.search(r'that is blocking this spirit', m.group('post') or ''): f['blockingSelf'] = True      # v0.168
+    for x in re.findall(r'(?:with|that ha(?:s|ve)) ([^,]+?)(?=,? (?:with|that ha|that is blocking)|$)', m.group('post') or ''):
         x = x.strip()
         mm = re.match(r'(\d[\d,]*) ?bp or (less|more)$', x)
         if mm: f['bpLe' if mm.group(2) == 'less' else 'bpGe'] = bpv(mm.group(1)); continue
@@ -126,8 +130,8 @@ def v_destroy(sel):
     if sel['kind'] == 'nexus':
         need('destroy', sel, ())
         return [{'do': 'DESTROY', 'nexus': True}]
-    B = ('bpLe', 'costLe', 'coresLe', 'costRank', 'costLeSelf', 'bpLeAttacker', 'bpLeSelf', 'bpEqSelf', 'symbolsGe', 'costLePer')      # v0.76: the last four
-    need('destroy', sel, B + ('exhausted',))      # v0.68: exhausted only (DESTROY exhaustedOnly, 02l)
+    B = ('bpLe', 'costLe', 'coresLe', 'costRank', 'costLeSelf', 'bpLeAttacker', 'bpLeSelf', 'bpEqSelf', 'symbolsGe', 'costLePer', 'costIn')      # v0.76: the last four; v0.168 costIn
+    need('destroy', sel, B + ('exhausted', 'blockingSelf'))      # v0.68: exhausted only (DESTROY exhaustedOnly, 02l)
     keys = [k for k in B if k in sel['f']]
     if not keys and sel['f'].get('exhausted'): return [{'do': 'DESTROY', 'exhaustedOnly': True}]      # v0.75: "an opposing exhausted Spirit" (any BP)
     if len(keys) != 1: raise Review('v2 destroy: ' + ('no bound' if not keys else 'two bounds'))
@@ -135,17 +139,19 @@ def v_destroy(sel):
     if k == 'coresLe' and sel['f'][k] > 10: raise Review('v2 destroy: cores')
     a = {'do': 'DESTROY', k: sel['f'][k]}
     if sel['f'].get('exhausted'): a['exhaustedOnly'] = True
+    if sel['f'].get('blockingSelf'): a['blockingSelf'] = True      # v0.168
     return [a]
 
 
 def v_return(sel, where):
     one_target('return', sel, ('spirit', 'any', 'nexus'))
     if sel['count'] != 1: raise Review('v2 return: count ' + str(sel['count']))
-    need('return', sel, ('costLe', 'exhausted', 'bpLe', 'attacking'))
+    need('return', sel, ('costLe', 'exhausted', 'bpLe', 'attacking', 'notAttacking'))
     a = {'do': 'BOUNCE_OPP', 'to': where, 'kind': sel['kind']}
     if 'costLe' in sel['f']: a['costLe'] = sel['f']['costLe']
     if 'bpLe' in sel['f']: a['bpLe'] = sel['f']['bpLe']          # v0.68 (02l)
     if sel['f'].get('attacking'): a['attackingOnly'] = True
+    if sel['f'].get('notAttacking'): a['notAttacking'] = True      # v0.168
     if sel['f'].get('exhausted'): a['exhaustedOnly'] = True
     return [a]
 
@@ -195,6 +201,11 @@ BOTTOM = r"(?:the )?(?:bottom of (?:the|its owner'?s|their|the opposing) deck|(?
 
 def clause(x):
     """one lower-cased clause without the head -> actions"""
+    m = re.match(r'^refresh one of your (.+)$', x)
+    if m:      # v0.168 "Target one of your <X>. Refresh it." arrives here as "refresh one of your <X>" (TARGET pair form)
+        match, att = own_np(m.group(1))
+        if att or 'costGe' in match: raise Review('v2 refresh: filter')
+        return [{'do': 'REFRESH_SPIRIT', 'match': match}] if match else [{'do': 'REFRESH_SPIRIT'}]
     m = re.match(r'^destroy (.+?), and (effects of the destroyed spirit(?:/ultimates?)? can\'t activate|when (?:it )?destroys?,? draw (a|one|two) cards?)$', x)
     if m and selector(m.group(1)):      # v0.75: DESTROY noFx / thenDraw tails
         a = v_destroy(selector(m.group(1)))
@@ -244,13 +255,14 @@ SELF_BATTLE_SYM = re.compile(r'^during this battle, this spirit gains an extra '
 
 
 def own_np(np):
-    """v0.68: "[attacking] [Cost N or more] ["X" family] Spirits" (one of your ...) -> (match, attacking)"""
-    m = re.match(r'^(attacking )?(?:cost (\d+) or more )?(?:"([^"]+)" family )?spirits?(?: with ([a-z]+))?$', low(np.strip()))
-    if not m or (m.group(4) in ('no', 'a', 'an', 'the', 'any')): raise Review('v2 own target: ' + np[:60])
+    """v0.68: "[attacking] [Cost N or more | Cost A/B] ["X" family] Spirits [with Kw | with the "Y" family]" (one of your ...) -> (match, attacking)"""
+    m = re.match(r'^(attacking )?(?:cost (\d+) or more |cost (\d+(?:/\d+)+) )?(?:"([^"]+)" family )?spirits?(?: with (?:the "([^"]+)" family|([a-z]+)))?$', low(np.strip()))
+    if not m or (m.group(6) in ('no', 'a', 'an', 'the', 'any')): raise Review('v2 own target: ' + np[:60])
     match = {}
-    if m.group(4): match['keyword'] = m.group(4).capitalize()      # v0.164 "Spirits with Clash" (fxMatch keyword)
-    if m.group(3): match['family'] = [m.group(3)]
+    if m.group(6): match['keyword'] = m.group(6).capitalize()      # v0.164 "Spirits with Clash" (fxMatch keyword)
+    if m.group(4) or m.group(5): match['family'] = [m.group(4) or m.group(5)]      # v0.168 'with the "Topaz" family' = the same family filter
     if m.group(2): match['costGe'] = int(m.group(2))
+    if m.group(3): match['costIn'] = [int(y) for y in m.group(3).split('/')]      # v0.168 "Cost 6/8"
     return match, bool(m.group(1))
 
 
@@ -297,11 +309,14 @@ def own_grammar(s, ctx=None):
     m = re.match(r'^(?:(?:you can|you may) )?return an? ((?:"[^"]+"/)*"[^"]+") (?:card )?from your trash to (?:the|your) hand$', x, re.I)
     if m:      # v0.76: '"A"/"B"' = any card whose name includes A or B (RETURN_TRASH anyType + match.name)
         return [{'do': 'RETURN_TRASH', 'anyType': True, 'match': {'name': re.findall(r'"([^"]+)"', m.group(1))}}]
-    m = re.match(r'^target an? (?:cost (\d+) or more )?"([^"]+)" family spirit card in your trash\.\s*return it to (?:the|your) hand$', x, re.I)
-    if m:      # v0.76: optional "Cost N or more"
-        a = {'do': 'RETURN_TRASH', 'match': {'family': [m.group(2)]}}
-        if m.group(1): a['match']['costGe'] = int(m.group(1))
-        return [a]
+    m = re.match(r'^target an? (?:cost (\d+) or (less|more) )?(?:(red|purple|green|white|yellow|blue) )?(?:"([^"]+)" family )?spirit card(?: with ([a-z]+(?: [a-z]+)?))? in your trash\.\s*return it to (?:the|your) hand$', x, re.I)
+    if m and (m.group(1) or m.group(3) or m.group(4) or m.group(5)):      # v0.76: optional "Cost N or more"; v0.168: "or less", a colour and a keyword ("a Spirit card with Clash")
+        mt = {}
+        if m.group(4): mt['family'] = [m.group(4)]
+        if m.group(1): mt['costGe' if m.group(2).lower() == 'more' else 'costLe'] = int(m.group(1))
+        if m.group(3): mt['color'] = m.group(3).lower()
+        if m.group(5): mt['keyword'] = m.group(5).title()
+        return [{'do': 'RETURN_TRASH', 'match': mt}]
     m = OWN_REFRESH.match(x)
     if m:
         match, att = own_np(m.group(1))
@@ -539,6 +554,8 @@ def cond_of(x):
     if re.fullmatch(r'you control fewer spirits than (?:the|your) opponent', x, re.I): return {'fewerSpirits': True}      # v0.77
     m = re.fullmatch(r'you control (?:an?|any) (red|purple|green|white|yellow|blue) nexus', x, re.I)
     if m: return {'nexusGe': {'n': 1, 'colors': [m.group(1).lower()]}}      # v0.77
+    m = re.fullmatch(r'you (?:control|have) (one|two|three|four|five|six|\d) or more (red|purple|green|white|yellow|blue) symbols?', x, re.I)
+    if m: return {'symbolsOnGe': {'color': m.group(2).lower(), 'n': n_of(m.group(1).lower())}}      # v0.168 (engine symbolsOnGe: Field symbols of the owner)
     c = v1.all_have_cond(x)
     if c: return c
     if re.fullmatch(r'(?:you )?(?:are |is |was )?summoned via form change', x, re.I): return {'viaFormChange': True}      # v0.135 (schema v8)
@@ -627,6 +644,7 @@ TGT_VOID = re.compile(r'^target (?:an?|one) (.+? you control)\.\s*put (a|one|two
 
 
 def action_of(s, ctx):
+    s = re.sub(r'^(if you control) any ("[^"]+" family spirit), besides this spirit,', r'\1 another \2,', s.strip(), flags=re.I)      # v0.168 'any "X" family Spirit, besides this Spirit,' = 'another "X" family Spirit' (ctrl.other)
     sh = SHOW_RET.match(s.strip())
     if sh:      # v0.165 "Show up to N <X> cards from your Hand to the opponent. Return them to the deckbottom. For each card returned, draw a card." = SHOW_RETURN
         col1, fam, col2 = sh.group(4), sh.group(5), sh.group(6)

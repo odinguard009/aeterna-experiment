@@ -510,16 +510,23 @@ def spirit_paragraph_main(p, card, rush):
             own, extra = card['color'].lower(), mm.group(1).lower()
             if own == extra or own not in COLOURS: raise Review('colour change: ' + p[:60])
             return [], {'colors': [own, extra]}
+        mm = re.match(r'^\(Either Attack Step\)\s*(\(Can\'t Stack\)\s*)?All your attacking/blocking Spirits (?:with (?P<kw>[A-Z][A-Za-z ]+?) )?(?:gain|get) \+(\d[\d,]*) ?BP\.?$', p, re.I)
+        if mm:      # v0.168: both Attack Steps, only the Spirits that fight (attacker or blocker); (Can't Stack) = copies do not add up (engine bp loop)
+            e = {'trigger': 'STATIC', 'bp': bp(mm.group(3)), 'to': 'own', 'fightingOnly': True, 'if': {'attackStep': True}}
+            if mm.group('kw'): e['match'] = {'keyword': mm.group('kw')}
+            if mm.group(1): e['noStack'] = True
+            if lv: e['lv'] = lv
+            return [e], flags
         mm = re.match(r'^\(Your Attack Step\)\s*All attacking Spirits you control (?:gain|get) \+(\d[\d,]*) ?BP\.?$', p, re.I)
         if mm:
             e = {'trigger': 'STATIC', 'bp': bp(mm.group(1)), 'to': 'own', 'attackingOnly': True}
             if lv: e['lv'] = lv
             return [e], flags
-        mm = re.match(r'^(\(During Attack\)\s*)?If (.+?), this Spirit (?:gains|gets) \+(\d[\d,]*) ?BP\.?$', p, re.I)
+        mm = re.match(r'^(\(During (?:Attack|Block)\)\s*)?If (.+?), this Spirit (?:gains|gets) \+(\d[\d,]*) ?BP\.?$', p, re.I)
         cond = (all_have_cond(mm.group(2)) or (COND_HOOK(mm.group(2)) if COND_HOOK else None)) if mm else None
         if cond:      # v0.131 conditional static BP (house reading of allHave: no card on the Field = not met); v0.166 "(During Attack)" prefix and the v2 condition reader
             e = {'trigger': 'STATIC', 'bp': bp(mm.group(3)), 'to': 'self', 'if': cond}
-            if mm.group(1): e['attackingOnly'] = True
+            if mm.group(1): e['blockingOnly' if re.search(r'block', mm.group(1), re.I) else 'attackingOnly'] = True      # v0.168 "(During Block)" prefix
             if lv: e['lv'] = lv
             return [e], flags
         sw = step_window(p, card, lv, rush)      # v0.70: generic step window head

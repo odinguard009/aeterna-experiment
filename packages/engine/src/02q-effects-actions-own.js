@@ -50,7 +50,8 @@ Object.assign(FX_ACTIONS, {
       if (!t) return; refreshOne(t); log(`${CARDS[t.id].name} is refreshed.`);
     } },
   /* v0.33 effects of a card that is not on the field: revealed from the deck, or in the Hand */
-  RETURN_TRASH: { chk: a => a.match && (a.match.name || a.match.family), txt: a => `return a matching ${a.anyType ? 'card' : 'Spirit'} from your Trash to your Hand`,
+  RETURN_TRASH: { chk: a => !!a.match && hasMatch(a.match),      // v0.168: any match shape (colour, cost, keyword), not only a name or family
+    txt: a => `return a matching ${a.anyType ? 'card' : 'Spirit'} from your Trash to your Hand`,
     cands: (c, a) => c.p.trash.filter(t => (a.anyType || CARDS[t.id].type === 'Spirit') && fxMatch(CARDS[t.id], a.match)),
     can: (c, a) => FX_ACTIONS.RETURN_TRASH.cands(c, a).length > 0,
     run: async (c, a) => {

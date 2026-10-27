@@ -4,7 +4,7 @@
   "tagline": "From tested engine to a simulator that plays like Aegis",
   "waitingHtml": "<b>Waiting on you:</b> nothing; Report Bug and missions / ranks / avatars are decided (2026-10-25).",
   "updated": "27 Oct 2026",
-  "updatedAt": "0.163.0",
+  "updatedAt": "0.168.0",
   "next": "next: card sessions (K) with Standard first; the v14 UI/UX redesign is done ( card commands, animations, battle phone, deck builder, library + lore, pages, dialogs + Report Bug), then card sessions (K) with Standard first"
  },
  "phases": [
@@ -1392,5 +1392,5 @@
    "note": "M7 database + Docker (steps 2-7): store contract + Postgres binding, magic-link accounts, HTTP API, room match/replay to store, Discord OAuth + server image."
   }
  ],
- "updatedAt": "0.163.0"
+ "updatedAt": "0.168.0"
 }

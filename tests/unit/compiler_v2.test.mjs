@@ -120,3 +120,17 @@ test('C167-01 ctrl bpGe / noText / name conditions, "target two instead", "Spiri
   assert.deepEqual(compile('[LV1] (During Attack) For each Spirit with Legacy you control, this Spirit gains +2000 BP.').effects[0].per, { type: 'Spirit', keyword: 'Legacy' });
   assert.deepEqual(acts('[LV2] (During Attack) At the end of battle, if your Hand is five or less, draw a card.'), [{ do: 'END_BATTLE', then: [{ do: 'DRAW', n: 1, if: { handLe: 5 } }] }]);
 });
+
+test('C168-01 symbolsOnGe, Cost A/B and non-attacking selectors, blocking-this-Spirit, fightingOnly static, Trash returns by colour / cost / keyword, Cost 6/8 refresh, another X family (v0.168.0)', () => {
+  assert.deepEqual(compile('[LV2] (During Block) If you have three or more White symbols, this Spirit gains +5000 BP.').effects,
+    [{ trigger: 'STATIC', bp: 5000, to: 'self', if: { symbolsOnGe: { color: 'white', n: 3 } }, blockingOnly: true, lv: [2] }]);
+  assert.deepEqual(acts('[LV1] (When Destroyed) Target an opposing Cost 1/2 exhausted Spirit. Destroy it.'), [{ do: 'DESTROY', costIn: [1, 2], exhaustedOnly: true }]);
+  assert.deepEqual(acts('[LV1] (When Blocks) Target an opposing non-attacking 2000 BP or less Spirit. Return it to the deckbottom.'), [{ do: 'BOUNCE_OPP', to: 'deckBottom', kind: 'spirit', bpLe: 2000, notAttacking: true }]);
+  assert.deepEqual(acts('[LV2] (When Destroyed) Target an opposing Cost 6 or less Spirit that is blocking this Spirit. Destroy it.'), [{ do: 'DESTROY', costLe: 6, blockingSelf: true }]);
+  assert.deepEqual(compile("[LV1][LV2] (Either Attack Step) (Can't Stack)\nAll your attacking/blocking Spirits with Level Up gain +2000 BP.").effects,
+    [{ trigger: 'STATIC', bp: 2000, to: 'own', fightingOnly: true, if: { attackStep: true }, match: { keyword: 'Level Up' }, noStack: true, lv: [1, 2] }]);
+  assert.deepEqual(acts('[LV1] (When Summoned) Target a Cost 5 or less Red Spirit card in your Trash. Return it to the Hand.'), [{ do: 'RETURN_TRASH', match: { costLe: 5, color: 'red' } }]);
+  assert.deepEqual(acts('[LV1] (When Summoned) Target a Spirit card with Clash in your Trash. Return it to the Hand.'), [{ do: 'RETURN_TRASH', match: { keyword: 'Clash' } }]);
+  assert.deepEqual(acts('[LV1] (When Summoned) You can target one of your Cost 6/8 Spirits with the "Topaz" family. Refresh it.'), [{ do: 'REFRESH_SPIRIT', match: { family: ['Topaz'], costIn: [6, 8] } }]);
+  assert.deepEqual(acts('[LV2] (When Attacks) If you control any "GAIM" family Spirit, besides this Spirit, draw a card.'), [{ do: 'DRAW', n: 1, if: { ctrl: { n: 1, type: 'Spirit', family: 'GAIM', other: true } } }]);
+});

@@ -6,10 +6,11 @@
    Exactly one of them stands in for the bound; each needs the opposing Spirit/Ultimate to be a legal effect target (fxImmune). */
 (() => {
   const D = FX_ACTIONS.DESTROY, dChk = D.chk, dCands = D.cands, dTxt = D.txt;
-  const NEW = ['bpLeSelf', 'bpEqSelf', 'symbolsGe', 'costLePer'];
+  const NEW = ['bpLeSelf', 'bpEqSelf', 'symbolsGe', 'costLePer', 'costIn'];
   const has = a => NEW.some(k => a[k] != null);
   const okNew = a => (a.bpLeSelf == null || a.bpLeSelf === true) && (a.bpEqSelf == null || a.bpEqSelf === true)
     && (a.symbolsGe == null || (Number.isInteger(a.symbolsGe) && a.symbolsGe >= 1 && a.symbolsGe <= 5)) && (a.costLePer == null || perOk(a.costLePer))
+    && (a.costIn == null || (Array.isArray(a.costIn) && a.costIn.length >= 1 && a.costIn.length <= 4 && a.costIn.every(x => Number.isInteger(x) && x >= 0 && x <= 30)))      // v0.168 "Cost 1/2" = cost 1 or 2
     && NEW.filter(k => a[k] != null).length <= 1 && !a.all && !a.nexus;
   const base = a => { const o = Object.assign({}, a); for (const k of NEW) delete o[k]; o.bpLe = 1e9; return o; };      // the old checks see an open bound
   D.chk = a => has(a) ? okNew(a) && dChk(base(a)) : dChk(a);
@@ -18,13 +19,29 @@
     const me = ownerOf(c.src) ? bpOf(c.src) : null, lim = a.costLePer ? perCount(c.p, a.costLePer) : null;
     return dCands(c, base(a)).filter(t => !fxImmune(c.opp, t)
       && (!a.bpLeSelf || (me != null && bpOf(t) <= me)) && (!a.bpEqSelf || (me != null && bpOf(t) === me))
-      && (a.symbolsGe == null || CARDS[t.id].symbols >= a.symbolsGe) && (lim == null || CARDS[t.id].cost <= lim));
+      && (a.symbolsGe == null || CARDS[t.id].symbols >= a.symbolsGe) && (lim == null || CARDS[t.id].cost <= lim) && (a.costIn == null || a.costIn.includes(CARDS[t.id].cost)));
   };
   D.txt = a => {
     if (!has(a)) return dTxt(a);
     const q = a.costLePer;
+    if (a.costIn) return 'destroy 1 opposing ' + (a.exhaustedOnly ? 'exhausted ' : '') + 'Spirit/Ultimate with cost ' + a.costIn.join('/') + (a.thenDraw ? ', then draw ' + a.thenDraw : '') + (a.noFx ? "; the effects of the destroyed target can't activate" : '');
     const f = a.bpLeSelf ? "BP equal or inferior to this Spirit's" : a.bpEqSelf ? 'the same BP as this Spirit' : a.symbolsGe != null ? a.symbolsGe + ' or more symbols'
       : `a cost equal or less than the number of matching ${q.type === 'Nexus' ? 'Nexuses' : 'Spirits'} you control`;
     return 'destroy 1 opposing Spirit/Ultimate with ' + f + (a.exhaustedOnly ? ' (exhausted only)' : '') + (a.thenDraw ? ', then draw ' + a.thenDraw : '') + (a.noFx ? "; the effects of the destroyed target can't activate" : '');
   };
+})();
+/* v0.168 target modifiers wrapped on top of the filters above:
+   DESTROY blockingSelf  "an opposing Spirit that is blocking this Spirit" (only while this Spirit is the attacker and that Spirit is its blocker)
+   BOUNCE_OPP notAttacking "an opposing non-attacking Spirit" (any opposing Spirit except the attacker) */
+(() => {
+  const D = FX_ACTIONS.DESTROY, dChk = D.chk, dCands = D.cands, dTxt = D.txt;
+  const bare = a => { const o = Object.assign({}, a); delete o.blockingSelf; return o; };
+  D.chk = a => (a.blockingSelf == null || a.blockingSelf === true) && dChk(bare(a));
+  D.cands = (c, a) => { const L = dCands(c, bare(a)); return a.blockingSelf ? L.filter(t => G.attacker === c.src && G.blocker === t) : L; };
+  D.txt = a => dTxt(bare(a)).replace(/^destroy 1 opposing /, `destroy 1 opposing ${a.blockingSelf ? 'blocking ' : ''}`);
+  const B = FX_ACTIONS.BOUNCE_OPP, bChk = B.chk, bCands = B.cands, bTxt = B.txt;
+  const nb = a => { const o = Object.assign({}, a); delete o.notAttacking; return o; };
+  B.chk = a => (a.notAttacking == null || a.notAttacking === true) && !(a.notAttacking && a.attackingOnly) && bChk(nb(a));
+  B.cands = (c, a) => bCands(c, nb(a)).filter(t => !a.notAttacking || t !== G.attacker);
+  B.txt = a => bTxt(nb(a)).replace(/^return an opposing /, `return an opposing ${a.notAttacking ? 'non-attacking ' : ''}`);
 })();

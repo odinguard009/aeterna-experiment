@@ -20,13 +20,13 @@ VERSION, CARDS, defCard, TRAIN, PRESET_DECK
 ## packages/engine/src/01a-card-pack.js (167 lines, ~2.4k tokens) — CARD PACK CODEC (v0.51.0; this part must load before 03-imported-cards.js: its consts are used at load): compact, synchronous format of the built-in card pack
 packBlockOf, packCards, unpackCards, INF_LBASE, INF_LEXT, INF_DBASE, INF_DEXT, INF_ORDER, inflateRaw, packBytes, loadFlavor, loadPack
 
-## packages/engine/src/02a-effects-base.js (251 lines, ~6.3k tokens) — EFFECT ENGINE
+## packages/engine/src/02a-effects-base.js (255 lines, ~6.5k tokens) — EFFECT ENGINE
 FX_STRICT, FX_WARNED, fxUnknown, FX_COND_KEYS, FX_TRIGGERS, FX_TRIGGER_TEXT, BR_IDX, fxEntries, fxMatch, canBlockState, fxIf, cardHasKeyword, fxNoText, ctrlCount, spiritCount, PER_TYPES, perOk, perCount, ownerOf, STATIC_FLAGS, fxImmune, unaffectedBy, flagActive, costDestroyBonus, coresSent, staticBp, takeFromVoid, releaseCores, removeNexus, fxPickTarget, toSoulState, chooseCard, bounceCard, SOUL_SRC, hasMatch
 
 ## packages/engine/src/02b-effects-actions.js (84 lines, ~3.1k tokens)
 FX_ACTIONS
 
-## packages/engine/src/02c-effects-parse.js (161 lines, ~4.8k tokens)
+## packages/engine/src/02c-effects-parse.js (162 lines, ~4.9k tokens)
 canPlaceFree, canPlaceBraveFree, summonFree, canPlacePaid, canPlaceBy, summonPaid, summonBy, fxDescribe, BURST_WHEN, parseCond, parseActionList, parseBurst, parseEffects
 
 ## packages/engine/src/02d-effects-resolve.js (362 lines, ~6.8k tokens)
@@ -56,7 +56,7 @@ trashSafe, wrapImmunity
 ## packages/engine/src/02l-effects-invoke.js (175 lines, ~3.9k tokens) — v0.68 INVOKE (Standard activations): "{{Invoke|Flash}}" / "{{Invoke|Main}}" + "<cost> ▶ <effect>".
 INVOKE_WHEN, INVOKE_COSTS, invokeMatchOK, invokeParse, invokeWhenOK, exhaustOwnCands, discardCands, invokeCostOK, payInvokeCost, usedThisBattle, markUsedBattle, bpBattle, addBattleBp, invokeCostText, ownTargetCands, cpuInvokeOK
 
-## packages/engine/src/02m-effects-destroy-filters.js (30 lines, ~0.6k tokens)
+## packages/engine/src/02m-effects-destroy-filters.js (47 lines, ~1.1k tokens)
 
 
 ## packages/engine/src/02n-effects-void-destinations.js (64 lines, ~1.4k tokens)
@@ -68,7 +68,7 @@ endOfBattle
 ## packages/engine/src/02p-effects-shared-shapes.js (187 lines, ~3.8k tokens)
 cardTeams, allHaveShapeOK, allHaveOK
 
-## packages/engine/src/02q-effects-actions-own.js (96 lines, ~2.2k tokens)
+## packages/engine/src/02q-effects-actions-own.js (97 lines, ~2.2k tokens)
 
 
 ## packages/engine/src/02r-effects-actions-deck.js (112 lines, ~3.2k tokens)

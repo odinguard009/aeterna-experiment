@@ -44249,7 +44249,8 @@
  ],
  "26RBS01-003": [],
  "26RBS01-004": [
-  "T_SUMMONED"
+  "T_SUMMONED",
+  "C_LEVEL"
  ],
  "26RBS01-005": [
   "C_LEVEL",
@@ -45211,6 +45212,7 @@
   "M_OPTIONAL"
  ],
  "26RBS02-038": [
+  "C_LEVEL",
   "T_BLOCKS"
  ],
  "26RBS02-039": [
@@ -45891,6 +45893,7 @@
  "26RBS03-053": [
   "T_SUMMONED",
   "A_REFRESH",
+  "C_LEVEL",
   "M_OPTIONAL"
  ],
  "26RBS03-054": [
@@ -46449,6 +46452,7 @@
  ],
  "26RCB01-042": [
   "A_BP_PLUS",
+  "C_LEVEL",
   "M_UNSTACKABLE",
   "F_OTHER_NOSTACK"
  ],

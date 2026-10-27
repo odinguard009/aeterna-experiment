@@ -150,14 +150,14 @@
 | Violent High Speed | missing | 1 | 3 | ··· | K_HIGH_SPEED | no code for the variant in the engine or the compilers (A4 grep 2026-10-19); base handler reusable |
 | Wave Crush | missing | 1 | 2 | ··· | K_CRUSH | no code for the variant in the engine or the compilers (A4 grep 2026-10-19); base handler reusable |
 | XV Crush | missing | 1 | 3 | ··· | K_CRUSH | no code for the variant in the engine or the compilers (A4 grep 2026-10-19); base handler reusable |
-| Spirit card | done | 5164 | 5335 | ··· | - | base rules: summon, levels, BP, attack/block (rules-coverage A) |
-| Nexus card | done | 829 | 812 | ··· | - | deploy, levels, Nexus effects through the effect engine |
+| Spirit card | done | 5155 | 5335 | ··· | - | base rules: summon, levels, BP, attack/block (rules-coverage A) |
+| Nexus card | done | 828 | 812 | ··· | - | deploy, levels, Nexus effects through the effect engine |
 | Burst | done | 430 | 674 | ··· | K_BURST | v0.55.2 resolution order |
 | Contract Advent | done | 193 | 246 | ··· | K_ADVENT | engine done (CLAUDE.md Done list) |
-| True Release (= Super Unleash, Standard) | done | 154 | 189 | RDL | - | done v0.66.0: trueRelease field, lvIndex Soul Core = LV2, (During Attack) +BP/Clash; +14 cards (7 with True Release); real recompile re-measure 2026-10-19: True Release alone 1, with (During Attack) 6 |
 | Accel | done | 153 | 195 | ··· | K_ACCEL | v0.50.0 |
+| True Release (= Super Unleash, Standard) | done | 153 | 189 | RDL | - | done v0.66.0: trueRelease field, lvIndex Soul Core = LV2, (During Attack) +BP/Clash; +14 cards (7 with True Release); real recompile re-measure 2026-10-19: True Release alone 1, with (During Attack) 6 |
 | Advent | done | 147 | 527 | ··· | K_ADVENT | engine done (CLAUDE.md Done list) |
-| Legacy | done | 102 | 139 | RDL | - | = Succession; done in v0.69.0 (legacyPlan/legacyPay in 06-rules.js; automatic, fewest EX cards for the lowest cost; +8 cards). Effects that count "EX Symbol banished via this Legacy" / "summoned using Legacy" (10 cards) still wait (inst.legacyN is recorded). glossary link K_STANDARD_SUCCESSION is shared with Soul Magic |
+| Legacy | done | 100 | 139 | RDL | - | = Succession; done in v0.69.0 (legacyPlan/legacyPay in 06-rules.js; automatic, fewest EX cards for the lowest cost; +8 cards). Effects that count "EX Symbol banished via this Legacy" / "summoned using Legacy" (10 cards) still wait (inst.legacyN is recorded). glossary link K_STANDARD_SUCCESSION is shared with Soul Magic |
 | Manifest | done | 91 | 4 | ··· | K_MANIFEST | v0.46.0 Ultra Manifest |
 | High Speed | done | 75 | 144 | ··· | K_HIGH_SPEED | v0.49.0 |
 | Crush | done | 28 | 78 | ··· | K_CRUSH | v0.49.0 |

@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 7723,
+  "cards": 7713,
   "per_saga": {
    "1": 785,
    "2": 332,
@@ -19,23 +19,23 @@
    "15": 356,
    "16": 334,
    "17": 110,
-   "50": 428
+   "50": 418
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 983,
+  "skipped_curated": 993,
   "number_conflicts": 5,
   "nexus_levels_added": 715,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 554,
+  "image_problems": 551,
   "merged": 109,
   "brave_unparsed": 171,
   "ut_lines_added": 119,
   "odd_reduction": 808,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 552
+  "without_image": 549
  },
  "tokens": [
   "BS73-T001",
@@ -792,6 +792,7 @@
   "26RSD01-005",
   "26RSD01-007",
   "26RSD01-009",
+  "26RSD01-011",
   "26RSD01-014",
   "26RSD01-X02",
   "26RSD02-001",
@@ -816,6 +817,7 @@
   "26RSD03-013",
   "26RSD03-014",
   "26RSD04-001",
+  "26RSD04-002",
   "26RSD04-005",
   "26RSD04-006",
   "26RSD04-008",
@@ -847,12 +849,14 @@
   "26RBS01-001",
   "26RBS01-002",
   "26RBS01-003",
+  "26RBS01-004",
   "26RBS01-005",
   "26RBS01-006",
   "26RBS01-009",
   "26RBS01-010",
   "26RBS01-011",
   "26RBS01-012",
+  "26RBS01-014",
   "26RBS01-015",
   "26RBS01-016",
   "26RBS01-017",
@@ -930,6 +934,7 @@
   "26RCB01-011",
   "26RCB01-012",
   "26RCB01-015",
+  "26RCB01-016",
   "26RCB01-018",
   "26RCB01-019",
   "26RCB01-020",
@@ -946,6 +951,7 @@
   "26RCB01-037",
   "26RCB01-040",
   "26RCB01-041",
+  "26RCB01-042",
   "26RCB01-044",
   "26RCB01-048",
   "26RCB01-061",
@@ -966,6 +972,7 @@
   "26RBS02-008",
   "26RBS02-011",
   "26RBS02-015",
+  "26RBS02-017",
   "26RBS02-020",
   "26RBS02-024",
   "26RBS02-025",
@@ -973,6 +980,7 @@
   "26RBS02-027",
   "26RBS02-031",
   "26RBS02-034",
+  "26RBS02-038",
   "26RBS02-043",
   "26RBS02-049",
   "26RBS02-051",
@@ -1003,6 +1011,7 @@
   "26RSD10-007",
   "26RSD10-008",
   "26RSD10-012",
+  "26RBS03-009",
   "26RBS03-010",
   "26RBS03-011",
   "26RBS03-012",
@@ -1012,6 +1021,7 @@
   "26RBS03-025",
   "26RBS03-049",
   "26RBS03-052",
+  "26RBS03-053",
   "26RBS03-055",
   "26RBS03-061",
   "26RBS03-063",
@@ -4176,11 +4186,6 @@
    "problem": "ambiguous name (2 files, none in set 26RCB01)"
   },
   {
-   "id": "26RCB01-042",
-   "name": "Kamen Rider Genm Action Gamer Level 0",
-   "problem": "ambiguous name (2 files, none in set 26RCB01)"
-  },
-  {
    "id": "26RCB01-045",
    "name": "Kamen Rider Genm Zombie Gamer Level X",
    "problem": "ambiguous name (2 files, none in set 26RCB01)"
@@ -4288,11 +4293,6 @@
   {
    "id": "26RBS03-008",
    "name": "The CragArmoredGiantCloud Famlon",
-   "problem": "no image"
-  },
-  {
-   "id": "26RBS03-009",
-   "name": "The Assassin Nidree",
    "problem": "no image"
   },
   {
@@ -4463,11 +4463,6 @@
   {
    "id": "26RBS03-051",
    "name": "The SlashOgre Etaina",
-   "problem": "no image"
-  },
-  {
-   "id": "26RBS03-053",
-   "name": "Plasmaru",
    "problem": "no image"
   },
   {

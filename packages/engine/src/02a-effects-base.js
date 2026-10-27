@@ -21,7 +21,7 @@ function fxUnknown(kind, name) {
   if (!FX_WARNED.has(m)) { FX_WARNED.add(m); try { console.warn('[effects] ' + m); } catch (e) { /* no console */ } }
   return false;
 }
-const FX_COND_KEYS = new Set(['handLe', 'soulGe', 'oppHandGe', 'voidGe', 'controlName', 'oppTurn', 'soulLe', 'putGe', 'hasName', 'prev', 'sealed', 'lifeLe', 'lifeGe', 'anyLifeLe', 'counterGe', 'soulOn', 'attackStep', 'nexusBraved', 'oppSpiritsLe', 'oppNoAB', 'oppNexusGe', 'oppRemovedGe', 'oppRemovedSpirit', 'byOpp', 'hasSymbol', 'removedGe', 'utHit', 'ctrl', 'step', 'burstSet', 'oppBurstSet', 'byOppFx', 'fewerSpirits', 'nexusGe', 'lifeReduced', 'allHave', 'ctrlFamily', 'magicUsed', 'viaFormChange', 'not']);
+const FX_COND_KEYS = new Set(['handLe', 'soulGe', 'oppHandGe', 'voidGe', 'controlName', 'oppTurn', 'soulLe', 'putGe', 'hasName', 'prev', 'sealed', 'lifeLe', 'lifeGe', 'anyLifeLe', 'counterGe', 'soulOn', 'attackStep', 'nexusBraved', 'oppSpiritsLe', 'oppNoAB', 'oppNexusGe', 'oppRemovedGe', 'oppRemovedSpirit', 'byOpp', 'hasSymbol', 'removedGe', 'utHit', 'ctrl', 'step', 'burstSet', 'oppBurstSet', 'byOppFx', 'fewerSpirits', 'nexusGe', 'lifeReduced', 'allHave', 'ctrlFamily', 'magicUsed', 'viaFormChange', 'not', 'symbolsOnGe']);
 const FX_TRIGGERS = ['SUMMONED', 'ATTACKS', 'ALLY_ATTACKS', 'ALLY_BLOCKED', 'ALLY_SUMMONED', 'ADVENT', 'ACTIVATE', 'STATIC', 'OPP_HAND_UP', 'ALLY_LIFE_HIT', 'ALLY_LOST', 'START_ATTACK', 'MIRAGE_OWN_LIFE', 'MIRAGE_OPP_LIFE', 'SOUL_PLACED', 'MANIFEST', 'BLOCKS', 'DESTROYED', 'REVEALED', 'ALLY_DESTROYS', 'OPP_REMOVED', 'ACCEL', 'SILVER_WHEEL', 'BATTLE_WIN', 'OPP_ATTACKS', 'LEAVES', 'ALLY_BATTLE_WIN', 'MAGIC_USED'];
 const FX_TRIGGER_TEXT = { ALLY_BATTLE_WIN: 'When only the opposing Spirit is destroyed by BP comparison with your X', OPP_ATTACKS: 'When an opposing Spirit attacks', BATTLE_WIN: 'When Battles (only the opposing Spirit is destroyed by BP comparison)', ACCEL: 'Accel', SILVER_WHEEL: 'When you activate Silver Wheel', SUMMONED: 'When Summoned', ATTACKS: 'When Attacks', ALLY_ATTACKS: 'When an ally attacks', ALLY_BLOCKED: 'When an ally is blocked', ALLY_SUMMONED: 'When an ally is summoned', ADVENT: 'When Advents', ACTIVATE: 'Activate', OPP_HAND_UP: 'When the opposing Hand increases by an opposing effect', ALLY_LIFE_HIT: 'When an ally attack reduces the Life', ALLY_LOST: 'When an ally is depleted/destroyed by the opponent', START_ATTACK: 'Start of your Attack Step', MIRAGE_OWN_LIFE: 'Mirage: when your Life is reduced', MIRAGE_OPP_LIFE: 'Mirage: when the opposing Life is reduced', SOUL_PLACED: 'When your Soul Core is sent to a Nexus', MANIFEST: 'When Manifests', BLOCKS: 'When Blocks', DESTROYED: 'When Destroyed', LEAVES: 'When this Spirit would leave the Field due to the opponent', REVEALED: 'When revealed from the deck', ALLY_DESTROYS: 'When your X destroys an opposing Spirit in battle', OPP_REMOVED: 'When cards are put onto the opposing Removed Zone', MAGIC_USED: 'When you use a Magic card' };
 /* v0.60.0 Brave completion: a Spirit combined with a Brave gains the Brave's [When Braved] / During (Spirit) Brave effects (braved:true; JP 合体時);
@@ -34,11 +34,12 @@ function fxEntries(f) {
   return out;
 }
 function fxMatch(card, m) {
-  if (!m || (!m.name && !m.family && !m.familyAll && !m.keyword && !m.noText && m.costGe == null && m.costLe == null && !m.type && !m.color && !m.noUlt && m.symbolsGe == null)) return true;
+  if (!m || (!m.name && !m.family && !m.familyAll && !m.keyword && !m.noText && m.costGe == null && m.costLe == null && !m.costIn && !m.type && !m.color && !m.noUlt && m.symbolsGe == null)) return true;
   if (m.noUlt && card.type === 'Ultimate') return false;      // v0.59: the text says "Spirit"; texts that include Ultimates print "Spirit/Ultimate"
   if (m.color && ![].concat(m.color).some(x => (card.colors || [card.symbol]).includes(x))) return false;      // v0.39: "Purple" Sorcerer cards (colour = card colour); v0.75: "Red/White" = either colour
   if (m.costGe != null && card.cost < m.costGe) return false;
   if (m.costLe != null && card.cost > m.costLe) return false;      // v0.69 "Cost N or less" (reveal effects)
+  if (m.costIn && !m.costIn.includes(card.cost)) return false;      // v0.168 "Cost 6/8" = cost 6 or 8
   if (m.type && card.type !== m.type) return false;
   if (m.symbolsGe != null && !((card.symbols || 0) >= m.symbolsGe)) return false;      // v0.78 "your Spirit with two or more symbols"
   if (m.familyAll && !m.familyAll.every(n => (card.families || []).includes(n))) return false;      // v0.88 S1 '"RYUKI" & "Kamen" family' (every listed family)
@@ -79,6 +80,7 @@ function fxIf(owner, opp, c, ctx) {
   if (c.byOpp != null && !!(ctx && ctx.byOpp) !== c.byOpp) return false;                  // v0.55 "(When Destroyed by the Opponent)"
   if (c.byOppFx != null && !!(ctx && ctx.byOppFx) !== c.byOppFx) return false;            // v0.73 "destroyed by / would leave the Field due to opposing effects" (not BP comparison)
   if (c.hasSymbol != null && !((symbolsOn(owner)[c.hasSymbol] || 0) >= 1)) return false;   // v0.55 Rush: a Field symbol of that colour
+  if (c.symbolsOnGe != null && !((symbolsOn(owner)[c.symbolsOnGe.color] || 0) >= c.symbolsOnGe.n)) return false;      // v0.168 "If you control/have three or more White symbols" (Field symbols of the owner, counted when it is checked)
   if (c.removedGe != null && !((ctx && ctx.removedN || 0) >= c.removedGe)) return false;   // cards this effect put onto the opposing Removed Zone
   if (c.utHit != null && !!(ctx && ctx.utHit) !== c.utHit) return false;               // v0.56 Ultimate Trigger hit
   if (c.burstSet != null && !!(owner.burst && !owner.burst.mirage) !== c.burstSet) return false;      // v0.71 "if/while you have a (set) Burst" (Fandom Burst: a face-down card in the Burst Area)
@@ -173,7 +175,7 @@ function coresSent(p, inst, n) {                      // call after your effect 
 function staticBp(i) {
   if (!G || !isSpiritForm(CARDS[i.id])) return 0;
   const o = ownerOf(i); if (!o) return 0;
-  const opp = G.p[other(o.key)]; let sum = 0;
+  const opp = G.p[other(o.key)]; let sum = 0; const seenNS = new Set();
   for (const src of fieldList(o)) {
     const L = lvNo(src);
     for (const { e } of fxEntries(src)) {
@@ -183,7 +185,9 @@ function staticBp(i) {
       if ((e.to || 'self') === 'self' ? src !== i : !fxMatch(CARDS[i.id], e.match)) continue;
       if (e.attackingOnly && G.attacker !== i) continue;
       if (e.blockingOnly && G.blocker !== i) continue;           // v0.159 (During Block)
+      if (e.fightingOnly && G.attacker !== i && G.blocker !== i) continue;      // v0.168 "attacking/blocking Spirits"
       if (!fxIf(o, opp, e.if)) continue;
+      if (e.noStack) { const k = CARDS[src.id].name + ':' + e.bp + ':' + JSON.stringify(e.match || null); if (seenNS.has(k)) continue; seenNS.add(k); }      // v0.168 (Can't Stack): one copy counts
       sum += e.per ? e.bp * perCount(o, e.per) : e.bp;      // v0.72 "For each X you control, this Spirit gains +N BP" (per)
     }
   }
@@ -248,4 +252,4 @@ function bounceCard(owner, t, to) {                   // return a field card to 
   log(`${poss(owner)} ${CARDS[t.id].name} returns to the ${to === 'deckBottom' ? 'bottom of the Deck' : 'Hand'}.`);
 }
 const SOUL_SRC = ['self', 'hand', 'trash', 'handOrTrash', 'reveal'];
-const hasMatch = m => !!m && (m.name || m.family || m.costGe != null || m.costLe != null || m.type || m.color || m.familyAll || m.keyword || m.noText);
+const hasMatch = m => !!m && (m.name || m.family || m.costGe != null || m.costLe != null || m.costIn || m.type || m.color || m.familyAll || m.keyword || m.noText);

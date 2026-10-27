@@ -151,15 +151,29 @@
    "Red Cloud",
    "Heavensoar"
   ],
-  "text": "[LV1-2] (When Summoned)\nTarget a Spirit card with Clash in your Trash. Return it to the Hand.",
+  "text": "[LV1][LV2] (When Summoned)\nTarget a Spirit card with Clash in your Trash. Return it to the Hand.",
   "image": "26RBS01-004.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Summoned) Target a Spirit card with Clash in your Trash. Return it to the Hand."
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "RETURN_TRASH",
+      "match": {
+       "keyword": "Clash"
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-005",
@@ -663,7 +677,7 @@
    "Red Cloud",
    "Heavensoar"
   ],
-  "text": "(Legacy)\n[LV1-2] (When Summoned)\nTarget a Cost 5 or less Red Spirit card in your Trash. Return it to the Hand.\n\n[LV2] (When Attacks)\nTarget an opposing 3000 BP or less Spirit. Destroy it.",
+  "text": "(Legacy)\n[LV1][LV2] (When Summoned)\nTarget a Cost 5 or less Red Spirit card in your Trash. Return it to the Hand.\n\n[LV2] (When Attacks)\nTarget an opposing 3000 BP or less Spirit. Destroy it.",
   "image": "26RBS01-014.png",
   "block": "A",
   "saga": 50,
@@ -672,6 +686,22 @@
   ],
   "legacy": true,
   "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "RETURN_TRASH",
+      "match": {
+       "costLe": 5,
+       "color": "red"
+      }
+     }
+    ]
+   },
    {
     "trigger": "ATTACKS",
     "lv": [
@@ -685,11 +715,8 @@
     ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Summoned) Target a Cost 5 or less Red Spirit card in your Trash. Return it to the Hand."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-015",
@@ -7789,17 +7816,48 @@
   "families": [
    "Beastleptic"
   ],
-  "text": "[LV1-2] (When Destroyed)\nTarget an opposing Cost 1/2 exhausted Spirit. Destroy it.\n\n[LV2] (When Destroyed)\nTarget an opposing Cost 3/4 exhausted Spirit. Destroy it.",
+  "text": "[LV1][LV2] (When Destroyed)\nTarget an opposing Cost 1/2 exhausted Spirit. Destroy it.\n\n[LV2] (When Destroyed)\nTarget an opposing Cost 3/4 exhausted Spirit. Destroy it.",
   "image": "26RBS02-017.png",
   "block": "A",
   "saga": 50,
   "ex_symbols": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Destroyed) Target an opposing Cost 1/2 exhausted Spirit. Destroy it.",
-   "[LV2] (When Destroyed) Target an opposing Cost 3/4 exhausted Spirit. Destroy it."
+  "effects": [
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "costIn": [
+       1,
+       2
+      ],
+      "exhaustedOnly": true
+     }
+    ]
+   },
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "costIn": [
+       3,
+       4
+      ],
+      "exhaustedOnly": true
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS02-018",
@@ -8632,16 +8690,31 @@
    "Leucomyst",
    "Vitaglass"
   ],
-  "text": "[LV1-2] (When Blocks)\nTarget an opposing non-attacking 2000 BP or less Spirit. Return it to the deckbottom.",
+  "text": "[LV1][LV2] (When Blocks)\nTarget an opposing non-attacking 2000 BP or less Spirit. Return it to the deckbottom.",
   "image": "26RBS02-038.png",
   "block": "A",
   "saga": 50,
   "ex_symbols": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Blocks) Target an opposing non-attacking 2000 BP or less Spirit. Return it to the deckbottom."
+  "effects": [
+   {
+    "trigger": "BLOCKS",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "BOUNCE_OPP",
+      "to": "deckBottom",
+      "kind": "spirit",
+      "bpLe": 2000,
+      "notAttacking": true
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS02-039",
@@ -12013,11 +12086,24 @@
   "block": "A",
   "saga": 50,
   "ex_symbols": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (True Release) (When Destroyed) Target an opposing Cost 6 or less Spirit that is blocking this Spirit. Destroy it."
+  "trueRelease": true,
+  "effects": [
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "costLe": 6,
+      "blockingSelf": true
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS03-010",
@@ -13745,16 +13831,37 @@
    "Topaz",
    "Echochant"
   ],
-  "text": "[LV1-2] (When Summoned)\nYou can target one of your Cost 6/8 Spirits with the \"Topaz\" family. Refresh it.",
+  "text": "[LV1][LV2] (When Summoned)\nYou can target one of your Cost 6/8 Spirits with the \"Topaz\" family. Refresh it.",
   "image": null,
   "block": "A",
   "saga": 50,
   "ex_symbols": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Summoned) You can target one of your Cost 6/8 Spirits with the \"Topaz\" family. Refresh it."
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT",
+      "match": {
+       "family": [
+        "Topaz"
+       ],
+       "costIn": [
+        6,
+        8
+       ]
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS03-054",
@@ -16856,7 +16963,7 @@
    "GAIM",
    "Kamen"
   ],
-  "text": "(Legacy)\n[LV1-2] Clash (During Attack)\nOpposing Spirits must block if possible.\n\n[LV2] (During Attack)\nWhen only the opposing Spirit is destroyed by comparing BP, if you control any \"GAIM\" family Spirit, besides this Spirit, draw a card.",
+  "text": "(Legacy)\n[LV1][LV2] Clash (During Attack)\nOpposing Spirits must block if possible.\n\n[LV2] (During Attack)\nWhen only the opposing Spirit is destroyed by comparing BP, if you control any \"GAIM\" family Spirit, besides this Spirit, draw a card.",
   "image": "26RCB01-016.png",
   "block": "A",
   "saga": 50,
@@ -16873,13 +16980,31 @@
      1,
      2
     ]
+   },
+   {
+    "trigger": "BATTLE_WIN",
+    "lv": [
+     2
+    ],
+    "attackingOnly": true,
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1,
+      "if": {
+       "ctrl": {
+        "n": 1,
+        "type": "Spirit",
+        "family": "GAIM",
+        "other": true
+       }
+      }
+     }
+    ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (During Attack) When only the opposing Spirit is destroyed by comparing BP, if you control any \"GAIM\" family Spirit, besides this Spirit, draw a card."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RCB01-017",
@@ -18109,15 +18234,31 @@
    "EX-AID",
    "Kamen"
   ],
-  "text": "[LV1-2] (Either Attack Step) (Can't Stack)\nAll your attacking/blocking Spirits with Level Up gain +2000 BP.",
+  "text": "[LV1][LV2] (Either Attack Step) (Can't Stack)\nAll your attacking/blocking Spirits with Level Up gain +2000 BP.",
   "image": null,
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (Either Attack Step) (Can't Stack) All your attacking/blocking Spirits with Level Up gain +2000 BP."
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "bp": 2000,
+    "to": "own",
+    "fightingOnly": true,
+    "if": {
+     "attackStep": true
+    },
+    "match": {
+     "keyword": "Level Up"
+    },
+    "noStack": true,
+    "lv": [
+     1,
+     2
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RCB01-043",
@@ -22987,16 +23128,57 @@
   "families": [
    "Windfang"
   ],
-  "text": "[LV1-2] (When Deployed)\nIf you control any exhausted Red Spirit, target a Cost 4 or less \"Windfang\" family Spirit card in your Trash. Return it to the Hand.\n\n[LV2] (Your Attack Step)\nAll your Spirits with Legacy gain +2000 BP.",
+  "text": "[LV1][LV2] (When Deployed)\nIf you control any exhausted Red Spirit, target a Cost 4 or less \"Windfang\" family Spirit card in your Trash. Return it to the Hand.\n\n[LV2] (Your Attack Step)\nAll your Spirits with Legacy gain +2000 BP.",
   "image": "26RSD01-011.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Deployed) If you control any exhausted Red Spirit, target a Cost 4 or less \"Windfang\" family Spirit card in your Trash. Return it to the Hand.",
-   "[LV2] (Your Attack Step) All your Spirits with Legacy gain +2000 BP."
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "RETURN_TRASH",
+      "match": {
+       "family": [
+        "Windfang"
+       ],
+       "costLe": 4
+      },
+      "if": {
+       "ctrl": {
+        "n": 1,
+        "type": "Spirit",
+        "colors": [
+         "red"
+        ],
+        "exhausted": true
+       }
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 2000,
+    "to": "own",
+    "if": {
+     "attackStep": true,
+     "oppTurn": false
+    },
+    "match": {
+     "keyword": "Legacy"
+    },
+    "lv": [
+     2
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RSD01-012",
@@ -24794,7 +24976,7 @@
   "families": [
    "Mineroid"
   ],
-  "text": "[LV1-2] (When Summoned)\nPut a core from the Void to your Trash.\n\n[LV2] (During Block)\nIf you have three or more White symbols, this Spirit gains +5000 BP.",
+  "text": "[LV1][LV2] (When Summoned)\nPut a core from the Void to your Trash.\n\n[LV2] (During Block)\nIf you have three or more White symbols, this Spirit gains +5000 BP.",
   "image": "26RSD04-002.png",
   "block": "A",
   "saga": 50,
@@ -24811,13 +24993,25 @@
       "n": 1
      }
     ]
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 5000,
+    "to": "self",
+    "if": {
+     "symbolsOnGe": {
+      "color": "white",
+      "n": 3
+     }
+    },
+    "blockingOnly": true,
+    "lv": [
+     2
+    ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (During Block) If you have three or more White symbols, this Spirit gains +5000 BP."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RSD04-003",
