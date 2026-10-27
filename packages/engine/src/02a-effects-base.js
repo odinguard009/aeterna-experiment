@@ -58,7 +58,7 @@ function fxIf(owner, opp, c, ctx) {
   if (c.oppHandGe != null && !(opp.hand.length >= c.oppHandGe)) return false;
   if (c.handLe != null && !(owner.hand.length <= c.handLe)) return false;      // v0.166 "If your Hand is five or less"
   if (c.voidGe != null && !(owner.void >= c.voidGe)) return false;
-  if (c.controlName != null && !fieldList(owner).some(f => CARDS[f.id].name.toLowerCase().includes(String(c.controlName).toLowerCase()))) return false;
+  if (c.controlName != null && ![].concat(c.controlName).some(n => fieldList(owner).some(f => CARDS[f.id].name.toLowerCase().includes(String(n).toLowerCase())))) return false;
   if (c.oppTurn != null && (G.active !== owner.key) !== c.oppTurn) return false;
   if (c.soulLe != null && !(owner.soulState.length <= c.soulLe)) return false;
   if (c.putGe != null && !((ctx && ctx.put || 0) >= c.putGe)) return false;
@@ -101,9 +101,10 @@ function fxIf(owner, opp, c, ctx) {
    q = { n, type: 'Spirit'|'Ultimate'|'Both', colors: [any of], costGe, family }; counts the owner's Spirit-form cards on the Field */
 const cardHasKeyword = (card, kw) => (card.keywords || []).some(k => String(k).toUpperCase() === String(kw).toUpperCase()) || new RegExp('(^|[\\]\\)\\s])' + String(kw).replace(/[^A-Za-z ]/g, '') + ' \\(').test(card.desc || card.text || '')
   || (String(kw).toUpperCase() === 'LEGACY' && (card.legacy === true || /^\(Legacy\)/.test(card.desc || card.text || '')))      // v0.167 "Spirit with Legacy": the (Legacy) head line / legacy flag
+  || (String(kw).toUpperCase() === 'CURRENT' && /\{\{Current\|/.test(card.desc || card.text || ''))
   || (String(kw).toUpperCase() === 'SHAMANISM' && /\{\{Shaman\|/.test(card.desc || card.text || ''));      // v0.167 "Spirit with Shamanism": the {{Shaman|...}} holder template
 const fxNoText = k => { const t = String(k.desc || k.text || '').trim(); return !t || t === 'Vanilla card (no effect text).'; };      // v0.167 ctrl.noText: "a Spirit with no printed effects"
-const ctrlCount = (owner, q, ctx) => owner.spirits.filter(f => { const k = CARDS[f.id], u = k.type === 'Ultimate';
+const ctrlCount = (owner, q, ctx) => owner.spirits.concat(q.nexus ? owner.nexus : []).filter(f => { const k = CARDS[f.id], u = k.type === 'Ultimate';
   if (q.other && ctx && ctx.selfUid === f.uid) return false;      // v0.150 "another / besides this Spirit"
   if (q.keyword && !cardHasKeyword(k, q.keyword)) return false;      // v0.150 "a Spirit with Evolution"
   return (q.type === 'Both' || (q.type === 'Ultimate') === u) && (!q.colors || q.colors.some(x => (k.colors || [k.symbol]).includes(x)))

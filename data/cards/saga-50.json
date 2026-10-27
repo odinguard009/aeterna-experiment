@@ -1640,15 +1640,48 @@
    "Oceanic Green",
    "Waterfae"
   ],
-  "text": "[LV1-2] (When Summoned)\nPut a core from the Void to your Trash. If you control any Spirit with Current, put the core to this Spirit instead.",
+  "text": "[LV1][LV2] (When Summoned)\nPut a core from the Void to your Trash. If you control any Spirit with Current, put the core to this Spirit instead.",
   "image": "26RBS01-034.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Summoned) Put a core from the Void to your Trash. If you control any Spirit with Current, put the core to this Spirit instead."
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "VOID_TO_TRASH",
+      "n": 1,
+      "if": {
+       "not": {
+        "ctrl": {
+         "n": 1,
+         "type": "Spirit",
+         "keyword": "Current"
+        }
+       }
+      }
+     },
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "self",
+      "if": {
+       "ctrl": {
+        "n": 1,
+        "type": "Spirit",
+        "keyword": "Current"
+       }
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-035",
@@ -2110,7 +2143,7 @@
    "Oceanic Green",
    "Waterfae"
   ],
-  "text": "(Legacy)\n[LV1-2] (When Summoned)\nTarget up to two Spirits with Current you control. Put a core from the Void to each of them.\n\n[LV2] (Your End Step)\nYou can target one of your Green Spirits. Refresh it.",
+  "text": "(Legacy)\n[LV1][LV2] (When Summoned)\nTarget up to two Spirits with Current you control. Put a core from the Void to each of them.\n\n[LV2] (Your End Step)\nYou can target one of your Green Spirits. Refresh it.",
   "image": "26RBS01-042.png",
   "block": "A",
   "saga": 50,
@@ -2118,12 +2151,41 @@
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Summoned) Target up to two Spirits with Current you control. Put a core from the Void to each of them.",
-   "[LV2] (Your End Step) You can target one of your Green Spirits. Refresh it."
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "VOID_TO_MATCHING",
+      "targets": 2,
+      "match": {
+       "keyword": "Current"
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "END_STEP",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT",
+      "match": {
+       "color": "green"
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-043",
@@ -2217,7 +2279,7 @@
    "Oceanic Green",
    "Fierce Wave"
   ],
-  "text": "(Legacy)\n\n[LV1-2] (When Attacks)\nIf you control any Spirit with Current, you can target an opposing Spirit. Heavy exhaust it.",
+  "text": "(Legacy)\n\n[LV1][LV2] (When Attacks)\nIf you control any Spirit with Current, you can target an opposing Spirit. Heavy exhaust it.",
   "image": "26RBS01-044.png",
   "block": "A",
   "saga": 50,
@@ -2225,11 +2287,31 @@
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Attacks) If you control any Spirit with Current, you can target an opposing Spirit. Heavy exhaust it."
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "HEAVY_EXHAUST_OPP",
+      "n": 1,
+      "if": {
+       "ctrl": {
+        "n": 1,
+        "type": "Spirit",
+        "keyword": "Current"
+       }
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-045",
@@ -13343,15 +13425,51 @@
    "Wollaguard",
    "Vitaglass"
   ],
-  "text": "[LV1-2] (When Summoned)\nPut a core from the Void to your Trash. If you control any \"Wollaguard\" family Spirit/Nexus, besides this one, put a core from the Void to your Reserve instead.",
+  "text": "[LV1][LV2] (When Summoned)\nPut a core from the Void to your Trash. If you control any \"Wollaguard\" family Spirit/Nexus, besides this one, put a core from the Void to your Reserve instead.",
   "image": null,
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Summoned) Put a core from the Void to your Trash. If you control any \"Wollaguard\" family Spirit/Nexus, besides this one, put a core from the Void to your Reserve instead."
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "VOID_TO_TRASH",
+      "n": 1,
+      "if": {
+       "not": {
+        "ctrl": {
+         "n": 1,
+         "type": "Spirit",
+         "family": "Wollaguard",
+         "other": true,
+         "nexus": true
+        }
+       }
+      }
+     },
+     {
+      "do": "VOID_TO_RESERVE",
+      "n": 1,
+      "if": {
+       "ctrl": {
+        "n": 1,
+        "type": "Spirit",
+        "family": "Wollaguard",
+        "other": true,
+        "nexus": true
+       }
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS03-035",
@@ -16787,16 +16905,45 @@
    "GAIM",
    "Kamen"
   ],
-  "text": "[LV1-2] (During Attacks)\nThis Spirit gains +2000 BP.\n\n[LV2] (When Attacks)\nBesides this Spirit, if you control any \"GAIM\" family Spirit/Nexus, draw a card.",
+  "text": "[LV1][LV2] (During Attacks)\nThis Spirit gains +2000 BP.\n\n[LV2] (When Attacks)\nBesides this Spirit, if you control any \"GAIM\" family Spirit/Nexus, draw a card.",
   "image": null,
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (During Attacks) This Spirit gains +2000 BP.",
-   "[LV2] (When Attacks) Besides this Spirit, if you control any \"GAIM\" family Spirit/Nexus, draw a card."
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "bp": 2000,
+    "to": "self",
+    "attackingOnly": true,
+    "lv": [
+     1,
+     2
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1,
+      "if": {
+       "ctrl": {
+        "n": 1,
+        "type": "Spirit",
+        "family": "GAIM",
+        "other": true,
+        "nexus": true
+       }
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RCB01-006",
@@ -16945,19 +17092,64 @@
    "GAIM",
    "Kamen"
   ],
-  "text": "[LV1-2] {{F Change|\"Gaim\" & Cost 6}} {{Invoke|Main}}\nReturn this exhausted Spirit to the Hand, and you must summon a Cost 6 \"Gaim\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn.\n\n[LV2] (When Attacks)\nIf you control any \"GAIM\" family Spirit/Nexus, besides this Spirit, draw a card.",
+  "text": "[LV1][LV2] {{F Change|\"Gaim\" & Cost 6}} {{Invoke|Main}}\nReturn this exhausted Spirit to the Hand, and you must summon a Cost 6 \"Gaim\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn.\n\n[LV2] (When Attacks)\nIf you control any \"GAIM\" family Spirit/Nexus, besides this Spirit, draw a card.",
   "image": null,
   "block": "A",
   "saga": 50,
   "mechanics": [
    "Form Change"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] {{F Change|\"Gaim\" & Cost 6}} {{Invoke|Main}} Return this exhausted Spirit to the Hand, and you must summon a Cost 6 \"Gaim\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn.",
-   "[LV2] (When Attacks) If you control any \"GAIM\" family Spirit/Nexus, besides this Spirit, draw a card."
+  "effects": [
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN"
+    ],
+    "once": true,
+    "sameName": true,
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "FORM_CHANGE",
+      "match": {
+       "name": [
+        "Gaim"
+       ]
+      },
+      "costIn": [
+       6
+      ]
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1,
+      "if": {
+       "ctrl": {
+        "n": 1,
+        "type": "Spirit",
+        "family": "GAIM",
+        "other": true,
+        "nexus": true
+       }
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RCB01-009",

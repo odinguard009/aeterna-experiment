@@ -1,8 +1,8 @@
 {
  "stats": {
-  "cards": 7674,
+  "cards": 7663,
   "per_saga": {
-   "1": 778,
+   "1": 774,
    "2": 331,
    "3": 406,
    "4": 413,
@@ -10,7 +10,7 @@
    "6": 370,
    "7": 537,
    "8": 496,
-   "9": 496,
+   "9": 495,
    "10": 499,
    "11": 331,
    "12": 328,
@@ -19,23 +19,23 @@
    "15": 356,
    "16": 334,
    "17": 110,
-   "50": 394
+   "50": 388
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 1032,
+  "skipped_curated": 1043,
   "number_conflicts": 5,
   "nexus_levels_added": 713,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 543,
+  "image_problems": 540,
   "merged": 109,
   "brave_unparsed": 171,
   "ut_lines_added": 119,
   "odd_reduction": 808,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 541
+  "without_image": 538
  },
  "tokens": [
   "BS73-T001",
@@ -64,11 +64,13 @@
   "BS01-028",
   "BS01-030",
   "BS01-031",
+  "BS01-032",
   "BS01-034",
   "BS01-038",
   "BS01-039",
   "BS01-042",
   "BS01-043",
+  "BS01-045",
   "BS01-047",
   "BS01-050",
   "BS01-051",
@@ -106,6 +108,7 @@
   "BS02-008",
   "BS02-014",
   "BS02-015",
+  "BS02-020",
   "BS02-023",
   "BS02-025",
   "BS02-029",
@@ -264,6 +267,7 @@
   "BS07-030",
   "BS07-032",
   "BS07-037",
+  "BS07-039",
   "BS07-040",
   "BS07-046",
   "BS07-076",
@@ -618,6 +622,7 @@
   "BS43-016",
   "BS43-028",
   "BS44-049",
+  "BS45-036",
   "BS45-043",
   "BS46-013",
   "BS46-015",
@@ -886,13 +891,16 @@
   "26RBS01-031",
   "26RBS01-032",
   "26RBS01-033",
+  "26RBS01-034",
   "26RBS01-035",
   "26RBS01-036",
   "26RBS01-037",
   "26RBS01-038",
   "26RBS01-040",
   "26RBS01-041",
+  "26RBS01-042",
   "26RBS01-043",
+  "26RBS01-044",
   "26RBS01-045",
   "26RBS01-046",
   "26RBS01-047",
@@ -958,8 +966,10 @@
   "26RCB01-002",
   "26RCB01-003",
   "26RCB01-004",
+  "26RCB01-005",
   "26RCB01-006",
   "26RCB01-007",
+  "26RCB01-008",
   "26RCB01-010",
   "26RCB01-011",
   "26RCB01-012",
@@ -1056,6 +1066,7 @@
   "26RBS03-021",
   "26RBS03-024",
   "26RBS03-025",
+  "26RBS03-034",
   "26RBS03-042",
   "26RBS03-049",
   "26RBS03-052",
@@ -4153,16 +4164,6 @@
    "problem": "no image"
   },
   {
-   "id": "26RCB01-005",
-   "name": "Kamen Rider Baron Banana Arms",
-   "problem": "ambiguous name (2 files, none in set 26RCB01)"
-  },
-  {
-   "id": "26RCB01-008",
-   "name": "Kamen Rider Gaim Jimber Lemon Arms",
-   "problem": "ambiguous name (2 files, none in set 26RCB01)"
-  },
-  {
    "id": "26RCB01-009",
    "name": "Kamen Rider Zangetsu Melon Arms",
    "problem": "ambiguous name (2 files, none in set 26RCB01)"
@@ -4385,11 +4386,6 @@
   {
    "id": "26RBS03-033",
    "name": "Algodon",
-   "problem": "no image"
-  },
-  {
-   "id": "26RBS03-034",
-   "name": "The Cannoneer Golek",
    "problem": "no image"
   },
   {

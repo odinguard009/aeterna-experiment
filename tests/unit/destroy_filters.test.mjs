@@ -38,7 +38,8 @@ test('PK76-02 compiler: "If you control any exhausted X / any "Name", target ...
     [['BOUNCE_OPP', { controlName: 'Kamen Rider Zolda' }]]);
   assert.deepEqual(acts(S + 'Target a Cost 6 or more "Windfang" family Spirit card in your Trash. Return it to the Hand.'),
     [{ do: 'RETURN_TRASH', match: { family: ['Windfang'], costGe: 6 } }]);
-  assert.match(String(acts(S + 'If you control any Spirit with Current, you can target an opposing Spirit. Heavy exhaust it.')), /^REVIEW/, 'keyword on the Field: not modelled');
+  assert.deepEqual(acts(S + 'If you control any Spirit with Current, you can target an opposing Spirit. Heavy exhaust it.'),      // v0.171: Current is a holder template the engine recognises
+    [{ do: 'HEAVY_EXHAUST_OPP', n: 1, if: { ctrl: { n: 1, type: 'Spirit', keyword: 'Current' } } }]);
 });
 
 test('PK76-03 compiler: "By discarding a <X> card from your Hand, draw N" = optional DISCARD_HAND then DRAW if done', () => {

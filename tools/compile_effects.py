@@ -563,7 +563,7 @@ def trig_effects(p, card, trig, tmatch, lv, rush, flags, extra=None):
             if o: raise Review('Rush: optional Rush effect: ' + s[:60])
             acts += [dict(x, **{'if': {'hasSymbol': rush[0]}}) for x in a]
         rush = None
-    if (set(trig) & {'DESTROYED', 'DESTROYED_OPP', 'DESTROYED_OPPFX', 'LEAVES', 'LEAVES_OPPFX'}) and any(a['do'] in SELF_ACTS and a.get('to', 'self') == 'self' for a in acts):
+    if (set(trig) & {'DESTROYED', 'DESTROYED_OPP', 'DESTROYED_OPPFX', 'LEAVES', 'LEAVES_OPPFX'}) and any(a['do'] in SELF_ACTS and a.get('to', 'self') == 'self' and not (a['do'] == 'SELF_TO_HAND' and set(trig) <= {'DESTROYED', 'DESTROYED_OPP', 'DESTROYED_OPPFX'}) for a in acts):      # v0.171 SELF_TO_HAND under a destroyed trigger returns the card from the Trash
         raise Review('(When Destroyed) effect about this Spirit: ' + p[:80])
     out = []
     for t in trig:

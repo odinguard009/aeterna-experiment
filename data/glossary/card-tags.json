@@ -44394,6 +44394,7 @@
  "26RBS01-034": [
   "T_SUMMONED",
   "A_VOID",
+  "C_LEVEL",
   "M_REPLACEMENT"
  ],
  "26RBS01-035": [
@@ -44463,6 +44464,7 @@
  "26RBS01-044": [
   "T_ATTACKS",
   "A_EXHAUST",
+  "C_LEVEL",
   "M_OPTIONAL"
  ],
  "26RBS01-045": [],
@@ -45808,6 +45810,7 @@
  "26RBS03-034": [
   "T_SUMMONED",
   "A_VOID",
+  "C_LEVEL",
   "M_REPLACEMENT"
  ],
  "26RBS03-035": [

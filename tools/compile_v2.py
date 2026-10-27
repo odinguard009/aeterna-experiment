@@ -562,6 +562,8 @@ def cond_of(x):
     if m: return {'oppBurstSet': not m.group(1)}
     m = re.fullmatch(r'you control (?:an? |any )?\[([^\]/]+)\]', x, re.I)
     if m: return {'controlName': m.group(1).strip()}
+    m = re.fullmatch(r'you control (?:an? |any )?(\[[^\]/]+\](?:\s*/\s*\[[^\]/]+\]){1,3})', x, re.I)      # v0.171 "[A]/[B]" = either name (engine controlName list)
+    if m: return {'controlName': [y.strip() for y in re.findall(r'\[([^\]/]+)\]', m.group(1))]}
     m = re.fullmatch(r'your hand is (one|two|three|four|five|six|seven|\d) or less', x, re.I)
     if m: return {'handLe': n_of(m.group(1).lower())}      # v0.166 (engine fxIf handLe)
     m = re.fullmatch(r'you have (one|two|three|four|five|\d) counters? or more', x, re.I)
@@ -585,9 +587,12 @@ def cond_of(x):
     if c: return c
     if re.fullmatch(r'(?:you )?(?:are |is |was )?summoned via form change', x, re.I): return {'viaFormChange': True}      # v0.135 (schema v8)
     m = re.fullmatch(r'you control (?:an?|any) spirit with ([A-Za-z]+)', x, re.I)      # v0.150 "a Spirit with Evolution" (engine ctrl.keyword)
-    if m and m.group(1).lower() not in ('current',): return {'ctrl': {'n': 1, 'type': 'Spirit', 'keyword': m.group(1).capitalize()}}
-    m = re.fullmatch(r'you control another "([^"]+)" family spirit', x, re.I)      # v0.150 "another X family Spirit" (engine ctrl.other = not the source)
-    if m: return {'ctrl': {'n': 1, 'type': 'Spirit', 'family': m.group(1), 'other': True}}
+    if m: return {'ctrl': {'n': 1, 'type': 'Spirit', 'keyword': m.group(1).capitalize()}}
+    m = re.fullmatch(r'you control another "([^"]+)" family spirit(/nexus)?', x, re.I)      # v0.150 "another X family Spirit" (engine ctrl.other = not the source); v0.171 "Spirit/Nexus" (ctrl.nexus)
+    if m:
+        q = {'n': 1, 'type': 'Spirit', 'family': m.group(1), 'other': True}
+        if m.group(2): q['nexus'] = True
+        return {'ctrl': q}
     m = re.fullmatch(r'you control (?:an?|any) (?:(red|purple|green|white|yellow|blue) )?spirit with (\d[\d,]*) BP or more', x, re.I)      # v0.167 (engine ctrl.bpGe)
     if m:
         q = {'n': 1, 'type': 'Spirit', 'bpGe': bpv(m.group(2))}
@@ -669,7 +674,12 @@ TGT_VOID = re.compile(r'^target (?:an?|one) (.+? you control)\.\s*put (a|one|two
 
 
 def action_of(s, ctx):
-    s = re.sub(r'^(if you control) any ("[^"]+" family spirit), besides this spirit,', r'\1 another \2,', s.strip(), flags=re.I)      # v0.168 'any "X" family Spirit, besides this Spirit,' = 'another "X" family Spirit' (ctrl.other)
+    s = re.sub(r'(?:^|(?<=\. ))(if you control) any ("[^"]+" family spirit(?:/nexus)?), besides this (?:spirit|one),', r'\1 another \2,', s.strip(), flags=re.I)      # v0.168 'any "X" family Spirit, besides this Spirit,' = 'another "X" family Spirit' (ctrl.other); v0.171 also Spirit/Nexus and "besides this one"
+    s = re.sub(r'^besides this (?:spirit|one), (if you control) any ("[^"]+" family spirit(?:/nexus)?),', r'\1 another \2,', s, flags=re.I)      # v0.171 'Besides this Spirit, if you control any "X" family Spirit/Nexus, B' = the same
+    if re.fullmatch(r'return this spirit to (?:the|your) hand\.?', s.strip(), re.I): return [{'do': 'SELF_TO_HAND'}], False      # v0.171 (engine SELF_TO_HAND; from the Trash under a destroyed trigger)
+    if re.fullmatch(r'put the core to this spirit\.?', s.strip(), re.I): return [{'do': 'VOID_TO_CARD', 'n': 1, 'to': 'self'}], False      # v0.171 "put the core to this Spirit instead" (the core of the sentence before; only inside an instead pair)
+    m = re.fullmatch(r'target up to (one|two|three) spirits? with ([A-Za-z]+) you control\.\s*put a core from the void (?:each )?to (?:each of them|it|them)\.?', s.strip(), re.I)      # v0.171 (engine VOID_TO_MATCHING + match.keyword)
+    if m: return [{'do': 'VOID_TO_MATCHING', 'targets': n_of(m.group(1).lower()), 'match': {'keyword': m.group(2).capitalize()}}], False
     sh = SHOW_RET.match(s.strip())
     if sh:      # v0.165 "Show up to N <X> cards from your Hand to the opponent. Return them to the deckbottom. For each card returned, draw a card." = SHOW_RETURN
         col1, fam, col2 = sh.group(4), sh.group(5), sh.group(6)

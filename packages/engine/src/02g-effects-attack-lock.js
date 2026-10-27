@@ -80,6 +80,7 @@ Object.assign(FX_ACTIONS, {
     } },
   /* return this Spirit to the Hand (Togevajdra) */
   SELF_TO_HAND: { chk: () => true, txt: () => 'return this Spirit to your Hand',
-    can: c => c.p.spirits.includes(c.src),
-    run: async c => { if (!c.p.spirits.includes(c.src)) { c.ctx.did = false; return; } bounceCard(c.p, c.src, 'hand'); checkDepletion(c.p); handUp(c.p, 1); io.view({ type: 'board' }); } },
+    can: c => [c.p.spirits, c.p.trash, c.p.standby].some(z => z.includes(c.src)),
+    run: async c => { const dead = !c.p.spirits.includes(c.src); if (dead ? !(removeFrom(c.p.trash, c.src) || removeFrom(c.p.standby, c.src)) : false) { c.ctx.did = false; return; }
+      if (dead) { delete c.src.standbyTo; c.p.hand.push(c.src); } else { bounceCard(c.p, c.src, 'hand'); checkDepletion(c.p); } handUp(c.p, 1); io.view({ type: 'board' }); } },
 });
