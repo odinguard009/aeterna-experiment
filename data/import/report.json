@@ -1,12 +1,12 @@
 {
  "stats": {
-  "cards": 7660,
+  "cards": 7656,
   "per_saga": {
-   "1": 773,
+   "1": 772,
    "2": 330,
    "3": 405,
    "4": 413,
-   "5": 669,
+   "5": 668,
    "6": 370,
    "7": 537,
    "8": 496,
@@ -19,23 +19,23 @@
    "15": 356,
    "16": 334,
    "17": 110,
-   "50": 388
+   "50": 386
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 1046,
+  "skipped_curated": 1050,
   "number_conflicts": 5,
   "nexus_levels_added": 713,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 540,
+  "image_problems": 539,
   "merged": 109,
   "brave_unparsed": 171,
   "ut_lines_added": 119,
   "odd_reduction": 808,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 538
+  "without_image": 537
  },
  "tokens": [
   "BS73-T001",
@@ -261,6 +261,7 @@
   "BS07-004",
   "BS07-010",
   "BS07-011",
+  "BS07-012",
   "BS07-019",
   "BS07-028",
   "BS07-029",
@@ -525,6 +526,7 @@
   "BS23-040",
   "BS24-009",
   "BS24-015",
+  "BS24-017",
   "BS24-021",
   "BS24-049",
   "BS24-081",
@@ -1016,6 +1018,7 @@
   "26RBS02-004",
   "26RBS02-008",
   "26RBS02-011",
+  "26RBS02-013",
   "26RBS02-015",
   "26RBS02-017",
   "26RBS02-020",
@@ -1077,6 +1080,7 @@
   "26RBS03-055",
   "26RBS03-057",
   "26RBS03-061",
+  "26RBS03-062",
   "26RBS03-063",
   "26RBS03-064",
   "26RBS03-065",
@@ -4489,11 +4493,6 @@
   {
    "id": "26RBS03-060",
    "name": "The ThunderBeast Ermineia",
-   "problem": "no image"
-  },
-  {
-   "id": "26RBS03-062",
-   "name": "Euus-Callus",
    "problem": "no image"
   },
   {
