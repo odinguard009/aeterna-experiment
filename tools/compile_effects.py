@@ -252,10 +252,24 @@ UNAFF = re.compile(r'^(?:\u27e6ARMOR:([A-Za-z ]+):([A-Za-z/]+)\u27e7\s*|(Armor|H
                    r'((?:(?:Red|Purple|Green|White|Yellow|Blue)/?)+ )?((?:(?:Spirit|Brave|Ultimate|Nexus|Magic)/?)+ )?effects'
                    r'(?: of the (?:specified|stated) colou?rs?)?\.?$')
 
+GIVE_ARMOR = re.compile(r'^Give (?:all|every) your (?:(Red|Purple|Green|White|Yellow|Blue) |"([^"]+)" family |"([^"]+)"-named )?Spirits?(?: with ([A-Z][A-Za-z]+))?:\s*"?⟦ARMOR:(Armor|Heavy Armor|Ultra Armor):([A-Za-z/]+)⟧\s*(?:This Spirit is unaffected by opposing [A-Za-z/]+ [A-Za-z/]+ effects\.?")?\s*\.?$')
+ARMOR_TYPES = {'armor': ['Spirit', 'Nexus', 'Magic'], 'heavy armor': ['Spirit', 'Brave', 'Nexus', 'Magic'], 'ultra armor': ['Spirit', 'Ultimate', 'Nexus', 'Magic']}
+
 def unaffected_para(p):
     """v0.58 session E: Armor / Heavy Armor / Ultra Armor and plain "unaffected by opposing <colour> <types> effects" -> STATIC UNAFFECTED.
     Returns (effect, keyword) or None when p is not such a paragraph."""
     if '\u27e6ARMOR' not in p and not re.search(r'unaffected by opposing', p): return None
+    g = GIVE_ARMOR.match(p)
+    if g:      # v0.181 "Give all your <selector> Spirits: {{armor|Colours}}" = STATIC UNAFFECTED for the matching own cards
+        cols = colour_list(g.group(6)); types = ARMOR_TYPES[g.group(5).lower()]
+        e = {'trigger': 'STATIC', 'flag': 'UNAFFECTED', 'to': 'own', 'from': {'colors': cols, 'types': types}}
+        mt = {}
+        if g.group(1): mt['color'] = [g.group(1).lower()]
+        if g.group(2): mt['family'] = [g.group(2)]
+        if g.group(3): mt['name'] = [g.group(3)]
+        if g.group(4): mt['keyword'] = g.group(4)
+        if mt: e['match'] = mt
+        return e, None
     m = UNAFF.match(p)
     if not m:
         if '\u27e6ARMOR' in p or re.match(r'^(?:Armor|Heavy Armor|Ultra Armor)\s*:', p): raise Review('Armor text: ' + p[:80])
@@ -505,7 +519,7 @@ def spirit_paragraph_main(p, card, rush):
     if trig is None:      # v0.59: step-prefixed attack triggers (the step is implied by the attack itself)
         mm = re.match(r'^\(Your Attack Step\)\s*When (?:one of )?your "([^"]+)" family Spirits? attacks?,\s*', p)
         if mm: trig, tmatch, p = ['ALLY_ATTACKS'], {'family': [mm.group(1)], 'noUlt': True}, p[mm.end():]
-        mm = None if trig else re.match(r'^(?:\((?:Opposing|Either) Attack Step\)\s*/?\s*)?When your Life is reduced by (?:the attack of )?(?:an? )?opposing (Spirit|Ultimate)s?,\s*', p)
+        mm = None if trig else re.match(r'^(?:\((?:Opposing|Either) Attack Step\)\s*/?\s*)?When your Life is reduced(?: by (?:the attack of )?(?:an? )?opposing (Spirit|Ultimate)s?| by the opponent)?,\s*', p)
         if mm: trig, tmatch, p = ['OWN_LIFE_HIT'], ({'noUlt': True} if (mm.group(1) or '').lower() == 'spirit' else {'type': 'Ultimate'} if mm.group(1) else None), p[mm.end():]      # v0.177 engine OWN_LIFE_HIT (an opposing attack reduced your Life)
         mm = None if trig else re.match(r'^\(Opposing Attack Step\)\s*When an opposing Spirit attacks,\s*', p)
         if mm: trig, tmatch, p = ['OPP_ATTACKS'], {'noUlt': True}, p[mm.end():]

@@ -218,9 +218,6 @@
   "A_REFRESH",
   "C_LEVEL"
  ],
- "BS01-107": [
-  "C_LEVEL"
- ],
  "BS01-109": [
   "A_BP_PLUS",
   "A_EXHAUST",
@@ -1052,10 +1049,6 @@
   "A_EXHAUST",
   "C_LEVEL"
  ],
- "BS04-043": [
-  "A_REFRESH",
-  "C_LEVEL"
- ],
  "BS04-044": [],
  "BS04-045": [
   "C_LEVEL"
@@ -1294,9 +1287,6 @@
   "T_SUMMONED"
  ],
  "BS05-030": [
-  "C_LEVEL"
- ],
- "BS05-032": [
   "C_LEVEL"
  ],
  "BS05-034": [
@@ -2569,10 +2559,6 @@
  "BS09-028": [
   "C_LEVEL"
  ],
- "BS09-030": [
-  "C_LEVEL",
-  "K_ARMOR"
- ],
  "BS09-031": [
   "A_EXHAUST",
   "C_LEVEL"
@@ -2879,11 +2865,6 @@
   "A_VOID",
   "A_VOID_TO_LIFE",
   "C_LEVEL"
- ],
- "BS10-037": [
-  "C_LEVEL",
-  "K_ARMOR",
-  "S_UNAFFECTED"
  ],
  "BS10-038": [
   "C_LEVEL",
@@ -7015,9 +6996,6 @@
  ],
  "BS21-028": [
   "A_REFRESH",
-  "C_LEVEL"
- ],
- "BS21-029": [
   "C_LEVEL"
  ],
  "BS21-031": [
@@ -12991,10 +12969,6 @@
   "C_LEVEL",
   "M_BY_DOING",
   "T_ATTACKS"
- ],
- "BS34-035": [
-  "C_LEVEL",
-  "K_ARMOR"
  ],
  "BS34-036": [
   "C_LEVEL",
@@ -22076,10 +22050,6 @@
   "M_OPTIONAL",
   "M_REPLACEMENT",
   "M_TRASH_TRIGGER"
- ],
- "BS50-038": [
-  "A_EXHAUST",
-  "C_LEVEL"
  ],
  "BS50-042": [
   "C_LEVEL",
@@ -39460,9 +39430,6 @@
   "C_LEVEL",
   "M_REPLACEMENT",
   "T_ALLY_LOST"
- ],
- "26RBS02-084": [
-  "C_LEVEL"
  ],
  "26RBS02-085": [
   "C_LEVEL",
