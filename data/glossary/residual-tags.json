@@ -1728,12 +1728,6 @@
   "C_LEVEL",
   "M_BY_DOING"
  ],
- "BS07-023": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "T_ALLY_BLOCKED",
-  "T_ATTACKS"
- ],
  "BS07-024": [
   "A_VOID",
   "C_LEVEL",
@@ -4538,12 +4532,6 @@
   "C_LEVEL",
   "M_UP_TO"
  ],
- "BS15-020": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "T_ALLY_BLOCKED",
-  "T_ATTACKS"
- ],
  "BS15-021": [
   "A_EXHAUST",
   "C_LEVEL",
@@ -6612,12 +6600,6 @@
   "C_LEVEL",
   "T_SUMMONED"
  ],
- "BS21-015": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "K_BRAVE",
-  "K_RUSH"
- ],
  "BS21-017": [
   "C_LEVEL",
   "T_ALLY_LOST"
@@ -6721,11 +6703,6 @@
   "C_LEVEL",
   "K_RUSH",
   "T_BATTLE_WIN"
- ],
- "BS21-050": [
-  "C_LEVEL",
-  "K_RUSH",
-  "T_SUMMONED"
  ],
  "BS21-051": [
   "C_LEVEL"
@@ -7368,13 +7345,6 @@
   "A_REFRESH",
   "C_LEVEL",
   "K_BRAVE"
- ],
- "BS23-028": [
-  "A_BP_PLUS",
-  "A_VOID",
-  "C_LEVEL",
-  "K_RUSH",
-  "T_BLOCKS"
  ],
  "BS23-030": [
   "A_EXHAUST",
@@ -8404,12 +8374,6 @@
   "A_LIFE_TO_RESERVE",
   "C_LEVEL",
   "K_ULTIMATE"
- ],
- "BS25-025": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "K_RUSH",
-  "T_ATTACKS"
  ],
  "BS25-026": [
   "A_EXHAUST",

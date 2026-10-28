@@ -8712,7 +8712,7 @@
    "Fencer",
    "Zombie"
   ],
-  "text": "[LV1][LV2][LV3] (When Summoned)\nDraw a card.\n\nWhen Braved [LV2][LV3] (When Brave Attacks)\nDestroy an opposing exhausted Spirit.\n{{Rush|White/Yellow}}\n(While you have White/Yellow symbols, the following effect activate next)\n: Return an opposing Cost 5 or less Spirit to the Hand.\n: This Spirit can't be blocked by opposing LV1/LV2 Spirits.",
+  "text": "[LV1][LV2][LV3] (When Summoned)\nDraw a card.\n\nWhen Braved [LV2][LV3] (When Brave Attacks)\nDestroy an opposing exhausted Spirit.\n{{Rush|White/Yellow}}\n(While you have a White/Yellow symbol, the following effect activates next)\n: Return an opposing Cost 5 or less Spirit to the Hand.\n: This Spirit can't be blocked by opposing LV1/LV2 Spirits.",
   "image": "BS21-015.jpg",
   "block": "21",
   "saga": 4,
@@ -8733,13 +8733,49 @@
       "n": 1
      }
     ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "exhaustedOnly": true
+     },
+     {
+      "do": "BOUNCE_OPP",
+      "to": "hand",
+      "kind": "spirit",
+      "costLe": 5,
+      "if": {
+       "hasSymbol": [
+        "white",
+        "yellow"
+       ]
+      }
+     },
+     {
+      "do": "CANT_BE_BLOCKED_BY",
+      "levels": [
+       1,
+       2
+      ],
+      "if": {
+       "hasSymbol": [
+        "white",
+        "yellow"
+       ]
+      }
+     }
+    ],
+    "braved": true
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "When Braved [LV2][LV3] (When Brave Attacks) Destroy an opposing exhausted Spirit. {{Rush|White/Yellow}} (While you have White/Yellow symbols, the following effect activate next) : Return an opposing Cost 5 or less Spirit to the Hand. : This Spirit can't be blocked by opposing LV1/LV2 Spirits."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS21-016",
@@ -10332,18 +10368,52 @@
   "families": [
    "Fusion Beast"
   ],
-  "text": "[LV1][LV2] (When Summoned)\nDestroy an opposing Cost 3 Spirit.\n{{Rush|Red/Purple}}\n(While you have Red/Purple symbols, the following effects activate next)\n: Destroy an opposing Nexus.\n: Draw a card.",
+  "text": "[LV1][LV2] (When Summoned)\nDestroy an opposing Cost 3 Spirit.\n{{Rush|Red/Purple}}\n(While you have a Red/Purple symbol, the following effect activates next)\n: Destroy an opposing Nexus.\n: Draw a card.",
   "image": "BS21-050.jpg",
   "block": "21",
   "saga": 4,
   "mechanics": [
    "Rush"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Summoned) Destroy an opposing Cost 3 Spirit. {{Rush|Red/Purple}} (While you have Red/Purple symbols, the following effects activate next) : Destroy an opposing Nexus. : Draw a card."
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "costIn": [
+       3
+      ]
+     },
+     {
+      "do": "DESTROY",
+      "nexus": true,
+      "if": {
+       "hasSymbol": [
+        "red",
+        "purple"
+       ]
+      }
+     },
+     {
+      "do": "DRAW",
+      "n": 1,
+      "if": {
+       "hasSymbol": [
+        "red",
+        "purple"
+       ]
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS21-051",
@@ -16438,15 +16508,49 @@
   "families": [
    "Machine Beast"
   ],
-  "text": "[LV1][LV2][LV3] (When Blocks) This Spirit gains +3000 BP.\n{{Rush|Purple/Green}}\n(While you have Purple/Green symbols, the following effect activate next)\n: Draw a card from your deck.\n : Put a core from the Void to this Spirit.",
+  "text": "[LV1][LV2][LV3] (When Blocks) This Spirit gains +3000 BP.\n{{Rush|Purple/Green}}\n(While you have a Purple/Green symbol, the following effect activates next)\n: Draw a card from your deck.\n : Put a core from the Void to this Spirit.",
   "image": "BS23-028.jpg",
   "block": "23",
   "saga": 4,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Blocks) This Spirit gains +3000 BP. {{Rush|Purple/Green}} (While you have Purple/Green symbols, the following effect activate next) : Draw a card from your deck. : Put a core from the Void to this Spirit."
+  "effects": [
+   {
+    "trigger": "BLOCKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "BP_PLUS",
+      "n": 3000
+     },
+     {
+      "do": "DRAW",
+      "n": 1,
+      "if": {
+       "hasSymbol": [
+        "purple",
+        "green"
+       ]
+      }
+     },
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "self",
+      "if": {
+       "hasSymbol": [
+        "purple",
+        "green"
+       ]
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS23-029",

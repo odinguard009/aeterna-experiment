@@ -51,7 +51,7 @@ def bpv(s): return int(s.replace(',', ''))
 SEL = re.compile(
     r'^(?P<count>an|a|one|two|three|up to (?:one|two|three|\d)|all|every|each|any number of)?\s*'
     r'(?P<owner>opposing|of the opposing|your|one of your|of your)\s+'
-    r'(?P<mods>(?:(?:cost \d+ or (?:less|more)|cost \d+(?:/\d+)+|non-attacking|\d[\d,]* ?bp or (?:less|more)|exhausted|refreshed|attacking/blocking|attacking|blocking|lv\d(?:/lv?\d)*|'
+    r'(?P<mods>(?:(?:cost \d+ or (?:less|more)|cost \d+(?:/\d+)*|non-attacking|\d[\d,]* ?bp or (?:less|more)|exhausted|refreshed|attacking/blocking|attacking|blocking|lv\d(?:/lv?\d)*|'
     + COL + r'(?:/' + COL + r')*|"[^"]+" family|non-braved|braved)\s+)*)'
     r'(?P<kind>spirits?/ultimates?|spirits?/nexus(?:es)?|spirits?|ultimates?|nexus(?:es)?|cards?)'
     r'(?P<post>(?:,? (?:with|that ha(?:s|ve)) [^,]+?|,? that is blocking this spirit)*)'
@@ -74,10 +74,10 @@ def selector(np):
     kind = 'spirit' if re.match(r'spirits?(/ultimates?)?$', kind) else 'any' if 'nexus' in kind and 'spirit' in kind else \
         'nexus' if 'nexus' in kind else 'ultimate' if 'ultimate' in kind else 'card'
     f = {}
-    for x in re.findall(r'cost \d+ or (?:less|more)|cost \d+(?:/\d+)+|non-attacking|\d[\d,]* ?bp or (?:less|more)|exhausted|refreshed|attacking/blocking|attacking|blocking|lv\d(?:/lv?\d)*|'
+    for x in re.findall(r'cost \d+ or (?:less|more)|cost \d+(?:/\d+)*|non-attacking|\d[\d,]* ?bp or (?:less|more)|exhausted|refreshed|attacking/blocking|attacking|blocking|lv\d(?:/lv?\d)*|'
                         + COL + r'(?:/' + COL + r')*|"[^"]+" family|non-braved|braved', m.group('mods')):
         if x == 'non-attacking': f['notAttacking'] = True; continue      # v0.168
-        mm = re.fullmatch(r'cost (\d+(?:/\d+)+)', x)
+        mm = re.fullmatch(r'cost (\d+(?:/\d+)*)', x)
         if mm: f['costIn'] = [int(y) for y in mm.group(1).split('/')]; continue      # v0.168 "Cost 1/2" = cost 1 or 2
         mm = re.match(r'cost (\d+) or (less|more)', x)
         if mm: f['costLe' if mm.group(2) == 'less' else 'costGe'] = int(mm.group(1)); continue
@@ -1045,6 +1045,9 @@ def compile_card(c):
     if t2 != t: c = dict(c, text=t2); t = t2
     if t and '{{Rush|' in t:
         t2 = rush_norm(t)
+        if t2 != t: c = dict(c, text=t2); t = t2
+    if t and 'Windstorm:' in t:      # v0.184 old wording 'Windstorm: N - (When Attacks) When this Spirit is blocked, <the opponent> exhausts <N|the specified number of> Spirits they control.'
+        t2 = re.sub(r'Windstorm:\s*(\d)\s*-\s*(\(When Attacks\)) When this Spirit is blocked, (?:the |your )?opponent exhausts [^.]*?(?: they control)?\.', lambda m: m.group(2) + ' When this Spirit is blocked, the opponent exhausts %s they control.' % {1: 'one Spirit', 2: 'two Spirits', 3: 'three Spirits'}[int(m.group(1))], t)
         if t2 != t: c = dict(c, text=t2); t = t2
     if t and '{{ws|' in t:      # v0.183 {{ws|N}} Windstorm: the printed sentence's count is the template number
         t2 = WS_TPL.sub(lambda m: m.group(2) + ' When this Spirit is blocked, the opponent exhausts %s they control.' % {1: 'one Spirit', 2: 'two Spirits', 3: 'three Spirits'}[int(m.group(1))], t)

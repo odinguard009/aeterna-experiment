@@ -314,7 +314,7 @@ def flag_para(p):
 def spirit_paragraph(p, card):
     rush = None
     p = re.sub(r'^((?:\[LV\d\])*\s*)\(Permanent\)\s*(?=\S)', r'\1', p)      # v0.184 old '(Permanent)' header is the constant effect itself; the plain sentence reads as before
-    mr = re.search(r'\u27e6RUSH:(\w+)\u27e7', p)
+    mr = re.search(r'\u27e6RUSH:([\w/]+)\u27e7', p)
     if mr:
         rush = (mr.group(1), p[mr.end():].strip()); p = p[:mr.start()].strip()
         if '\u27e6' in rush[1]: raise Review('Rush: two Rush effects in one paragraph')

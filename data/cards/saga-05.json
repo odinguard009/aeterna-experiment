@@ -5869,7 +5869,7 @@
   "families": [
    "Blade Insect"
   ],
-  "text": "Flash - High Speed\nThis Spirit card in Hand can be summoned by paying the cost with cores in the Reserve. In this case, cores to be put on this Spirit must also be from the Reserve.\n\n[LV1][LV2][LV3] (When Attacks)\nThis Spirit gains +5000 BP\n{{Rush|Red/Yellow}}\n(While you have Red/Yellow symbols, the following effects activate next)\n: Destroy an opposing Nexus.\n: This Spirit can't be blocked by opposing LV1 Spirits.",
+  "text": "Flash - High Speed\nThis Spirit card in Hand can be summoned by paying the cost with cores in the Reserve. In this case, cores to be put on this Spirit must also be from the Reserve.\n\n[LV1][LV2][LV3] (When Attacks)\nThis Spirit gains +5000 BP\n{{Rush|Red/Yellow}}\n(While you have a Red/Yellow symbol, the following effect activates next)\n: Destroy an opposing Nexus.\n: This Spirit can't be blocked by opposing LV1 Spirits.",
   "image": "The BladeEmperorInsect GrandeKuwaga.jpg",
   "block": "25",
   "saga": 5,
@@ -5877,11 +5877,46 @@
    "High Speed"
   ],
   "highSpeed": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Attacks) This Spirit gains +5000 BP {{Rush|Red/Yellow}} (While you have Red/Yellow symbols, the following effects activate next) : Destroy an opposing Nexus. : This Spirit can't be blocked by opposing LV1 Spirits."
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "BP_PLUS",
+      "n": 5000
+     },
+     {
+      "do": "DESTROY",
+      "nexus": true,
+      "if": {
+       "hasSymbol": [
+        "red",
+        "yellow"
+       ]
+      }
+     },
+     {
+      "do": "CANT_BE_BLOCKED_BY",
+      "levels": [
+       1
+      ],
+      "if": {
+       "hasSymbol": [
+        "red",
+        "yellow"
+       ]
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS25-026",
