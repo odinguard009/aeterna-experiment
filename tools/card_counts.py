@@ -25,7 +25,7 @@ def complete(c):
     # printed effect is that mechanic counts complete: High Speed (flag highSpeed, summon in the Flash Timing is
     # implemented directly) and "treated as <colour>" (colors, honoured wherever colour/symbols are matched).
     # Clause coverage is guarded by the A1 discipline: a card with an extra printed paragraph carries `residual`.
-    shape = c.get('highSpeed') is True or (c.get('colors') not in (None, []))
+    shape = c.get('highSpeed') is True or c.get('tribute') is not None or (c.get('colors') not in (None, []))
     return (bool(c.get('effects') or c.get('burst') or c.get('brave') or c.get('overCount')) or shape) and c.get('fxComplete') is True and not res
 
 

@@ -124,7 +124,7 @@ async function cpuMain(p) {
     if (!opts.length) break;
     const pick = await portPick(p.key, 'summon', opts);
     if (!pick) break;
-    summon(p, pick, null); io.view({ type: 'board' }); await wait(450);
+    summon(p, pick, null); await tributePay(p, pick); io.view({ type: 'board' }); await wait(450);
     await fireFx(p, 'SUMMONED', pick);
     await cpuActivate(p);
   }

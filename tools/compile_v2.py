@@ -940,8 +940,17 @@ def burst_norm(t):
 AMPLIFY_TPL = re.compile(r'\{\{\s*Amplify\s*\|[^{}]*\}\}\s*', re.I)
 
 
+TRIBUTE_TPL = re.compile(r'\{\{\s*Tribute\s*\|\s*(?:Cost (\d+) or more|([^{}|]+?))\s*(?:&rarr;|→)\s*(Void|Trash)\s*\}\}[ \t]*\n?After paying for the summoning cost[^\n]*\n?', re.I)
+
+
 def compile_card(c):
     t = c.get('text')
+    m = t and TRIBUTE_TPL.match(t)
+    if m:       # v0.182 {{Tribute|Cost N or more > Void}} / {{Tribute|<family> > Trash}}: card.tribute; the reminder sentence is dropped before the rest compiles
+        n = compile_card(dict(c, text=t[m.end():].strip()))
+        n['tribute'] = {'costGe': int(m.group(1))} if m.group(1) else {'family': m.group(2).strip()}
+        n['tribute']['to'] = m.group(3).lower(); n['text'] = t
+        return n
     if t and AMPLIFY_TPL.search(t):      # v0.169 {{Amplify|<family> +N}}: the printed "Pay one cost > For each ..." sentence carries the effect; the card gets keywords ['Amplify'] (match.keyword, Rock Pit)
         n = compile_card(dict(c, text=AMPLIFY_TPL.sub('', t)))
         n['keywords'] = sorted(set(n.get('keywords') or []) | {'Amplify'}); n['text'] = t

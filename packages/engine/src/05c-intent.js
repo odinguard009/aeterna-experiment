@@ -71,7 +71,7 @@ async function intentSummon(p, inst) {
   let plan = null;
   if (c > 0 && reserveTotal(p) < c + L) { plan = await askPayment(card, c, L); if (!plan) return false; }
   if (!seatCan(p.key) || !p.hand.includes(inst)) return false;
-  summon(p, inst, plan); boardView();
+  summon(p, inst, plan); await tributePay(p, inst); boardView();
   await fireFx(p, 'SUMMONED', inst);
   return true;
 }

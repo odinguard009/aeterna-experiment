@@ -956,7 +956,6 @@
   "T_ATTACKS",
   "T_BLOCKS"
  ],
- "BS04-010": [],
  "BS04-011": [
   "A_REFRESH",
   "C_LEVEL",
@@ -975,7 +974,6 @@
  "BS04-018": [
   "C_LEVEL"
  ],
- "BS04-020": [],
  "BS04-021": [
   "A_BP_PLUS",
   "C_LEVEL",
@@ -1011,7 +1009,6 @@
   "C_LEVEL",
   "T_SUMMONED"
  ],
- "BS04-031": [],
  "BS04-033": [
   "C_LEVEL",
   "K_HIGH_SPEED",
@@ -1041,7 +1038,6 @@
   "A_EXHAUST",
   "C_LEVEL"
  ],
- "BS04-044": [],
  "BS04-045": [
   "C_LEVEL"
  ],
@@ -1072,7 +1068,6 @@
   "C_OPP_TURN",
   "M_OPTIONAL"
  ],
- "BS04-055": [],
  "BS04-057": [
   "A_TRASH_TO_RESERVE",
   "C_LEVEL",
@@ -1113,7 +1108,6 @@
   "C_LEVEL",
   "K_CRUSH"
  ],
- "BS04-073": [],
  "BS04-074": [
   "C_LEVEL"
  ],
@@ -1798,13 +1792,6 @@
  ],
  "BS07-008": [
   "C_LEVEL"
- ],
- "BS07-009": [
-  "A_DESTROY_TOTAL",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "M_UP_TO",
-  "T_SUMMONED"
  ],
  "BS07-013": [
   "C_LEVEL",

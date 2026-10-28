@@ -220,7 +220,8 @@ function legacyPay(p, inst) {                     // v0.69: banish the Legacy ca
   log(`${who(p)} ${p.cpu ? 'banishes' : 'banish'} ${lp.n} EX-symbol card${lp.n === 1 ? '' : 's'} from the Trash via Legacy.`);
   return lp.n;
 }
-function canPlayCard(p, inst) { const c = CARDS[inst.id]; return summonOK(p, c) && effCost(p, c) + minCores(c) <= coresAvailable(p); }
+const tributeList = (p, c) => !c.tribute ? [] : p.spirits.filter(s => { const k = CARDS[s.id]; return c.tribute.costGe != null ? k.cost >= c.tribute.costGe : (k.families || []).includes(c.tribute.family); });      // v0.182 Tribute: your Spirits that can be sacrificed
+function canPlayCard(p, inst) { const c = CARDS[inst.id]; return summonOK(p, c) && effCost(p, c) + minCores(c) <= coresAvailable(p) && (!c.tribute || tributeList(p, c).length > 0); }
 
 /* take n cores: Reserve first, then spare field cores, then the Soul Core last */
 function takeCores(p, n, excludeUid) {

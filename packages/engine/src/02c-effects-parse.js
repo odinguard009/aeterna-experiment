@@ -28,9 +28,18 @@ async function summonPaid(p, inst, opts) {                  // official: "summon
   let plan = null;
   if (!p.cpu && c > 0 && reserveTotal(p) < c + L) { plan = await askPayment(card, c, L); if (!plan) return false; }
   if (p.limbo === inst) p.limbo = null;
-  summon(p, inst, plan); io.view({ type: 'board' }); await wait(350);
+  summon(p, inst, plan); await tributePay(p, inst); io.view({ type: 'board' }); await wait(350);
   if (!G.over && fieldList(p).includes(inst)) await fireFx(p, 'SUMMONED', inst, opts && opts.noFx ? { noSelfFx: true } : undefined);
   return true;
+}
+async function tributePay(p, inst) {      // v0.182 Tribute: after the cost is paid, send all cores of one of your matching Spirits to the Trash/Void (a Soul Core stays and returns to the Reserve when it depletes)
+  const k = CARDS[inst.id], L = tributeList(p, k).filter(s => s !== inst);
+  if (!k.tribute || !L.length) return;
+  const s = p.cpu ? L.slice().sort((a, b) => totalCores(a) - totalCores(b))[0] : await chooseCard({ p }, L, 'Tribute', `Send all cores from one of your Spirits to the ${k.tribute.to === 'void' ? 'Void' : 'Trash'}.`, false);   // shortcut: the human pick is by card id, so same-name Spirits are not told apart; upgrade with a uid pick if it matters
+  const n = s.cores; coreEvN(p, s.uid, k.tribute.to, n, false); s.cores = 0;
+  if (k.tribute.to === 'void') p.void += n; else p.trashCores.n += n;
+  log(`${CARDS[inst.id].name}: Tribute, ${n} core${n === 1 ? '' : 's'} from ${CARDS[s.id].name} go to the ${k.tribute.to === 'void' ? 'Void' : 'Trash'}.`);
+  checkDepletion(p);
 }
 const summonBy = (p, inst, pay, opts) => pay ? summonPaid(p, inst, opts) : summonFree(p, inst, opts);
 function fxDescribe(e) { return (e.invoke && e.cost ? invokeCostText(e.cost) + ' ▶ ' : '') + e.actions.map(a => FX_ACTIONS[a.do].txt(a)).join(', then '); }
