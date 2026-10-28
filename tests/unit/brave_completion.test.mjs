@@ -32,7 +32,7 @@ test('B60-01 brave_of parses the Fandom conditions the engine can check, and onl
 });
 test('B60-02 the import gives Braves their combine data', () => {
   const r = py('compile_effects', `print(json.dumps({c['id']: c.get('brave') for c in m.staged() if c['id'] in ('BS10-061', 'BS10-062', 'BS15-057')}))`);
-  assert.deepEqual(r['BS10-061'], { bp: 2000 });                 // "No printed effect"
+  assert.equal(r['BS10-061'], undefined);                        // promoted (DESTROY_TOTAL): staged() no longer lists it; "No printed effect" is covered by B60-01
   assert.deepEqual(r['BS10-062'], { bp: 3000, costGe: 3 });      // The GunDragon Phoenix-Cannon: Cost 3 or more, +3000
 });
 test('B60-03 braved paragraphs compile with braved:true; Brave Attacks = When Attacks', () => {
