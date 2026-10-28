@@ -238,6 +238,13 @@ def clause(x):
         else: a['costLe' if m.group(4) else 'costIs'] = int(m.group(3))
         if m.group(1): a['opposing'] = True
         return [a]
+    m = re.match(r'^destroy (?:every|all) (?:lv(\d) )?nexus(?:es)?( with a core on them)?( on the opposing field)?$', x)      # v0.183 DESTROY_NEXUS_ALL
+    if m:
+        d = {'do': 'DESTROY_NEXUS_ALL'}
+        if m.group(1): d['lv'] = int(m.group(1))
+        if m.group(2): d['withCore'] = True
+        if m.group(3): d['opposing'] = True
+        return [d]
     m = re.match(r'^destroy an? (\d+) bp or less spirit$', x)      # v0.183 DESTROY_ANY bpLe (either side)
     if m: return [{'do': 'DESTROY_ANY', 'kind': 'spirit', 'bpLe': int(m.group(1))}]
     m = re.match(r'^destroy (?:a nexus|an exhausted spirit)(?: you or (?:the|your) opponent controls)?$', x)      # v0.183 DESTROY_ANY (either side)

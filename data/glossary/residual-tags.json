@@ -205,7 +205,6 @@
   "C_LEVEL"
  ],
  "BS01-118": [],
- "BS01-120": [],
  "BS01-123": [],
  "BS01-138": [
   "M_THEN"
@@ -537,10 +536,6 @@
   "C_LEVEL",
   "T_ATTACKS"
  ],
- "BS03-007": [
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "BS03-008": [
   "A_BP_PLUS",
   "C_LEVEL",
@@ -839,7 +834,6 @@
   "T_BLOCKS"
  ],
  "BS03-118": [],
- "BS03-119": [],
  "BS03-123": [
   "A_RETURN_TRASH",
   "A_TRASH_TO_RESERVE"

@@ -26,6 +26,13 @@ Object.assign(FX_ACTIONS, {
       for (const q of Q) for (const s of q.spirits.filter(hit)) removeSpirit(q, s, 'destroyed', q === c.opp);
       for (const q of Q) checkDepletion(q);
     } },
+  /* v0.183 (schema 45) "Destroy all Nexuses" (both sides) / "every Nexus on the opposing Field" / "every LV1 Nexus" / "all Nexuses with a core on them" */
+  DESTROY_NEXUS_ALL: { chk: a => (a.opposing == null || a.opposing === true) && (a.withCore == null || a.withCore === true) && (a.lv == null || [1, 2, 3].includes(a.lv)) && Object.keys(a).every(k => ['do', 'opposing', 'lv', 'withCore', 'if'].includes(k)),
+    txt: a => `destroy every ${a.opposing ? 'opposing ' : ''}${a.lv ? 'LV' + a.lv + ' ' : ''}Nexus${a.withCore ? ' with a core on it' : ''}${a.opposing ? '' : ' (both sides)'}`,
+    can: () => true,
+    run: async (c, a) => {
+      for (const q of a.opposing ? [c.opp] : [c.opp, c.p]) for (const x of q.nexus.filter(x => (!a.lv || lvNo(x) === a.lv) && (!a.withCore || x.cores > 0))) removeNexus(q, x, 'destroyed');
+    } },
   /* v0.181 (schema 30) "By setting a card with Burst effect from your Hand, <next>": sets one (a previous Burst is discarded, setBurst); ctx.did = false when the Hand has none, so the next actions use {"if":{"prev":true}} */
   SET_BURST: { chk: () => true, txt: () => 'set a card with Burst effect from your Hand',
     cands: c => c.p.hand.filter(h => h !== c.src && CARDS[h.id].burst),

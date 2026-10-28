@@ -82,3 +82,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v42 (v0.183.0, Lane K): action `DESTROY_EVERY {bpLe | costLe | costIs, opposing?}` ("Destroy every N BP or less / Cost N or less / Cost N Spirit": both sides, or only the opposing ones with `opposing:true`; this Spirit included when it qualifies); `DESTROY_ANY` also takes `bpLe` with `kind:"spirit"` ("You can destroy a N BP or less Spirit", either side for a person, opposing only for the CPU).
 - v43 (v0.183.0, Lane K): `SUMMON_HAND` also takes `noTribute:true` (needs `pay:true`): summon from Hand paying the cost but without using Tribute (ACTIVATE, Once per turn, Your Main Step).
 - v44 (v0.183.0, Lane K): `DESTROY_EVERY` field `cost` renamed `costIs` (the strict walker reads `cost` as a nested action).
+- v45 (v0.183.0, Lane K): `DESTROY_NEXUS_ALL {opposing?, lv?, withCore?}` destroys every matching Nexus (both sides unless `opposing`).

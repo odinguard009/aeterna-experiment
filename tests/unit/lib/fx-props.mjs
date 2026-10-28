@@ -206,6 +206,10 @@ function simple(card, a) {
       const hit = a.bpLe != null ? sid(3, a.bpLe) : sid(a.costLe != null ? a.costLe : a.costIs, 1000), miss = a.bpLe != null ? sid(3, a.bpLe + 1000) : sid((a.costLe != null ? a.costLe : a.costIs) + 1, 1000);
       return { fix: a.bpLe != null ? [{ cost: 3, bp: a.bpLe }, { cost: 3, bp: a.bpLe + 1000 }] : [{ cost: a.costIsLe != null ? a.costLe : a.costIs, bp: 1000 }, { cost: (a.costLe != null ? a.costLe : a.costIs) + 1, bp: 1000 }], body: `const lo = sp(${J(hit)}, O), hi = sp(${J(miss)}, O); await run(src, RA); return gone(lo) && !gone(hi) ? '' : 'wrong Spirits destroyed';` };
     }
+    case 'DESTROY_NEXUS_ALL': {      // v0.183 matching opposing Nexuses go, a non-matching one stays
+      if (!only(a, ['opposing', 'lv', 'withCore']) || (a.lv != null && a.lv !== 1)) return null;
+      return { fix: [{ n: 2 }], body: `const t = nx(${J(nid(2))}, O); t.cores = 1; await run(src, RA); return gone(t) && O.trash.includes(t) ? '' : 'the Nexus survived';` };
+    }
     case 'DISCARD_HAND':      // v0.180 the CPU discards exactly n cards of its Hand
       return only(a, ['n']) && { body: `for (let j = 0; j < A.n + 2; j++) P.hand.push(BS.mkInst(${J(FILL)})); await run(src, RA); return P.hand.length === 2 && P.trash.length === A.n ? '' : 'hand ' + P.hand.length + ', trash ' + P.trash.length;` };
     case 'NO_REFRESH_OPP':      // v0.172 an exhausted opposing Spirit skips its next Refresh Step
