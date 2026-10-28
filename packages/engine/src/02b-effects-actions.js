@@ -50,6 +50,16 @@ const FX_ACTIONS = {
     } },
   REFRESH: { chk: () => true, txt: () => 'refresh this card', can: c => c.src.exhausted,
     run: async c => { refreshOne(c.src); log(`${CARDS[c.src.id].name} is refreshed.`); } },
+  ASSAULT: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5, txt: a => `refresh this Spirit by exhausting one of your Nexuses (up to ${a.n} per turn)`,      // v0.185 {{Assault|N}}
+    can: c => c.src.exhausted && c.p.nexus.some(x => !x.exhausted),
+    run: async (c, a) => {
+      const s = c.src, used = s.assaultT === G.turnNo ? s.assaultN : 0, L = c.p.nexus.filter(x => !x.exhausted);
+      if (!s.exhausted || used >= a.n || !L.length) { c.ctx.did = false; return; }
+      const t = await fxPickTarget(c, L, `✨ <b>${esc(CARDS[s.id].name)}</b><br>Tap one of your Nexuses to exhaust.`);
+      if (!t) { c.ctx.did = false; return; }
+      t.exhausted = true; refreshOne(s); s.assaultT = G.turnNo; s.assaultN = used + 1;
+      log(`${CARDS[s.id].name} is refreshed (Assault, exhausting ${CARDS[t.id].name}).`);
+    } },
   SUMMON_HAND: { chk: a => hasMatch(a.match) && (a.from == null || ['hand', 'handOrSoul', 'soul', 'trash'].includes(a.from)) && (a.costLe == null || (Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30)) && (a.pay == null || typeof a.pay === 'boolean') && (a.noFx == null || a.noFx === true) && (a.allowBrave == null || (a.allowBrave === true && !a.pay)) && (a.types == null || (Array.isArray(a.types) && a.types.every(t => ['Spirit', 'Brave', 'Nexus'].includes(t)))),
     txt: a => `summon/deploy a matching card${a.costLe != null ? ' with cost ' + a.costLe + ' or less' : ''} from your ${a.from === 'trash' ? 'Trash' : a.from === 'soul' ? 'Soul State' : a.from === 'handOrSoul' ? 'Hand/Soul State' : 'Hand'}${a.pay ? ' (paying its cost)' : ' without paying the cost'}${a.noFx ? "; its (When Summoned) effects can't activate" : ''}`,
     cands: (c, a) => (a.from === 'trash' ? c.p.trash : a.from === 'soul' ? c.p.soulState : a.from === 'handOrSoul' ? c.p.hand.concat(c.p.soulState) : c.p.hand).filter(h => { const k = CARDS[h.id]; if (a.types && !a.types.includes(k.type)) return false; if (a.allowBrave && k.type === 'Brave') return fxMatch(k, a.match) && (a.costLe == null || k.cost <= a.costLe) && canPlaceBraveFree(c.p, h);    // v0.37: a Brave card is summoned as a Spirit

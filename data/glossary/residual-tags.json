@@ -1946,13 +1946,6 @@
   "M_UP_TO",
   "T_ATTACKS"
  ],
- "BS07-052": [
-  "A_EXHAUST",
-  "A_REFRESH",
-  "C_LEVEL",
-  "M_UP_TO",
-  "T_ATTACKS"
- ],
  "BS07-053": [
   "A_DISCARD_OPP",
   "C_LEVEL",
@@ -2866,13 +2859,6 @@
  "BS10-053": [
   "C_LEVEL",
   "K_BRAVE"
- ],
- "BS10-054": [
-  "A_EXHAUST",
-  "A_REFRESH",
-  "C_LEVEL",
-  "M_UP_TO",
-  "T_ATTACKS"
  ],
  "BS10-056": [
   "A_VOID",
@@ -5934,13 +5920,6 @@
   "C_LEVEL",
   "K_BRAVE"
  ],
- "BS18-051": [
-  "A_EXHAUST",
-  "A_REFRESH",
-  "C_LEVEL",
-  "M_UP_TO",
-  "T_ATTACKS"
- ],
  "BS18-052": [
   "A_REFRESH",
   "C_LEVEL",
@@ -6284,13 +6263,6 @@
  ],
  "BS19-061": [
   "C_LEVEL"
- ],
- "BS19-062": [
-  "A_EXHAUST",
-  "A_REFRESH",
-  "C_LEVEL",
-  "M_UP_TO",
-  "T_ATTACKS"
  ],
  "BS19-064": [
   "C_LEVEL"
@@ -17177,13 +17149,6 @@
   "M_OPTIONAL",
   "M_THEN",
   "T_START_ATTACK"
- ],
- "BS41-064": [
-  "A_EXHAUST",
-  "A_REFRESH",
-  "C_LEVEL",
-  "M_UP_TO",
-  "T_ATTACKS"
  ],
  "BS41-065": [
   "C_LEVEL",

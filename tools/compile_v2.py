@@ -299,6 +299,8 @@ def own_grammar(s, ctx=None):
     battle_ok = ctx is None or bool(ctx.get('battle')) or bool(BATTLE_TRIGGERS & set(ctx.get('trigger') or ()))
     if re.search(r'during this battle', x, re.I) and not battle_ok: raise Review('v2 battle effect outside a battle trigger')      # A7 review
     if re.fullmatch(r'the opponent targets a refreshed spirit they control\.\s*exhaust it', x, re.I): return [{'do': 'EXHAUST_OPP', 'n': 1, 'oppChooses': True}]      # v0.170 (engine oppChooses, schema v3)
+    m = re.fullmatch(r'(?:you can )?refresh this spirit by exhausting a nexus, up to (\d) times per turn', x, re.I)
+    if m: return [{'do': 'ASSAULT', 'n': int(m.group(1))}]      # v0.185 Assault
     m = CORE_BP.match(x)
     if m: return [{'do': 'BP_TARGET', 'n': bpv(m.group(2)), 'to': 'pick', 'battle': True, 'coreFromSelf': True, 'match': {'name': re.findall(r'"([^"]+)"', m.group(1))}}]
     m = re.fullmatch(r'for each "([^"]+)" family spirit you control, during this battle, this spirit (?:gains|gets) \+(\d[\d,]*) ?bp', x, re.I)
@@ -940,6 +942,13 @@ def burst_norm(t):
 AMPLIFY_TPL = re.compile(r'\{\{\s*Amplify\s*\|[^{}]*\}\}\s*', re.I)
 
 
+ASSAULT_TPL = re.compile(r'\{\{\s*Assault\s*\|\s*\d+\s*\}\}\s*(\(When Attacks\))\s*\n?\s*(?:This|His) Spirit can, up to (once|twice|three times) per turn, be refreshed by exhausting (?:one of your Nexuses|a Nexus you control|a Nexus)\.?', re.I)      # v0.185
+
+
+def assault_norm(t):
+    return ASSAULT_TPL.sub(lambda m: m.group(1) + '\nYou can refresh this Spirit by exhausting a Nexus, up to %d times per turn.' % {'once': 1, 'twice': 2, 'three times': 3}[m.group(2).lower()], t)
+
+
 TRIBUTE_TPL = re.compile(r'\{\{\s*Tribute\s*\|\s*(?:Cost (\d+) or more|([^{}|]+?))\s*(?:&rarr;|→)\s*(Void|Trash)\s*\}\}[ \t]*\n?After paying for the summoning cost[^\n]*\n?', re.I)
 
 
@@ -959,6 +968,9 @@ def compile_card(c):
     if t2 != t: c = dict(c, text=t2); t = t2
     if t and '{{Rush|' in t:
         t2 = rush_norm(t)
+        if t2 != t: c = dict(c, text=t2); t = t2
+    if t and '{{Assault|' in t:
+        t2 = assault_norm(t)
         if t2 != t: c = dict(c, text=t2); t = t2
     if t and '[LV' in t and '-' in t:
         c = dict(c, text=lv_dash(t))

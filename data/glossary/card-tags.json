@@ -2854,6 +2854,7 @@
   "A_REFRESH",
   "A_EXHAUST",
   "C_LEVEL",
+  "M_OPTIONAL",
   "M_UP_TO"
  ],
  "BS07-053": [
@@ -4015,6 +4016,7 @@
   "A_EXHAUST",
   "C_LEVEL",
   "K_CRUSH",
+  "M_OPTIONAL",
   "M_UP_TO"
  ],
  "BS10-055": [],
@@ -7714,6 +7716,7 @@
   "A_REFRESH",
   "A_EXHAUST",
   "C_LEVEL",
+  "M_OPTIONAL",
   "M_UP_TO"
  ],
  "BS18-052": [
@@ -8201,6 +8204,7 @@
   "A_EXHAUST",
   "C_LEVEL",
   "K_CRUSH",
+  "M_OPTIONAL",
   "M_UP_TO"
  ],
  "BS19-063": [],
@@ -20625,6 +20629,7 @@
   "A_VOID",
   "A_EXHAUST",
   "C_LEVEL",
+  "M_OPTIONAL",
   "M_UP_TO"
  ],
  "BS41-065": [
