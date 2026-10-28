@@ -8,8 +8,10 @@ node tools/lint.mjs
 node tools/brand_guard.mjs
 z=0000000000000000000000000000000000000000
 files=""
-while read -r _lref lsha _rref rsha; do
+wip=1
+while read -r _lref lsha rref rsha; do
   [ "$lsha" = "$z" ] && continue
+  case "$rref" in refs/heads/wip/*) ;; *) wip=0 ;; esac
   if [ "$rsha" = "$z" ]; then node tools/brand_guard.mjs --range "$lsha" --not --remotes || exit 1; r="$lsha --not --remotes"
   elif git cat-file -e "$rsha^{commit}" 2>/dev/null; then node tools/brand_guard.mjs --range "$rsha..$lsha" || exit 1; r="$rsha..$lsha"
   else node tools/brand_guard.mjs --range "$lsha" --not --remotes || exit 1; r="$lsha --not --remotes"; fi  # remote tip not in a shallow clone
@@ -17,18 +19,13 @@ while read -r _lref lsha _rref rsha; do
   files="$files
 $(git log --format= --name-only $r 2>/dev/null || echo '?unknown')"
 done
+# Lane K release per 50 (owner, 2026-10-28): a push to wip/* is only the safety-net copy of local commits; no CI, no release. Build, lint and brand guard above ran; the full tests run on the push to main.
+if [ "$wip" = 1 ]; then echo "[pre-push] wip branch push: build, lint and brand guard ok; tests left to the push to main"; exit 0; fi
 # Item T (owner, 2026-10-21): the same paths CI skips (ci.yml paths-ignore: docs/**, **.md, .claude/**) skip the quick tests here;
 # build check, lint and brand guard above still ran. Any other path, or no file list, runs everything.
 code=$(printf '%s\n' "$files" | grep -v '^$' | grep -vE '^(docs/|\.claude/)|\.md$' | head -1)
 if [ -n "$(printf '%s' "$files" | tr -d '[:space:]')" ] && [ -z "$code" ]; then
   echo "[pre-push] docs-only push (same paths CI skips): build, lint and brand guard ok; quick tests skipped"; exit 0
-fi
-# Bundling trial (owner, 2026-10-25): a push that only adds card data (data/, generated pages, scenarios) skips the quick tests here; CI runs them
-# on that push. The effect validator still runs. Revert: delete this block.
-other=$(printf '%s\n' "$files" | grep -v '^$' | grep -vE '^(docs/|\.claude/|data/|tests/scenarios/)|\.md$|^(index\.html|package\.json)$' | head -1)
-if [ -n "$(printf '%s' "$files" | tr -d '[:space:]')" ] && [ -z "$other" ]; then
-  node tools/fx_validate.mjs >/dev/null || { echo "[pre-push] fx_validate failing"; exit 1; }
-  echo "[pre-push] card-data-only push: build, lint, brand guard, fx_validate ok; quick tests left to CI"; exit 0
 fi
 python3 tools/check_renames.py || { echo "[pre-push] tests still use removed names / old labels (fix them before the Regression run)"; exit 1; }
 out=$(npm run -s test:quick 2>&1) || { echo "$out" | grep -E "^not ok|^✖|failing"; echo "[pre-push] quick tests failing"; exit 1; }

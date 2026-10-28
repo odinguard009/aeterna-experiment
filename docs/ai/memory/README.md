@@ -10,4 +10,4 @@ Update the copy after memory changes (then commit and push):
 
     bash tools/memory_sync.sh save
 
-Settings worth re-creating by hand (machine-specific, so not copied): plugins `ui-ux-pro-max`, `tinyfish`; hooks path of the codebase-memory tool; `core.hooksPath .githooks` (`git config core.hooksPath .githooks`). No secrets are stored here.
+Settings: `bash tools/settings_sync.sh restore` on a new account/machine (copies `docs/ai/settings`: user settings.json, agents, hooks, own skills; sets `core.hooksPath .githooks`); `save` after changes. Model/advisor settings are also in `.claude/settings.json` (auto-loaded). Still by hand: plugins `ui-ux-pro-max`, `tinyfish`, the codebase-memory binary, MCP registrations and logins. No secrets are stored here.

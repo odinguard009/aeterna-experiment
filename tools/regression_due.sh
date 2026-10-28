@@ -27,5 +27,5 @@ core=$(printf '%s\n' "$files" | tr ',' '\n' | grep -cE "$CORE" || true)
 sims=10; [ "$core" -gt 0 ] && sims=30
 if [ "$concl" != "success" ]; then echo "DUE sims=$sims (newest Regression on ${sha:0:7} was $concl)"; exit 0; fi
 if [ "$core" -gt 0 ]; then echo "DUE sims=30 ($core core engine file(s) changed since ${sha:0:7})"; exit 0; fi
-if [ "$rel" -ge 3 ]; then echo "DUE sims=10 ($rel releases since the last Regression on ${sha:0:7})"; exit 0; fi
+if [ "$rel" -ge 1 ]; then echo "DUE sims=10 ($rel releases since the last Regression on ${sha:0:7})"; exit 0; fi
 echo "SKIP ($rel release(s) since the last green Regression on ${sha:0:7}, no core engine file changed)"; exit 1
