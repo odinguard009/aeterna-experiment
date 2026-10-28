@@ -21,7 +21,7 @@ async function beginTurn(key) {
   setStep(3);
   const back = Math.min(p.trashCores.n + (p.trashCores.soul ? 1 : 0), 5);
   for (let i = 0; i < back; i++) io.view({ type: 'core', side: key, kind: i === back - 1 && p.trashCores.soul ? 'soul' : 'core', from: 'trash', to: 'reserve', nth: i });
-  for (const f of fieldList(p)) if (f.noRefreshT !== G.turnNo) refreshOne(f); else log(`${CARDS[f.id].name} can't refresh this Refresh Step.`);
+  for (const f of fieldList(p)) if (!(f.noRefreshT && f.noRefreshT === G.turnNo)) refreshOne(f); else log(`${CARDS[f.id].name} can't refresh this Refresh Step.`);
   p.reserve.n += p.trashCores.n; p.trashCores.n = 0;
   if (p.trashCores.soul) { p.reserve.soul = true; p.trashCores.soul = false; }
   log('Refresh Step: cards refreshed, Trash cores returned to the Reserve.');
