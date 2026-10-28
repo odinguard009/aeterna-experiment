@@ -845,9 +845,9 @@ def action_of(s, ctx):
     if re.fullmatch(r'put the core to this spirit\.?', s.strip(), re.I): return [{'do': 'VOID_TO_CARD', 'n': 1, 'to': 'self'}], False      # v0.171 "put the core to this Spirit instead" (the core of the sentence before; only inside an instead pair)
     m = re.fullmatch(r'target up to (one|two|three) spirits? with ([A-Za-z]+) you control\.\s*put a core from the void (?:each )?to (?:each of them|it|them)\.?', s.strip(), re.I)      # v0.171 (engine VOID_TO_MATCHING + match.keyword)
     if m: return [{'do': 'VOID_TO_MATCHING', 'targets': n_of(m.group(1).lower()), 'match': {'keyword': m.group(2).capitalize()}}], False
-    md_ = re.fullmatch(r'target one of your "([^"]+)" family spirits\.\s*destroy it\.?(?:\s*(if you\'ve done so, .+))?', s.strip(), re.I)      # v0.185 DESTROY_OWN family (+ "If you've done so, X")
+    md_ = re.fullmatch(r'target one of your (?:"([^"]+)" family )?spirits\.\s*destroy it\.?(?:\s*(if you\'ve done so, .+))?', s.strip(), re.I)      # v0.185 DESTROY_OWN family (+ "If you've done so, X")
     if md_:
-        out = [{'do': 'DESTROY_OWN', 'match': {'type': 'Spirit', 'family': [md_.group(1)]}}]
+        out = [{'do': 'DESTROY_OWN', 'match': dict({'type': 'Spirit'}, **({'family': [md_.group(1)]} if md_.group(1) else {}))}]
         if md_.group(2): out += action_of(md_.group(2), ctx)[0]
         return out, False
     mv_ = re.fullmatch(r'target (?:(up to) )?(one|two|three) (?:(' + COL + r') )?(?:"([^"]+)" family )?(spirits|nexus(?:es)?) you control\.\s*put (?:a|one) core from the void (?:each )?to (?:each of them|them|it)\.?', s.strip(), re.I)      # v0.185 VOID_TO_MATCHING colour/family/Nexus
