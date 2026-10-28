@@ -4,6 +4,14 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.183.0
+- Lane: K
+- **50 more cards complete (1,125 -> 1,175): Windstorm, Tribute triggers, Nexus destruction, opponent-hand windows**
+  - New engine pieces (effect schema 50): trigger `TRIBUTED`, actions `DESTROY_NEXUS_ALL` and `DESTROY_EVERY`, options `voidByCost`, `one` (TRASH_CORES_TO) and `drawIfOpp` (DESTROY_ANY), STATIC flags with `to:'all'` (e.g. Cost N/N Spirits cannot attack/block), opponent-hand-size step window, Tribute-less summon head.
+  - Readings to know: "Destroy a Nexus" without a side reads either side (CPU targets the opponent only); Windstorm read from card text (wiki returned 403); "you can summon without Tribute" is read like `TRIBUTE_SAFE`; Immortality offers one save per destroyed Spirit, Attack Step only; `DESTROY_EVERY` hits both sides including its source; level-prefixed High Speed reads as plain High Speed; `TRIBUTED` fires before `checkDepletion`.
+  - Tests: new mechanics covered only by the FX01 generator (`DESTROY_NEXUS_ALL`), no dedicated scenarios for `TRIBUTED`, `voidByCost`, `one`, `drawIfOpp`, `to:'all'`. Budget B01 raised to 1060 KB.
+  - Not checked: type-checker reports 2 errors in 02c (warn only); no player-view pass or CPU sims locally (Regression runs on Actions); BS05-059 / BS05-065 stay partial.
+
 ## v0.182.0
 - Lane: K
 - **53 more cards complete (1,072 -> 1,125): Tribute, Assault, Flash use, hand-cost and attack-Life locks**
