@@ -145,10 +145,6 @@
   "C_LEVEL",
   "T_ATTACKS"
  ],
- "BS01-079": [
-  "A_BP_PLUS",
-  "C_LEVEL"
- ],
  "BS01-083": [
   "C_LEVEL",
   "T_ATTACKS"
@@ -589,10 +585,6 @@
   "K_HIGH_SPEED",
   "T_ATTACKS"
  ],
- "BS03-004": [
-  "A_BP_PLUS",
-  "C_LEVEL"
- ],
  "BS03-006": [
   "C_LEVEL",
   "T_ATTACKS"
@@ -683,10 +675,6 @@
  "BS03-033": [
   "C_LEVEL",
   "K_HIGH_SPEED"
- ],
- "BS03-034": [
-  "A_BP_PLUS",
-  "C_LEVEL"
  ],
  "BS03-036": [
   "A_BP_PLUS",
@@ -11547,10 +11535,6 @@
   "K_ULTIMATE",
   "T_SUMMONED"
  ],
- "BS31-025": [
-  "A_BP_PLUS",
-  "C_LEVEL"
- ],
  "BS31-027": [
   "A_EXHAUST",
   "C_LEVEL",
@@ -13625,10 +13609,6 @@
   "M_BY_DOING",
   "M_OPTIONAL",
   "T_ATTACKS"
- ],
- "BS35-057": [
-  "A_BP_PLUS",
-  "C_LEVEL"
  ],
  "BS35-058": [
   "C_LEVEL",

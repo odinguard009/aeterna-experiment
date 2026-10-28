@@ -555,7 +555,7 @@ def spirit_paragraph_main(p, card, rush):
             e = {'trigger': 'STATIC', 'bp': bp(mm.group(1)), 'to': 'own', 'attackingOnly': True}
             if lv: e['lv'] = lv
             return [e], flags
-        mm = re.match(r'^(\(During (?:Attack|Block|Attack/Block)\)\s*)?If (.+?), this Spirit (?:gains|gets) \+(\d[\d,]*) ?BP\.?$', p, re.I)
+        mm = re.match(r'^(\(During (?:Attack|Block|Attack/Block)\)\s*)?(?:\(Permanent\)\s*)?(?:If|While) (.+?), this Spirit (?:gains|gets) \+(\d[\d,]*) ?BP\.?$', p, re.I)      # v0.181 old '(Permanent) While <cond>, this spirit gets +N BP' reads like 'If'
         cond = (all_have_cond(mm.group(2)) or (COND_HOOK(mm.group(2)) if COND_HOOK else None)) if mm else None
         if cond:      # v0.131 conditional static BP (house reading of allHave: no card on the Field = not met); v0.166 "(During Attack)" prefix and the v2 condition reader
             e = {'trigger': 'STATIC', 'bp': bp(mm.group(3)), 'to': 'self', 'if': cond}
@@ -568,6 +568,12 @@ def spirit_paragraph_main(p, card, rush):
             e = [{'trigger': 'STATIC', 'flag': 'CANT_' + mm.group(1).upper(), 'to': 'self'}]
             if lv: e[0]['lv'] = lv
             return e, flags
+        mm = re.match(r'^\(Permanent\)\s*(?:All )?"([^"]+)" (?:family )?spirits you control (?:gain|get) \+(\d[\d,]*) ?BP\.?$', p, re.I)
+        if mm:      # v0.181 old wording '(Permanent) All "Winged Beast" spirits you control get +1000BP' = STATIC own BP for a family
+            if rush: raise Review('Rush with a constant effect')
+            e = {'trigger': 'STATIC', 'bp': bp(mm.group(2)), 'to': 'own', 'match': {'family': [mm.group(1)]}}
+            if lv: e['lv'] = lv
+            return [e], flags
         if re.match(r"^Cards can't be discarded from either (?:player's )?deck\.?$", p, re.I):      # v0.180 STATIC flag NO_DECK_DISCARD
             e = [{'trigger': 'STATIC', 'flag': 'NO_DECK_DISCARD', 'to': 'self'}]
             if lv: e[0]['lv'] = lv
