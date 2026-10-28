@@ -550,7 +550,7 @@ REVEAL_REST = re.compile(r'\.\s*(return (?:any|the) remaining cards? to ' + _DBO
 REVEAL_IF = re.compile(r'^if (?:that card|that|it)(?: is|\'s|’s) (.+?), add it to (?:the |your |you )?hand$', re.I)      # v0.75: one revealed card
 REVEAL_IF_DEPLOY = re.compile(r'^if (?:that card|that|it|the revealed card)(?: is|\'s|’s) (.+?),\s*(?:you can |you may )?summon it(,? without paying the cost)?$', re.I)
 DIFF_NAME = r"(?: with (?:a )?(?:card )?name different (?:from|to) this (?:spirit|nexus)'?s)?"
-REVEAL_NP = re.compile(r'^(?:an?|one) (?:(?P<col>' + COL + r') )?(?:cost (?P<cost>\d+) or less )?(?:"(?P<fam>[^"]+(?:"\s*/\s*"[^"]+)*)" family )?(?:(?P<kind>spirit|nexus|magic|brave) )?card' + DIFF_NAME + r'$')
+REVEAL_NP = re.compile(r'^(?:an?|one) (?:(?P<col>' + COL + r') )?(?:cost (?P<cost>\d+) or less |cost (?P<ge>\d+) or more )?(?:"(?P<fam>[^"]+(?:"\s*/\s*"[^"]+)*)" family )?(?:(?P<kind>spirit|nexus|magic|brave) )?card(?: with (?P<kw>amplify|legacy|clash|rumble|current|shamanism))?' + DIFF_NAME + r'$')
 
 
 def reveal_np(np):
@@ -567,12 +567,14 @@ def reveal_np(np):
     if re.fullmatch(r'(?:an?|one) saga brave cards?', x): return {'family': ['Saga'], 'type': 'Brave'}, False
     m = REVEAL_NP.match(x)
     if not m: raise Review('v2 reveal: card phrase ' + np.strip()[:60])
-    if not (m.group('fam') or m.group('kind') or m.group('col') or m.group('cost')): raise Review('v2 reveal: any card')
+    if not (m.group('fam') or m.group('kind') or m.group('col') or m.group('cost') or m.group('ge') or m.group('kw')): raise Review('v2 reveal: any card')
     match = {}
     if m.group('fam'): match['family'] = [f.strip() for f in re.findall(r'"([^"]+)"', np)]
     if m.group('kind'): match['type'] = m.group('kind').capitalize()
     if m.group('col'): match['color'] = m.group('col')
     if m.group('cost'): match['costLe'] = int(m.group('cost'))
+    if m.group('ge'): match['costGe'] = int(m.group('ge'))      # v0.184
+    if m.group('kw'): match['keyword'] = m.group('kw').capitalize()      # v0.184 'a Spirit card with Amplify'
     return match, 'name different' in x
 
 

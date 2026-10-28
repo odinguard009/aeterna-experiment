@@ -44631,6 +44631,7 @@
  ],
  "26RBS01-049": [
   "T_SUMMONED",
+  "C_LEVEL",
   "K_AMPLIFY"
  ],
  "26RBS01-050": [
@@ -47468,6 +47469,7 @@
  ],
  "26RSD04-003": [
   "A_EXHAUST",
+  "C_LEVEL",
   "K_STANDARD_INVOKE"
  ],
  "26RSD04-004": [

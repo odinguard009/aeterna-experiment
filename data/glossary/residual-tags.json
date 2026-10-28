@@ -38246,10 +38246,6 @@
   "M_OPTIONAL",
   "T_ATTACKS"
  ],
- "26RBS01-049": [
-  "K_AMPLIFY",
-  "T_SUMMONED"
- ],
  "26RBS01-055": [
   "C_LEVEL",
   "K_AMPLIFY",
@@ -40028,10 +40024,6 @@
   "K_STANDARD_INVOKE",
   "M_UP_TO",
   "T_SUMMONED"
- ],
- "26RSD04-003": [
-  "A_EXHAUST",
-  "K_STANDARD_INVOKE"
  ],
  "26RSD04-004": [
   "A_SYMBOL",
