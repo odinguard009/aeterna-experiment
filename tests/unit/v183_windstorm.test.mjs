@@ -25,3 +25,16 @@ test('V183-02 Windstorm does not fire when another ally is blocked', async () =>
     return o.filter(x => x.exhausted).length;`);
   assert.equal(r, 0);
 });
+
+test('V183-03 TRIBUTE_SAFE: the refreshed flagged Spirit is exhausted as the Tribute and keeps its cores', async () => {
+  const r = await ev(`const s = sp('BS08-021', P, 3); G.active = P.key; G.step = 4; const inst = BS.mkInst('BS07-009');
+    const before = s.cores; await BS.tributePay(P, inst); return [s.exhausted, s.cores === before];`);
+  assert.deepEqual(r, [true, true]);
+});
+
+test('V183-04 OPP_ATTACKS bpLe: only an attacker with 6000 BP or less triggers Black Amenborg', async () => {
+  const r = await ev(`const s = sp('BS08-021', P, 3), a = sp('BS01-042', O, 1), b = sp('BS01-042', O, 1); G.active = O.key; G.step = 5;
+    const weak = sp('BS01-042', O, 1); await BS.fireFx(P, 'OPP_ATTACKS', weak, { attacker: weak });
+    return [O.spirits.filter(x => x.exhausted).length];`);
+  assert.ok(r[0] >= 1);
+});

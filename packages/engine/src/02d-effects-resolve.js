@@ -49,7 +49,7 @@ function fxValid(it) {
   if (!isMir && !fromHand && e.lv && !e.lv.includes(dead ? f.lostLv + lvBase(CARDS[f.id]) : lvNo(f))) return false;
   if (e.oc && (dead || !ocActive(f))) return false;
   if (e.braved && !f.brave) return false;
-  if ((trg === 'ALLY_ATTACKS' || trg === 'OPP_ATTACKS' || trg === 'ALLY_DESTROYS' || trg === 'ALLY_BLOCKED' || trg === 'ALLY_SUMMONED' || trg === 'ALLY_LIFE_HIT' || trg === 'ALLY_LOST' || trg === 'SOUL_PLACED' || trg === 'ALLY_BATTLE_WIN' || trg === 'MAGIC_USED') && !(subj && fxMatch(CARDS[subj.id], e.match))) return false;
+  if ((trg === 'ALLY_ATTACKS' || trg === 'OPP_ATTACKS' || trg === 'ALLY_DESTROYS' || trg === 'ALLY_BLOCKED' || trg === 'ALLY_SUMMONED' || trg === 'ALLY_LIFE_HIT' || trg === 'ALLY_LOST' || trg === 'SOUL_PLACED' || trg === 'ALLY_BATTLE_WIN' || trg === 'MAGIC_USED') && !(subj && fxMatch(CARDS[subj.id], e.match, subj))) return false;
   if (e.subjBraved && !(subj && subj.brave && [subj, subj.brave].some(x => (CARDS[x.id].families || []).includes(e.subjBraved)))) return false;
   if (e.self && subj !== f && (trg === 'SOUL_PLACED' || trg === 'ALLY_LIFE_HIT' || trg === 'ALLY_BLOCKED')) return false;
   if (e.other && subj === f) return false;

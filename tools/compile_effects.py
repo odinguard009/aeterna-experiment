@@ -324,7 +324,7 @@ BRAVED_PARA = re.compile(r'^(?:\[When Braved\]|When Braved|During (?:Spirit )?Br
 # {"step": <STEPS name>, "oppTurn": false|true} (Either = no oppTurn). The legacy forms above stay as they are.
 STEP_HEAD = re.compile(r'^\((Your|Opposing|Either) (Start|Core|Draw|Refresh|Main|Attack|End) Step\)\s*')
 WIN_KEYS = ('step', 'attackStep', 'oppTurn')
-OPP_ATT_BODY = re.compile(r'^When an opposing (?:Cost (\d+) or less )?Spirit(/Ultimate)? attacks,\s*')
+OPP_ATT_BODY = re.compile(r'^When an opposing (?:Cost (\d+) or less |(\d+) BP or less )?Spirit(/Ultimate)? attacks,\s*')
 ALLY_ATT_BODY = re.compile(r'^When (?:one of )?your (?:"([^"]+)" family |(Red|Purple|Green|White|Yellow|Blue) )?Spirits? attacks?,\s*')
 ALLY_SUMMON_HEAD = re.compile(r'^When your (?:(?P<col>Red|Purple|Green|White|Yellow|Blue) |(?P<fam>"[^"]+"(?:\s*/\s*"[^"]+")*) family |"(?P<nm>[^"]+)"-named |[Cc]ost (?P<cn>\d+) or (?P<cd>more|less) )?(?P<ty>Spirit|Ultimate)s? (?:is|are) summoned,\s*')      # v0.181
 OWN_BP_BODY = re.compile(r'^(?:All (?:of )?your (?:"([^"]+)" family )?Spirits (?:with (?P<kw>[A-Z][A-Za-z]+) )?(?:gain|get)|Give all your (?:"([^"]+)" family )?Spirits) \+(\d[\d,]*) ?BP\.?$', re.I)      # v0.181 also 'Give all your "X" family Spirits +N BP'
@@ -352,8 +352,9 @@ def step_window(p, card, lv, rush):
         e, _ = trig_effects(aw[0], card, ['ALLY_BATTLE_WIN'], aw[1] or None, lv, rush, flags, aw[2] or None)
     mm = None if e is not None else OPP_ATT_BODY.match(body)
     if mm and step == 'ATTACK' and who != 'Your':
-        tm = {} if mm.group(2) else {'noUlt': True}
+        tm = {} if mm.group(3) else {'noUlt': True}
         if mm.group(1): tm['costLe'] = int(mm.group(1))
+        if mm.group(2): tm['bpLe'] = int(mm.group(2))      # v0.183
         e, _ = trig_effects(body[mm.end():], card, ['OPP_ATTACKS'], tm, lv, rush, flags)
     mm = None if e is not None else ALLY_ATT_BODY.match(body)
     if mm and step == 'ATTACK' and who != 'Opposing':
@@ -636,6 +637,11 @@ def spirit_paragraph_main(p, card, rush):
         if mm:      # v0.170 printed "can't attack" / "can't block" as a STATIC flag (the Attack Step head only names when it matters)
             if rush: raise Review('Rush with a can\'t attack/block flag')
             e = [{'trigger': 'STATIC', 'flag': 'CANT_' + mm.group(1).upper(), 'to': 'self'}]
+            if lv: e[0]['lv'] = lv
+            return e, flags
+        if re.fullmatch(r'When this Spirit becomes the target of Tribute, by exhausting this Spirit, (?:treat all cores on this Spirit as being sent to the designated place|you can summon without (?:using )?Tribute)\.?', p, re.I):      # v0.183 STATIC TRIBUTE_SAFE (engine tributePay)
+            if rush: raise Review('Rush with a Tribute flag')
+            e = [{'trigger': 'STATIC', 'flag': 'TRIBUTE_SAFE', 'to': 'self'}]
             if lv: e[0]['lv'] = lv
             return e, flags
         mm = re.match(r'^While you control (two|three|\d) or (?:less|fewer) Spirits, (?:this Spirit is treated as being at|treat this Spirit as being (?:at|on)) \[?LV3\]?\.?$', p, re.I)

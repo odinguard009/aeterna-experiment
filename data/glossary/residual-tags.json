@@ -2078,11 +2078,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "BS08-021": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "M_OPTIONAL"
- ],
  "BS08-022": [
   "A_REFRESH",
   "C_LEVEL"
@@ -6101,10 +6096,6 @@
   "A_EXHAUST",
   "C_LEVEL",
   "C_OPP_TURN"
- ],
- "BS19-036": [
-  "A_REFRESH",
-  "C_LEVEL"
  ],
  "BS19-038": [
   "A_REFRESH",
