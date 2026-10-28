@@ -113,8 +113,8 @@ function allHaveOK(owner, q) {
 })();
 Object.assign(FX_ACTIONS, {
   DESTROY_OWN: {
-    chk: a => hasMatch(a.match),
-    txt: a => 'destroy one of your matching Spirits',
+    chk: a => hasMatch(a.match) && (a.voidByCost == null || a.voidByCost === true),
+    txt: a => 'destroy one of your matching Spirits' + (a.voidByCost ? ', then put cores from the Void to your Reserve equal to its cost' : ''),
     cands: (c, a) => c.p.spirits.filter(s => fxMatch(CARDS[s.id], a.match)),
     can: (c, a) => FX_ACTIONS.DESTROY_OWN.cands(c, a).length > 0,
     run: async (c, a) => {
@@ -125,6 +125,7 @@ Object.assign(FX_ACTIONS, {
       if (!t || !c.p.spirits.includes(t)) { c.ctx.did = false; return; }
       log(`${CARDS[c.src.id].name}: ${poss(c.p)} ${CARDS[t.id].name} is destroyed.`);
       removeSpirit(c.p, t, 'destroyed', false); checkDepletion(c.p);
+      if (a.voidByCost) { const m = takeFromVoid(c.p, CARDS[t.id].cost); c.p.reserve.n += m; log(`${CARDS[c.src.id].name}: ${m} core${m === 1 ? '' : 's'} move from the Void to the Reserve.`); }      // v0.183 (schema 46)
     } } });
 Object.assign(FX_ACTIONS, {
   DESTROY_PICKED: { chk: () => true, txt: () => 'destroy that Spirit',

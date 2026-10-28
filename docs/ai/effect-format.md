@@ -83,3 +83,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v43 (v0.183.0, Lane K): `SUMMON_HAND` also takes `noTribute:true` (needs `pay:true`): summon from Hand paying the cost but without using Tribute (ACTIVATE, Once per turn, Your Main Step).
 - v44 (v0.183.0, Lane K): `DESTROY_EVERY` field `cost` renamed `costIs` (the strict walker reads `cost` as a nested action).
 - v45 (v0.183.0, Lane K): `DESTROY_NEXUS_ALL {opposing?, lv?, withCore?}` destroys every matching Nexus (both sides unless `opposing`).
+- v46 (v0.183.0, Lane K): `DESTROY_OWN {voidByCost?}` sends the destroyed Spirit's cost in Core from the Void to the reserve.
