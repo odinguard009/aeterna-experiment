@@ -457,6 +457,13 @@ def spirit_paragraph_main(p, card, rush):
         return [e], flags
     # trigger
     trig, tmatch, extra = None, None, None
+    mm = re.match(r'^\(During Attack/Block\)\s*(This Spirit (?:gains|gets) \+\d[\d,]* ?BP)\.\s*(At the end of battle, .+)$', p, re.I)
+    if mm:      # v0.173 "(During Attack/Block) This Spirit gains +N BP. At the end of battle, X": the BP is static, the end-of-battle part fires for the attacker and the blocker
+        pre = ''.join('[LV%d]' % x for x in lv) + ' ' if lv else ''
+        e1, f1 = spirit_paragraph_main(pre + '(During Attack/Block) ' + mm.group(1), card, rush)
+        e2, f2 = spirit_paragraph_main(pre + '(When Attacks/Blocks) ' + mm.group(2), card, rush)
+        if f1 or f2: raise Review('Attack/Block pair with card flags: ' + p[:60])
+        return e1 + e2, flags
     p = re.sub(r'^\(During (Attack|Block)s\)', r'(During \1)', p)      # v0.169 "(During Blocks)" / "(During Attacks)" are the same heads as the singular ones
     ns = re.match(r"^\(Can't Stack\)\s*", p, re.I)
     nostack = bool(ns and any(re.match(r'^' + rx_ + r'\s*', p[ns.end():]) for rx_, _ts in TRIGGERS))
@@ -502,6 +509,11 @@ def spirit_paragraph_main(p, card, rush):
             e = {'trigger': 'STATIC', 'bp': bp(mm.group(1)), 'to': 'self', 'attackingOnly': True}
             if lv: e['lv'] = lv
             return [e], flags
+        mm = re.match(r'^\(During Attack/Block\)\s*This Spirit (?:gains|gets) \+(\d[\d,]*) ?BP\.?$', p, re.I)
+        if mm:      # v0.173: (During Attack/Block) = active while this Spirit is the attacker or the blocker (engine fightingOnly)
+            e = {'trigger': 'STATIC', 'bp': bp(mm.group(1)), 'to': 'self', 'fightingOnly': True}
+            if lv: e['lv'] = lv
+            return [e], flags
         mm = re.match(r'^\(During Block\)\s*This Spirit (?:gains|gets) \+(\d[\d,]*) ?BP\.?$', p, re.I)
         if mm:      # v0.159: (During Block) = active as long as this Spirit is blocking
             e = {'trigger': 'STATIC', 'bp': bp(mm.group(1)), 'to': 'self', 'blockingOnly': True}
@@ -525,11 +537,11 @@ def spirit_paragraph_main(p, card, rush):
             e = {'trigger': 'STATIC', 'bp': bp(mm.group(1)), 'to': 'own', 'attackingOnly': True}
             if lv: e['lv'] = lv
             return [e], flags
-        mm = re.match(r'^(\(During (?:Attack|Block)\)\s*)?If (.+?), this Spirit (?:gains|gets) \+(\d[\d,]*) ?BP\.?$', p, re.I)
+        mm = re.match(r'^(\(During (?:Attack|Block|Attack/Block)\)\s*)?If (.+?), this Spirit (?:gains|gets) \+(\d[\d,]*) ?BP\.?$', p, re.I)
         cond = (all_have_cond(mm.group(2)) or (COND_HOOK(mm.group(2)) if COND_HOOK else None)) if mm else None
         if cond:      # v0.131 conditional static BP (house reading of allHave: no card on the Field = not met); v0.166 "(During Attack)" prefix and the v2 condition reader
             e = {'trigger': 'STATIC', 'bp': bp(mm.group(3)), 'to': 'self', 'if': cond}
-            if mm.group(1): e['blockingOnly' if re.search(r'block', mm.group(1), re.I) else 'attackingOnly'] = True      # v0.168 "(During Block)" prefix
+            if mm.group(1): e['fightingOnly' if '/' in mm.group(1) else 'blockingOnly' if re.search(r'block', mm.group(1), re.I) else 'attackingOnly'] = True      # v0.168 "(During Block)" prefix; v0.173 "(During Attack/Block)" = fightingOnly
             if lv: e['lv'] = lv
             return [e], flags
         mm = re.match(r"^(?:\((?:Your|Opposing|Either) Attack Step\)\s*)?This Spirit can't (attack|block)(?: opposing Spirits)?\.?$", p, re.I)

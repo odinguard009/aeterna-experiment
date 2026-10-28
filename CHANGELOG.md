@@ -4,6 +4,12 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.173.0
+- Lane: K
+- **Lane K: 4 more cards complete (2 Standard, 2 older), 917 of 8,709; compiler only, no engine change: "(During Attack/Block)" static BP and "send N cores from any opposing Spirits to the Reserve".** Compiler: `(During Attack/Block) This Spirit gains +N BP` (STATIC `fightingOnly`, plain, conditional and followed by an "At the end of battle" sentence) and `Send N core(s) from any opposing Spirit(s)[/Ultimate(s)] to the Reserve` (`OPP_CORES_TO_RESERVE` `total`, up to 5). Cards: Puppislope, Euus-Callus, Plasbat, Cursegargoyle.
+  - Not built this run: the Trash / Void variants of the send-cores sentence (a different action each), "for each ..., send a core" (needs a per-count loop), 7-core and conditional forms.
+  - Checked: loop, promotion smoke 4 / 4, `card_verify` on all four cards. Not checked: full pre-push set and Regression (CI), a real device. Revert note: `git revert` the v0.173.0 commit.
+
 ## v0.172.0
 - Lane: K
 - **Lane K: 3 more cards complete (3 older), 913 of 8,709; two targeted opposing-Spirit marks: "that Spirit can't block" (this battle) and "can't refresh on the next Refresh Step".** Engine: `CANT_BLOCK_OPP` (marker `noBlockB`, honoured by `canBlockState`) and `NO_REFRESH_OPP` (marker `noRefreshT`, honoured by the Refresh Step, with a log line). Compiler: the two sentences. The build now strips full-line comments from the shipped `index.html` (sources unchanged) to stay inside the size budget B01. Cards: The FairyKnight Peter, Kaimeiju, Janome-Shielder. Effect format v17 (addition only).

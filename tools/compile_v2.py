@@ -227,6 +227,8 @@ def clause(x):
     m = re.match(r'^give (.+?) -(\d[\d,]*) ?bp' + THIS_TURN + '$', x) or re.match(r'^(.+?) (?:gets|gains|loses) -?(\d[\d,]*) ?bp' + THIS_TURN + '$', x)
     if m and selector(m.group(1)) and (x.startswith('give') or 'gets -' in x or 'gains -' in x or 'loses' in x):
         return v_bp_minus(selector(m.group(1)), bpv(m.group(2)))
+    m = re.match(r"^send (a|one|two|three|four|five|\d) cores? from any opposing spirits?(?:\(s\))?(?:/ultimates?)? to (?:the|their|your opponent'?s) reserve$", x)
+    if m and n_of(m.group(1)) <= 5: return [{'do': 'OPP_CORES_TO_RESERVE', 'total': n_of(m.group(1))}]      # v0.173: each core may come from a different Spirit (engine total form)
     m = re.match(r'^send (a|one|two|three|\d) cores? from (.+?) to (?:the|its owner\'?s|their|the opposing) reserve$', x)
     if m and selector(m.group(2)): return v_cores_to_reserve(n_of(m.group(1)), selector(m.group(2)))
     raise Review('v2 clause: ' + x[:120])

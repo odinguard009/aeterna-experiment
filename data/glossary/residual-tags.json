@@ -1924,10 +1924,6 @@
   "M_UP_TO",
   "T_SUMMONED"
  ],
- "BS07-012": [
-  "C_LEVEL",
-  "T_DESTROYED"
- ],
  "BS07-013": [
   "C_LEVEL",
   "T_DESTROYED"
@@ -8391,13 +8387,6 @@
   "K_RUSH",
   "M_BY_DOING",
   "T_ATTACKS"
- ],
- "BS24-017": [
-  "A_DRAW",
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "T_DESTROYED",
-  "T_DESTROYED_OPP"
  ],
  "BS24-018": [
   "C_LEVEL",
@@ -39701,9 +39690,6 @@
   "M_OPTIONAL",
   "T_SUMMONED"
  ],
- "26RBS02-013": [
-  "A_BP_PLUS"
- ],
  "26RBS02-014": [
   "C_LEVEL",
   "T_ATTACKS"
@@ -40347,10 +40333,6 @@
   "M_THEN",
   "S1_ALL_HAVE",
   "T_ATTACKS"
- ],
- "26RBS03-062": [
-  "A_BP_PLUS",
-  "C_LEVEL"
  ],
  "26RBS03-067": [
   "A_DRAW",

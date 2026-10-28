@@ -45083,7 +45083,8 @@
   "M_OPTIONAL"
  ],
  "26RBS02-013": [
-  "A_BP_PLUS"
+  "A_BP_PLUS",
+  "C_LEVEL"
  ],
  "26RBS02-014": [
   "T_ATTACKS",

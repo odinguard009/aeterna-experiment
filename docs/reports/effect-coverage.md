@@ -47,7 +47,7 @@
 | C_CONTROL | condition | If you control (incl. Soul State) a named card | controlName / hasName | wired | 194 |
 | C_ONCE | condition | (Once per Turn: Same Name) | once / sameName | wired | 283 |
 | C_OPP_TURN | condition | Opposing turn / Your turn | oppTurn | partial | 342 |
-| C_LEVEL | condition | [LV1][LV2] level gating | lv | wired | 5846 |
+| C_LEVEL | condition | [LV1][LV2] level gating | lv | wired | 5847 |
 | S_MUST_BLOCK | static | Must block if possible | STATIC flag MUST_BLOCK | wired | 81 |
 | S_NO_RETURN | static | Can't be returned from the Field | STATIC flag NO_RETURN | wired | 58 |
 | S_CORES_DRAW | static | Draw when cores are sent to this Spirit | STATIC flag CORES_DRAW | wired | 1 |
