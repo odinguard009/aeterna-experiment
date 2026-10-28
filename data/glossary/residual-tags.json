@@ -137,10 +137,6 @@
   "A_BP_PLUS",
   "C_LEVEL"
  ],
- "BS01-076": [
-  "A_BP_PLUS",
-  "C_LEVEL"
- ],
  "BS01-078": [
   "C_LEVEL",
   "T_ATTACKS"
@@ -2434,11 +2430,6 @@
  "BS09-001": [
   "C_LEVEL"
  ],
- "BS09-002": [
-  "A_DESTROY_BP",
-  "C_LEVEL",
-  "T_ALLY_SUMMONED"
- ],
  "BS09-003": [
   "A_BP_PLUS",
   "C_LEVEL"
@@ -2447,11 +2438,6 @@
   "C_LEVEL",
   "M_OPTIONAL",
   "T_ATTACKS"
- ],
- "BS09-006": [
-  "A_DESTROY_BP",
-  "C_LEVEL",
-  "T_ALLY_SUMMONED"
  ],
  "BS09-007": [
   "A_TRASH_TO_RESERVE",
@@ -3389,12 +3375,6 @@
   "K_BRAVE",
   "T_ATTACKS",
   "T_DURING_BRAVE"
- ],
- "BS11-061": [
-  "A_BP_PLUS",
-  "A_DESTROY_BP",
-  "C_LEVEL",
-  "T_ALLY_SUMMONED"
  ],
  "BS11-062": [
   "A_RETURN_TRASH",
@@ -7208,11 +7188,6 @@
   "A_REMOVED_ZONE",
   "C_LEVEL",
   "T_SUMMONED"
- ],
- "BS22-004": [
-  "A_DESTROY_BP",
-  "C_LEVEL",
-  "T_ALLY_SUMMONED"
  ],
  "BS22-007": [
   "A_DESTROY_BP",
@@ -18545,10 +18520,6 @@
   "M_BY_DOING",
   "M_OPTIONAL",
   "T_ATTACKS"
- ],
- "BS43-011": [
-  "C_LEVEL",
-  "T_ALLY_SUMMONED"
  ],
  "BS43-013": [
   "A_MILL",

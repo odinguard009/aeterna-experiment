@@ -668,6 +668,8 @@ def cond_of(x):
     m = re.fullmatch(r'you control (?:an?|any) (exhausted )?"([^"]+)"', x, re.I)      # v0.167 a card name, optionally exhausted (engine ctrl.name)
     if m and m.group(1):
         return {'ctrl': {'n': 1, 'type': 'Spirit', 'name': m.group(2).strip(), 'exhausted': True}}
+    m = re.fullmatch(r'you control (?:an?|any) "([^"]+)" (spirit|nexus)', x, re.I)      # v0.181 old wording: a quoted family without the word "family" ('While you control an "Armored Dragon" spirit')
+    if m and m.group(2).lower() == 'spirit': return {'ctrl': {'n': 1, 'type': 'Spirit', 'family': m.group(1)}}
     m = CTRL_ANY.fullmatch(x)
     if m:
         q = {'n': 1, 'type': 'Both' if '/' in m.group(4) else m.group(4).capitalize()}
