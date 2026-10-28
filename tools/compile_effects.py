@@ -476,6 +476,12 @@ def spirit_paragraph_main(p, card, rush):
     for rx, ts, ex in ([] if trig else BATTLE_HEADS):
         mm = re.match(r'^' + rx + r'\s*', p)
         if mm: trig, extra, p = ts, ex, p[mm.end():]; break
+    mm = None if trig else re.match(r'^This Spirit (?:gains|gets) \+(\d[\d,]*) ?BP for each card in your Hand\.?$', p, re.I)
+    if mm:      # v0.180 STATIC perHand
+        if rush: raise Review('Rush with a static effect')
+        e = {'trigger': 'STATIC', 'bp': bp(mm.group(1)), 'to': 'self', 'perHand': True}
+        if lv: e['lv'] = lv
+        return [e], flags
     mm = None if trig else PER_STATIC.match(p)
     if mm:      # v0.72 static "for each X you control" BP (with (During Attack): only while attacking)
         e = {'trigger': 'STATIC', 'bp': bp(mm.group(7)), 'to': 'self'}

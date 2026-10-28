@@ -2938,13 +2938,6 @@
   "K_HOLY_LIFE",
   "T_ATTACKS"
  ],
- "BS10-049": [
-  "A_BP_PLUS",
-  "A_RETURN_TRASH",
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "BS10-050": [
   "A_LIFE_TO_RESERVE",
   "C_LEVEL",

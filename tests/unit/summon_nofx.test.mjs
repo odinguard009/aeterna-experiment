@@ -66,3 +66,13 @@ test('NF05 RETURN_TRASH Magic (BS02-072): returns a Magic card, not a Spirit, fr
   });
   assert.deepEqual(r, [['Magic'], 1]);
 });
+
+test('NF06 STATIC perHand (BS10-049): +1000 BP for each card in the owner Hand', async () => {
+  const r = await g.page.evaluate(() => {
+    BS.testSetup(); const P = BS.G.p.player; P.spirits = []; P.hand = [];
+    const t = BS.mkInst('BS10-049'); t.cores = 2; P.spirits.push(t);
+    const a = BS.bpOf(t); P.hand = [BS.mkInst('NF-G'), BS.mkInst('NF-G'), BS.mkInst('NF-G')];
+    return BS.bpOf(t) - a;
+  });
+  assert.equal(r, 3000);
+});

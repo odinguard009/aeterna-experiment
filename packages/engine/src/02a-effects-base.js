@@ -195,7 +195,7 @@ function staticBp(i) {
       if (e.fightingOnly && G.attacker !== i && G.blocker !== i) continue;      // v0.168 "attacking/blocking Spirits"
       if (!fxIf(o, opp, e.if)) continue;
       if (e.noStack) { const k = CARDS[src.id].name + ':' + e.bp + ':' + JSON.stringify(e.match || null); if (seenNS.has(k)) continue; seenNS.add(k); }      // v0.168 (Can't Stack): one copy counts
-      sum += e.per ? e.bp * perCount(o, e.per) : e.bp;      // v0.72 "For each X you control, this Spirit gains +N BP" (per)
+      sum += e.perHand ? e.bp * o.hand.length : e.per ? e.bp * perCount(o, e.per) : e.bp;      // v0.72 "For each X you control, this Spirit gains +N BP" (per)
     }
   }
   return sum;
