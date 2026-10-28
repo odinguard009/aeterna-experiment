@@ -4,6 +4,15 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.182.0
+- Lane: K
+- **53 more cards complete (1,072 -> 1,125): Tribute, Assault, Flash use, hand-cost and attack-Life locks**
+  - New engine pieces (effect schema 37): card key `tribute` (Cost N or more -> Void / family -> Trash; playable only with a matching Spirit, free summons skip it), action `ASSAULT {n}`, action `USE_FLASH`, `REVEAL_DEPLOY` rest options, STATIC flags `HAND_COST` and `NO_ATTACK_LIFE`.
+  - Compiler: Team-only cards, "also treated as" colours, any-Nexus conditions, once-per-turn suffix, LV clamp, `RETURN_TRASH` by family.
+  - Readings to know: Tribute choice is by card for the player, the CPU gives up the Spirit with the fewest cores; Assault is capped per turn on the Spirit itself; `HAND_COST` sets the base cost to exactly N (a cheaper `costAlt` still wins); `NO_ATTACK_LIFE` only stops unblocked attacks and holds while its card is on either field; CPU `USE_FLASH` choice is a heuristic; `"X"-named` matches by substring.
+  - Tests: tribute, use_flash, assault, attack_life (incl. HAND_COST). Budgets raised on purpose: B01 1050 KB, B02 290 KB.
+  - Not checked: no player-view pass or CPU sims for the new mechanics locally (Regression runs on Actions).
+
 ## v0.181.1
 - Lane: K
 - **Fix: Home Card Of The Day no longer covers the hero on windows 701-1000px wide** (tablet, phone landscape). It now sits beside / under the hero like the phone layout instead of floating over the heading and the Build A Deck button (`apps/web/mk-glue.css`). The Regression `legacy/hscroll_layout` suite had caught this: its click on Build A Deck was intercepted by `#cotd`.

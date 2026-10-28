@@ -1,7 +1,7 @@
 {
   "name": "aeterna",
   "private": true,
-  "version": "0.181.1",
+  "version": "0.182.0",
   "type": "module",
   "workspaces": [
     "packages/*",
