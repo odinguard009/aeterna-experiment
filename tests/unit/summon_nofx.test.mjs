@@ -54,3 +54,15 @@ test('NF04 NO_DECK_DISCARD (BS19-007): MILL does nothing while the lock is on th
   });
   assert.deepEqual(r, [0, 2]);
 });
+
+test('NF05 RETURN_TRASH Magic (BS02-072): returns a Magic card, not a Spirit, from the Trash', async () => {
+  const r = await g.page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant'; const G = BS.G, P = G.p.player;
+    P.cpu = true; P.spirits = []; P.hand = []; const mg = BS.mkInst('BS01-117');
+    P.trash = [BS.mkInst('NF-G'), mg];
+    const t = BS.mkInst('BS02-072'); t.cores = 1; P.spirits.push(t);
+    await BS.fireFx(P, 'SUMMONED', t, {});
+    return [P.hand.map(x => BS.CARDS[x.id].type), P.trash.length];
+  });
+  assert.deepEqual(r, [['Magic'], 1]);
+});

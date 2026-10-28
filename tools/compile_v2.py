@@ -345,11 +345,12 @@ def own_grammar(s, ctx=None):
         if m.group(3): mt['color'] = m.group(3).lower()
         if m.group(5): mt['keyword'] = m.group(5).title()
         return [{'do': 'RETURN_TRASH', 'match': mt}]
-    m = re.match(r'^(?:you can )?return an? spirit card(?: with ([a-z]+))? from your trash to (?:the|your) hand$', x, re.I)
-    if m:      # v0.176: untargeted pick from the Trash (engine RETURN_TRASH, match type Spirit + optional keyword)
-        mt = {'type': 'Spirit'}
-        if m.group(1): mt['keyword'] = m.group(1).title()
-        return [{'do': 'RETURN_TRASH', 'match': mt}]
+    m = re.match(r'^(?:you can )?return an? (spirit|magic) card(?: with ([a-z]+))? from your trash to (?:the|your) hand$', x, re.I)
+    if m:      # v0.176: untargeted pick from the Trash (engine RETURN_TRASH, match type Spirit + optional keyword); v0.180 "a Magic card"
+        mt = {'type': m.group(1).title()}
+        anyT = m.group(1).lower() != 'spirit'      # RETURN_TRASH picks only Spirits unless anyType
+        if m.group(2): mt['keyword'] = m.group(2).title()
+        return [dict({'do': 'RETURN_TRASH', 'match': mt}, **({'anyType': True} if anyT else {}))]
     m = re.match(r'^(?:you can )?return an? ((?:"[^"]+"/)*"[^"]+")-named spirit card from your trash to (?:the|your) hand$', x, re.I)
     if m: return [{'do': 'RETURN_TRASH', 'match': {'name': re.findall(r'"([^"]+)"', m.group(1))}}]      # v0.177 '"X"-named Spirit card' (Spirit-only pick, name includes X)
     m = OWN_REFRESH.match(x)

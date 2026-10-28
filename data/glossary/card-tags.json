@@ -10270,6 +10270,12 @@
   "K_BRAVE",
   "K_ARMOR"
  ],
+ "X13-09": [
+  "T_SUMMONED",
+  "A_TRASH_TO_RESERVE",
+  "A_RETURN_TRASH",
+  "C_LEVEL"
+ ],
  "BS24-001": [
   "A_SYMBOL",
   "C_LEVEL",

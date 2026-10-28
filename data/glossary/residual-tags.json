@@ -460,12 +460,6 @@
   "C_LEVEL",
   "T_DESTROYED"
  ],
- "BS02-072": [
-  "A_RETURN_TRASH",
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "BS02-073": [
   "A_VOID",
   "C_LEVEL",
