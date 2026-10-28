@@ -5684,11 +5684,36 @@
   "image": "BS36-050.jpg",
   "block": "36",
   "saga": 7,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (Your Main Step) When your \"God-King\"/\"Ten Crown\" family Spirit is summoned, put a core from the Void to this Spirit. This effect can only be used once per turn."
+  "effects": [
+   {
+    "trigger": "ALLY_SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "match": {
+     "family": [
+      "God-King",
+      "Ten Crown"
+     ],
+     "noUlt": true
+    },
+    "once": true,
+    "actions": [
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "self"
+     }
+    ],
+    "if": {
+     "step": "MAIN",
+     "oppTurn": false
+    }
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS36-051",
@@ -10651,11 +10676,43 @@
   "image": "BS38-013.jpg",
   "block": "38",
   "saga": 7,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Summoned) Send a core from any opposing Spirits to the Reserve. If you control any Ultimate, instead, send three cores from an opposing Spirit to their Reserve."
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "OPP_CORES_TO_RESERVE",
+      "targets": 1,
+      "each": 1,
+      "if": {
+       "not": {
+        "ctrl": {
+         "n": 1,
+         "type": "Ultimate"
+        }
+       }
+      }
+     },
+     {
+      "do": "OPP_CORES_TO_RESERVE",
+      "targets": 1,
+      "each": 3,
+      "if": {
+       "ctrl": {
+        "n": 1,
+        "type": "Ultimate"
+       }
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS38-014",

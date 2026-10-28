@@ -422,6 +422,8 @@ def spirit_paragraph_main(p, card, rush):
             if lv == [1, 2] or lv == [1, 2, 3]: lv = [1]                     # LV1 is the only known level; same effect there
             else: raise Review('Nexus [LV2]+ effect, but the export has no Nexus level thresholds')
         base = 3 if card['type'] == 'Ultimate' else 1      # v0.56: Ultimate levels are printed LV3+ (engine lvBase 3)
+        top = base - 1 + max(nlv, 1)
+        if card['type'] != 'Nexus' and any(x > top for x in lv) and any(x <= top for x in lv): lv = [x for x in lv if x <= top]      # v0.184 a printed LV the card does not have (e.g. [LV1][LV2][LV3] on a 2-level Spirit) is dropped when lower levels remain
         if any(x < base or x > base - 1 + max(nlv, 1) for x in lv): raise Review(f'[LV{max(lv) if max(lv) >= base else min(lv)}] but the card has {nlv} level(s) from LV{base}')
     flags = {}
     if INVOKE_MARK_RE.search(p): return [invoke_para(p, card, lv, rush)], flags      # v0.68 Invoke
@@ -664,6 +666,8 @@ def trig_effects(p, card, trig, tmatch, lv, rush, flags, extra=None):
         p = p[mo.end():]; extra = dict(extra or {}, once=True, sameName=True)
     p = p.lstrip(); mo = re.match(r'^\(Once Per Turn\)\s*', p, re.I)
     if mo: p = p[mo.end():]; extra = dict(extra or {}, once=True)      # v0.170: the plain limit (Na-Nascita "(When Blocks) (Once Per Turn) You can refresh this Spirit"), per card, not per name
+    mo = re.search(r'\s*This effect can only be used once per turn\.?\s*$', p, re.I)
+    if mo: p = p[:mo.start()]; extra = dict(extra or {}, once=True)      # v0.184 old trailing wording of the plain once-per-turn limit
     if rush and not p: raise Review('Rush without a main effect')
     for s in sentences(p):
         a, o = action_of(s, {'trigger': trig})

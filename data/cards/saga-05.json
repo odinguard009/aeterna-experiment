@@ -6367,6 +6367,28 @@
   "saga": 5,
   "effects": [
    {
+    "trigger": "ALLY_SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "match": {
+     "color": "yellow",
+     "type": "Ultimate"
+    },
+    "once": true,
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     }
+    ],
+    "if": {
+     "step": "MAIN",
+     "oppTurn": false
+    }
+   },
+   {
     "trigger": "DESTROYED",
     "lv": [
      2
@@ -6382,11 +6404,8 @@
     ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (Your Main Step) When your Yellow Ultimate is summoned, draw a card. This effect can only be used once per turn."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS25-037",

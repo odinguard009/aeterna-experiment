@@ -6883,10 +6883,6 @@
   "M_OPTIONAL",
   "T_ATTACKS"
  ],
- "BS21-012": [
-  "C_LEVEL",
-  "T_ALLY_SUMMONED"
- ],
  "BS21-013": [
   "A_VOID",
   "C_LEVEL"
@@ -8764,11 +8760,6 @@
   "A_SYMBOL",
   "C_LEVEL",
   "K_ULTIMATE"
- ],
- "BS25-036": [
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "T_ALLY_SUMMONED"
  ],
  "BS25-037": [
   "A_BP_PLUS",
@@ -12855,12 +12846,6 @@
   "T_ALLY_LOST",
   "T_BATTLE_WIN"
  ],
- "BS34-023": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "M_REPLACEMENT",
-  "T_SUMMONED"
- ],
  "BS34-024": [
   "C_LEVEL",
   "T_ALLY_ATTACKS"
@@ -13960,11 +13945,6 @@
   "C_LEVEL",
   "M_THEN"
  ],
- "BS36-050": [
-  "A_VOID",
-  "C_LEVEL",
-  "T_ALLY_SUMMONED"
- ],
  "BS36-051": [
   "A_BP_PLUS",
   "C_LEVEL",
@@ -14654,12 +14634,6 @@
   "A_LIFE_TO_RESERVE",
   "C_LEVEL",
   "K_ULTIMATE"
- ],
- "BS38-013": [
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "M_REPLACEMENT",
-  "T_SUMMONED"
  ],
  "BS38-014": [
   "A_EXHAUST",
@@ -18342,13 +18316,6 @@
   "K_BRAVE",
   "S_UNAFFECTED",
   "T_ATTACKS"
- ],
- "BS42-RV009": [
-  "A_VOID",
-  "A_VOID_TO_LIFE",
-  "C_LEVEL",
-  "T_ALLY_SUMMONED",
-  "T_DESTROYED_OPP"
  ],
  "BS42-RV010": [
   "A_BP_MINUS",

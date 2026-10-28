@@ -157,3 +157,11 @@ test('C184-01 "also treated as a <colour> Spirit" adds a colour but keeps the pr
   const n = compile('[LV1-3] (When Summoned) If you control any Nexus, draw a card.');
   assert.deepEqual(n.effects[0].actions[0].if, { nexusGe: { n: 1 } });
 });
+
+test('C184-02 trailing "This effect can only be used once per turn." sets once; a printed LV above the card levels is dropped', () => {
+  const two = Object.assign({}, SP, { levels: SP.levels.slice(0, 2) });
+  const r = compile('[LV1][LV2][LV3] (When Summoned) Draw a card. This effect can only be used once per turn.', two);
+  assert.equal(r.review, undefined);
+  assert.equal(r.effects[0].once, true);
+  assert.deepEqual(r.effects[0].lv, [1, 2]);
+});
