@@ -4,6 +4,12 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.181.1
+- Lane: K
+- **Fix: Home Card Of The Day no longer covers the hero on windows 701-1000px wide** (tablet, phone landscape). It now sits beside / under the hero like the phone layout instead of floating over the heading and the Build A Deck button (`apps/web/mk-glue.css`). The Regression `legacy/hscroll_layout` suite had caught this: its click on Build A Deck was intercepted by `#cotd`.
+  - Tests: `cleanup_review_tests` C2 accepts a trailing letter in pack ids (BS18-X012A); `hscroll_layout` names the failing line and the click blocker in its crash message.
+  - Checked: loop, node-playwright walk of the same flow at all six viewports with the solo Card Of The Day forced, screenshot at 820px. Not checked: Regression after this version (CI), a real device. Revert note: `git revert` the v0.181.1 commit.
+
 ## v0.181.0
 - Lane: K
 - **Lane K: 51 more cards complete (1,072 of 8,709; 6,915 playable), schema v27 to v31.** Engine: conditions `selfBpGe` and `viaEffect` (v27), STATIC `DRAW_PLUS` (v28), `DESTROY keywords` and `REVEAL_PICK all` (v29), action `SET_BURST` (v30), STATIC flag `TREAT_LV3` (v31); `NO_BURST_BATTLE` and `OWN_LIFE_HIT` without an attacker qualifier.

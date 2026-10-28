@@ -244,3 +244,10 @@ html.layout-pc #view-playmat .trash2 .tr-half { container-type: size; width: 100
 html.layout-pc #view-playmat .trash2 .tr-half + .tr-half { border-top: 1px dashed var(--ae-line2, #ffffff30); }
 html.layout-pc #view-playmat .trash2 .tr-half:hover { background: #ffffff0d; }
 html.layout-pc #view-playmat .trash2 .gems { max-width: 100%; }
+
+/* v0.181.1: between a phone and a wide window (701-1000px) the 600px Card Of The Day box covered the Home hero text and its Build A Deck button; stack it under the hero like the phone layout does */
+@container fr (min-width:701px) and (max-width:1000px){
+.mk .cotd,.mk .cotd.solo{position:relative;right:auto;top:auto;width:auto;flex-direction:column;padding:0 14px;gap:12px;align-items:stretch}
+.mk .cotd .cfw{width:170px;margin:0 auto}
+.mk .cotd.solo{flex-direction:column-reverse;align-items:center}
+}
