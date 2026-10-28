@@ -658,7 +658,7 @@ def clean(text):
 
 BURST_WORD = re.compile(r'\bbursts?\b|\u263c', re.I)
 THEN_LEAD = re.compile(r'^Then,\s*(.+)$', re.I)
-AND_SPLIT = re.compile(r'^(.+?),? and ((?:draw|put|send|return|destroy|discard|exhaust|refresh|your counter)\b.+)$', re.I)
+AND_SPLIT = re.compile(r'^(.+?),? and ((?:this spirit gains|draw|put|send|return|destroy|discard|exhaust|refresh|your counter)\b.+)$', re.I)
 
 
 EOB_LEAD = re.compile(r'^at the end of (?:the |of )?battle, (.+)$', re.I)
