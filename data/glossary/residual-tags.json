@@ -9262,12 +9262,6 @@
   "S_OPP_NO_BLOCK",
   "T_SUMMONED"
  ],
- "BS26-017": [
-  "C_LEVEL",
-  "K_BURST",
-  "K_RUSH",
-  "T_ATTACKS"
- ],
  "BS26-018": [
   "C_LEVEL",
   "T_ATTACKS"
@@ -11796,10 +11790,6 @@
   "M_BY_DOING",
   "T_BATTLE_WIN",
   "T_SUMMONED"
- ],
- "BS31-077": [
-  "K_BURST",
-  "T_ATTACKS"
  ],
  "BS31-078": [
   "A_EXHAUST",

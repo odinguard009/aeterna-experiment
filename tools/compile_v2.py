@@ -515,7 +515,9 @@ def reveal_np(np):
     """one card noun phrase -> engine match + diffName; Review for forms the engine match cannot say (keywords, two kinds, no printed effects, unquoted families)"""
     x = low(np.strip())
     q = re.fullmatch(r'(?:an?|one) "([^"]+)"(?: cards?)?', np.strip(), re.I)      # v0.181 a bare quoted name: the name or the family (fxMatch ORs them)
-    if q: return {'name': [q.group(1)], 'family': [q.group(1)]}, False
+    if q:
+        if len(q.group(1)) < 3: raise Review('v2 reveal: a one/two letter quoted name matches by substring: ' + q.group(1))
+        return {'name': [q.group(1)], 'family': [q.group(1)]}, False
     q = re.fullmatch(r'(?:an?|one) exactly-named "([^"]+)"(?: cards?)?', np.strip(), re.I)
     if q: return {'name': [q.group(1)]}, False
     if re.fullmatch(r'(?:an?|one) saga brave cards?', x): return {'family': ['Saga'], 'type': 'Brave'}, False
@@ -832,6 +834,8 @@ def action_of(s, ctx):
         a, o = action_of(body, ctx)
         if any(set(cond) & set(y.get('if') or {}) for y in a): raise Review('sentence: ' + s[:140])
         return [dict(y, **{'if': dict(y.get('if') or {}, **cond)}) for y in a], o
+    if re.fullmatch(r"(?:the opponent (?:can't|cannot|can not) activate (?:their|the) (?:set )?bursts?|opposing bursts can't activate)\.?", s.strip(), re.I) and trig and trig <= {'ATTACKS', 'BLOCKS', 'BATTLE_WIN', 'BATTLES'}:
+        return [{'do': 'NO_BURST_BATTLE'}], False      # v0.181 'the opponent can't activate their Burst' in a battle trigger = this battle (engine NO_BURST_BATTLE, v0.38)
     if BURST_WORD.search(s): raise Review('Burst sentence: ' + s[:140])
     m = THEN_LEAD.match(s.strip())
     if m:      # v0.73 "Then, B." = B only when the previous action was done (CR Effect Texts "Then"; engine if.prev)

@@ -6567,6 +6567,11 @@
   "K_BURST",
   "T_DESTROYED"
  ],
+ "BS15-074": [
+  "T_ACTIVATE",
+  "K_BURST",
+  "M_THEN"
+ ],
  "BS15-080": [
   "A_BP_PLUS",
   "K_BURST",

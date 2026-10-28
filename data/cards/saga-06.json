@@ -3042,8 +3042,7 @@
    }
   ],
   "families": [
-   "Ninja Gale",
-   "Plant Spirit"
+   "Ninja Gale, Plant Spirit"
   ],
   "text": "[LV1] (When Summoned) Put a core from the Void to your Reserve.\n\n[When Braved] (When Attacks) While there is (Soul Core) on this Spirit, the opponent cannot activate their set Burst.",
   "image": "Hagurugama.jpg",
@@ -3065,13 +3064,22 @@
       "n": 1
      }
     ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "actions": [
+     {
+      "do": "NO_BURST_BATTLE",
+      "if": {
+       "selfSoul": true
+      }
+     }
+    ],
+    "braved": true
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[When Braved] (When Attacks) While there is (Soul Core) on this Spirit, the opponent cannot activate their set Burst."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS31-078",

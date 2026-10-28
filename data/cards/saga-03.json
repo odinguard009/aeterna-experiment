@@ -6781,6 +6781,61 @@
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
  },
  {
+  "id": "BS15-074",
+  "name": "Triple Draw",
+  "name_jp": "三札之術",
+  "type": "Magic",
+  "color": "red",
+  "cost": 5,
+  "reduction": {
+   "red": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{Burst|After Your Life is Decreased}}\n Destroy an opposing 4000 BP or less Spirit. Then, by paying the cost, activate this card's Main effect.\n\n Main - Draw 2 cards from your deck. Then, reveal a card from your decktop. If that card is a Red Spirit card, add it to your hand. Otherwise, return it to your decktop.",
+  "image": "Triple Draw.png",
+  "block": "15",
+  "saga": 3,
+  "burst": {
+   "when": "LIFE_DECREASE",
+   "actions": [
+    {
+     "do": "DESTROY",
+     "bpLe": 4000
+    }
+   ],
+   "thenMain": true
+  },
+  "magic": {
+   "timing": [
+    "MAIN"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "DRAW",
+     "n": 2
+    },
+    {
+     "do": "REVEAL_PICK",
+     "n": 1,
+     "match": {
+      "type": "Spirit",
+      "color": "red"
+     },
+     "rest": "top",
+     "if": {
+      "prev": true
+     }
+    }
+   ]
+  },
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) and smoke-checked; not yet checked against the card image."
+ },
+ {
   "id": "BS15-080",
   "name": "Triple Stab",
   "name_jp": "光速三段突",
