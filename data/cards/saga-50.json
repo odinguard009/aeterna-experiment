@@ -7394,7 +7394,7 @@
    "Cyantree",
    "Annelidic"
   ],
-  "text": "(Legacy)\n[LV1-2] (When Summoned)\nTarget up to two Blue Nexuses you control. Put one core from the Void to each of them.",
+  "text": "(Legacy)\n[LV1][LV2] (When Summoned)\nTarget up to two Blue Nexuses you control. Put one core from the Void to each of them.",
   "image": "26RBS01-X17.png",
   "block": "A",
   "saga": 50,
@@ -7402,11 +7402,27 @@
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Summoned) Target up to two Blue Nexuses you control. Put one core from the Void to each of them."
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "VOID_TO_MATCHING",
+      "targets": 2,
+      "match": {
+       "type": "Nexus",
+       "color": "blue"
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-X18",

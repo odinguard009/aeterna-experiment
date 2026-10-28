@@ -850,6 +850,12 @@ def action_of(s, ctx):
         out = [{'do': 'DESTROY_OWN', 'match': {'type': 'Spirit', 'family': [md_.group(1)]}}]
         if md_.group(2): out += action_of(md_.group(2), ctx)[0]
         return out, False
+    mv_ = re.fullmatch(r'target (?:(up to) )?(one|two|three) (?:(' + COL + r') )?(?:"([^"]+)" family )?(spirits|nexus(?:es)?) you control\.\s*put (?:a|one) core from the void (?:each )?to (?:each of them|them|it)\.?', s.strip(), re.I)      # v0.185 VOID_TO_MATCHING colour/family/Nexus
+    if mv_ and (mv_.group(3) or mv_.group(4)) and (mv_.group(1) or mv_.group(2).lower() != 'one'):
+        mt = {'type': 'Spirit' if mv_.group(5).lower() == 'spirits' else 'Nexus'}
+        if mv_.group(3): mt['color'] = mv_.group(3).lower()
+        if mv_.group(4): mt['family'] = [mv_.group(4)]
+        return [{'do': 'VOID_TO_MATCHING', 'targets': n_of(mv_.group(2).lower()), 'match': mt}], False
     sh = SHOW_RET.match(s.strip())
     if sh:      # v0.165 "Show up to N <X> cards from your Hand to the opponent. Return them to the deckbottom. For each card returned, draw a card." = SHOW_RETURN
         col1, fam, col2 = sh.group(4), sh.group(5), sh.group(6)

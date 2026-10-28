@@ -38485,11 +38485,6 @@
   "M_OPTIONAL",
   "T_SUMMONED"
  ],
- "26RBS01-X17": [
-  "A_VOID",
-  "M_UP_TO",
-  "T_SUMMONED"
- ],
  "26RBS01-X18": [
   "A_DISCARD_OPP",
   "A_REFRESH",
