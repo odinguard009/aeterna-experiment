@@ -538,6 +538,7 @@ def spirit_paragraph_main(p, card, rush):
         e = {'trigger': 'STATIC', 'bp': bp(mm.group(1)), 'to': 'self', 'perHand': True}
         if lv: e['lv'] = lv
         return [e], flags
+    p = re.sub(r'^(\(During Attack\)\s*)?For each of your (.+? Spirits?), (this spirit)', lambda m: (m.group(1) or '') + 'For each ' + m.group(2) + ' you control, ' + m.group(3), p, flags=re.I) if not trig else p      # v0.185 'for each of your X Spirits' reads as the head form
     mt = None if trig else PER_STATIC_TAIL.match(p)
     if mt: p = (mt.group(1) or '') + re.sub(r'^for each', 'For each', mt.group(3)) + ', this spirit gets +' + mt.group(2) + 'BP'      # v0.184 read the tail form as the head form
     mm = None if trig else PER_STATIC.match(p)
