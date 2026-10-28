@@ -11142,10 +11142,6 @@
   "A_VOID",
   "C_LEVEL"
  ],
- "BS31-041": [
-  "C_LEVEL",
-  "K_ARMOR"
- ],
  "BS31-042": [
   "A_DISCARD_OPP",
   "C_LEVEL",
@@ -11204,10 +11200,6 @@
   "K_BURST",
   "M_OPTIONAL",
   "T_SUMMONED"
- ],
- "BS31-054": [
-  "C_LEVEL",
-  "T_ALLY_SUMMONED"
  ],
  "BS31-055": [
   "A_BP_MINUS",
@@ -11455,11 +11447,6 @@
   "M_OPTIONAL",
   "T_DESTROYED",
   "T_DESTROYED_OPP"
- ],
- "BS31-CP06": [
-  "A_VOID",
-  "C_LEVEL",
-  "T_ALLY_SUMMONED"
  ],
  "BS31-X01": [
   "A_LIFE_TO_RESERVE",
@@ -18300,12 +18287,6 @@
   "S_UNAFFECTED",
   "T_ADVENT"
  ],
- "BS43-043": [
-  "C_LEVEL",
-  "K_ARMOR",
-  "K_BRAVE",
-  "S_UNAFFECTED"
- ],
  "BS43-044": [
   "C_LEVEL",
   "K_ADVENT",
@@ -21975,13 +21956,6 @@
   "C_LEVEL",
   "K_ULTIMATE",
   "M_OPTIONAL"
- ],
- "BS51-052": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "K_ARMOR",
-  "K_BRAVE",
-  "S_UNAFFECTED"
  ],
  "BS51-054": [
   "A_REFRESH",

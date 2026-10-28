@@ -1,17 +1,17 @@
 {
  "stats": {
-  "cards": 7364,
+  "cards": 7359,
   "per_saga": {
    "1": 680,
    "2": 313,
    "3": 376,
    "4": 376,
    "5": 651,
-   "6": 357,
+   "6": 354,
    "7": 516,
-   "8": 481,
+   "8": 480,
    "9": 491,
-   "10": 495,
+   "10": 494,
    "11": 326,
    "12": 327,
    "13": 394,
@@ -23,11 +23,11 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 1342,
+  "skipped_curated": 1347,
   "nexus_levels_added": 709,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 518,
+  "image_problems": 517,
   "number_conflicts": 4,
   "merged": 109,
   "brave_unparsed": 171,
@@ -35,7 +35,7 @@
   "odd_reduction": 807,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 516
+  "without_image": 515
  },
  "tokens": [
   "BS73-T001",
@@ -747,9 +747,11 @@
   "BS31-035",
   "BS31-037",
   "BS31-038",
+  "BS31-041",
   "BS31-046",
   "BS31-049",
   "BS31-050",
+  "BS31-054",
   "BS31-057",
   "BS31-064",
   "BS31-066",
@@ -757,6 +759,7 @@
   "BS31-073",
   "BS31-077",
   "BS31-CP02",
+  "BS31-CP06",
   "BS32-001",
   "BS32-006",
   "BS32-012",
@@ -866,6 +869,7 @@
   "BS43-016",
   "BS43-024",
   "BS43-028",
+  "BS43-043",
   "BS43-055",
   "BS44-016",
   "BS44-028",
@@ -890,6 +894,7 @@
   "BS50-040",
   "BS50-050",
   "BS50-RV006",
+  "BS51-052",
   "BS51-062",
   "BS51-071",
   "BS52-001",
@@ -2810,11 +2815,6 @@
    "id": "BS31-096",
    "name": "The Thousand Bay Kannon Temple",
    "problem": "no image (near: The Thousand Space Kannon Temple.png)"
-  },
-  {
-   "id": "BS31-CP06",
-   "name": "The VassalWisdomKing Rudra",
-   "problem": "no image (near: BS31 CP06.png)"
   },
   {
    "id": "BS32-063",

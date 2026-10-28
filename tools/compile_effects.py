@@ -264,6 +264,7 @@ UNAFF = re.compile(r'^(?:\u27e6ARMOR:([A-Za-z ]+):([A-Za-z/]+)\u27e7\s*|(Armor|H
                    r'(?: of the (?:specified|stated) colou?rs?)?\.?$')
 
 GIVE_ARMOR = re.compile(r'^Give (?:all|every) your (?:(Red|Purple|Green|White|Yellow|Blue) |"([^"]+)" family |"([^"]+)"-named )?Spirits?(?: with ([A-Z][A-Za-z]+))?:\s*"?⟦ARMOR:(Armor|Heavy Armor|Ultra Armor):([A-Za-z/]+)⟧\s*(?:This Spirit is unaffected by opposing [A-Za-z/]+ [A-Za-z/]+ effects\.?")?\s*\.?$')
+GIVE_ARMOR2 = re.compile(r'^Give (?:all|every) (?:your )?(?:(?:(?P<fam>(?:"[^"]+"\s*/\s*)*"[^"]+") family |"(?P<nm>[^"]+)"-named )?Spirits?)(?: you control)?(?: the effect)?:\s*"?⟦ARMOR:(Armor|Heavy Armor|Ultra Armor):([A-Za-z/]+)⟧\s*(?:- )?(?:This Spirit is unaffected by opposing [A-Za-z/]+ [A-Za-z/]+ effects\.?")?\s*\.?$')
 PLAIN_GIVE_ARMOR = re.compile(r'^Give all your (?:"([^"]+)" family )?(?:"([^"]+)"-named )?Spirits:\s*(Armor|Heavy Armor|Ultra Armor): ?([A-Za-z/]+)\.?$', re.I)
 ARMOR_TYPES = {'armor': ['Spirit', 'Nexus', 'Magic'], 'heavy armor': ['Spirit', 'Brave', 'Nexus', 'Magic'], 'ultra armor': ['Spirit', 'Ultimate', 'Nexus', 'Magic']}
 
@@ -272,6 +273,8 @@ def unaffected_para(p):
     Returns (effect, keyword) or None when p is not such a paragraph."""
     if '\u27e6ARMOR' not in p and not re.search(r'unaffected by opposing', p) and not PLAIN_GIVE_ARMOR.match(p): return None
     g = GIVE_ARMOR.match(p)
+    if not g and (g2 := GIVE_ARMOR2.match(p)):      # v0.184 "Give every "X"-named Spirit you control: / Give all your "A"/"B" family Spirits: / Give every Spirit you control the effect: {{ha|Red}} - ..."
+        g = type('G', (), {'group': lambda self, i, g2=g2: (None, g2.group('fam') or (g2.group('nm') and '"%s"' % g2.group('nm')), None, None, g2.group(3), g2.group(4))[i - 1]})()
     if not g and (pg := PLAIN_GIVE_ARMOR.match(p)):      # v0.184 the same grant printed without the {{armor}} template ("Give all your X family Spirits: Heavy Armor: Purple.")
         g = type('G', (), {'group': lambda self, i, pg=pg: (None, pg.group(1), pg.group(2), None, pg.group(3), pg.group(4))[i - 1]})()
     if g:      # v0.181 "Give all your <selector> Spirits: {{armor|Colours}}" = STATIC UNAFFECTED for the matching own cards
@@ -279,7 +282,7 @@ def unaffected_para(p):
         e = {'trigger': 'STATIC', 'flag': 'UNAFFECTED', 'to': 'own', 'from': {'colors': cols, 'types': types}}
         mt = {}
         if g.group(1): mt['color'] = [g.group(1).lower()]
-        if g.group(2): mt['family'] = [g.group(2)]
+        if g.group(2): mt['family'] = re.findall(r'"([^"]+)"', g.group(2)) if g.group(2).startswith('"') else [g.group(2)]
         if g.group(3): mt['name'] = [g.group(3)]
         if g.group(4): mt['keyword'] = g.group(4)
         if mt: e['match'] = mt
@@ -471,6 +474,9 @@ def spirit_paragraph_main(p, card, rush):
         e = {'trigger': 'ACTIVATE', 'timing': ['MAIN', 'FLASH'], 'once': False, 'cpuSkip': True, 'optional': True, 'actions': [{'do': 'AWAKEN'}]}
         if lv: e['lv'] = lv
         return [e], flags
+    mm = re.match(r'^While\s+\(Soul Core\) is on this Spirit,\s*([a-z])', p)
+    soul_if = bool(mm and card['type'] == 'Spirit')
+    if soul_if: p = mm.group(1).upper() + p[mm.end():]      # v0.184 "While (Soul Core) is on this Spirit, when ..." = the triggered effect with if.selfSoul
     kw = None
     for k in KEYWORD_LINES:
         if p.startswith(k + ' ') or p.startswith(k + ':'):
@@ -719,6 +725,7 @@ def spirit_paragraph_main(p, card, rush):
         sw = step_window(re.sub(r"^\(During (?:Your|the) Battle Phase\)", '(Your Attack Step)', p, flags=re.I) if re.match(r'^\(During (?:Your|the) Battle Phase\)\s*(?:All )?"', p, re.I) else p, card, lv, rush)      # v0.70: generic step window head; v0.183 old wording '(During Your Battle Phase) "X" spirits you control get +N BP' (the Battle Phase is the Attack Step here)
         if sw is not None: e, f2 = sw; flags.update(f2); return e, flags
         raise Review('no trigger: ' + p[:100])
+    if soul_if: extra = dict(extra or {}, **{'if': {'selfSoul': True}})
     return trig_effects(p, card, trig, tmatch, lv, rush, flags, dict(extra or {}, noStack=True) if nostack else extra)
 
 
