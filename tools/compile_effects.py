@@ -607,12 +607,18 @@ MAGIC_HEAD = [
 ]
 
 def magic_spec(body, tim=()):
-    """Body -> {"effect":..., "value":...} using the simple MAGIC_FX types where they fit, ACTIONS otherwise."""
+    """Body -> {"effect":..., "value":...} using the simple MAGIC_FX types where they fit, ACTIONS otherwise.
+    v0.180: a Rush marker splits the body; the Rush sentences become actions with if.hasSymbol (like a Spirit's Rush)."""
+    mr = re.search(r'⟦RUSH:(\w+)⟧', body)
+    rush = None
+    if mr:
+        rush = (mr.group(1), body[mr.end():].strip()); body = body[:mr.start()].strip()
+        if '⟦' in rush[1] or not body or not rush[1]: raise Review('Rush on a Magic: odd shape')
     ss = sentences(body)
-    if len(ss) == 1:
+    if len(ss) == 1 and not rush:
         L = ss[0].rstrip('.').lower()
         for p, f in [
-            (r'^(?:during this turn, )?give (?:a|one|target) spirit \+(\d[\d,]*) ?bp$', lambda m: {'effect': 'BP_PLUS', 'value': bp(m.group(1))}),
+            (r'^(?:during this turn, )?give (?:a|one|target) spirit(?:/ultimate)? +\+(\d[\d,]*) ?bp$', lambda m: {'effect': 'BP_PLUS', 'value': bp(m.group(1))}),
             (r'^target spirit (?:gets|gains) \+(\d[\d,]*) ?bp(?: until (?:the )?end of (?:the )?turn)?$', lambda m: {'effect': 'BP_PLUS', 'value': bp(m.group(1))}),
             (r'^destroy an opposing (\d[\d,]*) ?bp or less spirit$|^destroy an opposing spirit with (\d[\d,]*) ?bp or less$', lambda m: {'effect': 'DESTROY_BP_LE', 'value': bp(m.group(1) or m.group(2))}),
             (r'^exhaust an opposing spirit$', lambda m: {'effect': 'EXHAUST_OPP', 'value': 0}),
@@ -625,6 +631,11 @@ def magic_spec(body, tim=()):
         a, o = action_of(s, {'kind': 'magic', 'battle': 'FLASH' in tim})      # v0.75: a Flash Magic may say "during this battle" (the actions do nothing outside a battle)
         if o: raise Review('optional clause in Magic: ' + s[:80])
         acts += a
+    if rush:
+        for s in [x for part in re.split(r'(?:(?<=[.!])|\n)\s*:\s+', rush[1].lstrip(': ')) for x in sentences(part)]:
+            a, o = action_of(s, {'kind': 'magic', 'battle': 'FLASH' in tim})
+            if o: raise Review('optional clause in Magic Rush: ' + s[:80])
+            acts += [dict(x, **{'if': {'hasSymbol': rush[0]}}) for x in a]
     if any(a['do'] in ('REFRESH', 'VOID_TO_CARD', 'BP_PLUS') and a.get('to', 'self') == 'self' for a in acts):
         raise Review('Magic sentence about "this Spirit": ' + body[:80])
     return {'effect': 'ACTIONS', 'value': 0, 'actions': acts}
@@ -878,7 +889,7 @@ def compile_card(c):
         if (b.get('thenFlash') or b.get('thenMain')) and c['type'] != 'Magic': raise Review('then-Flash/Main Burst on a Spirit')
         n['burst'] = b
     t = clean(armor_mark(rush_mark(rest)))
-    if c['type'] != 'Spirit' and '\u27e6RUSH' in t: raise Review('Rush on a ' + c['type'])
+    if c['type'] not in ('Spirit', 'Magic') and '\u27e6RUSH' in t: raise Review('Rush on a ' + c['type'])
     if c['type'] == 'Brave' and not c.get('brave'): raise Review('Brave without combine data (export)')
     if c['type'] in ('Spirit', 'Brave', 'Ultimate') and not c.get('levels'): raise Review('no level data')
     L = c.get('levels') or []

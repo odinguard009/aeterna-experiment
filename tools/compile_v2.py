@@ -201,7 +201,7 @@ BOTTOM = r"(?:the )?(?:bottom of (?:the|its owner'?s|their|the opposing) deck|(?
 
 def clause(x):
     """one lower-cased clause without the head -> actions"""
-    m = re.match(r'^refresh one of your (.+)$', x)
+    m = re.match(r'^refresh one of your (.+)$', x) or re.match(r'^refresh an? (.+?) you control$', x)      # v0.180 "Refresh a Green Spirit you control"
     if m:      # v0.168 "Target one of your <X>. Refresh it." arrives here as "refresh one of your <X>" (TARGET pair form)
         match, att = own_np(m.group(1))
         if att or 'costGe' in match: raise Review('v2 refresh: filter')
@@ -287,7 +287,7 @@ def own_grammar(s, ctx=None):
     m = SELF_BATTLE_BP.match(x)
     if m: return [{'do': 'BP_TARGET', 'n': bpv(m.group(1)), 'to': 'self', 'battle': True}]
     if SELF_BATTLE_SYM.match(x): return [{'do': 'SYMBOL_PLUS', 'n': 1}]
-    m = re.fullmatch(r'(?:during this turn, give (?:a|one) spirit you control \+(\d[\d,]*) ?bp|give (?:a|one) spirit you control \+(\d[\d,]*) ?bp (?:during|until the end of) this turn)', x, re.I)
+    m = re.fullmatch(r'(?:during this turn, give (?:a|one) spirit(?:/ultimate)?(?: you control)? \+(\d[\d,]*) ?bp|give (?:a|one) spirit(?:/ultimate)?(?: you control)? \+(\d[\d,]*) ?bp (?:during|until the end of) this turn)', x, re.I)
     if m: return [{'do': 'BP_TARGET', 'n': bpv(m.group(1) or m.group(2)), 'to': 'pick'}]      # v0.78 "give a Spirit you control +N BP" = one of your Spirits (BP_TARGET pick)
     m = OWN_BP.match(x)
     if m:

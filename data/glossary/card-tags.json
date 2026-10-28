@@ -8314,6 +8314,10 @@
   "T_ALLY_ATTACKS",
   "C_LEVEL"
  ],
+ "BS19-098": [
+  "A_EXHAUST",
+  "K_RUSH"
+ ],
  "BS19-099": [
   "A_BP_PLUS",
   "A_EXHAUST"
@@ -8334,6 +8338,10 @@
  ],
  "BS19-104": [
   "A_BP_PLUS"
+ ],
+ "BS19-105": [
+  "A_EXHAUST",
+  "K_RUSH"
  ],
  "BS19-109": [
   "A_BP_MINUS"
@@ -8775,6 +8783,16 @@
   "T_ACTIVATE",
   "A_BP_PLUS",
   "A_EXHAUST"
+ ],
+ "BS20-079": [
+  "A_BP_PLUS",
+  "A_BP_MINUS",
+  "K_RUSH"
+ ],
+ "BS20-082": [
+  "A_EXHAUST",
+  "A_BP_MINUS",
+  "K_RUSH"
  ],
  "BS20-X01": [
   "T_ATTACKS",
@@ -10844,6 +10862,9 @@
   "A_EXHAUST",
   "K_ULTIMATE"
  ],
+ "BS24-107": [
+  "K_RUSH"
+ ],
  "BS24-X01": [
   "T_ATTACKS",
   "A_BP_PLUS",
@@ -12459,6 +12480,10 @@
   "A_EXHAUST",
   "C_LEVEL",
   "M_UP_TO"
+ ],
+ "BS27-079": [
+  "A_REFRESH",
+  "K_RUSH"
  ],
  "BS27-X01": [
   "T_ATTACKS",

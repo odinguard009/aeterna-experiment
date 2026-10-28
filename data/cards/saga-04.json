@@ -3733,6 +3733,50 @@
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
  },
  {
+  "id": "BS19-098",
+  "name": "Red Ray",
+  "name_jp": "レッドレイ",
+  "type": "Magic",
+  "color": "red",
+  "cost": 5,
+  "reduction": {
+   "red": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDestroy an opposing 5000 BP or less Spirit.\n{{Rush|Purple}}\n(While you have a Purple symbol, the following effect activates next)\n: Destroy an opposing exhausted Cost 4 or less Spirit.",
+  "image": "BS19-098.jpg",
+  "block": "19",
+  "saga": 4,
+  "mechanics": [
+   "Rush"
+  ],
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "DESTROY",
+     "bpLe": 5000
+    },
+    {
+     "do": "DESTROY",
+     "costLe": 4,
+     "exhaustedOnly": true,
+     "if": {
+      "hasSymbol": "purple"
+     }
+    }
+   ]
+  },
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
+ },
+ {
   "id": "BS19-099",
   "name": "Flame Field",
   "name_jp": "フレイムフィールド",
@@ -3877,6 +3921,46 @@
    "Main During this turn, when your Cost 4 or less Spirits attack, the opponent can't activate their Bursts."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+ },
+ {
+  "id": "BS19-105",
+  "name": "Binding Ivy",
+  "name_jp": "バインディングアイヴィー",
+  "type": "Magic",
+  "color": "green",
+  "cost": 4,
+  "reduction": {
+   "green": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash - Exhaust an opposing Spirit.\n{{Rush|Blue}}\n(While you have a Blue symbol, the following effect activates next)\n: Destroy an opposing Cost 3 or less Spirit.",
+  "image": "BS19-105.jpg",
+  "block": "19",
+  "saga": 4,
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "EXHAUST_OPP",
+     "n": 1
+    },
+    {
+     "do": "DESTROY",
+     "costLe": 3,
+     "if": {
+      "hasSymbol": "blue"
+     }
+    }
+   ]
+  },
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS19-109",
@@ -7488,6 +7572,91 @@
    "Main - During this turn, all your \"Winged Beast\" family Spirits gain +2000 BP."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+ },
+ {
+  "id": "BS20-079",
+  "name": "Darkness Aura",
+  "name_jp": "ダークネスオーラ",
+  "type": "Magic",
+  "color": "white",
+  "cost": 3,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDuring this turn, give a Spirit you control +3000 BP.\n{{Rush|Yellow}}\n(While you have a Yellow symbol, the following effect activates next)\n: During this turn, give an opposing Spirit -3000 BP.",
+  "image": "BS20-079.jpg",
+  "block": "20",
+  "saga": 4,
+  "mechanics": [
+   "Rush"
+  ],
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "BP_TARGET",
+     "n": 3000,
+     "to": "pick"
+    },
+    {
+     "do": "BP_MINUS",
+     "n": 3000,
+     "if": {
+      "hasSymbol": "yellow"
+     }
+    }
+   ]
+  },
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
+ },
+ {
+  "id": "BS20-082",
+  "name": "Lightning Attack",
+  "name_jp": "ライトニングアタック",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 5,
+  "reduction": {
+   "yellow": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash - During this turn, give an opposing Spirit -3000 BP.\n{{Rush|Purple}}\n(While you have a Purple symbol, the following effect activates next)\n: Destroy an opposing exhausted Spirit with 5000 BP or less.",
+  "image": "BS20-082.jpg",
+  "block": "20",
+  "saga": 4,
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "BP_MINUS",
+     "n": 3000
+    },
+    {
+     "do": "DESTROY",
+     "bpLe": 5000,
+     "exhaustedOnly": true,
+     "if": {
+      "hasSymbol": "purple"
+     }
+    }
+   ]
+  },
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS20-X01",
