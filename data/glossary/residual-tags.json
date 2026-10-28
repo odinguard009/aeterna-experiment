@@ -38478,12 +38478,6 @@
   "M_OPTIONAL",
   "T_SUMMONED"
  ],
- "26RBS01-X18": [
-  "A_DISCARD_OPP",
-  "A_REFRESH",
-  "C_LEVEL",
-  "K_RUMBLE"
- ],
  "26RBS02-001": [
   "A_CANT_ATTACK_BLOCK",
   "C_LEVEL",

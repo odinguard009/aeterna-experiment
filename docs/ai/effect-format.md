@@ -93,3 +93,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v53 (v0.184.0, Lane K): the static flag `TREAT_LV3` accepts `n: 2` (treated as being at Lv2, for "treat this Spirit as being [LV2]"); default stays Lv3.
 - v54 (v0.184.0, Lane K): `SHOW_RETURN.match` is optional (any card from the Hand), for "return a card from your Hand to the deckbottom".
 - v55 (v0.184.0, Lane K): the card `match` accepts `team` (a team name read from the `[Team: X]` head line), for "a Red Stella Spirit card" in reveal effects.
+- v56 (v0.185.0, Lane K): trigger `RUMBLE_DISCARD` (owner's field effects, after a Rumble discards; `exOnly` = at least one discarded card has an EX Symbol, `other` = besides the Rumble's own Spirit).

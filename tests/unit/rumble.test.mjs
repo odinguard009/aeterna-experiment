@@ -14,6 +14,10 @@ const FIX = [
   { id: 'TR-W1', name: 'Cost One Wall', type: 'Spirit', color: 'red', cost: 1, symbols: 1, levels: [{ cores: 1, bp: 1000 }] },
   { id: 'TR-BIG', name: 'Big Wall', type: 'Spirit', color: 'red', cost: 5, symbols: 1, levels: [{ cores: 1, bp: 5000 }] },
   { id: 'TR-SMALL', name: 'Deck Filler', type: 'Spirit', color: 'red', cost: 1, symbols: 1, levels: [{ cores: 1, bp: 500 }] },
+  { id: 'TR-EXF', name: 'EX Filler', type: 'Spirit', color: 'red', cost: 1, symbols: 1, ex_symbols: 1, levels: [{ cores: 1, bp: 500 }] },
+  { id: 'TR-WATCH', name: 'Watcher', type: 'Spirit', color: 'blue', cost: 2, symbols: 1, levels: [{ cores: 1, bp: 1000 }], effects: [{ trigger: 'RUMBLE_DISCARD', actions: [{ do: 'DRAW', n: 1 }] }] },
+  { id: 'TR-WEX', name: 'EX Watcher', type: 'Spirit', color: 'blue', cost: 2, symbols: 1, levels: [{ cores: 1, bp: 1000 }], effects: [{ trigger: 'RUMBLE_DISCARD', exOnly: true, actions: [{ do: 'DRAW', n: 1 }] }] },
+  { id: 'TR-WOTH', name: 'Other Watcher', type: 'Spirit', color: 'blue', cost: 2, symbols: 1, levels: [{ cores: 1, bp: 1000 }], effects: [{ trigger: 'RUMBLE_DISCARD', other: true, actions: [{ do: 'DRAW', n: 1 }] }] },
 ];
 before(async () => {
   g = await openGame('');
@@ -68,4 +72,13 @@ test('RUM-05 the shipped Rumble cards carry the keyword and the RUMBLE effect', 
   assert.equal(r.partial, false);
   assert.deepEqual(r.rumble, [['RUMBLE:3']]);
   assert.match(r.txt, /Rumble 3/);
+});
+
+test('RUM-06 RUMBLE_DISCARD fires for a watcher; exOnly needs an EX card', async () => {
+  const r = await ev(`const a = sp('TR-ATK'); sp('TR-WATCH'); sp('TR-WEX'); sp('TR-WOTH');
+    P.deck = [1, 2, 3, 4, 5].map(() => BS.mkInst('TR-SMALL')); block(null); await BS.doBattle('player', a); const plain = P.hand.length;
+    P.hand = []; O.deck = [BS.mkInst('TR-EXF'), BS.mkInst('TR-SMALL'), BS.mkInst('TR-SMALL')]; const b = sp('TR-ATK'); block(null); await BS.doBattle('player', b);
+    return { plain, withEx: P.hand.length };`);
+  assert.equal(r.plain, 2, 'no EX card milled: only Watcher and Other Watcher draw');
+  assert.equal(r.withEx, 3, 'an EX card was milled: the EX Watcher draws too');
 });

@@ -5,7 +5,7 @@
 | Tag | Kind | Meaning | Engine | Status | Cards |
 |---|---|---|---|---|---|
 | T_SUMMONED | trigger | (When Summoned) | SUMMONED | wired | 1891 |
-| T_ATTACKS | trigger | (When Attacks) | ATTACKS | wired | 1969 |
+| T_ATTACKS | trigger | (When Attacks) | ATTACKS | wired | 1970 |
 | T_ALLY_ATTACKS | trigger | When your X attacks | ALLY_ATTACKS | wired | 183 |
 | T_ALLY_BLOCKED | trigger | When your X is blocked | ALLY_BLOCKED | wired | 73 |
 | T_ALLY_SUMMONED | trigger | When your target Spirit is summoned (Neo-Core Charge) | ALLY_SUMMONED | wired | 177 |
