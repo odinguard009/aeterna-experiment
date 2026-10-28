@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 7501,
+  "cards": 7500,
   "per_saga": {
    "1": 737,
    "2": 322,
@@ -19,11 +19,11 @@
    "15": 355,
    "16": 334,
    "17": 110,
-   "50": 380
+   "50": 379
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 1205,
+  "skipped_curated": 1206,
   "nexus_levels_added": 710,
   "nexus_levels_missing": 43,
   "level_problems": 3,
@@ -1182,6 +1182,7 @@
   "26RBS02-034",
   "26RBS02-038",
   "26RBS02-043",
+  "26RBS02-044",
   "26RBS02-047",
   "26RBS02-049",
   "26RBS02-051",
