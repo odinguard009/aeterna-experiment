@@ -4,6 +4,13 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.184.0
+- Lane: K
+- **50 more cards complete (1,175 -> 1,225): team names, keyword/cost filters in reveals, conditional can't-attack, Life thresholds**
+  - New engine piece (effect schema 55): selector option `match.team` ("Red Stella / Green Wave / Blue Beat / Yellow Rise" read from the `[Team: X]` head line by `cardTeams`); compiler now reads team names, "with <keyword>" and "or more" cost in own-Spirit and reveal selectors, "If you control no <colour/family> Spirits, this Spirit can't attack" (STATIC CANT_ATTACK with `ctrl.nLe: 0`), and "If your Life is N or less/more".
+  - Readings to know: a multi-colour Rush needs all listed symbols (unverified against the rules text).
+  - Not checked: the engine `match.team` check has compile-level tests only, no in-game scenario; exact-cost forms ("Cost 8") are still not compiled, to avoid false-complete.
+
 ## v0.183.0
 - Lane: K
 - **50 more cards complete (1,125 -> 1,175): Windstorm, Tribute triggers, Nexus destruction, opponent-hand windows**

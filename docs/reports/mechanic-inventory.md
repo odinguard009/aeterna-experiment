@@ -7,20 +7,20 @@
 | Mechanic | Status | Waiting | Playable | Prep | Glossary | Note |
 |---|---|---|---|---|---|---|
 | Magic card | partial | 1013 | 309 | RD· | - | Main/Flash, cost, targets, ACTIONS effects (v0.41/v0.47.0); Magic reveals and some types open (rules-coverage) |
-| Brave card | partial | 421 | 262 | RD· | - | Brave part 1 v0.60.0 (combine data, braved effects); part 2 open: summon from Hand first, two-sided Braves, 171 Brave conditions |
+| Brave card | partial | 420 | 262 | RD· | - | Brave part 1 v0.60.0 (combine data, braved effects); part 2 open: summon from Hand first, two-sided Braves, 171 Brave conditions |
 | Mirage | partial | 297 | 271 | R·· | K_MIRAGE | partial: 06-rules.js mirage set/usable, 02d-effects-resolve.js only MIRAGE_OWN_LIFE/OPP_LIFE triggers (subagent grep 2026-10-19) |
 | Ultimate card | partial | 252 | 195 | ··· | - | Ultimate type + Ultra Manifest v0.46.0, compiler v0.56.0; Ultimate Trigger level lines missing in the export (110 cards) |
-| Soul Core in card text | partial | 239 | 258 | ··· | - | Soul Core rules done (setup, Seal, Life, Reserve); cards that move or pay with it follow their own keywords |
-| Rush | partial | 118 | 198 | R·· | - | partial: per-action if.hasSymbol (02a-effects-base.js), single-symbol forms only; multi-symbol forms open |
+| Soul Core in card text | partial | 237 | 258 | ··· | - | Soul Core rules done (setup, Seal, Life, Reserve); cards that move or pay with it follow their own keywords |
+| Rush | partial | 114 | 198 | R·· | - | partial: per-action if.hasSymbol (02a-effects-base.js), single-symbol forms only; multi-symbol forms open |
 | Ultimate Trigger | partial | 105 | 156 | R·· | K_ULTIMATE | partial: ULT_TRIGGER + utHit (02i-effects-keywords.js); Guard and Trigger Counter not wired |
 | Soul Burst | missing | 100 | 7 | ··· | K_BURST | no engine match (grep 2026-10-19); the K_BURST glossary seed is too broad (the wiki redirects Soul Burst to Burst) |
 | Grandwalker Nexus | partial | 68 | 49 | ··· | - | Saga Brave onto a Grandwalker Nexus (v0.35.0); Grandwalker Nexus effects open (roadmap card sessions) |
-| Invoke (Standard activation) | partial | 64 | 108 | RDL | K_STANDARD_INVOKE | v0.68.0: Invoke heads, five cost kinds, BP_TARGET / SYMBOL_TARGET; open: conditional costs, core moves, F Change / Amplify / Current / Magirrate templates (Standard activations; v0.64.0 prep) |
 | Heavy Armor | partial | 59 | 23 | ··· | K_ARMOR | partial: STATIC UNAFFECTED with from colours/types (v0.58.0, 02a-effects-base.js, 02c-effects-parse.js, compile_effects.py); granted Armor open |
 | Rebirth / pre-Rebirth / reborn | missing | 57 | 50 | ··· | - | no engine rule; importer has rebirthTo/rebirthSide (display only, v0.32) but no staged card fills them; rules-coverage: not implemented; the export may lack the Rebirth side link (check, like the Brave combine data) |
+| Invoke (Standard activation) | partial | 56 | 108 | RDL | K_STANDARD_INVOKE | v0.68.0: Invoke heads, five cost kinds, BP_TARGET / SYMBOL_TARGET; open: conditional costs, core moves, F Change / Amplify / Current / Magirrate templates (Standard activations; v0.64.0 prep) |
 | Core Charge | missing | 52 | 67 | ··· | - | no engine match outside Neo-Core Charge (02b-effects-actions.js), grep 2026-10-19 |
 | Contract card | partial | 47 | 0 | ··· | - | Contract, Contract Advent, Soul State (v0.13+); residual: LV2 Contract Field (issue #3) |
-| Ultra Armor | partial | 42 | 10 | ··· | K_ARMOR | partial: STATIC UNAFFECTED with from colours/types (v0.58.0, 02a-effects-base.js, 02c-effects-parse.js, compile_effects.py); granted Armor open |
+| Ultra Armor | partial | 41 | 10 | ··· | K_ARMOR | partial: STATIC UNAFFECTED with from colours/types (v0.58.0, 02a-effects-base.js, 02c-effects-parse.js, compile_effects.py); granted Armor open |
 | Charge | missing | 40 | 139 | ··· | - | no engine match (grep 2026-10-19) |
 | Tribute | missing | 39 | 90 | ··· | - | no engine match (grep 2026-10-19) |
 | Spirit Soul | missing | 34 | 12 | ··· | - | no engine match (grep 2026-10-19) |
@@ -29,8 +29,8 @@
 | Assault | missing | 27 | 56 | ··· | - | no engine match (grep 2026-10-19) |
 | Unleash | partial | 26 | 32 | ··· | K_UNLEASH | verified 2026-10-19: only card-specific code (02b-effects-actions.js Agateram, 02g-effects-attack-lock.js Vajrawurm cost); no generic handler |
 | Trigger Counter | missing | 24 | 21 | ··· | - | 02i-effects-keywords.js says Guard / Trigger Counter cards are not wired (A4 2026-10-19) |
-| Clash | partial | 22 | 67 | ··· | - | verified 2026-10-19: compiler Clash paragraph -> STATIC MUST_BLOCK self (compile_effects.py, v0.49; v0.66 adds (During Attack) / "Opposing Spirits must block") |
-| EX symbol (Standard) | partial | 22 | 25 | RD· | - | EX symbols count as symbols (v0.62.0); Legacy (pays with EX-symbol cards) missing |
+| Clash | partial | 21 | 67 | ··· | - | verified 2026-10-19: compiler Clash paragraph -> STATIC MUST_BLOCK self (compile_effects.py, v0.49; v0.66 adds (During Attack) / "Opposing Spirits must block") |
+| EX symbol (Standard) | partial | 21 | 25 | RD· | - | EX symbols count as symbols (v0.62.0); Legacy (pays with EX-symbol cards) missing |
 | Immortality | missing | 21 | 47 | ··· | - | verified 2026-10-19: no engine code; only K_NETHER_IMMORTALITY in data/glossary/effects.json |
 | AFO | missing | 20 | 30 | ··· | - | no engine/compiler/test match (A4 grep 2026-10-19) |
 | Flag Contract Advent | missing | 18 | 20 | ··· | K_ADVENT | no code for the variant in the engine or the compilers (A4 grep 2026-10-19); base handler reusable |
@@ -54,7 +54,7 @@
 | Summon Bolt | missing | 10 | 13 | ··· | - | no engine/compiler/test match (A4 grep 2026-10-19) |
 | Type: Flower | missing | 10 | 0 | ··· | - | no engine/compiler/test match (A4 grep 2026-10-19) |
 | Ultimate Hand | missing | 10 | 0 | ··· | K_ULTIMATE | compiler sends the uhand template to review (A4 2026-10-19) |
-| Windstorm | missing | 10 | 24 | ··· | - | no engine/compiler/test match (A4 grep 2026-10-19) |
+| Windstorm | missing | 10 | 22 | ··· | - | no engine/compiler/test match (A4 grep 2026-10-19) |
 | Poison Blade | missing | 9 | 4 | ··· | - | no engine/compiler/test match (A4 grep 2026-10-19) |
 | Reload | missing | 9 | 11 | ··· | - | no engine/compiler/test match (A4 grep 2026-10-19) |
 | Soul Drive | missing | 9 | 13 | ··· | - | no code (BS74-X12 residual) (A4 2026-10-19) |
@@ -74,7 +74,6 @@
 | Ultra Heavy Armor | partial | 6 | 2 | ··· | K_ARMOR | {{uha}} compiled to STATIC UNAFFECTED (armor58 A58-01); granted Armor open; 6 waiting cards blocked by other paragraphs (A4 2026-10-19) |
 | Celestial Unleash | missing | 5 | 3 | ··· | K_UNLEASH | no code for the variant in the engine or the compilers (A4 grep 2026-10-19); base handler reusable |
 | Fast Draw | missing | 5 | 21 | ··· | - | no engine/compiler/test match (A4 grep 2026-10-19) |
-| Shamanism | missing | 5 | 11 | ··· | - | no engine/compiler/test match (A4 grep 2026-10-19) |
 | Ultra Holy Life | missing | 5 | 4 | ··· | K_ULTRA_HOLY_LIFE | no code; BS69-052 playable only through plain Holy Life (residual lists Ultra Holy Life) (A4 2026-10-19) |
 | Contract Skill | partial | 4 | 10 | ··· | K_CONTRACT | card-specific code (02f/02g); tests green38 G34/G35; 4 waiting cards on the {{cs}} template (A4 2026-10-19) |
 | Count Break | missing | 4 | 6 | ··· | - | no engine/compiler/test match (A4 grep 2026-10-19) |
@@ -89,11 +88,10 @@
 | Spell Blight | missing | 3 | 7 | ··· | - | no engine/compiler/test match (A4 grep 2026-10-19) |
 | Ultra Awaken | missing | 3 | 5 | ··· | A_AWAKEN | no code for the variant in the engine or the compilers (A4 grep 2026-10-19); base handler reusable |
 | Divine Holy Life | missing | 2 | 2 | ··· | K_HOLY_LIFE | no code for the variant in the engine or the compilers (A4 grep 2026-10-19); base handler reusable |
-| Form Change | missing | 2 | 12 | ··· | - | no engine/compiler/test match (A4 grep 2026-10-19) |
 | Great Pursuit | missing | 2 | 3 | ··· | - | no engine/compiler/test match (A4 grep 2026-10-19) |
-| Magirrate | missing | 2 | 6 | ··· | - | no engine/compiler/test match (A4 grep 2026-10-19) |
 | Mirage Drain | missing | 2 | 0 | ··· | K_MIRAGE | no code for the variant in the engine or the compilers (A4 grep 2026-10-19); base handler reusable |
 | Ringing Charge | missing | 2 | 2 | ··· | - | no engine/compiler/test match (A4 grep 2026-10-19) |
+| Shamanism | missing | 2 | 11 | ··· | - | no engine/compiler/test match (A4 grep 2026-10-19) |
 | Showdown | missing | 2 | 9 | ··· | - | no engine/compiler/test match (A4 grep 2026-10-19) |
 | Triple Ultimate Trigger | missing | 2 | 2 | ··· | K_ULTIMATE | no code; base ULT_TRIGGER reusable (A4 2026-10-19) |
 | Ultra Clash | missing | 2 | 5 | ··· | - | no engine/compiler/test match (A4 grep 2026-10-19) |
@@ -150,16 +148,18 @@
 | Wave Crush | missing | 1 | 2 | ··· | K_CRUSH | no code for the variant in the engine or the compilers (A4 grep 2026-10-19); base handler reusable |
 | XV Crush | missing | 1 | 3 | ··· | K_CRUSH | no code for the variant in the engine or the compilers (A4 grep 2026-10-19); base handler reusable |
 | Current | missing | 0 | 0 | ··· | - | no code; {{Current/..}} not compiled (A4 2026-10-19) |
-| Spirit card | done | 4894 | 5344 | ··· | - | base rules: summon, levels, BP, attack/block (rules-coverage A) |
+| Form Change | missing | 0 | 0 | ··· | - | no engine/compiler/test match (A4 grep 2026-10-19) |
+| Magirrate | missing | 0 | 0 | ··· | - | no engine/compiler/test match (A4 grep 2026-10-19) |
+| Spirit card | done | 4845 | 5344 | ··· | - | base rules: summon, levels, BP, attack/block (rules-coverage A) |
 | Nexus card | done | 818 | 812 | ··· | - | deploy, levels, Nexus effects through the effect engine |
 | Burst | done | 419 | 684 | ··· | K_BURST | v0.55.2 resolution order |
 | Contract Advent | done | 193 | 246 | ··· | K_ADVENT | engine done (CLAUDE.md Done list) |
 | Advent | done | 147 | 527 | ··· | K_ADVENT | engine done (CLAUDE.md Done list) |
 | Accel | done | 141 | 195 | ··· | K_ACCEL | v0.50.0 |
-| True Release (= Super Unleash, Standard) | done | 141 | 189 | RDL | - | done v0.66.0: trueRelease field, lvIndex Soul Core = LV2, (During Attack) +BP/Clash; +14 cards (7 with True Release); real recompile re-measure 2026-10-19: True Release alone 1, with (During Attack) 6 |
-| Legacy | done | 95 | 139 | RDL | - | = Succession; done in v0.69.0 (legacyPlan/legacyPay in 06-rules.js; automatic, fewest EX cards for the lowest cost; +8 cards). Effects that count "EX Symbol banished via this Legacy" / "summoned using Legacy" (10 cards) still wait (inst.legacyN is recorded). glossary link K_STANDARD_SUCCESSION is shared with Soul Magic |
+| True Release (= Super Unleash, Standard) | done | 132 | 189 | RDL | - | done v0.66.0: trueRelease field, lvIndex Soul Core = LV2, (During Attack) +BP/Clash; +14 cards (7 with True Release); real recompile re-measure 2026-10-19: True Release alone 1, with (During Attack) 6 |
+| Legacy | done | 92 | 139 | RDL | - | = Succession; done in v0.69.0 (legacyPlan/legacyPay in 06-rules.js; automatic, fewest EX cards for the lowest cost; +8 cards). Effects that count "EX Symbol banished via this Legacy" / "summoned using Legacy" (10 cards) still wait (inst.legacyN is recorded). glossary link K_STANDARD_SUCCESSION is shared with Soul Magic |
 | Manifest | done | 91 | 4 | ··· | K_MANIFEST | v0.46.0 Ultra Manifest |
-| High Speed | done | 73 | 144 | ··· | K_HIGH_SPEED | v0.49.0 |
+| High Speed | done | 72 | 144 | ··· | K_HIGH_SPEED | v0.49.0 |
 | Crush | done | 25 | 78 | ··· | K_CRUSH | v0.49.0 |
 | Holy Life | done | 19 | 53 | ··· | K_HOLY_LIFE | v0.49.0 |
 | Brilliance | done | 12 | 34 | RDL | - | engine action BRILLIANCE in 02o-effects-battle-end.js; test PK78 |
@@ -169,4 +169,4 @@
 | Soul Magic | done | 5 | 32 | RDL | K_STANDARD_SUCCESSION | v0.64.0: soulMagicOK/soulMagicPick/soulMagicHolder (06-rules.js), human choice in prepareHumanMagic; tests S64 + scenario soul-magic-tentacle-attack |
 | Token | done | 4 | 2 | ··· | - | v0.35.0: supply outside the Deck, back to the supply when leaving the Field |
 | Amplify | done | 3 | 18 | RDL | K_AMPLIFY | test AMP-01..04; +6 complete (26RBS01-048/050/051/056/059/060) |
-| Rumble | done | 3 | 15 | RDL | K_RUMBLE | test RUM-01..05; +4 complete (26RBS01-079/084/087, 26RBS02-067) |
+| Rumble | done | 0 | 0 | RDL | K_RUMBLE | test RUM-01..05; +4 complete (26RBS01-079/084/087, 26RBS02-067) |
