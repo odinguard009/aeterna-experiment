@@ -37,7 +37,7 @@ test('C55-04 Rush: the Rush effect runs after the main body, only while you have
   assert.deepEqual(compile('[LV1] (When Summoned) Draw a card.\n{{Rush|Yellow Symbol}}\n(While you have a Yellow symbol, the following effect activates next)\n: Exhaust an opposing Spirit.').effects[0].actions,
     [{ do: 'DRAW', n: 1 }, { do: 'EXHAUST_OPP', n: 1, if: { hasSymbol: 'yellow' } }]);
   assert.match(compile('[LV1] (When Summoned) Draw a card.\n' + RUSH('Purple') + 'You can draw a card.').review, /Rush/);
-  assert.match(compile('Flash Draw a card.\n' + RUSH('Purple') + 'Draw a card.', { type: 'Magic', levels: [] }).review, /Rush/);
+  assert.deepEqual(compile('Flash Draw a card.\n' + RUSH('Purple') + 'Draw a card.', { type: 'Magic', levels: [] }).magic.actions, [{ do: 'DRAW', n: 1 }, { do: 'DRAW', n: 1, if: { hasSymbol: 'purple' } }]);      // v0.180: Rush on a Magic
 });
 
 let g;

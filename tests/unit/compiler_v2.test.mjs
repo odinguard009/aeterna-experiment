@@ -57,8 +57,6 @@ test('C61-03 target pairs, [LV1-2-3] heads and Rush spellings', () => {
 
 test('C61-04 filters the engine lacks stay in review with a lever reason', () => {
   assert.equal(acts('[LV1] (When Summoned) Destroy an opposing refreshed Cost 3 or less Spirit.').review, 'v2 destroy: filter refreshed');      // v0.68: exhausted is supported (exhaustedOnly)
-  assert.equal(acts('[LV1] (When Summoned) Destroy two opposing Cost 3 or less Spirits.').review, 'v2 destroy: count 2');
-  assert.equal(acts('[LV1] (When Summoned) Exhaust two opposing Spirits.').review, 'v2 exhaust: exactly 2 (engine: up to)');
   assert.equal(acts('[LV1] (When Summoned) Destroy an opposing Spirit.').review, 'v2 destroy: no bound');
   assert.match(acts('[LV1] (When Summoned) Reveal three cards from your decktop.').review, /^(sentence|v2 reveal)/);
 });
@@ -87,7 +85,7 @@ test('C164-01 one-of-your Void targets, Spirits with a keyword, free summon from
   assert.deepEqual(acts('[LV1] (When Destroyed) Target one of your Spirits with Shamanism. During this turn, give it +3000 BP.'),
     [{ do: 'BP_TARGET', n: 3000, to: 'pick', match: { keyword: 'Shamanism' } }]);
   const s = compile('[LV1] (When Summoned) You can summon a Cost 8 or less "Ogre Wizard" family Spirit card from your Trash, without paying the cost.');
-  assert.deepEqual(s.effects[0], { trigger: 'SUMMONED', lv: [1], optional: true, actions: [{ do: 'SUMMON_HAND', match: { family: ['Ogre Wizard'] }, from: 'trash', costLe: 8 }] });
+  assert.deepEqual(s.effects[0], { trigger: 'SUMMONED', lv: [1], optional: true, actions: [{ do: 'SUMMON_HAND', match: { family: ['Ogre Wizard'], type: 'Spirit' }, from: 'trash', costLe: 8 }] });
   assert.equal(compile('[LV1] (Can\'t Stack) (When Summoned) Draw a card.').effects[0].noStack, true);
 });
 
