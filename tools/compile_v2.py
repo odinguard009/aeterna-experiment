@@ -226,6 +226,11 @@ def clause(x):
         if m.group(3): a[0]['thenDraw'] = n_of(m.group(3))
         else: a[0]['noFx'] = True
         return a
+    m = re.match(r'^(?:you (?:can|may) )?destroy any number of opposing spirits(?:/ultimates)? up to a total of (?:(\d+) bp|cost (\d+))$', x)      # v0.182 DESTROY_TOTAL
+    if m:
+        n = int(m.group(1) or m.group(2))
+        if not (1000 <= n <= 100000 if m.group(1) else 1 <= n <= 30): raise Review('v2 destroy: total range')
+        return [{'do': 'DESTROY_TOTAL', 'total': n} if m.group(1) else {'do': 'DESTROY_TOTAL', 'total': n, 'byCost': True}]
     m = re.match(r'^(destroy|heavy exhaust|heavily exhaust|exhaust) (.+)$', x)
     if m:
         sel = selector(m.group(2))

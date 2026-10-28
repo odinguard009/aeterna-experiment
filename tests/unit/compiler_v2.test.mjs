@@ -165,3 +165,11 @@ test('C184-02 trailing "This effect can only be used once per turn." sets once; 
   assert.equal(r.effects[0].once, true);
   assert.deepEqual(r.effects[0].lv, [1, 2]);
 });
+
+test('C184-03 "Destroy any number of opposing Spirits up to a total of N BP / Cost N" -> DESTROY_TOTAL', () => {
+  const bp = compile('[LV1] (When Summoned) Destroy any number of opposing Spirits up to a total of 5000 BP.', SP);
+  assert.equal(bp.review, undefined);
+  assert.deepEqual(bp.effects[0].actions, [{ do: 'DESTROY_TOTAL', total: 5000 }]);
+  const cost = compile('[LV1] (When Summoned) Destroy any number of opposing Spirits up to a total of Cost 8.', SP);
+  assert.deepEqual(cost.effects[0].actions, [{ do: 'DESTROY_TOTAL', total: 8, byCost: true }]);
+});

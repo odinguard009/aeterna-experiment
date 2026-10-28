@@ -2911,11 +2911,6 @@
   "C_LEVEL",
   "T_SUMMONED"
  ],
- "BS10-061": [
-  "A_DESTROY_TOTAL",
-  "K_BRAVE",
-  "M_UP_TO"
- ],
  "BS10-062": [
   "A_DESTROY_BP",
   "C_LEVEL",
@@ -5651,13 +5646,6 @@
   "S_UNAFFECTED",
   "T_DESTROYED"
  ],
- "BS17-055": [
-  "A_DESTROY_TOTAL",
-  "C_LEVEL",
-  "M_REPLACEMENT",
-  "M_UP_TO",
-  "T_SUMMONED"
- ],
  "BS17-056": [
   "K_BRAVE",
   "K_BURST"
@@ -6690,12 +6678,6 @@
   "A_REFRESH",
   "C_LEVEL",
   "T_ATTACKS"
- ],
- "BS20-056": [
-  "A_DESTROY_TOTAL",
-  "C_LEVEL",
-  "M_UP_TO",
-  "T_SUMMONED"
  ],
  "BS20-058": [
   "K_BRAVE",
