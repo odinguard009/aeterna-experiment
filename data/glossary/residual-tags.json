@@ -285,10 +285,6 @@
   "M_UP_TO",
   "T_ATTACKS"
  ],
- "BS02-026": [
-  "C_LEVEL",
-  "K_HIGH_SPEED"
- ],
  "BS02-027": [
   "A_BP_PLUS",
   "A_EXHAUST",
@@ -1452,21 +1448,12 @@
   "C_LEVEL",
   "T_DESTROYED"
  ],
- "BS06-026": [
-  "C_LEVEL",
-  "K_HIGH_SPEED"
- ],
  "BS06-034": [
   "A_BP_PLUS",
   "A_REFRESH",
   "C_LEVEL",
   "C_LIFE",
   "T_ALLY_LIFE_HIT"
- ],
- "BS06-035": [
-  "A_DISCARD_OPP",
-  "C_LEVEL",
-  "T_SUMMONED"
  ],
  "BS06-038": [
   "A_EXHAUST",
@@ -7118,11 +7105,6 @@
   "C_LEVEL",
   "K_BRAVE",
   "T_BATTLE_WIN"
- ],
- "BS22-051": [
-  "C_LEVEL",
-  "K_RUSH",
-  "T_SUMMONED"
  ],
  "BS22-052": [
   "A_BP_PLUS",

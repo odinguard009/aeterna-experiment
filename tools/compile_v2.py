@@ -231,7 +231,7 @@ def clause(x):
         n = int(m.group(1) or m.group(2))
         if not (1000 <= n <= 100000 if m.group(1) else 1 <= n <= 30): raise Review('v2 destroy: total range')
         return [{'do': 'DESTROY_TOTAL', 'total': n} if m.group(1) else {'do': 'DESTROY_TOTAL', 'total': n, 'byCost': True}]
-    m = re.match(r'^destroy every (opposing )?(?:(\d+) bp or less|cost (\d+)( or less)?) spirit$', x)      # v0.183 DESTROY_EVERY (both sides, or opposing only)
+    m = re.match(r'^destroy (?:every|all) (opposing )?(?:(\d+) bp or less|cost (\d+)( or less)?) spirits?$', x)      # v0.183 DESTROY_EVERY (both sides, or opposing only)
     if m:
         a = {'do': 'DESTROY_EVERY'}
         if m.group(2): a['bpLe'] = int(m.group(2))
@@ -829,7 +829,7 @@ def action_of(s, ctx):
         return action_of('Then, ' + re.sub(r'^if returned, ', '', s.strip(), flags=re.I), ctx)
     if re.fullmatch(r'this spirit can refresh\.?', s.strip(), re.I): return [{'do': 'REFRESH'}], True      # v0.169 "(Your End Step) This Spirit can refresh." (optional REFRESH on this card)
     if re.fullmatch(r'refresh this spirit\.?', s.strip(), re.I): return [{'do': 'REFRESH'}], False      # v0.169 "If <condition>, refresh this Spirit."
-    mo_ = re.fullmatch(r'the opponent discards (a|one|two|three) cards? from their hand\.?', s.strip(), re.I)
+    mo_ = re.fullmatch(r'(?:the|your) opponent discards (a|one|two|three|1|2|3) cards?(?: from (?:their|the opponent\'s) hand)?\.?', s.strip(), re.I)
     if mo_: return [{'do': 'OPP_DISCARD', 'n': n_of(mo_.group(1).lower())}], False      # v0.180
     mm_ = MILL_OWN.match(s.strip())
     if mm_ and n_of(mm_.group(2).lower()) <= 5:      # v0.165 "(You can) discard N card(s) from your decktop" = MILL (own Deck to Trash)

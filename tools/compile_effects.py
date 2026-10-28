@@ -449,7 +449,6 @@ def spirit_paragraph_main(p, card, rush):
         return [e], flags
     if re.match(r'^Flash\s*-\s*High Speed\b', p):
         if not re.search(r'(?:This|this) (?:Spirit )?card in Hand can be summoned', p) or not re.search(r'Reserve', p): raise Review('High Speed text: ' + p[:80])
-        if lv: raise Review('High Speed with a level prefix')
         return [], {'highSpeed': True}
     mm = re.match(r'^Flash\s*-?\s*Awaken\s*-?\s*You can (?:send|put) any number of cores from (?:your Spirits|Spirits you control) to this Spirit\.?$', p)
     if mm:
