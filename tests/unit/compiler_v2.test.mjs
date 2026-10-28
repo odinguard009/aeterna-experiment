@@ -132,3 +132,8 @@ test('C168-01 symbolsOnGe, Cost A/B and non-attacking selectors, blocking-this-S
   assert.deepEqual(acts('[LV1] (When Summoned) You can target one of your Cost 6/8 Spirits with the "Topaz" family. Refresh it.'), [{ do: 'REFRESH_SPIRIT', match: { family: ['Topaz'], costIn: [6, 8] } }]);
   assert.deepEqual(acts('[LV2] (When Attacks) If you control any "GAIM" family Spirit, besides this Spirit, draw a card.'), [{ do: 'DRAW', n: 1, if: { ctrl: { n: 1, type: 'Spirit', family: 'GAIM', other: true } } }]);
 });
+
+test('C182-01 "you control a Spirit with When Blocks effect" compiles to ctrl.keyword', () => {
+  const r = compile('[LV1-2] (When Attacks)\nIf you control any Spirit with When Blocks effect, put a core from the Void to your Trash.');
+  assert.deepEqual(r.effects[0].actions, [{ do: 'VOID_TO_TRASH', n: 1, if: { ctrl: { n: 1, type: 'Spirit', keyword: 'When Blocks' } } }]);
+});

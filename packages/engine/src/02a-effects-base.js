@@ -104,7 +104,7 @@ function fxIf(owner, opp, c, ctx) {
 }
 /* v0.56 "you control N or more <colour/cost/family> Spirits/Ultimates" (Ultimate summon conditions, {{Sumcon|...}}):
    q = { n, type: 'Spirit'|'Ultimate'|'Both', colors: [any of], costGe, family }; counts the owner's Spirit-form cards on the Field */
-const cardHasKeyword = (card, kw) => (card.keywords || []).some(k => String(k).toUpperCase() === String(kw).toUpperCase()) || new RegExp('(^|[\\]\\)\\s])' + String(kw).replace(/[^A-Za-z ]/g, '') + ' \\(').test(card.desc || card.text || '')
+const cardHasKeyword = (card, kw) => (card.keywords || []).some(k => String(k).toUpperCase() === String(kw).toUpperCase()) || new RegExp('(^|[\\]\\)\\s])' + String(kw).replace(/[^A-Za-z ]/g, '') + ' \\(').test(card.desc || card.text || '') || new RegExp('\\(' + String(kw).replace(/[^A-Za-z ]/g, '') + '\\)', 'i').test(card.desc || card.text || '')
   || (String(kw).toUpperCase() === 'LEGACY' && (card.legacy === true || /^\(Legacy\)/.test(card.desc || card.text || '')))      // v0.167 "Spirit with Legacy": the (Legacy) head line / legacy flag
   || (String(kw).toUpperCase() === 'CURRENT' && /\{\{Current\|/.test(card.desc || card.text || ''))
   || (String(kw).toUpperCase() === 'SHAMANISM' && /\{\{Shaman\|/.test(card.desc || card.text || ''));      // v0.167 "Spirit with Shamanism": the {{Shaman|...}} holder template

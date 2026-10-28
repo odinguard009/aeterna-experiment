@@ -660,6 +660,9 @@ def cond_of(x):
         q = {'n': 1, 'type': 'Spirit', 'bpGe': bpv(m.group(2))}
         if m.group(1): q['colors'] = [m.group(1).lower()]
         return {'ctrl': q}
+    m = re.fullmatch(r'you control (?:an?|any) spirit with (When [A-Za-z]+(?: [A-Za-z]+)?) effect', x, re.I)      # engine ctrl.keyword, matched on the printed head "(When Blocks)"
+    if m:
+        return {'ctrl': {'n': 1, 'type': 'Spirit', 'keyword': m.group(1).title()}}
     m = re.fullmatch(r'you control (?:an?|any) (?:(red|purple|green|white|yellow|blue) )?spirit with no printed effects', x, re.I)      # v0.167 (engine ctrl.noText)
     if m:
         q = {'n': 1, 'type': 'Spirit', 'noText': True}
