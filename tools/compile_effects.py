@@ -577,6 +577,11 @@ def spirit_paragraph_main(p, card, rush):
             if mm.group('cn'): e['match'] = dict(e.get('match') or {}, **{'costGe' if mm.group('cd').lower() == 'more' else 'costLe': int(mm.group('cn'))})      # v0.185
             if lv: e['lv'] = lv
             return [e], flags
+        mm = re.match(r'^\(Your Attack Step\)\s*All your attacking (?:"(?P<fam>[^"]+)" family |(?P<team>' + TEAMS + r') )Spirits (?:gain|get) \+(?P<n>\d[\d,]*) ?BP\.?$', p, re.I)
+        if mm:      # v0.185 "All your attacking <family/team> Spirits gain +N BP" = STATIC own + attackingOnly (engine staticBp: only the attacker)
+            e = {'trigger': 'STATIC', 'bp': bp(mm.group('n')), 'to': 'own', 'attackingOnly': True, 'if': dict(ATTACK_STEP['(Your Attack Step)']), 'match': {'family': [mm.group('fam')]} if mm.group('fam') else {'team': mm.group('team').title()}}
+            if lv: e['lv'] = lv
+            return [e], flags
         mm = re.match(r'^\(Your Attack Step\)\s*This Spirit (?:gains|gets) \+(\d[\d,]*) ?BP\.?$', p, re.I)
         if mm:
             e = {'trigger': 'STATIC', 'bp': bp(mm.group(1)), 'to': 'self', 'if': dict(ATTACK_STEP['(Your Attack Step)'])}
