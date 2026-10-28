@@ -4462,9 +4462,6 @@
   "C_LEVEL",
   "K_BURST"
  ],
- "BS15-006": [
-  "C_LEVEL"
- ],
  "BS15-007": [
   "A_DESTROY_BP",
   "C_LEVEL",
@@ -6957,10 +6954,6 @@
  "BS22-029": [
   "C_LEVEL",
   "T_BLOCKS"
- ],
- "BS22-030": [
-  "C_LEVEL",
-  "K_ARMOR"
  ],
  "BS22-031": [
   "C_LEVEL",

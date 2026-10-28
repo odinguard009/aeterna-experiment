@@ -264,13 +264,16 @@ UNAFF = re.compile(r'^(?:\u27e6ARMOR:([A-Za-z ]+):([A-Za-z/]+)\u27e7\s*|(Armor|H
                    r'(?: of the (?:specified|stated) colou?rs?)?\.?$')
 
 GIVE_ARMOR = re.compile(r'^Give (?:all|every) your (?:(Red|Purple|Green|White|Yellow|Blue) |"([^"]+)" family |"([^"]+)"-named )?Spirits?(?: with ([A-Z][A-Za-z]+))?:\s*"?⟦ARMOR:(Armor|Heavy Armor|Ultra Armor):([A-Za-z/]+)⟧\s*(?:This Spirit is unaffected by opposing [A-Za-z/]+ [A-Za-z/]+ effects\.?")?\s*\.?$')
+PLAIN_GIVE_ARMOR = re.compile(r'^Give all your (?:"([^"]+)" family )?(?:"([^"]+)"-named )?Spirits:\s*(Armor|Heavy Armor|Ultra Armor): ?([A-Za-z/]+)\.?$', re.I)
 ARMOR_TYPES = {'armor': ['Spirit', 'Nexus', 'Magic'], 'heavy armor': ['Spirit', 'Brave', 'Nexus', 'Magic'], 'ultra armor': ['Spirit', 'Ultimate', 'Nexus', 'Magic']}
 
 def unaffected_para(p):
     """v0.58 session E: Armor / Heavy Armor / Ultra Armor and plain "unaffected by opposing <colour> <types> effects" -> STATIC UNAFFECTED.
     Returns (effect, keyword) or None when p is not such a paragraph."""
-    if '\u27e6ARMOR' not in p and not re.search(r'unaffected by opposing', p): return None
+    if '\u27e6ARMOR' not in p and not re.search(r'unaffected by opposing', p) and not PLAIN_GIVE_ARMOR.match(p): return None
     g = GIVE_ARMOR.match(p)
+    if not g and (pg := PLAIN_GIVE_ARMOR.match(p)):      # v0.184 the same grant printed without the {{armor}} template ("Give all your X family Spirits: Heavy Armor: Purple.")
+        g = type('G', (), {'group': lambda self, i, pg=pg: (None, pg.group(1), pg.group(2), None, pg.group(3), pg.group(4))[i - 1]})()
     if g:      # v0.181 "Give all your <selector> Spirits: {{armor|Colours}}" = STATIC UNAFFECTED for the matching own cards
         cols = colour_list(g.group(6)); types = ARMOR_TYPES[g.group(5).lower()]
         e = {'trigger': 'STATIC', 'flag': 'UNAFFECTED', 'to': 'own', 'from': {'colors': cols, 'types': types}}
@@ -623,6 +626,16 @@ def spirit_paragraph_main(p, card, rush):
             if mm.group('cn'): m['costGe' if mm.group('cd').lower() == 'more' else 'costLe'] = int(mm.group('cn'))
             e = {'trigger': 'STATIC', 'bp': bp(mm.group(mm.lastindex)), 'to': 'own', 'match': m}
             if p.startswith('(Your Turn)'): e['if'] = {'oppTurn': False}
+            if lv: e['lv'] = lv
+            return [e], flags
+        mm = re.match(r'^Give all your (?:(?P<col>Red|Purple|Green|White|Yellow|Blue) |(?P<fam>"[^"]+"(?:\s*/\s*"[^"]+")*) family |"(?P<nm>[^"]+)"-named )Spirits:\s*Clash\.?$', p, re.I)
+        if mm:      # v0.184 granted Clash = STATIC MUST_BLOCK for the owner's matching Spirits (flagActive handles to: own + match; the attacker is the subject)
+            if rush: raise Review('Rush with a constant effect')
+            m = {}
+            if mm.group('col'): m['color'] = mm.group('col').lower()
+            if mm.group('fam'): m['family'] = re.findall(r'"([^"]+)"', mm.group('fam'))
+            if mm.group('nm'): m['name'] = [mm.group('nm')]
+            e = {'trigger': 'STATIC', 'flag': 'MUST_BLOCK', 'to': 'own', 'match': m}
             if lv: e['lv'] = lv
             return [e], flags
         mm = re.match(r'^All (?:of )?your (?:(?P<col>Red|Purple|Green|White|Yellow|Blue) |(?P<fam>"[^"]+"(?:\s*/\s*"[^"]+")*) family |"(?P<nm>[^"]+)"-named )(?:Spirits )?can block (?:even )?while exhausted\.?$', p, re.I)
