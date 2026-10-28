@@ -188,6 +188,8 @@ function simple(card, a) {
         const b = BS.bpOf(t); await run(src, RA); const got = BS.bpOf(t) - b; G.attacker = null; G.blocker = null; return got === A.n ? '' : 'battle BP +' + got + ', want +' + A.n;` };
     case 'CANT_BLOCK_OPP':      // v0.172 the picked opposing Spirit can't block this battle
       return only(a, []) && spirit && { onField: true, body: `const t = sp(${J(FILL)}, O, 1); G.attacker = src; G.battleNo = 1; await run(src, RA); G.attacker = null; return t.noBlockB === 1 ? '' : 'the opposing Spirit was not marked';` };
+    case 'CANT_BE_BLOCKED_BY':      // v0.175 the attacker carries noBlockBy for this battle only
+      return only(a, ['color', 'levels', 'keyword', 'highSpeed']) && spirit && { onField: true, body: `G.attacker = src; G.battleNo = 4; await run(src, RA); const m = src.noBlockBy; G.attacker = null; return m && m.battleNo === 4 ? '' : 'noBlockBy not set';` };
     case 'NO_REFRESH_OPP':      // v0.172 an exhausted opposing Spirit skips its next Refresh Step
       return only(a, []) && { onField: true, body: `const t = sp(${J(FILL)}, O, 1); t.exhausted = true; G.turnNo = 3; await run(src, RA); return t.noRefreshT === 4 ? '' : 'noRefreshT ' + t.noRefreshT;` };
     case 'REFRESH_SPIRIT':

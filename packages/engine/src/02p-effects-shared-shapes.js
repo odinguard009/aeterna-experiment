@@ -174,6 +174,12 @@ const fxOppMark = (k, key, f, val, ask, txt) => ({ chk: () => true, txt: () => t
   } });
 FX_ACTIONS.NO_REFRESH_OPP = { ...fxOppMark('NO_REFRESH_OPP', 'noRefreshT', t => t.exhausted, () => G.turnNo + 1, 'exhausted opposing Spirit', "can't refresh next Refresh Step") };
 FX_ACTIONS.CANT_BLOCK_OPP = { ...fxOppMark('CANT_BLOCK_OPP', 'noBlockB', () => G.attacker, () => G.battleNo, 'opposing Spirit', "can't block this battle") };
+// v0.175.0: "This Spirit can't be blocked by <colour> / LV<n> / High Speed / Curse Spirits" (this battle): the attacker carries noBlockBy for the battle; the block list (08-battle) skips matching Spirits
+FX_ACTIONS.CANT_BE_BLOCKED_BY = { chk: a => (a.color == null || (Array.isArray(a.color) && a.color.length > 0)) && (a.levels == null || (Array.isArray(a.levels) && a.levels.length > 0 && a.levels.every(Number.isInteger))) && (a.keyword == null || typeof a.keyword === 'string') && (a.highSpeed == null || a.highSpeed === true) && (a.color != null || a.levels != null || a.keyword != null || a.highSpeed === true),
+  txt: () => "can't be blocked by Spirits with the printed trait during this battle", can: () => true,
+  run: async (c, a) => { c.src.noBlockBy = { battleNo: G.battleNo, color: a.color, levels: a.levels, keyword: a.keyword, highSpeed: a.highSpeed === true }; log(`${CARDS[c.src.id].name} can't be blocked by some Spirits during this battle.`); } };
+const blockedByMark = (att, s) => { const m = att.noBlockBy; if (!m || m.battleNo !== G.battleNo) return false; const k = CARDS[s.id];
+  return (m.color == null || fxMatch(k, { color: m.color })) && (m.levels == null || m.levels.includes(lvNo(s))) && (m.keyword == null || cardHasKeyword(k, m.keyword)) && (!m.highSpeed || k.highSpeed === true); };
 (() => {
   const S = FX_ACTIONS.SUMMON_HAND, sChk = S.chk, sRun = S.run;
   S.chk = a => sChk(a) || (!!a.match && (a.match.color != null || a.match.noText === true) && sChk(Object.assign({}, a, { match: Object.assign({}, a.match, { name: ['-'] }) })));

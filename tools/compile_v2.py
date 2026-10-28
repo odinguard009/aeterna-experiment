@@ -312,6 +312,15 @@ def own_grammar(s, ctx=None):
     if re.fullmatch(r"target an opposing exhausted spirit\.\s*the targeted spirit can't refresh on the next \(opposing refresh step\)", x, re.I): return [{'do': 'NO_REFRESH_OPP'}]      # v0.172 Janome-Shielder
     m = re.match(r'^target an opposing spirit\.\s*during this battle, that spirit can\'t block$', x, re.I)
     if m: return [{'do': 'CANT_BLOCK_OPP'}]      # v0.172 targeted "can't block this battle"
+    if re.fullmatch(r"this spirit can't be blocked by (?:opposing )?spirits with high speed", x, re.I): return [{'do': 'CANT_BE_BLOCKED_BY', 'highSpeed': True}]      # v0.175
+    m = re.match(r"^this spirit can't be blocked by (?:opposing )?(.+?) spirits?$", x, re.I)      # v0.175 attacker is unblockable by a colour / level / High Speed class
+    if m:
+        w = m.group(1).strip()
+        cols = [t.capitalize() for t in w.split('/')]
+        if all(t in ('Red', 'Purple', 'Green', 'White', 'Yellow', 'Blue') for t in cols): return [{'do': 'CANT_BE_BLOCKED_BY', 'color': cols}]
+        lv = re.fullmatch(r'LV([1-3])(?:/LV([1-3]))?(?:/LV([1-3]))?', w, re.I)
+        if lv: return [{'do': 'CANT_BE_BLOCKED_BY', 'levels': [int(g) for g in lv.groups() if g]}]
+        if re.fullmatch(r'with high speed', w, re.I): return [{'do': 'CANT_BE_BLOCKED_BY', 'highSpeed': True}]
     m = OPP_CORES_T.match(x)
     if m: return opp_cores_t(m)
     m = re.match(r'^target an opposing (.+?)\.\s*send (a|one|two|three) cores?,? besides ,? from it to (?:the|their|its owner\'?s) reserve$', x, re.I)

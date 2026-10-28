@@ -4,6 +4,12 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.175.0
+- Lane: K
+- **Lane K: 7 more cards complete (all older), 932 of 8,709; new action `CANT_BE_BLOCKED_BY`.** "This Spirit can't be blocked by <colour> / LV<n> / High Speed Spirits": the attacker carries a battle-scoped mark and the block list skips the matching Spirits. Cards: Bone-Gladiator, Top Supra, Bottom Desuper, The EvilAdmiral Negapluto, Dark-Iberix, Harpy-Girl, Spinoaxe.
+  - Not built this run: The Assassin Dragno ("Spirits with Curse / High Speed": the Curse class is not read), Urvancle (Rush on a Brave). Measured and left: "target and attack" (10 cards, needs a forced-target attack), "If (Soul Core) ..." conditions (9 cards, need summon-payment tracking), the "When the opponent ..." lock heads (15).
+  - Checked: loop, promotion smoke 7 / 7, `fx_validate`, new unit test V175. Not checked: Regression (CI), a real device. Revert note: `git revert` the v0.175.0 commit.
+
 ## v0.174.0
 - Lane: K
 - **Lane K: 8 more cards complete (all older), 925 of 8,709; compiler only: plain "(When Battles)" heads.** `(When Battles)` is now read as "this Spirit attacks or blocks" (`ATTACKS` with `alsoBlocks`) for any body, not only an end-of-battle body (same house reading as v0.78.0). Cards: The GodTree Dionaeus, The SnakeEmpress Medousa, The HeavyArmoredBug Goliearth, Luckiwi, Photon-Dragon, Quartz-Golem, Hornviper, The DragonArmor Dragmaru.
