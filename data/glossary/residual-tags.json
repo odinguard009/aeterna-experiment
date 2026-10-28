@@ -9553,10 +9553,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "BS27-061": [
-  "C_LIFE",
-  "K_BRAVE"
- ],
  "BS27-063": [
   "K_BRAVE",
   "K_ULTIMATE",
@@ -38271,12 +38267,6 @@
   "T_DESTROYED_OPP",
   "T_SUMMONED"
  ],
- "26RBS01-073": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "K_STANDARD_INVOKE",
-  "M_OPTIONAL"
- ],
  "26RBS01-080": [
   "A_REFRESH",
   "C_LEVEL",
@@ -39121,7 +39111,6 @@
   "T_BLOCKS",
   "T_SUMMONED"
  ],
- "26RBS03-046": [],
  "26RBS03-047": [
   "M_OPTIONAL",
   "S1_LIFE_REDUCED"

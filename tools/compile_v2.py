@@ -681,6 +681,8 @@ def cond_of(x):
     if m: return {'controlName': [y.strip() for y in re.findall(r'\[([^\]/]+)\]', m.group(1))]}
     m = re.fullmatch(r'your hand is (one|two|three|four|five|six|seven|\d) or less', x, re.I)
     if m: return {'handLe': n_of(m.group(1).lower())}      # v0.166 (engine fxIf handLe)
+    m = re.fullmatch(r'your life is (one|two|three|four|five|\d) or (less|more)', x, re.I)
+    if m: return {('lifeLe' if m.group(2).lower() == 'less' else 'lifeGe'): n_of(m.group(1).lower())}      # v0.184 (engine fxIf lifeLe/lifeGe)
     m = re.fullmatch(r'you have (one|two|three|four|five|\d) counters? or more', x, re.I)
     if m: return {'counterGe': n_of(m.group(1).lower())}
     m = re.fullmatch(r'you control (one|two|three|four|five|six|\d) or more (?:(red|purple|green|white|yellow|blue) )?(?:("[^"]+"(?:\s*/\s*"[^"]+")*) family )?(spirit/ultimate|spirit|ultimate)s', x, re.I)

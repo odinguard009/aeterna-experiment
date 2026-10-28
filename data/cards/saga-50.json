@@ -4093,18 +4093,14 @@
    "Echochant",
    "Wailwraith"
   ],
-  "text": "[LV1-2] (When Summoned)\nIf your Life is two or less, put a core from the Void to your Life.\n\n[LV2] (True Release) {{Magirrate|Topaz}} (During Attack) {{Invoke|Flash}} (Once Per Battle)\nYou can use the Flash effect of a \"Topaz\" family Magic card from your Hand, without paying the cost.",
+  "text": "[LV1][LV2] (When Summoned)\nIf your Life is two or less, put a core from the Void to your Life.\n\n[LV2] (True Release) (During Attack) {{Invoke|Flash}} (Once Per Battle)\nYou can use the Flash effect of a \"Topaz\" family Magic card from your Hand, without paying the cost.",
   "image": "26RBS01-073.png",
   "block": "A",
   "saga": 50,
   "mechanics": [
    "Magirrate"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (True Release) {{Magirrate|Topaz}} (During Attack) {{Invoke|Flash}} (Once Per Battle) You can use the Flash effect of a \"Topaz\" family Magic card from your Hand, without paying the cost."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "trueRelease": true,
   "effects": [
    {
     "trigger": "SUMMONED",
@@ -4116,11 +4112,39 @@
      {
       "do": "VOID_TO_LIFE",
       "n": 1,
-      "lifeLe": 2
+      "if": {
+       "lifeLe": 2
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN",
+     "FLASH"
+    ],
+    "when": "duringAttack",
+    "once": true,
+    "oncePer": "battle",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "USE_FLASH",
+      "match": {
+       "family": [
+        "Topaz"
+       ]
+      }
      }
     ]
    }
-  ]
+  ],
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-074",
@@ -14180,15 +14204,30 @@
   "families": [
    "Hexcraft"
   ],
-  "text": "[LV1-2]\nIf you control no \"Wailwraith\" family Spirits, this Spirit can't attack.",
+  "text": "[LV1][LV2]\nIf you control no \"Wailwraith\" family Spirits, this Spirit can't attack.",
   "image": null,
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] If you control no \"Wailwraith\" family Spirits, this Spirit can't attack."
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "CANT_ATTACK",
+    "to": "self",
+    "if": {
+     "ctrl": {
+      "type": "Spirit",
+      "family": "Wailwraith",
+      "nLe": 0
+     }
+    },
+    "lv": [
+     1,
+     2
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS03-047",

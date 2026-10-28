@@ -1,12 +1,12 @@
 {
  "stats": {
-  "cards": 7351,
+  "cards": 7348,
   "per_saga": {
    "1": 680,
    "2": 313,
    "3": 376,
    "4": 376,
-   "5": 651,
+   "5": 650,
    "6": 354,
    "7": 516,
    "8": 480,
@@ -19,15 +19,15 @@
    "15": 355,
    "16": 334,
    "17": 110,
-   "50": 343
+   "50": 341
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 1355,
+  "skipped_curated": 1358,
   "nexus_levels_added": 709,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 517,
+  "image_problems": 516,
   "number_conflicts": 4,
   "merged": 109,
   "brave_unparsed": 171,
@@ -35,7 +35,7 @@
   "odd_reduction": 807,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 515
+  "without_image": 514
  },
  "tokens": [
   "BS73-T001",
@@ -724,6 +724,7 @@
   "BS27-004",
   "BS27-024",
   "BS27-029",
+  "BS27-061",
   "BS27-068",
   "BS27-079",
   "BS28-009",
@@ -1197,6 +1198,7 @@
   "26RBS01-069",
   "26RBS01-071",
   "26RBS01-072",
+  "26RBS01-073",
   "26RBS01-074",
   "26RBS01-075",
   "26RBS01-076",
@@ -1379,6 +1381,7 @@
   "26RBS03-034",
   "26RBS03-042",
   "26RBS03-045",
+  "26RBS03-046",
   "26RBS03-049",
   "26RBS03-052",
   "26RBS03-053",
@@ -4592,11 +4595,6 @@
   {
    "id": "26RBS03-044",
    "name": "Synthetic Dragon",
-   "problem": "no image"
-  },
-  {
-   "id": "26RBS03-046",
-   "name": "Abot",
    "problem": "no image"
   },
   {
