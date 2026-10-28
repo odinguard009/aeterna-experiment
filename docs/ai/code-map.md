@@ -23,7 +23,7 @@ packBlockOf, packCards, unpackCards, INF_LBASE, INF_LEXT, INF_DBASE, INF_DEXT, I
 ## packages/engine/src/02a-effects-base.js (280 lines, ~7.4k tokens) — EFFECT ENGINE
 FX_STRICT, FX_WARNED, fxUnknown, FX_COND_KEYS, FX_TRIGGERS, FX_TRIGGER_TEXT, BR_IDX, fxEntries, fxMatch, cantAttack, canBlockState, fxIf, cardHasKeyword, fxNoText, ctrlCount, spiritCount, PER_TYPES, perOk, perCount, ownerOf, STATIC_FLAGS, fxImmune, unaffectedBy, drawPlusOf, attackLifeLocked, deckDiscardLocked, flagActive, costDestroyBonus, coresSent, staticBp, takeFromVoid, releaseCores, removeNexus, fxPickTarget, toSoulState, chooseCard, bounceCard, SOUL_SRC, hasMatch
 
-## packages/engine/src/02b-effects-actions.js (94 lines, ~3.4k tokens)
+## packages/engine/src/02b-effects-actions.js (94 lines, ~3.5k tokens)
 FX_ACTIONS
 
 ## packages/engine/src/02c-effects-parse.js (195 lines, ~6k tokens)
@@ -77,7 +77,7 @@ cardTeams, allHaveShapeOK, allHaveOK, fxOppMark, blockedByMark
 ## packages/engine/src/02s-effects-actions-soul.js (145 lines, ~3.5k tokens)
 
 
-## packages/engine/src/02t-effects-actions-opp.js (202 lines, ~4.7k tokens)
+## packages/engine/src/02t-effects-actions-opp.js (203 lines, ~4.8k tokens)
 
 
 ## packages/engine/src/02u-effects-form-change.js (32 lines, ~0.7k tokens) — FORM CHANGE (v0.135.0, schema v8; Kamen Rider cross-over cards): {{F Change|"X" & Cost N}} {{Invoke|Main}}

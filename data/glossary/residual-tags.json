@@ -1285,10 +1285,6 @@
   "C_LEVEL",
   "M_OPTIONAL"
  ],
- "BS05-050": [
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
  "BS05-051": [
   "A_DISCARD_OPP",
   "C_LEVEL",
@@ -1574,10 +1570,6 @@
   "C_LEVEL",
   "T_SUMMONED"
  ],
- "BS06-072": [
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "BS06-073": [
   "A_BP_PLUS",
   "C_LEVEL"
@@ -1857,10 +1849,6 @@
  "BS07-048": [
   "A_EXHAUST",
   "C_LEVEL"
- ],
- "BS07-049": [
-  "C_LEVEL",
-  "T_ATTACKS"
  ],
  "BS07-050": [
   "A_SUMMON_FREE",

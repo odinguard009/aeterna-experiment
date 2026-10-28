@@ -20,15 +20,15 @@ async function summonFree(p, inst, opts) {           // summon/deploy without pa
   }
   return true;                                          // v0.37: callers (REVEAL_DEPLOY) tell a summon that happened from one that did not
 }
-const canPlacePaid = (p, inst) => { const k = CARDS[inst.id]; return (k.type === 'Spirit' || k.type === 'Ultimate' || k.type === 'Nexus') && canPlayCard(p, inst); };
-const canPlaceBy = (p, inst, pay) => pay ? canPlacePaid(p, inst) : canPlaceFree(p, inst);
+const canPlacePaid = (p, inst, noTribute) => { const k = CARDS[inst.id]; return (k.type === 'Spirit' || k.type === 'Ultimate' || k.type === 'Nexus') && canPlayCard(p, inst, noTribute); };
+const canPlaceBy = (p, inst, pay, noTribute) => pay ? canPlacePaid(p, inst, noTribute) : canPlaceFree(p, inst);
 async function summonPaid(p, inst, opts) {                  // official: "summon/deploy" without "without paying the cost" pays the cost (with cost reduction)
-  if (!canPlacePaid(p, inst)) return false;
+  if (!canPlacePaid(p, inst, opts && opts.noTribute)) return false;      // v0.183 noTribute: "summon without using Tribute" (the cost is still paid)
   const card = CARDS[inst.id], c = effCost(p, card), L = minCores(card);
   let plan = null;
   if (!p.cpu && c > 0 && reserveTotal(p) < c + L) { plan = await askPayment(card, c, L); if (!plan) return false; }
   if (p.limbo === inst) p.limbo = null;
-  summon(p, inst, plan); await tributePay(p, inst); io.view({ type: 'board' }); await wait(350);
+  summon(p, inst, plan); if (!(opts && opts.noTribute)) await tributePay(p, inst); io.view({ type: 'board' }); await wait(350);
   if (!G.over && fieldList(p).includes(inst)) await fireFx(p, 'SUMMONED', inst, opts && opts.noFx ? { noSelfFx: true } : undefined);
   return true;
 }

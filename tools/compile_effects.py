@@ -327,10 +327,11 @@ WIN_KEYS = ('step', 'attackStep', 'oppTurn')
 OPP_ATT_BODY = re.compile(r'^When an opposing (?:Cost (\d+) or less |(\d+) BP or less )?Spirit(/Ultimate)? attacks,\s*')
 ALLY_ATT_BODY = re.compile(r'^When (?:one of )?your (?:"([^"]+)" family |(Red|Purple|Green|White|Yellow|Blue) )?Spirits? attacks?,\s*')
 ALLY_SUMMON_HEAD = re.compile(r'^When your (?:(?P<col>Red|Purple|Green|White|Yellow|Blue) |(?P<fam>"[^"]+"(?:\s*/\s*"[^"]+")*) family |"(?P<nm>[^"]+)"-named |[Cc]ost (?P<cn>\d+) or (?P<cd>more|less) )?(?P<ty>Spirit|Ultimate)s? (?:is|are) summoned,\s*')      # v0.181
-OWN_BP_BODY = re.compile(r'^(?:All (?:of )?your (?:"([^"]+)" family )?Spirits (?:with (?P<kw>[A-Z][A-Za-z]+) )?(?:gain|get)|Give all your (?:"([^"]+)" family )?Spirits) \+(\d[\d,]*) ?BP\.?$', re.I)      # v0.181 also 'Give all your "X" family Spirits +N BP'
+OWN_BP_BODY = re.compile(r'^(?:All (?:of )?your (?:"([^"]+)" family )?Spirits (?:with (?P<kw>[A-Z][A-Za-z]+) )?(?:gain|get)|Give all your (?:"([^"]+)" family )?Spirits|(?:All )?"([^"]+)" (?:family )?spirits you control (?:gain|get)) \+(\d[\d,]*) ?BP\.?$', re.I)      # v0.181 also 'Give all your "X" family Spirits +N BP'
 SELF_BP_BODY = re.compile(r'^This Spirit (?:gains|gets) \+(\d[\d,]*) ?BP\.?$', re.I)
 BURST_WHILE = re.compile(r"^While you (don't )?have an? (?:set Burst|Burst set),\s*", re.I)
 DRAW_PLUS_BODY = re.compile(r'^(?:If (.+?), )?(?:you draw|increase the number of cards you draw by|increase the amount of cards you draw by) \+(\d)(?: cards?)?\.?$', re.I)      # v0.181
+NOTRIBUTE_BODY = re.compile(r"^Once per turn, you can summon a Spirit card with Tribute from your Hand without using Tribute\. However, any \(When Summoned\) effects of the Spirit can't activate\.$", re.I)      # v0.183 ACTIVATE SUMMON_HAND noTribute
 BLOCK_EXH_BODY = re.compile(r'^This Spirit can block (?:opposing Spirits )?while exhausted\.?$', re.I)
 
 
@@ -340,6 +341,11 @@ def step_window(p, card, lv, rush):
     if not m: return None
     who, step, body = m.group(1), m.group(2).upper(), p[m.end():].strip()
     if not body or STEP_HEAD.match(body): raise Review('no trigger: ' + p[:100])
+    if step == 'MAIN' and who == 'Your' and NOTRIBUTE_BODY.match(body):
+        if rush: raise Review('Rush with a Tribute-less summon')
+        x = {'trigger': 'ACTIVATE', 'timing': ['MAIN'], 'once': True, 'optional': True, 'actions': [{'do': 'SUMMON_HAND', 'match': {'type': 'Spirit'}, 'pay': True, 'noFx': True, 'noTribute': True}]}
+        if lv: x['lv'] = lv
+        return [x], {}
     win = {'step': step}
     if who != 'Either': win['oppTurn'] = who == 'Opposing'
     mw = BURST_WHILE.match(body)
@@ -367,8 +373,8 @@ def step_window(p, card, lv, rush):
         if mm:
             if rush: raise Review('Rush with a step-window constant effect')
             own = mm.re is OWN_BP_BODY
-            x = {'trigger': 'STATIC', 'bp': bp(mm.group(4) if own else mm.group(1)), 'to': 'own' if own else 'self'}
-            if own and (mm.group(1) or mm.group(3)): x['match'] = {'family': [mm.group(1) or mm.group(3)]}
+            x = {'trigger': 'STATIC', 'bp': bp(mm.group(5) if own else mm.group(1)), 'to': 'own' if own else 'self'}
+            if own and (mm.group(1) or mm.group(3) or mm.group(4)): x['match'] = {'family': [mm.group(1) or mm.group(3) or mm.group(4)]}
             if own and mm.group('kw'): x['match'] = dict(x.get('match') or {}, keyword=mm.group('kw'))      # v0.167 "All your Spirits with Shamanism gain +N BP"
             e = [x]
         elif step == 'DRAW' and who == 'Your' and DRAW_PLUS_BODY.match(body):      # v0.181 STATIC DRAW_PLUS (engine drawPlusOf)
@@ -589,8 +595,8 @@ def spirit_paragraph_main(p, card, rush):
         mm = OWN_BP_BODY.match(p)
         if mm and not mm.group('kw'):      # v0.181 constant 'Give all your "X" family Spirits +N BP' / 'All your X family Spirits get +N BP'
             if rush: raise Review('Rush with a constant effect')
-            e = {'trigger': 'STATIC', 'bp': bp(mm.group(4)), 'to': 'own'}
-            if mm.group(1) or mm.group(3): e['match'] = {'family': [mm.group(1) or mm.group(3)]}
+            e = {'trigger': 'STATIC', 'bp': bp(mm.group(5)), 'to': 'own'}
+            if mm.group(1) or mm.group(3) or mm.group(4): e['match'] = {'family': [mm.group(1) or mm.group(3) or mm.group(4)]}
             if lv: e['lv'] = lv
             return [e], flags
         mm = re.match(r'^(?:\(Your Turn\)\s*)?All (?:of )?your (?:(?P<col>Red|Purple|Green|White|Yellow|Blue) |(?P<fam>"[^"]+"(?:\s*/\s*"[^"]+")*) family |"(?P<nm>[^"]+)"-named |Cost (?P<cn>\d+) or (?P<cd>more|less) )Spirits (?:gain|get) \+(\d[\d,]*) ?BP\.?$', p, re.I)
@@ -633,7 +639,7 @@ def spirit_paragraph_main(p, card, rush):
             if mm.group(1): e['fightingOnly' if '/' in mm.group(1) else 'blockingOnly' if re.search(r'block', mm.group(1), re.I) else 'attackingOnly'] = True      # v0.168 "(During Block)" prefix; v0.173 "(During Attack/Block)" = fightingOnly
             if lv: e['lv'] = lv
             return [e], flags
-        mm = re.match(r"^(?:\((?:Your|Opposing|Either) Attack Step\)\s*)?This Spirit can't (attack|block)(?: opposing Spirits)?\.?$", p, re.I)
+        mm = re.match(r"^(?:\((?:Your|Opposing|Either) Attack Step\)\s*|\(During Your Battle Phase\)\s*)?This Spirit can't (attack|block)(?: opposing Spirits)?\.?$", p, re.I)
         if mm:      # v0.170 printed "can't attack" / "can't block" as a STATIC flag (the Attack Step head only names when it matters)
             if rush: raise Review('Rush with a can\'t attack/block flag')
             e = [{'trigger': 'STATIC', 'flag': 'CANT_' + mm.group(1).upper(), 'to': 'self'}]
@@ -670,7 +676,7 @@ def spirit_paragraph_main(p, card, rush):
             e = [{'trigger': 'STATIC', 'flag': 'NO_DECK_DISCARD', 'to': 'self'}]
             if lv: e[0]['lv'] = lv
             return e, flags
-        sw = step_window(p, card, lv, rush)      # v0.70: generic step window head
+        sw = step_window(re.sub(r"^\(During (?:Your|the) Battle Phase\)", '(Your Attack Step)', p, flags=re.I) if re.match(r'^\(During (?:Your|the) Battle Phase\)\s*(?:All )?"', p, re.I) else p, card, lv, rush)      # v0.70: generic step window head; v0.183 old wording '(During Your Battle Phase) "X" spirits you control get +N BP' (the Battle Phase is the Attack Step here)
         if sw is not None: e, f2 = sw; flags.update(f2); return e, flags
         raise Review('no trigger: ' + p[:100])
     return trig_effects(p, card, trig, tmatch, lv, rush, flags, dict(extra or {}, noStack=True) if nostack else extra)
