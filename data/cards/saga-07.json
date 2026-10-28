@@ -17775,6 +17775,16 @@
   ],
   "effects": [
    {
+    "trigger": "STATIC",
+    "flag": "IMMORTALITY",
+    "to": "self",
+    "costIn": [
+     3,
+     5,
+     6
+    ]
+   },
+   {
     "trigger": "SUMMONED",
     "lv": [
      1,
@@ -17801,11 +17811,8 @@
     ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "{{Immortality|Cost 3/5/6}} (Either Attack Step) You can summon this Spirit card from the Trash when your Cost 3/5/6 Spirit is destroyed."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS39-RV005",

@@ -1,14 +1,14 @@
 {
  "stats": {
-  "cards": 7434,
+  "cards": 7427,
   "per_saga": {
-   "1": 713,
-   "2": 315,
-   "3": 383,
+   "1": 711,
+   "2": 314,
+   "3": 380,
    "4": 382,
    "5": 653,
    "6": 357,
-   "7": 517,
+   "7": 516,
    "8": 481,
    "9": 492,
    "10": 496,
@@ -23,11 +23,11 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 1272,
+  "skipped_curated": 1279,
   "nexus_levels_added": 709,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 525,
+  "image_problems": 523,
   "number_conflicts": 4,
   "merged": 109,
   "brave_unparsed": 171,
@@ -35,7 +35,7 @@
   "odd_reduction": 807,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 523
+  "without_image": 521
  },
  "tokens": [
   "BS73-T001",
@@ -337,6 +337,7 @@
   "BS09-004",
   "BS09-006",
   "BS09-010",
+  "BS09-014",
   "BS09-020",
   "BS09-022",
   "BS09-029",
@@ -346,6 +347,7 @@
   "BS09-069",
   "BS09-075",
   "BS09-078",
+  "BS09-X36",
   "BS10-001",
   "BS10-003",
   "BS10-004",
@@ -390,6 +392,7 @@
   "BS11-005",
   "BS11-006",
   "BS11-009",
+  "BS11-010",
   "BS11-012",
   "BS11-021",
   "BS11-022",
@@ -465,6 +468,7 @@
   "BS14-100",
   "BS15-002",
   "BS15-010",
+  "BS15-012",
   "BS15-019",
   "BS15-025",
   "BS15-029",
@@ -477,6 +481,7 @@
   "BS16-001",
   "BS16-004",
   "BS16-010",
+  "BS16-016",
   "BS16-020",
   "BS16-023",
   "BS16-025",
@@ -496,6 +501,7 @@
   "BS17-007",
   "BS17-008",
   "BS17-010",
+  "BS17-015",
   "BS17-018",
   "BS17-019",
   "BS17-022",
@@ -788,6 +794,7 @@
   "BS38-032",
   "BS38-041",
   "BS39-071",
+  "BS39-RV004",
   "BS39-RV007",
   "BS40-001",
   "BS40-012",
@@ -2192,11 +2199,6 @@
    "problem": "no image (near: The Final Chamionship Flag.jpg)"
   },
   {
-   "id": "BS11-010",
-   "name": "The DarkKnight Gaheris",
-   "problem": "no image (near: The DrakKnight Gaheris.jpg)"
-  },
-  {
    "id": "BS11-033",
    "name": "Nijinoko",
    "problem": "no image (near: Ninjinoko.jpg)"
@@ -2385,11 +2387,6 @@
    "id": "BS14-102",
    "name": "Tornade Burst",
    "problem": "no image (near: Tornado Burst.png)"
-  },
-  {
-   "id": "BS15-012",
-   "name": "Werewolf-Command",
-   "problem": "no image (near: Werewolf-Comand.png)"
   },
   {
    "id": "BS15-027",

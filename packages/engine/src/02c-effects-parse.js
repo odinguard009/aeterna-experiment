@@ -131,6 +131,12 @@ function parseEffects(arr) {
         if (!Number.isInteger(e.costLe) || e.costLe < 0 || e.costLe > 30) return { error: 'NO_ATTACK_LIFE needs a whole-number "costLe" (0-30)' };
         o.costLe = e.costLe;
       }
+      if (e.flag === 'IMMORTALITY') {                             // v0.183 {{Immortality|Cost N/M}} / {{Immortality|<family>}} (engine immortalCands)
+        const ci = e.costIn, fam = e.family;
+        if (!(ci != null) === !(fam != null)) return { error: 'IMMORTALITY needs "costIn" or "family"' };
+        if (ci != null) { if (!Array.isArray(ci) || !ci.length || ci.length > 8 || ci.some(x => !Number.isInteger(x) || x < 0 || x > 30)) return { error: 'IMMORTALITY "costIn" must be a list of costs 0-30' }; o.costIn = ci.slice(); }
+        else { if (typeof fam !== 'string' || !fam || fam.length > 60) return { error: 'IMMORTALITY "family" must be a family name' }; o.family = fam; }
+      }
       if (e.flag === 'DRAW_PLUS') {                               // v0.181 extra cards in your Draw Step
         if (!Number.isInteger(e.n) || e.n < 1 || e.n > 3) return { error: 'DRAW_PLUS needs a whole-number "n" (1-3)' };
         o.n = e.n;

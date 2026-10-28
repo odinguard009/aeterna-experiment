@@ -310,6 +310,7 @@ function removeSpirit(p, s, why, byOpponent) {
     return;
   }
   log(`${poss(p)} ${CARDS[s.id].name} is ${why}.`);
+  if (why === 'destroyed' && G && G.evQ && STEPS[G.step] === 'ATTACK' && p.trash.some(x => (CARDS[x.id].effects || []).some(e => e.flag === 'IMMORTALITY'))) G.evQ.push({ type: 'IMMORTAL', key: p.key, inst: s });      // v0.183 Immortality (02j)
   if (why === 'destroyed' && byOpponent && G && G.burstQ) G.burstQ.push({ key: p.key });
   if (G && G.evQ && ((why === 'destroyed' && byOpponent) || why === 'depleted')) G.evQ.push({ type: 'LOST', key: p.key, inst: s });
   if (G && G.evQ && G.evQ.some(e => e.inst === s && (e.type === 'DESTROYED' || e.type === 'LEAVES' || (e.type === 'LOST' && lostHeard(p))))) { s.standbyTo = 'trash'; p.standby.push(s); }   // v0.57.0 Standby (JP 17.0 item 4): waits while its leave triggers resolve
@@ -354,7 +355,7 @@ function draw(p, n) {
 function handUp(p, k) { if (G && !G.over && k !== 0 && G.evQ) G.evQ.push({ type: 'HAND_UP', key: p.key }); }
 function summon(p, inst, plan) {
   const card = CARDS[inst.id], c = effCost(p, card); legacyPay(p, inst);
-  removeFrom(p.hand, inst); removeFrom(p.soulState, inst); removeFrom(p.removed, inst); inst.inSoulState = false; inst.mirage = false;   // v0.50: Accel Spirits are summoned from the Removed Zone
+  removeFrom(p.hand, inst); removeFrom(p.soulState, inst); removeFrom(p.removed, inst); removeFrom(p.trash, inst); inst.inSoulState = false; inst.mirage = false;   // v0.50: Accel Spirits are summoned from the Removed Zone; v0.183 Immortality from the Trash
   const soulPaid = payCost(p, c, plan);
   inst.viaFC = false; inst.viaFx = false; inst.soulPaid = soulPaid; inst.soulLost = false; inst.cores = 0; inst.soul = false; inst.exhausted = false; inst.heavy = false; inst.noAB = false; inst.summonedTurn = G.turnNo; inst.bpMod = 0;
   if (isSpiritForm(card)) {

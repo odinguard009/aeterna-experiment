@@ -961,8 +961,25 @@ WS_TPL = re.compile(r'\{\{\s*ws\s*\|\s*(\d)\s*\}\}\s*(\(When Attacks\))\s*\n?\s*
 TRIBUTE_TPL = re.compile(r'\{\{\s*Tribute\s*\|\s*(?:Cost (\d+) or more|([^{}|]+?))\s*(?:&rarr;|→)\s*(Void|Trash)\s*\}\}[ \t]*\n?After paying for the summoning cost[^\n]*\n?', re.I)
 
 
+IMM_TPL = re.compile(r'(?:\[LV\d\])*\s*(?:\{\{\s*Immortality\s*\|\s*([^{}|]+?)\s*\}\}|Immortality:\s*(Cost [\d/]+))\s*\(Either Attack Step\)\s*(?:-\s*)?([^\n]*(?:\n|$))', re.I)
+
+
 def compile_card(c):
     t = c.get('text')
+    m = t and IMM_TPL.match(t)
+    if m and re.search(r'summon', m.group(3)) and re.search(r'Spirits? (?:is|are) destroyed|Spirit is destroyed', m.group(3)) and not re.search(r'\bBrave card\b', m.group(3)):
+        # v0.183 {{Immortality|Cost N/M}} / {{Immortality|<family>}}: STATIC flag IMMORTALITY (engine immortalCands); the printed reminder line is dropped before the rest compiles
+        if c['type'] != 'Spirit': raise Review('Immortality on a ' + c['type'])
+        arg = (m.group(1) or m.group(2)).strip()
+        am = re.fullmatch(r'(?:Cost )?([\d/]+)', arg)
+        f = {'trigger': 'STATIC', 'flag': 'IMMORTALITY', 'to': 'self'}
+        if am: f['costIn'] = [int(x) for x in am.group(1).split('/')]
+        elif re.search(r'your "%s" family Spirit' % re.escape(arg), m.group(3)): f['family'] = arg
+        else: raise Review('Immortality condition: ' + m.group(3)[:80])
+        n = compile_card(dict(c, text=t[m.end():].strip()))
+        n['effects'] = [f] + list(n.get('effects') or [])
+        n['text'] = t
+        return n
     m = t and TRIBUTE_TPL.match(t)
     if m:       # v0.182 {{Tribute|Cost N or more > Void}} / {{Tribute|<family> > Trash}}: card.tribute; the reminder sentence is dropped before the rest compiles
         n = compile_card(dict(c, text=t[m.end():].strip()))

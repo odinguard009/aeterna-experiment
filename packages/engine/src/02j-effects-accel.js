@@ -55,6 +55,15 @@ async function summonFromRemoved(p, inst) {
   if (ok) await flushBursts();
   return ok;
 }
+/* v0.183 Immortality: when your Spirit is destroyed in an Attack Step, an Immortality Spirit card in your Trash whose printed Cost / family matches can be summoned by paying its cost */
+const immortalCands = (p, dead) => { const k = CARDS[dead.id]; return p.trash.filter(x => isSpiritForm(CARDS[x.id]) && (CARDS[x.id].effects || []).some(e => e.trigger === 'STATIC' && e.flag === 'IMMORTALITY' && (e.costIn ? e.costIn.includes(k.cost) : (k.families || []).includes(e.family))) && canPlacePaid(p, x)); };
+async function immortalOffer(p, dead) {
+  const L = immortalCands(p, dead); if (!L.length) return;
+  const pick = await chooseCard({ p }, L, 'Immortality', `Pay the cost to summon an Immortality Spirit card from your Trash (${CARDS[dead.id].name} was destroyed).`, true);
+  if (!pick) return;
+  log(`${who(p)} ${p.cpu ? 'summons' : 'summon'} ${CARDS[pick.id].name} from the Trash (Immortality).`);
+  await summonPaid(p, pick);
+}
 /* human */
 async function humanAccel(inst, idx, timing) {
   const p = G.p.player, x = { inst, idx, e: CARDS[inst.id].effects[idx] };
