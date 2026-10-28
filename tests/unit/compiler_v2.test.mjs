@@ -143,3 +143,9 @@ test('C182-02 a "[Team: X]" head line is not an effect: a Spirit printing only i
   const m = compile('[Team: Red Stella]\n\nFlash\nTarget one of your Spirits. During this turn, give it +3000 BP.', { id: 'T-2', name: 'M', type: 'Magic', color: 'red', cost: 1 });
   assert.equal(m.review, undefined); assert.ok(m.magic.timing.includes('FLASH'));
 });
+
+test('C183-01 "If all your Spirits/Nexuses have <Team>" compiles to allHave.team', () => {
+  const r = compile('(When Destroyed) If all your Spirits/Nexuses have Red Stella, draw a card.');
+  assert.equal(r.review, undefined);
+  assert.deepEqual(r.effects[0].actions[0].if, { allHave: { team: 'Red Stella' } });
+});

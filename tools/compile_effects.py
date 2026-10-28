@@ -68,7 +68,9 @@ def all_have_cond(x):
     m = re.fullmatch(r'all your spirits are cost ((?:\d/)*\d) with the "([^"]+)" family', x.strip(), re.I)
     if m: return {'allHave': {'family': m.group(2), 'costIn': [int(v) for v in m.group(1).split('/')], 'spiritsOnly': True}}
     m = re.fullmatch(r'all your spirits/nexuses have the "([^"]+)" family', x.strip(), re.I)
-    return {'allHave': {'family': m.group(1)}} if m else None
+    if m: return {'allHave': {'family': m.group(1)}}
+    m = re.fullmatch(r'all your spirits/nexuses have (Green Wave|Red Stella|Blue Beat|Yellow Rise)', x.strip(), re.I)   # team names, as printed on [Team:] lines
+    return {'allHave': {'team': m.group(1).title()}} if m else None
 
 COND_HOOK = None      # v0.166: set by compile_v2.install() to its cond_of (the fxIf condition reader)
 

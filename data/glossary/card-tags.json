@@ -46801,6 +46801,7 @@
   "S1_ALL_HAVE"
  ],
  "26RDB01-003": [
+  "C_LEVEL",
   "T_DESTROYED",
   "S1_ALL_HAVE"
  ],
@@ -46985,6 +46986,7 @@
  "26RDB01-034": [
   "T_SUMMONED",
   "A_VOID",
+  "C_LEVEL",
   "S1_ALL_HAVE"
  ],
  "26RDB01-035": [
