@@ -254,6 +254,7 @@ def clause(x):
         return [{'do': 'DESTROY_OWN', 'match': mt, 'voidByCost': True}]
     m = re.match(r'^destroy an? (\d+) bp or less spirit$', x)      # v0.183 DESTROY_ANY bpLe (either side)
     if m: return [{'do': 'DESTROY_ANY', 'kind': 'spirit', 'bpLe': int(m.group(1))}]
+    if x == 'destroy a nexus. if an opposing nexus is destroyed, draw a card': return [{'do': 'DESTROY_ANY', 'kind': 'nexus', 'drawIfOpp': True}]      # v0.183
     m = re.match(r'^destroy (?:a nexus|an exhausted spirit)(?: you or (?:the|your) opponent controls)?$', x)      # v0.183 DESTROY_ANY (either side)
     if m: return [{'do': 'DESTROY_ANY', 'kind': 'nexus'}] if 'nexus' in x else [{'do': 'DESTROY_ANY', 'kind': 'spirit', 'exhaustedOnly': True}]
     m = re.match(r'^(destroy|heavy exhaust|heavily exhaust|exhaust) (.+)$', x)
@@ -943,6 +944,8 @@ def sentences(body):
             out[-1] = out[-1] + ' ' + x      # v0.77: "When this effect destroys any Spirit, draw a card." belongs to the sentence before it
         elif out and re.fullmatch(r'The opponent targets a refreshed Spirit they control\.', out[-1].strip(), re.I) and re.fullmatch(r'Exhaust it\.?', x.strip(), re.I):
             out[-1] = out[-1] + ' ' + x      # v0.170: "The opponent targets a refreshed Spirit they control. Exhaust it." is one effect
+        elif out and out[-1].strip().lower() == 'destroy a nexus.' and x.strip().lower() == 'if an opposing nexus is destroyed, draw a card.':
+            out[-1] = out[-1] + ' ' + x      # v0.183 DESTROY_ANY drawIfOpp
         elif out and re.fullmatch(r'destroy (?:a spirit|a cost \d+ or less) you control\.', out[-1].strip(), re.I) and re.fullmatch(r'put a number of cores from the void to your reserve equal to the cost of the destroyed spirit\.?', x.strip(), re.I):
             out[-1] = out[-1] + ' ' + x      # v0.183: "Destroy a Spirit you control." + "Put cores from the Void ... equal to its cost." is one effect
         elif out and re.match(r'^(?:if (?:you control [^,.]+|returned), )?(?:(?:you can|you may) )?target ', out[-1], re.I) and out[-1].endswith('.'):
