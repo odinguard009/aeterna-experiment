@@ -806,6 +806,10 @@ def action_of(s, ctx):
         a = {'do': 'SUMMON_HAND', 'match': {'family': [ms.group(3)]}, 'from': ms.group(4).lower()}
         if ms.group(2): a['costLe'] = int(ms.group(2))
         return [a], bool(ms.group(1))
+    mu = re.fullmatch(r'(you can )?(?:immediately )?use the flash effect of an? (?:cost (\d+) or less )?(?:(red|purple|green|white|yellow|blue) )?(?:"([^"]+)" family )?magic card (?:in|from) your hand, without paying the cost\.?', s.strip(), re.I)
+    if mu:      # v0.184 "(You can) use the Flash effect of a [Cost N or less] [Colour] ["X" family] Magic card from your Hand, without paying the cost" = USE_FLASH
+        mt = {k: v for k, v in (('costLe', int(mu.group(2)) if mu.group(2) else None), ('color', [mu.group(3).title()] if mu.group(3) else None), ('family', [mu.group(4)] if mu.group(4) else None)) if v is not None}
+        return [{'do': 'USE_FLASH', 'match': mt}], bool(mu.group(1))
     sn = re.match(r'^target (?:an?|one) ((?:"[^"]+" family )?spirit) you control\.\s*(.+)$', s.strip(), re.I)
     if sn and re.match(r'(?:refresh it|during (?:this|the) (?:turn|battle)|put )', sn.group(2), re.I):      # v0.164 "Target a Spirit you control. <X>" = "Target one of your Spirits. <X>"
         return action_of('Target one of your %ss. %s' % (sn.group(1), sn.group(2)), ctx)

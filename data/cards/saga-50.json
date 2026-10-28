@@ -9970,7 +9970,7 @@
    "Topaz",
    "Alpermit"
   ],
-  "text": "[LV1-2] (When Destroyed)\nReveal four cards from your decktop. Among them, add a \"Topaz\" family Magic card to the Hand. Return any remaining cards to the deckbottom in any order.\n\n[LV2] (During Block) {{Invoke|Flash}} (Once Per Battle)\nUse the Flash effect of a \"Topaz\" family Magic card from your Hand, without paying the cost.",
+  "text": "[LV1][LV2] (When Destroyed)\nReveal four cards from your decktop. Among them, add a \"Topaz\" family Magic card to the Hand. Return any remaining cards to the deckbottom in any order.\n\n[LV2] (During Block) {{Invoke|Flash}} (Once Per Battle)\nUse the Flash effect of a \"Topaz\" family Magic card from your Hand, without paying the cost.",
   "image": "26RBS02-060.png",
   "block": "A",
   "saga": 50,
@@ -9994,13 +9994,34 @@
       "rest": "bottom"
      }
     ]
+   },
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN",
+     "FLASH"
+    ],
+    "when": "duringBlock",
+    "once": true,
+    "oncePer": "battle",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "USE_FLASH",
+      "match": {
+       "family": [
+        "Topaz"
+       ]
+      }
+     }
+    ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (During Block) {{Invoke|Flash}} (Once Per Battle) Use the Flash effect of a \"Topaz\" family Magic card from your Hand, without paying the cost."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS02-061",
@@ -29010,16 +29031,32 @@
    "Diva",
    "Stage Style"
   ],
-  "text": "[Teams: Yellow Rise/Shiny Hearts]\n\n[LV1-2] (When Summoned)\nYou can use the Flash effect of a \"Sword Eye\" family Magic card from your Hand, without paying the cost.",
+  "text": "[Teams: Yellow Rise/Shiny Hearts]\n\n[LV1][LV2] (When Summoned)\nYou can use the Flash effect of a \"Sword Eye\" family Magic card from your Hand, without paying the cost.",
   "image": "26RSD08-004.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[Teams: Yellow Rise/Shiny Hearts]",
-   "[LV1-2] (When Summoned) You can use the Flash effect of a \"Sword Eye\" family Magic card from your Hand, without paying the cost."
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "USE_FLASH",
+      "match": {
+       "family": [
+        "Sword Eye"
+       ]
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RSD08-005",
@@ -29080,10 +29117,11 @@
    "Stage Style",
    "Sword Eye"
   ],
-  "text": "[Team: Yellow Rise]\n\n[LV1-2] (When Attacks)\nTarget an opposing Spirit. During this turn, give it -2000 BP. Then, if it has 0 BP, destroy it.\n\n[LV2] (True Release) (During Attack) {{Invoke|Flash}} (Once Per Turn)\nUse the Flash effect of a \"Sword Eye\" family Magic card from your Hand, without paying the cost.",
+  "text": "[Team: Yellow Rise]\n\n[LV1][LV2] (When Attacks)\nTarget an opposing Spirit. During this turn, give it -2000 BP. Then, if it has 0 BP, destroy it.\n\n[LV2] (True Release) (During Attack) {{Invoke|Flash}} (Once Per Turn)\nUse the Flash effect of a \"Sword Eye\" family Magic card from your Hand, without paying the cost.",
   "image": "26RSD08-006.png",
   "block": "A",
   "saga": 50,
+  "trueRelease": true,
   "effects": [
    {
     "trigger": "ATTACKS",
@@ -29098,14 +29136,33 @@
       "zeroDestroy": true
      }
     ]
+   },
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN",
+     "FLASH"
+    ],
+    "when": "duringAttack",
+    "once": true,
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "USE_FLASH",
+      "match": {
+       "family": [
+        "Sword Eye"
+       ]
+      }
+     }
+    ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[Team: Yellow Rise]",
-   "[LV2] (True Release) (During Attack) {{Invoke|Flash}} (Once Per Turn) Use the Flash effect of a \"Sword Eye\" family Magic card from your Hand, without paying the cost."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RSD08-007",

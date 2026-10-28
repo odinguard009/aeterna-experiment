@@ -47792,6 +47792,7 @@
  "26RSD08-004": [
   "T_SUMMONED",
   "A_SUMMON_FREE",
+  "C_LEVEL",
   "M_OPTIONAL"
  ],
  "26RSD08-005": [],

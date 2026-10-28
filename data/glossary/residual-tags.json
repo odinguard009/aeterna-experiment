@@ -39247,11 +39247,6 @@
   "M_THEN",
   "T_SUMMONED"
  ],
- "26RBS02-060": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "K_STANDARD_INVOKE"
- ],
  "26RBS02-061": [
   "A_VOID",
   "A_VOID_TO_LIFE",
@@ -40739,16 +40734,6 @@
   "C_LIFE",
   "T_ALLY_LIFE_HIT",
   "T_SUMMONED"
- ],
- "26RSD08-004": [
-  "A_SUMMON_FREE",
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
- "26RSD08-006": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "K_STANDARD_INVOKE"
  ],
  "26RSD08-007": [
   "A_BP_PLUS",

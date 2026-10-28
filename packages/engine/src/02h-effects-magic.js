@@ -136,6 +136,28 @@ async function oppAttackHandFx(D) {                    // D = the player whose o
 async function braveSummonedFx(p, b) { if (G && !G.over && b) { await maybeBurst(p, 'BRAVE_SUMMONED', { subject: b }); await flushBursts(); } }
 async function braveSummonedEvs(evs) { for (const e of evs) if (e.trigger === 'SUMMONED' && e.src && CARDS[e.src.id] && CARDS[e.src.id].type === 'Brave') await braveSummonedFx(e.owner, e.src); }
 Object.assign(FX_ACTIONS, {
+  /* v0.184 "You can use the Flash effect of a <match> Magic card from your Hand, without paying the cost": the card is cast (Flash side) for free and goes to the Trash */
+  USE_FLASH: { chk: a => hasMatch(a.match),
+    txt: () => 'use the Flash effect of a matching Magic card from your Hand without paying the cost',
+    cands: (c, a) => c.p.hand.filter(h => CARDS[h.id].type === 'Magic' && fxMatch(CARDS[h.id], a.match) && magicUsable(c.p, h, 'flash', true)),
+    can: (c, a) => FX_ACTIONS.USE_FLASH.cands(c, a).length > 0,
+    run: async (c, a) => {
+      const L = FX_ACTIONS.USE_FLASH.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
+      let ch;
+      if (c.p.cpu) {
+        const best = L.map(h => ({ h, tg: magicTargets(c.p, h, 'flash') })).filter(x => x.tg === null || x.tg.length).sort((x, y) => CARDS[y.h.id].cost - CARDS[x.h.id].cost)[0];
+        if (!best) { c.ctx.did = false; return; }
+        const t = best.tg && best.tg.slice().sort((x, y) => bpOf(y) - bpOf(x))[0];
+        ch = { inst: best.h, target: t || null, plan: null, ctx: 'flash', free: true };
+      } else {
+        const ids = Array.from(new Set(L.map(x => x.id))).slice(0, 8);
+        const id = await ask({ title: `✨ ${CARDS[c.src.id].name}`, peek: true, wide: true, html: 'Use the Flash effect of which Magic card (no cost)?', cards: cardIds(ids), buttons: ids.map(i => ({ label: CARDS[i].name, value: i })).concat([{ label: 'Do not use', cls: 'cancel', value: null }]) });
+        const h = L.find(x => x.id === id); if (!h) { c.ctx.did = false; return; }
+        ch = await prepareHumanMagic(c.p, h, 'flash', true); if (!ch) { c.ctx.did = false; return; }
+      }
+      log(`${CARDS[c.src.id].name}: ${who(c.p)} ${c.p.cpu ? 'uses' : 'use'} the Flash effect of ${CARDS[ch.inst.id].name} without paying the cost.`);
+      await castMagic(c.p, ch); io.view({ type: 'board' });
+    } },
   AB_CORE_TAX_TURN: { chk: () => true, txt: () => 'during this turn, when an opposing Spirit/Ultimate would attack/block, unless the opponent sends a core from it to the Trash, it can\'t attack/block',
     run: async c => { c.opp.abTax = G.turnNo; log(`${_pn(c)}: this turn ${poss(c.opp)} Spirits must send a core to the Trash to attack/block.`); io.view({ type: 'board' }); } }
 });

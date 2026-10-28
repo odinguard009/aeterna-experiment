@@ -62,9 +62,9 @@ async function askBlock(att, D, blockers, must, bound) {
 function askPayment(card, c, L) { return decide('player', { kind: 'payment', card: card.id, cost: c, L: L || 0 }); }
 const uniqById = L => { const seen = new Set(); return L.filter(x => (seen.has(x.id) ? false : (seen.add(x.id), true))); };
 /* target + payment for a human Magic cast; returns { inst, target, plan } or null when cancelled */
-async function prepareHumanMagic(p, inst, ctx) {
+async function prepareHumanMagic(p, inst, ctx, free) {
   ctx = ctx || 'main';
-  const card = CARDS[inst.id], c = effCost(p, card), m = magicFx(card, ctx);
+  const card = CARDS[inst.id], c = free ? 0 : effCost(p, card), m = magicFx(card, ctx);
   let target = null;
   const tg = magicTargets(p, inst, ctx);
   if (tg) {
@@ -73,7 +73,7 @@ async function prepareHumanMagic(p, inst, ctx) {
     if (!target) return null;
   }
   let plan = null, soulMagic = false;
-  if (soulMagicOK(p, card)) {                              // v0.64 Soul Magic: pay the whole cost with the Soul Core, or pay normally
+  if (!free && soulMagicOK(p, card)) {                              // v0.64 Soul Magic: pay the whole cost with the Soul Core, or pay normally
     if (c > coresAvailable(p)) soulMagic = true;
     else {
       const v = await ask({ title: `✨ ${esc(card.name)}: Soul Magic`, html: `Pay the whole cost with just your Soul Core (it goes to the Trash), or pay ${c} core${c === 1 ? '' : 's'} as usual?`,
@@ -83,7 +83,7 @@ async function prepareHumanMagic(p, inst, ctx) {
     }
   }
   if (!soulMagic && c > 0 && reserveTotal(p) < c) { plan = await askPayment(card, c, 0); if (!plan) return null; }
-  return { inst, target, plan, ctx, soulMagic };
+  return { inst, target, plan, ctx, soulMagic, free };
 }
 async function humanFlashChoice(p, attKey, att, blk) {
   for (let g = 0; g < 6; g++) {
