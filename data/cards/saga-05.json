@@ -4283,6 +4283,65 @@
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
+  "id": "BS24-106",
+  "name": "Ultimate Wall",
+  "name_jp": "アルティメットウォール",
+  "type": "Magic",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{Burst|After your Life is reduced}}\nWhen this battle ends, end the Attack Step. Then, by paying the cost, activate this card's Flash effect.\n\nFlash\nReturn three opposing Cost 3 or less Spirits to the Hand.",
+  "image": "Ultimate Wall.jpg",
+  "block": "24",
+  "saga": 5,
+  "mechanics": [
+   "Burst"
+  ],
+  "burst": {
+   "when": "LIFE_DECREASE",
+   "actions": [
+    {
+     "do": "END_ATTACK_AFTER_BATTLE"
+    }
+   ],
+   "thenFlash": true
+  },
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "BOUNCE_OPP",
+     "to": "hand",
+     "kind": "spirit",
+     "costLe": 3
+    },
+    {
+     "do": "BOUNCE_OPP",
+     "to": "hand",
+     "kind": "spirit",
+     "costLe": 3
+    },
+    {
+     "do": "BOUNCE_OPP",
+     "to": "hand",
+     "kind": "spirit",
+     "costLe": 3
+    }
+   ]
+  },
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
+ },
+ {
   "id": "BS24-107",
   "name": "Dream Nebula",
   "name_jp": "ドリームネビュラ",

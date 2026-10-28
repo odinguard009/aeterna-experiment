@@ -6043,10 +6043,6 @@
   "C_LEVEL",
   "T_BLOCKS"
  ],
- "BS18-036": [
-  "C_LEVEL",
-  "T_BLOCKS"
- ],
  "BS18-038": [
   "A_EXHAUST",
   "C_LEVEL",
@@ -7170,10 +7166,6 @@
   "T_ALLY_LIFE_HIT",
   "T_OPP_HAND_UP"
  ],
- "BS21-056": [
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "BS21-057": [
   "A_EXHAUST",
   "T_DESTROYED"
@@ -7332,10 +7324,6 @@
   "C_LEVEL",
   "K_RUSH",
   "T_ATTACKS"
- ],
- "BS22-008": [
-  "C_LEVEL",
-  "T_SUMMONED"
  ],
  "BS22-009": [
   "C_LEVEL",
@@ -26791,16 +26779,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "BS59-026": [
-  "A_EXHAUST",
-  "A_REMOVED_ZONE",
-  "A_VOID",
-  "C_LEVEL",
-  "K_ACCEL",
-  "K_RUSH",
-  "T_ACTIVATE",
-  "T_ATTACKS"
- ],
  "BS59-027": [
   "A_EXHAUST",
   "A_REFRESH",
@@ -34138,12 +34116,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "BS68-037": [
-  "A_REMOVED_ZONE",
-  "A_VOID",
-  "K_ACCEL",
-  "K_ULTIMATE"
- ],
  "BS68-038": [
   "A_BP_PLUS",
   "A_COUNTER",
@@ -40198,9 +40170,6 @@
   "A_REFRESH",
   "C_LEVEL",
   "M_OPTIONAL"
- ],
- "26RCB01-017": [
-  "T_SUMMONED"
  ],
  "26RCB01-022": [
   "A_DRAW",

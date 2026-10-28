@@ -10873,6 +10873,11 @@
   "A_EXHAUST",
   "K_ULTIMATE"
  ],
+ "BS24-106": [
+  "A_END_ATTACK",
+  "K_BURST",
+  "M_THEN"
+ ],
  "BS24-107": [
   "K_RUSH"
  ],
@@ -28369,6 +28374,11 @@
   "K_GRANDWALKER",
   "M_OPTIONAL",
   "M_THEN",
+  "M_REPLACEMENT"
+ ],
+ "BS55-067": [
+  "C_COUNTER",
+  "K_ULTIMATE",
   "M_REPLACEMENT"
  ],
  "BS55-069": [
@@ -46384,7 +46394,8 @@
   "S_MUST_BLOCK"
  ],
  "26RCB01-017": [
-  "T_SUMMONED"
+  "T_SUMMONED",
+  "C_LEVEL"
  ],
  "26RCB01-018": [
   "C_LEVEL",

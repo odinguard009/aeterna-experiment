@@ -126,6 +126,8 @@ def v_destroy(sel):
         keys = [k for k in ('bpLe', 'coresLe') if k in sel['f']]
         if len(keys) != 1: raise Review('v2 destroy: count all ' + ('no bound' if not keys else 'two bounds'))
         return [{'do': 'DESTROY', 'all': True, keys[0]: sel['f'][keys[0]]}]
+    if sel['kind'] == 'spirit' and sel['count'] in (2, 3):      # v0.180 "Destroy two/three opposing <filter> Spirits" = that many single DESTROY actions in a row (each picks one target; fewer targets = fewer destroyed)
+        return v_destroy(dict(sel, count=1, upto=False)) * sel['count']
     if sel['count'] != 1: raise Review('v2 destroy: count ' + str(sel['count']))
     if sel['kind'] == 'nexus':
         need('destroy', sel, ())
@@ -145,6 +147,8 @@ def v_destroy(sel):
 
 def v_return(sel, where):
     one_target('return', sel, ('spirit', 'any', 'nexus'))
+    if sel['kind'] == 'spirit' and sel['count'] in (2, 3):      # v0.180 same as destroy: N single BOUNCE_OPP actions
+        return v_return(dict(sel, count=1, upto=False), where) * sel['count']
     if sel['count'] != 1: raise Review('v2 return: count ' + str(sel['count']))
     need('return', sel, ('costLe', 'exhausted', 'bpLe', 'attacking', 'notAttacking'))
     a = {'do': 'BOUNCE_OPP', 'to': where, 'kind': sel['kind']}

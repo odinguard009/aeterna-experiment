@@ -11595,6 +11595,69 @@
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
  },
  {
+  "id": "BS55-067",
+  "name": "Deathtonation",
+  "name_jp": "デストネーション",
+  "type": "Magic",
+  "color": "red",
+  "cost": 5,
+  "reduction": {
+   "red": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Primal"
+  ],
+  "text": "This card has \"Primal\" family.\n\nFlash\nDestroy two opposing 7000 BP or less Spirits. If you have one counter or more, instead, destroy two opposing 12000 BP or less Spirits/Ultimates.",
+  "image": "Deathtonation.png",
+  "block": "55",
+  "saga": 11,
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "DESTROY",
+     "bpLe": 7000,
+     "if": {
+      "not": {
+       "counterGe": 1
+      }
+     }
+    },
+    {
+     "do": "DESTROY",
+     "bpLe": 7000,
+     "if": {
+      "not": {
+       "counterGe": 1
+      }
+     }
+    },
+    {
+     "do": "DESTROY",
+     "bpLe": 12000,
+     "if": {
+      "counterGe": 1
+     }
+    },
+    {
+     "do": "DESTROY",
+     "bpLe": 12000,
+     "if": {
+      "counterGe": 1
+     }
+    }
+   ]
+  },
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
+ },
+ {
   "id": "BS55-069",
   "name": "Dragoon Dive",
   "name_jp": "ドラグーンダイブ",

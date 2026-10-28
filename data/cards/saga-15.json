@@ -1726,6 +1726,43 @@
   ],
   "effects": [
    {
+    "trigger": "ACCEL",
+    "cost": 8,
+    "timing": [
+     "FLASH"
+    ],
+    "reduction": {
+     "white": 4
+    },
+    "actions": [
+     {
+      "do": "BOUNCE_OPP",
+      "to": "deckBottom",
+      "kind": "spirit"
+     },
+     {
+      "do": "BOUNCE_OPP",
+      "to": "deckBottom",
+      "kind": "spirit"
+     },
+     {
+      "do": "BOUNCE_OPP",
+      "to": "deckBottom",
+      "kind": "spirit"
+     },
+     {
+      "do": "VOID_TO_CARD",
+      "n": 2,
+      "to": "anySpirit",
+      "match": {
+       "family": [
+        "Concluser"
+       ]
+      }
+     }
+    ]
+   },
+   {
     "trigger": "SUMMONED",
     "lv": [
      1,
@@ -1740,11 +1777,8 @@
     ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "Flash - {{Accel|Cost 8 ()}} Return three opposing Spirits/Ultimates to the deckbottom, and put two cores from the Void to any \"Concluser\" family Spirits you control. After this effect resolves, put this card onto your Removed Zone."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS68-038",
