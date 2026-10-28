@@ -4565,10 +4565,6 @@
   "A_REFRESH",
   "C_LEVEL"
  ],
- "BS14-081": [
-  "C_LEVEL",
-  "M_OPTIONAL"
- ],
  "BS14-082": [
   "C_LEVEL",
   "C_OPP_TURN",
@@ -5509,14 +5505,6 @@
  "BS17-021": [
   "C_LEVEL",
   "K_BURST",
-  "T_ATTACKS"
- ],
- "BS17-022": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "K_BURST",
-  "M_IF_YOU_DO",
-  "M_OPTIONAL",
   "T_ATTACKS"
  ],
  "BS17-023": [

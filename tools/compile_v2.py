@@ -507,10 +507,12 @@ _DTOP = r'(?:the |your )?decktop'
 _DBOT = r'(?:the |your )?deck ?bottom'
 REVEAL_REST = re.compile(r'\.\s*(return (?:any|the) remaining cards? to ' + _DBOT + r'(?:,? in any order)?|discard (?:any|the) remaining cards?'
                          r'|return (?:any|the) remaining cards? to (?:either )?(?:only )?' + _DTOP + r'(?: only)? or (?:only )?' + _DBOT + r'(?: only)?(?:,? in any order)?'
+                         r'|if [^.]*?(?:summon|other card|different card)[^.]*?, (?:return (?:it|that card) to ' + _DTOP + r'|return (?:it|that card) to ' + _DBOT + r'|discard it)'      # v0.184 one-card "If you don\'t summon it, or it is another card, <rest>"
                          r'|(?:if not|otherwise),? (?:return it to ' + _DTOP + r'(?: or ' + _DBOT + r')?|return it to ' + _DBOT + r'|discard it))\.?$', re.I)      # v0.75: singular, "the", decktop-or-deckbottom, one-card "If not, ..." endings
 REVEAL_IF = re.compile(r'^if (?:that card|that|it)(?: is|\'s|’s) (.+?), add it to (?:the |your |you )?hand$', re.I)      # v0.75: one revealed card
+REVEAL_IF_DEPLOY = re.compile(r'^if (?:that card|that|it|the revealed card)(?: is|\'s|’s) (.+?),\s*(?:you can |you may )?summon it(,? without paying the cost)?$', re.I)
 DIFF_NAME = r"(?: with (?:a )?(?:card )?name different (?:from|to) this (?:spirit|nexus)'?s)?"
-REVEAL_NP = re.compile(r'^(?:an?|one) (?:(?P<col>' + COL + r') )?(?:cost (?P<cost>\d+) or less )?(?:"(?P<fam>[^"]+(?:"\s*/\s*"[^"]+)*)" family )?(?:(?P<kind>spirit|nexus|magic) )?card' + DIFF_NAME + r'$')
+REVEAL_NP = re.compile(r'^(?:an?|one) (?:(?P<col>' + COL + r') )?(?:cost (?P<cost>\d+) or less )?(?:"(?P<fam>[^"]+(?:"\s*/\s*"[^"]+)*)" family )?(?:(?P<kind>spirit|nexus|magic|brave) )?card' + DIFF_NAME + r'$')
 
 
 def reveal_np(np):
@@ -520,6 +522,8 @@ def reveal_np(np):
     if q:
         if len(q.group(1)) < 3: raise Review('v2 reveal: a one/two letter quoted name matches by substring: ' + q.group(1))
         return {'name': [q.group(1)], 'family': [q.group(1)]}, False
+    q = re.fullmatch(r'(?:an?|one) "([^"]+)"-named (spirit|nexus|magic) cards?', np.strip(), re.I)      # v0.184 a "X"-named Spirit card: the name contains X
+    if q and len(q.group(1)) >= 3: return {'name': [q.group(1)], 'type': q.group(2).capitalize()}, False
     q = re.fullmatch(r'(?:an?|one) exactly-named "([^"]+)"(?: cards?)?', np.strip(), re.I)
     if q: return {'name': [q.group(1)]}, False
     if re.fullmatch(r'(?:an?|one) saga brave cards?', x): return {'family': ['Saga'], 'type': 'Brave'}, False
@@ -544,13 +548,26 @@ def reveal_grammar(s):
     r = REVEAL_REST.search(body)
     if not r: raise Review('v2 reveal: no "remaining cards" ending')
     e = r.group(1).lower()
-    rest = 'trash' if 'discard' in e else 'either' if ' or ' in e else 'top' if 'decktop' in e else 'bottom'
+    tail = e.rsplit(', ', 1)[-1] if e.startswith('if ') else e      # v0.184 the rest clause of "If ..., <rest>"
+    rest = 'trash' if 'discard' in tail else 'either' if ' or ' in tail else 'top' if 'decktop' in tail else 'bottom'
     body = body[:r.start()].strip().rstrip('.')
     mi = REVEAL_IF.match(body)
     if mi:
         if n != 1: raise Review('v2 reveal: "if" form with more cards')
         match, diff = reveal_np(re.sub(r'^(?:an?|one) ', 'a ', mi.group(1).strip()) if re.search(r'\bcard$', mi.group(1).strip()) else 'a ' + re.sub(r'^(?:an?|one) ', '', mi.group(1).strip()) + ' card')
         return [{'do': 'REVEAL_PICK', 'n': 1, 'match': match, 'rest': rest}]
+    md = REVEAL_IF_DEPLOY.match(body)      # v0.184 "If that card is a <X>, (you can) summon it (without paying the cost)." = REVEAL_DEPLOY n 1
+    if md:
+        if n != 1: raise Review('v2 reveal: "if" form with more cards')
+        g = md.group(1).strip()
+        match, diff = reveal_np(re.sub(r'^(?:an?|one) ', 'a ', g) if re.search(r'\bcard$', g) else 'a ' + re.sub(r'^(?:an?|one) ', '', g) + ' card')
+        a = {'do': 'REVEAL_DEPLOY', 'n': 1, 'match': match, 'pay': not md.group(2)}
+        if match.get('type') == 'Brave':
+            if a['pay']: raise Review('v2 reveal: Brave summoned with the cost')
+            a['allowBrave'] = True
+        if rest in ('trash', 'top'): a['rest'] = rest
+        elif rest == 'either': raise Review('v2 reveal: summon then either')
+        return [a]
     if rest == 'top': raise Review('v2 reveal: decktop return with more cards')
     body = re.sub(r'^among them,?\s*', '', body, flags=re.I)
     body = re.sub(r'^(?:you can|you may)\s+', '', body, flags=re.I)

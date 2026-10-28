@@ -42,6 +42,12 @@ test('R184-01 compiler: "summon X among them" with "Discard the remaining cards"
   const r = act('Reveal four cards from your decktop. Summon a "Galaxian" family Spirit card among them, without paying the cost. Discard the remaining cards.');
   assert.deepEqual(r.a, [{ do: 'REVEAL_DEPLOY', n: 4, match: { family: ['Galaxian'], type: 'Spirit' }, pay: false, rest: 'trash' }]);
 });
+test('R184-02 compiler: one revealed card, "if it is X, you can summon it" = REVEAL_DEPLOY n 1 with the rest clause (trash / decktop)', () => {
+  let r = act('Reveal a card from your decktop. If that card is a Cost 3 or less Spirit card, you can summon it without paying the cost. If you don\'t summon it, or it\'s a different card, discard it.');
+  assert.deepEqual(r.a, [{ do: 'REVEAL_DEPLOY', n: 1, match: { type: 'Spirit', costLe: 3 }, pay: false, rest: 'trash' }]);
+  r = act('You can reveal a card from your decktop. If that card is a Green Spirit card, you can summon it. If you\'re not summoning it, or it\'s some other card, return it to the decktop.');
+  assert.deepEqual(r.a, [{ do: 'REVEAL_DEPLOY', n: 1, match: { type: 'Spirit', color: 'green' }, pay: true, rest: 'top' }]);
+});
 test('R69-04 compiler: forms the engine match cannot say stay in review (keyword holder, two kinds, every card, no printed effects, discard-a-card, the reveal is only the first sentence group)', () => {
   const bad = [
     'Reveal three cards from your decktop. Among them, add a Spirit card with Amplify to your Hand. Return any remaining cards to the deckbottom in any order.',

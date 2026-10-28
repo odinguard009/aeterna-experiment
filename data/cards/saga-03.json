@@ -3234,11 +3234,29 @@
   "image": "The Stumpcity of God Tree.png",
   "block": "14",
   "saga": 3,
-  "fxComplete": false,
-  "residual": [
-   "[LV1] (Your End Step) You can reveal a card from your decktop. If that card is a Green Spirit card, you can summon it. If you're not summoning it, or it's some other card, return it to the decktop."
+  "effects": [
+   {
+    "trigger": "END_STEP",
+    "lv": [
+     1
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "REVEAL_DEPLOY",
+      "n": 1,
+      "match": {
+       "type": "Spirit",
+       "color": "green"
+      },
+      "pay": true,
+      "rest": "top"
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS14-082",
@@ -11188,12 +11206,39 @@
   "mechanics": [
    "Burst"
   ],
-  "fxComplete": false,
-  "residual": [
-   "{{Burst|After your Spirit is destroyed by the Opponent}} Summon this Spirit card without paying the cost.",
-   "[LV1][LV2][LV3] (When Attacks) You can reveal a card from your decktop. If that card is a Cost 3 or less Spirit card, you can summon it without paying the cost. If you don't summon it, or it's a different card, discard it."
+  "burst": {
+   "when": "ALLY_DESTROYED",
+   "actions": [
+    {
+     "do": "SUMMON_SELF"
+    }
+   ]
+  },
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "REVEAL_DEPLOY",
+      "n": 1,
+      "match": {
+       "type": "Spirit",
+       "costLe": 3
+      },
+      "pay": false,
+      "rest": "trash"
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS17-023",
