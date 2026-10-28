@@ -175,7 +175,7 @@ TRIGGERS = [
     (r'When this Spirit would leave the [Ff]ield (?:due to|by) (?:opposing effects?|an opposing effect),', ['LEAVES_OPPFX']),
     (r'(?:\(When (?:Battles|Attacks/Blocks|Attacks or Blocks)\)\s*)?When only the opposing Spirit(?:/Ultimate)? is destroyed(?: (?:by comparing BP|via BP comparison|by BP comparison))?,', ['BATTLE_WIN']),   # v0.55: CR 8-1-6-2; v0.74: the "(When Battles)" head and the "by BP comparison" words are optional in the older texts
     (r'\(When Attacks/Blocks\)|\(When Attacks or Blocks\)', ['ATTACKS+BLOCKS']),
-    (r'\(When Battles\)(?=\s*At the end of (?:the )?battle,)', ['ATTACKS+BLOCKS']),      # v0.78: (When Battles) = this Spirit attacks or blocks (house reading, only with an end-of-battle body)
+    (r'\(When Battles\)', ['ATTACKS+BLOCKS']),      # v0.78: (When Battles) = this Spirit attacks or blocks (house reading, only with an end-of-battle body)
     (r'\(When Summoned\)', ['SUMMONED']),
     (r'\(When Deployed\)', ['SUMMONED']),      # v0.135: the Nexus form of When Summoned (the engine fires SUMMONED for a deployed Nexus)
     (r'\(When Attacks\)', ['ATTACKS']),

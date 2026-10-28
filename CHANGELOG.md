@@ -4,6 +4,12 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.174.0
+- Lane: K
+- **Lane K: 8 more cards complete (all older), 925 of 8,709; compiler only: plain "(When Battles)" heads.** `(When Battles)` is now read as "this Spirit attacks or blocks" (`ATTACKS` with `alsoBlocks`) for any body, not only an end-of-battle body (same house reading as v0.78.0). Cards: The GodTree Dionaeus, The SnakeEmpress Medousa, The HeavyArmoredBug Goliearth, Luckiwi, Photon-Dragon, Quartz-Golem, Hornviper, The DragonArmor Dragmaru.
+  - Not built this run: the other "(When Battles)" cards (13) each carry a second mechanic (Rush, Magic use, Heavy Armor, ...).
+  - Checked: loop, promotion smoke 8 / 8, `fx_validate`. Not checked: Regression (CI), a real device. Revert note: `git revert` the v0.174.0 commit.
+
 ## v0.173.0
 - Lane: K
 - **Lane K: 4 more cards complete (2 Standard, 2 older), 917 of 8,709; compiler only, no engine change: "(During Attack/Block)" static BP and "send N cores from any opposing Spirits to the Reserve".** Compiler: `(During Attack/Block) This Spirit gains +N BP` (STATIC `fightingOnly`, plain, conditional and followed by an "At the end of battle" sentence) and `Send N core(s) from any opposing Spirit(s)[/Ultimate(s)] to the Reserve` (`OPP_CORES_TO_RESERVE` `total`, up to 5). Cards: Puppislope, Euus-Callus, Plasbat, Cursegargoyle.
