@@ -1,5 +1,5 @@
 // v0.176.0: fxIf soulPaid ("If (Soul Core) was used to pay the summon cost") and selfSoul ("If (Soul Core) is on this Spirit").
-// rules: ETR:summon.cost@d20adf64
+// rules: ETR:cost.paying@06d788b2
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { openGame, closeBrowser } from './lib/game.mjs';
