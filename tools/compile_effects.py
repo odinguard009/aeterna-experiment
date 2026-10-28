@@ -158,6 +158,7 @@ def per_of(m):
     return q
 
 PER_STATIC = re.compile(r'^(\(During Attack\)\s*)?' + PER_NP + r',? this spirit (?:gains|gets) \+(\d[\d,]*) ?bp\.?$', re.I)
+PER_STATIC_TAIL = re.compile(r'^(\(During Attack\)\s*)?this spirit (?:gains|gets) \+(\d[\d,]*) ?bp (' + PER_NP + r')\.?$', re.I)      # v0.184 old trailing wording 'This spirit gets +N BP for each X you control'
 BATTLE_HEADS = [      # v0.72 heads read before TRIGGERS: (trigger list, extra effect keys)
     (r'\(When Attacks\)\s*When this Spirit is blocked,', ['ALLY_BLOCKED'], {'self': True}),      # v0.183 Windstorm
     (r"\((?:During Attack|When Attacks)\)\s*When this Spirit's attack reduces the opposing Life,", ['ALLY_LIFE_HIT'], {'self': True}),
@@ -312,6 +313,7 @@ def flag_para(p):
 
 def spirit_paragraph(p, card):
     rush = None
+    p = re.sub(r'^((?:\[LV\d\])*\s*)\(Permanent\)\s*(?=\S)', r'\1', p)      # v0.184 old '(Permanent)' header is the constant effect itself; the plain sentence reads as before
     mr = re.search(r'\u27e6RUSH:(\w+)\u27e7', p)
     if mr:
         rush = (mr.group(1), p[mr.end():].strip()); p = p[:mr.start()].strip()
@@ -527,6 +529,8 @@ def spirit_paragraph_main(p, card, rush):
         e = {'trigger': 'STATIC', 'bp': bp(mm.group(1)), 'to': 'self', 'perHand': True}
         if lv: e['lv'] = lv
         return [e], flags
+    mt = None if trig else PER_STATIC_TAIL.match(p)
+    if mt: p = (mt.group(1) or '') + re.sub(r'^for each', 'For each', mt.group(3)) + ', this spirit gets +' + mt.group(2) + 'BP'      # v0.184 read the tail form as the head form
     mm = None if trig else PER_STATIC.match(p)
     if mm:      # v0.72 static "for each X you control" BP (with (During Attack): only while attacking)
         e = {'trigger': 'STATIC', 'bp': bp(mm.group(mm.lastindex)), 'to': 'self'}

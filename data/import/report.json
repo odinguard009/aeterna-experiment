@@ -1,8 +1,8 @@
 {
  "stats": {
-  "cards": 7382,
+  "cards": 7380,
   "per_saga": {
-   "1": 686,
+   "1": 684,
    "2": 313,
    "3": 378,
    "4": 380,
@@ -23,7 +23,7 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 1324,
+  "skipped_curated": 1326,
   "nexus_levels_added": 709,
   "nexus_levels_missing": 43,
   "level_problems": 3,
@@ -107,6 +107,7 @@
   "BS01-082",
   "BS01-084",
   "BS01-085",
+  "BS01-088",
   "BS01-089",
   "BS01-091",
   "BS01-092",
@@ -313,6 +314,7 @@
   "BS06-066",
   "BS06-067",
   "BS06-069",
+  "BS06-071",
   "BS06-072",
   "BS06-081",
   "BS06-091",

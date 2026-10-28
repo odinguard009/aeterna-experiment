@@ -120,10 +120,6 @@
   "C_LEVEL",
   "T_SUMMONED"
  ],
- "BS01-088": [
-  "A_BP_PLUS",
-  "C_LEVEL"
- ],
  "BS01-090": [
   "C_LEVEL",
   "T_SUMMONED"
@@ -1540,11 +1536,6 @@
   "C_LEVEL",
   "K_CRUSH",
   "T_ATTACKS"
- ],
- "BS06-071": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "T_SUMMONED"
  ],
  "BS06-073": [
   "A_BP_PLUS",

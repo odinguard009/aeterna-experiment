@@ -3399,11 +3399,22 @@
   "image": "Towermittcrab.jpg",
   "block": "01",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "Original = [LV1][LV2] (Permanent) This spirit gets +1000BP for each nexus you control."
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "bp": 1000,
+    "to": "self",
+    "lv": [
+     1,
+     2
+    ],
+    "per": {
+     "type": "Nexus"
+    }
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS01-089",
@@ -22931,13 +22942,51 @@
   "image": "The HeavyJavelin Morgan.jpg",
   "block": "06",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] The cost of all \"Vanity Deity\" family Spirit cards in your Hand becomes 6.",
-   "[LV1][LV2] (When Summoned) Destroy every opposing Cost 4 Spirit.",
-   "[LV2] This Spirit gains +1000 BP for each \"Fighting Spirit\" family Spirit you control."
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "HAND_COST",
+    "to": "self",
+    "n": 6,
+    "match": {
+     "family": [
+      "Vanity Deity"
+     ]
+    },
+    "lv": [
+     1,
+     2
+    ]
+   },
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DESTROY_EVERY",
+      "costIs": 4,
+      "opposing": true
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 1000,
+    "to": "self",
+    "lv": [
+     2
+    ],
+    "per": {
+     "type": "Spirit",
+     "family": "Fighting Spirit"
+    }
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS06-072",
