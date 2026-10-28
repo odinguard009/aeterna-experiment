@@ -1,0 +1,1051 @@
+{
+ "Ankillersaurus": [
+  {
+   "cost": 4,
+   "reduction": {}
+  }
+ ],
+ "Chihyu": [
+  {
+   "cost": 4,
+   "reduction": {
+    "yellow": 2
+   }
+  }
+ ],
+ "Compass-Mingo": [
+  {
+   "cost": 4,
+   "reduction": {}
+  }
+ ],
+ "Crusader Dragon": [
+  {
+   "cost": 4,
+   "reduction": {
+    "purple": 2
+   }
+  }
+ ],
+ "Crusader Generous": [
+  {
+   "cost": 3,
+   "reduction": {
+    "purple": 2
+   }
+  }
+ ],
+ "Cynognathus": [
+  {
+   "cost": 2,
+   "reduction": {
+    "white": 1,
+    "red": 1
+   }
+  }
+ ],
+ "Kigna-Swan Mk-II": [
+  {
+   "cost": 2,
+   "reduction": {
+    "white": 1
+   }
+  }
+ ],
+ "Lagrange Dragon": [
+  {
+   "cost": 3,
+   "reduction": {
+    "red": 2
+   }
+  }
+ ],
+ "Pawn-Fawn": [
+  {
+   "cost": 3,
+   "reduction": {
+    "yellow": 1
+   }
+  }
+ ],
+ "Racing Pentan": [
+  {
+   "cost": 4,
+   "reduction": {
+    "yellow": 2
+   }
+  },
+  {
+   "cost": 4,
+   "reduction": {
+    "yellow": 2
+   }
+  }
+ ],
+ "Roadrunner": [
+  {
+   "cost": 3,
+   "reduction": {
+    "green": 2
+   }
+  }
+ ],
+ "Spinos Legger": [
+  {
+   "cost": 4,
+   "reduction": {
+    "red": 2
+   }
+  }
+ ],
+ "Synchroid Sarchus": [
+  {
+   "cost": 5,
+   "reduction": {
+    "white": 3
+   }
+  }
+ ],
+ "The AccelHero Gale-Green": [
+  {
+   "cost": 3,
+   "reduction": {
+    "green": 2
+   }
+  }
+ ],
+ "The AccelHero Revol-Red": [
+  {
+   "cost": 3,
+   "reduction": {
+    "red": 2
+   }
+  }
+ ],
+ "The AccelHero Yellow-Merlin": [
+  {
+   "cost": 3,
+   "reduction": {
+    "yellow": 2
+   }
+  }
+ ],
+ "The AccelTenthBird AirEraser": [
+  {
+   "cost": 5,
+   "reduction": {
+    "green": 2,
+    "white": 2
+   }
+  }
+ ],
+ "The Angelia Bibibiel": [
+  {
+   "cost": 3,
+   "reduction": {
+    "yellow": 1
+   }
+  }
+ ],
+ "The Angelia Coma": [
+  {
+   "cost": 7,
+   "reduction": {
+    "yellow": 2
+   }
+  }
+ ],
+ "The Angelia Mechaniel": [
+  {
+   "cost": 6,
+   "reduction": {
+    "yellow": 3
+   }
+  }
+ ],
+ "The Archbishop Mountain-Gorius": [
+  {
+   "cost": 4,
+   "reduction": {
+    "green": 2,
+    "red": 1
+   }
+  }
+ ],
+ "The ArmoredMothShinobi Genmakogane": [
+  {
+   "cost": 4,
+   "reduction": {
+    "green": 2
+   }
+  }
+ ],
+ "The Artifact Fjalar": [
+  {
+   "cost": 4,
+   "reduction": {}
+  }
+ ],
+ "The AzureHornetEmperor Cuckoo-Ace": [
+  {
+   "cost": 4,
+   "reduction": {}
+  }
+ ],
+ "The Bal-Masque Grand Marquis Salmforfer": [
+  {
+   "cost": 5,
+   "reduction": {
+    "purple": 3
+   }
+  }
+ ],
+ "The Beeman Bumble-B": [
+  {
+   "cost": 3,
+   "reduction": {
+    "green": 2
+   }
+  }
+ ],
+ "The Beeman Cuckoo-B": [
+  {
+   "cost": 2,
+   "reduction": {
+    "green": 1
+   }
+  }
+ ],
+ "The BeemanKnight Pollistes-Wasp-Ace": [
+  {
+   "cost": 2,
+   "reduction": {
+    "green": 1
+   }
+  }
+ ],
+ "The BirdGiant Jatayu": [
+  {
+   "cost": 5,
+   "reduction": {
+    "blue": 2,
+    "yellow": 1
+   }
+  }
+ ],
+ "The BlackBeastKing Cepheus": [
+  {
+   "cost": 4,
+   "reduction": {
+    "blue": 2,
+    "green": 1
+   }
+  }
+ ],
+ "The BraveShineCannonbull Melt Buffalo": [
+  {
+   "cost": 5,
+   "reduction": {
+    "red": 3,
+    "white": 1
+   }
+  }
+ ],
+ "The ChalkSteelKnight Gennadios": [
+  {
+   "cost": 4,
+   "reduction": {
+    "white": 2
+   }
+  }
+ ],
+ "The CleverMachineMusha E-Naomasa": [
+  {
+   "cost": 4,
+   "reduction": {
+    "white": 2
+   }
+  }
+ ],
+ "The ClownDeity Lady-Frankelly": [
+  {
+   "cost": 3,
+   "reduction": {
+    "purple": 2
+   }
+  }
+ ],
+ "The CorpseGun Draghead": [
+  {
+   "cost": 6,
+   "reduction": {
+    "purple": 3
+   }
+  }
+ ],
+ "The CrossStarDragon Southern-Cross-Dragon": [
+  {
+   "cost": 5,
+   "reduction": {
+    "red": 3
+   }
+  }
+ ],
+ "The CrystalFish Crysteel": [
+  {
+   "cost": 2,
+   "reduction": {
+    "white": 1
+   }
+  }
+ ],
+ "The CyclopsGigantic Arges": [
+  {
+   "cost": 4,
+   "reduction": {
+    "white": 2
+   }
+  }
+ ],
+ "The Deacon Pu-Martinus": [
+  {
+   "cost": 3,
+   "reduction": {
+    "green": 1
+   }
+  }
+ ],
+ "The DinosaurEighthArtifact Turborex": [
+  {
+   "cost": 6,
+   "reduction": {
+    "white": 3
+   }
+  }
+ ],
+ "The DoomKnightLord Ragna-Rock": [
+  {
+   "cost": 5,
+   "reduction": {
+    "green": 2,
+    "white": 2
+   }
+  }
+ ],
+ "The DragonEmperor'sPirateCrew Artillery Shirobanni": [
+  {
+   "cost": 5,
+   "reduction": {
+    "blue": 3
+   }
+  }
+ ],
+ "The DragonEmperorLightShield Phegaro-Phos": [
+  {
+   "cost": 5,
+   "reduction": {}
+  }
+ ],
+ "The ElectricBoulderDragon Dynamo Dragon": [
+  {
+   "cost": 2,
+   "reduction": {
+    "red": 1
+   }
+  }
+ ],
+ "The EruptionDinosaur Stego-Erupt": [
+  {
+   "cost": 5,
+   "reduction": {}
+  }
+ ],
+ "The FairyPriest Andromeda": [
+  {
+   "cost": 4,
+   "reduction": {
+    "yellow": 2
+   }
+  }
+ ],
+ "The FakeJavelinEmperor Versal-Hagen": [
+  {
+   "cost": 6,
+   "reduction": {
+    "white": 3,
+    "purple": 1
+   }
+  }
+ ],
+ "The FallenCourtLady Jialin": [
+  {
+   "cost": 4,
+   "reduction": {
+    "yellow": 2
+   }
+  }
+ ],
+ "The Fifth's FourDragonHorsemen Black Rider": [
+  {
+   "cost": 5,
+   "reduction": {
+    "purple": 3
+   }
+  }
+ ],
+ "The First's MonkeyKing Sugriva": [
+  {
+   "cost": 3,
+   "reduction": {
+    "yellow": 1,
+    "blue": 1
+   }
+  }
+ ],
+ "The FortyFourthMachine Glorious-Racoon": [
+  {
+   "cost": 4,
+   "reduction": {
+    "white": 2
+   }
+  },
+  {
+   "cost": 3,
+   "reduction": {
+    "white": 2
+   }
+  }
+ ],
+ "The Fourth's DinosaurMachine Deinonych-Walker": [
+  {
+   "cost": 5,
+   "reduction": {
+    "white": 3
+   }
+  }
+ ],
+ "The FruitQueen Mangosteena": [
+  {
+   "cost": 3,
+   "reduction": {
+    "yellow": 2
+   }
+  }
+ ],
+ "The GiantCentaurus Troydes": [
+  {
+   "cost": 5,
+   "reduction": {
+    "blue": 3
+   }
+  }
+ ],
+ "The GiantHero Metalknuckle": [
+  {
+   "cost": 4,
+   "reduction": {
+    "blue": 2
+   }
+  }
+ ],
+ "The GiantPrince Lakshmana": [
+  {
+   "cost": 3,
+   "reduction": {
+    "blue": 2
+   }
+  }
+ ],
+ "The GiantPrince Shatrugna": [
+  {
+   "cost": 3,
+   "reduction": {
+    "blue": 2
+   }
+  }
+ ],
+ "The GourmetFairy Amandine": [
+  {
+   "cost": 4,
+   "reduction": {
+    "yellow": 2
+   }
+  }
+ ],
+ "The GourmetFairyDeity Eclair-Chiffon": [
+  {
+   "cost": 8,
+   "reduction": {
+    "yellow": 4
+   }
+  }
+ ],
+ "The GrandExorcist Paradis-Tigan": [
+  {
+   "cost": 6,
+   "reduction": {
+    "green": 2,
+    "red": 2
+   }
+  }
+ ],
+ "The Guard Bulldogregory": [
+  {
+   "cost": 3,
+   "reduction": {
+    "green": 1,
+    "red": 1
+   }
+  }
+ ],
+ "The Hermit-Ritter Olegat": [
+  {
+   "cost": 5,
+   "reduction": {
+    "purple": 2,
+    "white": 1
+   }
+  }
+ ],
+ "The Hermit-Ritter Sage-Mallorga": [
+  {
+   "cost": 5,
+   "reduction": {
+    "purple": 2,
+    "white": 1
+   }
+  }
+ ],
+ "The HundredSwordsClan Umeno": [
+  {
+   "cost": 5,
+   "reduction": {
+    "green": 3
+   }
+  }
+ ],
+ "The KingBeastTribe Catcus": [
+  {
+   "cost": 3,
+   "reduction": {
+    "green": 2
+   }
+  }
+ ],
+ "The MachineTaskForce Boblynx": [
+  {
+   "cost": 4,
+   "reduction": {
+    "white": 2
+   }
+  }
+ ],
+ "The MachineTaskForce Shieldkong": [
+  {
+   "cost": 4,
+   "reduction": {
+    "white": 2
+   }
+  }
+ ],
+ "The MagicFencer Prisila": [
+  {
+   "cost": 6,
+   "reduction": {
+    "purple": 3,
+    "blue": 1
+   }
+  }
+ ],
+ "The MonkeyWizard Onkot": [
+  {
+   "cost": 8,
+   "reduction": {
+    "yellow": 4
+   }
+  }
+ ],
+ "The Ninth's FireMonkey Neela": [
+  {
+   "cost": 3,
+   "reduction": {
+    "yellow": 2
+   }
+  }
+ ],
+ "The NinthBeast Acceledge": [
+  {
+   "cost": 5,
+   "reduction": {
+    "red": 2,
+    "white": 2
+   }
+  }
+ ],
+ "The NobleGuardian Skilfing": [
+  {
+   "cost": 4,
+   "reduction": {
+    "white": 2
+   }
+  }
+ ],
+ "The NobleValkyrie Waltraute": [
+  {
+   "cost": 3,
+   "reduction": {
+    "white": 2
+   }
+  }
+ ],
+ "The PanzerBuild Captain Koenigs-Tiger": [
+  {
+   "cost": 5,
+   "reduction": {
+    "white": 2,
+    "purple": 1
+   }
+  }
+ ],
+ "The PanzerBuild Fennek": [
+  {
+   "cost": 4,
+   "reduction": {
+    "white": 2,
+    "purple": 1
+   }
+  }
+ ],
+ "The PegasusMachineBeast Pegaspace": [
+  {
+   "cost": 5,
+   "reduction": {
+    "white": 3
+   }
+  }
+ ],
+ "The PirateFleet Captain-Wallace": [
+  {
+   "cost": 6,
+   "reduction": {
+    "blue": 3
+   }
+  }
+ ],
+ "The RoaringAzurePirateGang Kabaku": [
+  {
+   "cost": 2,
+   "reduction": {
+    "blue": 1
+   }
+  }
+ ],
+ "The SecondKnight Harpe-Gornis": [
+  {
+   "cost": 5,
+   "reduction": {
+    "green": 3
+   }
+  }
+ ],
+ "The Seventh's AccelDragon Turbulence": [
+  {
+   "cost": 4,
+   "reduction": {
+    "red": 2
+   }
+  }
+ ],
+ "The Seventh's MonkeyKing Valin": [
+  {
+   "cost": 4,
+   "reduction": {
+    "yellow": 3
+   }
+  }
+ ],
+ "The SeventhBeast Golden-Accel-Tiger": [
+  {
+   "cost": 4,
+   "reduction": {
+    "red": 2,
+    "white": 1
+   }
+  }
+ ],
+ "The Sixth's ExplosiveBeast Armor Rhider": [
+  {
+   "cost": 4,
+   "reduction": {
+    "blue": 3
+   }
+  },
+  {
+   "cost": 4,
+   "reduction": {
+    "blue": 3
+   }
+  }
+ ],
+ "The SixthArtifact Sheperdoll": [
+  {
+   "cost": 5,
+   "reduction": {
+    "white": 2,
+    "red": 1
+   }
+  }
+ ],
+ "The SixthArtifactBeastman Solid-Falco": [
+  {
+   "cost": 4,
+   "reduction": {
+    "white": 2
+   }
+  }
+ ],
+ "The SnakeWarrior Feraga": [
+  {
+   "cost": 5,
+   "reduction": {
+    "purple": 3
+   }
+  }
+ ],
+ "The SpacetimeBoxingArmyCaptain Dagan": [
+  {
+   "cost": 5,
+   "reduction": {
+    "blue": 3
+   }
+  }
+ ],
+ "The SteelKnight Alexine": [
+  {
+   "cost": 2,
+   "reduction": {
+    "white": 1
+   }
+  }
+ ],
+ "The SteelKnight Charicles": [
+  {
+   "cost": 4,
+   "reduction": {
+    "white": 2
+   }
+  }
+ ],
+ "The SteelKnight Cleomenes": [
+  {
+   "cost": 4,
+   "reduction": {
+    "white": 2
+   }
+  }
+ ],
+ "The SteelKnight Firogados": [
+  {
+   "cost": 4,
+   "reduction": {
+    "white": 2
+   }
+  }
+ ],
+ "The SteelMaiden007 Madeleine": [
+  {
+   "cost": 3,
+   "reduction": {
+    "white": 1
+   }
+  }
+ ],
+ "The SteelMaiden011 Medis": [
+  {
+   "cost": 2,
+   "reduction": {
+    "white": 1
+   }
+  }
+ ],
+ "The SteelMaiden012 Alcyone": [
+  {
+   "cost": 8,
+   "reduction": {
+    "white": 4
+   }
+  }
+ ],
+ "The StylishNinja Burberry Hopper": [
+  {
+   "cost": 3,
+   "reduction": {
+    "green": 2
+   }
+  }
+ ],
+ "The SunStarDragon Facula-Dragon": [
+  {
+   "cost": 5,
+   "reduction": {
+    "red": 2,
+    "green": 1
+   }
+  }
+ ],
+ "The SunStarDragon Sun-Dragonix": [
+  {
+   "cost": 4,
+   "reduction": {
+    "red": 1,
+    "green": 1
+   }
+  }
+ ],
+ "The Third's WoodMonkey Nala": [
+  {
+   "cost": 3,
+   "reduction": {
+    "yellow": 1,
+    "blue": 1
+   }
+  }
+ ],
+ "The ThreeHeadedPirateGang Ruki": [
+  {
+   "cost": 3,
+   "reduction": {
+    "blue": 1,
+    "green": 1
+   }
+  }
+ ],
+ "The ThroneAngelia Faniel": [
+  {
+   "cost": 5,
+   "reduction": {
+    "yellow": 3
+   }
+  }
+ ],
+ "The TwinkleStarDragon Mantle Dragon": [
+  {
+   "cost": 5,
+   "reduction": {}
+  }
+ ],
+ "The TwinkleStarDragon RedSprite": [
+  {
+   "cost": 4,
+   "reduction": {
+    "red": 3
+   }
+  }
+ ],
+ "The TwinkleStarDragon Star-Bladra": [
+  {
+   "cost": 1,
+   "reduction": {
+    "red": 1
+   }
+  }
+ ],
+ "The TwinkleStarFirstApostle Asgardia": [
+  {
+   "cost": 6,
+   "reduction": {
+    "red": 3
+   }
+  }
+ ],
+ "The VioletCorpseBrigade Armagaze": [
+  {
+   "cost": 6,
+   "reduction": {
+    "purple": 2
+   }
+  }
+ ],
+ "The VioletCorpseBrigade Deathrib Dragon": [
+  {
+   "cost": 4,
+   "reduction": {
+    "purple": 2
+   }
+  }
+ ],
+ "The VioletCorpseBrigade Zombie Dragon": [
+  {
+   "cost": 6,
+   "reduction": {
+    "purple": 3
+   }
+  }
+ ],
+ "The WanderingSteelKnight Deucalion": [
+  {
+   "cost": 5,
+   "reduction": {
+    "white": 2
+   }
+  }
+ ],
+ "The WarOgre Murciela": [
+  {
+   "cost": 6,
+   "reduction": {
+    "purple": 3
+   }
+  }
+ ],
+ "The WaterLilyGoddess Neelkanth": [
+  {
+   "cost": 5,
+   "reduction": {
+    "yellow": 3
+   }
+  }
+ ],
+ "The WaterSnake Hydrogen": [
+  {
+   "cost": 4,
+   "reduction": {
+    "purple": 2
+   }
+  }
+ ],
+ "The WhiteSeventhEmperor Expard": [
+  {
+   "cost": 4,
+   "reduction": {
+    "red": 2,
+    "white": 1
+   }
+  }
+ ],
+ "The Wonderdragon Jabberwocky": [
+  {
+   "cost": 7,
+   "reduction": {
+    "purple": 1,
+    "yellow": 3
+   }
+  }
+ ],
+ "The Wonderland Bandersnatch": [
+  {
+   "cost": 6,
+   "reduction": {}
+  }
+ ],
+ "The Wonderland Dum&Dee": [
+  {
+   "cost": 5,
+   "reduction": {
+    "yellow": 3
+   }
+  },
+  {
+   "cost": 5,
+   "reduction": {
+    "yellow": 3
+   }
+  }
+ ],
+ "The Wonderland King Lion": [
+  {
+   "cost": 4,
+   "reduction": {
+    "yellow": 2
+   }
+  }
+ ],
+ "The Wonderland King Unicorn": [
+  {
+   "cost": 4,
+   "reduction": {
+    "yellow": 2
+   }
+  }
+ ],
+ "The Wonderland Kitty and Snowdrop": [
+  {
+   "cost": 5,
+   "reduction": {
+    "yellow": 3
+   }
+  }
+ ],
+ "The Wonderland MarchRabbit": [
+  {
+   "cost": 5,
+   "reduction": {
+    "green": 1,
+    "yellow": 1
+   }
+  }
+ ],
+ "The Wonderland Pumpty Dandy": [
+  {
+   "cost": 3,
+   "reduction": {
+    "yellow": 2
+   }
+  }
+ ],
+ "The Wonderland Trump Pentans": [
+  {
+   "cost": 2,
+   "reduction": {}
+  }
+ ],
+ "The Wonderland Trump-Griffon": [
+  {
+   "cost": 5,
+   "reduction": {
+    "yellow": 3
+   }
+  }
+ ],
+ "The Wonderland White King": [
+  {
+   "cost": 4,
+   "reduction": {
+    "yellow": 2
+   }
+  }
+ ],
+ "The Wonderland WhiteQueen": [
+  {
+   "cost": 4,
+   "reduction": {
+    "yellow": 2,
+    "white": 1
+   }
+  }
+ ],
+ "Tower-Golem": [
+  {
+   "cost": 3,
+   "reduction": {
+    "blue": 2
+   }
+  }
+ ],
+ "Yashium": [
+  {
+   "cost": 3,
+   "reduction": {
+    "red": 1
+   }
+  }
+ ],
+ "Zytglogge-Golem": [
+  {
+   "cost": 4,
+   "reduction": {
+    "blue": 3
+   }
+  }
+ ]
+}

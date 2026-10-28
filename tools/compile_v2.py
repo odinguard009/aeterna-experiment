@@ -705,6 +705,7 @@ TGT_VOID = re.compile(r'^target (?:an?|one) (.+? you control)\.\s*put (a|one|two
 def action_of(s, ctx):
     s = re.sub(r'(?:^|(?<=\. ))(if you control) any ("[^"]+" family spirit(?:/nexus)?), besides this (?:spirit|one),', r'\1 another \2,', s.strip(), flags=re.I)      # v0.168 'any "X" family Spirit, besides this Spirit,' = 'another "X" family Spirit' (ctrl.other); v0.171 also Spirit/Nexus and "besides this one"
     s = re.sub(r'^besides this (?:spirit|one), (if you control) any ("[^"]+" family spirit(?:/nexus)?),', r'\1 another \2,', s, flags=re.I)      # v0.171 'Besides this Spirit, if you control any "X" family Spirit/Nexus, B' = the same
+    if re.fullmatch(r'when this battle ends, end the attack step\.?', s.strip(), re.I): return [{'do': 'END_ATTACK_AFTER_BATTLE'}], False      # v0.179 (engine 02h; Accel BS37-040, BS69-043)
     if re.fullmatch(r'return this spirit to (?:the|your) hand\.?', s.strip(), re.I): return [{'do': 'SELF_TO_HAND'}], False      # v0.171 (engine SELF_TO_HAND; from the Trash under a destroyed trigger)
     if re.fullmatch(r'put the core to this spirit\.?', s.strip(), re.I): return [{'do': 'VOID_TO_CARD', 'n': 1, 'to': 'self'}], False      # v0.171 "put the core to this Spirit instead" (the core of the sentence before; only inside an instead pair)
     m = re.fullmatch(r'target up to (one|two|three) spirits? with ([A-Za-z]+) you control\.\s*put a core from the void (?:each )?to (?:each of them|it|them)\.?', s.strip(), re.I)      # v0.171 (engine VOID_TO_MATCHING + match.keyword)
@@ -847,6 +848,8 @@ def compile_card(c):
         if t2 != t: c = dict(c, text=t2); t = t2
     if t and '[LV' in t and '-' in t:
         c = dict(c, text=lv_dash(t))
+    if t and '{{Accel|' in t:
+        return compile_accel(c)
     alt, t0 = None, c.get('text')
     m = BURST_COST.search(t0 or '')
     if m:       # v0.71 "While you have a Burst set, this Spirit card in Hand becomes Cost N" = costAlt {cost, if: {burstSet}} (engine costAltActive)
@@ -857,6 +860,51 @@ def compile_card(c):
     if alt:
         if n.get('costAlt'): raise Review('two cost changes')
         n['costAlt'] = alt; n['text'] = t0
+    return n
+
+
+ACCEL_PARA = re.compile(r'^(Flash|Main)\s*-?\s*\{\{Accel\|Cost (\d+)\s*\(\s*\)\}\}\s*\n?(.*)$', re.S)
+ACCEL_TAIL = re.compile(r'\s*After this effect resolves, put this card (?:face-up )?(?:onto|on) (?:your |the )?Removed Zone\.?\s*$', re.I)
+_ACCEL_TABLE = None
+
+
+def accel_table():
+    """data/sources/accel-reductions.json (tools/accel_reductions.py): the reduction icons the card export drops"""
+    global _ACCEL_TABLE
+    if _ACCEL_TABLE is None:
+        _ACCEL_TABLE = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'data', 'sources', 'accel-reductions.json'), encoding='utf8'))
+    return _ACCEL_TABLE
+
+
+def compile_accel(c):
+    """v0.179 Accel head: "Flash|Main - {{Accel|Cost N ()}}" + body + "After this effect resolves, put this card ... Removed Zone"
+    = effect {trigger ACCEL, cost, timing, reduction, actions} (engine 02j). The reduction comes from the Fandom page table by card name."""
+    rows = accel_table().get(c['name'].replace('​', '').strip())
+    paras, effs, k = units(c.get('text')), [], 0
+    rest = []
+    for u in paras:
+        m = ACCEL_PARA.match(u)
+        if not m:
+            rest.append(u); continue
+        tim, cost, body = m.group(1), int(m.group(2)), m.group(3).strip()
+        if c['type'] != 'Spirit': raise Review('Accel on a ' + c['type'])
+        if not ACCEL_TAIL.search(body): raise Review('Accel without the Removed Zone sentence: ' + body[-60:])
+        body = ACCEL_TAIL.sub('', body).strip()
+        if re.search(r'\b(?:instead of putting|Or, pay)\b', body, re.I) or ' Removed Zone' in body: raise Review('Accel with a summon alternative')
+        if not rows or k >= len(rows) or rows[k]['cost'] != cost: raise Review('Accel reduction icons unknown (no table row)')
+        acts = []
+        for s in sentences(body):
+            a, o = action_of(s, {'kind': 'magic', 'battle': tim == 'Flash'})
+            if o: raise Review('optional clause in Accel: ' + s[:80])
+            acts += a
+        if not acts: raise Review('Accel without actions')
+        e = {'trigger': 'ACCEL', 'cost': cost, 'timing': ['FLASH'] if tim == 'Flash' else ['MAIN']}
+        if rows[k]['reduction']: e['reduction'] = rows[k]['reduction']
+        e['actions'] = acts
+        effs.append(e); k += 1
+    n = _V1_COMPILE(dict(c, text='\n\n'.join(rest)))
+    n['effects'] = effs + n.get('effects', [])
+    n['text'] = c['text']
     return n
 
 

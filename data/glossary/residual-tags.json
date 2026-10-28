@@ -14400,11 +14400,6 @@
   "A_SEAL",
   "C_LEVEL"
  ],
- "BS37-004": [
-  "A_BP_PLUS",
-  "A_REMOVED_ZONE",
-  "K_ACCEL"
- ],
  "BS37-005": [
   "A_REMOVED_ZONE",
   "K_ACCEL"
@@ -14456,10 +14451,6 @@
   "T_ACTIVATE",
   "T_SUMMONED"
  ],
- "BS37-013": [
-  "A_REMOVED_ZONE",
-  "K_ACCEL"
- ],
  "BS37-014": [
   "C_LEVEL",
   "K_ACCEL",
@@ -14480,11 +14471,6 @@
   "M_BY_DOING",
   "T_ATTACKS",
   "T_DESTROYED"
- ],
- "BS37-017": [
-  "A_REMOVED_ZONE",
-  "A_SUMMON_FREE",
-  "K_ACCEL"
  ],
  "BS37-018": [
   "A_REMOVED_ZONE",
@@ -14593,11 +14579,6 @@
   "A_REMOVED_ZONE",
   "K_ACCEL"
  ],
- "BS37-036": [
-  "A_BP_PLUS",
-  "A_REMOVED_ZONE",
-  "K_ACCEL"
- ],
  "BS37-037": [
   "A_SEAL",
   "A_SYMBOL",
@@ -14618,11 +14599,6 @@
   "A_SUMMON_FREE",
   "K_ACCEL",
   "K_ULTIMATE"
- ],
- "BS37-040": [
-  "A_END_ATTACK",
-  "A_REMOVED_ZONE",
-  "K_ACCEL"
  ],
  "BS37-041": [
   "A_REMOVED_ZONE",
@@ -14746,11 +14722,6 @@
   "C_LEVEL",
   "K_ACCEL",
   "T_SUMMONED"
- ],
- "BS37-063": [
-  "A_REMOVED_ZONE",
-  "K_ACCEL",
-  "M_THEN"
  ],
  "BS37-064": [
   "A_REMOVED_ZONE",
@@ -16103,12 +16074,6 @@
   "K_BURST",
   "K_ULTIMATE",
   "T_ALLY_LOST"
- ],
- "BS39-RV007": [
-  "A_EXHAUST",
-  "A_REMOVED_ZONE",
-  "K_ACCEL",
-  "K_ULTIMATE"
  ],
  "BS39-RV008": [
   "A_BP_PLUS",
@@ -18065,11 +18030,6 @@
  "BS42-015": [
   "C_LEVEL",
   "S_NO_RETURN"
- ],
- "BS42-016": [
-  "A_EXHAUST",
-  "A_REMOVED_ZONE",
-  "K_ACCEL"
  ],
  "BS42-017": [
   "A_REMOVED_ZONE",
@@ -34290,8 +34250,7 @@
  ],
  "BS68-035": [
   "A_REMOVED_ZONE",
-  "A_SOUL_STATE",
-  "K_ACCEL"
+  "A_SOUL_STATE"
  ],
  "BS68-036": [
   "A_CORE_TO_SELF",
@@ -34335,7 +34294,6 @@
  ],
  "BS68-045": [
   "A_REMOVED_ZONE",
-  "K_ACCEL",
   "K_MIRAGE",
   "S_UNAFFECTED"
  ],
@@ -34824,7 +34782,6 @@
  ],
  "BS69-043": [
   "A_REMOVED_ZONE",
-  "K_ACCEL",
   "S_UNAFFECTED"
  ],
  "BS69-044": [
@@ -36152,9 +36109,7 @@
   "M_OPTIONAL",
   "T_MIRAGE_LIFE"
  ],
- "BS71-RV004": [
-  "K_ACCEL"
- ],
+ "BS71-RV004": [],
  "BS71-X01": [
   "A_DESTROY_BP",
   "A_LIFE_TO_RESERVE",

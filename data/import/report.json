@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 7610,
+  "cards": 7602,
   "per_saga": {
    "1": 762,
    "2": 328,
@@ -8,8 +8,8 @@
    "4": 408,
    "5": 663,
    "6": 361,
-   "7": 532,
-   "8": 493,
+   "7": 525,
+   "8": 492,
    "9": 495,
    "10": 499,
    "11": 329,
@@ -23,19 +23,19 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 1096,
+  "skipped_curated": 1104,
   "number_conflicts": 5,
   "nexus_levels_added": 712,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 537,
+  "image_problems": 536,
   "merged": 109,
   "brave_unparsed": 171,
   "ut_lines_added": 119,
   "odd_reduction": 808,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 535
+  "without_image": 534
  },
  "tokens": [
   "BS73-T001",
@@ -642,17 +642,24 @@
   "BS36-042",
   "BS36-048",
   "BS37-001",
+  "BS37-004",
   "BS37-008",
+  "BS37-013",
+  "BS37-017",
   "BS37-019",
   "BS37-024",
   "BS37-031",
+  "BS37-036",
+  "BS37-040",
   "BS37-042",
   "BS37-046",
   "BS37-048",
+  "BS37-063",
   "BS37-067",
   "BS38-008",
   "BS38-009",
   "BS38-041",
+  "BS39-RV007",
   "BS40-001",
   "BS40-012",
   "BS40-014",
@@ -665,6 +672,7 @@
   "BS41-049",
   "BS41-052",
   "BS42-014",
+  "BS42-016",
   "BS42-041",
   "BS43-016",
   "BS43-028",
@@ -2923,11 +2931,6 @@
   {
    "id": "BS42-015",
    "name": "The VioletCorpseBrigade Bonehead-Drago",
-   "problem": "no image"
-  },
-  {
-   "id": "BS42-016",
-   "name": "The VioletCorpseBrigade Zombie Dragon",
    "problem": "no image"
   },
   {

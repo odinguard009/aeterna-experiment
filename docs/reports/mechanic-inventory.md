@@ -6,16 +6,16 @@
 
 | Mechanic | Status | Waiting | Playable | Prep | Glossary | Note |
 |---|---|---|---|---|---|---|
-| Magic card | partial | 1041 | 288 | RD· | - | Main/Flash, cost, targets, ACTIONS effects (v0.41/v0.47.0); Magic reveals and some types open (rules-coverage) |
-| Brave card | partial | 434 | 262 | RD· | - | Brave part 1 v0.60.0 (combine data, braved effects); part 2 open: summon from Hand first, two-sided Braves, 171 Brave conditions |
+| Magic card | partial | 1038 | 290 | RD· | - | Main/Flash, cost, targets, ACTIONS effects (v0.41/v0.47.0); Magic reveals and some types open (rules-coverage) |
+| Brave card | partial | 430 | 262 | RD· | - | Brave part 1 v0.60.0 (combine data, braved effects); part 2 open: summon from Hand first, two-sided Braves, 171 Brave conditions |
 | Mirage | partial | 297 | 271 | R·· | K_MIRAGE | partial: 06-rules.js mirage set/usable, 02d-effects-resolve.js only MIRAGE_OWN_LIFE/OPP_LIFE triggers (subagent grep 2026-10-19) |
-| Soul Core in card text | partial | 253 | 258 | ··· | - | Soul Core rules done (setup, Seal, Life, Reserve); cards that move or pay with it follow their own keywords |
 | Ultimate card | partial | 253 | 195 | ··· | - | Ultimate type + Ultra Manifest v0.46.0, compiler v0.56.0; Ultimate Trigger level lines missing in the export (110 cards) |
-| Rush | partial | 130 | 191 | R·· | - | partial: per-action if.hasSymbol (02a-effects-base.js), single-symbol forms only; multi-symbol forms open |
+| Soul Core in card text | partial | 243 | 258 | ··· | - | Soul Core rules done (setup, Seal, Life, Reserve); cards that move or pay with it follow their own keywords |
+| Rush | partial | 128 | 191 | R·· | - | partial: per-action if.hasSymbol (02a-effects-base.js), single-symbol forms only; multi-symbol forms open |
 | Ultimate Trigger | partial | 105 | 156 | R·· | K_ULTIMATE | partial: ULT_TRIGGER + utHit (02i-effects-keywords.js); Guard and Trigger Counter not wired |
 | Soul Burst | missing | 100 | 7 | ··· | K_BURST | no engine match (grep 2026-10-19); the K_BURST glossary seed is too broad (the wiki redirects Soul Burst to Burst) |
 | Grandwalker Nexus | partial | 68 | 49 | ··· | - | Saga Brave onto a Grandwalker Nexus (v0.35.0); Grandwalker Nexus effects open (roadmap card sessions) |
-| Invoke (Standard activation) | partial | 68 | 108 | RDL | K_STANDARD_INVOKE | v0.68.0: Invoke heads, five cost kinds, BP_TARGET / SYMBOL_TARGET; open: conditional costs, core moves, F Change / Amplify / Current / Magirrate templates (Standard activations; v0.64.0 prep) |
+| Invoke (Standard activation) | partial | 67 | 108 | RDL | K_STANDARD_INVOKE | v0.68.0: Invoke heads, five cost kinds, BP_TARGET / SYMBOL_TARGET; open: conditional costs, core moves, F Change / Amplify / Current / Magirrate templates (Standard activations; v0.64.0 prep) |
 | Heavy Armor | partial | 65 | 23 | ··· | K_ARMOR | partial: STATIC UNAFFECTED with from colours/types (v0.58.0, 02a-effects-base.js, 02c-effects-parse.js, compile_effects.py); granted Armor open |
 | Rebirth / pre-Rebirth / reborn | missing | 57 | 50 | ··· | - | no engine rule; importer has rebirthTo/rebirthSide (display only, v0.32) but no staged card fills them; rules-coverage: not implemented; the export may lack the Rebirth side link (check, like the Brave combine data) |
 | Core Charge | missing | 52 | 67 | ··· | - | no engine match outside Neo-Core Charge (02b-effects-actions.js), grep 2026-10-19 |
@@ -82,7 +82,6 @@
 | Level Up | missing | 4 | 7 | ··· | - | no engine/compiler/test match (A4 grep 2026-10-19) |
 | Minor Unleash | missing | 4 | 0 | ··· | K_UNLEASH | no code for the variant in the engine or the compilers (A4 grep 2026-10-19); base handler reusable |
 | Sound Speed | missing | 4 | 5 | ··· | - | no engine/compiler/test match (A4 grep 2026-10-19) |
-| Form Change | missing | 3 | 12 | ··· | - | no engine/compiler/test match (A4 grep 2026-10-19) |
 | Horoscoping | missing | 3 | 0 | ··· | - | no engine/compiler/test match (A4 grep 2026-10-19) |
 | Nether Immortality | missing | 3 | 3 | ··· | K_NETHER_IMMORTALITY | no code (A4 2026-10-19) |
 | Pursuit | missing | 3 | 7 | ··· | - | no engine/compiler/test match (A4 grep 2026-10-19) |
@@ -90,6 +89,7 @@
 | Spell Blight | missing | 3 | 7 | ··· | - | no engine/compiler/test match (A4 grep 2026-10-19) |
 | Ultra Awaken | missing | 3 | 5 | ··· | A_AWAKEN | no code for the variant in the engine or the compilers (A4 grep 2026-10-19); base handler reusable |
 | Divine Holy Life | missing | 2 | 2 | ··· | K_HOLY_LIFE | no code for the variant in the engine or the compilers (A4 grep 2026-10-19); base handler reusable |
+| Form Change | missing | 2 | 12 | ··· | - | no engine/compiler/test match (A4 grep 2026-10-19) |
 | Great Pursuit | missing | 2 | 3 | ··· | - | no engine/compiler/test match (A4 grep 2026-10-19) |
 | Magirrate | missing | 2 | 6 | ··· | - | no engine/compiler/test match (A4 grep 2026-10-19) |
 | Mirage Drain | missing | 2 | 0 | ··· | K_MIRAGE | no code for the variant in the engine or the compilers (A4 grep 2026-10-19); base handler reusable |
@@ -150,21 +150,21 @@
 | Wave Crush | missing | 1 | 2 | ··· | K_CRUSH | no code for the variant in the engine or the compilers (A4 grep 2026-10-19); base handler reusable |
 | XV Crush | missing | 1 | 3 | ··· | K_CRUSH | no code for the variant in the engine or the compilers (A4 grep 2026-10-19); base handler reusable |
 | Current | missing | 0 | 0 | ··· | - | no code; {{Current/..}} not compiled (A4 2026-10-19) |
-| Spirit card | done | 5121 | 5335 | ··· | - | base rules: summon, levels, BP, attack/block (rules-coverage A) |
-| Nexus card | done | 825 | 812 | ··· | - | deploy, levels, Nexus effects through the effect engine |
+| Spirit card | done | 5057 | 5335 | ··· | - | base rules: summon, levels, BP, attack/block (rules-coverage A) |
+| Nexus card | done | 824 | 812 | ··· | - | deploy, levels, Nexus effects through the effect engine |
 | Burst | done | 430 | 674 | ··· | K_BURST | v0.55.2 resolution order |
 | Contract Advent | done | 193 | 246 | ··· | K_ADVENT | engine done (CLAUDE.md Done list) |
-| Accel | done | 153 | 195 | ··· | K_ACCEL | v0.50.0 |
 | Advent | done | 147 | 527 | ··· | K_ADVENT | engine done (CLAUDE.md Done list) |
-| True Release (= Super Unleash, Standard) | done | 144 | 189 | RDL | - | done v0.66.0: trueRelease field, lvIndex Soul Core = LV2, (During Attack) +BP/Clash; +14 cards (7 with True Release); real recompile re-measure 2026-10-19: True Release alone 1, with (During Attack) 6 |
-| Legacy | done | 98 | 139 | RDL | - | = Succession; done in v0.69.0 (legacyPlan/legacyPay in 06-rules.js; automatic, fewest EX cards for the lowest cost; +8 cards). Effects that count "EX Symbol banished via this Legacy" / "summoned using Legacy" (10 cards) still wait (inst.legacyN is recorded). glossary link K_STANDARD_SUCCESSION is shared with Soul Magic |
+| Accel | done | 145 | 195 | ··· | K_ACCEL | v0.50.0 |
+| True Release (= Super Unleash, Standard) | done | 142 | 189 | RDL | - | done v0.66.0: trueRelease field, lvIndex Soul Core = LV2, (During Attack) +BP/Clash; +14 cards (7 with True Release); real recompile re-measure 2026-10-19: True Release alone 1, with (During Attack) 6 |
+| Legacy | done | 95 | 139 | RDL | - | = Succession; done in v0.69.0 (legacyPlan/legacyPay in 06-rules.js; automatic, fewest EX cards for the lowest cost; +8 cards). Effects that count "EX Symbol banished via this Legacy" / "summoned using Legacy" (10 cards) still wait (inst.legacyN is recorded). glossary link K_STANDARD_SUCCESSION is shared with Soul Magic |
 | Manifest | done | 91 | 4 | ··· | K_MANIFEST | v0.46.0 Ultra Manifest |
 | High Speed | done | 75 | 144 | ··· | K_HIGH_SPEED | v0.49.0 |
 | Crush | done | 28 | 78 | ··· | K_CRUSH | v0.49.0 |
-| Holy Life | done | 21 | 53 | ··· | K_HOLY_LIFE | v0.49.0 |
+| Holy Life | done | 19 | 53 | ··· | K_HOLY_LIFE | v0.49.0 |
 | Brilliance | done | 14 | 34 | RDL | - | engine action BRILLIANCE in 02o-effects-battle-end.js; test PK78 |
-| Curse | done | 11 | 65 | RDL | - | engine action CURSE in 02o-effects-battle-end.js; test PK78 |
 | Seal | done | 10 | 125 | ··· | A_SEAL | v0.48.0 |
+| Curse | done | 9 | 65 | RDL | - | engine action CURSE in 02o-effects-battle-end.js; test PK78 |
 | Silver Wheel | done | 9 | 8 | ··· | K_SILVER_WHEEL | v0.50.0 |
 | Soul Magic | done | 5 | 32 | RDL | K_STANDARD_SUCCESSION | v0.64.0: soulMagicOK/soulMagicPick/soulMagicHolder (06-rules.js), human choice in prepareHumanMagic; tests S64 + scenario soul-magic-tentacle-attack |
 | Token | done | 4 | 2 | ··· | - | v0.35.0: supply outside the Deck, back to the supply when leaving the Field |

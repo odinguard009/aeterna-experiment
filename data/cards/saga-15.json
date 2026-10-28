@@ -1647,12 +1647,14 @@
        "prev": false
       }
      }
-    ]
+    ],
+    "reduction": {
+     "white": 2
+    }
    }
   ],
   "residual": [
-   "Flash: discard this card from the Removed Zone to deploy an \"Athena\" from your Removed Zone/Soul State",
-   "Accel cost reduction icons (not in the Fandom export; the full cost is paid)"
+   "Flash: discard this card from the Removed Zone to deploy an \"Athena\" from your Removed Zone/Soul State"
   ]
  },
  {
@@ -1937,13 +1939,15 @@
       "to": "hand",
       "kind": "spirit"
      }
-    ]
+    ],
+    "reduction": {
+     "white": 2
+    }
    }
   ],
   "residual": [
    "When summoned from the Removed Zone with six or more counters, this card can become Cost 6",
-   "LV2-3: your White Devotee/Concluser Spirits are unaffected by opposing Nexus and Mirage effects",
-   "Accel cost reduction icons (not in the Fandom export; the full cost is paid)"
+   "LV2-3: your White Devotee/Concluser Spirits are unaffected by opposing Nexus and Mirage effects"
   ]
  },
  {
@@ -5292,7 +5296,10 @@
      {
       "do": "END_ATTACK_AFTER_BATTLE"
      }
-    ]
+    ],
+    "reduction": {
+     "white": 2
+    }
    },
    {
     "trigger": "SUMMONED",
@@ -5317,8 +5324,7 @@
    }
   ],
   "residual": [
-   "While in the Removed Zone: your White-only Devotee/Concluser cards in the Removed Zone are unaffected by opposing effects",
-   "Accel cost reduction icons (not in the Fandom export; the full cost is paid)"
+   "While in the Removed Zone: your White-only Devotee/Concluser cards in the Removed Zone are unaffected by opposing effects"
   ]
  },
  {
@@ -12611,12 +12617,14 @@
       "draw": 3,
       "discard": 2
      }
-    ]
+    ],
+    "reduction": {
+     "blue": 3
+    }
    }
   ],
   "residual": [
-   "LV1-3: when you draw via your \"Roaring Azure\" family effect, the opponent can't activate \"when draw/when increase Hand\" effects",
-   "Accel cost reduction icons (not in the Fandom export; the full cost is paid)"
+   "LV1-3: when you draw via your \"Roaring Azure\" family effect, the opponent can't activate \"when draw/when increase Hand\" effects"
   ]
  },
  {

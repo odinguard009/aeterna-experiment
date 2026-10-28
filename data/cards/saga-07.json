@@ -6634,11 +6634,27 @@
   "mechanics": [
    "Accel"
   ],
-  "fxComplete": false,
-  "residual": [
-   "Flash - {{Accel|Cost 4 ()}} During this turn, give all your Spirits +5000 BP. After this effect resolves, put this card face-up onto the Removed Zone."
+  "fxComplete": true,
+  "effects": [
+   {
+    "trigger": "ACCEL",
+    "cost": 4,
+    "timing": [
+     "FLASH"
+    ],
+    "reduction": {
+     "red": 2
+    },
+    "actions": [
+     {
+      "do": "BP_PLUS",
+      "n": 5000,
+      "to": "own"
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS37-005",
@@ -7050,11 +7066,27 @@
   "mechanics": [
    "Accel"
   ],
-  "fxComplete": false,
-  "residual": [
-   "Flash- {{Accel|Cost 4 ()}} Send two cores from an opposing Spirit to the Reserve. After this effect resolves, put this card face-up on the Removed Zone."
+  "fxComplete": true,
+  "effects": [
+   {
+    "trigger": "ACCEL",
+    "cost": 4,
+    "timing": [
+     "FLASH"
+    ],
+    "reduction": {
+     "purple": 2
+    },
+    "actions": [
+     {
+      "do": "OPP_CORES_TO_RESERVE",
+      "targets": 1,
+      "each": 2
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS37-014",
@@ -7205,6 +7237,27 @@
   ],
   "effects": [
    {
+    "trigger": "ACCEL",
+    "cost": 5,
+    "timing": [
+     "FLASH"
+    ],
+    "reduction": {
+     "purple": 3
+    },
+    "actions": [
+     {
+      "do": "SUMMON_HAND",
+      "match": {
+       "family": [
+        "Death Dragon"
+       ]
+      },
+      "from": "trash"
+     }
+    ]
+   },
+   {
     "trigger": "SUMMONED",
     "lv": [
      1,
@@ -7220,11 +7273,8 @@
     ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "Flash- {{Accel|Cost 5 ()}} Summon a \"Death Dragon\" family Spirit card from your Trash, without paying the cost. After this effect resolves, put this card face-up onto the Removed Zone."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS37-018",
@@ -7970,11 +8020,28 @@
   "mechanics": [
    "Accel"
   ],
-  "fxComplete": false,
-  "residual": [
-   "Flash- {{Accel|Cost 2 ()}} During this turn, give all your Spirits +3000 BP. After this effect resolves, put this card face-up onto the Removed Zone."
+  "fxComplete": true,
+  "effects": [
+   {
+    "trigger": "ACCEL",
+    "cost": 2,
+    "timing": [
+     "FLASH"
+    ],
+    "reduction": {
+     "white": 1,
+     "red": 1
+    },
+    "actions": [
+     {
+      "do": "BP_PLUS",
+      "n": 3000,
+      "to": "own"
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS37-037",
@@ -8136,11 +8203,25 @@
   "mechanics": [
    "Accel"
   ],
-  "fxComplete": false,
-  "residual": [
-   "Flash- {{Accel|Cost 4 ()}} When this battle ends, end the Attack Step. After this effect resolves, put this card face-up onto the Removed Zone."
+  "fxComplete": true,
+  "effects": [
+   {
+    "trigger": "ACCEL",
+    "cost": 4,
+    "timing": [
+     "FLASH"
+    ],
+    "reduction": {
+     "white": 2
+    },
+    "actions": [
+     {
+      "do": "END_ATTACK_AFTER_BATTLE"
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS37-041",
@@ -9170,11 +9251,33 @@
   "mechanics": [
    "Accel"
   ],
-  "fxComplete": false,
-  "residual": [
-   "Main- {{Accel|Cost 4 ()}} Draw three cards. Then, discard two cards from your Hand. After this effect resolves, put this card face-up on the Removed Zone."
+  "fxComplete": true,
+  "effects": [
+   {
+    "trigger": "ACCEL",
+    "cost": 4,
+    "timing": [
+     "MAIN"
+    ],
+    "reduction": {
+     "blue": 3
+    },
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 3
+     },
+     {
+      "do": "DISCARD_HAND",
+      "n": 2,
+      "if": {
+       "prev": true
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS37-064",
@@ -17630,6 +17733,19 @@
   ],
   "effects": [
    {
+    "trigger": "ACCEL",
+    "cost": 4,
+    "timing": [
+     "FLASH"
+    ],
+    "actions": [
+     {
+      "do": "EXHAUST_OPP",
+      "n": 1
+     }
+    ]
+   },
+   {
     "trigger": "SUMMONED",
     "lv": [
      1,
@@ -17643,11 +17759,8 @@
     ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "Flash- {{Accel|Cost 4 ()}} Exhaust an opposing Spirit/Ultimate. After this effect resolves, put this card face-up onto the Removed Zone."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS39-RV008",

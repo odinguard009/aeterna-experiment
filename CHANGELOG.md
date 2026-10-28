@@ -4,6 +4,12 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.179.0
+- Lane: K
+- **Lane K: 8 more cards complete (968 of 8,709): the Accel head.** `{{Accel|Cost N ()}}` + body + "put this card onto the Removed Zone" now compiles to an ACCEL effect (compiler only, engine 02j unchanged). The reduction icons the export drops come from the Fandom wiki page: `tools/accel_reductions.py` -> `data/sources/accel-reductions.json` (127 of 134 library Accel cards), and `tools/accel_apply.mjs` added them to the 5 hand-written Accel cards. New sentence: "When this battle ends, end the Attack Step."
+  - Rules note `docs/rules/rush-accel.md`. Rush is not opened: the 20 single-colour Rush cards fail on their body sentences, and multi-colour / Ultimate / God Rush is not readable from the Fandom page or the Standard PDF (not guessed). The other 18 Accel cards need new body sentences.
+  - Checked: loop, unit test V179. Not checked: Regression (CI), a real device. Revert note: `git revert` the v0.179.0 commit.
+
 ## v0.178.0
 - Lane: K
 - **Lane K: 9 more cards complete (961 of 8,709), compiler only.** (1) `"X"-named Spirit` conditions read as `controlName` (Duckweetyplus). (2) The lead-condition split now also accepts `Also, ...` and `While ..., (also,) ...` (one-time check at resolution, same as `If`), which gates the following sentence: Vajiriaxe, Yutyrannus, Eruption Draw, Dragoon Dive and others. Also cleaned up 130 stale "RANTAI OFF auto ... v0.81.3 ... 600000" comments on issue #1 (owner request); their poster was not found.

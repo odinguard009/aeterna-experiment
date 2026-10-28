@@ -4304,13 +4304,15 @@
        2
       ]
      }
-    ]
+    ],
+    "reduction": {
+     "yellow": 2
+    }
    }
   ],
   "residual": [
    "Accel second clause: (Once per Turn: Same Name) return a \"Bannerace\" family Spirit card from your Removed Zone to the Hand",
-   "When your Life would be reduced by an opposing effect, discard this card from the Removed Zone so the Life is not reduced",
-   "Accel cost reduction icons (not in the Fandom export; the full cost is paid)"
+   "When your Life would be reduced by an opposing effect, discard this card from the Removed Zone so the Life is not reduced"
   ]
  },
  {
