@@ -25271,23 +25271,49 @@
   "saga": 50,
   "magic": {
    "timing": [
+    "MAIN",
     "FLASH"
    ],
-   "effect": "ACTIONS",
+   "effect": null,
    "value": 0,
-   "actions": [
-    {
-     "do": "BP_TARGET",
-     "n": 2000,
-     "to": "pick"
+   "by": {
+    "MAIN": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "DESTROY_OWN",
+       "match": {
+        "type": "Spirit",
+        "family": [
+         "Bloodrouse"
+        ]
+       }
+      },
+      {
+       "do": "VOID_TO_RESERVE",
+       "n": 1,
+       "if": {
+        "prev": true
+       }
+      }
+     ]
+    },
+    "FLASH": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "BP_TARGET",
+       "n": 2000,
+       "to": "pick"
+      }
+     ]
     }
-   ]
+   }
   },
-  "fxComplete": false,
-  "residual": [
-   "Main Target one of your \"Bloodrouse\" family Spirits. Destroy it. If you've done so, put a core from the Void to your Reserve."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RSD02-012",
