@@ -46942,6 +46942,7 @@
  "26RDB01-023": [
   "T_SUMMONED",
   "A_REVEAL_DECK",
+  "C_LEVEL",
   "M_OPTIONAL",
   "A_REVEAL_ADD"
  ],
@@ -47805,6 +47806,7 @@
  "26RSD08-001": [
   "T_SUMMONED",
   "A_REVEAL_DECK",
+  "C_LEVEL",
   "M_OPTIONAL",
   "A_REVEAL_ADD"
  ],

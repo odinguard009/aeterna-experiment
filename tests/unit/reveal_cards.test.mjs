@@ -48,6 +48,13 @@ test('R184-02 compiler: one revealed card, "if it is X, you can summon it" = REV
   r = act('You can reveal a card from your decktop. If that card is a Green Spirit card, you can summon it. If you\'re not summoning it, or it\'s some other card, return it to the decktop.');
   assert.deepEqual(r.a, [{ do: 'REVEAL_DEPLOY', n: 1, match: { type: 'Spirit', color: 'green' }, pay: true, rest: 'top' }]);
 });
+test('R69-05 compiler (v0.184): team, Cost N or more and with <Keyword> card phrases', () => {
+  const m = t => act('Reveal three cards from your decktop. Among them, add ' + t + ' to the Hand. Return any remaining cards to the deckbottom in any order.').a[0].match;
+  assert.deepEqual(m('a Red Stella Spirit card'), { type: 'Spirit', team: 'Red Stella' });
+  assert.deepEqual(m('a Cost 3 or less Green Wave card'), { costLe: 3, team: 'Green Wave' });
+  assert.deepEqual(m('a Cost 6 or more "GAIM" family card'), { family: ['GAIM'], costGe: 6 });
+  assert.deepEqual(m('a Spirit card with Amplify'), { type: 'Spirit', keyword: 'Amplify' });
+});
 test('R69-04 compiler: forms the engine match cannot say stay in review (keyword holder, two kinds, every card, no printed effects, discard-a-card, the reveal is only the first sentence group)', () => {
   const bad = [
     'Reveal three cards from your decktop. Among them, add a Spirit card with Mirage to your Hand. Return any remaining cards to the deckbottom in any order.',

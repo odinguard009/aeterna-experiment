@@ -21198,10 +21198,11 @@
    "Diva",
    "Stage Style"
   ],
-  "text": "[Team: Red Stella]\n\n[LV1-2] (During Attack)\nThis Spirit gains +2000 BP.\n\n[LV2] (True Release) (When Attacks)\nIf all your Spirits/Nexuses have Red Stella, you can reveal two cards from your decktop. Add a Red Stella Spirit card among them to the Hand. Return any remaining cards to the deckbottom in any order.",
+  "text": "[Team: Red Stella]\n\n[LV1][LV2] (During Attack)\nThis Spirit gains +2000 BP.\n\n[LV2] (True Release) (When Attacks)\nIf all your Spirits/Nexuses have Red Stella, you can reveal two cards from your decktop. Add a Red Stella Spirit card among them to the Hand. Return any remaining cards to the deckbottom in any order.",
   "image": "26RDB01-007.png",
   "block": "A",
   "saga": 50,
+  "trueRelease": true,
   "effects": [
    {
     "trigger": "STATIC",
@@ -21212,14 +21213,33 @@
      1,
      2
     ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "REVEAL_PICK",
+      "n": 2,
+      "match": {
+       "type": "Spirit",
+       "team": "Red Stella"
+      },
+      "rest": "bottom",
+      "if": {
+       "allHave": {
+        "team": "Red Stella"
+       }
+      }
+     }
+    ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[Team: Red Stella]",
-   "[LV2] (True Release) (When Attacks) If all your Spirits/Nexuses have Red Stella, you can reveal two cards from your decktop. Add a Red Stella Spirit card among them to the Hand. Return any remaining cards to the deckbottom in any order."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RDB01-008",
@@ -21670,17 +21690,42 @@
    "Diva",
    "Stage Style"
   ],
-  "text": "[Team: Green Wave]\n\n[LV1-2] (During Block)\nThis Spirit gains +2000 BP.\n\n[LV2] (When Blocks)\nYou can reveal three cards from your decktop. Among them, you can summon/deploy a Cost 3 or less Green Wave card. Return any remaining cards to the deckbottom in any order.",
+  "text": "[Team: Green Wave]\n\n[LV1][LV2] (During Block)\nThis Spirit gains +2000 BP.\n\n[LV2] (When Blocks)\nYou can reveal three cards from your decktop. Among them, you can summon/deploy a Cost 3 or less Green Wave card. Return any remaining cards to the deckbottom in any order.",
   "image": "26RDB01-019.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[Team: Green Wave]",
-   "[LV1-2] (During Block) This Spirit gains +2000 BP.",
-   "[LV2] (When Blocks) You can reveal three cards from your decktop. Among them, you can summon/deploy a Cost 3 or less Green Wave card. Return any remaining cards to the deckbottom in any order."
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "bp": 2000,
+    "to": "self",
+    "blockingOnly": true,
+    "lv": [
+     1,
+     2
+    ]
+   },
+   {
+    "trigger": "BLOCKS",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "REVEAL_DEPLOY",
+      "n": 3,
+      "match": {
+       "costLe": 3,
+       "team": "Green Wave"
+      },
+      "pay": true
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RDB01-020",
@@ -21830,16 +21875,34 @@
    "Diva",
    "Stage Style"
   ],
-  "text": "[Team: Green Wave]\n\n[LV1-2] (When Summoned)\nYou can reveal three cards from your decktop. Among them, add to Hand a Green Wave Spirit card with a card name different from this Spirit's. Return any remaining cards to the deckbottom in any order.",
+  "text": "[Team: Green Wave]\n\n[LV1][LV2] (When Summoned)\nYou can reveal three cards from your decktop. Among them, add to Hand a Green Wave Spirit card with a card name different from this Spirit's. Return any remaining cards to the deckbottom in any order.",
   "image": "26RDB01-023.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[Team: Green Wave]",
-   "[LV1-2] (When Summoned) You can reveal three cards from your decktop. Among them, add to Hand a Green Wave Spirit card with a card name different from this Spirit's. Return any remaining cards to the deckbottom in any order."
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "REVEAL_PICK",
+      "n": 3,
+      "match": {
+       "type": "Spirit",
+       "team": "Green Wave"
+      },
+      "rest": "bottom",
+      "diffName": true
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RDB01-024",
@@ -29256,16 +29319,34 @@
    "Diva",
    "Stage Style"
   ],
-  "text": "[Team: Yellow Rise]\n\n[LV1-2] (When Summoned)\nYou can reveal three cards from your decktop. Among them, add to the Hand a Yellow Rise Spirit card with a card name different from this Spirit's. Return any remaining cards to the deckbottom in any order.",
+  "text": "[Team: Yellow Rise]\n\n[LV1][LV2] (When Summoned)\nYou can reveal three cards from your decktop. Among them, add to the Hand a Yellow Rise Spirit card with a card name different from this Spirit's. Return any remaining cards to the deckbottom in any order.",
   "image": "26RSD08-001.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[Team: Yellow Rise]",
-   "[LV1-2] (When Summoned) You can reveal three cards from your decktop. Among them, add to the Hand a Yellow Rise Spirit card with a card name different from this Spirit's. Return any remaining cards to the deckbottom in any order."
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "REVEAL_PICK",
+      "n": 3,
+      "match": {
+       "type": "Spirit",
+       "team": "Yellow Rise"
+      },
+      "rest": "bottom",
+      "diffName": true
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RSD08-002",

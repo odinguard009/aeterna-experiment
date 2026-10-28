@@ -39595,12 +39595,6 @@
   "S1_ALL_HAVE",
   "T_BLOCKS"
  ],
- "26RDB01-007": [
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "S1_ALL_HAVE",
-  "T_ATTACKS"
- ],
  "26RDB01-008": [
   "A_BP_PLUS",
   "C_LEVEL",
@@ -39660,14 +39654,6 @@
   "A_BP_PLUS",
   "C_LEVEL"
  ],
- "26RDB01-019": [
-  "A_BP_PLUS",
-  "A_REVEAL_ADD",
-  "A_REVEAL_DECK",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_BLOCKS"
- ],
  "26RDB01-020": [
   "A_EXHAUST",
   "C_LEVEL",
@@ -39685,12 +39671,6 @@
   "A_EXHAUST",
   "M_OPTIONAL",
   "T_DESTROYED"
- ],
- "26RDB01-023": [
-  "A_REVEAL_ADD",
-  "A_REVEAL_DECK",
-  "M_OPTIONAL",
-  "T_SUMMONED"
  ],
  "26RDB01-024": [
   "A_EXHAUST",
@@ -40147,12 +40127,6 @@
  ],
  "26RSD07-X01": [
   "M_REPLACEMENT",
-  "T_SUMMONED"
- ],
- "26RSD08-001": [
-  "A_REVEAL_ADD",
-  "A_REVEAL_DECK",
-  "M_OPTIONAL",
   "T_SUMMONED"
  ],
  "26RSD08-002": [
