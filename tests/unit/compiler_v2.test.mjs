@@ -39,6 +39,8 @@ test('C61-02 selector grammar maps onto existing actions', () => {
   assert.deepEqual(acts('[LV1] (When Summoned) Destroy an opposing Spirit/Ultimate with 5000 BP or less.'), [{ do: 'DESTROY', bpLe: 5000 }]);
   assert.deepEqual(acts('[LV1] (When Summoned) Destroy one opposing Cost 3 or less Spirit/Ultimate.'), [{ do: 'DESTROY', costLe: 3 }]);
   assert.deepEqual(acts('[LV1] (When Summoned) Destroy an opposing Spirit with the lowest cost.'), [{ do: 'DESTROY', costRank: 'lowest' }]);
+  assert.deepEqual(acts('[LV1] (When Summoned) Destroy a Nexus.'), [{ do: 'DESTROY_ANY', kind: 'nexus' }]);
+  assert.deepEqual(acts('[LV1] (When Summoned) Destroy an exhausted Spirit you or the opponent controls.'), [{ do: 'DESTROY_ANY', kind: 'spirit', exhaustedOnly: true }]);
   assert.deepEqual(acts('[LV1] (When Attacks) Return an opposing Cost 4 or less Spirit to the Hand.'), [{ do: 'BOUNCE_OPP', to: 'hand', kind: 'spirit', costLe: 4 }]);
   assert.deepEqual(acts('[LV1] (When Attacks) Return an opposing exhausted Spirit/Ultimate to the deckbottom.'), [{ do: 'BOUNCE_OPP', to: 'deckBottom', kind: 'spirit', exhaustedOnly: true }]);
   assert.deepEqual(acts('[LV1] (When Attacks) Exhaust up to two opposing Spirits.'), [{ do: 'EXHAUST_OPP', n: 2 }]);

@@ -231,6 +231,8 @@ def clause(x):
         n = int(m.group(1) or m.group(2))
         if not (1000 <= n <= 100000 if m.group(1) else 1 <= n <= 30): raise Review('v2 destroy: total range')
         return [{'do': 'DESTROY_TOTAL', 'total': n} if m.group(1) else {'do': 'DESTROY_TOTAL', 'total': n, 'byCost': True}]
+    m = re.match(r'^destroy (?:a nexus|an exhausted spirit)(?: you or (?:the|your) opponent controls)?$', x)      # v0.183 DESTROY_ANY (either side)
+    if m: return [{'do': 'DESTROY_ANY', 'kind': 'nexus'}] if 'nexus' in x else [{'do': 'DESTROY_ANY', 'kind': 'spirit', 'exhaustedOnly': True}]
     m = re.match(r'^(destroy|heavy exhaust|heavily exhaust|exhaust) (.+)$', x)
     if m:
         sel = selector(m.group(2))
