@@ -151,7 +151,7 @@ Object.assign(FX_ACTIONS, {
         ch = { inst: best.h, target: t || null, plan: null, ctx: 'flash', free: true };
       } else {
         const ids = Array.from(new Set(L.map(x => x.id))).slice(0, 8);
-        const id = await ask({ title: `✨ ${CARDS[c.src.id].name}`, peek: true, wide: true, html: 'Use the Flash effect of which Magic card (no cost)?', cards: cardIds(ids), buttons: ids.map(i => ({ label: CARDS[i].name, value: i })).concat([{ label: 'Do not use', cls: 'cancel', value: null }]) });
+        const id = await ask({ title: `✨ ${CARDS[c.src.id].name}`, peek: true, wide: true, html: 'Use the Flash effect of which Magic card (no cost)?', cards: cardIds(ids), buttons: [...ids.map(i => ({ label: CARDS[i].name, value: i })), { label: 'Do not use', cls: 'cancel', value: null }] });
         const h = L.find(x => x.id === id); if (!h) { c.ctx.did = false; return; }
         ch = await prepareHumanMagic(c.p, h, 'flash', true); if (!ch) { c.ctx.did = false; return; }
       }
