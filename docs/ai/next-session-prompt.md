@@ -33,7 +33,7 @@
 - Auto (scheduled) sessions: gate `check opus|sonnet` before the clone (from the prompt), `lock` after `session_start.sh`, `switch` between tasks (OFF = finish the current commit, push, then end as usual), `done vX.Y.Z next=Opus|Sonnet` at the end, `unlock` on any early stop or error.
 - Sessions never create, change or delete schedules (the app asks the owner to approve schedule changes, and the loop must not wait for the owner). Only the owner installs or removes the task.
 - Roadmap empty or every item blocked: commit `docs/ai/chain-stop.md` (reason). Delete it only after the owner has answered.
-- Quota / usage / rate-limit error: no retry, no schedule changes; push what is committed, handoff comment, `unlock`, stop. The next run continues.
+- Quota / usage / rate-limit error: no retry, no schedule changes; push what is committed (Lane K: `wip/lane-k`), handoff comment, `unlock`, stop. Lane K releases only at 50 new complete cards (CLAUDE.md). The next run continues.
 - Model (owner, 2026-10-17): Opus only. The gate answers `check sonnet` with STOP, and the former Sonnet task now runs Opus at :58 (2026-10-17). Earlier rule, kept for history: the model was chosen by the two tasks above through `next=`. A session that finds the item heavier than its model (for example a Sonnet run whose item turns out to need engine design) does not start it: it takes a small item if one exists, otherwise it ends with `done <current version> next=Opus` without a release. Read-only data lookups go to subagents with `model: "sonnet"` as usual.
 - Permission: both tasks should run with automatic approval ("Automatically approve" in the task settings, owner-only switch).
 - Session name: "Ver. X.Y.Z" of the final version.

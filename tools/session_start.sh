@@ -68,6 +68,21 @@ echo "[session_start] version $(node -p "require('./package.json').version")"
 git log --oneline -5 | sed 's/^/[session_start]   /'
 grep -m1 -o '\*\*Next:.*' CLAUDE.md | cut -c1-400 | sed 's/^/[session_start] /' || true
 node tools/lane_next.mjs 2>/dev/null | sed 's/^/[session_start] /' || true   # lane order: F, S1 Standard Magic, U/I queue, then K Standard first (owner, 2026-10-21)
+# Lane K release per 50 (owner, 2026-10-28): new complete cards since the last released version, and local commits older than 24 h
+REL=$(git log -1 --format=%h --grep='^v[0-9]' 2>/dev/null)
+if [ -n "$REL" ]; then
+  python3 - "$REL" <<'PY' | sed 's/^/[session_start] /' || true
+import json, subprocess, sys, time
+rel = sys.argv[1]
+now = json.load(open('docs/reports/card-counts.json'))['complete']
+old = json.loads(subprocess.check_output(['git', 'show', rel + ':docs/reports/card-counts.json']))['complete']
+new = now - old
+print(f"K release: {new}/50 new complete cards since {rel}" + (" -> RELEASE DUE" if new >= 50 else ""))
+ts = subprocess.run(['git', 'log', rel + '..HEAD', '--format=%ct'], capture_output=True, text=True).stdout.split()
+if ts and time.time() - min(map(int, ts)) > 86400:
+    print("K release: unreleased commits are older than 24 h -> RELEASE DUE")
+PY
+fi
 python3 tools/unlock_report.py --line 2>/dev/null | sed 's/^/[session_start] /' || true
 python3 tools/priority_report.py --line 2>/dev/null | sed 's/^/[session_start] /' || true   # v0.60.3
 python3 tools/rules_audit.py --line 2>/dev/null | sed 's/^/[session_start] /' || true

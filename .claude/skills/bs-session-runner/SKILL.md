@@ -22,7 +22,8 @@ The repo CLAUDE.md is the source of truth; this skill only orders its steps. Do 
 - Promotion sessions read cards by `node tools/promotion_sample.mjs`; long runs (smoke over thousands of cards, 30-game sims) go to GitHub Actions, never waited for.
 - Scheduled runs: before the next task run `bash tools/session_gate.sh switch`; OFF = no new task, go to End.
 - A task that fails twice is dropped, named in the release notes and recorded in `roadmap-open.md` as `blocked (reason, date)`. If every open item is blocked, commit `docs/ai/chain-stop.md`.
-- Usage / quota / rate-limit error: no retry; push what is committed, handoff comment on issue #1 (done / next / failing seed), `bash tools/session_gate.sh unlock`, stop.
+- Lane K: per-task commits go to `wip/lane-k`; version bump, CHANGELOG and README happen once at the release per 50 new complete cards (`session_start.sh` prints the count).
+- Usage / quota / rate-limit error: no retry; push what is committed (Lane K: `wip/lane-k`), handoff comment on issue #1 (done / next / failing seed), `bash tools/session_gate.sh unlock`, stop.
 
 ## End (in this order)
 0. Docs into the last task commit: `node tools/mindmap_due.mjs`; only when due (every 3rd release) or the plan changed, update `docs/roadmap-data.json`. Always: the `**Next:**` line of CLAUDE.md and delete finished items in `roadmap-open.md`; `bash tools/release_docs.sh`; commit as `docs: vX.Y.Z release docs` and push (never amend a pushed commit; docs-only pushes start no CI).

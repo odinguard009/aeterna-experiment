@@ -8,3 +8,4 @@
 - [Order: audit last](feedback-order-audit-last.md) — no chain token limit; mockup parts → U16 → audit → fix all findings → Lane K (no stop before K)
 - [Full auto](feedback-full-auto.md) — no questions to owner; web + project actions pre-approved for Aeterna; safety rules still apply
 - [Never end turn mid-chain](feedback-never-end-turn-chain.md) — push dies if turn ends; keep going until GO/STOP
+- [Lane K release per 50](feedback-lane-k-50.md) - wip/lane-k per bundle, main release at 50 new complete cards
