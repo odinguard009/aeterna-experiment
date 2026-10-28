@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 7612,
+  "cards": 7610,
   "per_saga": {
    "1": 762,
    "2": 328,
@@ -19,23 +19,23 @@
    "15": 356,
    "16": 334,
    "17": 110,
-   "50": 386
+   "50": 384
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 1094,
+  "skipped_curated": 1096,
   "number_conflicts": 5,
   "nexus_levels_added": 712,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 538,
+  "image_problems": 537,
   "merged": 109,
   "brave_unparsed": 171,
   "ut_lines_added": 119,
   "odd_reduction": 808,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 536
+  "without_image": 535
  },
  "tokens": [
   "BS73-T001",
@@ -895,6 +895,7 @@
   "26RSD04-012",
   "26RSD04-013",
   "26RSD04-014",
+  "26RSD04-X01",
   "26RSD05-001",
   "26RSD05-002",
   "26RSD05-003",
@@ -1118,6 +1119,7 @@
   "26RBS03-025",
   "26RBS03-034",
   "26RBS03-042",
+  "26RBS03-045",
   "26RBS03-049",
   "26RBS03-052",
   "26RBS03-053",
@@ -4476,11 +4478,6 @@
   {
    "id": "26RBS03-044",
    "name": "Synthetic Dragon",
-   "problem": "no image"
-  },
-  {
-   "id": "26RBS03-045",
-   "name": "The ExoticLithoidGiant Paraibatour",
    "problem": "no image"
   },
   {
