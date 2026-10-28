@@ -1764,11 +1764,6 @@
   "C_LEVEL",
   "T_ALLY_SUMMONED"
  ],
- "BS06-081": [
-  "A_REFRESH",
-  "A_VOID",
-  "C_LEVEL"
- ],
  "BS06-082": [
   "C_LEVEL"
  ],
@@ -10226,12 +10221,6 @@
   "K_BRAVE",
   "K_ULTIMATE"
  ],
- "BS27-068": [
-  "A_DRAW",
-  "K_BRAVE",
-  "K_ULTIMATE",
-  "T_DURING_BRAVE"
- ],
  "BS27-069": [
   "A_VOID",
   "K_BRAVE"
@@ -11687,11 +11676,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "BS31-013": [
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "T_DESTROYED_OPP"
- ],
  "BS31-016": [
   "A_RETURN_TRASH",
   "A_TRASH_TO_RESERVE",
@@ -11713,12 +11697,6 @@
  "BS31-020": [
   "C_LEVEL",
   "M_OPTIONAL",
-  "T_DESTROYED_OPP"
- ],
- "BS31-021": [
-  "A_DRAW",
-  "C_LEVEL",
-  "K_ULTIMATE",
   "T_DESTROYED_OPP"
  ],
  "BS31-022": [
@@ -11801,12 +11779,6 @@
   "M_BY_DOING",
   "T_ATTACKS",
   "T_SUMMONED"
- ],
- "BS31-038": [
-  "A_BOUNCE",
-  "C_LEVEL",
-  "T_DESTROYED",
-  "T_DESTROYED_OPP"
  ],
  "BS31-039": [
   "A_BP_PLUS",
@@ -12284,11 +12256,6 @@
   "C_LEVEL",
   "M_REPLACEMENT",
   "T_ATTACKS"
- ],
- "BS32-019": [
-  "C_LEVEL",
-  "M_REPLACEMENT",
-  "T_DESTROYED"
  ],
  "BS32-020": [
   "C_LEVEL",
@@ -13590,10 +13557,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "BS35-012": [
-  "C_LEVEL",
-  "T_DESTROYED_OPP"
- ],
  "BS35-014": [
   "A_RETURN_TRASH",
   "A_TRASH_TO_RESERVE",
@@ -13842,10 +13805,6 @@
   "M_BY_DOING",
   "M_OPTIONAL",
   "T_ATTACKS"
- ],
- "BS35-056": [
-  "C_LEVEL",
-  "T_DESTROYED_OPP"
  ],
  "BS35-057": [
   "A_BP_PLUS",
@@ -18133,12 +18092,6 @@
   "K_ADVENT",
   "K_ULTIMATE",
   "M_BY_DOING"
- ],
- "BS42-014": [
-  "A_RETURN_TRASH",
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "T_DESTROYED_OPP"
  ],
  "BS42-015": [
   "C_LEVEL",

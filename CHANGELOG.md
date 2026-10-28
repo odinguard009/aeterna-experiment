@@ -4,6 +4,13 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.177.0
+- Lane: K
+- **Lane K: 9 more cards complete (all older), 952 of 8,709; two new engine mechanics.** (1) `alsoDepleted` on a DESTROYED effect: "(When Depleted/Destroyed by the Opponent)" also fires when the Spirit is depleted by an opposing effect (battle depletion and own effects stay silent; plain "(When Destroyed)" effects of the same card still ignore a depletion). (2) Trigger `OWN_LIFE_HIT` ("When your Life is reduced by an opposing Spirit/Ultimate attack"), with a `match` filter on the attacker (Spirit only, or Ultimate; `match.type` now accepts Ultimate). Compiler: "(Soul Core) on this Spirit" wording, and "return a named Spirit card from your Trash to the Hand". Effect format v21.
+  - Limits: `OWN_LIFE_HIT` fires for attack damage only, so cards whose text says just "When your Life is reduced" (any cause) are deliberately not compiled yet.
+  - Not built: Moonbow-Dragoon ("by a Spirit/Ultimate effect"), Chacope (summon treating reductions as fulfilled), Gabunohashi (heavy exhaust), Grandwalker/Nexus void targets, "target and attack", Rush, Mirage, Burst, Accel.
+  - Checked: loop, `fx_validate` (schema v21), promotion smoke 9 / 9, new unit tests V177. Not checked: Regression (CI), a real device. Revert note: `git revert` the v0.177.0 commit.
+
 ## v0.176.0
 - Lane: K
 - **Lane K: 11 more cards complete (all older), 943 of 8,709; two new Soul Core conditions.** `soulPaid` ("If (Soul Core) was used to pay the summon cost": the normal summon records whether the paid cores included the Soul Core; effect summons record false) and `selfSoul` ("If (Soul Core) is on this Spirit": the Spirit holds it, or held it when it left the Field, for (When Destroyed) effects). Also the untargeted "Return a Spirit card (with <keyword>) from your Trash to the Hand" now compiles (existing `RETURN_TRASH`). Cards: The Shaman Dragno, The AbyssalEmpress Resscylla, The HellGuru Flaurou, The Shikigami Houriki, The VassalOgre Shiki, Sanzokku-Bear, The ShoreMusha Kirisame, Purple Smoke Spider, The SaintSnake Azulia, The AzureWarMachine Reginleiv, Death Stalker.

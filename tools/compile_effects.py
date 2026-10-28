@@ -168,6 +168,7 @@ TRIGGERS = [
     (r'\(When Summoned/Attacks\)', ['SUMMONED', 'ATTACKS']),
     (r'\(When Summoned/Destroyed\)', ['SUMMONED', 'DESTROYED']),      # v0.54: (When Destroyed) = engine trigger DESTROYED (manual p. 31)
     (r'\(When Destroyed\)', ['DESTROYED']),
+    (r'\(When Depleted/Destroyed by the Opponent\)', ['DESTROYED_OPPD']),      # v0.177 engine alsoDepleted
     (r'\(When Destroyed by the Opponent\)', ['DESTROYED_OPP']),      # v0.55: CR 12-2-1-12-1 (opposing effect or BP comparison)
     (r'When this Spirit is destroyed by the opponent,', ['DESTROYED_OPP']),      # v0.73 leave heads (docs/mechanics/leave-heads.md)
     (r'When this Spirit is destroyed by (?:opposing effects|an opposing effect),', ['DESTROYED_OPPFX']),
@@ -489,6 +490,8 @@ def spirit_paragraph_main(p, card, rush):
     if trig is None:      # v0.59: step-prefixed attack triggers (the step is implied by the attack itself)
         mm = re.match(r'^\(Your Attack Step\)\s*When (?:one of )?your "([^"]+)" family Spirits? attacks?,\s*', p)
         if mm: trig, tmatch, p = ['ALLY_ATTACKS'], {'family': [mm.group(1)], 'noUlt': True}, p[mm.end():]
+        mm = None if trig else re.match(r'^(?:\((?:Opposing|Either) Attack Step\)\s*/?\s*)?When your Life is reduced by (?:the attack of )?(?:an? )?opposing (Spirit|Ultimate)s?,\s*', p)
+        if mm: trig, tmatch, p = ['OWN_LIFE_HIT'], ({'noUlt': True} if (mm.group(1) or '').lower() == 'spirit' else {'type': 'Ultimate'} if mm.group(1) else None), p[mm.end():]      # v0.177 engine OWN_LIFE_HIT (an opposing attack reduced your Life)
         mm = None if trig else re.match(r'^\(Opposing Attack Step\)\s*When an opposing Spirit attacks,\s*', p)
         if mm: trig, tmatch, p = ['OPP_ATTACKS'], {'noUlt': True}, p[mm.end():]
     if trig is None:
@@ -575,14 +578,15 @@ def trig_effects(p, card, trig, tmatch, lv, rush, flags, extra=None):
             if o: raise Review('Rush: optional Rush effect: ' + s[:60])
             acts += [dict(x, **{'if': {'hasSymbol': rush[0]}}) for x in a]
         rush = None
-    if (set(trig) & {'DESTROYED', 'DESTROYED_OPP', 'DESTROYED_OPPFX', 'LEAVES', 'LEAVES_OPPFX'}) and any(a['do'] in SELF_ACTS and a.get('to', 'self') == 'self' and not (a['do'] == 'SELF_TO_HAND' and set(trig) <= {'DESTROYED', 'DESTROYED_OPP', 'DESTROYED_OPPFX'}) for a in acts):      # v0.171 SELF_TO_HAND under a destroyed trigger returns the card from the Trash
+    if (set(trig) & {'DESTROYED', 'DESTROYED_OPP', 'DESTROYED_OPPD', 'DESTROYED_OPPFX', 'LEAVES', 'LEAVES_OPPFX'}) and any(a['do'] in SELF_ACTS and a.get('to', 'self') == 'self' and not (a['do'] == 'SELF_TO_HAND' and set(trig) <= {'DESTROYED', 'DESTROYED_OPP', 'DESTROYED_OPPD', 'DESTROYED_OPPFX'}) for a in acts):      # v0.171 SELF_TO_HAND under a destroyed trigger returns the card from the Trash
         raise Review('(When Destroyed) effect about this Spirit: ' + p[:80])
     out = []
     for t in trig:
-        e = {'trigger': 'ATTACKS', 'alsoBlocks': True} if t == 'ATTACKS+BLOCKS' else {'trigger': t.split('_OPP')[0]} if t in ('DESTROYED_OPP', 'DESTROYED_OPPFX', 'LEAVES_OPPFX') else {'trigger': t}
+        e = {'trigger': 'ATTACKS', 'alsoBlocks': True} if t == 'ATTACKS+BLOCKS' else {'trigger': t.split('_OPP')[0]} if t in ('DESTROYED_OPP', 'DESTROYED_OPPD', 'DESTROYED_OPPFX', 'LEAVES_OPPFX') else {'trigger': t}
         if lv: e['lv'] = lv
         if tmatch: e['match'] = dict(tmatch)
-        if t == 'DESTROYED_OPP': e['if'] = {'byOpp': True}
+        if t in ('DESTROYED_OPP', 'DESTROYED_OPPD'): e['if'] = {'byOpp': True}
+        if t == 'DESTROYED_OPPD': e['alsoDepleted'] = True
         if t in ('DESTROYED_OPPFX', 'LEAVES_OPPFX'): e['if'] = {'byOppFx': True}
         if extra: e.update(extra)
         if opt: e['optional'] = True

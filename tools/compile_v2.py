@@ -344,6 +344,8 @@ def own_grammar(s, ctx=None):
         mt = {'type': 'Spirit'}
         if m.group(1): mt['keyword'] = m.group(1).title()
         return [{'do': 'RETURN_TRASH', 'match': mt}]
+    m = re.match(r'^(?:you can )?return an? ((?:"[^"]+"/)*"[^"]+")-named spirit card from your trash to (?:the|your) hand$', x, re.I)
+    if m: return [{'do': 'RETURN_TRASH', 'match': {'name': re.findall(r'"([^"]+)"', m.group(1))}}]      # v0.177 '"X"-named Spirit card' (Spirit-only pick, name includes X)
     m = OWN_REFRESH.match(x)
     if m and (m.group(1) is None) == (m.group(3).lower() == 'it'):
         match, att = own_np(m.group(2))
@@ -603,7 +605,7 @@ def cond_of(x):
     m = re.fullmatch(r'you (?:control|have) (one|two|three|four|five|six|\d) or more (red|purple|green|white|yellow|blue) symbols?', x, re.I)
     if m: return {'symbolsOnGe': {'color': m.group(2).lower(), 'n': n_of(m.group(1).lower())}}      # v0.168 (engine symbolsOnGe: Field symbols of the owner)
     if re.fullmatch(r'\(soul core\) (?:was|is) used to pay (?:for )?the summon cost', x, re.I): return {'soulPaid': True}      # v0.176 (engine soulPaid: the normal summon paid with the Soul Core)
-    if re.fullmatch(r'\(soul core\) is on this spirit', x, re.I): return {'selfSoul': True}      # v0.176 (engine selfSoul: this Spirit holds the Soul Core)
+    if re.fullmatch(r'(?:there is )?\(soul core\) (?:is )?on this spirit', x, re.I): return {'selfSoul': True}      # v0.176 (engine selfSoul: this Spirit holds the Soul Core)
     c = v1.all_have_cond(x)
     if c: return c
     if re.fullmatch(r'(?:you )?(?:are |is |was )?summoned via form change', x, re.I): return {'viaFormChange': True}      # v0.135 (schema v8)
@@ -745,7 +747,7 @@ def action_of(s, ctx):
         a, o = action_of(body, ctx)
         if o or not a or len(a) > 3: raise Review('sentence: ' + s[:140])
         return [{'do': 'END_BATTLE', 'then': a}], False
-    if re.fullmatch(r'destroy this spirit\.?', s.strip(), re.I) and trig and not (trig & {'DESTROYED', 'DESTROYED_OPP', 'DESTROYED_OPPFX', 'LEAVES', 'LEAVES_OPPFX'}):
+    if re.fullmatch(r'destroy this spirit\.?', s.strip(), re.I) and trig and not (trig & {'DESTROYED', 'DESTROYED_OPP', 'DESTROYED_OPPD', 'DESTROYED_OPPFX', 'LEAVES', 'LEAVES_OPPFX'}):
         return [{'do': 'DESTROY_SELF'}], False      # v0.78 the source destroys itself (own effect)
     if 'ALLY_BATTLE_WIN' in trig and SUBJ_REFRESH.match(s.strip()):      # v0.78 your Spirit that won the battle
         return [{'do': 'REFRESH', 'to': 'subject'}], False

@@ -74,7 +74,7 @@ async function doBattleInner(attKey, att) {
   log(`${CARDS[att.id].name} is not blocked: ${who(D)} ${D.cpu ? 'loses' : 'lose'} ${dmg} Life.`);
   io.view({ type: 'board' });
   if (D.life <= 0) { win(attKey, `${poss(D)} Life reached 0`); return; }
-  if (dmg > 0) { await fireFxMulti([{ owner: A, trigger: 'ALLY_LIFE_HIT', src: null, ctx: { attacker: att } }, { owner: A, trigger: 'MIRAGE_OPP_LIFE', src: null, ctx: {} }, { owner: D, trigger: 'MIRAGE_OWN_LIFE', src: null, ctx: {} }]); if (G.over) return; }
+  if (dmg > 0) { await fireFxMulti([{ owner: A, trigger: 'ALLY_LIFE_HIT', src: null, ctx: { attacker: att } }, { owner: A, trigger: 'MIRAGE_OPP_LIFE', src: null, ctx: {} }, { owner: D, trigger: 'OWN_LIFE_HIT', src: null, ctx: { attacker: att } }, { owner: D, trigger: 'MIRAGE_OWN_LIFE', src: null, ctx: {} }]); if (G.over) return; }
   await maybeBurst(D, 'LIFE_DECREASE', { attacker: att });
   await flushBursts();
   io.view({ type: 'board' });
@@ -156,7 +156,7 @@ async function flushBursts() {                         // queued Bursts and even
       await fireFx(G.p[other(ev.key)], 'OPP_REMOVED', null, {});
     } else if (ev.type === 'LOST') {
       await fireFx(G.p[ev.key], 'ALLY_LOST', null, { subject: ev.inst });
-    } else if (ev.type === 'DESTROYED') await fireFx(G.p[ev.key], 'DESTROYED', ev.inst, { subject: ev.inst, byOpp: !!ev.byOpp, byOppFx: !!ev.byOppFx });
+    } else if (ev.type === 'DESTROYED') await fireFx(G.p[ev.key], 'DESTROYED', ev.inst, { subject: ev.inst, byOpp: !!ev.byOpp, byOppFx: !!ev.byOppFx, depl: !!ev.depl });
     else if (ev.type === 'LEAVES') await fireFx(G.p[ev.key], 'LEAVES', ev.inst, { subject: ev.inst, byOpp: true, byOppFx: !!ev.byOppFx });
     else if (ev.type === 'BATTLE_WIN') await fireFxMulti([{ owner: G.p[ev.key], trigger: 'BATTLE_WIN', src: ev.inst, ctx: { subject: ev.inst, attacking: !!ev.att } }, { owner: G.p[ev.key], trigger: 'ALLY_BATTLE_WIN', src: null, ctx: { subject: ev.inst, attacking: !!ev.att } }]);   // v0.78 also "... with your X Spirit" on other cards
     else if (ev.type === 'DESTROYS') await fireFx(G.p[ev.key], 'ALLY_DESTROYS', null, { attacker: ev.inst, subject: ev.inst });

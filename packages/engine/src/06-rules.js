@@ -269,7 +269,8 @@ function removeSpirit(p, s, why, byOpponent) {
   if (!removeFrom(p.spirits, s)) return;
   s.lostLv = lv; s.soulLost = s.soul;      // v0.176: the Soul Core it held when it left ("If (Soul Core) is on this Spirit" in a Destroyed trigger)
   const oppFx = byOpponent === true || (byOpponent !== 'battle' && !!G && !!G.fxBy && G.fxBy !== p.key);   // v0.73: by an opposing effect (byOpponent 'battle' = BP comparison)
-  if (why === 'destroyed' && !s.noFx && G && G.evQ && (CARDS[s.id].effects || []).some(e => e.trigger === 'DESTROYED')) G.evQ.push({ type: 'DESTROYED', key: p.key, inst: s, byOpp: !!byOpponent, byOppFx: oppFx });
+  const depl = why === 'depleted' && oppFx;      // v0.177: depleted by an opposing effect wakes only the "(When Depleted/Destroyed by the Opponent)" effects (alsoDepleted)
+  if ((why === 'destroyed' || depl) && !s.noFx && G && G.evQ && (CARDS[s.id].effects || []).some(e => e.trigger === 'DESTROYED' && (!depl || e.alsoDepleted))) G.evQ.push({ type: 'DESTROYED', key: p.key, inst: s, byOpp: !!byOpponent || depl, byOppFx: oppFx, depl });
   leaveEvent(p, s, !!byOpponent || oppFx, oppFx);   // (When Destroyed), manual p. 31; noFx = "the effects of the destroyed target can't activate"
   delete s.noFx;
   coreEvN(p, s.uid, 'reserve', s.cores, s.soul);          // v0.149.0: the cores of a destroyed / depleted Spirit fly to the Reserve
