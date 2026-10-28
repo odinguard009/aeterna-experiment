@@ -232,8 +232,12 @@ def ally_win(p, side=None):
     ex = {'attackingOnly': True} if side == 'att' else {'blockingOnly': True} if side == 'blk' else {}
     return p[m.end():], tm, ex
 
-RUSH = re.compile(r'(?<!\n)[ \t]*\n?[ \t]*\{\{Rush\|(Red|Purple|Green|White|Yellow|Blue)(?: Symbol)?\}\}\s*\(While you have an? \1 symbol, the following effect activates next\)\s*:?\s*', re.I)
+RUSH = re.compile(r'(?<!\n)[ \t]*\n?[ \t]*\{\{Rush\|((?:Red|Purple|Green|White|Yellow|Blue)(?:/(?:Red|Purple|Green|White|Yellow|Blue))*)(?: Symbol)?\}\}\s*\(While you have an? \1 symbol, the following effect activates next\)\s*:?\s*', re.I)
 RUSH_MARK = ' \u27e6RUSH:%s\u27e7 '
+
+def rush_sym(c):
+    """v0.184: "purple/yellow" -> ['purple', 'yellow'] (both symbols needed, hasSymbol list); one colour stays a string"""
+    l = c.split('/'); return l[0] if len(l) == 1 else l
 
 def rush_mark(t):
     """v0.55: {{Rush|Colour}} + its reminder line -> an in-paragraph marker (the Rush effect activates after the main body while you have that symbol)"""
@@ -313,7 +317,7 @@ def spirit_paragraph(p, card):
         rush = (mr.group(1), p[mr.end():].strip()); p = p[:mr.start()].strip()
         if '\u27e6' in rush[1]: raise Review('Rush: two Rush effects in one paragraph')
     effects, flags = spirit_paragraph_main(p, card, rush)
-    if rush and not any((a.get('if') or {}).get('hasSymbol') == rush[0] for e in effects for a in e.get('actions', [])):
+    if rush and not any((a.get('if') or {}).get('hasSymbol') == rush_sym(rush[0]) for e in effects for a in e.get('actions', [])):
         raise Review('Rush on a paragraph without a triggered effect: ' + p[:60])
     return effects, flags
 
@@ -709,10 +713,10 @@ def trig_effects(p, card, trig, tmatch, lv, rush, flags, extra=None):
         acts += a; opt = opt or o
     if not acts: raise Review('empty body')
     if rush:
-        for s in sentences(rush[1]):
+        for s in [x for part in re.split(r'(?:(?<=[.!])|\n)\s*:\s+', rush[1].lstrip(': ')) for x in sentences(part)]:      # v0.184: several ": effect" lines
             a, o = action_of(s, {'trigger': trig})
             if o: raise Review('Rush: optional Rush effect: ' + s[:60])
-            acts += [dict(x, **{'if': {'hasSymbol': rush[0]}}) for x in a]
+            acts += [dict(x, **{'if': {'hasSymbol': rush_sym(rush[0])}}) for x in a]
         rush = None
     if (set(trig) & {'DESTROYED', 'DESTROYED_OPP', 'DESTROYED_OPPD', 'DESTROYED_OPPFX', 'LEAVES', 'LEAVES_OPPFX'}) and any(a['do'] in SELF_ACTS and a.get('to', 'self') == 'self' and not (a['do'] == 'SELF_TO_HAND' and set(trig) <= {'DESTROYED', 'DESTROYED_OPP', 'DESTROYED_OPPD', 'DESTROYED_OPPFX'}) for a in acts):      # v0.171 SELF_TO_HAND under a destroyed trigger returns the card from the Trash
         raise Review('(When Destroyed) effect about this Spirit: ' + p[:80])
@@ -744,7 +748,7 @@ MAGIC_HEAD = [
 def magic_spec(body, tim=()):
     """Body -> {"effect":..., "value":...} using the simple MAGIC_FX types where they fit, ACTIONS otherwise.
     v0.180: a Rush marker splits the body; the Rush sentences become actions with if.hasSymbol (like a Spirit's Rush)."""
-    mr = re.search(r'⟦RUSH:(\w+)⟧', body)
+    mr = re.search(r'⟦RUSH:([\w/]+)⟧', body)
     rush = None
     if mr:
         rush = (mr.group(1), body[mr.end():].strip()); body = body[:mr.start()].strip()
@@ -770,7 +774,7 @@ def magic_spec(body, tim=()):
         for s in [x for part in re.split(r'(?:(?<=[.!])|\n)\s*:\s+', rush[1].lstrip(': ')) for x in sentences(part)]:
             a, o = action_of(s, {'kind': 'magic', 'battle': 'FLASH' in tim})
             if o: raise Review('optional clause in Magic Rush: ' + s[:80])
-            acts += [dict(x, **{'if': {'hasSymbol': rush[0]}}) for x in a]
+            acts += [dict(x, **{'if': {'hasSymbol': rush_sym(rush[0])}}) for x in a]
     if any(a['do'] in ('REFRESH', 'VOID_TO_CARD', 'BP_PLUS') and a.get('to', 'self') == 'self' for a in acts):
         raise Review('Magic sentence about "this Spirit": ' + body[:80])
     return {'effect': 'ACTIONS', 'value': 0, 'actions': acts}
@@ -947,6 +951,12 @@ def invoke_cost(x, card):
     if m: return {'exhaustOwn': {'kind': 'nexus' if m.group(1).lower().startswith('nexus') else 'spirit'}}
     m = re.match(r'^discard (?:a|one) "([^"]+)" family card from your hand$', L, re.I)
     if m: return {'discard': {'match': {'family': [m.group(1)]}}}
+    m = re.match(r'^discard a cost (\d(?:/\d)*) (white|red|green|blue|yellow|purple) (spirit|nexus) card from your hand$', L, re.I)
+    if m: return {'discard': {'match': {'costIn': [int(x) for x in m.group(1).split('/')], 'color': m.group(2).lower(), 'type': m.group(3).capitalize()}}}
+    m = re.match(r'^return this (spirit|nexus) to the deckbottom$', L, re.I)
+    if m and m.group(1).lower() == own: return {'returnSelf': True}
+    m = re.match(r'^return one of your "([^"]+)" family (nexus(?:es)?|spirits?) to the deckbottom$', L, re.I)
+    if m: return {'returnOwn': {'kind': 'nexus' if m.group(2).lower().startswith('nexus') else 'spirit', 'match': {'family': [m.group(1)]}}}
     raise Review('Invoke cost: ' + L[:80])
 
 

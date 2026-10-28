@@ -53,7 +53,7 @@ function parseCond(c) {
     const okInt = ['handLe', 'lifeLe', 'anyLifeLe', 'counterGe', 'soulGe', 'oppHandGe', 'voidGe', 'soulLe', 'putGe', 'lifeGe', 'oppRemovedGe', 'removedGe', 'oppSpiritsLe', 'oppNexusGe', 'selfBpGe'].includes(k) && Number.isInteger(v);
     const okStr = ((k === 'controlName' || k === 'hasName' || k === 'soulOn' || k === 'nexusBraved') && typeof v === 'string' && v.length > 0 && v.length <= 60)
       || (k === 'controlName' && Array.isArray(v) && v.length > 1 && v.length <= 4 && v.every(y => typeof y === 'string' && y.length > 0 && y.length <= 60));
-    const okCol = k === 'hasSymbol' && COLORS.includes(v);
+    const okCol = k === 'hasSymbol' && (COLORS.includes(v) || (Array.isArray(v) && v.length >= 2 && v.length <= 3 && new Set(v).size === v.length && v.every(y => COLORS.includes(y))));      // v0.184: a list = all of those symbols
     const okStep = k === 'step' && STEPS.includes(v);
     const okBool = (k === 'byOpp' || k === 'byOppFx' || k === 'utHit' || k === 'prev' || k === 'sealed' || k === 'oppTurn' || k === 'attackStep' || k === 'oppRemovedSpirit' || k === 'oppNoAB' || k === 'burstSet' || k === 'oppBurstSet' || k === 'soulPaid' || k === 'selfSoul' || k === 'fewerSpirits' || k === 'viaFormChange' || k === 'viaEffect') && typeof v === 'boolean';
     const okNexus = k === 'nexusGe' && v && typeof v === 'object' && (v.n == null || (Number.isInteger(v.n) && v.n >= 1 && v.n <= 5)) && (v.colors == null || (Array.isArray(v.colors) && v.colors.length && v.colors.every(y => COLORS.includes(y))))

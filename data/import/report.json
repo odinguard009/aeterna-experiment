@@ -1,12 +1,12 @@
 {
  "stats": {
-  "cards": 7385,
+  "cards": 7382,
   "per_saga": {
    "1": 686,
    "2": 313,
    "3": 378,
-   "4": 381,
-   "5": 653,
+   "4": 380,
+   "5": 652,
    "6": 357,
    "7": 516,
    "8": 481,
@@ -19,15 +19,15 @@
    "15": 355,
    "16": 334,
    "17": 110,
-   "50": 354
+   "50": 353
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 1321,
+  "skipped_curated": 1324,
   "nexus_levels_added": 709,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 520,
+  "image_problems": 519,
   "number_conflicts": 4,
   "merged": 109,
   "brave_unparsed": 171,
@@ -35,7 +35,7 @@
   "odd_reduction": 807,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 518
+  "without_image": 517
  },
  "tokens": [
   "BS73-T001",
@@ -683,6 +683,7 @@
   "BS23-012",
   "BS23-014",
   "BS23-017",
+  "BS23-020",
   "BS23-029",
   "BS23-040",
   "BS23-045",
@@ -715,6 +716,7 @@
   "BS28-009",
   "BS28-011",
   "BS28-019",
+  "BS28-021",
   "BS28-022",
   "BS29-023",
   "BS29-037",
@@ -1265,6 +1267,7 @@
   "26RCB01-071",
   "26RCB01-X01",
   "26RCB01-X02",
+  "26RCB01-X04",
   "26RBS02-002",
   "26RBS02-003",
   "26RBS02-004",
@@ -4398,11 +4401,6 @@
   {
    "id": "26RCB01-059",
    "name": "Game Area",
-   "problem": "ambiguous name (2 files, none in set 26RCB01)"
-  },
-  {
-   "id": "26RCB01-X04",
-   "name": "Kamen Rider Ouja",
    "problem": "ambiguous name (2 files, none in set 26RCB01)"
   },
   {

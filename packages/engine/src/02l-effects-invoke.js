@@ -18,10 +18,10 @@ const INVOKE_WHEN = {
   duringBlock: (p, f) => !!G.blocker && G.blocker === f,           // (During Block): while this Spirit is blocking
   duringAttackBlock: (p, f) => (!!G.attacker && G.attacker === f) || (!!G.blocker && G.blocker === f),
 };
-const INVOKE_COSTS = ['pay', 'exhaustSelf', 'destroySelf', 'exhaustOwn', 'discard'];
+const INVOKE_COSTS = ['pay', 'exhaustSelf', 'destroySelf', 'exhaustOwn', 'discard', 'returnSelf', 'returnOwn'];      // v0.184: returnSelf / returnOwn = "Return <this / one of your X> to the deckbottom"
 const invokeMatchOK = m => m == null || (typeof m === 'object' && (m.family == null || (Array.isArray(m.family) && m.family.length > 0 && m.family.every(x => typeof x === 'string' && x)))
   && (m.name == null || (Array.isArray(m.name) && m.name.length > 0 && m.name.every(x => typeof x === 'string' && x)))      // v0.169: a card-name list ("Kamen Rider Bravo")
-  && (m.costGe == null || Number.isInteger(m.costGe)) && (m.color == null || COLORS.includes(m.color)));
+  && (m.costGe == null || Number.isInteger(m.costGe)) && (m.costIn == null || (Array.isArray(m.costIn) && m.costIn.length > 0 && m.costIn.every(Number.isInteger))) && (m.type == null || ['Spirit', 'Nexus', 'Magic', 'Ultimate'].includes(m.type)) && (m.color == null || COLORS.includes(m.color)));
 /* parse hook (02c): returns an error text or null; copies the checked fields onto o */
 function invokeParse(e, o) {
   o.invoke = true;
@@ -33,6 +33,8 @@ function invokeParse(e, o) {
   if (typeof c !== 'object' || Object.keys(c).length !== 1 || !INVOKE_COSTS.includes(Object.keys(c)[0])) return `Invoke "cost" must have exactly one of ${INVOKE_COSTS.join(', ')}`;
   if (c.pay != null && !(Number.isInteger(c.pay) && c.pay >= 1 && c.pay <= 5)) return 'Invoke cost "pay" must be 1-5';
   if ((c.exhaustSelf != null && c.exhaustSelf !== true) || (c.destroySelf != null && c.destroySelf !== true)) return 'Invoke cost exhaustSelf / destroySelf must be true';
+  if (c.returnSelf != null && c.returnSelf !== true) return 'Invoke cost returnSelf must be true';
+  if (c.returnOwn != null && !(typeof c.returnOwn === 'object' && ['nexus', 'spirit'].includes(c.returnOwn.kind) && invokeMatchOK(c.returnOwn.match))) return 'Invoke cost "returnOwn" must look like {"kind":"nexus","match":{"family":["X"]}}';
   if (c.exhaustOwn != null && !(typeof c.exhaustOwn === 'object' && ['nexus', 'spirit'].includes(c.exhaustOwn.kind) && invokeMatchOK(c.exhaustOwn.match))) return 'Invoke cost "exhaustOwn" must look like {"kind":"nexus","match":{"family":["X"]}}';
   if (c.discard != null && !(typeof c.discard === 'object' && invokeMatchOK(c.discard.match))) return 'Invoke cost "discard" must look like {"match":{"family":["X"]}}';
   o.cost = JSON.parse(JSON.stringify(c));
@@ -40,6 +42,7 @@ function invokeParse(e, o) {
 }
 const invokeWhenOK = (p, f, w) => !w || (!!G && !!INVOKE_WHEN[w] && INVOKE_WHEN[w](p, f));
 const exhaustOwnCands = (p, f, x) => (x.kind === 'nexus' ? p.nexus : p.spirits).filter(t => !t.exhausted && fxMatch(CARDS[t.id], x.match));
+const returnOwnCands = (p, x) => (x.kind === 'nexus' ? p.nexus : p.spirits).filter(t => fxMatch(CARDS[t.id], x.match));
 const discardCands = (p, x) => p.hand.filter(h => fxMatch(CARDS[h.id], x.match));
 function invokeCostOK(p, f, c) {
   if (!c) return true;
@@ -47,6 +50,8 @@ function invokeCostOK(p, f, c) {
   if (c.exhaustSelf) return !f.exhausted;
   if (c.destroySelf) return p.spirits.includes(f) || p.nexus.includes(f);
   if (c.exhaustOwn) return exhaustOwnCands(p, f, c.exhaustOwn).length > 0;
+  if (c.returnSelf) return p.spirits.includes(f) || p.nexus.includes(f);
+  if (c.returnOwn) return returnOwnCands(p, c.returnOwn).length > 0;
   if (c.discard) return discardCands(p, c.discard).length > 0;
   return false;
 }
@@ -63,6 +68,17 @@ async function payInvokeCost(p, f, c) {
   if (c.destroySelf) {
     if (p.nexus.includes(f)) removeNexus(p, f, 'destroyed'); else if (p.spirits.includes(f)) removeSpirit(p, f, 'destroyed', false); else return false;
     return true;
+  }
+  if (c.returnSelf) {
+    if (!p.spirits.includes(f) && !p.nexus.includes(f)) return false;
+    bounceCard(p, f, 'deckBottom'); return true;
+  }
+  if (c.returnOwn) {
+    const L = returnOwnCands(p, c.returnOwn); if (!L.length) return false;
+    const t = p.cpu ? L.slice().sort((a, b) => (a.cores - b.cores))[0]
+      : await fxPickTarget({ p, opp: G.p[other(p.key)], src: f, ctx: {} }, L, `✨ <b>${esc(nm)}</b><br>Tap one of your ${c.returnOwn.kind === 'nexus' ? 'Nexuses' : 'Spirits'} to return to the deckbottom (the cost).`);
+    if (!t) return false;
+    bounceCard(p, t, 'deckBottom'); return true;
   }
   if (c.exhaustOwn) {
     const L = exhaustOwnCands(p, f, c.exhaustOwn); if (!L.length) return false;
@@ -92,6 +108,7 @@ const bpBattle = i => (i.bpB && G && G.attacker && i.bpB.b === G.battleNo ? i.bp
 function addBattleBp(s, n) { if (!(s.bpB && s.bpB.b === G.battleNo)) s.bpB = { n: 0, b: G.battleNo }; s.bpB.n += n; }
 const invokeCostText = c => !c ? '' : c.pay ? `pay ${c.pay} cost${c.pay === 1 ? '' : 's'}` : c.exhaustSelf ? 'exhaust this card' : c.destroySelf ? 'destroy this card'
   : c.exhaustOwn ? `exhaust one of your ${c.exhaustOwn.match && c.exhaustOwn.match.family ? '"' + c.exhaustOwn.match.family.join('"/"') + '" ' : ''}${c.exhaustOwn.kind === 'nexus' ? 'Nexuses' : 'Spirits'}`
+  : c.returnSelf ? 'return this card to the deckbottom' : c.returnOwn ? `return one of your ${c.returnOwn.match && c.returnOwn.match.family ? '"' + c.returnOwn.match.family.join('"/"') + '" ' : ''}${c.returnOwn.kind === 'nexus' ? 'Nexuses' : 'Spirits'} to the deckbottom`
   : c.discard ? `discard a ${c.discard.match && c.discard.match.family ? '"' + c.discard.match.family.join('"/"') + '" family ' : ''}card` : '';
 const ownTargetCands = (c, a) => c.p.spirits.filter(s => fxMatch(CARDS[s.id], a.match) && (!a.attacking || s === G.attacker) && (!a.coreFromSelf || s !== c.src) && !fxImmune(c.p, s, c));
 Object.assign(FX_ACTIONS, {

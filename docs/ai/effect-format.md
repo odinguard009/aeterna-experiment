@@ -89,3 +89,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v49 (v0.183.0, Lane K): STATIC flag effects accept `to:"all"` (Spirits of both players, filtered by `match`), e.g. CANT_ATTACK/CANT_BLOCK for "Cost 0/3 Spirits".
 - v50 (v0.183.0, Lane K): `DESTROY_ANY {drawIfOpp?}` (kind nexus): draw a card when the destroyed Nexus was the opponent's.
 - v51 (v0.184.0, Lane K): `ctrl` and static `per` accept `team:"<Team>"` (Spirits whose [Team:] head line lists it), e.g. "if you control a Red Stella Spirit", "for each of your Green Wave Spirits".
+- v52 (v0.184.0, Lane K): Invoke `cost` accepts `returnSelf` and `returnOwn` (return an own field card to hand), the Invoke match accepts `costIn` and `type`, and `if.hasSymbol` may list 2-3 colours (all required).

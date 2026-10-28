@@ -967,7 +967,7 @@ def lv_dash(t):
     return re.sub(r'\[LV(\d(?:-\d)+)\]', lambda m: ''.join('[LV%s]' % d for d in m.group(1).split('-')), t or '')
 
 
-RUSH_VAR = re.compile(r'\{\{Rush\|(Red|Purple|Green|White|Yellow|Blue)\}\}(\s*)\(While you have (?:an? )?\1 symbols?,? the following effects? activates? next\.?\)')
+RUSH_VAR = re.compile(r'\{\{Rush\|((?:Red|Purple|Green|White|Yellow|Blue)(?:/(?:Red|Purple|Green|White|Yellow|Blue))*)\}\}(\s*)\(While you have (?:an? )?\1 symbols?,? the following effects? activates? next\.?\)')
 
 
 def rush_norm(t):
@@ -1232,7 +1232,7 @@ def blockers(c):
         b, t = v1.burst_block(t)
     except Review as e:
         out.append(str(e)); t = re.sub(r'\{\{[Bb]urst\|[^}]*\}\}', '', t)
-    t = v1.armor_mark(v1.rush_mark(t))
+    t = v1.armor_mark(v1.rush_mark(rush_norm(t)))
     labels = v1.VERSION_LABEL.findall(t)
     if len(labels) > 1: return [first]
     t = v1.VERSION_LABEL.sub('', t).strip()

@@ -7330,11 +7330,6 @@
   "A_VOID",
   "C_LEVEL"
  ],
- "BS23-020": [
-  "A_BP_PLUS",
-  "K_HIGH_SPEED",
-  "K_RUSH"
- ],
  "BS23-021": [
   "A_VOID",
   "C_LEVEL",
@@ -9858,12 +9853,6 @@
  ],
  "BS28-020": [
   "M_OPTIONAL"
- ],
- "BS28-021": [
-  "A_VOID",
-  "C_LEVEL",
-  "K_RUSH",
-  "T_SUMMONED"
  ],
  "BS28-023": [
   "A_NO_BURST",
@@ -39680,11 +39669,6 @@
   "C_LEVEL",
   "M_REPLACEMENT",
   "T_SUMMONED"
- ],
- "26RCB01-X04": [
-  "A_REFRESH",
-  "C_LEVEL",
-  "K_STANDARD_INVOKE"
  ],
  "26RCB01-X05": [
   "A_SUMMON_FREE",

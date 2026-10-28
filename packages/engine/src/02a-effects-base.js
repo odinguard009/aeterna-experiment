@@ -81,7 +81,7 @@ function fxIf(owner, opp, c, ctx) {
   if (c.oppRemovedSpirit != null && opp.removed.some(t => ['Spirit', 'Ultimate'].includes(CARDS[t.id].type)) !== c.oppRemovedSpirit) return false;
   if (c.byOpp != null && !!(ctx && ctx.byOpp) !== c.byOpp) return false;                  // v0.55 "(When Destroyed by the Opponent)"
   if (c.byOppFx != null && !!(ctx && ctx.byOppFx) !== c.byOppFx) return false;            // v0.73 "destroyed by / would leave the Field due to opposing effects" (not BP comparison)
-  if (c.hasSymbol != null && !((symbolsOn(owner)[c.hasSymbol] || 0) >= 1)) return false;   // v0.55 Rush: a Field symbol of that colour
+  if (c.hasSymbol != null && ![].concat(c.hasSymbol).every(k => (symbolsOn(owner)[k] || 0) >= 1)) return false;   // v0.55 Rush: a Field symbol of that colour
   if (c.onlySymbols != null) { const sy = symbolsOn(owner); if (!((sy[c.onlySymbols] || 0) >= 1) || Object.keys(sy).some(k => k !== c.onlySymbols && sy[k] > 0)) return false; }      // v0.179 "only White symbols on your Field" (at least one, none of another colour)
   if (c.symbolsOnGe != null && !((symbolsOn(owner)[c.symbolsOnGe.color] || 0) >= c.symbolsOnGe.n)) return false;      // v0.168 "If you control/have three or more White symbols" (Field symbols of the owner, counted when it is checked)
   if (c.removedGe != null && !((ctx && ctx.removedN || 0) >= c.removedGe)) return false;   // cards this effect put onto the opposing Removed Zone
