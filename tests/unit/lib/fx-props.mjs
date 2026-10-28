@@ -192,6 +192,9 @@ function simple(card, a) {
       return only(a, ['color', 'levels', 'keyword', 'highSpeed']) && spirit && { onField: true, body: `G.attacker = src; G.battleNo = 4; await run(src, RA); const m = src.noBlockBy; G.attacker = null; return m && m.battleNo === 4 ? '' : 'noBlockBy not set';` };
     case 'SELF_TO_HAND':      // v0.180 this Spirit goes from the Field back to its owner's Hand
       return only(a, []) && spirit && { onField: true, body: `await run(src, RA); return !P.spirits.includes(src) && P.hand.includes(src) ? '' : 'the Spirit did not return to the Hand';` };
+    case 'RETURN_TRASH':      // v0.182 a matching card goes from the Trash to the Hand
+      if (!only(a, ['match', 'anyType']) || !okMatch(a.match) || (a.match.type === 'Nexus' && !a.anyType)) return null;
+      return { fix: [{ m: a.match }], body: `const t = BS.mkInst(${J(mid(a.match))}); P.trash.push(t); await run(src, RA); return P.hand.includes(t) && !P.trash.includes(t) ? '' : 'the card did not return to the Hand';` };
     case 'DISCARD_HAND':      // v0.180 the CPU discards exactly n cards of its Hand
       return only(a, ['n']) && { body: `for (let j = 0; j < A.n + 2; j++) P.hand.push(BS.mkInst(${J(FILL)})); await run(src, RA); return P.hand.length === 2 && P.trash.length === A.n ? '' : 'hand ' + P.hand.length + ', trash ' + P.trash.length;` };
     case 'NO_REFRESH_OPP':      // v0.172 an exhausted opposing Spirit skips its next Refresh Step
