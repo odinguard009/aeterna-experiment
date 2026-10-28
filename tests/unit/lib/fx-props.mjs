@@ -167,6 +167,7 @@ function simple(card, a) {
     case 'REFRESH':
       if (a.to === 'subject' && only(a, ['to'])) return { onField: true, body: `const t = sp(${J(FILL)}, P, 1); t.exhausted = true; await run(src, RA, { subject: t }); return t.exhausted ? 'the winning Spirit is still exhausted' : '';` };      // v0.78 ALLY_BATTLE_WIN subject
       return only(a, []) && (spirit || card.type === 'Nexus') && { onField: true, body: `src.exhausted = true; await run(src, RA); return src.exhausted ? 'still exhausted' : '';` };
+    case 'DESTROY_SELF': return only(a, []) && spirit && { onField: true, body: `await run(src, RA); return gone(src) ? '' : 'the Spirit is still on the Field';` };
     case 'CURSE': return only(a, []) && spirit && { onField: true, body: `const t = sp(${J(FILL)}, O, 1); G.attacker = src; G.blocker = t; G.eob = []; G.battleResolved = true;
       await run(src, RA); if (gone(t)) return 'Curse destroyed before the end of the battle'; await BS.endOfBattle(); G.attacker = null; G.blocker = null; G.eob = null; G.battleResolved = false;
       return gone(t) ? '' : 'the blocker survived Curse';` };      // v0.78
