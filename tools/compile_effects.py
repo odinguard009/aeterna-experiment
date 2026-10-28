@@ -569,6 +569,12 @@ def spirit_paragraph_main(p, card, rush):
             own, extra = card['color'].lower(), mm.group(1).lower()
             if own == extra or own not in COLOURS: raise Review('colour change: ' + p[:60])
             return [], {'colors': [own, extra]}
+        mm = re.match(r"^This Spirit is also treated as (?:an? )?(Red|Purple|Green|White|Yellow|Blue) Spirit\.?$", p)
+        if mm:      # v0.184: colour only (symbols stay): colors gets the extra colour, symbolColors pins the printed symbols
+            if lv and sorted(lv) != list(range(1, nlv + 1)): raise Review('colour change only on some levels')
+            own, extra = card['color'].lower(), mm.group(1).lower()
+            if own == extra or own not in COLOURS or not card.get('symbols'): raise Review('colour change: ' + p[:60])
+            return [], {'colors': [own, extra], 'symbolColors': [own] * card['symbols']}
         mm = re.match(r'^\(Either Attack Step\)\s*(\(Can\'t Stack\)\s*)?All your attacking/blocking Spirits (?:with (?P<kw>[A-Z][A-Za-z ]+?) )?(?:gain|get) \+(\d[\d,]*) ?BP\.?$', p, re.I)
         if mm:      # v0.168: both Attack Steps, only the Spirits that fight (attacker or blocker); (Can't Stack) = copies do not add up (engine bp loop)
             e = {'trigger': 'STATIC', 'bp': bp(mm.group(3)), 'to': 'own', 'fightingOnly': True, 'if': {'attackStep': True}}

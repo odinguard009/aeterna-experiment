@@ -2454,9 +2454,6 @@
   "C_LEVEL",
   "T_ATTACKS"
  ],
- "BS09-010": [
-  "C_LEVEL"
- ],
  "BS09-011": [
   "C_LEVEL"
  ],
@@ -2763,9 +2760,6 @@
   "C_LEVEL",
   "T_ATTACKS"
  ],
- "BS10-001": [
-  "C_LEVEL"
- ],
  "BS10-002": [
   "C_LEVEL",
   "K_BRAVE"
@@ -2881,9 +2875,6 @@
   "C_LEVEL",
   "K_HOLY_LIFE",
   "T_ALLY_LIFE_HIT"
- ],
- "BS10-051": [
-  "C_LEVEL"
  ],
  "BS10-053": [
   "C_LEVEL",
@@ -3599,9 +3590,6 @@
   "K_BRAVE",
   "M_OPTIONAL",
   "T_SUMMONED"
- ],
- "BS12-025": [
-  "C_LEVEL"
  ],
  "BS12-027": [
   "C_LEVEL",
@@ -5923,9 +5911,6 @@
   "C_LEVEL",
   "K_ARMOR",
   "K_BRAVE"
- ],
- "BS18-032": [
-  "C_LEVEL"
  ],
  "BS18-033": [
   "A_EXHAUST",
@@ -19466,11 +19451,6 @@
   "C_LEVEL",
   "T_DESTROYED",
   "T_DESTROYED_OPP"
- ],
- "BS44-016": [
-  "A_DRAW",
-  "C_LEVEL",
-  "T_ATTACKS"
  ],
  "BS44-017": [
   "C_CONTROL",

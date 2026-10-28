@@ -149,3 +149,11 @@ test('C183-01 "If all your Spirits/Nexuses have <Team>" compiles to allHave.team
   assert.equal(r.review, undefined);
   assert.deepEqual(r.effects[0].actions[0].if, { allHave: { team: 'Red Stella' } });
 });
+
+test('C184-01 "also treated as a <colour> Spirit" adds a colour but keeps the printed symbol, "any Nexus" condition', () => {
+  const r = compile('[LV1][LV2][LV3] This Spirit is also treated as a White Spirit.', Object.assign({}, SP, { symbols: 1 }));
+  assert.equal(r.review, undefined);
+  assert.deepEqual([r.colors, r.symbolColors], [['red', 'white'], ['red']]);
+  const n = compile('[LV1-3] (When Summoned) If you control any Nexus, draw a card.');
+  assert.deepEqual(n.effects[0].actions[0].if, { nexusGe: { n: 1 } });
+});

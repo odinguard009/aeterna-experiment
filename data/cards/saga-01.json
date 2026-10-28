@@ -29928,11 +29928,15 @@
   "image": "Kitsunaby.jpg",
   "block": "09",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] This Spirit is also treated as a Red Spirit."
+  "colors": [
+   "purple",
+   "red"
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "symbolColors": [
+   "purple"
+  ],
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS09-011",

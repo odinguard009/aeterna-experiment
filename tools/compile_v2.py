@@ -636,6 +636,7 @@ def cond_of(x):
     if re.fullmatch(r'you control fewer spirits than (?:the|your) opponent', x, re.I): return {'fewerSpirits': True}      # v0.77
     m = re.fullmatch(r'you control (?:an?|any) (red|purple|green|white|yellow|blue) nexus', x, re.I)
     if m: return {'nexusGe': {'n': 1, 'colors': [m.group(1).lower()]}}      # v0.77
+    if re.fullmatch(r'you control (?:an?|any) nexus(?:es)?', x, re.I): return {'nexusGe': {'n': 1}}      # v0.184 any Nexus
     m = re.fullmatch(r'there (?:is|are) only (red|purple|green|white|yellow|blue) symbols? on your field', x, re.I)
     if m: return {'onlySymbols': m.group(1).lower()}      # v0.179
     m = re.fullmatch(r'you (?:control|have) (one|two|three|four|five|six|\d) or more (red|purple|green|white|yellow|blue) symbols?', x, re.I)
