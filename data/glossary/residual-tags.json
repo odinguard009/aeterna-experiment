@@ -316,11 +316,6 @@
   "C_LEVEL",
   "T_DESTROYED"
  ],
- "BS02-036": [
-  "A_LIFE_TO_RESERVE",
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
  "BS02-038": [
   "C_LEVEL",
   "M_REPLACEMENT",
@@ -2058,25 +2053,11 @@
   "T_ALLY_BLOCKED",
   "T_ATTACKS"
  ],
- "BS08-024": [
-  "A_LIFE_TO_RESERVE",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
  "BS08-025": [
   "A_VOID",
   "C_LEVEL",
   "M_REPLACEMENT",
   "T_SUMMONED"
- ],
- "BS08-027": [
-  "A_EXHAUST",
-  "A_LIFE_TO_RESERVE",
-  "C_LEVEL",
-  "T_ALLY_BLOCKED",
-  "T_ALLY_LIFE_HIT",
-  "T_ATTACKS"
  ],
  "BS08-029": [
   "A_EXHAUST",
@@ -5128,9 +5109,6 @@
   "C_LEVEL",
   "K_BRAVE",
   "T_SUMMONED"
- ],
- "BS16-057": [
-  "T_BATTLE_WIN"
  ],
  "BS16-058": [
   "C_LEVEL",

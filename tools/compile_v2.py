@@ -425,7 +425,7 @@ def own_grammar(s, ctx=None):
     if m: return [{'do': 'DISCARD_HAND', 'n': n_of(m.group(1).lower())}]
     m = re.match(r'^your counters? \+(\d)$', y, re.I)
     if m: return [{'do': 'COUNTER', 'n': int(m.group(1))}]
-    m = re.match(r'^send (an|one|two) opposing life to (?:their|the opposing|the) reserve$', y, re.I)
+    m = re.match(r'^send (an|one|two|a) (?:opposing life|cores? from the opposing life) to (?:their|the opposing|the) reserve$', y, re.I)
     if m: return [{'do': 'LIFE_TO_RESERVE', 'n': n_of(m.group(1).lower())}]
     if re.match(r'^send (?:an|one) opposing life to (?:the|their) trash$', y, re.I): return [{'do': 'OPP_LIFE_TO_TRASH', 'n': 1}]
     return None

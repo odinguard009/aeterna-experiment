@@ -1,10 +1,10 @@
 {
  "stats": {
-  "cards": 7418,
+  "cards": 7414,
   "per_saga": {
-   "1": 703,
+   "1": 700,
    "2": 313,
-   "3": 380,
+   "3": 379,
    "4": 382,
    "5": 653,
    "6": 357,
@@ -23,11 +23,11 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 1288,
+  "skipped_curated": 1292,
   "nexus_levels_added": 709,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 523,
+  "image_problems": 522,
   "number_conflicts": 4,
   "merged": 109,
   "brave_unparsed": 171,
@@ -35,7 +35,7 @@
   "odd_reduction": 807,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 521
+  "without_image": 520
  },
  "tokens": [
   "BS73-T001",
@@ -134,6 +134,7 @@
   "BS02-029",
   "BS02-032",
   "BS02-034",
+  "BS02-036",
   "BS02-037",
   "BS02-039",
   "BS02-040",
@@ -337,7 +338,9 @@
   "BS08-019",
   "BS08-020",
   "BS08-021",
+  "BS08-024",
   "BS08-026",
+  "BS08-027",
   "BS08-028",
   "BS08-037",
   "BS08-046",
@@ -504,6 +507,7 @@
   "BS16-048",
   "BS16-051",
   "BS16-053",
+  "BS16-057",
   "BS16-059",
   "BS17-001",
   "BS17-002",
@@ -2166,11 +2170,6 @@
    "id": "BS07-007",
    "name": "The Astrologist Dragron",
    "problem": "no image (near: The Astrologist Dragon.jpg)"
-  },
-  {
-   "id": "BS08-027",
-   "name": "The ShiningWings JewelgΣ",
-   "problem": "no image (near: The ShiningWings JewelgE.jpg)"
   },
   {
    "id": "BS08-036",

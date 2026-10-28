@@ -6124,12 +6124,31 @@
   "image": "The Great Kaiseleon.jpg",
   "block": "02",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1] (Your Attack Step) This Spirit can't attack.",
-   "[LV2] (When Attacks) When only the opposing Spirit is destroyed via BP comparison, send a core from the opposing Life to the Reserve."
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "CANT_ATTACK",
+    "to": "self",
+    "lv": [
+     1
+    ]
+   },
+   {
+    "trigger": "BATTLE_WIN",
+    "lv": [
+     2
+    ],
+    "attackingOnly": true,
+    "actions": [
+     {
+      "do": "LIFE_TO_RESERVE",
+      "n": 1
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS02-037",
@@ -27791,12 +27810,56 @@
   "image": "The GroundDragonRider Vespeniar.jpg",
   "block": "08",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (Your Main Step) Once per turn, you can summon a Spirit card with Tribute from your Hand without using Tribute. However, any (When Summoned) effects of the Spirit can't activate.",
-   "[LV2] (Your Attack Step) When only the opposing Spirit is destroyed by comparing BP with your \"Dragon Emperor\" family Spirit, send a core from the opposing Life to their Reserve."
+  "effects": [
+   {
+    "trigger": "ACTIVATE",
+    "timing": [
+     "MAIN"
+    ],
+    "once": true,
+    "optional": true,
+    "actions": [
+     {
+      "do": "SUMMON_HAND",
+      "match": {
+       "type": "Spirit"
+      },
+      "pay": true,
+      "noFx": true,
+      "noTribute": true
+     }
+    ],
+    "lv": [
+     1,
+     2
+    ]
+   },
+   {
+    "trigger": "ALLY_BATTLE_WIN",
+    "lv": [
+     2
+    ],
+    "match": {
+     "family": [
+      "Dragon Emperor"
+     ],
+     "noUlt": true
+    },
+    "attackingOnly": true,
+    "actions": [
+     {
+      "do": "LIFE_TO_RESERVE",
+      "n": 1
+     }
+    ],
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": false
+    }
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS08-025",
@@ -27920,13 +27983,42 @@
   "mechanics": [
    "Tribute"
   ],
-  "fxComplete": false,
-  "residual": [
-   "{{Tribute|Cost 3 or more &rarr; Trash}} After paying for the summoning cost, you must send all cores from one of your Cost 3 or more Spirits to the Trash.",
-   "[LV1][LV2] {{ws|2}} (When Attacks) When this Spirit is blocked, the opponent exhausts two Spirits they control.",
-   "[LV2] (When Attacks) When this Spirit's attack reduces the opposing Life, send a core from the opposing Life to their Reserve."
+  "effects": [
+   {
+    "trigger": "ALLY_BLOCKED",
+    "lv": [
+     1,
+     2
+    ],
+    "self": true,
+    "actions": [
+     {
+      "do": "EXHAUST_OPP",
+      "n": 2,
+      "oppChooses": true
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_LIFE_HIT",
+    "lv": [
+     2
+    ],
+    "self": true,
+    "actions": [
+     {
+      "do": "LIFE_TO_RESERVE",
+      "n": 1
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "tribute": {
+   "costGe": 3,
+   "to": "trash"
+  },
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS08-028",
