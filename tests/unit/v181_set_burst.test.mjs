@@ -24,3 +24,12 @@ test('V181-06 SET_BURST: parses, sets a hand card with Burst, did=false without 
     return [ok, none, n, !!P.burst, P.hand.length];`);
   assert.deepEqual(r, [true, false, 1, true, 0]);
 });
+
+test('V181-07 TREAT_LV3: a Spirit with 1 core is LV3 while its owner controls two or less Spirits', async () => {
+  const r = await ev(`const s = BS.mkInst('BS02-002'); s.cores = 1; P.spirits.push(s);
+    const a = BS.lvNo(s);
+    P.spirits.push(BS.mkInst('BS01-035'), BS.mkInst('BS01-035'));
+    const b = BS.lvNo(s);
+    return [a, b];`);
+  assert.deepEqual(r, [3, 1]);
+});

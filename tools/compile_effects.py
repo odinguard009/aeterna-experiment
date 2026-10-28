@@ -575,6 +575,12 @@ def spirit_paragraph_main(p, card, rush):
             e = [{'trigger': 'STATIC', 'flag': 'CANT_' + mm.group(1).upper(), 'to': 'self'}]
             if lv: e[0]['lv'] = lv
             return e, flags
+        mm = re.match(r'^While you control (two|three|\d) or (?:less|fewer) Spirits, (?:this Spirit is treated as being at|treat this Spirit as being (?:at|on)) \[?LV3\]?\.?$', p, re.I)
+        if mm:      # v0.181 STATIC TREAT_LV3 (engine treatLv3 in lvIndex)
+            if rush: raise Review('Rush with a treat-as-LV3 flag')
+            e = [{'trigger': 'STATIC', 'flag': 'TREAT_LV3', 'to': 'self', 'if': {'ctrl': {'type': 'Spirit', 'nLe': num(mm.group(1))}}}]
+            if lv: e[0]['lv'] = lv
+            return e, flags
         mm = re.match(r'^\(Permanent\)\s*(?:All )?"([^"]+)" (?:family )?spirits you control (?:gain|get) \+(\d[\d,]*) ?BP\.?$', p, re.I)
         if mm:      # v0.181 old wording '(Permanent) All "Winged Beast" spirits you control get +1000BP' = STATIC own BP for a family
             if rush: raise Review('Rush with a constant effect')

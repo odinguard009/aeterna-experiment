@@ -269,9 +269,6 @@
   "A_BP_PLUS",
   "C_LEVEL"
  ],
- "BS02-002": [
-  "C_LEVEL"
- ],
  "BS02-004": [
   "A_REFRESH",
   "C_LEVEL",
@@ -2115,9 +2112,6 @@
   "C_LEVEL",
   "M_OPTIONAL",
   "M_REPLACEMENT"
- ],
- "BS08-004": [
-  "C_LEVEL"
  ],
  "BS08-005": [
   "C_LEVEL",
@@ -8089,9 +8083,6 @@
   "C_LEVEL",
   "K_BURST",
   "T_ALLY_LOST"
- ],
- "BS24-004": [
-  "C_LEVEL"
  ],
  "BS24-005": [
   "A_EXHAUST",
