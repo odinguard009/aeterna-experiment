@@ -19,10 +19,10 @@ test('C55-01 BP minus: one opposing Spirit/Ultimate (Spirit and Magic); "every o
     { timing: ['FLASH'], effect: 'ACTIONS', value: 0, actions: [{ do: 'BP_MINUS', n: 5000 }] });
   assert.match(compile('Flash During this turn, give every opposing Spirit/Ultimate -2000 BP.', { type: 'Magic', levels: [] }).review, /sentence/);
 });
-test('C55-02 (When Destroyed by the Opponent) = DESTROYED with if byOpp; Depleted/Destroyed stays staged', () => {
+test('C55-02 (When Destroyed by the Opponent) = DESTROYED with if byOpp; Depleted/Destroyed adds alsoDepleted', () => {
   assert.deepEqual(compile('[LV2] (When Destroyed by the Opponent)\nDraw two cards.').effects, [{ trigger: 'DESTROYED', lv: [2], if: { byOpp: true }, actions: [{ do: 'DRAW', n: 2 }] }]);
   assert.match(compile('[LV1] (When Destroyed by the Opponent) Refresh this Spirit.').review, /about this Spirit/);
-  assert.match(compile('[LV1] (When Depleted/Destroyed by the Opponent) Draw a card.').review, /no trigger/);
+  assert.deepEqual(compile('[LV1] (When Depleted/Destroyed by the Opponent) Draw a card.').effects, [{ trigger: 'DESTROYED', lv: [1], if: { byOpp: true }, alsoDepleted: true, actions: [{ do: 'DRAW', n: 1 }] }]);   // v0.177.0
 });
 test('C55-03 (When Battles) "when only the opposing Spirit is destroyed by comparing BP" = BATTLE_WIN', () => {
   assert.deepEqual(compile('[LV1][LV2] (When Battles)\nWhen only the opposing Spirit is destroyed by comparing BP, exhaust an opposing Spirit.').effects,

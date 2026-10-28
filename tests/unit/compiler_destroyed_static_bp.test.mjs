@@ -14,7 +14,7 @@ test('C54-01 (When Destroyed) maps to DESTROYED; effects about this Spirit stay 
   assert.deepEqual(compile('[LV1][LV2] (When Destroyed)\nDraw three cards.').effects, [{ trigger: 'DESTROYED', lv: [1, 2], actions: [{ do: 'DRAW', n: 3 }] }]);
   assert.deepEqual(compile('[LV1] (When Summoned/Destroyed) Draw a card.').effects.map(e => e.trigger), ['SUMMONED', 'DESTROYED']);
   assert.match(compile('[LV1] (When Destroyed) Refresh this Spirit.').review, /about this Spirit/);
-  assert.match(compile('[LV1] (When Depleted/Destroyed by the Opponent) Draw a card.').review, /no trigger/);   // v0.55: (When Destroyed by the Opponent) compiles (C55-02)
+  assert.equal(compile('[LV1] (When Depleted/Destroyed by the Opponent) Draw a card.').effects[0].alsoDepleted, true);   // v0.177.0
 });
 test('C54-02 new sentences use existing engine actions; Spirit/Ultimate targets read as opposing Spirits', () => {
   const a = s => { const r = compile('[LV1] (When Summoned) ' + s); return r.review || r.effects[0].actions; };
