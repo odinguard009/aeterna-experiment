@@ -4,6 +4,12 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.180.0
+- Lane: K
+- **Lane K: 50 more cards complete (1,021 of 8,709), schema v23 to v26.** Generic summon family (SUMMON_HAND `noFx`), OPP_DISCARD and EXHAUST_OPP `bpLe` with exact counts (v24), multi-target destroy/return as repeated single actions, `NO_DECK_DISCARD` static flag (v25, MILL and reveal-rest respect it), RETURN_TRASH of a Magic card (`anyType`), STATIC `perHand` BP (v26), Rush on a Magic, AND_SPLIT and refresh clauses.
+  - Data fix: BS02-072 and X13-09 patched with `anyType`; data test id regex now accepts the `X` prefix.
+  - Checked: loop, `fx_validate`, unit tests (summon_nofx NF04-NF06). Not checked: Regression (CI), a real device. Revert note: `git revert` the v0.180.0 commit.
+
 ## v0.179.0
 - Lane: K
 - **Lane K: 8 more cards complete (971 of 8,709): the Accel head.** `{{Accel|Cost N ()}}` + body + "put this card onto the Removed Zone" now compiles to an ACCEL effect (compiler only, engine 02j unchanged). The reduction icons the export drops come from the Fandom wiki page: `tools/accel_reductions.py` -> `data/sources/accel-reductions.json` (127 of 134 library Accel cards), and `tools/accel_apply.mjs` added them to the 5 hand-written Accel cards. New sentence: "When this battle ends, end the Attack Step."
