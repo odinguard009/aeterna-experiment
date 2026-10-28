@@ -29852,11 +29852,28 @@
   "families": [
    "Purgatory Wings"
   ],
-  "text": "[LV1-2] (Your Attack Step)\nGive all your attacking Red Spirits +2000 BP.\n\n[LV2] (When Destroyed)\nTarget an opposing 5000 BP or less Spirit. Destroy it.",
+  "text": "[LV1][LV2] (Your Attack Step)\nGive all your attacking Red Spirits +2000 BP.\n\n[LV2] (When Destroyed)\nTarget an opposing 5000 BP or less Spirit. Destroy it.",
   "image": "26RSD09-011.png",
   "block": "A",
   "saga": 50,
   "effects": [
+   {
+    "trigger": "STATIC",
+    "bp": 2000,
+    "to": "own",
+    "attackingOnly": true,
+    "match": {
+     "color": "red"
+    },
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": false
+    }
+   },
    {
     "trigger": "DESTROYED",
     "lv": [
@@ -29870,11 +29887,8 @@
     ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (Your Attack Step) Give all your attacking Red Spirits +2000 BP."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RSD09-012",
@@ -30484,11 +30498,28 @@
   "families": [
    "Abyssen"
   ],
-  "text": "[LV1-2] (Your Attack Step)\nAll your attacking Green Spirits gain +2000 BP.\n\n[LV2] (When Destroyed)\nYou can target an opposing Spirit. Exhaust it.",
+  "text": "[LV1][LV2] (Your Attack Step)\nAll your attacking Green Spirits gain +2000 BP.\n\n[LV2] (When Destroyed)\nYou can target an opposing Spirit. Exhaust it.",
   "image": "26RSD10-011.png",
   "block": "A",
   "saga": 50,
   "effects": [
+   {
+    "trigger": "STATIC",
+    "bp": 2000,
+    "to": "own",
+    "attackingOnly": true,
+    "match": {
+     "color": "green"
+    },
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": false
+    }
+   },
    {
     "trigger": "DESTROYED",
     "lv": [
@@ -30503,11 +30534,8 @@
     ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (Your Attack Step) All your attacking Green Spirits gain +2000 BP."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RSD10-012",

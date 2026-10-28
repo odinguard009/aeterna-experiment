@@ -40858,9 +40858,6 @@
   "C_LIFE",
   "K_STANDARD_INVOKE"
  ],
- "26RSD09-011": [
-  "A_BP_PLUS"
- ],
  "26RSD09-013": [
   "M_REPLACEMENT"
  ],
@@ -40894,9 +40891,6 @@
   "A_VOID",
   "C_LEVEL",
   "M_OPTIONAL"
- ],
- "26RSD10-011": [
-  "A_BP_PLUS"
  ],
  "26RSD10-012": [
   "M_THEN"

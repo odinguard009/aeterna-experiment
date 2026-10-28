@@ -603,6 +603,12 @@ def spirit_paragraph_main(p, card, rush):
             e = {'trigger': 'STATIC', 'flag': 'BLOCK_EXHAUSTED', 'to': 'own', 'match': m}
             if lv: e['lv'] = lv
             return [e], flags
+        mm = re.match(r'^(?:All your attacking (Red|Purple|Green|White|Yellow|Blue) Spirits (?:gain|get)|Give all your attacking (Red|Purple|Green|White|Yellow|Blue) Spirits) \+(\d[\d,]*) ?BP\.?$', p, re.I)
+        if mm:      # v0.181 constant BP for the owner's attacking Spirits of one colour (engine attackingOnly + match.color)
+            if rush: raise Review('Rush with a constant effect')
+            e = {'trigger': 'STATIC', 'bp': bp(mm.group(3)), 'to': 'own', 'attackingOnly': True, 'match': {'color': (mm.group(1) or mm.group(2)).lower()}}
+            if lv: e['lv'] = lv
+            return [e], flags
         mm = re.match(r'^\(Your Attack Step\)\s*All attacking Spirits you control (?:gain|get) \+(\d[\d,]*) ?BP\.?$', p, re.I)
         if mm:
             e = {'trigger': 'STATIC', 'bp': bp(mm.group(1)), 'to': 'own', 'attackingOnly': True}
