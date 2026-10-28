@@ -4226,9 +4226,6 @@
  "BS13-072": [
   "C_LEVEL"
  ],
- "BS13-074": [
-  "A_SUMMON_FREE"
- ],
  "BS13-075": [
   "A_SUMMON_FREE",
   "T_SUMMONED"
@@ -23785,14 +23782,6 @@
   "M_BY_DOING",
   "T_ATTACKS"
  ],
- "BS54-040": [
-  "A_REVEAL_ADD",
-  "A_REVEAL_DECK",
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
  "BS54-041": [
   "A_BP_MINUS",
   "C_LEVEL",
@@ -27208,11 +27197,6 @@
   "M_THEN",
   "M_UP_TO",
   "T_SUMMONED"
- ],
- "BS60-026": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "M_OPTIONAL"
  ],
  "BS60-027": [
   "A_SOUL_STATE",

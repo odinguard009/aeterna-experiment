@@ -38,6 +38,10 @@ test('R69-03 compiler: summon/deploy pays its cost, "without paying the cost" do
   r = act('Reveal three cards from your decktop. Among them, deploy a "Ferobeast" family Nexus card, without paying the cost. Return any remaining cards to the deckbottom in any order.');
   assert.deepEqual(r.a, [{ do: 'REVEAL_DEPLOY', n: 3, match: { family: ['Ferobeast'], type: 'Nexus' }, pay: false }]);
 });
+test('R184-01 compiler: "summon X among them" with "Discard the remaining cards" gives REVEAL_DEPLOY rest trash', () => {
+  const r = act('Reveal four cards from your decktop. Summon a "Galaxian" family Spirit card among them, without paying the cost. Discard the remaining cards.');
+  assert.deepEqual(r.a, [{ do: 'REVEAL_DEPLOY', n: 4, match: { family: ['Galaxian'], type: 'Spirit' }, pay: false, rest: 'trash' }]);
+});
 test('R69-04 compiler: forms the engine match cannot say stay in review (keyword holder, two kinds, every card, no printed effects, discard-a-card, the reveal is only the first sentence group)', () => {
   const bad = [
     'Reveal three cards from your decktop. Among them, add a Spirit card with Amplify to your Hand. Return any remaining cards to the deckbottom in any order.',

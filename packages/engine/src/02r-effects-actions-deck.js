@@ -27,8 +27,8 @@ Object.assign(FX_ACTIONS, {
     } },
   /* v0.37 LOOT: draw n, then discard m cards from the Hand (you choose). drawPlus {n, if}: extra cards when the condition holds; discardLessPerName: -1 discard per matching card you control;
      famCostDestroy: when the discarded card has that family, the next action {"costLeDiscarded":true} may destroy a Spirit with cost <= the discarded card (prev is false otherwise) */
-  REVEAL_DEPLOY: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 10 && hasMatch(a.match) && (a.pay == null || typeof a.pay === 'boolean') && (a.diffName == null || a.diffName === true) && (a.add == null || (hasMatch(a.add.match) && Number.isInteger(a.add.lv))) && (a.allowBrave == null || (a.allowBrave === true && !a.pay)),
-    txt: a => `reveal ${a.n} cards from the top of your Deck, summon/deploy a matching card among them${a.pay ? ' (paying its cost)' : ''}${a.add ? ', from Lv' + a.add.lv + ' add a matching card to your Hand' : ''}, return the rest to the bottom of the Deck`,
+  REVEAL_DEPLOY: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 10 && hasMatch(a.match) && (a.pay == null || typeof a.pay === 'boolean') && (a.rest == null || a.rest === 'trash') && (a.diffName == null || a.diffName === true) && (a.add == null || (hasMatch(a.add.match) && Number.isInteger(a.add.lv))) && (a.allowBrave == null || (a.allowBrave === true && !a.pay)),
+    txt: a => `reveal ${a.n} cards from the top of your Deck, summon/deploy a matching card among them${a.pay ? ' (paying its cost)' : ''}${a.add ? ', from Lv' + a.add.lv + ' add a matching card to your Hand' : ''}, ${a.rest === 'trash' ? 'discard' : 'return to the bottom of the Deck'} the rest`,
     can: c => c.p.deck.length > 0,
     run: async (c, a) => {
       const nm = CARDS[c.src.id].name, top = c.p.deck.splice(0, Math.min(a.n, c.p.deck.length)); c.p.revealed = top;
@@ -41,8 +41,8 @@ Object.assign(FX_ACTIONS, {
         const t = await chooseCard(c, c.p.revealed.filter(x => fxMatch(CARDS[x.id], a.add.match)), `✨ ${nm}`, 'You can add a revealed matching card to your Hand.', true);
         if (t) { removeFrom(c.p.revealed, t); c.p.hand.push(t); handUp(c.p, 1); log(`${nm}: ${CARDS[t.id].name} is added to the Hand.`); k++; }
       }
-      const rest = c.p.revealed.splice(0); for (const x of rest) c.p.deck.push(x);
-      if (rest.length) log(`${nm}: ${rest.length} card${rest.length === 1 ? '' : 's'} return to the bottom of the Deck.`);
+      const rest = c.p.revealed.splice(0); for (const x of rest) (a.rest === 'trash' ? c.p.trash : c.p.deck).push(x);      // v0.184 rest 'trash': "Discard the remaining cards"
+      if (rest.length) log(`${nm}: ${rest.length} card${rest.length === 1 ? '' : 's'} ${a.rest === 'trash' ? 'discarded' : 'return to the bottom of the Deck'}.`);
       c.ctx.did = k > 0;
     } },
   /* "destroy any number of opposing Spirits up to a total of X BP" (the destroyed cards are kept in ctx.destroyed) */

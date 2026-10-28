@@ -568,9 +568,10 @@ def reveal_grammar(s):
         return [a]
     m = re.match(r'^(?:summon/deploy|deploy|summon) (.+?)(, without paying the cost)?$', body, re.I)
     if m:
-        if rest != 'bottom': raise Review('v2 reveal: deploy then discard')
-        match, diff = reveal_np(m.group(1))
+        if rest not in ('bottom', 'trash'): raise Review('v2 reveal: deploy then ' + rest)      # v0.184 trash = "Discard the remaining cards"
+        match, diff = reveal_np(re.sub(r'\s+among them$', '', m.group(1)))      # v0.184 "summon X among them"
         a = {'do': 'REVEAL_DEPLOY', 'n': n, 'match': match, 'pay': not m.group(2)}
+        if rest == 'trash': a['rest'] = 'trash'
         if diff: a['diffName'] = True
         return [a]
     raise Review('v2 reveal: ' + body[:60])
