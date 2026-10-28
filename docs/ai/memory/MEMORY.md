@@ -6,3 +6,5 @@
 - [Never end turn mid-chain](feedback-never-end-turn-chain.md) — push dies if turn ends; keep going until GO/STOP
 - [Lane K release per 50](feedback-lane-k-50.md) - wip/lane-k per bundle, main release at 50 new complete cards
 - [Lane K auto-repeat](feedback-lane-k-auto-repeat.md) - release at 50, then repeat until the owner says stop; pick best option on dialogs; check waits every 5 min
+- [Session end checklist](feedback-session-end-checklist.md) - push session branch, wait for Release + Regression, `done` with start=/budget=, add_repo tool in prompt
+- [Standard block A only](feedback-standard-block-a-only.md) - pause other cards until block A is done; same-effect Eternal cards are fine
