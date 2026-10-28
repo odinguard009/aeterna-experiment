@@ -100,7 +100,7 @@ test('G21 rantai: default OFF, chain sum, budget reached, single session over th
   assert.match(gate(['rantai', 'status'], [RON, [100, 'RANTAI OFF auto: x'], [50, 'rantai on']]).out, /^Mode rantai: ON .* 0 \/ /);
   assert.equal(gate(['rantai', 'maybe'], [ON]).code, 2);
   // over the budget: posts "RANTAI OFF auto" (needs gh), so only the evaluator verdict is checked through a failing post
-  const r = gate(['rantai', 'next'], [RON, [50, 'DONE v0.81.3 next=Opus tokens=650000']], [], { PATH: NO_GH_PATH });
+  const r = gate(['rantai', 'next'], [RON, [50, 'DONE v0.81.3 next=Opus tokens=650000']], [], { PATH: NO_GH_PATH, GATE_PRINT: '1' }); // GATE_PRINT: never post to the real issue #1 (a PATH filter missed /usr/local/bin/gh and turned the chain OFF)
   assert.match(r.out, /STOP session v0\.81\.3 used 650000 tokens \(> 600000\) \(Mode rantai: OFF\)/);
 });
 
