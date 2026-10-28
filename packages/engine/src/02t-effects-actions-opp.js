@@ -6,15 +6,24 @@
    ------------------------------------------------------------------------------------ */
 Object.assign(FX_ACTIONS, {
   /* v0.183 (schema 38) "Destroy a Nexus" / "Destroy an exhausted Spirit you or the opponent controls": either side is a legal target for a person; the CPU only picks an opposing one (it never destroys its own card) */
-  DESTROY_ANY: { chk: a => (a.kind === 'nexus' || (a.kind === 'spirit' && a.exhaustedOnly === true)) && Object.keys(a).every(k => ['do', 'kind', 'exhaustedOnly', 'if'].includes(k)),
-    txt: a => a.kind === 'nexus' ? 'destroy 1 Nexus (yours or the opponent\'s)' : 'destroy 1 exhausted Spirit (yours or the opponent\'s)',
-    cands: (c, a) => (c.p.cpu ? [c.opp] : [c.opp, c.p]).flatMap(q => (a.kind === 'nexus' ? q.nexus : q.spirits.filter(s => s.exhausted))),
+  DESTROY_ANY: { chk: a => (a.kind === 'nexus' || (a.kind === 'spirit' && (a.exhaustedOnly === true || (Number.isInteger(a.bpLe) && a.bpLe >= 1000 && a.bpLe <= 100000)))) && Object.keys(a).every(k => ['do', 'kind', 'exhaustedOnly', 'bpLe', 'if'].includes(k)),
+    txt: a => a.kind === 'nexus' ? 'destroy 1 Nexus (yours or the opponent\'s)' : `destroy 1 ${a.bpLe ? a.bpLe + ' BP or less' : 'exhausted'} Spirit (yours or the opponent\'s)`,
+    cands: (c, a) => (c.p.cpu ? [c.opp] : [c.opp, c.p]).flatMap(q => (a.kind === 'nexus' ? q.nexus : q.spirits.filter(s => (!a.exhaustedOnly || s.exhausted) && (!a.bpLe || bpOf(s) <= a.bpLe)))),
     can: (c, a) => FX_ACTIONS.DESTROY_ANY.cands(c, a).length > 0,
     run: async (c, a) => {
-      const t = await fxPickTarget(c, FX_ACTIONS.DESTROY_ANY.cands(c, a), `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the ${a.kind === 'nexus' ? 'Nexus' : 'exhausted Spirit'} to destroy (glowing).`);
+      const t = await fxPickTarget(c, FX_ACTIONS.DESTROY_ANY.cands(c, a), `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the ${a.kind === 'nexus' ? 'Nexus' : 'Spirit'} to destroy (glowing).`);
       if (!t) { c.ctx.did = false; return; }
       const q = c.p.nexus.includes(t) || c.p.spirits.includes(t) ? c.p : c.opp;
       if (a.kind === 'nexus') removeNexus(q, t, 'destroyed'); else { removeSpirit(q, t, 'destroyed', q === c.opp); checkDepletion(q); }
+    } },
+  /* v0.183 (schema 42) "Destroy every N BP or less Spirit": both sides, this Spirit included when it qualifies */
+  DESTROY_EVERY: { chk: a => Number.isInteger(a.bpLe) && a.bpLe >= 1000 && a.bpLe <= 100000 && Object.keys(a).every(k => ['do', 'bpLe', 'if'].includes(k)),
+    txt: a => `destroy every ${a.bpLe} BP or less Spirit (both sides)`,
+    can: () => true,
+    run: async (c, a) => {
+      const L = [c.opp, c.p].flatMap(q => q.spirits.filter(s => bpOf(s) <= a.bpLe).map(s => [q, s]));
+      for (const [q, s] of L) removeSpirit(q, s, 'destroyed', q === c.opp);
+      for (const q of [c.opp, c.p]) checkDepletion(q);
     } },
   /* v0.181 (schema 30) "By setting a card with Burst effect from your Hand, <next>": sets one (a previous Burst is discarded, setBurst); ctx.did = false when the Hand has none, so the next actions use {"if":{"prev":true}} */
   SET_BURST: { chk: () => true, txt: () => 'set a card with Burst effect from your Hand',

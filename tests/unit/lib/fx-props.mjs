@@ -196,10 +196,13 @@ function simple(card, a) {
       if (!only(a, ['match', 'anyType']) || !okMatch(a.match) || (a.match.type === 'Nexus' && !a.anyType)) return null;
       return { fix: [{ m: a.match }], body: `const t = BS.mkInst(${J(mid(a.match))}); P.trash.push(t); await run(src, RA); return P.hand.includes(t) && !P.trash.includes(t) ? '' : 'the card did not return to the Hand';` };
     case 'DESTROY_ANY':      // v0.183 either side is legal; with only an opposing target (and a CPU-safe fixture) that one goes
-      if (!only(a, ['kind', 'exhaustedOnly'])) return null;
+      if (!only(a, ['kind', 'exhaustedOnly', 'bpLe'])) return null;
+      if (a.bpLe) return { fix: [{ cost: 3, bp: a.bpLe }, { cost: 3, bp: a.bpLe + 1000 }], body: `const t = sp(${J(sid(3, a.bpLe))}, O), r = sp(${J(sid(3, a.bpLe + 1000))}, O); await run(src, RA); return gone(t) && !gone(r) ? '' : 'wrong Spirit destroyed';` };
       return a.kind === 'nexus'
         ? { fix: [{ n: 2 }], body: `const t = nx(${J(nid(2))}, O); await run(src, RA); return gone(t) && O.trash.includes(t) ? '' : 'the Nexus survived';` }
         : { fix: [{ cost: 3, bp: 3000 }], body: `const t = sp(${J(sid(3, 3000))}, O); t.exhausted = true; const r = sp(${J(sid(3, 3000))}, O); await run(src, RA); return gone(t) && !gone(r) && O.trash.includes(t) ? '' : 'wrong Spirit destroyed';` };
+    case 'DESTROY_EVERY':      // v0.183 every opposing Spirit at or under the BP goes, a bigger one stays
+      return only(a, ['bpLe']) && { fix: [{ cost: 3, bp: a.bpLe }, { cost: 3, bp: a.bpLe + 1000 }], body: `const lo = sp(${J(sid(3, a.bpLe))}, O), hi = sp(${J(sid(3, a.bpLe + 1000))}, O); await run(src, RA); return gone(lo) && !gone(hi) ? '' : 'wrong Spirits destroyed';` };
     case 'DISCARD_HAND':      // v0.180 the CPU discards exactly n cards of its Hand
       return only(a, ['n']) && { body: `for (let j = 0; j < A.n + 2; j++) P.hand.push(BS.mkInst(${J(FILL)})); await run(src, RA); return P.hand.length === 2 && P.trash.length === A.n ? '' : 'hand ' + P.hand.length + ', trash ' + P.trash.length;` };
     case 'NO_REFRESH_OPP':      // v0.172 an exhausted opposing Spirit skips its next Refresh Step
