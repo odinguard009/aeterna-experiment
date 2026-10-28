@@ -40070,9 +40070,6 @@
   "T_BLOCKS",
   "T_SUMMONED"
  ],
- "26RBS03-045": [
-  "C_LEVEL"
- ],
  "26RBS03-046": [],
  "26RBS03-047": [
   "M_OPTIONAL",
@@ -41050,12 +41047,6 @@
   "A_BP_PLUS",
   "A_VOID",
   "C_LEVEL"
- ],
- "26RSD04-X01": [
-  "A_REFRESH",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "M_UP_TO"
  ],
  "26RSD04-X02": [
   "A_EXHAUST",
