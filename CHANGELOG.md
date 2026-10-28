@@ -6,7 +6,7 @@ Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.m
 
 ## v0.179.0
 - Lane: K
-- **Lane K: 8 more cards complete (968 of 8,709): the Accel head.** `{{Accel|Cost N ()}}` + body + "put this card onto the Removed Zone" now compiles to an ACCEL effect (compiler only, engine 02j unchanged). The reduction icons the export drops come from the Fandom wiki page: `tools/accel_reductions.py` -> `data/sources/accel-reductions.json` (127 of 134 library Accel cards), and `tools/accel_apply.mjs` added them to the 5 hand-written Accel cards. New sentence: "When this battle ends, end the Attack Step."
+- **Lane K: 8 more cards complete (971 of 8,709): the Accel head.** `{{Accel|Cost N ()}}` + body + "put this card onto the Removed Zone" now compiles to an ACCEL effect (compiler only, engine 02j unchanged). The reduction icons the export drops come from the Fandom wiki page: `tools/accel_reductions.py` -> `data/sources/accel-reductions.json` (127 of 134 library Accel cards), and `tools/accel_apply.mjs` added them to the 5 hand-written Accel cards. New sentence: "When this battle ends, end the Attack Step."
   - Rules note `docs/rules/rush-accel.md`. Rush is not opened: the 20 single-colour Rush cards fail on their body sentences, and multi-colour / Ultimate / God Rush is not readable from the Fandom page or the Standard PDF (not guessed). The other 18 Accel cards need new body sentences.
   - Checked: loop, unit test V179. Not checked: Regression (CI), a real device. Revert note: `git revert` the v0.179.0 commit.
 
