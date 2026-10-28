@@ -5596,6 +5596,11 @@
   "K_BRAVE",
   "M_REPLACEMENT"
  ],
+ "BS13-080": [
+  "A_BOUNCE",
+  "C_CONTROL",
+  "M_THEN"
+ ],
  "BS13-081": [
   "T_SUMMONED",
   "A_BP_PLUS",
@@ -28321,6 +28326,11 @@
   "M_OPTIONAL",
   "M_THEN",
   "M_REPLACEMENT"
+ ],
+ "BS55-069": [
+  "A_EXHAUST",
+  "C_CONTROL",
+  "K_ULTIMATE"
  ],
  "BS55-075": [
   "A_BP_PLUS",

@@ -4454,11 +4454,6 @@
   "A_BP_PLUS",
   "C_LEVEL"
  ],
- "BS14-004": [
-  "C_LEVEL",
-  "K_BURST",
-  "T_ATTACKS"
- ],
  "BS14-005": [
   "A_RETURN_TRASH",
   "A_TRASH_TO_RESERVE",
@@ -4641,10 +4636,6 @@
   "C_LEVEL",
   "M_OPTIONAL",
   "T_SUMMONED"
- ],
- "BS14-059": [
-  "C_LEVEL",
-  "T_ATTACKS"
  ],
  "BS14-060": [
   "A_REFRESH",
@@ -5591,12 +5582,6 @@
   "C_LEVEL",
   "M_OPTIONAL",
   "M_UP_TO",
-  "T_ATTACKS"
- ],
- "BS17-002": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "K_BURST",
   "T_ATTACKS"
  ],
  "BS17-003": [
@@ -8239,12 +8224,6 @@
   "A_SYMBOL",
   "C_LEVEL",
   "K_ULTIMATE"
- ],
- "BS24-002": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "T_ATTACKS"
  ],
  "BS24-003": [
   "C_LEVEL",
@@ -11196,11 +11175,6 @@
   "C_LEVEL",
   "M_THEN",
   "T_ALLY_ATTACKS"
- ],
- "BS30-003": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "T_ATTACKS"
  ],
  "BS30-004": [
   "A_RETURN_TRASH",
@@ -16597,11 +16571,6 @@
   "A_SELF_TO_HAND",
   "C_LEVEL",
   "T_DESTROYED"
- ],
- "BS40-025": [
-  "A_SELF_TO_HAND",
-  "C_LEVEL",
-  "T_DESTROYED_OPP"
  ],
  "BS40-026": [
   "A_REVEAL_ADD",
@@ -24385,7 +24354,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "BS54-067": [],
  "BS54-074": [
   "A_SUMMON_FREE",
   "M_OPTIONAL"

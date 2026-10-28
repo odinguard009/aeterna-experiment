@@ -66,11 +66,33 @@
   "image": "Vajiriaxe.jpg",
   "block": "24",
   "saga": 5,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Attacks) This Spirit gains +2000 BP. While you control any Ultimate, also, this Spirit gains +2000 BP."
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "BP_PLUS",
+      "n": 2000
+     },
+     {
+      "do": "BP_PLUS",
+      "n": 2000,
+      "if": {
+       "ctrl": {
+        "n": 1,
+        "type": "Ultimate"
+       }
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS24-003",
@@ -21835,11 +21857,35 @@
   "image": "The BladeBristleDragon Yutyrannus.png",
   "block": "30",
   "saga": 5,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Attacks) Draw a card. While you control any \"War Dragon\" family Spirit, also, this Spirit gains +5000 BP."
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     },
+     {
+      "do": "BP_PLUS",
+      "n": 5000,
+      "if": {
+       "ctrl": {
+        "n": 1,
+        "type": "Spirit",
+        "family": "War Dragon"
+       }
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS30-004",

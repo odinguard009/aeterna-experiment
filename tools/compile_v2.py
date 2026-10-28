@@ -570,7 +570,7 @@ def self_bound_ok(acts, ctx):
 
 # v0.71 condition clauses in front of an action: "If you have a Burst set, ...", "If you control any Ultimate, also, ...".
 # The condition becomes the action's "if" (engine fxIf: burstSet, oppBurstSet, ctrl). "instead" (a replacement) stays in review.
-COND_LEAD = re.compile(r'^(?:then,? )?(?:if|when) (.+?), (?:also,? )?(?!instead)(.+)$', re.I)
+COND_LEAD = re.compile(r'^(?:also,? )?(?:then,? )?(?:if|when|while) (.+?), (?:also,? )?(?!instead)(.+)$', re.I)
 CTRL_ANY = re.compile(r'^you control (?:any|an?|one or more) (exhausted )?(?:(red|purple|green|white|yellow|blue) )?(?:"([^"]+)" family )?(spirit/ultimate|spirit|ultimate)s?$', re.I)
 
 
@@ -597,6 +597,8 @@ def cond_of(x):
             fams = re.findall(r'"([^"]+)"', m.group(3))
             q['family'] = fams[0] if len(fams) == 1 else fams      # v0.169 '"A"/"B" family' = either family (engine ctrl.family may be a list)
         return {'ctrl': q} if q['n'] <= 5 else None
+    m = re.fullmatch(r'you control (?:an? |any )?["“]([^"”]+)["”]-named (?:spirit|spirit/nexus|nexus)', x, re.I)      # v0.178 "X"-named Spirit = controlName
+    if m: return {'controlName': m.group(1).strip()}
     m = re.fullmatch(r'you control (?:an? |any )?"([^"]+)"', x, re.I)      # v0.76: a quoted card name (part of the name, like [Name])
     if m: return {'controlName': m.group(1).strip()}
     if re.fullmatch(r'you control fewer spirits than (?:the|your) opponent', x, re.I): return {'fewerSpirits': True}      # v0.77
