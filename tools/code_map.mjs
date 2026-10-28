@@ -12,7 +12,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 export function codeMap() {
   const parts = srcParts(ROOT);
   const rows = parts.map(p => {
-    const s = readFileSync(join(ROOT, p.rel), 'utf8');
+    const s = readFileSync(join(ROOT, p.rel), 'utf8').replace(/\r\n/g, '\n');      // LF length, so a Windows CRLF checkout gives the same map as CI
     const names = [...s.matchAll(/^(?:async\s+)?(?:function\s+([\w$]+)|(?:const|let|var|class)\s+([\w$]+))/gm)].map(m => m[1] || m[2]);
     const L = s.split('\n'), title = /^\/\* -{5,}/.test(L[0]) && /^\s{3}\S/.test(L[1] || '') ? L[1].trim().split(/\s{2,}/)[0] : '';
     return `## ${p.rel} (${s.split('\n').length - 1} lines, ~${Math.round(s.length / 4 / 100) / 10}k tokens)${title ? ' — ' + title.trim() : ''}\n${names.join(', ')}\n`;
