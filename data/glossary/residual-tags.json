@@ -107,11 +107,6 @@
   "C_LEVEL",
   "K_HIGH_SPEED"
  ],
- "BS01-056": [
-  "A_DISCARD_OPP",
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "BS01-057": [
   "A_CORE_TO_SELF",
   "C_LEVEL"
@@ -119,11 +114,6 @@
  "BS01-059": [
   "A_REFRESH",
   "C_LEVEL"
- ],
- "BS01-062": [
-  "A_DISCARD_OPP",
-  "C_LEVEL",
-  "T_DESTROYED"
  ],
  "BS01-065": [
   "A_VOID",
@@ -430,11 +420,6 @@
  ],
  "BS02-060": [
   "C_LEVEL"
- ],
- "BS02-061": [
-  "A_REFRESH",
-  "C_LEVEL",
-  "T_SUMMONED"
  ],
  "BS02-062": [
   "C_LEVEL",
@@ -762,11 +747,6 @@
  "BS03-059": [
   "A_BP_PLUS",
   "C_LEVEL"
- ],
- "BS03-061": [
-  "A_REFRESH",
-  "C_LEVEL",
-  "T_DESTROYED"
  ],
  "BS03-062": [
   "A_BP_PLUS",
@@ -1376,12 +1356,6 @@
   "C_OPP_TURN",
   "M_OPTIONAL",
   "T_DESTROYED"
- ],
- "BS05-042": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_SUMMONED"
  ],
  "BS05-043": [
   "A_EXHAUST",
@@ -2624,10 +2598,6 @@
   "T_BATTLE_WIN"
  ],
  "BS09-028": [
-  "C_LEVEL"
- ],
- "BS09-029": [
-  "A_REFRESH",
   "C_LEVEL"
  ],
  "BS09-030": [
@@ -6016,11 +5986,6 @@
   "M_BY_DOING",
   "T_SUMMONED"
  ],
- "BS18-020": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "T_DESTROYED"
- ],
  "BS18-022": [
   "A_NO_BURST",
   "C_LEVEL",
@@ -7081,11 +7046,6 @@
   "C_LEVEL",
   "K_RUSH",
   "T_SUMMONED"
- ],
- "BS21-021": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "T_ALLY_ATTACKS"
  ],
  "BS21-022": [
   "A_EXHAUST",
@@ -8539,12 +8499,6 @@
   "C_OPP_TURN",
   "K_ULTIMATE",
   "M_OPTIONAL",
-  "T_ATTACKS"
- ],
- "BS24-065": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "K_ULTIMATE",
   "T_ATTACKS"
  ],
  "BS24-066": [
@@ -13557,13 +13511,6 @@
   "K_BRAVE",
   "T_SUMMONED"
  ],
- "BS35-025": [
-  "A_EXHAUST",
-  "A_VOID",
-  "C_LEVEL",
-  "M_REPLACEMENT",
-  "T_SUMMONED"
- ],
  "BS35-026": [
   "A_EXHAUST",
   "C_LEVEL",
@@ -14538,11 +14485,6 @@
   "A_VOID",
   "C_LEVEL",
   "T_SUMMONED"
- ],
- "BS37-035": [
-  "A_EXHAUST",
-  "A_REMOVED_ZONE",
-  "K_ACCEL"
  ],
  "BS37-037": [
   "A_SEAL",
@@ -19770,10 +19712,6 @@
   "C_OPP_TURN",
   "T_OPP_HAND_UP"
  ],
- "BS44-028": [
-  "A_EXHAUST",
-  "C_LEVEL"
- ],
  "BS44-029": [
   "A_REVEAL_DECK",
   "A_VOID",
@@ -20206,12 +20144,6 @@
   "K_GRANDWALKER",
   "K_ULTIMATE",
   "S_NO_RETURN"
- ],
- "BS45-029": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "T_SUMMONED"
  ],
  "BS45-030": [
   "A_VOID",

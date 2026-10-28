@@ -160,13 +160,13 @@ def v_exhaust(sel, heavy):
     verb = 'heavy exhaust' if heavy else 'exhaust'
     one_target(verb, sel)
     if sel['count'] == 'all' or not 1 <= sel['count'] <= 3: raise Review(f'v2 {verb}: count {sel["count"]}')
-    if sel['count'] > 1 and not sel['upto']: raise Review(f'v2 {verb}: exactly {sel["count"]} (engine: up to)')
     if heavy:
         need(verb, sel, ())
         return [{'do': 'HEAVY_EXHAUST_OPP', 'n': sel['count']}]
-    need(verb, sel, ('costLe',))
+    need(verb, sel, ('costLe', 'bpLe'))
     a = {'do': 'EXHAUST_OPP', 'n': sel['count']}
     if 'costLe' in sel['f']: a['costLe'] = sel['f']['costLe']
+    if 'bpLe' in sel['f']: a['bpLe'] = sel['f']['bpLe']      # v0.180
     return [a]
 
 
@@ -750,6 +750,8 @@ def action_of(s, ctx):
         return action_of('Then, ' + re.sub(r'^if returned, ', '', s.strip(), flags=re.I), ctx)
     if re.fullmatch(r'this spirit can refresh\.?', s.strip(), re.I): return [{'do': 'REFRESH'}], True      # v0.169 "(Your End Step) This Spirit can refresh." (optional REFRESH on this card)
     if re.fullmatch(r'refresh this spirit\.?', s.strip(), re.I): return [{'do': 'REFRESH'}], False      # v0.169 "If <condition>, refresh this Spirit."
+    mo_ = re.fullmatch(r'the opponent discards (a|one|two|three) cards? from their hand\.?', s.strip(), re.I)
+    if mo_: return [{'do': 'OPP_DISCARD', 'n': n_of(mo_.group(1).lower())}], False      # v0.180
     mm_ = MILL_OWN.match(s.strip())
     if mm_ and n_of(mm_.group(2).lower()) <= 5:      # v0.165 "(You can) discard N card(s) from your decktop" = MILL (own Deck to Trash)
         return [{'do': 'MILL', 'n': n_of(mm_.group(2).lower())}], bool(mm_.group(1))

@@ -26,6 +26,23 @@ Object.assign(FX_ACTIONS, {
       removeFrom(o.hand, d); o.trash.push(d); c.ctx.did = false;
       log(`${nm}: ${who(o)} ${o.cpu ? 'discards' : 'discard'} ${CARDS[d.id].name}, the effect does not apply.`);
     } },
+  /* v0.180 "The opponent discards N card(s) from their Hand": the opponent picks (modal for the human, the CPU throws away the cheapest). */
+  OPP_DISCARD: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 3,
+    txt: a => `the opponent discards ${a.n === 1 ? 'a card' : a.n + ' cards'} from their Hand`,
+    can: c => c.opp.hand.length > 0,
+    run: async (c, a) => {
+      const nm = CARDS[c.src.id].name, o = c.opp; let k = 0;
+      for (let j = 0; j < a.n; j++) {
+        const L = o.hand.filter(x => !handSafe(x, o, c)); if (!L.length) break;
+        let d;
+        if (o.cpu) d = L.slice().sort((x, y) => CARDS[x.id].cost - CARDS[y.id].cost)[0];
+        else { const v = await ask({ title: `✨ ${nm}`, peek: true, html: 'Choose a card from your Hand to discard.', buttons: L.slice(0, 12).map(x => ({ label: CARDS[x.id].name, cls: 'primary', value: x.uid })) }, o.key || 'player'); d = L.find(x => x.uid === v) || L[0]; }
+        removeFrom(o.hand, d); o.trash.push(d); k++;
+        log(`${nm}: ${who(o)} ${o.cpu ? 'discards' : 'discard'} ${CARDS[d.id].name}.`);
+      }
+      if (!k) c.ctx.did = false;
+      io.view({ type: 'board' });
+    } },
   /* "send all cores from an opposing <family> Nexus" (one Nexus), {n, spread:true}: "send n cores from any opposing <family> Nexuses",
      orAllIfLifeLe: "Or, if your Life is X or less, you can send all cores from an opposing <family> Nexus". The Soul Core is never moved by these effects. */
   OPP_LIFE_TO_TRASH: { chk: a => (a.n == null || (Number.isInteger(a.n) && a.n >= 1 && a.n <= 5)) && (a.perBraveNames == null || (typeof a.perBraveNames === 'string' && a.perBraveNames.length > 0)) && (a.n != null || a.perBraveNames != null),

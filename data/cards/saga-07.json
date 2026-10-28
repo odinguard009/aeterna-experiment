@@ -1012,11 +1012,37 @@
   "image": "BS35-025 (Fixed).png",
   "block": "35",
   "saga": 7,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Summoned) Exhaust an opposing 5000 BP or less Spirit. If (Soul Core) was used to pay the summon cost, instead, put a core from the Void to this Spirit."
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "EXHAUST_OPP",
+      "n": 1,
+      "bpLe": 5000,
+      "if": {
+       "not": {
+        "soulPaid": true
+       }
+      }
+     },
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "self",
+      "if": {
+       "soulPaid": true
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS35-026",
@@ -7982,11 +8008,26 @@
   "mechanics": [
    "Accel"
   ],
-  "fxComplete": false,
-  "residual": [
-   "Flash- {{Accel|Cost 5 ()}} Exhaust three opposing Spirits. After this effect resolves, put this card face-up onto the Removed Zone."
+  "fxComplete": true,
+  "effects": [
+   {
+    "trigger": "ACCEL",
+    "cost": 5,
+    "timing": [
+     "FLASH"
+    ],
+    "reduction": {
+     "green": 3
+    },
+    "actions": [
+     {
+      "do": "EXHAUST_OPP",
+      "n": 3
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS37-036",
@@ -17384,6 +17425,67 @@
    "(Once per Turn: Same Name) During your End Step, return an exactly-named \"Chase Ride\" from your Trash to the Hand."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+ },
+ {
+  "id": "BS39-071",
+  "name": "Zephyr Vortex",
+  "name_jp": "ゼファーヴォルテックス",
+  "type": "Magic",
+  "color": "green",
+  "cost": 6,
+  "reduction": {
+   "green": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{Burst|After an opposing Spirit/Ultimate attacks}}\nExhaust an opposing Spirit/Ultimate. Then, refresh one of your Spirits. Then, by paying the cost, activate this card's Flash effect.\n\nFlash\nExhaust three opposing Spirits/Ultimates. Then, if you control any \"Gale-Phoenix\"-named Spirit, return an opposing exhausted Spirit/Ultimate to the deckbottom.",
+  "image": "BS39-071.jpg",
+  "block": "39",
+  "saga": 7,
+  "mechanics": [
+   "Burst"
+  ],
+  "burst": {
+   "when": "OPP_ATTACK",
+   "actions": [
+    {
+     "do": "EXHAUST_OPP",
+     "n": 1
+    },
+    {
+     "do": "REFRESH_SPIRIT",
+     "if": {
+      "prev": true
+     }
+    }
+   ],
+   "thenFlash": true
+  },
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "EXHAUST_OPP",
+     "n": 3
+    },
+    {
+     "do": "BOUNCE_OPP",
+     "to": "deckBottom",
+     "kind": "spirit",
+     "exhaustedOnly": true,
+     "if": {
+      "controlName": "Gale-Phoenix"
+     }
+    }
+   ]
+  },
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS39-073",

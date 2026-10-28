@@ -10861,6 +10861,10 @@
   "A_VOID",
   "C_LEVEL"
  ],
+ "BS24-100": [
+  "T_SUMMONED",
+  "A_SUMMON_FREE"
+ ],
  "BS24-101": [
   "K_BURST",
   "M_THEN"
@@ -18864,6 +18868,14 @@
   "A_RETURN_TRASH",
   "A_EXHAUST",
   "C_ONCE"
+ ],
+ "BS39-071": [
+  "A_REFRESH",
+  "A_EXHAUST",
+  "C_CONTROL",
+  "K_BURST",
+  "K_ULTIMATE",
+  "M_THEN"
  ],
  "BS39-073": [
   "A_TRASH_TO_RESERVE",

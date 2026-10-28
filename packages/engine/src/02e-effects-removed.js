@@ -22,9 +22,9 @@ async function pickOppSpirits(c, L, n, text) {                       // up to n 
   return out;
 }
 Object.assign(FX_ACTIONS, {
-  EXHAUST_OPP: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 3 && (a.costLe == null || (Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30)),
-    txt: a => `exhaust ${a.n === 1 ? 'an' : 'up to ' + a.n} opposing Spirit${a.n === 1 ? '' : 's'}${a.costLe != null ? ' with cost ' + a.costLe + ' or less' : ''}`,
-    cands: (c, a) => c.opp.spirits.filter(t => !t.exhausted && !fxImmune(c.opp, t) && (a.costLe == null || CARDS[t.id].cost <= a.costLe)),
+  EXHAUST_OPP: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 3 && (a.bpLe == null || (Number.isInteger(a.bpLe) && a.bpLe >= 0)) && (a.costLe == null || (Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30)),
+    txt: a => `exhaust ${a.n === 1 ? 'an' : 'up to ' + a.n} opposing Spirit${a.n === 1 ? '' : 's'}${a.costLe != null ? ' with cost ' + a.costLe + ' or less' : ''}${a.bpLe != null ? ' with ' + a.bpLe + ' BP or less' : ''}`,
+    cands: (c, a) => c.opp.spirits.filter(t => !t.exhausted && !fxImmune(c.opp, t) && (a.costLe == null || CARDS[t.id].cost <= a.costLe) && (a.bpLe == null || bpOf(t) <= a.bpLe)),
     can: (c, a) => FX_ACTIONS.EXHAUST_OPP.cands(c, a).length > 0,
     run: async (c, a) => {
       const L = FX_ACTIONS.EXHAUST_OPP.cands(c, a); if (!L.length) { c.ctx.did = false; return; }

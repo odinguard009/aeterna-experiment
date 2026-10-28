@@ -28,3 +28,14 @@ test('NF01 noFx summon: the summoned Spirit is on the field and its own (When Su
 test('NF02 without noFx the summoned Spirit draws a card', async () => {
   assert.deepEqual(await run(false), [['BS02-034', 'NF-G'], 1]);
 });
+
+test('NF03 OPP_DISCARD: the opponent discards a card from their Hand (Matchra BS01-056 when summoned)', async () => {
+  const r = await g.page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant'; const G = BS.G, P = G.p.player, O = G.p.opponent;
+    P.cpu = true; O.cpu = true; P.spirits = []; O.hand = [BS.mkInst('NF-G'), BS.mkInst('NF-G')]; O.trash = [];
+    const t = BS.mkInst('BS01-056'); t.cores = 1; P.spirits.push(t);
+    await BS.fireFx(P, 'SUMMONED', t, {});
+    return [O.hand.length, O.trash.length];
+  });
+  assert.deepEqual(r, [1, 1]);
+});
