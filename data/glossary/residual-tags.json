@@ -720,10 +720,6 @@
   "C_LEVEL",
   "T_SUMMONED"
  ],
- "BS03-059": [
-  "A_BP_PLUS",
-  "C_LEVEL"
- ],
  "BS03-062": [
   "A_BP_PLUS",
   "C_LEVEL",
@@ -3585,10 +3581,6 @@
   "T_DESTROYED",
   "T_SUMMONED"
  ],
- "BS12-017": [
-  "A_BP_PLUS",
-  "C_LEVEL"
- ],
  "BS12-019": [
   "C_LEVEL",
   "K_BRAVE",
@@ -3644,10 +3636,6 @@
   "A_EXHAUST",
   "C_LEVEL",
   "C_OPP_TURN"
- ],
- "BS12-030": [
-  "A_BP_PLUS",
-  "C_LEVEL"
  ],
  "BS12-031": [
   "C_LEVEL"
@@ -4452,10 +4440,6 @@
   "A_BP_PLUS",
   "C_LEVEL",
   "K_BURST"
- ],
- "BS14-039": [
-  "A_BP_PLUS",
-  "C_LEVEL"
  ],
  "BS14-040": [
   "A_EXHAUST",
@@ -7813,10 +7797,6 @@
   "K_BRAVE",
   "M_OPTIONAL",
   "T_SUMMONED"
- ],
- "BS23-045": [
-  "A_BP_PLUS",
-  "C_LEVEL"
  ],
  "BS23-046": [
   "C_LEVEL"

@@ -348,6 +348,10 @@
   "T_SUMMONED",
   "C_LEVEL"
  ],
+ "BS01-091": [
+  "A_BP_PLUS",
+  "C_LEVEL"
+ ],
  "BS01-092": [],
  "BS01-094": [
   "C_LEVEL",
@@ -24905,6 +24909,14 @@
   "C_OPP_TURN",
   "C_LEVEL",
   "S_UNAFFECTED"
+ ],
+ "BS48-041": [
+  "T_SUMMONED",
+  "A_BP_PLUS",
+  "A_REVEAL_DECK",
+  "C_LEVEL",
+  "K_GRANDWALKER",
+  "M_OPTIONAL"
  ],
  "BS48-043": [
   "T_ALLY_SUMMONED",

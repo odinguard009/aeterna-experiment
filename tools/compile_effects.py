@@ -506,7 +506,7 @@ def spirit_paragraph_main(p, card, rush):
         return [e], flags
     mm = None if trig else PER_STATIC.match(p)
     if mm:      # v0.72 static "for each X you control" BP (with (During Attack): only while attacking)
-        e = {'trigger': 'STATIC', 'bp': bp(mm.group(7)), 'to': 'self'}
+        e = {'trigger': 'STATIC', 'bp': bp(mm.group(mm.lastindex)), 'to': 'self'}
         if lv: e['lv'] = lv
         if mm.group(1): e['attackingOnly'] = True
         q = re.match(PER_NP, p[mm.end(1) if mm.group(1) else 0:], re.I)
@@ -569,6 +569,18 @@ def spirit_paragraph_main(p, card, rush):
             if rush: raise Review('Rush with a constant effect')
             e = {'trigger': 'STATIC', 'bp': bp(mm.group(4)), 'to': 'own'}
             if mm.group(1) or mm.group(3): e['match'] = {'family': [mm.group(1) or mm.group(3)]}
+            if lv: e['lv'] = lv
+            return [e], flags
+        mm = re.match(r'^(?:\(Your Turn\)\s*)?All (?:of )?your (?:(?P<col>Red|Purple|Green|White|Yellow|Blue) |(?P<fam>"[^"]+"(?:\s*/\s*"[^"]+")*) family |"(?P<nm>[^"]+)"-named |Cost (?P<cn>\d+) or (?P<cd>more|less) )Spirits (?:gain|get) \+(\d[\d,]*) ?BP\.?$', p, re.I)
+        if mm:      # v0.181 constant own BP for a colour / family list / name / cost range ('All your White Spirits gain +1000 BP')
+            if rush: raise Review('Rush with a constant effect')
+            m = {}
+            if mm.group('col'): m['color'] = mm.group('col').lower()
+            if mm.group('fam'): m['family'] = re.findall(r'"([^"]+)"', mm.group('fam'))
+            if mm.group('nm'): m['name'] = [mm.group('nm')]
+            if mm.group('cn'): m['costGe' if mm.group('cd').lower() == 'more' else 'costLe'] = int(mm.group('cn'))
+            e = {'trigger': 'STATIC', 'bp': bp(mm.group(mm.lastindex)), 'to': 'own', 'match': m}
+            if p.startswith('(Your Turn)'): e['if'] = {'oppTurn': False}
             if lv: e['lv'] = lv
             return [e], flags
         mm = re.match(r'^\(Your Attack Step\)\s*All attacking Spirits you control (?:gain|get) \+(\d[\d,]*) ?BP\.?$', p, re.I)
