@@ -59,5 +59,5 @@ with sync_playwright() as p:
             pg.close()
         except Exception as e:   # name the failing line instead of an anonymous CRASH
             import traceback; ln=[f.lineno for f in traceback.extract_tb(e.__traceback__) if f.filename.endswith('hscroll_layout.py')][-1:]
-            chk(t+' crashed at line %s: %s'%(ln,str(e).strip().split(chr(10))[0][:120]),False)
+            chk(t+' crashed at line %s: %s'%(ln,' | '.join(x.strip() for x in str(e).strip().split(chr(10))[:9])[:700]),False)
 print('FAILS',bad)
