@@ -11,11 +11,14 @@ case "$1" in
     cp -r "$src"/agents/. "$dst/agents/"
     cp -r "$src"/hooks/. "$dst/hooks/"
     for d in "$src"/skills/*/; do n=$(basename "$d"); [ "$n" = synced ] || cp -r "$d" "$dst/skills/"; done
+    # stop/prompt hooks installed by the cloud environment (not referenced in settings.json): reference copy only
+    mkdir -p "$dst/harness"; for f in stop-hook-git-check.sh stop-hook-reply-gate.py user-prompt-submit-reply-reminder.py; do [ -e "$src/$f" ] && cp "$src/$f" "$dst/harness/"; done
     echo "saved to $dst" ;;
   restore)
     mkdir -p "$src/skills" "$src/agents" "$src/hooks"
     [ -e "$src/settings.json" ] || cp "$dst/settings.json" "$src/settings.json"
     cp -rn "$dst"/agents/. "$src/agents/"; cp -rn "$dst"/hooks/. "$src/hooks/"; cp -rn "$dst"/skills/. "$src/skills/"
+    for f in "$dst"/harness/*; do [ -e "$f" ] && [ ! -e "$src/$(basename "$f")" ] && cp "$f" "$src/"; done
     git -C "$root" config core.hooksPath .githooks
     echo "restored to $src (hooks in settings.json call /root/.local/bin/codebase-memory-mcp: install that binary or delete those hooks)" ;;
   *) echo "usage: settings_sync.sh save|restore"; exit 1 ;;
