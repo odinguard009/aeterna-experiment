@@ -38353,18 +38353,6 @@
   "M_UP_TO",
   "T_ALLY_LIFE_HIT"
  ],
- "26RBS01-021": [
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
- "26RBS01-024": [
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
- "26RBS01-025": [
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
  "26RBS01-026": [
   "A_DRAW",
   "M_REPLACEMENT",
@@ -38374,10 +38362,6 @@
   "A_CORE_TO_SELF",
   "C_LEVEL",
   "T_DESTROYED",
-  "T_SUMMONED"
- ],
- "26RBS01-030": [
-  "M_OPTIONAL",
   "T_SUMMONED"
  ],
  "26RBS01-039": [
@@ -38415,39 +38399,16 @@
   "T_DESTROYED_OPP",
   "T_SUMMONED"
  ],
- "26RBS01-072": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "K_STANDARD_INVOKE",
-  "M_OPTIONAL"
- ],
  "26RBS01-073": [
   "A_SUMMON_FREE",
   "C_LEVEL",
   "K_STANDARD_INVOKE",
   "M_OPTIONAL"
  ],
- "26RBS01-075": [
-  "A_SUMMON_FREE",
-  "K_STANDARD_INVOKE",
-  "M_OPTIONAL"
- ],
- "26RBS01-077": [
-  "A_REFRESH",
-  "C_LEVEL"
- ],
  "26RBS01-080": [
   "A_REFRESH",
   "C_LEVEL",
   "M_OPTIONAL",
-  "T_ATTACKS"
- ],
- "26RBS01-081": [
-  "A_BP_PLUS",
-  "C_LEVEL"
- ],
- "26RBS01-082": [
-  "C_LEVEL",
   "T_ATTACKS"
  ],
  "26RBS01-083": [

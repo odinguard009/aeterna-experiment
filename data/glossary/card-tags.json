@@ -44519,6 +44519,7 @@
  ],
  "26RBS01-030": [
   "T_SUMMONED",
+  "C_LEVEL",
   "M_OPTIONAL"
  ],
  "26RBS01-031": [
@@ -44780,6 +44781,7 @@
  ],
  "26RBS01-075": [
   "A_SUMMON_FREE",
+  "C_LEVEL",
   "M_OPTIONAL",
   "K_STANDARD_INVOKE"
  ],
@@ -44790,6 +44792,7 @@
   "K_RUMBLE"
  ],
  "26RBS01-077": [
+  "T_ATTACKS",
   "A_REFRESH",
   "C_LEVEL",
   "K_RUMBLE"
@@ -44806,6 +44809,7 @@
   "M_OPTIONAL"
  ],
  "26RBS01-081": [
+  "T_ATTACKS",
   "A_BP_PLUS",
   "C_LEVEL",
   "K_RUMBLE"

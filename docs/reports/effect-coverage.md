@@ -5,7 +5,7 @@
 | Tag | Kind | Meaning | Engine | Status | Cards |
 |---|---|---|---|---|---|
 | T_SUMMONED | trigger | (When Summoned) | SUMMONED | wired | 1891 |
-| T_ATTACKS | trigger | (When Attacks) | ATTACKS | wired | 1967 |
+| T_ATTACKS | trigger | (When Attacks) | ATTACKS | wired | 1969 |
 | T_ALLY_ATTACKS | trigger | When your X attacks | ALLY_ATTACKS | wired | 183 |
 | T_ALLY_BLOCKED | trigger | When your X is blocked | ALLY_BLOCKED | wired | 73 |
 | T_ALLY_SUMMONED | trigger | When your target Spirit is summoned (Neo-Core Charge) | ALLY_SUMMONED | wired | 177 |
@@ -47,7 +47,7 @@
 | C_CONTROL | condition | If you control (incl. Soul State) a named card | controlName / hasName | wired | 197 |
 | C_ONCE | condition | (Once per Turn: Same Name) | once / sameName | wired | 283 |
 | C_OPP_TURN | condition | Opposing turn / Your turn | oppTurn | partial | 342 |
-| C_LEVEL | condition | [LV1][LV2] level gating | lv | wired | 5861 |
+| C_LEVEL | condition | [LV1][LV2] level gating | lv | wired | 5863 |
 | S_MUST_BLOCK | static | Must block if possible | STATIC flag MUST_BLOCK | wired | 81 |
 | S_NO_RETURN | static | Can't be returned from the Field | STATIC flag NO_RETURN | wired | 58 |
 | S_CORES_DRAW | static | Draw when cores are sent to this Spirit | STATIC flag CORES_DRAW | wired | 1 |

@@ -847,6 +847,8 @@ def action_of(s, ctx):
         return [a], bool(sh.group(1))
     if re.match(r'^if returned, ', s.strip(), re.I):      # v0.165 "If returned, X" = "Then, X" (only when the previous action returned a card)
         return action_of('Then, ' + re.sub(r'^if returned, ', '', s.strip(), flags=re.I), ctx)
+    mr_ = re.fullmatch(r'rumble (\d)\.?', s.strip(), re.I)
+    if mr_: return [{'do': 'RUMBLE', 'n': int(mr_.group(1))}], False      # v0.184 {{Rumble|N}} (tpl_norm; engine 02o RUMBLE)
     if re.fullmatch(r'this spirit can refresh\.?', s.strip(), re.I): return [{'do': 'REFRESH'}], True      # v0.169 "(Your End Step) This Spirit can refresh." (optional REFRESH on this card)
     if re.fullmatch(r'refresh this spirit\.?', s.strip(), re.I): return [{'do': 'REFRESH'}], False      # v0.169 "If <condition>, refresh this Spirit."
     mo_ = re.fullmatch(r'(?:the|your) opponent discards (a|one|two|three|1|2|3) cards?(?: from (?:their|the opponent\'s) hand)?\.?', s.strip(), re.I)
@@ -991,6 +993,19 @@ def assault_norm(t):
 WS_TPL = re.compile(r'\{\{\s*ws\s*\|\s*(\d)\s*\}\}\s*(\(When Attacks\))\s*\n?\s*When this Spirit is blocked, the opponent exhausts (?:the (?:specified|designated) number of|a|one|two|three) Spirits? they control\.?', re.I)      # v0.183
 
 
+RUMBLE_TPL = re.compile(r'\{\{\s*Rumble\s*\|\s*(\d)\s*\}\}\s*\(?During Attack\)?\s*\n?\s*At the end of (?:the )?battle, discard \w+ cards from the opposing decktop\. For each cost of the Spirit card that blocked in the opposing Trash, it discards -1 card\.?', re.I)
+SHAMAN_TPL = re.compile(r'\{\{\s*Shaman\s*\|[^{}]*\}\}\s*(\(When Summoned\))\s*\n?\s*You can target (an? [^.\n]*?) card in your Trash\. Summon it\.?', re.I)
+HOLDER_TPL = re.compile(r'\{\{\s*Magirrate\s*\|[^{}]*\}\}\s*', re.I)
+
+
+def tpl_norm(t):
+    """v0.184 holder / keyword templates whose printed sentence is the effect: {{Rumble|N}} -> "(When Attacks) Rumble N.", {{Shaman|..}} -> a plain summon-from-Trash sentence, {{Magirrate|X}} dropped (the engine reads the printed text)"""
+    if not t or '{{' not in t: return t
+    t = RUMBLE_TPL.sub(lambda m: '(When Attacks) Rumble %s.' % m.group(1), t)
+    t = SHAMAN_TPL.sub(lambda m: m.group(1) + ' You can summon %s card from your Trash.' % m.group(2), t)
+    return HOLDER_TPL.sub('', t)
+
+
 TRIBUTE_TPL = re.compile(r'\{\{\s*Tribute\s*\|\s*(?:Cost (\d+) or more|([^{}|]+?))\s*(?:&rarr;|→)\s*(Void|Trash)\s*\}\}[ \t]*\n?After paying for the summoning cost[^\n]*\n?', re.I)
 
 
@@ -999,6 +1014,9 @@ IMM_TPL = re.compile(r'(?:\[LV\d\])*\s*(?:\{\{\s*Immortality\s*\|\s*([^{}|]+?)\s
 
 def compile_card(c):
     t = c.get('text')
+    if t and '{{' in t:
+        t2 = tpl_norm(t)
+        if t2 != t: c = dict(c, text=t2); t = t2
     m = t and IMM_TPL.match(t)
     if m and re.search(r'summon', m.group(3)) and re.search(r'Spirits? (?:is|are) destroyed|Spirit is destroyed', m.group(3)) and not re.search(r'\bBrave card\b', m.group(3)):
         # v0.183 {{Immortality|Cost N/M}} / {{Immortality|<family>}}: STATIC flag IMMORTALITY (engine immortalCands); the printed reminder line is dropped before the rest compiles
@@ -1202,6 +1220,7 @@ def blockers(c):
     """every reason a staged card is not compiled (one per paragraph / template), for the lever table.
     Must run with install() active. [] = the card compiles."""
     if c.get('text') and AMPLIFY_TPL.search(c['text']): c = dict(c, text=AMPLIFY_TPL.sub('', c['text']))      # v0.169
+    if c.get('text'): c = dict(c, text=tpl_norm(c['text']))      # v0.184
     try:
         compile_card(c); return []
     except Review as e:

@@ -1031,7 +1031,7 @@
    "Dark Puce",
    "Corpse"
   ],
-  "text": "[LV1-2] {{Shaman|Dark Puce & Cost 2 or less}} (When Summoned)\nYou can target a Cost 2 or less \"Dark Puce\" family Spirit card in your Trash. Summon it.\n\n[LV2] (True Release) (During Attack)\nThis Spirit gains +2000 BP.",
+  "text": "[LV1][LV2] (When Summoned) You can summon a Cost 2 or less \"Dark Puce\" family Spirit card from your Trash.\n\n[LV2] (True Release) (During Attack)\nThis Spirit gains +2000 BP.",
   "image": "26RBS01-021.png",
   "block": "A",
   "saga": 50,
@@ -1040,6 +1040,28 @@
   ],
   "trueRelease": true,
   "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "SUMMON_HAND",
+      "match": {
+       "type": "Spirit",
+       "family": [
+        "Dark Puce"
+       ]
+      },
+      "from": "trash",
+      "costLe": 2,
+      "pay": true
+     }
+    ]
+   },
    {
     "trigger": "STATIC",
     "bp": 2000,
@@ -1050,11 +1072,8 @@
     ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] {{Shaman|Dark Puce & Cost 2 or less}} (When Summoned) You can target a Cost 2 or less \"Dark Puce\" family Spirit card in your Trash. Summon it."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-022",
@@ -1181,7 +1200,7 @@
    "Dark Puce",
    "Phantasprite"
   ],
-  "text": "[LV1-2] {{Shaman|Dark Puce & Cost 3 or less}} (When Summoned)\nYou can target a Cost 3 or less \"Dark Puce\" family Spirit card in your Trash. Summon it.\n\n[LV2] (When Attacks)\nTarget an opposing Cost 3 or less exhausted Spirit. Destroy it.",
+  "text": "[LV1][LV2] (When Summoned) You can summon a Cost 3 or less \"Dark Puce\" family Spirit card from your Trash.\n\n[LV2] (When Attacks)\nTarget an opposing Cost 3 or less exhausted Spirit. Destroy it.",
   "image": "26RBS01-024.png",
   "block": "A",
   "saga": 50,
@@ -1189,6 +1208,28 @@
    "Shamanism"
   ],
   "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "SUMMON_HAND",
+      "match": {
+       "type": "Spirit",
+       "family": [
+        "Dark Puce"
+       ]
+      },
+      "from": "trash",
+      "costLe": 3,
+      "pay": true
+     }
+    ]
+   },
    {
     "trigger": "ATTACKS",
     "lv": [
@@ -1203,11 +1244,8 @@
     ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] {{Shaman|Dark Puce & Cost 3 or less}} (When Summoned) You can target a Cost 3 or less \"Dark Puce\" family Spirit card in your Trash. Summon it."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-025",
@@ -1234,7 +1272,7 @@
    "Dark Puce",
    "Corpse"
   ],
-  "text": "[LV1-2] {{Shaman|Dark Puce & Cost 3 or less}} (When Summoned)\nYou can target a Cost 3 or less \"Dark Puce\" family Spirit card in your Trash. Summon it.\n\n[LV2] (When Destroyed)\nTarget an opposing Spirit. Send a core, besides , from it to the Reserve.",
+  "text": "[LV1][LV2] (When Summoned) You can summon a Cost 3 or less \"Dark Puce\" family Spirit card from your Trash.\n\n[LV2] (When Destroyed)\nTarget an opposing Spirit. Send a core, besides , from it to the Reserve.",
   "image": "26RBS01-025.png",
   "block": "A",
   "saga": 50,
@@ -1242,6 +1280,28 @@
    "Shamanism"
   ],
   "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "SUMMON_HAND",
+      "match": {
+       "type": "Spirit",
+       "family": [
+        "Dark Puce"
+       ]
+      },
+      "from": "trash",
+      "costLe": 3,
+      "pay": true
+     }
+    ]
+   },
    {
     "trigger": "DESTROYED",
     "lv": [
@@ -1256,11 +1316,8 @@
     ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] {{Shaman|Dark Puce & Cost 3 or less}} (When Summoned) You can target a Cost 3 or less \"Dark Puce\" family Spirit card in your Trash. Summon it."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-026",
@@ -1468,7 +1525,7 @@
    "Dark Puce",
    "Karmafiend"
   ],
-  "text": "(Legacy)\n[LV1-2] {{Shaman|Dark Puce & Cost 7 or less}} (When Summoned)\nYou can target a Cost 7 or less \"Dark Puce\" family Spirit card in your Trash. Summon it.",
+  "text": "(Legacy)\n[LV1][LV2] (When Summoned) You can summon a Cost 7 or less \"Dark Puce\" family Spirit card from your Trash.",
   "image": "26RBS01-030.png",
   "block": "A",
   "saga": 50,
@@ -1476,11 +1533,32 @@
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] {{Shaman|Dark Puce & Cost 7 or less}} (When Summoned) You can target a Cost 7 or less \"Dark Puce\" family Spirit card in your Trash. Summon it."
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "SUMMON_HAND",
+      "match": {
+       "type": "Spirit",
+       "family": [
+        "Dark Puce"
+       ]
+      },
+      "from": "trash",
+      "costLe": 7,
+      "pay": true
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-031",
@@ -3936,18 +4014,41 @@
    "Echochant",
    "Hexcraft"
   ],
-  "text": "[LV2] {{Magirrate|Topaz}} (During Attack) {{Invoke|Flash}} (Once Per Battle)\nYou can use the Flash effect of a \"Topaz\" family Magic card from your Hand, without paying the cost.",
+  "text": "[LV2] (During Attack) {{Invoke|Flash}} (Once Per Battle)\nYou can use the Flash effect of a \"Topaz\" family Magic card from your Hand, without paying the cost.",
   "image": "26RBS01-072.png",
   "block": "A",
   "saga": 50,
   "mechanics": [
    "Magirrate"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV2] {{Magirrate|Topaz}} (During Attack) {{Invoke|Flash}} (Once Per Battle) You can use the Flash effect of a \"Topaz\" family Magic card from your Hand, without paying the cost."
+  "effects": [
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN",
+     "FLASH"
+    ],
+    "when": "duringAttack",
+    "once": true,
+    "oncePer": "battle",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "USE_FLASH",
+      "match": {
+       "family": [
+        "Topaz"
+       ]
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-073",
@@ -4104,7 +4205,7 @@
    "Echochant",
    "Hexcraft"
   ],
-  "text": "(Legacy)\n[LV1-2] {{Magirrate|Topaz}} (During Attack) {{Invoke|Flash}} (Once Per Battle)\nYou can use the Flash effect of a \"Topaz\" family Magic card from your Hand, without paying the cost.",
+  "text": "(Legacy)\n[LV1][LV2] (During Attack) {{Invoke|Flash}} (Once Per Battle)\nYou can use the Flash effect of a \"Topaz\" family Magic card from your Hand, without paying the cost.",
   "image": "26RBS01-075.png",
   "block": "A",
   "saga": 50,
@@ -4112,11 +4213,35 @@
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] {{Magirrate|Topaz}} (During Attack) {{Invoke|Flash}} (Once Per Battle) You can use the Flash effect of a \"Topaz\" family Magic card from your Hand, without paying the cost."
+  "effects": [
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN",
+     "FLASH"
+    ],
+    "when": "duringAttack",
+    "once": true,
+    "oncePer": "battle",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "USE_FLASH",
+      "match": {
+       "family": [
+        "Topaz"
+       ]
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-076",
@@ -4194,18 +4319,14 @@
    "Cyantree",
    "Venabeast"
   ],
-  "text": "[LV1-2] {{Rumble|3}} During Attack\nAt the end of battle, discard three cards from the opposing decktop. For each cost of the Spirit card that blocked in the opposing Trash, it discards -1 card.\n\n[LV2] (True Release) (Your End Step)\nThis Spirit can refresh.",
+  "text": "[LV1][LV2] (When Attacks) Rumble 3.\n\n[LV2] (True Release) (Your End Step)\nThis Spirit can refresh.",
   "image": "26RBS01-077.png",
   "block": "A",
   "saga": 50,
   "mechanics": [
    "Rumble"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (True Release) (Your End Step) This Spirit can refresh."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "trueRelease": true,
   "effects": [
    {
     "trigger": "ATTACKS",
@@ -4219,11 +4340,22 @@
       "n": 3
      }
     ]
+   },
+   {
+    "trigger": "END_STEP",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "REFRESH"
+     }
+    ]
    }
   ],
-  "keywords": [
-   "Rumble"
-  ]
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-078",
@@ -4390,7 +4522,7 @@
    "Cyantree",
    "Benevoclaw"
   ],
-  "text": "[LV1-2] {{Rumble|4}} During Attack\nAt the end of battle, discard four cards from the opposing decktop. For each cost of the Spirit card that blocked in the opposing Trash, it discards -1 card.\n\n[LV2] (During Attack)\nIf you control two or more Blue symbols, this Spirit gains +2000 BP.",
+  "text": "[LV1][LV2] (When Attacks) Rumble 4.\n\n[LV2] (During Attack)\nIf you control two or more Blue symbols, this Spirit gains +2000 BP.",
   "image": "26RBS01-081.png",
   "block": "A",
   "saga": 50,
@@ -4398,11 +4530,6 @@
   "mechanics": [
    "Rumble"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (During Attack) If you control two or more Blue symbols, this Spirit gains +2000 BP."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "effects": [
    {
     "trigger": "ATTACKS",
@@ -4416,11 +4543,25 @@
       "n": 4
      }
     ]
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 2000,
+    "to": "self",
+    "if": {
+     "symbolsOnGe": {
+      "color": "blue",
+      "n": 2
+     }
+    },
+    "attackingOnly": true,
+    "lv": [
+     2
+    ]
    }
   ],
-  "keywords": [
-   "Rumble"
-  ]
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-082",
@@ -4447,18 +4588,13 @@
    "Cyantree",
    "Venabeast"
   ],
-  "text": "[LV1-2] {{Rumble|4}} During Attack\nAt the end of battle, discard four cards from the opposing decktop. For each cost of the Spirit card that blocked in the opposing Trash, it discards -1 card.\n\n[LV2] (When Attacks)\nDraw two cards, then return two cards from your Hand to the deckbottom in any order.",
+  "text": "[LV1][LV2] (When Attacks) Rumble 4.\n\n[LV2] (When Attacks)\nDraw two cards, then return two cards from your Hand to the deckbottom in any order.",
   "image": "26RBS01-082.png",
   "block": "A",
   "saga": 50,
   "mechanics": [
    "Rumble"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (When Attacks) Draw two cards, then return two cards from your Hand to the deckbottom in any order."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "effects": [
    {
     "trigger": "ATTACKS",
@@ -4472,11 +4608,24 @@
       "n": 4
      }
     ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "LOOT",
+      "draw": 2,
+      "discard": 2,
+      "to": "deckBottom"
+     }
+    ]
    }
   ],
-  "keywords": [
-   "Rumble"
-  ]
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-083",
