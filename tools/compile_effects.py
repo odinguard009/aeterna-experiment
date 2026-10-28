@@ -173,6 +173,8 @@ BATTLE_HEADS = [      # v0.72 heads read before TRIGGERS: (trigger list, extra e
 TRIGGERS = [
     (r'\(When Summoned/Attacks\)', ['SUMMONED', 'ATTACKS']),
     (r'\(When Summoned/Destroyed\)', ['SUMMONED', 'DESTROYED']),      # v0.54: (When Destroyed) = engine trigger DESTROYED (manual p. 31)
+    (r'When cards with EX Symbols are discarded by your Rumble,', ['RUMBLE_DISCARD+EX']),      # v0.185 engine RUMBLE_DISCARD (exOnly)
+    (r'When cards are discarded from the opposing deck by your Rumble, besides this Spirit\'s,', ['RUMBLE_DISCARD+OTHER']),
     (r'When this Spirit becomes the target of Tribute,', ['TRIBUTED']),      # v0.183 engine TRIBUTED (tributePay)
     (r'\(When Destroyed\)', ['DESTROYED']),
     (r'\(When Depleted/Destroyed by the Opponent\)', ['DESTROYED_OPPD']),      # v0.177 engine alsoDepleted
@@ -550,6 +552,8 @@ def spirit_paragraph_main(p, card, rush):
         e['per'] = per_of(q)
         if rush: raise Review('Rush with a static effect')
         return [e], flags
+    mm = None if trig else re.match(r'^\(Once Per Turn\)\s*(?=When cards .* by your Rumble,)', p, re.I)
+    if mm: p = p[mm.end():]; extra = dict(extra or {}, once=True)      # v0.185 plain once-per-turn limit in front of the Rumble head
     for rx, ts in ([] if trig else TRIGGERS):
         mm = re.match(r'^' + rx + r'\s*', p)
         if mm: trig = ts; p = p[mm.end():]; break
@@ -769,7 +773,7 @@ def trig_effects(p, card, trig, tmatch, lv, rush, flags, extra=None):
         raise Review('(When Destroyed) effect about this Spirit: ' + p[:80])
     out = []
     for t in trig:
-        e = {'trigger': 'ATTACKS', 'alsoBlocks': True} if t == 'ATTACKS+BLOCKS' else {'trigger': t.split('_OPP')[0]} if t in ('DESTROYED_OPP', 'DESTROYED_OPPD', 'DESTROYED_OPPFX', 'LEAVES_OPPFX') else {'trigger': t}
+        e = {'trigger': 'RUMBLE_DISCARD', 'exOnly': True} if t == 'RUMBLE_DISCARD+EX' else {'trigger': 'RUMBLE_DISCARD', 'other': True} if t == 'RUMBLE_DISCARD+OTHER' else {'trigger': 'ATTACKS', 'alsoBlocks': True} if t == 'ATTACKS+BLOCKS' else {'trigger': t.split('_OPP')[0]} if t in ('DESTROYED_OPP', 'DESTROYED_OPPD', 'DESTROYED_OPPFX', 'LEAVES_OPPFX') else {'trigger': t}
         if lv: e['lv'] = lv
         if tmatch: e['match'] = dict(tmatch)
         if t in ('DESTROYED_OPP', 'DESTROYED_OPPD'): e['if'] = {'byOpp': True}

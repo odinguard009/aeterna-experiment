@@ -73,7 +73,9 @@ async function endOfBattle() {
       const top = q.opp.deck.splice(0, Math.min(n, q.opp.deck.length));
       for (const x of top) q.opp.trash.push(x);
       log(`${name}: Rumble discards ${top.length} card${top.length === 1 ? '' : 's'} from ${poss(q.opp)} Deck.`);
-      io.view({ type: 'board' }); continue;
+      io.view({ type: 'board' });
+      await fireFx(q.p, 'RUMBLE_DISCARD', q.src, { subject: q.src, exCount: top.filter(x => CARDS[x.id].exSymbols > 0).length });      // v0.185 "When cards are discarded by your Rumble"
+      continue;
     }
     await asResolving(() => runActions({ p: q.p, opp: q.opp, src: q.src, ctx: q.ctx }, { actions: q.then }, 'END_BATTLE'));
     io.view({ type: 'board' });

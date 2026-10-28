@@ -7468,7 +7468,7 @@
    "Cyantree",
    "Rampaleg"
   ],
-  "text": "(Legacy)\n[LV1-2] {{Rumble|7}} During Attack\nAt the end of battle, discard seven cards from the opposing decktop. For each cost of the Spirit card that blocked in the opposing Trash, it discards -1 card.\n\n[LV2] (True Release) (Your Attack Step) (Once Per Turn)\nWhen cards are discarded from the opposing deck by your Rumble, besides this Spirit's, this Spirit can refresh.",
+  "text": "(Legacy)\n[LV1][LV2] (When Attacks) Rumble 7.\n\n[LV2] (True Release) (Your Attack Step) (Once Per Turn)\nWhen cards are discarded from the opposing deck by your Rumble, besides this Spirit's, this Spirit can refresh.",
   "image": "26RBS01-X18.png",
   "block": "A",
   "saga": 50,
@@ -7476,11 +7476,7 @@
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (True Release) (Your Attack Step) (Once Per Turn) When cards are discarded from the opposing deck by your Rumble, besides this Spirit's, this Spirit can refresh."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "trueRelease": true,
   "effects": [
    {
     "trigger": "ATTACKS",
@@ -7494,11 +7490,28 @@
       "n": 7
      }
     ]
+   },
+   {
+    "trigger": "RUMBLE_DISCARD",
+    "other": true,
+    "lv": [
+     2
+    ],
+    "once": true,
+    "optional": true,
+    "actions": [
+     {
+      "do": "REFRESH"
+     }
+    ],
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": false
+    }
    }
   ],
-  "keywords": [
-   "Rumble"
-  ]
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS02-001",
