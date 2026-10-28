@@ -20,13 +20,13 @@ VERSION, CARDS, defCard, TRAIN, PRESET_DECK
 ## packages/engine/src/01a-card-pack.js (167 lines, ~2.4k tokens) — CARD PACK CODEC (v0.51.0; this part must load before 03-imported-cards.js: its consts are used at load): compact, synchronous format of the built-in card pack
 packBlockOf, packCards, unpackCards, INF_LBASE, INF_LEXT, INF_DBASE, INF_DEXT, INF_ORDER, inflateRaw, packBytes, loadFlavor, loadPack
 
-## packages/engine/src/02a-effects-base.js (259 lines, ~6.8k tokens) — EFFECT ENGINE
+## packages/engine/src/02a-effects-base.js (260 lines, ~6.8k tokens) — EFFECT ENGINE
 FX_STRICT, FX_WARNED, fxUnknown, FX_COND_KEYS, FX_TRIGGERS, FX_TRIGGER_TEXT, BR_IDX, fxEntries, fxMatch, cantAttack, canBlockState, fxIf, cardHasKeyword, fxNoText, ctrlCount, spiritCount, PER_TYPES, perOk, perCount, ownerOf, STATIC_FLAGS, fxImmune, unaffectedBy, flagActive, costDestroyBonus, coresSent, staticBp, takeFromVoid, releaseCores, removeNexus, fxPickTarget, toSoulState, chooseCard, bounceCard, SOUL_SRC, hasMatch
 
 ## packages/engine/src/02b-effects-actions.js (84 lines, ~3.1k tokens)
 FX_ACTIONS
 
-## packages/engine/src/02c-effects-parse.js (164 lines, ~5.1k tokens)
+## packages/engine/src/02c-effects-parse.js (165 lines, ~5.1k tokens)
 canPlaceFree, canPlaceBraveFree, summonFree, canPlacePaid, canPlaceBy, summonPaid, summonBy, fxDescribe, BURST_WHEN, parseCond, parseActionList, parseBurst, parseEffects
 
 ## packages/engine/src/02d-effects-resolve.js (364 lines, ~6.9k tokens)
@@ -65,7 +65,7 @@ INVOKE_WHEN, INVOKE_COSTS, invokeMatchOK, invokeParse, invokeWhenOK, exhaustOwnC
 ## packages/engine/src/02o-effects-battle-end.js (83 lines, ~1.6k tokens)
 endOfBattle
 
-## packages/engine/src/02p-effects-shared-shapes.js (203 lines, ~4.4k tokens)
+## packages/engine/src/02p-effects-shared-shapes.js (203 lines, ~4.5k tokens)
 cardTeams, allHaveShapeOK, allHaveOK, fxOppMark, blockedByMark
 
 ## packages/engine/src/02q-effects-actions-own.js (118 lines, ~2.5k tokens)

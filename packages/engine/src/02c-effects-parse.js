@@ -53,9 +53,10 @@ function parseCond(c) {
     const okS1 = (k === 'lifeReduced' && typeof v === 'boolean') || (k === 'allHave' && allHaveShapeOK(v) && Object.keys(v).every(y => ['family', 'team', 'costIn', 'spiritsOnly'].includes(y)))
       || (k === 'ctrlFamily' && !!v && typeof v === 'object' && Array.isArray(v.any) && v.any.length > 0 && v.any.every(x => typeof x === 'string' && x) && typeof v.is === 'boolean' && Object.keys(v).every(y => ['any', 'is'].includes(y)));   // v0.88 S1 (02p)
     const okSym = k === 'symbolsOnGe' && !!v && typeof v === 'object' && COLORS.includes(v.color) && Number.isInteger(v.n) && v.n >= 1 && v.n <= 10 && Object.keys(v).every(y => ['color', 'n'].includes(y));      // v0.168
+    const okOnlySym = k === 'onlySymbols' && COLORS.includes(v);      // v0.179
     const okMagic = k === 'magicUsed' && !!v && typeof v === 'object' && [].concat(v.name || [], v.family || []).every(x => typeof x === 'string')
       && (v.type == null || ['Spirit', 'Nexus', 'Magic', 'Brave'].includes(v.type)) && Object.keys(v).every(y => ['name', 'family', 'type', 'color', 'costGe', 'costLe'].includes(y));   // v0.116 "if you used a <family> Magic card this turn"
-    if (!okInt && !okStr && !okBool && !okCol && !okStep && !okCtrl && !okNexus && !okS1 && !okMagic && !okSym) return { error: `unknown or invalid condition "${k}" (byOpp, byOppFx, hasSymbol, lifeLe, anyLifeLe, counterGe, soulGe, oppHandGe, voidGe, soulLe, putGe, lifeGe, oppRemovedGe, removedGe, oppSpiritsLe, oppNexusGe, oppNoAB, oppRemovedSpirit, controlName, hasName, soulOn, nexusBraved, oppTurn, attackStep, step, prev, utHit, burstSet, oppBurstSet, ctrl, fewerSpirits, nexusGe, lifeReduced, allHave, ctrlFamily, magicUsed)` };
+    if (!okInt && !okStr && !okBool && !okCol && !okStep && !okCtrl && !okNexus && !okS1 && !okMagic && !okSym && !okOnlySym) return { error: `unknown or invalid condition "${k}" (byOpp, byOppFx, hasSymbol, lifeLe, anyLifeLe, counterGe, soulGe, oppHandGe, voidGe, soulLe, putGe, lifeGe, oppRemovedGe, removedGe, oppSpiritsLe, oppNexusGe, oppNoAB, oppRemovedSpirit, controlName, hasName, soulOn, nexusBraved, oppTurn, attackStep, step, prev, utHit, burstSet, oppBurstSet, ctrl, fewerSpirits, nexusGe, lifeReduced, allHave, ctrlFamily, magicUsed)` };
   }
   return { cond: Object.assign({}, c) };
 }

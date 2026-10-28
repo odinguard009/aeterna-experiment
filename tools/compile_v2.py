@@ -321,6 +321,8 @@ def own_grammar(s, ctx=None):
         lv = re.fullmatch(r'LV([1-3])(?:/LV([1-3]))?(?:/LV([1-3]))?', w, re.I)
         if lv: return [{'do': 'CANT_BE_BLOCKED_BY', 'levels': [int(g) for g in lv.groups() if g]}]
         if re.fullmatch(r'with high speed', w, re.I): return [{'do': 'CANT_BE_BLOCKED_BY', 'highSpeed': True}]
+    m = re.fullmatch(r"this spirit can't be blocked by (?:opposing )?cost (\d+) or (less|more) spirits?(?:/ultimates?)?", x, re.I)
+    if m: return [{'do': 'CANT_BE_BLOCKED_BY', 'costLe' if m.group(2).lower() == 'less' else 'costGe': int(m.group(1))}]      # v0.179 (engine blockedByMark cost bound)
     m = OPP_CORES_T.match(x)
     if m: return opp_cores_t(m)
     m = re.match(r'^target an opposing (.+?)\.\s*send (a|one|two|three) cores?,? besides ,? from it to (?:the|their|its owner\'?s) reserve$', x, re.I)
@@ -604,6 +606,8 @@ def cond_of(x):
     if re.fullmatch(r'you control fewer spirits than (?:the|your) opponent', x, re.I): return {'fewerSpirits': True}      # v0.77
     m = re.fullmatch(r'you control (?:an?|any) (red|purple|green|white|yellow|blue) nexus', x, re.I)
     if m: return {'nexusGe': {'n': 1, 'colors': [m.group(1).lower()]}}      # v0.77
+    m = re.fullmatch(r'there (?:is|are) only (red|purple|green|white|yellow|blue) symbols? on your field', x, re.I)
+    if m: return {'onlySymbols': m.group(1).lower()}      # v0.179
     m = re.fullmatch(r'you (?:control|have) (one|two|three|four|five|six|\d) or more (red|purple|green|white|yellow|blue) symbols?', x, re.I)
     if m: return {'symbolsOnGe': {'color': m.group(2).lower(), 'n': n_of(m.group(1).lower())}}      # v0.168 (engine symbolsOnGe: Field symbols of the owner)
     if re.fullmatch(r'\(soul core\) (?:was|is) used to pay (?:for )?the summon cost', x, re.I): return {'soulPaid': True}      # v0.176 (engine soulPaid: the normal summon paid with the Soul Core)

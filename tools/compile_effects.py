@@ -471,6 +471,7 @@ def spirit_paragraph_main(p, card, rush):
     if nostack: p = p[ns.end():]      # v0.164 "(Can't Stack) When ..." = noStack on the triggered effect (engine 02d: one activation per card name and effect)
     aw = ally_win(p)
     if aw: p, tmatch, extra = aw; trig = ['ALLY_BATTLE_WIN']; tmatch = tmatch or None; extra = extra or None
+    if not trig: p = re.sub(r'^\(During Attack\)\s*(?=(?:If [^.]+?, )?This Spirit can\'t be blocked by (?:opposing )?Cost \d+ or (?:less|more) Spirits?)', '(When Attacks) ', p, flags=re.I)      # v0.179 attack-long unblockable = marked when the attack starts (blockers come right after)
     if not trig: p = re.sub(r'^\(During Attack\)\s*(?=At the end of battle,)', '(When Attacks) ', p)      # v0.167 "(During Attack) At the end of battle, X" = the attacker's end-of-battle effect
     for rx, ts, ex in ([] if trig else BATTLE_HEADS):
         mm = re.match(r'^' + rx + r'\s*', p)

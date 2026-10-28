@@ -57,7 +57,7 @@ function livingDocs() {
   const tracked = spawnSync('git', ['ls-files', '*.md'], { cwd: ROOT, encoding: 'utf8' }).stdout.split('\n').filter(Boolean);
   if (!tracked.length) return [...['README.md', 'AGENTS.md', 'CLAUDE.md'].filter((f) => existsSync(join(ROOT, f))), ...walk(join(ROOT, 'docs')).map((p) => relative(ROOT, p).split('\\').join('/'))]
     .filter((f) => !HISTORY.has(f)).sort();
-  return tracked.filter((f) => !HISTORY.has(f)).sort();
+  return tracked.filter((f) => !HISTORY.has(f) && !f.startsWith('docs/ai/settings/')).sort();   // settings copy: verbatim ~/.claude files, refs are not repo paths
 }
 
 const isFile = (p) => { try { return statSync(join(ROOT, p)).isFile(); } catch { return false; } };
