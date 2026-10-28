@@ -8,7 +8,7 @@ async function runActions(c, e, trg) {
     if (G.over) return;
     c.ctx.prev = last; last = false; if (c.ctx.viaFC == null && c.src) c.ctx.viaFC = !!c.src.viaFC;
     if (!fieldList(c.p).includes(c.src) && trg !== 'SUMMONED' && a.do === 'REFRESH') continue;
-    if (a.if && !fxIf(c.p, c.opp, a.if, c.src ? Object.assign({}, c.ctx, { selfUid: c.src.uid }) : c.ctx)) continue;
+    if (a.if && !fxIf(c.p, c.opp, a.if, c.src ? Object.assign({}, c.ctx, { selfUid: c.src.uid, selfInst: c.src }) : c.ctx)) continue;
     if (!FX_ACTIONS[a.do]) { fxUnknown('action', a.do); continue; }             // v0.59.4 strict effects (release: skip it)
     c.ctx.did = true;
     const by = G.fxBy; G.fxBy = c.p.key;                 // v0.73: whose effect is resolving (LEAVES / byOppFx: "due to opposing effects", depletion and returns included)
@@ -56,7 +56,7 @@ function fxValid(it) {
   if (e.blockingOnly && (trg === 'BATTLE_WIN' || trg === 'ALLY_BATTLE_WIN') && ctx.attacking) return false;     // v0.74 (When Blocks) battle result: only as the blocker
   if (trg === 'ALLY_SUMMONED' && subj && CARDS[subj.id].type === 'Brave' && !(e.match && e.match.type === 'Brave')) return false;     // a Brave summon is not a Spirit summon (manual p. 35)
   if (e.once && usedThisTurn(owner, f, idx, e)) return false;
-  if (!fxIf(owner, opp, e.if, Object.assign({}, ctx, { viaFC: ctx.viaFC == null ? !!f.viaFC : ctx.viaFC, selfUid: f.uid }))) return false;
+  if (!fxIf(owner, opp, e.if, Object.assign({}, ctx, { viaFC: ctx.viaFC == null ? !!f.viaFC : ctx.viaFC, selfUid: f.uid, selfInst: f }))) return false;
   return fxCan({ p: owner, opp, src: f, ctx }, e);
 }
 async function fireFxMulti(events) {

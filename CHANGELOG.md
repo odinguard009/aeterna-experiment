@@ -4,6 +4,12 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.176.0
+- Lane: K
+- **Lane K: 11 more cards complete (all older), 943 of 8,709; two new Soul Core conditions.** `soulPaid` ("If (Soul Core) was used to pay the summon cost": the normal summon records whether the paid cores included the Soul Core; effect summons record false) and `selfSoul` ("If (Soul Core) is on this Spirit": the Spirit holds it, or held it when it left the Field, for (When Destroyed) effects). Also the untargeted "Return a Spirit card (with <keyword>) from your Trash to the Hand" now compiles (existing `RETURN_TRASH`). Cards: The Shaman Dragno, The AbyssalEmpress Resscylla, The HellGuru Flaurou, The Shikigami Houriki, The VassalOgre Shiki, Sanzokku-Bear, The ShoreMusha Kirisame, Purple Smoke Spider, The SaintSnake Azulia, The AzureWarMachine Reginleiv, Death Stalker.
+  - Not built: Jet Karura ("this effect draws +1 cards" inside a draw-then-discard sequence), The VassalMusha Tokikaze (cores to "other Vassal Spirits"), The VassalTengu Coppa (optional summon in a second sentence), The CleverMachineDragon ShiroganeDragon (reveal ending).
+  - Checked: loop, `fx_validate` (schema v19), promotion smoke 11 / 11, new unit tests V176. Not checked: Regression (CI), a real device. Revert note: `git revert` the v0.176.0 commit.
+
 ## v0.175.0
 - Lane: K
 - **Lane K: 7 more cards complete (all older), 932 of 8,709; new action `CANT_BE_BLOCKED_BY`.** "This Spirit can't be blocked by <colour> / LV<n> / High Speed Spirits": the attacker carries a battle-scoped mark and the block list skips the matching Spirits. Cards: Bone-Gladiator, Top Supra, Bottom Desuper, The EvilAdmiral Negapluto, Dark-Iberix, Harpy-Girl, Spinoaxe.

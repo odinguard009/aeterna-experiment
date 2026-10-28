@@ -14,12 +14,6 @@
  "BS01-012": [
   "C_LEVEL"
  ],
- "BS01-014": [
-  "A_RETURN_TRASH",
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "BS01-016": [
   "A_BP_PLUS",
   "A_REFRESH",
@@ -6542,13 +6536,6 @@
  "BS19-064": [
   "C_LEVEL"
  ],
- "BS19-065": [
-  "A_RETURN_TRASH",
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "K_RUSH",
-  "T_SUMMONED"
- ],
  "BS19-066": [
   "C_LEVEL",
   "K_RUSH"
@@ -6789,12 +6776,6 @@
   "A_EXHAUST",
   "C_LEVEL",
   "T_BLOCKS"
- ],
- "BS20-014": [
-  "A_RETURN_TRASH",
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "T_ATTACKS"
  ],
  "BS20-015": [
   "A_EXHAUST",
@@ -11711,10 +11692,6 @@
   "K_ULTIMATE",
   "T_DESTROYED_OPP"
  ],
- "BS31-014": [
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "BS31-016": [
   "A_RETURN_TRASH",
   "A_TRASH_TO_RESERVE",
@@ -12139,12 +12116,6 @@
   "T_ALLY_BLOCKED",
   "T_ATTACKS"
  ],
- "BS31-CP02": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
  "BS31-CP03": [
   "A_VOID",
   "A_VOID_TO_MATCHING",
@@ -12248,11 +12219,6 @@
   "M_BY_DOING",
   "M_OPTIONAL",
   "T_ATTACKS"
- ],
- "BS32-006": [
-  "A_DESTROY_BP",
-  "C_LEVEL",
-  "T_SUMMONED"
  ],
  "BS32-007": [
   "A_SUMMON_FREE",
@@ -12931,11 +12897,6 @@
   "C_LEVEL",
   "K_ULTIMATE",
   "T_ALLY_SUMMONED"
- ],
- "BS33-053": [
-  "C_LEVEL",
-  "M_THEN",
-  "T_ATTACKS"
  ],
  "BS33-054": [
   "A_DRAW",
@@ -13633,12 +13594,6 @@
   "C_LEVEL",
   "T_DESTROYED_OPP"
  ],
- "BS35-013": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "T_DESTROYED",
-  "T_DESTROYED_OPP"
- ],
  "BS35-014": [
   "A_RETURN_TRASH",
   "A_TRASH_TO_RESERVE",
@@ -13668,12 +13623,6 @@
   "M_OPTIONAL",
   "T_ATTACKS",
   "T_DESTROYED_OPP"
- ],
- "BS35-019": [
-  "A_OPP_CORES_TO_RESERVE",
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "T_SUMMONED"
  ],
  "BS35-020": [
   "A_OPP_CORES_TO_RESERVE",
@@ -13802,12 +13751,6 @@
   "A_REFRESH",
   "C_LEVEL",
   "T_ATTACKS"
- ],
- "BS35-042": [
-  "A_BOUNCE",
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "T_SUMMONED"
  ],
  "BS35-043": [
   "A_SUMMON_FREE",
@@ -16637,13 +16580,6 @@
   "C_LEVEL",
   "T_DESTROYED",
   "T_DESTROYED_OPP"
- ],
- "BS40-017": [
-  "A_RETURN_TRASH",
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "K_ADVENT",
-  "T_ATTACKS"
  ],
  "BS40-018": [
   "A_RETURN_TRASH",

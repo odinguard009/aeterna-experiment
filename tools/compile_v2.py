@@ -339,6 +339,11 @@ def own_grammar(s, ctx=None):
         if m.group(3): mt['color'] = m.group(3).lower()
         if m.group(5): mt['keyword'] = m.group(5).title()
         return [{'do': 'RETURN_TRASH', 'match': mt}]
+    m = re.match(r'^(?:you can )?return an? spirit card(?: with ([a-z]+))? from your trash to (?:the|your) hand$', x, re.I)
+    if m:      # v0.176: untargeted pick from the Trash (engine RETURN_TRASH, match type Spirit + optional keyword)
+        mt = {'type': 'Spirit'}
+        if m.group(1): mt['keyword'] = m.group(1).title()
+        return [{'do': 'RETURN_TRASH', 'match': mt}]
     m = OWN_REFRESH.match(x)
     if m and (m.group(1) is None) == (m.group(3).lower() == 'it'):
         match, att = own_np(m.group(2))
@@ -597,6 +602,8 @@ def cond_of(x):
     if m: return {'nexusGe': {'n': 1, 'colors': [m.group(1).lower()]}}      # v0.77
     m = re.fullmatch(r'you (?:control|have) (one|two|three|four|five|six|\d) or more (red|purple|green|white|yellow|blue) symbols?', x, re.I)
     if m: return {'symbolsOnGe': {'color': m.group(2).lower(), 'n': n_of(m.group(1).lower())}}      # v0.168 (engine symbolsOnGe: Field symbols of the owner)
+    if re.fullmatch(r'\(soul core\) (?:was|is) used to pay (?:for )?the summon cost', x, re.I): return {'soulPaid': True}      # v0.176 (engine soulPaid: the normal summon paid with the Soul Core)
+    if re.fullmatch(r'\(soul core\) is on this spirit', x, re.I): return {'selfSoul': True}      # v0.176 (engine selfSoul: this Spirit holds the Soul Core)
     c = v1.all_have_cond(x)
     if c: return c
     if re.fullmatch(r'(?:you )?(?:are |is |was )?summoned via form change', x, re.I): return {'viaFormChange': True}      # v0.135 (schema v8)

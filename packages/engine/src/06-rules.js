@@ -232,18 +232,20 @@ function takeCores(p, n, excludeUid) {
   }
   return got;
 }
-function payCost(p, c, plan) {
+function payCost(p, c, plan) {      // v0.176: returns true when the Soul Core was among the paid cores ("If (Soul Core) was used to pay the summon cost")
+  let soul = false;
   if (plan) {
     coreEvN(p, 'reserve', 'trash', plan.reserve, plan.rsoul);
     for (const [u, k] of Object.entries(plan.by)) coreEvN(p, Number(u), 'trash', k, false);
     if (plan.fsoul) coreEv(p, 'soul', plan.fsoul, 'trash');
     p.reserve.n -= plan.reserve; p.trashCores.n += plan.reserve;
     for (const [u, k] of Object.entries(plan.by)) { const f = fieldList(p).find(x => x.uid === Number(u)); f.cores -= k; p.trashCores.n += k; }
-    if (plan.rsoul) { p.reserve.soul = false; p.trashCores.soul = true; }
-    if (plan.fsoul) { const f = fieldList(p).find(x => x.uid === plan.fsoul); if (f) { f.soul = false; p.trashCores.soul = true; } }
+    if (plan.rsoul) { p.reserve.soul = false; p.trashCores.soul = true; soul = true; }
+    if (plan.fsoul) { const f = fieldList(p).find(x => x.uid === plan.fsoul); if (f) { f.soul = false; p.trashCores.soul = true; soul = true; } }
   } else {
-    const got = takeCores(p, c, null); p.trashCores.n += got.n; if (got.soul) p.trashCores.soul = true;
+    const got = takeCores(p, c, null); p.trashCores.n += got.n; if (got.soul) { p.trashCores.soul = true; soul = true; }
   }
+  return soul;
 }
 
 function checkDepletion(p) {                       // Depletion is not Destruction
@@ -265,7 +267,7 @@ function leaveEvent(p, s, byOpp, byOppFx) {
 function removeSpirit(p, s, why, byOpponent) {
   const lv = p.spirits.includes(s) ? lvIndex(s) : -1;
   if (!removeFrom(p.spirits, s)) return;
-  s.lostLv = lv;
+  s.lostLv = lv; s.soulLost = s.soul;      // v0.176: the Soul Core it held when it left ("If (Soul Core) is on this Spirit" in a Destroyed trigger)
   const oppFx = byOpponent === true || (byOpponent !== 'battle' && !!G && !!G.fxBy && G.fxBy !== p.key);   // v0.73: by an opposing effect (byOpponent 'battle' = BP comparison)
   if (why === 'destroyed' && !s.noFx && G && G.evQ && (CARDS[s.id].effects || []).some(e => e.trigger === 'DESTROYED')) G.evQ.push({ type: 'DESTROYED', key: p.key, inst: s, byOpp: !!byOpponent, byOppFx: oppFx });
   leaveEvent(p, s, !!byOpponent || oppFx, oppFx);   // (When Destroyed), manual p. 31; noFx = "the effects of the destroyed target can't activate"
@@ -334,8 +336,8 @@ function handUp(p, k) { if (G && !G.over && k !== 0 && G.evQ) G.evQ.push({ type:
 function summon(p, inst, plan) {
   const card = CARDS[inst.id], c = effCost(p, card); legacyPay(p, inst);
   removeFrom(p.hand, inst); removeFrom(p.soulState, inst); removeFrom(p.removed, inst); inst.inSoulState = false; inst.mirage = false;   // v0.50: Accel Spirits are summoned from the Removed Zone
-  payCost(p, c, plan);
-  inst.viaFC = false; inst.cores = 0; inst.soul = false; inst.exhausted = false; inst.heavy = false; inst.noAB = false; inst.summonedTurn = G.turnNo; inst.bpMod = 0;
+  const soulPaid = payCost(p, c, plan);
+  inst.viaFC = false; inst.soulPaid = soulPaid; inst.soulLost = false; inst.cores = 0; inst.soul = false; inst.exhausted = false; inst.heavy = false; inst.noAB = false; inst.summonedTurn = G.turnNo; inst.bpMod = 0;
   if (isSpiritForm(card)) {
     const got = takeCores(p, card.levels[0].cores, inst.uid);
     inst.cores += got.n; if (got.soul) inst.soul = true;

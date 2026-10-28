@@ -563,11 +563,31 @@
   "image": "The Shikigami Houriki.jpg",
   "block": "31",
   "saga": 6,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Summoned) Draw a card. If (Soul Core) was used to pay the summon cost, also, send a core from any opposing Spirit to their Reserve."
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     },
+     {
+      "do": "OPP_CORES_TO_RESERVE",
+      "targets": 1,
+      "each": 1,
+      "if": {
+       "soulPaid": true
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS31-015",
@@ -3799,11 +3819,34 @@
   "image": "BS31 CP02.jpg",
   "block": "31",
   "saga": 6,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Summoned) If (Soul Core) was used to pay the summon cost, you can summon a Cost 6 or less \"Vassal\" family Spirit card from your Trash, without paying the cost."
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "SUMMON_HAND",
+      "match": {
+       "family": [
+        "Vassal"
+       ]
+      },
+      "from": "trash",
+      "costLe": 6,
+      "if": {
+       "soulPaid": true
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS31-CP03",
@@ -4557,11 +4600,31 @@
   "image": "Sanzokku-Bear.png",
   "block": "32",
   "saga": 6,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Summoned) Destroy an opposing 5000 BP or less Spirit. When (Soul Core) is used to pay the summon cost, also, destroy an opposing 5000 BP or less Spirit."
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "bpLe": 5000
+     },
+     {
+      "do": "DESTROY",
+      "bpLe": 5000,
+      "if": {
+       "soulPaid": true
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS32-007",
@@ -9649,11 +9712,37 @@
   "image": "The ShoreMusha Kirisame.png",
   "block": "33",
   "saga": 6,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Attacks) Draw a card. Then, discard a card from your Hand. If (Soul Core) is on this Spirit, also, destroy an opposing Cost 3 or less Spirit."
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     },
+     {
+      "do": "DISCARD_HAND",
+      "n": 1,
+      "if": {
+       "prev": true
+      }
+     },
+     {
+      "do": "DESTROY",
+      "costLe": 3,
+      "if": {
+       "selfSoul": true
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS33-054",
