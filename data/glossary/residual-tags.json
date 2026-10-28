@@ -8189,10 +8189,6 @@
   "K_ULTIMATE",
   "T_BLOCKS"
  ],
- "BS24-035": [
-  "A_EXHAUST",
-  "C_LEVEL"
- ],
  "BS24-036": [
   "A_SUMMON_FREE",
   "C_CONTROL",
@@ -13450,11 +13446,6 @@
   "T_DESTROYED",
   "T_DESTROYED_OPP"
  ],
- "BS35-040": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "S1_BLOCK_EXHAUSTED_OPP"
- ],
  "BS35-041": [
   "A_REFRESH",
   "C_LEVEL",
@@ -17160,10 +17151,6 @@
   "M_OPTIONAL",
   "T_ADVENT",
   "T_ATTACKS"
- ],
- "BS41-042": [
-  "A_EXHAUST",
-  "C_LEVEL"
  ],
  "BS41-043": [
   "C_LEVEL",

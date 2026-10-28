@@ -583,6 +583,16 @@ def spirit_paragraph_main(p, card, rush):
             if p.startswith('(Your Turn)'): e['if'] = {'oppTurn': False}
             if lv: e['lv'] = lv
             return [e], flags
+        mm = re.match(r'^All (?:of )?your (?:(?P<col>Red|Purple|Green|White|Yellow|Blue) |(?P<fam>"[^"]+"(?:\s*/\s*"[^"]+")*) family |"(?P<nm>[^"]+)"-named )(?:Spirits )?can block (?:even )?while exhausted\.?$', p, re.I)
+        if mm:      # v0.181 STATIC BLOCK_EXHAUSTED for the owner's matching Spirits (flagActive handles to: own + match)
+            if rush: raise Review('Rush with a constant effect')
+            m = {}
+            if mm.group('col'): m['color'] = mm.group('col').lower()
+            if mm.group('fam'): m['family'] = re.findall(r'"([^"]+)"', mm.group('fam'))
+            if mm.group('nm'): m['name'] = [mm.group('nm')]
+            e = {'trigger': 'STATIC', 'flag': 'BLOCK_EXHAUSTED', 'to': 'own', 'match': m}
+            if lv: e['lv'] = lv
+            return [e], flags
         mm = re.match(r'^\(Your Attack Step\)\s*All attacking Spirits you control (?:gain|get) \+(\d[\d,]*) ?BP\.?$', p, re.I)
         if mm:
             e = {'trigger': 'STATIC', 'bp': bp(mm.group(1)), 'to': 'own', 'attackingOnly': True}
