@@ -8,6 +8,7 @@ import json, os, re
 import allcards      # build/all-cards.json is generated (not in git): allcards.load() writes it when missing or stale
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
+TEAM = re.compile(r'(?m)^[ \t]*\[Teams?:[^\]\n]+\][ \t]*(?:\n|$)')      # a team head line is read by the engine from the text (cardTeams): a card that prints only it has no effect to run
 LEGACY = re.compile(r'(?m)^[ \t]*\(Legacy\)[ \t]*(?:\n|$)')
 
 
@@ -18,6 +19,7 @@ def complete(c):
         return bool(m.get('effect') or m.get('by')) and not res
     t = c.get('text') or ''
     if not t: return True
+    if not TEAM.sub('', t, count=1).strip(): return True
     if c.get('legacy') is True and not LEGACY.sub('', t, count=1).strip(): return True
     # v0.104.0: a data-field mechanic that runs straight from its flag is a payload of its own, so a card whose only
     # printed effect is that mechanic counts complete: High Speed (flag highSpeed, summon in the Flash Timing is

@@ -730,6 +730,8 @@ def magic_spec(body, tim=()):
     return {'effect': 'ACTIONS', 'value': 0, 'actions': acts}
 
 
+TEAM_LINE = re.compile(r'(?m)^[ \t]*\[Teams?:[^\]\n]+\][ \t]*(?:\n|$)')
+TEAM_HEAD = re.compile(r'^\[Teams?:[^\]]+\]$')
 NO_MAIN = re.compile(r"^(?:\(Can't Use in Main\)|You can(?:'|no)t use this card (?:during|in) (?:the )?Main Step\.?)$", re.I)
 
 
@@ -737,6 +739,7 @@ def magic_card(paras, n=None):
     by, no_main = {}, False
     for p in paras:
         if NO_MAIN.match(p): no_main = True; continue      # v0.64: "You can't use this card during Main Step." -> magic.noMain (v0.44 engine flag)
+        if TEAM_HEAD.match(p): continue      # the team is read from the card text by the engine (cardTeams)
         fk = flag_para(p)
         if fk and n is not None:
             n[fk] = True; continue
@@ -954,6 +957,7 @@ def compile_card(c):
         si, txt, n['text'] = ultimate_text(c, txt)
         if si: n['summonIf'] = si
         txt = re.sub(r'\b([Tt])his Ultimate\b', lambda m: m.group(1) + 'his Spirit', txt)
+    txt = TEAM_LINE.sub('', txt or '', count=1) if txt else txt      # "[Team: X]" head line: the engine reads it from the card text (cardTeams)
     sm = re.match(r'^\s*\{\{\s*Soul Magic\s*\|\s*([^}|]*)[^}]*\}\}\s*\n?', txt or '')   # also {{Soul Magic|p||<printed text>}}
     if sm:                            # v0.64 Soul Magic (Standard CR 12-2-1-2): "If you control any <colour> symbol, you can use it with just the Soul Core"
         col = SOUL_MAGIC_COLS.get(sm.group(1).strip().lower())

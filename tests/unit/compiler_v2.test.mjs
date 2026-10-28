@@ -137,3 +137,9 @@ test('C182-01 "you control a Spirit with When Blocks effect" compiles to ctrl.ke
   const r = compile('[LV1-2] (When Attacks)\nIf you control any Spirit with When Blocks effect, put a core from the Void to your Trash.');
   assert.deepEqual(r.effects[0].actions, [{ do: 'VOID_TO_TRASH', n: 1, if: { ctrl: { n: 1, type: 'Spirit', keyword: 'When Blocks' } } }]);
 });
+
+test('C182-02 a "[Team: X]" head line is not an effect: a Spirit printing only it compiles with no effects, a Magic card skips it', () => {
+  const a = compile('[Teams: Red Stella/Shiny Hearts]'); assert.equal(a.review, undefined); assert.equal(a.fxComplete, true);
+  const m = compile('[Team: Red Stella]\n\nFlash\nTarget one of your Spirits. During this turn, give it +3000 BP.', { id: 'T-2', name: 'M', type: 'Magic', color: 'red', cost: 1 });
+  assert.equal(m.review, undefined); assert.ok(m.magic.timing.includes('FLASH'));
+});

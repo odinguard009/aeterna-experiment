@@ -55,6 +55,6 @@ test('S62-04 promoted block A cards live in data/cards/saga-50.json with compile
   assert.ok(cards.length >= 51, String(cards.length));
   for (const c of cards) {
     assert.equal(c.block, 'A', c.id);
-    assert.ok((c.residual || []).length && /Partial card \(v0\.79\.0/.test(c.note || '') || !(c.text || '').trim() || (c.effects || []).length || c.magic || (c.legacy && !c.text.replace(/\(Legacy\)/, '').trim()), `${c.id} has text but no effects`);   // v0.69: a card whose only text is the (Legacy) head is complete
+    assert.ok((c.residual || []).length && /Partial card \(v0\.79\.0/.test(c.note || '') || !(c.text || '').replace(/^\[Teams?:[^\]\n]+\]\s*$/m, '').trim() || (c.effects || []).length || c.magic || (c.legacy && !c.text.replace(/\(Legacy\)/, '').trim()), `${c.id} has text but no effects`);   // v0.69: a card whose only text is the (Legacy) head is complete
   }
 });
