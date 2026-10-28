@@ -17,5 +17,5 @@ On 2026-10-26 the owner scolded me for saying things were finished when they wer
 - Report the real condition of every step: local commit vs pushed vs CI green vs release created; which screens I compared and which I did not; flaky or skipped tests; house readings that are my judgment, not a rule source.
 - Do not mark a session `done` before the release exists and CI is green (I did this for v0.134.0).
 - A "done" means the owner's stated goal (e.g. looks like the mockup), not that my own checklist is empty.
-- If I do not know, say so; never fill a gap with a plausible answer. Link: [[feedback-mockup-parity]], [[feedback-batch-releases]].
+- If I do not know, say so; never fill a gap with a plausible answer. Link: [[feedback-batch-releases]].
 - Style (owner, 2026-10-26): cut unnecessary praise and cheerleading; be sharp, critical and to the point. Lead with problems and gaps, then facts. No self-congratulation ("selesai dengan baik", "berhasil") unless a verified result backs it.
