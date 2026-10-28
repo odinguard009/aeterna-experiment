@@ -2085,11 +2085,6 @@
   "C_LEVEL",
   "M_OPTIONAL"
  ],
- "BS08-040": [
-  "A_VOID",
-  "A_VOID_TO_LIFE",
-  "C_LEVEL"
- ],
  "BS08-041": [
   "A_VOID",
   "C_LEVEL",
@@ -2124,10 +2119,6 @@
  "BS08-048": [
   "A_BP_PLUS",
   "A_EXHAUST",
-  "C_LEVEL"
- ],
- "BS08-049": [
-  "A_VOID",
   "C_LEVEL"
  ],
  "BS08-050": [

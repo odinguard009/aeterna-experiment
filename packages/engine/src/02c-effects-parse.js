@@ -36,10 +36,11 @@ async function tributePay(p, inst) {      // v0.182 Tribute: after the cost is p
   const k = CARDS[inst.id], L = tributeList(p, k).filter(s => s !== inst);
   if (!k.tribute || !L.length) return;
   const safe = s => !s.exhausted && flagActive(p, 'TRIBUTE_SAFE', s), s = p.cpu ? L.slice().sort((a, b) => (safe(b) - safe(a)) || totalCores(a) - totalCores(b))[0] : await chooseCard({ p }, L, 'Tribute', `Send all cores from one of your Spirits to the ${k.tribute.to === 'void' ? 'Void' : 'Trash'}.`, false);   // shortcut: the human pick is by card id, so same-name Spirits are not told apart; upgrade with a uid pick if it matters
-  if (safe(s)) { s.exhausted = true; log(`${CARDS[inst.id].name}: Tribute, ${CARDS[s.id].name} is exhausted instead (its cores count as sent).`); return; }      // v0.183 TRIBUTE_SAFE
+  if (safe(s)) { s.exhausted = true; log(`${CARDS[inst.id].name}: Tribute, ${CARDS[s.id].name} is exhausted instead (its cores count as sent).`); await fireFx(p, 'TRIBUTED', s); return; }      // v0.183 TRIBUTE_SAFE
   const n = s.cores; coreEvN(p, s.uid, k.tribute.to, n, false); s.cores = 0;
   if (k.tribute.to === 'void') p.void += n; else p.trashCores.n += n;
   log(`${CARDS[inst.id].name}: Tribute, ${n} core${n === 1 ? '' : 's'} from ${CARDS[s.id].name} go to the ${k.tribute.to === 'void' ? 'Void' : 'Trash'}.`);
+  if (!G.over && fieldList(p).includes(s)) await fireFx(p, 'TRIBUTED', s);      // v0.183 "becomes the target of Tribute"
   checkDepletion(p);
 }
 const summonBy = (p, inst, pay, opts) => pay ? summonPaid(p, inst, opts) : summonFree(p, inst, opts);

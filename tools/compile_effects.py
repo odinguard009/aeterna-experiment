@@ -170,6 +170,7 @@ BATTLE_HEADS = [      # v0.72 heads read before TRIGGERS: (trigger list, extra e
 TRIGGERS = [
     (r'\(When Summoned/Attacks\)', ['SUMMONED', 'ATTACKS']),
     (r'\(When Summoned/Destroyed\)', ['SUMMONED', 'DESTROYED']),      # v0.54: (When Destroyed) = engine trigger DESTROYED (manual p. 31)
+    (r'When this Spirit becomes the target of Tribute,', ['TRIBUTED']),      # v0.183 engine TRIBUTED (tributePay)
     (r'\(When Destroyed\)', ['DESTROYED']),
     (r'\(When Depleted/Destroyed by the Opponent\)', ['DESTROYED_OPPD']),      # v0.177 engine alsoDepleted
     (r'\(When Destroyed by the Opponent\)', ['DESTROYED_OPP']),      # v0.55: CR 12-2-1-12-1 (opposing effect or BP comparison)
@@ -644,7 +645,7 @@ def spirit_paragraph_main(p, card, rush):
             e = [{'trigger': 'STATIC', 'flag': 'CANT_' + mm.group(1).upper(), 'to': 'self'}]
             if lv: e[0]['lv'] = lv
             return e, flags
-        if re.fullmatch(r'When this Spirit becomes the target of Tribute, by exhausting this Spirit, (?:treat all cores on this Spirit as being sent to the designated place|you can summon without (?:using )?Tribute)\.?', p, re.I):      # v0.183 STATIC TRIBUTE_SAFE (engine tributePay)
+        if re.fullmatch(r'When this Spirit becomes the target of Tribute, by exhausting this Spirit, (?:treat all cores on this Spirit as being sent to the designated place|(?:you can )?summon without (?:using )?Tribute)\.?', p, re.I):      # v0.183 STATIC TRIBUTE_SAFE (engine tributePay)
             if rush: raise Review('Rush with a Tribute flag')
             e = [{'trigger': 'STATIC', 'flag': 'TRIBUTE_SAFE', 'to': 'self'}]
             if lv: e[0]['lv'] = lv
