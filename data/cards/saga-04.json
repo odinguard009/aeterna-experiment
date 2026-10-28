@@ -12369,11 +12369,24 @@
   "image": "BS22-019.jpg",
   "block": "22",
   "saga": 4,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Destroyed) The opponent exhausts two Spirits they control."
+  "effects": [
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "EXHAUST_OPP",
+      "n": 2,
+      "oppChooses": true
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS22-020",
@@ -14677,6 +14690,54 @@
    "Main- Destroy all opposing 3000 BP or less Spirits. After this effect resolves, you can summon a Spirit card from your Hand, treated as one cost being paid for each Spirit destroyed by this effect."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+ },
+ {
+  "id": "BS22-074",
+  "name": "Flame Disaster",
+  "name_jp": "フレイムディザスター",
+  "type": "Magic",
+  "color": "red",
+  "cost": 7,
+  "reduction": {
+   "red": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDestroy two opposing 5000 BP or less Spirits.\n{{Rush|Green}}\n(While you have a Green symbol, the following effect activates next)\n: The opponent exhausts two Spirits they control.",
+  "image": "BS22-074.jpg",
+  "block": "22",
+  "saga": 4,
+  "mechanics": [
+   "Rush"
+  ],
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "DESTROY",
+     "bpLe": 5000
+    },
+    {
+     "do": "DESTROY",
+     "bpLe": 5000
+    },
+    {
+     "do": "EXHAUST_OPP",
+     "n": 2,
+     "oppChooses": true,
+     "if": {
+      "hasSymbol": "green"
+     }
+    }
+   ]
+  },
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS22-079",

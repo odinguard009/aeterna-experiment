@@ -21120,19 +21120,48 @@
   "families": [
    "Winged Beast"
   ],
-  "text": "[LV1][LV2] {{ws|1}} (When Attacks)\nWhen this Spirit is blocked, the opponent exhausts the specified number of Spirits they control.\n\n[LV2] (When Attacks)\nThe Spirit gains +1000 BP for each \"Plant Spirit\" family Spirit you control.",
+  "text": "[LV1][LV2] (When Attacks) When this Spirit is blocked, the opponent exhausts one Spirit they control.\n\n[LV2] (When Attacks)\nThis Spirit gains +1000 BP for each \"Plant Spirit\" family Spirit you control.",
   "image": "The Baron Jacobino.png",
   "block": "06",
   "saga": 1,
   "mechanics": [
    "Windstorm"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] {{ws|1}} (When Attacks) When this Spirit is blocked, the opponent exhausts the specified number of Spirits they control.",
-   "[LV2] (When Attacks) The Spirit gains +1000 BP for each \"Plant Spirit\" family Spirit you control."
+  "effects": [
+   {
+    "trigger": "ALLY_BLOCKED",
+    "lv": [
+     1,
+     2
+    ],
+    "self": true,
+    "actions": [
+     {
+      "do": "EXHAUST_OPP",
+      "n": 1,
+      "oppChooses": true
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "BP_PLUS",
+      "n": 1000,
+      "per": {
+       "type": "Spirit",
+       "family": "Plant Spirit"
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS06-034",
@@ -21228,7 +21257,7 @@
   "families": [
    "Plant Spirit"
   ],
-  "text": "[LV1][LV2][LV3] {{ws|2}} (When Attacks)\nWhen this Spirit is blocked, the opponent exhausts the specified number of Spirits they control.\n\n[LV3] (When Attacks)\nWhen this Spirit's attack reduces the opposing Life, exhaust an opposing Spirit.",
+  "text": "[LV1][LV2][LV3] (When Attacks) When this Spirit is blocked, the opponent exhausts two Spirits they control.\n\n[LV3] (When Attacks)\nWhen this Spirit's attack reduces the opposing Life, exhaust an opposing Spirit.",
   "image": "The FangTree Rafflesio.jpg",
   "block": "06",
   "saga": 1,
@@ -21236,6 +21265,22 @@
    "Windstorm"
   ],
   "effects": [
+   {
+    "trigger": "ALLY_BLOCKED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "self": true,
+    "actions": [
+     {
+      "do": "EXHAUST_OPP",
+      "n": 2,
+      "oppChooses": true
+     }
+    ]
+   },
    {
     "trigger": "ALLY_LIFE_HIT",
     "lv": [
@@ -21250,11 +21295,8 @@
     ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] {{ws|2}} (When Attacks) When this Spirit is blocked, the opponent exhausts the specified number of Spirits they control."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS06-037",
@@ -23275,6 +23317,38 @@
    "Main Return three \"Terra Dragon\" family Spirit cards from your Trash to the Hand."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+ },
+ {
+  "id": "BS06-100",
+  "name": "Thorn Prison",
+  "name_jp": "ソーンプリズン",
+  "type": "Magic",
+  "color": "green",
+  "cost": 4,
+  "reduction": {},
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nThe opponent exhausts two Spirits they control.",
+  "image": "Thorn Prison.jpg",
+  "block": "06",
+  "saga": 1,
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "EXHAUST_OPP",
+     "n": 2,
+     "oppChooses": true
+    }
+   ]
+  },
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS06-101",
@@ -30576,19 +30650,47 @@
   "families": [
    "Winged Beast"
   ],
-  "text": "[LV1][LV2] {{ws|1}} (When Attacks)\nWhen this Spirit is blocked, the opponent exhausts a Spirit they control.\n\n[LV2] (Your Attack Step)\nAll your Spirits with Windstorm gain +2000 BP.",
+  "text": "[LV1][LV2] (When Attacks) When this Spirit is blocked, the opponent exhausts one Spirit they control.\n\n[LV2] (Your Attack Step)\nAll your Spirits with Windstorm gain +2000 BP.",
   "image": "The Viscount Minoba.jpg",
   "block": "09",
   "saga": 1,
   "mechanics": [
    "Windstorm"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] {{ws|1}} (When Attacks) When this Spirit is blocked, the opponent exhausts a Spirit they control.",
-   "[LV2] (Your Attack Step) All your Spirits with Windstorm gain +2000 BP."
+  "effects": [
+   {
+    "trigger": "ALLY_BLOCKED",
+    "lv": [
+     1,
+     2
+    ],
+    "self": true,
+    "actions": [
+     {
+      "do": "EXHAUST_OPP",
+      "n": 1,
+      "oppChooses": true
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 2000,
+    "to": "own",
+    "if": {
+     "attackStep": true,
+     "oppTurn": false
+    },
+    "match": {
+     "keyword": "Windstorm"
+    },
+    "lv": [
+     2
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS09-023",

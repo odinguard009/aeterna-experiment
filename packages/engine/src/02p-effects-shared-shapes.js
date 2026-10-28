@@ -91,15 +91,18 @@ function allHaveOK(owner, q) {
   };
   const E = FX_ACTIONS.EXHAUST_OPP, eChk = E.chk, eCands = E.cands, eRun = E.run, eTxt = E.txt;
   E.chk = a => eChk(a) && (a.oppChooses == null || a.oppChooses === true);
-  E.txt = a => a.oppChooses ? 'the opponent chooses one of their refreshed Spirits; exhaust it' : eTxt(a);
+  E.txt = a => a.oppChooses ? `the opponent chooses ${a.n === 1 ? 'one' : a.n} of their refreshed Spirits; exhaust ${a.n === 1 ? 'it' : 'them'}` : eTxt(a);
   E.run = async (c, a) => {
     if (!a.oppChooses) return eRun(c, a);
-    const L = E.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
-    // the opponent targets: the CPU gives up its weakest refreshed Spirit, a human opponent taps one
-    const t = c.opp.cpu ? L.slice().sort((x, y) => (bpOf(x) - bpOf(y)) || (x.cores - y.cores))[0]
-      : await fxPickTarget(Object.assign({}, c, { p: c.opp }), L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Choose one of your refreshed Spirits to exhaust (glowing).`);
-    if (!t) { c.ctx.did = false; return; }
-    t.exhausted = true; log(`${CARDS[c.src.id].name}: ${poss(c.opp)} ${CARDS[t.id].name} is exhausted (the opponent chose it).`);
+    if (!E.cands(c, a).length) { c.ctx.did = false; return; }
+    // the opponent targets: the CPU gives up its weakest refreshed Spirits, a human opponent taps them (v0.183: n of them, Windstorm)
+    for (let j = 0; j < a.n; j++) {
+      const L = E.cands(c, a); if (!L.length) break;
+      const t = c.opp.cpu ? L.slice().sort((x, y) => (bpOf(x) - bpOf(y)) || (x.cores - y.cores))[0]
+        : await fxPickTarget(Object.assign({}, c, { p: c.opp }), L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Choose one of your refreshed Spirits to exhaust (glowing).`);
+      if (!t) break;
+      t.exhausted = true; log(`${CARDS[c.src.id].name}: ${poss(c.opp)} ${CARDS[t.id].name} is exhausted (the opponent chose it).`);
+    }
   };
   const R = FX_ACTIONS.BOUNCE_OPP, rChk = R.chk, rCands = R.cands, rTxt = R.txt;
   const lv1Lim = (c, m) => { const L = c.p.spirits.filter(f => fxMatch(CARDS[f.id], m)).map(f => ((CARDS[f.id].levels || [])[0] || {}).bp || 0); return L.length ? Math.max(...L) : -1; };

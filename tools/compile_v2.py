@@ -301,6 +301,8 @@ def own_grammar(s, ctx=None):
     battle_ok = ctx is None or bool(ctx.get('battle')) or bool(BATTLE_TRIGGERS & set(ctx.get('trigger') or ()))
     if re.search(r'during this battle', x, re.I) and not battle_ok: raise Review('v2 battle effect outside a battle trigger')      # A7 review
     if re.fullmatch(r'the opponent targets a refreshed spirit they control\.\s*exhaust it', x, re.I): return [{'do': 'EXHAUST_OPP', 'n': 1, 'oppChooses': True}]      # v0.170 (engine oppChooses, schema v3)
+    m = re.fullmatch(r'the opponent exhausts (a|one|two|three) spirits? they control', x, re.I)      # v0.183 Windstorm
+    if m: return [{'do': 'EXHAUST_OPP', 'n': n_of({'a': 'one'}.get(m.group(1).lower(), m.group(1).lower())), 'oppChooses': True}]
     m = re.fullmatch(r'(?:you can )?refresh this spirit by exhausting a nexus, up to (\d) times per turn', x, re.I)
     if m: return [{'do': 'ASSAULT', 'n': int(m.group(1))}]      # v0.185 Assault
     m = CORE_BP.match(x)
@@ -953,6 +955,9 @@ def assault_norm(t):
     return ASSAULT_TPL.sub(lambda m: m.group(1) + '\nYou can refresh this Spirit by exhausting a Nexus, up to %d times per turn.' % {'once': 1, 'twice': 2, 'three times': 3}[m.group(2).lower()], t)
 
 
+WS_TPL = re.compile(r'\{\{\s*ws\s*\|\s*(\d)\s*\}\}\s*(\(When Attacks\))\s*\n?\s*When this Spirit is blocked, the opponent exhausts (?:the (?:specified|designated) number of|a|one|two|three) Spirits? they control\.?', re.I)      # v0.183
+
+
 TRIBUTE_TPL = re.compile(r'\{\{\s*Tribute\s*\|\s*(?:Cost (\d+) or more|([^{}|]+?))\s*(?:&rarr;|→)\s*(Void|Trash)\s*\}\}[ \t]*\n?After paying for the summoning cost[^\n]*\n?', re.I)
 
 
@@ -973,6 +978,11 @@ def compile_card(c):
     if t and '{{Rush|' in t:
         t2 = rush_norm(t)
         if t2 != t: c = dict(c, text=t2); t = t2
+    if t and '{{ws|' in t:      # v0.183 {{ws|N}} Windstorm: the printed sentence's count is the template number
+        t2 = WS_TPL.sub(lambda m: m.group(2) + ' When this Spirit is blocked, the opponent exhausts %s they control.' % {1: 'one Spirit', 2: 'two Spirits', 3: 'three Spirits'}[int(m.group(1))], t)
+        if t2 != t: c = dict(c, text=t2); t = t2
+    if t and re.search(r'^The Spirit gains ', t, re.M):      # v0.183 "(When Attacks) The Spirit gains +N BP ..." is the card itself
+        c = dict(c, text=re.sub(r'^The Spirit gains ', 'This Spirit gains ', t, flags=re.M)); t = c['text']
     if t and '{{Assault|' in t:
         t2 = assault_norm(t)
         if t2 != t: c = dict(c, text=t2); t = t2

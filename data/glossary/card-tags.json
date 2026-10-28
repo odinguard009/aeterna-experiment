@@ -2543,6 +2543,9 @@
   "A_TRASH_TO_RESERVE",
   "A_RETURN_TRASH"
  ],
+ "BS06-100": [
+  "A_EXHAUST"
+ ],
  "BS06-101": [
   "A_BP_PLUS",
   "A_VOID",
@@ -9726,6 +9729,10 @@
  "BS22-073": [
   "A_BP_PLUS",
   "M_OPTIONAL"
+ ],
+ "BS22-074": [
+  "A_EXHAUST",
+  "K_RUSH"
  ],
  "BS22-079": [
   "A_BP_PLUS",

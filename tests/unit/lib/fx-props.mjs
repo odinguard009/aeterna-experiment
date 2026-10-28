@@ -82,7 +82,7 @@ function destroyCase(card, a) {
 const PRE_RESET = `for (const q of [P, O]) { q.spirits = q.spirits.filter(x => x === src); q.nexus = q.nexus.filter(x => x === src); q.trash = []; q.hand = []; q.deck = []; } for (let j = 0; j < 4; j++) dk(${J(FILL)});`;
 
 function exhaustCase(a, heavy) {
-  if (!only(a, heavy ? ['n'] : ['n', 'costLe'])) return null;
+  if (!only(a, heavy ? ['n'] : ['n', 'costLe', 'oppChooses'])) return null;
   const c0 = a.costLe != null ? a.costLe : 3, flag = heavy ? 'heavy' : 'exhausted';
   const fix = [{ cost: c0, bp: 3000 }].concat(a.costLe != null ? [{ cost: c0 + 1, bp: 9000 }] : []);
   return { fix, body: `const L = []; for (let j = 0; j < A.n + 1; j++) L.push(sp(${J(sid(c0, 3000))}, O));

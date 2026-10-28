@@ -156,7 +156,7 @@ function parseEffects(arr) {
       o.actions = ar.actions;
       if (e.braved === true) o.braved = true;
       if (typeof e.subjBraved === 'string' && e.subjBraved && e.trigger === 'ALLY_ATTACKS') o.subjBraved = e.subjBraved;   // v0.45: "when your <family> Brave Spirit attacks" (Agateram Unleash)                      // [During Brave]: only while a Brave is combined with this Spirit (v0.37)
-      if (e.optional) o.optional = true; if (e.once) o.once = true; if (e.sameName) o.sameName = true; if (e.alsoAdvent && e.trigger === 'SUMMONED') o.alsoAdvent = true; if (e.self && (e.trigger === 'SOUL_PLACED' || e.trigger === 'ALLY_LIFE_HIT')) o.self = true;
+      if (e.optional) o.optional = true; if (e.once) o.once = true; if (e.sameName) o.sameName = true; if (e.alsoAdvent && e.trigger === 'SUMMONED') o.alsoAdvent = true; if (e.self && (e.trigger === 'SOUL_PLACED' || e.trigger === 'ALLY_LIFE_HIT' || e.trigger === 'ALLY_BLOCKED')) o.self = true;
       if (e.other === true && /^ALLY_/.test(e.trigger)) o.other = true; if (e.noStack === true) o.noStack = true;      // v0.40: "your other X" / "(Can't Stack)"
       if (e.attackingOnly === true && (e.trigger === 'BATTLE_WIN' || e.trigger === 'ALLY_BATTLE_WIN')) o.attackingOnly = true;   // v0.72 (During Attack): only as the attacker
       if (e.blockingOnly === true && (e.trigger === 'BATTLE_WIN' || e.trigger === 'ALLY_BATTLE_WIN')) o.blockingOnly = true;   // v0.74 (When Blocks) battle result: only as the blocker
