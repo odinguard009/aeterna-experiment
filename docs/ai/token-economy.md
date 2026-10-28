@@ -30,7 +30,7 @@ Goal: the same quality per release with far fewer tokens. Each rule says who doe
 ## 5. Scope (user + Claude)
 - Scope per session is decided by Claude (see CLAUDE.md "Session scope"): small tasks bundled, a heavy task alone; start each session with one complete instruction, e.g. "Kerjakan issue #1" (CLAUDE.md is loaded automatically; saying "Baca CLAUDE.md" only triggers a wasted read). Extra instructions mid-task and "stop" cause rework: send them before starting when possible.
 - Model choice (owner, 2026-10-20; replaces "Opus for everything" of 2026-10-17): Opus for engine, protocol and compiler work; Sonnet for docs/cleanup and card bundles that only write effect JSON with existing actions.
-- No subagents (owner, 2026-10-20) except the read-only player-view pass: the A2 pilot measured ~1 complete card per 100k tokens with card-author agents against ~8-11 for main-session bundles (v0.78.0), and team sessions spent most of their tokens in agents.
+- No subagents (owner, 2026-10-20) except the read-only player-view pass and, for broad structural questions only, the read-only codebase-memory lookup agents (owner, 2026-10-28; efficiency unmeasured, review after 3 sessions): the A2 pilot measured ~1 complete card per 100k tokens with card-author agents against ~8-11 for main-session bundles (v0.78.0), and team sessions spent most of their tokens in agents.
 - Brainstorming chat: upload `build/aeterna-docs-pack.md` (`node tools/pack_ai.mjs --docs`, ~17k tokens), not the full code pack (~86k).
 
 ## 6. Settings (user)
