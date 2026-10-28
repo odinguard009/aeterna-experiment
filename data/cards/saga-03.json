@@ -317,7 +317,8 @@
    }
   ],
   "families": [
-   "Dragon, Dragon Warrior"
+   "Dragon",
+   "Dragon Warrior"
   ],
   "text": "[LV1][LV2][LV3] Flash- Awaken - You can put any number of cores from Spirits you control to this Spirit.\n\n[LV2][LV3] (Your Attack Step) While you have a set Burst, this Spirit gains +4000 BP.",
   "image": "Warrior-Dragon.png",
@@ -782,7 +783,8 @@
    }
   ],
   "families": [
-   "Supreme Hero, Zombie"
+   "Supreme Hero",
+   "Zombie"
   ],
   "text": "☼[ Burst: After Your Life is Decreased ]\n When you have four or more Purple cards in your Trash, summon this Spirit card.\n\n[LV1][LV2][LV3] (When Destroyed) Destroy an opposing exhausted Spirit.\n\n[LV3] (When Destroyed) Return this Spirit to your Hand.",
   "image": "Nasuno-Archer.png",
@@ -872,7 +874,8 @@
    }
   ],
   "families": [
-   "Nightling, Dark Snake"
+   "Nightling",
+   "Dark Snake"
   ],
   "text": "[LV1][LV2] (When Summoned) Send cores from all opposing Spirits to the Reserve until only 1 core is left on each of them.\n\n[LV2] (After Your Burst Activates) Send cores from two opposing Spirits to the Reserve until only 1 core is left on each of them.",
   "image": "The TwinPhantomDragon Sheyron.png",
@@ -968,7 +971,8 @@
    }
   ],
   "families": [
-   "Parasite, Shell Insect"
+   "Parasite",
+   "Shell Insect"
   ],
   "text": "High Speed (Flash) This spirit card may be summoned from your hand during the Flash Step. In that case, the cost of this spirit and the cores to be put on this spirit must be paid or moved from your reserve.\n\n [LV1][LV2] (When Summoned) During this turn, all your Spirits get +1000 BP.",
   "image": "Mushamega.png",
@@ -1050,7 +1054,8 @@
    }
   ],
   "families": [
-   "Parasite, Plant Spirit"
+   "Parasite",
+   "Plant Spirit"
   ],
   "text": "",
   "image": "Monshiroran.png",
@@ -1119,7 +1124,8 @@
    }
   ],
   "families": [
-   "Giant Beast, Imp"
+   "Giant Beast",
+   "Imp"
   ],
   "text": "",
   "image": "Musha-Geo.png",
@@ -2853,7 +2859,8 @@
    }
   ],
   "families": [
-   "Armored Beast, Flying Fish"
+   "Armored Beast",
+   "Flying Fish"
   ],
   "text": "[LV1] This brave cannot attack when it is in spirit condition.\n\n[When Braved] (When Blocks) This Spirit gets +5000 BP.",
   "image": "Diyadokari.png",
@@ -4196,7 +4203,8 @@
    }
   ],
   "families": [
-   "Supreme Hero, Dragon Warrior"
+   "Supreme Hero",
+   "Dragon Warrior"
   ],
   "text": "☼[ Burst: After Your Life is Decreased ]\nFor each color of Spirits/Nexuses on the opposing field, destroy an opposing Spirit with only 1 core on it. After this effect resolves, summon this Spirit card.\n\n [LV2][LV3] (When Destroyed) If you don't have a Burst set, you can set this Spirit as a Burst.",
   "image": "Hanzo-Shinobi-Dragon.png",
@@ -4235,7 +4243,8 @@
    }
   ],
   "families": [
-   "Emperor Beast, Deified General"
+   "Emperor Beast",
+   "Deified General"
   ],
   "text": "[LV1][LV2][LV3] While you have a Burst set, each Spirit can only reduce either player's Life by one each turn.\n\n [LV2][LV3] (Your Attack Step) When only the opposing Spirit is destroyed when comparing BP with your Red Spirit, draw a card.",
   "image": "The HollowBeast Champbongor.png",
@@ -4866,7 +4875,8 @@
    }
   ],
   "families": [
-   "Plant Spirit, Deified General"
+   "Plant Spirit",
+   "Deified General"
   ],
   "text": "[LV1][LV2] While you have a Burst set, each Spirit can only reduce either player's Life by one each turn.\n\n [LV1][LV2] (Your Turn) When your Spirits are destroyed by the opponent, for each Green Spirit destroyed, exhaust 1 opposing Spirit.",
   "image": "The HollowSoldier Aoi-Subin.png",
@@ -7210,7 +7220,8 @@
    }
   ],
   "families": [
-   "Great General, Reptile Beast"
+   "Great General",
+   "Reptile Beast"
   ],
   "text": "[LV2][LV3] (When Attacks) You can target and attack an opposing refreshed Spirit.",
   "image": "Kamapagos.jpg",
@@ -7534,7 +7545,8 @@
    }
   ],
   "families": [
-   "Great General, Spiritual Beast"
+   "Great General",
+   "Spiritual Beast"
   ],
   "text": "[LV1][LV2][LV3] (When Summoned) You can summon a \"Kinkokaku\" from your Trash, without paying the cost.",
   "image": "Ginroukaku.jpg",
@@ -7572,7 +7584,8 @@
    }
   ],
   "families": [
-   "Great General, Spiritual Beast"
+   "Great General",
+   "Spiritual Beast"
   ],
   "text": "[LV1][LV2][LV3] (When Summoned) You can summon a \"Ginroukaku\" from your Trash, without paying the cost.\n\n [LV1][LV2][LV3] (Your Attack Step) Spirits can't be returned to the Hand.",
   "image": "Kinkokaku.jpg",
@@ -7773,7 +7786,8 @@
    }
   ],
   "families": [
-   "Great General, Spiritual Beast"
+   "Great General",
+   "Spiritual Beast"
   ],
   "text": "[LV1][LV2][LV3] (When Summoned) For each \"Spiritual Beast\" family Spirit you control, send a core from one opposing Spirit to the Reserve.",
   "image": "Kouenko.gif",
@@ -8568,7 +8582,8 @@
    }
   ],
   "families": [
-   "Great General, Song Bird"
+   "Great General",
+   "Song Bird"
   ],
   "text": "",
   "image": "Town Musicians of Brepentan.jpg",
@@ -8974,7 +8989,8 @@
    }
   ],
   "families": [
-   "Great General, Fusion Beast"
+   "Great General",
+   "Fusion Beast"
   ],
   "text": "[LV2] (When Attacks) Destroy an opposing Cost 3 or less Spirit.",
   "image": "Gugalannar.jpg",
@@ -9019,7 +9035,8 @@
    }
   ],
   "families": [
-   "Great General, Fusion Beast"
+   "Great General",
+   "Fusion Beast"
   ],
   "text": "[LV1][LV2] (When Attacks) For each card in the opposing Hand, this Spirit gets +1000 BP.",
   "image": "Humbabar.jpg",
@@ -9249,7 +9266,8 @@
    }
   ],
   "families": [
-   "Winged Dragon, Machine Dragon"
+   "Winged Dragon",
+   "Machine Dragon"
   ],
   "text": "[When Braved] (When this Brave Spirit Attacks) Return a Red Spirit card without a Burst effect from your Trash to the Hand, and destroy an opposing Nexus.",
   "image": "Armstronger.jpg",
@@ -9322,7 +9340,8 @@
    }
   ],
   "families": [
-   "Blade Beast, Machine Beast"
+   "Blade Beast",
+   "Machine Beast"
   ],
   "text": "High Speed (Flash) This Brave card may be summoned from your hand during the Flash Step. In that case, the cost of this Brave and cores to be put on this Brave must be paid or moved from your reserve.\n\n [When Braved] (When Battles) When only the opposing Spirit is destroyed by comparing BP, send a core from the opposing life to the Reserve.",
   "image": "Kotetsu-Tiger.jpg",
@@ -10322,7 +10341,8 @@
    }
   ],
   "families": [
-   "Great General, Winged Dragon"
+   "Great General",
+   "Winged Dragon"
   ],
   "text": "[LV1][LV2][LV3] (When Attacks) When blocked by an opposing Brave Spirit, this Spirit gets +4000 BP.\n\n [LV2][LV3] (When Attacks) While you have a Burst set, you can target and attack an opposing Brave Spirit.",
   "image": "Arjunas.jpg",
@@ -10357,7 +10377,8 @@
    }
   ],
   "families": [
-   "Great General, Winged Dragon"
+   "Great General",
+   "Winged Dragon"
   ],
   "text": "[LV1][LV2] (Your Start Step) When you don't have a Burst set, you can Set one of your Spirits with a Burst effect as a Burst.",
   "image": "Ryu-Radha.jpg",
@@ -10434,7 +10455,8 @@
    }
   ],
   "families": [
-   "Great General, Ancient Dragon"
+   "Great General",
+   "Ancient Dragon"
   ],
   "text": "[LV1][LV2] (When Attacks) You can reveal three cards from your decktop. Among them, you can activate the burst effect of a card with Burst effect that has the condition: [Burst: After Your Opponent activates a Spirit's/Brave's (When Summoned) effect]. Remaining cards are discarded.",
   "image": "Tsukuyomidragoon.jpg",
@@ -10812,7 +10834,8 @@
    }
   ],
   "families": [
-   "Great General, Evil Shadow"
+   "Great General",
+   "Evil Shadow"
   ],
   "text": "Immortality: Cost 3 (Either Attack Step) - This Spirit card in your Trash can be summoned when your Cost 3 Spirit is destroyed.",
   "image": "The DarkKnight Palomides.jpg",
@@ -11125,7 +11148,8 @@
    }
   ],
   "families": [
-   "Great General, Winged Beast"
+   "Great General",
+   "Winged Beast"
   ],
   "text": "[LV1][LV2] (Your Attack Step) When your Cost 3 or less Spirits compare BP in battles, use the BP of that Spirit's highest level.\n\n [LV2] Windstorm: 1 - (When Attacks) When this Spirit is blocked, your opponent exhausts the specified number of Spirits they control.",
   "image": "Junebird.jpg",
@@ -11370,7 +11394,8 @@
    }
   ],
   "families": [
-   "Great General, Android"
+   "Great General",
+   "Android"
   ],
   "text": "[LV1][LV2] Only up to three cards can be discarded from either player's deck per turn.\n\n [LV2] Heavy Armor: White/Blue - This Spirit is unaffected by opposing White/Blue Spirit/Brave/Nexus/Magic effects.",
   "image": "Little-Bikken.jpg",
@@ -11862,7 +11887,8 @@
    }
   ],
   "families": [
-   "Divine Spirit, Dark Artes"
+   "Divine Spirit",
+   "Dark Artes"
   ],
   "text": "[LV1][LV2][LV3] (Your End Step) For each Spirit you control with Brilliance/Evil Light, you can reveal a card from your decktop. Add a Magic card among them to your Hand. Discard the remaining cards.\n\n [LV3] Brilliance  (When Attacks) At the end of battle, return all Magic cards you used during this battle to your Hand.",
   "image": "The Angelia Grayel.jpg",
@@ -13289,7 +13315,8 @@
    }
   ],
   "families": [
-   "Great General, Emperor Beast"
+   "Great General",
+   "Emperor Beast"
   ],
   "text": "[LV1][LV2][LV3] Cards cannot be discarded from either player's deck.\n\n[LV1][LV2][LV3] While you control only 1 Spirit, treat this Spirit as being on Lv3.",
   "image": "The GuardianBeast Sisinga.jpg",
@@ -13438,7 +13465,8 @@
    }
   ],
   "families": [
-   "Great General, Emperor Beast"
+   "Great General",
+   "Emperor Beast"
   ],
   "text": "[LV1][LV2][LV3]  Cards cannot be discarded from either player's deck.\n\n[LV1][LV2][LV3] While you control 2 or less Spirits, treat this Spirit as being on LV3.",
   "image": "The GuardianBeast Sisingini.jpg",

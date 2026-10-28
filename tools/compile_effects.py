@@ -312,6 +312,7 @@ ALLY_ATT_BODY = re.compile(r'^When (?:one of )?your (?:"([^"]+)" family |(Red|Pu
 OWN_BP_BODY = re.compile(r'^All (?:of )?your (?:"([^"]+)" family )?Spirits (?:with (?P<kw>[A-Z][A-Za-z]+) )?(?:gain|get) \+(\d[\d,]*) ?BP\.?$', re.I)
 SELF_BP_BODY = re.compile(r'^This Spirit (?:gains|gets) \+(\d[\d,]*) ?BP\.?$', re.I)
 BURST_WHILE = re.compile(r"^While you (don't )?have an? (?:set Burst|Burst set),\s*", re.I)
+DRAW_PLUS_BODY = re.compile(r'^(?:If (.+?), )?(?:you draw|increase the number of cards you draw by|increase the amount of cards you draw by) \+(\d)(?: cards?)?\.?$', re.I)      # v0.181
 BLOCK_EXH_BODY = re.compile(r'^This Spirit can block (?:opposing Spirits )?while exhausted\.?$', re.I)
 
 
@@ -351,6 +352,13 @@ def step_window(p, card, lv, rush):
             if own and mm.group(1): x['match'] = {'family': [mm.group(1)]}
             if own and mm.group('kw'): x['match'] = dict(x.get('match') or {}, keyword=mm.group('kw'))      # v0.167 "All your Spirits with Shamanism gain +N BP"
             e = [x]
+        elif step == 'DRAW' and who == 'Your' and DRAW_PLUS_BODY.match(body):      # v0.181 STATIC DRAW_PLUS (engine drawPlusOf)
+            if rush: raise Review('Rush with a step-window constant effect')
+            md = DRAW_PLUS_BODY.match(body)
+            cd = (all_have_cond(md.group(1)) or (COND_HOOK(md.group(1)) if COND_HOOK else None)) if md.group(1) else None
+            if md.group(1) and not cd: raise Review('sentence: ' + md.group(1)[:60].lower())
+            e = [{'trigger': 'STATIC', 'flag': 'DRAW_PLUS', 'to': 'self', 'n': int(md.group(2))}]
+            if cd: e[0]['if'] = cd
         elif BLOCK_EXH_BODY.match(body):
             if rush: raise Review('Rush with a step-window constant effect')
             e = [{'trigger': 'STATIC', 'flag': 'BLOCK_EXHAUSTED', 'to': 'self'}]

@@ -631,7 +631,8 @@
    }
   ],
   "families": [
-   "Vassal, Ogre Wizard"
+   "Vassal",
+   "Ogre Wizard"
   ],
   "text": "",
   "image": "The RedOgre Bakuzou.jpg",
@@ -1032,7 +1033,8 @@
    }
   ],
   "families": [
-   "Ninja Gale, Blade Insect"
+   "Ninja Gale",
+   "Blade Insect"
   ],
   "text": "Flash - High Speed - This Spirit card in Hand can be summoned. Both the cost and the cores to be put onto this Spirit must be from the Reserve.\n\n[LV1][LV2] While there is (Soul Core) on this Spirit, this Spirit gets +3000 BP.",
   "image": "The ArmoredMothShinobi Hopper.jpg",
@@ -1133,7 +1135,8 @@
    }
   ],
   "families": [
-   "Ninja Gale, Blade Insect"
+   "Ninja Gale",
+   "Blade Insect"
   ],
   "text": "[LV1][LV2] (When Summoned) Put a core from the void to this Spirit. If this Spirit was summon from the deck, also, exhaust an opposing Spirit/Ultimate.",
   "image": "The ArmoredMothShinobi Tokkuriwasp.jpg",
@@ -1264,7 +1267,8 @@
    }
   ],
   "families": [
-   "Ninja Gale, Shellman"
+   "Ninja Gale",
+   "Shellman"
   ],
   "text": "[LV1][LV2][LV3] (When Attacks) By sending the (Soul Core) from this Spirit to your Reserve, reveal a card from your decktop. If that card is a \"Ninja Gale\" family Spirit card, you can summon it without paying the cost. If it is any other card or not summoned, return that card to your deckbottom.",
   "image": "The ArmoredMothShinobi Shurikabuto.jpg",
@@ -1298,7 +1302,9 @@
    }
   ],
   "families": [
-   "Vassal, Ninja Gale, Blade Insect"
+   "Vassal",
+   "Ninja Gale",
+   "Blade Insect"
   ],
   "text": "[LV1][LV2] (When Summoned) Put two cores from the Void to your Reserve. If this Spirit was summoned from the deck, also, the opponent discards a card from their Hand.\n\n[LV2] (When Battles) Exhaust two opposing Ultimates.",
   "image": "The ArmoredMothShinobi Kusarikama.jpg",
@@ -1337,7 +1343,9 @@
    }
   ],
   "families": [
-   "Vassal, Ninja Gale, Blade Beast"
+   "Vassal",
+   "Ninja Gale",
+   "Blade Beast"
   ],
   "text": "[LV1][LV2][LV3] While you have (Soul Core) in your Reserve, this Spirit gets +5000 BP.\n\n[LV1][LV2][LV3] (When Battles) Exhaust an opposing Spirit/Ultimate.",
   "image": "The StrangeFangShinobi Kokurou.jpg",
@@ -1444,7 +1452,8 @@
    }
   ],
   "families": [
-   "Ninja Gale, Shellman"
+   "Ninja Gale",
+   "Shellman"
   ],
   "text": "[LV1][LV2] (When Summoned) By putting a core each from the Void to two Spirits you control, exhaust an opposing Spirit/Ultimate.\n\n[LV2] (When Attacks) While there is (Soul Core) on this Spirit, by exhausting an opposing 10000 BP or less Spirit, or an opposing 20000 BP or less Ultimate, send an opposing Life to the Reserve.",
   "image": "The ArmoredMothGreatShinobi Bekkou.jpg",
@@ -2064,7 +2073,8 @@
    }
   ],
   "families": [
-   "Vassal, Youkai"
+   "Vassal",
+   "Youkai"
   ],
   "text": "[LV1][LV2] (When Destroyed by the Opponent) Exhaust an opposing Cost 3 or less Spirit. If there is (Soul Core) on this Spirit, also, this Spirit remains on the Field, exhausted.",
   "image": "Kappappa.png",
@@ -2098,7 +2108,8 @@
    }
   ],
   "families": [
-   "Hunter Beast, Youkai"
+   "Hunter Beast",
+   "Youkai"
   ],
   "text": "When this Spirit card is discarded by opposing \"deck discarding effects\", you can return all the cards in your Trash to your deckbottom in any order.\n\n[LV1][LV2] When any of your other Spirits are destroyed, refresh this Spirit.",
   "image": "Wankoma.png",
@@ -2506,7 +2517,8 @@
    }
   ],
   "families": [
-   "Fusion Beast, Imp"
+   "Fusion Beast",
+   "Imp"
   ],
   "text": "[LV1][LV2][LV3] The color and symbol of this Spirit are also treated as Green.\n\n[LV2][LV3] While there is (Soul Core) on this Spirit, your Hand is unaffected by opposing effects, and cores on your \"Shellman\"/\"Fusion Beast\" family Spirits cannot be removed by the opponent.",
   "image": "Kanikong.png",
@@ -2958,7 +2970,8 @@
    }
   ],
   "families": [
-   "Evil Shadow, Spiritual Beast"
+   "Evil Shadow",
+   "Spiritual Beast"
   ],
   "text": "This Brave card in Trash is treated as Cost 2.\n\n[When Braved] (When Attacks) You can target and attack an exhausted opposing Spirit. If there is (Soul Core) on this Spirit, also, destroy an opposing braved Brave.",
   "image": "Origamibird.jpg",
@@ -3029,7 +3042,8 @@
    }
   ],
   "families": [
-   "Ninja Gale, Plant Spirit"
+   "Ninja Gale",
+   "Plant Spirit"
   ],
   "text": "[LV1] (When Summoned) Put a core from the Void to your Reserve.\n\n[When Braved] (When Attacks) While there is (Soul Core) on this Spirit, the opponent cannot activate their set Burst.",
   "image": "Hagurugama.jpg",
@@ -4561,7 +4575,9 @@
    }
   ],
   "families": [
-   "Catalyst, Vassal, Emperor Beast"
+   "Catalyst",
+   "Vassal",
+   "Emperor Beast"
   ],
   "text": "[LV1][LV2][LV3] (When Attacks) Draw a card from your deck.\n\n[LV2][LV3] Catalyze: Red (When Attacks) By sending (Soul Core) from this Spirit to the Trash, immediately activate your set Red Soul Burst.",
   "image": "The Cub Tiger.png",
@@ -4756,7 +4772,9 @@
    }
   ],
   "families": [
-   "Catalyst, War Dragon, Emperor Beast"
+   "Catalyst",
+   "War Dragon",
+   "Emperor Beast"
   ],
   "text": "[LV1][LV2] Catalyze: All Color (When Attacks) By sending (Soul Core) from this Spirit to your trash, immediately activate your set Soul Burst.\n\n[LV2] (When Attacks) Destroy an opposing 10000 BP or less Spirit.",
   "image": "The FightingWarDragon Chougen.png",
@@ -4808,7 +4826,8 @@
    }
   ],
   "families": [
-   "Vassal, Emperor Beast"
+   "Vassal",
+   "Emperor Beast"
   ],
   "text": "[LV1][LV2][LV3] Flash- Awaken - You can put any number of cores from Spirits you control to this Spirit.\n\n[LV1][LV2][LV3] (When Attacks) Destroy any number of opposing Spirits up to a total of 5000 BP.\n\n[LV2][LV3] While there is (Soul Core) on this Spirit, increase the limit of your Spirit/Brave/Magic's \"BP destruction effects\" by +10000 BP.",
   "image": "The BlazingBeastGeneral Gurenberos.png",
@@ -4937,7 +4956,8 @@
    }
   ],
   "families": [
-   "Vassal, Spiritual Beast"
+   "Vassal",
+   "Spiritual Beast"
   ],
   "text": "[LV1][LV2] (When Summoned) By discarding a Spirit card from your Hand, draw a card from your deck.",
   "image": "Purple Smoke Boar.png",
@@ -5294,7 +5314,8 @@
    }
   ],
   "families": [
-   "Ninja Gale, Blade Beast"
+   "Ninja Gale",
+   "Blade Beast"
   ],
   "text": "Flash - High Speed - This Spirit card in Hand can be summoned. Both the cost and the cores to be put onto this Spirit must be from the Reserve.\n\n[LV1]{LV2] (When Summoned) You can move the (Soul Core) from a Spirit you control to another Spirit you control.",
   "image": "The StrangeFangShinobi Momonja.jpg",
@@ -5385,7 +5406,8 @@
    }
   ],
   "families": [
-   "Ninja Gale, Winged Beast"
+   "Ninja Gale",
+   "Winged Beast"
   ],
   "text": "[LV1][LV2][LV3] While there is  on this Spirit, give all \"Ninja Gale\" family Spirit cards in your Hand the effect \"High Speed- This Spirit card can be summoned from your Hand during the Flash timing. In that case, the cost of this Spirit and the cores to be put on this Spirit must be paid or moved from your Reserve.\"",
   "image": "The WindDemon Greyknight.jpg",
@@ -5744,7 +5766,8 @@
    }
   ],
   "families": [
-   "Clever Machine, Android"
+   "Clever Machine",
+   "Android"
   ],
   "text": "",
   "image": "Ashigaru Spear.png",
@@ -6116,7 +6139,8 @@
    }
   ],
   "families": [
-   "War Princess, Fairy"
+   "War Princess",
+   "Fairy"
   ],
   "text": "[LV1][LV2] (Either Attack Step) When you use a Magic card, after its effect resolves, return a \"War Princess\" family Spirit card from the Trash to your Hand.",
   "image": "The SengokuPrincess Mizuki.png",
@@ -7997,7 +8021,8 @@
    }
   ],
   "families": [
-   "Vassal, War Dragon"
+   "Vassal",
+   "War Dragon"
   ],
   "text": "[LV1][LV2][LV3] All your Spirits with Showdown gain +2000 BP.\n\n[LV2][LV3] Showdown-  (Opposing Start Step) The opponent chooses a Spirit they control and compares BP with this Spirit. Destroy the Spirit(s) with equal or lower BP. When only the opposing Spirit is destroyed, activate the following effect:\n\n■ When your life is three or less, send an opposing life to the Reserve.",
   "image": "The LongswordGeneral Zangekidragon.png",
@@ -8097,7 +8122,8 @@
    }
   ],
   "families": [
-   "Vassal, War Dragon"
+   "Vassal",
+   "War Dragon"
   ],
   "text": "[LV1][LV2][LV3] During Showdown, this Spirit gets +5000 BP.\n\n[LV2][LV3] Showdown- (Opposing Start Step) The opponent chooses a Spirit they control and compares BP with this Spirit. Destroy the Spirit(s) with equal or lower BP. When only the opposing Spirit is destroyed, activate the following effect:\n\n■ Target a symbol. During this turn, every opposing Spirits/Ultimates loses one of the designated symbols.",
   "image": "The RiderDragonGeneral Gaishuu.png",
@@ -8386,7 +8412,8 @@
    }
   ],
   "families": [
-   "Vassal, Ogre Wizard"
+   "Vassal",
+   "Ogre Wizard"
   ],
   "text": "[LV1][LV2][LV3] (When Attacks) By discarding a Purple card from your Hand, draw a card from your deck.\n\n[LV2][LV3] (When Attacks) Return a Purple Ultimate card from the Trash to your Hand. When you've done so, send two cores from any opposing Spirit(s) to the Reserve.",
   "image": "The ScytheOgre Shigan.png",
@@ -8455,7 +8482,8 @@
    }
   ],
   "families": [
-   "Vassal, Ogre Wizard"
+   "Vassal",
+   "Ogre Wizard"
   ],
   "text": "This Spirit card in Trash is treated as Cost 3.\n\n[LV1][LV2] (When Summoned) If you have Soul Core in your Trash, the opponent must a Spirit they control.",
   "image": "The Shikigami Kobushi.png",
@@ -9374,7 +9402,8 @@
    }
   ],
   "families": [
-   "Vassal, Youkai"
+   "Vassal",
+   "Youkai"
   ],
   "text": "",
   "image": "Kinutanuki.png",
@@ -10694,7 +10723,8 @@
    }
   ],
   "families": [
-   "Lord, Blade Beast"
+   "Lord",
+   "Blade Beast"
   ],
   "text": "[LV1][LV2][LV3] (Your Attack Step) When your \"Lord\"/\"Vassal\" family Spirit/Ultimate attacks, the opponent exhausts a Spirit they control. If the Spirit exhausted by this effect has BP equal or inferior to the BP of the attacking Spirit/Ultimate, send an opposing Life to the Reserve.\n\n[LV2][LV3] When (Soul Core) is on your Spirits, all your Ultimates get the \"Vassal\" family.",
   "image": "The DaimyoBeast Yaibanokami.jpg",
@@ -13074,7 +13104,8 @@
    }
   ],
   "families": [
-   "Vassal, Beast Head"
+   "Vassal",
+   "Beast Head"
   ],
   "text": "[LV1][LV2] While Soul Core is on your Spirit/Ultimate/Nexus, increase the upper limit of your \"Beast Head\" family Spirit/Ultimate's \"Cost Destruction\" effects by +2.",
   "image": "The GlacierMusha Gomafu.png",

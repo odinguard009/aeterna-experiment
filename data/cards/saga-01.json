@@ -3013,7 +3013,8 @@
    }
   ],
   "families": [
-   "Armored Dragon, Armored Beast"
+   "Armored Dragon",
+   "Armored Beast"
   ],
   "text": "Original = [LV1][LV2] (When Blocks) This spirit gets +4000BP until end of turn.",
   "image": "The SilverScale Nithhoggr.jpg",
@@ -3302,7 +3303,8 @@
    }
   ],
   "families": [
-   "Android, Armed Machine"
+   "Android",
+   "Armed Machine"
   ],
   "text": "",
   "image": "Dualcannon-Bell.jpg",
@@ -4936,7 +4938,8 @@
    }
   ],
   "families": [
-   "Emperor Beast, Ancient Dragon"
+   "Emperor Beast",
+   "Ancient Dragon"
   ],
   "text": "[LV1][LV2] (When Summoned) Each player selects 1 color among the spirits they control. Then, each player destroys all of their spirits except the ones with the selected color(s).\n\n [LV2] (When Attacks) This spirit gets +4000BP until end of turn.",
   "image": "The Conqueror Cendragos.jpg",
@@ -6212,7 +6215,8 @@
    }
   ],
   "families": [
-   "Armored Dragon, Machine Beast"
+   "Armored Dragon",
+   "Machine Beast"
   ],
   "text": "Jap Version = [LV1] Armor : Purple - This Spirit is unaffected by opposing Spirit/Nexus/Magic effects of the stated color.\n\n [LV2]  Armor : Red/Purple/Green -  This Spirit is unaffected by opposing Spirit/Nexus/Magic effects of the stated colors.",
   "image": "The ShieldDragon Fevnir.jpg",
@@ -9155,7 +9159,8 @@
    }
   ],
   "families": [
-   "Plant Spirit, Fairy"
+   "Plant Spirit",
+   "Fairy"
   ],
   "text": "",
   "image": "The WoodenSpirit Dryadena.jpg",
@@ -10000,7 +10005,8 @@
    }
   ],
   "families": [
-   "Armored Dragon, Giant Beast"
+   "Armored Dragon",
+   "Giant Beast"
   ],
   "text": "[LV1][LV2] (When Blocks) This spirit gets +1000BP for each \"Giant Beast\" spirit you control until end of turn.\n\n [LV2] (During Opponent's Battle Phase) When this spirit defeats a spirit, if this spirit is exhausted, refresh this spirit.",
   "image": "The ArmoredSnake Mithgarth.jpg",
@@ -10843,7 +10849,8 @@
    }
   ],
   "families": [
-   "Song Bird, Drifting Spirit"
+   "Song Bird",
+   "Drifting Spirit"
   ],
   "text": "Jap Version = [LV1][LV2] (Opposing Turn) When the opponent would use a Magic effect, they can't reduce the cost using reduction symbols.\n\n [LV2] (Your Turn) When the opponent would use a Magic effect, they can't reduce the cost using reduction symbols.",
   "image": "The Rockhopper Pentan.jpg",
@@ -11749,7 +11756,8 @@
    }
   ],
   "families": [
-   "Fighting Spirit, Soldier"
+   "Fighting Spirit",
+   "Soldier"
   ],
   "text": "[LV1][LV2][LV3] Crush (When Attacks) Move cards from the top of your opponent's Deck to their Trash equal to this spirits LV.\n\n [LV3] (During Your Battle Phase) Each time 1 or more cards are moved from the top of your opponent's Deck to their Trash due to the effect of this spirit's Crush, move 1 core from target spirit your opponent controls to their Reserve for each of those cards.",
   "image": "The GiantKing Randolph.jpg",
@@ -11830,7 +11838,8 @@
    }
   ],
   "families": [
-   "Fighting Beast, Winged Dragon"
+   "Fighting Beast",
+   "Winged Dragon"
   ],
   "text": "[LV1] (During Opponent's Battle Phase) This spirit cannot block\n\n [LV1][LV2] (When Attacks) This spirit cannot be blocked by LV1 spirits this turn.",
   "image": "The BattleDragon Wyvern.jpg",
@@ -11867,7 +11876,8 @@
    }
   ],
   "families": [
-   "Beast Head, Soldier"
+   "Beast Head",
+   "Soldier"
   ],
   "text": "",
   "image": "The IronFist Tiga.jpg",
@@ -11900,7 +11910,8 @@
    }
   ],
   "families": [
-   "Fighting Spirit, Soldier"
+   "Fighting Spirit",
+   "Soldier"
   ],
   "text": "[LV1][LV2][LV3] (When Summoned) You may deploy all nexus cards from your Trash without paying their cost.\n\n [LV2][LV3] (When Attacks) This spirit gets +1000BP for each blue nexus you control until end of turn.",
   "image": "The WeaponCollector Godfrey.jpg",
@@ -13405,7 +13416,8 @@
    }
   ],
   "families": [
-   "Emperor Beast, Flying Fang"
+   "Emperor Beast",
+   "Flying Fang"
   ],
   "text": "",
   "image": "The FlameEmperor Kujaraku.jpg",
@@ -13478,7 +13490,8 @@
    }
   ],
   "families": [
-   "Emperor Beast, Winged Dragon"
+   "Emperor Beast",
+   "Winged Dragon"
   ],
   "text": "Jap Version = [LV1][LV2][LV3] (When Summoned) Destroy every Nexus on the opposing Field.\n\n [LV2][LV3] (When Attacks) Refresh a \"Winged Dragon\" family Spirit you control, other than \"The Tyrant Fuhjaus\".\n\n [LV3] (When Attacks) When only the opposing Spirit is destroyed by BP comparison, destroy an opposing Cost 3 or less Spirit.",
   "image": "The Tyrant Fuhjaus.jpg",
@@ -13695,7 +13708,8 @@
    }
   ],
   "families": [
-   "Evil Deity, Divine Spirit"
+   "Evil Deity",
+   "Divine Spirit"
   ],
   "text": "[LV1][LV2][LV3] (When this Spirit Attacks) Each time this spirit defeats a spirit, draw 1 card for each \"Divine Spirit\" spirit you control.",
   "image": "The FallenAngelia Azel.jpg",
@@ -14102,7 +14116,8 @@
    }
   ],
   "families": [
-   "Blade Beast, Beast Head"
+   "Blade Beast",
+   "Beast Head"
   ],
   "text": "[LV2] (During Your Turn) Each time 5 or more cards are moved from the top of your opponent's Deck to their Trash at once due to your effect, exhaust target unexhausted spirit your opponent controls.",
   "image": "Alligade.jpg",
@@ -15384,7 +15399,8 @@
    }
   ],
   "families": [
-   "Beast Head, Soldier"
+   "Beast Head",
+   "Soldier"
   ],
   "text": "",
   "image": "The ApeMan Mongoku.jpg",
@@ -15556,7 +15572,8 @@
    }
   ],
   "families": [
-   "Artificial Soldier, Winged Dragon"
+   "Artificial Soldier",
+   "Winged Dragon"
   ],
   "text": "[LV2] (During Your Battle Phase) Spirits you control with Evolution are treated as being at the following LV depending on the number of cores they have on them\n1 core = LV1\n2 cores = LV2\n3 or more cores = the highest LV they have",
   "image": "Dra-Golem.jpg",
@@ -15846,7 +15863,8 @@
    }
   ],
   "families": [
-   "Fighting Spirit, Soldier"
+   "Fighting Spirit",
+   "Soldier"
   ],
   "text": "[LV1][LV2][LV3] Crush (When Attacks) Move cards from the top of your opponent's Deck to their Trash equal to this spirit's LV.\n\n [LV2][LV3] (During Your Battle Phase) Each time 1 or more nexus cards are moved from the top of your opponent's Deck to their Trash due to the effect of this spirit's Crush, if this spirit is exhausted at End of Battle Step, refresh this spirit.",
   "image": "The LegendaryGiant Jude.jpg",
@@ -16948,7 +16966,8 @@
    }
   ],
   "families": [
-   "Emperor Beast, Dragon"
+   "Emperor Beast",
+   "Dragon"
   ],
   "text": "[LV1][LV2] (When Summoned) You may summon a \"Dragon\" spirit card from your hand without paying its cost. In that case (When Summoned) effects of that spirit are negated when it is summoned.\n\n [LV2] (When Destroyed) Destroy target spirit your opponent controls with 7000BP or more.",
   "image": "The Dictator Volcanos.jpg",
@@ -17122,17 +17141,39 @@
    }
   ],
   "families": [
-   "Nightling, Fairy"
+   "Nightling",
+   "Fairy"
   ],
   "text": "Jap Version = [LV2][LV3] (Your Draw Step) If you control three or more \"Fairy\"/\"Imaginary Beast\" family Spirits, increase the number of cards you draw by +1.",
   "image": "The MischievousFairy Imp.jpg",
   "block": "05",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "Jap Version = [LV2][LV3] (Your Draw Step) If you control three or more \"Fairy\"/\"Imaginary Beast\" family Spirits, increase the number of cards you draw by +1."
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "DRAW_PLUS",
+    "to": "self",
+    "n": 1,
+    "if": {
+     "ctrl": {
+      "n": 3,
+      "type": "Spirit",
+      "family": [
+       "Fairy",
+       "Imaginary Beast"
+      ]
+     },
+     "step": "DRAW",
+     "oppTurn": false
+    },
+    "lv": [
+     2,
+     3
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS05-015",
@@ -21423,7 +21464,8 @@
    }
   ],
   "families": [
-   "Armed Machine, Mounted Warrior"
+   "Armed Machine",
+   "Mounted Warrior"
   ],
   "text": "[LV1][LV2] (When Blocks) This spirit gets +1000BP for each spirit you control with Immunity: X until end of turn.\n\n [LV2] (When Blocks) Exhaust 2 target unexhausted spirits your opponent controls.",
   "image": "The SilverWolfEmperor Gagnrathr.jpg",
@@ -21554,7 +21596,8 @@
    }
   ],
   "families": [
-   "Song Bird, Drifting Spirit"
+   "Song Bird",
+   "Drifting Spirit"
   ],
   "text": "Jap Version = [LV1][LV2] (Opposing Start Step) By exhausting this Spirit, during this turn, all your Spirits are also treated as being Cost 2.",
   "image": "The Chick Pentan.jpg",
@@ -21928,7 +21971,8 @@
    }
   ],
   "families": [
-   "Fighting Beast, Fusion Beast"
+   "Fighting Beast",
+   "Fusion Beast"
   ],
   "text": "[LV1][LV2] (Permanent) While you control a \"Beast Head\" spirit, this spirit is treated as being at LV2.",
   "image": "The BattleBeast Zouuchi.jpg",
@@ -22310,7 +22354,8 @@
    }
   ],
   "families": [
-   "Fighting Spirit, Soldier"
+   "Fighting Spirit",
+   "Soldier"
   ],
   "text": "Jap Version = [LV1][LV2] (When Summoned) Destroy every Cost 3 or less Spirit.",
   "image": "The HugeGiant Eurytos.jpg",
@@ -23255,7 +23300,8 @@
    }
   ],
   "families": [
-   "Dragon, Winged Dragon"
+   "Dragon",
+   "Winged Dragon"
   ],
   "text": "[LV1][LV2][LV3] Flash-Awaken- You can put any number of cores from Spirits you control to this Spirit.",
   "image": "The WingDragman Pteradia.jpg",
@@ -23440,7 +23486,8 @@
    }
   ],
   "families": [
-   "Dragon, Deified General"
+   "Dragon",
+   "Deified General"
   ],
   "text": "[LV1][LV2][LV3] (Your Attack Step) All your \"Deified General\" family Spirits gain +2000 BP.\n\n[LV3] All your \"Vanity Deity\"/\"Deified General\" family Spirits are treated as being on their highest levels.",
   "image": "La-Diablord.jpg",
@@ -23755,7 +23802,8 @@
    }
   ],
   "families": [
-   "Clown, Nightling"
+   "Clown",
+   "Nightling"
   ],
   "text": "[LV2] (When Destroyed) The opponent choose a card from their Hand and return it to the decktop.",
   "image": "The FortuneTeller Deasha.jpg",
@@ -23847,7 +23895,8 @@
    }
   ],
   "families": [
-   "Ogre Wizard, Deified General"
+   "Ogre Wizard",
+   "Deified General"
   ],
   "text": "[LV1][LV2][LV3] (When Summoned) By destroying a Spirit with Curse you control, choose and return a \"Vanity Deity\"/ \"Deified General\" family Spirit card from your Trash to your Hand.\n\n[LV3] All your \"Vanity Deity\"/\"Deified General\" family Spirits are treated as being on their highest Levels.",
   "image": "Brionagon.jpg",
@@ -24178,7 +24227,8 @@
    }
   ],
   "families": [
-   "Plant Spirit, Deified General"
+   "Plant Spirit",
+   "Deified General"
   ],
   "text": "[LV1][LV2][LV3] (When Battles) Put a core from the Void to a \"Vanity Deity\"/\"Deified General\" family Spirit you control.\n\n [LV3] All \"Vanity Deity\"/\"Deified General\" family Spirits you control are treated as being on their highest Levels.",
   "image": "Dyrfangs.jpg",
@@ -24951,7 +25001,8 @@
    }
   ],
   "families": [
-   "Imaginary Beast, Deified General"
+   "Imaginary Beast",
+   "Deified General"
   ],
   "text": "[LV1][LV2][LV3] (When Destroyed) By exhausting an \"Imaginary Beast\" family Spirit you control, this Spirit remains on the Field, refreshed.\n\n [LV3] All your \"Vanity Deity\"/\"Deified General\" family Spirits are treated as being on their highest Levels.",
   "image": "Pao-Peir.jpg",
@@ -25301,7 +25352,8 @@
    }
   ],
   "families": [
-   "Artificial Soldier, Deified General"
+   "Artificial Soldier",
+   "Deified General"
   ],
   "text": "[LV1][LV2][LV3] (Your Main Step) When your \"Vanity Deity\"/\"Deified General\" family Spirit is summoned, you can deploy a Nexus card from the Trash, without paying the cost.\n\n [LV3] Every \"Vanity Deity\"/\"Deified General\" family Spirit you control are treated as being on its highest level.",
   "image": "Galadolg.jpg",
@@ -26243,7 +26295,8 @@
    }
   ],
   "families": [
-   "Dragon, Winged Dragon"
+   "Dragon",
+   "Winged Dragon"
   ],
   "text": "[LV1][LV2] (When Attacks) Destroy one opposing 3000BP-or-less Spirit with \"When Summoned\" effects.",
   "image": "The CaptureUnit Pteradia.jpg",
@@ -26941,7 +26994,8 @@
    }
   ],
   "families": [
-   "Parasite, Shellman"
+   "Parasite",
+   "Shellman"
   ],
   "text": "[LV1][LV2] (When Destroyed) Put a core from the Void to your Reserve.",
   "image": "Emeantman.jpg",
@@ -27777,7 +27831,8 @@
    }
   ],
   "families": [
-   "Song Bird, Imaginary Beast"
+   "Song Bird",
+   "Imaginary Beast"
   ],
   "text": "[LV1][LV2] (Your Main Step) When this Spirit becomes the target of Tribute, by exhausting this Spirit, you can summon without Tribute.\n\n [LV2] (Opposing Attack Step) While you control fewer Spirits than the opponent does, every \"Imaginary Beast\" family Spirit you control is treated as being on its highest Level.",
   "image": "DarkChunpopo.jpg",
@@ -29160,7 +29215,8 @@
    }
   ],
   "families": [
-   "Divine Spirit, Dark Artes"
+   "Divine Spirit",
+   "Dark Artes"
   ],
   "text": "[LV1][LV2][LV3] (When Summoned) Discard any number of cards from your Hand. For each card you discarded, draw a card.\n\n [LV2][LV3] (When Attacks) You can use a Yellow Magic card from your Trash as if it was from your Hand.\n\n [LV3] (Either Attack Step) When a Magic effect is used, draw a card.",
   "image": "The FallenAngelia Mikafar.jpg",
@@ -29315,7 +29371,8 @@
    }
   ],
   "families": [
-   "Dragon, Terra Dragon"
+   "Dragon",
+   "Terra Dragon"
   ],
   "text": "[LV1][LV2] (When Attacks) This Spirit gains +2000 BP.\n\n [LV2] (Your Attack Step) All your Spirits with cost reduction symbols of two or more different colors gain +2000 BP.",
   "image": "The HornDinoman Drakkhen.jpg",
@@ -30047,7 +30104,8 @@
    }
   ],
   "families": [
-   "Imp, Beast Head"
+   "Imp",
+   "Beast Head"
   ],
   "text": "[LV1][LV2] (During Opponent's Attack Phase) When a \"Blade Beast\" or \"Soldier\" Attribute Spirit on your Field is exhausted, refresh this Spirit.",
   "image": null,
@@ -30154,7 +30212,8 @@
    }
   ],
   "families": [
-   "Blade Beast, Giant Beast"
+   "Blade Beast",
+   "Giant Beast"
   ],
   "text": "[LV1][LV2] (When Summoned) Add one Core from the Void to this Spirit for every \"Blade Beast\" and \"Giant Beast\" Attribute Spirit on your Field.",
   "image": "The GreatHornCastle Elasmos.jpg",
@@ -30340,7 +30399,8 @@
    }
   ],
   "families": [
-   "Giant Beast, Hunter Beast"
+   "Giant Beast",
+   "Hunter Beast"
   ],
   "text": "[LV1][LV2] (Opposing Attack Step) When your Life is reduced by opposing Spirits, refresh a Yellow Spirit you control.",
   "image": "The ArmoredBeast Oozuchi.jpg",
@@ -30969,7 +31029,8 @@
    }
   ],
   "families": [
-   "Hunter Beast, Imaginary Beast"
+   "Hunter Beast",
+   "Imaginary Beast"
   ],
   "text": "[LV1][LV2][LV3] (When Summoned) Destroy all opposing Spirits with Assault.\n\n [LV3] (When Destroyed) Return a Purple/Yellow Magic card from the Trash to your Hand.",
   "image": "Clockdile.jpg",
@@ -31084,7 +31145,8 @@
    }
   ],
   "families": [
-   "Beast Head, Creator"
+   "Beast Head",
+   "Creator"
   ],
   "text": "[LV1][LV2] Treat this spirit as a blue spirit as well as a green spirit.",
   "image": "The Gatekeeper Alparkar.jpg",
@@ -31122,7 +31184,8 @@
    }
   ],
   "families": [
-   "Beast Head, Creator"
+   "Beast Head",
+   "Creator"
   ],
   "text": "[LV1][LV2][LV3] Spirits can't be refreshed by Nexus/Magic effects.",
   "image": "The SharkMan Sangojaw.jpg",
@@ -31341,7 +31404,8 @@
    }
   ],
   "families": [
-   "Fighting Spirit, Creator"
+   "Fighting Spirit",
+   "Creator"
   ],
   "text": "[LV1][LV2] Crush (When Attacks) Discard a number of cards from the opposing decktop equal to this Spirit's LV.\n\n [LV1][LV2] (When Attacks) For each card discarded by this Spirit's Crush effect, put a core from the Void to this Spirit.",
   "image": "The BlacksmithKing Cyc-Bros.jpg",
@@ -32344,7 +32408,8 @@
    }
   ],
   "families": [
-   "Fighting Spirit, Soldier"
+   "Fighting Spirit",
+   "Soldier"
   ],
   "text": "Tribute: Cost 5 or more &rarr; Void -\n After paying for the summon cost, you must send all cores from a Cost 5 or more Spirit you control to the Void.\n\n [LV1][LV2] (When Attacks) When only the opposing Spirit is destroyed by BP comparison, discard 15 cards from the opposing decktop.\n\n [LV2] (When Attacks) Cores on the Spirit blocking this Spirit cannot be removed.",
   "image": "The HeelGiant Titus-the-Black.jpg",

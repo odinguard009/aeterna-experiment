@@ -188,7 +188,8 @@
    }
   ],
   "families": [
-   "Worldswalker, Terra Dragon"
+   "Worldswalker",
+   "Terra Dragon"
   ],
   "text": "Flash- {{Accel|Cost 5 ()}}\nDestroy an opposing 12000 BP or less Spirit. After this effect resolves, put this card face-up on your Removed Zone. If you control any \"Terra Dragon\" family Spirit with Advent, instead of sending it to the Removed Zone, you can add this card as a pre-advent to it.\n\n [LV1][LV2] While you control any Spirit with Advent, this Spirit gains an extra Red symbol.",
   "image": "The EruptionDinosaur Stego-Erupt.png",
@@ -474,7 +475,8 @@
    }
   ],
   "families": [
-   "Worldswalker, Ogre Wizard"
+   "Worldswalker",
+   "Ogre Wizard"
   ],
   "text": "[LV1][LV2][LV3] This Spirit's [LV1] Cost is 0.\n\n [LV1][LV2][LV3] (Either End Step) If this Spirit has 0 core on it, destroy it.",
   "image": "Egyt-Gladiator.png",
@@ -509,7 +511,8 @@
    }
   ],
   "families": [
-   "Worldswalker, Ogre Wizard"
+   "Worldswalker",
+   "Ogre Wizard"
   ],
   "text": "[LV1][LV2](When Summoned) Deploy a Purple non-Grandwalker Nexus card from your Trash, without paying the cost.\n\n[LV2] (When Attacks) For each Nexus you control, send one opposing core from any opposing Spirits to the Reserve.",
   "image": "Deathmask Knight.png",
@@ -4007,7 +4010,8 @@
    }
   ],
   "families": [
-   "Worldswalker, Imaginary Beast"
+   "Worldswalker",
+   "Imaginary Beast"
   ],
   "text": "[LV1][LV2][LV3] (When Attacks) By sending one core from your Life or from your Yellow-only Grandwalker Nexus to the Void, during this turn, all opposing Spirits get -6000 BP. Destroy any Spirits that have their BP decreased to 0 by this effect.\n\n[LV3] (When Destroyed by the Opponent) You can summon one Cost 4/6/8 \"Divine Spirit\"/\"Imaginary Beast\" family Spirit card from your Hand by paying one cost.",
   "image": "The SacredBull Apis.jpg",
@@ -4906,7 +4910,8 @@
    }
   ],
   "families": [
-   "Imagine, Dark Snake"
+   "Imagine",
+   "Dark Snake"
   ],
   "text": "This brave doesn't exhaust, and when in spirit condition, can't attack or block.\n\n[When Braved on Right/Left] (When Attacks) Send a core from any opposing Spirit to the Reserve.",
   "image": "Dark Snake Demon-God.jpg",
@@ -5293,7 +5298,8 @@
    }
   ],
   "families": [
-   "Worldswalker, Beast Head"
+   "Worldswalker",
+   "Beast Head"
   ],
   "text": "[LV1][LV2] (When Summoned) You can reveal four cards from your decktop. Add an Ultimate card among them to your Hand. By paying one cost, instead of Ultimate card, add a Blue-only Grandwalker Nexus card to your Hand. Return the remaining cards to your deckbottom in any order.\n\n [LV1][LV2] Spirit Soul: Blue - When you are summoning an Ultimate card, this Spirit gains an extra Blue Symbol.",
   "image": "The BeastChild Panzer.png",
@@ -6356,7 +6362,8 @@
    }
   ],
   "families": [
-   "Parasite, Shellman"
+   "Parasite",
+   "Shellman"
   ],
   "text": "Flash - ⚞Advent⚟: Shellman  (Either Attack Step)\n By sending your  to the Trash, stack this from your hand onto your target spirit.\n\n[LV1][LV2] (When Advents) Put two cores from the Void to this Spirit. Also, you can pay one cost to summon an \"Ant\"-named pre-advent card under this Spirit.",
   "image": "The SmallPrincess Ant-Princesse.jpg",
@@ -7242,7 +7249,8 @@
    }
   ],
   "families": [
-   "Worldswalker, Beast Head"
+   "Worldswalker",
+   "Beast Head"
   ],
   "text": "[Summon Condition: At Least 2 Lives]\n\nWhen this set card is discarded by the opponent, you can activate it ignoring the Burst condition.\n\n{{Burst|After the Opposing Hand increases due to an Opposing effect}}\nFor each two cards on the opposing Hand, destroy an opposing Cost 8 or less Spirit. After this effect resolves, summon this card without paying the cost.\n\n[LV4][LV5] (Your End Step) Refresh all your \"Sandsea\"-named Spirits/Ultimates.",
   "image": "The SandseaGeneral Rhieed.jpg",
@@ -9218,7 +9226,8 @@
    }
   ],
   "families": [
-   "Worldswalker, Imaginary Beast"
+   "Worldswalker",
+   "Imaginary Beast"
   ],
   "text": "[LV1][LV2][LV3] (When Attacks) You can summon an \"Imaginary Beast\" family Spirit card from your Hand. When you've done so, if your field only has Yellow/God Symbols, draw a card.\n\n[LV1][LV2][LV3] (Your Turn) You can't make cores on this Spirit become 0.\n\n[LV1][LV2][LV3]  Every opposing Spirit/Ultimate gets -3000 BP.",
   "image": "Medium Phynx.png",

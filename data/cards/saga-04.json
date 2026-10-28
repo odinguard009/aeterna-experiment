@@ -840,7 +840,8 @@
    }
   ],
   "families": [
-   "Fencer, Evil Shadow"
+   "Fencer",
+   "Evil Shadow"
   ],
   "text": "[LV1][LV2][LV3] Cards can't be discarded from either deck.\n\n[When Braved] [LV2][LV3] (When Brave Attacks) At the end of battle, return a Brave card from the Trash to your Hand.",
   "image": "BS19-020.jpg",
@@ -1538,7 +1539,8 @@
    }
   ],
   "families": [
-   "Flying Fish, Machine Beast"
+   "Flying Fish",
+   "Machine Beast"
   ],
   "text": "",
   "image": "BS19-037.jpg",
@@ -5548,7 +5550,8 @@
    }
   ],
   "families": [
-   "Fencer, Imp"
+   "Fencer",
+   "Imp"
   ],
   "text": "[LV1][LV2][LV3] When the opponent draws, refresh this Spirit.\n\n[When Braved] [LV2][LV3] (Either Attack Step) For each core on your battling Spirit, that Spirit gains +1000 BP.",
   "image": "BS20-025.jpg",
@@ -5844,7 +5847,8 @@
    }
   ],
   "families": [
-   "Fencer, Ice Princess"
+   "Fencer",
+   "Ice Princess"
   ],
   "text": "[LV1][LV2][LV3] For each of your Spirits, this Spirit gains +1000 BP.\n\n[When Braved] [LV2][LV3] (When Blocks) Put a core from the Void to any of your Spirits.",
   "image": "BS20-032.jpg",
@@ -6871,7 +6875,8 @@
    }
   ],
   "families": [
-   "Terra Dragon, Machine Dragon"
+   "Terra Dragon",
+   "Machine Dragon"
   ],
   "text": "[When Braved] (When Brave Attacks) This Spirit gains +4000 BP.",
   "image": "BS20-055.jpg",
@@ -6914,7 +6919,8 @@
    }
   ],
   "families": [
-   "Astral Dragon, Machine Dragon"
+   "Astral Dragon",
+   "Machine Dragon"
   ],
   "text": "[LV1] (When Summoned) Destroy any number of opposing Spirits up to a total of 5000 BP.\n\n[When Braved] (When Brave Attacks) Draw a card from your deck.",
   "image": "BS20-056.jpg",
@@ -10399,7 +10405,8 @@
    }
   ],
   "families": [
-   "Fighting Spirit, Astral Soul"
+   "Fighting Spirit",
+   "Astral Soul"
   ],
   "text": "[LV1][LV2][LV3] When the opposing Hand increases due to their effects, for each card increased, discard a card from the opposing decktop.\n\n [LV2][LV3] (Your Attack Step) When the attack of your \"Astral Soul\" family Spirit reduces the opposing Life, discard cards from the opposing decktop equal to that Spirit's cost.",
   "image": "BS21-054.jpg",
@@ -11504,7 +11511,8 @@
    }
   ],
   "families": [
-   "Terra Dragon, Lava Fish"
+   "Terra Dragon",
+   "Lava Fish"
   ],
   "text": "",
   "image": "BS22-001.jpg",
@@ -15363,7 +15371,8 @@
    }
   ],
   "families": [
-   "Terra Dragon, Parasite"
+   "Terra Dragon",
+   "Parasite"
   ],
   "text": "[LV1][LV2][LV3] (Your Attack Step) When your \"Parasite\" family Spirit attacks, destroy an opposing 5000 BP or less Spirit.\n\n[LV2][LV3] (Your Attack Step) When your \"Terra Dragon\" family Spirit attacks, put a core from the Void to that Spirit.",
   "image": "BS23-009.jpg",
@@ -16918,7 +16927,8 @@
    }
   ],
   "families": [
-   "Fencer, Divine Spirit"
+   "Fencer",
+   "Divine Spirit"
   ],
   "text": "[LV1][LV2][LV3] Unsheathe (When Summoned) You can summon an \"Exalted Sword\" family Brave card that can brave with this Spirit, without paying the cost.\n\n[LV1][LV2][LV3] (Either Attack Step) Every Brave in Spirit condition you control gains +5000 BP.\n\n[When Braved] [LV2][LV3] (Your Attack Step) When your Spirit-condition \"Exalted Sword\" family Brave attacks, it can activate all its (When Brave Attacks) effects.",
   "image": "BS23-044.jpg",

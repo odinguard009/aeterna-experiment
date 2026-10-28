@@ -617,6 +617,9 @@ def cond_of(x):
     if m: return {'symbolsOnGe': {'color': m.group(2).lower(), 'n': n_of(m.group(1).lower())}}      # v0.168 (engine symbolsOnGe: Field symbols of the owner)
     if re.fullmatch(r'\(soul core\) (?:was|is) used to pay (?:for )?the summon cost', x, re.I): return {'soulPaid': True}      # v0.176 (engine soulPaid: the normal summon paid with the Soul Core)
     if re.fullmatch(r'(?:there is )?\(soul core\) (?:is )?on this spirit', x, re.I): return {'selfSoul': True}      # v0.176 (engine selfSoul: this Spirit holds the Soul Core)
+    m = re.fullmatch(r'this spirit has (\d[\d,]*) BP or more', x, re.I)
+    if m: return {'selfBpGe': bpv(m.group(1))}      # v0.181 (engine selfBpGe: this Spirit's BP when the effect resolves)
+    if re.fullmatch(r'this spirit (?:is|was) summoned via an effect', x, re.I): return {'viaEffect': True}      # v0.181 (engine viaEffect: summoned by an effect, not paid)
     c = v1.all_have_cond(x)
     if c: return c
     if re.fullmatch(r'(?:you )?(?:are |is |was )?summoned via form change', x, re.I): return {'viaFormChange': True}      # v0.135 (schema v8)

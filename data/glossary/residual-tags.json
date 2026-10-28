@@ -1277,9 +1277,6 @@
   "C_LEVEL",
   "T_DESTROYED"
  ],
- "BS05-014": [
-  "C_LEVEL"
- ],
  "BS05-016": [
   "A_EXHAUST",
   "C_LEVEL",
@@ -17086,11 +17083,6 @@
   "C_LEVEL",
   "K_BURST",
   "T_DESTROYED"
- ],
- "BS41-017": [
-  "C_LEVEL",
-  "T_ALLY_SUMMONED",
-  "T_SUMMONED"
  ],
  "BS41-018": [
   "A_EXHAUST",

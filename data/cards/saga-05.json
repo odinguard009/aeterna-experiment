@@ -3347,7 +3347,8 @@
    }
   ],
   "families": [
-   "Incarnate, Artificial Soldier"
+   "Incarnate",
+   "Artificial Soldier"
   ],
   "text": "[Summon Condition: You must have 1 or more Blue spirits on your field.]\n\n[LV3][LV4][LV5] (Either Attack Step) Either player can only attack with a Cost 3 or lower Spirit once per turn.\n\n Ultimate Trigger [LV4][LV5] (When Attacks) When Ultimate Trigger hits, for each 1 cost of the card moved to Trash by this Ultimate Trigger, discard 2 cards from the top of your opponent's deck.",
   "image": "Ultimate-Rock Golem.jpg",
@@ -6143,7 +6144,8 @@
    }
   ],
   "families": [
-   "Armed Machine, Artificial Soldier"
+   "Armed Machine",
+   "Artificial Soldier"
   ],
   "text": "[LV1][LV2] (When Summoned) Put a core from the Void to an \"Artificial Soldier\" family Spirit you control other than this Spirit.\n\n [LV1][LV2] The color and Symbol of this Spirit is also treated as Blue.",
   "image": "Mobile-Golem.jpg",
@@ -9226,7 +9228,8 @@
    }
   ],
   "families": [
-   "Blade Beast, Astral Soul"
+   "Blade Beast",
+   "Astral Soul"
   ],
   "text": "High Speed (Flash) This Spirit card in your hand can be summoned during the flash timing by paying the cost and putting cores on it from your Reserve.\n\n [LV1][LV2] (When Summoned) If this Spirit is summoned during (Either Attack Step), during this battle, 1 Spirit you control that is battling an opposing Ultimate gains +6000 BP.",
   "image": "Procywan.jpg",
@@ -9300,7 +9303,8 @@
    }
   ],
   "families": [
-   "Guardian General, Blade Beast"
+   "Guardian General",
+   "Blade Beast"
   ],
   "text": "[LV1][LV2] (Your Attack Step) At the beginning of the step, you can look at the first card on top of your opponent's deck.\n\n [LV1][LV2] All \"Blade Beast\" family Spirits you control cannot be returned to the hand or deck from your Field by opposing effects.",
   "image": "The NorthWindWolf BoreasWolf.png",
@@ -9379,7 +9383,9 @@
    }
   ],
   "families": [
-   "Astral Guardian, Blade Beast, Astral Soul"
+   "Astral Guardian",
+   "Blade Beast",
+   "Astral Soul"
   ],
   "text": "[LV1][LV2][LV3] (When Summoned) For each \"Astral Soul\" family Spirit you control, put a core from the Void to this Spirit.\n\n [LV1][LV2][LV3] (When Attacks) Exhaust an opposing Spirit.\n\n [When Braved] [LV2][LV3] While Brave Spirits you control are in battle, you opponent cannot activate their set Burst.",
   "image": "The HuntingBladeBeast Carla-Hound.jpg",
@@ -9608,7 +9614,8 @@
    }
   ],
   "families": [
-   "Armed Machine, Guardian General"
+   "Armed Machine",
+   "Guardian General"
   ],
   "text": "[LV1][LV2] (Either Attack Step) When your Ultimate-Trigger is guarded, you can refresh 1 of your Ultimates in battle. During this turn, that Ultimate cannot attack.",
   "image": "The MachineGunDeity HeimCannon.png",
@@ -9642,7 +9649,8 @@
    }
   ],
   "families": [
-   "Armed Machine, Astral Soul"
+   "Armed Machine",
+   "Astral Soul"
   ],
   "text": "When your cost 5 or above White Spirit is destroyed by the opponent, you can summon this Spirit card from your hand, without paying the cost.\n\n [When Braved] [LV2] (When Battles) Once per turn, refresh this Spirit.",
   "image": "The UnicornMachine Unicorn.jpg",
@@ -9681,7 +9689,8 @@
    }
   ],
   "families": [
-   "Astral Guardian, Armed Machine"
+   "Astral Guardian",
+   "Armed Machine"
   ],
   "text": "[LV1][LV2][LV3] (When Summoned) You can summon a \"Galaxian\"/\"Astral Soul\" family Brave card from your hand, without paying the cost. If you summoned a \"Galaxian\" family Brave through this effect, your opponent return 1 Spirit they control to the bottom of their deck.\n\n [When Braved] [LV2][LV3] (Either Attack Step) Once per turn, when this Spirit is targeted by opposing effects, by discarding 1 card from your hand, this Spirit is unaffected by that effect.",
   "image": "The WhiteKnightGeneral Sigfodr.jpg",
@@ -9789,7 +9798,8 @@
    }
   ],
   "families": [
-   "Imaginary Beast ,Astral Soul"
+   "Imaginary Beast",
+   "Astral Soul"
   ],
   "text": "[LV1][LV2] When this Spirit is returned to your hand by opposing effects, you can summon an \"Astral Guardian\" family Spirit card from your hand, without paying the cost.",
   "image": "Radon.jpg",
@@ -9863,7 +9873,8 @@
    }
   ],
   "families": [
-   "Guardian General, Divine Spirit"
+   "Guardian General",
+   "Divine Spirit"
   ],
   "text": "[LV1][LV2] When your cost 6 or higher Ultimate's Ultimate-Trigger is guarded, draw 1 card from your deck, and move 1 core from your Field to your Life.",
   "image": "The Angelia Nursel.png",
@@ -10089,7 +10100,8 @@
    }
   ],
   "families": [
-   "Guardian General, Beast Head"
+   "Guardian General",
+   "Beast Head"
   ],
   "text": "[LV1][LV2] When this Spirit is destroyed by opposing effects, by discarding 5 cards from the opposing decktop, this Spirit remains on your Field, in the same condition.\n\n [LV2] For each \"Next Generation\" family Ultimate you control, this Spirit gains +3000 BP.",
   "image": "The Defender Nupia.jpg",
@@ -10162,7 +10174,9 @@
    }
   ],
   "families": [
-   "Fencer, Astral Soul, Beast Head"
+   "Fencer",
+   "Astral Soul",
+   "Beast Head"
   ],
   "text": "[LV1][LV2] (When Summoned) Destroy 1 opposing Spirit with cost 2 or below. If a Spirit with \"Spirit Soul\" is destroyed, move 1 core from the void to your Reserve.\n\n [When Braved] [LV2] (When Battles) Destroy 1 opposing Spirit with a cost less than or equal to the amount of \"Beast Head\" family Spirits you control.",
   "image": null,
@@ -10238,7 +10252,8 @@
    }
   ],
   "families": [
-   "Fencer, Beast Head"
+   "Fencer",
+   "Beast Head"
   ],
   "text": "[LV1][LV2] Assault: 2 - (When Attacks) This spirit can, twice per turn, be refreshed by exhausting one of your Nexuses.\n\n [LV2] (When Attacks) This Spirit gets BP+ (Total BP of all your exhausted Ultimates).",
   "image": "The CatManSwashbuckler Birman.png",
@@ -10652,7 +10667,8 @@
    }
   ],
   "families": [
-   "Reptile Beast, Astral Soul"
+   "Reptile Beast",
+   "Astral Soul"
   ],
   "text": "Trigger Counter\n When opponent's Ultimate-Trigger hits, this Brave card can be summoned from your hand before the \"When hits\" effect activates. Activate the following effect after summoned.\n\n █ Destroy 1 opposing Ultimate in battle with 10000 BP or below.\n\n [When Braved] (When Brave Attacks) This Spirit gains +5000 BP.",
   "image": "The GunAstralArmored Baldo-Lizard.jpg",
@@ -10735,7 +10751,8 @@
    }
   ],
   "families": [
-   "Evil Shadow, Astral Soul"
+   "Evil Shadow",
+   "Astral Soul"
   ],
   "text": "Trigger Counter\n When opponent's Ultimate-Trigger hits, this Brave card can be summoned from your hand before the \"When hits\" effect activates. Activate the following effect after summoned.\n\n █ Send a core from an opposing battling Ultimate to the Reserve.\n\n [When Braved] When opposing Ultimates are depleted by your effects, draw a card from your deck.",
   "image": "The DevilAstralArmored Flybeat.png",
@@ -10883,7 +10900,8 @@
    }
   ],
   "families": [
-   "Armed Machine, Astral Soul"
+   "Armed Machine",
+   "Astral Soul"
   ],
   "text": "[When Braved] Ultra Armor: Green/White - This Spirit is unaffected by opposing Green/White Spirit/Ultimate/Nexus/Magic effects.\n\n [When Braved] (When Blocks) This Spirit gains +5000 BP. If it is blocking an opposing Ultimate, also, this Spirit gains +5000 BP.",
   "image": "The ShieldAstralArmored Shieldtank.jpg",
@@ -10919,7 +10937,8 @@
    }
   ],
   "families": [
-   "Flying Fish, Astral Soul"
+   "Flying Fish",
+   "Astral Soul"
   ],
   "text": "Trigger Counter\n When opponent's Ultimate-Trigger hits, this Brave card can be summoned from your hand before the \"When hits\" effect activates. Activate the following effect after summoned.\n\n █ During this turn, all of your Spirits are unaffected by opposing Ultimate effects.\n\n [When Braved] (When Battles) This Spirit gains +3000 BP.",
   "image": "The SwordAstralArmored Swordfish.png",
@@ -10956,7 +10975,8 @@
    }
   ],
   "families": [
-   "Hunter Beast, Astral Soul"
+   "Hunter Beast",
+   "Astral Soul"
   ],
   "text": "Trigger Counter\n When opposing Ultimate-Trigger hits, you can summon this Brave card from your Hand before the \"When hits\" effect activates. Activate the following effect after the summon.\n\n █ During this battle, every opposing 15000 BP or less battling Ultimates loses all effects.\n\n [When Braved] (When Blocks) During this battle, give an opposing Ultimate -3000 BP.",
   "image": "The RabbitAstralArmored Rabitta.jpg",
@@ -11636,7 +11656,8 @@
    }
   ],
   "families": [
-   "Next Generation, Beast Head"
+   "Next Generation",
+   "Beast Head"
   ],
   "text": "[Summon Condition: You must have 1 or more cost 3 or above Spirit]\n\n Ultimate Trigger [LV3][LV4][LV5] (When Attacks) When Ultimate Trigger hits, destroy an opposing Spirit with the highest cost. If the destroyed Spirit is Cost 8 or above, send a core from the opposing Life to their Reserve. (Ultimate Trigger: Put 1 card from your opponents deck to the trash. If the cost of that card is lower than this ultimate, it will hit)\n\n [LV4][LV5] (Either Attack Step) When Ultimate Trigger of your \"Next Generation\" family Ultimates hits, during this battle, your opponent cannot use any Magic cards.",
   "image": "The NextGenerationBeastKing Liodras.png",
@@ -11909,7 +11930,8 @@
    }
   ],
   "families": [
-   "Astral Dragon, Astral Soul"
+   "Astral Dragon",
+   "Astral Soul"
   ],
   "text": "[LV1][LV2][LV3] (When Attacks) Draw a card from your deck.\n{{Rush|Green}}\n(While you have a Green symbol, the following effect activates next)\n: Exhaust an opposing Spirit.",
   "image": "The RowdyEmperor Tees-Dragon.jpg",
@@ -12269,7 +12291,8 @@
    }
   ],
   "families": [
-   "Dark Snake, Astral Soul"
+   "Dark Snake",
+   "Astral Soul"
   ],
   "text": "[LV1][LV2][LV3] This Spirit cannot be returned from your Field to your hand by opposing effects.\n\n [LV1][LV2][LV3] When the attack of opposing Spirit with cards under it decrease your life, you can destroy that Spirit.\n\n [LV2][LV3] If the number of cores on opposing nexuses are less than the total number of cards under opposing Spirits/Ultimates, those nexus cannot activate their effect.",
   "image": "The SnakeCleric Priesnake.png",
@@ -12929,7 +12952,8 @@
    }
   ],
   "families": [
-   "Armed Machine, Astral Soul"
+   "Armed Machine",
+   "Astral Soul"
   ],
   "text": "[LV1][LV2] (Either Attack Step) All your \"Mobil\"-named Spirits get +2000 BP.\n\n [LV2] (Opposing Attack Step) All your \"Mobil\"-named Brave Spirits' (When Brave Attacks) effect activates at (When Blocks) as well.",
   "image": "Tank-Mobil-M6.jpg",
@@ -13284,7 +13308,8 @@
    }
   ],
   "families": [
-   "Song Bird, Drifting Spirit"
+   "Song Bird",
+   "Drifting Spirit"
   ],
   "text": "[LV1][LV2] (Your Attack Step) All your \"Pentan\"-named Spirits get +2000 BP.\n\n [LV2] (Your Attack Step) When the opponent guards your Ultimate-Trigger, during that battle, that Ultimate cannot be blocked by opposing Ultimates.",
   "image": "The Cape Pentan.jpg",
@@ -13813,7 +13838,8 @@
    }
   ],
   "families": [
-   "Fighting Spirit, Astral Soul"
+   "Fighting Spirit",
+   "Astral Soul"
   ],
   "text": "[LV1][LV2][LV3] Assault: 1 - (When Attacks) This spirit can, once per turn, be refreshed by exhausting one of your Nexuses.\n\n [LV2][LV3] (Your Attack Step) When your Nexuses are exhausted by the  \"Assault\" effect of your Spirits/Ultimates, destroy an opposing Nexus.",
   "image": "The Giant Cepheus.jpg",
@@ -13853,7 +13879,8 @@
    }
   ],
   "families": [
-   "Next Generation, Emperor Beast"
+   "Next Generation",
+   "Emperor Beast"
   ],
   "text": "[Summon Condition: You must have 1 or more cost 1 or greater Spirit on your Field.]\n\n [LV3][LV4][LV5] (Your Attack Step) When the opponent guards your Ultimate Trigger, return 1 cost 3 or below Red Spirit card from your Trash to your hand.\n\n Ultimate Trigger [LV4][LV5] (When Attacks) When Ultimate Trigger hits, draw 2 cards from your deck. (Ultimate Trigger: Put 1 card from your opponents deck to the trash. If the cost of that card is lower than this ultimate, it will hit)",
   "image": "Flame-Cougar.jpg",
@@ -15447,7 +15474,8 @@
    }
   ],
   "families": [
-   "Guardian General, Dragon"
+   "Guardian General",
+   "Dragon"
   ],
   "text": "[LV1][LV2][LV3] This Spirit cannot be destroyed by opposing effects.",
   "image": "Ryuuman-Doshatto.jpg",
@@ -15573,7 +15601,8 @@
    }
   ],
   "families": [
-   "Emperor Beast, Blade Beast"
+   "Emperor Beast",
+   "Blade Beast"
   ],
   "text": "[LV1][LV2][LV3] True-Clash (When Attacks) The opponent must block with their Spirits/Ultimates if possible.\n{{Rush|Green}}\n(While you have Green symbols, the following effect activates next)\n: Put a core from the Void to this Spirit.\n: The opponent can't activate their Bursts.",
   "image": "Red Fox.jpg",
@@ -16006,7 +16035,8 @@
    }
   ],
   "families": [
-   "Spiritual Beast, Zombie"
+   "Spiritual Beast",
+   "Zombie"
   ],
   "text": "[LV1][LV2] Flash- (Either Attack Step) By destroying this Spirit, destroy all Braves from 1 opposing Brave Spirit.",
   "image": "Phantom Hound.jpg",
@@ -16453,7 +16483,8 @@
    }
   ],
   "families": [
-   "Astral Guardian, Shellman"
+   "Astral Guardian",
+   "Shellman"
   ],
   "text": "[LV1][LV2] (When Summoned) Put a core from the Void to this Spirit. Also, put a core from the Void to another \"Astral Guardian\" family Spirit you control.\n\n [LV2] (Your Attack Step) When the opposing Life is decreased due to attacks from your  \"Astral Guardian\" family Brave Spirits, send an opposing life to their Trash.",
   "image": "Cancerd-Reverse.jpg",
@@ -17180,7 +17211,8 @@
    }
   ],
   "families": [
-   "Astral Guardian, Fairy"
+   "Astral Guardian",
+   "Fairy"
   ],
   "text": "[LV1][LV2] (When Summoned) Reveal 4 cards from your decktop. Add 1 Magic card from among them to your hand. Return the remaining cards to the top of your deck in any order you like.\n\n [LV1][LV2] (Either Attack Step) Reduction symbols of Magic cards in your hand are also treated as .",
   "image": "The FairyScholar Sakia.jpg",
@@ -17575,7 +17607,8 @@
    }
   ],
   "families": [
-   "Incarnate, Dragon Warrior"
+   "Incarnate",
+   "Dragon Warrior"
   ],
   "text": "[Summon Condition: You must have 1 or more Red Spirits on your Field.]\n\n[LV3][LV4] Cards cannot be discarded from every player's deck.\n\n Ultimate Trigger [LV4] (When Attacks) When Ultimate Trigger hits, destroy an opposing Spirit that has a (When Summoned) effect.",
   "image": "Ultimate-Assassin-Dragon.jpg",
@@ -17896,7 +17929,8 @@
    }
   ],
   "families": [
-   "Incarnate, Giant Beast"
+   "Incarnate",
+   "Giant Beast"
   ],
   "text": "[Summon Condition: You must have 1 or more White Spirits on your Field.]\n\n [LV3][LV4] Cards cannot be discarded from every player's deck.\n\nUltimate Trigger [LV4] (At the Start of Opposing Attack Step) When Ultimate Trigger hits, during this turn, all Ultimates you control are unaffected by opposing Magic effects. (Ultimate Trigger: Put 1 card from your opponents deck to the trash. If the cost of that card is lower than this ultimate, it will hit)",
   "image": "Ultimate-Geronimond.jpg",
@@ -18563,7 +18597,8 @@
    }
   ],
   "families": [
-   "Astral Guardian, Armed Machine"
+   "Astral Guardian",
+   "Armed Machine"
   ],
   "text": "☼[ Burst: After your Spirit is destroyed by the opponent]\n If your life is three or less, return any number of opposing Spirits/Ultimates up to a total of Cost 8 to the deckbottom in any order. After this effect resolves, summon this Spirit card.\n\n[LV2][LV3] Ultra Armor: Variable - This Spirit is unaffected by opposing Spirit/Ultimate/Nexus/Magic effects of the Color(s) this Spirit currently holds.",
   "image": "The EvilStarMachineDeity Loki.jpg",
@@ -20405,7 +20440,8 @@
    }
   ],
   "families": [
-   "Fencer, Beast Head"
+   "Fencer",
+   "Beast Head"
   ],
   "text": "[LV1][LV2][LV3] When your \"Fencer\" family Spirit/Ultimate attacks, put a core from the Void to your Nexus.",
   "image": "The Beastman Skylark.jpg",
@@ -22000,7 +22036,8 @@
    }
   ],
   "families": [
-   "Guardian General, Dragon"
+   "Guardian General",
+   "Dragon"
   ],
   "text": "[LV1][LV2] Cards from every player's deck cannot be discarded, and this Spirit cannot be destroyed by opposing effects.\n\n[LV2] Spirit Soul: Red - When you summon an Ultimate card, this Spirit gets (1 extra Red Symbol).",
   "image": "The Survivor Ryuuman-Falco.png",
@@ -22315,7 +22352,8 @@
    }
   ],
   "families": [
-   "Guardian General, Evil Shadow"
+   "Guardian General",
+   "Evil Shadow"
   ],
   "text": "[LV1][LV2] Cards from every player's deck cannot be discarded, and this Spirit cannot be destroyed by opposing effects.\n\n[LV2] (Either Attack Step) When your Purple Spirit/Ultimate cards are put into the trash by opposing Ultimate-Trigger, after the trigger resolves, you can summon all of the triggered Spirit/Ultimate cards without paying the cost.",
   "image": "The Survivor Shieldenritter.png",
@@ -22464,7 +22502,8 @@
    }
   ],
   "families": [
-   "Fencer, Nightling"
+   "Fencer",
+   "Nightling"
   ],
   "text": "[LV1][LV2][LV3] (When Summoned) Discard 6 cards from your decktop, and you can summon any amount of \"Exalted Sword\" family Brave cards from your trash, without paying the cost. However, any (When Summoned) effects cannot be activated.\n\n [LV2][LV3] When your \"Fencer\" family Spirits/Ultimates are destroyed by the opponent, draw 1 card from your deck.",
   "image": "Darkness-Count.png",
@@ -23391,7 +23430,8 @@
    }
   ],
   "families": [
-   "Guardian General, Fusion Beast"
+   "Guardian General",
+   "Fusion Beast"
   ],
   "text": "[LV1][LV2] Either player's deck cannot be discarded from, and this Spirit cannot be destroyed by opposing effects.",
   "image": "The Survivor Beebird.png",
@@ -24614,7 +24654,8 @@
    }
   ],
   "families": [
-   "Fencer, Shellman"
+   "Fencer",
+   "Shellman"
   ],
   "text": "When you summon an \"Exalted Sword\" family Brave, this Spirit card can be summoned from your Hand as Cost 3.\n\n [LV1][LV2] (When Summoned) Exhaust 1 opposing Spirit and 1 opposing Ultimate.\n\n [When Braved] [LV2] (When Braved Attacks) Exhaust 1 opposing Spirit/Ultimate. After that, refresh a \"Fencer\"/\"Shellman\" family Ultimate you control.",
   "image": "The SwordShellEmperor Actaeon.png",

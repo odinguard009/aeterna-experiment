@@ -18,7 +18,7 @@ async function highSpeedSummon(p, inst) {
   const fromN = Math.min(c, p.reserve.n), plan = { reserve: fromN, by: {}, rsoul: c > fromN, fsoul: null };
   removeFrom(p.hand, inst); inst.mirage = false;
   const soulPaid = payCost(p, c, plan);
-  inst.viaFC = false; inst.soulPaid = soulPaid; inst.soulLost = false; inst.cores = 0; inst.soul = false; inst.exhausted = false; inst.heavy = false; inst.noAB = false; inst.summonedTurn = G.turnNo; inst.bpMod = 0;
+  inst.viaFC = false; inst.viaFx = false; inst.soulPaid = soulPaid; inst.soulLost = false; inst.cores = 0; inst.soul = false; inst.exhausted = false; inst.heavy = false; inst.noAB = false; inst.summonedTurn = G.turnNo; inst.bpMod = 0;
   let need = card.levels[0].cores;                       // Lv1 cores also come from the Reserve only
   while (need > 0 && p.reserve.n > 0) { p.reserve.n--; inst.cores++; need--; }
   if (need > 0 && p.reserve.soul) { p.reserve.soul = false; inst.soul = true; need--; }

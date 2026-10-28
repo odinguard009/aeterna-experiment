@@ -59,7 +59,8 @@
    }
   ],
   "families": [
-   "Terra Dragon, Dragon"
+   "Terra Dragon",
+   "Dragon"
   ],
   "text": "[LV1][LV2][LV3] While you control any Brave Spirit, treat this Spirit as being [LV3].",
   "image": "The DiploDinoman Bracchio.jpg",
@@ -282,7 +283,8 @@
    }
   ],
   "families": [
-   "Ancient Dragon, Fusion Beast"
+   "Ancient Dragon",
+   "Fusion Beast"
   ],
   "text": "",
   "image": "Duald.jpg",
@@ -4470,7 +4472,8 @@
    }
   ],
   "families": [
-   "Terra Dragon, Dragon"
+   "Terra Dragon",
+   "Dragon"
   ],
   "text": "",
   "image": "The IronHeadDinoman Pachycephalon.jpg",
@@ -5183,7 +5186,8 @@
    }
   ],
   "families": [
-   "Plant Spirit, Winged Beast"
+   "Plant Spirit",
+   "Winged Beast"
   ],
   "text": "[LV1][LV2][LV3] When your opponent draws a card from their deck, refresh this spirit.",
   "image": "Totemowl.jpg",
@@ -7623,7 +7627,8 @@
    }
   ],
   "families": [
-   "Terra Dragon, Dragon"
+   "Terra Dragon",
+   "Dragon"
   ],
   "text": "[LV1][LV2] (When Destroyed) Destroy an opposing Spirit/Brave with BP equal or inferior to this Spirit's.",
   "image": "The ArmoredDinoman Gaston.jpg",
@@ -10839,7 +10844,8 @@
    }
   ],
   "families": [
-   "Terra Dragon, Dragon"
+   "Terra Dragon",
+   "Dragon"
   ],
   "text": "[LV1][LV2] (Your Start Step) You can return a Spirit with Ultra Awaken you control to your Hand.\n\n[LV2] When using your Spirit's Ultra Awaken effect, instead of putting cores on it from your Spirits, you can also use cores from your Reserve.",
   "image": "The ArmoredDinoman Ankylong.png",
@@ -11186,7 +11192,8 @@
    }
   ],
   "families": [
-   "Dark Snake, Dragon"
+   "Dark Snake",
+   "Dragon"
   ],
   "text": "[LV1][LV2] Curse (When Attacks) Destroy an opposing Spirit that blocked when the battle resolves at the end of battle.\n\n [LV2] (When Attacks) Treat this Spirit's color as colorless.",
   "image": "The Assassin Dragonaga.png",
@@ -11400,7 +11407,8 @@
    }
   ],
   "families": [
-   "Dark Snake, Dragon"
+   "Dark Snake",
+   "Dragon"
   ],
   "text": "[LV1][LV2][LV3] When your \"Dark Snake\" family Spirit is summoned, draw a card from your deck.\n\n [LV1][LV2][LV3] (Either Attack Step) When your \"Dragon\" family Spirits become exhausted, send a core from any opposing Spirits to the Reserve.\n\n [LV2][LV3] (When Destroyed) Return all  \"Dragonaga\"-named Spirit card from your Trash to your Hand.",
   "image": "The CurseKing Dragonaga.png",

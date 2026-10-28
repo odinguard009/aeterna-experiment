@@ -25,6 +25,7 @@ for i in ids:
     c = staged.get(i)
     if not c: missing.append(i); continue
     n = {k: c[k] for k in ('id', 'name', 'name_jp', 'type', 'color', 'cost', 'reduction', 'symbols', 'levels', 'families', 'text', 'image', 'block', 'saga') if k in c}
+    if n.get('families'): n['families'] = [b.strip() for a in n['families'] for b in a.split(',')]   # v0.181: "A, B" is two families
     if c.get('keyword'): n['mechanics'] = [c['keyword']]
     n['fxComplete'] = False
     n['note'] = 'Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); not yet checked against the card image.'

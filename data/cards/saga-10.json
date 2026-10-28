@@ -290,7 +290,9 @@
    }
   ],
   "families": [
-   "Blade Beast, Imp, Winged Beast"
+   "Blade Beast",
+   "Imp",
+   "Winged Beast"
   ],
   "text": "Flash - High Speed - This card in Hand can be summoned. Both the cost and the cores to be put onto this Spirit must be from the Reserve.\n\n [LV1][LV2] (When Summoned) By sending one core from your Green-only Grandwalker Nexus to the Void, send an opposing exhausted Spirit to the Removed Zone.",
   "image": "Mushbit.png",
@@ -949,7 +951,8 @@
    }
   ],
   "families": [
-   "Worldswalker, Beast Head"
+   "Worldswalker",
+   "Beast Head"
   ],
   "text": "[Summon Condition: Controlling at least one Beast Head Spirit/Ultimate]\n\n[LV3][LV4](When Summoned) Destroy an opposing Cost 8 or less Spirit. When this effect destroys, put one core from the Void to this Ultimate and to one Blue Grandwalker Nexus you control.\n\n[During Brave][LV4] (When Attacks) Opposing Grandwalker Nexuses can't activate their Grand Skill effects.\n\n[LV4] (When Attacks) Once per Turn, this Ultimate can refresh.",
   "image": "The SandseaSwordKing Jazlaan.png",
@@ -1162,7 +1165,8 @@
    }
   ],
   "families": [
-   "Worldswalker, Armed Machine"
+   "Worldswalker",
+   "Armed Machine"
   ],
   "text": "[LV1][LV2] (When Summoned) You can reveal four cards from your decktop. Add an Ultimate card among them to your Hand. By paying one cost, instead of Ultimate card, add a White-only Grandwalker Nexus card to your Hand. Return the remaining cards to the deckbottom in any order\n\n [LV1][LV2] Spirit Soul: White - When you are summoning an Ultimate card, this Spirit gains an extra White Symbol.",
   "image": "The ElectricMan Train.png",
@@ -3706,7 +3710,8 @@
    }
   ],
   "families": [
-   "Worldswalker, Blade Beast"
+   "Worldswalker",
+   "Blade Beast"
   ],
   "text": "[LV1][LV2] (When Summoned) Put a random card from the opposing Hand on the Removed Zone.\n\n[LV2] (When Attacks) Put a core from the Void to this Spirit for each card on the opposing Removed Zone. This effect can only be used once per turn.",
   "image": "Onisiroman.png",
@@ -4375,7 +4380,8 @@
    }
   ],
   "families": [
-   "Celeste, Artificial Soldier"
+   "Celeste",
+   "Artificial Soldier"
   ],
   "text": "[LV1][LV2] This Spirit can't be returned to the Hand/Deck by opposing effects.\n\n[LV1][LV2] Except for , neither player can put cores to their Life through effects. Also, the Life of either player can only be reduced by one per Grandwalker Nexus each turn.",
   "image": "Cyanite-Golem.png",
@@ -5409,7 +5415,9 @@
    }
   ],
   "families": [
-   "Celeste, Vassal, War Dragon"
+   "Celeste",
+   "Vassal",
+   "War Dragon"
   ],
   "text": "[LV1][LV2][LV3] (When Summoned) Destroy an opposing Nexus.\n\n[LV1][LV2][LV3] (When Attacks) Draw a card. Then, by sending  from this Spirit to the Trash, draw a card.\n{{Rush|White}}\n(While you have a White symbol, the following effect activates next)\n: Discard an opposing Burst.",
   "image": "The SorcererMusha Shikyou.png",
@@ -5464,7 +5472,9 @@
    }
   ],
   "families": [
-   "Celeste, Vassal, War Dragon"
+   "Celeste",
+   "Vassal",
+   "War Dragon"
   ],
   "text": "[LV1][LV2][LV3] Showdown - (Opposing Start Step) Your opponent selects a Spirit they control and compares BP with this Spirit. Spirits with equal or lower BP are destroyed, and when only the opposing Spirit is destroyed, activate the following effect:\n\n▪During this turn, the opponent can't summon cost 4 or less Spirit/Ultimate/Brave cards. Also, if you control a White symbol, during this turn, the opponent can't summon Spirit cards from the Trash.",
   "image": "The KarakuriGeneral Gennai.png",
@@ -5504,7 +5514,8 @@
    }
   ],
   "families": [
-   "Vassal, War Dragon"
+   "Vassal",
+   "War Dragon"
   ],
   "text": "[LV1][LV2][LV3] (When Attacks) Draw a card. Then, destroy an opposing 5000 BP or less Spirit.\n{{Rush|White}}\n(While you have a White symbol, the following effect activates next)\n: Once per turn, refresh this Spirit.",
   "image": "Dawnwind Dragon.png",
@@ -5672,7 +5683,8 @@
    }
   ],
   "families": [
-   "Celeste, Ancient Dragon"
+   "Celeste",
+   "Ancient Dragon"
   ],
   "text": "Flash - Advent: \"The HypocenterDragon Ma-On -Dragon Form-\"  (Either Attack Step)\n By sending your  to the Trash, stack this from your hand onto your target Spirit.\n\n[LV1][LV2] (When Advents) Refresh all your \"Ancient Dragon\" family Spirits. Also, if it's the opposing Attack Step, during this turn, this Spirit is unaffected by opposing effects.\n\n[During Advent] [LV2] (When Attacks/Blocks) You can destroy every opposing 30000 BP or less Spirit/Ultimate. This effect can only be used once per game.",
   "image": "The HypocenterDragon Ma-On -Humanoid Form-.png",
@@ -5854,7 +5866,9 @@
    }
   ],
   "families": [
-   "Celeste, Fencer, Evil Shadow"
+   "Celeste",
+   "Fencer",
+   "Evil Shadow"
   ],
   "text": "When an opposing Spirit with two symbols or more attacks, you can pay two costs to summon this card from the Trash.\n\n [LV1][LV2][LV3] (When Summoned) Destroy an opposing exhausted 7000 BP or less Spirit. Also, when summoned by this Spirit's effect, destroy an opposing exhausted Spirit.\n\n[LV2][LV3] For each two Purple/Yellow cards in your Trash, this Spirit gains +1000 BP.",
   "image": "The TenShikiWarOgres Reverse Musashi.png",
@@ -5895,7 +5909,9 @@
    }
   ],
   "families": [
-   "Celeste, Fencer, Evil Shadow"
+   "Celeste",
+   "Fencer",
+   "Evil Shadow"
   ],
   "text": "[LV1][LV2][LV3] (When Attacks) For each \"Evil Shadow\"/\"Youkai\" family Spirit you control, the cost of Magic cards in the opposing Hand/Removed Zone increases by +1.\n\n[LV2][LV3] For each two Purple/Yellow card in your Trash, this Spirit gains +1000 BP.",
   "image": "The TenShikiWarOgres Kage Kojirou.png",
@@ -6063,7 +6079,9 @@
    }
   ],
   "families": [
-   "Celeste, Imp, Winged Beast"
+   "Celeste",
+   "Imp",
+   "Winged Beast"
   ],
   "text": "When this card is revealed from your deck by your Green Spirit effect and your Hand is 5 or less, you can add it to your Hand.\n\nFlash - Sound Speed (Either Attack Step) You can summon this card from your hand by paying the cost from either your Reserve or by paying from your Red/Green Grandwalker Nexus(es) and sending the cores to the Void.\n\n[LV1][LV2][LV3] (When Summoned) Exhaust an opposing Spirit.",
   "image": "The SoundBeast Eightone Rabbit.png",
@@ -6276,7 +6294,8 @@
    }
   ],
   "families": [
-   "Vassal, Clever Machine"
+   "Vassal",
+   "Clever Machine"
   ],
   "text": "[LV1][LV2] (When Attacks/Blocks) Put one core from the Void to this Spirit. Also, if  is on this Spirit, return an opposing Spirit to the Hand.\n\n[LV2] Heavy Armor: Red/Purple - This Spirit is unaffected by opposing Red/Purple Spirit/Brave/Nexus/Magic effects.",
   "image": "Attacker ShiningHeavenCleverMachine Tajikarao.png",
@@ -6336,7 +6355,8 @@
    }
   ],
   "families": [
-   "Vassal, Clever Machine"
+   "Vassal",
+   "Clever Machine"
   ],
   "text": "[LV1][LV2] Heavy Armor: Purple/White - This Spirit is unaffected by opposing Purple/White Spirit/Brave/Nexus/Magic effects.\n\n[LV2] (Opposing End Step) If your Life wasn't decreased during this turn, you can return an opposing Spirit/Ultimate to the Hand.",
   "image": "Shooter ShiningHeavenCleverMachine Tamanoya.png",
