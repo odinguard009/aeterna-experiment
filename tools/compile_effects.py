@@ -649,6 +649,16 @@ def spirit_paragraph_main(p, card, rush):
             e = {'trigger': 'STATIC', 'bp': bp(mm.group(2)), 'to': 'own', 'match': {'family': [mm.group(1)]}}
             if lv: e['lv'] = lv
             return [e], flags
+        mm = re.match(r'^The cost of all ((?:"[^"]+"(?:\s*/\s*"[^"]+")*) family) Spirit cards in your Hand becomes (\d+)\.?$', p, re.I)
+        if mm:      # v0.186 STATIC flag HAND_COST (engine handCostSet in effCost)
+            e = [{'trigger': 'STATIC', 'flag': 'HAND_COST', 'to': 'self', 'n': int(mm.group(2)), 'match': {'family': re.findall(r'"([^"]+)"', mm.group(1))}}]
+            if lv: e[0]['lv'] = lv
+            return e, flags
+        mm = re.match(r"^Neither player's Life can be reduced by the attacks of Cost (\d+) or less Spirits\.?$", p, re.I)
+        if mm:      # v0.186 STATIC flag NO_ATTACK_LIFE (engine attackLifeLocked)
+            e = [{'trigger': 'STATIC', 'flag': 'NO_ATTACK_LIFE', 'to': 'self', 'costLe': int(mm.group(1))}]
+            if lv: e[0]['lv'] = lv
+            return e, flags
         if re.match(r"^Cards can't be discarded from either (?:player's )?deck\.?$", p, re.I):      # v0.180 STATIC flag NO_DECK_DISCARD
             e = [{'trigger': 'STATIC', 'flag': 'NO_DECK_DISCARD', 'to': 'self'}]
             if lv: e[0]['lv'] = lv

@@ -78,7 +78,7 @@
 | K_NETHER_IMMORTALITY | keyword | Nether Immortality: when your matching "Nether" is destroyed, summon this card from the Trash | (not wired; close to DESTROYED + summon from Trash) | missing | 3 |
 | T_BLOCKS | trigger | (When Blocks): this Spirit blocks | BLOCKS; ATTACKS with alsoBlocks:true | wired | 171 |
 | T_DESTROYED | trigger | (When Destroyed) | DESTROYED | partial | 385 |
-| M_OPTIONAL | modifier | 'You can' = optional; 'You do' = mandatory | optional:true | wired | 2461 |
+| M_OPTIONAL | modifier | 'You can' = optional; 'You do' = mandatory | optional:true | wired | 2462 |
 | M_BY_DOING | modifier | 'By doing X, do Y': X is a requirement | BY {cost, then, ask} | wired | 705 |
 | M_IF_YOU_DO | modifier | 'You can X. If you do / When you've done so, Y' | if:{prev:true} | wired | 400 |
 | M_THEN | modifier | 'Then': the next part resolves even if the previous part could not | default (no if) | wired | 642 |

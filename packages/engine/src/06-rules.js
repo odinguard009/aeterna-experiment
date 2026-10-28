@@ -206,12 +206,22 @@ function legacyPlan(p, card, syms, extra) {
   }
   return best.n > 0 ? best : null;
 }
+/* v0.186 STATIC HAND_COST {n, match} ("The cost of all <family> Spirit cards in your Hand becomes N"): the base cost of a matching card the owner pays for */
+function handCostSet(p, card) {
+  if (!G) return null; const opp = G.p[other(p.key)];
+  for (const src of fieldList(p)) {
+    const L = lvNo(src);
+    for (const { e } of fxEntries(src)) if (e.trigger === 'STATIC' && e.flag === 'HAND_COST' && !(e.lv && !e.lv.includes(L)) && fxMatch(card, e.match) && fxIf(p, opp, e.if, { selfInst: src })) return e.n;
+  }
+  return null;
+}
 function effCost(p, card) {                       // cost reduction is mandatory when possible
   const syms = fieldSymbols(p, card.soulReduce, true);
   if (card.trashSymbols) for (const t of p.trash) for (const x of symbolAttrs(CARDS[t.id])) syms.push(x);   // v0.47 Lightning Tempest: "you can also use symbols from your Trash to reduce the cost
   const extra = extraReduction(p, card), lp = legacyPlan(p, card, syms, extra);
   const r = lp ? lp.total : reductionOf(card, syms, extra);
-  return Math.max(0, (costAltActive(p, card) ? Math.min(card.cost, card.costAlt.cost) : card.cost) - r);
+  const hc = handCostSet(p, card), base = hc == null ? card.cost : hc;
+  return Math.max(0, (costAltActive(p, card) ? Math.min(base, card.costAlt.cost) : base) - r);
 }
 function legacyPay(p, inst) {                     // v0.69: banish the Legacy cards (call once, before the cost is paid: the state must still be the one effCost saw)
   const lp = legacyPlan(p, CARDS[inst.id]); inst.legacyN = lp ? lp.n : 0;

@@ -368,6 +368,8 @@ def own_grammar(s, ctx=None):
         anyT = m.group(1).lower() != 'spirit'      # RETURN_TRASH picks only Spirits unless anyType
         if m.group(2): mt['keyword'] = m.group(2).title()
         return [dict({'do': 'RETURN_TRASH', 'match': mt}, **({'anyType': True} if anyT else {}))]
+    m = re.match(r'^(?:you can )?return an? "([^"]+)" family spirit card from your trash to (?:the|your) hand$', x, re.I)
+    if m: return [{'do': 'RETURN_TRASH', 'match': {'family': [m.group(1)]}}]      # v0.186 untargeted pick of a family Spirit (same match as the targeted form)
     m = re.match(r'^(?:you can )?return an? ((?:"[^"]+"/)*"[^"]+")-named spirit card from your trash to (?:the|your) hand$', x, re.I)
     if m: return [{'do': 'RETURN_TRASH', 'match': {'name': re.findall(r'"([^"]+)"', m.group(1))}}]      # v0.177 '"X"-named Spirit card' (Spirit-only pick, name includes X)
     m = OWN_REFRESH.match(x)

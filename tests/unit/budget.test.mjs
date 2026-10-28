@@ -43,6 +43,7 @@ const packLen = between('/*PACK_START*/', '/*PACK_END*/'), code = html.slice(0, 
 // v0.138.0 (dialogs, step animations, text size, shortcuts): raised B02 256 -> 264 KB on purpose; the old stylesheet is trimmed in the frontend audit.
 // v0.139.0 (U16): raised B01 935 -> 965 KB and B02 264 -> 275 KB on purpose: the loading screen (animated inline SVG + CSS) and the header logo symbol (~17 KB together).
 // v0.155.0 (batch 4, mockup parity): raised B02 275 -> 285 KB on purpose: the Export tabs (Text / Code / Image / CSV), the Import format line, the Avatar and History dialogs and the battle screen ported to the mockup stylesheet.
+// v0.186.0 (Lane K): raised B02 285 -> 290 KB on purpose: Tribute, Assault, USE_FLASH, HAND_COST and NO_ATTACK_LIFE engine code.
 // v0.135.0 (Form Change): raised B01 790 -> 796 KB and B02 224 -> 226 KB on purpose: the FORM_CHANGE action, the viaFormChange condition and 8 more complete cards.
 // v0.125.0 (U14d2): B02 raised 212 -> 218 KB on purpose: the Effect Active panel, the emoticons and the 'effect' view record.
 const FONT_URL = /url\(data:font\/woff2;base64,[A-Za-z0-9+/=]+\)/g, FLAVOR_RE = /\/\*FLAVOR_START\*\/const BUILTIN_FLAVOR = "[A-Za-z0-9+\/=]*";\/\*FLAVOR_END\*\//, noFont = t => t.replace(FONT_URL, 'url()').replace(FLAVOR_RE, '/*FLAVOR*/');   // v0.131.0 U14g: the Lore flavor blob is data like the pack: its own budget B15
@@ -53,7 +54,7 @@ const FONT_URL = /url\(data:font\/woff2;base64,[A-Za-z0-9+/=]+\)/g, FLAVOR_RE = 
 // v0.180.0 (Lane K): raised B01 1030 -> 1040 KB on purpose: the effect engine grows with each generic action family (noFx summon, Rush on a Magic); the limit sat 0.1 KB above the size.
 // v0.185.0 (Lane K): raised B01 1040 -> 1050 KB on purpose: Tribute, USE_FLASH, REVEAL_DEPLOY rest and the DESTROY_TOTAL / colour clauses (engine ~1 KB over the limit).
 test('B01 index.html without the card pack stays under 1050 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 1050e3, Buffer.byteLength(noFont(code))));
-test('B02 index.html without the card pack, gzipped, stays under 285 KB', () => { const n = gzipSync(noFont(code), { level: 9 }).length; assert.ok(n < 285e3, n); });
+test('B02 index.html without the card pack, gzipped, stays under 290 KB', () => { const n = gzipSync(noFont(code), { level: 9 }).length; assert.ok(n < 290e3, n); });
 test('B03 the embedded card pack stays under 1.6 MB (room for all cards; never embed staging data)', () => assert.ok(packLen < 1.6e6, packLen));
 // v0.93.0 (U6): raised 90 -> 96 KB on purpose (roadmap item U allows it with a note): U6-U8 add the My decks page and the
 // deck builder restyle; unused rules were trimmed first in v0.92.0. The next raise needs the same kind of note.

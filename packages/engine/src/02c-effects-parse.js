@@ -121,6 +121,15 @@ function parseEffects(arr) {
         if (!COLORS.includes(e.color)) return { error: 'EXTRA_REDUCTION needs a "color"' };
         o.color = e.color; o.n = Number.isInteger(e.n) && e.n >= 1 && e.n <= 3 ? e.n : 1;
       }
+      if (e.flag === 'HAND_COST') {                               // v0.186 "The cost of all <family> Spirit cards in your Hand becomes N"
+        if (!Number.isInteger(e.n) || e.n < 0 || e.n > 30) return { error: 'HAND_COST needs a whole-number "n" (0-30)' };
+        if (!o.match) return { error: 'HAND_COST needs a "match"' };
+        o.n = e.n;
+      }
+      if (e.flag === 'NO_ATTACK_LIFE') {                          // v0.186 attacks of Cost N or less Spirits can't reduce either Life
+        if (!Number.isInteger(e.costLe) || e.costLe < 0 || e.costLe > 30) return { error: 'NO_ATTACK_LIFE needs a whole-number "costLe" (0-30)' };
+        o.costLe = e.costLe;
+      }
       if (e.flag === 'DRAW_PLUS') {                               // v0.181 extra cards in your Draw Step
         if (!Number.isInteger(e.n) || e.n < 1 || e.n > 3) return { error: 'DRAW_PLUS needs a whole-number "n" (1-3)' };
         o.n = e.n;

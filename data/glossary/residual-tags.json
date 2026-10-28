@@ -1496,12 +1496,6 @@
   "T_ALLY_BLOCKED",
   "T_DESTROYED"
  ],
- "BS06-022": [
-  "A_RETURN_TRASH",
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
  "BS06-023": [
   "C_LEVEL",
   "T_SUMMONED"
@@ -1777,9 +1771,6 @@
   "C_LEVEL",
   "T_ATTACKS"
  ],
- "BS07-005": [
-  "C_LEVEL"
- ],
  "BS07-006": [
   "C_LEVEL"
  ],
@@ -1796,9 +1787,6 @@
  "BS07-013": [
   "C_LEVEL",
   "T_DESTROYED"
- ],
- "BS07-014": [
-  "C_LEVEL"
  ],
  "BS07-015": [
   "A_TRASH_TO_RESERVE",
@@ -1870,9 +1858,6 @@
   "T_ALLY_LIFE_HIT",
   "T_ATTACKS"
  ],
- "BS07-031": [
-  "C_LEVEL"
- ],
  "BS07-033": [
   "C_LEVEL",
   "M_OPTIONAL"
@@ -1938,13 +1923,6 @@
   "C_LEVEL",
   "M_OPTIONAL",
   "T_ALLY_SUMMONED"
- ],
- "BS07-051": [
-  "A_EXHAUST",
-  "A_REFRESH",
-  "C_LEVEL",
-  "M_UP_TO",
-  "T_ATTACKS"
  ],
  "BS07-053": [
   "A_DISCARD_OPP",
@@ -5936,12 +5914,6 @@
   "K_BURST",
   "M_UP_TO",
   "T_ATTACKS"
- ],
- "BS18-055": [
-  "A_RETURN_TRASH",
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "T_SUMMONED"
  ],
  "BS18-058": [
   "A_EXHAUST"
@@ -14674,12 +14646,6 @@
   "K_ULTIMATE",
   "T_ATTACKS"
  ],
- "BS38-032": [
-  "A_RETURN_TRASH",
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "T_DESTROYED"
- ],
  "BS38-033": [
   "A_SEAL",
   "C_LEVEL"
@@ -18661,16 +18627,6 @@
   "M_OPTIONAL",
   "T_ATTACKS",
   "T_SUMMONED"
- ],
- "BS43-055": [
-  "A_BP_MINUS",
-  "A_REMOVED_ZONE",
-  "A_RETURN_TRASH",
-  "A_SELF_TO_HAND",
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "K_ACCEL",
-  "T_DESTROYED_OPP"
  ],
  "BS43-056": [
   "A_BP_MINUS",
