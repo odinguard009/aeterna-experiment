@@ -22389,12 +22389,27 @@
   "block": "A",
   "saga": 50,
   "ex_symbols": 1,
-  "fxComplete": false,
-  "residual": [
-   "[Team: Blue Beat]",
-   "[LV2] (True Release) (When Destroyed) Target one of your Blue Beat Spirits. During this turn, give it +2000 BP."
+  "trueRelease": true,
+  "effects": [
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "BP_TARGET",
+      "n": 2000,
+      "to": "pick",
+      "match": {
+       "team": "Blue Beat"
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RDB01-036",
@@ -23603,17 +23618,56 @@
    "Diva",
    "Stage Style"
   ],
-  "text": "[Team: Green Wave]\n\n[LV1-2] (When Summoned)\nIf all your Spirits/Nexuses have Green Wave, put a core from the Void to this Spirit.\n\n[LV2] (True Release) {{Invoke|Main}} (Once Per Turn)\nPay one cost ▶ Target one of your Green Wave Spirits. Refresh it.",
+  "text": "[Team: Green Wave]\n\n[LV1][LV2] (When Summoned)\nIf all your Spirits/Nexuses have Green Wave, put a core from the Void to this Spirit.\n\n[LV2] (True Release) {{Invoke|Main}} (Once Per Turn)\nPay one cost ▶ Target one of your Green Wave Spirits. Refresh it.",
   "image": "26RDB01-X03.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[Team: Green Wave]",
-   "[LV1-2] (When Summoned) If all your Spirits/Nexuses have Green Wave, put a core from the Void to this Spirit.",
-   "[LV2] (True Release) {{Invoke|Main}} (Once Per Turn) Pay one cost ▶ Target one of your Green Wave Spirits. Refresh it."
+  "trueRelease": true,
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "self",
+      "if": {
+       "allHave": {
+        "team": "Green Wave"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN"
+    ],
+    "once": true,
+    "lv": [
+     2
+    ],
+    "cost": {
+     "pay": 1
+    },
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT",
+      "match": {
+       "team": "Green Wave"
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RDB01-X04",

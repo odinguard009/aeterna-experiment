@@ -305,9 +305,12 @@ SELF_BATTLE_SYM = re.compile(r'^during this battle, this spirit gains an extra '
 
 def own_np(np):
     """v0.68: "[attacking] [Cost N or more | Cost A/B] ["X" family] Spirits [with Kw | with the "Y" family]" (one of your ...) -> (match, attacking)"""
+    tm = re.search(r'\b(' + v1.TEAMS.lower() + r') (?=spirits?\b)', low(np.strip()))      # v0.184 (schema 55) "Green Wave Spirits" = match.team
+    if tm: np = low(np.strip()).replace(tm.group(0), '', 1)
     m = re.match(r'^(attacking )?(?:cost (\d+) or more |cost (\d+(?:/\d+)+) )?(?:(red|purple|green|white|yellow|blue) )?(?:"([^"]+)" family )?spirits?(?: with (?:the "([^"]+)" family|([a-z]+)))?$', low(np.strip()))
     if not m or (m.group(7) in ('no', 'a', 'an', 'the', 'any')): raise Review('v2 own target: ' + np[:60])
     match = {}
+    if tm: match['team'] = tm.group(1).title()
     if m.group(4): match['color'] = m.group(4)      # v0.169 "one of your Green Spirits" (fxMatch color)
     if m.group(7): match['keyword'] = m.group(7).capitalize()      # v0.164 "Spirits with Clash" (fxMatch keyword)
     if m.group(5) or m.group(6): match['family'] = [m.group(5) or m.group(6)]      # v0.168 'with the "Topaz" family' = the same family filter
