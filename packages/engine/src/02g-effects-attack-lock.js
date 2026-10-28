@@ -50,7 +50,7 @@ Object.assign(FX_ACTIONS, {
         if (!t) break; removeFrom(c.p.revealed, t); c.p.hand.push(t); got++; log(`${nm}: ${CARDS[t.id].name} is added to the Hand.`);
       }
       if (got) handUp(c.p, got);
-      const rest = c.p.revealed.splice(0); for (const x of rest) c.p.trash.push(x);
+      const rest = c.p.revealed.splice(0); for (const x of rest) (deckDiscardLocked() ? c.p.deck : c.p.trash).push(x);      // v0.180 under NO_DECK_DISCARD the rest goes to the Deck bottom (house reading)
       if (rest.length) log(`${nm}: ${rest.length} card${rest.length === 1 ? '' : 's'} discarded.`);
       c.ctx.did = got > 0;
     } },

@@ -8,8 +8,9 @@ Object.assign(FX_ACTIONS, {
   /* send n cards from the top of your Deck to the Trash. family + counter/draw: when a card of that family is among them, counter +counter and draw (Hound-Beros) */
   MILL: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && (a.family == null || typeof a.family === 'string') && (a.counter == null || (Number.isInteger(a.counter) && a.counter >= 1 && a.counter <= 3)) && (a.draw == null || (Number.isInteger(a.draw) && a.draw >= 1 && a.draw <= 3)),
     txt: a => `send ${a.n} cards from your Deck to the Trash${a.family ? ', and if a "' + a.family + '" family card is among them' + (a.counter ? ' counter +' + a.counter : '') + (a.draw ? ' and draw ' + a.draw : '') : ''}`,
-    can: c => c.p.deck.length > 0,
+    can: c => c.p.deck.length > 0 && !deckDiscardLocked(),
     run: async (c, a) => {
+      if (deckDiscardLocked()) { c.ctx.did = false; log(`${_pn(c)}: cards can't be discarded from a Deck.`); return; }
       const top = c.p.deck.splice(0, Math.min(a.n, c.p.deck.length)); if (!top.length) { c.ctx.did = false; return; }
       for (const x of top) c.p.trash.push(x);
       log(`${_pn(c)}: ${top.length} card${top.length === 1 ? '' : 's'} from the Deck go to the Trash.`);

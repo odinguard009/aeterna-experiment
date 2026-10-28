@@ -554,6 +554,10 @@ def spirit_paragraph_main(p, card, rush):
             e = [{'trigger': 'STATIC', 'flag': 'CANT_' + mm.group(1).upper(), 'to': 'self'}]
             if lv: e[0]['lv'] = lv
             return e, flags
+        if re.match(r"^Cards can't be discarded from either (?:player's )?deck\.?$", p, re.I):      # v0.180 STATIC flag NO_DECK_DISCARD
+            e = [{'trigger': 'STATIC', 'flag': 'NO_DECK_DISCARD', 'to': 'self'}]
+            if lv: e[0]['lv'] = lv
+            return e, flags
         sw = step_window(p, card, lv, rush)      # v0.70: generic step window head
         if sw is not None: e, f2 = sw; flags.update(f2); return e, flags
         raise Review('no trigger: ' + p[:100])

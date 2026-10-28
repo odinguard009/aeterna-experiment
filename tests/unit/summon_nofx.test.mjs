@@ -39,3 +39,18 @@ test('NF03 OPP_DISCARD: the opponent discards a card from their Hand (Matchra BS
   });
   assert.deepEqual(r, [1, 1]);
 });
+
+test('NF04 NO_DECK_DISCARD (BS19-007): MILL does nothing while the lock is on the field, works once it is gone', async () => {
+  const r = await g.page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant'; const G = BS.G, P = G.p.player;
+    P.cpu = true; P.spirits = []; P.trash = []; P.deck = Array.from({ length: 5 }, () => BS.mkInst('NF-G'));
+    const src = BS.mkInst('BS01-056'); src.cores = 1; P.spirits.push(src);
+    const lock = BS.mkInst('BS19-007'); lock.cores = 2; G.p.opponent.spirits = [lock];
+    const c = { p: P, opp: G.p.opponent, src, ctx: {} };
+    await BS.FX_ACTIONS.MILL.run(c, { do: 'MILL', n: 2 });
+    const locked = P.trash.length; G.p.opponent.spirits = [];
+    await BS.FX_ACTIONS.MILL.run({ p: P, opp: G.p.opponent, src, ctx: {} }, { do: 'MILL', n: 2 });
+    return [locked, P.trash.length];
+  });
+  assert.deepEqual(r, [0, 2]);
+});

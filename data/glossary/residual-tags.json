@@ -5996,9 +5996,6 @@
   "C_LEVEL",
   "K_BURST"
  ],
- "BS18-025": [
-  "C_LEVEL"
- ],
  "BS18-026": [
   "A_EXHAUST",
   "A_REFRESH",
@@ -6087,9 +6084,6 @@
  "BS18-048": [
   "C_LEVEL",
   "K_BRAVE"
- ],
- "BS18-050": [
-  "C_LEVEL"
  ],
  "BS18-051": [
   "A_EXHAUST",
@@ -6271,9 +6265,6 @@
   "K_RUSH",
   "T_SUMMONED"
  ],
- "BS19-007": [
-  "C_LEVEL"
- ],
  "BS19-008": [
   "A_BP_PLUS",
   "C_LEVEL",
@@ -6305,9 +6296,6 @@
  ],
  "BS19-017": [
   "A_CORE_TO_SELF",
-  "C_LEVEL"
- ],
- "BS19-018": [
   "C_LEVEL"
  ],
  "BS19-020": [
@@ -6403,9 +6391,6 @@
   "K_RUSH",
   "T_BLOCKS",
   "T_SUMMONED"
- ],
- "BS19-046": [
-  "C_LEVEL"
  ],
  "BS19-051": [
   "C_LEVEL",
@@ -6764,9 +6749,6 @@
   "K_RUSH",
   "T_ATTACKS"
  ],
- "BS20-029": [
-  "C_LEVEL"
- ],
  "BS20-030": [
   "A_DISCARD_OPP",
   "A_EXHAUST",
@@ -6805,9 +6787,6 @@
   "A_BP_MINUS",
   "C_LEVEL",
   "T_ATTACKS"
- ],
- "BS20-042": [
-  "C_LEVEL"
  ],
  "BS20-043": [
   "C_LEVEL",
@@ -18783,9 +18762,6 @@
   "M_OPTIONAL",
   "T_REVEALED",
   "T_SUMMONED"
- ],
- "BS43-024": [
-  "C_LEVEL"
  ],
  "BS43-025": [
   "A_REFRESH",
