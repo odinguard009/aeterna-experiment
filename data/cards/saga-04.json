@@ -1251,11 +1251,33 @@
   "image": "BS19-030.jpg",
   "block": "19",
   "saga": 4,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Summoned) You can summon a \"Gaudy Trooper\"/\"Winged Beast\" family Spirit card from your Hand, without paying the cost. However, that Spirit's (When Summoned) effect can't activate."
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "SUMMON_HAND",
+      "match": {
+       "type": "Spirit",
+       "family": [
+        "Gaudy Trooper",
+        "Winged Beast"
+       ]
+      },
+      "from": "hand",
+      "noFx": true
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS19-032",
@@ -7173,11 +7195,30 @@
    "bp": 3000,
    "costGe": 4
   },
-  "fxComplete": false,
-  "residual": [
-   "[LV1] (When Summoned) You can summon a Yellow Spirit card with Charge from your Hand, without paying the cost."
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "SUMMON_HAND",
+      "match": {
+       "type": "Spirit",
+       "color": [
+        "yellow"
+       ],
+       "keyword": "Charge"
+      },
+      "from": "hand"
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS20-065",
@@ -15501,11 +15542,38 @@
   "mechanics": [
    "Rush"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV2][LV3] (When Destroyed) You can summon a \"Fencer\" family Spirit card from your Trash. {{Rush|Red}} (While you have a Red symbol, the following effect activates next) : Draw a card."
+  "effects": [
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "SUMMON_HAND",
+      "match": {
+       "type": "Spirit",
+       "family": [
+        "Fencer"
+       ]
+      },
+      "from": "trash",
+      "pay": true
+     },
+     {
+      "do": "DRAW",
+      "n": 1,
+      "if": {
+       "hasSymbol": "red"
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS23-015",

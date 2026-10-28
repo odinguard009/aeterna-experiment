@@ -6098,6 +6098,13 @@
   "K_BRAVE",
   "M_THEN"
  ],
+ "BS14-097": [
+  "T_SUMMONED",
+  "A_SUMMON_FREE",
+  "K_BURST",
+  "K_BRAVE",
+  "M_THEN"
+ ],
  "BS14-098": [
   "T_ACTIVATE",
   "A_BP_PLUS",

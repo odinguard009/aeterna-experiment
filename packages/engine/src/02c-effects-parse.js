@@ -14,25 +14,25 @@ async function summonFree(p, inst, opts) {           // summon/deploy without pa
   checkDepletion(p);
   io.view({ type: 'board' }); await wait(350);
   if (!G.over && fieldList(p).includes(inst)) {
-    const evs = [{ owner: p, trigger: 'SUMMONED', src: inst }];
-    if (opts && opts.manifest && !isMainStep()) evs.push({ owner: p, trigger: 'MANIFEST', src: inst });   // official: When Manifests activates together with the summon effects, not in the Main Step
+    const evs = [{ owner: p, trigger: 'SUMMONED', src: inst, ctx: opts && opts.noFx ? { noSelfFx: true } : undefined }];      // v0.180 noFx: "any (When Summoned) effects can't activate" for the card summoned by this effect
+    if (opts && opts.manifest && !isMainStep()) evs.push({ owner: p, trigger: 'MANIFEST', src: inst, ctx: undefined });   // official: When Manifests activates together with the summon effects, not in the Main Step
     await fireFxMulti(evs);
   }
   return true;                                          // v0.37: callers (REVEAL_DEPLOY) tell a summon that happened from one that did not
 }
 const canPlacePaid = (p, inst) => { const k = CARDS[inst.id]; return (k.type === 'Spirit' || k.type === 'Ultimate' || k.type === 'Nexus') && canPlayCard(p, inst); };
 const canPlaceBy = (p, inst, pay) => pay ? canPlacePaid(p, inst) : canPlaceFree(p, inst);
-async function summonPaid(p, inst) {                  // official: "summon/deploy" without "without paying the cost" pays the cost (with cost reduction)
+async function summonPaid(p, inst, opts) {                  // official: "summon/deploy" without "without paying the cost" pays the cost (with cost reduction)
   if (!canPlacePaid(p, inst)) return false;
   const card = CARDS[inst.id], c = effCost(p, card), L = minCores(card);
   let plan = null;
   if (!p.cpu && c > 0 && reserveTotal(p) < c + L) { plan = await askPayment(card, c, L); if (!plan) return false; }
   if (p.limbo === inst) p.limbo = null;
   summon(p, inst, plan); io.view({ type: 'board' }); await wait(350);
-  if (!G.over && fieldList(p).includes(inst)) await fireFx(p, 'SUMMONED', inst);
+  if (!G.over && fieldList(p).includes(inst)) await fireFx(p, 'SUMMONED', inst, opts && opts.noFx ? { noSelfFx: true } : undefined);
   return true;
 }
-const summonBy = (p, inst, pay) => pay ? summonPaid(p, inst) : summonFree(p, inst);
+const summonBy = (p, inst, pay, opts) => pay ? summonPaid(p, inst, opts) : summonFree(p, inst, opts);
 function fxDescribe(e) { return (e.invoke && e.cost ? invokeCostText(e.cost) + ' ▶ ' : '') + e.actions.map(a => FX_ACTIONS[a.do].txt(a)).join(', then '); }
 const BURST_WHEN = { LIFE_DECREASE: 'After your Life is reduced', ALLY_DESTROYED: 'After your Spirit is destroyed by the opponent', OPP_SUMMON_FX: "After an opposing Spirit's (When Summoned) effect activates", OPP_HAND_UP: 'After the opposing Hand increases with an opposing effect', OPP_ATTACK: 'After an opposing Spirit attacks', OPP_SUMMON_ADV_FX: "After an opposing Spirit's (When Summoned/Advents) effect resolves" };   // v0.71 OPP_ATTACK, OPP_SUMMON_ADV_FX
 function parseCond(c) {

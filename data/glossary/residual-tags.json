@@ -369,12 +369,6 @@
   "A_BP_PLUS",
   "C_LEVEL"
  ],
- "BS02-034": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
  "BS02-035": [
   "C_LEVEL",
   "T_DESTROYED"
@@ -2202,10 +2196,6 @@
  ],
  "BS08-012": [
   "A_EXHAUST",
-  "C_LEVEL",
-  "M_OPTIONAL"
- ],
- "BS08-013": [
   "C_LEVEL",
   "M_OPTIONAL"
  ],
@@ -6395,12 +6385,6 @@
   "A_EXHAUST",
   "C_LEVEL"
  ],
- "BS19-030": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
  "BS19-032": [
   "A_EXHAUST",
   "A_LIFE_TO_RESERVE",
@@ -6921,12 +6905,6 @@
  "BS20-063": [
   "K_BRAVE",
   "K_RUSH"
- ],
- "BS20-064": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_SUMMONED"
  ],
  "BS20-065": [
   "A_EXHAUST",
@@ -7809,12 +7787,6 @@
  "BS23-013": [
   "C_LEVEL",
   "K_BRAVE"
- ],
- "BS23-014": [
-  "C_LEVEL",
-  "K_RUSH",
-  "M_OPTIONAL",
-  "T_DESTROYED"
  ],
  "BS23-015": [
   "A_CORE_TO_SELF",
@@ -16452,13 +16424,6 @@
   "K_ADVENT",
   "M_BY_DOING"
  ],
- "BS40-013": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_DESTROYED",
-  "T_DESTROYED_OPP"
- ],
  "BS40-015": [
   "A_REVEAL_ADD",
   "A_REVEAL_DECK",
@@ -16984,13 +16949,6 @@
   "K_ULTIMATE",
   "T_ATTACKS"
  ],
- "BS40-RV005": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "K_RUSH",
-  "M_OPTIONAL",
-  "T_ATTACKS"
- ],
  "BS40-RV006": [
   "C_LEVEL",
   "K_ADVENT",
@@ -17398,13 +17356,6 @@
   "C_LEVEL",
   "C_OPP_TURN",
   "M_OPTIONAL"
- ],
- "BS41-040": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "K_RUSH",
-  "M_OPTIONAL",
-  "T_SUMMONED"
  ],
  "BS41-041": [
   "A_DISCARD_OPP",

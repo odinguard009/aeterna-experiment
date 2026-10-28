@@ -50,7 +50,8 @@ const FONT_URL = /url\(data:font\/woff2;base64,[A-Za-z0-9+/=]+\)/g, FLAVOR_RE = 
 // v0.155.0 (owner review batch): raised B01 985 -> 1005 KB and B04 210 -> 225 KB on purpose: ~30 review items (Home background, deck-sheet sizes, filter groups, card-page and battle-layout CSS) are mostly stylesheet.
 // v0.158.0 (owner review round 3): B01 1015 -> 1030 KB: the shared Colour / Type / Cost / Group dropdowns, the Lore minimize controls and the phone and battle CSS.
 // v0.155.0 (batch 4): B01 1005 -> 1015 KB: the generated card art (apps/web/src/11-human.js), the export / avatar / history dialogs.
-test('B01 index.html without the card pack stays under 1030 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 1030e3, Buffer.byteLength(noFont(code))));
+// v0.180.0 (Lane K): raised B01 1030 -> 1040 KB on purpose: the effect engine grows with each generic action family (noFx summon, Rush on a Magic); the limit sat 0.1 KB above the size.
+test('B01 index.html without the card pack stays under 1040 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 1040e3, Buffer.byteLength(noFont(code))));
 test('B02 index.html without the card pack, gzipped, stays under 285 KB', () => { const n = gzipSync(noFont(code), { level: 9 }).length; assert.ok(n < 285e3, n); });
 test('B03 the embedded card pack stays under 1.6 MB (room for all cards; never embed staging data)', () => assert.ok(packLen < 1.6e6, packLen));
 // v0.93.0 (U6): raised 90 -> 96 KB on purpose (roadmap item U allows it with a note): U6-U8 add the My decks page and the

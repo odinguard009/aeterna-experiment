@@ -5764,6 +5764,27 @@
   "saga": 1,
   "effects": [
    {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "SUMMON_HAND",
+      "match": {
+       "type": "Spirit",
+       "color": [
+        "green"
+       ]
+      },
+      "from": "hand",
+      "noFx": true
+     }
+    ]
+   },
+   {
     "trigger": "ALLY_LIFE_HIT",
     "lv": [
      2
@@ -5777,11 +5798,8 @@
     ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Summoned) You can summon a Green Spirit card from your Hand, without paying the cost. However, any (When Summoned) effects of the Spirit summoned by this effect do not activate."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS02-035",
@@ -26600,11 +26618,31 @@
   "image": "Andrealphas.jpg",
   "block": "08",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (Your End Step) You can summon a \"Braver\"-named Spirit card from your Trash."
+  "effects": [
+   {
+    "trigger": "END_STEP",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "SUMMON_HAND",
+      "match": {
+       "type": "Spirit",
+       "name": [
+        "Braver"
+       ]
+      },
+      "from": "trash",
+      "pay": true
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS08-014",

@@ -697,6 +697,31 @@ def instead_pair(m, ctx):
 
 SHOW_RET = re.compile(r'^(you can )?show (a|an|up to (one|two|three)) (?:(' + COL + r') )?"([^"]+)" family (?:(' + COL + r') )?cards? from (?:your|the) hand to the opponent(?:\.\s*return (?:them|it) to the deckbottom(?: in any order)?|,? and return (?:them|it) to the deckbottom)\.?((?:\s*(?:for each card returned, draw a card|if (?:one|two|three) cards? (?:is|are) returned, draw (?:a|one|two|three|four|five) cards?)\.?)?)$', re.I)      # v0.165
 MILL_OWN = re.compile(r'^(you can )?discard (a|one|two|three|four|five|\d) cards? from (?:your|the) decktop\.?$', re.I)      # v0.165
+SUMMON_GEN = re.compile(r'^(you can )?summon (?:a|an|one) ((?:cost \d+(?: or less)? )?(?:(?:red|purple|green|white|yellow|blue)(?:/(?:red|purple|green|white|yellow|blue))* )?(?:cost \d+(?: or less)? )?(?:"[^"]+"(?:\s*/\s*"[^"]+")*(?: family|-named) )?)spirit card((?: with [a-z ]+?)?) from your (hand|trash)(,? without paying the cost)?\.?( However, (?:any|that spirit.s|the spirit.s|it)[^.]*?\(When Summoned\)[^.]*?(?:can.t|cannot|do not) activate\.?)?$', re.I)
+
+
+def summon_np(pre, suf):
+    """the noun phrase of SUMMON_GEN -> (fxMatch dict, costLe or None)"""
+    pre = pre.strip().lower() if '"' not in pre else pre.strip()
+    mt, cle = {'type': 'Spirit'}, None
+    m = re.search(r'cost (\d+) or less', pre, re.I)
+    if m: cle = int(m.group(1)); pre = pre.replace(m.group(0), ' ')
+    m = re.search(r'cost (\d+)', pre, re.I)
+    if m: mt['costIn'] = [int(m.group(1))]; pre = pre.replace(m.group(0), ' ')
+    m = re.search(r'((?:red|purple|green|white|yellow|blue)(?:/(?:red|purple|green|white|yellow|blue))*)', pre, re.I)
+    if m: mt['color'] = m.group(1).lower().split('/'); pre = pre.replace(m.group(0), ' ')
+    names = re.findall(r'"([^"]+)"', pre)
+    if names:
+        if '-named' in pre: mt['name'] = names
+        else: mt['family'] = names
+    suf = suf.strip().lower()
+    if suf:
+        kw = re.fullmatch(r'with ([a-z ]+)', suf)
+        if not kw: raise Review('summon suffix: ' + suf)
+        mt['keyword'] = kw.group(1).title()
+    return mt, cle
+
+
 SUMMON_FREE = re.compile(r'^(you can )?summon (?:a|an|one) (?:cost (\d+) or less )?"([^"]+)" family spirit card from your (hand|trash), without paying the cost\.?$', re.I)      # v0.164
 TGT_VOID_OWN = re.compile(r'^target one of your (.+?)\.\s*put (a|one|two|three|\d) cores? from (?:the )?void to it\.?$', re.I)      # v0.164
 TGT_VOID = re.compile(r'^target (?:an?|one) (.+? you control)\.\s*put (a|one|two|three|\d) cores? from (?:the )?void to it\.?$', re.I)      # v0.163
@@ -728,6 +753,14 @@ def action_of(s, ctx):
     mm_ = MILL_OWN.match(s.strip())
     if mm_ and n_of(mm_.group(2).lower()) <= 5:      # v0.165 "(You can) discard N card(s) from your decktop" = MILL (own Deck to Trash)
         return [{'do': 'MILL', 'n': n_of(mm_.group(2).lower())}], bool(mm_.group(1))
+    mg = SUMMON_GEN.match(s.strip())
+    if mg:      # v0.180 "(You can) summon a [Cost N or less] [Colour] [\"X\" family | \"X\"-named] Spirit card [with Kw] from your Hand/Trash[, without paying the cost]" = SUMMON_HAND (generic match)
+        mt, cle = summon_np(mg.group(2), mg.group(3))
+        a = {'do': 'SUMMON_HAND', 'match': mt, 'from': mg.group(4).lower()}
+        if cle is not None: a['costLe'] = cle
+        if not mg.group(5): a['pay'] = True
+        if mg.group(6): a['noFx'] = True
+        return [a], bool(mg.group(1))
     ms = SUMMON_FREE.match(s.strip())
     if ms:      # v0.164 "You can summon a Cost N or less "X" family Spirit card from your Hand/Trash, without paying the cost." = SUMMON_HAND (optional when "you can")
         a = {'do': 'SUMMON_HAND', 'match': {'family': [ms.group(3)]}, 'from': ms.group(4).lower()}
@@ -803,6 +836,8 @@ def sentences(body):
             out[-1] = out[-1] + ' ' + x      # v0.69: "Reveal N cards from your decktop." + "Among them, add ..." + "Return any remaining cards ..." is one effect
         elif out and re.fullmatch(r'If [^,.]+, (?:[^.]+? instead|instead,[^.]+)\.?', x.strip(), re.I) and out[-1].endswith('.') and 'instead' not in out[-1]:
             out[-1] = out[-1] + ' ' + x      # v0.135: the replacement belongs to the sentence before it
+        elif out and re.match(r'^(?:you can )?summon ', out[-1], re.I) and re.fullmatch(r"However, (?:any|that spirit.s|the spirit.s|it)[^.]*?\(When Summoned\)[^.]*?(?:can['’]t|cannot|do not) activate\.?", x.strip(), re.I):
+            out[-1] = out[-1].rstrip() + ' ' + x      # v0.180: the noFx tail belongs to the summon sentence
         elif out and re.fullmatch(WHEN_FX_TAIL + r'\.?', x.strip(), re.I) and out[-1].endswith('.'):
             out[-1] = out[-1] + ' ' + x      # v0.77: "When this effect destroys any Spirit, draw a card." belongs to the sentence before it
         elif out and re.fullmatch(r'The opponent targets a refreshed Spirit they control\.', out[-1].strip(), re.I) and re.fullmatch(r'Exhaust it\.?', x.strip(), re.I):
