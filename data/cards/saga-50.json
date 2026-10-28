@@ -19454,19 +19454,59 @@
    "EX-AID",
    "Kamen"
   ],
-  "text": "[LV1-2] (When Summoned)\nIf summoned via Form Change, target an opposing Cost 4 or less Spirit. Destroy it.\n\n[LV2] (True Release) {{F Change|\"Parado\" & Cost 5}} {{Invoke|Main}}\nReturn this exhausted Spirit to the Hand, and you must summon a Cost 5 \"Parado\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn.",
+  "text": "[LV1][LV2] (When Summoned)\nIf summoned via Form Change, target an opposing Cost 4 or less Spirit. Destroy it.\n\n[LV2] (True Release) {{F Change|\"Parado\" & Cost 5}} {{Invoke|Main}}\nReturn this exhausted Spirit to the Hand, and you must summon a Cost 5 \"Parado\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn.",
   "image": null,
   "block": "A",
   "saga": 50,
   "mechanics": [
    "Form Change"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Summoned) If summoned via Form Change, target an opposing Cost 4 or less Spirit. Destroy it.",
-   "[LV2] (True Release) {{F Change|\"Parado\" & Cost 5}} {{Invoke|Main}} Return this exhausted Spirit to the Hand, and you must summon a Cost 5 \"Parado\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn."
+  "trueRelease": true,
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "costLe": 4,
+      "if": {
+       "viaFormChange": true
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN"
+    ],
+    "once": true,
+    "sameName": true,
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "FORM_CHANGE",
+      "match": {
+       "name": [
+        "Para-DX"
+       ]
+      },
+      "costIn": [
+       5
+      ]
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RCB01-050",
@@ -19564,19 +19604,64 @@
    "EX-AID",
    "Kamen"
   ],
-  "text": "[LV1-2] {{F Change|\"Ex-Aid\" & Cost 7}} {{Invoke|Main}}\nReturn this exhausted Spirit to the Hand, and you must summon a Cost 7 \"Ex-Aid\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn.\n\n[LV2] (True Release) (When Attacks)\nIf you control any \"EX-AID\" family Spirit, besides this Spirit, target an opposing Cost 3 or less Spirit. Destroy it.",
+  "text": "[LV1][LV2] {{F Change|\"Ex-Aid\" & Cost 7}} {{Invoke|Main}}\nReturn this exhausted Spirit to the Hand, and you must summon a Cost 7 \"Ex-Aid\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn.\n\n[LV2] (True Release) (When Attacks)\nIf you control any \"EX-AID\" family Spirit, besides this Spirit, target an opposing Cost 3 or less Spirit. Destroy it.",
   "image": null,
   "block": "A",
   "saga": 50,
   "mechanics": [
    "Form Change"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] {{F Change|\"Ex-Aid\" & Cost 7}} {{Invoke|Main}} Return this exhausted Spirit to the Hand, and you must summon a Cost 7 \"Ex-Aid\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn.",
-   "[LV2] (True Release) (When Attacks) If you control any \"EX-AID\" family Spirit, besides this Spirit, target an opposing Cost 3 or less Spirit. Destroy it."
+  "trueRelease": true,
+  "effects": [
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN"
+    ],
+    "once": true,
+    "sameName": true,
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "FORM_CHANGE",
+      "match": {
+       "name": [
+        "Ex-Aid"
+       ]
+      },
+      "costIn": [
+       7
+      ]
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "costLe": 3,
+      "if": {
+       "ctrl": {
+        "n": 1,
+        "type": "Spirit",
+        "family": "EX-AID",
+        "other": true
+       }
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RCB01-053",

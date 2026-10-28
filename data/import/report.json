@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 7387,
+  "cards": 7385,
   "per_saga": {
    "1": 686,
    "2": 313,
@@ -19,15 +19,15 @@
    "15": 355,
    "16": 334,
    "17": 110,
-   "50": 356
+   "50": 354
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 1319,
+  "skipped_curated": 1321,
   "nexus_levels_added": 709,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 522,
+  "image_problems": 520,
   "number_conflicts": 4,
   "merged": 109,
   "brave_unparsed": 171,
@@ -35,7 +35,7 @@
   "odd_reduction": 807,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 520
+  "without_image": 518
  },
  "tokens": [
   "BS73-T001",
@@ -1250,6 +1250,8 @@
   "26RCB01-042",
   "26RCB01-044",
   "26RCB01-048",
+  "26RCB01-049",
+  "26RCB01-052",
   "26RCB01-060",
   "26RCB01-061",
   "26RCB01-062",
@@ -4374,11 +4376,6 @@
    "problem": "ambiguous name (2 files, none in set 26RCB01)"
   },
   {
-   "id": "26RCB01-049",
-   "name": "Kamen Rider Para-DX Fighter Gamer Level 50",
-   "problem": "ambiguous name (2 files, none in set 26RCB01)"
-  },
-  {
    "id": "26RCB01-050",
    "name": "Kamen Rider Lazer Turbo Bike Gamer Level 0",
    "problem": "ambiguous name (2 files, none in set 26RCB01)"
@@ -4386,11 +4383,6 @@
   {
    "id": "26RCB01-051",
    "name": "Kamen Rider Snipe Simulation Gamer Level 50",
-   "problem": "ambiguous name (2 files, none in set 26RCB01)"
-  },
-  {
-   "id": "26RCB01-052",
-   "name": "Kamen Rider Ex-Aid Maximum Gamer Level 99",
    "problem": "ambiguous name (2 files, none in set 26RCB01)"
   },
   {

@@ -955,7 +955,7 @@ def sentences(body):
             out[-1] = out[-1] + ' ' + x      # v0.183 DESTROY_ANY drawIfOpp
         elif out and re.fullmatch(r'destroy (?:a spirit|a cost \d+ or less) you control\.', out[-1].strip(), re.I) and re.fullmatch(r'put a number of cores from the void to your reserve equal to the cost of the destroyed spirit\.?', x.strip(), re.I):
             out[-1] = out[-1] + ' ' + x      # v0.183: "Destroy a Spirit you control." + "Put cores from the Void ... equal to its cost." is one effect
-        elif out and re.match(r'^(?:if (?:you control [^,.]+|returned), )?(?:(?:you can|you may) )?target ', out[-1], re.I) and out[-1].endswith('.'):
+        elif out and re.match(r'^(?:if [^.]*?, )?(?:(?:you can|you may) )?target ', out[-1], re.I) and out[-1].endswith('.'):
             out[-1] = out[-1] + ' ' + x      # join "Target X." with its action sentence
         else:
             out.append(x)
