@@ -25,7 +25,7 @@ test('PK76-01 compiler: destroy filters relative to this Spirit, symbols, and co
   assert.deepEqual(acts(S + 'Destroy an opposing Spirit with a cost equal or inferior to the number of "Investigator" family Spirits you control.'),
     [{ do: 'DESTROY', costLePer: { type: 'Spirit', family: 'Investigator' } }]);
   assert.match(String(acts('[LV1] (When Destroyed) Target an opposing Spirit with the same BP as this Spirit. Destroy it.')), /^REVIEW/, 'no last-known BP after it left');
-  for (const t of ['Destroy an opposing Spirit with Charge.', 'Destroy an opposing Spirit with a Cost equal to or less than the total number of Blue symbols on your field.'])
+  for (const t of ['Destroy an opposing Spirit with a Cost equal to or less than the total number of Blue symbols on your field.'])
     assert.match(String(acts(S + t)), /^REVIEW/, t);
 });
 

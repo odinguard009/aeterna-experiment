@@ -32,7 +32,7 @@ test('S70-02 compiler: attack triggers under a window; the old (Your Attack Step
   assert.deepEqual([y.effects[0].trigger, y.effects[0].match], ['ALLY_ATTACKS', { noUlt: true, color: 'blue' }]);
   const old = compile('[LV1] (Your Attack Step)\nWhen your "Beast" family Spirit attacks, draw a card.');
   assert.deepEqual([old.effects[0].trigger, old.effects[0].if], ['ALLY_ATTACKS', undefined], 'v0.59 form kept as it was');
-  assert.match(compile('[LV1] (Opposing Attack Step)\nWhen your Life is reduced, this Spirit refreshes.').review || '', /^no trigger: When your Life/);
+  assert.match(compile('[LV1] (Opposing Attack Step)\nWhen your Spirit is destroyed, this Spirit refreshes.').review || '', /^no trigger: When your Spirit is destroyed/);
   assert.match(compile('[LV1] (Your Attack Step)\nWhen an opposing Spirit attacks, draw a card.').review || '', /no trigger/, 'an opposing attack cannot happen in your Attack Step');
 });
 

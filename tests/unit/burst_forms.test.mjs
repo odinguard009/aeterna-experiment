@@ -25,7 +25,7 @@ test('B71-01 compiler: the Burst paragraph after the Main/Flash text, condition 
   assert.equal(w('After your Spirit/Ultimate is destroyed by the opponent'), 'ALLY_DESTROYED');
   assert.equal(w('After the opposing Hand increases via opposing effects'), 'OPP_HAND_UP');
   assert.equal(w('After your Life is reeduced'), 'LIFE_DECREASE');
-  assert.match(magic('{{Burst|After your Spirit is depleted/destroyed by the opponent}}\nDraw a card.\n\nMain\nDraw a card.').review, /^Burst condition/, 'depletion by the opponent is not tracked: review');
+  assert.match(magic('{{Burst|After your Spirit is depleted by the opponent}}\nDraw a card.\n\nMain\nDraw a card.').review, /^Burst condition/, 'depletion by the opponent is not tracked: review');
   const o = magic('☼[ Burst: After Your Life is Decreased ]\n Draw a card. Then, by paying the cost, activate the Main effect of this card.\n\nMain - Draw a card.');
   assert.deepEqual([o.burst && o.burst.when, o.burst && o.burst.thenMain], ['LIFE_DECREASE', true], JSON.stringify(o));
 });

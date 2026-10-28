@@ -1,17 +1,17 @@
 {
  "stats": {
-  "cards": 7552,
+  "cards": 7501,
   "per_saga": {
-   "1": 753,
-   "2": 327,
-   "3": 397,
-   "4": 392,
-   "5": 657,
-   "6": 361,
-   "7": 522,
-   "8": 488,
+   "1": 737,
+   "2": 322,
+   "3": 389,
+   "4": 388,
+   "5": 654,
+   "6": 358,
+   "7": 520,
+   "8": 484,
    "9": 493,
-   "10": 499,
+   "10": 496,
    "11": 328,
    "12": 327,
    "13": 395,
@@ -19,23 +19,23 @@
    "15": 355,
    "16": 334,
    "17": 110,
-   "50": 383
+   "50": 380
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 1154,
-  "number_conflicts": 5,
-  "nexus_levels_added": 712,
+  "skipped_curated": 1205,
+  "nexus_levels_added": 710,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 534,
+  "image_problems": 526,
+  "number_conflicts": 4,
   "merged": 109,
   "brave_unparsed": 171,
   "ut_lines_added": 118,
-  "odd_reduction": 808,
+  "odd_reduction": 807,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 532
+  "without_image": 524
  },
  "tokens": [
   "BS73-T001",
@@ -92,21 +92,26 @@
   "BS01-073",
   "BS01-074",
   "BS01-075",
+  "BS01-076",
   "BS01-077",
+  "BS01-079",
   "BS01-080",
   "BS01-081",
   "BS01-082",
   "BS01-084",
   "BS01-085",
   "BS01-089",
+  "BS01-091",
   "BS01-092",
   "BS01-097",
+  "BS01-107",
   "BS01-108",
   "BS01-117",
   "BS01-134",
   "BS01-146",
   "BS01-X01",
   "BS02-001",
+  "BS02-002",
   "BS02-003",
   "BS02-005",
   "BS02-007",
@@ -139,6 +144,7 @@
   "BS02-102",
   "BS03-001",
   "BS03-002",
+  "BS03-004",
   "BS03-005",
   "BS03-009",
   "BS03-013",
@@ -149,6 +155,7 @@
   "BS03-025",
   "BS03-026",
   "BS03-029",
+  "BS03-034",
   "BS03-035",
   "BS03-037",
   "BS03-038",
@@ -163,6 +170,7 @@
   "BS03-054",
   "BS03-056",
   "BS03-057",
+  "BS03-059",
   "BS03-060",
   "BS03-061",
   "BS03-063",
@@ -200,6 +208,7 @@
   "BS04-035",
   "BS04-038",
   "BS04-040",
+  "BS04-043",
   "BS04-046",
   "BS04-048",
   "BS04-056",
@@ -218,6 +227,7 @@
   "BS05-010",
   "BS05-011",
   "BS05-012",
+  "BS05-014",
   "BS05-015",
   "BS05-018",
   "BS05-019",
@@ -229,6 +239,7 @@
   "BS05-028",
   "BS05-029",
   "BS05-031",
+  "BS05-032",
   "BS05-033",
   "BS05-039",
   "BS05-041",
@@ -268,6 +279,7 @@
   "BS06-055",
   "BS06-058",
   "BS06-061",
+  "BS06-063",
   "BS06-066",
   "BS06-067",
   "BS06-069",
@@ -289,6 +301,7 @@
   "BS07-046",
   "BS07-076",
   "BS08-001",
+  "BS08-004",
   "BS08-010",
   "BS08-011",
   "BS08-013",
@@ -298,9 +311,12 @@
   "BS08-028",
   "BS08-037",
   "BS08-046",
+  "BS09-002",
   "BS09-004",
+  "BS09-006",
   "BS09-020",
   "BS09-029",
+  "BS09-030",
   "BS09-041",
   "BS09-042",
   "BS09-069",
@@ -326,6 +342,7 @@
   "BS10-032",
   "BS10-033",
   "BS10-036",
+  "BS10-037",
   "BS10-039",
   "BS10-041",
   "BS10-044",
@@ -355,12 +372,16 @@
   "BS11-044",
   "BS11-055",
   "BS11-059",
+  "BS11-061",
+  "BS11-074",
   "BS12-001",
   "BS12-002",
   "BS12-009",
   "BS12-010",
+  "BS12-017",
   "BS12-018",
   "BS12-026",
+  "BS12-030",
   "BS12-033",
   "BS12-041",
   "BS12-044",
@@ -395,6 +416,7 @@
   "BS14-036",
   "BS14-037",
   "BS14-038",
+  "BS14-039",
   "BS14-045",
   "BS14-046",
   "BS14-048",
@@ -418,6 +440,7 @@
   "BS15-040",
   "BS15-046",
   "BS15-056",
+  "BS15-074",
   "BS15-080",
   "BS16-001",
   "BS16-004",
@@ -465,6 +488,12 @@
   "BS18-046",
   "BS18-049",
   "BS18-050",
+  "BS18-X012R",
+  "BS18-X012A",
+  "BS18-X012E",
+  "BS18-X012D",
+  "BS18-X012T",
+  "BS18-X012S",
   "BS19-001",
   "BS19-002",
   "BS19-004",
@@ -537,6 +566,7 @@
   "BS21-020",
   "BS21-021",
   "BS21-023",
+  "BS21-029",
   "BS21-030",
   "BS21-032",
   "BS21-035",
@@ -551,7 +581,9 @@
   "BS21-060",
   "BS21-083",
   "BS22-001",
+  "BS22-004",
   "BS22-005",
+  "BS22-006",
   "BS22-008",
   "BS22-013",
   "BS22-022",
@@ -575,11 +607,14 @@
   "BS23-017",
   "BS23-029",
   "BS23-040",
+  "BS23-045",
   "BS24-002",
+  "BS24-004",
   "BS24-009",
   "BS24-015",
   "BS24-017",
   "BS24-021",
+  "BS24-035",
   "BS24-049",
   "BS24-050",
   "BS24-065",
@@ -591,6 +626,7 @@
   "BS25-014",
   "BS25-039",
   "BS26-010",
+  "BS26-017",
   "BS26-024",
   "BS27-004",
   "BS27-024",
@@ -612,6 +648,7 @@
   "BS31-015",
   "BS31-018",
   "BS31-021",
+  "BS31-025",
   "BS31-026",
   "BS31-035",
   "BS31-037",
@@ -624,6 +661,7 @@
   "BS31-066",
   "BS31-069",
   "BS31-073",
+  "BS31-077",
   "BS31-CP02",
   "BS32-001",
   "BS32-006",
@@ -653,6 +691,7 @@
   "BS34-027",
   "BS34-030",
   "BS34-031",
+  "BS34-035",
   "BS34-048",
   "BS34-049",
   "BS34-050",
@@ -666,9 +705,11 @@
   "BS35-025",
   "BS35-032",
   "BS35-034",
+  "BS35-040",
   "BS35-042",
   "BS35-048",
   "BS35-056",
+  "BS35-057",
   "BS35-061",
   "BS35-089",
   "BS36-006",
@@ -710,13 +751,17 @@
   "BS40-076",
   "BS40-RV005",
   "BS41-003",
+  "BS41-017",
   "BS41-037",
   "BS41-040",
+  "BS41-042",
+  "BS41-044",
   "BS41-049",
   "BS41-052",
   "BS42-014",
   "BS42-016",
   "BS42-041",
+  "BS43-011",
   "BS43-016",
   "BS43-024",
   "BS43-028",
@@ -733,7 +778,10 @@
   "BS46-RV008",
   "BS47-053",
   "BS48-024",
+  "BS48-041",
   "BS48-090",
+  "BS48-RV007",
+  "BS50-038",
   "BS50-040",
   "BS50-050",
   "BS50-RV006",
@@ -1141,6 +1189,7 @@
   "26RBS02-063",
   "26RBS02-064",
   "26RBS02-067",
+  "26RBS02-084",
   "26RBS02-087",
   "26RBS02-088",
   "26RBS02-089",
@@ -1155,6 +1204,7 @@
   "26RSD09-003",
   "26RSD09-004",
   "26RSD09-005",
+  "26RSD09-011",
   "26RSD09-012",
   "26RSD10-001",
   "26RSD10-003",
@@ -1163,6 +1213,7 @@
   "26RSD10-006",
   "26RSD10-007",
   "26RSD10-008",
+  "26RSD10-011",
   "26RSD10-012",
   "26RBS03-001",
   "26RBS03-009",
@@ -1203,48 +1254,6 @@
   "26RBS03-097",
   "26RBS03-098"
  ],
- "number_conflicts": [
-  {
-   "id": "BS01-091",
-   "names": [
-    "The Artifact Laguna",
-    "The ShieldSpirit Dis"
-   ],
-   "kept": "The Artifact Laguna"
-  },
-  {
-   "id": "BS04-091",
-   "names": [
-    "Euthanasia",
-    "Lightning Ballista"
-   ],
-   "kept": "Lightning Ballista"
-  },
-  {
-   "id": "BS73-AX01",
-   "names": [
-    "The FungalTreeForgeDeity BigBang-Golem",
-    "The WarParamountRoaringGeneral Mudou"
-   ],
-   "kept": "The FungalTreeForgeDeity BigBang-Golem"
-  },
-  {
-   "id": "BS73-AX02",
-   "names": [
-    "The PrismKnightEmperor Dragonic-Arthur",
-    "The UltimateNetherDragon Ultimate-Mugendragon"
-   ],
-   "kept": "The PrismKnightEmperor Dragonic-Arthur"
-  },
-  {
-   "id": "BS73-AX03",
-   "names": [
-    "The HeavenlyDemonKing God-Sechs -Type Force-",
-    "The RevelationGreatDeity Ultimate-Amaterasu-Dragon"
-   ],
-   "kept": "The HeavenlyDemonKing God-Sechs -Type Force-"
-  }
- ],
  "nexus_levels_added": [
   "BS01-098",
   "BS01-099",
@@ -1255,7 +1264,6 @@
   "BS01-104",
   "BS01-105",
   "BS01-106",
-  "BS01-107",
   "BS01-109",
   "BS01-111",
   "BS01-112",
@@ -1372,7 +1380,6 @@
   "BS10-094",
   "BS10-095",
   "BS10-096",
-  "BS11-061",
   "BS11-062",
   "BS11-063",
   "BS11-064",
@@ -2199,11 +2206,6 @@
    "problem": "no image (near: The CorpseKnight Verlum.jpg)"
   },
   {
-   "id": "BS12-017",
-   "name": "Kanshakukorogashi",
-   "problem": "no image (near: Kashakukorogashi.png)"
-  },
-  {
    "id": "BS12-021",
    "name": "Kojuu-Kamakirou",
    "problem": "no image (near: Kojiuu-Kamakirou.gif)"
@@ -2397,36 +2399,6 @@
    "id": "BS18-X05",
    "name": "The HolyEvilEmperor Mephisto-Pheles",
    "problem": "no image (near: The HolyEvilEmperor Mephist-Pheles.jpg)"
-  },
-  {
-   "id": "BS18-X012R",
-   "name": "The HeroEmperor Lord-Dragon-Dominion",
-   "problem": "no image"
-  },
-  {
-   "id": "BS18-X012A",
-   "name": "The HeroEmperor Lord-Dragon-Dominion",
-   "problem": "no image"
-  },
-  {
-   "id": "BS18-X012E",
-   "name": "The HeroEmperor Lord-Dragon-Dominion",
-   "problem": "no image"
-  },
-  {
-   "id": "BS18-X012D",
-   "name": "The HeroEmperor Lord-Dragon-Dominion",
-   "problem": "no image"
-  },
-  {
-   "id": "BS18-X012T",
-   "name": "The HeroEmperor Lord-Dragon-Dominion",
-   "problem": "no image"
-  },
-  {
-   "id": "BS18-X012S",
-   "name": "The HeroEmperor Lord-Dragon-Dominion",
-   "problem": "no image"
   },
   {
    "id": "BS21-X03",
@@ -2897,11 +2869,6 @@
    "id": "BS41-034",
    "name": "The KingBeastTribe Blade Youth",
    "problem": "no image (near: The KingBeastTribe Youth Blade.jpg)"
-  },
-  {
-   "id": "BS41-044",
-   "name": "The Valkyrie Rossweisse",
-   "problem": "no image (near: The Valkyrie RoseWeiss.jpg)"
   },
   {
    "id": "BS41-056",
@@ -4727,6 +4694,40 @@
    "id": "26RBS03-X15",
    "name": "The KingEater Alterhibius",
    "problem": "no image"
+  }
+ ],
+ "number_conflicts": [
+  {
+   "id": "BS04-091",
+   "names": [
+    "Euthanasia",
+    "Lightning Ballista"
+   ],
+   "kept": "Lightning Ballista"
+  },
+  {
+   "id": "BS73-AX01",
+   "names": [
+    "The FungalTreeForgeDeity BigBang-Golem",
+    "The WarParamountRoaringGeneral Mudou"
+   ],
+   "kept": "The FungalTreeForgeDeity BigBang-Golem"
+  },
+  {
+   "id": "BS73-AX02",
+   "names": [
+    "The PrismKnightEmperor Dragonic-Arthur",
+    "The UltimateNetherDragon Ultimate-Mugendragon"
+   ],
+   "kept": "The PrismKnightEmperor Dragonic-Arthur"
+  },
+  {
+   "id": "BS73-AX03",
+   "names": [
+    "The HeavenlyDemonKing God-Sechs -Type Force-",
+    "The RevelationGreatDeity Ultimate-Amaterasu-Dragon"
+   ],
+   "kept": "The HeavenlyDemonKing God-Sechs -Type Force-"
   }
  ],
  "merged": [
@@ -6612,12 +6613,6 @@
   },
   {
    "id": "BS48-039",
-   "dropped": [
-    "god"
-   ]
-  },
-  {
-   "id": "BS48-041",
    "dropped": [
     "god"
    ]
