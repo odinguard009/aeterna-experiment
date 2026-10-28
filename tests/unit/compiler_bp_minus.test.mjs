@@ -29,7 +29,7 @@ test('C55-03 (When Battles) "when only the opposing Spirit is destroyed by compa
     [{ trigger: 'BATTLE_WIN', lv: [1, 2], actions: [{ do: 'EXHAUST_OPP', n: 1 }] }]);
   assert.deepEqual(compile('[LV2] (When Battles)\nWhen only the opposing Spirit/Ultimate is destroyed via BP comparison, you can draw a card.').effects,
     [{ trigger: 'BATTLE_WIN', lv: [2], optional: true, actions: [{ do: 'DRAW', n: 1 }] }]);
-  assert.match(compile('[LV1] (When Battles) During this turn, give two opposing Spirits -1000 BP.').review, /no trigger/);
+  assert.match(compile('[LV1] (When Battles) During this turn, give two opposing Spirits -1000 BP.').review, /sentence: During this turn/);
 });
 test('C55-04 Rush: the Rush effect runs after the main body, only while you have that colour symbol', () => {
   const e = compile('[LV1][LV2][LV3] (When Attacks)\nThis Spirit gains +5000 BP.\n' + RUSH('Purple') + 'Draw a card.', { levels: [{ cores: 1, bp: 3000 }, { cores: 3, bp: 5000 }, { cores: 5, bp: 7000 }] }).effects;
