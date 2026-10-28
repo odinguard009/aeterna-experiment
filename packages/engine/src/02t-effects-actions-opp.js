@@ -17,12 +17,12 @@ Object.assign(FX_ACTIONS, {
       if (a.kind === 'nexus') removeNexus(q, t, 'destroyed'); else { removeSpirit(q, t, 'destroyed', q === c.opp); checkDepletion(q); }
     } },
   /* v0.183 (schema 42) "Destroy every N BP / Cost N or less / Cost N Spirit" (opposing:true = "every opposing ..."): otherwise both sides, this Spirit included when it qualifies */
-  DESTROY_EVERY: { chk: a => [a.bpLe, a.costLe, a.cost].filter(x => x != null).length === 1 && (a.bpLe == null || (Number.isInteger(a.bpLe) && a.bpLe >= 1000 && a.bpLe <= 100000)) && [a.costLe, a.cost].every(x => x == null || (Number.isInteger(x) && x >= 0 && x <= 30))
-      && (a.opposing == null || a.opposing === true) && Object.keys(a).every(k => ['do', 'bpLe', 'costLe', 'cost', 'opposing', 'if'].includes(k)),
-    txt: a => `destroy every ${a.opposing ? 'opposing ' : ''}${a.bpLe != null ? a.bpLe + ' BP or less' : a.costLe != null ? 'Cost ' + a.costLe + ' or less' : 'Cost ' + a.cost} Spirit${a.opposing ? '' : ' (both sides)'}`,
+  DESTROY_EVERY: { chk: a => [a.bpLe, a.costLe, a.costIs].filter(x => x != null).length === 1 && (a.bpLe == null || (Number.isInteger(a.bpLe) && a.bpLe >= 1000 && a.bpLe <= 100000)) && [a.costLe, a.costIs].every(x => x == null || (Number.isInteger(x) && x >= 0 && x <= 30))
+      && (a.opposing == null || a.opposing === true) && Object.keys(a).every(k => ['do', 'bpLe', 'costLe', 'costIs', 'opposing', 'if'].includes(k)),
+    txt: a => `destroy every ${a.opposing ? 'opposing ' : ''}${a.bpLe != null ? a.bpLe + ' BP or less' : a.costLe != null ? 'Cost ' + a.costLe + ' or less' : 'Cost ' + a.costIs} Spirit${a.opposing ? '' : ' (both sides)'}`,
     can: () => true,
     run: async (c, a) => {
-      const hit = s => a.bpLe != null ? bpOf(s) <= a.bpLe : a.costLe != null ? CARDS[s.id].cost <= a.costLe : CARDS[s.id].cost === a.cost, Q = a.opposing ? [c.opp] : [c.opp, c.p];
+      const hit = s => a.bpLe != null ? bpOf(s) <= a.bpLe : a.costLe != null ? CARDS[s.id].cost <= a.costLe : CARDS[s.id].cost === a.costIs, Q = a.opposing ? [c.opp] : [c.opp, c.p];
       for (const q of Q) for (const s of q.spirits.filter(hit)) removeSpirit(q, s, 'destroyed', q === c.opp);
       for (const q of Q) checkDepletion(q);
     } },

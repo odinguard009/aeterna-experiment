@@ -202,9 +202,9 @@ function simple(card, a) {
         ? { fix: [{ n: 2 }], body: `const t = nx(${J(nid(2))}, O); await run(src, RA); return gone(t) && O.trash.includes(t) ? '' : 'the Nexus survived';` }
         : { fix: [{ cost: 3, bp: 3000 }], body: `const t = sp(${J(sid(3, 3000))}, O); t.exhausted = true; const r = sp(${J(sid(3, 3000))}, O); await run(src, RA); return gone(t) && !gone(r) && O.trash.includes(t) ? '' : 'wrong Spirit destroyed';` };
     case 'DESTROY_EVERY': {      // v0.183 every opposing Spirit that matches goes, one just outside the limit stays
-      if (!only(a, ['bpLe', 'costLe', 'cost', 'opposing'])) return null;
-      const hit = a.bpLe != null ? sid(3, a.bpLe) : sid(a.costLe != null ? a.costLe : a.cost, 1000), miss = a.bpLe != null ? sid(3, a.bpLe + 1000) : sid((a.costLe != null ? a.costLe : a.cost) + 1, 1000);
-      return { fix: a.bpLe != null ? [{ cost: 3, bp: a.bpLe }, { cost: 3, bp: a.bpLe + 1000 }] : [{ cost: a.costLe != null ? a.costLe : a.cost, bp: 1000 }, { cost: (a.costLe != null ? a.costLe : a.cost) + 1, bp: 1000 }], body: `const lo = sp(${J(hit)}, O), hi = sp(${J(miss)}, O); await run(src, RA); return gone(lo) && !gone(hi) ? '' : 'wrong Spirits destroyed';` };
+      if (!only(a, ['bpLe', 'costLe', 'costIs', 'opposing'])) return null;
+      const hit = a.bpLe != null ? sid(3, a.bpLe) : sid(a.costLe != null ? a.costLe : a.costIs, 1000), miss = a.bpLe != null ? sid(3, a.bpLe + 1000) : sid((a.costLe != null ? a.costLe : a.costIs) + 1, 1000);
+      return { fix: a.bpLe != null ? [{ cost: 3, bp: a.bpLe }, { cost: 3, bp: a.bpLe + 1000 }] : [{ cost: a.costIsLe != null ? a.costLe : a.costIs, bp: 1000 }, { cost: (a.costLe != null ? a.costLe : a.costIs) + 1, bp: 1000 }], body: `const lo = sp(${J(hit)}, O), hi = sp(${J(miss)}, O); await run(src, RA); return gone(lo) && !gone(hi) ? '' : 'wrong Spirits destroyed';` };
     }
     case 'DISCARD_HAND':      // v0.180 the CPU discards exactly n cards of its Hand
       return only(a, ['n']) && { body: `for (let j = 0; j < A.n + 2; j++) P.hand.push(BS.mkInst(${J(FILL)})); await run(src, RA); return P.hand.length === 2 && P.trash.length === A.n ? '' : 'hand ' + P.hand.length + ', trash ' + P.trash.length;` };

@@ -235,7 +235,7 @@ def clause(x):
     if m:
         a = {'do': 'DESTROY_EVERY'}
         if m.group(2): a['bpLe'] = int(m.group(2))
-        else: a['costLe' if m.group(4) else 'cost'] = int(m.group(3))
+        else: a['costLe' if m.group(4) else 'costIs'] = int(m.group(3))
         if m.group(1): a['opposing'] = True
         return [a]
     m = re.match(r'^destroy an? (\d+) bp or less spirit$', x)      # v0.183 DESTROY_ANY bpLe (either side)

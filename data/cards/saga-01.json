@@ -25852,7 +25852,7 @@
     "actions": [
      {
       "do": "DESTROY_EVERY",
-      "cost": 1,
+      "costIs": 1,
       "opposing": true
      }
     ]
