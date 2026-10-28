@@ -123,6 +123,7 @@ function parseEffects(arr) {
         if (!COLORS.includes(e.color)) return { error: 'EXTRA_REDUCTION needs a "color"' };
         o.color = e.color; o.n = Number.isInteger(e.n) && e.n >= 1 && e.n <= 3 ? e.n : 1;
       }
+      if (e.flag === 'TREAT_LV3' && e.n != null) { if (e.n !== 2) return { error: 'TREAT_LV3 "n" must be 2 (default 3)' }; o.n = 2; }      // v0.184 "treated as being at LV2"
       if (e.flag === 'HAND_COST') {                               // v0.186 "The cost of all <family> Spirit cards in your Hand becomes N"
         if (!Number.isInteger(e.n) || e.n < 0 || e.n > 30) return { error: 'HAND_COST needs a whole-number "n" (0-30)' };
         if (!o.match) return { error: 'HAND_COST needs a "match"' };

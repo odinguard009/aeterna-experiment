@@ -1157,15 +1157,33 @@
   "families": [
    "Zombie"
   ],
-  "text": "[LV1][LV2]\nWhile there is any Red Spirit/Nexus on your Field, this Spirit gains +1000 BP.",
+  "text": "[LV1][LV2]\nWhile you control any Red Spirit/Nexus, this Spirit gains +1000 BP.",
   "image": "Rib-Reaper.jpg",
   "block": "01",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] While there is any Red Spirit/Nexus on your Field, this Spirit gains +1000 BP."
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "bp": 1000,
+    "to": "self",
+    "if": {
+     "ctrl": {
+      "n": 1,
+      "type": "Both",
+      "colors": [
+       "red"
+      ],
+      "nexus": true
+     }
+    },
+    "lv": [
+     1,
+     2
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS01-030",
@@ -15757,11 +15775,27 @@
   "image": "The RatMan Zurich.jpg",
   "block": "04",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (Permanent) While you control a \"Fighting Beast\" spirit, this spirit is treated as being LV2."
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "TREAT_LV3",
+    "to": "self",
+    "if": {
+     "ctrl": {
+      "n": 1,
+      "type": "Spirit",
+      "family": "Fighting Beast"
+     }
+    },
+    "n": 2,
+    "lv": [
+     1,
+     2
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS04-059",
@@ -22576,18 +22610,33 @@
    }
   ],
   "families": [
-   "Fighting Beast",
-   "Fusion Beast"
+   "Fighting Beast, Fusion Beast"
   ],
   "text": "[LV1][LV2] (Permanent) While you control a \"Beast Head\" spirit, this spirit is treated as being at LV2.",
   "image": "The BattleBeast Zouuchi.jpg",
   "block": "06",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (Permanent) While you control a \"Beast Head\" spirit, this spirit is treated as being at LV2."
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "TREAT_LV3",
+    "to": "self",
+    "if": {
+     "ctrl": {
+      "n": 1,
+      "type": "Spirit",
+      "family": "Beast Head"
+     }
+    },
+    "n": 2,
+    "lv": [
+     1,
+     2
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS06-063",

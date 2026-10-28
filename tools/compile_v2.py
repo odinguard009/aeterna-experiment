@@ -691,6 +691,8 @@ def cond_of(x):
     if re.fullmatch(r'you control fewer spirits than (?:the|your) opponent', x, re.I): return {'fewerSpirits': True}      # v0.77
     m = re.fullmatch(r'you control (?:an?|any) (red|purple|green|white|yellow|blue) nexus', x, re.I)
     if m: return {'nexusGe': {'n': 1, 'colors': [m.group(1).lower()]}}      # v0.77
+    m = re.fullmatch(r'you control (?:an?|any) (red|purple|green|white|yellow|blue) spirit/nexus', x, re.I)      # v0.184 colour Spirit/Nexus (engine ctrl.nexus)
+    if m: return {'ctrl': {'n': 1, 'type': 'Both', 'colors': [m.group(1).lower()], 'nexus': True}}
     if re.fullmatch(r'you control (?:an?|any) nexus(?:es)?', x, re.I): return {'nexusGe': {'n': 1}}      # v0.184 any Nexus
     m = re.fullmatch(r'there (?:is|are) only (red|purple|green|white|yellow|blue) symbols? on your field', x, re.I)
     if m: return {'onlySymbols': m.group(1).lower()}      # v0.179
@@ -1045,6 +1047,9 @@ def compile_card(c):
     if t2 != t: c = dict(c, text=t2); t = t2
     if t and '{{Rush|' in t:
         t2 = rush_norm(t)
+        if t2 != t: c = dict(c, text=t2); t = t2
+    if t and 'While there is any ' in t:      # v0.184 'While there is any <X> on your Field,' reads as 'While you control any <X>,'
+        t2 = re.sub(r'While there is any ([^,.]+?) on your Field,', r'While you control any \1,', t)
         if t2 != t: c = dict(c, text=t2); t = t2
     if t and 'Windstorm:' in t:      # v0.184 old wording 'Windstorm: N - (When Attacks) When this Spirit is blocked, <the opponent> exhausts <N|the specified number of> Spirits they control.'
         t2 = re.sub(r'Windstorm:\s*(\d)\s*-\s*(\(When Attacks\)) When this Spirit is blocked, (?:the |your )?opponent exhausts [^.]*?(?: they control)?\.', lambda m: m.group(2) + ' When this Spirit is blocked, the opponent exhausts %s they control.' % {1: 'one Spirit', 2: 'two Spirits', 3: 'three Spirits'}[int(m.group(1))], t)

@@ -24,16 +24,16 @@ const coresAvailable = p => reserveTotal(p) + fieldList(p).reduce((s, i) => s + 
 /* Official rule (Eternal manual): the Lv of a Contract Grandwalker Nexus ("...Contractor ...") is decided by your Count, not by the cores on it. levels[].cores is then the Count needed. */
 function isCountLv(card) { return card.type === 'Nexus' && (card.families || []).includes('Grandwalker') && /Contractor/i.test(card.name); }
 let _tl3 = false;      // re-entrancy guard: flagActive reads lvNo, which reads lvIndex
-function treatLv3(i) {
-  if (_tl3 || !G || !(CARDS[i.id].effects || []).some(e => e.flag === 'TREAT_LV3')) return false;
-  const o = ownerOf(i); if (!o || !o.spirits.includes(i)) return false;
-  _tl3 = true; try { return flagActive(o, 'TREAT_LV3', i); } finally { _tl3 = false; }
+function treatLv3(i) {      // the level (2 or 3) the Spirit is treated as being at, 0 = none
+  if (_tl3 || !G || !(CARDS[i.id].effects || []).some(e => e.flag === 'TREAT_LV3')) return 0;
+  const o = ownerOf(i); if (!o || !o.spirits.includes(i)) return 0;
+  _tl3 = true; try { return [3, 2].find(n => flagActive(o, 'TREAT_LV3', i, e => (e.n || 3) === n)) || 0; } finally { _tl3 = false; }
 }
 function lvIndex(i) {
   const card = CARDS[i.id], L = card.levels; let t, k = -1;
   if (card.countLv) { const o = ownerOf(i); t = o ? o.count : 0; } else t = totalCores(i);
   for (let j = 0; j < L.length; j++) if (t >= L[j].cores) k = j;
-  if (k >= 0 && k < 2 && L.length > 2 && treatLv3(i)) k = 2;      // v0.181 STATIC TREAT_LV3 "While you control N or less Spirits, this Spirit is treated as being at LV3"
+  if (k >= 0 && k < 2 && L.length > 1) { const n = treatLv3(i); if (n && L.length >= n && k < n - 1) k = n - 1; }      // v0.181 STATIC TREAT_LV3 "While you control N or less Spirits, this Spirit is treated as being at LV3"; v0.184 n:2 = LV2
   if (card.trueRelease && i.soul && L.length > 1 && k < 1) k = 1;   // v0.66 True Release (Standard CR 12-2-1-1): the Soul Core alone fulfils LV2 (a rule, not an effect)
   return k;
 }

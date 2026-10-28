@@ -33,10 +33,6 @@
  "BS01-027": [
   "C_LEVEL"
  ],
- "BS01-029": [
-  "A_BP_PLUS",
-  "C_LEVEL"
- ],
  "BS01-033": [
   "C_LEVEL"
  ],
@@ -1011,9 +1007,6 @@
   "C_LEVEL",
   "T_SUMMONED"
  ],
- "BS04-058": [
-  "C_LEVEL"
- ],
  "BS04-061": [
   "C_LEVEL",
   "M_REPLACEMENT"
@@ -1518,9 +1511,6 @@
   "A_EXHAUST",
   "C_LEVEL",
   "T_SUMMONED"
- ],
- "BS06-062": [
-  "C_LEVEL"
  ],
  "BS06-064": [
   "C_LEVEL"

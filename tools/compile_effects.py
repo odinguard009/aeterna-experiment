@@ -664,6 +664,14 @@ def spirit_paragraph_main(p, card, rush):
             e = [{'trigger': 'STATIC', 'flag': 'TRIBUTE_SAFE', 'to': 'self'}]
             if lv: e[0]['lv'] = lv
             return e, flags
+        mm = re.match(r'^While (you control [^,]+?), (?:this Spirit is treated as being (?:at )?|treat this Spirit as being (?:at |on )?)\[?LV([23])\]?\.?$', p, re.I)
+        cond = (COND_HOOK(mm.group(1)) if COND_HOOK else None) if mm else None
+        if cond:      # v0.184 STATIC TREAT_LV3 with a v2 condition and a target level n (2 or 3)
+            if rush: raise Review('Rush with a treat-as-LV flag')
+            e = [{'trigger': 'STATIC', 'flag': 'TREAT_LV3', 'to': 'self', 'if': cond}]
+            if mm.group(2) == '2': e[0]['n'] = 2
+            if lv: e[0]['lv'] = lv
+            return e, flags
         mm = re.match(r'^While you control (two|three|\d) or (?:less|fewer) Spirits, (?:this Spirit is treated as being at|treat this Spirit as being (?:at|on)) \[?LV3\]?\.?$', p, re.I)
         if mm:      # v0.181 STATIC TREAT_LV3 (engine treatLv3 in lvIndex)
             if rush: raise Review('Rush with a treat-as-LV3 flag')
