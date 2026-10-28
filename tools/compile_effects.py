@@ -1022,9 +1022,16 @@ def invoke_para(p, card, lv, rush):
     if re.sub(r'\([^)]*\)', '', pre).strip(): raise Review('Invoke head: ' + pre[:60])
     if kind == 'MAIN' and when not in (None, 'yourTurn'): raise Review('Invoke head: Main with ' + when)
     if INVOKE_MARK_RE.search(body): raise Review('two Invoke effects in one paragraph')
-    cost = None
+    cost, icond = None, None
     if '\u25b6' in body:
-        ctxt, body = body.split('\u25b6', 1); cost = invoke_cost(ctxt, card); body = body.strip()
+        ctxt, body = body.split('\u25b6', 1); body = body.strip()
+        mi = re.match(r'^If (.+?), ((?:pay|exhaust|destroy|return|discard) .+)$', ctxt.strip(), re.I)      # v0.185 "If <condition>, <cost> ▶" = the effect's if (engine activatable() checks e.if)
+        if mi:
+            import compile_v2 as _v2
+            icond = _v2.cond_of(mi.group(1))
+            if icond is None: raise Review('Invoke condition: ' + mi.group(1)[:80])
+            ctxt = mi.group(2)
+        cost = invoke_cost(ctxt, card)
     same, acts = False, []
     for s in sentences(body):
         if re.fullmatch(r'You can only use this effect of the same card name once per turn\.?', s.strip(), re.I): same = True; continue
@@ -1043,6 +1050,7 @@ def invoke_para(p, card, lv, rush):
     if same: e['sameName'] = True
     if lv: e['lv'] = lv
     if cost: e['cost'] = cost
+    if icond: e['if'] = icond
     e['actions'] = acts
     return e
 
