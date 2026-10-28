@@ -84,3 +84,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v44 (v0.183.0, Lane K): `DESTROY_EVERY` field `cost` renamed `costIs` (the strict walker reads `cost` as a nested action).
 - v45 (v0.183.0, Lane K): `DESTROY_NEXUS_ALL {opposing?, lv?, withCore?}` destroys every matching Nexus (both sides unless `opposing`).
 - v46 (v0.183.0, Lane K): `DESTROY_OWN {voidByCost?}` sends the destroyed Spirit's cost in Core from the Void to the reserve.
+- v47 (v0.183.0, Lane K): `TRASH_CORES_TO {one?}` puts every moved core on the same chosen Spirit ("to one of your Spirits").

@@ -638,7 +638,7 @@ def spirit_paragraph_main(p, card, rush):
             if mm.group(1): e['fightingOnly' if '/' in mm.group(1) else 'blockingOnly' if re.search(r'block', mm.group(1), re.I) else 'attackingOnly'] = True      # v0.168 "(During Block)" prefix; v0.173 "(During Attack/Block)" = fightingOnly
             if lv: e['lv'] = lv
             return [e], flags
-        mm = re.match(r"^(?:\((?:Your|Opposing|Either) Attack Step\)\s*|\(During Your Battle Phase\)\s*)?This Spirit can't (attack|block)(?: opposing Spirits)?\.?$", p, re.I)
+        mm = re.match(r"^(?:\((?:Your|Opposing|Either) Attack Step\)\s*|\(During Your Battle Phase\)\s*)?This Spirit can(?:'t|not) (attack|block)(?: opposing Spirits)?\.?$", p, re.I)
         if mm:      # v0.170 printed "can't attack" / "can't block" as a STATIC flag (the Attack Step head only names when it matters)
             if rush: raise Review('Rush with a can\'t attack/block flag')
             e = [{'trigger': 'STATIC', 'flag': 'CANT_' + mm.group(1).upper(), 'to': 'self'}]

@@ -114,7 +114,7 @@ Object.assign(FX_ACTIONS, {
   TRASH_CORES_TO: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && (hasMatch(a.match) || a.toAttacker === true), txt: a => a.toAttacker ? `send up to ${a.n} cores (not the Soul Core) from your Trash to the attacking Spirit` : `send up to ${a.n} cores (not the Soul Core) from your Trash to ${a.onlyCards ? '' : 'your Reserve and '}your matching Spirits/Nexuses${a.thenDestroyNexus ? '; when you do, destroy an opposing Nexus' : ''}`,
     can: c => c.p.trashCores.n > 0,
     run: async (c, a) => {
-      let moved = 0; const got = new Map();
+      let moved = 0, fixed; const got = new Map();      // fixed: a.one picks the one target for every core
       if (a.toAttacker) {
         const t = c.ctx.attacker; if (!t || !c.p.spirits.includes(t)) { c.ctx.did = false; return; }
         const m = Math.min(a.n, c.p.trashCores.n); c.p.trashCores.n -= m; t.cores += m; moved = m; got.set(t, m);
@@ -123,7 +123,8 @@ Object.assign(FX_ACTIONS, {
         const L = fieldList(c.p).filter(x => fxMatch(CARDS[x.id], a.match));
         let t = null;
         if (a.onlyCards && !L.length) break;
-        if (c.p.cpu) t = L.filter(x => CARDS[x.id].type === 'Spirit').sort((x, y) => bpOf(y) - bpOf(x))[0] || null;
+        if (a.one && fixed !== undefined) t = fixed;
+        else if (c.p.cpu) t = L.filter(x => CARDS[x.id].type === 'Spirit').sort((x, y) => bpOf(y) - bpOf(x))[0] || null;
         else if (a.onlyCards && L.length === 1) t = L[0];
         else {
           const v = await ask({ title: `✨ ${CARDS[c.src.id].name}`, peek: true, html: `Core ${j + 1} of up to ${a.n} from your Trash: where does it go?`,
@@ -131,6 +132,7 @@ Object.assign(FX_ACTIONS, {
           if (v == null) break;
           t = L.find(x => x.uid === v) || null;
         }
+        if (a.one) fixed = t;
         c.p.trashCores.n--; if (t) { t.cores++; got.set(t, (got.get(t) || 0) + 1); } else c.p.reserve.n++; moved++;
       }
       c.ctx.did = moved > 0; if (moved) log(`${CARDS[c.src.id].name}: ${moved} core${moved === 1 ? '' : 's'} move from the Trash.`);

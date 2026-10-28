@@ -2286,11 +2286,6 @@
   "M_OPTIONAL",
   "T_ATTACKS"
  ],
- "BS09-007": [
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
  "BS09-008": [
   "A_TRASH_TO_RESERVE",
   "C_LEVEL",
@@ -4212,11 +4207,6 @@
   "C_LEVEL",
   "T_ATTACKS",
   "T_BATTLE_WIN"
- ],
- "BS14-034": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "K_BURST"
  ],
  "BS14-040": [
   "A_EXHAUST",

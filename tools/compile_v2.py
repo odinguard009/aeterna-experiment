@@ -245,6 +245,8 @@ def clause(x):
         if m.group(2): d['withCore'] = True
         if m.group(3): d['opposing'] = True
         return [d]
+    m = re.match(r'^send (two|three|2|3) cores from your trash to one of your spirits$', x)      # v0.183 TRASH_CORES_TO one:true
+    if m: return [{'do': 'TRASH_CORES_TO', 'n': {'two': 2, 'three': 3}.get(m.group(1)) or int(m.group(1)), 'match': {'type': 'Spirit'}, 'onlyCards': True, 'one': True}]
     m = re.match(r'^destroy (?:a spirit|a cost (\d+) or less) you control\.? put a number of cores from the void to your reserve equal to the cost of the destroyed spirit$', x)      # v0.183 DESTROY_OWN voidByCost
     if m:
         mt = {'type': 'Spirit'}
