@@ -10335,13 +10335,29 @@
       "rest": "bottom"
      }
     ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "NO_BURST_BATTLE"
+     },
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "self",
+      "if": {
+       "counterGe": 1
+      }
+     }
+    ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (When Attacks) The opponent can't activate any Burst effects. Also, if you have one counter or more, put a core from the Void to this Spirit."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS55-033",

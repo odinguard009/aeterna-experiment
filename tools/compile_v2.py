@@ -447,6 +447,7 @@ def own_grammar(s, ctx=None):
 
 
 # ---------- v0.77: "Target an opposing <X> Spirit. Send N core(s) | cores ... until one core remains ... from it to the Reserve." ----------
+TOKEN_IDS = {t['name'].lower(): t['id'] for t in json.load(open('data/cards/tokens.json'))}      # v0.184
 OPP_CORES_T = re.compile(r'^target an opposing (?P<np>.+?)\.\s*send (?:(?P<n>a|one|two|three) cores?(?:,? besides)?\s*,?\s*from it to (?:the|their|its owner\'?s) reserve'
                          r'(?P<keep>\.\s*its number of cores can\'t be brought to (?:less than one|below one|0))?|cores from it to (?:the|their) reserve until one core remains)'
                          r'(?P<up>\.\s*if (?:there are three or more cores in the opposing reserve,\s*(?:the target becomes any opposing spirit|send one core from it to the reserve)|summoned via form change,\s*send a core from it to the reserve) instead)?'      # v0.169 upgrade
@@ -849,6 +850,11 @@ def action_of(s, ctx):
         return [a], bool(sh.group(1))
     if re.match(r'^if returned, ', s.strip(), re.I):      # v0.165 "If returned, X" = "Then, X" (only when the previous action returned a card)
         return action_of('Then, ' + re.sub(r'^if returned, ', '', s.strip(), flags=re.I), ctx)
+    mh_ = re.fullmatch(r'(you can )?return a card from your hand to the deckbottom\.?', s.strip(), re.I)
+    if mh_: return [{'do': 'SHOW_RETURN', 'max': 1}], bool(mh_.group(1))      # v0.184 (schema 54) any card, no draw
+    mt_ = re.fullmatch(r'(you can )?send out (one|up to two) of your "([^"]+)" tokens?\.?', s.strip(), re.I)
+    if mt_ and mt_.group(3).lower() in TOKEN_IDS:      # v0.184 engine SEND_TOKEN (the Token ids come from data/cards/tokens.json)
+        return [dict({'do': 'SEND_TOKEN', 'token': TOKEN_IDS[mt_.group(3).lower()], 'n': 1 if mt_.group(2).lower() == 'one' else 2}, **({'ask': True} if mt_.group(1) else {}))], False
     mr_ = re.fullmatch(r'rumble (\d)\.?', s.strip(), re.I)
     if mr_: return [{'do': 'RUMBLE', 'n': int(mr_.group(1))}], False      # v0.184 {{Rumble|N}} (tpl_norm; engine 02o RUMBLE)
     if re.fullmatch(r'this spirit can refresh\.?', s.strip(), re.I): return [{'do': 'REFRESH'}], True      # v0.169 "(Your End Step) This Spirit can refresh." (optional REFRESH on this card)
@@ -910,7 +916,7 @@ def action_of(s, ctx):
         a, o = action_of(body, ctx)
         if any(set(cond) & set(y.get('if') or {}) for y in a): raise Review('sentence: ' + s[:140])
         return [dict(y, **{'if': dict(y.get('if') or {}, **cond)}) for y in a], o
-    if re.fullmatch(r"(?:the opponent (?:can't|cannot|can not) activate (?:their|the) (?:set )?bursts?|opposing bursts can't activate)\.?", s.strip(), re.I) and trig and trig <= {'ATTACKS', 'BLOCKS', 'BATTLE_WIN', 'BATTLES'}:
+    if re.fullmatch(r"(?:the opponent (?:can't|cannot|can not) activate (?:their |the |any )?(?:set )?bursts?(?: effects?)?|the opposing bursts? can't activate|opposing bursts can't activate)\.?", s.strip(), re.I) and trig and trig <= {'ATTACKS', 'BLOCKS', 'BATTLE_WIN', 'BATTLES'}:
         return [{'do': 'NO_BURST_BATTLE'}], False      # v0.181 'the opponent can't activate their Burst' in a battle trigger = this battle (engine NO_BURST_BATTLE, v0.38)
     if BURST_WORD.search(s) and not re.match(r'(?i)^by setting an? [a-z ]*card with burst effects? from your hand, draw', s.strip()): raise Review('Burst sentence: ' + s[:140])
     m = THEN_LEAD.match(s.strip())

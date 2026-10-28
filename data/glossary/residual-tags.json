@@ -20420,16 +20420,6 @@
   "M_OPTIONAL",
   "T_SUMMONED"
  ],
- "BS47-028": [
-  "A_REVEAL_ADD",
-  "A_REVEAL_DECK",
-  "C_LEVEL",
-  "K_BURST",
-  "K_GRANDWALKER",
-  "M_OPTIONAL",
-  "T_ATTACKS",
-  "T_SUMMONED"
- ],
  "BS47-029": [
   "A_REVEAL_DECK",
   "C_LEVEL",
@@ -21093,14 +21083,6 @@
   "M_BY_DOING",
   "T_ATTACKS",
   "T_OPP_REMOVED"
- ],
- "BS49-006": [
-  "A_BP_PLUS",
-  "A_NO_BURST",
-  "C_LEVEL",
-  "K_BURST",
-  "K_RUSH",
-  "T_ATTACKS"
  ],
  "BS49-010": [
   "A_BP_PLUS",
@@ -23868,13 +23850,6 @@
   "A_BANISH",
   "A_REFRESH",
   "C_LEVEL",
-  "T_ATTACKS"
- ],
- "BS55-032": [
-  "A_VOID",
-  "C_COUNTER",
-  "C_LEVEL",
-  "K_BURST",
   "T_ATTACKS"
  ],
  "BS55-033": [
@@ -40324,13 +40299,6 @@
   "M_UP_TO",
   "T_SUMMONED"
  ],
- "26RSD10-002": [
-  "A_SEND_TOKEN",
-  "C_LEVEL",
-  "K_TOKEN",
-  "M_OPTIONAL",
-  "T_DESTROYED"
- ],
  "26RSD10-009": [],
  "26RSD10-010": [
   "A_EXHAUST",
@@ -40346,13 +40314,6 @@
   "A_SEND_TOKEN",
   "K_TOKEN",
   "M_UP_TO"
- ],
- "26RSD10-X01": [
-  "A_SEND_TOKEN",
-  "C_LEVEL",
-  "K_TOKEN",
-  "M_OPTIONAL",
-  "T_DESTROYED"
  ],
  "26RSD10-X02": [
   "A_BP_PLUS",

@@ -91,3 +91,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v51 (v0.184.0, Lane K): `ctrl` and static `per` accept `team:"<Team>"` (Spirits whose [Team:] head line lists it), e.g. "if you control a Red Stella Spirit", "for each of your Green Wave Spirits".
 - v52 (v0.184.0, Lane K): Invoke `cost` accepts `returnSelf` and `returnOwn` (return an own field card to hand), the Invoke match accepts `costIn` and `type`, and `if.hasSymbol` may list 2-3 colours (all required).
 - v53 (v0.184.0, Lane K): the static flag `TREAT_LV3` accepts `n: 2` (treated as being at Lv2, for "treat this Spirit as being [LV2]"); default stays Lv3.
+- v54 (v0.184.0, Lane K): `SHOW_RETURN.match` is optional (any card from the Hand), for "return a card from your Hand to the deckbottom".

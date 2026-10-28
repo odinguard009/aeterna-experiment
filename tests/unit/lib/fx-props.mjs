@@ -161,12 +161,14 @@ function simple(card, a) {
       if (BS.bpOf(src) !== b[0] + A.n || BS.bpOf(t) !== b[1] + A.n) return 'own Spirits: ' + b + ' -> ' + [BS.bpOf(src), BS.bpOf(t)]; return BS.bpOf(o) === 1000 ? '' : 'an opposing Spirit got BP';` };
       return { onField: true, body: `const b = BS.bpOf(src); await run(src, RA, A.to === 'attacker' ? { attacker: src } : {}); return BS.bpOf(src) === b + A.n ? '' : 'BP ' + b + ' -> ' + BS.bpOf(src);` };
     case 'SHOW_RETURN':
+      if (a.match == null && only(a, ['max']) && a.max === 1) return { body: `P.hand.push(BS.mkInst(${J(FILL)})); for (let j = 0; j < 6; j++) dk(${J(FILL)}); await run(src, RA); return P.hand.length === 0 && P.deck.length === 7 ? '' : 'hand ' + P.hand.length + ', deck ' + P.deck.length;` };      // v0.184 "return a card from your Hand" (any card)
       if (!only(a, ['max', 'match', 'drawEach', 'drawIf']) || !okMatch(a.match)) return null;      // v0.165 the CPU returns every matching card up to max
       return { fix: [{ m: a.match }], body: `for (let i = 0; i < A.max; i++) P.hand.push(BS.mkInst(${J(mid(a.match))})); for (let j = 0; j < 6; j++) dk(${J(FILL)}); await run(src, RA);
         const drew = A.drawEach ? A.max : (A.drawIf && A.drawIf.n === A.max ? A.drawIf.draw : 0); return P.hand.length === drew && P.deck.length === 6 + A.max - drew ? '' : 'hand ' + P.hand.length + ', deck ' + P.deck.length + ', want hand ' + drew;` };
     case 'REFRESH':
       if (a.to === 'subject' && only(a, ['to'])) return { onField: true, body: `const t = sp(${J(FILL)}, P, 1); t.exhausted = true; await run(src, RA, { subject: t }); return t.exhausted ? 'the winning Spirit is still exhausted' : '';` };      // v0.78 ALLY_BATTLE_WIN subject
       return only(a, []) && (spirit || card.type === 'Nexus') && { onField: true, body: `src.exhausted = true; await run(src, RA); return src.exhausted ? 'still exhausted' : '';` };
+    case 'AWAKEN': return only(a, []) && spirit && { onField: true, body: `const t = sp(${J(FILL)}, P, 3), b = src.cores; await run(src, RA); return src.cores > b && t.cores === 1 ? '' : 'cores ' + b + ' -> ' + src.cores + ', other ' + t.cores;` };      // v0.184 spare cores of the other Spirits move here
     case 'DESTROY_SELF': return only(a, []) && spirit && { onField: true, body: `await run(src, RA); return gone(src) ? '' : 'the Spirit is still on the Field';` };
     case 'CURSE': return only(a, []) && spirit && { onField: true, body: `const t = sp(${J(FILL)}, O, 1); G.attacker = src; G.blocker = t; G.eob = []; G.battleResolved = true;
       await run(src, RA); if (gone(t)) return 'Curse destroyed before the end of the battle'; await BS.endOfBattle(); G.attacker = null; G.blocker = null; G.eob = null; G.battleResolved = false;

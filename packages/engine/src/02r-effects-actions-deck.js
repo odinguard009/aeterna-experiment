@@ -70,12 +70,12 @@ Object.assign(FX_ACTIONS, {
   /* v0.165 "Show up to N <X> cards from your Hand to the opponent. Return them to the deckbottom in any order. For each card returned, draw a card." (drawEach), or
      "If two cards are returned, draw three cards." (drawIf {n, draw}); ctx.did = at least one card was returned, so "If returned, ..." (Then) follows. The human picks each card in turn
      (the pick order is the deck order, as for LOOT to the deckbottom); the CPU returns the cheapest matching cards. Showing is not modelled: the cards stay public in the log. */
-  SHOW_RETURN: { chk: a => Number.isInteger(a.max) && a.max >= 1 && a.max <= 3 && hasMatch(a.match) && (a.drawEach == null || a.drawEach === true)
+  SHOW_RETURN: { chk: a => Number.isInteger(a.max) && a.max >= 1 && a.max <= 3 && (a.match == null || hasMatch(a.match)) && (a.drawEach == null || a.drawEach === true)
       && (a.drawIf == null || (a.drawIf && Number.isInteger(a.drawIf.n) && a.drawIf.n >= 1 && a.drawIf.n <= 3 && Number.isInteger(a.drawIf.draw) && a.drawIf.draw >= 1 && a.drawIf.draw <= 5)),
     txt: a => `show up to ${a.max} matching card${a.max === 1 ? '' : 's'} from your Hand and return them to the deckbottom${a.drawEach ? '; draw a card for each returned' : ''}${a.drawIf ? '; if ' + a.drawIf.n + ' returned, draw ' + a.drawIf.draw : ''}`,
-    can: (c, a) => c.p.hand.some(h => fxMatch(CARDS[h.id], a.match)),
+    can: (c, a) => c.p.hand.some(h => !a.match || fxMatch(CARDS[h.id], a.match)),
     run: async (c, a) => {
-      const nm = CARDS[c.src.id].name, ok = h => fxMatch(CARDS[h.id], a.match); let k = 0;
+      const nm = CARDS[c.src.id].name, ok = h => !a.match || fxMatch(CARDS[h.id], a.match); let k = 0;
       for (let j = 0; j < a.max; j++) {
         const L = c.p.hand.filter(ok); if (!L.length) break;
         let d;

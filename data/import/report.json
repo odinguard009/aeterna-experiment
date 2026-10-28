@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 7369,
+  "cards": 7364,
   "per_saga": {
    "1": 680,
    "2": 313,
@@ -10,24 +10,24 @@
    "6": 357,
    "7": 516,
    "8": 481,
-   "9": 492,
-   "10": 496,
-   "11": 327,
+   "9": 491,
+   "10": 495,
+   "11": 326,
    "12": 327,
    "13": 394,
    "14": 431,
    "15": 355,
    "16": 334,
    "17": 110,
-   "50": 353
+   "50": 351
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 1337,
+  "skipped_curated": 1342,
   "nexus_levels_added": 709,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 519,
+  "image_problems": 518,
   "number_conflicts": 4,
   "merged": 109,
   "brave_unparsed": 171,
@@ -35,7 +35,7 @@
   "odd_reduction": 807,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 517
+  "without_image": 516
  },
  "tokens": [
   "BS73-T001",
@@ -879,11 +879,13 @@
   "BS46-054",
   "BS46-RV004",
   "BS46-RV008",
+  "BS47-028",
   "BS47-053",
   "BS48-024",
   "BS48-041",
   "BS48-090",
   "BS48-RV007",
+  "BS49-006",
   "BS50-038",
   "BS50-040",
   "BS50-050",
@@ -896,6 +898,7 @@
   "BS54-021",
   "BS54-040",
   "BS54-067",
+  "BS55-032",
   "BS55-046",
   "BS55-067",
   "BS55-069",
@@ -1339,6 +1342,7 @@
   "26RSD09-011",
   "26RSD09-012",
   "26RSD10-001",
+  "26RSD10-002",
   "26RSD10-003",
   "26RSD10-004",
   "26RSD10-005",
@@ -1347,6 +1351,7 @@
   "26RSD10-008",
   "26RSD10-011",
   "26RSD10-012",
+  "26RSD10-X01",
   "26RBS03-001",
   "26RBS03-009",
   "26RBS03-010",
@@ -3825,11 +3830,6 @@
    "id": "BS49-004",
    "name": "The BarrierHermitDragon Tillana",
    "problem": "no image (near: The BarrierSageDragon Tillana.png)"
-  },
-  {
-   "id": "BS49-006",
-   "name": "The TerraclawDragon Erlikoshou",
-   "problem": "no image (near: The TerraclawDragon Elricoshou.png)"
   },
   {
    "id": "BS49-009",

@@ -1731,12 +1731,49 @@
   "mechanics": [
    "Rush"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Attacks) Draw a card. {{Rush|Blue}} (While you have a Blue symbol, the following effect activates next) : The opponent can't activate Burst effects.",
-   "[LV2][LV3] (Your Attack Step) All your \"Terra Dragon\"/\"Ocean Emperor\" family Spirits gain +3000 BP."
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     },
+     {
+      "do": "NO_BURST_BATTLE",
+      "if": {
+       "hasSymbol": "blue"
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 3000,
+    "to": "own",
+    "match": {
+     "family": [
+      "Terra Dragon",
+      "Ocean Emperor"
+     ]
+    },
+    "lv": [
+     2,
+     3
+    ],
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": false
+    }
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "BS49-010",
