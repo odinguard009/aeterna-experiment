@@ -39760,11 +39760,6 @@
   "S1_ALL_HAVE",
   "T_ATTACKS"
  ],
- "26RDB01-001": [
-  "A_BP_PLUS",
-  "A_EXHAUST",
-  "C_LEVEL"
- ],
  "26RDB01-002": [
   "A_EXHAUST",
   "A_REFRESH",
@@ -39992,9 +39987,6 @@
   "M_OPTIONAL",
   "S1_ALL_HAVE",
   "T_ATTACKS"
- ],
- "26RDB01-046": [
-  "A_BP_PLUS"
  ],
  "26RDB01-047": [
   "A_EXHAUST",

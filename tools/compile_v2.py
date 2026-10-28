@@ -711,6 +711,11 @@ def cond_of(x):
         q = {'n': 1, 'type': 'Spirit', 'family': m.group(1), 'other': True}
         if m.group(2): q['nexus'] = True
         return {'ctrl': q}
+    m = re.fullmatch(r'you control (?:(one|two|three|four|five|\d) or more|an?|any) (exhausted )?(' + v1.TEAMS + r') (spirit)s?', x, re.I)      # v0.184 team count (engine ctrl.team)
+    if m:
+        q = {'n': n_of(m.group(1).lower()) if m.group(1) else 1, 'type': 'Spirit', 'team': m.group(3).title()}
+        if m.group(2): q['exhausted'] = True
+        return {'ctrl': q} if q['n'] <= 5 else None
     m = re.fullmatch(r'you control (?:an?|any) (?:(red|purple|green|white|yellow|blue) )?spirit with (\d[\d,]*) BP or more', x, re.I)      # v0.167 (engine ctrl.bpGe)
     if m:
         q = {'n': 1, 'type': 'Spirit', 'bpGe': bpv(m.group(2))}

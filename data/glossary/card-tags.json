@@ -47067,7 +47067,8 @@
   "S1_ALL_HAVE"
  ],
  "26RDB01-046": [
-  "A_BP_PLUS"
+  "A_BP_PLUS",
+  "C_LEVEL"
  ],
  "26RDB01-047": [
   "T_SUMMONED",

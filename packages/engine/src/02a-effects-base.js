@@ -114,14 +114,14 @@ const ctrlCount = (owner, q, ctx) => owner.spirits.concat(q.nexus ? owner.nexus 
   if (q.other && ctx && ctx.selfUid === f.uid) return false;      // v0.150 "another / besides this Spirit"
   if (q.keyword && !cardHasKeyword(k, q.keyword)) return false;      // v0.150 "a Spirit with Evolution"
   return (q.type === 'Both' || (q.type === 'Ultimate') === u) && (!q.colors || q.colors.some(x => (k.colors || [k.symbol]).includes(x)))
-    && (q.costGe == null || k.cost >= q.costGe) && (q.bpGe == null || bpOf(f) >= q.bpGe) && (!q.noText || fxNoText(k)) && (!q.name || k.name.includes(q.name)) && (!q.family || [].concat(q.family).some(x => (k.families || []).includes(x))) && (!q.exhausted || f.exhausted); }).length;      // v0.169 family may be a list (either family)      // v0.76 exhausted: "any exhausted X"
+    && (q.costGe == null || k.cost >= q.costGe) && (q.bpGe == null || bpOf(f) >= q.bpGe) && (!q.noText || fxNoText(k)) && (!q.name || k.name.includes(q.name)) && (!q.team || cardTeams(k).includes(q.team)) && (!q.family || [].concat(q.family).some(x => (k.families || []).includes(x))) && (!q.exhausted || f.exhausted); }).length;      // v0.169 family may be a list (either family)      // v0.76 exhausted: "any exhausted X"
 const spiritCount = q => q.spirits.filter(f => CARDS[f.id].type !== 'Ultimate').length;      // v0.77 fewerSpirits
 /* v0.72 "for each X you control": cards on the owner's Field matching per {type: 'Spirit'|'Nexus', colors, family, name (part of the name)}; the source itself counts */
 const PER_TYPES = ['Spirit', 'Nexus'];
 const perOk = q => !!q && typeof q === 'object' && PER_TYPES.includes(q.type) && (q.colors == null || (Array.isArray(q.colors) && q.colors.length && q.colors.every(x => COLORS.includes(x))))
-  && (q.family == null || typeof q.family === 'string') && (q.name == null || typeof q.name === 'string') && (q.keyword == null || typeof q.keyword === 'string');
+  && (q.family == null || typeof q.family === 'string') && (q.name == null || typeof q.name === 'string') && (q.keyword == null || typeof q.keyword === 'string') && (q.team == null || typeof q.team === 'string');
 const perCount = (owner, q) => (q.type === 'Nexus' ? owner.nexus : owner.spirits.filter(f => CARDS[f.id].type !== 'Ultimate')).filter(f => { const k = CARDS[f.id];
-  return (!q.colors || q.colors.some(x => (k.colors || [k.color, k.symbol]).includes(x))) && (!q.family || (k.families || []).includes(q.family)) && (!q.name || k.name.includes(q.name)) && (!q.keyword || cardHasKeyword(k, q.keyword)); }).length;
+  return (!q.colors || q.colors.some(x => (k.colors || [k.color, k.symbol]).includes(x))) && (!q.family || (k.families || []).includes(q.family)) && (!q.name || k.name.includes(q.name)) && (!q.team || cardTeams(k).includes(q.team)) && (!q.keyword || cardHasKeyword(k, q.keyword)); }).length;
 function ownerOf(i) { if (!G) return null; for (const k of ['player', 'opponent']) if (fieldList(G.p[k]).includes(i)) return G.p[k]; return null; }
 const STATIC_FLAGS = ['MUST_BLOCK', 'NO_RETURN', 'CORES_DRAW', 'UNAFFECTED_SOUL', 'COST_DESTROY_PLUS', 'EXTRA_REDUCTION', 'NO_END_ATTACK', 'UNAFFECTED', 'HAND_UNAFFECTED', 'BLOCK_EXHAUSTED', 'CANT_ATTACK', 'CANT_BLOCK', 'NO_DECK_DISCARD', 'NO_ATTACK_LIFE', 'HAND_COST', 'DRAW_PLUS', 'TREAT_LV3', 'TRIBUTE_SAFE', 'IMMORTALITY'];
 /* flag effects: MUST_BLOCK (opposing Spirits must block this attacker), NO_RETURN (cannot be returned by opposing effects), CORES_DRAW (draw once per turn when cores are sent by your effects),

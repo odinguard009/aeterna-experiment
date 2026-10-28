@@ -94,7 +94,7 @@ def action_of(s, ctx):
     fam = [   # v0.54: family names keep their case
         (r'^refresh an? "([^"]+)" family spirit (?:you control|of yours)$', lambda m: [{'do': 'REFRESH_SPIRIT', 'match': {'family': [m.group(1)]}}]),
         (r'^(?:during this turn, )?' + PER_NP + r',? (?:during this turn,? )?this spirit (?:gains|gets) \+(\d[\d,]*) ?bp(?: (?:until (?:the )?end of (?:the )?turn|during this turn))?$',
-         lambda m: [{'do': 'BP_PLUS', 'n': bp(m.group(6)), 'per': per_of(m)}]),      # v0.72 "For each X you control, this Spirit gains +N BP"; v0.163 also "..., during this turn, this Spirit gains" (the clause after the count)
+         lambda m: [{'do': 'BP_PLUS', 'n': bp(m.group(7)), 'per': per_of(m)}]),      # v0.72 "For each X you control, this Spirit gains +N BP"; v0.163 also "..., during this turn, this Spirit gains" (the clause after the count)
         (r'^this spirit (?:gains|gets) \+(\d[\d,]*) ?bp ' + PER_NP + r'(?: (?:until (?:the )?end of (?:the )?turn|during this turn))?$',
          lambda m: [{'do': 'BP_PLUS', 'n': bp(m.group(1)), 'per': per_of(re.match(PER_NP, m.group(0)[m.group(0).lower().index('for each'):], re.I))}]),      # v0.163 "This Spirit gains +N BP for each X you control"
     ]
@@ -145,14 +145,16 @@ def action_of(s, ctx):
 
 
 # v0.72 "for each <colour> <"F" family | "N"-named> Spirit/Nexus you control" -> engine "per" {type, colors, family, name}
-PER_NP = r'for each (?:(red|purple|green|white|yellow|blue) )?(?:"([^"]+)" family |"([^"]+)"-named )?(spirit|nexus)(?:es|s)?(?: with ([A-Z][a-z]+))? (?:you control|on your field)'
+TEAMS = 'Red Stella|Green Wave|Blue Beat|Yellow Rise'      # team names printed on [Team:] lines (engine cardTeams)
+PER_NP = r'for each (?:(red|purple|green|white|yellow|blue) )?(?:"([^"]+)" family |"([^"]+)"-named |(' + TEAMS + r') )?(spirit|nexus)(?:es|s)?(?: with ([A-Z][a-z]+))? (?:you control|on your field)'
 
 def per_of(m):
-    q = {'type': m.group(4).capitalize()}
+    q = {'type': m.group(5).capitalize()}
+    if m.group(4): q['team'] = m.group(4).title()
     if m.group(1): q['colors'] = [m.group(1).lower()]
     if m.group(2): q['family'] = m.group(2)
     if m.group(3): q['name'] = m.group(3)
-    if m.group(5): q['keyword'] = m.group(5)      # v0.167 "for each Spirit with Legacy you control" (engine per.keyword)
+    if m.group(6): q['keyword'] = m.group(6)      # v0.167 "for each Spirit with Legacy you control" (engine per.keyword)
     return q
 
 PER_STATIC = re.compile(r'^(\(During Attack\)\s*)?' + PER_NP + r',? this spirit (?:gains|gets) \+(\d[\d,]*) ?bp\.?$', re.I)
