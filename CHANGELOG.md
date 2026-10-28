@@ -4,6 +4,13 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.181.0
+- Lane: K
+- **Lane K: 51 more cards complete (1,072 of 8,709; 6,915 playable), schema v27 to v31.** Engine: conditions `selfBpGe` and `viaEffect` (v27), STATIC `DRAW_PLUS` (v28), `DESTROY keywords` and `REVEAL_PICK all` (v29), action `SET_BURST` (v30), STATIC flag `TREAT_LV3` (v31); `NO_BURST_BATTLE` and `OWN_LIFE_HIT` without an attacker qualifier.
+  - Compiler only: constant own BP for colour / family-list / name / cost-range subjects ("All your White Spirits gain +1000 BP"), old-wording `(Permanent)` BP forms, conditional BP, `by setting ... draw`, `Give all your X Spirits: Armor` as STATIC UNAFFECTED, STATIC `BLOCK_EXHAUSTED` for own matching Spirits, trigger head "When your X Spirit is summoned" (ALLY_SUMMONED with a subject match), old-wording `you control a "X" spirit` condition, constant BP for own attacking Spirits of one colour.
+  - Tests: new `tests/unit/v181_set_burst.test.mjs` (SET_BURST, TREAT_LV3); data test id regex accepts a trailing letter (BS18-X012A).
+  - Checked: loop, `fx_validate`, pre-push full quick tests. Not checked: Regression (CI), a real device. Revert note: `git revert` the v0.181.0 commit.
+
 ## v0.180.0
 - Lane: K
 - **Lane K: 50 more cards complete (1,021 of 8,709), schema v23 to v26.** Generic summon family (SUMMON_HAND `noFx`), OPP_DISCARD and EXHAUST_OPP `bpLe` with exact counts (v24), multi-target destroy/return as repeated single actions, `NO_DECK_DISCARD` static flag (v25, MILL and reveal-rest respect it), RETURN_TRASH of a Magic card (`anyType`), STATIC `perHand` BP (v26), Rush on a Magic, AND_SPLIT and refresh clauses.
