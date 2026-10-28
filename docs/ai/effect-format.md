@@ -86,3 +86,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v46 (v0.183.0, Lane K): `DESTROY_OWN {voidByCost?}` sends the destroyed Spirit's cost in Core from the Void to the reserve.
 - v47 (v0.183.0, Lane K): `TRASH_CORES_TO {one?}` puts every moved core on the same chosen Spirit ("to one of your Spirits").
 - v48 (v0.183.0, Lane K): trigger `TRIBUTED` (this Spirit became the Tribute target; fired from tributePay, self only).
+- v49 (v0.183.0, Lane K): STATIC flag effects accept `to:"all"` (Spirits of both players, filtered by `match`), e.g. CANT_ATTACK/CANT_BLOCK for "Cost 0/3 Spirits".

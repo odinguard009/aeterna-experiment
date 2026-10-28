@@ -671,6 +671,11 @@ def spirit_paragraph_main(p, card, rush):
             e = [{'trigger': 'STATIC', 'flag': 'HAND_COST', 'to': 'self', 'n': int(mm.group(2)), 'match': {'family': re.findall(r'"([^"]+)"', mm.group(1))}}]
             if lv: e[0]['lv'] = lv
             return e, flags
+        mm = re.match(r"^Cost (\d+)/(\d+) Spirits can(?:'t|not) attack/block\.?$", p, re.I)
+        if mm:      # v0.183 STATIC CANT_ATTACK + CANT_BLOCK to:'all' (both players' Spirits, engine flagActive)
+            e = [{'trigger': 'STATIC', 'flag': f, 'to': 'all', 'match': {'type': 'Spirit', 'costIn': [int(mm.group(1)), int(mm.group(2))]}} for f in ('CANT_ATTACK', 'CANT_BLOCK')]
+            if lv: [x.update(lv=lv) for x in e]
+            return e, flags
         mm = re.match(r"^Neither player's Life can be reduced by the attacks of Cost (\d+) or less Spirits\.?$", p, re.I)
         if mm:      # v0.186 STATIC flag NO_ATTACK_LIFE (engine attackLifeLocked)
             e = [{'trigger': 'STATIC', 'flag': 'NO_ATTACK_LIFE', 'to': 'self', 'costLe': int(mm.group(1))}]

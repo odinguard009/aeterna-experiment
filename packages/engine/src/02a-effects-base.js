@@ -158,14 +158,15 @@ function flagActive(owner, flag, subject, pred) {
   if (!STATIC_FLAGS.includes(flag)) return fxUnknown('flag', flag);                  // v0.59.4 strict effects
   if (!G || !owner || !subject) return false;
   const opp = G.p[other(owner.key)];
-  for (const src of fieldList(owner)) {
-    const L = lvNo(src);
+  for (const side of [owner, opp]) for (const src of fieldList(side)) {      // v0.183 to:'all' reaches the Spirits of both players ("Cost 0/3 Spirits can't attack/block")
+    const L = lvNo(src), sideOpp = side === owner ? opp : owner;
     for (const { e } of fxEntries(src)) {
       if (e.trigger !== 'STATIC' || e.flag !== flag || (pred && !pred(e))) continue;
+      if (side !== owner && e.to !== 'all') continue;
       if (e.lv && !e.lv.includes(L)) continue;
       if (e.oc && !ocActive(src)) continue;
-      if (e.to === 'own' ? !fxMatch(CARDS[subject.id], e.match) : src !== subject) continue;
-      if (!fxIf(owner, opp, e.if)) continue;
+      if (e.to === 'own' || e.to === 'all' ? !fxMatch(CARDS[subject.id], e.match) : src !== subject) continue;
+      if (!fxIf(side, sideOpp, e.if)) continue;
       return true;
     }
   }
