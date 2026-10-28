@@ -204,7 +204,7 @@ function simple(card, a) {
     case 'DESTROY_EVERY': {      // v0.183 every opposing Spirit that matches goes, one just outside the limit stays
       if (!only(a, ['bpLe', 'costLe', 'costIs', 'opposing'])) return null;
       const hit = a.bpLe != null ? sid(3, a.bpLe) : sid(a.costLe != null ? a.costLe : a.costIs, 1000), miss = a.bpLe != null ? sid(3, a.bpLe + 1000) : sid((a.costLe != null ? a.costLe : a.costIs) + 1, 1000);
-      return { fix: a.bpLe != null ? [{ cost: 3, bp: a.bpLe }, { cost: 3, bp: a.bpLe + 1000 }] : [{ cost: a.costIsLe != null ? a.costLe : a.costIs, bp: 1000 }, { cost: (a.costLe != null ? a.costLe : a.costIs) + 1, bp: 1000 }], body: `const lo = sp(${J(hit)}, O), hi = sp(${J(miss)}, O); await run(src, RA); return gone(lo) && !gone(hi) ? '' : 'wrong Spirits destroyed';` };
+      return { fix: a.bpLe != null ? [{ cost: 3, bp: a.bpLe }, { cost: 3, bp: a.bpLe + 1000 }] : [{ cost: a.costLe != null ? a.costLe : a.costIs, bp: 1000 }, { cost: (a.costLe != null ? a.costLe : a.costIs) + 1, bp: 1000 }], body: `const lo = sp(${J(hit)}, O), hi = sp(${J(miss)}, O); await run(src, RA); return gone(lo) && !gone(hi) ? '' : 'wrong Spirits destroyed';` };
     }
     case 'DESTROY_NEXUS_ALL': {      // v0.183 matching opposing Nexuses go, a non-matching one stays
       if (!only(a, ['opposing', 'lv', 'withCore']) || (a.lv != null && a.lv !== 1)) return null;

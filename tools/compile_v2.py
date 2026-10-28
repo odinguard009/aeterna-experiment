@@ -232,7 +232,7 @@ def clause(x):
         if not (1000 <= n <= 100000 if m.group(1) else 1 <= n <= 30): raise Review('v2 destroy: total range')
         return [{'do': 'DESTROY_TOTAL', 'total': n} if m.group(1) else {'do': 'DESTROY_TOTAL', 'total': n, 'byCost': True}]
     m = re.match(r'^destroy (?:every|all) (opposing )?(?:(\d+) bp or less|cost (\d+)( or less)?) spirits?$', x)      # v0.183 DESTROY_EVERY (both sides, or opposing only)
-    if m:
+    if m and not (m.group(1) and m.group(2)):      # opposing + BP stays with DESTROY all
         a = {'do': 'DESTROY_EVERY'}
         if m.group(2): a['bpLe'] = int(m.group(2))
         else: a['costLe' if m.group(4) else 'costIs'] = int(m.group(3))
