@@ -330,6 +330,7 @@ ALLY_ATT_BODY = re.compile(r'^When (?:one of )?your (?:"([^"]+)" family |(Red|Pu
 ALLY_SUMMON_HEAD = re.compile(r'^When your (?:(?P<col>Red|Purple|Green|White|Yellow|Blue) |(?P<fam>"[^"]+"(?:\s*/\s*"[^"]+")*) family |"(?P<nm>[^"]+)"-named |[Cc]ost (?P<cn>\d+) or (?P<cd>more|less) )?(?P<ty>Spirit|Ultimate)s? (?:is|are) summoned,\s*')      # v0.181
 OWN_BP_BODY = re.compile(r'^(?:All (?:of )?your (?:"([^"]+)" family )?Spirits (?:with (?P<kw>[A-Z][A-Za-z]+) )?(?:gain|get)|Give all your (?:"([^"]+)" family )?Spirits|(?:All )?"([^"]+)" (?:family )?spirits you control (?:gain|get)) \+(\d[\d,]*) ?BP\.?$', re.I)      # v0.181 also 'Give all your "X" family Spirits +N BP'
 SELF_BP_BODY = re.compile(r'^This Spirit (?:gains|gets) \+(\d[\d,]*) ?BP\.?$', re.I)
+OPP_HAND_WHILE = re.compile(r'^While the opponent has (\d+|two|three|four|five|six|seven|eight) or more cards in (?:the|their) Hand,\s*', re.I)
 BURST_WHILE = re.compile(r"^While you (don't )?have an? (?:set Burst|Burst set),\s*", re.I)
 DRAW_PLUS_BODY = re.compile(r'^(?:If (.+?), )?(?:you draw|increase the number of cards you draw by|increase the amount of cards you draw by) \+(\d)(?: cards?)?\.?$', re.I)      # v0.181
 NOTRIBUTE_BODY = re.compile(r"^Once per turn, you can summon a Spirit card with Tribute from your Hand without using Tribute\. However, any \(When Summoned\) effects of the Spirit can't activate\.$", re.I)      # v0.183 ACTIVATE SUMMON_HAND noTribute
@@ -352,6 +353,9 @@ def step_window(p, card, lv, rush):
     mw = BURST_WHILE.match(body)
     if mw:      # v0.71 "(Your Attack Step) While you have a set Burst, <effect>" = one more window condition
         win['burstSet'] = not mw.group(1); body = body[mw.end():].strip(); body = body[0].upper() + body[1:]
+    mh = OPP_HAND_WHILE.match(body)
+    if mh:      # v0.183 "While the opponent has N or more cards in the Hand, <effect>" = oppHandGe window condition
+        win['oppHandGe'] = NUM.get(mh.group(1).lower()) or int(mh.group(1)); body = body[mh.end():].strip(); body = body[0].upper() + body[1:]
     flags = {}
     e = None
     aw = ally_win(body, 'att' if who == 'Your' else 'blk' if who == 'Opposing' else None) if step == 'ATTACK' else None
@@ -645,7 +649,7 @@ def spirit_paragraph_main(p, card, rush):
             e = [{'trigger': 'STATIC', 'flag': 'CANT_' + mm.group(1).upper(), 'to': 'self'}]
             if lv: e[0]['lv'] = lv
             return e, flags
-        if re.fullmatch(r'When this Spirit becomes the target of Tribute, by exhausting this Spirit, (?:treat all cores on this Spirit as being sent to the designated place|(?:you can )?summon without (?:using )?Tribute)\.?', p, re.I):      # v0.183 STATIC TRIBUTE_SAFE (engine tributePay)
+        if re.fullmatch(r'(?:\(Your Main Step\)\s*)?When this Spirit becomes the target of Tribute, by exhausting this Spirit, (?:treat all cores on this Spirit as being sent to the designated place|(?:you can )?summon without (?:using )?Tribute)\.?', p, re.I):      # v0.183 STATIC TRIBUTE_SAFE (engine tributePay)
             if rush: raise Review('Rush with a Tribute flag')
             e = [{'trigger': 'STATIC', 'flag': 'TRIBUTE_SAFE', 'to': 'self'}]
             if lv: e[0]['lv'] = lv
