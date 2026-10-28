@@ -58,6 +58,9 @@ SEL = re.compile(
     r'(?P<own> you control| the opponent controls| your opponent controls)?$')
 
 
+KWRE = r'clash|immortality|windstorm|ice wall|holy life|assault|awaken|curse|high speed|brilliance|crush|charge|armor|accel|pierce|sturdy'
+
+
 def selector(np):
     """noun phrase -> dict(count, owner, kind, filters) or None when it is not a selector"""
     m = SEL.match(np.strip())
@@ -103,6 +106,8 @@ def selector(np):
         if mm: f['costLePer'] = {'type': 'Nexus'} if mm.group(1) else {'type': 'Spirit', 'family': mm.group(2)}; continue
         mm = re.match(r'(one|two|three|\d) cores? or (?:less|fewer) on (?:it|them)$|(?:only )?(one|1) core on (?:it|them)$', x)
         if mm: f['coresLe'] = n_of(mm.group(1) or mm.group(2)); continue
+        mm = re.fullmatch(r'(?:the )?((?:%s)(?: ?/ ?(?:%s))*)' % (KWRE, KWRE), x, re.I)      # v0.181 "with Clash/Windstorm"
+        if mm: f['keywords'] = [y.strip().title() for y in mm.group(1).split('/')]; continue
         f['other:' + x] = True
     return {'count': count, 'upto': upto, 'owner': owner, 'kind': kind, 'f': f}
 
@@ -121,6 +126,11 @@ def one_target(verb, sel, kinds=('spirit',)):
 # ---------- verbs ----------
 def v_destroy(sel):
     one_target('destroy', sel, ('spirit', 'nexus'))
+    if 'keywords' in sel['f'] and sel['kind'] == 'spirit' and not sel['upto'] and sel['count'] in ('all', 1):      # v0.181
+        need('destroy', sel, ('keywords',))
+        a = {'do': 'DESTROY', 'keywords': sel['f']['keywords']}
+        if sel['count'] == 'all': a['all'] = True
+        return [a]
     if sel['count'] == 'all' and sel['kind'] == 'spirit' and not sel['upto']:      # v0.75 DESTROY all: one BP or core bound only
         need('destroy', sel, ('bpLe', 'coresLe'))
         keys = [k for k in ('bpLe', 'coresLe') if k in sel['f']]
@@ -504,6 +514,11 @@ REVEAL_NP = re.compile(r'^(?:an?|one) (?:(?P<col>' + COL + r') )?(?:cost (?P<cos
 def reveal_np(np):
     """one card noun phrase -> engine match + diffName; Review for forms the engine match cannot say (keywords, two kinds, no printed effects, unquoted families)"""
     x = low(np.strip())
+    q = re.fullmatch(r'(?:an?|one) "([^"]+)"(?: cards?)?', np.strip(), re.I)      # v0.181 a bare quoted name: the name or the family (fxMatch ORs them)
+    if q: return {'name': [q.group(1)], 'family': [q.group(1)]}, False
+    q = re.fullmatch(r'(?:an?|one) exactly-named "([^"]+)"(?: cards?)?', np.strip(), re.I)
+    if q: return {'name': [q.group(1)]}, False
+    if re.fullmatch(r'(?:an?|one) saga brave cards?', x): return {'family': ['Saga'], 'type': 'Brave'}, False
     m = REVEAL_NP.match(x)
     if not m: raise Review('v2 reveal: card phrase ' + np.strip()[:60])
     if not (m.group('fam') or m.group('kind') or m.group('col') or m.group('cost')): raise Review('v2 reveal: any card')
@@ -537,9 +552,15 @@ def reveal_grammar(s):
     body = re.sub(r'^(?:you can|you may)\s+', '', body, flags=re.I)
     m = re.match(r'^add (?:to (?:the |your )?hand )?(.+?)(?: among them)?(?: to (?:the |your )?hand)?$', body, re.I)
     if m:
-        match, diff = reveal_np(m.group(1))
+        g = m.group(1).strip(); every = re.match(r'(?:every|all) ', g, re.I) is not None
+        if every:      # v0.181 "add every "X" among them" (REVEAL_PICK all)
+            g = re.sub(r'^(?:every|all) ', 'a ', g, flags=re.I)
+            if not re.search(r'cards?$', g): g += ' card'
+            g = re.sub(r'cards$', 'card', g)
+        match, diff = reveal_np(g)
         a = {'do': 'REVEAL_PICK', 'n': n, 'match': match, 'rest': rest}
         if diff: a['diffName'] = True
+        if every: a['all'] = True
         return [a]
     m = re.match(r'^(?:summon/deploy|deploy|summon) (.+?)(, without paying the cost)?$', body, re.I)
     if m:
@@ -842,7 +863,7 @@ def sentences(body):
             out[-1] = out[-1] + ' ' + x      # v0.68: "... give it -N BP. Then, if it has 0 BP, destroy it." is one effect
         elif out and re.match(r'^(?:you can )?show ', out[-1], re.I) and re.fullmatch(r'(?:return (?:them|it) to the deckbottom(?: in any order)?|for each card returned, draw a card|if (?:one|two|three) cards? (?:is|are) returned, draw (?:a|one|two|three|four|five) cards?)\.?', x.strip(), re.I):
             out[-1] = out[-1].rstrip() + ' ' + x      # v0.165: "Show ... to the opponent." + "Return them to the deckbottom." + "For each card returned, draw a card." is one effect
-        elif out and REVEAL_HEAD.match(out[-1]) and not REVEAL_REST.search(out[-1]):
+        elif out and REVEAL_HEAD.match(re.sub(r'^(?:also,? )?(?:then,? )?(?:if [^,]+, )?', '', out[-1], flags=re.I)) and not REVEAL_REST.search(out[-1]):
             out[-1] = out[-1] + ' ' + x      # v0.69: "Reveal N cards from your decktop." + "Among them, add ..." + "Return any remaining cards ..." is one effect
         elif out and re.fullmatch(r'If [^,.]+, (?:[^.]+? instead|instead,[^.]+)\.?', x.strip(), re.I) and out[-1].endswith('.') and 'instead' not in out[-1]:
             out[-1] = out[-1] + ' ' + x      # v0.135: the replacement belongs to the sentence before it

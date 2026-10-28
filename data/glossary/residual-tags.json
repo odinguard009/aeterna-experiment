@@ -3506,9 +3506,6 @@
   "C_LEVEL",
   "T_SUMMONED"
  ],
- "BS11-074": [
-  "K_HOLY_LIFE"
- ],
  "BS11-076": [],
  "BS11-X01": [
   "C_LEVEL",
@@ -7276,10 +7273,6 @@
   "A_DESTROY_BP",
   "C_LEVEL",
   "T_ALLY_SUMMONED"
- ],
- "BS22-006": [
-  "C_LEVEL",
-  "T_SUMMONED"
  ],
  "BS22-007": [
   "A_DESTROY_BP",
@@ -21577,12 +21570,6 @@
   "M_OPTIONAL",
   "M_REPLACEMENT",
   "T_SUMMONED"
- ],
- "BS48-RV007": [
-  "A_REVEAL_ADD",
-  "A_REVEAL_DECK",
-  "K_BRAVE",
-  "M_THEN"
  ],
  "BS48-X03": [
   "A_REFRESH",

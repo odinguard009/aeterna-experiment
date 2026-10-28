@@ -5,15 +5,17 @@
    every other entry here is read from inside a function.
    ------------------------------------------------------------------------------------ */
 Object.assign(FX_ACTIONS, {
-  REVEAL_PICK: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 10 && hasMatch(a.match) && ['trash', 'bottom', 'top', 'either'].includes(a.rest) && (a.diffName == null || a.diffName === true),   // v0.69 diffName: "a card name different from this Spirit's"
+  REVEAL_PICK: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 10 && hasMatch(a.match) && ['trash', 'bottom', 'top', 'either'].includes(a.rest) && (a.diffName == null || a.diffName === true) && (a.all == null || a.all === true),   // v0.181 all: "add every matching card among them"; v0.69 diffName: "a card name different from this Spirit's"
     txt: a => `reveal ${a.n} cards from the top of your Deck, add a matching card to your Hand, ${a.rest === 'trash' ? 'discard' : a.rest === 'top' ? 'return to the top of the Deck' : a.rest === 'either' ? 'return to the top or the bottom of the Deck' : 'return to the bottom of the Deck'} the rest`,      // v0.75 rest top / either
     can: c => c.p.deck.length > 0,
     run: async (c, a) => {
       const nm = CARDS[c.src.id].name, top = c.p.deck.splice(0, Math.min(a.n, c.p.deck.length)); c.p.revealed = top;
       log(`${nm}: ${who(c.p)} ${c.p.cpu ? 'reveals' : 'reveal'} ${top.map(x => CARDS[x.id].name).join(', ') || 'nothing'}.`); io.view({ type: 'board' });
       await revealedFx(c.p);
-      const t = await chooseCard(c, c.p.revealed.filter(x => fxMatch(CARDS[x.id], a.match) && (!a.diffName || CARDS[x.id].name !== nm)), `✨ ${nm}`, 'Choose a revealed card to add to your Hand.', true);
-      if (t) { removeFrom(c.p.revealed, t); c.p.hand.push(t); handUp(c.p, 1); log(`${nm}: ${CARDS[t.id].name} is added to the Hand.`); }
+      let t = null;
+      if (a.all) { const L = c.p.revealed.filter(x => fxMatch(CARDS[x.id], a.match) && (!a.diffName || CARDS[x.id].name !== nm)); for (const x of L) { removeFrom(c.p.revealed, x); c.p.hand.push(x); log(`${nm}: ${CARDS[x.id].name} is added to the Hand.`); } if (L.length) { handUp(c.p, L.length); t = L[0]; } }
+      else t = await chooseCard(c, c.p.revealed.filter(x => fxMatch(CARDS[x.id], a.match) && (!a.diffName || CARDS[x.id].name !== nm)), `✨ ${nm}`, 'Choose a revealed card to add to your Hand.', true);
+      if (t && !a.all) { removeFrom(c.p.revealed, t); c.p.hand.push(t); handUp(c.p, 1); log(`${nm}: ${CARDS[t.id].name} is added to the Hand.`); }
       const rest = c.p.revealed.splice(0);
       if (a.rest === 'trash') { for (const x of rest) c.p.trash.push(x); if (rest.length) log(`${nm}: ${rest.length} card${rest.length === 1 ? '' : 's'} discarded.`); }
       else {
