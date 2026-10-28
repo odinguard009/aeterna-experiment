@@ -43,7 +43,7 @@ with sync_playwright() as p:
     # ---- C. built-in card data audit (all 63 pack cards)
     chk(f'C1 pack registers {PACK_N} cards (the Brave card too, Standard 26R BS/CB ids), all ids unique', ev(pg, "(()=>{const k=Object.keys(BS.CARDS).filter(i=>/^(\\d\\dR)?(BSC|BS|SD|CB|DB)\\d/.test(i)&&!BS.CARDS[i].token);return k.length===%d&&new Set(k).size===%d})()" % (PACK_N, PACK_N)))
     # v0.80.x data intake added the id families 26RDBxx-yyy and BSCxx-yyy and 3-letter promo codes (BS38-RVX01)
-    chk('C2 every pack card id looks like BSxx-yyy / SDxx-yyy / BSCxx-yyy / 26RBSxx-yyy / 26RCBxx-yyy / 26RDBxx-yyy', ev(pg, "Object.keys(BS.CARDS).filter(i=>/^(\\d\\dR)?(BSC|BS|SD|CB|DB)\\d/.test(i)&&!BS.CARDS[i].token).every(i=>/^(\\d\\dR)?(BSC|BS|SD|CB|DB)\\d\\d-[A-Z]{0,4}\\d{2,3}$/.test(i))"))
+    chk('C2 every pack card id looks like BSxx-yyy / SDxx-yyy / BSCxx-yyy / 26RBSxx-yyy / 26RCBxx-yyy / 26RDBxx-yyy', ev(pg, "Object.keys(BS.CARDS).filter(i=>/^(\\d\\dR)?(BSC|BS|SD|CB|DB)\\d/.test(i)&&!BS.CARDS[i].token).every(i=>/^(\\d\\dR)?(BSC|BS|SD|CB|DB)\\d\\d-[A-Z]{0,4}\\d{2,3}[A-Z]?$/.test(i))"))
     chk('C3 colour is one of the six', ev(pg, "Object.values(BS.CARDS).every(c=>['red','purple','green','yellow','blue','white'].includes(c.symbol))"))
     chk('C4 cost within 0..30 and integer', ev(pg, "Object.values(BS.CARDS).every(c=>Number.isInteger(c.cost)&&c.cost>=0&&c.cost<=30)"))
     chk('C5 Spirit levels: cores strictly ascending, BP numeric', ev(pg, "Object.values(BS.CARDS).filter(c=>c.type==='Spirit').every(c=>c.levels.length>=1&&c.levels.every((l,i)=>Number.isInteger(l.cores)&&Number.isInteger(l.bp)&&(i===0||l.cores>c.levels[i-1].cores)))"))
