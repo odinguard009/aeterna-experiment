@@ -309,7 +309,7 @@ STEP_HEAD = re.compile(r'^\((Your|Opposing|Either) (Start|Core|Draw|Refresh|Main
 WIN_KEYS = ('step', 'attackStep', 'oppTurn')
 OPP_ATT_BODY = re.compile(r'^When an opposing (?:Cost (\d+) or less )?Spirit(/Ultimate)? attacks,\s*')
 ALLY_ATT_BODY = re.compile(r'^When (?:one of )?your (?:"([^"]+)" family |(Red|Purple|Green|White|Yellow|Blue) )?Spirits? attacks?,\s*')
-OWN_BP_BODY = re.compile(r'^All (?:of )?your (?:"([^"]+)" family )?Spirits (?:with (?P<kw>[A-Z][A-Za-z]+) )?(?:gain|get) \+(\d[\d,]*) ?BP\.?$', re.I)
+OWN_BP_BODY = re.compile(r'^(?:All (?:of )?your (?:"([^"]+)" family )?Spirits (?:with (?P<kw>[A-Z][A-Za-z]+) )?(?:gain|get)|Give all your (?:"([^"]+)" family )?Spirits) \+(\d[\d,]*) ?BP\.?$', re.I)      # v0.181 also 'Give all your "X" family Spirits +N BP'
 SELF_BP_BODY = re.compile(r'^This Spirit (?:gains|gets) \+(\d[\d,]*) ?BP\.?$', re.I)
 BURST_WHILE = re.compile(r"^While you (don't )?have an? (?:set Burst|Burst set),\s*", re.I)
 DRAW_PLUS_BODY = re.compile(r'^(?:If (.+?), )?(?:you draw|increase the number of cards you draw by|increase the amount of cards you draw by) \+(\d)(?: cards?)?\.?$', re.I)      # v0.181
@@ -348,8 +348,8 @@ def step_window(p, card, lv, rush):
         if mm:
             if rush: raise Review('Rush with a step-window constant effect')
             own = mm.re is OWN_BP_BODY
-            x = {'trigger': 'STATIC', 'bp': bp(mm.group(3) if own else mm.group(1)), 'to': 'own' if own else 'self'}
-            if own and mm.group(1): x['match'] = {'family': [mm.group(1)]}
+            x = {'trigger': 'STATIC', 'bp': bp(mm.group(4) if own else mm.group(1)), 'to': 'own' if own else 'self'}
+            if own and (mm.group(1) or mm.group(3)): x['match'] = {'family': [mm.group(1) or mm.group(3)]}
             if own and mm.group('kw'): x['match'] = dict(x.get('match') or {}, keyword=mm.group('kw'))      # v0.167 "All your Spirits with Shamanism gain +N BP"
             e = [x]
         elif step == 'DRAW' and who == 'Your' and DRAW_PLUS_BODY.match(body):      # v0.181 STATIC DRAW_PLUS (engine drawPlusOf)
@@ -550,6 +550,13 @@ def spirit_paragraph_main(p, card, rush):
             if mm.group(1): e['noStack'] = True
             if lv: e['lv'] = lv
             return [e], flags
+        mm = OWN_BP_BODY.match(p)
+        if mm and not mm.group('kw'):      # v0.181 constant 'Give all your "X" family Spirits +N BP' / 'All your X family Spirits get +N BP'
+            if rush: raise Review('Rush with a constant effect')
+            e = {'trigger': 'STATIC', 'bp': bp(mm.group(4)), 'to': 'own'}
+            if mm.group(1) or mm.group(3): e['match'] = {'family': [mm.group(1) or mm.group(3)]}
+            if lv: e['lv'] = lv
+            return [e], flags
         mm = re.match(r'^\(Your Attack Step\)\s*All attacking Spirits you control (?:gain|get) \+(\d[\d,]*) ?BP\.?$', p, re.I)
         if mm:
             e = {'trigger': 'STATIC', 'bp': bp(mm.group(1)), 'to': 'own', 'attackingOnly': True}
@@ -702,14 +709,14 @@ def magic_card(paras, n=None):
 # ---------- Burst (v0.54) ----------
 BURST_WHEN = [   # Fandom {{Burst|...}} condition -> engine BURST_WHEN key (02c-effects-parse.js); v0.71: export spelling variants + OPP_ATTACK, OPP_SUMMON_ADV_FX
     (r'after your life is (?:ree?duced|decreased)', 'LIFE_DECREASE'),
-    (r'after your spirit(?:/ultimate)? is destroyed by the opponent', 'ALLY_DESTROYED'),
-    (r"after an opp?posing spirit(?:/brave|/ultimate)?'s \(when summoned\) effect (?:resolves|activates)", 'OPP_SUMMON_FX'),
+    (r'after your spirit(?:/ultimate)? is (?:depleted/)?destroyed by the opponent', 'ALLY_DESTROYED'),
+    (r"after an opp?posing spirit(?:/brave|/ultimate|'s/brave)?'s \(when summoned\) effect (?:resolves|activates)", 'OPP_SUMMON_FX'),
     (r"after an opposing spirit(?:/brave|/ultimate)?'s \(when summoned/advents?\) effect (?:resolves|activates)", 'OPP_SUMMON_ADV_FX'),
     (r'after the opposing hand increases (?:via|with|by) (?:an opposing effect|opposing effects)', 'OPP_HAND_UP'),
     (r'after an opposing spirit attacks', 'OPP_ATTACK'),
     (r'after an opposing spirit/ultimate attacks', 'OPP_ATTACK'),
 ]
-BURST_BLOCK = re.compile(r'^\s*\{\{[Bb]urst\|([^}|]*)\}\}\s*(.*)$', re.S)
+BURST_BLOCK = re.compile(r'^\s*\{\{[Bb]urst\|(?:s\|)?([^}|]*)\}\}\s*(.*)$', re.S)      # v0.181 the newer export spelling {{Burst|s|<condition>}}
 
 def burst_block(text):
     """Split off the {{Burst|condition}} paragraph -> (burst dict or None, rest of the text).
@@ -718,14 +725,14 @@ def burst_block(text):
     i = next((k for k, x in enumerate(blocks) if BURST_BLOCK.match(x)), None)
     if i is None: return None, text
     m = BURST_BLOCK.match(blocks[i])
-    cond = m.group(1).strip().lower()
+    cond = re.sub(r'^after after ', 'after ', m.group(1).strip().lower().replace('oopponent', 'opponent'))      # v0.181 export typos
     when = next((k for rx, k in BURST_WHEN if re.fullmatch(rx, cond)), None)
     if when is None: raise Review('Burst condition: ' + cond[:70])
     b = {'when': when, 'actions': []}
     if cond == 'after an opposing spirit attacks': b['noUlt'] = True
     for s in sentences(re.sub(r'\s+', ' ', m.group(2))):
         x = s.rstrip('.').strip()
-        if re.fullmatch(r'(?:After this effect resolves, )?summon this (?:Spirit )?card(?: without paying the cost)?', x, re.I):
+        if re.fullmatch(r'(?:After this effect resolves, )?(?:summon this (?:Spirit )?|deploy this (?:Nexus )?)card,?(?: without paying the cost)?', x, re.I):
             b['actions'].append({'do': 'SUMMON_SELF'}); continue
         mm = re.fullmatch(r"Then,? by paying the cost, activate (?:this card's (Flash|Main) effect|the (Flash|Main) effect of this card)", x, re.I)
         if mm: b['then' + (mm.group(1) or mm.group(2)).capitalize()] = True; continue

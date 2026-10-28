@@ -51,7 +51,7 @@ test('D08 the Saga files together are exactly build/all-cards.json', () => {
   assert.deepEqual(ids.slice().sort(), cards.map(c => c.id).sort());
 });
 test('D09 card numbers look like official numbers (set prefix + number)', () => {
-  for (const c of cards) assert.match(c.id, /^(BS|SD|CB|BSC|LM|PB|P|X|26R[A-Z]+)\d+-[A-Z]*\d+$/, c.id);
+  for (const c of cards) assert.match(c.id, /^(BS|SD|CB|BSC|LM|PB|P|X|26R[A-Z]+)\d+-[A-Z]*\d+[A-Z]?$/, c.id);
 });
 test('D10 every glossary entry has a unique id and a compilable pattern', () => {
   const g = js('data/glossary/effects.json'), ids = new Set();

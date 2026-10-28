@@ -1643,10 +1643,6 @@
  "BS06-062": [
   "C_LEVEL"
  ],
- "BS06-063": [
-  "A_BP_PLUS",
-  "C_LEVEL"
- ],
  "BS06-064": [
   "C_LEVEL"
  ],
@@ -17230,12 +17226,6 @@
   "M_BY_DOING",
   "S_UNAFFECTED",
   "T_ADVENT"
- ],
- "BS41-044": [
-  "A_SUMMON_FREE",
-  "K_BRAVE",
-  "K_BURST",
-  "T_SUMMONED"
  ],
  "BS41-045": [
   "A_REFRESH",

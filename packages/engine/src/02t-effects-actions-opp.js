@@ -5,6 +5,15 @@
    every other entry here is read from inside a function.
    ------------------------------------------------------------------------------------ */
 Object.assign(FX_ACTIONS, {
+  /* v0.181 (schema 30) "By setting a card with Burst effect from your Hand, <next>": sets one (a previous Burst is discarded, setBurst); ctx.did = false when the Hand has none, so the next actions use {"if":{"prev":true}} */
+  SET_BURST: { chk: () => true, txt: () => 'set a card with Burst effect from your Hand',
+    cands: c => c.p.hand.filter(h => h !== c.src && CARDS[h.id].burst),
+    can: c => FX_ACTIONS.SET_BURST.cands(c).length > 0,
+    run: async c => {
+      const L = FX_ACTIONS.SET_BURST.cands(c); if (!L.length) { c.ctx.did = false; return; }
+      const h = c.p.cpu ? L.slice().sort((x, y) => CARDS[x.id].cost - CARDS[y.id].cost)[0] : await chooseCard(c, L, `✨ ${_pn(c)}`, 'Choose a card with Burst effect from your Hand to set.', false);
+      setBurst(c.p, h, false); io.view({ type: 'board' });
+    } },
   DISCARD_OPP_BURST: { chk: () => true, txt: () => 'discard the opposing Burst',
     run: async c => { const b = c.opp.burst; if (!b) { c.ctx.did = false; return; } c.opp.burst = null; b.mirage = false; c.opp.trash.push(b); log(`${CARDS[c.src.id].name}: the opposing Burst is discarded.`); } },
   /* v0.42 "Unless the opponent discards a Magic card from their Hand, <next actions>": the opponent chooses (modal for the human, CPU rule).

@@ -7839,6 +7839,42 @@
   "K_BURST",
   "M_BY_DOING"
  ],
+ "BS18-X012A": [
+  "T_SUMMONED",
+  "A_BP_PLUS",
+  "C_LEVEL",
+  "K_BURST"
+ ],
+ "BS18-X012D": [
+  "T_SUMMONED",
+  "A_BP_PLUS",
+  "C_LEVEL",
+  "K_BURST"
+ ],
+ "BS18-X012E": [
+  "T_SUMMONED",
+  "A_BP_PLUS",
+  "C_LEVEL",
+  "K_BURST"
+ ],
+ "BS18-X012R": [
+  "T_SUMMONED",
+  "A_BP_PLUS",
+  "C_LEVEL",
+  "K_BURST"
+ ],
+ "BS18-X012S": [
+  "T_SUMMONED",
+  "A_BP_PLUS",
+  "C_LEVEL",
+  "K_BURST"
+ ],
+ "BS18-X012T": [
+  "T_SUMMONED",
+  "A_BP_PLUS",
+  "C_LEVEL",
+  "K_BURST"
+ ],
  "BS18-X02": [
   "T_SUMMONED",
   "A_SUMMON_FREE",

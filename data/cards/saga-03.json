@@ -16097,6 +16097,504 @@
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
  },
  {
+  "id": "BS18-X012A",
+  "name": "The HeroEmperor Lord-Dragon-Dominion",
+  "name_jp": "英雄皇ロード・ドラゴン・ドミニオン",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 6,
+  "reduction": {
+   "red": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 3,
+    "bp": 7000
+   },
+   {
+    "cores": 5,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Supreme Hero",
+   "Dragon Warrior"
+  ],
+  "text": "{{Burst|After your Life is reduced}}\nSummon this Spirit card.\n\n[LV1][LV2][LV3] (When Summoned)\nBy setting a card with Burst effect from your Hand, draw a card.\n\n [LV3] (Your Attack Step)\nWhile you have a Burst set, this Spirit gains +3000 BP.",
+  "image": null,
+  "block": "18",
+  "saga": 3,
+  "mechanics": [
+   "Burst"
+  ],
+  "burst": {
+   "when": "LIFE_DECREASE",
+   "actions": [
+    {
+     "do": "SUMMON_SELF"
+    }
+   ]
+  },
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "SET_BURST"
+     },
+     {
+      "do": "DRAW",
+      "n": 1,
+      "if": {
+       "prev": true
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 3000,
+    "to": "self",
+    "lv": [
+     3
+    ],
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": false,
+     "burstSet": true
+    }
+   }
+  ],
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) and smoke-checked; not yet checked against the card image."
+ },
+ {
+  "id": "BS18-X012D",
+  "name": "The HeroEmperor Lord-Dragon-Dominion",
+  "name_jp": "英雄皇ロード・ドラゴン・ドミニオン",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 6,
+  "reduction": {
+   "red": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 3,
+    "bp": 7000
+   },
+   {
+    "cores": 5,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Supreme Hero",
+   "Dragon Warrior"
+  ],
+  "text": "{{Burst|After your Life is reduced}}\nSummon this Spirit card.\n\n[LV1][LV2][LV3] (When Summoned)\nBy setting a card with Burst effect from your Hand, draw a card.\n\n [LV3] (Your Attack Step)\nWhile you have a Burst set, this Spirit gains +3000 BP.",
+  "image": null,
+  "block": "18",
+  "saga": 3,
+  "mechanics": [
+   "Burst"
+  ],
+  "burst": {
+   "when": "LIFE_DECREASE",
+   "actions": [
+    {
+     "do": "SUMMON_SELF"
+    }
+   ]
+  },
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "SET_BURST"
+     },
+     {
+      "do": "DRAW",
+      "n": 1,
+      "if": {
+       "prev": true
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 3000,
+    "to": "self",
+    "lv": [
+     3
+    ],
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": false,
+     "burstSet": true
+    }
+   }
+  ],
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) and smoke-checked; not yet checked against the card image."
+ },
+ {
+  "id": "BS18-X012E",
+  "name": "The HeroEmperor Lord-Dragon-Dominion",
+  "name_jp": "英雄皇ロード・ドラゴン・ドミニオン",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 6,
+  "reduction": {
+   "red": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 3,
+    "bp": 7000
+   },
+   {
+    "cores": 5,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Supreme Hero",
+   "Dragon Warrior"
+  ],
+  "text": "{{Burst|After your Life is reduced}}\nSummon this Spirit card.\n\n[LV1][LV2][LV3] (When Summoned)\nBy setting a card with Burst effect from your Hand, draw a card.\n\n [LV3] (Your Attack Step)\nWhile you have a Burst set, this Spirit gains +3000 BP.",
+  "image": null,
+  "block": "18",
+  "saga": 3,
+  "mechanics": [
+   "Burst"
+  ],
+  "burst": {
+   "when": "LIFE_DECREASE",
+   "actions": [
+    {
+     "do": "SUMMON_SELF"
+    }
+   ]
+  },
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "SET_BURST"
+     },
+     {
+      "do": "DRAW",
+      "n": 1,
+      "if": {
+       "prev": true
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 3000,
+    "to": "self",
+    "lv": [
+     3
+    ],
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": false,
+     "burstSet": true
+    }
+   }
+  ],
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) and smoke-checked; not yet checked against the card image."
+ },
+ {
+  "id": "BS18-X012R",
+  "name": "The HeroEmperor Lord-Dragon-Dominion",
+  "name_jp": "英雄皇ロード・ドラゴン・ドミニオン",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 6,
+  "reduction": {
+   "red": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 3,
+    "bp": 7000
+   },
+   {
+    "cores": 5,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Supreme Hero",
+   "Dragon Warrior"
+  ],
+  "text": "{{Burst|After your Life is reduced}}\nSummon this Spirit card.\n\n[LV1][LV2][LV3] (When Summoned)\nBy setting a card with Burst effect from your Hand, draw a card.\n\n [LV3] (Your Attack Step)\nWhile you have a Burst set, this Spirit gains +3000 BP.",
+  "image": null,
+  "block": "18",
+  "saga": 3,
+  "mechanics": [
+   "Burst"
+  ],
+  "burst": {
+   "when": "LIFE_DECREASE",
+   "actions": [
+    {
+     "do": "SUMMON_SELF"
+    }
+   ]
+  },
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "SET_BURST"
+     },
+     {
+      "do": "DRAW",
+      "n": 1,
+      "if": {
+       "prev": true
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 3000,
+    "to": "self",
+    "lv": [
+     3
+    ],
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": false,
+     "burstSet": true
+    }
+   }
+  ],
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) and smoke-checked; not yet checked against the card image."
+ },
+ {
+  "id": "BS18-X012S",
+  "name": "The HeroEmperor Lord-Dragon-Dominion",
+  "name_jp": "英雄皇ロード・ドラゴン・ドミニオン",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 6,
+  "reduction": {
+   "red": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 3,
+    "bp": 7000
+   },
+   {
+    "cores": 5,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Supreme Hero",
+   "Dragon Warrior"
+  ],
+  "text": "{{Burst|After your Life is reduced}}\nSummon this Spirit card.\n\n[LV1][LV2][LV3] (When Summoned)\nBy setting a card with Burst effect from your Hand, draw a card.\n\n [LV3] (Your Attack Step)\nWhile you have a Burst set, this Spirit gains +3000 BP.",
+  "image": null,
+  "block": "18",
+  "saga": 3,
+  "mechanics": [
+   "Burst"
+  ],
+  "burst": {
+   "when": "LIFE_DECREASE",
+   "actions": [
+    {
+     "do": "SUMMON_SELF"
+    }
+   ]
+  },
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "SET_BURST"
+     },
+     {
+      "do": "DRAW",
+      "n": 1,
+      "if": {
+       "prev": true
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 3000,
+    "to": "self",
+    "lv": [
+     3
+    ],
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": false,
+     "burstSet": true
+    }
+   }
+  ],
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) and smoke-checked; not yet checked against the card image."
+ },
+ {
+  "id": "BS18-X012T",
+  "name": "The HeroEmperor Lord-Dragon-Dominion",
+  "name_jp": "英雄皇ロード・ドラゴン・ドミニオン",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 6,
+  "reduction": {
+   "red": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 3,
+    "bp": 7000
+   },
+   {
+    "cores": 5,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Supreme Hero",
+   "Dragon Warrior"
+  ],
+  "text": "{{Burst|After your Life is reduced}}\nSummon this Spirit card.\n\n[LV1][LV2][LV3] (When Summoned)\nBy setting a card with Burst effect from your Hand, draw a card.\n\n [LV3] (Your Attack Step)\nWhile you have a Burst set, this Spirit gains +3000 BP.",
+  "image": null,
+  "block": "18",
+  "saga": 3,
+  "mechanics": [
+   "Burst"
+  ],
+  "burst": {
+   "when": "LIFE_DECREASE",
+   "actions": [
+    {
+     "do": "SUMMON_SELF"
+    }
+   ]
+  },
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "SET_BURST"
+     },
+     {
+      "do": "DRAW",
+      "n": 1,
+      "if": {
+       "prev": true
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 3000,
+    "to": "self",
+    "lv": [
+     3
+    ],
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": false,
+     "burstSet": true
+    }
+   }
+  ],
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) and smoke-checked; not yet checked against the card image."
+ },
+ {
   "id": "BS18-X02",
   "name": "The KnightsEmperor Avalo-Paladion",
   "name_jp": "騎神皇アヴァロ・パラディオン",

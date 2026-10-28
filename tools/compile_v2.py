@@ -391,6 +391,8 @@ def own_grammar(s, ctx=None):
         if m.group(1): d['match'] = {'type': m.group(1).capitalize()}
         if m.group(2): d['match'] = {'family': [m.group(2)]}
         return [d, {'do': 'DRAW', 'n': n_of(m.group(3).lower()), 'if': {'prev': True}}]
+    m = re.match(r'^by setting an? (?:spirit |magic |brave |nexus )?card with burst effects? from your hand, draw (a|one|two|three) cards?$', y, re.I)
+    if m: return [{'do': 'SET_BURST'}, {'do': 'DRAW', 'n': n_of(m.group(1).lower()), 'if': {'prev': True}}]      # v0.181 (schema 30) "By setting a Burst card from your Hand, draw"
     m = re.match(r'^gain (a|one|two|\d) cores? on this spirit$', y, re.I)
     if m: return [{'do': 'VOID_TO_CARD', 'n': n_of(m.group(1).lower()), 'to': 'self'}]      # v0.77 early wording of "put N cores from the Void to ..." (house reading)
     m = re.match(r'^gain (a|one|two|\d) cores? in your reserve$', y, re.I)
@@ -578,7 +580,7 @@ def grammar(s, ctx=None):
     rg = reveal_grammar(s)
     if rg is not None: return rg, bool(re.match(r'^(?:you can|you may) ', s, re.I))
     og = own_grammar(s, ctx)
-    if og is not None: return og, bool(re.match(r'^(?:you can|you may|by discarding) ', s, re.I))      # v0.76: "By doing A, do B" is optional
+    if og is not None: return og, bool(re.match(r'^(?:you can|you may|by discarding|by setting) ', s, re.I))      # v0.76: "By doing A, do B" is optional
     s = re.sub(r'^((?:(?:you can|you may) )?target an opposing [^.,]+), (destroy|exhaust|return) it\b', lambda q: q.group(1) + '. ' + q.group(2).capitalize() + ' it', s.strip(), flags=re.I)      # v0.77 "Target X, destroy it."
     m = TARGET.match(s.strip().rstrip('.'))
     if m:      # "Target an opposing ... Spirit. Destroy it." -> one clause
@@ -836,7 +838,7 @@ def action_of(s, ctx):
         return [dict(y, **{'if': dict(y.get('if') or {}, **cond)}) for y in a], o
     if re.fullmatch(r"(?:the opponent (?:can't|cannot|can not) activate (?:their|the) (?:set )?bursts?|opposing bursts can't activate)\.?", s.strip(), re.I) and trig and trig <= {'ATTACKS', 'BLOCKS', 'BATTLE_WIN', 'BATTLES'}:
         return [{'do': 'NO_BURST_BATTLE'}], False      # v0.181 'the opponent can't activate their Burst' in a battle trigger = this battle (engine NO_BURST_BATTLE, v0.38)
-    if BURST_WORD.search(s): raise Review('Burst sentence: ' + s[:140])
+    if BURST_WORD.search(s) and not re.match(r'(?i)^by setting an? [a-z ]*card with burst effects? from your hand, draw', s.strip()): raise Review('Burst sentence: ' + s[:140])
     m = THEN_LEAD.match(s.strip())
     if m:      # v0.73 "Then, B." = B only when the previous action was done (CR Effect Texts "Then"; engine if.prev)
         body = m.group(1).strip(); body = body[0].upper() + body[1:]
