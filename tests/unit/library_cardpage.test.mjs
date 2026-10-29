@@ -11,17 +11,28 @@ const open = async (vp) => {
   await page.evaluate(() => { BS.switchView('view-library'); return 1; });
 };
 
-test('CP1 a card with a second printing lists it as related and offers it as art; picking is stored and undone', async () => {
+test('CP1 only identical reprints are offered as art (picking is stored and undone); different cards with the same name are "Other printings"', async () => {
   await open({ viewport: { width: 1366, height: 768 } });
   const r = await page.evaluate(() => {
-    openZoom('BS01-X01');
-    const rel = [...document.querySelectorAll('#cp-page .cp-art')].map(b => b.dataset.v);     // v0.155.0: the Art block lists the card's own picture first, then every other printing
-    document.querySelector('#cp-page [data-a="art"][data-v="26RBS03-X02"]').click();
-    const picked = BS.ART_ALT['BS01-X01'], on = document.querySelector('#cp-page .cp-art.on').dataset.v;
-    document.querySelector('#cp-page [data-a="art"][data-v="BS01-X01"]').click();
-    return { rel, picked, on, after: BS.ART_ALT['BS01-X01'] || '' };
+    openZoom('BS01-X01');                                   // v0.185: BS01-X01 and 26RBS03-X02 share a name but are different cards
+    const arts0 = [...document.querySelectorAll('#cp-page .cp-art')].map(b => b.dataset.v), oth0 = !!document.querySelector('#cp-page [data-a="cp-open"][data-v="26RBS03-X02"]');
+    BS.setArt('BS01-X01', '26RBS03-X02');
+    const refused = !BS.ART_ALT['BS01-X01'];
+    const C = BS.CARDS, by = {}, sig = c => JSON.stringify([c.type, c.color, c.cost, c.symbols, c.reduction, c.levels, c.families, String(c.text || '').toLowerCase().replace(/\s+/g, ' ').trim()]);
+    let pair = null;
+    for (const id in C) { if (C[id].token) continue; const k = C[id].name + '|' + sig(C[id]); if (by[k] && !pair) pair = [by[k], id]; else by[k] = by[k] || id; }
+    if (!pair) return { arts0, oth0, refused, none: true };
+    const [a, c] = pair;
+    openZoom(a);
+    const rel = [...document.querySelectorAll('#cp-page .cp-art')].map(b => b.dataset.v);
+    document.querySelector('#cp-page [data-a="art"][data-v="' + c + '"]').click();
+    const picked = BS.ART_ALT[a], on = document.querySelector('#cp-page .cp-art.on').dataset.v;
+    document.querySelector('#cp-page [data-a="art"][data-v="' + a + '"]').click();
+    return { arts0, oth0, refused, rel, a, c, picked, on, after: BS.ART_ALT[a] || '' };
   });
-  assert.deepEqual(r.rel, ['BS01-X01', '26RBS03-X02']); assert.equal(r.picked, '26RBS03-X02'); assert.equal(r.on, '26RBS03-X02'); assert.equal(r.after, '');
+  assert.deepEqual(r.arts0, ['BS01-X01']); assert.ok(r.oth0); assert.ok(r.refused);
+  if (r.none) return;
+  assert.equal(r.rel[0], r.a); assert.ok(r.rel.includes(r.c)); assert.equal(r.picked, r.c); assert.equal(r.on, r.c); assert.equal(r.after, '');
 });
 test('CP2 the saved decks that hold the card are listed with their count', async () => {
   const r = await page.evaluate(() => { const id = Object.keys(SLOTS[0].cards)[0], n = SLOTS[0].cards[id]; openZoom(id); return { n, txt: [...document.querySelectorAll('#cp-page .sec')].find(h => h.textContent === 'Used in your decks').nextElementSibling.textContent, name: SLOTS[0].name }; });
