@@ -9,3 +9,11 @@ Read-only check; no card data was changed.
 - Staged-only ids (e.g. BS51-CP03) live in `data/import`, not `data/cards`.
 
 Open: confirm the Nexus/Brave values against card images when available.
+
+## Update: Brave reprints against per-id source rows
+
+The five Brave names with differing cost/BP were compared with the per-card rows in `data/sources/fandom-cards-bs01-bs77.json` (cost, reduction, LV1 BP, cores): all 10 library cards match their own source row. The differences are real per-printing data, not an import error. (Sabershark BS10-072 3000 BP vs BS39-RV026 5000 BP with different text, etc.)
+
+Still unverified: the `brave` field (`bp`, `costGe`). It comes from `fandom-brave-combine.tsv`, keyed by page title, so BS39-RV026 carries `brave {bp: 3000, costGe: 5}` copied from the original although its printed text is different. Whether the RV combine condition differs needs the card image or the wiki page.
+
+Why the wiki could not be read in this session: the first attempts were refused at the proxy (host not allowed); later the host answered but returned HTTP 403 to non-browser clients (www.fandom.com the same, `static.wikia.nocookie.net` reachable), so it is the site's bot protection, not only the session policy. No workaround was attempted.
