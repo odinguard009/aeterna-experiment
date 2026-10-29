@@ -54,3 +54,12 @@ R2 does not need R0 beyond the budget check and can run first if the owner wants
 - BS77 is not on the official site; about 64+ ids had no page so far.
 - Whether Japanese bodies compile more easily than the English ones is unproven; R6 measures it before R7 is built.
 - Rarity/collaboration availability on the detail page is unchecked; the list-query route is the fallback.
+
+## D. Sort-by dropdown (R9, added 2026-10-29)
+
+Today sorting exists only as hidden `<select>` elements (`#db-sort`, `#lib-sort`; `.hidem` hides them on phone), backed by `DB_SORTS` in `13a-deckbuilder.js`. R9 turns it into a `ddButton` in the horizontally scrollable `r2` row so it works on PC and phone.
+
+- Keys: set, name, cost, colour, type, BP Lv1, cores Lv1, reduction count, family, complete first, default (deck builder only). Rarity and block after R3 data. Direction (up/down) is a toggle inside the menu. Cards with no value sort last.
+- State stays in `DBF.sort` / `LIBF.sort` (Library cache key already includes sort); add `sortDir`.
+- Session order: after R3 (same dropdown helpers), one release, no overlap with a running R-session.
+- Tests: unit order test; Playwright PC and ~390 px phone; no horizontal page scroll. Not yet verified in a browser.
