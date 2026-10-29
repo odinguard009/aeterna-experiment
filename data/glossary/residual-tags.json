@@ -38348,10 +38348,6 @@
  "26RBS01-X02": [
   "T_SUMMONED"
  ],
- "26RBS01-X03": [
-  "A_REFRESH",
-  "C_LEVEL"
- ],
  "26RBS01-X04": [
   "C_LEVEL",
   "M_OPTIONAL",

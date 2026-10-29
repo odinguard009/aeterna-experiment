@@ -34,3 +34,9 @@ test('V185-03 CANT_BE_BLOCKED_BY bpLe / coresLe skip small blockers', async () =
     return out;`);
   assert.deepEqual(r, [true, false, true, false]);
 });
+
+test('V185-04 blockerBpLe passes only when the blocker BP is at or below the limit', async () => {
+  const r = await ev(`const d = sp('BS01-042', O, 1), b = BS.bpOf(d);
+    return [BS.fxIf(P, O, { blockerBpLe: b }, { blocker: d }), BS.fxIf(P, O, { blockerBpLe: b - 1 }, { blocker: d }), BS.fxIf(P, O, { blockerBpLe: b }, {})];`);
+  assert.deepEqual(r, [true, false, false]);
+});

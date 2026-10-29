@@ -50,7 +50,7 @@ function parseCond(c) {
   if (typeof c !== 'object' || c === null) return { error: 'effect "if" must be an object' };
   for (const [k, v] of Object.entries(c)) {
     if (k === 'not') { const sub = parseCond(v); if (sub.error || Object.keys(v).length === 0 || 'not' in v) return { error: 'condition "not" must hold one valid condition (no nesting): ' + (sub.error || 'empty') }; continue; }      // v0.135
-    const okInt = ['handLe', 'lifeLe', 'anyLifeLe', 'counterGe', 'soulGe', 'oppHandGe', 'voidGe', 'soulLe', 'putGe', 'lifeGe', 'oppRemovedGe', 'removedGe', 'oppSpiritsLe', 'oppNexusGe', 'selfBpGe'].includes(k) && Number.isInteger(v);
+    const okInt = ['handLe', 'lifeLe', 'anyLifeLe', 'counterGe', 'soulGe', 'oppHandGe', 'voidGe', 'soulLe', 'putGe', 'lifeGe', 'oppRemovedGe', 'removedGe', 'oppSpiritsLe', 'oppNexusGe', 'selfBpGe', 'blockerBpLe'].includes(k) && Number.isInteger(v);
     const okStr = ((k === 'controlName' || k === 'hasName' || k === 'soulOn' || k === 'nexusBraved') && typeof v === 'string' && v.length > 0 && v.length <= 60)
       || (k === 'controlName' && Array.isArray(v) && v.length > 1 && v.length <= 4 && v.every(y => typeof y === 'string' && y.length > 0 && y.length <= 60));
     const okCol = k === 'hasSymbol' && (COLORS.includes(v) || (Array.isArray(v) && v.length >= 2 && v.length <= 3 && new Set(v).size === v.length && v.every(y => COLORS.includes(y))));      // v0.184: a list = all of those symbols

@@ -100,3 +100,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v60 (v0.185.0, Lane K): `CANT_BE_BLOCKED_BY` accepts `bpLe` (current BP) and `coresLe` (cores on the blocker).
 - v61 (v0.185.0, Lane K): new action `DRAW_UNTIL {n}` (draw until the Hand has n cards).
 - v62 (v0.185.0, Lane K): `if.firstAttack` (true = the owner's first attack of the turn, false = second or subsequent; counted when the attack is declared).
+- v63 (v0.185.0, Lane K): `if.blockerBpLe` (ALLY_BLOCKED: the blocker has N BP or less).
