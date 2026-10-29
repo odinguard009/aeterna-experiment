@@ -6649,14 +6649,15 @@
      "match": {
       "keyword": "Clash"
      }
+    },
+    {
+     "do": "WIN_RIDER",
+     "lifeCore": true
     }
    ]
   },
-  "fxComplete": false,
-  "residual": [
-   "Then, during this turn, when only the opposing Spirit is destroyed by comparing BP with it, if it's your Attack Step, send a core from the opposing Life to the Reserve."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects hand-written for roadmap S1 Standard Magic (v0.88.0-v0.89.0); not yet checked against the card image.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects hand-written for roadmap S1 Standard Magic (v0.88.0-v0.89.0); not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "bicon": [
    "A"
   ],
@@ -6961,14 +6962,15 @@
        "Oceanic Green"
       ]
      }
+    },
+    {
+     "do": "WIN_RIDER",
+     "draw": 2
     }
    ]
   },
-  "fxComplete": false,
-  "residual": [
-   "Then, during this turn, when only the opposing Spirit is destroyed by comparing BP with it, draw two cards."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects hand-written for roadmap S1 Standard Magic (v0.88.0); not yet checked against the card image.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects hand-written for roadmap S1 Standard Magic (v0.88.0); not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "bicon": [
    "A"
   ],
@@ -23099,14 +23101,16 @@
        "Kamen"
       ]
      }
+    },
+    {
+     "do": "WIN_RIDER",
+     "draw": 1,
+     "battle": true
     }
    ]
   },
-  "fxComplete": false,
-  "residual": [
-   "Then, during this battle, when only the opposing Spirit is destroyed by comparing BP with it, draw a card."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects hand-written for roadmap S1 Standard Magic (v0.88.0); not yet checked against the card image.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects hand-written for roadmap S1 Standard Magic (v0.88.0); not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "collab": [
    "仮面ライダー"
   ],
@@ -35770,14 +35774,16 @@
        "Abyssen"
       ]
      }
+    },
+    {
+     "do": "WIN_RIDER",
+     "draw": 1,
+     "battle": true
     }
    ]
   },
-  "fxComplete": false,
-  "residual": [
-   "Then, during this battle, when only the opposing Spirit is destroyed by it via BP comparison, draw a card."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects hand-written for roadmap S1 Standard Magic (v0.88.0); not yet checked against the card image.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects hand-written for roadmap S1 Standard Magic (v0.88.0); not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "bicon": [
    "A"
   ],

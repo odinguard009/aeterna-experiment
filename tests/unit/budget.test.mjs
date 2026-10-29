@@ -57,7 +57,9 @@ const FONT_URL = /url\(data:font\/woff2;base64,[A-Za-z0-9+/=]+\)/g, FLAVOR_RE = 
 // v0.185.0 (Lane K): raised B01 1060 -> 1070 KB on purpose: selfBlocked, DEPLOY_TRASH, perCores and DRAW_UNTIL (engine ~0.1 KB over the limit).
 // v0.189.0 (R3): raised B01 1070 -> 1075 KB on purpose: the Block icon, Rarity and Collab filters (menus, filter test, card-field plumbing) are shared by the Deck Builder and the Library; the page was 1.2 KB over.
 // v0.195.0 (Lane K): raised B01 1075 -> 1080 KB on purpose: new Lane K mechanics (viaLegacy, besides, diffName, DESTROY.n) added engine code; the page was 0.7 KB over.
-test('B01 index.html without the card pack stays under 1080 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 1080e3, Buffer.byteLength(noFont(code))));
+// v0.195.0 (Lane K): 1080 -> 1085 KB on purpose again: costPerOwn, nPer, REFRESH_NEXUS and WIN_RIDER (engine code for 4-card batches).
+
+test('B01 index.html without the card pack stays under 1085 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 1085e3, Buffer.byteLength(noFont(code))));
 // v0.186.0 (Brave costLe): raised B02 290 -> 292 KB on purpose: the Brave combine condition costLe (parser, braveFits, types) put the page 0.9 KB over the limit.
 // v0.188.0 (R2): raised B02 292 -> 294 KB on purpose: the Family list, BP / core and colour-mode filters (shared by the Deck Builder and the Library) put the page 0.04 KB over the limit.
 // v0.195.0 (Lane K): raised B02 294 -> 296 KB on purpose: viaLegacy and BOUNCE_OPP n/bpLe put the engine 0.01 KB over the limit.

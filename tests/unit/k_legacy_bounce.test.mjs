@@ -197,3 +197,17 @@ test('K-13 REFRESH_SPIRIT.bp refreshes a Clash Spirit and adds BP; oppAttackStep
     const w0 = BS.bpOf(w); await run('26RBS01-118'); return [a, w.exhausted, BS.bpOf(w) - w0]; })()`);
   assert.deepEqual(r, [[false, 2000], false, 0]);
 });
+
+test('K-14 WIN_RIDER: draw / Life core on a BP win, only the stamped turn, no core on the blocker side', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const t = BS.mkInst(Object.values(BS.CARDS).find(c => c.type === 'Spirit').id); P.spirits.push(t);
+    const rd = async a => { await BS.FX_ACTIONS.WIN_RIDER.run({ p: P, opp: O, src: t, ctx: { picked: t } }, a); };
+    const h0 = P.hand.length; await rd({ do: 'WIN_RIDER', draw: 2 }); winRiderRun({ key: P.key, inst: t, att: true });
+    const d = P.hand.length - h0;
+    const l0 = O.life; await rd({ do: 'WIN_RIDER', lifeCore: true }); winRiderRun({ key: P.key, inst: t, att: false }); const l1 = O.life;
+    winRiderRun({ key: P.key, inst: t, att: true }); const l2 = O.life;
+    G.turnNo++; winRiderRun({ key: P.key, inst: t, att: true });
+    return [d, l0 - l1, l1 - l2, l2 - O.life]; })()`);
+  assert.deepEqual(r, [2, 0, 1, 0]);
+});

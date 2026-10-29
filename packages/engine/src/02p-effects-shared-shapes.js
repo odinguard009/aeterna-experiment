@@ -111,6 +111,26 @@ function allHaveOK(owner, q) {
   R.can = (c, a) => R.cands(c, a).length > 0;
   R.txt = a => rTxt(a) + (a.bpLeOwnLv1 ? " with BP equal or inferior to the original LV1 BP of one of your matching Spirits" : '');
 })();
+/* v0.195 Lane K: "Then, during this turn/battle, when only the opposing Spirit is destroyed by comparing BP with it, draw N / (your Attack Step) send a core from the opposing Life to the Reserve."
+   Stamps the Spirit BP_TARGET just picked; the BATTLE_WIN event handler (08-battle) runs it via winRiderRun. */
+FX_ACTIONS.WIN_RIDER = {
+  chk: a => (a.draw == null || (Number.isInteger(a.draw) && a.draw >= 1 && a.draw <= 3)) && (a.lifeCore == null || a.lifeCore === true) && (a.draw != null) !== (a.lifeCore === true) && (a.battle == null || a.battle === true),
+  txt: a => `when only the opposing Spirit is destroyed by comparing BP with it this ${a.battle ? 'battle' : 'turn'}, ${a.draw ? 'draw ' + a.draw : "(your Attack Step) send a core from the opposing Life to the Reserve"}`,
+  can: () => true,
+  run: async (c, a) => {
+    const t = c.ctx.picked; if (!t) { c.ctx.did = false; return; }
+    t.winRider = { turn: G.turnNo, battleNo: a.battle ? G.battleNo : null, draw: a.draw || 0, lifeCore: !!a.lifeCore };
+  }
+};
+function winRiderRun(ev) {
+  const r = ev.inst && ev.inst.winRider; if (!r || r.turn !== G.turnNo) return;
+  if (r.battleNo != null && r.battleNo !== G.battleNo) return;
+  const p = G.p[ev.key], name = CARDS[ev.inst.id].name;
+  if (r.draw) { const k = draw(p, r.draw); log(`${name}: ${who(p)} ${p.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'} (BP win).`); handUp(p, k); }
+  else if (r.lifeCore && ev.att) {
+    const o = G.p[other(ev.key)]; if (o.life > 0) { lifeTake(o, 1, 'reserve'); log(`${name}: a core from ${poss(o)} Life moves to the Reserve (BP win).`); if (o.life <= 0) win(ev.key, `${poss(o)} Life reached 0`); }
+  }
+}
 Object.assign(FX_ACTIONS, {
   DESTROY_OWN: {
     chk: a => hasMatch(a.match) && (a.voidByCost == null || a.voidByCost === true) && (a.other == null || a.other === true),
