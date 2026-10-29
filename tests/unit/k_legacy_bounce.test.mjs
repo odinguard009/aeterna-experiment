@@ -456,3 +456,13 @@ test('K-34 Wyll-Gale: sends two cores from the opposing attacking Spirit only', 
     return [a.cores, b.cores]; })()`);
   assert.deepEqual(r, [1, 3]);
 });
+
+test('K-35 Collet: refreshes a Wollaguard Spirit that then cannot attack this turn', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const c = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && (c.families || []).includes('Wollaguard'));
+    P.spirits.length = 0; const s = BS.mkInst(c.id); s.cores = 1; s.exhausted = true; P.spirits.push(s);
+    await BS.runActions({ p: P, opp: O, src: BS.mkInst('26RBS03-032'), ctx: {} }, { actions: BS.CARDS['26RBS03-032'].effects[0].actions });
+    return [s.exhausted, s.noAtkTurn === BS.G.turnNo]; })()`);
+  assert.deepEqual(r, [false, true]);
+});

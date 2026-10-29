@@ -134,3 +134,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v94 (v0.196.0, Lane K): `BOUNCE_OPP.upTo:true` (with `n` 2..3: "target up to N opposing ..."; the owner may stop after one, the CPU takes all it can).
 - v95 (v0.196.0, Lane K): action `TREAT_LV2 {match}` ("target one of your <match> Spirits. During this turn, treat it as LV2"; inst.lv2Turn, cleared at turn end or when the Spirit leaves the field).
 - v96 (v0.196.0, Lane K): `OPP_CORES_TO_RESERVE.fighting:true` (with `targets:1`: "an opposing attacking/blocking Spirit", G.attacker / G.blocker).
+- v97 (v0.196.0, Lane K): `REFRESH_SPIRIT.noAttack:true` ("Refresh it. Then, during this turn, it can't attack"; inst.noAtkTurn = G.turnNo, read by cantAttack).

@@ -51,7 +51,7 @@ function fxMatch(card, m, inst) {
   return (m.name || []).some(n => card.name.toLowerCase().includes(n.toLowerCase())) || (m.family || []).some(n => (card.families || []).includes(n));
 }
 /* v0.70 STATIC BLOCK_EXHAUSTED ("This Spirit can block while exhausted", usually inside a step window): an exhausted Spirit may still block */
-const cantAttack = (p, s) => !!s.noAB || flagActive(p, 'CANT_ATTACK', s);      // v0.170: the printed "This Spirit can't attack." (STATIC flag CANT_ATTACK) besides the effect lock noAB
+const cantAttack = (p, s) => !!s.noAB || (!!G && s.noAtkTurn === G.turnNo) || flagActive(p, 'CANT_ATTACK', s);      // v0.170: the printed "This Spirit can't attack." (STATIC flag CANT_ATTACK) besides the effect lock noAB
 const canBlockState = (p, s) => !s.noAB && !(s.noBlockB && s.noBlockB === G.battleNo) && !flagActive(p, 'CANT_BLOCK', s) && (!s.exhausted || flagActive(p, 'BLOCK_EXHAUSTED', s) || (s.blockExB != null && s.blockExB === G.battleNo));      // v0.89 S1: BLOCK_EXHAUSTED_OPP (02p)
 function fxIf(owner, opp, c, ctx) {
   if (!c) return true;
