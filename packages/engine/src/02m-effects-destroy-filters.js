@@ -16,7 +16,7 @@
   D.chk = a => has(a) ? okNew(a) && dChk(base(a)) : dChk(a);
   D.cands = (c, a) => {
     if (!has(a)) return dCands(c, a);
-    const me = ownerOf(c.src) ? bpOf(c.src) : null, lim = a.costLePer ? perCount(c.p, a.costLePer) : null;
+    const gone = c.src.lostLv >= 0 && !c.p.spirits.includes(c.src), me = gone ? CARDS[c.src.id].levels[c.src.lostLv].bp + (c.src.bpMod || 0) : ownerOf(c.src) ? bpOf(c.src) : null, lim = a.costLePer ? perCount(c.p, a.costLePer) : null;
     return dCands(c, base(a)).filter(t => !fxImmune(c.opp, t)
       && (!a.bpLeSelf || (me != null && bpOf(t) <= me)) && (!a.bpEqSelf || (me != null && bpOf(t) === me))
       && (a.symbolsGe == null || CARDS[t.id].symbols >= a.symbolsGe) && (lim == null || CARDS[t.id].cost <= lim) && (a.costIn == null || a.costIn.includes(CARDS[t.id].cost)));

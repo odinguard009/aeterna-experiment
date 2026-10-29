@@ -324,3 +324,13 @@ test('K-22 Luminous Recovery Main: Void core to Life once per card name per turn
     return [l1 - l0, P.life - l1]; })()`);
   assert.deepEqual(r, [1, 0]);
 });
+
+test('K-23 Glitail: when destroyed, destroy an opposing Spirit with the same BP', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const mk = bp => { const k = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && c.levels[0].bp === bp && !(c.effects && c.effects.length)); const t = BS.mkInst(k.id); t.cores = 1; O.spirits.push(t); return t; };
+    const same = mk(3000), other = mk(4000);
+    const g = BS.mkInst('26RBS01-007'); g.cores = 1; g.lostLv = 0; P.trash.push(g); await BS.fireFx(P, 'DESTROYED', g, { subject: g });
+    return [O.spirits.includes(same), O.spirits.includes(other)]; })()`);
+  assert.deepEqual(r, [false, true]);
+});
