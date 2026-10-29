@@ -13737,16 +13737,33 @@
    "Oceanic Green",
    "Glaciesnow"
   ],
-  "text": "[LV1-2] (Your Attack Step)\nAll your \"Swordish\" gain +2000 BP.",
+  "text": "[LV1][LV2] (Your Attack Step)\nAll your \"Swordish\" gain +2000 BP.",
   "image": null,
   "block": "A",
   "saga": 50,
   "ex_symbols": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (Your Attack Step) All your \"Swordish\" gain +2000 BP."
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "bp": 2000,
+    "to": "own",
+    "if": {
+     "attackStep": true,
+     "oppTurn": false
+    },
+    "match": {
+     "name": [
+      "Swordish"
+     ]
+    },
+    "lv": [
+     1,
+     2
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS03-027",
@@ -22324,12 +22341,23 @@
   "block": "A",
   "saga": 50,
   "ex_symbols": 1,
-  "fxComplete": false,
-  "residual": [
-   "[Team: Green Wave]",
-   "[LV2] (Your Attack Step) This Spirit gains +1000 BP for each core on it."
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "bp": 1000,
+    "to": "self",
+    "perCores": true,
+    "lv": [
+     2
+    ],
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": false
+    }
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RDB01-019",
@@ -22705,7 +22733,7 @@
    "Diva",
    "Stage Style"
   ],
-  "text": "(Legacy)\n\n[Team: Green Wave]\n\n[LV1-2] (When Summoned)\nIf you control two or more Green Wave Spirits, you can target an opposing Spirit. Heavy exhaust it.\n\n[LV2] {{Invoke|Main}} (Once Per Turn)\nPay two costs ▶ Target three Green Wave Spirits you control. Refresh them.",
+  "text": "(Legacy)\n\n[Team: Green Wave]\n\n[LV1][LV2] (When Summoned)\nIf you control two or more Green Wave Spirits, you can target an opposing Spirit. Heavy exhaust it.\n\n[LV2] {{Invoke|Main}} (Once Per Turn)\nPay two costs ▶ Target three Green Wave Spirits you control. Refresh them.",
   "image": "26RDB01-027.png",
   "block": "A",
   "saga": 50,
@@ -22713,13 +22741,65 @@
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[Team: Green Wave]",
-   "[LV1-2] (When Summoned) If you control two or more Green Wave Spirits, you can target an opposing Spirit. Heavy exhaust it.",
-   "[LV2] {{Invoke|Main}} (Once Per Turn) Pay two costs ▶ Target three Green Wave Spirits you control. Refresh them."
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "HEAVY_EXHAUST_OPP",
+      "n": 1,
+      "if": {
+       "ctrl": {
+        "n": 2,
+        "type": "Spirit",
+        "team": "Green Wave"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN"
+    ],
+    "once": true,
+    "lv": [
+     2
+    ],
+    "cost": {
+     "pay": 2
+    },
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT",
+      "match": {
+       "team": "Green Wave"
+      }
+     },
+     {
+      "do": "REFRESH_SPIRIT",
+      "match": {
+       "team": "Green Wave"
+      }
+     },
+     {
+      "do": "REFRESH_SPIRIT",
+      "match": {
+       "team": "Green Wave"
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RDB01-028",

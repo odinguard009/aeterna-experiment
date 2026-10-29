@@ -404,6 +404,8 @@ def own_grammar(s, ctx=None):
         if m.group(3): mt['color'] = m.group(3).lower()
         if m.group(5): mt['keyword'] = m.group(5).title()
         return [{'do': 'RETURN_TRASH', 'match': mt}]
+    m = re.fullmatch(r'(?:(?:you can|you may) )?target (two|three) (Red Stella|Green Wave|Blue Beat|Yellow Rise) spirits you control\.\s*refresh them', x, re.I)      # v0.185: N picks of REFRESH_SPIRIT (each pick is a still-exhausted Spirit, so no repeats)
+    if m: return [{'do': 'REFRESH_SPIRIT', 'match': {'team': m.group(2).title()}} for _ in range(n_of(m.group(1).lower()))]
     m = re.fullmatch(r'(?:(?:you can|you may) )?target an? (?:cost (\d+) or (less|more) )?(?:(red|purple|green|white|yellow|blue) )?(?:"([^"]+)" family )?nexus card in your trash\.\s*deploy it without paying the cost', x, re.I)      # v0.185 DEPLOY_TRASH (schema 66)
     if m and (m.group(1) or m.group(3) or m.group(4)):
         mt = {}

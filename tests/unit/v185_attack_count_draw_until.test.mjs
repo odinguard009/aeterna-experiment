@@ -62,3 +62,8 @@ test('V185-07 DEPLOY_TRASH deploys a matching Nexus from the Trash and leaves ot
     return [c.ctx.did, P.nexus.includes(n), P.trash.includes(m), P.trash.includes(n)];`);
   assert.deepEqual(r, [true, true, true, false]);
 });
+
+test('V185-08 STATIC perCores (26RDB01-018): +1000 BP per core while LV2 in your Attack Step', async () => {
+  const r = await ev(`const t = sp('26RDB01-018', P, 3); G.active = P.key; G.step = 5; const a = BS.bpOf(t); t.cores = 4; return BS.bpOf(t) - a;`);
+  assert.equal(r, 1000);
+});

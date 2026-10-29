@@ -553,6 +553,12 @@ def spirit_paragraph_main(p, card, rush):
         if mm: trig, extra, p = ts, ex, p[mm.end():]; break
     if mo and trig: extra = dict(extra or {}, once=True)
     elif mo: p = mo.group(1) + ' (Once Per Turn) ' + p[len(mo.group(1)) + 1:]
+    mm = None if trig else re.match(r'^This Spirit (?:gains|gets) \+(\d[\d,]*) ?BP for each core on (?:it|this Spirit)\.?$', p, re.I)
+    if mm:      # v0.185 STATIC perCores (schema 67)
+        if rush: raise Review('Rush with a static effect')
+        e = {'trigger': 'STATIC', 'bp': bp(mm.group(1)), 'to': 'self', 'perCores': True}
+        if lv: e['lv'] = lv
+        return [e], flags
     mm = None if trig else re.match(r'^This Spirit (?:gains|gets) \+(\d[\d,]*) ?BP for each card in your Hand\.?$', p, re.I)
     if mm:      # v0.180 STATIC perHand
         if rush: raise Review('Rush with a static effect')
@@ -631,6 +637,11 @@ def spirit_paragraph_main(p, card, rush):
         mm = re.match(r'^\(Your Attack Step\)\s*All your attacking (?:"(?P<fam>[^"]+)" family |(?P<team>' + TEAMS + r') )Spirits (?:gain|get) \+(?P<n>\d[\d,]*) ?BP\.?$', p, re.I)
         if mm:      # v0.185 "All your attacking <family/team> Spirits gain +N BP" = STATIC own + attackingOnly (engine staticBp: only the attacker)
             e = {'trigger': 'STATIC', 'bp': bp(mm.group('n')), 'to': 'own', 'attackingOnly': True, 'if': dict(ATTACK_STEP['(Your Attack Step)']), 'match': {'family': [mm.group('fam')]} if mm.group('fam') else {'team': mm.group('team').title()}}
+            if lv: e['lv'] = lv
+            return [e], flags
+        mm = re.match(r'^\(Your Attack Step\)\s*All your ("[^"]+"(?:\s*/\s*"[^"]+")*) (?:gain|get) \+(\d[\d,]*) ?BP\.?$', p, re.I)
+        if mm:      # v0.185 '(Your Attack Step) All your "X" gain +N BP' = STATIC own, name match
+            e = {'trigger': 'STATIC', 'bp': bp(mm.group(2)), 'to': 'own', 'if': dict(ATTACK_STEP['(Your Attack Step)']), 'match': {'name': re.findall(r'"([^"]+)"', mm.group(1))}}
             if lv: e['lv'] = lv
             return [e], flags
         mm = re.match(r'^\(Your Attack Step\)\s*This Spirit (?:gains|gets) \+(\d[\d,]*) ?BP\.?$', p, re.I)

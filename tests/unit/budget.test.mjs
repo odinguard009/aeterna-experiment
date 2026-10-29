@@ -54,7 +54,8 @@ const FONT_URL = /url\(data:font\/woff2;base64,[A-Za-z0-9+/=]+\)/g, FLAVOR_RE = 
 // v0.180.0 (Lane K): raised B01 1030 -> 1040 KB on purpose: the effect engine grows with each generic action family (noFx summon, Rush on a Magic); the limit sat 0.1 KB above the size.
 // v0.182.0 (Lane K): raised B01 1040 -> 1050 KB on purpose: Tribute, USE_FLASH, REVEAL_DEPLOY rest and the DESTROY_TOTAL / colour clauses (engine ~1 KB over the limit).
 // v0.183.0 (Lane K): raised B01 1050 -> 1060 KB on purpose: DESTROY_EVERY / DESTROY_NEXUS_ALL, Tribute-less summon and the Life-to-Reserve clause (engine ~0.4 KB over the limit).
-test('B01 index.html without the card pack stays under 1060 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 1060e3, Buffer.byteLength(noFont(code))));
+// v0.185.0 (Lane K): raised B01 1060 -> 1070 KB on purpose: selfBlocked, DEPLOY_TRASH, perCores and DRAW_UNTIL (engine ~0.1 KB over the limit).
+test('B01 index.html without the card pack stays under 1070 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 1070e3, Buffer.byteLength(noFont(code))));
 test('B02 index.html without the card pack, gzipped, stays under 290 KB', () => { const n = gzipSync(noFont(code), { level: 9 }).length; assert.ok(n < 290e3, n); });
 test('B03 the embedded card pack stays under 1.6 MB (room for all cards; never embed staging data)', () => assert.ok(packLen < 1.6e6, packLen));
 // v0.93.0 (U6): raised 90 -> 96 KB on purpose (roadmap item U allows it with a note): U6-U8 add the My decks page and the

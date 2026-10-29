@@ -218,6 +218,13 @@ function simple(card, a) {
     }
     case 'DISCARD_HAND':      // v0.180 the CPU discards exactly n cards of its Hand
       return only(a, ['n']) && { body: `for (let j = 0; j < A.n + 2; j++) P.hand.push(BS.mkInst(${J(FILL)})); await run(src, RA); return P.hand.length === 2 && P.trash.length === A.n ? '' : 'hand ' + P.hand.length + ', trash ' + P.trash.length;` };
+    case 'DRAW_UNTIL':      // v0.185 draw until the Hand holds n
+      return only(a, ['n']) && { body: `for (let j = 0; j < A.n + 2; j++) dk(${J(FILL)}); await run(src, RA); return P.hand.length === A.n ? '' : 'hand ' + P.hand.length;` };
+    case 'DEPLOY_TRASH': {      // v0.185 a matching Nexus in the Trash is deployed free
+      if (!only(a, ['match']) || !okMatch(a.match) || a.match.type === 'Spirit') return null;
+      const M = { ...a.match, type: 'Nexus' };
+      return { fix: [{ m: M }], body: `const t = BS.mkInst(${J(mid(M))}); P.trash.push(t); await run(src, RA); return P.nexus.includes(t) ? '' : 'the Nexus stayed in the Trash';` };
+    }
     case 'NO_REFRESH_OPP':      // v0.172 an exhausted opposing Spirit skips its next Refresh Step
       return only(a, []) && { onField: true, body: `const t = sp(${J(FILL)}, O, 1); t.exhausted = true; G.turnNo = 3; await run(src, RA); return t.noRefreshT === 4 ? '' : 'noRefreshT ' + t.noRefreshT;` };
     case 'REFRESH_SPIRIT':

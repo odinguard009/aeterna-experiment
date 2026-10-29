@@ -38911,9 +38911,6 @@
  "26RBS03-023": [
   "M_OPTIONAL"
  ],
- "26RBS03-026": [
-  "A_BP_PLUS"
- ],
  "26RBS03-027": [
   "A_EXHAUST",
   "A_REFRESH",
@@ -39479,10 +39476,6 @@
   "A_BP_PLUS",
   "K_STANDARD_INVOKE"
  ],
- "26RDB01-018": [
-  "A_BP_PLUS",
-  "C_LEVEL"
- ],
  "26RDB01-020": [
   "A_EXHAUST",
   "C_LEVEL",
@@ -39515,14 +39508,6 @@
  ],
  "26RDB01-026": [
   "A_REFRESH"
- ],
- "26RDB01-027": [
-  "A_EXHAUST",
-  "A_REFRESH",
-  "C_LEVEL",
-  "K_STANDARD_INVOKE",
-  "M_OPTIONAL",
-  "T_SUMMONED"
  ],
  "26RDB01-028": [
   "A_BANISH",

@@ -26,7 +26,7 @@ FX_STRICT, FX_WARNED, fxUnknown, FX_COND_KEYS, FX_TRIGGERS, FX_TRIGGER_TEXT, BR_
 ## packages/engine/src/02b-effects-actions.js (94 lines, ~3.5k tokens)
 FX_ACTIONS
 
-## packages/engine/src/02c-effects-parse.js (198 lines, ~6.3k tokens)
+## packages/engine/src/02c-effects-parse.js (199 lines, ~6.3k tokens)
 canPlaceFree, canPlaceBraveFree, summonFree, canPlacePaid, canPlaceBy, summonPaid, tributePay, summonBy, fxDescribe, BURST_WHEN, parseCond, parseActionList, parseBurst, parseEffects
 
 ## packages/engine/src/02d-effects-resolve.js (366 lines, ~7k tokens)
