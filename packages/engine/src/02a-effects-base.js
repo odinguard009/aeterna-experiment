@@ -121,7 +121,7 @@ const ctrlCount = (owner, q, ctx) => owner.spirits.concat(q.nexus ? owner.nexus 
   if (q.other && ctx && ctx.selfUid === f.uid) return false;      // v0.150 "another / besides this Spirit"
   if (q.keyword && !cardHasKeyword(k, q.keyword)) return false;      // v0.150 "a Spirit with Evolution"
   return (q.type === 'Both' || (q.type === 'Ultimate') === u) && (!q.colors || q.colors.some(x => (k.colors || [k.symbol]).includes(x)))
-    && (q.costGe == null || k.cost >= q.costGe) && (q.costLe == null || k.cost <= q.costLe) && (q.bpGe == null || bpOf(f) >= q.bpGe) && (!q.noText || fxNoText(k)) && (!q.name || k.name.includes(q.name)) && (!q.team || cardTeams(k).includes(q.team)) && (!q.family || [].concat(q.family).some(x => (k.families || []).includes(x))) && (!q.exhausted || f.exhausted); }).length;      // v0.169 family may be a list (either family)      // v0.76 exhausted: "any exhausted X"
+    && (q.costIn == null || q.costIn.includes(k.cost)) && (q.costGe == null || k.cost >= q.costGe) && (q.costLe == null || k.cost <= q.costLe) && (q.bpGe == null || bpOf(f) >= q.bpGe) && (!q.noText || fxNoText(k)) && (!q.name || k.name.includes(q.name)) && (!q.team || cardTeams(k).includes(q.team)) && (!q.family || [].concat(q.family).some(x => (k.families || []).includes(x))) && (!q.exhausted || f.exhausted); }).length;      // v0.169 family may be a list (either family)      // v0.76 exhausted: "any exhausted X"
 const spiritCount = q => q.spirits.filter(f => CARDS[f.id].type !== 'Ultimate').length;      // v0.77 fewerSpirits
 /* v0.72 "for each X you control": cards on the owner's Field matching per {type: 'Spirit'|'Nexus', colors, family, name (part of the name)}; the source itself counts */
 const PER_TYPES = ['Spirit', 'Nexus'];
@@ -221,7 +221,7 @@ function staticBp(i) {
       if (e.fightingOnly && G.attacker !== i && G.blocker !== i) continue;      // v0.168 "attacking/blocking Spirits"
       if (!fxIf(o, opp, e.if)) continue;
       if (e.noStack) { const k = CARDS[src.id].name + ':' + e.bp + ':' + JSON.stringify(e.match || null); if (seenNS.has(k)) continue; seenNS.add(k); }      // v0.168 (Can't Stack): one copy counts
-      sum += e.perHand ? e.bp * o.hand.length : e.perCores ? e.bp * (i.cores || 0) : e.per ? e.bp * perCount(o, e.per) : e.bp;      // v0.72 "For each X you control, this Spirit gains +N BP" (per)
+      sum += e.perHand ? e.bp * o.hand.length : e.perCores ? e.bp * (i.cores || 0) : e.per ? e.bp * (perCount(o, e.per) - (e.besides && perCount({ spirits: [src], nexus: [src] }, e.per) ? 1 : 0)) : e.bp;      // v0.72 "For each X you control, this Spirit gains +N BP" (per)
     }
   }
   return sum;

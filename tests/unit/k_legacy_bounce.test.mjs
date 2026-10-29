@@ -23,3 +23,22 @@ test('K-01 Lycao-Culus: with Legacy two small Spirits go to the deck bottom, wit
   assert.deepEqual(a, { gone: 2, deck: 2, hand: 0 });
   assert.deepEqual(b, { gone: 2, deck: 0, hand: 2 });
 });
+
+test('K-02 Hargris counts other Purgatory Wings Spirits only; Pacugna +2000 attacking, +5000 with a Cost 6/8 Spirit', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(() => {
+    const G = BS.G, P = G.p.player; G.active = P.key;
+    const fam = Object.values(BS.CARDS).filter(c => c.type === 'Spirit' && (c.families || []).includes('Purgatory Wings') && c.id !== '26RBS03-003' && !(c.effects && c.effects.length)).slice(0, 2);
+    const h = BS.mkInst('26RBS03-003'); h.cores = 1; P.spirits.push(h);
+    const alone = BS.bpOf(h); fam.forEach(c => { const s = BS.mkInst(c.id); s.cores = 1; P.spirits.push(s); });
+    const withTwo = BS.bpOf(h);
+    const pac = BS.mkInst('26RBS03-048'); pac.cores = 1; P.spirits.push(pac); G.attacker = pac;
+    const lowCost = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && ![6, 8].includes(c.cost) && c.cost !== BS.CARDS['26RBS03-048'].cost);
+    const base = BS.CARDS['26RBS03-048'].levels[0].bp, plain = BS.bpOf(pac) - base;
+    const big = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && c.cost === 6 && !(c.effects && c.effects.length)); const b = BS.mkInst(big.id); b.cores = 1; P.spirits.push(b);
+    return { alone, withTwo, plain, withBig: BS.bpOf(pac) - base };
+  });
+  assert.equal(r.withTwo - r.alone, 2000);
+  assert.equal(r.plain, 2000);
+  assert.equal(r.withBig, 5000);
+});
