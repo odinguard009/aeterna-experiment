@@ -4,6 +4,14 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.188.0
+- Lane: U/I
+- **R2: Family list, colour any/all, BP and core filters (Deck Builder and Library)**
+  - New dropdowns: Family (searchable list, match any/all), BP and Cores; the Colour list gets a "Match all selected" switch. Shared helpers in `13a-deckbuilder.js`; the buttons show on phone too (the phone filter row scrolls sideways).
+  - BP = Level-1 BP (as on the tile); Cores = highest level core threshold. Cards without Level-1 BP drop out when a BP or Cores filter is set. The free-text Family input stays.
+  - Set names are not aligned: the official product names are Japanese only, so set codes stay.
+  - Budgets: B02 raised 292 -> 294 KB gzipped. New tests `tests/unit/r2_filters.test.mjs`. Player-view subagent pass not run. Revert: `backup/v0.187.0`.
+
 ## v0.187.0
 - Lane: U/I
 - **R1: official numbers applied to the card data (cost, reduction, level BP/cores, Brave numbers)**

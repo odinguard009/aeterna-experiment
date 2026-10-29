@@ -1004,12 +1004,16 @@
 .mk .ddi:hover{background:var(--chip)}
 .mk .ddi.on{background:var(--you-soft)}
 .mk .ddi .ddc{width:16px;color:var(--you-text);font-weight:900}
+#db-groups,#lib-groups{flex-wrap:wrap}
+.mk .ddq{margin:0 0 4px;width:100%;box-sizing:border-box}
+.mk .ddi.mode{font-style:italic;border-bottom:1px solid var(--line,rgba(128,128,128,.25))}
+.mk .ddi[hidden]{display:none}
 .mk .ddi b{font-family:var(--f-num);font-size:.8em;color:var(--text3)}
 .mk .ddi .dot{width:14px;height:14px;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);flex:none}
 .mk .ddi.clr{color:var(--text2);justify-content:center;margin-top:4px}
 @container fr (max-width:700px){.mk .ddphone{display:inline-flex}
 .mk .btool .pips{display:none}
-.mk .ddmenu{max-height:55%}
+.mk .ddmenu{max-height:max(55%,230px)}
 }
 .mk .cmenu{min-width:168px;padding:10px 24px 12px;gap:6px}
 .mk .cmenu .btn{width:100%;height:36px}

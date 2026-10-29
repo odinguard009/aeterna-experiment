@@ -116,13 +116,13 @@ function renderLibrary() {
 const LIBV = { list: [], from: -1, to: -1, cols: 0, rowH: 0, raf: 0, timer: 0, key: '' };
 const LIB_GAP = 16, LIB_BUF = 2;
 const libSetOf = id => String(id).replace(/-.*$/, '');
-const LIBF = { colors: new Set(), costs: new Set(), types: new Set(), groups: new Set(), family: '', complete: true, partly: false, dd: '', sort: 'set', size: 'm', tab: 'cards', min: false };   // mockup toolbar state (v0.137.0)
+const LIBF = { colors: new Set(), costs: new Set(), types: new Set(), groups: new Set(), bps: new Set(), cores: new Set(), fams: new Set(), cmode: false, ffall: false, fq: '', family: '', complete: true, partly: false, dd: '', sort: 'set', size: 'm', tab: 'cards', min: false };   // mockup toolbar state (v0.137.0)
 const LIB_SIZES = [['s', 'S', 8], ['m', 'M', 6], ['l', 'L', 4]];
-function libActive() { return LIBF.colors.size + LIBF.costs.size + LIBF.types.size + LIBF.groups.size + (LIBF.family ? 1 : 0) + ((($('lib-set') || {}).value) ? 1 : 0) + (($('lib-search') || {}).value ? 1 : 0); }
+function libActive() { return LIBF.colors.size + LIBF.costs.size + LIBF.types.size + LIBF.groups.size + LIBF.bps.size + LIBF.cores.size + LIBF.fams.size + (LIBF.family ? 1 : 0) + ((($('lib-set') || {}).value) ? 1 : 0) + (($('lib-search') || {}).value ? 1 : 0); }
 function libFilter() {
   const q = (($('lib-search') || {}).value || '').trim().toLowerCase(), fam = LIBF.family.trim().toLowerCase();
   const set = (($('lib-set') || {}).value) || '';
-  const key = [CARDS_VER, q, set, fam, [...LIBF.colors], [...LIBF.costs], [...LIBF.types], [...LIBF.groups], LIBF.complete, LIBF.partly, LIBF.sort].join('|');
+  const key = [CARDS_VER, q, set, fam, [...LIBF.colors], [...LIBF.costs], [...LIBF.types], [...LIBF.groups], [...LIBF.bps], [...LIBF.cores], [...LIBF.fams].join('~'), LIBF.cmode, LIBF.ffall, LIBF.complete, LIBF.partly, LIBF.sort].join('|');
   if (key === LIBV.key) return LIBV.list;
   LIBV.key = key;
   let l = dbIndex().filter(e => {
@@ -132,7 +132,7 @@ function libFilter() {
     const c = CARDS[e.id];
     if (LIBF.complete && fxMarked(c)) return false;
     if (LIBF.partly && !fxMarked(c)) return false;   // v0.158.0: the "! Partly Implemented" chip is a filter (only the cards marked "!")
-    return dbFilterOK(c, LIBF.colors, LIBF.costs, LIBF.types) && [...LIBF.groups].every(g => dbGroupOK(c, g));
+    return dbFilterOK(c, LIBF.colors, LIBF.costs, LIBF.types, LIBF.cmode) && dbPlusOK(c, LIBF) && [...LIBF.groups].every(g => dbGroupOK(c, g));
   });
   l = l.slice().sort(DB_SORTS[LIBF.sort] || DB_SORTS.set);
   LIBV.list = l.map(e => e.id);
@@ -145,7 +145,7 @@ function libBar() {                                   // the mockup toolbar: col
   $('lib-types').innerHTML = filterTypesHTML(LIBF, 'lib-f');
   $('lib-costs').innerHTML = DB_COSTS.map(k => `<button class="cbtn${on(LIBF.costs, k) ? ' on' : ''}" data-a="lib-f" data-v="costs:${k}" aria-pressed="${on(LIBF.costs, k)}" aria-label="Cost ${k}">${k === '10' ? '10+' : k}</button>`).join('');
   $('lib-colbtn').innerHTML = ddButton(LIBF, 'colour', 'Colour', 'lib-dd') + ddButton(LIBF, 'type', 'Type', 'lib-dd') + ddButton(LIBF, 'cost', 'Cost', 'lib-dd');
-  $('lib-groups').innerHTML = ddButton(LIBF, 'group', 'Group', 'lib-dd');
+  $('lib-groups').innerHTML = ddButton(LIBF, 'group', 'Group', 'lib-dd') + ddButton(LIBF, 'family', 'Family', 'lib-dd') + ddButton(LIBF, 'bp', 'BP', 'lib-dd') + ddButton(LIBF, 'cores', 'Cores', 'lib-dd');
   $('lib-play').classList.toggle('on', LIBF.complete);
   libMenu();
   $('lib-size').innerHTML = LIB_SIZES.map(([v, l]) => `<button data-a="lib-size" data-v="${v}" aria-pressed="${LIBF.size === v}">${l}</button>`).join('');
@@ -179,7 +179,7 @@ function libTool(a, v) {
   else if (a === 'lib-complete') { LIBF.complete = !LIBF.complete; if (LIBF.complete) LIBF.partly = false; }
   else if (a === 'lib-partly') { LIBF.partly = !LIBF.partly; if (LIBF.partly) LIBF.complete = false; }
   else if (a === 'lib-lore-min') { const k = v === 'head' ? 'lore-head-min' : 'lore-nav-min'; $('lib-lore-pane').classList.toggle(k); }
-  else if (a === 'lib-clear') { ['colors', 'costs', 'types', 'groups'].forEach(g => LIBF[g].clear()); LIBF.family = ''; $('lib-set').value = ''; $('lib-search').value = ''; }
+  else if (a === 'lib-clear') { ddReset(LIBF); LIBF.family = ''; $('lib-set').value = ''; $('lib-search').value = ''; }
   else if (a === 'lib-lore-mv') { const ks = loreSeries().map(x => x[0]), i = ks.indexOf(LORE_SET) + Number(v); if (ks[i]) LORE_SET = ks[i]; }
   else if (a === 'lib-lore-by') { LORE_BY = v === 'saga' ? 'saga' : 'series'; LORE_SET = ''; }
   else if (a === 'lib-lore-set') LORE_SET = v;

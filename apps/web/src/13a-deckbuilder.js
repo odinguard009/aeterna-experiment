@@ -19,34 +19,56 @@ const filterTypesHTML = (S, act) => DB_TYPES.map(t => `<button class="chip${S.ty
   + DB_TYPE_GROUPS.map(([g, l]) => `<button class="chip${S.groups.has(g) ? ' on' : ''}" data-a="${act}" data-v="groups:${g}" aria-pressed="${S.groups.has(g)}">${l}</button>`).join('');
 /* v0.158.0 (owner review, phone): one dropdown per filter group - Colour, Type, Cost and Group - shared by the Deck Builder and the Library.
    Each entry knows the Set it toggles in (colors / types / costs / groups), so the menu, the button label and Clear work the same everywhere. */
+/* v0.188.0 (R2): Family list, Level-1 BP ranges and top-level core counts; a mode item is a Set-shaped switch (colours / families: any -> all) */
+const DB_BPS = [['≤2,000', 0, 3000], ['3,000–4,000', 3000, 5000], ['5,000–6,000', 5000, 7000], ['7,000–9,000', 7000, 10000], ['10,000+', 10000, 1e9]];
+const DB_CORES = [['≤2', 0, 3], ['3', 3, 4], ['4', 4, 5], ['5', 5, 6], ['6+', 6, 99]];
+const DB_FAMS = { ver: -1, list: [] };
+const dbFamilies = () => { if (DB_FAMS.ver !== CARDS_VER) { DB_FAMS.list = [...new Set(Object.values(CARDS).flatMap(c => c.families || []))].sort(DB_COLL.compare); DB_FAMS.ver = CARDS_VER; } return DB_FAMS.list; };
+const ddMode = (S, key, l) => ({ l, mode: 1, v: '@' + key, set: { has: () => S[key], add: () => { S[key] = true; }, delete: () => { S[key] = false; } } });
 function ddList(S, kind) {
-  if (kind === 'colour') return DB_COLORS.map(c => ({ l: cap(c), set: S.colors, v: c, dot: colorVar(c) })).concat([{ l: 'All colour', set: S.groups, v: 'multi', dot: RAINBOW }]);
+  if (kind === 'bp') return DB_BPS.map(([l], i) => ({ l, set: S.bps, v: String(i) }));
+  if (kind === 'cores') return DB_CORES.map(([l], i) => ({ l, set: S.cores, v: String(i) }));
+  if (kind === 'family') return [ddMode(S, 'ffall', 'Match all selected')].concat(dbFamilies().map(f => ({ l: f, set: S.fams, v: f })));
+  if (kind === 'colour') return [ddMode(S, 'cmode', 'Match all selected')].concat(DB_COLORS.map(c => ({ l: cap(c), set: S.colors, v: c, dot: colorVar(c) })), [{ l: 'All colour', set: S.groups, v: 'multi', dot: RAINBOW }]);
   if (kind === 'type') return DB_TYPES.map(t => ({ l: t, set: S.types, v: t })).concat(DB_TYPE_GROUPS.map(([g, l]) => ({ l, set: S.groups, v: g })));
   if (kind === 'cost') return DB_COSTS.map(c => ({ l: c === '10' ? '10+' : c, set: S.costs, v: c }));
   return DB_GROUPS.map(([g, l]) => ({ l, set: S.groups, v: g }));
 }
-const ddSel = (S, kind) => ddList(S, kind).filter(i => i.set.has(i.v)).map(i => i.l);
-const ddButton = (S, kind, label, act) => { const sel = ddSel(S, kind); return `<button class="chip ddb${kind === 'group' ? '' : ' ddphone'}${sel.length ? ' on' : ''}" data-a="${act}" data-v="${kind}" aria-haspopup="true" aria-expanded="${S.dd === kind}">${label}: ${sel.length > 2 ? sel.length + ' selected' : sel.length ? sel.join(', ') : 'All'} ▾</button>`; };
+const ddSel = (S, kind) => ddList(S, kind).filter(i => !i.mode && i.set.has(i.v)).map(i => i.l);
+const ddButton = (S, kind, label, act) => { const sel = ddSel(S, kind); return `<button class="chip ddb${['colour', 'type', 'cost'].includes(kind) ? ' ddphone' : ''}${sel.length ? ' on' : ''}" data-a="${act}" data-v="${kind}" aria-haspopup="true" aria-expanded="${S.dd === kind}">${label}: ${sel.length > 2 ? sel.length + ' selected' : sel.length ? sel.join(', ') : 'All'} ▾</button>`; };
 function ddMenuEl(S, tb, btn, pick, clear) {
   const items = ddList(S, S.dd), m = document.createElement('div'); m.className = 'ddmenu scroll'; m.setAttribute('role', 'menu');
-  m.innerHTML = items.map(i => `<button class="ddi${i.set.has(i.v) ? ' on' : ''}" data-a="${pick}" data-v="${i.v}" role="menuitemcheckbox" aria-checked="${i.set.has(i.v)}"><span class="ddc">${i.set.has(i.v) ? '✓' : ''}</span>${i.dot ? `<i class="dot" style="background:${i.dot}"></i>` : ''}<span class="grow">${i.l}</span></button>`).join('') + `<button class="ddi clr" data-a="${clear}">Clear</button>`;
+  m.innerHTML = (S.dd === 'family' ? '<input class="in ddq" type="search" placeholder="Search family" aria-label="Search family" autocomplete="off">' : '') + items.map(i => `<button class="ddi${i.set.has(i.v) ? ' on' : ''}${i.mode ? ' mode' : ''}" data-q="${esc(i.l.toLowerCase())}" data-a="${pick}" data-v="${i.v}" role="menuitemcheckbox" aria-checked="${i.set.has(i.v)}"><span class="ddc">${i.set.has(i.v) ? '✓' : ''}</span>${i.dot ? `<i class="dot" style="background:${i.dot}"></i>` : ''}<span class="grow">${i.l}</span></button>`).join('') + `<button class="ddi clr" data-a="${clear}">Clear</button>`;
   tb.appendChild(m);
+  const q = m.querySelector('.ddq');
+  if (q) { const f = () => { S.fq = q.value; const w = q.value.trim().toLowerCase(); m.querySelectorAll('.ddi[data-q]').forEach(b => { b.hidden = !!w && !b.classList.contains('mode') && !b.dataset.q.includes(w); }); }; q.value = S.fq || ''; q.oninput = f; f(); }
   const r = btn.getBoundingClientRect(), t = tb.getBoundingClientRect(), w = Math.max(r.width, 210);
   m.style.width = w + 'px'; m.style.left = Math.max(6, Math.min(t.width - w - 6, r.left - t.left)) + 'px'; m.style.top = (r.bottom - t.top + 4) + 'px';
 }
 function ddPick(S, v, clear) { const items = ddList(S, S.dd); if (clear) items.forEach(i => i.set.delete(i.v)); else { const i = items.find(x => x.v === v); if (i) { if (i.set.has(i.v)) i.set.delete(i.v); else i.set.add(i.v); } } }
-const DBF = { colors: new Set(), costs: new Set(), types: new Set(), groups: new Set(), set: '', family: '', legal: false, complete: false, only: false, dd: '', sort: 'default' };
+const ddReset = S => { ['colors', 'costs', 'types', 'groups', 'bps', 'cores', 'fams'].forEach(g => S[g].clear()); S.cmode = S.ffall = false; S.fq = ''; };
+const DBF = { colors: new Set(), costs: new Set(), types: new Set(), groups: new Set(), bps: new Set(), cores: new Set(), fams: new Set(), cmode: false, ffall: false, fq: '', set: '', family: '', legal: false, complete: false, only: false, dd: '', sort: 'default' };
 const DB_UNDO = [], DB_REDO = [];   // v0.128.0 U14f: Redo; any new change empties it
 let DB_IO = '';
 const dbArr = v => v == null || v === '' ? [] : Array.isArray(v) ? v : v instanceof Set ? [...v] : [String(v)];
 const dbTypeOf = c => c.contract ? 'Contract' : c.type;
 const dbSetOf = id => String(id).replace(/-.*$/, '');
 /** Deck builder filter test. Each filter is a value, a list or a Set; empty = no filter; cost "10" = 10 or more. */
-function dbFilterOK(c, color, cost, type) {
+function dbFilterOK(c, color, cost, type, all) {
   const cl = dbArr(color), co = dbArr(cost), ty = dbArr(type);
-  if (cl.length && !cardColors(c).some(x => cl.includes(x))) return false;
+  if (cl.length && !(all ? cl.every(x => cardColors(c).includes(x)) : cardColors(c).some(x => cl.includes(x)))) return false;
   if (co.length && !co.some(k => (k === '10' ? c.cost >= 10 : c.cost === Number(k)))) return false;
   if (ty.length && !ty.some(t => (t === 'Contract' ? !!c.contract : c.type === t && !c.contract))) return false;
+  return true;
+}
+/** R2: Family list (any / all), Level-1 BP range and top core count; a card without BP (Magic, Nexus) drops out when a BP or core filter is set. */
+function dbPlusOK(c, S) {
+  const l = c.levels || [], bp = l[0] && l[0].bp;
+  if ((S.bps.size || S.cores.size) && bp == null) return false;
+  if (S.bps.size && ![...S.bps].some(i => bp >= DB_BPS[i][1] && bp < DB_BPS[i][2])) return false;
+  const top = Math.max(0, ...l.map(x => x.cores || 0));
+  if (S.cores.size && ![...S.cores].some(i => top >= DB_CORES[i][1] && top < DB_CORES[i][2])) return false;
+  if (S.fams.size) { const f = c.families || [], has = x => f.includes(x); if (!(S.ffall ? [...S.fams].every(has) : [...S.fams].some(has))) return false; }
   return true;
 }
 /* v0.119.0: mechanic-group test. multi = all-colour (rainbow) card; mirage / rebirth / legacy / ex read the modelled card fields. */
@@ -78,7 +100,7 @@ function dbIndex() {
   return DBV.idx;
 }
 function dbSets() { return [...new Set(dbIndex().map(e => dbSetOf(e.id)))].sort(DB_COLL.compare); }
-function dbActiveCount() { return DBF.colors.size + DBF.costs.size + DBF.types.size + DBF.groups.size + (DBF.set ? 1 : 0) + (DBF.family ? 1 : 0) + (DBF.legal ? 1 : 0) + (DBF.complete ? 1 : 0) + (DBF.only ? 1 : 0) + ((($('db-search') || {}).value) ? 1 : 0); }
+function dbActiveCount() { return DBF.colors.size + DBF.costs.size + DBF.types.size + DBF.groups.size + DBF.bps.size + DBF.cores.size + DBF.fams.size + (DBF.set ? 1 : 0) + (DBF.family ? 1 : 0) + (DBF.legal ? 1 : 0) + (DBF.complete ? 1 : 0) + (DBF.only ? 1 : 0) + ((($('db-search') || {}).value) ? 1 : 0); }
 const DB_SORTS = {
   cost: (a, b) => CARDS[a.id].cost - CARDS[b.id].cost || DB_COLL.compare(a.id, b.id),
   name: (a, b) => DB_COLL.compare(CARDS[a.id].name, CARDS[b.id].name) || DB_COLL.compare(a.id, b.id),
@@ -87,10 +109,10 @@ const DB_SORTS = {
 };
 function dbFilter() {
   const q = ($('db-search').value || '').trim().toLowerCase(), only = DBF.only, fam = DBF.family.trim().toLowerCase();
-  const idx = dbIndex(), key = [CARDS_VER, q, only ? Object.keys(PLAYER_DECK).filter(id => PLAYER_DECK[id]).sort().join(',') : '', [...DBF.colors].join(), [...DBF.costs].join(), [...DBF.types].join(), [...DBF.groups].join(), DBF.set, fam, DBF.legal, DBF.complete, DBF.sort, FORMAT].join('|');
+  const idx = dbIndex(), key = [CARDS_VER, q, only ? Object.keys(PLAYER_DECK).filter(id => PLAYER_DECK[id]).sort().join(',') : '', [...DBF.colors].join(), [...DBF.costs].join(), [...DBF.types].join(), [...DBF.groups].join(), [...DBF.bps].join(), [...DBF.cores].join(), [...DBF.fams].join('~'), DBF.cmode, DBF.ffall, DBF.set, fam, DBF.legal, DBF.complete, DBF.sort, FORMAT].join('|');
   if (key === DBV.key) return DBV.list;
   DBV.key = key;
-  let l = idx.filter(e => (!only || PLAYER_DECK[e.id]) && (!q || e.s.includes(q)) && (!fam || e.f.includes(fam)) && (!DBF.set || dbSetOf(e.id) === DBF.set) && dbFilterOK(CARDS[e.id], DBF.colors, DBF.costs, DBF.types) && ([...DBF.groups].every(g => dbGroupOK(CARDS[e.id], g))) && (!DBF.legal || !legalityOf(e.id, FORMAT)) && (!DBF.complete || !fxMarked(CARDS[e.id])));
+  let l = idx.filter(e => (!only || PLAYER_DECK[e.id]) && (!q || e.s.includes(q)) && (!fam || e.f.includes(fam)) && (!DBF.set || dbSetOf(e.id) === DBF.set) && dbFilterOK(CARDS[e.id], DBF.colors, DBF.costs, DBF.types, DBF.cmode) && dbPlusOK(CARDS[e.id], DBF) && ([...DBF.groups].every(g => dbGroupOK(CARDS[e.id], g))) && (!DBF.legal || !legalityOf(e.id, FORMAT)) && (!DBF.complete || !fxMarked(CARDS[e.id])));
   if (DB_SORTS[DBF.sort]) l = l.slice().sort(DB_SORTS[DBF.sort]);
   DBV.list = l.map(e => e.id);
   const tr = DBV.list.filter(id => id.startsWith('TRAIN-')).length;      // v0.99 U8a: Home counts real cards only; say which extra cards the builder shows
@@ -132,7 +154,7 @@ function dbBar() {
   $('db-types').innerHTML = filterTypesHTML(DBF, 'db-chip');
   $('db-costs').innerHTML = DB_COSTS.map(k => `<button class="cbtn${on(DBF.costs, k) ? ' on' : ''}" data-a="db-chip" data-v="costs:${k}" aria-pressed="${on(DBF.costs, k)}" aria-label="Cost ${k}">${k === '10' ? '10+' : k}</button>`).join('');
   $('db-colbtn').innerHTML = ddButton(DBF, 'colour', 'Colour', 'db-dd') + ddButton(DBF, 'type', 'Type', 'db-dd') + ddButton(DBF, 'cost', 'Cost', 'db-dd');
-  $('db-groups').innerHTML = ddButton(DBF, 'group', 'Group', 'db-dd');
+  $('db-groups').innerHTML = ddButton(DBF, 'group', 'Group', 'db-dd') + ddButton(DBF, 'family', 'Family', 'db-dd') + ddButton(DBF, 'bp', 'BP', 'db-dd') + ddButton(DBF, 'cores', 'Cores', 'db-dd');
   [['db-play', 'complete'], ['db-in', 'only'], ['db-legal', 'legal']].forEach(([id, k]) => { const b = $(id); b.classList.toggle('on', DBF[k]); b.setAttribute('aria-pressed', String(DBF[k])); });
   dbMenu();
   if (set.dataset.sig !== sig) { set.innerHTML = '<option value="">All sets</option>' + sets.map(x => `<option value="${esc(x)}">${esc(x)}</option>`).join(''); set.dataset.sig = sig; }
@@ -196,7 +218,7 @@ function dbToggle(group, v) {
   renderDeckBuilder();
 }
 function dbResetFilters() {
-  DBF.colors.clear(); DBF.costs.clear(); DBF.types.clear(); DBF.groups.clear(); DBF.set = ''; DBF.family = ''; DBF.legal = false; DBF.complete = false; DBF.only = false; DBF.dd = ''; DBF.sort = 'default';
+  ddReset(DBF); DBF.set = ''; DBF.family = ''; DBF.legal = false; DBF.complete = false; DBF.only = false; DBF.dd = ''; DBF.sort = 'default';
   $('db-search').value = ''; $('db-card-list').scrollTop = 0; renderDeckBuilder();
 }
 /* v0.119.0: an explicit Save (the deck already auto-saves, but the owner wanted a visible button). It also captures the
