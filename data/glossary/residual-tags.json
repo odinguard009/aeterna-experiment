@@ -38235,12 +38235,6 @@
   "T_DESTROYED_OPP",
   "T_SUMMONED"
  ],
- "26RBS01-080": [
-  "A_REFRESH",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_ATTACKS"
- ],
  "26RBS01-091": [
   "A_BP_PLUS",
   "A_EXHAUST",
@@ -38321,9 +38315,6 @@
  "26RBS01-117": [
   "A_DRAW",
   "M_THEN"
- ],
- "26RBS01-118": [
-  "A_BP_PLUS"
  ],
  "26RBS01-123": [
   "A_REFRESH",
@@ -38418,11 +38409,6 @@
  "26RBS02-007": [
   "A_BP_PLUS",
   "C_LEVEL"
- ],
- "26RBS02-009": [
-  "A_BP_PLUS",
-  "A_REFRESH",
-  "T_SUMMONED"
  ],
  "26RBS02-010": [
   "F_OTHER_NOSTACK",

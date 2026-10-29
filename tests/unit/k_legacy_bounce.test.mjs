@@ -178,3 +178,22 @@ test('K-11 26RDB01-056 widens the BP limit with two exhausted own Spirits', asyn
     await run('26RDB01-056'); return [kept, !O.spirits.includes(t)]; })()`);
   assert.deepEqual(r, [true, true]);
 });
+
+test('K-12 Virgal refreshes an exhausted own Nexus on attack', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const n = BS.mkInst(Object.values(BS.CARDS).find(c => c.type === 'Nexus').id); n.exhausted = true; P.nexus.push(n);
+    const src = BS.mkInst('26RBS01-080'); src.cores = 3; P.spirits.push(src);
+    await BS.fireFx(P, 'ATTACKS', src, {}); return n.exhausted; })()`);
+  assert.equal(r, false);
+});
+
+test('K-13 REFRESH_SPIRIT.bp refreshes a Clash Spirit and adds BP; oppAttackStep gates it', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const t = BS.mkInst('26RBS02-009'); t.cores = 1; t.exhausted = true; P.spirits.push(t);
+    const b0 = BS.bpOf(t); await BS.fireFx(P, 'SUMMONED', t, {}); const a = [t.exhausted, BS.bpOf(t) - b0];
+    const w = BS.mkInst(Object.values(BS.CARDS).find(c => c.type === 'Spirit' && (c.colors || [c.symbol]).includes('white')).id); w.cores = 1; w.exhausted = true; P.spirits.push(w);
+    const w0 = BS.bpOf(w); await run('26RBS01-118'); return [a, w.exhausted, BS.bpOf(w) - w0]; })()`);
+  assert.deepEqual(r, [[false, 2000], false, 0]);
+});

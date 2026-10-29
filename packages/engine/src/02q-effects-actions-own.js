@@ -44,11 +44,20 @@ Object.assign(FX_ACTIONS, {
   CORE_TO_SELF: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5, txt: a => `+${a.n} core to this card`,
     can: c => c.p.reserve.n > 0,
     run: async (c, a) => { let k = 0; for (let j = 0; j < a.n; j++) if (addCore(c.p, c.src)) k++; if (k) log(`${CARDS[c.src.id].name} gets +${k} core${k === 1 ? '' : 's'}.`); } },
-  REFRESH_SPIRIT: { chk: a => a.match == null || hasMatch(a.match), txt: a => `refresh one of your ${a.match ? 'matching ' : ''}Spirits`,
+  REFRESH_SPIRIT: { chk: a => (a.match == null || hasMatch(a.match)) && (a.bp == null || (a.bp && Number.isInteger(a.bp.n) && a.bp.n >= 1000 && a.bp.n <= 5000 && a.bp.n % 1000 === 0 && (a.bp.oppAttackStep == null || a.bp.oppAttackStep === true))),      // v0.195 bp {n, oppAttackStep}: "refresh it, and during this turn it gains +n BP" (only in the opposing Attack Step with oppAttackStep)
+    txt: a => `refresh one of your ${a.match ? 'matching ' : ''}Spirits`,
     cands: (c, a) => c.p.spirits.filter(s => s.exhausted && (!a || !a.match || fxMatch(CARDS[s.id], a.match))),
     can: (c, a) => FX_ACTIONS.REFRESH_SPIRIT.cands(c, a).length > 0,
     run: async (c, a) => {
       const t = await fxPickTarget(c, FX_ACTIONS.REFRESH_SPIRIT.cands(c, a), `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your exhausted Spirits to refresh (glowing).`);
+      if (!t) return; refreshOne(t); log(`${CARDS[t.id].name} is refreshed.`);
+      if (a.bp && (!a.bp.oppAttackStep || (G.step === 5 && G.active !== c.p.key))) { t.bpMod = (t.bpMod || 0) + a.bp.n; log(`${CARDS[t.id].name} gains +${a.bp.n} BP this turn.`); }
+    } },
+  REFRESH_NEXUS: { chk: () => true, txt: () => 'refresh one of your Nexuses',
+    cands: c => c.p.nexus.filter(n => n.exhausted),
+    can: c => FX_ACTIONS.REFRESH_NEXUS.cands(c).length > 0,
+    run: async c => {
+      const t = await fxPickTarget(c, FX_ACTIONS.REFRESH_NEXUS.cands(c), `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your exhausted Nexuses to refresh (glowing).`);
       if (!t) return; refreshOne(t); log(`${CARDS[t.id].name} is refreshed.`);
     } },
   /* v0.33 effects of a card that is not on the field: revealed from the deck, or in the Hand */
