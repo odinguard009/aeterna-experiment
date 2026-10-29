@@ -527,3 +527,13 @@ test('K-41 Deep Strike: BY(PAY_COST) then heavy exhaust an exhausted opposing Sp
     return [before - BS.coresAvailable(P), !!a.heavy]; })()`);
   assert.deepEqual(r, [1, true]);
 });
+
+test('K-42 Aloe Toll: BP_TARGET match.tr only boosts a Spirit in True Release state', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const t = BS.mkInst('26RDB01-X03'); t.cores = 4; const n = BS.mkInst('26RDB01-015'); n.cores = 2; P.spirits.push(t, n);
+    const e = BS.CARDS['26RDB01-016'].effects.find(x => x.invoke);
+    await BS.runActions({ p: P, opp: O, src: BS.mkInst('26RDB01-016'), ctx: {} }, { actions: e.actions });
+    return [t.bpMod || 0, n.bpMod || 0]; })()`);
+  assert.deepEqual(r, [2000, 0]);
+});

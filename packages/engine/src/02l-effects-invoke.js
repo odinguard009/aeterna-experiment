@@ -21,7 +21,7 @@ const INVOKE_WHEN = {
 const INVOKE_COSTS = ['pay', 'exhaustSelf', 'destroySelf', 'exhaustOwn', 'discard', 'returnSelf', 'returnOwn'];      // v0.184: returnSelf / returnOwn = "Return <this / one of your X> to the deckbottom"
 const invokeMatchOK = m => m == null || (typeof m === 'object' && (m.family == null || (Array.isArray(m.family) && m.family.length > 0 && m.family.every(x => typeof x === 'string' && x)))
   && (m.name == null || (Array.isArray(m.name) && m.name.length > 0 && m.name.every(x => typeof x === 'string' && x)))      // v0.169: a card-name list ("Kamen Rider Bravo")
-  && (m.costGe == null || Number.isInteger(m.costGe)) && (m.costIn == null || (Array.isArray(m.costIn) && m.costIn.length > 0 && m.costIn.every(Number.isInteger))) && (m.type == null || ['Spirit', 'Nexus', 'Magic', 'Ultimate'].includes(m.type)) && (m.color == null || COLORS.includes(m.color)));
+  && (m.costGe == null || Number.isInteger(m.costGe)) && (m.costIn == null || (Array.isArray(m.costIn) && m.costIn.length > 0 && m.costIn.every(Number.isInteger))) && (m.type == null || ['Spirit', 'Nexus', 'Magic', 'Ultimate'].includes(m.type)) && (m.color == null || COLORS.includes(m.color)) && (m.tr == null || m.tr === true));
 /* parse hook (02c): returns an error text or null; copies the checked fields onto o */
 function invokeParse(e, o) {
   o.invoke = true;
@@ -110,7 +110,7 @@ const invokeCostText = c => !c ? '' : c.pay ? `pay ${c.pay} cost${c.pay === 1 ? 
   : c.exhaustOwn ? `exhaust one of your ${c.exhaustOwn.match && c.exhaustOwn.match.family ? '"' + c.exhaustOwn.match.family.join('"/"') + '" ' : ''}${c.exhaustOwn.kind === 'nexus' ? 'Nexuses' : 'Spirits'}`
   : c.returnSelf ? 'return this card to the deckbottom' : c.returnOwn ? `return one of your ${c.returnOwn.match && c.returnOwn.match.family ? '"' + c.returnOwn.match.family.join('"/"') + '" ' : ''}${c.returnOwn.kind === 'nexus' ? 'Nexuses' : 'Spirits'} to the deckbottom`
   : c.discard ? `discard a ${c.discard.match && c.discard.match.family ? '"' + c.discard.match.family.join('"/"') + '" family ' : ''}card` : '';
-const ownTargetCands = (c, a) => c.p.spirits.filter(s => fxMatch(CARDS[s.id], a.match) && (!a.attacking || s === G.attacker) && (!a.coreFromSelf || s !== c.src) && !fxImmune(c.p, s, c));
+const ownTargetCands = (c, a) => c.p.spirits.filter(s => fxMatch(CARDS[s.id], a.match) && (!a.match || !a.match.tr || (CARDS[s.id].trueRelease && lvNo(s) >= 2)) && (!a.attacking || s === G.attacker) && (!a.coreFromSelf || s !== c.src) && !fxImmune(c.p, s, c));
 Object.assign(FX_ACTIONS, {
   /* "during this battle/turn, this Spirit gains +N BP" (to:self) / "Target one of your [attacking] X Spirits. ... it gains +N BP" (to:pick) */
   BP_TARGET: { chk: a => Number.isInteger(a.n) && a.n >= 1000 && a.n <= 30000 && ['self', 'pick'].includes(a.to) && (a.battle == null || a.battle === true) && (a.attacking == null || a.attacking === true) && invokeMatchOK(a.match) && (a.per == null || perOk(a.per)) && (a.alt == null || (a.to === 'pick' && typeof a.alt.name === 'string' && Number.isInteger(a.alt.n) && a.alt.n > a.n && a.alt.n <= 30000)),
