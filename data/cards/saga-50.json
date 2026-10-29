@@ -23235,6 +23235,7 @@
     {
      "do": "DESTROY",
      "costLe": 3,
+     "costPerOwn": true,
      "if": {
       "allHave": {
        "family": "EX-AID"
@@ -23243,11 +23244,8 @@
     }
    ]
   },
-  "fxComplete": false,
-  "residual": [
-   "For each Spirit/Nexus you control, the target cost gets +1."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects hand-written for roadmap S1 Standard Magic (v0.88.0); not yet checked against the card image.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects hand-written for roadmap S1 Standard Magic (v0.88.0); not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0). Residual clauses authored by hand in Lane K (v0.195.0).",
   "collab": [
    "仮面ライダー"
   ],
@@ -26706,20 +26704,32 @@
    "actions": [
     {
      "do": "DESTROY",
+     "bpLe": 6000,
+     "if": {
+      "allHave": {
+       "team": "Red Stella"
+      },
+      "ctrl": {
+       "type": "Spirit",
+       "exhausted": true,
+       "n": 2
+      }
+     }
+    },
+    {
+     "do": "DESTROY",
      "bpLe": 4000,
      "if": {
       "allHave": {
        "team": "Red Stella"
-      }
+      },
+      "prev": false
      }
     }
    ]
   },
-  "fxComplete": false,
-  "residual": [
-   "If you control two or more exhausted Spirits, the targeting BP becomes 6000 or less instead."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects hand-written for roadmap S1 Standard Magic (v0.88.0); not yet checked against the card image.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects hand-written for roadmap S1 Standard Magic (v0.88.0); not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0). Residual clauses authored by hand in Lane K (v0.195.0).",
   "collab": [
    "詩姫"
   ],
@@ -34306,6 +34316,10 @@
     {
      "do": "BP_MINUS",
      "n": 3000,
+     "nPer": {
+      "team": "Yellow Rise",
+      "n": 1000
+     },
      "zeroDestroy": true,
      "if": {
       "allHave": {
@@ -34315,11 +34329,8 @@
     }
    ]
   },
-  "fxComplete": false,
-  "residual": [
-   "For each Yellow Rise Spirit you control, this BP- decreases 1000 further."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects hand-written for roadmap S1 Standard Magic (v0.88.0); not yet checked against the card image.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects hand-written for roadmap S1 Standard Magic (v0.88.0); not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0). Residual clauses authored by hand in Lane K (v0.195.0).",
   "collab": [
    "詩姫"
   ],

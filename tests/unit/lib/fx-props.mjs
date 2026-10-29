@@ -51,7 +51,7 @@ export function fixtureCards(cases) {
 
 // One body per property; `A` is the action JSON as a literal, `S` the source card id.
 function destroyCase(card, a) {
-  if (!only(a, ['bpLe', 'costLe', 'coresLe', 'costLeSelf', 'nexus', 'costRank', 'exhaustedOnly', 'thenDraw', 'noFx', 'bpPer'])) return null;      // bpPer: no own keyword Spirit in the fixture, so the plain bpLe bound holds
+  if (!only(a, ['bpLe', 'costLe', 'coresLe', 'costLeSelf', 'nexus', 'costRank', 'exhaustedOnly', 'thenDraw', 'noFx', 'bpPer', 'costPerOwn'])) return null;      // bpPer: no own keyword Spirit in the fixture, so the plain bpLe bound holds
   const bounds = ['bpLe', 'costLe', 'coresLe', 'costLeSelf', 'nexus', 'costRank'].filter(k => a[k] != null);
   if (bounds.length !== 1) return null;
   const k = bounds[0], ex = a.exhaustedOnly ? 'true' : 'false', draw = a.thenDraw || 0;
@@ -111,7 +111,7 @@ function bounceCase(a) {
 }
 
 function bpMinusCase(a) {
-  if (!only(a, ['n', 'zeroDestroy'])) return null;
+  if (!only(a, ['n', 'zeroDestroy', 'nPer'])) return null;
   return { fix: [{ cost: 3, bp: a.n + 1000 }, { cost: 3, bp: a.n }], body: `let t = sp(${J(sid(3, a.n + 1000))}, O);
       await run(src, RA); if (BS.bpOf(t) !== 1000) return 'BP after -' + A.n + ' is ' + BS.bpOf(t) + ', want 1000'; if (gone(t)) return 'a Spirit with BP left was destroyed';
       ${PRE_RESET} t = sp(${J(sid(3, a.n))}, O); await run(src, RA);

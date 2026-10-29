@@ -204,11 +204,11 @@ function cpuInvokeOK(p, f, e, timing) {
    in Standard a Spirit at 0 BP is not destroyed by the rules (Eternal manual FAQ p. 68, as in v0.55), only by this text */
 (() => {
   const M = FX_ACTIONS.BP_MINUS, mChk = M.chk, mRun = M.run, mTxt = M.txt;
-  M.chk = a => (a.zeroDestroy == null || a.zeroDestroy === true) && mChk(a);
+  M.chk = a => (a.zeroDestroy == null || a.zeroDestroy === true) && (a.nPer == null || (a.nPer && /^[A-Za-z ]{3,30}$/.test(a.nPer.team) && Number.isInteger(a.nPer.n) && a.nPer.n >= 1000 && a.nPer.n <= 5000 && a.nPer.n % 1000 === 0)) && mChk(a);      // v0.195 nPer: "for each <team> Spirit you control, BP- decreases n further"
   M.txt = a => mTxt(a) + (a.zeroDestroy ? ', then destroy it if it has 0 BP' : '');
   M.run = async (c, a) => {
     const before = new Map(c.opp.spirits.map(t => [t, t.bpMod || 0]));
-    await mRun(c, a);
+    await mRun(c, a.nPer ? { ...a, n: a.n + a.nPer.n * c.p.spirits.filter(x => cardTeams(CARDS[x.id]).includes(a.nPer.team)).length } : a);
     if (!a.zeroDestroy) return;
     for (const t of c.opp.spirits.slice()) if (before.has(t) && (t.bpMod || 0) < before.get(t) && bpOf(t) === 0 && !fxImmune(c.opp, t, c)) { removeSpirit(c.opp, t, 'destroyed', true); checkDepletion(c.opp); }
   };

@@ -145,3 +145,36 @@ test('K-08 Sertis-style DESTROY.bpPer widens the BP limit per own Clash Spirit',
   });
   assert.deepEqual(r, [true, true]);
 });
+
+// Magic bases are staged with an allHave gate; these tests drop it and check the new shapes.
+const MAGIC_RUN = `const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = P.key; P.cpu = true;
+  const run = (id) => { const m = BS.mkInst(id); const acts = BS.CARDS[id].magic.actions.map(a => { const b = { ...a }; if (b.if) { b.if = { ...b.if }; delete b.if.allHave; if (!Object.keys(b.if).length) delete b.if; } return b; }); return BS.runActions({ p: P, opp: O, src: m, ctx: {} }, { actions: acts }); };
+  const opp = (cost, bp, team) => { const c = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && c.cost === cost && c.levels[0].bp === bp && !(c.effects && c.effects.length)); const f = BS.mkInst(c.id); f.cores = 1; O.spirits.push(f); return f; };`;
+
+test('K-09 DESTROY.costPerOwn adds +1 cost per own Spirit/Nexus', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const t = opp(4, 3000); await run('26RCB01-071'); const kept = O.spirits.includes(t);
+    P.spirits.push(BS.mkInst('26RBS02-009')); await run('26RCB01-071');
+    return [kept, !O.spirits.includes(t)]; })()`);
+  assert.deepEqual(r, [true, true]);
+});
+
+test('K-10 BP_MINUS.nPer grows per own team Spirit', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const yr = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && /\\[Teams?:[^\\]]*Yellow Rise/.test(c.desc || c.text || ''));
+    const t = opp(3, 4000); const b0 = BS.bpOf(t); await run('26RSD08-014'); const d0 = b0 - BS.bpOf(t);
+    P.spirits.push(BS.mkInst(yr.id)); const t2 = opp(3, 4000); const b1 = BS.bpOf(t2); await run('26RSD08-014');
+    return [d0, b1 - BS.bpOf(t2)]; })()`);
+  assert.deepEqual(r, [3000, 4000]);
+});
+
+test('K-11 26RDB01-056 widens the BP limit with two exhausted own Spirits', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const t = opp(3, 6000); await run('26RDB01-056'); const kept = O.spirits.includes(t);
+    for (let i = 0; i < 2; i++) { const s = BS.mkInst('26RBS02-009'); s.exhausted = true; P.spirits.push(s); }
+    await run('26RDB01-056'); return [kept, !O.spirits.includes(t)]; })()`);
+  assert.deepEqual(r, [true, true]);
+});

@@ -117,3 +117,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v77 (v0.195.0, Lane K): condition `oppTrashGe` N ("N or more cards in the opposing Trash"); `allHave.familyAny` (list: every Spirit/Nexus has any of these families). Additions only.
 - v78 (v0.195.0, Lane K): `HEAVY_EXHAUST_OPP.exhaustedOnly` (true: only an opposing exhausted Spirit is a candidate; pair with effect-level `optional` for "You can target ...").
 - v79 (v0.195.0, Lane K): `DESTROY.bpPer` {keyword, n} (the BP limit gets +n for each Spirit you control with the keyword; needs `bpLe`).
+- v80 (v0.195.0, Lane K): `DESTROY.costPerOwn` true (the `costLe` limit gets +1 for each Spirit/Nexus you control; needs `costLe`); `BP_MINUS.nPer` {team, n} (BP- grows by n for each Spirit you control of that team).
