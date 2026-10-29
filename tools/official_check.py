@@ -53,6 +53,10 @@ def parse(s):
     m = re.search(r'textCost">(\d+)<', rows.get('コスト', ''))
     o['cost'] = int(m.group(1)) if m else None
     o['reduction'] = len([x for x in re.findall(r'<img[^>]*alt="([^"]*)"', rows.get('軽減コスト', '')) if x in COLORS])   # god / other icons are dropped by the import on purpose
+    by = {}
+    for x in re.findall(r'<img[^>]*alt="([^"]*)"', rows.get('軽減コスト', '')):
+        if x in COLORS: by[COLORS[x]] = by.get(COLORS[x], 0) + 1
+    o['reductionBy'] = by
     lv = []
     for item in re.findall(r'<div class="bpCoreItem[^"]*">(.*?)</div>', rows.get('BP/コア', ''), re.S):
         a = re.search(r'alt="([^"]*)"', item).group(1)
@@ -111,6 +115,7 @@ def main():
     ap.add_argument('--all', action='store_true')
     ap.add_argument('--cache', default=os.path.join(tempfile.gettempdir(), 'official-cards'))
     ap.add_argument('--delay', type=float, default=0.7)
+    ap.add_argument('--save', help='write the parsed official fields of every card with a page to this JSON file (facts only, no page text)')
     ap.add_argument('--json', help='write the differences to this file')
     a = ap.parse_args()
     os.makedirs(a.cache, exist_ok=True)
@@ -118,6 +123,7 @@ def main():
     if a.ids: ids = a.ids
     elif a.all: ids = sorted(cards)
     else: ids = random.Random(a.seed).sample(sorted(cards), a.sample or 200)
+    saved = {}
     stat = {'checked': 0, 'no_page': 0, 'same': 0, 'diff': 0}
     per = {}
     out = {}
@@ -129,6 +135,7 @@ def main():
         if not o:
             stat['no_page'] += 1; out[cid] = 'no_page'; continue
         stat['checked'] += 1
+        saved[cid] = {k: v for k, v in o.items() if k != 'reduction'}
         d = compare(c, o)
         if d:
             stat['diff'] += 1; out[cid] = d
@@ -137,6 +144,7 @@ def main():
         else: stat['same'] += 1
         if (i + 1) % 200 == 0: print('...', i + 1, '/', len(ids), stat, file=sys.stderr)
     print(stat, 'per field:', per)
+    if a.save: json.dump(saved, open(a.save, 'w', encoding='utf-8'), ensure_ascii=False, indent=0, sort_keys=True)
     if a.json: json.dump(out, open(a.json, 'w'), ensure_ascii=False, indent=1)
 
 
