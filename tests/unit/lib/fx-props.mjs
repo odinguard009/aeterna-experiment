@@ -173,6 +173,9 @@ function simple(card, a) {
     case 'CURSE': return only(a, []) && spirit && { onField: true, body: `const t = sp(${J(FILL)}, O, 1); G.attacker = src; G.blocker = t; G.eob = []; G.battleResolved = true;
       await run(src, RA); if (gone(t)) return 'Curse destroyed before the end of the battle'; await BS.endOfBattle(); G.attacker = null; G.blocker = null; G.eob = null; G.battleResolved = false;
       return gone(t) ? '' : 'the blocker survived Curse';` };      // v0.78
+    case 'RUMBLE': return only(a, ['n']) && spirit && { onField: true, body: `for (let j = 0; j < 9; j++) dk(${J(FILL)}, O); G.attacker = src; G.blocker = null; G.eob = []; const d = O.deck.length, t = O.trash.length;
+      await run(src, RA); if (O.deck.length !== d) return 'discarded before the end of the battle'; await BS.endOfBattle(); G.attacker = null; G.eob = null;
+      return O.deck.length === d - A.n && O.trash.length === t + A.n ? '' : 'deck ' + d + ' -> ' + O.deck.length + ', trash ' + t + ' -> ' + O.trash.length;` };      // v0.185 unblocked Rumble: n cards from the opposing decktop at the end of the battle
     case 'END_BATTLE': return only(a, ['then']) && spirit && { onField: true, body: `G.attacker = src; G.eob = []; await run(src, RA); if (G.eob.length !== 1) return 'the effect was not queued for the end of the battle';
       P.spirits = P.spirits.filter(x => x !== src); const snap = () => JSON.stringify([P.hand.length, O.hand.length, O.spirits.length, P.trash.length]); const s0 = snap();
       await BS.endOfBattle(); G.attacker = null; G.eob = null; return snap() === s0 ? '' : 'it resolved although its source left the Field';` };      // v0.78

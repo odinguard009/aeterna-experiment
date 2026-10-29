@@ -5903,10 +5903,6 @@
   "C_LEVEL",
   "K_BRAVE"
  ],
- "BS19-021": [
-  "A_EXHAUST",
-  "C_LEVEL"
- ],
  "BS19-022": [
   "A_BP_MINUS",
   "A_DISCARD_OPP",
@@ -11805,11 +11801,6 @@
  "BS32-063": [
   "C_LEVEL"
  ],
- "BS32-064": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "M_OPTIONAL"
- ],
  "BS32-065": [
   "A_BP_PLUS",
   "A_VOID",
@@ -13927,12 +13918,6 @@
   "K_ACCEL",
   "K_ULTIMATE"
  ],
- "BS37-043": [
-  "A_VOID",
-  "C_LEVEL",
-  "K_ACCEL",
-  "T_ALLY_SUMMONED"
- ],
  "BS37-044": [
   "A_REMOVED_ZONE",
   "A_REVEAL_DECK",
@@ -15290,12 +15275,6 @@
   "K_BRAVE",
   "K_BURST",
   "K_ULTIMATE"
- ],
- "BS39-060": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_ALLY_BLOCKED"
  ],
  "BS39-061": [
   "A_EXHAUST",
@@ -38323,13 +38302,6 @@
   "M_OPTIONAL",
   "T_ALLY_SUMMONED"
  ],
- "26RBS01-099": [
-  "A_VOID",
-  "C_LEVEL",
-  "F_OTHER_NOSTACK",
-  "M_OPTIONAL",
-  "M_UNSTACKABLE"
- ],
  "26RBS01-102": [
   "A_TRASH_TO_RESERVE",
   "C_LEVEL",
@@ -38686,11 +38658,6 @@
   "M_OPTIONAL",
   "T_ALLY_LIFE_HIT",
   "T_ATTACKS"
- ],
- "26RBS02-062": [
-  "A_BP_MINUS",
-  "M_THEN",
-  "T_ALLY_ATTACKS"
  ],
  "26RBS02-065": [
   "A_SUMMON_FREE",
@@ -39479,13 +39446,6 @@
   "S1_ALL_HAVE",
   "S_OPP_NO_BLOCK",
   "T_ATTACKS"
- ],
- "26RCB01-056": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "F_OTHER_NOSTACK",
-  "M_OPTIONAL",
-  "M_UNSTACKABLE"
  ],
  "26RCB01-057": [
   "A_TRASH_TO_RESERVE",

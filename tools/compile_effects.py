@@ -161,6 +161,7 @@ PER_STATIC = re.compile(r'^(\(During Attack\)\s*)?' + PER_NP + r',? this spirit 
 PER_STATIC_TAIL = re.compile(r'^(\(During Attack\)\s*)?this spirit (?:gains|gets) \+(\d[\d,]*) ?bp (' + PER_NP + r')\.?$', re.I)      # v0.184 old trailing wording 'This spirit gets +N BP for each X you control'
 BATTLE_HEADS = [      # v0.72 heads read before TRIGGERS: (trigger list, extra effect keys)
     (r'\(When Attacks\)\s*When this Spirit is blocked,', ['ALLY_BLOCKED'], {'self': True}),      # v0.183 Windstorm
+    (r'When your Spirit is blocked,', ['ALLY_BLOCKED'], {'match': {'noUlt': True}}),      # v0.185 any ally Spirit
     (r'\(During Attack\)\s*When blocked,', ['ALLY_BLOCKED'], {'self': True}),      # v0.185 same event as '(When Attacks) When this Spirit is blocked,'
     (r"\((?:During Attack|When Attacks)\)\s*When this Spirit's attack reduces the opposing Life,", ['ALLY_LIFE_HIT'], {'self': True}),
     (r'\(During Attack\)\s*When only the opposing Spirit(?:/Ultimate)? is destroyed (?:by comparing BP|via BP comparison|by BP comparison),', ['BATTLE_WIN'], {'attackingOnly': True}),
@@ -344,7 +345,7 @@ STEP_HEAD = re.compile(r'^\((Your|Opposing|Either) (Start|Core|Draw|Refresh|Main
 WIN_KEYS = ('step', 'attackStep', 'oppTurn')
 OPP_ATT_BODY = re.compile(r'^When an opposing (?:Cost (\d+) or less |(\d+) BP or less )?Spirit(/Ultimate)? attacks,\s*')
 ALLY_ATT_BODY = re.compile(r'^When (?:one of )?your (?:"([^"]+)" family |(Red|Purple|Green|White|Yellow|Blue) )?Spirits? attacks?,\s*')
-ALLY_SUMMON_HEAD = re.compile(r'^When your (?:(?P<col>Red|Purple|Green|White|Yellow|Blue) |(?P<fam>"[^"]+"(?:\s*/\s*"[^"]+")*) family |"(?P<nm>[^"]+)"-named |[Cc]ost (?P<cn>\d+) or (?P<cd>more|less) )?(?P<ty>Spirit|Ultimate)s? (?:is|are) summoned,\s*')      # v0.181
+ALLY_SUMMON_HEAD = re.compile(r'^When your (?:(?P<col>Red|Purple|Green|White|Yellow|Blue) |(?P<fam>"[^"]+"(?:\s*/\s*"[^"]+")*) family |"(?P<nm>[^"]+)"-named |[Cc]ost (?P<cn>\d+) or (?P<cd>more|less) )?(?P<ty>Spirit|Ultimate)s?(?: with (?P<kw>[A-Z][A-Za-z]+))? (?:is|are) summoned,\s*')      # v0.181
 OWN_BP_BODY = re.compile(r'^(?:All (?:of )?your (?:"([^"]+)" family )?Spirits (?:with (?P<kw>[A-Z][A-Za-z]+) )?(?:gain|get)|Give all your (?:"([^"]+)" family )?Spirits|(?:All )?"([^"]+)" (?:family )?spirits you control (?:gain|get)) \+(\d[\d,]*) ?BP\.?$', re.I)      # v0.181 also 'Give all your "X" family Spirits +N BP'
 SELF_BP_BODY = re.compile(r'^This Spirit (?:gains|gets) \+(\d[\d,]*) ?BP\.?$', re.I)
 OPP_HAND_WHILE = re.compile(r'^While the opponent has (\d+|two|three|four|five|six|seven|eight) or more cards in (?:the|their) Hand,\s*', re.I)
@@ -527,7 +528,9 @@ def spirit_paragraph_main(p, card, rush):
     p = re.sub(r'^\(During (Attack|Block)s\)', r'(During \1)', p)      # v0.169 "(During Blocks)" / "(During Attacks)" are the same heads as the singular ones
     ns = re.match(r"^\(Can't Stack\)\s*", p, re.I)
     nostack = bool(ns and any(re.match(r'^' + rx_ + r'\s*', p[ns.end():]) for rx_, _ts in TRIGGERS))
-    if nostack: p = p[ns.end():]      # v0.164 "(Can't Stack) When ..." = noStack on the triggered effect (engine 02d: one activation per card name and effect)
+    mc = None if nostack else re.match(r"^(\((?:Your|Opposing|Either) Attack Step\))\s*\(Can't Stack\)\s*(?=When )", p, re.I)
+    if mc: nostack, p = True, mc.group(1) + ' ' + p[mc.end():]      # v0.185 '(Your Attack Step) (Can't Stack) When ...': the step head stays, the limit moves to the effect
+    if nostack and ns: p = p[ns.end():]      # v0.164 "(Can't Stack) When ..." = noStack on the triggered effect (engine 02d: one activation per card name and effect)
     aw = ally_win(p)
     if aw: p, tmatch, extra = aw; trig = ['ALLY_BATTLE_WIN']; tmatch = tmatch or None; extra = extra or None
     if not trig: p = re.sub(r'^\(During Attack\)\s*(?=(?:If [^.]+?, )?This Spirit can\'t be blocked by (?:opposing )?Cost \d+ or (?:less|more) Spirits?)', '(When Attacks) ', p, flags=re.I)      # v0.179 attack-long unblockable = marked when the attack starts (blockers come right after)
@@ -563,8 +566,10 @@ def spirit_paragraph_main(p, card, rush):
         mm = re.match(r'^' + rx + r'\s*', p)
         if mm: trig = ts; p = p[mm.end():]; break
     if trig is None:      # v0.59: step-prefixed attack triggers (the step is implied by the attack itself)
-        mm = re.match(r'^\(Your Attack Step\)\s*When (?:one of )?your "([^"]+)" family Spirits? attacks?,\s*', p)
-        if mm: trig, tmatch, p = ['ALLY_ATTACKS'], {'family': [mm.group(1)], 'noUlt': True}, p[mm.end():]
+        mm = re.match(r'^\(Your Attack Step\)\s*(\(Once Per Turn\)\s*)?When (?:one of )?your ("[^"]+"(?:\s*/\s*"[^"]+")*) family Spirits? attacks?,\s*', p)
+        if mm:      # v0.185 '"A"/"B" family' = any of the listed families; optional '(Once Per Turn)' between the step and When
+            trig, tmatch, p = ['ALLY_ATTACKS'], {'family': re.findall(r'"([^"]+)"', mm.group(2)), 'noUlt': True}, p[mm.end():]
+            if mm.group(1): extra = dict(extra or {}, once=True)
         mm = None if trig else re.match(r'^(?:\((?:Opposing|Either) Attack Step\)\s*/?\s*)?When your Life is reduced(?: by (?:the attack of )?(?:an? )?opposing (Spirit|Ultimate)s?| by the opponent)?,\s*', p)
         if mm: trig, tmatch, p = ['OWN_LIFE_HIT'], ({'noUlt': True} if (mm.group(1) or '').lower() == 'spirit' else {'type': 'Ultimate'} if mm.group(1) else None), p[mm.end():]      # v0.177 engine OWN_LIFE_HIT (an opposing attack reduced your Life)
         mm = None if trig else ALLY_SUMMON_HEAD.match(p)
@@ -573,6 +578,7 @@ def spirit_paragraph_main(p, card, rush):
             if mm.group('col'): tm['color'] = mm.group('col').lower()
             if mm.group('fam'): tm['family'] = re.findall(r'"([^"]+)"', mm.group('fam'))
             if mm.group('nm'): tm['name'] = [mm.group('nm')]
+            if mm.group('kw'): tm['keyword'] = mm.group('kw')      # v0.185 'When your Spirit with Current is summoned'
             if mm.group('cn'): tm['costGe' if mm.group('cd').lower() == 'more' else 'costLe'] = int(mm.group('cn'))
             tm['type' if mm.group('ty').lower() == 'ultimate' else 'noUlt'] = 'Ultimate' if mm.group('ty').lower() == 'ultimate' else True
             trig, tmatch, p = ['ALLY_SUMMONED'], tm, p[mm.end():]

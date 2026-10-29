@@ -905,6 +905,9 @@ def action_of(s, ctx):
     sn = re.match(r'^target (?:an?|one) ((?:"[^"]+" family )?spirit) you control\.\s*(.+)$', s.strip(), re.I)
     if sn and re.match(r'(?:refresh it|during (?:this|the) (?:turn|battle)|put )', sn.group(2), re.I):      # v0.164 "Target a Spirit you control. <X>" = "Target one of your Spirits. <X>"
         return action_of('Target one of your %ss. %s' % (sn.group(1), sn.group(2)), ctx)
+    my = re.match(r'^you can (target .+)$', s.strip(), re.I)
+    if my and (TGT_VOID.match(my.group(1)) or TGT_VOID_OWN.match(my.group(1))):      # v0.185 optional "You can target a <X> you control. Put a core from the Void to it."
+        return action_of(my.group(1), ctx)[0], True
     mo = TGT_VOID_OWN.match(s.strip())
     if mo and not re.search(r'\b(?:with|besides|except|other|another)\b', mo.group(1), re.I):      # v0.164 "Target one of your <X>. Put a core from the Void to it." (own side by wording)
         return action_of('Put %s core from the Void to one of your %s.' % (mo.group(2), mo.group(1)), ctx)

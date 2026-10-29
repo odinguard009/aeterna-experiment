@@ -5474,7 +5474,7 @@
   "families": [
    "Armored Fish"
   ],
-  "text": "[LV1-2] (When Destroyed by the Opponent)\nPut a core from the Void to your Reserve.\n\n[LV2] (Opposing Attack Step) (Can't Stack)\nWhen your Life is reduced by the opponent, you can target an \"Armored Fish\" family Spirit you control. Put a core from the Void to it.",
+  "text": "[LV1][LV2] (When Destroyed by the Opponent)\nPut a core from the Void to your Reserve.\n\n[LV2] (Opposing Attack Step) (Can't Stack)\nWhen your Life is reduced by the opponent, you can target an \"Armored Fish\" family Spirit you control. Put a core from the Void to it.",
   "image": "26RBS01-099.png",
   "block": "A",
   "saga": 50,
@@ -5494,13 +5494,30 @@
       "n": 1
      }
     ]
+   },
+   {
+    "trigger": "OWN_LIFE_HIT",
+    "lv": [
+     2
+    ],
+    "noStack": true,
+    "optional": true,
+    "actions": [
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "anySpirit",
+      "match": {
+       "family": [
+        "Armored Fish"
+       ]
+      }
+     }
+    ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (Opposing Attack Step) (Can't Stack) When your Life is reduced by the opponent, you can target an \"Armored Fish\" family Spirit you control. Put a core from the Void to it."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-100",
@@ -10326,7 +10343,7 @@
    "Topaz",
    "Alpermit"
   ],
-  "text": "(Legacy)\n[LV1-2] (Your Attack Step) (Once Per Turn)\nWhen your \"Wailwraith\"/\"Hexcraft\" family Spirit attacks, target an opposing Spirit. During this turn, give it -2000 BP. Then, if it has 0 BP, destroy it.",
+  "text": "(Legacy)\n[LV1][LV2] (Your Attack Step) (Once Per Turn)\nWhen your \"Wailwraith\"/\"Hexcraft\" family Spirit attacks, target an opposing Spirit. During this turn, give it -2000 BP. Then, if it has 0 BP, destroy it.",
   "image": "26RBS02-062.png",
   "block": "A",
   "saga": 50,
@@ -10334,11 +10351,32 @@
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (Your Attack Step) (Once Per Turn) When your \"Wailwraith\"/\"Hexcraft\" family Spirit attacks, target an opposing Spirit. During this turn, give it -2000 BP. Then, if it has 0 BP, destroy it."
+  "effects": [
+   {
+    "trigger": "ALLY_ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "match": {
+     "family": [
+      "Wailwraith",
+      "Hexcraft"
+     ],
+     "noUlt": true
+    },
+    "once": true,
+    "actions": [
+     {
+      "do": "BP_MINUS",
+      "n": 2000,
+      "zeroDestroy": true
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS02-063",
@@ -19907,16 +19945,57 @@
   "families": [
    "GAIM"
   ],
-  "text": "[LV1-2] (Your Attack Step)\nAll your attacking \"GAIM\" family Spirits gain +1000 BP.\n\n[LV2] (Your Attack Step) (Can't Stack)\nWhen only the opposing Spirit is destroyed by comparing BP with your \"GAIM\" family Spirit, you can target an opposing 5000 BP or less Spirit. Destroy it.",
+  "text": "[LV1][LV2] (Your Attack Step)\nAll your attacking \"GAIM\" family Spirits gain +1000 BP.\n\n[LV2] (Your Attack Step) (Can't Stack)\nWhen only the opposing Spirit is destroyed by comparing BP with your \"GAIM\" family Spirit, you can target an opposing 5000 BP or less Spirit. Destroy it.",
   "image": "26RCB01-056.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (Your Attack Step) All your attacking \"GAIM\" family Spirits gain +1000 BP.",
-   "[LV2] (Your Attack Step) (Can't Stack) When only the opposing Spirit is destroyed by comparing BP with your \"GAIM\" family Spirit, you can target an opposing 5000 BP or less Spirit. Destroy it."
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "bp": 1000,
+    "to": "own",
+    "attackingOnly": true,
+    "if": {
+     "attackStep": true,
+     "oppTurn": false
+    },
+    "match": {
+     "family": [
+      "GAIM"
+     ]
+    },
+    "lv": [
+     1,
+     2
+    ]
+   },
+   {
+    "trigger": "ALLY_BATTLE_WIN",
+    "lv": [
+     2
+    ],
+    "match": {
+     "family": [
+      "GAIM"
+     ],
+     "noUlt": true
+    },
+    "attackingOnly": true,
+    "optional": true,
+    "actions": [
+     {
+      "do": "DESTROY",
+      "bpLe": 5000
+     }
+    ],
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": false
+    }
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RCB01-057",
