@@ -559,3 +559,14 @@ test('K-44 Allurement: REVEAL_PICK peek sets prev only for a matching card and r
     return out; })()`);
   assert.deepEqual(r, [[true, true], [false, true]]);
 });
+
+test('K-45 Heliodon: match.typeAny accepts Spirit/Nexus but not Magic', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    P.cpu = true; const f = Object.keys(BS.CARDS).filter(k => (BS.CARDS[k].families || []).includes('Wollaguard'));
+    const out = [];
+    for (const ty of ['Spirit', 'Magic']) { P.deck.unshift(BS.mkInst(f.find(k => BS.CARDS[k].type === ty))); const c = { p: P, opp: O, src: BS.mkInst('26RBS03-040'), ctx: {} };
+      await BS.runActions(c, { actions: [{ do: 'REVEAL_PICK', n: 1, match: { family: ['Wollaguard'], typeAny: ['Spirit', 'Nexus'] }, rest: 'bottom' }] }); out.push(P.hand.length); }
+    return out; })()`);
+  assert.deepEqual(r, [1, 1]);
+});

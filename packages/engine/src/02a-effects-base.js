@@ -41,6 +41,7 @@ function fxMatch(card, m, inst) {
   if (m.costLe != null && card.cost > m.costLe) return false;      // v0.69 "Cost N or less" (reveal effects)
   if (m.costIn && !m.costIn.includes(card.cost)) return false;      // v0.168 "Cost 6/8" = cost 6 or 8
   if (m.type && card.type !== m.type) return false;
+  if (m.typeAny && !m.typeAny.includes(card.type)) return false;      // v0.196 "Spirit card/Nexus card" (a list of card types)
   if (m.team && !cardTeams(card).includes(m.team)) return false;      // v0.184 (schema 55) "a Red Stella Spirit card": the [Team: X] head line
   if (m.bpLe != null && !(inst && bpOf(inst) <= m.bpLe)) return false;      // v0.183 "an opposing 6000 BP or less Spirit" (current BP; needs the instance)
   if (m.symbolsGe != null && !((card.symbols || 0) >= m.symbolsGe)) return false;      // v0.78 "your Spirit with two or more symbols"
