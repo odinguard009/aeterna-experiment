@@ -39461,18 +39461,6 @@
   "M_OPTIONAL",
   "T_START_ATTACK"
  ],
- "26RDB01-006": [
-  "A_BP_PLUS",
-  "A_EXHAUST",
-  "C_LEVEL",
-  "S1_ALL_HAVE",
-  "T_BLOCKS"
- ],
- "26RDB01-009": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "S1_ALL_HAVE"
- ],
  "26RDB01-010": [
   "A_EXHAUST",
   "A_REFRESH",
@@ -39613,12 +39601,6 @@
   "C_LEVEL",
   "M_OPTIONAL",
   "T_SUMMONED"
- ],
- "26RDB01-044": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "K_STANDARD_INVOKE",
-  "S1_ALL_HAVE"
  ],
  "26RDB01-045": [
   "A_REFRESH",

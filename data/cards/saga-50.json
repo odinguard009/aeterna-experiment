@@ -21634,18 +21634,55 @@
    "Diva",
    "Stage Style"
   ],
-  "text": "[Teams: Red Stella/Shiny Hearts]\n\n[LV1-2] (When Blocks)\nIf all your Spirits/Nexuses have Red Stella, target an opposing 3000 BP or less Spirit. Destroy it.\n\n[LV2]\nIf you control two or more exhausted Red Stella Spirits, all your \"Noa Fleur\"/\"Diana Fleur\" gain +2000 BP.",
+  "text": "[Teams: Red Stella/Shiny Hearts]\n\n[LV1][LV2] (When Blocks)\nIf all your Spirits/Nexuses have Red Stella, target an opposing 3000 BP or less Spirit. Destroy it.\n\n[LV2]\nIf you control two or more exhausted Red Stella Spirits, all your \"Noa Fleur\"/\"Diana Fleur\" gain +2000 BP.",
   "image": "26RDB01-006.png",
   "block": "A",
   "saga": 50,
   "ex_symbols": 1,
-  "fxComplete": false,
-  "residual": [
-   "[Teams: Red Stella/Shiny Hearts]",
-   "[LV1-2] (When Blocks) If all your Spirits/Nexuses have Red Stella, target an opposing 3000 BP or less Spirit. Destroy it.",
-   "[LV2] If you control two or more exhausted Red Stella Spirits, all your \"Noa Fleur\"/\"Diana Fleur\" gain +2000 BP."
+  "effects": [
+   {
+    "trigger": "BLOCKS",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "bpLe": 3000,
+      "if": {
+       "allHave": {
+        "team": "Red Stella"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 2000,
+    "to": "own",
+    "if": {
+     "ctrl": {
+      "n": 2,
+      "type": "Spirit",
+      "team": "Red Stella",
+      "exhausted": true
+     }
+    },
+    "match": {
+     "name": [
+      "Noa Fleur",
+      "Diana Fleur"
+     ]
+    },
+    "lv": [
+     2
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RDB01-007",
@@ -21816,13 +21853,14 @@
    "Diva",
    "Stage Style"
   ],
-  "text": "[Team: Red Stella]\n\n[LV1-2] Clash (During Attack)\nOpposing Spirits must block if possible.\n\n[LV2] (True Release) (Your Attack Step)\nIf all your Spirits/Nexuses have Red Stella, give all your Spirits +2000 BP.",
+  "text": "[Team: Red Stella]\n\n[LV1][LV2] Clash (During Attack)\nOpposing Spirits must block if possible.\n\n[LV2] (True Release) (Your Attack Step)\nIf all your Spirits/Nexuses have Red Stella, give all your Spirits +2000 BP.",
   "image": "26RDB01-009.png",
   "block": "A",
   "saga": 50,
   "mechanics": [
    "Clash"
   ],
+  "trueRelease": true,
   "effects": [
    {
     "trigger": "STATIC",
@@ -21832,14 +21870,25 @@
      1,
      2
     ]
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 2000,
+    "to": "own",
+    "if": {
+     "attackStep": true,
+     "oppTurn": false,
+     "allHave": {
+      "team": "Red Stella"
+     }
+    },
+    "lv": [
+     2
+    ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[Team: Red Stella]",
-   "[LV2] (True Release) (Your Attack Step) If all your Spirits/Nexuses have Red Stella, give all your Spirits +2000 BP."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RDB01-010",
@@ -23306,17 +23355,55 @@
    "Diva",
    "Stage Style"
   ],
-  "text": "[Team: Blue Beat]\n\n[LV1-2]\nIf all your Spirits/Nexuses have Blue Beat, this Spirit gains +4000 BP.\n\n[LV2] (Either Attack Step) {{Invoke|Flash}}\nReturn one of your Blue Beat Nexuses to the deckbottom ▶ Target an opposing Cost 3 or less Spirit. Destroy it.",
+  "text": "[Team: Blue Beat]\n\n[LV1][LV2]\nIf all your Spirits/Nexuses have Blue Beat, this Spirit gains +4000 BP.\n\n[LV2] (Either Attack Step) {{Invoke|Flash}}\nReturn one of your Blue Beat Nexuses to the deckbottom ▶ Target an opposing Cost 3 or less Spirit. Destroy it.",
   "image": "26RDB01-044.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[Team: Blue Beat]",
-   "[LV1-2] If all your Spirits/Nexuses have Blue Beat, this Spirit gains +4000 BP.",
-   "[LV2] (Either Attack Step) {{Invoke|Flash}} Return one of your Blue Beat Nexuses to the deckbottom ▶ Target an opposing Cost 3 or less Spirit. Destroy it."
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "bp": 4000,
+    "to": "self",
+    "if": {
+     "allHave": {
+      "team": "Blue Beat"
+     }
+    },
+    "lv": [
+     1,
+     2
+    ]
+   },
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN",
+     "FLASH"
+    ],
+    "when": "eitherAttack",
+    "once": false,
+    "lv": [
+     2
+    ],
+    "cost": {
+     "returnOwn": {
+      "kind": "nexus",
+      "match": {
+       "team": "Blue Beat"
+      }
+     }
+    },
+    "actions": [
+     {
+      "do": "DESTROY",
+      "costLe": 3
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RDB01-045",

@@ -622,6 +622,12 @@ def spirit_paragraph_main(p, card, rush):
             if mm.group('cn'): e['match'] = dict(e.get('match') or {}, **{'costGe' if mm.group('cd').lower() == 'more' else 'costLe': int(mm.group('cn'))})      # v0.185
             if lv: e['lv'] = lv
             return [e], flags
+        mm = re.match(r'^\(Your Attack Step\)\s*If (?P<c>all your [^,]+), (?:give all your Spirits|all your Spirits (?:gain|get)) \+(?P<n>\d[\d,]*) ?BP\.?$', p, re.I)
+        ac = all_have_cond(mm.group('c')) if mm else None
+        if ac:      # v0.185 conditional static BP: step + allHave
+            e = {'trigger': 'STATIC', 'bp': bp(mm.group('n')), 'to': 'own', 'if': dict(ATTACK_STEP['(Your Attack Step)'], **ac)}
+            if lv: e['lv'] = lv
+            return [e], flags
         mm = re.match(r'^\(Your Attack Step\)\s*All your attacking (?:"(?P<fam>[^"]+)" family |(?P<team>' + TEAMS + r') )Spirits (?:gain|get) \+(?P<n>\d[\d,]*) ?BP\.?$', p, re.I)
         if mm:      # v0.185 "All your attacking <family/team> Spirits gain +N BP" = STATIC own + attackingOnly (engine staticBp: only the attacker)
             e = {'trigger': 'STATIC', 'bp': bp(mm.group('n')), 'to': 'own', 'attackingOnly': True, 'if': dict(ATTACK_STEP['(Your Attack Step)']), 'match': {'family': [mm.group('fam')]} if mm.group('fam') else {'team': mm.group('team').title()}}
@@ -732,6 +738,12 @@ def spirit_paragraph_main(p, card, rush):
         if re.fullmatch(r'(?:\(Your Main Step\)\s*)?When this Spirit becomes the target of Tribute, by exhausting this Spirit, (?:treat all cores on this Spirit as being sent to the designated place|(?:you can )?summon without (?:using )?Tribute)\.?', p, re.I):      # v0.183 STATIC TRIBUTE_SAFE (engine tributePay)
             if rush: raise Review('Rush with a Tribute flag')
             e = [{'trigger': 'STATIC', 'flag': 'TRIBUTE_SAFE', 'to': 'self'}]
+            if lv: e[0]['lv'] = lv
+            return e, flags
+        mm = re.match(r'^If (you control [^,]+?), all your (?:"([^"]+)" family |((?:"[^"]+"/)+"[^"]+") )?Spirits? (?:gain|get) \+(\d[\d,]*) ?BP\.?$', p, re.I) or re.match(r'^If (you control [^,]+?), all your ((?:"[^"]+"/)*"[^"]+") (?:gain|get) \+(\d[\d,]*) ?BP\.?$', p, re.I)
+        cond = (COND_HOOK(mm.group(1)) if COND_HOOK else None) if mm else None
+        if cond and mm.re.groups == 3:      # v0.185 STATIC BP for named Spirits while a condition holds (no step window)
+            e = [{'trigger': 'STATIC', 'bp': bp(mm.group(3)), 'to': 'own', 'if': cond, 'match': {'name': re.findall(r'"([^"]+)"', mm.group(2))}}]
             if lv: e[0]['lv'] = lv
             return e, flags
         mm = re.match(r'^While (you control [^,]+?), (?:this Spirit is treated as being (?:at )?|treat this Spirit as being (?:at |on )?)\[?LV([23])\]?\.?$', p, re.I)
@@ -1048,6 +1060,8 @@ def invoke_cost(x, card):
     if m and m.group(1).lower() == own: return {'returnSelf': True}
     m = re.match(r'^return one of your "([^"]+)" family (nexus(?:es)?|spirits?) to the deckbottom$', L, re.I)
     if m: return {'returnOwn': {'kind': 'nexus' if m.group(2).lower().startswith('nexus') else 'spirit', 'match': {'family': [m.group(1)]}}}
+    m = re.match(r'^return one of your (' + TEAMS + r') (nexus(?:es)?|spirits?) to the deckbottom$', L, re.I)
+    if m: return {'returnOwn': {'kind': 'nexus' if m.group(2).lower().startswith('nexus') else 'spirit', 'match': {'team': m.group(1).title()}}}      # v0.185 team match (schema 55)
     raise Review('Invoke cost: ' + L[:80])
 
 
