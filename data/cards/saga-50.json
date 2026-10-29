@@ -15500,15 +15500,59 @@
   "block": "A",
   "saga": 50,
   "ex_symbols": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Summoned) The opponent targets a refreshed Spirit they control. Exhaust it. If you control any Cost 8 or more \"Primeval Floodragon\" family Spirit, heavy exhaust it instead."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "bicon": [
    "A"
   ],
-  "rcode": "R"
+  "rcode": "R",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "ctrl": {
+      "type": "Both",
+      "team": "Primeval Floodragon",
+      "costGe": 8
+     }
+    },
+    "actions": [
+     {
+      "do": "EXHAUST_OPP",
+      "n": 1,
+      "oppChooses": true,
+      "heavy": true
+     }
+    ]
+   },
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "not": {
+      "ctrl": {
+       "type": "Both",
+       "team": "Primeval Floodragon",
+       "costGe": 8
+      }
+     }
+    },
+    "actions": [
+     {
+      "do": "EXHAUST_OPP",
+      "n": 1,
+      "oppChooses": true
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RBS03-029",

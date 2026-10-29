@@ -500,3 +500,12 @@ test('K-38 Lupes: REVEAL_PICK discard sends the picked card to the Trash, not th
     return [P.hand.length - h, P.trash.length - t]; })()`);
   assert.deepEqual(r, [0, 1]);
 });
+
+test('K-39 Galesion: EXHAUST_OPP heavy+oppChooses heavy exhausts a refreshed opposing Spirit', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const a = opp(4, 3000); a.exhausted = false;
+    await BS.runActions({ p: P, opp: O, src: BS.mkInst('26RBS03-028'), ctx: {} }, { actions: BS.CARDS['26RBS03-028'].effects[0].actions });
+    return [a.exhausted, !!a.heavy]; })()`);
+  assert.deepEqual(r, [true, true]);
+});

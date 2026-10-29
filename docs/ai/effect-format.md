@@ -138,3 +138,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v98 (v0.196.0, Lane K): `TREAT_LV2 {self:true,battle:true}` ("during this battle, this Spirit is treated as LV2"; inst.lv2Battle = G.battleNo, read by lvIndex while a battle runs) and condition `firstBlock` (owner.blocksThisTurn <= 1; counter bumped when a block is declared).
 - v99 (v0.196.0, Lane K): `REFRESH_SPIRIT.self:true` ("this Spirit can refresh": refreshes the source Spirit when it is exhausted; no target pick).
 - v100 (v0.196.0, Lane K): `REVEAL_PICK.discard:true` (with `rest:"bottom"`: "discard a <match> card among them"; the picked card goes to the Trash, the rest to the deckbottom).
+- v101 (v0.196.0, Lane K): `EXHAUST_OPP.heavy:true` (with `oppChooses`: "heavy exhaust it instead"; the chosen Spirit also gets the heavy mark).

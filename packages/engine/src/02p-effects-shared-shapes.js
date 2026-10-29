@@ -90,7 +90,7 @@ function allHaveOK(owner, q) {
     c.ctx.bpmHit = (c.ctx.bpmHit || []).concat(hit);
   };
   const E = FX_ACTIONS.EXHAUST_OPP, eChk = E.chk, eCands = E.cands, eRun = E.run, eTxt = E.txt;
-  E.chk = a => eChk(a) && (a.oppChooses == null || a.oppChooses === true);
+  E.chk = a => eChk(a) && (a.oppChooses == null || a.oppChooses === true) && (a.heavy == null || (a.heavy === true && a.oppChooses === true));
   E.txt = a => a.oppChooses ? `the opponent chooses ${a.n === 1 ? 'one' : a.n} of their refreshed Spirits; exhaust ${a.n === 1 ? 'it' : 'them'}` : eTxt(a);
   E.run = async (c, a) => {
     if (!a.oppChooses) return eRun(c, a);
@@ -101,7 +101,7 @@ function allHaveOK(owner, q) {
       const t = c.opp.cpu ? L.slice().sort((x, y) => (bpOf(x) - bpOf(y)) || (x.cores - y.cores))[0]
         : await fxPickTarget(Object.assign({}, c, { p: c.opp }), L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Choose one of your refreshed Spirits to exhaust (glowing).`);
       if (!t) break;
-      t.exhausted = true; log(`${CARDS[c.src.id].name}: ${poss(c.opp)} ${CARDS[t.id].name} is exhausted (the opponent chose it).`);
+      t.exhausted = true; if (a.heavy) setHeavy(t); log(`${CARDS[c.src.id].name}: ${poss(c.opp)} ${CARDS[t.id].name} is ${a.heavy ? 'heavy ' : ''}exhausted (the opponent chose it).`);
     }
   };
   const R = FX_ACTIONS.BOUNCE_OPP, rChk = R.chk, rCands = R.cands, rTxt = R.txt;
