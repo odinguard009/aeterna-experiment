@@ -314,3 +314,13 @@ test('K-21 Zeztz Exdream: destroy 1 exhausted Spirit, 2 via Form Change', async 
     return [await zrun(false), await zrun(true)]; })()`);
   assert.deepEqual(r, [2, 1]);
 });
+
+test('K-22 Luminous Recovery Main: Void core to Life once per card name per turn', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const main = id => BS.runActions({ p: P, opp: O, src: BS.mkInst(id), ctx: {} }, { actions: BS.CARDS[id].magic.by.MAIN.actions });
+    P.void = 3; const l0 = P.life; await main('26RBS03-093'); const l1 = P.life;
+    P.magicTurn = { turn: G.turnNo, cards: ['26RBS03-093'] }; await main('26RBS03-093');
+    return [l1 - l0, P.life - l1]; })()`);
+  assert.deepEqual(r, [1, 0]);
+});
