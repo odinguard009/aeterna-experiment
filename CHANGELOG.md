@@ -4,6 +4,13 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.187.0
+- Lane: U/I
+- **R1: official numbers applied to the card data (cost, reduction, level BP/cores, Brave numbers)**
+  - New `tools/apply_official.py` (dry run by default, one field per run, idempotent, files keep their layout). Applied: cost 12 cards, reduction 1,476 records (data/cards + data/import), level BP/cores 63, Brave 3.
+  - Left out on purpose: Nexus levels (the page lists a threshold the library models differently), level rows with gaps or falling values (misread tables, e.g. BS02-017), and colours (340 records): applying the official `colors` list broke the schema/pack tests, so the multi-colour model stays open and is not changed.
+  - Official now wins over Fandom in four test pins (BS75-001 Lv1 BP 1000, BS75-063 reduction red 3, BS68-012 and BS75-001 levels in the deck compare). A number match still does not prove effects are correct.
+
 ## v0.186.0
 - Lane: U/I
 - **R0: official card data saved in the repo (8,628 of 8,709 cards)**
