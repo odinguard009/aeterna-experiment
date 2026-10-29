@@ -39479,13 +39479,6 @@
   "C_LEVEL",
   "T_ATTACKS"
  ],
- "26RDB01-011": [
-  "A_EXHAUST",
-  "A_REFRESH",
-  "S1_ALL_HAVE",
-  "S_MUST_BLOCK",
-  "T_ATTACKS"
- ],
  "26RDB01-012": [
   "A_TRASH_TO_RESERVE",
   "C_LEVEL",
@@ -39703,11 +39696,6 @@
  "26RDB01-063": [
   "M_REPLACEMENT"
  ],
- "26RDB01-X01": [
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_ALLY_BLOCKED"
- ],
  "26RDB01-X02": [
   "A_BANISH",
   "A_DESTROY_TOTAL",
@@ -39802,12 +39790,6 @@
   "M_OPTIONAL",
   "M_THEN",
   "T_SUMMONED"
- ],
- "26RSD03-007": [
-  "A_EXHAUST",
-  "M_OPTIONAL",
-  "S_MUST_BLOCK",
-  "T_ATTACKS"
  ],
  "26RSD03-010": [
   "A_BP_PLUS",

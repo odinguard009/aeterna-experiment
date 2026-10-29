@@ -40,3 +40,12 @@ test('V185-04 blockerBpLe passes only when the blocker BP is at or below the lim
     return [BS.fxIf(P, O, { blockerBpLe: b }, { blocker: d }), BS.fxIf(P, O, { blockerBpLe: b - 1 }, { blocker: d }), BS.fxIf(P, O, { blockerBpLe: b }, {})];`);
   assert.deepEqual(r, [true, false, false]);
 });
+
+test('V185-05 MUST_BLOCK_OPP marks an exhausted target for this battle and needs an attack', async () => {
+  const r = await ev(`const a = sp('BS01-035', P, 3), d = sp('BS01-042', O, 1); d.exhausted = true; G.battleNo = 7;
+    const run = x => BS.FX_ACTIONS.MUST_BLOCK_OPP.run({ p: P, opp: O, src: a, ctx: {} }, x);
+    G.attacker = null; await run({ state: 'exhausted' }); const none = d.mustB;
+    G.attacker = a; await run({ state: 'refreshed' }); const wrongState = d.mustB;
+    await run({ state: 'exhausted' }); return [none, wrongState, d.mustB, d.blockExB];`);
+  assert.deepEqual(r, [undefined, undefined, 7, 7]);
+});

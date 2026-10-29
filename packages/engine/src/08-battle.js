@@ -45,8 +45,9 @@ async function doBattleInner(attKey, att) {
      attacker's effects is not bound by its "must block" (FAQ Q4: unaffected > the effect) */
   const bound = blockers.filter(b => !fxImmune(D, b, { p: A, src: att }));
   const must = bound.length > 0 && flagActive(A, 'MUST_BLOCK', att);
+  const marked = bound.filter(b => b.mustB === G.battleNo);      // v0.185 MUST_BLOCK_OPP: only the marked Spirits are bound (and are the only choice)
   if (must) log(`${CARDS[att.id].name}: opposing Spirits must block if possible.`);
-  if (blockers.length) blk = await askBlock(att, D, blockers, must, bound);   // v0.105.0 (M6 step 1): CPU seats answer the port too; cpuAnswer routes this pick to the same cpuChooseBlock
+  if (blockers.length) blk = await askBlock(att, D, marked.length ? marked : blockers, must || marked.length > 0, marked.length ? marked : bound);   // v0.105.0 (M6 step 1): CPU seats answer the port too; cpuAnswer routes this pick to the same cpuChooseBlock
   if (blk && !(await payAbTax(D, blk, 'block'))) blk = null;
   if (blk) {
     blk.exhausted = true; G.blocker = blk;

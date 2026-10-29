@@ -544,6 +544,10 @@ def spirit_paragraph_main(p, card, rush):
     if mo: p = mo.group(1) + ' ' + p[mo.end():]      # v0.185 '(During Attack) (Once Per Turn) When ...': the limit is read after the head matched
     mb = None if trig else re.match(r'^\((?:During Attack|When Attacks)\)\s*When blocked by an opposing (\d[\d,]*) BP or less Spirit,\s*', p, re.I)
     if mb: trig, extra, p = ['ALLY_BLOCKED'], {'self': True, 'if': {'blockerBpLe': int(mb.group(1).replace(',', ''))}}, p[mb.end():]      # v0.185 blocker BP condition (schema v63)
+    mb = None if trig else re.match(r'^\(Your Attack Step\)\s*(\(Once Per Turn\)\s*)?When your (?:(?P<team>Red Stella) )Spirit is blocked by an opposing (?P<bp>\d[\d,]*) BP or less Spirit,\s*', p)
+    if mb:      # v0.185 ALLY_BLOCKED + blockerBpLe (schema v63)
+        trig, tmatch, extra, p = ['ALLY_BLOCKED'], {'noUlt': True, 'team': mb.group('team')}, dict(extra or {}, **{'if': {'blockerBpLe': int(mb.group('bp').replace(',', ''))}}), p[mb.end():]
+        if mb.group(1): extra['once'] = True
     for rx, ts, ex in ([] if trig else BATTLE_HEADS):
         mm = re.match(r'^' + rx + r'\s*', p)
         if mm: trig, extra, p = ts, ex, p[mm.end():]; break

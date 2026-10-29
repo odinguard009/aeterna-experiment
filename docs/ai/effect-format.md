@@ -101,3 +101,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v61 (v0.185.0, Lane K): new action `DRAW_UNTIL {n}` (draw until the Hand has n cards).
 - v62 (v0.185.0, Lane K): `if.firstAttack` (true = the owner's first attack of the turn, false = second or subsequent; counted when the attack is declared).
 - v63 (v0.185.0, Lane K): `if.blockerBpLe` (ALLY_BLOCKED: the blocker has N BP or less).
+- v64 (v0.185.0, Lane K): new action `MUST_BLOCK_OPP {bpLe?, state?}` (target an opposing Spirit; this battle it must block if possible, even while exhausted).

@@ -46883,6 +46883,7 @@
   "T_ATTACKS",
   "A_REFRESH",
   "A_EXHAUST",
+  "C_LEVEL",
   "S_MUST_BLOCK",
   "S1_ALL_HAVE"
  ],

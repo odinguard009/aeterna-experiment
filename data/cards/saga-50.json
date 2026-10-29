@@ -21906,19 +21906,37 @@
    "Diva",
    "Stage Style"
   ],
-  "text": "(Legacy)\n[Teams: Red Stella/CoZ12]\n\n[LV1-2] (When Attacks)\nIf all your Spirits/Nexuses have Red Stella, target an opposing 5000 BP or less Spirit that is in refreshed state. During this battle, it must block if possible even while exhausted.",
+  "text": "(Legacy)\n[Teams: Red Stella/CoZ12]\n\n[LV1][LV2] (When Attacks)\nIf all your Spirits/Nexuses have Red Stella, target an opposing 5000 BP or less Spirit that is in refreshed state. During this battle, it must block if possible even while exhausted.",
   "image": "26RDB01-011.png",
   "block": "A",
   "saga": 50,
   "mechanics": [
    "Legacy"
   ],
-  "fxComplete": false,
-  "residual": [
-   "(Legacy) [Teams: Red Stella/CoZ12]",
-   "[LV1-2] (When Attacks) If all your Spirits/Nexuses have Red Stella, target an opposing 5000 BP or less Spirit that is in refreshed state. During this battle, it must block if possible even while exhausted."
+  "legacy": true,
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "MUST_BLOCK_OPP",
+      "bpLe": 5000,
+      "state": "refreshed",
+      "if": {
+       "allHave": {
+        "team": "Red Stella"
+       }
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RDB01-012",
@@ -24093,13 +24111,14 @@
    "Diva",
    "Stage Style"
   ],
-  "text": "[Team: Red Stella]\n\n[LV1-2] Clash (During Attack)\nOpposing Spirits must block if possible.\n\n[LV2] (True Release) (Your Attack Step) (Once Per Turn)\nWhen your Red Stella Spirit is blocked by an opposing 5000 BP or less Spirit, you can target a Red Stella card in your Trash. Return it to the Hand.",
+  "text": "[Team: Red Stella]\n\n[LV1][LV2] Clash (During Attack)\nOpposing Spirits must block if possible.\n\n[LV2] (True Release) (Your Attack Step) (Once Per Turn)\nWhen your Red Stella Spirit is blocked by an opposing 5000 BP or less Spirit, you can target a Red Stella card in your Trash. Return it to the Hand.",
   "image": "26RDB01-X01.png",
   "block": "A",
   "saga": 50,
   "mechanics": [
    "Clash"
   ],
+  "trueRelease": true,
   "effects": [
    {
     "trigger": "STATIC",
@@ -24109,14 +24128,34 @@
      1,
      2
     ]
+   },
+   {
+    "trigger": "ALLY_BLOCKED",
+    "lv": [
+     2
+    ],
+    "match": {
+     "noUlt": true,
+     "team": "Red Stella"
+    },
+    "if": {
+     "blockerBpLe": 5000
+    },
+    "once": true,
+    "optional": true,
+    "actions": [
+     {
+      "do": "RETURN_TRASH",
+      "anyType": true,
+      "match": {
+       "team": "Red Stella"
+      }
+     }
+    ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[Team: Red Stella]",
-   "[LV2] (True Release) (Your Attack Step) (Once Per Turn) When your Red Stella Spirit is blocked by an opposing 5000 BP or less Spirit, you can target a Red Stella card in your Trash. Return it to the Hand."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RDB01-X02",
@@ -26376,12 +26415,26 @@
   "families": [
    "Armored Fish"
   ],
-  "text": "[LV1-2] (When Attacks)\nYou can target an opposing exhausted Spiri. During this battle, it must block if possible even while exhausted.\n\n[LV2] (True Release) (During Attack)\nThis Spirit gains +2000 BP.",
+  "text": "[LV1][LV2] (When Attacks)\nYou can target an opposing exhausted Spiri. During this battle, it must block if possible even while exhausted.\n\n[LV2] (True Release) (During Attack)\nThis Spirit gains +2000 BP.",
   "image": "26RSD03-007.png",
   "block": "A",
   "saga": 50,
   "trueRelease": true,
   "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "MUST_BLOCK_OPP",
+      "state": "exhausted"
+     }
+    ]
+   },
    {
     "trigger": "STATIC",
     "bp": 2000,
@@ -26392,11 +26445,8 @@
     ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Attacks) You can target an opposing exhausted Spiri. During this battle, it must block if possible even while exhausted."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RSD03-008",

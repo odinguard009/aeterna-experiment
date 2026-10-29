@@ -362,6 +362,12 @@ def own_grammar(s, ctx=None):
         if not sel or sel['kind'] != 'spirit' or sel['f']: raise Review('v2 bp minus: ' + m.group(1)[:40])
         return [{'do': 'BP_MINUS', 'n': v1.bpm(m.group(2)), 'zeroDestroy': True}]
     if re.fullmatch(r"target an opposing exhausted spirit\.\s*the targeted spirit can't refresh on the next \(opposing refresh step\)", x, re.I): return [{'do': 'NO_REFRESH_OPP'}]      # v0.172 Janome-Shielder
+    m = re.fullmatch(r"(?:(?:you can|you may) )?target an opposing (?:(\d[\d,]*) BP or less |(exhausted) )?spirit?(?: that is in (refreshed) state)?\.\s*during this battle, it must block if possible even while exhausted", x, re.I)      # v0.185 MUST_BLOCK_OPP (schema 64); the 'Spiri.' typo is in the source text
+    if m:
+        a_ = {'do': 'MUST_BLOCK_OPP'}
+        if m.group(1): a_['bpLe'] = int(m.group(1).replace(',', ''))
+        if m.group(2) or m.group(3): a_['state'] = 'exhausted' if m.group(2) else 'refreshed'
+        return [a_]
     m = re.match(r'^target an opposing spirit\.\s*during this battle, that spirit can\'t block$', x, re.I)
     if m: return [{'do': 'CANT_BLOCK_OPP'}]      # v0.172 targeted "can't block this battle"
     if re.fullmatch(r"(?:during this battle, )?this spirit can't be blocked", x, re.I): return [{'do': 'CANT_BE_BLOCKED_BY', 'all': True}]      # v0.185
@@ -388,6 +394,8 @@ def own_grammar(s, ctx=None):
     m = re.match(r'^(?:(?:you can|you may) )?return an? ((?:"[^"]+"/)*"[^"]+") (?:card )?from your trash to (?:the|your) hand$', x, re.I)
     if m:      # v0.76: '"A"/"B"' = any card whose name includes A or B (RETURN_TRASH anyType + match.name)
         return [{'do': 'RETURN_TRASH', 'anyType': True, 'match': {'name': re.findall(r'"([^"]+)"', m.group(1))}}]
+    m = re.fullmatch(r'(?:(?:you can|you may) )?target an? (Red Stella|Green Wave|Blue Beat|Yellow Rise) card in your trash\.\s*return it to (?:the|your) hand', x, re.I)      # v0.185 team card of any type (engine match.team, schema 55)
+    if m: return [{'do': 'RETURN_TRASH', 'anyType': True, 'match': {'team': m.group(1).title()}}]
     m = re.match(r'^target an? (?:cost (\d+) or (less|more) )?(?:(red|purple|green|white|yellow|blue) )?(?:"([^"]+)" family )?spirit card(?: with ([a-z]+(?: [a-z]+)?))? in your trash\.\s*return it to (?:the|your) hand$', x, re.I)
     if m and (m.group(1) or m.group(3) or m.group(4) or m.group(5)):      # v0.76: optional "Cost N or more"; v0.168: "or less", a colour and a keyword ("a Spirit card with Clash")
         mt = {}

@@ -168,6 +168,16 @@ Object.assign(FX_ACTIONS, {
       if (!t) { c.ctx.did = false; return; }
       t.blockExB = G.battleNo; log(`${CARDS[c.src.id].name}: ${poss(c.opp)} ${CARDS[t.id].name} can block even while exhausted during this battle.`);
     } } });
+/* v0.185 (schema 64) "Target an opposing [N BP or less | exhausted] Spirit [in refreshed state]. During this battle, it must block if possible even while exhausted": marks blockExB + mustB (08-battle binds it) */
+FX_ACTIONS.MUST_BLOCK_OPP = { chk: a => (a.bpLe == null || (Number.isInteger(a.bpLe) && a.bpLe >= 1000)) && (a.state == null || a.state === 'refreshed' || a.state === 'exhausted') && Object.keys(a).every(k => ['do', 'bpLe', 'state', 'if'].includes(k)),
+  txt: () => 'during this battle, an opposing Spirit must block if possible even while exhausted',
+  cands: (c, a) => c.opp.spirits.filter(t => (!a.bpLe || bpOf(t) <= a.bpLe) && (!a.state || t.exhausted === (a.state === 'exhausted')) && !fxImmune(c.opp, t)),
+  can: (c, a) => !!G.attacker && FX_ACTIONS.MUST_BLOCK_OPP.cands(c, a).length > 0,
+  run: async (c, a) => {
+    const L = G.attacker ? FX_ACTIONS.MUST_BLOCK_OPP.cands(c, a) : [], t = L.length && await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the opposing Spirit that must block this battle (glowing).`);
+    if (!t) { c.ctx.did = false; return; }
+    t.blockExB = t.mustB = G.battleNo; log(`${CARDS[c.src.id].name}: ${poss(c.opp)} ${CARDS[t.id].name} must block if possible, even while exhausted, during this battle.`);
+  } };
 // v0.172.0: marks on a targeted opposing Spirit: noRefreshT (skips the next opposing Refresh Step), noBlockB (can't block this battle)
 const fxOppMark = (k, key, f, val, ask, txt) => ({ chk: () => true, txt: () => txt, cands: c => c.opp.spirits.filter(t => f(t) && !fxImmune(c.opp, t)),
   can: c => FX_ACTIONS[k].cands(c).length > 0,
