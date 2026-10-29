@@ -111,7 +111,7 @@ function bounceCase(a) {
 }
 
 function bpMinusCase(a) {
-  if (!only(a, ['n', 'zeroDestroy', 'nPer'])) return null;
+  if (!only(a, ['n', 'zeroDestroy', 'nPer', 'nLegacy'])) return null;
   return { fix: [{ cost: 3, bp: a.n + 1000 }, { cost: 3, bp: a.n }], body: `let t = sp(${J(sid(3, a.n + 1000))}, O);
       await run(src, RA); if (BS.bpOf(t) !== 1000) return 'BP after -' + A.n + ' is ' + BS.bpOf(t) + ', want 1000'; if (gone(t)) return 'a Spirit with BP left was destroyed';
       ${PRE_RESET} t = sp(${J(sid(3, a.n))}, O); await run(src, RA);

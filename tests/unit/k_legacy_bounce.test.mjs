@@ -287,3 +287,20 @@ test('K-19 NO_BLOCK_INFERIOR (Lizardman) and perReserve BP (Gowsilvia static, Bl
     return [lo, hi, b1 - b0, BS.bpOf(bp) - c0]; })()`);
   assert.deepEqual(r, [true, false, 3000, 3000]);
 });
+
+test('K-20 BP_MINUS.nLegacy (Aureole), shared once-per-turn exhaust (Kacomic), Form Change core send (Esprim Barrier)', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const plain = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && c.levels[0].bp === 4000 && !(c.effects && c.effects.length));
+    const aur = async (n) => { const t = BS.mkInst(plain.id); t.cores = 1; O.spirits.push(t); const s = BS.mkInst('26RBS02-053'); s.cores = 1; s.legacyN = n; P.spirits.push(s); await BS.fireFx(P, 'SUMMONED', s, {}); return O.spirits.includes(t); };
+    const keep = await aur(0), gone = !(await aur(2));
+    O.spirits.length = 0; const a = BS.mkInst(plain.id), b = BS.mkInst(plain.id); a.cores = b.cores = 1; O.spirits.push(a, b);
+    const k = BS.mkInst('BS63-034'); k.cores = 1; P.spirits.push(k);
+    await BS.fireFx(P, 'SUMMONED', k, {}); await BS.fireFx(P, 'ATTACKS', k, { attacker: k });
+    const ex = O.spirits.filter(x => x.exhausted).length;
+    O.spirits.length = 0; const c = BS.mkInst(plain.id), d = BS.mkInst(plain.id); c.cores = d.cores = 3; O.spirits.push(c, d);
+    const e = BS.mkInst('26RSD07-008'); e.cores = 1; P.spirits.push(e); await BS.fireFx(P, 'SUMMONED', e, {}); const none = c.cores + d.cores;
+    e.viaFC = true; await BS.fireFx(P, 'SUMMONED', e, {});
+    return [keep, gone, ex, none, c.cores + d.cores]; })()`);
+  assert.deepEqual(r, [true, true, 1, 6, 4]);
+});
