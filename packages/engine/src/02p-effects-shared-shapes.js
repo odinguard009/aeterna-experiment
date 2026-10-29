@@ -114,11 +114,13 @@ function allHaveOK(owner, q) {
 /* v0.195 Lane K: "Then, during this turn/battle, when only the opposing Spirit is destroyed by comparing BP with it, draw N / (your Attack Step) send a core from the opposing Life to the Reserve."
    Stamps the Spirit BP_TARGET just picked; the BATTLE_WIN event handler (08-battle) runs it via winRiderRun. */
 FX_ACTIONS.WIN_RIDER = {
-  chk: a => (a.draw == null || (Number.isInteger(a.draw) && a.draw >= 1 && a.draw <= 3)) && (a.lifeCore == null || a.lifeCore === true) && (a.draw != null) !== (a.lifeCore === true) && (a.battle == null || a.battle === true),
+  chk: a => (a.draw == null || (Number.isInteger(a.draw) && a.draw >= 1 && a.draw <= 3)) && (a.lifeCore == null || a.lifeCore === true) && (a.draw != null) !== (a.lifeCore === true) && (a.battle == null || a.battle === true) && (a.match == null || invokeMatchOK(a.match)),
   txt: a => `when only the opposing Spirit is destroyed by comparing BP with it this ${a.battle ? 'battle' : 'turn'}, ${a.draw ? 'draw ' + a.draw : "(your Attack Step) send a core from the opposing Life to the Reserve"}`,
-  can: () => true,
+  can: (c, a) => !a.match || ownTargetCands(c, a).length > 0,
   run: async (c, a) => {
-    const t = c.ctx.picked; if (!t) { c.ctx.did = false; return; }
+    let t = c.ctx.picked;      // a.match: no BP_TARGET before it, so pick one of your matching Spirits here
+    if (!t && a.match) { const L = ownTargetCands(c, a); t = !L.length ? null : c.p.cpu ? L[0] : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your Spirits (glowing).`); }
+    if (!t) { c.ctx.did = false; return; }
     t.winRider = { turn: G.turnNo, battleNo: a.battle ? G.battleNo : null, draw: a.draw || 0, lifeCore: !!a.lifeCore };
   }
 };

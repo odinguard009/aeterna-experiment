@@ -211,3 +211,27 @@ test('K-14 WIN_RIDER: draw / Life core on a BP win, only the stamped turn, no co
     return [d, l0 - l1, l1 - l2, l2 - O.life]; })()`);
   assert.deepEqual(r, [2, 0, 1, 0]);
 });
+
+test('K-15 Polar Fox / Stofir exhaust the attacker side; Genm returns; Semarogue draws; Rensis + Sakimiko', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    O.cpu = true; const out = [];
+    const cheap = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && c.cost <= 3).id, dear = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && c.cost >= 5).id;
+    const fox = BS.mkInst('26RBS02-030'); fox.cores = 1; P.spirits.push(fox);
+    const a = BS.mkInst(cheap), b = BS.mkInst(dear); a.cores = b.cores = 1; O.spirits.push(a, b);
+    G.active = O.key; G.step = 5; await BS.fireFx(P, 'OPP_ATTACKS', fox, { attacker: b });
+    out.push([a.exhausted, b.exhausted]);
+    G.active = P.key; const sto = BS.mkInst('26RBS03-027'); sto.cores = 3; P.spirits.push(sto); a.exhausted = false;
+    const fl = BS.mkInst('26RBS03-025'); P.spirits.push(fl);
+    await BS.fireFx(P, 'ALLY_BLOCKED', fl, { attacker: fl, subject: fl, blocker: a }); out.push(a.exhausted);
+    const g = BS.mkInst('26RCB01-054'); g.cores = 0; g.lostLv = 0; P.trash.push(g); P.spirits.length = 0; P.spirits.push(BS.mkInst('26RCB01-039')); O.spirits.length = 0; O.spirits.push(BS.mkInst(cheap));
+    await BS.fireFx(P, 'DESTROYED', g, { subject: g }); out.push([P.hand.includes(g), O.spirits.length]);
+    const sem = BS.mkInst('26RSD05-006'); sem.cores = 3; P.spirits.push(sem); G.attacker = sem; G.step = 5; G.active = P.key;
+    const td = '26RSD05-011', h0 = P.hand.length;
+    await BS.fireFx(P, 'MAGIC_USED', null, { subject: BS.mkInst(td) }); out.push(P.hand.length - h0);
+    const ren = BS.mkInst('26RSD01-X01'); ren.cores = 3; P.spirits.push(ren); P.trashCores = P.trashCores || {}; 
+    const sk = BS.mkInst('26RBS02-010'); sk.cores = 3; P.spirits.push(sk);
+    await BS.fireFx(P, 'START_ATTACK', sk, {}); out.push(!!sk.winRider);
+    return out; })()`);
+  assert.deepEqual(r, [[true, false], true, [true, 0], 1, true]);
+});
