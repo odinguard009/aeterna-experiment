@@ -582,3 +582,14 @@ test('K-46 Kolulu: peek + pickedCostIn branches on the revealed cost', async () 
     return out.map(x => x.slice(0, 2)); })()`);
   assert.deepEqual(r, [[false, true], [true, false]]);
 });
+
+test('K-47 Pussybill: RETURN_TRASH.milled only returns a card the MILL just discarded', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    P.cpu = true; const id = Object.keys(BS.CARDS).find(k => (BS.CARDS[k].families || []).includes('Beastleptic') && BS.CARDS[k].type === 'Spirit');
+    P.trash.push(BS.mkInst(id)); const out = [];
+    for (const fam of [false, true]) { if (fam) P.deck.unshift(BS.mkInst(id), BS.mkInst(id)); const h = P.hand.length;
+      await BS.runActions({ p: P, opp: O, src: BS.mkInst('26RBS02-016'), ctx: {} }, { actions: [{ do: 'MILL', n: fam ? 2 : 1 }, { do: 'RETURN_TRASH', match: { family: ['Beastleptic'] }, anyType: true, milled: true }] }); out.push(P.hand.length - h); }
+    return out; })()`);
+  assert.deepEqual(r, [0, 1]);
+});

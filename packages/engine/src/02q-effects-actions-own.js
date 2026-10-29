@@ -63,9 +63,9 @@ Object.assign(FX_ACTIONS, {
       if (!t) return; refreshOne(t); log(`${CARDS[t.id].name} is refreshed.`);
     } },
   /* v0.33 effects of a card that is not on the field: revealed from the deck, or in the Hand */
-  RETURN_TRASH: { chk: a => !!a.match && hasMatch(a.match) && (a.diffName == null || a.diffName === true),      // v0.168: any match shape (colour, cost, keyword), not only a name or family
+  RETURN_TRASH: { chk: a => !!a.match && hasMatch(a.match) && (a.diffName == null || a.diffName === true) && (a.milled == null || a.milled === true),      // v0.168: any match shape (colour, cost, keyword), not only a name or family
     txt: a => `return a matching ${a.anyType ? 'card' : 'Spirit'} from your Trash to your Hand`,
-    cands: (c, a) => c.p.trash.filter(t => (a.anyType || CARDS[t.id].type === 'Spirit') && fxMatch(CARDS[t.id], a.match) && !(a.diffName && CARDS[t.id].name === CARDS[c.src.id].name)),      // v0.195 diffName: "besides <this card's name>" / "a different name to this Spirit's"
+    cands: (c, a) => c.p.trash.filter(t => (a.anyType || CARDS[t.id].type === 'Spirit') && fxMatch(CARDS[t.id], a.match) && !(a.diffName && CARDS[t.id].name === CARDS[c.src.id].name) && (!a.milled || (c.ctx.milled || []).includes(t))),      // v0.196 milled: only cards the earlier MILL sent to the Trash; v0.195 diffName: "besides <this card's name>" / "a different name to this Spirit's"
     can: (c, a) => FX_ACTIONS.RETURN_TRASH.cands(c, a).length > 0,
     run: async (c, a) => {
       const L = FX_ACTIONS.RETURN_TRASH.cands(c, a); if (!L.length) return;
