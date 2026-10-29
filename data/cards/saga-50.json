@@ -6652,7 +6652,10 @@
     },
     {
      "do": "WIN_RIDER",
-     "lifeCore": true
+     "lifeCore": true,
+     "if": {
+      "prev": true
+     }
     }
    ]
   },
