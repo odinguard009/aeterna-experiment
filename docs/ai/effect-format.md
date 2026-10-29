@@ -114,3 +114,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v74 (v0.195.0, Lane K): STATIC field `besides` (with `per`: the source itself is not counted); `ctrl.costIn` (list of exact costs, e.g. Cost 6/8). Additions only.
 - v75 (v0.195.0, Lane K): `RETURN_TRASH.diffName` ("besides <this card's name>": a card with the source's own name is not a candidate). Additions only.
 - v76 (v0.195.0, Lane K): `DESTROY.n` (2-3: "Target two opposing ... Spirits. Destroy them", up to n distinct targets; fewer when fewer qualify). Additions only.
+- v77 (v0.195.0, Lane K): condition `oppTrashGe` N ("N or more cards in the opposing Trash"); `allHave.familyAny` (list: every Spirit/Nexus has any of these families). Additions only.

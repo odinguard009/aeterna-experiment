@@ -82,3 +82,28 @@ test('K-04 Spinard destroys two opposing 3000 BP or less Spirits with a Purgator
   });
   assert.deepEqual(r, { one: 2, two: 0 });
 });
+
+test('K-05 Lumius widens its BP with the Soul Core; Hanoki is LV2 with eight opposing Trash cards; Urumsipha is LV2 attacking with only Purgatory Wings/Bladessom Spirits', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(async () => {
+    const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = P.key; P.cpu = true;
+    const mid = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && c.levels[0].bp === 4000 && !(c.effects && c.effects.length));
+    const f = BS.mkInst(mid.id); f.cores = 1; O.spirits.push(f);
+    const src = BS.mkInst('26RBS03-004'); src.cores = 1; P.spirits.push(src);
+    src.soulPaid = false; await BS.fireFx(P, 'SUMMONED', src, {});
+    const keptNoSoul = O.spirits.includes(f);
+    src.soulPaid = true; await BS.fireFx(P, 'SUMMONED', src, {});
+    const goneSoul = !O.spirits.includes(f);
+    const h = BS.mkInst('26RBS02-071'); h.cores = 1; P.spirits.push(h);
+    const lv1 = BS.lvNo ? BS.lvNo(h) : null;
+    for (let i = 0; i < 8; i++) O.trash.push(BS.mkInst(mid.id));
+    const lv2 = BS.lvNo ? BS.lvNo(h) : null;
+    const u = BS.mkInst('26RBS03-006'); u.cores = 1; P.spirits.push(u);
+    const wings = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && (c.families || []).includes('Purgatory Wings'));
+    P.spirits.length = 0; P.spirits.push(u, BS.mkInst(wings.id));
+    const idle = BS.lvNo(u); G.attacker = u; const atk = BS.lvNo(u);
+    P.spirits.push(BS.mkInst(mid.id)); const mixed = BS.lvNo(u);
+    return { keptNoSoul, goneSoul, lv1, lv2, urum: [idle, atk, mixed] };
+  });
+  assert.deepEqual(r, { keptNoSoul: true, goneSoul: true, lv1: 1, lv2: 2, urum: [1, 2, 1] });
+});

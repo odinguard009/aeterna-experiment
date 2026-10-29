@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 7294,
+  "cards": 7291,
   "per_saga": {
    "1": 680,
    "2": 313,
@@ -19,15 +19,15 @@
    "15": 355,
    "16": 334,
    "17": 110,
-   "50": 291
+   "50": 288
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 1412,
+  "skipped_curated": 1415,
   "nexus_levels_added": 707,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 507,
+  "image_problems": 505,
   "number_conflicts": 4,
   "merged": 109,
   "brave_unparsed": 171,
@@ -35,7 +35,7 @@
   "odd_reduction": 807,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 505
+  "without_image": 503
  },
  "tokens": [
   "BS73-T001",
@@ -1353,6 +1353,7 @@
   "26RBS02-064",
   "26RBS02-065",
   "26RBS02-067",
+  "26RBS02-071",
   "26RBS02-084",
   "26RBS02-087",
   "26RBS02-088",
@@ -1416,6 +1417,8 @@
   "26RSD10-X01",
   "26RBS03-001",
   "26RBS03-003",
+  "26RBS03-004",
+  "26RBS03-006",
   "26RBS03-007",
   "26RBS03-009",
   "26RBS03-010",
@@ -4490,18 +4493,8 @@
    "problem": "no image"
   },
   {
-   "id": "26RBS03-004",
-   "name": "Lumius",
-   "problem": "no image"
-  },
-  {
    "id": "26RBS03-005",
    "name": "Suscrofa",
-   "problem": "no image"
-  },
-  {
-   "id": "26RBS03-006",
-   "name": "The Gold-Clad Urumsipha",
    "problem": "no image"
   },
   {

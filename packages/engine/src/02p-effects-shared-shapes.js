@@ -37,15 +37,15 @@
      OWN_CORE_TO_LIFE {match}               "Target one of your X Spirits. Send a core, besides [Soul Core], from it to your Life."
    A team is printed as the card's head line "[Team: X]" / "[Teams: X/Y]"; cardTeams reads it from the card text. */
 function cardTeams(k) { const m = /\[Teams?:\s*([^\]]+)\]/.exec((k && (k.desc || k.text)) || ''); return m ? m[1].split('/').map(x => x.trim()).filter(Boolean) : []; }
-function allHaveShapeOK(q) { return !!q && typeof q === 'object' && (q.family != null || q.team != null || q.costIn != null)
-  && (q.family == null || typeof q.family === 'string') && (q.team == null || typeof q.team === 'string')
+function allHaveShapeOK(q) { return !!q && typeof q === 'object' && (q.family != null || q.familyAny != null || q.team != null || q.costIn != null)
+  && (q.family == null || typeof q.family === 'string') && (q.familyAny == null || (Array.isArray(q.familyAny) && q.familyAny.length > 0 && q.familyAny.every(x => typeof x === 'string' && x))) && (q.team == null || typeof q.team === 'string')
   && (q.costIn == null || (Array.isArray(q.costIn) && q.costIn.length > 0 && q.costIn.every(n => Number.isInteger(n) && n >= 0 && n <= 30)))
   && (q.spiritsOnly == null || q.spiritsOnly === true); }
 function allHaveOK(owner, q) {
   if (!allHaveShapeOK(q)) return fxUnknown('condition', 'allHave');
   const L = q.spiritsOnly ? owner.spirits : fieldList(owner);
   return L.length > 0 && L.every(f => { const k = CARDS[f.id];
-    return (!q.family || (k.families || []).includes(q.family)) && (!q.team || cardTeams(k).includes(q.team)) && (!q.costIn || q.costIn.includes(k.cost)); });
+    return (!q.family || (k.families || []).includes(q.family)) && (!q.familyAny || q.familyAny.some(x => (k.families || []).includes(x))) && (!q.team || cardTeams(k).includes(q.team)) && (!q.costIn || q.costIn.includes(k.cost)); });
 }
 (() => {
   const E = FX_ACTIONS.EXHAUST_OPP, eChk = E.chk, eCands = E.cands, eTxt = E.txt;

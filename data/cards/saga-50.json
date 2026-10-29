@@ -11950,16 +11950,42 @@
   "block": "A",
   "saga": 50,
   "ex_symbols": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] If there are eight or more cards in the opposing Trash, this Spirit is treated as LV2.",
-   "[LV2] (Your Attack Step) All your Spirits with Rumble gain +2000 BP."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "bicon": [
    "A"
   ],
-  "rcode": "M"
+  "rcode": "M",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "TREAT_LV3",
+    "n": 2,
+    "to": "self",
+    "if": {
+     "oppTrashGe": 8
+    },
+    "lv": [
+     1,
+     2
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 2000,
+    "to": "own",
+    "if": {
+     "attackStep": true,
+     "oppTurn": false
+    },
+    "match": {
+     "keyword": "Rumble"
+    },
+    "lv": [
+     2
+    ]
+   }
+  ]
  },
  {
   "id": "26RBS02-072",
@@ -13897,15 +13923,37 @@
   "block": "A",
   "saga": 50,
   "ex_symbols": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Summoned) Target an opposing 3000 BP or less Spirit. Destroy it. If was used to pay for the summon cost, the targeting BP becomes 4000 or less instead."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "bicon": [
    "A"
   ],
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "bpLe": 4000,
+      "if": {
+       "soulPaid": true
+      }
+     },
+     {
+      "do": "DESTROY",
+      "bpLe": 3000,
+      "if": {
+       "prev": false
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RBS03-005",
@@ -13988,13 +14036,30 @@
     "lv": [
      2
     ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "TREAT_LV3",
+    "n": 2,
+    "to": "self",
+    "if": {
+     "selfAttacking": true,
+     "allHave": {
+      "familyAny": [
+       "Purgatory Wings",
+       "Bladessom"
+      ],
+      "spiritsOnly": true
+     }
+    },
+    "lv": [
+     1,
+     2
+    ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (During Attack) If all your Spirits have the \"Purgatory Wings\"/\"Bladessom\" family, this Spirit is treated as LV2."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "bicon": [
    "A"
   ],

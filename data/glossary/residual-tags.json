@@ -38622,11 +38622,6 @@
   "M_UNSTACKABLE",
   "T_ALLY_LIFE_HIT"
  ],
- "26RBS02-071": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "K_RUMBLE"
- ],
  "26RBS02-072": [
   "A_BANISH",
   "A_VOID",
@@ -38837,18 +38832,11 @@
   "C_LEVEL",
   "M_REPLACEMENT"
  ],
- "26RBS03-004": [
-  "M_REPLACEMENT",
-  "T_SUMMONED"
- ],
  "26RBS03-005": [
   "A_BP_PLUS",
   "A_TRASH_TO_RESERVE",
   "C_LEVEL",
   "T_START_ATTACK"
- ],
- "26RBS03-006": [
-  "S1_ALL_HAVE"
  ],
  "26RBS03-008": [
   "A_BP_PLUS",
