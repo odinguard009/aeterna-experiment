@@ -38166,16 +38166,6 @@
   "S_CANT_PREVENT",
   "T_ADVENT"
  ],
- "26RBS01-007": [
-  "T_DESTROYED"
- ],
- "26RBS01-013": [
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "M_UP_TO",
-  "T_ALLY_LIFE_HIT"
- ],
  "26RBS01-026": [
   "A_DRAW",
   "M_REPLACEMENT",
@@ -38199,11 +38189,6 @@
   "M_OPTIONAL",
   "M_REPLACEMENT"
  ],
- "26RBS01-066": [
-  "A_REFRESH",
-  "C_LEVEL",
-  "C_MAGIC_USED_TURN"
- ],
  "26RBS01-070": [
   "M_OPTIONAL",
   "T_DESTROYED",
@@ -38217,10 +38202,6 @@
   "F_OTHER_NOSTACK",
   "M_OPTIONAL",
   "M_UNSTACKABLE"
- ],
- "26RBS01-092": [
-  "A_BP_PLUS",
-  "C_LEVEL"
  ],
  "26RBS01-093": [
   "A_BP_PLUS",
@@ -38293,9 +38274,6 @@
   "K_STANDARD_INVOKE",
   "T_SUMMONED"
  ],
- "26RBS01-X02": [
-  "T_SUMMONED"
- ],
  "26RBS01-X04": [
   "C_LEVEL",
   "M_OPTIONAL",
@@ -38337,11 +38315,6 @@
   "A_SYMBOL_PLUS",
   "A_VOID",
   "T_ATTACKS"
- ],
- "26RBS01-X13": [
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_MAGIC_USED"
  ],
  "26RBS01-X14": [
   "A_BP_MINUS",
@@ -38397,9 +38370,6 @@
   "A_BANISH",
   "M_OPTIONAL",
   "T_SUMMONED"
- ],
- "26RBS02-019": [
-  "K_STANDARD_INVOKE"
  ],
  "26RBS02-021": [
   "A_EXHAUST",
@@ -38512,16 +38482,6 @@
   "C_LEVEL",
   "M_OPTIONAL",
   "T_ALLY_DESTROYS"
- ],
- "26RBS02-056": [
-  "A_REVEAL_ADD",
-  "A_REVEAL_DECK",
-  "M_OPTIONAL",
-  "M_REPLACEMENT",
-  "T_SUMMONED"
- ],
- "26RBS02-057": [
-  "C_LEVEL"
  ],
  "26RBS02-059": [
   "A_BP_MINUS",
@@ -38639,12 +38599,6 @@
  "26RBS02-087": [
   "M_THEN",
   "T_ALLY_LIFE_HIT"
- ],
- "26RBS02-090": [
-  "K_STANDARD_SUCCESSION"
- ],
- "26RBS02-CP01": [
-  "M_UP_TO"
  ],
  "26RBS02-X01": [
   "A_BP_PLUS",
@@ -38782,11 +38736,6 @@
  "26RBS03-013": [
   "T_DESTROYED"
  ],
- "26RBS03-015": [
-  "A_REVEAL_DECK",
-  "M_OPTIONAL",
-  "T_DESTROYED"
- ],
  "26RBS03-017": [
   "C_OPP_TURN",
   "M_REPLACEMENT",
@@ -38811,12 +38760,6 @@
  "26RBS03-023": [
   "M_OPTIONAL"
  ],
- "26RBS03-028": [
-  "A_EXHAUST",
-  "A_REFRESH",
-  "M_REPLACEMENT",
-  "T_SUMMONED"
- ],
  "26RBS03-029": [
   "A_REFRESH",
   "A_SEND_TOKEN",
@@ -38840,13 +38783,6 @@
   "M_REPLACEMENT",
   "T_SUMMONED"
  ],
- "26RBS03-032": [
-  "A_EXHAUST",
-  "A_REFRESH",
-  "C_LEVEL",
-  "K_STANDARD_INVOKE",
-  "M_THEN"
- ],
  "26RBS03-033": [
   "A_REFRESH",
   "A_VOID",
@@ -38856,10 +38792,6 @@
  "26RBS03-035": [
   "A_BP_PLUS",
   "A_REFRESH",
-  "C_LEVEL",
-  "T_BLOCKS"
- ],
- "26RBS03-036": [
   "C_LEVEL",
   "T_BLOCKS"
  ],
@@ -39037,10 +38969,6 @@
  "26RBS03-087": [
   "M_UP_TO"
  ],
- "26RBS03-094": [
-  "K_STANDARD_SUCCESSION",
-  "M_UP_TO"
- ],
  "26RBS03-098": [
   "M_THEN"
  ],
@@ -39146,10 +39074,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "26RBS03-X14": [
-  "M_OPTIONAL",
-  "T_START_ATTACK"
- ],
  "26RBS03-X15": [
   "A_REFRESH",
   "C_LEVEL",
@@ -39197,12 +39121,6 @@
   "A_REFRESH",
   "C_LEVEL",
   "T_SUMMONED"
- ],
- "26RCB01-039": [
-  "T_ATTACKS"
- ],
- "26RCB01-043": [
-  "T_ATTACKS"
  ],
  "26RCB01-046": [
   "A_DRAW"
@@ -39413,11 +39331,6 @@
   "S1_ALL_HAVE",
   "T_ATTACKS"
  ],
- "26RDB01-047": [
-  "A_EXHAUST",
-  "A_VOID",
-  "T_SUMMONED"
- ],
  "26RDB01-048": [
   "A_BP_PLUS",
   "A_EXHAUST",
@@ -39466,9 +39379,6 @@
   "K_STANDARD_SUCCESSION"
  ],
  "26RDB01-061": [
-  "M_REPLACEMENT"
- ],
- "26RDB01-063": [
   "M_REPLACEMENT"
  ],
  "26RDB01-X02": [
@@ -39520,12 +39430,6 @@
   "A_TRASH_TO_RESERVE",
   "C_LEVEL",
   "M_OPTIONAL"
- ],
- "26RSD01-012": [
-  "A_EXHAUST",
-  "A_TRASH_TO_RESERVE",
-  "C_CONTROL",
-  "M_THEN"
  ],
  "26RSD01-013": [],
  "26RSD02-009": [
@@ -39654,15 +39558,6 @@
   "S_OPP_NO_BLOCK",
   "T_SUMMONED"
  ],
- "26RSD06-X02": [
-  "A_CORE_TO_SELF",
-  "C_LEVEL"
- ],
- "26RSD07-001": [
-  "A_SUMMON_FREE",
-  "K_STANDARD_INVOKE",
-  "M_OPTIONAL"
- ],
  "26RSD07-011": [
   "A_EXHAUST",
   "A_SYMBOL",
@@ -39675,9 +39570,6 @@
   "A_EXHAUST",
   "C_LEVEL",
   "M_OPTIONAL"
- ],
- "26RSD07-014": [
-  "M_THEN"
  ],
  "26RSD08-002": [
   "A_EXHAUST",
