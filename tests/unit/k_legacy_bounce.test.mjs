@@ -345,3 +345,15 @@ test('K-24 Waltana: CANT_BE_BLOCKED_BY noSoul only on the second attack', async 
     return [ok, !!(w.noBlockBy && w.noBlockBy.noSoul)]; })()`);
   assert.deepEqual(r, [true, true]);
 });
+
+test('K-25 Rush Out: a Leucomyst Spirit gets the turn mark', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const k = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && (c.families || []).includes('Leucomyst'));
+    const a = BS.mkInst(k.id); a.cores = 1; P.spirits.push(a);
+    const A = { do: 'UNBLOCKABLE_PICK', match: { family: ['Leucomyst'] } };
+    const ok = BS.FX_ACTIONS.UNBLOCKABLE_PICK.chk(A);
+    await BS.FX_ACTIONS.UNBLOCKABLE_PICK.run({ p: P, opp: O, src: a, ctx: {} }, A);
+    return [ok, a.noBlockTurn === G.turnNo]; })()`);
+  assert.deepEqual(r, [true, true]);
+});

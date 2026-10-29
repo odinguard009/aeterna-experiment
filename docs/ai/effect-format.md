@@ -125,3 +125,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v85 (v0.195.0, Lane K): STATIC flag `NO_BLOCK_INFERIOR` ("This Spirit can't block Spirits with BP inferior to this Spirit's.": read in the blocker filter through `blockedInferior`; compares the attacker's BP with this Spirit's). Additions only. `perReserve:true` on STATIC bp and on action `BP_PLUS` ("+N BP for each core in your Reserve"; to self only; the count is read when it resolves for BP_PLUS).
 - v86 (v0.195.0, Lane K): `BP_MINUS.nLegacy` (n BP- more for each EX Symbol banished via the source's Legacy, `src.legacyN`; 1000..5000).
 - v87 (v0.196.0, Lane K): `CANT_BE_BLOCKED_BY` accepts `noSoul:true` ("can't be blocked by opposing Spirits without (Soul Core) on it").
+- v88 (v0.196.0, Lane K): action `UNBLOCKABLE_PICK {match}` ("Target one of your <family> Spirits. During this turn, it can't be blocked": mark `noBlockTurn` = turn number, read by the block list).

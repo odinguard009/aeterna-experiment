@@ -213,3 +213,13 @@ function cpuInvokeOK(p, f, e, timing) {
     for (const t of c.opp.spirits.slice()) if (before.has(t) && (t.bpMod || 0) < before.get(t) && bpOf(t) === 0 && !fxImmune(c.opp, t, c)) { removeSpirit(c.opp, t, 'destroyed', true); checkDepletion(c.opp); }
   };
 })();
+/* v0.196 "Target a "X" family Spirit you control. During this turn, it can't be blocked." (turn number mark read by the block list in 08-battle) */
+FX_ACTIONS.UNBLOCKABLE_PICK = { chk: a => invokeMatchOK(a.match),
+  txt: a => `one of your ${a.match && a.match.family ? '"' + a.match.family.join('"/"') + '" ' : ''}Spirits can't be blocked during this turn`,
+  can: (c, a) => ownTargetCands(c, a).length > 0,
+  run: async (c, a) => {
+    const L = ownTargetCands(c, a); if (!L.length) { c.ctx.did = false; return; }
+    const t = c.p.cpu ? L.reduce((m, s) => bpOf(s) > bpOf(m) ? s : m) : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your Spirits that can't be blocked this turn (glowing).`);
+    if (!t) { c.ctx.did = false; return; }
+    t.noBlockTurn = G.turnNo; log(`${CARDS[t.id].name} can't be blocked during this turn.`);
+  } };

@@ -53,7 +53,7 @@ accelList, accelCost, accelMainStep, accelOK, accelSources, accelLabel, useAccel
 ## packages/engine/src/02k-effects-immunity.js (27 lines, ~0.4k tokens)
 trashSafe, wrapImmunity
 
-## packages/engine/src/02l-effects-invoke.js (215 lines, ~5k tokens) — v0.68 INVOKE (Standard activations): "{{Invoke|Flash}}" / "{{Invoke|Main}}" + "<cost> ▶ <effect>".
+## packages/engine/src/02l-effects-invoke.js (225 lines, ~5.3k tokens) — v0.68 INVOKE (Standard activations): "{{Invoke|Flash}}" / "{{Invoke|Main}}" + "<cost> ▶ <effect>".
 INVOKE_WHEN, INVOKE_COSTS, invokeMatchOK, invokeParse, invokeWhenOK, exhaustOwnCands, returnOwnCands, discardCands, invokeCostOK, payInvokeCost, usedThisBattle, markUsedBattle, bpBattle, addBattleBp, invokeCostText, ownTargetCands, cpuInvokeOK
 
 ## packages/engine/src/02m-effects-destroy-filters.js (47 lines, ~1.1k tokens)
