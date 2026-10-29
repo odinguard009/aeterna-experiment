@@ -143,3 +143,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v103 (v0.196.0, Lane K): action `PAY_COST {n}` (1-5): "you can pay N cost" as the `BY.cost` of "If you've done so, ..." (the cores go to the Trash like an Invoke cost).
 - v104 (v0.196.0, Lane K): invoke `match.tr:true` (BP_TARGET pick): only your Spirits in True Release state (a `trueRelease` card at LV2+), "target one of your Green Wave Spirits that is in True Release state".
 - v105 (v0.196.0, Lane K): `BP_PLUS.pick` (1-3, with `to:"own"`): "target up to N Spirits you control" - the player picks the Spirits (the CPU takes the highest BP).
+- v106 (v0.196.0, Lane K): `REVEAL_PICK.peek` (n 1, rest top/either): "reveal a card; if it matches, ..." - nothing is added to the Hand, `prev` is true when the revealed card matches, the card then returns to the decktop/deckbottom.

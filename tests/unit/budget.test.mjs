@@ -58,14 +58,14 @@ const FONT_URL = /url\(data:font\/woff2;base64,[A-Za-z0-9+/=]+\)/g, FLAVOR_RE = 
 // v0.189.0 (R3): raised B01 1070 -> 1075 KB on purpose: the Block icon, Rarity and Collab filters (menus, filter test, card-field plumbing) are shared by the Deck Builder and the Library; the page was 1.2 KB over.
 // v0.195.0 (Lane K): raised B01 1075 -> 1080 KB on purpose: new Lane K mechanics (viaLegacy, besides, diffName, DESTROY.n) added engine code; the page was 0.7 KB over.
 // v0.195.0 (Lane K): 1080 -> 1085 KB on purpose again: costPerOwn, nPer, REFRESH_NEXUS and WIN_RIDER (engine code for 4-card batches).
-// v0.196.0 (Lane K): 1085 -> 1090 KB on purpose: noSoul, UNBLOCKABLE_PICK, NO_BP_DESTROY, pickedKeyword, REVEAL_PICK.max, DESTROY.noTR.
+// v0.196.0 (Lane K): 1085 -> 1092 KB on purpose: PAY_COST, invoke match.tr, BP_PLUS.pick, REVEAL_PICK.peek, noSoul, UNBLOCKABLE_PICK, NO_BP_DESTROY, pickedKeyword, REVEAL_PICK.max, DESTROY.noTR.
 
-test('B01 index.html without the card pack stays under 1090 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 1090e3, Buffer.byteLength(noFont(code))));
+test('B01 index.html without the card pack stays under 1092 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 1092e3, Buffer.byteLength(noFont(code))));
 // v0.186.0 (Brave costLe): raised B02 290 -> 292 KB on purpose: the Brave combine condition costLe (parser, braveFits, types) put the page 0.9 KB over the limit.
 // v0.188.0 (R2): raised B02 292 -> 294 KB on purpose: the Family list, BP / core and colour-mode filters (shared by the Deck Builder and the Library) put the page 0.04 KB over the limit.
 // v0.195.0 (Lane K): raised B02 294 -> 296 KB on purpose: viaLegacy and BOUNCE_OPP n/bpLe put the engine 0.01 KB over the limit.
-// v0.196.0 (Lane K): raised B02 296 -> 298 KB on purpose (noSoul, UNBLOCKABLE_PICK).
-test('B02 index.html without the card pack, gzipped, stays under 298 KB', () => { const n = gzipSync(noFont(code), { level: 9 }).length; assert.ok(n < 298e3, n); });
+// v0.196.0 (Lane K): raised B02 296 -> 300 KB on purpose (PAY_COST, tr, pick, peek, noSoul, UNBLOCKABLE_PICK).
+test('B02 index.html without the card pack, gzipped, stays under 300 KB', () => { const n = gzipSync(noFont(code), { level: 9 }).length; assert.ok(n < 300e3, n); });
 test('B03 the embedded card pack stays under 1.6 MB (room for all cards; never embed staging data)', () => assert.ok(packLen < 1.6e6, packLen));
 // v0.93.0 (U6): raised 90 -> 96 KB on purpose (roadmap item U allows it with a note): U6-U8 add the My decks page and the
 // deck builder restyle; unused rules were trimmed first in v0.92.0. The next raise needs the same kind of note.

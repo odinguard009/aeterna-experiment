@@ -71,7 +71,7 @@ cardTeams, allHaveShapeOK, allHaveOK, winRiderRun, fxOppMark, blockedInferior, b
 ## packages/engine/src/02q-effects-actions-own.js (159 lines, ~3.8k tokens)
 
 
-## packages/engine/src/02r-effects-actions-deck.js (116 lines, ~3.6k tokens)
+## packages/engine/src/02r-effects-actions-deck.js (117 lines, ~3.7k tokens)
 
 
 ## packages/engine/src/02s-effects-actions-soul.js (149 lines, ~3.6k tokens)

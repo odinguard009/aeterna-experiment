@@ -547,3 +547,15 @@ test('K-43 Marie Dog: BP_PLUS pick:3 boosts only three of four own Spirits', asy
     return L.filter(s => s.bpMod === 2000).length; })()`);
   assert.equal(r, 3);
 });
+
+test('K-44 Allurement: REVEAL_PICK peek sets prev only for a matching card and returns it', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    P.cpu = true; const a = BS.mkInst('26RDB01-015'); a.cores = 2; P.spirits.push(a);
+    const hit = '26RDB01-054', miss = '26RDB01-015';
+    const out = [];
+    for (const id of [hit, miss]) { P.deck.unshift(BS.mkInst(id)); const n = P.deck.length; const c = { p: P, opp: O, src: BS.mkInst('26RDB01-054'), ctx: {} };
+      await BS.runActions(c, { actions: [{ do: 'REVEAL_PICK', n: 1, match: { team: 'Red Stella' }, rest: 'either', peek: true }] }); out.push([c.ctx.did, P.deck.length === n]); }
+    return out; })()`);
+  assert.deepEqual(r, [[true, true], [false, true]]);
+});
