@@ -570,6 +570,10 @@ def spirit_paragraph_main(p, card, rush):
         if mm:      # v0.185 '"A"/"B" family' = any of the listed families; optional '(Once Per Turn)' between the step and When
             trig, tmatch, p = ['ALLY_ATTACKS'], {'family': re.findall(r'"([^"]+)"', mm.group(2)), 'noUlt': True}, p[mm.end():]
             if mm.group(1): extra = dict(extra or {}, once=True)
+        mm = None if trig else re.match(r'^\(Your Attack Step\)\s*(\(Once Per Turn\)\s*)?When your Cost (\d+) or (more|less) (Red|Purple|Green|White|Yellow|Blue) Spirit with no printed effects attacks,\s*', p)
+        if mm:      # v0.185 attack head with a subject filter (cost, colour, no printed effects); once-per-turn optional
+            trig, tmatch, p = ['ALLY_ATTACKS'], {'noUlt': True, 'noText': True, 'color': mm.group(4).lower(), 'costGe' if mm.group(3) == 'more' else 'costLe': int(mm.group(2))}, p[mm.end():]
+            if mm.group(1): extra = dict(extra or {}, once=True)
         mm = None if trig else re.match(r'^(?:\((?:Opposing|Either) Attack Step\)\s*/?\s*)?When your Life is reduced(?: by (?:the attack of )?(?:an? )?opposing (Spirit|Ultimate)s?| by the opponent)?,\s*', p)
         if mm: trig, tmatch, p = ['OWN_LIFE_HIT'], ({'noUlt': True} if (mm.group(1) or '').lower() == 'spirit' else {'type': 'Ultimate'} if mm.group(1) else None), p[mm.end():]      # v0.177 engine OWN_LIFE_HIT (an opposing attack reduced your Life)
         mm = None if trig else ALLY_SUMMON_HEAD.match(p)

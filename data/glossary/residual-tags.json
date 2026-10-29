@@ -39123,13 +39123,6 @@
   "C_LEVEL",
   "K_STANDARD_INVOKE"
  ],
- "26RBS03-070": [
-  "A_REVEAL_ADD",
-  "A_REVEAL_DECK",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
  "26RBS03-073": [
   "A_REFRESH",
   "C_LEVEL",

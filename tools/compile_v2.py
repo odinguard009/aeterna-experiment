@@ -553,7 +553,7 @@ REVEAL_REST = re.compile(r'\.\s*(return (?:any|the) remaining cards? to ' + _DBO
 REVEAL_IF = re.compile(r'^if (?:that card|that|it)(?: is|\'s|’s) (.+?), add it to (?:the |your |you )?hand$', re.I)      # v0.75: one revealed card
 REVEAL_IF_DEPLOY = re.compile(r'^if (?:that card|that|it|the revealed card)(?: is|\'s|’s) (.+?),\s*(?:you can |you may )?summon it(,? without paying the cost)?$', re.I)
 DIFF_NAME = r"(?: with (?:a )?(?:card )?name different (?:from|to) this (?:spirit|nexus)'?s)?"
-REVEAL_NP = re.compile(r'^(?:an?|one) (?:(?P<team>' + v1.TEAMS.lower() + r') )?(?:(?P<col>' + COL + r') )?(?:cost (?P<cost>\d+) or less |cost (?P<ge>\d+) or more )?(?:(?P<team2>' + v1.TEAMS.lower() + r') )?(?:"(?P<fam>[^"]+(?:"\s*/\s*"[^"]+)*)" family )?(?:(?P<kind>spirit|nexus|magic|brave) )?card(?: with (?P<kw>amplify|legacy|clash|rumble|current|shamanism))?' + DIFF_NAME + r'$')
+REVEAL_NP = re.compile(r'^(?:an?|one) (?:(?P<team>' + v1.TEAMS.lower() + r') )?(?:(?P<col>' + COL + r') )?(?:cost (?P<cost>\d+) or less |cost (?P<ge>\d+) or more )?(?:(?P<team2>' + v1.TEAMS.lower() + r') )?(?:"(?P<fam>[^"]+(?:"\s*/\s*"[^"]+)*)" family )?(?:(?P<kind>spirit|nexus|magic|brave) )?card(?: with (?P<kw>amplify|legacy|clash|rumble|current|shamanism))?(?P<nt> with no printed effects)?' + DIFF_NAME + r'$')
 
 
 def reveal_np(np):
@@ -579,6 +579,7 @@ def reveal_np(np):
     if m.group('team') or m.group('team2'): match['team'] = (m.group('team') or m.group('team2')).title()      # v0.184 (schema 55)
     if m.group('ge'): match['costGe'] = int(m.group('ge'))      # v0.184
     if m.group('kw'): match['keyword'] = m.group('kw').capitalize()      # v0.184 'a Spirit card with Amplify'
+    if m.group('nt'): match['noText'] = True      # v0.185 engine fxMatch noText
     return match, 'name different' in x
 
 
