@@ -11,7 +11,6 @@
 
 ## Owner switch (any of these)
 - In a claude.ai chat of this project: `otomatis on`, `otomatis off`, `otomatis status`. Claude calls `add_repo` (push), then runs, without cloning: `gh api repos/odinguard009/aeterna-experiment/contents/tools/session_gate.sh --jq .content | base64 -d | bash -s on|off|status`, and answers with the one-line result.
-- Mode hemat and team sessions were retired on 2026-10-20 (CLAUDE.md "Session form"); old `HEMAT` comments on issue #1 are ignored.
 - On GitHub (also the mobile app): comment `ON` or `OFF` on issue #1.
 - GitHub Actions: workflow "Auto mode" -> Run workflow -> on/off.
 - Hard stop (fallback, no runs at all): disable the scheduled task in the Claude app.
@@ -20,12 +19,12 @@
 ## Chain mode (owner, 2026-10-20)
 - Switch: chat `rantai on`, `rantai off`, `rantai status` (Claude runs the same gate one-liner with `rantai on|off|status`, no clone), or a comment `RANTAI ON` / `RANTAI OFF` on issue #1, or the Actions workflow "Auto mode" (mode `rantai-on` / `rantai-off`). Default without a switch comment: OFF. Independent of auto mode: it chains manual and scheduled sessions alike.
 - Every session ends with `done vX.Y.Z next=Opus|Sonnet start=<Token awal> sub=<subagent tokens> budget=<counter now>` (owner, 2026-10-21: `sub=` = the sum of the `subagent_tokens` lines the session's subagents reported; the gate adds it to `tokens=`, so the chain counter includes subagents); the gate posts `tokens=N` (N = the budget-counter difference incl. cache re-reads, so an estimate; item T 2026-10-21: copied numbers, no mental subtraction; `lock|manual budget=N` also stores the start; an explicit `tokens=N` still works) and adds the word `rantai` when it was a chain continuation. Then `rantai next`:
-  - `GO`: the chain (the newest DONE plus the DONEs it continues) is under 1,000,000 (owner 2026-10-27) tokens: start the next roadmap session in the same chat at once (skill `bs-session-runner` End step 6).
-  - `STOP chain budget reached`: the chain total is 1,000,000 (owner 2026-10-27) or more; the mode stays ON for the next chain.
-  - A single session over 1,000,000 (owner 2026-10-27) tokens: the gate posts `RANTAI OFF auto: ...`, the mode is OFF for every next session until the owner turns it on again.
+  - `GO`: the chain (the newest DONE plus the DONEs it continues) is under the limit (`RANTAI_MAX`, unlimited since 2026-10-28): start the next roadmap session in the same chat at once (skill `bs-session-runner` End step 6).
+  - `STOP chain budget reached`: the chain total reaches `RANTAI_MAX`; the mode stays ON for the next chain.
+  - A single session over `RANTAI_MAX`: the gate posts `RANTAI OFF auto: ...`, the mode is OFF for every next session until the owner turns it on again.
   - `STOP` for any other reason (mode OFF, gate error; a missing `tokens=` on the last DONE no longer stops the chain since 2026-10-29, the limit is unlimited): end as usual.
 - A chained session in the same chat carries the earlier sessions' context, so its token count grows faster than a fresh run's; the limit is `RANTAI_MAX` in `tools/session_gate.sh`.
-- The final summary of every session shows the `Mode rantai: ON|OFF | rantai terakhir: X / 600.000 token (k sesi)` line.
+- The final summary of every session shows the `Mode rantai: ON|OFF | rantai terakhir: X / <limit> token (k sesi)` line.
 
 ## Rules for sessions
 - Lane order (owner, 2026-10-21: phase F, S1 Standard Magic, the whole U/I queue, then cards with Standard first): every session, manual or scheduled, takes the item of the lane that `session_start.sh` prints as `LANE K|U/I` (`tools/lane_next.mjs`, from the open F / S1 / U/I queue lines of item L; rules and queue: item L in `docs/ai/roadmap-open.md`). The lane is never stored in the gate or in schedules, so two scheduled runs cannot disagree about it.
@@ -34,7 +33,7 @@
 - Schedules (owner, 2026-10-29: the old ban is lifted): a session may create, change or delete scheduled tasks when the owner asks for it in that chat; it never does so on its own initiative. The loop itself still never waits for the owner.
 - Roadmap empty or every item blocked: commit `docs/ai/chain-stop.md` (reason). Delete it only after the owner has answered.
 - Quota / usage / rate-limit error: no retry, no schedule changes; push what is committed (Lane K: `wip/lane-k`), handoff comment, `unlock`, stop. Lane K releases only at 50 new complete cards (CLAUDE.md). The next run continues.
-- Model (owner, 2026-10-17): Opus only. The gate answers `check sonnet` with STOP, and the former Sonnet task now runs Opus at :58 (2026-10-17). Earlier rule, kept for history: the model was chosen by the two tasks above through `next=`. A session that finds the item heavier than its model (for example a Sonnet run whose item turns out to need engine design) does not start it: it takes a small item if one exists, otherwise it ends with `done <current version> next=Opus` without a release. Read-only data lookups go to subagents with `model: "sonnet"` as usual.
+- Model (owner, 2026-10-27): every session runs on Sonnet 5.5 with Opus 5.5 as advisor; no switching, the end hint is `next=Sonnet`. The gate still answers `check sonnet` with STOP (legacy).
 - Permission: both tasks should run with automatic approval ("Automatically approve" in the task settings, owner-only switch).
 - Session name: "Ver. X.Y.Z" of the final version.
 
