@@ -107,3 +107,41 @@ test('K-05 Lumius widens its BP with the Soul Core; Hanoki is LV2 with eight opp
   });
   assert.deepEqual(r, { keptNoSoul: true, goneSoul: true, lv1: 1, lv2: 2, urum: [1, 2, 1] });
 });
+
+test('K-06 Lalyre can attack only with a Soul Core on it', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(() => {
+    const P = BS.G.p.player; const l = BS.mkInst('26RSD09-001'); l.cores = 1; P.spirits.push(l);
+    l.soul = null; const bare = BS.flagActive(P, 'CANT_ATTACK', l);
+    l.soul = BS.mkInst(Object.values(BS.CARDS).find(c => c.type === 'Spirit').id); const held = BS.flagActive(P, 'CANT_ATTACK', l);
+    return [bare, held];
+  });
+  assert.deepEqual(r, [true, false]);
+});
+
+test('K-07 Squidina heavy exhausts only an opposing exhausted Spirit', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(async () => {
+    const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = P.key; P.cpu = true;
+    const mid = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && !(c.effects && c.effects.length));
+    const a = BS.mkInst(mid.id), b = BS.mkInst(mid.id); a.cores = 1; b.cores = 1; b.exhausted = true; O.spirits.push(a, b);
+    const src = BS.mkInst('26RDB01-022'); src.cores = 1; src.lostLv = 0; P.trash.push(src);      // a (When Destroyed) source sits in the Trash
+    await BS.fireFx(P, 'DESTROYED', src, {});
+    return [!!a.heavy, !!b.heavy];
+  });
+  assert.deepEqual(r, [false, true]);
+});
+
+test('K-08 Sertis-style DESTROY.bpPer widens the BP limit per own Clash Spirit', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(async () => {
+    const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = P.key; P.cpu = true;
+    const big = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && c.levels[0].bp === 4000 && !(c.effects && c.effects.length));
+    const f = BS.mkInst(big.id); f.cores = 1; O.spirits.push(f);
+    const src = BS.mkInst('26RBS01-008'); src.cores = 1; P.spirits.push(src);
+    await BS.fireFx(P, 'SUMMONED', src, {}); const kept = O.spirits.includes(f);
+    P.spirits.push(BS.mkInst('26RBS02-009')); await BS.fireFx(P, 'SUMMONED', src, {});
+    return [kept, !O.spirits.includes(f)];
+  });
+  assert.deepEqual(r, [true, true]);
+});

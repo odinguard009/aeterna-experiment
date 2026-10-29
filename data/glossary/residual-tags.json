@@ -38194,9 +38194,6 @@
  "26RBS01-007": [
   "T_DESTROYED"
  ],
- "26RBS01-008": [
-  "T_SUMMONED"
- ],
  "26RBS01-013": [
   "A_TRASH_TO_RESERVE",
   "C_LEVEL",
@@ -39445,11 +39442,6 @@
   "M_UP_TO",
   "T_SUMMONED"
  ],
- "26RDB01-022": [
-  "A_EXHAUST",
-  "M_OPTIONAL",
-  "T_DESTROYED"
- ],
  "26RDB01-024": [
   "A_EXHAUST",
   "C_LEVEL",
@@ -39888,7 +39880,6 @@
   "M_THEN",
   "T_ATTACKS"
  ],
- "26RSD09-001": [],
  "26RSD09-006": [
   "A_BP_PLUS",
   "C_LEVEL",
