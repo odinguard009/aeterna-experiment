@@ -235,3 +235,17 @@ test('K-15 Polar Fox / Stofir exhaust the attacker side; Genm returns; Semarogue
     return out; })()`);
   assert.deepEqual(r, [[true, false], true, [true, 0], 1, true]);
 });
+
+test('K-16 dual Main/Flash magic: Burn Out draws then destroys with a family Spirit; Heart Arrow needs an exhausted Red Stella Spirit', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const main = (id) => { const m = BS.mkInst(id); return BS.runActions({ p: P, opp: O, src: m, ctx: {} }, { actions: BS.CARDS[id].magic.by.MAIN.actions }); };
+    const t = opp(3, 3000); const h0 = P.hand.length; await main('26RBS03-086'); const alone = [O.spirits.includes(t), P.hand.length - h0];
+    const pw = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && (c.families || []).includes('Purgatory Wings') && !(c.effects && c.effects.length)); const s = BS.mkInst(pw.id); s.cores = 1; P.spirits.push(s);
+    await main('26RBS03-086');
+    const nx = Object.values(BS.CARDS).find(c => c.type === 'Nexus' && c.cost <= 4); const n = BS.mkInst(nx.id); O.nexus.push(n);
+    await main('26RDB01-055'); const kept = O.nexus.includes(n);
+    const rs = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && /\\[Teams?:[^\\]]*Red Stella/.test(c.desc || c.text || '')); const e = BS.mkInst(rs.id); e.cores = 1; e.exhausted = true; P.spirits.push(e);
+    await main('26RDB01-055'); return [alone, !O.spirits.includes(t), kept, !O.nexus.includes(n)]; })()`);
+  assert.deepEqual(r, [[true, 1], true, true, true]);
+});

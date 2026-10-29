@@ -39065,10 +39065,6 @@
   "F_OTHER_NOSTACK",
   "M_UNSTACKABLE"
  ],
- "26RBS03-086": [
-  "C_CONTROL",
-  "M_THEN"
- ],
  "26RBS03-087": [
   "M_UP_TO"
  ],
@@ -39527,9 +39523,6 @@
  ],
  "26RDB01-054": [
   "A_BP_PLUS"
- ],
- "26RDB01-055": [
-  "A_EXHAUST"
  ],
  "26RDB01-059": [
   "A_EXHAUST",
