@@ -8804,7 +8804,7 @@ function ddMenuEl(S, tb, btn, pick, clear) {
   const q = /** @type {HTMLInputElement|null} */ (m.querySelector('.ddq'));
   if (q) { const f = () => { S.fq = q.value; const w = q.value.trim().toLowerCase(); /** @type {NodeListOf<HTMLElement>} */ (m.querySelectorAll('.ddi[data-q]')).forEach(b => { b.hidden = !!w && !b.classList.contains('mode') && !b.dataset.q.includes(w); }); }; q.value = S.fq || ''; q.oninput = f; f(); }
   const r = btn.getBoundingClientRect(), t = tb.getBoundingClientRect(), w = Math.max(r.width, 210);
-  m.style.width = w + 'px'; m.style.left = Math.max(6, Math.min(t.width - w - 6, r.left - t.left)) + 'px'; m.style.top = (r.bottom - t.top + 4) + 'px';
+  m.style.width = w + 'px'; const mw = m.offsetWidth; m.style.left = Math.max(6, Math.min(t.width - mw - 6, r.left - t.left)) + 'px';   // mw: the phone CSS forces another width than w m.style.top = (r.bottom - t.top + 4) + 'px';
 }
 function ddPick(S, v, clear) { if (clear && S.dd === 'sort') { S.sort = ddSortDef(S); S.sortDir = 'asc'; return; } const items = ddList(S, S.dd); if (clear) items.forEach(i => i.set.delete(i.v)); else { const i = items.find(x => x.v === v); if (i) { if (i.set.has(i.v)) i.set.delete(i.v); else i.set.add(i.v); } } }
 const ddReset = S => { ['colors', 'costs', 'types', 'groups', 'bps', 'cores', 'fams', 'icons', 'rars', 'collabs'].forEach(g => S[g].clear()); S.cmode = S.ffall = false; S.fq = ''; };

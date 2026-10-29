@@ -63,3 +63,23 @@ test('R3-04 "No data" in Rarity keeps exactly the cards without an official rari
   }, grid);
   assert.ok(r.want > 0 && r.ok);
 });
+
+test('R3-05 on a 390 px phone every filter menu stays inside the screen (menu width is forced by the phone CSS)', async () => {
+  await g.page.setViewportSize({ width: 390, height: 780 });
+  const bad = await g.page.evaluate(async () => {
+    const bad = [];
+    for (const view of ['view-deckbuilder', 'view-library']) {
+      BS.switchView(view); await new Promise(r => setTimeout(r, 200));
+      for (const kind of ['rarity', 'collab', 'sort', 'icon', 'family']) {
+        const b = /** @type {HTMLElement|null} */ (document.querySelector(`#${view} button.ddb[data-v="${kind}"]`)); if (!b) { bad.push(view + ':' + kind + ' missing'); continue; }
+        b.click(); await new Promise(r => setTimeout(r, 120));
+        const m = document.querySelector('.ddmenu'); const r = m && m.getBoundingClientRect();
+        if (!r || r.left < 0 || r.right > innerWidth + 1) bad.push(view + ':' + kind + ' ' + (r ? Math.round(r.left) + '..' + Math.round(r.right) : 'no menu'));
+        document.body.click();
+      }
+    }
+    return bad;
+  });
+  await g.page.setViewportSize({ width: 1280, height: 720 });
+  assert.deepEqual(bad, []);
+});
