@@ -3862,7 +3862,7 @@
    },
    {
     "cores": 5,
-    "bp": 6000
+    "bp": 7000
    }
   ],
   "families": [
@@ -13366,15 +13366,15 @@
   "levels": [
    {
     "cores": 1,
-    "bp": 2000
-   },
-   {
-    "cores": 3,
     "bp": 3000
    },
    {
-    "cores": 4,
+    "cores": 3,
     "bp": 4000
+   },
+   {
+    "cores": 4,
+    "bp": 5000
    }
   ],
   "families": [
@@ -14092,7 +14092,7 @@
   "saga": 7,
   "brave": {
    "bp": 3000,
-   "costGe": 3
+   "costGe": 5
   },
   "fxComplete": false,
   "residual": [
@@ -18769,7 +18769,7 @@
   "symbols": 0,
   "levels": [
    {
-    "cores": 1,
+    "cores": 0,
     "bp": 4000
    }
   ],

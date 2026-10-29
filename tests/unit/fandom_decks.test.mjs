@@ -14,6 +14,8 @@ const DECKS = { green: 'green-hermes-lionheart', purple: 'purple-hades-sorcerer'
 const deckIds = fn => [...new Set(readFileSync(join(ROOT, `data/decks/${fn}.txt`), 'utf8').split('\n')
   .map(l => /^\s*\d+\s+(\S+)/.exec(l)).filter(Boolean).map(m => m[1]))];
 // v0.44.6: Fandom's extra god icon on these cards is now in our data (BS68 confirmed on the official card list); tests in god_reduction.test.mjs.
+// v0.186.0 (R1): the official card page wins over Fandom for level BP / cores; ids listed here differ from Fandom on purpose.
+const OFFICIAL_LEVELS = ['BS75-001', 'BS68-012'];
 const GOD_FIXED = ['BS70-072', 'BS69-025', 'BS69-029', 'BS70-034', 'BS69-030', 'BS70-035', 'BS70-X03', 'BS69-033', 'BS68-014', 'BS68-016', 'BS68-018', 'BS68-020', 'BS68-022', 'BS68-NX01'];
 
 for (const [col, fn] of Object.entries(DECKS)) {
@@ -26,7 +28,7 @@ for (const [col, fn] of Object.entries(DECKS)) {
       assert.ok(r, `${id} missing in Fandom`);
       assert.equal(c.cost, r.cost, `${id} cost`);
       assert.deepEqual([...c.families].sort(), [...(r.families || [])].sort(), `${id} families`);
-      if (r.levels && r.levels.length) assert.deepEqual(c.levels.map(l => [l.cores, l.bp]), r.levels.map(l => [l.cores, l.bp]), `${id} levels`);
+      if (r.levels && r.levels.length && !OFFICIAL_LEVELS.includes(id)) assert.deepEqual(c.levels.map(l => [l.cores, l.bp]), r.levels.map(l => [l.cores, l.bp]), `${id} levels`);
     }
   });
   test(`${col} deck: reduction (god icon included) equals Fandom's`, { skip: !have }, () => {

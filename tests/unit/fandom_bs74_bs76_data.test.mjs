@@ -18,7 +18,8 @@ for (const [id, rest] of Object.entries(GOD)) {
 test('BS76-005 Lv3 needs 5 cores (Fandom)', () => assert.deepEqual(by('BS76-005').levels.map(l => l.cores), [1, 2, 5]));
 test('BS76-006 Lv3 needs 4 cores (Fandom)', () => assert.deepEqual(by('BS76-006').levels.map(l => l.cores), [1, 2, 4]));
 test('BS75-041 has the Devotee family (Fandom)', () => assert.ok(by('BS75-041').families.includes('Devotee')));
-test('BS75-001 Lv1 BP is 2000 (Fandom export wins over cardrush, issue #5)', () => assert.equal(by('BS75-001').levels[0].bp, 2000));
+// v0.186.0 (R1): the official card page (1000 / 4000) now wins over the Fandom export (2000) for BS75-001 levels.
+test('BS75-001 Lv1 BP is 1000 (official card page, R1; Fandom says 2000)', () => assert.equal(by('BS75-001').levels[0].bp, 1000));
 // issue #5 (v0.48.2): conflicts settled in favour of the Fandom export (owner priority, 2026-10-16); Fandom gold icon = our Ultimate key
 const FANDOM_RED = { 'BS75-063': { red: 2 }, 'BS75-075': { red: 1, white: 1 }, 'BS75-076': { red: 3, ultimate: 1 }, 'BS75-082': { yellow: 2, god: 1 }, 'BS76-079': {} };
 for (const [id, r] of Object.entries(FANDOM_RED)) test(`${id} reduction follows the Fandom export ${JSON.stringify(r)}`, () => assert.deepEqual(by(id).reduction, r));

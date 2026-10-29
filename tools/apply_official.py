@@ -5,7 +5,7 @@
   python3 tools/apply_official.py --field cost --apply    write one field (one commit per field)
 Fields: cost, reduction, levels, colors, brave. Idempotent. The official page wins; nothing else in a card is touched.
 reduction: only the six colour keys are replaced (other keys such as god / ultimate stay). levels: Spirit / Brave of equal
-level count (bp + cores) and the last level of a Nexus (cores). colors: the `colors` list (the engine reads it), `color`
+level count (bp + cores); a Nexus is left alone (the page lists a threshold the library models differently). colors: the `colors` list (the engine reads it), `color`
 stays when it is in the list, else becomes the first official colour. Files keep their layout (indent 1 in data/cards,
 one card per line in data/import)."""
 import argparse, glob, json, os, sys
@@ -19,6 +19,11 @@ def dump(d, style):
     if style == 'indent':
         return json.dumps(d, ensure_ascii=False, indent=1)
     return '[\n' + ',\n'.join(json.dumps(c, ensure_ascii=False) for c in d) + '\n]'
+
+
+def sound(lv):
+    """Official level rows without gaps and rising (a row with None or a falling value is a misread table, left alone)."""
+    return all(b is not None and k is not None for b, k in lv) and all(x[0] <= y[0] and x[1] <= y[1] for x, y in zip(lv, lv[1:]))
 
 
 def changes(c, o, field):
@@ -36,12 +41,10 @@ def changes(c, o, field):
                 out.append(('reduction', new))
     elif field == 'levels':
         t, lv = c.get('type'), c.get('levels') or []
-        if t in ('Spirit', 'Brave') and len(lv) == len(o['levels']) and lv:
+        if t in ('Spirit', 'Brave') and len(lv) == len(o['levels']) and lv and sound(o['levels']):
             new = [dict(l, bp=b, cores=k) for l, (b, k) in zip(lv, o['levels'])]
             if new != lv:
                 out.append(('levels', new))
-        elif t == 'Nexus' and lv and o['levels'] and o['levels'][-1][1] is not None and lv[-1].get('cores') != o['levels'][-1][1]:
-            out.append(('levels', lv[:-1] + [dict(lv[-1], cores=o['levels'][-1][1])]))
     elif field == 'colors':
         mine = sorted(c.get('colors') or ([c['color']] if c.get('color') else []))
         if o['colors'] and c.get('type') != 'Magic' and mine != sorted(o['colors']):
