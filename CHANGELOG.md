@@ -4,6 +4,13 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.190.0
+- Lane: U/I
+- **R9: Sort dropdown (Deck Builder and Library)**
+  - The hidden Sort selects (not shown on phone) are replaced by a Sort button in the scrollable filter row. The menu holds Ascending / Descending and the keys Set, Name, Cost, Colour, Type, BP (Lv1), Cores (Lv1), Reduction, Family, Complete first, Rarity, Block (Default in the Deck Builder only). Cards without a value (for example BP on a Magic) sort last in both directions; Clear resets to the default.
+  - Tests: `tests/unit/r9_sort.test.mjs` (order of every key, menu on PC and a 390 px phone, no sideways page scroll); D05 now sets the sort through the state. Screenshots: `docs/screenshots/r9-sort-pc.png`, `r9-sort-phone.png`.
+  - Not done: the read-only player-view pass.
+
 ## v0.189.0
 - Lane: U/I
 - **R3: Block icon, Rarity and Collab filters (Deck Builder and Library)**

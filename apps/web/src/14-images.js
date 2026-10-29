@@ -116,13 +116,13 @@ function renderLibrary() {
 const LIBV = { list: [], from: -1, to: -1, cols: 0, rowH: 0, raf: 0, timer: 0, key: '' };
 const LIB_GAP = 16, LIB_BUF = 2;
 const libSetOf = id => String(id).replace(/-.*$/, '');
-const LIBF = { colors: new Set(), costs: new Set(), types: new Set(), groups: new Set(), bps: new Set(), cores: new Set(), fams: new Set(), icons: new Set(), rars: new Set(), collabs: new Set(), cmode: false, ffall: false, fq: '', family: '', complete: true, partly: false, dd: '', sort: 'set', size: 'm', tab: 'cards', min: false };   // mockup toolbar state (v0.137.0)
+const LIBF = { colors: new Set(), costs: new Set(), types: new Set(), groups: new Set(), bps: new Set(), cores: new Set(), fams: new Set(), icons: new Set(), rars: new Set(), collabs: new Set(), cmode: false, ffall: false, fq: '', family: '', complete: true, partly: false, dd: '', sort: 'set', sortDir: 'asc', size: 'm', tab: 'cards', min: false };   // mockup toolbar state (v0.137.0)
 const LIB_SIZES = [['s', 'S', 8], ['m', 'M', 6], ['l', 'L', 4]];
 function libActive() { return LIBF.colors.size + LIBF.costs.size + LIBF.types.size + LIBF.groups.size + LIBF.bps.size + LIBF.cores.size + LIBF.fams.size + LIBF.icons.size + LIBF.rars.size + LIBF.collabs.size + (LIBF.family ? 1 : 0) + ((($('lib-set') || {}).value) ? 1 : 0) + (($('lib-search') || {}).value ? 1 : 0); }
 function libFilter() {
   const q = (($('lib-search') || {}).value || '').trim().toLowerCase(), fam = LIBF.family.trim().toLowerCase();
   const set = (($('lib-set') || {}).value) || '';
-  const key = [CARDS_VER, q, set, fam, [...LIBF.colors], [...LIBF.costs], [...LIBF.types], [...LIBF.groups], [...LIBF.bps], [...LIBF.cores], [...LIBF.fams].join('~'), [...LIBF.icons].join(), [...LIBF.rars].join(), [...LIBF.collabs].join(), LIBF.cmode, LIBF.ffall, LIBF.complete, LIBF.partly, LIBF.sort].join('|');
+  const key = [CARDS_VER, q, set, fam, [...LIBF.colors], [...LIBF.costs], [...LIBF.types], [...LIBF.groups], [...LIBF.bps], [...LIBF.cores], [...LIBF.fams].join('~'), [...LIBF.icons].join(), [...LIBF.rars].join(), [...LIBF.collabs].join(), LIBF.cmode, LIBF.ffall, LIBF.complete, LIBF.partly, LIBF.sort, LIBF.sortDir].join('|');
   if (key === LIBV.key) return LIBV.list;
   LIBV.key = key;
   let l = dbIndex().filter(e => {
@@ -134,7 +134,7 @@ function libFilter() {
     if (LIBF.partly && !fxMarked(c)) return false;   // v0.158.0: the "! Partly Implemented" chip is a filter (only the cards marked "!")
     return dbFilterOK(c, LIBF.colors, LIBF.costs, LIBF.types, LIBF.cmode) && dbPlusOK(c, LIBF) && [...LIBF.groups].every(g => dbGroupOK(c, g));
   });
-  l = l.slice().sort(DB_SORTS[LIBF.sort] || DB_SORTS.set);
+  l = l.slice().sort(dbSortCmp(LIBF.sort, LIBF.sortDir));
   LIBV.list = l.map(e => e.id);
   const cnt = $('lib-count'); if (cnt) cnt.textContent = `${LIBV.list.length.toLocaleString('en-US')} card(s) shown`;
   return LIBV.list;
@@ -145,11 +145,11 @@ function libBar() {                                   // the mockup toolbar: col
   $('lib-types').innerHTML = filterTypesHTML(LIBF, 'lib-f');
   $('lib-costs').innerHTML = DB_COSTS.map(k => `<button class="cbtn${on(LIBF.costs, k) ? ' on' : ''}" data-a="lib-f" data-v="costs:${k}" aria-pressed="${on(LIBF.costs, k)}" aria-label="Cost ${k}">${k === '10' ? '10+' : k}</button>`).join('');
   $('lib-colbtn').innerHTML = ddButton(LIBF, 'colour', 'Colour', 'lib-dd') + ddButton(LIBF, 'type', 'Type', 'lib-dd') + ddButton(LIBF, 'cost', 'Cost', 'lib-dd');
-  $('lib-groups').innerHTML = ddButton(LIBF, 'group', 'Group', 'lib-dd') + ddButton(LIBF, 'family', 'Family', 'lib-dd') + ddButton(LIBF, 'bp', 'BP', 'lib-dd') + ddButton(LIBF, 'cores', 'Cores', 'lib-dd') + ddButton(LIBF, 'icon', 'Block', 'lib-dd') + ddButton(LIBF, 'rarity', 'Rarity', 'lib-dd') + ddButton(LIBF, 'collab', 'Collab', 'lib-dd');
+  $('lib-groups').innerHTML = ddButton(LIBF, 'group', 'Group', 'lib-dd') + ddButton(LIBF, 'family', 'Family', 'lib-dd') + ddButton(LIBF, 'bp', 'BP', 'lib-dd') + ddButton(LIBF, 'cores', 'Cores', 'lib-dd') + ddButton(LIBF, 'icon', 'Block', 'lib-dd') + ddButton(LIBF, 'rarity', 'Rarity', 'lib-dd') + ddButton(LIBF, 'collab', 'Collab', 'lib-dd') + ddButton(LIBF, 'sort', 'Sort', 'lib-dd');
   $('lib-play').classList.toggle('on', LIBF.complete);
   libMenu();
   $('lib-size').innerHTML = LIB_SIZES.map(([v, l]) => `<button data-a="lib-size" data-v="${v}" aria-pressed="${LIBF.size === v}">${l}</button>`).join('');
-  $('lib-sort').value = LIBF.sort; if (document.activeElement !== $('lib-family')) $('lib-family').value = LIBF.family;
+  if (document.activeElement !== $('lib-family')) $('lib-family').value = LIBF.family;
   $('lib-complete').classList.toggle('on', LIBF.complete); $('lib-complete').setAttribute('aria-pressed', String(LIBF.complete));
   $('lib-partly').classList.toggle('on', LIBF.partly); $('lib-partly').setAttribute('aria-pressed', String(LIBF.partly));
   dqa('#lib-lore-pane [data-a="lib-lore-min"]').forEach(b => { const k = b.dataset.v === 'head' ? 'lore-head-min' : 'lore-nav-min', m = $('lib-lore-pane').classList.contains(k); b.setAttribute('aria-pressed', String(m)); b.textContent = (m ? '▼ Show ' : '▲ Hide ') + (b.dataset.v === 'head' ? 'details' : 'list'); });
@@ -170,7 +170,7 @@ function libMenu() {                                  // the mockup dropdown men
 document.addEventListener('click', e => { if (LIBF.dd && !(/** @type {Element} */ (e.target)).closest('.ddmenu,[data-a="lib-dd"]')) { LIBF.dd = ''; libMenu(); } });
 function libTool(a, v) {
   if (a === 'lib-dd') { LIBF.dd = LIBF.dd === v ? '' : v; libBar(); return; }
-  if (a === 'lib-ddpick') ddPick(LIBF, v, false);
+  if (a === 'lib-ddpick') { ddPick(LIBF, v, false); if (LIBF.dd === 'sort') $('lib-grid').scrollTop = 0; }
   else if (a === 'lib-ddclear') { ddPick(LIBF, v, true); LIBF.dd = ''; }
   else if (a === 'lib-f') { const [g, x] = v.split(':'), s = LIBF[g]; if (s) { if (s.has(x)) s.delete(x); else s.add(x); } }
   else if (a === 'lib-size') LIBF.size = v;
@@ -262,7 +262,6 @@ document.addEventListener('change', async e => {
     libMsg(`Matched ${r.ok} image(s).${r.miss.length ? `\nNo card found for ${r.miss.length} file(s): ` + r.miss.slice(0, 10).join(', ') + (r.miss.length > 10 ? ', …' : '') : ''}`, r.ok === 0);
     t.value = ''; refreshViews();
   } else if (t.id === 'db-set') { DBF.set = t.value; renderDeckBuilder(); }
-  else if (t.id === 'db-sort') { DBF.sort = t.value; $('db-card-list').scrollTop = 0; renderDeckBuilder(); }
   else if (t.id === 'play-cpu') { SETTINGS.cpuDeck = t.value; saveSettings(); renderLobby(); }
   else if (t.id === 'db-slot') { switchSlot(Number(t.value)); DB_UNDO.length = 0; renderDeckBuilder(); }
   else if (t.id === 'db-name') { SLOTS[ACTIVE_SLOT].name = (t.value.trim() || 'Deck ' + (ACTIVE_SLOT + 1)).slice(0, 24); saveDeck(); renderDeckBuilder(); }
@@ -280,7 +279,7 @@ document.addEventListener('change', async e => {
   else if (t.id === 'set-cb' || t.id === 'set-hc') { const k = t.id === 'set-cb' ? 'cbShapes' : 'hiContrast'; if (t.value === 'on') SETTINGS[k] = true; else delete SETTINGS[k]; saveSettings(); applyAccess(); }
   else if (t.id === 'set-lp') { if (t.value === 'off') SETTINGS.longpress = 'off'; else delete SETTINGS.longpress; saveSettings(); }
   else if (t.id === 'set-sound') { SETTINGS.sound = t.value === 'on'; saveSettings(); navTools(); if (SETTINGS.sound) sfx('summon'); }
-  else if (t.id === 'lib-set' || t.id === 'lib-sort') { if (t.id === 'lib-sort') LIBF.sort = t.value; $('lib-grid').scrollTop = 0; renderLibrary(); }   // v0.111.0 (card images): the Library browse grid filters
+  else if (t.id === 'lib-set') { $('lib-grid').scrollTop = 0; renderLibrary(); }   // v0.111.0 (card images): the Library browse grid filters
 });
 document.addEventListener('input', e => { if (evT(e).id === 'db-search') dbSearchInput(); else if (evT(e).id === 'lib-search') libSearchInput(); else if (evT(e).id === 'lib-family') { LIBF.family = /** @type {HTMLInputElement} */ (evT(e)).value; libSearchInput(); } });
 document.addEventListener('scroll', e => { const t = /** @type {HTMLElement} */ (e.target); if (t && t.id === 'db-card-list') dbScroll(); else if (t && t.id === 'lib-grid') libScroll(); }, true);
