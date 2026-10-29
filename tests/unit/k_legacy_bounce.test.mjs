@@ -426,3 +426,13 @@ test('K-31 Carneliath: CPU destroys two 3000 BP Spirits when it can, else one 50
     return out; })()`);
   assert.deepEqual(r, [1, 0]);
 });
+
+test('K-32 Hallucination: returns up to three opposing Cost 3 or less Nexuses', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const nx = Object.values(BS.CARDS).filter(c => c.type === 'Nexus' && c.cost <= 3).slice(0, 2);
+    O.nexus.length = 0; nx.forEach(c => O.nexus.push(BS.mkInst(c.id)));
+    await BS.runActions({ p: P, opp: O, src: BS.mkInst('26RBS03-094'), ctx: {} }, { actions: BS.CARDS['26RBS03-094'].magic.by.MAIN.actions });
+    return O.nexus.length; })()`);
+  assert.equal(r, 0);
+});

@@ -1,16 +1,18 @@
 const FX_ACTIONS = {
-  BOUNCE_OPP: { chk: a => ['hand', 'deckBottom'].includes(a.to) && ['spirit', 'any', 'nexus'].includes(a.kind) && (a.lv == null || (Array.isArray(a.lv) && a.lv.length > 0 && a.lv.every(x => Number.isInteger(x) && x >= 1 && x <= 4))) && (a.notColor == null || typeof a.notColor === 'string') && (a.costLeSubject == null || a.costLeSubject === true) && (a.exhaustedOnly == null || a.exhaustedOnly === true) && (a.costLe == null || (Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30)) && (a.bpLe == null || (Number.isInteger(a.bpLe) && a.bpLe >= 1000 && a.bpLe <= 100000)) && (a.n == null || (Number.isInteger(a.n) && a.n >= 2 && a.n <= 3)),      // v0.195 bpLe ("3000 BP or less") and n ("Target two opposing ...": exactly n distinct targets)
+  BOUNCE_OPP: { chk: a => ['hand', 'deckBottom'].includes(a.to) && ['spirit', 'any', 'nexus'].includes(a.kind) && (a.lv == null || (Array.isArray(a.lv) && a.lv.length > 0 && a.lv.every(x => Number.isInteger(x) && x >= 1 && x <= 4))) && (a.notColor == null || typeof a.notColor === 'string') && (a.costLeSubject == null || a.costLeSubject === true) && (a.exhaustedOnly == null || a.exhaustedOnly === true) && (a.costLe == null || (Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30)) && (a.bpLe == null || (Number.isInteger(a.bpLe) && a.bpLe >= 1000 && a.bpLe <= 100000)) && (a.n == null || (Number.isInteger(a.n) && a.n >= 2 && a.n <= 3)) && (a.upTo == null || (a.upTo === true && a.n != null)),      // v0.195 bpLe ("3000 BP or less") and n ("Target two opposing ...": exactly n distinct targets)
     txt: a => `return ${a.n || 'an'} opposing ${a.lv ? 'LV' + a.lv.join('/') + ' ' : ''}${a.kind === 'any' ? 'Spirit/Nexus' : 'Spirit'}${a.costLeSubject ? ' with cost equal or inferior to the attacking card' : ''}${a.costLe != null ? ' with cost ' + a.costLe + ' or less' : ''}${a.bpLe != null ? ' with ' + a.bpLe + ' BP or less' : ''} to the ${a.to === 'hand' ? 'Hand' : 'bottom of the Deck'}`,
     cands: (c, a) => {
       const sub = c.ctx.subject || c.ctx.attacker, lim = a.costLeSubject ? (sub ? CARDS[sub.id].cost : -1) : null;
       return (a.kind === 'any' ? c.opp.spirits.concat(c.opp.nexus) : a.kind === 'nexus' ? c.opp.nexus : c.opp.spirits).filter(t => (lim == null || CARDS[t.id].cost <= lim) && (a.costLe == null || CARDS[t.id].cost <= a.costLe) && (a.bpLe == null || bpOf(t) <= a.bpLe) && (!a.lv || a.lv.includes(lvNo(t))) && (!a.notColor || !(CARDS[t.id].colors || [CARDS[t.id].symbol]).includes(a.notColor)) && (!a.exhaustedOnly || t.exhausted) && !flagActive(c.opp, 'NO_RETURN', t) && !fxImmune(c.opp, t));
     },
-    can: (c, a) => FX_ACTIONS.BOUNCE_OPP.cands(c, a).length >= (a.n || 1),
+    can: (c, a) => FX_ACTIONS.BOUNCE_OPP.cands(c, a).length >= (a.upTo ? 1 : a.n || 1),      // v0.196 upTo: "up to N" targets
     run: async (c, a) => {
-      if (FX_ACTIONS.BOUNCE_OPP.cands(c, a).length < (a.n || 1)) { c.ctx.did = false; return; }
+      if (FX_ACTIONS.BOUNCE_OPP.cands(c, a).length < (a.upTo ? 1 : a.n || 1)) { c.ctx.did = false; return; }
       const got = [];
       for (let j = 0; j < (a.n || 1); j++) {
-        const t = await fxPickTarget(c, FX_ACTIONS.BOUNCE_OPP.cands(c, a).filter(x => !got.includes(x)), `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the opposing card to return${a.n ? ` (${j + 1}/${a.n})` : ''} (glowing).`);
+        const rest = FX_ACTIONS.BOUNCE_OPP.cands(c, a).filter(x => !got.includes(x));
+        if (a.upTo && (!rest.length || (c.p.cpu === false && j > 0 && !await ask({ title: `✨ ${esc(CARDS[c.src.id].name)}`, html: 'Return another one?', buttons: [{ label: 'Yes', cls: 'primary', value: true }, { label: 'No', cls: 'blue', value: false }] })))) break;
+        const t = await fxPickTarget(c, rest, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the opposing card to return${a.n ? ` (${j + 1}/${a.n})` : ''} (glowing).`);
         if (!t) { c.ctx.did = false; return; }
         got.push(t);
       }
