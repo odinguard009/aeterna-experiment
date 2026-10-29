@@ -147,3 +147,5 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v107 (v0.196.0, Lane K): `match.typeAny` (list of card types, e.g. ["Spirit","Nexus"]) for reveal/pick matches: "a Spirit card/Nexus card".
 - v108 (v0.196.0, Lane K): condition `pickedCostIn:[n..]` (cost of the card revealed by `REVEAL_PICK.peek`, which now sets `ctx.picked` and may return it to the deckbottom): "If that is Cost 2/4/6/8".
 - v109 (v0.196.0, Lane K): `RETURN_TRASH.milled:true` - only a card the earlier `MILL` of the same effect sent to the Trash: "target a <X> card discarded, return it to the Hand".
+- v110 (v0.196.0, Lane K): card-level `costPer:{family,n,max}` - "For each <family> Spirit you control, the cost of this card in Hand gets -n (Max. -max)"; applied in `effCost` after the cost reduction.
+- v111 (v0.196.0, Lane K): `VOID_TO_CARD.perLegacy:true` (`to` anyNexus: up to one different Nexus per EX Symbol banished via this Legacy, n cores each) and `REVEAL_PICK.nLegacy:true` (n 1, discard: reveal one card per EX Symbol banished via this Legacy, discard one, rest to the deckbottom).

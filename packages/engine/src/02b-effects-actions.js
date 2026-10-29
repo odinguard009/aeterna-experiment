@@ -95,15 +95,23 @@ const FX_ACTIONS = {
       }
       await summonBy(c.p, t, a.pay, a.noFx || a.noTribute ? { noFx: a.noFx, noTribute: a.noTribute } : undefined);
     } },
-  VOID_TO_CARD: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && ['self', 'anySpirit', 'anyNexus', 'eachSpirit', 'eachNexus'].includes(a.to) && (a.match == null || (a.to !== 'self' && hasMatch(a.match))),      // v0.74: match = "any of your <colour|family> Spirits"; v0.75: Nexus targets, "each to every <X> you control"
+  VOID_TO_CARD: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && ['self', 'anySpirit', 'anyNexus', 'eachSpirit', 'eachNexus'].includes(a.to) && (a.match == null || (a.to !== 'self' && hasMatch(a.match))) && (a.perLegacy == null || (a.perLegacy === true && a.to === 'anyNexus')),      // v0.196 perLegacy: "for each EX Symbol banished via this Legacy, you can target one of your Nexuses" (up to that many different Nexuses, n core(s) each); v0.74: match = "any of your <colour|family> Spirits"; v0.75: Nexus targets, "each to every <X> you control"
     cands: (c, a) => (/Nexus$/.test(a.to) ? c.p.nexus : c.p.spirits).filter(x => fxMatch(CARDS[x.id], a.match)), txt: a => a.perOppHandPairs ? 'put a core from the Void to one of your Spirits for every two cards in the opposing Hand' : a.perDistinctSoul ? 'put a core from the Void to one of your Spirits for each differently-named card in Soul State' : `put ${a.n} core${a.n === 1 ? '' : 's'} from the Void ${/^each/.test(a.to) ? 'to each of your ' : 'to '}${a.to === 'self' ? 'this Spirit' : (/^any/.test(a.to) ? 'one of your ' : '') + (a.match ? 'matching ' : '') + (/Nexus$/.test(a.to) ? 'Nexuses' : 'Spirits')}`,
-    can: (c, a) => (!a.perOppHandPairs || c.opp.hand.length >= 2) && (!a.perDistinctSoul || c.p.soulState.length > 0) && (a.to === 'self' ? c.p.spirits.includes(c.src) : FX_ACTIONS.VOID_TO_CARD.cands(c, a).length > 0),
+    can: (c, a) => (!a.perLegacy || (c.src.legacyN || 0) > 0) && (!a.perOppHandPairs || c.opp.hand.length >= 2) && (!a.perDistinctSoul || c.p.soulState.length > 0) && (a.to === 'self' ? c.p.spirits.includes(c.src) : FX_ACTIONS.VOID_TO_CARD.cands(c, a).length > 0),
     run: async (c, a) => {
       if (/^each/.test(a.to)) {      // v0.75: every matching card gets n cores (each one its own)
         const L = FX_ACTIONS.VOID_TO_CARD.cands(c, a); let m = 0;
         for (const t of L) { const k = takeFromVoid(c.p, a.n); t.cores += k; m += k; }
         c.ctx.put = m; if (!m) { c.ctx.did = false; return; }
         log(`${CARDS[c.src.id].name}: ${a.n} core${a.n === 1 ? '' : 's'} from the Void to each of ${L.map(t => CARDS[t.id].name).join(', ')}.`); return;
+      }
+      if (a.perLegacy) {
+        let L = FX_ACTIONS.VOID_TO_CARD.cands(c, a), m = 0;
+        for (let i = 0; i < (c.src.legacyN || 0) && L.length; i++) {
+          const t = await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap a Nexus that receives a core from the Void (${i + 1}/${c.src.legacyN}).`); if (!t) break;
+          const k = takeFromVoid(c.p, a.n); t.cores += k; m += k; L = L.filter(x => x !== t); if (k) log(`${CARDS[c.src.id].name}: ${k} core${k === 1 ? '' : 's'} move from the Void to ${CARDS[t.id].name}.`);
+        }
+        c.ctx.put = m; if (!m) c.ctx.did = false; return;
       }
       const t = a.to === 'self' ? (c.p.spirits.includes(c.src) ? c.src : null) : await fxPickTarget(c, FX_ACTIONS.VOID_TO_CARD.cands(c, a), `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the ${/Nexus$/.test(a.to) ? 'Nexus' : 'Spirit'} that receives the core${a.n === 1 ? '' : 's'} from the Void (glowing).`);
       const want = a.perOppHandPairs ? Math.floor(c.opp.hand.length / 2) : a.perDistinctSoul ? new Set(c.p.soulState.map(x => x.id)).size : a.n;

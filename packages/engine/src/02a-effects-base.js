@@ -290,4 +290,4 @@ function bounceCard(owner, t, to) {                   // return a field card to 
   log(`${poss(owner)} ${CARDS[t.id].name} returns to the ${to === 'deckBottom' ? 'bottom of the Deck' : 'Hand'}.`);
 }
 const SOUL_SRC = ['self', 'hand', 'trash', 'handOrTrash', 'reveal'];
-const hasMatch = m => !!m && (m.name || m.family || m.costGe != null || m.costLe != null || m.costIn || m.type || m.color || m.familyAll || m.keyword || m.noText || m.team);
+const hasMatch = m => !!m && (m.name || m.family || m.costGe != null || m.costLe != null || m.costIn || m.type || m.typeAny || m.color || m.familyAll || m.keyword || m.noText || m.team);

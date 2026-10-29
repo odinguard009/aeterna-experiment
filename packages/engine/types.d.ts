@@ -18,6 +18,8 @@ interface MagicSpec {
 }
 /** `costAlt`: a lower cost while a condition holds. */
 interface CostAlt { cost: number; once: boolean; if?: any }
+/** `costPer`: -n cost per matching Spirit you control, at most -max. */
+interface CostPer { family: string; n: number; max: number }
 /** `tribute`: after paying the summon cost, send all cores of one of your matching Spirits to the Trash/Void. */
 interface TributeSpec { costGe?: number; family?: string; to: 'trash' | 'void' }
 /** `brave` of a Brave card: BP+ when combined and the combine condition. */

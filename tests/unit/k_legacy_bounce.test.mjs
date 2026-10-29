@@ -593,3 +593,28 @@ test('K-47 Pussybill: RETURN_TRASH.milled only returns a card the MILL just disc
     return out; })()`);
   assert.deepEqual(r, [0, 1]);
 });
+
+test('K-48 Balaculus: costPer lowers the Hand cost by 2 per Abyssen Spirit, capped at 8', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const card = BS.CARDS['26RSD10-009'], ab = Object.keys(BS.CARDS).find(k => (BS.CARDS[k].families || []).includes('Abyssen') && BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].reduction.length), out = [BS.effCost(P, card)];
+    for (let i = 0; i < 5; i++) { P.spirits.push(BS.mkInst(ab)); out.push(BS.effCost(P, card)); }
+    return out; })()`);
+  assert.equal(r[0] - r[1], 2);
+  assert.equal(r[0] - r[5], 8);
+});
+
+test('K-49 Gnutarius/Roaspis: perLegacy / nLegacy scale with the EX Symbols banished', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    P.cpu = true; const out = [];
+    for (const n of [0, 2]) { const src = BS.mkInst('26RBS02-072'); src.legacyN = n; P.spirits.push(src);
+      const nx = [BS.mkInst('26RBS01-105'), BS.mkInst('26RBS01-105'), BS.mkInst('26RBS01-105')]; P.nexus.push(...nx);
+      const before = nx.map(x => x.cores);
+      await BS.runActions({ p: P, opp: O, src, ctx: {} }, { actions: [{ do: 'VOID_TO_CARD', n: 1, to: 'anyNexus', perLegacy: true }] });
+      out.push(nx.filter((x, i) => x.cores > before[i]).length); P.nexus.length = 0; P.spirits.length = 0; }
+    const r = BS.mkInst('26RBS02-018'); r.legacyN = 3; P.spirits.push(r); const d0 = P.deck.length, t0 = P.trash.length;
+    await BS.runActions({ p: P, opp: O, src: r, ctx: {} }, { actions: [{ do: 'REVEAL_PICK', n: 1, nLegacy: true, match: { typeAny: ['Spirit', 'Nexus', 'Magic'] }, rest: 'bottom', discard: true }] });
+    out.push([P.deck.length - d0, P.trash.length - t0]); return out; })()`);
+  assert.deepEqual(r.slice(0, 2), [0, 2]); assert.deepEqual(r[2], [-1, 1]);
+});

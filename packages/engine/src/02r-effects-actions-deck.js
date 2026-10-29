@@ -5,11 +5,11 @@
    every other entry here is read from inside a function.
    ------------------------------------------------------------------------------------ */
 Object.assign(FX_ACTIONS, {
-  REVEAL_PICK: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 10 && hasMatch(a.match) && ['trash', 'bottom', 'top', 'either'].includes(a.rest) && (a.diffName == null || a.diffName === true) && (a.all == null || a.all === true) && (a.discard == null || (a.discard === true && a.rest === 'bottom' && a.all == null && a.max == null)) && (a.max == null || (Number.isInteger(a.max) && a.max >= 2 && a.max <= 4)) && (a.peek == null || (a.peek === true && a.n === 1 && a.discard == null && a.all == null && a.max == null)),   // v0.196 peek: "reveal a card, if it matches ... return it" (no add to Hand; did = it matches); v0.196 max: "add up to N matching cards"; v0.181 all: "add every matching card among them"; v0.69 diffName: "a card name different from this Spirit's"
+  REVEAL_PICK: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 10 && hasMatch(a.match) && ['trash', 'bottom', 'top', 'either'].includes(a.rest) && (a.diffName == null || a.diffName === true) && (a.all == null || a.all === true) && (a.discard == null || (a.discard === true && a.rest === 'bottom' && a.all == null && a.max == null)) && (a.max == null || (Number.isInteger(a.max) && a.max >= 2 && a.max <= 4)) && (a.nLegacy == null || (a.nLegacy === true && a.n === 1 && a.discard === true)) && (a.peek == null || (a.peek === true && a.n === 1 && a.discard == null && a.all == null && a.max == null)),   // v0.196 peek: "reveal a card, if it matches ... return it" (no add to Hand; did = it matches); v0.196 max: "add up to N matching cards"; v0.181 all: "add every matching card among them"; v0.69 diffName: "a card name different from this Spirit's"
     txt: a => `reveal ${a.n} cards from the top of your Deck, add a matching card to your Hand, ${a.rest === 'trash' ? 'discard' : a.rest === 'top' ? 'return to the top of the Deck' : a.rest === 'either' ? 'return to the top or the bottom of the Deck' : 'return to the bottom of the Deck'} the rest`,      // v0.75 rest top / either
-    can: c => c.p.deck.length > 0,
+    can: (c, a) => c.p.deck.length > 0 && (!a || !a.nLegacy || (c.src.legacyN || 0) > 0),
     run: async (c, a) => {
-      const nm = CARDS[c.src.id].name, top = c.p.deck.splice(0, Math.min(a.n, c.p.deck.length)); c.p.revealed = top;
+      const nm = CARDS[c.src.id].name, top = c.p.deck.splice(0, Math.min(a.nLegacy ? c.src.legacyN || 0 : a.n, c.p.deck.length)); c.p.revealed = top;      // v0.196 nLegacy: one card per EX Symbol banished via this Legacy
       log(`${nm}: ${who(c.p)} ${c.p.cpu ? 'reveals' : 'reveal'} ${top.map(x => CARDS[x.id].name).join(', ') || 'nothing'}.`); io.view({ type: 'board' });
       await revealedFx(c.p);
       let t = null;
