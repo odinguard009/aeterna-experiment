@@ -21625,17 +21625,56 @@
    "Diva",
    "Stage Style"
   ],
-  "text": "[Team: Red Stella]\n\n[LV1-2] (Start of Your Attack Step)\nTarget one of your Red Stella Spirits. During this turn, give it +2000 BP.\n\n[LV2] (Your Attack Step) (Can't Stack)\nWhen your Red Stella Spirit makes the first attack of the turn, you can reveal a card from your decktop. If that's a Red Stella card, add it to the Hand. Return any remaining card to the deckbottom.",
+  "text": "[Team: Red Stella]\n\n[LV1][LV2] (Start of Your Attack Step)\nTarget one of your Red Stella Spirits. During this turn, give it +2000 BP.\n\n[LV2] (Your Attack Step) (Can't Stack)\nWhen your Red Stella Spirit makes the first attack of the turn, you can reveal a card from your decktop. If that's a Red Stella card, add it to the Hand. Return any remaining card to the deckbottom.",
   "image": "26RDB01-008.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[Team: Red Stella]",
-   "[LV1-2] (Start of Your Attack Step) Target one of your Red Stella Spirits. During this turn, give it +2000 BP.",
-   "[LV2] (Your Attack Step) (Can't Stack) When your Red Stella Spirit makes the first attack of the turn, you can reveal a card from your decktop. If that's a Red Stella card, add it to the Hand. Return any remaining card to the deckbottom."
+  "effects": [
+   {
+    "trigger": "START_ATTACK",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "BP_TARGET",
+      "n": 2000,
+      "to": "pick",
+      "match": {
+       "team": "Red Stella"
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_ATTACKS",
+    "lv": [
+     2
+    ],
+    "match": {
+     "noUlt": true,
+     "team": "Red Stella"
+    },
+    "if": {
+     "firstAttack": true
+    },
+    "noStack": true,
+    "optional": true,
+    "actions": [
+     {
+      "do": "REVEAL_PICK",
+      "n": 1,
+      "match": {
+       "team": "Red Stella"
+      },
+      "rest": "bottom"
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RDB01-009",

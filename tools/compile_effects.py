@@ -575,6 +575,15 @@ def spirit_paragraph_main(p, card, rush):
             trig, tmatch, p = ['MAGIC_USED'], dict({'type': 'Magic'}, **({'family': [mm.group(2)]} if mm.group(2) else {})), p[mm.end():]
             extra = dict(extra or {}, **{'if': {'selfAttacking': True}})
             if mm.group(1): extra['once'] = True
+        mm = None if trig else re.match(r'^\(Your Attack Step\)\s*(\(Once Per Turn\)\s*)?When (?:your (?:(?P<col>Red|Purple|Green|White|Yellow|Blue) )?(?:(?P<team>Red Stella) )?Spirits? makes? the first attack of the turn|you make the second or subsequent attack of the turn(?:, (?:and|if) the Spirit that attacks has the (?P<fam>"[^"]+"(?:\s*/\s*"[^"]+")*) family)?),\s*', p)
+        if mm:      # v0.185 engine firstAttack condition (owner attack counter): 'first attack of the turn' / 'second or subsequent attack of the turn'
+            tm = {'noUlt': True}
+            if mm.group('col'): tm['color'] = mm.group('col').lower()
+            if mm.group('team'): tm['team'] = mm.group('team')
+            if mm.group('fam'): tm['family'] = re.findall(r'"([^"]+)"', mm.group('fam'))
+            trig, tmatch, p = ['ALLY_ATTACKS'], tm, p[mm.end():]
+            extra = dict(extra or {}, **{'if': {'firstAttack': 'first attack' in mm.group(0)}})
+            if mm.group(1): extra['once'] = True
         mm = None if trig else re.match(r'^\(Your Attack Step\)\s*(\(Once Per Turn\)\s*)?When your Cost (\d+) or (more|less) (Red|Purple|Green|White|Yellow|Blue) Spirit with no printed effects attacks,\s*', p)
         if mm:      # v0.185 attack head with a subject filter (cost, colour, no printed effects); once-per-turn optional
             trig, tmatch, p = ['ALLY_ATTACKS'], {'noUlt': True, 'noText': True, 'color': mm.group(4).lower(), 'costGe' if mm.group(3) == 'more' else 'costLe': int(mm.group(2))}, p[mm.end():]

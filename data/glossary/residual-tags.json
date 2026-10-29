@@ -39490,14 +39490,6 @@
   "S1_ALL_HAVE",
   "T_BLOCKS"
  ],
- "26RDB01-008": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "F_OTHER_NOSTACK",
-  "M_OPTIONAL",
-  "M_UNSTACKABLE",
-  "T_START_ATTACK"
- ],
  "26RDB01-009": [
   "A_BP_PLUS",
   "C_LEVEL",

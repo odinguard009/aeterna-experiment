@@ -99,3 +99,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v59 (v0.185.0, Lane K): `ctrl` accepts `costLe` (with `costGe` = exact cost); `costAlt.if` may carry `ctrl` ("If you control no Spirits, this card in Hand becomes Cost N").
 - v60 (v0.185.0, Lane K): `CANT_BE_BLOCKED_BY` accepts `bpLe` (current BP) and `coresLe` (cores on the blocker).
 - v61 (v0.185.0, Lane K): new action `DRAW_UNTIL {n}` (draw until the Hand has n cards).
+- v62 (v0.185.0, Lane K): `if.firstAttack` (true = the owner's first attack of the turn, false = second or subsequent; counted when the attack is declared).
