@@ -25,6 +25,10 @@ const DB_BPS = [['≤2,000', 0, 3000], ['3,000–4,000', 3000, 5000], ['5,000–
 /** @type {[string, number, number][]} */
 const DB_CORES = [['≤2', 0, 3], ['3', 3, 4], ['4', 4, 5], ['5', 5, 6], ['6+', 6, 99]];
 const DB_FAMS = { ver: -1, list: [] };
+const DB_ICONS = ['A', ...Array.from({ length: 11 }, (_, i) => String(i + 3)), 'none'];
+/** R3: distinct values of one official card field (rarity or collaboration), in data order of first appearance. */
+const DB_VALS = {};
+const dbVals = key => { const m = DB_VALS[key]; if (m && m.ver === CARDS_VER) return m.list; const list = [...new Set(Object.values(CARDS).flatMap(c => c[key] || []))].sort(DB_COLL.compare); DB_VALS[key] = { ver: CARDS_VER, list }; return list; };
 const dbFamilies = () => { if (DB_FAMS.ver !== CARDS_VER) { DB_FAMS.list = [...new Set(Object.values(CARDS).flatMap(c => c.families || []))].sort(DB_COLL.compare); DB_FAMS.ver = CARDS_VER; } return DB_FAMS.list; };
 const ddMode = (S, key, l) => ({ l, mode: 1, v: '@' + key, set: { has: () => S[key], add: () => { S[key] = true; }, delete: () => { S[key] = false; } } });
 /** @returns {any[]} */
@@ -32,6 +36,9 @@ function ddList(S, kind) {
   if (kind === 'bp') return DB_BPS.map(([l], i) => ({ l, set: S.bps, v: String(i) }));
   if (kind === 'cores') return DB_CORES.map(([l], i) => ({ l, set: S.cores, v: String(i) }));
   if (kind === 'family') return [ddMode(S, 'ffall', 'Match all selected'), ...dbFamilies().map(f => ({ l: f, set: S.fams, v: f }))];
+  if (kind === 'icon') return DB_ICONS.map(v => ({ l: v === 'none' ? 'No icon' : v === 'A' ? 'Block A' : 'Block ' + v, set: S.icons, v }));
+  if (kind === 'rarity') return dbVals('rarity').map(v => ({ l: v, set: S.rars, v }));
+  if (kind === 'collab') return dbVals('collab').map(v => ({ l: v, set: S.collabs, v }));
   if (kind === 'colour') return [ddMode(S, 'cmode', 'Match all selected'), ...DB_COLORS.map(c => ({ l: cap(c), set: S.colors, v: c, dot: colorVar(c) })), { l: 'All colour', set: S.groups, v: 'multi', dot: RAINBOW }];
   if (kind === 'type') return DB_TYPES.map(t => ({ l: t, set: S.types, v: t })).concat(DB_TYPE_GROUPS.map(([g, l]) => ({ l, set: S.groups, v: g })));
   if (kind === 'cost') return DB_COSTS.map(c => ({ l: c === '10' ? '10+' : c, set: S.costs, v: c }));
@@ -49,8 +56,8 @@ function ddMenuEl(S, tb, btn, pick, clear) {
   m.style.width = w + 'px'; m.style.left = Math.max(6, Math.min(t.width - w - 6, r.left - t.left)) + 'px'; m.style.top = (r.bottom - t.top + 4) + 'px';
 }
 function ddPick(S, v, clear) { const items = ddList(S, S.dd); if (clear) items.forEach(i => i.set.delete(i.v)); else { const i = items.find(x => x.v === v); if (i) { if (i.set.has(i.v)) i.set.delete(i.v); else i.set.add(i.v); } } }
-const ddReset = S => { ['colors', 'costs', 'types', 'groups', 'bps', 'cores', 'fams'].forEach(g => S[g].clear()); S.cmode = S.ffall = false; S.fq = ''; };
-const DBF = { colors: new Set(), costs: new Set(), types: new Set(), groups: new Set(), bps: new Set(), cores: new Set(), fams: new Set(), cmode: false, ffall: false, fq: '', set: '', family: '', legal: false, complete: false, only: false, dd: '', sort: 'default' };
+const ddReset = S => { ['colors', 'costs', 'types', 'groups', 'bps', 'cores', 'fams', 'icons', 'rars', 'collabs'].forEach(g => S[g].clear()); S.cmode = S.ffall = false; S.fq = ''; };
+const DBF = { colors: new Set(), costs: new Set(), types: new Set(), groups: new Set(), bps: new Set(), cores: new Set(), fams: new Set(), icons: new Set(), rars: new Set(), collabs: new Set(), cmode: false, ffall: false, fq: '', set: '', family: '', legal: false, complete: false, only: false, dd: '', sort: 'default' };
 const DB_UNDO = [], DB_REDO = [];   // v0.128.0 U14f: Redo; any new change empties it
 let DB_IO = '';
 const dbArr = v => v == null || v === '' ? [] : Array.isArray(v) ? v : v instanceof Set ? [...v] : [String(v)];
@@ -72,6 +79,9 @@ function dbPlusOK(c, S) {
   const top = Math.max(0, ...l.map(x => x.cores || 0));
   if (S.cores.size && ![...S.cores].some(i => top >= DB_CORES[i][1] && top < DB_CORES[i][2])) return false;
   if (S.fams.size) { const f = c.families || [], has = x => f.includes(x); if (!(S.ffall ? [...S.fams].every(has) : [...S.fams].some(has))) return false; }
+  if (S.icons.size) { const b = c.bicon || []; if (!(b.length ? b.some(x => S.icons.has(x)) : S.icons.has('none'))) return false; }
+  if (S.rars.size && !S.rars.has(c.rarity)) return false;
+  if (S.collabs.size && !(c.collab || []).some(x => S.collabs.has(x))) return false;
   return true;
 }
 /* v0.119.0: mechanic-group test. multi = all-colour (rainbow) card; mirage / rebirth / legacy / ex read the modelled card fields. */
@@ -103,7 +113,7 @@ function dbIndex() {
   return DBV.idx;
 }
 function dbSets() { return [...new Set(dbIndex().map(e => dbSetOf(e.id)))].sort(DB_COLL.compare); }
-function dbActiveCount() { return DBF.colors.size + DBF.costs.size + DBF.types.size + DBF.groups.size + DBF.bps.size + DBF.cores.size + DBF.fams.size + (DBF.set ? 1 : 0) + (DBF.family ? 1 : 0) + (DBF.legal ? 1 : 0) + (DBF.complete ? 1 : 0) + (DBF.only ? 1 : 0) + ((($('db-search') || {}).value) ? 1 : 0); }
+function dbActiveCount() { return DBF.colors.size + DBF.costs.size + DBF.types.size + DBF.groups.size + DBF.bps.size + DBF.cores.size + DBF.fams.size + DBF.icons.size + DBF.rars.size + DBF.collabs.size + (DBF.set ? 1 : 0) + (DBF.family ? 1 : 0) + (DBF.legal ? 1 : 0) + (DBF.complete ? 1 : 0) + (DBF.only ? 1 : 0) + ((($('db-search') || {}).value) ? 1 : 0); }
 const DB_SORTS = {
   cost: (a, b) => CARDS[a.id].cost - CARDS[b.id].cost || DB_COLL.compare(a.id, b.id),
   name: (a, b) => DB_COLL.compare(CARDS[a.id].name, CARDS[b.id].name) || DB_COLL.compare(a.id, b.id),
@@ -112,7 +122,7 @@ const DB_SORTS = {
 };
 function dbFilter() {
   const q = ($('db-search').value || '').trim().toLowerCase(), only = DBF.only, fam = DBF.family.trim().toLowerCase();
-  const idx = dbIndex(), key = [CARDS_VER, q, only ? Object.keys(PLAYER_DECK).filter(id => PLAYER_DECK[id]).sort().join(',') : '', [...DBF.colors].join(), [...DBF.costs].join(), [...DBF.types].join(), [...DBF.groups].join(), [...DBF.bps].join(), [...DBF.cores].join(), [...DBF.fams].join('~'), DBF.cmode, DBF.ffall, DBF.set, fam, DBF.legal, DBF.complete, DBF.sort, FORMAT].join('|');
+  const idx = dbIndex(), key = [CARDS_VER, q, only ? Object.keys(PLAYER_DECK).filter(id => PLAYER_DECK[id]).sort().join(',') : '', [...DBF.colors].join(), [...DBF.costs].join(), [...DBF.types].join(), [...DBF.groups].join(), [...DBF.bps].join(), [...DBF.cores].join(), [...DBF.fams].join('~'), [...DBF.icons].join(), [...DBF.rars].join(), [...DBF.collabs].join(), DBF.cmode, DBF.ffall, DBF.set, fam, DBF.legal, DBF.complete, DBF.sort, FORMAT].join('|');
   if (key === DBV.key) return DBV.list;
   DBV.key = key;
   let l = idx.filter(e => (!only || PLAYER_DECK[e.id]) && (!q || e.s.includes(q)) && (!fam || e.f.includes(fam)) && (!DBF.set || dbSetOf(e.id) === DBF.set) && dbFilterOK(CARDS[e.id], DBF.colors, DBF.costs, DBF.types, DBF.cmode) && dbPlusOK(CARDS[e.id], DBF) && ([...DBF.groups].every(g => dbGroupOK(CARDS[e.id], g))) && (!DBF.legal || !legalityOf(e.id, FORMAT)) && (!DBF.complete || !fxMarked(CARDS[e.id])));
@@ -157,7 +167,7 @@ function dbBar() {
   $('db-types').innerHTML = filterTypesHTML(DBF, 'db-chip');
   $('db-costs').innerHTML = DB_COSTS.map(k => `<button class="cbtn${on(DBF.costs, k) ? ' on' : ''}" data-a="db-chip" data-v="costs:${k}" aria-pressed="${on(DBF.costs, k)}" aria-label="Cost ${k}">${k === '10' ? '10+' : k}</button>`).join('');
   $('db-colbtn').innerHTML = ddButton(DBF, 'colour', 'Colour', 'db-dd') + ddButton(DBF, 'type', 'Type', 'db-dd') + ddButton(DBF, 'cost', 'Cost', 'db-dd');
-  $('db-groups').innerHTML = ddButton(DBF, 'group', 'Group', 'db-dd') + ddButton(DBF, 'family', 'Family', 'db-dd') + ddButton(DBF, 'bp', 'BP', 'db-dd') + ddButton(DBF, 'cores', 'Cores', 'db-dd');
+  $('db-groups').innerHTML = ddButton(DBF, 'group', 'Group', 'db-dd') + ddButton(DBF, 'family', 'Family', 'db-dd') + ddButton(DBF, 'bp', 'BP', 'db-dd') + ddButton(DBF, 'cores', 'Cores', 'db-dd') + ddButton(DBF, 'icon', 'Block', 'db-dd') + ddButton(DBF, 'rarity', 'Rarity', 'db-dd') + ddButton(DBF, 'collab', 'Collab', 'db-dd');
   [['db-play', 'complete'], ['db-in', 'only'], ['db-legal', 'legal']].forEach(([id, k]) => { const b = $(id); b.classList.toggle('on', DBF[k]); b.setAttribute('aria-pressed', String(DBF[k])); });
   dbMenu();
   if (set.dataset.sig !== sig) { set.innerHTML = '<option value="">All sets</option>' + sets.map(x => `<option value="${esc(x)}">${esc(x)}</option>`).join(''); set.dataset.sig = sig; }
