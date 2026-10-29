@@ -7354,7 +7354,7 @@
    "Echochant",
    "Hexcraft"
   ],
-  "text": "(Legacy)\n[LV1-2] {{Magirrate|Topaz}} (During Attack) {{Invoke|Flash}} (Once Per Battle)\nYou can use the Flash effect of a \"Topaz\" family Magic card from your Hand, without paying the cost.\n\n[LV2] (True Release) (During Attack) (Once Per Turn)\nWhen you use a \"Topaz\" family Magic card, during this battle, this Spirit gains an extra Yellow symbol.",
+  "text": "(Legacy)\n[LV1][LV2] (During Attack) {{Invoke|Flash}} (Once Per Battle)\nYou can use the Flash effect of a \"Topaz\" family Magic card from your Hand, without paying the cost.\n\n[LV2] (True Release) (During Attack) (Once Per Turn)\nWhen you use a \"Topaz\" family Magic card, during this battle, this Spirit gains an extra Yellow symbol.",
   "image": "26RBS01-X15.png",
   "block": "A",
   "saga": 50,
@@ -7362,12 +7362,58 @@
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] {{Magirrate|Topaz}} (During Attack) {{Invoke|Flash}} (Once Per Battle) You can use the Flash effect of a \"Topaz\" family Magic card from your Hand, without paying the cost.",
-   "[LV2] (True Release) (During Attack) (Once Per Turn) When you use a \"Topaz\" family Magic card, during this battle, this Spirit gains an extra Yellow symbol."
+  "trueRelease": true,
+  "effects": [
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN",
+     "FLASH"
+    ],
+    "when": "duringAttack",
+    "once": true,
+    "oncePer": "battle",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "USE_FLASH",
+      "match": {
+       "family": [
+        "Topaz"
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "MAGIC_USED",
+    "lv": [
+     2
+    ],
+    "match": {
+     "type": "Magic",
+     "family": [
+      "Topaz"
+     ]
+    },
+    "if": {
+     "selfAttacking": true
+    },
+    "once": true,
+    "actions": [
+     {
+      "do": "SYMBOL_PLUS",
+      "n": 1
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-X16",
@@ -21020,7 +21066,7 @@
    "RYUKI",
    "Kamen"
   ],
-  "text": "(Legacy)\n[LV1-2] (When Attacks/Blocks)\nYou can use the Flash effect of a \"RYUKI\" family Magic card from your Hand, without paying the cost.\n\n[LV2] (True Release) (During Attack) (Once Per Turn)\nWhen you use a Magic card, during this battle, this Spirit can't be blocked.",
+  "text": "(Legacy)\n[LV1][LV2] (When Attacks/Blocks)\nYou can use the Flash effect of a \"RYUKI\" family Magic card from your Hand, without paying the cost.\n\n[LV2] (True Release) (During Attack) (Once Per Turn)\nWhen you use a Magic card, during this battle, this Spirit can't be blocked.",
   "image": null,
   "block": "A",
   "saga": 50,
@@ -21028,12 +21074,49 @@
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Attacks/Blocks) You can use the Flash effect of a \"RYUKI\" family Magic card from your Hand, without paying the cost.",
-   "[LV2] (True Release) (During Attack) (Once Per Turn) When you use a Magic card, during this battle, this Spirit can't be blocked."
+  "trueRelease": true,
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "alsoBlocks": true,
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "USE_FLASH",
+      "match": {
+       "family": [
+        "RYUKI"
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "MAGIC_USED",
+    "lv": [
+     2
+    ],
+    "match": {
+     "type": "Magic"
+    },
+    "if": {
+     "selfAttacking": true
+    },
+    "once": true,
+    "actions": [
+     {
+      "do": "CANT_BE_BLOCKED_BY",
+      "all": true
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RCB01-X06",

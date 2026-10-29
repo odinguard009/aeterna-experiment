@@ -570,6 +570,11 @@ def spirit_paragraph_main(p, card, rush):
         if mm:      # v0.185 '"A"/"B" family' = any of the listed families; optional '(Once Per Turn)' between the step and When
             trig, tmatch, p = ['ALLY_ATTACKS'], {'family': re.findall(r'"([^"]+)"', mm.group(2)), 'noUlt': True}, p[mm.end():]
             if mm.group(1): extra = dict(extra or {}, once=True)
+        mm = None if trig else re.match(r'^\(During Attack\)\s*(\(Once Per Turn\)\s*)?When you use an? (?:"([^"]+)" family )?Magic card,\s*', p)
+        if mm:      # v0.185 engine MAGIC_USED + if.selfAttacking (this Spirit is attacking)
+            trig, tmatch, p = ['MAGIC_USED'], dict({'type': 'Magic'}, **({'family': [mm.group(2)]} if mm.group(2) else {})), p[mm.end():]
+            extra = dict(extra or {}, **{'if': {'selfAttacking': True}})
+            if mm.group(1): extra['once'] = True
         mm = None if trig else re.match(r'^\(Your Attack Step\)\s*(\(Once Per Turn\)\s*)?When your Cost (\d+) or (more|less) (Red|Purple|Green|White|Yellow|Blue) Spirit with no printed effects attacks,\s*', p)
         if mm:      # v0.185 attack head with a subject filter (cost, colour, no printed effects); once-per-turn optional
             trig, tmatch, p = ['ALLY_ATTACKS'], {'noUlt': True, 'noText': True, 'color': mm.group(4).lower(), 'costGe' if mm.group(3) == 'more' else 'costLe': int(mm.group(2))}, p[mm.end():]
@@ -774,7 +779,7 @@ def trig_effects(p, card, trig, tmatch, lv, rush, flags, extra=None):
     if mo: p = p[:mo.start()]; extra = dict(extra or {}, once=True)      # v0.184 old trailing wording of the plain once-per-turn limit
     if rush and not p: raise Review('Rush without a main effect')
     for s in sentences(p):
-        a, o = action_of(s, {'trigger': trig})
+        a, o = action_of(s, {'trigger': trig, 'battle': bool((extra or {}).get('if', {}).get('selfAttacking'))})      # v0.185 (During Attack) MAGIC_USED: a battle is running
         if acts and o: raise Review('optional second sentence: ' + s[:80])
         acts += a; opt = opt or o
     if not acts: raise Review('empty body')

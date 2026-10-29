@@ -364,6 +364,7 @@ def own_grammar(s, ctx=None):
     if re.fullmatch(r"target an opposing exhausted spirit\.\s*the targeted spirit can't refresh on the next \(opposing refresh step\)", x, re.I): return [{'do': 'NO_REFRESH_OPP'}]      # v0.172 Janome-Shielder
     m = re.match(r'^target an opposing spirit\.\s*during this battle, that spirit can\'t block$', x, re.I)
     if m: return [{'do': 'CANT_BLOCK_OPP'}]      # v0.172 targeted "can't block this battle"
+    if re.fullmatch(r"(?:during this battle, )?this spirit can't be blocked", x, re.I): return [{'do': 'CANT_BE_BLOCKED_BY', 'all': True}]      # v0.185
     if re.fullmatch(r"this spirit can't be blocked by (?:opposing )?spirits with high speed", x, re.I): return [{'do': 'CANT_BE_BLOCKED_BY', 'highSpeed': True}]      # v0.175
     m = re.match(r"^this spirit can't be blocked by (?:opposing )?(.+?) spirits?$", x, re.I)      # v0.175 attacker is unblockable by a colour / level / High Speed class
     if m:

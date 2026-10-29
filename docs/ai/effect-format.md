@@ -94,3 +94,5 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v54 (v0.184.0, Lane K): `SHOW_RETURN.match` is optional (any card from the Hand), for "return a card from your Hand to the deckbottom".
 - v55 (v0.184.0, Lane K): the card `match` accepts `team` (a team name read from the `[Team: X]` head line), for "a Red Stella Spirit card" in reveal effects.
 - v56 (v0.185.0, Lane K): trigger `RUMBLE_DISCARD` (owner's field effects, after a Rumble discards; `exOnly` = at least one discarded card has an EX Symbol, `other` = besides the Rumble's own Spirit).
+- v57 (v0.185.0, Lane K): condition `selfAttacking:true` ("(During Attack)": the source Spirit is the current attacker), used with `MAGIC_USED`.
+- v58 (v0.185.0, Lane K): `CANT_BE_BLOCKED_BY` accepts `all:true` (this Spirit can't be blocked at all during this battle).
