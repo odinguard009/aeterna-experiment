@@ -261,3 +261,17 @@ test('K-17 show-and-return tails: Nox draws one (two via Form Change), Lemon ref
     return [a, b, l.exhausted, P.hand.includes(z)]; })()`);
   assert.deepEqual(r, [1, 2, false, true]);
 });
+
+test('K-18 BP_TARGET.alt (Spear Victory +3000, +5000 on Kamen Rider Baron) and EXHAUST_SELF (Laura Byakuran)', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const spear = async (id) => { const s = BS.mkInst(id); s.cores = 1; P.spirits.push(s); const b = BS.bpOf(s); await BS.runActions({ p: P, opp: O, src: BS.mkInst('26RCB01-061'), ctx: {} }, { actions: BS.CARDS['26RCB01-061'].magic.actions }); return BS.bpOf(s) - b; };
+    const gaim = Object.values(BS.CARDS).find(c => (c.families || []).includes('GAIM') && c.type === 'Spirit' && !c.name.includes('Baron') && !(c.effects && c.effects.length));
+    const baron = Object.values(BS.CARDS).find(c => c.id === '26RCB01-005');
+    P.spirits.length = 0; const a = await spear(gaim.id); P.spirits.length = 0; const b = await spear(baron.id);
+    P.spirits.length = 0; const rs = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && c.id !== '26RDB01-005' && /\\[Teams?:[^\\]]*Red Stella/.test(c.desc || c.text || '') && !(c.effects && c.effects.length));
+    const t = BS.mkInst(rs.id); t.cores = 1; P.spirits.push(t); const l = BS.mkInst('26RDB01-005'); l.cores = 1; P.spirits.push(l); const b0 = BS.bpOf(t) + BS.bpOf(l);
+    await BS.fireFx(P, 'START_ATTACK', l, {});
+    return [a, b, l.exhausted, BS.bpOf(t) + BS.bpOf(l) - b0]; })()`);
+  assert.deepEqual(r, [3000, 5000, true, 1000]);
+});

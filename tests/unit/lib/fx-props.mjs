@@ -237,6 +237,8 @@ function simple(card, a) {
       if (only(a, ['match', 'bp']) && okMatch(a.match)) return { fix: [{ m: a.match }], body: `const t = sp(${J(mid(a.match))}, P, 1); t.exhausted = true; await run(src, RA); if (t.exhausted) return 'the matching Spirit is still exhausted';
       ${fillMatches(a.match) ? '' : `${PRE_RESET} const f = sp(${J(FILL)}, P, 1); f.exhausted = true; await run(src, RA); if (!f.exhausted) return 'a Spirit that does not match was refreshed';`} return '';` };
       return only(a, ['bp']) && { body: `const t = sp(${J(FILL)}, P, 1); t.exhausted = true; await run(src, RA); return t.exhausted ? 'still exhausted' : '';` };
+    case 'EXHAUST_SELF':      // v0.195 this Spirit exhausts itself
+      return only(a, []) && spirit && { onField: true, body: `src.exhausted = false; await run(src, RA); return src.exhausted ? '' : 'this Spirit is still refreshed';` };
     case 'REFRESH_NEXUS':      // v0.195 refresh one of your exhausted Nexuses
       return only(a, []) && { fix: [{ n: 2 }], body: `const t = nx(${J(nid(2))}, P); t.exhausted = true; await run(src, RA); return t.exhausted ? 'the Nexus is still exhausted' : '';` };
     case 'OPP_CORES_TO_RESERVE':

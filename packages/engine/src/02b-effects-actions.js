@@ -64,6 +64,9 @@ const FX_ACTIONS = {
     } },
   REFRESH: { chk: () => true, txt: () => 'refresh this card', can: c => c.src.exhausted,
     run: async c => { refreshOne(c.src); log(`${CARDS[c.src.id].name} is refreshed.`); } },
+  /* v0.195 "You can exhaust this Spirit. If you've done so, ..." (optional effect; the next action reads prev) */
+  EXHAUST_SELF: { chk: () => true, txt: () => 'exhaust this Spirit', can: c => c.p.spirits.includes(c.src) && !c.src.exhausted,
+    run: async c => { c.src.exhausted = true; log(`${CARDS[c.src.id].name} is exhausted.`); } },
   ASSAULT: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5, txt: a => `refresh this Spirit by exhausting one of your Nexuses (up to ${a.n} per turn)`,      // v0.185 {{Assault|N}}
     can: c => c.src.exhausted && c.p.nexus.some(x => !x.exhausted),
     run: async (c, a) => {

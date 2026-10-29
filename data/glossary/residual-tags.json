@@ -39293,10 +39293,6 @@
   "M_OPTIONAL",
   "T_ALLY_ATTACKS"
  ],
- "26RCB01-061": [
-  "A_BP_PLUS",
-  "M_REPLACEMENT"
- ],
  "26RCB01-064": [],
  "26RCB01-X03": [
   "A_EXHAUST",
@@ -39325,12 +39321,6 @@
   "M_THEN",
   "S1_ALL_HAVE",
   "T_SUMMONED"
- ],
- "26RDB01-005": [
-  "A_BP_PLUS",
-  "A_EXHAUST",
-  "M_OPTIONAL",
-  "T_START_ATTACK"
  ],
  "26RDB01-010": [
   "A_EXHAUST",

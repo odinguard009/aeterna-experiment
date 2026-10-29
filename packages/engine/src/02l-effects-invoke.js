@@ -113,7 +113,7 @@ const invokeCostText = c => !c ? '' : c.pay ? `pay ${c.pay} cost${c.pay === 1 ? 
 const ownTargetCands = (c, a) => c.p.spirits.filter(s => fxMatch(CARDS[s.id], a.match) && (!a.attacking || s === G.attacker) && (!a.coreFromSelf || s !== c.src) && !fxImmune(c.p, s, c));
 Object.assign(FX_ACTIONS, {
   /* "during this battle/turn, this Spirit gains +N BP" (to:self) / "Target one of your [attacking] X Spirits. ... it gains +N BP" (to:pick) */
-  BP_TARGET: { chk: a => Number.isInteger(a.n) && a.n >= 1000 && a.n <= 30000 && ['self', 'pick'].includes(a.to) && (a.battle == null || a.battle === true) && (a.attacking == null || a.attacking === true) && invokeMatchOK(a.match) && (a.per == null || perOk(a.per)),
+  BP_TARGET: { chk: a => Number.isInteger(a.n) && a.n >= 1000 && a.n <= 30000 && ['self', 'pick'].includes(a.to) && (a.battle == null || a.battle === true) && (a.attacking == null || a.attacking === true) && invokeMatchOK(a.match) && (a.per == null || perOk(a.per)) && (a.alt == null || (a.to === 'pick' && typeof a.alt.name === 'string' && Number.isInteger(a.alt.n) && a.alt.n > a.n && a.alt.n <= 30000)),
     txt: a => `${a.to === 'self' ? 'this Spirit gains' : 'one of your ' + (a.attacking ? 'attacking ' : '') + (a.match && a.match.family ? '"' + a.match.family.join('"/"') + '" ' : '') + 'Spirits gains'} +${a.n} BP${a.per ? ' for each matching card you control' : ''} during this ${a.battle ? 'battle' : 'turn'}`,
     can: (c, a) => (!a.battle || !!G.attacker) && (a.to === 'self' ? c.p.spirits.includes(c.src) : ownTargetCands(c, a).length > 0),
     run: async (c, a) => {
@@ -125,7 +125,7 @@ Object.assign(FX_ACTIONS, {
         if (!t) { c.ctx.did = false; return; }
       } else if (!c.p.spirits.includes(t)) { c.ctx.did = false; return; }
       c.ctx.picked = t;      // v0.88 S1: "When this battle ends, destroy it" (DESTROY_PICKED, 02p)
-      const n = a.per ? a.n * perCount(c.p, a.per) : a.n;      // v0.120.0 Amplify: "for each <family> Spirit you control" (the source itself counts)
+      const n = a.per ? a.n * perCount(c.p, a.per) : a.alt && CARDS[t.id].name.includes(a.alt.name) ? a.alt.n : a.n;      // v0.195 alt: "If that's <name>, give it +M instead"; v0.120.0 Amplify: "for each <family> Spirit you control" (the source itself counts)
       if (a.battle) addBattleBp(t, n); else t.bpMod = (t.bpMod || 0) + n;
       log(`${CARDS[t.id].name} gets +${n} BP during this ${a.battle ? 'battle' : 'turn'}.`);
     } },
