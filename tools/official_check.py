@@ -60,7 +60,8 @@ def parse(s):
     nm = re.search(r'<h2 class="cardName">(.*?)</h2>', s, re.S)
     o['nameJp'] = txt(nm.group(1)) if nm else None
     o['familiesJp'] = txt(rows.get('系統', ''))
-    o['textJp'] = [txt(t) for t in re.findall(r'<p class="text">(.*?)</p>', rows.get('能力・効果', ''), re.S)]
+    icon = lambda h: re.sub(r"<img[^>]*ico_(\w+)\.png[^>]*>", r' {\1} ', h)          # inline icons carry no alt text: keep their file name
+    o['textJp'] = [txt(icon(t)) for t in re.findall(r'<p class="text">(.*?)</p>', rows.get('能力・効果', ''), re.S)]
     lv = []
     for item in re.findall(r'<div class="bpCoreItem[^"]*">(.*?)</div>', rows.get('BP/コア', ''), re.S):
         a = re.search(r'alt="([^"]*)"', item).group(1)
