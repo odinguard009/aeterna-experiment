@@ -4,6 +4,13 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.194.0
+- Lane: U/I
+- **Rush chain (BS23-020 complete again), R3/R8 follow-ups**
+  - New effect condition `viaHS` ("summoned with High Speed", paid from the Reserve only; schema v72). BS23-020 Yoroibatta is `fxComplete: true` again: White bounces a cost 4 or less Spirit, Blue gives +3000 BP, each only with that symbol and a High Speed summon (official Q&A Q4497-Q4499). Limit: a Main Step summon fully paid from the Reserve counts as High Speed (the player has no separate choice); the "not High Speed" case has no test.
+  - Rarity filter: "No data" option for the 38 cards without official rarity. Phone: filter menus stay inside the screen (found in the player-view pass).
+  - Tests: Mirage Q&A notes (Q76-01/02) and the Rush chain (Q4497); `docs/mechanics/official-qa.md` marks what is verified and what is untested (Manifest, Revival).
+
 ## v0.193.0
 - Lane: U/I
 - **R8: first rule notes from the official Q&A**

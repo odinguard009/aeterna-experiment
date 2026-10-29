@@ -69,9 +69,10 @@ async function intentSummon(p, inst) {
   if (!canPlayCard(p, inst)) { log(`Not enough cores for ${card.name}.`); boardView(); return false; }
   const c = effCost(p, card), L = minCores(card);
   let plan = null;
+  const hs = !!card.highSpeed && reserveTotal(p) >= c + L;   // paid from the Reserve only = a High Speed summon (official Q&A)
   if (c > 0 && reserveTotal(p) < c + L) { plan = await askPayment(card, c, L); if (!plan) return false; }
   if (!seatCan(p.key) || !p.hand.includes(inst)) return false;
-  summon(p, inst, plan); await tributePay(p, inst); boardView();
+  summon(p, inst, plan); inst.viaHS = hs; await tributePay(p, inst); boardView();
   await fireFx(p, 'SUMMONED', inst);
   return true;
 }

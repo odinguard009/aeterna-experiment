@@ -32,3 +32,24 @@ test('Q76-02 with too few cores the Mirage is refused and stays in the Hand', as
   }, MIRAGE);
   assert.equal(r.ok, false); assert.equal(r.set, false);
 });
+
+// Q4497-Q4499 (BS23-020 Yoroibatta, Rush White/Blue): each colour effect needs that symbol AND a High Speed summon.
+async function rush(syms) {
+  const { page } = await quietBoard();
+  return page.evaluate(async syms => {
+    const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = P.key; BS.SETTINGS.speed = 'instant';
+    const one = col => Object.values(BS.CARDS).find(c => c.type === 'Spirit' && c.symbol === col && c.symbols === 1 && !(c.effects && c.effects.length) && c.id !== 'BS23-020');
+    for (const col of syms) { const s = BS.mkInst(one(col).id); s.cores = 1; s.summonedTurn = 0; P.spirits.push(s); }
+    const foe = BS.mkInst(Object.values(BS.CARDS).find(c => c.type === 'Spirit' && c.cost <= 4 && !(c.effects && c.effects.length)).id); foe.cores = 1; O.spirits.push(foe);
+    const me = BS.mkInst('BS23-020'); P.hand.push(me); P.reserve.n = 6;
+    await BS.applyIntent(P.key, { type: 'summon', uid: me.uid });
+    return { bounced: !O.spirits.includes(foe), bp: BS.bpOf ? BS.bpOf(me) : null, base: BS.CARDS['BS23-020'].levels[0].bp };
+  }, syms);
+}
+test('Q4497 Rush: white only bounces, blue only gives +3000, both do both, none does nothing (High Speed summon)', async () => {
+  const w = await rush(['white']), b = await rush(['blue']), wb = await rush(['white', 'blue']), n = await rush([]);
+  assert.equal(w.bounced, true); assert.equal(w.bp, w.base);
+  assert.equal(b.bounced, false); assert.equal(b.bp, b.base + 3000);
+  assert.equal(wb.bounced, true); assert.equal(wb.bp, wb.base + 3000);
+  assert.equal(n.bounced, false); assert.equal(n.bp, n.base);
+});
