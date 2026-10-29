@@ -385,3 +385,19 @@ test('K-28 Gigan Song: cost 4 or less, 6 or less when used using Legacy', async 
     await run('26RDB01-063', 1); return [k0, !O.spirits.includes(a)]; })()`);
   assert.deepEqual(r, [true, true]);
 });
+
+test('K-29 Crawdia exhausted-only void cores; Gate Open, Release adds up to two Legacy Spirits', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { const G = BS.G, P = G.p.player; G.active = P.key; P.cpu = true;
+    const bb = Object.values(BS.CARDS).filter(c => c.type === 'Spirit' && (c.text || c.desc || '').includes('[Team: Blue Beat]')).slice(0, 3);
+    P.spirits.length = 0; const ins = bb.map((c, i) => { const s = BS.mkInst(c.id); s.cores = 1; s.exhausted = i < 2; P.spirits.push(s); return s; });
+    P.void = P.void || 0; const before = ins.map(s => s.cores);
+    await BS.runActions({ p: P, opp: G.p.opponent, src: BS.mkInst('26RDB01-047'), ctx: {} }, { actions: BS.CARDS['26RDB01-047'].effects[0].actions });
+    const cores = ins.map(s => s.cores - 1);
+    const lg = Object.values(BS.CARDS).filter(c => c.type === 'Spirit' && (c.desc || c.text || '').includes('(Legacy)')).slice(0, 3);
+    P.deck.splice(0, 4, ...lg.concat(Object.values(BS.CARDS).filter(c => c.type === 'Spirit').slice(0, 1)).map(c => BS.mkInst(c.id))); const h = P.hand.length;
+    await BS.runActions({ p: P, opp: G.p.opponent, src: BS.mkInst('26RBS02-CP01'), ctx: {} }, { actions: BS.CARDS['26RBS02-CP01'].magic.by.MAIN.actions });
+    return [cores, P.hand.length - h]; })()`);
+  assert.equal(r[0][2], 0);
+  assert.equal(r[1], 2);
+});
