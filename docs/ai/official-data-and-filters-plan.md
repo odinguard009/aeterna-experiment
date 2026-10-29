@@ -1,6 +1,6 @@
-# Plan: official data, card-input process and grouping dropdowns (DRAFT, not approved)
+# Plan: official data, card-input process and grouping dropdowns (APPROVED 2026-10-29)
 
-Status: draft written 2026-10-29 for the owner. Nothing here is implemented or scheduled; the lane order in `CLAUDE.md` and `docs/ai/roadmap-open.md` stays as it is until the owner approves. This file merges two requests: `docs/ai/official-data-plan.md` (phases 0-4, official data and the new input process) and the new dropdown filters for the deck builder and the Library. Phase details live in the first file; this one fixes the order, the sessions and the open decisions.
+Status: approved by the owner on 2026-10-29 and entered in `docs/ai/roadmap-open.md` (item R, U/I queue R0-R8). Nothing is implemented yet. Section D lists the conflicts; the owner's answers are recorded in item R of the roadmap. This file merges two requests: `docs/ai/official-data-plan.md` (phases 0-4, official data and the new input process) and the new dropdown filters for the deck builder and the Library. Phase details live in the first file; this one fixes the order, the sessions and the open decisions.
 
 ## A. Grouping dropdowns (deck builder and Library)
 
