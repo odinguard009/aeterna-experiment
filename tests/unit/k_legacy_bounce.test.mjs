@@ -479,3 +479,14 @@ test('K-36 Level Up: TREAT_LV2 self+battle lasts only while that battle runs; fi
     return [during, next, after, !!c.effects.find(e => e.trigger === 'BLOCKS' && e.if && e.if.firstBlock)]; })()`);
   assert.deepEqual(r, [2, 1, 1, true]);
 });
+
+test('K-37 Velocirant: REFRESH_SPIRIT self refreshes only the source Spirit', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const c = Object.values(BS.CARDS).find(c => c.type === 'Spirit');
+    P.spirits.length = 0; const a = BS.mkInst('26RBS01-066'), b = BS.mkInst(c.id); a.exhausted = b.exhausted = true; P.spirits.push(b, a);
+    const fx = BS.CARDS['26RBS01-066'].effects.find(e => e.trigger === 'END_STEP');
+    await BS.runActions({ p: P, opp: O, src: a, ctx: {} }, { actions: fx.actions });
+    return [a.exhausted, b.exhausted]; })()`);
+  assert.deepEqual(r, [false, true]);
+});

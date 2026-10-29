@@ -44,12 +44,12 @@ Object.assign(FX_ACTIONS, {
   CORE_TO_SELF: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5, txt: a => `+${a.n} core to this card`,
     can: c => c.p.reserve.n > 0,
     run: async (c, a) => { let k = 0; for (let j = 0; j < a.n; j++) if (addCore(c.p, c.src)) k++; if (k) log(`${CARDS[c.src.id].name} gets +${k} core${k === 1 ? '' : 's'}.`); } },
-  REFRESH_SPIRIT: { chk: a => (a.match == null || hasMatch(a.match)) && (a.noAttack == null || a.noAttack === true) && (a.bp == null || (a.bp && Number.isInteger(a.bp.n) && a.bp.n >= 1000 && a.bp.n <= 5000 && a.bp.n % 1000 === 0 && (a.bp.oppAttackStep == null || a.bp.oppAttackStep === true))),      // v0.195 bp {n, oppAttackStep}: "refresh it, and during this turn it gains +n BP" (only in the opposing Attack Step with oppAttackStep)
+  REFRESH_SPIRIT: { chk: a => (a.match == null || hasMatch(a.match)) && (a.self == null || (a.self === true && a.match == null)) && (a.noAttack == null || a.noAttack === true) && (a.bp == null || (a.bp && Number.isInteger(a.bp.n) && a.bp.n >= 1000 && a.bp.n <= 5000 && a.bp.n % 1000 === 0 && (a.bp.oppAttackStep == null || a.bp.oppAttackStep === true))),      // v0.195 bp {n, oppAttackStep}: "refresh it, and during this turn it gains +n BP" (only in the opposing Attack Step with oppAttackStep)
     txt: a => `refresh one of your ${a.match ? 'matching ' : ''}Spirits`,
-    cands: (c, a) => c.p.spirits.filter(s => s.exhausted && (!a || !a.match || fxMatch(CARDS[s.id], a.match))),
+    cands: (c, a) => c.p.spirits.filter(s => s.exhausted && (!a || !a.self || s === c.src) && (!a || !a.match || fxMatch(CARDS[s.id], a.match))),
     can: (c, a) => FX_ACTIONS.REFRESH_SPIRIT.cands(c, a).length > 0,
     run: async (c, a) => {
-      const t = await fxPickTarget(c, FX_ACTIONS.REFRESH_SPIRIT.cands(c, a), `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your exhausted Spirits to refresh (glowing).`);
+      const L = FX_ACTIONS.REFRESH_SPIRIT.cands(c, a), t = a.self ? L[0] : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your exhausted Spirits to refresh (glowing).`);
       if (!t) return; refreshOne(t); log(`${CARDS[t.id].name} is refreshed.`);
       if (a.noAttack) { t.noAtkTurn = G.turnNo; log(`${CARDS[t.id].name} can't attack this turn.`); }      // v97 "Refresh it. Then, during this turn, it can't attack."
       if (a.bp && (!a.bp.oppAttackStep || (G.step === 5 && G.active !== c.p.key))) { t.bpMod = (t.bpMod || 0) + a.bp.n; log(`${CARDS[t.id].name} gains +${a.bp.n} BP this turn.`); }
