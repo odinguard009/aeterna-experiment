@@ -44823,7 +44823,8 @@
   "K_RUMBLE"
  ],
  "26RBS01-083": [
-  "A_BP_PLUS"
+  "A_BP_PLUS",
+  "C_LEVEL"
  ],
  "26RBS01-084": [
   "T_SUMMONED",

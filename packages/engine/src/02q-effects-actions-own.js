@@ -67,6 +67,17 @@ Object.assign(FX_ACTIONS, {
       }
       removeFrom(c.p.trash, t); c.p.hand.push(t); c.ctx.returned = t; handUp(c.p, 1); log(`${CARDS[c.src.id].name}: ${CARDS[t.id].name} returns from the Trash to the Hand.`);
     } },
+  /* v0.185 (schema 69) HAND_RECYCLE {perOppHand?, drawIfAll?: {match, n}}: "Return all your Hand to the deckbottom (any order; kept in Hand order). When one or more cards are returned, draw a card for each card in the opposing Hand" / "If all the cards returned have <X>, draw N cards" */
+  HAND_RECYCLE: { chk: a => Object.keys(a).every(k => ['do', 'if', 'perOppHand', 'drawIfAll'].includes(k)) && (a.perOppHand === true) !== !!a.drawIfAll
+      && (!a.drawIfAll || (!!a.drawIfAll.match && hasMatch(a.drawIfAll.match) && Number.isInteger(a.drawIfAll.n) && a.drawIfAll.n >= 1 && a.drawIfAll.n <= 5)),
+    txt: () => 'return all your Hand to the deckbottom, then draw',
+    run: async (c, a) => {
+      const L = c.p.hand.splice(0), opp = G.p[other(c.p.key)].hand.length; c.ctx.did = L.length > 0; if (!L.length) return;
+      for (const t of L) c.p.deck.push(t);
+      log(`${CARDS[c.src.id].name}: ${who(c.p)} ${c.p.cpu ? 'returns' : 'return'} ${L.length} card${L.length === 1 ? '' : 's'} from the Hand to the deckbottom.`);
+      const n = a.perOppHand ? opp : L.every(t => fxMatch(CARDS[t.id], a.drawIfAll.match)) ? a.drawIfAll.n : 0;
+      if (n) { const k = draw(c.p, n); log(`${CARDS[c.src.id].name}: ${who(c.p)} ${c.p.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'}.`); handUp(c.p, k); }
+    } },
   /* v0.185 (schema 66) DEPLOY_TRASH {match}: "Target a <X> Nexus card in your Trash. Deploy it without paying the cost." (Nexus only) */
   DEPLOY_TRASH: { chk: a => !!a.match && hasMatch(a.match) && Object.keys(a).every(k => ['do', 'match', 'if'].includes(k)),
     txt: () => 'deploy a matching Nexus card from your Trash without paying the cost',

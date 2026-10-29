@@ -870,6 +870,9 @@ TGT_VOID = re.compile(r'^target (?:an?|one) (.+? you control)\.\s*put (a|one|two
 def action_of(s, ctx):
     s = re.sub(r'(?:^|(?<=\. ))(if you control) any ("[^"]+" family spirit(?:/nexus)?), besides this (?:spirit|one),', r'\1 another \2,', s.strip(), flags=re.I)      # v0.168 'any "X" family Spirit, besides this Spirit,' = 'another "X" family Spirit' (ctrl.other); v0.171 also Spirit/Nexus and "besides this one"
     s = re.sub(r'^besides this (?:spirit|one), (if you control) any ("[^"]+" family spirit(?:/nexus)?),', r'\1 another \2,', s, flags=re.I)      # v0.171 'Besides this Spirit, if you control any "X" family Spirit/Nexus, B' = the same
+    if re.fullmatch(r'return all your hand to the deckbottom in any order\.\s*when one or more cards? (?:is|are) returned, draw a card for each card in the opposing hand\.?', s.strip(), re.I): return [{'do': 'HAND_RECYCLE', 'perOppHand': True}], False      # v69
+    m = re.fullmatch(r'show all your hand to the opponent\.\s*return them to the deckbottom in any order\.\s*if all the cards returned have ([A-Za-z ]+?), draw (\w+) cards\.?', s.strip(), re.I)      # v69 (shown cards: the opponent sees them in the log)
+    if m and m.group(1).title() in ('Red Stella', 'Green Wave', 'Blue Beat', 'Yellow Rise'): return [{'do': 'HAND_RECYCLE', 'drawIfAll': {'match': {'team': m.group(1).title()}, 'n': n_of(m.group(2).lower())}}], False
     m = re.fullmatch(r'(you can )?draw until your hand is (\w+)\.?', s.strip(), re.I)
     if m: return [{'do': 'DRAW_UNTIL', 'n': n_of(m.group(2).lower())}], bool(m.group(1))      # v61
     if re.fullmatch(r'when this battle ends, end the attack step\.?', s.strip(), re.I): return [{'do': 'END_ATTACK_AFTER_BATTLE'}], False      # v0.179 (engine 02h; Accel BS37-040, BS69-043)
@@ -1003,6 +1006,10 @@ def sentences(body):
     for x in _V1_SENTENCES(body):
         if out and re.fullmatch(r'then,? (?:if it has 0 ?bp,? destroy it|destroy it if it has 0 ?bp)\.?', x.strip(), re.I) and re.search(r'-\d[\d,]* ?bp\.$', out[-1], re.I):
             out[-1] = out[-1] + ' ' + x      # v0.68: "... give it -N BP. Then, if it has 0 BP, destroy it." is one effect
+        elif out and re.match(r'^(?:show all your hand to the opponent\.\s*)?return (?:all your hand|them) to the deckbottom in any order\.$', out[-1].strip(), re.I) and re.match(r'^(?:when one or more cards? (?:is|are) returned,|if all the cards returned have)', x.strip(), re.I):
+            out[-1] = out[-1] + ' ' + x      # v69: HAND_RECYCLE tail ("draw a card for each card in the opposing Hand" / "if all returned have <Team>, draw N")
+        elif out and out[-1].strip().lower() == 'show all your hand to the opponent.' and re.match(r'^return them to the deckbottom in any order\.?$', x.strip(), re.I):
+            out[-1] = out[-1] + ' ' + x
         elif out and re.match(r'^(?:you can )?show ', out[-1], re.I) and re.fullmatch(r'(?:return (?:them|it) to the deckbottom(?: in any order)?|for each card returned, draw a card|if (?:one|two|three) cards? (?:is|are) returned, draw (?:a|one|two|three|four|five) cards?)\.?', x.strip(), re.I):
             out[-1] = out[-1].rstrip() + ' ' + x      # v0.165: "Show ... to the opponent." + "Return them to the deckbottom." + "For each card returned, draw a card." is one effect
         elif out and REVEAL_HEAD.match(re.sub(r'^(?:also,? )?(?:then,? )?(?:if [^,]+, )?', '', out[-1], flags=re.I)) and not REVEAL_REST.search(out[-1]):

@@ -157,7 +157,7 @@ function parseEffects(arr) {
     } else if (e.trigger === 'STATIC') {
       if (!Number.isInteger(e.bp) || e.bp === 0 || Math.abs(e.bp) > 30000) return { error: 'STATIC effect needs a whole-number "bp"' };
       o.bp = e.bp; o.to = e.to === 'own' ? 'own' : 'self'; if (e.attackingOnly) o.attackingOnly = true; if (e.blockingOnly) o.blockingOnly = true; if (e.fightingOnly === true) o.fightingOnly = true; if (e.noStack === true) o.noStack = true; if (e.braved === true) o.braved = true;
-      if (e.per != null) { if (!perOk(e.per) || o.to !== 'self') return { error: 'STATIC "per" must look like {"type":"Spirit","family":"X"} (to: self)' }; o.per = JSON.parse(JSON.stringify(e.per)); }   // v0.72
+      if (e.per != null) { if (!perOk(e.per) || (o.to !== 'self' && o.to !== 'own')) return { error: 'STATIC "per" must look like {"type":"Spirit","family":"X"} (to: self or own)' }; o.per = JSON.parse(JSON.stringify(e.per)); }   // v0.72
       if (e.perCores === true) { if (o.to !== 'self' || o.per) return { error: 'STATIC "perCores" needs to: self and no per' }; o.perCores = true; }      // v0.185 "This Spirit gains +N BP for each core on it."
       if (e.perHand === true) { if (o.to !== 'self' || o.per) return { error: 'STATIC "perHand" needs to: self and no per' }; o.perHand = true; }      // v0.180 "This Spirit gains +N BP for each card in your Hand."
     } else {

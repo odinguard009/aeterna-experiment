@@ -67,3 +67,15 @@ test('V185-08 STATIC perCores (26RDB01-018): +1000 BP per core while LV2 in your
   const r = await ev(`const t = sp('26RDB01-018', P, 3); G.active = P.key; G.step = 5; const a = BS.bpOf(t); t.cores = 4; return BS.bpOf(t) - a;`);
   assert.equal(r, 1000);
 });
+
+test('V185-09 STATIC per + to own (26RBS01-083): all your Spirits get +1000 BP per Blue Nexus in your Attack Step', async () => {
+  const r = await ev(`const t = sp('26RBS01-083', P, 3), o = sp('26RBS01-083', P, 3); G.active = P.key; G.step = 5; const a = BS.bpOf(o); P.nexus.push(BS.mkInst('BS03-113')); return BS.bpOf(o) - a;`);
+  assert.equal(r, 2000);      // two copies of the card: each adds +1000 per Blue Nexus to every Spirit (the Nexus is Blue)
+});
+
+test('V185-10 HAND_RECYCLE returns the Hand to the deckbottom, then draws per opposing Hand card / N when all match', async () => {
+  const r = await ev(`const run = async (a, h) => { P.hand = []; for (let i = 0; i < h; i++) P.hand.push(BS.mkInst('BS01-035')); O.hand = [BS.mkInst('BS01-035'), BS.mkInst('BS01-035')]; const d = P.deck.length;
+      const c = { p: P, opp: O, src: sp('BS01-035'), ctx: {} }; await BS.FX_ACTIONS.HAND_RECYCLE.run(c, a); return [P.hand.length, P.deck.length - d, c.ctx.did]; };
+    return [await run({ do: 'HAND_RECYCLE', perOppHand: true }, 3), await run({ do: 'HAND_RECYCLE', drawIfAll: { match: { costLe: 99 }, n: 3 } }, 4), await run({ do: 'HAND_RECYCLE', perOppHand: true }, 0)];`);
+  assert.deepEqual(r, [[2, 1, true], [3, 1, true], [0, 0, false]]);
+});

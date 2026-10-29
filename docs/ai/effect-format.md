@@ -105,3 +105,5 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v65 (v0.185.0, Lane K): `if.selfBlocked` (this Spirit is attacking and has been blocked).
 - v66 (v0.185.0, Lane K): new action `DEPLOY_TRASH {match}` (deploy a matching Nexus card from your Trash without paying the cost).
 - v67 (v0.185.0, Lane K): STATIC `perCores:true` (with `bp`, `to:"self"`): "This Spirit gains +N BP for each core on it." (counted live).
+- v68 (v0.185.0, Lane K): STATIC `per` is also allowed with `to:"own"` ("For each X you control, give all your Spirits +N BP"; each of your Spirits gets bp x the count).
+- v69 (v0.185.0, Lane K): new action `HAND_RECYCLE {perOppHand | drawIfAll:{match,n}}` (return all your Hand to the deckbottom in Hand order; then draw a card per card in the opposing Hand, or N cards if every returned card matches).

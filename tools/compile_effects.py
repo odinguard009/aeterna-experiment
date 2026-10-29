@@ -644,6 +644,12 @@ def spirit_paragraph_main(p, card, rush):
             e = {'trigger': 'STATIC', 'bp': bp(mm.group(2)), 'to': 'own', 'if': dict(ATTACK_STEP['(Your Attack Step)']), 'match': {'name': re.findall(r'"([^"]+)"', mm.group(1))}}
             if lv: e['lv'] = lv
             return [e], flags
+        mm = re.match(r'^\(Your Attack Step\)\s*(For each [^,]+ you control), give all your Spirits \+(\d[\d,]*) ?BP\.?$', p, re.I)
+        q = mm and re.match(PER_NP, mm.group(1), re.I)
+        if q:      # v0.185 '(Your Attack Step) For each X you control, give all your Spirits +N BP' = STATIC own + per (schema 68)
+            e = {'trigger': 'STATIC', 'bp': bp(mm.group(2)), 'to': 'own', 'per': per_of(q), 'if': dict(ATTACK_STEP['(Your Attack Step)'])}
+            if lv: e['lv'] = lv
+            return [e], flags
         mm = re.match(r'^\(Your Attack Step\)\s*This Spirit (?:gains|gets) \+(\d[\d,]*) ?BP\.?$', p, re.I)
         if mm:
             e = {'trigger': 'STATIC', 'bp': bp(mm.group(1)), 'to': 'self', 'if': dict(ATTACK_STEP['(Your Attack Step)'])}
