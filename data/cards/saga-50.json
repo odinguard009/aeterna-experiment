@@ -5739,7 +5739,7 @@
   "name_jp": "ロックピット",
   "type": "Nexus",
   "color": "white",
-  "cost": 3,
+  "cost": 4,
   "reduction": {
    "white": 2
   },
@@ -6029,7 +6029,7 @@
   "name_jp": "活力樹林",
   "type": "Nexus",
   "color": "blue",
-  "cost": 3,
+  "cost": 4,
   "reduction": {
    "blue": 2
   },
@@ -27805,7 +27805,7 @@
   "name_jp": "ディフェンシブゲート",
   "type": "Magic",
   "color": "white",
-  "cost": 6,
+  "cost": 5,
   "reduction": {
    "white": 3
   },
