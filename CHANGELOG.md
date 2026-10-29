@@ -4,6 +4,13 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.191.0
+- Lane: U/I
+- **R4 + R5: audit of the complete cards against the official heads**
+  - New `tools/audit_heads.py` compares the official Japanese text (`data/sources/official-fields.json`) with the compiled effects of every complete card: event heads (summon, attack, block, destroy, manifest, end step, start of attack step) must have a matching trigger with the same Lv range, every BP figure must appear in the effect, and counts of 2 or more must appear as a number (or as repeated actions). One test (`tests/unit/r4_audit.test.mjs`) keeps it at zero.
+  - Result over all sets in one pass (R4 and R5 merged, the plan allows it when mismatches are few): 1,258 complete cards with an official record, 2 real mismatches. Medici-Cattery (26RSD02-003) gave +3000 BP while the official page says +2000: fixed. Yoroibatta (BS23-020) had no Rush chain effect (White: bounce a Cost 4 or less Spirit, Blue: BP+3000) but was marked complete: now `fxComplete: false` with a residual, so the complete count drops by 1.
+  - Limit: this finds wrong heads, levels and numbers only. A correct text applied with a wrong rule (order, edge cases), Burst/Magic wording and effects without a number are not seen. Bursts are checked only for their BP figures. Other head kinds (`アタック中`, `バトル時`, `相手による...`, steps other than End) are skipped.
+
 ## v0.190.0
 - Lane: U/I
 - **R9: Sort dropdown (Deck Builder and Library)**

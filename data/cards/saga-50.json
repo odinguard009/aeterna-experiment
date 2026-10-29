@@ -28312,7 +28312,7 @@
    "Dark Puce",
    "Bloodrouse"
   ],
-  "text": "[LV2] (True Release) (During Attack)\nThis Spirit gains +3000 BP.",
+  "text": "[LV2] (True Release) (During Attack)\nThis Spirit gains +2000 BP.",
   "image": "26RSD02-003.png",
   "block": "A",
   "saga": 50,
@@ -28320,7 +28320,7 @@
   "effects": [
    {
     "trigger": "STATIC",
-    "bp": 3000,
+    "bp": 2000,
     "to": "self",
     "attackingOnly": true,
     "lv": [
