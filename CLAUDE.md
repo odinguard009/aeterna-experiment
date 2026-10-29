@@ -26,11 +26,11 @@ Single-file web simulator for a trading card game vs CPU (Windows + Android), mo
 - **Loop:** edit `packages/engine/src/*` or `apps/web/src/*` -> `npm run -s loop` (build + lint + brand guard + smoke + changed tests, ~15 s; `-- --full` runs in the pre-push hook; CI runs `npm test` on `main`). npm/pip registries are blocked. The build regenerates `docs/progress.html` (commit it, never edit it). Mind map `docs/roadmap.html` from `docs/roadmap-data.json`, edited only every 3rd release or when the plan changed (`node tools/mindmap_due.mjs`); run `node tools/gen_roadmap.mjs` before the last commit.
 
 ## Read when relevant
-- Rules, effects, card data: `docs/ai/cards-and-rules.md`; rule sources: skill `bs-wiki-rules`. Card data order: Fandom export in the repo (`data/sources`, `data/import`), then the official list, live Fandom, others; images last (skill `bs-card-data-check`).
+- Rules, effects, card data: `docs/ai/cards-and-rules.md`; rule sources: skill `bs-wiki-rules`. Card data order: official fields (`data/sources/official-fields.json`, numbers and heads) first, then the Fandom export in the repo (`data/sources`, `data/import`), then the official list, live Fandom, others; images last (skill `bs-card-data-check`).
 - Tests and releases: `docs/ai/release.md`. Session steps: skill `bs-session-runner`. Engine/CPU/UX ideas: `docs/aegis-study.md`. UI: `docs/DESIGN.md`. Architecture: `docs/ARCHITECTURE.md` (doc index `docs/README.md`).
 - **Before planning a version:** `docs/ai/roadmap-open.md`. Monorepo / online: `docs/ai/monorepo-plan.md`.
 
 ## Roadmap (history: `CHANGELOG.md`; downloads: GitHub Releases)
 - **Done:** release history in `CHANGELOG.md`, the mind map `docs/roadmap.html` and finished items in `docs/ai/roadmap-archive.md`; only the Next line changes per session.
-- **Next:** item R (U/I queue R0-R8), then Lane K cards, Standard block A first (`docs/reports/pack-plan-standard.md`); open work and time rules in `docs/ai/roadmap-open.md` (items L, T). Finished items live in `CHANGELOG.md` and `docs/ai/roadmap-archive.md`.
+- **Next:** item R (U/I queue R1-R8; R0 done in v0.186.0), then Lane K cards, Standard block A first (`docs/reports/pack-plan-standard.md`); open work and time rules in `docs/ai/roadmap-open.md` (items L, T). Finished items live in `CHANGELOG.md` and `docs/ai/roadmap-archive.md`.
 - Alongside: glossary rule notes (issue #2), missing mechanics checklist (issue #3). Issue numbers up to v0.57.0 refer to the private vault repo (its #3 / #4 / #9 are #2 / #3 / #1 here).

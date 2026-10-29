@@ -25,13 +25,13 @@ How to get 7 and 8 without guessing: the official list search filters by rarity 
 UI rules (CLAUDE.md "UI"): reuse the existing dropdown component (`ddList`/`ddButton`), keep both layouts and every function, no redesign. Each UI step: own commit, `backup/vX` first, one screenshot per layout, revert note, one read-only player-view pass (`bs-playwright-tester`). Risk: `apps/web/styles.css` was ~120 bytes under its 90 KB budget (B04); check the budget before the first UI session, raise it or trim CSS as an explicit step. A filter whose data is incomplete (9, 10) is not shipped until the data is filled, otherwise it hides cards silently.
 
 ## B. Official data and input process
-Unchanged from `official-data-plan.md`: Phase 0 save fields and raw pages, Phase 1 `apply_official.py` for numbers, Phase 2 audit of the 1,225 complete cards, Phase 3 new input process (official heads, verifier, `promote_import.py` guard, CI replay), Phase 4 official Q&A. Current measured state: the full fetch is still running (about 6,400 of 8,709 at last look), so final error rates are not known yet.
+Unchanged from `official-data-plan.md`: Phase 0 save fields and raw pages, Phase 1 the R1 apply script for numbers, Phase 2 audit of the 1,225 complete cards, Phase 3 new input process (official heads, verifier, `promote_import.py` guard, CI replay), Phase 4 official Q&A. Current measured state: the full fetch is still running (about 6,400 of 8,709 at last look), so final error rates are not known yet.
 
 ## C. Proposed session order (each ends with its own release)
 | Session | Content | Lane | Depends on |
 |---|---|---|---|
-| R0 | Full fetch finished; Phase 0: `official-fields.json`, pages archive, `docs/reports/official-check.md`; list-query fetch of rarity, collaboration, block, product | U/I (infra) | owner approval |
-| R1 | Decide the multi-colour X model; Phase 1 `apply_official.py` (dry run, one commit per field, tests); fills reduction and symbols where the official page has them | U/I | R0 |
+| R0 | Full fetch finished; Phase 0: the official fields file (data/sources/official-fields.json), pages archive, `docs/reports/official-check.md`; list-query fetch of rarity, collaboration, block, product | U/I (infra) | owner approval |
+| R1 | Decide the multi-colour X model; Phase 1 the R1 apply script (dry run, one commit per field, tests); fills reduction and symbols where the official page has them | U/I | R0 |
 | R2 | Filters part 1: items 1, 2, 3, 5 (no new data), UI rules above | U/I | styles budget check |
 | R3 | Filters part 2: items 4, 6, 7, 8, 9, 10, 11 as the data allows | U/I | R0, R1 |
 | R4 | Phase 2 audit of the complete cards, first half (by set); mismatches fixed with tests or set to `fxComplete: false` | K-audit | R1 |
@@ -45,7 +45,7 @@ R2 does not need R0 beyond the budget check and can run first if the owner wants
 
 ## D. Conflicts with the current working agreement (owner decides)
 1. "Standard block A only; pause all other card work": R4-R5 touch cards that are already complete and R7 changes the input path. Needs an explicit exception, or the plan waits for block A.
-2. Lane K is running on `wip/lane-k`. `apply_official.py` edits `data/cards` and `data/import`; Lane K must rebase onto `main` before each bundle (already its rule). A K release in between is fine, but R1 must be re-run after it.
+2. Lane K is running on `wip/lane-k`. the R1 apply script edits `data/cards` and `data/import`; Lane K must rebase onto `main` before each bundle (already its rule). A K release in between is fine, but R1 must be re-run after it.
 3. The `CLAUDE.md` card-data source order and the lane order text change when R0/R1 land; that edit is part of those sessions, not done now.
 4. Images stay out of scope (owner 2026-10-29). Copyright and commit-author notes: owner said to ignore.
 

@@ -23,3 +23,12 @@ Reference data only. The game does not load these files; import tools read them 
 ## fandom-ultimate-trigger.tsv (v0.60.3)
 - Source: the `{{tk|Ultimate Trigger|...}}` parameter of the pages in Category:Ultimate Trigger (same read, 130 staged titles); the export drops this `[LVn] (timing)` line.
 - `tools/import_fandom.py` writes it back after each bare "Ultimate Trigger" paragraph head (119 cards; wiki typos `LV4]` and `[V3]` fixed on import).
+
+## official-fields.json (v0.186.0)
+- Source: the official card database pages `https://www.battlespirits.com/cardlist/detail_iframe.php?card_no=<ID>` (read-only, one request per card, 2026-10-29; HTTP 403/429 would have stopped the run, none came). 8,628 of the 8,709 library and staging card numbers have a page; 81 have none (for example BS77).
+- Written by `python3 tools/official_check.py --all --save data/sources/official-fields.json`; a rerun replays the cached pages without network (cache = the extracted `official-pages.tar.xz`).
+- Fields per card: `type`, `colors`, `cost`, `reductionBy` (colour icons) and `reductionIcons` (every icon, god included), `levels` ([BP, cores] pairs), `braveBp`, `combine`, `nameJp`, `familiesJp`, `textJp` (effect paragraphs; inline icons as `{name}`), `rarity`, `blockIcons`, `collab` (work icons), `products`, `qa` (id, date, question, answer). No images.
+- Not a ground truth for effects: a number match proves the number only. Report: `docs/reports/official-check.md`.
+
+## official-pages.tar.xz (v0.186.0)
+- The raw official pages behind `official-fields.json` (one `<ID>.html` per card, 1.2 MB packed), so a parser change can be replayed without new requests: `mkdir -p $DIR && tar -C $DIR -xJf data/sources/official-pages.tar.xz && python3 tools/official_check.py --all --cache $DIR`.

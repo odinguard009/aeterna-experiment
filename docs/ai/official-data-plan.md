@@ -14,7 +14,7 @@ Goal: the official card database (battlespirits.com `cardlist/detail_iframe.php?
 3. Report `docs/reports/official-check.md` (generated): error rate per field, per set, split into complete / partial / staged.
 
 ## Phase 1 - numbers (deterministic)
-- `tools/apply_official.py`: official value overwrites cost, colours, reduction (colour keys only; `ultimate` / `god` keys kept), level bp/cores, Brave bp/costGe/costLe. Idempotent, dry run by default, one commit per field. Lane K reruns it after each rebase; never touches `wip/lane-k`.
+- the R1 apply script (tools/apply_official, not written yet): official value overwrites cost, colours, reduction (colour keys only; `ultimate` / `god` keys kept), level bp/cores, Brave bp/costGe/costLe. Idempotent, dry run by default, one commit per field. Lane K reruns it after each rebase; never touches `wip/lane-k`.
 - Decide the multi-colour X card model before touching colours (what does BS47-046 "counts as every colour" mean for the engine).
 - A test per new pattern; `npm run -s loop`.
 

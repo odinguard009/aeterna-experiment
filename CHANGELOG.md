@@ -4,6 +4,13 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.186.0
+- Lane: U/I
+- **R0: official card data saved in the repo (8,628 of 8,709 cards)**
+  - `tools/official_check.py` now also reads rarity, block icons, collab icons, products and Q&A; new `--report` writes `docs/reports/official-check.md`.
+  - `data/sources/official-fields.json` (parsed fields) and `data/sources/official-pages.tar.xz` (raw pages for replay without network) added; 81 cards have no official page.
+  - Result: complete 1,265 cards, 298 differ (mostly reduction, 274); partial 867 differ; staged 199. A number match does not prove the effects are correct; effect text is not compared. No card data changed in this release.
+
 ## v0.185.0
 - Lane: K
 - **43 more cards complete (1,225 -> 1,268): attack-step BP, attack counts, Rumble discard, Hand recycle, Nexus destruction (early release, owner order)**
