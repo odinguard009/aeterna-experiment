@@ -436,3 +436,14 @@ test('K-32 Hallucination: returns up to three opposing Cost 3 or less Nexuses', 
     return O.nexus.length; })()`);
   assert.equal(r, 0);
 });
+
+test('K-33 Salvador: TREAT_LV2 makes a Cyantree Spirit LV2 for the turn', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const c = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && (c.families || []).includes('Cyantree') && c.levels.length > 1);
+    P.spirits.length = 0; const s = BS.mkInst(c.id); s.cores = c.levels[0].cores; P.spirits.push(s);
+    const lv0 = BS.lvNo(s);
+    await BS.runActions({ p: P, opp: O, src: BS.mkInst('26RBS03-X14'), ctx: {} }, { actions: BS.CARDS['26RBS03-X14'].effects.find(e => e.trigger === 'START_ATTACK').actions });
+    return [lv0, BS.lvNo(s)]; })()`);
+  assert.deepEqual(r, [1, 2]);
+});

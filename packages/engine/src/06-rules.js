@@ -34,6 +34,7 @@ function lvIndex(i) {
   if (card.countLv) { const o = ownerOf(i); t = o ? o.count : 0; } else t = totalCores(i);
   for (let j = 0; j < L.length; j++) if (t >= L[j].cores) k = j;
   if (k >= 0 && k < 2 && L.length > 1) { const n = treatLv3(i); if (n && L.length >= n && k < n - 1) k = n - 1; }      // v0.181 STATIC TREAT_LV3 "While you control N or less Spirits, this Spirit is treated as being at LV3"; v0.184 n:2 = LV2
+  if (i.lv2Turn && L.length > 1 && k < 1) k = 1;      // v0.196 TREAT_LV2 action
   if (card.trueRelease && i.soul && L.length > 1 && k < 1) k = 1;   // v0.66 True Release (Standard CR 12-2-1-1): the Soul Core alone fulfils LV2 (a rule, not an effect)
   return k;
 }
@@ -293,7 +294,7 @@ function removeSpirit(p, s, why, byOpponent) {
   delete s.noFx;
   coreEvN(p, s.uid, 'reserve', s.cores, s.soul);          // v0.149.0: the cores of a destroyed / depleted Spirit fly to the Reserve
   p.reserve.n += s.cores; if (s.soul) p.reserve.soul = true;
-  s.cores = 0; s.soul = false; s.exhausted = false; s.heavy = false; s.noAB = false; s.bpMod = 0; s.bpB = null; s.fxBattle = null;      // v0.68: battle BP / Once Per Battle end when it leaves
+  s.cores = 0; s.soul = false; s.exhausted = false; s.heavy = false; s.noAB = false; s.bpMod = 0; s.lv2Turn = false; s.bpB = null; s.fxBattle = null;      // v0.68: battle BP / Once Per Battle end when it leaves
   const under = s.under; s.under = [];
   for (const u of under) { u.under = []; p.trash.push(u); }
   shedBrave(p, s, p.trash);

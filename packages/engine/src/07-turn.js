@@ -33,7 +33,7 @@ async function endStep(key) {
   setStep(G.steps.length - 1);
   if (!G.over) { await fireFx(G.p[key], 'END_STEP', null, {}); await flushBursts(); checkDepletion(G.p.player); checkDepletion(G.p.opponent); }      // v0.169 "(Your End Step)" effects, before the "during this turn" effects end
   if (G.over) return;
-  for (const k of ['player', 'opponent']) for (const f of fieldList(G.p[k])) { f.bpMod = 0; if (f.noABTurn != null) { f.noAB = false; f.noABTurn = null; } }   // v0.88 S1: "during this turn, can't attack/block" ends
+  for (const k of ['player', 'opponent']) for (const f of fieldList(G.p[k])) { f.bpMod = 0; f.lv2Turn = false; if (f.noABTurn != null) { f.noAB = false; f.noABTurn = null; } }   // v0.88 S1: "during this turn, can't attack/block" ends
   log(`${who(G.p[key])} ${G.p[key].cpu ? 'ends' : 'end'} the turn.`);
   await wait(300);
 }

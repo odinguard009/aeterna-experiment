@@ -132,3 +132,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v92 (v0.196.0, Lane K): `DESTROY.noTR:true` (with `nexus`: skip a True Release Nexus at LV2+); `TRASH_CORES_TO.toReserve:true` ("send a core from your Trash to the Reserve", Soul Core excluded).
 - v93 (v0.196.0, Lane K): action `DESTROY_EITHER {two, one}` ("target either two opposing <two> BP or less Spirits or an opposing <one> BP or less Spirit. Destroy those"); the owner picks the branch, the CPU takes two when it can.
 - v94 (v0.196.0, Lane K): `BOUNCE_OPP.upTo:true` (with `n` 2..3: "target up to N opposing ..."; the owner may stop after one, the CPU takes all it can).
+- v95 (v0.196.0, Lane K): action `TREAT_LV2 {match}` ("target one of your <match> Spirits. During this turn, treat it as LV2"; inst.lv2Turn, cleared at turn end or when the Spirit leaves the field).

@@ -77,7 +77,7 @@ cardTeams, allHaveShapeOK, allHaveOK, winRiderRun, fxOppMark, blockedInferior, b
 ## packages/engine/src/02s-effects-actions-soul.js (149 lines, ~3.6k tokens)
 
 
-## packages/engine/src/02t-effects-actions-opp.js (221 lines, ~5.5k tokens)
+## packages/engine/src/02t-effects-actions-opp.js (232 lines, ~5.7k tokens)
 
 
 ## packages/engine/src/02u-effects-form-change.js (32 lines, ~0.7k tokens) — FORM CHANGE (v0.135.0, schema v8; Kamen Rider cross-over cards): {{F Change|"X" & Cost N}} {{Invoke|Main}}
@@ -98,7 +98,7 @@ DECISION_KINDS, cardIds, portAsk, decide, ask, info, pickFromField, portPick, po
 ## packages/engine/src/05c-intent.js (286 lines, ~4.7k tokens) — INTENTS (v0.84.0, phase F3 part 2 = monorepo step M3 rest; docs/ai/monorepo-plan.md "Design" 1)
 INTENT_TYPES, CORE_OPS, INTENT_MAX, SEAT_LOOP, seatCan, seatLoopOpen, boardView, endTurnNow, seatTurn, handOf, fieldOf, intentNext, intentSummon, intentCast, intentMirage, intentBraveSummon, intentBraveField, intentCore, intentAttack, applyIntent, cpuPaymentPlan, cpuIntent, cpuAnswer
 
-## packages/engine/src/06-rules.js (507 lines, ~9.8k tokens) — RULES HELPERS
+## packages/engine/src/06-rules.js (508 lines, ~9.8k tokens) — RULES HELPERS
 fieldList, isGW, freeCores, freeTotal, totalCores, reserveTotal, minCores, isSpiritForm, isUlt, lvBase, lvNo, summonOK, spare, coresAvailable, isCountLv, _tl3, treatLv3, lvIndex, bpOf, ocActive, braveBp, braveFits, braveTargets, combineBrave, canSeparate, separateBrave, braveAfford, braveSummon, braveRecheck, shedBrave, TOKEN_SUPPLY, tokenIdsOf, prepareTokens, tokenCoreRoom, canSendToken, sendToken, tokenHome, symTurnCols, symZeroAllOn, attackSymbols, symAttrs, symbolAttrs, fieldSymbols, symbolsOn, reductionOf, noBlockActive, costAltActive, extraReduction, legacyPlan, handCostSet, effCost, legacyPay, tributeList, canPlayCard, takeCores, payCost, checkDepletion, leaveEvent, removeSpirit, lostHeard, leaveStandby, releaseStandby, poss, who, keyDrawActive, drawKeyFirst, draw, handUp, summon, setBurst, mirageUsable, magicFx, magicFromTrash, magicFxAt, magicTrashOK, magicSources, magicTargets, soulMagicHolder, soulMagicOK, soulMagicPick, magicUsable, magicText, castMagic, coreEv, coreEvN, addCore, removeCore, moveSoulTo, moveCore, swapSoul, returnSoul
 
 ## packages/engine/src/07-turn.js (79 lines, ~1.3k tokens) — TURN FLOW

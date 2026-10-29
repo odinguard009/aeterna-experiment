@@ -44,6 +44,17 @@ Object.assign(FX_ACTIONS, {
       if (two && one && !c.p.cpu) both = await ask({ title: `✨ ${esc(_nm(c))}`, html: `Destroy two opposing ${a.two} BP or less Spirits, or one ${a.one} BP or less Spirit?`, buttons: [{ label: 'Two', cls: 'primary', value: true }, { label: 'One', cls: 'blue', value: false }] });
       for (let i = 0; i < (both ? 2 : 1); i++) await D.run(c, { do: 'DESTROY', bpLe: both ? a.two : a.one });
     } },
+  /* v0.196 TREAT_LV2 {match} "Target one of your <match> Spirits. During this turn, treat it as LV2" (inst.lv2Turn, read by lvIndex, cleared at the end of the turn) */
+  TREAT_LV2: { chk: a => hasMatch(a.match),
+    txt: a => 'target one of your matching Spirits; during this turn, treat it as LV2',
+    cands: (c, a) => c.p.spirits.filter(s => fxMatch(CARDS[s.id], a.match, s) && CARDS[s.id].levels.length > 1 && !s.lv2Turn),
+    can: (c, a) => FX_ACTIONS.TREAT_LV2.cands(c, a).length > 0,
+    run: async (c, a) => {
+      const L = FX_ACTIONS.TREAT_LV2.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
+      const t = c.p.cpu ? L[0] : await fxPickTarget(c, L, `✨ <b>${esc(_nm(c))}</b><br>Tap your Spirit to treat as LV2 (glowing).`);
+      if (!t) { c.ctx.did = false; return; }
+      t.lv2Turn = true; io.view({ type: 'board' });
+    } },
   /* v0.181 (schema 30) "By setting a card with Burst effect from your Hand, <next>": sets one (a previous Burst is discarded, setBurst); ctx.did = false when the Hand has none, so the next actions use {"if":{"prev":true}} */
   SET_BURST: { chk: () => true, txt: () => 'set a card with Burst effect from your Hand',
     cands: c => c.p.hand.filter(h => h !== c.src && CARDS[h.id].burst),
