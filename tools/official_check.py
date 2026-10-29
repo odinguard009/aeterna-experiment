@@ -57,6 +57,10 @@ def parse(s):
     for x in re.findall(r'<img[^>]*alt="([^"]*)"', rows.get('軽減コスト', '')):
         if x in COLORS: by[COLORS[x]] = by.get(COLORS[x], 0) + 1
     o['reductionBy'] = by
+    nm = re.search(r'<h2 class="cardName">(.*?)</h2>', s, re.S)
+    o['nameJp'] = txt(nm.group(1)) if nm else None
+    o['familiesJp'] = txt(rows.get('系統', ''))
+    o['textJp'] = [txt(t) for t in re.findall(r'<p class="text">(.*?)</p>', rows.get('能力・効果', ''), re.S)]
     lv = []
     for item in re.findall(r'<div class="bpCoreItem[^"]*">(.*?)</div>', rows.get('BP/コア', ''), re.S):
         a = re.search(r'alt="([^"]*)"', item).group(1)
@@ -115,7 +119,7 @@ def main():
     ap.add_argument('--all', action='store_true')
     ap.add_argument('--cache', default=os.path.join(tempfile.gettempdir(), 'official-cards'))
     ap.add_argument('--delay', type=float, default=0.7)
-    ap.add_argument('--save', help='write the parsed official fields of every card with a page to this JSON file (facts only, no page text)')
+    ap.add_argument('--save', help='write the parsed official fields of every card with a page to this JSON file (fields, Japanese name and effect text; no raw HTML)')
     ap.add_argument('--json', help='write the differences to this file')
     a = ap.parse_args()
     os.makedirs(a.cache, exist_ok=True)
