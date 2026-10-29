@@ -14,7 +14,7 @@ The working agreement is `CLAUDE.md` at the repo root: read it first and follow 
 - No token counter: `done` is written without `start=`/`budget=`/`sub=`, e.g. `bash tools/session_gate.sh done vX.Y.Z next=Opus|Sonnet`. Chain mode (`rantai`) does not apply to Copilot sessions; skip `rantai next` and the "Token terpakai" line.
 - No subagents: the read-only player-view pass (skill `bs-playwright-tester`) runs inline in the same session when CLAUDE.md asks for it.
 - Model: the owner picks it in the Copilot model picker. Keep the `gunakan model …` hint at the start and end of a session (Opus-class for engine, protocol and compiler work; Sonnet-class for docs/cleanup and effect-JSON card bundles); if the running model differs, say so once and continue.
-- Never create, change or delete Claude scheduled tasks or GitHub Actions schedules.
+- Create, change or delete Claude scheduled tasks or GitHub Actions schedules only when the owner asks for it (owner, 2026-10-29).
 - The private Project docs of the claude.ai Project (brand data, account plans) are not in this repo and must never be added to it.
 
 ## Commands the owner may type in the Copilot chat
