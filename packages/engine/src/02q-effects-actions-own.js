@@ -7,6 +7,8 @@
 Object.assign(FX_ACTIONS, {
   DRAW: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5, txt: a => `draw ${a.n} card${a.n === 1 ? '' : 's'}`,
     run: async (c, a) => { const k = draw(c.p, a.n); log(`${CARDS[c.src.id].name}: ${who(c.p)} ${c.p.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'}.`); handUp(c.p, k); } },
+  DRAW_UNTIL: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 10, txt: a => `draw until your Hand is ${a.n}`,      // v0.185 "draw until your Hand is three"
+    run: async (c, a) => { const k = c.p.hand.length < a.n ? draw(c.p, a.n - c.p.hand.length) : 0; log(`${CARDS[c.src.id].name}: ${who(c.p)} ${c.p.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'}.`); handUp(c.p, k); } },
   COUNTER: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && (a.max == null || (Number.isInteger(a.max) && a.max >= 1 && a.max <= 30)), txt: a => `counter +${a.n}${a.max ? ' (max ' + a.max + ' counters)' : ''}`,
     run: async (c, a) => {
       const n = a.max != null ? Math.max(0, Math.min(a.n, a.max - c.p.count)) : a.n;

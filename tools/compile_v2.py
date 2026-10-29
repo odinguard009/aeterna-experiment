@@ -376,6 +376,8 @@ def own_grammar(s, ctx=None):
         if re.fullmatch(r'with high speed', w, re.I): return [{'do': 'CANT_BE_BLOCKED_BY', 'highSpeed': True}]
     m = re.fullmatch(r"this spirit can't be blocked by (?:opposing )?cost (\d+) or (less|more) spirits?(?:/ultimates?)?", x, re.I)
     if m: return [{'do': 'CANT_BE_BLOCKED_BY', 'costLe' if m.group(2).lower() == 'less' else 'costGe': int(m.group(1))}]      # v0.179 (engine blockedByMark cost bound)
+    m = re.fullmatch(r"this spirit can't be blocked by (?:opposing )?(?:(\d+) BP or less spirits?|spirits with (one|two|three|\d+) cores? or less on (?:them|it))", x, re.I)
+    if m: return [{'do': 'CANT_BE_BLOCKED_BY', 'bpLe': int(m.group(1))} if m.group(1) else {'do': 'CANT_BE_BLOCKED_BY', 'coresLe': n_of(m.group(2).lower())}]      # v60
     m = OPP_CORES_T.match(x)
     if m: return opp_cores_t(m)
     m = re.match(r'^target an opposing (.+?)\.\s*send (a|one|two|three) cores?,? besides ,? from it to (?:the|their|its owner\'?s) reserve$', x, re.I)
@@ -844,6 +846,8 @@ TGT_VOID = re.compile(r'^target (?:an?|one) (.+? you control)\.\s*put (a|one|two
 def action_of(s, ctx):
     s = re.sub(r'(?:^|(?<=\. ))(if you control) any ("[^"]+" family spirit(?:/nexus)?), besides this (?:spirit|one),', r'\1 another \2,', s.strip(), flags=re.I)      # v0.168 'any "X" family Spirit, besides this Spirit,' = 'another "X" family Spirit' (ctrl.other); v0.171 also Spirit/Nexus and "besides this one"
     s = re.sub(r'^besides this (?:spirit|one), (if you control) any ("[^"]+" family spirit(?:/nexus)?),', r'\1 another \2,', s, flags=re.I)      # v0.171 'Besides this Spirit, if you control any "X" family Spirit/Nexus, B' = the same
+    m = re.fullmatch(r'(you can )?draw until your hand is (\w+)\.?', s.strip(), re.I)
+    if m: return [{'do': 'DRAW_UNTIL', 'n': n_of(m.group(2).lower())}], bool(m.group(1))      # v61
     if re.fullmatch(r'when this battle ends, end the attack step\.?', s.strip(), re.I): return [{'do': 'END_ATTACK_AFTER_BATTLE'}], False      # v0.179 (engine 02h; Accel BS37-040, BS69-043)
     if re.fullmatch(r'return this spirit to (?:the|your) hand\.?', s.strip(), re.I): return [{'do': 'SELF_TO_HAND'}], False      # v0.171 (engine SELF_TO_HAND; from the Trash under a destroyed trigger)
     if re.fullmatch(r'put the core to this spirit\.?', s.strip(), re.I): return [{'do': 'VOID_TO_CARD', 'n': 1, 'to': 'self'}], False      # v0.171 "put the core to this Spirit instead" (the core of the sentence before; only inside an instead pair)
