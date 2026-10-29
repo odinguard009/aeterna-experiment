@@ -401,3 +401,16 @@ test('K-29 Crawdia exhausted-only void cores; Gate Open, Release adds up to two 
   assert.equal(r[0][2], 0);
   assert.equal(r[1], 2);
 });
+
+test('K-30 Break Claw: destroys a Nexus, then Trash core to Reserve only with an exhausted Red Spirit', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const nx = Object.values(BS.CARDS).find(c => c.type === 'Nexus' && !c.trueRelease && !(c.effects && c.effects.length));
+    const red = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && c.symbol === 'red');
+    const out = [];
+    for (const ex of [false, true]) {
+      O.nexus.length = 0; O.nexus.push(BS.mkInst(nx.id)); P.spirits.length = 0; const s = BS.mkInst(red.id); s.cores = 1; s.exhausted = ex; P.spirits.push(s);
+      P.trashCores.n = 1; const r0 = P.reserve.n; await BS.runActions({ p: P, opp: O, src: BS.mkInst('26RSD01-012'), ctx: {} }, { actions: BS.CARDS['26RSD01-012'].magic.by.MAIN.actions }); out.push([O.nexus.length, P.reserve.n - r0]); }
+    return out; })()`);
+  assert.deepEqual(r, [[0, 0], [0, 1]]);
+});
