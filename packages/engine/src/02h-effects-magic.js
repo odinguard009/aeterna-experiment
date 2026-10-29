@@ -14,13 +14,13 @@ function endAttackLocked(by) {                       // true = "by" can't end th
 const _matchTxt = m => m && m.family ? `"${m.family.join('"/"')}" family ` : m && m.name ? `"${m.name.join('"/"')}" ` : '';
 Object.assign(FX_ACTIONS, {
   /* v0.44 "during this turn, give one of your X Spirits/Ultimates an extra <colour> symbol" (Magma Call Flash). Counts for attacks and for reductions. */
-  SYMBOL_PLUS_TURN: { chk: a => COLORS.includes(a.color) && (a.match == null || hasMatch(a.match)),
-    txt: a => `during this turn, give one of your ${_matchTxt(a.match)}Spirits/Ultimates an extra ${cap(a.color)} symbol`,
-    cands: (c, a) => c.p.spirits.filter(s => !a.match || fxMatch(CARDS[s.id], a.match)),
+  SYMBOL_PLUS_TURN: { chk: a => COLORS.includes(a.color) && (a.match == null || hasMatch(a.match)) && (a.self == null || (a.self === true && a.match == null)),
+    txt: a => a.self ? `during this turn, this card gains an extra ${cap(a.color)} symbol` : `during this turn, give one of your ${_matchTxt(a.match)}Spirits/Ultimates an extra ${cap(a.color)} symbol`,
+    cands: (c, a) => a.self ? [c.src].filter(s => c.p.nexus.includes(s) || c.p.spirits.includes(s)) : c.p.spirits.filter(s => !a.match || fxMatch(CARDS[s.id], a.match)),
     can: (c, a) => FX_ACTIONS.SYMBOL_PLUS_TURN.cands(c, a).length > 0,
     run: async (c, a) => {
       const L = FX_ACTIONS.SYMBOL_PLUS_TURN.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
-      const t = c.p.cpu ? (L.find(s => s === G.attacker) || L.slice().sort((x, y) => (x.exhausted - y.exhausted) || bpOf(y) - bpOf(x))[0]) : await chooseCard(c, L, `✨ ${_pn(c)}`, `Choose your Spirit that gets an extra ${cap(a.color)} symbol this turn.`, false);
+      const t = a.self ? L[0] : c.p.cpu ? (L.find(s => s === G.attacker) || L.slice().sort((x, y) => (x.exhausted - y.exhausted) || bpOf(y) - bpOf(x))[0]) : await chooseCard(c, L, `✨ ${_pn(c)}`, `Choose your Spirit that gets an extra ${cap(a.color)} symbol this turn.`, false);
       if (!t.symTurn || t.symTurn.turn !== G.turnNo) t.symTurn = { turn: G.turnNo, cols: [] };
       t.symTurn.cols.push(a.color); log(`${_pn(c)}: ${CARDS[t.id].name} gets an extra ${cap(a.color)} symbol this turn.`); io.view({ type: 'board' });
     } },

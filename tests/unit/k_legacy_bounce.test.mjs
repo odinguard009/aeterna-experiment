@@ -632,3 +632,15 @@ test('K-50 Diagram Dragon / Etaina: OPP_DESTROYED_FX filters on the destroying s
     return out; })()`);
   assert.deepEqual(r, [false, true]);
 });
+
+test('K-51 Charging Pyramid: a Thunder Dragon Magic kill gives the Nexus one extra Yellow symbol this turn', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    G.step = 5; const out = [];
+    for (const src of ['26RSD05-011', '26RBS02-087']) {      // Thunder Dragon Magic, then another Magic
+      const pyr = BS.mkInst('26RBS01-105'); pyr.cores = 3; P.nexus.push(pyr); const t = opp(3, 2000); const t2 = opp(3, 2000);
+      await BS.runActions({ p: P, opp: O, src: BS.mkInst(src), ctx: {} }, { actions: [{ do: 'DESTROY', bpLe: 3000 }] }); await BS.flushBursts();
+      out.push(pyr.symTurn ? pyr.symTurn.cols.join() : ''); P.nexus.length = 0; O.spirits.length = 0; }
+    return out; })()`);
+  assert.deepEqual(r, ['yellow', '']);
+});
