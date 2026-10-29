@@ -490,3 +490,13 @@ test('K-37 Velocirant: REFRESH_SPIRIT self refreshes only the source Spirit', as
     return [a.exhausted, b.exhausted]; })()`);
   assert.deepEqual(r, [false, true]);
 });
+
+test('K-38 Lupes: REVEAL_PICK discard sends the picked card to the Trash, not the Hand', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const fam = Object.values(BS.CARDS).find(c => (c.families || []).includes('Beastleptic'));
+    P.deck.unshift(BS.mkInst(fam.id)); const h = P.hand.length, t = P.trash.length;
+    await BS.runActions({ p: P, opp: O, src: BS.mkInst('26RBS03-015'), ctx: {} }, { actions: BS.CARDS['26RBS03-015'].effects.find(e => e.trigger === 'DESTROYED').actions });
+    return [P.hand.length - h, P.trash.length - t]; })()`);
+  assert.deepEqual(r, [0, 1]);
+});
