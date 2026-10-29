@@ -4,6 +4,13 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.192.0
+- Lane: U/I
+- **R6: measure before building the head parser (verdict: no-go, R7 skipped)**
+  - New `tools/r6_head_measure.py` and `docs/reports/r6-head-measure.md`. Of 7,304 staged cards, 1,035 hold exactly one head blocker; a head swap (the upper bound of any head parser) makes only 75 of the 782 measurable ones compile (Mirage 88 cards: 0, Accel 20: 0).
+  - So R7 (head parser, verifier, promote guard) is not built: the body or the missing mechanic is the real blocker, and Lane K packs already build head and mechanic together. No game change, no card change.
+  - Limit: 253 single-head cards show no swappable head text and are not counted; whether Japanese bodies compile more easily is not tested (the grammar is English).
+
 ## v0.191.0
 - Lane: U/I
 - **R4 + R5: audit of the complete cards against the official heads**
