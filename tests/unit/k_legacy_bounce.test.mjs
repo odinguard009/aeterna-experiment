@@ -249,3 +249,15 @@ test('K-16 dual Main/Flash magic: Burn Out draws then destroys with a family Spi
     await main('26RDB01-055'); return [alone, !O.spirits.includes(t), kept, !O.nexus.includes(n)]; })()`);
   assert.deepEqual(r, [[true, 1], true, true, true]);
 });
+
+test('K-17 show-and-return tails: Nox draws one (two via Form Change), Lemon refreshes at End Step, Genm Zombie returns from the Trash', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const give = (fam) => { const c = Object.values(BS.CARDS).find(c => (c.families || []).includes(fam) && c.type === 'Spirit' && c.cost <= 6 && !['26RCB01-014','26RCB01-022','26RCB01-045'].includes(c.id)); P.hand.push(BS.mkInst(c.id)); return c; };
+    const nox = async (fc) => { give('ZEZTZ'); const s = BS.mkInst('26RCB01-022'); s.cores = 1; P.spirits.push(s); const h = P.hand.length, d = P.deck.length; await BS.fireFx(P, 'SUMMONED', s, fc ? { viaFC: true } : {}); return P.hand.length - h + 1; };
+    const a = await nox(false), b = await nox(true);
+    give('GAIM'); const l = BS.mkInst('26RCB01-014'); l.cores = 4; l.exhausted = true; P.spirits.push(l); await BS.fireFx(P, 'END_STEP', null, {});
+    give('EX-AID'); const z = BS.mkInst('26RCB01-045'); z.cores = 0; P.trash.push(z); z.lostLv = 0; const h2 = P.hand.length; await BS.fireFx(P, 'DESTROYED', z, {});
+    return [a, b, l.exhausted, P.hand.includes(z)]; })()`);
+  assert.deepEqual(r, [1, 2, false, true]);
+});

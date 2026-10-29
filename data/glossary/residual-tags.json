@@ -39198,17 +39198,6 @@
   "K_STANDARD_INVOKE",
   "T_SUMMONED"
  ],
- "26RCB01-014": [
-  "A_REFRESH",
-  "C_LEVEL",
-  "M_OPTIONAL"
- ],
- "26RCB01-022": [
-  "A_DRAW",
-  "M_OPTIONAL",
-  "M_REPLACEMENT",
-  "T_SUMMONED"
- ],
  "26RCB01-028": [
   "A_REFRESH",
   "A_SYMBOL",
@@ -39249,11 +39238,6 @@
  ],
  "26RCB01-043": [
   "T_ATTACKS"
- ],
- "26RCB01-045": [
-  "A_SELF_TO_HAND",
-  "M_OPTIONAL",
-  "T_DESTROYED"
  ],
  "26RCB01-046": [
   "A_DRAW"
