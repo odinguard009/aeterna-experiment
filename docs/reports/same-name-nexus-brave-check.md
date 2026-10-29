@@ -32,3 +32,21 @@ Fandom stays blocked (Cloudflare challenge); the official card database serves t
 Checked and correct: BS10-072, BS31-081, BS13-057, BS50-RV009, BS59-RV006.
 
 Known limit: BS38-RV022 Phoenix-Cannon prints Cost 5+ on the right and Cost 3+ on the left; the engine has one condition per Brave, so it keeps `costGe: 3` (left side only).
+
+## Update: Nexus reprints against the card images
+
+All 20 RV Nexus cards and 9 of their originals were read from the official images. The RV cards carry their own (revised) text, which the library already has; only the Lv2 core threshold was copied from the original. Nine RV cards print a different threshold (fixed in data, test `NEXUS-RV`):
+
+| Card | Was | Printed |
+|---|---|---|
+| BS38-RV026 The Star Altar | 2 | 1 |
+| BS38-RV030 The Octant Small Shrine | 3 | 1 |
+| BS38-RV031 The Great Wall of the White Shield | 3 | 2 |
+| BS38-RV034 Unfinished Ancient Battleship: Keel | 3 | 2 |
+| BS38-RV035 Unfinished Ancient Battleship: Stern | 3 | 2 |
+| BS39-RV028 The Table Mountain Range | 1 | 2 |
+| BS39-RV030 The House of the Idol | 1 | 3 |
+| BS39-RV031 The Doomsday Drawn Canvas | 3 | 2 |
+| BS39-RV033 The Moonlight Gathering Tower | 2 | 1 |
+
+The other 11 RV cards match. The originals I viewed (BS10-079, BS10-094, BS11-061, BS11-063, BS11-067, BS11-072, BS12-064, BS12-067, BS13-065) match the data. Not viewed: the remaining originals (their value equals the RV print for those groups, so a mismatch there is unlikely but unconfirmed). Brave originals BS10-062, BS10-069, BS11-059, BS13-058 were also not viewed.

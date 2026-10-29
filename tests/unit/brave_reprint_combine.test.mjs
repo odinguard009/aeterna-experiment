@@ -25,3 +25,16 @@ test('BRAVE-RV combine data differs from the original where the card prints it d
   assert.equal(r.fitLo, true);
   assert.equal(r.fitHi, false);
 });
+
+test('NEXUS-RV level thresholds follow the printed card, not the original', async () => {
+  const b = await getBrowser(); const c2 = await b.newContext({ viewport: { width: 1280, height: 800 } });
+  try {
+    const g = await openGame(); const page = g.page;
+    await page.waitForFunction(() => window.BS && window.BS.CARDS);
+    const lv2 = await page.evaluate(() => Object.fromEntries(
+      ['BS38-RV026', 'BS38-RV030', 'BS38-RV031', 'BS38-RV034', 'BS38-RV035', 'BS39-RV028', 'BS39-RV030', 'BS39-RV031', 'BS39-RV033',
+        'BS11-061', 'BS13-065', 'BS12-064', 'BS39-RV036'].map(i => [i, BS.CARDS[i].levels[1].cores])));
+    assert.deepEqual(lv2, { 'BS38-RV026': 1, 'BS38-RV030': 1, 'BS38-RV031': 2, 'BS38-RV034': 2, 'BS38-RV035': 2, 'BS39-RV028': 2,
+      'BS39-RV030': 3, 'BS39-RV031': 2, 'BS39-RV033': 1, 'BS11-061': 2, 'BS13-065': 3, 'BS12-064': 1, 'BS39-RV036': 3 });
+  } finally { await c2.close(); }
+});

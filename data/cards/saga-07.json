@@ -14212,7 +14212,7 @@
     "cores": 0
    },
    {
-    "cores": 2
+    "cores": 1
    }
   ],
   "families": [],
@@ -14342,7 +14342,7 @@
     "cores": 0
    },
    {
-    "cores": 3
+    "cores": 1
    }
   ],
   "families": [],
@@ -14376,7 +14376,7 @@
     "cores": 0
    },
    {
-    "cores": 3
+    "cores": 2
    }
   ],
   "families": [],
@@ -14475,7 +14475,7 @@
     "cores": 0
    },
    {
-    "cores": 3
+    "cores": 2
    }
   ],
   "families": [],
@@ -14506,7 +14506,7 @@
     "cores": 0
    },
    {
-    "cores": 3
+    "cores": 2
    }
   ],
   "families": [],
@@ -18882,7 +18882,7 @@
     "cores": 0
    },
    {
-    "cores": 1
+    "cores": 2
    }
   ],
   "families": [],
@@ -18944,7 +18944,7 @@
     "cores": 0
    },
    {
-    "cores": 1
+    "cores": 3
    }
   ],
   "families": [],
@@ -18976,7 +18976,7 @@
     "cores": 0
    },
    {
-    "cores": 3
+    "cores": 2
    }
   ],
   "families": [],
@@ -19038,7 +19038,7 @@
     "cores": 0
    },
    {
-    "cores": 2
+    "cores": 1
    }
   ],
   "families": [],
