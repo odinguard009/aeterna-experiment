@@ -148,7 +148,7 @@ test('K-08 Sertis-style DESTROY.bpPer widens the BP limit per own Clash Spirit',
 
 // Magic bases are staged with an allHave gate; these tests drop it and check the new shapes.
 const MAGIC_RUN = `const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = P.key; P.cpu = true;
-  const run = (id) => { const m = BS.mkInst(id); const acts = BS.CARDS[id].magic.actions.map(a => { const b = { ...a }; if (b.if) { b.if = { ...b.if }; delete b.if.allHave; if (!Object.keys(b.if).length) delete b.if; } return b; }); return BS.runActions({ p: P, opp: O, src: m, ctx: {} }, { actions: acts }); };
+  const run = (id, lg) => { const m = BS.mkInst(id); m.legacyN = lg || 0; const acts = BS.CARDS[id].magic.actions.map(a => { const b = { ...a }; if (b.if) { b.if = { ...b.if }; delete b.if.allHave; if (!Object.keys(b.if).length) delete b.if; } return b; }); return BS.runActions({ p: P, opp: O, src: m, ctx: {} }, { actions: acts }); };
   const opp = (cost, bp, team) => { const c = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && c.cost === cost && c.levels[0].bp === bp && !(c.effects && c.effects.length)); const f = BS.mkInst(c.id); f.cores = 1; O.spirits.push(f); return f; };`;
 
 test('K-09 DESTROY.costPerOwn adds +1 cost per own Spirit/Nexus', async () => {
@@ -376,4 +376,12 @@ test('K-27 Breakam Slash: draws only when the picked Spirit has Form Change', as
     for (const k of [fc, nf]) { P.spirits.length = 0; P.spirits.push(Object.assign(BS.mkInst(k.id), { cores: 1 })); const h = P.hand.length; await run('26RSD07-014'); res.push(P.hand.length - h); }
     return res; })()`);
   assert.deepEqual(r, [1, 0]);
+});
+
+test('K-28 Gigan Song: cost 4 or less, 6 or less when used using Legacy', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const a = opp(6, 3000); await run('26RDB01-063', 0); const k0 = O.spirits.includes(a);
+    await run('26RDB01-063', 1); return [k0, !O.spirits.includes(a)]; })()`);
+  assert.deepEqual(r, [true, true]);
 });
