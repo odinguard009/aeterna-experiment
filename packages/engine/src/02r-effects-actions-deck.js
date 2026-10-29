@@ -5,7 +5,7 @@
    every other entry here is read from inside a function.
    ------------------------------------------------------------------------------------ */
 Object.assign(FX_ACTIONS, {
-  REVEAL_PICK: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 10 && hasMatch(a.match) && ['trash', 'bottom', 'top', 'either'].includes(a.rest) && (a.diffName == null || a.diffName === true) && (a.all == null || a.all === true) && (a.discard == null || (a.discard === true && a.rest === 'bottom' && a.all == null && a.max == null)) && (a.max == null || (Number.isInteger(a.max) && a.max >= 2 && a.max <= 4)) && (a.peek == null || (a.peek === true && a.n === 1 && (a.rest === 'top' || a.rest === 'either') && a.discard == null && a.all == null && a.max == null)),   // v0.196 peek: "reveal a card, if it matches ... return it" (no add to Hand; did = it matches); v0.196 max: "add up to N matching cards"; v0.181 all: "add every matching card among them"; v0.69 diffName: "a card name different from this Spirit's"
+  REVEAL_PICK: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 10 && hasMatch(a.match) && ['trash', 'bottom', 'top', 'either'].includes(a.rest) && (a.diffName == null || a.diffName === true) && (a.all == null || a.all === true) && (a.discard == null || (a.discard === true && a.rest === 'bottom' && a.all == null && a.max == null)) && (a.max == null || (Number.isInteger(a.max) && a.max >= 2 && a.max <= 4)) && (a.peek == null || (a.peek === true && a.n === 1 && a.discard == null && a.all == null && a.max == null)),   // v0.196 peek: "reveal a card, if it matches ... return it" (no add to Hand; did = it matches); v0.196 max: "add up to N matching cards"; v0.181 all: "add every matching card among them"; v0.69 diffName: "a card name different from this Spirit's"
     txt: a => `reveal ${a.n} cards from the top of your Deck, add a matching card to your Hand, ${a.rest === 'trash' ? 'discard' : a.rest === 'top' ? 'return to the top of the Deck' : a.rest === 'either' ? 'return to the top or the bottom of the Deck' : 'return to the bottom of the Deck'} the rest`,      // v0.75 rest top / either
     can: c => c.p.deck.length > 0,
     run: async (c, a) => {
@@ -13,7 +13,7 @@ Object.assign(FX_ACTIONS, {
       log(`${nm}: ${who(c.p)} ${c.p.cpu ? 'reveals' : 'reveal'} ${top.map(x => CARDS[x.id].name).join(', ') || 'nothing'}.`); io.view({ type: 'board' });
       await revealedFx(c.p);
       let t = null;
-      if (a.peek) t = c.p.revealed.find(x => fxMatch(CARDS[x.id], a.match)) || null;
+      if (a.peek) { c.ctx.picked = c.p.revealed[0] || null; t = c.p.revealed.find(x => fxMatch(CARDS[x.id], a.match)) || null; }
       else if (a.all) { const L = c.p.revealed.filter(x => fxMatch(CARDS[x.id], a.match) && (!a.diffName || CARDS[x.id].name !== nm)); for (const x of L) { removeFrom(c.p.revealed, x); c.p.hand.push(x); log(`${nm}: ${CARDS[x.id].name} is added to the Hand.`); } if (L.length) { handUp(c.p, L.length); t = L[0]; } }
       else if (a.max) { for (let j = 0; j < a.max; j++) { const u = await chooseCard(c, c.p.revealed.filter(x => fxMatch(CARDS[x.id], a.match) && (!a.diffName || CARDS[x.id].name !== nm)), `✨ ${nm}`, `Choose a revealed card to add to your Hand (${j + 1}/${a.max}).`, true); if (!u) break; removeFrom(c.p.revealed, u); c.p.hand.push(u); handUp(c.p, 1); log(`${nm}: ${CARDS[u.id].name} is added to the Hand.`); t = u; } }
       else t = await chooseCard(c, c.p.revealed.filter(x => fxMatch(CARDS[x.id], a.match) && (!a.diffName || CARDS[x.id].name !== nm)), `✨ ${nm}`, 'Choose a revealed card to add to your Hand.', true);

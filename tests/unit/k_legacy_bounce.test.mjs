@@ -570,3 +570,15 @@ test('K-45 Heliodon: match.typeAny accepts Spirit/Nexus but not Magic', async ()
     return out; })()`);
   assert.deepEqual(r, [1, 1]);
 });
+
+test('K-46 Kolulu: peek + pickedCostIn branches on the revealed cost', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    P.cpu = true; const out = [];
+    for (const cost of [3, 4]) { const id = Object.keys(BS.CARDS).find(k => BS.CARDS[k].cost === cost && BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].effects);
+      const src = BS.mkInst('26RBS03-056'); src.cores = 1; P.spirits.push(src); const t = opp(3, 2000); P.deck.unshift(BS.mkInst(id));
+      await BS.runActions({ p: P, opp: O, src, ctx: {} }, { actions: BS.CARDS['26RBS03-056'].effects[0].actions });
+      out.push([P.spirits.includes(src), O.spirits.includes(t), BS.bpOf ? 1 : 0]); P.spirits.length = 0; O.spirits.length = 0; }
+    return out.map(x => x.slice(0, 2)); })()`);
+  assert.deepEqual(r, [[false, true], [true, false]]);
+});

@@ -145,3 +145,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v105 (v0.196.0, Lane K): `BP_PLUS.pick` (1-3, with `to:"own"`): "target up to N Spirits you control" - the player picks the Spirits (the CPU takes the highest BP).
 - v106 (v0.196.0, Lane K): `REVEAL_PICK.peek` (n 1, rest top/either): "reveal a card; if it matches, ..." - nothing is added to the Hand, `prev` is true when the revealed card matches, the card then returns to the decktop/deckbottom.
 - v107 (v0.196.0, Lane K): `match.typeAny` (list of card types, e.g. ["Spirit","Nexus"]) for reveal/pick matches: "a Spirit card/Nexus card".
+- v108 (v0.196.0, Lane K): condition `pickedCostIn:[n..]` (cost of the card revealed by `REVEAL_PICK.peek`, which now sets `ctx.picked` and may return it to the deckbottom): "If that is Cost 2/4/6/8".
