@@ -6,7 +6,7 @@
 
 | Mechanic | Status | Waiting | Playable | Prep | Glossary | Note |
 |---|---|---|---|---|---|---|
-| Magic card | partial | 1008 | 309 | RD· | - | Main/Flash, cost, targets, ACTIONS effects (v0.41/v0.47.0); Magic reveals and some types open (rules-coverage) |
+| Magic card | partial | 1006 | 309 | RD· | - | Main/Flash, cost, targets, ACTIONS effects (v0.41/v0.47.0); Magic reveals and some types open (rules-coverage) |
 | Brave card | partial | 420 | 262 | RD· | - | Brave part 1 v0.60.0 (combine data, braved effects); part 2 open: summon from Hand first, two-sided Braves, 171 Brave conditions |
 | Mirage | partial | 297 | 271 | R·· | K_MIRAGE | partial: 06-rules.js mirage set/usable, 02d-effects-resolve.js only MIRAGE_OWN_LIFE/OPP_LIFE triggers (subagent grep 2026-10-19) |
 | Ultimate card | partial | 252 | 195 | ··· | - | Ultimate type + Ultra Manifest v0.46.0, compiler v0.56.0; Ultimate Trigger level lines missing in the export (110 cards) |
@@ -31,9 +31,9 @@
 | Trigger Counter | missing | 24 | 21 | ··· | - | 02i-effects-keywords.js says Guard / Trigger Counter cards are not wired (A4 2026-10-19) |
 | Immortality | missing | 21 | 47 | ··· | - | verified 2026-10-19: no engine code; only K_NETHER_IMMORTALITY in data/glossary/effects.json |
 | AFO | missing | 20 | 30 | ··· | - | no engine/compiler/test match (A4 grep 2026-10-19) |
-| EX symbol (Standard) | partial | 19 | 25 | RD· | - | EX symbols count as symbols (v0.62.0); Legacy (pays with EX-symbol cards) missing |
-| Clash | partial | 18 | 67 | ··· | - | verified 2026-10-19: compiler Clash paragraph -> STATIC MUST_BLOCK self (compile_effects.py, v0.49; v0.66 adds (During Attack) / "Opposing Spirits must block") |
 | Flag Contract Advent | missing | 18 | 20 | ··· | K_ADVENT | no code for the variant in the engine or the compilers (A4 grep 2026-10-19); base handler reusable |
+| Clash | partial | 17 | 67 | ··· | - | verified 2026-10-19: compiler Clash paragraph -> STATIC MUST_BLOCK self (compile_effects.py, v0.49; v0.66 adds (During Attack) / "Opposing Spirits must block") |
+| EX symbol (Standard) | partial | 17 | 25 | RD· | - | EX symbols count as symbols (v0.62.0); Legacy (pays with EX-symbol cards) missing |
 | Flag Nexus | missing | 16 | 11 | ··· | - | Flag Nexus (BS76+, Eternal) named in rules-coverage Formats; engine support not checked yet |
 | Neo-Core Charge | partial | 15 | 9 | ··· | T_ALLY_SUMMONED | 9 Contract Nexuses shipped with ALLY_SUMMONED + CORE_TO_NEXUS (tests blue37 B35-B38); no compiler parse; 15 waiting CX Nexuses need the deploy/trash-3 variant and the {{cs}} template (A4 2026-10-19) |
 | Type: Field | missing | 15 | 0 | ··· | - | no engine/compiler/test match (A4 grep 2026-10-19) |
@@ -150,16 +150,16 @@
 | Current | missing | 0 | 0 | ··· | - | no code; {{Current/..}} not compiled (A4 2026-10-19) |
 | Form Change | missing | 0 | 0 | ··· | - | no engine/compiler/test match (A4 grep 2026-10-19) |
 | Magirrate | missing | 0 | 0 | ··· | - | no engine/compiler/test match (A4 grep 2026-10-19) |
-| Spirit card | done | 4815 | 5344 | ··· | - | base rules: summon, levels, BP, attack/block (rules-coverage A) |
+| Spirit card | done | 4786 | 5344 | ··· | - | base rules: summon, levels, BP, attack/block (rules-coverage A) |
 | Nexus card | done | 810 | 812 | ··· | - | deploy, levels, Nexus effects through the effect engine |
 | Burst | done | 419 | 684 | ··· | K_BURST | v0.55.2 resolution order |
 | Contract Advent | done | 193 | 246 | ··· | K_ADVENT | engine done (CLAUDE.md Done list) |
 | Advent | done | 147 | 527 | ··· | K_ADVENT | engine done (CLAUDE.md Done list) |
 | Accel | done | 141 | 195 | ··· | K_ACCEL | v0.50.0 |
-| True Release (= Super Unleash, Standard) | done | 121 | 189 | RDL | - | done v0.66.0: trueRelease field, lvIndex Soul Core = LV2, (During Attack) +BP/Clash; +14 cards (7 with True Release); real recompile re-measure 2026-10-19: True Release alone 1, with (During Attack) 6 |
+| True Release (= Super Unleash, Standard) | done | 117 | 189 | RDL | - | done v0.66.0: trueRelease field, lvIndex Soul Core = LV2, (During Attack) +BP/Clash; +14 cards (7 with True Release); real recompile re-measure 2026-10-19: True Release alone 1, with (During Attack) 6 |
 | Manifest | done | 91 | 4 | ··· | K_MANIFEST | v0.46.0 Ultra Manifest |
-| Legacy | done | 78 | 139 | RDL | - | = Succession; done in v0.69.0 (legacyPlan/legacyPay in 06-rules.js; automatic, fewest EX cards for the lowest cost; +8 cards). Effects that count "EX Symbol banished via this Legacy" / "summoned using Legacy" (10 cards) still wait (inst.legacyN is recorded). glossary link K_STANDARD_SUCCESSION is shared with Soul Magic |
 | High Speed | done | 72 | 144 | ··· | K_HIGH_SPEED | v0.49.0 |
+| Legacy | done | 67 | 139 | RDL | - | = Succession; done in v0.69.0 (legacyPlan/legacyPay in 06-rules.js; automatic, fewest EX cards for the lowest cost; +8 cards). Effects that count "EX Symbol banished via this Legacy" / "summoned using Legacy" (10 cards) still wait (inst.legacyN is recorded). glossary link K_STANDARD_SUCCESSION is shared with Soul Magic |
 | Crush | done | 25 | 78 | ··· | K_CRUSH | v0.49.0 |
 | Holy Life | done | 19 | 53 | ··· | K_HOLY_LIFE | v0.49.0 |
 | Brilliance | done | 12 | 34 | RDL | - | engine action BRILLIANCE in 02o-effects-battle-end.js; test PK78 |

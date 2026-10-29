@@ -4,6 +4,14 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.195.0
+- Lane: K
+- **Lane K: 50 more complete cards (1,268 -> 1,318 of 8,709), Standard block A first**
+  - New effect parts (schema v73-v86, additions only): condition `viaLegacy`; `DESTROY.n` / `costPerOwn` / `bpPer`; `BOUNCE_OPP` bpLe/n; `RETURN_TRASH.diffName`; `oppTrashGe`; `allHave.familyAny`; `HEAVY_EXHAUST_OPP.exhaustedOnly`; `REFRESH_NEXUS`; `REFRESH_SPIRIT.bp`; `WIN_RIDER` match; `BP_TARGET.alt`; `EXHAUST_SELF`; `NO_BLOCK_INFERIOR`; `BP_MINUS.nPer` / `nLegacy`; dual Main/Flash Magic. Each is documented in `docs/ai/effect-format.md`.
+  - Latest cards: Kacomic, Esprim Barrier, Aureole, Zeztz Exdream (Form Change double destroy), Luminous Recovery (Void core to Life, once per card name per turn).
+  - Tests: K-09..K-22 in `tests/unit/k_*.test.mjs`.
+  - Limits: "once per card name" on Luminous Recovery counts any use of that name this turn, Flash included; Magic used via Legacy and a can't-be-blocked effect aimed at one target are still unsupported (those cards stay partial).
+
 ## v0.194.0
 - Lane: U/I
 - **Rush chain (BS23-020 complete again), R3/R8 follow-ups**
