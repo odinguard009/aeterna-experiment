@@ -4,5 +4,18 @@
     "claude-sonnet-5-5": {
       "autoCompactWindow": 200000
     }
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/chain_stop_guard.py",
+            "timeout": 60
+          }
+        ]
+      }
+    ]
   }
 }
