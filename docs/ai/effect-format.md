@@ -139,3 +139,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v99 (v0.196.0, Lane K): `REFRESH_SPIRIT.self:true` ("this Spirit can refresh": refreshes the source Spirit when it is exhausted; no target pick).
 - v100 (v0.196.0, Lane K): `REVEAL_PICK.discard:true` (with `rest:"bottom"`: "discard a <match> card among them"; the picked card goes to the Trash, the rest to the deckbottom).
 - v101 (v0.196.0, Lane K): `EXHAUST_OPP.heavy:true` (with `oppChooses`: "heavy exhaust it instead"; the chosen Spirit also gets the heavy mark).
+- v102 (v0.196.0, Lane K): `CRUSH.n` accepts 1-10 (was 1-5): "discard six cards from the opposing decktop" (Mandia ALLY_LIFE_HIT, `match.keyword:"Rumble"`).

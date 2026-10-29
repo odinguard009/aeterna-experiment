@@ -509,3 +509,12 @@ test('K-39 Galesion: EXHAUST_OPP heavy+oppChooses heavy exhausts a refreshed opp
     return [a.exhausted, !!a.heavy]; })()`);
   assert.deepEqual(r, [true, true]);
 });
+
+test('K-40 Mandia: CRUSH n:6 discards six opposing decktop cards', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const n = O.deck.length, t = O.trash.length;
+    await BS.runActions({ p: P, opp: O, src: BS.mkInst('26RBS02-070'), ctx: {} }, { actions: BS.CARDS['26RBS02-070'].effects.find(e => e.trigger === 'ALLY_LIFE_HIT').actions });
+    return [n - O.deck.length, O.trash.length - t]; })()`);
+  assert.deepEqual(r, [6, 6]);
+});

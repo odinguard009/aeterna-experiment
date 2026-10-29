@@ -39,7 +39,7 @@ function cpuHighSpeed(p, attKey, att, blk) {
   return p.life <= 2 && !p.spirits.some(s => !s.exhausted && !s.noAB) ? L.sort((a, b) => effCost(p, CARDS[a.id]) - effCost(p, CARDS[b.id]))[0] : null;
 }
 Object.assign(FX_ACTIONS, {
-  CRUSH: { chk: a => a.n === 'lv' || (Number.isInteger(a.n) && a.n >= 1 && a.n <= 5),
+  CRUSH: { chk: a => a.n === 'lv' || (Number.isInteger(a.n) && a.n >= 1 && a.n <= 10),
     txt: a => `discard ${a.n === 'lv' ? "cards equal to this Spirit's level" : a.n + ' card' + (a.n === 1 ? '' : 's')} from the opposing decktop (Crush)`,
     can: c => c.opp.deck.length > 0,
     run: async (c, a) => {

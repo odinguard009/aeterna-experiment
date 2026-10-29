@@ -8,3 +8,4 @@
 - [Lane K auto-repeat](feedback-lane-k-auto-repeat.md) - release at 50, then repeat until the owner says stop; pick best option on dialogs; check waits every 5 min
 - [Session end checklist](feedback-session-end-checklist.md) - push session branch, wait for Release + Regression, `done` with start=/budget=, add_repo tool in prompt
 - [Standard block A only](feedback-standard-block-a-only.md) - pause other cards until block A is done; same-effect Eternal cards are fine
+- [Lane K never stop](feedback-lane-k-never-stop.md) - never stop Lane K for any reason, owner dislikes repeating it; only a quota error stops
