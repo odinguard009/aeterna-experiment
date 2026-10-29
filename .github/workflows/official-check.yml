@@ -1,0 +1,28 @@
+# Read-only comparison of card data with the official card pages (tools/official_check.py). Actions tab -> "Official check" -> Run workflow.
+# Raw pages stay in the runner temp dir (never uploaded or committed); the job log lists only the field differences.
+name: Official check
+on:
+  workflow_dispatch:
+    inputs:
+      sample:
+        description: "Random sample size (0 = all cards)"
+        required: true
+        default: "0"
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            tools
+            data/cards
+            data/import
+      - name: Compare
+        env:
+          SAMPLE: ${{ inputs.sample }}
+        run: |
+          if [ "$SAMPLE" = "0" ]; then python3 -I tools/official_check.py --all --delay 0.5; else python3 -I tools/official_check.py --sample "$SAMPLE" --delay 0.5; fi
