@@ -14108,7 +14108,7 @@
   "block": "38",
   "saga": 7,
   "brave": {
-   "bp": 2000,
+   "bp": 4000,
    "costGe": 5
   },
   "fxComplete": false,
@@ -18761,7 +18761,7 @@
   "block": "39",
   "saga": 7,
   "brave": {
-   "bp": 3000,
+   "bp": 5000,
    "costGe": 5
   },
   "fxComplete": false,
