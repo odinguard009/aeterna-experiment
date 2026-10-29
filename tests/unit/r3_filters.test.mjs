@@ -51,3 +51,15 @@ test('R3-03 collab filter, the Library menu and Clear follow', async () => {
   assert.ok(r.cleared);
   assert.deepEqual(r.libBtns, [true, true, true]);
 });
+
+test('R3-04 "No data" in Rarity keeps exactly the cards without an official rarity', async () => {
+  const r = await g.page.evaluate((grid) => {
+    BS.switchView('view-deckbuilder'); BS.dbResetFilters();
+    const want = Object.values(BS.CARDS).filter(c => !c.rcode).length;
+    BS.DBF.rars = new Set(['none']); BS.DBF.only = false; BS.renderDeckBuilder();
+    const ids = [...document.querySelectorAll(grid)].map(c => c.dataset.v);
+    BS.dbResetFilters();
+    return { want, ok: ids.length > 0 && ids.every(id => !BS.CARDS[id].rcode) };
+  }, grid);
+  assert.ok(r.want > 0 && r.ok);
+});

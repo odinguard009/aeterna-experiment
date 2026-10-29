@@ -41,7 +41,7 @@ function ddList(S, kind) {
   if (kind === 'cores') return DB_CORES.map(([l], i) => ({ l, set: S.cores, v: String(i) }));
   if (kind === 'family') return [ddMode(S, 'ffall', 'Match all selected'), ...dbFamilies().map(f => ({ l: f, set: S.fams, v: f }))];
   if (kind === 'icon') return DB_ICONS.map(v => ({ l: v === 'none' ? 'No icon' : v === 'A' ? 'Block A' : 'Block ' + v, set: S.icons, v }));
-  if (kind === 'rarity') return dbVals('rcode').map(v => ({ l: v, set: S.rars, v }));
+  if (kind === 'rarity') return dbVals('rcode').concat('none').map(v => ({ l: v === 'none' ? 'No data' : v, set: S.rars, v })); // 'none': cards the official site lacks (BS77, a few X cards)
   if (kind === 'collab') return dbVals('collab').map(v => ({ l: v, set: S.collabs, v }));
   if (kind === 'colour') return [ddMode(S, 'cmode', 'Match all selected'), ...DB_COLORS.map(c => ({ l: cap(c), set: S.colors, v: c, dot: colorVar(c) })), { l: 'All colour', set: S.groups, v: 'multi', dot: RAINBOW }];
   if (kind === 'type') return DB_TYPES.map(t => ({ l: t, set: S.types, v: t })).concat(DB_TYPE_GROUPS.map(([g, l]) => ({ l, set: S.groups, v: g })));
@@ -88,7 +88,7 @@ function dbPlusOK(c, S) {
   if (S.cores.size && ![...S.cores].some(i => top >= DB_CORES[i][1] && top < DB_CORES[i][2])) return false;
   if (S.fams.size) { const f = c.families || [], has = x => f.includes(x); if (!(S.ffall ? [...S.fams].every(has) : [...S.fams].some(has))) return false; }
   if (S.icons.size) { const b = c.bicon || []; if (!(b.length ? b.some(x => S.icons.has(x)) : S.icons.has('none'))) return false; }
-  if (S.rars.size && !S.rars.has(c.rcode)) return false;
+  if (S.rars.size && !S.rars.has(c.rcode || 'none')) return false;
   if (S.collabs.size && !(c.collab || []).some(x => S.collabs.has(x))) return false;
   return true;
 }
