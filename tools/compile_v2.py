@@ -695,6 +695,8 @@ def cond_of(x):
             fams = re.findall(r'"([^"]+)"', m.group(3))
             q['family'] = fams[0] if len(fams) == 1 else fams      # v0.169 '"A"/"B" family' = either family (engine ctrl.family may be a list)
         return {'ctrl': q} if q['n'] <= 5 else None
+    m = re.fullmatch(r'you control (?:an? |any )?Cost (\d+) (red|purple|green|white|yellow|blue) spirit', x, re.I)      # v0.187 exact-cost colour Spirit (engine ctrl.costGe + costLe)
+    if m: return {'ctrl': {'n': 1, 'type': 'Spirit', 'colors': [m.group(2).lower()], 'costGe': int(m.group(1)), 'costLe': int(m.group(1))}}
     m = re.fullmatch(r'you control (?:an? |any )?["“]([^"”]+)["”]-named (?:spirit|spirit/nexus|nexus)', x, re.I)      # v0.178 "X"-named Spirit = controlName
     if m: return {'controlName': m.group(1).strip()}
     m = re.fullmatch(r'you control (?:an? |any )?"([^"]+)"', x, re.I)      # v0.76: a quoted card name (part of the name, like [Name])
@@ -1102,7 +1104,7 @@ def compile_card(c):
     m = BURST_COST.search(t0 or '')
     if m:       # v0.71 "While you have a Burst set, this Spirit card in Hand becomes Cost N" = costAlt {cost, if: {burstSet}} (engine costAltActive)
         if c['type'] != 'Spirit': raise Review('Burst cost paragraph on a ' + c['type'])
-        alt = {'cost': int(m.group(1)), 'if': {'burstSet': True}}
+        alt = {'cost': int(m.group(3)), 'if': {'burstSet': True} if m.group('b') else {'ctrl': {'type': 'Spirit', 'nLe': 0}}}      # v0.187 "If you control no Spirits"
         c = dict(c, text=(t0[:m.start()] + '\n\n' + t0[m.end():]).strip())
     n = _V1_COMPILE(c)
     if alt:
@@ -1156,7 +1158,7 @@ def compile_accel(c):
     return n
 
 
-BURST_COST = re.compile(r'(?:^|\n\s*\n)\s*While you have an? (?:set Burst|Burst set), this Spirit card in (?:your )?Hand becomes Cost (\d+)\.?\s*(?=\n\s*\n|$)', re.I)
+BURST_COST = re.compile(r'(?:^|\n\s*\n)\s*(?:While you have an? (?P<b>set Burst|Burst set)|If (?P<c>you control no Spirits)), this (?:Spirit )?card in (?:your )?Hand becomes Cost (\d+)\.?\s*(?=\n\s*\n|$)', re.I)
 
 
 def install():

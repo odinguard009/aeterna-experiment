@@ -96,3 +96,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v56 (v0.185.0, Lane K): trigger `RUMBLE_DISCARD` (owner's field effects, after a Rumble discards; `exOnly` = at least one discarded card has an EX Symbol, `other` = besides the Rumble's own Spirit).
 - v57 (v0.185.0, Lane K): condition `selfAttacking:true` ("(During Attack)": the source Spirit is the current attacker), used with `MAGIC_USED`.
 - v58 (v0.185.0, Lane K): `CANT_BE_BLOCKED_BY` accepts `all:true` (this Spirit can't be blocked at all during this battle).
+- v59 (v0.185.0, Lane K): `ctrl` accepts `costLe` (with `costGe` = exact cost); `costAlt.if` may carry `ctrl` ("If you control no Spirits, this card in Hand becomes Cost N").

@@ -722,7 +722,7 @@ def spirit_paragraph_main(p, card, rush):
             if mm.group(2) == '2': e[0]['n'] = 2
             if lv: e[0]['lv'] = lv
             return e, flags
-        mm = re.match(r"^If you control no ((?:Red |Purple |Green |White |Yellow |Blue )?(?:\"[^\"]+\" family )?)Spirits, this Spirit can't attack\.?$", p, re.I)
+        mm = re.match(r"^If you control no ((?:Cost \d+ )?(?:Red |Purple |Green |White |Yellow |Blue )?(?:\"[^\"]+\" family )?)Spirits, this Spirit can't attack\.?$", p, re.I)
         cond = (COND_HOOK('you control a ' + mm.group(1) + 'Spirit') if COND_HOOK else None) if mm and mm.group(1) else None
         if cond and 'ctrl' in cond:      # v0.184 STATIC CANT_ATTACK while you control no <colour/family> Spirit (ctrl nLe 0)
             if rush: raise Review('Rush with a conditional can\'t-attack')

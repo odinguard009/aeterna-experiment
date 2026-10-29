@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 7331,
+  "cards": 7329,
   "per_saga": {
    "1": 680,
    "2": 313,
@@ -19,15 +19,15 @@
    "15": 355,
    "16": 334,
    "17": 110,
-   "50": 328
+   "50": 326
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 1375,
+  "skipped_curated": 1377,
   "nexus_levels_added": 707,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 514,
+  "image_problems": 512,
   "number_conflicts": 4,
   "merged": 109,
   "brave_unparsed": 171,
@@ -35,7 +35,7 @@
   "odd_reduction": 807,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 512
+  "without_image": 510
  },
  "tokens": [
   "BS73-T001",
@@ -1395,10 +1395,12 @@
   "26RBS03-024",
   "26RBS03-025",
   "26RBS03-034",
+  "26RBS03-037",
   "26RBS03-042",
   "26RBS03-045",
   "26RBS03-046",
   "26RBS03-049",
+  "26RBS03-050",
   "26RBS03-052",
   "26RBS03-053",
   "26RBS03-055",
@@ -4573,11 +4575,6 @@
    "problem": "no image"
   },
   {
-   "id": "26RBS03-037",
-   "name": "Jaon-Guara",
-   "problem": "no image"
-  },
-  {
    "id": "26RBS03-038",
    "name": "The ExoticLithoid Dia-Mold",
    "problem": "no image"
@@ -4615,11 +4612,6 @@
   {
    "id": "26RBS03-048",
    "name": "Pacugna",
-   "problem": "no image"
-  },
-  {
-   "id": "26RBS03-050",
-   "name": "The GrandMaster Marmonta",
    "problem": "no image"
   },
   {
