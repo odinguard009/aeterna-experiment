@@ -357,3 +357,12 @@ test('K-25 Rush Out: a Leucomyst Spirit gets the turn mark', async () => {
     return [ok, a.noBlockTurn === G.turnNo]; })()`);
   assert.deepEqual(r, [true, true]);
 });
+
+test('K-26 Lasslake: NO_BP_DESTROY marks the Spirit for this battle', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const s = BS.mkInst('26RBS03-036'); s.cores = 2; P.spirits.push(s); G.attacker = s;
+    await BS.FX_ACTIONS.NO_BP_DESTROY.run({ p: P, opp: O, src: s, ctx: {} }, { do: 'NO_BP_DESTROY' });
+    return [BS.FX_ACTIONS.NO_BP_DESTROY.chk({}), s.noBpDestroy === G.battleNo]; })()`);
+  assert.deepEqual(r, [true, true]);
+});

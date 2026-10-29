@@ -126,3 +126,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v86 (v0.195.0, Lane K): `BP_MINUS.nLegacy` (n BP- more for each EX Symbol banished via the source's Legacy, `src.legacyN`; 1000..5000).
 - v87 (v0.196.0, Lane K): `CANT_BE_BLOCKED_BY` accepts `noSoul:true` ("can't be blocked by opposing Spirits without (Soul Core) on it").
 - v88 (v0.196.0, Lane K): action `UNBLOCKABLE_PICK {match}` ("Target one of your <family> Spirits. During this turn, it can't be blocked": mark `noBlockTurn` = turn number, read by the block list).
+- v89 (v0.196.0, Lane K): action `NO_BP_DESTROY` ("During this battle, this Spirit can't be destroyed by BP comparison": mark `noBpDestroy` = battle number, read by the BP comparison in 08-battle; a BATTLE_WIN is not raised for a protected loser).
