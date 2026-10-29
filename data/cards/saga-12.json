@@ -2972,7 +2972,10 @@
   "type": "Spirit",
   "color": "red",
   "cost": 1,
-  "reduction": {},
+  "reduction": {
+   "red": 1,
+   "white": 1
+  },
   "symbols": 0,
   "levels": [
    {
@@ -12046,7 +12049,9 @@
   "type": "Spirit",
   "color": "white",
   "cost": 3,
-  "reduction": {},
+  "reduction": {
+   "white": 2
+  },
   "symbols": 0,
   "levels": [
    {

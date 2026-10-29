@@ -120,7 +120,9 @@
   "type": "Spirit",
   "color": "red",
   "cost": 3,
-  "reduction": {},
+  "reduction": {
+   "red": 1
+  },
   "symbols": 0,
   "levels": [
    {
@@ -200,7 +202,9 @@
   "type": "Spirit",
   "color": "red",
   "cost": 8,
-  "reduction": {},
+  "reduction": {
+   "red": 3
+  },
   "symbols": 0,
   "levels": [
    {
@@ -8063,7 +8067,9 @@
   "type": "Spirit",
   "color": "green",
   "cost": 10,
-  "reduction": {},
+  "reduction": {
+   "green": 6
+  },
   "symbols": 0,
   "levels": [
    {
@@ -8702,7 +8708,8 @@
   "color": "white",
   "cost": 7,
   "reduction": {
-   "white": 3
+   "green": 1,
+   "white": 4
   },
   "symbols": 1,
   "levels": [
@@ -8744,6 +8751,7 @@
   "color": "white",
   "cost": 7,
   "reduction": {
+   "green": 2,
    "white": 3
   },
   "symbols": 1,
@@ -8785,6 +8793,7 @@
   "color": "white",
   "cost": 8,
   "reduction": {
+   "green": 3,
    "white": 3
   },
   "symbols": 1,
@@ -9986,7 +9995,7 @@
   "cost": 5,
   "symbols": 1,
   "reduction": {
-   "red": 2
+   "red": 3
   },
   "levels": [
    {
@@ -11597,6 +11606,7 @@
   "color": "white",
   "cost": 8,
   "reduction": {
+   "green": 2,
    "white": 3
   },
   "symbols": 1,

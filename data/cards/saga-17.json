@@ -1818,6 +1818,7 @@
   "color": "white",
   "cost": 6,
   "reduction": {
+   "green": 1,
    "white": 3
   },
   "symbols": 1,

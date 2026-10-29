@@ -4389,7 +4389,9 @@
   "type": "Spirit",
   "color": "yellow",
   "cost": 5,
-  "reduction": {},
+  "reduction": {
+   "yellow": 2
+  },
   "symbols": 0,
   "levels": [
    {
@@ -12377,6 +12379,7 @@
   "color": "purple",
   "cost": 5,
   "reduction": {
+   "blue": 1,
    "purple": 3
   },
   "symbols": 1,
@@ -15918,7 +15921,8 @@
   "color": "purple",
   "cost": 4,
   "reduction": {
-   "purple": 1
+   "purple": 1,
+   "red": 1
   },
   "symbols": 1,
   "levels": [
@@ -18218,7 +18222,9 @@
   "type": "Nexus",
   "color": "purple",
   "cost": 3,
-  "reduction": {},
+  "reduction": {
+   "purple": 2
+  },
   "symbols": 0,
   "levels": [
    {

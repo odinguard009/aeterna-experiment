@@ -2454,7 +2454,9 @@
   "type": "Spirit",
   "color": "blue",
   "cost": 3,
-  "reduction": {},
+  "reduction": {
+   "blue": 1
+  },
   "symbols": 0,
   "levels": [
    {
@@ -3517,7 +3519,9 @@
   "type": "Spirit",
   "color": "blue",
   "cost": 9,
-  "reduction": {},
+  "reduction": {
+   "blue": 5
+  },
   "symbols": 0,
   "levels": [
    {
@@ -12430,7 +12434,7 @@
   "fxComplete": false,
   "note": "Japanese text confirmed on cardrush-bs.jp (product 30005): Contract Skill 2/3/5 matches. The LV2 Contract Field ('Z' effect) icon placeholders were dropped on the page, so that part stays partly unverified. Cost/reduction/symbol from the card image.",
   "reduction": {
-   "red": 1
+   "red": 2
   },
   "icons_verified": "cost disk red, 1 red reduction hex, 1 red gem",
   "name_jp": "雷霆の契約神ゼウス",

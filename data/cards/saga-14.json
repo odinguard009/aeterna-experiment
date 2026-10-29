@@ -977,7 +977,7 @@
   "color": "green",
   "cost": 4,
   "reduction": {
-   "green": 2
+   "green": 3
   },
   "symbols": 1,
   "levels": [
@@ -6771,7 +6771,9 @@
   "type": "Spirit",
   "color": "green",
   "cost": 10,
-  "reduction": {},
+  "reduction": {
+   "green": 3
+  },
   "symbols": 0,
   "levels": [
    {
@@ -8764,7 +8766,9 @@
   "type": "Spirit",
   "color": "blue",
   "cost": 2,
-  "reduction": {},
+  "reduction": {
+   "blue": 1
+  },
   "symbols": 0,
   "levels": [
    {
@@ -8820,7 +8824,9 @@
   "type": "Spirit",
   "color": "blue",
   "cost": 3,
-  "reduction": {},
+  "reduction": {
+   "blue": 1
+  },
   "symbols": 0,
   "levels": [
    {
@@ -8854,7 +8860,9 @@
   "type": "Spirit",
   "color": "blue",
   "cost": 3,
-  "reduction": {},
+  "reduction": {
+   "blue": 2
+  },
   "symbols": 0,
   "levels": [
    {
@@ -8896,7 +8904,9 @@
   "type": "Spirit",
   "color": "blue",
   "cost": 3,
-  "reduction": {},
+  "reduction": {
+   "blue": 2
+  },
   "symbols": 0,
   "levels": [
    {
@@ -10161,7 +10171,9 @@
   "type": "Spirit",
   "color": "white",
   "cost": 10,
-  "reduction": {},
+  "reduction": {
+   "white": 6
+  },
   "symbols": 0,
   "levels": [
    {
@@ -10503,7 +10515,10 @@
   "type": "Spirit",
   "color": "red",
   "cost": 9,
-  "reduction": {},
+  "reduction": {
+   "red": 3,
+   "white": 3
+  },
   "symbols": 0,
   "levels": [
    {
@@ -12765,7 +12780,9 @@
   "type": "Spirit",
   "color": "blue",
   "cost": 2,
-  "reduction": {},
+  "reduction": {
+   "blue": 2
+  },
   "symbols": 0,
   "levels": [
    {
@@ -13017,7 +13034,9 @@
   "type": "Spirit",
   "color": "blue",
   "cost": 6,
-  "reduction": {},
+  "reduction": {
+   "blue": 4
+  },
   "symbols": 0,
   "levels": [
    {
@@ -14247,7 +14266,9 @@
   "type": "Spirit",
   "color": "blue",
   "cost": 10,
-  "reduction": {},
+  "reduction": {
+   "blue": 3
+  },
   "symbols": 0,
   "levels": [
    {
@@ -14502,7 +14523,10 @@
   "type": "Spirit",
   "color": "purple",
   "cost": 9,
-  "reduction": {},
+  "reduction": {
+   "green": 3,
+   "purple": 3
+  },
   "symbols": 0,
   "levels": [
    {

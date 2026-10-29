@@ -2724,7 +2724,9 @@
   "type": "Spirit",
   "color": "red",
   "cost": 4,
-  "reduction": {},
+  "reduction": {
+   "red": 2
+  },
   "symbols": 0,
   "levels": [
    {

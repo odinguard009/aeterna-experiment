@@ -14108,7 +14108,10 @@
   "type": "Brave",
   "color": "purple",
   "cost": 5,
-  "reduction": {},
+  "reduction": {
+   "purple": 2,
+   "red": 2
+  },
   "symbols": 0,
   "levels": [
    {
@@ -18765,7 +18768,10 @@
   "type": "Brave",
   "color": "purple",
   "cost": 5,
-  "reduction": {},
+  "reduction": {
+   "purple": 2,
+   "red": 2
+  },
   "symbols": 0,
   "levels": [
    {
