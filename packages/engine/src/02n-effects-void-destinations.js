@@ -36,16 +36,16 @@
    the Soul Core goes only when no normal core is left on the target (house reading of "the opponent chooses": nobody gives up the Soul Core first). */
 (() => {
   const O = FX_ACTIONS.OPP_CORES_TO_RESERVE, oChk = O.chk, oTxt = O.txt, oCands = O.cands, oCan = O.can, oRun = O.run;
-  const NEW = ['costLe', 'exhaustedOnly', 'coresLe', 'keepOne', 'untilOne', 'upgrade'];
+  const NEW = ['costLe', 'exhaustedOnly', 'coresLe', 'keepOne', 'untilOne', 'upgrade', 'fighting'];      // v0.196 fighting: "an opposing attacking/blocking Spirit"
   const upOk = u => u == null || (typeof u === 'object' && ['oppReserveGe3', 'viaFC'].includes(u.when) && (u.anyTarget == null || u.anyTarget === true) && (u.soul == null || u.soul === true) && (u.anyTarget === true || u.soul === true));
   const upOn = (c, a) => !!a.upgrade && (a.upgrade.when === 'viaFC' ? !!(c.src && c.src.viaFC) : (c.opp.reserve.n + (c.opp.reserve.soul ? 1 : 0)) >= 3);
   const has = a => !!a && NEW.some(k => a[k] != null);
   const ok = a => a.targets === 1 && (a.costLe == null || (Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30)) && (a.coresLe == null || (Number.isInteger(a.coresLe) && a.coresLe >= 1 && a.coresLe <= 10))
-    && [a.exhaustedOnly, a.keepOne, a.untilOne].every(v => v == null || v === true) && upOk(a.upgrade);
+    && [a.exhaustedOnly, a.keepOne, a.untilOne, a.fighting].every(v => v == null || v === true) && upOk(a.upgrade);
   const base = a => { const o = Object.assign({}, a); for (const k of NEW) delete o[k]; if (a.untilOne) o.each = 1; return o; };
   O.chk = a => has(a) ? ok(a) && oChk(base(a)) : oChk(a);
   O.cands = (c, a) => has(a) ? (upOn(c, a) && a.upgrade.soul ? c.opp.spirits.filter(t => (t.cores > 0 || t.soul) && !fxImmune(c.opp, t)) : oCands(c)).filter(t => (a.costLe == null || CARDS[t.id].cost <= a.costLe) && (!a.exhaustedOnly || t.exhausted || (upOn(c, a) && a.upgrade.anyTarget))
-    && (a.coresLe == null || totalCores(t) <= a.coresLe) && (!(a.keepOne || a.untilOne) || totalCores(t) > 1)) : oCands(c);
+    && (a.coresLe == null || totalCores(t) <= a.coresLe) && (!(a.keepOne || a.untilOne) || totalCores(t) > 1) && (!a.fighting || t === G.attacker || t === G.blocker)) : oCands(c);
   O.can = (c, a) => has(a) ? O.cands(c, a).length > 0 : oCan(c, a);
   O.txt = a => has(a) ? (a.untilOne ? 'send cores from an opposing ' : `send ${a.each} core${a.each === 1 ? '' : 's'} from an opposing `)
     + [a.exhaustedOnly ? 'exhausted' : '', a.costLe != null ? 'Cost ' + a.costLe + ' or less' : ''].filter(Boolean).concat('Spirit').join(' ')

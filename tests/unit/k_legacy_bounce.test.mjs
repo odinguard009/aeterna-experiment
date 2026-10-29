@@ -447,3 +447,12 @@ test('K-33 Salvador: TREAT_LV2 makes a Cyantree Spirit LV2 for the turn', async 
     return [lv0, BS.lvNo(s)]; })()`);
   assert.deepEqual(r, [1, 2]);
 });
+
+test('K-34 Wyll-Gale: sends two cores from the opposing attacking Spirit only', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const a = opp(4, 3000), b = opp(4, 3000); a.cores = 3; b.cores = 3; BS.G.attacker = a;
+    await BS.runActions({ p: P, opp: O, src: BS.mkInst('26RBS02-019'), ctx: {} }, { actions: BS.CARDS['26RBS02-019'].effects[0].actions });
+    return [a.cores, b.cores]; })()`);
+  assert.deepEqual(r, [1, 3]);
+});
