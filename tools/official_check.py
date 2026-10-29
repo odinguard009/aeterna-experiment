@@ -30,12 +30,18 @@ def fetch(cid, cache, delay):
     if os.path.exists(p):
         return open(p, encoding='utf-8').read()
     time.sleep(delay)
-    try:
-        s = urllib.request.urlopen(urllib.request.Request(URL.format(cid), headers={'User-Agent': 'aeterna-card-check (read-only, non-commercial)'}), timeout=30).read().decode('utf-8')
-    except urllib.error.HTTPError as e:
-        if e.code in (403, 429):
-            sys.exit('stopped: HTTP %d from the official site (no workaround attempted)' % e.code)
-        return None
+    for attempt in range(4):                                     # a dropped connection is retried with a growing pause; HTTP 403/429 is never retried
+        try:
+            s = urllib.request.urlopen(urllib.request.Request(URL.format(cid), headers={'User-Agent': 'aeterna-card-check (read-only, non-commercial)'}), timeout=30).read().decode('utf-8')
+            break
+        except urllib.error.HTTPError as e:
+            if e.code in (403, 429):
+                sys.exit('stopped: HTTP %d from the official site (no workaround attempted)' % e.code)
+            return None
+        except (urllib.error.URLError, OSError):
+            if attempt == 3:
+                sys.exit('stopped: connection failed 4 times at %s (rerun resumes from the cache)' % cid)
+            time.sleep(5 * (attempt + 1))
     open(p, 'w', encoding='utf-8').write(s)
     return s
 
