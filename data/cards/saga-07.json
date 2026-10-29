@@ -14148,7 +14148,7 @@
   "saga": 7,
   "brave": {
    "bp": 5000,
-   "costGe": 5
+   "costGe": 4
   },
   "fxComplete": false,
   "residual": [
@@ -14187,7 +14187,7 @@
   "saga": 7,
   "brave": {
    "bp": 2000,
-   "costGe": 4
+   "costLe": 3
   },
   "fxComplete": false,
   "residual": [
@@ -18800,8 +18800,8 @@
   "block": "39",
   "saga": 7,
   "brave": {
-   "bp": 3000,
-   "costGe": 5
+   "bp": 6000,
+   "costGe": 3
   },
   "fxComplete": false,
   "residual": [
@@ -18838,7 +18838,7 @@
   "block": "39",
   "saga": 7,
   "brave": {
-   "bp": 2000,
+   "bp": 3000,
    "costGe": 3
   },
   "mechanics": [

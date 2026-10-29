@@ -17,3 +17,18 @@ The five Brave names with differing cost/BP were compared with the per-card rows
 Still unverified: the `brave` field (`bp`, `costGe`). It comes from `fandom-brave-combine.tsv`, keyed by page title, so BS39-RV026 carries `brave {bp: 3000, costGe: 5}` copied from the original although its printed text is different. Whether the RV combine condition differs needs the card image or the wiki page.
 
 Why the wiki could not be read in this session: the first attempts were refused at the proxy (host not allowed); later the host answered but returned HTTP 403 to non-browser clients (www.fandom.com the same, `static.wikia.nocookie.net` reachable), so it is the site's bot protection, not only the session policy. No workaround was attempted.
+
+## Update: checked against the official card images (battlespirits.com `images/cardlist/<id>.webp`)
+
+Fandom stays blocked (Cloudflare challenge); the official card database serves the card images, so the Brave reprints were read from the images. Result: the page-level combine data was wrong for four RV reprints (fixed in data, test `tests/unit/brave_reprint_combine.test.mjs`):
+
+| Card | Was | Printed on the card |
+|---|---|---|
+| BS39-RV026 Sabershark | +3000, Cost 5+ | +6000, Cost 3+ (both sides) |
+| BS38-RV024 Kacrane | +5000, Cost 5+ | +5000, Cost 4+ (both sides) |
+| BS39-RV027 Reticle-Arms | +2000, Cost 3+ | +3000, Cost 3+ |
+| BS38-RV025 Poppor | +2000, Cost 4+ | +2000, Cost 3 or less (new `brave.costLe`) |
+
+Checked and correct: BS10-072, BS31-081, BS13-057, BS50-RV009, BS59-RV006.
+
+Known limit: BS38-RV022 Phoenix-Cannon prints Cost 5+ on the right and Cost 3+ on the left; the engine has one condition per Brave, so it keeps `costGe: 3` (left side only).

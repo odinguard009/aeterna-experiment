@@ -47,7 +47,7 @@ function braveFits(b, s) {
   const bc = CARDS[b.id].brave, k = CARDS[s.id];
   if (!bc || b === s || s.brave) return false;
   if (k.type === 'Nexus') return !!bc.nexus && (k.families || []).includes('Grandwalker') && fxMatch(k, { name: bc.nexus.name });
-  return k.type === 'Spirit' && fxMatch(k, { name: bc.name, family: bc.family, costGe: bc.costGe });
+  return k.type === 'Spirit' && fxMatch(k, { name: bc.name, family: bc.family, costGe: bc.costGe, costLe: bc.costLe });
 }
 const braveTargets = (p, b) => p.spirits.concat(p.nexus).filter(s => braveFits(b, s));
 function combineBrave(p, b, s) {             // from the Field (Spirit form) or straight from the Hand (cost already paid); the Brave's cores move onto the Spirit
