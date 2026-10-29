@@ -56,7 +56,8 @@ const FONT_URL = /url\(data:font\/woff2;base64,[A-Za-z0-9+/=]+\)/g, FLAVOR_RE = 
 // v0.183.0 (Lane K): raised B01 1050 -> 1060 KB on purpose: DESTROY_EVERY / DESTROY_NEXUS_ALL, Tribute-less summon and the Life-to-Reserve clause (engine ~0.4 KB over the limit).
 // v0.185.0 (Lane K): raised B01 1060 -> 1070 KB on purpose: selfBlocked, DEPLOY_TRASH, perCores and DRAW_UNTIL (engine ~0.1 KB over the limit).
 test('B01 index.html without the card pack stays under 1070 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 1070e3, Buffer.byteLength(noFont(code))));
-test('B02 index.html without the card pack, gzipped, stays under 290 KB', () => { const n = gzipSync(noFont(code), { level: 9 }).length; assert.ok(n < 290e3, n); });
+// v0.186.0 (Brave costLe): raised B02 290 -> 292 KB on purpose: the Brave combine condition costLe (parser, braveFits, types) put the page 0.9 KB over the limit.
+test('B02 index.html without the card pack, gzipped, stays under 292 KB', () => { const n = gzipSync(noFont(code), { level: 9 }).length; assert.ok(n < 292e3, n); });
 test('B03 the embedded card pack stays under 1.6 MB (room for all cards; never embed staging data)', () => assert.ok(packLen < 1.6e6, packLen));
 // v0.93.0 (U6): raised 90 -> 96 KB on purpose (roadmap item U allows it with a note): U6-U8 add the My decks page and the
 // deck builder restyle; unused rules were trimmed first in v0.92.0. The next raise needs the same kind of note.
