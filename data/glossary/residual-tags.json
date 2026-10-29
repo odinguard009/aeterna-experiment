@@ -38461,10 +38461,6 @@
   "C_LEVEL",
   "T_DESTROYED"
  ],
- "26RBS02-022": [
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
  "26RBS02-023": [
   "C_LEVEL",
   "M_OPTIONAL",
@@ -39850,7 +39846,6 @@
   "M_OPTIONAL",
   "M_REPLACEMENT"
  ],
- "26RSD06-014": [],
  "26RSD06-X01": [
   "A_EXHAUST",
   "C_LEVEL",

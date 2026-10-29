@@ -107,3 +107,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v67 (v0.185.0, Lane K): STATIC `perCores:true` (with `bp`, `to:"self"`): "This Spirit gains +N BP for each core on it." (counted live).
 - v68 (v0.185.0, Lane K): STATIC `per` is also allowed with `to:"own"` ("For each X you control, give all your Spirits +N BP"; each of your Spirits gets bp x the count).
 - v69 (v0.185.0, Lane K): new action `HAND_RECYCLE {perOppHand | drawIfAll:{match,n}}` (return all your Hand to the deckbottom in Hand order; then draw a card per card in the opposing Hand, or N cards if every returned card matches).
+- v70 (v0.185.0, Lane K): `DESTROY_OWN` takes `other:true` (not this Spirit); `DESTROY_ANY` (Nexus) takes `noTR:true` (skip a True Release Nexus at LV2+) and `drawIfDone:true` (draw when one is destroyed, either side).

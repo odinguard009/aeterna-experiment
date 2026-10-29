@@ -113,9 +113,9 @@ function allHaveOK(owner, q) {
 })();
 Object.assign(FX_ACTIONS, {
   DESTROY_OWN: {
-    chk: a => hasMatch(a.match) && (a.voidByCost == null || a.voidByCost === true),
-    txt: a => 'destroy one of your matching Spirits' + (a.voidByCost ? ', then put cores from the Void to your Reserve equal to its cost' : ''),
-    cands: (c, a) => c.p.spirits.filter(s => fxMatch(CARDS[s.id], a.match)),
+    chk: a => hasMatch(a.match) && (a.voidByCost == null || a.voidByCost === true) && (a.other == null || a.other === true),
+    txt: a => (a.other ? 'destroy another Spirit you control' : 'destroy one of your matching Spirits') + (a.voidByCost ? ', then put cores from the Void to your Reserve equal to its cost' : ''),
+    cands: (c, a) => c.p.spirits.filter(s => (!a.other || s !== c.src) && fxMatch(CARDS[s.id], a.match)),
     can: (c, a) => FX_ACTIONS.DESTROY_OWN.cands(c, a).length > 0,
     run: async (c, a) => {
       const L = FX_ACTIONS.DESTROY_OWN.cands(c, a); if (!L.length) { c.ctx.did = false; return; }

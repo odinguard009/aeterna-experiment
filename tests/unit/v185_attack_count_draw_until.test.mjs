@@ -79,3 +79,15 @@ test('V185-10 HAND_RECYCLE returns the Hand to the deckbottom, then draws per op
     return [await run({ do: 'HAND_RECYCLE', perOppHand: true }, 3), await run({ do: 'HAND_RECYCLE', drawIfAll: { match: { costLe: 99 }, n: 3 } }, 4), await run({ do: 'HAND_RECYCLE', perOppHand: true }, 0)];`);
   assert.deepEqual(r, [[2, 1, true], [3, 1, true], [0, 0, false]]);
 });
+
+test('V185-11 DESTROY_OWN other: this Spirit is never a candidate', async () => {
+  const r = await ev(`const a = sp('BS01-035', P, 3), b = sp('BS01-042', P, 1); const m = { type: 'Spirit' };
+    return [BS.FX_ACTIONS.DESTROY_OWN.cands({ p: P, src: a }, { match: m, other: true }).length, BS.FX_ACTIONS.DESTROY_OWN.cands({ p: P, src: a }, { match: m }).length];`);
+  assert.deepEqual(r, [1, 2]);
+});
+
+test('V185-12 DESTROY_ANY noTR skips a True Release Nexus at LV2+; drawIfDone draws for any side', async () => {
+  const r = await ev(`const id = Object.keys(BS.CARDS).find(k => BS.CARDS[k].trueRelease && BS.CARDS[k].type === 'Nexus'); const n = BS.mkInst(id); n.cores = 9; O.nexus.push(n); const x = BS.mkInst('BS01-098'); O.nexus.push(x);
+    const c = { p: P, opp: O, src: sp('BS01-035', P, 3), ctx: {} }; return [!!id, BS.lvNo(n) >= 2, BS.FX_ACTIONS.DESTROY_ANY.cands(c, { do: 'DESTROY_ANY', kind: 'nexus', noTR: true }).includes(n), BS.FX_ACTIONS.DESTROY_ANY.cands(c, { do: 'DESTROY_ANY', kind: 'nexus', noTR: true }).includes(x)];`);
+  assert.deepEqual(r, [true, true, false, true]);
+});
