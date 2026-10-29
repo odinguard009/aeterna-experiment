@@ -334,3 +334,14 @@ test('K-23 Glitail: when destroyed, destroy an opposing Spirit with the same BP'
     return [O.spirits.includes(same), O.spirits.includes(other)]; })()`);
   assert.deepEqual(r, [false, true]);
 });
+
+test('K-24 Waltana: CANT_BE_BLOCKED_BY noSoul only on the second attack', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const w = BS.mkInst('26RBS02-057'); w.cores = 2; P.spirits.push(w);
+    const A = { do: 'CANT_BE_BLOCKED_BY', noSoul: true, if: { firstAttack: false } };
+    const ok = BS.FX_ACTIONS.CANT_BE_BLOCKED_BY.chk(A);
+    await BS.FX_ACTIONS.CANT_BE_BLOCKED_BY.run({ p: P, opp: O, src: w, ctx: {} }, A);
+    return [ok, !!(w.noBlockBy && w.noBlockBy.noSoul)]; })()`);
+  assert.deepEqual(r, [true, true]);
+});
