@@ -20,16 +20,19 @@ const filterTypesHTML = (S, act) => DB_TYPES.map(t => `<button class="chip${S.ty
 /* v0.158.0 (owner review, phone): one dropdown per filter group - Colour, Type, Cost and Group - shared by the Deck Builder and the Library.
    Each entry knows the Set it toggles in (colors / types / costs / groups), so the menu, the button label and Clear work the same everywhere. */
 /* v0.188.0 (R2): Family list, Level-1 BP ranges and top-level core counts; a mode item is a Set-shaped switch (colours / families: any -> all) */
+/** @type {[string, number, number][]} */
 const DB_BPS = [['≤2,000', 0, 3000], ['3,000–4,000', 3000, 5000], ['5,000–6,000', 5000, 7000], ['7,000–9,000', 7000, 10000], ['10,000+', 10000, 1e9]];
+/** @type {[string, number, number][]} */
 const DB_CORES = [['≤2', 0, 3], ['3', 3, 4], ['4', 4, 5], ['5', 5, 6], ['6+', 6, 99]];
 const DB_FAMS = { ver: -1, list: [] };
 const dbFamilies = () => { if (DB_FAMS.ver !== CARDS_VER) { DB_FAMS.list = [...new Set(Object.values(CARDS).flatMap(c => c.families || []))].sort(DB_COLL.compare); DB_FAMS.ver = CARDS_VER; } return DB_FAMS.list; };
 const ddMode = (S, key, l) => ({ l, mode: 1, v: '@' + key, set: { has: () => S[key], add: () => { S[key] = true; }, delete: () => { S[key] = false; } } });
+/** @returns {any[]} */
 function ddList(S, kind) {
   if (kind === 'bp') return DB_BPS.map(([l], i) => ({ l, set: S.bps, v: String(i) }));
   if (kind === 'cores') return DB_CORES.map(([l], i) => ({ l, set: S.cores, v: String(i) }));
-  if (kind === 'family') return [ddMode(S, 'ffall', 'Match all selected')].concat(dbFamilies().map(f => ({ l: f, set: S.fams, v: f })));
-  if (kind === 'colour') return [ddMode(S, 'cmode', 'Match all selected')].concat(DB_COLORS.map(c => ({ l: cap(c), set: S.colors, v: c, dot: colorVar(c) })), [{ l: 'All colour', set: S.groups, v: 'multi', dot: RAINBOW }]);
+  if (kind === 'family') return [ddMode(S, 'ffall', 'Match all selected'), ...dbFamilies().map(f => ({ l: f, set: S.fams, v: f }))];
+  if (kind === 'colour') return [ddMode(S, 'cmode', 'Match all selected'), ...DB_COLORS.map(c => ({ l: cap(c), set: S.colors, v: c, dot: colorVar(c) })), { l: 'All colour', set: S.groups, v: 'multi', dot: RAINBOW }];
   if (kind === 'type') return DB_TYPES.map(t => ({ l: t, set: S.types, v: t })).concat(DB_TYPE_GROUPS.map(([g, l]) => ({ l, set: S.groups, v: g })));
   if (kind === 'cost') return DB_COSTS.map(c => ({ l: c === '10' ? '10+' : c, set: S.costs, v: c }));
   return DB_GROUPS.map(([g, l]) => ({ l, set: S.groups, v: g }));
@@ -40,8 +43,8 @@ function ddMenuEl(S, tb, btn, pick, clear) {
   const items = ddList(S, S.dd), m = document.createElement('div'); m.className = 'ddmenu scroll'; m.setAttribute('role', 'menu');
   m.innerHTML = (S.dd === 'family' ? '<input class="in ddq" type="search" placeholder="Search family" aria-label="Search family" autocomplete="off">' : '') + items.map(i => `<button class="ddi${i.set.has(i.v) ? ' on' : ''}${i.mode ? ' mode' : ''}" data-q="${esc(i.l.toLowerCase())}" data-a="${pick}" data-v="${i.v}" role="menuitemcheckbox" aria-checked="${i.set.has(i.v)}"><span class="ddc">${i.set.has(i.v) ? '✓' : ''}</span>${i.dot ? `<i class="dot" style="background:${i.dot}"></i>` : ''}<span class="grow">${i.l}</span></button>`).join('') + `<button class="ddi clr" data-a="${clear}">Clear</button>`;
   tb.appendChild(m);
-  const q = m.querySelector('.ddq');
-  if (q) { const f = () => { S.fq = q.value; const w = q.value.trim().toLowerCase(); m.querySelectorAll('.ddi[data-q]').forEach(b => { b.hidden = !!w && !b.classList.contains('mode') && !b.dataset.q.includes(w); }); }; q.value = S.fq || ''; q.oninput = f; f(); }
+  const q = /** @type {HTMLInputElement|null} */ (m.querySelector('.ddq'));
+  if (q) { const f = () => { S.fq = q.value; const w = q.value.trim().toLowerCase(); /** @type {NodeListOf<HTMLElement>} */ (m.querySelectorAll('.ddi[data-q]')).forEach(b => { b.hidden = !!w && !b.classList.contains('mode') && !b.dataset.q.includes(w); }); }; q.value = S.fq || ''; q.oninput = f; f(); }
   const r = btn.getBoundingClientRect(), t = tb.getBoundingClientRect(), w = Math.max(r.width, 210);
   m.style.width = w + 'px'; m.style.left = Math.max(6, Math.min(t.width - w - 6, r.left - t.left)) + 'px'; m.style.top = (r.bottom - t.top + 4) + 'px';
 }
