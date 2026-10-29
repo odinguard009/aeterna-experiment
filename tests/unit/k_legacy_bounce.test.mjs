@@ -366,3 +366,14 @@ test('K-26 Lasslake: NO_BP_DESTROY marks the Spirit for this battle', async () =
     return [BS.FX_ACTIONS.NO_BP_DESTROY.chk({}), s.noBpDestroy === G.battleNo]; })()`);
   assert.deepEqual(r, [true, true]);
 });
+
+test('K-27 Breakam Slash: draws only when the picked Spirit has Form Change', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const ks = Object.values(BS.CARDS).filter(c => c.type === 'Spirit' && (c.families || []).includes('ZEZTZ'));
+    const fc = ks.find(c => (c.desc || '').includes('{{F Change|')), nf = ks.find(c => !(c.desc || '').includes('{{F Change|'));
+    const res = [];
+    for (const k of [fc, nf]) { P.spirits.length = 0; P.spirits.push(Object.assign(BS.mkInst(k.id), { cores: 1 })); const h = P.hand.length; await run('26RSD07-014'); res.push(P.hand.length - h); }
+    return res; })()`);
+  assert.deepEqual(r, [1, 0]);
+});
