@@ -39263,12 +39263,6 @@
   "T_ALLY_ATTACKS"
  ],
  "26RCB01-064": [],
- "26RCB01-X03": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "M_REPLACEMENT",
-  "T_SUMMONED"
- ],
  "26RCB01-X06": [
   "C_LIFE",
   "T_ATTACKS"

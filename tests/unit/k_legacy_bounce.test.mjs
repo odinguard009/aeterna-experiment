@@ -304,3 +304,13 @@ test('K-20 BP_MINUS.nLegacy (Aureole), shared once-per-turn exhaust (Kacomic), F
     return [keep, gone, ex, none, c.cores + d.cores]; })()`);
   assert.deepEqual(r, [true, true, 1, 6, 4]);
 });
+
+test('K-21 Zeztz Exdream: destroy 1 exhausted Spirit, 2 via Form Change', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const plain = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && c.levels[0].bp === 4000 && !(c.effects && c.effects.length));
+    const zrun = async fc => { O.spirits.length = 0; for (let i = 0; i < 3; i++) { const t = BS.mkInst(plain.id); t.cores = 2; t.exhausted = true; O.spirits.push(t); }
+      const z = BS.mkInst('26RCB01-X03'); z.cores = 1; z.viaFC = fc; P.spirits.push(z); await BS.fireFx(P, 'SUMMONED', z, {}); return O.spirits.length; };
+    return [await zrun(false), await zrun(true)]; })()`);
+  assert.deepEqual(r, [2, 1]);
+});
