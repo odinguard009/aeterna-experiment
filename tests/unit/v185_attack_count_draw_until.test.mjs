@@ -49,3 +49,16 @@ test('V185-05 MUST_BLOCK_OPP marks an exhausted target for this battle and needs
     await run({ state: 'exhausted' }); return [none, wrongState, d.mustB, d.blockExB];`);
   assert.deepEqual(r, [undefined, undefined, 7, 7]);
 });
+
+test('V185-06 selfBlocked is true only while this Spirit attacks and has a blocker', async () => {
+  const r = await ev(`const a = sp('BS01-035', P, 3), d = sp('BS01-042', O, 1), f = () => BS.fxIf(P, O, { selfBlocked: true }, { selfInst: a });
+    G.attacker = a; G.blocker = null; const x = f(); G.blocker = d; const y = f(); G.attacker = null; return [x, y, f()];`);
+  assert.deepEqual(r, [false, true, false]);
+});
+
+test('V185-07 DEPLOY_TRASH deploys a matching Nexus from the Trash and leaves other cards', async () => {
+  const r = await ev(`const a = sp('BS01-035', P, 3); P.cores = P.cores || []; const n = BS.mkInst('BS01-098'), m = BS.mkInst('BS01-100'); P.trash.push(n, m);
+    const c = { p: P, opp: O, src: a, ctx: {} }; await BS.FX_ACTIONS.DEPLOY_TRASH.run(c, { match: { costLe: 3 } });
+    return [c.ctx.did, P.nexus.includes(n), P.trash.includes(m), P.trash.includes(n)];`);
+  assert.deepEqual(r, [true, true, true, false]);
+});

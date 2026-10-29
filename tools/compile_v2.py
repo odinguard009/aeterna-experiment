@@ -404,6 +404,13 @@ def own_grammar(s, ctx=None):
         if m.group(3): mt['color'] = m.group(3).lower()
         if m.group(5): mt['keyword'] = m.group(5).title()
         return [{'do': 'RETURN_TRASH', 'match': mt}]
+    m = re.fullmatch(r'(?:(?:you can|you may) )?target an? (?:cost (\d+) or (less|more) )?(?:(red|purple|green|white|yellow|blue) )?(?:"([^"]+)" family )?nexus card in your trash\.\s*deploy it without paying the cost', x, re.I)      # v0.185 DEPLOY_TRASH (schema 66)
+    if m and (m.group(1) or m.group(3) or m.group(4)):
+        mt = {}
+        if m.group(4): mt['family'] = [m.group(4)]
+        if m.group(1): mt['costGe' if m.group(2).lower() == 'more' else 'costLe'] = int(m.group(1))
+        if m.group(3): mt['color'] = m.group(3).lower()
+        return [{'do': 'DEPLOY_TRASH', 'match': mt}]
     m = re.match(r'^(?:you can )?return an? (spirit|magic) card(?: with ([a-z]+))? from your trash to (?:the|your) hand$', x, re.I)
     if m:      # v0.176: untargeted pick from the Trash (engine RETURN_TRASH, match type Spirit + optional keyword); v0.180 "a Magic card"
         mt = {'type': m.group(1).title()}

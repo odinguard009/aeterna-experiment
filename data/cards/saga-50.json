@@ -6724,25 +6724,43 @@
   "mechanics": [
    "Soul Magic"
   ],
+  "soulMagic": "blue",
   "magic": {
    "timing": [
+    "MAIN",
     "FLASH"
    ],
-   "effect": "ACTIONS",
+   "effect": null,
    "value": 0,
-   "actions": [
-    {
-     "do": "BP_TARGET",
-     "n": 2000,
-     "to": "pick"
+   "by": {
+    "MAIN": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "DEPLOY_TRASH",
+       "match": {
+        "costLe": 5,
+        "color": "blue"
+       }
+      }
+     ]
+    },
+    "FLASH": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "BP_TARGET",
+       "n": 2000,
+       "to": "pick"
+      }
+     ]
     }
-   ]
+   }
   },
-  "fxComplete": false,
-  "residual": [
-   "{{Soul Magic|b}} Main Target a Cost 5 or less Blue Nexus card in your Trash. Deploy it without paying the cost."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-126",
@@ -10728,16 +10746,32 @@
    "Cyantree",
    "Venabeast"
   ],
-  "text": "[LV1-2] (When Destroyed)\nTarget a \"Cyantree\" family Nexus card in your Trash. Deploy it without paying the cost.",
+  "text": "[LV1][LV2] (When Destroyed)\nTarget a \"Cyantree\" family Nexus card in your Trash. Deploy it without paying the cost.",
   "image": "26RBS02-065.png",
   "block": "A",
   "saga": 50,
   "ex_symbols": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Destroyed) Target a \"Cyantree\" family Nexus card in your Trash. Deploy it without paying the cost."
+  "effects": [
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DEPLOY_TRASH",
+      "match": {
+       "family": [
+        "Cyantree"
+       ]
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS02-066",

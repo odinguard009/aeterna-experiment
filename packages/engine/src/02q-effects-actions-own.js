@@ -67,6 +67,23 @@ Object.assign(FX_ACTIONS, {
       }
       removeFrom(c.p.trash, t); c.p.hand.push(t); c.ctx.returned = t; handUp(c.p, 1); log(`${CARDS[c.src.id].name}: ${CARDS[t.id].name} returns from the Trash to the Hand.`);
     } },
+  /* v0.185 (schema 66) DEPLOY_TRASH {match}: "Target a <X> Nexus card in your Trash. Deploy it without paying the cost." (Nexus only) */
+  DEPLOY_TRASH: { chk: a => !!a.match && hasMatch(a.match) && Object.keys(a).every(k => ['do', 'match', 'if'].includes(k)),
+    txt: () => 'deploy a matching Nexus card from your Trash without paying the cost',
+    cands: (c, a) => c.p.trash.filter(t => CARDS[t.id].type === 'Nexus' && fxMatch(CARDS[t.id], a.match) && canPlaceFree(c.p, t)),
+    can: (c, a) => FX_ACTIONS.DEPLOY_TRASH.cands(c, a).length > 0,
+    run: async (c, a) => {
+      const L = FX_ACTIONS.DEPLOY_TRASH.cands(c, a); c.ctx.did = false; if (!L.length) return;
+      let t;
+      if (c.p.cpu) t = L.slice().sort((x, y) => CARDS[y.id].cost - CARDS[x.id].cost)[0];
+      else {
+        const ids = Array.from(new Set(L.map(x => x.id))).slice(0, 8);
+        const id = await ask({ title: `✨ ${CARDS[c.src.id].name}`, peek: true, wide: true, html: 'Choose a Nexus to deploy from your Trash.', cards: cardIds(ids), buttons: ids.map(i => ({ label: CARDS[i].name, value: i })) });
+        t = L.find(x => x.id === id) || L[0];
+      }
+      removeFrom(c.p.trash, t); c.p.hand.push(t);
+      if (await summonFree(c.p, t)) c.ctx.did = true; else { removeFrom(c.p.hand, t); c.p.trash.push(t); }
+    } },
   MIRAGE_SET: { chk: () => true, txt: () => 'set this card as a Mirage without paying the cost (only if you have no Mirage set)',
     can: c => !c.p.mirage && !!CARDS[c.src.id].mirage && (c.p.revealed.includes(c.src) || c.p.hand.includes(c.src)),
     run: async c => {
