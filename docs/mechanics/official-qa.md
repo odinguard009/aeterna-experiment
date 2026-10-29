@@ -1,10 +1,11 @@
 # Official Q&A rule notes (R8, 2026-10-29)
 
 - **Source:** the Q&A of each official card page, stored in `data/sources/official-fields.json` (`qa`: id, date, question, answer). 6,368 of 8,629 records carry at least one entry. Notes below are paraphrases; Q ids point to the original.
-- **Status of every note:** read from the Q&A only. None is checked against the engine and none has a test yet; use `bs-card-verify` per card before relying on one.
+- **Status of every note:** read from the Q&A. Marks (v0.194.0): **verified** = engine test in `tests/unit/official_qa_notes.test.mjs`; **untested** = not compared with the engine. Unmarked notes are untested; use `bs-card-verify` per card before relying on one.
 - **Counts (question text, all cards):** Mirage 633 entries on 371 cards; Manifest (顕現) 172; two-sided Brave / Revival (リバイバル) wording about 770 (loose match, includes unrelated hits).
 
 ## Mirage
+- Verified in part (Q76-01/02): a Mirage set from the hand pays its printed Mirage cost, lands in the Mirage slot, is refused without enough cores, and only one can be set per turn. Not tested: the Magic-use side.
 - Setting a Mirage is not using a Magic card, so effects that let you use Magic without paying do not let you set one without the Mirage cost (Q1819).
 - An effect that keeps working "while the Mirage is set" is not counted as a use; another Magic effect may still be used once per turn on top of it (Q27713).
 - Setting a Mirage through a Spirit/Nexus effect replaces the set Mirage the same way as a Main Step set, unless the effect says otherwise (Q8822).
@@ -24,5 +25,5 @@
 - A Revival Spirit summoned by its Burst does not set Burst through its own Lv effects (Q5613).
 
 ## Not done
-- No engine comparison, no test, no UI link from card detail to Q&A.
+- Engine comparison only for the Mirage cost/slot/once-per-turn rule above (BS76-002 is the only complete card with a `mirage` field); Manifest and Revival notes are untested (BS38-RV022 is partial, no effects to test), no UI link from card detail to Q&A.
 - Only the three named targets were read, by sampling; the other mechanics hold more Q&A.
