@@ -8,7 +8,7 @@ reduction: only the six colour keys are replaced (other keys such as god / ultim
 level count (bp + cores); a Nexus is left alone (the page lists a threshold the library models differently). colors: the `colors` list (the engine reads it), `color`
 stays when it is in the list, else becomes the first official colour. Files keep their layout (indent 1 in data/cards,
 one card per line in data/import).
-rarity: C U R M X ... (full-width Ｃ/Ｕ/Ｒ normalised). collab: official collaboration names. bicon: official block icon numbers ("A" or "4"); only set
+rarity (stored as `rcode`; the Fandom `rarity` word list stays): C U R M X ... (full-width Ｃ/Ｕ/Ｒ normalised). collab: official collaboration names. bicon: official block icon numbers ("A" or "4"); only set
 when the official page shows one (older cards have none, so absent means no icon)."""
 import argparse, glob, json, os, re, sys
 
@@ -66,8 +66,8 @@ def changes(c, o, field):
                 out.append(('brave', new))
     elif field == 'rarity':
         r = FULLWIDTH.get(o['rarity'], o['rarity'])
-        if r and c.get('rarity') != r:
-            out.append(('rarity', r))
+        if r and c.get('rcode') != r:
+            out.append(('rcode', r))
     elif field == 'collab':
         if o['collab'] and c.get('collab') != o['collab']:
             out.append(('collab', list(o['collab'])))

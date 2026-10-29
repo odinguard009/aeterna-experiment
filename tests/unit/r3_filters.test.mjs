@@ -13,11 +13,11 @@ const grid = '#db-card-list .tile';
 test('R3-01 rarity filter keeps only the picked rarity (full-width Ｃ is normalised to C)', async () => {
   const r = await g.page.evaluate((grid) => {
     BS.switchView('view-deckbuilder'); BS.dbResetFilters();
-    const all = Object.values(BS.CARDS), want = all.filter(c => c.rarity === 'R').length;
+    const all = Object.values(BS.CARDS), want = all.filter(c => c.rcode === 'R').length;
     BS.DBF.rars = new Set(['R']); BS.renderDeckBuilder();
     const ids = [...document.querySelectorAll(grid)].map(c => c.dataset.v);
     BS.dbResetFilters();
-    return { want, shown: ids.length, ok: ids.every(id => BS.CARDS[id].rarity === 'R'), fullwidth: all.filter(c => /[Ａ-Ｚ]/.test(c.rarity || '')).length };
+    return { want, shown: ids.length, ok: ids.every(id => BS.CARDS[id].rcode === 'R'), fullwidth: all.filter(c => /[Ａ-Ｚ]/.test(c.rcode || '')).length };
   }, grid);
   assert.ok(r.want > 0 && r.ok);
   assert.equal(r.fullwidth, 0);

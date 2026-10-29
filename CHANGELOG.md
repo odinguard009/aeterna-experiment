@@ -7,7 +7,7 @@ Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.m
 ## v0.189.0
 - Lane: U/I
 - **R3: Block icon, Rarity and Collab filters (Deck Builder and Library)**
-  - `tools/apply_official.py` gained the fields `rarity`, `collab` and `bicon` (official data); applied to `data/cards` and `data/import` (rarity 14,116 card rows, collab 258, block icon 7,861). Full-width Ｃ/Ｕ/Ｒ are normalised. The engine parser carries the three fields (library filters only; fx schema v71).
+  - `tools/apply_official.py` gained the fields `rarity`, `collab` and `bicon` (official data); applied to `data/cards` and `data/import` (rarity code `rcode` 14,116 card rows (the Fandom `rarity` word list is kept), collab 258, block icon 7,861). Full-width Ｃ/Ｕ/Ｒ are normalised. The engine parser carries the three fields (library filters only; fx schema v71).
   - New dropdowns: Block (A, 3-13, "No icon"), Rarity, Collab. The 40 library cards without an official record drop out of Rarity and Collab; "No icon" shows them.
   - Not shipped (data incomplete, plan rule): official category, reduction, symbols, work icon.
   - Budgets: B01 raised 1070 -> 1075 KB. New tests `tests/unit/r3_filters.test.mjs`. Screenshots `docs/screenshots/r3-filters-*.png`. Player-view subagent pass not run. Revert: `backup/v0.188.0`.

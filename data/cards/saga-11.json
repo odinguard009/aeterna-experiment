@@ -49,10 +49,10 @@
   ],
   "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) and smoke-checked; not yet checked against the card image.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS52-002",
@@ -94,10 +94,10 @@
    "[LV2][LV3] When this Spirit would leave the Field due to an opposing effect, it can remain on the field, in the same condition."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS52-003",
@@ -134,10 +134,10 @@
    "[LV2] Opposing Grandwalker Nexuses have zero symbols."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS52-004",
@@ -179,10 +179,10 @@
    "[LV2][LV3] Flash - (Your Attack Step) By exhausting this Spirit, draw a card."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS52-005",
@@ -225,10 +225,10 @@
    "[LV2][LV3] (Your Attack Step) When your Red \"Primal\" family Spirit attacks, send a core from any opposing Grandwalker Nexus to the Void, and draw a card."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS52-006",
@@ -269,10 +269,10 @@
    "[LV1][LV2][LV3] Flash - (Either Attack Step) By paying one cost, destroy an opposing 4000 BP or less Spirit."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS52-008",
@@ -330,10 +330,10 @@
    "[LV2][LV3] Your originally Cost 5 or more Spirit's \"Nexus Destruction\" effects can also target non-\"Primal\" family Grandwalker Nexuses."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS52-009",
@@ -376,10 +376,10 @@
    "[LV2][LV3] (When Attacks) Once per turn, you can refresh a \"Clown\" family Spirit you control."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS52-010",
@@ -438,10 +438,10 @@
    "{{Burst|After an opposing Spirit/Brave's (When Summoned) effect resolves}} If there's any Red symbol on your Field, draw two cards. After this effect resolves, summon this card without paying the cost."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS52-011",
@@ -476,10 +476,10 @@
    "[LV1][LV2] This Spirit can block opposing \"can't be blocked\" Spirits."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS52-012",
@@ -516,10 +516,10 @@
    "[LV1][LV2] Your \"Dionysus\"-named Grandwalker Nexuses can't be destroyed nor exhausted by opposing effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS52-013",
@@ -558,10 +558,10 @@
    "When your Life would be reduced by an opposing effect, by banishing this card from the Trash, the effect reduces -1 Life."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS52-014",
@@ -602,10 +602,10 @@
    "[LV2][LV3] (Opposing Attack Step) Opposing Spirits with one core on them can't attack."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS52-016",
@@ -646,10 +646,10 @@
    "[LV2][LV3] (When Attacks) Send the opposing from their Field/Reserve to the Trash. Then, if you have two counters or more, destroy an opposing Spirit with the most cores on it."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS52-019",
@@ -689,10 +689,10 @@
    "{{Burst|After an opposing Spirit's (When Summoned/Advent) effect resolves}} Send two cores from any opposing Spirit(s) to the Trash. Also, if you have two counters or more, send two cores from any opposing Spirit(s) to the Trash. After that effect resolves, summon this card without paying the cost."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS52-020",
@@ -734,10 +734,10 @@
    "Flash - Sound Speed (Either Attack Step) You can summon this card from the Hand by paying the cost from either your Reserve or by paying from your Red/Green Grandwalker Nexuses and sending the cores to the Void."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS52-021",
@@ -773,10 +773,10 @@
    "[LV1][LV2] All your \"Saraswati\"-named Grandwalker Nexuses are unaffected by opposing Magic effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS52-022",
@@ -813,10 +813,10 @@
    "[LV2] When this Spirit would be returned to the Hand/Deck due to opposing effects, it can remain on the field, in the same condition."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS52-023",
@@ -857,10 +857,10 @@
    "[LV1][LV2][LV3] When this Spirit would leave the Field due to opposing effects, it can remain on the Field, exhausted."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS52-024",
@@ -897,10 +897,10 @@
    "[LV2] (When Attacks) If this is the first attack of your turn, this Spirit refreshes."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS52-026",
@@ -938,10 +938,10 @@
    "[LV2] (When Attacks) While you have three counters or more, this Spirit is unaffected by opposing effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "11"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS52-027",
@@ -978,10 +978,10 @@
    "[LV2] (When Attacks) Put a core from the Void to your Reserve. Also, while braved to a Brave, put a core from the Void to your Reserve."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS52-028",
@@ -1022,10 +1022,10 @@
    "[LV2] (When Attacks/Blocks) The opponent can't activate Burst effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS52-029",
@@ -1062,10 +1062,10 @@
    "[LV2] (Your Main Step) Add a White Rebirth card revealed from deck by this Spirit's effect to your Hand. If you have two counters or more, this effect adds +1 card to your Hand."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "12"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS52-030",
@@ -1117,10 +1117,10 @@
    "[LV2] Every Grandwalker Nexus has zero symbols."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS52-031",
@@ -1161,10 +1161,10 @@
    "[LV2][LV3] When you would gain cores from the Void via your effects, instead of gaining cores, draw a card."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS52-032",
@@ -1201,10 +1201,10 @@
    "[LV2] Give all your \"Ice Princess\"/\"Rouse Emperor\" family White Spirits: \"{{ha|Red/Green}} This Spirit is unaffected by opposing Red/Green Spirit/Brave/Nexus/Magic effects.\""
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "12"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS52-033",
@@ -1260,10 +1260,10 @@
    "[LV2] Flash - (Either Attack Step) Once per turn, by paying two costs, return an opposing 7000 BP or less Spirit to the Hand."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS52-035",
@@ -1321,10 +1321,10 @@
    "[LV2][LV3] (Opposing Turn) This Spirit is unaffected by opposing effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS52-036",
@@ -1364,10 +1364,10 @@
    "[LV2] (Either Attack Step) When your Shining Heaven Unleash/Celestial Unleash would activate, you can activate it, treating the stated cores as having been put onto your Spirits."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "8"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS52-037",
@@ -1431,10 +1431,10 @@
    "[LV2] While you have three counters or more, this Spirit's symbol becomes two White symbols."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS52-038",
@@ -1476,10 +1476,10 @@
    "[LV2] (When Attacks/Blocks) Once per turn, this Spirit refreshes."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS52-039",
@@ -1535,10 +1535,10 @@
    "When your Life would be reduced by opposing effects, by paying one cost to summon this card from your Hand, your Life won't be reduced."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS52-040",
@@ -1575,10 +1575,10 @@
    "[LV2] Your Cost 4 or more \"Dark Artes\" family Spirits can't be returned to the Hand/Deck by opposing effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS52-041",
@@ -1615,10 +1615,10 @@
    "[LV2] \"Dark Artes\" family cards in your Trash are unaffected by opposing effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS52-042",
@@ -1659,10 +1659,10 @@
    "[LV2][LV3] Your \"Demeter\"-named Grandwalker Nexuses are unaffected by opposing Blue effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS52-043",
@@ -1699,10 +1699,10 @@
    "[LV2] While your Hand is five or less, your Hand is unaffected by opposing effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS52-044",
@@ -1760,10 +1760,10 @@
    "[LV1][LV2][LV3] (When Summoned) You can reveal three cards from your decktop. Summon a \"Clown\"/\"Dark Artes\" family Spirit card among them, without paying the cost. However, any (When Summoned) effects can't activate. Discard any remaining cards."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS52-045",
@@ -1803,10 +1803,10 @@
    "[LV1][LV2][LV3] (When Summoned) Draw two cards from the deckbottom. Or, by banishing three \"Dark Artes\" family cards from your Trash, until your next Start Step, every opposing Spirit/Nexus/Grandwalker Nexus has zero symbols. This \"make symbols zero\" effect can only be used once per game."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS52-047",
@@ -1851,10 +1851,10 @@
    "[LV2][LV3] (When Attacks/Blocks) During this turn, give an opposing Spirit -5000 BP, and destroy it when its BP becomes 0."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS52-048",
@@ -1895,10 +1895,10 @@
    "[LV2][LV3] (When Attacks) If you have three counters or more, your Flash Timing occurs first."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS52-049",
@@ -1953,10 +1953,10 @@
    "[LV2] All your Spirits can block opposing \"can't be blocked\" Spirits. Also, while the opponent controls any Grandwalker Nexus, this Spirit is unaffected by opposing effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS52-050",
@@ -1993,10 +1993,10 @@
    "[LV2] When your Blue \"Primal\" family Spirits would be returned to the Hand/Deck due to opposing effects, they can remain on the Field, exhausted."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS52-051",
@@ -2033,10 +2033,10 @@
    "[LV2] (Your Main Step) Add a Blue Rebirth card revealed from deck by this Spirit's effect to your Hand. If you have two counters or more, this effect adds +1 card to your Hand."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS52-052",
@@ -2088,10 +2088,10 @@
    "[LV2] When you draw via your Blue-only Spirit effects, the opponent can't activate effects which trigger upon draws/Hand increases."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS52-053",
@@ -2131,10 +2131,10 @@
    "[LV1][LV2][LV3] (When Summoned) Draw three cards, then discard two cards from your Hand. Or, (Once per Game: Same Name) if your Life is three or less, and there are three or more Blue \"Primal\" family Spirit cards in your Trash, Attack Step doesn't occur on the next opposing Turn."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "12"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS52-054",
@@ -2175,10 +2175,10 @@
    "[LV2][LV3] (When Attacks) Draw two cards, then discard a card from your Hand. If a Blue Nexus card is discarded, this Spirit gains +5000 BP."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS52-055",
@@ -2215,10 +2215,10 @@
    "[LV2] (Opposing Attack Step) Your Life can't be reduced by attacks of opposing \"can't be blocked\" Spirits."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS52-056",
@@ -2255,10 +2255,10 @@
    "[LV2] (When Attacks) If you have two counters or more, this Spirits gains an extra Blue symbol."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS52-059",
@@ -2303,10 +2303,10 @@
    "[LV2][LV3] (When Blocks) Once per turn, refresh this Spirit."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS52-RV001",
@@ -2344,10 +2344,10 @@
    "[LV2][LV3] (Your Attack Step) When your Red \"Primal\" family Spirits would return to the Hand/Deck due to opposing effects, they can remain on the Field, exhausted."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS52-RV002",
@@ -2385,10 +2385,10 @@
    "[LV1][LV2] (Either Main Step) When any player would gain cores from the Void, or would put cores onto a non-\"Primal\" family Grandwalker Nexus via Core Charge, those cores are put from the activating player's Life, instead of the Void. Neither player can activate Burst effects due to this effect."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "10"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS52-RV003",
@@ -2430,10 +2430,10 @@
    "[LV2][LV3] (Either Attack Step) Cores on all opposing battling Spirits can't be removed."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS52-RV004",
@@ -2506,10 +2506,10 @@
    "[LV2][LV3] (When Attacks) Once per turn, this Spirit refreshes."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS52-RV005",
@@ -2551,10 +2551,10 @@
    "[LV3] (Either Attack Step) (Can't Stack) After your Yellow Magic card's effect resolves, send an opposing Life to the Reserve."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS52-RV006",
@@ -2592,10 +2592,10 @@
    "[LV2] (Your Attack Step) When your Blue Rebirth Spirit attacks, destroy any number of opposing Spirits up to a total Cost of 6."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS52-RV007",
@@ -2642,10 +2642,10 @@
    "[LV1][LV2] (Your Main Step) (Once per turn: Same Name) By exhausting this Spirit, either draw a card, or put a core from the Void to this Spirit."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "10"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS52-X01",
@@ -2687,10 +2687,10 @@
    "[LV2][LV3] (When Attacks) For each counter you have, this Spirit gains an extra Red symbol (Max.3)."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "X",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "X"
  },
  {
   "id": "BS52-X02",
@@ -2732,10 +2732,10 @@
    "[LV1][LV2][LV3] (When Attacks) When blocked, treat this Spirit's color as colorless, and destroy the opposing blocking Spirit."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "X",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "X"
  },
  {
   "id": "BS52-X03",
@@ -2779,10 +2779,10 @@
    "[LV1][LV2][LV3] (When Attacks/Blocks) Heavy exhaust two opposing Spirits. At the end of battle, send an opposing Life to the Reserve. heb"
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "X",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "X"
  },
  {
   "id": "BS52-X04",
@@ -2847,10 +2847,10 @@
    "[LV2][LV3] (Your Attack Step) While you have three counters or more, your White \"Primal\" family Spirits can't be blocked and, once per turn per Spirit, at the end of the battle, they can refresh."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "X",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "X"
  },
  {
   "id": "BS52-X05",
@@ -2892,10 +2892,10 @@
    "[LV2][LV3] (When Attacks) When you have one counter or more, you can summon up to two Cost 6/7/8 \"Dark Artes\" family Spirit cards from your Hand/Trash, without paying the cost. This effect can only be used once per turn."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "X",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "X"
  },
  {
   "id": "BS52-X06",
@@ -2942,10 +2942,10 @@
    "[LV4] (When Attacks) Send an opposing Life to the Reserve. At the end of the battle, if you have four counters or more, and the opponent controls any Spirits, this Spirit can refresh."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "X",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "X"
  },
  {
   "id": "BS52-X07",
@@ -2987,10 +2987,10 @@
    "Grand Field [LV2] (Your Attack Step) All your originally Cost 6/7/8 \"Dark Artes\" family Spirits have two Yellow symbols and can't be blocked."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "X",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "X"
  },
  {
   "id": "BS52-X08",
@@ -3029,10 +3029,10 @@
    "Grand Field [LV2] (Can't Stack) When you're summoning/deploying/using a \"Primal\" family card, fill one of its reduction symbols."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "X",
   "bicon": [
    "12"
-  ]
+  ],
+  "rcode": "X"
  },
  {
   "id": "BS52-XX01",
@@ -3078,10 +3078,10 @@
    "[LV2][LV3] This Spirit's symbol is also treated as being Red/Purple/Green/White/Yellow/Blue. Also, while you have one counter or more, the number of cores on your \"Primal\" family Spirits can't be brought to less than one by opposing effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "XX",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "XX"
  },
  {
   "id": "BS52-XX02",
@@ -3128,10 +3128,10 @@
    "[LV3] (When Attacks) If you have five counters or more, send an opposing Life to the Void."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "XX",
   "bicon": [
    "11"
-  ]
+  ],
+  "rcode": "XX"
  },
  {
   "id": "BS52-XX03",
@@ -3177,10 +3177,10 @@
    "[LV2][LV3] This Spirit's symbol is also treated as Red/Purple/Green/White/Yellow/Blue. Also, while you have one counter or more, when your \"Primal\" family Spirits would be returned from the Field to the Hand/Deck by opposing effects, they can remain on the Field, in the same condition."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "XX",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "XX"
  },
  {
   "id": "BS53-001",
@@ -3232,10 +3232,10 @@
   ],
   "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) and smoke-checked; not yet checked against the card image.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS53-002",
@@ -3294,10 +3294,10 @@
    "[LV2][LV3] (Opposing Turn) When the opponent would summon Ultimate cards, unless they send one of their Lives to the Trash, they can't summon them. Burst effects can't be activated via this effect."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS53-003",
@@ -3337,10 +3337,10 @@
    "[LV1][LV2][LV3] (When Attacks) By sending a core from any opposing Grandwalker Nexuses to the Void, destroy an opposing 10000 BP or less Spirit."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS53-005",
@@ -3377,10 +3377,10 @@
    "[LV2] (When Attacks) By destroying an opposing Nexus, this Spirit gains +3000 BP."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS53-006",
@@ -3417,10 +3417,10 @@
    "[LV2] (Either Attack Step) All your \"Dragno\"-named Spirits gain +3000 BP."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS53-008",
@@ -3462,10 +3462,10 @@
    "[LV2][LV3] (When Attacks) For each two counters you have, increase the limit of this Spirit's \"BP Destruction effect\" by +6000."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS53-009",
@@ -3511,10 +3511,10 @@
    "[LV2][LV3] (When Attacks) You can set a card with Burst effect from your Hand. Also, once per turn, this Spirit can refresh."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS53-010",
@@ -3555,10 +3555,10 @@
    "{{Burst|After your Spirit is destroyed by the Opponent}} Return an \"Astral Dragon\" family card from your Trash to the Hand. After this effect resolves, summon this card without paying the cost."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS53-011",
@@ -3615,10 +3615,10 @@
   ],
   "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image.",
-  "rarity": "C",
   "bicon": [
    "8"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS53-012",
@@ -3655,10 +3655,10 @@
    "[LV1][LV2] This Spirit can't be destroyed by opposing effects, and the opponent can't increase cores from the Void to their Reserve/Spirits/non-\"Primal\" family Grandwalker Nexuses via their effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS53-013",
@@ -3698,10 +3698,10 @@
    "[LV1][LV2] (When Summoned) If summoned from the Hand, you can draw a card."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "8"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS53-014",
@@ -3738,10 +3738,10 @@
    "[LV2] All opposing Grandwalker Nexuses have zero symbols."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS53-015",
@@ -3778,10 +3778,10 @@
    "[LV1][LV2] (Your Attack Step) When your Spirit with zero cores on it attacks, send a core from any opposing Spirit to the Reserve. This effect doesn't stack."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS53-016",
@@ -3822,10 +3822,10 @@
    "[LV2][LV3] (Your Turn) Treat this Spirit's color as colorless."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS53-018",
@@ -3896,10 +3896,10 @@
    "[LV2][LV3] When your Reborn Spirits, or \"Nightling\"/\"Rouse Emperor\" family Spirits would leave the Field due to opposing effects, by sending a core from the opposing Reserve/Nexus to the Trash, they remain on Field in the same condition."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS53-019",
@@ -3940,10 +3940,10 @@
    "[LV1][LV2] (When Summoned/Attacks) By destroying an opposing exhausted Cost 6 or less Spirit, draw a card."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS53-022",
@@ -3984,10 +3984,10 @@
    "[LV2][LV3] (When Attacks) Send a core, besides , from the opposing Trash to the Void."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS53-023",
@@ -4027,10 +4027,10 @@
    "[LV1][LV2] (When Destroyed by the Opponent) You can summon a Spirit card with a \"Sound Speed\"-named effect from your Hand, without paying the cost."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS53-024",
@@ -4067,10 +4067,10 @@
    "[LV1][LV2] This Spirit can't be destroyed by opposing effects, and neither player can draw with Red/Purple/Blue Ultimate/Brave/Nexus/Magic effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS53-025",
@@ -4107,10 +4107,10 @@
    "[LV2] (Your Main Step) Add a Green Rebirth card revealed from deck by this Spirit's effect to the Hand. If you have two counters or more, this effect adds +1 card to the Hand."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS53-026",
@@ -4150,10 +4150,10 @@
    "[LV1][LV2] (Opposing turn) When the opponent would summon any Ultimate cards/Cost 3 Spirit cards, they are summoned in exhausted state."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS53-027",
@@ -4194,10 +4194,10 @@
    "[LV2][LV3] (When Attacks) The opponent can't activate Burst effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS53-030",
@@ -4255,10 +4255,10 @@
    "[LV2] (When Attacks) The opponent can't activate Burst effects. Also, at the end of battle, if you have two/three counters, once per turn, refresh this Spirit."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS53-032",
@@ -4302,10 +4302,10 @@
    "[LV2][LV3] (Your Attack Step) While your Reborn Spirit or your Green \"Primal\" family Spirit is attacking, the opponent can't activate Burst effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS53-033",
@@ -4347,10 +4347,10 @@
    "[LV2][LV3] (When Attacks/Blocks) At the end of battle, you can return this Spirit to Hand. When you've done so, put a core from the Void to your Reserve."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS53-034",
@@ -4406,10 +4406,10 @@
    "[LV1][LV2][LV3] (When Attacks) Heavy exhaust an opposing Spirit. Then, if you have two/three counters, return an opposing exhausted Spirit to the deckbottom. heb"
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS53-035",
@@ -4446,10 +4446,10 @@
    "[LV2] When your pre-Rebirth Spirit/pre-Rebirth Nexus is reborn, put a core from the Void to your Reserve. This effect can only be used once per turn."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS53-036",
@@ -4486,10 +4486,10 @@
    "[LV1][LV2] This Spirit can't be destroyed by opposing effects, and your deck can't be discarded."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS53-037",
@@ -4557,10 +4557,10 @@
    "[LV2][LV3] (Opposing Attack Step) When an opposing Cost 5 or less Spirit attacks, this Spirit refreshes, and you can put a core from the Void to this Spirit."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS53-039",
@@ -4617,10 +4617,10 @@
    "{{Burst|s|After the opposing Hand increases via an opposing effect}} During this turn, all your \"Lord\" family Spirits can't be destroyed by the opponent. Also, if this Burst was activated via Catalyze, during this battle, a \"Lord\"/\"Vassal\" family Spirit you control gain an extra White symbol, and can't be blocked. After this effect resolves, summon this card without paying the cost."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS53-040",
@@ -4689,10 +4689,10 @@
    "[LV1][LV2][LV3] Flash - (Opposing Attack Step) Once per turn, by putting a core from the Void to this Spirit, refresh it. Also, if you have three or more counters, return an opposing Spirit to the deckbottom."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS53-041",
@@ -4737,10 +4737,10 @@
    "Flash - {{Accel|Cost 5 ()}} Refresh a \"Primal\"/\"Android\" family Spirit you control. After this effect resolves, put this card face-up onto the Removed Zone."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS53-042",
@@ -4781,10 +4781,10 @@
    "[LV2][LV3] (When Attacks/Blocks) Once per turn, refresh this Spirit. Also, if you have four counters or more, return a random card from the opposing Hand to the deckbottom."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS53-043",
@@ -4825,10 +4825,10 @@
    "[LV2][LV3] (Opposing Attack Step) Opposing 10000 BP or less Spirits must attack if possible. Also, when an opposing Spirit attacks, refresh this Spirit."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS53-045",
@@ -4879,10 +4879,10 @@
    "[LV2] All your \"Primal\" family Spirits gain +2000 BP. While you have 1/3/5/7 counters, instead, all your \"Primal\" family Spirits gain +5000 BP."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS53-046",
@@ -4919,10 +4919,10 @@
    "[LV2] This Spirit can't attack, and when it would leave the Field due to an opposing effect, by sending a core from your Life to this Spirit, it remains on the Field, exhausted. Burst effects can't activate via this effect."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS53-047",
@@ -4959,10 +4959,10 @@
    "[LV2] All opposing Grandwalker Nexuses have zero symbols."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS53-049",
@@ -5003,10 +5003,10 @@
    "[LV1][LV2][LV3] (Your Attack Step) At the end of the battle of your Reborn Spirit/Cost 5 or more Yellow \"Primal\" family Spirit, put a core from the Void to your Life. This effect doesn't stack."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS53-050",
@@ -5078,10 +5078,10 @@
    "[LV2][LV3] While you have 1/3/5/7 counters, when your Yellow \"Primal\" family Spirits are destroyed by an opposing effect, they can remain on the Field, exhausted."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS53-051",
@@ -5122,10 +5122,10 @@
    "[LV2][LV3] (When Attacks) During this turn, give an opposing Spirit -8000 BP, and destroy it if reaches 0 BP."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS53-052",
@@ -5166,10 +5166,10 @@
    "[LV2] (Your Attack Step) When your Life is increased, draw a card. This effect doesn't stack."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS53-053",
@@ -5211,10 +5211,10 @@
    "[LV2][LV3] (Your Attack Step) The opponent can't end the Attack Step via effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS53-055",
@@ -5251,10 +5251,10 @@
    "[LV1][LV2] When your \"WBS\"-named Spirits would leave the Field due to opposing effects, by discarding a card from your Hand, they remain on the Field, exhausted."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS53-056",
@@ -5291,10 +5291,10 @@
    "[LV2] (Your Attack Step) When your “WBS”-named card is discarded or sent to the Removed Zone/Trash from your Hand, put a core from the Void to this Spirit. This effect can only be used once per turn."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS53-057",
@@ -5331,10 +5331,10 @@
    "[LV2] (When Attacks) By discarding a card from your Hand, destroy an opposing Cost 5 or less Spirit."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS53-058",
@@ -5372,10 +5372,10 @@
    "[LV2] (When Attacks) Ignoring the cost of Braves, destroy an opposing Cost 4 or less Spirit. For each counter you have, the limit of this \"Cost Destruction Effect\" gets +1."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS53-059",
@@ -5426,10 +5426,10 @@
    "When this card in Hand is discarded or sent to the Removed Zone by your \"WBS\"-named Spirit effect/exactly-named \"Grandwalker Lakshmi\"'s effect, put a core from the Void to your Reserve. This effect can only be used once per turn."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS53-060",
@@ -5466,10 +5466,10 @@
    "[LV2] (When Attacks/Destroyed) You can summon a \"WBS\"-named Spirit card from your Removed Zone by paying two costs."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS53-061",
@@ -5522,10 +5522,10 @@
    "[LV2] (When Attacks) Draw two cards, then either discard two cards from your Hand, or one \"WBS\"-named Spirit card from your Hand."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS53-062",
@@ -5581,10 +5581,10 @@
    "[LV1][LV2][LV3] (When Attacks) You can draw three cards. When you've done so, discard two cards from your Hand."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS53-065",
@@ -5616,10 +5616,10 @@
    "[LV2] When your Red/Purple Spirits are destroyed by opposing effects, by discard a card from your Hand, one of them remains on the Field, exhausted."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS53-072",
@@ -5652,10 +5652,10 @@
    "When the opponent uses a Magic card in your Attack Step, before the effect activates, by paying the cost and discarding this card from your Hand, immediately negate that effect."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS53-RV001",
@@ -5696,10 +5696,10 @@
    "[LV2][LV3] (When Attacks) This Spirit gains +3000 BP. Also, if you have two counters or more, draw a card."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS53-RV002",
@@ -5740,10 +5740,10 @@
    "[LV2][LV3] (Either Attack Step) When your Reborn Spirits, or your \"Nightling\"/ \"Rouse Emperor\" family Spirits are destroyed, destroy an opposing exhausted Spirit."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS53-RV003",
@@ -5781,10 +5781,10 @@
    "[LV2] (When Attacks/Blocks) Exhaust an opposing Spirit. If you have 2/3 counters, instead, exhaust two opposing Spirits."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS53-RV004",
@@ -5827,10 +5827,10 @@
    "[LV2][LV3] While you have three counters or more, this Spirit gains an extra White symbol."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS53-RV005",
@@ -5889,10 +5889,10 @@
    "[LV1][LV2][LV3] (When Summoned) For each \"Primal\" family Spirit you control, during this turn, an opposing Spirit can't block."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS53-RV006",
@@ -5930,10 +5930,10 @@
    "[LV2] (When Attacks) By destroying an opposing Spirit with a cost equal or inferior to this Spirit's, send an opposing Life to the Reserve."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS53-X01",
@@ -5976,10 +5976,10 @@
    "[LV2][LV3] (When Attacks) At the end of battle, you can return this Spirit to the Hand."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "X",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "X"
  },
  {
   "id": "BS53-X02",
@@ -6021,10 +6021,10 @@
    "[LV2][LV3] (When Attacks) During this turn, increase the Level Cost of all opposing Spirits/Nexuses by +1."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "X",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "X"
  },
  {
   "id": "BS53-X03",
@@ -6066,10 +6066,10 @@
    "[LV2][LV3] (Your Attack Step) When your Spirit's attack reduces the opposing Life, send an opposing Life to the Reserve. If you have four counters or more, instead, send two opposing Lives to the Reserve."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "X",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "X"
  },
  {
   "id": "BS53-X04",
@@ -6112,10 +6112,10 @@
    "[LV2][LV3] (When Attacks/Blocks) This Spirit gains +5000 BP, and once per turn, it can refresh."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "X",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "X"
  },
  {
   "id": "BS53-X05",
@@ -6172,10 +6172,10 @@
    "[LV3] (Your Attack Step) When your Life would be increased, instead of increasing it, you can send an opposing Life to the Trash."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "X",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "X"
  },
  {
   "id": "BS53-X06",
@@ -6213,10 +6213,10 @@
    "[LV2] (Your Attack Step) When your Blue \"Primal\" family pre-Rebirth Spirit/pre-Rebirth Nexus is reborn, choose either Core Step or Draw Step, and that step doesn't occur for the opponent during the next turn."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "X",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "X"
  },
  {
   "id": "BS53-X07",
@@ -6259,10 +6259,10 @@
    "[LV2][LV3] (Your Attack Step) For each counter you have, this Spirit gains an extra Blue symbol."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "X",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "X"
  },
  {
   "id": "BS53-X09",
@@ -6304,10 +6304,10 @@
    "Grand Field [LV2] (Your Attack Step) When your \"WBS\"-named card is sent from the Hand to the Removed Zone/Trash, you can destroy an opposing Cost 6 or less Spirit."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "X",
   "bicon": [
    "10"
-  ]
+  ],
+  "rcode": "X"
  },
  {
   "id": "BS53-XX01",
@@ -6347,10 +6347,10 @@
    "[LV2][LV3] (Your Attack Step) At the end of the battle of your Cost 8 or more \"Primal\" family Spirit, send an opposing Life to the Void."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "XX",
   "bicon": [
    "9"
-  ]
+  ],
+  "rcode": "XX"
  },
  {
   "id": "BS53-XX02",
@@ -6390,10 +6390,10 @@
    "[LV3] (Your Attack Step) While your Cost 8 or more \"Primal\" family Spirit is attacking, the opponent can't use Magic cards/Accel."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "XX",
   "bicon": [
    "9"
-  ]
+  ],
+  "rcode": "XX"
  },
  {
   "id": "BS53-XX03",
@@ -6433,10 +6433,10 @@
    "[LV2][LV3] (Your Attack Step) All your Cost 8 or more \"Primal\" family Spirits can't be blocked."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "XX",
   "bicon": [
    "9"
-  ]
+  ],
+  "rcode": "XX"
  },
  {
   "id": "BS54-001",
@@ -6473,10 +6473,10 @@
    "[LV2] All your Red Grandstone Nexuses gain an extra Red symbol."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-002",
@@ -6513,10 +6513,10 @@
    "[LV2] (When Attacks) If is on this Spirit, draw cards until you have four cards in Hand."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS54-003",
@@ -6556,10 +6556,10 @@
    "[LV2] Pursuit (Your Attack Step) This exhausted Spirit can heavy exhaust to attack. heb"
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-004",
@@ -6596,10 +6596,10 @@
    "[LV2] For each counter you have, this Spirit gains +3000 BP."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-005",
@@ -6666,10 +6666,10 @@
    "[LV1][LV2][LV3] (When Summoned) Destroy an opposing Ultimate."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-006",
@@ -6730,10 +6730,10 @@
    "[LV1][LV2][LV3] (Start of Your Attack Step) Put up to five cores, besides , from your Trash to any Spirits you control. When this effect puts two or more cores to any \"Dragno\"-named Spirits you control, besides any exactly-named \"The Legate Dragno\", draw two cards."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS54-008",
@@ -6771,10 +6771,10 @@
    "[LV2] (When Attacks) This Spirit gains +5000 BP. Also, during this turn, while your Red \"Primal\" family Spirit is attacking, the opponent can't end the Attack Step via effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS54-009",
@@ -6834,10 +6834,10 @@
    "[LV1][LV2][LV3] (When Summoned) Put a core from the Void to any Red Grandstone Nexus you control. Then, destroy an opposing 10000 BP or less Spirit. Effects of the Spirit destroyed by this effect can't activate."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-010",
@@ -6880,10 +6880,10 @@
    "[LV2][LV3] Effects of opposing Spirits/Ultimates/Nexuses destroyed by your \"Dragon\" family Spirits can't activate."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS54-011",
@@ -6920,10 +6920,10 @@
    "[LV2] All your Purple Grandstone Nexuses gain an extra Purple symbol."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-012",
@@ -6993,10 +6993,10 @@
    "(Can't Stack) When this card in Trash would be returned to the Hand by your Purple effect, you can summon it without paying the cost instead."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS54-013",
@@ -7037,10 +7037,10 @@
    "[LV2][LV3] While you control any Purple Grandstone Nexus, this Spirit can't attack/block, and is unaffected by opposing effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-014",
@@ -7077,10 +7077,10 @@
    "[LV1][LV2] All your \"DragonKnight\"-named Spirits can't be exhausted by opposing effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS54-015",
@@ -7121,10 +7121,10 @@
    "[LV2][LV3] While you have two counters or more, this Spirit's \"Core Removal effect\" sends +1 core to the Reserve."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-017",
@@ -7165,10 +7165,10 @@
    "[LV2][LV3] Except this Spirit, the LV2 cost of all your Purple-only \"Primal\" family Spirits becomes one."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS54-018",
@@ -7210,10 +7210,10 @@
    "[LV2][LV3] (When Attacks) Send a core from any opposing Spirit/Ultimate to the Trash."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS54-019",
@@ -7284,10 +7284,10 @@
    "When this set card would be discarded by you, you can reveal and return it to the Hand."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-020",
@@ -7343,10 +7343,10 @@
    "[LV1][LV2][LV3] (When Summoned) You can draw two cards. Then, you can send three cores from the opposing Field to the Reserve."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-021",
@@ -7383,10 +7383,10 @@
   "highSpeed": true,
   "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-022",
@@ -7423,10 +7423,10 @@
    "[LV2] All your Green Grandstone Nexuses gain an extra Green symbol."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-023",
@@ -7463,10 +7463,10 @@
    "[LV2] (Start of Your Attack Step) By exhausting this Spirit, return a \"Jammer\" Magic card from your Trash to the Hand."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "12"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-025",
@@ -7503,10 +7503,10 @@
    "[LV2] (Your Main Step) You can add a \"Jammer\" Magic card revealed from deck by this Spirit's effect to the Hand."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "12"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-026",
@@ -7544,10 +7544,10 @@
    "[LV2] (When Attacks) For each \"Shellman\" family Spirit you control, exhaust an opposing Spirit."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "11"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-027",
@@ -7588,10 +7588,10 @@
    "[LV2] (When Attacks) Once per turn, this Spirit refreshes."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS54-028",
@@ -7632,10 +7632,10 @@
    "[LV2] (When Attacks) Flip one of your Bunshin Spirits face-up, and if it's a Green Spirit card, summon it without paying the cost. Discard any remaining card."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-029",
@@ -7677,10 +7677,10 @@
    "[LV2][LV3] (When Attacks) When this Spirit's attack reduces the opposing Life, for each three \"Plant Spirit\" family Spirits you control, send two opposing Lives to the Trash."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS54-030",
@@ -7720,10 +7720,10 @@
    "[LV2] (When Attacks/Blocks) Once per turn, this Spirit refreshes."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS54-031",
@@ -7760,10 +7760,10 @@
    "[LV2] All your White Grandstone Nexuses gain an extra White symbol."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-033",
@@ -7824,10 +7824,10 @@
    "[LV1][LV2] (When Summoned) You can reveal three cards from your decktop. Among them, add a White Grandstone Nexus card, or an \"Ice Princess\" family Spirit card, except any exactly-named \"The MagicStoneGuardian Renata\", to the Hand. Discard any remaining cards."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "12"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-034",
@@ -7878,10 +7878,10 @@
    "[LV1][LV2] (Opposing Attack Step) This Spirit can block while exhausted. Also, while you control any Grandstone Nexus, this Spirit is unaffected by opposing Spirit/Ultimate/Nexus effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-035",
@@ -7918,10 +7918,10 @@
    "[LV2] (Your Attack Step) While this Spirit or your \"Rouse Emperor\" family Spirit is attacking, both players' Magic cards/Accel in Hand/Removed Zone get +5 costs."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS54-036",
@@ -7981,10 +7981,10 @@
    "[LV2][LV3] Flash - (Opposing Attack Step) Once per turn, you can refresh this Spirit."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-037",
@@ -8061,10 +8061,10 @@
    "[LV2] (When Attacks) This Spirit's symbol becomes two White symbols. Also, if you have three counters or more, once per turn, refresh this Spirit."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS54-038",
@@ -8104,10 +8104,10 @@
    "[LV2] (When Attacks/Blocks) Once per turn, this Spirit refreshes. Also, if you have one counter or more, put a core from the Void to any Spirit you control."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS54-039",
@@ -8189,10 +8189,10 @@
    "[LV1][LV2][LV3] (When Attacks/Blocks) By sending a core from this Spirit to another \"Ice Princess\"/\"Rouse Emperor\" family Spirit you control, refresh this Spirit."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS54-040",
@@ -8299,10 +8299,10 @@
   ],
   "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-041",
@@ -8342,10 +8342,10 @@
    "[LV3] (When Attacks) Destroy all opposing Spirits/Ultimates affected by \"BP- effects\"."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS54-042",
@@ -8380,10 +8380,10 @@
    "[LV2] (Start of Your Attack Step) You can summon a Yellow Cost 2 or less Spirit card from your Hand, by paying one cost. This effect can only be used once per turn."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-043",
@@ -8420,10 +8420,10 @@
    "[LV2] All your Yellow Grandstone Nexuses gain an extra Yellow symbol."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-044",
@@ -8465,10 +8465,10 @@
    "[LV2][LV3] When the opponent is summoning Ultimate cards, they can't use reduction symbols to reduce the cost."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-045",
@@ -8508,10 +8508,10 @@
    "[LV1][LV2][LV3] (When Destroyed by the Opponent) Return a Yellow \"Primal\" family Nexus card from your Trash to the Hand."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-047",
@@ -8548,10 +8548,10 @@
    "[LV2] (When Attacks) Besides , you can send a core from this Spirit to your Life. Or, you can pay three costs to immediately use the Flash effect of a \"Magibullet\" family Magic card, or a Cost 12 Magic card from your Hand."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS54-048",
@@ -8609,10 +8609,10 @@
    "[LV3] (Start of Your Attack Step) During this turn, give an opposing Spirit/Ultimate -10000 BP. Activate this effect for a number of times equal to the number of counters you have, and destroy if reaches 0 BP."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS54-049",
@@ -8656,10 +8656,10 @@
    "[LV2][LV3] (When Attacks/Blocks) During this turn, give an opposing Spirit -5000 BP. This effect can repeat for a number of times equal to the number of counters you have, and destroy if reaches 0 BP."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-050",
@@ -8701,10 +8701,10 @@
    "[LV2][LV3] (When Attacks) Draw a card from the deckbottom. Also, while braved to a \"Primal\" family Brave, this Spirit can't be blocked."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS54-051",
@@ -8742,10 +8742,10 @@
    "[LV2] All your Blue Grandstone Nexuses gain an extra Blue symbol."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-052",
@@ -8782,10 +8782,10 @@
    "[LV2] (Your Turn) You can add an exactly-named \"Grandwalker Lakshmi\" revealed from deck by this Spirit's effect to the Hand."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-053",
@@ -8823,10 +8823,10 @@
    "[LV2] (When Attacks) This Spirit gains +10000 BP, and its symbol becomes two Blue symbols."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-054",
@@ -8893,10 +8893,10 @@
    "[LV2] (Your Attack Step) All your \"WBS\"-named Spirits are treated as one level higher, and can't be destroyed by BP comparison."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS54-056",
@@ -8952,10 +8952,10 @@
    "[LV1][LV2][LV3] When your \"WBS\"-named Spirits would leave the Field due to an opposing effect, you can pay one cost to summon a \"WBS\"-named Spirit card from your Removed Zone."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-057",
@@ -8993,10 +8993,10 @@
    "[LV2] (When Attacks) This Spirit gains an extra Blue symbol."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS54-058",
@@ -9037,10 +9037,10 @@
    "[LV2][LV3] Flash - (Either Attack Step) By exhausting a Rebirth Nexus you control, refresh this Spirit, and put a core from the Void to any of your Spirits."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-059",
@@ -9081,10 +9081,10 @@
    "[LV2] (When Attacks) Ignoring the cost of Braves, destroy an opposing Cost 8 or less Spirit/Ultimate."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS54-060",
@@ -9122,10 +9122,10 @@
    "[LV2] (When Attacks) Ignoring the cost of Braves, destroy an opposing Cost 9 or less Spirit."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS54-067",
@@ -9180,10 +9180,10 @@
   },
   "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-074",
@@ -9224,10 +9224,10 @@
    "When your Life is reduced by the opponent, you can use this card from the Hand without paying the cost."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "11"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS54-RV001",
@@ -9267,10 +9267,10 @@
    "[LV2] Pursuit (Your Attack Step) This exhausted Spirit can heavy exhaust to attack. heb"
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-RV002",
@@ -9324,10 +9324,10 @@
    "[LV1][LV2] (Your Attack Step) All your \"Dragno\"-named Spirits gain +3000 BP."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-RV003",
@@ -9378,10 +9378,10 @@
    "[LV1][LV2] (When Depleted/Destroyed by the Opponent) Heavy exhaust two opposing Spirits. heb"
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-RV004",
@@ -9422,10 +9422,10 @@
    "[LV2][LV3] (Opposing Attack Step) You can add a White-only \"Primal\" family card revealed from deck by this Spirit's effect to the Hand."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-RV005",
@@ -9492,10 +9492,10 @@
    "During Brave [LV2] (When Attacks) This Spirit is unaffected by opposing effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-RV006",
@@ -9536,10 +9536,10 @@
    "[LV3] When this Spirit's effect destroy any opposing Spirits, draw a card. This effect can only be used once per turn."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS54-X01",
@@ -9583,10 +9583,10 @@
    "[LV2][LV3] (When Attacks) This Spirit gains +5000 BP for each \"Dragno\"-named Spirit you control. Also, destroy an opposing Spirit/Ultimate with a BP equal or inferior to this Spirit's."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "X",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "X"
  },
  {
   "id": "BS54-X02",
@@ -9627,10 +9627,10 @@
    "[LV2][LV3] (When Attacks) Once per turn, you can give -1 to either your or the opposing counters. (You can send one core from either your or the opposing Counter Area to the Void). When you've done so, destroy two opposing exhausted Spirits/Ultimates."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "X",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "X"
  },
  {
   "id": "BS54-X03",
@@ -9676,10 +9676,10 @@
    "[LV2][LV3] {{cb|4}} (When Attacks) By -4 counters (send four cores from your Counter Area to the Void), send up to eight cores from the opposing Field/Reserve/Trash to the Void. Count Break can only be used once per game."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "X",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "X"
  },
  {
   "id": "BS54-X04",
@@ -9716,10 +9716,10 @@
    "[LV2] (When Attacks) Return an opposing exhausted Spirit and an opposing exhausted Nexus to the deckbottom. Effects of the Spirit/Nexus returned by this effect can't activate."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "X",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "X"
  },
  {
   "id": "BS54-X05",
@@ -9761,10 +9761,10 @@
    "[LV3] (Your Attack Step) At the end of your \"Ice Princess\"/\"Rouse Emperor\" family Spirit's battle, send an opposing Life to the Reserve."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "X",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "X"
  },
  {
   "id": "BS54-X06",
@@ -9805,10 +9805,10 @@
    "[LV2][LV3] (When Attacks/Blocks) Once per turn, discard two cards from your decktop, and put a core from the Void to your Life."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "X",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "X"
  },
  {
   "id": "BS54-X07",
@@ -9850,10 +9850,10 @@
    "[LV2][LV3] (Your Attack Step) When the opponent would use a card from the Hand/Removed Zone during Flash Timing, unless they send three cores from their Reserve to the Trash, they can't use it."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "X",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "X"
  },
  {
   "id": "BS54-XX01",
@@ -9899,10 +9899,10 @@
    "[LV2][LV3] (When Attacks) For each counter you have, draw a card."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "XX",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "XX"
  },
  {
   "id": "BS54-XX02",
@@ -9957,10 +9957,10 @@
    "[LV1][LV2] (When Advents) For each counter you have, you can reveal a card from your decktop. Among them, summon any number of \"Primal\" family Spirit cards, without paying the cost. Discard any remaining cards."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "XX",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "XX"
  },
  {
   "id": "BS54-XX03",
@@ -10006,10 +10006,10 @@
    "[LV3] (When Attacks/Blocks) Once per turn, this Spirit refreshes."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "XX",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "XX"
  },
  {
   "id": "BS55-001",
@@ -10047,10 +10047,10 @@
    "[LV2] Your “Supreme Hero” family Burst can also activate at {{Burst|con|After an opposing Spirit's (When Summoned) effect resolves}}."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-003",
@@ -10088,10 +10088,10 @@
    "[LV2] All your \"Zeus\"-named Grandwalker Nexuses can't be destroyed by opposing effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-005",
@@ -10137,10 +10137,10 @@
    "[LV2][LV3] Once per turn, when you set a Burst, destroy an opposing non-Reborn Nexus, and the effects of the destroyed Nexus can't activate."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS55-006",
@@ -10181,10 +10181,10 @@
    "[LV2][LV3] (Your Attack Step) When your “Primal” family Spirit effect destroys any opposing Spirits, send an opposing Life to the Trash. This effect doesn't stack."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS55-007",
@@ -10225,10 +10225,10 @@
    "[LV2][LV3] (When Attacks) You can destroy an opposing 10000 BP or less Spirit/Ultimate, and when destroys, once per turn, refresh this Spirit. For each counter you have, increase the limit of this \"BP Destruction effect\" by +5000."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS55-008",
@@ -10287,10 +10287,10 @@
    "{{Burst|After your Spirit is depleted/destroyed by the opponent}} Summon this card without paying the cost. Then, destroy an opposing one-symbol Spirit/Ultimate. {{Six Heaven Rush|3}} If you have three or more symbol colors, return a \"HeavenlyDemon\"/\"Six Heaven\"-named card from your Trash to the Hand."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS55-009",
@@ -10349,10 +10349,10 @@
    "{{Burst|After an opposing Spirit attacks}} Destroy an opposing 8000 BP or less Spirit and an opposing Nexus, and the effects of the destroyed Spirit/Nexus can't activate. After this effect resolves, summon this card without paying the cost."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS55-010",
@@ -10389,10 +10389,10 @@
    "[LV1][LV2] (Your Main Step) All your Purple Grandstone Nexuses gain an extra Purple symbol."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-011",
@@ -10444,10 +10444,10 @@
    "During your Main Step, if you control any Purple Grandstone Nexus, you can summon this card from the Hand, treating one of its reduction symbols as fulfilled."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-013",
@@ -10489,10 +10489,10 @@
    "[LV1][LV2][LV3] When you're summoning/deploying any \"Spiritual Beast\"/\"Plant Spirit\"/\"Amahara\" family Spirit card/Grandwalker Nexus card, treat one of its Green reduction symbols as fulfilled."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "12"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-014",
@@ -10530,10 +10530,10 @@
    "[LV1][LV2] All six-colored pre-Rebirth Nexuses can't flip. Also, when the Grand Skill of a six-colored Grandwalker Nexus would activate, unless the owner sends four cores from their Field/Reserve to the Trash, it can't activate."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-015",
@@ -10570,10 +10570,10 @@
    "During Brave [LV2] (Your Attack Step) When your \"DragonKnight\"/\"DragonRideEmperor\"-named Spirit depletes/destroys any opposing Spirit/Ultimate, send an opposing Life to the Reserve. This effect doesn't stack."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-016",
@@ -10615,10 +10615,10 @@
    "[LV1][LV2][LV3] (When Summoned) Send a core from any opposing Spirit to the Reserve. When summoned via an effect, instead, send two cores from an opposing Spirit/Ultimate to the Reserve."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "12"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-017",
@@ -10657,10 +10657,10 @@
    "[LV2] (When Attacks) By sending two cores from any opposing Grandwalker Nexuses to the Void, refresh this Spirit."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "12"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-018",
@@ -10701,10 +10701,10 @@
    "[LV2][LV3] (Your Attack Step) When your \"Nightling\" family Spirit attacks, the opponent can't block unless they banish one card from their Hand. If you have three counters or more, this effect banishes +1 card. This effect doesn't stack."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS55-019",
@@ -10746,10 +10746,10 @@
    "[LV2][LV3] (Your Attack Step) (Can't Stack) For each \"Spiritual Beast\"/\"Plant Spirit\" family Spirit you control, cards in the opposing Hand get +1 cost."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "12"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS55-020",
@@ -10790,10 +10790,10 @@
    "[LV2][LV3] (When Attacks) Send a core from any opposing Spirit to the Reserve, and once per turn, refresh this Spirit."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS55-022",
@@ -10835,10 +10835,10 @@
    "[LV2][LV3] (When Attacks) Send three cores from an opposing Spirit/Ultimate to the Reserve, and when depletes, send an opposing Life to the Reserve."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "12"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS55-023",
@@ -10884,10 +10884,10 @@
    "[LV2][LV3] (When Attacks) The opponent can't block unless they send two of their Lives to the Trash."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-024",
@@ -10932,10 +10932,10 @@
    "[LV1][LV2][LV3] (Your Attack Step) You can increase the number of cores sent to the Reserve/Trash by your \"DragonKnight\"-named Spirit's \"Core Removal effects\" by +1. This effect can only be used once per turn."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS55-025",
@@ -10975,10 +10975,10 @@
    "[LV1][LV2] (When Summoned) If it's the Attack Step, exhaust an opposing Spirit/Ultimate. If you have two counters or more, instead of exhaust, heavy exhaust. heb"
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-026",
@@ -11015,10 +11015,10 @@
    "When your Green Grandstone Nexus is deployed, you can summon this card from the Hand, without paying the cost. When you've done so, if you have three or more Lives, until your next Start Step, your Life can only be reduced by one."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-028",
@@ -11061,10 +11061,10 @@
    "[LV2][LV3] \"Yomi\"/\"Kamiumi\" in your Hand are unaffected by opposing effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "12"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-029",
@@ -11106,10 +11106,10 @@
    "[LV1][LV2][LV3] When you're summoning/deploying any \"Spiritual Beast\"/\"Plant Spirit\"/\"Amahara\" family Spirit card/Grandwalker Nexus card, treat one of its reduction symbols as fulfilled."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "12"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-030",
@@ -11146,10 +11146,10 @@
    "[LV2] (When Attacks) The opponent can't activate any Burst effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-031",
@@ -11201,10 +11201,10 @@
    "[LV2] (When Attacks/Blocks) Once per turn, by banishing two cards from the opposing Trash, refresh this Spirit."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-032",
@@ -11302,10 +11302,10 @@
   ],
   "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-033",
@@ -11347,10 +11347,10 @@
    "[LV2][LV3] (Start of Either Attack Step) You can exhaust this Spirit. When you've done so, you can destroy opposing Grandwalker Nexuses until only one remains, and when destroys, put a core from the Void to this Spirit."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS55-035",
@@ -11388,10 +11388,10 @@
    "[LV2] (Your Attack Step) While your \"Spiritual Beast\"/\"Plant Spirit\" family Spirit is attacking, the opponent can't end the Attack Step via effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "12"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS55-036",
@@ -11448,10 +11448,10 @@
    "When your Cost 5 or more \"Spiritual Beast\"/\"Plant Spirit\" family Spirits are summoned, you can summon this card from the Hand, without paying the cost."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-037",
@@ -11493,10 +11493,10 @@
    "[LV2][LV3] For each pair of one Purple Spirit and one Green Spirit you control, this Spirit gains an extra Green symbol."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "12"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS55-038",
@@ -11534,10 +11534,10 @@
    "[LV2] (Your Attack Step) While this Spirit, or your Green “Rouse Emperor”/“Fierce King” family Spirit is attacking, the opponent can't end the Attack Step via effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS55-039",
@@ -11576,10 +11576,10 @@
    "[LV2] (When Attacks) By paying two costs, refresh a \"Spiritual Beast\"/\"Plant Spirit\" family Spirit you control."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "12"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-041",
@@ -11631,10 +11631,10 @@
    "[LV2] All your \"Six Heaven\"-named Spirits and exactly-named \"The Owari World\" are unaffected by opposing Nexus effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-042",
@@ -11672,10 +11672,10 @@
    "[LV2] (When Destroyed by the Opponent) You can pay one cost to summon a White-only \"Primal\" family Spirit card from your Hand."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-043",
@@ -11732,10 +11732,10 @@
    "[LV1][LV2][LV3] Give every Spirit you control the effect: {{ha|Red}} - This Spirit is unaffected by opposing Red Spirit/Brave/Nexus/Magic effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-045",
@@ -11794,10 +11794,10 @@
    "[LV2][LV3] Flash - (Your Attack Step) Once per turn, you can refresh an \"Ice Princess\" family Spirit you control. When you've done so, return an opposing Spirit to the Hand."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "12"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS55-046",
@@ -11884,10 +11884,10 @@
   ],
   "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS55-047",
@@ -11931,10 +11931,10 @@
    "{{Burst|After your Life is reduced}} During this turn, all your \"Ice Princess\" family Spirits are unaffected by opposing effects. Then, reveal three cards from your decktop. You can pay one cost to summon an \"Ice Princess\" family Spirit card among them. Discard any remaining cards. After this effect resolves, summon this card without paying the cost."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "12"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS55-048",
@@ -11980,10 +11980,10 @@
    "[LV2][LV3] Give every \"Supreme Hero\"/\"Great General\" family Spirit you control: \"{{ha|Purple/White}} This Spirit is unaffected by opposing Purple/White Spirit/Brave/Nexus/Magic effects.\""
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS55-049",
@@ -12021,10 +12021,10 @@
    "[LV2] While your Hand is six or less, your Hand is unaffected by opposing effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-050",
@@ -12064,10 +12064,10 @@
    "[LV1][LV2][LV3] When this Spirit would leave the Field due to an opposing effect, you can return a \"Magibullet\"/\"Supreme Hero\" family Magic card from your Trash to the Hand. If you have three counters or more, instead of returning to the Hand, you can immediately use the Flash effect, without paying the cost."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-052",
@@ -12119,10 +12119,10 @@
    "When the opponent deploys any Nexus with (When Deployed) effects, you can immediately summon this card from the Hand without paying the cost. When you've done so, during this turn, opposing Nexuses can't activate their effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-054",
@@ -12164,10 +12164,10 @@
    "[LV3] (When Attacks) This Spirit is unaffected by opposing Spirit/Ultimate/Nexus effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-055",
@@ -12208,10 +12208,10 @@
    "[LV2][LV3] (When Attacks) You can banish four \"Dark Artes\" family cards in your Trash. When you've done so, refresh this Spirit."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS55-056",
@@ -12252,10 +12252,10 @@
    "[LV2][LV3] (When Attacks) If your Life is five or less, put a core from the Void to your Life. Then, during this turn, give an opposing Spirit/Ultimate -3000 BP. Activate this \"BP -\" effect a number of times equal to the number of Lives you have, and destroy if reaches BP 0."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS55-057",
@@ -12299,10 +12299,10 @@
    "{{Burst|After your Spirit is destroyed by the opponent}} Summon this card without paying the cost. Then, if it's the Attack Step, you can summon a \"Mertiana\"-named Spirit card from your Hand/Trash, without paying the cost."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS55-058",
@@ -12340,10 +12340,10 @@
    "[LV2] When this Spirit would leave the Field due to an opposing effect, it can remain on the Field, exhausted."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS55-059",
@@ -12380,10 +12380,10 @@
    "[LV2] (When Attacks) By putting a \"WBS\"-named card from your Hand onto the Removed Zone, destroy an opposing Cost 6 or less Spirit."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-060",
@@ -12436,10 +12436,10 @@
    "[LV1][LV2] (When Summoned/Attacks) Once per turn, you can reveal three cards from your decktop. Among them, add a Blue-only \"Chrownos\" family card to the Hand. Discard any remaining cards."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "12"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-061",
@@ -12497,10 +12497,10 @@
    "[LV2] (When Attacks/Destroyed) You can deploy a \"HeavenlyDemon\"-named Grandwalker Nexus card from your Trash without paying the cost."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-064",
@@ -12557,10 +12557,10 @@
    "[LV2][LV3] (When Attacks/Destroyed) You can pay one cost to summon a \"WBS\"-named Spirit card from your Removed Zone."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "R",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "R"
  },
  {
   "id": "BS55-065",
@@ -12649,10 +12649,10 @@
    "[LV2][LV3] (When Attacks) Destroy a Nexus, and once per turn, this Spirit can refresh. Effects of the Nexus destroyed by this effect can't activate."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS55-066",
@@ -12706,10 +12706,10 @@
    "{{Burst|After an opposing Spirit's (When Summoned) effect resolves}} Summon this card without paying the cost. Then, draw two cards, and after that, either discard two cards from your Hand, or discard one \"WBS\"-named Spirit card from your Hand."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "M",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "M"
  },
  {
   "id": "BS55-067",
@@ -12773,10 +12773,10 @@
   },
   "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-069",
@@ -12820,10 +12820,10 @@
   },
   "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-075",
@@ -12856,10 +12856,10 @@
    "Main Draw a card from your deckbottom. Also, if your Life is five or more, until your next Start Step, every opposing Nexus/Grandwalker Nexus is fixed as having zero symbols, and can't activate its effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "10"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-RV001",
@@ -12896,10 +12896,10 @@
    "[LV2] (Your Main Step) This Spirit and every Red Grandstone Nexus you control gains an extra Red symbol."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-RV002",
@@ -12941,10 +12941,10 @@
    "[LV1][LV2] While you control any Purple Grandstone Nexus, this Spirit's color and symbol are also treated as Yellow, and when this Spirit would leave the Field due to the opponent, draw a card."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-RV003",
@@ -12985,10 +12985,10 @@
    "[LV1][LV2] While you control any Green Grandstone Nexus, this Spirit's color and symbol are also treated as White, and when this Spirit would leave the Field due to the opponent, put a core from the Void to your Reserve."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-RV004",
@@ -13036,10 +13036,10 @@
    "[LV2][LV3] (When Attacks/Blocks) Once per turn, this Spirit refreshes."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-RV005",
@@ -13080,10 +13080,10 @@
    "[LV3] (Your Attack Step) When your counter increases to one or more, during this turn, give an opposing Spirit -1000 BP, and destroy it if reaches 0 BP."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-RV006",
@@ -13142,10 +13142,10 @@
    "[LV2][LV3] While you have two counters or more, treat all your \"Chrownos\" family Spirits as being on their highest level."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "C",
   "bicon": [
    "12"
-  ]
+  ],
+  "rcode": "C"
  },
  {
   "id": "BS55-X01",
@@ -13203,10 +13203,10 @@
    "[LV2][LV3] (When Attacks) At the end of battle, for each Nexus card in the opposing Trash, send an opposing Life to the Trash."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "X",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "X"
  },
  {
   "id": "BS55-X02",
@@ -13252,10 +13252,10 @@
    "[LV2][LV3] (Your Attack Step) This Spirit is unaffected by opposing effects. At the end of this Spirit's battle, for each \"Supreme Hero\" family Spirit you control, send an opposing Life to the Trash."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "X",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "X"
  },
  {
   "id": "BS55-X03",
@@ -13298,10 +13298,10 @@
    "[LV2][LV3] (When Attacks) If you have five or less counters, by flipping a pre-Rebirth \"DragonKnight\"-named Spirit you control, refresh this Spirit."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "X",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "X"
  },
  {
   "id": "BS55-X04",
@@ -13343,10 +13343,10 @@
    "[LV2][LV3] (When Attacks) You can heavy exhaust an opposing Spirit/Ultimate. When you've done so, once per turn, send an opposing Life to the Reserve, and refresh this Spirit. If you have two counters or more, this \"heavy exhaust effect\" can't be prevented by opposing effects. heb"
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "X",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "X"
  },
  {
   "id": "BS55-X05",
@@ -13387,10 +13387,10 @@
    "[LV2] {{cb|4}} (When Attacks) By -4 counters (send four cores from your Counter Area to the Void), until the next opposing End Step, the opponent can't move cores, except , on their Field/Grandwalker Nexuses. Count Break can only be used once per game."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "X",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "X"
  },
  {
   "id": "BS55-X06",
@@ -13433,10 +13433,10 @@
    "[LV3] (When Attacks) Unless the opponent returns a Spirit they control to the deckbottom, they can't use any Magic cards."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "X",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "X"
  },
  {
   "id": "BS55-X07",
@@ -13478,10 +13478,10 @@
    "[LV2][LV3] (Your Attack Step) Your Yellow \"Primal\" family Spirits can't be blocked, and when their effects would increase your Life, instead of increasing it, you can send an opposing Life to the Trash."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "X",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "X"
  },
  {
   "id": "BS55-X08",
@@ -13524,10 +13524,10 @@
    "[LV2][LV3] (When Attacks) Destroy an opposing Spirit with the highest cost. If you have two counters or more, this effect can't be prevented by opposing effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "X",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "X"
  },
  {
   "id": "BS55-X09",
@@ -13569,10 +13569,10 @@
    "Grand Field [LV2] (Your Attack Step) While your \"Spiritual Beast\"/\"Plant Spirit\" family Spirit is attacking, the opponent can't activate Burst effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "X",
   "bicon": [
    "12"
-  ]
+  ],
+  "rcode": "X"
  },
  {
   "id": "BS55-XX02",
@@ -13615,10 +13615,10 @@
    "[LV1][LV2][LV3] While your Life is three or more, this Spirit can't attack and is unaffected by opposing effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "XX",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "XX"
  },
  {
   "id": "BS55-XX03",
@@ -13661,9 +13661,9 @@
    "[LV1][LV2][LV3] While your Life is three or more, this Spirit can't attack and is unaffected by opposing effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rarity": "XX",
   "bicon": [
    "7"
-  ]
+  ],
+  "rcode": "XX"
  }
 ]
