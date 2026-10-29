@@ -4,6 +4,13 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.193.0
+- Lane: U/I
+- **R8: first rule notes from the official Q&A**
+  - New `docs/mechanics/official-qa.md`: paraphrased notes for Mirage, Manifest and two-sided Braves (with Q ids). The Q&A itself was already stored in `data/sources/official-fields.json` since R0 (6,368 records).
+  - Limit: read from the Q&A only; no note is checked against the engine or tested, only these three mechanics were sampled, BS45-080 has no Q&A. No game or card change.
+  - The U/I queue is now empty; Lane K (Standard block A) resumes.
+
 ## v0.192.0
 - Lane: U/I
 - **R6: measure before building the head parser (verdict: no-go, R7 skipped)**
