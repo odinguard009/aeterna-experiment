@@ -32,5 +32,5 @@ Single-file web simulator for a trading card game vs CPU (Windows + Android), mo
 
 ## Roadmap (history: `CHANGELOG.md`; downloads: GitHub Releases)
 - **Done:** release history in `CHANGELOG.md`, the mind map `docs/roadmap.html` and finished items in `docs/ai/roadmap-archive.md`; only the Next line changes per session.
-- **Next:** item R (U/I queue R3-R8; R0 v0.186.0, R1 v0.187.0 (colours left open), R2 v0.188.0), then Lane K cards, Standard block A first (`docs/reports/pack-plan-standard.md`); open work and time rules in `docs/ai/roadmap-open.md` (items L, T). Finished items live in `CHANGELOG.md` and `docs/ai/roadmap-archive.md`.
+- **Next:** item R (U/I queue R4-R8; R0 v0.186.0, R1 v0.187.0 (colours left open), R2 v0.188.0, R3 v0.189.0), then Lane K cards, Standard block A first (`docs/reports/pack-plan-standard.md`); open work and time rules in `docs/ai/roadmap-open.md` (items L, T). Finished items live in `CHANGELOG.md` and `docs/ai/roadmap-archive.md`.
 - Alongside: glossary rule notes (issue #2), missing mechanics checklist (issue #3). Issue numbers up to v0.57.0 refer to the private vault repo (its #3 / #4 / #9 are #2 / #3 / #1 here).
