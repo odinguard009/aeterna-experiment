@@ -55,7 +55,8 @@ const FONT_URL = /url\(data:font\/woff2;base64,[A-Za-z0-9+/=]+\)/g, FLAVOR_RE = 
 // v0.182.0 (Lane K): raised B01 1040 -> 1050 KB on purpose: Tribute, USE_FLASH, REVEAL_DEPLOY rest and the DESTROY_TOTAL / colour clauses (engine ~1 KB over the limit).
 // v0.183.0 (Lane K): raised B01 1050 -> 1060 KB on purpose: DESTROY_EVERY / DESTROY_NEXUS_ALL, Tribute-less summon and the Life-to-Reserve clause (engine ~0.4 KB over the limit).
 // v0.185.0 (Lane K): raised B01 1060 -> 1070 KB on purpose: selfBlocked, DEPLOY_TRASH, perCores and DRAW_UNTIL (engine ~0.1 KB over the limit).
-test('B01 index.html without the card pack stays under 1070 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 1070e3, Buffer.byteLength(noFont(code))));
+// v0.189.0 (R3): raised B01 1070 -> 1075 KB on purpose: the Block icon, Rarity and Collab filters (menus, filter test, card-field plumbing) are shared by the Deck Builder and the Library; the page was 1.2 KB over.
+test('B01 index.html without the card pack stays under 1075 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 1075e3, Buffer.byteLength(noFont(code))));
 // v0.186.0 (Brave costLe): raised B02 290 -> 292 KB on purpose: the Brave combine condition costLe (parser, braveFits, types) put the page 0.9 KB over the limit.
 // v0.188.0 (R2): raised B02 292 -> 294 KB on purpose: the Family list, BP / core and colour-mode filters (shared by the Deck Builder and the Library) put the page 0.04 KB over the limit.
 test('B02 index.html without the card pack, gzipped, stays under 294 KB', () => { const n = gzipSync(noFont(code), { level: 9 }).length; assert.ok(n < 294e3, n); });

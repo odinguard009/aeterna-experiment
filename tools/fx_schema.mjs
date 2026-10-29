@@ -15,7 +15,7 @@ const SRC = join(ROOT, 'packages/engine/src');
 export const SCHEMA_PATH = join(ROOT, 'packages/engine/fx-schema.json');
 
 // Card fields the engine does not read: tooling and source metadata kept in data/cards (not effect format).
-const META_FIELDS = ['note', 'mechanics', 'name_jp', 'text_partial', 'icons_verified', 'text_verified_web', 'color', 'ex_symbols', 'source', 'saga', 'rarity', 'collab', 'bicon'];
+const META_FIELDS = ['note', 'mechanics', 'name_jp', 'text_partial', 'icons_verified', 'text_verified_web', 'color', 'ex_symbols', 'source', 'saga'];
 
 /** Index just past the bracket that closes the one at `open` (skips strings, template literals, comments, regex literals). */
 export function closeOf(s, open) {

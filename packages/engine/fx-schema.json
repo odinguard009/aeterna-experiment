@@ -219,9 +219,11 @@
   "type"
  ],
  "cardFields": [
+  "bicon",
   "block",
   "brave",
   "burst",
+  "collab",
   "color",
   "colors",
   "contract",
@@ -246,6 +248,7 @@
   "mirage",
   "name",
   "overCount",
+  "rarity",
   "rebirthSide",
   "rebirthTo",
   "reduction",
@@ -268,15 +271,12 @@
   "type"
  ],
  "metaFields": [
-  "bicon",
-  "collab",
   "color",
   "ex_symbols",
   "icons_verified",
   "mechanics",
   "name_jp",
   "note",
-  "rarity",
   "saga",
   "source",
   "text_partial",
