@@ -11369,13 +11369,35 @@
       "zeroDestroy": true
      }
     ]
+   },
+   {
+    "trigger": "OPP_DESTROYED_FX",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "bySrc": {
+     "type": "Spirit"
+    },
+    "if": {
+     "attackStep": true,
+     "oppTurn": false
+    },
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT",
+      "match": {
+       "costLe": 4,
+       "family": [
+        "Thunder Dragon"
+       ]
+      }
+     }
+    ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (During Attack) If any opposing Spirit is destroyed by your Spirit effects, you can target one of your Cost 4 or less \"Thunder Dragon\" family Spirits. Refresh it."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "bicon": [
    "A"
   ],
@@ -16806,15 +16828,42 @@
   "block": "A",
   "saga": 50,
   "ex_symbols": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (Your Attack Step) (Once Per Turn) When opposing 0 BP Spirits are destroyed by your \"Wailwraith\"/\"Hexcraft\" family Spirit effect, you can target one of your Cost 4 or more Spirits. Refresh it."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "bicon": [
    "A"
   ],
-  "rcode": "R"
+  "rcode": "R",
+  "effects": [
+   {
+    "trigger": "OPP_DESTROYED_FX",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "once": true,
+    "zeroBp": true,
+    "bySrc": {
+     "type": "Spirit",
+     "family": [
+      "Wailwraith",
+      "Hexcraft"
+     ]
+    },
+    "if": {
+     "attackStep": true,
+     "oppTurn": false
+    },
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT",
+      "match": {
+       "costGe": 4
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RBS03-052",
@@ -29138,13 +29187,58 @@
       }
      }
     ]
+   },
+   {
+    "trigger": "OPP_DESTROYED_FX",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "once": true,
+    "onceKey": "wc",
+    "if": {
+     "attackStep": true,
+     "oppTurn": false
+    },
+    "actions": [
+     {
+      "do": "TRASH_CORES_TO",
+      "n": 1,
+      "match": {
+       "type": "Spirit"
+      },
+      "onlyCards": true,
+      "one": true
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_DESTROYS",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "once": true,
+    "onceKey": "wc",
+    "if": {
+     "attackStep": true,
+     "oppTurn": false
+    },
+    "actions": [
+     {
+      "do": "TRASH_CORES_TO",
+      "n": 1,
+      "match": {
+       "type": "Spirit"
+      },
+      "onlyCards": true,
+      "one": true
+     }
+    ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (True Release) (Your Attack Step) (Once Per Turn) When you destroy any opposing Spirits, you can target one of your Spirits. Send a core, besides , from your Trash to it."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "bicon": [
    "A"
   ],

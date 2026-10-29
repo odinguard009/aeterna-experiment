@@ -11,8 +11,8 @@ async function runActions(c, e, trg) {
     if (a.if && !fxIf(c.p, c.opp, a.if, c.src ? Object.assign({}, c.ctx, { selfUid: c.src.uid, selfInst: c.src }) : c.ctx)) continue;
     if (!FX_ACTIONS[a.do]) { fxUnknown('action', a.do); continue; }             // v0.59.4 strict effects (release: skip it)
     c.ctx.did = true;
-    const by = G.fxBy; G.fxBy = c.p.key;                 // v0.73: whose effect is resolving (LEAVES / byOppFx: "due to opposing effects", depletion and returns included)
-    try { await FX_ACTIONS[a.do].run(c, a); } finally { G.fxBy = by; }
+    const by = G.fxBy, bySrc = G.fxSrc; G.fxBy = c.p.key; G.fxSrc = c.src;                 // v0.73: whose effect is resolving (LEAVES / byOppFx: "due to opposing effects", depletion and returns included)
+    try { await FX_ACTIONS[a.do].run(c, a); } finally { G.fxBy = by; G.fxSrc = bySrc; }
     last = c.ctx.did !== false;
     if (a.cost && !last) return;                        // v0.43: a cost that could not be paid stops the rest of the effect
   }
@@ -58,6 +58,11 @@ function fxValid(it) {
   if (e.blockingOnly && (trg === 'BATTLE_WIN' || trg === 'ALLY_BATTLE_WIN') && ctx.attacking) return false;     // v0.74 (When Blocks) battle result: only as the blocker
   if (trg === 'ALLY_SUMMONED' && subj && CARDS[subj.id].type === 'Brave' && !(e.match && e.match.type === 'Brave')) return false;     // a Brave summon is not a Spirit summon (manual p. 35)
   if (trg === 'OWN_LIFE_HIT' && e.match && !(ctx.attacker && fxMatch(CARDS[ctx.attacker.id], e.match))) return false;      // v0.177 "by opposing Spirits / Ultimates"
+  if (trg === 'OPP_DESTROYED_FX') {      // v0.196 zeroBp: the destroyed Spirit had 0 BP; bySrc {type, family}: the destroying effect's own card
+    if (e.zeroBp && ctx.bp !== 0) return false;
+    const sc = ctx.fxSrc && CARDS[ctx.fxSrc.id];
+    if (e.bySrc && !(sc && (!e.bySrc.type || sc.type === e.bySrc.type) && (!e.bySrc.family || (sc.families || []).some(x => e.bySrc.family.includes(x))))) return false;
+  }
   if (e.once && usedThisTurn(owner, f, idx, e)) return false;
   if (trg === 'DESTROYED' && ctx.depl && !e.alsoDepleted) return false;      // v0.177 a depletion is not a plain (When Destroyed)
   if (!fxIf(owner, opp, e.if, Object.assign({}, ctx, { viaFC: ctx.viaFC == null ? !!f.viaFC : ctx.viaFC, viaHS: !!f.viaHS, viaLegacy: (f.legacyN || 0) > 0, selfUid: f.uid, selfInst: f }))) return false;

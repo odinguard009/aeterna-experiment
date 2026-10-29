@@ -156,6 +156,8 @@ async function flushBursts() {                         // queued Bursts and even
       await fireFx(q, 'OPP_HAND_UP', null, {});
     } else if (ev.type === 'REMOVED') {
       await fireFx(G.p[other(ev.key)], 'OPP_REMOVED', null, {});
+    } else if (ev.type === 'FXKILL') {
+      await fireFx(G.p[ev.key], 'OPP_DESTROYED_FX', null, { bp: ev.bp, fxSrc: ev.src });
     } else if (ev.type === 'LOST') {
       await fireFx(G.p[ev.key], 'ALLY_LOST', null, { subject: ev.inst });
     } else if (ev.type === 'DESTROYED') await fireFx(G.p[ev.key], 'DESTROYED', ev.inst, { subject: ev.inst, byOpp: !!ev.byOpp, byOppFx: !!ev.byOppFx, depl: !!ev.depl });

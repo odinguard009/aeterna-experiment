@@ -174,6 +174,10 @@ function parseEffects(arr) {
       if (e.attackingOnly === true && (e.trigger === 'BATTLE_WIN' || e.trigger === 'ALLY_BATTLE_WIN')) o.attackingOnly = true;   // v0.72 (During Attack): only as the attacker
       if (e.blockingOnly === true && (e.trigger === 'BATTLE_WIN' || e.trigger === 'ALLY_BATTLE_WIN')) o.blockingOnly = true;   // v0.74 (When Blocks) battle result: only as the blocker
       if (e.alsoBlocks && e.trigger === 'ATTACKS') o.alsoBlocks = true; if (e.alsoDepleted === true && e.trigger === 'DESTROYED') o.alsoDepleted = true;      // v0.177 "(When Depleted/Destroyed by the Opponent)"
+      if (e.trigger === 'OPP_DESTROYED_FX') {      // v0.196 "When opposing Spirits are destroyed by your effect"
+        if (e.zeroBp === true) o.zeroBp = true;
+        if (e.bySrc != null) { const b = e.bySrc; if (!b || typeof b !== 'object' || (b.type != null && !['Spirit', 'Magic'].includes(b.type)) || (b.family != null && !(Array.isArray(b.family) && b.family.length && b.family.length <= 4 && b.family.every(x => typeof x === 'string'))) || (b.type == null && b.family == null)) return { error: '"bySrc" must look like {"type":"Spirit","family":["X"]}' }; o.bySrc = { type: b.type, family: b.family }; }
+      }
       if (e.zone === 'hand' && (e.trigger === 'ALLY_BLOCKED' || e.trigger === 'SILVER_WHEEL')) o.zone = 'hand';
       if (e.onceKey != null) { if (!/^[A-Za-z0-9_-]{1,20}$/.test(String(e.onceKey))) return { error: '"onceKey" must be a short name' }; o.onceKey = String(e.onceKey); }
       if (e.trigger === 'ACCEL') {                       // v0.50 Accel: used from the Hand by paying the Accel cost, then the card goes to the Removed Zone

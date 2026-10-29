@@ -618,3 +618,17 @@ test('K-49 Gnutarius/Roaspis: perLegacy / nLegacy scale with the EX Symbols bani
     out.push([P.deck.length - d0, P.trash.length - t0]); return out; })()`);
   assert.deepEqual(r.slice(0, 2), [0, 2]); assert.deepEqual(r[2], [-1, 1]);
 });
+
+test('K-50 Diagram Dragon / Etaina: OPP_DESTROYED_FX filters on the destroying source and 0 BP', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    G.step = 5; const td = Object.keys(BS.CARDS).find(k => (BS.CARDS[k].families || []).includes('Thunder Dragon') && BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].cost <= 4 && !BS.CARDS[k].effects);
+    const out = [];
+    for (const src of ['26RBS02-055', '26RBS02-087']) {      // a Spirit source, then a Magic source
+      const dd = BS.mkInst('26RBS02-055'); dd.cores = 5; const x = BS.mkInst(td); x.cores = 1; x.exhausted = true; P.spirits.push(dd, x); const t = opp(3, 2000);
+      const s = src === '26RBS02-055' ? dd : BS.mkInst(src);
+      await BS.runActions({ p: P, opp: O, src: s, ctx: {} }, { actions: [{ do: 'DESTROY', bpLe: 3000 }] }); await BS.flushBursts();
+      out.push(x.exhausted); P.spirits.length = 0; O.spirits.length = 0; }
+    return out; })()`);
+  assert.deepEqual(r, [false, true]);
+});

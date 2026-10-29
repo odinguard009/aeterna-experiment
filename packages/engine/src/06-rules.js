@@ -287,7 +287,10 @@ function leaveEvent(p, s, byOpp, byOppFx) {
 }
 function removeSpirit(p, s, why, byOpponent) {
   const lv = p.spirits.includes(s) ? lvIndex(s) : -1;
+  const kill = why === 'destroyed' && byOpponent !== 'battle' && !!G && !!G.evQ && !!G.fxBy && G.fxBy !== p.key && fieldList(G.p[G.fxBy]).some(f => fxEntries(f).some(({ e }) => e.trigger === 'OPP_DESTROYED_FX')),      // v0.196 someone can react to "opposing Spirits destroyed by your effect"
+    bp0 = kill ? bpOf(s) : 0;
   if (!removeFrom(p.spirits, s)) return;
+  if (kill) G.evQ.push({ type: 'FXKILL', key: G.fxBy, bp: bp0, src: G.fxSrc || null });
   s.lostLv = lv; s.soulLost = s.soul;      // v0.176: the Soul Core it held when it left ("If (Soul Core) is on this Spirit" in a Destroyed trigger)
   const oppFx = byOpponent === true || (byOpponent !== 'battle' && !!G && !!G.fxBy && G.fxBy !== p.key);   // v0.73: by an opposing effect (byOpponent 'battle' = BP comparison)
   const depl = why === 'depleted' && oppFx;      // v0.177: depleted by an opposing effect wakes only the "(When Depleted/Destroyed by the Opponent)" effects (alsoDepleted)
