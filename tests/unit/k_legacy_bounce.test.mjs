@@ -42,3 +42,43 @@ test('K-02 Hargris counts other Purgatory Wings Spirits only; Pacugna +2000 atta
   assert.equal(r.plain, 2000);
   assert.equal(r.withBig, 5000);
 });
+
+test('K-03 Sertarius returns a Windfang from the Trash but never another Sertarius; Savatoma sends to the deck bottom with an exhausted Mineroid', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(async () => {
+    const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = P.key; P.cpu = true;
+    const wf = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && (c.families || []).includes('Windfang') && c.name !== 'Sertarius');
+    const twin = BS.mkInst('26RSD01-008'); P.trash.push(twin);
+    const src = BS.mkInst('26RSD01-008'); src.cores = 1; P.spirits.push(src);
+    await BS.fireFx(P, 'SUMMONED', src, {});
+    const onlySelfName = !P.hand.includes(twin);
+    const w = BS.mkInst(wf.id); P.trash.push(w);
+    await BS.fireFx(P, 'SUMMONED', src, {});
+    const got = P.hand.includes(w);
+    const mine = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && (c.families || []).includes('Mineroid') && !(c.effects && c.effects.length));
+    const m = BS.mkInst(mine.id); m.cores = 1; m.exhausted = true; P.spirits.push(m);
+    const foe = BS.mkInst(Object.values(BS.CARDS).find(c => c.type === 'Spirit' && !(c.effects && c.effects.length)).id); foe.cores = 1; O.spirits.push(foe);
+    const sav = BS.mkInst('26RSD04-X02'); sav.cores = 1; P.spirits.push(sav);
+    await BS.fireFx(P, 'SUMMONED', sav, {});
+    return { onlySelfName, got, deckBottom: O.deck[O.deck.length - 1] === foe, hand: O.hand.includes(foe) };
+  });
+  assert.deepEqual(r, { onlySelfName: true, got: true, deckBottom: true, hand: false });
+});
+
+test('K-04 Spinard destroys two opposing 3000 BP or less Spirits with a Purgatory Wings Spirit, otherwise one', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(async () => {
+    const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = P.key; P.cpu = true;
+    const small = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && c.levels[0].bp <= 3000 && !(c.effects && c.effects.length));
+    const mk = () => { const f = BS.mkInst(small.id); f.cores = 1; O.spirits.push(f); return f; };
+    const [a, b, c3] = [mk(), mk(), mk()];
+    const src = BS.mkInst('26RSD09-008'); src.cores = 1; P.spirits.push(src);
+    await BS.fireFx(P, 'SUMMONED', src, {});
+    const one = O.spirits.length;
+    const pw = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && (c.families || []).includes('Purgatory Wings') && !(c.effects && c.effects.length));
+    const w = BS.mkInst(pw.id); w.cores = 1; P.spirits.push(w);
+    await BS.fireFx(P, 'SUMMONED', src, {});
+    return { one, two: O.spirits.length };
+  });
+  assert.deepEqual(r, { one: 2, two: 0 });
+});

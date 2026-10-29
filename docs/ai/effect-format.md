@@ -112,3 +112,5 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v72 (v0.194.0, Rush chain): condition `viaHS` (boolean, "if this Spirit was summoned with High Speed", i.e. paid from the Reserve only, Flash or Main Step; official Q&A Q4497-Q4499). Additions only.
 - v73 (v0.195.0, Lane K): condition `viaLegacy` (boolean, "summoned using Legacy": at least one EX-symbol card was banished for the summon; counter `legacyN`, reset on leave/effect summon); `BOUNCE_OPP.bpLe` ("an opposing 3000 BP or less Spirit") and `BOUNCE_OPP.n` (2-3: "Target two opposing ...", exactly n distinct targets, returned together). Additions only.
 - v74 (v0.195.0, Lane K): STATIC field `besides` (with `per`: the source itself is not counted); `ctrl.costIn` (list of exact costs, e.g. Cost 6/8). Additions only.
+- v75 (v0.195.0, Lane K): `RETURN_TRASH.diffName` ("besides <this card's name>": a card with the source's own name is not a candidate). Additions only.
+- v76 (v0.195.0, Lane K): `DESTROY.n` (2-3: "Target two opposing ... Spirits. Destroy them", up to n distinct targets; fewer when fewer qualify). Additions only.

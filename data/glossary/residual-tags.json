@@ -39246,11 +39246,6 @@
   "C_LEVEL",
   "K_STANDARD_INVOKE"
  ],
- "26RCB01-009": [
-  "A_EXHAUST",
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
  "26RCB01-013": [
   "A_BP_PLUS",
   "A_EXHAUST",
@@ -39666,10 +39661,6 @@
   "M_UP_TO",
   "T_SUMMONED"
  ],
- "26RSD01-008": [
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
  "26RSD01-010": [
   "A_TRASH_TO_RESERVE",
   "C_LEVEL",
@@ -39762,12 +39753,6 @@
   "A_VOID",
   "C_LEVEL"
  ],
- "26RSD04-X02": [
-  "A_EXHAUST",
-  "M_OPTIONAL",
-  "M_REPLACEMENT",
-  "T_SUMMONED"
- ],
  "26RSD05-006": [
   "C_LEVEL",
   "F_OTHER_NOSTACK",
@@ -39855,10 +39840,6 @@
  "26RSD07-014": [
   "M_THEN"
  ],
- "26RSD07-X01": [
-  "M_REPLACEMENT",
-  "T_SUMMONED"
- ],
  "26RSD08-002": [
   "A_EXHAUST",
   "C_LEVEL",
@@ -39931,10 +39912,6 @@
   "M_OPTIONAL",
   "M_REPLACEMENT",
   "T_ATTACKS",
-  "T_SUMMONED"
- ],
- "26RSD09-008": [
-  "M_REPLACEMENT",
   "T_SUMMONED"
  ],
  "26RSD09-009": [
