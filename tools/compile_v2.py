@@ -683,6 +683,7 @@ CTRL_ANY = re.compile(r'^you control (?:any|an?|one or more) (exhausted )?(?:(re
 def cond_of(x):
     """condition text -> fxIf dict or None"""
     x = x.strip()
+    if re.fullmatch(r"this spirit is being blocked", x, re.I): return {'selfBlocked': True}      # v0.185 schema 65
     m = re.fullmatch(r"you (don't |do not )?have an? (?:set burst|burst set)", x, re.I)
     if m: return {'burstSet': not m.group(1)}
     m = re.fullmatch(r"the opponent (doesn't |does not )?ha(?:s|ve) an? (?:set burst|burst set)", x, re.I)
