@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 7264,
+  "cards": 7241,
   "per_saga": {
    "1": 676,
    "2": 313,
@@ -19,15 +19,15 @@
    "15": 355,
    "16": 334,
    "17": 110,
-   "50": 267
+   "50": 244
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 1442,
+  "skipped_curated": 1465,
   "nexus_levels_added": 707,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 499,
+  "image_problems": 492,
   "number_conflicts": 4,
   "merged": 108,
   "brave_unparsed": 171,
@@ -35,7 +35,7 @@
   "odd_reduction": 807,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 497
+  "without_image": 490
  },
  "tokens": [
   "BS73-T001",
@@ -1092,6 +1092,7 @@
   "26RSD01-008",
   "26RSD01-009",
   "26RSD01-011",
+  "26RSD01-012",
   "26RSD01-014",
   "26RSD01-X01",
   "26RSD01-X02",
@@ -1156,17 +1157,20 @@
   "26RSD06-012",
   "26RSD06-013",
   "26RSD06-014",
+  "26RSD06-X02",
   "26RBS01-001",
   "26RBS01-002",
   "26RBS01-003",
   "26RBS01-004",
   "26RBS01-005",
   "26RBS01-006",
+  "26RBS01-007",
   "26RBS01-008",
   "26RBS01-009",
   "26RBS01-010",
   "26RBS01-011",
   "26RBS01-012",
+  "26RBS01-013",
   "26RBS01-014",
   "26RBS01-015",
   "26RBS01-016",
@@ -1215,6 +1219,7 @@
   "26RBS01-063",
   "26RBS01-064",
   "26RBS01-065",
+  "26RBS01-066",
   "26RBS01-067",
   "26RBS01-068",
   "26RBS01-069",
@@ -1238,6 +1243,7 @@
   "26RBS01-088",
   "26RBS01-089",
   "26RBS01-090",
+  "26RBS01-092",
   "26RBS01-097",
   "26RBS01-099",
   "26RBS01-100",
@@ -1260,12 +1266,15 @@
   "26RBS01-123",
   "26RBS01-124",
   "26RBS01-126",
+  "26RBS01-X02",
   "26RBS01-X03",
   "26RBS01-X07",
   "26RBS01-X08",
+  "26RBS01-X13",
   "26RBS01-X15",
   "26RBS01-X17",
   "26RBS01-X18",
+  "26RSD07-001",
   "26RSD07-002",
   "26RSD07-003",
   "26RSD07-004",
@@ -1311,9 +1320,11 @@
   "26RCB01-034",
   "26RCB01-036",
   "26RCB01-037",
+  "26RCB01-039",
   "26RCB01-040",
   "26RCB01-041",
   "26RCB01-042",
+  "26RCB01-043",
   "26RCB01-044",
   "26RCB01-045",
   "26RCB01-048",
@@ -1348,6 +1359,7 @@
   "26RBS02-013",
   "26RBS02-015",
   "26RBS02-017",
+  "26RBS02-019",
   "26RBS02-020",
   "26RBS02-022",
   "26RBS02-024",
@@ -1366,6 +1378,8 @@
   "26RBS02-049",
   "26RBS02-051",
   "26RBS02-053",
+  "26RBS02-056",
+  "26RBS02-057",
   "26RBS02-058",
   "26RBS02-060",
   "26RBS02-062",
@@ -1378,8 +1392,10 @@
   "26RBS02-087",
   "26RBS02-088",
   "26RBS02-089",
+  "26RBS02-090",
   "26RBS02-091",
   "26RBS02-X03",
+  "26RBS02-CP01",
   "26RDB01-001",
   "26RDB01-003",
   "26RDB01-004",
@@ -1403,6 +1419,7 @@
   "26RDB01-040",
   "26RDB01-044",
   "26RDB01-046",
+  "26RDB01-047",
   "26RDB01-050",
   "26RDB01-055",
   "26RDB01-056",
@@ -1449,6 +1466,7 @@
   "26RBS03-011",
   "26RBS03-012",
   "26RBS03-014",
+  "26RBS03-015",
   "26RBS03-016",
   "26RBS03-020",
   "26RBS03-021",
@@ -1456,7 +1474,10 @@
   "26RBS03-025",
   "26RBS03-026",
   "26RBS03-027",
+  "26RBS03-028",
+  "26RBS03-032",
   "26RBS03-034",
+  "26RBS03-036",
   "26RBS03-037",
   "26RBS03-042",
   "26RBS03-045",
@@ -1487,9 +1508,11 @@
   "26RBS03-091",
   "26RBS03-092",
   "26RBS03-093",
+  "26RBS03-094",
   "26RBS03-096",
   "26RBS03-097",
-  "26RBS03-098"
+  "26RBS03-098",
+  "26RBS03-X14"
  ],
  "nexus_levels_added": [
   "BS01-098",
@@ -4455,11 +4478,6 @@
    "problem": "ambiguous name (2 files, none in set 26RCB01)"
   },
   {
-   "id": "26RCB01-039",
-   "name": "Kamen Rider Snipe Shooting Gamer Level 2",
-   "problem": "ambiguous name (2 files, none in set 26RCB01)"
-  },
-  {
    "id": "26RCB01-046",
    "name": "Kamen Rider Poppy Tokimeki Crisis Gamer Level X",
    "problem": "ambiguous name (2 files, none in set 26RCB01)"
@@ -4520,11 +4538,6 @@
    "problem": "no image"
   },
   {
-   "id": "26RBS03-015",
-   "name": "The FoxPossessed Lupes",
-   "problem": "no image"
-  },
-  {
    "id": "26RBS03-017",
    "name": "Maskthorn",
    "problem": "no image"
@@ -4550,11 +4563,6 @@
    "problem": "no image"
   },
   {
-   "id": "26RBS03-028",
-   "name": "The HighTide Galesion",
-   "problem": "no image"
-  },
-  {
    "id": "26RBS03-029",
    "name": "The OceanicFan Greaseticola",
    "problem": "no image"
@@ -4570,11 +4578,6 @@
    "problem": "no image"
   },
   {
-   "id": "26RBS03-032",
-   "name": "Collet",
-   "problem": "no image"
-  },
-  {
    "id": "26RBS03-033",
    "name": "Algodon",
    "problem": "no image"
@@ -4582,11 +4585,6 @@
   {
    "id": "26RBS03-035",
    "name": "Pepper's Chairo",
-   "problem": "no image"
-  },
-  {
-   "id": "26RBS03-036",
-   "name": "The ShieldBearer Lasslake",
    "problem": "no image"
   },
   {
@@ -4725,11 +4723,6 @@
    "problem": "no image"
   },
   {
-   "id": "26RBS03-094",
-   "name": "Hallucination",
-   "problem": "no image"
-  },
-  {
    "id": "26RBS03-095",
    "name": "Furious Anger",
    "problem": "no image"
@@ -4782,11 +4775,6 @@
   {
    "id": "26RBS03-X13",
    "name": "The GreatMighty Biligrus",
-   "problem": "no image"
-  },
-  {
-   "id": "26RBS03-X14",
-   "name": "The SpikyGod Salvador",
    "problem": "no image"
   },
   {

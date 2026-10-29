@@ -48,7 +48,7 @@ function fxMatch(card, m, inst) {
   if (m.keyword && !cardHasKeyword(card, m.keyword)) return false;      // v0.90 S1 'a Spirit with Clash'; v0.120.0 Amplify: the card's keywords list is authoritative ({{Amplify|...}} prints no "(...)" head)
   if (m.noText) { const t = String(card.desc || card.text || '').trim(); if (t && t !== 'Vanilla card (no effect text).') return false; }      // v0.90 S1 'with no printed effects'
   if (!m.name && !m.family) return true;
-  return (m.name || []).some(n => card.name.toLowerCase().includes(n.toLowerCase())) || (m.family || []).some(n => (card.families || []).includes(n));
+  return [].concat(m.name || []).some(n => card.name.toLowerCase().includes(n.toLowerCase())) || (m.family || []).some(n => (card.families || []).includes(n));
 }
 /* v0.70 STATIC BLOCK_EXHAUSTED ("This Spirit can block while exhausted", usually inside a step window): an exhausted Spirit may still block */
 const cantAttack = (p, s) => !!s.noAB || (!!G && s.noAtkTurn === G.turnNo) || flagActive(p, 'CANT_ATTACK', s);      // v0.170: the printed "This Spirit can't attack." (STATIC flag CANT_ATTACK) besides the effect lock noAB
