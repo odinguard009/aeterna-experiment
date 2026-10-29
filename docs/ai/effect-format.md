@@ -140,3 +140,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v100 (v0.196.0, Lane K): `REVEAL_PICK.discard:true` (with `rest:"bottom"`: "discard a <match> card among them"; the picked card goes to the Trash, the rest to the deckbottom).
 - v101 (v0.196.0, Lane K): `EXHAUST_OPP.heavy:true` (with `oppChooses`: "heavy exhaust it instead"; the chosen Spirit also gets the heavy mark).
 - v102 (v0.196.0, Lane K): `CRUSH.n` accepts 1-10 (was 1-5): "discard six cards from the opposing decktop" (Mandia ALLY_LIFE_HIT, `match.keyword:"Rumble"`).
+- v103 (v0.196.0, Lane K): action `PAY_COST {n}` (1-5): "you can pay N cost" as the `BY.cost` of "If you've done so, ..." (the cores go to the Trash like an Invoke cost).

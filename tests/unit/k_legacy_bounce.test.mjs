@@ -518,3 +518,12 @@ test('K-40 Mandia: CRUSH n:6 discards six opposing decktop cards', async () => {
     return [n - O.deck.length, O.trash.length - t]; })()`);
   assert.deepEqual(r, [6, 6]);
 });
+
+test('K-41 Deep Strike: BY(PAY_COST) then heavy exhaust an exhausted opposing Spirit', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const a = opp(4, 3000); a.exhausted = true; const before = BS.coresAvailable(P);
+    await BS.runActions({ p: P, opp: O, src: BS.mkInst('26RDB01-059'), ctx: {} }, { actions: [{ do: 'BY', cost: { do: 'PAY_COST', n: 1 }, then: [{ do: 'HEAVY_EXHAUST_OPP', n: 1, exhaustedOnly: true }] }] });
+    return [before - BS.coresAvailable(P), !!a.heavy]; })()`);
+  assert.deepEqual(r, [1, true]);
+});

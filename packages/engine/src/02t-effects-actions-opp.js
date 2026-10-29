@@ -206,6 +206,11 @@ Object.assign(FX_ACTIONS, {
     } },
   /* "By doing X, do Y" (Eternal Rule Manual FAQ, About Effects in General Q5): X must be performable, X is not done when Y cannot be done,
      and the player chooses whether to do it (ask:true asks the human; the CPU does it). {do:'BY', cost:{action X}, then:[actions Y], ask} */
+  /* v0.196 PAY_COST {n}: the "pay N cost" step of "you can pay one cost. If you've done so, ..." (BY.cost); the cores go to the Trash like an Invoke cost */
+  PAY_COST: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5,
+    txt: a => `pay ${a.n} cost${a.n === 1 ? '' : 's'}`,
+    can: (c, a) => coresAvailable(c.p) >= a.n,
+    run: async (c, a) => { if (!(await payInvokeCost(c.p, c.src, { pay: a.n }))) c.ctx.did = false; } },
   BY: { chk: a => !!a.cost && typeof a.cost === 'object' && a.cost.do !== 'BY' && !parseActionList([a.cost]).error && Array.isArray(a.then) && a.then.length >= 1 && a.then.length <= 4 && a.then.every(x => x && x.do !== 'BY') && !parseActionList(a.then).error && (a.ask == null || typeof a.ask === 'boolean'),
     txt: a => `${a.ask ? 'you can, ' : ''}by ${FX_ACTIONS[a.cost.do].txt(a.cost)}, ${a.then.map(x => FX_ACTIONS[x.do].txt(x)).join(', then ')}`,
     can: (c, a) => { const ok = x => !FX_ACTIONS[x.do].can || FX_ACTIONS[x.do].can(c, x); return ok(a.cost) && ok(a.then[0]); },
