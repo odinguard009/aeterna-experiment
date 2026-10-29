@@ -157,6 +157,7 @@ function simple(card, a) {
         const nex = a.per.type === 'Nexus';
         return { onField: true, fix: nex ? [{ n: 2 }] : [], body: `${nex ? `nx(${J(nid(2))}); nx(${J(nid(2))});` : `sp(${J(FILL)}, P, 1); sp(${J(FILL)}, P, 1);`} const want = ${nex ? 2 : 'P.spirits.length'}, b = BS.bpOf(src); await run(src, RA); return BS.bpOf(src) === b + A.n * want ? '' : 'BP ' + b + ' -> ' + BS.bpOf(src) + ', want +' + A.n * want;` };
       }
+      if (a.perReserve === true && only(a, ['n', 'perReserve']) && spirit) return { onField: true, body: `const b = BS.bpOf(src), k = P.reserve.n; await run(src, RA); return BS.bpOf(src) === b + A.n * k ? '' : 'BP ' + b + ' -> ' + BS.bpOf(src) + ' with ' + k + ' Reserve cores';` };      // v0.195 "+N BP for each core in your Reserve"
       if (!only(a, ['n', 'to']) || !spirit || !['self', 'attacker', 'own', undefined].includes(a.to)) return null;
       if (a.to === 'own') return { onField: true, body: `const t = sp(${J(FILL)}, P, 1), b = [BS.bpOf(src), BS.bpOf(t)], o = sp(${J(FILL)}, O, 1); await run(src, RA);
       if (BS.bpOf(src) !== b[0] + A.n || BS.bpOf(t) !== b[1] + A.n) return 'own Spirits: ' + b + ' -> ' + [BS.bpOf(src), BS.bpOf(t)]; return BS.bpOf(o) === 1000 ? '' : 'an opposing Spirit got BP';` };

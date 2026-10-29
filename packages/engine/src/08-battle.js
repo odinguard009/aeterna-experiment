@@ -39,7 +39,7 @@ async function doBattleInner(attKey, att) {
   att = (await flashTiming(attKey, att, null))[0];
   if (G.over) return;
   if (!A.spirits.includes(att)) { log('The attack ends: the attacking Spirit left the field.'); io.view({ type: 'board' }); return; }
-  const blockers = noBlockActive(D) ? [] : D.spirits.filter(s => canBlockState(D, s) && abTaxOK(D, s) && !blockedByMark(att, s));
+  const blockers = noBlockActive(D) ? [] : D.spirits.filter(s => canBlockState(D, s) && abTaxOK(D, s) && !blockedByMark(att, s) && !blockedInferior(D, att, s));
   let blk = null;
   /* v0.58 priority "cannot" > "must" > "do" = "can" (JP 17.0 item 9): Spirits that can't block were removed above; a Spirit unaffected by the
      attacker's effects is not bound by its "must block" (FAQ Q4: unaffected > the effect) */

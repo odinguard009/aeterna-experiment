@@ -7,17 +7,11 @@
   "C_LEVEL",
   "T_SUMMONED"
  ],
- "BS01-012": [
-  "C_LEVEL"
- ],
  "BS01-016": [
   "A_BP_PLUS",
   "A_REFRESH",
   "C_LEVEL",
   "T_ATTACKS"
- ],
- "BS01-018": [
-  "C_LEVEL"
  ],
  "BS01-024": [
   "C_LEVEL",
@@ -94,10 +88,6 @@
  "BS01-071": [
   "A_EXHAUST",
   "A_REFRESH",
-  "C_LEVEL"
- ],
- "BS01-072": [
-  "A_BP_PLUS",
   "C_LEVEL"
  ],
  "BS01-078": [
@@ -592,11 +582,6 @@
   "A_VOID",
   "C_LEVEL",
   "T_SUMMONED"
- ],
- "BS03-031": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "T_ATTACKS"
  ],
  "BS03-032": [
   "A_EXHAUST",
@@ -4148,11 +4133,6 @@
   "K_BURST",
   "M_THEN",
   "T_SUMMONED"
- ],
- "BS14-031": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "K_BURST"
  ],
  "BS14-032": [
   "A_EXHAUST",

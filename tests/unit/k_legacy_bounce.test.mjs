@@ -275,3 +275,15 @@ test('K-18 BP_TARGET.alt (Spear Victory +3000, +5000 on Kamen Rider Baron) and E
     return [a, b, l.exhausted, BS.bpOf(t) + BS.bpOf(l) - b0]; })()`);
   assert.deepEqual(r, [3000, 5000, true, 1000]);
 });
+
+test('K-19 NO_BLOCK_INFERIOR (Lizardman) and perReserve BP (Gowsilvia static, BlackWind Panther when attacks)', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const liz = BS.mkInst('BS01-018'); liz.cores = 1; O.spirits.push(liz);
+    const weak = opp(1, 1000), strong = opp(1, 1000); liz.bpMod = 5000; strong.bpMod = 20000;
+    const lo = BS.blockedInferior(O, weak, liz), hi = BS.blockedInferior(O, strong, liz);
+    const g = BS.mkInst('BS01-072'); g.cores = 5; P.spirits.push(g); P.reserve.n = 0; const b0 = BS.bpOf(g); P.reserve.n = 3; const b1 = BS.bpOf(g);
+    const bp = BS.mkInst('BS03-031'); bp.cores = 3; P.spirits.push(bp); const c0 = BS.bpOf(bp); await BS.fireFx(P, 'ATTACKS', bp, { attacker: bp });
+    return [lo, hi, b1 - b0, BS.bpOf(bp) - c0]; })()`);
+  assert.deepEqual(r, [true, false, 3000, 3000]);
+});

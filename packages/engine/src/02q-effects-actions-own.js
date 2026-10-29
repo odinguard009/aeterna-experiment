@@ -35,10 +35,10 @@ Object.assign(FX_ACTIONS, {
   SYMBOL_PLUS: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 3, txt: a => `during this battle, this Spirit gains ${a.n} extra symbol${a.n === 1 ? '' : 's'}`,
     can: c => c.p.spirits.includes(c.src) && !!G.attacker,
     run: async (c, a) => { c.src.symBattle = (c.src.symBattle || 0) + a.n; log(`${CARDS[c.src.id].name} gains ${a.n} extra symbol${a.n === 1 ? '' : 's'} during this battle.`); } },
-  BP_PLUS: { chk: a => Number.isInteger(a.n) && a.n >= 1000 && ['self', 'attacker', 'own'].includes(a.to || 'self') && (a.per == null || perOk(a.per)), txt: a => `${a.to === 'own' ? 'your matching Spirits' : a.to === 'attacker' ? 'the attacking Spirit' : 'this Spirit'} gain +${a.n} BP${a.per ? ' for each matching card you control' : ''} this turn`,
+  BP_PLUS: { chk: a => Number.isInteger(a.n) && a.n >= 1000 && ['self', 'attacker', 'own'].includes(a.to || 'self') && (a.per == null || perOk(a.per)) && (a.perReserve == null || (a.perReserve === true && a.per == null && (a.to || 'self') === 'self')), txt: a => `${a.to === 'own' ? 'your matching Spirits' : a.to === 'attacker' ? 'the attacking Spirit' : 'this Spirit'} gain +${a.n} BP${a.per ? ' for each matching card you control' : ''} this turn`,
     run: async (c, a) => {
       const L = (a.to || 'self') === 'self' ? [c.src] : a.to === 'attacker' ? (c.ctx.attacker ? [c.ctx.attacker] : []) : c.p.spirits.filter(s => fxMatch(CARDS[s.id], a.match));
-      const n = a.per ? a.n * perCount(c.p, a.per) : a.n;     // v0.72 per: counted when it resolves
+      const n = a.perReserve ? a.n * c.p.reserve.n : a.per ? a.n * perCount(c.p, a.per) : a.n;     // v0.72 per: counted when it resolves; v0.195 perReserve: cores in your Reserve
       if (n) for (const s of L) { s.bpMod = (s.bpMod || 0) + n; log(`${CARDS[s.id].name} gets +${n} BP.`); }
     } },
   CORE_TO_SELF: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5, txt: a => `+${a.n} core to this card`,

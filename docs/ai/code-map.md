@@ -26,7 +26,7 @@ FX_STRICT, FX_WARNED, fxUnknown, FX_COND_KEYS, FX_TRIGGERS, FX_TRIGGER_TEXT, BR_
 ## packages/engine/src/02b-effects-actions.js (111 lines, ~4.1k tokens)
 FX_ACTIONS
 
-## packages/engine/src/02c-effects-parse.js (200 lines, ~6.4k tokens)
+## packages/engine/src/02c-effects-parse.js (201 lines, ~6.5k tokens)
 canPlaceFree, canPlaceBraveFree, summonFree, canPlacePaid, canPlaceBy, summonPaid, tributePay, summonBy, fxDescribe, BURST_WHEN, parseCond, parseActionList, parseBurst, parseEffects
 
 ## packages/engine/src/02d-effects-resolve.js (366 lines, ~7k tokens)
@@ -65,8 +65,8 @@ INVOKE_WHEN, INVOKE_COSTS, invokeMatchOK, invokeParse, invokeWhenOK, exhaustOwnC
 ## packages/engine/src/02o-effects-battle-end.js (85 lines, ~1.7k tokens)
 endOfBattle
 
-## packages/engine/src/02p-effects-shared-shapes.js (239 lines, ~5.6k tokens)
-cardTeams, allHaveShapeOK, allHaveOK, winRiderRun, fxOppMark, blockedByMark
+## packages/engine/src/02p-effects-shared-shapes.js (240 lines, ~5.7k tokens)
+cardTeams, allHaveShapeOK, allHaveOK, winRiderRun, fxOppMark, blockedInferior, blockedByMark
 
 ## packages/engine/src/02q-effects-actions-own.js (157 lines, ~3.6k tokens)
 

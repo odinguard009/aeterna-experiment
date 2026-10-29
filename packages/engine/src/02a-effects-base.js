@@ -131,7 +131,7 @@ const perOk = q => !!q && typeof q === 'object' && PER_TYPES.includes(q.type) &&
 const perCount = (owner, q) => (q.type === 'Nexus' ? owner.nexus : owner.spirits.filter(f => CARDS[f.id].type !== 'Ultimate')).filter(f => { const k = CARDS[f.id];
   return (!q.colors || q.colors.some(x => (k.colors || [k.color, k.symbol]).includes(x))) && (!q.family || (k.families || []).includes(q.family)) && (!q.name || k.name.includes(q.name)) && (!q.team || cardTeams(k).includes(q.team)) && (!q.keyword || cardHasKeyword(k, q.keyword)); }).length;
 function ownerOf(i) { if (!G) return null; for (const k of ['player', 'opponent']) if (fieldList(G.p[k]).includes(i)) return G.p[k]; return null; }
-const STATIC_FLAGS = ['MUST_BLOCK', 'NO_RETURN', 'CORES_DRAW', 'UNAFFECTED_SOUL', 'COST_DESTROY_PLUS', 'EXTRA_REDUCTION', 'NO_END_ATTACK', 'UNAFFECTED', 'HAND_UNAFFECTED', 'BLOCK_EXHAUSTED', 'CANT_ATTACK', 'CANT_BLOCK', 'NO_DECK_DISCARD', 'NO_ATTACK_LIFE', 'HAND_COST', 'DRAW_PLUS', 'TREAT_LV3', 'TRIBUTE_SAFE', 'IMMORTALITY'];
+const STATIC_FLAGS = ['MUST_BLOCK', 'NO_RETURN', 'CORES_DRAW', 'UNAFFECTED_SOUL', 'COST_DESTROY_PLUS', 'EXTRA_REDUCTION', 'NO_END_ATTACK', 'UNAFFECTED', 'HAND_UNAFFECTED', 'BLOCK_EXHAUSTED', 'CANT_ATTACK', 'CANT_BLOCK', 'NO_DECK_DISCARD', 'NO_ATTACK_LIFE', 'HAND_COST', 'DRAW_PLUS', 'TREAT_LV3', 'TRIBUTE_SAFE', 'IMMORTALITY', 'NO_BLOCK_INFERIOR'];
 /* flag effects: MUST_BLOCK (opposing Spirits must block this attacker), NO_RETURN (cannot be returned by opposing effects), CORES_DRAW (draw once per turn when cores are sent by your effects),
    UNAFFECTED_SOUL (Ometeotl Contract Field: this card is unaffected by opposing effects while a Soul Core is on it),
    NO_END_ATTACK (v0.43: while the matching Spirit of the owner attacks, the opponent can't end the Attack Step via effects; Sunya Lv3, Crimson Crater Lv2) */
@@ -222,7 +222,7 @@ function staticBp(i) {
       if (e.fightingOnly && G.attacker !== i && G.blocker !== i) continue;      // v0.168 "attacking/blocking Spirits"
       if (!fxIf(o, opp, e.if)) continue;
       if (e.noStack) { const k = CARDS[src.id].name + ':' + e.bp + ':' + JSON.stringify(e.match || null); if (seenNS.has(k)) continue; seenNS.add(k); }      // v0.168 (Can't Stack): one copy counts
-      sum += e.perHand ? e.bp * o.hand.length : e.perCores ? e.bp * (i.cores || 0) : e.per ? e.bp * (perCount(o, e.per) - (e.besides && perCount({ spirits: [src], nexus: [src] }, e.per) ? 1 : 0)) : e.bp;      // v0.72 "For each X you control, this Spirit gains +N BP" (per)
+      sum += e.perHand ? e.bp * o.hand.length : e.perReserve ? e.bp * o.reserve.n : e.perCores ? e.bp * (i.cores || 0) : e.per ? e.bp * (perCount(o, e.per) - (e.besides && perCount({ spirits: [src], nexus: [src] }, e.per) ? 1 : 0)) : e.bp;      // v0.72 "For each X you control, this Spirit gains +N BP" (per)
     }
   }
   return sum;
