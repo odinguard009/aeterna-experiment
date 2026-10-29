@@ -94,16 +94,16 @@ function exhaustCase(a, heavy) {
 }
 
 function bounceCase(a) {
-  if (!only(a, ['kind', 'to', 'bpLe', 'costLe', 'exhaustedOnly'])) return null;
+  if (!only(a, ['kind', 'to', 'bpLe', 'costLe', 'exhaustedOnly', 'n'])) return null;
   if (!['spirit', 'nexus', 'any'].includes(a.kind) || !['hand', 'deckBottom'].includes(a.to)) return null;
   const nexus = a.kind === 'nexus', cost = a.costLe != null ? a.costLe : 3, bp = a.bpLe != null ? a.bpLe : 3000, ex = a.exhaustedOnly ? 'true' : 'false';
   const at = nexus ? { n: cost } : { cost, bp };
   const over = a.costLe != null ? (nexus ? { n: cost + 1 } : { cost: cost + 1, bp }) : a.bpLe != null ? { cost, bp: bp + 1000 } : null;
   const mk = f => f.n != null ? `nx(${J(nid(f.n))}, O)` : `sp(${J(sid(f.cost, f.bp))}, O)`;
-  const where = a.to === 'hand' ? `O.hand.includes(t)` : `O.deck[O.deck.length - 1] === t`;
+  const k = a.n || 1, where = a.to === 'hand' ? `O.hand.includes(t)` : `O.deck.slice(-${k}).includes(t)`;
   return { fix: [at].concat(over ? [over] : []), body: `for (let j = 0; j < 3; j++) dk(${J(FILL)}, O);
-      let t = ${mk(at)}; if (${ex}) t.exhausted = true;
-      let ctx = await run(src, RA); if (!gone(t)) return 'the matching target is still on the field'; if (!(${where})) return 'the target did not go to ${a.to}';
+      let t = ${mk(at)}; if (${ex}) t.exhausted = true; const xs = []; for (let j = 1; j < ${k}; j++) xs.push(${mk(at)});
+      let ctx = await run(src, RA); if (!gone(t) || xs.some(x => !gone(x))) return 'a matching target is still on the field'; if (!(${where})) return 'the target did not go to ${a.to}';
       ${over ? `${PRE_RESET} t = ${mk(over)}; if (${ex}) t.exhausted = true; ctx = await run(src, RA); if (gone(t)) return 'a target over the bound was returned';` : ''}
       if (${ex}) { ${PRE_RESET} t = ${mk(at)}; await run(src, RA); if (gone(t)) return 'exhaustedOnly: a ready target was returned'; }
       return '';` };
