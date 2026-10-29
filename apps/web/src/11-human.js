@@ -90,7 +90,7 @@ function cardFacePlaceholder(card, withCost, col, extra) {
 function cardFaceHTML(card, withCost) {
   const col = `var(--color-${card.symbol})`;
   const cbm = `<span class="cbm" data-s="${card.symbol}" aria-hidden="true"></span>`;   // v0.143.0: colour-blind shape marker, shown only when the setting is on
-  const aid = (typeof ART_ALT !== 'undefined' && ART_ALT[card.id] && CARDS[ART_ALT[card.id]]) ? ART_ALT[card.id] : card.id;   // v0.155.0: the art picked on the card page is used everywhere (an unavailable picture falls back to the card's own)
+  const aid = (typeof artOf === 'function') ? artOf(card.id) : card.id;   // v0.155.0: the art picked on the card page is used everywhere (an unavailable picture falls back to the card's own)
   const src = cardImgSrc(aid) || (aid !== card.id ? cardImgSrc(card.id) : '');                              // v0.112.0: player image first, then the online mirror
   if (!src) return cbm + cardFacePlaceholder(card, withCost, col);
   // A player blob never fails; the mirrored URL may 404 (the wiki lacks that card), so it carries an

@@ -41,20 +41,37 @@ async function shrinkImage(file) {
 const stripExt = n => String(n).replace(/\.[^./\\]+$/, '');
 function findCardByFile(fileName) {                 // 1) the card's own "image" field (any file name), 2) ID, 3) card name
   const k = normKey(stripExt(fileName)); if (!k) return null;
-  for (const id in CARDS) if (CARDS[id].image && normKey(stripExt(CARDS[id].image)) === k) return id;
+  for (const id in CARDS) if (normKey(id) === k) return id;      // a serial number in the file name is exact
+  const hit = fileCandidates(fileName, true);
+  if (hit.length) return hit.length === 1 ? hit[0] : null;     // several different cards share this picture name: ask for the serial number
   return findCardByKey(stripExt(fileName));
 }
-function findCardByKey(key) {
-  const k = normKey(key); if (!k) return null;
-  for (const id in CARDS) if (normKey(id) === k) return id;
-  for (const id in CARDS) if (normKey(CARDS[id].name) === k) return id;
-  return null;
+function fileCandidates(fileName, imageOnly) {           // cards a file name could mean: by the "image" field first, else by serial/name
+  const k = normKey(stripExt(fileName)); if (!k) return [];
+  const seen = new Set(), out = [];
+  for (const id in CARDS) if (CARDS[id].image && normKey(stripExt(CARDS[id].image)) === k) { const sig = printSig(CARDS[id]); if (!seen.has(sig)) { seen.add(sig); out.push(id); } }
+  return out.length || imageOnly ? out : cardsByKey(stripExt(fileName));
 }
+/* v0.185: a serial number is exact; a name may match several different cards (same name, different serial). Identical
+   reprints collapse to the first; genuinely different cards stay in the list, so the importers can report them. */
+function cardsByKey(key) {
+  const k = normKey(key); if (!k) return [];
+  for (const id in CARDS) if (normKey(id) === k) return [id];
+  const seen = new Set(), out = [];
+  for (const id in CARDS) {
+    if (normKey(CARDS[id].name) !== k) continue;
+    const sig = printSig(CARDS[id]); if (seen.has(sig)) continue;
+    seen.add(sig); out.push(id);
+  }
+  return out;
+}
+const ambiguousMsg = (what, ids) => `${what} matches ${ids.length} different cards - use the serial number: ${ids.slice(0, 6).join(', ')}${ids.length > 6 ? ', ...' : ''}`;
+function findCardByKey(key) { const l = cardsByKey(key); return l.length === 1 ? l[0] : null; }
 async function importImages(files) {
   let ok = 0; const miss = [];
   for (const f of files) {
     const id = f.type.startsWith('image/') ? findCardByFile(f.name) : null;
-    if (!id) { miss.push(f.name); continue; }
+    if (!id) { const c = f.type.startsWith('image/') ? fileCandidates(f.name) : []; miss.push(c.length > 1 ? `${f.name} (${ambiguousMsg('name', c)})` : f.name); continue; }
     const blob = await shrinkImage(f);
     setImg(id, blob); await idbTx('readwrite', st => st.put(blob, id)); ok++;
   }
@@ -67,7 +84,7 @@ async function clearImages() { Object.keys(IMG).forEach(id => { URL.revokeObject
    File: name) because the official battlespirits.com image URL is derived directly from it.
    Empty when neither is available (offline, no image). */
 function cardImgSrc(id) {
-  const k = ART_ALT[id] && CARDS[ART_ALT[id]] ? ART_ALT[id] : id;           // v0.132.0 U14g2: the picture picked for this card
+  const k = artOf(id);           // v0.132.0 U14g2: the picture picked for this card
   if (IMG[k]) return IMG[k];
   const c = CARDS[k];
   if (!c || !c.id) return '';
@@ -212,13 +229,15 @@ function textToDeck(text) {
     const km = line.match(/^KEY\s+(.+)$/i);
     if (km) {                          // the Key Spirit marker line (v0.103.0); at most one
       if (keyLines) bad.push(`line ${i + 1}: only one KEY line is allowed`);
-      else { const kid = findCardByKey(km[1]); if (!kid) bad.push(`line ${i + 1}: KEY "${km[1].trim()}" not found`); else key = kid; }
+      else { const kc = cardsByKey(km[1]); if (kc.length > 1) bad.push(`line ${i + 1}: KEY "${km[1].trim()}" ${ambiguousMsg('', kc).trim()}`); else if (!kc.length) bad.push(`line ${i + 1}: KEY "${km[1].trim()}" not found`); else key = kc[0]; }
       keyLines++; return;
     }
     let m = line.match(/^(\d+)\s*[xX]?\s+(.+)$/) || line.match(/^(.+?)\s+[xX](\d+)$/);
     let n, nm;
     if (m && /^\d+$/.test(m[1])) { n = Number(m[1]); nm = m[2]; } else if (m) { nm = m[1]; n = Number(m[2]); } else { nm = line; n = 1; }
-    const id = findCardByKey(nm);
+    const cs = cardsByKey(nm);
+    if (cs.length > 1) { bad.push(`line ${i + 1}: "${nm.trim()}" ${ambiguousMsg('', cs).trim()}`); return; }
+    const id = cs[0];
     if (!id) { bad.push(`line ${i + 1}: "${nm.trim()}" not found`); return; }
     deck[id] = Math.min(3, (deck[id] || 0) + n);
   });
