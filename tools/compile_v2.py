@@ -1093,6 +1093,8 @@ def compile_card(c):
         if t2 != t: c = dict(c, text=t2); t = t2
     if t and re.search(r'^The Spirit gains ', t, re.M):      # v0.183 "(When Attacks) The Spirit gains +N BP ..." is the card itself
         c = dict(c, text=re.sub(r'^The Spirit gains ', 'This Spirit gains ', t, flags=re.M)); t = c['text']
+    if t and re.search(r'^(?:\[LV[^\]]*\]\s*)?During (?:Attack|Block)\n', t, re.M):      # v0.187 a bare 'During Attack' line (no parentheses) heads the next line
+        c = dict(c, text=re.sub(r'(?m)^((?:\[LV[^\]]*\]\s*)?)(During (?:Attack|Block))\n', r'\1(\2) ', t)); t = c['text']
     if t and '{{Assault|' in t:
         t2 = assault_norm(t)
         if t2 != t: c = dict(c, text=t2); t = t2

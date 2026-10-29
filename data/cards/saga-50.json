@@ -5035,7 +5035,7 @@
    "Cyantree",
    "Ambulantree"
   ],
-  "text": "(Legacy)\n\n[LV1-2] {{Rumble|7}} During Attack\nAt the end of battle, discard seven cards from the opposing decktop. For each cost of the Spirit card that blocked in the opposing Trash, it discards -1 card.\n\n[LV2]During Attack\nIf you control two or more Blue symbols, this Spirit gains +2000 BP.",
+  "text": "(Legacy)\n\n[LV1][LV2] (When Attacks) Rumble 7.\n\n[LV2](During Attack) If you control two or more Blue symbols, this Spirit gains +2000 BP.",
   "image": "26RBS01-089.png",
   "block": "A",
   "saga": 50,
@@ -5043,11 +5043,6 @@
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV2]During Attack If you control two or more Blue symbols, this Spirit gains +2000 BP."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "effects": [
    {
     "trigger": "ATTACKS",
@@ -5061,11 +5056,25 @@
       "n": 7
      }
     ]
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 2000,
+    "to": "self",
+    "if": {
+     "symbolsOnGe": {
+      "color": "blue",
+      "n": 2
+     }
+    },
+    "attackingOnly": true,
+    "lv": [
+     2
+    ]
    }
   ],
-  "keywords": [
-   "Rumble"
-  ]
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-090",
