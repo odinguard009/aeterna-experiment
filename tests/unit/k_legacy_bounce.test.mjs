@@ -414,3 +414,15 @@ test('K-30 Break Claw: destroys a Nexus, then Trash core to Reserve only with an
     return out; })()`);
   assert.deepEqual(r, [[0, 0], [0, 1]]);
 });
+
+test('K-31 Carneliath: CPU destroys two 3000 BP Spirits when it can, else one 5000 BP Spirit', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const out = [];
+    for (const bps of [[3000, 3000, 5000], [5000]]) {
+      O.spirits.length = 0; bps.forEach(bp => opp(bp === 3000 ? 3 : 5, bp));
+      await BS.runActions({ p: P, opp: O, src: BS.mkInst('26RBS01-X02'), ctx: {} }, { actions: BS.CARDS['26RBS01-X02'].effects[0].actions });
+      out.push(O.spirits.length); }
+    return out; })()`);
+  assert.deepEqual(r, [1, 0]);
+});

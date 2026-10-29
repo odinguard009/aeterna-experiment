@@ -77,7 +77,7 @@ cardTeams, allHaveShapeOK, allHaveOK, winRiderRun, fxOppMark, blockedInferior, b
 ## packages/engine/src/02s-effects-actions-soul.js (149 lines, ~3.6k tokens)
 
 
-## packages/engine/src/02t-effects-actions-opp.js (210 lines, ~5.2k tokens)
+## packages/engine/src/02t-effects-actions-opp.js (221 lines, ~5.5k tokens)
 
 
 ## packages/engine/src/02u-effects-form-change.js (32 lines, ~0.7k tokens) — FORM CHANGE (v0.135.0, schema v8; Kamen Rider cross-over cards): {{F Change|"X" & Cost N}} {{Invoke|Main}}

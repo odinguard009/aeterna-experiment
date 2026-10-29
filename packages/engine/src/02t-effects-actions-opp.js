@@ -33,6 +33,17 @@ Object.assign(FX_ACTIONS, {
     run: async (c, a) => {
       for (const q of a.opposing ? [c.opp] : [c.opp, c.p]) for (const x of q.nexus.filter(x => (!a.lv || lvNo(x) === a.lv) && (!a.withCore || x.cores > 0))) removeNexus(q, x, 'destroyed');
     } },
+  /* v0.196 DESTROY_EITHER {two, one} "Target either two opposing <two> BP or less Spirits or an opposing <one> BP or less Spirit. Destroy those": the owner picks the branch when both are possible (the CPU takes two) */
+  DESTROY_EITHER: { chk: a => Number.isInteger(a.two) && Number.isInteger(a.one) && a.two < a.one && a.two >= 1000 && a.one <= 12000,
+    txt: a => `destroy either two opposing ${a.two} BP or less Spirits or one opposing ${a.one} BP or less Spirit`,
+    can: (c, a) => FX_ACTIONS.DESTROY.cands(c, { do: 'DESTROY', bpLe: a.one }).length > 0,
+    run: async (c, a) => {
+      const D = FX_ACTIONS.DESTROY, two = D.cands(c, { do: 'DESTROY', bpLe: a.two }).length >= 2, one = D.cands(c, { do: 'DESTROY', bpLe: a.one }).length > 0;
+      if (!two && !one) { c.ctx.did = false; return; }
+      let both = two;
+      if (two && one && !c.p.cpu) both = await ask({ title: `✨ ${esc(_nm(c))}`, html: `Destroy two opposing ${a.two} BP or less Spirits, or one ${a.one} BP or less Spirit?`, buttons: [{ label: 'Two', cls: 'primary', value: true }, { label: 'One', cls: 'blue', value: false }] });
+      for (let i = 0; i < (both ? 2 : 1); i++) await D.run(c, { do: 'DESTROY', bpLe: both ? a.two : a.one });
+    } },
   /* v0.181 (schema 30) "By setting a card with Burst effect from your Hand, <next>": sets one (a previous Burst is discarded, setBurst); ctx.did = false when the Hand has none, so the next actions use {"if":{"prev":true}} */
   SET_BURST: { chk: () => true, txt: () => 'set a card with Burst effect from your Hand',
     cands: c => c.p.hand.filter(h => h !== c.src && CARDS[h.id].burst),
