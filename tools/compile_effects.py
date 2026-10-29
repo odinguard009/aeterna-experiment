@@ -366,6 +366,8 @@ def step_window(p, card, lv, rush):
         x = {'trigger': 'ACTIVATE', 'timing': ['MAIN'], 'once': True, 'optional': True, 'actions': [{'do': 'SUMMON_HAND', 'match': {'type': 'Spirit'}, 'pay': True, 'noFx': True, 'noTribute': True}]}
         if lv: x['lv'] = lv
         return [x], {}
+    csopt = re.match(r'\(CSOPT\)\s*(?=When )', body)
+    if csopt: body = body[csopt.end():]      # v0.185 '(Step) (CSOPT) When ...': same-name once per turn, applied to the triggered effects below
     win = {'step': step}
     if who != 'Either': win['oppTurn'] = who == 'Opposing'
     mw = BURST_WHILE.match(body)
@@ -418,6 +420,9 @@ def step_window(p, card, lv, rush):
             raise Review('step window on ' + x['trigger'] + ': ' + body[:60])
         if any(k in (x.get('if') or {}) for k in WIN_KEYS): raise Review('step window twice: ' + body[:60])
         x['if'] = dict(x.get('if') or {}, **win)
+        if csopt:
+            if x['trigger'] == 'STATIC': raise Review('CSOPT on a static effect: ' + body[:60])
+            x['once'] = True; x['sameName'] = True
     return e, flags
 
 
