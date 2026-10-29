@@ -537,3 +537,13 @@ test('K-42 Aloe Toll: BP_TARGET match.tr only boosts a Spirit in True Release st
     return [t.bpMod || 0, n.bpMod || 0]; })()`);
   assert.deepEqual(r, [2000, 0]);
 });
+
+test('K-43 Marie Dog: BP_PLUS pick:3 boosts only three of four own Spirits', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const L = ['26RDB01-015', '26RDB01-016', '26RDB01-017', '26RDB01-015'].map(id => { const s = BS.mkInst(id); s.cores = 2; P.spirits.push(s); return s; });
+    P.cpu = true;
+    await BS.runActions({ p: P, opp: O, src: BS.mkInst('26RDB01-037'), ctx: {} }, { actions: BS.CARDS['26RDB01-037'].effects.find(e => e.trigger === 'START_ATTACK').actions });
+    return L.filter(s => s.bpMod === 2000).length; })()`);
+  assert.equal(r, 3);
+});

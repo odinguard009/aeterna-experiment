@@ -35,9 +35,10 @@ Object.assign(FX_ACTIONS, {
   SYMBOL_PLUS: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 3, txt: a => `during this battle, this Spirit gains ${a.n} extra symbol${a.n === 1 ? '' : 's'}`,
     can: c => c.p.spirits.includes(c.src) && !!G.attacker,
     run: async (c, a) => { c.src.symBattle = (c.src.symBattle || 0) + a.n; log(`${CARDS[c.src.id].name} gains ${a.n} extra symbol${a.n === 1 ? '' : 's'} during this battle.`); } },
-  BP_PLUS: { chk: a => Number.isInteger(a.n) && a.n >= 1000 && ['self', 'attacker', 'own'].includes(a.to || 'self') && (a.per == null || perOk(a.per)) && (a.perReserve == null || (a.perReserve === true && a.per == null && (a.to || 'self') === 'self')), txt: a => `${a.to === 'own' ? 'your matching Spirits' : a.to === 'attacker' ? 'the attacking Spirit' : 'this Spirit'} gain +${a.n} BP${a.per ? ' for each matching card you control' : ''} this turn`,
+  BP_PLUS: { chk: a => Number.isInteger(a.n) && a.n >= 1000 && ['self', 'attacker', 'own'].includes(a.to || 'self') && (a.pick == null || ((a.to || 'self') === 'own' && Number.isInteger(a.pick) && a.pick >= 1 && a.pick <= 3)) && (a.per == null || perOk(a.per)) && (a.perReserve == null || (a.perReserve === true && a.per == null && (a.to || 'self') === 'self')), txt: a => `${a.to === 'own' ? 'your matching Spirits' : a.to === 'attacker' ? 'the attacking Spirit' : 'this Spirit'} gain +${a.n} BP${a.per ? ' for each matching card you control' : ''} this turn`,
     run: async (c, a) => {
-      const L = (a.to || 'self') === 'self' ? [c.src] : a.to === 'attacker' ? (c.ctx.attacker ? [c.ctx.attacker] : []) : c.p.spirits.filter(s => fxMatch(CARDS[s.id], a.match));
+      let L = (a.to || 'self') === 'self' ? [c.src] : a.to === 'attacker' ? (c.ctx.attacker ? [c.ctx.attacker] : []) : c.p.spirits.filter(s => fxMatch(CARDS[s.id], a.match));
+      if (a.pick && L.length > a.pick) { const ch = []; while (ch.length < a.pick) { const t = await fxPickTarget(c, L.filter(x => !ch.includes(x)), `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap up to ${a.pick} of your Spirits (${ch.length} chosen) for +${a.n} BP.`); if (!t) break; ch.push(t); } L = ch; }      // v0.196 pick: "target up to N Spirits you control"
       const n = a.perReserve ? a.n * c.p.reserve.n : a.per ? a.n * perCount(c.p, a.per) : a.n;     // v0.72 per: counted when it resolves; v0.195 perReserve: cores in your Reserve
       if (n) for (const s of L) { s.bpMod = (s.bpMod || 0) + n; log(`${CARDS[s.id].name} gets +${n} BP.`); }
     } },

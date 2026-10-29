@@ -7,3 +7,5 @@ Never stop working Lane K for any reason (no pause to report, ask, chat or wait 
 
 **Why:** the owner had to repeat this order several times ("Jangan berhenti ... dengan alasan apapun. Saya tidak suka harus mengulangi perintah ini").
 **How to apply:** at the end of every reply keep a Lane K action running (background job + Monitor) instead of ending on a status line; keep status text to one short line.
+
+**Update 2026-10-29 (owner):** this includes status reports and closing a turn: do not end a turn to report. Keep status to one line inside a turn that still ends with a running Lane K action (tool call), never a final summary until the lane is finished or quota stops.
