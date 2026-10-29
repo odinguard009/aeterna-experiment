@@ -5,7 +5,7 @@ const isMainStep = () => !!G && (G.step === 4 || (G.format === 'standard' && G.s
 function setStep(i) { G.step = i; checkDepletion(G.p.player); checkDepletion(G.p.opponent); io.view({ type: 'board' }); }
 async function beginTurn(key) {
   const p = G.p[key];
-  G.active = key; G.turnNo++; p.burstSetThisTurn = false; p.mirageSetThisTurn = false; p.attacksThisTurn = 0; G.burstQ.length = 0; releaseStandby(true); G.evQ.length = 0;
+  G.active = key; G.turnNo++; p.burstSetThisTurn = false; p.mirageSetThisTurn = false; p.attacksThisTurn = 0; G.p.player.blocksThisTurn = G.p.opponent.blocksThisTurn = 0; G.burstQ.length = 0; releaseStandby(true); G.evQ.length = 0;
   log(`— Turn ${G.turnNo}: ${p.name} —`);
   setStep(0); await wait(300);
   if (p.deck.length === 0) { win(other(key), `${poss(p)} deck is empty at the start step`); return; }

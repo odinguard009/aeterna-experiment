@@ -50,7 +50,7 @@ async function doBattleInner(attKey, att) {
   if (blockers.length) blk = await askBlock(att, D, marked.length ? marked : blockers, must || marked.length > 0, marked.length ? marked : bound);   // v0.105.0 (M6 step 1): CPU seats answer the port too; cpuAnswer routes this pick to the same cpuChooseBlock
   if (blk && !(await payAbTax(D, blk, 'block'))) blk = null;
   if (blk) {
-    blk.exhausted = true; G.blocker = blk;
+    blk.exhausted = true; G.blocker = blk; D.blocksThisTurn = (D.blocksThisTurn || 0) + 1;
     log(`${who(D)} ${D.cpu ? 'blocks' : 'block'} with ${CARDS[blk.id].name} (${bpOf(blk)} BP).`);
     io.view({ type: 'board' }); await wait(450);
     await fireFxMulti([{ owner: A, trigger: 'ALLY_BLOCKED', src: att, ctx: { attacker: att, blocker: blk } }, { owner: D, trigger: 'BLOCKS', src: blk, ctx: { attacker: att, blocker: blk } }]);   // manual p. 30: one pool after the block

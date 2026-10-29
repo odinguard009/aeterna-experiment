@@ -466,3 +466,16 @@ test('K-35 Collet: refreshes a Wollaguard Spirit that then cannot attack this tu
     return [s.exhausted, s.noAtkTurn === BS.G.turnNo]; })()`);
   assert.deepEqual(r, [false, true]);
 });
+
+test('K-36 Level Up: TREAT_LV2 self+battle lasts only while that battle runs; firstBlock counts blocks', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const id = '26RCB01-039', c = BS.CARDS[id];
+    P.spirits.length = 0; const s = BS.mkInst(id); s.cores = c.levels[0].cores; P.spirits.push(s);
+    const fx = c.effects.find(e => e.trigger === 'ATTACKS');
+    BS.G.battleNo = 5; BS.G.attacker = s;
+    await BS.runActions({ p: P, opp: O, src: s, ctx: {} }, { actions: fx.actions });
+    const during = BS.lvNo(s); BS.G.battleNo = 6; const next = BS.lvNo(s); BS.G.battleNo = 5; BS.G.attacker = null; const after = BS.lvNo(s);
+    return [during, next, after, !!c.effects.find(e => e.trigger === 'BLOCKS' && e.if && e.if.firstBlock)]; })()`);
+  assert.deepEqual(r, [2, 1, 1, true]);
+});
