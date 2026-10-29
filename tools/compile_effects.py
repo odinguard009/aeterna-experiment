@@ -16,7 +16,7 @@ sentence not in the tables below. The output still has to pass the game's parseC
 import json, glob, os, re, sys, collections
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
-KEEP = ('id', 'name', 'name_jp', 'type', 'color', 'cost', 'reduction', 'symbols', 'levels', 'families', 'text', 'image', 'block', 'saga', 'brave', 'ex_symbols')
+KEEP = ('id', 'name', 'name_jp', 'type', 'color', 'cost', 'reduction', 'symbols', 'levels', 'families', 'text', 'image', 'block', 'saga', 'brave', 'ex_symbols', 'rarity', 'collab', 'bicon')
 NUM = {'a': 1, 'an': 1, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8}
 num = lambda s: int(s) if s.isdigit() else NUM[s.lower()]
 W = r'(\d+|a|an|one|two|three|four|five)'

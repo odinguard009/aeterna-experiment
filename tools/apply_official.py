@@ -3,16 +3,19 @@
   python3 tools/apply_official.py                         dry run: counts per field
   python3 tools/apply_official.py --field cost --list 20  dry run: first 20 changes of one field
   python3 tools/apply_official.py --field cost --apply    write one field (one commit per field)
-Fields: cost, reduction, levels, colors, brave. Idempotent. The official page wins; nothing else in a card is touched.
+Fields: cost, reduction, levels, colors, brave, rarity, collab, bicon. Idempotent. The official page wins; nothing else in a card is touched.
 reduction: only the six colour keys are replaced (other keys such as god / ultimate stay). levels: Spirit / Brave of equal
 level count (bp + cores); a Nexus is left alone (the page lists a threshold the library models differently). colors: the `colors` list (the engine reads it), `color`
 stays when it is in the list, else becomes the first official colour. Files keep their layout (indent 1 in data/cards,
-one card per line in data/import)."""
-import argparse, glob, json, os, sys
+one card per line in data/import).
+rarity: C U R M X ... (full-width Ｃ/Ｕ/Ｒ normalised). collab: official collaboration names. bicon: official block icon numbers ("A" or "4"); only set
+when the official page shows one (older cards have none, so absent means no icon)."""
+import argparse, glob, json, os, re, sys
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 COLORS = ('red', 'purple', 'green', 'white', 'yellow', 'blue')
-FIELDS = ('cost', 'reduction', 'levels', 'colors', 'brave')
+FIELDS = ('cost', 'reduction', 'levels', 'colors', 'brave', 'rarity', 'collab', 'bicon')
+FULLWIDTH = {'Ｃ': 'C', 'Ｕ': 'U', 'Ｒ': 'R'}
 
 
 def dump(d, style):
@@ -61,6 +64,17 @@ def changes(c, o, field):
                 new.update(o['combine'])
             if new != br:
                 out.append(('brave', new))
+    elif field == 'rarity':
+        r = FULLWIDTH.get(o['rarity'], o['rarity'])
+        if r and c.get('rarity') != r:
+            out.append(('rarity', r))
+    elif field == 'collab':
+        if o['collab'] and c.get('collab') != o['collab']:
+            out.append(('collab', list(o['collab'])))
+    elif field == 'bicon':
+        b = [i.strip('<>') for i in re.findall(r'<[0-9A-Z]+>', ''.join(o['blockIcons']))]
+        if b and c.get('bicon') != b:
+            out.append(('bicon', b))
     return out
 
 

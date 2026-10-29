@@ -13,7 +13,7 @@ import { codec, packBlob, packExpr } from './build.mjs';
 import { ensureAllCards } from './all_cards.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-const KEEP = ['id', 'name', 'name_jp', 'type', 'color', 'cost', 'reduction', 'symbols', 'levels', 'families', 'text', 'image', 'block', 'saga'];
+const KEEP = ['id', 'name', 'name_jp', 'type', 'color', 'cost', 'reduction', 'symbols', 'levels', 'families', 'text', 'image', 'block', 'saga', 'rarity', 'collab', 'bicon'];
 export function projectedCards() {
   const live = JSON.parse(readFileSync(ensureAllCards(ROOT), 'utf8')).map(({ note, ...c }) => c);
   const have = new Set(live.map(c => c.id)), dir = join(ROOT, 'data/import');

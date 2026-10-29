@@ -11,7 +11,7 @@ import { fileURLToPath } from 'node:url';
 import { openGame, closeBrowser } from '../tests/unit/lib/game.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-const KEEP = ['id', 'name', 'name_jp', 'type', 'color', 'cost', 'reduction', 'symbols', 'levels', 'families', 'text', 'image', 'block', 'saga'];
+const KEEP = ['id', 'name', 'name_jp', 'type', 'color', 'cost', 'reduction', 'symbols', 'levels', 'families', 'text', 'image', 'block', 'saga', 'rarity', 'collab', 'bicon'];
 // Fandom export has no levels for these Spirits (empty page data or a page template the export did not parse),
 // two Braves have neither levels nor combine data, and BS60-XX01 lists one symbol per colour (6; the engine allows 5).
 export const KNOWN_GAPS = new Set(['BS14-008', 'BS14-X01', 'BS16-036', 'BS18-009', 'BS55-XX01', 'BS42-006', 'BS42-021', 'BS42-038', 'BS77-AX01', 'BS77-AX02', 'BS77-AX03', 'BS42-074', 'BS44-072', 'BS60-XX01']);
