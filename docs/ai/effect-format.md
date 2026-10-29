@@ -93,3 +93,18 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v53 (v0.184.0, Lane K): the static flag `TREAT_LV3` accepts `n: 2` (treated as being at Lv2, for "treat this Spirit as being [LV2]"); default stays Lv3.
 - v54 (v0.184.0, Lane K): `SHOW_RETURN.match` is optional (any card from the Hand), for "return a card from your Hand to the deckbottom".
 - v55 (v0.184.0, Lane K): the card `match` accepts `team` (a team name read from the `[Team: X]` head line), for "a Red Stella Spirit card" in reveal effects.
+- v56 (v0.185.0, Lane K): trigger `RUMBLE_DISCARD` (owner's field effects, after a Rumble discards; `exOnly` = at least one discarded card has an EX Symbol, `other` = besides the Rumble's own Spirit).
+- v57 (v0.185.0, Lane K): condition `selfAttacking:true` ("(During Attack)": the source Spirit is the current attacker), used with `MAGIC_USED`.
+- v58 (v0.185.0, Lane K): `CANT_BE_BLOCKED_BY` accepts `all:true` (this Spirit can't be blocked at all during this battle).
+- v59 (v0.185.0, Lane K): `ctrl` accepts `costLe` (with `costGe` = exact cost); `costAlt.if` may carry `ctrl` ("If you control no Spirits, this card in Hand becomes Cost N").
+- v60 (v0.185.0, Lane K): `CANT_BE_BLOCKED_BY` accepts `bpLe` (current BP) and `coresLe` (cores on the blocker).
+- v61 (v0.185.0, Lane K): new action `DRAW_UNTIL {n}` (draw until the Hand has n cards).
+- v62 (v0.185.0, Lane K): `if.firstAttack` (true = the owner's first attack of the turn, false = second or subsequent; counted when the attack is declared).
+- v63 (v0.185.0, Lane K): `if.blockerBpLe` (ALLY_BLOCKED: the blocker has N BP or less).
+- v64 (v0.185.0, Lane K): new action `MUST_BLOCK_OPP {bpLe?, state?}` (target an opposing Spirit; this battle it must block if possible, even while exhausted).
+- v65 (v0.185.0, Lane K): `if.selfBlocked` (this Spirit is attacking and has been blocked).
+- v66 (v0.185.0, Lane K): new action `DEPLOY_TRASH {match}` (deploy a matching Nexus card from your Trash without paying the cost).
+- v67 (v0.185.0, Lane K): STATIC `perCores:true` (with `bp`, `to:"self"`): "This Spirit gains +N BP for each core on it." (counted live).
+- v68 (v0.185.0, Lane K): STATIC `per` is also allowed with `to:"own"` ("For each X you control, give all your Spirits +N BP"; each of your Spirits gets bp x the count).
+- v69 (v0.185.0, Lane K): new action `HAND_RECYCLE {perOppHand | drawIfAll:{match,n}}` (return all your Hand to the deckbottom in Hand order; then draw a card per card in the opposing Hand, or N cards if every returned card matches).
+- v70 (v0.185.0, Lane K): `DESTROY_OWN` takes `other:true` (not this Spirit); `DESTROY_ANY` (Nexus) takes `noTR:true` (skip a True Release Nexus at LV2+) and `drawIfDone:true` (draw when one is destroyed, either side).

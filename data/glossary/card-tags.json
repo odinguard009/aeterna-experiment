@@ -44685,6 +44685,7 @@
   "K_AMPLIFY"
  ],
  "26RBS01-058": [
+  "C_LEVEL",
   "M_OPTIONAL"
  ],
  "26RBS01-059": [
@@ -44715,6 +44716,7 @@
  "26RBS01-063": [
   "A_VOID",
   "A_EXHAUST",
+  "C_LEVEL",
   "K_STANDARD_INVOKE"
  ],
  "26RBS01-064": [],
@@ -44821,7 +44823,8 @@
   "K_RUMBLE"
  ],
  "26RBS01-083": [
-  "A_BP_PLUS"
+  "A_BP_PLUS",
+  "C_LEVEL"
  ],
  "26RBS01-084": [
   "T_SUMMONED",
@@ -44851,6 +44854,7 @@
   "C_LEVEL"
  ],
  "26RBS01-089": [
+  "T_ATTACKS",
   "A_BP_PLUS",
   "C_LEVEL",
   "K_RUMBLE"
@@ -45158,9 +45162,11 @@
  "26RBS01-X17": [
   "T_SUMMONED",
   "A_VOID",
+  "C_LEVEL",
   "M_UP_TO"
  ],
  "26RBS01-X18": [
+  "T_ATTACKS",
   "A_REFRESH",
   "A_DISCARD_OPP",
   "C_LEVEL",
@@ -45271,6 +45277,7 @@
  ],
  "26RBS02-022": [
   "T_SUMMONED",
+  "C_LEVEL",
   "M_OPTIONAL"
  ],
  "26RBS02-023": [
@@ -45507,6 +45514,7 @@
  ],
  "26RBS02-062": [
   "T_ALLY_ATTACKS",
+  "C_LEVEL",
   "M_THEN",
   "A_BP_MINUS"
  ],
@@ -45522,6 +45530,7 @@
  ],
  "26RBS02-065": [
   "A_SUMMON_FREE",
+  "C_LEVEL",
   "T_DESTROYED"
  ],
  "26RBS02-066": [
@@ -45906,7 +45915,8 @@
  ],
  "26RBS03-025": [],
  "26RBS03-026": [
-  "A_BP_PLUS"
+  "A_BP_PLUS",
+  "C_LEVEL"
  ],
  "26RBS03-027": [
   "T_ALLY_BLOCKED",
@@ -46877,6 +46887,7 @@
   "T_ATTACKS",
   "A_REFRESH",
   "A_EXHAUST",
+  "C_LEVEL",
   "S_MUST_BLOCK",
   "S1_ALL_HAVE"
  ],
@@ -46902,6 +46913,7 @@
  ],
  "26RDB01-015": [
   "A_REFRESH",
+  "C_LEVEL",
   "K_STANDARD_INVOKE",
   "S1_ALL_HAVE"
  ],

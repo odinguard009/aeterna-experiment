@@ -362,8 +362,15 @@ def own_grammar(s, ctx=None):
         if not sel or sel['kind'] != 'spirit' or sel['f']: raise Review('v2 bp minus: ' + m.group(1)[:40])
         return [{'do': 'BP_MINUS', 'n': v1.bpm(m.group(2)), 'zeroDestroy': True}]
     if re.fullmatch(r"target an opposing exhausted spirit\.\s*the targeted spirit can't refresh on the next \(opposing refresh step\)", x, re.I): return [{'do': 'NO_REFRESH_OPP'}]      # v0.172 Janome-Shielder
+    m = re.fullmatch(r"(?:(?:you can|you may) )?target an opposing (?:(\d[\d,]*) BP or less |(exhausted) )?spirit?(?: that is in (refreshed) state)?\.\s*during this battle, it must block if possible even while exhausted", x, re.I)      # v0.185 MUST_BLOCK_OPP (schema 64); the 'Spiri.' typo is in the source text
+    if m:
+        a_ = {'do': 'MUST_BLOCK_OPP'}
+        if m.group(1): a_['bpLe'] = int(m.group(1).replace(',', ''))
+        if m.group(2) or m.group(3): a_['state'] = 'exhausted' if m.group(2) else 'refreshed'
+        return [a_]
     m = re.match(r'^target an opposing spirit\.\s*during this battle, that spirit can\'t block$', x, re.I)
     if m: return [{'do': 'CANT_BLOCK_OPP'}]      # v0.172 targeted "can't block this battle"
+    if re.fullmatch(r"(?:during this battle, )?this spirit can't be blocked", x, re.I): return [{'do': 'CANT_BE_BLOCKED_BY', 'all': True}]      # v0.185
     if re.fullmatch(r"this spirit can't be blocked by (?:opposing )?spirits with high speed", x, re.I): return [{'do': 'CANT_BE_BLOCKED_BY', 'highSpeed': True}]      # v0.175
     m = re.match(r"^this spirit can't be blocked by (?:opposing )?(.+?) spirits?$", x, re.I)      # v0.175 attacker is unblockable by a colour / level / High Speed class
     if m:
@@ -375,6 +382,8 @@ def own_grammar(s, ctx=None):
         if re.fullmatch(r'with high speed', w, re.I): return [{'do': 'CANT_BE_BLOCKED_BY', 'highSpeed': True}]
     m = re.fullmatch(r"this spirit can't be blocked by (?:opposing )?cost (\d+) or (less|more) spirits?(?:/ultimates?)?", x, re.I)
     if m: return [{'do': 'CANT_BE_BLOCKED_BY', 'costLe' if m.group(2).lower() == 'less' else 'costGe': int(m.group(1))}]      # v0.179 (engine blockedByMark cost bound)
+    m = re.fullmatch(r"this spirit can't be blocked by (?:opposing )?(?:(\d+) BP or less spirits?|spirits with (one|two|three|\d+) cores? or less on (?:them|it))", x, re.I)
+    if m: return [{'do': 'CANT_BE_BLOCKED_BY', 'bpLe': int(m.group(1))} if m.group(1) else {'do': 'CANT_BE_BLOCKED_BY', 'coresLe': n_of(m.group(2).lower())}]      # v60
     m = OPP_CORES_T.match(x)
     if m: return opp_cores_t(m)
     m = re.match(r'^target an opposing (.+?)\.\s*send (a|one|two|three) cores?,? besides ,? from it to (?:the|their|its owner\'?s) reserve$', x, re.I)
@@ -385,6 +394,8 @@ def own_grammar(s, ctx=None):
     m = re.match(r'^(?:(?:you can|you may) )?return an? ((?:"[^"]+"/)*"[^"]+") (?:card )?from your trash to (?:the|your) hand$', x, re.I)
     if m:      # v0.76: '"A"/"B"' = any card whose name includes A or B (RETURN_TRASH anyType + match.name)
         return [{'do': 'RETURN_TRASH', 'anyType': True, 'match': {'name': re.findall(r'"([^"]+)"', m.group(1))}}]
+    m = re.fullmatch(r'(?:(?:you can|you may) )?target an? (Red Stella|Green Wave|Blue Beat|Yellow Rise) card in your trash\.\s*return it to (?:the|your) hand', x, re.I)      # v0.185 team card of any type (engine match.team, schema 55)
+    if m: return [{'do': 'RETURN_TRASH', 'anyType': True, 'match': {'team': m.group(1).title()}}]
     m = re.match(r'^target an? (?:cost (\d+) or (less|more) )?(?:(red|purple|green|white|yellow|blue) )?(?:"([^"]+)" family )?spirit card(?: with ([a-z]+(?: [a-z]+)?))? in your trash\.\s*return it to (?:the|your) hand$', x, re.I)
     if m and (m.group(1) or m.group(3) or m.group(4) or m.group(5)):      # v0.76: optional "Cost N or more"; v0.168: "or less", a colour and a keyword ("a Spirit card with Clash")
         mt = {}
@@ -393,6 +404,15 @@ def own_grammar(s, ctx=None):
         if m.group(3): mt['color'] = m.group(3).lower()
         if m.group(5): mt['keyword'] = m.group(5).title()
         return [{'do': 'RETURN_TRASH', 'match': mt}]
+    m = re.fullmatch(r'(?:(?:you can|you may) )?target (two|three) (Red Stella|Green Wave|Blue Beat|Yellow Rise) spirits you control\.\s*refresh them', x, re.I)      # v0.185: N picks of REFRESH_SPIRIT (each pick is a still-exhausted Spirit, so no repeats)
+    if m: return [{'do': 'REFRESH_SPIRIT', 'match': {'team': m.group(2).title()}} for _ in range(n_of(m.group(1).lower()))]
+    m = re.fullmatch(r'(?:(?:you can|you may) )?target an? (?:cost (\d+) or (less|more) )?(?:(red|purple|green|white|yellow|blue) )?(?:"([^"]+)" family )?nexus card in your trash\.\s*deploy it without paying the cost', x, re.I)      # v0.185 DEPLOY_TRASH (schema 66)
+    if m and (m.group(1) or m.group(3) or m.group(4)):
+        mt = {}
+        if m.group(4): mt['family'] = [m.group(4)]
+        if m.group(1): mt['costGe' if m.group(2).lower() == 'more' else 'costLe'] = int(m.group(1))
+        if m.group(3): mt['color'] = m.group(3).lower()
+        return [{'do': 'DEPLOY_TRASH', 'match': mt}]
     m = re.match(r'^(?:you can )?return an? (spirit|magic) card(?: with ([a-z]+))? from your trash to (?:the|your) hand$', x, re.I)
     if m:      # v0.176: untargeted pick from the Trash (engine RETURN_TRASH, match type Spirit + optional keyword); v0.180 "a Magic card"
         mt = {'type': m.group(1).title()}
@@ -553,7 +573,7 @@ REVEAL_REST = re.compile(r'\.\s*(return (?:any|the) remaining cards? to ' + _DBO
 REVEAL_IF = re.compile(r'^if (?:that card|that|it)(?: is|\'s|’s) (.+?), add it to (?:the |your |you )?hand$', re.I)      # v0.75: one revealed card
 REVEAL_IF_DEPLOY = re.compile(r'^if (?:that card|that|it|the revealed card)(?: is|\'s|’s) (.+?),\s*(?:you can |you may )?summon it(,? without paying the cost)?$', re.I)
 DIFF_NAME = r"(?: with (?:a )?(?:card )?name different (?:from|to) this (?:spirit|nexus)'?s)?"
-REVEAL_NP = re.compile(r'^(?:an?|one) (?:(?P<team>' + v1.TEAMS.lower() + r') )?(?:(?P<col>' + COL + r') )?(?:cost (?P<cost>\d+) or less |cost (?P<ge>\d+) or more )?(?:(?P<team2>' + v1.TEAMS.lower() + r') )?(?:"(?P<fam>[^"]+(?:"\s*/\s*"[^"]+)*)" family )?(?:(?P<kind>spirit|nexus|magic|brave) )?card(?: with (?P<kw>amplify|legacy|clash|rumble|current|shamanism))?' + DIFF_NAME + r'$')
+REVEAL_NP = re.compile(r'^(?:an?|one) (?:(?P<team>' + v1.TEAMS.lower() + r') )?(?:(?P<col>' + COL + r') )?(?:cost (?P<cost>\d+) or less |cost (?P<ge>\d+) or more )?(?:(?P<team2>' + v1.TEAMS.lower() + r') )?(?:"(?P<fam>[^"]+(?:"\s*/\s*"[^"]+)*)" family )?(?:(?P<kind>spirit|nexus|magic|brave) )?card(?: with (?P<kw>amplify|legacy|clash|rumble|current|shamanism))?(?P<nt> with no printed effects)?' + DIFF_NAME + r'$')
 
 
 def reveal_np(np):
@@ -579,6 +599,7 @@ def reveal_np(np):
     if m.group('team') or m.group('team2'): match['team'] = (m.group('team') or m.group('team2')).title()      # v0.184 (schema 55)
     if m.group('ge'): match['costGe'] = int(m.group('ge'))      # v0.184
     if m.group('kw'): match['keyword'] = m.group('kw').capitalize()      # v0.184 'a Spirit card with Amplify'
+    if m.group('nt'): match['noText'] = True      # v0.185 engine fxMatch noText
     return match, 'name different' in x
 
 
@@ -671,6 +692,7 @@ CTRL_ANY = re.compile(r'^you control (?:any|an?|one or more) (exhausted )?(?:(re
 def cond_of(x):
     """condition text -> fxIf dict or None"""
     x = x.strip()
+    if re.fullmatch(r"this spirit is being blocked", x, re.I): return {'selfBlocked': True}      # v0.185 schema 65
     m = re.fullmatch(r"you (don't |do not )?have an? (?:set burst|burst set)", x, re.I)
     if m: return {'burstSet': not m.group(1)}
     m = re.fullmatch(r"the opponent (doesn't |does not )?ha(?:s|ve) an? (?:set burst|burst set)", x, re.I)
@@ -693,6 +715,8 @@ def cond_of(x):
             fams = re.findall(r'"([^"]+)"', m.group(3))
             q['family'] = fams[0] if len(fams) == 1 else fams      # v0.169 '"A"/"B" family' = either family (engine ctrl.family may be a list)
         return {'ctrl': q} if q['n'] <= 5 else None
+    m = re.fullmatch(r'you control (?:an? |any )?Cost (\d+) (red|purple|green|white|yellow|blue) spirit', x, re.I)      # v0.187 exact-cost colour Spirit (engine ctrl.costGe + costLe)
+    if m: return {'ctrl': {'n': 1, 'type': 'Spirit', 'colors': [m.group(2).lower()], 'costGe': int(m.group(1)), 'costLe': int(m.group(1))}}
     m = re.fullmatch(r'you control (?:an? |any )?["“]([^"”]+)["”]-named (?:spirit|spirit/nexus|nexus)', x, re.I)      # v0.178 "X"-named Spirit = controlName
     if m: return {'controlName': m.group(1).strip()}
     m = re.fullmatch(r'you control (?:an? |any )?"([^"]+)"', x, re.I)      # v0.76: a quoted card name (part of the name, like [Name])
@@ -717,6 +741,12 @@ def cond_of(x):
     if re.fullmatch(r'(?:you )?(?:are |is |was )?summoned via form change', x, re.I): return {'viaFormChange': True}      # v0.135 (schema v8)
     m = re.fullmatch(r'you control (?:an?|any) spirit with ([A-Za-z]+)', x, re.I)      # v0.150 "a Spirit with Evolution" (engine ctrl.keyword)
     if m: return {'ctrl': {'n': 1, 'type': 'Spirit', 'keyword': m.group(1).capitalize()}}
+    m = re.fullmatch(r'you control (?:an?|any) (other |another )?(exhausted )?"([^"]+)" family spirit', x, re.I)      # v0.185 "any other exhausted X family Spirit" (engine ctrl.other + ctrl.exhausted)
+    if m and (m.group(1) or m.group(2)):
+        q = {'n': 1, 'type': 'Spirit', 'family': m.group(3)}
+        if m.group(1): q['other'] = True
+        if m.group(2): q['exhausted'] = True
+        return {'ctrl': q}
     m = re.fullmatch(r'you control another "([^"]+)" family spirit(/nexus)?', x, re.I)      # v0.150 "another X family Spirit" (engine ctrl.other = not the source); v0.171 "Spirit/Nexus" (ctrl.nexus)
     if m:
         q = {'n': 1, 'type': 'Spirit', 'family': m.group(1), 'other': True}
@@ -840,11 +870,28 @@ TGT_VOID = re.compile(r'^target (?:an?|one) (.+? you control)\.\s*put (a|one|two
 def action_of(s, ctx):
     s = re.sub(r'(?:^|(?<=\. ))(if you control) any ("[^"]+" family spirit(?:/nexus)?), besides this (?:spirit|one),', r'\1 another \2,', s.strip(), flags=re.I)      # v0.168 'any "X" family Spirit, besides this Spirit,' = 'another "X" family Spirit' (ctrl.other); v0.171 also Spirit/Nexus and "besides this one"
     s = re.sub(r'^besides this (?:spirit|one), (if you control) any ("[^"]+" family spirit(?:/nexus)?),', r'\1 another \2,', s, flags=re.I)      # v0.171 'Besides this Spirit, if you control any "X" family Spirit/Nexus, B' = the same
+    if re.fullmatch(r'return all your hand to the deckbottom in any order\.\s*when one or more cards? (?:is|are) returned, draw a card for each card in the opposing hand\.?', s.strip(), re.I): return [{'do': 'HAND_RECYCLE', 'perOppHand': True}], False      # v69
+    m = re.fullmatch(r'show all your hand to the opponent\.\s*return them to the deckbottom in any order\.\s*if all the cards returned have ([A-Za-z ]+?), draw (\w+) cards\.?', s.strip(), re.I)      # v69 (shown cards: the opponent sees them in the log)
+    if m and m.group(1).title() in ('Red Stella', 'Green Wave', 'Blue Beat', 'Yellow Rise'): return [{'do': 'HAND_RECYCLE', 'drawIfAll': {'match': {'team': m.group(1).title()}, 'n': n_of(m.group(2).lower())}}], False
+    m = re.fullmatch(r'(you can )?draw until your hand is (\w+)\.?', s.strip(), re.I)
+    if m: return [{'do': 'DRAW_UNTIL', 'n': n_of(m.group(2).lower())}], bool(m.group(1))      # v61
     if re.fullmatch(r'when this battle ends, end the attack step\.?', s.strip(), re.I): return [{'do': 'END_ATTACK_AFTER_BATTLE'}], False      # v0.179 (engine 02h; Accel BS37-040, BS69-043)
     if re.fullmatch(r'return this spirit to (?:the|your) hand\.?', s.strip(), re.I): return [{'do': 'SELF_TO_HAND'}], False      # v0.171 (engine SELF_TO_HAND; from the Trash under a destroyed trigger)
     if re.fullmatch(r'put the core to this spirit\.?', s.strip(), re.I): return [{'do': 'VOID_TO_CARD', 'n': 1, 'to': 'self'}], False      # v0.171 "put the core to this Spirit instead" (the core of the sentence before; only inside an instead pair)
     m = re.fullmatch(r'target up to (one|two|three) spirits? with ([A-Za-z]+) you control\.\s*put a core from the void (?:each )?to (?:each of them|it|them)\.?', s.strip(), re.I)      # v0.171 (engine VOID_TO_MATCHING + match.keyword)
     if m: return [{'do': 'VOID_TO_MATCHING', 'targets': n_of(m.group(1).lower()), 'match': {'keyword': m.group(2).capitalize()}}], False
+    if re.fullmatch(r"target a nexus you or the opponent controls that isn['’]t during true release\.\s*destroy it\.\s*if you['’]ve done so, draw a card\.?", s.strip(), re.I): return [{'do': 'DESTROY_ANY', 'kind': 'nexus', 'noTR': True, 'drawIfDone': True}], False      # v0.185
+    md_ = re.fullmatch(r'(?:you can )?target (?:one of your (?:"([^"]+)" family )?spirits|(another) spirit(?: you control)?)\.\s*destroy it\.?(?:\s*(if you\'ve done so, .+))?', s.strip(), re.I)      # v0.185 DESTROY_OWN family (+ "If you've done so, X")
+    if md_:
+        out = [dict({'do': 'DESTROY_OWN', 'match': dict({'type': 'Spirit'}, **({'family': [md_.group(1)]} if md_.group(1) else {}))}, **({'other': True} if md_.group(2) else {}))]      # v0.185 "another Spirit" = not this Spirit
+        if md_.group(3): out += action_of(md_.group(3), ctx)[0]
+        return out, False
+    mv_ = re.fullmatch(r'target (?:(up to) )?(one|two|three) (?:(' + COL + r') )?(?:"([^"]+)" family )?(spirits|nexus(?:es)?) you control\.\s*put (?:a|one) core from the void (?:each )?to (?:each of them|them|it)\.?', s.strip(), re.I)      # v0.185 VOID_TO_MATCHING colour/family/Nexus
+    if mv_ and (mv_.group(3) or mv_.group(4)) and (mv_.group(1) or mv_.group(2).lower() != 'one'):
+        mt = {'type': 'Spirit' if mv_.group(5).lower() == 'spirits' else 'Nexus'}
+        if mv_.group(3): mt['color'] = mv_.group(3).lower()
+        if mv_.group(4): mt['family'] = [mv_.group(4)]
+        return [{'do': 'VOID_TO_MATCHING', 'targets': n_of(mv_.group(2).lower()), 'match': mt}], False
     sh = SHOW_RET.match(s.strip())
     if sh:      # v0.165 "Show up to N <X> cards from your Hand to the opponent. Return them to the deckbottom. For each card returned, draw a card." = SHOW_RETURN
         col1, fam, col2 = sh.group(4), sh.group(5), sh.group(6)
@@ -856,6 +903,8 @@ def action_of(s, ctx):
         if mi: a['drawIf'] = {'n': n_of(mi.group(1)), 'draw': n_of(mi.group(2))}
         if sh.group(1) is None and (a.get('drawEach') or a.get('drawIf')) is None and False: pass
         return [a], bool(sh.group(1))
+    if re.match(r"^if you've done so, ", s.strip(), re.I):      # v0.185 "If you've done so, X" = "Then, X" (ctx.did)
+        return action_of('Then, ' + re.sub(r"^if you've done so, ", '', s.strip(), flags=re.I), ctx)
     if re.match(r'^if returned, ', s.strip(), re.I):      # v0.165 "If returned, X" = "Then, X" (only when the previous action returned a card)
         return action_of('Then, ' + re.sub(r'^if returned, ', '', s.strip(), flags=re.I), ctx)
     mh_ = re.fullmatch(r'(you can )?return a card from your hand to the deckbottom\.?', s.strip(), re.I)
@@ -892,6 +941,9 @@ def action_of(s, ctx):
     sn = re.match(r'^target (?:an?|one) ((?:"[^"]+" family )?spirit) you control\.\s*(.+)$', s.strip(), re.I)
     if sn and re.match(r'(?:refresh it|during (?:this|the) (?:turn|battle)|put )', sn.group(2), re.I):      # v0.164 "Target a Spirit you control. <X>" = "Target one of your Spirits. <X>"
         return action_of('Target one of your %ss. %s' % (sn.group(1), sn.group(2)), ctx)
+    my = re.match(r'^you can (target .+)$', s.strip(), re.I)
+    if my and (TGT_VOID.match(my.group(1)) or TGT_VOID_OWN.match(my.group(1))):      # v0.185 optional "You can target a <X> you control. Put a core from the Void to it."
+        return action_of(my.group(1), ctx)[0], True
     mo = TGT_VOID_OWN.match(s.strip())
     if mo and not re.search(r'\b(?:with|besides|except|other|another)\b', mo.group(1), re.I):      # v0.164 "Target one of your <X>. Put a core from the Void to it." (own side by wording)
         return action_of('Put %s core from the Void to one of your %s.' % (mo.group(2), mo.group(1)), ctx)
@@ -955,6 +1007,10 @@ def sentences(body):
     for x in _V1_SENTENCES(body):
         if out and re.fullmatch(r'then,? (?:if it has 0 ?bp,? destroy it|destroy it if it has 0 ?bp)\.?', x.strip(), re.I) and re.search(r'-\d[\d,]* ?bp\.$', out[-1], re.I):
             out[-1] = out[-1] + ' ' + x      # v0.68: "... give it -N BP. Then, if it has 0 BP, destroy it." is one effect
+        elif out and re.match(r'^(?:show all your hand to the opponent\.\s*)?return (?:all your hand|them) to the deckbottom in any order\.$', out[-1].strip(), re.I) and re.match(r'^(?:when one or more cards? (?:is|are) returned,|if all the cards returned have)', x.strip(), re.I):
+            out[-1] = out[-1] + ' ' + x      # v69: HAND_RECYCLE tail ("draw a card for each card in the opposing Hand" / "if all returned have <Team>, draw N")
+        elif out and out[-1].strip().lower() == 'show all your hand to the opponent.' and re.match(r'^return them to the deckbottom in any order\.?$', x.strip(), re.I):
+            out[-1] = out[-1] + ' ' + x
         elif out and re.match(r'^(?:you can )?show ', out[-1], re.I) and re.fullmatch(r'(?:return (?:them|it) to the deckbottom(?: in any order)?|for each card returned, draw a card|if (?:one|two|three) cards? (?:is|are) returned, draw (?:a|one|two|three|four|five) cards?)\.?', x.strip(), re.I):
             out[-1] = out[-1].rstrip() + ' ' + x      # v0.165: "Show ... to the opponent." + "Return them to the deckbottom." + "For each card returned, draw a card." is one effect
         elif out and REVEAL_HEAD.match(re.sub(r'^(?:also,? )?(?:then,? )?(?:if [^,]+, )?', '', out[-1], flags=re.I)) and not REVEAL_REST.search(out[-1]):
@@ -1073,6 +1129,8 @@ def compile_card(c):
         if t2 != t: c = dict(c, text=t2); t = t2
     if t and re.search(r'^The Spirit gains ', t, re.M):      # v0.183 "(When Attacks) The Spirit gains +N BP ..." is the card itself
         c = dict(c, text=re.sub(r'^The Spirit gains ', 'This Spirit gains ', t, flags=re.M)); t = c['text']
+    if t and re.search(r'^(?:\[LV[^\]]*\]\s*)?During (?:Attack|Block)\n', t, re.M):      # v0.187 a bare 'During Attack' line (no parentheses) heads the next line
+        c = dict(c, text=re.sub(r'(?m)^((?:\[LV[^\]]*\]\s*)?)(During (?:Attack|Block))\n', r'\1(\2) ', t)); t = c['text']
     if t and '{{Assault|' in t:
         t2 = assault_norm(t)
         if t2 != t: c = dict(c, text=t2); t = t2
@@ -1084,7 +1142,7 @@ def compile_card(c):
     m = BURST_COST.search(t0 or '')
     if m:       # v0.71 "While you have a Burst set, this Spirit card in Hand becomes Cost N" = costAlt {cost, if: {burstSet}} (engine costAltActive)
         if c['type'] != 'Spirit': raise Review('Burst cost paragraph on a ' + c['type'])
-        alt = {'cost': int(m.group(1)), 'if': {'burstSet': True}}
+        alt = {'cost': int(m.group(3)), 'if': {'burstSet': True} if m.group('b') else {'ctrl': {'type': 'Spirit', 'nLe': 0}}}      # v0.187 "If you control no Spirits"
         c = dict(c, text=(t0[:m.start()] + '\n\n' + t0[m.end():]).strip())
     n = _V1_COMPILE(c)
     if alt:
@@ -1138,7 +1196,7 @@ def compile_accel(c):
     return n
 
 
-BURST_COST = re.compile(r'(?:^|\n\s*\n)\s*While you have an? (?:set Burst|Burst set), this Spirit card in (?:your )?Hand becomes Cost (\d+)\.?\s*(?=\n\s*\n|$)', re.I)
+BURST_COST = re.compile(r'(?:^|\n\s*\n)\s*(?:While you have an? (?P<b>set Burst|Burst set)|If (?P<c>you control no Spirits)), this (?:Spirit )?card in (?:your )?Hand becomes Cost (\d+)\.?\s*(?=\n\s*\n|$)', re.I)
 
 
 def install():

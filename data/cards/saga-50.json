@@ -3228,7 +3228,7 @@
    "Leucomyst",
    "Alchemy"
   ],
-  "text": "(Legacy)\n[LV1-2] (Your End Step)\nIf you control three or more White symbols, you can draw until your Hand is three.",
+  "text": "(Legacy)\n[LV1][LV2] (Your End Step)\nIf you control three or more White symbols, you can draw until your Hand is three.",
   "image": "26RBS01-058.png",
   "block": "A",
   "saga": 50,
@@ -3236,11 +3236,30 @@
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (Your End Step) If you control three or more White symbols, you can draw until your Hand is three."
+  "effects": [
+   {
+    "trigger": "END_STEP",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "DRAW_UNTIL",
+      "n": 3,
+      "if": {
+       "symbolsOnGe": {
+        "color": "white",
+        "n": 3
+       }
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-059",
@@ -3560,15 +3579,44 @@
    "Topaz",
    "Alpermit"
   ],
-  "text": "[LV1-2] {{Invoke|Main}}\nIf you control any other exhausted \"Topaz\" family Spirit, destroy this Spirit ▶ Put a core from the Void to your Reserve.",
+  "text": "[LV1][LV2] {{Invoke|Main}}\nIf you control any other exhausted \"Topaz\" family Spirit, destroy this Spirit ▶ Put a core from the Void to your Reserve.",
   "image": "26RBS01-063.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] {{Invoke|Main}} If you control any other exhausted \"Topaz\" family Spirit, destroy this Spirit ▶ Put a core from the Void to your Reserve."
+  "effects": [
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN"
+    ],
+    "once": false,
+    "lv": [
+     1,
+     2
+    ],
+    "cost": {
+     "destroySelf": true
+    },
+    "if": {
+     "ctrl": {
+      "n": 1,
+      "type": "Spirit",
+      "family": "Topaz",
+      "other": true,
+      "exhausted": true
+     }
+    },
+    "actions": [
+     {
+      "do": "VOID_TO_RESERVE",
+      "n": 1
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-064",
@@ -4693,16 +4741,34 @@
    "Cyantree",
    "Ambulantree"
   ],
-  "text": "[LV1-2] (Your Attack Step)\nFor each Blue Nexus you control, give all your Spirits +1000 BP.",
+  "text": "[LV1][LV2] (Your Attack Step)\nFor each Blue Nexus you control, give all your Spirits +1000 BP.",
   "image": "26RBS01-083.png",
   "block": "A",
   "saga": 50,
   "ex_symbols": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (Your Attack Step) For each Blue Nexus you control, give all your Spirits +1000 BP."
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "bp": 1000,
+    "to": "own",
+    "per": {
+     "type": "Nexus",
+     "colors": [
+      "blue"
+     ]
+    },
+    "if": {
+     "attackStep": true,
+     "oppTurn": false
+    },
+    "lv": [
+     1,
+     2
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-084",
@@ -5035,7 +5101,7 @@
    "Cyantree",
    "Ambulantree"
   ],
-  "text": "(Legacy)\n\n[LV1-2] {{Rumble|7}} During Attack\nAt the end of battle, discard seven cards from the opposing decktop. For each cost of the Spirit card that blocked in the opposing Trash, it discards -1 card.\n\n[LV2]During Attack\nIf you control two or more Blue symbols, this Spirit gains +2000 BP.",
+  "text": "(Legacy)\n\n[LV1][LV2] (When Attacks) Rumble 7.\n\n[LV2](During Attack) If you control two or more Blue symbols, this Spirit gains +2000 BP.",
   "image": "26RBS01-089.png",
   "block": "A",
   "saga": 50,
@@ -5043,11 +5109,6 @@
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV2]During Attack If you control two or more Blue symbols, this Spirit gains +2000 BP."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "effects": [
    {
     "trigger": "ATTACKS",
@@ -5061,11 +5122,25 @@
       "n": 7
      }
     ]
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 2000,
+    "to": "self",
+    "if": {
+     "symbolsOnGe": {
+      "color": "blue",
+      "n": 2
+     }
+    },
+    "attackingOnly": true,
+    "lv": [
+     2
+    ]
    }
   ],
-  "keywords": [
-   "Rumble"
-  ]
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-090",
@@ -5474,7 +5549,7 @@
   "families": [
    "Armored Fish"
   ],
-  "text": "[LV1-2] (When Destroyed by the Opponent)\nPut a core from the Void to your Reserve.\n\n[LV2] (Opposing Attack Step) (Can't Stack)\nWhen your Life is reduced by the opponent, you can target an \"Armored Fish\" family Spirit you control. Put a core from the Void to it.",
+  "text": "[LV1][LV2] (When Destroyed by the Opponent)\nPut a core from the Void to your Reserve.\n\n[LV2] (Opposing Attack Step) (Can't Stack)\nWhen your Life is reduced by the opponent, you can target an \"Armored Fish\" family Spirit you control. Put a core from the Void to it.",
   "image": "26RBS01-099.png",
   "block": "A",
   "saga": 50,
@@ -5494,13 +5569,30 @@
       "n": 1
      }
     ]
+   },
+   {
+    "trigger": "OWN_LIFE_HIT",
+    "lv": [
+     2
+    ],
+    "noStack": true,
+    "optional": true,
+    "actions": [
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "anySpirit",
+      "match": {
+       "family": [
+        "Armored Fish"
+       ]
+      }
+     }
+    ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (Opposing Attack Step) (Can't Stack) When your Life is reduced by the opponent, you can target an \"Armored Fish\" family Spirit you control. Put a core from the Void to it."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-100",
@@ -5592,16 +5684,33 @@
   "families": [
    "Mineroid"
   ],
-  "text": "[LV1-2] (When Destroyed by the Opponent)\nYou can target up to two of your \"Mineroid\" family Spirits. Refresh them.\n\n[LV2] (Your Attack Step)\nAll your Cost 6 or more \"Mineroid\" family Spirits gain +1000 BP.",
+  "text": "[LV1][LV2] (When Destroyed by the Opponent)\nYou can target up to two of your \"Mineroid\" family Spirits. Refresh them.\n\n[LV2] (Your Attack Step)\nAll your Cost 6 or more \"Mineroid\" family Spirits gain +1000 BP.",
   "image": "26RBS01-101.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Destroyed by the Opponent) You can target up to two of your \"Mineroid\" family Spirits. Refresh them."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "effects": [
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "byOpp": true
+    },
+    "optional": true,
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT",
+      "match": {
+       "family": [
+        "Mineroid"
+       ]
+      },
+      "n": 2
+     }
+    ]
+   },
    {
     "trigger": "STATIC",
     "bp": 1000,
@@ -5620,7 +5729,9 @@
      2
     ]
    }
-  ]
+  ],
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-102",
@@ -5795,16 +5906,52 @@
   "families": [
    "Cyantree"
   ],
-  "text": "[LV1-2] (Your Attack Step) (CSOPT)\nWhen cards with EX Symbols are discarded by your Rumble, you can target one of your Spirits. Put a core from the Void to it.\n\n[LV2] (True Release) (Your Attack Step)\nAll your Spirits with Rumble gain +2000 BP.",
+  "text": "[LV1][LV2] (Your Attack Step) (CSOPT)\nWhen cards with EX Symbols are discarded by your Rumble, you can target one of your Spirits. Put a core from the Void to it.\n\n[LV2] (True Release) (Your Attack Step)\nAll your Spirits with Rumble gain +2000 BP.",
   "image": "26RBS01-106.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (Your Attack Step) (CSOPT) When cards with EX Symbols are discarded by your Rumble, you can target one of your Spirits. Put a core from the Void to it.",
-   "[LV2] (True Release) (Your Attack Step) All your Spirits with Rumble gain +2000 BP."
+  "trueRelease": true,
+  "effects": [
+   {
+    "trigger": "RUMBLE_DISCARD",
+    "exOnly": true,
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "anySpirit"
+     }
+    ],
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": false
+    },
+    "once": true,
+    "sameName": true
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 2000,
+    "to": "own",
+    "if": {
+     "attackStep": true,
+     "oppTurn": false
+    },
+    "match": {
+     "keyword": "Rumble"
+    },
+    "lv": [
+     2
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-107",
@@ -5828,16 +5975,53 @@
   "families": [
    "Cyantree"
   ],
-  "text": "[LV1-2] (Your Attack Step) (CSOPT)\nWhen cards with EX Symbols are discarded by your Rumble, if your Hand is four or less, you can draw a card.\n\n[LV2] (Your End Step)\nYou can target one of your Spirits with Rumble. Refresh it.",
+  "text": "[LV1][LV2] (Your Attack Step) (CSOPT)\nWhen cards with EX Symbols are discarded by your Rumble, if your Hand is four or less, you can draw a card.\n\n[LV2] (Your End Step)\nYou can target one of your Spirits with Rumble. Refresh it.",
   "image": "26RBS01-107.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (Your Attack Step) (CSOPT) When cards with EX Symbols are discarded by your Rumble, if your Hand is four or less, you can draw a card.",
-   "[LV2] (Your End Step) You can target one of your Spirits with Rumble. Refresh it."
+  "effects": [
+   {
+    "trigger": "RUMBLE_DISCARD",
+    "exOnly": true,
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1,
+      "if": {
+       "handLe": 4
+      }
+     }
+    ],
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": false
+    },
+    "once": true,
+    "sameName": true
+   },
+   {
+    "trigger": "END_STEP",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT",
+      "match": {
+       "keyword": "Rumble"
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-108",
@@ -6558,25 +6742,43 @@
   "mechanics": [
    "Soul Magic"
   ],
+  "soulMagic": "blue",
   "magic": {
    "timing": [
+    "MAIN",
     "FLASH"
    ],
-   "effect": "ACTIONS",
+   "effect": null,
    "value": 0,
-   "actions": [
-    {
-     "do": "BP_TARGET",
-     "n": 2000,
-     "to": "pick"
+   "by": {
+    "MAIN": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "DEPLOY_TRASH",
+       "match": {
+        "costLe": 5,
+        "color": "blue"
+       }
+      }
+     ]
+    },
+    "FLASH": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "BP_TARGET",
+       "n": 2000,
+       "to": "pick"
+      }
+     ]
     }
-   ]
+   }
   },
-  "fxComplete": false,
-  "residual": [
-   "{{Soul Magic|b}} Main Target a Cost 5 or less Blue Nexus card in your Trash. Deploy it without paying the cost."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-126",
@@ -6720,7 +6922,7 @@
    "Red Cloud",
    "Soaring Dragon"
   ],
-  "text": "(Legacy)\n[LV1-2] Clash (During Attack)\nOpposing Spirits must block if possible.\n\n[LV2] (True Release) (During Attack)\nWhen blocked by an opposing 5000 BP or less Spirit, refresh this Spirit.",
+  "text": "(Legacy)\n[LV1][LV2] Clash (During Attack)\nOpposing Spirits must block if possible.\n\n[LV2] (True Release) (During Attack)\nWhen blocked by an opposing 5000 BP or less Spirit, refresh this Spirit.",
   "image": "26RBS01-X03.png",
   "block": "A",
   "saga": 50,
@@ -6728,6 +6930,7 @@
    "Legacy"
   ],
   "legacy": true,
+  "trueRelease": true,
   "effects": [
    {
     "trigger": "STATIC",
@@ -6737,13 +6940,25 @@
      1,
      2
     ]
+   },
+   {
+    "trigger": "ALLY_BLOCKED",
+    "lv": [
+     2
+    ],
+    "self": true,
+    "if": {
+     "blockerBpLe": 5000
+    },
+    "actions": [
+     {
+      "do": "REFRESH"
+     }
+    ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (True Release) (During Attack) When blocked by an opposing 5000 BP or less Spirit, refresh this Spirit."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-X04",
@@ -7318,7 +7533,7 @@
    "Echochant",
    "Hexcraft"
   ],
-  "text": "(Legacy)\n[LV1-2] {{Magirrate|Topaz}} (During Attack) {{Invoke|Flash}} (Once Per Battle)\nYou can use the Flash effect of a \"Topaz\" family Magic card from your Hand, without paying the cost.\n\n[LV2] (True Release) (During Attack) (Once Per Turn)\nWhen you use a \"Topaz\" family Magic card, during this battle, this Spirit gains an extra Yellow symbol.",
+  "text": "(Legacy)\n[LV1][LV2] (During Attack) {{Invoke|Flash}} (Once Per Battle)\nYou can use the Flash effect of a \"Topaz\" family Magic card from your Hand, without paying the cost.\n\n[LV2] (True Release) (During Attack) (Once Per Turn)\nWhen you use a \"Topaz\" family Magic card, during this battle, this Spirit gains an extra Yellow symbol.",
   "image": "26RBS01-X15.png",
   "block": "A",
   "saga": 50,
@@ -7326,12 +7541,58 @@
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] {{Magirrate|Topaz}} (During Attack) {{Invoke|Flash}} (Once Per Battle) You can use the Flash effect of a \"Topaz\" family Magic card from your Hand, without paying the cost.",
-   "[LV2] (True Release) (During Attack) (Once Per Turn) When you use a \"Topaz\" family Magic card, during this battle, this Spirit gains an extra Yellow symbol."
+  "trueRelease": true,
+  "effects": [
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN",
+     "FLASH"
+    ],
+    "when": "duringAttack",
+    "once": true,
+    "oncePer": "battle",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "USE_FLASH",
+      "match": {
+       "family": [
+        "Topaz"
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "MAGIC_USED",
+    "lv": [
+     2
+    ],
+    "match": {
+     "type": "Magic",
+     "family": [
+      "Topaz"
+     ]
+    },
+    "if": {
+     "selfAttacking": true
+    },
+    "once": true,
+    "actions": [
+     {
+      "do": "SYMBOL_PLUS",
+      "n": 1
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-X16",
@@ -7394,7 +7655,7 @@
    "Cyantree",
    "Annelidic"
   ],
-  "text": "(Legacy)\n[LV1-2] (When Summoned)\nTarget up to two Blue Nexuses you control. Put one core from the Void to each of them.",
+  "text": "(Legacy)\n[LV1][LV2] (When Summoned)\nTarget up to two Blue Nexuses you control. Put one core from the Void to each of them.",
   "image": "26RBS01-X17.png",
   "block": "A",
   "saga": 50,
@@ -7402,11 +7663,27 @@
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Summoned) Target up to two Blue Nexuses you control. Put one core from the Void to each of them."
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "VOID_TO_MATCHING",
+      "targets": 2,
+      "match": {
+       "type": "Nexus",
+       "color": "blue"
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-X18",
@@ -7433,7 +7710,7 @@
    "Cyantree",
    "Rampaleg"
   ],
-  "text": "(Legacy)\n[LV1-2] {{Rumble|7}} During Attack\nAt the end of battle, discard seven cards from the opposing decktop. For each cost of the Spirit card that blocked in the opposing Trash, it discards -1 card.\n\n[LV2] (True Release) (Your Attack Step) (Once Per Turn)\nWhen cards are discarded from the opposing deck by your Rumble, besides this Spirit's, this Spirit can refresh.",
+  "text": "(Legacy)\n[LV1][LV2] (When Attacks) Rumble 7.\n\n[LV2] (True Release) (Your Attack Step) (Once Per Turn)\nWhen cards are discarded from the opposing deck by your Rumble, besides this Spirit's, this Spirit can refresh.",
   "image": "26RBS01-X18.png",
   "block": "A",
   "saga": 50,
@@ -7441,11 +7718,7 @@
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (True Release) (Your Attack Step) (Once Per Turn) When cards are discarded from the opposing deck by your Rumble, besides this Spirit's, this Spirit can refresh."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "trueRelease": true,
   "effects": [
    {
     "trigger": "ATTACKS",
@@ -7459,11 +7732,28 @@
       "n": 7
      }
     ]
+   },
+   {
+    "trigger": "RUMBLE_DISCARD",
+    "other": true,
+    "lv": [
+     2
+    ],
+    "once": true,
+    "optional": true,
+    "actions": [
+     {
+      "do": "REFRESH"
+     }
+    ],
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": false
+    }
    }
   ],
-  "keywords": [
-   "Rumble"
-  ]
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS02-001",
@@ -7707,7 +7997,7 @@
   "families": [
    "Luminaze"
   ],
-  "text": "[LV1-2] (When Destroyed)\nTarget an opposing 3000 BP or less Spirit. Destroy it. If this Spirit is being blocked, target two instead.\n\n[LV2] Clash (During Attack)\nOpposing Spirits must block if possible.",
+  "text": "[LV1][LV2] (When Destroyed)\nTarget an opposing 3000 BP or less Spirit. Destroy it. If this Spirit is being blocked, target two instead.\n\n[LV2] Clash (During Attack)\nOpposing Spirits must block if possible.",
   "image": "26RBS02-006.png",
   "block": "A",
   "saga": 50,
@@ -7715,6 +8005,38 @@
    "Clash"
   ],
   "effects": [
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "bpLe": 3000,
+      "if": {
+       "not": {
+        "selfBlocked": true
+       }
+      }
+     },
+     {
+      "do": "DESTROY",
+      "bpLe": 3000,
+      "if": {
+       "selfBlocked": true
+      }
+     },
+     {
+      "do": "DESTROY",
+      "bpLe": 3000,
+      "if": {
+       "selfBlocked": true
+      }
+     }
+    ]
+   },
    {
     "trigger": "STATIC",
     "flag": "MUST_BLOCK",
@@ -7724,11 +8046,8 @@
     ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Destroyed) Target an opposing 3000 BP or less Spirit. Destroy it. If this Spirit is being blocked, target two instead."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS02-007",
@@ -8479,7 +8798,7 @@
    "Dark Puce",
    "Phantasprite"
   ],
-  "text": "(Legacy)\n[LV1-2] (When Summoned)\nYou can target another Spirit you control. Destroy it. If you've done so, draw a card.",
+  "text": "(Legacy)\n[LV1][LV2] (When Summoned)\nYou can target another Spirit you control. Destroy it. If you've done so, draw a card.",
   "image": "26RBS02-022.png",
   "block": "A",
   "saga": 50,
@@ -8487,11 +8806,33 @@
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Summoned) You can target another Spirit you control. Destroy it. If you've done so, draw a card."
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DESTROY_OWN",
+      "match": {
+       "type": "Spirit"
+      },
+      "other": true
+     },
+     {
+      "do": "DRAW",
+      "n": 1,
+      "if": {
+       "prev": true
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS02-023",
@@ -10278,7 +10619,7 @@
    "Topaz",
    "Alpermit"
   ],
-  "text": "(Legacy)\n[LV1-2] (Your Attack Step) (Once Per Turn)\nWhen your \"Wailwraith\"/\"Hexcraft\" family Spirit attacks, target an opposing Spirit. During this turn, give it -2000 BP. Then, if it has 0 BP, destroy it.",
+  "text": "(Legacy)\n[LV1][LV2] (Your Attack Step) (Once Per Turn)\nWhen your \"Wailwraith\"/\"Hexcraft\" family Spirit attacks, target an opposing Spirit. During this turn, give it -2000 BP. Then, if it has 0 BP, destroy it.",
   "image": "26RBS02-062.png",
   "block": "A",
   "saga": 50,
@@ -10286,11 +10627,32 @@
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (Your Attack Step) (Once Per Turn) When your \"Wailwraith\"/\"Hexcraft\" family Spirit attacks, target an opposing Spirit. During this turn, give it -2000 BP. Then, if it has 0 BP, destroy it."
+  "effects": [
+   {
+    "trigger": "ALLY_ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "match": {
+     "family": [
+      "Wailwraith",
+      "Hexcraft"
+     ],
+     "noUlt": true
+    },
+    "once": true,
+    "actions": [
+     {
+      "do": "BP_MINUS",
+      "n": 2000,
+      "zeroDestroy": true
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS02-063",
@@ -10424,16 +10786,32 @@
    "Cyantree",
    "Venabeast"
   ],
-  "text": "[LV1-2] (When Destroyed)\nTarget a \"Cyantree\" family Nexus card in your Trash. Deploy it without paying the cost.",
+  "text": "[LV1][LV2] (When Destroyed)\nTarget a \"Cyantree\" family Nexus card in your Trash. Deploy it without paying the cost.",
   "image": "26RBS02-065.png",
   "block": "A",
   "saga": 50,
   "ex_symbols": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Destroyed) Target a \"Cyantree\" family Nexus card in your Trash. Deploy it without paying the cost."
+  "effects": [
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DEPLOY_TRASH",
+      "match": {
+       "family": [
+        "Cyantree"
+       ]
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS02-066",
@@ -13399,16 +13777,33 @@
    "Oceanic Green",
    "Glaciesnow"
   ],
-  "text": "[LV1-2] (Your Attack Step)\nAll your \"Swordish\" gain +2000 BP.",
+  "text": "[LV1][LV2] (Your Attack Step)\nAll your \"Swordish\" gain +2000 BP.",
   "image": null,
   "block": "A",
   "saga": 50,
   "ex_symbols": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (Your Attack Step) All your \"Swordish\" gain +2000 BP."
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "bp": 2000,
+    "to": "own",
+    "if": {
+     "attackStep": true,
+     "oppTurn": false
+    },
+    "match": {
+     "name": [
+      "Swordish"
+     ]
+    },
+    "lv": [
+     1,
+     2
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS03-027",
@@ -13854,11 +14249,17 @@
     ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "If you control no Spirits, this card in Hand becomes Cost 4."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "costAlt": {
+   "cost": 4,
+   "if": {
+    "ctrl": {
+     "type": "Spirit",
+     "nLe": 0
+    }
+   }
+  },
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS03-038",
@@ -14391,16 +14792,55 @@
    "Topaz",
    "Alpermit"
   ],
-  "text": "[LV1-2]\nIf you control no Cost 8 Yellow Spirits, this Spirit can't attack.\n\n[LV2] (True Release)\nIf all your Spirits are Cost 2/4/6/8 with the \"Topaz\" family, this Spirit gains +3000 BP.",
+  "text": "[LV1][LV2]\nIf you control no Cost 8 Yellow Spirits, this Spirit can't attack.\n\n[LV2] (True Release)\nIf all your Spirits are Cost 2/4/6/8 with the \"Topaz\" family, this Spirit gains +3000 BP.",
   "image": null,
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] If you control no Cost 8 Yellow Spirits, this Spirit can't attack.",
-   "[LV2] (True Release) If all your Spirits are Cost 2/4/6/8 with the \"Topaz\" family, this Spirit gains +3000 BP."
+  "trueRelease": true,
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "CANT_ATTACK",
+    "to": "self",
+    "if": {
+     "ctrl": {
+      "type": "Spirit",
+      "colors": [
+       "yellow"
+      ],
+      "costGe": 8,
+      "costLe": 8,
+      "nLe": 0
+     }
+    },
+    "lv": [
+     1,
+     2
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 3000,
+    "to": "self",
+    "if": {
+     "allHave": {
+      "family": "Topaz",
+      "costIn": [
+       2,
+       4,
+       6,
+       8
+      ],
+      "spiritsOnly": true
+     }
+    },
+    "lv": [
+     2
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS03-051",
@@ -15274,7 +15714,7 @@
   "families": [
    "Benevoclaw"
   ],
-  "text": "(Legacy)\n[LV1-2] (When Summoned)\nYou can reveal three cards from your decktop. Among them, add a Blue Spirit card with no printed effects to the Hand. Return any remaining cards to the deckbottom in any order.\n\n[LV2] (Your Attack Step) (Once Per Turn)\nWhen your Cost 6 or more Blue Spirit with no printed effects attacks, target an opposing Cost 5 or less Spirit. Destroy it.",
+  "text": "(Legacy)\n[LV1][LV2] (When Summoned)\nYou can reveal three cards from your decktop. Among them, add a Blue Spirit card with no printed effects to the Hand. Return any remaining cards to the deckbottom in any order.\n\n[LV2] (Your Attack Step) (Once Per Turn)\nWhen your Cost 6 or more Blue Spirit with no printed effects attacks, target an opposing Cost 5 or less Spirit. Destroy it.",
   "image": null,
   "block": "A",
   "saga": 50,
@@ -15282,12 +15722,49 @@
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Summoned) You can reveal three cards from your decktop. Among them, add a Blue Spirit card with no printed effects to the Hand. Return any remaining cards to the deckbottom in any order.",
-   "[LV2] (Your Attack Step) (Once Per Turn) When your Cost 6 or more Blue Spirit with no printed effects attacks, target an opposing Cost 5 or less Spirit. Destroy it."
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "REVEAL_PICK",
+      "n": 3,
+      "match": {
+       "type": "Spirit",
+       "color": "blue",
+       "noText": true
+      },
+      "rest": "bottom"
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_ATTACKS",
+    "lv": [
+     2
+    ],
+    "match": {
+     "noUlt": true,
+     "noText": true,
+     "color": "blue",
+     "costGe": 6
+    },
+    "once": true,
+    "actions": [
+     {
+      "do": "DESTROY",
+      "costLe": 5
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS03-071",
@@ -19859,16 +20336,57 @@
   "families": [
    "GAIM"
   ],
-  "text": "[LV1-2] (Your Attack Step)\nAll your attacking \"GAIM\" family Spirits gain +1000 BP.\n\n[LV2] (Your Attack Step) (Can't Stack)\nWhen only the opposing Spirit is destroyed by comparing BP with your \"GAIM\" family Spirit, you can target an opposing 5000 BP or less Spirit. Destroy it.",
+  "text": "[LV1][LV2] (Your Attack Step)\nAll your attacking \"GAIM\" family Spirits gain +1000 BP.\n\n[LV2] (Your Attack Step) (Can't Stack)\nWhen only the opposing Spirit is destroyed by comparing BP with your \"GAIM\" family Spirit, you can target an opposing 5000 BP or less Spirit. Destroy it.",
   "image": "26RCB01-056.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (Your Attack Step) All your attacking \"GAIM\" family Spirits gain +1000 BP.",
-   "[LV2] (Your Attack Step) (Can't Stack) When only the opposing Spirit is destroyed by comparing BP with your \"GAIM\" family Spirit, you can target an opposing 5000 BP or less Spirit. Destroy it."
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "bp": 1000,
+    "to": "own",
+    "attackingOnly": true,
+    "if": {
+     "attackStep": true,
+     "oppTurn": false
+    },
+    "match": {
+     "family": [
+      "GAIM"
+     ]
+    },
+    "lv": [
+     1,
+     2
+    ]
+   },
+   {
+    "trigger": "ALLY_BATTLE_WIN",
+    "lv": [
+     2
+    ],
+    "match": {
+     "family": [
+      "GAIM"
+     ],
+     "noUlt": true
+    },
+    "attackingOnly": true,
+    "optional": true,
+    "actions": [
+     {
+      "do": "DESTROY",
+      "bpLe": 5000
+     }
+    ],
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": false
+    }
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RCB01-057",
@@ -20856,7 +21374,7 @@
    "RYUKI",
    "Kamen"
   ],
-  "text": "(Legacy)\n[LV1-2] (When Attacks/Blocks)\nYou can use the Flash effect of a \"RYUKI\" family Magic card from your Hand, without paying the cost.\n\n[LV2] (True Release) (During Attack) (Once Per Turn)\nWhen you use a Magic card, during this battle, this Spirit can't be blocked.",
+  "text": "(Legacy)\n[LV1][LV2] (When Attacks/Blocks)\nYou can use the Flash effect of a \"RYUKI\" family Magic card from your Hand, without paying the cost.\n\n[LV2] (True Release) (During Attack) (Once Per Turn)\nWhen you use a Magic card, during this battle, this Spirit can't be blocked.",
   "image": null,
   "block": "A",
   "saga": 50,
@@ -20864,12 +21382,49 @@
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Attacks/Blocks) You can use the Flash effect of a \"RYUKI\" family Magic card from your Hand, without paying the cost.",
-   "[LV2] (True Release) (During Attack) (Once Per Turn) When you use a Magic card, during this battle, this Spirit can't be blocked."
+  "trueRelease": true,
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "alsoBlocks": true,
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "USE_FLASH",
+      "match": {
+       "family": [
+        "RYUKI"
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "MAGIC_USED",
+    "lv": [
+     2
+    ],
+    "match": {
+     "type": "Magic"
+    },
+    "if": {
+     "selfAttacking": true
+    },
+    "once": true,
+    "actions": [
+     {
+      "do": "CANT_BE_BLOCKED_BY",
+      "all": true
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RCB01-X06",
@@ -21199,18 +21754,55 @@
    "Diva",
    "Stage Style"
   ],
-  "text": "[Teams: Red Stella/Shiny Hearts]\n\n[LV1-2] (When Blocks)\nIf all your Spirits/Nexuses have Red Stella, target an opposing 3000 BP or less Spirit. Destroy it.\n\n[LV2]\nIf you control two or more exhausted Red Stella Spirits, all your \"Noa Fleur\"/\"Diana Fleur\" gain +2000 BP.",
+  "text": "[Teams: Red Stella/Shiny Hearts]\n\n[LV1][LV2] (When Blocks)\nIf all your Spirits/Nexuses have Red Stella, target an opposing 3000 BP or less Spirit. Destroy it.\n\n[LV2]\nIf you control two or more exhausted Red Stella Spirits, all your \"Noa Fleur\"/\"Diana Fleur\" gain +2000 BP.",
   "image": "26RDB01-006.png",
   "block": "A",
   "saga": 50,
   "ex_symbols": 1,
-  "fxComplete": false,
-  "residual": [
-   "[Teams: Red Stella/Shiny Hearts]",
-   "[LV1-2] (When Blocks) If all your Spirits/Nexuses have Red Stella, target an opposing 3000 BP or less Spirit. Destroy it.",
-   "[LV2] If you control two or more exhausted Red Stella Spirits, all your \"Noa Fleur\"/\"Diana Fleur\" gain +2000 BP."
+  "effects": [
+   {
+    "trigger": "BLOCKS",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "bpLe": 3000,
+      "if": {
+       "allHave": {
+        "team": "Red Stella"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 2000,
+    "to": "own",
+    "if": {
+     "ctrl": {
+      "n": 2,
+      "type": "Spirit",
+      "team": "Red Stella",
+      "exhausted": true
+     }
+    },
+    "match": {
+     "name": [
+      "Noa Fleur",
+      "Diana Fleur"
+     ]
+    },
+    "lv": [
+     2
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RDB01-007",
@@ -21305,17 +21897,56 @@
    "Diva",
    "Stage Style"
   ],
-  "text": "[Team: Red Stella]\n\n[LV1-2] (Start of Your Attack Step)\nTarget one of your Red Stella Spirits. During this turn, give it +2000 BP.\n\n[LV2] (Your Attack Step) (Can't Stack)\nWhen your Red Stella Spirit makes the first attack of the turn, you can reveal a card from your decktop. If that's a Red Stella card, add it to the Hand. Return any remaining card to the deckbottom.",
+  "text": "[Team: Red Stella]\n\n[LV1][LV2] (Start of Your Attack Step)\nTarget one of your Red Stella Spirits. During this turn, give it +2000 BP.\n\n[LV2] (Your Attack Step) (Can't Stack)\nWhen your Red Stella Spirit makes the first attack of the turn, you can reveal a card from your decktop. If that's a Red Stella card, add it to the Hand. Return any remaining card to the deckbottom.",
   "image": "26RDB01-008.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[Team: Red Stella]",
-   "[LV1-2] (Start of Your Attack Step) Target one of your Red Stella Spirits. During this turn, give it +2000 BP.",
-   "[LV2] (Your Attack Step) (Can't Stack) When your Red Stella Spirit makes the first attack of the turn, you can reveal a card from your decktop. If that's a Red Stella card, add it to the Hand. Return any remaining card to the deckbottom."
+  "effects": [
+   {
+    "trigger": "START_ATTACK",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "BP_TARGET",
+      "n": 2000,
+      "to": "pick",
+      "match": {
+       "team": "Red Stella"
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_ATTACKS",
+    "lv": [
+     2
+    ],
+    "match": {
+     "noUlt": true,
+     "team": "Red Stella"
+    },
+    "if": {
+     "firstAttack": true
+    },
+    "noStack": true,
+    "optional": true,
+    "actions": [
+     {
+      "do": "REVEAL_PICK",
+      "n": 1,
+      "match": {
+       "team": "Red Stella"
+      },
+      "rest": "bottom"
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RDB01-009",
@@ -21342,13 +21973,14 @@
    "Diva",
    "Stage Style"
   ],
-  "text": "[Team: Red Stella]\n\n[LV1-2] Clash (During Attack)\nOpposing Spirits must block if possible.\n\n[LV2] (True Release) (Your Attack Step)\nIf all your Spirits/Nexuses have Red Stella, give all your Spirits +2000 BP.",
+  "text": "[Team: Red Stella]\n\n[LV1][LV2] Clash (During Attack)\nOpposing Spirits must block if possible.\n\n[LV2] (True Release) (Your Attack Step)\nIf all your Spirits/Nexuses have Red Stella, give all your Spirits +2000 BP.",
   "image": "26RDB01-009.png",
   "block": "A",
   "saga": 50,
   "mechanics": [
    "Clash"
   ],
+  "trueRelease": true,
   "effects": [
    {
     "trigger": "STATIC",
@@ -21358,14 +21990,25 @@
      1,
      2
     ]
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 2000,
+    "to": "own",
+    "if": {
+     "attackStep": true,
+     "oppTurn": false,
+     "allHave": {
+      "team": "Red Stella"
+     }
+    },
+    "lv": [
+     2
+    ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[Team: Red Stella]",
-   "[LV2] (True Release) (Your Attack Step) If all your Spirits/Nexuses have Red Stella, give all your Spirits +2000 BP."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RDB01-010",
@@ -21432,19 +22075,37 @@
    "Diva",
    "Stage Style"
   ],
-  "text": "(Legacy)\n[Teams: Red Stella/CoZ12]\n\n[LV1-2] (When Attacks)\nIf all your Spirits/Nexuses have Red Stella, target an opposing 5000 BP or less Spirit that is in refreshed state. During this battle, it must block if possible even while exhausted.",
+  "text": "(Legacy)\n[Teams: Red Stella/CoZ12]\n\n[LV1][LV2] (When Attacks)\nIf all your Spirits/Nexuses have Red Stella, target an opposing 5000 BP or less Spirit that is in refreshed state. During this battle, it must block if possible even while exhausted.",
   "image": "26RDB01-011.png",
   "block": "A",
   "saga": 50,
   "mechanics": [
    "Legacy"
   ],
-  "fxComplete": false,
-  "residual": [
-   "(Legacy) [Teams: Red Stella/CoZ12]",
-   "[LV1-2] (When Attacks) If all your Spirits/Nexuses have Red Stella, target an opposing 5000 BP or less Spirit that is in refreshed state. During this battle, it must block if possible even while exhausted."
+  "legacy": true,
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "MUST_BLOCK_OPP",
+      "bpLe": 5000,
+      "state": "refreshed",
+      "if": {
+       "allHave": {
+        "team": "Red Stella"
+       }
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RDB01-012",
@@ -21585,16 +22246,39 @@
    "Diva",
    "Grand Style"
   ],
-  "text": "[Teams: Green Wave/Grand Siesta]\n\n[LV1-2] {{Invoke|Main}} (Once Per Turn)\nIf all your Spirits/Nexuses have Green Wave, pay one cost ▶ Refresh this Spirit.",
+  "text": "[Teams: Green Wave/Grand Siesta]\n\n[LV1][LV2] {{Invoke|Main}} (Once Per Turn)\nIf all your Spirits/Nexuses have Green Wave, pay one cost ▶ Refresh this Spirit.",
   "image": "26RDB01-015.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[Teams: Green Wave/Grand Siesta]",
-   "[LV1-2] {{Invoke|Main}} (Once Per Turn) If all your Spirits/Nexuses have Green Wave, pay one cost ▶ Refresh this Spirit."
+  "effects": [
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN"
+    ],
+    "once": true,
+    "lv": [
+     1,
+     2
+    ],
+    "cost": {
+     "pay": 1
+    },
+    "if": {
+     "allHave": {
+      "team": "Green Wave"
+     }
+    },
+    "actions": [
+     {
+      "do": "REFRESH"
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RDB01-016",
@@ -21697,12 +22381,23 @@
   "block": "A",
   "saga": 50,
   "ex_symbols": 1,
-  "fxComplete": false,
-  "residual": [
-   "[Team: Green Wave]",
-   "[LV2] (Your Attack Step) This Spirit gains +1000 BP for each core on it."
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "bp": 1000,
+    "to": "self",
+    "perCores": true,
+    "lv": [
+     2
+    ],
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": false
+    }
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RDB01-019",
@@ -22078,7 +22773,7 @@
    "Diva",
    "Stage Style"
   ],
-  "text": "(Legacy)\n\n[Team: Green Wave]\n\n[LV1-2] (When Summoned)\nIf you control two or more Green Wave Spirits, you can target an opposing Spirit. Heavy exhaust it.\n\n[LV2] {{Invoke|Main}} (Once Per Turn)\nPay two costs ▶ Target three Green Wave Spirits you control. Refresh them.",
+  "text": "(Legacy)\n\n[Team: Green Wave]\n\n[LV1][LV2] (When Summoned)\nIf you control two or more Green Wave Spirits, you can target an opposing Spirit. Heavy exhaust it.\n\n[LV2] {{Invoke|Main}} (Once Per Turn)\nPay two costs ▶ Target three Green Wave Spirits you control. Refresh them.",
   "image": "26RDB01-027.png",
   "block": "A",
   "saga": 50,
@@ -22086,13 +22781,65 @@
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[Team: Green Wave]",
-   "[LV1-2] (When Summoned) If you control two or more Green Wave Spirits, you can target an opposing Spirit. Heavy exhaust it.",
-   "[LV2] {{Invoke|Main}} (Once Per Turn) Pay two costs ▶ Target three Green Wave Spirits you control. Refresh them."
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "HEAVY_EXHAUST_OPP",
+      "n": 1,
+      "if": {
+       "ctrl": {
+        "n": 2,
+        "type": "Spirit",
+        "team": "Green Wave"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN"
+    ],
+    "once": true,
+    "lv": [
+     2
+    ],
+    "cost": {
+     "pay": 2
+    },
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT",
+      "match": {
+       "team": "Green Wave"
+      }
+     },
+     {
+      "do": "REFRESH_SPIRIT",
+      "match": {
+       "team": "Green Wave"
+      }
+     },
+     {
+      "do": "REFRESH_SPIRIT",
+      "match": {
+       "team": "Green Wave"
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RDB01-028",
@@ -22791,17 +23538,55 @@
    "Diva",
    "Stage Style"
   ],
-  "text": "[Team: Blue Beat]\n\n[LV1-2]\nIf all your Spirits/Nexuses have Blue Beat, this Spirit gains +4000 BP.\n\n[LV2] (Either Attack Step) {{Invoke|Flash}}\nReturn one of your Blue Beat Nexuses to the deckbottom ▶ Target an opposing Cost 3 or less Spirit. Destroy it.",
+  "text": "[Team: Blue Beat]\n\n[LV1][LV2]\nIf all your Spirits/Nexuses have Blue Beat, this Spirit gains +4000 BP.\n\n[LV2] (Either Attack Step) {{Invoke|Flash}}\nReturn one of your Blue Beat Nexuses to the deckbottom ▶ Target an opposing Cost 3 or less Spirit. Destroy it.",
   "image": "26RDB01-044.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[Team: Blue Beat]",
-   "[LV1-2] If all your Spirits/Nexuses have Blue Beat, this Spirit gains +4000 BP.",
-   "[LV2] (Either Attack Step) {{Invoke|Flash}} Return one of your Blue Beat Nexuses to the deckbottom ▶ Target an opposing Cost 3 or less Spirit. Destroy it."
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "bp": 4000,
+    "to": "self",
+    "if": {
+     "allHave": {
+      "team": "Blue Beat"
+     }
+    },
+    "lv": [
+     1,
+     2
+    ]
+   },
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN",
+     "FLASH"
+    ],
+    "when": "eitherAttack",
+    "once": false,
+    "lv": [
+     2
+    ],
+    "cost": {
+     "returnOwn": {
+      "kind": "nexus",
+      "match": {
+       "team": "Blue Beat"
+      }
+     }
+    },
+    "actions": [
+     {
+      "do": "DESTROY",
+      "costLe": 3
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RDB01-045",
@@ -23021,17 +23806,46 @@
   "families": [
    "Diva"
   ],
-  "text": "[Team: Green Wave]\n\n[LV1-2] (Your Attack Step)\nAll your attacking Green Wave Spirits gain +1000 BP.\n\n[LV2] (Your End Step)\nYou can target one of your Green Wave Spirits. Refresh it.",
+  "text": "[Team: Green Wave]\n\n[LV1][LV2] (Your Attack Step)\nAll your attacking Green Wave Spirits gain +1000 BP.\n\n[LV2] (Your End Step)\nYou can target one of your Green Wave Spirits. Refresh it.",
   "image": "26RDB01-050.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[Team: Green Wave]",
-   "[LV1-2] (Your Attack Step) All your attacking Green Wave Spirits gain +1000 BP.",
-   "[LV2] (Your End Step) You can target one of your Green Wave Spirits. Refresh it."
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "bp": 1000,
+    "to": "own",
+    "attackingOnly": true,
+    "if": {
+     "attackStep": true,
+     "oppTurn": false
+    },
+    "match": {
+     "team": "Green Wave"
+    },
+    "lv": [
+     1,
+     2
+    ]
+   },
+   {
+    "trigger": "END_STEP",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT",
+      "match": {
+       "team": "Green Wave"
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RDB01-051",
@@ -23285,24 +24099,42 @@
   "saga": 50,
   "magic": {
    "timing": [
+    "MAIN",
     "FLASH"
    ],
-   "effect": "ACTIONS",
+   "effect": null,
    "value": 0,
-   "actions": [
-    {
-     "do": "BP_TARGET",
-     "n": 2000,
-     "to": "pick"
+   "by": {
+    "MAIN": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "HAND_RECYCLE",
+       "drawIfAll": {
+        "match": {
+         "team": "Green Wave"
+        },
+        "n": 3
+       }
+      }
+     ]
+    },
+    "FLASH": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "BP_TARGET",
+       "n": 2000,
+       "to": "pick"
+      }
+     ]
     }
-   ]
+   }
   },
-  "fxComplete": false,
-  "residual": [
-   "[Team: Green Wave]",
-   "Main Show all your Hand to the opponent. Return them to the deckbottom in any order. If all the cards returned have Green Wave, draw three cards."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RDB01-059",
@@ -23567,13 +24399,14 @@
    "Diva",
    "Stage Style"
   ],
-  "text": "[Team: Red Stella]\n\n[LV1-2] Clash (During Attack)\nOpposing Spirits must block if possible.\n\n[LV2] (True Release) (Your Attack Step) (Once Per Turn)\nWhen your Red Stella Spirit is blocked by an opposing 5000 BP or less Spirit, you can target a Red Stella card in your Trash. Return it to the Hand.",
+  "text": "[Team: Red Stella]\n\n[LV1][LV2] Clash (During Attack)\nOpposing Spirits must block if possible.\n\n[LV2] (True Release) (Your Attack Step) (Once Per Turn)\nWhen your Red Stella Spirit is blocked by an opposing 5000 BP or less Spirit, you can target a Red Stella card in your Trash. Return it to the Hand.",
   "image": "26RDB01-X01.png",
   "block": "A",
   "saga": 50,
   "mechanics": [
    "Clash"
   ],
+  "trueRelease": true,
   "effects": [
    {
     "trigger": "STATIC",
@@ -23583,14 +24416,34 @@
      1,
      2
     ]
+   },
+   {
+    "trigger": "ALLY_BLOCKED",
+    "lv": [
+     2
+    ],
+    "match": {
+     "noUlt": true,
+     "team": "Red Stella"
+    },
+    "if": {
+     "blockerBpLe": 5000
+    },
+    "once": true,
+    "optional": true,
+    "actions": [
+     {
+      "do": "RETURN_TRASH",
+      "anyType": true,
+      "match": {
+       "team": "Red Stella"
+      }
+     }
+    ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[Team: Red Stella]",
-   "[LV2] (True Release) (Your Attack Step) (Once Per Turn) When your Red Stella Spirit is blocked by an opposing 5000 BP or less Spirit, you can target a Red Stella card in your Trash. Return it to the Hand."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RDB01-X02",
@@ -23856,7 +24709,7 @@
    "Diva",
    "Stage Style"
   ],
-  "text": "(Legacy)\n\n[Team: Blue Beat]\n\n[LV1-2] (When Summoned)\nTarget an opposing Cost 4 or less Spirit. Destroy it. If you control four or more Blue Beat Spirits, the targeting cost becomes 7 or less instead.\n\n[LV2] (True Release) (During Attack)\nFor each of your Blue Beat Spirits, this Spirit gains +1000 BP.",
+  "text": "(Legacy)\n\n[Team: Blue Beat]\n\n[LV1][LV2] (When Summoned)\nTarget an opposing Cost 4 or less Spirit. Destroy it. If you control four or more Blue Beat Spirits, the targeting cost becomes 7 or less instead.\n\n[LV2] (True Release) (During Attack)\nFor each of your Blue Beat Spirits, this Spirit gains +1000 BP.",
   "image": "26RDB01-X07.png",
   "block": "A",
   "saga": 50,
@@ -23864,13 +24717,57 @@
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[Team: Blue Beat]",
-   "[LV1-2] (When Summoned) Target an opposing Cost 4 or less Spirit. Destroy it. If you control four or more Blue Beat Spirits, the targeting cost becomes 7 or less instead.",
-   "[LV2] (True Release) (During Attack) For each of your Blue Beat Spirits, this Spirit gains +1000 BP."
+  "trueRelease": true,
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "costLe": 4,
+      "if": {
+       "not": {
+        "ctrl": {
+         "n": 4,
+         "type": "Spirit",
+         "team": "Blue Beat"
+        }
+       }
+      }
+     },
+     {
+      "do": "DESTROY",
+      "costLe": 7,
+      "if": {
+       "ctrl": {
+        "n": 4,
+        "type": "Spirit",
+        "team": "Blue Beat"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 1000,
+    "to": "self",
+    "lv": [
+     2
+    ],
+    "attackingOnly": true,
+    "per": {
+     "type": "Spirit",
+     "team": "Blue Beat"
+    }
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RSD01-001",
@@ -25271,23 +26168,49 @@
   "saga": 50,
   "magic": {
    "timing": [
+    "MAIN",
     "FLASH"
    ],
-   "effect": "ACTIONS",
+   "effect": null,
    "value": 0,
-   "actions": [
-    {
-     "do": "BP_TARGET",
-     "n": 2000,
-     "to": "pick"
+   "by": {
+    "MAIN": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "DESTROY_OWN",
+       "match": {
+        "type": "Spirit",
+        "family": [
+         "Bloodrouse"
+        ]
+       }
+      },
+      {
+       "do": "VOID_TO_RESERVE",
+       "n": 1,
+       "if": {
+        "prev": true
+       }
+      }
+     ]
+    },
+    "FLASH": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "BP_TARGET",
+       "n": 2000,
+       "to": "pick"
+      }
+     ]
     }
-   ]
+   }
   },
-  "fxComplete": false,
-  "residual": [
-   "Main Target one of your \"Bloodrouse\" family Spirits. Destroy it. If you've done so, put a core from the Void to your Reserve."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RSD02-012",
@@ -25780,12 +26703,26 @@
   "families": [
    "Armored Fish"
   ],
-  "text": "[LV1-2] (When Attacks)\nYou can target an opposing exhausted Spiri. During this battle, it must block if possible even while exhausted.\n\n[LV2] (True Release) (During Attack)\nThis Spirit gains +2000 BP.",
+  "text": "[LV1][LV2] (When Attacks)\nYou can target an opposing exhausted Spiri. During this battle, it must block if possible even while exhausted.\n\n[LV2] (True Release) (During Attack)\nThis Spirit gains +2000 BP.",
   "image": "26RSD03-007.png",
   "block": "A",
   "saga": 50,
   "trueRelease": true,
   "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "MUST_BLOCK_OPP",
+      "state": "exhausted"
+     }
+    ]
+   },
    {
     "trigger": "STATIC",
     "bp": 2000,
@@ -25796,11 +26733,8 @@
     ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Attacks) You can target an opposing exhausted Spiri. During this battle, it must block if possible even while exhausted."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RSD03-008",
@@ -26016,23 +26950,37 @@
   "saga": 50,
   "magic": {
    "timing": [
+    "MAIN",
     "FLASH"
    ],
-   "effect": "ACTIONS",
+   "effect": null,
    "value": 0,
-   "actions": [
-    {
-     "do": "BP_TARGET",
-     "n": 2000,
-     "to": "pick"
+   "by": {
+    "MAIN": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "HAND_RECYCLE",
+       "perOppHand": true
+      }
+     ]
+    },
+    "FLASH": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "BP_TARGET",
+       "n": 2000,
+       "to": "pick"
+      }
+     ]
     }
-   ]
+   }
   },
-  "fxComplete": false,
-  "residual": [
-   "Main Return all your Hand to the deckbottom in any order. When one or more card is returned, draw a card for each card in the opposing Hand."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RSD03-013",
@@ -28426,25 +29374,42 @@
   "mechanics": [
    "Legacy"
   ],
+  "legacy": true,
   "magic": {
    "timing": [
+    "MAIN",
     "FLASH"
    ],
-   "effect": "ACTIONS",
+   "effect": null,
    "value": 0,
-   "actions": [
-    {
-     "do": "BP_TARGET",
-     "n": 3000,
-     "to": "pick"
+   "by": {
+    "MAIN": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "DESTROY_ANY",
+       "kind": "nexus",
+       "noTR": true,
+       "drawIfDone": true
+      }
+     ]
+    },
+    "FLASH": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "BP_TARGET",
+       "n": 3000,
+       "to": "pick"
+      }
+     ]
     }
-   ]
+   }
   },
-  "fxComplete": false,
-  "residual": [
-   "(Legacy) Main Target a Nexus you or the opponent controls that isn't during True Release. Destroy it. If you've done so, draw a card."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RSD06-X01",

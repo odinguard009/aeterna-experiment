@@ -53,6 +53,7 @@ function fxValid(it) {
   if (e.subjBraved && !(subj && subj.brave && [subj, subj.brave].some(x => (CARDS[x.id].families || []).includes(e.subjBraved)))) return false;
   if (e.self && subj !== f && (trg === 'SOUL_PLACED' || trg === 'ALLY_LIFE_HIT' || trg === 'ALLY_BLOCKED')) return false;
   if (e.other && subj === f) return false;
+  if (e.exOnly && !(ctx.exCount > 0)) return false;      // v0.185 RUMBLE_DISCARD "cards with EX Symbols"
   if (e.attackingOnly && (trg === 'BATTLE_WIN' || trg === 'ALLY_BATTLE_WIN') && !ctx.attacking) return false;     // v0.72 (During Attack) battle result: only as the attacker
   if (e.blockingOnly && (trg === 'BATTLE_WIN' || trg === 'ALLY_BATTLE_WIN') && ctx.attacking) return false;     // v0.74 (When Blocks) battle result: only as the blocker
   if (trg === 'ALLY_SUMMONED' && subj && CARDS[subj.id].type === 'Brave' && !(e.match && e.match.type === 'Brave')) return false;     // a Brave summon is not a Spirit summon (manual p. 35)

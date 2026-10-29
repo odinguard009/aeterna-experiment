@@ -173,6 +173,9 @@ function simple(card, a) {
     case 'CURSE': return only(a, []) && spirit && { onField: true, body: `const t = sp(${J(FILL)}, O, 1); G.attacker = src; G.blocker = t; G.eob = []; G.battleResolved = true;
       await run(src, RA); if (gone(t)) return 'Curse destroyed before the end of the battle'; await BS.endOfBattle(); G.attacker = null; G.blocker = null; G.eob = null; G.battleResolved = false;
       return gone(t) ? '' : 'the blocker survived Curse';` };      // v0.78
+    case 'RUMBLE': return only(a, ['n']) && spirit && { onField: true, body: `for (let j = 0; j < 9; j++) dk(${J(FILL)}, O); G.attacker = src; G.blocker = null; G.eob = []; const d = O.deck.length, t = O.trash.length;
+      await run(src, RA); if (O.deck.length !== d) return 'discarded before the end of the battle'; await BS.endOfBattle(); G.attacker = null; G.eob = null;
+      return O.deck.length === d - A.n && O.trash.length === t + A.n ? '' : 'deck ' + d + ' -> ' + O.deck.length + ', trash ' + t + ' -> ' + O.trash.length;` };      // v0.185 unblocked Rumble: n cards from the opposing decktop at the end of the battle
     case 'END_BATTLE': return only(a, ['then']) && spirit && { onField: true, body: `G.attacker = src; G.eob = []; await run(src, RA); if (G.eob.length !== 1) return 'the effect was not queued for the end of the battle';
       P.spirits = P.spirits.filter(x => x !== src); const snap = () => JSON.stringify([P.hand.length, O.hand.length, O.spirits.length, P.trash.length]); const s0 = snap();
       await BS.endOfBattle(); G.attacker = null; G.eob = null; return snap() === s0 ? '' : 'it resolved although its source left the Field';` };      // v0.78
@@ -215,6 +218,13 @@ function simple(card, a) {
     }
     case 'DISCARD_HAND':      // v0.180 the CPU discards exactly n cards of its Hand
       return only(a, ['n']) && { body: `for (let j = 0; j < A.n + 2; j++) P.hand.push(BS.mkInst(${J(FILL)})); await run(src, RA); return P.hand.length === 2 && P.trash.length === A.n ? '' : 'hand ' + P.hand.length + ', trash ' + P.trash.length;` };
+    case 'DRAW_UNTIL':      // v0.185 draw until the Hand holds n
+      return only(a, ['n']) && { body: `for (let j = 0; j < A.n + 2; j++) dk(${J(FILL)}); await run(src, RA); return P.hand.length === A.n ? '' : 'hand ' + P.hand.length;` };
+    case 'DEPLOY_TRASH': {      // v0.185 a matching Nexus in the Trash is deployed free
+      if (!only(a, ['match']) || !okMatch(a.match) || a.match.type === 'Spirit') return null;
+      const M = { ...a.match, type: 'Nexus' };
+      return { fix: [{ m: M }], body: `const t = BS.mkInst(${J(mid(M))}); P.trash.push(t); await run(src, RA); return P.nexus.includes(t) ? '' : 'the Nexus stayed in the Trash';` };
+    }
     case 'NO_REFRESH_OPP':      // v0.172 an exhausted opposing Spirit skips its next Refresh Step
       return only(a, []) && { onField: true, body: `const t = sp(${J(FILL)}, O, 1); t.exhausted = true; G.turnNo = 3; await run(src, RA); return t.noRefreshT === 4 ? '' : 'noRefreshT ' + t.noRefreshT;` };
     case 'REFRESH_SPIRIT':

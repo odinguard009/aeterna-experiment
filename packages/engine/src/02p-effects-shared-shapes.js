@@ -113,9 +113,9 @@ function allHaveOK(owner, q) {
 })();
 Object.assign(FX_ACTIONS, {
   DESTROY_OWN: {
-    chk: a => hasMatch(a.match) && (a.voidByCost == null || a.voidByCost === true),
-    txt: a => 'destroy one of your matching Spirits' + (a.voidByCost ? ', then put cores from the Void to your Reserve equal to its cost' : ''),
-    cands: (c, a) => c.p.spirits.filter(s => fxMatch(CARDS[s.id], a.match)),
+    chk: a => hasMatch(a.match) && (a.voidByCost == null || a.voidByCost === true) && (a.other == null || a.other === true),
+    txt: a => (a.other ? 'destroy another Spirit you control' : 'destroy one of your matching Spirits') + (a.voidByCost ? ', then put cores from the Void to your Reserve equal to its cost' : ''),
+    cands: (c, a) => c.p.spirits.filter(s => (!a.other || s !== c.src) && fxMatch(CARDS[s.id], a.match)),
     can: (c, a) => FX_ACTIONS.DESTROY_OWN.cands(c, a).length > 0,
     run: async (c, a) => {
       const L = FX_ACTIONS.DESTROY_OWN.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
@@ -168,6 +168,16 @@ Object.assign(FX_ACTIONS, {
       if (!t) { c.ctx.did = false; return; }
       t.blockExB = G.battleNo; log(`${CARDS[c.src.id].name}: ${poss(c.opp)} ${CARDS[t.id].name} can block even while exhausted during this battle.`);
     } } });
+/* v0.185 (schema 64) "Target an opposing [N BP or less | exhausted] Spirit [in refreshed state]. During this battle, it must block if possible even while exhausted": marks blockExB + mustB (08-battle binds it) */
+FX_ACTIONS.MUST_BLOCK_OPP = { chk: a => (a.bpLe == null || (Number.isInteger(a.bpLe) && a.bpLe >= 1000)) && (a.state == null || a.state === 'refreshed' || a.state === 'exhausted') && Object.keys(a).every(k => ['do', 'bpLe', 'state', 'if'].includes(k)),
+  txt: () => 'during this battle, an opposing Spirit must block if possible even while exhausted',
+  cands: (c, a) => c.opp.spirits.filter(t => (!a.bpLe || bpOf(t) <= a.bpLe) && (!a.state || t.exhausted === (a.state === 'exhausted')) && !fxImmune(c.opp, t)),
+  can: (c, a) => !!G.attacker && FX_ACTIONS.MUST_BLOCK_OPP.cands(c, a).length > 0,
+  run: async (c, a) => {
+    const L = G.attacker ? FX_ACTIONS.MUST_BLOCK_OPP.cands(c, a) : [], t = L.length && await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the opposing Spirit that must block this battle (glowing).`);
+    if (!t) { c.ctx.did = false; return; }
+    t.blockExB = t.mustB = G.battleNo; log(`${CARDS[c.src.id].name}: ${poss(c.opp)} ${CARDS[t.id].name} must block if possible, even while exhausted, during this battle.`);
+  } };
 // v0.172.0: marks on a targeted opposing Spirit: noRefreshT (skips the next opposing Refresh Step), noBlockB (can't block this battle)
 const fxOppMark = (k, key, f, val, ask, txt) => ({ chk: () => true, txt: () => txt, cands: c => c.opp.spirits.filter(t => f(t) && !fxImmune(c.opp, t)),
   can: c => FX_ACTIONS[k].cands(c).length > 0,
@@ -179,11 +189,11 @@ const fxOppMark = (k, key, f, val, ask, txt) => ({ chk: () => true, txt: () => t
 FX_ACTIONS.NO_REFRESH_OPP = { ...fxOppMark('NO_REFRESH_OPP', 'noRefreshT', t => t.exhausted, () => G.turnNo + 1, 'exhausted opposing Spirit', "can't refresh next Refresh Step") };
 FX_ACTIONS.CANT_BLOCK_OPP = { ...fxOppMark('CANT_BLOCK_OPP', 'noBlockB', () => G.attacker, () => G.battleNo, 'opposing Spirit', "can't block this battle") };
 // v0.175.0: "This Spirit can't be blocked by <colour> / LV<n> / High Speed / Curse Spirits" (this battle): the attacker carries noBlockBy for the battle; the block list (08-battle) skips matching Spirits
-FX_ACTIONS.CANT_BE_BLOCKED_BY = { chk: a => (a.color == null || (Array.isArray(a.color) && a.color.length > 0)) && (a.levels == null || (Array.isArray(a.levels) && a.levels.length > 0 && a.levels.every(Number.isInteger))) && (a.keyword == null || typeof a.keyword === 'string') && (a.highSpeed == null || a.highSpeed === true) && (a.costLe == null || Number.isInteger(a.costLe)) && (a.costGe == null || Number.isInteger(a.costGe)) && (a.color != null || a.levels != null || a.keyword != null || a.highSpeed === true || a.costLe != null || a.costGe != null),
+FX_ACTIONS.CANT_BE_BLOCKED_BY = { chk: a => (a.color == null || (Array.isArray(a.color) && a.color.length > 0)) && (a.levels == null || (Array.isArray(a.levels) && a.levels.length > 0 && a.levels.every(Number.isInteger))) && (a.keyword == null || typeof a.keyword === 'string') && (a.highSpeed == null || a.highSpeed === true) && (a.costLe == null || Number.isInteger(a.costLe)) && (a.costGe == null || Number.isInteger(a.costGe)) && (a.bpLe == null || Number.isInteger(a.bpLe)) && (a.coresLe == null || Number.isInteger(a.coresLe)) && (a.color != null || a.levels != null || a.keyword != null || a.highSpeed === true || a.costLe != null || a.costGe != null || a.bpLe != null || a.coresLe != null || a.all === true),
   txt: () => "can't be blocked by Spirits with the printed trait during this battle", can: () => true,
-  run: async (c, a) => { c.src.noBlockBy = { battleNo: G.battleNo, color: a.color, levels: a.levels, keyword: a.keyword, highSpeed: a.highSpeed === true, costLe: a.costLe, costGe: a.costGe }; log(`${CARDS[c.src.id].name} can't be blocked by some Spirits during this battle.`); } };
+  run: async (c, a) => { c.src.noBlockBy = { battleNo: G.battleNo, color: a.color, levels: a.levels, keyword: a.keyword, highSpeed: a.highSpeed === true, costLe: a.costLe, costGe: a.costGe, bpLe: a.bpLe, coresLe: a.coresLe, all: a.all === true }; log(`${CARDS[c.src.id].name} can't be blocked by some Spirits during this battle.`); } };
 const blockedByMark = (att, s) => { const m = att.noBlockBy; if (!m || m.battleNo !== G.battleNo) return false; const k = CARDS[s.id];
-  return (m.color == null || fxMatch(k, { color: m.color })) && (m.levels == null || m.levels.includes(lvNo(s))) && (m.keyword == null || cardHasKeyword(k, m.keyword)) && (!m.highSpeed || k.highSpeed === true) && (m.costLe == null || k.cost <= m.costLe) && (m.costGe == null || k.cost >= m.costGe); };      // v0.179 "Cost N or less/more"
+  return m.all || (m.color == null || fxMatch(k, { color: m.color })) && (m.levels == null || m.levels.includes(lvNo(s))) && (m.keyword == null || cardHasKeyword(k, m.keyword)) && (!m.highSpeed || k.highSpeed === true) && (m.costLe == null || k.cost <= m.costLe) && (m.costGe == null || k.cost >= m.costGe) && (m.bpLe == null || bpOf(s) <= m.bpLe) && (m.coresLe == null || totalCores(s) <= m.coresLe); };      // v0.185 "N BP or less" / "N cores or less on it"      // v0.179 "Cost N or less/more"
 (() => {
   const S = FX_ACTIONS.SUMMON_HAND, sChk = S.chk, sRun = S.run;
   S.chk = a => sChk(a) || (!!a.match && (a.match.color != null || a.match.noText === true) && sChk(Object.assign({}, a, { match: Object.assign({}, a.match, { name: ['-'] }) })));

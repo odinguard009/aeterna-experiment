@@ -4,6 +4,14 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.185.0
+- Lane: K
+- **43 more cards complete (1,225 -> 1,268): attack-step BP, attack counts, Rumble discard, Hand recycle, Nexus destruction (early release, owner order)**
+  - New engine pieces (effect schema 56-70): trigger `RUMBLE_DISCARD`; conditions `selfAttacking`, `firstAttack`, `blockerBpLe`, `selfBlocked`, `ctrl.costLe`; actions `DRAW_UNTIL`, `MUST_BLOCK_OPP`, `DEPLOY_TRASH`, `HAND_RECYCLE`; options `CANT_BE_BLOCKED_BY` (`all`, `bpLe`, `coresLe`), STATIC `perCores` and `per` with `to:"own"`, `DESTROY_OWN.other`, `DESTROY_ANY` `noTR` / `drawIfDone`.
+  - Readings to know: (CSOPT) = once per turn per same name; "isn't during True Release" = a True Release Nexus at printed LV2+ (not checked against the rules); Refresh-three = N picks among still exhausted Spirits; HAND_RECYCLE keeps Hand order for "any order", shows to the opponent only in the log, and an empty Hand returns nothing.
+  - Tests: unit scenarios V185-01..12 cover actions and conditions at action level; conditional static BP rules are verified only by compile and `fx_validate`; `MUST_BLOCK_OPP`, `RUMBLE_DISCARD` and `ctx.did` semantics have no full-game scenario. Budget B01 raised to 1070 KB.
+  - Not checked: Regression of v0.184.0 not read; no player-view pass or CPU sims locally (Regression runs on Actions); released early at 43 of 50 cards at the owner's order.
+
 ## v0.184.0
 - Lane: K
 - **50 more cards complete (1,175 -> 1,225): team names, keyword/cost filters in reveals, conditional can't-attack, Life thresholds**

@@ -161,6 +161,8 @@ PER_STATIC = re.compile(r'^(\(During Attack\)\s*)?' + PER_NP + r',? this spirit 
 PER_STATIC_TAIL = re.compile(r'^(\(During Attack\)\s*)?this spirit (?:gains|gets) \+(\d[\d,]*) ?bp (' + PER_NP + r')\.?$', re.I)      # v0.184 old trailing wording 'This spirit gets +N BP for each X you control'
 BATTLE_HEADS = [      # v0.72 heads read before TRIGGERS: (trigger list, extra effect keys)
     (r'\(When Attacks\)\s*When this Spirit is blocked,', ['ALLY_BLOCKED'], {'self': True}),      # v0.183 Windstorm
+    (r'When your Spirit is blocked,', ['ALLY_BLOCKED'], {'match': {'noUlt': True}}),      # v0.185 any ally Spirit
+    (r'\(During Attack\)\s*When blocked,', ['ALLY_BLOCKED'], {'self': True}),      # v0.185 same event as '(When Attacks) When this Spirit is blocked,'
     (r"\((?:During Attack|When Attacks)\)\s*When this Spirit's attack reduces the opposing Life,", ['ALLY_LIFE_HIT'], {'self': True}),
     (r'\(During Attack\)\s*When only the opposing Spirit(?:/Ultimate)? is destroyed (?:by comparing BP|via BP comparison|by BP comparison),', ['BATTLE_WIN'], {'attackingOnly': True}),
     # v0.74: "(When Attacks) When only the opposing Spirit is destroyed ..." = the battle result as the attacker, "(When Blocks) ..." as the blocker
@@ -173,6 +175,8 @@ BATTLE_HEADS = [      # v0.72 heads read before TRIGGERS: (trigger list, extra e
 TRIGGERS = [
     (r'\(When Summoned/Attacks\)', ['SUMMONED', 'ATTACKS']),
     (r'\(When Summoned/Destroyed\)', ['SUMMONED', 'DESTROYED']),      # v0.54: (When Destroyed) = engine trigger DESTROYED (manual p. 31)
+    (r'When cards with EX Symbols are discarded by your Rumble,', ['RUMBLE_DISCARD+EX']),      # v0.185 engine RUMBLE_DISCARD (exOnly)
+    (r'When cards are discarded from the opposing deck by your Rumble, besides this Spirit\'s,', ['RUMBLE_DISCARD+OTHER']),
     (r'When this Spirit becomes the target of Tribute,', ['TRIBUTED']),      # v0.183 engine TRIBUTED (tributePay)
     (r'\(When Destroyed\)', ['DESTROYED']),
     (r'\(When Depleted/Destroyed by the Opponent\)', ['DESTROYED_OPPD']),      # v0.177 engine alsoDepleted
@@ -341,7 +345,7 @@ STEP_HEAD = re.compile(r'^\((Your|Opposing|Either) (Start|Core|Draw|Refresh|Main
 WIN_KEYS = ('step', 'attackStep', 'oppTurn')
 OPP_ATT_BODY = re.compile(r'^When an opposing (?:Cost (\d+) or less |(\d+) BP or less )?Spirit(/Ultimate)? attacks,\s*')
 ALLY_ATT_BODY = re.compile(r'^When (?:one of )?your (?:"([^"]+)" family |(Red|Purple|Green|White|Yellow|Blue) )?Spirits? attacks?,\s*')
-ALLY_SUMMON_HEAD = re.compile(r'^When your (?:(?P<col>Red|Purple|Green|White|Yellow|Blue) |(?P<fam>"[^"]+"(?:\s*/\s*"[^"]+")*) family |"(?P<nm>[^"]+)"-named |[Cc]ost (?P<cn>\d+) or (?P<cd>more|less) )?(?P<ty>Spirit|Ultimate)s? (?:is|are) summoned,\s*')      # v0.181
+ALLY_SUMMON_HEAD = re.compile(r'^When your (?:(?P<col>Red|Purple|Green|White|Yellow|Blue) |(?P<fam>"[^"]+"(?:\s*/\s*"[^"]+")*) family |"(?P<nm>[^"]+)"-named |[Cc]ost (?P<cn>\d+) or (?P<cd>more|less) )?(?P<ty>Spirit|Ultimate)s?(?: with (?P<kw>[A-Z][A-Za-z]+))? (?:is|are) summoned,\s*')      # v0.181
 OWN_BP_BODY = re.compile(r'^(?:All (?:of )?your (?:"([^"]+)" family )?Spirits (?:with (?P<kw>[A-Z][A-Za-z]+) )?(?:gain|get)|Give all your (?:"([^"]+)" family )?Spirits|(?:All )?"([^"]+)" (?:family )?spirits you control (?:gain|get)) \+(\d[\d,]*) ?BP\.?$', re.I)      # v0.181 also 'Give all your "X" family Spirits +N BP'
 SELF_BP_BODY = re.compile(r'^This Spirit (?:gains|gets) \+(\d[\d,]*) ?BP\.?$', re.I)
 OPP_HAND_WHILE = re.compile(r'^While the opponent has (\d+|two|three|four|five|six|seven|eight) or more cards in (?:the|their) Hand,\s*', re.I)
@@ -362,6 +366,8 @@ def step_window(p, card, lv, rush):
         x = {'trigger': 'ACTIVATE', 'timing': ['MAIN'], 'once': True, 'optional': True, 'actions': [{'do': 'SUMMON_HAND', 'match': {'type': 'Spirit'}, 'pay': True, 'noFx': True, 'noTribute': True}]}
         if lv: x['lv'] = lv
         return [x], {}
+    csopt = re.match(r'\(CSOPT\)\s*(?=When )', body)
+    if csopt: body = body[csopt.end():]      # v0.185 '(Step) (CSOPT) When ...': same-name once per turn, applied to the triggered effects below
     win = {'step': step}
     if who != 'Either': win['oppTurn'] = who == 'Opposing'
     mw = BURST_WHILE.match(body)
@@ -414,6 +420,9 @@ def step_window(p, card, lv, rush):
             raise Review('step window on ' + x['trigger'] + ': ' + body[:60])
         if any(k in (x.get('if') or {}) for k in WIN_KEYS): raise Review('step window twice: ' + body[:60])
         x['if'] = dict(x.get('if') or {}, **win)
+        if csopt:
+            if x['trigger'] == 'STATIC': raise Review('CSOPT on a static effect: ' + body[:60])
+            x['once'] = True; x['sameName'] = True
     return e, flags
 
 
@@ -524,20 +533,39 @@ def spirit_paragraph_main(p, card, rush):
     p = re.sub(r'^\(During (Attack|Block)s\)', r'(During \1)', p)      # v0.169 "(During Blocks)" / "(During Attacks)" are the same heads as the singular ones
     ns = re.match(r"^\(Can't Stack\)\s*", p, re.I)
     nostack = bool(ns and any(re.match(r'^' + rx_ + r'\s*', p[ns.end():]) for rx_, _ts in TRIGGERS))
-    if nostack: p = p[ns.end():]      # v0.164 "(Can't Stack) When ..." = noStack on the triggered effect (engine 02d: one activation per card name and effect)
+    mc = None if nostack else re.match(r"^(\((?:Your|Opposing|Either) Attack Step\))\s*\(Can't Stack\)\s*(?=When )", p, re.I)
+    if mc: nostack, p = True, mc.group(1) + ' ' + p[mc.end():]      # v0.185 '(Your Attack Step) (Can't Stack) When ...': the step head stays, the limit moves to the effect
+    if nostack and ns: p = p[ns.end():]      # v0.164 "(Can't Stack) When ..." = noStack on the triggered effect (engine 02d: one activation per card name and effect)
     aw = ally_win(p)
     if aw: p, tmatch, extra = aw; trig = ['ALLY_BATTLE_WIN']; tmatch = tmatch or None; extra = extra or None
     if not trig: p = re.sub(r'^\(During Attack\)\s*(?=(?:If [^.]+?, )?This Spirit can\'t be blocked by (?:opposing )?Cost \d+ or (?:less|more) Spirits?)', '(When Attacks) ', p, flags=re.I)      # v0.179 attack-long unblockable = marked when the attack starts (blockers come right after)
     if not trig: p = re.sub(r'^\(During Attack\)\s*(?=At the end of battle,)', '(When Attacks) ', p)      # v0.167 "(During Attack) At the end of battle, X" = the attacker's end-of-battle effect
+    mo = None if trig else re.match(r'^(\((?:During Attack|When Attacks|When Blocks)\))\s*\(Once Per Turn\)\s*(?=When )', p, re.I)
+    if mo: p = mo.group(1) + ' ' + p[mo.end():]      # v0.185 '(During Attack) (Once Per Turn) When ...': the limit is read after the head matched
+    mb = None if trig else re.match(r'^\((?:During Attack|When Attacks)\)\s*When blocked by an opposing (\d[\d,]*) BP or less Spirit,\s*', p, re.I)
+    if mb: trig, extra, p = ['ALLY_BLOCKED'], {'self': True, 'if': {'blockerBpLe': int(mb.group(1).replace(',', ''))}}, p[mb.end():]      # v0.185 blocker BP condition (schema v63)
+    mb = None if trig else re.match(r'^\(Your Attack Step\)\s*(\(Once Per Turn\)\s*)?When your (?:(?P<team>Red Stella) )Spirit is blocked by an opposing (?P<bp>\d[\d,]*) BP or less Spirit,\s*', p)
+    if mb:      # v0.185 ALLY_BLOCKED + blockerBpLe (schema v63)
+        trig, tmatch, extra, p = ['ALLY_BLOCKED'], {'noUlt': True, 'team': mb.group('team')}, dict(extra or {}, **{'if': {'blockerBpLe': int(mb.group('bp').replace(',', ''))}}), p[mb.end():]
+        if mb.group(1): extra['once'] = True
     for rx, ts, ex in ([] if trig else BATTLE_HEADS):
         mm = re.match(r'^' + rx + r'\s*', p)
         if mm: trig, extra, p = ts, ex, p[mm.end():]; break
+    if mo and trig: extra = dict(extra or {}, once=True)
+    elif mo: p = mo.group(1) + ' (Once Per Turn) ' + p[len(mo.group(1)) + 1:]
+    mm = None if trig else re.match(r'^This Spirit (?:gains|gets) \+(\d[\d,]*) ?BP for each core on (?:it|this Spirit)\.?$', p, re.I)
+    if mm:      # v0.185 STATIC perCores (schema 67)
+        if rush: raise Review('Rush with a static effect')
+        e = {'trigger': 'STATIC', 'bp': bp(mm.group(1)), 'to': 'self', 'perCores': True}
+        if lv: e['lv'] = lv
+        return [e], flags
     mm = None if trig else re.match(r'^This Spirit (?:gains|gets) \+(\d[\d,]*) ?BP for each card in your Hand\.?$', p, re.I)
     if mm:      # v0.180 STATIC perHand
         if rush: raise Review('Rush with a static effect')
         e = {'trigger': 'STATIC', 'bp': bp(mm.group(1)), 'to': 'self', 'perHand': True}
         if lv: e['lv'] = lv
         return [e], flags
+    p = re.sub(r'^(\(During Attack\)\s*)?For each of your (.+? Spirits?), (this spirit)', lambda m: (m.group(1) or '') + 'For each ' + m.group(2) + ' you control, ' + m.group(3), p, flags=re.I) if not trig else p      # v0.185 'for each of your X Spirits' reads as the head form
     mt = None if trig else PER_STATIC_TAIL.match(p)
     if mt: p = (mt.group(1) or '') + re.sub(r'^for each', 'For each', mt.group(3)) + ', this spirit gets +' + mt.group(2) + 'BP'      # v0.184 read the tail form as the head form
     mm = None if trig else PER_STATIC.match(p)
@@ -549,12 +577,34 @@ def spirit_paragraph_main(p, card, rush):
         e['per'] = per_of(q)
         if rush: raise Review('Rush with a static effect')
         return [e], flags
+    mm = None if trig else re.match(r'^\(Once Per Turn\)\s*(?=When cards .* by your Rumble,)', p, re.I)
+    if mm: p = p[mm.end():]; extra = dict(extra or {}, once=True)      # v0.185 plain once-per-turn limit in front of the Rumble head
     for rx, ts in ([] if trig else TRIGGERS):
         mm = re.match(r'^' + rx + r'\s*', p)
         if mm: trig = ts; p = p[mm.end():]; break
     if trig is None:      # v0.59: step-prefixed attack triggers (the step is implied by the attack itself)
-        mm = re.match(r'^\(Your Attack Step\)\s*When (?:one of )?your "([^"]+)" family Spirits? attacks?,\s*', p)
-        if mm: trig, tmatch, p = ['ALLY_ATTACKS'], {'family': [mm.group(1)], 'noUlt': True}, p[mm.end():]
+        mm = re.match(r'^\(Your Attack Step\)\s*(\(Once Per Turn\)\s*)?When (?:one of )?your ("[^"]+"(?:\s*/\s*"[^"]+")*) family Spirits? attacks?,\s*', p)
+        if mm:      # v0.185 '"A"/"B" family' = any of the listed families; optional '(Once Per Turn)' between the step and When
+            trig, tmatch, p = ['ALLY_ATTACKS'], {'family': re.findall(r'"([^"]+)"', mm.group(2)), 'noUlt': True}, p[mm.end():]
+            if mm.group(1): extra = dict(extra or {}, once=True)
+        mm = None if trig else re.match(r'^\(During Attack\)\s*(\(Once Per Turn\)\s*)?When you use an? (?:"([^"]+)" family )?Magic card,\s*', p)
+        if mm:      # v0.185 engine MAGIC_USED + if.selfAttacking (this Spirit is attacking)
+            trig, tmatch, p = ['MAGIC_USED'], dict({'type': 'Magic'}, **({'family': [mm.group(2)]} if mm.group(2) else {})), p[mm.end():]
+            extra = dict(extra or {}, **{'if': {'selfAttacking': True}})
+            if mm.group(1): extra['once'] = True
+        mm = None if trig else re.match(r'^\(Your Attack Step\)\s*(\(Once Per Turn\)\s*)?When (?:your (?:(?P<col>Red|Purple|Green|White|Yellow|Blue) )?(?:(?P<team>Red Stella) )?Spirits? makes? the first attack of the turn|you make the second or subsequent attack of the turn(?:, (?:and|if) the Spirit that attacks has the (?P<fam>"[^"]+"(?:\s*/\s*"[^"]+")*) family)?),\s*', p)
+        if mm:      # v0.185 engine firstAttack condition (owner attack counter): 'first attack of the turn' / 'second or subsequent attack of the turn'
+            tm = {'noUlt': True}
+            if mm.group('col'): tm['color'] = mm.group('col').lower()
+            if mm.group('team'): tm['team'] = mm.group('team')
+            if mm.group('fam'): tm['family'] = re.findall(r'"([^"]+)"', mm.group('fam'))
+            trig, tmatch, p = ['ALLY_ATTACKS'], tm, p[mm.end():]
+            extra = dict(extra or {}, **{'if': {'firstAttack': 'first attack' in mm.group(0)}})
+            if mm.group(1): extra['once'] = True
+        mm = None if trig else re.match(r'^\(Your Attack Step\)\s*(\(Once Per Turn\)\s*)?When your Cost (\d+) or (more|less) (Red|Purple|Green|White|Yellow|Blue) Spirit with no printed effects attacks,\s*', p)
+        if mm:      # v0.185 attack head with a subject filter (cost, colour, no printed effects); once-per-turn optional
+            trig, tmatch, p = ['ALLY_ATTACKS'], {'noUlt': True, 'noText': True, 'color': mm.group(4).lower(), 'costGe' if mm.group(3) == 'more' else 'costLe': int(mm.group(2))}, p[mm.end():]
+            if mm.group(1): extra = dict(extra or {}, once=True)
         mm = None if trig else re.match(r'^(?:\((?:Opposing|Either) Attack Step\)\s*/?\s*)?When your Life is reduced(?: by (?:the attack of )?(?:an? )?opposing (Spirit|Ultimate)s?| by the opponent)?,\s*', p)
         if mm: trig, tmatch, p = ['OWN_LIFE_HIT'], ({'noUlt': True} if (mm.group(1) or '').lower() == 'spirit' else {'type': 'Ultimate'} if mm.group(1) else None), p[mm.end():]      # v0.177 engine OWN_LIFE_HIT (an opposing attack reduced your Life)
         mm = None if trig else ALLY_SUMMON_HEAD.match(p)
@@ -563,17 +613,41 @@ def spirit_paragraph_main(p, card, rush):
             if mm.group('col'): tm['color'] = mm.group('col').lower()
             if mm.group('fam'): tm['family'] = re.findall(r'"([^"]+)"', mm.group('fam'))
             if mm.group('nm'): tm['name'] = [mm.group('nm')]
+            if mm.group('kw'): tm['keyword'] = mm.group('kw')      # v0.185 'When your Spirit with Current is summoned'
             if mm.group('cn'): tm['costGe' if mm.group('cd').lower() == 'more' else 'costLe'] = int(mm.group('cn'))
             tm['type' if mm.group('ty').lower() == 'ultimate' else 'noUlt'] = 'Ultimate' if mm.group('ty').lower() == 'ultimate' else True
             trig, tmatch, p = ['ALLY_SUMMONED'], tm, p[mm.end():]
         mm = None if trig else re.match(r'^\(Opposing Attack Step\)\s*When an opposing Spirit attacks,\s*', p)
         if mm: trig, tmatch, p = ['OPP_ATTACKS'], {'noUlt': True}, p[mm.end():]
     if trig is None:
-        mm = re.match(r'^\(Your Attack Step\)\s*All (?:your|of your) (?:"([^"]+)" family )?Spirits (?:with (?P<kw>[A-Z][A-Za-z]+) )?(?:gain|get) \+(\d[\d,]*) ?BP\.?$', p, re.I)
+        mm = re.match(r'^\(Your Attack Step\)\s*All (?:your|of your) (?:Cost (?P<cn>\d+) or (?P<cd>more|less) )?(?:"(?P<fam>[^"]+)" family )?Spirits (?:with (?P<kw>[A-Z][A-Za-z]+) )?(?:gain|get) \+(?P<n>\d[\d,]*) ?BP\.?$', p, re.I)
         if mm:      # v0.54: static BP for your Spirits during your Attack Step
-            e = {'trigger': 'STATIC', 'bp': bp(mm.group(3)), 'to': 'own', 'if': dict(ATTACK_STEP['(Your Attack Step)'])}
-            if mm.group(1): e['match'] = {'family': [mm.group(1)]}
+            e = {'trigger': 'STATIC', 'bp': bp(mm.group('n')), 'to': 'own', 'if': dict(ATTACK_STEP['(Your Attack Step)'])}
+            if mm.group('fam'): e['match'] = {'family': [mm.group('fam')]}
             if mm.group('kw'): e['match'] = dict(e.get('match') or {}, keyword=mm.group('kw'))      # v0.167
+            if mm.group('cn'): e['match'] = dict(e.get('match') or {}, **{'costGe' if mm.group('cd').lower() == 'more' else 'costLe': int(mm.group('cn'))})      # v0.185
+            if lv: e['lv'] = lv
+            return [e], flags
+        mm = re.match(r'^\(Your Attack Step\)\s*If (?P<c>all your [^,]+), (?:give all your Spirits|all your Spirits (?:gain|get)) \+(?P<n>\d[\d,]*) ?BP\.?$', p, re.I)
+        ac = all_have_cond(mm.group('c')) if mm else None
+        if ac:      # v0.185 conditional static BP: step + allHave
+            e = {'trigger': 'STATIC', 'bp': bp(mm.group('n')), 'to': 'own', 'if': dict(ATTACK_STEP['(Your Attack Step)'], **ac)}
+            if lv: e['lv'] = lv
+            return [e], flags
+        mm = re.match(r'^\(Your Attack Step\)\s*All your attacking (?:"(?P<fam>[^"]+)" family |(?P<team>' + TEAMS + r') )Spirits (?:gain|get) \+(?P<n>\d[\d,]*) ?BP\.?$', p, re.I)
+        if mm:      # v0.185 "All your attacking <family/team> Spirits gain +N BP" = STATIC own + attackingOnly (engine staticBp: only the attacker)
+            e = {'trigger': 'STATIC', 'bp': bp(mm.group('n')), 'to': 'own', 'attackingOnly': True, 'if': dict(ATTACK_STEP['(Your Attack Step)']), 'match': {'family': [mm.group('fam')]} if mm.group('fam') else {'team': mm.group('team').title()}}
+            if lv: e['lv'] = lv
+            return [e], flags
+        mm = re.match(r'^\(Your Attack Step\)\s*All your ("[^"]+"(?:\s*/\s*"[^"]+")*) (?:gain|get) \+(\d[\d,]*) ?BP\.?$', p, re.I)
+        if mm:      # v0.185 '(Your Attack Step) All your "X" gain +N BP' = STATIC own, name match
+            e = {'trigger': 'STATIC', 'bp': bp(mm.group(2)), 'to': 'own', 'if': dict(ATTACK_STEP['(Your Attack Step)']), 'match': {'name': re.findall(r'"([^"]+)"', mm.group(1))}}
+            if lv: e['lv'] = lv
+            return [e], flags
+        mm = re.match(r'^\(Your Attack Step\)\s*(For each [^,]+ you control), give all your Spirits \+(\d[\d,]*) ?BP\.?$', p, re.I)
+        q = mm and re.match(PER_NP, mm.group(1), re.I)
+        if q:      # v0.185 '(Your Attack Step) For each X you control, give all your Spirits +N BP' = STATIC own + per (schema 68)
+            e = {'trigger': 'STATIC', 'bp': bp(mm.group(2)), 'to': 'own', 'per': per_of(q), 'if': dict(ATTACK_STEP['(Your Attack Step)'])}
             if lv: e['lv'] = lv
             return [e], flags
         mm = re.match(r'^\(Your Attack Step\)\s*This Spirit (?:gains|gets) \+(\d[\d,]*) ?BP\.?$', p, re.I)
@@ -683,6 +757,12 @@ def spirit_paragraph_main(p, card, rush):
             e = [{'trigger': 'STATIC', 'flag': 'TRIBUTE_SAFE', 'to': 'self'}]
             if lv: e[0]['lv'] = lv
             return e, flags
+        mm = re.match(r'^If (you control [^,]+?), all your (?:"([^"]+)" family |((?:"[^"]+"/)+"[^"]+") )?Spirits? (?:gain|get) \+(\d[\d,]*) ?BP\.?$', p, re.I) or re.match(r'^If (you control [^,]+?), all your ((?:"[^"]+"/)*"[^"]+") (?:gain|get) \+(\d[\d,]*) ?BP\.?$', p, re.I)
+        cond = (COND_HOOK(mm.group(1)) if COND_HOOK else None) if mm else None
+        if cond and mm.re.groups == 3:      # v0.185 STATIC BP for named Spirits while a condition holds (no step window)
+            e = [{'trigger': 'STATIC', 'bp': bp(mm.group(3)), 'to': 'own', 'if': cond, 'match': {'name': re.findall(r'"([^"]+)"', mm.group(2))}}]
+            if lv: e[0]['lv'] = lv
+            return e, flags
         mm = re.match(r'^While (you control [^,]+?), (?:this Spirit is treated as being (?:at )?|treat this Spirit as being (?:at |on )?)\[?LV([23])\]?\.?$', p, re.I)
         cond = (COND_HOOK(mm.group(1)) if COND_HOOK else None) if mm else None
         if cond:      # v0.184 STATIC TREAT_LV3 with a v2 condition and a target level n (2 or 3)
@@ -691,7 +771,7 @@ def spirit_paragraph_main(p, card, rush):
             if mm.group(2) == '2': e[0]['n'] = 2
             if lv: e[0]['lv'] = lv
             return e, flags
-        mm = re.match(r"^If you control no ((?:Red |Purple |Green |White |Yellow |Blue )?(?:\"[^\"]+\" family )?)Spirits, this Spirit can't attack\.?$", p, re.I)
+        mm = re.match(r"^If you control no ((?:Cost \d+ )?(?:Red |Purple |Green |White |Yellow |Blue )?(?:\"[^\"]+\" family )?)Spirits, this Spirit can't attack\.?$", p, re.I)
         cond = (COND_HOOK('you control a ' + mm.group(1) + 'Spirit') if COND_HOOK else None) if mm and mm.group(1) else None
         if cond and 'ctrl' in cond:      # v0.184 STATIC CANT_ATTACK while you control no <colour/family> Spirit (ctrl nLe 0)
             if rush: raise Review('Rush with a conditional can\'t-attack')
@@ -748,7 +828,7 @@ def trig_effects(p, card, trig, tmatch, lv, rush, flags, extra=None):
     if mo: p = p[:mo.start()]; extra = dict(extra or {}, once=True)      # v0.184 old trailing wording of the plain once-per-turn limit
     if rush and not p: raise Review('Rush without a main effect')
     for s in sentences(p):
-        a, o = action_of(s, {'trigger': trig})
+        a, o = action_of(s, {'trigger': trig, 'battle': bool((extra or {}).get('if', {}).get('selfAttacking'))})      # v0.185 (During Attack) MAGIC_USED: a battle is running
         if acts and o: raise Review('optional second sentence: ' + s[:80])
         acts += a; opt = opt or o
     if not acts: raise Review('empty body')
@@ -762,7 +842,7 @@ def trig_effects(p, card, trig, tmatch, lv, rush, flags, extra=None):
         raise Review('(When Destroyed) effect about this Spirit: ' + p[:80])
     out = []
     for t in trig:
-        e = {'trigger': 'ATTACKS', 'alsoBlocks': True} if t == 'ATTACKS+BLOCKS' else {'trigger': t.split('_OPP')[0]} if t in ('DESTROYED_OPP', 'DESTROYED_OPPD', 'DESTROYED_OPPFX', 'LEAVES_OPPFX') else {'trigger': t}
+        e = {'trigger': 'RUMBLE_DISCARD', 'exOnly': True} if t == 'RUMBLE_DISCARD+EX' else {'trigger': 'RUMBLE_DISCARD', 'other': True} if t == 'RUMBLE_DISCARD+OTHER' else {'trigger': 'ATTACKS', 'alsoBlocks': True} if t == 'ATTACKS+BLOCKS' else {'trigger': t.split('_OPP')[0]} if t in ('DESTROYED_OPP', 'DESTROYED_OPPD', 'DESTROYED_OPPFX', 'LEAVES_OPPFX') else {'trigger': t}
         if lv: e['lv'] = lv
         if tmatch: e['match'] = dict(tmatch)
         if t in ('DESTROYED_OPP', 'DESTROYED_OPPD'): e['if'] = {'byOpp': True}
@@ -997,6 +1077,8 @@ def invoke_cost(x, card):
     if m and m.group(1).lower() == own: return {'returnSelf': True}
     m = re.match(r'^return one of your "([^"]+)" family (nexus(?:es)?|spirits?) to the deckbottom$', L, re.I)
     if m: return {'returnOwn': {'kind': 'nexus' if m.group(2).lower().startswith('nexus') else 'spirit', 'match': {'family': [m.group(1)]}}}
+    m = re.match(r'^return one of your (' + TEAMS + r') (nexus(?:es)?|spirits?) to the deckbottom$', L, re.I)
+    if m: return {'returnOwn': {'kind': 'nexus' if m.group(2).lower().startswith('nexus') else 'spirit', 'match': {'team': m.group(1).title()}}}      # v0.185 team match (schema 55)
     raise Review('Invoke cost: ' + L[:80])
 
 
@@ -1015,9 +1097,16 @@ def invoke_para(p, card, lv, rush):
     if re.sub(r'\([^)]*\)', '', pre).strip(): raise Review('Invoke head: ' + pre[:60])
     if kind == 'MAIN' and when not in (None, 'yourTurn'): raise Review('Invoke head: Main with ' + when)
     if INVOKE_MARK_RE.search(body): raise Review('two Invoke effects in one paragraph')
-    cost = None
+    cost, icond = None, None
     if '\u25b6' in body:
-        ctxt, body = body.split('\u25b6', 1); cost = invoke_cost(ctxt, card); body = body.strip()
+        ctxt, body = body.split('\u25b6', 1); body = body.strip()
+        mi = re.match(r'^If (.+?), ((?:pay|exhaust|destroy|return|discard) .+)$', ctxt.strip(), re.I)      # v0.185 "If <condition>, <cost> ▶" = the effect's if (engine activatable() checks e.if)
+        if mi:
+            import compile_v2 as _v2
+            icond = _v2.cond_of(mi.group(1))
+            if icond is None: raise Review('Invoke condition: ' + mi.group(1)[:80])
+            ctxt = mi.group(2)
+        cost = invoke_cost(ctxt, card)
     same, acts = False, []
     for s in sentences(body):
         if re.fullmatch(r'You can only use this effect of the same card name once per turn\.?', s.strip(), re.I): same = True; continue
@@ -1036,6 +1125,7 @@ def invoke_para(p, card, lv, rush):
     if same: e['sameName'] = True
     if lv: e['lv'] = lv
     if cost: e['cost'] = cost
+    if icond: e['if'] = icond
     e['actions'] = acts
     return e
 

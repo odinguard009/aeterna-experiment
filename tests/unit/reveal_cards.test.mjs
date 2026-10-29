@@ -54,13 +54,13 @@ test('R69-05 compiler (v0.184): team, Cost N or more and with <Keyword> card phr
   assert.deepEqual(m('a Cost 3 or less Green Wave card'), { costLe: 3, team: 'Green Wave' });
   assert.deepEqual(m('a Cost 6 or more "GAIM" family card'), { family: ['GAIM'], costGe: 6 });
   assert.deepEqual(m('a Spirit card with Amplify'), { type: 'Spirit', keyword: 'Amplify' });
+  assert.deepEqual(m('a Blue Spirit card with no printed effects'), { type: 'Spirit', color: 'blue', noText: true });      // v0.185
 });
-test('R69-04 compiler: forms the engine match cannot say stay in review (keyword holder, two kinds, every card, no printed effects, discard-a-card, the reveal is only the first sentence group)', () => {
+test('R69-04 compiler: forms the engine match cannot say stay in review (keyword holder, two kinds, every card, discard-a-card, the reveal is only the first sentence group)', () => {
   const bad = [
     'Reveal three cards from your decktop. Among them, add a Spirit card with Mirage to your Hand. Return any remaining cards to the deckbottom in any order.',
     'You can reveal three cards from your decktop. Among them, add a "Wollaguard" family Spirit card/Nexus card with a name different from this Spirit\'s to the Hand. Return any remaining cards to the deckbottom in any order.',
     'You can reveal three cards from your decktop. Among them, add every "Cyantree" family Nexus card to the Hand. Return any remaining cards to the deckbottom in any order.',
-    'You can reveal three cards from your decktop. Among them, add a Blue Spirit card with no printed effects to the Hand. Return any remaining cards to the deckbottom in any order.',
     'Reveal three cards from your decktop. Discard a Purple card among them. Return any remaining cards to the deckbottom.',
   ];
   for (const t of bad) assert.ok(act(t).review, t);

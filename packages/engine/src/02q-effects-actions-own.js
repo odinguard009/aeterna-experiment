@@ -7,6 +7,8 @@
 Object.assign(FX_ACTIONS, {
   DRAW: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5, txt: a => `draw ${a.n} card${a.n === 1 ? '' : 's'}`,
     run: async (c, a) => { const k = draw(c.p, a.n); log(`${CARDS[c.src.id].name}: ${who(c.p)} ${c.p.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'}.`); handUp(c.p, k); } },
+  DRAW_UNTIL: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 10, txt: a => `draw until your Hand is ${a.n}`,      // v0.185 "draw until your Hand is three"
+    run: async (c, a) => { const k = c.p.hand.length < a.n ? draw(c.p, a.n - c.p.hand.length) : 0; log(`${CARDS[c.src.id].name}: ${who(c.p)} ${c.p.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'}.`); handUp(c.p, k); } },
   COUNTER: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && (a.max == null || (Number.isInteger(a.max) && a.max >= 1 && a.max <= 30)), txt: a => `counter +${a.n}${a.max ? ' (max ' + a.max + ' counters)' : ''}`,
     run: async (c, a) => {
       const n = a.max != null ? Math.max(0, Math.min(a.n, a.max - c.p.count)) : a.n;
@@ -64,6 +66,34 @@ Object.assign(FX_ACTIONS, {
         t = L.find(x => x.id === id) || L[0];
       }
       removeFrom(c.p.trash, t); c.p.hand.push(t); c.ctx.returned = t; handUp(c.p, 1); log(`${CARDS[c.src.id].name}: ${CARDS[t.id].name} returns from the Trash to the Hand.`);
+    } },
+  /* v0.185 (schema 69) HAND_RECYCLE {perOppHand?, drawIfAll?: {match, n}}: "Return all your Hand to the deckbottom (any order; kept in Hand order). When one or more cards are returned, draw a card for each card in the opposing Hand" / "If all the cards returned have <X>, draw N cards" */
+  HAND_RECYCLE: { chk: a => Object.keys(a).every(k => ['do', 'if', 'perOppHand', 'drawIfAll'].includes(k)) && (a.perOppHand === true) !== !!a.drawIfAll
+      && (!a.drawIfAll || (!!a.drawIfAll.match && hasMatch(a.drawIfAll.match) && Number.isInteger(a.drawIfAll.n) && a.drawIfAll.n >= 1 && a.drawIfAll.n <= 5)),
+    txt: () => 'return all your Hand to the deckbottom, then draw',
+    run: async (c, a) => {
+      const L = c.p.hand.splice(0), opp = G.p[other(c.p.key)].hand.length; c.ctx.did = L.length > 0; if (!L.length) return;
+      for (const t of L) c.p.deck.push(t);
+      log(`${CARDS[c.src.id].name}: ${who(c.p)} ${c.p.cpu ? 'returns' : 'return'} ${L.length} card${L.length === 1 ? '' : 's'} from the Hand to the deckbottom.`);
+      const n = a.perOppHand ? opp : L.every(t => fxMatch(CARDS[t.id], a.drawIfAll.match)) ? a.drawIfAll.n : 0;
+      if (n) { const k = draw(c.p, n); log(`${CARDS[c.src.id].name}: ${who(c.p)} ${c.p.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'}.`); handUp(c.p, k); }
+    } },
+  /* v0.185 (schema 66) DEPLOY_TRASH {match}: "Target a <X> Nexus card in your Trash. Deploy it without paying the cost." (Nexus only) */
+  DEPLOY_TRASH: { chk: a => !!a.match && hasMatch(a.match) && Object.keys(a).every(k => ['do', 'match', 'if'].includes(k)),
+    txt: () => 'deploy a matching Nexus card from your Trash without paying the cost',
+    cands: (c, a) => c.p.trash.filter(t => CARDS[t.id].type === 'Nexus' && fxMatch(CARDS[t.id], a.match) && canPlaceFree(c.p, t)),
+    can: (c, a) => FX_ACTIONS.DEPLOY_TRASH.cands(c, a).length > 0,
+    run: async (c, a) => {
+      const L = FX_ACTIONS.DEPLOY_TRASH.cands(c, a); c.ctx.did = false; if (!L.length) return;
+      let t;
+      if (c.p.cpu) t = L.slice().sort((x, y) => CARDS[y.id].cost - CARDS[x.id].cost)[0];
+      else {
+        const ids = Array.from(new Set(L.map(x => x.id))).slice(0, 8);
+        const id = await ask({ title: `✨ ${CARDS[c.src.id].name}`, peek: true, wide: true, html: 'Choose a Nexus to deploy from your Trash.', cards: cardIds(ids), buttons: ids.map(i => ({ label: CARDS[i].name, value: i })) });
+        t = L.find(x => x.id === id) || L[0];
+      }
+      removeFrom(c.p.trash, t); c.p.hand.push(t);
+      if (await summonFree(c.p, t)) c.ctx.did = true; else { removeFrom(c.p.hand, t); c.p.trash.push(t); }
     } },
   MIRAGE_SET: { chk: () => true, txt: () => 'set this card as a Mirage without paying the cost (only if you have no Mirage set)',
     can: c => !c.p.mirage && !!CARDS[c.src.id].mirage && (c.p.revealed.includes(c.src) || c.p.hand.includes(c.src)),
