@@ -723,6 +723,12 @@ def cond_of(x):
     if re.fullmatch(r'(?:you )?(?:are |is |was )?summoned via form change', x, re.I): return {'viaFormChange': True}      # v0.135 (schema v8)
     m = re.fullmatch(r'you control (?:an?|any) spirit with ([A-Za-z]+)', x, re.I)      # v0.150 "a Spirit with Evolution" (engine ctrl.keyword)
     if m: return {'ctrl': {'n': 1, 'type': 'Spirit', 'keyword': m.group(1).capitalize()}}
+    m = re.fullmatch(r'you control (?:an?|any) (other |another )?(exhausted )?"([^"]+)" family spirit', x, re.I)      # v0.185 "any other exhausted X family Spirit" (engine ctrl.other + ctrl.exhausted)
+    if m and (m.group(1) or m.group(2)):
+        q = {'n': 1, 'type': 'Spirit', 'family': m.group(3)}
+        if m.group(1): q['other'] = True
+        if m.group(2): q['exhausted'] = True
+        return {'ctrl': q}
     m = re.fullmatch(r'you control another "([^"]+)" family spirit(/nexus)?', x, re.I)      # v0.150 "another X family Spirit" (engine ctrl.other = not the source); v0.171 "Spirit/Nexus" (ctrl.nexus)
     if m:
         q = {'n': 1, 'type': 'Spirit', 'family': m.group(1), 'other': True}
