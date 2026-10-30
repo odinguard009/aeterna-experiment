@@ -4,6 +4,18 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.198.0
+- Lane: U/I
+- **UI review of 2026-10-30 (owner, pinned comments on the game file): lobby, Recipe page, deck builder toolbar, battle PC and phone, effect pop-up (6 rounds)**
+  - Lobby: Card Of The Day shows the card name and series (also on phone), phone footer, PC centring and no overlapping buttons. Decks: a Recipe button and page for every ready-made deck (cards by type, cost curve, what is missing from the Library, Copy); no "Not ready" text; the key card (Key Spirit, then Grandwalker / Contract Nexus) is the deck cover; the colour picker uses plain swatches.
+  - Deck builder and Library: Playable only / In deck / Legal only sit on the Sort row; "Hide filters" folds everything but the search (remembered; an open Colour or Type menu closes with it); the phone search field is balanced.
+  - Battle PC: smaller hand and bigger Spirit / Nexus cards; no Hand Cnt chip; Void is a slim chip next to Banished (both sides, point mirrored); an empty Spirit or Nexus row shows one centred Empty box and none once it has cards; the Card Panel folds to a slim strip (remembered).
+  - Battle phone: Log and Options are a paper and a gear icon; the Burst/Mirage and Soul State boxes sit in the middle of each field; the empty-row box is centred.
+  - Effect pop-up (every effect of a card, yours or the CPU's, lasts 5 s): top-left under the AETERNA header on PC, top under the bar on phone; a tap opens the full card.
+  - Also in this release: 9 more complete cards from Lane K (1,419 -> 1,428 of 8,709; schema 143-144), see the Lane K commits since v0.197.0.
+  - Tests: L02 (flank order) and EF01 (tap on the pop-up) updated; size budgets B01 / B02 / B04 raised on purpose. Rules unchanged: simultaneous effects stay in the turn player's order (ETR p. 58-59).
+  - Limits: quick loop only on the branch (full set runs in CI); the Library toolbar changed with the deck builder; "Empty" in the battle comments was read as the empty field rows and the Soul State / Burst boxes.
+
 ## v0.197.0
 - Lane: K
 - **Lane K: 51 more complete cards (1,368 -> 1,419 of 8,709), Standard block A first**
