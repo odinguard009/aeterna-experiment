@@ -1118,3 +1118,23 @@ test('K-85 soulInTrash: Assipha destroys only with the Soul Core in the Trash; C
     return out; })()`);
   assert.deepEqual(r, [[3000, true], [3000, false], [4000, false], [3000, false], [4000, true], [4000, false], ['26RBS01-004']]);
 });
+
+test('K-86 Lira-Rali LV2 gets +2000 only while attacking; Nei-Lanetail LV2 Flash Invoke gives -2000 BP to the attacker and destroys it at 0', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    P.spirits.length = 0; P.nexus.length = 0; O.spirits.length = 0; O.nexus.length = 0; P.cpu = true; O.cpu = true;
+    const l = BS.mkInst('26RBS03-047'); l.cores = 3; P.spirits.push(l);
+    G.active = P.key; G.step = 5; G.attacker = null; const b0 = BS.bpOf(l); G.attacker = l; const up = BS.bpOf(l) - b0; G.attacker = null;
+    P.spirits.length = 0; const out = [up];
+    for (const tid of ['BS48-033', '26RBS01-039']) {
+      O.spirits.length = 0; P.spirits.length = 0; P.nexus.length = 0;
+      const n = BS.mkInst('26RDB01-032'); n.cores = 3; P.spirits.push(n);
+      const t = BS.mkInst(tid); t.cores = 1; O.spirits.push(t);
+      G.active = O.key; G.step = 5; G.attacker = t; const bp = BS.bpOf(t);
+      const i = BS.CARDS['26RDB01-032'].effects.findIndex(e => e.invoke);
+      const ok = await BS.activateFx(P, n, i);
+      out.push([bp, ok, O.spirits.includes(t), O.spirits.includes(t) ? BS.bpOf(t) : null]);
+    }
+    return out; })()`);
+  assert.deepEqual(r, [2000, [2000, true, false, null], [4000, true, true, 2000]]);
+});

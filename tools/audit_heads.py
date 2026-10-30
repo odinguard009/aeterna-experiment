@@ -10,7 +10,7 @@ import argparse, glob, json, os, re, sys
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 # JP head -> engine triggers that must ALL be present (a list of alternatives per slash part is not needed: every part must appear)
 ALT = {'summon': {'SUMMONED'}, 'attack': {'ATTACKS', 'BATTLE_WIN', 'ALLY_LIFE_HIT'}, 'destroy': {'DESTROYED', 'LEAVES'}, 'block': {'BLOCKS', 'BATTLE_WIN', 'ATTACKS'},
-       'end': {'END_STEP'}, 'manifest': {'MANIFEST'}, 'startatk': {'START_ATTACK'}}
+       'end': {'END_STEP'}, 'manifest': {'MANIFEST'}, 'startatk': {'START_ATTACK', 'OPP_START_ATTACK'}}
 HEADS = [('アタックステップ開始', 'startatk'), ('エンドステップ', 'end'), ('顕現', 'manifest'), ('召喚', 'summon'), ('配置時', 'summon'),
          ('アタック', 'attack'), ('ブロック', 'block'), ('破壊', 'destroy'), ('消滅', 'destroy')]
 SKIP = ('アタック中', 'ブロック中', 'アタック/ブロック中', 'アタックステップ', 'バトル時', '合体アタック', 'メインステップ', 'ターン', 'ドローステップ', 'リフレッシュ', 'によるこの', 'によるこのスピリットの')
@@ -69,7 +69,7 @@ def audit(c, r):
     jp = re.sub(r'\[Lv[^\]]*\]', '', ''.join(r['textJp']).translate(str.maketrans('０１２３４５６７８９', '0123456789')))
     fx = json.dumps([effs, c.get('magic'), c.get('burst')], ensure_ascii=False)
     for m in sorted(set(re.findall(r'\d{4,5}', jp))):
-        alts = [m] + ([str(int(m) // 1000)] if c.get('type') == 'Magic' else [])
+        alts = [m, str(int(m) + 1)] + ([str(int(m) // 1000)] if c.get('type') == 'Magic' else [])      # N+1: "BP N or less" stored as selfBpGe N+1 under not
         if not any(re.search(r'(?<![\d.])%s(?![\d])' % x, fx) for x in alts):
             probs.append('BP figure %s in the text is not in the compiled effect' % m)
     # counts of 2 or more (cards, spirits, cores, points) in the text must appear as a number in the compiled effect (1 is the default)
