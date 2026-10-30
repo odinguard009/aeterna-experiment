@@ -4,6 +4,13 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.199.0
+- Lane: K
+- **Lane K: Standard block A, +51 complete cards (1,428 -> 1,479 complete; effect schema 146 -> 172)**
+  - New engine pieces: EXHAUSTED_FX trigger, Nexus-as-Spirit, Camou, MUST_ATTACK_OPP, REVEAL_SUMMON, DEPLOY_TRASH, DRAW_STEP, ALLY_BATTLE_END, LIFE_CORE_SHIELD, SOUL_TRASH_TO, DISCARD_ALL_HAND, SYMBOLS_SET, soulToTrash invoke cost, conditions `soulInReserve`, `attackerRefreshed`, `oppDepleted`, match keys `notName` and `bpBoosted`, plus many small options on existing actions (see `docs/ai/effect-format.md` v146-v172).
+  - Known limits: "this battle" is modelled as the turn on a few cards; "(Your Turn)" of 26RBS02-032 is not modelled; the CPU auto-picks targets on several optional choices; SYMBOLS_SET only changes the attack symbol count; 26RSD09-010 summon symbol has no "this Nexus" restriction; scenario files for the new mechanics are not written yet (unit tests cover them).
+  - Budget: the gzipped game file limits B01 1150 KB and B02 312 KB were raised on purpose.
+
 ## v0.198.0
 - Lane: U/I
 - **UI review of 2026-10-30 (owner, pinned comments on the game file): lobby, Recipe page, deck builder toolbar, battle PC and phone, effect pop-up (6 rounds)**
