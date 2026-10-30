@@ -38435,12 +38435,6 @@
   "M_THEN",
   "T_ALLY_LIFE_HIT"
  ],
- "26RBS02-X01": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_START_ATTACK"
- ],
  "26RBS02-X02": [
   "A_BP_PLUS",
   "C_LEVEL",

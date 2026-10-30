@@ -174,3 +174,15 @@ test('K-108 26RBS01-102 Rock Pit: an attacking Amplify Spirit cannot be blocked 
     return [m, amp.cores - c0]; })()`);
   assert.deepEqual(r, [[true, false, 2], 1], JSON.stringify(r));
 });
+
+test('K-109 26RBS02-X01 Gene-Rose: LV1 gives a Red Spirit +3000 BP at Start of Attack; LV2 reveals when a 10000+ BP Spirit reduces the Life (a Red Cloud Spirit on top goes to the Hand)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const g = BS.mkInst('26RBS02-X01'); g.cores = 3; P.spirits.push(g);
+    const b0 = bpOf(g); await BS.fireFx(P, 'START_ATTACK', null, {}); const up = bpOf(g) - b0;
+    g.bpMod = 10000; P.deck.unshift(BS.mkInst('26RBS03-005')); const h = P.hand.length;
+    await BS.fireFx(P, 'ALLY_LIFE_HIT', null, { attacker: g });
+    return [up, P.hand.length - h, P.deck.length]; })()`);
+  assert.equal(r[0], 3000, JSON.stringify(r));
+  assert.equal(r[1], 1, JSON.stringify(r));
+});
