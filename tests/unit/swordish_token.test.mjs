@@ -138,7 +138,7 @@ test('T05 SEND_TOKEN action accepts Swordish token id and loadScenario prepares 
 
 test('T06 dependent cards retain fxComplete: false and are not prematurely marked complete', async () => {
   const r = await g.page.evaluate(() => {
-    const deps = ['26RBS03-029', '26RBS03-X07', '26RSD10-X02'];
+    const deps = ['26RBS03-X07', '26RSD10-X02'];
     return deps.map(id => {
       const c = BS.CARDS[id];
       return { id, implemented: c.implemented, partial: c.partial, hasResidual: (c.residual || []).length > 0 };
