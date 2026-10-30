@@ -32,7 +32,7 @@ function collectFx(ev) {
   const collect = (trg, f) => { for (const { e, idx } of fxEntries(f)) if (e.trigger === trg) add(trg, f, e, idx); };
   if (trigger === 'ADVENT') { const card = CARDS[src.id]; if (card.effects) card.effects.forEach((e, idx) => { if (e.trigger === 'ADVENT' || (e.trigger === 'SUMMONED' && e.alsoAdvent)) add(e.trigger, src, e, idx); }); ctx.subject = src; }
   else if (trigger === 'SUMMONED' && ctx.noSelfFx) { /* v0.180: the summoned card's own (When Summoned) effects do not activate */ }
-  else if (trigger === 'SUMMONED' || trigger === 'ATTACKS' || trigger === 'MANIFEST' || trigger === 'DESTROYED' || trigger === 'LEAVES' || trigger === 'BATTLE_WIN' || trigger === 'TRIBUTED') collect(trigger, src);
+  else if (trigger === 'SUMMONED' || trigger === 'ATTACKS' || trigger === 'MANIFEST' || trigger === 'DESTROYED' || trigger === 'LEAVES' || trigger === 'BATTLE_WIN' || trigger === 'TRIBUTED' || trigger === 'NEXUS_EXHAUST') collect(trigger, src);
   else if (trigger === 'BLOCKS') { for (const { e, idx } of fxEntries(src)) { if (e.trigger === 'BLOCKS' || (e.trigger === 'ATTACKS' && e.alsoBlocks)) add('BLOCKS', src, e, idx); } }
   else if (trigger === 'MIRAGE_OWN_LIFE' || trigger === 'MIRAGE_OPP_LIFE') { if (owner.mirage) collect(trigger, owner.mirage); }
   else for (const f of fieldList(owner)) collect(trigger, f);
@@ -325,6 +325,7 @@ async function activateFx(p, f, idx) {
   log(`${card.name}: [${e.invoke ? 'Invoke' : 'Activate'}] ${fxDescribe(e)}.`);
   await asResolving(() => runActions({ p, opp, src: f, ctx: {} }, e, 'ACTIVATE'));
   checkDepletion(p); checkDepletion(opp);
+  if (e.cost && e.cost.exhaustSelf && !G.over) await fireFx(p, 'NEXUS_EXHAUST', f);   // v0.197 "When this Nexus exhausts" (Invoke / Activate cost only)
   if (e.silverWheel && !G.over) await fireFx(p, 'SILVER_WHEEL', f);   // v0.50: "when you activate Silver Wheel"
   io.view({ type: 'board' }); await wait(350); await flushBursts();
   return true;

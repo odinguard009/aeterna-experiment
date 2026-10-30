@@ -730,3 +730,27 @@ test('K-57 Blackshar: sends a core only after one of your Spirits was destroyed 
     return out; })()`);
   assert.deepEqual(r, [0, 1]);
 });
+
+test('K-58 Hammergrau: EXHAUST_OPP noSoul skips a Spirit holding the Soul Core', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    O.spirits.length = 0; opp(3, 2000); opp(3, 2000);
+    O.spirits[0].soul = true;
+    await BS.runActions({ p: P, opp: O, src: BS.mkInst('26RBS01-039'), ctx: {} }, { actions: [{ do: 'EXHAUST_OPP', n: 1, noSoul: true }] }); await BS.flushBursts();
+    return O.spirits.map(s => !!s.exhausted); })()`);
+  assert.deepEqual(r, [false, true]);
+});
+
+test('K-59 Vitality Woods: NEXUS_EXHAUST draws only in your Attack Step with four or fewer cards in hand', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const card = BS.CARDS['26RBS01-108']; card.effects.push({ trigger: 'ACTIVATE', once: false, cost: { exhaustSelf: true }, actions: [{ do: 'DRAW', n: 1 }] });
+    const out = [];
+    for (const [step, hand] of [[5, 2], [5, 5], [3, 2]]) {
+      P.nexus.length = 0; const nx = BS.mkInst('26RBS01-108'); nx.cores = 6; P.nexus.push(nx);
+      G.step = step; P.hand = P.hand.slice(0, 0); for (let i = 0; i < hand; i++) P.hand.push(BS.mkInst(Object.keys(BS.CARDS)[0]));
+      const idx = card.effects.length - 1; await BS.activateFx(P, nx, idx);
+      out.push(P.hand.length - hand); }
+    card.effects.pop(); return out; })()`);
+  assert.deepEqual(r, [2, 1, 1]);
+});

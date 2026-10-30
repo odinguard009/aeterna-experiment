@@ -155,3 +155,5 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v115 (v0.196.0, Lane K): condition `oppLostByFx: true|false` ("if an opposing Spirit was depleted/destroyed by your effect this turn"; any own effect, not only Spirit/Magic; recorded in `p.oppFxLossTurn` by `removeSpirit`).
 - v116 (v0.196.0, Lane K): condition `trashGe: {n, match}` ("if there are N or more <match> cards in your Trash", own Trash; match = family/type/team ...).
 - v117 (v0.197.0, Lane K): condition `ownLostSpirit: true|false` ("if your Spirit is destroyed this turn"; any cause, recorded in `p.lostSpiritTurn` by `removeSpirit`).
+- v118 (v0.197.0, Lane K): `EXHAUST_OPP` takes `noSoul: true` ("target an opposing Spirit without (Soul Core) on it"; the icon is missing from the card text, read as the Soul Core).
+- v119 (v0.197.0, Lane K): trigger `NEXUS_EXHAUST` ("When this Nexus exhausts"; fires on the Nexus itself after its own Invoke/Activate exhaustSelf cost resolves; an exhaust caused by another effect does not fire it).
