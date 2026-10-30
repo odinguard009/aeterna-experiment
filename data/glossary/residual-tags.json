@@ -38826,11 +38826,6 @@
   "S1_ALL_HAVE",
   "T_BLOCKS"
  ],
- "26RCB01-038": [
-  "A_REFRESH",
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "26RCB01-047": [
   "A_DRAW",
   "C_LEVEL",
@@ -38861,7 +38856,6 @@
   "M_OPTIONAL",
   "M_UP_TO"
  ],
- "26RCB01-064": [],
  "26RCB01-X06": [
   "C_LIFE",
   "T_ATTACKS"

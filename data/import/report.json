@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 7159,
+  "cards": 7157,
   "per_saga": {
    "1": 676,
    "2": 313,
@@ -19,15 +19,15 @@
    "15": 355,
    "16": 334,
    "17": 110,
-   "50": 162
+   "50": 160
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 1547,
+  "skipped_curated": 1549,
   "nexus_levels_added": 707,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 467,
+  "image_problems": 466,
   "number_conflicts": 4,
   "merged": 107,
   "brave_unparsed": 171,
@@ -35,7 +35,7 @@
   "odd_reduction": 807,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 465
+  "without_image": 464
  },
  "tokens": [
   "BS73-T001",
@@ -1343,6 +1343,7 @@
   "26RCB01-034",
   "26RCB01-036",
   "26RCB01-037",
+  "26RCB01-038",
   "26RCB01-039",
   "26RCB01-040",
   "26RCB01-041",
@@ -1363,6 +1364,7 @@
   "26RCB01-061",
   "26RCB01-062",
   "26RCB01-063",
+  "26RCB01-064",
   "26RCB01-065",
   "26RCB01-066",
   "26RCB01-067",
@@ -4542,11 +4544,6 @@
   {
    "id": "26RCB01-035",
    "name": "Kamen Rider Zolda",
-   "problem": "ambiguous name (2 files, none in set 26RCB01)"
-  },
-  {
-   "id": "26RCB01-038",
-   "name": "Kamen Rider Odin",
    "problem": "ambiguous name (2 files, none in set 26RCB01)"
   },
   {

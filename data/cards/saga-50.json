@@ -23591,19 +23591,63 @@
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Summoned) Reveal four cards from your decktop. Among them, add a Cost 8 or less \"RYUKI\" & \"Kamen\" family Spirit card, and a \"RYUKI\" family Magic card to the Hand. Return any remaining cards to the deckbottom in any order.",
-   "[LV2] (Your End Step) Refresh all your \"RYUKI\" family Spirits."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "collab": [
    "仮面ライダー"
   ],
   "bicon": [
    "A"
   ],
-  "rcode": "M"
+  "rcode": "M",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "REVEAL_PICK",
+      "n": 4,
+      "match": {
+       "familyAll": [
+        "RYUKI",
+        "Kamen"
+       ],
+       "type": "Spirit",
+       "costLe": 8
+      },
+      "also": {
+       "family": [
+        "RYUKI"
+       ],
+       "type": "Magic"
+      },
+      "rest": "bottom"
+     }
+    ]
+   },
+   {
+    "trigger": "END_STEP",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT",
+      "all": true,
+      "match": {
+       "family": [
+        "RYUKI"
+       ],
+       "type": "Spirit"
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RCB01-039",
@@ -25265,28 +25309,54 @@
   "saga": 50,
   "magic": {
    "timing": [
+    "MAIN",
     "FLASH"
    ],
-   "effect": "ACTIONS",
+   "effect": null,
    "value": 0,
-   "actions": [
-    {
-     "do": "BP_TARGET",
-     "n": 2000,
-     "to": "pick",
-     "match": {
-      "family": [
-       "RYUKI"
-      ]
-     }
+   "by": {
+    "MAIN": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "REVEAL_PICK",
+       "n": 3,
+       "match": {
+        "family": [
+         "Mirror Monster"
+        ]
+       },
+       "also": {
+        "family": [
+         "RYUKI"
+        ],
+        "type": "Magic"
+       },
+       "rest": "bottom"
+      }
+     ]
+    },
+    "FLASH": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "BP_TARGET",
+       "n": 2000,
+       "to": "pick",
+       "match": {
+        "family": [
+         "RYUKI"
+        ]
+       }
+      }
+     ]
     }
-   ]
+   }
   },
-  "fxComplete": false,
-  "residual": [
-   "Main Reveal three cards from your decktop. Among them, add a \"Mirror Monster\" family card, and a \"RYUKI\" family Magic card to the Hand. Return any remaining cards to the deckbottom in any order."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "collab": [
    "仮面ライダー"
   ],

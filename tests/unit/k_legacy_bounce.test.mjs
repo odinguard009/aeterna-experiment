@@ -1269,3 +1269,23 @@ test('K-95 26RBS03-X07: When Summoned sends out a Swordish Token (once per name 
     return [one, still, ok, x.exhausted, t && t.exhausted]; })()`);
   assert.deepEqual(r, [1, 1, true, false, true], JSON.stringify(r));
 });
+
+test('K-96 26RCB01-038 / 064: REVEAL_PICK.also adds a second matching card; LV2 End Step refreshes all RYUKI Spirits; 064 Main reveals three', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    P.spirits.length = 0; P.nexus.length = 0; O.spirits.length = 0; O.nexus.length = 0; P.cpu = true; O.cpu = true;
+    const x = BS.mkInst('26RCB01-038'); x.cores = 4; P.spirits.push(x);
+    const a = BS.mkInst('26RCB01-026'); a.cores = 2; a.exhausted = true; P.spirits.push(a);
+    P.deck.unshift(BS.mkInst('26RCB01-048' in BS.CARDS ? '26RCB01-048' : 'BS48-033'), BS.mkInst('26RCB01-065'), BS.mkInst('26RCB01-025'));
+    P.hand.length = 0; const len = P.deck.length;
+    await BS.fireFx(P, 'SUMMONED', x, { subject: x });
+    const got = P.hand.map(c => c.id).sort().join();
+    await BS.fireFx(P, 'END_STEP', x, {});
+    const refreshed = !a.exhausted;
+    P.hand.length = 0; P.reserve.n = 10; const m = BS.mkInst('26RCB01-064'); P.hand.push(m);
+    P.deck.unshift(BS.mkInst('BS48-033'), BS.mkInst('26RCB01-065'), BS.mkInst('26RCB01-028'));
+    const ok = await BS.castMagic(P, { inst: m, target: null, plan: null, ctx: 'main' });
+    return [got, refreshed, P.hand.map(c => c.id).sort().join()]; })()`);
+  assert.equal(r[0], '26RCB01-025,26RCB01-065', JSON.stringify(r)); assert.equal(r[1], true);
+  assert.equal(r[2], '26RCB01-028,26RCB01-065', JSON.stringify(r));
+});
