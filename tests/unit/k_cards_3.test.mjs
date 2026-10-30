@@ -28,3 +28,13 @@ test('K-148 26RCB01-053: TRASH_CORES_TO toLife moves a Trash core to the Life', 
     return [P.life - l0, P.trashCores.n, BS.CARDS['26RCB01-053'].effects.length]; })()`);
   assert.deepEqual(r, [1, 1, 3], JSON.stringify(r));
 });
+
+test('K-149 26RCB01-047: Brave Fantasy LV2 draws 2 then returns 2 (HAND_TO_BOTTOM n:2 forced)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const fx = BS.CARDS['26RCB01-047'].effects[2];
+    const c = { p: P, opp: O, src: BS.mkInst('26RCB01-047'), ctx: {} };
+    const d0 = P.deck.length; await BS.runActions(c, { actions: fx.actions });
+    return [P.hand.length, d0 - P.deck.length, fx.if.ctrl.family]; })()`);
+  assert.deepEqual(r, [0, 0, 'EX-AID'], JSON.stringify(r));
+});
