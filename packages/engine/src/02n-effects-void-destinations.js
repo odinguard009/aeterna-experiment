@@ -36,12 +36,12 @@
    the Soul Core goes only when no normal core is left on the target (house reading of "the opponent chooses": nobody gives up the Soul Core first). */
 (() => {
   const O = FX_ACTIONS.OPP_CORES_TO_RESERVE, oChk = O.chk, oTxt = O.txt, oCands = O.cands, oCan = O.can, oRun = O.run;
-  const NEW = ['costLe', 'exhaustedOnly', 'coresLe', 'keepOne', 'untilOne', 'upgrade', 'fighting'];      // v0.196 fighting: "an opposing attacking/blocking Spirit"
+  const NEW = ['costLe', 'exhaustedOnly', 'coresLe', 'keepOne', 'untilOne', 'upgrade', 'fighting', 'eachPer'];      // v0.196 fighting: "an opposing attacking/blocking Spirit"
   const upOk = u => u == null || (typeof u === 'object' && ['oppReserveGe3', 'viaFC'].includes(u.when) && (u.anyTarget == null || u.anyTarget === true) && (u.soul == null || u.soul === true) && (u.anyTarget === true || u.soul === true));
   const upOn = (c, a) => !!a.upgrade && (a.upgrade.when === 'viaFC' ? !!(c.src && c.src.viaFC) : (c.opp.reserve.n + (c.opp.reserve.soul ? 1 : 0)) >= 3);
   const has = a => !!a && NEW.some(k => a[k] != null);
   const ok = a => a.targets === 1 && (a.costLe == null || (Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30)) && (a.coresLe == null || (Number.isInteger(a.coresLe) && a.coresLe >= 1 && a.coresLe <= 10))
-    && [a.exhaustedOnly, a.keepOne, a.untilOne, a.fighting].every(v => v == null || v === true) && upOk(a.upgrade);
+    && [a.exhaustedOnly, a.keepOne, a.untilOne, a.fighting].every(v => v == null || v === true) && upOk(a.upgrade) && (a.eachPer == null || perOk(a.eachPer));
   const base = a => { const o = Object.assign({}, a); for (const k of NEW) delete o[k]; if (a.untilOne) o.each = 1; return o; };
   O.chk = a => has(a) ? ok(a) && oChk(base(a)) : oChk(a);
   O.cands = (c, a) => has(a) ? (upOn(c, a) && a.upgrade.soul ? c.opp.spirits.filter(t => (t.cores > 0 || t.soul) && !fxImmune(c.opp, t)) : oCands(c)).filter(t => (a.costLe == null || CARDS[t.id].cost <= a.costLe) && (!a.exhaustedOnly || t.exhausted || (upOn(c, a) && a.upgrade.anyTarget))
@@ -62,7 +62,7 @@
       checkDepletion(c.opp); io.view({ type: 'board' }); return;
     }
     const floor = (a.keepOne || a.untilOne) ? totalCores(t) - 1 : Infinity;
-    const m = Math.max(0, Math.min(a.untilOne ? Infinity : a.each, t.cores, floor));
+    const m = Math.max(0, Math.min(a.untilOne ? Infinity : a.each + (a.eachPer ? perCount(c.p, a.eachPer) : 0), t.cores, floor));      // v137 eachPer: "send +1 core for each Spirit with X you control"
     if (!m) { c.ctx.did = false; return; }
     coreEvN(c.opp, t.uid, 'reserve', m, false); t.cores -= m; c.opp.reserve.n += m;
     log(`${CARDS[c.src.id].name}: ${m} core${m === 1 ? '' : 's'} from ${poss(c.opp)} ${CARDS[t.id].name} go to the Reserve.`);

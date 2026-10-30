@@ -174,3 +174,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v134 (v0.197.0, Lane K): trigger `OPP_START_ATTACK` ("Start of Opposing Attack Step", fired for the defender right after START_ATTACK).
 - v135 (v0.197.0, Lane K): condition `attackerCostLe: N` (the current attacker is a Cost N or less Spirit; for BLOCKS "blocks an opposing Cost N or less Spirit").
 - v136 (v0.197.0, Lane K): `BOUNCE_OPP` accepts `bpPer {n, keyword}` (the `bpLe` limit grows by n per own Spirit with the keyword/printed head).
+- v137 (v0.197.0, Lane K): `DRAW.per` (draw n per matching own Spirit/Nexus, `{type, keyword, ...}`) and `OPP_CORES_TO_RESERVE.eachPer` ("send +1 core for each Spirit with X you control", added to `each`).

@@ -1007,3 +1007,18 @@ test('K-78 Relay Deer LV2 gets +2000 per own When Blocks Spirit only in the oppo
     return [away - mine]; })()`);
   assert.deepEqual(r, [2000]);
 });
+
+test('K-79 OPP_CORES_TO_RESERVE eachPer + DRAW per: Baphomendes sends 1 core plus 1 per own Shamanism Spirit; LV2 destroyed draws per Shamanism Spirit', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    P.spirits.length = 0; P.nexus.length = 0; O.spirits.length = 0; O.nexus.length = 0; G.active = P.key; P.cpu = true; O.cpu = true; G.step = 3;
+    const b = BS.mkInst('26RBS01-028'); b.cores = 3; P.spirits.push(b);
+    for (const id of ['26RBS02-023', '26RBS02-023']) { const s = BS.mkInst(id); s.cores = 1; P.spirits.push(s); }
+    const t = BS.mkInst('26RBS01-X10'); t.cores = 5; O.spirits.push(t); const c0 = t.cores;
+    await BS.fireFx(P, 'SUMMONED', b, {}); await BS.flushBursts();
+    const sent = c0 - t.cores; const h0 = P.hand.length; P.deck.unshift(BS.mkInst('26RBS01-X10'), BS.mkInst('26RBS01-X10'), BS.mkInst('26RBS01-X10'));
+    P.spirits.splice(P.spirits.indexOf(b), 1); b.cores = 0; b.lostLv = 1; P.trash.push(b);
+    await BS.fireFx(P, 'DESTROYED', b, { subject: b }); await BS.flushBursts();
+    return [sent, P.hand.length - h0]; })()`);
+  assert.deepEqual(r, [3, 2]);
+});
