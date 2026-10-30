@@ -69,7 +69,7 @@ async function doBattleInner(attKey, att) {
     await flushBursts();
     return;
   }
-  const shield = (att.lifeShield && att.lifeShield.turn === G.turnNo && att.lifeShield.key === D.key) || attackLifeLocked(att) || (D.coreShield && D.coreShield.turn === G.turnNo && (D.coreShield.b == null || D.coreShield.b === G.battleNo) && totalCores(att) === D.coreShield.cores);      // v0.198 LIFE_CORE_SHIELD      // v0.186 NO_ATTACK_LIFE      // v0.89 S1 LIFE_SHIELD: "your Life can't be reduced by its attack"
+  const shield = (att.lifeShield && att.lifeShield.turn === G.turnNo && att.lifeShield.key === D.key) || attackLifeLocked(att) || (D.coreShield && D.coreShield.turn === G.turnNo && (D.coreShield.b == null || D.coreShield.b === G.battleNo) && totalCores(att) === D.coreShield.cores);      // v0.199 LIFE_CORE_SHIELD      // v0.186 NO_ATTACK_LIFE      // v0.89 S1 LIFE_SHIELD: "your Life can't be reduced by its attack"
   const dmg = shield ? 0 : Math.min(attackSymbols(att), D.life);
   if (shield) log(`${CARDS[att.id].name}'s attack can't reduce ${poss(D)} Life.`);
   lifeTake(D, dmg, 'reserve');                    // Life cores go to the Reserve
