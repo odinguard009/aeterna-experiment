@@ -984,3 +984,14 @@ test('K-76 attackerCostLe + targetRefreshed: Pepper\'s Chairo gets +2000 refresh
     return [rb - eb, cheap, pricey]; })()`);
   assert.deepEqual(r.slice(0, 3), [2000, false, true]);
 });
+
+test('K-77 BOUNCE_OPP bpPer: Drifting Glass Lady returns an opposing Spirit up to 4000 BP plus 1000 per own Spirit with When Blocks', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    P.spirits.length = 0; P.nexus.length = 0; O.spirits.length = 0; O.nexus.length = 0; G.active = P.key; P.cpu = true; O.cpu = true; G.step = 5;
+    const c = BS.mkInst('26RBS02-X12'); c.cores = 1; P.spirits.push(c);
+    const lo = BS.mkInst('26RBS01-X10'); lo.cores = 1; O.spirits.push(lo); const bp = BS.bpOf(lo);
+    await BS.fireFx(P, 'ATTACKS', c, { attacker: c }); await BS.flushBursts();
+    return [bp, O.spirits.length]; })()`);
+  assert.deepEqual(r, [5000, 0]);
+});
