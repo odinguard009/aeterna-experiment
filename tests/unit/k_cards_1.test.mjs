@@ -33,3 +33,19 @@ test('K-98 26RBS03-076 Venomous Bottomless Swamp: Invoke destroys the Nexus for 
     return [ok, gone, set, later, m.exhausted, e.cores]; })()`);
   assert.deepEqual(r, [true, true, true, 1, true, 1], JSON.stringify(r));
 });
+
+test('K-99 26RBS01-X01 Restiel: Invoke needs an own Clash attacker (attackerKeyword), exhausts itself and lets an opposing Spirit block while exhausted this battle', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const w = BS.mkInst('26RBS01-X01'); w.cores = 3; P.spirits.push(w);
+    const o = BS.mkInst('26RBS01-001'); o.cores = 1; o.exhausted = true; O.spirits.push(o);
+    const i = BS.CARDS['26RBS01-X01'].effects.findIndex(e => e.invoke);
+    G.active = P.key; G.step = 5; G.battleNo = 5;
+    const a = BS.mkInst('BS06-012'); a.cores = 1; P.spirits.push(a);
+    G.attacker = a; const ok = await BS.activateFx(P, w, i); const marked = o.blockExB === 5 && w.exhausted;
+    w.exhausted = false; o.blockExB = null;
+    const b = BS.mkInst('26RBS01-001'); b.cores = 1; P.spirits.push(b); G.attacker = b;
+    const no = await BS.activateFx(P, w, i); G.attacker = null;
+    return [ok, marked, !!no, o.blockExB == null]; })()`);
+  assert.deepEqual(r, [true, true, false, true], JSON.stringify(r));
+});

@@ -38220,12 +38220,6 @@
   "A_REFRESH",
   "M_THEN"
  ],
- "26RBS01-X01": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "K_STANDARD_INVOKE",
-  "T_SUMMONED"
- ],
  "26RBS01-X04": [
   "C_LEVEL",
   "M_OPTIONAL",
