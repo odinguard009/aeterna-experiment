@@ -123,8 +123,9 @@ function bpMinusCase(a) {
 function simple(card, a) {
   const spirit = card.type === 'Spirit';
   switch (a.do) {
-    case 'DRAW': return only(a, ['n']) && { body: `for (let j = 0; j < 6; j++) dk(${J(FILL)}); const top = P.deck.slice(0, A.n); await run(src, RA);
-      if (P.hand.length !== A.n || P.deck.length !== 6 - A.n) return 'hand ' + P.hand.length + ' deck ' + P.deck.length; if (top.some(x => !P.hand.includes(x))) return 'not drawn from the top'; return '';` };
+    case 'HAND_TO_BOTTOM': return only(a, ['n']) && { body: `for (let i = 0; i <= A.n; i++) P.hand.push(BS.mkInst(${J(FILL)})); const bd = P.deck.length; await run(src, RA); return P.hand.length === 1 && P.deck.length === bd + A.n ? '' : 'hand ' + P.hand.length + ', deck ' + P.deck.length;` };
+    case 'DRAW': return only(a, ['n', 'dbl']) && { body: `for (let j = 0; j < 6; j++) dk(${J(FILL)}); const top = P.deck.slice(0, A.n * 2); await run(src, RA);
+      const want = A.dbl != null ? A.n * 2 : A.n; if (P.hand.length !== want || P.deck.length !== 6 - want) return 'hand ' + P.hand.length + ' deck ' + P.deck.length; if (top.slice(0, want).some(x => !P.hand.includes(x))) return 'not drawn from the top'; return '';` };
     case 'DRAW_BOTTOM': return only(a, ['n']) && { body: `for (let j = 0; j < 6; j++) dk(${J(FILL)}); const bot = P.deck.slice(6 - A.n); await run(src, RA);
       if (P.hand.length !== A.n || P.deck.length !== 6 - A.n) return 'hand ' + P.hand.length + ' deck ' + P.deck.length; if (bot.some(x => !P.hand.includes(x))) return 'not drawn from the bottom'; return '';` };
     case 'MILL': return only(a, ['n']) && { body: `for (let j = 0; j < 7; j++) dk(${J(FILL)}); const top = P.deck.slice(0, A.n); await run(src, RA);
@@ -230,6 +231,7 @@ function simple(card, a) {
     case 'NO_REFRESH_OPP':      // v0.172 an exhausted opposing Spirit skips its next Refresh Step
       return only(a, []) && { onField: true, body: `const t = sp(${J(FILL)}, O, 1); t.exhausted = true; G.turnNo = 3; await run(src, RA); return t.noRefreshT === 4 ? '' : 'noRefreshT ' + t.noRefreshT;` };
     case 'REFRESH_SPIRIT':
+      if (only(a, ['match']) && a.match && okMatch(a.match)) return { fix: [{ m: a.match }], body: `const t = sp(${J(mid(a.match))}, P, 1); t.exhausted = true; await run(src, RA); return t.exhausted ? 'not refreshed' : '';` };      // v144 one matching exhausted Spirit
       if (only(a, ['match', 'n', 'all']) && (a.n != null || a.all) && (a.match == null || okMatch(a.match)) && !(a.n != null && a.all)) {      // v0.169 up to N / all matching exhausted Spirits
         const M = a.match ? mid(a.match) : FILL, k = a.all ? 3 : a.n;
         return { fix: a.match ? [{ m: a.match }] : [], body: `const ts = []; for (let j = 0; j < ${k + (a.all ? 0 : 1)}; j++) { const t = sp(${J(M)}, P, 1); t.exhausted = true; ts.push(t); } await run(src, RA);
