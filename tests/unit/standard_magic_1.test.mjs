@@ -94,7 +94,7 @@ test('S88-10 every S1 card is in the library; partial ones say what does not run
   const r = await g.page.evaluate(() => Object.values(BS.CARDS).filter(k => k.block === 'A' && k.type === 'Magic').map(k => [k.id, k.fxComplete, (k.residual || []).length]));
   const ids = new Set(r.map(x => x[0]));
   for (const id of ['26RBS01-112', '26RBS01-122', '26RBS03-096', '26RCB01-070', '26RDB01-062', '26RSD05-014', '26RSD10-012']) assert.ok(ids.has(id), id);
-  const S1 = new Set(['26RBS03-087', '26RSD02-013', '26RSD05-012', '26RSD06-013', '26RSD08-012']);
+  const S1 = new Set(['26RBS03-087', '26RSD02-013', '26RSD05-012', '26RSD06-013']);
   for (const [id, done, res] of r.filter(x => S1.has(x[0]))) assert.ok(!done && res > 0, id);
   assert.equal(r.filter(x => S1.has(x[0])).length, S1.size);
 });

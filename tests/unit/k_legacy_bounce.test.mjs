@@ -687,3 +687,15 @@ test('K-54 Borzo-Inu: draws two only after an opposing Spirit was destroyed by y
     return out; })()`);
   assert.deepEqual(r, [1, 2]);
 });
+
+test('K-55 trashGe: counts matching cards in your own Trash (Angelic Feather Song refresh gate)', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const mg = Object.keys(BS.CARDS).filter(k => BS.CARDS[k].type === 'Magic' && (BS.CARDS[k].families || []).includes('Sword Eye')).slice(0, 2);
+    const c = { if: { trashGe: { n: 2, match: { family: ['Sword Eye'], type: 'Magic' } } } };
+    const out = [];
+    const chk = () => BS.fxIf(P, O, c.if);
+    P.trash = []; out.push(chk()); P.trash = mg.map(id => ({ id })); out.push(chk());
+    return [mg.length, ...out]; })()`);
+  assert.deepEqual(r, [2, false, true]);
+});
