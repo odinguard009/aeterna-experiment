@@ -38368,12 +38368,6 @@
   "M_UNSTACKABLE",
   "T_BLOCKS"
  ],
- "26RBS02-082": [
-  "A_BP_MINUS",
-  "C_LEVEL",
-  "M_THEN",
-  "T_ALLY_BLOCKED"
- ],
  "26RBS02-083": [
   "C_LEVEL",
   "M_REPLACEMENT",

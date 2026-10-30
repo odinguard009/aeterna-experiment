@@ -272,3 +272,19 @@ test('K-114 26RBS02-050: LV2 refreshes an exhausted Wailwraith/Hexcraft Spirit w
     return [true, own, w.exhausted && s.exhausted]; })()`);
   assert.deepEqual(r, [true, true, true], JSON.stringify(r));
 });
+
+test('K-115 26RBS02-082: LV1 -1000 BP + destroy at 0 when an ally is blocked; LV2 returns a Cost 4 or less Spirit on the second Wailwraith/Hexcraft attack', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    G.active = O.key; G.turnNo = G.turnNo || 1;
+    const n = BS.mkInst('26RBS02-082'); n.cores = BS.CARDS['26RBS02-082'].levels[1].cores; O.nexus.push(n);
+    const a = BS.mkInst('26RBS01-061'); a.cores = 1; O.spirits.push(a);
+    const t = BS.mkInst('26RBS01-001'); t.cores = 1; P.spirits.push(t); t.bpMod = -(BS.bpOf(t) - 1000);
+    await BS.fireFx(O, 'ALLY_BLOCKED', a, { attacker: a, blocker: t });
+    const killed = !P.spirits.includes(t);
+    const c = BS.mkInst('26RBS01-001'); O.trash.push(c); O.attacksThisTurn = 1;
+    await BS.fireFx(O, 'ALLY_ATTACKS', a, { attacker: a }); const first = O.hand.includes(c);
+    O.attacksThisTurn = 2; await BS.fireFx(O, 'ALLY_ATTACKS', a, { attacker: a }); const second = O.hand.includes(c);
+    return [killed, first, second]; })()`);
+  assert.deepEqual(r, [true, false, true], JSON.stringify(r));
+});
