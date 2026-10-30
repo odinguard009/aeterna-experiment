@@ -900,3 +900,14 @@ test('K-70 START_MAIN fires at the start of the Main Step (Bubble Cluster Realm)
   assert.equal(r[1], 1);
   assert.equal(r[2], 2);
 });
+
+test('K-71 BP_MINUS all + zeroDestroy hits every opposing Spirit; a Nexus can EXHAUST_SELF', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    O.spirits.length = 0; opp(1, 1000); opp(1, 4000);
+    await BS.runActions({ p: P, opp: O, src: BS.mkInst('26RSD05-X01'), ctx: {} }, { actions: [{ do: 'BP_MINUS', n: 1000, all: true, zeroDestroy: true }] }); await BS.flushBursts();
+    const n = BS.mkInst('26RDB01-048'); P.nexus.push(n);
+    await BS.runActions({ p: P, opp: O, src: n, ctx: {} }, { actions: [{ do: 'EXHAUST_SELF' }] });
+    return [O.spirits.length, BS.bpOf(O.spirits[0]), n.exhausted]; })()`);
+  assert.deepEqual(r, [1, 3000, true]);
+});
