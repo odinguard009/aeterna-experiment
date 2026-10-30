@@ -38509,11 +38509,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "26RBS03-075": [
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "M_OPTIONAL"
- ],
  "26RBS03-079": [
   "A_EXHAUST",
   "C_LEVEL",
@@ -38847,12 +38842,6 @@
   "T_ALLY_LIFE_HIT",
   "T_SUMMONED"
  ],
- "26RSD08-007": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_ATTACKS"
- ],
  "26RSD08-008": [
   "C_CONTROL",
   "M_THEN",
@@ -38866,12 +38855,6 @@
   "M_OPTIONAL",
   "M_THEN",
   "T_ATTACKS"
- ],
- "26RSD09-006": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "S_MUST_BLOCK",
-  "T_SUMMONED"
  ],
  "26RSD09-013": [
   "M_REPLACEMENT"

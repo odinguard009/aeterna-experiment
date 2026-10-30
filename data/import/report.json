@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 7115,
+  "cards": 7112,
   "per_saga": {
    "1": 676,
    "2": 313,
@@ -19,15 +19,15 @@
    "15": 355,
    "16": 334,
    "17": 110,
-   "50": 118
+   "50": 115
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 1591,
+  "skipped_curated": 1594,
   "nexus_levels_added": 707,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 458,
+  "image_problems": 457,
   "number_conflicts": 4,
   "merged": 107,
   "brave_unparsed": 171,
@@ -35,7 +35,7 @@
   "odd_reduction": 807,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 456
+  "without_image": 455
  },
  "tokens": [
   "BS73-T001",
@@ -1525,6 +1525,7 @@
   "26RSD08-004",
   "26RSD08-005",
   "26RSD08-006",
+  "26RSD08-007",
   "26RSD08-009",
   "26RSD08-010",
   "26RSD08-011",
@@ -1536,6 +1537,7 @@
   "26RSD09-003",
   "26RSD09-004",
   "26RSD09-005",
+  "26RSD09-006",
   "26RSD09-007",
   "26RSD09-008",
   "26RSD09-009",
@@ -1615,6 +1617,7 @@
   "26RBS03-071",
   "26RBS03-072",
   "26RBS03-074",
+  "26RBS03-075",
   "26RBS03-076",
   "26RBS03-077",
   "26RBS03-078",
@@ -4676,11 +4679,6 @@
   {
    "id": "26RBS03-073",
    "name": "The GreatFang Druksar",
-   "problem": "no image"
-  },
-  {
-   "id": "26RBS03-075",
-   "name": "War Feat: Crushing of the Purple Moon",
    "problem": "no image"
   },
   {

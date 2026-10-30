@@ -196,3 +196,42 @@ test('K-136 26RBS02-007: LV2 battle win in your attack step gives one of your Sp
     return [!!fx, bpOf(c) - b0]; })()`);
   assert.deepEqual(r, [true, 5000], JSON.stringify(r));
 });
+
+test('K-137 26RBS03-075: deploy destroys a 4000 BP or less foe only with a Cost 4+ Purgatory Wings Spirit; End Step moves the Soul Core', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const n = BS.mkInst('26RBS03-075'); n.cores = 2; P.nexus.push(n);
+    const fx = BS.CARDS['26RBS03-075'].effects;
+    const gate = fxIf(P, O, fx[0].if);
+    const w = BS.mkInst('26RSD09-006'); w.cores = 2; P.spirits.push(w);
+    const gate2 = fxIf(P, O, fx[0].if);
+    P.cpu = true; P.trashCores.soul = true; w.soul = false;
+    await BS.runActions({ p: P, opp: O, src: n, ctx: {} }, fx[1]);
+    return [gate, gate2, !!P.trashCores.soul]; })()`);
+  assert.deepEqual(r[0], false, JSON.stringify(r));
+  assert.deepEqual(r[1], true, JSON.stringify(r));
+  assert.equal(r[2], false, 'soul left in trash ' + JSON.stringify(r));
+});
+
+test('K-138 26RSD09-006: soul-paid summon gives a Purgatory Wings Spirit +2000 BP; LV2 carries MUST_BLOCK', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    P.cpu = true; const c = BS.mkInst('26RSD09-006'); c.cores = 2; P.spirits.push(c);
+    const fx = BS.CARDS['26RSD09-006'].effects;
+    const b0 = bpOf(c);
+    await BS.runActions({ p: P, opp: O, src: c, ctx: {} }, fx.find(e => e.trigger === 'SUMMONED'));
+    return [bpOf(c) - b0, fx.some(e => e.flag === 'MUST_BLOCK')]; })()`);
+  assert.deepEqual(r, [2000, true], JSON.stringify(r));
+});
+
+test('K-139 26RSD08-007: attack discards a Sword Eye card for +3000 BP to all; LV2 buffs Rei-Ohba', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    P.cpu = true; const c = BS.mkInst('26RSD08-007'); c.cores = 3; P.spirits.push(c);
+    P.hand = [BS.mkInst('26RDB01-X05')];
+    const fx = BS.CARDS['26RSD08-007'].effects;
+    const b0 = bpOf(c);
+    await BS.runActions({ p: P, opp: O, src: c, ctx: {} }, fx.find(e => e.trigger === 'ATTACKS'));
+    return [bpOf(c) - b0, P.hand.length, fx.some(e => e.trigger === 'STATIC' && e.bp === 3000)]; })()`);
+  assert.deepEqual(r, [3000, 0, true], JSON.stringify(r));
+});
