@@ -170,12 +170,18 @@ if E["MODE"] == "status": print(line)
 else:
     last = chain[-1] if chain else None
     if sw == "OFF": print("STOP " + line)
-    elif not last or last[1] is None: print("STOP no tokens= on the last DONE | " + line)
+    elif not last: print("GO " + line)  # switch ON, no DONE after it yet (owner 2026-10-29: a missing tokens= no longer stops the chain; the limit is unlimited)
+    elif last[1] is None: print("GO " + line + " | no tokens= on the last DONE (ignored)")
     elif last[1] > MAXT: print(f"AUTOOFF session {last[0]} used {last[1]} tokens (> {MAXT})")
     elif total >= MAXT: print("STOP chain budget reached | " + line)
     else: print("GO " + line)
 PY
 }
+# Chain marker (owner 2026-10-29): lock/manual write <git-dir>/aeterna-chain, unlock and a STOP verdict of "rantai next" remove it.
+# .claude/hooks/chain_stop_guard.py refuses to end a turn while this marker exists and the chain switch is ON, so a session in the chain
+# cannot stop by itself; a session without the marker (a chat with the owner) is never held. Skipped under GATE_FIXTURE / GATE_PRINT (tests).
+chain_marker() { [ "${GATE_FIXTURE:-}" = 1 ] || [ "${GATE_PRINT:-}" = 1 ] && return 0; local d; d=$(git rev-parse --git-dir 2>/dev/null) || return 0
+  case "$1" in set) date -u +%Y-%m-%dT%H:%M:%SZ > "$d/aeterna-chain" ;; clear) rm -f "$d/aeterna-chain" ;; esac; return 0; }
 cmd=${1:-check}; shift || true
 case "$cmd" in
   check)
@@ -186,9 +192,9 @@ case "$cmd" in
       *) echo "$v" ;;
     esac ;;
   lock)   IFS='|' read -r a b sb <<< "$(split_budget "$*")"; set -- $a
-          lane_ok "${1:-}" || exit 2; v=$(evaluate busy "" "${1:-}") || exit 1; [ "${v%% *}" = BUSY ] && { echo "STOP ${v#BUSY }"; exit 3; }; post "LOCK${1:+ $1}${b:+ budget=$b}" && echo "locked${1:+ ($1 lane)}" ;;
+          lane_ok "${1:-}" || exit 2; v=$(evaluate busy "" "${1:-}") || exit 1; [ "${v%% *}" = BUSY ] && { echo "STOP ${v#BUSY }"; exit 3; }; post "LOCK${1:+ $1}${b:+ budget=$b}" && chain_marker set && echo "locked${1:+ ($1 lane)}" ;;
   manual) IFS='|' read -r a b sb <<< "$(split_budget "$*")"; set -- $a
-          lane_ok "${1:-}" || exit 2; v=$(evaluate busy "" "${1:-}") || exit 1; case "$v" in BUSY\ auto*) echo "STOP ${v#BUSY }"; exit 3 ;; esac; post "MANUAL${1:+ $1}${b:+ budget=$b}" && echo "manual session marked${1:+ ($1 lane)}" ;;
+          lane_ok "${1:-}" || exit 2; v=$(evaluate busy "" "${1:-}") || exit 1; case "$v" in BUSY\ auto*) echo "STOP ${v#BUSY }"; exit 3 ;; esac; post "MANUAL${1:+ $1}${b:+ budget=$b}" && chain_marker set && echo "manual session marked${1:+ ($1 lane)}" ;;
   done)   IFS='|' read -r a b sb <<< "$(split_budget "$*")"
           # owner 2026-10-21: "sub=N" = tokens the session's subagents used (their hand-back usage); added to the computed tokens= and kept on the line
           su=0; a2=""; for w in $a; do case "$w" in sub=*) su="${w#sub=}"; [[ "$su" =~ ^[0-9]+$ ]] || su=0 ;; *) a2="${a2:+$a2 }$w" ;; esac; done; a=$a2
@@ -198,7 +204,7 @@ case "$cmd" in
             else echo "WARN no usable budget= on the session's LOCK/MANUAL (start '${st}', end $b): DONE posted without tokens= (chain mode stops)" >&2; fi
           fi
           post "DONE $a" && echo "done $a" ;;
-  unlock) lane_ok "${1:-}" || exit 2; post "UNLOCK${1:+ $1}" && echo "unlocked${1:+ ($1 lane)}" ;;
+  unlock) lane_ok "${1:-}" || exit 2; post "UNLOCK${1:+ $1}" && chain_marker clear && echo "unlocked${1:+ ($1 lane)}" ;;
   on)     post "ON ${*:-}" && echo "Mode otomatis: ON" ;;
   off)    post "OFF ${*:-}" && echo "Mode otomatis: OFF" ;;
   hemat)  case "${1:-status}" in
@@ -209,10 +215,11 @@ case "$cmd" in
           esac ;;
   rantai) case "${1:-status}" in
             on|ON)   post "RANTAI ON ${*:2}" && echo "Mode rantai: ON" ;;
-            off|OFF) post "RANTAI OFF ${*:2}" && echo "Mode rantai: OFF" ;;
+            off|OFF) post "RANTAI OFF ${*:2}" && chain_marker clear && echo "Mode rantai: OFF" ;;
             status|next) v=$(rantai_eval "${1:-status}") || { echo "STOP gate error (gh api failed)"; exit 1; }
                      case "$v" in
-                       AUTOOFF*) post "RANTAI OFF auto: ${v#AUTOOFF }" ; echo "STOP ${v#AUTOOFF } (Mode rantai: OFF)" ;;
+                       AUTOOFF*) post "RANTAI OFF auto: ${v#AUTOOFF }" ; chain_marker clear; echo "STOP ${v#AUTOOFF } (Mode rantai: OFF)" ;;
+                       STOP*) [ "$1" = next ] && chain_marker clear; echo "$v" ;;
                        *) echo "$v" ;;
                      esac ;;
             *) echo "usage: $0 rantai on|off|status|next"; exit 2 ;;

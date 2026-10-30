@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 7239,
+  "cards": 7218,
   "per_saga": {
    "1": 676,
    "2": 313,
@@ -19,15 +19,15 @@
    "15": 355,
    "16": 334,
    "17": 110,
-   "50": 242
+   "50": 221
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 1467,
+  "skipped_curated": 1488,
   "nexus_levels_added": 707,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 492,
+  "image_problems": 487,
   "number_conflicts": 4,
   "merged": 108,
   "brave_unparsed": 171,
@@ -35,7 +35,7 @@
   "odd_reduction": 807,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 490
+  "without_image": 485
  },
  "tokens": [
   "BS73-T001",
@@ -1091,8 +1091,10 @@
   "26RSD01-007",
   "26RSD01-008",
   "26RSD01-009",
+  "26RSD01-010",
   "26RSD01-011",
   "26RSD01-012",
+  "26RSD01-013",
   "26RSD01-014",
   "26RSD01-X01",
   "26RSD01-X02",
@@ -1128,6 +1130,7 @@
   "26RSD04-006",
   "26RSD04-007",
   "26RSD04-008",
+  "26RSD04-009",
   "26RSD04-011",
   "26RSD04-012",
   "26RSD04-013",
@@ -1184,6 +1187,7 @@
   "26RBS01-023",
   "26RBS01-024",
   "26RBS01-025",
+  "26RBS01-026",
   "26RBS01-027",
   "26RBS01-029",
   "26RBS01-030",
@@ -1249,6 +1253,7 @@
   "26RBS01-099",
   "26RBS01-100",
   "26RBS01-101",
+  "26RBS01-105",
   "26RBS01-106",
   "26RBS01-107",
   "26RBS01-109",
@@ -1359,7 +1364,9 @@
   "26RBS02-011",
   "26RBS02-013",
   "26RBS02-015",
+  "26RBS02-016",
   "26RBS02-017",
+  "26RBS02-018",
   "26RBS02-019",
   "26RBS02-020",
   "26RBS02-022",
@@ -1379,6 +1386,7 @@
   "26RBS02-049",
   "26RBS02-051",
   "26RBS02-053",
+  "26RBS02-055",
   "26RBS02-056",
   "26RBS02-057",
   "26RBS02-058",
@@ -1390,6 +1398,7 @@
   "26RBS02-067",
   "26RBS02-070",
   "26RBS02-071",
+  "26RBS02-072",
   "26RBS02-084",
   "26RBS02-087",
   "26RBS02-088",
@@ -1408,21 +1417,26 @@
   "26RDB01-009",
   "26RDB01-011",
   "26RDB01-015",
+  "26RDB01-016",
   "26RDB01-017",
   "26RDB01-018",
   "26RDB01-019",
+  "26RDB01-020",
   "26RDB01-022",
   "26RDB01-023",
+  "26RDB01-026",
   "26RDB01-027",
   "26RDB01-033",
   "26RDB01-034",
   "26RDB01-035",
   "26RDB01-036",
+  "26RDB01-037",
   "26RDB01-040",
   "26RDB01-044",
   "26RDB01-046",
   "26RDB01-047",
   "26RDB01-050",
+  "26RDB01-054",
   "26RDB01-055",
   "26RDB01-056",
   "26RDB01-057",
@@ -1437,6 +1451,7 @@
   "26RSD08-004",
   "26RSD08-005",
   "26RSD08-006",
+  "26RSD08-010",
   "26RSD08-012",
   "26RSD08-014",
   "26RSD09-001",
@@ -1455,6 +1470,7 @@
   "26RSD10-006",
   "26RSD10-007",
   "26RSD10-008",
+  "26RSD10-009",
   "26RSD10-011",
   "26RSD10-012",
   "26RSD10-X01",
@@ -1478,18 +1494,22 @@
   "26RBS03-027",
   "26RBS03-028",
   "26RBS03-032",
+  "26RBS03-033",
   "26RBS03-034",
   "26RBS03-036",
   "26RBS03-037",
+  "26RBS03-040",
   "26RBS03-042",
   "26RBS03-045",
   "26RBS03-046",
   "26RBS03-048",
   "26RBS03-049",
   "26RBS03-050",
+  "26RBS03-051",
   "26RBS03-052",
   "26RBS03-053",
   "26RBS03-055",
+  "26RBS03-056",
   "26RBS03-057",
   "26RBS03-061",
   "26RBS03-062",
@@ -1502,6 +1522,7 @@
   "26RBS03-071",
   "26RBS03-072",
   "26RBS03-074",
+  "26RBS03-082",
   "26RBS03-086",
   "26RBS03-087",
   "26RBS03-088",
@@ -4580,11 +4601,6 @@
    "problem": "no image"
   },
   {
-   "id": "26RBS03-033",
-   "name": "Algodon",
-   "problem": "no image"
-  },
-  {
    "id": "26RBS03-035",
    "name": "Pepper's Chairo",
    "problem": "no image"
@@ -4597,11 +4613,6 @@
   {
    "id": "26RBS03-039",
    "name": "The SilverWings Graburn",
-   "problem": "no image"
-  },
-  {
-   "id": "26RBS03-040",
-   "name": "Heliodon",
    "problem": "no image"
   },
   {
@@ -4625,18 +4636,8 @@
    "problem": "no image"
   },
   {
-   "id": "26RBS03-051",
-   "name": "The SlashOgre Etaina",
-   "problem": "no image"
-  },
-  {
    "id": "26RBS03-054",
    "name": "The BlindOgre Madoc",
-   "problem": "no image"
-  },
-  {
-   "id": "26RBS03-056",
-   "name": "The NewlyFledged Kolulu",
    "problem": "no image"
   },
   {
@@ -4702,11 +4703,6 @@
   {
    "id": "26RBS03-081",
    "name": "The Hexcraft Research Institute",
-   "problem": "no image"
-  },
-  {
-   "id": "26RBS03-082",
-   "name": "War Feat: Occupation of the White Heaven Plain",
    "problem": "no image"
   },
   {
