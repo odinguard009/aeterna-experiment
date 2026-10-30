@@ -192,3 +192,15 @@ test('K-164 condition ownDestroyedTurn (26RBS03-023): costAlt applies only after
     return [before, effCost(P, card), card.costAlt.if.ownDestroyedTurn]; })()`);
   assert.ok(r[1] <= 6 && r[0] > r[1] && r[2] === true, JSON.stringify(r));
 });
+
+test('K-165 ctrl.hasEx (26RSD08-008): counts only controlled cards with an EX Symbol', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    P.spirits.length = 0; const q = { type: 'Spirit', hasEx: true };
+    const id = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].exSymbols > 0);
+    const plain = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].exSymbols);
+    const a = BS.mkInst(plain); a.cores = 1; P.spirits.push(a); const n0 = ctrlCount(P, q, {});
+    const b = BS.mkInst(id); b.cores = 1; P.spirits.push(b);
+    return [n0, ctrlCount(P, q, {}), !!BS.CARDS['26RSD08-008'].effects]; })()`);
+  assert.deepEqual(r, [0, 1, true], JSON.stringify(r));
+});

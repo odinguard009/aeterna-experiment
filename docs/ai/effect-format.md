@@ -224,3 +224,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v185: LOOT.perLegacy (+1 draw and +1 discard per `src.legacyN`) and TREAT_LV2.highest (target treated as its highest level this turn, `lvHighTurn`; 26RBS02-X17).
 - v186: EXHAUST_OWN {match} ("target one of your X Spirits. Exhaust it", ctx.did false when none) + 26RCB01-X07 (STATIC UNAFFECTED from Magic if allHave EX-AID: house approximation of "can't be targeted by opposing Magic").
 - v187: condition ownDestroyedTurn (bool; p.ownFxDestroyTurn set in removeSpirit when the owner's own effect destroys their Spirit, not battle) + 26RBS03-023 costAlt {cost 6, once}.
+- v188 (Lane K): condition `ctrl.hasEx:true` (the controlled card has at least one EX Symbol; colour of the EX Symbol is not stored, so "Yellow EX symbol" is approximated; 26RSD08-008). Additions only.

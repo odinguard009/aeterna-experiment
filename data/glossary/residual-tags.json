@@ -38696,11 +38696,6 @@
   "T_ALLY_LIFE_HIT",
   "T_SUMMONED"
  ],
- "26RSD08-008": [
-  "C_CONTROL",
-  "M_THEN",
-  "T_SUMMONED"
- ],
  "26RSD08-X02": [
   "A_BP_MINUS",
   "A_SUMMON_FREE",
