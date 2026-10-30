@@ -296,3 +296,15 @@ test('K-143 26RBS01-X06: summon sends a core from up to three opposing Spirits; 
     return [t.cores, fx[1].if.oppDepleted, fx[1].actions[0].do]; })()`);
   assert.deepEqual(r, [2, true, 'SYMBOL_PLUS'], JSON.stringify(r));
 });
+
+test('K-144 26RBS01-X11: BP_REACHED refreshes the attacking Spirit only when its BP crosses 12000 (not when already above)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    P.cpu = true; const s = BS.mkInst('26RBS01-X11'); s.cores = 5; P.spirits.push(s); G.attacker = s;
+    const out = [];
+    await bpReachedCheck(P, 'base'); s.exhausted = true; s.bpMod = 2000; await bpReachedCheck(P, 'fire'); out.push(bpOf(s), s.exhausted);
+    s.bpMod = 3000; await bpReachedCheck(P, 'fire'); out.push(bpOf(s), s.exhausted);
+    s.bpMod = 3000; await bpReachedCheck(P, 'base'); s.exhausted = true; s.bpMod = 4000; await bpReachedCheck(P, 'fire'); out.push(s.exhausted);
+    G.attacker = null; return out; })()`);
+  assert.deepEqual(r, [11000, true, 12000, false, true], JSON.stringify(r));
+});

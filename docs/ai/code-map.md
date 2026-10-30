@@ -26,11 +26,11 @@ FX_STRICT, FX_WARNED, fxUnknown, FX_COND_KEYS, FX_TRIGGERS, FX_TRIGGER_TEXT, BR_
 ## packages/engine/src/02b-effects-actions.js (127 lines, ~4.8k tokens)
 FX_ACTIONS
 
-## packages/engine/src/02c-effects-parse.js (213 lines, ~7.2k tokens)
+## packages/engine/src/02c-effects-parse.js (214 lines, ~7.3k tokens)
 canPlaceFree, canPlaceBraveFree, summonFree, canPlacePaid, canPlaceBy, summonPaid, tributePay, summonBy, fxDescribe, BURST_WHEN, parseCond, parseActionList, parseBurst, parseEffects
 
-## packages/engine/src/02d-effects-resolve.js (377 lines, ~7.5k tokens)
-fxCan, runActions, fireFx, collectFx, fxValid, fireFxMulti, asResolving, flushDerived, resolvePool, soulCoreHolder, soulToTrash, isSealed, soulToLife, lifeTake, soulSource, soulToNexus, advTiming, soulAdventOK, cadvSources, contractAdventTargets, doContractAdvent, manifestTargets, doManifest, humanContractAdvent, humanManifest, cpuAdvents, onceKey, usedThisTurn, markUsed, revealedFx, NB_IDX, actList, effAt, activatable, activateFx, cpuActivate, reviveKey, reviveTargets, doRevive, cpuRevive
+## packages/engine/src/02d-effects-resolve.js (391 lines, ~7.7k tokens)
+fxCan, runActions, fireFx, collectFx, fxValid, fireFxMulti, asResolving, flushDerived, resolvePool, soulCoreHolder, soulToTrash, isSealed, soulToLife, lifeTake, soulSource, soulToNexus, advTiming, soulAdventOK, cadvSources, contractAdventTargets, doContractAdvent, manifestTargets, doManifest, humanContractAdvent, humanManifest, cpuAdvents, onceKey, usedThisTurn, markUsed, revealedFx, NB_IDX, actList, effAt, activatable, bpReachedCheck, FX_ACTIVE_BP, activateFx, cpuActivate, reviveKey, reviveTargets, doRevive, cpuRevive
 
 ## packages/engine/src/02e-effects-removed.js (152 lines, ~3.6k tokens) — v0.38 GREEN (Contractor Hermes / Lionheart): Heavy Exhaust, the Removed Zone, exhaust effects, "the opponent can't activate Burst effects".
 setHeavy, refreshOne, toRemoved, fromHandRemoved, _nm, handSafe, handLocked, pickOppSpirits

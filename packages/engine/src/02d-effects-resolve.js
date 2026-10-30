@@ -50,9 +50,9 @@ function fxValid(it) {
   if (!isMir && !fromHand && !fromTrash && e.lv && !e.lv.includes(dead ? f.lostLv + lvBase(CARDS[f.id]) : lvNo(f))) return false;
   if (e.oc && (dead || !ocActive(f))) return false;
   if (e.braved && !f.brave) return false;
-  if ((trg === 'ALLY_ATTACKS' || trg === 'OPP_ATTACKS' || trg === 'ALLY_DESTROYS' || trg === 'ALLY_BLOCKED' || trg === 'ALLY_BLOCKS' || trg === 'ALLY_SUMMONED' || trg === 'ALLY_LIFE_HIT' || trg === 'ALLY_LOST' || trg === 'ALLY_DIED' || trg === 'SOUL_PLACED' || trg === 'ALLY_BATTLE_WIN' || trg === 'ALLY_BATTLE_END' || trg === 'MAGIC_USED') && !(subj && fxMatch(CARDS[subj.id], e.match, subj))) return false;
+  if ((trg === 'ALLY_ATTACKS' || trg === 'OPP_ATTACKS' || trg === 'ALLY_DESTROYS' || trg === 'ALLY_BLOCKED' || trg === 'ALLY_BLOCKS' || trg === 'ALLY_SUMMONED' || trg === 'ALLY_LIFE_HIT' || trg === 'ALLY_LOST' || trg === 'ALLY_DIED' || trg === 'SOUL_PLACED' || trg === 'ALLY_BATTLE_WIN' || trg === 'ALLY_BATTLE_END' || trg === 'BP_REACHED' || trg === 'MAGIC_USED') && !(subj && fxMatch(CARDS[subj.id], e.match, subj))) return false;
   if (e.subjBraved && !(subj && subj.brave && [subj, subj.brave].some(x => (CARDS[x.id].families || []).includes(e.subjBraved)))) return false;
-  if (e.self && subj !== f && (trg === 'EXHAUSTED_FX' || trg === 'SOUL_PLACED' || trg === 'ALLY_LIFE_HIT' || trg === 'ALLY_BLOCKED' || trg === 'ALLY_BATTLE_END')) return false;
+  if (e.self && subj !== f && (trg === 'BP_REACHED' || trg === 'EXHAUSTED_FX' || trg === 'SOUL_PLACED' || trg === 'ALLY_LIFE_HIT' || trg === 'ALLY_BLOCKED' || trg === 'ALLY_BATTLE_END')) return false;
   if (e.other && subj === f) return false;
   if (e.diffName && subj && CARDS[subj.id].name === CARDS[f.id].name) return false;      // v0.197
   if (e.exOnly && !(ctx.exCount > 0)) return false;      // v0.185 RUMBLE_DISCARD "cards with EX Symbols"
@@ -67,6 +67,7 @@ function fxValid(it) {
     const sc = ctx.fxSrc && CARDS[ctx.fxSrc.id];
     if (e.bySrc && !(sc && (!e.bySrc.type || sc.type === e.bySrc.type) && (!e.bySrc.family || (sc.families || []).some(x => e.bySrc.family.includes(x))))) return false;
   }
+  if (trg === 'BP_REACHED' && !(subj && bpOf(subj) >= e.bpGe && !(ctx.bpFrom >= e.bpGe))) return false;
   if (e.once && usedThisTurn(owner, f, idx, e)) return false;
   if (trg === 'DESTROYED' && ctx.depl && !e.alsoDepleted) return false;      // v0.177 a depletion is not a plain (When Destroyed)
   if (!fxIf(owner, opp, e.if, Object.assign({}, ctx, { viaFC: ctx.viaFC == null ? !!f.viaFC : ctx.viaFC, viaHS: !!f.viaHS, viaLegacy: (f.legacyN || 0) > 0, selfUid: f.uid, selfInst: f }))) return false;
@@ -318,10 +319,22 @@ function activatable(p, f, timing) {
   });
   return out;
 }
+/* v175 BP_REACHED: a BP boost made by an Activate/Invoke pushes a Spirit over a threshold; mode 'base' records the BP before, 'fire' fires for each Spirit that crossed */
+async function bpReachedCheck(p, mode) {
+  if (!FX_ACTIVE_BP(p)) return;
+  for (const s of p.spirits) {
+    if (mode === 'base') { s.bpSeen = bpOf(s); continue; }
+    const was = s.bpSeen == null ? Infinity : s.bpSeen, now = bpOf(s);
+    s.bpSeen = now;
+    if (now > was) await fireFx(p, 'BP_REACHED', s, { subject: s, bpFrom: was });
+  }
+}
+const FX_ACTIVE_BP = p => fieldList(p).some(f => fxEntries(f).some(x => x.e.trigger === 'BP_REACHED'));
 async function activateFx(p, f, idx) {
   const card = CARDS[f.id], e = effAt(f, idx);
   if (!e || !activatable(p, f).some(x => x.idx === idx)) return false;
   const opp = G.p[other(p.key)];
+  await bpReachedCheck(p, 'base');
   if (e.cost && e.cost.nexusToVoid) { f.cores -= e.cost.nexusToVoid; p.void += e.cost.nexusToVoid; log(`${card.name}: ${e.cost.nexusToVoid} cores are sent to the Void.`); }
   if (e.cost && e.cost.exhaustSelf) { f.exhausted = true; log(`${card.name} is exhausted.`); }
   if (e.invoke && !(await payInvokeCost(p, f, e.cost))) return false;      // v0.68: part A must resolve in full (Std FAQ on Effects Q11)
@@ -329,6 +342,7 @@ async function activateFx(p, f, idx) {
   log(`${card.name}: [${e.invoke ? 'Invoke' : 'Activate'}] ${fxDescribe(e)}.`);
   await asResolving(() => runActions({ p, opp, src: f, ctx: {} }, e, 'ACTIVATE'));
   checkDepletion(p); checkDepletion(opp);
+  if (!G.over) await bpReachedCheck(p, 'fire');
   if (e.invoke && !G.over && cardHasKeyword(card, 'Amplify') && e.actions.some(x => x.do === 'BP_TARGET' && x.per)) await fireFx(p, 'AMPLIFY', f, { subject: f });   // v0.197 "When your Spirit activates Amplify" (the per-count Invoke BP boost)
   if (e.cost && e.cost.exhaustSelf && !G.over) await fireFx(p, 'NEXUS_EXHAUST', f);   // v0.197 "When this Nexus exhausts" (Invoke / Activate cost only)
   if (e.silverWheel && !G.over) await fireFx(p, 'SILVER_WHEEL', f);   // v0.50: "when you activate Silver Wheel"
