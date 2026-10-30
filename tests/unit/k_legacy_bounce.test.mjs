@@ -1055,3 +1055,14 @@ test('K-81 REFRESH_SPIRIT nexusPer: Misty Forest boosts attacking Ferobeasts and
     return [hit, one, two]; })()`);
   assert.deepEqual(r, [1000, 0, 2]);
 });
+
+test('K-82 Blue Beat Stage: Invoke boosts an attacking Blue Beat Spirit; End Step refreshes one per two Blue Beat Spirits', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    P.spirits.length = 0; P.nexus.length = 0; O.spirits.length = 0; O.nexus.length = 0; G.active = P.key; P.cpu = true; O.cpu = true; G.step = 5;
+    const n = BS.mkInst('26RDB01-052'); n.cores = 5; P.nexus.push(n);
+    const L = []; for (let i = 0; i < 4; i++) { const s = BS.mkInst('26RDB01-041'); s.cores = 3; s.exhausted = true; P.spirits.push(s); L.push(s); }
+    await BS.fireFx(P, 'END_STEP', n, { subject: n });
+    return [L.filter(x => !x.exhausted).length]; })()`);
+  assert.deepEqual(r, [2]);
+});
