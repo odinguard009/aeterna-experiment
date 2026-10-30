@@ -25869,19 +25869,66 @@
   "mechanics": [
    "Level Up"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] Level Up (When Attacks/Blocks) If this is the first attack/block of the turn, during this battle, this Spirit is treated as LV2.",
-   "[LV2] (During Attack) When only the opposing Spirit is destroyed by comparing BP, you can send a core, besides , from your Trash to your Life."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "collab": [
    "仮面ライダー"
   ],
   "bicon": [
    "A"
   ],
-  "rcode": "M"
+  "rcode": "M",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "firstAttack": true
+    },
+    "actions": [
+     {
+      "do": "TREAT_LV2",
+      "self": true,
+      "battle": true
+     }
+    ]
+   },
+   {
+    "trigger": "BLOCKS",
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "firstBlock": true
+    },
+    "actions": [
+     {
+      "do": "TREAT_LV2",
+      "self": true,
+      "battle": true
+     }
+    ]
+   },
+   {
+    "trigger": "BATTLE_WIN",
+    "lv": [
+     2
+    ],
+    "attackingOnly": true,
+    "optional": true,
+    "actions": [
+     {
+      "do": "TRASH_CORES_TO",
+      "n": 1,
+      "toLife": true
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RCB01-054",

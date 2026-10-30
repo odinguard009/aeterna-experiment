@@ -18,3 +18,13 @@ test('K-147 26RDB01-049: Red Stella Nexus gives +1000 BP in your Attack Step; ex
     return [fx[0].bp, m.team, m.exhausted, fxMatch(BS.CARDS[A.id], { exhausted: true }, A), fxMatch(BS.CARDS[A.id], { exhausted: true }, B), fxMatch(BS.CARDS[A.id], { team: "Red Stella" }, A)]; })()`);
   assert.deepEqual(r, [1000, "Red Stella", true, true, false, false], JSON.stringify(r));
 });
+
+test('K-148 26RCB01-053: TRASH_CORES_TO toLife moves a Trash core to the Life', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const c = { p: P, opp: O, src: BS.mkInst('26RCB01-053'), ctx: {} };
+    P.trashCores.n = 2; const l0 = P.life;
+    await BS.runActions(c, { actions: [{ do: 'TRASH_CORES_TO', n: 1, toLife: true }] });
+    return [P.life - l0, P.trashCores.n, BS.CARDS['26RCB01-053'].effects.length]; })()`);
+  assert.deepEqual(r, [1, 1, 3], JSON.stringify(r));
+});
