@@ -780,3 +780,17 @@ test('K-61 Poppy: ALLY_LIFE_HIT diffName loots only for an EX-AID Spirit with an
     return out; })()`);
   assert.deepEqual(r, [0, 1, 0]);
 });
+
+test('K-62 Renki: byOwnFx returns it to the Hand only when your Beastleptic/Phantasprite effect destroyed it', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const fam = Object.values(BS.CARDS).find(c => (c.families || []).includes('Beastleptic') && c.id !== '26RBS03-013');
+    const out = [];
+    for (const src of [fam.id, '26RBS02-009']) {
+      P.spirits.length = 0; P.hand.length = 0; P.trash.length = 0;
+      const rk = BS.mkInst('26RBS03-013'); rk.cores = 3; P.spirits.push(rk);
+      await BS.runActions({ p: P, opp: O, src: BS.mkInst(src), ctx: {} }, { actions: [{ do: 'DESTROY_OWN', match: { name: 'Renki' } }] }); await BS.flushBursts();
+      out.push(P.hand.some(h => h.id === '26RBS03-013'), P.trash.some(h => h.id === '26RBS03-013')); }
+    return out; })()`);
+  assert.deepEqual(r, [true, false, false, true]);
+});

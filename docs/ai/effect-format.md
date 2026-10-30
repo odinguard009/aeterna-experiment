@@ -159,3 +159,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v119 (v0.197.0, Lane K): trigger `NEXUS_EXHAUST` ("When this Nexus exhausts"; fires on the Nexus itself after its own Invoke/Activate exhaustSelf cost resolves; an exhaust caused by another effect does not fire it).
 - v120 (v0.197.0, Lane K): trigger `AMPLIFY` ("When your Spirit activates Amplify"; fires on your field cards after an Amplify Spirit resolves its per-count Invoke BP boost).
 - v121 (v0.197.0, Lane K): `diffName: true` on `ALLY_*` triggers ("a Spirit with a different name from this Spirit's"; the acting Spirit must not share the effect owner's card name).
+- v122 (v0.197.0, Lane K): condition `byOwnFx: {family:[..]}` (on a DESTROYED effect: "if this Spirit was destroyed by your <family> effect"; `removeSpirit` stores the effect card in `s.lostFxSrc`).

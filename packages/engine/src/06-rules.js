@@ -305,6 +305,7 @@ function removeSpirit(p, s, why, byOpponent) {
     bp0 = kill ? bpOf(s) : 0;
   if (!removeFrom(p.spirits, s)) return;
   if ((why === 'destroyed' || why === 'depleted') && byOpponent !== 'battle' && G && G.fxBy && G.fxBy !== p.key) G.p[G.fxBy].oppFxLossTurn = G.turnNo;      // v0.196 condition oppLostByFx
+  s.lostFxSrc = G && G.fxBy === p.key && G.fxSrc ? G.fxSrc : null;      // v0.197 condition byOwnFx (the card of the own effect that removed it)
   if (why === 'destroyed' && G) p.lostSpiritTurn = G.turnNo;      // v0.197 condition ownLostSpirit
   if (kill) G.evQ.push({ type: 'FXKILL', key: G.fxBy, bp: bp0, src: G.fxSrc || null });
   s.lostLv = lv; s.soulLost = s.soul;      // v0.176: the Soul Core it held when it left ("If (Soul Core) is on this Spirit" in a Destroyed trigger)
