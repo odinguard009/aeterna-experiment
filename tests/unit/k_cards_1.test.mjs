@@ -105,3 +105,21 @@ test('K-103 26RBS01-095 High-Rise Tombs LV2: draws a card when the opposing Life
     return [no, yes]; })()`);
   assert.deepEqual(r, [0, 1], JSON.stringify(r));
 });
+
+test('K-104 26RBS03-083 War Feat: extra Blue symbol for a Cost 6+ vanilla Blue Spirit (LV1-2 only for that card); LV2 Flash refreshes a vanilla Blue Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const cost = id => BS.effCost(P, BS.CARDS[id]);
+    const n = BS.mkInst('26RBS03-083'); n.cores = 0; P.nexus.push(n);
+    const base = cost('26RBS03-072');
+    n.cores = 3; const lv2 = cost('26RBS03-072'), other = cost('26RBS01-070');
+    P.nexus.length = 0; const none = cost('26RBS03-072'), noneOther = cost('26RBS01-070');
+    P.nexus.push(n);
+    const v = BS.mkInst('26RBS03-072'); v.cores = 1; v.exhausted = true; P.spirits.push(v);
+    G.active = O.key; G.step = 5; const ok = await BS.activateFx(P, n, 1);
+    return [base, lv2, none, other >= noneOther - 1, ok, v.exhausted, n.exhausted]; })()`);
+  assert.equal(r[0], r[2] - 2, 'Nexus own symbol + extra symbol at LV1');
+  assert.equal(r[1], r[2] - 2, 'and at LV2');
+  assert.equal(r[3], true, 'a non-matching card gets no extra symbol (at most the Nexus own one)');
+  assert.deepEqual(r.slice(4), [true, false, true], JSON.stringify(r));
+});

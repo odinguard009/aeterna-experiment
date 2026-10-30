@@ -38679,14 +38679,6 @@
   "C_OPP_TURN",
   "M_OPTIONAL"
  ],
- "26RBS03-083": [
-  "A_EXHAUST",
-  "A_REFRESH",
-  "A_SYMBOL",
-  "A_SYMBOL_PLUS",
-  "C_LEVEL",
-  "K_STANDARD_INVOKE"
- ],
  "26RBS03-084": [
   "A_EXHAUST",
   "A_REFRESH",
