@@ -32,7 +32,7 @@ canPlaceFree, canPlaceBraveFree, summonFree, canPlacePaid, canPlaceBy, summonPai
 ## packages/engine/src/02d-effects-resolve.js (374 lines, ~7.3k tokens)
 fxCan, runActions, fireFx, collectFx, fxValid, fireFxMulti, asResolving, flushDerived, resolvePool, soulCoreHolder, soulToTrash, isSealed, soulToLife, lifeTake, soulSource, soulToNexus, advTiming, soulAdventOK, cadvSources, contractAdventTargets, doContractAdvent, manifestTargets, doManifest, humanContractAdvent, humanManifest, cpuAdvents, onceKey, usedThisTurn, markUsed, revealedFx, NB_IDX, actList, effAt, activatable, activateFx, cpuActivate, reviveKey, reviveTargets, doRevive, cpuRevive
 
-## packages/engine/src/02e-effects-removed.js (148 lines, ~3.4k tokens) — v0.38 GREEN (Contractor Hermes / Lionheart): Heavy Exhaust, the Removed Zone, exhaust effects, "the opponent can't activate Burst effects".
+## packages/engine/src/02e-effects-removed.js (148 lines, ~3.5k tokens) — v0.38 GREEN (Contractor Hermes / Lionheart): Heavy Exhaust, the Removed Zone, exhaust effects, "the opponent can't activate Burst effects".
 setHeavy, refreshOne, toRemoved, fromHandRemoved, _nm, handSafe, handLocked, pickOppSpirits
 
 ## packages/engine/src/02f-effects-mill-discard.js (76 lines, ~1.8k tokens) — v0.39 PURPLE (Contractor Hades / Sorcerer): Deck-to-Trash (mill), discarding from the Hand, sending opposing cores to the Reserve, once-per-turn Count.

@@ -120,9 +120,9 @@ Object.assign(FX_ACTIONS, {
       checkDepletion(c.opp);
     } },
   /* "put a core from the Void each to N of your <family> Spirits (/Nexuses)": one core per target, distinct targets; counterIfFamily: when a core goes to ANOTHER Spirit of that family, your counter +1 (once) */
-  VOID_TO_MATCHING: { chk: a => Number.isInteger(a.targets) && a.targets >= 1 && a.targets <= 5 && hasMatch(a.match) && (a.incNexus == null || typeof a.incNexus === 'boolean') && (a.exhausted == null || a.exhausted === true) && (a.counterIfFamily == null || (typeof a.counterIfFamily === 'string' && a.counterIfFamily.length > 0)),
+  VOID_TO_MATCHING: { chk: a => Number.isInteger(a.targets) && a.targets >= 1 && a.targets <= 5 && hasMatch(a.match) && (a.incNexus == null || typeof a.incNexus === 'boolean') && (a.exhausted == null || a.exhausted === true) && (a.other == null || a.other === true) && (a.counterIfFamily == null || (typeof a.counterIfFamily === 'string' && a.counterIfFamily.length > 0)),
     txt: a => `put a core from the Void each to up to ${a.targets} of your matching Spirits${a.incNexus ? '/Nexuses' : ''}${a.counterIfFamily ? '; when that puts a core to another "' + a.counterIfFamily + '" Spirit, your counter +1' : ''}`,
-    cands: (c, a) => c.p.spirits.concat(a.incNexus ? c.p.nexus : []).filter(t => fxMatch(CARDS[t.id], a.match) && (!a.exhausted || t.exhausted)),      // v0.196 exhausted: "your exhausted <X>"
+    cands: (c, a) => c.p.spirits.concat(a.incNexus ? c.p.nexus : []).filter(t => fxMatch(CARDS[t.id], a.match) && (!a.exhausted || t.exhausted) && !(a.other && t === c.src)),      // v0.196 exhausted: "your exhausted <X>"
     can: (c, a) => FX_ACTIONS.VOID_TO_MATCHING.cands(c, a).length > 0,
     run: async (c, a) => {
       const L = FX_ACTIONS.VOID_TO_MATCHING.cands(c, a); if (!L.length) { c.ctx.did = false; return; }

@@ -807,3 +807,16 @@ test('K-63 Steguman: ACTIVATE_SUMMONED runs a Topaz Spirit\'s When Summoned effe
     return [hit, [P.life, P.void]]; })()`);
   assert.deepEqual(r, [[2, 1], [1, 2]]);
 });
+
+test('K-64 Coela-Canth: other + exhausted ctrlFamily', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const fish = Object.values(BS.CARDS).find(c => (c.families || []).includes('Armored Fish') && c.type === 'Spirit' && c.id !== '26RSD03-006');
+    P.spirits.length = 0; const cc = BS.mkInst('26RSD03-006'); cc.cores = 1; const f = BS.mkInst(fish.id); f.cores = 1; P.spirits.push(cc, f); P.void = 2;
+    await BS.runActions({ p: P, opp: O, src: cc, ctx: {} }, { actions: [{ do: 'VOID_TO_MATCHING', targets: 1, other: true, match: { family: ['Armored Fish'] } }] });
+    const a = [cc.cores, f.cores];
+    const cond = { ctrlFamily: { any: ['Armored Fish'], is: true, exhausted: true } };
+    const x = BS.fxIf(P, O, cond, {}); f.exhausted = true; const y = BS.fxIf(P, O, cond, {});
+    return [a, x, y]; })()`);
+  assert.deepEqual(r, [[1, 2], false, true]);
+});
