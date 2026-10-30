@@ -192,12 +192,13 @@
   <div class="bld" id="bld">
     <section class="bpool" aria-label="Card pool">
       <div class="btool" id="db-tbar">
-        <div class="r1"><div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="db-search" class="in" type="search" placeholder="Search name, code or text" aria-label="Search cards ( / )" autocomplete="off" spellcheck="false" style="width:100%"></div>
+        <div class="r1"><div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="db-search" class="in" type="search" placeholder="Search name, code or text" aria-label="Search cards ( / )" autocomplete="off" spellcheck="false" style="width:100%"></div><button class="btn sm" id="db-min" data-a="db-min" aria-pressed="false" aria-controls="db-tbar" title="Hide the filter buttons and keep the search">▲ Hide filters</button>
           <select id="db-set" class="in hidem" title="Set" aria-label="Set"></select>
           <input id="db-family" class="in hidem" type="search" placeholder="Family" aria-label="Family" autocomplete="off" style="max-width:150px">
           <div class="seg hidem" role="group" aria-label="Card size" id="db-size"></div></div>
         <div class="r2"><span id="db-colbtn"></span><div class="pips" id="db-pips"></div><span class="vsep"></span><span id="db-types" class="row" style="gap:7px"></span><span class="vsep"></span><div class="costs" id="db-costs"></div></div>
-        <div class="r2"><span id="db-groups" class="row" style="gap:7px"></span><button class="chip" id="db-play" data-a="db-chip" data-v="flag:complete" aria-pressed="false">✓ Playable Only</button><button class="chip" id="db-in" data-a="db-chip" data-v="flag:only" aria-pressed="false">In Deck</button><button class="chip" id="db-legal" data-a="db-chip" data-v="flag:legal" aria-pressed="false">Legal Only</button><span id="db-clear-f"></span><span class="grow"></span><span id="db-count" class="sub hidem" role="status" style="font-size:.78em"></span></div></div>
+        <div class="r2"><span id="db-groups" class="row" style="gap:7px"></span></div>
+        <div class="r2"><span id="db-sortbtn"></span><button class="chip" id="db-play" data-a="db-chip" data-v="flag:complete" aria-pressed="false">✓ Playable Only</button><button class="chip" id="db-in" data-a="db-chip" data-v="flag:only" aria-pressed="false">In Deck</button><button class="chip" id="db-legal" data-a="db-chip" data-v="flag:legal" aria-pressed="false">Legal Only</button><span id="db-clear-f"></span><span class="grow"></span><span id="db-count" class="sub hidem" role="status" style="font-size:.78em"></span></div></div>
       <div class="pgrid scroll" id="db-card-list" style="--cols:6" aria-label="Cards"></div>
     </section>
     <div class="scrim" data-a="db-sheet" data-v="" aria-hidden="true"></div>
@@ -244,7 +245,8 @@
         <input id="lib-family" class="in hidem" type="search" placeholder="Family" aria-label="Family" autocomplete="off" style="max-width:150px">
         <div class="seg hidem" role="group" aria-label="Card size" id="lib-size"></div></div>
       <div class="r2"><span id="lib-colbtn"></span><div class="pips" id="lib-pips"></div><span class="vsep"></span><span id="lib-types" class="row" style="gap:7px"></span><span class="vsep"></span><div class="costs" id="lib-costs"></div></div>
-      <div class="r2"><span id="lib-groups" class="row" style="gap:7px"></span><button class="chip" id="lib-play" data-a="lib-complete">✓ Playable Only</button><span id="lib-clear"></span><span class="grow"></span><span id="lib-count" class="sub hidem" role="status" style="font-size:.78em"></span></div></div>
+      <div class="r2"><span id="lib-groups" class="row" style="gap:7px"></span></div>
+      <div class="r2"><span id="lib-sortbtn"></span><button class="chip" id="lib-play" data-a="lib-complete">✓ Playable Only</button><span id="lib-clear"></span><span class="grow"></span><span id="lib-count" class="sub hidem" role="status" style="font-size:.78em"></span></div></div>
     <div class="pgrid scroll" id="lib-grid" style="--cols:6" aria-label="Cards"></div>
     <details class="card flat" style="margin:12px 20px 20px;padding:10px 16px"><summary style="cursor:pointer;font-weight:700">Import &amp; export · card data, images, deck list</summary>
       <div class="col" style="gap:14px;margin-top:10px">

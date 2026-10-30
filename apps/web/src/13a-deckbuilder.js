@@ -192,7 +192,8 @@ function dbBar() {
   $('db-types').innerHTML = filterTypesHTML(DBF, 'db-chip');
   $('db-costs').innerHTML = DB_COSTS.map(k => `<button class="cbtn${on(DBF.costs, k) ? ' on' : ''}" data-a="db-chip" data-v="costs:${k}" aria-pressed="${on(DBF.costs, k)}" aria-label="Cost ${k}">${k === '10' ? '10+' : k}</button>`).join('');
   $('db-colbtn').innerHTML = ddButton(DBF, 'colour', 'Colour', 'db-dd') + ddButton(DBF, 'type', 'Type', 'db-dd') + ddButton(DBF, 'cost', 'Cost', 'db-dd');
-  $('db-groups').innerHTML = ddButton(DBF, 'group', 'Group', 'db-dd') + ddButton(DBF, 'family', 'Family', 'db-dd') + ddButton(DBF, 'bp', 'BP', 'db-dd') + ddButton(DBF, 'cores', 'Cores', 'db-dd') + ddButton(DBF, 'icon', 'Block', 'db-dd') + ddButton(DBF, 'rarity', 'Rarity', 'db-dd') + ddButton(DBF, 'collab', 'Collab', 'db-dd') + ddButton(DBF, 'sort', 'Sort', 'db-dd');
+  $('db-groups').innerHTML = ddButton(DBF, 'group', 'Group', 'db-dd') + ddButton(DBF, 'family', 'Family', 'db-dd') + ddButton(DBF, 'bp', 'BP', 'db-dd') + ddButton(DBF, 'cores', 'Cores', 'db-dd') + ddButton(DBF, 'icon', 'Block', 'db-dd') + ddButton(DBF, 'rarity', 'Rarity', 'db-dd') + ddButton(DBF, 'collab', 'Collab', 'db-dd');
+  $('db-sortbtn').innerHTML = ddButton(DBF, 'sort', 'Sort', 'db-dd');            // owner review 2026-10-30: Sort shares a row with the three flag chips
   [['db-play', 'complete'], ['db-in', 'only'], ['db-legal', 'legal']].forEach(([id, k]) => { const b = $(id); b.classList.toggle('on', DBF[k]); b.setAttribute('aria-pressed', String(DBF[k])); });
   dbMenu();
   if (set.dataset.sig !== sig) { set.innerHTML = '<option value="">All sets</option>' + sets.map(x => `<option value="${esc(x)}">${esc(x)}</option>`).join(''); set.dataset.sig = sig; }
@@ -200,7 +201,17 @@ function dbBar() {
   if (document.activeElement !== $('db-family')) $('db-family').value = DBF.family;
   $('db-size').innerHTML = DB_SIZE_LIST.map(([v, l]) => `<button data-a="db-size" data-v="${v}" aria-pressed="${DB_SIZE === v}">${l}</button>`).join('');
   const n = dbActiveCount(); $('db-clear-f').innerHTML = n ? `<button class="chip" data-a="db-freset">Clear ${n} ✕</button>` : '';
+  dbMinApply(n);
 }
+/* Hide / show filters (owner review 2026-10-30): everything in the toolbar except the search box folds away, like the Library's "Hide filters". Remembered on this device. */
+let DB_MIN = false; try { DB_MIN = localStorage.getItem('bse.dbmin') === '1'; } catch (e) { /* blocked: this visit only */ }
+function dbMinApply(n) {
+  const b = $('db-min'), v = $('bld'); if (!b || !v) return;
+  v.classList.toggle('db-min', DB_MIN); b.setAttribute('aria-pressed', String(DB_MIN));
+  if (n === undefined) n = dbActiveCount();
+  b.textContent = DB_MIN ? '▼ Show filters' + (n ? ` (${n})` : '') : '▲ Hide filters';
+}
+function dbMinToggle() { DB_MIN = !DB_MIN; try { localStorage.setItem('bse.dbmin', DB_MIN ? '1' : '0'); } catch (e) { /* blocked */ } dbMinApply(); }
 function dbMenu() {                   // the dropdown menu (Colour, Type and Cost on phone, Group everywhere)
   document.querySelectorAll('#db-tbar .ddmenu').forEach(m => m.remove());
   const tb = $('db-tbar'), btn = DBF.dd && tb.querySelector(`[data-a="db-dd"][data-v="${DBF.dd}"]`); if (!btn) return;

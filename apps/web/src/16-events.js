@@ -127,6 +127,7 @@ document.addEventListener('click', e => {
   else if (a === 'db-row') { const i = v.lastIndexOf(':'); dbChange(v.slice(0, i), Number(v.slice(i + 1))); }
   else if (a === 'db-key') dbKey(v);
   else if (a === 'db-freset') dbResetFilters();
+  else if (a === 'db-min') dbMinToggle();
   else if (/^db-dd/.test(a)) dbDd(a, v);
   else if (a === 'db-cover') dbCover(v);
   else if (a === 'db-play-now') dbPlayNow();

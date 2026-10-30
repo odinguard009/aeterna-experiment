@@ -122,11 +122,11 @@ humanCan, legalityHTML, FX_KW_START, FX_LINE_STOP, effectLines, fxMark, slashBre
 ## apps/web/src/12-zones.js (71 lines, ~1.6k tokens) — ZONES, LOG, RULES COVERAGE
 openZoneModal, openLogModal, showRules
 
-## apps/web/src/13-render.js (376 lines, ~8.9k tokens) — RENDERING
-nameHTML, isPC, applyLayout, _rz, colorVar, cardColors, isMulti, colorSty, symSlices, symCount, isUltimate, cardCls, rebMark, symBadgeHTML, handCardHTML, gemsHTML, fieldCardHTML, rowHTML, burstAreaHTML, soulAreaHTML, PILL_FULL, fieldAreaHTML, zoneBox, pv, trashBox, pileHTML, lifePlate, resPlate, STEP_WARN, stepTargets, stepWarn, stepClick, SLEEVE_TINTS, CORE_LOOKS, deckLook, coreVars, SLEEVE_IMG, sleeveImgCss, applyLook, hintText, renderBoard, fitGems, render, CUE, fxCueReset, aeRibbon, aeStrip, fxCues, LOG_OPEN, updateLogDrawer, toggleLog, magBtnHTML, liveStatusHTML, HIST_KEY, HISTORY, recordMatch, histHTML, lifeTxt, switchView, renderSettings, renderLobby
+## apps/web/src/13-render.js (377 lines, ~9k tokens) — RENDERING
+nameHTML, isPC, applyLayout, _rz, colorVar, cardColors, isMulti, colorSty, symSlices, symCount, isUltimate, cardCls, rebMark, symBadgeHTML, handCardHTML, gemsHTML, fieldCardHTML, rowHTML, burstAreaHTML, soulAreaHTML, PILL_FULL, fieldAreaHTML, zoneBox, pv, zoneChip, trashBox, pileHTML, lifePlate, resPlate, STEP_WARN, stepTargets, stepWarn, stepClick, SLEEVE_TINTS, CORE_LOOKS, deckLook, coreVars, SLEEVE_IMG, sleeveImgCss, applyLook, hintText, renderBoard, fitGems, render, CUE, fxCueReset, aeRibbon, aeStrip, fxCues, LOG_OPEN, updateLogDrawer, toggleLog, magBtnHTML, liveStatusHTML, HIST_KEY, HISTORY, recordMatch, histHTML, lifeTxt, switchView, renderSettings, renderLobby
 
-## apps/web/src/13a-deckbuilder.js (533 lines, ~12.8k tokens) — DECK BUILDER (v0.53.0 redesign; list performance from v0.52.1)
-DB_COLORS, DB_TYPES, DB_COSTS, DB_GROUP_ALL, DB_TYPE_GROUPS, DB_GROUPS, RAINBOW, filterPipsHTML, filterTypesHTML, DB_BPS, DB_CORES, DB_FAMS, DB_ICONS, DB_VALS, dbVals, dbFamilies, ddMode, ddList, ddSel, ddSortDef, ddButton, ddMenuEl, ddPick, ddReset, DBF, DB_UNDO, DB_IO, dbArr, dbTypeOf, dbSetOf, dbFilterOK, dbPlusOK, dbGroupOK, DBV, DB_GAP, DB_COLL, dbIndex, dbSets, dbActiveCount, DB_RARITY_ORDER, DB_SORT_VAL, DB_SORT_KEYS, dbSortCmp, dbFilter, fxMarked, FX_MARK_LBL, fxMarkHTML, dbCardHTML, dbWindow, dbScroll, dbSearchInput, dbBar, dbMenu, dbDd, DB_TAB, dbTab, renderDbLook, dbCover, SLEEVE_BLOB, dbSleeveSet, dbSleeveClear, dbLook, dbToggle, dbResetFilters, DB_SAVE_T, dbSaved, dbNameInput, dbSave, dbSnap, dbCanAdd, dbChange, dbReplace, dbClear, dbUndo, dbRedo, dbTestHand, DB_SIZE_KEY, DB_SIZE, dbSize, dbFlyFrom, dbFlyTo, DB_LP, DB_PEEK, dbPeekHide, dbTap, dbKey, dbDetect, dbCsv, dbDeckPng, dbImport, dbExport, dbShareCode, dbShareResolve, dbShare, DB_COLCH, dbRingHTML, dbChips, dbStatsHTML, dbRowsHTML, renderDbDeck, dbPlayNow, dbSheet, renderDeckBuilder
+## apps/web/src/13a-deckbuilder.js (544 lines, ~13.1k tokens) — DECK BUILDER (v0.53.0 redesign; list performance from v0.52.1)
+DB_COLORS, DB_TYPES, DB_COSTS, DB_GROUP_ALL, DB_TYPE_GROUPS, DB_GROUPS, RAINBOW, filterPipsHTML, filterTypesHTML, DB_BPS, DB_CORES, DB_FAMS, DB_ICONS, DB_VALS, dbVals, dbFamilies, ddMode, ddList, ddSel, ddSortDef, ddButton, ddMenuEl, ddPick, ddReset, DBF, DB_UNDO, DB_IO, dbArr, dbTypeOf, dbSetOf, dbFilterOK, dbPlusOK, dbGroupOK, DBV, DB_GAP, DB_COLL, dbIndex, dbSets, dbActiveCount, DB_RARITY_ORDER, DB_SORT_VAL, DB_SORT_KEYS, dbSortCmp, dbFilter, fxMarked, FX_MARK_LBL, fxMarkHTML, dbCardHTML, dbWindow, dbScroll, dbSearchInput, dbBar, DB_MIN, dbMinApply, dbMinToggle, dbMenu, dbDd, DB_TAB, dbTab, renderDbLook, dbCover, SLEEVE_BLOB, dbSleeveSet, dbSleeveClear, dbLook, dbToggle, dbResetFilters, DB_SAVE_T, dbSaved, dbNameInput, dbSave, dbSnap, dbCanAdd, dbChange, dbReplace, dbClear, dbUndo, dbRedo, dbTestHand, DB_SIZE_KEY, DB_SIZE, dbSize, dbFlyFrom, dbFlyTo, DB_LP, DB_PEEK, dbPeekHide, dbTap, dbKey, dbDetect, dbCsv, dbDeckPng, dbImport, dbExport, dbShareCode, dbShareResolve, dbShare, DB_COLCH, dbRingHTML, dbChips, dbStatsHTML, dbRowsHTML, renderDbDeck, dbPlayNow, dbSheet, renderDeckBuilder
 
 ## apps/web/src/13b-nav.js (109 lines, ~3.1k tokens) — APP NAVIGATION + HOME (v0.65.0, UI/UX overhaul U2; docs/DESIGN.md section 0, mockup docs/design/mockup-v11.html)
 NAV_HIDDEN, MK_OFF, MK_TITLES, navSync, navTools, themePop, navTheme, navSound, navHistory, fmtTitle, MK_TILES, renderHome, cardOfDay, MK_COL, mkMix, mkArt, mkFace, renderHomeMore
@@ -182,7 +182,7 @@ LEARN_KEY, LEARN_CHAPS, learnDone, learnSave, learnNext, renderLearn, learnOpen
 ## apps/web/src/13s-access.js (18 lines, ~0.5k tokens) — v0.138.0 ACCESSIBILITY (mockup "New features"): Text size (Normal / Large / Larger, menu screens) and the keyboard shortcuts list
 TEXT_SIZES, applyTextSize, applyAccess, SHORTCUTS, shortcutsDialog
 
-## apps/web/src/14-images.js (306 lines, ~6.2k tokens) — CARD IMAGES
+## apps/web/src/14-images.js (307 lines, ~6.2k tokens) — CARD IMAGES
 IMG, IDB, normKey, idbOpen, idbTx, setImg, loadImages, shrinkImage, stripExt, findCardByFile, fileCandidates, cardsByKey, ambiguousMsg, findCardByKey, importImages, clearImages, cardImgSrc, imgCls, imgSty, refreshViews, libMsg, renderLibrary, LIBV, LIB_GAP, libSetOf, LIBF, LIB_SIZES, libActive, libFilter, libBar, libMenu, libTool, libCardHTML, libWindow, renderLibraryGrid, libScroll, libSearchInput, deckToText, textToDeck, downloadText, readFileText, libAction
 
 ## packages/engine/src/15-match.js (74 lines, ~1.7k tokens) — MATCH START / END
@@ -191,5 +191,5 @@ closeMatch, startNewGame, matchSummary
 ## packages/engine/src/15b-replay.js (109 lines, ~2.5k tokens) — REPLAY RECORDS (v0.85.0, phase F4 = monorepo step M4 part 1; docs/ai/monorepo-plan.md "Design" 2)
 newPortRecord, portRecord, boardSnapshot, runPortRecord, viewerReplayOf
 
-## apps/web/src/16-events.js (280 lines, ~6.2k tokens) — EVENTS (delegation)
+## apps/web/src/16-events.js (281 lines, ~6.2k tokens) — EVENTS (delegation)
 hScrollable, HDRAG, GAME_ACTS, gameAct, replayOf, lastReplay, runReplay, loadScenario, testSetup, defBuiltin

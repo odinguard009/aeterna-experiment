@@ -64,7 +64,7 @@ function fieldCardHTML(key, kind, f) {
 }
 function rowHTML(title, scroll, key, items, emptyText, cls, pad, tag, cells) {       // items: [{kind, f}]; tag (v0.155.0): the hand-count tag beside a Nexus
   return `<div class="field-row-wrapper ${cls || ''}"><div class="row-header-badge"><span>${title}</span></div>${tag || ''}
-    <div class="field-row" data-scroll="${scroll}">${cells ? items.map(o => fieldCardHTML(key, o.kind, o.f)).join('') + '<div class="slot-ph" aria-hidden="true">Empty</div>'.repeat(Math.max(0, cells - items.length)) : items.length ? items.map(o => fieldCardHTML(key, o.kind, o.f)).join('') + (pad || '') : (pad || `<span class="empty-note">${emptyText}</span>`)}</div></div>`;   // v0.157.0: PC rows show their locked cells (5 Spirits, 1 Nexus) as dashed "Empty" slots, like the mockup
+    <div class="field-row" data-scroll="${scroll}">${cells ? (() => { const ph = '<div class="slot-ph" aria-hidden="true">Empty</div>', rest = Math.max(0, cells - items.length), left = Math.floor(rest / 2); return ph.repeat(left) + items.map(o => fieldCardHTML(key, o.kind, o.f)).join('') + ph.repeat(rest - left); })() : items.length ? items.map(o => fieldCardHTML(key, o.kind, o.f)).join('') + (pad || '') : (pad || `<span class="empty-note">${emptyText}</span>`)}</div></div>`;   // v0.157.0: PC rows show their locked cells (5 Spirits, 1 Nexus) as dashed "Empty" slots, like the mockup
 }
 /* Burst / Mirage Area (top-left corner of each field): sleeve = Burst set face down, card face = Mirage set face up */
 function burstAreaHTML(p) {
@@ -112,6 +112,7 @@ function zoneBox(key, zone, label, valueHTML) {
   return `<div class="zone-box ${key === 'player' ? 'side-you' : 'side-cpu'}" data-a="zone" data-v="${key}:${zone}"><div class="zone-label"><span>${label}</span></div>${valueHTML}</div>`;
 }
 const pv = n => `<span class="pv"><b>${n}</b></span>`;
+const zoneChip = (key, zone, label, valueHTML) => zoneBox(key, zone, label, valueHTML).replace('class="zone-box ', 'class="zone-box zone-chip ');   // PC: a slim box (owner review 2026-10-30: Void sits in a slim chip, Banished has the full box)
 /* v0.158.0 (owner review): the Trash area is bigger and split in two - the cards (Trash) and the cores (Core Trash); the core half keeps data-v "trash" (core flights land there, its zone view lists both) */
 function trashBox(key, p, mark) {
   const tc = p.trashCores, mine = key === 'player';
@@ -205,7 +206,8 @@ function renderBoard() {
         </div>
         ${fieldAreaHTML(O, false)}
         <div class="side-flank-pc">
-          ${zoneBox('opponent', 'void', 'Void', pv(O.void))}
+          ${zoneChip('opponent', 'void', 'Void', pv(O.void))}
+          ${zoneBox('opponent', 'removed', 'Banished', pv(O.removed.length))}
           ${zoneBox('opponent', 'reserve', 'Reserve', resPlate(O))}
           ${zoneBox('opponent', 'life', 'Life', lifePlate(O))}
         </div>
@@ -225,7 +227,7 @@ function renderBoard() {
         <div class="side-flank-pc">
           ${zoneBox('player', 'life', 'Life', lifePlate(P))}
           ${zoneBox('player', 'reserve', 'Reserve', resPlate(P))}
-          ${zoneBox('player', 'void', 'Void', pv(P.void))}
+          ${zoneBox('player', 'removed', 'Banished', pv(P.removed.length))}
         </div>
         ${fieldAreaHTML(P, true)}
         <div class="side-flank-pc">
@@ -235,9 +237,8 @@ function renderBoard() {
         </div>
       </div>
       <div class="hand-container-wrapper">
-        <div class="pc-hand-flank side-you" data-a="zone" data-v="player:removed"><div class="zone-label"><span>Banished</span></div><span class="sub-text">${pileHTML(P.removed.length)}</span></div>
+        <div class="pc-hand-flank side-you" data-a="zone" data-v="player:void"><div class="zone-label"><span>Void</span></div><span class="sub-text">${pv(P.void)}</span></div>
         <div class="hand-area" data-scroll="hand">${P.hand.map((h, i) => handCardHTML(h, i, P.hand.length)).join('')}</div>
-        <div class="pc-hand-flank side-you" data-a="zone" data-v="player:hand"><div class="zone-label"><span>Hand Cnt</span></div><span class="sub-text">${pv(P.hand.length)}</span></div>
       </div>
     </div>`;
   dqa('[data-scroll]').forEach(e => { if (keep[e.dataset.scroll]) { e.style.scrollBehavior = 'auto'; e.scrollLeft = keep[e.dataset.scroll]; e.style.scrollBehavior = ''; } });   // v0.92.0: at once, not smooth, so the cues measure the real card places

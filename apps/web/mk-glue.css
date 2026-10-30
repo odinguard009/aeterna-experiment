@@ -309,3 +309,13 @@ html.layout-pc #view-playmat .field-row .fslot { height: min(92%, calc(var(--car
 .mk .pcol[aria-pressed="true"] i{box-shadow:0 0 0 2px var(--text)}
 .mk .pcol:hover{border-color:var(--you-text)}
 .mk .pcol[aria-pressed="true"]::after{display:none}
+
+/* Deck builder (ALL, owner review 2026-10-30): "Hide filters" keeps only the search box; Sort and the three flag chips share one row */
+#bld.db-min #db-tbar .r2,#bld.db-min #db-tbar .hidem,#bld.db-min #db-tbar .vsep{display:none}
+#bld.db-min #db-chips{display:none}
+.mk #db-tbar .r1>#db-min{flex:none;white-space:nowrap}
+
+/* Battle PC (owner review 2026-10-30): Void is a slim chip (the opponent's on top of its right column, yours under the hand row's left corner), Banished has the
+   full box; the Hand Cnt box is gone (the hand count sits beside the Nexus); the empty Spirit slots sit on both sides so the cards stay in the middle */
+html.layout-pc #view-playmat .side-flank-pc .zone-box.zone-chip { flex: none; height: 46px; }
+html.layout-pc #view-playmat .zone-box.zone-chip .zone-label { font-size: 9px !important; }

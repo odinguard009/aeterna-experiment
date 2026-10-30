@@ -2448,6 +2448,11 @@ html.layout-pc #view-playmat .field-row .fslot{height:min(92%,calc(var(--card-w)
 .mk .pcol[aria-pressed="true"] i{box-shadow:0 0 0 2px var(--text)}
 .mk .pcol:hover{border-color:var(--you-text)}
 .mk .pcol[aria-pressed="true"]::after{display:none}
+#bld.db-min #db-tbar .r2,#bld.db-min #db-tbar .hidem,#bld.db-min #db-tbar .vsep{display:none}
+#bld.db-min #db-chips{display:none}
+.mk #db-tbar .r1>#db-min{flex:none;white-space:nowrap}
+html.layout-pc #view-playmat .side-flank-pc .zone-box.zone-chip{flex:none;height:46px;}
+html.layout-pc #view-playmat .zone-box.zone-chip .zone-label{font-size:9px !important;}
 </style>
 </head>
 <body>
@@ -2631,12 +2636,13 @@ html.layout-pc #view-playmat .field-row .fslot{height:min(92%,calc(var(--card-w)
   <div class="bld" id="bld">
     <section class="bpool" aria-label="Card pool">
       <div class="btool" id="db-tbar">
-        <div class="r1"><div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="db-search" class="in" type="search" placeholder="Search name, code or text" aria-label="Search cards ( / )" autocomplete="off" spellcheck="false" style="width:100%"></div>
+        <div class="r1"><div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="db-search" class="in" type="search" placeholder="Search name, code or text" aria-label="Search cards ( / )" autocomplete="off" spellcheck="false" style="width:100%"></div><button class="btn sm" id="db-min" data-a="db-min" aria-pressed="false" aria-controls="db-tbar" title="Hide the filter buttons and keep the search">▲ Hide filters</button>
           <select id="db-set" class="in hidem" title="Set" aria-label="Set"></select>
           <input id="db-family" class="in hidem" type="search" placeholder="Family" aria-label="Family" autocomplete="off" style="max-width:150px">
           <div class="seg hidem" role="group" aria-label="Card size" id="db-size"></div></div>
         <div class="r2"><span id="db-colbtn"></span><div class="pips" id="db-pips"></div><span class="vsep"></span><span id="db-types" class="row" style="gap:7px"></span><span class="vsep"></span><div class="costs" id="db-costs"></div></div>
-        <div class="r2"><span id="db-groups" class="row" style="gap:7px"></span><button class="chip" id="db-play" data-a="db-chip" data-v="flag:complete" aria-pressed="false">✓ Playable Only</button><button class="chip" id="db-in" data-a="db-chip" data-v="flag:only" aria-pressed="false">In Deck</button><button class="chip" id="db-legal" data-a="db-chip" data-v="flag:legal" aria-pressed="false">Legal Only</button><span id="db-clear-f"></span><span class="grow"></span><span id="db-count" class="sub hidem" role="status" style="font-size:.78em"></span></div></div>
+        <div class="r2"><span id="db-groups" class="row" style="gap:7px"></span></div>
+        <div class="r2"><span id="db-sortbtn"></span><button class="chip" id="db-play" data-a="db-chip" data-v="flag:complete" aria-pressed="false">✓ Playable Only</button><button class="chip" id="db-in" data-a="db-chip" data-v="flag:only" aria-pressed="false">In Deck</button><button class="chip" id="db-legal" data-a="db-chip" data-v="flag:legal" aria-pressed="false">Legal Only</button><span id="db-clear-f"></span><span class="grow"></span><span id="db-count" class="sub hidem" role="status" style="font-size:.78em"></span></div></div>
       <div class="pgrid scroll" id="db-card-list" style="--cols:6" aria-label="Cards"></div>
     </section>
     <div class="scrim" data-a="db-sheet" data-v="" aria-hidden="true"></div>
@@ -2683,7 +2689,8 @@ html.layout-pc #view-playmat .field-row .fslot{height:min(92%,calc(var(--card-w)
         <input id="lib-family" class="in hidem" type="search" placeholder="Family" aria-label="Family" autocomplete="off" style="max-width:150px">
         <div class="seg hidem" role="group" aria-label="Card size" id="lib-size"></div></div>
       <div class="r2"><span id="lib-colbtn"></span><div class="pips" id="lib-pips"></div><span class="vsep"></span><span id="lib-types" class="row" style="gap:7px"></span><span class="vsep"></span><div class="costs" id="lib-costs"></div></div>
-      <div class="r2"><span id="lib-groups" class="row" style="gap:7px"></span><button class="chip" id="lib-play" data-a="lib-complete">✓ Playable Only</button><span id="lib-clear"></span><span class="grow"></span><span id="lib-count" class="sub hidem" role="status" style="font-size:.78em"></span></div></div>
+      <div class="r2"><span id="lib-groups" class="row" style="gap:7px"></span></div>
+      <div class="r2"><span id="lib-sortbtn"></span><button class="chip" id="lib-play" data-a="lib-complete">✓ Playable Only</button><span id="lib-clear"></span><span class="grow"></span><span id="lib-count" class="sub hidem" role="status" style="font-size:.78em"></span></div></div>
     <div class="pgrid scroll" id="lib-grid" style="--cols:6" aria-label="Cards"></div>
     <details class="card flat" style="margin:12px 20px 20px;padding:10px 16px"><summary style="cursor:pointer;font-weight:700">Import &amp; export · card data, images, deck list</summary>
       <div class="col" style="gap:14px;margin-top:10px">
@@ -8716,7 +8723,7 @@ function fieldCardHTML(key, kind, f) {
 }
 function rowHTML(title, scroll, key, items, emptyText, cls, pad, tag, cells) {       // items: [{kind, f}]; tag (v0.155.0): the hand-count tag beside a Nexus
   return `<div class="field-row-wrapper ${cls || ''}"><div class="row-header-badge"><span>${title}</span></div>${tag || ''}
-    <div class="field-row" data-scroll="${scroll}">${cells ? items.map(o => fieldCardHTML(key, o.kind, o.f)).join('') + '<div class="slot-ph" aria-hidden="true">Empty</div>'.repeat(Math.max(0, cells - items.length)) : items.length ? items.map(o => fieldCardHTML(key, o.kind, o.f)).join('') + (pad || '') : (pad || `<span class="empty-note">${emptyText}</span>`)}</div></div>`;   // v0.157.0: PC rows show their locked cells (5 Spirits, 1 Nexus) as dashed "Empty" slots, like the mockup
+    <div class="field-row" data-scroll="${scroll}">${cells ? (() => { const ph = '<div class="slot-ph" aria-hidden="true">Empty</div>', rest = Math.max(0, cells - items.length), left = Math.floor(rest / 2); return ph.repeat(left) + items.map(o => fieldCardHTML(key, o.kind, o.f)).join('') + ph.repeat(rest - left); })() : items.length ? items.map(o => fieldCardHTML(key, o.kind, o.f)).join('') + (pad || '') : (pad || `<span class="empty-note">${emptyText}</span>`)}</div></div>`;   // v0.157.0: PC rows show their locked cells (5 Spirits, 1 Nexus) as dashed "Empty" slots, like the mockup
 }
 /* Burst / Mirage Area (top-left corner of each field): sleeve = Burst set face down, card face = Mirage set face up */
 function burstAreaHTML(p) {
@@ -8764,6 +8771,7 @@ function zoneBox(key, zone, label, valueHTML) {
   return `<div class="zone-box ${key === 'player' ? 'side-you' : 'side-cpu'}" data-a="zone" data-v="${key}:${zone}"><div class="zone-label"><span>${label}</span></div>${valueHTML}</div>`;
 }
 const pv = n => `<span class="pv"><b>${n}</b></span>`;
+const zoneChip = (key, zone, label, valueHTML) => zoneBox(key, zone, label, valueHTML).replace('class="zone-box ', 'class="zone-box zone-chip ');   // PC: a slim box (owner review 2026-10-30: Void sits in a slim chip, Banished has the full box)
 /* v0.158.0 (owner review): the Trash area is bigger and split in two - the cards (Trash) and the cores (Core Trash); the core half keeps data-v "trash" (core flights land there, its zone view lists both) */
 function trashBox(key, p, mark) {
   const tc = p.trashCores, mine = key === 'player';
@@ -8857,7 +8865,8 @@ function renderBoard() {
         </div>
         ${fieldAreaHTML(O, false)}
         <div class="side-flank-pc">
-          ${zoneBox('opponent', 'void', 'Void', pv(O.void))}
+          ${zoneChip('opponent', 'void', 'Void', pv(O.void))}
+          ${zoneBox('opponent', 'removed', 'Banished', pv(O.removed.length))}
           ${zoneBox('opponent', 'reserve', 'Reserve', resPlate(O))}
           ${zoneBox('opponent', 'life', 'Life', lifePlate(O))}
         </div>
@@ -8877,7 +8886,7 @@ function renderBoard() {
         <div class="side-flank-pc">
           ${zoneBox('player', 'life', 'Life', lifePlate(P))}
           ${zoneBox('player', 'reserve', 'Reserve', resPlate(P))}
-          ${zoneBox('player', 'void', 'Void', pv(P.void))}
+          ${zoneBox('player', 'removed', 'Banished', pv(P.removed.length))}
         </div>
         ${fieldAreaHTML(P, true)}
         <div class="side-flank-pc">
@@ -8887,9 +8896,8 @@ function renderBoard() {
         </div>
       </div>
       <div class="hand-container-wrapper">
-        <div class="pc-hand-flank side-you" data-a="zone" data-v="player:removed"><div class="zone-label"><span>Banished</span></div><span class="sub-text">${pileHTML(P.removed.length)}</span></div>
+        <div class="pc-hand-flank side-you" data-a="zone" data-v="player:void"><div class="zone-label"><span>Void</span></div><span class="sub-text">${pv(P.void)}</span></div>
         <div class="hand-area" data-scroll="hand">${P.hand.map((h, i) => handCardHTML(h, i, P.hand.length)).join('')}</div>
-        <div class="pc-hand-flank side-you" data-a="zone" data-v="player:hand"><div class="zone-label"><span>Hand Cnt</span></div><span class="sub-text">${pv(P.hand.length)}</span></div>
       </div>
     </div>`;
   dqa('[data-scroll]').forEach(e => { if (keep[e.dataset.scroll]) { e.style.scrollBehavior = 'auto'; e.scrollLeft = keep[e.dataset.scroll]; e.style.scrollBehavior = ''; } });   // v0.92.0: at once, not smooth, so the cues measure the real card places
@@ -9217,7 +9225,8 @@ function dbBar() {
   $('db-types').innerHTML = filterTypesHTML(DBF, 'db-chip');
   $('db-costs').innerHTML = DB_COSTS.map(k => `<button class="cbtn${on(DBF.costs, k) ? ' on' : ''}" data-a="db-chip" data-v="costs:${k}" aria-pressed="${on(DBF.costs, k)}" aria-label="Cost ${k}">${k === '10' ? '10+' : k}</button>`).join('');
   $('db-colbtn').innerHTML = ddButton(DBF, 'colour', 'Colour', 'db-dd') + ddButton(DBF, 'type', 'Type', 'db-dd') + ddButton(DBF, 'cost', 'Cost', 'db-dd');
-  $('db-groups').innerHTML = ddButton(DBF, 'group', 'Group', 'db-dd') + ddButton(DBF, 'family', 'Family', 'db-dd') + ddButton(DBF, 'bp', 'BP', 'db-dd') + ddButton(DBF, 'cores', 'Cores', 'db-dd') + ddButton(DBF, 'icon', 'Block', 'db-dd') + ddButton(DBF, 'rarity', 'Rarity', 'db-dd') + ddButton(DBF, 'collab', 'Collab', 'db-dd') + ddButton(DBF, 'sort', 'Sort', 'db-dd');
+  $('db-groups').innerHTML = ddButton(DBF, 'group', 'Group', 'db-dd') + ddButton(DBF, 'family', 'Family', 'db-dd') + ddButton(DBF, 'bp', 'BP', 'db-dd') + ddButton(DBF, 'cores', 'Cores', 'db-dd') + ddButton(DBF, 'icon', 'Block', 'db-dd') + ddButton(DBF, 'rarity', 'Rarity', 'db-dd') + ddButton(DBF, 'collab', 'Collab', 'db-dd');
+  $('db-sortbtn').innerHTML = ddButton(DBF, 'sort', 'Sort', 'db-dd');            // owner review 2026-10-30: Sort shares a row with the three flag chips
   [['db-play', 'complete'], ['db-in', 'only'], ['db-legal', 'legal']].forEach(([id, k]) => { const b = $(id); b.classList.toggle('on', DBF[k]); b.setAttribute('aria-pressed', String(DBF[k])); });
   dbMenu();
   if (set.dataset.sig !== sig) { set.innerHTML = '<option value="">All sets</option>' + sets.map(x => `<option value="${esc(x)}">${esc(x)}</option>`).join(''); set.dataset.sig = sig; }
@@ -9225,7 +9234,17 @@ function dbBar() {
   if (document.activeElement !== $('db-family')) $('db-family').value = DBF.family;
   $('db-size').innerHTML = DB_SIZE_LIST.map(([v, l]) => `<button data-a="db-size" data-v="${v}" aria-pressed="${DB_SIZE === v}">${l}</button>`).join('');
   const n = dbActiveCount(); $('db-clear-f').innerHTML = n ? `<button class="chip" data-a="db-freset">Clear ${n} ✕</button>` : '';
+  dbMinApply(n);
 }
+/* Hide / show filters (owner review 2026-10-30): everything in the toolbar except the search box folds away, like the Library's "Hide filters". Remembered on this device. */
+let DB_MIN = false; try { DB_MIN = localStorage.getItem('bse.dbmin') === '1'; } catch (e) { /* blocked: this visit only */ }
+function dbMinApply(n) {
+  const b = $('db-min'), v = $('bld'); if (!b || !v) return;
+  v.classList.toggle('db-min', DB_MIN); b.setAttribute('aria-pressed', String(DB_MIN));
+  if (n === undefined) n = dbActiveCount();
+  b.textContent = DB_MIN ? '▼ Show filters' + (n ? ` (${n})` : '') : '▲ Hide filters';
+}
+function dbMinToggle() { DB_MIN = !DB_MIN; try { localStorage.setItem('bse.dbmin', DB_MIN ? '1' : '0'); } catch (e) { /* blocked */ } dbMinApply(); }
 function dbMenu() {                   // the dropdown menu (Colour, Type and Cost on phone, Group everywhere)
   document.querySelectorAll('#db-tbar .ddmenu').forEach(m => m.remove());
   const tb = $('db-tbar'), btn = DBF.dd && tb.querySelector(`[data-a="db-dd"][data-v="${DBF.dd}"]`); if (!btn) return;
@@ -11259,7 +11278,8 @@ function libBar() {                                   // the mockup toolbar: col
   $('lib-types').innerHTML = filterTypesHTML(LIBF, 'lib-f');
   $('lib-costs').innerHTML = DB_COSTS.map(k => `<button class="cbtn${on(LIBF.costs, k) ? ' on' : ''}" data-a="lib-f" data-v="costs:${k}" aria-pressed="${on(LIBF.costs, k)}" aria-label="Cost ${k}">${k === '10' ? '10+' : k}</button>`).join('');
   $('lib-colbtn').innerHTML = ddButton(LIBF, 'colour', 'Colour', 'lib-dd') + ddButton(LIBF, 'type', 'Type', 'lib-dd') + ddButton(LIBF, 'cost', 'Cost', 'lib-dd');
-  $('lib-groups').innerHTML = ddButton(LIBF, 'group', 'Group', 'lib-dd') + ddButton(LIBF, 'family', 'Family', 'lib-dd') + ddButton(LIBF, 'bp', 'BP', 'lib-dd') + ddButton(LIBF, 'cores', 'Cores', 'lib-dd') + ddButton(LIBF, 'icon', 'Block', 'lib-dd') + ddButton(LIBF, 'rarity', 'Rarity', 'lib-dd') + ddButton(LIBF, 'collab', 'Collab', 'lib-dd') + ddButton(LIBF, 'sort', 'Sort', 'lib-dd');
+  $('lib-groups').innerHTML = ddButton(LIBF, 'group', 'Group', 'lib-dd') + ddButton(LIBF, 'family', 'Family', 'lib-dd') + ddButton(LIBF, 'bp', 'BP', 'lib-dd') + ddButton(LIBF, 'cores', 'Cores', 'lib-dd') + ddButton(LIBF, 'icon', 'Block', 'lib-dd') + ddButton(LIBF, 'rarity', 'Rarity', 'lib-dd') + ddButton(LIBF, 'collab', 'Collab', 'lib-dd');
+  $('lib-sortbtn').innerHTML = ddButton(LIBF, 'sort', 'Sort', 'lib-dd');
   $('lib-play').classList.toggle('on', LIBF.complete);
   libMenu();
   $('lib-size').innerHTML = LIB_SIZES.map(([v, l]) => `<button data-a="lib-size" data-v="${v}" aria-pressed="${LIBF.size === v}">${l}</button>`).join('');
@@ -11720,6 +11740,7 @@ document.addEventListener('click', e => {
   else if (a === 'db-row') { const i = v.lastIndexOf(':'); dbChange(v.slice(0, i), Number(v.slice(i + 1))); }
   else if (a === 'db-key') dbKey(v);
   else if (a === 'db-freset') dbResetFilters();
+  else if (a === 'db-min') dbMinToggle();
   else if (/^db-dd/.test(a)) dbDd(a, v);
   else if (a === 'db-cover') dbCover(v);
   else if (a === 'db-play-now') dbPlayNow();
