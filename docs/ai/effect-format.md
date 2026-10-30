@@ -160,3 +160,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v120 (v0.197.0, Lane K): trigger `AMPLIFY` ("When your Spirit activates Amplify"; fires on your field cards after an Amplify Spirit resolves its per-count Invoke BP boost).
 - v121 (v0.197.0, Lane K): `diffName: true` on `ALLY_*` triggers ("a Spirit with a different name from this Spirit's"; the acting Spirit must not share the effect owner's card name).
 - v122 (v0.197.0, Lane K): condition `byOwnFx: {family:[..]}` (on a DESTROYED effect: "if this Spirit was destroyed by your <family> effect"; `removeSpirit` stores the effect card in `s.lostFxSrc`).
+- v123 (v0.197.0, Lane K): action `ACTIVATE_SUMMONED {match}` ("target one of your <X> Spirits; activate one of its When Summoned effects"; the first effect valid at its level is used).

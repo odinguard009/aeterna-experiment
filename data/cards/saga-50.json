@@ -4364,15 +4364,35 @@
   "image": "26RBS01-070.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Destroyed by the Opponent) You can target a \"Topaz\" family Spirit you control. Activate one of its When Summoned effects."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "bicon": [
    "A"
   ],
-  "rcode": "R"
+  "rcode": "R",
+  "effects": [
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "byOpp": true
+    },
+    "optional": true,
+    "actions": [
+     {
+      "do": "ACTIVATE_SUMMONED",
+      "match": {
+       "family": [
+        "Topaz"
+       ]
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RBS01-071",

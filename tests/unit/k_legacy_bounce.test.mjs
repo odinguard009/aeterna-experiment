@@ -794,3 +794,16 @@ test('K-62 Renki: byOwnFx returns it to the Hand only when your Beastleptic/Phan
     return out; })()`);
   assert.deepEqual(r, [true, false, false, true]);
 });
+
+test('K-63 Steguman: ACTIVATE_SUMMONED runs a Topaz Spirit\'s When Summoned effect', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    P.spirits.length = 0; const t = BS.mkInst('26RBS01-073'); t.cores = 3; P.spirits.push(t);
+    const a = BS.mkInst('26RBS01-070'); P.life = 1; P.void = 2;
+    await BS.runActions({ p: P, opp: O, src: a, ctx: {} }, { actions: [{ do: 'ACTIVATE_SUMMONED', match: { family: ['Topaz'] } }] }); await BS.flushBursts();
+    const hit = [P.life, P.void];
+    P.spirits.length = 0; P.life = 1; P.void = 2;
+    await BS.runActions({ p: P, opp: O, src: a, ctx: {} }, { actions: [{ do: 'ACTIVATE_SUMMONED', match: { family: ['Topaz'] } }] });
+    return [hit, [P.life, P.void]]; })()`);
+  assert.deepEqual(r, [[2, 1], [1, 2]]);
+});

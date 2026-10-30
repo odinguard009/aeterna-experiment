@@ -149,6 +149,20 @@ Object.assign(FX_ACTIONS, {
       removeSpirit(c.p, t, 'destroyed', false); checkDepletion(c.p);
       if (a.voidByCost) { const m = takeFromVoid(c.p, CARDS[t.id].cost); c.p.reserve.n += m; log(`${CARDS[c.src.id].name}: ${m} core${m === 1 ? '' : 's'} move from the Void to the Reserve.`); }      // v0.183 (schema 46)
     } } });
+/* v0.197 ACTIVATE_SUMMONED {match}: "Target one of your <X> Spirits. Activate one of its (When Summoned) effects." The first effect it can resolve at its level is used (house reading of "one of"). */
+FX_ACTIONS.ACTIVATE_SUMMONED = {
+  chk: a => hasMatch(a.match),
+  txt: () => 'activate one of the When Summoned effects of one of your matching Spirits',
+  eff: (c, t) => fxEntries(t).map(x => x.e).find(e => e.trigger === 'SUMMONED' && !(e.lv && !e.lv.includes(lvNo(t))) && !e.alsoAdvent && fxCan({ p: c.p, opp: c.opp, src: t, ctx: {} }, e)),
+  cands: (c, a) => c.p.spirits.filter(s => !s.noFx && fxMatch(CARDS[s.id], a.match) && FX_ACTIONS.ACTIVATE_SUMMONED.eff(c, s)),
+  can: (c, a) => FX_ACTIONS.ACTIVATE_SUMMONED.cands(c, a).length > 0,
+  run: async (c, a) => {
+    const L = FX_ACTIONS.ACTIVATE_SUMMONED.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
+    const t = c.p.cpu ? L.slice().sort((x, y) => bpOf(y) - bpOf(x))[0] : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your Spirits to activate its When Summoned effect (glowing).`);
+    const e = t && FX_ACTIONS.ACTIVATE_SUMMONED.eff(c, t); if (!e) { c.ctx.did = false; return; }
+    log(`${CARDS[c.src.id].name}: ${CARDS[t.id].name}'s When Summoned effect activates.`);
+    await runActions({ p: c.p, opp: c.opp, src: t, ctx: {} }, e, 'SUMMONED');
+  } };
 Object.assign(FX_ACTIONS, {
   DESTROY_PICKED: { chk: () => true, txt: () => 'destroy that Spirit',
     can: c => !!(c.ctx && c.ctx.picked),
