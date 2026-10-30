@@ -59,7 +59,7 @@ async function doBattleInner(attKey, att) {
     if (G.over) return;
     if (!A.spirits.includes(att) || !D.spirits.includes(blk)) { log('The battle ends: a fighting Spirit left the field.'); io.view({ type: 'board' }); return; }
     const ab = bpOf(att), bb = bpOf(blk); G.battleResolved = true;      // v0.78 Curse: armed only when the battle reaches the BP comparison
-    const safe = s => s.noBpDestroy === G.battleNo;      // v0.196 NO_BP_DESTROY: "can't be destroyed by BP comparison" (this battle)
+    const safe = s => s.noBpDestroy === G.battleNo || bpCompareLocked(s);      // v0.196 NO_BP_DESTROY: "can't be destroyed by BP comparison" (this battle)
     if (ab >= bb && !safe(blk)) removeSpirit(D, blk, 'destroyed', 'battle');            // v0.73 'battle' = by the opponent, not by an opposing effect
     if (ab <= bb && !safe(att)) removeSpirit(A, att, 'destroyed', 'battle');
     if (ab >= bb && G.evQ) G.evQ.push({ type: 'DESTROYS', key: A.key, inst: att });

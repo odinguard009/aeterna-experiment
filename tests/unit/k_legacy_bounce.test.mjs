@@ -1138,3 +1138,35 @@ test('K-86 Lira-Rali LV2 gets +2000 only while attacking; Nei-Lanetail LV2 Flash
     return out; })()`);
   assert.deepEqual(r, [2000, [2000, true, false, null], [4000, true, true, 2000]]);
 });
+
+test('K-87 Zinoris: while attacking, neither Spirit is destroyed by BP comparison; End Step refreshes a Topaz Spirit only if Zinoris is exhausted', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    P.spirits.length = 0; P.nexus.length = 0; O.spirits.length = 0; O.nexus.length = 0; P.cpu = true; O.cpu = true;
+    const z = BS.mkInst('26RBS02-054'); z.cores = 3; P.spirits.push(z);
+    const t = BS.mkInst('BS48-033'); t.cores = 1; O.spirits.push(t);
+    G.active = P.key; G.step = 5; const life = O.life; await BS.doBattle(P.key, z);
+    const lock1 = [P.spirits.includes(z), O.spirits.includes(t), O.life < life];
+    const out = [lock1];
+    for (const ex of [false, true]) {
+      P.spirits.length = 0; z.exhausted = ex; P.spirits.push(z);
+      const tp = BS.mkInst('26RBS02-054'); tp.cores = 1; tp.exhausted = true; P.spirits.push(tp);
+      await BS.fireFx(P, 'END_STEP', z, { subject: z });
+      out.push((z.exhausted ? 1 : 0) + (tp.exhausted ? 1 : 0));
+    }
+    return out; })()`);
+  assert.deepEqual(r, [[true, true, true], 1, 1]);
+});
+
+test('K-88 Rideshooter: RYUKI Spirits get +1000 only in the opposing Attack Step; LV2 block reveal needs Hand <= 4', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    P.spirits.length = 0; P.nexus.length = 0; O.spirits.length = 0; O.nexus.length = 0; P.cpu = true; O.cpu = true;
+    const n = BS.mkInst('26RCB01-058'); n.cores = 2; P.nexus.push(n);
+    const s = BS.mkInst('26RCB01-025'); s.cores = 1; P.spirits.push(s);
+    G.active = P.key; G.step = 5; G.attacker = null; const mine = BS.bpOf(s);
+    G.active = O.key; G.step = 5; const during = BS.bpOf(s);
+    const rev = async (h) => { P.hand.length = 0; for (let i = 0; i < h; i++) P.hand.push(BS.mkInst('26RCB01-025')); P.deck.unshift(BS.mkInst('26RCB01-064')); await BS.fireFx(P, 'ALLY_BLOCKS', s, { subject: s, blocker: s }); return P.hand.length - h; };
+    return [during - mine, await rev(5), await rev(2)]; })()`);
+  assert.deepEqual(r, [1000, 0, 1]);
+});
