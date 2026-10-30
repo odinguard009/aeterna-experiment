@@ -38380,12 +38380,6 @@
   "M_OPTIONAL",
   "T_ATTACKS"
  ],
- "26RBS02-074": [
-  "A_BP_PLUS",
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "T_START_ATTACK"
- ],
  "26RBS02-075": [
   "A_BP_PLUS",
   "C_LEVEL",
@@ -38548,12 +38542,6 @@
   "M_UP_TO",
   "T_ALLY_BLOCKED",
   "T_ATTACKS"
- ],
- "26RBS03-005": [
-  "A_BP_PLUS",
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "T_START_ATTACK"
  ],
  "26RBS03-008": [
   "A_BP_PLUS",

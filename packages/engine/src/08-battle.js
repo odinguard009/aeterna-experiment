@@ -24,7 +24,7 @@ function battleEndAttack() {                          // v0.43 "when this battle
   G.attackEnded = G.turnNo; log('The battle ends, and with it the Attack Step.');
 }
 const attackStepOver = () => !!G && G.attackEnded === G.turnNo;
-async function doBattle(attKey, att) { try { G.eob = []; G.battleMagic = []; G.battleResolved = false; await doBattleInner(attKey, att); if (G && !G.over && G.eob && G.eob.length) await endOfBattle(); } finally { if (G) { G.eob = null; G.battleMagic = null; G.battleResolved = false; battleEndAttack(); G.attacker = null; G.blocker = null; G.noBurst = null; for (const k of ['player', 'opponent']) for (const f of fieldList(G.p[k])) f.symBattle = 0; } } }
+async function doBattle(attKey, att) { try { G.eob = []; G.battleMagic = []; G.battleResolved = false; await doBattleInner(attKey, att); if (G && !G.over && G.eob && G.eob.length) await endOfBattle(); const a2 = G && G.attacker; if (a2 && !G.over && G.p[attKey].spirits.includes(a2)) await fireFx(G.p[attKey], 'ALLY_BATTLE_END', null, { subject: a2, attacker: a2 }); } finally { if (G) { G.eob = null; G.battleMagic = null; G.battleResolved = false; battleEndAttack(); G.attacker = null; G.blocker = null; G.noBurst = null; for (const k of ['player', 'opponent']) for (const f of fieldList(G.p[k])) f.symBattle = 0; } } }
 async function doBattleInner(attKey, att) {
   const A = G.p[attKey], D = G.p[other(attKey)];
   if (!(await payAbTax(A, att, 'attack'))) { io.view({ type: 'board' }); return; }   // v0.47 Plutonic Wall

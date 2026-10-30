@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 7151,
+  "cards": 7149,
   "per_saga": {
    "1": 676,
    "2": 313,
@@ -19,15 +19,15 @@
    "15": 355,
    "16": 334,
    "17": 110,
-   "50": 154
+   "50": 152
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 1555,
+  "skipped_curated": 1557,
   "nexus_levels_added": 707,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 463,
+  "image_problems": 462,
   "number_conflicts": 4,
   "merged": 107,
   "brave_unparsed": 171,
@@ -35,7 +35,7 @@
   "odd_reduction": 807,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 461
+  "without_image": 460
  },
  "tokens": [
   "BS73-T001",
@@ -1433,6 +1433,7 @@
   "26RBS02-070",
   "26RBS02-071",
   "26RBS02-072",
+  "26RBS02-074",
   "26RBS02-080",
   "26RBS02-084",
   "26RBS02-087",
@@ -1527,6 +1528,7 @@
   "26RBS03-002",
   "26RBS03-003",
   "26RBS03-004",
+  "26RBS03-005",
   "26RBS03-006",
   "26RBS03-007",
   "26RBS03-009",
@@ -4576,11 +4578,6 @@
    "id": "26RCB01-X07",
    "name": "Kamen Rider Ex-Aid Muteki Gamer",
    "problem": "ambiguous name (2 files, none in set 26RCB01)"
-  },
-  {
-   "id": "26RBS03-005",
-   "name": "Suscrofa",
-   "problem": "no image"
   },
   {
    "id": "26RBS03-008",

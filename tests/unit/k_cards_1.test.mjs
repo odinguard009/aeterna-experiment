@@ -148,3 +148,17 @@ test('K-106 26RBS03-018 When Destroyed: summons a Cost 4 or less Beastleptic Spi
     return [P.spirits.includes(lo), P.trash.includes(lo), P.trash.includes(hi), P.spirits.includes(hi)]; })()`);
   assert.deepEqual(r, [true, false, true, false], JSON.stringify(r));
 });
+
+test('K-107 26RBS02-074 / 26RBS03-005 LV2: at the end of the battle of a 10000+ BP Spirit, a core from the Trash goes to a non-attacking (074) / matching-family (005) Spirit; not below 10000 BP', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const nx = BS.mkInst('26RBS02-074'); nx.cores = 2; P.nexus.push(nx);
+    const big = BS.mkInst('26RBS02-013'); big.cores = 3; P.spirits.push(big);
+    const ally = BS.mkInst('26RBS02-013'); ally.cores = 3; P.spirits.push(ally);
+    const run = async a => { P.trashCores.n = 2; const b = big.cores + ally.cores; G.attacker = a; await BS.fireFx(P, 'ALLY_BATTLE_END', null, { subject: a, attacker: a }); G.attacker = null; return [big.cores + ally.cores - b, ally.cores - 3]; };
+    const low = await run(big);
+    big.bpMod = 10000; ally.bpMod = 0; const hi = await run(big);
+    return [low, hi]; })()`);
+  assert.deepEqual(r[0], [0, 0], JSON.stringify(r));
+  assert.equal(r[1][1], 1, JSON.stringify(r));
+});
