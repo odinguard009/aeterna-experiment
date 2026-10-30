@@ -96,3 +96,13 @@ test('K-155 26RBS02-X08: Invoke exhausts a Current Spirit for +1 symbol; LV2 ref
     return [cl <= 5 ? !lo.exhausted : lo.exhausted, ch <= 5 ? !hi.exhausted : hi.exhausted, fx[0].cost.exhaustOwn.match.keyword, fx[1].match.symbolsGe]; })()`);
   assert.deepEqual(r, [true, true, 'Current', 2], JSON.stringify(r));
 });
+
+test('K-156 26RBS02-X14: BP_MINUS zeroBottom returns a 0 BP opposing Spirit to the deckbottom; Invoke returnOwn.toHand costLe 6', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const fx = BS.CARDS['26RBS02-X14'].effects, t = BS.mkInst('BS48-047'); O.spirits.push(t); t.bpMod = -(bpOf(t) - 4000);
+    const c = { p: P, opp: O, src: BS.mkInst('26RBS02-X14'), ctx: {} }, d0 = O.deck.length;
+    await BS.runActions(c, { actions: fx[0].actions });
+    return [O.spirits.length, O.deck.length - d0, fx[0].if.firstAttack, fx[1].cost.returnOwn.toHand, fx[1].cost.returnOwn.match.costLe]; })()`);
+  assert.deepEqual(r, [0, 1, false, true, 6], JSON.stringify(r));
+});

@@ -21,7 +21,7 @@ const INVOKE_WHEN = {
 const INVOKE_COSTS = ['pay', 'exhaustSelf', 'destroySelf', 'exhaustOwn', 'discard', 'returnSelf', 'returnOwn', 'destroyOwn', 'soulToTrash'];      // v0.184: returnSelf / returnOwn = "Return <this / one of your X> to the deckbottom"
 const invokeMatchOK = m => m == null || (typeof m === 'object' && (m.family == null || (Array.isArray(m.family) && m.family.length > 0 && m.family.every(x => typeof x === 'string' && x)))
   && (m.name == null || (Array.isArray(m.name) && m.name.length > 0 && m.name.every(x => typeof x === 'string' && x)))      // v0.169: a card-name list ("Kamen Rider Bravo")
-  && (m.costGe == null || Number.isInteger(m.costGe)) && (m.costIn == null || (Array.isArray(m.costIn) && m.costIn.length > 0 && m.costIn.every(Number.isInteger))) && (m.type == null || ['Spirit', 'Nexus', 'Magic', 'Ultimate'].includes(m.type)) && (m.color == null || COLORS.includes(m.color)) && (m.tr == null || m.tr === true));
+  && (m.costGe == null || Number.isInteger(m.costGe)) && (m.costLe == null || Number.isInteger(m.costLe)) && (m.costIn == null || (Array.isArray(m.costIn) && m.costIn.length > 0 && m.costIn.every(Number.isInteger))) && (m.type == null || ['Spirit', 'Nexus', 'Magic', 'Ultimate'].includes(m.type)) && (m.color == null || COLORS.includes(m.color)) && (m.tr == null || m.tr === true));
 /* parse hook (02c): returns an error text or null; copies the checked fields onto o */
 function invokeParse(e, o) {
   o.invoke = true;
@@ -35,7 +35,7 @@ function invokeParse(e, o) {
   if ((c.exhaustSelf != null && c.exhaustSelf !== true) || (c.destroySelf != null && c.destroySelf !== true)) return 'Invoke cost exhaustSelf / destroySelf must be true';
   if (c.returnSelf != null && c.returnSelf !== true) return 'Invoke cost returnSelf must be true';
   if (c.soulToTrash != null && c.soulToTrash !== true) return 'Invoke cost soulToTrash must be true';      // v170 "Send your Soul Core to the Trash"
-  if (c.returnOwn != null && !(typeof c.returnOwn === 'object' && ['nexus', 'spirit'].includes(c.returnOwn.kind) && invokeMatchOK(c.returnOwn.match))) return 'Invoke cost "returnOwn" must look like {"kind":"nexus","match":{"family":["X"]}}';
+  if (c.returnOwn != null && !(typeof c.returnOwn === 'object' && ['nexus', 'spirit'].includes(c.returnOwn.kind) && invokeMatchOK(c.returnOwn.match) && (c.returnOwn.toHand == null || c.returnOwn.toHand === true))) return 'Invoke cost "returnOwn" must look like {"kind":"nexus","match":{"family":["X"]}}';
   if (c.exhaustOwn != null && !(typeof c.exhaustOwn === 'object' && ['nexus', 'spirit'].includes(c.exhaustOwn.kind) && invokeMatchOK(c.exhaustOwn.match) && (c.exhaustOwn.n == null || (Number.isInteger(c.exhaustOwn.n) && c.exhaustOwn.n >= 2 && c.exhaustOwn.n <= 3)))) return 'Invoke cost "exhaustOwn" must look like {"kind":"nexus","match":{"family":["X"]}}';
   if (c.destroyOwn != null && !(typeof c.destroyOwn === 'object' && ['nexus', 'spirit'].includes(c.destroyOwn.kind) && invokeMatchOK(c.destroyOwn.match))) return 'Invoke cost "destroyOwn" must look like {"kind":"nexus","match":{"family":["X"]}}';
   if (c.discard != null && !(typeof c.discard === 'object' && invokeMatchOK(c.discard.match))) return 'Invoke cost "discard" must look like {"match":{"family":["X"]}}';
@@ -81,9 +81,9 @@ async function payInvokeCost(p, f, c) {
   if (c.returnOwn) {
     const L = returnOwnCands(p, c.returnOwn); if (!L.length) return false;
     const t = p.cpu ? L.slice().sort((a, b) => (a.cores - b.cores))[0]
-      : await fxPickTarget({ p, opp: G.p[other(p.key)], src: f, ctx: {} }, L, `✨ <b>${esc(nm)}</b><br>Tap one of your ${c.returnOwn.kind === 'nexus' ? 'Nexuses' : 'Spirits'} to return to the deckbottom (the cost).`);
+      : await fxPickTarget({ p, opp: G.p[other(p.key)], src: f, ctx: {} }, L, `✨ <b>${esc(nm)}</b><br>Tap one of your ${c.returnOwn.kind === 'nexus' ? 'Nexuses' : 'Spirits'} to return to the ${c.returnOwn.toHand ? 'Hand' : 'deckbottom'} (the cost).`);
     if (!t) return false;
-    bounceCard(p, t, 'deckBottom'); return true;
+    bounceCard(p, t, c.returnOwn.toHand ? 'hand' : 'deckBottom'); return true;      // v180 toHand
   }
   if (c.destroyOwn) {
     const L = returnOwnCands(p, c.destroyOwn); if (!L.length) return false;
@@ -124,7 +124,7 @@ const bpBattle = i => (i.bpB && G && G.attacker && i.bpB.b === G.battleNo ? i.bp
 function addBattleBp(s, n) { if (!(s.bpB && s.bpB.b === G.battleNo)) s.bpB = { n: 0, b: G.battleNo }; s.bpB.n += n; }
 const invokeCostText = c => !c ? '' : c.pay ? `pay ${c.pay} cost${c.pay === 1 ? '' : 's'}` : c.exhaustSelf ? 'exhaust this card' : c.destroySelf ? 'destroy this card'
   : c.exhaustOwn ? `exhaust one of your ${c.exhaustOwn.match && c.exhaustOwn.match.family ? '"' + c.exhaustOwn.match.family.join('"/"') + '" ' : ''}${c.exhaustOwn.kind === 'nexus' ? 'Nexuses' : 'Spirits'}`
-  : c.returnSelf ? 'return this card to the deckbottom' : c.returnOwn ? `return one of your ${c.returnOwn.match && c.returnOwn.match.family ? '"' + c.returnOwn.match.family.join('"/"') + '" ' : ''}${c.returnOwn.kind === 'nexus' ? 'Nexuses' : 'Spirits'} to the deckbottom`
+  : c.returnSelf ? 'return this card to the deckbottom' : c.returnOwn ? `return one of your ${c.returnOwn.match && c.returnOwn.match.family ? '"' + c.returnOwn.match.family.join('"/"') + '" ' : ''}${c.returnOwn.kind === 'nexus' ? 'Nexuses' : 'Spirits'} to the ${c.returnOwn.toHand ? 'Hand' : 'deckbottom'}`
   : c.destroyOwn ? `destroy one of your ${c.destroyOwn.match && c.destroyOwn.match.family ? '"' + c.destroyOwn.match.family.join('"/"') + '" ' : ''}${c.destroyOwn.kind === 'nexus' ? 'Nexuses' : 'Spirits'}`
   : c.discard ? `discard a ${c.discard.match && c.discard.match.family ? '"' + c.discard.match.family.join('"/"') + '" family ' : ''}card` : '';
 const ownTargetCands = (c, a) => c.p.spirits.filter(s => fxMatch(CARDS[s.id], a.match) && (!a.match || !a.match.tr || (CARDS[s.id].trueRelease && lvNo(s) >= 2)) && (!a.attacking || s === G.attacker) && (!a.coreFromSelf || s !== c.src) && (!a.other || s !== c.src) && !fxImmune(c.p, s, c));
@@ -221,8 +221,8 @@ function cpuInvokeOK(p, f, e, timing) {
    in Standard a Spirit at 0 BP is not destroyed by the rules (Eternal manual FAQ p. 68, as in v0.55), only by this text */
 (() => {
   const M = FX_ACTIONS.BP_MINUS, mChk = M.chk, mRun = M.run, mTxt = M.txt;
-  M.chk = a => (a.zeroDestroy == null || a.zeroDestroy === true) && (a.all == null || a.all === true) && (a.nPer == null || (a.nPer && /^[A-Za-z ]{3,30}$/.test(a.nPer.team) && Number.isInteger(a.nPer.n) && a.nPer.n >= 1000 && a.nPer.n <= 5000 && a.nPer.n % 1000 === 0)) && (a.nLegacy == null || (Number.isInteger(a.nLegacy) && a.nLegacy >= 1000 && a.nLegacy <= 5000 && a.nLegacy % 1000 === 0)) && mChk(a);      // v0.195 nLegacy: "for each EX Symbol banished via this Legacy, BP- decreases n further"; nPer: "for each <team> Spirit you control, BP- decreases n further"
-  M.txt = a => mTxt(a) + (a.zeroDestroy ? ', then destroy it if it has 0 BP' : '');
+  M.chk = a => (a.zeroDestroy == null || a.zeroDestroy === true) && (a.zeroBottom == null || a.zeroBottom === true) && (a.all == null || a.all === true) && (a.nPer == null || (a.nPer && /^[A-Za-z ]{3,30}$/.test(a.nPer.team) && Number.isInteger(a.nPer.n) && a.nPer.n >= 1000 && a.nPer.n <= 5000 && a.nPer.n % 1000 === 0)) && (a.nLegacy == null || (Number.isInteger(a.nLegacy) && a.nLegacy >= 1000 && a.nLegacy <= 5000 && a.nLegacy % 1000 === 0)) && mChk(a);      // v0.195 nLegacy: "for each EX Symbol banished via this Legacy, BP- decreases n further"; nPer: "for each <team> Spirit you control, BP- decreases n further"
+  M.txt = a => mTxt(a) + (a.zeroDestroy ? ', then destroy it if it has 0 BP' : '') + (a.zeroBottom ? ', then return it to the deckbottom if it has 0 BP' : '');
   M.run = async (c, a) => {
     const before = new Map(c.opp.spirits.map(t => [t, t.bpMod || 0]));
     if (a.all) {      // v0.197 "give every opposing Spirit -N BP"
@@ -230,8 +230,8 @@ function cpuInvokeOK(p, f, e, timing) {
       for (const t of L) { t.bpMod = (t.bpMod || 0) - a.n; before.set(t, (t.bpMod || 0) + a.n); }
       log(`${_nm(c)}: every opposing Spirit gets -${a.n} BP.`);
     } else await mRun(c, a.nPer || a.nLegacy ? { ...a, n: a.n + (a.nPer ? a.nPer.n * c.p.spirits.filter(x => cardTeams(CARDS[x.id]).includes(a.nPer.team)).length : 0) + (a.nLegacy ? a.nLegacy * (c.src.legacyN || 0) : 0) } : a);
-    if (!a.zeroDestroy) return;
-    for (const t of c.opp.spirits.slice()) if (before.has(t) && (t.bpMod || 0) < before.get(t) && bpOf(t) === 0 && !fxImmune(c.opp, t, c)) { removeSpirit(c.opp, t, 'destroyed', true); checkDepletion(c.opp); }
+    if (!a.zeroDestroy && !a.zeroBottom) return;
+    for (const t of c.opp.spirits.slice()) if (before.has(t) && (t.bpMod || 0) < before.get(t) && bpOf(t) === 0 && !fxImmune(c.opp, t, c)) { if (a.zeroBottom) bounceCard(c.opp, t, 'deckBottom'); else removeSpirit(c.opp, t, 'destroyed', true); checkDepletion(c.opp); }      // v180 zeroBottom
   };
 })();
 /* v0.196 "Target a "X" family Spirit you control. During this turn, it can't be blocked." (turn number mark read by the block list in 08-battle) */
