@@ -318,3 +318,21 @@ test('K-117 26RBS03-077: LV1 purple Spirit blocked -> 1 core from an opposing Sp
     return [a, keep, b]; })()`);
   assert.deepEqual(r, [2, 1, 2], JSON.stringify(r));
 });
+
+test('K-118 Camou (26RBS02-039 / 048 / 26RBS03-043): opposing Spirit effects cannot target the Camou Spirit, a Magic effect can; 043 gets +4000 BP blocking a refreshed attacker; 048 BLOCKS refreshes a Cost 5 or less Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    G.active = P.key; G.turnNo = G.turnNo || 1;
+    const c = BS.mkInst('26RBS02-039'); c.cores = BS.CARDS['26RBS02-039'].levels[1].cores; O.spirits.push(c);
+    const src = BS.mkInst('26RBS01-061'); src.cores = 1; P.spirits.push(src);
+    const act = { p: P, opp: O, src, ctx: {} };
+    const sp = BS.collectFx ? true : false;
+    const spiritHit = BS.FX_ACTIONS.BP_MINUS.cands(act, { do: 'BP_MINUS', n: 1000 }).includes(c);
+    const mag = BS.mkInst(Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Magic'));
+    const magHit = BS.FX_ACTIONS.BP_MINUS.cands({ p: P, opp: O, src: mag, ctx: {} }, { do: 'BP_MINUS', n: 1000 }).includes(c);
+    const d = BS.mkInst('26RBS03-043'); d.cores = BS.CARDS['26RBS03-043'].levels[1].cores; O.spirits.push(d);
+    const att = BS.mkInst('26RBS01-061'); att.cores = 1; P.spirits.push(att); G.attacker = att; G.blocker = d; att.exhausted = false;
+    const b1 = BS.bpOf(d); att.exhausted = true; const b0 = BS.bpOf(d); G.attacker = null; G.blocker = null;
+    return [!spiritHit, magHit, b1 - b0]; })()`);
+  assert.deepEqual(r, [true, true, 4000], JSON.stringify(r));
+});

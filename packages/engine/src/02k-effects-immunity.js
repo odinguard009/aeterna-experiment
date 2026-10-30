@@ -9,6 +9,8 @@ const trashSafe = t => !!(t && CARDS[t.id] && CARDS[t.id].trashUnaffected);
 /* v0.106.0: this used to be a bare loop. The action table is now split over 02b and 02q-02t,
    so the parts that load after this one call wrapImmunity() again once they have added their
    entries (the flag makes it idempotent, so calling it more often costs nothing). */
+/* v158 Camou N: an opposing Spirit effect can't target this Spirit unless its owner pays N costs; shortcut: the payment is not modelled, so it is never targetable by Spirit effects. */
+const camouBlocks = (owner, t, c) => !!c.src && !!CARDS[c.src.id] && CARDS[c.src.id].type === 'Spirit' && c.p !== owner && flagActive(owner, 'CAMOU', t);
 function wrapImmunity(actions) {
 for (const A of actions) {
   if (typeof A.cands !== 'function' || A.cands.immunityWrapped) continue;
@@ -19,7 +21,7 @@ for (const A of actions) {
     const a = rest.find(x => x && typeof x === 'object' && typeof x.do === 'string');
     const opp = G.p[other(c.p.key)], oppField = fieldList(opp);
     return L.filter(x => !(x && ((G.p.player.trash.includes(x) || G.p.opponent.trash.includes(x)) && trashSafe(x)))
-      && !(x && !(a && a.ignoreImmune === true) && oppField.includes(x) && fxImmune(opp, x, c)));
+      && !(x && !(a && a.ignoreImmune === true) && oppField.includes(x) && (fxImmune(opp, x, c) || camouBlocks(opp, x, c))));
   };
   A.cands.immunityWrapped = true;
 }

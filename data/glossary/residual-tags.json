@@ -38299,9 +38299,6 @@
   "M_OPTIONAL",
   "T_SUMMONED"
  ],
- "26RBS02-039": [
-  "C_LEVEL"
- ],
  "26RBS02-040": [
   "A_BP_PLUS",
   "C_LEVEL",
@@ -38312,11 +38309,6 @@
   "C_LEVEL",
   "M_REPLACEMENT",
   "T_SUMMONED"
- ],
- "26RBS02-048": [
-  "A_REFRESH",
-  "C_LEVEL",
-  "T_BLOCKS"
  ],
  "26RBS02-052": [
   "A_EXHAUST",
@@ -38513,11 +38505,6 @@
   "A_REFRESH",
   "C_LEVEL",
   "T_ATTACKS"
- ],
- "26RBS03-043": [
-  "A_BP_PLUS",
-  "A_REFRESH",
-  "C_LEVEL"
  ],
  "26RBS03-044": [
   "C_LEVEL",
