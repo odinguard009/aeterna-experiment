@@ -1040,3 +1040,18 @@ test('K-80 highSpeedIf/highSpeedOnce/trashAllColor: Lira-Rali needs a reduced Li
     return [a, b, c, d, e, ok, f]; })()`);
   assert.deepEqual(r, [false, true, false, false, true, true, false]);
 });
+
+test('K-81 REFRESH_SPIRIT nexusPer: Misty Forest boosts attacking Ferobeasts and refreshes one per two Nexuses', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    P.spirits.length = 0; P.nexus.length = 0; O.spirits.length = 0; O.nexus.length = 0; G.active = P.key; P.cpu = true; O.cpu = true; G.step = 3;
+    const m = BS.mkInst('26RSD06-009'); m.cores = 5; P.nexus.push(m);
+    const a = BS.mkInst('26RBS02-064'); a.cores = 3; P.spirits.push(a); const b = BS.mkInst('26RBS02-064'); b.cores = 3; P.spirits.push(b);
+    a.exhausted = true; b.exhausted = true;
+    G.step = 5; G.attacker = null; const b0 = BS.bpOf(a); G.attacker = a; const hit = BS.bpOf(a) - b0; G.attacker = null;
+    await BS.fireFx(P, 'END_STEP', m, { subject: m }); const one = [a, b].filter(x => !x.exhausted).length;
+    a.exhausted = true; b.exhausted = true; const n2 = BS.mkInst('TRAIN-N1'); P.nexus.push(n2); P.nexus.push(BS.mkInst('TRAIN-N2')); P.nexus.push(BS.mkInst('TRAIN-N2'));
+    m.fxUsed = {}; P.noStackDone = null; await BS.fireFx(P, 'END_STEP', m, { subject: m }); const two = [a, b].filter(x => !x.exhausted).length;
+    return [hit, one, two]; })()`);
+  assert.deepEqual(r, [1000, 0, 2]);
+});
