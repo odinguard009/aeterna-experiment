@@ -69,6 +69,7 @@ def audit(c, r):
     jp = re.sub(r'\[Lv[^\]]*\]', '', ''.join(r['textJp']).translate(str.maketrans('０１２３４５６７８９', '0123456789')))
     fx = json.dumps([effs, c.get('magic'), c.get('burst')], ensure_ascii=False)
     for m in sorted(set(re.findall(r'\d{4,5}', jp))):
+        if '"NEXUS_AS_SPIRIT"' in fx and m in ('5000', '7000'): continue      # v154 NEXUS_AS_SPIRIT: the Nexus' LV1 5000 / LV2 7000 BP are fixed in the engine
         alts = [m, str(int(m) + 1)] + ([str(int(m) // 1000)] if c.get('type') == 'Magic' else [])      # N+1: "BP N or less" stored as selfBpGe N+1 under not
         if not any(re.search(r'(?<![\d.])%s(?![\d])' % x, fx) for x in alts):
             probs.append('BP figure %s in the text is not in the compiled effect' % m)
