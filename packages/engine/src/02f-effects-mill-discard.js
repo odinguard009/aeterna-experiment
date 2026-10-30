@@ -39,6 +39,22 @@ Object.assign(FX_ACTIONS, {
       await sentToTrashFx(c, out, 'hand');               // v0.47 Hades Disaster discarded by Contractor Hades
       io.view({ type: 'board' });
     } },
+  /* v0.197 (schema 129) HAND_TO_BOTTOM {n:1..2}: "You can return N card(s) from your Hand to the deckbottom" (an optional cost-like step: did = N cards were returned; the CPU returns its cheapest cards while it keeps at least one). */
+  HAND_TO_BOTTOM: { chk: a => Object.keys(a).every(k => ['do', 'if', 'n'].includes(k)) && Number.isInteger(a.n) && a.n >= 1 && a.n <= 2,
+    txt: a => `you can return ${a.n === 1 ? 'a card' : a.n + ' cards'} from your Hand to the deckbottom`,
+    can: (c, a) => c.p.hand.length >= a.n,
+    run: async (c, a) => {
+      if (c.p.hand.length < a.n || (c.p.cpu && c.p.hand.length <= a.n)) { c.ctx.did = false; return; }
+      const out = [];
+      for (let j = 0; j < a.n; j++) {
+        const L = c.p.hand.filter(h => !out.includes(h)); if (!L.length) break;
+        const d = c.p.cpu ? L.slice().sort((x, y) => CARDS[x.id].cost - CARDS[y.id].cost)[0] : await chooseCard(c, L, `✨ ${_pn(c)}`, `Return ${a.n === 1 ? 'a card' : 'two cards'} from your Hand to the deckbottom? (${j + 1}/${a.n})`, true);
+        if (!d) { for (const t of out) { removeFrom(c.p.deck, t); c.p.hand.push(t); } c.ctx.did = false; return; }   // declined: put back what was already moved
+        removeFrom(c.p.hand, d); c.p.deck.push(d); out.push(d);
+      }
+      log(`${_pn(c)}: ${who(c.p)} ${c.p.cpu ? 'returns' : 'return'} ${out.length} card${out.length === 1 ? '' : 's'} from the Hand to the deckbottom.`);
+      io.view({ type: 'board' });
+    } },
   /* send cores from opposing Spirits/Ultimates to the opposing Reserve (not a destruction; a Spirit left below its Lv1 cores is depleted).
      {targets:T, each:K}: up to T different Spirits lose up to K cores each; {total:N}: N cores one by one from any Spirits. drawPerDepleted: draw 1 for each Spirit depleted by this (Vaplus). */
   OPP_CORES_TO_RESERVE: { chk: a => ((Number.isInteger(a.targets) && a.targets >= 1 && a.targets <= 3 && Number.isInteger(a.each) && a.each >= 1 && a.each <= 5) || (Number.isInteger(a.total) && a.total >= 1 && a.total <= 5)) && (a.drawPerDepleted == null || typeof a.drawPerDepleted === 'boolean'),

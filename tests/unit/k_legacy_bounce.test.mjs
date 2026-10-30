@@ -869,3 +869,18 @@ test('K-68 Swordish Comes: ctrl refreshed counts only refreshed Swordish', async
     return [a, b, BS.fxIf(P, O, c, {})]; })()`);
   assert.deepEqual(r, [true, false, true]);
 });
+
+test('K-69 War Toll: HAND_TO_BOTTOM then SEND_TOKEN (Life 2 sends two)', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const T = '26RSD10-T001'; P.tokens = { [T]: 10 }; P.reserve.n = 8; P.cpu = true; P.life = 2;
+    const id = '26RBS03-078', eff = BS.CARDS[id].effects.filter(e => e.trigger === 'END_STEP' && (!e.if || BS.fxIf(P, O, e.if, {})));
+    P.hand.length = 0; for (let i = 0; i < 3; i++) P.hand.push(BS.mkInst('26RBS01-037'));
+    const d0 = P.deck.length;
+    for (const e of eff) await BS.runActions({ p: P, opp: O, src: BS.mkInst(id), ctx: {} }, e, 'END_STEP');
+    return [eff.length, P.hand.length, P.deck.length - d0, P.spirits.length]; })()`);
+  assert.equal(r[0], 1);
+  assert.equal(r[1], 2);
+  assert.equal(r[2], 1);
+  assert.ok(r[3] >= 1);
+});
