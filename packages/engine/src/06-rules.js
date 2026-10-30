@@ -307,7 +307,8 @@ function removeSpirit(p, s, why, byOpponent) {
   if (!removeFrom(p.spirits, s)) return;
   if ((why === 'destroyed' || why === 'depleted') && byOpponent !== 'battle' && G && G.fxBy && G.fxBy !== p.key) G.p[G.fxBy].oppFxLossTurn = G.turnNo;      // v0.196 condition oppLostByFx
   s.lostFxSrc = G && G.fxBy === p.key && G.fxSrc ? G.fxSrc : null;      // v0.197 condition byOwnFx (the card of the own effect that removed it)
-  if (why === 'destroyed' && G) p.lostSpiritTurn = G.turnNo;      // v0.197 condition ownLostSpirit
+  if (why === 'destroyed' && G) p.lostSpiritTurn = G.turnNo;
+  if (why === 'destroyed' && G && G.evQ && !s.token && trashHears(p)) G.evQ.push({ type: 'DIED', key: p.key, inst: s });      // v155 ALLY_DIED      // v0.197 condition ownLostSpirit
   if (kill) G.evQ.push({ type: 'FXKILL', key: G.fxBy, bp: bp0, src: G.fxSrc || null });
   s.lostLv = lv; s.soulLost = s.soul;      // v0.176: the Soul Core it held when it left ("If (Soul Core) is on this Spirit" in a Destroyed trigger)
   const oppFx = byOpponent === true || (byOpponent !== 'battle' && !!G && !!G.fxBy && G.fxBy !== p.key);   // v0.73: by an opposing effect (byOpponent 'battle' = BP comparison)
@@ -343,6 +344,7 @@ function removeSpirit(p, s, why, byOpponent) {
 /* v0.57.0 Standby state (JP 17.0 revision notice item 4): a card that left the Field waits in p.standby while the queued
    events naming it (When Destroyed, ally lost) resolve; its symbols still reduce costs (fieldSymbols withStandby); then it
    goes to its destination (standbyTo: 'trash' or 'removed'). force = release every waiting card (new turn, game over). */
+const trashHears = p => p.trash.some(t => (CARDS[t.id].effects || []).some(e => e.trigger === 'ALLY_DIED' && e.zone === 'trash'));
 const lostHeard = p => fieldList(p).some(f => fxEntries(f).some(({ e }) => e.trigger === 'ALLY_LOST'));   // someone can react to "an ally is lost"
 function leaveStandby(p, s) {
   if (!removeFrom(p.standby, s)) return;

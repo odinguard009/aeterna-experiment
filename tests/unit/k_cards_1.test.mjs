@@ -235,3 +235,27 @@ test('K-112 NEXUS_AS_SPIRIT: 086 (Invoke) and 069 (core from this Spirit) turn a
   assert.equal(r.ok2, true, JSON.stringify(r));
   assert.deepEqual(r.two, [true, 2], JSON.stringify(r));
 });
+
+test('K-113 zone:trash triggers: 032 returns from the Trash on a heavy exhaust only while a Floodragon Spirit/Nexus is controlled; 012 returns when a Thunder Dragon Spirit is destroyed (once per turn per name)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    G.active = P.key; G.turnNo = G.turnNo || 1;
+    const e = BS.mkInst('26RBS02-032'); P.trash.push(e); const h0 = P.hand.length;
+    await BS.fireFx(P, 'EXHAUSTED_FX', null, { side: 'opp', heavy: true });
+    const noCtl = P.hand.length - h0;
+    const a = BS.mkInst('26RBS02-029'); a.cores = 2; P.spirits.push(a);
+    await BS.fireFx(P, 'EXHAUSTED_FX', null, { side: 'opp', heavy: false });
+    const light = P.hand.length - h0;
+    await BS.fireFx(P, 'EXHAUSTED_FX', null, { side: 'opp', heavy: true });
+    const ok = [P.hand.includes(e), P.trash.includes(e)];
+    const m = BS.mkInst('26RSD05-012'); P.trash.push(m); const h1 = P.hand.length;
+    const td = BS.mkInst('26RBS01-066'); td.cores = 1; P.spirits.push(td);
+    await BS.fireFx(P, 'ALLY_DIED', null, { subject: td });
+    const first = P.hand.includes(m); P.hand.splice(P.hand.indexOf(m), 1); P.trash.push(m);
+    await BS.fireFx(P, 'ALLY_DIED', null, { subject: td });
+    return [noCtl, light, ok, first, P.hand.includes(m)]; })()`);
+  assert.equal(r[0], 0, JSON.stringify(r));
+  assert.equal(r[1], 0, JSON.stringify(r));
+  assert.deepEqual(r[2], [true, false], JSON.stringify(r));
+  assert.deepEqual(r.slice(3), [true, false], JSON.stringify(r));
+});

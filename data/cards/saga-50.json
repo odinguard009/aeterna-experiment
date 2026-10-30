@@ -10737,16 +10737,49 @@
   "image": "26RBS02-032.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "(Your Turn) (Can't Stack) When opposing Spirits are heavily exhausted by your effect, if you control any \"Primeval Floodragon\" family Spirit/Nexus, you can return this card from your Trash to the Hand.",
-   "[LV2] (True Release) (When Attacks) The opponent targets a refreshed Spirit they control. Exhaust it."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "bicon": [
    "A"
   ],
-  "rcode": "R"
+  "rcode": "R",
+  "effects": [
+   {
+    "trigger": "EXHAUSTED_FX",
+    "zone": "trash",
+    "heavyOnly": true,
+    "noStack": true,
+    "optional": true,
+    "exSide": "opp",
+    "if": {
+     "ctrlFamily": {
+      "any": [
+       "Primeval Floodragon"
+      ],
+      "is": true,
+      "withNexus": true
+     }
+    },
+    "actions": [
+     {
+      "do": "SELF_TO_HAND"
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "EXHAUST_OPP",
+      "n": 1,
+      "oppChooses": true
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RBS02-033",
@@ -35547,15 +35580,31 @@
     }
    ]
   },
-  "fxComplete": false,
-  "residual": [
-   "When your \"Thunder Dragon\" family Spirits are destroyed, you can return this card from the Trash to your Hand. You can only use this effect of the same card name once per turn."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects hand-written for roadmap S1 Standard Magic (v0.88.0); not yet checked against the card image.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects hand-written for roadmap S1 Standard Magic (v0.88.0); not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "bicon": [
    "A"
   ],
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ALLY_DIED",
+    "zone": "trash",
+    "sameName": true,
+    "once": true,
+    "optional": true,
+    "match": {
+     "family": [
+      "Thunder Dragon"
+     ]
+    },
+    "actions": [
+     {
+      "do": "SELF_TO_HAND"
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RSD05-013",
