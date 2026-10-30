@@ -169,3 +169,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v129 (v0.197.0, Lane K): action `HAND_TO_BOTTOM {n:1-2}` ("you can return N cards from your Hand to the deckbottom"; `did`/`prev` = returned).
 - v130 (v0.197.0, Lane K): trigger `START_MAIN` ("Start of Your Main Step", fired at the start of the owner's Main Step).
 - v131 (v0.197.0, Lane K): `BP_MINUS all: true` ("give every opposing Spirit -N BP", with `zeroDestroy`); `EXHAUST_SELF` also works from a Nexus.
+- v132 (v0.197.0, Lane K): Invoke `cost` accepts `destroyOwn` ({"kind":"nexus|spirit","match":{...}}); STATIC `targetRefreshed: true` ("Spirits in refreshed state gain +N BP").

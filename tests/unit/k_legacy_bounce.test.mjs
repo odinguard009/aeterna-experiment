@@ -911,3 +911,19 @@ test('K-71 BP_MINUS all + zeroDestroy hits every opposing Spirit; a Nexus can EX
     return [O.spirits.length, BS.bpOf(O.spirits[0]), n.exhausted]; })()`);
   assert.deepEqual(r, [1, 3000, true]);
 });
+
+test('K-72 Invoke cost destroyOwn destroys a Cyantree Nexus; STATIC targetRefreshed counts only refreshed Spirits', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    P.spirits.length = 0; P.nexus.length = 0;
+    const s = BS.mkInst('26RBS03-069'); s.cores = 6; P.spirits.push(s);
+    const nx = BS.mkInst('26RBS01-106'); P.nexus.push(nx);
+    G.active = P.key; G.step = 5; G.attacker = s; G.battleNo = (G.battleNo || 0) + 1;
+    const before = BS.bpOf(s), i = BS.CARDS['26RBS03-069'].effects.findIndex(e => e.invoke);
+    const ok = await BS.activateFx(P, s, i);
+    const w = BS.mkInst('26RBS03-032'); w.cores = 3; P.spirits.push(w);
+    const m = BS.mkInst('26RBS03-080'); m.cores = 5; P.nexus.push(m);
+    const up = BS.bpOf(w); w.exhausted = true; const down = BS.bpOf(w);
+    return [ok, P.nexus.includes(nx), BS.bpOf(s) - before, up - down]; })()`);
+  assert.deepEqual(r, [true, false, 4000, 1000]);
+});

@@ -225,6 +225,7 @@ function staticBp(i) {
       if (e.lv && !e.lv.includes(L)) continue;
       if (e.oc && !ocActive(src)) continue;
       if ((e.to || 'self') === 'self' ? src !== i : !fxMatch(CARDS[i.id], e.match)) continue;
+      if (e.targetRefreshed && i.exhausted) continue;      // v132 "Spirits in refreshed state gain +N BP"
       if (e.attackingOnly && G.attacker !== i) continue;
       if (e.blockingOnly && G.blocker !== i) continue;           // v0.159 (During Block)
       if (e.fightingOnly && G.attacker !== i && G.blocker !== i) continue;      // v0.168 "attacking/blocking Spirits"
