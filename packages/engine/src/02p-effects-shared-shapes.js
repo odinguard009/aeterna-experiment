@@ -234,6 +234,15 @@ const fxOppMark = (k, key, f, val, ask, txt) => ({ chk: () => true, txt: () => t
 FX_ACTIONS.NO_REFRESH_OPP = { ...fxOppMark('NO_REFRESH_OPP', 'noRefreshT', t => t.exhausted, () => G.turnNo + 1, 'exhausted opposing Spirit', "can't refresh next Refresh Step") };
 FX_ACTIONS.NO_BP_DESTROY = { chk: () => true, txt: () => "can't be destroyed by BP comparison during this battle", can: () => !!G.attacker,      // v0.196 (When Blocks/Attacks): the mark holds for this battle number
   run: async c => { c.src.noBpDestroy = G.battleNo; log(`${CARDS[c.src.id].name} can't be destroyed by BP comparison during this battle.`); } };
+/* v162 "target an opposing <costLe> Spirit. It must attack at the start of the step if possible": mark mustAtk = turn number; startAttackFx (09-cpu) makes it attack once the Start steps are over */
+FX_ACTIONS.MUST_ATTACK_OPP = { chk: a => a.costLe == null || (Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30), txt: a => `an opposing ${a.costLe != null ? 'Cost ' + a.costLe + ' or less ' : ''}Spirit must attack at the start of the step if possible`,
+  cands: (c, a) => c.opp.spirits.filter(t => !t.exhausted && !fxImmune(c.opp, t) && (a.costLe == null || CARDS[t.id].cost <= a.costLe)),
+  can: (c, a) => FX_ACTIONS.MUST_ATTACK_OPP.cands(c, a).length > 0,
+  run: async (c, a) => {
+    const L = FX_ACTIONS.MUST_ATTACK_OPP.cands(c, a), t = L.length && await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the opposing Spirit (glowing).`);
+    if (!t) { c.ctx.did = false; return; }
+    t.mustAtk = G.turnNo; log(`${CARDS[t.id].name} must attack at the start of the step if possible.`);
+  } };
 FX_ACTIONS.CANT_BLOCK_OPP = { ...fxOppMark('CANT_BLOCK_OPP', 'noBlockB', () => G.attacker, () => G.battleNo, 'opposing Spirit', "can't block this battle") };
 (() => {      // v159 n (1-3 targets) and costLe: "target three opposing Cost 6 or less Spirits. During this battle, they can't block"
   const B = FX_ACTIONS.CANT_BLOCK_OPP, bRun = B.run;

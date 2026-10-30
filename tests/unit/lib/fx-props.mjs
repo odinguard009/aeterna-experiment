@@ -203,6 +203,9 @@ function simple(card, a) {
         return t && t.symSet.n === A.n && t.symSet.battle === (A.battle ? 3 : 0) && t.symSet.turn === G.turnNo ? '' : 'symSet not set';` };
     case 'NO_BP_DESTROY_TURN':      // v162 one of your matching Spirits carries noBpTurn = this turn
       return only(a, ['match']) && spirit && okMatch(a.match) && { onField: true, fix: [{ m: a.match }], body: `sp(${J(mid(a.match))}, P, 1); G.turnNo = 6; await run(src, RA); return P.spirits.some(x => x.noBpTurn === 6) ? '' : 'noBpTurn not set';` };
+    case 'MUST_ATTACK_OPP':      // v164 the picked opposing Spirit carries mustAtk = this turn
+      return only(a, ['costLe']) && { body: `const t = sp(${J(FILL)}, O, 1); G.turnNo = 7; await run(src, RA);
+        if (A.costLe != null && BS.CARDS[${J(FILL)}].cost > A.costLe) return ''; return t.mustAtk === 7 ? '' : 'mustAtk not set';` };
     case 'CANT_BE_BLOCKED_BY':      // v0.175 the attacker carries noBlockBy for this battle only
       return only(a, ['color', 'levels', 'keyword', 'highSpeed']) && spirit && { onField: true, body: `G.attacker = src; G.battleNo = 4; await run(src, RA); const m = src.noBlockBy; G.attacker = null; return m && m.battleNo === 4 ? '' : 'noBlockBy not set';` };
     case 'UNBLOCKABLE_PICK':      // v157 one of your Spirits (not this one with `other`) can't be blocked this turn (or by BP <= bpLe)

@@ -35,13 +35,14 @@ function fxEntries(f) {
   return out;
 }
 function fxMatch(card, m, inst) {
-  if (!m || (!m.name && !m.family && !m.familyAll && !m.keyword && !m.noText && m.costGe == null && m.costLe == null && !m.costIn && !m.type && !m.color && !m.noUlt && !m.team && m.symbolsGe == null && m.bpLe == null && m.bpGe == null)) return true;
+  if (!m || (!m.name && !m.family && !m.familyAll && !m.keyword && !m.noText && !m.hasTrigger && m.costGe == null && m.costLe == null && !m.costIn && !m.type && !m.color && !m.noUlt && !m.team && m.symbolsGe == null && m.bpLe == null && m.bpGe == null)) return true;
   if (m.noUlt && card.type === 'Ultimate') return false;      // v0.59: the text says "Spirit"; texts that include Ultimates print "Spirit/Ultimate"
   if (m.color && ![].concat(m.color).some(x => (card.colors || [card.symbol]).includes(x))) return false;      // v0.39: "Purple" Sorcerer cards (colour = card colour); v0.75: "Red/White" = either colour
   if (m.costGe != null && card.cost < m.costGe) return false;
   if (m.costLe != null && card.cost > m.costLe) return false;      // v0.69 "Cost N or less" (reveal effects)
   if (m.costIn && !m.costIn.includes(card.cost)) return false;      // v0.168 "Cost 6/8" = cost 6 or 8
   if (m.type && card.type !== m.type) return false;
+  if (m.hasTrigger && !(card.effects || []).some(e => e.trigger === m.hasTrigger)) return false;      // v162 "a Spirit with When Blocks / When Destroyed effects" (printed trigger)
   if (m.typeAny && !m.typeAny.includes(card.type)) return false;      // v0.196 "Spirit card/Nexus card" (a list of card types)
   if (m.team && !cardTeams(card).includes(m.team)) return false;      // v0.184 (schema 55) "a Red Stella Spirit card": the [Team: X] head line
   if (m.bpGe != null && !(inst && bpOf(inst) >= m.bpGe)) return false;      // v0.199 "your 10000 BP or more Spirit" (current BP)
@@ -305,4 +306,4 @@ function bounceCard(owner, t, to) {                   // return a field card to 
   log(`${poss(owner)} ${CARDS[t.id].name} returns to the ${to === 'deckBottom' ? 'bottom of the Deck' : 'Hand'}.`);
 }
 const SOUL_SRC = ['self', 'hand', 'trash', 'handOrTrash', 'reveal'];
-const hasMatch = m => !!m && (m.name || m.family || m.costGe != null || m.costLe != null || m.costIn || m.type || m.typeAny || m.color || m.familyAll || m.keyword || m.noText || m.team);
+const hasMatch = m => !!m && (m.name || m.family || m.costGe != null || m.costLe != null || m.costIn || m.type || m.typeAny || m.color || m.familyAll || m.keyword || m.noText || m.hasTrigger || m.team);

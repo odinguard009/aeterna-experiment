@@ -28,3 +28,26 @@ test('K-123 26RBS02-X13 LV2: draws on the second or later attack of a Wailwraith
     return [await go(1), await go(2)]; })()`);
   assert.deepEqual(r, [0, 1], JSON.stringify(r));
 });
+
+test('K-124 MUST_ATTACK_OPP (26RBS02-081): marks one opposing Cost 3 or less Spirit for this turn', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    G.active = P.key; G.turnNo = 9;
+    const c = BS.mkInst('26RBS02-081'); c.cores = 3; P.spirits.push(c);
+    const lo = BS.mkInst('BS48-001'); lo.cores = 1; O.spirits.push(lo);
+    const fx = BS.CARDS['26RBS02-081'].effects.find(e => e.trigger === 'OPP_START_ATTACK');
+    await BS.runActions({ p: P, opp: O, src: c, ctx: {} }, fx);
+    return [lo.mustAtk === 9, BS.CARDS['BS48-001'].cost <= 3]; })()`);
+  assert.deepEqual(r, [true, true], JSON.stringify(r));
+});
+
+test('K-125 26RBS02-081 LV2: end step refreshes a Spirit that prints a When Blocks effect, not one that does not', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    G.active = P.key;
+    const c = BS.mkInst('26RBS02-081'); c.cores = BS.CARDS['26RBS02-081'].levels[1].cores; P.spirits.push(c);
+    const a = BS.mkInst('BS50-040'), b = BS.mkInst('BS48-001'); a.exhausted = b.exhausted = true; a.cores = b.cores = 1; P.spirits.push(a, b);
+    await BS.fireFx(P, 'END_STEP', c, {});
+    return [a.exhausted, b.exhausted]; })()`);
+  assert.deepEqual(r, [false, true], JSON.stringify(r));
+});
