@@ -1170,3 +1170,31 @@ test('K-88 Rideshooter: RYUKI Spirits get +1000 only in the opposing Attack Step
     return [during - mine, await rev(5), await rev(2)]; })()`);
   assert.deepEqual(r, [1000, 0, 1]);
 });
+
+test('K-89 Lamenting Larona: When Summoned and LV2 When Destroyed summon a Cost 4 or less Dark Puce Spirit from the Trash', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    P.spirits.length = 0; P.nexus.length = 0; O.spirits.length = 0; O.nexus.length = 0; P.cpu = true; O.cpu = true;
+    const l = BS.mkInst('26RBS02-023'); l.cores = 3; P.spirits.push(l);
+    const dp = (id) => { const t = BS.mkInst(id); P.trash.push(t); return t; };
+    const a = dp('26RBS01-016'); await BS.fireFx(P, 'SUMMONED', l, { subject: l });
+    const first = P.spirits.includes(a);
+    P.spirits.splice(P.spirits.indexOf(l), 1); P.trash.push(l); l.lostLv = 1; const b = dp('26RBS01-016'); await BS.fireFx(P, 'DESTROYED', l, {});
+    return [first, P.spirits.includes(b)]; })()`);
+  assert.deepEqual(r, [true, true]);
+});
+
+test('K-90 Kuramagrama: summons a Cost 3 or less Dark Puce from the Trash free; LV2 block returns a core from the attacker', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    P.spirits.length = 0; P.nexus.length = 0; O.spirits.length = 0; O.nexus.length = 0; P.cpu = true; O.cpu = true;
+    const k = BS.mkInst('26RBS03-X05'); k.cores = 3; P.spirits.push(k);
+    const lo = BS.mkInst('26RBS01-016'); P.trash.push(lo);
+    await BS.fireFx(P, 'SUMMONED', k, { subject: k });
+    const sum = [P.spirits.includes(lo)];
+    const at = BS.mkInst('BS48-033'); at.cores = 3; O.spirits.push(at); const bystander = BS.mkInst('BS48-033'); bystander.cores = 3; O.spirits.push(bystander);
+    G.active = O.key; G.attacker = at; G.blocker = k; G.step = 5;
+    await BS.fireFx(P, 'BLOCKS', k, { subject: k, blocker: k });
+    return [sum, at.cores, bystander.cores]; })()`);
+  assert.deepEqual(r[1], 2); assert.deepEqual(r[2], 3); assert.equal(r[0][0], true);
+});

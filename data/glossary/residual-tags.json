@@ -38312,12 +38312,6 @@
   "C_LEVEL",
   "T_DESTROYED"
  ],
- "26RBS02-023": [
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_DESTROYED",
-  "T_SUMMONED"
- ],
  "26RBS02-029": [
   "A_EXHAUST",
   "M_OPTIONAL",
@@ -38774,13 +38768,6 @@
   "K_STANDARD_INVOKE",
   "M_OPTIONAL",
   "M_THEN",
-  "T_SUMMONED"
- ],
- "26RBS03-X05": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_BLOCKS",
   "T_SUMMONED"
  ],
  "26RBS03-X06": [
