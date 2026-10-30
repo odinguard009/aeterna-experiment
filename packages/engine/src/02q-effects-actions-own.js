@@ -193,6 +193,17 @@ FX_ACTIONS.NEXUS_AS_SPIRIT = {
     if (!k) c.ctx.did = false;
   };
 })();
+/* v0.200 EXHAUST_OWN {match}: "You can target one of your <X> Spirits. Exhaust it." (ctx.did = false when none; "If you've done so, ..." reads prev) */
+FX_ACTIONS.EXHAUST_OWN = {
+  chk: a => a.match != null && hasMatch(a.match) && Object.keys(a).every(k => k === 'do' || k === 'match' || k === 'if'),
+  txt: () => 'exhaust one of your matching Spirits',
+  cands: (c, a) => c.p.spirits.filter(s => !s.exhausted && fxMatch(CARDS[s.id], a.match)),
+  can: (c, a) => FX_ACTIONS.EXHAUST_OWN.cands(c, a).length > 0,
+  run: async (c, a) => {
+    const L = FX_ACTIONS.EXHAUST_OWN.cands(c, a), t = L.length ? await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your Spirits to exhaust.`) : null;
+    if (!t) { c.ctx.did = false; return; }
+    t.exhausted = true; log(`${CARDS[t.id].name} is exhausted.`);
+  } };
 /* This part loads after 02k, whose load-time pass wraps every action's cands() with the immunity
    filter (trash-safe cards, opposing cards unaffected by this effect). Run it again so the entries
    defined here get the same wrapper; it is idempotent. */

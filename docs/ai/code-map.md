@@ -68,7 +68,7 @@ endOfBattle
 ## packages/engine/src/02p-effects-shared-shapes.js (301 lines, ~7.6k tokens)
 cardTeams, allHaveShapeOK, allHaveOK, winRiderRun, fxOppMark, blockTaxOK, payBlockTax, blockedInferior, blockedByMark
 
-## packages/engine/src/02q-effects-actions-own.js (199 lines, ~5.4k tokens)
+## packages/engine/src/02q-effects-actions-own.js (210 lines, ~5.6k tokens)
 
 
 ## packages/engine/src/02r-effects-actions-deck.js (119 lines, ~4k tokens)

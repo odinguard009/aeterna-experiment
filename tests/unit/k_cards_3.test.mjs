@@ -169,3 +169,15 @@ test('K-162 TREAT_LV2.highest + LOOT.perLegacy (26RBS02-X17): target is treated 
     return [L > 1, k1 === L - 1, t.lvHighTurn === true, fx[0].actions[0].perLegacy, k0 <= k1]; })()`);
   assert.deepEqual(r, [true, true, true, true, true], JSON.stringify(r));
 });
+
+test('K-163 EXHAUST_OWN (26RCB01-X07): exhausts a matching own Spirit, then REFRESH refreshes the source; none -> did=false', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const src = BS.mkInst('26RCB01-X07'); src.cores = 1; src.exhausted = true; P.spirits.push(src);
+    const fx = BS.CARDS['26RCB01-X07'].effects, ex = fx.find(e => e.trigger === 'ATTACKS').actions[0];
+    const c0 = { p: P, opp: O, src, ctx: {} }; await BS.runActions(c0, { actions: [ex] }); const none = c0.ctx.did;
+    const m = BS.mkInst(ex.match.family ? BS.CARDS[Object.keys(BS.CARDS).find(k => (BS.CARDS[k].families || []).includes('EX-AID') && BS.CARDS[k].type === 'Spirit' && k !== '26RCB01-X07')].id : 'x'); m.cores = 1; P.spirits.push(m);
+    const c = { p: P, opp: O, src, ctx: {} }; await BS.runActions(c, { actions: [ex] });
+    return [none, m.exhausted, fx.some(e => e.flag === 'UNAFFECTED' && e.if.allHave.family === 'EX-AID')]; })()`);
+  assert.deepEqual(r, [false, true, true], JSON.stringify(r));
+});

@@ -222,3 +222,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v183: BOUNCE_OPP bpOrGe (with bpLe, kind spirit): "N BP or less or M BP or more" (26RBS02-045 Legacy).
 - v184: OPP_CORES_TO_RESERVE.eachLegacy (targets 1: +1 core for each EX Symbol banished via the source's Legacy, `src.legacyN`; 26RBS02-X06).
 - v185: LOOT.perLegacy (+1 draw and +1 discard per `src.legacyN`) and TREAT_LV2.highest (target treated as its highest level this turn, `lvHighTurn`; 26RBS02-X17).
+- v186: EXHAUST_OWN {match} ("target one of your X Spirits. Exhaust it", ctx.did false when none) + 26RCB01-X07 (STATIC UNAFFECTED from Magic if allHave EX-AID: house approximation of "can't be targeted by opposing Magic").

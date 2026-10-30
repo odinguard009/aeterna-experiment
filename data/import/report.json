@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 7090,
+  "cards": 7089,
   "per_saga": {
    "1": 676,
    "2": 313,
@@ -19,15 +19,15 @@
    "15": 355,
    "16": 334,
    "17": 110,
-   "50": 93
+   "50": 92
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 1616,
+  "skipped_curated": 1617,
   "nexus_levels_added": 707,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 452,
+  "image_problems": 451,
   "number_conflicts": 4,
   "merged": 107,
   "brave_unparsed": 171,
@@ -35,7 +35,7 @@
   "odd_reduction": 807,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 450
+  "without_image": 449
  },
  "tokens": [
   "BS73-T001",
@@ -1394,6 +1394,7 @@
   "26RCB01-X03",
   "26RCB01-X04",
   "26RCB01-X05",
+  "26RCB01-X07",
   "26RBS02-001",
   "26RBS02-002",
   "26RBS02-003",
@@ -4611,11 +4612,6 @@
   {
    "id": "26RCB01-X06",
    "name": "Kamen Rider Para-DX Perfect Knockout Gamer Level 99",
-   "problem": "ambiguous name (2 files, none in set 26RCB01)"
-  },
-  {
-   "id": "26RCB01-X07",
-   "name": "Kamen Rider Ex-Aid Muteki Gamer",
    "problem": "ambiguous name (2 files, none in set 26RCB01)"
   },
   {

@@ -65,8 +65,8 @@ const FONT_URL = /url\(data:font\/woff2;base64,[A-Za-z0-9+/=]+\)/g, FLAVOR_RE = 
 // v0.199.0 (Lane K): raised B01 1130 -> 1145 KB and B02 308 -> 312 KB on purpose: EXHAUSTED_FX, NEXUS_AS_SPIRIT, MUST_ATTACK_OPP and their scenarios.
 // v0.199.0 (Lane K): B01 1145 -> 1150 KB on purpose: REVEAL_SUMMON, LIFE_HIT_NEXUS, SOUL_TRASH_TO, DISCARD_ALL_HAND.
 // v178 (Lane K): B01 1150 -> 1155 KB and B02 312 -> 313 KB on purpose: BLOCK_TAX (block cost), TRASH_CORES_TO.toLife.
-// v182 (Lane K): B02 313 -> 314 KB on purpose: BOUNCE_OPP.costTotalLe, SUMMON_TAX. v184: B01 1155 -> 1156 KB (eachLegacy, bpOrGe, costTotalLe).
-test('B01 index.html without the card pack stays under 1156 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 1156e3, Buffer.byteLength(noFont(code))));
+// v182 (Lane K): B02 313 -> 314 KB on purpose: BOUNCE_OPP.costTotalLe, SUMMON_TAX. v184: B01 1155 -> 1156 KB (eachLegacy, bpOrGe, costTotalLe). v186: B01 1156 -> 1158 KB (perLegacy, highest, EXHAUST_OWN).
+test('B01 index.html without the card pack stays under 1158 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 1158e3, Buffer.byteLength(noFont(code))));
 // v0.186.0 (Brave costLe): raised B02 290 -> 292 KB on purpose: the Brave combine condition costLe (parser, braveFits, types) put the page 0.9 KB over the limit.
 // v0.188.0 (R2): raised B02 292 -> 294 KB on purpose: the Family list, BP / core and colour-mode filters (shared by the Deck Builder and the Library) put the page 0.04 KB over the limit.
 // v0.195.0 (Lane K): raised B02 294 -> 296 KB on purpose: viaLegacy and BOUNCE_OPP n/bpLe put the engine 0.01 KB over the limit.

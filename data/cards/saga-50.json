@@ -27978,19 +27978,85 @@
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (Either Attack Step) If all your Spirits have the \"EX-AID\" family, this Spirit can't be targeted by opposing Magic effects.",
-   "[LV2] (True Release) (When Attacks/Block) You can target one of your \"EX-AID\" family Spirits. Exhaust it. If you've done so, refresh this Spirit."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "collab": [
    "仮面ライダー"
   ],
   "bicon": [
    "A"
   ],
-  "rcode": "X"
+  "rcode": "X",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "UNAFFECTED",
+    "to": "self",
+    "lv": [
+     1,
+     2
+    ],
+    "from": {
+     "types": [
+      "Magic"
+     ]
+    },
+    "if": {
+     "allHave": {
+      "family": "EX-AID",
+      "spiritsOnly": true
+     }
+    }
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "EXHAUST_OWN",
+      "match": {
+       "family": [
+        "EX-AID"
+       ],
+       "type": "Spirit"
+      }
+     },
+     {
+      "do": "REFRESH",
+      "if": {
+       "prev": true
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "BLOCKS",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "EXHAUST_OWN",
+      "match": {
+       "family": [
+        "EX-AID"
+       ],
+       "type": "Spirit"
+      }
+     },
+     {
+      "do": "REFRESH",
+      "if": {
+       "prev": true
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RDB01-001",
