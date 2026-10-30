@@ -38739,11 +38739,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "26RDB01-039": [
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_ATTACKS"
- ],
  "26RDB01-041": [
   "A_REFRESH",
   "C_LEVEL",

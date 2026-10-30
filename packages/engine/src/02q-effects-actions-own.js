@@ -107,6 +107,23 @@ Object.assign(FX_ACTIONS, {
       removeFrom(c.p.trash, t); c.p.hand.push(t);
       if (await summonFree(c.p, t)) c.ctx.did = true; else { removeFrom(c.p.hand, t); c.p.trash.push(t); }
     } },
+  /* v166 REVEAL_SUMMON {n, count, match, diffName?}: "reveal n cards from your decktop. Among them, summon up to `count` matching Spirit cards without paying the cost (diffName: a name different from this Spirit's). Return the rest to the deckbottom" (house reading: in revealed order) */
+  REVEAL_SUMMON: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 6 && Number.isInteger(a.count) && a.count >= 1 && a.count <= 3 && hasMatch(a.match) && (a.diffName == null || a.diffName === true) && Object.keys(a).every(k => ['do', 'n', 'count', 'match', 'diffName', 'if'].includes(k)),
+    txt: a => `reveal ${a.n} cards from your decktop, summon up to ${a.count} matching Spirit without paying the cost, return the rest to the deckbottom`,
+    can: c => c.p.deck.length > 0,
+    run: async (c, a) => {
+      const nm = _pn(c), top = c.p.deck.splice(0, Math.min(a.n, c.p.deck.length)); c.p.revealed = top; c.ctx.did = false;
+      log(`${nm}: ${who(c.p)} ${c.p.cpu ? 'reveals' : 'reveal'} ${top.map(x => CARDS[x.id].name).join(', ') || 'nothing'}.`); io.view({ type: 'board' });
+      await revealedFx(c.p);
+      for (let j = 0; j < a.count; j++) {
+        const L = c.p.revealed.filter(x => CARDS[x.id].type === 'Spirit' && fxMatch(CARDS[x.id], a.match) && !(a.diffName && CARDS[x.id].name === CARDS[c.src.id].name) && canPlaceFree(c.p, x)); if (!L.length) break;
+        const t = await chooseCard(c, L, `✨ ${nm}`, 'Choose a revealed Spirit to summon.', true); if (!t) break;
+        removeFrom(c.p.revealed, t); c.p.hand.push(t);
+        if (await summonFree(c.p, t)) c.ctx.did = true; else { removeFrom(c.p.hand, t); c.p.revealed.push(t); break; }
+      }
+      const rest = c.p.revealed.splice(0); for (const x of rest) c.p.deck.push(x);
+      if (rest.length) log(`${nm}: ${rest.length} card${rest.length === 1 ? '' : 's'} returned to the deckbottom.`);
+    } },
   MIRAGE_SET: { chk: () => true, txt: () => 'set this card as a Mirage without paying the cost (only if you have no Mirage set)',
     can: c => !c.p.mirage && !!CARDS[c.src.id].mirage && (c.p.revealed.includes(c.src) || c.p.hand.includes(c.src)),
     run: async c => {

@@ -93,3 +93,17 @@ test('K-128 26RDB01-061 Main: Blue Beat Nexus only, any Blue Beat card when the 
     return out; })()`);
   assert.deepEqual(r, [false, true], JSON.stringify(r));
 });
+
+test('K-129 26RDB01-039 LV2: reveals two, summons one Blue Beat Cost<=5 with another name, rest to the deckbottom', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    G.active = P.key;
+    const c = BS.mkInst('26RDB01-039'); c.cores = 1; P.spirits.push(c);
+    const fx = BS.CARDS['26RDB01-039'].effects.find(e => e.trigger === 'ATTACKS');
+    P.reserve.soul = false; const no = BS.fxIf(P, O, fx.if);
+    P.reserve.soul = true; const yes = BS.fxIf(P, O, fx.if);
+    P.deck = ['BS48-001', '26RDB01-033', 'BS48-001', 'BS48-001'].map(id => BS.mkInst(id));
+    await BS.runActions({ p: P, opp: O, src: c, ctx: {} }, fx);
+    return [no, yes, P.spirits.map(x => x.id).join(), P.deck.length, P.revealed.length]; })()`);
+  assert.deepEqual(r, [false, true, '26RDB01-039,26RDB01-033', 3, 0], JSON.stringify(r));
+});
