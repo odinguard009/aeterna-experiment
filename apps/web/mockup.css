@@ -314,6 +314,7 @@
 .mk .dtile:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
 .mk .dtile .stack{position:relative;height:150px;display:flex;align-items:center;justify-content:center}
 .mk .dtile .stack .cf{position:absolute;width:86px;font-size:.8em;transition:transform .35s var(--ease)}
+.mk .dtile .stack .cf:nth-child(2){z-index:2}
 .mk .dtile .stack .cf:nth-child(1){transform:translateX(-34px) rotate(-10deg)}
 .mk .dtile .stack .cf:nth-child(3){transform:translateX(34px) rotate(10deg)}
 .mk .dtile:hover .stack .cf:nth-child(1){transform:translateX(-50px) rotate(-16deg)}

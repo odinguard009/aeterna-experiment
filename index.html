@@ -1337,6 +1337,7 @@ color-scheme:light;}
 .mk .dtile:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
 .mk .dtile .stack{position:relative;height:150px;display:flex;align-items:center;justify-content:center}
 .mk .dtile .stack .cf{position:absolute;width:86px;font-size:.8em;transition:transform .35s var(--ease)}
+.mk .dtile .stack .cf:nth-child(2){z-index:2}
 .mk .dtile .stack .cf:nth-child(1){transform:translateX(-34px) rotate(-10deg)}
 .mk .dtile .stack .cf:nth-child(3){transform:translateX(34px) rotate(10deg)}
 .mk .dtile:hover .stack .cf:nth-child(1){transform:translateX(-50px) rotate(-16deg)}
@@ -2270,7 +2271,7 @@ html:not(.layout-pc) .dk-st-row{min-height:72px}
 html:not(.layout-pc) .mk .dgrid .dtile{grid-template-columns:76px minmax(0,1fr);align-items:start}
 html:not(.layout-pc) .mk .dgrid .dtile .stack{grid-row:1 / span 3;height:106px;display:block;margin-left:0}
 html:not(.layout-pc) .mk .dgrid .dtile .stack .cf{position:absolute;left:0;top:0;width:64px;transform:none!important}
-html:not(.layout-pc) .mk .dgrid .dtile .stack .cf:nth-child(n+2){display:none}
+html:not(.layout-pc) .mk .dgrid .dtile .stack .cf:not(.key){display:none}
 html:not(.layout-pc) .mk .dgrid .dtile>*:nth-child(5){grid-column:1 / -1}
 html:not(.layout-pc) .mk .dgrid .dtile .row .btn{flex:1 1 0;min-width:0;white-space:nowrap;padding-inline:8px;overflow:visible}
 html:not(.layout-pc) .mk .dgrid .dtile .row b.grow{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -2382,10 +2383,10 @@ html:not(.layout-pc) .lorenav .seg{display:flex;flex-direction:row;gap:6px;width
 html:not(.layout-pc) .lorenav .seg button{flex:1;min-height:36px;width:auto;justify-content:center;align-items:center;flex-direction:row;font-size:.85em}
 .lorenav .lore-minb{width:auto;flex-direction:row;align-items:center;min-height:32px}
 html.layout-pc #view-playmat .playmat-layout.has-cp{grid-template-rows:minmax(0,1fr) 64px minmax(0,1fr) auto;}
-html.layout-pc #view-playmat .hand-container-wrapper{height:calc(clamp(112px,17vh,168px) + 9px);}
+html.layout-pc #view-playmat .hand-container-wrapper{height:calc(clamp(84px,12vh,124px) + 9px);}
 html.layout-pc #view-playmat .hand-area{height:auto;align-items:center;padding:4px;}
-html.layout-pc #view-playmat .hand-area .tcg-card{height:clamp(112px,17vh,168px);width:auto;aspect-ratio:63 / 88;flex:none;}
-html.layout-pc #view-playmat .pc-hand-flank{height:auto;align-self:stretch;}
+html.layout-pc #view-playmat .hand-area .tcg-card{height:clamp(84px,12vh,124px);width:auto;aspect-ratio:63 / 88;flex:none;}
+html.layout-pc #view-playmat .pc-hand-flank{height:46px;align-self:end;}
 html.layout-pc #view-playmat .zone-box{container-type:size;overflow:hidden;}
 html.layout-pc #view-playmat .zone-box .zone-label{font-size:clamp(7px,16cqh,10px) !important;padding-inline:clamp(4px,8cqw,10px);}
 html.layout-pc #view-playmat .zone-box .pv b{font-size:clamp(11px,30cqh,20px);}
@@ -2422,7 +2423,7 @@ html.layout-pc body[data-view="view-lobby"] .bugfab,body[data-view="view-lobby"]
 [data-mode="light"] #view-lobby .lob-foot a{text-decoration:underline}
 }
 .dk-st-btns .btn{min-width:72px}
-@container fr (max-width:700px){.dk-st-row{grid-template-columns:44px minmax(0,1fr)}.dk-st-btns{grid-column:1/-1}.dk-st-btns .btn{flex:1}}
+.dk-st-row{grid-template-columns:44px minmax(0,1fr)}.dk-st-btns{grid-column:1/-1}.dk-st-btns .btn{flex:1}
 .rc-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(220px,1fr);gap:16px;align-items:start}
 @container fr (max-width:700px){.rc-grid{grid-template-columns:minmax(0,1fr)}}
 .rc-sec{padding:10px 14px;display:flex;flex-direction:column;gap:2px}
@@ -2439,6 +2440,14 @@ button.rc-row:hover,button.rc-row:focus-visible{background:var(--you-soft)}
 .rc-bar{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px;height:100%;font-size:.74em;color:var(--text2)}
 .rc-bar i{display:block;width:100%;min-height:2px;background:var(--you);opacity:.85;border-radius:2px 2px 0 0}
 .rc-bar b{color:var(--text);font-variant-numeric:tabular-nums}
+html.layout-pc #view-playmat .field-row .fslot{height:min(92%,calc(var(--card-w) * 2.1));}
+.mk .ae-pop .pgrid{--cols:3!important;flex:none;padding:12px 0 4px;gap:8px}
+.mk .pcol{clip-path:none;border:1px solid var(--line2);border-radius:10px;box-shadow:none;padding:10px 4px 8px;min-height:64px;justify-content:center;gap:7px;cursor:pointer}
+.mk .pcol i{width:28px;height:28px;border-radius:50%;clip-path:none;background:var(--c);box-shadow:0 0 0 2px var(--line2)}
+.mk .pcol.on,.mk .pcol[aria-pressed="true"]{border-color:var(--you);background:var(--you-soft);box-shadow:none}
+.mk .pcol[aria-pressed="true"] i{box-shadow:0 0 0 2px var(--text)}
+.mk .pcol:hover{border-color:var(--you-text)}
+.mk .pcol[aria-pressed="true"]::after{display:none}
 </style>
 </head>
 <body>
@@ -9601,7 +9610,7 @@ const MK_TILES = [['⚔', 'Match vs CPU', 'go-play', () => `${SLOTS[ACTIVE_SLOT]
 function renderHome() {
   if (typeof document === 'undefined' || !$('home-sub')) return;
   const sl = SLOTS[ACTIVE_SLOT], t = deckTotal(PLAYER_DECK), ok = t && validateDeck(PLAYER_DECK, FORMAT).ok;
-  const top = sl && Object.keys(sl.cards).filter(id => CARDS[id] && sl.cards[id]).sort((a, b) => sl.cards[b] - sl.cards[a])[0];
+  const top = sl && dkCover(sl.cards, sl.key)[0];
   $('home-cont').innerHTML = `${top ? `<div style="width:36px">${cardFaceHTML(CARDS[top], false)}</div>` : ''}<div><span class="mut" style="font-size:.72em;letter-spacing:.14em;text-transform:uppercase;font-weight:800">Continue with</span><br><b>${esc(sl ? sl.name : 'Deck')}</b> <span class="mut">· ${fmtTitle()} · ${t}/40${ok ? '' : ' · not ready'}</span></div><button class="btn sm" data-a="go-deck">Edit</button>`;
   $('home-tiles').innerHTML = MK_TILES.map(x => `<button class="card tile2" data-a="${x[2]}"><span class="ic">${x[0]}</span><span><b>${x[1]}</b><span>${esc(x[3]())}</span></span></button>`).join('');
   $('home-ver').textContent = 'Aeterna v' + VERSION;
@@ -10084,9 +10093,18 @@ function dkColors(cards) {                          // the deck's colours, most 
   for (const [id, k] of Object.entries(cards)) { const c = CARDS[id]; if (c && k) for (const col of cardColors(c)) if (COLORS.includes(col)) n[col] = (n[col] || 0) + k; }
   return Object.keys(n).sort((a, b) => n[b] - n[a]).slice(0, 3);
 }
-function dkFan(cards) {                              // tile art: the deck's three most-played cards, fanned (mockup .stack)
-  const top = Object.keys(cards).filter(id => CARDS[id] && cards[id]).sort((a, b) => cards[b] - cards[a]).slice(0, 3);
-  return `<div class="stack" aria-hidden="true">${top.map(id => `<div class="cf">${cardFaceHTML(CARDS[id], false)}</div>`).join('')}</div>`;
+/* Deck cover (owner review 2026-10-30): the deck's key card is the front of its cover. Order of preference: the marked Key Spirit, then a
+   Grandwalker / Contract Nexus (Grandwalker family, a "...Contractor" name or a CX Nexus), then the most-played card. The two other cover
+   cards follow the same order. Display only. */
+const dkKeyNexus = id => { const c = CARDS[id]; return !!c && c.type === 'Nexus' && ((c.families || []).includes('Grandwalker') || /Contractor/.test(c.name) || /-CX\d+$/.test(id)); };
+function dkCover(cards, key) {                       // up to 3 card ids, the key card first
+  const have = Object.keys(cards).filter(id => CARDS[id] && cards[id] > 0);
+  const rank = id => (key && id === key ? 0 : dkKeyNexus(id) ? 1 : 2);
+  return have.sort((a, b) => rank(a) - rank(b) || cards[b] - cards[a] || DB_COLL.compare(a, b)).slice(0, 3);
+}
+function dkFan(cards, key) {                         // tile art: the cover cards, fanned (mockup .stack); the key card is the middle, front one
+  const top = dkCover(cards, key), kid = top[0]; if (top.length === 3) top.splice(1, 0, top.shift());   // key card to the middle slot
+  return `<div class="stack" aria-hidden="true">${top.map(id => `<div class="cf${id === kid ? ' key' : ''}">${cardFaceHTML(CARDS[id], false)}</div>`).join('')}</div>`;
 }
 function dkStats(name) {                             // win rate and last played from the match history, matched by deck name
   const h = HISTORY.filter(m => m.you === name);
@@ -10108,9 +10126,9 @@ function dkTile(i, name, cards, starter) {
   const stat = `<div class="stat"><span>${deckTotal(cards)}/40 cards</span>${ds ? `<span>${ds.wr == null ? 'No matches' : 'Win ' + ds.wr + '%'}</span><span>${dkAgo(ds.last)}</span>` : ''}</div>`;
   const btns = starter ? `<div class="row dk-st-btns" style="gap:6px;flex-wrap:nowrap"><button class="btn sm" data-a="dk-recipe" data-v="${i}" aria-label="View the recipe of ${nm}">Recipe</button><button class="btn sm grow" data-a="dk-copy" data-v="${i}" aria-label="Copy ${nm} to my decks">Copy</button></div>`
     : `<button class="btn sm grow" data-a="dk-edit" data-v="${i}" aria-label="Edit ${nm}">Edit</button><button class="btn sm pri grow" data-a="dk-play" data-v="${i}" aria-label="Play with ${nm}"${st.ok ? '' : ' disabled'}>Play</button><button class="ibtn sq dk-more" data-a="dk-more" data-v="${i}" aria-label="More actions for ${nm}" aria-haspopup="menu" aria-expanded="${open}">⋯</button>`;
-  if (starter) { const kc = key && CARDS[key] ? key : Object.keys(cards).filter(id => CARDS[id] && cards[id]).sort((x, y) => cards[y] - cards[x])[0];   // the thumbnail is the Key Spirit (else the most played card)
-    return `<div class="card flat dk-st-row" data-v="${i}"><div class="dk-st-th">${kc ? cardFaceHTML(CARDS[kc], false) : ''}</div><div class="dk-st-nm"><b>${nm}</b> ${kb}<span class="dk-st-sub">${esc(st.txt)}</span></div>${btns}</div>`; }
-  return `<div class="card dtile${act ? ' on' : ''}${open ? ' open' : ''}" data-v="${i}">${dkFan(cards)}<div class="row"><b class="grow" style="font-size:1.02em" title="${nm}">${nm}</b>${kb}${act ? '<span class="tag">Active</span>' : ''}</div><div class="row" style="gap:6px">${dots}<span class="grow"></span><span class="${st.ok ? 'vc' : 'vc warn'}">${st.ok ? '✓ Legal' : deckTotal(cards) < 40 ? 'Needs ' + (40 - deckTotal(cards)) + ' more' : 'Not legal'}</span></div>${stat}<div class="row" style="gap:6px">${btns}</div>${menu}</div>`;
+  if (starter) { const kc = dkCover(cards, key)[0];   // the thumbnail is the Key Spirit (else the most played card)
+    return `<div class="card flat dk-st-row" data-v="${i}"><div class="dk-st-th">${kc ? cardFaceHTML(CARDS[kc], false) : ''}</div><div class="dk-st-nm"><b>${nm}</b> ${kb}<span class="dk-st-sub">${esc(st.ok ? st.txt : deckTotal(cards) + ' cards')}</span></div>${btns}</div>`; }
+  return `<div class="card dtile${act ? ' on' : ''}${open ? ' open' : ''}" data-v="${i}">${dkFan(cards, key)}<div class="row"><b class="grow" style="font-size:1.02em" title="${nm}">${nm}</b>${kb}${act ? '<span class="tag">Active</span>' : ''}</div><div class="row" style="gap:6px">${dots}<span class="grow"></span><span class="${st.ok ? 'vc' : 'vc warn'}">${st.ok ? '✓ Legal' : deckTotal(cards) < 40 ? 'Needs ' + (40 - deckTotal(cards)) + ' more' : 'Not legal'}</span></div>${stat}<div class="row" style="gap:6px">${btns}</div>${menu}</div>`;
 }
 function renderDecks() {
   if (!$('dk-list')) return;

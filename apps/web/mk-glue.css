@@ -96,7 +96,7 @@ html:not(.layout-pc) .dk-st-row{min-height:72px}
 html:not(.layout-pc) .mk .dgrid .dtile{grid-template-columns:76px minmax(0,1fr);align-items:start}          /* phone deck tile: one card, the buttons get their own full-width row */
 html:not(.layout-pc) .mk .dgrid .dtile .stack{grid-row:1 / span 3;height:106px;display:block;margin-left:0}
 html:not(.layout-pc) .mk .dgrid .dtile .stack .cf{position:absolute;left:0;top:0;width:64px;transform:none!important}
-html:not(.layout-pc) .mk .dgrid .dtile .stack .cf:nth-child(n+2){display:none}
+html:not(.layout-pc) .mk .dgrid .dtile .stack .cf:not(.key){display:none}   /* phone: the thumbnail is the deck's key card */
 html:not(.layout-pc) .mk .dgrid .dtile>*:nth-child(5){grid-column:1 / -1}
 html:not(.layout-pc) .mk .dgrid .dtile .row .btn{flex:1 1 0;min-width:0;white-space:nowrap;padding-inline:8px;overflow:visible}
 html:not(.layout-pc) .mk .dgrid .dtile .row b.grow{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -230,10 +230,10 @@ html:not(.layout-pc) .lorenav .seg button{flex:1;min-height:36px;width:auto;just
 /* ---- v0.158.0 (owner review round 3): battle PC. The hand row follows the card height (no empty strip under the hand; the field gets the rest),
    the Trash area is bigger and split in two, every area keeps its size and its contents scale to it ---- */
 html.layout-pc #view-playmat .playmat-layout.has-cp { grid-template-rows: minmax(0, 1fr) 64px minmax(0, 1fr) auto; }
-html.layout-pc #view-playmat .hand-container-wrapper { height: calc(clamp(112px, 17vh, 168px) + 9px); }
+html.layout-pc #view-playmat .hand-container-wrapper { height: calc(clamp(84px, 12vh, 124px) + 9px); }   /* owner review 2026-10-30: smaller hand, the field gets the rest */
 html.layout-pc #view-playmat .hand-area { height: auto; align-items: center; padding: 4px; }
-html.layout-pc #view-playmat .hand-area .tcg-card { height: clamp(112px, 17vh, 168px); width: auto; aspect-ratio: 63 / 88; flex: none; }
-html.layout-pc #view-playmat .pc-hand-flank { height: auto; align-self: stretch; }
+html.layout-pc #view-playmat .hand-area .tcg-card { height: clamp(84px, 12vh, 124px); width: auto; aspect-ratio: 63 / 88; flex: none; }
+html.layout-pc #view-playmat .pc-hand-flank { height: 46px; align-self: end; }   /* Banished and Hand Cnt shrink to a slim chip (still open the same lists) */
 html.layout-pc #view-playmat .zone-box { container-type: size; overflow: hidden; }
 html.layout-pc #view-playmat .zone-box .zone-label { font-size: clamp(7px, 16cqh, 10px) !important; padding-inline: clamp(4px, 8cqw, 10px); }
 html.layout-pc #view-playmat .zone-box .pv b { font-size: clamp(11px, 30cqh, 20px); }
@@ -280,7 +280,7 @@ html.layout-pc body[data-view="view-lobby"] .bugfab, body[data-view="view-lobby"
 }
 /* Deck recipe page (ALL) */
 .dk-st-btns .btn{min-width:72px}
-@container fr (max-width:700px){.dk-st-row{grid-template-columns:44px minmax(0,1fr)}.dk-st-btns{grid-column:1/-1}.dk-st-btns .btn{flex:1}}
+.dk-st-row{grid-template-columns:44px minmax(0,1fr)}.dk-st-btns{grid-column:1/-1}.dk-st-btns .btn{flex:1}      /* name on top, Recipe and Copy side by side under it (PC and phone) */
 .rc-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(220px,1fr);gap:16px;align-items:start}
 @container fr (max-width:700px){.rc-grid{grid-template-columns:minmax(0,1fr)}}
 .rc-sec{padding:10px 14px;display:flex;flex-direction:column;gap:2px}
@@ -297,3 +297,15 @@ button.rc-row:hover,button.rc-row:focus-visible{background:var(--you-soft)}
 .rc-bar{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px;height:100%;font-size:.74em;color:var(--text2)}
 .rc-bar i{display:block;width:100%;min-height:2px;background:var(--you);opacity:.85;border-radius:2px 2px 0 0}
 .rc-bar b{color:var(--text);font-variant-numeric:tabular-nums}
+
+/* Battle PC (owner review 2026-10-30): the Spirit and Nexus cards use the row height the smaller hand frees (the old cap was tied to the hand-card width) */
+html.layout-pc #view-playmat .field-row .fslot { height: min(92%, calc(var(--card-w) * 2.1)); }
+
+/* Colour picker (ALL, owner review 2026-10-30): plain round swatches in tidy rounded boxes, three to a row; no slanted shapes */
+.mk .ae-pop .pgrid{--cols:3!important;flex:none;padding:12px 0 4px;gap:8px}
+.mk .pcol{clip-path:none;border:1px solid var(--line2);border-radius:10px;box-shadow:none;padding:10px 4px 8px;min-height:64px;justify-content:center;gap:7px;cursor:pointer}
+.mk .pcol i{width:28px;height:28px;border-radius:50%;clip-path:none;background:var(--c);box-shadow:0 0 0 2px var(--line2)}
+.mk .pcol.on,.mk .pcol[aria-pressed="true"]{border-color:var(--you);background:var(--you-soft);box-shadow:none}
+.mk .pcol[aria-pressed="true"] i{box-shadow:0 0 0 2px var(--text)}
+.mk .pcol:hover{border-color:var(--you-text)}
+.mk .pcol[aria-pressed="true"]::after{display:none}

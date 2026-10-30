@@ -54,7 +54,7 @@ const MK_TILES = [['⚔', 'Match vs CPU', 'go-play', () => `${SLOTS[ACTIVE_SLOT]
 function renderHome() {
   if (typeof document === 'undefined' || !$('home-sub')) return;
   const sl = SLOTS[ACTIVE_SLOT], t = deckTotal(PLAYER_DECK), ok = t && validateDeck(PLAYER_DECK, FORMAT).ok;
-  const top = sl && Object.keys(sl.cards).filter(id => CARDS[id] && sl.cards[id]).sort((a, b) => sl.cards[b] - sl.cards[a])[0];
+  const top = sl && dkCover(sl.cards, sl.key)[0];
   $('home-cont').innerHTML = `${top ? `<div style="width:36px">${cardFaceHTML(CARDS[top], false)}</div>` : ''}<div><span class="mut" style="font-size:.72em;letter-spacing:.14em;text-transform:uppercase;font-weight:800">Continue with</span><br><b>${esc(sl ? sl.name : 'Deck')}</b> <span class="mut">· ${fmtTitle()} · ${t}/40${ok ? '' : ' · not ready'}</span></div><button class="btn sm" data-a="go-deck">Edit</button>`;
   $('home-tiles').innerHTML = MK_TILES.map(x => `<button class="card tile2" data-a="${x[2]}"><span class="ic">${x[0]}</span><span><b>${x[1]}</b><span>${esc(x[3]())}</span></span></button>`).join('');
   $('home-ver').textContent = 'Aeterna v' + VERSION;

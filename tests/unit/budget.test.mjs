@@ -68,7 +68,8 @@ test('B01 index.html without the card pack stays under 1125 KB', () => assert.ok
 // v0.195.0 (Lane K): raised B02 294 -> 296 KB on purpose: viaLegacy and BOUNCE_OPP n/bpLe put the engine 0.01 KB over the limit.
 // v0.196.0 (Lane K): raised B02 296 -> 300 KB on purpose (PAY_COST, tr, pick, peek, noSoul, UNBLOCKABLE_PICK).
 // v0.197.0 (Lane K): raised B02 300 -> 305 KB on purpose (new Lane K conditions, triggers and actions).
-test('B02 index.html without the card pack, gzipped, stays under 305 KB', () => { const n = gzipSync(noFont(code), { level: 9 }).length; assert.ok(n < 305e3, n); });
+// v0.198.0 (owner UI review 2026-10-30): raised B02 305 -> 308 KB on purpose: deck recipe page, deck cover rule, colour picker and battle sizing.
+test('B02 index.html without the card pack, gzipped, stays under 308 KB', () => { const n = gzipSync(noFont(code), { level: 9 }).length; assert.ok(n < 308e3, n); });
 test('B03 the embedded card pack stays under 1.6 MB (room for all cards; never embed staging data)', () => assert.ok(packLen < 1.6e6, packLen));
 // v0.93.0 (U6): raised 90 -> 96 KB on purpose (roadmap item U allows it with a note): U6-U8 add the My decks page and the
 // deck builder restyle; unused rules were trimmed first in v0.92.0. The next raise needs the same kind of note.
