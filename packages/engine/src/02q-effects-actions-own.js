@@ -93,7 +93,7 @@ Object.assign(FX_ACTIONS, {
   /* v0.185 (schema 66) DEPLOY_TRASH {match}: "Target a <X> Nexus card in your Trash. Deploy it without paying the cost." (Nexus only) */
   DEPLOY_TRASH: { chk: a => !!a.match && hasMatch(a.match) && Object.keys(a).every(k => ['do', 'match', 'if'].includes(k)),
     txt: () => 'deploy a matching Nexus card from your Trash without paying the cost',
-    cands: (c, a) => c.p.trash.filter(t => CARDS[t.id].type === 'Nexus' && fxMatch(CARDS[t.id], a.match) && canPlaceFree(c.p, t)),
+    cands: (c, a) => c.p.trash.filter(t => CARDS[t.id].type === (a.match.type === 'Spirit' ? 'Spirit' : 'Nexus') && fxMatch(CARDS[t.id], a.match) && canPlaceFree(c.p, t)),      // v0.199 (schema 149) match.type "Spirit" summons a Spirit instead
     can: (c, a) => FX_ACTIONS.DEPLOY_TRASH.cands(c, a).length > 0,
     run: async (c, a) => {
       const L = FX_ACTIONS.DEPLOY_TRASH.cands(c, a); c.ctx.did = false; if (!L.length) return;
@@ -101,7 +101,7 @@ Object.assign(FX_ACTIONS, {
       if (c.p.cpu) t = L.slice().sort((x, y) => CARDS[y.id].cost - CARDS[x.id].cost)[0];
       else {
         const ids = Array.from(new Set(L.map(x => x.id))).slice(0, 8);
-        const id = await ask({ title: `✨ ${CARDS[c.src.id].name}`, peek: true, wide: true, html: 'Choose a Nexus to deploy from your Trash.', cards: cardIds(ids), buttons: ids.map(i => ({ label: CARDS[i].name, value: i })) });
+        const id = await ask({ title: `✨ ${CARDS[c.src.id].name}`, peek: true, wide: true, html: `Choose a ${a.match.type === 'Spirit' ? 'Spirit to summon' : 'Nexus to deploy'} from your Trash.`, cards: cardIds(ids), buttons: ids.map(i => ({ label: CARDS[i].name, value: i })) });
         t = L.find(x => x.id === id) || L[0];
       }
       removeFrom(c.p.trash, t); c.p.hand.push(t);

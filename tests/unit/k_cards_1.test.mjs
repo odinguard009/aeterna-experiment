@@ -138,3 +138,13 @@ test('K-105 26RBS01-093 DRAW_STEP: after the Draw Step draw, draws +1 then must 
     return [own, O.hand.length - h2]; })()`);
   assert.deepEqual(r, [[0, 1, true], 0], JSON.stringify(r));
 });
+
+test('K-106 26RBS03-018 When Destroyed: summons a Cost 4 or less Beastleptic Spirit from the Trash (a Cost 5 one stays)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    P.reserve.n = 3; const n = BS.mkInst('26RBS03-018'); n.lostLv = 0; P.trash.push(n);
+    const lo = BS.mkInst('26RBS02-013'), hi = BS.mkInst('26RBS03-018'); P.trash.push(hi, lo);
+    await BS.fireFx(P, 'DESTROYED', n, {});
+    return [P.spirits.includes(lo), P.trash.includes(lo), P.trash.includes(hi), P.spirits.includes(hi)]; })()`);
+  assert.deepEqual(r, [true, false, true, false], JSON.stringify(r));
+});
