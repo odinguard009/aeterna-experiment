@@ -21,7 +21,13 @@ function changedTests() {
   const base = 'HEAD';
   const names = [...git(['diff', '--name-only', base, '--', 'tests/unit']),
     ...git(['ls-files', '--others', '--exclude-standard', 'tests/unit'])];
-  return names.filter((f) => f.endsWith('.test.mjs') && !SLOW.test(f) && existsSync(f));
+  // Tests that name a card whose data or code changed (2026-10-30: T06 asserted 26RBS03-X07 was still partial, the loop never ran it, main went red).
+  const ids = new Set();
+  for (const l of git(['diff', '-U0', base, '--', 'data/cards', 'packages/engine/src'])) {
+    if (/^[+-]/.test(l)) for (const m of l.matchAll(/\b[0-9A-Z]{2,8}-[A-Z]{0,2}\d{2,3}\b/g)) ids.add(m[0]);
+  }
+  const named = [...ids].slice(0, 60).flatMap((id) => git(['grep', '-l', '-F', id, '--', 'tests/unit']));
+  return [...new Set([...names, ...named.slice(0, 40)])].filter((f) => f.endsWith('.test.mjs') && !SLOW.test(f) && existsSync(f));
 }
 
 const testArgs = FULL ? ['tools/quick-tests.mjs'] : ['--test', ...new Set([...SMOKE, ...changedTests()])];
