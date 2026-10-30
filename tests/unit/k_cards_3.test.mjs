@@ -64,3 +64,16 @@ test('K-152 26RSD10-T001: Swordish token gains an extra Green symbol on START_MA
     return [c.src.symTurn.cols.join(), BS.CARDS['26RSD10-T001'].effects.map(e => e.trigger).join()]; })()`);
   assert.deepEqual(r, ['green', 'START_MAIN,SUMMONED'], JSON.stringify(r));
 });
+
+test('K-153 BLOCK_TAX: a blocker needs a Reserve core (reserve) or another untapped Spirit (exhaust); payment moves/exhausts', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const att = BS.mkInst('26RSD06-X01'), b1 = BS.mkInst('BS48-047'), b2 = BS.mkInst('BS48-047'); O.spirits.length = 0; O.spirits.push(b1);
+    G.battleNo = 9; att.blockTax = { battleNo: 9, kind: 'exhaust' };
+    const a0 = blockTaxOK(O, att, b1); O.spirits.push(b2); const a1 = blockTaxOK(O, att, b1);
+    O.cpu = true; const paid = await payBlockTax(O, att, b1);
+    att.blockTax = { battleNo: 9, kind: 'reserve' }; O.reserve.n = 0; const r0 = blockTaxOK(O, att, b1); O.reserve.n = 2; const t0 = O.trashCores.n;
+    await payBlockTax(O, att, b1);
+    return [a0, a1, paid, b2.exhausted, b1.exhausted, r0, O.reserve.n, O.trashCores.n - t0, BS.CARDS['26RSD06-X01'].effects[1].actions[0].kind]; })()`);
+  assert.deepEqual(r, [false, true, true, true, false, false, 1, 1, 'exhaust'], JSON.stringify(r));
+});

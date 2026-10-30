@@ -216,6 +216,8 @@ function simple(card, a) {
     case 'MUST_ATTACK_OPP':      // v164 the picked opposing Spirit carries mustAtk = this turn
       return only(a, ['costLe']) && { body: `const t = sp(${J(FILL)}, O, 1); G.turnNo = 7; await run(src, RA);
         if (A.costLe != null && BS.CARDS[${J(FILL)}].cost > A.costLe) return ''; return t.mustAtk === 7 ? '' : 'mustAtk not set';` };
+    case 'BLOCK_TAX':      // v178 the attacker carries blockTax {battleNo, kind} for this battle
+      return only(a, ['kind', 'toSubject']) && spirit && { onField: true, body: `G.attacker = src; G.battleNo = 4; await run(src, RA, { attacker: src }); const m = src.blockTax; G.attacker = null; return m && m.battleNo === 4 && m.kind === A.kind ? '' : 'blockTax not set';` };
     case 'CANT_BE_BLOCKED_BY':      // v0.175 the attacker carries noBlockBy for this battle only
       return only(a, ['color', 'levels', 'keyword', 'highSpeed']) && spirit && { onField: true, body: `G.attacker = src; G.battleNo = 4; await run(src, RA); const m = src.noBlockBy; G.attacker = null; return m && m.battleNo === 4 ? '' : 'noBlockBy not set';` };
     case 'UNBLOCKABLE_PICK':      // v157 one of your Spirits (not this one with `other`) can't be blocked this turn (or by BP <= bpLe)

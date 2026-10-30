@@ -39,7 +39,7 @@ async function doBattleInner(attKey, att) {
   att = (await flashTiming(attKey, att, null))[0];
   if (G.over) return;
   if (!A.spirits.includes(att)) { log('The attack ends: the attacking Spirit left the field.'); io.view({ type: 'board' }); return; }
-  const blockers = noBlockActive(D) || att.noBlockTurn === G.turnNo ? [] : D.spirits.filter(s => canBlockState(D, s) && abTaxOK(D, s) && !blockedByMark(att, s) && !blockedInferior(D, att, s));
+  const blockers = noBlockActive(D) || att.noBlockTurn === G.turnNo ? [] : D.spirits.filter(s => canBlockState(D, s) && abTaxOK(D, s) && !blockedByMark(att, s) && blockTaxOK(D, att, s) && !blockedInferior(D, att, s));
   let blk = null;
   /* v0.58 priority "cannot" > "must" > "do" = "can" (JP 17.0 item 9): Spirits that can't block were removed above; a Spirit unaffected by the
      attacker's effects is not bound by its "must block" (FAQ Q4: unaffected > the effect) */
@@ -49,6 +49,7 @@ async function doBattleInner(attKey, att) {
   if (must) log(`${CARDS[att.id].name}: opposing Spirits must block if possible.`);
   if (blockers.length) blk = await askBlock(att, D, marked.length ? marked : blockers, must || marked.length > 0, marked.length ? marked : bound);   // v0.105.0 (M6 step 1): CPU seats answer the port too; cpuAnswer routes this pick to the same cpuChooseBlock
   if (blk && !(await payAbTax(D, blk, 'block'))) blk = null;
+  if (blk && !(await payBlockTax(D, att, blk))) blk = null;
   if (blk) {
     blk.exhausted = true; G.blocker = blk; D.blocksThisTurn = (D.blocksThisTurn || 0) + 1;
     log(`${who(D)} ${D.cpu ? 'blocks' : 'block'} with ${CARDS[blk.id].name} (${bpOf(blk)} BP).`);
