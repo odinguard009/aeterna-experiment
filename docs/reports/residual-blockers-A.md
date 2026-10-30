@@ -37,8 +37,8 @@ Open = a glossary tag whose status is not `wired`. Tags are hints, not a parser;
 | T_DESTROYED | partial | 8 | 2 |
 | A_BANISH | partial | 7 | 4 |
 | C_OPP_TURN | partial | 7 | 4 |
-| A_REVEAL_ADD | partial | 6 | 0 |
 | A_REVEAL_DECK | partial | 6 | 0 |
+| A_REVEAL_ADD | partial | 6 | 0 |
 | S_OPP_NO_BLOCK | partial | 4 | 1 |
 | T_ALLY_DESTROYS | partial | 1 | 1 |
 | T_ALLY_LOST | partial | 1 | 0 |
