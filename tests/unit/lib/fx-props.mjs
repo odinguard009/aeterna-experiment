@@ -29,10 +29,10 @@ export const PRE = `BS.testSetup(); BS.SETTINGS.speed = 'instant'; const G = BS.
   const gone = (t, q = O) => !q.spirits.includes(t) && !q.nexus.includes(t);`;
 
 /* A fixture that matches a simple `match` (family / type / costLe / color): its id is derived from the match, so one card per match. */
-const MATCH_KEYS = ['family', 'type', 'costLe', 'color'];
-const okMatch = m => m && Object.keys(m).every(k => MATCH_KEYS.includes(k)) && (!m.type || m.type === 'Spirit' || m.type === 'Nexus') && (!m.family || m.family.length > 0);
+const MATCH_KEYS = ['family', 'type', 'costLe', 'color', 'team', 'typeAny'];
+const okMatch = m => m && Object.keys(m).every(k => MATCH_KEYS.includes(k)) && (!m.typeAny || m.typeAny.includes('Spirit')) && (!m.type || m.type === 'Spirit' || m.type === 'Nexus') && (!m.family || m.family.length > 0);
 const mid = m => `${FIX_PREFIX}M-` + [...JSON.stringify(m)].reduce((h, ch) => (Math.imul(h ^ ch.charCodeAt(0), 16777619) >>> 0), 2166136261).toString(36);
-const fillMatches = m => (!m.family || m.family.includes('FXP')) && (!m.type || m.type === 'Spirit') && (m.costLe == null || m.costLe >= 1) && (!m.color || m.color === 'red');
+const fillMatches = m => !m.team && (!m.family || m.family.includes('FXP')) && (!m.type || m.type === 'Spirit') && (m.costLe == null || m.costLe >= 1) && (!m.color || m.color === 'red');
 function matchCard(m) {
   const type = m.type || 'Spirit', id = mid(m);
   return { id, name: id, type, color: m.color || 'red', cost: m.costLe != null ? m.costLe : 3, symbols: 1, levels: type === 'Nexus' ? [{ cores: 0 }] : [{ cores: 1, bp: 2000 }], families: m.family ? [m.family[0]] : ['FXM'], ...(m.team ? { desc: `[Team: ${m.team}]` } : {}) };
@@ -204,7 +204,7 @@ function simple(card, a) {
     case 'NO_BP_DESTROY_TURN':      // v162 one of your matching Spirits carries noBpTurn = this turn
       return only(a, ['match']) && spirit && okMatch(a.match) && { onField: true, fix: [{ m: a.match }], body: `sp(${J(mid(a.match))}, P, 1); G.turnNo = 6; await run(src, RA); return P.spirits.some(x => x.noBpTurn === 6) ? '' : 'noBpTurn not set';` };
     case 'REVEAL_SUMMON': {      // v166 a matching revealed Spirit enters the Field; the rest go to the deckbottom
-      if (!only(a, ['n', 'count', 'match', 'diffName']) || !okMatch((({ team, ...r }) => r)(a.match || {}))) return null;
+      if (!only(a, ['n', 'count', 'match', 'diffName']) || !okMatch(a.match)) return null;
       const M = mid(a.match);
       return { fix: [{ m: a.match }], body: `P.deck = []; dk(${J(M)}); for (let j = 0; j < 5; j++) dk(${J(FILL)}); await run(src, RA);
       if (!P.spirits.some(x => x.id === ${J(M)})) return 'the matching Spirit was not summoned'; if (P.deck.length !== 5 || P.revealed.length) return 'rest not on the deckbottom: deck ' + P.deck.length; return '';` };

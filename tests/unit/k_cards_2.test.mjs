@@ -119,3 +119,17 @@ test('K-130 26RBS02-087: the picked Spirit is armed for this turn (flag only; th
     return [JSON.stringify(s.lifeHitNexus)]; })()`);
   assert.equal(r[0], JSON.stringify({ turn: 9, costLe: 4 }), JSON.stringify(r));
 });
+
+test('K-131 26RDB01-031: reveals three, adds a Yellow Rise Spirit/Magic with another name; LV2 gives a Rei-Ohba +5000 BP', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    G.active = P.key;
+    const c = BS.mkInst('26RDB01-031'); c.cores = 1; P.spirits.push(c);
+    const fx = BS.CARDS['26RDB01-031'].effects;
+    P.deck = ['BS48-001', '26RSD08-X02', 'BS48-001', 'BS48-001'].map(id => BS.mkInst(id));
+    await BS.runActions({ p: P, opp: O, src: c, ctx: {} }, fx.find(e => e.trigger === 'SUMMONED'));
+    const rei = BS.mkInst('26RDB01-X05'); rei.cores = 1; P.spirits.push(rei); const b0 = rei.bpMod || 0;
+    await BS.runActions({ p: P, opp: O, src: c, ctx: {} }, fx.find(e => e.trigger === 'ATTACKS'));
+    return [P.hand.map(x => x.id).join(), P.deck.length, (rei.bpMod || 0) - b0]; })()`);
+  assert.deepEqual(r, ['26RSD08-X02', 3, 5000], JSON.stringify(r));
+});

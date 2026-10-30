@@ -38726,15 +38726,6 @@
   "S1_ALL_HAVE",
   "T_SUMMONED"
  ],
- "26RDB01-031": [
-  "A_BP_PLUS",
-  "A_REVEAL_ADD",
-  "A_REVEAL_DECK",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_ATTACKS",
-  "T_SUMMONED"
- ],
  "26RDB01-041": [
   "A_REFRESH",
   "C_LEVEL",
