@@ -347,3 +347,9 @@ html.layout-pc #view-playmat .hand-container-wrapper > .hand-area { grid-column:
 #view-playmat .field-row>.empty-note{margin-inline:auto!important;flex:none}
 #view-playmat .field-row:has(>.ph-slot){justify-content:center!important}
 #view-playmat .field-row>.ph-slot{margin-inline:auto!important}
+
+/* Effect pop-up (owner 2026-10-30): PC top-left under the AETERNA header; phone top, under the AETERNA bar; a tap on it opens the full card */
+html.layout-pc #ae-eff-stack { left: 8px; top: 46px; bottom: auto; }
+.ae-eff { cursor: pointer; }
+.ae-eff:focus-visible { outline: 2px solid var(--you); outline-offset: 1px; }
+html:not(.layout-pc) #ae-eff-stack { top: 38px; }

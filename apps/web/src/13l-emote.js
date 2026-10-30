@@ -8,7 +8,7 @@ const EMOTES = ['😀', '😎', '😮', '😢', '😡', '👍', '👏', '🙏', 
 const EMOTE_GAP = 30000;
 let EMOTE_AT = 0, EMOTE_NOW = () => Date.now();
 const emoteLeft = () => Math.max(0, Math.ceil((EMOTE_AT + EMOTE_GAP - EMOTE_NOW()) / 1000));
-/* v0.151.0: effect pop-ups (owner 2026-10-27, like Aegis): an info card for every effect that runs, never a question. PC: bottom of the left card panel column;
+/* v0.151.0: effect pop-ups (owner 2026-10-27, like Aegis): an info card for every effect that runs, never a question. PC: top-left, under the AETERNA header (owner 2026-10-30);
    phone: under the top bar (over the CPU stats row), one at a time. Never over the field. Closes after 5 s or with the X; Settings > Game > Effect pop-ups turns it off. */
 const EFF_MS = 5000;
 function effectPanel(ev) {
@@ -22,6 +22,9 @@ function effectPanel(ev) {
   const d = document.createElement('div'); d.className = 'ae-eff' + (ev.side === 'opponent' ? ' cpu' : ''); d.dataset.k = ev.id + '|' + text;
   d.innerHTML = `<span class="ae-eff-h">${ev.side === 'opponent' ? 'CPU' : 'YOU'} · EFFECT${trg ? ' · ' + esc(trg) : ''}</span><b>${esc(c.name)}</b><span class="ae-eff-t">${esc(text)}</span><button class="ae-eff-x" type="button" aria-label="Close this effect pop-up">✕</button>`;
   d.querySelector('button').addEventListener('click', e => { e.stopPropagation(); clearTimeout(+d.dataset.t); d.remove(); });
+  d.title = 'Tap to read the full card'; d.tabIndex = 0; d.setAttribute('role', 'button');      // owner 2026-10-30: a tap opens the full card (all its effects)
+  const full = () => { clearTimeout(+d.dataset.t); d.remove(); openZoom(ev.id); };
+  d.addEventListener('click', full); d.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); full(); } });
   d.dataset.t = String(setTimeout(() => d.remove(), EFF_MS));
   st.appendChild(d);
 }

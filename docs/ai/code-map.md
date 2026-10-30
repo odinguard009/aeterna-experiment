@@ -158,7 +158,7 @@ ONL_CFG, ONL_ACCOUNT, onlConfig, onlAccount, onlAccountHTML, renderOnlineLobby, 
 ## apps/web/src/13k-cardpanel.js (33 lines, ~0.7k tokens) — CARD PANEL (v0.122.0, U14b battle PC; docs/design/mockup-v14.html)
 PANEL_ID, CP_MIN, cpMinToggle, cardPanelHTML, panelCardOf
 
-## apps/web/src/13l-emote.js (44 lines, ~0.9k tokens) — EFFECT ACTIVE PANEL + EMOTICONS (v0.125.0, U14d2; docs/design/mockup-v14.html)
+## apps/web/src/13l-emote.js (47 lines, ~1k tokens) — EFFECT ACTIVE PANEL + EMOTICONS (v0.125.0, U14d2; docs/design/mockup-v14.html)
 EMOTES, EMOTE_GAP, EMOTE_AT, emoteLeft, EFF_MS, effectPanel, emotePop, emoteSend
 
 ## apps/web/src/13m-lore.js (45 lines, ~1.5k tokens) — LORE (v0.131.0, U14g; docs/design/mockup-v14.html): the English flavor texts of the cards, read in order by series.

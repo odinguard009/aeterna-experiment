@@ -17,6 +17,12 @@ test('EF01 an effect record shows an info pop-up in every animation mode; Off in
   assert.equal(await page.locator('#ae-fx .ae-eff .ae-eff-h').innerText(), 'YOU · EFFECT · When Summoned');
   await page.click('#ae-fx .ae-eff-x');
   assert.equal(await page.locator('#ae-fx .ae-eff').count(), 0);        // the X closes it at once
+  assert.equal(await fire('off'), 1);
+  await page.click('#ae-fx .ae-eff b');            // a tap on the pop-up (not the X) closes it and opens the full card
+  assert.equal(await page.locator('#ae-fx .ae-eff').count(), 0);
+  assert.equal(await page.evaluate(() => !!document.querySelector('#modal-card-desc, .modal.active, #action-modal.active')), true);
+  await page.keyboard.press('Escape'); await page.waitForTimeout(150);
+  await page.evaluate(() => { document.querySelectorAll('.modal.active, .modal-overlay.active').forEach(m => m.classList.remove('active')); });
   await page.evaluate(() => { BS.SETTINGS.effPop = 'off'; });
   assert.equal(await fire('full'), 0); await clear();                   // Settings > Game > Effect pop-ups = Off
   await page.evaluate(() => { delete BS.SETTINGS.effPop; });
