@@ -162,3 +162,15 @@ test('K-107 26RBS02-074 / 26RBS03-005 LV2: at the end of the battle of a 10000+ 
   assert.deepEqual(r[0], [0, 0], JSON.stringify(r));
   assert.equal(r[1][1], 1, JSON.stringify(r));
 });
+
+test('K-108 26RBS01-102 Rock Pit: an attacking Amplify Spirit cannot be blocked by Cost 2 or less Spirits; LV2 end of its battle: +1 core from the Trash', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const nx = BS.mkInst('26RBS01-102'); nx.cores = 2; P.nexus.push(nx);
+    const amp = BS.mkInst('26RBS01-048'), plain = BS.mkInst('26RBS02-013'); amp.cores = 1; plain.cores = 1; P.spirits.push(amp, plain);
+    G.battleNo = (G.battleNo || 0) + 1; await BS.fireFx(P, 'ALLY_ATTACKS', amp, { attacker: amp }); await BS.fireFx(P, 'ALLY_ATTACKS', plain, { attacker: plain });
+    const m = [!!amp.noBlockBy, !!plain.noBlockBy, amp.noBlockBy && amp.noBlockBy.costLe];
+    P.trashCores.n = 2; G.attacker = amp; const c0 = amp.cores; await BS.fireFx(P, 'ALLY_BATTLE_END', null, { subject: amp, attacker: amp }); G.attacker = null;
+    return [m, amp.cores - c0]; })()`);
+  assert.deepEqual(r, [[true, false, 2], 1], JSON.stringify(r));
+});

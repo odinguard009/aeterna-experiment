@@ -188,3 +188,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v148 (v0.199.0, Lane K): trigger `DRAW_STEP` ("(Your Draw Step)", fired for the owner right after the normal draw); `HAND_TO_BOTTOM.forced:true` ("return a card" without "you can": the card must be chosen).
 - v149 (v0.199.0, Lane K): `DEPLOY_TRASH` accepts `match.type:"Spirit"` (summon a matching Spirit from your Trash without paying the cost).
 - v150 (v0.199.0, Lane K): trigger `ALLY_BATTLE_END` ("at the end of the battle of your X Spirit", fired after the battle for the attacker if still on the Field; `match` incl. new `bpGe`), `TRASH_CORES_TO.notAttacker` (excludes the attacking Spirit as target).
+- v151 (v0.199.0, Lane K): `CANT_BE_BLOCKED_BY.toSubject` (inside ALLY_ATTACKS: the attacking ally gets the "can't be blocked by ..." mark instead of the source).

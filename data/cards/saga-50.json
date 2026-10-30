@@ -6482,16 +6482,48 @@
   "image": "26RBS01-102.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (Your Attack Step) All your Spirits with Amplify can't be blocked by opposing Cost 2 or less Spirits.",
-   "[LV2] (True Release) (Your Attack Step) (CSOPT) At the end of battle of your Spirit with Amplify, target one of your attacking Spirits. Send a core, besides , from your Trash to it."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "bicon": [
    "A"
   ],
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ALLY_ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "match": {
+     "keyword": "Amplify"
+    },
+    "actions": [
+     {
+      "do": "CANT_BE_BLOCKED_BY",
+      "toSubject": true,
+      "costLe": 2
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_BATTLE_END",
+    "lv": [
+     2
+    ],
+    "once": true,
+    "match": {
+     "keyword": "Amplify"
+    },
+    "actions": [
+     {
+      "do": "TRASH_CORES_TO",
+      "n": 1,
+      "toAttacker": true
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RBS01-103",
