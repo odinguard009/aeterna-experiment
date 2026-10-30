@@ -884,3 +884,19 @@ test('K-69 War Toll: HAND_TO_BOTTOM then SEND_TOKEN (Life 2 sends two)', async (
   assert.equal(r[2], 1);
   assert.ok(r[3] >= 1);
 });
+
+test('K-70 START_MAIN fires at the start of the Main Step (Bubble Cluster Realm)', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    P.cpu = true; const n = BS.mkInst('26RSD03-011'); n.cores = 5; P.nexus.push(n);
+    const eff = BS.CARDS['26RSD03-011'].effects.find(e => e.trigger === 'START_MAIN');
+    const f = P.spirits; f.length = 0;
+    for (let i = 0; i < 2; i++) { const s = BS.mkInst('26RSD03-001'); s.exhausted = true; f.push(s); }
+    BS.CARDS['26RSD03-001'].families = ['Armored Fish'];
+    const v0 = P.void, r0 = P.reserve.n; P.void = 3;
+    await BS.fireFx(P, 'START_MAIN', null, {});
+    return [!!eff, P.reserve.n - r0, P.void]; })()`);
+  assert.equal(r[0], true);
+  assert.equal(r[1], 1);
+  assert.equal(r[2], 2);
+});

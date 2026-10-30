@@ -28,6 +28,7 @@ async function beginTurn(key) {
   io.view({ type: 'board' });
   await wait(450);
   setStep(4);
+  if (!G.over) { await fireFx(p, 'START_MAIN', null, {}); await flushBursts(); checkDepletion(G.p.player); checkDepletion(G.p.opponent); io.view({ type: 'board' }); }      // v0.197 "(Start of Your Main Step)" effects
 }
 async function endStep(key) {
   setStep(G.steps.length - 1);

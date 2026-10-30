@@ -167,3 +167,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v127 (v0.197.0, Lane K): `DESTROY_TOTAL` takes `max: 1..10` ("target up to N Spirits with a total BP up to X").
 - v128 (v0.197.0, Lane K): `ctrl` takes `refreshed: true` (counts only refreshed Spirits); Magic cards may send out Tokens (`SEND_TOKEN` in `magic.actions` / `magic.by.*.actions` prepares the Token supply).
 - v129 (v0.197.0, Lane K): action `HAND_TO_BOTTOM {n:1-2}` ("you can return N cards from your Hand to the deckbottom"; `did`/`prev` = returned).
+- v130 (v0.197.0, Lane K): trigger `START_MAIN` ("Start of Your Main Step", fired at the start of the owner's Main Step).
