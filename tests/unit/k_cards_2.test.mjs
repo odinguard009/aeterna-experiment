@@ -253,3 +253,19 @@ test('K-139 26RSD08-007: attack discards a Sword Eye card besides Rei-Ohba for +
     return [rei, P.hand.length, bpOf(c) - b0, fx.some(e => e.trigger === 'STATIC' && e.bp === 3000)]; })()`);
   assert.deepEqual(r, [[1, 0], 1, 3000, true], JSON.stringify(r));
 });
+
+test('K-141 26RBS02-052: Wailwraith card returns to the decktop, to the Hand after two attacks; LV2 refresh on summon in own Main Step', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const s = BS.mkInst('26RBS02-052'); s.cores = 3; P.spirits.push(s);
+    const fx = BS.CARDS['26RBS02-052'].effects;
+    const w = P.deck.length, out = [];
+    for (const atk of [0, 2]) {
+      const t = BS.mkInst('26RBS01-071'); P.trash.push(t); P.attacksThisTurn = atk;
+      const h = P.hand.length, d = P.deck.length;
+      await BS.runActions({ p: P, opp: O, src: s, ctx: {} }, fx[0]);
+      out.push([P.deck.length - d, P.hand.length - h, P.trash.includes(t)]);
+    }
+    return [out, fx[1].trigger, fx[1].lv]; })()`);
+  assert.deepEqual(r[0], [[1, 0, false], [0, 1, false]], JSON.stringify(r));
+});

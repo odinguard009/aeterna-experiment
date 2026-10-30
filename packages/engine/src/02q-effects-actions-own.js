@@ -64,7 +64,7 @@ Object.assign(FX_ACTIONS, {
       if (!t) return; refreshOne(t); log(`${CARDS[t.id].name} is refreshed.`);
     } },
   /* v0.33 effects of a card that is not on the field: revealed from the deck, or in the Hand */
-  RETURN_TRASH: { chk: a => !!a.match && hasMatch(a.match) && (a.diffName == null || a.diffName === true) && (a.milled == null || a.milled === true),      // v0.168: any match shape (colour, cost, keyword), not only a name or family
+  RETURN_TRASH: { chk: a => !!a.match && hasMatch(a.match) && (a.diffName == null || a.diffName === true) && (a.milled == null || a.milled === true) && (a.toTop == null || a.toTop === true) && (a.handIfAtk == null || (a.handIfAtk >= 2 && a.handIfAtk <= 5 && a.toTop === true)),      // v0.168: any match shape (colour, cost, keyword), not only a name or family
     txt: a => `return a matching ${a.anyType ? 'card' : 'Spirit'} from your Trash to your Hand`,
     cands: (c, a) => c.p.trash.filter(t => (a.anyType || CARDS[t.id].type === 'Spirit') && fxMatch(CARDS[t.id], a.match) && !(a.diffName && CARDS[t.id].name === CARDS[c.src.id].name) && (!a.milled || (c.ctx.milled || []).includes(t))),      // v0.196 milled: only cards the earlier MILL sent to the Trash; v0.195 diffName: "besides <this card's name>" / "a different name to this Spirit's"
     can: (c, a) => FX_ACTIONS.RETURN_TRASH.cands(c, a).length > 0,
@@ -77,7 +77,9 @@ Object.assign(FX_ACTIONS, {
         const id = await ask({ title: `✨ ${CARDS[c.src.id].name}`, peek: true, wide: true, html: 'Choose a card to return from your Trash to your Hand.', cards: cardIds(ids), buttons: ids.map(i => ({ label: CARDS[i].name, value: i })) });
         t = L.find(x => x.id === id) || L[0];
       }
-      removeFrom(c.p.trash, t); c.p.hand.push(t); c.ctx.returned = t; handUp(c.p, 1); log(`${CARDS[c.src.id].name}: ${CARDS[t.id].name} returns from the Trash to the Hand.`);
+      removeFrom(c.p.trash, t);
+      if (a.toTop && !(a.handIfAtk && (c.p.attacksThisTurn || 0) >= a.handIfAtk)) { c.p.deck.unshift(t); c.ctx.returned = t; log(`${CARDS[c.src.id].name}: ${CARDS[t.id].name} returns from the Trash to the decktop.`); return; }      // v173 toTop / handIfAtk ("return it to the decktop; if you've attacked N or more times this turn, to the Hand instead")
+      c.p.hand.push(t); c.ctx.returned = t; handUp(c.p, 1); log(`${CARDS[c.src.id].name}: ${CARDS[t.id].name} returns from the Trash to the Hand.`);
     } },
   /* v0.185 (schema 69) HAND_RECYCLE {perOppHand?, drawIfAll?: {match, n}}: "Return all your Hand to the deckbottom (any order; kept in Hand order). When one or more cards are returned, draw a card for each card in the opposing Hand" / "If all the cards returned have <X>, draw N cards" */
   HAND_RECYCLE: { chk: a => Object.keys(a).every(k => ['do', 'if', 'perOppHand', 'drawIfAll'].includes(k)) && (a.perOppHand === true) !== !!a.drawIfAll
