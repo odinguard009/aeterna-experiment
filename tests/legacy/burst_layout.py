@@ -22,10 +22,12 @@ with sync_playwright() as p:
         pg.evaluate("mk('player','TRAIN-02',2); mk('opponent','TRAIN-02',2); BS.render()")
         g=_o("("+GEO+")()")
         chk(T+'two burst areas',len(g['ba'])==2,g['ba'])
+        pcl=_o("document.documentElement.classList.contains('layout-pc')")
         for i,nm in enumerate(['CPU','YOU']):
             ba,fc=g['ba'][i],g['fc'][i]
-            if i==1: chk(T+'YOU area in top-left corner of your field',ba[0]-fc[0]<=8 and ba[1]-fc[1]<=8,(ba,fc))
-            else: chk(T+'CPU area in bottom-right corner of CPU field (mirrored)',fc[2]-ba[2]<=8 and fc[3]-ba[3]<=8,(ba,fc))
+            mid=abs((ba[1]+ba[3])-(fc[1]+fc[3]))<=16   # phone layout (UI review round 4) centres the area vertically
+            if i==1: chk(T+'YOU area in top-left corner of your field',ba[0]-fc[0]<=8 and (mid if not pcl else ba[1]-fc[1]<=8),(ba,fc))
+            else: chk(T+'CPU area in bottom-right corner of CPU field (mirrored)',fc[2]-ba[2]<=8 and (mid if not pcl else fc[3]-ba[3]<=8),(ba,fc))
             ov=any(not(ba[2]<=r[0] or r[2]<=ba[0] or ba[3]<=r[1] or r[3]<=ba[1]) for r in g['rows'][i])
             chk(T+f'{nm} area does not overlap field rows',not ov,(ba,g['rows'][i]))
             chk(T+f'{nm} area inside screen',ba[0]>=0 and ba[2]<=g['w'] and ba[3]<=g['h'],ba)
