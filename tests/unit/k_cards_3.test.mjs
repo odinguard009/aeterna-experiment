@@ -77,3 +77,12 @@ test('K-153 BLOCK_TAX: a blocker needs a Reserve core (reserve) or another untap
     return [a0, a1, paid, b2.exhausted, b1.exhausted, r0, O.reserve.n, O.trashCores.n - t0, BS.CARDS['26RSD06-X01'].effects[1].actions[0].kind]; })()`);
   assert.deepEqual(r, [false, true, true, true, false, false, 1, 1, 'exhaust'], JSON.stringify(r));
 });
+
+test('K-154 UNBLOCKABLE_PICK.costGe (26RCB01-050): the picked Spirit cannot be blocked by Cost 8+ Spirits this turn only', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const t = BS.mkInst('BS48-047'), hi = BS.mkInst('BS48-047'), lo = BS.mkInst('BS48-047'); G.turnNo = 11; BS.CARDS[hi.id].cost; t.noBlockTurnCost = { turn: 11, costGe: BS.CARDS[hi.id].cost };
+    const a = blockedByMark(t, hi); G.turnNo = 12; const b = blockedByMark(t, hi);
+    const fx = BS.CARDS['26RCB01-050'].effects; return [a, b, fx[0].actions[1].costGe, fx[1].actions[0].kind]; })()`);
+  assert.deepEqual(r, [true, false, 8, 'reserve'], JSON.stringify(r));
+});

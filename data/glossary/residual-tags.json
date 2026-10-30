@@ -38579,13 +38579,6 @@
   "M_OPTIONAL",
   "M_THEN"
  ],
- "26RCB01-050": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "S_OPP_NO_BLOCK",
-  "T_START_ATTACK"
- ],
  "26RCB01-057": [
   "A_TRASH_TO_RESERVE",
   "C_LEVEL",
