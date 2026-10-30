@@ -995,3 +995,15 @@ test('K-77 BOUNCE_OPP bpPer: Drifting Glass Lady returns an opposing Spirit up t
     return [bp, O.spirits.length]; })()`);
   assert.deepEqual(r, [5000, 0]);
 });
+
+test('K-78 Relay Deer LV2 gets +2000 per own When Blocks Spirit only in the opposing Attack Step', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    P.spirits.length = 0; P.nexus.length = 0; O.spirits.length = 0; O.nexus.length = 0; P.cpu = true; O.cpu = true;
+    const d = BS.mkInst('26RBS02-042'); d.cores = 2; P.spirits.push(d);
+    const g = BS.mkInst('26RBS02-X12'); g.cores = 1; P.spirits.push(g);
+    G.active = P.key; G.step = 5; const mine = BS.bpOf(d);
+    G.active = O.key; const away = BS.bpOf(d);
+    return [away - mine]; })()`);
+  assert.deepEqual(r, [2000]);
+});
