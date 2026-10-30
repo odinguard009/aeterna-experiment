@@ -1080,3 +1080,19 @@ test('K-83 Utmost Depth Emerald Abyss: attacking Armored Fish +1000; Main Invoke
     return [up, ok, P.hand.length, P.hand.includes(h), P.deck[P.deck.length - 1] === h]; })()`);
   assert.deepEqual(r, [1000, true, 1, false, true]);
 });
+
+test('K-84 Duntekleo: Summoned gives up to two Armored Fish +3000; Invoke refreshes another Armored Fish, never itself', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    P.spirits.length = 0; P.nexus.length = 0; O.spirits.length = 0; O.nexus.length = 0; P.cpu = true; O.cpu = true; G.active = P.key; G.step = 3;
+    const d = BS.mkInst('26RSD03-X02'); d.cores = 6; P.spirits.push(d);
+    const a = BS.mkInst('26RBS01-039'); a.cores = 3; P.spirits.push(a); const b = BS.mkInst('26RBS01-039'); b.cores = 3; P.spirits.push(b);
+    const base = [d, a, b].map(x => BS.bpOf(x));
+    await BS.fireFx(P, 'SUMMONED', d, { subject: d });
+    const up = [d, a, b].map((x, i) => BS.bpOf(x) - base[i]).filter(x => x === 3000).length;
+    d.exhausted = true; a.exhausted = true; G.step = 5; G.attacker = a; G.battleNo = (G.battleNo || 0) + 1;
+    const i = BS.CARDS['26RSD03-X02'].effects.findIndex(e => e.invoke);
+    const ok = await BS.activateFx(P, d, i);
+    return [up, ok, d.exhausted, a.exhausted]; })()`);
+  assert.deepEqual(r, [2, true, true, false]);
+});
