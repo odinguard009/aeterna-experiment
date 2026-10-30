@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 7111,
+  "cards": 7110,
   "per_saga": {
    "1": 676,
    "2": 313,
@@ -19,15 +19,15 @@
    "15": 355,
    "16": 334,
    "17": 110,
-   "50": 114
+   "50": 113
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 1595,
+  "skipped_curated": 1596,
   "nexus_levels_added": 707,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 457,
+  "image_problems": 456,
   "number_conflicts": 4,
   "merged": 107,
   "brave_unparsed": 171,
@@ -35,7 +35,7 @@
   "odd_reduction": 807,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 455
+  "without_image": 454
  },
  "tokens": [
   "BS73-T001",
@@ -1625,6 +1625,7 @@
   "26RBS03-080",
   "26RBS03-082",
   "26RBS03-083",
+  "26RBS03-084",
   "26RBS03-085",
   "26RBS03-086",
   "26RBS03-087",
@@ -4690,11 +4691,6 @@
   {
    "id": "26RBS03-081",
    "name": "The Hexcraft Research Institute",
-   "problem": "no image"
-  },
-  {
-   "id": "26RBS03-084",
-   "name": "Bestowal of Sap",
    "problem": "no image"
   },
   {

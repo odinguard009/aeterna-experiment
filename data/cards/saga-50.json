@@ -20475,16 +20475,69 @@
   "block": "A",
   "saga": 50,
   "ex_symbols": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (Opposing Attack Step) {{Invoke|Flash}} If your Life was reduced this turn, exhaust two of your \"Cyantree\" family Nexuses ▶ Target opposing Cost 2 and Cost 3 Spirits, one of each. Destroy them.",
-   "[LV2] (True Release) (Your End Step) You can target one of your \"Venabeast\"/\"Sylvareign\" family Spirits. Refresh it."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "bicon": [
    "A"
   ],
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "FLASH"
+    ],
+    "when": "oppAttack",
+    "once": false,
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "lifeReduced": true
+    },
+    "cost": {
+     "exhaustOwn": {
+      "kind": "nexus",
+      "match": {
+       "family": [
+        "Cyantree"
+       ]
+      },
+      "n": 2
+     }
+    },
+    "actions": [
+     {
+      "do": "DESTROY",
+      "costIs": 2
+     },
+     {
+      "do": "DESTROY",
+      "costIs": 3
+     }
+    ]
+   },
+   {
+    "trigger": "END_STEP",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT",
+      "match": {
+       "family": [
+        "Venabeast",
+        "Sylvareign"
+       ]
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RBS03-085",

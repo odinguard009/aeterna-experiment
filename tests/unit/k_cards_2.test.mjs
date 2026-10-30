@@ -269,3 +269,19 @@ test('K-141 26RBS02-052: Wailwraith card returns to the decktop, to the Hand aft
     return [out, fx[1].trigger, fx[1].lv]; })()`);
   assert.deepEqual(r[0], [[1, 0, false], [0, 1, false]], JSON.stringify(r));
 });
+
+test('K-142 26RBS03-084: Invoke cost exhausts two Cyantree Nexuses; destroys one Cost 2 and one Cost 3 Spirit; needs two Nexuses', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    P.cpu = true; const n = BS.mkInst('26RBS03-084'); n.cores = 3; P.nexus.push(n);
+    const fx = BS.CARDS['26RBS03-084'].effects[0];
+    const no = await payInvokeCost(P, n, fx.cost);
+    const a = BS.mkInst('26RBS03-084'), b = BS.mkInst('26RBS03-084'); P.nexus.push(a, b);
+    const paid = await payInvokeCost(P, n, fx.cost);
+    const ex = P.nexus.filter(x => x.exhausted).length;
+    O.spirits.length = 0; O.spirits.push(...['BS48-047', 'BS48-001', 'BS48-021'].map(i => { const x = BS.mkInst(i); x.cores = 2; return x; }));
+    await BS.runActions({ p: P, opp: O, src: n, ctx: {} }, fx);
+    return [no, paid, ex, O.spirits.map(x => x.id), fx.actions.map(x => x.costIs)]; })()`);
+  assert.equal(r[0], false, JSON.stringify(r)); assert.equal(r[1], true, JSON.stringify(r)); assert.equal(r[2], 2, JSON.stringify(r));
+  assert.deepEqual(r[3], ['BS48-021'], JSON.stringify(r));
+});

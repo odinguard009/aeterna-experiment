@@ -36,7 +36,7 @@ function invokeParse(e, o) {
   if (c.returnSelf != null && c.returnSelf !== true) return 'Invoke cost returnSelf must be true';
   if (c.soulToTrash != null && c.soulToTrash !== true) return 'Invoke cost soulToTrash must be true';      // v170 "Send your Soul Core to the Trash"
   if (c.returnOwn != null && !(typeof c.returnOwn === 'object' && ['nexus', 'spirit'].includes(c.returnOwn.kind) && invokeMatchOK(c.returnOwn.match))) return 'Invoke cost "returnOwn" must look like {"kind":"nexus","match":{"family":["X"]}}';
-  if (c.exhaustOwn != null && !(typeof c.exhaustOwn === 'object' && ['nexus', 'spirit'].includes(c.exhaustOwn.kind) && invokeMatchOK(c.exhaustOwn.match))) return 'Invoke cost "exhaustOwn" must look like {"kind":"nexus","match":{"family":["X"]}}';
+  if (c.exhaustOwn != null && !(typeof c.exhaustOwn === 'object' && ['nexus', 'spirit'].includes(c.exhaustOwn.kind) && invokeMatchOK(c.exhaustOwn.match) && (c.exhaustOwn.n == null || (Number.isInteger(c.exhaustOwn.n) && c.exhaustOwn.n >= 2 && c.exhaustOwn.n <= 3)))) return 'Invoke cost "exhaustOwn" must look like {"kind":"nexus","match":{"family":["X"]}}';
   if (c.destroyOwn != null && !(typeof c.destroyOwn === 'object' && ['nexus', 'spirit'].includes(c.destroyOwn.kind) && invokeMatchOK(c.destroyOwn.match))) return 'Invoke cost "destroyOwn" must look like {"kind":"nexus","match":{"family":["X"]}}';
   if (c.discard != null && !(typeof c.discard === 'object' && invokeMatchOK(c.discard.match))) return 'Invoke cost "discard" must look like {"match":{"family":["X"]}}';
   o.cost = JSON.parse(JSON.stringify(c));
@@ -51,7 +51,7 @@ function invokeCostOK(p, f, c) {
   if (c.pay) return coresAvailable(p) >= c.pay;
   if (c.exhaustSelf) return !f.exhausted;
   if (c.destroySelf) return p.spirits.includes(f) || p.nexus.includes(f);
-  if (c.exhaustOwn) return exhaustOwnCands(p, f, c.exhaustOwn).length > 0;
+  if (c.exhaustOwn) return exhaustOwnCands(p, f, c.exhaustOwn).length >= (c.exhaustOwn.n || 1);
   if (c.returnSelf) return p.spirits.includes(f) || p.nexus.includes(f);
   if (c.returnOwn) return returnOwnCands(p, c.returnOwn).length > 0;
   if (c.destroyOwn) return returnOwnCands(p, c.destroyOwn).length > 0;
@@ -93,11 +93,15 @@ async function payInvokeCost(p, f, c) {
     if (c.destroyOwn.kind === 'nexus') removeNexus(p, t, 'destroyed'); else removeSpirit(p, t, 'destroyed', false); return true;
   }
   if (c.exhaustOwn) {
-    const L = exhaustOwnCands(p, f, c.exhaustOwn); if (!L.length) return false;
-    const t = p.cpu ? L.slice().sort((a, b) => +(a === f) - +(b === f) || (a.cores - b.cores))[0]
-      : await fxPickTarget({ p, opp: G.p[other(p.key)], src: f, ctx: {} }, L, `✨ <b>${esc(nm)}</b><br>Tap one of your refreshed ${c.exhaustOwn.kind === 'nexus' ? 'Nexuses' : 'Spirits'} to exhaust (the cost).`);
-    if (!t) return false;
-    t.exhausted = true; log(`${nm}: ${CARDS[t.id].name} is exhausted (cost).`); return true;
+    if (exhaustOwnCands(p, f, c.exhaustOwn).length < (c.exhaustOwn.n || 1)) return false;
+    for (let i = 0; i < (c.exhaustOwn.n || 1); i++) {      // v174 exhaustOwn.n: "exhaust two of your X Nexuses"
+      const L = exhaustOwnCands(p, f, c.exhaustOwn);
+      const t = p.cpu ? L.slice().sort((a, b) => +(a === f) - +(b === f) || (a.cores - b.cores))[0]
+        : await fxPickTarget({ p, opp: G.p[other(p.key)], src: f, ctx: {} }, L, `✨ <b>${esc(nm)}</b><br>Tap one of your refreshed ${c.exhaustOwn.kind === 'nexus' ? 'Nexuses' : 'Spirits'} to exhaust (the cost).`);
+      if (!t) return false;
+      t.exhausted = true; log(`${nm}: ${CARDS[t.id].name} is exhausted (cost).`);
+    }
+    return true;
   }
   if (c.discard) {
     const L = discardCands(p, c.discard); if (!L.length) return false;

@@ -210,3 +210,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v171: match key `notName:[...]` in `fxMatch` ("besides <name>": excludes cards whose name contains any listed text); used by `DISCARD_HAND.match`. `match.bpBoosted:true` (needs the instance: current BP above the printed level BP, "under BP+ effects").
 - v172: condition `oppDepleted:true` (an opposing Spirit was depleted by your effect this turn; destroyed does not count, unlike `oppLostByFx`).
 - v173: `RETURN_TRASH.toTop` (return to the decktop instead of the Hand) with `handIfAtk` (2-5: to the Hand instead once you have attacked that many times this turn).
+- v174 (Lane K): `DESTROY.costIs` ("target an opposing Cost N Spirit", exact cost) and Invoke cost `exhaustOwn.n` (2-3, "exhaust two of your X Nexuses"). Additions only.

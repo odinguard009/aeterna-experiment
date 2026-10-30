@@ -23,7 +23,7 @@ packBlockOf, packCards, unpackCards, INF_LBASE, INF_LEXT, INF_DBASE, INF_DEXT, I
 ## packages/engine/src/02a-effects-base.js (313 lines, ~9.3k tokens) — EFFECT ENGINE
 FX_STRICT, FX_WARNED, fxUnknown, FX_COND_KEYS, FX_TRIGGERS, FX_TRIGGER_TEXT, BR_IDX, fxEntries, fxMatch, cantAttack, canBlockState, fxIf, cardHasKeyword, fxNoText, ctrlCount, spiritCount, PER_TYPES, perOk, perCount, ownerOf, STATIC_FLAGS, fxImmune, unaffectedBy, drawPlusOf, attackLifeLocked, deckDiscardLocked, bpCompareLocked, flagActive, costDestroyBonus, coresSent, staticBp, takeFromVoid, releaseCores, removeNexus, fxPickTarget, toSoulState, chooseCard, bounceCard, SOUL_SRC, hasMatch
 
-## packages/engine/src/02b-effects-actions.js (126 lines, ~4.7k tokens)
+## packages/engine/src/02b-effects-actions.js (127 lines, ~4.8k tokens)
 FX_ACTIONS
 
 ## packages/engine/src/02c-effects-parse.js (213 lines, ~7.2k tokens)
@@ -53,7 +53,7 @@ accelList, accelCost, accelMainStep, accelOK, accelSources, accelLabel, useAccel
 ## packages/engine/src/02k-effects-immunity.js (29 lines, ~0.5k tokens)
 trashSafe, camouBlocks, wrapImmunity
 
-## packages/engine/src/02l-effects-invoke.js (243 lines, ~5.8k tokens) — v0.68 INVOKE (Standard activations): "{{Invoke|Flash}}" / "{{Invoke|Main}}" + "<cost> ▶ <effect>".
+## packages/engine/src/02l-effects-invoke.js (247 lines, ~5.9k tokens) — v0.68 INVOKE (Standard activations): "{{Invoke|Flash}}" / "{{Invoke|Main}}" + "<cost> ▶ <effect>".
 INVOKE_WHEN, INVOKE_COSTS, invokeMatchOK, invokeParse, invokeWhenOK, exhaustOwnCands, returnOwnCands, discardCands, invokeCostOK, payInvokeCost, usedThisBattle, markUsedBattle, bpBattle, addBattleBp, invokeCostText, ownTargetCands, cpuInvokeOK
 
 ## packages/engine/src/02m-effects-destroy-filters.js (47 lines, ~1.1k tokens)
