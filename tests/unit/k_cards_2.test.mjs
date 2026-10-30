@@ -172,3 +172,27 @@ test('K-134 26RSD09-010: soulToTrash invoke cost needs a Soul Core and sends it 
     return [no, yes, paid, P.reserve.soul]; })()`);
   assert.deepEqual(r, [false, true, true, false], JSON.stringify(r));
 });
+
+test('K-135 26RSD02-009: Bloodrouse summon gains a Purple symbol at LV2 after an opposing Spirit was lost to your effect', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const n = BS.mkInst('26RSD02-009'); n.cores = 3; P.nexus.push(n);
+    const c = BS.mkInst('26RBS01-023');
+    const a = summonSymbols(P, BS.CARDS['26RBS01-023']).length;
+    P.oppFxLossTurn = G.turnNo;
+    const b = summonSymbols(P, BS.CARDS['26RBS01-023']).length;
+    return [a, b]; })()`);
+  assert.deepEqual(r, [0, 1], JSON.stringify(r));
+});
+
+test('K-136 26RBS02-007: LV2 battle win in your attack step gives one of your Spirits +5000 BP', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    G.active = P.key;
+    const c = BS.mkInst('26RBS02-007'); c.cores = 3; P.spirits.push(c);
+    const fx = BS.CARDS['26RBS02-007'].effects.find(e => e.trigger === 'ALLY_BATTLE_WIN');
+    const b0 = bpOf(c);
+    await BS.runActions({ p: P, opp: O, src: c, ctx: {} }, fx);
+    return [!!fx, bpOf(c) - b0]; })()`);
+  assert.deepEqual(r, [true, 5000], JSON.stringify(r));
+});

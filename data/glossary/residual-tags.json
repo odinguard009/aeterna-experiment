@@ -38263,10 +38263,6 @@
   "T_ALLY_DESTROYS",
   "T_SUMMONED"
  ],
- "26RBS02-007": [
-  "A_BP_PLUS",
-  "C_LEVEL"
- ],
  "26RBS02-012": [
   "A_BANISH",
   "A_BP_PLUS",
@@ -38793,11 +38789,6 @@
   "M_UP_TO",
   "S_OPP_NO_BLOCK",
   "T_ATTACKS"
- ],
- "26RSD02-009": [
-  "A_SYMBOL",
-  "A_SYMBOL_PLUS",
-  "C_LEVEL"
  ],
  "26RSD02-X02": [
   "A_EXHAUST",
