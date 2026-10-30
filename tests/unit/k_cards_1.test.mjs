@@ -302,3 +302,19 @@ test('K-116 26RBS03-054: LV1 picks another own Spirit that opposing 8000 BP or l
     return [picked, !O.spirits.includes(lowBlk)]; })()`);
   assert.deepEqual(r, [true, true], JSON.stringify(r));
 });
+
+test('K-117 26RBS03-077: LV1 purple Spirit blocked -> 1 core from an opposing Spirit (keeps one); LV2 life hit -> 1 core from a Cost 6 or less Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    G.active = P.key; G.turnNo = G.turnNo || 1;
+    const n = BS.mkInst('26RBS03-077'); n.cores = BS.CARDS['26RBS03-077'].levels[1].cores; P.nexus.push(n);
+    const pid = Object.keys(BS.CARDS).find(k => { const c = BS.CARDS[k]; return c.type === 'Spirit' && (c.colors || [c.symbol]).includes('purple') && c.cost <= 3; });
+    const att = BS.mkInst(pid); att.cores = 1; P.spirits.push(att);
+    const t = BS.mkInst('26RBS01-001'); t.cores = 3; O.spirits.push(t);
+    await BS.fireFx(P, 'ALLY_BLOCKED', att, { attacker: att, blocker: null });
+    const a = t.cores;
+    t.cores = 1; await BS.fireFx(P, 'ALLY_BLOCKED', att, { attacker: att, blocker: null }); const keep = t.cores;
+    t.cores = 3; await BS.fireFx(P, 'ALLY_LIFE_HIT', null, { attacker: att }); const b = t.cores;
+    return [a, keep, b]; })()`);
+  assert.deepEqual(r, [2, 1, 2], JSON.stringify(r));
+});

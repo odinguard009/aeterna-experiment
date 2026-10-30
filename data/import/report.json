@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 7135,
+  "cards": 7134,
   "per_saga": {
    "1": 676,
    "2": 313,
@@ -19,15 +19,15 @@
    "15": 355,
    "16": 334,
    "17": 110,
-   "50": 138
+   "50": 137
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 1571,
+  "skipped_curated": 1572,
   "nexus_levels_added": 707,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 461,
+  "image_problems": 460,
   "number_conflicts": 4,
   "merged": 107,
   "brave_unparsed": 171,
@@ -35,7 +35,7 @@
   "odd_reduction": 807,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 459
+  "without_image": 458
  },
  "tokens": [
   "BS73-T001",
@@ -1597,6 +1597,7 @@
   "26RBS03-072",
   "26RBS03-074",
   "26RBS03-076",
+  "26RBS03-077",
   "26RBS03-078",
   "26RBS03-080",
   "26RBS03-082",
@@ -4671,11 +4672,6 @@
   {
    "id": "26RBS03-075",
    "name": "War Feat: Crushing of the Purple Moon",
-   "problem": "no image"
-  },
-  {
-   "id": "26RBS03-077",
-   "name": "War Toll: Sundering of the Moon",
    "problem": "no image"
   },
   {
