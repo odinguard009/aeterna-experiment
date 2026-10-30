@@ -766,3 +766,17 @@ test('K-60 Argentoll: AMPLIFY trigger puts a core from the Void into the Reserve
     return [ei >= 0, one]; })()`);
   assert.deepEqual(r, [true, 1]);
 });
+
+test('K-61 Poppy: ALLY_LIFE_HIT diffName loots only for an EX-AID Spirit with another name, once per turn', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    P.spirits.length = 0; const pop = BS.mkInst('26RCB01-046'); pop.cores = 6; P.spirits.push(pop);
+    const other = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && (c.families || []).includes('EX-AID') && c.name !== BS.CARDS['26RCB01-046'].name);
+    const o = BS.mkInst(other.id); o.cores = 6; P.spirits.push(o);
+    const d = () => P.hand.length, out = [];
+    let h = d(); await BS.fireFx(P, 'ALLY_LIFE_HIT', pop, { attacker: pop }); out.push(d() - h);
+    h = d(); await BS.fireFx(P, 'ALLY_LIFE_HIT', o, { attacker: o }); out.push(d() - h);
+    h = d(); await BS.fireFx(P, 'ALLY_LIFE_HIT', o, { attacker: o }); out.push(d() - h);
+    return out; })()`);
+  assert.deepEqual(r, [0, 1, 0]);
+});
