@@ -38789,14 +38789,6 @@
   "M_UP_TO",
   "T_SUMMONED"
  ],
- "26RBS03-X10": [
-  "A_DRAW",
-  "A_REFRESH",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "M_REPLACEMENT",
-  "T_ATTACKS"
- ],
  "26RBS03-X11": [
   "A_REFRESH",
   "C_LEVEL",

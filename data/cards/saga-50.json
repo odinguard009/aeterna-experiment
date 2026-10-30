@@ -20623,16 +20623,88 @@
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (Your End Step) You can target one of your Cost 6 or less White Spirits. Refresh it.",
-   "[LV2] (True Release) (When Attacks/Blocks) (Once Per Turn) You can show a \"Leucomyst\"/ \"Wollaguard\" family card from your Hand to the opponent and return it to the deckbottom. If returned, draw a card. When you draw, if your Hand is two or less, draw two cards instead."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "bicon": [
    "A"
   ],
-  "rcode": "X"
+  "rcode": "X",
+  "effects": [
+   {
+    "trigger": "END_STEP",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT",
+      "match": {
+       "color": "white",
+       "costLe": 6,
+       "type": "Spirit"
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "once": true,
+    "optional": true,
+    "actions": [
+     {
+      "do": "SHOW_RETURN",
+      "max": 1,
+      "match": {
+       "family": [
+        "Leucomyst",
+        "Wollaguard"
+       ]
+      }
+     },
+     {
+      "do": "DRAW",
+      "n": 1,
+      "dbl": 2,
+      "if": {
+       "prev": true
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "BLOCKS",
+    "lv": [
+     2
+    ],
+    "once": true,
+    "optional": true,
+    "actions": [
+     {
+      "do": "SHOW_RETURN",
+      "max": 1,
+      "match": {
+       "family": [
+        "Leucomyst",
+        "Wollaguard"
+       ]
+      }
+     },
+     {
+      "do": "DRAW",
+      "n": 1,
+      "dbl": 2,
+      "if": {
+       "prev": true
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RBS03-X11",

@@ -5,8 +5,8 @@
    every other entry here is read from inside a function.
    ------------------------------------------------------------------------------------ */
 Object.assign(FX_ACTIONS, {
-  DRAW: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && (a.per == null || perOk(a.per)), txt: a => a.per ? `draw ${a.n} card${a.n === 1 ? '' : 's'} for each of your matching Spirits/Nexuses` : `draw ${a.n} card${a.n === 1 ? '' : 's'}`,      // v137 per: "For each Spirit with X you control, draw a card"
-    run: async (c, a) => { const k = draw(c.p, a.per ? a.n * perCount(c.p, a.per) : a.n); log(`${CARDS[c.src.id].name}: ${who(c.p)} ${c.p.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'}.`); handUp(c.p, k); } },
+  DRAW: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && (a.per == null || perOk(a.per)) && (a.dbl == null || (Number.isInteger(a.dbl) && a.dbl >= 0 && a.dbl <= 5 && a.per == null)), txt: a => a.dbl != null ? `draw ${a.n} card${a.n === 1 ? '' : 's'} (${a.n * 2} if your Hand is ${a.dbl} or less)` : a.per ? `draw ${a.n} card${a.n === 1 ? '' : 's'} for each of your matching Spirits/Nexuses` : `draw ${a.n} card${a.n === 1 ? '' : 's'}`,      // v137 per: "For each Spirit with X you control, draw a card"
+    run: async (c, a) => { const k = draw(c.p, a.per ? a.n * perCount(c.p, a.per) : a.dbl != null && c.p.hand.length <= a.dbl ? a.n * 2 : a.n); log(`${CARDS[c.src.id].name}: ${who(c.p)} ${c.p.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'}.`); handUp(c.p, k); } },
   DRAW_UNTIL: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 10, txt: a => `draw until your Hand is ${a.n}`,      // v0.185 "draw until your Hand is three"
     run: async (c, a) => { const k = c.p.hand.length < a.n ? draw(c.p, a.n - c.p.hand.length) : 0; log(`${CARDS[c.src.id].name}: ${who(c.p)} ${c.p.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'}.`); handUp(c.p, k); } },
   COUNTER: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && (a.max == null || (Number.isInteger(a.max) && a.max >= 1 && a.max <= 30)), txt: a => `counter +${a.n}${a.max ? ' (max ' + a.max + ' counters)' : ''}`,

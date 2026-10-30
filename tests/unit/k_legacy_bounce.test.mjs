@@ -1240,3 +1240,14 @@ test('K-93 26RBS03-X13: LV1 reveals three cards and returns them to the deckbott
   assert.deepEqual(r, [true, true, true, true, r[4]], JSON.stringify(r));
   assert.ok(r[4] <= 1);
 });
+
+test('K-94 26RBS03-X10: show+return a Leucomyst card then draw 1, or 2 when Hand is 2 or less after the return', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    P.spirits.length = 0; P.nexus.length = 0; O.spirits.length = 0; O.nexus.length = 0; P.cpu = true; O.cpu = true;
+    const x = BS.mkInst('26RBS03-X10'); x.cores = 3; P.spirits.push(x);
+    const go = async (extra) => { P.hand.length = 0; P.hand.push(BS.mkInst('26RBS01-046')); for (let i = 0; i < extra; i++) P.hand.push(BS.mkInst('26RBS01-048')); x.fxUsed = {}; const dl = P.deck.length; await BS.fireFx(P, 'ATTACKS', x, { subject: x }); return [P.hand.length, dl - P.deck.length]; };
+    return [await go(0), await go(1), await go(3)]; })()`);
+  // hand 1 -> returns -> 0 -> draw 2 = 2 ; hand 2 -> 1 -> draw 2 = 3 ; hand 4 -> 3 -> draw 1 = 4 (deck net: -draws +1 returned)
+  assert.deepEqual(r.map(a => a[0]), [2, 3, 4], JSON.stringify(r));
+});
