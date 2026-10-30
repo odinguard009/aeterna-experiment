@@ -246,8 +246,8 @@ FX_ACTIONS.MUST_ATTACK_OPP = { chk: a => a.costLe == null || (Number.isInteger(a
 FX_ACTIONS.CANT_BLOCK_OPP = { ...fxOppMark('CANT_BLOCK_OPP', 'noBlockB', () => G.attacker, () => G.battleNo, 'opposing Spirit', "can't block this battle") };
 (() => {      // v159 n (1-3 targets) and costLe: "target three opposing Cost 6 or less Spirits. During this battle, they can't block"
   const B = FX_ACTIONS.CANT_BLOCK_OPP, bRun = B.run;
-  B.chk = a => (a.n == null || (Number.isInteger(a.n) && a.n >= 1 && a.n <= 3)) && (a.costLe == null || (Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30));
-  B.cands = (c, a) => c.opp.spirits.filter(t => G.attacker && !fxImmune(c.opp, t) && (!a || a.costLe == null || CARDS[t.id].cost <= a.costLe));
+  B.chk = a => (a.n == null || (Number.isInteger(a.n) && a.n >= 1 && a.n <= 3)) && (a.costLe == null || (Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30)) && (a.lv == null || a.lv === 1);      // v165 lv:1 "an opposing LV1 Spirit"
+  B.cands = (c, a) => c.opp.spirits.filter(t => G.attacker && !fxImmune(c.opp, t) && (!a || a.costLe == null || CARDS[t.id].cost <= a.costLe) && (!a || a.lv == null || lvNo(t) === a.lv));
   B.can = (c, a) => B.cands(c, a).length > 0;
   B.txt = a => `during this battle, ${a.n > 1 ? a.n + ' opposing Spirits' : 'an opposing Spirit'}${a.costLe != null ? ' with cost ' + a.costLe + ' or less' : ''} can't block`;
   B.run = async (c, a) => {

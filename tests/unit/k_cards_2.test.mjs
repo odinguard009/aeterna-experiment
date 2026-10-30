@@ -65,3 +65,31 @@ test('K-126 26RCB01-035 LV1: opposing Spirit must attack only when all your Spir
     return [ok, no]; })()`);
   assert.deepEqual(r, [true, false], JSON.stringify(r));
 });
+
+test('K-127 26RDB01-038: needs the Soul Core in the Reserve; the picked opposing Spirit must be LV1', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    G.active = P.key; G.battleNo = 5;
+    const c = BS.mkInst('26RDB01-038'); c.cores = 1; P.spirits.push(c); G.attacker = c;
+    const lo = BS.mkInst('BS48-001'); lo.cores = 1; O.spirits.push(lo);
+    const fx = BS.CARDS['26RDB01-038'].effects.find(e => e.trigger === 'ALLY_ATTACKS');
+    P.reserve.soul = false; const no = BS.fxIf(P, O, fx.if);
+    P.reserve.soul = true; const yes = BS.fxIf(P, O, fx.if);
+    await BS.runActions({ p: P, opp: O, src: c, ctx: {} }, fx); G.attacker = null;
+    return [no, yes, lo.noBlockB === 5]; })()`);
+  assert.deepEqual(r, [false, true, true], JSON.stringify(r));
+});
+
+test('K-128 26RDB01-061 Main: Blue Beat Nexus only, any Blue Beat card when the Soul Core is in the Reserve', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    G.active = P.key;
+    const m = BS.mkInst('26RDB01-061'), run = async () => { await BS.runActions({ p: P, opp: O, src: m, ctx: {} }, { actions: BS.CARDS['26RDB01-061'].magic.by.MAIN.actions }); };
+    const out = [];
+    for (const soul of [false, true]) {
+      P.reserve.soul = soul; P.trash.length = 0; P.hand.length = 0;
+      const s = BS.mkInst('26RDB01-033'); P.trash.push(s); await run(); out.push(P.hand.includes(s));
+    }
+    return out; })()`);
+  assert.deepEqual(r, [false, true], JSON.stringify(r));
+});
