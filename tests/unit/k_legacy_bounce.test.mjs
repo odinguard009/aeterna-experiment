@@ -716,3 +716,17 @@ test('K-56 Angelic Feather Song: -2000 BP kills a 2000 BP Spirit and refreshes e
     return [sp.length, mg.length, ...out]; })()`);
   assert.deepEqual(r, [2, 2, 0, 0, 0, 1]);
 });
+
+test('K-57 Blackshar: sends a core only after one of your Spirits was destroyed this turn', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const act = () => BS.CARDS['26RBS02-014'].effects[0].actions;
+    const out = [];
+    for (const lost of [false, true]) {
+      O.spirits.length = 0; P.lostSpiritTurn = lost ? G.turnNo : -1; opp(3, 2000);
+      O.spirits[0].cores = 2; const before = O.spirits[0].cores;
+      await BS.runActions({ p: P, opp: O, src: BS.mkInst('26RBS02-014'), ctx: {} }, { actions: act() }); await BS.flushBursts();
+      out.push(before - O.spirits[0].cores); }
+    return out; })()`);
+  assert.deepEqual(r, [0, 1]);
+});
