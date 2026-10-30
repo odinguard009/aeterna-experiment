@@ -175,3 +175,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v135 (v0.197.0, Lane K): condition `attackerCostLe: N` (the current attacker is a Cost N or less Spirit; for BLOCKS "blocks an opposing Cost N or less Spirit").
 - v136 (v0.197.0, Lane K): `BOUNCE_OPP` accepts `bpPer {n, keyword}` (the `bpLe` limit grows by n per own Spirit with the keyword/printed head).
 - v137 (v0.197.0, Lane K): `DRAW.per` (draw n per matching own Spirit/Nexus, `{type, keyword, ...}`) and `OPP_CORES_TO_RESERVE.eachPer` ("send +1 core for each Spirit with X you control", added to `each`).
+- v138 (v0.197.0, Lane K): condition `trashAllColor` ("all cards in your Trash are <colour>"); card fields `highSpeedIf` (a condition object read by `fxIf` before a High Speed summon: "Flash - If <cond>, you can summon this card from the Hand") and `highSpeedOnce` (once per turn per card name).

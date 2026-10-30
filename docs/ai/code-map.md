@@ -20,7 +20,7 @@ VERSION, CARDS, defCard, TRAIN, PRESET_DECK
 ## packages/engine/src/01a-card-pack.js (167 lines, ~2.4k tokens) — CARD PACK CODEC (v0.51.0; this part must load before 03-imported-cards.js: its consts are used at load): compact, synchronous format of the built-in card pack
 packBlockOf, packCards, unpackCards, INF_LBASE, INF_LEXT, INF_DBASE, INF_DEXT, INF_ORDER, inflateRaw, packBytes, loadFlavor, loadPack
 
-## packages/engine/src/02a-effects-base.js (299 lines, ~8.6k tokens) — EFFECT ENGINE
+## packages/engine/src/02a-effects-base.js (300 lines, ~8.6k tokens) — EFFECT ENGINE
 FX_STRICT, FX_WARNED, fxUnknown, FX_COND_KEYS, FX_TRIGGERS, FX_TRIGGER_TEXT, BR_IDX, fxEntries, fxMatch, cantAttack, canBlockState, fxIf, cardHasKeyword, fxNoText, ctrlCount, spiritCount, PER_TYPES, perOk, perCount, ownerOf, STATIC_FLAGS, fxImmune, unaffectedBy, drawPlusOf, attackLifeLocked, deckDiscardLocked, flagActive, costDestroyBonus, coresSent, staticBp, takeFromVoid, releaseCores, removeNexus, fxPickTarget, toSoulState, chooseCard, bounceCard, SOUL_SRC, hasMatch
 
 ## packages/engine/src/02b-effects-actions.js (126 lines, ~4.7k tokens)
@@ -44,7 +44,7 @@ _pn
 ## packages/engine/src/02h-effects-magic.js (163 lines, ~3.7k tokens) — v0.41 MAGIC effect types (Dana Draw, Whirling Tide, Magic Bullet, Hades Disaster, Thunder Counter, Lightning Tempest).
 endAttackLocked, _matchTxt, gwCorePlus, sentToTrashFx, abTaxOn, abTaxOK, payAbTax, oppAttackHandFx, braveSummonedFx, braveSummonedEvs
 
-## packages/engine/src/02i-effects-keywords.js (69 lines, ~1.3k tokens) — v0.49 KEYWORD EFFECTS as engine data (session D, part 1): High Speed, Crush, Holy Life.
+## packages/engine/src/02i-effects-keywords.js (72 lines, ~1.4k tokens) — v0.49 KEYWORD EFFECTS as engine data (session D, part 1): High Speed, Crush, Holy Life.
 highSpeedOK, highSpeedSources, highSpeedSummon, cpuHighSpeed, _nmK
 
 ## packages/engine/src/02j-effects-accel.js (118 lines, ~2k tokens) — v0.50 KEYWORD EFFECTS part 2 (session D): Accel and Silver Wheel.
@@ -83,7 +83,7 @@ cardTeams, allHaveShapeOK, allHaveOK, winRiderRun, fxOppMark, blockedInferior, b
 ## packages/engine/src/02u-effects-form-change.js (32 lines, ~0.7k tokens) — FORM CHANGE (v0.135.0, schema v8; Kamen Rider cross-over cards): {{F Change|"X" & Cost N}} {{Invoke|Main}}
 fcCands
 
-## packages/engine/src/03-imported-cards.js (245 lines, ~6.4k tokens) — IMPORTED CARD DATA
+## packages/engine/src/03-imported-cards.js (245 lines, ~6.5k tokens) — IMPORTED CARD DATA
 COLORS, BUILTIN_IDS, CARDS_KEY, IMPORTED, CARDS_VER, parseLevels, parseMagicOf, parseCard, registerImported, saveImported, importCards, clearImported, PACK_IDS, registerPack, TOKEN_IDS, registerTokens
 
 ## packages/engine/src/04-decks.js (122 lines, ~3.4k tokens) — DECK STORAGE AND VALIDATION

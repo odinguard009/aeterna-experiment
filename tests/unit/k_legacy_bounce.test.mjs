@@ -1022,3 +1022,21 @@ test('K-79 OPP_CORES_TO_RESERVE eachPer + DRAW per: Baphomendes sends 1 core plu
     return [sent, P.hand.length - h0]; })()`);
   assert.deepEqual(r, [3, 2]);
 });
+
+test('K-80 highSpeedIf/highSpeedOnce/trashAllColor: Lira-Rali needs a reduced Life and a Yellow-only Trash; Nei-Lanetail needs a Sword Eye card in the Trash, once per turn', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    P.spirits.length = 0; P.nexus.length = 0; O.spirits.length = 0; P.hand.length = 0; P.trash.length = 0; P.reserve.n = 12; G.active = O.key;
+    const l = BS.mkInst('26RBS03-047'); P.hand.push(l);
+    const y = BS.mkInst('26RBS03-047'), nonY = BS.mkInst('26RBS01-X10');
+    const a = BS.highSpeedOK(P, l);
+    P.lifeRedTurn = G.turnNo; const b = BS.highSpeedOK(P, l);
+    P.trash.push(nonY); const c = BS.highSpeedOK(P, l);
+    const n = BS.mkInst('26RDB01-032'); P.hand.push(n); P.trash.length = 0;
+    const d = BS.highSpeedOK(P, n);
+    const se = Object.values(BS.CARDS).find(k => (k.families || []).includes('Sword Eye')); P.trash.push(BS.mkInst(se.id));
+    const e = BS.highSpeedOK(P, n); const ok = await BS.highSpeedSummon(P, n);
+    const n2 = BS.mkInst('26RDB01-032'); P.hand.push(n2); const f = BS.highSpeedOK(P, n2);
+    return [a, b, c, d, e, ok, f]; })()`);
+  assert.deepEqual(r, [false, true, false, false, true, true, false]);
+});

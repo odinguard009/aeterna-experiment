@@ -9,12 +9,15 @@
 function highSpeedOK(p, inst) {
   const card = CARDS[inst.id];
   if (!card || !card.highSpeed || !isSpiritForm(card) || !p.hand.includes(inst) || !summonOK(p, card)) return false;
+  if (card.highSpeedIf && !fxIf(p, G.p[other(p.key)], card.highSpeedIf, {})) return false;      // v138 "Flash - <condition>, you can summon this card from the Hand"
+  if (card.highSpeedOnce && p.hsOnce && p.hsOnce[card.name] === G.turnNo) return false;      // "only once per turn per card name"
   return effCost(p, card) + minCores(card) <= reserveTotal(p);
 }
 const highSpeedSources = p => p.hand.filter(h => highSpeedOK(p, h));
 async function highSpeedSummon(p, inst) {
   if (!highSpeedOK(p, inst)) return false;
   const card = CARDS[inst.id], c = effCost(p, card); legacyPay(p, inst);
+  if (card.highSpeedOnce) (p.hsOnce = p.hsOnce || {})[card.name] = G.turnNo;
   const fromN = Math.min(c, p.reserve.n), plan = { reserve: fromN, by: {}, rsoul: c > fromN, fsoul: null };
   removeFrom(p.hand, inst); inst.mirage = false;
   const soulPaid = payCost(p, c, plan);

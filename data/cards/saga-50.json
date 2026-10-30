@@ -17216,26 +17216,18 @@
   "block": "A",
   "saga": 50,
   "trueRelease": true,
-  "effects": [
-   {
-    "trigger": "STATIC",
-    "bp": 2000,
-    "to": "self",
-    "attackingOnly": true,
-    "lv": [
-     2
-    ]
-   }
-  ],
-  "fxComplete": false,
-  "residual": [
-   "Flash - (Opposing Attack Step) If your Life was reduced this turn, and all cards in your Trash are Yellow, you can summon this card from the Hand."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "effects": [],
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "bicon": [
    "A"
   ],
-  "rcode": "M"
+  "rcode": "M",
+  "highSpeed": true,
+  "highSpeedIf": {
+   "lifeReduced": true,
+   "trashAllColor": "yellow"
+  }
  },
  {
   "id": "26RBS03-048",
@@ -27651,41 +27643,28 @@
   "mechanics": [
    "Legacy"
   ],
-  "effects": [
-   {
-    "trigger": "ACTIVATE",
-    "invoke": true,
-    "timing": [
-     "MAIN",
-     "FLASH"
-    ],
-    "when": "oppAttack",
-    "once": true,
-    "lv": [
-     2
-    ],
-    "actions": [
-     {
-      "do": "BP_MINUS",
-      "n": 2000,
-      "zeroDestroy": true
-     }
-    ]
-   }
-  ],
-  "fxComplete": false,
-  "residual": [
-   "(Legacy) [Teams: Yellow Rise/Twilight Gothic]",
-   "Flash - (Opposing Attack Step) If there is any \"Sword Eye\" family card in your Trash, you can summon this card from the Hand. You can only use this effect of the same card name once per turn."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "effects": [],
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "collab": [
    "詩姫"
   ],
   "bicon": [
    "A"
   ],
-  "rcode": "M"
+  "rcode": "M",
+  "highSpeed": true,
+  "highSpeedOnce": true,
+  "highSpeedIf": {
+   "trashGe": {
+    "n": 1,
+    "match": {
+     "family": [
+      "Sword Eye"
+     ]
+    }
+   }
+  }
  },
  {
   "id": "26RDB01-033",
