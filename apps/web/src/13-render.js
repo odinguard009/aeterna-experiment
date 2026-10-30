@@ -64,7 +64,7 @@ function fieldCardHTML(key, kind, f) {
 }
 function rowHTML(title, scroll, key, items, emptyText, cls, pad, tag, cells) {       // items: [{kind, f}]; tag (v0.155.0): the hand-count tag beside a Nexus
   return `<div class="field-row-wrapper ${cls || ''}"><div class="row-header-badge"><span>${title}</span></div>${tag || ''}
-    <div class="field-row" data-scroll="${scroll}">${cells ? (() => { const ph = '<div class="slot-ph" aria-hidden="true">Empty</div>', rest = Math.max(0, cells - items.length), left = Math.floor(rest / 2); return ph.repeat(left) + items.map(o => fieldCardHTML(key, o.kind, o.f)).join('') + ph.repeat(rest - left); })() : items.length ? items.map(o => fieldCardHTML(key, o.kind, o.f)).join('') + (pad || '') : (pad || `<span class="empty-note">${emptyText}</span>`)}</div></div>`;   // v0.157.0: PC rows show their locked cells (5 Spirits, 1 Nexus) as dashed "Empty" slots, like the mockup
+    <div class="field-row" data-scroll="${scroll}">${cells && !items.length ? '<div class="slot-ph" aria-hidden="true">Empty</div>' : items.length ? items.map(o => fieldCardHTML(key, o.kind, o.f)).join('') + (pad || '') : (pad || `<span class="empty-note">${emptyText}</span>`)}</div></div>`;   // v0.157.0: PC rows show their locked cells (5 Spirits, 1 Nexus) as dashed "Empty" slots, like the mockup
 }
 /* Burst / Mirage Area (top-left corner of each field): sleeve = Burst set face down, card face = Mirage set face up */
 function burstAreaHTML(p) {

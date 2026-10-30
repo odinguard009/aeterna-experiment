@@ -341,3 +341,9 @@ html.layout-pc #view-playmat .hand-container-wrapper > .hand-area { grid-column:
 @container fr (max-width:700px){.mk #db-tbar,.mk #lib-tbar{padding-inline:12px}.mk .btool .search svg{left:18px}.mk .btool .search input{padding-left:42px;padding-right:12px;font-size:.92em;text-overflow:ellipsis}}
 #bld.db-min .ddmenu{display:none}
 .mk #db-tbar .r1>#db-min{position:relative;z-index:96}   /* the Hide/Show filters button stays clickable above an open dropdown */
+/* Round 5 (owner review 2026-10-30): an empty row shows ONE Empty box in the middle; with cards there is none (phone: the note is centred too) */
+#view-playmat .field-row .empty-note{margin:auto}
+#view-playmat .field-row:has(>.empty-note){justify-content:center!important}
+#view-playmat .field-row>.empty-note{margin-inline:auto!important;flex:none}
+#view-playmat .field-row:has(>.ph-slot){justify-content:center!important}
+#view-playmat .field-row>.ph-slot{margin-inline:auto!important}
