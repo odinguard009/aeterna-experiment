@@ -209,6 +209,8 @@ function simple(card, a) {
       return { fix: [{ m: a.match }], body: `P.deck = []; dk(${J(M)}); for (let j = 0; j < 5; j++) dk(${J(FILL)}); await run(src, RA);
       if (!P.spirits.some(x => x.id === ${J(M)})) return 'the matching Spirit was not summoned'; if (P.deck.length !== 5 || P.revealed.length) return 'rest not on the deckbottom: deck ' + P.deck.length; return '';` };
     }
+    case 'LIFE_HIT_NEXUS':      // v167 the picked Spirit (ctx.picked) carries lifeHitNexus for this turn
+      return only(a, ['costLe']) && { body: `const t = sp(${J(FILL)}, P, 1); G.turnNo = 7; await run(src, RA, { picked: t }); return t.lifeHitNexus && t.lifeHitNexus.turn === 7 && t.lifeHitNexus.costLe === A.costLe ? '' : 'lifeHitNexus not set';` };
     case 'MUST_ATTACK_OPP':      // v164 the picked opposing Spirit carries mustAtk = this turn
       return only(a, ['costLe']) && { body: `const t = sp(${J(FILL)}, O, 1); G.turnNo = 7; await run(src, RA);
         if (A.costLe != null && BS.CARDS[${J(FILL)}].cost > A.costLe) return ''; return t.mustAtk === 7 ? '' : 'mustAtk not set';` };

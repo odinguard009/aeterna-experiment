@@ -14077,14 +14077,15 @@
       "color": "red"
      },
      "perExhausted": true
+    },
+    {
+     "do": "LIFE_HIT_NEXUS",
+     "costLe": 4
     }
    ]
   },
-  "fxComplete": false,
-  "residual": [
-   "Then, during this turn, when it reduces the opposing Life, target an opposing Cost 4 or less Nexus. Destroy it."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects hand-written for roadmap S1 Standard Magic (v0.88.0-v0.89.0); not yet checked against the card image.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects hand-written for roadmap S1 Standard Magic (v0.88.0-v0.89.0); not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "bicon": [
    "A"
   ],

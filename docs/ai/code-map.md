@@ -68,7 +68,7 @@ endOfBattle
 ## packages/engine/src/02p-effects-shared-shapes.js (287 lines, ~7.1k tokens)
 cardTeams, allHaveShapeOK, allHaveOK, winRiderRun, fxOppMark, blockedInferior, blockedByMark
 
-## packages/engine/src/02q-effects-actions-own.js (192 lines, ~5.1k tokens)
+## packages/engine/src/02q-effects-actions-own.js (197 lines, ~5.3k tokens)
 
 
 ## packages/engine/src/02r-effects-actions-deck.js (119 lines, ~3.9k tokens)
@@ -104,7 +104,7 @@ fieldList, isGW, freeCores, freeTotal, totalCores, reserveTotal, minCores, isSpi
 ## packages/engine/src/07-turn.js (82 lines, ~1.5k tokens) — TURN FLOW
 isMainStep, revertNexusSpirits, setStep, beginTurn, endStep, win, matchLoop, checkInvariants
 
-## packages/engine/src/08-battle.js (175 lines, ~3.9k tokens) — BATTLE
+## packages/engine/src/08-battle.js (176 lines, ~4k tokens) — BATTLE
 successor, flashTiming, battleEndAttack, attackStepOver, doBattle, doBattleInner, maybeBurst, burstFlash, flushBursts
 
 ## packages/engine/src/09-cpu.js (168 lines, ~2.9k tokens) — CPU

@@ -124,6 +124,11 @@ Object.assign(FX_ACTIONS, {
       const rest = c.p.revealed.splice(0); for (const x of rest) c.p.deck.push(x);
       if (rest.length) log(`${nm}: ${rest.length} card${rest.length === 1 ? '' : 's'} returned to the deckbottom.`);
     } },
+  /* v167 LIFE_HIT_NEXUS {costLe}: "during this turn, when [the Spirit picked just before] reduces the opposing Life, target an opposing Cost N or less Nexus. Destroy it" (flag read in 08-battle after an unblocked hit) */
+  LIFE_HIT_NEXUS: { chk: a => Number.isInteger(a.costLe) && a.costLe >= 1 && a.costLe <= 15 && Object.keys(a).every(k => ['do', 'costLe', 'if'].includes(k)),
+    txt: a => `during this turn, when that Spirit reduces the opposing Life, destroy an opposing Cost ${a.costLe} or less Nexus`,
+    can: c => !!c.ctx.picked && c.p.spirits.includes(c.ctx.picked),
+    run: async (c, a) => { const t = c.ctx.picked; if (!t || !c.p.spirits.includes(t)) { c.ctx.did = false; return; } t.lifeHitNexus = { turn: G.turnNo, costLe: a.costLe }; log(`${CARDS[t.id].name}: when it reduces the opposing Life this turn, an opposing Cost ${a.costLe} or less Nexus is destroyed.`); } },
   MIRAGE_SET: { chk: () => true, txt: () => 'set this card as a Mirage without paying the cost (only if you have no Mirage set)',
     can: c => !c.p.mirage && !!CARDS[c.src.id].mirage && (c.p.revealed.includes(c.src) || c.p.hand.includes(c.src)),
     run: async c => {

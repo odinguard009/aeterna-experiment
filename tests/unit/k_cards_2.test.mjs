@@ -107,3 +107,15 @@ test('K-129 26RDB01-039 LV2: reveals two, summons one Blue Beat Cost<=5 with ano
     return [no, yes, P.spirits.map(x => x.id).join(), P.deck.length, P.revealed.length]; })()`);
   assert.deepEqual(r, [false, true, '26RDB01-039,26RDB01-033', 3, 0], JSON.stringify(r));
 });
+
+test('K-130 26RBS02-087: the picked Spirit is armed for this turn (flag only; the battle hook is not fought out here)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    G.active = P.key; G.turnNo = 9;
+    const s = BS.mkInst('26RDB01-039'); s.cores = 1; P.spirits.push(s);
+    const m = BS.mkInst('26RBS02-087'), ctx = { picked: s };
+    const fx = BS.CARDS['26RBS02-087'].magic.by ? BS.CARDS['26RBS02-087'].magic.by.FLASH : BS.CARDS['26RBS02-087'].magic;
+    await BS.runActions({ p: P, opp: O, src: m, ctx }, { actions: fx.actions.filter(a => a.do === 'LIFE_HIT_NEXUS') });
+    return [JSON.stringify(s.lifeHitNexus)]; })()`);
+  assert.equal(r[0], JSON.stringify({ turn: 9, costLe: 4 }), JSON.stringify(r));
+});
