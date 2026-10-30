@@ -44,4 +44,24 @@
   B.chk = a => (a.notAttacking == null || a.notAttacking === true) && !(a.notAttacking && a.attackingOnly) && bChk(nb(a));
   B.cands = (c, a) => bCands(c, nb(a)).filter(t => !a.notAttacking || t !== G.attacker);
   B.txt = a => bTxt(nb(a)).replace(/^return an opposing /, `return an opposing ${a.notAttacking ? 'non-attacking ' : ''}`);
+  /* costTotalLe: "up to two opposing Spirits with a total cost of N or less" (upTo, n 2, Spirits only) */
+  const tChk = B.chk, tCands = B.cands, tTxt = B.txt, tRun = B.run;
+  const tb = a => { const o = Object.assign({}, a); delete o.costTotalLe; return o; };
+  B.chk = a => (a.costTotalLe == null || (Number.isInteger(a.costTotalLe) && a.costTotalLe >= 1 && a.costTotalLe <= 30 && a.upTo === true && a.n === 2 && a.kind === 'spirit' && a.costLe == null)) && tChk(tb(a));
+  B.cands = (c, a) => tCands(c, tb(a)).filter(t => a.costTotalLe == null || CARDS[t.id].cost <= a.costTotalLe);
+  B.txt = a => tTxt(tb(a)) + (a.costTotalLe != null ? ` (up to two, total cost ${a.costTotalLe} or less)` : '');
+  B.run = async (c, a) => {
+    if (a.costTotalLe == null) return tRun(c, a);
+    const got = []; let sum = 0;
+    for (let j = 0; j < 2; j++) {
+      const rest = B.cands(c, a).filter(x => !got.includes(x) && sum + CARDS[x.id].cost <= a.costTotalLe);
+      if (!rest.length || (j > 0 && c.p.cpu === false && !await ask({ title: `✨ ${esc(CARDS[c.src.id].name)}`, html: 'Return another one?', buttons: [{ label: 'Yes', cls: 'primary', value: true }, { label: 'No', cls: 'blue', value: false }] }))) break;
+      const t = await fxPickTarget(c, rest, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the opposing Spirit to return (${j + 1}/2, total cost ${a.costTotalLe} or less).`);
+      if (!t) break;
+      got.push(t); sum += CARDS[t.id].cost;
+    }
+    if (!got.length) { c.ctx.did = false; return; }
+    for (const t of got) bounceCard(c.opp, t, a.to);
+    checkDepletion(c.opp);
+  };
 })();

@@ -122,3 +122,15 @@ test('K-158 26RBS02-040: Leucomyst Amplify Invoke (LV1-2) and LV2 Camou 1 compil
   const r = await page.evaluate(`(() => { const k = BS.CARDS['26RBS02-040']; return [true, k.effects[0].lv.join(), k.effects[1].flag, k.effects[1].n]; })()`);
   assert.deepEqual(r, [true, '1,2', 'CAMOU', 1], JSON.stringify(r));
 });
+
+test('K-159 BOUNCE_OPP.costTotalLe (26RBS03-X09): returns up to two opposing Spirits whose total cost is 3 or less to the deckbottom', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const lo = Object.values(BS.CARDS).find(k => k.type === 'Spirit' && k.cost === 2), hi = Object.values(BS.CARDS).find(k => k.type === 'Spirit' && k.cost === 4), one = Object.values(BS.CARDS).find(k => k.type === 'Spirit' && k.cost === 1);
+    const a = BS.mkInst(lo.id), b = BS.mkInst(one.id), h = BS.mkInst(hi.id); for (const x of [a, b, h]) x.cores = 1; O.spirits.push(a, b, h);
+    const c = { p: P, opp: O, src: BS.mkInst('26RBS03-X09'), ctx: {} }, act = BS.CARDS['26RBS03-X09'].effects[0].actions[0], d0 = O.deck.length;
+    const cand = FX_ACTIONS.BOUNCE_OPP.cands(c, act).length;
+    await BS.runActions(c, { actions: [act] });
+    return [cand, O.spirits.length, O.deck.length - d0, O.spirits.includes(h)]; })()`);
+  assert.deepEqual(r, [2, 1, 2, true], JSON.stringify(r));
+});
