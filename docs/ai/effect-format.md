@@ -219,3 +219,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v180: `BP_MINUS.zeroBottom` (true: after the -N BP, an opposing Spirit at 0 BP returns to the deckbottom); Invoke cost `returnOwn.toHand` (true: to the Hand) and Invoke match `costLe`.
 - v181: STATIC flag `SUMMON_TAX {n 1-3, match}`: the opponent of the owner pays N extra cost to summon a matching Spirit card (`summonTaxOf` in effCost); use `if:{oppTurn:true}` for an opposing-turn window.
 - v182: BOUNCE_OPP costTotalLe (with upTo, n 2, kind spirit): up to two opposing Spirits with a total cost of N or less.
+- v183: BOUNCE_OPP bpOrGe (with bpLe, kind spirit): "N BP or less or M BP or more" (26RBS02-045 Legacy).

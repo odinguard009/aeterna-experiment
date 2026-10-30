@@ -134,3 +134,14 @@ test('K-159 BOUNCE_OPP.costTotalLe (26RBS03-X09): returns up to two opposing Spi
     return [cand, O.spirits.length, O.deck.length - d0, O.spirits.includes(h)]; })()`);
   assert.deepEqual(r, [2, 1, 2, true], JSON.stringify(r));
 });
+
+test('K-160 BOUNCE_OPP.bpOrGe (26RBS02-045): with Legacy the targets are 5000 BP or less OR 8000 BP or more', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const mk = bp => { const x = BS.mkInst('BS48-047'); x.cores = 1; x.bpMod = bp - bpOf(x); return x; };
+    const lo = mk(4000), mid = mk(6000), hi = mk(9000); O.spirits.push(lo, mid, hi);
+    const fx = BS.CARDS['26RBS02-045'].effects, c = { p: P, opp: O, src: BS.mkInst('26RBS02-045'), ctx: {} };
+    const a = FX_ACTIONS.BOUNCE_OPP.cands(c, fx[0].actions[0]), b = FX_ACTIONS.BOUNCE_OPP.cands(c, fx[1].actions[0]);
+    return [a.length, a[0] === lo, b.length, b.includes(mid), fx[1].if.viaLegacy, fx[2].flag]; })()`);
+  assert.deepEqual(r, [1, true, 2, false, true, 'CAMOU'], JSON.stringify(r));
+});

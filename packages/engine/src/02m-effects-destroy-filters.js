@@ -45,11 +45,17 @@
   B.cands = (c, a) => bCands(c, nb(a)).filter(t => !a.notAttacking || t !== G.attacker);
   B.txt = a => bTxt(nb(a)).replace(/^return an opposing /, `return an opposing ${a.notAttacking ? 'non-attacking ' : ''}`);
   /* costTotalLe: "up to two opposing Spirits with a total cost of N or less" (upTo, n 2, Spirits only) */
-  const tChk = B.chk, tCands = B.cands, tTxt = B.txt, tRun = B.run;
+  const tChk = B.chk, tCands = B.cands, tTxt = B.txt; const tRun = B.run;
   const tb = a => { const o = Object.assign({}, a); delete o.costTotalLe; return o; };
   B.chk = a => (a.costTotalLe == null || (Number.isInteger(a.costTotalLe) && a.costTotalLe >= 1 && a.costTotalLe <= 30 && a.upTo === true && a.n === 2 && a.kind === 'spirit' && a.costLe == null)) && tChk(tb(a));
   B.cands = (c, a) => tCands(c, tb(a)).filter(t => a.costTotalLe == null || CARDS[t.id].cost <= a.costTotalLe);
   B.txt = a => tTxt(tb(a)) + (a.costTotalLe != null ? ` (up to two, total cost ${a.costTotalLe} or less)` : '');
+  /* bpOrGe (with bpLe): "5000 BP or less or 8000 BP or more" */
+  const oChk = B.chk, oCands = B.cands, oTxt = B.txt;
+  const ob = a => { const o = Object.assign({}, a); delete o.bpOrGe; if (a.bpOrGe != null) delete o.bpLe; return o; };
+  B.chk = a => (a.bpOrGe == null || (Number.isInteger(a.bpOrGe) && a.bpOrGe > a.bpLe && a.bpLe != null && a.bpPer == null && a.kind === 'spirit')) && oChk(Object.assign({}, a, { bpOrGe: undefined }));
+  B.cands = (c, a) => oCands(c, ob(a)).filter(t => a.bpOrGe == null || bpOf(t) <= a.bpLe || bpOf(t) >= a.bpOrGe);
+  B.txt = a => oTxt(ob(a)) + (a.bpOrGe != null ? ` with ${a.bpLe} BP or less or ${a.bpOrGe} BP or more` : '');
   B.run = async (c, a) => {
     if (a.costTotalLe == null) return tRun(c, a);
     const got = []; let sum = 0;
