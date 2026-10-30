@@ -1066,3 +1066,17 @@ test('K-82 Blue Beat Stage: Invoke boosts an attacking Blue Beat Spirit; End Ste
     return [L.filter(x => !x.exhausted).length]; })()`);
   assert.deepEqual(r, [2]);
 });
+
+test('K-83 Utmost Depth Emerald Abyss: attacking Armored Fish +1000; Main Invoke shows an Armored Fish card, returns it to the deckbottom and draws', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    P.spirits.length = 0; P.nexus.length = 0; O.spirits.length = 0; O.nexus.length = 0; P.cpu = true; O.cpu = true;
+    const n = BS.mkInst('26RSD03-010'); n.cores = 5; P.nexus.push(n);
+    const f = BS.mkInst('26RBS01-039'); f.cores = 3; P.spirits.push(f);
+    G.active = P.key; G.step = 5; G.attacker = null; const b0 = BS.bpOf(f); G.attacker = f; const up = BS.bpOf(f) - b0; G.attacker = null;
+    G.step = 3; const h = BS.mkInst('26RBS01-039'); P.hand.length = 0; P.hand.push(h); while (P.deck.length < 5) P.deck.push(BS.mkInst('26RBS01-039'));
+    const i = BS.CARDS['26RSD03-010'].effects.findIndex(e => e.invoke);
+    const ok = await BS.activateFx(P, n, i);
+    return [up, ok, P.hand.length, P.hand.includes(h), P.deck[P.deck.length - 1] === h]; })()`);
+  assert.deepEqual(r, [1000, true, 1, false, true]);
+});
