@@ -699,3 +699,20 @@ test('K-55 trashGe: counts matching cards in your own Trash (Angelic Feather Son
     return [mg.length, ...out]; })()`);
   assert.deepEqual(r, [2, false, true]);
 });
+
+test('K-56 Angelic Feather Song: -2000 BP kills a 2000 BP Spirit and refreshes exactly one Cost 5+ Sword Eye Spirit when two Sword Eye Magic are in the Trash', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const id = k => BS.CARDS[k].type === 'Spirit' && (BS.CARDS[k].families || []).includes('Sword Eye') && BS.CARDS[k].cost >= 5;
+    const sp = Object.keys(BS.CARDS).filter(id).slice(0, 2);
+    const mg = Object.keys(BS.CARDS).filter(k => BS.CARDS[k].type === 'Magic' && (BS.CARDS[k].families || []).includes('Sword Eye')).slice(0, 2);
+    const out = [];
+    for (const n of [1, 2]) {
+      P.spirits.length = 0; O.spirits.length = 0; P.trash = mg.slice(0, n).map(i => ({ id: i }));
+      const a = sp.map(k => { const s = BS.mkInst(k); s.exhausted = true; P.spirits.push(s); return s; });
+      opp(3, 2000);
+      await BS.runActions({ p: P, opp: O, src: BS.mkInst('26RSD08-012'), ctx: {} }, { actions: BS.CARDS['26RSD08-012'].magic.actions }); await BS.flushBursts();
+      out.push(O.spirits.length, a.filter(s => !s.exhausted).length); }
+    return [sp.length, mg.length, ...out]; })()`);
+  assert.deepEqual(r, [2, 2, 0, 0, 0, 1]);
+});
