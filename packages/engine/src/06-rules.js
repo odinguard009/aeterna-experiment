@@ -182,6 +182,19 @@ function extraReduction(p, card) {
   }
   return out;
 }
+/* v0.196 STATIC SUMMON_SYMBOL {color, n, match}: "when you're summoning a <match> card, this Nexus/Spirit gains an extra <colour> symbol": extra Field symbols for the card being paid */
+function summonSymbols(p, card) {
+  const out = []; if (!G) return out; const opp = G.p[other(p.key)];
+  for (const src of fieldList(p)) {
+    const L = lvNo(src);
+    for (const { e } of fxEntries(src)) {
+      if (e.trigger !== 'STATIC' || e.flag !== 'SUMMON_SYMBOL' || (e.lv && !e.lv.includes(L)) || !fxMatch(card, e.match) || !fxIf(p, opp, e.if)) continue;
+      const k = e.perSpirit ? p.spirits.filter(s => fxMatch(CARDS[s.id], e.perSpirit)).length : e.n || 1;
+      for (let i = 0; i < k; i++) out.push([e.color]);
+    }
+  }
+  return out;
+}
 /* v0.69 LEGACY (= Succession; Standard CR 12-2-1-3, Fandom Q&A 31541-31543, 31620, 31866): summoning / casting a card with Legacy you may banish EX-symbol
    cards of the reduction colour from your Trash, one per reduction symbol, before the Field symbols reduce the cost; none banished = Legacy not activated;
    never with a fixed cost (costAlt). House reading: applied automatically with the fewest EX cards that give the lowest cost (a Field symbol that can pay
@@ -220,6 +233,7 @@ function handCostSet(p, card) {
 function effCost(p, card) {                       // cost reduction is mandatory when possible
   const syms = fieldSymbols(p, card.soulReduce, true);
   if (card.trashSymbols) for (const t of p.trash) for (const x of symbolAttrs(CARDS[t.id])) syms.push(x);   // v0.47 Lightning Tempest: "you can also use symbols from your Trash to reduce the cost
+  for (const x of summonSymbols(p, card)) syms.push(x);
   const extra = extraReduction(p, card), lp = legacyPlan(p, card, syms, extra);
   const r = lp ? lp.total : reductionOf(card, syms, extra);
   const hc = handCostSet(p, card), base = hc == null ? card.cost : hc;

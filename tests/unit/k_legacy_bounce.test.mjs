@@ -644,3 +644,21 @@ test('K-51 Charging Pyramid: a Thunder Dragon Magic kill gives the Nexus one ext
     return out; })()`);
   assert.deepEqual(r, ['yellow', '']);
 });
+
+test('K-52 SUMMON_SYMBOL: Quarry Plain / War Feat give extra Field symbols only while paying for a matching card at LV2', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const cost = id => BS.effCost(P, BS.CARDS[id]);
+    const out = [];
+    const q = BS.mkInst('26RSD04-009'); P.nexus.push(q);
+    for (const cores of [0, 2]) { q.cores = cores; out.push(cost('26RBS02-049'), cost('26RBS03-042'), cost('26RBS01-070')); }
+    P.nexus.length = 0;
+    const w = BS.mkInst('26RBS03-082'); P.nexus.push(w);
+    const two = Object.keys(BS.CARDS).filter(k => BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].cost === 2 && BS.CARDS[k].symbol === 'blue').slice(0, 2);
+    for (const k of two) P.spirits.push(BS.mkInst(k));
+    for (const cores of [0, 2]) { w.cores = cores; out.push(cost('26RBS01-070')); }
+    return out; })()`);
+  assert.equal(r[0], 7, 'Quarry Plain (LV1-2): its own white symbol plus the extra one pay two of the Cost 9 Mineroid');
+  assert.equal(r[2], 6, 'a non-Mineroid gets no extra symbol');
+  assert.ok(r[7] < r[6], 'War Feat LV2 makes a Cost 6+ Topaz cheaper');
+});

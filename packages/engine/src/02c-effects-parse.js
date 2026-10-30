@@ -66,7 +66,7 @@ function parseCond(c) {
     const okSym = (k === 'pickedCostIn' && Array.isArray(v) && v.length > 0 && v.length <= 8 && v.every(Number.isInteger)) || k === 'symbolsOnGe' && !!v && typeof v === 'object' && COLORS.includes(v.color) && Number.isInteger(v.n) && v.n >= 1 && v.n <= 10 && Object.keys(v).every(y => ['color', 'n'].includes(y));      // v0.168
     const okOnlySym = k === 'onlySymbols' && COLORS.includes(v);      // v0.179
     const okMagic = k === 'magicUsed' && !!v && typeof v === 'object' && [].concat(v.name || [], v.family || []).every(x => typeof x === 'string')
-      && (v.type == null || ['Spirit', 'Nexus', 'Magic', 'Brave'].includes(v.type)) && Object.keys(v).every(y => ['name', 'family', 'type', 'color', 'costGe', 'costLe'].includes(y));   // v0.116 "if you used a <family> Magic card this turn"
+      && (v.type == null || ['Spirit', 'Nexus', 'Magic', 'Brave'].includes(v.type)) && Object.keys(v).every(y => ['name', 'family', 'type', 'color', 'costGe', 'costLe', 'team'].includes(y)) && (v.team == null || typeof v.team === 'string');   // v0.116 "if you used a <family> Magic card this turn"
     if (!okInt && !okStr && !okBool && !okCol && !okStep && !okCtrl && !okNexus && !okS1 && !okMagic && !okSym && !okOnlySym) return { error: `unknown or invalid condition "${k}" (byOpp, byOppFx, hasSymbol, lifeLe, anyLifeLe, counterGe, soulGe, oppHandGe, voidGe, soulLe, putGe, lifeGe, oppRemovedGe, removedGe, oppSpiritsLe, oppNexusGe, oppNoAB, oppRemovedSpirit, controlName, hasName, soulOn, nexusBraved, oppTurn, attackStep, step, prev, utHit, burstSet, oppBurstSet, ctrl, fewerSpirits, nexusGe, lifeReduced, allHave, ctrlFamily, magicUsed, selfBpGe, viaEffect, selfAttacking)` };
   }
   return { cond: Object.assign({}, c) };
@@ -119,9 +119,10 @@ function parseEffects(arr) {
     if (e.trigger === 'STATIC' && e.flag != null) {
       if (!STATIC_FLAGS.includes(e.flag)) return { error: `STATIC "flag" must be one of ${STATIC_FLAGS.join(', ')}` };
       o.flag = e.flag; o.to = e.to === 'own' || e.to === 'all' ? e.to : 'self'; if (e.braved === true) o.braved = true;      // v0.60 [When Braved] static effects
-      if (e.flag === 'EXTRA_REDUCTION') {                          // v0.40: "all your Thunderive cards gain an extra yellow reduction symbol" (Indra Contract Field, Shimavajdra)
-        if (!COLORS.includes(e.color)) return { error: 'EXTRA_REDUCTION needs a "color"' };
+      if (e.flag === 'EXTRA_REDUCTION' || e.flag === 'SUMMON_SYMBOL') {                          // v0.40: "all your Thunderive cards gain an extra yellow reduction symbol" (Indra Contract Field, Shimavajdra)
+        if (!COLORS.includes(e.color)) return { error: e.flag + ' needs a "color"' };
         o.color = e.color; o.n = Number.isInteger(e.n) && e.n >= 1 && e.n <= 3 ? e.n : 1;
+        if (e.perSpirit != null) { const m = e.perSpirit; if (e.flag !== 'SUMMON_SYMBOL' || !m || !Array.isArray(m.costIn) || !m.costIn.length || m.costIn.length > 8 || !m.costIn.every(Number.isInteger) || Object.keys(m).length !== 1) return { error: '"perSpirit" (SUMMON_SYMBOL only) must look like {"costIn":[2]}' }; o.perSpirit = { costIn: m.costIn.slice() }; }      // v0.196 "all your Cost 2 Spirits gain an extra symbol": one per such Spirit
       }
       if (e.flag === 'TREAT_LV3' && e.n != null) { if (e.n !== 2) return { error: 'TREAT_LV3 "n" must be 2 (default 3)' }; o.n = 2; }      // v0.184 "treated as being at LV2"
       if (e.flag === 'HAND_COST') {                               // v0.186 "The cost of all <family> Spirit cards in your Hand becomes N"
