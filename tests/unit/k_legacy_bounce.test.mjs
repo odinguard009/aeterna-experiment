@@ -849,3 +849,12 @@ test('K-66 Gigantocheires: BOUNCE_OPP any bpLe Spirit-only, spiritCore, nexusSym
     return [a, O.nexus.length, g.cores, g.symTurn && g.symTurn.cols.join()]; })()`);
   assert.deepEqual(r, [[0, 3, false], 0, 3, 'white']);
 });
+
+test('K-67 Flame Storm: DESTROY_TOTAL max enforces the number of targets', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    O.spirits.length = 0; for (let i = 0; i < 5; i++) opp(1, 1000);
+    await BS.runActions({ p: P, opp: O, src: BS.mkInst('26RBS03-087'), ctx: {} }, { actions: [{ do: 'DESTROY_TOTAL', total: 7000, max: 3 }] }); await BS.flushBursts();
+    return O.spirits.length; })()`);
+  assert.equal(r, 2);
+});

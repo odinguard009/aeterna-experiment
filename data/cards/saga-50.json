@@ -18789,6 +18789,7 @@
     {
      "do": "DESTROY_TOTAL",
      "total": 7000,
+     "max": 3,
      "if": {
       "lifeReduced": false
      }
@@ -18796,17 +18797,15 @@
     {
      "do": "DESTROY_TOTAL",
      "total": 10000,
+     "max": 3,
      "if": {
       "lifeReduced": true
      }
     }
    ]
   },
-  "fxComplete": false,
-  "residual": [
-   "Target up to three opposing Spirits (the limit of three targets is not enforced: any number within the total BP is destroyed)."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects hand-written for roadmap S1 Standard Magic (v0.88.0); not yet checked against the card image.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects hand-written for roadmap S1 Standard Magic (v0.88.0); not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "bicon": [
    "A"
   ],
