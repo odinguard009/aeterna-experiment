@@ -38642,15 +38642,6 @@
   "M_OPTIONAL",
   "M_THEN"
  ],
- "26RCB01-035": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "F_OTHER_NOSTACK",
-  "M_OPTIONAL",
-  "M_UNSTACKABLE",
-  "S1_ALL_HAVE",
-  "T_BLOCKS"
- ],
  "26RCB01-047": [
   "A_DRAW",
   "C_LEVEL",

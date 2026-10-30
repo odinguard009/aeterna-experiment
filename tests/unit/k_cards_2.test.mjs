@@ -51,3 +51,17 @@ test('K-125 26RBS02-081 LV2: end step refreshes a Spirit that prints a When Bloc
     return [a.exhausted, b.exhausted]; })()`);
   assert.deepEqual(r, [false, true], JSON.stringify(r));
 });
+
+test('K-126 26RCB01-035 LV1: opposing Spirit must attack only when all your Spirits/Nexuses are RYUKI', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    G.active = O.key; G.turnNo = 11;
+    const z = BS.mkInst('26RCB01-035'); z.cores = 3; P.spirits.push(z);
+    const foe = BS.mkInst('BS48-001'); foe.cores = 1; O.spirits.push(foe);
+    const fx = BS.CARDS['26RCB01-035'].effects.find(e => e.trigger === 'OPP_START_ATTACK');
+    const ok = BS.fxIf ? BS.fxIf(P, O, fx.if) : null;
+    const other = BS.mkInst('BS48-001'); other.cores = 1; P.spirits.push(other);
+    const no = BS.fxIf ? BS.fxIf(P, O, fx.if) : null;
+    return [ok, no]; })()`);
+  assert.deepEqual(r, [true, false], JSON.stringify(r));
+});
