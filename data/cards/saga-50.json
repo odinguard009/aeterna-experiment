@@ -18991,16 +18991,58 @@
   "image": null,
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (Opposing Attack Step) {{Invoke|Flash}} Destroy this Nexus ▶ During this battle, your Life can't be reduced by the attacks of opposing Spirits with one core on them.",
-   "[LV2] (True Release) (Opposing Attack Step) When your Life is reduced, you can exhaust this Nexus. If exhausted, target an opposing Cost 6 or less Spirit. Send cores from it to the Reserve until one core remains on it. (The opponent chooses which cores to send)"
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "bicon": [
    "A"
   ],
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "FLASH"
+    ],
+    "when": "oppAttack",
+    "lv": [
+     1,
+     2
+    ],
+    "cost": {
+     "destroySelf": true
+    },
+    "actions": [
+     {
+      "do": "LIFE_CORE_SHIELD",
+      "cores": 1,
+      "battle": true
+     }
+    ]
+   },
+   {
+    "trigger": "OWN_LIFE_HIT",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "EXHAUST_SELF"
+     },
+     {
+      "do": "OPP_CORES_TO_RESERVE",
+      "targets": 1,
+      "each": 1,
+      "untilOne": true,
+      "costLe": 6,
+      "if": {
+       "prev": true
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RBS03-077",
@@ -32194,14 +32236,18 @@
      "do": "BP_TARGET",
      "n": 2000,
      "to": "pick"
+    },
+    {
+     "do": "LIFE_CORE_SHIELD",
+     "cores": 1,
+     "if": {
+      "lifeReduced": true
+     }
     }
    ]
   },
-  "fxComplete": false,
-  "residual": [
-   "Then, if your Life was reduced this turn, during this turn, your Life can't be reduced by the attacks of opposing Spirits with one core on them."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects hand-written for roadmap S1 Standard Magic (v0.88.0); not yet checked against the card image.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects hand-written for roadmap S1 Standard Magic (v0.88.0); not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "bicon": [
    "A"
   ],

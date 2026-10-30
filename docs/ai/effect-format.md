@@ -183,3 +183,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v143 (Lane K): condition `selfExhausted` ("if this Spirit is in exhausted state"); STATIC flag `NO_BP_COMPARE` (`to:"all"`, usually `if {selfAttacking:true}`: "Neither player's Spirits would be destroyed by BP comparison" while the carrier attacks). Additions only.
 - v144 (Lane K): `DRAW.dbl` N ("draw a card; when you draw, if your Hand is N or less, draw twice as many instead"; checked at draw time; not with `per`).
 - v145 (v0.198.0, Lane K): `REVEAL_PICK.also:{match}` ("add a X card, and a Y card": after the first pick, the owner may add one more revealed card matching `also`; not with all/max/peek/discard).
+- v146 (v0.198.0, Lane K): action `LIFE_CORE_SHIELD {cores, battle?}`: "during this turn (battle), your Life can't be reduced by the attacks of opposing Spirits with <cores> cores on them" (state `P.coreShield`, checked in the unblocked-attack step of `08-battle.js`).

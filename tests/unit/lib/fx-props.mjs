@@ -230,6 +230,12 @@ function simple(card, a) {
     }
     case 'NO_REFRESH_OPP':      // v0.172 an exhausted opposing Spirit skips its next Refresh Step
       return only(a, []) && { onField: true, body: `const t = sp(${J(FILL)}, O, 1); t.exhausted = true; G.turnNo = 3; await run(src, RA); return t.noRefreshT === 4 ? '' : 'noRefreshT ' + t.noRefreshT;` };
+    case 'LIFE_CORE_SHIELD':      // v0.198 the owner's Life takes no attack damage from opposing Spirits with that many cores (turn or battle)
+      return only(a, ['cores', 'battle']) && { body: `G.battleNo = 1; P.coreShield = null; await run(src, RA); const s = P.coreShield; return s && s.cores === A.cores && s.turn === G.turnNo && (A.battle ? s.b === 1 : s.b == null) ? '' : 'coreShield ' + JSON.stringify(s);` };
+    case 'NO_BURST_BATTLE':      // v0.198 the opponent can't activate Burst this battle
+      return only(a, []) && { body: `G.noBurst = null; G.attacker = sp(${J(FILL)}, P, 1); await run(src, RA); const got = G.noBurst; G.attacker = null; G.noBurst = null; return got === O.key ? '' : 'noBurst ' + got;` };
+    case 'LIFE_TO_RESERVE':      // v0.198 N opposing Life go to the opposing Reserve
+      return only(a, ['n']) && { body: `O.life = 5; O.hand.length = 0; const r0 = O.reserve.n; await run(src, RA); return O.life === 5 - A.n && O.reserve.n === r0 + A.n ? '' : 'life ' + O.life + ', reserve +' + (O.reserve.n - r0);` };
     case 'REFRESH_SPIRIT':
       if (only(a, ['match']) && a.match && okMatch(a.match)) return { fix: [{ m: a.match }], body: `const t = sp(${J(mid(a.match))}, P, 1); t.exhausted = true; await run(src, RA); return t.exhausted ? 'not refreshed' : '';` };      // v144 one matching exhausted Spirit
       if (only(a, ['match', 'n', 'all']) && (a.n != null || a.all) && (a.match == null || okMatch(a.match)) && !(a.n != null && a.all)) {      // v0.169 up to N / all matching exhausted Spirits

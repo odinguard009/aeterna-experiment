@@ -38682,12 +38682,6 @@
   "C_LEVEL",
   "M_OPTIONAL"
  ],
- "26RBS03-076": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "K_STANDARD_INVOKE",
-  "M_OPTIONAL"
- ],
  "26RBS03-077": [
   "C_LEVEL",
   "F_OTHER_NOSTACK",
@@ -39040,9 +39034,6 @@
   "A_SYMBOL",
   "A_SYMBOL_PLUS",
   "C_LEVEL"
- ],
- "26RSD02-013": [
-  "M_THEN"
  ],
  "26RSD02-X02": [
   "A_EXHAUST",
