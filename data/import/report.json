@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 7106,
+  "cards": 7105,
   "per_saga": {
    "1": 676,
    "2": 313,
@@ -19,15 +19,15 @@
    "15": 355,
    "16": 334,
    "17": 110,
-   "50": 109
+   "50": 108
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 1600,
+  "skipped_curated": 1601,
   "nexus_levels_added": 707,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 456,
+  "image_problems": 455,
   "number_conflicts": 4,
   "merged": 107,
   "brave_unparsed": 171,
@@ -35,7 +35,7 @@
   "odd_reduction": 807,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 454
+  "without_image": 453
  },
  "tokens": [
   "BS73-T001",
@@ -1569,6 +1569,7 @@
   "26RBS03-005",
   "26RBS03-006",
   "26RBS03-007",
+  "26RBS03-008",
   "26RBS03-009",
   "26RBS03-010",
   "26RBS03-011",
@@ -4616,11 +4617,6 @@
    "id": "26RCB01-X07",
    "name": "Kamen Rider Ex-Aid Muteki Gamer",
    "problem": "ambiguous name (2 files, none in set 26RCB01)"
-  },
-  {
-   "id": "26RBS03-008",
-   "name": "The CragArmoredGiantCloud Famlon",
-   "problem": "no image"
   },
   {
    "id": "26RBS03-017",

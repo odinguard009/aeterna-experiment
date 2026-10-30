@@ -16093,16 +16093,61 @@
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (Your Attack Step) When your other \"Red Cloud\"/ \"Windflame\"/ \"Dayspring\" family Spirit attacks, during this turn, this Spirit gains +5000 BP.",
-   "[LV2] (True Release) (During Attack) At the end of battle, if this Spirit has 30000 BP or more, and you pay two costs, refresh this Spirit."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "bicon": [
    "A"
   ],
-  "rcode": "M"
+  "rcode": "M",
+  "effects": [
+   {
+    "trigger": "ALLY_ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "other": true,
+    "match": {
+     "family": [
+      "Red Cloud",
+      "Windflame",
+      "Dayspring"
+     ]
+    },
+    "actions": [
+     {
+      "do": "BP_PLUS",
+      "n": 5000,
+      "to": "self"
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_BATTLE_END",
+    "self": true,
+    "lv": [
+     2
+    ],
+    "match": {
+     "bpGe": 30000
+    },
+    "actions": [
+     {
+      "do": "BY",
+      "ask": true,
+      "cost": {
+       "do": "PAY_COST",
+       "n": 2
+      },
+      "then": [
+       {
+        "do": "REFRESH"
+       }
+      ]
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RBS03-009",

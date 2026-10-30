@@ -318,3 +318,15 @@ test('K-145 26RBS02-029: High Speed flag; summon heavy-exhausts only an exhauste
     return [BS.CARDS['26RBS02-029'].highSpeed, !!a.heavy, !!b.heavy]; })()`);
   assert.deepEqual(r, [true, true, false], JSON.stringify(r));
 });
+
+test('K-146 26RBS03-008 Famlon: +5000 BP when another Red Cloud ally attacks; end-of-battle refresh costs two cores and needs 30000 BP', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    P.cpu = true; const s = BS.mkInst('26RBS03-008'); s.cores = 6; P.spirits.push(s);
+    const fx = BS.CARDS['26RBS03-008'].effects; const b0 = BS.bpOf(s);
+    await BS.runActions({ p: P, opp: O, src: s, ctx: {} }, fx[0]);
+    const up = BS.bpOf(s) - b0; s.exhausted = true; P.reserve.n = 3;
+    await BS.runActions({ p: P, opp: O, src: s, ctx: {} }, fx[1]);
+    return [up, fx[0].other, fx[1].match.bpGe, s.exhausted, P.reserve.n]; })()`);
+  assert.deepEqual(r, [5000, true, 30000, false, 1], JSON.stringify(r));
+});
