@@ -288,3 +288,17 @@ test('K-115 26RBS02-082: LV1 -1000 BP + destroy at 0 when an ally is blocked; LV
     return [killed, first, second]; })()`);
   assert.deepEqual(r, [true, false, true], JSON.stringify(r));
 });
+
+test('K-116 26RBS03-054: LV1 picks another own Spirit that opposing 8000 BP or less Spirits cannot block; LV2 -2000 BP and destroy at 0 on the blocking Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    G.active = P.key; G.turnNo = G.turnNo || 1;
+    const m = BS.mkInst('26RBS03-054'); m.cores = BS.CARDS['26RBS03-054'].levels[1].cores; P.spirits.push(m);
+    const a = BS.mkInst('26RBS01-061'); a.cores = 1; P.spirits.push(a);
+    await BS.fireFx(P, 'SUMMONED', m, {});
+    const picked = !!a.noBlockTurnBp && !m.noBlockTurnBp;
+    const lowBlk = BS.mkInst('26RBS01-001'); lowBlk.cores = 1; O.spirits.push(lowBlk); lowBlk.bpMod = -(BS.bpOf(lowBlk) - 2000);
+    await BS.fireFx(P, 'ALLY_BLOCKED', m, { attacker: m, blocker: lowBlk });
+    return [picked, !O.spirits.includes(lowBlk)]; })()`);
+  assert.deepEqual(r, [true, true], JSON.stringify(r));
+});

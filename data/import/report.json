@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 7136,
+  "cards": 7135,
   "per_saga": {
    "1": 676,
    "2": 313,
@@ -19,15 +19,15 @@
    "15": 355,
    "16": 334,
    "17": 110,
-   "50": 139
+   "50": 138
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 1570,
+  "skipped_curated": 1571,
   "nexus_levels_added": 707,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 462,
+  "image_problems": 461,
   "number_conflicts": 4,
   "merged": 107,
   "brave_unparsed": 171,
@@ -35,7 +35,7 @@
   "odd_reduction": 807,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 460
+  "without_image": 459
  },
  "tokens": [
   "BS73-T001",
@@ -1579,6 +1579,7 @@
   "26RBS03-051",
   "26RBS03-052",
   "26RBS03-053",
+  "26RBS03-054",
   "26RBS03-055",
   "26RBS03-056",
   "26RBS03-057",
@@ -4645,11 +4646,6 @@
   {
    "id": "26RBS03-044",
    "name": "Synthetic Dragon",
-   "problem": "no image"
-  },
-  {
-   "id": "26RBS03-054",
-   "name": "The BlindOgre Madoc",
    "problem": "no image"
   },
   {

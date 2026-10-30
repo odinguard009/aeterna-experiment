@@ -199,6 +199,9 @@ function simple(card, a) {
       return only(a, []) && spirit && { onField: true, body: `const t = sp(${J(FILL)}, O, 1); G.attacker = src; G.battleNo = 1; await run(src, RA); G.attacker = null; return t.noBlockB === 1 ? '' : 'the opposing Spirit was not marked';` };
     case 'CANT_BE_BLOCKED_BY':      // v0.175 the attacker carries noBlockBy for this battle only
       return only(a, ['color', 'levels', 'keyword', 'highSpeed']) && spirit && { onField: true, body: `G.attacker = src; G.battleNo = 4; await run(src, RA); const m = src.noBlockBy; G.attacker = null; return m && m.battleNo === 4 ? '' : 'noBlockBy not set';` };
+    case 'UNBLOCKABLE_PICK':      // v157 one of your Spirits (not this one with `other`) can't be blocked this turn (or by BP <= bpLe)
+      return only(a, ['bpLe', 'other']) && spirit && { onField: true, body: `const t = sp(${J(FILL)}, P, 1); G.turnNo = 5; await run(src, RA); if (src.noBlockTurn === 5 || (src.noBlockTurnBp && src.noBlockTurnBp.turn === 5)) return A.other ? 'other: this Spirit was picked' : '';
+      const m = A.bpLe != null ? t.noBlockTurnBp : t.noBlockTurn; return A.bpLe != null ? (m && m.turn === 5 && m.bpLe === A.bpLe ? '' : 'noBlockTurnBp not set') : (m === 5 ? '' : 'noBlockTurn not set');` };
     case 'SELF_TO_HAND':      // v0.180 this Spirit goes from the Field back to its owner's Hand
       return only(a, []) && spirit && { onField: true, body: `await run(src, RA); return !P.spirits.includes(src) && P.hand.includes(src) ? '' : 'the Spirit did not return to the Hand';` };
     case 'RETURN_TRASH':      // v0.182 a matching card goes from the Trash to the Hand

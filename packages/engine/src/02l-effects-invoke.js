@@ -120,7 +120,7 @@ const invokeCostText = c => !c ? '' : c.pay ? `pay ${c.pay} cost${c.pay === 1 ? 
   : c.returnSelf ? 'return this card to the deckbottom' : c.returnOwn ? `return one of your ${c.returnOwn.match && c.returnOwn.match.family ? '"' + c.returnOwn.match.family.join('"/"') + '" ' : ''}${c.returnOwn.kind === 'nexus' ? 'Nexuses' : 'Spirits'} to the deckbottom`
   : c.destroyOwn ? `destroy one of your ${c.destroyOwn.match && c.destroyOwn.match.family ? '"' + c.destroyOwn.match.family.join('"/"') + '" ' : ''}${c.destroyOwn.kind === 'nexus' ? 'Nexuses' : 'Spirits'}`
   : c.discard ? `discard a ${c.discard.match && c.discard.match.family ? '"' + c.discard.match.family.join('"/"') + '" family ' : ''}card` : '';
-const ownTargetCands = (c, a) => c.p.spirits.filter(s => fxMatch(CARDS[s.id], a.match) && (!a.match || !a.match.tr || (CARDS[s.id].trueRelease && lvNo(s) >= 2)) && (!a.attacking || s === G.attacker) && (!a.coreFromSelf || s !== c.src) && !fxImmune(c.p, s, c));
+const ownTargetCands = (c, a) => c.p.spirits.filter(s => fxMatch(CARDS[s.id], a.match) && (!a.match || !a.match.tr || (CARDS[s.id].trueRelease && lvNo(s) >= 2)) && (!a.attacking || s === G.attacker) && (!a.coreFromSelf || s !== c.src) && (!a.other || s !== c.src) && !fxImmune(c.p, s, c));
 Object.assign(FX_ACTIONS, {
   /* "during this battle/turn, this Spirit gains +N BP" (to:self) / "Target one of your [attacking] X Spirits. ... it gains +N BP" (to:pick) */
   BP_TARGET: { chk: a => Number.isInteger(a.n) && a.n >= 1000 && a.n <= 30000 && ['self', 'pick'].includes(a.to) && (a.battle == null || a.battle === true) && (a.attacking == null || a.attacking === true) && invokeMatchOK(a.match) && (a.per == null || perOk(a.per)) && (a.alt == null || (a.to === 'pick' && typeof a.alt.name === 'string' && Number.isInteger(a.alt.n) && a.alt.n > a.n && a.alt.n <= 30000)),
@@ -228,12 +228,13 @@ function cpuInvokeOK(p, f, e, timing) {
   };
 })();
 /* v0.196 "Target a "X" family Spirit you control. During this turn, it can't be blocked." (turn number mark read by the block list in 08-battle) */
-FX_ACTIONS.UNBLOCKABLE_PICK = { chk: a => invokeMatchOK(a.match),
+FX_ACTIONS.UNBLOCKABLE_PICK = { chk: a => invokeMatchOK(a.match) && (a.bpLe == null || (Number.isInteger(a.bpLe) && a.bpLe >= 1000 && a.bpLe <= 30000)) && (a.other == null || a.other === true),
   txt: a => `one of your ${a.match && a.match.family ? '"' + a.match.family.join('"/"') + '" ' : ''}Spirits can't be blocked during this turn`,
   can: (c, a) => ownTargetCands(c, a).length > 0,
   run: async (c, a) => {
     const L = ownTargetCands(c, a); if (!L.length) { c.ctx.did = false; return; }
     const t = c.p.cpu ? L.reduce((m, s) => bpOf(s) > bpOf(m) ? s : m) : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your Spirits that can't be blocked this turn (glowing).`);
     if (!t) { c.ctx.did = false; return; }
-    t.noBlockTurn = G.turnNo; log(`${CARDS[t.id].name} can't be blocked during this turn.`);
+    if (a.bpLe != null) t.noBlockTurnBp = { turn: G.turnNo, bpLe: a.bpLe }; else t.noBlockTurn = G.turnNo;      // v157 bpLe: "can't be blocked by opposing N BP or less Spirits" (turn-long)
+    log(`${CARDS[t.id].name} can't be blocked during this turn.`);
   } };
