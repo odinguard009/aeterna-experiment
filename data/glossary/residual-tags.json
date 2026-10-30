@@ -38203,14 +38203,6 @@
   "M_OPTIONAL",
   "M_UNSTACKABLE"
  ],
- "26RBS01-098": [
-  "A_BP_PLUS",
-  "A_EXHAUST",
-  "C_LEVEL",
-  "K_STANDARD_INVOKE",
-  "M_OPTIONAL",
-  "T_ALLY_SUMMONED"
- ],
  "26RBS01-102": [
   "A_TRASH_TO_RESERVE",
   "C_LEVEL",
@@ -38484,10 +38476,6 @@
   "C_LEVEL",
   "K_STANDARD_INVOKE",
   "T_SUMMONED"
- ],
- "26RBS02-X04": [
-  "C_LEVEL",
-  "T_DESTROYED"
  ],
  "26RBS02-X05": [
   "C_LEVEL",
@@ -38820,16 +38808,6 @@
   "C_LEVEL",
   "M_THEN",
   "T_ALLY_BLOCKED"
- ],
- "26RBS03-X13": [
-  "A_BP_MINUS",
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "C_LIFE",
-  "M_OPTIONAL",
-  "M_THEN",
-  "T_ATTACKS",
-  "T_SUMMONED"
  ],
  "26RBS03-X15": [
   "A_REFRESH",

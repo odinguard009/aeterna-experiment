@@ -1198,3 +1198,45 @@ test('K-90 Kuramagrama: summons a Cost 3 or less Dark Puce from the Trash free; 
     return [sum, at.cores, bystander.cores]; })()`);
   assert.deepEqual(r[1], 2); assert.deepEqual(r[2], 3); assert.equal(r[0][0], true);
 });
+
+test('K-91 The Current Corridor: Flash exhaust gives a Current Spirit +2000 BP this battle; LV2 reveals an Oceanic Green Cost 7+ when a Current Spirit is summoned', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    P.spirits.length = 0; P.nexus.length = 0; O.spirits.length = 0; O.nexus.length = 0; P.cpu = true; O.cpu = true;
+    const nx = BS.mkInst('26RBS01-098'); nx.cores = 4; P.nexus.push(nx);
+    const s = BS.mkInst('26RBS01-038'); s.cores = 1; P.spirits.push(s);
+    G.active = P.key; G.step = 5; G.attacker = s; const before = BS.bpOf(s);
+    await BS.activateFx(P, nx, 0);
+    const bp = [BS.bpOf(s) - before, nx.exhausted === true];
+    P.hand.length = 0; P.deck.unshift(BS.mkInst('26RBS01-044')); await BS.fireFx(P, 'ALLY_SUMMONED', nx, { subject: s });
+    return [bp, P.hand.length]; })()`);
+  assert.deepEqual(r, [[2000, true], 1]);
+});
+
+test('K-92 26RBS02-X04: When Destroyed leaves one core on an opposing Spirit; LV2 When Blocked sends one core from each of two opposing Spirits', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    P.spirits.length = 0; P.nexus.length = 0; O.spirits.length = 0; O.nexus.length = 0; P.cpu = true; O.cpu = true;
+    const mk = (c) => { const t = BS.mkInst('BS48-033'); t.cores = c; O.spirits.push(t); return t; };
+    const x = BS.mkInst('26RBS02-X04'); P.trash.push(x); x.lostLv = 0; const a = mk(4);
+    await BS.fireFx(P, 'DESTROYED', x, {});
+    P.trash.length = 0; const y = BS.mkInst('26RBS02-X04'); y.cores = 3; P.spirits.push(y); const b = mk(2), c = mk(3);
+    await BS.fireFx(P, 'ALLY_BLOCKED', y, { subject: y });
+    return [a.cores, b.cores + c.cores + a.cores]; })()`);
+  assert.deepEqual(r, [1, 4]);
+});
+
+test('K-93 26RBS03-X13: LV1 reveals three cards and returns them to the deckbottom; LV2 attack summon from Hand pays unless Life <= 3', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    P.spirits.length = 0; P.nexus.length = 0; O.spirits.length = 0; O.nexus.length = 0; P.cpu = true; O.cpu = true;
+    const x = BS.mkInst('26RBS03-X13'); x.cores = 4; P.spirits.push(x);
+    const top = P.deck.slice(0, 3).map(c => c.id).join(); const len = P.deck.length;
+    await BS.fireFx(P, 'SUMMONED', x, { subject: x });
+    const moved = P.deck.length === len && P.deck.slice(-3).map(c => c.id).join() === top;
+    const sum = async (life) => { P.life = life; P.reserve.n = 10; P.hand.length = 0; const h = BS.mkInst('26RBS01-061'); P.hand.push(h); x.fxUsed = {}; await BS.fireFx(P, 'ATTACKS', x, { subject: x }); return [P.spirits.includes(h), 10 - P.reserve.n]; };
+    const paid = await sum(5); const free = await sum(3);
+    return [moved, paid[0], paid[1] > 0, free[0], free[1] - 0]; })()`);
+  assert.deepEqual(r, [true, true, true, true, r[4]], JSON.stringify(r));
+  assert.ok(r[4] <= 1);
+});
