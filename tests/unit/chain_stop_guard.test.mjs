@@ -43,3 +43,7 @@ test('S6 stuck loop: allowed after the cap without a new commit, blocked again a
   assert.equal(stop(d, ON, {}, env).code, 2);
 });
 test('S7 outside a git repo: allowed', () => assert.equal(stop(mkdtempSync(join(tmpdir(), 'nogit-')), ON).code, 0));
+test('S8 slow blocks do not count as a stuck loop: the count restarts when the previous block is older than the window', () => {
+  const { d } = repo(true); const env = { AETERNA_STOP_MAX_BLOCKS: '2', AETERNA_STOP_WINDOW: '0' };
+  for (let i = 0; i < 4; i++) { assert.equal(stop(d, ON, {}, env).code, 2); spawnSync('sleep', ['0.05']); }
+});
