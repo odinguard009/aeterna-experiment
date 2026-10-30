@@ -187,17 +187,29 @@ test('K-135 26RSD02-009: Bloodrouse summon gains a Purple symbol at LV2 after an
   assert.deepEqual(r, [0, 0, 1], JSON.stringify(r));
 });
 
-test('K-136 26RBS02-007: LV2 battle win in your attack step gives one of your Spirits +5000 BP', async () => {
+test('K-136 26RBS02-007: LV2 battle win in your attack step gives +5000 BP only when the winner is BP-boosted', async () => {
   const { page } = await sharedBoard();
   const r = await page.evaluate(`(async () => { ${SETUP}
-    G.active = P.key;
+    G.active = P.key; P.cpu = true; G.step = 5;
     const c = BS.mkInst('26RBS02-007'); c.cores = 3; P.spirits.push(c);
-    const fx = BS.CARDS['26RBS02-007'].effects.find(e => e.trigger === 'ALLY_BATTLE_WIN');
-    const b0 = bpOf(c);
-    await BS.runActions({ p: P, opp: O, src: c, ctx: {} }, fx);
-    const m = BS.CARDS['26RBS02-007'].effects.find(e => e.trigger === 'ALLY_BATTLE_WIN').match;
-    return [!!fx, bpOf(c) - b0, !!(m && m.bpBoosted)]; })()`);
-  assert.deepEqual(r, [true, 5000, true], JSON.stringify(r));
+    const tot = () => P.spirits.reduce((a, x) => a + bpOf(x), 0);
+    const run = async () => { const t0 = tot(); await BS.fireFx(P, 'ALLY_BATTLE_WIN', c, { subject: c, attacker: c, attacking: true }); return tot() - t0; };
+    c.bpMod = 0; const plain = await run();
+    c.bpMod = 1000; const boosted = await run();
+    return [plain, boosted]; })()`);
+  assert.deepEqual(r, [0, 5000], JSON.stringify(r));
+});
+
+test('K-140 26RSD02-009: depleting an opposing Spirit by your effect sets the oppDepleted marker', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    G.active = P.key; P.cpu = true; O.cpu = true;
+    const n = BS.mkInst('26RSD02-009'); n.cores = 3; P.nexus.push(n);
+    const v = BS.mkInst('26RBS01-023'); v.cores = 1; O.spirits.push(v);
+    const before = P.oppDepletedTurn === G.turnNo;
+    await BS.runActions({ p: P, opp: O, src: n, ctx: {} }, { actions: [{ do: 'OPP_CORES_TO_RESERVE', targets: 1, each: 1 }] });
+    return [before, P.oppDepletedTurn === G.turnNo, !O.spirits.includes(v)]; })()`);
+  assert.deepEqual(r, [false, true, true], JSON.stringify(r));
 });
 
 test('K-137 26RBS03-075: deploy destroys a 4000 BP or less foe only with a Cost 4+ Purgatory Wings Spirit; End Step moves the Soul Core', async () => {

@@ -8,7 +8,8 @@ Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.m
 - Lane: K
 - **Lane K: Standard block A, +51 complete cards (1,428 -> 1,479 complete; effect schema 146 -> 172)**
   - New engine pieces: EXHAUSTED_FX trigger, Nexus-as-Spirit, Camou, MUST_ATTACK_OPP, REVEAL_SUMMON, DEPLOY_TRASH, DRAW_STEP, ALLY_BATTLE_END, LIFE_CORE_SHIELD, SOUL_TRASH_TO, DISCARD_ALL_HAND, SYMBOLS_SET, soulToTrash invoke cost, conditions `soulInReserve`, `attackerRefreshed`, `oppDepleted`, match keys `notName` and `bpBoosted`, plus many small options on existing actions (see `docs/ai/effect-format.md` v146-v172).
-  - Known limits: "this battle" is modelled as the turn on a few cards; "(Your Turn)" of 26RBS02-032 is not modelled; the CPU auto-picks targets on several optional choices; SYMBOLS_SET only changes the attack symbol count; 26RSD09-010 summon symbol has no "this Nexus" restriction; scenario files for the new mechanics are not written yet (unit tests cover them).
+  - Known limits: "this battle" is modelled as the turn on a few cards; "(Your Turn)" of 26RBS02-032 is not modelled; the CPU auto-picks targets on several optional choices; SYMBOLS_SET only changes the attack symbol count; 26RSD09-010 summon symbol has no "this Nexus" restriction; no tests/scenarios fixtures were written for the new mechanics (unit tests K-96..K-140 cover them).
+  - False-complete sample: `promotion_sample.mjs --seed 199`, 51 changed cards, 46 read in full (new vocabulary, no generator, random 1/4), done across the K bundles; 26RBS01-093, 26RBS03-018 and 26RBS02-X07 were reverted to partial during review (093 and 018 completed again later), and 26RSD02-009, 26RSD08-007 and 26RBS02-007 were corrected after the advisor pass.
   - Budget: the gzipped game file limits B01 1150 KB and B02 312 KB were raised on purpose.
 
 ## v0.198.0
