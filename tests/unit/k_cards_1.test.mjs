@@ -198,3 +198,18 @@ test('K-110 EXHAUSTED_FX: X09 exhausts (then heavy exhausts) an opposing Spirit;
   assert.deepEqual(r.slice(0, 3), [true, true, 1], JSON.stringify(r));
   assert.ok(r[3] >= 2000, JSON.stringify(r));
 });
+
+test('K-111 26RBS02-078 Great Shield of Bubbles: green Floodragon Life hit heavy-exhausts an exhausted Cost 5- Spirit; LV2 returns Rapid Ripper from the Trash when a Spirit effect exhausts', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const n = BS.mkInst('26RBS02-078'); n.cores = 3; P.nexus.push(n);
+    const a = BS.mkInst('26RBS02-029'); a.cores = 2; P.spirits.push(a);
+    const v = BS.mkInst('26RBS01-001'); v.cores = 1; v.exhausted = true; O.spirits.push(v);
+    G.active = P.key; G.turnNo = G.turnNo || 1;
+    await BS.fireFx(P, 'ALLY_LIFE_HIT', null, { attacker: a });
+    const heavy = !!v.heavy;
+    const rr = BS.mkInst('26RBS02-089'); P.trash.push(rr); const h0 = P.hand.length;
+    await BS.fireFx(P, 'EXHAUSTED_FX', null, { side: 'opp', fxSrc: a });
+    return [heavy, P.hand.length - h0, P.hand.includes(rr)]; })()`);
+  assert.deepEqual(r, [true, 1, true], JSON.stringify(r));
+});

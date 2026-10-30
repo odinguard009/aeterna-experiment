@@ -46,9 +46,9 @@ Object.assign(FX_ACTIONS, {
       if (!T.length) { c.ctx.did = false; return; }
       for (const t of T) { t.bpMod = (t.bpMod || 0) - a.n; log(`${_nm(c)}: ${poss(c.opp)} ${CARDS[t.id].name} gets -${a.n} BP (${bpOf(t)} BP).`); }
     } },
-  HEAVY_EXHAUST_OPP: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 3 && (a.exhaustedOnly == null || a.exhaustedOnly === true),
+  HEAVY_EXHAUST_OPP: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 3 && (a.exhaustedOnly == null || a.exhaustedOnly === true) && (a.costLe == null || (Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 20)),
     txt: a => `heavy exhaust ${a.n === 1 ? 'an' : 'up to ' + a.n} ${a.exhaustedOnly ? 'exhausted ' : ''}opposing Spirit${a.n === 1 ? '' : 's'}`,
-    cands: (c, a) => c.opp.spirits.filter(t => !t.heavy && !fxImmune(c.opp, t) && (!a || !a.exhaustedOnly || t.exhausted)),      // v0.195 exhaustedOnly: "target an opposing exhausted Spirit"
+    cands: (c, a) => c.opp.spirits.filter(t => !t.heavy && !fxImmune(c.opp, t) && (!a || !a.exhaustedOnly || t.exhausted) && (!a || a.costLe == null || CARDS[t.id].cost <= a.costLe)),      // v0.195 exhaustedOnly: "target an opposing exhausted Spirit"
     can: (c, a) => FX_ACTIONS.HEAVY_EXHAUST_OPP.cands(c, a).length > 0,
     run: async (c, a) => {
       const L = FX_ACTIONS.HEAVY_EXHAUST_OPP.cands(c, a); if (!L.length) { c.ctx.did = false; return; }

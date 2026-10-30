@@ -60,7 +60,7 @@ function fxValid(it) {
   if (trg === 'ALLY_SUMMONED' && subj && CARDS[subj.id].type === 'Brave' && !(e.match && e.match.type === 'Brave')) return false;     // a Brave summon is not a Spirit summon (manual p. 35)
   if (trg === 'OWN_LIFE_HIT' && e.match && !(ctx.attacker && fxMatch(CARDS[ctx.attacker.id], e.match))) return false;      // v0.177 "by opposing Spirits / Ultimates"
   if (trg === 'EXHAUSTED_FX' && e.exSide && e.exSide !== ctx.side) return false;
-  if (trg === 'OPP_DESTROYED_FX') {      // v0.196 zeroBp: the destroyed Spirit had 0 BP; bySrc {type, family}: the destroying effect's own card
+  if (trg === 'OPP_DESTROYED_FX' || trg === 'EXHAUSTED_FX') {      // v0.196 zeroBp: the destroyed Spirit had 0 BP; bySrc {type, family}: the destroying effect's own card
     if (e.zeroBp && ctx.bp !== 0) return false;
     const sc = ctx.fxSrc && CARDS[ctx.fxSrc.id];
     if (e.bySrc && !(sc && (!e.bySrc.type || sc.type === e.bySrc.type) && (!e.bySrc.family || (sc.families || []).some(x => e.bySrc.family.includes(x))))) return false;
