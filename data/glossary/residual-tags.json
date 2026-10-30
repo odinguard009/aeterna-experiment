@@ -38348,13 +38348,6 @@
   "M_OPTIONAL",
   "T_SUMMONED"
  ],
- "26RBS02-X17": [
-  "A_BANISH",
-  "C_LEVEL",
-  "M_THEN",
-  "T_ATTACKS",
-  "T_SUMMONED"
- ],
  "26RBS02-X18": [
   "C_LEVEL",
   "M_UP_TO",

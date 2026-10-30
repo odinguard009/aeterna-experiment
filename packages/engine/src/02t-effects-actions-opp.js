@@ -45,15 +45,15 @@ Object.assign(FX_ACTIONS, {
       for (let i = 0; i < (both ? 2 : 1); i++) await D.run(c, { do: 'DESTROY', bpLe: both ? a.two : a.one });
     } },
   /* v0.196 TREAT_LV2 {match} "Target one of your <match> Spirits. During this turn, treat it as LV2" (inst.lv2Turn, read by lvIndex, cleared at the end of the turn) */
-  TREAT_LV2: { chk: a => (hasMatch(a.match) || a.self === true) && (a.battle == null || a.battle === true),
-    txt: a => 'target one of your matching Spirits; during this turn, treat it as LV2',
-    cands: (c, a) => (a.self ? c.p.spirits.filter(s => s === c.src) : c.p.spirits.filter(s => fxMatch(CARDS[s.id], a.match, s))).filter(s => CARDS[s.id].levels.length > 1 && !s.lv2Turn),
+  TREAT_LV2: { chk: a => (hasMatch(a.match) || a.self === true) && (a.battle == null || a.battle === true) && (a.highest == null || (a.highest === true && !a.battle && !a.self)),
+    txt: a => `target one of your matching Spirits; during this turn, treat it as ${a.highest ? 'its highest level' : 'LV2'}`,
+    cands: (c, a) => (a.self ? c.p.spirits.filter(s => s === c.src) : c.p.spirits.filter(s => fxMatch(CARDS[s.id], a.match, s))).filter(s => CARDS[s.id].levels.length > 1 && !(a.highest ? s.lvHighTurn : s.lv2Turn)),
     can: (c, a) => FX_ACTIONS.TREAT_LV2.cands(c, a).length > 0,
     run: async (c, a) => {
       const L = FX_ACTIONS.TREAT_LV2.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
       const t = c.p.cpu || a.self ? L[0] : await fxPickTarget(c, L, `✨ <b>${esc(_nm(c))}</b><br>Tap your Spirit to treat as LV2 (glowing).`);
       if (!t) { c.ctx.did = false; return; }
-      if (a.battle) t.lv2Battle = G.battleNo; else t.lv2Turn = true; io.view({ type: 'board' });
+      if (a.highest) t.lvHighTurn = true; else if (a.battle) t.lv2Battle = G.battleNo; else t.lv2Turn = true; io.view({ type: 'board' });
     } },
   /* v0.181 (schema 30) "By setting a card with Burst effect from your Hand, <next>": sets one (a previous Burst is discarded, setBurst); ctx.did = false when the Hand has none, so the next actions use {"if":{"prev":true}} */
   SET_BURST: { chk: () => true, txt: () => 'set a card with Burst effect from your Hand',

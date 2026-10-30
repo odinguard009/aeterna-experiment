@@ -52,12 +52,12 @@ Object.assign(FX_ACTIONS, {
   /* "destroy any number of opposing Spirits up to a total of X BP" (the destroyed cards are kept in ctx.destroyed) */
   LOOT: { chk: a => Number.isInteger(a.draw) && a.draw >= 1 && a.draw <= 5 && Number.isInteger(a.discard) && a.discard >= 1 && a.discard <= 5
       && (a.drawPlus == null || (a.drawPlus && Number.isInteger(a.drawPlus.n) && a.drawPlus.n >= 1 && a.drawPlus.n <= 3 && a.drawPlus.if && !parseCond(a.drawPlus.if).error))
-      && (a.to == null || a.to === 'deckBottom') && (a.discardLessPerName == null || (typeof a.discardLessPerName === 'string' && a.discardLessPerName.length > 0)) && (a.famCostDestroy == null || (typeof a.famCostDestroy === 'string' && a.famCostDestroy.length > 0)),
+      && (a.to == null || a.to === 'deckBottom') && (a.discardLessPerName == null || (typeof a.discardLessPerName === 'string' && a.discardLessPerName.length > 0)) && (a.famCostDestroy == null || (typeof a.famCostDestroy === 'string' && a.famCostDestroy.length > 0)) && (a.perLegacy == null || a.perLegacy === true),
     txt: a => `draw ${a.draw}${a.drawPlus ? ' (+' + a.drawPlus.n + ' in a set condition)' : ''}, then ${a.to === 'deckBottom' ? 'return' : 'discard'} ${a.discard}${a.to === 'deckBottom' ? ' to the deckbottom' : ''}${a.discardLessPerName ? ' (-1 for each ' + a.discardLessPerName + ' you control)' : ''}${a.famCostDestroy ? '; a discarded ' + a.famCostDestroy + ' card lets you destroy a Spirit with cost equal or less' : ''}`,
     run: async (c, a) => {
-      const nm = CARDS[c.src.id].name, n = a.draw + (a.drawPlus && fxIf(c.p, c.opp, a.drawPlus.if, c.ctx) ? a.drawPlus.n : 0);
+      const nm = CARDS[c.src.id].name, n = a.draw + (a.drawPlus && fxIf(c.p, c.opp, a.drawPlus.if, c.ctx) ? a.drawPlus.n : 0) + (a.perLegacy ? (c.src.legacyN || 0) : 0);      // v184 perLegacy: +1 draw and +1 discard per EX Symbol banished via Legacy
       const k = draw(c.p, n); log(`${nm}: ${who(c.p)} ${c.p.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'}.`); handUp(c.p, k);
-      let m = a.discard; if (a.discardLessPerName) { const w = a.discardLessPerName.toLowerCase(); m = Math.max(0, m - fieldList(c.p).filter(f => CARDS[f.id].name.toLowerCase().includes(w)).length); }
+      let m = a.discard + (a.perLegacy ? (c.src.legacyN || 0) : 0); if (a.discardLessPerName) { const w = a.discardLessPerName.toLowerCase(); m = Math.max(0, m - fieldList(c.p).filter(f => CARDS[f.id].name.toLowerCase().includes(w)).length); }
       m = Math.min(m, c.p.hand.length); let last = null; c.ctx.discardedCost = null;
       for (let j = 0; j < m && c.p.hand.length; j++) {
         let d;

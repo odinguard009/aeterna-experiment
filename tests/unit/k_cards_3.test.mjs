@@ -156,3 +156,16 @@ test('K-161 OPP_CORES_TO_RESERVE.eachLegacy (26RBS02-X06): sends +1 core per EX 
     return [O.reserve.n - r0, fx[0].optional, fx[0].actions[1].if.prev, fx[1].if.trashAllColor]; })()`);
   assert.deepEqual(r, [3, true, true, 'purple'], JSON.stringify(r));
 });
+
+test('K-162 TREAT_LV2.highest + LOOT.perLegacy (26RBS02-X17): target is treated as its highest level; Legacy scales the loot', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const t = BS.mkInst('26RBS02-X17'); t.cores = 1; P.spirits.push(t);
+    const L = BS.CARDS['26RBS02-X17'].levels.length, k0 = lvIndex(t);
+    const c = { p: P, opp: O, src: t, ctx: {} };
+    const fx = BS.CARDS['26RBS02-X17'].effects;
+    t.cores = 1; await BS.runActions(c, { actions: [Object.assign({}, fx[1].actions[0], { if: undefined })] });
+    const k1 = lvIndex(t);
+    return [L > 1, k1 === L - 1, t.lvHighTurn === true, fx[0].actions[0].perLegacy, k0 <= k1]; })()`);
+  assert.deepEqual(r, [true, true, true, true, true], JSON.stringify(r));
+});
