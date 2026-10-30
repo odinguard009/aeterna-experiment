@@ -133,6 +133,21 @@ Object.assign(FX_ACTIONS, {
     } }
 });
 
+/* v154 NEXUS_AS_SPIRIT: "(send a core to) one of your Nexuses; during this step it doesn't activate its Nexus effects and is treated as a Spirit with LV1 5000 BP, LV2 7000 BP". The Nexus moves into p.spirits with i.asSpirit until the step ends (revertNexusSpirits in setStep). {self?, match?, sendCore?: 'reserve'|'src'} */
+FX_ACTIONS.NEXUS_AS_SPIRIT = {
+  chk: a => (a.self == null || a.self === true) && (a.match == null || hasMatch(a.match)) && (a.sendCore == null || a.sendCore === 'reserve' || a.sendCore === 'src') && (a.self === true || !!a.match),
+  txt: a => `${a.sendCore ? 'send a core to ' : ''}${a.self ? 'this Nexus' : 'one of your Nexuses'}; this step it is treated as a Spirit with LV1 5000 BP, LV2 7000 BP`,
+  cands: (c, a) => a.self ? c.p.nexus.filter(x => x === c.src) : c.p.nexus.filter(x => fxMatch(CARDS[x.id], a.match)),
+  can: (c, a) => FX_ACTIONS.NEXUS_AS_SPIRIT.cands(c, a).length > 0 && (a.sendCore !== 'reserve' || c.p.reserve.n > 0) && (a.sendCore !== 'src' || (c.p.spirits.includes(c.src) && c.src.cores > 0)),
+  run: async (c, a) => {
+    const L = FX_ACTIONS.NEXUS_AS_SPIRIT.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
+    const t = L.length === 1 ? L[0] : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the Nexus that is treated as a Spirit this step (glowing).`);
+    if (a.sendCore === 'reserve') { if (!addCore(c.p, t)) { c.ctx.did = false; return; } }
+    else if (a.sendCore === 'src') { if (!(c.src.cores > 0)) { c.ctx.did = false; return; } c.src.cores--; t.cores++; }
+    c.p.nexus.splice(c.p.nexus.indexOf(t), 1); c.p.spirits.push(t); t.asSpirit = true;
+    c.ctx.did = true; log(`${CARDS[t.id].name} is treated as a Spirit this step.`);
+  } };
+
 /* v0.169 REFRESH_SPIRIT n (1-3): "Target up to two <X> you control. Refresh them." (each pick is a still-exhausted matching Spirit); all: "Refresh all your <X> Spirits." */
 (() => {
   const R = FX_ACTIONS.REFRESH_SPIRIT, rChk = R.chk, rTxt = R.txt, rRun = R.run;

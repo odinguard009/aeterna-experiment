@@ -29,6 +29,7 @@ const FX_TRIGGER_TEXT = { EXHAUSTED_FX: 'When Spirits are exhausted by your effe
 const BR_IDX = 200;
 function fxEntries(f) {
   const card = CARDS[f.id], out = [];
+  if (f.asSpirit) return out;      // v154 NEXUS_AS_SPIRIT: a Nexus treated as a Spirit activates no Nexus effects
   (card.effects || []).forEach((e, idx) => { if (!e.nexusBrave && (!e.braved || f.brave)) out.push({ e, idx }); });
   if (f.brave && card.type !== 'Nexus' && CARDS[f.brave.id]) (CARDS[f.brave.id].effects || []).forEach((e, j) => { if (e.braved && !e.nexusBrave) out.push({ e, idx: BR_IDX + j, fromBrave: true }); });
   return out;

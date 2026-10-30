@@ -3,7 +3,7 @@
    Conditions (fxIf, 02a):
      lifeReduced: true|false      "If your Life was reduced (during) this turn" (any Life core left the owner's Life this turn;
                                   lifeTake records the turn in p.lifeRedTurn)
-     allHave: {family, team, costIn: [n..], spiritsOnly}
+     allHave: {family, team, costIn: [n..], spiritsOnly | nexusOnly}
                                   "If all your Spirits/Nexuses have the X family / have <Team>" and "If all your Spirits are Cost
                                   2/4/6/8 with the X family": every card on the owner's Field (Spirits only with spiritsOnly)
                                   matches; with no such card the condition is not met (house reading, rules audit).
@@ -40,10 +40,10 @@ function cardTeams(k) { const m = /\[Teams?:\s*([^\]]+)\]/.exec((k && (k.desc ||
 function allHaveShapeOK(q) { return !!q && typeof q === 'object' && (q.family != null || q.familyAny != null || q.team != null || q.costIn != null)
   && (q.family == null || typeof q.family === 'string') && (q.familyAny == null || (Array.isArray(q.familyAny) && q.familyAny.length > 0 && q.familyAny.every(x => typeof x === 'string' && x))) && (q.team == null || typeof q.team === 'string')
   && (q.costIn == null || (Array.isArray(q.costIn) && q.costIn.length > 0 && q.costIn.every(n => Number.isInteger(n) && n >= 0 && n <= 30)))
-  && (q.spiritsOnly == null || q.spiritsOnly === true); }
+  && (q.spiritsOnly == null || q.spiritsOnly === true) && (q.nexusOnly == null || (q.nexusOnly === true && !q.spiritsOnly)); }
 function allHaveOK(owner, q) {
   if (!allHaveShapeOK(q)) return fxUnknown('condition', 'allHave');
-  const L = q.spiritsOnly ? owner.spirits : fieldList(owner);
+  const L = q.spiritsOnly ? owner.spirits : q.nexusOnly ? owner.nexus : fieldList(owner);
   return L.length > 0 && L.every(f => { const k = CARDS[f.id];
     return (!q.family || (k.families || []).includes(q.family)) && (!q.familyAny || q.familyAny.some(x => (k.families || []).includes(x))) && (!q.team || cardTeams(k).includes(q.team)) && (!q.costIn || q.costIn.includes(k.cost)); });
 }

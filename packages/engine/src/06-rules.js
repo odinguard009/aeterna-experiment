@@ -39,7 +39,7 @@ function lvIndex(i) {
   if (card.trueRelease && i.soul && L.length > 1 && k < 1) k = 1;   // v0.66 True Release (Standard CR 12-2-1-1): the Soul Core alone fulfils LV2 (a rule, not an effect)
   return k;
 }
-function bpOf(i) { const k = lvIndex(i); if (k < 0) return 0; const b = CARDS[i.id].levels[k].bp; return b == null ? 0 : Math.max(0, b + (i.bpMod || 0) + bpBattle(i) + staticBp(i) + braveBp(i) + (ocActive(i) ? CARDS[i.id].overCount.bp : 0)); }
+function bpOf(i) { const k = lvIndex(i); if (k < 0) return 0; const b = i.asSpirit ? (k ? 7000 : 5000) : CARDS[i.id].levels[k].bp; return b == null ? 0 : Math.max(0, b + (i.bpMod || 0) + bpBattle(i) + staticBp(i) + braveBp(i) + (ocActive(i) ? CARDS[i.id].overCount.bp : 0)); }
 /* Over Count (Eternal manual p. 60): active while the owner's Count meets the card's OC condition, whatever the Spirit's Lv; adds its BP like a combined Brave */
 function ocActive(i) { const oc = CARDS[i.id] && CARDS[i.id].overCount; if (!oc || !G) return false; const o = ownerOf(i); return !!o && o.count >= oc.count; }
 /* Brave (manual p. 34-36): a combined Brave (inst.brave) adds its BP+ and symbol to the Spirit; one Brave per Spirit; no cost to combine or separate */

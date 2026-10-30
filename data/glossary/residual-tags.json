@@ -38350,18 +38350,6 @@
   "M_THEN",
   "T_SUMMONED"
  ],
- "26RBS02-066": [
-  "M_OPTIONAL",
-  "T_DESTROYED"
- ],
- "26RBS02-068": [
-  "A_EXHAUST",
-  "K_STANDARD_INVOKE"
- ],
- "26RBS02-069": [
-  "C_LEVEL",
-  "K_STANDARD_INVOKE"
- ],
  "26RBS02-073": [
   "A_EXHAUST",
   "C_LEVEL",
@@ -38412,11 +38400,6 @@
  "26RBS02-085": [
   "C_LEVEL",
   "T_ALLY_ATTACKS"
- ],
- "26RBS02-086": [
-  "A_VOID",
-  "C_LEVEL",
-  "K_STANDARD_INVOKE"
  ],
  "26RBS02-087": [
   "M_THEN",

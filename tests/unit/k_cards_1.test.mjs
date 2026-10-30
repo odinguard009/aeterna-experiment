@@ -213,3 +213,25 @@ test('K-111 26RBS02-078 Great Shield of Bubbles: green Floodragon Life hit heavy
     return [heavy, P.hand.length - h0, P.hand.includes(rr)]; })()`);
   assert.deepEqual(r, [true, 1, true], JSON.stringify(r));
 });
+
+test('K-112 NEXUS_AS_SPIRIT: 086 (Invoke) and 069 (core from this Spirit) turn a Nexus into a 7000 BP Spirit with no Nexus effects until the step ends; 068 needs every Nexus to be Cyantree', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const n = BS.mkInst('26RBS02-086'); n.cores = 3; P.nexus.push(n);
+    G.active = O.key; G.step = 5; P.reserve.n = Math.max(P.reserve.n, 3); P.life = Math.max(P.life, 3);
+    const i = BS.CARDS['26RBS02-086'].effects.findIndex(e => e.invoke);
+    const ok = await BS.activateFx(P, n, i);
+    const as = [P.spirits.includes(n), !P.nexus.includes(n), BS.bpOf(n)];
+    BS.setStep(6);
+    const back = [!P.spirits.includes(n), P.nexus.includes(n), !n.asSpirit];
+    const sp = BS.mkInst('26RBS02-069'); sp.cores = 3; P.spirits.push(sp); const m = BS.mkInst('26RBS02-086'); m.cores = 1; P.nexus.push(m); G.step = 5;
+    const j = BS.CARDS['26RBS02-069'].effects.findIndex(e => e.invoke);
+    const ok2 = await BS.activateFx(P, sp, j);
+    const two = [P.spirits.includes(m) || P.spirits.includes(n), sp.cores];
+    return { ok, as, back, ok2, two }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r));
+  assert.deepEqual(r.as, [true, true, 7000], JSON.stringify(r));
+  assert.deepEqual(r.back, [true, true, true], JSON.stringify(r));
+  assert.equal(r.ok2, true, JSON.stringify(r));
+  assert.deepEqual(r.two, [true, 2], JSON.stringify(r));
+});
