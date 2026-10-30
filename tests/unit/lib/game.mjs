@@ -30,7 +30,7 @@ export async function getBrowser() {
   if (!browser) { const { chromium } = await loadPlaywright(); browser = await chromium.launch(); }
   return browser;
 }
-export async function closeBrowser() { if (browser) { await browser.close(); browser = null; } }
+export async function closeBrowser() { shared = null; if (browser) { await browser.close(); browser = null; } }
 
 /** Opens the game. query: '' (normal) or '?sim=1' (CPU plays both sides). Returns { page, errors }. */
 export async function openGame(query = '', product = false) {
@@ -41,6 +41,16 @@ export async function openGame(query = '', product = false) {
   await page.goto((product ? PRODUCT_URL : GAME_URL) + query);
   await page.waitForFunction(() => !!window.BS);
   return { page, errors };
+}
+
+/** One page per test file instead of one per test (a page load is ~1.2 s): the first call opens it, every call resets it with
+ *  BS.testSetup(). Use for tests that only need a fresh quiet board; a test that changes page-level state (settings, view, fixtures it
+ *  must not leak) takes quietBoard(). Same return shape as quietBoard(). */
+let shared = null;
+export async function sharedBoard(product = false) {
+  if (!shared) shared = await openGame('', product);
+  await shared.page.evaluate(() => { BS.testSetup(); return 1; });
+  return shared;
 }
 
 /** A quiet board (no match loop): BS.testSetup(). */
