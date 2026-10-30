@@ -211,7 +211,7 @@ function dbMinApply(n) {
   if (n === undefined) n = dbActiveCount();
   b.textContent = DB_MIN ? '▼ Show filters' + (n ? ` (${n})` : '') : '▲ Hide filters';
 }
-function dbMinToggle() { DB_MIN = !DB_MIN; try { localStorage.setItem('bse.dbmin', DB_MIN ? '1' : '0'); } catch (e) { /* blocked */ } dbMinApply(); }
+function dbMinToggle() { DBF.dd = ''; dbMenu(); DB_MIN = !DB_MIN; try { localStorage.setItem('bse.dbmin', DB_MIN ? '1' : '0'); } catch (e) { /* blocked */ } dbMinApply(); }
 function dbMenu() {                   // the dropdown menu (Colour, Type and Cost on phone, Group everywhere)
   document.querySelectorAll('#db-tbar .ddmenu').forEach(m => m.remove());
   const tb = $('db-tbar'), btn = DBF.dd && tb.querySelector(`[data-a="db-dd"][data-v="${DBF.dd}"]`); if (!btn) return;

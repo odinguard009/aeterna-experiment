@@ -155,8 +155,8 @@ ONL_DEF, ON, ONL_AUTO, onlineWsBase, onlineAvailable, onlineLifeTxt, onlineLifeP
 ## apps/web/src/13j-online-lobby.js (104 lines, ~1.7k tokens) — ONLINE LOBBY + ACCOUNT (v0.109.0, roadmap M8 part 2; docs/ai/monorepo-plan.md M8)
 ONL_CFG, ONL_ACCOUNT, onlConfig, onlAccount, onlAccountHTML, renderOnlineLobby, onlQuick, onlJoin, onlLogin, onlLogout, onlDiscord
 
-## apps/web/src/13k-cardpanel.js (28 lines, ~0.5k tokens) — CARD PANEL (v0.122.0, U14b battle PC; docs/design/mockup-v14.html)
-PANEL_ID, cardPanelHTML, panelCardOf
+## apps/web/src/13k-cardpanel.js (33 lines, ~0.7k tokens) — CARD PANEL (v0.122.0, U14b battle PC; docs/design/mockup-v14.html)
+PANEL_ID, CP_MIN, cpMinToggle, cardPanelHTML, panelCardOf
 
 ## apps/web/src/13l-emote.js (44 lines, ~0.9k tokens) — EFFECT ACTIVE PANEL + EMOTICONS (v0.125.0, U14d2; docs/design/mockup-v14.html)
 EMOTES, EMOTE_GAP, EMOTE_AT, emoteLeft, EFF_MS, effectPanel, emotePop, emoteSend
@@ -191,5 +191,5 @@ closeMatch, startNewGame, matchSummary
 ## packages/engine/src/15b-replay.js (109 lines, ~2.5k tokens) — REPLAY RECORDS (v0.85.0, phase F4 = monorepo step M4 part 1; docs/ai/monorepo-plan.md "Design" 2)
 newPortRecord, portRecord, boardSnapshot, runPortRecord, viewerReplayOf
 
-## apps/web/src/16-events.js (281 lines, ~6.2k tokens) — EVENTS (delegation)
+## apps/web/src/16-events.js (282 lines, ~6.2k tokens) — EVENTS (delegation)
 hScrollable, HDRAG, GAME_ACTS, gameAct, replayOf, lastReplay, runReplay, loadScenario, testSetup, defBuiltin

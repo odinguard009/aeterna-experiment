@@ -100,6 +100,7 @@ document.addEventListener('click', e => {
   else if (a === 'theme-color') { navTheme('color', v); if (G) render(); }
   else if (a === 'sound-toggle') navSound();
   else if (a === 'log-toggle') toggleLog();
+  else if (a === 'cp-min') cpMinToggle();
   else if (a === 'log-close') toggleLog(false);
   else if (a === 'log-copy') {      // owner review 2026-10-27: copy the whole match log as plain text
     const txt = G ? G.history.join('\n') : '', b = $('log-copy');

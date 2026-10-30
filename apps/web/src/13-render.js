@@ -196,8 +196,8 @@ function renderBoard() {
   const turnLbl = G.over ? '<span>GAME</span> <span>OVER</span>' : cpuTurn ? `<span>OPPONENT</span> <span>TURN ${G.turnNo}</span>` : `<span>PLAYER</span> <span>TURN ${G.turnNo}</span>`;   // v0.152.0: the band carries the turn number, like the mockup
   app.innerHTML = `
     <header class="ae-head"><div class="ae-turn"><h1 translate="no">Aeterna</h1><span class="ae-ver">v${VERSION}</span>${G.over ? '' : `<span class="ae-turnno">${cpuTurn ? 'OPPONENT' : 'PLAYER'} TURN ${G.turnNo}</span>`}</div><span class="ae-step"><span>${G.over ? 'GAME OVER' : esc(stepName)}</span></span><span class="ae-fill"><span class="ae-sub">${G.format === 'standard' ? 'Standard' : 'Eternal'} · vs ${esc(cap(cpuProfileName(null)))} CPU</span></span>
-      <span class="ae-tools"><button class="btn-nav-small ae-btn" data-a="log-toggle" title="Game log (L)"><span class="l">LOG</span><span class="s">Log</span></button><button class="btn-nav-small ae-btn" data-a="emote" title="Emoticon (one every 30 s)" aria-label="Emoticon"><span class="l">EMOTE</span><span class="s" aria-hidden="true">☺</span></button><button class="btn-nav-small ae-btn" data-a="options" title="Settings (the match waits)" aria-label="Options"><span class="l">OPTIONS</span><span class="s">Options</span></button><button class="btn-nav-small ae-btn" data-a="bug-open" aria-label="Report a bug" title="Report A Bug"><span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 7a3 3 0 016 0M7 11h10M12 11v9M5 8l3 2M19 8l-3 2M4 14h3M17 14h3M5 20l3-3M19 20l-3-3"/><rect x="7" y="8" width="10" height="11" rx="5"/></svg></span></button><button class="btn-nav-small ae-btn dng" data-a="leave" aria-label="Concede and leave the match"><span class="l">CONCEDE</span><span class="s">Concede</span></button></span></header>
-    <div class="playmat-layout${isPC() ? ' has-cp' : ''}">${isPC() ? cardPanelHTML() : ''}
+      <span class="ae-tools"><button class="btn-nav-small ae-btn" data-a="log-toggle" title="Game log (L)" aria-label="Game log"><span class="l">LOG</span><span class="s" aria-hidden="true">📄</span></button><button class="btn-nav-small ae-btn" data-a="emote" title="Emoticon (one every 30 s)" aria-label="Emoticon"><span class="l">EMOTE</span><span class="s" aria-hidden="true">☺</span></button><button class="btn-nav-small ae-btn" data-a="options" title="Settings (the match waits)" aria-label="Options"><span class="l">OPTIONS</span><span class="s" aria-hidden="true">⚙</span></button><button class="btn-nav-small ae-btn" data-a="bug-open" aria-label="Report a bug" title="Report A Bug"><span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 7a3 3 0 016 0M7 11h10M12 11v9M5 8l3 2M19 8l-3 2M4 14h3M17 14h3M5 20l3-3M19 20l-3-3"/><rect x="7" y="8" width="10" height="11" rx="5"/></svg></span></button><button class="btn-nav-small ae-btn dng" data-a="leave" aria-label="Concede and leave the match"><span class="l">CONCEDE</span><span class="s">Concede</span></button></span></header>
+    <div class="playmat-layout${isPC() ? ' has-cp' + (CP_MIN ? ' cp-min' : '') : ''}">${isPC() ? cardPanelHTML() : ''}
       <div class="half-field">
         <div class="side-flank-pc">
           ${trashBox('opponent', O, 'cpu-sleeve')}
@@ -228,6 +228,7 @@ function renderBoard() {
           ${zoneBox('player', 'life', 'Life', lifePlate(P))}
           ${zoneBox('player', 'reserve', 'Reserve', resPlate(P))}
           ${zoneBox('player', 'removed', 'Banished', pv(P.removed.length))}
+          ${zoneChip('player', 'void', 'Void', pv(P.void))}
         </div>
         ${fieldAreaHTML(P, true)}
         <div class="side-flank-pc">
@@ -237,7 +238,6 @@ function renderBoard() {
         </div>
       </div>
       <div class="hand-container-wrapper">
-        <div class="pc-hand-flank side-you" data-a="zone" data-v="player:void"><div class="zone-label"><span>Void</span></div><span class="sub-text">${pv(P.void)}</span></div>
         <div class="hand-area" data-scroll="hand">${P.hand.map((h, i) => handCardHTML(h, i, P.hand.length)).join('')}</div>
       </div>
     </div>`;

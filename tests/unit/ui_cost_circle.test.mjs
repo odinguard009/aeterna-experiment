@@ -281,10 +281,10 @@ test('L01 phone field headers keep the arrow and drop the word "swipe"', async (
   assert.ok(r.includes('CPU FIELD ↔') && r.includes('YOUR FIELD ↔'), r.join('|'));
   assert.ok(!r.some(t => /swipe/i.test(t)));
 });
-test('L02 PC: the CPU right flank reads VOID chip, BANISHED, RES, LIFE from the top (point mirror of the player; your Void chip sits under the hand row)', async () => {
+test('L02 PC: the CPU right flank reads VOID chip, BANISHED, RES, LIFE from the top (point mirror of the player; your Void chip sits under Banished)', async () => {
   const r = await ev(() => { BS.testSetup(); BS.render(); return [...document.querySelectorAll('.side-flank-pc')].map(f => [...f.querySelectorAll('[data-a="zone"]')].map(z => z.dataset.v)); });
   assert.deepEqual(r[1], ['opponent:void', 'opponent:removed', 'opponent:reserve', 'opponent:life']);
-  assert.deepEqual(r[2], ['player:life', 'player:reserve', 'player:removed']);
+  assert.deepEqual(r[2], ['player:life', 'player:reserve', 'player:removed', 'player:void']);
 });
 test('L03 PC: the CPU hand count is the tag beside the CPU Nexus (v0.155.0, mockup)', async () => {
   const r = await ev(() => { BS.testSetup(); const O = BS.G.p.opponent; O.hand = ['BS74-047', 'BS74-047', 'BS74-047'].map(id => BS.mkInst(id)); BS.render();

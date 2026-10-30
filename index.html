@@ -2383,9 +2383,9 @@ html:not(.layout-pc) .lorenav .seg{display:flex;flex-direction:row;gap:6px;width
 html:not(.layout-pc) .lorenav .seg button{flex:1;min-height:36px;width:auto;justify-content:center;align-items:center;flex-direction:row;font-size:.85em}
 .lorenav .lore-minb{width:auto;flex-direction:row;align-items:center;min-height:32px}
 html.layout-pc #view-playmat .playmat-layout.has-cp{grid-template-rows:minmax(0,1fr) 64px minmax(0,1fr) auto;}
-html.layout-pc #view-playmat .hand-container-wrapper{height:calc(clamp(84px,12vh,124px) + 9px);}
+html.layout-pc #view-playmat .hand-container-wrapper{height:calc(clamp(64px,9.5vh,98px) + 9px);}
 html.layout-pc #view-playmat .hand-area{height:auto;align-items:center;padding:4px;}
-html.layout-pc #view-playmat .hand-area .tcg-card{height:clamp(84px,12vh,124px);width:auto;aspect-ratio:63 / 88;flex:none;}
+html.layout-pc #view-playmat .hand-area .tcg-card{height:clamp(64px,9.5vh,98px);width:auto;aspect-ratio:63 / 88;flex:none;}
 html.layout-pc #view-playmat .pc-hand-flank{height:46px;align-self:end;}
 html.layout-pc #view-playmat .zone-box{container-type:size;overflow:hidden;}
 html.layout-pc #view-playmat .zone-box .zone-label{font-size:clamp(7px,16cqh,10px) !important;padding-inline:clamp(4px,8cqw,10px);}
@@ -2440,7 +2440,7 @@ button.rc-row:hover,button.rc-row:focus-visible{background:var(--you-soft)}
 .rc-bar{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px;height:100%;font-size:.74em;color:var(--text2)}
 .rc-bar i{display:block;width:100%;min-height:2px;background:var(--you);opacity:.85;border-radius:2px 2px 0 0}
 .rc-bar b{color:var(--text);font-variant-numeric:tabular-nums}
-html.layout-pc #view-playmat .field-row .fslot{height:min(92%,calc(var(--card-w) * 2.1));}
+html.layout-pc #view-playmat .field-row .fslot{height:min(97%,calc(var(--card-w) * 2.4));}
 .mk .ae-pop .pgrid{--cols:3!important;flex:none;padding:12px 0 4px;gap:8px}
 .mk .pcol{clip-path:none;border:1px solid var(--line2);border-radius:10px;box-shadow:none;padding:10px 4px 8px;min-height:64px;justify-content:center;gap:7px;cursor:pointer}
 .mk .pcol i{width:28px;height:28px;border-radius:50%;clip-path:none;background:var(--c);box-shadow:0 0 0 2px var(--line2)}
@@ -2453,6 +2453,22 @@ html.layout-pc #view-playmat .field-row .fslot{height:min(92%,calc(var(--card-w)
 .mk #db-tbar .r1>#db-min{flex:none;white-space:nowrap}
 html.layout-pc #view-playmat .side-flank-pc .zone-box.zone-chip{flex:none;height:46px;}
 html.layout-pc #view-playmat .zone-box.zone-chip .zone-label{font-size:9px !important;}
+html.layout-pc #view-playmat .field-row-wrapper.nexus-row{flex:1;}
+html.layout-pc #view-playmat .playmat-layout.has-cp{grid-template-rows:minmax(0,1fr) 56px minmax(0,1fr) auto;}
+#card-panel .cp-min{position:absolute;top:6px;right:6px;width:24px;height:24px;border:1px solid var(--ae-line2,#ffffff40);background:var(--ae-chip,#ffffff10);color:var(--ae-text,#e6eaf0);cursor:pointer;font-size:12px;line-height:1;border-radius:4px;z-index:2;}
+#card-panel .cp-min:hover,#card-panel .cp-min:focus-visible{box-shadow:inset 0 0 0 1px var(--you);outline:none;}
+html.layout-pc #view-playmat .playmat-layout.has-cp{}
+html.layout-pc #view-playmat .playmat-layout.has-cp > #card-panel{position:relative;}
+html.layout-pc #view-playmat .playmat-layout.has-cp.cp-min{grid-template-columns:minmax(0,1fr) 36px;}
+html.layout-pc #view-playmat #card-panel.min{padding:6px 0;overflow:hidden;}
+html.layout-pc #view-playmat #card-panel.min .cp-min{position:static;margin:0 auto;}
+html.layout-pc #view-playmat #card-panel.min .cp-title{writing-mode:vertical-rl;margin:12px auto 0;}
+html.layout-pc:has(#view-playmat.active .cp-min) #ae-fx{right:40px;}
+html:not(.layout-pc) .fc-body .burst-area,html:not(.layout-pc) .fc-body .soul-area,html:not(.layout-pc) .fc-body.mir .burst-area,html:not(.layout-pc) .fc-body.mir .soul-area{align-self:center;}
+html.layout-pc #view-playmat .hand-container-wrapper > .hand-area{grid-column:2;}
+@container fr (max-width:700px){.mk #db-tbar,.mk #lib-tbar{padding-inline:12px}.mk .btool .search svg{left:18px}.mk .btool .search input{padding-left:42px;padding-right:12px;font-size:.92em;text-overflow:ellipsis}}
+#bld.db-min .ddmenu{display:none}
+.mk #db-tbar .r1>#db-min{position:relative;z-index:96}
 </style>
 </head>
 <body>
@@ -8855,8 +8871,8 @@ function renderBoard() {
   const turnLbl = G.over ? '<span>GAME</span> <span>OVER</span>' : cpuTurn ? `<span>OPPONENT</span> <span>TURN ${G.turnNo}</span>` : `<span>PLAYER</span> <span>TURN ${G.turnNo}</span>`;   // v0.152.0: the band carries the turn number, like the mockup
   app.innerHTML = `
     <header class="ae-head"><div class="ae-turn"><h1 translate="no">Aeterna</h1><span class="ae-ver">v${VERSION}</span>${G.over ? '' : `<span class="ae-turnno">${cpuTurn ? 'OPPONENT' : 'PLAYER'} TURN ${G.turnNo}</span>`}</div><span class="ae-step"><span>${G.over ? 'GAME OVER' : esc(stepName)}</span></span><span class="ae-fill"><span class="ae-sub">${G.format === 'standard' ? 'Standard' : 'Eternal'} · vs ${esc(cap(cpuProfileName(null)))} CPU</span></span>
-      <span class="ae-tools"><button class="btn-nav-small ae-btn" data-a="log-toggle" title="Game log (L)"><span class="l">LOG</span><span class="s">Log</span></button><button class="btn-nav-small ae-btn" data-a="emote" title="Emoticon (one every 30 s)" aria-label="Emoticon"><span class="l">EMOTE</span><span class="s" aria-hidden="true">☺</span></button><button class="btn-nav-small ae-btn" data-a="options" title="Settings (the match waits)" aria-label="Options"><span class="l">OPTIONS</span><span class="s">Options</span></button><button class="btn-nav-small ae-btn" data-a="bug-open" aria-label="Report a bug" title="Report A Bug"><span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 7a3 3 0 016 0M7 11h10M12 11v9M5 8l3 2M19 8l-3 2M4 14h3M17 14h3M5 20l3-3M19 20l-3-3"/><rect x="7" y="8" width="10" height="11" rx="5"/></svg></span></button><button class="btn-nav-small ae-btn dng" data-a="leave" aria-label="Concede and leave the match"><span class="l">CONCEDE</span><span class="s">Concede</span></button></span></header>
-    <div class="playmat-layout${isPC() ? ' has-cp' : ''}">${isPC() ? cardPanelHTML() : ''}
+      <span class="ae-tools"><button class="btn-nav-small ae-btn" data-a="log-toggle" title="Game log (L)" aria-label="Game log"><span class="l">LOG</span><span class="s" aria-hidden="true">📄</span></button><button class="btn-nav-small ae-btn" data-a="emote" title="Emoticon (one every 30 s)" aria-label="Emoticon"><span class="l">EMOTE</span><span class="s" aria-hidden="true">☺</span></button><button class="btn-nav-small ae-btn" data-a="options" title="Settings (the match waits)" aria-label="Options"><span class="l">OPTIONS</span><span class="s" aria-hidden="true">⚙</span></button><button class="btn-nav-small ae-btn" data-a="bug-open" aria-label="Report a bug" title="Report A Bug"><span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 7a3 3 0 016 0M7 11h10M12 11v9M5 8l3 2M19 8l-3 2M4 14h3M17 14h3M5 20l3-3M19 20l-3-3"/><rect x="7" y="8" width="10" height="11" rx="5"/></svg></span></button><button class="btn-nav-small ae-btn dng" data-a="leave" aria-label="Concede and leave the match"><span class="l">CONCEDE</span><span class="s">Concede</span></button></span></header>
+    <div class="playmat-layout${isPC() ? ' has-cp' + (CP_MIN ? ' cp-min' : '') : ''}">${isPC() ? cardPanelHTML() : ''}
       <div class="half-field">
         <div class="side-flank-pc">
           ${trashBox('opponent', O, 'cpu-sleeve')}
@@ -8887,6 +8903,7 @@ function renderBoard() {
           ${zoneBox('player', 'life', 'Life', lifePlate(P))}
           ${zoneBox('player', 'reserve', 'Reserve', resPlate(P))}
           ${zoneBox('player', 'removed', 'Banished', pv(P.removed.length))}
+          ${zoneChip('player', 'void', 'Void', pv(P.void))}
         </div>
         ${fieldAreaHTML(P, true)}
         <div class="side-flank-pc">
@@ -8896,7 +8913,6 @@ function renderBoard() {
         </div>
       </div>
       <div class="hand-container-wrapper">
-        <div class="pc-hand-flank side-you" data-a="zone" data-v="player:void"><div class="zone-label"><span>Void</span></div><span class="sub-text">${pv(P.void)}</span></div>
         <div class="hand-area" data-scroll="hand">${P.hand.map((h, i) => handCardHTML(h, i, P.hand.length)).join('')}</div>
       </div>
     </div>`;
@@ -9244,7 +9260,7 @@ function dbMinApply(n) {
   if (n === undefined) n = dbActiveCount();
   b.textContent = DB_MIN ? '▼ Show filters' + (n ? ` (${n})` : '') : '▲ Hide filters';
 }
-function dbMinToggle() { DB_MIN = !DB_MIN; try { localStorage.setItem('bse.dbmin', DB_MIN ? '1' : '0'); } catch (e) { /* blocked */ } dbMinApply(); }
+function dbMinToggle() { DBF.dd = ''; dbMenu(); DB_MIN = !DB_MIN; try { localStorage.setItem('bse.dbmin', DB_MIN ? '1' : '0'); } catch (e) { /* blocked */ } dbMinApply(); }
 function dbMenu() {                   // the dropdown menu (Colour, Type and Cost on phone, Group everywhere)
   document.querySelectorAll('#db-tbar .ddmenu').forEach(m => m.remove());
   const tb = $('db-tbar'), btn = DBF.dd && tb.querySelector(`[data-a="db-dd"][data-v="${DBF.dd}"]`); if (!btn) return;
@@ -10786,13 +10802,18 @@ Promise.resolve().then(() => {
    Display only: nothing here touches the rules. Tap the picture for the full card (the zoom).
    --------------------------------------------------------------------- */
 let PANEL_ID = null;
+/* owner review 2026-10-30: the panel can be folded to a slim strip; the board takes its width back. Remembered per browser. */
+let CP_MIN = (() => { try { return localStorage.getItem('bse.cpmin') === '1'; } catch (e) { return false; } })();
+function cpMinToggle() { CP_MIN = !CP_MIN; try { localStorage.setItem('bse.cpmin', CP_MIN ? '1' : '0'); } catch (e) { /* storage blocked */ } render(); }
 function cardPanelHTML() {
   const card = PANEL_ID && CARDS[PANEL_ID];
   const body = card ? `<div class="cp-face" data-a="zoom" data-v="${esc(card.id)}" title="Tap to enlarge">${cardFaceHTML(card, true)}</div><div class="cp-info">${cardDetailHTML(card, true)}</div>`
     : '<div class="cp-ph" aria-hidden="true"></div><div class="cp-hint">Hover Or Tap A Card To Read It Here.</div>';
   const lines = G ? G.history.slice(-3) : [];      // v0.152.0: the last three log lines at the bottom of the panel (mockup)
   const log = lines.length ? `<div class="cp-log"><div class="cp-lh">Log</div>${lines.map(t => `<div>${esc(t)}</div>`).join('')}</div>` : '';
-  return `<aside id="card-panel" aria-label="Card panel"><span class="cp-title">Card Panel</span>${body}${log}</aside>`;
+  const tg = `<button class="cp-min" data-a="cp-min" aria-expanded="${CP_MIN ? 'false' : 'true'}" aria-label="${CP_MIN ? 'Show the card panel' : 'Hide the card panel'}" title="${CP_MIN ? 'Show' : 'Hide'} the card panel">${CP_MIN ? '◂' : '▸'}</button>`;
+  if (CP_MIN) return `<aside id="card-panel" class="min" aria-label="Card panel">${tg}<span class="cp-title">Card Panel</span></aside>`;
+  return `<aside id="card-panel" aria-label="Card panel">${tg}<span class="cp-title">Card Panel</span>${body}${log}</aside>`;
 }
 /** @param {HTMLElement} el */
 function panelCardOf(el) {
@@ -10806,7 +10827,7 @@ if (typeof document !== 'undefined') document.addEventListener('mouseover', e =>
   const t = /** @type {HTMLElement|null} */ ((/** @type {HTMLElement} */ (e.target)).closest('#view-playmat [data-a="hand"], #view-playmat [data-a="field"]')), p = $('card-panel');
   if (!t || !p) return;
   const id = panelCardOf(t); if (!id || id === PANEL_ID) return;
-  PANEL_ID = id; p.outerHTML = cardPanelHTML();
+  PANEL_ID = id; if (!CP_MIN) p.outerHTML = cardPanelHTML();
 });
 /* ---------------------------------------------------------------------
    EFFECT ACTIVE PANEL + EMOTICONS (v0.125.0, U14d2; docs/design/mockup-v14.html)
@@ -11713,6 +11734,7 @@ document.addEventListener('click', e => {
   else if (a === 'theme-color') { navTheme('color', v); if (G) render(); }
   else if (a === 'sound-toggle') navSound();
   else if (a === 'log-toggle') toggleLog();
+  else if (a === 'cp-min') cpMinToggle();
   else if (a === 'log-close') toggleLog(false);
   else if (a === 'log-copy') {      // owner review 2026-10-27: copy the whole match log as plain text
     const txt = G ? G.history.join('\n') : '', b = $('log-copy');
