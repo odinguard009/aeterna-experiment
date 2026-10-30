@@ -2,11 +2,14 @@
 """Stop hook (owner 2026-10-29): a session in the chain (marker <git-dir>/aeterna-chain, written by session_gate.sh lock/manual)
 may not end its turn while "Mode rantai" is ON. Every Stop is logged to <git-dir>/aeterna-stop-log.jsonl.
 Allowed stops: no marker (owner Q&A chat), chain switch OFF, background tasks still running, or MAX_BLOCKS blocks in a row
-with an unchanged HEAD (stuck loop: the stop is allowed and logged). Gate/git errors fail closed (block) except on a missing git dir.
-Env overrides for tests: AETERNA_CHAIN_STATUS_CMD (prints the `rantai status` line), AETERNA_STOP_MAX_BLOCKS."""
+(each within BLOCK_WINDOW s of the previous one) with an unchanged HEAD (stuck loop: the stop is allowed and logged). Gate/git errors fail closed (block) except on a missing git dir.
+Env overrides for tests: AETERNA_CHAIN_STATUS_CMD (prints the `rantai status` line), AETERNA_STOP_MAX_BLOCKS, AETERNA_STOP_WINDOW."""
 import json, os, subprocess, sys, time
 
-MAX_BLOCKS = int(os.environ.get("AETERNA_STOP_MAX_BLOCKS", "5"))
+MAX_BLOCKS = int(os.environ.get("AETERNA_STOP_MAX_BLOCKS", "8"))
+# Blocks only count as "a stuck loop" when they follow each other quickly: a block more than this many seconds after the previous one
+# means the session did real work in between (a long Lane K bundle without a commit), so the count restarts.
+BLOCK_WINDOW = int(os.environ.get("AETERNA_STOP_WINDOW", "600"))
 
 
 def run(cmd, cwd):
@@ -39,7 +42,8 @@ def main():
             st = json.load(open(state))
         except Exception:
             st = {}
-        n = st.get("n", 0) + 1 if st.get("head") == head else 1
+        fresh = st.get("head") == head and time.time() - st.get("t", 0) <= BLOCK_WINDOW
+        n = st.get("n", 0) + 1 if fresh else 1
         if rc == 0 and "Mode rantai: OFF" in out:
             verdict, why = "allow", "chain switch OFF"
         elif bg:
@@ -50,7 +54,7 @@ def main():
             verdict = "block"
             why = "chain ON" if rc == 0 else f"gate error rc={rc} (fail closed)"
         try:
-            json.dump({"head": head, "n": n if verdict == "block" else 0}, open(state, "w"))
+            json.dump({"head": head, "n": n if verdict == "block" else 0, "t": time.time()}, open(state, "w"))
         except Exception:
             pass
     try:
