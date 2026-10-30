@@ -17,7 +17,8 @@ async function beginTurn(key) {
     io.view({ type: 'board' });
   }
   await wait(450);
-  setStep(2); io.view({ type: 'draw', side: key }); const dn = 1 + drawPlusOf(p); draw(p, dn); log(`${who(p)} ${p.cpu ? 'draws' : 'draw'} ${dn === 1 ? 'a card' : dn + ' cards'}.`); io.view({ type: 'board' }); await wait(450);
+  setStep(2); io.view({ type: 'draw', side: key }); const dn = 1 + drawPlusOf(p); draw(p, dn); log(`${who(p)} ${p.cpu ? 'draws' : 'draw'} ${dn === 1 ? 'a card' : dn + ' cards'}.`); io.view({ type: 'board' }); if (!G.over) { await fireFx(p, 'DRAW_STEP', null, {}); await flushBursts(); }      // v0.199 "(Your Draw Step)" effects
+  await wait(450);
   setStep(3);
   const back = Math.min(p.trashCores.n + (p.trashCores.soul ? 1 : 0), 5);
   for (let i = 0; i < back; i++) io.view({ type: 'core', side: key, kind: i === back - 1 && p.trashCores.soul ? 'soul' : 'core', from: 'trash', to: 'reserve', nth: i });

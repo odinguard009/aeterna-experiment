@@ -101,7 +101,7 @@ INTENT_TYPES, CORE_OPS, INTENT_MAX, SEAT_LOOP, seatCan, seatLoopOpen, boardView,
 ## packages/engine/src/06-rules.js (531 lines, ~10.3k tokens) — RULES HELPERS
 fieldList, isGW, freeCores, freeTotal, totalCores, reserveTotal, minCores, isSpiritForm, isUlt, lvBase, lvNo, summonOK, spare, coresAvailable, isCountLv, _tl3, treatLv3, lvIndex, bpOf, ocActive, braveBp, braveFits, braveTargets, combineBrave, canSeparate, separateBrave, braveAfford, braveSummon, braveRecheck, shedBrave, TOKEN_SUPPLY, tokenIdsOf, prepareTokens, tokenCoreRoom, canSendToken, sendToken, tokenHome, symTurnCols, symZeroAllOn, attackSymbols, symAttrs, symbolAttrs, fieldSymbols, symbolsOn, reductionOf, noBlockActive, costAltActive, extraReduction, summonSymbols, legacyPlan, handCostSet, effCost, legacyPay, tributeList, canPlayCard, takeCores, payCost, checkDepletion, leaveEvent, removeSpirit, lostHeard, leaveStandby, releaseStandby, poss, who, keyDrawActive, drawKeyFirst, draw, handUp, summon, setBurst, mirageUsable, magicFx, magicFromTrash, magicFxAt, magicTrashOK, magicSources, magicTargets, soulMagicHolder, soulMagicOK, soulMagicPick, magicUsable, magicText, castMagic, coreEv, coreEvN, addCore, removeCore, moveSoulTo, moveCore, swapSoul, returnSoul
 
-## packages/engine/src/07-turn.js (80 lines, ~1.4k tokens) — TURN FLOW
+## packages/engine/src/07-turn.js (81 lines, ~1.4k tokens) — TURN FLOW
 isMainStep, setStep, beginTurn, endStep, win, matchLoop, checkInvariants
 
 ## packages/engine/src/08-battle.js (173 lines, ~3.8k tokens) — BATTLE

@@ -40,15 +40,15 @@ Object.assign(FX_ACTIONS, {
       io.view({ type: 'board' });
     } },
   /* v0.197 (schema 129) HAND_TO_BOTTOM {n:1..2}: "You can return N card(s) from your Hand to the deckbottom" (an optional cost-like step: did = N cards were returned; the CPU returns its cheapest cards while it keeps at least one). */
-  HAND_TO_BOTTOM: { chk: a => Object.keys(a).every(k => ['do', 'if', 'n'].includes(k)) && Number.isInteger(a.n) && a.n >= 1 && a.n <= 2,
-    txt: a => `you can return ${a.n === 1 ? 'a card' : a.n + ' cards'} from your Hand to the deckbottom`,
+  HAND_TO_BOTTOM: { chk: a => Object.keys(a).every(k => ['do', 'if', 'n', 'forced'].includes(k)) && Number.isInteger(a.n) && a.n >= 1 && a.n <= 2 && (a.forced == null || a.forced === true),
+    txt: a => `${a.forced ? '' : 'you can '}return ${a.n === 1 ? 'a card' : a.n + ' cards'} from your Hand to the deckbottom`,
     can: (c, a) => c.p.hand.length >= a.n,
     run: async (c, a) => {
-      if (c.p.hand.length < a.n || (c.p.cpu && c.p.hand.length <= a.n)) { c.ctx.did = false; return; }
+      if (c.p.hand.length < a.n || (c.p.cpu && !a.forced && c.p.hand.length <= a.n)) { c.ctx.did = false; return; }
       const out = [];
       for (let j = 0; j < a.n; j++) {
         const L = c.p.hand.filter(h => !out.includes(h)); if (!L.length) break;
-        const d = c.p.cpu ? L.slice().sort((x, y) => CARDS[x.id].cost - CARDS[y.id].cost)[0] : await chooseCard(c, L, `✨ ${_pn(c)}`, `Return ${a.n === 1 ? 'a card' : 'two cards'} from your Hand to the deckbottom? (${j + 1}/${a.n})`, true);
+        const d = c.p.cpu ? L.slice().sort((x, y) => CARDS[x.id].cost - CARDS[y.id].cost)[0] : await chooseCard(c, L, `✨ ${_pn(c)}`, `Return ${a.n === 1 ? 'a card' : 'two cards'} from your Hand to the deckbottom? (${j + 1}/${a.n})`, !a.forced);
         if (!d) { for (const t of out) { removeFrom(c.p.deck, t); c.p.hand.push(t); } c.ctx.did = false; return; }   // declined: put back what was already moved
         removeFrom(c.p.hand, d); c.p.deck.push(d); out.push(d);
       }

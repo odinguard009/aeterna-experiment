@@ -185,3 +185,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v145 (v0.199.0, Lane K): `REVEAL_PICK.also:{match}` ("add a X card, and a Y card": after the first pick, the owner may add one more revealed card matching `also`; not with all/max/peek/discard).
 - v146 (v0.199.0, Lane K): action `LIFE_CORE_SHIELD {cores, battle?}`: "during this turn (battle), your Life can't be reduced by the attacks of opposing Spirits with <cores> cores on them" (state `P.coreShield`, checked in the unblocked-attack step of `08-battle.js`).
 - v147 (v0.199.0, Lane K): condition `attackerKeyword: "Clash"` (the current attacker is one of your Spirits with that keyword: "If your Spirit with Clash is attacking").
+- v148 (v0.199.0, Lane K): trigger `DRAW_STEP` ("(Your Draw Step)", fired for the owner right after the normal draw); `HAND_TO_BOTTOM.forced:true` ("return a card" without "you can": the card must be chosen).

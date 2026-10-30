@@ -123,3 +123,18 @@ test('K-104 26RBS03-083 War Feat: extra Blue symbol for a Cost 6+ vanilla Blue S
   assert.equal(r[3], true, 'a non-matching card gets no extra symbol (at most the Nexus own one)');
   assert.deepEqual(r.slice(4), [true, false, true], JSON.stringify(r));
 });
+
+test('K-105 26RBS01-093 DRAW_STEP: after the Draw Step draw, draws +1 then must return a Hand card to the deckbottom; only its owner, once (Can\'t Stack)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const n = BS.mkInst('26RBS01-093'); P.nexus.push(n);
+    const m = BS.mkInst('26RBS01-093'); P.nexus.push(m);
+    G.active = P.key; P.hand.length = 0; for (let i = 0; i < 3; i++) P.hand.push(BS.mkInst('BS50-014'));      // cost 0: the CPU returns the cheapest card, a tie keeps the earliest, so the drawn card stays
+    const before = P.hand.slice(), lenH = P.hand.length;
+    await BS.fireFx(P, 'DRAW_STEP', null, {});
+    const gained = P.hand.filter(x => !before.includes(x)).length, bottom = before.includes(P.deck[P.deck.length - 1]);
+    const own = [P.hand.length - lenH, gained, bottom];
+    const h2 = O.hand.length; await BS.fireFx(O, 'DRAW_STEP', null, {});
+    return [own, O.hand.length - h2]; })()`);
+  assert.deepEqual(r, [[0, 1, true], 0], JSON.stringify(r));
+});
