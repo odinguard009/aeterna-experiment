@@ -38882,14 +38882,6 @@
   "S_MUST_BLOCK",
   "T_SUMMONED"
  ],
- "26RSD09-010": [
-  "A_BP_PLUS",
-  "A_SYMBOL",
-  "A_SYMBOL_PLUS",
-  "C_LEVEL",
-  "C_LIFE",
-  "K_STANDARD_INVOKE"
- ],
  "26RSD09-013": [
   "M_REPLACEMENT"
  ],

@@ -18,7 +18,7 @@ const INVOKE_WHEN = {
   duringBlock: (p, f) => !!G.blocker && G.blocker === f,           // (During Block): while this Spirit is blocking
   duringAttackBlock: (p, f) => (!!G.attacker && G.attacker === f) || (!!G.blocker && G.blocker === f),
 };
-const INVOKE_COSTS = ['pay', 'exhaustSelf', 'destroySelf', 'exhaustOwn', 'discard', 'returnSelf', 'returnOwn', 'destroyOwn'];      // v0.184: returnSelf / returnOwn = "Return <this / one of your X> to the deckbottom"
+const INVOKE_COSTS = ['pay', 'exhaustSelf', 'destroySelf', 'exhaustOwn', 'discard', 'returnSelf', 'returnOwn', 'destroyOwn', 'soulToTrash'];      // v0.184: returnSelf / returnOwn = "Return <this / one of your X> to the deckbottom"
 const invokeMatchOK = m => m == null || (typeof m === 'object' && (m.family == null || (Array.isArray(m.family) && m.family.length > 0 && m.family.every(x => typeof x === 'string' && x)))
   && (m.name == null || (Array.isArray(m.name) && m.name.length > 0 && m.name.every(x => typeof x === 'string' && x)))      // v0.169: a card-name list ("Kamen Rider Bravo")
   && (m.costGe == null || Number.isInteger(m.costGe)) && (m.costIn == null || (Array.isArray(m.costIn) && m.costIn.length > 0 && m.costIn.every(Number.isInteger))) && (m.type == null || ['Spirit', 'Nexus', 'Magic', 'Ultimate'].includes(m.type)) && (m.color == null || COLORS.includes(m.color)) && (m.tr == null || m.tr === true));
@@ -34,6 +34,7 @@ function invokeParse(e, o) {
   if (c.pay != null && !(Number.isInteger(c.pay) && c.pay >= 1 && c.pay <= 5)) return 'Invoke cost "pay" must be 1-5';
   if ((c.exhaustSelf != null && c.exhaustSelf !== true) || (c.destroySelf != null && c.destroySelf !== true)) return 'Invoke cost exhaustSelf / destroySelf must be true';
   if (c.returnSelf != null && c.returnSelf !== true) return 'Invoke cost returnSelf must be true';
+  if (c.soulToTrash != null && c.soulToTrash !== true) return 'Invoke cost soulToTrash must be true';      // v170 "Send your Soul Core to the Trash"
   if (c.returnOwn != null && !(typeof c.returnOwn === 'object' && ['nexus', 'spirit'].includes(c.returnOwn.kind) && invokeMatchOK(c.returnOwn.match))) return 'Invoke cost "returnOwn" must look like {"kind":"nexus","match":{"family":["X"]}}';
   if (c.exhaustOwn != null && !(typeof c.exhaustOwn === 'object' && ['nexus', 'spirit'].includes(c.exhaustOwn.kind) && invokeMatchOK(c.exhaustOwn.match))) return 'Invoke cost "exhaustOwn" must look like {"kind":"nexus","match":{"family":["X"]}}';
   if (c.destroyOwn != null && !(typeof c.destroyOwn === 'object' && ['nexus', 'spirit'].includes(c.destroyOwn.kind) && invokeMatchOK(c.destroyOwn.match))) return 'Invoke cost "destroyOwn" must look like {"kind":"nexus","match":{"family":["X"]}}';
@@ -55,6 +56,7 @@ function invokeCostOK(p, f, c) {
   if (c.returnOwn) return returnOwnCands(p, c.returnOwn).length > 0;
   if (c.destroyOwn) return returnOwnCands(p, c.destroyOwn).length > 0;
   if (c.discard) return discardCands(p, c.discard).length > 0;
+  if (c.soulToTrash) return !!soulCoreHolder(p, null);
   return false;
 }
 /* pays the cost (exhaustSelf was already paid by activateFx); false = could not be paid in full, nothing else happens */
@@ -71,6 +73,7 @@ async function payInvokeCost(p, f, c) {
     if (p.nexus.includes(f)) removeNexus(p, f, 'destroyed'); else if (p.spirits.includes(f)) removeSpirit(p, f, 'destroyed', false); else return false;
     return true;
   }
+  if (c.soulToTrash) return soulToTrash(p, soulCoreHolder(p, null));
   if (c.returnSelf) {
     if (!p.spirits.includes(f) && !p.nexus.includes(f)) return false;
     bounceCard(p, f, 'deckBottom'); return true;

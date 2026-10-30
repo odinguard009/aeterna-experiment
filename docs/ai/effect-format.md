@@ -206,3 +206,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v167 (schema 167): new action LIFE_HIT_NEXUS {costLe} (after a picked Spirit: "during this turn, when it reduces the opposing Life, target an opposing Cost N or less Nexus. Destroy it": flag `lifeHitNexus` read in 08-battle after an unblocked hit) and DESTROY {nexus:true} now honours costLe (26RBS02-087).
 - v168 (schema 168): new action SOUL_TRASH_TO {match} ("send the Soul Core from your Trash to one of your matching Spirits/Nexuses"; SOUL_PLACED fires only for a Nexus) (26RSD01-006).
 - v169 (schema 169): new action DISCARD_ALL_HAND ("discard your entire Hand"; did = at least one card; pair with DRAW if prev) (26RBS02-036).
+- v170: invoke cost `soulToTrash:true` ("Send your Soul Core to the Trash ▶"); payable only while a Soul Core exists.

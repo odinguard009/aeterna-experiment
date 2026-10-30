@@ -161,3 +161,14 @@ test('K-133 26RBS02-036: Legacy summon exhausts a foe; life hit discards the who
     return [P.hand.length, P.trash.length - t0, fx.some(e => e.trigger === 'SUMMONED')]; })()`);
   assert.deepEqual(r, [3, 2, true], JSON.stringify(r));
 });
+
+test('K-134 26RSD09-010: soulToTrash invoke cost needs a Soul Core and sends it to the Trash', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const fx = BS.CARDS['26RSD09-010'].effects.find(e => e.invoke); const n = BS.mkInst('26RSD09-010'); P.nexus.push(n);
+    P.reserve.soul = false; const no = invokeCostOK(P, n, fx.cost);
+    P.reserve.soul = true; const yes = invokeCostOK(P, n, fx.cost);
+    const paid = await payInvokeCost(P, n, fx.cost);
+    return [no, yes, paid, P.reserve.soul]; })()`);
+  assert.deepEqual(r, [false, true, true, false], JSON.stringify(r));
+});
