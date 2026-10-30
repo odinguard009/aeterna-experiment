@@ -77,14 +77,6 @@ test('G07 status names every running lane; manual in one lane is not stopped by 
   assert.equal(gate(['busy', 'ui'], c).out, 'FREE');
 });
 
-// 2026-10-19 (owner): token-saving switch "hemat"; newest HEMAT ON/OFF comment wins, none = ON; other comments are ignored.
-test('G20 hemat switch: default ON, newest HEMAT comment wins, ON/OFF auto comments do not count', () => {
-  assert.equal(gate(['hemat'], [ON]).out, 'Mode hemat: ON');
-  assert.equal(gate(['hemat', 'status'], [ON, [50, 'HEMAT OFF'], [40, 'OFF']]).out, 'Mode hemat: OFF');
-  assert.equal(gate(['hemat', 'status'], [[60, 'HEMAT OFF'], [30, 'hemat on'], [10, 'DONE v0.69.0']]).out, 'Mode hemat: ON');
-  assert.equal(gate(['hemat', 'maybe'], [ON]).code, 2);
-});
-
 // 2026-10-20 (owner): chain mode "rantai"; default OFF; a chain = the newest DONE plus the DONEs it continues ("rantai" tag);
 // GO while the chain is under the budget; one session over the budget turns the switch OFF (fixture budget 600000 via GATE_RANTAI_MAX; the real default is unlimited since 2026-10-26).
 test('G21 rantai: default OFF, chain sum, budget reached, single session over the budget', () => {
@@ -138,7 +130,7 @@ test('G-T2 item T: start= on the done line is used when the marker has no budget
 const GATE_SRC = readFileSync(join(ROOT, 'tools/session_gate.sh'), 'utf8');
 test('G30 every read of the issue comments goes through the trusted-author filter', () => {
   const reads = GATE_SRC.split('\n').filter(l => /issues\/\$L\/comments\?/.test(l) && !/^post\(\)/.test(l));
-  assert.ok(reads.length >= 4, 'expected the comment reads in session_gate.sh, found ' + reads.length);
+  assert.ok(reads.length >= 3, 'expected the comment reads in session_gate.sh, found ' + reads.length);
   for (const l of reads) assert.match(l, /"\$TRUSTED_JQ"/, 'unfiltered comment read: ' + l.trim().slice(0, 90));
 });
 test('G31 the filter keeps the owner and the Actions bot and drops a stranger\'s ON / RANTAI ON', () => {

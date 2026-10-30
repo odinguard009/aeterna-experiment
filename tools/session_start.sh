@@ -102,9 +102,8 @@ else echo "[session_start] open issues: gh not available here, use the GitHub to
 if command -v gh >/dev/null 2>&1; then
   gh api "repos/odinguard009/aeterna-experiment/actions/workflows/regression.yml/runs?per_page=1" --jq '.workflow_runs[0] | "[session_start] last Regression: \(.status) \(.conclusion // "-") on \(.head_sha[0:7]) run \(.id)"' 2>/dev/null || echo "[session_start] last Regression: unknown (gh failed)"
 fi
-# v0.69.3 (P0 B3): chain-stop state, Mode hemat and the newest handoff, so the skill's start steps 2, 4 and the hemat call are one call
+# v0.69.3 (P0 B3): chain-stop state and the newest handoff, so the skill's start steps 2 and 4 are one call
 if [ -f docs/ai/chain-stop.md ]; then echo "[session_start] CHAIN-STOP: docs/ai/chain-stop.md exists - stop unless the owner is present and has answered (then delete it)"; else echo "[session_start] chain-stop: none"; fi
-bash tools/session_gate.sh hemat status 2>/dev/null | sed 's/^/[session_start] /' || echo "[session_start] Mode hemat: unknown (gate error = treat as ON)"
 if command -v gh >/dev/null 2>&1; then
   # only a handoff newer than the newest release commit matters (older ones were finished by a later session)
   HO=$(gh api "repos/odinguard009/aeterna-experiment/issues/comments?sort=created&direction=desc&per_page=100" \
