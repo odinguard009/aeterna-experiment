@@ -38,3 +38,11 @@ test('K-149 26RCB01-047: Brave Fantasy LV2 draws 2 then returns 2 (HAND_TO_BOTTO
     return [P.hand.length, d0 - P.deck.length, fx.if.ctrl.family]; })()`);
   assert.deepEqual(r, [0, 0, 'EX-AID'], JSON.stringify(r));
 });
+
+test('K-150 26RSD10-X02: Swordish BP+2000 in either Attack Step; LV2 sends 1 Token, +1 if two cards are returned', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const fx = BS.CARDS['26RSD10-X02'].effects;
+    return [fx[0].bp, fx[0].if.oppTurn === undefined, fx[1].actions.map(a => a.do).join()]; })()`);
+  assert.deepEqual(r, [2000, true, 'SEND_TOKEN,HAND_TO_BOTTOM,SEND_TOKEN'], JSON.stringify(r));
+});

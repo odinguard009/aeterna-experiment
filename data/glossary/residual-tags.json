@@ -38823,15 +38823,5 @@
   "A_VOID",
   "C_LEVEL",
   "M_OPTIONAL"
- ],
- "26RSD10-X02": [
-  "A_BP_PLUS",
-  "A_SEND_TOKEN",
-  "C_LEVEL",
-  "K_TOKEN",
-  "M_OPTIONAL",
-  "M_REPLACEMENT",
-  "M_UP_TO",
-  "T_ATTACKS"
  ]
 }
