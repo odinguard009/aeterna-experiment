@@ -92,3 +92,16 @@ test('K-102 26RBS01-095 High-Rise Tombs / 26RBS03-018 Sthenon: destroying an own
     return [ok, gone, left, ok2, o.cores]; })()`);
   assert.deepEqual(r, [true, true, 1, true, 0], JSON.stringify(r));
 });
+
+test('K-103 26RBS01-095 High-Rise Tombs LV2: draws a card when the opposing Life is reduced by your Shamanism Spirit (not by another Spirit)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const n = BS.mkInst('26RBS01-095'); n.cores = 3; P.nexus.push(n);
+    const s = BS.mkInst('26RBS02-023'); s.cores = 1; P.spirits.push(s);
+    const x = BS.mkInst('BS06-012'); x.cores = 1; P.spirits.push(x);
+    G.active = P.key; G.step = 5; P.hand.length = 0;
+    const run = async a => { const h = P.hand.length; await BS.fireFx(P, 'ALLY_LIFE_HIT', a, { attacker: a }); return P.hand.length - h; };
+    const no = await run(x); G.turnNo += 1; const yes = await run(s);
+    return [no, yes]; })()`);
+  assert.deepEqual(r, [0, 1], JSON.stringify(r));
+});

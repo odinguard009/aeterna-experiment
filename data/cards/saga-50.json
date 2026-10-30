@@ -5859,8 +5859,8 @@
   "image": "26RBS01-093.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": true,
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
+  "fxComplete": false,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
    "A"
   ],
@@ -5892,6 +5892,9 @@
      }
     ]
    }
+  ],
+  "residual": [
+   "[LV1-2] (Your Draw Step) (Can't Stack) You draw +1 card. After you draw, return a card from your Hand to the deckbottom."
   ]
  },
  {
@@ -5990,6 +5993,28 @@
       "targets": 1,
       "each": 1,
       "costLe": 3
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_LIFE_HIT",
+    "lv": [
+     2
+    ],
+    "once": true,
+    "noStack": true,
+    "optional": true,
+    "match": {
+     "keyword": "Shamanism"
+    },
+    "if": {
+     "oppTurn": false,
+     "step": "ATTACK"
+    },
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
      }
     ]
    }
@@ -14323,8 +14348,8 @@
   "image": "26RBS02-X07.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": true,
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
+  "fxComplete": false,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
    "A"
   ],
@@ -14354,6 +14379,9 @@
      }
     ]
    }
+  ],
+  "residual": [
+   "[LV1-2] (Your Turn) (CSOPT) When your Spirits or the opposing Spirits are exhausted via your effect, you can put a core from the Void to your Trash."
   ]
  },
  {
@@ -15883,8 +15911,8 @@
   "mechanics": [
    "Shamanism"
   ],
-  "fxComplete": true,
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
+  "fxComplete": false,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
    "A"
   ],
@@ -15920,6 +15948,9 @@
      }
     ]
    }
+  ],
+  "residual": [
+   "[LV1-2] {{Shaman|Beastleptic & Cost 4 or less}} (When Destroyed) You can target a Cost 4 or less \"Beastleptic\" family Spirit card in your Trash. Summon it."
   ]
  },
  {
