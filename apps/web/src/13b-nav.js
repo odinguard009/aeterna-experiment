@@ -91,7 +91,7 @@ function renderHomeMore() {
   const cf = c ? `<button class="cfw" style="border:0;background:none;padding:0" data-a="cp-open" data-v="${esc(id)}" aria-label="Open ${esc(c.name)}">${mkFace(c)}</button>` : '';
   const left = (() => { const t = Math.max(0, Math.floor((864e5 - (Date.now() % 864e5)) / 1000)); return [Math.floor(t / 3600), Math.floor(t % 3600 / 60), t % 60].map(n => String(n).padStart(2, '0')).join(':'); })();
   const set = String(id).split('-')[0], sg = typeof sagaOf === 'function' ? sagaOf(set) : 0;     // owner review 2026-10-30: the card's name and series sit right under the heading
-  const who = c ? `<div class="cd-who"><b class="cd-name" translate="no">${esc(c.name)}</b><span class="cd-series">Series ${esc(set)}${sg ? ' · ' + esc(SAGA_NAMES[sg - 1] || '') : ''}</span></div>` : '';
+  const who = c ? `<div class="cd-who"><b class="cd-name" translate="no">${esc(c.name)}</b><span class="cd-series">Series ${esc(set)}${sg ? ' · ' + esc(SAGA_NAMES[Number(sg) - 1] || '') : ''}</span></div>` : '';
   const btns = `<div class="row" style="gap:8px;flex-wrap:wrap"><button class="btn sm pri" data-a="cp-open" data-v="${esc(id)}">Card Page</button><button class="btn sm" data-a="dbcard" data-v="${esc(id)}">+ Add To Deck</button></div>`;
   const foot = `<span class="sub" style="font-size:.76em">New card at 00:00 UTC · in <span class="cd" id="cd">${left}</span></span>`;
   $('cotd').className = 'cotd' + (fl ? '' : ' solo');
