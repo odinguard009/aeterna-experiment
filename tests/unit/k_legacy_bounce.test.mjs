@@ -835,3 +835,17 @@ test('K-65 Banri-Sora: ctrl team exhausted n:2, TRASH_CORES_TO toSelf perDestroy
     return [x, y, z, none, b.cores]; })()`);
   assert.deepEqual(r, [false, false, true, 1, 3]);
 });
+
+test('K-66 Gigantocheires: BOUNCE_OPP any bpLe Spirit-only, spiritCore, nexusSymbol', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const g = BS.mkInst('26RBS01-X12'); g.cores = 2; P.spirits.length = 0; P.spirits.push(g); P.void = 3;
+    const act = { do: 'BOUNCE_OPP', kind: 'any', to: 'hand', bpLe: 6000, spiritCore: true, nexusSymbol: 'white' };
+    O.spirits.length = 0; O.nexus.length = 0; opp(3, 3000);
+    await BS.runActions({ p: P, opp: O, src: g, ctx: {} }, { actions: [act] }); await BS.flushBursts();
+    const a = [O.spirits.length, g.cores, !!g.symTurn];
+    O.spirits.length = 0; const nx = BS.mkInst(Object.values(BS.CARDS).find(c => c.type === 'Nexus').id); O.nexus.push(nx);
+    await BS.runActions({ p: P, opp: O, src: g, ctx: {} }, { actions: [act] }); await BS.flushBursts();
+    return [a, O.nexus.length, g.cores, g.symTurn && g.symTurn.cols.join()]; })()`);
+  assert.deepEqual(r, [[0, 3, false], 0, 3, 'white']);
+});
