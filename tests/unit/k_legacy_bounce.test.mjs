@@ -675,3 +675,15 @@ test('K-53 Algodon: block refresh and the LV2 blocker-win core', async () => {
   assert.deepEqual(r.slice(0, 3), [false, 'BLOCKS', true]);
   assert.deepEqual(r.slice(3), [1, 1], 'one Void core moved to the Reserve');
 });
+
+test('K-54 Borzo-Inu: draws two only after an opposing Spirit was destroyed by your effect this turn', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const acts = BS.CARDS['26RBS01-026'].effects[0].actions, out = [];
+    for (const kill of [false, true]) {
+      P.hand = []; P.deck = Array.from({ length: 5 }, () => ({ id: '26RBS01-026' })); P.oppFxLossTurn = null;
+      if (kill) { const t = opp(3, 2000); await BS.runActions({ p: P, opp: O, src: BS.mkInst('26RBS01-026'), ctx: {} }, { actions: [{ do: 'DESTROY', bpLe: 3000 }] }); await BS.flushBursts(); }
+      await BS.runActions({ p: P, opp: O, src: BS.mkInst('26RBS01-026'), ctx: {} }, { actions: acts }); out.push(P.hand.length); }
+    return out; })()`);
+  assert.deepEqual(r, [1, 2]);
+});
