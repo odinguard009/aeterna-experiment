@@ -49,3 +49,46 @@ test('K-99 26RBS01-X01 Restiel: Invoke needs an own Clash attacker (attackerKeyw
     return [ok, marked, !!no, o.blockExB == null]; })()`);
   assert.deepEqual(r, [true, true, false, true], JSON.stringify(r));
 });
+
+test('K-100 26RBS02-X07 Great Emperan: Invoke exhausts one of your Spirits, the opponent exhausts one of their refreshed Spirits', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const w = BS.mkInst('26RBS02-X07'); w.cores = 3; P.spirits.push(w);
+    const c = BS.mkInst('26RBS01-001'); c.cores = 1; P.spirits.push(c);
+    const o = BS.mkInst('26RBS01-001'); o.cores = 1; O.spirits.push(o);
+    const i = BS.CARDS['26RBS02-X07'].effects.findIndex(e => e.invoke);
+    G.active = P.key; G.step = 3;
+    const ok = await BS.activateFx(P, w, i);
+    return [ok, o.exhausted, w.exhausted || c.exhausted]; })()`);
+  assert.deepEqual(r, [true, true, true], JSON.stringify(r));
+});
+
+test('K-101 26RBS01-093 Downdraft Dragon Current: Invoke exhausts the Nexus and gives +3000 BP to the attacking Clash Spirit this battle', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const n = BS.mkInst('26RBS01-093'); n.cores = 3; P.nexus.push(n);
+    const a = BS.mkInst('BS06-012'); a.cores = 1; P.spirits.push(a);
+    const i = BS.CARDS['26RBS01-093'].effects.findIndex(e => e.invoke);
+    G.active = P.key; G.step = 5; G.attacker = a;
+    const before = BS.bpOf(a); const ok = await BS.activateFx(P, n, i);
+    return [ok, n.exhausted, BS.bpOf(a) - before]; })()`);
+  assert.deepEqual(r, [true, true, 3000], JSON.stringify(r));
+});
+
+test('K-102 26RBS01-095 High-Rise Tombs / 26RBS03-018 Sthenon: destroying an own Purple/Beastleptic Spirit sends a core from an opposing small Spirit to the Reserve', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const n = BS.mkInst('26RBS01-095'); n.cores = 3; P.nexus.push(n);
+    const p = BS.mkInst('26RBS03-018'); p.cores = 2; P.spirits.push(p);
+    const o = BS.mkInst('TRAIN-02'); o.cores = 2; O.spirits.push(o);
+    const ci = BS.CARDS['26RBS01-095'].effects.findIndex(e => e.invoke);
+    G.active = P.key; G.step = 3;
+    const ok = await BS.activateFx(P, n, ci);
+    const gone = !P.spirits.includes(p), left = o.cores;
+    const p2 = BS.mkInst('26RBS03-018'); p2.cores = 2; P.spirits.push(p2);
+    const q = BS.mkInst('26RBS03-018'); q.cores = 2; P.spirits.push(q);
+    const si = BS.CARDS['26RBS03-018'].effects.findIndex(e => e.invoke);
+    G.step = 5; G.attacker = p2; const ok2 = await BS.activateFx(P, p2, si);
+    return [ok, gone, left, ok2, o.cores]; })()`);
+  assert.deepEqual(r, [true, true, 1, true, 0], JSON.stringify(r));
+});
