@@ -46,3 +46,12 @@ test('K-150 26RSD10-X02: Swordish BP+2000 in either Attack Step; LV2 sends 1 Tok
     return [fx[0].bp, fx[0].if.oppTurn === undefined, fx[1].actions.map(a => a.do).join()]; })()`);
   assert.deepEqual(r, [2000, true, 'SEND_TOKEN,HAND_TO_BOTTOM,SEND_TOKEN'], JSON.stringify(r));
 });
+
+test('K-151 26RSD05-009: Thunder Driftways gives attacking Thunder Dragons a bpLe 1000 block mark; LV2 START_MAIN -2000', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const fx = BS.CARDS['26RSD05-009'].effects, a = BS.mkInst('BS48-047'), c = { p: P, opp: O, src: BS.mkInst('26RSD05-009'), ctx: { attacker: a } };
+    await BS.runActions(c, { actions: fx[0].actions });
+    return [a.noBlockBy.bpLe, fx[1].trigger, fx[1].actions[0].n]; })()`);
+  assert.deepEqual(r, [1000, 'START_MAIN', 2000], JSON.stringify(r));
+});

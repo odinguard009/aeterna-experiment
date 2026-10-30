@@ -38734,15 +38734,6 @@
   "M_UP_TO",
   "T_SUMMONED"
  ],
- "26RSD05-009": [
-  "A_BP_MINUS",
-  "A_EXHAUST",
-  "C_LEVEL",
-  "F_OTHER_NOSTACK",
-  "M_OPTIONAL",
-  "M_THEN",
-  "M_UNSTACKABLE"
- ],
  "26RSD05-010": [
   "C_LEVEL",
   "M_OPTIONAL"

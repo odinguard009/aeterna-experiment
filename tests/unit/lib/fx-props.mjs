@@ -124,6 +124,7 @@ function simple(card, a) {
   const spirit = card.type === 'Spirit';
   switch (a.do) {
     case 'HAND_TO_BOTTOM': return only(a, ['n']) && { body: `for (let i = 0; i <= A.n; i++) P.hand.push(BS.mkInst(${J(FILL)})); const bd = P.deck.length; await run(src, RA); return P.hand.length === 1 && P.deck.length === bd + A.n ? '' : 'hand ' + P.hand.length + ', deck ' + P.deck.length;` };
+    case 'TRASH_CORES_TO': return a.toLife === true && only(a, ['n', 'toLife']) && { body: `P.trashCores.n = A.n + 1; const l0 = P.life; await run(src, RA); return P.life - l0 === A.n && P.trashCores.n === 1 ? '' : 'life +' + (P.life - l0) + ' trash ' + P.trashCores.n;` };      // v177
     case 'DRAW': return only(a, ['n', 'dbl']) && { body: `for (let j = 0; j < 6; j++) dk(${J(FILL)}); const top = P.deck.slice(0, A.n * 2); await run(src, RA);
       const want = A.dbl != null ? A.n * 2 : A.n; if (P.hand.length !== want || P.deck.length !== 6 - want) return 'hand ' + P.hand.length + ' deck ' + P.deck.length; if (top.slice(0, want).some(x => !P.hand.includes(x))) return 'not drawn from the top'; return '';` };
     case 'DISCARD_ALL_HAND': return only(a, []) && { body: `for (let j = 0; j < 3; j++) P.hand.push(BS.mkInst(${J(FILL)})); await run(src, RA); return P.hand.length === 0 && P.trash.length === 3 ? '' : 'hand ' + P.hand.length + ' trash ' + P.trash.length;` };      // v169
