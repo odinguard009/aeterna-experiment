@@ -207,3 +207,5 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v168 (schema 168): new action SOUL_TRASH_TO {match} ("send the Soul Core from your Trash to one of your matching Spirits/Nexuses"; SOUL_PLACED fires only for a Nexus) (26RSD01-006).
 - v169 (schema 169): new action DISCARD_ALL_HAND ("discard your entire Hand"; did = at least one card; pair with DRAW if prev) (26RBS02-036).
 - v170: invoke cost `soulToTrash:true` ("Send your Soul Core to the Trash ▶"); payable only while a Soul Core exists.
+- v171: match key `notName:[...]` in `fxMatch` ("besides <name>": excludes cards whose name contains any listed text); used by `DISCARD_HAND.match`. `match.bpBoosted:true` (needs the instance: current BP above the printed level BP, "under BP+ effects").
+- v172: condition `oppDepleted:true` (an opposing Spirit was depleted by your effect this turn; destroyed does not count, unlike `oppLostByFx`).

@@ -180,9 +180,11 @@ test('K-135 26RSD02-009: Bloodrouse summon gains a Purple symbol at LV2 after an
     const c = BS.mkInst('26RBS01-023');
     const a = summonSymbols(P, BS.CARDS['26RBS01-023']).length;
     P.oppFxLossTurn = G.turnNo;
+    const m = summonSymbols(P, BS.CARDS['26RBS01-023']).length;
+    P.oppDepletedTurn = G.turnNo;
     const b = summonSymbols(P, BS.CARDS['26RBS01-023']).length;
-    return [a, b]; })()`);
-  assert.deepEqual(r, [0, 1], JSON.stringify(r));
+    return [a, m, b]; })()`);
+  assert.deepEqual(r, [0, 0, 1], JSON.stringify(r));
 });
 
 test('K-136 26RBS02-007: LV2 battle win in your attack step gives one of your Spirits +5000 BP', async () => {
@@ -193,8 +195,9 @@ test('K-136 26RBS02-007: LV2 battle win in your attack step gives one of your Sp
     const fx = BS.CARDS['26RBS02-007'].effects.find(e => e.trigger === 'ALLY_BATTLE_WIN');
     const b0 = bpOf(c);
     await BS.runActions({ p: P, opp: O, src: c, ctx: {} }, fx);
-    return [!!fx, bpOf(c) - b0]; })()`);
-  assert.deepEqual(r, [true, 5000], JSON.stringify(r));
+    const m = BS.CARDS['26RBS02-007'].effects.find(e => e.trigger === 'ALLY_BATTLE_WIN').match;
+    return [!!fx, bpOf(c) - b0, !!(m && m.bpBoosted)]; })()`);
+  assert.deepEqual(r, [true, 5000, true], JSON.stringify(r));
 });
 
 test('K-137 26RBS03-075: deploy destroys a 4000 BP or less foe only with a Cost 4+ Purgatory Wings Spirit; End Step moves the Soul Core', async () => {
@@ -224,14 +227,17 @@ test('K-138 26RSD09-006: soul-paid summon gives a Purgatory Wings Spirit +2000 B
   assert.deepEqual(r, [2000, true], JSON.stringify(r));
 });
 
-test('K-139 26RSD08-007: attack discards a Sword Eye card for +3000 BP to all; LV2 buffs Rei-Ohba', async () => {
+test('K-139 26RSD08-007: attack discards a Sword Eye card besides Rei-Ohba for +3000 BP; LV2 buffs Rei-Ohba', async () => {
   const { page } = await sharedBoard();
   const r = await page.evaluate(`(async () => { ${SETUP}
     P.cpu = true; const c = BS.mkInst('26RSD08-007'); c.cores = 3; P.spirits.push(c);
+    const fx = BS.CARDS['26RSD08-007'].effects, atk = fx.find(e => e.trigger === 'ATTACKS');
     P.hand = [BS.mkInst('26RDB01-X05')];
-    const fx = BS.CARDS['26RSD08-007'].effects;
     const b0 = bpOf(c);
-    await BS.runActions({ p: P, opp: O, src: c, ctx: {} }, fx.find(e => e.trigger === 'ATTACKS'));
-    return [bpOf(c) - b0, P.hand.length, fx.some(e => e.trigger === 'STATIC' && e.bp === 3000)]; })()`);
-  assert.deepEqual(r, [3000, 0, true], JSON.stringify(r));
+    await BS.runActions({ p: P, opp: O, src: c, ctx: {} }, atk);
+    const rei = [P.hand.length, bpOf(c) - b0];
+    P.hand.push(BS.mkInst('26RSD08-007'));
+    await BS.runActions({ p: P, opp: O, src: c, ctx: {} }, atk);
+    return [rei, P.hand.length, bpOf(c) - b0, fx.some(e => e.trigger === 'STATIC' && e.bp === 3000)]; })()`);
+  assert.deepEqual(r, [[1, 0], 1, 3000, true], JSON.stringify(r));
 });

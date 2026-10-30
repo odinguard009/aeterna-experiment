@@ -306,7 +306,7 @@ function removeSpirit(p, s, why, byOpponent) {
   const kill = why === 'destroyed' && byOpponent !== 'battle' && !!G && !!G.evQ && !!G.fxBy && G.fxBy !== p.key && fieldList(G.p[G.fxBy]).some(f => fxEntries(f).some(({ e }) => e.trigger === 'OPP_DESTROYED_FX')),      // v0.196 someone can react to "opposing Spirits destroyed by your effect"
     bp0 = kill ? bpOf(s) : 0;
   if (!removeFrom(p.spirits, s)) return;
-  if ((why === 'destroyed' || why === 'depleted') && byOpponent !== 'battle' && G && G.fxBy && G.fxBy !== p.key) G.p[G.fxBy].oppFxLossTurn = G.turnNo;      // v0.196 condition oppLostByFx
+  if ((why === 'destroyed' || why === 'depleted') && byOpponent !== 'battle' && G && G.fxBy && G.fxBy !== p.key) { G.p[G.fxBy].oppFxLossTurn = G.turnNo; if (why === 'depleted') G.p[G.fxBy].oppDepletedTurn = G.turnNo; }      // v0.196 condition oppLostByFx; v0.199 oppDepleted
   s.lostFxSrc = G && G.fxBy === p.key && G.fxSrc ? G.fxSrc : null;      // v0.197 condition byOwnFx (the card of the own effect that removed it)
   if (why === 'destroyed' && G) p.lostSpiritTurn = G.turnNo;
   if (why === 'destroyed' && G && G.evQ && !s.token && trashHears(p)) G.evQ.push({ type: 'DIED', key: p.key, inst: s });      // v155 ALLY_DIED      // v0.197 condition ownLostSpirit
