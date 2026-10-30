@@ -943,3 +943,16 @@ test('K-73 ALLY_BLOCKS (Game Area) moves a Void core to the Trash; Squirrelooper
     return [moved, lowBp <= 3000, cant, BS.bpOf(sq) > 3000, cant2]; })()`);
   assert.deepEqual(r, [[1, 1], true, true, true, false]);
 });
+
+test('K-74 Cloudrock END_BATTLE sends 1 Trash core, 2 at 10000 BP or more; Squid refreshes at the end of battle', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    P.spirits.length = 0; P.nexus.length = 0; O.spirits.length = 0; G.active = P.key; P.cpu = true; O.cpu = true;
+    const go = async (id, bpMod) => { const a = BS.mkInst(id); a.cores = 3; a.bpMod = bpMod; P.spirits.push(a); P.trashCores.n = 5; G.step = 5; G.turnNo = (G.turnNo || 0) + 1;
+      await BS.doBattle(P.key, a); const out = [a, 5 - P.trashCores.n]; P.spirits.length = 0; return out; };
+    const lo = (await go('26RBS03-002', 0))[1], hi = (await go('26RBS03-002', 10000))[1];
+    const sq = BS.mkInst('26RSD03-X01'); sq.cores = 3; P.spirits.push(sq); G.step = 5; G.turnNo++;
+    await BS.doBattle(P.key, sq);
+    return [lo, hi, sq.exhausted]; })()`);
+  assert.deepEqual(r, [1, 2, false]);
+});
