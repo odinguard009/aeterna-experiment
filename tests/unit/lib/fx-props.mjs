@@ -194,9 +194,9 @@ function simple(card, a) {
       ${miss} return '';` };
     }
     case 'BP_TARGET':      // v0.169 battle-length BP on this Spirit (to:self) or on one of your fighting Spirits (to:pick, the CPU boosts its attacker)
-      if (!only(a, ['n', 'to', 'battle']) || a.battle !== true || !['self', 'pick'].includes(a.to) || (a.to === 'self' && !spirit)) return null;
+      if (!only(a, ['n', 'to', 'battle', 'per']) || (a.per && (a.per.type !== 'Spirit' || typeof a.per.family !== 'string')) || a.battle !== true || !['self', 'pick'].includes(a.to) || (a.to === 'self' && !spirit)) return null;
       return { onField: a.to === 'self', body: `const foe = sp(${J(FILL)}, O, 1), t = A.to === 'self' ? src : sp(${J(FILL)}, P, 1); G.attacker = t; G.blocker = foe; G.battleNo = 1;
-        const b = BS.bpOf(t); await run(src, RA); const got = BS.bpOf(t) - b; G.attacker = null; G.blocker = null; return got === A.n ? '' : 'battle BP +' + got + ', want +' + A.n;` };
+        const b = BS.bpOf(t); await run(src, RA); const got = BS.bpOf(t) - b; G.attacker = null; G.blocker = null; const want = A.n * (A.per ? P.spirits.filter(x => (BS.CARDS[x.id].families || []).includes(A.per.family)).length : 1); return got === want ? '' : 'battle BP +' + got + ', want +' + want;` };
     case 'CANT_BLOCK_OPP':      // v0.172 the picked opposing Spirit can't block this battle (v159 n targets, costLe)
       return only(a, ['n', 'costLe', 'lv']) && spirit && { onField: true, body: `const T = []; for (let i = 0; i < (A.n || 1); i++) T.push(sp(${J(FILL)}, O, 1)); G.attacker = src; G.battleNo = 1; await run(src, RA); G.attacker = null;
         if ((A.costLe != null && BS.CARDS[${J(FILL)}].cost > A.costLe) || (A.lv === 1 && BS.CARDS[${J(FILL)}].levels[0].cores > 1)) return ''; return T.every(t => t.noBlockB === 1) ? '' : 'an opposing Spirit was not marked';` };

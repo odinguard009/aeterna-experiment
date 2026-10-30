@@ -11340,16 +11340,53 @@
   "mechanics": [
    "Amplify"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] {{Amplify|Leucomyst +1000}} (During Attack/Block){{Invoke|Flash}} (Once Per Battle) Pay one cost ▶For each \"Leucomyst\" family Spirit you control, during this battle, this Spirit gains +1000 BP.",
-   "[LV2] {{Camou|1}} When the opponent would target this Spirit with a Spirit effect, unless they pay one cost, they can't target it."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "bicon": [
    "A"
   ],
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN",
+     "FLASH"
+    ],
+    "when": "duringAttackBlock",
+    "once": true,
+    "oncePer": "battle",
+    "lv": [
+     1,
+     2
+    ],
+    "cost": {
+     "pay": 1
+    },
+    "actions": [
+     {
+      "do": "BP_TARGET",
+      "n": 1000,
+      "to": "self",
+      "battle": true,
+      "per": {
+       "type": "Spirit",
+       "family": "Leucomyst"
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "CAMOU",
+    "n": 1,
+    "to": "self",
+    "lv": [
+     2
+    ]
+   }
+  ]
  },
  {
   "id": "26RBS02-041",

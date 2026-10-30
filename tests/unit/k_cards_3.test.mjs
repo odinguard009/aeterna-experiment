@@ -116,3 +116,9 @@ test('K-157 26RDB01-053: SUMMON_TAX adds 1 to the opponent summon cost of a Cost
     return [b - a, c, d - a, BS.CARDS['26RDB01-053'].effects[1].flag]; })()`);
   assert.deepEqual(r, [1, 0, 0, 'SUMMON_TAX'], JSON.stringify(r));
 });
+
+test('K-158 26RBS02-040: Leucomyst Amplify Invoke (LV1-2) and LV2 Camou 1 compile', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(() => { const k = BS.CARDS['26RBS02-040']; return [true, k.effects[0].lv.join(), k.effects[1].flag, k.effects[1].n]; })()`);
+  assert.deepEqual(r, [true, '1,2', 'CAMOU', 1], JSON.stringify(r));
+});
