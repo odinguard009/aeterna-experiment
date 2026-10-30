@@ -93,7 +93,8 @@ function shedBrave(p, s, zone) {             // the Spirit leaves the Field: its
 const TOKEN_SUPPLY = 10;                      // house choice: each kind of Token the deck can send out is prepared 10 times
 function tokenIdsOf(id) {
   const c = CARDS[id], out = [];
-  for (const e of (c && c.effects) || []) for (const a of e.actions || []) if (a.do === 'SEND_TOKEN' && CARDS[a.token]) out.push(a.token);
+  const m = c && c.magic, lists = ((c && c.effects) || []).map(e => e.actions || []).concat(m ? [m.actions || []].concat(Object.values(m.by || {}).map(b => b.actions || [])) : []);   // v0.197 Magic can send out Tokens
+  for (const l of lists) for (const a of l) if (a.do === 'SEND_TOKEN' && CARDS[a.token]) out.push(a.token);
   return out;
 }
 function prepareTokens(p, counts) { p.tokens = {}; for (const id of Object.keys(counts)) for (const t of tokenIdsOf(id)) p.tokens[t] = TOKEN_SUPPLY; }

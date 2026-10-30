@@ -858,3 +858,14 @@ test('K-67 Flame Storm: DESTROY_TOTAL max enforces the number of targets', async
     return O.spirits.length; })()`);
   assert.equal(r, 2);
 });
+
+test('K-68 Swordish Comes: ctrl refreshed counts only refreshed Swordish', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const T = '26RSD10-T001', c = { ctrl: { type: 'Spirit', name: 'Swordish', refreshed: true, nLe: 0 } };
+    P.tokens = { [T]: 10 }; P.reserve.n = 5;
+    const a = BS.fxIf(P, O, c, {}); const t = BS.sendToken(P, T);
+    const b = BS.fxIf(P, O, c, {}); t.exhausted = true;
+    return [a, b, BS.fxIf(P, O, c, {})]; })()`);
+  assert.deepEqual(r, [true, false, true]);
+});
