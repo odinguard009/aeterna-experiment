@@ -148,3 +148,16 @@ test('K-132 26RSD01-006: pulls up to two cores from the Trash; LV2 End Step send
   assert.deepEqual(r[0] === 3 && r[1] === 1, true, JSON.stringify(r));
   assert.ok(r[2] === false && (r[3] || r[4]), JSON.stringify(r));
 });
+
+test('K-133 26RBS02-036: Legacy summon exhausts a foe; life hit discards the whole Hand and draws three', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    G.active = P.key;
+    const c = BS.mkInst('26RBS02-036'); c.cores = 2; P.spirits.push(c);
+    const fx = BS.CARDS['26RBS02-036'].effects;
+    P.hand = ['BS48-001', 'BS48-001'].map(id => BS.mkInst(id)); P.deck = ['BS48-001', 'BS48-001', 'BS48-001', 'BS48-001'].map(id => BS.mkInst(id));
+    const t0 = P.trash.length;
+    await BS.runActions({ p: P, opp: O, src: c, ctx: {} }, fx.find(e => e.trigger === 'ALLY_LIFE_HIT'));
+    return [P.hand.length, P.trash.length - t0, fx.some(e => e.trigger === 'SUMMONED')]; })()`);
+  assert.deepEqual(r, [3, 2, true], JSON.stringify(r));
+});

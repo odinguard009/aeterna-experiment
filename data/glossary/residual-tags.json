@@ -38291,14 +38291,6 @@
   "C_LEVEL",
   "T_SUMMONED"
  ],
- "26RBS02-036": [
-  "A_DISCARD_ALL_HAND",
-  "A_DRAW",
-  "A_EXHAUST",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
  "26RBS02-040": [
   "A_BP_PLUS",
   "C_LEVEL",

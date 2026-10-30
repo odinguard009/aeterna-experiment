@@ -63,7 +63,8 @@ const FONT_URL = /url\(data:font\/woff2;base64,[A-Za-z0-9+/=]+\)/g, FLAVOR_RE = 
 // v0.197.0 (Lane K): 1100 -> 1115 KB on purpose: ownLostSpirit, EXHAUST_OPP.noSoul, NEXUS_EXHAUST, AMPLIFY, diffName, byOwnFx, ACTIVATE_SUMMONED, VOID_TO_MATCHING.other, TRASH_CORES_TO.toSelf, BOUNCE_OPP.spiritCore.
 // v0.198.0 (owner UI review 2026-10-30): 1115 -> 1130 KB (rounds 3-6: foldable Card Panel, effect pop-up tap, toolbar fold) and B04 225 -> 232 KB on purpose: deck recipe page, Card Of The Day name/series, phone Home footer.
 // v0.199.0 (Lane K): raised B01 1130 -> 1145 KB and B02 308 -> 311 KB on purpose: EXHAUSTED_FX, NEXUS_AS_SPIRIT, MUST_ATTACK_OPP and their scenarios.
-test('B01 index.html without the card pack stays under 1145 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 1145e3, Buffer.byteLength(noFont(code))));
+// v0.199.0 (Lane K): B01 1145 -> 1150 KB on purpose: REVEAL_SUMMON, LIFE_HIT_NEXUS, SOUL_TRASH_TO, DISCARD_ALL_HAND.
+test('B01 index.html without the card pack stays under 1150 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 1150e3, Buffer.byteLength(noFont(code))));
 // v0.186.0 (Brave costLe): raised B02 290 -> 292 KB on purpose: the Brave combine condition costLe (parser, braveFits, types) put the page 0.9 KB over the limit.
 // v0.188.0 (R2): raised B02 292 -> 294 KB on purpose: the Family list, BP / core and colour-mode filters (shared by the Deck Builder and the Library) put the page 0.04 KB over the limit.
 // v0.195.0 (Lane K): raised B02 294 -> 296 KB on purpose: viaLegacy and BOUNCE_OPP n/bpLe put the engine 0.01 KB over the limit.

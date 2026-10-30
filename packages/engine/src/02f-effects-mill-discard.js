@@ -90,3 +90,12 @@ Object.assign(FX_ACTIONS, {
       c.p.onceUsed[k] = G.turnNo; await FX_ACTIONS.COUNTER.run(c, { n: a.n });
     } }
 });
+
+/* v169 "discard your entire Hand" (did = at least one card was discarded; the card that pays with it stays). */
+FX_ACTIONS.DISCARD_ALL_HAND = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => 'discard your entire Hand',
+  can: c => c.p.hand.some(h => h !== c.src),
+  run: async c => {
+    const out = c.p.hand.filter(h => h !== c.src); if (!out.length) { c.ctx.did = false; return; }
+    for (const d of out) { removeFrom(c.p.hand, d); c.p.trash.push(d); log(`${_pn(c)}: ${who(c.p)} ${c.p.cpu ? 'discards' : 'discard'} ${CARDS[d.id].name}.`); }
+    await sentToTrashFx(c, out, 'hand'); io.view({ type: 'board' });
+  } };

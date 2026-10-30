@@ -126,6 +126,7 @@ function simple(card, a) {
     case 'HAND_TO_BOTTOM': return only(a, ['n']) && { body: `for (let i = 0; i <= A.n; i++) P.hand.push(BS.mkInst(${J(FILL)})); const bd = P.deck.length; await run(src, RA); return P.hand.length === 1 && P.deck.length === bd + A.n ? '' : 'hand ' + P.hand.length + ', deck ' + P.deck.length;` };
     case 'DRAW': return only(a, ['n', 'dbl']) && { body: `for (let j = 0; j < 6; j++) dk(${J(FILL)}); const top = P.deck.slice(0, A.n * 2); await run(src, RA);
       const want = A.dbl != null ? A.n * 2 : A.n; if (P.hand.length !== want || P.deck.length !== 6 - want) return 'hand ' + P.hand.length + ' deck ' + P.deck.length; if (top.slice(0, want).some(x => !P.hand.includes(x))) return 'not drawn from the top'; return '';` };
+    case 'DISCARD_ALL_HAND': return only(a, []) && { body: `for (let j = 0; j < 3; j++) P.hand.push(BS.mkInst(${J(FILL)})); await run(src, RA); return P.hand.length === 0 && P.trash.length === 3 ? '' : 'hand ' + P.hand.length + ' trash ' + P.trash.length;` };      // v169
     case 'DRAW_BOTTOM': return only(a, ['n']) && { body: `for (let j = 0; j < 6; j++) dk(${J(FILL)}); const bot = P.deck.slice(6 - A.n); await run(src, RA);
       if (P.hand.length !== A.n || P.deck.length !== 6 - A.n) return 'hand ' + P.hand.length + ' deck ' + P.deck.length; if (bot.some(x => !P.hand.includes(x))) return 'not drawn from the bottom'; return '';` };
     case 'MILL': return only(a, ['n']) && { body: `for (let j = 0; j < 7; j++) dk(${J(FILL)}); const top = P.deck.slice(0, A.n); await run(src, RA);

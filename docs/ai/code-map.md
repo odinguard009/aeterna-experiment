@@ -35,7 +35,7 @@ fxCan, runActions, fireFx, collectFx, fxValid, fireFxMulti, asResolving, flushDe
 ## packages/engine/src/02e-effects-removed.js (152 lines, ~3.6k tokens) — v0.38 GREEN (Contractor Hermes / Lionheart): Heavy Exhaust, the Removed Zone, exhaust effects, "the opponent can't activate Burst effects".
 setHeavy, refreshOne, toRemoved, fromHandRemoved, _nm, handSafe, handLocked, pickOppSpirits
 
-## packages/engine/src/02f-effects-mill-discard.js (92 lines, ~2.2k tokens) — v0.39 PURPLE (Contractor Hades / Sorcerer): Deck-to-Trash (mill), discarding from the Hand, sending opposing cores to the Reserve, once-per-turn Count.
+## packages/engine/src/02f-effects-mill-discard.js (101 lines, ~2.4k tokens) — v0.39 PURPLE (Contractor Hades / Sorcerer): Deck-to-Trash (mill), discarding from the Hand, sending opposing cores to the Reserve, once-per-turn Count.
 _pn
 
 ## packages/engine/src/02g-effects-attack-lock.js (86 lines, ~2k tokens) — v0.40 YELLOW (Contractor Indra / Thunderive): "can't attack/block" (permanent flag noAB), drawing from the bottom of the Deck, discarding the whole Hand,
