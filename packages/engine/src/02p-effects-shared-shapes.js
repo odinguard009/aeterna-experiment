@@ -235,6 +235,19 @@ FX_ACTIONS.NO_REFRESH_OPP = { ...fxOppMark('NO_REFRESH_OPP', 'noRefreshT', t => 
 FX_ACTIONS.NO_BP_DESTROY = { chk: () => true, txt: () => "can't be destroyed by BP comparison during this battle", can: () => !!G.attacker,      // v0.196 (When Blocks/Attacks): the mark holds for this battle number
   run: async c => { c.src.noBpDestroy = G.battleNo; log(`${CARDS[c.src.id].name} can't be destroyed by BP comparison during this battle.`); } };
 FX_ACTIONS.CANT_BLOCK_OPP = { ...fxOppMark('CANT_BLOCK_OPP', 'noBlockB', () => G.attacker, () => G.battleNo, 'opposing Spirit', "can't block this battle") };
+(() => {      // v159 n (1-3 targets) and costLe: "target three opposing Cost 6 or less Spirits. During this battle, they can't block"
+  const B = FX_ACTIONS.CANT_BLOCK_OPP, bRun = B.run;
+  B.chk = a => (a.n == null || (Number.isInteger(a.n) && a.n >= 1 && a.n <= 3)) && (a.costLe == null || (Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30));
+  B.cands = (c, a) => c.opp.spirits.filter(t => G.attacker && !fxImmune(c.opp, t) && (!a || a.costLe == null || CARDS[t.id].cost <= a.costLe));
+  B.can = (c, a) => B.cands(c, a).length > 0;
+  B.txt = a => `during this battle, ${a.n > 1 ? a.n + ' opposing Spirits' : 'an opposing Spirit'}${a.costLe != null ? ' with cost ' + a.costLe + ' or less' : ''} can't block`;
+  B.run = async (c, a) => {
+    if (!(a.n > 1)) return bRun(c, a);
+    const L = B.cands(c, a), T = L.length ? await pickOppSpirits(c, L, a.n, `✨ <b>${esc(_pn(c))}</b><br>Tap the opposing Spirits that can't block this battle (glowing).`) : [];
+    if (!T.length) { c.ctx.did = false; return; }
+    for (const t of T) { t.noBlockB = G.battleNo; log(`${_pn(c)}: ${CARDS[t.id].name} can't block this battle.`); }
+  };
+})();
 // v0.175.0: "This Spirit can't be blocked by <colour> / LV<n> / High Speed / Curse Spirits" (this battle): the attacker carries noBlockBy for the battle; the block list (08-battle) skips matching Spirits
 FX_ACTIONS.CANT_BE_BLOCKED_BY = { chk: a => (a.toSubject == null || a.toSubject === true) && (a.color == null || (Array.isArray(a.color) && a.color.length > 0)) && (a.levels == null || (Array.isArray(a.levels) && a.levels.length > 0 && a.levels.every(Number.isInteger))) && (a.keyword == null || typeof a.keyword === 'string') && (a.highSpeed == null || a.highSpeed === true) && (a.costLe == null || Number.isInteger(a.costLe)) && (a.costGe == null || Number.isInteger(a.costGe)) && (a.bpLe == null || Number.isInteger(a.bpLe)) && (a.coresLe == null || Number.isInteger(a.coresLe)) && (a.noSoul == null || a.noSoul === true) && (a.noSoul === true || a.color != null || a.levels != null || a.keyword != null || a.highSpeed === true || a.costLe != null || a.costGe != null || a.bpLe != null || a.coresLe != null || a.all === true),
   txt: () => "can't be blocked by Spirits with the printed trait during this battle", can: () => true,

@@ -195,8 +195,9 @@ function simple(card, a) {
       if (!only(a, ['n', 'to', 'battle']) || a.battle !== true || !['self', 'pick'].includes(a.to) || (a.to === 'self' && !spirit)) return null;
       return { onField: a.to === 'self', body: `const foe = sp(${J(FILL)}, O, 1), t = A.to === 'self' ? src : sp(${J(FILL)}, P, 1); G.attacker = t; G.blocker = foe; G.battleNo = 1;
         const b = BS.bpOf(t); await run(src, RA); const got = BS.bpOf(t) - b; G.attacker = null; G.blocker = null; return got === A.n ? '' : 'battle BP +' + got + ', want +' + A.n;` };
-    case 'CANT_BLOCK_OPP':      // v0.172 the picked opposing Spirit can't block this battle
-      return only(a, []) && spirit && { onField: true, body: `const t = sp(${J(FILL)}, O, 1); G.attacker = src; G.battleNo = 1; await run(src, RA); G.attacker = null; return t.noBlockB === 1 ? '' : 'the opposing Spirit was not marked';` };
+    case 'CANT_BLOCK_OPP':      // v0.172 the picked opposing Spirit can't block this battle (v159 n targets, costLe)
+      return only(a, ['n', 'costLe']) && spirit && { onField: true, body: `const T = []; for (let i = 0; i < (A.n || 1); i++) T.push(sp(${J(FILL)}, O, 1)); G.attacker = src; G.battleNo = 1; await run(src, RA); G.attacker = null;
+        if (A.costLe != null && BS.CARDS[${J(FILL)}].cost > A.costLe) return ''; return T.every(t => t.noBlockB === 1) ? '' : 'an opposing Spirit was not marked';` };
     case 'CANT_BE_BLOCKED_BY':      // v0.175 the attacker carries noBlockBy for this battle only
       return only(a, ['color', 'levels', 'keyword', 'highSpeed']) && spirit && { onField: true, body: `G.attacker = src; G.battleNo = 4; await run(src, RA); const m = src.noBlockBy; G.attacker = null; return m && m.battleNo === 4 ? '' : 'noBlockBy not set';` };
     case 'UNBLOCKABLE_PICK':      // v157 one of your Spirits (not this one with `other`) can't be blocked this turn (or by BP <= bpLe)

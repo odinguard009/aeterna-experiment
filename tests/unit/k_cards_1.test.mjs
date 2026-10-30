@@ -336,3 +336,21 @@ test('K-118 Camou (26RBS02-039 / 048 / 26RBS03-043): opposing Spirit effects can
     return [!spiritHit, magHit, b1 - b0]; })()`);
   assert.deepEqual(r, [true, true, 4000], JSON.stringify(r));
 });
+
+test('K-119 Cronus Chronicle Gamer (26RCB01-055): all-EX-AID Spirits -> three opposing Cost 6 or less Spirits cannot block this battle; end of its battle destroys one; a non-EX-AID Spirit turns both off', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    G.active = P.key; G.turnNo = G.turnNo || 1; G.battleNo = 7;
+    const c = BS.mkInst('26RCB01-055'); c.cores = BS.CARDS['26RCB01-055'].levels[1].cores; P.spirits.push(c); G.attacker = c;
+    const low = Object.keys(BS.CARDS).filter(k => BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].cost <= 6 && !(BS.CARDS[k].effects || []).length).slice(0, 4);
+    const hi = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].cost >= 7 && !(BS.CARDS[k].effects || []).length);
+    const T = [...low.slice(0, 3), hi].map(id => { const t = BS.mkInst(id); t.cores = 1; O.spirits.push(t); return t; });
+    await BS.fireFx(P, 'ATTACKS', c, {});
+    const marked = T.map(t => t.noBlockB === 7);
+    const n0 = O.spirits.length; await BS.fireFx(P, 'ALLY_BATTLE_END', null, { subject: c }); const n1 = O.spirits.length;
+    const x = BS.mkInst('26RBS01-061'); x.cores = 1; P.spirits.push(x); T.forEach(t => { t.noBlockB = 0; });
+    await BS.fireFx(P, 'ATTACKS', c, {}); const off = T.some(t => t.noBlockB === 7);
+    const n2 = O.spirits.length; await BS.fireFx(P, 'ALLY_BATTLE_END', null, { subject: c });
+    return [marked, n0 - n1, off, n2 - O.spirits.length]; })()`);
+  assert.deepEqual(r, [[true, true, true, false], 1, false, 0], JSON.stringify(r));
+});

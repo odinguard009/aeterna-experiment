@@ -172,7 +172,7 @@ function parseEffects(arr) {
       o.actions = ar.actions;
       if (e.braved === true) o.braved = true;
       if (typeof e.subjBraved === 'string' && e.subjBraved && e.trigger === 'ALLY_ATTACKS') o.subjBraved = e.subjBraved;   // v0.45: "when your <family> Brave Spirit attacks" (Agateram Unleash)                      // [During Brave]: only while a Brave is combined with this Spirit (v0.37)
-      if (e.optional) o.optional = true; if (e.once) o.once = true; if (e.sameName) o.sameName = true; if (e.alsoAdvent && e.trigger === 'SUMMONED') o.alsoAdvent = true; if (e.self && (e.trigger === 'EXHAUSTED_FX' || e.trigger === 'SOUL_PLACED' || e.trigger === 'ALLY_LIFE_HIT' || e.trigger === 'ALLY_BLOCKED')) o.self = true;
+      if (e.optional) o.optional = true; if (e.once) o.once = true; if (e.sameName) o.sameName = true; if (e.alsoAdvent && e.trigger === 'SUMMONED') o.alsoAdvent = true; if (e.self && (e.trigger === 'EXHAUSTED_FX' || e.trigger === 'SOUL_PLACED' || e.trigger === 'ALLY_LIFE_HIT' || e.trigger === 'ALLY_BLOCKED' || e.trigger === 'ALLY_BATTLE_END')) o.self = true;
       if (e.other === true && /^(ALLY_|RUMBLE_DISCARD$)/.test(e.trigger)) o.other = true; if (e.exOnly === true && e.trigger === 'RUMBLE_DISCARD') o.exOnly = true;      // v0.185 Rumble discard: exOnly = at least one discarded card has an EX Symbol; other = besides the Rumble's own Spirit
       if (e.diffName === true && /^ALLY_/.test(e.trigger)) o.diffName = true;      // v0.197 "with a different name from this Spirit's"
       if (e.noStack === true) o.noStack = true;      // v0.40: "your other X" / "(Can't Stack)"
