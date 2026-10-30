@@ -333,7 +333,7 @@ html.layout-pc #view-playmat .playmat-layout.has-cp.cp-min { grid-template-colum
 html.layout-pc #view-playmat #card-panel.min { padding: 6px 0; overflow: hidden; }
 html.layout-pc #view-playmat #card-panel.min .cp-min { position: static; margin: 0 auto; }
 html.layout-pc #view-playmat #card-panel.min .cp-title { writing-mode: vertical-rl; margin: 12px auto 0; }
-html.layout-pc:has(#view-playmat.active .cp-min) #ae-fx { right: 40px; }
+html.layout-pc:has(#view-playmat.active .playmat-layout.cp-min) #ae-fx { right: 40px; }
 /* PHONE: the Burst/Mirage and Soul State boxes sit in the vertical middle of each field instead of a corner */
 html:not(.layout-pc) .fc-body .burst-area, html:not(.layout-pc) .fc-body .soul-area, html:not(.layout-pc) .fc-body.mir .burst-area, html:not(.layout-pc) .fc-body.mir .soul-area { align-self: center; }
 html.layout-pc #view-playmat .hand-container-wrapper > .hand-area { grid-column: 2; }   /* the side chips are gone, so the hand stays under the field, between the flank columns */
