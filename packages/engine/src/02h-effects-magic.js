@@ -34,6 +34,16 @@ Object.assign(FX_ACTIONS, {
       const t = a.self ? L[0] : c.p.cpu ? (L.find(s => s === G.attacker) || L.slice().sort((x, y) => bpOf(y) - bpOf(x))[0]) : await chooseCard(c, L, `✨ ${_pn(c)}`, `Choose your Spirit that has ${a.n} symbol${a.n === 1 ? '' : 's'} ${a.battle ? 'this battle' : 'this turn'}.`, false);
       t.symSet = { turn: G.turnNo, battle: a.battle ? G.battleNo : 0, n: a.n }; log(`${_pn(c)}: ${CARDS[t.id].name} has ${a.n} symbol${a.n === 1 ? '' : 's'} ${a.battle ? 'during this battle' : 'this turn'}.`); io.view({ type: 'board' });
     } },
+  /* v162 "target one of your <match> Spirits. During this turn, it can't be destroyed by BP comparison": mark noBpTurn = turn number (read by the BP comparison in 08-battle) */
+  NO_BP_DESTROY_TURN: { chk: a => a.match != null && hasMatch(a.match),
+    txt: a => `one of your ${_matchTxt(a.match)}Spirits can't be destroyed by BP comparison during this turn`,
+    cands: (c, a) => c.p.spirits.filter(s => fxMatch(CARDS[s.id], a.match, s)),
+    can: (c, a) => FX_ACTIONS.NO_BP_DESTROY_TURN.cands(c, a).length > 0,
+    run: async (c, a) => {
+      const L = FX_ACTIONS.NO_BP_DESTROY_TURN.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
+      const t = c.p.cpu ? (L.find(s => s === G.attacker) || L.slice().sort((x, y) => bpOf(y) - bpOf(x))[0]) : await chooseCard(c, L, `✨ ${_pn(c)}`, `Choose your Spirit that can't be destroyed by BP comparison this turn.`, false);
+      t.noBpTurn = G.turnNo; log(`${_pn(c)}: ${CARDS[t.id].name} can't be destroyed by BP comparison this turn.`); io.view({ type: 'board' });
+    } },
   /* v0.44 "Then, you can send your Soul Core to <Grandwalker Nexus>. When you've done so, activate this effect once and only once more" (then = the actions repeated) */
   SOUL_TO_NEXUS_THEN: { chk: a => hasMatch(a.match) && Array.isArray(a.then) && a.then.length >= 1 && a.then.length <= 3 && a.then.every(x => x && FX_ACTIONS[x.do] && x.do !== 'SOUL_TO_NEXUS_THEN' && FX_ACTIONS[x.do].chk(x)),
     txt: a => `then you can send your Soul Core to ${_matchTxt(a.match)}Grandwalker Nexus; if you do, ${a.then.map(x => FX_ACTIONS[x.do].txt(x)).join(', then ')} once more`,

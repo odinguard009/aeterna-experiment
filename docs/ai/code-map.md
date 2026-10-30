@@ -41,7 +41,7 @@ _pn
 ## packages/engine/src/02g-effects-attack-lock.js (86 lines, ~2k tokens) — v0.40 YELLOW (Contractor Indra / Thunderive): "can't attack/block" (permanent flag noAB), drawing from the bottom of the Deck, discarding the whole Hand,
 
 
-## packages/engine/src/02h-effects-magic.js (173 lines, ~4.1k tokens) — v0.41 MAGIC effect types (Dana Draw, Whirling Tide, Magic Bullet, Hades Disaster, Thunder Counter, Lightning Tempest).
+## packages/engine/src/02h-effects-magic.js (183 lines, ~4.3k tokens) — v0.41 MAGIC effect types (Dana Draw, Whirling Tide, Magic Bullet, Hades Disaster, Thunder Counter, Lightning Tempest).
 endAttackLocked, _matchTxt, gwCorePlus, sentToTrashFx, abTaxOn, abTaxOK, payAbTax, oppAttackHandFx, braveSummonedFx, braveSummonedEvs
 
 ## packages/engine/src/02i-effects-keywords.js (72 lines, ~1.4k tokens) — v0.49 KEYWORD EFFECTS as engine data (session D, part 1): High Speed, Crush, Holy Life.

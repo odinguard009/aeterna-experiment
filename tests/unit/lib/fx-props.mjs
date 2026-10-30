@@ -201,6 +201,8 @@ function simple(card, a) {
     case 'SYMBOLS_SET':      // v160 the Spirit's attack symbol count is set for this turn / this battle
       return only(a, ['n', 'battle', 'self']) && spirit && { onField: true, body: `G.attacker = src; G.battleNo = 3; await run(src, RA); G.attacker = null; const t = P.spirits.find(x => x.symSet);
         return t && t.symSet.n === A.n && t.symSet.battle === (A.battle ? 3 : 0) && t.symSet.turn === G.turnNo ? '' : 'symSet not set';` };
+    case 'NO_BP_DESTROY_TURN':      // v162 one of your matching Spirits carries noBpTurn = this turn
+      return only(a, ['match']) && spirit && okMatch(a.match) && { onField: true, fix: [{ m: a.match }], body: `sp(${J(mid(a.match))}, P, 1); G.turnNo = 6; await run(src, RA); return P.spirits.some(x => x.noBpTurn === 6) ? '' : 'noBpTurn not set';` };
     case 'CANT_BE_BLOCKED_BY':      // v0.175 the attacker carries noBlockBy for this battle only
       return only(a, ['color', 'levels', 'keyword', 'highSpeed']) && spirit && { onField: true, body: `G.attacker = src; G.battleNo = 4; await run(src, RA); const m = src.noBlockBy; G.attacker = null; return m && m.battleNo === 4 ? '' : 'noBlockBy not set';` };
     case 'UNBLOCKABLE_PICK':      // v157 one of your Spirits (not this one with `other`) can't be blocked this turn (or by BP <= bpLe)

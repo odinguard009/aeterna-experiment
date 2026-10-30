@@ -15118,16 +15118,53 @@
   "image": "26RBS02-X13.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (Start of Your Attack Step) Target one of your Cost 6 or less Spirits. During this turn, it can't be destroyed by BP comparison.",
-   "[LV2] (True Release) (Your Attack Step) (Once Per Turn) When you make the second or subsequent attack of the turn, if the Spirit that attacks has the \"Wailwraith\"/ \"Hexcraft\" family, you can draw a card."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "bicon": [
    "A"
   ],
-  "rcode": "X"
+  "rcode": "X",
+  "effects": [
+   {
+    "trigger": "START_ATTACK",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "NO_BP_DESTROY_TURN",
+      "match": {
+       "type": "Spirit",
+       "costLe": 6
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_ATTACKS",
+    "lv": [
+     2
+    ],
+    "once": true,
+    "match": {
+     "family": [
+      "Wailwraith",
+      "Hexcraft"
+     ]
+    },
+    "if": {
+     "firstAttack": false
+    },
+    "optional": true,
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RBS02-X14",

@@ -1,0 +1,30 @@
+// Lane K tests, file 2 (rule 1b: at most 25 tests per file, sharedBoard from lib/game.mjs).
+import { test, after } from 'node:test';
+import assert from 'node:assert/strict';
+import { sharedBoard, closeBrowser } from './lib/game.mjs';
+
+after(async () => { await closeBrowser(); });
+const SETUP = `const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true;
+  for (const q of [P, O]) { q.spirits.length = 0; q.nexus.length = 0; q.hand.length = 0; }`;
+
+test('K-122 NO_BP_DESTROY_TURN (26RBS02-X13): marks one own Cost 6 or less Spirit for this turn only', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    G.active = P.key; G.turnNo = G.turnNo || 1;
+    const c = BS.mkInst('26RBS02-X13'); c.cores = 4; P.spirits.push(c);
+    const fx = BS.CARDS['26RBS02-X13'].effects.find(e => e.trigger === 'START_ATTACK');
+    await BS.runActions({ p: P, opp: O, src: c, ctx: {} }, fx);
+    const set = P.spirits.filter(s => s.noBpTurn === G.turnNo).length; const cost = BS.CARDS[P.spirits.find(s => s.noBpTurn).id].cost;
+    return [set, cost <= 6]; })()`);
+  assert.deepEqual(r, [1, true], JSON.stringify(r));
+});
+
+test('K-123 26RBS02-X13 LV2: draws on the second or later attack of a Wailwraith/Hexcraft Spirit, not the first', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    G.active = P.key; P.deck.push(BS.mkInst('26RBS01-001'), BS.mkInst('26RBS01-001'));
+    const c = BS.mkInst('26RBS02-X13'); c.cores = BS.CARDS['26RBS02-X13'].levels[1].cores; P.spirits.push(c);
+    const go = async n => { P.attacksThisTurn = n; const h = P.hand.length; await BS.fireFx(P, 'ALLY_ATTACKS', c, { attacker: c, subject: c }); return P.hand.length - h; };
+    return [await go(1), await go(2)]; })()`);
+  assert.deepEqual(r, [0, 1], JSON.stringify(r));
+});
