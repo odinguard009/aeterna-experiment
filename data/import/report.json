@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 7089,
+  "cards": 7088,
   "per_saga": {
    "1": 676,
    "2": 313,
@@ -19,15 +19,15 @@
    "15": 355,
    "16": 334,
    "17": 110,
-   "50": 92
+   "50": 91
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 1617,
+  "skipped_curated": 1618,
   "nexus_levels_added": 707,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 451,
+  "image_problems": 450,
   "number_conflicts": 4,
   "merged": 107,
   "brave_unparsed": 171,
@@ -35,7 +35,7 @@
   "odd_reduction": 807,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 449
+  "without_image": 448
  },
  "tokens": [
   "BS73-T001",
@@ -1596,6 +1596,7 @@
   "26RBS03-018",
   "26RBS03-020",
   "26RBS03-021",
+  "26RBS03-023",
   "26RBS03-024",
   "26RBS03-025",
   "26RBS03-026",
@@ -4627,11 +4628,6 @@
   {
    "id": "26RBS03-022",
    "name": "The BoneSprite Pisketona",
-   "problem": "no image"
-  },
-  {
-   "id": "26RBS03-023",
-   "name": "The Unyielding Salisrola",
    "problem": "no image"
   },
   {

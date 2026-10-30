@@ -181,3 +181,14 @@ test('K-163 EXHAUST_OWN (26RCB01-X07): exhausts a matching own Spirit, then REFR
     return [none, m.exhausted, fx.some(e => e.flag === 'UNAFFECTED' && e.if.allHave.family === 'EX-AID')]; })()`);
   assert.deepEqual(r, [false, true, true], JSON.stringify(r));
 });
+
+test('K-164 condition ownDestroyedTurn (26RBS03-023): costAlt applies only after your own effect destroyed your Spirit this turn', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const card = BS.CARDS['26RBS03-023']; P.spirits.length = 0; P.trash.length = 0;
+    const before = effCost(P, card);
+    const v = BS.mkInst('BS48-047'); v.cores = 1; P.spirits.push(v);
+    await BS.runActions({ p: P, opp: O, src: BS.mkInst('26RBS03-023'), ctx: {} }, { actions: [{ do: 'DESTROY_OWN', match: { type: 'Spirit' } }] });
+    return [before, effCost(P, card), card.costAlt.if.ownDestroyedTurn]; })()`);
+  assert.ok(r[1] <= 6 && r[0] > r[1] && r[2] === true, JSON.stringify(r));
+});

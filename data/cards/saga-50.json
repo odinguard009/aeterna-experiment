@@ -17214,15 +17214,19 @@
     ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "When summoning this card from the Hand, if your Spirit was destroyed by your effect this turn, it becomes Cost 6. You can only use this effect of the same card name once per turn."
-  ],
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
    "A"
   ],
-  "rcode": "M"
+  "rcode": "M",
+  "costAlt": {
+   "cost": 6,
+   "if": {
+    "ownDestroyedTurn": true
+   },
+   "once": true
+  }
  },
  {
   "id": "26RBS03-024",
