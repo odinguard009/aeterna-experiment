@@ -1337,6 +1337,7 @@ color-scheme:light;}
 .mk .dtile:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
 .mk .dtile .stack{position:relative;height:150px;display:flex;align-items:center;justify-content:center}
 .mk .dtile .stack .cf{position:absolute;width:86px;font-size:.8em;transition:transform .35s var(--ease)}
+.mk .dtile .stack .cf:nth-child(2){z-index:2}
 .mk .dtile .stack .cf:nth-child(1){transform:translateX(-34px) rotate(-10deg)}
 .mk .dtile .stack .cf:nth-child(3){transform:translateX(34px) rotate(10deg)}
 .mk .dtile:hover .stack .cf:nth-child(1){transform:translateX(-50px) rotate(-16deg)}
@@ -2270,7 +2271,7 @@ html:not(.layout-pc) .dk-st-row{min-height:72px}
 html:not(.layout-pc) .mk .dgrid .dtile{grid-template-columns:76px minmax(0,1fr);align-items:start}
 html:not(.layout-pc) .mk .dgrid .dtile .stack{grid-row:1 / span 3;height:106px;display:block;margin-left:0}
 html:not(.layout-pc) .mk .dgrid .dtile .stack .cf{position:absolute;left:0;top:0;width:64px;transform:none!important}
-html:not(.layout-pc) .mk .dgrid .dtile .stack .cf:nth-child(n+2){display:none}
+html:not(.layout-pc) .mk .dgrid .dtile .stack .cf:not(.key){display:none}
 html:not(.layout-pc) .mk .dgrid .dtile>*:nth-child(5){grid-column:1 / -1}
 html:not(.layout-pc) .mk .dgrid .dtile .row .btn{flex:1 1 0;min-width:0;white-space:nowrap;padding-inline:8px;overflow:visible}
 html:not(.layout-pc) .mk .dgrid .dtile .row b.grow{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -2382,10 +2383,10 @@ html:not(.layout-pc) .lorenav .seg{display:flex;flex-direction:row;gap:6px;width
 html:not(.layout-pc) .lorenav .seg button{flex:1;min-height:36px;width:auto;justify-content:center;align-items:center;flex-direction:row;font-size:.85em}
 .lorenav .lore-minb{width:auto;flex-direction:row;align-items:center;min-height:32px}
 html.layout-pc #view-playmat .playmat-layout.has-cp{grid-template-rows:minmax(0,1fr) 64px minmax(0,1fr) auto;}
-html.layout-pc #view-playmat .hand-container-wrapper{height:calc(clamp(112px,17vh,168px) + 9px);}
+html.layout-pc #view-playmat .hand-container-wrapper{height:calc(clamp(64px,9.5vh,98px) + 9px);}
 html.layout-pc #view-playmat .hand-area{height:auto;align-items:center;padding:4px;}
-html.layout-pc #view-playmat .hand-area .tcg-card{height:clamp(112px,17vh,168px);width:auto;aspect-ratio:63 / 88;flex:none;}
-html.layout-pc #view-playmat .pc-hand-flank{height:auto;align-self:stretch;}
+html.layout-pc #view-playmat .hand-area .tcg-card{height:clamp(64px,9.5vh,98px);width:auto;aspect-ratio:63 / 88;flex:none;}
+html.layout-pc #view-playmat .pc-hand-flank{height:46px;align-self:end;}
 html.layout-pc #view-playmat .zone-box{container-type:size;overflow:hidden;}
 html.layout-pc #view-playmat .zone-box .zone-label{font-size:clamp(7px,16cqh,10px) !important;padding-inline:clamp(4px,8cqw,10px);}
 html.layout-pc #view-playmat .zone-box .pv b{font-size:clamp(11px,30cqh,20px);}
@@ -2401,6 +2402,82 @@ html.layout-pc #view-playmat .trash2 .gems{max-width:100%;}
 .mk .cotd .cfw{width:170px;margin:0 auto}
 .mk .cotd.solo{flex-direction:column-reverse;align-items:center}
 }
+.mk .cotd .cd-who{display:flex;flex-direction:column;gap:2px;margin-top:-4px}
+.mk .cotd .cd-name{font-size:1.12em;line-height:1.25;font-weight:800;overflow-wrap:anywhere}
+.mk .cotd .cd-series{font-size:.8em;color:var(--text2);letter-spacing:.04em}
+.mk .cotd .cinfo .cd-who{align-items:inherit}
+@container fr (min-width:1001px){
+html.layout-pc #view-lobby .cotd{top:50%;transform:translateY(-50%)}
+html.layout-pc #view-lobby .lob-ctl{bottom:26px}
+}
+@container fr (min-width:701px) and (max-width:1000px){
+html.layout-pc #view-lobby .lob-ctl{top:12px;left:56px;right:auto;bottom:auto}
+html.layout-pc #view-lobby .herotop>.l{padding-top:62px}
+}
+html.layout-pc body[data-view="view-lobby"] .bugfab,body[data-view="view-lobby"].mk .bugfab{display:none}
+@container fr (max-width:700px){body[data-view="view-lobby"].mk .bugfab{display:inline-flex}}
+#view-lobby .lob-foot{display:none}
+@container fr (max-width:700px){
+#view-lobby .lob-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 14px;margin:6px 14px 22px;padding:10px 12px;font-size:.74em;color:var(--text2);text-align:center;border-top:1px solid var(--line)}
+#view-lobby .lob-foot a{color:var(--you-text);font-weight:800}
+[data-mode="light"] #view-lobby .lob-foot a{text-decoration:underline}
+}
+.dk-st-btns .btn{min-width:72px}
+.dk-st-row{grid-template-columns:44px minmax(0,1fr)}.dk-st-btns{grid-column:1/-1}.dk-st-btns .btn{flex:1}
+.rc-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(220px,1fr);gap:16px;align-items:start}
+@container fr (max-width:700px){.rc-grid{grid-template-columns:minmax(0,1fr)}}
+.rc-sec{padding:10px 14px;display:flex;flex-direction:column;gap:2px}
+.rc-row{display:grid;grid-template-columns:34px minmax(0,1fr) auto 62px;align-items:center;gap:10px;min-height:34px;padding:4px 6px;border:0;border-bottom:1px solid var(--line);background:transparent;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.rc-row:last-child{border-bottom:0}
+button.rc-row:hover,button.rc-row:focus-visible{background:var(--you-soft)}
+.rc-row.miss{cursor:default;opacity:.72}
+.rc-n{font-variant-numeric:tabular-nums;color:var(--you-text)}
+.rc-nm{min-width:0;overflow-wrap:anywhere}
+.rc-id{font-size:.72em;color:var(--text3);font-variant-numeric:tabular-nums}
+.rc-c{font-size:.78em;color:var(--text2);text-align:right}
+@container fr (max-width:700px){.rc-row{grid-template-columns:30px minmax(0,1fr) 54px}.rc-id{display:none}}
+.rc-curve{display:flex;align-items:flex-end;gap:5px;height:130px;padding-top:6px}
+.rc-bar{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px;height:100%;font-size:.74em;color:var(--text2)}
+.rc-bar i{display:block;width:100%;min-height:2px;background:var(--you);opacity:.85;border-radius:2px 2px 0 0}
+.rc-bar b{color:var(--text);font-variant-numeric:tabular-nums}
+html.layout-pc #view-playmat .field-row .fslot{height:min(97%,calc(var(--card-w) * 2.4));}
+.mk .ae-pop .pgrid{--cols:3!important;flex:none;padding:12px 0 4px;gap:8px}
+.mk .pcol{clip-path:none;border:1px solid var(--line2);border-radius:10px;box-shadow:none;padding:10px 4px 8px;min-height:64px;justify-content:center;gap:7px;cursor:pointer}
+.mk .pcol i{width:28px;height:28px;border-radius:50%;clip-path:none;background:var(--c);box-shadow:0 0 0 2px var(--line2)}
+.mk .pcol.on,.mk .pcol[aria-pressed="true"]{border-color:var(--you);background:var(--you-soft);box-shadow:none}
+.mk .pcol[aria-pressed="true"] i{box-shadow:0 0 0 2px var(--text)}
+.mk .pcol:hover{border-color:var(--you-text)}
+.mk .pcol[aria-pressed="true"]::after{display:none}
+#bld.db-min #db-tbar .r2,#bld.db-min #db-tbar .hidem,#bld.db-min #db-tbar .vsep{display:none}
+#bld.db-min #db-chips{display:none}
+.mk #db-tbar .r1>#db-min{flex:none;white-space:nowrap}
+html.layout-pc #view-playmat .side-flank-pc .zone-box.zone-chip{flex:none;height:46px;}
+html.layout-pc #view-playmat .zone-box.zone-chip .zone-label{font-size:9px !important;}
+html.layout-pc #view-playmat .field-row-wrapper.nexus-row{flex:1;}
+html.layout-pc #view-playmat .playmat-layout.has-cp{grid-template-rows:minmax(0,1fr) 56px minmax(0,1fr) auto;}
+#card-panel .cp-min{position:absolute;top:6px;right:6px;width:24px;height:24px;border:1px solid var(--ae-line2,#ffffff40);background:var(--ae-chip,#ffffff10);color:var(--ae-text,#e6eaf0);cursor:pointer;font-size:12px;line-height:1;border-radius:4px;z-index:2;}
+#card-panel .cp-min:hover,#card-panel .cp-min:focus-visible{box-shadow:inset 0 0 0 1px var(--you);outline:none;}
+html.layout-pc #view-playmat .playmat-layout.has-cp{}
+html.layout-pc #view-playmat .playmat-layout.has-cp > #card-panel{position:relative;}
+html.layout-pc #view-playmat .playmat-layout.has-cp.cp-min{grid-template-columns:minmax(0,1fr) 36px;}
+html.layout-pc #view-playmat #card-panel.min{padding:6px 0;overflow:hidden;}
+html.layout-pc #view-playmat #card-panel.min .cp-min{position:static;margin:0 auto;}
+html.layout-pc #view-playmat #card-panel.min .cp-title{writing-mode:vertical-rl;margin:12px auto 0;}
+html.layout-pc:has(#view-playmat.active .playmat-layout.cp-min) #ae-fx{right:40px;}
+html:not(.layout-pc) .fc-body .burst-area,html:not(.layout-pc) .fc-body .soul-area,html:not(.layout-pc) .fc-body.mir .burst-area,html:not(.layout-pc) .fc-body.mir .soul-area{align-self:center;}
+html.layout-pc #view-playmat .hand-container-wrapper > .hand-area{grid-column:2;}
+@container fr (max-width:700px){.mk #db-tbar,.mk #lib-tbar{padding-inline:12px}.mk .btool .search svg{left:18px}.mk .btool .search input{padding-left:42px;padding-right:12px;font-size:.92em;text-overflow:ellipsis}}
+#bld.db-min .ddmenu{display:none}
+.mk #db-tbar .r1>#db-min{position:relative;z-index:96}
+#view-playmat .field-row .empty-note{margin:auto}
+#view-playmat .field-row:has(>.empty-note){justify-content:center!important}
+#view-playmat .field-row>.empty-note{margin-inline:auto!important;flex:none}
+#view-playmat .field-row:has(>.ph-slot){justify-content:center!important}
+#view-playmat .field-row>.ph-slot{margin-inline:auto!important}
+html.layout-pc #ae-eff-stack{left:8px;top:46px;bottom:auto;}
+.ae-eff{cursor:pointer;}
+.ae-eff:focus-visible{outline:2px solid var(--you);outline-offset:1px;}
+html:not(.layout-pc) #ae-eff-stack{top:38px;}
 </style>
 </head>
 <body>
@@ -2481,6 +2558,7 @@ html.layout-pc #view-playmat .trash2 .gems{max-width:100%;}
       <div class="card news"><span class="sec" style="margin:0">Daily missions</span><div id="home-missions"></div></div>
       <div class="card news"><span class="sec" style="margin:0">What's new</span><b>Key Spirit is in</b><span class="sub" style="font-size:.84em">Pick one Key Spirit per deck; draws favour its copies.</span><button class="btn sm" style="align-self:flex-start" data-a="go-howto">Read the note</button></div>
       <div class="card news" id="home-last-card"><span class="sec" style="margin:0">Last match</span><div id="home-last"></div></div></div>
+    <div class="lob-foot" id="lob-foot"><span id="home-ver2" translate="no">Aeterna</span><a href="#" data-a="bug-open">Report A Bug</a><span>Unofficial non-commercial fan project</span></div>
   </div>
 </div>
 
@@ -2524,6 +2602,10 @@ html.layout-pc #view-playmat .trash2 .gems{max-width:100%;}
 
 <div id="view-card" class="app-view">
   <div class="pg scroll" id="cp-page"></div>
+</div>
+
+<div id="view-recipe" class="app-view">
+  <div class="pg scroll" id="rc-page"></div>
 </div>
 
 <div id="view-play" class="app-view">
@@ -2579,12 +2661,13 @@ html.layout-pc #view-playmat .trash2 .gems{max-width:100%;}
   <div class="bld" id="bld">
     <section class="bpool" aria-label="Card pool">
       <div class="btool" id="db-tbar">
-        <div class="r1"><div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="db-search" class="in" type="search" placeholder="Search name, code or text" aria-label="Search cards ( / )" autocomplete="off" spellcheck="false" style="width:100%"></div>
+        <div class="r1"><div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="db-search" class="in" type="search" placeholder="Search name, code or text" aria-label="Search cards ( / )" autocomplete="off" spellcheck="false" style="width:100%"></div><button class="btn sm" id="db-min" data-a="db-min" aria-pressed="false" aria-controls="db-tbar" title="Hide the filter buttons and keep the search">▲ Hide filters</button>
           <select id="db-set" class="in hidem" title="Set" aria-label="Set"></select>
           <input id="db-family" class="in hidem" type="search" placeholder="Family" aria-label="Family" autocomplete="off" style="max-width:150px">
           <div class="seg hidem" role="group" aria-label="Card size" id="db-size"></div></div>
         <div class="r2"><span id="db-colbtn"></span><div class="pips" id="db-pips"></div><span class="vsep"></span><span id="db-types" class="row" style="gap:7px"></span><span class="vsep"></span><div class="costs" id="db-costs"></div></div>
-        <div class="r2"><span id="db-groups" class="row" style="gap:7px"></span><button class="chip" id="db-play" data-a="db-chip" data-v="flag:complete" aria-pressed="false">✓ Playable Only</button><button class="chip" id="db-in" data-a="db-chip" data-v="flag:only" aria-pressed="false">In Deck</button><button class="chip" id="db-legal" data-a="db-chip" data-v="flag:legal" aria-pressed="false">Legal Only</button><span id="db-clear-f"></span><span class="grow"></span><span id="db-count" class="sub hidem" role="status" style="font-size:.78em"></span></div></div>
+        <div class="r2"><span id="db-groups" class="row" style="gap:7px"></span></div>
+        <div class="r2"><span id="db-sortbtn"></span><button class="chip" id="db-play" data-a="db-chip" data-v="flag:complete" aria-pressed="false">✓ Playable Only</button><button class="chip" id="db-in" data-a="db-chip" data-v="flag:only" aria-pressed="false">In Deck</button><button class="chip" id="db-legal" data-a="db-chip" data-v="flag:legal" aria-pressed="false">Legal Only</button><span id="db-clear-f"></span><span class="grow"></span><span id="db-count" class="sub hidem" role="status" style="font-size:.78em"></span></div></div>
       <div class="pgrid scroll" id="db-card-list" style="--cols:6" aria-label="Cards"></div>
     </section>
     <div class="scrim" data-a="db-sheet" data-v="" aria-hidden="true"></div>
@@ -2631,7 +2714,8 @@ html.layout-pc #view-playmat .trash2 .gems{max-width:100%;}
         <input id="lib-family" class="in hidem" type="search" placeholder="Family" aria-label="Family" autocomplete="off" style="max-width:150px">
         <div class="seg hidem" role="group" aria-label="Card size" id="lib-size"></div></div>
       <div class="r2"><span id="lib-colbtn"></span><div class="pips" id="lib-pips"></div><span class="vsep"></span><span id="lib-types" class="row" style="gap:7px"></span><span class="vsep"></span><div class="costs" id="lib-costs"></div></div>
-      <div class="r2"><span id="lib-groups" class="row" style="gap:7px"></span><button class="chip" id="lib-play" data-a="lib-complete">✓ Playable Only</button><span id="lib-clear"></span><span class="grow"></span><span id="lib-count" class="sub hidem" role="status" style="font-size:.78em"></span></div></div>
+      <div class="r2"><span id="lib-groups" class="row" style="gap:7px"></span></div>
+      <div class="r2"><span id="lib-sortbtn"></span><button class="chip" id="lib-play" data-a="lib-complete">✓ Playable Only</button><span id="lib-clear"></span><span class="grow"></span><span id="lib-count" class="sub hidem" role="status" style="font-size:.78em"></span></div></div>
     <div class="pgrid scroll" id="lib-grid" style="--cols:6" aria-label="Cards"></div>
     <details class="card flat" style="margin:12px 20px 20px;padding:10px 16px"><summary style="cursor:pointer;font-weight:700">Import &amp; export · card data, images, deck list</summary>
       <div class="col" style="gap:14px;margin-top:10px">
@@ -2935,7 +3019,7 @@ function bindHost(h) {
    type: 'Spirit' | 'Nexus' | 'Magic'      symbol: card color     symbols: number of symbols
    reduction: {color: n}         levels: [{cores, bp}]  (Nexus levels have no bp)
    --------------------------------------------------------------------- */
-const VERSION = '0.197.0';
+const VERSION = '0.198.0';
 const CARDS = {};
 function defCard(o) {
   CARDS[o.id] = Object.assign({ type: 'Spirit', reduction: {}, symbols: 1, families: [], keywords: [], implemented: true, desc: 'Vanilla test card (no effect).', block: 'A' }, o);
@@ -8671,7 +8755,7 @@ function fieldCardHTML(key, kind, f) {
 }
 function rowHTML(title, scroll, key, items, emptyText, cls, pad, tag, cells) {       // items: [{kind, f}]; tag (v0.155.0): the hand-count tag beside a Nexus
   return `<div class="field-row-wrapper ${cls || ''}"><div class="row-header-badge"><span>${title}</span></div>${tag || ''}
-    <div class="field-row" data-scroll="${scroll}">${cells ? items.map(o => fieldCardHTML(key, o.kind, o.f)).join('') + '<div class="slot-ph" aria-hidden="true">Empty</div>'.repeat(Math.max(0, cells - items.length)) : items.length ? items.map(o => fieldCardHTML(key, o.kind, o.f)).join('') + (pad || '') : (pad || `<span class="empty-note">${emptyText}</span>`)}</div></div>`;   // v0.157.0: PC rows show their locked cells (5 Spirits, 1 Nexus) as dashed "Empty" slots, like the mockup
+    <div class="field-row" data-scroll="${scroll}">${cells && !items.length ? '<div class="slot-ph" aria-hidden="true">Empty</div>' : items.length ? items.map(o => fieldCardHTML(key, o.kind, o.f)).join('') + (pad || '') : (pad || `<span class="empty-note">${emptyText}</span>`)}</div></div>`;   // v0.157.0: PC rows show their locked cells (5 Spirits, 1 Nexus) as dashed "Empty" slots, like the mockup
 }
 /* Burst / Mirage Area (top-left corner of each field): sleeve = Burst set face down, card face = Mirage set face up */
 function burstAreaHTML(p) {
@@ -8719,6 +8803,7 @@ function zoneBox(key, zone, label, valueHTML) {
   return `<div class="zone-box ${key === 'player' ? 'side-you' : 'side-cpu'}" data-a="zone" data-v="${key}:${zone}"><div class="zone-label"><span>${label}</span></div>${valueHTML}</div>`;
 }
 const pv = n => `<span class="pv"><b>${n}</b></span>`;
+const zoneChip = (key, zone, label, valueHTML) => zoneBox(key, zone, label, valueHTML).replace('class="zone-box ', 'class="zone-box zone-chip ');   // PC: a slim box (owner review 2026-10-30: Void sits in a slim chip, Banished has the full box)
 /* v0.158.0 (owner review): the Trash area is bigger and split in two - the cards (Trash) and the cores (Core Trash); the core half keeps data-v "trash" (core flights land there, its zone view lists both) */
 function trashBox(key, p, mark) {
   const tc = p.trashCores, mine = key === 'player';
@@ -8802,8 +8887,8 @@ function renderBoard() {
   const turnLbl = G.over ? '<span>GAME</span> <span>OVER</span>' : cpuTurn ? `<span>OPPONENT</span> <span>TURN ${G.turnNo}</span>` : `<span>PLAYER</span> <span>TURN ${G.turnNo}</span>`;   // v0.152.0: the band carries the turn number, like the mockup
   app.innerHTML = `
     <header class="ae-head"><div class="ae-turn"><h1 translate="no">Aeterna</h1><span class="ae-ver">v${VERSION}</span>${G.over ? '' : `<span class="ae-turnno">${cpuTurn ? 'OPPONENT' : 'PLAYER'} TURN ${G.turnNo}</span>`}</div><span class="ae-step"><span>${G.over ? 'GAME OVER' : esc(stepName)}</span></span><span class="ae-fill"><span class="ae-sub">${G.format === 'standard' ? 'Standard' : 'Eternal'} · vs ${esc(cap(cpuProfileName(null)))} CPU</span></span>
-      <span class="ae-tools"><button class="btn-nav-small ae-btn" data-a="log-toggle" title="Game log (L)"><span class="l">LOG</span><span class="s">Log</span></button><button class="btn-nav-small ae-btn" data-a="emote" title="Emoticon (one every 30 s)" aria-label="Emoticon"><span class="l">EMOTE</span><span class="s" aria-hidden="true">☺</span></button><button class="btn-nav-small ae-btn" data-a="options" title="Settings (the match waits)" aria-label="Options"><span class="l">OPTIONS</span><span class="s">Options</span></button><button class="btn-nav-small ae-btn" data-a="bug-open" aria-label="Report a bug" title="Report A Bug"><span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 7a3 3 0 016 0M7 11h10M12 11v9M5 8l3 2M19 8l-3 2M4 14h3M17 14h3M5 20l3-3M19 20l-3-3"/><rect x="7" y="8" width="10" height="11" rx="5"/></svg></span></button><button class="btn-nav-small ae-btn dng" data-a="leave" aria-label="Concede and leave the match"><span class="l">CONCEDE</span><span class="s">Concede</span></button></span></header>
-    <div class="playmat-layout${isPC() ? ' has-cp' : ''}">${isPC() ? cardPanelHTML() : ''}
+      <span class="ae-tools"><button class="btn-nav-small ae-btn" data-a="log-toggle" title="Game log (L)" aria-label="Game log"><span class="l">LOG</span><span class="s" aria-hidden="true">📄</span></button><button class="btn-nav-small ae-btn" data-a="emote" title="Emoticon (one every 30 s)" aria-label="Emoticon"><span class="l">EMOTE</span><span class="s" aria-hidden="true">☺</span></button><button class="btn-nav-small ae-btn" data-a="options" title="Settings (the match waits)" aria-label="Options"><span class="l">OPTIONS</span><span class="s" aria-hidden="true">⚙</span></button><button class="btn-nav-small ae-btn" data-a="bug-open" aria-label="Report a bug" title="Report A Bug"><span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 7a3 3 0 016 0M7 11h10M12 11v9M5 8l3 2M19 8l-3 2M4 14h3M17 14h3M5 20l3-3M19 20l-3-3"/><rect x="7" y="8" width="10" height="11" rx="5"/></svg></span></button><button class="btn-nav-small ae-btn dng" data-a="leave" aria-label="Concede and leave the match"><span class="l">CONCEDE</span><span class="s">Concede</span></button></span></header>
+    <div class="playmat-layout${isPC() ? ' has-cp' + (CP_MIN ? ' cp-min' : '') : ''}">${isPC() ? cardPanelHTML() : ''}
       <div class="half-field">
         <div class="side-flank-pc">
           ${trashBox('opponent', O, 'cpu-sleeve')}
@@ -8812,7 +8897,8 @@ function renderBoard() {
         </div>
         ${fieldAreaHTML(O, false)}
         <div class="side-flank-pc">
-          ${zoneBox('opponent', 'void', 'Void', pv(O.void))}
+          ${zoneChip('opponent', 'void', 'Void', pv(O.void))}
+          ${zoneBox('opponent', 'removed', 'Banished', pv(O.removed.length))}
           ${zoneBox('opponent', 'reserve', 'Reserve', resPlate(O))}
           ${zoneBox('opponent', 'life', 'Life', lifePlate(O))}
         </div>
@@ -8832,7 +8918,8 @@ function renderBoard() {
         <div class="side-flank-pc">
           ${zoneBox('player', 'life', 'Life', lifePlate(P))}
           ${zoneBox('player', 'reserve', 'Reserve', resPlate(P))}
-          ${zoneBox('player', 'void', 'Void', pv(P.void))}
+          ${zoneBox('player', 'removed', 'Banished', pv(P.removed.length))}
+          ${zoneChip('player', 'void', 'Void', pv(P.void))}
         </div>
         ${fieldAreaHTML(P, true)}
         <div class="side-flank-pc">
@@ -8842,9 +8929,7 @@ function renderBoard() {
         </div>
       </div>
       <div class="hand-container-wrapper">
-        <div class="pc-hand-flank side-you" data-a="zone" data-v="player:removed"><div class="zone-label"><span>Banished</span></div><span class="sub-text">${pileHTML(P.removed.length)}</span></div>
         <div class="hand-area" data-scroll="hand">${P.hand.map((h, i) => handCardHTML(h, i, P.hand.length)).join('')}</div>
-        <div class="pc-hand-flank side-you" data-a="zone" data-v="player:hand"><div class="zone-label"><span>Hand Cnt</span></div><span class="sub-text">${pv(P.hand.length)}</span></div>
       </div>
     </div>`;
   dqa('[data-scroll]').forEach(e => { if (keep[e.dataset.scroll]) { e.style.scrollBehavior = 'auto'; e.scrollLeft = keep[e.dataset.scroll]; e.style.scrollBehavior = ''; } });   // v0.92.0: at once, not smooth, so the cues measure the real card places
@@ -8963,6 +9048,7 @@ function switchView(id) {
   if (id === 'view-howto') renderLearn();
   if (id === 'view-profile') renderProfilePage();
   if (id === 'view-card') renderCardPage();
+  if (id === 'view-recipe') renderRecipe();
 }
 function renderSettings() { $('set-hist').innerHTML = histHTML(); $('set-cpu').innerHTML = CPU_PROFILE_NAMES.map(n => `<option value="${n}">${cap(n)}</option>`).join(''); $('set-cpu').value = cpuProfileName(null); $('set-speed').value = SETTINGS.speed; $('set-sound').value = SETTINGS.sound ? 'on' : 'off'; $('set-anim').value = SETTINGS.anim || 'auto'; $('set-effpop').value = SETTINGS.effPop === 'off' ? 'off' : 'on'; $('set-lp').value = SETTINGS.longpress === 'off' ? 'off' : 'on'; $('set-cb').value = SETTINGS.cbShapes ? 'on' : 'off'; $('set-hc').value = SETTINGS.hiContrast ? 'on' : 'off'; $('set-ts').value = SETTINGS.textSize || 'normal';
   renderSetPage(); $('set-back').hidden = !G || !!G.over; }   // v0.122.0 U14b: Options from a running match shows BACK TO MATCH; v0.68.0 U4: colour grid, Dark/Light, playmat and CPU colour rows (13d-pages.js)
@@ -9171,7 +9257,8 @@ function dbBar() {
   $('db-types').innerHTML = filterTypesHTML(DBF, 'db-chip');
   $('db-costs').innerHTML = DB_COSTS.map(k => `<button class="cbtn${on(DBF.costs, k) ? ' on' : ''}" data-a="db-chip" data-v="costs:${k}" aria-pressed="${on(DBF.costs, k)}" aria-label="Cost ${k}">${k === '10' ? '10+' : k}</button>`).join('');
   $('db-colbtn').innerHTML = ddButton(DBF, 'colour', 'Colour', 'db-dd') + ddButton(DBF, 'type', 'Type', 'db-dd') + ddButton(DBF, 'cost', 'Cost', 'db-dd');
-  $('db-groups').innerHTML = ddButton(DBF, 'group', 'Group', 'db-dd') + ddButton(DBF, 'family', 'Family', 'db-dd') + ddButton(DBF, 'bp', 'BP', 'db-dd') + ddButton(DBF, 'cores', 'Cores', 'db-dd') + ddButton(DBF, 'icon', 'Block', 'db-dd') + ddButton(DBF, 'rarity', 'Rarity', 'db-dd') + ddButton(DBF, 'collab', 'Collab', 'db-dd') + ddButton(DBF, 'sort', 'Sort', 'db-dd');
+  $('db-groups').innerHTML = ddButton(DBF, 'group', 'Group', 'db-dd') + ddButton(DBF, 'family', 'Family', 'db-dd') + ddButton(DBF, 'bp', 'BP', 'db-dd') + ddButton(DBF, 'cores', 'Cores', 'db-dd') + ddButton(DBF, 'icon', 'Block', 'db-dd') + ddButton(DBF, 'rarity', 'Rarity', 'db-dd') + ddButton(DBF, 'collab', 'Collab', 'db-dd');
+  $('db-sortbtn').innerHTML = ddButton(DBF, 'sort', 'Sort', 'db-dd');            // owner review 2026-10-30: Sort shares a row with the three flag chips
   [['db-play', 'complete'], ['db-in', 'only'], ['db-legal', 'legal']].forEach(([id, k]) => { const b = $(id); b.classList.toggle('on', DBF[k]); b.setAttribute('aria-pressed', String(DBF[k])); });
   dbMenu();
   if (set.dataset.sig !== sig) { set.innerHTML = '<option value="">All sets</option>' + sets.map(x => `<option value="${esc(x)}">${esc(x)}</option>`).join(''); set.dataset.sig = sig; }
@@ -9179,7 +9266,17 @@ function dbBar() {
   if (document.activeElement !== $('db-family')) $('db-family').value = DBF.family;
   $('db-size').innerHTML = DB_SIZE_LIST.map(([v, l]) => `<button data-a="db-size" data-v="${v}" aria-pressed="${DB_SIZE === v}">${l}</button>`).join('');
   const n = dbActiveCount(); $('db-clear-f').innerHTML = n ? `<button class="chip" data-a="db-freset">Clear ${n} ✕</button>` : '';
+  dbMinApply(n);
 }
+/* Hide / show filters (owner review 2026-10-30): everything in the toolbar except the search box folds away, like the Library's "Hide filters". Remembered on this device. */
+let DB_MIN = false; try { DB_MIN = localStorage.getItem('bse.dbmin') === '1'; } catch (e) { /* blocked: this visit only */ }
+function dbMinApply(n) {
+  const b = $('db-min'), v = $('bld'); if (!b || !v) return;
+  v.classList.toggle('db-min', DB_MIN); b.setAttribute('aria-pressed', String(DB_MIN));
+  if (n === undefined) n = dbActiveCount();
+  b.textContent = DB_MIN ? '▼ Show filters' + (n ? ` (${n})` : '') : '▲ Hide filters';
+}
+function dbMinToggle() { DBF.dd = ''; dbMenu(); DB_MIN = !DB_MIN; try { localStorage.setItem('bse.dbmin', DB_MIN ? '1' : '0'); } catch (e) { /* blocked */ } dbMinApply(); }
 function dbMenu() {                   // the dropdown menu (Colour, Type and Cost on phone, Group everywhere)
   document.querySelectorAll('#db-tbar .ddmenu').forEach(m => m.remove());
   const tb = $('db-tbar'), btn = DBF.dd && tb.querySelector(`[data-a="db-dd"][data-v="${DBF.dd}"]`); if (!btn) return;
@@ -9518,7 +9615,7 @@ document.addEventListener('input', e => {
    --------------------------------------------------------------------- */
 const NAV_HIDDEN = ['view-playmat'];
 const MK_OFF = [];   // v0.160.0: every view is ported; the list stays as the switch for a view that must keep the old stylesheet
-const MK_TITLES = { 'view-lobby': 'Home', 'view-play': 'Play', 'view-decks': 'My decks', 'view-library': 'Library', 'view-deckbuilder': 'Deck builder', 'view-settings': 'Settings', 'view-profile': 'Profile', 'view-card': 'Card', 'view-howto': 'Learn', 'view-online': 'Online' };
+const MK_TITLES = { 'view-recipe': 'Recipe', 'view-lobby': 'Home', 'view-play': 'Play', 'view-decks': 'My decks', 'view-library': 'Library', 'view-deckbuilder': 'Deck builder', 'view-settings': 'Settings', 'view-profile': 'Profile', 'view-card': 'Card', 'view-howto': 'Learn', 'view-online': 'Online' };
 function navSync(id) {
   if (typeof document === 'undefined') return;
   const v = id || (document.querySelector('.app-view.active') || {}).id || 'view-lobby';
@@ -9526,7 +9623,7 @@ function navSync(id) {
   document.body.classList.toggle('has-nav', !NAV_HIDDEN.includes(v));
   document.body.classList.toggle('mk', !MK_OFF.includes(v));         // v0.137.0: the pages ported from the mockup take its stylesheet; the others keep the old one until ported
   const pt = $('pb-title'); if (pt) pt.textContent = MK_TITLES[v] || '';
-  dqa('#app-tabs [data-nav], #mk-tabbar [data-nav]').forEach(b => { if (b.dataset.nav === (v === 'view-card' ? 'view-library' : v)) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
+  dqa('#app-tabs [data-nav], #mk-tabbar [data-nav]').forEach(b => { if (b.dataset.nav === (v === 'view-card' ? 'view-library' : v === 'view-recipe' ? 'view-decks' : v)) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
   document.querySelectorAll('#app-nav .ibtn[data-a="go-settings"]').forEach(b => { if (v === 'view-settings') b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
   themePop(false);
   navTools();
@@ -9564,10 +9661,11 @@ const MK_TILES = [['⚔', 'Match vs CPU', 'go-play', () => `${SLOTS[ACTIVE_SLOT]
 function renderHome() {
   if (typeof document === 'undefined' || !$('home-sub')) return;
   const sl = SLOTS[ACTIVE_SLOT], t = deckTotal(PLAYER_DECK), ok = t && validateDeck(PLAYER_DECK, FORMAT).ok;
-  const top = sl && Object.keys(sl.cards).filter(id => CARDS[id] && sl.cards[id]).sort((a, b) => sl.cards[b] - sl.cards[a])[0];
+  const top = sl && dkCover(sl.cards, sl.key)[0];
   $('home-cont').innerHTML = `${top ? `<div style="width:36px">${cardFaceHTML(CARDS[top], false)}</div>` : ''}<div><span class="mut" style="font-size:.72em;letter-spacing:.14em;text-transform:uppercase;font-weight:800">Continue with</span><br><b>${esc(sl ? sl.name : 'Deck')}</b> <span class="mut">· ${fmtTitle()} · ${t}/40${ok ? '' : ' · not ready'}</span></div><button class="btn sm" data-a="go-deck">Edit</button>`;
   $('home-tiles').innerHTML = MK_TILES.map(x => `<button class="card tile2" data-a="${x[2]}"><span class="ic">${x[0]}</span><span><b>${x[1]}</b><span>${esc(x[3]())}</span></span></button>`).join('');
   $('home-ver').textContent = 'Aeterna v' + VERSION;
+  if ($('home-ver2')) $('home-ver2').textContent = 'Aeterna v' + VERSION;
   renderHomeMore();
 }
 function cardOfDay(d = new Date()) {
@@ -9597,11 +9695,13 @@ function renderHomeMore() {
   const id = cardOfDay(), c = CARDS[id], fl = c && lore()[id];
   const cf = c ? `<button class="cfw" style="border:0;background:none;padding:0" data-a="cp-open" data-v="${esc(id)}" aria-label="Open ${esc(c.name)}">${mkFace(c)}</button>` : '';
   const left = (() => { const t = Math.max(0, Math.floor((864e5 - (Date.now() % 864e5)) / 1000)); return [Math.floor(t / 3600), Math.floor(t % 3600 / 60), t % 60].map(n => String(n).padStart(2, '0')).join(':'); })();
+  const set = String(id).split('-')[0], sg = typeof sagaOf === 'function' ? sagaOf(set) : 0;     // owner review 2026-10-30: the card's name and series sit right under the heading
+  const who = c ? `<div class="cd-who"><b class="cd-name" translate="no">${esc(c.name)}</b><span class="cd-series">Series ${esc(set)}${sg ? ' · ' + esc(SAGA_NAMES[Number(sg) - 1] || '') : ''}</span></div>` : '';
   const btns = `<div class="row" style="gap:8px;flex-wrap:wrap"><button class="btn sm pri" data-a="cp-open" data-v="${esc(id)}">Card Page</button><button class="btn sm" data-a="dbcard" data-v="${esc(id)}">+ Add To Deck</button></div>`;
   const foot = `<span class="sub" style="font-size:.76em">New card at 00:00 UTC · in <span class="cd" id="cd">${left}</span></span>`;
   $('cotd').className = 'cotd' + (fl ? '' : ' solo');
-  $('cotd').innerHTML = fl ? `${cf}<div class="card qb"><span class="eyebrow">Card Of The Day</span><div class="qm">“</div><div class="qt">${esc(fl).replace(/\n/g, '<br>')}</div><span class="mut" style="font-size:.8em">Flavor Text · ${esc(c.name)} · ${esc(id)}</span>${btns}${foot}</div>`
-    : `<div class="col cinfo"><span class="eyebrow">Card Of The Day</span>${c ? `<b>${esc(c.name)}</b><span class="sub">No flavor text on this card.</span>${btns}` : ''}${foot}</div>${cf}`;
+  $('cotd').innerHTML = fl ? `${cf}<div class="card qb"><span class="eyebrow">Card Of The Day</span>${who}<div class="qm">“</div><div class="qt">${esc(fl).replace(/\n/g, '<br>')}</div><span class="mut" style="font-size:.8em">Flavor Text · ${esc(id)}</span>${btns}${foot}</div>`
+    : `<div class="col cinfo"><span class="eyebrow">Card Of The Day</span>${c ? `${who}<span class="sub">No flavor text on this card.</span>${btns}` : ''}${foot}</div>${cf}`;
   $('home-missions').innerHTML = dailyMissions().map(m => `<div class="mission"><span class="grow">${esc(m.txt)}</span><div class="bar" style="max-width:90px"><i style="width:${Math.min(100, m.v / m.goal * 100)}%"></i></div><b style="width:36px;text-align:right">${m.v}/${m.goal}</b></div>`).join('') + '<span class="mut" style="font-size:.74em">Resets at 00:00 UTC.</span>';
   const h = HISTORY && HISTORY[HISTORY.length - 1];
   $('home-last').innerHTML = h ? `<div class="row"><span class="tag">${esc(h.won ? 'Win' : 'Loss')}</span><b>vs ${esc(h.cpu || 'CPU')}</b></div><span class="sub" style="font-size:.84em">Turn ${h.turns || '?'} · ${esc(h.you || '')}</span><button class="btn sm" style="align-self:flex-start" data-a="go-history">History</button>`
@@ -10044,9 +10144,18 @@ function dkColors(cards) {                          // the deck's colours, most 
   for (const [id, k] of Object.entries(cards)) { const c = CARDS[id]; if (c && k) for (const col of cardColors(c)) if (COLORS.includes(col)) n[col] = (n[col] || 0) + k; }
   return Object.keys(n).sort((a, b) => n[b] - n[a]).slice(0, 3);
 }
-function dkFan(cards) {                              // tile art: the deck's three most-played cards, fanned (mockup .stack)
-  const top = Object.keys(cards).filter(id => CARDS[id] && cards[id]).sort((a, b) => cards[b] - cards[a]).slice(0, 3);
-  return `<div class="stack" aria-hidden="true">${top.map(id => `<div class="cf">${cardFaceHTML(CARDS[id], false)}</div>`).join('')}</div>`;
+/* Deck cover (owner review 2026-10-30): the deck's key card is the front of its cover. Order of preference: the marked Key Spirit, then a
+   Grandwalker / Contract Nexus (Grandwalker family, a "...Contractor" name or a CX Nexus), then the most-played card. The two other cover
+   cards follow the same order. Display only. */
+const dkKeyNexus = id => { const c = CARDS[id]; return !!c && c.type === 'Nexus' && ((c.families || []).includes('Grandwalker') || /Contractor/.test(c.name) || /-CX\d+$/.test(id)); };
+function dkCover(cards, key) {                       // up to 3 card ids, the key card first
+  const have = Object.keys(cards).filter(id => CARDS[id] && cards[id] > 0);
+  const rank = id => (key && id === key ? 0 : dkKeyNexus(id) ? 1 : 2);
+  return have.sort((a, b) => rank(a) - rank(b) || cards[b] - cards[a] || DB_COLL.compare(a, b)).slice(0, 3);
+}
+function dkFan(cards, key) {                         // tile art: the cover cards, fanned (mockup .stack); the key card is the middle, front one
+  const top = dkCover(cards, key), kid = top[0]; if (top.length === 3) top.splice(1, 0, top.shift());   // key card to the middle slot
+  return `<div class="stack" aria-hidden="true">${top.map(id => `<div class="cf${id === kid ? ' key' : ''}">${cardFaceHTML(CARDS[id], false)}</div>`).join('')}</div>`;
 }
 function dkStats(name) {                             // win rate and last played from the match history, matched by deck name
   const h = HISTORY.filter(m => m.you === name);
@@ -10066,11 +10175,11 @@ function dkTile(i, name, cards, starter) {
   const menu = open ? `<div class="dk-menu" role="menu" aria-label="${nm}"><div class="dk-mh">${nm}</div>${item('dk-edit', 'Edit cards')}${item('dk-play', 'Play with this deck')}${act ? '' : item('dk-active', 'Set active')}${item('dk-rename', 'Rename…')}${item('dk-dup', 'Duplicate')}${item('dk-look', 'Deck look')}${item('dk-code', 'Copy deck code')}${item('dk-del', 'Delete…', 'del')}<button class="btn sm dk-x" data-a="dk-more" data-v="-1">Cancel</button></div>` : '';
   const ds = starter ? null : dkStats(name);
   const stat = `<div class="stat"><span>${deckTotal(cards)}/40 cards</span>${ds ? `<span>${ds.wr == null ? 'No matches' : 'Win ' + ds.wr + '%'}</span><span>${dkAgo(ds.last)}</span>` : ''}</div>`;
-  const btns = starter ? `<button class="btn sm grow" data-a="dk-copy" data-v="${i}" aria-label="Copy ${nm} to my decks">Copy</button>`
+  const btns = starter ? `<div class="row dk-st-btns" style="gap:6px;flex-wrap:nowrap"><button class="btn sm" data-a="dk-recipe" data-v="${i}" aria-label="View the recipe of ${nm}">Recipe</button><button class="btn sm grow" data-a="dk-copy" data-v="${i}" aria-label="Copy ${nm} to my decks">Copy</button></div>`
     : `<button class="btn sm grow" data-a="dk-edit" data-v="${i}" aria-label="Edit ${nm}">Edit</button><button class="btn sm pri grow" data-a="dk-play" data-v="${i}" aria-label="Play with ${nm}"${st.ok ? '' : ' disabled'}>Play</button><button class="ibtn sq dk-more" data-a="dk-more" data-v="${i}" aria-label="More actions for ${nm}" aria-haspopup="menu" aria-expanded="${open}">⋯</button>`;
-  if (starter) { const kc = key && CARDS[key] ? key : Object.keys(cards).filter(id => CARDS[id] && cards[id]).sort((x, y) => cards[y] - cards[x])[0];   // the thumbnail is the Key Spirit (else the most played card)
-    return `<div class="card flat dk-st-row" data-v="${i}"><div class="dk-st-th">${kc ? cardFaceHTML(CARDS[kc], false) : ''}</div><div class="dk-st-nm"><b>${nm}</b> ${kb}<span class="dk-st-sub">${esc(st.txt)}</span></div>${btns}</div>`; }
-  return `<div class="card dtile${act ? ' on' : ''}${open ? ' open' : ''}" data-v="${i}">${dkFan(cards)}<div class="row"><b class="grow" style="font-size:1.02em" title="${nm}">${nm}</b>${kb}${act ? '<span class="tag">Active</span>' : ''}</div><div class="row" style="gap:6px">${dots}<span class="grow"></span><span class="${st.ok ? 'vc' : 'vc warn'}">${st.ok ? '✓ Legal' : deckTotal(cards) < 40 ? 'Needs ' + (40 - deckTotal(cards)) + ' more' : 'Not legal'}</span></div>${stat}<div class="row" style="gap:6px">${btns}</div>${menu}</div>`;
+  if (starter) { const kc = dkCover(cards, key)[0];   // the thumbnail is the Key Spirit (else the most played card)
+    return `<div class="card flat dk-st-row" data-v="${i}"><div class="dk-st-th">${kc ? cardFaceHTML(CARDS[kc], false) : ''}</div><div class="dk-st-nm"><b>${nm}</b> ${kb}<span class="dk-st-sub">${esc(st.ok ? st.txt : deckTotal(cards) + ' cards')}</span></div>${btns}</div>`; }
+  return `<div class="card dtile${act ? ' on' : ''}${open ? ' open' : ''}" data-v="${i}">${dkFan(cards, key)}<div class="row"><b class="grow" style="font-size:1.02em" title="${nm}">${nm}</b>${kb}${act ? '<span class="tag">Active</span>' : ''}</div><div class="row" style="gap:6px">${dots}<span class="grow"></span><span class="${st.ok ? 'vc' : 'vc warn'}">${st.ok ? '✓ Legal' : deckTotal(cards) < 40 ? 'Needs ' + (40 - deckTotal(cards)) + ' more' : 'Not legal'}</span></div>${stat}<div class="row" style="gap:6px">${btns}</div>${menu}</div>`;
 }
 function renderDecks() {
   if (!$('dk-list')) return;
@@ -10124,6 +10233,9 @@ async function dkAct(a, v) {
     return renderDecks();
   }
   if (a === 'dk-copy') { const d = PREBUILT[i]; if (d) dkNewSlot(d.name, d.cards, true, d.key); return renderDecks(); }
+  if (a === 'dk-recipe') { if (PREBUILT[i]) openRecipe(i); return; }
+  if (a === 'dk-rc-copy') { const d = PREBUILT[i]; if (d && dkNewSlot(d.name, d.cards, true, d.key)) { RC_MSG = `Copied to My decks: ${d.name}.`; renderRecipe(); } return; }
+  if (a === 'dk-rc-back') return switchView('view-decks');
   if (!(i >= 0 && i < SLOTS.length)) return renderDecks();
   if (a === 'dk-edit' || a === 'dk-look') { switchSlot(i); return switchView('view-deckbuilder'); }   // Deck look: the builder's Look tab comes with U7
   if (a === 'dk-play') { if (!dkStatus(dkCards(i), SLOTS[i] && SLOTS[i].key).ok) return; switchSlot(i); return switchView('view-play'); }
@@ -10154,6 +10266,40 @@ if (typeof document !== 'undefined') {
   });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && DK_MENU >= 0) { const i = DK_MENU; DK_MENU = -1; renderDecks(); const b = dq(`#dk-list [data-a="dk-more"][data-v="${i}"]`); if (b) b.focus(); } });
   document.addEventListener('click', e => { if (DK_MENU >= 0 && !evC(e, '.dk-menu, [data-a="dk-more"]')) { DK_MENU = -1; renderDecks(); } });
+}
+
+/* ---------------------------------------------------------------------
+   DECK RECIPE (owner review 2026-10-30, Aegis-style deck page): every ready-made deck opens a page that lists its full recipe
+   (copies per card, grouped by type), the colours, the cost spread and the cards still missing from the library, with Copy.
+   Display only: nothing here touches the rules. The recipe of a starter is its full official list (`recipe`), not only the
+   cards that are already playable (`cards`); the other ready-made decks have no separate recipe, so their cards are the recipe.
+   --------------------------------------------------------------------- */
+let RC_ID = -1, RC_MSG = '';
+function openRecipe(i) { if (!PREBUILT[i]) return; RC_ID = i; RC_MSG = ''; switchView('view-recipe'); }
+const RC_TYPES = ['Spirit', 'Brave', 'Ultimate', 'Nexus', 'Magic'];
+function renderRecipe() {
+  const el = $('rc-page'), d = PREBUILT[RC_ID]; if (!el) return; if (!d) { el.innerHTML = '<p class="empty-note">No deck selected.</p>'; return; }
+  const rec = d.recipe || d.cards, ids = Object.keys(rec).filter(id => rec[id] > 0);
+  const total = deckTotal(rec), have = ids.filter(id => CARDS[id]).reduce((n, id) => n + rec[id], 0), miss = total - have;
+  const grp = {}; for (const id of ids) { const c = CARDS[id], t = c ? (RC_TYPES.includes(c.type) ? c.type : 'Other') : 'Missing'; (grp[t] = grp[t] || []).push(id); }
+  for (const t of Object.keys(grp)) grp[t].sort((a, b) => (CARDS[a] && CARDS[b] ? CARDS[a].cost - CARDS[b].cost : 0) || DB_COLL.compare(a, b));
+  const cnt = t => (grp[t] || []).reduce((n, id) => n + rec[id], 0);
+  const curve = {}; for (const id of ids) { const c = CARDS[id]; if (c) { const k = Math.min(c.cost, 9); curve[k] = (curve[k] || 0) + rec[id]; } }
+  const mx = Math.max(1, ...Object.values(curve)), cols = dkColors(d.cards).map(c => `<span class="tag dim" style="display:inline-flex;align-items:center;gap:6px"><i style="display:inline-block;width:10px;height:10px;background:${colorVar(c)};clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)"></i>${cap(c)}</span>`).join('');
+  const key = d.key && CARDS[d.key] ? `<span class="tag dim" title="Key Spirit: draws favour it">Key · ${esc(CARDS[d.key].name)}</span>` : '';
+  const row = id => { const c = CARDS[id], n = rec[id]; return c
+    ? `<button class="rc-row" data-a="cp-open" data-v="${esc(id)}" aria-label="Open ${esc(c.name)}"><b class="rc-n">${n}×</b><span class="rc-nm" translate="no">${esc(c.name)}</span><span class="rc-id">${esc(id)}</span><span class="rc-c">${c.type === 'Magic' || c.type === 'Nexus' ? '' : 'Cost '}${c.cost}</span></button>`
+    : `<div class="rc-row miss"><b class="rc-n">${n}×</b><span class="rc-nm">Not in the library yet</span><span class="rc-id">${esc(id)}</span><span class="rc-c"></span></div>`; };
+  const sec = t => grp[t] ? `<div class="card flat rc-sec"><span class="cp-h">${t === 'Missing' ? 'Not in the library yet' : t} · ${cnt(t)}</span>${grp[t].map(row).join('')}</div>` : '';
+  const bars = Array.from({ length: 10 }, (_, k) => `<div class="rc-bar"><i style="height:${Math.round(100 * (curve[k] || 0) / mx)}%"></i><b>${curve[k] || 0}</b><span>${k === 9 ? '9+' : k}</span></div>`).join('');
+  const fmt = prebuiltFmt(d) === 'standard' ? 'Standard' : 'Eternal';
+  el.innerHTML = `<div class="row" style="gap:10px;flex-wrap:wrap"><button class="btn sm" data-a="dk-rc-back">← My decks</button><span class="grow"></span><button class="btn sm pri" data-a="dk-rc-copy" data-v="${RC_ID}" aria-label="Copy ${esc(d.name)} to my decks">Copy to my decks</button></div>
+    <div class="card hdcard"><div class="grow"><span class="eyebrow">Deck recipe</span><h2 class="hd" translate="no">${esc(d.name)}</h2><div class="row" style="gap:6px;flex-wrap:wrap"><span class="tag">${fmt}</span>${cols}${key}<span class="tag dim">${total} cards</span></div></div></div>
+    ${miss ? `<div class="card flat" role="status" style="padding:10px 14px"><b>${have} of ${total} cards are playable.</b> <span class="sub">${miss} card${miss === 1 ? ' is' : 's are'} not in the library yet; the copy fills in as card updates add them.</span></div>` : ''}
+    <div class="rc-grid"><div class="col" style="gap:12px">${RC_TYPES.concat(['Other', 'Missing']).map(sec).join('')}</div>
+      <div class="col" style="gap:12px"><div class="card flat" style="padding:10px 14px"><span class="cp-h">Cost spread</span><div class="rc-curve">${bars}</div></div>
+        <div class="card flat" style="padding:10px 14px"><span class="cp-h">Types</span><div class="col" style="gap:4px">${RC_TYPES.filter(t => grp[t]).map(t => `<div class="row"><span class="grow">${t}</span><b>${cnt(t)}</b></div>`).join('')}</div></div></div></div>
+    <span id="rc-msg" class="sub" role="status" aria-live="polite" style="font-size:.84em">${esc(RC_MSG)}</span>`;
 }
 /* ---------------------------------------------------------------------
    ONLINE CLIENT (v0.108.0, roadmap M8 part 1; docs/ai/monorepo-plan.md M8)
@@ -10672,13 +10818,18 @@ Promise.resolve().then(() => {
    Display only: nothing here touches the rules. Tap the picture for the full card (the zoom).
    --------------------------------------------------------------------- */
 let PANEL_ID = null;
+/* owner review 2026-10-30: the panel can be folded to a slim strip; the board takes its width back. Remembered per browser. */
+let CP_MIN = (() => { try { return localStorage.getItem('bse.cpmin') === '1'; } catch (e) { return false; } })();
+function cpMinToggle() { CP_MIN = !CP_MIN; try { localStorage.setItem('bse.cpmin', CP_MIN ? '1' : '0'); } catch (e) { /* storage blocked */ } render(); }
 function cardPanelHTML() {
   const card = PANEL_ID && CARDS[PANEL_ID];
   const body = card ? `<div class="cp-face" data-a="zoom" data-v="${esc(card.id)}" title="Tap to enlarge">${cardFaceHTML(card, true)}</div><div class="cp-info">${cardDetailHTML(card, true)}</div>`
     : '<div class="cp-ph" aria-hidden="true"></div><div class="cp-hint">Hover Or Tap A Card To Read It Here.</div>';
   const lines = G ? G.history.slice(-3) : [];      // v0.152.0: the last three log lines at the bottom of the panel (mockup)
   const log = lines.length ? `<div class="cp-log"><div class="cp-lh">Log</div>${lines.map(t => `<div>${esc(t)}</div>`).join('')}</div>` : '';
-  return `<aside id="card-panel" aria-label="Card panel"><span class="cp-title">Card Panel</span>${body}${log}</aside>`;
+  const tg = `<button class="cp-min" data-a="cp-min" aria-expanded="${CP_MIN ? 'false' : 'true'}" aria-label="${CP_MIN ? 'Show the card panel' : 'Hide the card panel'}" title="${CP_MIN ? 'Show' : 'Hide'} the card panel">${CP_MIN ? '◂' : '▸'}</button>`;
+  if (CP_MIN) return `<aside id="card-panel" class="min" aria-label="Card panel">${tg}<span class="cp-title">Card Panel</span></aside>`;
+  return `<aside id="card-panel" aria-label="Card panel">${tg}<span class="cp-title">Card Panel</span>${body}${log}</aside>`;
 }
 /** @param {HTMLElement} el */
 function panelCardOf(el) {
@@ -10692,7 +10843,7 @@ if (typeof document !== 'undefined') document.addEventListener('mouseover', e =>
   const t = /** @type {HTMLElement|null} */ ((/** @type {HTMLElement} */ (e.target)).closest('#view-playmat [data-a="hand"], #view-playmat [data-a="field"]')), p = $('card-panel');
   if (!t || !p) return;
   const id = panelCardOf(t); if (!id || id === PANEL_ID) return;
-  PANEL_ID = id; p.outerHTML = cardPanelHTML();
+  PANEL_ID = id; if (!CP_MIN) p.outerHTML = cardPanelHTML();
 });
 /* ---------------------------------------------------------------------
    EFFECT ACTIVE PANEL + EMOTICONS (v0.125.0, U14d2; docs/design/mockup-v14.html)
@@ -10704,7 +10855,7 @@ const EMOTES = ['😀', '😎', '😮', '😢', '😡', '👍', '👏', '🙏', 
 const EMOTE_GAP = 30000;
 let EMOTE_AT = 0, EMOTE_NOW = () => Date.now();
 const emoteLeft = () => Math.max(0, Math.ceil((EMOTE_AT + EMOTE_GAP - EMOTE_NOW()) / 1000));
-/* v0.151.0: effect pop-ups (owner 2026-10-27, like Aegis): an info card for every effect that runs, never a question. PC: bottom of the left card panel column;
+/* v0.151.0: effect pop-ups (owner 2026-10-27, like Aegis): an info card for every effect that runs, never a question. PC: top-left, under the AETERNA header (owner 2026-10-30);
    phone: under the top bar (over the CPU stats row), one at a time. Never over the field. Closes after 5 s or with the X; Settings > Game > Effect pop-ups turns it off. */
 const EFF_MS = 5000;
 function effectPanel(ev) {
@@ -10718,6 +10869,9 @@ function effectPanel(ev) {
   const d = document.createElement('div'); d.className = 'ae-eff' + (ev.side === 'opponent' ? ' cpu' : ''); d.dataset.k = ev.id + '|' + text;
   d.innerHTML = `<span class="ae-eff-h">${ev.side === 'opponent' ? 'CPU' : 'YOU'} · EFFECT${trg ? ' · ' + esc(trg) : ''}</span><b>${esc(c.name)}</b><span class="ae-eff-t">${esc(text)}</span><button class="ae-eff-x" type="button" aria-label="Close this effect pop-up">✕</button>`;
   d.querySelector('button').addEventListener('click', e => { e.stopPropagation(); clearTimeout(+d.dataset.t); d.remove(); });
+  d.title = 'Tap to read the full card'; d.tabIndex = 0; d.setAttribute('role', 'button');      // owner 2026-10-30: a tap opens the full card (all its effects)
+  const full = () => { clearTimeout(+d.dataset.t); d.remove(); openZoom(ev.id); };
+  d.addEventListener('click', full); d.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); full(); } });
   d.dataset.t = String(setTimeout(() => d.remove(), EFF_MS));
   st.appendChild(d);
 }
@@ -11164,7 +11318,8 @@ function libBar() {                                   // the mockup toolbar: col
   $('lib-types').innerHTML = filterTypesHTML(LIBF, 'lib-f');
   $('lib-costs').innerHTML = DB_COSTS.map(k => `<button class="cbtn${on(LIBF.costs, k) ? ' on' : ''}" data-a="lib-f" data-v="costs:${k}" aria-pressed="${on(LIBF.costs, k)}" aria-label="Cost ${k}">${k === '10' ? '10+' : k}</button>`).join('');
   $('lib-colbtn').innerHTML = ddButton(LIBF, 'colour', 'Colour', 'lib-dd') + ddButton(LIBF, 'type', 'Type', 'lib-dd') + ddButton(LIBF, 'cost', 'Cost', 'lib-dd');
-  $('lib-groups').innerHTML = ddButton(LIBF, 'group', 'Group', 'lib-dd') + ddButton(LIBF, 'family', 'Family', 'lib-dd') + ddButton(LIBF, 'bp', 'BP', 'lib-dd') + ddButton(LIBF, 'cores', 'Cores', 'lib-dd') + ddButton(LIBF, 'icon', 'Block', 'lib-dd') + ddButton(LIBF, 'rarity', 'Rarity', 'lib-dd') + ddButton(LIBF, 'collab', 'Collab', 'lib-dd') + ddButton(LIBF, 'sort', 'Sort', 'lib-dd');
+  $('lib-groups').innerHTML = ddButton(LIBF, 'group', 'Group', 'lib-dd') + ddButton(LIBF, 'family', 'Family', 'lib-dd') + ddButton(LIBF, 'bp', 'BP', 'lib-dd') + ddButton(LIBF, 'cores', 'Cores', 'lib-dd') + ddButton(LIBF, 'icon', 'Block', 'lib-dd') + ddButton(LIBF, 'rarity', 'Rarity', 'lib-dd') + ddButton(LIBF, 'collab', 'Collab', 'lib-dd');
+  $('lib-sortbtn').innerHTML = ddButton(LIBF, 'sort', 'Sort', 'lib-dd');
   $('lib-play').classList.toggle('on', LIBF.complete);
   libMenu();
   $('lib-size').innerHTML = LIB_SIZES.map(([v, l]) => `<button data-a="lib-size" data-v="${v}" aria-pressed="${LIBF.size === v}">${l}</button>`).join('');
@@ -11598,6 +11753,7 @@ document.addEventListener('click', e => {
   else if (a === 'theme-color') { navTheme('color', v); if (G) render(); }
   else if (a === 'sound-toggle') navSound();
   else if (a === 'log-toggle') toggleLog();
+  else if (a === 'cp-min') cpMinToggle();
   else if (a === 'log-close') toggleLog(false);
   else if (a === 'log-copy') {      // owner review 2026-10-27: copy the whole match log as plain text
     const txt = G ? G.history.join('\n') : '', b = $('log-copy');
@@ -11625,6 +11781,7 @@ document.addEventListener('click', e => {
   else if (a === 'db-row') { const i = v.lastIndexOf(':'); dbChange(v.slice(0, i), Number(v.slice(i + 1))); }
   else if (a === 'db-key') dbKey(v);
   else if (a === 'db-freset') dbResetFilters();
+  else if (a === 'db-min') dbMinToggle();
   else if (/^db-dd/.test(a)) dbDd(a, v);
   else if (a === 'db-cover') dbCover(v);
   else if (a === 'db-play-now') dbPlayNow();

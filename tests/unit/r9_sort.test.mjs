@@ -50,14 +50,14 @@ for (const screen of ['pc', 'phone']) {
     const r = await page.evaluate(() => {
       BS.switchView('view-deckbuilder'); BS.dbResetFilters();
       const click = sel => document.querySelector(sel).click(), shown = () => [...document.querySelectorAll('#db-card-list [data-a="dbcard"]')].map(e => e.dataset.v);
-      const o = { select: !!document.getElementById('db-sort'), btn: document.querySelector('#db-groups [data-v="sort"]').textContent };
-      click('#db-groups [data-v="sort"]');
+      const o = { select: !!document.getElementById('db-sort'), btn: document.querySelector('#db-sortbtn [data-v="sort"]').textContent };
+      click('#db-sortbtn [data-v="sort"]');
       o.menu = [...document.querySelectorAll('#db-tbar .ddmenu .ddi')].map(b => b.textContent.replace('✓', '').trim());
       click('#db-tbar .ddmenu [data-a="db-ddpick"][data-v="cost"]');
       const c1 = shown().slice(0, 60).map(id => BS.CARDS[id].cost); o.asc = c1.every((x, i) => !i || c1[i - 1] <= x);
       click('#db-tbar .ddmenu [data-a="db-ddpick"][data-v="desc"]');
       const c2 = shown().slice(0, 60).map(id => BS.CARDS[id].cost); o.desc = c2.every((x, i) => !i || c2[i - 1] >= x) && c2[0] > c2[c2.length - 1];
-      o.btn2 = document.querySelector('#db-groups [data-v="sort"]').textContent; o.on = document.querySelector('#db-groups [data-v="sort"]').classList.contains('on');
+      o.btn2 = document.querySelector('#db-sortbtn [data-v="sort"]').textContent; o.on = document.querySelector('#db-sortbtn [data-v="sort"]').classList.contains('on');
       o.menuOpen = !!document.querySelector('#db-tbar .ddmenu');
       click('#db-tbar .ddmenu [data-a="db-ddclear"]');
       o.reset = BS.DBF.sort === 'default' && BS.DBF.sortDir === 'asc';
@@ -78,9 +78,9 @@ for (const screen of ['pc', 'phone']) {
     const r = await page.evaluate(() => {
       BS.switchView('view-library');
       const click = sel => document.querySelector(sel).click();
-      const o = { select: !!document.getElementById('lib-sort'), btn: document.querySelector('#lib-groups [data-v="sort"]').textContent };
-      click('#lib-groups [data-v="sort"]'); click('#lib-tbar .ddmenu [data-a="lib-ddpick"][data-v="name"]'); click('#lib-tbar .ddmenu [data-a="lib-ddpick"][data-v="desc"]');
-      o.btn2 = document.querySelector('#lib-groups [data-v="sort"]').textContent;
+      const o = { select: !!document.getElementById('lib-sort'), btn: document.querySelector('#lib-sortbtn [data-v="sort"]').textContent };
+      click('#lib-sortbtn [data-v="sort"]'); click('#lib-tbar .ddmenu [data-a="lib-ddpick"][data-v="name"]'); click('#lib-tbar .ddmenu [data-a="lib-ddpick"][data-v="desc"]');
+      o.btn2 = document.querySelector('#lib-sortbtn [data-v="sort"]').textContent;
       const names = [...document.querySelectorAll('#lib-grid [data-v]')].slice(0, 40).map(e => BS.CARDS[e.dataset.v] && BS.CARDS[e.dataset.v].name).filter(Boolean), coll = new Intl.Collator('en', { numeric: true, sensitivity: 'base' });
       o.desc = names.length > 5 && names.every((n, i) => !i || coll.compare(names[i - 1], n) >= 0);
       o.noScroll = document.documentElement.scrollWidth <= innerWidth;

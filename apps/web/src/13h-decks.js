@@ -21,9 +21,18 @@ function dkColors(cards) {                          // the deck's colours, most 
   for (const [id, k] of Object.entries(cards)) { const c = CARDS[id]; if (c && k) for (const col of cardColors(c)) if (COLORS.includes(col)) n[col] = (n[col] || 0) + k; }
   return Object.keys(n).sort((a, b) => n[b] - n[a]).slice(0, 3);
 }
-function dkFan(cards) {                              // tile art: the deck's three most-played cards, fanned (mockup .stack)
-  const top = Object.keys(cards).filter(id => CARDS[id] && cards[id]).sort((a, b) => cards[b] - cards[a]).slice(0, 3);
-  return `<div class="stack" aria-hidden="true">${top.map(id => `<div class="cf">${cardFaceHTML(CARDS[id], false)}</div>`).join('')}</div>`;
+/* Deck cover (owner review 2026-10-30): the deck's key card is the front of its cover. Order of preference: the marked Key Spirit, then a
+   Grandwalker / Contract Nexus (Grandwalker family, a "...Contractor" name or a CX Nexus), then the most-played card. The two other cover
+   cards follow the same order. Display only. */
+const dkKeyNexus = id => { const c = CARDS[id]; return !!c && c.type === 'Nexus' && ((c.families || []).includes('Grandwalker') || /Contractor/.test(c.name) || /-CX\d+$/.test(id)); };
+function dkCover(cards, key) {                       // up to 3 card ids, the key card first
+  const have = Object.keys(cards).filter(id => CARDS[id] && cards[id] > 0);
+  const rank = id => (key && id === key ? 0 : dkKeyNexus(id) ? 1 : 2);
+  return have.sort((a, b) => rank(a) - rank(b) || cards[b] - cards[a] || DB_COLL.compare(a, b)).slice(0, 3);
+}
+function dkFan(cards, key) {                         // tile art: the cover cards, fanned (mockup .stack); the key card is the middle, front one
+  const top = dkCover(cards, key), kid = top[0]; if (top.length === 3) top.splice(1, 0, top.shift());   // key card to the middle slot
+  return `<div class="stack" aria-hidden="true">${top.map(id => `<div class="cf${id === kid ? ' key' : ''}">${cardFaceHTML(CARDS[id], false)}</div>`).join('')}</div>`;
 }
 function dkStats(name) {                             // win rate and last played from the match history, matched by deck name
   const h = HISTORY.filter(m => m.you === name);
@@ -43,11 +52,11 @@ function dkTile(i, name, cards, starter) {
   const menu = open ? `<div class="dk-menu" role="menu" aria-label="${nm}"><div class="dk-mh">${nm}</div>${item('dk-edit', 'Edit cards')}${item('dk-play', 'Play with this deck')}${act ? '' : item('dk-active', 'Set active')}${item('dk-rename', 'Rename…')}${item('dk-dup', 'Duplicate')}${item('dk-look', 'Deck look')}${item('dk-code', 'Copy deck code')}${item('dk-del', 'Delete…', 'del')}<button class="btn sm dk-x" data-a="dk-more" data-v="-1">Cancel</button></div>` : '';
   const ds = starter ? null : dkStats(name);
   const stat = `<div class="stat"><span>${deckTotal(cards)}/40 cards</span>${ds ? `<span>${ds.wr == null ? 'No matches' : 'Win ' + ds.wr + '%'}</span><span>${dkAgo(ds.last)}</span>` : ''}</div>`;
-  const btns = starter ? `<button class="btn sm grow" data-a="dk-copy" data-v="${i}" aria-label="Copy ${nm} to my decks">Copy</button>`
+  const btns = starter ? `<div class="row dk-st-btns" style="gap:6px;flex-wrap:nowrap"><button class="btn sm" data-a="dk-recipe" data-v="${i}" aria-label="View the recipe of ${nm}">Recipe</button><button class="btn sm grow" data-a="dk-copy" data-v="${i}" aria-label="Copy ${nm} to my decks">Copy</button></div>`
     : `<button class="btn sm grow" data-a="dk-edit" data-v="${i}" aria-label="Edit ${nm}">Edit</button><button class="btn sm pri grow" data-a="dk-play" data-v="${i}" aria-label="Play with ${nm}"${st.ok ? '' : ' disabled'}>Play</button><button class="ibtn sq dk-more" data-a="dk-more" data-v="${i}" aria-label="More actions for ${nm}" aria-haspopup="menu" aria-expanded="${open}">⋯</button>`;
-  if (starter) { const kc = key && CARDS[key] ? key : Object.keys(cards).filter(id => CARDS[id] && cards[id]).sort((x, y) => cards[y] - cards[x])[0];   // the thumbnail is the Key Spirit (else the most played card)
-    return `<div class="card flat dk-st-row" data-v="${i}"><div class="dk-st-th">${kc ? cardFaceHTML(CARDS[kc], false) : ''}</div><div class="dk-st-nm"><b>${nm}</b> ${kb}<span class="dk-st-sub">${esc(st.txt)}</span></div>${btns}</div>`; }
-  return `<div class="card dtile${act ? ' on' : ''}${open ? ' open' : ''}" data-v="${i}">${dkFan(cards)}<div class="row"><b class="grow" style="font-size:1.02em" title="${nm}">${nm}</b>${kb}${act ? '<span class="tag">Active</span>' : ''}</div><div class="row" style="gap:6px">${dots}<span class="grow"></span><span class="${st.ok ? 'vc' : 'vc warn'}">${st.ok ? '✓ Legal' : deckTotal(cards) < 40 ? 'Needs ' + (40 - deckTotal(cards)) + ' more' : 'Not legal'}</span></div>${stat}<div class="row" style="gap:6px">${btns}</div>${menu}</div>`;
+  if (starter) { const kc = dkCover(cards, key)[0];   // the thumbnail is the Key Spirit (else the most played card)
+    return `<div class="card flat dk-st-row" data-v="${i}"><div class="dk-st-th">${kc ? cardFaceHTML(CARDS[kc], false) : ''}</div><div class="dk-st-nm"><b>${nm}</b> ${kb}<span class="dk-st-sub">${esc(st.ok ? st.txt : deckTotal(cards) + ' cards')}</span></div>${btns}</div>`; }
+  return `<div class="card dtile${act ? ' on' : ''}${open ? ' open' : ''}" data-v="${i}">${dkFan(cards, key)}<div class="row"><b class="grow" style="font-size:1.02em" title="${nm}">${nm}</b>${kb}${act ? '<span class="tag">Active</span>' : ''}</div><div class="row" style="gap:6px">${dots}<span class="grow"></span><span class="${st.ok ? 'vc' : 'vc warn'}">${st.ok ? '✓ Legal' : deckTotal(cards) < 40 ? 'Needs ' + (40 - deckTotal(cards)) + ' more' : 'Not legal'}</span></div>${stat}<div class="row" style="gap:6px">${btns}</div>${menu}</div>`;
 }
 function renderDecks() {
   if (!$('dk-list')) return;
@@ -101,6 +110,9 @@ async function dkAct(a, v) {
     return renderDecks();
   }
   if (a === 'dk-copy') { const d = PREBUILT[i]; if (d) dkNewSlot(d.name, d.cards, true, d.key); return renderDecks(); }
+  if (a === 'dk-recipe') { if (PREBUILT[i]) openRecipe(i); return; }
+  if (a === 'dk-rc-copy') { const d = PREBUILT[i]; if (d && dkNewSlot(d.name, d.cards, true, d.key)) { RC_MSG = `Copied to My decks: ${d.name}.`; renderRecipe(); } return; }
+  if (a === 'dk-rc-back') return switchView('view-decks');
   if (!(i >= 0 && i < SLOTS.length)) return renderDecks();
   if (a === 'dk-edit' || a === 'dk-look') { switchSlot(i); return switchView('view-deckbuilder'); }   // Deck look: the builder's Look tab comes with U7
   if (a === 'dk-play') { if (!dkStatus(dkCards(i), SLOTS[i] && SLOTS[i].key).ok) return; switchSlot(i); return switchView('view-play'); }
@@ -131,4 +143,38 @@ if (typeof document !== 'undefined') {
   });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && DK_MENU >= 0) { const i = DK_MENU; DK_MENU = -1; renderDecks(); const b = dq(`#dk-list [data-a="dk-more"][data-v="${i}"]`); if (b) b.focus(); } });
   document.addEventListener('click', e => { if (DK_MENU >= 0 && !evC(e, '.dk-menu, [data-a="dk-more"]')) { DK_MENU = -1; renderDecks(); } });
+}
+
+/* ---------------------------------------------------------------------
+   DECK RECIPE (owner review 2026-10-30, Aegis-style deck page): every ready-made deck opens a page that lists its full recipe
+   (copies per card, grouped by type), the colours, the cost spread and the cards still missing from the library, with Copy.
+   Display only: nothing here touches the rules. The recipe of a starter is its full official list (`recipe`), not only the
+   cards that are already playable (`cards`); the other ready-made decks have no separate recipe, so their cards are the recipe.
+   --------------------------------------------------------------------- */
+let RC_ID = -1, RC_MSG = '';
+function openRecipe(i) { if (!PREBUILT[i]) return; RC_ID = i; RC_MSG = ''; switchView('view-recipe'); }
+const RC_TYPES = ['Spirit', 'Brave', 'Ultimate', 'Nexus', 'Magic'];
+function renderRecipe() {
+  const el = $('rc-page'), d = PREBUILT[RC_ID]; if (!el) return; if (!d) { el.innerHTML = '<p class="empty-note">No deck selected.</p>'; return; }
+  const rec = d.recipe || d.cards, ids = Object.keys(rec).filter(id => rec[id] > 0);
+  const total = deckTotal(rec), have = ids.filter(id => CARDS[id]).reduce((n, id) => n + rec[id], 0), miss = total - have;
+  const grp = {}; for (const id of ids) { const c = CARDS[id], t = c ? (RC_TYPES.includes(c.type) ? c.type : 'Other') : 'Missing'; (grp[t] = grp[t] || []).push(id); }
+  for (const t of Object.keys(grp)) grp[t].sort((a, b) => (CARDS[a] && CARDS[b] ? CARDS[a].cost - CARDS[b].cost : 0) || DB_COLL.compare(a, b));
+  const cnt = t => (grp[t] || []).reduce((n, id) => n + rec[id], 0);
+  const curve = {}; for (const id of ids) { const c = CARDS[id]; if (c) { const k = Math.min(c.cost, 9); curve[k] = (curve[k] || 0) + rec[id]; } }
+  const mx = Math.max(1, ...Object.values(curve)), cols = dkColors(d.cards).map(c => `<span class="tag dim" style="display:inline-flex;align-items:center;gap:6px"><i style="display:inline-block;width:10px;height:10px;background:${colorVar(c)};clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)"></i>${cap(c)}</span>`).join('');
+  const key = d.key && CARDS[d.key] ? `<span class="tag dim" title="Key Spirit: draws favour it">Key · ${esc(CARDS[d.key].name)}</span>` : '';
+  const row = id => { const c = CARDS[id], n = rec[id]; return c
+    ? `<button class="rc-row" data-a="cp-open" data-v="${esc(id)}" aria-label="Open ${esc(c.name)}"><b class="rc-n">${n}×</b><span class="rc-nm" translate="no">${esc(c.name)}</span><span class="rc-id">${esc(id)}</span><span class="rc-c">${c.type === 'Magic' || c.type === 'Nexus' ? '' : 'Cost '}${c.cost}</span></button>`
+    : `<div class="rc-row miss"><b class="rc-n">${n}×</b><span class="rc-nm">Not in the library yet</span><span class="rc-id">${esc(id)}</span><span class="rc-c"></span></div>`; };
+  const sec = t => grp[t] ? `<div class="card flat rc-sec"><span class="cp-h">${t === 'Missing' ? 'Not in the library yet' : t} · ${cnt(t)}</span>${grp[t].map(row).join('')}</div>` : '';
+  const bars = Array.from({ length: 10 }, (_, k) => `<div class="rc-bar"><i style="height:${Math.round(100 * (curve[k] || 0) / mx)}%"></i><b>${curve[k] || 0}</b><span>${k === 9 ? '9+' : k}</span></div>`).join('');
+  const fmt = prebuiltFmt(d) === 'standard' ? 'Standard' : 'Eternal';
+  el.innerHTML = `<div class="row" style="gap:10px;flex-wrap:wrap"><button class="btn sm" data-a="dk-rc-back">← My decks</button><span class="grow"></span><button class="btn sm pri" data-a="dk-rc-copy" data-v="${RC_ID}" aria-label="Copy ${esc(d.name)} to my decks">Copy to my decks</button></div>
+    <div class="card hdcard"><div class="grow"><span class="eyebrow">Deck recipe</span><h2 class="hd" translate="no">${esc(d.name)}</h2><div class="row" style="gap:6px;flex-wrap:wrap"><span class="tag">${fmt}</span>${cols}${key}<span class="tag dim">${total} cards</span></div></div></div>
+    ${miss ? `<div class="card flat" role="status" style="padding:10px 14px"><b>${have} of ${total} cards are playable.</b> <span class="sub">${miss} card${miss === 1 ? ' is' : 's are'} not in the library yet; the copy fills in as card updates add them.</span></div>` : ''}
+    <div class="rc-grid"><div class="col" style="gap:12px">${RC_TYPES.concat(['Other', 'Missing']).map(sec).join('')}</div>
+      <div class="col" style="gap:12px"><div class="card flat" style="padding:10px 14px"><span class="cp-h">Cost spread</span><div class="rc-curve">${bars}</div></div>
+        <div class="card flat" style="padding:10px 14px"><span class="cp-h">Types</span><div class="col" style="gap:4px">${RC_TYPES.filter(t => grp[t]).map(t => `<div class="row"><span class="grow">${t}</span><b>${cnt(t)}</b></div>`).join('')}</div></div></div></div>
+    <span id="rc-msg" class="sub" role="status" aria-live="polite" style="font-size:.84em">${esc(RC_MSG)}</span>`;
 }

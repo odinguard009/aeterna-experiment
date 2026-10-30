@@ -100,6 +100,7 @@ document.addEventListener('click', e => {
   else if (a === 'theme-color') { navTheme('color', v); if (G) render(); }
   else if (a === 'sound-toggle') navSound();
   else if (a === 'log-toggle') toggleLog();
+  else if (a === 'cp-min') cpMinToggle();
   else if (a === 'log-close') toggleLog(false);
   else if (a === 'log-copy') {      // owner review 2026-10-27: copy the whole match log as plain text
     const txt = G ? G.history.join('\n') : '', b = $('log-copy');
@@ -127,6 +128,7 @@ document.addEventListener('click', e => {
   else if (a === 'db-row') { const i = v.lastIndexOf(':'); dbChange(v.slice(0, i), Number(v.slice(i + 1))); }
   else if (a === 'db-key') dbKey(v);
   else if (a === 'db-freset') dbResetFilters();
+  else if (a === 'db-min') dbMinToggle();
   else if (/^db-dd/.test(a)) dbDd(a, v);
   else if (a === 'db-cover') dbCover(v);
   else if (a === 'db-play-now') dbPlayNow();

@@ -3,8 +3,8 @@
   "title": "Aeterna",
   "tagline": "From tested engine to a simulator that plays like Aegis",
   "waitingHtml": "<b>Waiting on you:</b> nothing; Report Bug and missions / ranks / avatars are decided (2026-10-25).",
-  "updated": "27 Oct 2026",
-  "updatedAt": "0.180.0",
+  "updated": "30 Oct 2026",
+  "updatedAt": "0.198.0",
   "next": "next: card sessions (K) with Standard first; the v14 UI/UX redesign is done ( card commands, animations, battle phone, deck builder, library + lore, pages, dialogs + Report Bug), then card sessions (K) with Standard first"
  },
  "phases": [
@@ -881,6 +881,10 @@
     {
      "s": "later",
      "t": "16-chapter tutorial, online lobby (need approval)"
+    },
+    {
+     "s": "done",
+     "t": "UI review of 2026-10-30 (v0.198.0, 6 rounds of owner comments): Recipe page, deck builder toolbar and Hide filters, battle PC / phone layout, foldable Card Panel, effect pop-up with tap-to-open card"
     }
    ]
   }

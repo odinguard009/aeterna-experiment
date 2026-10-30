@@ -96,7 +96,7 @@ html:not(.layout-pc) .dk-st-row{min-height:72px}
 html:not(.layout-pc) .mk .dgrid .dtile{grid-template-columns:76px minmax(0,1fr);align-items:start}          /* phone deck tile: one card, the buttons get their own full-width row */
 html:not(.layout-pc) .mk .dgrid .dtile .stack{grid-row:1 / span 3;height:106px;display:block;margin-left:0}
 html:not(.layout-pc) .mk .dgrid .dtile .stack .cf{position:absolute;left:0;top:0;width:64px;transform:none!important}
-html:not(.layout-pc) .mk .dgrid .dtile .stack .cf:nth-child(n+2){display:none}
+html:not(.layout-pc) .mk .dgrid .dtile .stack .cf:not(.key){display:none}   /* phone: the thumbnail is the deck's key card */
 html:not(.layout-pc) .mk .dgrid .dtile>*:nth-child(5){grid-column:1 / -1}
 html:not(.layout-pc) .mk .dgrid .dtile .row .btn{flex:1 1 0;min-width:0;white-space:nowrap;padding-inline:8px;overflow:visible}
 html:not(.layout-pc) .mk .dgrid .dtile .row b.grow{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -230,10 +230,10 @@ html:not(.layout-pc) .lorenav .seg button{flex:1;min-height:36px;width:auto;just
 /* ---- v0.158.0 (owner review round 3): battle PC. The hand row follows the card height (no empty strip under the hand; the field gets the rest),
    the Trash area is bigger and split in two, every area keeps its size and its contents scale to it ---- */
 html.layout-pc #view-playmat .playmat-layout.has-cp { grid-template-rows: minmax(0, 1fr) 64px minmax(0, 1fr) auto; }
-html.layout-pc #view-playmat .hand-container-wrapper { height: calc(clamp(112px, 17vh, 168px) + 9px); }
+html.layout-pc #view-playmat .hand-container-wrapper { height: calc(clamp(64px, 9.5vh, 98px) + 9px); }   /* owner review 2026-10-30: smaller hand, the field gets the rest */
 html.layout-pc #view-playmat .hand-area { height: auto; align-items: center; padding: 4px; }
-html.layout-pc #view-playmat .hand-area .tcg-card { height: clamp(112px, 17vh, 168px); width: auto; aspect-ratio: 63 / 88; flex: none; }
-html.layout-pc #view-playmat .pc-hand-flank { height: auto; align-self: stretch; }
+html.layout-pc #view-playmat .hand-area .tcg-card { height: clamp(64px, 9.5vh, 98px); width: auto; aspect-ratio: 63 / 88; flex: none; }
+html.layout-pc #view-playmat .pc-hand-flank { height: 46px; align-self: end; }   /* Banished and Hand Cnt shrink to a slim chip (still open the same lists) */
 html.layout-pc #view-playmat .zone-box { container-type: size; overflow: hidden; }
 html.layout-pc #view-playmat .zone-box .zone-label { font-size: clamp(7px, 16cqh, 10px) !important; padding-inline: clamp(4px, 8cqw, 10px); }
 html.layout-pc #view-playmat .zone-box .pv b { font-size: clamp(11px, 30cqh, 20px); }
@@ -251,3 +251,105 @@ html.layout-pc #view-playmat .trash2 .gems { max-width: 100%; }
 .mk .cotd .cfw{width:170px;margin:0 auto}
 .mk .cotd.solo{flex-direction:column-reverse;align-items:center}
 }
+
+/* ---- owner review 2026-10-30 (UI round 4) ---- */
+/* Card Of The Day (ALL): the card's name and series sit right under the heading */
+.mk .cotd .cd-who{display:flex;flex-direction:column;gap:2px;margin-top:-4px}
+.mk .cotd .cd-name{font-size:1.12em;line-height:1.25;font-weight:800;overflow-wrap:anywhere}
+.mk .cotd .cd-series{font-size:.8em;color:var(--text2);letter-spacing:.04em}
+.mk .cotd .cinfo .cd-who{align-items:inherit}
+/* Home PC: the Card Of The Day box sits on the middle line of the hero, the picture buttons get room above the tiles, and the bug
+   button (the footer already has Report A Bug) no longer covers the Last Match card */
+@container fr (min-width:1001px){
+html.layout-pc #view-lobby .cotd{top:50%;transform:translateY(-50%)}
+html.layout-pc #view-lobby .lob-ctl{bottom:26px}
+}
+/* between a phone and a wide window (701-1000 px) the Card Of The Day box is stacked and used to cover the picture buttons: they move to the top-left corner, above the tags */
+@container fr (min-width:701px) and (max-width:1000px){
+html.layout-pc #view-lobby .lob-ctl{top:12px;left:56px;right:auto;bottom:auto}
+html.layout-pc #view-lobby .herotop>.l{padding-top:62px}
+}
+html.layout-pc body[data-view="view-lobby"] .bugfab, body[data-view="view-lobby"].mk .bugfab{display:none}
+@container fr (max-width:700px){ body[data-view="view-lobby"].mk .bugfab{display:inline-flex} }
+/* Home phone: the footer line the PC has (version, Report A Bug, fan-project note) closes the page */
+#view-lobby .lob-foot{display:none}
+@container fr (max-width:700px){
+#view-lobby .lob-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 14px;margin:6px 14px 22px;padding:10px 12px;font-size:.74em;color:var(--text2);text-align:center;border-top:1px solid var(--line)}
+#view-lobby .lob-foot a{color:var(--you-text);font-weight:800}
+[data-mode="light"] #view-lobby .lob-foot a{text-decoration:underline}
+}
+/* Deck recipe page (ALL) */
+.dk-st-btns .btn{min-width:72px}
+.dk-st-row{grid-template-columns:44px minmax(0,1fr)}.dk-st-btns{grid-column:1/-1}.dk-st-btns .btn{flex:1}      /* name on top, Recipe and Copy side by side under it (PC and phone) */
+.rc-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(220px,1fr);gap:16px;align-items:start}
+@container fr (max-width:700px){.rc-grid{grid-template-columns:minmax(0,1fr)}}
+.rc-sec{padding:10px 14px;display:flex;flex-direction:column;gap:2px}
+.rc-row{display:grid;grid-template-columns:34px minmax(0,1fr) auto 62px;align-items:center;gap:10px;min-height:34px;padding:4px 6px;border:0;border-bottom:1px solid var(--line);background:transparent;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.rc-row:last-child{border-bottom:0}
+button.rc-row:hover,button.rc-row:focus-visible{background:var(--you-soft)}
+.rc-row.miss{cursor:default;opacity:.72}
+.rc-n{font-variant-numeric:tabular-nums;color:var(--you-text)}
+.rc-nm{min-width:0;overflow-wrap:anywhere}
+.rc-id{font-size:.72em;color:var(--text3);font-variant-numeric:tabular-nums}
+.rc-c{font-size:.78em;color:var(--text2);text-align:right}
+@container fr (max-width:700px){.rc-row{grid-template-columns:30px minmax(0,1fr) 54px}.rc-id{display:none}}
+.rc-curve{display:flex;align-items:flex-end;gap:5px;height:130px;padding-top:6px}
+.rc-bar{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px;height:100%;font-size:.74em;color:var(--text2)}
+.rc-bar i{display:block;width:100%;min-height:2px;background:var(--you);opacity:.85;border-radius:2px 2px 0 0}
+.rc-bar b{color:var(--text);font-variant-numeric:tabular-nums}
+
+/* Battle PC (owner review 2026-10-30): the Spirit and Nexus cards use the row height the smaller hand frees (the old cap was tied to the hand-card width) */
+html.layout-pc #view-playmat .field-row .fslot { height: min(97%, calc(var(--card-w) * 2.4)); }
+
+/* Colour picker (ALL, owner review 2026-10-30): plain round swatches in tidy rounded boxes, three to a row; no slanted shapes */
+.mk .ae-pop .pgrid{--cols:3!important;flex:none;padding:12px 0 4px;gap:8px}
+.mk .pcol{clip-path:none;border:1px solid var(--line2);border-radius:10px;box-shadow:none;padding:10px 4px 8px;min-height:64px;justify-content:center;gap:7px;cursor:pointer}
+.mk .pcol i{width:28px;height:28px;border-radius:50%;clip-path:none;background:var(--c);box-shadow:0 0 0 2px var(--line2)}
+.mk .pcol.on,.mk .pcol[aria-pressed="true"]{border-color:var(--you);background:var(--you-soft);box-shadow:none}
+.mk .pcol[aria-pressed="true"] i{box-shadow:0 0 0 2px var(--text)}
+.mk .pcol:hover{border-color:var(--you-text)}
+.mk .pcol[aria-pressed="true"]::after{display:none}
+
+/* Deck builder (ALL, owner review 2026-10-30): "Hide filters" keeps only the search box; Sort and the three flag chips share one row */
+#bld.db-min #db-tbar .r2,#bld.db-min #db-tbar .hidem,#bld.db-min #db-tbar .vsep{display:none}
+#bld.db-min #db-chips{display:none}
+.mk #db-tbar .r1>#db-min{flex:none;white-space:nowrap}
+
+/* Battle PC (owner review 2026-10-30): Void is a slim chip (the opponent's on top of its right column, yours under the hand row's left corner), Banished has the
+   full box; the Hand Cnt box is gone (the hand count sits beside the Nexus); the empty Spirit slots sit on both sides so the cards stay in the middle */
+html.layout-pc #view-playmat .side-flank-pc .zone-box.zone-chip { flex: none; height: 46px; }
+html.layout-pc #view-playmat .zone-box.zone-chip .zone-label { font-size: 9px !important; }
+
+/* Round 4 (owner review 2026-10-30) */
+/* PC: smaller hand, Spirit and Nexus rows get the same height and the cards fill them; Void sits right under Banished (flank) */
+html.layout-pc #view-playmat .field-row-wrapper.nexus-row { flex: 1; }
+html.layout-pc #view-playmat .playmat-layout.has-cp { grid-template-rows: minmax(0, 1fr) 56px minmax(0, 1fr) auto; }
+/* PC: Card Panel folds to a slim strip; the board and the fx layer follow */
+#card-panel .cp-min { position: absolute; top: 6px; right: 6px; width: 24px; height: 24px; border: 1px solid var(--ae-line2, #ffffff40); background: var(--ae-chip, #ffffff10); color: var(--ae-text, #e6eaf0); cursor: pointer; font-size: 12px; line-height: 1; border-radius: 4px; z-index: 2; }
+#card-panel .cp-min:hover, #card-panel .cp-min:focus-visible { box-shadow: inset 0 0 0 1px var(--you); outline: none; }
+html.layout-pc #view-playmat .playmat-layout.has-cp { }
+html.layout-pc #view-playmat .playmat-layout.has-cp > #card-panel { position: relative; }
+html.layout-pc #view-playmat .playmat-layout.has-cp.cp-min { grid-template-columns: minmax(0, 1fr) 36px; }
+html.layout-pc #view-playmat #card-panel.min { padding: 6px 0; overflow: hidden; }
+html.layout-pc #view-playmat #card-panel.min .cp-min { position: static; margin: 0 auto; }
+html.layout-pc #view-playmat #card-panel.min .cp-title { writing-mode: vertical-rl; margin: 12px auto 0; }
+html.layout-pc:has(#view-playmat.active .playmat-layout.cp-min) #ae-fx { right: 40px; }
+/* PHONE: the Burst/Mirage and Soul State boxes sit in the vertical middle of each field instead of a corner */
+html:not(.layout-pc) .fc-body .burst-area, html:not(.layout-pc) .fc-body .soul-area, html:not(.layout-pc) .fc-body.mir .burst-area, html:not(.layout-pc) .fc-body.mir .soul-area { align-self: center; }
+html.layout-pc #view-playmat .hand-container-wrapper > .hand-area { grid-column: 2; }   /* the side chips are gone, so the hand stays under the field, between the flank columns */
+/* PHONE (owner review 2026-10-30): the search field fills the row, so it sits centred with the same gap on both sides */
+@container fr (max-width:700px){.mk #db-tbar,.mk #lib-tbar{padding-inline:12px}.mk .btool .search svg{left:18px}.mk .btool .search input{padding-left:42px;padding-right:12px;font-size:.92em;text-overflow:ellipsis}}
+#bld.db-min .ddmenu{display:none}
+.mk #db-tbar .r1>#db-min{position:relative;z-index:96}   /* the Hide/Show filters button stays clickable above an open dropdown */
+/* Round 5 (owner review 2026-10-30): an empty row shows ONE Empty box in the middle; with cards there is none (phone: the note is centred too) */
+#view-playmat .field-row .empty-note{margin:auto}
+#view-playmat .field-row:has(>.empty-note){justify-content:center!important}
+#view-playmat .field-row>.empty-note{margin-inline:auto!important;flex:none}
+#view-playmat .field-row:has(>.ph-slot){justify-content:center!important}
+#view-playmat .field-row>.ph-slot{margin-inline:auto!important}
+
+/* Effect pop-up (owner 2026-10-30): PC top-left under the AETERNA header; phone top, under the AETERNA bar; a tap on it opens the full card */
+html.layout-pc #ae-eff-stack { left: 8px; top: 46px; bottom: auto; }
+.ae-eff { cursor: pointer; }
+.ae-eff:focus-visible { outline: 2px solid var(--you); outline-offset: 1px; }
+html:not(.layout-pc) #ae-eff-stack { top: 38px; }
