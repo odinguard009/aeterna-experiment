@@ -172,3 +172,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v132 (v0.197.0, Lane K): Invoke `cost` accepts `destroyOwn` ({"kind":"nexus|spirit","match":{...}}); STATIC `targetRefreshed: true` ("Spirits in refreshed state gain +N BP").
 - v133 (v0.197.0, Lane K): trigger `ALLY_BLOCKS` ("When your Spirit blocks", fired next to BLOCKS; `match` reads the blocker).
 - v134 (v0.197.0, Lane K): trigger `OPP_START_ATTACK` ("Start of Opposing Attack Step", fired for the defender right after START_ATTACK).
+- v135 (v0.197.0, Lane K): condition `attackerCostLe: N` (the current attacker is a Cost N or less Spirit; for BLOCKS "blocks an opposing Cost N or less Spirit").

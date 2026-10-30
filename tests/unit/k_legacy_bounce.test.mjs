@@ -972,3 +972,15 @@ test('K-75 OPP_START_ATTACK: Belder shrinks an attacker-side Spirit at the start
     return [dropped, BS.bpOf(l) - b0]; })()`);
   assert.deepEqual(r, [3000, 2000]);
 });
+
+test('K-76 attackerCostLe + targetRefreshed: Pepper\'s Chairo gets +2000 refreshed and refreshes after blocking a Cost 3 or less Spirit', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    P.spirits.length = 0; P.nexus.length = 0; O.spirits.length = 0; O.nexus.length = 0; G.active = O.key; P.cpu = true; O.cpu = true; G.step = 5;
+    const c = BS.mkInst('26RBS03-035'); c.cores = 2; P.spirits.push(c);
+    const rb = BS.bpOf(c); c.exhausted = true; const eb = BS.bpOf(c);
+    const go = async (id) => { const a = BS.mkInst(id); O.spirits.push(a); G.attacker = a; G.blocker = c; c.exhausted = true; c.fxUsed = {}; await BS.fireFx(P, 'BLOCKS', c, { attacker: a, blocker: c }); await BS.flushBursts(); return c.exhausted; };
+    const cheap = await go('26RBS01-016'), pricey = await go('26RBS03-058');
+    return [rb - eb, cheap, pricey]; })()`);
+  assert.deepEqual(r.slice(0, 3), [2000, false, true]);
+});
