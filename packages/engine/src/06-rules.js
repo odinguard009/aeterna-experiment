@@ -232,6 +232,12 @@ function handCostSet(p, card) {
   }
   return null;
 }
+function summonTaxOf(p, card) {                  // v180 STATIC SUMMON_TAX on the opposing field: extra cost to summon a matching card
+  if (!G || card.type !== 'Spirit') return 0; const opp = G.p[other(p.key)]; let n = 0;
+  for (const src of fieldList(opp)) { const L = lvNo(src);
+    for (const { e } of fxEntries(src)) if (e.trigger === 'STATIC' && e.flag === 'SUMMON_TAX' && !(e.lv && !e.lv.includes(L)) && fxMatch(card, e.match) && fxIf(opp, p, e.if, { selfInst: src })) n += e.n; }
+  return n;
+}
 function effCost(p, card) {                       // cost reduction is mandatory when possible
   const syms = fieldSymbols(p, card.soulReduce, true);
   if (card.trashSymbols) for (const t of p.trash) for (const x of symbolAttrs(CARDS[t.id])) syms.push(x);   // v0.47 Lightning Tempest: "you can also use symbols from your Trash to reduce the cost
@@ -240,7 +246,7 @@ function effCost(p, card) {                       // cost reduction is mandatory
   const r = lp ? lp.total : reductionOf(card, syms, extra);
   const hc = handCostSet(p, card), base = hc == null ? card.cost : hc;
   const per = card.costPer ? Math.min(card.costPer.max, card.costPer.n * p.spirits.filter(s => (CARDS[s.id].families || []).includes(card.costPer.family)).length) : 0;      // v0.196 costPer
-  return Math.max(0, (costAltActive(p, card) ? Math.min(base, card.costAlt.cost) : base) - r - per);
+  return Math.max(0, (costAltActive(p, card) ? Math.min(base, card.costAlt.cost) : base) - r - per) + summonTaxOf(p, card);
 }
 function legacyPay(p, inst) {                     // v0.69: banish the Legacy cards (call once, before the cost is paid: the state must still be the one effCost saw)
   const lp = legacyPlan(p, CARDS[inst.id]); inst.legacyN = lp ? lp.n : 0;

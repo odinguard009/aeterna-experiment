@@ -132,6 +132,11 @@ function parseEffects(arr) {
         if (!o.match) return { error: 'HAND_COST needs a "match"' };
         o.n = e.n;
       }
+      if (e.flag === 'SUMMON_TAX') {                              // v180 "the opponent can't summon <match> unless they pay N extra cost" (effCost of the opposing player)
+        if (!Number.isInteger(e.n) || e.n < 1 || e.n > 3) return { error: 'SUMMON_TAX needs a whole-number "n" (1-3)' };
+        if (!o.match) return { error: 'SUMMON_TAX needs a "match"' };
+        o.n = e.n;
+      }
       if (e.flag === 'NO_ATTACK_LIFE') {                          // v0.186 attacks of Cost N or less Spirits can't reduce either Life
         if (!Number.isInteger(e.costLe) || e.costLe < 0 || e.costLe > 30) return { error: 'NO_ATTACK_LIFE needs a whole-number "costLe" (0-30)' };
         o.costLe = e.costLe;

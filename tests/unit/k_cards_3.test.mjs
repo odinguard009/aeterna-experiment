@@ -106,3 +106,13 @@ test('K-156 26RBS02-X14: BP_MINUS zeroBottom returns a 0 BP opposing Spirit to t
     return [O.spirits.length, O.deck.length - d0, fx[0].if.firstAttack, fx[1].cost.returnOwn.toHand, fx[1].cost.returnOwn.match.costLe]; })()`);
   assert.deepEqual(r, [0, 1, false, true, 6], JSON.stringify(r));
 });
+
+test('K-157 26RDB01-053: SUMMON_TAX adds 1 to the opponent summon cost of a Cost 3 or less Spirit on their turn (LV2 only)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const lo = Object.values(BS.CARDS).find(k => k.type === 'Spirit' && k.cost === 3), hi = Object.values(BS.CARDS).find(k => k.type === 'Spirit' && k.cost === 5);
+    const n = BS.mkInst('26RDB01-053'); P.nexus.push(n); G.active = 'opponent';
+    n.cores = 0; const a = effCost(O, lo), a5 = effCost(O, hi); n.cores = 3; const b = effCost(O, lo), c = effCost(O, hi) - a5; G.active = 'player'; const d = effCost(O, lo);
+    return [b - a, c, d - a, BS.CARDS['26RDB01-053'].effects[1].flag]; })()`);
+  assert.deepEqual(r, [1, 0, 0, 'SUMMON_TAX'], JSON.stringify(r));
+});
