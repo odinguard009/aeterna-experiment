@@ -10,8 +10,6 @@
 #   DONE ... tokens=N [sub=M] [rantai]  tokens = the session's budget-counter difference plus its subagents' tokens (sub=, owner
 #                       2026-10-21); "rantai" = it was a chain continuation
 #                       (item T: "lock|manual ... budget=<start>" + "done ... budget=<end>" lets the gate compute tokens=; explicit tokens= still wins)
-#   HEMAT ON / HEMAT OFF  token-saving switch (owner, 2026-10-19); newest one wins; none yet = ON. ON = the pre-v0.68 session
-#                       (single main session, read-only subagents only as CLAUDE.md "Mode hemat" says); OFF = team session (v0.68)
 # A lane word on LOCK/MANUAL/UNLOCK (ui | card) is still read by the evaluator (parallel lanes were removed in v0.96.0; nothing writes it any more).
 #   any other text      owner activity: restarts the idle timer, like a new session
 # Commands (no clone needed for check/on/off/status/switch):
@@ -25,8 +23,6 @@
 #   unlock [lane]    early stop / error of any session (of that lane)
 #   on | off [why]   owner switch ("otomatis on" / "otomatis off" in chat, a comment on issue #1, or the Actions workflow "Auto mode")
 #   switch           prints ON or OFF (cheap; auto sessions run it between tasks)
-#   hemat [on|off|status]  token-saving switch ("hemat on" / "hemat off" / "hemat status" in chat); prints "Mode hemat: ON|OFF";
-#                    every session reads it at the start (team or not) and prints it in the final summary
 #   status           one-line summary for the owner ("otomatis status")
 #   rantai [on|off|status|next]  chain mode ("rantai on" / "rantai off" / "rantai status" in chat). next = end of every
 #                    session, after done: prints "GO ..." (start the next session in the same chat; its DONE carries "rantai")
@@ -141,12 +137,6 @@ elif want and want != next_model: print(f"STOP next item needs {next_model}, thi
 else: print("GO")
 PY
 }
-hemat_state() { # newest "HEMAT ON|OFF" comment on issue #1 (whole history: the switch can be older than 7 days); none = ON
-  local rows
-  if [ "${GATE_FIXTURE:-}" = 1 ]; then rows=$(printf '%s\n' "${COMMENTS:-}" | cut -f2-)
-  else rows=$(pages "repos/$R/issues/$L/comments?per_page=100" "$TRUSTED_JQ"' | .body | split("\n")[0]') || return 1; fi
-  printf '%s\n' "$rows" | grep -iE '^HEMAT[[:space:]]+(ON|OFF)\b' | tail -1 | awk '{v=toupper($2)} END {print (v=="OFF" ? "OFF" : "ON")}'
-}
 rantai_eval() { # chain mode; $1 = status|next; prints one line (next: GO|STOP|AUTOOFF ...)
   local rows
   if [ "${GATE_FIXTURE:-}" = 1 ]; then rows="${COMMENTS:-}"
@@ -207,12 +197,6 @@ case "$cmd" in
   unlock) lane_ok "${1:-}" || exit 2; post "UNLOCK${1:+ $1}" && chain_marker clear && echo "unlocked${1:+ ($1 lane)}" ;;
   on)     post "ON ${*:-}" && echo "Mode otomatis: ON" ;;
   off)    post "OFF ${*:-}" && echo "Mode otomatis: OFF" ;;
-  hemat)  case "${1:-status}" in
-            on|ON)   post "HEMAT ON ${*:2}" && echo "Mode hemat: ON" ;;
-            off|OFF) post "HEMAT OFF ${*:2}" && echo "Mode hemat: OFF" ;;
-            status)  v=$(hemat_state) || { echo "gate error (gh api failed)"; exit 1; }; echo "Mode hemat: $v" ;;
-            *) echo "usage: $0 hemat on|off|status"; exit 2 ;;
-          esac ;;
   rantai) case "${1:-status}" in
             on|ON)   post "RANTAI ON ${*:2}" && echo "Mode rantai: ON" ;;
             off|OFF) post "RANTAI OFF ${*:2}" && chain_marker clear && echo "Mode rantai: OFF" ;;
@@ -226,5 +210,5 @@ case "$cmd" in
           esac ;;
   switch|status) evaluate "$cmd" || { echo "gate error (gh api failed)"; exit 1; } ;;
   busy)   lane_ok "${1:-}" || exit 2; v=$(evaluate busy "" "${1:-}") || exit 1; echo "$v"; [ "${v%% *}" = BUSY ] && exit 3; exit 0 ;;
-  *) echo "usage: $0 check opus [lane]|lock [lane]|manual [lane]|done vX.Y.Z next=Opus|unlock [lane]|on|off [why]|hemat on|off|status|rantai on|off|status|next|switch|status|busy [lane]  (lanes: $LANES)"; exit 2 ;;
+  *) echo "usage: $0 check opus [lane]|lock [lane]|manual [lane]|done vX.Y.Z next=Opus|unlock [lane]|on|off [why]|rantai on|off|status|next|switch|status|busy [lane]  (lanes: $LANES)"; exit 2 ;;
 esac
