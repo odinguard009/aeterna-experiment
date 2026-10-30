@@ -212,3 +212,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v173: `RETURN_TRASH.toTop` (return to the decktop instead of the Hand) with `handIfAtk` (2-5: to the Hand instead once you have attacked that many times this turn).
 - v174 (Lane K): `DESTROY.costIs` ("target an opposing Cost N Spirit", exact cost) and Invoke cost `exhaustOwn.n` (2-3, "exhaust two of your X Nexuses"). Additions only.
 - v175 (Lane K): trigger `BP_REACHED` ("When the BP of your X Spirit becomes N or more"): keys `bpGe` (1000-100000), `match` (on the Spirit), `self`; checked only around Activate/Invoke BP boosts of the owner (crossing from below N; a Spirit first seen that turn does not fire). Additions only.
+- v176 (v0.200.0, Lane K): card `match.team` now survives parsing for STATIC `to:"own"` and `match.exhausted` (true/false; needs the Spirit instance, e.g. STATIC `to:"own"` / `UNAFFECTED`): "your exhausted <family/team> Spirits". Card: 26RDB01-049.
