@@ -69,20 +69,25 @@ git log --oneline -5 | sed 's/^/[session_start]   /'
 grep -m1 -o '\*\*Next:.*' CLAUDE.md | cut -c1-400 | sed 's/^/[session_start] /' || true
 node tools/lane_next.mjs 2>/dev/null | sed 's/^/[session_start] /' || true   # lane order: F, S1 Standard Magic, U/I queue, then K Standard first (owner, 2026-10-21)
 # Lane K release per 50 (owner, 2026-10-28): new complete cards since the last released version, and local commits older than 24 h
+# Baseline = the complete count printed in the newest CHANGELOG release ("1,368 -> 1,419 of 8,709"); the nearest git tag is wrong in a shallow
+# clone (measured 2026-10-30: it said v0.195.0 and printed 110/50 when 9 cards were new). The tag stays the fallback; the 24 h check counts from the last commit that touched CHANGELOG.md.
 REL=$(git describe --tags --abbrev=0 --match 'v[0-9]*' 2>/dev/null)
-if [ -n "$REL" ]; then
-  python3 - "$REL" <<'PY' | sed 's/^/[session_start] /' || true
-import json, subprocess, sys, time
+python3 - "$REL" <<'PY' | sed 's/^/[session_start] /' || true
+import json, re, subprocess, sys, time
 rel = sys.argv[1]
 now = json.load(open('docs/reports/card-counts.json'))['complete']
-old = json.loads(subprocess.check_output(['git', 'show', rel + ':docs/reports/card-counts.json']))['complete']
+m = re.search(r'->\s*([\d,]+)\s+of\s+[\d,]+', open('CHANGELOG.md').read().split('\n## ', 2)[1])
+if m: old, src = int(m.group(1).replace(',', '')), 'the newest CHANGELOG release'
+elif rel: old, src = json.loads(subprocess.check_output(['git', 'show', rel + ':docs/reports/card-counts.json']))['complete'], rel
+else: sys.exit(0)
 new = now - old
-print(f"K release: {new}/50 new complete cards since {rel}" + (" -> RELEASE DUE" if new >= 50 else ""))
-ts = subprocess.run(['git', 'log', rel + '..HEAD', '--format=%ct'], capture_output=True, text=True).stdout.split()
-if ts and time.time() - min(map(int, ts)) > 86400:
-    print("K release: unreleased commits are older than 24 h -> RELEASE DUE")
+print(f"K release: {new}/50 new complete cards since {src}" + (" -> RELEASE DUE" if new >= 50 else ""))
+last = subprocess.run(['git', 'log', '-1', '--format=%H', '--', 'CHANGELOG.md'], capture_output=True, text=True).stdout.strip()   # the release commit
+if last:
+    ts = subprocess.run(['git', 'log', last + '..HEAD', '--format=%ct'], capture_output=True, text=True).stdout.split()
+    if ts and time.time() - min(map(int, ts)) > 86400 and new > 0:
+        print("K release: unreleased commits are older than 24 h -> RELEASE DUE")
 PY
-fi
 python3 tools/unlock_report.py --line 2>/dev/null | sed 's/^/[session_start] /' || true
 python3 tools/priority_report.py --line 2>/dev/null | sed 's/^/[session_start] /' || true   # v0.60.3
 python3 tools/rules_audit.py --line 2>/dev/null | sed 's/^/[session_start] /' || true

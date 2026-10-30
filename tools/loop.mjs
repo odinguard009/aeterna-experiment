@@ -7,7 +7,8 @@ import { spawnSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 
 const FULL = process.argv.includes('--full');
-const SMOKE = ['build', 'data', 'pack', 'budget', 'engine'].map((f) => `tests/unit/${f}.test.mjs`);
+// GUARDS (2026-10-30): the two files that failed most often in the ~20 min pre-push (FX coverage floor, flag lists), ~15 s here instead.
+const SMOKE = ['build', 'data', 'pack', 'budget', 'engine', 'fx_generated_cases', 'strict_effects'].map((f) => `tests/unit/${f}.test.mjs`);
 const SLOW = /(^|\/)(props|fuzz596)\.test\.mjs$/;   // CI only (npm test)
 
 const run = (args, env) => spawnSync(process.execPath, args, { encoding: 'utf8', env: { ...process.env, ...env } });
@@ -15,10 +16,18 @@ const git = (args) => (spawnSync('git', args, { encoding: 'utf8' }).stdout || ''
 const tail = (s, n) => s.trim().split('\n').slice(-n).join('\n');
 
 function changedTests() {
-  const base = git(['rev-parse', '--verify', '-q', 'origin/main']).length ? 'origin/main' : 'HEAD';
+  // Base HEAD (2026-10-30): files edited since the last commit. Earlier commits of a bundle already ran their loop; the old base
+  // origin/main re-ran every test file touched since the last release (the 94-test K file, ~6 min) on every loop.
+  const base = 'HEAD';
   const names = [...git(['diff', '--name-only', base, '--', 'tests/unit']),
     ...git(['ls-files', '--others', '--exclude-standard', 'tests/unit'])];
-  return names.filter((f) => f.endsWith('.test.mjs') && !SLOW.test(f) && existsSync(f));
+  // Tests that name a card whose data or code changed (2026-10-30: T06 asserted 26RBS03-X07 was still partial, the loop never ran it, main went red).
+  const ids = new Set();
+  for (const l of git(['diff', '-U0', base, '--', 'data/cards', 'packages/engine/src'])) {
+    if (/^[+-]/.test(l)) for (const m of l.matchAll(/\b[0-9A-Z]{2,8}-[A-Z]{0,2}\d{2,3}\b/g)) ids.add(m[0]);
+  }
+  const named = [...ids].slice(0, 60).flatMap((id) => git(['grep', '-l', '-F', id, '--', 'tests/unit']));
+  return [...new Set([...names, ...named.slice(0, 40)])].filter((f) => f.endsWith('.test.mjs') && !SLOW.test(f) && existsSync(f));
 }
 
 const testArgs = FULL ? ['tools/quick-tests.mjs'] : ['--test', ...new Set([...SMOKE, ...changedTests()])];
