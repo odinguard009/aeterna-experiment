@@ -179,3 +179,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v139 (v0.197.0, Lane K): `REFRESH_SPIRIT.per` + `.perN` ("For every N <Spirits/Nexuses> you control, target one <match> Spirit. Refresh them.": floor(perCount / N) picks, each a distinct exhausted match Spirit; cannot combine with self, bp or noAttack).
 - v140 (v0.197.0, Lane K): `REFRESH_SPIRIT.nexusPer` (v139, never released) is replaced by the `per` + `perN` form above (Misty Forest counts Nexuses, Blue Beat Stage counts Blue Beat Spirits).
 - v141 (v0.197.0, Lane K): `REFRESH_SPIRIT.other` ("Besides this Spirit, target ... Refresh it": this Spirit is not a candidate; cannot combine with self).
+- v142 (v0.197.0, Lane K): condition `soulInTrash: true|false` ("if the Soul Core is in your Trash"; the stripped icon on 26RSD09 is read as the Soul Core).
