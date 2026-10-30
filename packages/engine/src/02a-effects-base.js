@@ -115,7 +115,7 @@ function fxIf(owner, opp, c, ctx) {
   if (c.selfAttacking != null && !!(ctx && ctx.selfInst && G.attacker === ctx.selfInst) !== c.selfAttacking) return false;      // v0.185 "(During Attack)": this Spirit is the attacker
   if (c.viaEffect != null && !!(ctx && ctx.selfInst && ctx.selfInst.viaFx) !== c.viaEffect) return false;      // v0.181 "If this Spirit is summoned via an effect" (summonFree sets viaFx; the paid summons clear it)
   if (c.allHave != null && !allHaveOK(owner, c.allHave)) return false;
-  if (c.ctrlFamily != null && owner.spirits.some(f => (!c.ctrlFamily.exhausted || f.exhausted) && c.ctrlFamily.any.some(x => (CARDS[f.id].families || []).includes(x))) !== c.ctrlFamily.is) return false;   // v0.89 S1 "if you control any X/Y family Spirit"                             // v0.88 S1 "if all your Spirits/Nexuses have X" (02p)
+  if (c.ctrlFamily != null && owner.spirits.some(f => c.ctrlFamily.any.some(x => (CARDS[f.id].families || []).includes(x))) !== c.ctrlFamily.is) return false;   // v0.89 S1 "if you control any X/Y family Spirit"                             // v0.88 S1 "if all your Spirits/Nexuses have X" (02p)
   if (c.magicUsed != null && !(owner.magicTurn && owner.magicTurn.turn === G.turnNo && owner.magicTurn.cards.some(id => fxMatch(CARDS[id], c.magicUsed)))) return false;   // v0.116 "if you used a <family>/<colour> Magic card this turn"
   return true;
 }

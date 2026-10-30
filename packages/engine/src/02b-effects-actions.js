@@ -52,6 +52,7 @@ const FX_ACTIONS = {
         const got = [];
         for (let j = 0; j < a.n; j++) { const t = await fxPickTarget(c, FX_ACTIONS.DESTROY.cands(c, a).filter(x => !got.includes(x)), `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the opposing Spirit to destroy (${j + 1}/${a.n}, glowing).`); if (!t) break; got.push(t); }
         if (!got.length) { c.ctx.did = false; return; }
+        c.ctx.destroyedN = got.length;
         for (const t of got) { if (a.noFx) t.noFx = true; c.ctx.destroyedCost = CARDS[t.id].cost; removeSpirit(c.opp, t, 'destroyed', true); }
         checkDepletion(c.opp);
         if (a.thenDraw) { const k = draw(c.p, a.thenDraw); log(`${who(c.p)} ${c.p.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'}.`); handUp(c.p, k); }

@@ -808,15 +808,30 @@ test('K-63 Steguman: ACTIVATE_SUMMONED runs a Topaz Spirit\'s When Summoned effe
   assert.deepEqual(r, [[2, 1], [1, 2]]);
 });
 
-test('K-64 Coela-Canth: other + exhausted ctrlFamily', async () => {
+test('K-64 Coela-Canth: VOID_TO_MATCHING other + exhausted ctrl', async () => {
   const { page } = await quietBoard();
   const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
     const fish = Object.values(BS.CARDS).find(c => (c.families || []).includes('Armored Fish') && c.type === 'Spirit' && c.id !== '26RSD03-006');
     P.spirits.length = 0; const cc = BS.mkInst('26RSD03-006'); cc.cores = 1; const f = BS.mkInst(fish.id); f.cores = 1; P.spirits.push(cc, f); P.void = 2;
     await BS.runActions({ p: P, opp: O, src: cc, ctx: {} }, { actions: [{ do: 'VOID_TO_MATCHING', targets: 1, other: true, match: { family: ['Armored Fish'] } }] });
     const a = [cc.cores, f.cores];
-    const cond = { ctrlFamily: { any: ['Armored Fish'], is: true, exhausted: true } };
+    const cond = { ctrl: { n: 1, type: 'Spirit', family: 'Armored Fish', exhausted: true } };
     const x = BS.fxIf(P, O, cond, {}); f.exhausted = true; const y = BS.fxIf(P, O, cond, {});
     return [a, x, y]; })()`);
   assert.deepEqual(r, [[1, 2], false, true]);
+});
+
+test('K-65 Banri-Sora: ctrl team exhausted n:2, TRASH_CORES_TO toSelf perDestroyed', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const st = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && /\\[Teams?:[^\\]]*Red Stella/.test(c.desc || c.text || '') && c.id !== '26RDB01-013');
+    P.spirits.length = 0; const b = BS.mkInst('26RDB01-013'); b.cores = 1; const s1 = BS.mkInst(st.id), s2 = BS.mkInst(st.id); P.spirits.push(b, s1, s2);
+    const cond = { ctrl: { n: 2, type: 'Spirit', team: 'Red Stella', exhausted: true } };
+    const x = BS.fxIf(P, O, cond, {}); s1.exhausted = true; const y = BS.fxIf(P, O, cond, {}); s2.exhausted = true; const z = BS.fxIf(P, O, cond, {});
+    const cx = {}; P.trashCores.n = 5;
+    await BS.runActions({ p: P, opp: O, src: b, ctx: cx }, { actions: [{ do: 'TRASH_CORES_TO', n: 1, toSelf: true, perDestroyed: true }] });
+    const none = b.cores; cx.destroyedN = 2;
+    await BS.runActions({ p: P, opp: O, src: b, ctx: cx }, { actions: [{ do: 'TRASH_CORES_TO', n: 1, toSelf: true, perDestroyed: true }] });
+    return [x, y, z, none, b.cores]; })()`);
+  assert.deepEqual(r, [false, false, true, 1, 3]);
 });

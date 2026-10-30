@@ -23,7 +23,7 @@ packBlockOf, packCards, unpackCards, INF_LBASE, INF_LEXT, INF_DBASE, INF_DEXT, I
 ## packages/engine/src/02a-effects-base.js (297 lines, ~8.4k tokens) — EFFECT ENGINE
 FX_STRICT, FX_WARNED, fxUnknown, FX_COND_KEYS, FX_TRIGGERS, FX_TRIGGER_TEXT, BR_IDX, fxEntries, fxMatch, cantAttack, canBlockState, fxIf, cardHasKeyword, fxNoText, ctrlCount, spiritCount, PER_TYPES, perOk, perCount, ownerOf, STATIC_FLAGS, fxImmune, unaffectedBy, drawPlusOf, attackLifeLocked, deckDiscardLocked, flagActive, costDestroyBonus, coresSent, staticBp, takeFromVoid, releaseCores, removeNexus, fxPickTarget, toSoulState, chooseCard, bounceCard, SOUL_SRC, hasMatch
 
-## packages/engine/src/02b-effects-actions.js (121 lines, ~4.4k tokens)
+## packages/engine/src/02b-effects-actions.js (122 lines, ~4.5k tokens)
 FX_ACTIONS
 
 ## packages/engine/src/02c-effects-parse.js (209 lines, ~6.9k tokens)
@@ -74,7 +74,7 @@ cardTeams, allHaveShapeOK, allHaveOK, winRiderRun, fxOppMark, blockedInferior, b
 ## packages/engine/src/02r-effects-actions-deck.js (117 lines, ~3.7k tokens)
 
 
-## packages/engine/src/02s-effects-actions-soul.js (149 lines, ~3.6k tokens)
+## packages/engine/src/02s-effects-actions-soul.js (152 lines, ~3.8k tokens)
 
 
 ## packages/engine/src/02t-effects-actions-opp.js (237 lines, ~5.9k tokens)

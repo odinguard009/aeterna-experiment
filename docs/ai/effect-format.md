@@ -161,4 +161,5 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v121 (v0.197.0, Lane K): `diffName: true` on `ALLY_*` triggers ("a Spirit with a different name from this Spirit's"; the acting Spirit must not share the effect owner's card name).
 - v122 (v0.197.0, Lane K): condition `byOwnFx: {family:[..]}` (on a DESTROYED effect: "if this Spirit was destroyed by your <family> effect"; `removeSpirit` stores the effect card in `s.lostFxSrc`).
 - v123 (v0.197.0, Lane K): action `ACTIVATE_SUMMONED {match}` ("target one of your <X> Spirits; activate one of its When Summoned effects"; the first effect valid at its level is used).
-- v124 (v0.197.0, Lane K): `VOID_TO_MATCHING` takes `other: true` ("besides this Spirit"); `ctrlFamily` takes `exhausted: true` ("if you control any exhausted <X> Spirit").
+- v124 (v0.197.0, Lane K): `VOID_TO_MATCHING` takes `other: true` ("besides this Spirit").
+- v125 (v0.197.0, Lane K): `TRASH_CORES_TO` takes `toSelf: true` (+ `perDestroyed: true`, `n` cores per Spirit the effect destroyed, "for each Spirit destroyed, send a core from your Trash to this Spirit"); `DESTROY n` now sets `ctx.destroyedN`; use `ctrl {n, family, exhausted}` for "two or more exhausted X".
