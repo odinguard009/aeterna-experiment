@@ -754,3 +754,15 @@ test('K-59 Vitality Woods: NEXUS_EXHAUST draws only in your Attack Step with fou
     card.effects.pop(); return out; })()`);
   assert.deepEqual(r, [2, 1, 1]);
 });
+
+test('K-60 Argentoll: AMPLIFY trigger puts a core from the Void into the Reserve once per turn', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    P.spirits.length = 0; O.spirits.length = 0; P.void = 3; G.step = 5; G.active = P.key;
+    const arg = BS.mkInst('26RBS02-041'); arg.cores = 6; P.spirits.push(arg);
+    const amp = BS.mkInst('26RBS01-048'); amp.cores = 6; P.spirits.push(amp); G.attacker = amp;
+    const ei = BS.CARDS['26RBS01-048'].effects.findIndex(e => e.invoke); const before = P.void;
+    const ok = await BS.activateFx(P, amp, ei); const one = before - P.void; if (!ok) return ['act-false', BS.activatable(P, amp).length, G.step, G.attacker === amp];
+    return [ei >= 0, one]; })()`);
+  assert.deepEqual(r, [true, 1]);
+});

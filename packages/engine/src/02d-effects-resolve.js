@@ -325,6 +325,7 @@ async function activateFx(p, f, idx) {
   log(`${card.name}: [${e.invoke ? 'Invoke' : 'Activate'}] ${fxDescribe(e)}.`);
   await asResolving(() => runActions({ p, opp, src: f, ctx: {} }, e, 'ACTIVATE'));
   checkDepletion(p); checkDepletion(opp);
+  if (e.invoke && !G.over && cardHasKeyword(card, 'Amplify') && e.actions.some(x => x.do === 'BP_TARGET' && x.per)) await fireFx(p, 'AMPLIFY', f, { subject: f });   // v0.197 "When your Spirit activates Amplify" (the per-count Invoke BP boost)
   if (e.cost && e.cost.exhaustSelf && !G.over) await fireFx(p, 'NEXUS_EXHAUST', f);   // v0.197 "When this Nexus exhausts" (Invoke / Activate cost only)
   if (e.silverWheel && !G.over) await fireFx(p, 'SILVER_WHEEL', f);   // v0.50: "when you activate Silver Wheel"
   io.view({ type: 'board' }); await wait(350); await flushBursts();
