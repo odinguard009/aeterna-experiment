@@ -251,3 +251,49 @@ html.layout-pc #view-playmat .trash2 .gems { max-width: 100%; }
 .mk .cotd .cfw{width:170px;margin:0 auto}
 .mk .cotd.solo{flex-direction:column-reverse;align-items:center}
 }
+
+/* ---- owner review 2026-10-30 (UI round 4) ---- */
+/* Card Of The Day (ALL): the card's name and series sit right under the heading */
+.mk .cotd .cd-who{display:flex;flex-direction:column;gap:2px;margin-top:-4px}
+.mk .cotd .cd-name{font-size:1.12em;line-height:1.25;font-weight:800;overflow-wrap:anywhere}
+.mk .cotd .cd-series{font-size:.8em;color:var(--text2);letter-spacing:.04em}
+.mk .cotd .cinfo .cd-who{align-items:inherit}
+/* Home PC: the Card Of The Day box sits on the middle line of the hero, the picture buttons get room above the tiles, and the bug
+   button (the footer already has Report A Bug) no longer covers the Last Match card */
+@container fr (min-width:1001px){
+html.layout-pc #view-lobby .cotd{top:50%;transform:translateY(-50%)}
+html.layout-pc #view-lobby .lob-ctl{bottom:26px}
+}
+/* between a phone and a wide window (701-1000 px) the Card Of The Day box is stacked and used to cover the picture buttons: they move to the top-left corner, above the tags */
+@container fr (min-width:701px) and (max-width:1000px){
+html.layout-pc #view-lobby .lob-ctl{top:12px;left:56px;right:auto;bottom:auto}
+html.layout-pc #view-lobby .herotop>.l{padding-top:62px}
+}
+html.layout-pc body[data-view="view-lobby"] .bugfab, body[data-view="view-lobby"].mk .bugfab{display:none}
+@container fr (max-width:700px){ body[data-view="view-lobby"].mk .bugfab{display:inline-flex} }
+/* Home phone: the footer line the PC has (version, Report A Bug, fan-project note) closes the page */
+#view-lobby .lob-foot{display:none}
+@container fr (max-width:700px){
+#view-lobby .lob-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 14px;margin:6px 14px 22px;padding:10px 12px;font-size:.74em;color:var(--text2);text-align:center;border-top:1px solid var(--line)}
+#view-lobby .lob-foot a{color:var(--you-text);font-weight:800}
+[data-mode="light"] #view-lobby .lob-foot a{text-decoration:underline}
+}
+/* Deck recipe page (ALL) */
+.dk-st-btns .btn{min-width:72px}
+@container fr (max-width:700px){.dk-st-row{grid-template-columns:44px minmax(0,1fr)}.dk-st-btns{grid-column:1/-1}.dk-st-btns .btn{flex:1}}
+.rc-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(220px,1fr);gap:16px;align-items:start}
+@container fr (max-width:700px){.rc-grid{grid-template-columns:minmax(0,1fr)}}
+.rc-sec{padding:10px 14px;display:flex;flex-direction:column;gap:2px}
+.rc-row{display:grid;grid-template-columns:34px minmax(0,1fr) auto 62px;align-items:center;gap:10px;min-height:34px;padding:4px 6px;border:0;border-bottom:1px solid var(--line);background:transparent;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.rc-row:last-child{border-bottom:0}
+button.rc-row:hover,button.rc-row:focus-visible{background:var(--you-soft)}
+.rc-row.miss{cursor:default;opacity:.72}
+.rc-n{font-variant-numeric:tabular-nums;color:var(--you-text)}
+.rc-nm{min-width:0;overflow-wrap:anywhere}
+.rc-id{font-size:.72em;color:var(--text3);font-variant-numeric:tabular-nums}
+.rc-c{font-size:.78em;color:var(--text2);text-align:right}
+@container fr (max-width:700px){.rc-row{grid-template-columns:30px minmax(0,1fr) 54px}.rc-id{display:none}}
+.rc-curve{display:flex;align-items:flex-end;gap:5px;height:130px;padding-top:6px}
+.rc-bar{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px;height:100%;font-size:.74em;color:var(--text2)}
+.rc-bar i{display:block;width:100%;min-height:2px;background:var(--you);opacity:.85;border-radius:2px 2px 0 0}
+.rc-bar b{color:var(--text);font-variant-numeric:tabular-nums}

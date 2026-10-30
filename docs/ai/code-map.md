@@ -122,13 +122,13 @@ humanCan, legalityHTML, FX_KW_START, FX_LINE_STOP, effectLines, fxMark, slashBre
 ## apps/web/src/12-zones.js (71 lines, ~1.6k tokens) — ZONES, LOG, RULES COVERAGE
 openZoneModal, openLogModal, showRules
 
-## apps/web/src/13-render.js (375 lines, ~8.9k tokens) — RENDERING
+## apps/web/src/13-render.js (376 lines, ~8.9k tokens) — RENDERING
 nameHTML, isPC, applyLayout, _rz, colorVar, cardColors, isMulti, colorSty, symSlices, symCount, isUltimate, cardCls, rebMark, symBadgeHTML, handCardHTML, gemsHTML, fieldCardHTML, rowHTML, burstAreaHTML, soulAreaHTML, PILL_FULL, fieldAreaHTML, zoneBox, pv, trashBox, pileHTML, lifePlate, resPlate, STEP_WARN, stepTargets, stepWarn, stepClick, SLEEVE_TINTS, CORE_LOOKS, deckLook, coreVars, SLEEVE_IMG, sleeveImgCss, applyLook, hintText, renderBoard, fitGems, render, CUE, fxCueReset, aeRibbon, aeStrip, fxCues, LOG_OPEN, updateLogDrawer, toggleLog, magBtnHTML, liveStatusHTML, HIST_KEY, HISTORY, recordMatch, histHTML, lifeTxt, switchView, renderSettings, renderLobby
 
 ## apps/web/src/13a-deckbuilder.js (533 lines, ~12.8k tokens) — DECK BUILDER (v0.53.0 redesign; list performance from v0.52.1)
 DB_COLORS, DB_TYPES, DB_COSTS, DB_GROUP_ALL, DB_TYPE_GROUPS, DB_GROUPS, RAINBOW, filterPipsHTML, filterTypesHTML, DB_BPS, DB_CORES, DB_FAMS, DB_ICONS, DB_VALS, dbVals, dbFamilies, ddMode, ddList, ddSel, ddSortDef, ddButton, ddMenuEl, ddPick, ddReset, DBF, DB_UNDO, DB_IO, dbArr, dbTypeOf, dbSetOf, dbFilterOK, dbPlusOK, dbGroupOK, DBV, DB_GAP, DB_COLL, dbIndex, dbSets, dbActiveCount, DB_RARITY_ORDER, DB_SORT_VAL, DB_SORT_KEYS, dbSortCmp, dbFilter, fxMarked, FX_MARK_LBL, fxMarkHTML, dbCardHTML, dbWindow, dbScroll, dbSearchInput, dbBar, dbMenu, dbDd, DB_TAB, dbTab, renderDbLook, dbCover, SLEEVE_BLOB, dbSleeveSet, dbSleeveClear, dbLook, dbToggle, dbResetFilters, DB_SAVE_T, dbSaved, dbNameInput, dbSave, dbSnap, dbCanAdd, dbChange, dbReplace, dbClear, dbUndo, dbRedo, dbTestHand, DB_SIZE_KEY, DB_SIZE, dbSize, dbFlyFrom, dbFlyTo, DB_LP, DB_PEEK, dbPeekHide, dbTap, dbKey, dbDetect, dbCsv, dbDeckPng, dbImport, dbExport, dbShareCode, dbShareResolve, dbShare, DB_COLCH, dbRingHTML, dbChips, dbStatsHTML, dbRowsHTML, renderDbDeck, dbPlayNow, dbSheet, renderDeckBuilder
 
-## apps/web/src/13b-nav.js (106 lines, ~3k tokens) — APP NAVIGATION + HOME (v0.65.0, UI/UX overhaul U2; docs/DESIGN.md section 0, mockup docs/design/mockup-v11.html)
+## apps/web/src/13b-nav.js (109 lines, ~3.1k tokens) — APP NAVIGATION + HOME (v0.65.0, UI/UX overhaul U2; docs/DESIGN.md section 0, mockup docs/design/mockup-v11.html)
 NAV_HIDDEN, MK_OFF, MK_TITLES, navSync, navTools, themePop, navTheme, navSound, navHistory, fmtTitle, MK_TILES, renderHome, cardOfDay, MK_COL, mkMix, mkArt, mkFace, renderHomeMore
 
 ## apps/web/src/13c-play.js (45 lines, ~1.2k tokens) — PLAY SETUP PAGE (v0.67.0, UI/UX overhaul U3; docs/DESIGN.md section 0 "Play = deck chip + mode cards + setup chips")
@@ -146,8 +146,8 @@ rvName, rvCards, rvField, rvSideHTML, rvFrameHTML, openViewer, replayFromRecord,
 ## apps/web/src/13g-anim.js (143 lines, ~2.9k tokens) — v0.92.0 U5b LIGHT BATTLE ANIMATIONS (roadmap item U, owner 2026-10-21; docs/DESIGN.md section 0, U5b)
 spdF, animMode, ANIM, rectOf, visEl, aeFx, aeBeam, CF_SEEN, flyGem, coreEnd, coreFly, coreFlows, drawFly, burstFlip, animCues
 
-## apps/web/src/13h-decks.js (134 lines, ~3.3k tokens) — v0.93.0 U6 MY DECKS (docs/DESIGN.md section 0, mockup docs/design/mockup-v11.html "My decks PC / phone")
-DK_MENU, dkCards, dkUsed, dkFree, dkStatus, dkColors, dkFan, dkStats, dkAgo, dkTile, renderDecks, dkMenu, dkNewSlot, dkAct
+## apps/web/src/13h-decks.js (171 lines, ~4.6k tokens) — v0.93.0 U6 MY DECKS (docs/DESIGN.md section 0, mockup docs/design/mockup-v11.html "My decks PC / phone")
+DK_MENU, dkCards, dkUsed, dkFree, dkStatus, dkColors, dkFan, dkStats, dkAgo, dkTile, renderDecks, dkMenu, dkNewSlot, dkAct, RC_ID, openRecipe, RC_TYPES, renderRecipe
 
 ## apps/web/src/13i-online.js (412 lines, ~7.6k tokens) — ONLINE CLIENT (v0.108.0, roadmap M8 part 1; docs/ai/monorepo-plan.md M8)
 ONL_DEF, ON, ONL_AUTO, onlineWsBase, onlineAvailable, onlineLifeTxt, onlineLifePlate, onlineResPlate, onlineFieldCard, onlineHandCard, onlineRow, onlineFieldArea, renderOnlineStatus, renderOnline, onlineSend, onlineIntent, onlineDecide, onlinePick, clearOnlinePick, onlinePickButton, onlinePayment, onlinePayButton, onlineHandMenu, onlineFieldTap, onlineFieldMenu, onlineZoneMenu, onlineLog, onlineDisconnect, onlineFail, onlineOver, onlineMsg, connectOnline, onlineOrigin, onlineRoomCode, onlineStart

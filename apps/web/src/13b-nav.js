@@ -6,7 +6,7 @@
    --------------------------------------------------------------------- */
 const NAV_HIDDEN = ['view-playmat'];
 const MK_OFF = [];   // v0.160.0: every view is ported; the list stays as the switch for a view that must keep the old stylesheet
-const MK_TITLES = { 'view-lobby': 'Home', 'view-play': 'Play', 'view-decks': 'My decks', 'view-library': 'Library', 'view-deckbuilder': 'Deck builder', 'view-settings': 'Settings', 'view-profile': 'Profile', 'view-card': 'Card', 'view-howto': 'Learn', 'view-online': 'Online' };
+const MK_TITLES = { 'view-recipe': 'Recipe', 'view-lobby': 'Home', 'view-play': 'Play', 'view-decks': 'My decks', 'view-library': 'Library', 'view-deckbuilder': 'Deck builder', 'view-settings': 'Settings', 'view-profile': 'Profile', 'view-card': 'Card', 'view-howto': 'Learn', 'view-online': 'Online' };
 function navSync(id) {
   if (typeof document === 'undefined') return;
   const v = id || (document.querySelector('.app-view.active') || {}).id || 'view-lobby';
@@ -14,7 +14,7 @@ function navSync(id) {
   document.body.classList.toggle('has-nav', !NAV_HIDDEN.includes(v));
   document.body.classList.toggle('mk', !MK_OFF.includes(v));         // v0.137.0: the pages ported from the mockup take its stylesheet; the others keep the old one until ported
   const pt = $('pb-title'); if (pt) pt.textContent = MK_TITLES[v] || '';
-  dqa('#app-tabs [data-nav], #mk-tabbar [data-nav]').forEach(b => { if (b.dataset.nav === (v === 'view-card' ? 'view-library' : v)) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
+  dqa('#app-tabs [data-nav], #mk-tabbar [data-nav]').forEach(b => { if (b.dataset.nav === (v === 'view-card' ? 'view-library' : v === 'view-recipe' ? 'view-decks' : v)) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
   document.querySelectorAll('#app-nav .ibtn[data-a="go-settings"]').forEach(b => { if (v === 'view-settings') b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
   themePop(false);
   navTools();
@@ -58,6 +58,7 @@ function renderHome() {
   $('home-cont').innerHTML = `${top ? `<div style="width:36px">${cardFaceHTML(CARDS[top], false)}</div>` : ''}<div><span class="mut" style="font-size:.72em;letter-spacing:.14em;text-transform:uppercase;font-weight:800">Continue with</span><br><b>${esc(sl ? sl.name : 'Deck')}</b> <span class="mut">· ${fmtTitle()} · ${t}/40${ok ? '' : ' · not ready'}</span></div><button class="btn sm" data-a="go-deck">Edit</button>`;
   $('home-tiles').innerHTML = MK_TILES.map(x => `<button class="card tile2" data-a="${x[2]}"><span class="ic">${x[0]}</span><span><b>${x[1]}</b><span>${esc(x[3]())}</span></span></button>`).join('');
   $('home-ver').textContent = 'Aeterna v' + VERSION;
+  if ($('home-ver2')) $('home-ver2').textContent = 'Aeterna v' + VERSION;
   renderHomeMore();
 }
 // v0.133.0 U14h: Card of the Day (the same card all day, from the date), the missions and the last match
@@ -89,11 +90,13 @@ function renderHomeMore() {
   const id = cardOfDay(), c = CARDS[id], fl = c && lore()[id];
   const cf = c ? `<button class="cfw" style="border:0;background:none;padding:0" data-a="cp-open" data-v="${esc(id)}" aria-label="Open ${esc(c.name)}">${mkFace(c)}</button>` : '';
   const left = (() => { const t = Math.max(0, Math.floor((864e5 - (Date.now() % 864e5)) / 1000)); return [Math.floor(t / 3600), Math.floor(t % 3600 / 60), t % 60].map(n => String(n).padStart(2, '0')).join(':'); })();
+  const set = String(id).split('-')[0], sg = typeof sagaOf === 'function' ? sagaOf(set) : 0;     // owner review 2026-10-30: the card's name and series sit right under the heading
+  const who = c ? `<div class="cd-who"><b class="cd-name" translate="no">${esc(c.name)}</b><span class="cd-series">Series ${esc(set)}${sg ? ' · ' + esc(SAGA_NAMES[sg - 1] || '') : ''}</span></div>` : '';
   const btns = `<div class="row" style="gap:8px;flex-wrap:wrap"><button class="btn sm pri" data-a="cp-open" data-v="${esc(id)}">Card Page</button><button class="btn sm" data-a="dbcard" data-v="${esc(id)}">+ Add To Deck</button></div>`;
   const foot = `<span class="sub" style="font-size:.76em">New card at 00:00 UTC · in <span class="cd" id="cd">${left}</span></span>`;
   $('cotd').className = 'cotd' + (fl ? '' : ' solo');
-  $('cotd').innerHTML = fl ? `${cf}<div class="card qb"><span class="eyebrow">Card Of The Day</span><div class="qm">“</div><div class="qt">${esc(fl).replace(/\n/g, '<br>')}</div><span class="mut" style="font-size:.8em">Flavor Text · ${esc(c.name)} · ${esc(id)}</span>${btns}${foot}</div>`
-    : `<div class="col cinfo"><span class="eyebrow">Card Of The Day</span>${c ? `<b>${esc(c.name)}</b><span class="sub">No flavor text on this card.</span>${btns}` : ''}${foot}</div>${cf}`;
+  $('cotd').innerHTML = fl ? `${cf}<div class="card qb"><span class="eyebrow">Card Of The Day</span>${who}<div class="qm">“</div><div class="qt">${esc(fl).replace(/\n/g, '<br>')}</div><span class="mut" style="font-size:.8em">Flavor Text · ${esc(id)}</span>${btns}${foot}</div>`
+    : `<div class="col cinfo"><span class="eyebrow">Card Of The Day</span>${c ? `${who}<span class="sub">No flavor text on this card.</span>${btns}` : ''}${foot}</div>${cf}`;
   $('home-missions').innerHTML = dailyMissions().map(m => `<div class="mission"><span class="grow">${esc(m.txt)}</span><div class="bar" style="max-width:90px"><i style="width:${Math.min(100, m.v / m.goal * 100)}%"></i></div><b style="width:36px;text-align:right">${m.v}/${m.goal}</b></div>`).join('') + '<span class="mut" style="font-size:.74em">Resets at 00:00 UTC.</span>';
   const h = HISTORY && HISTORY[HISTORY.length - 1];
   $('home-last').innerHTML = h ? `<div class="row"><span class="tag">${esc(h.won ? 'Win' : 'Loss')}</span><b>vs ${esc(h.cpu || 'CPU')}</b></div><span class="sub" style="font-size:.84em">Turn ${h.turns || '?'} · ${esc(h.you || '')}</span><button class="btn sm" style="align-self:flex-start" data-a="go-history">History</button>`
