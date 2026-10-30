@@ -161,7 +161,7 @@ Object.assign(FX_ACTIONS, {
   D.txt = a => anyB(a) ? 'destroy 1 opposing exhausted Spirit/Ultimate' + (a.thenDraw ? ', then draw ' + a.thenDraw : '') + (a.noFx ? "; the effects of the destroyed target can't activate" : '') : dTxt(a) + (a.exhaustedOnly ? ' (exhausted only)' : '');
   const B = FX_ACTIONS.BOUNCE_OPP, bChk = B.chk, bCands = B.cands, bTxt = B.txt;
   B.chk = a => (a.bpLe == null || (Number.isInteger(a.bpLe) && a.bpLe >= 0)) && (a.attackingOnly == null || a.attackingOnly === true) && bChk(a);
-  B.cands = (c, a) => bCands(c, a).filter(t => (a.bpLe == null || bpOf(t) <= a.bpLe) && (!a.attackingOnly || t === G.attacker));
+  B.cands = (c, a) => bCands(c, a).filter(t => (a.bpLe == null || bpOf(t) <= a.bpLe + (a.bpPer ? a.bpPer.n * c.p.spirits.filter(x => cardHasKeyword(CARDS[x.id], a.bpPer.keyword)).length : 0)) && (!a.attackingOnly || t === G.attacker));
   B.txt = a => bTxt(a).replace(/^return an opposing /, `return an opposing ${a.attackingOnly ? 'attacking ' : ''}`) + (a.bpLe != null ? ` (${a.bpLe} BP or less)` : '');
 })();
 /* v0.169 "Target one of your "X". Send a core, besides <Soul Core>, from this Spirit to it, and during this battle, it gains +N BP." = BP_TARGET (to:pick, battle) with coreFromSelf:
