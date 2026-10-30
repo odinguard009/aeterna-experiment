@@ -14,3 +14,8 @@ test('docs/reports/compiler-wiring.md is up to date (run node tools/compiler_wir
   const out = execFileSync('node', ['tools/compiler_wiring.mjs', '--check'], { encoding: 'utf8' });
   assert.match(out, /up to date/);
 });
+
+test('residual_tags --block A reports the open tags of the Standard partial cards', () => {
+  const out = execFileSync('python3', ['tools/residual_tags.py', '--block', 'A'], { encoding: 'utf8' });
+  assert.match(out, /block A: \d+ partial cards, \d+ with one open tag, greedy order of \d+ tags/);
+});
