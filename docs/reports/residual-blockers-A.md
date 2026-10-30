@@ -35,8 +35,8 @@ Open = a glossary tag whose status is not `wired`. Tags are hints, not a parser;
 | S1_ALL_HAVE | partial | 12 | 6 |
 | A_SYMBOL | partial | 11 | 4 |
 | T_DESTROYED | partial | 10 | 4 |
-| A_REVEAL_ADD | partial | 7 | 0 |
 | A_REVEAL_DECK | partial | 7 | 0 |
+| A_REVEAL_ADD | partial | 7 | 0 |
 | A_BANISH | partial | 7 | 4 |
 | C_OPP_TURN | partial | 7 | 4 |
 | S_OPP_NO_BLOCK | partial | 4 | 1 |

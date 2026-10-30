@@ -117,7 +117,7 @@ def main():
          'Patterns are hints, not a parser: always read the clause before wiring.', '',
          '## Blockers (partial / missing tags) by residual cards', '',
          '| Tag | Status | Cards | Clauses | Meaning |', '|---|---|---|---|---|']
-    for tag, n in sorted(use_cards.items(), key=lambda kv: (-kv[1], -use_cl[kv[0]])):
+    for tag, n in sorted(use_cards.items(), key=lambda kv: (-kv[1], -use_cl[kv[0]], kv[0])):
         if by[tag]['status'] == 'wired':
             continue
         L.append(f"| {tag} | {by[tag]['status']} | {n} | {use_cl[tag]} | {by[tag]['meaning'][:80]} |")
@@ -132,7 +132,7 @@ def main():
           'keeps, not the blocker itself; the actionable list is the "Blockers" section above.',
           '',
           '| Tag | Status | Cards | Clauses | Meaning |', '|---|---|---|---|---|']
-    for tag, n in sorted(use_cards.items(), key=lambda kv: (-kv[1], -use_cl[kv[0]])):
+    for tag, n in sorted(use_cards.items(), key=lambda kv: (-kv[1], -use_cl[kv[0]], kv[0])):
         L.append(f"| {tag} | {by[tag]['status']} | {n} | {use_cl[tag]} | {by[tag]['meaning'][:80]} |")
     open(os.path.join(root, 'docs/reports/residual-blockers.md'), 'w', encoding='utf8', newline='').write('\n'.join(L) + '\n')
     print(line, '->', 'data/glossary/residual-tags.json, docs/reports/residual-blockers.md')

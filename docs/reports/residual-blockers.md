@@ -43,8 +43,8 @@ Patterns are hints, not a parser: always read the clause before wiring.
 | K_SILVER_WHEEL | partial | 6 | 8 | Silver Wheel: a Flash effect that exhausts this Spirit as its cost |
 | T_ALLY_DESTROYS | partial | 5 | 5 | When your X destroys an opposing Spirit |
 | K_ULTRA_HOLY_LIFE | missing | 4 | 4 | Ultra Holy Life (When Attacks): when blocked draw from the deckbottom; when not  |
-| S_EXTRA_REDUCTION | partial | 3 | 3 | All your matching cards gain an extra reduction symbol |
 | K_NETHER_IMMORTALITY | missing | 3 | 3 | Nether Immortality: when your matching "Nether" is destroyed, summon this card f |
+| S_EXTRA_REDUCTION | partial | 3 | 3 | All your matching cards gain an extra reduction symbol |
 | A_LIFE_TO_SELF | partial | 1 | 1 | Send one of your Lives to this Spirit |
 | K_STANDARD_SUCCESSION | missing | 1 | 1 | Standard: Succession / Soul Magic / Shinkai-ho |
 
@@ -185,16 +185,16 @@ keeps, not the blocker itself; the actionable list is the "Blockers" section abo
 | T_ALLY_DESTROYS | partial | 5 | 5 | When your X destroys an opposing Spirit |
 | A_DESTROY_CORES_LE | wired | 4 | 4 | Destroy an opposing Spirit/Ultimate with N cores or less on it |
 | C_OPP_NEXUS | wired | 4 | 4 | If the opponent controls any Nexus |
-| K_ULTRA_HOLY_LIFE | missing | 4 | 4 | Ultra Holy Life (When Attacks): when blocked draw from the deckbottom; when not  |
-| K_REVIVE | wired | 4 | 4 | Revive |
 | K_OVER_COUNT | wired | 4 | 4 | Over Count |
-| S_EXTRA_REDUCTION | partial | 3 | 3 | All your matching cards gain an extra reduction symbol |
+| K_REVIVE | wired | 4 | 4 | Revive |
+| K_ULTRA_HOLY_LIFE | missing | 4 | 4 | Ultra Holy Life (When Attacks): when blocked draw from the deckbottom; when not  |
 | A_DESTROY_NOFX | wired | 3 | 3 | destroy, and the effects of the destroyed target can't activate |
 | K_NETHER_IMMORTALITY | missing | 3 | 3 | Nether Immortality: when your matching "Nether" is destroyed, summon this card f |
+| S_EXTRA_REDUCTION | partial | 3 | 3 | All your matching cards gain an extra reduction symbol |
 | S1_BLOCK_EXHAUSTED_OPP | wired | 2 | 2 | Target an opposing Spirit. During this battle, it can block even while exhausted |
 | K_RUMBLE | wired | 1 | 2 | Rumble (During Attack): at the end of battle, discard X cards from the opposing  |
 | A_LIFE_TO_SELF | partial | 1 | 1 | Send one of your Lives to this Spirit |
+| K_STANDARD_SUCCESSION | missing | 1 | 1 | Standard: Succession / Soul Magic / Shinkai-ho |
+| S1_LIFE_REDUCED | wired | 1 | 1 | If your Life was reduced (during) this turn |
 | S_CORES_DRAW | wired | 1 | 1 | Draw when cores are sent to this Spirit |
 | T_FROM_HAND_BLOCKED | wired | 1 | 1 | Deploy/summon this from the Hand when your X is blocked |
-| S1_LIFE_REDUCED | wired | 1 | 1 | If your Life was reduced (during) this turn |
-| K_STANDARD_SUCCESSION | missing | 1 | 1 | Standard: Succession / Soul Magic / Shinkai-ho |
