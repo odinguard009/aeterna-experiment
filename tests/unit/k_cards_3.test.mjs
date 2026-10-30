@@ -55,3 +55,12 @@ test('K-151 26RSD05-009: Thunder Driftways gives attacking Thunder Dragons a bpL
     return [a.noBlockBy.bpLe, fx[1].trigger, fx[1].actions[0].n]; })()`);
   assert.deepEqual(r, [1000, 'START_MAIN', 2000], JSON.stringify(r));
 });
+
+test('K-152 26RSD10-T001: Swordish token gains an extra Green symbol on START_MAIN and when summoned', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const c = { p: P, opp: O, src: BS.mkInst('26RSD10-T001'), ctx: {} }; P.spirits.push(c.src);
+    await BS.runActions(c, { actions: BS.CARDS['26RSD10-T001'].effects[0].actions });
+    return [c.src.symTurn.cols.join(), BS.CARDS['26RSD10-T001'].effects.map(e => e.trigger).join()]; })()`);
+  assert.deepEqual(r, ['green', 'START_MAIN,SUMMONED'], JSON.stringify(r));
+});
