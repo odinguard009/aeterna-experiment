@@ -308,3 +308,13 @@ test('K-144 26RBS01-X11: BP_REACHED refreshes the attacking Spirit only when its
     G.attacker = null; return out; })()`);
   assert.deepEqual(r, [11000, true, 12000, false, true], JSON.stringify(r));
 });
+
+test('K-145 26RBS02-029: High Speed flag; summon heavy-exhausts only an exhausted Cost 4 or less opposing Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    P.cpu = true; const s = BS.mkInst('26RBS02-029'); s.cores = 3; P.spirits.push(s);
+    O.spirits.length = 0; const a = BS.mkInst('BS48-047'); a.cores = 1; a.exhausted = true; const b = BS.mkInst('BS48-047'); b.cores = 1; O.spirits.push(a, b);
+    await BS.runActions({ p: P, opp: O, src: s, ctx: {} }, BS.CARDS['26RBS02-029'].effects[0]);
+    return [BS.CARDS['26RBS02-029'].highSpeed, !!a.heavy, !!b.heavy]; })()`);
+  assert.deepEqual(r, [true, true, false], JSON.stringify(r));
+});
