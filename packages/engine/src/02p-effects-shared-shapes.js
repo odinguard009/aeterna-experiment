@@ -103,6 +103,7 @@ function allHaveOK(owner, q) {
       if (!t) break;
       t.exhausted = true; if (a.heavy) setHeavy(t); log(`${CARDS[c.src.id].name}: ${poss(c.opp)} ${CARDS[t.id].name} is ${a.heavy ? 'heavy ' : ''}exhausted (the opponent chose it).`);
     }
+    await fireFx(c.p, 'EXHAUSTED_FX', null, { side: 'opp', heavy: !!a.heavy, fxSrc: c.src });
   };
   const R = FX_ACTIONS.BOUNCE_OPP, rChk = R.chk, rCands = R.cands, rTxt = R.txt;
   const lv1Lim = (c, m) => { const L = c.p.spirits.filter(f => fxMatch(CARDS[f.id], m)).map(f => ((CARDS[f.id].levels || [])[0] || {}).bp || 0); return L.length ? Math.max(...L) : -1; };

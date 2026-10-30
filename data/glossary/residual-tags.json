@@ -38312,13 +38312,6 @@
   "M_OPTIONAL",
   "T_SUMMONED"
  ],
- "26RBS02-037": [
-  "A_BP_PLUS",
-  "A_EXHAUST",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_ALLY_BLOCKED"
- ],
  "26RBS02-039": [
   "C_LEVEL"
  ],
@@ -38457,12 +38450,6 @@
   "M_OPTIONAL",
   "T_SUMMONED"
  ],
- "26RBS02-X07": [
-  "A_EXHAUST",
-  "A_VOID",
-  "C_OPP_TURN",
-  "M_OPTIONAL"
- ],
  "26RBS02-X08": [
   "A_EXHAUST",
   "A_REFRESH",
@@ -38472,15 +38459,6 @@
   "K_STANDARD_INVOKE",
   "M_OPTIONAL",
   "T_ALLY_BLOCKED"
- ],
- "26RBS02-X09": [
-  "A_EXHAUST",
-  "A_REFRESH",
-  "C_LEVEL",
-  "C_OPP_TURN",
-  "M_OPTIONAL",
-  "M_THEN",
-  "T_ATTACKS"
  ],
  "26RBS02-X10": [
   "C_LEVEL",

@@ -178,6 +178,7 @@ function parseEffects(arr) {
       if (e.attackingOnly === true && (e.trigger === 'BATTLE_WIN' || e.trigger === 'ALLY_BATTLE_WIN')) o.attackingOnly = true;   // v0.72 (During Attack): only as the attacker
       if (e.blockingOnly === true && (e.trigger === 'BATTLE_WIN' || e.trigger === 'ALLY_BATTLE_WIN')) o.blockingOnly = true;   // v0.74 (When Blocks) battle result: only as the blocker
       if (e.alsoBlocks && e.trigger === 'ATTACKS') o.alsoBlocks = true; if (e.alsoDepleted === true && e.trigger === 'DESTROYED') o.alsoDepleted = true;      // v0.177 "(When Depleted/Destroyed by the Opponent)"
+      if (e.trigger === 'EXHAUSTED_FX' && (e.exSide === 'own' || e.exSide === 'opp')) o.exSide = e.exSide;      // v0.199 "your Spirits" / "the opposing Spirits" exhausted by your effect
       if (e.trigger === 'OPP_DESTROYED_FX') {      // v0.196 "When opposing Spirits are destroyed by your effect"
         if (e.zeroBp === true) o.zeroBp = true;
         if (e.bySrc != null) { const b = e.bySrc; if (!b || typeof b !== 'object' || (b.type != null && !['Spirit', 'Magic'].includes(b.type)) || (b.family != null && !(Array.isArray(b.family) && b.family.length && b.family.length <= 4 && b.family.every(x => typeof x === 'string'))) || (b.type == null && b.family == null)) return { error: '"bySrc" must look like {"type":"Spirit","family":["X"]}' }; o.bySrc = { type: b.type, family: b.family }; }

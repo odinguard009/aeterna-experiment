@@ -11000,16 +11000,41 @@
   "image": "26RBS02-037.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (Your Attack Step) When your Spirit is blocked, you can target an opposing Spirit. Exhaust it.",
-   "[LV2] (Your Attack Step) When your Spirit or the opposing Spirit is exhausted by your effect, target one of your Spirits. During this battle, it gains +2000 BP."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "bicon": [
    "A"
   ],
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ALLY_BLOCKED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "EXHAUST_OPP",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "EXHAUSTED_FX",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "BP_TARGET",
+      "n": 2000,
+      "to": "pick"
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RBS02-038",
@@ -14475,8 +14500,8 @@
   "image": "26RBS02-X07.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "bicon": [
    "A"
   ],
@@ -14505,10 +14530,23 @@
       "oppChooses": true
      }
     ]
+   },
+   {
+    "trigger": "EXHAUSTED_FX",
+    "lv": [
+     1,
+     2
+    ],
+    "once": true,
+    "noStack": true,
+    "optional": true,
+    "actions": [
+     {
+      "do": "VOID_TO_TRASH",
+      "n": 1
+     }
+    ]
    }
-  ],
-  "residual": [
-   "[LV1-2] (Your Turn) (CSOPT) When your Spirits or the opposing Spirits are exhausted via your effect, you can put a core from the Void to your Trash."
   ]
  },
  {
@@ -14587,16 +14625,47 @@
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Attacks) (Once Per Turn) You can target an opposing Spirit. Exhaust it. Then, you can target one of your Spirits. Refresh it.",
-   "[LV2] (Your Turn) (Once Per Turn) When Spirits you or the opponent controls are exhausted by your effect, you can target an opposing exhausted Spirit. Heavy exhaust it."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "bicon": [
    "A"
   ],
-  "rcode": "X"
+  "rcode": "X",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "once": true,
+    "optional": true,
+    "actions": [
+     {
+      "do": "EXHAUST_OPP",
+      "n": 1
+     },
+     {
+      "do": "REFRESH_SPIRIT"
+     }
+    ]
+   },
+   {
+    "trigger": "EXHAUSTED_FX",
+    "lv": [
+     2
+    ],
+    "once": true,
+    "optional": true,
+    "actions": [
+     {
+      "do": "HEAVY_EXHAUST_OPP",
+      "n": 1,
+      "exhaustedOnly": true
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RBS02-X10",

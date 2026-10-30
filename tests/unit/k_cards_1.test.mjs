@@ -186,3 +186,15 @@ test('K-109 26RBS02-X01 Gene-Rose: LV1 gives a Red Spirit +3000 BP at Start of A
   assert.equal(r[0], 3000, JSON.stringify(r));
   assert.equal(r[1], 1, JSON.stringify(r));
 });
+
+test('K-110 EXHAUSTED_FX: X09 exhausts (then heavy exhausts) an opposing Spirit; Grayken gives +2000 BP per event; Emperan puts one Void core into the Trash once per turn', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const x9 = BS.mkInst('26RBS02-X09'), gr = BS.mkInst('26RBS02-037'), em = BS.mkInst('26RBS02-X07'); for (const s of [x9, gr, em]) { s.cores = 6; P.spirits.push(s); }
+    const v = BS.mkInst('26RBS01-001'); v.cores = 1; v.exhausted = false; O.spirits.push(v);
+    const t0 = P.trashCores.n; G.active = P.key; G.turnNo = G.turnNo || 1;
+    await BS.fireFx(P, 'ATTACKS', x9, { attacker: x9 });
+    return [!!v.exhausted, !!v.heavy, P.trashCores.n - t0, [x9, gr, em].reduce((s, i) => s + (i.bpMod || 0), 0)]; })()`);
+  assert.deepEqual(r.slice(0, 3), [true, true, 1], JSON.stringify(r));
+  assert.ok(r[3] >= 2000, JSON.stringify(r));
+});
