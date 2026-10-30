@@ -133,3 +133,18 @@ test('K-131 26RDB01-031: reveals three, adds a Yellow Rise Spirit/Magic with ano
     return [P.hand.map(x => x.id).join(), P.deck.length, (rei.bpMod || 0) - b0]; })()`);
   assert.deepEqual(r, ['26RSD08-X02', 3, 5000], JSON.stringify(r));
 });
+
+test('K-132 26RSD01-006: pulls up to two cores from the Trash; LV2 End Step sends the Soul Core to a Windfang Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    G.active = P.key;
+    const c = BS.mkInst('26RSD01-006'); c.cores = 1; P.spirits.push(c);
+    const fx = BS.CARDS['26RSD01-006'].effects;
+    P.trashCores.n = 3; P.trashCores.soul = true;
+    await BS.runActions({ p: P, opp: O, src: c, ctx: {} }, fx.find(e => e.trigger === 'SUMMONED'));
+    const w = BS.mkInst('26RBS02-003'); w.cores = 1; P.spirits.push(w);
+    await BS.runActions({ p: P, opp: O, src: c, ctx: {} }, fx.find(e => e.trigger === 'END_STEP'));
+    return [c.cores, P.trashCores.n, P.trashCores.soul, !!w.soul, !!c.soul]; })()`);
+  assert.deepEqual(r[0] === 3 && r[1] === 1, true, JSON.stringify(r));
+  assert.ok(r[2] === false && (r[3] || r[4]), JSON.stringify(r));
+});

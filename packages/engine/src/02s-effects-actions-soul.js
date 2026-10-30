@@ -146,6 +146,18 @@ Object.assign(FX_ACTIONS, {
     } }
 });
 
+/* v168 "send the Soul Core from your Trash to one of your matching Spirits/Nexuses" (a Spirit/Nexus without the Soul Core). */
+FX_ACTIONS.SOUL_TRASH_TO = { chk: a => hasMatch(a.match) && Object.keys(a).every(k => ['do', 'match', 'if'].includes(k)), txt: () => 'send the Soul Core from your Trash to one of your matching Spirits/Nexuses',
+  cands: (c, a) => c.p.trashCores.soul ? fieldList(c.p).filter(x => !x.soul && fxMatch(CARDS[x.id], a.match)) : [],
+  can: (c, a) => FX_ACTIONS.SOUL_TRASH_TO.cands(c, a).length > 0,
+  run: async (c, a) => {
+    const L = FX_ACTIONS.SOUL_TRASH_TO.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
+    const t = c.p.cpu ? L.slice().sort((x, y) => bpOf(y) - bpOf(x))[0] : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the card that receives your Soul Core (glowing).`);
+    if (!t || !c.p.trashCores.soul) { c.ctx.did = false; return; }
+    c.p.trashCores.soul = false; t.soul = true; log(`${poss(c.p)} Soul Core is sent from the Trash to ${CARDS[t.id].name}.`);
+    if (!G.over && c.p.nexus.includes(t)) await fireFx(c.p, 'SOUL_PLACED', t, { subject: t });
+  } };
+
 /* This part loads after 02k, whose load-time pass wraps every action's cands() with the immunity
    filter (trash-safe cards, opposing cards unaffected by this effect). Run it again so the entries
    defined here get the same wrapper; it is idempotent. */

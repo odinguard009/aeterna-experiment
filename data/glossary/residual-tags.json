@@ -38802,13 +38802,6 @@
   "S_OPP_NO_BLOCK",
   "T_ATTACKS"
  ],
- "26RSD01-006": [
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "M_UP_TO",
-  "T_SUMMONED"
- ],
  "26RSD02-009": [
   "A_SYMBOL",
   "A_SYMBOL_PLUS",
