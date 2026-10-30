@@ -53,7 +53,7 @@ async function doBattleInner(attKey, att) {
     blk.exhausted = true; G.blocker = blk; D.blocksThisTurn = (D.blocksThisTurn || 0) + 1;
     log(`${who(D)} ${D.cpu ? 'blocks' : 'block'} with ${CARDS[blk.id].name} (${bpOf(blk)} BP).`);
     io.view({ type: 'board' }); await wait(450);
-    await fireFxMulti([{ owner: A, trigger: 'ALLY_BLOCKED', src: att, ctx: { attacker: att, blocker: blk } }, { owner: D, trigger: 'BLOCKS', src: blk, ctx: { attacker: att, blocker: blk } }]);   // manual p. 30: one pool after the block
+    await fireFxMulti([{ owner: A, trigger: 'ALLY_BLOCKED', src: att, ctx: { attacker: att, blocker: blk } }, { owner: D, trigger: 'BLOCKS', src: blk, ctx: { attacker: att, blocker: blk } }, { owner: D, trigger: 'ALLY_BLOCKS', src: blk, ctx: { attacker: att, blocker: blk, subject: blk } }]);   // manual p. 30: one pool after the block
     if (G.over) return;
     [att, blk] = await flashTiming(attKey, att, blk);
     if (G.over) return;

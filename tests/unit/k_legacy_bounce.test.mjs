@@ -927,3 +927,19 @@ test('K-72 Invoke cost destroyOwn destroys a Cyantree Nexus; STATIC targetRefres
     return [ok, P.nexus.includes(nx), BS.bpOf(s) - before, up - down]; })()`);
   assert.deepEqual(r, [true, false, 4000, 1000]);
 });
+
+test('K-73 ALLY_BLOCKS (Game Area) moves a Void core to the Trash; Squirrelooper cannot attack/block at 3000 BP or less', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    P.spirits.length = 0; P.nexus.length = 0; G.active = P.key; P.cpu = true;
+    const g = BS.mkInst('26RCB01-059'); g.cores = 5; P.nexus.push(g);
+    const b = BS.mkInst('26RCB01-039'); b.cores = 1; P.spirits.push(b);
+    P.void = 3; const t0 = P.trashCores.n;
+    await BS.fireFx(P, 'ALLY_BLOCKS', b, { attacker: b, blocker: b, subject: b }); await BS.flushBursts();
+    const moved = [3 - P.void, P.trashCores.n - t0];
+    const sq = BS.mkInst('26RBS02-001'); sq.cores = 1; P.spirits.push(sq); G.step = 5;
+    const lowBp = BS.bpOf(sq), cant = BS.flagActive(P, 'CANT_ATTACK', sq);
+    sq.cores = 3; sq.bpMod = 1000; const cant2 = BS.flagActive(P, 'CANT_ATTACK', sq);
+    return [moved, lowBp <= 3000, cant, BS.bpOf(sq) > 3000, cant2]; })()`);
+  assert.deepEqual(r, [[1, 1], true, true, true, false]);
+});
