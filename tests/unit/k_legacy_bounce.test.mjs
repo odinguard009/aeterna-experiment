@@ -662,3 +662,16 @@ test('K-52 SUMMON_SYMBOL: Quarry Plain / War Feat give extra Field symbols only 
   assert.equal(r[2], 6, 'a non-Mineroid gets no extra symbol');
   assert.ok(r[7] < r[6], 'War Feat LV2 makes a Cost 6+ Topaz cheaper');
 });
+
+test('K-53 Algodon: block refresh and the LV2 blocker-win core', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    const a = BS.mkInst('26RBS03-033'); a.cores = 3; a.exhausted = true; P.spirits.push(a);
+    const fx = BS.CARDS['26RBS03-033'].effects;
+    await BS.runActions({ p: P, opp: O, src: a, ctx: {} }, { actions: fx[0].actions });
+    P.void = 2; const rs = P.reserve.n;
+    await BS.runActions({ p: P, opp: O, src: a, ctx: {} }, { actions: fx[1].actions });
+    return [a.exhausted, fx[0].trigger, fx[1].blockingOnly, P.void, P.reserve.n - rs]; })()`);
+  assert.deepEqual(r.slice(0, 3), [false, 'BLOCKS', true]);
+  assert.deepEqual(r.slice(3), [1, 1], 'one Void core moved to the Reserve');
+});
