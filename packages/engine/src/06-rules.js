@@ -114,7 +114,8 @@ function tokenHome(p, t) { t.cores = 0; t.soul = false; t.exhausted = false; t.h
 /* symbols an attacker takes from the Life: its own, a combined Brave's (manual p. 34) and "+N symbol during this battle" effects */
 const symTurnCols = i => i.symTurn && G && i.symTurn.turn === G.turnNo ? i.symTurn.cols : [];   // v0.44 "during this turn, an extra Red symbol"
 const symZeroAllOn = (q, i) => q.symZeroAll === G.turnNo && !fxImmune(q, i, q.symZeroBy);    // v0.58: an unaffected later arrival keeps its symbols
-const attackSymbols = i => i.symZeroTurn === G.turnNo || symZeroAllOn(G.p.player.spirits.includes(i) ? G.p.player : G.p.opponent, i) ? 0 : Math.max(0, (CARDS[i.id].symbols || 0) + (i.brave ? CARDS[i.brave.id].symbols || 0 : 0) + (i.symBattle || 0) + symTurnCols(i).length);
+const symSetOn = i => !!i.symSet && i.symSet.turn === G.turnNo && (!i.symSet.battle || i.symSet.battle === G.battleNo);   // v160 SYMBOLS_SET
+const attackSymbols = i => i.symZeroTurn === G.turnNo || symZeroAllOn(G.p.player.spirits.includes(i) ? G.p.player : G.p.opponent, i) ? 0 : symSetOn(i) ? i.symSet.n : Math.max(0, (CARDS[i.id].symbols || 0) + (i.brave ? CARDS[i.brave.id].symbols || 0 : 0) + (i.symBattle || 0) + symTurnCols(i).length);
 /* Symbols (Eternal rule manual VER.17.0): each printed symbol has one or more attributes.
    colour; "ultimate" (Ultimates, p. 39: reduces only Ultimate reduction symbols); "god" (Grandwalker Nexuses, p. 42: never reduces the six colours);
    a Contract Grandwalker Nexus has a coloured God symbol = God + its colour (p. 44). symbolColors entries: a colour, "ultimate", "god" or "god-<colour>".

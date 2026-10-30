@@ -165,7 +165,7 @@ function simple(card, a) {
       return { onField: true, body: `const b = BS.bpOf(src); await run(src, RA, A.to === 'attacker' ? { attacker: src } : {}); return BS.bpOf(src) === b + A.n ? '' : 'BP ' + b + ' -> ' + BS.bpOf(src);` };
     case 'SHOW_RETURN':
       if (a.match == null && only(a, ['max']) && a.max === 1) return { body: `P.hand.push(BS.mkInst(${J(FILL)})); for (let j = 0; j < 6; j++) dk(${J(FILL)}); await run(src, RA); return P.hand.length === 0 && P.deck.length === 7 ? '' : 'hand ' + P.hand.length + ', deck ' + P.deck.length;` };      // v0.184 "return a card from your Hand" (any card)
-      if (!only(a, ['max', 'match', 'drawEach', 'drawIf']) || !okMatch(a.match)) return null;      // v0.165 the CPU returns every matching card up to max
+      if (!only(a, ['max', 'min', 'match', 'drawEach', 'drawIf']) || !okMatch(a.match)) return null;      // v0.165 the CPU returns every matching card up to max
       return { fix: [{ m: a.match }], body: `for (let i = 0; i < A.max; i++) P.hand.push(BS.mkInst(${J(mid(a.match))})); for (let j = 0; j < 6; j++) dk(${J(FILL)}); await run(src, RA);
         const drew = A.drawEach ? A.max : (A.drawIf && A.drawIf.n === A.max ? A.drawIf.draw : 0); return P.hand.length === drew && P.deck.length === 6 + A.max - drew ? '' : 'hand ' + P.hand.length + ', deck ' + P.deck.length + ', want hand ' + drew;` };
     case 'REFRESH':
@@ -198,6 +198,9 @@ function simple(card, a) {
     case 'CANT_BLOCK_OPP':      // v0.172 the picked opposing Spirit can't block this battle (v159 n targets, costLe)
       return only(a, ['n', 'costLe']) && spirit && { onField: true, body: `const T = []; for (let i = 0; i < (A.n || 1); i++) T.push(sp(${J(FILL)}, O, 1)); G.attacker = src; G.battleNo = 1; await run(src, RA); G.attacker = null;
         if (A.costLe != null && BS.CARDS[${J(FILL)}].cost > A.costLe) return ''; return T.every(t => t.noBlockB === 1) ? '' : 'an opposing Spirit was not marked';` };
+    case 'SYMBOLS_SET':      // v160 the Spirit's attack symbol count is set for this turn / this battle
+      return only(a, ['n', 'battle', 'self']) && spirit && { onField: true, body: `G.attacker = src; G.battleNo = 3; await run(src, RA); G.attacker = null; const t = P.spirits.find(x => x.symSet);
+        return t && t.symSet.n === A.n && t.symSet.battle === (A.battle ? 3 : 0) && t.symSet.turn === G.turnNo ? '' : 'symSet not set';` };
     case 'CANT_BE_BLOCKED_BY':      // v0.175 the attacker carries noBlockBy for this battle only
       return only(a, ['color', 'levels', 'keyword', 'highSpeed']) && spirit && { onField: true, body: `G.attacker = src; G.battleNo = 4; await run(src, RA); const m = src.noBlockBy; G.attacker = null; return m && m.battleNo === 4 ? '' : 'noBlockBy not set';` };
     case 'UNBLOCKABLE_PICK':      // v157 one of your Spirits (not this one with `other`) can't be blocked this turn (or by BP <= bpLe)

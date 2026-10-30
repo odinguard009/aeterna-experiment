@@ -24,6 +24,16 @@ Object.assign(FX_ACTIONS, {
       if (!t.symTurn || t.symTurn.turn !== G.turnNo) t.symTurn = { turn: G.turnNo, cols: [] };
       t.symTurn.cols.push(a.color); log(`${_pn(c)}: ${CARDS[t.id].name} gets an extra ${cap(a.color)} symbol this turn.`); io.view({ type: 'board' });
     } },
+  /* v160 "it has N symbols (during this turn / this battle); the number of symbols can't be increased except via this effect": sets the attack symbol count (attackSymbols), later +symbols do not add */
+  SYMBOLS_SET: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 3 && (a.match == null || hasMatch(a.match)) && (a.self == null || (a.self === true && a.match == null)) && (a.battle == null || a.battle === true),
+    txt: a => `${a.self ? 'this Spirit' : 'one of your ' + _matchTxt(a.match) + 'Spirits'} has ${a.n} symbol${a.n === 1 ? '' : 's'} during this ${a.battle ? 'battle' : 'turn'} and cannot gain more`,
+    cands: (c, a) => a.self ? [c.src].filter(s => c.p.spirits.includes(s)) : c.p.spirits.filter(s => !a.match || fxMatch(CARDS[s.id], a.match)),
+    can: (c, a) => FX_ACTIONS.SYMBOLS_SET.cands(c, a).length > 0,
+    run: async (c, a) => {
+      const L = FX_ACTIONS.SYMBOLS_SET.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
+      const t = a.self ? L[0] : c.p.cpu ? (L.find(s => s === G.attacker) || L.slice().sort((x, y) => bpOf(y) - bpOf(x))[0]) : await chooseCard(c, L, `✨ ${_pn(c)}`, `Choose your Spirit that has ${a.n} symbol${a.n === 1 ? '' : 's'} ${a.battle ? 'this battle' : 'this turn'}.`, false);
+      t.symSet = { turn: G.turnNo, battle: a.battle ? G.battleNo : 0, n: a.n }; log(`${_pn(c)}: ${CARDS[t.id].name} has ${a.n} symbol${a.n === 1 ? '' : 's'} ${a.battle ? 'during this battle' : 'this turn'}.`); io.view({ type: 'board' });
+    } },
   /* v0.44 "Then, you can send your Soul Core to <Grandwalker Nexus>. When you've done so, activate this effect once and only once more" (then = the actions repeated) */
   SOUL_TO_NEXUS_THEN: { chk: a => hasMatch(a.match) && Array.isArray(a.then) && a.then.length >= 1 && a.then.length <= 3 && a.then.every(x => x && FX_ACTIONS[x.do] && x.do !== 'SOUL_TO_NEXUS_THEN' && FX_ACTIONS[x.do].chk(x)),
     txt: a => `then you can send your Soul Core to ${_matchTxt(a.match)}Grandwalker Nexus; if you do, ${a.then.map(x => FX_ACTIONS[x.do].txt(x)).join(', then ')} once more`,

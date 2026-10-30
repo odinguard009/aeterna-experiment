@@ -21005,14 +21005,21 @@
       "color": "blue",
       "noText": true
      }
+    },
+    {
+     "do": "SYMBOLS_SET",
+     "n": 2,
+     "match": {
+      "color": "blue",
+      "costGe": 6,
+      "noText": true,
+      "type": "Spirit"
+     }
     }
    ]
   },
-  "fxComplete": false,
-  "residual": [
-   "Then, target one of your Cost 6 or more Blue Spirits with no printed effects. During this turn, it has two Blue symbols. Its number of symbols can't be increased except via this effect."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects hand-written for roadmap S1 Standard Magic (v0.88.0-v0.89.0); not yet checked against the card image.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects hand-written for roadmap S1 Standard Magic (v0.88.0-v0.89.0); not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "bicon": [
    "A"
   ],
@@ -28009,20 +28016,63 @@
   "mechanics": [
    "Legacy"
   ],
-  "fxComplete": false,
-  "residual": [
-   "(Legacy) [Teams: Red Stella/Grand Siesta]",
-   "[LV1-2] (Your Attack Step) All your Red Stella Spirits gains +2000 BP.",
-   "[LV2] (True Release) (During Attack) {{Invoke|Flash}} (Once Per Turn) Show two Red Stella cards in your Hand to the opponent. Return them to the deckbottom in any order ▶ Refresh this Spirit."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "collab": [
    "詩姫"
   ],
   "bicon": [
    "A"
   ],
-  "rcode": "M"
+  "rcode": "M",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "bp": 2000,
+    "to": "own",
+    "match": {
+     "team": "Red Stella",
+     "type": "Spirit"
+    },
+    "if": {
+     "attackStep": true,
+     "oppTurn": false
+    },
+    "lv": [
+     1,
+     2
+    ]
+   },
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN",
+     "FLASH"
+    ],
+    "when": "duringAttack",
+    "once": true,
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "SHOW_RETURN",
+      "max": 2,
+      "min": 2,
+      "match": {
+       "team": "Red Stella"
+      }
+     },
+     {
+      "do": "REFRESH",
+      "if": {
+       "prev": true
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RDB01-015",
@@ -28898,20 +28948,61 @@
   "mechanics": [
    "Legacy"
   ],
-  "fxComplete": false,
-  "residual": [
-   "(Legacy) [Team: Green Wave]",
-   "[LV1-2] (During Attack) (Once Per Turn) When only the opposing Spirit is destroyed via BP comparison, refresh this Spirit.",
-   "[LV2] (True Release) (During Attack) {{Invoke|Flash}} If all your Spirits/Nexuses have Green Wave, pay two costs ▶ During this battle, this Spirit has two Green symbols. The number of symbols can't be increased except via this effect."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0).",
   "collab": [
    "詩姫"
   ],
   "bicon": [
    "A"
   ],
-  "rcode": "M"
+  "rcode": "M",
+  "effects": [
+   {
+    "trigger": "BATTLE_WIN",
+    "lv": [
+     1,
+     2
+    ],
+    "attackingOnly": true,
+    "once": true,
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT",
+      "self": true
+     }
+    ]
+   },
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN",
+     "FLASH"
+    ],
+    "when": "duringAttack",
+    "once": false,
+    "lv": [
+     2
+    ],
+    "if": {
+     "allHave": {
+      "team": "Green Wave"
+     }
+    },
+    "cost": {
+     "pay": 2
+    },
+    "actions": [
+     {
+      "do": "SYMBOLS_SET",
+      "n": 2,
+      "self": true,
+      "battle": true
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RDB01-030",

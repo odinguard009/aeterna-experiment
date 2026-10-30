@@ -354,3 +354,27 @@ test('K-119 Cronus Chronicle Gamer (26RCB01-055): all-EX-AID Spirits -> three op
     return [marked, n0 - n1, off, n2 - O.spirits.length]; })()`);
   assert.deepEqual(r, [[true, true, true, false], 1, false, 0], JSON.stringify(r));
 });
+
+test('K-120 Sandy-Z-Leonora (26RDB01-014): show two Red Stella cards -> refresh; one card is not enough', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const c = BS.mkInst('26RDB01-014'); c.cores = BS.CARDS['26RDB01-014'].levels[1].cores; P.spirits.push(c);
+    const fx = BS.CARDS['26RDB01-014'].effects.find(e => e.trigger === 'ACTIVATE');
+    const go = async () => { c.exhausted = true; await BS.runActions({ p: P, opp: O, src: c, ctx: {} }, fx); return c.exhausted; };
+    P.hand = [BS.mkInst('26RDB01-001')]; const d0 = P.deck.length; const one = await go(); const kept = P.hand.length;
+    P.hand = [BS.mkInst('26RDB01-001'), BS.mkInst('26RDB01-002')]; const two = await go();
+    return [one, kept, two, P.hand.length, P.deck.length - d0]; })()`);
+  assert.deepEqual(r, [true, 1, false, 0, 2], JSON.stringify(r));
+});
+
+test('K-121 SYMBOLS_SET (26RDB01-029 / 26RBS03-098): the Spirit has exactly two symbols for the battle (turn) and extra symbols do not add', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    G.active = P.key; G.turnNo = G.turnNo || 1; G.battleNo = 5;
+    const c = BS.mkInst('26RDB01-029'); c.cores = BS.CARDS['26RDB01-029'].levels[1].cores; P.spirits.push(c); G.attacker = c;
+    const fx = BS.CARDS['26RDB01-029'].effects.find(e => e.trigger === 'ACTIVATE');
+    const a0 = BS.attackSymbols(c); await BS.runActions({ p: P, opp: O, src: c, ctx: {} }, fx); const a1 = BS.attackSymbols(c);
+    c.symBattle = 2; const a2 = BS.attackSymbols(c); G.battleNo = 6; c.symBattle = 0; const a3 = BS.attackSymbols(c);
+    return [a0, a1, a2, a3 === a0]; })()`);
+  assert.deepEqual(r.slice(1), [2, 2, true], JSON.stringify(r));
+});
