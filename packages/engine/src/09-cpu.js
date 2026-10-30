@@ -153,7 +153,7 @@ async function cpuAttack(p) {
     if (attackStepOver()) break;
   }
 }
-async function startAttackFx(p) { await fireFx(p, 'START_ATTACK', null, {}); await flushBursts(); if (!G.over) await oppAttackHandFx(G.p[other(p.key)]); checkDepletion(p); checkDepletion(G.p[other(p.key)]); io.view({ type: 'board' }); }
+async function startAttackFx(p) { await fireFx(p, 'START_ATTACK', null, {}); if (!G.over) await fireFx(G.p[other(p.key)], 'OPP_START_ATTACK', null, {}); await flushBursts(); if (!G.over) await oppAttackHandFx(G.p[other(p.key)]); checkDepletion(p); checkDepletion(G.p[other(p.key)]); io.view({ type: 'board' }); }
 async function cpuTurn(p) {
   await wait(500);
   await cpuMain(p);

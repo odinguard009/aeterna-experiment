@@ -956,3 +956,19 @@ test('K-74 Cloudrock END_BATTLE sends 1 Trash core, 2 at 10000 BP or more; Squid
     return [lo, hi, sq.exhausted]; })()`);
   assert.deepEqual(r, [1, 2, false]);
 });
+
+test('K-75 OPP_START_ATTACK: Belder shrinks an attacker-side Spirit at the start of the opposing Attack Step; Guard Tower boosts a Leucomyst', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    P.spirits.length = 0; P.nexus.length = 0; O.spirits.length = 0; O.nexus.length = 0; G.active = O.key; P.cpu = true; O.cpu = true; G.step = 5;
+    const b = BS.mkInst('26RBS03-058'); b.cores = 2; P.spirits.push(b);
+    const v = BS.mkInst('26RBS02-040'); v.cores = 3; O.spirits.push(v); const before = BS.bpOf(v);
+    await BS.startAttackFx(O);
+    const dropped = before - BS.bpOf(v);
+    P.spirits.length = 0; O.spirits.length = 0;
+    const t = BS.mkInst('26RBS02-080'); t.cores = 2; P.nexus.push(t);
+    const l = BS.mkInst('26RBS02-040'); l.cores = 3; P.spirits.push(l); const b0 = BS.bpOf(l);
+    await BS.startAttackFx(O);
+    return [dropped, BS.bpOf(l) - b0]; })()`);
+  assert.deepEqual(r, [3000, 2000]);
+});
