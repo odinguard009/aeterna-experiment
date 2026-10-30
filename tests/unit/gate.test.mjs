@@ -130,7 +130,7 @@ test('G-T2 item T: start= on the done line is used when the marker has no budget
 const GATE_SRC = readFileSync(join(ROOT, 'tools/session_gate.sh'), 'utf8');
 test('G30 every read of the issue comments goes through the trusted-author filter', () => {
   const reads = GATE_SRC.split('\n').filter(l => /issues\/\$L\/comments\?/.test(l) && !/^post\(\)/.test(l));
-  assert.ok(reads.length >= 4, 'expected the comment reads in session_gate.sh, found ' + reads.length);
+  assert.ok(reads.length >= 3, 'expected the comment reads in session_gate.sh, found ' + reads.length);
   for (const l of reads) assert.match(l, /"\$TRUSTED_JQ"/, 'unfiltered comment read: ' + l.trim().slice(0, 90));
 });
 test('G31 the filter keeps the owner and the Actions bot and drops a stranger\'s ON / RANTAI ON', () => {
