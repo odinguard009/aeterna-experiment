@@ -86,3 +86,13 @@ test('K-154 UNBLOCKABLE_PICK.costGe (26RCB01-050): the picked Spirit cannot be b
     const fx = BS.CARDS['26RCB01-050'].effects; return [a, b, fx[0].actions[1].costGe, fx[1].actions[0].kind]; })()`);
   assert.deepEqual(r, [true, false, 8, 'reserve'], JSON.stringify(r));
 });
+
+test('K-155 26RBS02-X08: Invoke exhausts a Current Spirit for +1 symbol; LV2 refreshes every exhausted Cost 5 or less Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const fx = BS.CARDS['26RBS02-X08'].effects, lo = BS.mkInst('BS48-047'), hi = BS.mkInst('26RBS02-X08'); P.spirits.length = 0; P.spirits.push(lo, hi); lo.exhausted = hi.exhausted = true;
+    const cl = BS.CARDS[lo.id].cost, ch = BS.CARDS[hi.id].cost;
+    const c = { p: P, opp: O, src: hi, ctx: {} }; await BS.runActions(c, { actions: fx[1].actions });
+    return [cl <= 5 ? !lo.exhausted : lo.exhausted, ch <= 5 ? !hi.exhausted : hi.exhausted, fx[0].cost.exhaustOwn.match.keyword, fx[1].match.symbolsGe]; })()`);
+  assert.deepEqual(r, [true, true, 'Current', 2], JSON.stringify(r));
+});
