@@ -1251,3 +1251,21 @@ test('K-94 26RBS03-X10: show+return a Leucomyst card then draw 1, or 2 when Hand
   // hand 1 -> returns -> 0 -> draw 2 = 2 ; hand 2 -> 1 -> draw 2 = 3 ; hand 4 -> 3 -> draw 1 = 4 (deck net: -draws +1 returned)
   assert.deepEqual(r.map(a => a[0]), [2, 3, 4], JSON.stringify(r));
 });
+
+test('K-95 26RBS03-X07: When Summoned sends out a Swordish Token (once per name per turn); LV2 Invoke exhausts a Swordish to refresh this Spirit', async () => {
+  const { page } = await quietBoard();
+  const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
+    P.spirits.length = 0; P.nexus.length = 0; O.spirits.length = 0; O.nexus.length = 0; P.cpu = true; O.cpu = true;
+    P.tokens = { '26RSD10-T001': 10 }; P.reserve.n = 8;
+    const sw = () => P.spirits.filter(s => BS.CARDS[s.id].name === 'Swordish').length;
+    const x = BS.mkInst('26RBS03-X07'); x.cores = 4; P.spirits.push(x);
+    await BS.fireFx(P, 'SUMMONED', x, { subject: x }); const one = sw();
+    const y = BS.mkInst('26RBS03-X07'); y.cores = 4; P.spirits.push(y);
+    await BS.fireFx(P, 'SUMMONED', y, { subject: y }); const still = sw();
+    G.active = P.key; G.step = 5; G.attacker = x; x.exhausted = true;
+    const i = BS.CARDS['26RBS03-X07'].effects.findIndex(e => e.invoke);
+    const ok = await BS.activateFx(P, x, i);
+    const t = P.spirits.find(s => BS.CARDS[s.id].name === 'Swordish');
+    return [one, still, ok, x.exhausted, t && t.exhausted]; })()`);
+  assert.deepEqual(r, [1, 1, true, false, true], JSON.stringify(r));
+});

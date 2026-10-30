@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 7160,
+  "cards": 7159,
   "per_saga": {
    "1": 676,
    "2": 313,
@@ -19,15 +19,15 @@
    "15": 355,
    "16": 334,
    "17": 110,
-   "50": 163
+   "50": 162
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 1546,
+  "skipped_curated": 1547,
   "nexus_levels_added": 707,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 468,
+  "image_problems": 467,
   "number_conflicts": 4,
   "merged": 107,
   "brave_unparsed": 171,
@@ -35,7 +35,7 @@
   "odd_reduction": 807,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 466
+  "without_image": 465
  },
  "tokens": [
   "BS73-T001",
@@ -1591,6 +1591,7 @@
   "26RBS03-097",
   "26RBS03-098",
   "26RBS03-X05",
+  "26RBS03-X07",
   "26RBS03-X10",
   "26RBS03-X13",
   "26RBS03-X14"
@@ -4716,11 +4717,6 @@
   {
    "id": "26RBS03-X04",
    "name": "The PurpleAsterBladessom Rindorin",
-   "problem": "no image"
-  },
-  {
-   "id": "26RBS03-X07",
-   "name": "The AberrantWhale DeepCaesar",
    "problem": "no image"
   },
   {

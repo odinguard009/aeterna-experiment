@@ -38764,16 +38764,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "26RBS03-X07": [
-  "A_EXHAUST",
-  "A_REFRESH",
-  "A_SEND_TOKEN",
-  "C_LEVEL",
-  "K_STANDARD_INVOKE",
-  "K_TOKEN",
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
  "26RBS03-X08": [
   "A_BANISH",
   "A_EXHAUST",
