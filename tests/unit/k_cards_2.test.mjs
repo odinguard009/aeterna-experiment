@@ -285,3 +285,14 @@ test('K-142 26RBS03-084: Invoke cost exhausts two Cyantree Nexuses; destroys one
   assert.equal(r[0], false, JSON.stringify(r)); assert.equal(r[1], true, JSON.stringify(r)); assert.equal(r[2], 2, JSON.stringify(r));
   assert.deepEqual(r[3], ['BS48-021'], JSON.stringify(r));
 });
+
+test('K-143 26RBS01-X06: summon sends a core from up to three opposing Spirits; LV2 attack gets +1 symbol only after an opposing Spirit was depleted', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    P.cpu = true; const s = BS.mkInst('26RBS01-X06'); s.cores = 3; P.spirits.push(s);
+    const fx = BS.CARDS['26RBS01-X06'].effects;
+    O.spirits.length = 0; const t = BS.mkInst('BS48-047'); t.cores = 3; O.spirits.push(t);
+    await BS.runActions({ p: P, opp: O, src: s, ctx: {} }, fx[0]);
+    return [t.cores, fx[1].if.oppDepleted, fx[1].actions[0].do]; })()`);
+  assert.deepEqual(r, [2, true, 'SYMBOL_PLUS'], JSON.stringify(r));
+});
