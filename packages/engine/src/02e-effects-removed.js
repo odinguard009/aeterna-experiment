@@ -32,6 +32,7 @@ Object.assign(FX_ACTIONS, {
       if (!T.length) { c.ctx.did = false; return; }
       for (const t of T) { t.exhausted = true; log(`${_nm(c)}: ${poss(c.opp)} ${CARDS[t.id].name} is exhausted.`); }
       await fireFx(c.p, 'EXHAUSTED_FX', null, { side: 'opp', fxSrc: c.src });
+      for (const t of T) await fireFx(c.opp, 'EXHAUSTED_FX', null, { side: 'own', subject: t, fxSrc: c.src });
     } },
   /* v0.55 BP minus: "during this turn, give an opposing Spirit/Ultimate -N BP". Lasts until the end of the turn (bpMod is cleared in
      beginTurn); BP never shows below 0 (Standard CR 1-4-6). A Spirit at 0 BP is NOT destroyed by a rule (Eternal manual FAQ p. 68);
@@ -56,6 +57,7 @@ Object.assign(FX_ACTIONS, {
       if (!T.length) { c.ctx.did = false; return; }
       for (const t of T) { setHeavy(t); log(`${_nm(c)}: ${poss(c.opp)} ${CARDS[t.id].name} is heavy exhausted.`); }
       await fireFx(c.p, 'EXHAUSTED_FX', null, { side: 'opp', heavy: true, fxSrc: c.src });
+      for (const t of T) await fireFx(c.opp, 'EXHAUSTED_FX', null, { side: 'own', subject: t, heavy: true, fxSrc: c.src });
     } },
   /* "put a random card from the opposing Hand onto their Removed Zone" (the cards are kept in ctx.removedCards / ctx.removedN) */
   REMOVE_OPP_HAND: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 10 && (a.toSize == null || (Number.isInteger(a.toSize) && a.toSize >= 0 && a.toSize <= 10)) && (a.counterIfCostLe == null || (a.counterIfCostLe && Number.isInteger(a.counterIfCostLe.cost) && Number.isInteger(a.counterIfCostLe.n) && a.counterIfCostLe.n >= 1 && a.counterIfCostLe.n <= 5)),

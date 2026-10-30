@@ -52,7 +52,7 @@ function fxValid(it) {
   if (e.braved && !f.brave) return false;
   if ((trg === 'ALLY_ATTACKS' || trg === 'OPP_ATTACKS' || trg === 'ALLY_DESTROYS' || trg === 'ALLY_BLOCKED' || trg === 'ALLY_BLOCKS' || trg === 'ALLY_SUMMONED' || trg === 'ALLY_LIFE_HIT' || trg === 'ALLY_LOST' || trg === 'ALLY_DIED' || trg === 'SOUL_PLACED' || trg === 'ALLY_BATTLE_WIN' || trg === 'ALLY_BATTLE_END' || trg === 'MAGIC_USED') && !(subj && fxMatch(CARDS[subj.id], e.match, subj))) return false;
   if (e.subjBraved && !(subj && subj.brave && [subj, subj.brave].some(x => (CARDS[x.id].families || []).includes(e.subjBraved)))) return false;
-  if (e.self && subj !== f && (trg === 'SOUL_PLACED' || trg === 'ALLY_LIFE_HIT' || trg === 'ALLY_BLOCKED')) return false;
+  if (e.self && subj !== f && (trg === 'EXHAUSTED_FX' || trg === 'SOUL_PLACED' || trg === 'ALLY_LIFE_HIT' || trg === 'ALLY_BLOCKED')) return false;
   if (e.other && subj === f) return false;
   if (e.diffName && subj && CARDS[subj.id].name === CARDS[f.id].name) return false;      // v0.197
   if (e.exOnly && !(ctx.exCount > 0)) return false;      // v0.185 RUMBLE_DISCARD "cards with EX Symbols"
@@ -60,7 +60,7 @@ function fxValid(it) {
   if (e.blockingOnly && (trg === 'BATTLE_WIN' || trg === 'ALLY_BATTLE_WIN') && ctx.attacking) return false;     // v0.74 (When Blocks) battle result: only as the blocker
   if (trg === 'ALLY_SUMMONED' && subj && CARDS[subj.id].type === 'Brave' && !(e.match && e.match.type === 'Brave')) return false;     // a Brave summon is not a Spirit summon (manual p. 35)
   if (trg === 'OWN_LIFE_HIT' && e.match && !(ctx.attacker && fxMatch(CARDS[ctx.attacker.id], e.match))) return false;      // v0.177 "by opposing Spirits / Ultimates"
-  if (trg === 'EXHAUSTED_FX' && e.exSide && e.exSide !== ctx.side) return false;
+  if (trg === 'EXHAUSTED_FX' && (e.exSide || 'opp') !== ctx.side) return false;      // v155: side 'own' = the victim's side (ctx.subject = the exhausted Spirit)
   if (trg === 'EXHAUSTED_FX' && e.heavyOnly && !ctx.heavy) return false;
   if (trg === 'OPP_DESTROYED_FX' || trg === 'EXHAUSTED_FX') {      // v0.196 zeroBp: the destroyed Spirit had 0 BP; bySrc {type, family}: the destroying effect's own card
     if (e.zeroBp && ctx.bp !== 0) return false;

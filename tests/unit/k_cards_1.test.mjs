@@ -259,3 +259,16 @@ test('K-113 zone:trash triggers: 032 returns from the Trash on a heavy exhaust o
   assert.deepEqual(r[2], [true, false], JSON.stringify(r));
   assert.deepEqual(r.slice(3), [true, false], JSON.stringify(r));
 });
+
+test('K-114 26RBS02-050: LV2 refreshes an exhausted Wailwraith/Hexcraft Spirit when this Spirit is exhausted by an opposing EXHAUST_OPP effect (own side only; the exhauster side does not trigger it)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    G.active = P.key; G.turnNo = G.turnNo || 1;
+    const s = BS.mkInst('26RBS02-050'); s.cores = BS.CARDS['26RBS02-050'].levels[1].cores; s.exhausted = true; O.spirits.push(s);
+    const w = BS.mkInst('26RBS01-061'); w.cores = 1; w.exhausted = true; O.spirits.push(w);
+    await BS.fireFx(O, 'EXHAUSTED_FX', null, { side: 'own', subject: s });
+    const own = !w.exhausted || !s.exhausted;  // the CPU may refresh the victim itself (it also matches the family)
+    s.exhausted = true; w.exhausted = true; await BS.fireFx(O, 'EXHAUSTED_FX', null, { side: 'own', subject: w });
+    return [true, own, w.exhausted && s.exhausted]; })()`);
+  assert.deepEqual(r, [true, true, true], JSON.stringify(r));
+});

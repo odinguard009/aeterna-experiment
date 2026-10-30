@@ -95,15 +95,17 @@ function allHaveOK(owner, q) {
   E.run = async (c, a) => {
     if (!a.oppChooses) return eRun(c, a);
     if (!E.cands(c, a).length) { c.ctx.did = false; return; }
+    const hit = [];
     // the opponent targets: the CPU gives up its weakest refreshed Spirits, a human opponent taps them (v0.183: n of them, Windstorm)
     for (let j = 0; j < a.n; j++) {
       const L = E.cands(c, a); if (!L.length) break;
       const t = c.opp.cpu ? L.slice().sort((x, y) => (bpOf(x) - bpOf(y)) || (x.cores - y.cores))[0]
         : await fxPickTarget(Object.assign({}, c, { p: c.opp }), L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Choose one of your refreshed Spirits to exhaust (glowing).`);
       if (!t) break;
-      t.exhausted = true; if (a.heavy) setHeavy(t); log(`${CARDS[c.src.id].name}: ${poss(c.opp)} ${CARDS[t.id].name} is ${a.heavy ? 'heavy ' : ''}exhausted (the opponent chose it).`);
+      hit.push(t); t.exhausted = true; if (a.heavy) setHeavy(t); log(`${CARDS[c.src.id].name}: ${poss(c.opp)} ${CARDS[t.id].name} is ${a.heavy ? 'heavy ' : ''}exhausted (the opponent chose it).`);
     }
     await fireFx(c.p, 'EXHAUSTED_FX', null, { side: 'opp', heavy: !!a.heavy, fxSrc: c.src });
+    for (const t of hit) await fireFx(c.opp, 'EXHAUSTED_FX', null, { side: 'own', subject: t, heavy: !!a.heavy, fxSrc: c.src });
   };
   const R = FX_ACTIONS.BOUNCE_OPP, rChk = R.chk, rCands = R.cands, rTxt = R.txt;
   const lv1Lim = (c, m) => { const L = c.p.spirits.filter(f => fxMatch(CARDS[f.id], m)).map(f => ((CARDS[f.id].levels || [])[0] || {}).bp || 0); return L.length ? Math.max(...L) : -1; };
