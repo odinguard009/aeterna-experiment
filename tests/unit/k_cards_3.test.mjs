@@ -145,3 +145,14 @@ test('K-160 BOUNCE_OPP.bpOrGe (26RBS02-045): with Legacy the targets are 5000 BP
     return [a.length, a[0] === lo, b.length, b.includes(mid), fx[1].if.viaLegacy, fx[2].flag]; })()`);
   assert.deepEqual(r, [1, true, 2, false, true, 'CAMOU'], JSON.stringify(r));
 });
+
+test('K-161 OPP_CORES_TO_RESERVE.eachLegacy (26RBS02-X06): sends +1 core per EX Symbol banished via Legacy', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${SETUP}
+    const t = BS.mkInst('BS48-047'); t.cores = 5; O.spirits.push(t); const r0 = O.reserve.n;
+    const src = BS.mkInst('26RBS02-X06'); src.legacyN = 2; const c = { p: P, opp: O, src, ctx: {} };
+    const fx = BS.CARDS['26RBS02-X06'].effects;
+    await BS.runActions(c, { actions: [Object.assign({}, fx[0].actions[1], { if: undefined })] });
+    return [O.reserve.n - r0, fx[0].optional, fx[0].actions[1].if.prev, fx[1].if.trashAllColor]; })()`);
+  assert.deepEqual(r, [3, true, true, 'purple'], JSON.stringify(r));
+});

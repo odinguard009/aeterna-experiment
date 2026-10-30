@@ -38324,14 +38324,6 @@
   "T_DESTROYED",
   "T_SUMMONED"
  ],
- "26RBS02-X06": [
-  "A_BANISH",
-  "A_BP_PLUS",
-  "A_CORE_TO_SELF",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
  "26RBS02-X10": [
   "C_LEVEL",
   "M_OPTIONAL",

@@ -14996,16 +14996,58 @@
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Summoned) You can target one of your Spirits. Destroy it. If you've done so, target an opposing Spirit. Send a core from it to the Reserve. For each EX symbol banished via this Legacy, send +1 core. (The opponent chooses which cores to send)",
-   "[LV2] (True Release) (Your Attack Step) If all cards in your Trash are Purple, all your \"Beastleptic\" family Spirits gain +3000 BP."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Residual clauses authored by hand in Lane K (v0.195.0). Residual clauses authored by hand in Lane K (v0.195.0).",
   "bicon": [
    "A"
   ],
-  "rcode": "X"
+  "rcode": "X",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "DESTROY_OWN",
+      "match": {
+       "type": "Spirit"
+      }
+     },
+     {
+      "do": "OPP_CORES_TO_RESERVE",
+      "targets": 1,
+      "each": 1,
+      "eachLegacy": true,
+      "if": {
+       "prev": true
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 3000,
+    "to": "own",
+    "match": {
+     "family": [
+      "Beastleptic"
+     ],
+     "type": "Spirit"
+    },
+    "lv": [
+     2
+    ],
+    "if": {
+     "trashAllColor": "purple",
+     "attackStep": true,
+     "oppTurn": false
+    }
+   }
+  ]
  },
  {
   "id": "26RBS02-X07",
