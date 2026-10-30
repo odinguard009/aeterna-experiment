@@ -1097,19 +1097,24 @@ test('K-84 Duntekleo: Summoned gives up to two Armored Fish +3000; Invoke refres
   assert.deepEqual(r, [2, true, true, false]);
 });
 
-test('K-85 soulInTrash: Assipha destroys only with the Soul Core in the Trash; Cornix target BP 3000 -> 4000', async () => {
+test('K-85 soulInTrash: Assipha destroys only with the Soul Core in the Trash; Cornix target BP 3000 -> 4000; Cornix returns a Cost 4 Red Cloud', async () => {
   const { page } = await quietBoard();
   const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
     P.spirits.length = 0; P.nexus.length = 0; O.spirits.length = 0; O.nexus.length = 0; P.cpu = true; O.cpu = true; G.active = P.key; G.step = 5;
     const out = [];
-    for (const [id, soul] of [['26RSD09-009', false], ['26RSD09-009', true], ['26RSD09-007', false], ['26RSD09-007', true]]) {
+    for (const [id, soul, tid] of [['26RSD09-009', false, 'BS48-021'], ['26RSD09-009', true, 'BS48-021'], ['26RSD09-009', true, '26RBS01-039'], ['26RSD09-007', false, 'BS48-021'], ['26RSD09-007', false, '26RBS01-039'], ['26RSD09-007', true, '26RBS01-039']]) {
       P.spirits.length = 0; O.spirits.length = 0; P.trashCores.soul = soul;
       const s = BS.mkInst(id); s.cores = 3; P.spirits.push(s); G.attacker = s;
-      const t = BS.mkInst('26RBS01-039'); t.cores = 1; O.spirits.push(t);
+      const t = BS.mkInst(tid); t.cores = 1; O.spirits.push(t);
       const bp = BS.bpOf(t);
       await BS.fireFx(P, 'ATTACKS', s, { subject: s });
       out.push([bp, O.spirits.includes(t)]);
     }
+    P.spirits.length = 0; P.hand.length = 0; P.trash.length = 0;
+    const c = BS.mkInst('26RSD09-007'); c.cores = 1; P.spirits.push(c);
+    P.trash.push(BS.mkInst('26RBS01-008'), BS.mkInst('26RBS01-004'));
+    await BS.fireFx(P, 'SUMMONED', c, { subject: c });
+    out.push(P.hand.map(x => x.id));
     return out; })()`);
-  assert.deepEqual(r, [[4000, true], [4000, false], [4000, true], [4000, false]]);
+  assert.deepEqual(r, [[3000, true], [3000, false], [4000, false], [3000, false], [4000, true], [4000, false], ['26RBS01-004']]);
 });
