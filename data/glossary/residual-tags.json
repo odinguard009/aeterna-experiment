@@ -38172,11 +38172,6 @@
   "M_OPTIONAL",
   "T_ATTACKS"
  ],
- "26RBS02-079": [
-  "A_VOID",
-  "C_LEVEL",
-  "C_OPP_TURN"
- ],
  "26RBS02-083": [
   "C_LEVEL",
   "M_REPLACEMENT",
@@ -38247,12 +38242,6 @@
   "K_STANDARD_INVOKE",
   "M_OPTIONAL",
   "M_THEN",
-  "T_SUMMONED"
- ],
- "26RBS03-X06": [
-  "A_VOID",
-  "C_LEVEL",
-  "T_ATTACKS",
   "T_SUMMONED"
  ],
  "26RCB01-032": [

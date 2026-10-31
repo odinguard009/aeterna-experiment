@@ -320,6 +320,12 @@ function simple(card, a) {
       if (!only(a, ['n'])) return null;
       return { body: `for (let j = 0; j <= A.n; j++) O.hand.push(BS.mkInst(${J(FILL)})); const h0 = O.hand.length;
         await run(src, RA); return O.hand.length === h0 - A.n ? '' : 'opponent hand ' + O.hand.length + ' (was ' + h0 + ')';` };
+    case 'CORES_ANY_TO_RESERVE':      // v212 "one core each from N Spirits you or the opponent controls"
+      if (!only(a, ['total', 'excludeSelf', 'thenVoidCore']) || !a.excludeSelf) return null;
+      return { onField: true, body: `const ts = []; for (let j = 0; j < A.total; j++) ts.push(sp(${J(sid(3, 2000))}, P, 2));      // no depletion: no Void core
+        const r0 = P.reserve.n, t0 = ts.reduce((n, x) => n + x.cores, 0);
+        await run(src, RA); const loss = t0 - ts.reduce((n, x) => n + x.cores, 0), res = P.reserve.n - r0;
+        return loss === A.total && res === A.total ? '' : 'cores lost ' + loss + ', reserve +' + res;` };
     case 'EXHAUST_SELF':      // v0.195 this Spirit exhausts itself; v0.197 a Nexus too
       return only(a, []) && (spirit || card.type === 'Nexus') && { onField: true, body: `src.exhausted = false; await run(src, RA); return src.exhausted ? '' : 'the card is still refreshed';` };
     case 'REFRESH_NEXUS':      // v0.195 refresh one of your exhausted Nexuses

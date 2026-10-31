@@ -163,7 +163,7 @@ async function flushBursts() {                         // queued Bursts and even
     } else if (ev.type === 'DIED') {
       await fireFx(G.p[ev.key], 'ALLY_DIED', null, { subject: ev.inst, byBattle: !!ev.byBattle });      // v191 byBattle: "destroyed via BP comparison"
     } else if (ev.type === 'LOST') {
-      await fireFx(G.p[ev.key], 'ALLY_LOST', null, { subject: ev.inst });
+      await fireFx(G.p[ev.key], 'ALLY_LOST', null, { subject: ev.inst, depl: !!ev.depl, byOpp: !!ev.byOpp });      // v212
     } else if (ev.type === 'NEXUS_DIED') {
       await fireFx(G.p[ev.key], 'ALLY_NEXUS_DESTROYED', ev.inst, { subject: ev.inst });      // v189 "When your Nexuses ... are destroyed"
     } else if (ev.type === 'OPP_DIED') {

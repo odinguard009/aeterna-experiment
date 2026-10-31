@@ -5,6 +5,37 @@
    every other entry here is read from inside a function.
    ------------------------------------------------------------------------------------ */
 Object.assign(FX_ACTIONS, {
+  /* v212 "Besides this Spirit, target a total of three Spirits you or the opponent controls. Send one core from each of them to the
+     Reserve. (The owner chooses which core to send) If depleted, put a core from the Void to this Spirit." */
+  CORES_ANY_TO_RESERVE: { chk: a => Number.isInteger(a.total) && a.total >= 2 && a.total <= 4 && (a.excludeSelf == null || a.excludeSelf === true) && (a.thenVoidCore == null || a.thenVoidCore === true) && Object.keys(a).every(k => ['do', 'if', 'total', 'excludeSelf', 'thenVoidCore'].includes(k)),
+    txt: a => `send one core each from ${a.total} Spirits you or the opponent controls to the Reserve`,
+    cands: (c, a) => c.p.spirits.concat(c.opp.spirits).filter(s => s.cores > 0 && !(a.excludeSelf && s === c.src)),
+    can: (c, a) => FX_ACTIONS.CORES_ANY_TO_RESERVE.cands(c, a).length >= a.total,
+    run: async (c, a) => {
+      const chosen = [];
+      for (let j = 0; j < a.total; j++) {
+        const L = FX_ACTIONS.CORES_ANY_TO_RESERVE.cands(c, a).filter(s => !chosen.includes(s)); if (!L.length) break;
+        const t = c.p.cpu ? L.slice().sort((x, y) => bpOf(y) - bpOf(x) || y.cores - x.cores)[0] : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap a Spirit to send one core to its owner's Reserve (${j + 1}/${a.total}).`);
+        if (!t) break; chosen.push(t);
+      }
+      if (!chosen.length) { c.ctx.did = false; return; }
+      let gone = 0;
+      for (const t of chosen) {
+        const q = c.p.spirits.includes(t) ? c.p : c.opp;
+        if (!coreTakeCap(q, t, 1)) continue;
+        coreEvN(q, t.uid, 'reserve', 1, false); t.cores -= 1; q.reserve.n += 1;
+        log(`${_pn(c)}: one core from ${CARDS[t.id].name} goes to ${poss(q)} Reserve.`);
+      }
+      checkDepletion(c.p); checkDepletion(c.opp);
+      gone = chosen.filter(t => !c.p.spirits.includes(t) && !c.opp.spirits.includes(t)).length;
+      if (gone) { log(`${_pn(c)}: ${gone} Spirit${gone === 1 ? ' is' : 's are'} depleted.`); }
+      if (a.thenVoidCore && gone && fieldList(c.p).includes(c.src)) {
+        const m = takeFromVoid(c.p, 1); c.src.cores += m;
+        log(`${_pn(c)}: ${m} core${m === 1 ? '' : 's'} from the Void go to ${CARDS[c.src.id].name}.`);
+      }
+      io.view({ type: 'board' });
+    } } });
+Object.assign(FX_ACTIONS, {
   /* v0.183 (schema 38) "Destroy a Nexus" / "Destroy an exhausted Spirit you or the opponent controls": either side is a legal target for a person; the CPU only picks an opposing one (it never destroys its own card) */
   DESTROY_ANY: { chk: a => (a.kind === 'nexus' || (a.kind === 'spirit' && (a.exhaustedOnly === true || (Number.isInteger(a.bpLe) && a.bpLe >= 1000 && a.bpLe <= 100000)))) && (a.noTR == null || (a.noTR === true && a.kind === 'nexus')) && (a.drawIfDone == null || (a.drawIfDone === true && a.kind === 'nexus')) && Object.keys(a).every(k => ['do', 'kind', 'exhaustedOnly', 'bpLe', 'drawIfOpp', 'noTR', 'drawIfDone', 'if'].includes(k)),
     txt: a => a.kind === 'nexus' ? 'destroy 1 ' + (a.noTR ? 'Nexus not in True Release' : 'Nexus') + ' (yours or the opponent\'s)' + (a.drawIfDone ? '; if one is destroyed, draw a card' : '') + (a.drawIfOpp ? '; if it was an opposing Nexus, draw a card' : '') : `destroy 1 ${a.bpLe ? a.bpLe + ' BP or less' : 'exhausted'} Spirit (yours or the opponent\'s)`,

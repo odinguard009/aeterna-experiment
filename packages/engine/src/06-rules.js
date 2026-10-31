@@ -355,7 +355,7 @@ function removeSpirit(p, s, why, byOpponent) {
   shedBrave(p, s, p.trash);
   if (s.token) {                                 // Token rule 3: back to the Token supply, never the Trash, so "after destroyed" Bursts cannot activate
     tokenHome(p, s); log(`${poss(p)} ${CARDS[s.id].name} Token is ${why} and returns to the Token supply.`);
-    if (G && G.evQ && ((why === 'destroyed' && byOpponent) || why === 'depleted')) G.evQ.push({ type: 'LOST', key: p.key, inst: s });
+    if (G && G.evQ && ((why === 'destroyed' && byOpponent) || why === 'depleted')) G.evQ.push({ type: 'LOST', key: p.key, inst: s, depl: why === 'depleted', byOpp: !!(byOpponent || oppFx) });      // v212 depleted/byOpp
     return;
   }
   if (why === 'destroyed' && byOpponent && CARDS[s.id].contract) {     // Contract card: Soul State instead of Trash
@@ -368,7 +368,7 @@ function removeSpirit(p, s, why, byOpponent) {
   log(`${poss(p)} ${CARDS[s.id].name} is ${why}.`);
   if (why === 'destroyed' && G && G.evQ && STEPS[G.step] === 'ATTACK' && p.trash.some(x => (CARDS[x.id].effects || []).some(e => e.flag === 'IMMORTALITY'))) G.evQ.push({ type: 'IMMORTAL', key: p.key, inst: s });      // v0.183 Immortality (02j)
   if (why === 'destroyed' && byOpponent && G && G.burstQ) G.burstQ.push({ key: p.key });
-  if (G && G.evQ && ((why === 'destroyed' && byOpponent) || why === 'depleted')) G.evQ.push({ type: 'LOST', key: p.key, inst: s });
+  if (G && G.evQ && ((why === 'destroyed' && byOpponent) || why === 'depleted')) G.evQ.push({ type: 'LOST', key: p.key, inst: s, depl: why === 'depleted', byOpp: !!(byOpponent || oppFx) });      // v212 depleted/byOpp
   if (G && G.evQ && G.evQ.some(e => e.inst === s && (e.type === 'DESTROYED' || e.type === 'LEAVES' || (e.type === 'LOST' && lostHeard(p))))) { s.standbyTo = 'trash'; p.standby.push(s); }   // v0.57.0 Standby (JP 17.0 item 4): waits while its leave triggers resolve
   else p.trash.push(s);
 }
