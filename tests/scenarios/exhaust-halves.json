@@ -1,0 +1,28 @@
+{
+  "name": "exhaust-halves",
+  "about": "v0.202.0 next cycle bundle 4 (Eternal): BS14-028 and BS43-RV013 (When Summoned: exhaust all Cost 3 or less Spirits, both sides; EXHAUST_ALL_OPP gained costLe + both).",
+  "rules": [
+    "STD:12-2-1-12@caad612c",
+    "ETR:effects.simultaneous@0d3e0a51"
+  ],
+  "turn": 4,
+  "active": "player",
+  "step": 5,
+  "players": {
+    "player": {
+      "reserve": 10,
+      "spirits": [
+        { "id": "BS14-028", "cores": 2, "as": "halfA" },
+        { "id": "26RBS01-004", "cores": 1, "as": "ownBig" }
+      ],
+      "deck": ["26RBS01-005", "26RBS01-006"]
+    },
+    "opponent": {
+      "reserve": 4,
+      "spirits": [
+        { "id": "26RBS01-031", "cores": 1, "as": "oppSmall" },
+        { "id": "26RBS01-005", "cores": 1, "as": "oppBig" }
+      ]
+    }
+  }
+}

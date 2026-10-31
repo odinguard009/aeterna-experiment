@@ -4112,11 +4112,6 @@
   "C_LEVEL",
   "T_SUMMONED"
  ],
- "BS14-028": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "BS14-030": [
   "A_DISCARD_OPP",
   "A_REFRESH",
@@ -18604,11 +18599,6 @@
   "C_LEVEL",
   "K_BRAVE",
   "K_RUSH",
-  "T_SUMMONED"
- ],
- "BS43-RV013": [
-  "A_EXHAUST",
-  "C_LEVEL",
   "T_SUMMONED"
  ],
  "BS43-RV014": [

@@ -255,15 +255,19 @@ Object.assign(FX_ACTIONS, {
     } } });
 Object.assign(FX_ACTIONS, {
   /* v227 "Exhaust every N BP or less Spirit." */
-  EXHAUST_ALL_OPP: { chk: a => Number.isInteger(a.bpLe) && a.bpLe >= 0 && a.bpLe <= 100000 && Object.keys(a).every(k => ['do', 'if', 'bpLe'].includes(k)),
-    txt: a => `exhaust every opposing ${a.bpLe} BP or less Spirit`,
-    can: (c, a) => c.opp.spirits.some(s => !s.exhausted && bpOf(s) <= a.bpLe),
+  EXHAUST_ALL_OPP: { chk: a => (a.bpLe == null || (Number.isInteger(a.bpLe) && a.bpLe >= 0 && a.bpLe <= 100000))
+      && (a.costLe == null || (Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30))
+      && (a.bpLe != null || a.costLe != null) && (a.both == null || a.both === true) && Object.keys(a).every(k => ['do', 'if', 'bpLe', 'costLe', 'both'].includes(k)),
+    txt: a => `exhaust every ${a.both ? '' : 'opposing '}${a.costLe != null ? 'Cost ' + a.costLe + ' or less ' : ''}${a.bpLe != null ? a.bpLe + ' BP or less ' : ''}Spirit`,
+    can: (c, a) => FX_ACTIONS.EXHAUST_ALL_OPP.cands(c, a).length > 0,
+    cands: (c, a) => (a.both ? c.p.spirits.concat(c.opp.spirits) : c.opp.spirits).filter(s => !s.exhausted
+      && (a.bpLe == null || bpOf(s) <= a.bpLe) && (a.costLe == null || CARDS[s.id].cost <= a.costLe)),
     run: async (c, a) => {
-      const L = c.opp.spirits.filter(s => !s.exhausted && bpOf(s) <= a.bpLe);
+      const L = FX_ACTIONS.EXHAUST_ALL_OPP.cands(c, a);
       if (!L.length) { c.ctx.did = false; return; }
       for (const t of L) { t.exhausted = true; log(`${CARDS[t.id].name} is exhausted.`); }
-      await fireFx(c.p, 'EXHAUSTED_FX', null, { side: 'opp', fxSrc: c.src });
-      for (const t of L) await fireFx(c.opp, 'EXHAUSTED_FX', null, { side: 'own', subject: t, fxSrc: c.src });
+      const sides = a.both ? [c.p, c.opp] : [c.opp];
+      for (const q of sides) { for (const t of L) if (q.spirits.includes(t)) await fireFx(q, 'EXHAUSTED_FX', null, { side: q === c.p ? 'own' : 'opp', subject: t, fxSrc: c.src }); }
       io.view({ type: 'board' });
     } },
   /* v227 "Draw until you have N cards in Hand." */
