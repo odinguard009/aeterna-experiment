@@ -810,13 +810,9 @@
   "K_CRUSH",
   "T_BLOCKS"
  ],
- "BS03-118": [],
  "BS03-123": [
   "A_RETURN_TRASH",
   "A_TRASH_TO_RESERVE"
- ],
- "BS03-127": [
-  "A_EXHAUST"
  ],
  "BS03-130": [
   "A_VOID"
@@ -2218,9 +2214,6 @@
   "K_CRUSH",
   "M_UP_TO",
   "T_ATTACKS"
- ],
- "BS09-001": [
-  "C_LEVEL"
  ],
  "BS09-003": [
   "A_BP_PLUS",
@@ -5104,10 +5097,6 @@
   "M_THEN"
  ],
  "BS16-079": [],
- "BS16-081": [
-  "A_DRAW",
-  "M_BY_DOING"
- ],
  "BS16-X01": [
   "A_REFRESH",
   "A_SUMMON_FREE",
@@ -6666,9 +6655,6 @@
   "C_LEVEL",
   "K_RUSH",
   "T_BATTLE_WIN"
- ],
- "BS21-051": [
-  "C_LEVEL"
  ],
  "BS21-052": [
   "A_BP_PLUS",
@@ -16471,10 +16457,6 @@
   "K_ADVENT",
   "M_BY_DOING",
   "T_ATTACKS"
- ],
- "BS41-013": [
-  "C_LEVEL",
-  "T_BLOCKS"
  ],
  "BS41-014": [
   "C_LEVEL",

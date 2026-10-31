@@ -254,6 +254,29 @@ Object.assign(FX_ACTIONS, {
       log(`${CARDS[c.src.id].name}: the Cost ${a.costIs} Spirits win the comparison bounce? armed for this battle.`);
     } } });
 Object.assign(FX_ACTIONS, {
+  /* v227 "Exhaust every N BP or less Spirit." */
+  EXHAUST_ALL_OPP: { chk: a => Number.isInteger(a.bpLe) && a.bpLe >= 0 && a.bpLe <= 100000 && Object.keys(a).every(k => ['do', 'if', 'bpLe'].includes(k)),
+    txt: a => `exhaust every opposing ${a.bpLe} BP or less Spirit`,
+    can: (c, a) => c.opp.spirits.some(s => !s.exhausted && bpOf(s) <= a.bpLe),
+    run: async (c, a) => {
+      const L = c.opp.spirits.filter(s => !s.exhausted && bpOf(s) <= a.bpLe);
+      if (!L.length) { c.ctx.did = false; return; }
+      for (const t of L) { t.exhausted = true; log(`${CARDS[t.id].name} is exhausted.`); }
+      await fireFx(c.p, 'EXHAUSTED_FX', null, { side: 'opp', fxSrc: c.src });
+      for (const t of L) await fireFx(c.opp, 'EXHAUSTED_FX', null, { side: 'own', subject: t, fxSrc: c.src });
+      io.view({ type: 'board' });
+    } },
+  /* v227 "Draw until you have N cards in Hand." */
+  DRAW_TO: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 10 && Object.keys(a).every(k => ['do', 'if', 'n'].includes(k)),
+    txt: a => `draw until you have ${a.n} cards in Hand`,
+    can: (c, a) => c.p.deck.length > 0 && c.p.hand.length < a.n,
+    run: async (c, a) => {
+      let k = 0;
+      while (c.p.hand.length < a.n && c.p.deck.length) { c.p.hand.push(c.p.deck.shift()); k++; }
+      c.ctx.did = k > 0; if (k) handUp(c.p, k);
+      log(`${CARDS[c.src.id].name}: ${who(c.p)} ${c.p.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'}.`); io.view({ type: 'board' });
+    } } });
+Object.assign(FX_ACTIONS, {
   DESTROY_OWN: {
     chk: a => hasMatch(a.match) && (a.voidByCost == null || a.voidByCost === true) && (a.other == null || a.other === true),
     txt: a => (a.other ? 'destroy another Spirit you control' : 'destroy one of your matching Spirits') + (a.voidByCost ? ', then put cores from the Void to your Reserve equal to its cost' : ''),
