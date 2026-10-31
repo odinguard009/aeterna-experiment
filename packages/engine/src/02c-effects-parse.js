@@ -121,6 +121,11 @@ function parseEffects(arr) {
     if (e.trigger === 'STATIC' && e.flag != null) {
       if (!STATIC_FLAGS.includes(e.flag)) return { error: `STATIC "flag" must be one of ${STATIC_FLAGS.join(', ')}` };
       o.flag = e.flag; o.to = e.to === 'own' || e.to === 'all' ? e.to : 'self'; if (e.braved === true) o.braved = true;      // v0.60 [When Braved] static effects
+      if (e.flag === 'CORE_SAFE') {                               // v190 "the cores can't be moved / can't be brought to less than one"
+        if (!['move', 'floor'].includes(e.mode)) return { error: 'CORE_SAFE "mode" must be "move" or "floor"' };
+        o.mode = e.mode; o.to = ['self', 'own', 'oppBlockers'].includes(e.to) ? e.to : 'self';
+        if (o.to !== 'self' && !o.match) return { error: 'CORE_SAFE "to" own/oppBlockers needs a "match"' };
+      }
       if (e.flag === 'EXTRA_REDUCTION' || e.flag === 'SUMMON_SYMBOL') {                          // v0.40: "all your Thunderive cards gain an extra yellow reduction symbol" (Indra Contract Field, Shimavajdra)
         if (!COLORS.includes(e.color)) return { error: e.flag + ' needs a "color"' };
         o.color = e.color; o.n = Number.isInteger(e.n) && e.n >= 1 && e.n <= 3 ? e.n : 1;

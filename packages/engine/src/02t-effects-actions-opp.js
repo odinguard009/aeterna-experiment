@@ -162,11 +162,11 @@ Object.assign(FX_ACTIONS, {
       }
       let k = 0;
       const pick = async (lst, what) => fxPickTarget(c, lst.slice().sort((x, y) => y.cores - x.cores), `✨ <b>${esc(nm)}</b><br>Tap the opposing Nexus ${what} (glowing).`);
-      if (all) { const t = await pick(L, 'whose cores all go to the Void'); if (t) { k = t.cores; coreEvN(c.opp, t.uid, 'void', k, false); c.opp.void += t.cores; t.cores = 0; } }
-      else if (!a.spread) { const t = await pick(L, `that loses ${a.n} core${a.n === 1 ? '' : 's'}`); if (t) { k = Math.min(a.n, t.cores); coreEvN(c.opp, t.uid, 'void', k, false); t.cores -= k; c.opp.void += k; } }
+      if (all) { const t = await pick(L, 'whose cores all go to the Void'); if (t) { k = Math.min(t.cores, coreTakeCap(c.opp, t, t.cores)); if (k) { coreEvN(c.opp, t.uid, 'void', k, false); c.opp.void += k; t.cores -= k; } } }      // v190 CORE_SAFE
+      else if (!a.spread) { const t = await pick(L, `that loses ${a.n} core${a.n === 1 ? '' : 's'}`); if (t) { k = Math.min(a.n, t.cores, coreTakeCap(c.opp, t, a.n)); if (k) { coreEvN(c.opp, t.uid, 'void', k, false); t.cores -= k; c.opp.void += k; } } }
       else for (let j = 0; j < a.n; j++) {
-        const lst = L.filter(x => x.cores > 0 && c.opp.nexus.includes(x)); if (!lst.length) break;
-        const t = await pick(lst, `that loses core ${j + 1} of ${a.n}`); if (!t) break;
+        const lst = L.filter(x => x.cores > 0 && c.opp.nexus.includes(x) && coreTakeCap(c.opp, x, 1) > 0); if (!lst.length) break;
+        const t = await pick(lst, `that loses core ${j + 1} of ${a.n}`); if (!t || !coreTakeCap(c.opp, t, 1)) break;
         coreEv(c.opp, 'core', t.uid, 'void'); t.cores--; c.opp.void++; k++;
       }
       c.ctx.did = k > 0; if (k) log(`${nm}: ${k} core${k === 1 ? '' : 's'} are sent to the opposing Void.`);

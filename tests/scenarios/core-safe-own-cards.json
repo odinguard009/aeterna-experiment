@@ -1,0 +1,37 @@
+{
+  "name": "core-safe-own-cards",
+  "about": "v190 CORE_SAFE: 26RDB01-025 LV1-2 'This Spirit's cores can't be moved by opposing effects' = STATIC flag CORE_SAFE mode:move to:self; 26RBS03-030 LV1-2 'The cores on this Spirit and all your \"Swordish\" can't become less than one due to opposing effects' = STATIC CORE_SAFE mode:floor to:self + to:own match.name Swordish. The Swordish Token (26RSD10-T001) is the only Swordish card; an opposing effect sends cores from the board.",
+  "rules": [
+    "ETR:faq.effects-q3"
+  ],
+  "turn": 3,
+  "active": "player",
+  "step": 4,
+  "players": {
+    "player": {
+      "reserve": 6,
+      "spirits": [
+        {
+          "id": "26RDB01-025",
+          "cores": 2,
+          "as": "aries"
+        },
+        {
+          "id": "26RBS03-030",
+          "cores": 2,
+          "as": "naudalie"
+        }
+      ]
+    },
+    "opponent": {
+      "reserve": 3,
+      "spirits": [
+        {
+          "id": "26RBS01-002",
+          "cores": 1,
+          "as": "opponentSource"
+        }
+      ]
+    }
+  }
+}

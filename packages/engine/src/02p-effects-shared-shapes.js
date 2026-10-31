@@ -182,6 +182,7 @@ Object.assign(FX_ACTIONS, {
       const L = FX_ACTIONS.SOUL_HOLDER_CORE.cands(c); if (!L.length) { c.ctx.did = false; return; }
       const t = await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the opposing Spirit with the Soul Core (glowing).`);
       if (!t) { c.ctx.did = false; return; }
+      if (!coreTakeCap(c.opp, t, 1)) { c.ctx.did = false; return; }      // v190 CORE_SAFE
       if (t.cores > 0) { coreEv(c.opp, 'core', t.uid, 'reserve'); t.cores -= 1; c.opp.reserve.n += 1; log(`${CARDS[c.src.id].name}: a core from ${poss(c.opp)} ${CARDS[t.id].name} goes to the Reserve.`); }
       else { t.soul = false; c.opp.reserve.soul = true; log(`${CARDS[c.src.id].name}: the Soul Core on ${poss(c.opp)} ${CARDS[t.id].name} goes to the Reserve.`); }
       checkDepletion(c.opp); io.view({ type: 'board' });

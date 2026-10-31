@@ -20,13 +20,13 @@ VERSION, CARDS, defCard, TRAIN, PRESET_DECK
 ## packages/engine/src/01a-card-pack.js (167 lines, ~2.4k tokens) — CARD PACK CODEC (v0.51.0; this part must load before 03-imported-cards.js: its consts are used at load): compact, synchronous format of the built-in card pack
 packBlockOf, packCards, unpackCards, INF_LBASE, INF_LEXT, INF_DBASE, INF_DEXT, INF_ORDER, inflateRaw, packBytes, loadFlavor, loadPack
 
-## packages/engine/src/02a-effects-base.js (320 lines, ~9.6k tokens) — EFFECT ENGINE
-FX_STRICT, FX_WARNED, fxUnknown, FX_COND_KEYS, FX_TRIGGERS, FX_TRIGGER_TEXT, BR_IDX, fxEntries, nexusDeathHears, fxMatch, cantAttack, canBlockState, fxIf, cardHasKeyword, fxNoText, ctrlCount, spiritCount, PER_TYPES, perOk, perCount, ownerOf, STATIC_FLAGS, fxImmune, unaffectedBy, drawPlusOf, attackLifeLocked, deckDiscardLocked, bpCompareLocked, flagActive, costDestroyBonus, coresSent, staticBp, takeFromVoid, releaseCores, removeNexus, fxPickTarget, toSoulState, chooseCard, bounceCard, SOUL_SRC, hasMatch
+## packages/engine/src/02a-effects-base.js (350 lines, ~10k tokens) — EFFECT ENGINE
+FX_STRICT, FX_WARNED, fxUnknown, FX_COND_KEYS, FX_TRIGGERS, FX_TRIGGER_TEXT, BR_IDX, fxEntries, nexusDeathHears, fxMatch, cantAttack, canBlockState, fxIf, cardHasKeyword, fxNoText, ctrlCount, spiritCount, PER_TYPES, perOk, perCount, ownerOf, STATIC_FLAGS, fxImmune, unaffectedBy, drawPlusOf, attackLifeLocked, deckDiscardLocked, bpCompareLocked, flagActive, coreSafeMode, coreTakeCap, costDestroyBonus, coresSent, staticBp, takeFromVoid, releaseCores, removeNexus, fxPickTarget, toSoulState, chooseCard, bounceCard, SOUL_SRC, hasMatch
 
 ## packages/engine/src/02b-effects-actions.js (127 lines, ~4.8k tokens)
 FX_ACTIONS
 
-## packages/engine/src/02c-effects-parse.js (219 lines, ~7.5k tokens)
+## packages/engine/src/02c-effects-parse.js (224 lines, ~7.6k tokens)
 canPlaceFree, canPlaceBraveFree, summonFree, canPlacePaid, canPlaceBy, summonPaid, tributePay, summonBy, fxDescribe, BURST_WHEN, parseCond, parseActionList, parseBurst, parseEffects
 
 ## packages/engine/src/02d-effects-resolve.js (391 lines, ~7.7k tokens)
@@ -59,13 +59,13 @@ INVOKE_WHEN, INVOKE_COSTS, invokeMatchOK, invokeParse, invokeWhenOK, exhaustOwnC
 ## packages/engine/src/02m-effects-destroy-filters.js (73 lines, ~1.7k tokens)
 
 
-## packages/engine/src/02n-effects-void-destinations.js (73 lines, ~1.9k tokens)
+## packages/engine/src/02n-effects-void-destinations.js (74 lines, ~1.9k tokens)
 
 
 ## packages/engine/src/02o-effects-battle-end.js (85 lines, ~1.7k tokens)
 endOfBattle
 
-## packages/engine/src/02p-effects-shared-shapes.js (307 lines, ~7.8k tokens)
+## packages/engine/src/02p-effects-shared-shapes.js (308 lines, ~7.8k tokens)
 cardTeams, allHaveShapeOK, allHaveOK, winRiderRun, fxOppMark, blockTaxOK, payBlockTax, blockedInferior, blockedByMark
 
 ## packages/engine/src/02q-effects-actions-own.js (210 lines, ~5.7k tokens)
@@ -77,7 +77,7 @@ cardTeams, allHaveShapeOK, allHaveOK, winRiderRun, fxOppMark, blockTaxOK, payBlo
 ## packages/engine/src/02s-effects-actions-soul.js (166 lines, ~4.2k tokens)
 
 
-## packages/engine/src/02t-effects-actions-opp.js (237 lines, ~5.9k tokens)
+## packages/engine/src/02t-effects-actions-opp.js (237 lines, ~6k tokens)
 
 
 ## packages/engine/src/02u-effects-form-change.js (32 lines, ~0.7k tokens) — FORM CHANGE (v0.135.0, schema v8; Kamen Rider cross-over cards): {{F Change|"X" & Cost N}} {{Invoke|Main}}

@@ -57,12 +57,13 @@
     const [t] = await pickOppSpirits(c, L, 1, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the opposing Spirit to send cores from (glowing).`);
     if (!t) { c.ctx.did = false; return; }
     if (upOn(c, a) && a.upgrade.soul && t.cores < 1 && t.soul) {      // v0.169: only the Soul Core is left on the target and the text lets it go
+      if (!coreTakeCap(c.opp, t, 1)) { c.ctx.did = false; return; }      // v190 CORE_SAFE
       coreEvN(c.opp, t.uid, 'reserve', 0, true); t.soul = false; c.opp.reserve.soul = true;
       log(`${CARDS[c.src.id].name}: the Soul Core of ${poss(c.opp)} ${CARDS[t.id].name} goes to the Reserve.`);
       checkDepletion(c.opp); io.view({ type: 'board' }); return;
     }
     const floor = (a.keepOne || a.untilOne) ? totalCores(t) - 1 : Infinity;
-    const m = Math.max(0, Math.min(a.untilOne ? Infinity : a.each + (a.eachPer ? perCount(c.p, a.eachPer) : 0) + (a.eachLegacy ? (c.src.legacyN || 0) : 0), t.cores, floor));      // v137 eachPer: "send +1 core for each Spirit with X you control"
+    const m = Math.max(0, Math.min(a.untilOne ? Infinity : a.each + (a.eachPer ? perCount(c.p, a.eachPer) : 0) + (a.eachLegacy ? (c.src.legacyN || 0) : 0), t.cores, floor, coreTakeCap(c.opp, t, Infinity)));      // v137 eachPer: "send +1 core for each Spirit with X you control"; v190 CORE_SAFE
     if (!m) { c.ctx.did = false; return; }
     coreEvN(c.opp, t.uid, 'reserve', m, false); t.cores -= m; c.opp.reserve.n += m;
     log(`${CARDS[c.src.id].name}: ${m} core${m === 1 ? '' : 's'} from ${poss(c.opp)} ${CARDS[t.id].name} go to the Reserve.`);

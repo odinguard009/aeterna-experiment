@@ -5750,16 +5750,55 @@
   "image": "26RBS01-091.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (Your Attack Step) (Can't Stack) At the end of the battle of your Spirits, you can exhaust this Nexus. If you've done so, target one of your Spirits with Clash. During this turn, it gains +2000 BP.",
-   "[LV2] (True Release) The number of cores on every opposing Spirit that is blocking your Spirits with Clash can't be brought to less than one."
+  "effects": [
+   {
+    "trigger": "ALLY_BATTLE_END",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "noStack": true,
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": false
+    },
+    "actions": [
+     {
+      "do": "EXHAUST_SELF"
+     },
+     {
+      "do": "BP_TARGET",
+      "n": 2000,
+      "to": "pick",
+      "match": {
+       "keyword": "Clash"
+      },
+      "if": {
+       "prev": true
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "lv": [
+     2
+    ],
+    "flag": "CORE_SAFE",
+    "mode": "floor",
+    "to": "oppBlockers",
+    "match": {
+     "keyword": "Clash"
+    }
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
    "A"
   ],
-  "rcode": "C"
+  "rcode": "C",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-092",
@@ -17763,20 +17802,68 @@
   "image": null,
   "block": "A",
   "saga": 50,
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "lv": [
+     1,
+     2
+    ],
+    "flag": "CORE_SAFE",
+    "mode": "floor",
+    "to": "self"
+   },
+   {
+    "trigger": "STATIC",
+    "lv": [
+     1,
+     2
+    ],
+    "flag": "CORE_SAFE",
+    "mode": "floor",
+    "to": "own",
+    "match": {
+     "name": [
+      "Swordish"
+     ]
+    }
+   },
+   {
+    "trigger": "ALLY_ATTACKS",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "noStack": true,
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": false
+    },
+    "match": {
+     "name": [
+      "Swordish"
+     ],
+     "noUlt": true
+    },
+    "actions": [
+     {
+      "do": "EXHAUST_OPP",
+      "n": 1,
+      "costLe": 4
+     }
+    ]
+   }
+  ],
   "mechanics": [
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] The cores on this Spirit and all your \"Swordish\" can't become less than one due to opposing effects.",
-   "[LV2] (True Release) (Your Attack Step) (Can't Stack) When your \"Swordish\" attacks, you can target an opposing Cost 4 or less Spirit. Exhaust it."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
    "A"
   ],
-  "rcode": "R"
+  "rcode": "R",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS03-031",
@@ -29736,20 +29823,46 @@
   "image": "26RDB01-025.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[Teams: Green Wave/CoZ12]",
-   "[LV1-2] This Spirit's cores can't be moved by opposing effects.",
-   "[LV2] (True Release) (Start of Opposing Attack Step) If all your Spirits/Nexuses have Green Wave, you can target an opposing Cost 3 or less Spirit. Exhaust it."
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "lv": [
+     1,
+     2
+    ],
+    "flag": "CORE_SAFE",
+    "mode": "move",
+    "to": "self"
+   },
+   {
+    "trigger": "OPP_START_ATTACK",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "if": {
+     "allHave": {
+      "team": "Green Wave"
+     }
+    },
+    "actions": [
+     {
+      "do": "EXHAUST_OPP",
+      "n": 1,
+      "costLe": 3
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "collab": [
    "詩姫"
   ],
   "bicon": [
    "A"
   ],
-  "rcode": "R"
+  "rcode": "R",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RDB01-026",

@@ -38172,14 +38172,6 @@
   "M_OPTIONAL",
   "M_REPLACEMENT"
  ],
- "26RBS01-091": [
-  "A_BP_PLUS",
-  "A_EXHAUST",
-  "C_LEVEL",
-  "F_OTHER_NOSTACK",
-  "M_OPTIONAL",
-  "M_UNSTACKABLE"
- ],
  "26RBS01-094": [
   "A_BP_PLUS",
   "C_LEVEL"
@@ -38347,14 +38339,6 @@
   "M_OPTIONAL",
   "M_THEN",
   "T_ATTACKS"
- ],
- "26RBS03-030": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "F_OTHER_NOSTACK",
-  "M_OPTIONAL",
-  "M_UNSTACKABLE",
-  "T_ALLY_ATTACKS"
  ],
  "26RBS03-038": [
   "A_REFRESH",
@@ -38547,12 +38531,6 @@
   "C_LEVEL",
   "M_OPTIONAL",
   "T_ALLY_LIFE_HIT"
- ],
- "26RDB01-025": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "S1_ALL_HAVE"
  ],
  "26RDB01-028": [
   "A_BANISH",

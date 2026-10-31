@@ -158,7 +158,7 @@ const perOk = q => !!q && typeof q === 'object' && PER_TYPES.includes(q.type) &&
 const perCount = (owner, q) => (q.type === 'Nexus' ? owner.nexus : owner.spirits.filter(f => CARDS[f.id].type !== 'Ultimate')).filter(f => { const k = CARDS[f.id];
   return (!q.colors || q.colors.some(x => (k.colors || [k.color, k.symbol]).includes(x))) && (!q.family || (k.families || []).includes(q.family)) && (!q.name || k.name.includes(q.name)) && (!q.team || cardTeams(k).includes(q.team)) && (!q.keyword || cardHasKeyword(k, q.keyword)); }).length;
 function ownerOf(i) { if (!G) return null; for (const k of ['player', 'opponent']) if (fieldList(G.p[k]).includes(i)) return G.p[k]; return null; }
-const STATIC_FLAGS = ['MUST_BLOCK', 'NO_RETURN', 'CORES_DRAW', 'UNAFFECTED_SOUL', 'COST_DESTROY_PLUS', 'EXTRA_REDUCTION', 'SUMMON_SYMBOL', 'NO_END_ATTACK', 'UNAFFECTED', 'HAND_UNAFFECTED', 'BLOCK_EXHAUSTED', 'CANT_ATTACK', 'CANT_BLOCK', 'NO_DECK_DISCARD', 'NO_ATTACK_LIFE', 'HAND_COST', 'DRAW_PLUS', 'TREAT_LV3', 'TRIBUTE_SAFE', 'IMMORTALITY', 'NO_BLOCK_INFERIOR', 'NO_BP_COMPARE', 'CAMOU', 'SUMMON_TAX'];
+const STATIC_FLAGS = ['MUST_BLOCK', 'NO_RETURN', 'CORES_DRAW', 'UNAFFECTED_SOUL', 'COST_DESTROY_PLUS', 'EXTRA_REDUCTION', 'SUMMON_SYMBOL', 'NO_END_ATTACK', 'UNAFFECTED', 'HAND_UNAFFECTED', 'BLOCK_EXHAUSTED', 'CANT_ATTACK', 'CANT_BLOCK', 'NO_DECK_DISCARD', 'NO_ATTACK_LIFE', 'HAND_COST', 'DRAW_PLUS', 'TREAT_LV3', 'TRIBUTE_SAFE', 'IMMORTALITY', 'NO_BLOCK_INFERIOR', 'NO_BP_COMPARE', 'CAMOU', 'SUMMON_TAX', 'CORE_SAFE'];
 /* flag effects: MUST_BLOCK (opposing Spirits must block this attacker), NO_RETURN (cannot be returned by opposing effects), CORES_DRAW (draw once per turn when cores are sent by your effects),
    UNAFFECTED_SOUL (Ometeotl Contract Field: this card is unaffected by opposing effects while a Soul Core is on it),
    NO_END_ATTACK (v0.43: while the matching Spirit of the owner attacks, the opponent can't end the Attack Step via effects; Sunya Lv3, Crimson Crater Lv2) */
@@ -209,6 +209,36 @@ function flagActive(owner, flag, subject, pred) {
   }
   return false;
 }
+/* v190 CORE_SAFE (STATIC): core protection for the core-removal actions (02f/02n/02p/02t).
+   mode 'move'  = "the cores can't be moved" (no core may leave the card)
+   mode 'floor' = "the number of cores can't be brought to less than one" (all but one may leave)
+   to 'self' / 'own' (+match) protects the owner's cards from OPPOSING effects only ("due to opposing effects");
+   to 'oppBlockers' (+match on your attacker) protects the opposing Spirit that blocks your matching Spirit for this battle. */
+function coreSafeMode(owner, target) {
+  if (!G || !target || !owner) return null;
+  const opp = G.p[other(owner.key)];
+  for (const side of [owner, opp]) for (const src of fieldList(side)) {
+    const L = lvNo(src), sideOpp = side === owner ? opp : owner;
+    for (const { e } of fxEntries(src)) {
+      if (e.trigger !== 'STATIC' || e.flag !== 'CORE_SAFE' || (e.lv && !e.lv.includes(L)) || (e.oc && !ocActive(src))) continue;
+      if (!fxIf(side, sideOpp, e.if, { selfInst: src })) continue;
+      if (side === owner) {
+        if (!G.fxBy || G.fxBy === owner.key) continue;      // only opposing effects
+        if (e.to === 'self' ? src === target : e.to === 'own' ? fxMatch(CARDS[target.id], e.match, target) : false) return e.mode;
+      } else if (e.to === 'oppBlockers') {
+        if (G.blocker !== target || !G.attacker || !fieldList(side).includes(G.attacker) || !fxMatch(CARDS[G.attacker.id], e.match, G.attacker)) continue;
+        return e.mode;
+      }
+    }
+  }
+  return null;
+}
+const coreTakeCap = (owner, target, n) => {
+  const mode = coreSafeMode(owner, target);
+  if (!mode) return n;
+  if (mode === 'move') return 0;
+  return Math.max(0, Math.min(n, (target.cores || 0) - 1));
+};
 /* v0.37 "Cost Destruction effects" (destroy a Spirit/Ultimate with cost N or less): the limit grows with STATIC COST_DESTROY_PLUS effects of the owner's Field cards and of a Brave combined with a Nexus
    (Bulwark Temple: +1 per Saga Brave for Celtica/Scalostle sources; Railgun on a Nexus: +1). src = the card whose effect destroys. */
 function costDestroyBonus(p, src) {
