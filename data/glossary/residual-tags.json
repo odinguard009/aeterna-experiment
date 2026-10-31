@@ -4907,10 +4907,6 @@
   "C_LEVEL",
   "M_UP_TO"
  ],
- "BS16-040": [
-  "C_LEVEL",
-  "T_DESTROYED"
- ],
  "BS16-041": [
   "C_LEVEL"
  ],
@@ -5249,11 +5245,6 @@
   "C_LEVEL",
   "K_BRAVE",
   "S_UNAFFECTED"
- ],
- "BS17-038": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "T_MAGIC_USED"
  ],
  "BS17-039": [
   "A_EXHAUST",
