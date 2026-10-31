@@ -38206,12 +38206,6 @@
   "T_ALLY_BLOCKED",
   "T_ATTACKS"
  ],
- "26RBS03-039": [
-  "A_EXHAUST",
-  "A_REFRESH",
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
  "26RBS03-044": [
   "C_LEVEL",
   "M_REPLACEMENT",
@@ -38260,11 +38254,6 @@
   "C_LEVEL",
   "T_ATTACKS",
   "T_SUMMONED"
- ],
- "26RBS03-X11": [
-  "A_REFRESH",
-  "C_LEVEL",
-  "T_ATTACKS"
  ],
  "26RCB01-032": [
   "A_BP_PLUS",

@@ -1,0 +1,54 @@
+{
+  "name": "graburn-and-cavaliare",
+  "about": "v0.202.0 bundle 8: 26RBS03-039 Graburn (when it refreshes, an opposing Cost 3 or less exhausted Spirit goes to the deckbottom; its LV2 lets it refresh itself and then it can't attack this turn) and 26RBS03-X11 Cavaliare (at the end of the battle of your refreshed White Spirit an opposing Cost 4 or less Spirit goes to the deckbottom; its LV2 refreshes it under three Wollaguard cards and then it can't attack this turn). New engine piece: trigger REFRESHED (fired by REFRESH/REFRESH_SPIRIT).",
+  "rules": [
+    "STD:12-2-1-12@caad612c",
+    "ETR:battle.destruction@698b8d5e"
+  ],
+  "turn": 4,
+  "active": "player",
+  "step": 5,
+  "players": {
+    "player": {
+      "reserve": 10,
+      "spirits": [
+        {
+          "id": "26RBS03-039",
+          "cores": 3,
+          "as": "graburn"
+        },
+        {
+          "id": "26RBS03-X11",
+          "cores": 4,
+          "as": "cavaliare"
+        },
+        {
+          "id": "26RBS03-032",
+          "cores": 1,
+          "as": "whiteAlly"
+        }
+      ],
+      "deck": [
+        "26RBS01-004",
+        "26RBS01-005",
+        "26RBS01-006"
+      ]
+    },
+    "opponent": {
+      "reserve": 4,
+      "spirits": [
+        {
+          "id": "26RBS01-002",
+          "cores": 1,
+          "exhausted": true,
+          "as": "oppSmall"
+        },
+        {
+          "id": "26RBS01-004",
+          "cores": 1,
+          "as": "oppMid"
+        }
+      ]
+    }
+  }
+}

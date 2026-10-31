@@ -52,10 +52,10 @@ Object.assign(FX_ACTIONS, {
     cands: (c, a) => c.p.spirits.filter(s => s.exhausted && (!a || !a.self || s === c.src) && (!a || !a.other || s !== c.src) && (!a || !a.match || fxMatch(CARDS[s.id], a.match)) && (!a || !a.sameCostAttacker || (G.attacker && CARDS[G.attacker.id].cost === CARDS[s.id].cost))),
     can: (c, a) => FX_ACTIONS.REFRESH_SPIRIT.cands(c, a).length > 0,
     run: async (c, a) => {
-      if (a.perBp) { for (let i = Math.floor(bpOf(c.src) / a.perBp); i > 0; i--) { const L = FX_ACTIONS.REFRESH_SPIRIT.cands(c, a); if (!L.length) break; const t = await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your exhausted Spirits to refresh (glowing).`); if (!t) break; refreshOne(t); log(`${CARDS[t.id].name} is refreshed.`); } return; }      // v195 perBp: "for every 10000 BP this Spirit has, target a Cost 6 or less Spirit you control"
-      if (a.perN) { for (let i = Math.floor(perCount(c.p, a.per) / a.perN); i > 0; i--) { const L = FX_ACTIONS.REFRESH_SPIRIT.cands(c, a); if (!L.length) break; const t = await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your exhausted Spirits to refresh (glowing).`); if (!t) break; refreshOne(t); log(`${CARDS[t.id].name} is refreshed.`); } return; }      // v139 "For every N <per> you control, target one ... Refresh them."
+      if (a.perBp) { for (let i = Math.floor(bpOf(c.src) / a.perBp); i > 0; i--) { const L = FX_ACTIONS.REFRESH_SPIRIT.cands(c, a); if (!L.length) break; const t = await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your exhausted Spirits to refresh (glowing).`); if (!t) break; refreshOne(t); log(`${CARDS[t.id].name} is refreshed.`); await fireFx(ownerOf(t) || c.p, 'REFRESHED', t, {}); } return; }      // v195 perBp: "for every 10000 BP this Spirit has, target a Cost 6 or less Spirit you control"
+      if (a.perN) { for (let i = Math.floor(perCount(c.p, a.per) / a.perN); i > 0; i--) { const L = FX_ACTIONS.REFRESH_SPIRIT.cands(c, a); if (!L.length) break; const t = await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your exhausted Spirits to refresh (glowing).`); if (!t) break; refreshOne(t); log(`${CARDS[t.id].name} is refreshed.`); await fireFx(ownerOf(t) || c.p, 'REFRESHED', t, {}); } return; }      // v139 "For every N <per> you control, target one ... Refresh them."
       const L = FX_ACTIONS.REFRESH_SPIRIT.cands(c, a), t = a.self ? L[0] : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your exhausted Spirits to refresh (glowing).`);
-      if (!t) return; refreshOne(t); log(`${CARDS[t.id].name} is refreshed.`);
+      if (!t) return; refreshOne(t); log(`${CARDS[t.id].name} is refreshed.`); await fireFx(ownerOf(t) || c.p, 'REFRESHED', t, {});
       if (a.noAttack) { t.noAtkTurn = G.turnNo; log(`${CARDS[t.id].name} can't attack this turn.`); }      // v97 "Refresh it. Then, during this turn, it can't attack."
       if (a.bp && (!a.bp.oppAttackStep || (G.step === 5 && G.active !== c.p.key))) { t.bpMod = (t.bpMod || 0) + a.bp.n; log(`${CARDS[t.id].name} gains +${a.bp.n} BP this turn.`); }
     } },
@@ -64,7 +64,7 @@ Object.assign(FX_ACTIONS, {
     can: c => FX_ACTIONS.REFRESH_NEXUS.cands(c).length > 0,
     run: async c => {
       const t = await fxPickTarget(c, FX_ACTIONS.REFRESH_NEXUS.cands(c), `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your exhausted Nexuses to refresh (glowing).`);
-      if (!t) return; refreshOne(t); log(`${CARDS[t.id].name} is refreshed.`);
+      if (!t) return; refreshOne(t); log(`${CARDS[t.id].name} is refreshed.`); await fireFx(ownerOf(t) || c.p, 'REFRESHED', t, {});
     } },
   /* v0.33 effects of a card that is not on the field: revealed from the deck, or in the Hand */
   RETURN_TRASH: { chk: a => !!a.match && hasMatch(a.match) && (a.diffName == null || a.diffName === true) && (a.milled == null || a.milled === true) && (a.toTop == null || a.toTop === true) && (a.handIfAtk == null || (a.handIfAtk >= 2 && a.handIfAtk <= 5 && a.toTop === true)),      // v0.168: any match shape (colour, cost, keyword), not only a name or family
@@ -204,7 +204,7 @@ FX_ACTIONS.NEXUS_AS_SPIRIT = {
   R.run = async (c, a) => {
     if (a.all) {
       const L = R.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
-      for (const t of L) { refreshOne(t); log(`${CARDS[t.id].name} is refreshed.`); }
+      for (const t of L) { refreshOne(t); log(`${CARDS[t.id].name} is refreshed.`); await fireFx(ownerOf(t) || c.p, 'REFRESHED', t, {}); }
       return;
     }
     if (!(a.n > 1)) return rRun(c, a);

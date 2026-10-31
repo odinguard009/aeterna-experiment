@@ -76,7 +76,7 @@ const FX_ACTIONS = {
       if (a.thenDraw) { const k = draw(c.p, a.thenDraw); log(`${who(c.p)} ${c.p.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'}.`); handUp(c.p, k); }
     } },
   REFRESH: { chk: () => true, txt: () => 'refresh this card', can: c => c.src.exhausted,
-    run: async c => { refreshOne(c.src); log(`${CARDS[c.src.id].name} is refreshed.`); } },
+    run: async c => { refreshOne(c.src); log(`${CARDS[c.src.id].name} is refreshed.`); await fireFx(ownerOf(c.src) || c.p, 'REFRESHED', c.src, {}); } },      // v211
   /* v0.195 "You can exhaust this Spirit. If you've done so, ..." (optional effect; the next action reads prev) */
   EXHAUST_SELF: { chk: () => true, txt: () => 'exhaust this Spirit', can: c => (c.p.spirits.includes(c.src) || c.p.nexus.includes(c.src)) && !c.src.exhausted,      // v0.197 a Nexus can exhaust itself (Red Stella Stage)
     run: async c => { c.src.exhausted = true; log(`${CARDS[c.src.id].name} is exhausted.`); } },

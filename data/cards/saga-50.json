@@ -19137,16 +19137,44 @@
   "block": "A",
   "saga": 50,
   "ex_symbols": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (During Attack) When this Spirit refreshes, target an opposing Cost 3 or less exhausted Spirit. Return it to the deckbottom.",
-   "[LV2] (When Attacks) This Spirit can refresh. If refreshed, during this turn, this Spirit can't attack."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Clauses authored by hand in Lane K (v0.202.0).",
   "bicon": [
    "A"
   ],
-  "rcode": "M"
+  "rcode": "M",
+  "effects": [
+   {
+    "trigger": "REFRESHED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "BOUNCE_OPP",
+      "kind": "spirit",
+      "to": "deckBottom",
+      "costLe": 3,
+      "exhaustedOnly": true
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT",
+      "self": true,
+      "noAttack": true
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RBS03-040",
@@ -23495,16 +23523,57 @@
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (Your Attack Step) (CSOPT) At the end of the battle of your refreshed White Spirit, target an opposing Cost 4 or less Spirit. Return it to the deckbottom.",
-   "[LV2] (True Release) (When Attacks) If you control three or more \"Wollaguard\" family Spirits/Nexuses, this Spirit can refresh. If this Spirit refreshes, during this turn, it can't attack."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Clauses authored by hand in Lane K (v0.202.0).",
   "bicon": [
    "A"
   ],
-  "rcode": "X"
+  "rcode": "X",
+  "effects": [
+   {
+    "trigger": "ALLY_BATTLE_END",
+    "lv": [
+     1,
+     2
+    ],
+    "match": {
+     "color": "white"
+    },
+    "if": {
+     "attackerRefreshed": true
+    },
+    "actions": [
+     {
+      "do": "BOUNCE_OPP",
+      "kind": "spirit",
+      "to": "deckBottom",
+      "costLe": 4
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "if": {
+     "ctrl": {
+      "type": "Both",
+      "family": "Wollaguard",
+      "nexus": true,
+      "n": 3
+     }
+    },
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT",
+      "self": true,
+      "noAttack": true
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RBS03-X12",
