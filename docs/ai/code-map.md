@@ -65,7 +65,7 @@ INVOKE_WHEN, INVOKE_COSTS, invokeMatchOK, invokeParse, invokeWhenOK, exhaustOwnC
 ## packages/engine/src/02o-effects-battle-end.js (85 lines, ~1.7k tokens)
 endOfBattle
 
-## packages/engine/src/02p-effects-shared-shapes.js (353 lines, ~8.8k tokens)
+## packages/engine/src/02p-effects-shared-shapes.js (381 lines, ~9.3k tokens)
 cardTeams, allHaveShapeOK, allHaveOK, winRiderRun, fxOppMark, blockTaxOK, payBlockTax, blockedInferior, unblockableLow, shamanNoBlock, blockedByMark
 
 ## packages/engine/src/02q-effects-actions-own.js (239 lines, ~6.6k tokens)

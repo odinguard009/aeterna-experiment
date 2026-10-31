@@ -168,6 +168,34 @@ Object.assign(FX_ACTIONS, {
       log(`${CARDS[c.src.id].name}: ${poss(c.p)} ${CARDS[t.id].name} gains "${a.flag}" for this turn.`);
     } } });
 Object.assign(FX_ACTIONS, {
+  /* v215 "At the end of battle, target one of your X Spirits. Send any number of cores from this Spirit to it." (CPU keeps one.) */
+  CORE_GIVE_ANY: { chk: a => a.match == null || hasMatch(a.match),
+    txt: a => `send any number of cores from this card to one of your ${a.match ? 'matching ' : ''}Spirits`,
+    cands: (c, a) => c.p.spirits.filter(s => s !== c.src && (!a.match || fxMatch(CARDS[s.id], a.match, s))),
+    can: (c, a) => c.src.cores > 1 && FX_ACTIONS.CORE_GIVE_ANY.cands(c, a).length > 0,
+    run: async (c, a) => {
+      const L = FX_ACTIONS.CORE_GIVE_ANY.cands(c, a); if (!L.length || c.src.cores <= 1) { c.ctx.did = false; return; }
+      const t = await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the Spirit that receives the cores (glowing).`);
+      if (!t) { c.ctx.did = false; return; }
+      const give = Math.max(1, c.src.cores - 1);      // keep one core so this card stays on the Field
+      c.src.cores -= give; t.cores += give; c.ctx.did = true;
+      log(`${CARDS[c.src.id].name}: ${give} core${give === 1 ? '' : 's'} go to ${CARDS[t.id].name}.`);
+    } },
+  /* v215 "the opponent returns N cards from their Hand to the deckbottom" (the CPU puts its cheapest card down) */
+  OPP_HAND_TO_BOTTOM: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 4 && Object.keys(a).every(k => ['do', 'if', 'n'].includes(k)),
+    txt: a => `the opponent returns ${a.n} card${a.n === 1 ? '' : 's'} from their Hand to the deckbottom`,
+    can: c => c.opp.hand.length > 0,
+    run: async (c, a) => {
+      let n = 0;
+      for (let j = 0; j < a.n; j++) {
+        const h = c.opp.hand; if (!h.length) break;
+        const k = h.slice().sort((x, y) => CARDS[x.id].cost - CARDS[y.id].cost)[0];
+        removeFrom(h, k); c.opp.deck.push(k); n++;
+      }
+      if (n) log(`${poss(c.opp)} returns ${n} card${n === 1 ? '' : 's'} from the Hand to the deckbottom.`);
+      else c.ctx.did = false;
+    } } });
+Object.assign(FX_ACTIONS, {
   DESTROY_OWN: {
     chk: a => hasMatch(a.match) && (a.voidByCost == null || a.voidByCost === true) && (a.other == null || a.other === true),
     txt: a => (a.other ? 'destroy another Spirit you control' : 'destroy one of your matching Spirits') + (a.voidByCost ? ', then put cores from the Void to your Reserve equal to its cost' : ''),

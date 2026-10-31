@@ -38238,20 +38238,6 @@
   "M_OPTIONAL",
   "M_UP_TO"
  ],
- "26RDB01-012": [
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "S1_ALL_HAVE",
-  "T_DESTROYED",
-  "T_DESTROYED_OPP"
- ],
- "26RDB01-024": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_ALLY_LIFE_HIT"
- ],
  "26RDB01-028": [
   "A_BANISH",
   "A_EXHAUST",
