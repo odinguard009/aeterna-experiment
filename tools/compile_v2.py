@@ -881,6 +881,9 @@ def action_of(s, ctx):
     m = re.fullmatch(r'target up to (one|two|three) spirits? with ([A-Za-z]+) you control\.\s*put a core from the void (?:each )?to (?:each of them|it|them)\.?', s.strip(), re.I)      # v0.171 (engine VOID_TO_MATCHING + match.keyword)
     if m: return [{'do': 'VOID_TO_MATCHING', 'targets': n_of(m.group(1).lower()), 'match': {'keyword': m.group(2).capitalize()}}], False
     if re.fullmatch(r"target a nexus you or the opponent controls that isn['’]t during true release\.\s*destroy it\.\s*if you['’]ve done so, draw a card\.?", s.strip(), re.I): return [{'do': 'DESTROY_ANY', 'kind': 'nexus', 'noTR': True, 'drawIfDone': True}], False      # v0.185
+    m = re.fullmatch(r"target an opposing nexus that isn['’]t during true release\.\s*destroy it\.\s*if \(soul core\) was used to pay for the cost,\s*the target becomes any opposing nexus instead\.?", s.strip(), re.I)
+    if m:      # v0.200 Hot Shot: an opposing Nexus outside True Release; paid with the Soul Core -> any opposing Nexus instead
+        return [{'do': 'DESTROY', 'nexus': True, 'noTR': True, 'if': {'not': {'soulPaid': True}}}, {'do': 'DESTROY', 'nexus': True, 'if': {'soulPaid': True}}], False
     md_ = re.fullmatch(r'(?:you can )?target (?:one of your (?:"([^"]+)" family )?spirits|(another) spirit(?: you control)?)\.\s*destroy it\.?(?:\s*(if you\'ve done so, .+))?', s.strip(), re.I)      # v0.185 DESTROY_OWN family (+ "If you've done so, X")
     if md_:
         out = [dict({'do': 'DESTROY_OWN', 'match': dict({'type': 'Spirit'}, **({'family': [md_.group(1)]} if md_.group(1) else {}))}, **({'other': True} if md_.group(2) else {}))]      # v0.185 "another Spirit" = not this Spirit

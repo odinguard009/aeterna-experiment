@@ -16034,7 +16034,7 @@
    "Red Cloud",
    "Windfang"
   ],
-  "text": "[LV1-2] (When Summoned)\nTarget an opposing 3000 BP or less Spirit. Destroy it. If was used to pay for the summon cost, the targeting BP becomes 4000 or less instead.",
+  "text": "[LV1-2] (When Summoned)\nTarget an opposing 3000 BP or less Spirit. Destroy it. If (soul core) was used to pay for the summon cost, the targeting BP becomes 4000 or less instead.",
   "image": null,
   "block": "A",
   "saga": 50,
@@ -40596,7 +40596,7 @@
    "Red Cloud",
    "Purgatory Wings"
   ],
-  "text": "[LV1-2] (When Summoned)\nIf was used to pay for the summon cost, target one of your \"Purgatory Wings\" family Spirits. During this turn, give it +2000 BP.\n\n[LV2] (True Release) Clash (During Attacks)\nOpposing Spirits must block if possible.",
+  "text": "[LV1-2] (When Summoned)\nIf (soul core) was used to pay for the summon cost, target one of your \"Purgatory Wings\" family Spirits. During this turn, give it +2000 BP.\n\n[LV2] (True Release) Clash (During Attacks)\nOpposing Spirits must block if possible.",
   "image": "26RSD09-006.png",
   "block": "A",
   "saga": 50,
@@ -41060,34 +41060,57 @@
   "families": [
    "Purgatory Wings"
   ],
-  "text": "Main\nTarget an opposing Nexus that isn't during True Release. Destroy it. If was used to pay for the cost, the target becomes any opposing Nexus instead.\n\nFlash\nTarget one of your Spirits. During this turn, give it +3000 BP.",
+  "text": "Main\nTarget an opposing Nexus that isn't during True Release. Destroy it. If (soul core) was used to pay for the cost, the target becomes any opposing Nexus instead.\n\nFlash\nTarget one of your Spirits. During this turn, give it +3000 BP.",
   "image": "26RSD09-013.png",
   "block": "A",
   "saga": 50,
   "ex_symbols": 1,
   "magic": {
    "timing": [
+    "MAIN",
     "FLASH"
    ],
-   "effect": "ACTIONS",
+   "effect": null,
    "value": 0,
-   "actions": [
-    {
-     "do": "BP_TARGET",
-     "n": 3000,
-     "to": "pick"
+   "by": {
+    "MAIN": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "DESTROY",
+       "nexus": true,
+       "noTR": true,
+       "if": {
+        "not": {
+         "soulPaid": true
+        }
+       }
+      },
+      {
+       "do": "DESTROY",
+       "nexus": true,
+       "if": {
+        "soulPaid": true
+       }
+      }
+     ]
+    },
+    "FLASH": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "BP_TARGET",
+       "n": 3000,
+       "to": "pick"
+      }
+     ]
     }
-   ]
+   }
   },
-  "fxComplete": false,
-  "residual": [
-   "Main Target an opposing Nexus that isn't during True Release. Destroy it. If was used to pay for the cost, the target becomes any opposing Nexus instead."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "bicon": [
-   "A"
-  ],
-  "rcode": "C"
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RSD09-X01",
@@ -41113,13 +41136,13 @@
   "families": [
    "Purgatory Wings"
   ],
-  "text": "[LV1-2] (When Summoned)\nYou can reveal three cards from your decktop. Among them, add a \"Purgatory Wings\" family Spirit card with a card name different from this Spirit's to the Hand. Return any remaining cards to the deckbottom in any order. If was used to pay for the summon cost, add two cards to Hand instead.\n\n[LV2] (Your Attack Step)\nIf the is in your Trash, all your Spirits gain +1000 BP.",
+  "text": "[LV1-2] (When Summoned)\nYou can reveal three cards from your decktop. Among them, add a \"Purgatory Wings\" family Spirit card with a card name different from this Spirit's to the Hand. Return any remaining cards to the deckbottom in any order. If (soul core) was used to pay for the summon cost, add two cards to Hand instead.\n\n[LV2] (Your Attack Step)\nIf the is in your Trash, all your Spirits gain +1000 BP.",
   "image": "26RSD09-X01.png",
   "block": "A",
   "saga": 50,
   "fxComplete": false,
   "residual": [
-   "[LV1-2] (When Summoned) You can reveal three cards from your decktop. Among them, add a \"Purgatory Wings\" family Spirit card with a card name different from this Spirit's to the Hand. Return any remaining cards to the deckbottom in any order. If was used to pay for the summon cost, add two cards to Hand instead.",
+   "[LV1-2] (When Summoned) You can reveal three cards from your decktop. Among them, add a \"Purgatory Wings\" family Spirit card with a card name different from this Spirit's to the Hand. Return any remaining cards to the deckbottom in any order. If (soul core) was used to pay for the summon cost, add two cards to Hand instead.",
    "[LV2] (Your Attack Step) If the is in your Trash, all your Spirits gain +1000 BP."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
@@ -41152,7 +41175,7 @@
   "families": [
    "Purgatory Wings"
   ],
-  "text": "(Legacy)\n[LV1-2] (When Summoned)\nTarget an opposing 6000 BP or less Spirit. Destroy it. If was used to pay for the summon cost, target two Spirits instead.\n\n[LV2] (During Attack)\nAt the end of battle, you can target another \"Purgatory Wings\" family Spirit you control. Send up to two cores from this Spirit to it.",
+  "text": "(Legacy)\n[LV1-2] (When Summoned)\nTarget an opposing 6000 BP or less Spirit. Destroy it. If (soul core) was used to pay for the summon cost, target two Spirits instead.\n\n[LV2] (During Attack)\nAt the end of battle, you can target another \"Purgatory Wings\" family Spirit you control. Send up to two cores from this Spirit to it.",
   "image": "26RSD09-X02.png",
   "block": "A",
   "saga": 50,
@@ -41162,7 +41185,7 @@
   "legacy": true,
   "fxComplete": false,
   "residual": [
-   "[LV1-2] (When Summoned) Target an opposing 6000 BP or less Spirit. Destroy it. If was used to pay for the summon cost, target two Spirits instead.",
+   "[LV1-2] (When Summoned) Target an opposing 6000 BP or less Spirit. Destroy it. If (soul core) was used to pay for the summon cost, target two Spirits instead.",
    "[LV2] (During Attack) At the end of battle, you can target another \"Purgatory Wings\" family Spirit you control. Send up to two cores from this Spirit to it."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
