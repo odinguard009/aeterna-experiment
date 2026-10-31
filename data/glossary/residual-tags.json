@@ -3373,11 +3373,6 @@
  "BS12-034": [
   "C_LEVEL"
  ],
- "BS12-035": [
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_DESTROYED"
- ],
  "BS12-036": [
   "A_BP_PLUS",
   "C_LEVEL",
@@ -11491,10 +11486,6 @@
   "K_BRAVE",
   "M_UP_TO",
   "T_ATTACKS"
- ],
- "BS32-010": [
-  "C_LEVEL",
-  "T_DESTROYED"
  ],
  "BS32-011": [
   "A_VOID",
