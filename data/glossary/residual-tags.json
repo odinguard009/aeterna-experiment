@@ -15704,12 +15704,6 @@
   "M_OPTIONAL",
   "T_SUMMONED"
  ],
- "BS40-024": [
-  "A_EXHAUST",
-  "A_SELF_TO_HAND",
-  "C_LEVEL",
-  "T_DESTROYED"
- ],
  "BS40-026": [
   "A_REVEAL_ADD",
   "A_REVEAL_DECK",
