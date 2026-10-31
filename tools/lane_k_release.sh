@@ -23,7 +23,7 @@ branch=$(git branch --show-current)
 git fetch -q origin main 2>/dev/null || true
 
 # New complete cards since the newest CHANGELOG release (same rule as tools/session_start.sh).
-read -r new baseline complete < <(python3 - <<'PY'
+read -r new baseline complete < <(python3 - <<'PY' | tr -d '\r'
 import json, re, subprocess
 now = json.load(open('docs/reports/card-counts.json', encoding='utf-8'))['complete']
 m = re.search(r'->\s*([\d,]+)\s+of\s+[\d,]+', open('CHANGELOG.md', encoding='utf-8').read().split('\n## ', 2)[1])
@@ -70,7 +70,7 @@ NODE
 node - "$next" "$baseline" "$complete" "$new" "$NOTES" <<'NODE'
 const fs = require('fs');
 const [ver, baseline, complete, newCards, notesFile] = process.argv.slice(2);
-const notes = fs.readFileSync(notesFile, 'utf8').trim();
+const notes = fs.readFileSync(notesFile, 'utf8').trim().replace(/^\uFEFF/, '');
 const cl = fs.readFileSync('CHANGELOG.md', 'utf8');
 const i = cl.indexOf('\n## v');
 if (i < 0) throw new Error('CHANGELOG.md has no release section');
