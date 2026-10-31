@@ -81,6 +81,15 @@ Object.assign(FX_ACTIONS, {
       if (a.toTop && !(a.handIfAtk && (c.p.attacksThisTurn || 0) >= a.handIfAtk)) { c.p.deck.unshift(t); c.ctx.returned = t; log(`${CARDS[c.src.id].name}: ${CARDS[t.id].name} returns from the Trash to the decktop.`); return; }      // v173 toTop / handIfAtk ("return it to the decktop; if you've attacked N or more times this turn, to the Hand instead")
       c.p.hand.push(t); c.ctx.returned = t; handUp(c.p, 1); log(`${CARDS[c.src.id].name}: ${CARDS[t.id].name} returns from the Trash to the Hand.`);
     } },
+  /* v192 "return that card to the Hand": the card of the trigger's ctx.subject (the Magic card just used, or the ally just destroyed) */
+  RETURN_SUBJECT: { chk: a => Object.keys(a).every(k => ['do', 'if', 'to'].includes(k)) && (a.to == null || a.to === 'hand'),
+    txt: () => 'return that card to the Hand',
+    can: c => !!c.ctx && !!c.ctx.subject && (c.p.trash.includes(c.ctx.subject) || c.p.standby.includes(c.ctx.subject)),
+    run: async c => {
+      const s = c.ctx && c.ctx.subject;
+      if (!s || (!removeFrom(c.p.trash, s) && !removeFrom(c.p.standby, s))) { c.ctx.did = false; return; }
+      c.p.hand.push(s); handUp(c.p, 1); c.ctx.returned = s; log(`${CARDS[c.src.id].name}: ${CARDS[s.id].name} returns to the Hand.`);
+    } },
   /* v0.185 (schema 69) HAND_RECYCLE {perOppHand?, drawIfAll?: {match, n}}: "Return all your Hand to the deckbottom (any order; kept in Hand order). When one or more cards are returned, draw a card for each card in the opposing Hand" / "If all the cards returned have <X>, draw N cards" */
   HAND_RECYCLE: { chk: a => Object.keys(a).every(k => ['do', 'if', 'perOppHand', 'drawIfAll'].includes(k)) && (a.perOppHand === true) !== !!a.drawIfAll
       && (!a.drawIfAll || (!!a.drawIfAll.match && hasMatch(a.drawIfAll.match) && Number.isInteger(a.drawIfAll.n) && a.drawIfAll.n >= 1 && a.drawIfAll.n <= 5)),

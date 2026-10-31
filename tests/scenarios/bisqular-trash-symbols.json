@@ -1,0 +1,48 @@
+{
+  "name": "bisqular-trash-symbols",
+  "about": "v192: The Five-InchStake Bisqular (26RBS02-059): 'When summoning this card, if you've made two or more attacks this turn, you can also use symbols in your Trash for reductions' = card field trashSymbolsIf {attacksGe:2} (effCost / legacyPlan read it; the turn counter is p.attacksThisTurn). LV1-2 (When Summoned): with another Wailwraith/Hexcraft family Spirit, -4000 BP to an opposing Spirit and destroy it at 0 = BP_MINUS {n:4000, zeroDestroy, if ctrl other family list}.",
+  "rules": [
+    "ETR:faq.bp",
+    "ETR:faq.effects-q3"
+  ],
+  "turn": 3,
+  "active": "player",
+  "step": 4,
+  "players": {
+    "player": {
+      "reserve": 6,
+      "spirits": [
+        {
+          "id": "26RBS02-059",
+          "cores": 1,
+          "as": "bisqular"
+        },
+        {
+          "id": "26RBS01-061",
+          "cores": 1,
+          "as": "hexcraftAlly"
+        }
+      ],
+      "trash": [
+        {
+          "id": "BS48-047",
+          "as": "trashSymbolA"
+        },
+        {
+          "id": "BS48-047",
+          "as": "trashSymbolB"
+        }
+      ]
+    },
+    "opponent": {
+      "reserve": 3,
+      "spirits": [
+        {
+          "id": "BS48-047",
+          "cores": 1,
+          "as": "oppSpirit"
+        }
+      ]
+    }
+  }
+}

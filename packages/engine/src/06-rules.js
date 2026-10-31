@@ -207,7 +207,7 @@ function legacyPlan(p, card, syms, extra) {
   const slots = []; for (const [k, n] of Object.entries(card.reduction || {})) for (let i = 0; i < n; i++) slots.push(k);
   const pool = p.trash.filter(t => CARDS[t.id] && CARDS[t.id].exSymbols > 0);
   if (!slots.length || !pool.length) return null;
-  syms = syms || fieldSymbols(p, card.soulReduce, true).concat(card.trashSymbols ? p.trash.flatMap(t => symbolAttrs(CARDS[t.id])) : []);
+  syms = syms || fieldSymbols(p, card.soulReduce, true).concat(trashSymsOn(p, card) ? p.trash.flatMap(t => symbolAttrs(CARDS[t.id])) : []);
   const fits = (k, a) => (k === 'all' ? a.some(x => COLORS.includes(x)) : a.includes(k));
   const need = slots.map((k, i) => ({ k, i, fit: syms.filter(a => fits(k, a)).length })).sort((a, b) => a.fit - b.fit);   // slots the Field cannot pay come first
   const left = pool.slice(), pick = [];
@@ -239,9 +239,10 @@ function summonTaxOf(p, card) {                  // v180 STATIC SUMMON_TAX on th
     for (const { e } of fxEntries(src)) if (e.trigger === 'STATIC' && e.flag === 'SUMMON_TAX' && !(e.lv && !e.lv.includes(L)) && fxMatch(card, e.match) && fxIf(opp, p, e.if, { selfInst: src })) n += e.n; }
   return n;
 }
+const trashSymsOn = (p, card) => !!card && (card.trashSymbols || !!(card.trashSymbolsIf && (p.attacksThisTurn || 0) >= card.trashSymbolsIf.attacksGe));      // v192 trashSymbolsIf {attacksGe: "if you've made N or more attacks this turn"}
 function effCost(p, card) {                       // cost reduction is mandatory when possible
   const syms = fieldSymbols(p, card.soulReduce, true);
-  if (card.trashSymbols) for (const t of p.trash) for (const x of symbolAttrs(CARDS[t.id])) syms.push(x);   // v0.47 Lightning Tempest: "you can also use symbols from your Trash to reduce the cost
+  if (trashSymsOn(p, card)) for (const t of p.trash) for (const x of symbolAttrs(CARDS[t.id])) syms.push(x);   // v0.47 Lightning Tempest: "you can also use symbols from your Trash to reduce the cost; v192 trashSymbolsIf {attacksGe} ("if you've made N or more attacks this turn")
   for (const x of summonSymbols(p, card)) syms.push(x);
   const extra = extraReduction(p, card), lp = legacyPlan(p, card, syms, extra);
   const r = lp ? lp.total : reductionOf(card, syms, extra);
@@ -311,7 +312,7 @@ function leaveEvent(p, s, byOpp, byOppFx) {
 function removeSpirit(p, s, why, byOpponent) {
   const lv = p.spirits.includes(s) ? lvIndex(s) : -1;
   const kill = why === 'destroyed' && byOpponent !== 'battle' && !!G && !!G.evQ && !!G.fxBy && G.fxBy !== p.key && fieldList(G.p[G.fxBy]).some(f => fxEntries(f).some(({ e }) => e.trigger === 'OPP_DESTROYED_FX')),      // v0.196 someone can react to "opposing Spirits destroyed by your effect"
-    bp0 = kill ? bpOf(s) : 0;
+    bp0 = kill ? bpOf(s) : 0, bpAt = why === 'destroyed' ? bpOf(s) : 0;      // v192 OPP_DIED carries the BP it had when it was destroyed
   if (!removeFrom(p.spirits, s)) return;
   if (why === 'destroyed' && CARDS[s.id].type === 'Nexus' && nexusDeathHears(p)) G.evQ.push({ type: 'NEXUS_DIED', key: p.key, inst: s });      // v189 "your Spirits that are originally Nexuses are destroyed"
   if ((why === 'destroyed' || why === 'depleted') && byOpponent !== 'battle' && G && G.fxBy && G.fxBy !== p.key) { G.p[G.fxBy].oppFxLossTurn = G.turnNo; if (why === 'depleted') G.p[G.fxBy].oppDepletedTurn = G.turnNo; }      // v0.196 condition oppLostByFx; v0.199 oppDepleted
@@ -319,6 +320,7 @@ function removeSpirit(p, s, why, byOpponent) {
   s.lostFxSrc = G && G.fxBy === p.key && G.fxSrc ? G.fxSrc : null;      // v0.197 condition byOwnFx (the card of the own effect that removed it)
   if (why === 'destroyed' && G) p.lostSpiritTurn = G.turnNo;
   if (why === 'destroyed' && G && G.evQ && !s.token && allyDiedHears(p)) G.evQ.push({ type: 'DIED', key: p.key, inst: s, byBattle: byOpponent === 'battle' });      // v155 ALLY_DIED; v191 byBattle ("destroyed via BP comparison")
+  if (why === 'destroyed' && G && G.evQ && oppDiedHears(p)) G.evQ.push({ type: 'OPP_DIED', key: p.key, inst: s, bp: bpAt });      // v192 OPP_DIED ("When opposing Spirits are destroyed", any cause)
   if (kill) G.evQ.push({ type: 'FXKILL', key: G.fxBy, bp: bp0, src: G.fxSrc || null });
   s.lostLv = lv; s.soulLost = s.soul;      // v0.176: the Soul Core it held when it left ("If (Soul Core) is on this Spirit" in a Destroyed trigger)
   const oppFx = byOpponent === true || (byOpponent !== 'battle' && !!G && !!G.fxBy && G.fxBy !== p.key);   // v0.73: by an opposing effect (byOpponent 'battle' = BP comparison)
@@ -356,6 +358,7 @@ function removeSpirit(p, s, why, byOpponent) {
    goes to its destination (standbyTo: 'trash' or 'removed'). force = release every waiting card (new turn, game over). */
 const trashHears = p => p.trash.some(t => (CARDS[t.id].effects || []).some(e => e.trigger === 'ALLY_DIED' && e.zone === 'trash'));
 const allyDiedHears = p => trashHears(p) || fieldList(p).some(f => fxEntries(f).some(({ e }) => e.trigger === 'ALLY_DIED'));      // v191 "When your X Spirit is destroyed": Field watchers too, not only Trash cards
+const oppDiedHears = p => !!G && !!G.evQ && fieldList(G.p[other(p.key)]).some(f => fxEntries(f).some(({ e }) => e.trigger === 'OPP_DIED'));      // v192 "When opposing Spirits are destroyed"
 const lostHeard = p => fieldList(p).some(f => fxEntries(f).some(({ e }) => e.trigger === 'ALLY_LOST'));   // someone can react to "an ally is lost"
 function leaveStandby(p, s) {
   if (!removeFrom(p.standby, s)) return;

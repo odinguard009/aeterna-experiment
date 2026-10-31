@@ -38194,15 +38194,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "26RBS01-X14": [
-  "A_BP_MINUS",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "M_THEN",
-  "M_UP_TO",
-  "T_MAGIC_USED",
-  "T_SUMMONED"
- ],
  "26RBS01-X16": [
   "A_REVEAL_ADD",
   "A_REVEAL_DECK",
@@ -38236,12 +38227,6 @@
   "A_EXHAUST",
   "A_REFRESH",
   "C_LEVEL",
-  "T_SUMMONED"
- ],
- "26RBS02-059": [
-  "A_BP_MINUS",
-  "M_OPTIONAL",
-  "M_THEN",
   "T_SUMMONED"
  ],
  "26RBS02-073": [
@@ -38346,12 +38331,6 @@
   "T_BLOCKS",
   "T_SUMMONED"
  ],
- "26RBS03-059": [
-  "A_BP_MINUS",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "M_THEN"
- ],
  "26RBS03-060": [
   "A_BP_MINUS",
   "C_LEVEL",
@@ -38436,13 +38415,6 @@
   "A_REFRESH",
   "C_LEVEL",
   "T_ATTACKS"
- ],
- "26RBS03-X12": [
-  "A_BP_MINUS",
-  "A_REFRESH",
-  "C_LEVEL",
-  "M_THEN",
-  "T_ALLY_BLOCKED"
  ],
  "26RCB01-028": [
   "A_REFRESH",

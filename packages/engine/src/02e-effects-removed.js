@@ -37,13 +37,13 @@ Object.assign(FX_ACTIONS, {
   /* v0.55 BP minus: "during this turn, give an opposing Spirit/Ultimate -N BP". Lasts until the end of the turn (bpMod is cleared in
      beginTurn); BP never shows below 0 (Standard CR 1-4-6). A Spirit at 0 BP is NOT destroyed by a rule (Eternal manual FAQ p. 68);
      destruction needs the card's own "Then, if its BP is 0, destroy it" clause. */
-  BP_MINUS: { chk: a => Number.isInteger(a.n) && a.n >= 1000 && a.n <= 30000 && a.n % 1000 === 0 && (a.blockerOnly == null || a.blockerOnly === true),
-    txt: a => `give an opposing Spirit -${a.n} BP this turn`,
+  BP_MINUS: { chk: a => Number.isInteger(a.n) && a.n >= 1000 && a.n <= 30000 && a.n % 1000 === 0 && (a.blockerOnly == null || a.blockerOnly === true) && (a.targets == null || (Number.isInteger(a.targets) && a.targets >= 1 && a.targets <= 2)),      // v192 targets: "target up to two opposing Spirits"
+    txt: a => `give ${a.targets > 1 ? 'up to ' + a.targets + ' opposing Spirits' : 'an opposing Spirit'} -${a.n} BP this turn`,
     cands: (c, a) => c.opp.spirits.filter(t => !fxImmune(c.opp, t) && !(a && a.blockerOnly && t !== c.ctx.blocker)),      // v157 blockerOnly: "target an opposing blocking Spirit"
     can: (c, a) => FX_ACTIONS.BP_MINUS.cands(c, a).length > 0,
     run: async (c, a) => {
       const L = FX_ACTIONS.BP_MINUS.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
-      const T = await pickOppSpirits(c, L, 1, `✨ <b>${esc(_nm(c))}</b><br>Tap the opposing Spirit to give -${a.n} BP (glowing).`);
+      const T = await pickOppSpirits(c, L, a.targets || 1, `✨ <b>${esc(_nm(c))}</b><br>Tap the opposing Spirit to give -${a.n} BP (glowing).`);
       if (!T.length) { c.ctx.did = false; return; }
       for (const t of T) { t.bpMod = (t.bpMod || 0) - a.n; log(`${_nm(c)}: ${poss(c.opp)} ${CARDS[t.id].name} gets -${a.n} BP (${bpOf(t)} BP).`); }
     } },

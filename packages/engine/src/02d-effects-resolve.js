@@ -51,6 +51,11 @@ function fxValid(it) {
   if (e.oc && (dead || !ocActive(f))) return false;
   if (e.braved && !f.brave) return false;
   if ((trg === 'ALLY_ATTACKS' || trg === 'OPP_ATTACKS' || trg === 'ALLY_DESTROYS' || trg === 'ALLY_BLOCKED' || trg === 'ALLY_BLOCKS' || trg === 'ALLY_SUMMONED' || trg === 'ALLY_LIFE_HIT' || trg === 'ALLY_LOST' || trg === 'ALLY_DIED' || trg === 'SOUL_PLACED' || trg === 'ALLY_BATTLE_WIN' || trg === 'ALLY_BATTLE_END' || trg === 'BP_REACHED' || trg === 'MAGIC_USED' || trg === 'AMPLIFY') && !(subj && fxMatch(CARDS[subj.id], e.match, subj))) return false;
+  if (trg === 'OPP_DIED' && e.match) {      // v192 the destroyed Spirit's BP when it was destroyed (ctx.bp), not its coreless instance
+    const mm = Object.assign({}, e.match); delete mm.bpLe;
+    if (!(subj && fxMatch(CARDS[subj.id], mm, subj))) return false;
+    if (e.match.bpLe != null && !(ctx.bp != null ? ctx.bp <= e.match.bpLe : (subj && bpOf(subj) <= e.match.bpLe))) return false;
+  }
   if (e.subjBraved && !(subj && subj.brave && [subj, subj.brave].some(x => (CARDS[x.id].families || []).includes(e.subjBraved)))) return false;
   if (e.self && subj !== f && (trg === 'BP_REACHED' || trg === 'EXHAUSTED_FX' || trg === 'SOUL_PLACED' || trg === 'ALLY_LIFE_HIT' || trg === 'ALLY_BLOCKED' || trg === 'ALLY_BATTLE_END')) return false;
   if (e.other && subj === f) return false;

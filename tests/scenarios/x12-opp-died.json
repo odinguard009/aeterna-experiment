@@ -1,0 +1,34 @@
+{
+  "name": "x12-opp-died",
+  "about": "v192: The HexIron Ir-Maides (26RBS03-X12) LV1-2 (Your Attack Step) (Once Per Turn): 'When opposing 2000 BP or less Spirits are destroyed, refresh this Spirit' = new trigger OPP_DIED (any cause; evQ OPP_DIED carries ctx.bp = the destroyed Spirit's BP when destroyed, so match.bpLe filters on that). LV2 (Your Attack Step): when your Wailwraith/Hexcraft family Spirit is blocked, -4000 BP to an opposing blocking Spirit and destroy it at 0 = ALLY_BLOCKED + BP_MINUS {n:4000, zeroDestroy, blockerOnly}.",
+  "rules": [
+    "ETR:faq.bp",
+    "SJP:true-release"
+  ],
+  "turn": 3,
+  "active": "player",
+  "step": 5,
+  "players": {
+    "player": {
+      "reserve": 6,
+      "spirits": [
+        {
+          "id": "26RBS03-X12",
+          "cores": 1,
+          "exhausted": true,
+          "as": "irmaides"
+        }
+      ]
+    },
+    "opponent": {
+      "reserve": 3,
+      "spirits": [
+        {
+          "id": "BS48-047",
+          "cores": 1,
+          "as": "smallSpirit"
+        }
+      ]
+    }
+  }
+}
