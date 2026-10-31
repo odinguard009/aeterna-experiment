@@ -1,0 +1,31 @@
+{
+  "name": "stem-lance-and-reductions",
+  "about": "v0.202.0 bundle 4: 26RSD06-013 Stem Lance (Flash Magic: destroys an opposing Cost 4 or less Spirit; when choosing the target you may destroy one of your Nexuses and the target cost limit grows by its cost), 26RBS03-022 Pisketona (its summon reduction is fulfilled one symbol per core in the opposing Reserve while every card in your Trash is Purple; When Attacks sends a core from an opposing Spirit to the Reserve and draws when it holds three or more) and 26RBS02-X15 Ganothor (all its reduction symbols are fulfilled when a Yellow Magic card was used this turn; its LV2 returns a Topaz Magic card from the Trash on an opposing Life hit).",
+  "rules": [
+    "STD:12-2-1-12@caad612c",
+    "ETR:battle.destruction@698b8d5e"
+  ],
+  "turn": 4,
+  "active": "player",
+  "step": 5,
+  "players": {
+    "player": {
+      "reserve": 12,
+      "hand": ["26RSD06-013"],
+      "spirits": [
+        { "id": "26RBS02-X15", "cores": 3, "as": "ganothor" }
+      ],
+      "nexus": [
+        { "id": "26RSD10-010", "cores": 1, "as": "ownNexus" }
+      ],
+      "trash": ["26RBS01-016", "26RBS01-017"],
+      "deck": ["26RBS01-005", "26RBS01-006", "26RBS01-004"]
+    },
+    "opponent": {
+      "reserve": 3,
+      "spirits": [
+        { "id": "26RBS01-011", "cores": 2, "as": "oppCost6" }
+      ]
+    }
+  }
+}

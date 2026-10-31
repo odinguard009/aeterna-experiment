@@ -16303,16 +16303,39 @@
   "image": "26RBS02-X15.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "When summoning this card, if you used any Yellow Magic card this turn, treat all its reduction symbols as fulfilled.",
-   "[LV2] (During Attack) When this Spirit's attack reduces the opposing Life, target a \"Topaz\" family Magic card in your Trash. Return it to the Hand."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Clauses authored by hand in Lane K (v0.202.0).",
   "bicon": [
    "A"
   ],
-  "rcode": "X"
+  "rcode": "X",
+  "reduceIf": {
+   "magicUsed": {
+    "color": "yellow"
+   }
+  },
+  "effects": [
+   {
+    "trigger": "ALLY_LIFE_HIT",
+    "lv": [
+     2
+    ],
+    "self": true,
+    "optional": true,
+    "actions": [
+     {
+      "do": "RETURN_TRASH",
+      "match": {
+       "type": "Magic",
+       "family": [
+        "Topaz"
+       ]
+      },
+      "anyType": true
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RBS02-X16",
@@ -17848,16 +17871,39 @@
   "image": null,
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "When summoning this card, if all cards in your Trash are Purple, for each core in the opposing Reserve, you can fulfill one of its reduction symbols.",
-   "[LV1-2] (When Attacks) Target an opposing Spirit. Send a core from it to the Reserve. (The opponent chooses which core to send) Then, if there are three or more cores in the opposing Reserve, draw a card."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Clauses authored by hand in Lane K (v0.202.0).",
   "bicon": [
    "A"
   ],
-  "rcode": "M"
+  "rcode": "M",
+  "reduceIf": {
+   "trashAllColor": "purple"
+  },
+  "reducePerOppReserve": true,
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "OPP_CORES_TO_RESERVE",
+      "targets": 1,
+      "each": 1
+     },
+     {
+      "do": "DRAW",
+      "n": 1,
+      "if": {
+       "oppReserveGe": 3
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RBS03-023",
@@ -39558,15 +39604,13 @@
    "actions": [
     {
      "do": "DESTROY",
-     "costLe": 4
+     "costLe": 4,
+     "ownNexusBump": true
     }
    ]
   },
-  "fxComplete": false,
-  "residual": [
-   "When choosing the target, you can target one of your Nexuses. Destroy it. For each cost of the Nexus destroyed, the target cost increases by +1 instead."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects hand-written for roadmap S1 Standard Magic (v0.88.0); not yet checked against the card image.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects hand-written for roadmap S1 Standard Magic (v0.88.0); not yet checked against the card image. Clauses authored by hand in Lane K (v0.202.0).",
   "bicon": [
    "A"
   ],

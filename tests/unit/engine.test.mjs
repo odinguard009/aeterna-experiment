@@ -71,12 +71,12 @@ test('E12 the Soul Core counts as a core for the level (manual: Soul Core is a c
 });
 test('E13 effCost without symbols on the field is the printed cost', async () => {
   const bad = await ev(() => { const p = BS.G.p.player; p.spirits = []; p.nexus = []; const out = [];
-    for (const [id, c] of Object.entries(BS.CARDS)) if (!c.costAlt && BS.effCost(p, c) !== c.cost) out.push(id); return out; });
+    for (const [id, c] of Object.entries(BS.CARDS)) if (!c.costAlt && !c.reduceIf && BS.effCost(p, c) !== c.cost) out.push(id); return out; });   // v0.202.0: a reduceIf card lowers the cost even with no symbols
   assert.deepEqual(bad, []);
 });
 test('E14 effCost with every reduction symbol present is cost - reduction, never below 0', async () => {
   const { bad, checked } = await ev(() => { const p = BS.G.p.player, out = []; let checked = 0;
-    for (const [id, c] of Object.entries(BS.CARDS)) { if (c.costAlt || c.soulReduce) continue;
+    for (const [id, c] of Object.entries(BS.CARDS)) { if (c.costAlt || c.soulReduce || c.reduceIf) continue;
       p.spirits = []; p.nexus = []; let skip = false;
       for (const [col, n] of Object.entries(c.reduction || {})) {
         const donor = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].symbol === col && BS.CARDS[k].symbols === 1);

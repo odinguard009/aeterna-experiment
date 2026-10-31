@@ -261,7 +261,9 @@ function effCost(p, card) {                       // cost reduction is mandatory
   const r = lp ? lp.total : reductionOf(card, syms, extra);
   const hc = handCostSet(p, card), base = hc == null ? card.cost : hc;
   const per = card.costPer ? Math.min(card.costPer.max, card.costPer.n * p.spirits.filter(s => (CARDS[s.id].families || []).includes(card.costPer.family)).length) : 0;      // v0.196 costPer
-  return Math.max(0, (costAltActive(p, card) ? Math.min(base, card.costAlt.cost) : base) - r - per) + summonTaxOf(p, card);
+  const redTotal = Object.values(card.reduction || {}).reduce((a, b) => a + b, 0);
+  const redIf = card.reduceIf && G && fxIf(p, G.p[other(p.key)], card.reduceIf, {}) ? (card.reducePerOppReserve ? Math.min(redTotal, G.p[other(p.key)].reserve.n + (G.p[other(p.key)].reserve.soul ? 1 : 0)) : redTotal) : 0;      // v208 "When summoning this card, if <cond>, fulfill all / one per opposing Reserve core of its reduction symbols"
+  return Math.max(0, (costAltActive(p, card) ? Math.min(base, card.costAlt.cost) : base) - (redIf ? Math.max(r, redIf) : r) - per) + summonTaxOf(p, card);
 }
 function legacyPay(p, inst) {                     // v0.69: banish the Legacy cards (call once, before the cost is paid: the state must still be the one effCost saw)
   const lp = legacyPlan(p, CARDS[inst.id]); inst.legacyN = lp ? lp.n : 0; inst.legacyCards = lp ? lp.cards.map(t => t.id) : [];      // v193: the banished ids ("EX Symbols of <family> cards banished via this Legacy")

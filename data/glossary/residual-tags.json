@@ -38213,10 +38213,6 @@
   "T_ATTACKS",
   "T_BLOCKS"
  ],
- "26RBS02-X15": [
-  "C_LEVEL",
-  "T_ALLY_LIFE_HIT"
- ],
  "26RBS02-X16": [
   "A_EXHAUST",
   "A_REVEAL_ADD",
@@ -38234,11 +38230,6 @@
  "26RBS03-019": [
   "C_LEVEL",
   "M_UP_TO",
-  "T_ATTACKS"
- ],
- "26RBS03-022": [
-  "M_OPTIONAL",
-  "M_THEN",
   "T_ATTACKS"
  ],
  "26RBS03-039": [
@@ -38400,9 +38391,5 @@
   "C_LEVEL",
   "F_OTHER_NOSTACK",
   "M_UNSTACKABLE"
- ],
- "26RSD06-013": [
-  "M_OPTIONAL",
-  "M_REPLACEMENT"
  ]
 }
