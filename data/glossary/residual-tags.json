@@ -4885,10 +4885,6 @@
   "C_LEVEL",
   "T_SUMMONED"
  ],
- "BS16-024": [
-  "A_BP_PLUS",
-  "C_LEVEL"
- ],
  "BS16-026": [
   "A_VOID",
   "C_LEVEL",
@@ -14283,12 +14279,6 @@
   "A_BP_PLUS",
   "C_LEVEL",
   "K_ULTIMATE"
- ],
- "BS38-025": [
-  "A_BP_PLUS",
-  "A_REFRESH",
-  "C_LEVEL",
-  "T_BLOCKS"
  ],
  "BS38-026": [
   "A_EXHAUST",
