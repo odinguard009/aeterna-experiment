@@ -14555,14 +14555,6 @@
   "A_REMOVED_ZONE",
   "K_ACCEL"
  ],
- "BS38-RV013": [
-  "A_REFRESH",
-  "A_VOID",
-  "C_LEVEL",
-  "M_IF_YOU_DO",
-  "M_OPTIONAL",
-  "T_BLOCKS"
- ],
  "BS38-RV014": [
   "A_REMOVED_ZONE",
   "K_ACCEL",
@@ -17220,14 +17212,6 @@
   "F_OTHER_NOSTACK",
   "T_ATTACKS",
   "T_SUMMONED"
- ],
- "BS42-029": [
-  "A_EXHAUST",
-  "A_VOID",
-  "C_LEVEL",
-  "M_IF_YOU_DO",
-  "M_OPTIONAL",
-  "T_ATTACKS"
  ],
  "BS42-030": [
   "A_EXHAUST",
@@ -27457,13 +27441,6 @@
  "BS61-022": [
   "A_VOID",
   "C_CONTROL",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "M_THEN",
-  "T_SUMMONED"
- ],
- "BS61-023": [
-  "A_VOID",
   "C_LEVEL",
   "M_OPTIONAL",
   "M_THEN",
