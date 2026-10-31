@@ -7802,11 +7802,6 @@
   "M_OPTIONAL",
   "T_ALLY_ATTACKS"
  ],
- "BS24-051": [
-  "A_VOID",
-  "C_LEVEL",
-  "T_ALLY_SUMMONED"
- ],
  "BS24-052": [
   "A_EXHAUST",
   "A_REFRESH",
@@ -10985,12 +10980,6 @@
   "A_EXHAUST",
   "C_LEVEL",
   "K_ULTIMATE",
-  "T_SUMMONED"
- ],
- "BS31-029": [
-  "A_EXHAUST",
-  "A_VOID",
-  "C_LEVEL",
   "T_SUMMONED"
  ],
  "BS31-031": [
