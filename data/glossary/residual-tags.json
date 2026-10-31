@@ -3387,12 +3387,6 @@
   "A_BP_PLUS",
   "A_EXHAUST"
  ],
- "BS12-051": [
-  "A_RETURN_TRASH",
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "BS12-052": [
   "A_EXHAUST",
   "C_LEVEL",
@@ -19257,12 +19251,6 @@
   "C_LEVEL",
   "K_ACCEL",
   "K_ULTIMATE"
- ],
- "BS45-044": [
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "K_GRANDWALKER",
-  "T_SUMMONED"
  ],
  "BS45-045": [
   "C_LEVEL",
