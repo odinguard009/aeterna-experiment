@@ -3,7 +3,7 @@
   "about": "v0.202.0 bundle 22: 26RDB01-051 Penlight Wave (when you would pay costs via your Green Wave effects you can exhaust this Nexus to treat one cost as paid, once per turn; its True Release gives all your Diva family Saraswati +3000 BP).",
   "rules": [
     "STD:12-2-1-12@caad612c",
-    "ETR:faq.cost@ac3f4d21"
+    "ETR:cost.paying@06d788b2"
   ],
   "turn": 4,
   "active": "player",

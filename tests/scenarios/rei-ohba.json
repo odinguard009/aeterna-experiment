@@ -3,7 +3,7 @@
   "about": "v0.202.0 bundle 20: 26RDB01-X05 Rei-Ohba (When Summoned you can discard a Sword Eye family Magic card from your Hand to give an opposing Spirit -7000 BP and destroy it at 0 BP; its True Release adds one extra Life damage to its attack while two or more Sword Eye Magic cards are in your Trash).",
   "rules": [
     "STD:12-2-1-12@caad612c",
-    "ETR:battle.damage@b9921dcf"
+    "ETR:battle.resolution@b774143c"
   ],
   "turn": 4,
   "active": "player",

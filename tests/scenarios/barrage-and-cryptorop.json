@@ -3,7 +3,7 @@
   "about": "v0.202.0 bundle 21: 26RSD06-011 Barrage Forest (its True Release: when an opposing LV1 Spirit would attack, unless they pay one cost it can't attack) and 26RBS03-067 Cryptorop (in your Attack Step a Cyantree Spirit's attack can destroy one of your Nexuses to draw two and return a card to the deckbottom while every Nexus is Cyantree; its True Release returns a destroyed originally-Nexus Spirit that died in a BP comparison to the Hand).",
   "rules": [
     "STD:12-2-1-12@caad612c",
-    "ETR:faq.cost@ac3f4d21"
+    "ETR:cost.paying@06d788b2"
   ],
   "turn": 4,
   "active": "player",

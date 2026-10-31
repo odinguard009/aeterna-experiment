@@ -3,7 +3,7 @@
   "about": "v0.202.0 bundle 15: 26RDB01-028 Ragnareia Rockwell (When Summoned with three or more Green Wave cards banished via this Legacy, three Void cores go to it; its True Release is a Flash Invoke that, while every card you control is Green Wave, pays three costs to exhaust three opposing Spirits).",
   "rules": [
     "STD:12-2-1-12@caad612c",
-    "ETR:faq.cost@ac3f4d21"
+    "ETR:cost.paying@06d788b2"
   ],
   "turn": 4,
   "active": "player",
