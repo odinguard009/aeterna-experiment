@@ -8764,11 +8764,6 @@
   "K_ULTIMATE",
   "T_SUMMONED"
  ],
- "BS26-031": [
-  "A_DRAW",
-  "C_LEVEL",
-  "T_ALLY_LOST"
- ],
  "BS26-032": [
   "A_SUMMON_FREE",
   "C_LEVEL",
@@ -16251,13 +16246,6 @@
   "K_BRAVE",
   "S_UNAFFECTED"
  ],
- "BS41-004": [
-  "A_DESTROY_BP",
-  "C_LEVEL",
-  "M_IF_YOU_DO",
-  "M_OPTIONAL",
-  "T_ATTACKS"
- ],
  "BS41-005": [
   "C_LEVEL",
   "M_OPTIONAL",
@@ -19869,10 +19857,6 @@
   "K_BURST",
   "K_GRANDWALKER",
   "S_UNAFFECTED"
- ],
- "BS46-045": [
-  "C_LEVEL",
-  "T_ATTACKS"
  ],
  "BS46-055": [
   "A_REVEAL_ADD",
