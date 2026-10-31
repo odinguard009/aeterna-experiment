@@ -1,0 +1,47 @@
+{
+  "name": "endstep-and-beast",
+  "about": "v0.202.0 next cycle bundle 21 (Eternal): BS14-024 Tsuchipig (Your End Step: when your Trash holds only Green cards, refresh this Spirit) and BS20-043 Kyuuki (when your Imaginary Beast family Spirits are destroyed by the opponent, draw a card).",
+  "rules": [
+    "STD:12-2-1-12@caad612c",
+    "ETR:effects.simultaneous@0d3e0a51"
+  ],
+  "turn": 4,
+  "active": "player",
+  "step": 6,
+  "players": {
+    "player": {
+      "reserve": 3,
+      "trash": [
+        "BS01-050",
+        "BS01-051"
+      ],
+      "spirits": [
+        {
+          "id": "BS14-024",
+          "cores": 1,
+          "as": "pig",
+          "exhausted": true
+        },
+        {
+          "id": "BS20-043",
+          "cores": 1,
+          "as": "kyuuki"
+        }
+      ],
+      "deck": [
+        "26RBS01-004",
+        "26RBS01-006"
+      ]
+    },
+    "opponent": {
+      "reserve": 4,
+      "spirits": [
+        {
+          "id": "26RBS01-004",
+          "cores": 1,
+          "as": "oppA"
+        }
+      ]
+    }
+  }
+}

@@ -143,7 +143,7 @@ Object.assign(FX_ACTIONS, {
         if (!t) { c.ctx.did = false; return; }
       } else if (!c.p.spirits.includes(t)) { c.ctx.did = false; return; }
       c.ctx.picked = t;      // v0.88 S1: "When this battle ends, destroy it" (DESTROY_PICKED, 02p)
-      const n = a.per ? a.n * perCount(c.p, a.per) : a.perCores ? a.n * (c.src.cores || 0) : a.alt && CARDS[t.id].name.includes(a.alt.name) ? a.alt.n : a.n;      // v232 perCores "for each core on this Spirit"      // v0.195 alt: "If that's <name>, give it +M instead"; v0.120.0 Amplify: "for each <family> Spirit you control" (the source itself counts)
+      const n = a.per ? a.n * perCount(c.p, a.per, c.opp) : a.perCores ? a.n * (c.src.cores || 0) : a.alt && CARDS[t.id].name.includes(a.alt.name) ? a.alt.n : a.n;      // v232 perCores "for each core on this Spirit"      // v0.195 alt: "If that's <name>, give it +M instead"; v0.120.0 Amplify: "for each <family> Spirit you control" (the source itself counts)
       if (a.battle) addBattleBp(t, n); else t.bpMod = (t.bpMod || 0) + n;
       log(`${CARDS[t.id].name} gets +${n} BP during this ${a.battle ? 'battle' : 'turn'}.`);
     } },

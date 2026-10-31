@@ -1639,11 +1639,6 @@
   "T_ATTACKS",
   "T_BATTLE_WIN"
  ],
- "BS07-003": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
  "BS07-006": [
   "C_LEVEL"
  ],
@@ -4080,10 +4075,6 @@
   "K_BURST",
   "T_SUMMONED"
  ],
- "BS14-024": [
-  "A_REFRESH",
-  "C_LEVEL"
- ],
  "BS14-026": [
   "A_VOID",
   "C_LEVEL",
@@ -6275,10 +6266,6 @@
   "A_BP_MINUS",
   "C_LEVEL",
   "T_ATTACKS"
- ],
- "BS20-043": [
-  "C_LEVEL",
-  "T_ALLY_LOST"
  ],
  "BS20-044": [
   "A_EXHAUST",
@@ -28066,13 +28053,6 @@
   "M_OPTIONAL",
   "M_THEN",
   "T_DESTROYED",
-  "T_SUMMONED"
- ],
- "BS62-029": [
-  "A_EXHAUST",
-  "A_SOUL_STATE",
-  "C_CONTROL",
-  "C_LEVEL",
   "T_SUMMONED"
  ],
  "BS62-030": [
