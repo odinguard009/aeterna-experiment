@@ -413,6 +413,7 @@ function drawKeyFirst(p) {                       // the picked Key copy moves to
 function draw(p, n) {
   let k = 0;
   for (; k < n && p.deck.length; k++) { if (p.keySpirit && keyDrawActive(p)) drawKeyFirst(p); p.hand.push(p.deck.shift()); }
+  if (k && G && !G.over && G.evQ) G.evQ.push({ type: 'DRAWS', key: p.key, n: k });      // v236 "when the opponent draws"
   return k;
 }
 /* the owner's Hand increased through one of the owner's own effects: the opponent sees an "opposing Hand increase by an opposing effect" */

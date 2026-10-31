@@ -573,11 +573,6 @@
   "C_LEVEL",
   "K_HIGH_SPEED"
  ],
- "BS03-028": [
-  "A_EXHAUST",
-  "A_REFRESH",
-  "C_LEVEL"
- ],
  "BS03-030": [
   "A_VOID",
   "C_LEVEL",
@@ -1974,10 +1969,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "BS08-022": [
-  "A_REFRESH",
-  "C_LEVEL"
- ],
  "BS08-023": [
   "A_EXHAUST",
   "C_LEVEL",
@@ -2949,10 +2940,6 @@
   "M_OPTIONAL",
   "T_SUMMONED"
  ],
- "BS11-023": [
-  "A_REFRESH",
-  "C_LEVEL"
- ],
  "BS11-024": [
   "A_REFRESH",
   "C_LEVEL",
@@ -3018,10 +3005,6 @@
   "A_REFRESH",
   "C_LEVEL",
   "K_BRAVE"
- ],
- "BS11-041": [
-  "C_LEVEL",
-  "T_DESTROYED"
  ],
  "BS11-042": [
   "A_VOID",
@@ -12450,10 +12433,6 @@
  "BS34-056": [
   "C_LEVEL"
  ],
- "BS34-057": [
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
  "BS34-058": [
   "A_SUMMON_FREE",
   "K_ARMOR",
@@ -16469,11 +16448,6 @@
   "C_LEVEL",
   "M_OPTIONAL",
   "M_REPLACEMENT"
- ],
- "BS41-039": [
-  "C_LEVEL",
-  "C_OPP_TURN",
-  "M_OPTIONAL"
  ],
  "BS41-041": [
   "A_DISCARD_OPP",
@@ -22882,11 +22856,6 @@
  "BS54-004": [
   "A_BP_PLUS",
   "C_LEVEL",
-  "T_SUMMONED"
- ],
- "BS54-005": [
-  "C_LEVEL",
-  "K_ULTIMATE",
   "T_SUMMONED"
  ],
  "BS54-006": [

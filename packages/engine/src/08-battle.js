@@ -159,7 +159,9 @@ async function flushBursts() {                         // queued Bursts and even
       await maybeBurst(G.p[q.key], q.when || 'ALLY_DESTROYED', {}); continue;
     }
     const ev = G.evQ.shift();
-    if (ev.type === 'HAND_UP') {
+    if (ev.type === 'DRAWS') {
+      await fireFx(G.p[other(ev.key)], 'OPP_DRAWS', null, { drawN: ev.n });
+    } else if (ev.type === 'HAND_UP') {
       const q = G.p[other(ev.key)];
       G.burstQ.push({ key: q.key, when: 'OPP_HAND_UP' });
       await fireFx(q, 'OPP_HAND_UP', null, {});

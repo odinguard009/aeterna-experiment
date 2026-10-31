@@ -271,3 +271,5 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v233 (Lane K): `STATIC.perSymbolColors` ("gains +N BP for each symbol colour you have") and `EXHAUST_OPP.nexus` ("exhaust up to N opposing Spirits/Nexuses"). Cards: BS34-033, BS10-018.
 - v234 (Lane K): `BOUNCE_OPP.bpLeSelf` ("return an opposing Spirit with BP equal or inferior to this Spirit's"). Cards: BS41-004, BS46-045, BS26-031.
 - v235 (Lane K): `per.side` ("own"/"opp") and `per.costLe`/`per.costGe` count the other side or a cost window. Cards: BS07-003 (per opposing Cost 3 or less Spirit), BS62-029 (controlName + exhaust).
+- v236 (Lane K): trigger `OPP_DRAWS` (fires once per deck-draw event for the non-drawing side, `ctx.drawN`) and condition `outsideDraw` ("outside of the Draw Step"). Cards: BS03-028, BS08-022, BS11-023, BS41-039.
+- v237 (Lane K): `DESTROY.ultimate` ("destroy an opposing Ultimate") and `MILL_OPP {n}` ("discard N cards from the opposing decktop"). Cards: BS54-005, BS34-057, BS11-041.
