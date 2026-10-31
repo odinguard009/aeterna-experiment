@@ -1,0 +1,17 @@
+# Official ready deck: Kamen Rider Zeztz (26RCB01)
+# Source: https://www.battlespirits.com/feature/structure/26RCB01/deck_01.php (fetched 2026-10-31)
+# 40 cards as published; Key Spirit 26RCB01-X03.
+3 26RCB01-019   # Kamen Rider Nox Wolf Shadow
+2 26RCB01-020   # Kamen Rider Dawn
+3 26RCB01-021   # Kamen Rider Nox Gun Shadow
+3 26RCB01-022   # Kamen Rider Nox Midnight Shadow
+3 26RCB01-X03   # Kamen Rider Zeztz Exdream
+3 26RSD07-002   # Kamen Rider Zeztz Physicam Impact
+3 26RSD07-003   # Kamen Rider Zeztz Physicam Wing
+3 26RSD07-004   # Kamen Rider Zeztz Physicam Transform
+3 26RSD07-X01   # Kamen Rider Zeztz Catastrom
+3 26RSD07-X02   # Kamen Rider Zeztz Orderm
+3 26RSD07-012   # Capsem Dropper
+2 26RCB01-063   # Impact Banish
+3 26RSD07-013   # Catastrom Crusher
+3 26RSD07-014   # Breakam Slash

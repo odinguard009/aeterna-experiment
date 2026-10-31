@@ -18,12 +18,12 @@ const recipes = () => readdirSync(join(ROOT, 'data/decks')).filter(f => /^standa
 
 test('S97-1 the ten Standard starters are in PREBUILT with the full official recipe (40 cards each)', async () => {
   const r = recipes(); assert.equal(r.length, 10);
-  const got = await ev(() => BS.PREBUILT.filter(d => d.format === 'standard').map(d => [d.id, d.recipe]));
+  const got = await ev(() => BS.PREBUILT.filter(d => d.kind === 'starter').map(d => [d.id, d.recipe]));
   assert.deepEqual(got.map(x => x[0]), r.map(x => x.id));
   for (const [i, [, rec]] of got.entries()) { assert.deepEqual(rec, r[i].rec, r[i].f); assert.equal(Object.values(rec).reduce((a, b) => a + b, 0), 40, r[i].f); }
 });
 test('S97-2 every complete starter validates as Standard; only an incomplete one is short, and it says so', async () => {
-  const r = await ev(() => BS.PREBUILT.filter(d => d.format === 'standard').map(d => [d.id, d.missing, BS.validateDeck(d.cards, 'standard'), BS.prebuiltLabel(d)]));
+  const r = await ev(() => BS.PREBUILT.filter(d => d.kind === 'starter').map(d => [d.id, d.missing, BS.validateDeck(d.cards, 'standard'), BS.prebuiltLabel(d)]));
   for (const [id, missing, v, label] of r) {
     if (missing === 0) assert.ok(v.ok, `${id}: ${v.errors.join(' / ')}`);
     else { assert.ok(!v.ok); assert.match(label, new RegExp(`\\(incomplete, ${missing} missing\\)`)); }
@@ -48,7 +48,7 @@ test('S97-3 the incomplete state appears when a card is missing and clears when 
 });
 test('S97-4 a random CPU deck in Standard is always a legal Standard starter, never the training deck; Training Red stays selectable', async () => {
   const r = await ev(() => { const keep = BS.SETTINGS.cpuDeck, out = []; BS.SETTINGS.cpuDeck = 'random'; for (let s = 1; s <= 40; s++) { BS.seedRng(s); const d = BS.cpuDeckFor('standard'); out.push([BS.CPU_DECK_NAME, BS.validateDeck(d, 'standard').ok]); } BS.SETTINGS.cpuDeck = 'train'; BS.cpuDeckFor('standard'); const t = BS.CPU_DECK_NAME; BS.SETTINGS.cpuDeck = keep; return { out, t }; });
-  for (const [n, ok] of r.out) { assert.ok(ok, n); assert.doesNotMatch(n, /Training/); assert.match(n, /26RSD/); }
+  for (const [n, ok] of r.out) { assert.ok(ok, n); assert.doesNotMatch(n, /Training/); assert.match(n, /26R/); }
   assert.match(r.t, /Training Red/);
 });
 test('S97-5 defaults: Standard format, first-run deck is a Standard starter, CPU default is a Standard starter, names carry no developer notes', async () => {

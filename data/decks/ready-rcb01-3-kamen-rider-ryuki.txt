@@ -1,0 +1,19 @@
+# Official ready deck: Kamen Rider Ryuki (26RCB01)
+# Source: https://www.battlespirits.com/feature/structure/26RCB01/deck_03.php (fetched 2026-10-31)
+# 40 cards as published; Key Spirit 26RCB01-X05.
+3 26RCB01-026   # Kamen Rider Ryuki
+2 26RCB01-027   # Kamen Rider Knight
+3 26RCB01-028   # Venosnaker
+2 26RCB01-029   # Kamen Rider Gai
+3 26RCB01-031   # Dragreder
+3 26RCB01-035   # Kamen Rider Zolda
+3 26RCB01-037   # Kamen Rider Knight Survive
+3 26RCB01-038   # Kamen Rider Odin
+1 26RCB01-X04   # Kamen Rider Ouja
+3 26RCB01-X05   # Kamen Rider Ryuki Survive
+3 26RCB01-058   # Rideshooter
+3 26RCB01-065   # Guard Vent
+1 26RCB01-066   # Strike Vent
+1 26RCB01-067   # Shoot Vent
+3 26RCB01-068   # Sword Vent
+3 26RCB01-069   # Final Vent

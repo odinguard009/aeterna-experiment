@@ -1,0 +1,17 @@
+# Official ready deck: Necromancy (26RBS01)
+# Source: https://www.battlespirits.com/feature/structure/26RBS01/deck_02.php (fetched 2026-10-31)
+# 40 cards as published; Key Spirit 26RBS01-024.
+3 26RSD02-001   # Sclouse
+3 26RSD02-002   # Firalba
+3 26RSD02-003   # Medici-Cattery
+3 26RBS01-016   # Bonrat
+3 26RBS01-017   # Imseid
+3 26RBS01-018   # Dead Laika
+3 26RBS01-019   # Bullkleiten
+3 26RBS01-021   # Spectrous
+3 26RBS01-024   # The SpyButterfly Papilioni
+2 26RBS01-028   # The MysticPurple Baphomendes
+3 26RBS01-X04   # The InsectLord Shi-Reizen
+3 26RBS01-X05   # Queen Babianaros
+2 26RBS01-X06   # Duke Dunpillion
+3 26RSD02-014   # Soul Bite

@@ -1,0 +1,17 @@
+# Official ready deck: Oni's Cry (26RBS02)
+# Source: https://www.battlespirits.com/feature/structure/26RBS02/deck_05.php (fetched 2026-10-31)
+# 40 cards as published; Key Spirit 26RBS02-X13.
+3 26RBS01-061   # Stodol
+2 26RBS01-073   # The TwinFury Baronram
+3 26RBS02-050   # The Lonely Tsunowarashi
+3 26RBS02-051   # Swordonette
+3 26RBS02-054   # The ThunderClaw Zinoris
+3 26RBS02-056   # Great Zouk
+3 26RBS02-059   # The Five-InchStake Bisqular
+2 26RBS02-061   # The Resurrected Milaima
+3 26RBS02-X13   # The Puppeteer Marinel
+3 26RBS02-X14   # The FlashFuryPrincess Soljuret
+3 26RBS02-082   # War Phase: Capture of True Gate
+3 26RBS02-083   # The Supreme Cactus Wall
+3 26RBS02-091   # Portal Hack
+3 26RSD05-014   # Triple Thunder

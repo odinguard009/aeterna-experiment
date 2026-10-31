@@ -1,0 +1,18 @@
+# Official ready deck: White Weave (26RBS02)
+# Source: https://www.battlespirits.com/feature/structure/26RBS02/deck_04.php (fetched 2026-10-31)
+# 40 cards as published; Key Spirit 26RBS02-X10.
+3 26RBS02-038   # Lassrea
+3 26RBS02-039   # Bulleti
+3 26RBS02-042   # The RelayDeer Sublic
+2 26RBS02-044   # Mortariser
+3 26RBS02-047   # The BladeLeg Glassraner
+2 26RBS02-048   # The Disguiser Camouflan
+3 26RBS02-X10   # The SphericalAtrocity White Beard
+3 26RBS02-X12   # The DriftingGlassLady Phasalily
+3 26RSD04-002   # Nonril
+3 26RBS02-080   # Guard Tower
+3 26RBS02-081   # War Phase: Shattering of the Sun
+3 26RBS01-118   # Fast Travel
+2 26RBS01-120   # Punish Gate
+1 26RBS02-090   # Rush Out
+3 26RSD04-014   # Defensive Gate

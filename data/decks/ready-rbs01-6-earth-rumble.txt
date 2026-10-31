@@ -1,0 +1,17 @@
+# Official ready deck: Earth Rumble (26RBS01)
+# Source: https://www.battlespirits.com/feature/structure/26RBS01/deck_06.php (fetched 2026-10-31)
+# 40 cards as published; Key Spirit 26RBS01-088.
+3 26RBS01-076   # Tamink
+3 26RBS01-077   # Lulivora
+2 26RBS01-079   # Fergus
+3 26RBS01-081   # Bisoroth
+3 26RBS01-082   # Badgernan
+3 26RBS01-084   # Ganasha
+3 26RBS01-088   # The Honorable Saintar
+3 26RBS01-090   # The AzureGait Balpnir
+3 26RBS01-X16   # The GreatAbsolute Panjang
+2 26RBS01-X18   # The ShelledBeast Nepbalander
+3 26RBS01-106   # The Cyanlight Thorn Garden
+3 26RBS01-107   # The Seed-Showering Giant Tree
+3 26RSD06-013   # Stem Lance
+3 26RBS01-126   # Merciless Blow

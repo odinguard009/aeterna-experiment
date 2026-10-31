@@ -30,8 +30,10 @@ for (const screen of ['pc', 'phone']) {
     await page.click('[data-nav="view-decks"]:visible');
     const r = await page.evaluate(() => ({ on: document.getElementById('view-decks').classList.contains('active'), cur: document.querySelector('[data-nav][aria-current="page"]').dataset.nav,
       h1: document.querySelector('#view-decks .hdcard h2').textContent, count: document.getElementById('dk-count').textContent, wide: document.documentElement.scrollWidth > innerWidth + 1,
-      starters: document.querySelectorAll('#dk-starters .dk-st-row').length, pre: BS.PREBUILT.filter(d => !d.hidden).length, sleeve: true, dots: document.querySelectorAll('#dk-list .dtile[data-v] .dot').length }));
-    assert.deepEqual([r.on, r.cur, r.h1, r.count, r.wide, r.starters === r.pre, r.sleeve, r.dots > 0], [true, 'view-decks', 'My decks', '1 / 8', false, true, true, true]);
+      starters: document.querySelectorAll('#dk-starters .dk-st-row').length, ready: document.querySelectorAll('#dk-ready .dk-st-row').length,
+      hiddenShown: BS.PREBUILT.filter(d => d.hidden).filter(d => (document.getElementById('dk-starters').textContent + document.getElementById('dk-ready').textContent).includes(d.name)).length,
+      pre: BS.PREBUILT.filter(d => !d.hidden).length, sleeve: true, dots: document.querySelectorAll('#dk-list .dtile[data-v] .dot').length }));
+    assert.deepEqual([r.on, r.cur, r.h1, r.count, r.wide, r.starters + r.ready === r.pre, r.hiddenShown, r.sleeve, r.dots > 0], [true, 'view-decks', 'My decks', '1 / 8', false, true, 0, true, true]);
     const t = await tiles(page);
     assert.equal(t.length, 1); assert.equal(t[0].act, true); assert.match(t[0].st, /Legal/); assert.equal(t[0].play, true);
     await page.click('#dk-list [data-a="dk-edit"]');
@@ -69,7 +71,7 @@ for (const screen of ['pc', 'phone']) {
   test(`U93-3 ${screen}: starter decks are read-only with Copy; Import code fills a new slot; a full set of slots says so`, async () => {
     const { page, errors } = await open(screen);
     await page.evaluate(() => { BS.switchView('view-decks'); return 1; });
-    const red = await page.evaluate(() => BS.PREBUILT.findIndex(d => d.id === 'red'));
+    const red = await page.evaluate(() => BS.PREBUILT.findIndex(d => d.id === 'std01'));
     await page.click(`#dk-starters [data-a="dk-copy"][data-v="${red}"]`);
     let t = await tiles(page);
     assert.equal(t.length, 2); assert.match(t[1].name, /^Red/); assert.match(t[1].st, /Legal/);
@@ -99,5 +101,19 @@ test('U93-4 pc: the menu of the last tile stays on screen; Enter saves a rename,
   await page.click('#dk-list .dtile[data-v][data-v="7"] [data-a="dk-more"]'); await page.click('[data-a="dk-del"][data-v="7"]');
   await page.keyboard.press('Escape');
   assert.deepEqual(await page.evaluate(() => [document.getElementById('action-modal').classList.contains('active'), BS.SLOTS()[7].name]), [false, 'Enter Name']);
+  assert.deepEqual(errors, []);
+});
+
+test('U93-5 pc: Delete removes the active deck from the list (the deleted slot does not stay behind as the active one)', async () => {
+  const { page, errors } = await open('pc');
+  await page.evaluate(() => { BS.switchView('view-decks'); return 1; });
+  const before = await tiles(page);
+  assert.equal(before.length, 1, 'one deck on a fresh start'); assert.equal(before[0].act, true);
+  await page.click('#dk-list .dtile[data-v="0"] [data-a="dk-more"]');
+  await page.click('[data-a="dk-del"][data-v="0"]');
+  await answer(page, 'Delete');
+  assert.equal((await tiles(page)).length, 0, 'the deleted active deck is gone from My decks');
+  assert.equal(await page.evaluate(() => document.getElementById('dk-count').textContent), '0 / 8');
+  assert.equal(await page.evaluate(() => document.querySelectorAll('#dk-list .dk-add').length), 1, 'the New deck tile is offered again');
   assert.deepEqual(errors, []);
 });

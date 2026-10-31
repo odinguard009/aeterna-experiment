@@ -1,0 +1,17 @@
+# Official ready deck: Refined Wing (26RBS03)
+# Source: https://www.battlespirits.com/feature/structure/26RBS03/deck_01.php (fetched 2026-10-31)
+# 40 cards as published; Key Spirit 26RBS03-X01.
+3 26RSD09-001   # Lalyre
+3 26RSD09-004   # Faltex
+3 26RSD09-006   # Tookamolu
+3 26RSD09-X01   # The HundredEyes Boreowl
+3 26RSD09-X02   # The PurgatoryPhoenix Zekuga-Ignate
+3 26RBS03-003   # Hargris
+3 26RBS03-X01   # The DeepRedBladessom Rittenia
+3 26RBS03-X02   # The DragonEmperor Siegfried
+3 26RBS03-X03   # The PurgatoryPhoenix Zekuga
+1 26RSD09-010   # The Floating Crag Link
+3 26RSD09-011   # The Ravine of Mighty Winds
+3 26RSD01-014   # Flame Hurricane
+3 26RSD09-012   # Blaze Draw
+3 26RBS03-087   # Flame Storm

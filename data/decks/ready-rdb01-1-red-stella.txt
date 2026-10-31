@@ -1,0 +1,16 @@
+# Official ready deck: Red Stella (26RDB01)
+# Source: https://www.battlespirits.com/feature/structure/26RDB01/deck_01.php (fetched 2026-10-31)
+# 37 cards as published; the official page itself lists 37, 3 short of 40; Key Spirit 26RDB01-X01.
+3 26RDB01-002   # ［Star Rabbit Origin］Rabbey Darling
+3 26RDB01-003   # Muusha Kokko
+3 26RDB01-004   # ［Sword Chick Origin］Ran Blasear
+3 26RDB01-005   # ［Resplendent Shiny］Laura Byakuran
+2 26RDB01-006   # ［Star Apostle Origin］Spitz Dracony
+3 26RDB01-007   # ［Flying Iron Origin］Ark Raia
+3 26RDB01-009   # ［Red Guide Origin］Shaniel
+2 26RDB01-014   # ［Thunder God Origin］Sandy-Z-Leonora
+3 26RDB01-X01   # ［Roaring Wind Origin］Valdina Gaiya
+3 26RDB01-X02   # ［Superstar Origin］Noa Fleur
+3 26RDB01-055   # Heart Arrow
+3 26RDB01-056   # Sengoku Fire Dance
+3 26RDB01-060   # Diva On Stage

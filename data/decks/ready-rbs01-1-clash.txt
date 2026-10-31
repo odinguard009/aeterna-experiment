@@ -1,0 +1,17 @@
+# Official ready deck: Clash (26RBS01)
+# Source: https://www.battlespirits.com/feature/structure/26RBS01/deck_01.php (fetched 2026-10-31)
+# 40 cards as published; Key Spirit 26RBS01-009.
+3 26RSD01-001   # Mushakko
+3 26RBS01-002   # Sun Spawn
+3 26RBS01-005   # Pergasos
+3 26RBS01-006   # Pawgriffo
+3 26RBS01-004   # Kukulakatol
+3 26RBS01-008   # Cockadrice
+3 26RBS01-009   # The RedGuide Shaniel
+3 26RBS01-X01   # The RedWitch Restiel
+3 26RBS01-X02   # The SixVermilion Carneliath
+3 26RBS01-X03   # The RoaringWind Valdigeyer
+3 26RBS01-092   # The Floating Grove
+3 26RSD01-012   # Break Claw
+3 26RSD01-014   # Flame Hurricane
+1 26RBS01-111   # Vermillion Roar

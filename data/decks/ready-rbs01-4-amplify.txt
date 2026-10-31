@@ -1,0 +1,17 @@
+# Official ready deck: Amplify (26RBS01)
+# Source: https://www.battlespirits.com/feature/structure/26RBS01/deck_04.php (fetched 2026-10-31)
+# 40 cards as published; Key Spirit 26RBS01-055.
+3 26RBS01-046   # Gonpon
+3 26RBS01-048   # Goztaurus
+3 26RBS01-049   # Sol-Shimmer
+3 26RBS01-050   # Claydoro
+3 26RBS01-053   # Stellouse
+2 26RBS01-051   # Meztaurus
+3 26RBS01-054   # Pepper's Beast
+2 26RBS01-055   # The LiquidSilver Fransil
+3 26RBS01-059   # The HollowRadiance Pepper's Dragon
+3 26RBS01-X10   # The LiquidSilverGeneral Rgyum
+3 26RBS01-X11   # The ArgentIronDuke Lars-Beriberg
+3 26RBS01-100   # The Dual Flow Desert
+3 26RSD04-014   # Defensive Gate
+3 26RBS01-120   # Punish Gate

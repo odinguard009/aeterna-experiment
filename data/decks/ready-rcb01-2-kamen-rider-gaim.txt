@@ -1,0 +1,17 @@
+# Official ready deck: Kamen Rider Gaim (26RCB01)
+# Source: https://www.battlespirits.com/feature/structure/26RCB01/deck_02.php (fetched 2026-10-31)
+# 40 cards as published; Key Spirit 26RCB01-X02.
+3 26RCB01-001   # Kamen Rider Gaim Orange Arms
+3 26RCB01-003   # Kamen Rider Knuckle Kurumi Arms
+3 26RCB01-004   # Kamen Rider Ryugen Budou Arms
+3 26RCB01-005   # Kamen Rider Baron Banana Arms
+3 26RCB01-006   # Kamen Rider Sigurd Cherry Energy Arms
+3 26RCB01-008   # Kamen Rider Gaim Jimber Lemon Arms
+3 26RCB01-011   # Kamen Rider Gaim Kachidoki Arms
+2 26RCB01-014   # Kamen Rider Duke Lemon Energy Arms
+3 26RCB01-015   # Kamen Rider Ryugen-Yomi Yomotsuheguri Arms
+3 26RCB01-X01   # Kamen Rider Zangetsu-Shin Melon Energy Arms
+3 26RCB01-X02   # Kamen Rider Gaim Kiwami Arms
+3 26RCB01-057   # Sakura Hurricane
+2 26RCB01-061   # Spear Victory
+3 26RCB01-062   # Burai Kick

@@ -1,0 +1,18 @@
+# Official ready deck: Yellow Even (26RBS03)
+# Source: https://www.battlespirits.com/feature/structure/26RBS03/deck_05.php (fetched 2026-10-31)
+# 40 cards as published; Key Spirit 26RBS03-058.
+2 26RBS03-047   # The NumberOneDisciple Lira-Rali
+3 26RBS03-049   # Calunis
+3 26RBS03-050   # The GrandMaster Marmonta
+3 26RBS03-052   # Inctus
+2 26RBS03-053   # Plasmaru
+3 26RBS03-055   # Lamykin
+3 26RBS03-056   # The NewlyFledged Kolulu
+3 26RBS03-058   # The CursedPlush Belder
+3 26RBS03-060   # The ThunderBeast Ermineia
+3 26RBS03-X13   # The GreatMighty Biligrus
+2 26RBS03-081   # The Hexcraft Research Institute
+3 26RBS03-082   # War Feat: Occupation of the White Heaven Plain
+3 26RSD05-014   # Triple Thunder
+2 26RBS03-095   # フューリアスアンガー
+2 26RBS03-096   # Flash Run

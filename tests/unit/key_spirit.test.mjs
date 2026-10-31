@@ -54,17 +54,17 @@ test('KEY-2 every prebuilt deck names its own valid Key Spirit; pickKey is deter
     for (const d of BS.PREBUILT) {
       if (d.id === 'train' || !d.key) continue;
       const errs = BS.validateDeck(d.cards, d.format || 'eternal', d.key).errors.filter(t => /Key Spirit/.test(t));
-      rows.push([d.id, d.key, d.cards[d.key] > 0, errs.length, BS.pickKey(d.cards)]);
+      rows.push([d.id, d.key, d.cards[d.key] > 0, errs.length, BS.pickKey(d.cards), d.kind || '']);
     }
     let magic = null; for (const [id, c] of Object.entries(BS.CARDS)) if (c.type === 'Magic') { magic = id; break; }
     return { rows, empty: BS.pickKey({}), copyWins: BS.pickKey({ 'BS75-002': 3, 'BS75-001': 2 }), idWins: BS.pickKey({ 'BS75-002': 3, 'BS75-001': 3 }), twoTie: BS.pickKey({ 'BS75-003': 2, 'BS75-002': 2 }), noSpirit: BS.pickKey({ [magic]: 3 }) };
   });
   assert.ok(errors.length === 0, 'page errors: ' + errors.join(' | '));
-  assert.equal(r.rows.length, 16, 'std01-std10 + the six colour decks carry keys');
-  for (const [id, key, copied, errs, picked] of r.rows) {
+  assert.equal(r.rows.length, 42, 'std01-std10, the six internal colour fixtures and the 26 official ready decks carry keys');
+  for (const [id, key, copied, errs, picked, kind] of r.rows) {
     assert.ok(copied, id + ': key ' + key + ' has at least one copy in the deck');
     assert.equal(errs, 0, id + ': key validation errors');
-    assert.equal(picked, key, id + ': the data key must equal the deterministic pickKey result');
+    if (kind !== 'ready') assert.equal(picked, key, id + ': the data key must equal the deterministic pickKey result');   // a ready deck names the official deck-feature key card instead
   }
   assert.equal(r.empty, null, 'pickKey on an empty deck is null');
   assert.equal(r.copyWins, 'BS75-002', 'more copies win over the smaller id');

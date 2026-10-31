@@ -30,7 +30,8 @@ One home for the complete UI list. Structure from `docs/DESIGN.md`; build target
 | My decks PC tiles (sleeve 40x56, colours, status, ACTIVE badge, Edit/Play/more) | `13h-decks.js` | shipped |
 | My decks phone rows + action sheet | `13h-decks.js` | shipped |
 | Deck more menu (Set active, Rename, Duplicate, Deck look, Copy deck code, Delete asks first) | `13h-decks.js` | shipped |
-| Starter (prebuilt) decks, read-only, Copy only | `13h-decks.js` | shipped |
+| Starter (prebuilt) decks, read-only, Recipe + Copy only | `13h-decks.js` | shipped |
+| Official ready decks (Standard set deck-feature recipes, read-only, Recipe with the official source link + Copy) | `13h-decks.js`, `04-decks.js` | shipped v0.201.0 |
 | Deck builder header (back, name, rename, ready chip, Set active, Play, saved line) | `13a-deckbuilder.js` | shipped v0.94.0 |
 | Deck builder toolbar (search, FILTERS + count badge, chips, Clear all, card count, sort) | `13a-deckbuilder.js` | shipped |
 | Filter panel (colour, type, cost, format + Saga, family, playable only; Show/Reset) PC panel + phone sheet | `13a-deckbuilder.js` | shipped |

@@ -1,0 +1,17 @@
+# Official ready deck: Abyss (26RBS03)
+# Source: https://www.battlespirits.com/feature/structure/26RBS03/deck_03.php (fetched 2026-10-31)
+# 40 cards as published; Key Spirit 26RSD10-X02.
+3 26RBS01-034   # Salakka
+3 26RSD10-003   # Sharky
+3 26RSD10-007   # Lamydoneus
+3 26RSD10-008   # Colossal Miltoni
+3 26RSD10-X01   # The TwinWaterFang Raena-Helena
+3 26RSD10-X02   # The AberrantWhale DeepCaesar-Abyss
+3 26RBS03-024   # Lumenil
+3 26RBS03-029   # The OceanicFan Greaseticola
+2 26RBS03-030   # The Spellcaster Naudalie
+3 26RBS03-X07   # The AberrantWhale DeepCaesar
+2 26RSD10-011   # The Forgewater Vent
+3 26RSD03-014   # Tentacle Attack
+3 26RSD10-013   # Swordish Comes
+3 26RBS03-091   # Bubble Shield

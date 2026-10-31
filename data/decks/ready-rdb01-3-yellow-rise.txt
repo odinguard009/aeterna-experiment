@@ -1,0 +1,17 @@
+# Official ready deck: Yellow Rise (26RDB01)
+# Source: https://www.battlespirits.com/feature/structure/26RDB01/deck_03.php (fetched 2026-10-31)
+# 40 cards as published; Key Spirit 26RSD08-X01.
+3 26RSD08-001   # Amaruna
+3 26RSD08-002   # ［Evil Sacred Origin］Chaori Pegasuros
+3 26RSD08-003   # ［Silver Cat Origin］Jakomina Kit
+3 26RSD08-006   # ［ArcAnge Origin］Rarapha El
+2 26RSD08-X01   # ［Mega Thunder Origin］Zelotia
+3 26RSD08-X02   # ［Shining Origin］Rei-Ohba
+3 26RDB01-030   # ［Magic Jewel Origin］Morrigan
+3 26RDB01-031   # ［Conviction Revolution］Jeanne Doraniece
+3 26RDB01-X05   # ［Chromatic Shine］Rei-Ohba
+3 26RSD08-011   # Yellow Rise: The Swordian Performance
+3 26RSD08-012   # Angelic Feather Song
+2 26RSD08-013   # トワイライトファンタジアソング
+3 26RSD08-014   # Shining Sword Song
+3 26RDB01-060   # Diva On Stage

@@ -1,0 +1,17 @@
+# Official ready deck: Magic Arts (26RBS01)
+# Source: https://www.battlespirits.com/feature/structure/26RBS01/deck_05.php (fetched 2026-10-31)
+# 41 cards as published; Key Spirit 26RBS01-074.
+3 26RBS01-062   # Aloucast
+3 26RBS01-066   # Velocirant
+3 26RBS01-068   # Snakrowley
+3 26RBS01-071   # The SedutiveFury Randarisa
+3 26RBS01-072   # Thunderai
+3 26RBS01-074   # The HeavyThunder Enurai
+3 26RBS01-X13   # The MageKingPuppet Igle-Mitas
+2 26RBS01-X15   # The ReturningThunder Embalmimer
+3 26RBS01-104   # The Beast’s Maw Lair
+3 26RSD05-011   # Fire Pillar
+3 26RSD05-014   # Triple Thunder
+3 26RBS01-121   # Life Link
+3 26RBS01-122   # Bolt Grid
+3 26RBS01-123   # Thunder Shutter

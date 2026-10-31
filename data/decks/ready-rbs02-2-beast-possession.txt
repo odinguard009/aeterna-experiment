@@ -1,0 +1,17 @@
+# Official ready deck: Beast Possession (26RBS02)
+# Source: https://www.battlespirits.com/feature/structure/26RBS02/deck_02.php (fetched 2026-10-31)
+# 40 cards as published; Key Spirit 26RBS02-X05.
+2 26RBS01-026   # Borzo-Inu
+3 26RBS02-013   # Puppislope
+3 26RBS02-015   # Cemerippet
+3 26RBS02-016   # The LongBoots Pussybill
+3 26RBS02-017   # Dane-Grey
+2 26RBS02-019   # Wyll-Gale
+3 26RBS02-022   # The RavenWings Ebonysues
+3 26RBS02-X04   # The Allegiant Romansurica
+3 26RBS02-X05   # The Composed Molunar
+3 26RBS02-X06   # The BlackAssassin O-Celo
+3 26RSD02-001   # Sclouse
+3 26RSD02-002   # Firalba
+3 26RBS02-076   # War Phase: Barrier of Scale Dust
+3 26RSD02-014   # Soul Bite

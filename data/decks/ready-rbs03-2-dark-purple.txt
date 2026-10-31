@@ -1,0 +1,17 @@
+# Official ready deck: Dark Purple (26RBS03)
+# Source: https://www.battlespirits.com/feature/structure/26RBS03/deck_02.php (fetched 2026-10-31)
+# 40 cards as published; Key Spirit 26RBS03-X04.
+3 26RSD02-001   # Sclouse
+3 26RBS03-009   # The Assassin Nidree
+3 26RBS03-010   # Gashahound
+3 26RBS03-011   # Boggarl
+3 26RBS03-012   # Guardy
+3 26RBS03-014   # Ilulion
+2 26RBS03-022   # The BoneSprite Pisketona
+3 26RBS03-X04   # The PurpleAsterBladessom Rindorin
+3 26RBS03-X05   # The TwilightEmpress Kuramagrama
+3 26RBS03-X06   # The SevenShogun Desperado
+3 26RBS03-076   # The Venomous Bottomless Swamp
+3 26RSD02-012   # Blood Sip
+3 26RSD02-014   # Soul Bite
+2 26RBS03-089   # Grand Theft

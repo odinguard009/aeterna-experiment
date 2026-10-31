@@ -1,0 +1,17 @@
+# Official ready deck: Torrent (26RBS01)
+# Source: https://www.battlespirits.com/feature/structure/26RBS01/deck_03.php (fetched 2026-10-31)
+# 40 cards as published; Key Spirit 26RBS01-044.
+3 26RSD03-002   # Puffer
+3 26RBS01-034   # Salakka
+3 26RBS01-035   # Alotoll
+3 26RBS01-038   # Gaviadile
+3 26RBS01-041   # Na-Nascita
+3 26RBS01-044   # The SeaMonster Morgawler
+3 26RBS01-X08   # Mermaidia Princess
+3 26RBS01-X09   # The DeepBlow Whala
+3 26RBS01-097   # The Hydro Catapult
+3 26RBS01-098   # The Current Corridor
+3 26RSD03-012   # Hand Molt
+3 26RBS01-115   # Wave Ride
+2 26RBS01-116   # Double Vortex
+2 26RBS01-117   # Hydro Force

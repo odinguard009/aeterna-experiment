@@ -1,0 +1,17 @@
+# Official ready deck: Green Wave (26RDB01)
+# Source: https://www.battlespirits.com/feature/structure/26RDB01/deck_02.php (fetched 2026-10-31)
+# 40 cards as published; Key Spirit 26RDB01-X03.
+3 26RDB01-015   # ［Song Deity Origin］Saraswati
+3 26RDB01-016   # Aloe Toll
+3 26RDB01-017   # ［Heaven Beast Origin］Gayatri-Fox
+3 26RDB01-018   # ［Violent Wings Origin］Barbara Chouti
+3 26RDB01-023   # ［Tree Flower Origin］Frau
+3 26RDB01-027   # ［Deep Blow Origin］Sheen Ayla
+3 26RDB01-028   # ［Doom Origin］Ragnareia Rockwell
+2 26RDB01-029   # ［Emperor Origin］Kaiserin Atlas
+3 26RDB01-X03   # ［Vortex Princess Origin］Meldia Marulphin
+3 26RDB01-X04   # ［Hornet King Origin］Fongneena
+3 26RDB01-051   # Penlight Wave
+2 26RDB01-057   # Hand Bloom
+3 26RDB01-059   # Deep Strike
+3 26RDB01-060   # Diva On Stage

@@ -1,0 +1,17 @@
+# Official ready deck: Ancient Serpent (26RBS02)
+# Source: https://www.battlespirits.com/feature/structure/26RBS02/deck_03.php (fetched 2026-10-31)
+# 40 cards as published; Key Spirit 26RBS02-X07.
+3 26RBS01-034   # Salakka
+3 26RBS02-025   # Sejellin
+3 26RBS02-026   # Phindol
+3 26RBS02-029   # Chlor-Galero
+3 26RBS02-032   # Elasma-Urus
+3 26RBS02-033   # The MireCaller Daisy
+3 26RBS02-X07   # The Great Emperan
+3 26RBS02-X09   # The OceanGod Leviaclan
+3 26RSD03-002   # Puffer
+1 26RSD03-003   # Rassehead
+3 26RSD03-X01   # The ArmoredHands Squid
+3 26RBS02-078   # War Phase: Great Shield of Bubbles
+3 26RBS02-089   # Rapid Ripper
+3 26RSD03-014   # Tentacle Attack

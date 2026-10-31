@@ -1,0 +1,17 @@
+# Official ready deck: Blue Beat (26RDB01)
+# Source: https://www.battlespirits.com/feature/structure/26RDB01/deck_04.php (fetched 2026-10-31)
+# 40 cards as published; Key Spirit 26RDB01-X06.
+3 26RDB01-033   # ［Rat Origin］Mou-Chuchu
+3 26RDB01-034   # ［Dragon Origin］Rias Urovorun
+3 26RDB01-036   # ［Sheep Origin］Loria Sheeps
+3 26RDB01-039   # ［Tiger Origin］Riolu Tida
+3 26RDB01-040   # ［Ox Origin］Falan Schebison
+2 26RDB01-042   # ［Rabbit Origin］Misty Lylebit
+3 26RDB01-043   # ［Horse Origin］Formulia Execeeda
+3 26RDB01-045   # ［Rooster Origin］Gail Fenique
+3 26RDB01-X06   # ［Snake Origin］Tia Madoola
+3 26RDB01-X07   # ［Shield Horn Origin］Diane Therion
+3 26RDB01-053   # Fortress Stage
+2 26RDB01-062   # Greed Shout
+3 26RDB01-063   # Gigan Song
+3 26RDB01-060   # Diva On Stage

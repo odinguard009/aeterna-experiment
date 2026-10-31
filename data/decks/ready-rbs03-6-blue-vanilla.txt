@@ -1,0 +1,17 @@
+# Official ready deck: Blue Vanilla (26RBS03)
+# Source: https://www.battlespirits.com/feature/structure/26RBS03/deck_06.php (fetched 2026-10-31)
+# 40 cards as published; Key Spirit 26RBS03-070.
+2 26RSD06-005   # Slouth
+3 26RBS01-078   # Eripides
+3 26RBS03-061   # Bochack
+3 26RBS03-064   # The PowerWings Megaropsis
+3 26RBS03-065   # Racacal
+3 26RBS03-066   # Supialis
+3 26RBS03-068   # The Sentry Alwari
+3 26RBS03-070   # The SpikedClub Tidae
+3 26RBS03-071   # The Menacing Myrmecotyla
+3 26RBS03-X14   # The SpikyGod Salvador
+3 26RBS03-085   # Flowerwork
+3 26RSD06-012   # Feeding Draw
+2 26RBS01-126   # Merciless Blow
+3 26RBS03-097   # Sharp Thorn

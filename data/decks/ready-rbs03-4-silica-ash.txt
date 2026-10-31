@@ -1,0 +1,18 @@
+# Official ready deck: Silica Ash (26RBS03)
+# Source: https://www.battlespirits.com/feature/structure/26RBS03/deck_04.php (fetched 2026-10-31)
+# 40 cards as published; Key Spirit 26RBS03-X10.
+3 26RBS03-032   # Collet
+3 26RBS03-034   # The Cannoneer Golek
+3 26RBS03-035   # Pepper's Chairo
+3 26RBS03-039   # The SilverWings Graburn
+3 26RBS03-040   # Heliodon
+3 26RBS03-041   # Palace Keeper, Relier
+2 26RBS03-042   # The ExoticLithoid Emeral
+2 26RBS03-045   # The ExoticLithoidGiant Paraibatour
+2 26RBS03-X09   # The IronKnight Yggdrasill
+3 26RBS03-X10   # The WhiteCopperBladessom Lumerian
+3 26RBS03-X11   # The MirrorPlaneKnight Cavaliare
+3 26RBS03-079   # War Toll: Fall of the Sun
+3 26RBS03-080   # The Scrap Bulwark
+3 26RSD04-014   # Defensive Gate
+1 26RBS03-093   # Luminous Recovery

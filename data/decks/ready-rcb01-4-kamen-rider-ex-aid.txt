@@ -1,0 +1,17 @@
+# Official ready deck: Kamen Rider Ex-Aid (26RCB01)
+# Source: https://www.battlespirits.com/feature/structure/26RCB01/deck_04.php (fetched 2026-10-31)
+# 40 cards as published; Key Spirit 26RCB01-X07.
+3 26RCB01-039   # Kamen Rider Snipe Shooting Gamer Level 2
+3 26RCB01-040   # Kamen Rider Lazer Bike Gamer Level 2
+3 26RCB01-041   # Kamen Rider Ex-Aid Action Gamer Level 2
+3 26RCB01-043   # Kamen Rider Snipe Hunter Shooting Gamer Level 5 (Full Dragon)
+3 26RCB01-044   # Kamen Rider Brave Quest Gamer Level 2
+3 26RCB01-046   # Kamen Rider Poppy Tokimeki Crisis Gamer Level X
+3 26RCB01-047   # Kamen Rider Brave Fantasy Gamer Level 50
+3 26RCB01-048   # Kamen Rider Para-DX Puzzle Gamer Level 50
+3 26RCB01-054   # Kamen Rider Genm Zombie Action Gamer Level X-0
+3 26RCB01-X06   # Kamen Rider Para-DX Perfect Knockout Gamer Level 99
+3 26RCB01-X07   # Kamen Rider Ex-Aid Muteki Gamer
+3 26RCB01-059   # Game Area
+2 26RCB01-070   # Critical Dead
+2 26RCB01-071   # Mighty Critical Strike

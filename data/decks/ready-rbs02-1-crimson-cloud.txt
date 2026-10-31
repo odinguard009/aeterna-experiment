@@ -1,0 +1,17 @@
+# Official ready deck: Crimson Cloud (26RBS02)
+# Source: https://www.battlespirits.com/feature/structure/26RBS02/deck_01.php (fetched 2026-10-31)
+# 40 cards as published; Key Spirit 26RBS02-X01.
+3 26RBS01-002   # Sun Spawn
+3 26RBS01-009   # The RedGuide Shaniel
+3 26RBS01-X03   # The RoaringWind Valdigeyer
+3 26RBS02-002   # Lop-Yara
+2 26RBS02-007   # Charcoaler
+3 26RBS02-008   # The Experienced Elderly
+2 26RBS02-011   # The HornPower Bullfal
+3 26RBS02-012   # The RevolvingFlame Duraluel
+3 26RBS02-X01   # Gene-Rose
+3 26RBS02-X02   # The GreatFireSpirit Flendis
+3 26RBS02-074   # War Phase: Overcast of Floating Crags
+3 26RBS02-087   # Flame Summoning
+3 26RSD01-012   # Break Claw
+3 26RSD01-014   # Flame Hurricane

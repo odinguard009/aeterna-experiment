@@ -1,0 +1,18 @@
+# Official ready deck: Blue Tree (26RBS02)
+# Source: https://www.battlespirits.com/feature/structure/26RBS02/deck_06.php (fetched 2026-10-31)
+# 40 cards as published; Key Spirit 26RBS02-X16.
+3 26RBS02-063   # The Intimidated Dybug
+2 26RBS02-065   # Mu-Stella
+2 26RBS02-066   # Mora Myra
+3 26RBS02-069   # The Leapfrogger Pediez
+2 26RBS02-073   # The RampagingTree Ordolily
+3 26RBS02-X16   # The QuintupleBreath Garaja
+2 26RBS02-X17   # The ExtremeClaws Gigasloth
+3 26RBS02-X18   # The AzureBeastFang Gaogazan
+2 26RSD06-X01   # The ShieldHorn Gigantherion
+3 26RBS02-084   # The Ultramarine Apples
+3 26RBS02-085   # War Phase: Surge of Tree Roots
+3 26RBS02-086   # The Memory Palace
+3 26RBS02-092   # ブーストエナジー
+3 26RSD06-012   # Feeding Draw
+3 26RSD06-013   # Stem Lance

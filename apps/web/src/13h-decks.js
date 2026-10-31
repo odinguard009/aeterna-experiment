@@ -2,13 +2,14 @@
    v0.93.0 U6 MY DECKS (docs/DESIGN.md section 0, mockup docs/design/mockup-v11.html "My decks PC / phone")
    A page on top of the 8 deck slots of packages/engine/src/04-decks.js: PC tiles / phone rows with sleeve, colours, status and
    the ACTIVE badge; Edit, Play (disabled while the deck is not ready) and a more menu (PC) / action sheet (phone): Set active,
-   Rename, Duplicate, Deck look, Copy deck code, Delete (asks first). Import code and New deck use the first free slot; the
-   prebuilt decks are read-only starters with Copy. A slot is listed when it has cards, a name of its own, the used mark
-   (New / Import / Copy) or is the active slot.
+   Rename, Duplicate, Deck look, Copy deck code, Delete (asks first). Import code and New deck use the first free slot.
+   The read-only ready-made decks are two lists (v0.201.0): STARTER DECKS (the ten official 26RSD starters) and OFFICIAL READY
+   DECKS (the deck-feature recipes of the Standard sets); both have Recipe (full list + source link) and Copy. A slot is listed
+   when it has cards, a name of its own or the used mark (New / Import / Copy); a wiped slot is not listed even while active.
    --------------------------------------------------------------------- */
 let DK_MENU = -1, DK_Q = '', DK_SORT = 'slot';                                   // slot whose more menu / action sheet is open
 const dkCards = i => (i === ACTIVE_SLOT ? PLAYER_DECK : SLOTS[i].cards);
-const dkUsed = i => i === ACTIVE_SLOT || !!SLOTS[i].used || deckTotal(dkCards(i)) > 0 || !/^Deck \d+$/.test(SLOTS[i].name);
+function dkUsed(i) { return !!SLOTS[i].used || deckTotal(dkCards(i)) > 0 || !/^Deck \d+$/.test(SLOTS[i].name); }   // v0.201.0 fix: a wiped slot is no longer listed just because it is the active one (Delete left the deck on screen)
 const dkFree = () => SLOTS.findIndex((s, i) => !dkUsed(i));
 function dkStatus(cards, key) {
   const t = deckTotal(cards), v = validateDeck(cards, FORMAT, key);
@@ -71,7 +72,10 @@ function renderDecks() {
   else if (DK_SORT === 'wr') shown.sort((a, b) => (sk(b).wr == null ? -1 : sk(b).wr) - (sk(a).wr == null ? -1 : sk(a).wr));
   $('dk-list').innerHTML = shown.map(i => dkTile(i, SLOTS[i].name, dkCards(i))).join('') + (!q && dkFree() >= 0 ? '<button class="card flat dtile dk-add" data-a="dk-new" style="border:2px dashed var(--line2);align-items:center;justify-content:center;min-height:250px;color:var(--text2);background:transparent"><span style="font-size:42px">+</span><b>New deck</b><span class="sub" style="font-size:.8em">Blank, from a starter, or import</span></button>' : '');
   if ($('dk-sub')) $('dk-sub').textContent = `${used.includes(ACTIVE_SLOT) ? 1 : 0} active`;
-  $('dk-starters').innerHTML = prebuiltOrder(FORMAT).map(({ d, i }) => dkTile(i, prebuiltLabel(d), d.cards, true)).join('');
+  const rows = kind => prebuiltOrder(FORMAT).filter(({ d }) => (d.kind || 'starter') === kind).map(({ d, i }) => dkTile(i, prebuiltLabel(d), d.cards, true)).join('');
+  $('dk-starters').innerHTML = rows('starter');
+  if ($('dk-ready')) $('dk-ready').innerHTML = rows('ready');
+  if ($('dk-ready-sec')) $('dk-ready-sec').style.display = rows('ready') ? '' : 'none';
   $('dk-fmt').textContent = fmtTitle();
 }
 function dkMenu(i) {
@@ -164,6 +168,7 @@ function renderRecipe() {
   const curve = {}; for (const id of ids) { const c = CARDS[id]; if (c) { const k = Math.min(c.cost, 9); curve[k] = (curve[k] || 0) + rec[id]; } }
   const mx = Math.max(1, ...Object.values(curve)), cols = dkColors(d.cards).map(c => `<span class="tag dim" style="display:inline-flex;align-items:center;gap:6px"><i style="display:inline-block;width:10px;height:10px;background:${colorVar(c)};clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)"></i>${cap(c)}</span>`).join('');
   const key = d.key && CARDS[d.key] ? `<span class="tag dim" title="Key Spirit: draws favour it">Key · ${esc(CARDS[d.key].name)}</span>` : '';
+  const src = d.source ? `<a class="tag dim" href="${esc(d.source)}" target="_blank" rel="noopener" title="Official deck-feature page on battlespirits.com">Official recipe ↗</a>` : '';
   const row = id => { const c = CARDS[id], n = rec[id]; return c
     ? `<button class="rc-row" data-a="cp-open" data-v="${esc(id)}" aria-label="Open ${esc(c.name)}"><b class="rc-n">${n}×</b><span class="rc-nm" translate="no">${esc(c.name)}</span><span class="rc-id">${esc(id)}</span><span class="rc-c">${c.type === 'Magic' || c.type === 'Nexus' ? '' : 'Cost '}${c.cost}</span></button>`
     : `<div class="rc-row miss"><b class="rc-n">${n}×</b><span class="rc-nm">Not in the library yet</span><span class="rc-id">${esc(id)}</span><span class="rc-c"></span></div>`; };
@@ -171,7 +176,7 @@ function renderRecipe() {
   const bars = Array.from({ length: 10 }, (_, k) => `<div class="rc-bar"><i style="height:${Math.round(100 * (curve[k] || 0) / mx)}%"></i><b>${curve[k] || 0}</b><span>${k === 9 ? '9+' : k}</span></div>`).join('');
   const fmt = prebuiltFmt(d) === 'standard' ? 'Standard' : 'Eternal';
   el.innerHTML = `<div class="row" style="gap:10px;flex-wrap:wrap"><button class="btn sm" data-a="dk-rc-back">← My decks</button><span class="grow"></span><button class="btn sm pri" data-a="dk-rc-copy" data-v="${RC_ID}" aria-label="Copy ${esc(d.name)} to my decks">Copy to my decks</button></div>
-    <div class="card hdcard"><div class="grow"><span class="eyebrow">Deck recipe</span><h2 class="hd" translate="no">${esc(d.name)}</h2><div class="row" style="gap:6px;flex-wrap:wrap"><span class="tag">${fmt}</span>${cols}${key}<span class="tag dim">${total} cards</span></div></div></div>
+    <div class="card hdcard"><div class="grow"><span class="eyebrow">Deck recipe</span><h2 class="hd" translate="no">${esc(d.name)}</h2><div class="row" style="gap:6px;flex-wrap:wrap"><span class="tag">${fmt}</span>${cols}${key}${src}<span class="tag dim">${total} cards</span></div></div></div>
     ${miss ? `<div class="card flat" role="status" style="padding:10px 14px"><b>${have} of ${total} cards are playable.</b> <span class="sub">${miss} card${miss === 1 ? ' is' : 's are'} not in the library yet; the copy fills in as card updates add them.</span></div>` : ''}
     <div class="rc-grid"><div class="col" style="gap:12px">${RC_TYPES.concat(['Other', 'Missing']).map(sec).join('')}</div>
       <div class="col" style="gap:12px"><div class="card flat" style="padding:10px 14px"><span class="cp-h">Cost spread</span><div class="rc-curve">${bars}</div></div>

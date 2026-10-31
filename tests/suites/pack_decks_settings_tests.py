@@ -78,15 +78,15 @@ with sync_playwright() as p:
         chk(f'{lab} builder: choosing slot 4 shows an empty deck', 'Add 40 more' in pg.text_content('#db-status') and ev(pg, "BS.ACTIVE_SLOT")==3)
         pg.fill('#db-name', 'My Red Test'); pg.press('#db-name', 'Enter'); pg.locator('#db-name').blur(); settle(pg)
         chk(f'{lab} builder: renaming the slot works and appears in the list', ev(pg, "BS.SLOTS()[3].name")=='My Red Test' and 'My Red Test' in pg.locator('#db-slot option:checked').inner_text())
-        pg.select_option('#db-preset', 'red'); settle(pg)
+        pg.select_option('#db-preset', 'std01'); settle(pg)
         chk(f'{lab} builder: loading a ready-made deck into an empty slot needs no confirmation', ev(pg, "Object.values(BS.PLAYER_DECK).reduce((a,b)=>a+b,0)")==40, ev(pg, "Object.values(BS.PLAYER_DECK).reduce((a,b)=>a+b,0)"))
-        pg.select_option('#db-preset', 'mitra'); settle(pg)
+        pg.select_option('#db-preset', 'rbs01-1'); settle(pg)
         chk(f'{lab} builder: loading over a filled slot asks first', pg.evaluate("document.getElementById('action-modal').classList.contains('active')"))
         pg.locator('#modal-actions .modal-btn', has_text='Cancel').click(); settle(pg)
-        chk(f'{lab} builder: Cancel keeps the red deck', ev(pg, "!!BS.PLAYER_DECK['BS75-011']&&!BS.PLAYER_DECK['BS74-CX03']"))
-        pg.select_option('#db-preset', 'mitra'); settle(pg); pg.locator('#modal-actions .modal-btn', has_text='Replace').click(); settle(pg)
-        chk(f'{lab} builder: Replace swaps in the Mitra deck', ev(pg, "!!BS.PLAYER_DECK['BS74-CX03']&&!BS.PLAYER_DECK['BS75-011']"))
-        chk(f'{lab} builder: the Mitra deck is legal in Eternal (status text)', 'legal' in pg.text_content('#db-status') and 'Needs' not in pg.text_content('#db-status'), pg.text_content('#db-status'))
+        chk(f'{lab} builder: Cancel keeps the starter deck', ev(pg, "!!BS.PLAYER_DECK['26RSD01-001']&&!BS.PLAYER_DECK['26RBS01-002']"))
+        pg.select_option('#db-preset', 'rbs01-1'); settle(pg); pg.locator('#modal-actions .modal-btn', has_text='Replace').click(); settle(pg)
+        chk(f'{lab} builder: Replace swaps in the official ready deck', ev(pg, "!!BS.PLAYER_DECK['26RBS01-002']&&!BS.PLAYER_DECK['26RSD01-001']"))
+        chk(f'{lab} builder: the official ready deck is legal in Standard (status text)', 'legal' in pg.text_content('#db-status') and 'Needs' not in pg.text_content('#db-status'), pg.text_content('#db-status'))
         ov = ev(pg, "document.documentElement.scrollWidth<=window.innerWidth+1")
         inview = ev(pg, "[...document.querySelectorAll('#view-deckbuilder .db-tools > *')].every(e=>{const r=e.getBoundingClientRect();return r.right<=window.innerWidth+1&&r.left>=-1})")
         chk(f'{lab} builder: toolbar fits the screen (no horizontal overflow)', ov and inview, [ov, inview])
@@ -100,12 +100,12 @@ with sync_playwright() as p:
         pg.locator('[data-a=go-play]:visible').first.click(); settle(pg)
         chk(f'{lab} PLAY: CPU select, format buttons and start button visible (v0.136.0 Play page)', all(pg.locator(s).is_visible() for s in ['#play-cpu', '#pl-fmt', '#view-play [data-a=start]']))
         chk(f'{lab} PLAY: CPU list has every ready-made deck + random + mirror', pg.locator('#play-cpu option').count()==ev(pg, 'BS.PREBUILT.filter(d=>!d.hidden).length')+2)
-        pg.select_option('#play-cpu', 'mitra'); settle(pg)
-        chk(f'{lab} PLAY: the CPU deck choice is saved', ev(pg, "BS.SETTINGS.cpuDeck")=='mitra' and 'mitra' in ev(pg, "localStorage.getItem('bse.settings.v1')"))
+        pg.select_option('#play-cpu', 'rbs01-1'); settle(pg)
+        chk(f'{lab} PLAY: the CPU deck choice is saved', ev(pg, "BS.SETTINGS.cpuDeck")=='rbs01-1' and 'rbs01-1' in ev(pg, "localStorage.getItem('bse.settings.v1')"))
         pg.reload(); ready(pg); pg.locator('[data-a=go-play]:visible').first.click()
-        chk(f'{lab} PLAY: the choice survives a reload', pg.input_value('#play-cpu')=='mitra')
+        chk(f'{lab} PLAY: the choice survives a reload', pg.input_value('#play-cpu')=='rbs01-1')
         pg.click('#pl-fmt [data-v=standard]'); settle(pg)
-        chk(f'{lab} PLAY: in Standard the Mitra option says it will be replaced', 'not legal in STANDARD' in pg.locator('#play-cpu option[value=mitra]').inner_text())
+        chk(f'{lab} PLAY: in Standard an incomplete official deck says it will be replaced', 'not legal in STANDARD' in pg.locator('#play-cpu option[value=rbs02-6]').inner_text())
         pg.click('#pl-fmt [data-v=eternal]')
         ov = ev(pg, "document.documentElement.scrollWidth<=window.innerWidth+1")
         chk(f'{lab} PLAY: fits the screen', ov and pg.locator('#view-play [data-a=start]').is_visible(), ov)
@@ -142,11 +142,11 @@ with sync_playwright() as p:
         got = ev(pg, "(()=>{const g=BS.G;const ids=p=>new Set(p.deck.concat(p.hand,p.spirits,p.nexus,p.soulState,p.trash).map(x=>x.id));return {p:[...ids(g.p.player)],o:[...ids(g.p.opponent)],pn:g.p.player.deckSize,on:g.p.opponent.deckSize}})()")
         legal_cpu = {'train': True, 'mitra': fmt == 'eternal', 'red': fmt == 'eternal', 'random': True, 'mine': True}[cpu]
         if fmt == 'standard':   # slot 1 is the legal training deck in Standard
-            exp_o = {'train': 'TRAIN-01', 'mitra': '26RSD', 'red': '26RSD', 'random': '26RSD', 'mine': 'TRAIN-01'}[cpu]     # v0.97.0: an illegal choice or random gives a complete Standard starter, not the training deck
+            exp_o = {'train': 'TRAIN-01', 'mitra': '26R', 'red': '26R', 'random': '26R', 'mine': 'TRAIN-01'}[cpu]     # v0.201.0: an illegal choice or random gives a complete listed Standard deck (starter or official ready deck)
         else:
             exp_o = {'train': 'TRAIN-01', 'mitra': 'BS74-CX03', 'red': 'BS75-011', 'random': None, 'mine': ('BS74-CX03' if i % 2 == 1 else 'TRAIN-01')}[cpu]
-        okp = set(got['p']) <= set(mine) and got['pn'] == 40
-        oko = got['on'] == 40 and (exp_o is None or (any(x.startswith('26RSD') for x in got['o']) if exp_o == '26RSD' else exp_o in got['o']))
+        okp = set(got['p']) <= set(mine) and got['pn'] >= 40
+        oko = got['on'] >= 40 and (exp_o is None or (any(x.startswith('26R') for x in got['o']) if exp_o == '26R' else exp_o in got['o']))
         chk(f'match #{i+1} {fmt}/CPU deck {cpu}: both decks built from the chosen lists (40 cards each)', okp and oko and not errs, [got, mine[:3], errs])
         ctx.close()
     # ---------- H. illegal own deck ----------
