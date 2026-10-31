@@ -5254,11 +5254,6 @@
   "K_BRAVE",
   "S_UNAFFECTED"
  ],
- "BS17-037": [
-  "A_REFRESH",
-  "C_LEVEL",
-  "T_DESTROYED"
- ],
  "BS17-038": [
   "A_BP_PLUS",
   "C_LEVEL",
@@ -16557,11 +16552,6 @@
   "C_LEVEL",
   "M_OPTIONAL",
   "M_REPLACEMENT"
- ],
- "BS41-038": [
-  "A_VOID",
-  "C_LEVEL",
-  "T_BLOCKS"
  ],
  "BS41-039": [
   "C_LEVEL",
