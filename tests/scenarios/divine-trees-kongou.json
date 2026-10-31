@@ -1,0 +1,50 @@
+{
+  "name": "divine-trees-kongou",
+  "about": "v0.202.0 next cycle bundle 11 (Eternal): BS64-078 The Towering Strange Divine Trees (When Deployed: your counter +1, then a Void core to this Nexus; its LV2 opposing-attack exhaust stays).",
+  "rules": [
+    "STD:12-2-1-12@caad612c",
+    "ETR:effects.simultaneous@0d3e0a51"
+  ],
+  "turn": 4,
+  "active": "player",
+  "step": 5,
+  "players": {
+    "player": {
+      "reserve": 3,
+      "void": 6,
+      "spirits": [
+        {
+          "id": "26RBS01-005",
+          "cores": 1,
+          "as": "filler"
+        }
+      ],
+      "nexus": [
+        {
+          "id": "BS64-078",
+          "cores": 1,
+          "as": "trees"
+        }
+      ],
+      "deck": [
+        "26RBS01-004",
+        "26RBS01-005"
+      ]
+    },
+    "opponent": {
+      "reserve": 4,
+      "spirits": [
+        {
+          "id": "26RBS01-031",
+          "cores": 1,
+          "as": "small"
+        },
+        {
+          "id": "26RBS01-004",
+          "cores": 1,
+          "as": "big"
+        }
+      ]
+    }
+  }
+}

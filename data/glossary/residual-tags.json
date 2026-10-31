@@ -30249,12 +30249,6 @@
   "M_OPTIONAL",
   "T_MIRAGE_LIFE"
  ],
- "BS64-078": [
-  "A_COUNTER",
-  "A_VOID",
-  "C_LEVEL",
-  "M_THEN"
- ],
  "BS64-079": [
   "A_NO_BURST",
   "A_SOUL_STATE",
