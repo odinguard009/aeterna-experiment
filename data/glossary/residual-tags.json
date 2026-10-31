@@ -4859,11 +4859,6 @@
   "M_BY_DOING",
   "T_BATTLE_WIN"
  ],
- "BS16-019": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
  "BS16-021": [
   "A_EXHAUST",
   "C_LEVEL",
@@ -15609,10 +15604,6 @@
   "M_BY_DOING",
   "S_UNAFFECTED",
   "T_ATTACKS"
- ],
- "BS40-002": [
-  "A_BP_PLUS",
-  "C_LEVEL"
  ],
  "BS40-003": [
   "A_RETURN_TRASH",

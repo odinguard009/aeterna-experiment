@@ -315,7 +315,7 @@ function staticBp(i) {
       if (e.attackingOnly && G.attacker !== i) continue;
       if (e.blockingOnly && G.blocker !== i) continue;           // v0.159 (During Block)
       if (e.fightingOnly && G.attacker !== i && G.blocker !== i) continue;      // v0.168 "attacking/blocking Spirits"
-      if (!fxIf(o, opp, e.if)) continue;
+      if (!fxIf(o, opp, e.if, { selfInst: i, attacker: G.attacker, blocker: G.blocker })) continue;      // v229 ctx for "While ... on this Spirit" style conditions in static BP
       if (e.noStack) { const k = CARDS[src.id].name + ':' + e.bp + ':' + JSON.stringify(e.match || null); if (seenNS.has(k)) continue; seenNS.add(k); }      // v0.168 (Can't Stack): one copy counts
       sum += e.perHand ? e.bp * o.hand.length : e.perReserve ? e.bp * o.reserve.n : e.perCores ? e.bp * (i.cores || 0) : e.per ? e.bp * (perCount(o, e.per) - (e.besides && perCount({ spirits: [src], nexus: [src] }, e.per) ? 1 : 0)) : e.bp;      // v0.72 "For each X you control, this Spirit gains +N BP" (per)
     }
