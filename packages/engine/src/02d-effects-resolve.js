@@ -67,6 +67,7 @@ function fxValid(it) {
   if (e.blockingOnly && (trg === 'BATTLE_WIN' || trg === 'ALLY_BATTLE_WIN') && ctx.attacking) return false;     // v0.74 (When Blocks) battle result: only as the blocker
   if (trg === 'ALLY_SUMMONED' && subj && CARDS[subj.id].type === 'Brave' && !(e.match && e.match.type === 'Brave')) return false;     // a Brave summon is not a Spirit summon (manual p. 35)
   if (trg === 'OWN_LIFE_HIT' && e.match && !(ctx.attacker && fxMatch(CARDS[ctx.attacker.id], e.match))) return false;      // v0.177 "by opposing Spirits / Ultimates"
+  if (trg === 'EXHAUSTED_FX' && e.match && !(subj && fxMatch(CARDS[subj.id], e.match, subj))) return false;      // v220
   if (trg === 'EXHAUSTED_FX' && (e.exSide || 'opp') !== ctx.side) return false;      // v155: side 'own' = the victim's side (ctx.subject = the exhausted Spirit)
   if (trg === 'EXHAUSTED_FX' && e.heavyOnly && !ctx.heavy) return false;
   if (trg === 'OPP_DESTROYED_FX' || trg === 'EXHAUSTED_FX') {      // v0.196 zeroBp: the destroyed Spirit had 0 BP; bySrc {type, family}: the destroying effect's own card

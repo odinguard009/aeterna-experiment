@@ -81,3 +81,12 @@
     checkDepletion(c.opp);
   };
 })();
+
+/* v220 DESTROY.costLeSubj "with a cost equal or inferior to that Spirit's" (ctx.subject = the Spirit the trigger named) */
+(() => {
+  const D = FX_ACTIONS.DESTROY, dChk = D.chk, dCands = D.cands, dTxt = D.txt;
+  D.chk = a => (a.costLeSubj == null || a.costLeSubj === true) && dChk(a);
+  D.cands = (c, a) => { const L = dCands(c, a); const sub = c.ctx && c.ctx.subject;
+    return a.costLeSubj === true && sub ? L.filter(t => CARDS[t.id].cost <= (CARDS[sub.id].cost || 0)) : L; };
+  D.txt = a => a.costLeSubj ? "destroy an opposing Spirit with a cost equal or inferior to that Spirit's" : dTxt(a);
+})();

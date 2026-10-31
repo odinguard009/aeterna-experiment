@@ -38171,14 +38171,6 @@
   "M_REPLACEMENT",
   "T_ALLY_LOST"
  ],
- "26RBS02-X16": [
-  "A_EXHAUST",
-  "A_REVEAL_ADD",
-  "A_REVEAL_DECK",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
  "26RBS03-067": [
   "A_DRAW",
   "C_LEVEL",
@@ -38229,10 +38221,6 @@
   "M_OPTIONAL",
   "M_THEN",
   "T_SUMMONED"
- ],
- "26RSD05-010": [
-  "C_LEVEL",
-  "M_OPTIONAL"
  ],
  "26RSD06-011": [
   "C_LEVEL",

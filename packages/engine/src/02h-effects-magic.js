@@ -80,10 +80,18 @@ Object.assign(FX_ACTIONS, {
       for (const t of picked) if (c.opp.spirits.includes(t)) { removeSpirit(c.opp, t, 'destroyed', true); c.ctx.destroyed.push(t); }
       checkDepletion(c.opp); c.ctx.did = c.ctx.destroyed.length > 0; io.view({ type: 'board' });
     } },
-  SYMBOLS_ZERO_OPP: { chk: () => true, txt: () => 'during this turn, the symbol of every opposing Spirit/Ultimate is fixed as zero',
+  SYMBOLS_ZERO_OPP: { chk: a => (a.color == null || COLORS.includes(a.color)) && (a.bpLe == null || (Number.isInteger(a.bpLe) && a.bpLe >= 0 && a.bpLe <= 30000)) && (a.pick == null || (a.pick === true && a.color == null)) && Object.keys(a).every(k => ['do', 'if', 'color', 'bpLe', 'pick'].includes(k)),
+    txt: a => a.color ? `during this turn, every opposing ${a.bpLe || 0} BP or less Spirit loses a ${cap(a.color)} symbol` : 'during this turn, the symbol of every opposing Spirit/Ultimate is fixed as zero',
     can: c => c.opp.spirits.length > 0,
-    run: async c => {
+    run: async (c, a) => {
       if (!c.opp.spirits.length) { c.ctx.did = false; return; }
+      if (a.color || a.pick) {      // v220 "You can target a colour. During this step, every opposing N BP or less Spirit loses a symbol of that colour."
+        let color = a.color;
+        if (!color) { const cnt = {}; for (const t of c.opp.spirits) for (const k of symbolAttrs(CARDS[t.id])) cnt[k] = (cnt[k] || 0) + 1; color = Object.entries(cnt).sort((x, y) => y[1] - x[1])[0]?.[0] || COLORS[0]; }
+        for (const t of c.opp.spirits) if (bpOf(t) <= (a.bpLe || 0) && !fxImmune(c.opp, t, c)) t.symZeroColor = { color, turn: G.turnNo };
+        log(`${_pn(c)}: every opposing ${a.bpLe || 0} BP or less Spirit loses a ${cap(color)} symbol this step.`); io.view({ type: 'board' });
+        return;
+      }
       for (const t of c.opp.spirits) if (!fxImmune(c.opp, t, c)) t.symZeroTurn = G.turnNo;     // v0.58: unaffected Spirits keep their symbols
       c.opp.symZeroAll = G.turnNo; c.opp.symZeroBy = { p: c.p, src: c.src };                      // v0.47: also Spirits/Ultimates that come to the Field later this turn
       log(`${_pn(c)}: the symbols of ${poss(c.opp)} Spirits are zero until the end of the turn.`); io.view({ type: 'board' });

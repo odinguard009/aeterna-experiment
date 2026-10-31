@@ -1,0 +1,31 @@
+{
+  "name": "garaja-and-utmost",
+  "about": "v0.202.0 bundle 18: 26RBS02-X16 Garaja (When Summoned: reveal three, add every Cyantree Nexus to the Hand, rest to the deckbottom; its True Release destroys an opposing Spirit with a cost equal or inferior to that of the Cyantree Spirit that is originally a Nexus and just exhausted) and 26RSD05-010 Utmost Depth (Start of the Opposing Attack Step: every opposing 1000 BP or less Spirit loses a symbol of a chosen colour; its True Release draws when your Spirit effects destroy an opposing 0 BP Spirit in your Attack Step).",
+  "rules": [
+    "STD:12-2-1-12@caad612c",
+    "SJP:core-move@eb7563c8"
+  ],
+  "turn": 4,
+  "active": "player",
+  "step": 5,
+  "players": {
+    "player": {
+      "reserve": 10,
+      "spirits": [
+        { "id": "26RBS02-X16", "cores": 3, "as": "garaja" }
+      ],
+      "nexus": [
+        { "id": "26RSD05-010", "cores": 3, "as": "utmost" },
+        { "id": "26RBS01-106", "cores": 0, "as": "cyantree" }
+      ],
+      "deck": ["26RBS01-107", "26RBS01-004", "26RBS02-084", "26RBS01-006"]
+    },
+    "opponent": {
+      "reserve": 4,
+      "spirits": [
+        { "id": "26RBS01-031", "cores": 1, "as": "oppSmall" },
+        { "id": "26RBS01-004", "cores": 1, "as": "oppBig" }
+      ]
+    }
+  }
+}
