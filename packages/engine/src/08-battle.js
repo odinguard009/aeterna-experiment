@@ -28,7 +28,7 @@ async function doBattle(attKey, att) { try { G.eob = []; G.battleMagic = []; G.b
 async function doBattleInner(attKey, att) {
   const A = G.p[attKey], D = G.p[other(attKey)];
   if (!(await payAbTax(A, att, 'attack'))) { io.view({ type: 'board' }); return; }   // v0.47 Plutonic Wall
-  A.attacksThisTurn = (A.attacksThisTurn || 0) + 1;      // v0.185 'first / second or subsequent attack of the turn' (reset in beginTurn)
+  A.attacksThisTurn = (A.attacksThisTurn || 0) + 1; const lowLim = activeLowAtk(); if (lowLim && CARDS[att.id].cost <= lowLim) G.lowAtkTurn = G.turnNo;      // v214      // v0.185 'first / second or subsequent attack of the turn' (reset in beginTurn)
   att.exhausted = true; G.battleNo = (G.battleNo || 0) + 1; G.blocker = null;      // v0.68: battle counter for (Once Per Battle) / "during this battle" (02l)
   log(`${who(A)} ${A.cpu ? 'attacks' : 'attack'} with ${CARDS[att.id].name} (${bpOf(att)} BP).`);
   G.attacker = att;

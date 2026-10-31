@@ -37,7 +37,7 @@ function fxEntries(f) {
 /* v189 "When your Nexuses, or your Spirits that are originally Nexuses are destroyed": only queue the event while a card on the Field hears it */
 const nexusDeathHears = p => !!G && !!G.evQ && fieldList(p).some(f => fxEntries(f).some(({ e }) => e.trigger === 'ALLY_NEXUS_DESTROYED'));
 function fxMatch(card, m, inst) {
-  if (!m || (!m.name && !m.notName && !m.bpBoosted && !m.family && !m.familyAll && !m.keyword && !m.noText && !m.hasTrigger && m.costGe == null && m.costLe == null && !m.costIn && !m.type && !m.color && !m.noUlt && !m.team && m.symbolsGe == null && m.bpLe == null && m.bpGe == null && m.exhausted == null && m.coresGe == null)) return true;
+  if (!m || (!m.name && !m.notName && !m.bpBoosted && !m.family && !m.familyAll && !m.keyword && !m.noText && !m.hasTrigger && m.costGe == null && m.costLe == null && !m.costIn && !m.type && !m.color && !m.noUlt && !m.team && m.symbolsGe == null && m.bpLe == null && m.bpGe == null && m.exhausted == null && m.coresGe == null && !m.originalNexus)) return true;      // v214 originalNexus must not be treated as an empty match
   if (m.notName && m.notName.some(n => card.name.toLowerCase().includes(n.toLowerCase()))) return false;      // v171 "besides <name>"
   if (m.bpBoosted && !(inst && lvIndex(inst) >= 0 && bpOf(inst) > (card.levels[lvIndex(inst)].bp || 0))) return false;      // v171 "under BP+ effects": current BP above the printed level BP
   if (m.noUlt && card.type === 'Ultimate') return false;      // v0.59: the text says "Spirit"; texts that include Ultimates print "Spirit/Ultimate"
@@ -48,7 +48,8 @@ function fxMatch(card, m, inst) {
   if (m.type && card.type !== m.type) return false;
   if (m.hasTrigger && !(card.effects || []).some(e => e.trigger === m.hasTrigger)) return false;      // v162 "a Spirit with When Blocks / When Destroyed effects" (printed trigger)
   if (m.typeAny && !m.typeAny.includes(card.type)) return false;      // v0.196 "Spirit card/Nexus card" (a list of card types)
-  if (m.team && !cardTeams(card).includes(m.team)) return false;      // v0.184 (schema 55) "a Red Stella Spirit card": the [Team: X] head line
+  if (m.team && !cardTeams(card).includes(m.team)) return false;
+  if (m.originalNexus && card.type !== 'Nexus') return false;      // v214 "a Spirit that is originally a Nexus"      // v0.184 (schema 55) "a Red Stella Spirit card": the [Team: X] head line
   if (m.bpGe != null && !(inst && bpOf(inst) >= m.bpGe)) return false;      // v0.199 "your 10000 BP or more Spirit" (current BP)
   if (m.coresGe != null && !(inst && totalCores(inst) >= m.coresGe)) return false;      // v189 "with one or more core on it"
   if (m.exhausted != null && !(inst && !!inst.exhausted === m.exhausted)) return false;      // v176 "your exhausted <match> Spirits"
@@ -68,7 +69,7 @@ function oppAttackLock(p, s) {      // v201 STATIC NO_ATTACK_ONE_CORE on the opp
     for (const { e } of fxEntries(src)) if (e.trigger === 'STATIC' && e.flag === 'NO_ATTACK_ONE_CORE' && !(e.lv && !e.lv.includes(L)) && fxIf(opp, p, e.if, { selfInst: src })) return true; }
   return false;
 }
-const cantAttack = (p, s) => !!s.noAB || (!!G && s.noAtkTurn === G.turnNo) || flagActive(p, 'CANT_ATTACK', s) || oppAttackLock(p, s);      // v0.170: the printed "This Spirit can't attack." (STATIC flag CANT_ATTACK) besides the effect lock noAB
+const cantAttack = (p, s) => !!s.noAB || (!!G && s.noAtkTurn === G.turnNo) || flagActive(p, 'CANT_ATTACK', s) || oppAttackLock(p, s) || lowAtkLocked(p, s);      // v214 LOW_ATK_ONCE      // v0.170: the printed "This Spirit can't attack." (STATIC flag CANT_ATTACK) besides the effect lock noAB
 const canBlockState = (p, s) => !s.noAB && !(s.noBlockB && s.noBlockB === G.battleNo) && !flagActive(p, 'CANT_BLOCK', s) && (!s.exhausted || flagActive(p, 'BLOCK_EXHAUSTED', s) || (s.blockExB != null && s.blockExB === G.battleNo));      // v0.89 S1: BLOCK_EXHAUSTED_OPP (02p)
 function fxIf(owner, opp, c, ctx) {
   if (!c) return true;
@@ -180,7 +181,7 @@ const perOk = q => !!q && typeof q === 'object' && PER_TYPES.includes(q.type) &&
 const perCount = (owner, q) => (q.type === 'Nexus' ? owner.nexus : owner.spirits.filter(f => CARDS[f.id].type !== 'Ultimate')).filter(f => { const k = CARDS[f.id];
   return (!q.colors || q.colors.some(x => (k.colors || [k.color, k.symbol]).includes(x))) && (!q.family || (k.families || []).includes(q.family)) && (!q.name || k.name.includes(q.name)) && (!q.team || cardTeams(k).includes(q.team)) && (!q.keyword || cardHasKeyword(k, q.keyword)); }).length;
 function ownerOf(i) { if (!G) return null; for (const k of ['player', 'opponent']) if (fieldList(G.p[k]).includes(i)) return G.p[k]; return null; }
-const STATIC_FLAGS = ['MUST_BLOCK', 'NO_RETURN', 'CORES_DRAW', 'UNAFFECTED_SOUL', 'COST_DESTROY_PLUS', 'EXTRA_REDUCTION', 'SUMMON_SYMBOL', 'NO_END_ATTACK', 'UNAFFECTED', 'HAND_UNAFFECTED', 'BLOCK_EXHAUSTED', 'CANT_ATTACK', 'CANT_BLOCK', 'NO_DECK_DISCARD', 'NO_ATTACK_LIFE', 'HAND_COST', 'DRAW_PLUS', 'TREAT_LV3', 'TRIBUTE_SAFE', 'IMMORTALITY', 'NO_BLOCK_INFERIOR', 'NO_BP_COMPARE', 'CAMOU', 'SUMMON_TAX', 'CORE_SAFE', 'LIFE_CORE_TO_TRASH', 'EXTRA_SYMBOL', 'NO_BLOCK_SHAMAN', 'BP_VIA_SHAMAN', 'NO_ATTACK_ONE_CORE', 'RUMBLE_PLUS', 'UNBLOCKABLE_LOW'];
+const STATIC_FLAGS = ['MUST_BLOCK', 'LOW_ATK_ONCE', 'NO_RETURN', 'CORES_DRAW', 'UNAFFECTED_SOUL', 'COST_DESTROY_PLUS', 'EXTRA_REDUCTION', 'SUMMON_SYMBOL', 'NO_END_ATTACK', 'UNAFFECTED', 'HAND_UNAFFECTED', 'BLOCK_EXHAUSTED', 'CANT_ATTACK', 'CANT_BLOCK', 'NO_DECK_DISCARD', 'NO_ATTACK_LIFE', 'HAND_COST', 'DRAW_PLUS', 'TREAT_LV3', 'TRIBUTE_SAFE', 'IMMORTALITY', 'NO_BLOCK_INFERIOR', 'NO_BP_COMPARE', 'CAMOU', 'SUMMON_TAX', 'CORE_SAFE', 'LIFE_CORE_TO_TRASH', 'EXTRA_SYMBOL', 'NO_BLOCK_SHAMAN', 'BP_VIA_SHAMAN', 'NO_ATTACK_ONE_CORE', 'RUMBLE_PLUS', 'UNBLOCKABLE_LOW'];
 /* flag effects: MUST_BLOCK (opposing Spirits must block this attacker), NO_RETURN (cannot be returned by opposing effects), CORES_DRAW (draw once per turn when cores are sent by your effects),
    UNAFFECTED_SOUL (Ometeotl Contract Field: this card is unaffected by opposing effects while a Soul Core is on it),
    NO_END_ATTACK (v0.43: while the matching Spirit of the owner attacks, the opponent can't end the Attack Step via effects; Sunya Lv3, Crimson Crater Lv2) */
@@ -321,6 +322,18 @@ function staticBp(i) {
 }
 /* official (Standard Comprehensive Rules 4-8-1/4-8-2, Eternal Rule Manual p.11/p.20): the Void is the supply of cores and has no limit;
    when it runs out, cores are added from outside the game. p.void is this player's Void; taking more than it holds adds new cores (made). */
+/* v214 STATIC LOW_ATK_ONCE {costLe} ("Cost N or less Spirits can only attack once per turn in total"): while the flag is active on
+   either side, only one such attack may be declared each turn. */
+function activeLowAtk() {
+  if (!G) return 0;
+  let lim = 0;
+  for (const q of [G.p.player, G.p.opponent]) { const opp = G.p[other(q.key)];
+    for (const f of fieldList(q)) { const L = lvNo(f);
+      for (const { e } of fxEntries(f)) if (e.trigger === 'STATIC' && e.flag === 'LOW_ATK_ONCE' && !(e.lv && !e.lv.includes(L)) && (!e.to || e.to === 'self' || e.to === 'own') && (!e.oc || ocActive(f)) && fxIf(q, opp, e.if, { selfInst: f }) && Number.isInteger(e.costLe)) lim = Math.max(lim, e.costLe);
+    } }
+  return lim;
+}
+function lowAtkLocked(p, s) { const lim = activeLowAtk(); return !!lim && !!G && CARDS[s.id].cost <= lim && G.lowAtkTurn === G.turnNo; }
 function takeFromVoid(p, n) { if (n <= 0) return 0; if (p.void < n) { p.made += n - p.void; p.void = n; } p.void -= n; return n; }
 function releaseCores(p, i) {                          // official: a Grandwalker Nexus' cores go to the Void, other cards' cores to the Reserve
   if (isCountLv(CARDS[i.id])) p.void += i.cores; else p.reserve.n += i.cores;
@@ -379,4 +392,4 @@ function bounceCard(owner, t, to) {                   // return a field card to 
   log(`${poss(owner)} ${CARDS[t.id].name} returns to the ${to === 'deckBottom' ? 'bottom of the Deck' : 'Hand'}.`);
 }
 const SOUL_SRC = ['self', 'hand', 'trash', 'handOrTrash', 'reveal'];
-const hasMatch = m => !!m && (m.name || m.notName || m.bpBoosted || m.family || m.costGe != null || m.costLe != null || m.costIn || m.type || m.typeAny || m.color || m.familyAll || m.keyword || m.noText || m.hasTrigger || m.team || m.coresGe != null);
+const hasMatch = m => !!m && (m.name || m.notName || m.bpBoosted || m.family || m.costGe != null || m.costLe != null || m.costIn || m.type || m.typeAny || m.color || m.familyAll || m.keyword || m.noText || m.hasTrigger || m.team || m.coresGe != null || m.originalNexus);

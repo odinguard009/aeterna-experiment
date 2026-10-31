@@ -38177,10 +38177,6 @@
   "M_REPLACEMENT",
   "T_ALLY_LOST"
  ],
- "26RBS02-085": [
-  "C_LEVEL",
-  "T_ALLY_ATTACKS"
- ],
  "26RBS02-X10": [
   "C_LEVEL",
   "M_OPTIONAL",
@@ -38194,12 +38190,6 @@
   "C_LEVEL",
   "M_OPTIONAL",
   "T_SUMMONED"
- ],
- "26RBS02-X18": [
-  "C_LEVEL",
-  "M_UP_TO",
-  "T_ALLY_BLOCKED",
-  "T_ATTACKS"
  ],
  "26RBS03-044": [
   "C_LEVEL",
