@@ -116,7 +116,7 @@ function tokenHome(p, t) { t.cores = 0; t.soul = false; t.exhausted = false; t.h
 const symTurnCols = i => i.symTurn && G && i.symTurn.turn === G.turnNo ? i.symTurn.cols : [];   // v0.44 "during this turn, an extra Red symbol"
 const symZeroAllOn = (q, i) => q.symZeroAll === G.turnNo && !fxImmune(q, i, q.symZeroBy);    // v0.58: an unaffected later arrival keeps its symbols
 const symSetOn = i => !!i.symSet && i.symSet.turn === G.turnNo && (!i.symSet.battle || i.symSet.battle === G.battleNo);   // v160 SYMBOLS_SET
-const attackSymbols = i => i.symZeroTurn === G.turnNo || symZeroAllOn(G.p.player.spirits.includes(i) ? G.p.player : G.p.opponent, i) ? 0 : symSetOn(i) ? i.symSet.n : Math.max(0, (CARDS[i.id].symbols || 0) + (i.brave ? CARDS[i.brave.id].symbols || 0 : 0) + (i.symBattle || 0) + symTurnCols(i).length);
+const attackSymbols = i => i.symZeroTurn === G.turnNo || symZeroAllOn(G.p.player.spirits.includes(i) ? G.p.player : G.p.opponent, i) ? 0 : symSetOn(i) ? i.symSet.n : Math.max(0, (CARDS[i.id].symbols || 0) + (i.brave ? CARDS[i.brave.id].symbols || 0 : 0) + (i.symLockBattle === G.battleNo ? (i.symLockN || 0) : (i.symBattle || 0) + symTurnCols(i).length));      // v189 symLockBattle: "The number of symbols can't increase except via this effect"
 /* Symbols (Eternal rule manual VER.17.0): each printed symbol has one or more attributes.
    colour; "ultimate" (Ultimates, p. 39: reduces only Ultimate reduction symbols); "god" (Grandwalker Nexuses, p. 42: never reduces the six colours);
    a Contract Grandwalker Nexus has a coloured God symbol = God + its colour (p. 44). symbolColors entries: a colour, "ultimate", "god" or "god-<colour>".
@@ -313,6 +313,7 @@ function removeSpirit(p, s, why, byOpponent) {
   const kill = why === 'destroyed' && byOpponent !== 'battle' && !!G && !!G.evQ && !!G.fxBy && G.fxBy !== p.key && fieldList(G.p[G.fxBy]).some(f => fxEntries(f).some(({ e }) => e.trigger === 'OPP_DESTROYED_FX')),      // v0.196 someone can react to "opposing Spirits destroyed by your effect"
     bp0 = kill ? bpOf(s) : 0;
   if (!removeFrom(p.spirits, s)) return;
+  if (why === 'destroyed' && CARDS[s.id].type === 'Nexus' && nexusDeathHears(p)) G.evQ.push({ type: 'NEXUS_DIED', key: p.key, inst: s });      // v189 "your Spirits that are originally Nexuses are destroyed"
   if ((why === 'destroyed' || why === 'depleted') && byOpponent !== 'battle' && G && G.fxBy && G.fxBy !== p.key) { G.p[G.fxBy].oppFxLossTurn = G.turnNo; if (why === 'depleted') G.p[G.fxBy].oppDepletedTurn = G.turnNo; }      // v0.196 condition oppLostByFx; v0.199 oppDepleted
   if (why === 'destroyed' && byOpponent !== 'battle' && G && G.fxBy === p.key) p.ownFxDestroyTurn = G.turnNo;      // v0.200 condition ownDestroyedTurn
   s.lostFxSrc = G && G.fxBy === p.key && G.fxSrc ? G.fxSrc : null;      // v0.197 condition byOwnFx (the card of the own effect that removed it)
@@ -327,7 +328,7 @@ function removeSpirit(p, s, why, byOpponent) {
   delete s.noFx;
   coreEvN(p, s.uid, 'reserve', s.cores, s.soul);          // v0.149.0: the cores of a destroyed / depleted Spirit fly to the Reserve
   p.reserve.n += s.cores; if (s.soul) p.reserve.soul = true;
-  s.cores = 0; s.soul = false; s.exhausted = false; s.heavy = false; s.noAB = false; s.bpMod = 0; s.lv2Turn = false; s.lvHighTurn = false; s.lv2Battle = null; s.bpB = null; s.fxBattle = null;      // v0.68: battle BP / Once Per Battle end when it leaves
+  s.cores = 0; s.soul = false; s.exhausted = false; s.heavy = false; s.noAB = false; s.bpMod = 0; s.lv2Turn = false; s.lvHighTurn = false; s.lv2Battle = null; s.bpB = null; s.fxBattle = null; s.symBattle = 0; s.symLockBattle = null; s.symLockN = 0;      // v0.68: battle BP / Once Per Battle end when it leaves; v189 battle symbol marks
   const under = s.under; s.under = [];
   for (const u of under) { u.under = []; p.trash.push(u); }
   shedBrave(p, s, p.trash);

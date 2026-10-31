@@ -24,7 +24,7 @@ function battleEndAttack() {                          // v0.43 "when this battle
   G.attackEnded = G.turnNo; log('The battle ends, and with it the Attack Step.');
 }
 const attackStepOver = () => !!G && G.attackEnded === G.turnNo;
-async function doBattle(attKey, att) { try { G.eob = []; G.battleMagic = []; G.battleResolved = false; await doBattleInner(attKey, att); if (G && !G.over && G.eob && G.eob.length) await endOfBattle(); const a2 = G && G.attacker; if (a2 && !G.over && G.p[attKey].spirits.includes(a2)) await fireFx(G.p[attKey], 'ALLY_BATTLE_END', null, { subject: a2, attacker: a2 }); } finally { if (G) { G.eob = null; G.battleMagic = null; G.battleResolved = false; battleEndAttack(); G.attacker = null; G.blocker = null; G.noBurst = null; for (const k of ['player', 'opponent']) for (const f of fieldList(G.p[k])) f.symBattle = 0; } } }
+async function doBattle(attKey, att) { try { G.eob = []; G.battleMagic = []; G.battleResolved = false; await doBattleInner(attKey, att); if (G && !G.over && G.eob && G.eob.length) await endOfBattle(); const a2 = G && G.attacker; if (a2 && !G.over && G.p[attKey].spirits.includes(a2)) await fireFx(G.p[attKey], 'ALLY_BATTLE_END', null, { subject: a2, attacker: a2 }); } finally { if (G) { G.eob = null; G.battleMagic = null; G.battleResolved = false; battleEndAttack(); G.attacker = null; G.blocker = null; G.noBurst = null; for (const k of ['player', 'opponent']) for (const f of fieldList(G.p[k])) { f.symBattle = 0; f.symLockBattle = null; f.symLockN = 0; } } } }
 async function doBattleInner(attKey, att) {
   const A = G.p[attKey], D = G.p[other(attKey)];
   if (!(await payAbTax(A, att, 'attack'))) { io.view({ type: 'board' }); return; }   // v0.47 Plutonic Wall
@@ -164,6 +164,8 @@ async function flushBursts() {                         // queued Bursts and even
       await fireFx(G.p[ev.key], 'ALLY_DIED', null, { subject: ev.inst });
     } else if (ev.type === 'LOST') {
       await fireFx(G.p[ev.key], 'ALLY_LOST', null, { subject: ev.inst });
+    } else if (ev.type === 'NEXUS_DIED') {
+      await fireFx(G.p[ev.key], 'ALLY_NEXUS_DESTROYED', ev.inst, { subject: ev.inst });      // v189 "When your Nexuses ... are destroyed"
     } else if (ev.type === 'DESTROYED') await fireFx(G.p[ev.key], 'DESTROYED', ev.inst, { subject: ev.inst, byOpp: !!ev.byOpp, byOppFx: !!ev.byOppFx, depl: !!ev.depl });
     else if (ev.type === 'IMMORTAL') await immortalOffer(G.p[ev.key], ev.inst);
     else if (ev.type === 'LEAVES') await fireFx(G.p[ev.key], 'LEAVES', ev.inst, { subject: ev.inst, byOpp: true, byOppFx: !!ev.byOppFx });

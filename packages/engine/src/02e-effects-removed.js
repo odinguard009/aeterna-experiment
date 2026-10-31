@@ -47,13 +47,13 @@ Object.assign(FX_ACTIONS, {
       if (!T.length) { c.ctx.did = false; return; }
       for (const t of T) { t.bpMod = (t.bpMod || 0) - a.n; log(`${_nm(c)}: ${poss(c.opp)} ${CARDS[t.id].name} gets -${a.n} BP (${bpOf(t)} BP).`); }
     } },
-  HEAVY_EXHAUST_OPP: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 3 && (a.exhaustedOnly == null || a.exhaustedOnly === true) && (a.costLe == null || (Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 20)),
-    txt: a => `heavy exhaust ${a.n === 1 ? 'an' : 'up to ' + a.n} ${a.exhaustedOnly ? 'exhausted ' : ''}opposing Spirit${a.n === 1 ? '' : 's'}`,
+  HEAVY_EXHAUST_OPP: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 3 && (a.exhaustedOnly == null || a.exhaustedOnly === true) && (a.costLe == null || (Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 20)) && (a.per == null || perOk(a.per)),      // v189 per: "target an opposing Spirit for each <X> you control"
+    txt: a => a.per ? 'heavy exhaust an opposing Spirit for each matching card you control' : `heavy exhaust ${a.n === 1 ? 'an' : 'up to ' + a.n} ${a.exhaustedOnly ? 'exhausted ' : ''}opposing Spirit${a.n === 1 ? '' : 's'}`,
     cands: (c, a) => c.opp.spirits.filter(t => !t.heavy && !fxImmune(c.opp, t) && (!a || !a.exhaustedOnly || t.exhausted) && (!a || a.costLe == null || CARDS[t.id].cost <= a.costLe)),      // v0.195 exhaustedOnly: "target an opposing exhausted Spirit"
-    can: (c, a) => FX_ACTIONS.HEAVY_EXHAUST_OPP.cands(c, a).length > 0,
+    can: (c, a) => (a.per == null || perCount(c.p, a.per) > 0) && FX_ACTIONS.HEAVY_EXHAUST_OPP.cands(c, a).length > 0,
     run: async (c, a) => {
       const L = FX_ACTIONS.HEAVY_EXHAUST_OPP.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
-      const T = await pickOppSpirits(c, L, a.n, `✨ <b>${esc(_nm(c))}</b><br>Tap the opposing Spirit to Heavy Exhaust (glowing).`);
+      const T = await pickOppSpirits(c, L, a.per ? Math.max(1, a.n * perCount(c.p, a.per)) : a.n, `✨ <b>${esc(_nm(c))}</b><br>Tap the opposing Spirit to Heavy Exhaust (glowing).`);
       if (!T.length) { c.ctx.did = false; return; }
       for (const t of T) { setHeavy(t); log(`${_nm(c)}: ${poss(c.opp)} ${CARDS[t.id].name} is heavy exhausted.`); }
       await fireFx(c.p, 'EXHAUSTED_FX', null, { side: 'opp', heavy: true, fxSrc: c.src });

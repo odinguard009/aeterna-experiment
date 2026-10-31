@@ -127,7 +127,7 @@ const invokeCostText = c => !c ? '' : c.pay ? `pay ${c.pay} cost${c.pay === 1 ? 
   : c.returnSelf ? 'return this card to the deckbottom' : c.returnOwn ? `return one of your ${c.returnOwn.match && c.returnOwn.match.family ? '"' + c.returnOwn.match.family.join('"/"') + '" ' : ''}${c.returnOwn.kind === 'nexus' ? 'Nexuses' : 'Spirits'} to the ${c.returnOwn.toHand ? 'Hand' : 'deckbottom'}`
   : c.destroyOwn ? `destroy one of your ${c.destroyOwn.match && c.destroyOwn.match.family ? '"' + c.destroyOwn.match.family.join('"/"') + '" ' : ''}${c.destroyOwn.kind === 'nexus' ? 'Nexuses' : 'Spirits'}`
   : c.discard ? `discard a ${c.discard.match && c.discard.match.family ? '"' + c.discard.match.family.join('"/"') + '" family ' : ''}card` : '';
-const ownTargetCands = (c, a) => c.p.spirits.filter(s => fxMatch(CARDS[s.id], a.match) && (!a.match || !a.match.tr || (CARDS[s.id].trueRelease && lvNo(s) >= 2)) && (!a.attacking || s === G.attacker) && (!a.coreFromSelf || s !== c.src) && (!a.other || s !== c.src) && !fxImmune(c.p, s, c));
+const ownTargetCands = (c, a) => c.p.spirits.filter(s => fxMatch(CARDS[s.id], a.match, s) && (!a.match || !a.match.tr || (CARDS[s.id].trueRelease && lvNo(s) >= 2)) && (!a.attacking || s === G.attacker) && (!a.coreFromSelf || s !== c.src) && (!a.other || s !== c.src) && !fxImmune(c.p, s, c));
 Object.assign(FX_ACTIONS, {
   /* "during this battle/turn, this Spirit gains +N BP" (to:self) / "Target one of your [attacking] X Spirits. ... it gains +N BP" (to:pick) */
   BP_TARGET: { chk: a => Number.isInteger(a.n) && a.n >= 1000 && a.n <= 30000 && ['self', 'pick'].includes(a.to) && (a.battle == null || a.battle === true) && (a.attacking == null || a.attacking === true) && invokeMatchOK(a.match) && (a.per == null || perOk(a.per)) && (a.alt == null || (a.to === 'pick' && typeof a.alt.name === 'string' && Number.isInteger(a.alt.n) && a.alt.n > a.n && a.alt.n <= 30000)),
@@ -147,14 +147,16 @@ Object.assign(FX_ACTIONS, {
       log(`${CARDS[t.id].name} gets +${n} BP during this ${a.battle ? 'battle' : 'turn'}.`);
     } },
   /* "Target one of your X Spirits. During this battle, it gains an extra <colour> symbol." (cleared when the battle ends, like SYMBOL_PLUS) */
-  SYMBOL_TARGET: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 3 && invokeMatchOK(a.match) && (a.attacking == null || a.attacking === true),
-    txt: a => `one of your ${a.match && a.match.family ? '"' + a.match.family.join('"/"') + '" ' : ''}${a.match && a.match.costGe != null ? 'Cost ' + a.match.costGe + '+ ' : ''}Spirits gains ${a.n} extra symbol${a.n === 1 ? '' : 's'} during this battle`,
+  SYMBOL_TARGET: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 3 && invokeMatchOK(a.match) && (a.attacking == null || a.attacking === true) && (a.color == null || COLORS.includes(a.color)) && (a.lock == null || a.lock === true),      // v189 color: "two Red symbols"; lock: "The number of symbols can't increase except via this effect"
+    txt: a => `one of your ${a.match && a.match.family ? '"' + a.match.family.join('"/"') + '" ' : ''}${a.match && a.match.costGe != null ? 'Cost ' + a.match.costGe + '+ ' : ''}Spirits gains ${a.n} extra ${a.color ? a.color + ' ' : ''}symbol${a.n === 1 ? '' : 's'} during this battle`,
     can: (c, a) => !!G.attacker && ownTargetCands(c, a).length > 0,
     run: async (c, a) => {
       const L = ownTargetCands(c, a); if (!L.length) { c.ctx.did = false; return; }
       const t = c.p.cpu ? (L.find(s => s === G.attacker) || L[0]) : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your Spirits to gain an extra symbol (glowing).`);
       if (!t) { c.ctx.did = false; return; }
-      t.symBattle = (t.symBattle || 0) + a.n; log(`${CARDS[t.id].name} gains ${a.n} extra symbol${a.n === 1 ? '' : 's'} during this battle.`);
+      t.symBattle = (t.symBattle || 0) + a.n;
+      if (a.lock) { t.symLockBattle = G.battleNo; t.symLockN = a.n; }      // v189 the printed cap: only this effect raises the symbol count this battle
+      log(`${CARDS[t.id].name} gains ${a.n} extra ${a.color ? a.color + ' ' : ''}symbol${a.n === 1 ? '' : 's'} during this battle.`);
     } },
 });
 /* extra filters on existing actions (wrapped here so the Invoke sentences stay in one module) */
@@ -215,7 +217,7 @@ function cpuInvokeOK(p, f, e, timing) {
     if (timing !== 'FLASH' || G.active !== p.key || !G.attacker || G.blocker) return false;
     return !opp.spirits.some(s => !s.exhausted && !s.noAB);      // the extra symbol only matters if the attack goes through
   }
-  return acts.every(x => ['DRAW', 'DESTROY', 'BOUNCE_OPP', 'RETURN_TRASH', 'REFRESH', 'REFRESH_SPIRIT', 'VOID_TO_RESERVE', 'VOID_TO_CARD', 'EXHAUST_OPP', 'HEAVY_EXHAUST_OPP', 'BP_MINUS', 'OPP_CORES_TO_RESERVE'].includes(x));
+  return acts.every(x => ['DRAW', 'DESTROY', 'BOUNCE_OPP', 'RETURN_TRASH', 'REFRESH', 'REFRESH_SPIRIT', 'VOID_TO_RESERVE', 'VOID_TO_CARD', 'EXHAUST_OPP', 'HEAVY_EXHAUST_OPP', 'BP_MINUS', 'OPP_CORES_TO_RESERVE', 'NEXUS_AS_SPIRIT'].includes(x));      // v189 NEXUS_AS_SPIRIT (X15 "treated as a Spirit this step")
 }
 /* v0.68 "Target an opposing Spirit. During this turn, give it -N BP. Then, if it has 0 BP, destroy it." (BP_MINUS zeroDestroy):
    in Standard a Spirit at 0 BP is not destroyed by the rules (Eternal manual FAQ p. 68, as in v0.55), only by this text */
