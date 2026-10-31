@@ -218,8 +218,8 @@ function simple(card, a) {
         if (A.costLe != null && BS.CARDS[${J(FILL)}].cost > A.costLe) return ''; return t.mustAtk === 7 ? '' : 'mustAtk not set';` };
     case 'BLOCK_TAX':      // v178 the attacker carries blockTax {battleNo, kind} for this battle
       return only(a, ['kind', 'toSubject']) && spirit && { onField: true, body: `G.attacker = src; G.battleNo = 4; await run(src, RA, { attacker: src }); const m = src.blockTax; G.attacker = null; return m && m.battleNo === 4 && m.kind === A.kind ? '' : 'blockTax not set';` };
-    case 'CANT_BE_BLOCKED_BY':      // v0.175 the attacker carries noBlockBy for this battle only
-      return only(a, ['color', 'levels', 'keyword', 'highSpeed']) && spirit && { onField: true, body: `G.attacker = src; G.battleNo = 4; await run(src, RA); const m = src.noBlockBy; G.attacker = null; return m && m.battleNo === 4 ? '' : 'noBlockBy not set';` };
+    case 'CANT_BE_BLOCKED_BY':      // v0.175 the attacker carries noBlockBy for this battle only (v191 costLe / bpLe kinds included)
+      return only(a, ['color', 'levels', 'keyword', 'highSpeed', 'costLe', 'costGe', 'bpLe', 'coresLe', 'noSoul', 'all']) && spirit && { onField: true, body: `G.attacker = src; G.battleNo = 4; await run(src, RA); const m = src.noBlockBy; G.attacker = null; return m && m.battleNo === 4 ? '' : 'noBlockBy not set';` };
     case 'UNBLOCKABLE_PICK':      // v157 one of your Spirits (not this one with `other`) can't be blocked this turn (or by BP <= bpLe)
       return only(a, ['bpLe', 'other']) && spirit && { onField: true, body: `const t = sp(${J(FILL)}, P, 1); G.turnNo = 5; await run(src, RA); if (src.noBlockTurn === 5 || (src.noBlockTurnBp && src.noBlockTurnBp.turn === 5)) return A.other ? 'other: this Spirit was picked' : '';
       const m = A.bpLe != null ? t.noBlockTurnBp : t.noBlockTurn; return A.bpLe != null ? (m && m.turn === 5 && m.bpLe === A.bpLe ? '' : 'noBlockTurnBp not set') : (m === 5 ? '' : 'noBlockTurn not set');` };
@@ -276,6 +276,8 @@ function simple(card, a) {
       return only(a, []) && spirit && { onField: true, body: `src.exhausted = false; await run(src, RA); return src.exhausted ? '' : 'this Spirit is still refreshed';` };
     case 'REFRESH_NEXUS':      // v0.195 refresh one of your exhausted Nexuses
       return only(a, []) && { fix: [{ n: 2 }], body: `const t = nx(${J(nid(2))}, P); t.exhausted = true; await run(src, RA); return t.exhausted ? 'the Nexus is still exhausted' : '';` };
+    case 'RESERVE_TO_LIFE':      // v191 n cores from the Reserve go to the Life (Soul Core untouched)
+      return only(a, ['n']) && { body: `P.reserve.n = A.n + 2; P.life = 3; await run(src, RA); return P.life === 3 + A.n && P.reserve.n === 2 ? '' : 'life 3 -> ' + P.life + ', reserve ' + P.reserve.n;` };
     case 'OPP_CORES_TO_RESERVE':
       if (a.targets === 1 && only(a, ['targets', 'each', 'costLe', 'exhaustedOnly', 'coresLe', 'keepOne', 'untilOne', 'drawPerDepleted']) && !(a.drawPerDepleted && (a.keepOne || a.untilOne))
         && ['costLe', 'exhaustedOnly', 'coresLe', 'keepOne', 'untilOne', 'drawPerDepleted'].some(k => a[k] != null)) {      // v0.77 filters / floors / draw on depletion
@@ -288,6 +290,11 @@ function simple(card, a) {
       else { const t = mk(${J(T)}, ${K}, ex); await run(src, RA); const want = A.untilOne ? 1 : A.keepOne ? Math.max(1, ${K} - A.each) : ${K} - A.each;
         if (t.cores !== want) return 'target cores ${K} -> ' + t.cores + ', want ' + want; }
       return D.every((x, j) => x.cores === d0[j]) ? '' : 'a Spirit outside the filter lost cores';` };
+      }
+      if (only(a, ['targets', 'each', 'blockerOnly']) && a.blockerOnly) {      // v191 "target an opposing blocking Spirit": only G.blocker loses the cores
+        return { body: `const blk = sp(${J(FILL)}, O, A.each + 2); const other = sp(${J(FILL)}, O, A.each + 2); G.attacker = sp(${J(FILL)}, P, 1); G.blocker = blk;
+      const r = O.reserve.n; await run(src, RA); G.blocker = null; G.attacker = null;
+      return blk.cores === 2 && other.cores === A.each + 2 && O.reserve.n === r + A.each ? '' : 'blocker ' + blk.cores + ', other ' + other.cores + ', reserve ' + r + ' -> ' + O.reserve.n;` };
       }
       if (!only(a, ['targets', 'each'])) return null;
       return { body: `const L = []; for (let j = 0; j < A.targets + 1; j++) L.push(sp(${J(FILL)}, O, A.each + 2)); const r = O.reserve.n, before = L.reduce((s, t) => s + t.cores, 0);

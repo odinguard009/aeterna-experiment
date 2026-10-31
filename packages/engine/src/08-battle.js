@@ -73,7 +73,7 @@ async function doBattleInner(attKey, att) {
   const shield = (att.lifeShield && att.lifeShield.turn === G.turnNo && att.lifeShield.key === D.key) || attackLifeLocked(att) || (D.coreShield && D.coreShield.turn === G.turnNo && (D.coreShield.b == null || D.coreShield.b === G.battleNo) && totalCores(att) === D.coreShield.cores);      // v0.199 LIFE_CORE_SHIELD      // v0.186 NO_ATTACK_LIFE      // v0.89 S1 LIFE_SHIELD: "your Life can't be reduced by its attack"
   const dmg = shield ? 0 : Math.min(attackSymbols(att), D.life);
   if (shield) log(`${CARDS[att.id].name}'s attack can't reduce ${poss(D)} Life.`);
-  lifeTake(D, dmg, 'reserve');                    // Life cores go to the Reserve
+  lifeTake(D, dmg, flagActive(A, 'LIFE_CORE_TO_TRASH', att) ? 'trash' : 'reserve');                    // v191 LIFE_CORE_TO_TRASH: "sent to the Trash instead of the Reserve"
   log(`${CARDS[att.id].name} is not blocked: ${who(D)} ${D.cpu ? 'loses' : 'lose'} ${dmg} Life.`);
   io.view({ type: 'board' });
   if (D.life <= 0) { win(attKey, `${poss(D)} Life reached 0`); return; }
@@ -161,7 +161,7 @@ async function flushBursts() {                         // queued Bursts and even
     } else if (ev.type === 'FXKILL') {
       await fireFx(G.p[ev.key], 'OPP_DESTROYED_FX', null, { bp: ev.bp, fxSrc: ev.src });
     } else if (ev.type === 'DIED') {
-      await fireFx(G.p[ev.key], 'ALLY_DIED', null, { subject: ev.inst });
+      await fireFx(G.p[ev.key], 'ALLY_DIED', null, { subject: ev.inst, byBattle: !!ev.byBattle });      // v191 byBattle: "destroyed via BP comparison"
     } else if (ev.type === 'LOST') {
       await fireFx(G.p[ev.key], 'ALLY_LOST', null, { subject: ev.inst });
     } else if (ev.type === 'NEXUS_DIED') {

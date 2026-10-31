@@ -3365,16 +3365,48 @@
   "image": "26RBS01-055.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (Your Attack Step) (Once Per Turn) When the BP of your Spirit with Amplify becomes 8000 or more, you can draw a card.",
-   "[LV2] (True Release) (Your Attack Step) The core to be reduced from the opposing Life by the attack of your Spirits with Amplify are sent to the Trash instead of the Reserve."
+  "effects": [
+   {
+    "trigger": "BP_REACHED",
+    "lv": [
+     1,
+     2
+    ],
+    "bpGe": 8000,
+    "match": {
+     "keyword": "Amplify"
+    },
+    "optional": true,
+    "once": true,
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": false
+    },
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "lv": [
+     2
+    ],
+    "flag": "LIFE_CORE_TO_TRASH",
+    "to": "own",
+    "match": {
+     "keyword": "Amplify"
+    }
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
    "A"
   ],
-  "rcode": "M"
+  "rcode": "M",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-056",
@@ -6101,16 +6133,67 @@
   "image": "26RBS01-096.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (Your Attack Step) (Can't Stack) When your \"Bloodrouse\" family Spirit is destroyed via BP comparison, you can target an opposing blocking Spirit. Send a core from it to the Reserve. (The opponent chooses which cores to send.)",
-   "[LV2] (Your Attack Step) (Can't Stack) When your \"Bloodrouse\" family Spirit is destroyed via BP comparison, you can draw a card."
+  "effects": [
+   {
+    "trigger": "ALLY_DIED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "noStack": true,
+    "if": {
+     "byBattle": true,
+     "step": "ATTACK",
+     "oppTurn": false
+    },
+    "match": {
+     "family": [
+      "Bloodrouse"
+     ],
+     "noUlt": true
+    },
+    "actions": [
+     {
+      "do": "OPP_CORES_TO_RESERVE",
+      "targets": 1,
+      "each": 1,
+      "blockerOnly": true
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_DIED",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "noStack": true,
+    "if": {
+     "byBattle": true,
+     "step": "ATTACK",
+     "oppTurn": false
+    },
+    "match": {
+     "family": [
+      "Bloodrouse"
+     ],
+     "noUlt": true
+    },
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
    "A"
   ],
-  "rcode": "C"
+  "rcode": "C",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-097",
@@ -18372,16 +18455,48 @@
   "image": null,
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (During Attack) At the end of battle, if this Spirit is in refreshed state, and your Life is at two or less, you can send a core, besides , from your Reserve to your Life.",
-   "[LV2] (True Release) (Can't Stack) When your Life increases, you can target an opposing Spirit. Return it to the Hand."
+  "effects": [
+   {
+    "trigger": "ALLY_BATTLE_END",
+    "lv": [
+     1,
+     2
+    ],
+    "self": true,
+    "optional": true,
+    "if": {
+     "selfExhausted": false,
+     "lifeLe": 2
+    },
+    "actions": [
+     {
+      "do": "RESERVE_TO_LIFE",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "LIFE_UP",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "noStack": true,
+    "actions": [
+     {
+      "do": "BOUNCE_OPP",
+      "to": "hand",
+      "kind": "spirit"
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
    "A"
   ],
-  "rcode": "C"
+  "rcode": "C",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS03-039",
@@ -34714,20 +34829,71 @@
   "image": "26RSD02-X02.png",
   "block": "A",
   "saga": 50,
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "OPP_CORES_TO_RESERVE",
+      "targets": 1,
+      "each": 2,
+      "if": {
+       "not": {
+        "ctrl": {
+         "n": 1,
+         "type": "Spirit",
+         "family": "Bloodrouse",
+         "exhausted": true
+        }
+       }
+      }
+     },
+     {
+      "do": "OPP_CORES_TO_RESERVE",
+      "targets": 2,
+      "each": 1,
+      "if": {
+       "ctrl": {
+        "n": 1,
+        "type": "Spirit",
+        "family": "Bloodrouse",
+        "exhausted": true
+       }
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "if": {
+     "oppDepleted": true
+    },
+    "actions": [
+     {
+      "do": "CANT_BE_BLOCKED_BY",
+      "costLe": 4
+     }
+    ]
+   }
+  ],
   "mechanics": [
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Summoned) Target an opposing Spirit. Send a total of two cores from it to the Reserve. If you control any exhausted \"Bloodrouse\" family Spirit, target up to two Spirits instead. (The opponent chooses which cores to send.)",
-   "[LV2] (True Release) (During Attacks) If any opposing Spirit is depleted by your effects this turn, this Spirit can't be blocked by opposing Cost 4 or less Spirits."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
    "A"
   ],
-  "rcode": "X"
+  "rcode": "X",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RSD03-001",

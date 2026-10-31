@@ -123,6 +123,7 @@ Object.assign(FX_ACTIONS, {
         const m = Math.min(a.perDestroyed ? a.n * (c.ctx.destroyedN || 0) : a.n, c.p.trashCores.n); c.p.trashCores.n -= m; t.cores += m; moved = m; got.set(t, m);
       } else if (a.toLife) {      // v177 "send a core, besides Soul Core, from your Trash to your Life"
         moved = Math.min(a.n, c.p.trashCores.n); c.p.trashCores.n -= moved; c.p.life += moved;
+        if (moved) await fireFx(c.p, 'LIFE_UP', null, {});      // v191 "When your Life increases"
       } else if (a.toReserve) {      // v0.196 "send a core from your Trash to the Reserve"
         moved = Math.min(a.n, c.p.trashCores.n); c.p.trashCores.n -= moved; c.p.reserve.n += moved;
       } else

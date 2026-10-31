@@ -4,7 +4,7 @@ Schema: packages/engine/fx-schema.json (up to date). Format: docs/ai/effect-form
 
 Shipped cards: 6924, with errors: 0 (must be 0).
 
-Staged pool (tools/compile_v2.py --partial): 5318 compiled cards, with errors: 1. Staged errors do not fail the build; a card with errors cannot be promoted until they are fixed.
+Staged pool (tools/compile_v2.py --partial): 5314 compiled cards, with errors: 1. Staged errors do not fail the build; a card with errors cannot be promoted until they are fixed.
 
 ## Staged errors
 

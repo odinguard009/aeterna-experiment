@@ -305,4 +305,5 @@ Object.assign(FX_ACTIONS, {
       if (!t) { c.ctx.did = false; return; }
       t.cores -= 1; c.p.life += 1; log(`${CARDS[c.src.id].name}: a core from ${CARDS[t.id].name} goes to ${poss(c.p)} Life.`);
       checkDepletion(c.p); io.view({ type: 'board' });
+      await fireFx(c.p, 'LIFE_UP', null, {});      // v191 "When your Life increases"
     } } });

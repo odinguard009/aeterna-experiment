@@ -38166,21 +38166,9 @@
   "S_CANT_PREVENT",
   "T_ADVENT"
  ],
- "26RBS01-055": [
-  "C_LEVEL",
-  "K_AMPLIFY",
-  "M_OPTIONAL",
-  "M_REPLACEMENT"
- ],
  "26RBS01-094": [
   "A_BP_PLUS",
   "C_LEVEL"
- ],
- "26RBS01-096": [
-  "C_LEVEL",
-  "F_OTHER_NOSTACK",
-  "M_OPTIONAL",
-  "M_UNSTACKABLE"
  ],
  "26RBS01-103": [
   "A_EXHAUST",
@@ -38339,14 +38327,6 @@
   "M_OPTIONAL",
   "M_THEN",
   "T_ATTACKS"
- ],
- "26RBS03-038": [
-  "A_REFRESH",
-  "C_LEVEL",
-  "C_LIFE",
-  "F_OTHER_NOSTACK",
-  "M_OPTIONAL",
-  "M_UNSTACKABLE"
  ],
  "26RBS03-039": [
   "A_EXHAUST",
@@ -38606,13 +38586,6 @@
   "M_UP_TO",
   "S_OPP_NO_BLOCK",
   "T_ATTACKS"
- ],
- "26RSD02-X02": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "M_REPLACEMENT",
-  "M_UP_TO",
-  "T_SUMMONED"
  ],
  "26RSD05-010": [
   "C_LEVEL",

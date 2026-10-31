@@ -61,6 +61,15 @@ Object.assign(FX_ACTIONS, {
       if (a.lifeLe != null && c.p.life > a.lifeLe) { c.ctx.did = false; return; }
       const m = takeFromVoid(c.p, a.n); if (!m) { c.ctx.did = false; return; }
       c.p.life += m; log(`${_pn(c)}: ${m} core${m === 1 ? '' : 's'} move from the Void to ${who(c.p)}${c.p.cpu ? "'s" : 'r'} Life.`); io.view({ type: 'board' });
+      await fireFx(c.p, 'LIFE_UP', null, {});      // v191 "When your Life increases"
+    } },
+  /* v191 "send a core (not the Soul Core) from your Reserve to your Life" */
+  RESERVE_TO_LIFE: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5, txt: a => `send ${a.n} core${a.n === 1 ? '' : 's'} from your Reserve to your Life`,
+    can: c => c.p.reserve.n > 0,
+    run: async (c, a) => {
+      const m = Math.min(a.n, c.p.reserve.n); if (!m) { c.ctx.did = false; return; }
+      c.p.reserve.n -= m; c.p.life += m; log(`${_pn(c)}: ${m} core${m === 1 ? '' : 's'} move from the Reserve to ${poss(c.p)} Life.`); io.view({ type: 'board' });
+      await fireFx(c.p, 'LIFE_UP', null, {});
     } },
   /* send one of your Lives to this Spirit (cost of BY, Vajdra-of-Magan). Not a Life reduction by damage: no Burst. A Life of 1 can't be sent (that would end the game by an own effect). */
   LIFE_TO_SELF: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 2, txt: a => `send ${a.n} of your Life to this Spirit`,

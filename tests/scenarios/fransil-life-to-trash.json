@@ -1,0 +1,33 @@
+{
+  "name": "fransil-life-to-trash",
+  "about": "v191: The LiquidSilver Fransil (26RBS01-055) LV1-2 (Your Attack Step) (Once Per Turn): 'When the BP of your Spirit with Amplify becomes 8000 or more, you can draw a card' = engine trigger BP_REACHED {bpGe 8000, match keyword Amplify, once, window ATTACK}; LV2: 'The core to be reduced from the opposing Life by the attack of your Spirits with Amplify are sent to the Trash instead of the Reserve' = STATIC LIFE_CORE_TO_TRASH to:own match keyword Amplify, read by 08-battle (lifeTake destination). Goztaurus (26RBS01-051) is the Amplify attacker.",
+  "rules": [
+    "ETR:faq.bp",
+    "ETR:faq.effects-q3"
+  ],
+  "turn": 3,
+  "active": "player",
+  "step": 5,
+  "players": {
+    "player": {
+      "reserve": 6,
+      "spirits": [
+        {
+          "id": "26RBS01-055",
+          "cores": 4,
+          "as": "fransil"
+        },
+        {
+          "id": "26RBS01-051",
+          "cores": 1,
+          "as": "amplifyAttacker"
+        }
+      ]
+    },
+    "opponent": {
+      "reserve": 3,
+      "life": 5,
+      "spirits": []
+    }
+  }
+}
