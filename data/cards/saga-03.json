@@ -3446,16 +3446,39 @@
   "image": "The Pentagon Stronghold.png",
   "block": "14",
   "saga": 3,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] Your Hand is unaffected by opposing Spirit/Brave/Nexus/Magic effects.",
-   "[LV2] (Opposing Turn) When the opponent draws outside of Draw Step, you can draw a card."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Clauses authored by hand in Lane K (v0.202.0).",
   "bicon": [
    "8"
   ],
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "lv": [
+     1,
+     2
+    ],
+    "flag": "HAND_UNAFFECTED"
+   },
+   {
+    "trigger": "OPP_DRAWS",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "if": {
+     "oppTurn": true,
+     "outsideDraw": true
+    },
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS14-083",

@@ -274,3 +274,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v236 (Lane K): trigger `OPP_DRAWS` (fires once per deck-draw event for the non-drawing side, `ctx.drawN`) and condition `outsideDraw` ("outside of the Draw Step"). Cards: BS03-028, BS08-022, BS11-023, BS41-039.
 - v237 (Lane K): `DESTROY.ultimate` ("destroy an opposing Ultimate") and `MILL_OPP {n}` ("discard N cards from the opposing decktop"). Cards: BS54-005, BS34-057, BS11-041.
 - v238 (Lane K): trigger `START_STEP` ("Your Start Step", fires after the Start Step begins). Cards: BS10-089, BS21-017.
+- v239 (Lane K): `BOUNCE_OPP.all` ("return every N BP or less Spirit"). Cards: BS10-038, BS38-020, BS14-082.
