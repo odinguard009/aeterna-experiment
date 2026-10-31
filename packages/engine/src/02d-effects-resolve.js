@@ -51,6 +51,7 @@ function fxValid(it) {
   if (e.oc && (dead || !ocActive(f))) return false;
   if (e.braved && !f.brave) return false;
   if ((trg === 'ALLY_ATTACKS' || trg === 'OPP_ATTACKS' || trg === 'ALLY_DESTROYS' || trg === 'ALLY_BLOCKED' || trg === 'ALLY_BLOCKS' || trg === 'ALLY_SUMMONED' || trg === 'ALLY_LIFE_HIT' || trg === 'ALLY_LOST' || trg === 'ALLY_DIED' || trg === 'SOUL_PLACED' || trg === 'ALLY_BATTLE_WIN' || trg === 'ALLY_BATTLE_END' || trg === 'BP_REACHED' || trg === 'MAGIC_USED' || trg === 'AMPLIFY') && !(subj && fxMatch(CARDS[subj.id], e.match, subj))) return false;
+  if (trg === 'BP_REACHED' && e.match && !(subj && fxMatch(CARDS[subj.id], e.match, subj))) return false;      // v217
   if (trg === 'OPP_DIED' && e.match) {      // v192 the destroyed Spirit's BP when it was destroyed (ctx.bp), not its coreless instance
     const mm = Object.assign({}, e.match); delete mm.bpLe;
     if (!(subj && fxMatch(CARDS[subj.id], mm, subj))) return false;

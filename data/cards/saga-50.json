@@ -23160,16 +23160,42 @@
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] Soul Awaken (When Attacks) You can send the from your Field/Trash to this Spirit. If you've done so, refresh this Spirit. You can only use Soul Awaken once per turn.",
-   "[LV2] (True Release) (During Attack) At the end of battle, send an opposing Life to Reserve. You can only use this effect of the same card name once per turn."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Clauses authored by hand in Lane K (v0.202.0).",
   "bicon": [
    "A"
   ],
-  "rcode": "X"
+  "rcode": "X",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "once": true,
+    "actions": [
+     {
+      "do": "SOUL_AWAKEN"
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_BATTLE_END",
+    "lv": [
+     2
+    ],
+    "self": true,
+    "once": true,
+    "actions": [
+     {
+      "do": "LIFE_TO_RESERVE",
+      "n": 1
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RBS03-X04",
@@ -28259,19 +28285,59 @@
   "image": "26RCB01-057.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (Your Attack Step) (CSOPT) When the BP of your \"GAIM\" family Spirit is increased due to your \"BP+\" Flash effects, if your Hand is four or less, you can draw a card.",
-   "[LV2] (True Release) (Your End Step) You can target one of your \"Kamen Rider Gaim\". Send up to two cores, besides , from your Trash to it."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Clauses authored by hand in Lane K (v0.202.0).",
   "collab": [
    "仮面ライダー"
   ],
   "bicon": [
    "A"
   ],
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "BP_REACHED",
+    "lv": [
+     1,
+     2
+    ],
+    "bpGe": 1000,
+    "match": {
+     "family": [
+      "GAIM"
+     ]
+    },
+    "if": {
+     "step": "ATTACK",
+     "handLe": 4
+    },
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "END_STEP",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "TRASH_CORES_TO",
+      "n": 2,
+      "toPick": true,
+      "match": {
+       "name": [
+        "Kamen Rider Gaim"
+       ]
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RCB01-058",

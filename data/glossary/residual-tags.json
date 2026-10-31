@@ -38166,12 +38166,6 @@
   "S_CANT_PREVENT",
   "T_ADVENT"
  ],
- "26RBS02-073": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_ATTACKS"
- ],
  "26RBS02-083": [
   "C_LEVEL",
   "M_REPLACEMENT",
@@ -38210,14 +38204,6 @@
   "C_OPP_TURN",
   "M_OPTIONAL"
  ],
- "26RBS03-X03": [
-  "A_AWAKEN",
-  "A_LIFE_TO_RESERVE",
-  "A_REFRESH",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_ATTACKS"
- ],
  "26RBS03-X04": [
   "A_REVEAL_ADD",
   "A_REVEAL_DECK",
@@ -38231,12 +38217,6 @@
   "A_BP_PLUS",
   "M_OPTIONAL",
   "M_THEN"
- ],
- "26RCB01-057": [
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "M_UP_TO"
  ],
  "26RDB01-028": [
   "A_BANISH",
@@ -38263,17 +38243,6 @@
  ],
  "26RDB01-060": [
   "K_STANDARD_SUCCESSION"
- ],
- "26RDB01-X02": [
-  "A_BANISH",
-  "A_DESTROY_TOTAL",
-  "A_EXHAUST",
-  "A_SYMBOL",
-  "A_SYMBOL_PLUS",
-  "C_LEVEL",
-  "M_UP_TO",
-  "T_ATTACKS",
-  "T_SUMMONED"
  ],
  "26RDB01-X05": [
   "A_BP_MINUS",
