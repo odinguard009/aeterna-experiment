@@ -85,7 +85,7 @@ with sync_playwright() as p:
         pg.locator('#modal-actions .modal-btn', has_text='Cancel').click(); settle(pg)
         chk(f'{lab} builder: Cancel keeps the starter deck', ev(pg, "!!BS.PLAYER_DECK['26RSD01-001']&&!BS.PLAYER_DECK['26RBS01-002']"))
         pg.select_option('#db-preset', 'rbs01-1'); settle(pg); pg.locator('#modal-actions .modal-btn', has_text='Replace').click(); settle(pg)
-        chk(f'{lab} builder: Replace swaps in the official ready deck', ev(pg, "!!BS.PLAYER_DECK['26RBS01-002']&&!BS.PLAYER_DECK['26RSD01-001']"))
+        chk(f'{lab} builder: Replace swaps in the official ready deck', ev(pg, "!!BS.PLAYER_DECK['26RBS01-002']&&!BS.PLAYER_DECK['26RSD01-002']"))   # 26RSD01-001 is in both lists (the recipe plays the red starter), 26RSD01-002 only in std01
         chk(f'{lab} builder: the official ready deck is legal in Standard (status text)', 'legal' in pg.text_content('#db-status') and 'Needs' not in pg.text_content('#db-status'), pg.text_content('#db-status'))
         ov = ev(pg, "document.documentElement.scrollWidth<=window.innerWidth+1")
         inview = ev(pg, "[...document.querySelectorAll('#view-deckbuilder .db-tools > *')].every(e=>{const r=e.getBoundingClientRect();return r.right<=window.innerWidth+1&&r.left>=-1})")
