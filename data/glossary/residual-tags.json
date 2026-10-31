@@ -38181,24 +38181,11 @@
   "M_THEN",
   "T_SUMMONED"
  ],
- "26RCB01-032": [
-  "A_BP_PLUS",
-  "M_OPTIONAL",
-  "M_THEN"
- ],
  "26RDB01-042": [
   "A_VOID",
   "M_OPTIONAL",
   "S1_ALL_HAVE",
   "T_SUMMONED"
- ],
- "26RDB01-051": [
-  "A_BP_PLUS",
-  "A_EXHAUST",
-  "C_LEVEL",
-  "F_OTHER_NOSTACK",
-  "M_OPTIONAL",
-  "M_UNSTACKABLE"
  ],
  "26RDB01-060": [
   "K_STANDARD_SUCCESSION"

@@ -1,0 +1,28 @@
+{
+  "name": "darkwing",
+  "about": "v0.202.0 bundle 23: 26RCB01-032 Darkwing (in the Opposing Attack Step, once per turn, when your Kamen Rider Knight blocks you can target one of your blocking Spirits: it gains +2000 BP this battle, and a Cost 8 one arms the BP-comparison bounce of an opposing 5000 BP or less Spirit to the Hand). New piece: GRANT_WIN_BOUNCE.",
+  "rules": [
+    "STD:12-2-1-12@caad612c",
+    "ETR:battle.destruction@698b8d5e"
+  ],
+  "turn": 4,
+  "active": "opponent",
+  "step": 5,
+  "players": {
+    "player": {
+      "reserve": 10,
+      "spirits": [
+        { "id": "26RCB01-032", "cores": 2, "as": "darkwing" },
+        { "id": "26RCB01-027", "cores": 1, "as": "knight" },
+        { "id": "26RCB01-037", "cores": 1, "as": "survive" }
+      ],
+      "deck": ["26RBS01-004", "26RBS01-005"]
+    },
+    "opponent": {
+      "reserve": 4,
+      "spirits": [
+        { "id": "26RBS01-004", "cores": 1, "as": "oppA" }
+      ]
+    }
+  }
+}

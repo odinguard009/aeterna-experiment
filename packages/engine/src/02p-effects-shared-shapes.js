@@ -242,6 +242,18 @@ Object.assign(FX_ACTIONS, {
       removeNexus(c.p, t, 'destroyed'); c.ctx.did = true; io.view({ type: 'board' });
     } } });
 Object.assign(FX_ACTIONS, {
+  /* v225 "during this battle, when only the opposing Spirit is destroyed by comparing BP with it, target an opposing N BP or less Spirit;
+     return it to the Hand" (house reading: the mark goes on every own Spirit of the printed cost, so the cost check is exact per card). */
+  GRANT_WIN_BOUNCE: { chk: a => Number.isInteger(a.costIs) && a.costIs >= 0 && a.costIs <= 30 && Number.isInteger(a.bpLe) && a.bpLe >= 0 && a.bpLe <= 100000,
+    txt: a => `during this battle the Cost ${a.costIs} Spirits bounce an opposing ${a.bpLe} BP or less Spirit after winning the comparison`,
+    can: c => c.p.spirits.length > 0,
+    run: async (c, a) => {
+      const L = c.p.spirits.filter(s => CARDS[s.id].cost === a.costIs); if (!L.length) { c.ctx.did = false; return; }
+      for (const t of L) t.winBounce = { battleNo: G.battleNo || 0, bpLe: a.bpLe };
+      c.ctx.did = true;
+      log(`${CARDS[c.src.id].name}: the Cost ${a.costIs} Spirits win the comparison bounce? armed for this battle.`);
+    } } });
+Object.assign(FX_ACTIONS, {
   DESTROY_OWN: {
     chk: a => hasMatch(a.match) && (a.voidByCost == null || a.voidByCost === true) && (a.other == null || a.other === true),
     txt: a => (a.other ? 'destroy another Spirit you control' : 'destroy one of your matching Spirits') + (a.voidByCost ? ', then put cores from the Void to your Reserve equal to its cost' : ''),

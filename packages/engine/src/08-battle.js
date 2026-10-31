@@ -65,6 +65,7 @@ async function doBattleInner(attKey, att) {
     if (ab >= bb && !safe(blk)) removeSpirit(D, blk, 'destroyed', 'battle');            // v0.73 'battle' = by the opponent, not by an opposing effect
     if (ab <= bb && !safe(att)) removeSpirit(A, att, 'destroyed', 'battle');
     if (ab >= bb && G.evQ) G.evQ.push({ type: 'DESTROYS', key: A.key, inst: att });
+    if (ab > bb && blk.winBounce && blk.winBounce.battleNo === G.battleNo) await runActions({ p: D, opp: A, src: blk, ctx: {} }, { actions: [{ do: 'BOUNCE_OPP', bpLe: blk.winBounce.bpLe, kind: 'spirit', to: 'hand' }] });      // v225
     if (ab !== bb && G.evQ && !safe(ab > bb ? blk : att)) G.evQ.push(ab > bb ? { type: 'BATTLE_WIN', key: A.key, inst: att, att: true } : { type: 'BATTLE_WIN', key: D.key, inst: blk, att: false });   // v0.55 (When Battles): only the opposing Spirit destroyed (CR 8-1-6-2)
     checkDepletion(A); checkDepletion(D);
     io.view({ type: 'board' });
