@@ -4,9 +4,9 @@ Owner order, 2026-10-31: work Lane K for all cards (Standard block A first, then
 
 - status: ON
 - target: all cards (Standard block A first, then Eternal Saga 17 down; roadmap item L)
-- last release: v0.201.0 (complete 1543; an early release the owner ordered on 2026-10-31)
-- next release: v0.202.0 (complete 1593)
-- cycle: 44/50 new complete cards since v0.201.0
+- last release: v0.202.0 (complete 1593)
+- next release: v0.203.0 (complete 1643)
+- cycle: 0/50 new complete cards since v0.202.0
 - model routing: DSH V4.1 Flash + V4 Pro advisor for card-JSON bundles; Claude Sonnet/Opus for engine, schema and audit-heavy work. One provider at a time; the `session_gate.sh` MANUAL/LOCK mark is the lock.
 - handoff (2026-10-31, DSH Flash, cycle-2 continuation): v0.200.0 is released; this continuation added 14 complete cards in four pushed bundles on wip/lane-k (complete 1,529 -> 1,543): 4dfd4e0 LIFE_CAP_ONE/CORE_ANY_FROM_ALLY/BP_MINUS.perTrash/OPP_CORES.costLe (+4), 6697f98 card field handCost/EXHAUST_EITHER/oppRefreshedLe/REVEAL_PICK.soulBonus (+3), 17fd002 Shamanism lite: viaShaman mark, shamanReduction, NO_BLOCK_SHAMAN/BP_VIA_SHAMAN/NO_ATTACK_ONE_CORE, card.mechanics keyword read (+4; schema 204), 28198dd Magirrate: viaMagirrate cast mark, blockerKeyword, TREAT_LV1 (+3; 26RBS01-103, 26RBS01-123, 26RBS01-X04; schema 205). Tests: k_cards_11..k_cards_14 + 14 scenarios; loop/fx_validate green on each bundle (validated while the other workstream's WIP was stashed).
 - BLOCKER cleared (2026-10-31): the other workstream (ready-decks feature) is finished, committed (f59e1e0 + 8b6668b) and shipped in v0.201.0 together with this cycle's 14 cards. The next continuation starts a fresh 0/50 cycle on main.

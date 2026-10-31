@@ -4,6 +4,14 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.202.0
+- Lane: K
+- **Lane K: +50 complete cards (1,543 -> 1,593 of 8,709; 50 in this release)**
+- Block A close-out: Cactus Wall, Rei-Ohba, Hexcraft Research Institute, Darkwing, Penlight Wave, Barrage Forest and Cryptorop are complete; only three block A cards stay blocked (Rindorin, Misty Lylebit, Soul Magic - reasons in docs/ai/lane-k-mission.md).
+- Eternal cards in this release: Grudge Dragon, Magic-of-Oz, Ivy Cage, Fourth Draw, Dark-Squalo and Chocodra.
+- New engine pieces: `ATK_TAX`, `COST_RELIEF`, `ZERO_BP_DECKBOTTOM`, `LIFE_HIT_PLUS`, `GRANT_WIN_BOUNCE`, `REVEAL_BRANCH`, `DESTROY_OWN_NEXUS`, `EXHAUST_ALL_OPP`, `DRAW_TO`, condition `idle`/`blocksGe`/`depleted`, match `originalNexus`, `BLOCKS_AS_ATTACKS`, `BLOCK_TAX`, `RUMBLE_PLUS`, `UNBLOCKABLE_LOW`, `LOW_ATK_ONCE`, `GRANT_FLAG`, `CORES_ANY_TO_RESERVE`, `EXHAUST_NEXUS_DESTROY`, `SOUL_AWAKEN`, `CORES_ANY_TO_RESERVE` and the schema is at 227.
+- Limits: three block A cards are blocked (see above); the card faces and wiki text are still unverified for the newest Eternal cards; the mixed-case card data keeps the owner's Fandom export until a card-image pass.
+
 ## v0.201.0
 - Lane: K
 - **Ready-made decks are official only, Delete on My decks works again, and Lane K adds +14 cards (1,529 -> 1,543 of 8,709)** — an early release the owner ordered on 2026-10-31 (the 50-card gate was not reached).
