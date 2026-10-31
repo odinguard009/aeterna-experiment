@@ -137,6 +137,8 @@ function simple(card, a) {
       if (!only(a, ['self', 'battle']) || !a.self || !a.battle || (card.levels || []).length < 2) return null;
       return { onField: true, body: `G.attacker = src; G.battleNo = 7; const lv0 = BS.lvNo(src); await run(src, RA);      // v0.202.0 TREAT_LV2 battle
         if (BS.lvNo(src) <= lv0) return 'LV ' + BS.lvNo(src) + ' (was ' + lv0 + ')'; G.attacker = null; return '';` };
+    case 'GRANT_FLAG': return only(a, ['flag', 'match']) && a.flag === 'MUST_BLOCK' && { body: `const t = sp(${J(FILL)}, P); await run(src, RA);      // v209 a one-turn granted flag
+        return t.grantFlag === A.flag && t.grantFlagTurn === G.turnNo ? '' : 'grant ' + t.grantFlag + ' turn ' + t.grantFlagTurn;` };
     case 'DISCARD_ALL_HAND': return only(a, []) && { body: `for (let j = 0; j < 3; j++) P.hand.push(BS.mkInst(${J(FILL)})); await run(src, RA); return P.hand.length === 0 && P.trash.length === 3 ? '' : 'hand ' + P.hand.length + ' trash ' + P.trash.length;` };      // v169
     case 'DRAW_BOTTOM': return only(a, ['n']) && { body: `for (let j = 0; j < 6; j++) dk(${J(FILL)}); const bot = P.deck.slice(6 - A.n); await run(src, RA);
       if (P.hand.length !== A.n || P.deck.length !== 6 - A.n) return 'hand ' + P.hand.length + ' deck ' + P.deck.length; if (bot.some(x => !P.hand.includes(x))) return 'not drawn from the bottom'; return '';` };

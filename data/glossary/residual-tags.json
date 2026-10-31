@@ -38174,24 +38174,11 @@
   "M_OPTIONAL",
   "T_SUMMONED"
  ],
- "26RBS02-005": [
-  "A_REFRESH",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "S_MUST_BLOCK",
-  "T_ALLY_DESTROYS",
-  "T_SUMMONED"
- ],
  "26RBS02-073": [
   "A_EXHAUST",
   "C_LEVEL",
   "M_OPTIONAL",
   "T_ATTACKS"
- ],
- "26RBS02-075": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "S_MUST_BLOCK"
  ],
  "26RBS02-079": [
   "A_VOID",

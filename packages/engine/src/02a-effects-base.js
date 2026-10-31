@@ -215,6 +215,7 @@ const bpCompareLocked = s => !!G && ['player', 'opponent'].some(k => flagActive(
 function flagActive(owner, flag, subject, pred) {
   if (!STATIC_FLAGS.includes(flag)) return fxUnknown('flag', flag);                  // v0.59.4 strict effects
   if (!G || !owner || !subject) return false;
+  if (subject.grantFlag === flag && subject.grantFlagTurn === G.turnNo && !(pred && !pred({ flag, granted: true }))) return true;      // v209 GRANT_FLAG: "during this turn, give it: <keyword>"
   const opp = G.p[other(owner.key)];
   for (const side of [owner, opp]) for (const src of fieldList(side)) {      // v0.183 to:'all' reaches the Spirits of both players ("Cost 0/3 Spirits can't attack/block")
     const L = lvNo(src), sideOpp = side === owner ? opp : owner;

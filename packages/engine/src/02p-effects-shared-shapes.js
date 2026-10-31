@@ -154,6 +154,20 @@ function winRiderRun(ev) {
   }
 }
 Object.assign(FX_ACTIONS, {
+  /* v209 "Target one of your [matching] Spirits. During this turn, give it: <keyword/flag>." (e.g. Clash = STATIC MUST_BLOCK):
+     a one-turn flag mark on the chosen Spirit, read by flagActive. */
+  GRANT_FLAG: { chk: a => typeof a.flag === 'string' && STATIC_FLAGS.includes(a.flag) && (a.match == null || hasMatch(a.match)),
+    txt: a => `during this turn, give one of your ${a.match ? 'matching ' : ''}Spirits "${a.flag}"`,
+    cands: (c, a) => c.p.spirits.filter(s => !a.match || fxMatch(CARDS[s.id], a.match, s)),
+    can: (c, a) => FX_ACTIONS.GRANT_FLAG.cands(c, a).length > 0,
+    run: async (c, a) => {
+      const L = FX_ACTIONS.GRANT_FLAG.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
+      const t = await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your Spirits to give "${a.flag}" for this turn (glowing).`);
+      if (!t) { c.ctx.did = false; return; }
+      t.grantFlag = a.flag; t.grantFlagTurn = G.turnNo;
+      log(`${CARDS[c.src.id].name}: ${poss(c.p)} ${CARDS[t.id].name} gains "${a.flag}" for this turn.`);
+    } } });
+Object.assign(FX_ACTIONS, {
   DESTROY_OWN: {
     chk: a => hasMatch(a.match) && (a.voidByCost == null || a.voidByCost === true) && (a.other == null || a.other === true),
     txt: a => (a.other ? 'destroy another Spirit you control' : 'destroy one of your matching Spirits') + (a.voidByCost ? ', then put cores from the Void to your Reserve equal to its cost' : ''),
