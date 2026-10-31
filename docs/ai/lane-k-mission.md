@@ -2,7 +2,7 @@
 
 Owner order, 2026-10-31: work Lane K for all cards (Standard block A first, then Eternal by Saga), one session at a time, alternating DeepSeek (DSH) and Claude. Release only at 50 new complete cards. Read this file before any Lane K session; the chat prompt only says "continue the Lane K mission".
 
-- status: OFF
+- status: ON
 - target: all cards (Standard block A first, then Eternal Saga 17 down; roadmap item L)
 - last release: v0.199.0 (complete 1,479)
 - next release: v0.200.0 (complete 1,529)
