@@ -173,6 +173,10 @@ function parseEffects(arr) {
         if (!Number.isInteger(e.n) || e.n < 1 || e.n > 3) return { error: 'DRAW_PLUS needs a whole-number "n" (1-3)' };
         o.n = e.n;
       }
+      if (e.flag === 'RUMBLE_PLUS') {                             // v210 "the number of cards specified by your Rumble gets +n"
+        if (!Number.isInteger(e.n) || e.n < 1 || e.n > 3) return { error: 'RUMBLE_PLUS needs a whole-number "n" (1-3)' };
+        o.n = e.n;
+      }
       if (e.flag === 'UNAFFECTED' && e.from != null) {               // v0.58 Armor / Heavy Armor / Ultra Armor / "unaffected by opposing <colour> <types> effects"
         const f = e.from, TY = ['Spirit', 'Brave', 'Nexus', 'Magic', 'Ultimate'];
         if (typeof f !== 'object' || (f.colors != null && (!Array.isArray(f.colors) || !f.colors.length || f.colors.some(x => !COLORS.includes(x))))

@@ -9151,16 +9151,45 @@
   "image": "26RBS01-X16.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Summoned) You can reveal three cards from your decktop. Among them, add a Spirit card with Rumble to your Hand. Return any remaining cards to the deckbottom in any order.",
-   "[LV2] (True Release) (Your Attack Step) The number of cards specified by your Rumble gets +2."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Clauses authored by hand in Lane K (v0.202.0).",
   "bicon": [
    "A"
   ],
-  "rcode": "X"
+  "rcode": "X",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "REVEAL_PICK",
+      "n": 3,
+      "match": {
+       "type": "Spirit",
+       "keyword": "Rumble"
+      },
+      "rest": "bottom"
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "lv": [
+     2
+    ],
+    "flag": "RUMBLE_PLUS",
+    "to": "own",
+    "n": 2,
+    "if": {
+     "step": "ATTACK"
+    }
+   }
+  ]
  },
  {
   "id": "26RBS01-X17",
@@ -17798,16 +17827,51 @@
   "image": null,
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (Your Attack Step) (CSOPT) When your \"Dark Puce\" family Spirit is destroyed, target an opposing Spirit. Send a core, besides , from it to the Reserve.",
-   "[LV2] (True Release) (When Attacks) Target up to two opposing Cost 4 or less Spirits. Send a total of two cores, besides , from them to the Reserve. If it depletes, draw a card."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Clauses authored by hand in Lane K (v0.202.0).",
   "bicon": [
    "A"
   ],
-  "rcode": "M"
+  "rcode": "M",
+  "effects": [
+   {
+    "trigger": "ALLY_DIED",
+    "lv": [
+     1,
+     2
+    ],
+    "match": {
+     "family": [
+      "Dark Puce"
+     ]
+    },
+    "if": {
+     "step": "ATTACK"
+    },
+    "actions": [
+     {
+      "do": "OPP_CORES_TO_RESERVE",
+      "targets": 1,
+      "each": 1
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "OPP_CORES_TO_RESERVE",
+      "targets": 2,
+      "each": 1,
+      "costLe": 4,
+      "drawPerDepleted": true
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RBS03-020",

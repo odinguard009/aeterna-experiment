@@ -1,0 +1,72 @@
+{
+  "name": "jackalpio-and-panjang",
+  "about": "v0.202.0 bundle 7: 26RBS03-019 Jackalpio (When your Dark Puce Spirit is destroyed in your Attack Step, an opposing Spirit sends a core to the Reserve; its True Release sends one core each from two opposing Cost 4 or less Spirits and draws when one is depleted) and 26RBS01-X16 Panjang (When Summoned: reveal three, add a Rumble Spirit to the Hand and put the rest on the deckbottom; its LV2 raises the number of cards of your Rumble by 2 through the new STATIC RUMBLE_PLUS flag).",
+  "rules": [
+    "STD:12-2-1-12@caad612c",
+    "SJP:core-move@eb7563c8"
+  ],
+  "turn": 4,
+  "active": "player",
+  "step": 5,
+  "players": {
+    "player": {
+      "reserve": 10,
+      "spirits": [
+        {
+          "id": "26RBS03-019",
+          "cores": 3,
+          "as": "jackalpio"
+        },
+        {
+          "id": "26RBS01-X16",
+          "cores": 3,
+          "as": "panjang"
+        },
+        {
+          "id": "26RBS01-016",
+          "cores": 1,
+          "as": "darkPuce"
+        },
+        {
+          "id": "26RBS01-079",
+          "cores": 1,
+          "as": "fergus"
+        }
+      ],
+      "deck": [
+        "26RBS01-079",
+        "26RBS01-005",
+        "26RBS01-006",
+        "26RBS01-004"
+      ],
+      "hand": []
+    },
+    "opponent": {
+      "reserve": 3,
+      "spirits": [
+        {
+          "id": "26RBS01-004",
+          "cores": 2,
+          "as": "oppA"
+        },
+        {
+          "id": "26RBS01-002",
+          "cores": 2,
+          "as": "oppB"
+        }
+      ],
+      "deck": [
+        "26RBS01-009",
+        "26RBS01-010",
+        "26RBS01-011",
+        "26RBS01-012",
+        "26RBS01-013",
+        "26RBS01-014",
+        "26RBS01-002",
+        "26RBS01-005",
+        "26RBS01-006",
+        "26RBS01-004"
+      ]
+    }
+  }
+}

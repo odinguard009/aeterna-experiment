@@ -38166,14 +38166,6 @@
   "S_CANT_PREVENT",
   "T_ADVENT"
  ],
- "26RBS01-X16": [
-  "A_REVEAL_ADD",
-  "A_REVEAL_DECK",
-  "C_LEVEL",
-  "K_RUMBLE",
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
  "26RBS02-073": [
   "A_EXHAUST",
   "C_LEVEL",
@@ -38212,11 +38204,6 @@
   "C_LEVEL",
   "M_UP_TO",
   "T_ALLY_BLOCKED",
-  "T_ATTACKS"
- ],
- "26RBS03-019": [
-  "C_LEVEL",
-  "M_UP_TO",
   "T_ATTACKS"
  ],
  "26RBS03-039": [

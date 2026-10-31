@@ -35,7 +35,7 @@ const mid = m => `${FIX_PREFIX}M-` + [...JSON.stringify(m)].reduce((h, ch) => (M
 const fillMatches = m => !m.team && (!m.family || m.family.includes('FXP')) && (!m.type || m.type === 'Spirit') && (m.costLe == null || m.costLe >= 1) && (!m.color || m.color === 'red');
 function matchCard(m) {
   const type = m.type || 'Spirit', id = mid(m);
-  return { id, name: id, type, color: m.color || 'red', cost: m.costLe != null ? m.costLe : 3, symbols: 1, levels: type === 'Nexus' ? [{ cores: 0 }] : [{ cores: 1, bp: 2000 }], families: m.family ? [m.family[0]] : ['FXM'], ...(m.team ? { desc: `[Team: ${m.team}]` } : {}) };
+  return { id, name: id, type, color: m.color || 'red', cost: m.costLe != null ? m.costLe : 3, symbols: 1, levels: type === 'Nexus' ? [{ cores: 0 }] : [{ cores: 1, bp: 2000 }], families: m.family ? [m.family[0]] : ['FXM'], ...(m.team ? { desc: `[Team: ${m.team}]` } : {}), ...(m.keyword ? { keywords: [m.keyword] } : {}) };
 }
 
 /** Builds the fixture cards the cases need (import once with BS.importCards). */
@@ -137,7 +137,7 @@ function simple(card, a) {
       if (!only(a, ['self', 'battle']) || !a.self || !a.battle || (card.levels || []).length < 2) return null;
       return { onField: true, body: `G.attacker = src; G.battleNo = 7; const lv0 = BS.lvNo(src); await run(src, RA);      // v0.202.0 TREAT_LV2 battle
         if (BS.lvNo(src) <= lv0) return 'LV ' + BS.lvNo(src) + ' (was ' + lv0 + ')'; G.attacker = null; return '';` };
-    case 'GRANT_FLAG': return only(a, ['flag', 'match']) && a.flag === 'MUST_BLOCK' && { body: `const t = sp(${J(FILL)}, P); await run(src, RA);      // v209 a one-turn granted flag
+        case 'GRANT_FLAG': return only(a, ['flag', 'match']) && a.flag === 'MUST_BLOCK' && { body: `const t = sp(${J(FILL)}, P); await run(src, RA);      // v209 a one-turn granted flag
         return t.grantFlag === A.flag && t.grantFlagTurn === G.turnNo ? '' : 'grant ' + t.grantFlag + ' turn ' + t.grantFlagTurn;` };
     case 'DISCARD_ALL_HAND': return only(a, []) && { body: `for (let j = 0; j < 3; j++) P.hand.push(BS.mkInst(${J(FILL)})); await run(src, RA); return P.hand.length === 0 && P.trash.length === 3 ? '' : 'hand ' + P.hand.length + ' trash ' + P.trash.length;` };      // v169
     case 'DRAW_BOTTOM': return only(a, ['n']) && { body: `for (let j = 0; j < 6; j++) dk(${J(FILL)}); const bot = P.deck.slice(6 - A.n); await run(src, RA);
@@ -312,8 +312,16 @@ function simple(card, a) {
       return only(a, ['bp']) && { body: `const t = sp(${J(FILL)}, P, 1); t.exhausted = true; await run(src, RA); return t.exhausted ? 'still exhausted' : '';` };
     case 'EXHAUST_OWN':      // v0.200 exhaust one of your matching Spirits
       return only(a, ['match']) && a.match && okMatch(a.match) && { fix: [{ m: a.match }], body: `const t = sp(${J(mid(a.match))}, P, 1); t.exhausted = false; await run(src, RA); return t.exhausted ? '' : 'the matching Spirit is still refreshed';` };
-    case 'EXHAUST_SELF':      // v0.195 this Spirit exhausts itself
-      return only(a, []) && spirit && { onField: true, body: `src.exhausted = false; await run(src, RA); return src.exhausted ? '' : 'this Spirit is still refreshed';` };
+    case 'REFRESH_SPIRIT':
+      if (only(a, ['self', 'noAttack']) && a.self) return { onField: true, body: `src.exhausted = true; await run(src, RA);      // v0.197 "this Spirit can refresh"
+        if (src.exhausted) return 'not refreshed';
+        return A.noAttack ? (src.noAtkTurn === G.turnNo ? '' : 'noAttack was not marked') : '';` };
+    case 'OPP_DISCARD':      // v0.75 "the opponent discards n cards"
+      if (!only(a, ['n'])) return null;
+      return { body: `for (let j = 0; j <= A.n; j++) O.hand.push(BS.mkInst(${J(FILL)})); const h0 = O.hand.length;
+        await run(src, RA); return O.hand.length === h0 - A.n ? '' : 'opponent hand ' + O.hand.length + ' (was ' + h0 + ')';` };
+    case 'EXHAUST_SELF':      // v0.195 this Spirit exhausts itself; v0.197 a Nexus too
+      return only(a, []) && (spirit || card.type === 'Nexus') && { onField: true, body: `src.exhausted = false; await run(src, RA); return src.exhausted ? '' : 'the card is still refreshed';` };
     case 'REFRESH_NEXUS':      // v0.195 refresh one of your exhausted Nexuses
       return only(a, []) && { fix: [{ n: 2 }], body: `const t = nx(${J(nid(2))}, P); t.exhausted = true; await run(src, RA); return t.exhausted ? 'the Nexus is still exhausted' : '';` };
     case 'RESERVE_TO_LIFE':      // v191 n cores from the Reserve go to the Life (Soul Core untouched)

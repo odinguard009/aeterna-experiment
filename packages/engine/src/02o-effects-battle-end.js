@@ -30,7 +30,7 @@
   FX_ACTIONS.RUMBLE = { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 7,
     txt: a => `Rumble ${a.n}: at the end of this battle, discard ${a.n} cards from the opposing decktop, minus the cost of the blocking Spirit in their Trash`,
     can: () => inBattle(),
-    run: async (c, a) => queue(c, { rumble: a.n }) };
+    run: async (c, a) => queue(c, { rumble: a.n + rumblePlusOf(c.p) }) };      // v210 RUMBLE_PLUS
   FX_ACTIONS.DESTROY_SELF = { chk: () => true, txt: () => 'destroy this Spirit', can: c => c.p.spirits.includes(c.src),
     run: async c => { if (!c.p.spirits.includes(c.src)) { c.ctx.did = false; return; } log(`${CARDS[c.src.id].name} is destroyed by its own effect.`); removeSpirit(c.p, c.src, 'destroyed', false); checkDepletion(c.p); } };
   const R = FX_ACTIONS.REFRESH, rChk = R.chk, rCan = R.can, rRun = R.run, rTxt = R.txt;
