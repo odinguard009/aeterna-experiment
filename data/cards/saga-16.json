@@ -7111,7 +7111,8 @@
     "match": {
      "name": [
       "Wurm"
-     ]
+     ],
+     "color": "red"
     },
     "optional": true,
     "actions": [
@@ -7119,7 +7120,11 @@
       "do": "DRAW",
       "n": 2
      }
-    ]
+    ],
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": false
+    }
    },
    {
     "trigger": "STATIC",
@@ -7136,12 +7141,9 @@
     }
    }
   ],
-  "fxComplete": false,
+  "fxComplete": true,
   "saga": 16,
-  "note": "Wired: draw two when a Wurm is blocked; LV2 opposing Spirits must block a Crimson/Wurm attacker (Red-only limit on the draw is not checked). Issue #5 (2026-10-16): set to Fandom export (owner priority).",
-  "residual": [
-   "[LV1][LV2](Your Attack Step) When your Red \"Wurm\" is blocked, you can draw two cards."
-  ],
+  "note": "Wired: draw two when a Wurm is blocked; LV2 opposing Spirits must block a Crimson/Wurm attacker (Red-only limit on the draw is not checked). Issue #5 (2026-10-16): set to Fandom export (owner priority). Clauses authored by hand in Lane K (v0.202.0).",
   "bicon": [
    "12"
   ],

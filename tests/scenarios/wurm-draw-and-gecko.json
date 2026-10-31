@@ -1,0 +1,29 @@
+{
+  "name": "wurm-draw-and-gecko",
+  "about": "v0.202.0 next cycle bundle 10 (Eternal): BS75-001 Goradon (in your Attack Step, when your Red Wurm is blocked you may draw two cards; its LV2 Must Block clause stays) and BS46-039 Scolecite Crested Gecko (When Destroyed/Depleted by the opponent: refresh a Spirit you control).",
+  "rules": [
+    "STD:12-2-1-12@caad612c",
+    "ETR:effects.simultaneous@0d3e0a51"
+  ],
+  "turn": 4,
+  "active": "player",
+  "step": 5,
+  "players": {
+    "player": {
+      "reserve": 3,
+      "spirits": [
+        { "id": "BS75-001", "cores": 1, "as": "goradon" },
+        { "id": "BS46-039", "cores": 1, "as": "gecko" },
+        { "id": "BS23-007", "cores": 1, "as": "silverWurm" },
+        { "id": "26RBS01-005", "cores": 1, "as": "other", "exhausted": true }
+      ],
+      "deck": ["26RBS01-004", "26RBS01-006", "26RBS01-009"]
+    },
+    "opponent": {
+      "reserve": 4,
+      "spirits": [
+        { "id": "26RBS01-004", "cores": 1, "as": "oppA" }
+      ]
+    }
+  }
+}

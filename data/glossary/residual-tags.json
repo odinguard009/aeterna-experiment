@@ -19911,11 +19911,6 @@
   "T_ALLY_LIFE_HIT",
   "T_ATTACKS"
  ],
- "BS46-039": [
-  "A_REFRESH",
-  "C_LEVEL",
-  "T_DESTROYED"
- ],
  "BS46-040": [
   "A_EXHAUST",
   "A_REMOVED_ZONE",
@@ -36530,12 +36525,6 @@
   "K_ULTIMATE",
   "K_UNLEASH",
   "M_UP_TO"
- ],
- "BS75-001": [
-  "A_DRAW",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_ALLY_BLOCKED"
  ],
  "BS75-005": [
   "A_SOUL_STATE",
