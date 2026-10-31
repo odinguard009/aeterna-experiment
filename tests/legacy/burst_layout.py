@@ -6,7 +6,7 @@ def chk(n,c,x=''):
     print(('PASS ' if c else 'FAIL ')+n,x)
     if not c: bad.append(n)
 INV="(()=>{try{BS.checkInvariants();return 'ok'}catch(e){return e.message}})()"
-GEO="""(k)=>{const q=(s)=>[...document.querySelectorAll(s)];const ba=q('.burst-area').map(e=>e.getBoundingClientRect());const fc=q('.field-container-dual').map(e=>e.getBoundingClientRect());const rows=q('.field-container-dual').map(c=>[...c.querySelectorAll('.field-row-wrapper')].map(e=>e.getBoundingClientRect()));return {ba:ba.map(r=>[r.left|0,r.top|0,r.right|0,r.bottom|0]),fc:fc.map(r=>[r.left|0,r.top|0,r.right|0,r.bottom|0]),rows:rows.map(a=>a.map(r=>[r.left|0,r.top|0,r.right|0,r.bottom|0])),w:innerWidth,h:innerHeight}}"""
+GEO="""(k)=>{const q=(s)=>[...document.querySelectorAll(s)];const ba=q('.burst-area').map(e=>e.getBoundingClientRect());const fc=q('.field-container-dual').map(e=>e.getBoundingClientRect());const rows=q('.field-container-dual').map(c=>[...c.querySelectorAll('.field-row-wrapper')].map(e=>e.getBoundingClientRect()));const bd=q('.fc-body').map(e=>e.getBoundingClientRect());return {ba:ba.map(r=>[r.left|0,r.top|0,r.right|0,r.bottom|0]),fc:fc.map(r=>[r.left|0,r.top|0,r.right|0,r.bottom|0]),bd:bd.map(r=>[r.left|0,r.top|0,r.right|0,r.bottom|0]),rows:rows.map(a=>a.map(r=>[r.left|0,r.top|0,r.right|0,r.bottom|0])),w:innerWidth,h:innerHeight}}"""
 with sync_playwright() as p:
     b=p.chromium.launch()
     for (w,h) in [(390,844),(360,640),(844,390),(768,700),(1280,800),(1920,1080)]:
@@ -24,10 +24,10 @@ with sync_playwright() as p:
         chk(T+'two burst areas',len(g['ba'])==2,g['ba'])
         pcl=_o("document.documentElement.classList.contains('layout-pc')")
         for i,nm in enumerate(['CPU','YOU']):
-            ba,fc=g['ba'][i],g['fc'][i]
-            mid=abs((ba[1]+ba[3])-(fc[1]+fc[3]))<=16   # phone layout (UI review round 4) centres the area vertically
-            if i==1: chk(T+'YOU area in top-left corner of your field',ba[0]-fc[0]<=8 and (mid if not pcl else ba[1]-fc[1]<=8),(ba,fc))
-            else: chk(T+'CPU area in bottom-right corner of CPU field (mirrored)',fc[2]-ba[2]<=8 and (mid if not pcl else fc[3]-ba[3]<=8),(ba,fc))
+            ba,bd=g['ba'][i],g['bd'][i]
+            mid=abs((ba[1]+ba[3])-(bd[1]+bd[3]))<=16   # phone: centred in the field body; the stat bar is outside it (2026-10-31)
+            if i==1: chk(T+'YOU area in top-left corner of your field',ba[0]-bd[0]<=8 and (mid if not pcl else ba[1]-bd[1]<=8),(ba,bd))
+            else: chk(T+'CPU area in bottom-right corner of CPU field (mirrored)',bd[2]-ba[2]<=8 and (mid if not pcl else bd[3]-ba[3]<=8),(ba,bd))
             ov=any(not(ba[2]<=r[0] or r[2]<=ba[0] or ba[3]<=r[1] or r[3]<=ba[1]) for r in g['rows'][i])
             chk(T+f'{nm} area does not overlap field rows',not ov,(ba,g['rows'][i]))
             chk(T+f'{nm} area inside screen',ba[0]>=0 and ba[2]<=g['w'] and ba[3]<=g['h'],ba)

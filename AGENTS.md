@@ -37,7 +37,7 @@ Fan-made, offline single-file trading-card-game simulator (human vs CPU). `index
 - Python tools flag: every tool opens JSON/text with explicit UTF-8 and writes generated text with `newline=''` (LF on every OS), so no `PYTHONUTF8=1` chore; ad-hoc print probes still want `PYTHONIOENCODING=utf-8` (cp1252 console).
 - `node tools/lane_next.mjs` prints its lane on Windows too; item L in `docs/ai/roadmap-open.md` stays the source of truth.
 - No `bash` on PATH, but Git's bash is at `..\tools\git\bin\bash.exe`; the bash-backed unit tests resolve it themselves (`BASH` in `tests/unit/lib/game.mjs`, env `BASH_BIN` overrides).
-- `gh` is installed but not logged in — `gh auth login` once (owner) before issue reads or Regression dispatches.
+- `gh` is installed and logged in as `odinguard009` on this checkout (checked 2026-10-31, `github.com` keyring, repo scope); run `gh auth login` once (owner) only on a machine where `gh auth status` fails. Python legacy suites translate their Linux `/mnt` and `/tmp` file URLs to the Windows drive through `tests/sitecustomize.py`, so `python3 tests/run_all.py --part legacy` works here too.
 - `tools/lint.mjs` fails hard with an install hint when `node_modules/typescript` is missing (no more false clean); the checker must be at 0 errors (`tools/type-baseline.json` empty).
 - Hooks are enabled in this clone (`core.hooksPath=.githooks`); the commit identity is the owner's noreply address.
 - `origin` is `odinguard009/aeterna-experiment`, and every doc, skill and tool targets that repo only (full switch, 2026-10-23). The retired `odinguard009/aeterna` repo is never pushed, dispatched, or used for issues or releases.
