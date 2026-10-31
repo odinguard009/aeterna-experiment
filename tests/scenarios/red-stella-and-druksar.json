@@ -1,0 +1,35 @@
+{
+  "name": "red-stella-and-druksar",
+  "about": "v0.202.0 bundle 2: 26RDB01-010 Senri Taiga (When Attacks destroys an opposing Spirit with the same BP as this Spirit while you control two or more exhausted Red Stella Spirits; its End Step refreshes itself under the same condition), 26RDB01-021 Seina Ryumin (High Speed flash summon from the Hand with Reserve cores; When Summoned sends up to two Trash cores to itself while an exhausted Green Wave Spirit is in play) and 26RBS03-073 Druksar (When Summoned destroys an opposing Cost 4 or less Spirit, the limit +1 for each Blue Spirit with no printed effects you control; its When Attacks refreshes one such Cost 6 or more Blue Spirit).",
+  "rules": [
+    "STD:12-2-1-12@caad612c",
+    "ETR:battle.destruction@698b8d5e"
+  ],
+  "turn": 4,
+  "active": "player",
+  "step": 4,
+  "players": {
+    "player": {
+      "reserve": 6,
+      "trashCores": 2,
+      "spirits": [
+        { "id": "26RDB01-010", "cores": 1, "as": "taiga" },
+        { "id": "26RDB01-001", "cores": 1, "exhausted": true, "as": "stella1" },
+        { "id": "26RDB01-004", "cores": 1, "exhausted": true, "as": "stella2" },
+        { "id": "26RDB01-016", "cores": 1, "exhausted": true, "as": "greenWave" },
+        { "id": "26RBS03-061", "cores": 1, "as": "vanillaLow" },
+        { "id": "26RBS03-065", "cores": 1, "as": "vanillaMid" },
+        { "id": "26RBS03-071", "cores": 1, "exhausted": true, "as": "vanillaBig" },
+        { "id": "26RBS03-073", "cores": 3, "as": "druksar" }
+      ],
+      "deck": ["26RBS01-005", "26RBS01-006", "26RBS01-004"]
+    },
+    "opponent": {
+      "reserve": 3,
+      "spirits": [
+        { "id": "26RBS01-011", "cores": 1, "as": "oppBig" },
+        { "id": "26RBS01-004", "cores": 1, "as": "oppSmall" }
+      ]
+    }
+  }
+}

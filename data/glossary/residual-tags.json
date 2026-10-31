@@ -38272,12 +38272,6 @@
   "M_OPTIONAL",
   "T_ALLY_ATTACKS"
  ],
- "26RBS03-073": [
-  "A_REFRESH",
-  "C_LEVEL",
-  "T_ATTACKS",
-  "T_SUMMONED"
- ],
  "26RBS03-081": [
   "A_REFRESH",
   "C_LEVEL",
@@ -38327,12 +38321,6 @@
   "C_LIFE",
   "T_ATTACKS"
  ],
- "26RDB01-010": [
-  "A_EXHAUST",
-  "A_REFRESH",
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
  "26RDB01-012": [
   "A_TRASH_TO_RESERVE",
   "C_LEVEL",
@@ -38340,13 +38328,6 @@
   "S1_ALL_HAVE",
   "T_DESTROYED",
   "T_DESTROYED_OPP"
- ],
- "26RDB01-021": [
-  "A_EXHAUST",
-  "A_TRASH_TO_RESERVE",
-  "M_OPTIONAL",
-  "M_UP_TO",
-  "T_SUMMONED"
  ],
  "26RDB01-024": [
   "A_EXHAUST",
