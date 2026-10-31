@@ -38166,12 +38166,6 @@
   "S_CANT_PREVENT",
   "T_ADVENT"
  ],
- "26RBS03-081": [
-  "A_REFRESH",
-  "C_LEVEL",
-  "C_OPP_TURN",
-  "M_OPTIONAL"
- ],
  "26RBS03-X04": [
   "A_REVEAL_ADD",
   "A_REVEAL_DECK",

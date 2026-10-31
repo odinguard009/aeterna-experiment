@@ -71,7 +71,7 @@ cardTeams, allHaveShapeOK, allHaveOK, winRiderRun, fxOppMark, blockTaxOK, payAtk
 ## packages/engine/src/02q-effects-actions-own.js (239 lines, ~6.6k tokens)
 
 
-## packages/engine/src/02r-effects-actions-deck.js (126 lines, ~4.2k tokens)
+## packages/engine/src/02r-effects-actions-deck.js (142 lines, ~4.7k tokens)
 
 
 ## packages/engine/src/02s-effects-actions-soul.js (208 lines, ~5.1k tokens)

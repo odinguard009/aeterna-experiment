@@ -5,6 +5,22 @@
    every other entry here is read from inside a function.
    ------------------------------------------------------------------------------------ */
 Object.assign(FX_ACTIONS, {
+  /* v226 "reveal a card from your decktop. If that's a <match> card, add it to the Hand; if it's a Cost a/b/c card, destroy this Nexus.
+     Return any remaining card to the deckbottom." (the revealed card is shown, then it goes to one of the three places) */
+  REVEAL_BRANCH: { chk: a => hasMatch(a.add) && Array.isArray(a.destroySelfIfCostIn) && a.destroySelfIfCostIn.length >= 1 && a.destroySelfIfCostIn.length <= 8 && a.destroySelfIfCostIn.every(x => Number.isInteger(x) && x >= 0 && x <= 30) && Object.keys(a).every(k => ['do', 'if', 'add', 'destroySelfIfCostIn'].includes(k)),
+    txt: a => 'reveal a card from your decktop, add it when it matches, destroy this Nexus when it costs ' + a.destroySelfIfCostIn.join('/') + ', else deckbottom',
+    can: c => c.p.deck.length > 0,
+    run: async (c, a) => {
+      const nm = CARDS[c.src.id].name, top = c.p.deck.splice(0, 1); c.p.revealed = top;
+      log(`${nm}: ${who(c.p)} ${c.p.cpu ? 'reveals' : 'reveal'} ${top.map(x => CARDS[x.id].name).join(', ') || 'nothing'}.`); io.view({ type: 'board' });
+      await revealedFx(c.p);
+      const t = top[0];
+      if (!t) { c.ctx.did = false; return; }
+      c.p.revealed.length = 0;
+      if (fxMatch(CARDS[t.id], a.add)) { c.p.hand.push(t); handUp(c.p, 1); log(`${nm}: ${CARDS[t.id].name} is added to the Hand.`); c.ctx.did = true; return; }
+      if (a.destroySelfIfCostIn.includes(CARDS[t.id].cost)) { c.p.deck.push(t); log(`${nm}: ${CARDS[t.id].name} returns to the deckbottom.`); if (ownerOf(c.src) && ownerOf(c.src).nexus.includes(c.src)) { log(`${nm} is destroyed by its own effect.`); removeNexus(ownerOf(c.src), c.src, 'destroyed'); } c.ctx.did = true; return; }
+      c.p.deck.push(t); log(`${nm}: ${CARDS[t.id].name} returns to the deckbottom.`); c.ctx.did = false;
+    } },
   REVEAL_PICK: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 10 && hasMatch(a.match) && ['trash', 'bottom', 'top', 'either'].includes(a.rest) && (a.diffName == null || a.diffName === true) && (a.all == null || a.all === true) && (a.discard == null || (a.discard === true && a.rest === 'bottom' && a.all == null && a.max == null)) && (a.max == null || (Number.isInteger(a.max) && a.max >= 2 && a.max <= 4)) && (a.nLegacy == null || (a.nLegacy === true && a.n === 1 && a.discard === true)) && (a.peek == null || (a.peek === true && a.n === 1 && a.discard == null && a.all == null && a.max == null)) && (a.soulBonus == null || (a.soulBonus === true && a.n === 3 && a.diffName === true && a.discard == null && a.all == null && a.max == null)) && (a.also == null || (hasMatch(a.also) && a.discard == null && a.all == null && a.max == null && a.peek == null)),   // v0.196 peek: "reveal a card, if it matches ... return it" (no add to Hand; did = it matches); v0.196 max: "add up to N matching cards"; v0.181 all: "add every matching card among them"; v0.69 diffName: "a card name different from this Spirit's"; v198 soulBonus: "if the Soul Core was used to pay for the summon cost, add two cards instead"
     txt: a => `reveal ${a.n} cards from the top of your Deck, add a matching card to your Hand, ${a.rest === 'trash' ? 'discard' : a.rest === 'top' ? 'return to the top of the Deck' : a.rest === 'either' ? 'return to the top or the bottom of the Deck' : 'return to the bottom of the Deck'} the rest`,      // v0.75 rest top / either
     can: (c, a) => c.p.deck.length > 0 && (!a || !a.nLegacy || (c.src.legacyN || 0) > 0),
