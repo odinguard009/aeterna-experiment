@@ -3,7 +3,7 @@
   "about": "v0.202.0 next cycle bundle 17 (Eternal): BS17-038 Calmion-Cat (LV2/3: when you use a Magic card, after it resolves, +2000 BP this turn) and BS16-040 HeartKnight-Tin (LV2 When Destroyed: draw one per Magician family Spirit you control, max 4; `per.max` is new).",
   "rules": [
     "STD:12-2-1-12@caad612c",
-    "ETR:effects.simultaneous@0d3e0a51"
+    "ETR:effects.simultaneous@77571ae4"
   ],
   "turn": 4,
   "active": "player",

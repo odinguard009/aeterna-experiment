@@ -3,7 +3,7 @@
   "about": "v0.202.0 next cycle bundle 23 (Eternal): the OPP_DRAWS trigger and outsideDraw condition. Cards: BS03-028 (LV2: each time the opponent draws, refresh this Spirit if it is exhausted), BS08-022 (Opposing Main Step: a Blade Beast Spirit refreshes per opponent draw), BS11-023 (refresh this Spirit when the opponent draws) and BS41-039 (LV2 Opposing Turn: outside the Draw Step, draw a card).",
   "rules": [
     "STD:12-2-1-12@caad612c",
-    "ETR:effects.simultaneous@0d3e0a51"
+    "ETR:effects.simultaneous@77571ae4"
   ],
   "turn": 4,
   "active": "opponent",

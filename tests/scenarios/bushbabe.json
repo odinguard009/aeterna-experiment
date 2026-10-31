@@ -3,7 +3,7 @@
   "about": "v0.202.0 next cycle bundle 18 (Eternal): BS13-020 Bushbabe (LV2, When Attacks: +1000 BP for each core on this Spirit; BP_TARGET gained perCores).",
   "rules": [
     "STD:12-2-1-12@caad612c",
-    "ETR:effects.simultaneous@0d3e0a51"
+    "ETR:effects.simultaneous@77571ae4"
   ],
   "turn": 4,
   "active": "player",

@@ -3,7 +3,7 @@
   "about": "v0.202.0 next cycle bundle 22 (Eternal): BS62-029 (When Summoned: while you control The PartnerBug Gataru, exhaust an opposing Spirit) and BS07-003 (When Attacks: +1000 BP for each opposing Cost 3 or less Spirit; per.side/costLe).",
   "rules": [
     "STD:12-2-1-12@caad612c",
-    "ETR:effects.simultaneous@0d3e0a51"
+    "ETR:effects.simultaneous@77571ae4"
   ],
   "turn": 4,
   "active": "player",

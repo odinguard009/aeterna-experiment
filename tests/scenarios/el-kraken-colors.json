@@ -3,7 +3,7 @@
   "about": "v0.202.0 next cycle bundle 19 (Eternal): BS10-018 El-Kraken (When Destroyed: exhaust up to a total of three opposing Spirits/Nexuses; EXHAUST_OPP gained nexus) and BS34-033 (every level: +2000 BP for each symbol colour you have; STATIC.perSymbolColors).",
   "rules": [
     "STD:12-2-1-12@caad612c",
-    "ETR:effects.simultaneous@0d3e0a51"
+    "ETR:effects.simultaneous@77571ae4"
   ],
   "turn": 4,
   "active": "player",

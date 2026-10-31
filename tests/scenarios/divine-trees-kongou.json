@@ -3,7 +3,7 @@
   "about": "v0.202.0 next cycle bundle 11 (Eternal): BS64-078 The Towering Strange Divine Trees (When Deployed: your counter +1, then a Void core to this Nexus; its LV2 opposing-attack exhaust stays).",
   "rules": [
     "STD:12-2-1-12@caad612c",
-    "ETR:effects.simultaneous@0d3e0a51"
+    "ETR:effects.simultaneous@77571ae4"
   ],
   "turn": 4,
   "active": "player",

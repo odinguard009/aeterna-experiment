@@ -3,7 +3,7 @@
   "about": "v0.202.0 next cycle bundle 4 (Eternal): BS14-028 and BS43-RV013 (When Summoned: exhaust all Cost 3 or less Spirits, both sides; EXHAUST_ALL_OPP gained costLe + both).",
   "rules": [
     "STD:12-2-1-12@caad612c",
-    "ETR:effects.simultaneous@0d3e0a51"
+    "ETR:effects.simultaneous@77571ae4"
   ],
   "turn": 4,
   "active": "player",

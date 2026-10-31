@@ -3,7 +3,7 @@
   "about": "v0.202.0 next cycle bundle 20 (Eternal): BS41-004 (LV2 When Attacks: you can destroy an opposing 5000 BP or less Spirit; when you did, draw a card), BS46-045 (LV2 When Attacks/Blocks: return an opposing Spirit with BP equal or inferior to this Spirit's to the Hand; BOUNCE_OPP.bpLeSelf) and BS26-031 (When destroyed by the opponent, with a Diva family Spirit: draw two).",
   "rules": [
     "STD:12-2-1-12@caad612c",
-    "SJP:battle@b6d5b7d2"
+    "SJP:battle@f0112edf"
   ],
   "turn": 4,
   "active": "player",
