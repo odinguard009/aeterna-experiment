@@ -10,3 +10,4 @@
 - [Standard block A only](feedback-standard-block-a-only.md) - pause other cards until block A is done; same-effect Eternal cards are fine
 - [Lane K never stop](feedback-lane-k-never-stop.md) - never stop Lane K for any reason, owner dislikes repeating it; only a quota error stops
 - [Stop guard](feedback-stop-guard.md) - Stop hook holds chain sessions via .git/aeterna-chain marker; stops logged; `rantai off` to stop on purpose
+- [Model policy](feedback-model-policy.md) - main model DeepSeek V4.1 Flash (deepseek-flash); heavy work asks the V4 Pro `advisor` first, with a self-contained brief
