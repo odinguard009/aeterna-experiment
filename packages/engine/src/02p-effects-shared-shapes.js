@@ -219,6 +219,17 @@ Object.assign(FX_ACTIONS, {
       io.view({ type: 'board' });
     } } });
 Object.assign(FX_ACTIONS, {
+  /* v218 "During this turn, give all your X Spirits: (When Attacks) Activate one of this Spirit's When Blocks effects." */
+  GRANT_BLOCKS_AS_ATTACKS: { chk: a => hasMatch(a.match) && Object.keys(a).every(k => ['do', 'if', 'match'].includes(k)),
+    txt: a => 'during this turn, all your matching Spirits activate their When Blocks effects at When Attacks',
+    cands: (c, a) => c.p.spirits.filter(s => fxMatch(CARDS[s.id], a.match, s)),
+    can: (c, a) => FX_ACTIONS.GRANT_BLOCKS_AS_ATTACKS.cands(c, a).length > 0,
+    run: async (c, a) => {
+      const L = FX_ACTIONS.GRANT_BLOCKS_AS_ATTACKS.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
+      for (const t of L) t.blocksAsAtkTurn = G.turnNo;
+      log(`${CARDS[c.src.id].name}: ${L.length} Spirit${L.length === 1 ? '' : 's'} activate their When Blocks effects at When Attacks this turn.`);
+    } } });
+Object.assign(FX_ACTIONS, {
   DESTROY_OWN: {
     chk: a => hasMatch(a.match) && (a.voidByCost == null || a.voidByCost === true) && (a.other == null || a.other === true),
     txt: a => (a.other ? 'destroy another Spirit you control' : 'destroy one of your matching Spirits') + (a.voidByCost ? ', then put cores from the Void to your Reserve equal to its cost' : ''),

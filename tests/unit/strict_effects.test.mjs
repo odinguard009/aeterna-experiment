@@ -58,7 +58,7 @@ test('S594-04 every condition key the parser accepts is known to fxIf', async ()
 });
 test('S594-05 every built-in card effect uses known names', async () => {
   const bad = await run(() => {
-    const out = [], flags = ['NO_BP_COMPARE', 'SUMMON_TAX', 'MUST_BLOCK', 'NO_DECK_DISCARD', 'NO_ATTACK_LIFE', 'HAND_COST', 'DRAW_PLUS', 'TREAT_LV3', 'NO_RETURN', 'CORES_DRAW', 'UNAFFECTED_SOUL', 'COST_DESTROY_PLUS', 'EXTRA_REDUCTION', 'NO_END_ATTACK', 'UNAFFECTED', 'HAND_UNAFFECTED', 'BLOCK_EXHAUSTED', 'CANT_ATTACK', 'CANT_BLOCK', 'TRIBUTE_SAFE', 'IMMORTALITY', 'NO_BLOCK_INFERIOR', 'SUMMON_SYMBOL', 'CAMOU', 'CORE_SAFE', 'LIFE_CORE_TO_TRASH', 'EXTRA_SYMBOL', 'NO_BLOCK_SHAMAN', 'BP_VIA_SHAMAN', 'NO_ATTACK_ONE_CORE', 'RUMBLE_PLUS', 'UNBLOCKABLE_LOW', 'LOW_ATK_ONCE'];
+    const out = [], flags = ['NO_BP_COMPARE', 'SUMMON_TAX', 'MUST_BLOCK', 'NO_DECK_DISCARD', 'NO_ATTACK_LIFE', 'HAND_COST', 'DRAW_PLUS', 'TREAT_LV3', 'NO_RETURN', 'CORES_DRAW', 'UNAFFECTED_SOUL', 'COST_DESTROY_PLUS', 'EXTRA_REDUCTION', 'NO_END_ATTACK', 'UNAFFECTED', 'HAND_UNAFFECTED', 'BLOCK_EXHAUSTED', 'CANT_ATTACK', 'CANT_BLOCK', 'TRIBUTE_SAFE', 'IMMORTALITY', 'NO_BLOCK_INFERIOR', 'SUMMON_SYMBOL', 'CAMOU', 'CORE_SAFE', 'LIFE_CORE_TO_TRASH', 'EXTRA_SYMBOL', 'NO_BLOCK_SHAMAN', 'BP_VIA_SHAMAN', 'NO_ATTACK_ONE_CORE', 'RUMBLE_PLUS', 'UNBLOCKABLE_LOW', 'LOW_ATK_ONCE', 'BLOCKS_AS_ATTACKS'];
     const walk = (id, list) => { for (const a of list || []) { if (!BS.FX_ACTIONS[a.do]) out.push(id + ' action ' + a.do); if (a.then) walk(id, a.then); if (a.cost) walk(id, [a.cost]); } };
     for (const [id, c] of Object.entries(BS.CARDS)) for (const e of c.effects || []) {
       if (e.trigger === 'STATIC' && e.flag && !flags.includes(e.flag)) out.push(id + ' flag ' + e.flag);
