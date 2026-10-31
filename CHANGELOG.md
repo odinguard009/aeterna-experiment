@@ -4,6 +4,14 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.203.0
+- Lane: K
+- **Lane K: +50 complete cards (1,593 -> 1,643 of 8,709; 50 in this release)**
+- Eternal cards in this release (24 bundles, all data-only unless a piece is named): Argent-Vixen, Barbary-Chouhi, Brigit, Giraffer, Soul Ogre, Phul, BS14-028, BS43-RV013, BS16-019, BS40-002, Rappanther, Setadog, BS11-011, BS10-040, BS19-027, BS35-037, BS41-038, BS17-037, BS75-001, BS46-039, BS64-078, BS40-024, BS61-023, BS42-029, BS38-RV013, BS24-007, BS47-065, BS09-050, BS42-RV011, BS31-029, BS24-051, BS17-038, BS16-040, BS13-020, BS10-018, BS34-033, BS41-004, BS46-045, BS26-031, BS14-024, BS20-043, BS62-029, BS07-003, BS03-028, BS08-022, BS11-023, BS41-039, BS54-005, BS34-057, BS11-041.
+- Engine pieces (schema 230 -> 237): conditions `firstBattle` and `oppLifeGe`; `per.max` with `per.side`/`per.costLe`/`per.costGe`; `STATIC.perSymbolColors`; `BP_TARGET.perCores`; `EXHAUST_OPP.nexus`; `BOUNCE_OPP.bpLeSelf`; `DESTROY.ultimate`; `MILL_OPP`; the `OPP_DRAWS` trigger (one event per deck-draw, `ctx.drawN`); the `outsideDraw` condition; and `staticBp` now passes a ctx to `fxIf` (soul-on-this-Spirit static BP).
+- Fixes: two old Purgatory Wings tests (K-04, K-16) no longer require an effect-less card; the touch long-press test waits longer; the "unknown or invalid condition" error lists the live condition keys.
+- Limits: the three blocked block A cards stay blocked (Rindorin, Misty Lylebit, Soul Magic) plus BS19-075 (turn-long "can't block" has no engine action) and BS22-029/BS10-002 (Charge keyword, level-3 override); the BS08-022 "for each card" repeat is modelled as one refresh per draw event; card faces and wiki text stay unverified for the newest Eternal cards.
+
 ## v0.202.0
 - Lane: K
 - **Lane K: +50 complete cards (1,543 -> 1,593 of 8,709; 50 in this release)**

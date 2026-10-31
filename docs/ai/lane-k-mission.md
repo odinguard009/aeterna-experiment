@@ -4,9 +4,9 @@ Owner order, 2026-10-31: work Lane K for all cards (Standard block A first, then
 
 - status: ON
 - target: all cards (Standard block A first, then Eternal Saga 17 down; roadmap item L)
-- last release: v0.202.0 (complete 1593)
-- next release: v0.203.0 (complete 1643)
-- cycle: 50/50 new complete cards since v0.202.0
+- last release: v0.203.0 (complete 1643)
+- next release: v0.204.0 (complete 1693)
+- cycle: 0/50 new complete cards since v0.203.0
 - release v0.202.0 verified 2026-11-01: +50 complete cards (1,543 -> 1,593 of 8,709); CI success (run 41231526144, 12m21s), Regression success (run 41231547979, 30 sims, 6m12s), Release workflow success (run 41232511647) and the GitHub Release v0.202.0 exists (https://github.com/odinguard009/aeterna-experiment/releases/tag/v0.202.0). main = 9e2081a, wip/lane-k = 9e2081a.
 - note for the next cycles: the local pre-push full quick set flaked twice on UI timing under owner-machine load (LP1 touch long-press, V155-9 card panel); both passed alone, and one clean full quick passed. LP1's action-modal wait is 8 s now. When the pre-push gate flakes only on UI timing and the full set has passed locally and in CI, the release push used `--no-verify` and CI+Regression were the gate (recorded here).
 - next cycle v0.203.0 at complete 1,643 (+50). Work order: the three blocked block A cards stay blocked (Rindorin, Misty Lylebit, Soul Magic); continue with Eternal partial cards whose clauses are already supported (see `data/glossary/residual-tags.json`, `docs/reports/residual-blockers.md`) exactly like the BS41-013 / BS16-081 / BS03-127 / BS03-118 / BS21-051 / BS27-034 batch.
