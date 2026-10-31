@@ -183,7 +183,7 @@ const perOk = q => !!q && typeof q === 'object' && PER_TYPES.includes(q.type) &&
 const perCount = (owner, q) => (q.type === 'Nexus' ? owner.nexus : owner.spirits.filter(f => CARDS[f.id].type !== 'Ultimate')).filter(f => { const k = CARDS[f.id];
   return (!q.colors || q.colors.some(x => (k.colors || [k.color, k.symbol]).includes(x))) && (!q.family || (k.families || []).includes(q.family)) && (!q.name || k.name.includes(q.name)) && (!q.team || cardTeams(k).includes(q.team)) && (!q.keyword || cardHasKeyword(k, q.keyword)); }).length;
 function ownerOf(i) { if (!G) return null; for (const k of ['player', 'opponent']) if (fieldList(G.p[k]).includes(i)) return G.p[k]; return null; }
-const STATIC_FLAGS = ['MUST_BLOCK', 'LOW_ATK_ONCE', 'NO_RETURN', 'CORES_DRAW', 'UNAFFECTED_SOUL', 'COST_DESTROY_PLUS', 'EXTRA_REDUCTION', 'SUMMON_SYMBOL', 'NO_END_ATTACK', 'UNAFFECTED', 'HAND_UNAFFECTED', 'BLOCK_EXHAUSTED', 'CANT_ATTACK', 'CANT_BLOCK', 'NO_DECK_DISCARD', 'NO_ATTACK_LIFE', 'HAND_COST', 'DRAW_PLUS', 'TREAT_LV3', 'TRIBUTE_SAFE', 'IMMORTALITY', 'NO_BLOCK_INFERIOR', 'NO_BP_COMPARE', 'CAMOU', 'SUMMON_TAX', 'CORE_SAFE', 'LIFE_CORE_TO_TRASH', 'EXTRA_SYMBOL', 'NO_BLOCK_SHAMAN', 'BP_VIA_SHAMAN', 'NO_ATTACK_ONE_CORE', 'RUMBLE_PLUS', 'UNBLOCKABLE_LOW', 'BLOCKS_AS_ATTACKS', 'BLOCK_TAX', 'ZERO_BP_DECKBOTTOM', 'LIFE_HIT_PLUS', 'ATK_TAX'];
+const STATIC_FLAGS = ['MUST_BLOCK', 'LOW_ATK_ONCE', 'NO_RETURN', 'CORES_DRAW', 'UNAFFECTED_SOUL', 'COST_DESTROY_PLUS', 'EXTRA_REDUCTION', 'SUMMON_SYMBOL', 'NO_END_ATTACK', 'UNAFFECTED', 'HAND_UNAFFECTED', 'BLOCK_EXHAUSTED', 'CANT_ATTACK', 'CANT_BLOCK', 'NO_DECK_DISCARD', 'NO_ATTACK_LIFE', 'HAND_COST', 'DRAW_PLUS', 'TREAT_LV3', 'TRIBUTE_SAFE', 'IMMORTALITY', 'NO_BLOCK_INFERIOR', 'NO_BP_COMPARE', 'CAMOU', 'SUMMON_TAX', 'CORE_SAFE', 'LIFE_CORE_TO_TRASH', 'EXTRA_SYMBOL', 'NO_BLOCK_SHAMAN', 'BP_VIA_SHAMAN', 'NO_ATTACK_ONE_CORE', 'RUMBLE_PLUS', 'UNBLOCKABLE_LOW', 'BLOCKS_AS_ATTACKS', 'BLOCK_TAX', 'ZERO_BP_DECKBOTTOM', 'LIFE_HIT_PLUS', 'ATK_TAX', 'COST_RELIEF'];
 /* flag effects: MUST_BLOCK (opposing Spirits must block this attacker), NO_RETURN (cannot be returned by opposing effects), CORES_DRAW (draw once per turn when cores are sent by your effects),
    UNAFFECTED_SOUL (Ometeotl Contract Field: this card is unaffected by opposing effects while a Soul Core is on it),
    NO_END_ATTACK (v0.43: while the matching Spirit of the owner attacks, the opponent can't end the Attack Step via effects; Sunya Lv3, Crimson Crater Lv2) */
@@ -335,6 +335,23 @@ function blocksAsAtkOn(owner, s) {
   return fieldList(owner).some(f => fxEntries(f).some(({ e }) => e.trigger === 'STATIC' && e.flag === 'BLOCKS_AS_ATTACKS'
     && (!e.lv || e.lv.includes(lvNo(f))) && (!e.to || e.to !== 'self' || f === s) && (!e.oc || ocActive(f)) && fxIf(owner, opp, e.if, { selfInst: f })
     && (!e.match || fxMatch(CARDS[s.id], e.match, s))));
+}
+/* v224 STATIC COST_RELIEF: exhaust one of your Nexuses ("when you would pay costs via your X effects") to treat one cost as paid.
+   Can't Stack: one relief per turn per card. */
+function exhaustCostRelief(p, exclude) {
+  if (!G) return 0;
+  const opp = G.p[other(p.key)];
+  for (const f of p.nexus) {
+    if (f === exclude || f.exhausted) continue;
+    const L = lvNo(f);
+    for (const { e } of fxEntries(f)) if (e.trigger === 'STATIC' && e.flag === 'COST_RELIEF' && (!e.lv || e.lv.includes(L)) && (!e.oc || ocActive(f))
+      && f.coReliefTurn !== G.turnNo && (!e.match || fxMatch(CARDS[f.id], e.match, f)) && fxIf(p, opp, e.if || {}, { selfInst: f })) {
+      f.exhausted = true; f.coReliefTurn = G.turnNo;
+      log(`${CARDS[f.id].name} is exhausted: one cost is treated as paid.`);
+      return e.n || 1;
+    }
+  }
+  return 0;
 }
 function activeLowAtk() {
   if (!G) return 0;

@@ -64,10 +64,11 @@ async function payInvokeCost(p, f, c) {
   if (!c || c.exhaustSelf) return true;
   const nm = CARDS[f.id].name;
   if (c.pay) {
-    if (coresAvailable(p) < c.pay) return false;
-    const got = takeCores(p, c.pay, f.uid);      // Reserve first, never the Invoke source itself (A7 review); the cores go to the Trash
-    if (got.n + (got.soul ? 1 : 0) < c.pay) return false;
-    p.trashCores.n += got.n; if (got.soul) p.trashCores.soul = true; log(`${nm}: ${who(p)} ${p.cpu ? 'pays' : 'pay'} ${c.pay} cost${c.pay === 1 ? '' : 's'}.`); checkDepletion(p); return true;
+    const relief = exhaustCostRelief(p, f), need = Math.max(0, c.pay - relief);      // v224 COST_RELIEF
+    if (coresAvailable(p) < need) return false;
+    const got = takeCores(p, need, f.uid);      // Reserve first, never the Invoke source itself (A7 review); the cores go to the Trash
+    if (got.n + (got.soul ? 1 : 0) < need) return false;
+    p.trashCores.n += got.n; if (got.soul) p.trashCores.soul = true; log(`${nm}: ${who(p)} ${p.cpu ? 'pays' : 'pay'} ${need} cost${need === 1 ? '' : 's'}${relief ? ' (one treated as paid)' : ''}.`); checkDepletion(p); return true;
   }
   if (c.destroySelf) {
     if (p.nexus.includes(f)) removeNexus(p, f, 'destroyed'); else if (p.spirits.includes(f)) removeSpirit(p, f, 'destroyed', false); else return false;

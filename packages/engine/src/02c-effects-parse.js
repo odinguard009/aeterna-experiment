@@ -203,6 +203,10 @@ function parseEffects(arr) {
         if (!Number.isInteger(e.pay) || e.pay < 1 || e.pay > 3) return { error: 'ATK_TAX needs a whole-number "pay" (1-3)' };
         o.lvLimit = e.lvLimit; o.pay = e.pay;
       }
+      if (e.flag === 'COST_RELIEF') {                             // v224 "when you would pay costs via your X effects, you can exhaust this Nexus: treat one cost as paid"
+        if (!Number.isInteger(e.n) || e.n < 1 || e.n > 2) return { error: 'COST_RELIEF needs a whole-number "n" (1-2)' };
+        o.n = e.n;
+      }
       if (e.flag === 'UNAFFECTED' && e.from != null) {               // v0.58 Armor / Heavy Armor / Ultra Armor / "unaffected by opposing <colour> <types> effects"
         const f = e.from, TY = ['Spirit', 'Brave', 'Nexus', 'Magic', 'Ultimate'];
         if (typeof f !== 'object' || (f.colors != null && (!Array.isArray(f.colors) || !f.colors.length || f.colors.some(x => !COLORS.includes(x))))
