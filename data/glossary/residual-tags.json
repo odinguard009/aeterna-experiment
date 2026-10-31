@@ -5862,11 +5862,6 @@
   "M_UP_TO",
   "T_ATTACKS"
  ],
- "BS19-027": [
-  "A_REFRESH",
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
  "BS19-029": [
   "A_EXHAUST",
   "C_LEVEL"
@@ -12907,10 +12902,6 @@
   "A_SEAL",
   "C_LEVEL",
   "M_OPTIONAL"
- ],
- "BS35-037": [
-  "A_REFRESH",
-  "C_LEVEL"
  ],
  "BS35-038": [
   "A_VOID",

@@ -1,0 +1,27 @@
+{
+  "name": "refresh-two",
+  "about": "v0.202.0 next cycle bundle 8 (Eternal): BS19-027 (at LV2, When Attacks: if it is the first attack of your turn, refresh this Spirit) and BS35-037 (in the Opposing Attack Step: when an opposing Spirit attacks, this Spirit refreshes).",
+  "rules": [
+    "STD:12-2-1-12@caad612c",
+    "ETR:effects.simultaneous@0d3e0a51"
+  ],
+  "turn": 4,
+  "active": "player",
+  "step": 5,
+  "players": {
+    "player": {
+      "reserve": 3,
+      "spirits": [
+        { "id": "BS19-027", "cores": 4, "as": "firstAttack" },
+        { "id": "BS35-037", "cores": 1, "as": "oppAttack" }
+      ],
+      "deck": ["26RBS01-004", "26RBS01-005"]
+    },
+    "opponent": {
+      "reserve": 4,
+      "spirits": [
+        { "id": "26RBS01-004", "cores": 1, "as": "oppA" }
+      ]
+    }
+  }
+}
