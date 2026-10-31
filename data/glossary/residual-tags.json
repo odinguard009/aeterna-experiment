@@ -2386,10 +2386,6 @@
   "C_LEVEL",
   "T_BLOCKS"
  ],
- "BS09-050": [
-  "A_VOID",
-  "C_LEVEL"
- ],
  "BS09-051": [
   "C_LEVEL"
  ],
@@ -17771,10 +17767,6 @@
   "A_BP_MINUS",
   "C_LEVEL",
   "T_ALLY_ATTACKS"
- ],
- "BS42-RV011": [
-  "A_VOID",
-  "C_LEVEL"
  ],
  "BS42-RV012": [
   "A_REFRESH",

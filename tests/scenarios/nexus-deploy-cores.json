@@ -1,0 +1,31 @@
+{
+  "name": "nexus-deploy-cores",
+  "about": "v0.202.0 next cycle bundle 15 (Eternal): BS09-050 (at LV2, when your Nexus is deployed, a Void core goes to it) and BS42-RV011 (when your Nexus is deployed: a Void core to it, once per turn). Both ride ALLY_SUMMONED with match {type:'Nexus'} - the engine fires SUMMONED for a Nexus deploy too.",
+  "rules": [
+    "STD:12-2-1-12@caad612c",
+    "SJP:core-move@eb7563c8"
+  ],
+  "turn": 4,
+  "active": "player",
+  "step": 5,
+  "players": {
+    "player": {
+      "reserve": 3,
+      "void": 8,
+      "spirits": [
+        { "id": "BS09-050", "cores": 4, "as": "deployBuyer" },
+        { "id": "BS42-RV011", "cores": 2, "as": "onceBuyer" }
+      ],
+      "nexus": [
+        { "id": "26RBS01-092", "cores": 0, "as": "grove" }
+      ],
+      "deck": ["26RBS01-004", "26RBS01-005"]
+    },
+    "opponent": {
+      "reserve": 4,
+      "spirits": [
+        { "id": "26RBS01-004", "cores": 1, "as": "oppA" }
+      ]
+    }
+  }
+}
