@@ -7588,11 +7588,6 @@
   "M_OPTIONAL",
   "T_ALLY_ATTACKS"
  ],
- "BS24-007": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "T_BATTLE_WIN"
- ],
  "BS24-008": [
   "C_LEVEL",
   "K_BURST",
@@ -20372,12 +20367,6 @@
   "C_LEVEL",
   "F_OTHER_NOSTACK",
   "T_ATTACKS"
- ],
- "BS47-065": [
-  "A_DRAW",
-  "C_LEVEL",
-  "M_THEN",
-  "T_SUMMONED"
  ],
  "BS47-066": [
   "A_VOID",

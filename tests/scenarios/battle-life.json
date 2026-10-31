@@ -1,0 +1,29 @@
+{
+  "name": "battle-life",
+  "about": "v0.202.0 next cycle bundle 14 (Eternal): BS24-007 (at LV2/3, during the first battle of the turn, while it fights: +6000 BP) and BS47-065 (When Summoned: if the opposing Life is five or more, draw two and discard one).",
+  "rules": [
+    "STD:12-2-1-12@caad612c",
+    "ETR:battle.resolution@b774143c"
+  ],
+  "turn": 4,
+  "active": "player",
+  "step": 5,
+  "players": {
+    "player": {
+      "reserve": 3,
+      "spirits": [
+        { "id": "BS24-007", "cores": 3, "as": "battler" },
+        { "id": "BS47-065", "cores": 1, "as": "summoner" }
+      ],
+      "hand": ["26RBS01-004", "26RBS01-005", "26RBS01-006"],
+      "deck": ["26RBS01-007", "26RBS01-009", "26RBS01-010", "26RBS01-011"]
+    },
+    "opponent": {
+      "reserve": 4,
+      "life": 5,
+      "spirits": [
+        { "id": "26RBS01-004", "cores": 1, "as": "oppA" }
+      ]
+    }
+  }
+}

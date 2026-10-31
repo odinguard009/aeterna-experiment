@@ -265,3 +265,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v227 (Lane K): actions `EXHAUST_ALL_OPP {bpLe}` ("exhaust every N BP or less Spirit") and `DRAW_TO {n}` ("draw until you have N cards in Hand"). Cards: BS03-127 Ivy Cage, BS03-118 Fourth Draw.
 - v228 (Lane K): `EXHAUST_ALL_OPP` accepts `costLe` and `both` ("exhaust every N BP or less Spirit", "exhaust all Cost M or less Spirits" including your own). Cards: BS14-028, BS43-RV013.
 - v229 (Lane K): `match.keywordAny` (2-4 keywords, any one matches: "with Brilliance/Evil Light"). Cards: BS41-038, BS17-037.
+- v230 (Lane K): conditions `firstBattle` (G.battleNo === 1: "while this is the first battle during this turn") and `oppLifeGe` ("the opposing Life is N or more"). Cards: BS24-007, BS47-065.
