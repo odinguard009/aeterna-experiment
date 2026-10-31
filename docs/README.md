@@ -62,3 +62,4 @@ Generated reports live in `reports/` (first line names the tool).
 - `ai/next-session-prompt.md` (hand): auto-mode rules and the scheduled prompt.
 - `ai/owner-instructions.md` (hand): the owner's instructions in their words.
 - `ai/deleted-branches.md` (hand): backup branches listed for deletion, restorable by SHA.
+- `ai/lane-k-mission.md` (hand): Lane K mission state, model routing and handoff for DeepSeek/Claude sessions; tools `tools/lane_k_packet.mjs`, `tools/lane_k_status.sh`, `tools/lane_k_guard.sh`, `tools/lane_k_release.sh`.
