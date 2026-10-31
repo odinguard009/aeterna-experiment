@@ -55,6 +55,17 @@ Object.assign(FX_ACTIONS, {
       if (!t) { c.ctx.did = false; return; }
       if (a.highest) t.lvHighTurn = true; else if (a.battle) t.lv2Battle = G.battleNo; else t.lv2Turn = true; io.view({ type: 'board' });
     } },
+  /* v205 TREAT_LV1 "Target an opposing attacking Spirit. During this battle, treat it as LV1" (inst.lv1Battle, read by lvIndex) */
+  TREAT_LV1: { chk: a => invokeMatchOK(a.match) && (a.attacking == null || a.attacking === true),
+    txt: () => 'target an opposing attacking Spirit; during this battle, treat it as LV1',
+    cands: (c, a) => c.opp.spirits.filter(s => (!a.attacking || s === G.attacker) && (!a.match || fxMatch(CARDS[s.id], a.match, s))),
+    can: (c, a) => FX_ACTIONS.TREAT_LV1.cands(c, a).length > 0,
+    run: async (c, a) => {
+      const L = FX_ACTIONS.TREAT_LV1.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
+      const t = c.p.cpu ? (L.find(s => s === G.attacker) || L[0]) : await fxPickTarget(c, L, `✨ <b>${esc(_nm(c))}</b><br>Tap the opposing attacking Spirit to treat as LV1 (glowing).`);
+      if (!t) { c.ctx.did = false; return; }
+      t.lv1Battle = G.battleNo; io.view({ type: 'board' }); log(`${CARDS[t.id].name} is treated as LV1 during this battle.`);
+    } },
   /* v196 LIFE_CAP_ONE "Target an opposing <match> Spirit. During this turn, your Life can only be reduced by one by that" (inst.lifeCapTurn, read by 08-battle) */
   LIFE_CAP_ONE: { chk: a => hasMatch(a.match) && (a.symbols == null || (Number.isInteger(a.symbols) && a.symbols >= 1 && a.symbols <= 3)),
     txt: () => 'target an opposing Spirit; during this turn, your Life can only be reduced by one by that Spirit',

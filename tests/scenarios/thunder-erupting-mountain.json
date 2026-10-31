@@ -1,0 +1,41 @@
+{
+  "name": "thunder-erupting-mountain",
+  "about": "v205: The Thunder-Erupting Mountain (26RBS01-103) LV1-2 (Opposing Attack Step) (CSOPT): 'When you use a Magic card, you can target a \"Topaz\" family Spirit you control. Refresh it.' = MAGIC_USED + REFRESH_SPIRIT {match family Topaz}, gated by if {step ATTACK, oppTurn true}. LV2 (True Release) (Opposing Attack Step) {{Invoke|Flash}}: 'If your Spirit with Magirrate is blocking, exhaust this Nexus > Target an opposing attacking Spirit. During this battle, treat it as LV1.' = ACTIVATE {cost exhaustSelf, if blockerKeyword Magirrate} + TREAT_LV1 {attacking} (inst.lv1Battle read by lvIndex). Thunderai (26RBS01-072) is the Topaz Magirrate blocker.",
+  "rules": [
+    "ETR:faq.effects-q3@a8b10c85",
+    "SJP:true-release@55609a47"
+  ],
+  "turn": 3,
+  "active": "opponent",
+  "step": 5,
+  "players": {
+    "player": {
+      "reserve": 6,
+      "spirits": [
+        {
+          "id": "26RBS01-072",
+          "cores": 1,
+          "exhausted": true,
+          "as": "magirrateBlocker"
+        }
+      ],
+      "nexus": [
+        {
+          "id": "26RBS01-103",
+          "cores": 3,
+          "as": "mountain"
+        }
+      ]
+    },
+    "opponent": {
+      "reserve": 3,
+      "spirits": [
+        {
+          "id": "26RBS01-004",
+          "cores": 3,
+          "as": "oppAttacker"
+        }
+      ]
+    }
+  }
+}

@@ -35,6 +35,7 @@ function lvIndex(i) {
   for (let j = 0; j < L.length; j++) if (t >= L[j].cores) k = j;
   if (k >= 0 && k < 2 && L.length > 1) { const n = treatLv3(i); if (n && L.length >= n && k < n - 1) k = n - 1; }      // v0.181 STATIC TREAT_LV3 "While you control N or less Spirits, this Spirit is treated as being at LV3"; v0.184 n:2 = LV2
   if (i.lv2Battle && G && G.attacker && i.lv2Battle === G.battleNo && L.length > 1 && k < 1) k = 1;      // v0.196 TREAT_LV2 battle:true (Level Up)
+  if (i.lv1Battle && G && G.battleNo != null && i.lv1Battle === G.battleNo && k > 0) k = 0;      // v205 TREAT_LV1: "During this battle, treat it as LV1"
   if (i.lv2Turn && L.length > 1 && k < 1) k = 1;      // v0.196 TREAT_LV2 action
   if (i.lvHighTurn && L.length > 1) k = L.length - 1;      // v184 TREAT_LV2 highest
   if (card.trueRelease && i.soul && L.length > 1 && k < 1) k = 1;   // v0.66 True Release (Standard CR 12-2-1-1): the Soul Core alone fulfils LV2 (a rule, not an effect)

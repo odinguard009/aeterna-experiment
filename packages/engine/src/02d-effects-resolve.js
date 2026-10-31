@@ -6,7 +6,7 @@ async function runActions(c, e, trg) {
   if (c.src && c.src.id) { let text = ''; try { text = fxDescribe(e); } catch (x) { /* an unknown action name: the strict / release handling below reports it */ } io.view({ type: 'effect', side: c.p.key, id: c.src.id, text, trg: trg || '' }); }   // v0.125.0 U14d2: the Effect Active panel (display only, never changes the match)
   for (const a of e.actions) {
     if (G.over) return;
-    c.ctx.prev = last; last = false; if (c.ctx.viaFC == null && c.src) c.ctx.viaFC = !!c.src.viaFC; if (c.ctx.viaHS == null && c.src) c.ctx.viaHS = !!c.src.viaHS; if (c.ctx.viaLegacy == null && c.src) c.ctx.viaLegacy = (c.src.legacyN || 0) > 0;
+    c.ctx.prev = last; last = false; if (c.ctx.viaFC == null && c.src) c.ctx.viaFC = !!c.src.viaFC; if (c.ctx.viaHS == null && c.src) c.ctx.viaHS = !!c.src.viaHS; if (c.ctx.viaLegacy == null && c.src) c.ctx.viaLegacy = (c.src.legacyN || 0) > 0; if (c.ctx.viaMagirrate == null && c.src) c.ctx.viaMagirrate = !!c.src.viaMagirrate;
     if (!fieldList(c.p).includes(c.src) && trg !== 'SUMMONED' && a.do === 'REFRESH') continue;
     if (a.if && !fxIf(c.p, c.opp, a.if, c.src ? Object.assign({}, c.ctx, { selfUid: c.src.uid, selfInst: c.src }) : c.ctx)) continue;
     if (!FX_ACTIONS[a.do]) { fxUnknown('action', a.do); continue; }             // v0.59.4 strict effects (release: skip it)

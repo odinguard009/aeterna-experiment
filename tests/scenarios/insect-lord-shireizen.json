@@ -1,0 +1,46 @@
+{
+  "name": "insect-lord-shireizen",
+  "about": "v205: The InsectLord Shi-Reizen (26RBS01-X04) LV1-2 (When Summoned): 'Reveal three cards from your decktop. Discard a Purple card among them. Return any remaining cards to the deckbottom.' = REVEAL_PICK {n 3, match {color purple}, discard, rest bottom}. LV2 (True Release) (When Attacks): 'You can target one of your Spirits with Shamanism. Activate its Shamanism.' = ACTIVATE_SUMMONED {match keyword Shamanism} (runs that Spirit's (When Summoned) Shamanism effect; Spectrous 26RBS01-021 summons a Cost 2 or less Dark Puce Spirit from the Trash).",
+  "rules": [
+    "ETR:faq.effects-q3@a8b10c85",
+    "SJP:true-release@55609a47"
+  ],
+  "turn": 3,
+  "active": "player",
+  "step": 4,
+  "players": {
+    "player": {
+      "reserve": 10,
+      "spirits": [
+        {
+          "id": "26RBS01-X04",
+          "cores": 3,
+          "as": "shireizen"
+        },
+        {
+          "id": "26RBS01-021",
+          "cores": 1,
+          "as": "spectrous"
+        }
+      ],
+      "deck": [
+        "26RBS01-021",
+        "26RBS01-002",
+        "26RBS01-016"
+      ],
+      "trash": [
+        "26RBS01-016"
+      ]
+    },
+    "opponent": {
+      "reserve": 3,
+      "spirits": [
+        {
+          "id": "26RBS01-004",
+          "cores": 1,
+          "as": "oppSpirit"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "name": "thunder-shutter-magirrate",
+  "about": "v205: Thunder Shutter (26RBS01-123) Flash: 'Target one of your \"Topaz\" family Spirits. Send a core, besides (Soul Core), from it to your Life. Then, if this card was used via Magirrate, target one of your Spirits with Magirrate. Refresh it.' = magic.actions [OWN_CORE_TO_LIFE {match family Topaz}, REFRESH_SPIRIT {match keyword Magirrate, if viaMagirrate}]. 'used via Magirrate' = cast through Thunderai's (26RBS01-072) Magirrate Invoke Flash (USE_FLASH from a Magirrate source stamps inst.viaMagirrate).",
+  "rules": [
+    "ETR:faq.effects-q3@a8b10c85",
+    "SJP:true-release@55609a47"
+  ],
+  "turn": 3,
+  "active": "player",
+  "step": 5,
+  "players": {
+    "player": {
+      "reserve": 6,
+      "spirits": [
+        {
+          "id": "26RBS01-072",
+          "cores": 3,
+          "exhausted": true,
+          "as": "thunderai"
+        }
+      ],
+      "hand": [
+        "26RBS01-123"
+      ]
+    },
+    "opponent": {
+      "reserve": 3,
+      "spirits": [
+        {
+          "id": "26RBS01-004",
+          "cores": 1,
+          "as": "oppSpirit"
+        }
+      ]
+    }
+  }
+}

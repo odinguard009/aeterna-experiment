@@ -6702,16 +6702,60 @@
   "image": "26RBS01-103.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (Opposing Attack Step) (CSOPT) When you use a Magic card, you can target a \"Topaz\" family Spirit you control. Refresh it.",
-   "[LV2] (True Release) (Opposing Attack Step){{Invoke|Flash}} If your Spirit with Magirrate is blocking, exhaust this Nexus ▶ Target an opposing attacking Spirit. During this battle, treat it as LV1."
+  "effects": [
+   {
+    "trigger": "MAGIC_USED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": true
+    },
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT",
+      "match": {
+       "family": [
+        "Topaz"
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "FLASH"
+    ],
+    "when": "oppAttack",
+    "once": true,
+    "lv": [
+     2
+    ],
+    "cost": {
+     "exhaustSelf": true
+    },
+    "if": {
+     "blockerKeyword": "Magirrate"
+    },
+    "actions": [
+     {
+      "do": "TREAT_LV1",
+      "attacking": true
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
    "A"
   ],
-  "rcode": "C"
+  "rcode": "C",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-104",
@@ -7803,14 +7847,20 @@
        "Topaz"
       ]
      }
+    },
+    {
+     "do": "REFRESH_SPIRIT",
+     "match": {
+      "keyword": "Magirrate"
+     },
+     "if": {
+      "viaMagirrate": true
+     }
     }
    ]
   },
-  "fxComplete": false,
-  "residual": [
-   "Then, if this card was used via Magirrate, target one of your Spirits with Magirrate. Refresh it."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects hand-written for roadmap S1 Standard Magic (v0.88.0-v0.89.0); not yet checked against the card image.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image.",
   "bicon": [
    "A"
   ],
@@ -8156,16 +8206,46 @@
   "image": "26RBS01-X04.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Summoned) Reveal three cards from your decktop. Discard a Purple card among them. Return any remaining cards to the deckbottom.",
-   "[LV2] (True Release) (When Attacks) You can target one of your Spirits with Shamanism. Activate its Shamanism."
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "REVEAL_PICK",
+      "n": 3,
+      "match": {
+       "color": "purple"
+      },
+      "discard": true,
+      "rest": "bottom"
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "ACTIVATE_SUMMONED",
+      "match": {
+       "keyword": "Shamanism"
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
    "A"
   ],
-  "rcode": "X"
+  "rcode": "X",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-X05",

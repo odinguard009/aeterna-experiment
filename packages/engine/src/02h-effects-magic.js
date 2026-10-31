@@ -175,6 +175,7 @@ Object.assign(FX_ACTIONS, {
         const h = L.find(x => x.id === id); if (!h) { c.ctx.did = false; return; }
         ch = await prepareHumanMagic(c.p, h, 'flash', true); if (!ch) { c.ctx.did = false; return; }
       }
+      if (cardHasKeyword(CARDS[c.src.id], 'Magirrate')) ch.inst.viaMagirrate = true;      // v205 "used via Magirrate"
       log(`${CARDS[c.src.id].name}: ${who(c.p)} ${c.p.cpu ? 'uses' : 'use'} the Flash effect of ${CARDS[ch.inst.id].name} without paying the cost.`);
       await castMagic(c.p, ch); io.view({ type: 'board' });
     } },
