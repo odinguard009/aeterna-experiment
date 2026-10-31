@@ -38209,12 +38209,6 @@
   "C_LEVEL",
   "T_DESTROYED"
  ],
- "26RBS02-033": [
-  "A_EXHAUST",
-  "A_REFRESH",
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "26RBS02-073": [
   "A_EXHAUST",
   "C_LEVEL",
@@ -38283,11 +38277,6 @@
   "M_UP_TO",
   "T_ALLY_BLOCKED",
   "T_ATTACKS"
- ],
- "26RBS03-017": [
-  "C_OPP_TURN",
-  "M_REPLACEMENT",
-  "T_DESTROYED"
  ],
  "26RBS03-019": [
   "C_LEVEL",
@@ -38507,15 +38496,6 @@
   "C_LEVEL",
   "C_LIFE",
   "T_ALLY_LIFE_HIT",
-  "T_SUMMONED"
- ],
- "26RSD09-X01": [
-  "A_BP_PLUS",
-  "A_REVEAL_ADD",
-  "A_REVEAL_DECK",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "M_REPLACEMENT",
   "T_SUMMONED"
  ],
  "26RSD10-010": [

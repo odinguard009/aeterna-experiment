@@ -50,7 +50,7 @@ function parseCond(c) {
   if (typeof c !== 'object' || c === null) return { error: 'effect "if" must be an object' };
   for (const [k, v] of Object.entries(c)) {
     if (k === 'not') { const sub = parseCond(v); if (sub.error || Object.keys(v).length === 0 || 'not' in v) return { error: 'condition "not" must hold one valid condition (no nesting): ' + (sub.error || 'empty') }; continue; }      // v0.135
-    const okInt = ['handLe', 'lifeLe', 'anyLifeLe', 'counterGe', 'soulGe', 'oppHandGe', 'voidGe', 'soulLe', 'putGe', 'lifeGe', 'oppRemovedGe', 'removedGe', 'oppSpiritsLe', 'oppNexusGe', 'oppTrashGe', 'selfBpGe', 'blockerBpLe', 'attackerCostLe'].includes(k) && Number.isInteger(v);
+    const okInt = ['handLe', 'lifeLe', 'anyLifeLe', 'counterGe', 'soulGe', 'oppHandGe', 'voidGe', 'soulLe', 'putGe', 'lifeGe', 'oppRemovedGe', 'removedGe', 'oppSpiritsLe', 'oppNexusGe', 'oppTrashGe', 'selfBpGe', 'blockerBpLe', 'attackerCostLe', 'oppRefreshedLe'].includes(k) && Number.isInteger(v);
     const okStr = ((k === 'controlName' || k === 'hasName' || k === 'soulOn' || k === 'nexusBraved' || k === 'pickedKeyword' || k === 'attackerKeyword') && typeof v === 'string' && v.length > 0 && v.length <= 60)
       || (k === 'controlName' && Array.isArray(v) && v.length > 1 && v.length <= 4 && v.every(y => typeof y === 'string' && y.length > 0 && y.length <= 60));
     const okCol = (k === 'trashAllColor' && COLORS.includes(v)) || k === 'hasSymbol' && (COLORS.includes(v) || (Array.isArray(v) && v.length >= 2 && v.length <= 3 && new Set(v).size === v.length && v.every(y => COLORS.includes(y))));      // v0.184: a list = all of those symbols
@@ -69,7 +69,8 @@ function parseCond(c) {
     const okTrash = k === 'trashGe' && !!v && typeof v === 'object' && Number.isInteger(v.n) && v.n >= 1 && v.n <= 20 && hasMatch(v.match);
     const okMagic = k === 'magicUsed' && !!v && typeof v === 'object' && [].concat(v.name || [], v.family || []).every(x => typeof x === 'string')
       && (v.type == null || ['Spirit', 'Nexus', 'Magic', 'Brave'].includes(v.type)) && Object.keys(v).every(y => ['name', 'family', 'type', 'color', 'costGe', 'costLe', 'team'].includes(y)) && (v.team == null || typeof v.team === 'string');   // v0.116 "if you used a <family> Magic card this turn"
-    if (!okInt && !okStr && !okBool && !okCol && !okStep && !okCtrl && !okNexus && !okS1 && !okTrash && !okByOwn && !okMagic && !okSym && !okOnlySym) return { error: `unknown or invalid condition "${k}" (byOpp, byOppFx, hasSymbol, lifeLe, anyLifeLe, counterGe, soulGe, oppHandGe, voidGe, soulLe, putGe, lifeGe, oppRemovedGe, removedGe, oppSpiritsLe, oppNexusGe, oppNoAB, oppRemovedSpirit, controlName, hasName, soulOn, nexusBraved, oppTurn, attackStep, step, prev, utHit, burstSet, oppBurstSet, ctrl, fewerSpirits, nexusGe, lifeReduced, allHave, ctrlFamily, magicUsed, selfBpGe, viaEffect, selfAttacking)` };
+    const okOppCtrl = k === 'oppCtrlMatch' && hasMatch(v);      // v198 "If the opponent controls a Cost N or less Spirit"
+    if (!okInt && !okStr && !okBool && !okCol && !okStep && !okCtrl && !okNexus && !okS1 && !okTrash && !okByOwn && !okMagic && !okOppCtrl && !okSym && !okOnlySym) return { error: `unknown or invalid condition "${k}" (byOpp, byOppFx, hasSymbol, lifeLe, anyLifeLe, counterGe, soulGe, oppHandGe, voidGe, soulLe, putGe, lifeGe, oppRemovedGe, removedGe, oppSpiritsLe, oppNexusGe, oppNoAB, oppRemovedSpirit, controlName, hasName, soulOn, nexusBraved, oppTurn, attackStep, step, prev, utHit, burstSet, oppBurstSet, ctrl, fewerSpirits, nexusGe, lifeReduced, allHave, ctrlFamily, magicUsed, selfBpGe, viaEffect, selfAttacking, oppCtrlMatch, oppRefreshedLe)` };
   }
   return { cond: Object.assign({}, c) };
 }

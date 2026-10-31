@@ -40,7 +40,7 @@
   const upOk = u => u == null || (typeof u === 'object' && ['oppReserveGe3', 'viaFC'].includes(u.when) && (u.anyTarget == null || u.anyTarget === true) && (u.soul == null || u.soul === true) && (u.anyTarget === true || u.soul === true));
   const upOn = (c, a) => !!a.upgrade && (a.upgrade.when === 'viaFC' ? !!(c.src && c.src.viaFC) : (c.opp.reserve.n + (c.opp.reserve.soul ? 1 : 0)) >= 3);
   const has = a => !!a && NEW.some(k => a[k] != null);
-  const ok = a => a.targets === 1 && (a.costLe == null || (Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30)) && (a.coresLe == null || (Number.isInteger(a.coresLe) && a.coresLe >= 1 && a.coresLe <= 10))
+  const ok = a => ((a.targets === 1) || (a.targets >= 1 && a.targets <= 3)) && (a.costLe == null || (Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30)) && (a.coresLe == null || (Number.isInteger(a.coresLe) && a.coresLe >= 1 && a.coresLe <= 10))
     && [a.exhaustedOnly, a.keepOne, a.untilOne, a.fighting, a.eachLegacy, a.blockerOnly].every(v => v == null || v === true) && upOk(a.upgrade) && (a.eachPer == null || perOk(a.eachPer));
   const base = a => { const o = Object.assign({}, a); for (const k of NEW) delete o[k]; if (a.untilOne) o.each = 1; return o; };
   O.chk = a => has(a) ? ok(a) && oChk(base(a)) : oChk(a);
@@ -54,6 +54,13 @@
   O.run = async (c, a) => {
     if (!has(a)) return oRun(c, a);
     const L = O.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
+    if (a.targets > 1) {      // v199 "target three Spirits" (one action, one core each)
+      const T = await pickOppSpirits(c, L, a.targets, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the opposing Spirits to send cores from (glowing).`);
+      let movedN = 0;
+      for (const t of T) { const m = Math.max(0, Math.min(a.each + (a.eachPer ? perCount(c.p, a.eachPer) : 0) + (a.eachLegacy ? (c.src.legacyN || 0) : 0), t.cores, coreTakeCap(c.opp, t, Infinity))); if (!m) continue; coreEvN(c.opp, t.uid, 'reserve', m, false); t.cores -= m; c.opp.reserve.n += m; movedN += m; }
+      if (!movedN) { c.ctx.did = false; return; }
+      log(`${CARDS[c.src.id].name}: ${movedN} core${movedN === 1 ? '' : 's'} from ${poss(c.opp)} Spirits go to the Reserve.`); checkDepletion(c.opp); io.view({ type: 'board' }); return;
+    }
     const [t] = await pickOppSpirits(c, L, 1, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the opposing Spirit to send cores from (glowing).`);
     if (!t) { c.ctx.did = false; return; }
     if (upOn(c, a) && a.upgrade.soul && t.cores < 1 && t.soul) {      // v0.169: only the Soul Core is left on the target and the text lets it go

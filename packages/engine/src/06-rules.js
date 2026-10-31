@@ -242,6 +242,7 @@ function handCostSet(p, card) {
     const L = lvNo(src);
     for (const { e } of fxEntries(src)) if (e.trigger === 'STATIC' && e.flag === 'HAND_COST' && !(e.lv && !e.lv.includes(L)) && fxMatch(card, e.match) && fxIf(p, opp, e.if, { selfInst: src })) return e.n;
   }
+  if (card.handCost && Number.isInteger(card.handCost.n) && fxIf(p, opp, card.handCost.if, { selfInst: card })) return card.handCost.n;      // v198 card field handCost {n, if}: "this card in Hand becomes Cost N"
   return null;
 }
 function summonTaxOf(p, card) {                  // v180 STATIC SUMMON_TAX on the opposing field: extra cost to summon a matching card

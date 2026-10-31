@@ -59,6 +59,21 @@ Object.assign(FX_ACTIONS, {
       await fireFx(c.p, 'EXHAUSTED_FX', null, { side: 'opp', heavy: true, fxSrc: c.src });
       for (const t of T) await fireFx(c.opp, 'EXHAUSTED_FX', null, { side: 'own', subject: t, heavy: true, fxSrc: c.src });
     } },
+  /* v198 EXHAUST_EITHER "Target an opposing Spirit. If it is refreshed, exhaust it; if it's exhausted, heavy exhaust it" */
+  EXHAUST_EITHER: { chk: a => (a.match == null || hasMatch(a.match)) && (a.costLe == null || (Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 20)),
+    txt: a => 'target an opposing Spirit; exhaust it if it is refreshed, heavy exhaust it if it is exhausted',
+    cands: (c, a) => c.opp.spirits.filter(t => !fxImmune(c.opp, t) && (!a || a.costLe == null || CARDS[t.id].cost <= a.costLe) && (!a || !a.match || fxMatch(CARDS[t.id], a.match, t))),
+    can: (c, a) => FX_ACTIONS.EXHAUST_EITHER.cands(c, a).length > 0,
+    run: async (c, a) => {
+      const L = FX_ACTIONS.EXHAUST_EITHER.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
+      const t = c.p.cpu ? (L.find(s => !s.exhausted) || L[0]) : await fxPickTarget(c, L, `✨ <b>${esc(_nm(c))}</b><br>Tap the opposing Spirit to exhaust or heavy exhaust (glowing).`);
+      if (!t) { c.ctx.did = false; return; }
+      if (!t.exhausted) { t.exhausted = true; log(`${_nm(c)}: ${poss(c.opp)} ${CARDS[t.id].name} is exhausted.`); }
+      else { setHeavy(t); log(`${_nm(c)}: ${poss(c.opp)} ${CARDS[t.id].name} is heavy exhausted.`); }
+      io.view({ type: 'board' });
+      await fireFx(c.p, 'EXHAUSTED_FX', null, { side: 'opp', heavy: t.heavy, fxSrc: c.src });
+      await fireFx(c.opp, 'EXHAUSTED_FX', null, { side: 'own', subject: t, heavy: t.heavy, fxSrc: c.src });
+    } },
   /* "put a random card from the opposing Hand onto their Removed Zone" (the cards are kept in ctx.removedCards / ctx.removedN) */
   REMOVE_OPP_HAND: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 10 && (a.toSize == null || (Number.isInteger(a.toSize) && a.toSize >= 0 && a.toSize <= 10)) && (a.counterIfCostLe == null || (a.counterIfCostLe && Number.isInteger(a.counterIfCostLe.cost) && Number.isInteger(a.counterIfCostLe.n) && a.counterIfCostLe.n >= 1 && a.counterIfCostLe.n <= 5)),
     txt: a => a.toSize != null ? `put random cards from the opposing Hand onto their Removed Zone until it holds ${a.toSize}` : `put ${a.n} random card${a.n === 1 ? '' : 's'} from the opposing Hand onto their Removed Zone`,

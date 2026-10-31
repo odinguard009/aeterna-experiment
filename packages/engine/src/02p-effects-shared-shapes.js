@@ -107,6 +107,23 @@ function allHaveOK(owner, q) {
     await fireFx(c.p, 'EXHAUSTED_FX', null, { side: 'opp', heavy: !!a.heavy, fxSrc: c.src });
     for (const t of hit) await fireFx(c.opp, 'EXHAUSTED_FX', null, { side: 'own', subject: t, heavy: !!a.heavy, fxSrc: c.src });
   };
+  const H = FX_ACTIONS.HEAVY_EXHAUST_OPP, hChk = H.chk, hCands = H.cands, hRun = H.run, hTxt = H.txt;
+  H.chk = a => hChk(a) && (a.oppChooses == null || a.oppChooses === true);
+  H.txt = a => a.oppChooses ? `the opponent chooses ${a.n === 1 ? 'one' : a.n} of their exhausted Spirits; heavy exhaust ${a.n === 1 ? 'it' : 'them'}` : hTxt(a);
+  H.run = async (c, a) => {
+    if (!a.oppChooses) return hRun(c, a);      // v198 "the opponent targets one of their exhausted Spirits that aren't heavily exhausted. Heavy exhaust it."
+    const hit = [];
+    for (let j = 0; j < a.n; j++) {
+      const L = H.cands(c, a); if (!L.length) break;
+      const t = c.opp.cpu ? L.slice().sort((x, y) => (bpOf(x) - bpOf(y)) || (x.cores - y.cores))[0]
+        : await fxPickTarget(Object.assign({}, c, { p: c.opp }), L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Choose one of your exhausted Spirits to heavy exhaust (glowing).`);
+      if (!t) break;
+      hit.push(t); setHeavy(t); log(`${CARDS[c.src.id].name}: ${poss(c.opp)} ${CARDS[t.id].name} is heavy exhausted (the opponent chose it).`);
+    }
+    if (!hit.length) { c.ctx.did = false; return; }
+    await fireFx(c.p, 'EXHAUSTED_FX', null, { side: 'opp', heavy: true, fxSrc: c.src });
+    for (const t of hit) await fireFx(c.opp, 'EXHAUSTED_FX', null, { side: 'own', subject: t, heavy: true, fxSrc: c.src });
+  };
   const R = FX_ACTIONS.BOUNCE_OPP, rChk = R.chk, rCands = R.cands, rTxt = R.txt;
   const lv1Lim = (c, m) => { const L = c.p.spirits.filter(f => fxMatch(CARDS[f.id], m)).map(f => ((CARDS[f.id].levels || [])[0] || {}).bp || 0); return L.length ? Math.max(...L) : -1; };
   R.chk = a => a.bpLeOwnLv1 == null ? rChk(a) : hasMatch(a.bpLeOwnLv1) && rChk(Object.assign({}, a, { bpLeOwnLv1: undefined }));
