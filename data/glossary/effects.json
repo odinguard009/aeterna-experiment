@@ -794,10 +794,10 @@
     "kind": "modifier",
     "meaning": "(Can't Stack): same effect cannot activate more than once at the same timing",
     "pattern": "Can't Stack|Unstackable",
-    "engine": "(not tracked)",
-    "status": "missing",
-    "example": "",
-    "rule": "Standard Comprehensive Rules 1.0 12-3-2-1."
+    "engine": "noStack (effect field)",
+    "status": "wired",
+    "example": "{\"trigger\":\"OPP_START_ATTACK\",\"noStack\":true,\"actions\":[...]}",
+    "rule": "Standard Comprehensive Rules 1.0 12-3-2-1. Wired 2026-10-31: `noStack` is deduped per timing window in collectFx (02d) and in staticBp (02a), one copy per card name; the flag is effect-level, not a static flag."
   },
   {
     "id": "M_REPLACEMENT",

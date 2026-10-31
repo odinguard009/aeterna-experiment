@@ -329,7 +329,11 @@ function removeSpirit(p, s, why, byOpponent) {
   if (!removeFrom(p.spirits, s)) return;
   if (why === 'destroyed' && CARDS[s.id].type === 'Nexus' && nexusDeathHears(p)) G.evQ.push({ type: 'NEXUS_DIED', key: p.key, inst: s });      // v189 "your Spirits that are originally Nexuses are destroyed"
   if ((why === 'destroyed' || why === 'depleted') && byOpponent !== 'battle' && G && G.fxBy && G.fxBy !== p.key) { G.p[G.fxBy].oppFxLossTurn = G.turnNo; if (why === 'depleted') G.p[G.fxBy].oppDepletedTurn = G.turnNo; }      // v0.196 condition oppLostByFx; v0.199 oppDepleted
-  if (why === 'destroyed' && byOpponent !== 'battle' && G && G.fxBy === p.key) p.ownFxDestroyTurn = G.turnNo;      // v0.200 condition ownDestroyedTurn
+  if (why === 'destroyed' && byOpponent !== 'battle' && G && G.fxBy === p.key) {      // v0.200 condition ownDestroyedTurn; v206 remembers what was destroyed (colour + a When Destroyed effect) for the filtered form
+    if (p.ownFxDestroyTurn !== G.turnNo) { p.ownFxDestroyTurn = G.turnNo; p.ownFxDestroyCards = []; }
+    const k = CARDS[s.id];
+    p.ownFxDestroyCards.push({ color: (k.colors && k.colors.length ? k.colors : [k.symbol])[0] || 'none', triggers: (k.effects || []).map(e => e.trigger) });
+  }
   s.lostFxSrc = G && G.fxBy === p.key && G.fxSrc ? G.fxSrc : null;      // v0.197 condition byOwnFx (the card of the own effect that removed it)
   if (why === 'destroyed' && G) p.lostSpiritTurn = G.turnNo;
   if (why === 'destroyed' && G && G.evQ && !s.token && allyDiedHears(p)) G.evQ.push({ type: 'DIED', key: p.key, inst: s, byBattle: byOpponent === 'battle' });      // v155 ALLY_DIED; v191 byBattle ("destroyed via BP comparison")

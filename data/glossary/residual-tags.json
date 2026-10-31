@@ -38193,14 +38193,6 @@
   "C_LEVEL",
   "S_MUST_BLOCK"
  ],
- "26RBS02-076": [
-  "A_EXHAUST",
-  "A_MILL",
-  "C_LEVEL",
-  "F_OTHER_NOSTACK",
-  "M_UNSTACKABLE",
-  "T_DESTROYED"
- ],
  "26RBS02-079": [
   "A_VOID",
   "C_LEVEL",
@@ -38214,14 +38206,6 @@
  "26RBS02-085": [
   "C_LEVEL",
   "T_ALLY_ATTACKS"
- ],
- "26RBS02-X05": [
-  "C_LEVEL",
-  "F_OTHER_NOSTACK",
-  "M_OPTIONAL",
-  "M_UNSTACKABLE",
-  "T_DESTROYED",
-  "T_SUMMONED"
  ],
  "26RBS02-X10": [
   "C_LEVEL",
@@ -38449,13 +38433,6 @@
  "26RSD06-013": [
   "M_OPTIONAL",
   "M_REPLACEMENT"
- ],
- "26RSD08-002": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "C_LIFE",
-  "T_ALLY_LIFE_HIT",
-  "T_SUMMONED"
  ],
  "26RSD10-010": [
   "A_EXHAUST",

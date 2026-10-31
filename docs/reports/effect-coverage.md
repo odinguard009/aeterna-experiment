@@ -83,7 +83,7 @@
 | M_IF_YOU_DO | modifier | 'You can X. If you do / When you've done so, Y' | if:{prev:true} | wired | 400 |
 | M_THEN | modifier | 'Then': the next part resolves even if the previous part could not | default (no if) | wired | 642 |
 | M_UP_TO | modifier | 'Up to X' can be 0 | human may stop / choose 0 | wired | 319 |
-| M_UNSTACKABLE | modifier | (Can't Stack): same effect cannot activate more than once at the same timing | (not tracked) | missing | 146 |
+| M_UNSTACKABLE | modifier | (Can't Stack): same effect cannot activate more than once at the same timing | noStack (effect field) | wired | 146 |
 | M_REPLACEMENT | modifier | 'Instead' = replacement effect | (Soul State 'instead' only) | partial | 257 |
 | P_PRIORITY | rule | Priority: cannot > must > do = can; cannot be prevented > unaffected > cannot activate | v0.58: can't-block removes blockers before MUST_BLOCK; unaffected Spirits are not bound by MUST_BLOCK; ignoreImmune beats unaffected | partial | 0 |
 | P_SIMULTANEOUS | rule | Simultaneous triggers: continuous effects first, then triggered; the turn player orders within a category | fireFx ordering (owner only) | partial | 0 |
@@ -168,7 +168,6 @@
 - **A_DISCARD_OPP** (partial, 188 cards): Opponent discards. 
 - **A_BP_MINUS** (partial, 173 cards): Give opposing Spirits -N BP (this turn). {"do":"BP_MINUS","n":3000}
 - **K_RUSH** (partial, 172 cards): Rush: while you have a X symbol, the following effect activates next. {"do":"DRAW","n":1,"if":{"hasSymbol":"purple"}}
-- **M_UNSTACKABLE** (missing, 146 cards): (Can't Stack): same effect cannot activate more than once at the same timing. 
 - **T_DESTROYED_OPP** (partial, 139 cards): (When Destroyed by the Opponent). {"trigger":"DESTROYED","if":{"byOpp":true}}
 - **T_BATTLE_WIN** (partial, 133 cards): (When Battles) when only the opposing Spirit is destroyed by BP comparison. {"trigger":"BATTLE_WIN","lv":[2]}
 - **T_ALLY_LOST** (partial, 128 cards): When your Spirit is depleted/destroyed by the opponent. Burst version uses ALLY_DESTROYED
@@ -199,7 +198,6 @@
 - BS59-064 The Aurora Fortress: T_REVEALED, S_UNAFFECTED, K_BRAVE, K_ARMOR, T_DESTROYED, T_DESTROYED_OPP
 - BS64-XV03 The Emperor Kaiseratlas XV: A_BANISH, C_OPP_TURN, K_GRANDWALKER, K_BRAVE, K_ULTIMATE, M_REPLACEMENT
 - BS65-034 Spirit Convoker, Palm: A_REVEAL_DECK, C_OPP_TURN, K_BRAVE, K_ULTIMATE, A_REVEAL_ADD, A_BP_MINUS
-- BS67-032 Stark & Celestoul: C_OPP_TURN, S_UNAFFECTED, K_BRAVE, K_ULTIMATE, M_UNSTACKABLE, A_BRAVE_AS_SPIRIT
 - BS69-041 Binarater, Dual Stark: A_REVEAL_DECK, C_OPP_TURN, S_UNAFFECTED, K_BRAVE, K_ULTIMATE, A_REVEAL_ADD
 - BS22-070 The Floating Island on the Mercury Sea: A_DISCARD_OPP, C_OPP_TURN, S_UNAFFECTED, K_BRAVE, K_ARMOR
 - BS29-029 Booblack: A_SYMBOL, K_ULTIMATE, T_DESTROYED, A_BP_MINUS, T_DESTROYED_OPP
@@ -209,3 +207,4 @@
 - BS37-050 The Ninth's FireMonkey Neela: K_ULTIMATE, K_ACCEL, M_REPLACEMENT, A_REMOVED_ZONE, A_BP_MINUS
 - BS37-056 The GourmetFairy Amandine: A_REVEAL_DECK, K_BRAVE, K_ACCEL, A_REMOVED_ZONE, A_BP_MINUS
 - BS39-RV014 The KylinStarBeast Rean: K_BRAVE, K_ULTIMATE, T_DESTROYED, A_BP_MINUS, T_DESTROYED_OPP
+- BS39-RV018 The Angelia Coma: K_ULTIMATE, K_ACCEL, A_REMOVED_ZONE, A_CANT_ATTACK_BLOCK, A_VOID_TO_LIFE
