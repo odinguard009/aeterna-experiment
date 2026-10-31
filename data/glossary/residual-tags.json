@@ -38218,15 +38218,6 @@
   "M_OPTIONAL",
   "M_THEN"
  ],
- "26RDB01-028": [
-  "A_BANISH",
-  "A_EXHAUST",
-  "A_VOID",
-  "C_LEVEL",
-  "K_STANDARD_INVOKE",
-  "S1_ALL_HAVE",
-  "T_SUMMONED"
- ],
  "26RDB01-042": [
   "A_VOID",
   "M_OPTIONAL",
