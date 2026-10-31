@@ -1,0 +1,32 @@
+{
+  "name": "para-dx-and-formulia",
+  "about": "v0.202.0 bundle 5: 26RCB01-X06 Kamen Rider Para-DX (while either Life is three or less, this card in Hand can become Cost 5 when Form Change would activate; Level Up treats it as LV2 for its first attack/block of the turn) and 26RDB01-043 Formulia Execeeda (draw two, return two cards to the deckbottom, one instead with four or more Blue Beat Spirits; Ringing Charge refreshes a Gail Fenique at the end of its battle once per turn).",
+  "rules": [
+    "STD:12-2-1-12@caad612c",
+    "SJP:faq.states@ea0c2539"
+  ],
+  "turn": 4,
+  "active": "player",
+  "step": 5,
+  "players": {
+    "player": {
+      "reserve": 12,
+      "life": 3,
+      "hand": ["26RBS01-005", "26RBS01-006"],
+      "spirits": [
+        { "id": "26RCB01-X06", "cores": 1, "as": "paradx" },
+        { "id": "26RDB01-043", "cores": 3, "as": "formulia" },
+        { "id": "26RDB01-045", "cores": 1, "exhausted": true, "as": "gail" },
+        { "id": "26RDB01-033", "cores": 1, "as": "blueBeat1" },
+        { "id": "26RDB01-036", "cores": 1, "as": "blueBeat2" }
+      ],
+      "deck": ["26RBS01-004", "26RBS01-008", "26RBS01-009", "26RBS01-010"]
+    },
+    "opponent": {
+      "reserve": 4,
+      "spirits": [
+        { "id": "26RBS01-004", "cores": 1, "as": "oppSpirit" }
+      ]
+    }
+  }
+}

@@ -38303,10 +38303,6 @@
   "M_OPTIONAL",
   "M_UP_TO"
  ],
- "26RCB01-X06": [
-  "C_LIFE",
-  "T_ATTACKS"
- ],
  "26RDB01-012": [
   "A_TRASH_TO_RESERVE",
   "C_LEVEL",
@@ -38334,12 +38330,6 @@
   "A_VOID",
   "M_OPTIONAL",
   "S1_ALL_HAVE",
-  "T_SUMMONED"
- ],
- "26RDB01-043": [
-  "A_REFRESH",
-  "C_LEVEL",
-  "M_OPTIONAL",
   "T_SUMMONED"
  ],
  "26RDB01-051": [
