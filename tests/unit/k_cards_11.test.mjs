@@ -174,5 +174,5 @@ test('K-275 26RBS01-X05 LV2: one core moves per Shamanism Spirit you control', a
     await BS.fireFx(P, 'ATTACKS', x, { attacker: x });
     return [c0 - t.cores, O.reserve.n, BS.CARDS['26RBS01-X05'].effects[1].actions[0].costLe];
   }, SPEC('queen-babianaros'));
-  assert.deepEqual(r, [2, 5, 5], JSON.stringify(r));
+  assert.deepEqual(r, [3, 6, 5], JSON.stringify(r));      // 3 Spirits with Shamanism: the Queen prints the Shaman keyword, plus Spectrous and Papilioni (each 0 + eachPer = one core per Spirit, no +1 baseline)
 });

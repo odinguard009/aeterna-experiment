@@ -2,8 +2,8 @@
   "name": "mirecaller-daisy",
   "about": "v199: The MireCaller Daisy (26RBS02-033) LV1-2 (When Summoned): 'Target an opposing Spirit. If it is refreshed, exhaust it; if it's exhausted, heavy exhaust it.' = EXHAUST_EITHER. LV2 (True Release) (Your End Step): 'If the opponent controls one or less refreshed Spirit, the opponent targets one of their exhausted Spirits that aren't heavily exhausted. Heavy exhaust it.' = END_STEP + if oppRefreshedLe 1 + HEAVY_EXHAUST_OPP {n 1, oppChooses, exhaustedOnly}.",
   "rules": [
-    "ETR:faq.effects-q3",
-    "SJP:true-release"
+    "ETR:faq.effects-q3@a8b10c85",
+    "SJP:true-release@55609a47"
   ],
   "turn": 3,
   "active": "player",

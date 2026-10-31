@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 7062,
+  "cards": 7049,
   "per_saga": {
    "1": 676,
    "2": 313,
@@ -19,15 +19,15 @@
    "15": 355,
    "16": 334,
    "17": 110,
-   "50": 65
+   "50": 52
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 1644,
+  "skipped_curated": 1657,
   "nexus_levels_added": 707,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 443,
+  "image_problems": 440,
   "number_conflicts": 4,
   "merged": 107,
   "brave_unparsed": 171,
@@ -35,7 +35,7 @@
   "odd_reduction": 807,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 441
+  "without_image": 438
  },
  "tokens": [
   "BS73-T001",
@@ -1270,6 +1270,7 @@
   "26RBS01-091",
   "26RBS01-092",
   "26RBS01-093",
+  "26RBS01-094",
   "26RBS01-095",
   "26RBS01-096",
   "26RBS01-097",
@@ -1278,6 +1279,7 @@
   "26RBS01-100",
   "26RBS01-101",
   "26RBS01-102",
+  "26RBS01-103",
   "26RBS01-104",
   "26RBS01-105",
   "26RBS01-106",
@@ -1302,6 +1304,8 @@
   "26RBS01-X01",
   "26RBS01-X02",
   "26RBS01-X03",
+  "26RBS01-X04",
+  "26RBS01-X05",
   "26RBS01-X06",
   "26RBS01-X07",
   "26RBS01-X08",
@@ -1424,6 +1428,7 @@
   "26RBS02-018",
   "26RBS02-019",
   "26RBS02-020",
+  "26RBS02-021",
   "26RBS02-022",
   "26RBS02-023",
   "26RBS02-024",
@@ -1435,6 +1440,7 @@
   "26RBS02-030",
   "26RBS02-031",
   "26RBS02-032",
+  "26RBS02-033",
   "26RBS02-034",
   "26RBS02-035",
   "26RBS02-036",
@@ -1475,6 +1481,7 @@
   "26RBS02-071",
   "26RBS02-072",
   "26RBS02-074",
+  "26RBS02-077",
   "26RBS02-078",
   "26RBS02-080",
   "26RBS02-081",
@@ -1569,6 +1576,7 @@
   "26RSD08-012",
   "26RSD08-014",
   "26RSD08-X01",
+  "26RSD08-X02",
   "26RSD09-001",
   "26RSD09-002",
   "26RSD09-003",
@@ -1582,6 +1590,7 @@
   "26RSD09-011",
   "26RSD09-012",
   "26RSD09-013",
+  "26RSD09-X01",
   "26RSD09-X02",
   "26RSD10-001",
   "26RSD10-002",
@@ -1613,6 +1622,7 @@
   "26RBS03-014",
   "26RBS03-015",
   "26RBS03-016",
+  "26RBS03-017",
   "26RBS03-018",
   "26RBS03-020",
   "26RBS03-021",
@@ -1666,6 +1676,7 @@
   "26RBS03-076",
   "26RBS03-077",
   "26RBS03-078",
+  "26RBS03-079",
   "26RBS03-080",
   "26RBS03-082",
   "26RBS03-083",
@@ -1684,8 +1695,10 @@
   "26RBS03-097",
   "26RBS03-098",
   "26RBS03-X01",
+  "26RBS03-X02",
   "26RBS03-X05",
   "26RBS03-X07",
+  "26RBS03-X08",
   "26RBS03-X09",
   "26RBS03-X10",
   "26RBS03-X12",
@@ -4637,11 +4650,6 @@
    "problem": "ambiguous name (2 files, none in set 26RCB01)"
   },
   {
-   "id": "26RBS03-017",
-   "name": "Maskthorn",
-   "problem": "no image"
-  },
-  {
    "id": "26RBS03-019",
    "name": "The Hatredfiend Jackalpio",
    "problem": "no image"
@@ -4682,11 +4690,6 @@
    "problem": "no image"
   },
   {
-   "id": "26RBS03-079",
-   "name": "War Toll: Fall of the Sun",
-   "problem": "no image"
-  },
-  {
    "id": "26RBS03-081",
    "name": "The Hexcraft Research Institute",
    "problem": "no image"
@@ -4704,11 +4707,6 @@
   {
    "id": "26RBS03-X04",
    "name": "The PurpleAsterBladessom Rindorin",
-   "problem": "no image"
-  },
-  {
-   "id": "26RBS03-X08",
-   "name": "The DestructiveTsunami Gorog-Narg",
    "problem": "no image"
   },
   {

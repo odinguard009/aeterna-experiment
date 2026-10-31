@@ -32,7 +32,11 @@ test('K-02 Hargris counts other Purgatory Wings Spirits only; Pacugna +2000 atta
   const { page } = await sharedBoard();
   const r = await page.evaluate(() => {
     const G = BS.G, P = G.p.player; G.active = P.key;
-    const fam = Object.values(BS.CARDS).filter(c => c.type === 'Spirit' && (c.families || []).includes('Purgatory Wings') && c.id !== '26RBS03-003' && !(c.effects && c.effects.length)).slice(0, 2);
+    const pw = Object.values(BS.CARDS).filter(c => c.type === 'Spirit' && (c.families || []).includes('Purgatory Wings') && c.id !== '26RBS03-003');
+    const okCost = c => ![6, 8].includes(c.cost), calm = c => !(c.effects || []).some(e => e.trigger === 'STATIC' && (e.bp || e.per));
+    const pick = pw.filter(c => okCost(c) && calm(c) && !(c.effects || []).length).concat(pw.filter(c => okCost(c) && calm(c)), pw.filter(okCost));
+    const fam = pick.slice(0, 2);      // v0.201.0: 26RSD09-X01 gained effects and the effect-free pool can be short; keep the Cost 6/8 branch of Pacugna closed
+    if (fam.length < 2) throw new Error('need two other Purgatory Wings Spirits, found ' + fam.length);
     const h = BS.mkInst('26RBS03-003'); h.cores = 1; P.spirits.push(h);
     const alone = BS.bpOf(h); fam.forEach(c => { const s = BS.mkInst(c.id); s.cores = 1; P.spirits.push(s); });
     const withTwo = BS.bpOf(h);

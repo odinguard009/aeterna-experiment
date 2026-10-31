@@ -2,8 +2,8 @@
   "name": "hundred-eyes-boreowl",
   "about": "v199: The HundredEyes Boreowl (26RSD09-X01) LV1-2 (When Summoned): 'You can reveal three cards from your decktop. Among them, add a \"Purgatory Wings\" family Spirit card with a card name different from this Spirit's to the Hand. Return any remaining cards to the deckbottom in any order. If (Soul Core) was used to pay for the summon cost, add two cards to Hand instead.' = REVEAL_PICK {n 3, match {family Purgatory Wings, type Spirit}, diffName, rest bottom, soulBonus}. LV2 (Your Attack Step): 'If the (Soul Core) is in your Trash, all your Spirits gain +1000 BP.' = STATIC bp {bp 1000, to own, if {attackStep, oppTurn false, soulInTrash}}.",
   "rules": [
-    "ETR:faq.effects-q3",
-    "SJP:true-release"
+    "ETR:faq.effects-q3@a8b10c85",
+    "SJP:true-release@55609a47"
   ],
   "turn": 3,
   "active": "player",

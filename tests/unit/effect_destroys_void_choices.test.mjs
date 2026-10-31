@@ -101,5 +101,5 @@ test('PK77-05 engine: OPP_CORES_TO_RESERVE filters, keepOne, untilOne, draw on d
     O.spirits = [big]; big.cores = 1; P.hand = []; P.deck = [BS.mkInst('T77-A')];
     await run(src, [{ do: 'OPP_CORES_TO_RESERVE', targets: 1, each: 1, costLe: 9, drawPerDepleted: true }]); const f = [O.spirits.length, P.hand.length];
     return [a, b, c, d, e, f, OC.chk({ targets: 2, each: 1, costLe: 5 }), OC.chk({ targets: 1, each: 1, untilOne: true }), OC.txt({ targets: 1, each: 1, untilOne: true, costLe: 5 })];`);
-  assert.deepEqual(r, [['T77-A'], ['T77-B'], [], 1, 1, [0, 1], false, true, 'send cores from an opposing Cost 5 or less Spirit to the Reserve until one core remains']);
+  assert.deepEqual(r, [['T77-A'], ['T77-B'], [], 1, 1, [0, 1], true, true, 'send cores from an opposing Cost 5 or less Spirit to the Reserve until one core remains']);      // v199: targets 2-3 are multi-target now, so the shape is valid
 });

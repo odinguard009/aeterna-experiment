@@ -2,8 +2,8 @@
   "name": "maskthorn-bloodrouse",
   "about": "v199: Maskthorn (26RBS03-017) card field handCost {n 4, if {oppCtrlMatch {type Spirit, costLe 3}}} = 'If the opponent controls any Cost 3 or less Spirit, this card in Hand becomes Cost 4'. LV1-2 (When Destroyed): 'Target an opposing Cost 3 or less Spirit. Send a core each from it to the Reserve. If it's the opposing turn, target three Spirits instead.' = two OPP_CORES_TO_RESERVE actions with costLe 3, targets 1 (oppTurn false) or 3 (oppTurn true).",
   "rules": [
-    "ETR:faq.effects-q3",
-    "SJP:true-release"
+    "ETR:faq.effects-q3@a8b10c85",
+    "SJP:true-release@55609a47"
   ],
   "turn": 3,
   "active": "player",

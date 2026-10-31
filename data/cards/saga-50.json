@@ -8308,7 +8308,7 @@
      {
       "do": "OPP_CORES_TO_RESERVE",
       "targets": 1,
-      "each": 1,
+      "each": 0,
       "eachPer": {
        "type": "Spirit",
        "keyword": "Shamanism"
