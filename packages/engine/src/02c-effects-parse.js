@@ -223,7 +223,8 @@ function parseEffects(arr) {
       o.bp = e.bp; o.to = e.to === 'own' ? 'own' : 'self'; if (e.attackingOnly) o.attackingOnly = true; if (e.blockingOnly) o.blockingOnly = true; if (e.fightingOnly === true) o.fightingOnly = true; if (e.noStack === true) o.noStack = true; if (e.targetRefreshed === true) o.targetRefreshed = true; if (e.braved === true) o.braved = true;
       if (e.per != null) { if (!perOk(e.per) || (o.to !== 'self' && o.to !== 'own')) return { error: 'STATIC "per" must look like {"type":"Spirit","family":"X"} (to: self or own)' }; o.per = JSON.parse(JSON.stringify(e.per)); }   // v0.72
       if (e.besides === true) { if (!o.per) return { error: 'STATIC "besides" needs per' }; o.besides = true; }      // v0.195 "Besides this Spirit, for each X ..."
-      if (e.perCores === true) { if (o.to !== 'self' || o.per) return { error: 'STATIC "perCores" needs to: self and no per' }; o.perCores = true; }      // v0.185 "This Spirit gains +N BP for each core on it."
+      if (e.perCores === true) { if (o.to !== 'self' || o.per) return { error: 'STATIC "perCores" needs to: self and no per' }; o.perCores = true; }
+      if (e.perSymbolColors === true) { if (o.to !== 'self' || o.per) return { error: 'STATIC "perSymbolColors" needs to: self and no per' }; o.perSymbolColors = true; }      // v232 "for each symbol colour you have"      // v0.185 "This Spirit gains +N BP for each core on it."
       if (e.perReserve === true) { if (o.to !== 'self' || o.per || o.perHand) return { error: 'STATIC "perReserve" needs to: self and no per' }; o.perReserve = true; }      // v0.195 "+N BP for each core in your Reserve"
       if (e.perHand === true) { if (o.to !== 'self' || o.per) return { error: 'STATIC "perHand" needs to: self and no per' }; o.perHand = true; }      // v0.180 "This Spirit gains +N BP for each card in your Hand."
     } else {

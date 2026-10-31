@@ -267,3 +267,5 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v229 (Lane K): `match.keywordAny` (2-4 keywords, any one matches: "with Brilliance/Evil Light"). Cards: BS41-038, BS17-037.
 - v230 (Lane K): conditions `firstBattle` (G.battleNo === 1: "while this is the first battle during this turn") and `oppLifeGe` ("the opposing Life is N or more"). Cards: BS24-007, BS47-065.
 - v231 (Lane K): `per.max` caps a per-count query ("(Max.4)"). Cards: BS17-038 (MAGIC_USED +2000 BP), BS16-040 (DESTROYED draw per Magician Spirit, max 4).
+- v232 (Lane K): `BP_TARGET.perCores` (+N BP for each core on the source Spirit, When Attacks). Card: BS13-020.
+- v233 (Lane K): `STATIC.perSymbolColors` ("gains +N BP for each symbol colour you have") and `EXHAUST_OPP.nexus` ("exhaust up to N opposing Spirits/Nexuses"). Cards: BS34-033, BS10-018.

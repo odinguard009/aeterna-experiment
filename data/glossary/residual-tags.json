@@ -2556,12 +2556,6 @@
   "C_LEVEL",
   "T_ATTACKS"
  ],
- "BS10-018": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "M_UP_TO",
-  "T_DESTROYED"
- ],
  "BS10-019": [
   "A_DRAW",
   "A_VOID",
@@ -3688,11 +3682,6 @@
   "K_BRAVE",
   "K_HIGH_SPEED",
   "M_BY_DOING"
- ],
- "BS13-020": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "T_ATTACKS"
  ],
  "BS13-022": [
   "A_VOID",
@@ -12380,10 +12369,6 @@
   "A_REFRESH",
   "C_LEVEL",
   "K_ULTIMATE"
- ],
- "BS34-033": [
-  "A_BP_PLUS",
-  "C_LEVEL"
  ],
  "BS34-034": [
   "C_LEVEL",

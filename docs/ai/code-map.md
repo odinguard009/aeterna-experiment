@@ -26,13 +26,13 @@ FX_STRICT, FX_WARNED, fxUnknown, FX_COND_KEYS, FX_TRIGGERS, FX_TRIGGER_TEXT, BR_
 ## packages/engine/src/02b-effects-actions.js (133 lines, ~5.1k tokens)
 FX_ACTIONS
 
-## packages/engine/src/02c-effects-parse.js (275 lines, ~8.9k tokens)
+## packages/engine/src/02c-effects-parse.js (276 lines, ~8.9k tokens)
 canPlaceFree, canPlaceBraveFree, summonFree, canPlacePaid, canPlaceBy, summonPaid, tributePay, summonBy, fxDescribe, BURST_WHEN, parseCond, parseActionList, parseBurst, parseEffects
 
 ## packages/engine/src/02d-effects-resolve.js (399 lines, ~7.9k tokens)
 fxCan, runActions, fireFx, collectFx, fxValid, fireFxMulti, asResolving, flushDerived, resolvePool, soulCoreHolder, soulToTrash, isSealed, soulToLife, lifeTake, soulSource, soulToNexus, advTiming, soulAdventOK, cadvSources, contractAdventTargets, doContractAdvent, manifestTargets, doManifest, humanContractAdvent, humanManifest, cpuAdvents, onceKey, usedThisTurn, markUsed, revealedFx, NB_IDX, actList, effAt, activatable, bpReachedCheck, FX_ACTIVE_BP, activateFx, cpuActivate, reviveKey, reviveTargets, doRevive, cpuRevive
 
-## packages/engine/src/02e-effects-removed.js (167 lines, ~4.1k tokens) — v0.38 GREEN (Contractor Hermes / Lionheart): Heavy Exhaust, the Removed Zone, exhaust effects, "the opponent can't activate Burst effects".
+## packages/engine/src/02e-effects-removed.js (167 lines, ~4.2k tokens) — v0.38 GREEN (Contractor Hermes / Lionheart): Heavy Exhaust, the Removed Zone, exhaust effects, "the opponent can't activate Burst effects".
 setHeavy, refreshOne, toRemoved, fromHandRemoved, _nm, handSafe, handLocked, pickOppSpirits
 
 ## packages/engine/src/02f-effects-mill-discard.js (101 lines, ~2.4k tokens) — v0.39 PURPLE (Contractor Hades / Sorcerer): Deck-to-Trash (mill), discarding from the Hand, sending opposing cores to the Reserve, once-per-turn Count.
@@ -53,7 +53,7 @@ accelList, accelCost, accelMainStep, accelOK, accelSources, accelLabel, useAccel
 ## packages/engine/src/02k-effects-immunity.js (29 lines, ~0.5k tokens)
 trashSafe, camouBlocks, wrapImmunity
 
-## packages/engine/src/02l-effects-invoke.js (256 lines, ~6.4k tokens) — v0.68 INVOKE (Standard activations): "{{Invoke|Flash}}" / "{{Invoke|Main}}" + "<cost> ▶ <effect>".
+## packages/engine/src/02l-effects-invoke.js (256 lines, ~6.5k tokens) — v0.68 INVOKE (Standard activations): "{{Invoke|Flash}}" / "{{Invoke|Main}}" + "<cost> ▶ <effect>".
 INVOKE_WHEN, INVOKE_COSTS, invokeMatchOK, invokeParse, invokeWhenOK, exhaustOwnCands, returnOwnCands, discardCands, invokeCostOK, payInvokeCost, usedThisBattle, markUsedBattle, bpBattle, addBattleBp, invokeCostText, ownTargetCands, cpuInvokeOK
 
 ## packages/engine/src/02m-effects-destroy-filters.js (92 lines, ~2.2k tokens)
