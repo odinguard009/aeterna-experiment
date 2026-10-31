@@ -294,7 +294,14 @@ async function payBlockTax(D, att, s) {                // true = the Spirit may 
   log(`${who(D)} ${D.cpu ? 'pays' : 'pay'} to block: ${verb}.`); io.view({ type: 'board' }); return true;
 }
 const blockedInferior = (D, att, s) => flagActive(D, 'NO_BLOCK_INFERIOR', s) && bpOf(att) < bpOf(s);      // v0.195 "can't block Spirits with BP inferior to this Spirit's"
-const blockedByMark = (att, s) => { const q2 = att.noBlockTurnCost; if (q2 && q2.turn === G.turnNo && CARDS[s.id].cost >= q2.costGe) return true; const q = att.noBlockTurnBp; if (q && q.turn === G.turnNo && bpOf(s) <= q.bpLe) return true; if (att.noBlockInferiorBattle != null && att.noBlockInferiorBattle === G.battleNo && bpOf(s) <= bpOf(att)) return true; const m = att.noBlockBy; if (!m || m.battleNo !== G.battleNo) return false; const k = CARDS[s.id];
+const shamanNoBlock = (att, s) => {      // v201 NO_BLOCK_SHAMAN: Spirits summoned via Shamanism this turn can't be blocked by opposing Cost N or less Spirits
+  if (!G || att.viaShamanTurn !== G.turnNo) return false;
+  const ow = ownerOf(att); if (!ow) return false;
+  for (const src of fieldList(ow)) { const L = lvNo(src);
+    for (const { e } of fxEntries(src)) if (e.trigger === 'STATIC' && e.flag === 'NO_BLOCK_SHAMAN' && !(e.lv && !e.lv.includes(L)) && CARDS[s.id].cost <= (e.costLe || 0) && fxIf(ow, G.p[other(ow.key)], e.if, { selfInst: src })) return true; }
+  return false;
+};
+const blockedByMark = (att, s) => { const q2 = att.noBlockTurnCost; if (q2 && q2.turn === G.turnNo && CARDS[s.id].cost >= q2.costGe) return true; const q = att.noBlockTurnBp; if (q && q.turn === G.turnNo && bpOf(s) <= q.bpLe) return true; if (att.noBlockInferiorBattle != null && att.noBlockInferiorBattle === G.battleNo && bpOf(s) <= bpOf(att)) return true; const m = att.noBlockBy; if (shamanNoBlock(att, s)) return true; if (!m || m.battleNo !== G.battleNo) return false; const k = CARDS[s.id];
   return m.all || (m.color == null || fxMatch(k, { color: m.color })) && (m.levels == null || m.levels.includes(lvNo(s))) && (m.keyword == null || cardHasKeyword(k, m.keyword)) && (!m.highSpeed || k.highSpeed === true) && (m.costLe == null || k.cost <= m.costLe) && (m.costGe == null || k.cost >= m.costGe) && (m.bpLe == null || bpOf(s) <= m.bpLe) && (m.coresLe == null || totalCores(s) <= m.coresLe) && (!m.noSoul || !s.soul); };      // v0.196 "without (Soul Core) on it"      // v0.185 "N BP or less" / "N cores or less on it"      // v0.179 "Cost N or less/more"
 /* v189 "during this battle, all your Spirits can't be blocked by opposing Spirits with BP equal or inferior to theirs": every own Spirit carries the mark for this battle */
 FX_ACTIONS.NO_BLOCK_INFERIOR_BATTLE = {

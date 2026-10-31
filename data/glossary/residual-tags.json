@@ -38166,10 +38166,6 @@
   "S_CANT_PREVENT",
   "T_ADVENT"
  ],
- "26RBS01-094": [
-  "A_BP_PLUS",
-  "C_LEVEL"
- ],
  "26RBS01-103": [
   "A_EXHAUST",
   "A_REFRESH",
@@ -38204,11 +38200,6 @@
   "T_ALLY_DESTROYS",
   "T_SUMMONED"
  ],
- "26RBS02-021": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "T_DESTROYED"
- ],
  "26RBS02-073": [
   "A_EXHAUST",
   "C_LEVEL",
@@ -38227,10 +38218,6 @@
   "F_OTHER_NOSTACK",
   "M_UNSTACKABLE",
   "T_DESTROYED"
- ],
- "26RBS02-077": [
-  "A_BP_PLUS",
-  "C_LEVEL"
  ],
  "26RBS02-079": [
   "A_VOID",
@@ -38352,16 +38339,6 @@
   "A_VOID",
   "C_LEVEL",
   "T_ATTACKS",
-  "T_SUMMONED"
- ],
- "26RBS03-X08": [
-  "A_BANISH",
-  "A_EXHAUST",
-  "A_REFRESH",
-  "A_SYMBOL",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "M_REPLACEMENT",
   "T_SUMMONED"
  ],
  "26RBS03-X11": [

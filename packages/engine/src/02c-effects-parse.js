@@ -3,7 +3,7 @@ const canPlaceBraveFree = (p, inst) => CARDS[inst.id].type === 'Brave' && minCor
 async function summonFree(p, inst, opts) {           // summon/deploy without paying the cost (Lv1 cores still come from your cores)
   const card = CARDS[inst.id];
   removeFrom(p.hand, inst); removeFrom(p.soulState, inst); removeFrom(p.trash, inst); removeFrom(p.standby, inst); inst.inSoulState = false; if (p.limbo === inst) p.limbo = null;       // a Burst card that is summoned leaves the resolving zone
-  inst.viaFC = !!(opts && opts.formChange); inst.viaHS = false; inst.legacyN = 0; inst.viaFx = true; inst.soulPaid = false; inst.soulLost = false; inst.mirage = false; inst.cores = 0; inst.soul = false; inst.exhausted = false; inst.heavy = false; inst.noAB = false; inst.summonedTurn = G.turnNo; inst.bpMod = 0;
+  inst.viaFC = !!(opts && opts.formChange); inst.viaHS = false; inst.legacyN = 0; inst.viaFx = true; if (opts && opts.viaShaman) inst.viaShamanTurn = G.turnNo;      // v201 Shamanism summon mark inst.soulPaid = false; inst.soulLost = false; inst.mirage = false; inst.cores = 0; inst.soul = false; inst.exhausted = false; inst.heavy = false; inst.noAB = false; inst.summonedTurn = G.turnNo; inst.bpMod = 0;
   if (card.type === 'Spirit' || card.type === 'Brave' || card.type === 'Ultimate') {
     if (opts && opts.soul) inst.soul = true;                                   // v0.46 Ultra Manifest: the Soul Core is already on this card
     const got = takeCores(p, Math.max(0, card.levels[0].cores - (inst.soul ? 1 : 0)), inst.uid);
@@ -24,11 +24,12 @@ const canPlacePaid = (p, inst, noTribute) => { const k = CARDS[inst.id]; return 
 const canPlaceBy = (p, inst, pay, noTribute) => pay ? canPlacePaid(p, inst, noTribute) : canPlaceFree(p, inst);
 async function summonPaid(p, inst, opts) {                  // official: "summon/deploy" without "without paying the cost" pays the cost (with cost reduction)
   if (!canPlacePaid(p, inst, opts && opts.noTribute)) return false;      // v0.183 noTribute: "summon without using Tribute" (the cost is still paid)
-  const card = CARDS[inst.id], c = effCost(p, card), L = minCores(card);
+  const card = CARDS[inst.id]; let c = effCost(p, card); const L = minCores(card);
+  if (opts && opts.viaShaman) { inst.viaShamanTurn = G.turnNo; if (card.shamanReduction) c = Math.max(0, c - (Object.values(card.reduction || {}).reduce((a, b) => a + b, 0))); }      // v201 Shamanism: fulfill all reduction symbols
   let plan = null;
   if (!p.cpu && c > 0 && reserveTotal(p) < c + L) { plan = await askPayment(card, c, L); if (!plan) return false; }
   if (p.limbo === inst) p.limbo = null;
-  summon(p, inst, plan); if (!(opts && opts.noTribute)) await tributePay(p, inst); io.view({ type: 'board' }); await wait(350);
+  summon(p, inst, plan, opts); if (!(opts && opts.noTribute)) await tributePay(p, inst); io.view({ type: 'board' }); await wait(350);
   if (!G.over && fieldList(p).includes(inst)) await fireFx(p, 'SUMMONED', inst, opts && opts.noFx ? { noSelfFx: true } : undefined);
   return true;
 }
@@ -50,7 +51,7 @@ function parseCond(c) {
   if (typeof c !== 'object' || c === null) return { error: 'effect "if" must be an object' };
   for (const [k, v] of Object.entries(c)) {
     if (k === 'not') { const sub = parseCond(v); if (sub.error || Object.keys(v).length === 0 || 'not' in v) return { error: 'condition "not" must hold one valid condition (no nesting): ' + (sub.error || 'empty') }; continue; }      // v0.135
-    const okInt = ['handLe', 'lifeLe', 'anyLifeLe', 'counterGe', 'soulGe', 'oppHandGe', 'voidGe', 'soulLe', 'putGe', 'lifeGe', 'oppRemovedGe', 'removedGe', 'oppSpiritsLe', 'oppNexusGe', 'oppTrashGe', 'selfBpGe', 'blockerBpLe', 'attackerCostLe', 'oppRefreshedLe'].includes(k) && Number.isInteger(v);
+    const okInt = ['handLe', 'lifeLe', 'anyLifeLe', 'counterGe', 'soulGe', 'oppHandGe', 'voidGe', 'soulLe', 'putGe', 'lifeGe', 'oppRemovedGe', 'removedGe', 'oppSpiritsLe', 'oppNexusGe', 'oppTrashGe', 'selfBpGe', 'blockerBpLe', 'attackerCostLe', 'oppRefreshedLe', 'legacyGe'].includes(k) && Number.isInteger(v);
     const okStr = ((k === 'controlName' || k === 'hasName' || k === 'soulOn' || k === 'nexusBraved' || k === 'pickedKeyword' || k === 'attackerKeyword') && typeof v === 'string' && v.length > 0 && v.length <= 60)
       || (k === 'controlName' && Array.isArray(v) && v.length > 1 && v.length <= 4 && v.every(y => typeof y === 'string' && y.length > 0 && y.length <= 60));
     const okCol = (k === 'trashAllColor' && COLORS.includes(v)) || k === 'hasSymbol' && (COLORS.includes(v) || (Array.isArray(v) && v.length >= 2 && v.length <= 3 && new Set(v).size === v.length && v.every(y => COLORS.includes(y))));      // v0.184: a list = all of those symbols
@@ -136,6 +137,14 @@ function parseEffects(arr) {
       if (e.flag === 'HAND_COST') {                               // v0.186 "The cost of all <family> Spirit cards in your Hand becomes N"
         if (!Number.isInteger(e.n) || e.n < 0 || e.n > 30) return { error: 'HAND_COST needs a whole-number "n" (0-30)' };
         if (!o.match) return { error: 'HAND_COST needs a "match"' };
+        o.n = e.n;
+      }
+      if (e.flag === 'NO_BLOCK_SHAMAN') {                          // v201 "all your Spirits summoned via Shamanism this turn can't be blocked by opposing Cost 3 or less Spirits"
+        if (!Number.isInteger(e.costLe) || e.costLe < 0 || e.costLe > 30) return { error: 'NO_BLOCK_SHAMAN needs a whole-number "costLe" (0-30)' };
+        o.costLe = e.costLe;
+      }
+      if (e.flag === 'BP_VIA_SHAMAN') {                            // v201 "all your Spirits summoned via Shamanism this turn gain +N BP"
+        if (!Number.isInteger(e.n) || e.n < 1000 || e.n > 5000 || e.n % 1000 !== 0) return { error: 'BP_VIA_SHAMAN needs a whole-number "n" (1000-5000, step 1000)' };
         o.n = e.n;
       }
       if (e.flag === 'EXTRA_SYMBOL') {                            // v193 "this Nexus gains an extra Blue symbol" (a conditional extra Field symbol)

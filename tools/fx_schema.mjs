@@ -9,13 +9,13 @@ import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-export const SCHEMA_VERSION = 200;
+export const SCHEMA_VERSION = 204;
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = join(ROOT, 'packages/engine/src');
 export const SCHEMA_PATH = join(ROOT, 'packages/engine/fx-schema.json');
 
 // Card fields the engine does not read: tooling and source metadata kept in data/cards (not effect format).
-const META_FIELDS = ['note', 'mechanics', 'name_jp', 'text_partial', 'icons_verified', 'text_verified_web', 'color', 'ex_symbols', 'source', 'saga', 'handCost'];
+const META_FIELDS = ['note', 'mechanics', 'name_jp', 'text_partial', 'icons_verified', 'text_verified_web', 'color', 'ex_symbols', 'source', 'saga', 'handCost', 'shamanReduction'];
 
 /** Index just past the bracket that closes the one at `open` (skips strings, template literals, comments, regex literals). */
 export function closeOf(s, open) {
