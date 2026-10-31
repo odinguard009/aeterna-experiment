@@ -3,7 +3,7 @@
   "about": "v0.202.0 bundles 26-27 (Eternal): BS03-127 Ivy Cage (Main: exhaust every 2000 BP or less Spirit; Flash: +3000 BP), BS03-118 Fourth Draw (Main: draw until you have four cards in Hand; Flash: +3000 BP), BS21-051 Dark-Squalo (LV2: also treated as a Red Spirit) and BS27-034 Chocodra (every level: colour and symbol also Red).",
   "rules": [
     "STD:12-2-1-12@caad612c",
-    "ETR:effects.simultaneous@0d3e0a51"
+    "ETR:effects.simultaneous@77571ae4"
   ],
   "turn": 4,
   "active": "player",

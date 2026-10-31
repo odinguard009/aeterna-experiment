@@ -21,7 +21,7 @@ test('K-299 data: the bundle cards carry their printed clauses and the glossary 
     ['26RSD08-002', 'SUMMONED,ALLY_LIFE_HIT', true, 0],
     ['26RBS02-X05', 'SUMMONED,END_STEP*', true, 0],
     ['26RBS02-076', 'SUMMONED,END_STEP*', true, 0],
-    ['26RSD06-011', 'SUMMONED', false, 1],
+    ['26RSD06-011', 'SUMMONED,STATIC', true, 0],
   ], JSON.stringify(r));
 });
 

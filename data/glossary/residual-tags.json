@@ -2215,6 +2215,9 @@
   "M_UP_TO",
   "T_ATTACKS"
  ],
+ "BS09-001": [
+  "C_LEVEL"
+ ],
  "BS09-003": [
   "A_BP_PLUS",
   "C_LEVEL"
@@ -9354,9 +9357,6 @@
   "A_SYMBOL",
   "C_LEVEL",
   "K_ULTIMATE"
- ],
- "BS27-034": [
-  "C_LEVEL"
  ],
  "BS27-035": [
   "A_BP_PLUS",
