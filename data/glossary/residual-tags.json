@@ -11020,10 +11020,6 @@
   "C_LEVEL",
   "T_SUMMONED"
  ],
- "BS31-030": [
-  "A_BP_PLUS",
-  "C_LEVEL"
- ],
  "BS31-031": [
   "A_SUMMON_FREE",
   "C_LEVEL",
@@ -11062,10 +11058,6 @@
   "M_BY_DOING",
   "T_ATTACKS",
   "T_SUMMONED"
- ],
- "BS31-039": [
-  "A_BP_PLUS",
-  "C_LEVEL"
  ],
  "BS31-040": [
   "A_BP_PLUS",
