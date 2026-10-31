@@ -28,6 +28,7 @@ async function doBattle(attKey, att) { try { G.eob = []; G.battleMagic = []; G.b
 async function doBattleInner(attKey, att) {
   const A = G.p[attKey], D = G.p[other(attKey)];
   if (!(await payAbTax(A, att, 'attack'))) { io.view({ type: 'board' }); return; }   // v0.47 Plutonic Wall
+  if (!(await payAtkTax(A, D, att))) { io.view({ type: 'board' }); return; }          // v223 ATK_TAX
   A.attacksThisTurn = (A.attacksThisTurn || 0) + 1; const lowLim = activeLowAtk(); if (lowLim && CARDS[att.id].cost <= lowLim) G.lowAtkTurn = G.turnNo;      // v214      // v0.185 'first / second or subsequent attack of the turn' (reset in beginTurn)
   att.exhausted = true; G.battleNo = (G.battleNo || 0) + 1; G.blocker = null;      // v0.68: battle counter for (Once Per Battle) / "during this battle" (02l)
   log(`${who(A)} ${A.cpu ? 'attacks' : 'attack'} with ${CARDS[att.id].name} (${bpOf(att)} BP).`);
@@ -170,7 +171,7 @@ async function flushBursts() {                         // queued Bursts and even
     } else if (ev.type === 'LOST') {
       await fireFx(G.p[ev.key], 'ALLY_LOST', null, { subject: ev.inst, depl: !!ev.depl, byOpp: !!ev.byOpp });      // v212
     } else if (ev.type === 'NEXUS_DIED') {
-      await fireFx(G.p[ev.key], 'ALLY_NEXUS_DESTROYED', ev.inst, { subject: ev.inst });      // v189 "When your Nexuses ... are destroyed"
+      await fireFx(G.p[ev.key], 'ALLY_NEXUS_DESTROYED', ev.inst, { subject: ev.inst, byBattle: !!ev.byBattle });      // v189 "When your Nexuses ... are destroyed"
     } else if (ev.type === 'OPP_DIED') {
       await fireFx(G.p[other(ev.key)], 'OPP_DIED', ev.inst, { subject: ev.inst, bp: ev.bp });      // v192 "When opposing Spirits are destroyed"
     } else if (ev.type === 'DESTROYED') await fireFx(G.p[ev.key], 'DESTROYED', ev.inst, { subject: ev.inst, byOpp: !!ev.byOpp, byOppFx: !!ev.byOppFx, depl: !!ev.depl });

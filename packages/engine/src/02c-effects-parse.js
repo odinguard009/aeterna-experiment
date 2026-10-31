@@ -198,6 +198,11 @@ function parseEffects(arr) {
         if (!Number.isInteger(e.n) || e.n < 1 || e.n > 2) return { error: 'LIFE_HIT_PLUS needs a whole-number "n" (1-2)' };
         o.n = e.n;
       }
+      if (e.flag === 'ATK_TAX') {                                 // v223 "when an opposing LVn Spirit would attack, unless it pays N costs, it can't attack"
+        if (!Number.isInteger(e.lvLimit) || e.lvLimit < 1 || e.lvLimit > 4) return { error: 'ATK_TAX needs a whole-number "lvLimit" (1-4)' };
+        if (!Number.isInteger(e.pay) || e.pay < 1 || e.pay > 3) return { error: 'ATK_TAX needs a whole-number "pay" (1-3)' };
+        o.lvLimit = e.lvLimit; o.pay = e.pay;
+      }
       if (e.flag === 'UNAFFECTED' && e.from != null) {               // v0.58 Armor / Heavy Armor / Ultra Armor / "unaffected by opposing <colour> <types> effects"
         const f = e.from, TY = ['Spirit', 'Brave', 'Nexus', 'Magic', 'Ultimate'];
         if (typeof f !== 'object' || (f.colors != null && (!Array.isArray(f.colors) || !f.colors.length || f.colors.some(x => !COLORS.includes(x))))

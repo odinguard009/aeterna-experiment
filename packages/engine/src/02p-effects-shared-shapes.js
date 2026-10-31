@@ -230,6 +230,18 @@ Object.assign(FX_ACTIONS, {
       log(`${CARDS[c.src.id].name}: ${L.length} Spirit${L.length === 1 ? '' : 's'} activate their When Blocks effects at When Attacks this turn.`);
     } } });
 Object.assign(FX_ACTIONS, {
+  /* v223 "you can destroy one of your Nexuses" (the CPU picks the Nexus with the fewest cores) */
+  DESTROY_OWN_NEXUS: { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
+    txt: () => 'destroy one of your Nexuses',
+    can: c => c.p.nexus.length > 0,
+    run: async c => {
+      const L = c.p.nexus.filter(n => !n.noFx); if (!L.length) { c.ctx.did = false; return; }
+      const t = c.p.cpu ? L.slice().sort((x, y) => x.cores - y.cores)[0] : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the Nexus to destroy (glowing).`);
+      if (!t) { c.ctx.did = false; return; }
+      log(`${CARDS[c.src.id].name}: ${CARDS[t.id].name} is destroyed.`);
+      removeNexus(c.p, t, 'destroyed'); c.ctx.did = true; io.view({ type: 'board' });
+    } } });
+Object.assign(FX_ACTIONS, {
   DESTROY_OWN: {
     chk: a => hasMatch(a.match) && (a.voidByCost == null || a.voidByCost === true) && (a.other == null || a.other === true),
     txt: a => (a.other ? 'destroy another Spirit you control' : 'destroy one of your matching Spirits') + (a.voidByCost ? ', then put cores from the Void to your Reserve equal to its cost' : ''),
@@ -360,6 +372,18 @@ FX_ACTIONS.BLOCK_TAX = { chk: a => (a.kind === 'reserve' || a.kind === 'exhaust'
   txt: a => `when the opponent would block, unless they ${a.kind === 'reserve' ? 'send a core from their Reserve to the Trash' : 'exhaust another Spirit they control'}, they can't block`, can: () => true,
   run: async (c, a) => { const t = a.toSubject ? c.ctx.attacker : c.src; if (!t) return; t.blockTax = { battleNo: G.battleNo, kind: a.kind }; } };
 const blockTaxOK = (D, att, s) => { const q = att.blockTax; return !q || q.battleNo !== G.battleNo || (q.kind === 'reserve' ? D.reserve.n >= 1 : D.spirits.some(x => x !== s && !x.exhausted)); };
+/* v223 STATIC ATK_TAX on the defender's field: the attacker's owner sends N Reserve cores to the Trash or the attack is cancelled. */
+async function payAtkTax(A, D, att) {
+  let q = null;
+  if (D) for (const f of fieldList(D)) { const L = lvNo(f); for (const { e } of fxEntries(f)) if (e.trigger === 'STATIC' && e.flag === 'ATK_TAX'
+    && (!e.lv || e.lv.includes(L)) && e.lvLimit === lvNo(att) && (!e.oc || ocActive(f)) && fxIf(D, A, e.if || {}, { selfInst: f })) { q = { pay: e.pay }; break; } if (q) break; }
+  if (!q) return true;
+  const need = q.pay || 1;
+  if (A.reserve.n < need) { log(`${CARDS[att.id].name} can't attack: ${poss(A)} Reserve cannot pay ${need} cost${need === 1 ? '' : 's'}.`); return false; }
+  A.reserve.n -= need; A.trashCores.n += need;
+  log(`${who(A)} ${A.cpu ? 'sends' : 'send'} ${need} core${need === 1 ? '' : 's'} from the Reserve to the Trash to attack.`); io.view({ type: 'board' });
+  return true;
+}
 async function payBlockTax(D, att, s) {                // true = the Spirit may block (tax paid or none)
   let q = att.blockTax; if (!q || q.battleNo !== G.battleNo) q = null;
   if (!q) {      // v219 STATIC BLOCK_TAX on the attacker's owner ("they can't block unless they pay N costs")

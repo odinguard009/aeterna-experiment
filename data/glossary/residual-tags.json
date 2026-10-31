@@ -38166,12 +38166,6 @@
   "S_CANT_PREVENT",
   "T_ADVENT"
  ],
- "26RBS03-067": [
-  "A_DRAW",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_ALLY_ATTACKS"
- ],
  "26RBS03-081": [
   "A_REFRESH",
   "C_LEVEL",
@@ -38208,10 +38202,5 @@
  ],
  "26RDB01-060": [
   "K_STANDARD_SUCCESSION"
- ],
- "26RSD06-011": [
-  "C_LEVEL",
-  "F_OTHER_NOSTACK",
-  "M_UNSTACKABLE"
  ]
 }

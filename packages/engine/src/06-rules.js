@@ -329,7 +329,7 @@ function removeSpirit(p, s, why, byOpponent) {
   const kill = why === 'destroyed' && byOpponent !== 'battle' && !!G && !!G.evQ && !!G.fxBy && G.fxBy !== p.key && fieldList(G.p[G.fxBy]).some(f => fxEntries(f).some(({ e }) => e.trigger === 'OPP_DESTROYED_FX')),      // v0.196 someone can react to "opposing Spirits destroyed by your effect"
     bp0 = kill ? bpOf(s) : 0, bpAt = why === 'destroyed' ? bpOf(s) : 0;      // v192 OPP_DIED carries the BP it had when it was destroyed
   if (!removeFrom(p.spirits, s)) return;
-  if (why === 'destroyed' && CARDS[s.id].type === 'Nexus' && nexusDeathHears(p)) G.evQ.push({ type: 'NEXUS_DIED', key: p.key, inst: s });      // v189 "your Spirits that are originally Nexuses are destroyed"
+  if (why === 'destroyed' && CARDS[s.id].type === 'Nexus' && nexusDeathHears(p)) G.evQ.push({ type: 'NEXUS_DIED', key: p.key, inst: s, byBattle: byOpponent === 'battle' });      // v223      // v189 "your Spirits that are originally Nexuses are destroyed"
   if ((why === 'destroyed' || why === 'depleted') && byOpponent !== 'battle' && G && G.fxBy && G.fxBy !== p.key) { G.p[G.fxBy].oppFxLossTurn = G.turnNo; if (why === 'depleted') G.p[G.fxBy].oppDepletedTurn = G.turnNo; }      // v0.196 condition oppLostByFx; v0.199 oppDepleted
   if (why === 'destroyed' && byOpponent !== 'battle' && G && G.fxBy === p.key) {      // v0.200 condition ownDestroyedTurn; v206 remembers what was destroyed (colour + a When Destroyed effect) for the filtered form
     if (p.ownFxDestroyTurn !== G.turnNo) { p.ownFxDestroyTurn = G.turnNo; p.ownFxDestroyCards = []; }

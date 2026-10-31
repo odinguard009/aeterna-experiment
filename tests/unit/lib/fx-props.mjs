@@ -324,6 +324,9 @@ function simple(card, a) {
       if (!only(a, ['match']) || !okMatch(a.match)) return null;
       return { fix: [{ m: a.match }, { m: a.match }], body: `const ts = [sp(${J(mid(a.match))}, P, 1), sp(${J(mid(a.match))}, P, 1)];
         await run(src, RA); return ts.every(t => t.blocksAsAtkTurn === G.turnNo) ? '' : 'the grant did not mark the matching Spirits';` };
+    case 'DESTROY_OWN_NEXUS':      // v223 one of your Nexuses is destroyed
+      if (!only(a, [])) return null;
+      return { body: `const n0 = P.nexus.length; await run(src, RA); return P.nexus.length === n0 - 1 ? '' : 'no Nexus was destroyed';` };
     case 'CORES_ANY_TO_RESERVE':      // v212 "one core each from N Spirits you or the opponent controls"
       if (!only(a, ['total', 'excludeSelf', 'thenVoidCore']) || !a.excludeSelf) return null;
       return { onField: true, body: `const ts = []; for (let j = 0; j < A.total; j++) ts.push(sp(${J(sid(3, 2000))}, P, 2));      // no depletion: no Void core
