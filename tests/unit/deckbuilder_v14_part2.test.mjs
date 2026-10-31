@@ -19,7 +19,7 @@ test('LP1 holding a grid card on touch opens its info and the following tap adds
   await open();
   const id = await press();
   const before = await page.evaluate(i => BS.PLAYER_DECK[i] || 0, id);
-  await page.waitForSelector('#action-modal.active', { timeout: 3000 });
+  await page.waitForSelector('#action-modal.active', { timeout: 8000 });      // v0.202.0: the touch long-press needs more room on a loaded machine
   await page.evaluate(() => BS.closeModal(null));
   await page.evaluate(i => { BS.dbTap(i); return 1; }, id);
   assert.equal(await page.evaluate(i => BS.PLAYER_DECK[i] || 0, id), before);
