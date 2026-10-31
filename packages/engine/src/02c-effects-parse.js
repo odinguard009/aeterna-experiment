@@ -177,6 +177,10 @@ function parseEffects(arr) {
         if (!Number.isInteger(e.n) || e.n < 1 || e.n > 3) return { error: 'RUMBLE_PLUS needs a whole-number "n" (1-3)' };
         o.n = e.n;
       }
+      if (e.flag === 'UNBLOCKABLE_LOW') {                         // v213 "can't be blocked by opposing N BP or less Spirits"
+        if (!Number.isInteger(e.bpLe) || e.bpLe < 0 || e.bpLe > 30000) return { error: 'UNBLOCKABLE_LOW needs a whole-number "bpLe"' };
+        o.bpLe = e.bpLe;
+      }
       if (e.flag === 'UNAFFECTED' && e.from != null) {               // v0.58 Armor / Heavy Armor / Ultra Armor / "unaffected by opposing <colour> <types> effects"
         const f = e.from, TY = ['Spirit', 'Brave', 'Nexus', 'Magic', 'Ultimate'];
         if (typeof f !== 'object' || (f.colors != null && (!Array.isArray(f.colors) || !f.colors.length || f.colors.some(x => !COLORS.includes(x))))

@@ -1,0 +1,53 @@
+{
+  "name": "ermineia",
+  "about": "v0.202.0 bundle 10: 26RBS03-060 The ThunderBeast Ermineia (in the Attack Step, while every Spirit you control is a Topaz family Spirit with Cost 2/4/6/8, one opposing Spirit gets -5000 BP and is destroyed at 0 BP; its LV2 makes all your Spirits unblockable by opposing 3000 BP or less Spirits under the same condition through the new STATIC flag UNBLOCKABLE_LOW).",
+  "rules": [
+    "STD:12-2-1-12@caad612c",
+    "ETR:faq.bp@134528fb"
+  ],
+  "turn": 4,
+  "active": "player",
+  "step": 5,
+  "players": {
+    "player": {
+      "reserve": 10,
+      "spirits": [
+        {
+          "id": "26RBS03-060",
+          "cores": 3,
+          "as": "ermineia"
+        },
+        {
+          "id": "26RBS01-061",
+          "cores": 1,
+          "as": "topaz2"
+        },
+        {
+          "id": "26RBS01-067",
+          "cores": 1,
+          "as": "topaz4"
+        },
+        {
+          "id": "26RBS01-070",
+          "cores": 1,
+          "as": "topaz6"
+        }
+      ],
+      "deck": [
+        "26RBS01-005",
+        "26RBS01-006",
+        "26RBS01-009"
+      ]
+    },
+    "opponent": {
+      "reserve": 4,
+      "spirits": [
+        {
+          "id": "26RBS01-002",
+          "cores": 1,
+          "as": "opp3000"
+        }
+      ]
+    }
+  }
+}
