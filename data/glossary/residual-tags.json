@@ -38415,16 +38415,6 @@
   "A_SYMBOL_PLUS",
   "C_LEVEL"
  ],
- "26RCB01-031": [
-  "A_BP_PLUS",
-  "A_VOID",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "M_THEN",
-  "S1_ALL_HAVE",
-  "T_ALLY_ATTACKS",
-  "T_SUMMONED"
- ],
  "26RCB01-032": [
   "A_BP_PLUS",
   "M_OPTIONAL",
@@ -38439,16 +38429,6 @@
  "26RCB01-X06": [
   "C_LIFE",
   "T_ATTACKS"
- ],
- "26RDB01-002": [
-  "A_EXHAUST",
-  "A_REFRESH",
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "M_THEN",
-  "S1_ALL_HAVE",
-  "T_SUMMONED"
  ],
  "26RDB01-010": [
   "A_EXHAUST",
@@ -38502,14 +38482,6 @@
   "C_LEVEL",
   "M_OPTIONAL",
   "T_SUMMONED"
- ],
- "26RDB01-045": [
-  "A_REFRESH",
-  "A_VOID",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "S1_ALL_HAVE",
-  "T_ATTACKS"
  ],
  "26RDB01-051": [
   "A_BP_PLUS",

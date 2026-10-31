@@ -25281,19 +25281,74 @@
   "image": null,
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Summoned) If all your Spirits/Nexuses have the \"RYUKI\" family, put a core from the Void to your Trash.",
-   "[LV2] (Your Attack Step) (Once Per Turn) When your \"Kamen Rider Ryuki\" attacks, you can target one of your attacking Spirits. During this battle, it gains +2000 BP. Then, if it's Cost 8, during this battle, it has two White symbols. Its symbols can't be increased except via this effect."
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "allHave": {
+      "family": "RYUKI"
+     }
+    },
+    "actions": [
+     {
+      "do": "VOID_TO_TRASH",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_ATTACKS",
+    "lv": [
+     2
+    ],
+    "once": true,
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": false
+    },
+    "match": {
+     "name": [
+      "Kamen Rider Ryuki"
+     ],
+     "noUlt": true
+    },
+    "actions": [
+     {
+      "do": "BP_TARGET",
+      "n": 2000,
+      "to": "pick",
+      "battle": true,
+      "attacking": true
+     },
+     {
+      "do": "SYMBOL_TARGET",
+      "n": 2,
+      "color": "white",
+      "lock": true,
+      "picked": true,
+      "if": {
+       "prev": true,
+       "pickedCostIn": [
+        8
+       ]
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "collab": [
    "仮面ライダー"
   ],
   "bicon": [
    "A"
   ],
-  "rcode": "M"
+  "rcode": "M",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RCB01-032",
@@ -28699,20 +28754,59 @@
   "image": "26RDB01-002.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[Teams: Red Stella/Shiny Hearts]",
-   "[LV1-2] (When Summoned) If all your Spirits/Nexuses have Red Stella, send a core, besides , from your Trash to this Spirit. Then, target one of your exhausted Red Stella Spirits. Send a core, besides , from your Trash to it.",
-   "[LV2] (Your End Step) You can target one of your Red Stella Spirits. Refresh it."
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "allHave": {
+      "team": "Red Stella"
+     }
+    },
+    "actions": [
+     {
+      "do": "TRASH_CORES_TO",
+      "n": 1,
+      "toSelf": true
+     },
+     {
+      "do": "TRASH_CORES_TO",
+      "n": 1,
+      "match": {
+       "team": "Red Stella",
+       "exhausted": true
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "END_STEP",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT",
+      "match": {
+       "team": "Red Stella"
+      }
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "collab": [
    "詩姫"
   ],
   "bicon": [
    "A"
   ],
-  "rcode": "M"
+  "rcode": "M",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RDB01-003",
@@ -31386,23 +31480,57 @@
   "image": "26RDB01-045.png",
   "block": "A",
   "saga": 50,
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "allHave": {
+      "team": "Blue Beat"
+     }
+    },
+    "actions": [
+     {
+      "do": "VOID_TO_TRASH",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_BATTLE_END",
+    "lv": [
+     2
+    ],
+    "self": true,
+    "optional": true,
+    "sameName": true,
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT",
+      "match": {
+       "name": [
+        "Formulia Execeeda"
+       ]
+      }
+     }
+    ]
+   }
+  ],
   "mechanics": [
    "Ringing Charge"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[Teams: Blue Beat/Double Vivid]",
-   "[LV1-2] (When Attacks) If all your Spirits/Nexuses have Blue Beat, put a core from the Void to your Trash.",
-   "[LV2] (True Release) {{RC|\"Formulia Execeeda\"}} (During Attack) At the end of battle, you can target one of your \"Formulia Execeeda\". Refresh it. You can only use Ringing Charge once per turn."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "collab": [
    "詩姫"
   ],
   "bicon": [
    "A"
   ],
-  "rcode": "M"
+  "rcode": "M",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RDB01-046",

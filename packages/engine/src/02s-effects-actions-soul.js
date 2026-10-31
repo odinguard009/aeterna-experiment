@@ -128,7 +128,7 @@ Object.assign(FX_ACTIONS, {
         moved = Math.min(a.n, c.p.trashCores.n); c.p.trashCores.n -= moved; c.p.reserve.n += moved;
       } else
       for (let j = 0; j < a.n && c.p.trashCores.n > 0; j++) {
-        const L = fieldList(c.p).filter(x => fxMatch(CARDS[x.id], a.match) && !(a.notAttacker && x === G.attacker));      // v0.199 notAttacker: "one of your non-attacking Spirits"
+        const L = fieldList(c.p).filter(x => fxMatch(CARDS[x.id], a.match, x) && !(a.notAttacker && x === G.attacker));      // v0.199 notAttacker: "one of your non-attacking Spirits"; v194 instance filters (match.exhausted)
         let t = null;
         if (a.onlyCards && !L.length) break;
         if (a.one && fixed !== undefined) t = fixed;

@@ -147,13 +147,19 @@ Object.assign(FX_ACTIONS, {
       log(`${CARDS[t.id].name} gets +${n} BP during this ${a.battle ? 'battle' : 'turn'}.`);
     } },
   /* "Target one of your X Spirits. During this battle, it gains an extra <colour> symbol." (cleared when the battle ends, like SYMBOL_PLUS) */
-  SYMBOL_TARGET: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 3 && invokeMatchOK(a.match) && (a.attacking == null || a.attacking === true) && (a.color == null || COLORS.includes(a.color)) && (a.lock == null || a.lock === true),      // v189 color: "two Red symbols"; lock: "The number of symbols can't increase except via this effect"
+  SYMBOL_TARGET: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 3 && invokeMatchOK(a.match) && (a.attacking == null || a.attacking === true) && (a.color == null || COLORS.includes(a.color)) && (a.lock == null || a.lock === true) && (a.picked == null || a.picked === true),      // v189 color: "two Red symbols"; lock: "The number of symbols can't increase except via this effect"; v194 picked: "Then, if it's Cost 8, that Spirit has ..." (the Spirit picked by the earlier BP_TARGET)
     txt: a => `one of your ${a.match && a.match.family ? '"' + a.match.family.join('"/"') + '" ' : ''}${a.match && a.match.costGe != null ? 'Cost ' + a.match.costGe + '+ ' : ''}Spirits gains ${a.n} extra ${a.color ? a.color + ' ' : ''}symbol${a.n === 1 ? '' : 's'} during this battle`,
-    can: (c, a) => !!G.attacker && ownTargetCands(c, a).length > 0,
+    can: (c, a) => a.picked ? !!(c.ctx && c.ctx.picked && c.p.spirits.includes(c.ctx.picked) && (!a.match || fxMatch(CARDS[c.ctx.picked.id], a.match, c.ctx.picked))) : !!G.attacker && ownTargetCands(c, a).length > 0,
     run: async (c, a) => {
-      const L = ownTargetCands(c, a); if (!L.length) { c.ctx.did = false; return; }
-      const t = c.p.cpu ? (L.find(s => s === G.attacker) || L[0]) : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your Spirits to gain an extra symbol (glowing).`);
-      if (!t) { c.ctx.did = false; return; }
+      let t;
+      if (a.picked) {
+        t = c.ctx && c.ctx.picked;
+        if (!t || !c.p.spirits.includes(t) || (a.match && !fxMatch(CARDS[t.id], a.match, t))) { c.ctx.did = false; return; }
+      } else {
+        const L = ownTargetCands(c, a); if (!L.length) { c.ctx.did = false; return; }
+        t = c.p.cpu ? (L.find(s => s === G.attacker) || L[0]) : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your Spirits to gain an extra symbol (glowing).`);
+        if (!t) { c.ctx.did = false; return; }
+      }
       t.symBattle = (t.symBattle || 0) + a.n;
       if (a.lock) { t.symLockBattle = G.battleNo; t.symLockN = a.n; }      // v189 the printed cap: only this effect raises the symbol count this battle
       log(`${CARDS[t.id].name} gains ${a.n} extra ${a.color ? a.color + ' ' : ''}symbol${a.n === 1 ? '' : 's'} during this battle.`);
