@@ -2617,10 +2617,6 @@
   "C_LEVEL",
   "T_SUMMONED"
  ],
- "BS10-040": [
-  "A_BP_PLUS",
-  "C_LEVEL"
- ],
  "BS10-042": [
   "C_LEVEL",
   "T_DESTROYED"
@@ -2924,10 +2920,6 @@
   "S_MUST_BLOCK",
   "T_ATTACKS",
   "T_SUMMONED"
- ],
- "BS11-011": [
-  "C_LEVEL",
-  "T_DESTROYED"
  ],
  "BS11-013": [
   "C_LEVEL",
