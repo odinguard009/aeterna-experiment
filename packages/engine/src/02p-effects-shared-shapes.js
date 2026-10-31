@@ -361,11 +361,16 @@ FX_ACTIONS.BLOCK_TAX = { chk: a => (a.kind === 'reserve' || a.kind === 'exhaust'
   run: async (c, a) => { const t = a.toSubject ? c.ctx.attacker : c.src; if (!t) return; t.blockTax = { battleNo: G.battleNo, kind: a.kind }; } };
 const blockTaxOK = (D, att, s) => { const q = att.blockTax; return !q || q.battleNo !== G.battleNo || (q.kind === 'reserve' ? D.reserve.n >= 1 : D.spirits.some(x => x !== s && !x.exhausted)); };
 async function payBlockTax(D, att, s) {                // true = the Spirit may block (tax paid or none)
-  const q = att.blockTax; if (!q || q.battleNo !== G.battleNo) return true;
+  let q = att.blockTax; if (!q || q.battleNo !== G.battleNo) q = null;
+  if (!q) {      // v219 STATIC BLOCK_TAX on the attacker's owner ("they can't block unless they pay N costs")
+    const A = ownerOf(att), opp = A && G.p[other(A.key)];
+    if (A) for (const f of fieldList(A)) for (const { e } of fxEntries(f)) if (e.trigger === 'STATIC' && e.flag === 'BLOCK_TAX' && (!e.lv || e.lv.includes(lvNo(f))) && (!e.oc || ocActive(f)) && fxIf(A, opp, e.if || {}, { selfInst: f }) && fxMatch(CARDS[att.id], e.match, att)) { q = { kind: 'reserve', pay: e.pay }; break; }
+  }
+  if (!q) return true;
   const verb = q.kind === 'reserve' ? 'send a core from your Reserve to the Trash' : 'exhaust another Spirit';
   const go = D.cpu ? true : await ask({ title: '🛡 Block cost', html: `${esc(CARDS[s.id].name)} can only block if you ${verb}. Pay?`, buttons: [{ label: 'Pay and block', cls: 'primary', value: true }, { label: 'Cancel', cls: 'cancel', value: false }] });
   if (!go) return false;
-  if (q.kind === 'reserve') { D.reserve.n--; D.trashCores.n++; }
+  if (q.kind === 'reserve') { const n = Math.min(q.pay || 1, D.reserve.n); D.reserve.n -= n; D.trashCores.n += n; return n > 0; }
   else D.spirits.filter(x => x !== s && !x.exhausted).sort((x, y) => bpOf(x) - bpOf(y))[0].exhausted = true;      // shortcut: the weakest other Spirit is exhausted automatically, offer a pick if a card needs it
   log(`${who(D)} ${D.cpu ? 'pays' : 'pay'} to block: ${verb}.`); io.view({ type: 'board' }); return true;
 }

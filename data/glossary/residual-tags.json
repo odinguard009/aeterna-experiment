@@ -38171,25 +38171,12 @@
   "M_REPLACEMENT",
   "T_ALLY_LOST"
  ],
- "26RBS02-X10": [
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_ATTACKS",
-  "T_BLOCKS"
- ],
  "26RBS02-X16": [
   "A_EXHAUST",
   "A_REVEAL_ADD",
   "A_REVEAL_DECK",
   "C_LEVEL",
   "M_OPTIONAL",
-  "T_SUMMONED"
- ],
- "26RBS03-044": [
-  "C_LEVEL",
-  "M_REPLACEMENT",
-  "T_ATTACKS",
-  "T_BLOCKS",
   "T_SUMMONED"
  ],
  "26RBS03-067": [
@@ -38242,17 +38229,6 @@
   "M_OPTIONAL",
   "M_THEN",
   "T_SUMMONED"
- ],
- "26RDB01-X06": [
-  "A_REVEAL_ADD",
-  "A_REVEAL_DECK",
-  "C_LEVEL",
-  "F_OTHER_NOSTACK",
-  "M_OPTIONAL",
-  "M_UNSTACKABLE",
-  "M_UP_TO",
-  "S_OPP_NO_BLOCK",
-  "T_ATTACKS"
  ],
  "26RSD05-010": [
   "C_LEVEL",

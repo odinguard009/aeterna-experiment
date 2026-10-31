@@ -1,0 +1,27 @@
+{
+  "name": "tia-madoola",
+  "about": "v0.202.0 bundle 17: 26RDB01-X06 Tia Madoola (When Attacks with the Soul Core in your Reserve: reveal three, summon up to two Cost 5 or less Blue Beat Spirit cards, rest to the deckbottom; its LV2 makes the opponent pay two Reserve cores before they can block your Blue Beat Spirits).",
+  "rules": [
+    "STD:12-2-1-12@caad612c",
+    "ETR:faq.cost@ac3f4d21"
+  ],
+  "turn": 4,
+  "active": "player",
+  "step": 5,
+  "players": {
+    "player": {
+      "reserve": 10,
+      "spirits": [
+        { "id": "26RDB01-X06", "cores": 4, "as": "tia" },
+        { "id": "26RDB01-033", "cores": 1, "as": "blueBeat" }
+      ],
+      "deck": ["26RDB01-034", "26RDB01-035", "26RBS01-004", "26RDB01-036"]
+    },
+    "opponent": {
+      "reserve": 4,
+      "spirits": [
+        { "id": "26RBS01-004", "cores": 1, "as": "blocker" }
+      ]
+    }
+  }
+}

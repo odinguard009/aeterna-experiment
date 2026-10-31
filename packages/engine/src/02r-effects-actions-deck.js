@@ -35,7 +35,7 @@ Object.assign(FX_ACTIONS, {
     } },
   /* v0.37 LOOT: draw n, then discard m cards from the Hand (you choose). drawPlus {n, if}: extra cards when the condition holds; discardLessPerName: -1 discard per matching card you control;
      famCostDestroy: when the discarded card has that family, the next action {"costLeDiscarded":true} may destroy a Spirit with cost <= the discarded card (prev is false otherwise) */
-  REVEAL_DEPLOY: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 10 && hasMatch(a.match) && (a.pay == null || typeof a.pay === 'boolean') && (a.rest == null || a.rest === 'trash' || a.rest === 'top') && (a.diffName == null || a.diffName === true) && (a.add == null || (hasMatch(a.add.match) && Number.isInteger(a.add.lv))) && (a.allowBrave == null || (a.allowBrave === true && !a.pay)),
+  REVEAL_DEPLOY: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 10 && hasMatch(a.match) && (a.pay == null || typeof a.pay === 'boolean') && (a.rest == null || a.rest === 'trash' || a.rest === 'top') && (a.diffName == null || a.diffName === true) && (a.add == null || (hasMatch(a.add.match) && Number.isInteger(a.add.lv))) && (a.allowBrave == null || (a.allowBrave === true && !a.pay)) && (a.maxSummon == null || (Number.isInteger(a.maxSummon) && a.maxSummon >= 1 && a.maxSummon <= 3)),      // v219 maxSummon: summon up to N
     txt: a => `reveal ${a.n} cards from the top of your Deck, summon/deploy a matching card among them${a.pay ? ' (paying its cost)' : ''}${a.add ? ', from Lv' + a.add.lv + ' add a matching card to your Hand' : ''}, ${a.rest === 'trash' ? 'discard' : a.rest === 'top' ? 'return to the top of the Deck' : 'return to the bottom of the Deck'} the rest`,
     can: c => c.p.deck.length > 0,
     run: async (c, a) => {
@@ -43,8 +43,11 @@ Object.assign(FX_ACTIONS, {
       log(`${nm}: ${who(c.p)} ${c.p.cpu ? 'reveals' : 'reveal'} ${top.map(x => CARDS[x.id].name).join(', ') || 'nothing'}.`); io.view({ type: 'board' });
       await revealedFx(c.p);
       let k = 0;
-      const dep = await chooseCard(c, c.p.revealed.filter(x => fxMatch(CARDS[x.id], a.match) && (!a.diffName || CARDS[x.id].name !== nm) && (a.allowBrave && CARDS[x.id].type === 'Brave' ? canPlaceBraveFree(c.p, x) : canPlaceBy(c.p, x, a.pay))), `✨ ${nm}`, 'Choose a revealed card to summon/deploy' + (a.pay ? ' (you pay its cost).' : '.'), true);
-      if (dep) { removeFrom(c.p.revealed, dep); c.p.hand.push(dep); if (await summonBy(c.p, dep, a.pay)) k++; else { removeFrom(c.p.hand, dep); c.p.revealed.push(dep); } }
+      for (let j = 0; j < (a.maxSummon || 1); j++) {
+        const dep = await chooseCard(c, c.p.revealed.filter(x => fxMatch(CARDS[x.id], a.match) && (!a.diffName || CARDS[x.id].name !== nm) && (a.allowBrave && CARDS[x.id].type === 'Brave' ? canPlaceBraveFree(c.p, x) : canPlaceBy(c.p, x, a.pay))), `✨ ${nm}`, 'Choose a revealed card to summon/deploy' + (a.pay ? ' (you pay its cost).' : '.'), true);
+        if (!dep) break;
+        removeFrom(c.p.revealed, dep); c.p.hand.push(dep); if (await summonBy(c.p, dep, a.pay)) k++; else { removeFrom(c.p.hand, dep); c.p.revealed.push(dep); break; }
+      }
       if (a.add && fieldList(c.p).concat(c.p.trash).includes(c.src) && lvNo(c.src) >= a.add.lv) {
         const t = await chooseCard(c, c.p.revealed.filter(x => fxMatch(CARDS[x.id], a.add.match)), `✨ ${nm}`, 'You can add a revealed matching card to your Hand.', true);
         if (t) { removeFrom(c.p.revealed, t); c.p.hand.push(t); handUp(c.p, 1); log(`${nm}: ${CARDS[t.id].name} is added to the Hand.`); k++; }

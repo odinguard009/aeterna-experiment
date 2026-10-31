@@ -185,6 +185,11 @@ function parseEffects(arr) {
         if (!Number.isInteger(e.costLe) || e.costLe < 0 || e.costLe > 30) return { error: 'LOW_ATK_ONCE needs a whole-number "costLe"' };
         o.costLe = e.costLe;
       }
+      if (e.flag === 'BLOCK_TAX') {                               // v219 "the opponent can't block your X Spirits unless they pay N costs"
+        if (!hasMatch(e.match)) return { error: 'BLOCK_TAX needs a "match"' };
+        if (!Number.isInteger(e.pay) || e.pay < 1 || e.pay > 3) return { error: 'BLOCK_TAX needs a whole-number "pay" (1-3)' };
+        o.match = e.match; o.pay = e.pay;
+      }
       if (e.flag === 'UNAFFECTED' && e.from != null) {               // v0.58 Armor / Heavy Armor / Ultra Armor / "unaffected by opposing <colour> <types> effects"
         const f = e.from, TY = ['Spirit', 'Brave', 'Nexus', 'Magic', 'Ultimate'];
         if (typeof f !== 'object' || (f.colors != null && (!Array.isArray(f.colors) || !f.colors.length || f.colors.some(x => !COLORS.includes(x))))
