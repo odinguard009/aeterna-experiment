@@ -2,8 +2,8 @@
   "name": "penetrating-mountain-shaman",
   "about": "v201: The Penetrating Mountain Range (26RBS01-094) LV1-2 (Your Attack Step): 'All your Spirits summoned via Shamanism this turn can't be blocked by opposing Cost 3 or less Spirits' = STATIC flag NO_BLOCK_SHAMAN {to own, match {type Spirit}, costLe 3, if {attackStep, oppTurn false}} read by shamanNoBlock/blockedByMark; a Spirit summoned from the Trash by a Shamanism effect carries inst.viaShamanTurn. LV2 (True Release) (Either Attack Step): 'All your Spirits with Shamanism gain +1000 BP' = STATIC bp {to own, match {keyword Shamanism}, if {attackStep}} (cardHasKeyword reads card.mechanics). Spectrous (26RBS01-021) is the Shamanism summoner.",
   "rules": [
-    "ETR:faq.effects-q3",
-    "SJP:true-release"
+    "ETR:faq.effects-q3@a8b10c85",
+    "SJP:true-release@55609a47"
   ],
   "turn": 3,
   "active": "player",

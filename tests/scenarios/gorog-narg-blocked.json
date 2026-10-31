@@ -2,8 +2,8 @@
   "name": "gorog-narg-blocked",
   "about": "v201: The DestructiveTsunami Gorog-Narg (26RBS03-X08) LV1-2 (When Summoned): 'Target one of your Cost 8 or more Primeval Floodragon family Spirits. During this turn, give it an extra Green symbol. When two or more cards were banished via this Legacy, target two Spirits instead' = SYMBOL_PLUS_TURN {color green, match {family Primeval Floodragon, costGe 8}} + a second one gated by if {legacyGe 2}. LV2 (True Release) (During Attack): 'When blocked, you can target an opposing Spirit. If it is refreshed, exhaust it; if it's exhausted, heavy exhaust it' = ALLY_BLOCKED {self} + EXHAUST_EITHER.",
   "rules": [
-    "ETR:faq.effects-q3",
-    "SJP:true-release"
+    "ETR:faq.effects-q3@a8b10c85",
+    "SJP:true-release@55609a47"
   ],
   "turn": 3,
   "active": "player",

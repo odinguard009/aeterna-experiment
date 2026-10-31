@@ -2,8 +2,8 @@
   "name": "duskalon-shaman",
   "about": "v201: The UndyingSwordSlave Duskalon (26RBS02-021) card field shamanReduction: 'When summoning this card via Shamanism, fulfill all its reduction symbols' (summon() subtracts the full printed reduction instead of only the available symbols; the summon is tagged inst.viaShamanTurn). LV2 (When Destroyed): 'Target two opposing exhausted Spirits. Send a core, besides (Soul Core), from each of them to the Reserve' = OPP_CORES_TO_RESERVE {targets 2, each 1, exhaustedOnly}. Queen Babianaros (26RBS01-X05) is the Shamanism source.",
   "rules": [
-    "ETR:faq.effects-q3",
-    "SJP:true-release"
+    "ETR:faq.effects-q3@a8b10c85",
+    "SJP:true-release@55609a47"
   ],
   "turn": 3,
   "active": "player",

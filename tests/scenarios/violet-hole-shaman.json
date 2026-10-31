@@ -2,8 +2,8 @@
   "name": "violet-hole-shaman",
   "about": "v201: Violet Hole (26RBS02-077) LV1-2: 'All your Spirits summoned via Shamanism this turn gain +2000 BP' = STATIC flag BP_VIA_SHAMAN {n 2000} (read by staticBp for a Spirit with inst.viaShamanTurn === turn). LV2 (Opposing Attack Step): 'Opposing Spirits with one core on them can't attack' = STATIC flag NO_ATTACK_ONE_CORE read by oppAttackLock in cantAttack.",
   "rules": [
-    "ETR:faq.effects-q3",
-    "SJP:true-release"
+    "ETR:faq.effects-q3@a8b10c85",
+    "SJP:true-release@55609a47"
   ],
   "turn": 3,
   "active": "player",
