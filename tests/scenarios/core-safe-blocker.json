@@ -2,8 +2,8 @@
   "name": "core-safe-blocker",
   "about": "v190 CORE_SAFE mode:floor to:oppBlockers: 26RBS01-091 LV2 'The number of cores on every opposing Spirit that is blocking your Spirits with Clash can't be brought to less than one.' STATIC CORE_SAFE match.keyword Clash on the attacker; read by the core-removal actions while the battle runs (G.attacker/G.blocker).",
   "rules": [
-    "ETR:faq.effects-q3",
-    "SJP:true-release"
+    "ETR:faq.effects-q3@a8b10c85",
+    "SJP:true-release@55609a47"
   ],
   "turn": 3,
   "active": "player",

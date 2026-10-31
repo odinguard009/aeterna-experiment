@@ -4,6 +4,16 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.200.0
+- Lane: K
+- **Lane K: +50 complete cards (1,479 -> 1,529 of 8,709; 50 in this release)**
+- Lane K mechanics: new triggers `ALLY_NEXUS_DESTROYED` ("when your Nexuses / Nexus-as-Spirit Spirits are destroyed"), `LIFE_UP` ("when your Life increases") and `OPP_DIED` ("when opposing Spirits are destroyed", carrying the destroyed Spirit's BP); conditions `byBattle` ("destroyed via BP comparison") and `oppLifeReduced` ("the opposing Life wasn't reduced this turn").
+- New actions: `NO_BLOCK_INFERIOR_BATTLE` (all your Spirits can't be blocked by equal-or-inferior BP), `RESERVE_TO_LIFE`, `RETURN_SUBJECT` (return the trigger's own card: a used Magic or a destroyed ally), `CORE_TO_ALLY` (up to N cores from one Spirit to another).
+- Engine extensions: `CORE_SAFE` core protection (`move`/`floor`, own cards from opposing effects, and opposing blockers of your Clash Spirits), `LIFE_CORE_TO_TRASH` (Life cores of an Amplify attack go to the Trash), `EXTRA_SYMBOL` (a conditional extra Field symbol), `HEAVY_EXHAUST_OPP.per`, `SYMBOL_TARGET.color/lock/picked`, `BP_MINUS.targets`, `BP_PLUS.pickPerLegacy`, `REFRESH_SPIRIT.sameCostAttacker/perBp/noAttack` wiring, `OPP_CORES_TO_RESERVE.blockerOnly`, `NEXUS_AS_SPIRIT.coresGe`, `DESTROY.bpPerLegacy`, `BOUNCE_OPP.refreshedOnly`, `TRASH_CORES_TO` instance filters, `MAGIC_USED`/`AMPLIFY` subject matching, card field `trashSymbolsIf` ("after N attacks this turn, use Trash symbols for the reduction").
+- Cards: 50 new complete cards in Standard block A across the cycle. The last 24, completed in this session: 26RBS01-X09, 26RBS03-X15, 26RBS02-X02, 26RBS02-X11, 26RDB01-025, 26RBS03-030, 26RBS01-091, 26RBS01-096, 26RBS03-038, 26RBS01-055, 26RSD02-X02, 26RBS01-X14, 26RBS02-059, 26RBS03-059, 26RBS03-X12, 26RSD07-011, 26RSD06-010, 26RBS03-X01, 26RCB01-031, 26RDB01-002, 26RDB01-045, 26RSD09-X02, 26RBS02-012, 26RCB01-028. The first 26 landed earlier in the cycle (DESTROY.noTR and the Soul Core icon restore, plus the lane-K card bundles committed before this session).
+- Tests: new `tests/unit/k_cards_4.test.mjs` … `k_cards_10.test.mjs` (max 25 tests each, `sharedBoard()`), plus one scenario per new engine mechanic under `tests/scenarios/`; effect schema 172 -> 195.
+- Limits: Regression was red when this cycle started because the `burst_layout` fix (fa9790f) was only on wip; this release carries it, so the dispatched Regression is expected green (CI/Regression are async and were not waited for). Still partial/deferred: 26RBS01-103 and 26RBS03-079 (need a treat-as-LV1 action plus an untargetable-by-Magic/channel-life cap), 26RDB01-051 (cost-substitution), 26RBS03-044 (granted "When Blocks as When Attacks"), 26RSD06-013 (destroy-own-Nexus cost upgrade), 26RSD06-011 (per-LV attack tax) and 26RDB01-042 (Flash summon from the Hand). Ringing Charge runs through its printed clause (data), with no separate keyword engine.
+
 ## v0.199.0
 - Lane: K
 - **Lane K: Standard block A, +51 complete cards (1,428 -> 1,479 complete; effect schema 146 -> 172)**

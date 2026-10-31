@@ -8606,6 +8606,36 @@
   ],
   "effects": [
    {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN",
+     "FLASH"
+    ],
+    "when": "duringAttackBlock",
+    "once": true,
+    "oncePer": "battle",
+    "lv": [
+     1,
+     2
+    ],
+    "cost": {
+     "pay": 1
+    },
+    "actions": [
+     {
+      "do": "BP_TARGET",
+      "n": 1000,
+      "to": "self",
+      "battle": true,
+      "per": {
+       "type": "Spirit",
+       "family": "Leucomyst"
+      }
+     }
+    ]
+   },
+   {
     "trigger": "BP_REACHED",
     "lv": [
      2

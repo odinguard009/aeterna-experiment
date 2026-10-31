@@ -2,9 +2,9 @@
   "name": "railsaurer-blocked-bp",
   "about": "v192: Railsaurer (26RBS03-059) LV1-2 (During Attack): 'When blocked, target an opposing Spirit. During this turn, give it -3000 BP. Then, if it has 0 BP, destroy it.' = ALLY_BLOCKED + self + BP_MINUS {n:3000, zeroDestroy}. LV2 (True Release) (Opposing Attack Step) (CSOPT) 'Besides this Spirit, when your Cost 6/8 Topaz family Spirits are destroyed, you can target one of the destroyed Spirits. Return it to the Hand.' = ALLY_DIED + other + match Topaz costIn 6/8 + RETURN_SUBJECT (the destroyed ally from Trash/Standby to the Hand). Steguman (26RBS01-070) is the Topaz cost-6 fixture.",
   "rules": [
-    "STD:12-2-1-12",
-    "ETR:faq.bp",
-    "SJP:true-release"
+    "STD:12-2-1-12@caad612c",
+    "ETR:faq.bp@134528fb",
+    "SJP:true-release@55609a47"
   ],
   "turn": 3,
   "active": "player",

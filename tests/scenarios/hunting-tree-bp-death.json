@@ -2,8 +2,8 @@
   "name": "hunting-tree-bp-death",
   "about": "v191: Hunting Tree (26RBS01-096, LV1-2) (Your Attack Step) (Can't Stack): 'When your \"Bloodrouse\" family Spirit is destroyed via BP comparison, you can target an opposing blocking Spirit. Send a core from it to the Reserve.' = ALLY_DIED trigger now fires for Field watchers too, condition byBattle (evQ DIED byBattle = byOpponent 'battle'), match family Bloodrouse; action OPP_CORES_TO_RESERVE with blockerOnly (target G.blocker). The LV2 effect draws a card instead.",
   "rules": [
-    "STD:8-1-6",
-    "ETR:battle.destruction"
+    "STD:8-1-6@d5ccb2aa",
+    "ETR:battle.destruction@698b8d5e"
   ],
   "turn": 3,
   "active": "player",

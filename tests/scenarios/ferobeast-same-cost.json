@@ -2,8 +2,8 @@
   "name": "ferobeast-same-cost",
   "about": "v193: Utmost Depth: The Extreme Giant Tree (26RSD06-010) LV1-2 (Your Main Step): 'If you control three or more Blue Nexuses, this Nexus gains an extra Blue symbol' = STATIC EXTRA_SYMBOL with nexusGe {3, blue}. LV2 (True Release) (Opposing Attack Step): 'When an opposing Spirit attacks, you can target one of your Ferobeast family Spirits with the same cost as that Spirit. Refresh it' = OPP_ATTACKS + REFRESH_SPIRIT {match family Ferobeast, sameCostAttacker:true}.",
   "rules": [
-    "ETR:faq.effects-q3",
-    "SJP:true-release"
+    "ETR:faq.effects-q3@a8b10c85",
+    "SJP:true-release@55609a47"
   ],
   "turn": 3,
   "active": "opponent",

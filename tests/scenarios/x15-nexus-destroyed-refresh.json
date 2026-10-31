@@ -2,8 +2,8 @@
   "name": "x15-nexus-destroyed-refresh",
   "about": "v189: The KingEater Alterhibius (26RBS03-X15, LV1-2) (Either Attack Step): 'When your Nexuses, or your Spirits that are originally Nexuses are destroyed, refresh this Spirit.' = new trigger ALLY_NEXUS_DESTROYED (evQ NEXUS_DIED, queued only while a Field card listens; fired for a destroyed Nexus and for a Nexus-as-Spirit instance). The LV2 Invoke then targets a Cyantree Nexus with one or more core and treats it as a Spirit with LV1 5000 BP / LV2 7000 BP (NEXUS_AS_SPIRIT, match.coresGe).",
   "rules": [
-    "ETR:faq.effects-q3",
-    "SJP:true-release"
+    "ETR:faq.effects-q3@a8b10c85",
+    "SJP:true-release@55609a47"
   ],
   "turn": 3,
   "active": "player",

@@ -2,8 +2,8 @@
   "name": "zekuga-purgatory-wings",
   "about": "v195: The PurgatoryPhoenix Zekuga-Ignate (26RSD09-X02) LV1-2 (When Summoned): 'Target an opposing 6000 BP or less Spirit. Destroy it. If (soul core) was used to pay for the summon cost, target two Spirits instead.' = DESTROY {bpLe 6000} + a second DESTROY gated by if.soulPaid. LV2 (During Attack): 'At the end of battle, you can target another Purgatory Wings family Spirit you control. Send up to two cores from this Spirit to it.' = ALLY_BATTLE_END self + CORE_TO_ALLY {n 2, upto, match family Purgatory Wings}.",
   "rules": [
-    "ETR:faq.bp",
-    "SJP:true-release"
+    "ETR:faq.bp@134528fb",
+    "SJP:true-release@55609a47"
   ],
   "turn": 3,
   "active": "player",

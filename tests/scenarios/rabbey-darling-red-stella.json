@@ -2,8 +2,8 @@
   "name": "rabbey-darling-red-stella",
   "about": "v194: Rabbey Darling (26RDB01-002) LV1-2 (When Summoned): 'If all your Spirits/Nexuses have Red Stella, send a core, besides Soul Core, from your Trash to this Spirit. Then, target one of your exhausted Red Stella Spirits. Send a core, besides Soul Core, from your Trash to it.' = if allHave team Red Stella + TRASH_CORES_TO toSelf then TRASH_CORES_TO {match {team Red Stella, exhausted}} (the instance filter). LV2 (Your End Step): 'You can target one of your Red Stella Spirits. Refresh it.' = END_STEP + REFRESH_SPIRIT {match team}.",
   "rules": [
-    "ETR:faq.effects-q3",
-    "SJP:true-release"
+    "ETR:faq.effects-q3@a8b10c85",
+    "SJP:true-release@55609a47"
   ],
   "turn": 3,
   "active": "player",

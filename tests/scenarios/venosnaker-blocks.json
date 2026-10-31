@@ -2,8 +2,8 @@
   "name": "venosnaker-blocks",
   "about": "v195: Venosnaker (26RCB01-028) LV1-2 (Your Main Step): 'When you're summoning Kamen Rider Ouja, this Spirit gains an extra White symbol' = STATIC SUMMON_SYMBOL {color white, match name Kamen Rider Ouja} (read by summonSymbols when paying for that card). LV2 (True Release) (During Block): 'When only the opposing Spirit is destroyed by comparing BP, target an opposing refreshed 3000 BP or less Spirit. Return it to the Hand.' = BATTLE_WIN + blockingOnly + BOUNCE_OPP {bpLe 3000, refreshedOnly, to hand}.",
   "rules": [
-    "STD:8-1-6",
-    "SJP:true-release"
+    "STD:8-1-6@d5ccb2aa",
+    "SJP:true-release@55609a47"
   ],
   "turn": 3,
   "active": "player",

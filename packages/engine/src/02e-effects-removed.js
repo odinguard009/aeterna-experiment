@@ -38,7 +38,7 @@ Object.assign(FX_ACTIONS, {
      beginTurn); BP never shows below 0 (Standard CR 1-4-6). A Spirit at 0 BP is NOT destroyed by a rule (Eternal manual FAQ p. 68);
      destruction needs the card's own "Then, if its BP is 0, destroy it" clause. */
   BP_MINUS: { chk: a => Number.isInteger(a.n) && a.n >= 1000 && a.n <= 30000 && a.n % 1000 === 0 && (a.blockerOnly == null || a.blockerOnly === true) && (a.targets == null || (Number.isInteger(a.targets) && a.targets >= 1 && a.targets <= 2)),      // v192 targets: "target up to two opposing Spirits"
-    txt: a => `give ${a.targets > 1 ? 'up to ' + a.targets + ' opposing Spirits' : 'an opposing Spirit'} -${a.n} BP this turn`,
+    txt: a => a.targets > 1 ? `give up to ${a.targets} opposing Spirits -${a.n} BP this turn` : `give an opposing Spirit -${a.n} BP this turn`,
     cands: (c, a) => c.opp.spirits.filter(t => !fxImmune(c.opp, t) && !(a && a.blockerOnly && t !== c.ctx.blocker)),      // v157 blockerOnly: "target an opposing blocking Spirit"
     can: (c, a) => FX_ACTIONS.BP_MINUS.cands(c, a).length > 0,
     run: async (c, a) => {

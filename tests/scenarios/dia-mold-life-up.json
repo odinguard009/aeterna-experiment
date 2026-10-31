@@ -2,8 +2,8 @@
   "name": "dia-mold-life-up",
   "about": "v191: The ExoticLithoid Dia-Mold (26RBS03-038) LV1-2 (During Attack): 'At the end of battle, if this Spirit is in refreshed state and your Life is at two or less, you can send a core, besides (Soul Core), from your Reserve to your Life' = ALLY_BATTLE_END self + if {selfExhausted:false, lifeLe:2}, action RESERVE_TO_LIFE n:1. LV2: 'When your Life increases, you can target an opposing Spirit. Return it to the Hand' = trigger LIFE_UP (fired by RESERVE_TO_LIFE / VOID_TO_LIFE / OWN_CORE_TO_LIFE / TRASH_CORES_TO.toLife), BOUNCE_OPP.",
   "rules": [
-    "ETR:faq.effects-q3",
-    "SJP:true-release"
+    "ETR:faq.effects-q3@a8b10c85",
+    "SJP:true-release@55609a47"
   ],
   "turn": 3,
   "active": "player",

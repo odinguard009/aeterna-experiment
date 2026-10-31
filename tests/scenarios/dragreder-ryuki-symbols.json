@@ -2,8 +2,8 @@
   "name": "dragreder-ryuki-symbols",
   "about": "v194: Dragreder (26RCB01-031) LV1-2 (When Summoned): 'If all your Spirits/Nexuses have the RYUKI family, put a core from the Void to your Trash' = if allHave family RYUKI + VOID_TO_TRASH. LV2 (Your Attack Step) (Once Per Turn): 'When your Kamen Rider Ryuki attacks, target one of your attacking Spirits. During this battle it gains +2000 BP. Then, if it's Cost 8, during this battle it has two White symbols. Its symbols can't be increased except via this effect.' = ALLY_ATTACKS match name; BP_TARGET {battle, attacking}; SYMBOL_TARGET {n 2, color white, lock, picked:true, if pickedCostIn [8]}. Kamen Rider Ryuki Survive (26RCB01-X05) is the Cost 8 attacker.",
   "rules": [
-    "ETR:faq.bp",
-    "SJP:true-release"
+    "ETR:faq.bp@134528fb",
+    "SJP:true-release@55609a47"
   ],
   "turn": 3,
   "active": "player",

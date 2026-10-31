@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 7087,
+  "cards": 7062,
   "per_saga": {
    "1": 676,
    "2": 313,
@@ -19,15 +19,15 @@
    "15": 355,
    "16": 334,
    "17": 110,
-   "50": 90
+   "50": 65
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 1619,
+  "skipped_curated": 1644,
   "nexus_levels_added": 707,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 450,
+  "image_problems": 443,
   "number_conflicts": 4,
   "merged": 107,
   "brave_unparsed": 171,
@@ -35,7 +35,7 @@
   "odd_reduction": 807,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 448
+  "without_image": 441
  },
  "tokens": [
   "BS73-T001",
@@ -1114,6 +1114,7 @@
   "26RSD02-013",
   "26RSD02-014",
   "26RSD02-X01",
+  "26RSD02-X02",
   "26RSD03-001",
   "26RSD03-002",
   "26RSD03-003",
@@ -1170,6 +1171,7 @@
   "26RSD06-007",
   "26RSD06-008",
   "26RSD06-009",
+  "26RSD06-010",
   "26RSD06-012",
   "26RSD06-013",
   "26RSD06-014",
@@ -1229,6 +1231,7 @@
   "26RBS01-052",
   "26RBS01-053",
   "26RBS01-054",
+  "26RBS01-055",
   "26RBS01-056",
   "26RBS01-057",
   "26RBS01-058",
@@ -1264,9 +1267,11 @@
   "26RBS01-088",
   "26RBS01-089",
   "26RBS01-090",
+  "26RBS01-091",
   "26RBS01-092",
   "26RBS01-093",
   "26RBS01-095",
+  "26RBS01-096",
   "26RBS01-097",
   "26RBS01-098",
   "26RBS01-099",
@@ -1300,10 +1305,12 @@
   "26RBS01-X06",
   "26RBS01-X07",
   "26RBS01-X08",
+  "26RBS01-X09",
   "26RBS01-X10",
   "26RBS01-X11",
   "26RBS01-X12",
   "26RBS01-X13",
+  "26RBS01-X14",
   "26RBS01-X15",
   "26RBS01-X17",
   "26RBS01-X18",
@@ -1317,6 +1324,7 @@
   "26RSD07-008",
   "26RSD07-009",
   "26RSD07-010",
+  "26RSD07-011",
   "26RSD07-012",
   "26RSD07-013",
   "26RSD07-014",
@@ -1349,8 +1357,10 @@
   "26RCB01-025",
   "26RCB01-026",
   "26RCB01-027",
+  "26RCB01-028",
   "26RCB01-029",
   "26RCB01-030",
+  "26RCB01-031",
   "26RCB01-033",
   "26RCB01-034",
   "26RCB01-035",
@@ -1405,6 +1415,7 @@
   "26RBS02-009",
   "26RBS02-010",
   "26RBS02-011",
+  "26RBS02-012",
   "26RBS02-013",
   "26RBS02-014",
   "26RBS02-015",
@@ -1449,6 +1460,7 @@
   "26RBS02-056",
   "26RBS02-057",
   "26RBS02-058",
+  "26RBS02-059",
   "26RBS02-060",
   "26RBS02-061",
   "26RBS02-062",
@@ -1475,18 +1487,21 @@
   "26RBS02-090",
   "26RBS02-091",
   "26RBS02-X01",
+  "26RBS02-X02",
   "26RBS02-X03",
   "26RBS02-X04",
   "26RBS02-X06",
   "26RBS02-X07",
   "26RBS02-X08",
   "26RBS02-X09",
+  "26RBS02-X11",
   "26RBS02-X12",
   "26RBS02-X13",
   "26RBS02-X14",
   "26RBS02-X17",
   "26RBS02-CP01",
   "26RDB01-001",
+  "26RDB01-002",
   "26RDB01-003",
   "26RDB01-004",
   "26RDB01-005",
@@ -1505,6 +1520,7 @@
   "26RDB01-020",
   "26RDB01-022",
   "26RDB01-023",
+  "26RDB01-025",
   "26RDB01-026",
   "26RDB01-027",
   "26RDB01-029",
@@ -1520,6 +1536,7 @@
   "26RDB01-039",
   "26RDB01-040",
   "26RDB01-044",
+  "26RDB01-045",
   "26RDB01-046",
   "26RDB01-047",
   "26RDB01-048",
@@ -1564,6 +1581,8 @@
   "26RSD09-010",
   "26RSD09-011",
   "26RSD09-012",
+  "26RSD09-013",
+  "26RSD09-X02",
   "26RSD10-001",
   "26RSD10-002",
   "26RSD10-003",
@@ -1604,6 +1623,7 @@
   "26RBS03-027",
   "26RBS03-028",
   "26RBS03-029",
+  "26RBS03-030",
   "26RBS03-031",
   "26RBS03-032",
   "26RBS03-033",
@@ -1611,6 +1631,7 @@
   "26RBS03-035",
   "26RBS03-036",
   "26RBS03-037",
+  "26RBS03-038",
   "26RBS03-040",
   "26RBS03-042",
   "26RBS03-043",
@@ -1628,6 +1649,7 @@
   "26RBS03-056",
   "26RBS03-057",
   "26RBS03-058",
+  "26RBS03-059",
   "26RBS03-061",
   "26RBS03-062",
   "26RBS03-063",
@@ -1661,12 +1683,15 @@
   "26RBS03-096",
   "26RBS03-097",
   "26RBS03-098",
+  "26RBS03-X01",
   "26RBS03-X05",
   "26RBS03-X07",
   "26RBS03-X09",
   "26RBS03-X10",
+  "26RBS03-X12",
   "26RBS03-X13",
-  "26RBS03-X14"
+  "26RBS03-X14",
+  "26RBS03-X15"
  ],
  "nexus_levels_added": [
   "BS01-098",
@@ -4602,11 +4627,6 @@
    "problem": "no image"
   },
   {
-   "id": "26RCB01-031",
-   "name": "Dragreder",
-   "problem": "ambiguous name (2 files, none in set 26RCB01)"
-  },
-  {
    "id": "26RCB01-032",
    "name": "Darkwing",
    "problem": "ambiguous name (2 files, none in set 26RCB01)"
@@ -4632,16 +4652,6 @@
    "problem": "no image"
   },
   {
-   "id": "26RBS03-030",
-   "name": "The Spellcaster Naudalie",
-   "problem": "no image"
-  },
-  {
-   "id": "26RBS03-038",
-   "name": "The ExoticLithoid Dia-Mold",
-   "problem": "no image"
-  },
-  {
    "id": "26RBS03-039",
    "name": "The SilverWings Graburn",
    "problem": "no image"
@@ -4654,11 +4664,6 @@
   {
    "id": "26RBS03-044",
    "name": "Synthetic Dragon",
-   "problem": "no image"
-  },
-  {
-   "id": "26RBS03-059",
-   "name": "Railsaurer",
    "problem": "no image"
   },
   {
@@ -4692,11 +4697,6 @@
    "problem": "no image"
   },
   {
-   "id": "26RBS03-X01",
-   "name": "The DeepRedBladessom Rittenia",
-   "problem": "no image"
-  },
-  {
    "id": "26RBS03-X03",
    "name": "The PurgatoryPhoenix Zekuga",
    "problem": "no image"
@@ -4714,16 +4714,6 @@
   {
    "id": "26RBS03-X11",
    "name": "The MirrorPlaneKnight Cavaliare",
-   "problem": "no image"
-  },
-  {
-   "id": "26RBS03-X12",
-   "name": "The HexIron Ir-Maides",
-   "problem": "no image"
-  },
-  {
-   "id": "26RBS03-X15",
-   "name": "The KingEater Alterhibius",
    "problem": "no image"
   }
  ],

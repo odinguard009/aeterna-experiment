@@ -43,7 +43,7 @@ test('K-75 OPP_START_ATTACK: Belder shrinks an attacker-side Spirit at the start
   const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
     P.spirits.length = 0; P.nexus.length = 0; O.spirits.length = 0; O.nexus.length = 0; G.active = O.key; P.cpu = true; O.cpu = true; G.step = 5;
     const b = BS.mkInst('26RBS03-058'); b.cores = 2; P.spirits.push(b);
-    const v = BS.mkInst('26RBS02-040'); v.cores = 3; O.spirits.push(v); const before = BS.bpOf(v);
+    const v = BS.mkInst('BS48-047'); v.cores = 3; O.spirits.push(v); const before = BS.bpOf(v);   // 4000 BP, no Camou (a Camou target would be untargetable by a Spirit effect)
     await BS.startAttackFx(O);
     const dropped = before - BS.bpOf(v);
     P.spirits.length = 0; O.spirits.length = 0;

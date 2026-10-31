@@ -4,9 +4,9 @@ Owner order, 2026-10-31: work Lane K for all cards (Standard block A first, then
 
 - status: ON
 - target: all cards (Standard block A first, then Eternal Saga 17 down; roadmap item L)
-- last release: v0.199.0 (complete 1,479)
-- next release: v0.200.0 (complete 1,529)
-- cycle: 26/50 new complete cards since v0.199.0
+- last release: v0.200.0 (complete 1529)
+- next release: v0.201.0 (complete 1579)
+- cycle: 0/50 new complete cards since v0.200.0
 - model routing: DSH V4.1 Flash + V4 Pro advisor for card-JSON bundles; Claude Sonnet/Opus for engine, schema and audit-heavy work. One provider at a time; the `session_gate.sh` MANUAL/LOCK mark is the lock.
 - handoff (2026-10-31): mission tools installed, no card work done. The observed normal session took 17 minutes for 1 card (13 minutes of startup, model-policy/context notes). CI and Regression are async from now on. wip is 26/50.
 

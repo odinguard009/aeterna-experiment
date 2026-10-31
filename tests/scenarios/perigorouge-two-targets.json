@@ -2,8 +2,8 @@
   "name": "perigorouge-two-targets",
   "about": "v191: Emperor Perigorouge (26RSD02-X02) LV1-2 (When Summoned): 'Target an opposing Spirit. Send a total of two cores from it to the Reserve. If you control any exhausted \"Bloodrouse\" family Spirit, target up to two Spirits instead.' = two OPP_CORES_TO_RESERVE actions with opposite if {ctrl Bloodrouse exhausted}; LV2 (During Attacks): 'If any opposing Spirit is depleted by your effects this turn, this Spirit can't be blocked by opposing Cost 4 or less Spirits' = ATTACKS + if oppDepleted, action CANT_BE_BLOCKED_BY costLe:4.",
   "rules": [
-    "ETR:faq.effects-q3",
-    "SJP:true-release"
+    "ETR:faq.effects-q3@a8b10c85",
+    "SJP:true-release@55609a47"
   ],
   "turn": 3,
   "active": "player",

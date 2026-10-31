@@ -2,7 +2,7 @@
   "name": "x09-heavy-exhaust-per-current",
   "about": "v189: The DeepBlow Whala (26RBS01-X09, LV1-2) (When Summoned): 'You can target an opposing Spirit for each Spirit with Current you control. Heavy exhaust them.' = HEAVY_EXHAUST_OPP n:1 with per {type Spirit, keyword Current}, counted when the effect resolves. The printed 'Current' reminder is {{Current|...}} on the two Spirits of the player; the opponent has three Spirits.",
   "rules": [
-    "ETR:heavy-exhaust"
+    "ETR:heavy-exhaust@e6fac88a"
   ],
   "turn": 3,
   "active": "player",

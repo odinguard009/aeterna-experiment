@@ -21,7 +21,7 @@ const PRE = `BS.testSetup(); BS.SETTINGS.speed = 'instant'; const G = BS.G, P = 
 
 const ev = body => g.page.evaluate(`(async () => { ${PRE}\n${body} })()`);
 
-test('T01 Swordish is registered as a Token Spirit with verified properties and fxComplete: false', async () => {
+test('T01 Swordish is registered as a Token Spirit with verified properties (complete: the extra Green symbol runs)', async () => {
   const r = await g.page.evaluate(id => {
     const c = BS.CARDS[id];
     return {
@@ -46,9 +46,9 @@ test('T01 Swordish is registered as a Token Spirit with verified properties and 
     color: 'green',
     families: ['Abyssen'],
     levels: [{ cores: 1, bp: 2000 }],
-    implemented: false,
-    partial: true,
-    residual: ['[LV1] (Your Turn) This Spirit gains an extra Green symbol.']
+    implemented: true,
+    partial: false,
+    residual: []
   });
 });
 

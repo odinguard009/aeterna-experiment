@@ -2,7 +2,7 @@
   "name": "x14-two-bp-minus",
   "about": "v192: The MegaThunder Zelotl (26RBS01-X14) LV1-2 (When Summoned): 'Target up to two opposing Spirits. During this turn, give them -2000 BP. Then, if they have 0 BP, destroy them.' = BP_MINUS {n:2000, targets:2, zeroDestroy:true}; the zeroDestroy wrapper destroys every target that reached 0 BP. LV2 (During Attack) (Once Per Turn): a used 'Thunder Dragon' family Magic card returns to the Hand = MAGIC_USED + RETURN_SUBJECT (ctx.subject). Fire Pillar (26RSD05-011) is the fixture Magic in the Trash.",
   "rules": [
-    "ETR:faq.bp"
+    "ETR:faq.bp@134528fb"
   ],
   "turn": 3,
   "active": "player",

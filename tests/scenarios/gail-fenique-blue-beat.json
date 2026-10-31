@@ -2,8 +2,8 @@
   "name": "gail-fenique-blue-beat",
   "about": "v194: Gail Fenique (26RDB01-045) LV1-2 (When Attacks): 'If all your Spirits/Nexuses have Blue Beat, put a core from the Void to your Trash' = ATTACKS + if allHave team Blue Beat + VOID_TO_TRASH. LV2 (True Release) {{RC|\"Formulia Execeeda\"}} (During Attack): 'At the end of battle, you can target one of your Formulia Execeeda. Refresh it. You can only use Ringing Charge once per turn.' = ALLY_BATTLE_END self + sameName (once per turn) + REFRESH_SPIRIT match name; the Ringing Charge template is a keyword label, its body is the printed clause.",
   "rules": [
-    "ETR:faq.effects-q3",
-    "SJP:true-release"
+    "ETR:faq.effects-q3@a8b10c85",
+    "SJP:true-release@55609a47"
   ],
   "turn": 3,
   "active": "player",

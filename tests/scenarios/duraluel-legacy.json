@@ -2,8 +2,8 @@
   "name": "duraluel-legacy",
   "about": "v195: The RevolvingFlame Duraluel (26RBS02-012) LV1-2 (When Summoned): 'Target one of your Spirits. During this turn, give it +3000 BP. For each EX Symbol banished via this Legacy, target +1 Spirits.' = BP_PLUS {n 3000, to own, pick 1, pickPerLegacy} (pick count = 1 + legacyN). LV2 (During Attack) (Once Per Turn): 'At the end of battle, for every 10000 BP this Spirit has, you can target a Cost 6 or less Spirit you control. Refresh them.' = ALLY_BATTLE_END self + REFRESH_SPIRIT {match costLe 6, perBp 10000}.",
   "rules": [
-    "ETR:faq.bp",
-    "SJP:inherit"
+    "ETR:faq.bp@134528fb",
+    "SJP:inherit@de8f4527"
   ],
   "turn": 3,
   "active": "player",

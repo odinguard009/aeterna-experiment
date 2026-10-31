@@ -2,8 +2,8 @@
   "name": "x02-opp-life-not-reduced-two-red-symbols",
   "about": "v189: The GreatFireSpirit Flendis (26RBS02-X02, LV2) (True Release) (Your Attack Step) {{Invoke|Flash}} 'Pay two costs >>> If the opposing Life wasn't reduced this turn, target a 10000 BP or more Spirit you control. During this battle, it has two Red symbols. The number of symbols can't increase except via this effect.' = Invoke cost pay 2, condition oppLifeReduced:false (opp.lifeRedTurn), SYMBOL_TARGET n:2 color red lock:true with match.bpGe 10000 (read with the Spirit instance); attackSymbols reads symLockBattle so later battle symbol boosts do not add.",
   "rules": [
-    "ETR:faq.bp",
-    "SJP:true-release"
+    "ETR:faq.bp@134528fb",
+    "SJP:true-release@55609a47"
   ],
   "turn": 3,
   "active": "player",

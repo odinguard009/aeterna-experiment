@@ -2,8 +2,8 @@
   "name": "x11-amplify-no-block-inferior",
   "about": "v189: The LuminousBrilliance Pepper's Tyranno (26RBS02-X11, LV1-2) (Your Attack Step): 'When your \"Leucomyst\" family Spirit activates Amplify, during this battle, all your Spirits can't be blocked by opposing Spirits with BP equal or inferior to theirs.' = AMPLIFY trigger with match.family Leucomyst (the amplifying Spirit is the trigger subject; AMPLIFY filters by e.match), if {step ATTACK, oppTurn false}, action NO_BLOCK_INFERIOR_BATTLE: every own Spirit carries noBlockInferiorBattle = battleNo, read by blockedByMark (08-battle block list). The LV2 Invoke is the usual Amplify per-count BP_TARGET.",
   "rules": [
-    "ETR:battle.block",
-    "ETR:faq.bp"
+    "ETR:battle.block@d20adf64",
+    "ETR:faq.bp@134528fb"
   ],
   "turn": 3,
   "active": "player",
