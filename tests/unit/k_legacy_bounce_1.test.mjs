@@ -83,7 +83,7 @@ test('K-04 Spinard destroys two opposing 3000 BP or less Spirits with a Purgator
     const src = BS.mkInst('26RSD09-008'); src.cores = 1; P.spirits.push(src);
     await BS.fireFx(P, 'SUMMONED', src, {});
     const one = O.spirits.length;
-    const pw = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && (c.families || []).includes('Purgatory Wings') && !(c.effects && c.effects.length));
+    const pw = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && (c.families || []).includes('Purgatory Wings') && !(c.effects && c.effects.length)) || Object.values(BS.CARDS).find(c => c.type === 'Spirit' && (c.families || []).includes('Purgatory Wings'));
     const w = BS.mkInst(pw.id); w.cores = 1; P.spirits.push(w);
     await BS.fireFx(P, 'SUMMONED', src, {});
     return { one, two: O.spirits.length };
@@ -244,7 +244,7 @@ test('K-16 dual Main/Flash magic: Burn Out draws then destroys with a family Spi
   const r = await page.evaluate(`(async () => { ${MAGIC_RUN}
     const main = (id) => { const m = BS.mkInst(id); return BS.runActions({ p: P, opp: O, src: m, ctx: {} }, { actions: BS.CARDS[id].magic.by.MAIN.actions }); };
     const t = opp(3, 3000); const h0 = P.hand.length; await main('26RBS03-086'); const alone = [O.spirits.includes(t), P.hand.length - h0];
-    const pw = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && (c.families || []).includes('Purgatory Wings') && !(c.effects && c.effects.length)); const s = BS.mkInst(pw.id); s.cores = 1; P.spirits.push(s);
+    const pw = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && (c.families || []).includes('Purgatory Wings') && !(c.effects && c.effects.length)) || Object.values(BS.CARDS).find(c => c.type === 'Spirit' && (c.families || []).includes('Purgatory Wings')); const s = BS.mkInst(pw.id); s.cores = 1; P.spirits.push(s);
     await main('26RBS03-086');
     const nx = Object.values(BS.CARDS).find(c => c.type === 'Nexus' && c.cost <= 4); const n = BS.mkInst(nx.id); O.nexus.push(n);
     await main('26RDB01-055'); const kept = O.nexus.includes(n);
