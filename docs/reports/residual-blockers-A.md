@@ -14,8 +14,8 @@ Open = a glossary tag whose status is not `wired`. Tags are hints, not a parser;
 
 | Tag | Status | Cards touched | Cards it finishes alone |
 |---|---|---|---|
+| A_REVEAL_DECK | partial | 1 | 0 |
 | A_REVEAL_ADD | partial | 1 | 0 |
 | K_STANDARD_INVOKE | partial | 1 | 0 |
-| A_REVEAL_DECK | partial | 1 | 0 |
 | S1_ALL_HAVE | partial | 1 | 1 |
 | K_STANDARD_SUCCESSION | missing | 1 | 1 |

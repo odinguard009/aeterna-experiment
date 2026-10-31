@@ -16,7 +16,7 @@ test('K-328 data: the bundle cards carry their printed clauses', async () => {
     return [id, (c.effects || []).map(e => e.trigger).join(','), c.implemented === true, c.costAlt ? c.costAlt.cost : null, c.costAlt ? c.costAlt.if.anyLifeLe : null];
   }));
   assert.deepEqual(r, [
-    ['26RCB01-X06', 'ATTACKS,BLOCKS', true, 5, 3],
+    ['26RCB01-X06', 'ATTACKS,BLOCKS,ATTACKS', true, 5, 3],
     ['26RDB01-043', 'SUMMONED,ALLY_BATTLE_END', true, null, null],
   ], JSON.stringify(r));
 });

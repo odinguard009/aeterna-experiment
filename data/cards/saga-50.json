@@ -29984,6 +29984,7 @@
    {
     "trigger": "ATTACKS",
     "lv": [
+     1,
      2
     ],
     "if": {
@@ -30011,6 +30012,18 @@
       "do": "TREAT_LV2",
       "self": true,
       "battle": true
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "costLe": 5
      }
     ]
    }
