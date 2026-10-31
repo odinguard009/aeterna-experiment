@@ -56,7 +56,7 @@ function parseCond(c) {
       || (k === 'controlName' && Array.isArray(v) && v.length > 1 && v.length <= 4 && v.every(y => typeof y === 'string' && y.length > 0 && y.length <= 60));
     const okCol = (k === 'trashAllColor' && COLORS.includes(v)) || k === 'hasSymbol' && (COLORS.includes(v) || (Array.isArray(v) && v.length >= 2 && v.length <= 3 && new Set(v).size === v.length && v.every(y => COLORS.includes(y))));      // v0.184: a list = all of those symbols
     const okStep = k === 'step' && STEPS.includes(v);
-    const okBool = (k === 'depleted' || k === 'attackerRefreshed' || k === 'selfExhausted' || k === 'soulInTrash' || k === 'soulInReserve' || k === 'byOpp' || k === 'byOppFx' || k === 'utHit' || k === 'prev' || k === 'sealed' || k === 'oppTurn' || k === 'attackStep' || k === 'selfAttacking' || k === 'selfBlocked' || k === 'firstAttack' || k === 'firstBlock' || k === 'oppRemovedSpirit' || k === 'oppNoAB' || k === 'burstSet' || k === 'oppBurstSet' || k === 'soulPaid' || k === 'selfSoul' || k === 'fewerSpirits' || k === 'viaFormChange' || k === 'viaHS' || k === 'viaLegacy' || k === 'viaMagirrate' || k === 'viaEffect' || k === 'oppLostByFx' || k === 'oppDepleted' || k === 'ownLostSpirit' || k === 'oppLifeReduced' || k === 'byBattle' || k === 'trashNoEx') && typeof v === 'boolean';
+    const okBool = (k === 'idle' || k === 'depleted' || k === 'attackerRefreshed' || k === 'selfExhausted' || k === 'soulInTrash' || k === 'soulInReserve' || k === 'byOpp' || k === 'byOppFx' || k === 'utHit' || k === 'prev' || k === 'sealed' || k === 'oppTurn' || k === 'attackStep' || k === 'selfAttacking' || k === 'selfBlocked' || k === 'firstAttack' || k === 'firstBlock' || k === 'oppRemovedSpirit' || k === 'oppNoAB' || k === 'burstSet' || k === 'oppBurstSet' || k === 'soulPaid' || k === 'selfSoul' || k === 'fewerSpirits' || k === 'viaFormChange' || k === 'viaHS' || k === 'viaLegacy' || k === 'viaMagirrate' || k === 'viaEffect' || k === 'oppLostByFx' || k === 'oppDepleted' || k === 'ownLostSpirit' || k === 'oppLifeReduced' || k === 'byBattle' || k === 'trashNoEx') && typeof v === 'boolean';
     const okNexus = k === 'nexusGe' && v && typeof v === 'object' && (v.n == null || (Number.isInteger(v.n) && v.n >= 1 && v.n <= 5)) && (v.colors == null || (Array.isArray(v.colors) && v.colors.length && v.colors.every(y => COLORS.includes(y))))
       && (v.family == null || (typeof v.family === 'string' && v.family)) && Object.keys(v).every(y => ['n', 'colors', 'family'].includes(y));   // v0.77
     const okCtrl = k === 'ctrl' && [].concat(v).length > 0 && [].concat(v).every(x => x && typeof x === 'object' && ['Spirit', 'Ultimate', 'Both'].includes(x.type) && (x.n == null || (Number.isInteger(x.n) && x.n >= 1 && x.n <= 5)) && (x.nLe == null || (Number.isInteger(x.nLe) && x.nLe >= 0 && x.nLe <= 5)) && (x.keyword == null || (typeof x.keyword === 'string' && x.keyword)) && (x.other == null || x.other === true) && (x.nexus == null || x.nexus === true)
@@ -189,6 +189,14 @@ function parseEffects(arr) {
         if (!hasMatch(e.match)) return { error: 'BLOCK_TAX needs a "match"' };
         if (!Number.isInteger(e.pay) || e.pay < 1 || e.pay > 3) return { error: 'BLOCK_TAX needs a whole-number "pay" (1-3)' };
         o.match = e.match; o.pay = e.pay;
+      }
+      if (e.flag === 'ZERO_BP_DECKBOTTOM') {                      // v221 "opposing Spirits destroyed at 0 BP are returned to the deckbottom"
+        if (!hasMatch(e.match)) return { error: 'ZERO_BP_DECKBOTTOM needs a "match"' };
+        o.match = e.match;
+      }
+      if (e.flag === 'LIFE_HIT_PLUS') {                           // v222 "when this Spirit's attack would reduce the opposing Life, reduce +N Life"
+        if (!Number.isInteger(e.n) || e.n < 1 || e.n > 2) return { error: 'LIFE_HIT_PLUS needs a whole-number "n" (1-2)' };
+        o.n = e.n;
       }
       if (e.flag === 'UNAFFECTED' && e.from != null) {               // v0.58 Armor / Heavy Armor / Ultra Armor / "unaffected by opposing <colour> <types> effects"
         const f = e.from, TY = ['Spirit', 'Brave', 'Nexus', 'Magic', 'Ultimate'];

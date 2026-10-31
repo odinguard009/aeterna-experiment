@@ -38166,11 +38166,6 @@
   "S_CANT_PREVENT",
   "T_ADVENT"
  ],
- "26RBS02-083": [
-  "C_LEVEL",
-  "M_REPLACEMENT",
-  "T_ALLY_LOST"
- ],
  "26RBS03-067": [
   "A_DRAW",
   "C_LEVEL",
@@ -38213,14 +38208,6 @@
  ],
  "26RDB01-060": [
   "K_STANDARD_SUCCESSION"
- ],
- "26RDB01-X05": [
-  "A_BP_MINUS",
-  "A_DISCARD_OPP",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "M_THEN",
-  "T_SUMMONED"
  ],
  "26RSD06-011": [
   "C_LEVEL",

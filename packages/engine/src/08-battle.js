@@ -71,7 +71,12 @@ async function doBattleInner(attKey, att) {
     return;
   }
   const shield = (att.lifeShield && att.lifeShield.turn === G.turnNo && att.lifeShield.key === D.key) || attackLifeLocked(att) || (D.coreShield && D.coreShield.turn === G.turnNo && (D.coreShield.b == null || D.coreShield.b === G.battleNo) && totalCores(att) === D.coreShield.cores);      // v0.199 LIFE_CORE_SHIELD      // v0.186 NO_ATTACK_LIFE      // v0.89 S1 LIFE_SHIELD: "your Life can't be reduced by its attack"
-  const dmg = shield ? 0 : Math.min(attackSymbols(att), D.life, att.lifeCapTurn && att.lifeCapTurn.turn === G.turnNo ? att.lifeCapTurn.cap : 99);      // v196 LIFE_CAP_ONE: "your Life can only be reduced by one by that"
+  const lifePlus = (() => { if (!A) return 0; let n = 0; const oppp = D;      // v222 STATIC LIFE_HIT_PLUS
+    for (const f of fieldList(A)) { const L = lvNo(f); for (const { e } of fxEntries(f)) if (e.trigger === 'STATIC' && e.flag === 'LIFE_HIT_PLUS'
+      && (!e.lv || e.lv.includes(L)) && (!e.to || e.to !== 'self' || f === att) && (!e.oc || ocActive(f)) && (!e.match || fxMatch(CARDS[att.id], e.match, att))
+      && fxIf(A, oppp, e.if || {}, { selfInst: f })) n += e.n; }
+    return n; })();
+  const dmg = shield ? 0 : Math.min(attackSymbols(att) + lifePlus, D.life, att.lifeCapTurn && att.lifeCapTurn.turn === G.turnNo ? att.lifeCapTurn.cap : 99);      // v196 LIFE_CAP_ONE: "your Life can only be reduced by one by that"
   if (shield) log(`${CARDS[att.id].name}'s attack can't reduce ${poss(D)} Life.`);
   lifeTake(D, dmg, flagActive(A, 'LIFE_CORE_TO_TRASH', att) ? 'trash' : 'reserve');                    // v191 LIFE_CORE_TO_TRASH: "sent to the Trash instead of the Reserve"
   log(`${CARDS[att.id].name} is not blocked: ${who(D)} ${D.cpu ? 'loses' : 'lose'} ${dmg} Life.`);

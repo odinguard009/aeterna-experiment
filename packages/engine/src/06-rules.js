@@ -369,6 +369,9 @@ function removeSpirit(p, s, why, byOpponent) {
   if (why === 'destroyed' && G && G.evQ && STEPS[G.step] === 'ATTACK' && p.trash.some(x => (CARDS[x.id].effects || []).some(e => e.flag === 'IMMORTALITY'))) G.evQ.push({ type: 'IMMORTAL', key: p.key, inst: s });      // v0.183 Immortality (02j)
   if (why === 'destroyed' && byOpponent && G && G.burstQ) G.burstQ.push({ key: p.key });
   if (G && G.evQ && ((why === 'destroyed' && byOpponent) || why === 'depleted')) G.evQ.push({ type: 'LOST', key: p.key, inst: s, depl: why === 'depleted', byOpp: !!(byOpponent || oppFx) });      // v212 depleted/byOpp
+  const zbDeck = why === 'destroyed' && bpAt === 0 && G && G.fxBy && G.fxBy !== p.key && fieldList(G.p[G.fxBy]).some(f => { const L = lvNo(f), oppp = G.p[other(G.fxBy)];
+    return fxEntries(f).some(({ e }) => e.trigger === 'STATIC' && e.flag === 'ZERO_BP_DECKBOTTOM' && (!e.lv || e.lv.includes(L)) && (!e.oc || ocActive(f)) && fxIf(G.p[G.fxBy], oppp, e.if || {}, { selfInst: f }) && fxMatch(CARDS[s.id], e.match, s)); });      // v221
+  if (zbDeck) { p.deck.push(s); log(`${poss(p)} ${CARDS[s.id].name} is destroyed at 0 BP and returns to the deckbottom.`); return; }
   if (G && G.evQ && G.evQ.some(e => e.inst === s && (e.type === 'DESTROYED' || e.type === 'LEAVES' || (e.type === 'LOST' && lostHeard(p))))) { s.standbyTo = 'trash'; p.standby.push(s); }   // v0.57.0 Standby (JP 17.0 item 4): waits while its leave triggers resolve
   else p.trash.push(s);
 }
