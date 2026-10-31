@@ -1,0 +1,40 @@
+{
+  "name": "war-toll-wollaguard",
+  "about": "v196: War Toll: Fall of the Sun (26RBS03-079) LV1-2 STATIC UNAFFECTED {to self, from types Magic} = 'This Nexus can't be targeted by opposing Magic effects'. LV2 (Opposing Attack Step) {{Invoke|Flash}}: exhaust this Nexus (cost.exhaustSelf) > target an opposing Cost 7 or less Spirit with one symbol; during this turn your Life can only be reduced by one by that = LIFE_CAP_ONE {match costLe 7, symbols 1} (inst.lifeCapTurn, read by the battle Life damage in 08-battle); the Invoke condition is allHave Wollaguard. Collet (26RBS03-032) is the Wollaguard blocker.",
+  "rules": [
+    "ETR:faq.effects-q3",
+    "SJP:true-release"
+  ],
+  "turn": 3,
+  "active": "opponent",
+  "step": 5,
+  "players": {
+    "player": {
+      "reserve": 6,
+      "spirits": [
+        {
+          "id": "26RBS03-032",
+          "cores": 1,
+          "as": "wollaguardBlocker"
+        }
+      ],
+      "nexus": [
+        {
+          "id": "26RBS03-079",
+          "cores": 3,
+          "as": "warToll"
+        }
+      ]
+    },
+    "opponent": {
+      "reserve": 3,
+      "spirits": [
+        {
+          "id": "26RBS01-004",
+          "cores": 3,
+          "as": "oppAttacker"
+        }
+      ]
+    }
+  }
+}

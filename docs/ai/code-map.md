@@ -53,7 +53,7 @@ accelList, accelCost, accelMainStep, accelOK, accelSources, accelLabel, useAccel
 ## packages/engine/src/02k-effects-immunity.js (29 lines, ~0.5k tokens)
 trashSafe, camouBlocks, wrapImmunity
 
-## packages/engine/src/02l-effects-invoke.js (255 lines, ~6.3k tokens) — v0.68 INVOKE (Standard activations): "{{Invoke|Flash}}" / "{{Invoke|Main}}" + "<cost> ▶ <effect>".
+## packages/engine/src/02l-effects-invoke.js (255 lines, ~6.4k tokens) — v0.68 INVOKE (Standard activations): "{{Invoke|Flash}}" / "{{Invoke|Main}}" + "<cost> ▶ <effect>".
 INVOKE_WHEN, INVOKE_COSTS, invokeMatchOK, invokeParse, invokeWhenOK, exhaustOwnCands, returnOwnCands, discardCands, invokeCostOK, payInvokeCost, usedThisBattle, markUsedBattle, bpBattle, addBattleBp, invokeCostText, ownTargetCands, cpuInvokeOK
 
 ## packages/engine/src/02m-effects-destroy-filters.js (83 lines, ~2k tokens)
@@ -74,10 +74,10 @@ cardTeams, allHaveShapeOK, allHaveOK, winRiderRun, fxOppMark, blockTaxOK, payBlo
 ## packages/engine/src/02r-effects-actions-deck.js (119 lines, ~4k tokens)
 
 
-## packages/engine/src/02s-effects-actions-soul.js (167 lines, ~4.2k tokens)
+## packages/engine/src/02s-effects-actions-soul.js (186 lines, ~4.6k tokens)
 
 
-## packages/engine/src/02t-effects-actions-opp.js (237 lines, ~6k tokens)
+## packages/engine/src/02t-effects-actions-opp.js (248 lines, ~6.3k tokens)
 
 
 ## packages/engine/src/02u-effects-form-change.js (32 lines, ~0.7k tokens) — FORM CHANGE (v0.135.0, schema v8; Kamen Rider cross-over cards): {{F Change|"X" & Cost N}} {{Invoke|Main}}
@@ -104,7 +104,7 @@ fieldList, isGW, freeCores, freeTotal, totalCores, reserveTotal, minCores, isSpi
 ## packages/engine/src/07-turn.js (82 lines, ~1.5k tokens) — TURN FLOW
 isMainStep, revertNexusSpirits, setStep, beginTurn, endStep, win, matchLoop, checkInvariants
 
-## packages/engine/src/08-battle.js (181 lines, ~4.1k tokens) — BATTLE
+## packages/engine/src/08-battle.js (181 lines, ~4.2k tokens) — BATTLE
 successor, flashTiming, battleEndAttack, attackStepOver, doBattle, doBattleInner, maybeBurst, burstFlash, flushBursts
 
 ## packages/engine/src/09-cpu.js (168 lines, ~2.9k tokens) — CPU

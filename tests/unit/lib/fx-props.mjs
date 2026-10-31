@@ -111,6 +111,12 @@ function bounceCase(a) {
 }
 
 function bpMinusCase(a) {
+  if (a.perTrash != null) {      // v196 "for each <match> card in your Trash, this BP- decreases n further"
+    if (!only(a, ['n', 'zeroDestroy', 'perTrash']) || !a.perTrash || !a.perTrash.match) return null;
+    return { fix: [{ cost: 3, bp: 15000 }], body: `const cand = Object.values(BS.CARDS).find(c => fxMatch(c, A.perTrash.match)); if (!cand) return '';
+      P.trash.push(BS.mkInst(cand.id), BS.mkInst(cand.id)); const t = sp(${J(sid(3, 15000))}, O);
+      await run(src, RA); const want = 15000 - (A.n + 2 * A.perTrash.n); return BS.bpOf(t) === want ? '' : 'BP ' + BS.bpOf(t) + ', want ' + want;` };
+  }
   if (!only(a, ['n', 'zeroDestroy', 'zeroBottom', 'nPer', 'nLegacy'])) return null;
   return { fix: [{ cost: 3, bp: a.n + 1000 }, { cost: 3, bp: a.n }], body: `let t = sp(${J(sid(3, a.n + 1000))}, O);
       await run(src, RA); if (BS.bpOf(t) !== 1000) return 'BP after -' + A.n + ' is ' + BS.bpOf(t) + ', want 1000'; if (gone(t)) return 'a Spirit with BP left was destroyed';
@@ -159,6 +165,21 @@ function simple(card, a) {
       if (!only(a, ['n', 'upto', 'match']) || !spirit || !okMatch(a.match)) return null;
       return { onField: true, fix: [{ m: a.match }], body: `const t = sp(${J(mid(a.match))}, P, 1); const c0 = [src.cores, t.cores]; await run(src, RA);
       const moved = c0[0] - src.cores; return moved > 0 && moved <= A.n && t.cores === c0[1] + moved ? '' : 'cores ' + c0 + ' -> ' + [src.cores, t.cores];` };
+    }
+    case 'CORE_ANY_FROM_ALLY':      // v196 Re Awaken: any number of cores from one own Spirit to this Spirit
+      return only(a, []) && spirit && { onField: true, body: `const t = sp(${J(FILL)}, P, 3); const c0 = [src.cores, t.cores]; await run(src, RA);
+      const moved = src.cores - c0[0]; return moved > 0 && t.cores === c0[1] - moved ? '' : 'cores ' + c0 + ' -> ' + [src.cores, t.cores];` };
+    case 'LIFE_CAP_ONE': {      // v196 "your Life can only be reduced by one by that"
+      if (!only(a, ['match', 'symbols']) || !okMatch(a.match) || a.symbols !== 1) return null;
+      return { fix: [{ m: a.match }], body: `const t = sp(${J(mid(a.match))}, O, 1); await run(src, RA);
+      return t.lifeCapTurn && t.lifeCapTurn.cap === 1 && t.lifeCapTurn.turn === G.turnNo ? '' : 'no Life cap on the target';` };
+    }
+    case 'USE_FLASH': {      // v196 "you can use the Flash effect of a matching Magic card from your Hand, without paying the cost"
+      if (!only(a, ['match']) || !okMatch(a.match)) return null;
+      return { fix: [{ m: a.match }], body: `const cand = Object.values(BS.CARDS).find(c => c.type === 'Magic' && fxMatch(c, A.match)); if (!cand) return '';
+      const h = BS.mkInst(cand.id); P.hand.push(h); const t = sp(${J(sid(3, 2000))}, O, 1); const own = sp(${J(FILL)}, P, 1); own.exhausted = true; G.step = 5; G.active = P.key;
+      if (!BS.magicUsable(P, h, 'flash', true)) return '';      // e.g. a Flash card whose own conditions are not met on this board
+      await run(src, RA); return P.trash.includes(h) && !P.hand.includes(h) ? '' : 'the matching Magic card was not used from the Hand';` };
     }
     case 'BP_PLUS':
       if (a.pickPerLegacy === true && only(a, ['n', 'to', 'pick', 'pickPerLegacy']) && spirit && (a.to || 'self') === 'own') {      // v195 "for each EX Symbol banished via this Legacy, target +1 Spirits"

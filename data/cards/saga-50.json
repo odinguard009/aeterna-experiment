@@ -8167,20 +8167,58 @@
   "image": "26RBS01-X05.png",
   "block": "A",
   "saga": 50,
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "SUMMON_HAND",
+      "from": "trash",
+      "match": {
+       "family": [
+        "Dark Puce"
+       ],
+       "type": "Spirit"
+      },
+      "costLe": 5,
+      "pay": true
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "OPP_CORES_TO_RESERVE",
+      "targets": 1,
+      "each": 1,
+      "eachPer": {
+       "type": "Spirit",
+       "keyword": "Shamanism"
+      },
+      "costLe": 5
+     }
+    ]
+   }
+  ],
   "mechanics": [
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] {{Shaman|Dark Puce & Cost 5 or less}} (When Summoned) You can target a Cost 5 or less \"Dark Puce\" family Spirit card in your Trash. Summon it.",
-   "[LV2] (True Release) (When Attacks) Target an opposing Cost 5 or less Spirit. For each Spirit with Shamanism you control, send a core from it to the Reserve. (The opponent chooses which cores to send)"
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
    "A"
   ],
-  "rcode": "X"
+  "rcode": "X",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS01-X06",
@@ -21033,16 +21071,56 @@
   "image": null,
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] This Nexus can't be targeted by opposing Magic effects.",
-   "[LV2] (Opposing Attack Step) {{Invoke|Flash}} If all your Spirits/ Nexuses have the \"Wollaguard\" family, exhaust this Nexus ▶ Target an opposing Cost 7 or less Spirit with one symbol. During this turn, your Life can only be reduced by one by that."
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "lv": [
+     1,
+     2
+    ],
+    "flag": "UNAFFECTED",
+    "to": "self",
+    "from": {
+     "types": [
+      "Magic"
+     ]
+    }
+   },
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "FLASH"
+    ],
+    "when": "oppAttack",
+    "lv": [
+     2
+    ],
+    "cost": {
+     "exhaustSelf": true
+    },
+    "if": {
+     "allHave": {
+      "family": "Wollaguard"
+     }
+    },
+    "actions": [
+     {
+      "do": "LIFE_CAP_ONE",
+      "match": {
+       "costLe": 7
+      },
+      "symbols": 1
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
    "A"
   ],
-  "rcode": "C"
+  "rcode": "C",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS03-080",
@@ -22242,20 +22320,64 @@
   "image": "The DragonEmperor Siegfried.jpg",
   "block": "A",
   "saga": 50,
+  "effects": [
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "FLASH"
+    ],
+    "when": "eitherAttack",
+    "once": true,
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "CORE_ANY_FROM_ALLY"
+     },
+     {
+      "do": "BP_PLUS",
+      "n": 1000,
+      "to": "own",
+      "match": {
+       "family": [
+        "Red Cloud"
+       ]
+      },
+      "if": {
+       "prev": true,
+       "step": "ATTACK",
+       "oppTurn": false
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "VOID_TO_LIFE",
+      "n": 1,
+      "lifeLe": 3
+     }
+    ]
+   }
+  ],
   "ex_symbols": 1,
   "mechanics": [
    "Re Awaken"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] Re Awaken (Either Attack Step) {{Invoke|Flash}} (Once Per Turn) Target one of your Spirits. Put any number of cores from it to this Spirit. If core is put during Your Attack Step, during this turn, give all your \"Red Cloud\" family Spirits +1000 BP.",
-   "[LV2] (True Release) (When Destroyed) If your Life is at three or less, put a core from the Void to your Life."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
    "A"
   ],
-  "rcode": "X"
+  "rcode": "X",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS03-X03",
@@ -41245,23 +41367,65 @@
   "image": "26RSD08-X02.png",
   "block": "A",
   "saga": 50,
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "USE_FLASH",
+      "match": {
+       "family": [
+        "Sword Eye"
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "FLASH"
+    ],
+    "when": "duringAttack",
+    "once": true,
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "BP_MINUS",
+      "n": 3000,
+      "zeroDestroy": true,
+      "perTrash": {
+       "n": 1000,
+       "match": {
+        "type": "Magic",
+        "family": [
+         "Sword Eye"
+        ]
+       }
+      }
+     }
+    ]
+   }
+  ],
   "mechanics": [
    "Legacy"
   ],
-  "fxComplete": false,
-  "residual": [
-   "(Legacy) [Teams: Yellow Rise/Shiny Hearts]",
-   "[LV1-2] (When Attacks) You can use the Flash effect of a \"Sword Eye\" family Magic card from your Hand, without paying the cost.",
-   "[LV2] (True Release) (During Attack) {{Invoke|Flash}} (Once Per Turn) Target an opposing Spirit. During this turn, give it -3000 BP. Then, if it has 0 BP, destroy it. For each \"Sword Eye\" family Magic card in your Trash, this BP- decreases 1000 further."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "collab": [
    "詩姫"
   ],
   "bicon": [
    "A"
   ],
-  "rcode": "X"
+  "rcode": "X",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RSD09-001",

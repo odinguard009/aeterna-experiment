@@ -1,0 +1,46 @@
+{
+  "name": "queen-babianaros",
+  "about": "v196: Queen Babianaros (26RBS01-X05) LV1-2 {{Shaman|Dark Puce & Cost 5 or less}} (When Summoned): 'You can target a Cost 5 or less \"Dark Puce\" family Spirit card in your Trash. Summon it.' = SUMMON_HAND {from trash, match {family Dark Puce, type Spirit}, costLe 5, pay true}. LV2 (True Release) (When Attacks): 'Target an opposing Cost 5 or less Spirit. For each Spirit with Shamanism you control, send a core from it to the Reserve.' = OPP_CORES_TO_RESERVE {targets 1, each 1, eachPer {type Spirit, keyword Shamanism}, costLe 5} (costLe added in v196; keyword matching reads card.mechanics).",
+  "rules": [
+    "ETR:faq.effects-q3",
+    "SJP:true-release"
+  ],
+  "turn": 3,
+  "active": "player",
+  "step": 5,
+  "players": {
+    "player": {
+      "reserve": 10,
+      "spirits": [
+        {
+          "id": "26RBS01-X05",
+          "cores": 3,
+          "as": "queenBabianaros"
+        },
+        {
+          "id": "26RBS01-021",
+          "cores": 1,
+          "as": "shamanOne"
+        },
+        {
+          "id": "26RBS01-024",
+          "cores": 1,
+          "as": "shamanTwo"
+        }
+      ],
+      "trash": [
+        "26RBS01-017"
+      ]
+    },
+    "opponent": {
+      "reserve": 3,
+      "spirits": [
+        {
+          "id": "26RBS01-004",
+          "cores": 4,
+          "as": "oppCost5"
+        }
+      ]
+    }
+  }
+}

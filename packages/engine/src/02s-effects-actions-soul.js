@@ -67,6 +67,25 @@ Object.assign(FX_ACTIONS, {
     run: async c => { c.ctx.did = soulToLife(c.p, soulSource(c.p)); io.view({ type: 'board' }); } },
   /* v0.48 "Thunder God Bombardment" (BS76-X02): reveal n from the decktop; per card whose name contains one of names (case-sensitive,
      so "Z" is the capital letter of "Z"-named cards), send an opposing Life to the Reserve; the revealed cards go to the Hand */
+  /* v196 "Target one of your Spirits. Put any number of cores from it to this Spirit" (Re Awaken); any number = every spare core of that one Spirit */
+  CORE_ANY_FROM_ALLY: { chk: () => true, txt: () => 'target one of your Spirits; put any number of cores from it to this Spirit',
+    cands: c => c.p.spirits.filter(x => x !== c.src && spare(x) > 0),
+    can: c => fieldList(c.p).includes(c.src) && FX_ACTIONS.CORE_ANY_FROM_ALLY.cands(c).length > 0,
+    run: async (c, a) => {
+      const L = FX_ACTIONS.CORE_ANY_FROM_ALLY.cands(c); if (!L.length) { c.ctx.did = false; return; }
+      const t = c.p.cpu ? L.slice().sort((x, y) => spare(y) - spare(x))[0] : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your Spirits to take its cores (glowing).`);
+      if (!t) { c.ctx.did = false; return; }
+      let n = spare(t);
+      if (!c.p.cpu && n > 1) {
+        const v = await ask({ title: `✨ ${CARDS[c.src.id].name}`, peek: true, html: `Put how many cores from ${CARDS[t.id].name} to this Spirit?`, buttons: [1, 2, 3, n].filter((x, i, arr) => x <= n && arr.indexOf(x) === i).map(k => ({ label: k === n ? `All (${k})` : String(k), cls: 'primary', value: k })).concat([{ label: 'None', cls: 'cancel', value: 0 }]) });
+        n = Number.isInteger(v) ? v : 0;
+      }
+      let moved = 0;
+      while (moved < n && spare(t) > 0 && t.cores > 0) { coreEv(c.p, 'core', t.uid, c.src.uid, moved); t.cores--; c.src.cores++; moved++; }
+      c.ctx.did = moved > 0; if (!moved) return;
+      log(`${CARDS[c.src.id].name}: ${moved} core${moved === 1 ? '' : 's'} put from ${CARDS[t.id].name}.`);
+      coresSent(c.p, c.src, moved); checkDepletion(c.p);
+    } },
   AWAKEN: { chk: () => true, txt: () => 'send any number of cores from your other Spirits to this Spirit',
     can: c => fieldList(c.p).includes(c.src) && c.p.spirits.some(x => x !== c.src && spare(x) > 0),
     run: async (c, a) => {
