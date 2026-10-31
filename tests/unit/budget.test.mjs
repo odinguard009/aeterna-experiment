@@ -68,7 +68,8 @@ const FONT_URL = /url\(data:font\/woff2;base64,[A-Za-z0-9+/=]+\)/g, FLAVOR_RE = 
 // v182 (Lane K): B02 313 -> 314 KB on purpose: BOUNCE_OPP.costTotalLe, SUMMON_TAX. v184: B01 1155 -> 1156 KB (eachLegacy, bpOrGe, costTotalLe). v186: B01 1156 -> 1158 KB (perLegacy, highest, EXHAUST_OWN).
 // v0.200.0 (Lane K): raised B01 1158 -> 1163 KB and B02 314 -> 315 KB on purpose: ALLY_NEXUS_DESTROYED, NO_BLOCK_INFERIOR_BATTLE, HEAVY_EXHAUST_OPP.per, SYMBOL_TARGET.color/lock, NEXUS_AS_SPIRIT.coresGe and oppLifeReduced (4-card bundle + scenarios).
 // v0.200.0 (Lane K): raised B01 1166 -> 1170 KB and B02 316 -> 317 KB on purpose: OPP_DIED + RETURN_SUBJECT, BP_MINUS.targets and the conditional Trash symbols (4-card bundle).
-test('B01 index.html without the card pack stays under 1170 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 1170e3, Buffer.byteLength(noFont(code))));
+// v0.200.0 (Lane K, release bundle): raised B01 1170 -> 1175 KB and B02 317 -> 318 KB on purpose: CORE_TO_ALLY, BOUNCE_OPP.refreshedOnly, BP_PLUS.pickPerLegacy and REFRESH_SPIRIT.perBp (the 50th new complete card).
+test('B01 index.html without the card pack stays under 1175 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 1175e3, Buffer.byteLength(noFont(code))));
 // v0.186.0 (Brave costLe): raised B02 290 -> 292 KB on purpose: the Brave combine condition costLe (parser, braveFits, types) put the page 0.9 KB over the limit.
 // v0.188.0 (R2): raised B02 292 -> 294 KB on purpose: the Family list, BP / core and colour-mode filters (shared by the Deck Builder and the Library) put the page 0.04 KB over the limit.
 // v0.195.0 (Lane K): raised B02 294 -> 296 KB on purpose: viaLegacy and BOUNCE_OPP n/bpLe put the engine 0.01 KB over the limit.
@@ -76,7 +77,7 @@ test('B01 index.html without the card pack stays under 1170 KB', () => assert.ok
 // v0.197.0 (Lane K): raised B02 300 -> 305 KB on purpose (new Lane K conditions, triggers and actions).
 // v0.198.0 (owner UI review 2026-10-30): raised B02 305 -> 308 KB on purpose: deck recipe page, deck cover rule, colour picker and battle sizing.
 // v0.200.0 (Lane K): raised B02 315 -> 316 KB on purpose: CORE_SAFE core protection (helper + hooks in four core-removal actions) and the 3-card bundle.
-test('B02 index.html without the card pack, gzipped, stays under 317 KB', () => { const n = gzipSync(noFont(code), { level: 9 }).length; assert.ok(n < 317e3, n); });
+test('B02 index.html without the card pack, gzipped, stays under 318 KB', () => { const n = gzipSync(noFont(code), { level: 9 }).length; assert.ok(n < 318e3, n); });
 test('B03 the embedded card pack stays under 1.6 MB (room for all cards; never embed staging data)', () => assert.ok(packLen < 1.6e6, packLen));
 // v0.93.0 (U6): raised 90 -> 96 KB on purpose (roadmap item U allows it with a note): U6-U8 add the My decks page and the
 // deck builder restyle; unused rules were trimmed first in v0.92.0. The next raise needs the same kind of note.

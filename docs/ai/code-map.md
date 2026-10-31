@@ -56,7 +56,7 @@ trashSafe, camouBlocks, wrapImmunity
 ## packages/engine/src/02l-effects-invoke.js (255 lines, ~6.3k tokens) — v0.68 INVOKE (Standard activations): "{{Invoke|Flash}}" / "{{Invoke|Main}}" + "<cost> ▶ <effect>".
 INVOKE_WHEN, INVOKE_COSTS, invokeMatchOK, invokeParse, invokeWhenOK, exhaustOwnCands, returnOwnCands, discardCands, invokeCostOK, payInvokeCost, usedThisBattle, markUsedBattle, bpBattle, addBattleBp, invokeCostText, ownTargetCands, cpuInvokeOK
 
-## packages/engine/src/02m-effects-destroy-filters.js (77 lines, ~1.9k tokens)
+## packages/engine/src/02m-effects-destroy-filters.js (83 lines, ~2k tokens)
 
 
 ## packages/engine/src/02n-effects-void-destinations.js (74 lines, ~2k tokens)
@@ -68,7 +68,7 @@ endOfBattle
 ## packages/engine/src/02p-effects-shared-shapes.js (309 lines, ~7.8k tokens)
 cardTeams, allHaveShapeOK, allHaveOK, winRiderRun, fxOppMark, blockTaxOK, payBlockTax, blockedInferior, blockedByMark
 
-## packages/engine/src/02q-effects-actions-own.js (219 lines, ~5.9k tokens)
+## packages/engine/src/02q-effects-actions-own.js (234 lines, ~6.5k tokens)
 
 
 ## packages/engine/src/02r-effects-actions-deck.js (119 lines, ~4k tokens)

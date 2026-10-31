@@ -95,7 +95,7 @@ function exhaustCase(a, heavy) {
 }
 
 function bounceCase(a) {
-  if (!only(a, ['kind', 'to', 'bpLe', 'costLe', 'exhaustedOnly', 'n'])) return null;
+  if (!only(a, ['kind', 'to', 'bpLe', 'costLe', 'exhaustedOnly', 'n', 'refreshedOnly'])) return null;
   if (!['spirit', 'nexus', 'any'].includes(a.kind) || !['hand', 'deckBottom'].includes(a.to)) return null;
   const nexus = a.kind === 'nexus', cost = a.costLe != null ? a.costLe : 3, bp = a.bpLe != null ? a.bpLe : 3000, ex = a.exhaustedOnly ? 'true' : 'false';
   const at = nexus ? { n: cost } : { cost, bp };
@@ -155,7 +155,16 @@ function simple(card, a) {
       if (!only(a, ['n', 'to'])) return null;
       if (a.to === 'self') return spirit && { onField: true, body: `const c0 = src.cores, r = P.reserve.n; await run(src, RA); if (src.cores !== c0 + A.n) return 'cores ' + c0 + ' -> ' + src.cores; return P.reserve.n === r ? '' : 'the cores came from the Reserve';` };
       return a.to === 'anySpirit' && { body: `const t = sp(${J(FILL)}, P, 1); await run(src, RA); return t.cores === 1 + A.n ? '' : 'cores 1 -> ' + t.cores;` };
+    case 'CORE_TO_ALLY': {      // v195 up to n cores go from this Spirit to one of your matching Spirits
+      if (!only(a, ['n', 'upto', 'match']) || !spirit || !okMatch(a.match)) return null;
+      return { onField: true, fix: [{ m: a.match }], body: `const t = sp(${J(mid(a.match))}, P, 1); const c0 = [src.cores, t.cores]; await run(src, RA);
+      const moved = c0[0] - src.cores; return moved > 0 && moved <= A.n && t.cores === c0[1] + moved ? '' : 'cores ' + c0 + ' -> ' + [src.cores, t.cores];` };
+    }
     case 'BP_PLUS':
+      if (a.pickPerLegacy === true && only(a, ['n', 'to', 'pick', 'pickPerLegacy']) && spirit && (a.to || 'self') === 'own') {      // v195 "for each EX Symbol banished via this Legacy, target +1 Spirits"
+        return { onField: true, body: `src.legacyN = 1; const ts = [sp(${J(FILL)}, P, 1), sp(${J(FILL)}, P, 1), sp(${J(FILL)}, P, 1)]; const all = [src].concat(ts), b = all.map(x => BS.bpOf(x));
+        await run(src, RA); const gained = all.filter((x, i) => BS.bpOf(x) === b[i] + A.n).length; return gained === A.pick + 1 ? '' : 'gained on ' + gained + ', want ' + (A.pick + 1);` };
+      }
       if (only(a, ['n', 'per']) && spirit && a.per && ['Spirit', 'Nexus'].includes(a.per.type) && Object.keys(a.per).every(k => k === 'type')) {      // v0.163 "For each Nexus you control, this Spirit gains +N BP": counted when it resolves
         const nex = a.per.type === 'Nexus';
         return { onField: true, fix: nex ? [{ n: 2 }] : [], body: `${nex ? `nx(${J(nid(2))}); nx(${J(nid(2))});` : `sp(${J(FILL)}, P, 1); sp(${J(FILL)}, P, 1);`} const want = ${nex ? 2 : 'P.spirits.length'}, b = BS.bpOf(src); await run(src, RA); return BS.bpOf(src) === b + A.n * want ? '' : 'BP ' + b + ' -> ' + BS.bpOf(src) + ', want +' + A.n * want;` };
@@ -261,6 +270,10 @@ function simple(card, a) {
     case 'LIFE_TO_RESERVE':      // v0.199 N opposing Life go to the opposing Reserve
       return only(a, ['n']) && { body: `O.life = 5; O.hand.length = 0; const r0 = O.reserve.n; await run(src, RA); return O.life === 5 - A.n && O.reserve.n === r0 + A.n ? '' : 'life ' + O.life + ', reserve +' + (O.reserve.n - r0);` };
     case 'REFRESH_SPIRIT':
+      if (a.perBp != null && only(a, ['match', 'perBp']) && spirit && a.match && okMatch(a.match)) {      // v195 "for every 10000 BP this Spirit has, target a Cost N or less Spirit you control. Refresh them."
+        return { onField: true, fix: [{ cost: 3, bp: 1000 }, { cost: 3, bp: 1000 }], body: `src.bpMod = 20000 - BS.bpOf(src); const ts = [sp(${J(sid(3, 1000))}, P, 1), sp(${J(sid(3, 1000))}, P, 1)]; for (const t of ts) t.exhausted = true;
+        await run(src, RA); const done = ts.filter(t => !t.exhausted).length; return done === Math.floor(BS.bpOf(src) / A.perBp) ? '' : 'refreshed ' + done + ', want ' + Math.floor(BS.bpOf(src) / A.perBp);` };
+      }
       if (only(a, ['match']) && a.match && okMatch(a.match)) return { fix: [{ m: a.match }], body: `const t = sp(${J(mid(a.match))}, P, 1); t.exhausted = true; await run(src, RA); return t.exhausted ? 'not refreshed' : '';` };      // v144 one matching exhausted Spirit
       if (only(a, ['match', 'n', 'all']) && (a.n != null || a.all) && (a.match == null || okMatch(a.match)) && !(a.n != null && a.all)) {      // v0.169 up to N / all matching exhausted Spirits
         const M = a.match ? mid(a.match) : FILL, k = a.all ? 3 : a.n;

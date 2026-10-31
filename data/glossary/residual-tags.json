@@ -38210,14 +38210,6 @@
   "T_ALLY_DESTROYS",
   "T_SUMMONED"
  ],
- "26RBS02-012": [
-  "A_BANISH",
-  "A_BP_PLUS",
-  "A_REFRESH",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
  "26RBS02-021": [
   "A_EXHAUST",
   "C_LEVEL",
@@ -38409,12 +38401,6 @@
   "C_LEVEL",
   "T_ATTACKS"
  ],
- "26RCB01-028": [
-  "A_REFRESH",
-  "A_SYMBOL",
-  "A_SYMBOL_PLUS",
-  "C_LEVEL"
- ],
  "26RCB01-032": [
   "A_BP_PLUS",
   "M_OPTIONAL",
@@ -38560,14 +38546,6 @@
   "C_LEVEL",
   "M_OPTIONAL",
   "M_REPLACEMENT",
-  "T_SUMMONED"
- ],
- "26RSD09-X02": [
-  "C_LEVEL",
-  "F_OTHER_NOSTACK",
-  "M_OPTIONAL",
-  "M_REPLACEMENT",
-  "M_UP_TO",
   "T_SUMMONED"
  ],
  "26RSD10-010": [

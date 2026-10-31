@@ -48,6 +48,12 @@
   B.chk = a => (a.notAttacking == null || a.notAttacking === true) && !(a.notAttacking && a.attackingOnly) && bChk(nb(a));
   B.cands = (c, a) => bCands(c, nb(a)).filter(t => !a.notAttacking || t !== G.attacker);
   B.txt = a => bTxt(nb(a)).replace(/^return an opposing /, `return an opposing ${a.notAttacking ? 'non-attacking ' : ''}`);
+  /* refreshedOnly: "target an opposing refreshed N BP or less Spirit" (v195) */
+  const rfChk = B.chk, rfCands = B.cands, rfTxt = B.txt;
+  const rb = a => { const o = Object.assign({}, a); delete o.refreshedOnly; return o; };
+  B.chk = a => (a.refreshedOnly == null || a.refreshedOnly === true) && rfChk(rb(a));
+  B.cands = (c, a) => rfCands(c, rb(a)).filter(t => !a.refreshedOnly || !t.exhausted);
+  B.txt = a => rfTxt(rb(a)).replace(/^return an opposing /, `return an opposing ${a.refreshedOnly ? 'refreshed ' : ''}`);
   /* costTotalLe: "up to two opposing Spirits with a total cost of N or less" (upTo, n 2, Spirits only) */
   const tChk = B.chk, tCands = B.cands, tTxt = B.txt; const tRun = B.run;
   const tb = a => { const o = Object.assign({}, a); delete o.costTotalLe; return o; };

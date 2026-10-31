@@ -35,21 +35,24 @@ Object.assign(FX_ACTIONS, {
   SYMBOL_PLUS: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 3, txt: a => `during this battle, this Spirit gains ${a.n} extra symbol${a.n === 1 ? '' : 's'}`,
     can: c => c.p.spirits.includes(c.src) && !!G.attacker,
     run: async (c, a) => { c.src.symBattle = (c.src.symBattle || 0) + a.n; log(`${CARDS[c.src.id].name} gains ${a.n} extra symbol${a.n === 1 ? '' : 's'} during this battle.`); } },
-  BP_PLUS: { chk: a => Number.isInteger(a.n) && a.n >= 1000 && ['self', 'attacker', 'own'].includes(a.to || 'self') && (a.pick == null || ((a.to || 'self') === 'own' && Number.isInteger(a.pick) && a.pick >= 1 && a.pick <= 3)) && (a.per == null || perOk(a.per)) && (a.perReserve == null || (a.perReserve === true && a.per == null && (a.to || 'self') === 'self')), txt: a => `${a.to === 'own' ? 'your matching Spirits' : a.to === 'attacker' ? 'the attacking Spirit' : 'this Spirit'} gain +${a.n} BP${a.per ? ' for each matching card you control' : ''} this turn`,
+  BP_PLUS: { chk: a => Number.isInteger(a.n) && a.n >= 1000 && ['self', 'attacker', 'own'].includes(a.to || 'self') && (a.pick == null || ((a.to || 'self') === 'own' && Number.isInteger(a.pick) && a.pick >= 1 && a.pick <= 3)) && (a.per == null || perOk(a.per)) && (a.perReserve == null || (a.perReserve === true && a.per == null && (a.to || 'self') === 'self')) && (a.pickPerLegacy == null || (a.pickPerLegacy === true && a.pick >= 1)),      // v195 pickPerLegacy: "for each EX Symbol banished via this Legacy, target +1 Spirits"
+    txt: a => `${a.to === 'own' ? 'your matching Spirits' : a.to === 'attacker' ? 'the attacking Spirit' : 'this Spirit'} gain +${a.n} BP${a.per ? ' for each matching card you control' : ''} this turn`,
     run: async (c, a) => {
       let L = (a.to || 'self') === 'self' ? [c.src] : a.to === 'attacker' ? (c.ctx.attacker ? [c.ctx.attacker] : []) : c.p.spirits.filter(s => fxMatch(CARDS[s.id], a.match));
-      if (a.pick && L.length > a.pick) { const ch = []; while (ch.length < a.pick) { const t = await fxPickTarget(c, L.filter(x => !ch.includes(x)), `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap up to ${a.pick} of your Spirits (${ch.length} chosen) for +${a.n} BP.`); if (!t) break; ch.push(t); } L = ch; }      // v0.196 pick: "target up to N Spirits you control"
+      const pickN = (a.pick || 0) + (a.pickPerLegacy ? (c.src.legacyN || 0) : 0);      // v195
+      if (pickN && L.length > pickN) { const ch = []; while (ch.length < pickN) { const t = await fxPickTarget(c, L.filter(x => !ch.includes(x)), `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap up to ${pickN} of your Spirits (${ch.length} chosen) for +${a.n} BP.`); if (!t) break; ch.push(t); } L = ch; }      // v0.196 pick: "target up to N Spirits you control"
       const n = a.perReserve ? a.n * c.p.reserve.n : a.per ? a.n * perCount(c.p, a.per) : a.n;     // v0.72 per: counted when it resolves; v0.195 perReserve: cores in your Reserve
       if (n) for (const s of L) { s.bpMod = (s.bpMod || 0) + n; log(`${CARDS[s.id].name} gets +${n} BP.`); }
     } },
   CORE_TO_SELF: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5, txt: a => `+${a.n} core to this card`,
     can: c => c.p.reserve.n > 0,
     run: async (c, a) => { let k = 0; for (let j = 0; j < a.n; j++) if (addCore(c.p, c.src)) k++; if (k) log(`${CARDS[c.src.id].name} gets +${k} core${k === 1 ? '' : 's'}.`); } },
-  REFRESH_SPIRIT: { chk: a => (a.match == null || hasMatch(a.match)) && (a.self == null || (a.self === true && a.match == null)) && (a.noAttack == null || a.noAttack === true) && (a.other == null || (a.other === true && a.self == null)) && (a.sameCostAttacker == null || a.sameCostAttacker === true) && (a.perN == null || (Number.isInteger(a.perN) && a.perN >= 1 && a.perN <= 4 && a.per != null && perOk(a.per) && a.self == null && a.bp == null && a.noAttack == null)) && (a.per == null || a.perN != null) && (a.bp == null || (a.bp && Number.isInteger(a.bp.n) && a.bp.n >= 1000 && a.bp.n <= 5000 && a.bp.n % 1000 === 0 && (a.bp.oppAttackStep == null || a.bp.oppAttackStep === true))),      // v0.195 bp {n, oppAttackStep}: "refresh it, and during this turn it gains +n BP" (only in the opposing Attack Step with oppAttackStep); v193 sameCostAttacker: "with the same cost as that Spirit"
+  REFRESH_SPIRIT: { chk: a => (a.match == null || hasMatch(a.match)) && (a.self == null || (a.self === true && a.match == null)) && (a.noAttack == null || a.noAttack === true) && (a.other == null || (a.other === true && a.self == null)) && (a.sameCostAttacker == null || a.sameCostAttacker === true) && (a.perBp == null || (Number.isInteger(a.perBp) && a.perBp >= 10000 && a.perBp <= 50000 && a.perBp % 1000 === 0 && a.self == null)) && (a.perN == null || (Number.isInteger(a.perN) && a.perN >= 1 && a.perN <= 4 && a.per != null && perOk(a.per) && a.self == null && a.bp == null && a.noAttack == null)) && (a.per == null || a.perN != null) && (a.bp == null || (a.bp && Number.isInteger(a.bp.n) && a.bp.n >= 1000 && a.bp.n <= 5000 && a.bp.n % 1000 === 0 && (a.bp.oppAttackStep == null || a.bp.oppAttackStep === true))),      // v0.195 bp {n, oppAttackStep}: "refresh it, and during this turn it gains +n BP" (only in the opposing Attack Step with oppAttackStep); v193 sameCostAttacker: "with the same cost as that Spirit"; v195 perBp: "for every N BP this Spirit has"
     txt: a => `refresh one of your ${a.match ? 'matching ' : ''}Spirits`,
     cands: (c, a) => c.p.spirits.filter(s => s.exhausted && (!a || !a.self || s === c.src) && (!a || !a.other || s !== c.src) && (!a || !a.match || fxMatch(CARDS[s.id], a.match)) && (!a || !a.sameCostAttacker || (G.attacker && CARDS[G.attacker.id].cost === CARDS[s.id].cost))),
     can: (c, a) => FX_ACTIONS.REFRESH_SPIRIT.cands(c, a).length > 0,
     run: async (c, a) => {
+      if (a.perBp) { for (let i = Math.floor(bpOf(c.src) / a.perBp); i > 0; i--) { const L = FX_ACTIONS.REFRESH_SPIRIT.cands(c, a); if (!L.length) break; const t = await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your exhausted Spirits to refresh (glowing).`); if (!t) break; refreshOne(t); log(`${CARDS[t.id].name} is refreshed.`); } return; }      // v195 perBp: "for every 10000 BP this Spirit has, target a Cost 6 or less Spirit you control"
       if (a.perN) { for (let i = Math.floor(perCount(c.p, a.per) / a.perN); i > 0; i--) { const L = FX_ACTIONS.REFRESH_SPIRIT.cands(c, a); if (!L.length) break; const t = await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your exhausted Spirits to refresh (glowing).`); if (!t) break; refreshOne(t); log(`${CARDS[t.id].name} is refreshed.`); } return; }      // v139 "For every N <per> you control, target one ... Refresh them."
       const L = FX_ACTIONS.REFRESH_SPIRIT.cands(c, a), t = a.self ? L[0] : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your exhausted Spirits to refresh (glowing).`);
       if (!t) return; refreshOne(t); log(`${CARDS[t.id].name} is refreshed.`);
@@ -152,6 +155,18 @@ Object.assign(FX_ACTIONS, {
     run: async c => {
       if (!FX_ACTIONS.DEPLOY_SELF.can(c)) { c.ctx.did = false; return; }
       removeFrom(c.p.revealed, c.src); await summonFree(c.p, c.src); c.ctx.did = fieldList(c.p).includes(c.src);
+    } },
+  /* v195 "send up to N cores from this Spirit to one of your matching Spirits" (another Spirit; the source may be depleted) */
+  CORE_TO_ALLY: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && hasMatch(a.match) && (a.upto == null || a.upto === true),
+    txt: a => `send up to ${a.n} core${a.n === 1 ? '' : 's'} from this Spirit to one of your matching Spirits`,
+    cands: (c, a) => c.p.spirits.filter(s => s !== c.src && fxMatch(CARDS[s.id], a.match)),
+    can: (c, a) => c.p.spirits.includes(c.src) && c.src.cores > 0 && FX_ACTIONS.CORE_TO_ALLY.cands(c, a).length > 0,
+    run: async (c, a) => {
+      const L = FX_ACTIONS.CORE_TO_ALLY.cands(c, a); if (!L.length || !c.p.spirits.includes(c.src) || c.src.cores < 1) { c.ctx.did = false; return; }
+      const t = c.p.cpu ? L.slice().sort((x, y) => bpOf(y) - bpOf(x))[0] : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your Spirits to receive the cores (glowing).`);
+      if (!t) { c.ctx.did = false; return; }
+      const m = Math.min(a.n, c.src.cores); coreEvN(c.p, c.src.uid, t.uid, m, false); c.src.cores -= m; t.cores += m;
+      log(`${CARDS[c.src.id].name}: ${m} core${m === 1 ? '' : 's'} move to ${CARDS[t.id].name}.`); checkDepletion(c.p); io.view({ type: 'board' });
     } },
   /* reveal n cards, add one matching card to the Hand, the rest go to the Trash or the bottom of the Deck (v0.33, e.g. Rainydle) */
   CORE_TO_NEXUS: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && hasMatch(a.match) && (a.perDestroyedCost == null || (a.perDestroyedCost === true && Number.isInteger(a.max) && a.max >= 1 && a.max <= 30)), txt: a => `+${a.n} core to one of your matching Nexuses`,
