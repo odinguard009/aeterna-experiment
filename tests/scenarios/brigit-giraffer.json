@@ -1,0 +1,28 @@
+{
+  "name": "brigit-giraffer",
+  "about": "v0.202.0 next cycle bundle 2 (Eternal): BS20-032 Brigit (every level: +1000 BP for each of your Spirits; its braved When Blocks Void-core clause was already compiled) and BS17-020 Giraffer (When Destroyed: the opponent exhausts a Spirit they control).",
+  "rules": [
+    "STD:12-2-1-12@caad612c",
+    "ETR:battle.destruction@698b8d5e"
+  ],
+  "turn": 4,
+  "active": "player",
+  "step": 5,
+  "players": {
+    "player": {
+      "reserve": 10,
+      "spirits": [
+        { "id": "BS20-032", "cores": 1, "as": "brigit" },
+        { "id": "BS17-020", "cores": 1, "as": "giraffer" }
+      ],
+      "deck": ["26RBS01-004", "26RBS01-005"]
+    },
+    "opponent": {
+      "reserve": 4,
+      "spirits": [
+        { "id": "26RBS01-004", "cores": 1, "as": "oppA" },
+        { "id": "26RBS01-005", "cores": 1, "as": "oppB" }
+      ]
+    }
+  }
+}

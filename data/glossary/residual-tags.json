@@ -5212,11 +5212,6 @@
   "C_LEVEL",
   "K_BURST"
  ],
- "BS17-020": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "T_DESTROYED"
- ],
  "BS17-021": [
   "C_LEVEL",
   "K_BURST",
@@ -6308,10 +6303,6 @@
   "A_EXHAUST",
   "C_LEVEL",
   "T_OPP_HAND_UP"
- ],
- "BS20-032": [
-  "A_BP_PLUS",
-  "C_LEVEL"
  ],
  "BS20-033": [
   "A_CANT_ATTACK_BLOCK",
