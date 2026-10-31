@@ -14055,16 +14055,49 @@
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Attacks) Target any number of Nexuses you control. Exhaust them. For each Nexus exhausted via this effect, target an opposing Cost 4 or less Spirit. Destroy them.",
-   "[LV2] (True Release) (Start of Either Attack Step) You can target one of your \"Cyantree\" family Nexuses. Send one or more cores from your Field/Reserve to it, and during this step, it doesn't activate its Nexus effects, and is treated as a Spirit with \"LV1 5000 BP, LV2 7000 BP.\""
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Clauses authored by hand in Lane K (v0.202.0).",
   "bicon": [
    "A"
   ],
-  "rcode": "M"
+  "rcode": "M",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "EXHAUST_NEXUS_DESTROY",
+      "costLe": 4
+     }
+    ]
+   },
+   {
+    "trigger": "START_ATTACK",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "if": {
+     "step": "ATTACK"
+    },
+    "actions": [
+     {
+      "do": "NEXUS_AS_SPIRIT",
+      "match": {
+       "family": [
+        "Cyantree"
+       ]
+      },
+      "sendCore": "reserve",
+      "n": 1
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RBS02-074",
@@ -34087,20 +34120,54 @@
   "mechanics": [
    "Legacy"
   ],
-  "fxComplete": false,
-  "residual": [
-   "(Legacy) [Teams: Red Stella/Shiny Hearts]",
-   "[LV1-2] (When Summoned) If three or more Red Stella cards are banished via this Legacy, target any number of opposing Spirits up to a total of 10000 BP. Destroy them.",
-   "[LV2] (True Release) (When Attacks) If you control three or more exhausted Red Stella Spirits, during this battle, this Spirit gains an extra Red symbol."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Clauses authored by hand in Lane K (v0.202.0).",
   "collab": [
    "詩姫"
   ],
   "bicon": [
    "A"
   ],
-  "rcode": "X"
+  "rcode": "X",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "legacyGe": 3
+    },
+    "actions": [
+     {
+      "do": "DESTROY_TOTAL",
+      "total": 10000
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "if": {
+     "ctrl": {
+      "type": "Spirit",
+      "team": "Red Stella",
+      "exhausted": true,
+      "n": 3
+     }
+    },
+    "actions": [
+     {
+      "do": "SYMBOL_PLUS_TURN",
+      "color": "red",
+      "self": true
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RDB01-X03",

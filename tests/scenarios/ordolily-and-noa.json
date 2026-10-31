@@ -1,0 +1,32 @@
+{
+  "name": "ordolily-and-noa",
+  "about": "v0.202.0 bundle 13: 26RBS02-073 Ordolily (When Attacks: exhaust any number of your Nexuses, then destroy one opposing Cost 4 or less Spirit per exhausted Nexus; its True Release treats a Cyantree Nexus as a LV1 5000 BP Spirit with a core from the Reserve) and 26RDB01-X02 Noa Fleur (When Summoned with three or more Legacy-banished Red Stella cards, destroy opposing Spirits up to a total of 10000 BP; its True Release with three exhausted Red Stella Spirits gives it an extra Red symbol this battle).",
+  "rules": [
+    "STD:12-2-1-12@caad612c",
+    "SJP:faq.states@ea0c2539"
+  ],
+  "turn": 4,
+  "active": "player",
+  "step": 5,
+  "players": {
+    "player": {
+      "reserve": 10,
+      "spirits": [
+        { "id": "26RBS02-073", "cores": 3, "as": "ordolily" },
+        { "id": "26RDB01-X02", "cores": 3, "as": "noa" }
+      ],
+      "nexus": [
+        { "id": "26RBS01-106", "cores": 0, "as": "cyantree" },
+        { "id": "26RBS01-107", "cores": 0, "as": "cyantree2" }
+      ],
+      "deck": ["26RBS01-004", "26RBS01-005", "26RBS01-006"]
+    },
+    "opponent": {
+      "reserve": 4,
+      "spirits": [
+        { "id": "26RBS01-004", "cores": 1, "as": "oppA" },
+        { "id": "26RBS01-002", "cores": 1, "as": "oppB" }
+      ]
+    }
+  }
+}

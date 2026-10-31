@@ -196,6 +196,29 @@ Object.assign(FX_ACTIONS, {
       else c.ctx.did = false;
     } } });
 Object.assign(FX_ACTIONS, {
+  /* v216 "Target any number of Nexuses you control. Exhaust them. For each Nexus exhausted via this effect, target an opposing
+     Cost N or less Spirit. Destroy them." (the CPU exhausts every refreshed Nexus and picks the cheapest Spirit each time.) */
+  EXHAUST_NEXUS_DESTROY: { chk: a => Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30 && Object.keys(a).every(k => ['do', 'if', 'costLe'].includes(k)),
+    txt: a => `exhaust any number of your Nexuses, then destroy one opposing Cost ${a.costLe} or less Spirit for each`,
+    cands: c => c.p.nexus.filter(n => !n.exhausted),
+    can: c => FX_ACTIONS.EXHAUST_NEXUS_DESTROY.cands(c).length > 0,
+    run: async (c, a) => {
+      const L = FX_ACTIONS.EXHAUST_NEXUS_DESTROY.cands(c);
+      if (!L.length) { c.ctx.did = false; return; }
+      for (const n of L) { n.exhausted = true; log(`${poss(c.p)} ${CARDS[n.id].name} is exhausted.`); }
+      let gone = 0;
+      for (let j = 0; j < L.length; j++) {
+        const cands = c.opp.spirits.filter(s => CARDS[s.id].cost <= a.costLe);
+        if (!cands.length) break;
+        const t = await fxPickTarget(c, cands, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap an opposing Cost ${a.costLe} or less Spirit to destroy (glowing).`);
+        if (!t) break;
+        log(`${CARDS[c.src.id].name}: ${CARDS[t.id].name} is destroyed.`);
+        removeSpirit(c.opp, t, 'destroyed', true); gone++;
+      }
+      checkDepletion(c.opp); c.ctx.did = gone > 0;
+      io.view({ type: 'board' });
+    } } });
+Object.assign(FX_ACTIONS, {
   DESTROY_OWN: {
     chk: a => hasMatch(a.match) && (a.voidByCost == null || a.voidByCost === true) && (a.other == null || a.other === true),
     txt: a => (a.other ? 'destroy another Spirit you control' : 'destroy one of your matching Spirits') + (a.voidByCost ? ', then put cores from the Void to your Reserve equal to its cost' : ''),
