@@ -2769,11 +2769,6 @@
   "A_VOID",
   "C_LEVEL"
  ],
- "BS10-089": [
-  "C_LEVEL",
-  "C_OPP_TURN",
-  "M_OPTIONAL"
- ],
  "BS10-090": [
   "A_BOUNCE",
   "A_BP_PLUS",
@@ -6454,10 +6449,6 @@
   "A_EXHAUST",
   "C_LEVEL",
   "T_SUMMONED"
- ],
- "BS21-017": [
-  "C_LEVEL",
-  "T_ALLY_LOST"
  ],
  "BS21-018": [
   "C_LEVEL",
