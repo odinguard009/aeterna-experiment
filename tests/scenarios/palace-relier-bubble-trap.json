@@ -1,0 +1,39 @@
+{
+  "name": "palace-relier-bubble-trap",
+  "about": "v0.202.0 bundle 3: 26RBS03-041 Palace Keeper, Relier (At the end of battle, while refreshed, draws a card once per turn; its LV2 refreshes it while three or more Wollaguard family Spirits/Nexuses are in play and then it can't attack this turn), 26RDB01-041 Cahlamy Tiboar (When an opposing Cost 3 or less Spirit is destroyed while all your Spirits/Nexuses are Blue Beat, it refreshes itself; its LV2 destroys an opposing Cost 3 or less Spirit while the Soul Core is in the Reserve) and 26RSD10-010 Bubble Trap (When Deployed puts a Void core into your Trash while the opponent controls three or more exhausted Spirits; its LV2 exhausts itself and an opposing Cost 4 or less Spirit when your Abyssen Spirit is destroyed).",
+  "rules": [
+    "STD:12-2-1-12@caad612c",
+    "ETR:battle.destruction@698b8d5e",
+    "SJP:core-move@eb7563c8"
+  ],
+  "turn": 4,
+  "active": "player",
+  "step": 5,
+  "players": {
+    "player": {
+      "reserve": 6,
+      "void": 3,
+      "spirits": [
+        { "id": "26RBS03-041", "cores": 3, "as": "relier" },
+        { "id": "26RDB01-041", "cores": 3, "as": "tiboar" },
+        { "id": "26RBS03-029", "cores": 1, "as": "abyssen" },
+        { "id": "26RDB01-033", "cores": 1, "as": "blueBeat1" },
+        { "id": "26RDB01-036", "cores": 1, "as": "blueBeat2" }
+      ],
+      "nexus": [
+        { "id": "26RSD10-010", "cores": 2, "as": "bubble" }
+      ],
+      "deck": ["26RBS01-005", "26RBS01-006", "26RBS01-004", "26RBS01-008"]
+    },
+    "opponent": {
+      "reserve": 3,
+      "spirits": [
+        { "id": "26RBS01-004", "cores": 1, "exhausted": true, "as": "oppA" },
+        { "id": "26RBS01-004", "cores": 1, "exhausted": true, "as": "oppB" },
+        { "id": "26RBS01-004", "cores": 1, "exhausted": true, "as": "oppC" },
+        { "id": "26RBS01-002", "cores": 1, "as": "oppCost3" },
+        { "id": "26RBS01-008", "cores": 1, "as": "oppFresh" }
+      ]
+    }
+  }
+}
