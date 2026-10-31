@@ -38361,13 +38361,6 @@
   "C_OPP_TURN",
   "M_OPTIONAL"
  ],
- "26RBS03-X01": [
-  "A_BANISH",
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
  "26RBS03-X02": [
   "A_AWAKEN",
   "A_BP_PLUS",
@@ -38563,13 +38556,6 @@
   "C_LEVEL",
   "M_OPTIONAL"
  ],
- "26RSD06-010": [
-  "A_REFRESH",
-  "A_SYMBOL",
-  "A_SYMBOL_PLUS",
-  "C_LEVEL",
-  "M_OPTIONAL"
- ],
  "26RSD06-011": [
   "C_LEVEL",
   "F_OTHER_NOSTACK",
@@ -38578,13 +38564,6 @@
  "26RSD06-013": [
   "M_OPTIONAL",
   "M_REPLACEMENT"
- ],
- "26RSD07-011": [
-  "A_EXHAUST",
-  "A_SYMBOL",
-  "A_SYMBOL_PLUS",
-  "C_LEVEL",
-  "M_OPTIONAL"
  ],
  "26RSD08-002": [
   "A_EXHAUST",

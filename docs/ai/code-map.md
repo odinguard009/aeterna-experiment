@@ -26,7 +26,7 @@ FX_STRICT, FX_WARNED, fxUnknown, FX_COND_KEYS, FX_TRIGGERS, FX_TRIGGER_TEXT, BR_
 ## packages/engine/src/02b-effects-actions.js (127 lines, ~4.8k tokens)
 FX_ACTIONS
 
-## packages/engine/src/02c-effects-parse.js (224 lines, ~7.6k tokens)
+## packages/engine/src/02c-effects-parse.js (228 lines, ~7.7k tokens)
 canPlaceFree, canPlaceBraveFree, summonFree, canPlacePaid, canPlaceBy, summonPaid, tributePay, summonBy, fxDescribe, BURST_WHEN, parseCond, parseActionList, parseBurst, parseEffects
 
 ## packages/engine/src/02d-effects-resolve.js (396 lines, ~7.8k tokens)
@@ -56,7 +56,7 @@ trashSafe, camouBlocks, wrapImmunity
 ## packages/engine/src/02l-effects-invoke.js (249 lines, ~6.2k tokens) — v0.68 INVOKE (Standard activations): "{{Invoke|Flash}}" / "{{Invoke|Main}}" + "<cost> ▶ <effect>".
 INVOKE_WHEN, INVOKE_COSTS, invokeMatchOK, invokeParse, invokeWhenOK, exhaustOwnCands, returnOwnCands, discardCands, invokeCostOK, payInvokeCost, usedThisBattle, markUsedBattle, bpBattle, addBattleBp, invokeCostText, ownTargetCands, cpuInvokeOK
 
-## packages/engine/src/02m-effects-destroy-filters.js (73 lines, ~1.7k tokens)
+## packages/engine/src/02m-effects-destroy-filters.js (77 lines, ~1.9k tokens)
 
 
 ## packages/engine/src/02n-effects-void-destinations.js (74 lines, ~2k tokens)
@@ -68,7 +68,7 @@ endOfBattle
 ## packages/engine/src/02p-effects-shared-shapes.js (309 lines, ~7.8k tokens)
 cardTeams, allHaveShapeOK, allHaveOK, winRiderRun, fxOppMark, blockTaxOK, payBlockTax, blockedInferior, blockedByMark
 
-## packages/engine/src/02q-effects-actions-own.js (219 lines, ~5.8k tokens)
+## packages/engine/src/02q-effects-actions-own.js (219 lines, ~5.9k tokens)
 
 
 ## packages/engine/src/02r-effects-actions-deck.js (119 lines, ~4k tokens)
@@ -98,8 +98,8 @@ DECISION_KINDS, cardIds, portAsk, decide, ask, info, pickFromField, portPick, po
 ## packages/engine/src/05c-intent.js (286 lines, ~4.7k tokens) — INTENTS (v0.84.0, phase F3 part 2 = monorepo step M3 rest; docs/ai/monorepo-plan.md "Design" 1)
 INTENT_TYPES, CORE_OPS, INTENT_MAX, SEAT_LOOP, seatCan, seatLoopOpen, boardView, endTurnNow, seatTurn, handOf, fieldOf, intentNext, intentSummon, intentCast, intentMirage, intentBraveSummon, intentBraveField, intentCore, intentAttack, applyIntent, cpuPaymentPlan, cpuIntent, cpuAnswer
 
-## packages/engine/src/06-rules.js (547 lines, ~11.1k tokens) — RULES HELPERS
-fieldList, isGW, freeCores, freeTotal, totalCores, reserveTotal, minCores, isSpiritForm, isUlt, lvBase, lvNo, summonOK, spare, coresAvailable, isCountLv, _tl3, treatLv3, lvIndex, bpOf, ocActive, braveBp, braveFits, braveTargets, combineBrave, canSeparate, separateBrave, braveAfford, braveSummon, braveRecheck, shedBrave, TOKEN_SUPPLY, tokenIdsOf, prepareTokens, tokenCoreRoom, canSendToken, sendToken, tokenHome, symTurnCols, symZeroAllOn, symSetOn, attackSymbols, symAttrs, symbolAttrs, fieldSymbols, symbolsOn, reductionOf, noBlockActive, costAltActive, extraReduction, summonSymbols, legacyPlan, handCostSet, summonTaxOf, trashSymsOn, effCost, legacyPay, tributeList, canPlayCard, takeCores, payCost, checkDepletion, leaveEvent, removeSpirit, trashHears, allyDiedHears, oppDiedHears, lostHeard, leaveStandby, releaseStandby, poss, who, keyDrawActive, drawKeyFirst, draw, handUp, summon, setBurst, mirageUsable, magicFx, magicFromTrash, magicFxAt, magicTrashOK, magicSources, magicTargets, soulMagicHolder, soulMagicOK, soulMagicPick, magicUsable, magicText, castMagic, coreEv, coreEvN, addCore, removeCore, moveSoulTo, moveCore, swapSoul, returnSoul
+## packages/engine/src/06-rules.js (558 lines, ~11.3k tokens) — RULES HELPERS
+fieldList, isGW, freeCores, freeTotal, totalCores, reserveTotal, minCores, isSpiritForm, isUlt, lvBase, lvNo, summonOK, spare, coresAvailable, isCountLv, _tl3, treatLv3, lvIndex, bpOf, ocActive, braveBp, braveFits, braveTargets, combineBrave, canSeparate, separateBrave, braveAfford, braveSummon, braveRecheck, shedBrave, TOKEN_SUPPLY, tokenIdsOf, prepareTokens, tokenCoreRoom, canSendToken, sendToken, tokenHome, symTurnCols, symZeroAllOn, symSetOn, attackSymbols, symAttrs, symbolAttrs, extraSymbolsOf, fieldSymbols, symbolsOn, reductionOf, noBlockActive, costAltActive, extraReduction, summonSymbols, legacyPlan, handCostSet, summonTaxOf, trashSymsOn, effCost, legacyPay, tributeList, canPlayCard, takeCores, payCost, checkDepletion, leaveEvent, removeSpirit, trashHears, allyDiedHears, oppDiedHears, lostHeard, leaveStandby, releaseStandby, poss, who, keyDrawActive, drawKeyFirst, draw, handUp, summon, setBurst, mirageUsable, magicFx, magicFromTrash, magicFxAt, magicTrashOK, magicSources, magicTargets, soulMagicHolder, soulMagicOK, soulMagicPick, magicUsable, magicText, castMagic, coreEv, coreEvN, addCore, removeCore, moveSoulTo, moveCore, swapSoul, returnSoul
 
 ## packages/engine/src/07-turn.js (82 lines, ~1.5k tokens) — TURN FLOW
 isMainStep, revertNexusSpirits, setStep, beginTurn, endStep, win, matchLoop, checkInvariants

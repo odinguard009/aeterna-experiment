@@ -22104,20 +22104,52 @@
   "image": null,
   "block": "A",
   "saga": 50,
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "bpLe": 4000,
+      "bpPerLegacy": {
+       "n": 2000,
+       "family": [
+        "Red Cloud",
+        "Purgatory Wings"
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "END_STEP",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "TRASH_CORES_TO",
+      "n": 1,
+      "toSelf": true
+     }
+    ]
+   }
+  ],
   "mechanics": [
    "Legacy"
   ],
   "legacy": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Summoned) Target an opposing 4000 BP or less Spirit. Destroy it. For each EX Symbol of \"Red Cloud\"/\"Purgatory Wings\" family cards banished via this Legacy, the targeting BP gets +2000.",
-   "[LV2] (True Release) (Your End Step) You can send a core, besides , from your Trash to this Spirit."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
    "A"
   ],
-  "rcode": "X"
+  "rcode": "X",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RBS03-X02",
@@ -38497,16 +38529,55 @@
   "image": "26RSD06-010.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (Your Main Step) If you control three or more Blue Nexuses, this Nexus gains an extra Blue symbol.",
-   "[LV2] (True Release) (Opposing Attack Step) When an opposing Spirit attacks, you can target one of your \"Ferobeast\" family Spirits with the same cost as that Spirit. Refresh it."
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "lv": [
+     1,
+     2
+    ],
+    "flag": "EXTRA_SYMBOL",
+    "color": "blue",
+    "n": 1,
+    "if": {
+     "step": "MAIN",
+     "oppTurn": false,
+     "nexusGe": {
+      "n": 3,
+      "colors": [
+       "blue"
+      ]
+     }
+    }
+   },
+   {
+    "trigger": "OPP_ATTACKS",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "match": {
+     "noUlt": true
+    },
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT",
+      "match": {
+       "family": [
+        "Ferobeast"
+       ]
+      },
+      "sameCostAttacker": true
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
    "A"
   ],
-  "rcode": "C"
+  "rcode": "C",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RSD06-011",
@@ -39553,19 +39624,61 @@
   "image": "26RSD07-011.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (Your Main Step) If you control any exhausted \"ZEZTZ\" family Spirit, this Nexus gains an extra Purple symbol.",
-   "[LV2] (True Release) (Either Attack Step) (CSOPT) When your \"ZEZTZ\" family Spirits are destroyed, you can target an opposing Spirit. Send a core, besides , from it to the Reserve."
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "lv": [
+     1,
+     2
+    ],
+    "flag": "EXTRA_SYMBOL",
+    "color": "purple",
+    "n": 1,
+    "if": {
+     "step": "MAIN",
+     "oppTurn": false,
+     "ctrl": {
+      "n": 1,
+      "type": "Spirit",
+      "family": "ZEZTZ",
+      "exhausted": true
+     }
+    }
+   },
+   {
+    "trigger": "ALLY_DIED",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "noStack": true,
+    "match": {
+     "family": [
+      "ZEZTZ"
+     ],
+     "noUlt": true
+    },
+    "if": {
+     "step": "ATTACK"
+    },
+    "actions": [
+     {
+      "do": "OPP_CORES_TO_RESERVE",
+      "targets": 1,
+      "each": 1
+     }
+    ]
+   }
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "collab": [
    "仮面ライダー"
   ],
   "bicon": [
    "A"
   ],
-  "rcode": "C"
+  "rcode": "C",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image."
  },
  {
   "id": "26RSD07-012",

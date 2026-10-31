@@ -1,0 +1,33 @@
+{
+  "name": "deepredbladessom-legacy",
+  "about": "v193: The DeepRedBladessom Rittenia (26RBS03-X01) LV1-2 (When Summoned): 'Target an opposing 4000 BP or less Spirit. Destroy it. For each EX Symbol of \"Red Cloud\"/\"Purgatory Wings\" family cards banished via this Legacy, the targeting BP gets +2000.' = DESTROY {bpLe 4000, bpPerLegacy {n 2000, family [Red Cloud, Purgatory Wings]}}; the source instance keeps legacyCards (set by legacyPay). The opponent's Spirit is 6000 BP: out of reach without a banished Red Cloud card, in reach with one.",
+  "rules": [
+    "SJP:inherit",
+    "ETR:faq.bp"
+  ],
+  "turn": 3,
+  "active": "player",
+  "step": 4,
+  "players": {
+    "player": {
+      "reserve": 6,
+      "spirits": [
+        {
+          "id": "26RBS03-X01",
+          "cores": 1,
+          "as": "rittenia"
+        }
+      ]
+    },
+    "opponent": {
+      "reserve": 3,
+      "spirits": [
+        {
+          "id": "BS48-047",
+          "cores": 1,
+          "as": "bigTarget"
+        }
+      ]
+    }
+  }
+}

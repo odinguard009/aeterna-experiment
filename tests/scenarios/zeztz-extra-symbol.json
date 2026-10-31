@@ -1,0 +1,41 @@
+{
+  "name": "zeztz-extra-symbol",
+  "about": "v193: CODE Zeroider (26RSD07-011) LV1-2 (Your Main Step): 'If you control any exhausted \"ZEZTZ\" family Spirit, this Nexus gains an extra Purple symbol' = STATIC flag EXTRA_SYMBOL {color purple, n 1, if {step MAIN, oppTurn false, ctrl ZEZTZ exhausted}}, read by extraSymbolsOf/fieldSymbols (a conditional extra Field symbol of its own). LV2 (Either Attack Step) (CSOPT): 'When your ZEZTZ family Spirits are destroyed, target an opposing Spirit. Send a core, besides Soul Core, from it to the Reserve' = ALLY_DIED (Field watcher) + OPP_CORES_TO_RESERVE.",
+  "rules": [
+    "ETR:faq.effects-q3",
+    "SJP:true-release"
+  ],
+  "turn": 3,
+  "active": "player",
+  "step": 4,
+  "players": {
+    "player": {
+      "reserve": 6,
+      "spirits": [
+        {
+          "id": "26RCB01-018",
+          "cores": 1,
+          "exhausted": true,
+          "as": "zeztzSpirit"
+        }
+      ],
+      "nexus": [
+        {
+          "id": "26RSD07-011",
+          "cores": 1,
+          "as": "zeroider"
+        }
+      ]
+    },
+    "opponent": {
+      "reserve": 3,
+      "spirits": [
+        {
+          "id": "BS48-047",
+          "cores": 2,
+          "as": "oppSpirit"
+        }
+      ]
+    }
+  }
+}

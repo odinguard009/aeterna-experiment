@@ -131,10 +131,21 @@ function symbolAttrs(card) {
   else if (card.type === 'Nexus' && (card.families || []).includes('Grandwalker')) one = /Contractor/i.test(card.name) ? ['god', card.symbol] : ['god'];
   return Array.from({ length: n }, () => one.slice());
 }
+/* v193 EXTRA_SYMBOL (STATIC to:'self'): "this Nexus/Spirit gains an extra <colour> symbol" (a conditional extra Field symbol while it stays on the Field) */
+function extraSymbolsOf(owner, i) {
+  if (!G || !owner || !i) return [];
+  const opp = G.p[other(owner.key)], out = [], L = lvNo(i);
+  for (const { e } of fxEntries(i)) {
+    if (e.trigger !== 'STATIC' || e.flag !== 'EXTRA_SYMBOL' || (e.lv && !e.lv.includes(L))) continue;
+    if (!fxIf(owner, opp, e.if, { selfInst: i })) continue;
+    for (let k = 0; k < (e.n || 1); k++) out.push([e.color]);
+  }
+  return out;
+}
 /* symbols usable for cost reduction: Field cards only (not Soul State, p. 55, unless the card being paid says so; not the Burst Area, p. 49) */
 function fieldSymbols(p, withSoulState, withStandby) {     // withStandby: cost reduction also counts cards waiting in Standby (v0.57.0)
   const out = [];
-  for (const i of fieldList(p).concat(withSoulState ? p.soulState : [], withStandby ? (p.standby || []) : [])) for (const a of symbolAttrs(CARDS[i.id]).concat(i.brave ? symbolAttrs(CARDS[i.brave.id]) : [], symTurnCols(i).map(k => [k]))) out.push(a);
+  for (const i of fieldList(p).concat(withSoulState ? p.soulState : [], withStandby ? (p.standby || []) : [])) for (const a of symbolAttrs(CARDS[i.id]).concat(i.brave ? symbolAttrs(CARDS[i.brave.id]) : [], symTurnCols(i).map(k => [k]), fieldList(p).includes(i) ? extraSymbolsOf(p, i) : [])) out.push(a);
   return out;
 }
 function symbolsOn(p, withSoulState) {        // count per attribute (a two-attribute symbol counts in both)
@@ -251,7 +262,7 @@ function effCost(p, card) {                       // cost reduction is mandatory
   return Math.max(0, (costAltActive(p, card) ? Math.min(base, card.costAlt.cost) : base) - r - per) + summonTaxOf(p, card);
 }
 function legacyPay(p, inst) {                     // v0.69: banish the Legacy cards (call once, before the cost is paid: the state must still be the one effCost saw)
-  const lp = legacyPlan(p, CARDS[inst.id]); inst.legacyN = lp ? lp.n : 0;
+  const lp = legacyPlan(p, CARDS[inst.id]); inst.legacyN = lp ? lp.n : 0; inst.legacyCards = lp ? lp.cards.map(t => t.id) : [];      // v193: the banished ids ("EX Symbols of <family> cards banished via this Legacy")
   if (!lp) return 0;
   for (const t of lp.cards) { removeFrom(p.trash, t); p.removed.push(t); }
   log(`${who(p)} ${p.cpu ? 'banishes' : 'banish'} ${lp.n} EX-symbol card${lp.n === 1 ? '' : 's'} from the Trash via Legacy.`);
