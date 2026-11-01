@@ -108,3 +108,18 @@ test('K-872 BS03-104 draws when a vanilla Spirit is destroyed in an Attack Step 
     return out; })()`);
   assert.deepEqual(r, [1, 0, false, false, true], JSON.stringify(r));
 });
+
+test('K-873 BS05-058 gives Evil Shadow Spirits +2000 BP in the own Attack Step and exhausts an opposing Spirit in the Start Step while one is controlled (LV2)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const n = BS.mkInst('BS05-058'); n.cores = 1; P.nexus = [n]; const out = [];
+    const a = BS.mkInst('BS02-018'); a.cores = 2; const b = BS.mkInst('BS01-001'); b.cores = 2; P.spirits = [a, b];
+    P.nexus = []; G.active = P.key; G.step = 5; const ba = BS.bpOf(a), bb = BS.bpOf(b); P.nexus = [n];
+    out.push(BS.bpOf(a) - ba, BS.bpOf(b) - bb);
+    const e = BS.mkInst('BS01-001'); e.cores = 1; O.spirits = [e];
+    await BS.fireFx(P, 'START_STEP', null, {}); out.push(!!e.exhausted);
+    n.cores = 3; await BS.fireFx(P, 'START_STEP', null, {}); out.push(!!e.exhausted);
+    e.exhausted = false; P.spirits = [b]; await BS.fireFx(P, 'START_STEP', null, {}); out.push(!!e.exhausted);
+    return out; })()`);
+  assert.deepEqual(r, [2000, 0, false, true, false], JSON.stringify(r));
+});
