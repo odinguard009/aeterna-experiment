@@ -151,3 +151,10 @@ test('K-799 Spirit Soul (BS24-001 / BS38-042): an Ultimate being summoned yields
     return [a, b, c];`);
   assert.deepEqual(r, [1, 0, 'blue,red'], JSON.stringify(r));
 });
+
+test('K-800 NO_DESTROY_OPP (BS25-028 / BS28-001 / BS30-034): survives an opposing effect, still dies by own effect or battle', async () => {
+  const r = await run(`const t = sp('BS28-001', P, 1); BS.G.fxBy = O.key; BS.removeSpirit(P, t, 'destroyed', true); const a = P.spirits.includes(t);
+    BS.G.fxBy = P.key; BS.removeSpirit(P, t, 'destroyed', false); const b = P.spirits.includes(t); BS.G.fxBy = null;
+    const u = sp('BS30-034', P, 1); BS.removeSpirit(P, u, 'destroyed', 'battle'); return [a, b, P.spirits.includes(u)];`);
+  assert.deepEqual(r, [true, false, false], JSON.stringify(r));
+});

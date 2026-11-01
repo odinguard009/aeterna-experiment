@@ -9126,9 +9126,6 @@
   "M_REPLACEMENT",
   "T_BLOCKS"
  ],
- "BS25-028": [
-  "C_LEVEL"
- ],
  "BS25-029": [
   "C_LEVEL"
  ],
@@ -10578,9 +10575,6 @@
   "T_DURING_BRAVE",
   "T_SUMMONED"
  ],
- "BS28-001": [
-  "C_LEVEL"
- ],
  "BS28-002": [
   "A_DESTROY_NEXUS",
   "C_LEVEL",
@@ -11721,9 +11715,6 @@
   "K_RUSH",
   "M_THEN"
  ],
- "BS30-018": [
-  "C_LEVEL"
- ],
  "BS30-019": [
   "A_EXHAUST",
   "A_VOID",
@@ -11810,9 +11801,6 @@
  "BS30-033": [
   "C_LEVEL",
   "K_ULTIMATE"
- ],
- "BS30-034": [
-  "C_LEVEL"
  ],
  "BS30-035": [
   "A_BP_PLUS",
