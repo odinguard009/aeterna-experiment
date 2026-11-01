@@ -327,3 +327,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v290 (Lane K): action `VOID_TO_SELF {n?}` ("put a core from the Void to this Nexus/Spirit"); BS02-080 (ALLY_BATTLE_WIN match.coresGe).
 - v291 (Lane K): action `TRASH_TO_RESERVE {}` sends all cores from the own Trash to the own Reserve.
 - v292 (Lane K): STATIC bp `per` with `side: "opp"` now counts the opposing side (the count was always taken on your own side before).
+- v293 (Lane K): match key `coresLe` (1-9): the Spirit has at most N cores on it (with `coresGe` it gives "with only one core").

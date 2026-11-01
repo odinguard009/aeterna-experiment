@@ -241,3 +241,26 @@ test('K-882 BS15-065 gives Windstorm Spirit cards an extra Green reduction symbo
     return out; })()`);
   assert.deepEqual(r, [1, 0, false, false, true], JSON.stringify(r));
 });
+
+test('K-883 BS03-011 gives Spirits with only one core +2000 BP in your Attack Step (LV2); match.coresLe', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const s = BS.mkInst('BS03-011'); s.cores = 1; const a = BS.mkInst('BS01-001'); a.cores = 1; const b = BS.mkInst('BS01-001'); b.cores = 2; P.spirits = [s, a, b]; const out = [];
+    G.active = P.key; G.step = 5; out.push(BS.bpOf(a) - BS.bpOf(b));
+    s.cores = 2; out.push(BS.bpOf(a) - BS.bpOf(b), BS.bpOf(s) - BS.CARDS['BS03-011'].levels[1].bp);
+    G.step = 3; out.push(BS.bpOf(a) - BS.bpOf(b));
+    return out; })()`);
+  assert.deepEqual(r, [0, 2000, 0, 0], JSON.stringify(r));
+});
+
+test('K-884 BS02-067 and BS03-027 give hand cards an extra reduction symbol at LV2', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const out = []; const hs = BS.CARDS['BS01-064'], yel = BS.CARDS['BS02-067'];
+    const a = BS.mkInst('BS02-067'); a.cores = 1; P.spirits = [a]; out.push(BS.extraReduction(P, yel).length);
+    a.cores = 3; out.push(BS.extraReduction(P, yel).length, BS.extraReduction(P, hs).length);
+    const b = BS.mkInst('BS03-027'); b.cores = 1; P.spirits = [b]; out.push(BS.extraReduction(P, hs).length);
+    b.cores = 3; out.push(BS.extraReduction(P, hs).length, BS.extraReduction(P, BS.CARDS['BS01-001']).length);
+    return out; })()`);
+  assert.deepEqual(r, [0, 1, 0, 0, 1, 0], JSON.stringify(r));
+});

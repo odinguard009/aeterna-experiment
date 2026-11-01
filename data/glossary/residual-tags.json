@@ -306,10 +306,6 @@
  "BS02-065": [
   "C_LEVEL"
  ],
- "BS02-067": [
-  "A_SYMBOL",
-  "C_LEVEL"
- ],
  "BS02-070": [
   "C_LEVEL"
  ],
@@ -449,10 +445,6 @@
   "T_ALLY_BLOCKED",
   "T_ATTACKS"
  ],
- "BS03-011": [
-  "A_BP_PLUS",
-  "C_LEVEL"
- ],
  "BS03-012": [
   "A_RETURN_TRASH",
   "A_TRASH_TO_RESERVE",
@@ -485,10 +477,6 @@
  "BS03-024": [
   "C_LEVEL",
   "T_ATTACKS"
- ],
- "BS03-027": [
-  "C_LEVEL",
-  "K_HIGH_SPEED"
  ],
  "BS03-033": [
   "C_LEVEL",
