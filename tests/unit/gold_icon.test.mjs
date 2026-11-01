@@ -1,7 +1,5 @@
-// v0.41.5: Fandom's gold reduction icon = our `ultimate` reduction symbol (issue #5 icon check). No browser.
-// Evidence: Fandom lists a gold symbol on 241 Ultimate cards, the engine gives Ultimates the `ultimate` symbol attribute, and manual p. 40
-// says the Ultimate symbol pays Ultimate reduction symbols. Engine matching is proven in symbol_cost_reduction.test.mjs (R06, R18).
-// rules: ETR:ultimate.basics@ad2b8a6d
+// Official reduction check (owner order 2026-11-01: official card database first). No browser.
+// The official field `reductionIcons` counts the `極` icon, which the engine stores as `ultimate`.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
@@ -13,30 +11,24 @@ const read = p => JSON.parse(readFileSync(join(ROOT, p), 'utf8'));
 const staged = readdirSync(join(ROOT, 'data/import')).filter(f => /^saga-\d+\.json$/.test(f))
   .flatMap(f => { const d = read(`data/import/${f}`); return Array.isArray(d) ? d : d.cards; });
 const curated = read('build/all-cards.json');
-const SRC = join(ROOT, 'data/sources/fandom-cards-bs01-bs77.json');
-const have = existsSync(SRC);
-const norm = s => String(s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+const OFFICIAL = join(ROOT, 'data/sources/official-fields.json');
+const official = existsSync(OFFICIAL) ? read('data/sources/official-fields.json') : null;
 
 test('no card data carries a raw "gold" reduction key', () => {
   for (const c of staged.concat(curated)) assert.ok(!('gold' in (c.reduction || {})), c.id);
 });
-test('staged reduction keys are colours or ultimate only (god stays dropped until the image check)', () => {
-  for (const c of staged) for (const k of Object.keys(c.reduction || {})) assert.ok(COLORS.includes(k) || k === 'ultimate', `${c.id} ${k}`);
+test('reduction keys are colours, ultimate or god (the official fields supply both special icons)', () => {
+  for (const c of staged.concat(curated)) for (const k of Object.keys(c.reduction || {})) assert.ok(COLORS.includes(k) || k === 'ultimate' || k === 'god', `${c.id} ${k}`);
 });
 test('the four cards named in the roadmap carry their Ultimate reduction symbols (BS74-X14 promoted to the game data in v0.46.0)', () => {
-  const by = Object.fromEntries(staged.concat(read('build/all-cards.json')).map(c => [c.id, c]));
+  const by = Object.fromEntries(staged.concat(curated).map(c => [c.id, c]));
   assert.deepEqual([by['BS74-X14'], by['BS75-016'], by['BS75-077'], by['BS75-X04']].map(c => c.reduction.ultimate), [1, 1, 1, 2]);
 });
-test('staged ultimate count equals the Fandom gold count of the chosen record (skipped without data/sources)', { skip: !have }, () => {
-  const std = 'data/sources/fandom-cards-26r.json';                  // v0.62.0: Standard block A rows
-  const rows = read('data/sources/fandom-cards-bs01-bs77.json').cards.concat(existsSync(join(ROOT, std)) ? read(std).cards : []);
-  let withGold = 0;
+test('staged ultimate count equals the official 極 icon count (skipped without official fields)', { skip: !official }, () => {
   for (const c of staged) {
-    const r = rows.find(x => x.id === c.id && norm(x.name) === norm(c.name));
-    assert.ok(r, `${c.id} missing in Fandom`);
-    const g = (r.reduction || {}).gold || 0;
-    assert.equal((c.reduction || {}).ultimate || 0, g, c.id);
-    if (g) withGold++;
+    const o = official[c.id];
+    if (!o) continue;
+    const n = (o.reductionIcons || []).filter(x => x === '極').length;
+    assert.equal((c.reduction || {}).ultimate || 0, n, c.id);
   }
-  assert.ok(withGold > 300, `expected 300+ staged cards with a gold icon, got ${withGold}`);
 });

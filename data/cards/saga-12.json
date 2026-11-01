@@ -2608,6 +2608,38 @@
   "rcode": "C"
  },
  {
+  "id": "BS56-073",
+  "name": "Laser Volley",
+  "name_jp": "レーザーボレー",
+  "type": "Magic",
+  "color": "red",
+  "cost": 6,
+  "reduction": {
+   "red": 4
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{mirage|Cost 3 ()}}\nDuring Set (When Set)\nDestroy an opposing 5000 BP or less Spirit. Then, if you control any Red symbols, destroy an opposing Nexus.\n\nFlash\nDestroy an opposing 15000 BP or less Spirit/Ultimate. Or, negate an opposing active White Magic/Accel effect, other than on-field effects.",
+  "image": "Laser Volley.png",
+  "block": "56",
+  "saga": 12,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{mirage|Cost 3 ()}}",
+   "During Set (When Set)",
+   "Destroy an opposing 5000 BP or less Spirit.",
+   "Then, if you control any Red symbols, destroy an opposing Nexus.",
+   "Flash",
+   "Destroy an opposing 15000 BP or less Spirit/Ultimate.",
+   "Or, negate an opposing active White Magic/Accel effect, other than on-field effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS56-074",
   "name": "Oracle XIII Over Death",
   "name_jp": "オラクルXIII オーバーデス",
@@ -2654,6 +2686,38 @@
   "rcode": "R"
  },
  {
+  "id": "BS56-075",
+  "name": "Bind Edge",
+  "name_jp": "バインドエッジ",
+  "type": "Magic",
+  "color": "green",
+  "cost": 4,
+  "reduction": {
+   "green": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{mirage|Cost 2 ()}}\nDuring Set (Start of Opposing Attack Step)\nYou can heavy exhaust an opposing Cost 4 or less Spirit/Ultimate. When you've done so, send three cores from any opposing Grandwalker Nexuses to the Void.\n\nFlash\nHeavy exhaust an opposing Spirit/Ultimate. Or, refresh a \"Blade Insect\" family Spirit you control.",
+  "image": "Bind Edge.png",
+  "block": "56",
+  "saga": 12,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{mirage|Cost 2 ()}}",
+   "During Set (Start of Opposing Attack Step)",
+   "You can heavy exhaust an opposing Cost 4 or less Spirit/Ultimate.",
+   "When you've done so, send three cores from any opposing Grandwalker Nexuses to the Void.",
+   "Flash",
+   "Heavy exhaust an opposing Spirit/Ultimate.",
+   "Or, refresh a \"Blade Insect\" family Spirit you control."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS56-076",
   "name": "Oracle XVII Over Star",
   "name_jp": "オラクルXVII オーバースター",
@@ -2698,6 +2762,232 @@
    "10"
   ],
   "rcode": "R"
+ },
+ {
+  "id": "BS56-077",
+  "name": "Oracle III Over Empress",
+  "name_jp": "オラクルIII オーバーエンプレス",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 4,
+  "reduction": {
+   "yellow": 2,
+   "green": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{mirage|Cost 2 ()}}\nDuring Set\nOnce per turn, when your Green/Yellow \"Proximate\" family Spirit is summoned, you can draw a card. If you control any \"The Empress\" Spirit, this effect draws +1 card.\n\nDuring Set (Either Attack Step)\nThe symbol of every attacking LV1 Spirit is fixed as 0.\n\nFlash\nDuring this turn, an opposing Spirit/Ultimate can't attack/block.",
+  "image": "BS56 077.png",
+  "block": "56",
+  "saga": 12,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{mirage|Cost 2 ()}}",
+   "During Set",
+   "Once per turn, when your Green/Yellow \"Proximate\" family Spirit is summoned, you can draw a card.",
+   "If you control any \"The Empress\" Spirit, this effect draws +1 card.",
+   "During Set (Either Attack Step)",
+   "The symbol of every attacking LV1 Spirit is fixed as 0.",
+   "Flash",
+   "During this turn, an opposing Spirit/Ultimate can't attack/block."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS56-078",
+  "name": "Hydraulic Shooting",
+  "name_jp": "ハイドロリックシューティング",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 4,
+  "reduction": {
+   "blue": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{mirage|Cost 3 ()}}\nDuring Set Flash - (Either Attack Step)\nYou can pay one cost. When you've done so, destroy an opposing Cost 3 or less Spirit/Ultimate. Also, if the opposing Hand has six cards or more, the opponent discards from their Hand until it has two left.\n\nFlash\nDestroy any number of opposing Spirits/Ultimates up to a total cost of 6, and when destroys, put a core from the Void to any \"Beast Head\" family Spirit you control.",
+  "image": "Hydraulic Shooting.png",
+  "block": "56",
+  "saga": 12,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{mirage|Cost 3 ()}}",
+   "During Set Flash - (Either Attack Step)",
+   "You can pay one cost.",
+   "When you've done so, destroy an opposing Cost 3 or less Spirit/Ultimate.",
+   "Also, if the opposing Hand has six cards or more, the opponent discards from their Hand until it has two left.",
+   "Flash",
+   "Destroy any number of opposing Spirits/Ultimates up to a total cost of 6, and when destroys, put a core from the Void to any \"Beast Head\" family Spirit you control."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS56-RV001",
+  "name": "Revol Draw",
+  "name_jp": "リボルドロー",
+  "type": "Magic",
+  "color": "red",
+  "cost": 4,
+  "reduction": {
+   "red": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{mirage|Cost 2 ()}}\nDuring Set\nFor each of your set cards, increase the limit of your \"Machine Dragon\"/\"God-King\" family Spirits' \"BP destruction\" effects by +3000.\n\nMain\nDraw two cards. Or, draw two cards from the deckbottom.",
+  "image": "BS38-066.jpg",
+  "block": "56",
+  "saga": 12,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{mirage|Cost 2 ()}}",
+   "During Set",
+   "For each of your set cards, increase the limit of your \"Machine Dragon\"/\"God-King\" family Spirits' \"BP destruction\" effects by +3000.",
+   "Main",
+   "Draw two cards.",
+   "Or, draw two cards from the deckbottom."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS56-RV002",
+  "name": "Crystal Crack",
+  "name_jp": "クリスタルクラック",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 5,
+  "reduction": {
+   "purple": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{mirage|Cost 2 ()}}\nDuring Set (Opposing Attack Step)\nOnce per turn, when your Life would be reduced, by banishing two Purple \"Knight\"/\"Camelot\"-named cards from your Trash, the number of Lives would be reduced gets -1.\n\nFlash\nSend cores from an opposing Spirit/Ultimate to the Trash until only one core left on it.",
+  "image": "Crystal Crack.png",
+  "block": "56",
+  "saga": 12,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{mirage|Cost 2 ()}}",
+   "During Set (Opposing Attack Step)",
+   "Once per turn, when your Life would be reduced, by banishing two Purple \"Knight\"/\"Camelot\"-named cards from your Trash, the number of Lives would be reduced gets -1.",
+   "Flash",
+   "Send cores from an opposing Spirit/Ultimate to the Trash until only one core left on it."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS56-RV003",
+  "name": "Neo-Hand Reverse",
+  "name_jp": "ネオ・ハンドリバース",
+  "type": "Magic",
+  "color": "green",
+  "cost": 4,
+  "reduction": {
+   "green": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{mirage|Cost 3 ()}}\nDuring Set\nWhen your Cost 4/6/8 \"Astroblazer\"/\"Blade Insect\" family Spirit is summoned from the Hand, you can reveal two cards from your decktop. Among them, you can summon/deploy a \"Blade Insect\" family card, treating as all its  reduction symbols fulfilled. Return any remaining cards to the deckbottom.\n\nMain\nBy discarding all cards from your Hand (at least one card), draw three cards. If you have a Green Mirage set, this effect draws +1 card.",
+  "image": "SD22-015.png",
+  "block": "56",
+  "saga": 12,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{mirage|Cost 3 ()}}",
+   "During Set",
+   "When your Cost 4/6/8 \"Astroblazer\"/\"Blade Insect\" family Spirit is summoned from the Hand, you can reveal two cards from your decktop.",
+   "Among them, you can summon/deploy a \"Blade Insect\" family card, treating as all its  reduction symbols fulfilled.",
+   "Return any remaining cards to the deckbottom.",
+   "Main",
+   "By discarding all cards from your Hand (at least one card), draw three cards.",
+   "If you have a Green Mirage set, this effect draws +1 card."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS56-RV004",
+  "name": "White Crack",
+  "name_jp": "ホワイトクラック",
+  "type": "Magic",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{mirage|Cost 4 ()}}\nDuring Set (Either Attack Step)\nWhen your effect returns opposing Spirits to the Hand, discard a random card from the opposing Hand.\n\nFlash\nReturn an opposing Nexus to the decktop. Or, reveal two cards from your decktop. Among them, you can summon/deploy a White \"Proximate\" family card. Return any remaining cards to either only the decktop or only the deckbottom.",
+  "image": "White Crack.jpg",
+  "block": "56",
+  "saga": 12,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{mirage|Cost 4 ()}}",
+   "During Set (Either Attack Step)",
+   "When your effect returns opposing Spirits to the Hand, discard a random card from the opposing Hand.",
+   "Flash",
+   "Return an opposing Nexus to the decktop.",
+   "Or, reveal two cards from your decktop.",
+   "Among them, you can summon/deploy a White \"Proximate\" family card.",
+   "Return any remaining cards to either only the decktop or only the deckbottom."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS56-RV005",
+  "name": "Magical Draw",
+  "name_jp": "マジカルドロー",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 4,
+  "reduction": {
+   "yellow": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{mirage|Cost 4 ()}}\nDuring Set (Your Turn)\nAll Nexuses can't activate their LV1 effects.\n\nMain\nDraw a card. Then, reveal four cards from your decktop. Among them, add a card with Mirage effect, besides any exactly-named \"Magical Draw\", to the Hand. Return any remaining cards to the deckbottom.",
+  "image": "SD15-008.jpg",
+  "block": "56",
+  "saga": 12,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{mirage|Cost 4 ()}}",
+   "During Set (Your Turn)",
+   "All Nexuses can't activate their LV1 effects.",
+   "Main",
+   "Draw a card.",
+   "Then, reveal four cards from your decktop.",
+   "Among them, add a card with Mirage effect, besides any exactly-named \"Magical Draw\", to the Hand.",
+   "Return any remaining cards to the deckbottom."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS56-RV006",
@@ -6072,6 +6362,37 @@
   "rcode": "R"
  },
  {
+  "id": "BS57-073",
+  "name": "Cosmo Draw",
+  "name_jp": "コスモドロー",
+  "type": "Magic",
+  "color": "red",
+  "cost": 4,
+  "reduction": {
+   "red": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{mirage|Cost 2 ()}}\nDuring Set (Your Turn)\nEvery Red \"Proximate\"/\"Astroblazer\" family Spirit you control gains + 3000 BP.\n\nMain\nDraw two cards. Or, return a \"Proximate\"/\"Astroblazer\" family Spirit card from your Trash to the Hand.",
+  "image": "BS57 073.png",
+  "block": "57",
+  "saga": 12,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{mirage|Cost 2 ()}}",
+   "During Set (Your Turn)",
+   "Every Red \"Proximate\"/\"Astroblazer\" family Spirit you control gains + 3000 BP.",
+   "Main",
+   "Draw two cards.",
+   "Or, return a \"Proximate\"/\"Astroblazer\" family Spirit card from your Trash to the Hand."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS57-074",
   "name": "Oracle IV Over Emperor",
   "name_jp": "オラクルIV オーバーエンペラー",
@@ -6116,6 +6437,67 @@
    "8"
   ],
   "rcode": "R"
+ },
+ {
+  "id": "BS57-075",
+  "name": "Cutting Core",
+  "name_jp": "カッティングコア",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 3,
+  "reduction": {
+   "purple": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{mirage|Cost 2 ()}}\nDuring Set\nWhen your \"Bal-Masque\"-named Spirit would activate a \"core removal\"/\"X cores or less destruction\" effect, treat that Spirit as colorless.\n\nFlash\nSend the opposing , or a core from any opposing Spirit/Ultimate to the Reserve, and when any Spirit/Ultimate is depleted, draw a card.",
+  "image": "BS57 075.png",
+  "block": "57",
+  "saga": 12,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{mirage|Cost 2 ()}}",
+   "During Set",
+   "When your \"Bal-Masque\"-named Spirit would activate a \"core removal\"/\"X cores or less destruction\" effect, treat that Spirit as colorless.",
+   "Flash",
+   "Send the opposing , or a core from any opposing Spirit/Ultimate to the Reserve, and when any Spirit/Ultimate is depleted, draw a card."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS57-076",
+  "name": "Bat Disaster",
+  "name_jp": "バットディザスター",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 6,
+  "reduction": {
+   "purple": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{mirage|Cost 3 ()}}\nDuring Set (Your Attack Step)\nOnce per turn, when your \"Proximate\" family Spirit attacks, you can summon a Purple/Blue \"Astroblazer\" family Spirit card from your Trash.\n\nFlash\nDestroy two opposing Spirits/Ultimates with three cores or more on it. If you control any \"Bal-Masque\"-named Spirits/Nexuses, treat this card as colorless.",
+  "image": "BS57 076.png",
+  "block": "57",
+  "saga": 12,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{mirage|Cost 3 ()}}",
+   "During Set (Your Attack Step)",
+   "Once per turn, when your \"Proximate\" family Spirit attacks, you can summon a Purple/Blue \"Astroblazer\" family Spirit card from your Trash.",
+   "Flash",
+   "Destroy two opposing Spirits/Ultimates with three cores or more on it.",
+   "If you control any \"Bal-Masque\"-named Spirits/Nexuses, treat this card as colorless."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS57-077",
@@ -6163,6 +6545,193 @@
    "8"
   ],
   "rcode": "R"
+ },
+ {
+  "id": "BS57-078",
+  "name": "Butterfly Jammer",
+  "name_jp": "バタフライジャマー",
+  "type": "Magic",
+  "color": "green",
+  "cost": 6,
+  "reduction": {
+   "green": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "When the opponent uses a Magic card in your Attack Step, before the effect activates, by paying the cost and discarding this card from your Hand, immediately negate that effect.\n\n{{Mirage|Cost 2 ()}}\nDuring Set (Start of Opposing Attack Step)\nYou can heavy exhaust an opposing Cost 4 or less Spirit/Ultimate. When you've done so, send three cores from any opposing Grandwalker Nexuses to the Void.\n\nFlash\nBanish every card in the opposing Trash.",
+  "image": "Butterfly Jammer.png",
+  "block": "57",
+  "saga": 12,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "When the opponent uses a Magic card in your Attack Step, before the effect activates, by paying the cost and discarding this card from your Hand, immediately negate that effect.",
+   "{{Mirage|Cost 2 ()}}",
+   "During Set (Start of Opposing Attack Step)",
+   "You can heavy exhaust an opposing Cost 4 or less Spirit/Ultimate.",
+   "When you've done so, send three cores from any opposing Grandwalker Nexuses to the Void.",
+   "Flash",
+   "Banish every card in the opposing Trash."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS57-079",
+  "name": "Cosmo Dream",
+  "name_jp": "コスモドリーム",
+  "type": "Magic",
+  "color": "white",
+  "cost": 3,
+  "reduction": {
+   "white": 1,
+   "red": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nSet a Red/White Mirage card without (When Set) effects from your Hand. When you've done so, put a core from the Void to any \"Proximate\"/\"Astroblazer\" family Spirit you control.",
+  "image": "BS57 079.png",
+  "block": "57",
+  "saga": 12,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Set a Red/White Mirage card without (When Set) effects from your Hand.",
+   "When you've done so, put a core from the Void to any \"Proximate\"/\"Astroblazer\" family Spirit you control."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS57-080",
+  "name": "Cosmic Shell",
+  "name_jp": "コズミックシェル",
+  "type": "Magic",
+  "color": "white",
+  "cost": 6,
+  "reduction": {
+   "white": 4
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{Mirage|Cost 3 ()}}\nDuring Set (Your End Step)\nYou can reveal two cards from your decktop. By returning this Mirage to the Hand, set a White card with Mirage effects among them, without paying the cost. Return any remaining cards to the deckbottom.\n\nFlash\nReturn an opposing Spirit/Ultimate to the deckbottom. Then, by discarding one of your Red/White Mirage, when this battle ends, end the Attack Step.",
+  "image": "BS57 080.png",
+  "block": "57",
+  "saga": 12,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Mirage|Cost 3 ()}}",
+   "During Set (Your End Step)",
+   "You can reveal two cards from your decktop.",
+   "By returning this Mirage to the Hand, set a White card with Mirage effects among them, without paying the cost.",
+   "Return any remaining cards to the deckbottom.",
+   "Flash",
+   "Return an opposing Spirit/Ultimate to the deckbottom.",
+   "Then, by discarding one of your Red/White Mirage, when this battle ends, end the Attack Step."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS57-081",
+  "name": "Magical Cure",
+  "name_jp": "マジカルキュア",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 3,
+  "reduction": {
+   "yellow": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{mirage|Cost 5 ()}}\nDuring Set (Your Attack Step)\nOnce per turn, when your \"Divine Spirit\" family Spirits would leave the Field due to opposing effects, you can put a core from the Void to your Life. When you've done so, one of such Spirits remains on the Field, exhausted.\n\nFlash\nDuring this turn, give an opposing Spirit/Ultimate -4000 BP, and destroy it if its BP is brought down to 0. When this effect destroys, draw a card. After this effect resolves, you can set this card.",
+  "image": "BS57 081.png",
+  "block": "57",
+  "saga": 12,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{mirage|Cost 5 ()}}",
+   "During Set (Your Attack Step)",
+   "Once per turn, when your \"Divine Spirit\" family Spirits would leave the Field due to opposing effects, you can put a core from the Void to your Life.",
+   "When you've done so, one of such Spirits remains on the Field, exhausted.",
+   "Flash",
+   "During this turn, give an opposing Spirit/Ultimate -4000 BP, and destroy it if its BP is brought down to 0.",
+   "When this effect destroys, draw a card.",
+   "After this effect resolves, you can set this card."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS57-082",
+  "name": "Angel Oratorio",
+  "name_jp": "エンジェルオラトリオ",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 7,
+  "reduction": {
+   "yellow": 4
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{Mirage|Cost 3 ()}}\nDuring Set (Start of Your Attack Step)\nIf you control any Yellow-only \"Astroblazer\"/\"Divine Spirit\" family Spirits, draw a card.\n\nFlash\nDuring this turn, an opposing Spirit/Ultimate can't activate its effects. Then, return an opposing Spirit/Ultimate to the deckbottom. After this effect resolves, you can set this card.",
+  "image": "BS57 082.png",
+  "block": "57",
+  "saga": 12,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Mirage|Cost 3 ()}}",
+   "During Set (Start of Your Attack Step)",
+   "If you control any Yellow-only \"Astroblazer\"/\"Divine Spirit\" family Spirits, draw a card.",
+   "Flash",
+   "During this turn, an opposing Spirit/Ultimate can't activate its effects.",
+   "Then, return an opposing Spirit/Ultimate to the deckbottom.",
+   "After this effect resolves, you can set this card."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS57-083",
+  "name": "Sexy Bazooka",
+  "name_jp": "セクシーバズーカ",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 3,
+  "reduction": {
+   "blue": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{mirage|Cost 3 ()}}\nDuring Set\nWhile your Life is at three or more, the (When Summoned) effects of Spirits/Ultimates and Core Charge of originally Cost 3 or less Grandwalker Nexuses can't activate.\n\nFlash\nDuring this turn, a Spirit you control is treated at its highest level. If that is a Purple/Blue \"Astroblazer\" family Spirit, you can draw a card.",
+  "image": "BS57 083.png",
+  "block": "57",
+  "saga": 12,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{mirage|Cost 3 ()}}",
+   "During Set",
+   "While your Life is at three or more, the (When Summoned) effects of Spirits/Ultimates and Core Charge of originally Cost 3 or less Grandwalker Nexuses can't activate.",
+   "Flash",
+   "During this turn, a Spirit you control is treated at its highest level.",
+   "If that is a Purple/Blue \"Astroblazer\" family Spirit, you can draw a card."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS57-084",
@@ -6581,6 +7150,55 @@
    "8"
   ],
   "rcode": "X"
+ },
+ {
+  "id": "BS57-X09",
+  "name": "The SpacePinnacleDragon Megiddo-Zora",
+  "name_jp": "宇宙頂天龍メギド・ゾーラ",
+  "type": "Ultimate",
+  "color": "red",
+  "cost": 8,
+  "reduction": {
+   "red": 4,
+   "ultimate": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 15000
+   },
+   {
+    "cores": 3,
+    "bp": 20000
+   },
+   {
+    "cores": 4,
+    "bp": 26000
+   }
+  ],
+  "families": [
+   "Astroblazer",
+   "Vanity Deity"
+  ],
+  "text": "{{sumcon|You have a Red-only Mirage set}}\n\nQuadruple Ultimate Trigger\nWhen Ultimate Trigger hits, destroy an opposing Spirit. Double Hit When it hits twice or more, destroy an opposing Grandwalker Nexus. Triple Hit When it hits thrice or more, send an opposing Life to the Void. Quadruple Hit When it hits four times, destroy every opposing Spirit/Nexus/Grandwalker Nexus.\nqutb",
+  "image": "BS57 X09.png",
+  "block": "57",
+  "saga": 12,
+  "mechanics": [
+   "Quadruple Ultimate Trigger"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{sumcon|You have a Red-only Mirage set}}",
+   "Quadruple Ultimate Trigger",
+   "When Ultimate Trigger hits, destroy an opposing Spirit.",
+   "Double Hit When it hits twice or more, destroy an opposing Grandwalker Nexus.",
+   "Triple Hit When it hits thrice or more, send an opposing Life to the Void.",
+   "Quadruple Hit When it hits four times, destroy every opposing Spirit/Nexus/Grandwalker Nexus.",
+   "qutb"
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS57-XX01",
@@ -7186,6 +7804,53 @@
    "8"
   ],
   "rcode": "M"
+ },
+ {
+  "id": "BS58-015",
+  "name": "The Bal-Masque Margrave SpacePirate Seitz",
+  "name_jp": "バル・マスケ 辺境伯 宇宙海賊のザイツ",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 5,
+  "reduction": {
+   "purple": 2,
+   "blue": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 4000
+   },
+   {
+    "cores": 2,
+    "bp": 7000
+   },
+   {
+    "cores": 4,
+    "bp": 9000
+   }
+  ],
+  "families": [
+   "Astroblazer",
+   "Nightling"
+  ],
+  "text": "[LV1][LV2][LV3] Mirage Drain: Purple/Blue (When Summoned)\nYou can set a Purple/Blue card with Mirage effects from your Trash, without paying the cost. When you've done so, send a core from any opposing Spirit/Ultimate to the Trash.\n\n[LV2][LV3] Mirage Trance: Purple/Blue\nBesides (When Deployed) effects, your Purple/Blue Mirage also activates its LV1/LV2 Nexus effects.",
+  "image": "BS58 015.png",
+  "block": "58",
+  "saga": 12,
+  "mechanics": [
+   "Mirage Drain"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2][LV3] Mirage Drain: Purple/Blue (When Summoned)",
+   "You can set a Purple/Blue card with Mirage effects from your Trash, without paying the cost.",
+   "When you've done so, send a core from any opposing Spirit/Ultimate to the Trash.",
+   "[LV2][LV3] Mirage Trance: Purple/Blue",
+   "Besides (When Deployed) effects, your Purple/Blue Mirage also activates its [LV1]/[LV2] Nexus effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS58-016",
@@ -9341,6 +10006,50 @@
   "rcode": "C"
  },
  {
+  "id": "BS58-062",
+  "name": "The WaterLilyDragonSpear Trishula",
+  "name_jp": "睡蓮龍槍トリシューラ",
+  "type": "Brave",
+  "color": "yellow",
+  "cost": 4,
+  "reduction": {
+   "yellow": 2,
+   "god": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   }
+  ],
+  "families": [
+   "Saga",
+   "God Arms",
+   "Hunter Beast"
+  ],
+  "text": "During Spirit Brave (When Attacks/Blocks)\nDraw a card from the deckbottom. Also, if braved to any exactly-named \"Grandwalker Parvati\", this Spirit gains the \"Hunter Beast\" family.\n\nDuring Nexus Brave Grand Field (Start of Either Attack Step)\nBy sending a core from this Nexus to the Void, during this turn, an opposing Nexus can't activate its effects.",
+  "image": "BS58 062.png",
+  "block": "58",
+  "saga": 12,
+  "mechanics": [
+   "Grand Field"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "During Spirit Brave (When Attacks/Blocks)",
+   "Draw a card from the deckbottom.",
+   "Also, if braved to any exactly-named \"Grandwalker Parvati\", this Spirit gains the \"Hunter Beast\" family.",
+   "During Nexus Brave Grand Field (Start of Either Attack Step)",
+   "By sending a core from this Nexus to the Void, during this turn, an opposing Nexus can't activate its effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 5000,
+   "costGe": 4
+  }
+ },
+ {
   "id": "BS58-063",
   "name": "Beat Mirage",
   "name_jp": "ビートミラｰジュ",
@@ -9528,6 +10237,90 @@
   "rcode": "C"
  },
  {
+  "id": "BS58-073",
+  "name": "Return Sunrise",
+  "name_jp": "リターンサンライズ",
+  "type": "Magic",
+  "color": "red",
+  "cost": 4,
+  "reduction": {
+   "red": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Main\nDraw two cards. Then, if you control any \"Astral Dragon\"/\"Blade Beast\" family Spirit, you can return a Red/Green \"Proximate\"/\"Astroblazer\" family Spirit card from the Trash to the Hand. This effect can only be used once per turn.\n\nFlash\nDuring this turn, give an \"Astral Dragon\"/\"Blade Beast\" family Spirit you control +5000 BP.",
+  "image": "BS58 073.png",
+  "block": "58",
+  "saga": 12,
+  "fxComplete": false,
+  "residual": [
+   "Main",
+   "Draw two cards.",
+   "Then, if you control any \"Astral Dragon\"/\"Blade Beast\" family Spirit, you can return a Red/Green \"Proximate\"/\"Astroblazer\" family Spirit card from the Trash to the Hand.",
+   "This effect can only be used once per turn.",
+   "Flash",
+   "During this turn, give an \"Astral Dragon\"/\"Blade Beast\" family Spirit you control +5000 BP."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS58-074",
+  "name": "Dragno Flame",
+  "name_jp": "ドラグノフレイム",
+  "type": "Magic",
+  "color": "red",
+  "cost": 5,
+  "reduction": {
+   "red": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "When this card is used during either Attack Step, if your Life is at three or less, this card is treated as Cost 3.\n\nFlash\nDestroy an opposing 15000 BP or less Spirit/Ultimate. Also, if you have a Mirage set, you can summon a \"Dragno\"-named Spirit card from your Hand without paying the cost.",
+  "image": "BS58 074.png",
+  "block": "58",
+  "saga": 12,
+  "fxComplete": false,
+  "residual": [
+   "When this card is used during either Attack Step, if your Life is at three or less, this card is treated as Cost 3.",
+   "Flash",
+   "Destroy an opposing 15000 BP or less Spirit/Ultimate.",
+   "Also, if you have a Mirage set, you can summon a \"Dragno\"-named Spirit card from your Hand without paying the cost."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS58-075",
+  "name": "Seeraeuber Shooting",
+  "name_jp": "ゼーロイバーシューティング",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 5,
+  "reduction": {
+   "purple": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{Mirage|Cost 7 ()}}\nDuring Set (Your Attack Step)\nWhile your \"Astroblazer\" & \"Nightling\" family Spirit is attacking, unless the opponent sends a core from their Reserve to the Trash, they can't use any Magic cards/Accel.\n\nFlash\nSend a core from any opposing Spirit/Ultimate to the Reserve, and when it is not depleted, during this turn, increase the level cost of an opposing Spirit/Ultimate by +1.",
+  "image": "BS58 075.png",
+  "block": "58",
+  "saga": 12,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Mirage|Cost 7 ()}}",
+   "During Set (Your Attack Step)",
+   "While your \"Astroblazer\" & \"Nightling\" family Spirit is attacking, unless the opponent sends a core from their Reserve to the Trash, they can't use any Magic cards/Accel.",
+   "Flash",
+   "Send a core from any opposing Spirit/Ultimate to the Reserve, and when it is not depleted, during this turn, increase the level cost of an opposing Spirit/Ultimate by +1."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS58-076",
   "name": "Chaos Mist",
   "name_jp": "ケイオスミスト",
@@ -9570,6 +10363,204 @@
    "8"
   ],
   "rcode": "C"
+ },
+ {
+  "id": "BS58-077",
+  "name": "Sacrament Bind",
+  "name_jp": "サクラメントバインド",
+  "type": "Magic",
+  "color": "green",
+  "cost": 4,
+  "reduction": {
+   "green": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{mirage|Cost 3 ()}}\nDuring Set (Your Attack Step)\nWhen your “Astroblazer” & “Astral Dragon”/\"Blade Beast\" family Spirit attacks, the opponent can only block with two Spirits or two Ultimates. When that Spirit is blocked, choose one of them to battle against.\n\nFlash\nThe opponent heavy exhausts two of their Spirits.\nheb",
+  "image": "BS58 077.png",
+  "block": "58",
+  "saga": 12,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{mirage|Cost 3 ()}}",
+   "During Set (Your Attack Step)",
+   "When your “Astroblazer” & “Astral Dragon”/\"Blade Beast\" family Spirit attacks, the opponent can only block with two Spirits or two Ultimates.",
+   "When that Spirit is blocked, choose one of them to battle against.",
+   "Flash",
+   "The opponent heavy exhausts two of their Spirits.",
+   "heb"
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS58-078",
+  "name": "Oracle V Over Hierophant",
+  "name_jp": "オラクル V オーバーハイエロファント",
+  "type": "Magic",
+  "color": "green",
+  "cost": 4,
+  "reduction": {
+   "green": 2,
+   "red": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{Mirage|Cost 4 ()}}\nDuring Set (When Set)\nYou can refresh Spirits/Ultimates you and the opponent controls, one of each.\n\nDuring Set (Start of Opposing Attack Step)\nBanish up to five cards from your Trash or the opposing Trash. Also, if you control any “The Hierophant”-named Spirit, you can exhaust an opposing Spirit/Ultimate.\n\nFlash\nExhaust an opposing Spirit. Then, refresh a Red/Green “Proximate”/“Astroblazer” family Spirit you control.",
+  "image": "BS58 078 fix.png",
+  "block": "58",
+  "saga": 12,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Mirage|Cost 4 ()}}",
+   "During Set (When Set)",
+   "You can refresh Spirits/Ultimates you and the opponent controls, one of each.",
+   "During Set (Start of Opposing Attack Step)",
+   "Banish up to five cards from your Trash or the opposing Trash.",
+   "Also, if you control any “The Hierophant”-named Spirit, you can exhaust an opposing Spirit/Ultimate.",
+   "Flash",
+   "Exhaust an opposing Spirit.",
+   "Then, refresh a Red/Green “Proximate”/“Astroblazer” family Spirit you control."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS58-079",
+  "name": "Chariot Dream",
+  "name_jp": "チャリオットドリーム",
+  "type": "Magic",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nReturn an opposing Spirit/Nexus to the Hand.\n{{Rush|Purple}}\n(While you have Purple symbols, the following effects activates next)\n: Draw a card.\n: Destroy an opposing Ultimate with three cores or more on it.",
+  "image": "BS58 079.png",
+  "block": "58",
+  "saga": 12,
+  "mechanics": [
+   "Rush"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Return an opposing Spirit/Nexus to the Hand.",
+   "{{Rush|Purple}}",
+   "(While you have Purple symbols, the following effects activates next)",
+   ": Draw a card.",
+   ": Destroy an opposing Ultimate with three cores or more on it."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS58-080",
+  "name": "Oracle VII Over Chariot",
+  "name_jp": "オラクル VII オーバーチャリオット",
+  "type": "Magic",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 1,
+   "purple": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{Mirage|Cost 3 ()}}\nDuring Set (When Set)\nReturn an opposing Cost 4 or less Spirit/Nexus to the Hand. Or, if you control any \"The Chariot\" Spirit, return an opposing Spirit/Nexus to the deckbottom.\n\nDuring Set\nYour Life can't be reduced to zero by opposing effects.\n\nFlash\nDuring this turn, your Life can't be reduced to zero by opposing effects and the attacks of opposing Cost 4 or more Spirits/Ultimates.",
+  "image": "BS58 080.png",
+  "block": "58",
+  "saga": 12,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Mirage|Cost 3 ()}}",
+   "During Set (When Set)",
+   "Return an opposing Cost 4 or less Spirit/Nexus to the Hand.",
+   "Or, if you control any \"The Chariot\" Spirit, return an opposing Spirit/Nexus to the deckbottom.",
+   "During Set",
+   "Your Life can't be reduced to zero by opposing effects.",
+   "Flash",
+   "During this turn, your Life can't be reduced to zero by opposing effects and the attacks of opposing Cost 4 or more Spirits/Ultimates."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS58-081",
+  "name": "Rejection Feather",
+  "name_jp": "リジェクションフェザー",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 4,
+  "reduction": {
+   "yellow": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card in Trash is unaffected by any effects.\n\n{{Mirage|Cost 5 ()}}\nDuring Set (Your Attack Step)\nOnce per turn, when your \"Divine Spirit\" family Spirits would leave the Field by opposing effects, you can put a core from the Void to your Life. When you've done so, one of those Spirits remains on the Field in exhausted state.\n\nFlash\nDuring this turn, your Life can't be reduced by the attacks of opposing Cost 4 or more Spirits.",
+  "image": "BS58 081.png",
+  "block": "58",
+  "saga": 12,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "This card in Trash is unaffected by any effects.",
+   "{{Mirage|Cost 5 ()}}",
+   "During Set (Your Attack Step)",
+   "Once per turn, when your \"Divine Spirit\" family Spirits would leave the Field by opposing effects, you can put a core from the Void to your Life.",
+   "When you've done so, one of those Spirits remains on the Field in exhausted state.",
+   "Flash",
+   "During this turn, your Life can't be reduced by the attacks of opposing Cost 4 or more Spirits."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS58-082",
+  "name": "Flow Light Petal",
+  "name_jp": "フローライトペタル",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 5,
+  "reduction": {
+   "yellow": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Astroblazer",
+   "Hunter Beast"
+  ],
+  "text": "{{Burst|After an opposing Spirit's (When Summoned/Advents) effect resolves}}\nReturn an opposing Spirit/Ultimate to the decktop. Then by paying the cost, activate this card's Flash effect.\n\nFlash\nDuring this turn, every opposing Spirit/Ultimate can't attack. Also, if it is the opposing Attack Step, by sending three cores from an exactly-named \"Grandwalker Parvati\" you control to the Void, immediately end the battle.",
+  "image": "BS58 082.png",
+  "block": "58",
+  "saga": 12,
+  "mechanics": [
+   "Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Burst|After an opposing Spirit's (When Summoned/Advents) effect resolves}}",
+   "Return an opposing Spirit/Ultimate to the decktop.",
+   "Then by paying the cost, activate this card's Flash effect.",
+   "Flash",
+   "During this turn, every opposing Spirit/Ultimate can't attack.",
+   "Also, if it is the opposing Attack Step, by sending three cores from an exactly-named \"Grandwalker Parvati\" you control to the Void, immediately end the battle."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS58-083",
@@ -9615,6 +10606,33 @@
    "8"
   ],
   "rcode": "R"
+ },
+ {
+  "id": "BS58-084",
+  "name": "Tower Break",
+  "name_jp": "タワーブレイク",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 6,
+  "reduction": {
+   "blue": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card in Trash is unaffected by any effects.\n\nWhen using this card during either Attack Step, if your Life is at three or less, this card becomes Cost 3.\n\nFlash\nIgnoring the costs of Braves, destroy an opposing Cost 6 or less Spirit/Ultimate. Also, if all cards in your Trash are Blue, during this battle, your Life can't be reduced.",
+  "image": "BS58 084.png",
+  "block": "58",
+  "saga": 12,
+  "fxComplete": false,
+  "residual": [
+   "This card in Trash is unaffected by any effects.",
+   "When using this card during either Attack Step, if your Life is at three or less, this card becomes Cost 3.",
+   "Flash",
+   "Ignoring the costs of Braves, destroy an opposing Cost 6 or less Spirit/Ultimate.",
+   "Also, if all cards in your Trash are Blue, during this battle, your Life can't be reduced."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS58-X01",
@@ -12560,6 +13578,55 @@
   "rcode": "M"
  },
  {
+  "id": "BS59-057",
+  "name": "The SpacePirate Shariba-Luke",
+  "name_jp": "宇宙海賊シャリバ・ルーク",
+  "type": "Spirit",
+  "color": "blue",
+  "cost": 6,
+  "reduction": {
+   "blue": 3,
+   "purple": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 2,
+    "bp": 8000
+   },
+   {
+    "cores": 4,
+    "bp": 11000
+   }
+  ],
+  "families": [
+   "Astroblazer",
+   "Beast Head"
+  ],
+  "text": "Flash - Accel: Cost 5\nYou can deploy a Purple/Blue Nexus card with either the \"Proximate\" family or Mirage effects from the Trash, without paying the cost. After this effect resolves, put this card face-up onto your Removed Zone.\n\n[LV1][LV2][LV3] Mirage Trance: Purple/Blue\nBesides (When Deployed) effects, your Purple/Blue Mirage also activates its LV1/LV2 Nexus effects.\n\n[LV2][LV3] (Your Attack Step)\nWhen your Spirit with Mirage Trance attacks, you can destroy an opposing Spirit with the lowest cost.",
+  "image": "BS59 057.png",
+  "block": "59",
+  "saga": 12,
+  "mechanics": [
+   "Accel"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Flash - Accel: Cost 5",
+   "You can deploy a Purple/Blue Nexus card with either the \"Proximate\" family or Mirage effects from the Trash, without paying the cost.",
+   "After this effect resolves, put this card face-up onto your Removed Zone.",
+   "[LV1][LV2][LV3] Mirage Trance: Purple/Blue",
+   "Besides (When Deployed) effects, your Purple/Blue Mirage also activates its [LV1]/[LV2] Nexus effects.",
+   "[LV2][LV3] (Your Attack Step)",
+   "When your Spirit with Mirage Trance attacks, you can destroy an opposing Spirit with the lowest cost."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS59-058",
   "name": "Cologne-Golem",
   "name_jp": "ケルン・ゴレム",
@@ -13004,6 +14071,191 @@
    "8"
   ],
   "rcode": "M"
+ },
+ {
+  "id": "BS59-072",
+  "name": "Oracle XIX Over Sun",
+  "name_jp": "オラクルXIX オーバーサン",
+  "type": "Magic",
+  "color": "red",
+  "cost": 4,
+  "reduction": {
+   "red": 2,
+   "green": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{mirage|Cost 4 ()}}\nDuring Set (Start of Your Attack Step)\nIf the opponent controls any Spirit, you can draw a card. When you control any \"The Sun\"-named Spirit, increase the number of cards drawn by this effect by +1.\n\nDuring Set (Opposing End Step)\nWhen the opponent didn't summon any Spirit/Ultimate during this turn, if their Life is two or more, you can send an opposing Life to the Reserve.\n\nFlash\nDestroy an opposing Spirit with two symbols or more.",
+  "image": "BS59 072_.png",
+  "block": "59",
+  "saga": 12,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{mirage|Cost 4 ()}}",
+   "During Set (Start of Your Attack Step)",
+   "If the opponent controls any Spirit, you can draw a card.",
+   "When you control any \"The Sun\"-named Spirit, increase the number of cards drawn by this effect by +1.",
+   "During Set (Opposing End Step)",
+   "When the opponent didn't summon any Spirit/Ultimate during this turn, if their Life is two or more, you can send an opposing Life to the Reserve.",
+   "Flash",
+   "Destroy an opposing Spirit with two symbols or more."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS59-073",
+  "name": "Oracle IX Over Hermit",
+  "name_jp": "オラクルIX オーバーハーミット",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 4,
+  "reduction": {
+   "purple": 2,
+   "white": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{mirage|Cost 4 ()}}\nDuring Set (Start of Your Attack Step)\nYou can send a core from the opposing Field to the Reserve.\n\nDuring Set (Start of Opposing Attack Step)\nThe opponent sends cores from a Spirit/Ultimate they control to the Reserve until only one core remains. If you control any \"The Hermit\"-named Spirit, the cores to be sent to Reserve by this effect are sent to the Trash instead.\n\nFlash\nDestroy an opposing Spirit/Ultimate with three cores or more on it.",
+  "image": "BS59 073_.png",
+  "block": "59",
+  "saga": 12,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{mirage|Cost 4 ()}}",
+   "During Set (Start of Your Attack Step)",
+   "You can send a core from the opposing Field to the Reserve.",
+   "During Set (Start of Opposing Attack Step)",
+   "The opponent sends cores from a Spirit/Ultimate they control to the Reserve until only one core remains.",
+   "If you control any \"The Hermit\"-named Spirit, the cores to be sent to Reserve by this effect are sent to the Trash instead.",
+   "Flash",
+   "Destroy an opposing Spirit/Ultimate with three cores or more on it."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS59-074",
+  "name": "Oblivion Wind",
+  "name_jp": "オブリビオンウィンド",
+  "type": "Magic",
+  "color": "green",
+  "cost": 4,
+  "reduction": {
+   "green": 2,
+   "yellow": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDuring this turn, give every \"Winged Beast\"/\"Hunter Beast\" family Spirit you control the effect: \"(When Attacks) The opponent can't activate any Burst effects.\"",
+  "image": "BS59 074.png",
+  "block": "59",
+  "saga": 12,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "During this turn, give every \"Winged Beast\"/\"Hunter Beast\" family Spirit you control the effect: \"(When Attacks) The opponent can't activate any Burst effects.\""
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS59-075",
+  "name": "Great Tank Impact",
+  "name_jp": "グレートタンクインパクト",
+  "type": "Magic",
+  "color": "white",
+  "cost": 6,
+  "reduction": {
+   "white": 3,
+   "purple": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nReturn an opposing Spirit and an opposing Brave to the deckbottom, and when returns, you can summon a \"PanzerBuild\"-named Spirit card from your Hand/Trash, without paying the cost. Also, if you control any \"Hermit\"-named Spirit, treat this card as colorless.",
+  "image": "BS59 075.png",
+  "block": "59",
+  "saga": 12,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Return an opposing Spirit and an opposing Brave to the deckbottom, and when returns, you can summon a \"PanzerBuild\"-named Spirit card from your Hand/Trash, without paying the cost.",
+   "Also, if you control any \"Hermit\"-named Spirit, treat this card as colorless."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS59-077",
+  "name": "Time Backflow",
+  "name_jp": "タイムバックフロウ",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 3,
+  "reduction": {
+   "blue": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card in Trash has the \"Chrownos\" family.\n\n{{Burst|After your Spirit is depleted/destroyed by the Opponent}}\nSummon a Cost 9 or less \"Chrownos\" family Spirit card from your Trash that was depleted/destroyed when this Burst activates, without paying the cost. Then, by paying the cost, activate this card's Main effect.\n\nMain\nDraw three cards. Then, discard three cards from your Hand. Before you discard, by returning three \"Chrownos\" family cards from your Trash to the deckbottom, reduce the number cards to be discarded by this effect by -1.",
+  "image": "BS59 077.png",
+  "block": "59",
+  "saga": 12,
+  "mechanics": [
+   "Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "This card in Trash has the \"Chrownos\" family.",
+   "{{Burst|After your Spirit is depleted/destroyed by the Opponent}}",
+   "Summon a Cost 9 or less \"Chrownos\" family Spirit card from your Trash that was depleted/destroyed when this Burst activates, without paying the cost.",
+   "Then, by paying the cost, activate this card's Main effect.",
+   "Main",
+   "Draw three cards.",
+   "Then, discard three cards from your Hand.",
+   "Before you discard, by returning three \"Chrownos\" family cards from your Trash to the deckbottom, reduce the number cards to be discarded by this effect by -1."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS59-078",
+  "name": "Oracle X Over Wheel of Fortune",
+  "name_jp": "オラクルX オーバーホイール・オブ・フォーチュン",
+  "type": "Magic",
+  "color": "red",
+  "cost": 4,
+  "reduction": {
+   "red": 1,
+   "white": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card has \"Proximate\"/\"Galaxian\" family.\n\n{{mirage|Cost 2}}\nDuring Set (When Set)\nIf you control any \"The Wheel Of Fortune\"-named Spirit, put two cards from your decktop to the Removed Zone.\n\nFlash\nWhen this battle ends, end the Attack Step. Also, if there are three or more \"Proximate\"/\"Astroblazer\" & Galaxian\" family cards on your Removed Zone, during this turn, when the opponent would reduce your Life by two or more at once, your Life won't be reduced.",
+  "image": "BS59 078__.png",
+  "block": "59",
+  "saga": 12,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "This card has \"Proximate\"/\"Galaxian\" family.",
+   "{{mirage|Cost 2}}",
+   "During Set (When Set)",
+   "If you control any \"The Wheel Of Fortune\"-named Spirit, put two cards from your decktop to the Removed Zone.",
+   "Flash",
+   "When this battle ends, end the Attack Step.",
+   "Also, if there are three or more \"Proximate\"/\"Astroblazer\" & Galaxian\" family cards on your Removed Zone, during this turn, when the opponent would reduce your Life by two or more at once, your Life won't be reduced."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS59-RV001",

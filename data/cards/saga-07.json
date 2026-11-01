@@ -2955,6 +2955,247 @@
   "rcode": "R"
  },
  {
+  "id": "BS35-067",
+  "name": "War Dragon Demon-God",
+  "name_jp": "武龍魔神",
+  "type": "Brave",
+  "color": "red",
+  "cost": 5,
+  "reduction": {
+   "red": 2,
+   "purple": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 4000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "War Dragon"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\nWhen Braved on the Right (When Attacks)\nDuring this turn, give a \"War Dragon\" family Spirit you control +5000 BP. If that Spirit is Cost 10 or more, also, give it an extra Red Symbol.\n\nWhen Braved on the Left (When Attacks)\nOnce per turn, you can summon a \"War Dragon\" family Spirit card from your Trash, without paying the cost.",
+  "image": "BS35-067 (Fixed).jpg",
+  "block": "35",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "When Braved on the Right (When Attacks)",
+   "During this turn, give a \"War Dragon\" family Spirit you control +5000 BP.",
+   "If that Spirit is Cost 10 or more, also, give it an extra Red Symbol.",
+   "When Braved on the Left (When Attacks)",
+   "Once per turn, you can summon a \"War Dragon\" family Spirit card from your Trash, without paying the cost."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 4000,
+   "costGe": 4
+  }
+ },
+ {
+  "id": "BS35-068",
+  "name": "Shiki Demon-God",
+  "name_jp": "式鬼魔神",
+  "type": "Brave",
+  "color": "purple",
+  "cost": 4,
+  "reduction": {
+   "purple": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 6000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Ogre Wizard"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+  "image": "BS35-068 (Fixed).jpg",
+  "block": "35",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 6000,
+   "costGe": 4
+  }
+ },
+ {
+  "id": "BS35-069",
+  "name": "Shinobi Demon-God",
+  "name_jp": "忍魔神",
+  "type": "Brave",
+  "color": "green",
+  "cost": 5,
+  "reduction": {
+   "green": 2,
+   "red": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 3000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Ninja Gale"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\nWhen Braved on Right (When Attacks)\nYou can summon a \"Ninja Gale\" family Spirit card from your Hand, without paying the cost.\n\nWhen Braved on Left (When Attacks)\nDraw a card. Or, destroy an opposing Nexus.",
+  "image": "BS35-069 (Fixed).jpg",
+  "block": "35",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "When Braved on Right (When Attacks)",
+   "You can summon a \"Ninja Gale\" family Spirit card from your Hand, without paying the cost.",
+   "When Braved on Left (When Attacks)",
+   "Draw a card.",
+   "Or, destroy an opposing Nexus."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 3000,
+   "costGe": 4
+  }
+ },
+ {
+  "id": "BS35-070",
+  "name": "Clever Machine Demon-God",
+  "name_jp": "機巧魔神",
+  "type": "Brave",
+  "color": "white",
+  "cost": 5,
+  "reduction": {
+   "white": 2,
+   "red": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 5000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Clever Machine"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\nWhen Braved on Right (When Attacks/Blocks)\nDraw a card. If any Spirit with Ultra Armor you control is exhausted, also, destroy an opposing 5000 BP or less Spirit.\n\nWhen Braved on Left {{ua|Purple/Yellow}}\nThis Spirit is unaffected by opposing Purple/Yellow Spirit/Ultimate/Nexus/Magic effects.",
+  "image": "BS35-070 (Fixed).jpg",
+  "block": "35",
+  "saga": 7,
+  "mechanics": [
+   "Ultra Armor"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "When Braved on Right (When Attacks/Blocks)",
+   "Draw a card.",
+   "If any Spirit with Ultra Armor you control is exhausted, also, destroy an opposing 5000 BP or less Spirit.",
+   "When Braved on Left {{ua|Purple/Yellow}}",
+   "This Spirit is unaffected by opposing Purple/Yellow Spirit/Ultimate/Nexus/Magic effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 5000,
+   "costGe": 4
+  }
+ },
+ {
+  "id": "BS35-071",
+  "name": "Demon-God Princess",
+  "name_jp": "魔神姫",
+  "type": "Brave",
+  "color": "yellow",
+  "cost": 5,
+  "reduction": {
+   "yellow": 2,
+   "purple": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 4000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Fairy"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\nWhen Braved on Right (When Attacks)\nWhen you use a Magic card, after its effect resolves, send two cores from any opposing Spirits to their Reserve.\n\nWhen Braved on Left (When Attacks)\nReturn a Magic card with the same color as this Spirit's symbols from your Trash to the Hand.",
+  "image": "BS35-071 (Fixed).jpg",
+  "block": "35",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "When Braved on Right (When Attacks)",
+   "When you use a Magic card, after its effect resolves, send two cores from any opposing Spirits to their Reserve.",
+   "When Braved on Left (When Attacks)",
+   "Return a Magic card with the same color as this Spirit's symbols from your Trash to the Hand."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 4000,
+   "costGe": 4
+  }
+ },
+ {
+  "id": "BS35-072",
+  "name": "Shark Demon-God",
+  "name_jp": "鮫魔神",
+  "type": "Brave",
+  "color": "blue",
+  "cost": 5,
+  "reduction": {
+   "blue": 2,
+   "purple": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 4000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Fusion Beast"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\nWhen Braved on Right (When Attacks)\nBy destroying an opposing Spirit with two or less cores on it, during this turn, the opponent can't use Cost 3 or less Magic cards from their Hand.\n\nWhen Braved on Left (When Attacks)\nSend a core from any opposing Spirits to the Reserve.",
+  "image": "BS35-072 (Fixed).jpg",
+  "block": "35",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "When Braved on Right (When Attacks)",
+   "By destroying an opposing Spirit with two or less cores on it, during this turn, the opponent can't use Cost 3 or less Magic cards from their Hand.",
+   "When Braved on Left (When Attacks)",
+   "Send a core from any opposing Spirits to the Reserve."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 4000,
+   "costGe": 5
+  }
+ },
+ {
   "id": "BS35-073",
   "name": "No. 7 Good Luck Island",
   "name_jp": "No.7 グッドラックアイランド",
@@ -3348,6 +3589,31 @@
   "rcode": "R"
  },
  {
+  "id": "BS35-085",
+  "name": "Drago Flame",
+  "name_jp": "ドラゴフレイム",
+  "type": "Magic",
+  "color": "red",
+  "cost": 3,
+  "reduction": {
+   "red": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDestroy all 3000 BP or less Spirits. Or, destroy a Brave on an opposing Brave Spirit.",
+  "image": "BS35-085 (Fixed).jpg",
+  "block": "35",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Destroy all 3000 BP or less Spirits.",
+   "Or, destroy a Brave on an opposing Brave Spirit."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS35-086",
   "name": "Emperor Draw",
   "name_jp": "エンペラードロー",
@@ -3380,6 +3646,32 @@
    "5"
   ],
   "rcode": "C"
+ },
+ {
+  "id": "BS35-087",
+  "name": "Burning Lance Crush",
+  "name_jp": "烈火槍激破",
+  "type": "Magic",
+  "color": "red",
+  "cost": 6,
+  "reduction": {
+   "red": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nYou can refresh one of your Spirit-condition \"Exalted Sword\" family Braves. Then, by braving that Brave to one of your \"Lord\" family Spirits, send all cores from your Trash to that Brave Spirit. This effect can't be used during the Main Step.",
+  "image": "BS35-087 (Fixed).jpg",
+  "block": "35",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "You can refresh one of your Spirit-condition \"Exalted Sword\" family Braves.",
+   "Then, by braving that Brave to one of your \"Lord\" family Spirits, send all cores from your Trash to that Brave Spirit.",
+   "This effect can't be used during the Main Step."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS35-088",
@@ -3448,6 +3740,339 @@
   "rcode": "C"
  },
  {
+  "id": "BS35-090",
+  "name": "Amethyst Raideen",
+  "name_jp": "アメジストライディーン",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 7,
+  "reduction": {
+   "purple": 4
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nSend three cores each from every opposing exhausted Spirit/Ultimate to their Trash.",
+  "image": "BS35-090 (Fixed).jpg",
+  "block": "35",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Send three cores each from every opposing exhausted Spirit/Ultimate to their Trash."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS35-091",
+  "name": "Power of Wind",
+  "name_jp": "パワーオブウィンド",
+  "type": "Magic",
+  "color": "green",
+  "cost": 2,
+  "reduction": {
+   "green": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDuring this turn, give all your Spirits +3000 BP.\nDuring Seal Instead, during this turn, give all your Spirits +10000 BP.",
+  "image": "BS35-091 (Fixed).jpg",
+  "block": "35",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "During this turn, give all your Spirits +3000 BP.",
+   "During Seal Instead, during this turn, give all your Spirits +10000 BP."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS35-092",
+  "name": "Flap Wing",
+  "name_jp": "フラップウィング",
+  "type": "Magic",
+  "color": "green",
+  "cost": 3,
+  "reduction": {
+   "green": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nExhaust an opposing Spirit. Or, exhaust three opposing Cost 4 or less Spirits. If  (Soul Core) was used to pay for the cost, instead, exhaust an opposing Spirit and three opposing Cost 4 or less Spirits.",
+  "image": "BS35-092 (Fixed).jpg",
+  "block": "35",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Exhaust an opposing Spirit.",
+   "Or, exhaust three opposing Cost 4 or less Spirits.",
+   "If  (Soul Core) was used to pay for the cost, instead, exhaust an opposing Spirit and three opposing Cost 4 or less Spirits."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS35-093",
+  "name": "Gale Lord Finish",
+  "name_jp": "ゲイルロードフィニッシュ",
+  "type": "Magic",
+  "color": "green",
+  "cost": 6,
+  "reduction": {
+   "green": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nExhaust two opposing Spirits/Ultimates.\nDuring Seal Then, return all opposing exhausted Spirits/Ultimates to the Hand.",
+  "image": "BS35-093 (Fixed).jpg",
+  "block": "35",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Exhaust two opposing Spirits/Ultimates.",
+   "During Seal Then, return all opposing exhausted Spirits/Ultimates to the Hand."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS35-094",
+  "name": "Magic Rope",
+  "name_jp": "マジックロープ",
+  "type": "Magic",
+  "color": "white",
+  "cost": 2,
+  "reduction": {
+   "white": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "During (Your End Step), if you control any \"God-King\"/\"Ten Crown\" family Spirit, return one [Magic Rope] from your Trash to the Hand. This effect can only be used once per turn.\n\nAt the (Start of Opposing Attack Step), you can use this Magic card from the Hand.\n\nFlash\nTarget an opposing Spirit/Ultimate. During this turn, that Spirit/Ultimate must attack if possible.",
+  "image": "BS35-094 (Fixed).jpg",
+  "block": "35",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "During (Your End Step), if you control any \"God-King\"/\"Ten Crown\" family Spirit, return one [Magic Rope] from your Trash to the Hand.",
+   "This effect can only be used once per turn.",
+   "At the (Start of Opposing Attack Step), you can use this Magic card from the Hand.",
+   "Flash",
+   "Target an opposing Spirit/Ultimate.",
+   "During this turn, that Spirit/Ultimate must attack if possible."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS35-095",
+  "name": "Sheep Wall",
+  "name_jp": "シープウォール",
+  "type": "Magic",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{Burst|After your Life is reduced}}\nReturn an opposing non-braved Spirit/Ultimate to the Hand. Then, by paying the cost, activate this card's Flash effect.\n\nFlash\nWhen this battle ends, end the Attack Step.",
+  "image": "BS35-095 (Fixed).jpg",
+  "block": "35",
+  "saga": 7,
+  "mechanics": [
+   "Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Burst|After your Life is reduced}}",
+   "Return an opposing non-braved Spirit/Ultimate to the Hand.",
+   "Then, by paying the cost, activate this card's Flash effect.",
+   "Flash",
+   "When this battle ends, end the Attack Step."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS35-096",
+  "name": "Dream Slash",
+  "name_jp": "ドリームスラッシュ",
+  "type": "Magic",
+  "color": "white",
+  "cost": 5,
+  "reduction": {
+   "white": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nReturn an opposing Spirit/Ultimate to the Hand.\nDuring Seal Also, refresh one of your Spirits.",
+  "image": "BS35-096 (Fixed).jpg",
+  "block": "35",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Return an opposing Spirit/Ultimate to the Hand.",
+   "During Seal Also, refresh one of your Spirits."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS35-097",
+  "name": "Fruit Change",
+  "name_jp": "フルーツチェンジ",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 3,
+  "reduction": {
+   "yellow": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDuring this battle, when comparing BP, exchange the battling Spirit's/Ultimate's BPs.",
+  "image": "BS35-097 (Fixed).jpg",
+  "block": "35",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "During this battle, when comparing BP, exchange the battling Spirit's/Ultimate's BPs."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS35-098",
+  "name": "Flying Carpet",
+  "name_jp": "フライングカーペット",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 4,
+  "reduction": {
+   "yellow": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDuring this battle, your \"Drifting Spirit\"/\"Fairy\" family Spirits can't be blocked by opposing 5000 BP or less Spirits and opposing 8000 BP or less Ultimates.",
+  "image": "BS35-098 (Fixed).jpg",
+  "block": "35",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "During this battle, your \"Drifting Spirit\"/\"Fairy\" family Spirits can't be blocked by opposing 5000 BP or less Spirits and opposing 8000 BP or less Ultimates."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS35-099",
+  "name": "Yellow Sun",
+  "name_jp": "イエローサン",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 7,
+  "reduction": {
+   "yellow": 4
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDuring this turn, give every opposing Spirit/Ultimate -7000 BP. Destroy every Spirit/Ultimate who was brought to 0 BP by this effect.",
+  "image": "BS35-099 (Fixed).jpg",
+  "block": "35",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "During this turn, give every opposing Spirit/Ultimate -7000 BP.",
+   "Destroy every Spirit/Ultimate who was brought to 0 BP by this effect."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS35-100",
+  "name": "Ocean Energy",
+  "name_jp": "オーシャンエナジー",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 3,
+  "reduction": {
+   "blue": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDuring this turn, give a Spirit +3000 BP. If your Hand has zero cards, also, draw three cards. Then, discard a card from your Hand.",
+  "image": "BS35-100 (Fixed).jpg",
+  "block": "35",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "During this turn, give a Spirit +3000 BP.",
+   "If your Hand has zero cards, also, draw three cards.",
+   "Then, discard a card from your Hand."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS35-101",
+  "name": "Purge Attack",
+  "name_jp": "パージアタック",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 4,
+  "reduction": {
+   "blue": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDestroy an opposing Cost 4 or less Spirit. If (Soul Core) was used to pay the cost, also, you can deploy a Nexus card from your Hand, without paying the cost.",
+  "image": "BS35-101 (Fixed).jpg",
+  "block": "35",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Destroy an opposing Cost 4 or less Spirit.",
+   "If (Soul Core) was used to pay the cost, also, you can deploy a Nexus card from your Hand, without paying the cost."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS35-102",
+  "name": "Wind-Thunder Break",
+  "name_jp": "風雷破",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 6,
+  "reduction": {
+   "blue": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "If you control both [The WindGod Wisdom King] and [The ThunderGod Wisdom King], this Magic card in your Hand is treated as Cost 3.\n\nFlash\nDestroy opposing Cost 0/1/2/3/4/5 Spirits, one of each. If  (Soul Core) was used to pay the cost, also, destroy an opposing Cost 7 or more Spirit/Ultimate.",
+  "image": "BS35-102 (Fixed).jpg",
+  "block": "35",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "If you control both [The WindGod Wisdom King] and [The ThunderGod Wisdom King], this Magic card in your Hand is treated as Cost 3.",
+   "Flash",
+   "Destroy opposing Cost 0/1/2/3/4/5 Spirits, one of each.",
+   "If  (Soul Core) was used to pay the cost, also, destroy an opposing Cost 7 or more Spirit/Ultimate."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS35-CP01",
   "name": "The JadeEmperorDragon Daiteiou",
   "name_jp": "玉帝龍ダイテイオウ",
@@ -3491,6 +4116,264 @@
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "rcode": "CP"
+ },
+ {
+  "id": "BS35-X005A",
+  "name": "The BigDipperDragon Sieg-Apollodragon",
+  "name_jp": "北斗七星龍ジーク・アポロドラゴン",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 6,
+  "reduction": {
+   "red": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 3,
+    "bp": 8000
+   },
+   {
+    "cores": 5,
+    "bp": 11000
+   }
+  ],
+  "families": [
+   "Astral Deity",
+   "Astral Dragon"
+  ],
+  "text": "[LV1][LV2][LV3] (When Summoned)\nYou can summon a Brave card from your Hand, without paying the cost. When a Brave is summoned with this effect, draw a card.\n\nWhen Braved [LV3] (When Attacks)\nWhen only the opposing Spirit is destroyed by comparing BP, destroy an opposing Spirit.",
+  "image": null,
+  "block": "35",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2][LV3] (When Summoned)",
+   "You can summon a Brave card from your Hand, without paying the cost.",
+   "When a Brave is summoned with this effect, draw a card.",
+   "When Braved [LV3] (When Attacks)",
+   "When only the opposing Spirit is destroyed by comparing BP, destroy an opposing Spirit."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS35-X005D",
+  "name": "The BigDipperDragon Sieg-Apollodragon",
+  "name_jp": "北斗七星龍ジーク・アポロドラゴン",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 6,
+  "reduction": {
+   "red": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 3,
+    "bp": 8000
+   },
+   {
+    "cores": 5,
+    "bp": 11000
+   }
+  ],
+  "families": [
+   "Astral Deity",
+   "Astral Dragon"
+  ],
+  "text": "[LV1][LV2][LV3] (When Summoned)\nYou can summon a Brave card from your Hand, without paying the cost. When a Brave is summoned with this effect, draw a card.\n\nWhen Braved [LV3] (When Attacks)\nWhen only the opposing Spirit is destroyed by comparing BP, destroy an opposing Spirit.",
+  "image": null,
+  "block": "35",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2][LV3] (When Summoned)",
+   "You can summon a Brave card from your Hand, without paying the cost.",
+   "When a Brave is summoned with this effect, draw a card.",
+   "When Braved [LV3] (When Attacks)",
+   "When only the opposing Spirit is destroyed by comparing BP, destroy an opposing Spirit."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS35-X005E",
+  "name": "The BigDipperDragon Sieg-Apollodragon",
+  "name_jp": "北斗七星龍ジーク・アポロドラゴン",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 6,
+  "reduction": {
+   "red": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 3,
+    "bp": 8000
+   },
+   {
+    "cores": 5,
+    "bp": 11000
+   }
+  ],
+  "families": [
+   "Astral Deity",
+   "Astral Dragon"
+  ],
+  "text": "[LV1][LV2][LV3] (When Summoned)\nYou can summon a Brave card from your Hand, without paying the cost. When a Brave is summoned with this effect, draw a card.\n\nWhen Braved [LV3] (When Attacks)\nWhen only the opposing Spirit is destroyed by comparing BP, destroy an opposing Spirit.",
+  "image": null,
+  "block": "35",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2][LV3] (When Summoned)",
+   "You can summon a Brave card from your Hand, without paying the cost.",
+   "When a Brave is summoned with this effect, draw a card.",
+   "When Braved [LV3] (When Attacks)",
+   "When only the opposing Spirit is destroyed by comparing BP, destroy an opposing Spirit."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS35-X005R",
+  "name": "The BigDipperDragon Sieg-Apollodragon",
+  "name_jp": "北斗七星龍ジーク・アポロドラゴン",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 6,
+  "reduction": {
+   "red": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 3,
+    "bp": 8000
+   },
+   {
+    "cores": 5,
+    "bp": 11000
+   }
+  ],
+  "families": [
+   "Astral Deity",
+   "Astral Dragon"
+  ],
+  "text": "[LV1][LV2][LV3] (When Summoned)\nYou can summon a Brave card from your Hand, without paying the cost. When a Brave is summoned with this effect, draw a card.\n\nWhen Braved [LV3] (When Attacks)\nWhen only the opposing Spirit is destroyed by comparing BP, destroy an opposing Spirit.",
+  "image": null,
+  "block": "35",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2][LV3] (When Summoned)",
+   "You can summon a Brave card from your Hand, without paying the cost.",
+   "When a Brave is summoned with this effect, draw a card.",
+   "When Braved [LV3] (When Attacks)",
+   "When only the opposing Spirit is destroyed by comparing BP, destroy an opposing Spirit."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS35-X005S",
+  "name": "The BigDipperDragon Sieg-Apollodragon",
+  "name_jp": "北斗七星龍ジーク・アポロドラゴン",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 6,
+  "reduction": {
+   "red": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 3,
+    "bp": 8000
+   },
+   {
+    "cores": 5,
+    "bp": 11000
+   }
+  ],
+  "families": [
+   "Astral Deity",
+   "Astral Dragon"
+  ],
+  "text": "[LV1][LV2][LV3] (When Summoned)\nYou can summon a Brave card from your Hand, without paying the cost. When a Brave is summoned with this effect, draw a card.\n\nWhen Braved [LV3] (When Attacks)\nWhen only the opposing Spirit is destroyed by comparing BP, destroy an opposing Spirit.",
+  "image": null,
+  "block": "35",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2][LV3] (When Summoned)",
+   "You can summon a Brave card from your Hand, without paying the cost.",
+   "When a Brave is summoned with this effect, draw a card.",
+   "When Braved [LV3] (When Attacks)",
+   "When only the opposing Spirit is destroyed by comparing BP, destroy an opposing Spirit."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS35-X005T",
+  "name": "The BigDipperDragon Sieg-Apollodragon",
+  "name_jp": "北斗七星龍ジーク・アポロドラゴン",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 6,
+  "reduction": {
+   "red": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 3,
+    "bp": 8000
+   },
+   {
+    "cores": 5,
+    "bp": 11000
+   }
+  ],
+  "families": [
+   "Astral Deity",
+   "Astral Dragon"
+  ],
+  "text": "[LV1][LV2][LV3] (When Summoned)\nYou can summon a Brave card from your Hand, without paying the cost. When a Brave is summoned with this effect, draw a card.\n\nWhen Braved [LV3] (When Attacks)\nWhen only the opposing Spirit is destroyed by comparing BP, destroy an opposing Spirit.",
+  "image": null,
+  "block": "35",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2][LV3] (When Summoned)",
+   "You can summon a Brave card from your Hand, without paying the cost.",
+   "When a Brave is summoned with this effect, draw a card.",
+   "When Braved [LV3] (When Attacks)",
+   "When only the opposing Spirit is destroyed by comparing BP, destroy an opposing Spirit."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS35-X01",
@@ -6161,6 +7044,370 @@
   "rcode": "M"
  },
  {
+  "id": "BS36-057",
+  "name": "Fire Demon-God",
+  "name_jp": "火魔神",
+  "type": "Brave",
+  "color": "red",
+  "cost": 4,
+  "reduction": {
+   "red": 2,
+   "green": 1
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 4000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Machine Dragon"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\nWhen Braved on Right (When Attacks)\nDraw a card.\n\nWhen Braved on Left (When Attacks)\nPut a core from the Void to any of your Spirits.",
+  "image": "BS36-057.jpg",
+  "block": "36",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "When Braved on Right (When Attacks)",
+   "Draw a card.",
+   "When Braved on Left (When Attacks)",
+   "Put a core from the Void to any of your Spirits."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 4000,
+   "costLe": 3
+  }
+ },
+ {
+  "id": "BS36-058",
+  "name": "Mystic Demon-God",
+  "name_jp": "妖魔神",
+  "type": "Brave",
+  "color": "purple",
+  "cost": 3,
+  "reduction": {
+   "purple": 1,
+   "yellow": 1
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 2000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Ogre Wizard"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\nWhen Braved on Right (When Attacks)\nSend a core from any opposing Spirits to the Reserve.\n\nWhen Braved on Left (When Attacks)\nDuring this turn, give an opposing Spirit -5000 BP. Destroy the Spirit that is brought to 0 BP by this effect.",
+  "image": "BS36-058.jpg",
+  "block": "36",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "When Braved on Right (When Attacks)",
+   "Send a core from any opposing Spirits to the Reserve.",
+   "When Braved on Left (When Attacks)",
+   "During this turn, give an opposing Spirit -5000 BP.",
+   "Destroy the Spirit that is brought to 0 BP by this effect."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 2000,
+   "costLe": 4
+  }
+ },
+ {
+  "id": "BS36-059",
+  "name": "Fang Demon-God",
+  "name_jp": "牙魔神",
+  "type": "Brave",
+  "color": "green",
+  "cost": 3,
+  "reduction": {
+   "green": 1,
+   "red": 1
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 2000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Blade Beast"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\nWhen Braved on Right (When Attacks)\nWhen this Spirit's attack reduces the opposing Life, send an opposing Life to the Reserve.\n\nWhen Braved on Left (When Attacks)\nDestroy an opposing 5000 BP or less Spirit.",
+  "image": "BS36-059.jpg",
+  "block": "36",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "When Braved on Right (When Attacks)",
+   "When this Spirit's attack reduces the opposing Life, send an opposing Life to the Reserve.",
+   "When Braved on Left (When Attacks)",
+   "Destroy an opposing 5000 BP or less Spirit."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 2000,
+   "costLe": 3
+  }
+ },
+ {
+  "id": "BS36-060",
+  "name": "Wolf Demon-God",
+  "name_jp": "狼魔神",
+  "type": "Brave",
+  "color": "white",
+  "cost": 3,
+  "reduction": {
+   "white": 1,
+   "red": 1
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 3000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Machine Beast"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\nWhen Braved on Right (When Attacks)\nThis Spirit gains +5000 BP.\n\nWhen Braved on Left (When Blocks)\nThis Spirit gains +5000 BP.",
+  "image": "BS36-060.jpg",
+  "block": "36",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "When Braved on Right (When Attacks)",
+   "This Spirit gains +5000 BP.",
+   "When Braved on Left (When Blocks)",
+   "This Spirit gains +5000 BP."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 3000,
+   "costLe": 4
+  }
+ },
+ {
+  "id": "BS36-061",
+  "name": "Mythril Demon-God",
+  "name_jp": "霊銀魔神",
+  "type": "Brave",
+  "color": "white",
+  "cost": 5,
+  "reduction": {
+   "white": 2,
+   "yellow": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 5000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Android"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\nWhen Braved on Right (When Attacks)\nThis Spirit can't be blocked by opposing non-braved Spirits.\n\nWhen Braved on Left (When Attacks)\nThis Spirit can't be blocked by opposing LV1/LV2 Spirits.",
+  "image": "BS36-061.jpg",
+  "block": "36",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "When Braved on Right (When Attacks)",
+   "This Spirit can't be blocked by opposing non-braved Spirits.",
+   "When Braved on Left (When Attacks)",
+   "This Spirit can't be blocked by opposing LV1/LV2 Spirits."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 5000,
+   "costGe": 4
+  }
+ },
+ {
+  "id": "BS36-062",
+  "name": "Pudding Demon-God",
+  "name_jp": "プリン魔神",
+  "type": "Brave",
+  "color": "yellow",
+  "cost": 3,
+  "reduction": {
+   "yellow": 1,
+   "purple": 1
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 2000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Confection"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\nWhen Braved on Right (When Attacks)\nYou can summon a Cost 3 or less Spirit card from your Hand/Trash, without paying the cost.\n\nWhen Braved on Left (When Attacks)\nDuring this turn, all your Cost 7 or less Spirits gain +5000 BP.",
+  "image": "BS36-062.jpg",
+  "block": "36",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "When Braved on Right (When Attacks)",
+   "You can summon a Cost 3 or less Spirit card from your Hand/Trash, without paying the cost.",
+   "When Braved on Left (When Attacks)",
+   "During this turn, all your Cost 7 or less Spirits gain +5000 BP."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 2000,
+   "costLe": 4
+  }
+ },
+ {
+  "id": "BS36-063",
+  "name": "Divine Demon-God",
+  "name_jp": "天魔神",
+  "type": "Brave",
+  "color": "yellow",
+  "cost": 5,
+  "reduction": {
+   "yellow": 2,
+   "red": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 4000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Divine Spirit"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\nWhen Braved on Right (When Attacks)\nDestroy an opposing 6000 BP  or less Spirit. When you've done so, destroy an opposing Nexus.\n\nWhen Braved on Left (When Attacks)\nDuring this turn, give an opposing Spirit -4000 BP.",
+  "image": "BS36-063.jpg",
+  "block": "36",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "When Braved on Right (When Attacks)",
+   "Destroy an opposing 6000 BP  or less Spirit.",
+   "When you've done so, destroy an opposing Nexus.",
+   "When Braved on Left (When Attacks)",
+   "During this turn, give an opposing Spirit -4000 BP."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 4000,
+   "costGe": 4
+  }
+ },
+ {
+  "id": "BS36-064",
+  "name": "Lobster Demon-God",
+  "name_jp": "蝦魔神",
+  "type": "Brave",
+  "color": "blue",
+  "cost": 3,
+  "reduction": {
+   "blue": 1,
+   "yellow": 1
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 3000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Fusion Beast"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\nWhen Braved on Right (When Attacks)\nDraw two cards. Then, discard two cards from your Hand.\n\nWhen Braved on Left (When Attacks)\nTarget an opposing Spirit. During this turn, that Spirit can't block.",
+  "image": "BS36-064.jpg",
+  "block": "36",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "When Braved on Right (When Attacks)",
+   "Draw two cards.",
+   "Then, discard two cards from your Hand.",
+   "When Braved on Left (When Attacks)",
+   "Target an opposing Spirit.",
+   "During this turn, that Spirit can't block."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 3000,
+   "costLe": 4
+  }
+ },
+ {
+  "id": "BS36-065",
+  "name": "Bronze Demon-God",
+  "name_jp": "青銅魔神",
+  "type": "Brave",
+  "color": "blue",
+  "cost": 4,
+  "reduction": {
+   "blue": 1,
+   "white": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 3000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Artificial Soldier"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\nWhen Braved on Right (When Attacks)\nDiscard three cards from the opposing decktop.\n\nWhen Braved on Left (When Attacks)\nReturn an opposing Cost 4 or less Spirit to the decktop.",
+  "image": "BS36-065.jpg",
+  "block": "36",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "When Braved on Right (When Attacks)",
+   "Discard three cards from the opposing decktop.",
+   "When Braved on Left (When Attacks)",
+   "Return an opposing Cost 4 or less Spirit to the decktop."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 3000,
+   "costGe": 4
+  }
+ },
+ {
   "id": "BS36-066",
   "name": "No. 31 Bird Hunting",
   "name_jp": "No.31 バードハンティング",
@@ -6375,6 +7622,162 @@
   "rcode": "R"
  },
  {
+  "id": "BS36-072",
+  "name": "Flame Barricade",
+  "name_jp": "フレイムバリケード",
+  "type": "Magic",
+  "color": "red",
+  "cost": 3,
+  "reduction": {
+   "red": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDestroy all opposing 3000 BP or less Spirits.\nDuring Seal Also, during this battle, one of your \"God-King\"/\"Ten Crown\" family Spirits  can't be destroyed via BP comparison.",
+  "image": "BS36-072.jpg",
+  "block": "36",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Destroy all opposing 3000 BP or less Spirits.",
+   "During Seal Also, during this battle, one of your \"God-King\"/\"Ten Crown\" family Spirits  can't be destroyed via BP comparison."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS36-073",
+  "name": "Poison Breath",
+  "name_jp": "ポイズンブレス",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 3,
+  "reduction": {
+   "purple": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDuring this turn, the attacks of opposing Spirits with one core on them can't reduce your Life.\nDuring Seal Also, send cores from every  opposing Spirit to the Reserve until only one core remains on each of them.",
+  "image": "BS36-073.jpg",
+  "block": "36",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "During this turn, the attacks of opposing Spirits with one core on them can't reduce your Life.",
+   "During Seal Also, send cores from every  opposing Spirit to the Reserve until only one core remains on each of them."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS36-074",
+  "name": "Sonic Bind",
+  "name_jp": "ソニックバインド",
+  "type": "Magic",
+  "color": "green",
+  "cost": 5,
+  "reduction": {
+   "green": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nExhaust every opposing non-braved Spirit. If (Soul Core) was used to pay the cost, also, exhaust an opposing Brave Spirit.",
+  "image": "BS36-074.jpg",
+  "block": "36",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Exhaust every opposing non-braved Spirit.",
+   "If (Soul Core) was used to pay the cost, also, exhaust an opposing Brave Spirit."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS36-075",
+  "name": "Dream Barrier",
+  "name_jp": "ドリームバリア",
+  "type": "Magic",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nReturn an opposing Spirit to the Hand. When two of your Spirits are braved to a single \"Imagine\" family Brave, also, during this turn, your Life can't be reduced.",
+  "image": "BS36-075.jpg",
+  "block": "36",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Return an opposing Spirit to the Hand.",
+   "When two of your Spirits are braved to a single \"Imagine\" family Brave, also, during this turn, your Life can't be reduced."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS36-076",
+  "name": "Bonbeam",
+  "name_jp": "ボンビーム",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 5,
+  "reduction": {
+   "yellow": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{Burst|After your Spirit is depleted/destroyed by the opponent}}\n Return two \"Drifting Spirit\"/\"Fairy\"/\"Song Bird\" family Spirit cards from your Trash to the Hand. Then, by paying the cost, activate this card's Flash effect.\n\nFlash\nDuring this turn, give an opposing Spirit -6000 BP. Destroy it when it is brought to 0 BP by this effect.",
+  "image": "BS36-076.jpg",
+  "block": "36",
+  "saga": 7,
+  "mechanics": [
+   "Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Burst|After your Spirit is depleted/destroyed by the opponent}}",
+   "Return two \"Drifting Spirit\"/\"Fairy\"/\"Song Bird\" family Spirit cards from your Trash to the Hand.",
+   "Then, by paying the cost, activate this card's Flash effect.",
+   "Flash",
+   "During this turn, give an opposing Spirit -6000 BP.",
+   "Destroy it when it is brought to 0 BP by this effect."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS36-077",
+  "name": "Wild Crash",
+  "name_jp": "ワイルドクラッシュ",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 3,
+  "reduction": {
+   "blue": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDestroy an opposing braved Brave.\nDuring Seal Also, during this turn, when your \"Roaring Azure\" family Spirits are blocked, discard three cards from the opposing decktop.",
+  "image": "BS36-077.jpg",
+  "block": "36",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Destroy an opposing braved Brave.",
+   "During Seal Also, during this turn, when your \"Roaring Azure\" family Spirits are blocked, discard three cards from the opposing decktop."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS36-CP01",
   "name": "The SeventhSkyBeast Radiant-Pegas",
   "name_jp": "庚天獣レディアント・ペガス",
@@ -6543,6 +7946,56 @@
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "rcode": "X"
+ },
+ {
+  "id": "BS36-X03",
+  "name": "The EighthMachBraver Sonicwasp-Ace",
+  "name_jp": "辛速の勇者ソニックワスプ・A",
+  "type": "Spirit",
+  "color": "green",
+  "cost": 3,
+  "reduction": {
+   "green": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   },
+   {
+    "cores": 2,
+    "bp": 4000
+   },
+   {
+    "cores": 4,
+    "bp": 7000
+   }
+  ],
+  "families": [
+   "Ten Crown",
+   "Shellman"
+  ],
+  "text": "Flash - High Speed\nThis card in Hand can be summoned by paying the cost with cores in the Reserve. In this case, cores to be put on this Spirit must also be from the Reserve.\n\n[LV1][LV2][LV3] (When Summoned)\nTarget a type of card. Banish every card of that type on both player's Trash.\n\n[LV2][LV3] (When Attacks/Blocks)\nPut a core from the Void to this Spirit. At the end of battle, you can return this Spirit to the Hand.",
+  "image": "BS36-X03.jpg",
+  "block": "36",
+  "saga": 7,
+  "mechanics": [
+   "High Speed"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Flash - High Speed",
+   "This card in Hand can be summoned by paying the cost with cores in the Reserve.",
+   "In this case, cores to be put on this Spirit must also be from the Reserve.",
+   "[LV1][LV2][LV3] (When Summoned)",
+   "Target a type of card.",
+   "Banish every card of that type on both player's Trash.",
+   "[LV2][LV3] (When Attacks/Blocks)",
+   "Put a core from the Void to this Spirit.",
+   "At the end of battle, you can return this Spirit to the Hand."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS36-X04",
@@ -10043,6 +11496,250 @@
   "rcode": "M"
  },
  {
+  "id": "BS37-072",
+  "name": "Bear Demon-God",
+  "name_jp": "熊魔神",
+  "type": "Brave",
+  "color": "red",
+  "cost": 4,
+  "reduction": {
+   "red": 1,
+   "white": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 3000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Emperor Beast"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\nWhen Braved on Right  True-Clash (When Attacks)\nOpposing Spirits/Ultimates must block if possible.\n\nWhen Braved on Left (When Attacks)\nReturn an opposing 5000 BP or less Spirit to the Hand, and put a core from the Void to any of your Spirits.",
+  "image": "BS37-072.jpg",
+  "block": "37",
+  "saga": 7,
+  "mechanics": [
+   "True-Clash"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "When Braved on Right  True-Clash (When Attacks)",
+   "Opposing Spirits/Ultimates must block if possible.",
+   "When Braved on Left (When Attacks)",
+   "Return an opposing 5000 BP or less Spirit to the Hand, and put a core from the Void to any of your Spirits."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 3000,
+   "costGe": 4
+  }
+ },
+ {
+  "id": "BS37-073",
+  "name": "Evil Dragon Demon-God",
+  "name_jp": "悪龍魔神",
+  "type": "Brave",
+  "color": "purple",
+  "cost": 5,
+  "reduction": {
+   "purple": 2,
+   "green": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 4000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Death Dragon"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\nWhen Braved on Right (When Attacks)\nYou can summon a Cost 4 or less Spirit card from your Hand, without paying the cost.\n\nWhen Braved on Left (When Attacks)\nSend a core from any opposing Spirit to their Reserve, and draw a card.",
+  "image": "BS37-073.jpg",
+  "block": "37",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "When Braved on Right (When Attacks)",
+   "You can summon a Cost 4 or less Spirit card from your Hand, without paying the cost.",
+   "When Braved on Left (When Attacks)",
+   "Send a core from any opposing Spirit to their Reserve, and draw a card."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 4000,
+   "costGe": 5
+  }
+ },
+ {
+  "id": "BS37-074",
+  "name": "Kabuto Demon-God",
+  "name_jp": "兜魔神",
+  "type": "Brave",
+  "color": "green",
+  "cost": 4,
+  "reduction": {
+   "green": 1,
+   "red": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 3000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Shellman"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\nDuring Right Brave (When Attacks)\nThis Spirit gains +5000 BP, and you draw a card.\n\nDuring Left Brave (When Attacks)\nDuring this turn, while your Brave Spirit is attacking, opposing Bursts can't activate.",
+  "image": "BS37-074.jpg",
+  "block": "37",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "During Right Brave (When Attacks)",
+   "This Spirit gains +5000 BP, and you draw a card.",
+   "During Left Brave (When Attacks)",
+   "During this turn, while your Brave Spirit is attacking, opposing Bursts can't activate."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 3000,
+   "costGe": 4
+  }
+ },
+ {
+  "id": "BS37-075",
+  "name": "Headbutt Demon-God",
+  "name_jp": "頭突魔神",
+  "type": "Brave",
+  "color": "white",
+  "cost": 5,
+  "reduction": {
+   "white": 2,
+   "blue": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 5000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Machine Beast"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\nWhen Braved on Right (When Attacks)\nBy destroying an opposing Cost 6 or less Spirit/Ultimate, put a core from the Void to any of your Spirits.\n\nWhen Braved on Left (When Attacks)\nBy returning an opposing Cost 7 or more Spirit/Ultimate to the Hand, put a core from the Void to any of your Spirits.",
+  "image": "BS37-075.jpg",
+  "block": "37",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "When Braved on Right (When Attacks)",
+   "By destroying an opposing Cost 6 or less Spirit/Ultimate, put a core from the Void to any of your Spirits.",
+   "When Braved on Left (When Attacks)",
+   "By returning an opposing Cost 7 or more Spirit/Ultimate to the Hand, put a core from the Void to any of your Spirits."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 5000,
+   "costGe": 5
+  }
+ },
+ {
+  "id": "BS37-076",
+  "name": "Monkey Demon-God",
+  "name_jp": "猿魔神",
+  "type": "Brave",
+  "color": "yellow",
+  "cost": 5,
+  "reduction": {
+   "yellow": 2,
+   "blue": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 4000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Imaginary Beast"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\nWhen Braved on Right (When Attacks)\nReturn a Green/Yellow/Blue Spirit card with Accel from your Trash to the Hand.\n\nWhen Braved on Left (When Attacks)\nTreat the cost of every opposing braved Brave as 0, and destroy an opposing Cost 4 or less Spirit.",
+  "image": "BS37-076.jpg",
+  "block": "37",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "When Braved on Right (When Attacks)",
+   "Return a Green/Yellow/Blue Spirit card with Accel from your Trash to the Hand.",
+   "When Braved on Left (When Attacks)",
+   "Treat the cost of every opposing braved Brave as 0, and destroy an opposing Cost 4 or less Spirit."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 4000,
+   "costGe": 5
+  }
+ },
+ {
+  "id": "BS37-077",
+  "name": "Elephant Demon-God",
+  "name_jp": "象魔神",
+  "type": "Brave",
+  "color": "blue",
+  "cost": 4,
+  "reduction": {
+   "blue": 1,
+   "yellow": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 3000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Beast Head"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\nWhen Braved on Right (When Attacks)\nDestroy an opposing Cost 4 or less Spirit. For each Spirit card with Accel in your Removed Zone, increase the cost limit of this destroy effect by +1.\n\nWhen Braved on Left (When Attacks)\nThe cost of Accel in your Hand gets -1.",
+  "image": "BS37-077.jpg",
+  "block": "37",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "When Braved on Right (When Attacks)",
+   "Destroy an opposing Cost 4 or less Spirit.",
+   "For each Spirit card with Accel in your Removed Zone, increase the cost limit of this destroy effect by +1.",
+   "When Braved on Left (When Attacks)",
+   "The cost of Accel in your Hand gets -1."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 3000,
+   "costGe": 4
+  }
+ },
+ {
   "id": "BS37-CP01",
   "name": "The AccelHero Revol-Red",
   "name_jp": "加速戦士リボル・レッド",
@@ -12771,6 +14468,55 @@
   "rcode": "R"
  },
  {
+  "id": "BS38-049",
+  "name": "Ultimate-Muramasa-Dragon",
+  "name_jp": "アルティメット・ムラマサ・ドラゴン",
+  "type": "Ultimate",
+  "color": "red",
+  "cost": 6,
+  "reduction": {
+   "red": 3,
+   "ultimate": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 10000
+   },
+   {
+    "cores": 3,
+    "bp": 15000
+   },
+   {
+    "cores": 5,
+    "bp": 18000
+   }
+  ],
+  "families": [
+   "Incarnate",
+   "Catalyst",
+   "War Dragon"
+  ],
+  "text": "{{sumcon|You have a Burst set}}\n\n[LV3][LV4][LV5] {{Catl|All Color}} (When Attacks)\nBy sending (Soul Core) from this Ultimate to your Trash, immediately activate one of your Soul Bursts. After the Burst activates, set a card with Burst effects from your Hand, and this Ultimate refreshes.\n\n[LV4][LV5] (When Attacks)\nYou can send the Soul Core from your Trash to this Ultimate.",
+  "image": "BS38-049.jpg",
+  "block": "38",
+  "saga": 7,
+  "mechanics": [
+   "Catalyze"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{sumcon|You have a Burst set}}",
+   "[LV3][LV4][LV5] {{Catl|All Color}} (When Attacks)",
+   "By sending (Soul Core) from this Ultimate to your Trash, immediately activate one of your Soul Bursts.",
+   "After the Burst activates, set a card with Burst effects from your Hand, and this Ultimate refreshes.",
+   "[LV4][LV5] (When Attacks)",
+   "You can send the Soul Core from your Trash to this Ultimate."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS38-050",
   "name": "The DarkUltimateSky Spinel Dragon",
   "name_jp": "暗極天スピネルドラゴン",
@@ -13531,13 +15277,73 @@
   "rcode": "C"
  },
  {
+  "id": "BS38-067",
+  "name": "Evil Flame",
+  "name_jp": "イビルフレイム",
+  "type": "Magic",
+  "color": "red",
+  "cost": 5,
+  "reduction": {
+   "red": 2,
+   "ultimate": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{Burst|s|After your Life is reduced}}\nDestroy two opposing one-symbol Spirits/Ultimates. Then, by paying the cost, activate this card's Flash effect.\n\nFlash\nDestroy any number of opposing Spirits up to a total of 5000 BP. If you control no Spirits, instead, destroy any number of opposing Spirits up to a total of 10000 BP.",
+  "image": "BS38-067.jpg",
+  "block": "38",
+  "saga": 7,
+  "mechanics": [
+   "Soul Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Burst|s|After your Life is reduced}}",
+   "Destroy two opposing one-symbol Spirits/Ultimates.",
+   "Then, by paying the cost, activate this card's Flash effect.",
+   "Flash",
+   "Destroy any number of opposing Spirits up to a total of 5000 BP.",
+   "If you control no Spirits, instead, destroy any number of opposing Spirits up to a total of 10000 BP."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS38-068",
+  "name": "Infection Shoot",
+  "name_jp": "ポイズンシュート",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 5,
+  "reduction": {
+   "purple": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nSend a core from one opposing Spirit to their Reserve. If this effect depletes any Spirit, send two cores from one opposing Spirit to their Reserve. Then, if this effect depletes two Spirits, send three cores from one opposing Spirit/Ultimate to the Reserve.",
+  "image": "BS38-068.jpg",
+  "block": "38",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Send a core from one opposing Spirit to their Reserve.",
+   "If this effect depletes any Spirit, send two cores from one opposing Spirit to their Reserve.",
+   "Then, if this effect depletes two Spirits, send three cores from one opposing Spirit/Ultimate to the Reserve."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS38-069",
   "name": "Martyr's Heart",
   "name_jp": "マーターズハート",
   "type": "Magic",
   "color": "purple",
   "cost": 5,
-  "reduction": {},
+  "reduction": {
+   "purple": 3
+  },
   "symbols": 0,
   "levels": [],
   "families": [],
@@ -13558,6 +15364,380 @@
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "rcode": "C"
+ },
+ {
+  "id": "BS38-070",
+  "name": "Ultimate Thunderbolt",
+  "name_jp": "アルティメットサンダーボルト",
+  "type": "Magic",
+  "color": "green",
+  "cost": 3,
+  "reduction": {
+   "green": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDuring this turn, when only the opposing Spirit/Ultimate is destroyed via BP comparison with your Ultimates, send an opposing Life to their Reserve.",
+  "image": "BS38-070.jpg",
+  "block": "38",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "During this turn, when only the opposing Spirit/Ultimate is destroyed via BP comparison with your Ultimates, send an opposing Life to their Reserve."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS38-071",
+  "name": "Infernal Wind",
+  "name_jp": "インファナルウィンド",
+  "type": "Magic",
+  "color": "green",
+  "cost": 6,
+  "reduction": {
+   "green": 3,
+   "ultimate": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nExhaust two opposing Spirits, and put a core from the Void each to every Ultimate you control. If your Soul Core is banished, instead, exhaust every opposing Spirit, and put three cores from the Void each to every Ultimate you control.",
+  "image": "BS38-071.jpg",
+  "block": "38",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Exhaust two opposing Spirits, and put a core from the Void each to every Ultimate you control.",
+   "If your Soul Core is banished, instead, exhaust every opposing Spirit, and put three cores from the Void each to every Ultimate you control."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS38-072",
+  "name": "Dream Revenge",
+  "name_jp": "ドリームリベンジ",
+  "type": "Magic",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nRefresh one of your Spirits. During this turn, when only the opposing Spirit/Ultimate is destroyed via BP comparison with the Spirit refreshed by this Magic effect, return two opposing Spirits/Ultimates to the Hand.",
+  "image": "BS38-072.jpg",
+  "block": "38",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Refresh one of your Spirits.",
+   "During this turn, when only the opposing Spirit/Ultimate is destroyed via BP comparison with the Spirit refreshed by this Magic effect, return two opposing Spirits/Ultimates to the Hand."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS38-073",
+  "name": "Reactive Barrier",
+  "name_jp": "リアクティブバリア",
+  "type": "Magic",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "When your Life would be reduced by an opposing effect, by discarding this Magic card from your Hand, your Life would only be reduced by one. Then, by paying the cost, activate this card's Flash effect.\n\nFlash\nWhen this battle ends, end the Attack Step.",
+  "image": "BS38-073.jpg",
+  "block": "38",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "When your Life would be reduced by an opposing effect, by discarding this Magic card from your Hand, your Life would only be reduced by one.",
+   "Then, by paying the cost, activate this card's Flash effect.",
+   "Flash",
+   "When this battle ends, end the Attack Step."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS38-074",
+  "name": "Magician's Potion",
+  "name_jp": "マジシャンズポーション",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 2,
+  "reduction": {
+   "yellow": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This Magic card in your Trash is unaffected by all effects.\n\nFlash\nDuring this turn, give an opposing Spirit/Ultimate -2000 BP.\nDuring Seal Also, refresh a \"God-King\"/ \"Ten Crown\" family Spirit you control.",
+  "image": "BS38-074.jpg",
+  "block": "38",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This Magic card in your Trash is unaffected by all effects.",
+   "Flash",
+   "During this turn, give an opposing Spirit/Ultimate -2000 BP.",
+   "During Seal Also, refresh a \"God-King\"/ \"Ten Crown\" family Spirit you control."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS38-075",
+  "name": "Drafting Call",
+  "name_jp": "ドラフティングコール",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 5,
+  "reduction": {
+   "yellow": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "During Seal This Magic card in Hand is treated as Cost 3.\n\nFlash\nYou can summon a \"Drifting Spirit\" family Spirit card from your Trash, without paying the cost. However, any (When Summoned) effects can't activate. When a Cost 2/3 Spirit was summoned by this effect, return an opposing Spirit/Ultimate to the Hand.",
+  "image": "BS38-075.jpg",
+  "block": "38",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "During Seal This Magic card in Hand is treated as Cost 3.",
+   "Flash",
+   "You can summon a \"Drifting Spirit\" family Spirit card from your Trash, without paying the cost.",
+   "However, any (When Summoned) effects can't activate.",
+   "When a Cost 2/3 Spirit was summoned by this effect, return an opposing Spirit/Ultimate to the Hand."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS38-076",
+  "name": "Hydraulic Wave",
+  "name_jp": "ハイドロリックウェーブ",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 5,
+  "reduction": {
+   "blue": 2,
+   "ultimate": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{Burst|s|After the opposing Hand increases via an opposing effect}}\nDraw three cards. Then, discard two cards from your Hand. If this Burst was activated from your Hand, this effect discards -1 Hand. Then, by paying the cost, activate this card's Flash effect.\n\nFlash\nFor each \"Hellsea\"-named Spirit/Ultimate you control, destroy an opposing Cost 8 or less Spirit/Ultimate.",
+  "image": "BS38-076.jpg",
+  "block": "38",
+  "saga": 7,
+  "mechanics": [
+   "Soul Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Burst|s|After the opposing Hand increases via an opposing effect}}",
+   "Draw three cards.",
+   "Then, discard two cards from your Hand.",
+   "If this Burst was activated from your Hand, this effect discards -1 Hand.",
+   "Then, by paying the cost, activate this card's Flash effect.",
+   "Flash",
+   "For each \"Hellsea\"-named Spirit/Ultimate you control, destroy an opposing Cost 8 or less Spirit/Ultimate."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS38-077",
+  "name": "Scroll Draw",
+  "name_jp": "スクロールドロー",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 6,
+  "reduction": {
+   "blue": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "For each Spirit card with Accel in your Removed Zone, the cost of this Magic card in Hand gets -1.\n\nFlash\nDestroy an opposing Cost 6 or less Spirit. When this effect destroys any Spirit, you can draw two cards. When you've done so, discard two cards from your Hand.",
+  "image": "BS38-077.jpg",
+  "block": "38",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "For each Spirit card with Accel in your Removed Zone, the cost of this Magic card in Hand gets -1.",
+   "Flash",
+   "Destroy an opposing Cost 6 or less Spirit.",
+   "When this effect destroys any Spirit, you can draw two cards.",
+   "When you've done so, discard two cards from your Hand."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS38-CP01",
+  "name": "Super-Flame Demon-God",
+  "name_jp": "超・炎魔神",
+  "type": "Brave",
+  "color": "red",
+  "cost": 5,
+  "reduction": {
+   "red": 2,
+   "white": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 5000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Machine Dragon"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\n[LV1] (When Summoned)\nDiscard an opposing Burst.\n\nDuring Left/Right Brave (When Attacks)\nThis Spirit gains +5000 BP.\nDouble Drive Also, while there are \"God-King\" family Spirits braved to the Left and Right of this Brave, after the battle ends, this Spirit can continue to attack for once and only once more.",
+  "image": "BS38-CP01.jpg",
+  "block": "38",
+  "saga": 7,
+  "mechanics": [
+   "Double Drive"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "[LV1] (When Summoned)",
+   "Discard an opposing Burst.",
+   "During Left/Right Brave (When Attacks)",
+   "This Spirit gains +5000 BP.",
+   "Double Drive Also, while there are \"God-King\" family Spirits braved to the Left and Right of this Brave, after the battle ends, this Spirit can continue to attack for once and only once more."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 5000,
+   "costGe": 4
+  }
+ },
+ {
+  "id": "BS38-CP02",
+  "name": "Super-Wind Demon-God",
+  "name_jp": "超・風魔神",
+  "type": "Brave",
+  "color": "green",
+  "cost": 5,
+  "reduction": {
+   "green": 2,
+   "blue": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 5000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Mounted Warrior"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\nDuring Left/Right Brave (When Attacks)\nThe opponent can't activate their Bursts.\nDouble Drive Also, while there are \"God-King\" family Spirits braved to the Left and Right of this Brave, the opponent can't use cards from their Hand.",
+  "image": "BS38-CP02.jpg",
+  "block": "38",
+  "saga": 7,
+  "mechanics": [
+   "Double Drive"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "During Left/Right Brave (When Attacks)",
+   "The opponent can't activate their Bursts.",
+   "Double Drive Also, while there are \"God-King\" family Spirits braved to the Left and Right of this Brave, the opponent can't use cards from their Hand."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 5000,
+   "costGe": 4
+  }
+ },
+ {
+  "id": "BS38-CP03",
+  "name": "Explosive Demon-God",
+  "name_jp": "爆魔神",
+  "type": "Brave",
+  "color": "red",
+  "cost": 4,
+  "reduction": {
+   "red": 1,
+   "green": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 4000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Machine Dragon"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\nWhen Braved on the Left/Right (When Attacks)\nDestroy an opposing 5000 BP or less Spirit.\nDouble Drive While there are \"God-King\"/\"Ten Crown\" family Spirits braved to the Left and Right of this Brave, also, draw a card, and put a core from the Void to this Spirit.",
+  "image": "BS38-CP03.png",
+  "block": "38",
+  "saga": 7,
+  "mechanics": [
+   "Double Drive"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "When Braved on the Left/Right (When Attacks)",
+   "Destroy an opposing 5000 BP or less Spirit.",
+   "Double Drive While there are \"God-King\"/\"Ten Crown\" family Spirits braved to the Left and Right of this Brave, also, draw a card, and put a core from the Void to this Spirit."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 4000,
+   "costGe": 4
+  }
+ },
+ {
+  "id": "BS38-CP04",
+  "name": "Departed Soul",
+  "name_jp": "デパーテッドソウル",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 6,
+  "reduction": {
+   "purple": 3,
+   "ultimate": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{Burst|s|After your Ultimate is depleted/destroyed by the opponent}}\nYou can summon an Ultimate card that was depleted/destroyed when this Burst activates from your Trash, without paying the cost. If this Burst was activated via Catalyze, instead, destroy an opposing exhausted Spirit/Ultimate. Then, by paying the cost, activate this card's Flash effect.\n\nFlash\nSend two cores from any opposing Spirits/Ultimatess to the Reserve.",
+  "image": "BS38-CP04.jpg",
+  "block": "38",
+  "saga": 7,
+  "mechanics": [
+   "Soul Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Burst|s|After your Ultimate is depleted/destroyed by the opponent}}",
+   "You can summon an Ultimate card that was depleted/destroyed when this Burst activates from your Trash, without paying the cost.",
+   "If this Burst was activated via Catalyze, instead, destroy an opposing exhausted Spirit/Ultimate.",
+   "Then, by paying the cost, activate this card's Flash effect.",
+   "Flash",
+   "Send two cores from any opposing Spirits/Ultimatess to the Reserve."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS38-CP05",
@@ -13676,6 +15856,44 @@
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "rcode": "CP"
+ },
+ {
+  "id": "BS38-CP08",
+  "name": "Ocean Demon-God",
+  "name_jp": "海魔神",
+  "type": "Brave",
+  "color": "blue",
+  "cost": 6,
+  "reduction": {
+   "blue": 2,
+   "green": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 5000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Fusion Beast"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\n[LV1] (When Summoned)\nYou can summon \"Fusion Beast\"/\"Shellman\" family Spirit cards, one of each, from your Hand, without paying the cost.",
+  "image": "BS38-CP08.jpg",
+  "block": "38",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "[LV1] (When Summoned)",
+   "You can summon \"Fusion Beast\"/\"Shellman\" family Spirit cards, one of each, from your Hand, without paying the cost."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 5000,
+   "costGe": 4
+  }
  },
  {
   "id": "BS38-RV001",
@@ -14065,6 +16283,10 @@
    {
     "cores": 1,
     "bp": 6000
+   },
+   {
+    "cores": 3,
+    "bp": 9000
    },
    {
     "cores": 6,
@@ -15103,6 +17325,166 @@
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "rcode": "C"
+ },
+ {
+  "id": "BS38-RV036",
+  "name": "Southan Cross Flame",
+  "name_jp": "サザンクロスフレイム",
+  "type": "Magic",
+  "color": "red",
+  "cost": 6,
+  "reduction": {
+   "red": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDestroy an opposing 10000 BP or less Spirit, or an opposing 15000 BP or less Ultimate.\nDuring Seal Also, destroy an opposing 20000 BP or less Spirit, or an opposing 30000 BP or less Ultimate.",
+  "image": "Southan Cross Flame.jpg",
+  "block": "38",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Destroy an opposing 10000 BP or less Spirit, or an opposing 15000 BP or less Ultimate.",
+   "During Seal Also, destroy an opposing 20000 BP or less Spirit, or an opposing 30000 BP or less Ultimate."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS38-RV037",
+  "name": "Cassiopeia Seal",
+  "name_jp": "カシオペアシール",
+  "type": "Magic",
+  "color": "green",
+  "cost": 5,
+  "reduction": {
+   "green": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This Magic card in Trash is unaffected by any effect.\n\nFlash\nExhaust an opposing Spirit/Ultimate. Until (Your End Step) occurs five times, that Spirit/Ultimate can't refresh. After this effect resolves, put five cores from the Void beside your deck, and send one core to your Reserve on each of (Your End Step). Besides via this effect, these cores can't be used.",
+  "image": "Cassiopeia Seal.jpg",
+  "block": "38",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This Magic card in Trash is unaffected by any effect.",
+   "Flash",
+   "Exhaust an opposing Spirit/Ultimate.",
+   "Until (Your End Step) occurs five times, that Spirit/Ultimate can't refresh.",
+   "After this effect resolves, put five cores from the Void beside your deck, and send one core to your Reserve on each of (Your End Step).",
+   "Besides via this effect, these cores can't be used."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS38-RV038",
+  "name": "Delta Barrier",
+  "name_jp": "デルタバリア",
+  "type": "Magic",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card in Trash is unaffected by any effects.\n\nFlash\nDuring this turn, your Life can't be brought to zero by opposing effects and attacks of opposing Cost 4 or more Spirits/Ultimates.\nDuring Seal Also, if it's the opposing Attack Step, at the end of this battle, put a core from the Void to your Life.",
+  "image": "Delta Barrier.jpg",
+  "block": "38",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This card in Trash is unaffected by any effects.",
+   "Flash",
+   "During this turn, your Life can't be brought to zero by opposing effects and attacks of opposing Cost 4 or more Spirits/Ultimates.",
+   "During Seal Also, if it's the opposing Attack Step, at the end of this battle, put a core from the Void to your Life."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS38-RV039",
+  "name": "Melodious Harp",
+  "name_jp": "メロディアスハープ",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 3,
+  "reduction": {
+   "yellow": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDuring this turn, a Spirit/Ultimate loses all of its effects, and can't gain new ones.",
+  "image": "Melodious Harp.jpg",
+  "block": "38",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "During this turn, a Spirit/Ultimate loses all of its effects, and can't gain new ones."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS38-RV040",
+  "name": "Mercury Goblet",
+  "name_jp": "マーキュリーゴブレット",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 5,
+  "reduction": {
+   "blue": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDestroy an opposing Spirit/Ultimate with the lowest cost.\nDuring Seal Instead, destroy an opposing Spirit/Ultimate with the highest cost.",
+  "image": "Mercury Goblet.jpg",
+  "block": "38",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Destroy an opposing Spirit/Ultimate with the lowest cost.",
+   "During Seal Instead, destroy an opposing Spirit/Ultimate with the highest cost."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS38-RV041",
+  "name": "Eridanus Flood",
+  "name_jp": "エリダヌスフラッド",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 6,
+  "reduction": {
+   "blue": 2,
+   "ultimate": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{Burst|s|After an opposing Spirit/Brave's (When Summoned) effect resolves}}\nDestroy any number of opposing Spirits/Ultimates up to a total of Cost 5. If this Burst was activated from your Hand, instead, destroy any number of opposing Spirits/Ultimates up to a total of Cost 10. Then, by paying the cost, activate this card's Flash effect.\n\nFlash\nDestroy all opposing Brave Spirits.",
+  "image": "Eridanus Flood.jpeg",
+  "block": "38",
+  "saga": 7,
+  "mechanics": [
+   "Soul Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Burst|s|After an opposing Spirit/Brave's (When Summoned) effect resolves}}",
+   "Destroy any number of opposing Spirits/Ultimates up to a total of Cost 5.",
+   "If this Burst was activated from your Hand, instead, destroy any number of opposing Spirits/Ultimates up to a total of Cost 10.",
+   "Then, by paying the cost, activate this card's Flash effect.",
+   "Flash",
+   "Destroy all opposing Brave Spirits."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS38-RVX01",
@@ -17937,6 +20319,473 @@
   "rcode": "M"
  },
  {
+  "id": "BS39-048",
+  "name": "Thunder Demon-God",
+  "name_jp": "雷魔神",
+  "type": "Brave",
+  "color": "red",
+  "cost": 4,
+  "reduction": {
+   "red": 1,
+   "blue": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 4000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Mounted Warrior"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\n[LV1] (When Summoned)\nDestroy every Spirit/Ultimate with Armor/Ultra Armor. Or, destroy an opposing 5000 BP or less Spirit.",
+  "image": "BS39-048.jpg",
+  "block": "39",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "[LV1] (When Summoned)",
+   "Destroy every Spirit/Ultimate with Armor/Ultra Armor.",
+   "Or, destroy an opposing 5000 BP or less Spirit."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 4000,
+   "costGe": 4
+  }
+ },
+ {
+  "id": "BS39-049",
+  "name": "Red Demon-God",
+  "name_jp": "赤魔神",
+  "type": "Brave",
+  "color": "red",
+  "cost": 5,
+  "reduction": {
+   "red": 3
+  },
+  "symbols": 2,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 6000
+   }
+  ],
+  "families": [
+   "Imagine"
+  ],
+  "text": "This Brave can't exhaust, and while in Spirit condition, can't attack nor block.\n\n[LV1] (When Summoned)\nDestroy an opposing braved Brave.\n\nDuring Left/Right Brave (When Attacks)\nDraw a card.",
+  "image": "BS39-049.jpg",
+  "block": "39",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This Brave can't exhaust, and while in Spirit condition, can't attack nor block.",
+   "[LV1] (When Summoned)",
+   "Destroy an opposing braved Brave.",
+   "During Left/Right Brave (When Attacks)",
+   "Draw a card."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 6000,
+   "costGe": 6
+  }
+ },
+ {
+  "id": "BS39-050",
+  "name": "Time Demon-God",
+  "name_jp": "時魔神",
+  "type": "Brave",
+  "color": "purple",
+  "cost": 4,
+  "reduction": {
+   "purple": 1,
+   "green": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 3000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Evil Shadow"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\nWhen your \"God-King\" family Spirit is summoned, you can return this Brave card from your Trash to the Hand.",
+  "image": "BS39-050.jpg",
+  "block": "39",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "When your \"God-King\" family Spirit is summoned, you can return this Brave card from your Trash to the Hand."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 3000,
+   "costGe": 4
+  }
+ },
+ {
+  "id": "BS39-051",
+  "name": "Purple Demon-God",
+  "name_jp": "紫魔神",
+  "type": "Brave",
+  "color": "purple",
+  "cost": 5,
+  "reduction": {
+   "purple": 3
+  },
+  "symbols": 2,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 6000
+   }
+  ],
+  "families": [
+   "Imagine"
+  ],
+  "text": "This Brave can't exhaust, and while in Spirit condition, can't attack nor block.\n\n[LV1] (When Summoned)\nSend a core from any opposing Spirit/Ultimate to the Reserve.\n\nDuring Left/Right Brave (When Attacks)\nDestroy an opposing exhausted Spirit.",
+  "image": "BS39-051.jpg",
+  "block": "39",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This Brave can't exhaust, and while in Spirit condition, can't attack nor block.",
+   "[LV1] (When Summoned)",
+   "Send a core from any opposing Spirit/Ultimate to the Reserve.",
+   "During Left/Right Brave (When Attacks)",
+   "Destroy an opposing exhausted Spirit."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 6000,
+   "costGe": 6
+  }
+ },
+ {
+  "id": "BS39-052",
+  "name": "Green Demon-God",
+  "name_jp": "緑魔神",
+  "type": "Brave",
+  "color": "green",
+  "cost": 5,
+  "reduction": {
+   "green": 3
+  },
+  "symbols": 2,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 6000
+   }
+  ],
+  "families": [
+   "Imagine"
+  ],
+  "text": "This Brave can't exhaust, and while in Spirit condition, can't attack nor block.\n\n[LV1] (When Summoned)\nReturn an opposing exhausted Spirit to the Hand.\n\nDuring Left/Right Brave (When Attacks)\nPut a core from the Void to this Spirit.",
+  "image": "BS39-052.jpg",
+  "block": "39",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This Brave can't exhaust, and while in Spirit condition, can't attack nor block.",
+   "[LV1] (When Summoned)",
+   "Return an opposing exhausted Spirit to the Hand.",
+   "During Left/Right Brave (When Attacks)",
+   "Put a core from the Void to this Spirit."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 6000,
+   "costGe": 6
+  }
+ },
+ {
+  "id": "BS39-053",
+  "name": "Wing Demon-God",
+  "name_jp": "翼魔神",
+  "type": "Brave",
+  "color": "green",
+  "cost": 5,
+  "reduction": {
+   "green": 2,
+   "purple": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 4000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Winged Beast"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\n[LV1] (When Summoned)\nExhaust two opposing Spirits/Ultimates.\n\nWhen Braved on the Left/Right (When Attacks)\nWhen there are \"Winged Beast\"/\"Imp\" family Spirits braved to the Left and Right of this Brave, by destroying an opposing exhausted Spirit/Ultimate, send an opposing Life to their Reserve.",
+  "image": "BS39-053.jpg",
+  "block": "39",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "[LV1] (When Summoned)",
+   "Exhaust two opposing Spirits/Ultimates.",
+   "When Braved on the Left/Right (When Attacks)",
+   "When there are \"Winged Beast\"/\"Imp\" family Spirits braved to the Left and Right of this Brave, by destroying an opposing exhausted Spirit/Ultimate, send an opposing Life to their Reserve."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 4000,
+   "costGe": 4
+  }
+ },
+ {
+  "id": "BS39-054",
+  "name": "Illusion Demon-God",
+  "name_jp": "幻魔神",
+  "type": "Brave",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 1,
+   "blue": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 3000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Android"
+  ],
+  "text": "This Brave doesn't exhaust and, while in Spirit form, can't attack nor block.\n\nDuring Right Brave {{ua|Green/White/Yellow}}\nThis Spirit is unaffected by opposing Green/White/Yellow Spirit/Ultimate/Nexus/Magic effects.\n\nDuring Left Brave {{ua|Red/Purple/Blue}}\nThis Spirit is unaffected by opposing Red/Purple/Blue Spirit/Ultimate/Nexus/Magic effects.",
+  "image": "BS39-054.jpg",
+  "block": "39",
+  "saga": 7,
+  "mechanics": [
+   "Ultra Armor"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust and, while in Spirit form, can't attack nor block.",
+   "During Right Brave {{ua|Green/White/Yellow}}",
+   "This Spirit is unaffected by opposing Green/White/Yellow Spirit/Ultimate/Nexus/Magic effects.",
+   "During Left Brave {{ua|Red/Purple/Blue}}",
+   "This Spirit is unaffected by opposing Red/Purple/Blue Spirit/Ultimate/Nexus/Magic effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 3000,
+   "costGe": 4
+  }
+ },
+ {
+  "id": "BS39-055",
+  "name": "White Demon-God",
+  "name_jp": "白魔神",
+  "type": "Brave",
+  "color": "white",
+  "cost": 5,
+  "reduction": {
+   "white": 3
+  },
+  "symbols": 2,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 6000
+   }
+  ],
+  "families": [
+   "Imagine"
+  ],
+  "text": "This Brave can't exhaust, and while in Spirit condition, can't attack nor block.\n\n[LV1] (When Summoned)\nReturn an opposing Nexus to the deckbottom.\n\nDuring Left/Right Brave (When Attacks)\nReturn an opposing non-Braved Spirit/Ultimate to the Hand.",
+  "image": "BS39-055.jpg",
+  "block": "39",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This Brave can't exhaust, and while in Spirit condition, can't attack nor block.",
+   "[LV1] (When Summoned)",
+   "Return an opposing Nexus to the deckbottom.",
+   "During Left/Right Brave (When Attacks)",
+   "Return an opposing non-Braved Spirit/Ultimate to the Hand."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 6000,
+   "costGe": 6
+  }
+ },
+ {
+  "id": "BS39-056",
+  "name": "Magic Demon-God",
+  "name_jp": "奇術魔神",
+  "type": "Brave",
+  "color": "yellow",
+  "cost": 4,
+  "reduction": {
+   "yellow": 2,
+   "green": 1
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 3000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Clown"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\nWhen Braved on Right (When Attacks)\nThis Spirit gains an extra Yellow symbol, and can't be blocked by opposing LV1/LV2 Spirits and opposing LV3/LV4 Ultimates.\n\nWhen Braved on Left (When Attacks)\nBy exhausting an opposing Spirit, put a core from the Void to any of your Spirits.",
+  "image": "BS39-056.jpg",
+  "block": "39",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "When Braved on Right (When Attacks)",
+   "This Spirit gains an extra Yellow symbol, and can't be blocked by opposing LV1/LV2 Spirits and opposing LV3/LV4 Ultimates.",
+   "When Braved on Left (When Attacks)",
+   "By exhausting an opposing Spirit, put a core from the Void to any of your Spirits."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 3000,
+   "costGe": 8
+  }
+ },
+ {
+  "id": "BS39-057",
+  "name": "Yellow Demon-God",
+  "name_jp": "黄魔神",
+  "type": "Brave",
+  "color": "yellow",
+  "cost": 5,
+  "reduction": {
+   "yellow": 3
+  },
+  "symbols": 2,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 6000
+   }
+  ],
+  "families": [
+   "Imagine"
+  ],
+  "text": "This Brave can't exhaust, and while in Spirit condition, can't attack nor block.\n\n[LV1] (When Summoned)\nDuring this turn, an opposing Spirit can't attack/block.\n\nDuring Left/Right Brave (When Attacks)\nReturn a Yellow Magic card from your Trash to the Hand.",
+  "image": "BS39-057.jpg",
+  "block": "39",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This Brave can't exhaust, and while in Spirit condition, can't attack nor block.",
+   "[LV1] (When Summoned)",
+   "During this turn, an opposing Spirit can't attack/block.",
+   "During Left/Right Brave (When Attacks)",
+   "Return a Yellow Magic card from your Trash to the Hand."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 6000,
+   "costGe": 6
+  }
+ },
+ {
+  "id": "BS39-058",
+  "name": "Roaring Demon-God",
+  "name_jp": "轟魔神",
+  "type": "Brave",
+  "color": "blue",
+  "cost": 4,
+  "reduction": {
+   "blue": 1,
+   "green": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 3000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Artificial Soldier"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\nDuring Left/Right Brave (When Attacks)\nTreat this Spirit as being on its highest level. Also, when there are \"Fusion Beast\"/\"Blade Beast\" family Spirits braved to both the left and right of this Brave, look at the entire opposing Hand, and discard a Spirit card among them.",
+  "image": "BS39-058.jpg",
+  "block": "39",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "During Left/Right Brave (When Attacks)",
+   "Treat this Spirit as being on its highest level.",
+   "Also, when there are \"Fusion Beast\"/\"Blade Beast\" family Spirits braved to both the left and right of this Brave, look at the entire opposing Hand, and discard a Spirit card among them."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 3000,
+   "costGe": 4
+  }
+ },
+ {
+  "id": "BS39-059",
+  "name": "Blue Demon-God",
+  "name_jp": "青魔神",
+  "type": "Brave",
+  "color": "blue",
+  "cost": 5,
+  "reduction": {
+   "blue": 3
+  },
+  "symbols": 2,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 6000
+   }
+  ],
+  "families": [
+   "Imagine"
+  ],
+  "text": "This Brave can't exhaust, and while in Spirit condition, can't attack nor block.\n\n[LV1] (When Summoned)\nDestroy two opposing Cost 3 or less Spirits.\n\nDuring Left/Right Brave (When Attacks)\nDraw two cards. Then, discard two cards from your Hand.",
+  "image": "BS39-059.jpg",
+  "block": "39",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "This Brave can't exhaust, and while in Spirit condition, can't attack nor block.",
+   "[LV1] (When Summoned)",
+   "Destroy two opposing Cost 3 or less Spirits.",
+   "During Left/Right Brave (When Attacks)",
+   "Draw two cards.",
+   "Then, discard two cards from your Hand."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 6000,
+   "costGe": 6
+  }
+ },
+ {
   "id": "BS39-060",
   "name": "The Passionate Circuit",
   "name_jp": "情熱サーキット",
@@ -18212,6 +21061,81 @@
   "rcode": "C"
  },
  {
+  "id": "BS39-067",
+  "name": "Exe Flame",
+  "name_jp": "エグゼフレイム",
+  "type": "Magic",
+  "color": "red",
+  "cost": 8,
+  "reduction": {
+   "red": 6
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "While you control any \"Execeed\"-named Spirit, treat all reductions of this Magic card as filled.\n\nFlash\nDestroy any number of opposing Spirits/Ultimates up to a total of 15000 BP, and destroy all opposing Nexuses.",
+  "image": "BS39-067.jpg",
+  "block": "39",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "While you control any \"Execeed\"-named Spirit, treat all reductions of this Magic card as filled.",
+   "Flash",
+   "Destroy any number of opposing Spirits/Ultimates up to a total of 15000 BP, and destroy all opposing Nexuses."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS39-068",
+  "name": "Deadly Ash",
+  "name_jp": "デッドリィアッシュ",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 4,
+  "reduction": {
+   "purple": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nThe opponent destroys one of their Spirits/Ultimates. Then, you destroy one of your Spirits/Ultimates. When this effect destroys any \"God-King\" family Spirit you control, that Spirit remains on the Field, exhausted.",
+  "image": "BS39-068.jpg",
+  "block": "39",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "The opponent destroys one of their Spirits/Ultimates.",
+   "Then, you destroy one of your Spirits/Ultimates.",
+   "When this effect destroys any \"God-King\" family Spirit you control, that Spirit remains on the Field, exhausted."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS39-069",
+  "name": "Heaven's Vengeance",
+  "name_jp": "ヘヴンズベンジェンス",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 5,
+  "reduction": {
+   "purple": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash - Send a core each from every opposing Cost 5 or less Spirit/Ultimate to the Reserve.\nDuring Seal Instead, send a core each from every opposing Spirit/Ultimate to the Reserve.",
+  "image": "BS39-069.jpg",
+  "block": "39",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "Flash - Send a core each from every opposing Cost 5 or less Spirit/Ultimate to the Reserve.",
+   "During Seal Instead, send a core each from every opposing Spirit/Ultimate to the Reserve."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS39-070",
   "name": "Chase Ride",
   "name_jp": "チェイスライド",
@@ -18311,6 +21235,32 @@
   "rcode": "C"
  },
  {
+  "id": "BS39-072",
+  "name": "Scramble Booster",
+  "name_jp": "スクランブルブースター",
+  "type": "Magic",
+  "color": "white",
+  "cost": 3,
+  "reduction": {
+   "white": 1,
+   "red": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDuring this battle, a Spirit/Ultimate you control can block while exhausted. When only the opposing Spirit/Ultimate is destroyed via BP comparison with that Spirit/Ultimate you control, draw two cards.",
+  "image": "BS39-072.jpg",
+  "block": "39",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "During this battle, a Spirit/Ultimate you control can block while exhausted.",
+   "When only the opposing Spirit/Ultimate is destroyed via BP comparison with that Spirit/Ultimate you control, draw two cards."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS39-073",
   "name": "Blibuster",
   "name_jp": "ブライバスター",
@@ -18347,6 +21297,109 @@
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "rcode": "C"
+ },
+ {
+  "id": "BS39-074",
+  "name": "Sweet Symphony",
+  "name_jp": "スイートシンフォニー",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 3,
+  "reduction": {
+   "yellow": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nWhen this battle ends, if your Life is at two or less, end the Attack Step.\nDuring Seal Instead, during this turn, an opposing Spirit's symbol becomes zero. When this battle ends, if your Life is at two or less, end the Attack Step.",
+  "image": "BS39-074.jpg",
+  "block": "39",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "When this battle ends, if your Life is at two or less, end the Attack Step.",
+   "During Seal Instead, during this turn, an opposing Spirit's symbol becomes zero.",
+   "When this battle ends, if your Life is at two or less, end the Attack Step."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS39-075",
+  "name": "Cheering Support",
+  "name_jp": "チアリングサポート",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 5,
+  "reduction": {
+   "yellow": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nRefresh all your Cost 2 Spirits. When three or more Spirits you control are refreshed by this effect, draw a card.",
+  "image": "BS39-075.jpg",
+  "block": "39",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Refresh all your Cost 2 Spirits.",
+   "When three or more Spirits you control are refreshed by this effect, draw a card."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS39-076",
+  "name": "Boar Up",
+  "name_jp": "ボアアップ",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 3,
+  "reduction": {
+   "blue": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDuring this turn, all your \"God-King\"/\"Ten Crown\" family Spirits are treated as being on their highest levels.\nDuring Seal Also, during this turn, give all your \"Roaring Azure\" family Spirits: \"Crush (When Attacks) Discard a number of cards from the opposing decktop equal to this Spirit's level.\"",
+  "image": "BS39-076.jpg",
+  "block": "39",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "During this turn, all your \"God-King\"/\"Ten Crown\" family Spirits are treated as being on their highest levels.",
+   "During Seal Also, during this turn, give all your \"Roaring Azure\" family Spirits: \"Crush (When Attacks) Discard a number of cards from the opposing decktop equal to this Spirit's level.\""
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS39-077",
+  "name": "Greed Reject",
+  "name_jp": "グリードリジェクト",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 6,
+  "reduction": {
+   "blue": 2,
+   "green": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "While your Blue \"God-King\" family Spirit is attacking, treat this Magic card in Hand as Cost 4.\n\nFlash\nDestroy an opposing Cost 6 or less Spirit/Ultimate.\nDuring Seal When you destroy any Spirit/Ultimate via this effect, the opponent discards a card from their Hand.",
+  "image": "BS39-077.jpg",
+  "block": "39",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "While your Blue \"God-King\" family Spirit is attacking, treat this Magic card in Hand as Cost 4.",
+   "Flash",
+   "Destroy an opposing Cost 6 or less Spirit/Ultimate.",
+   "During Seal When you destroy any Spirit/Ultimate via this effect, the opponent discards a card from their Hand."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS39-RV001",
@@ -19974,6 +23027,131 @@
   "rcode": "C"
  },
  {
+  "id": "BS39-RV038",
+  "name": "Sagitta Flame",
+  "name_jp": "サジッタフレイム",
+  "type": "Magic",
+  "color": "red",
+  "cost": 5,
+  "reduction": {
+   "red": 2,
+   "white": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Trigger Counter\nWhen an opposing Ultimate Trigger hits, if this card is in your Hand, you can use the following effect before the \"When hits\" effect activates.\n\n█ If the hit card is Red/White, treat the hit as a Guard.\n\nFlash\nDestroy any number of opposing Spirits/Ultimates up to a total of 7000 BP. Or, destroy an opposing Nexus.",
+  "image": "Sagitta Flame.jpg",
+  "block": "39",
+  "saga": 7,
+  "mechanics": [
+   "Trigger Counter"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Trigger Counter",
+   "When an opposing Ultimate Trigger hits, if this card is in your Hand, you can use the following effect before the \"When hits\" effect activates.",
+   "█ If the hit card is Red/White, treat the hit as a Guard.",
+   "Flash",
+   "Destroy any number of opposing Spirits/Ultimates up to a total of 7000 BP.",
+   "Or, destroy an opposing Nexus."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS39-RV039",
+  "name": "Bootes Call",
+  "name_jp": "ボオーテスコール",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 3,
+  "reduction": {
+   "purple": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Trigger Counter\nWhen an opposing Ultimate-Trigger hits, if this Magic card is in your Hand, you can use the following effect before the \"When hits\" effect activates.\n\n█ If the hit card is Purple, treat the hit as a Guard.\n\nFlash\nBy using the cores on your Reserve to pay for the summon cost and put on the Spirit for the summon, summon a Purple \"Ten Crown\" family Spirit card from your Trash.",
+  "image": "Bootes Call.jpg",
+  "block": "39",
+  "saga": 7,
+  "mechanics": [
+   "Trigger Counter"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Trigger Counter",
+   "When an opposing Ultimate-Trigger hits, if this Magic card is in your Hand, you can use the following effect before the \"When hits\" effect activates.",
+   "█ If the hit card is Purple, treat the hit as a Guard.",
+   "Flash",
+   "By using the cores on your Reserve to pay for the summon cost and put on the Spirit for the summon, summon a Purple \"Ten Crown\" family Spirit card from your Trash."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS39-RV040",
+  "name": "Triangle Trap",
+  "name_jp": "トライアングルトラップ",
+  "type": "Magic",
+  "color": "green",
+  "cost": 3,
+  "reduction": {
+   "green": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Trigger Counter\nWhen an opposing Ultimate Trigger hits, if this Magic card is in your Hand, you can use the following effect before the \"When hits\" effect activates.\n\n█ If the hit card is Green, treat the hit as a Guard.\n\nFlash\nExhaust an opposing Spirit/Ultimate. Or, exhaust three opposing Cost 3 or less Spirits/Ultimates.",
+  "image": "Triangle Trap.jpg",
+  "block": "39",
+  "saga": 7,
+  "mechanics": [
+   "Trigger Counter"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Trigger Counter",
+   "When an opposing Ultimate Trigger hits, if this Magic card is in your Hand, you can use the following effect before the \"When hits\" effect activates.",
+   "█ If the hit card is Green, treat the hit as a Guard.",
+   "Flash",
+   "Exhaust an opposing Spirit/Ultimate.",
+   "Or, exhaust three opposing Cost 3 or less Spirits/Ultimates."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS39-RV041",
+  "name": "Vacuum Symbol",
+  "name_jp": "バキュームシンボル",
+  "type": "Magic",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Trigger Counter\nWhen an opposing Ultimate Trigger hits, if this Magic card is in your Hand, you can use the following effect before the \"When hits\" effect activates.\n\n█ If the hit card is White, treat the hit as a Guard.\n\nFlash\nTarget a symbol. During this turn, every opposing Spirit/Ultimate loses one of that symbol. This effect can't be used during (Your Turn).",
+  "image": "Vacuum Symbol.jpg",
+  "block": "39",
+  "saga": 7,
+  "mechanics": [
+   "Trigger Counter"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Trigger Counter",
+   "When an opposing Ultimate Trigger hits, if this Magic card is in your Hand, you can use the following effect before the \"When hits\" effect activates.",
+   "█ If the hit card is White, treat the hit as a Guard.",
+   "Flash",
+   "Target a symbol.",
+   "During this turn, every opposing Spirit/Ultimate loses one of that symbol.",
+   "This effect can't be used during (Your Turn)."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS39-RVX01",
   "name": "The BullDragonDeity Dragonic-Taurus",
   "name_jp": "金牛龍神ドラゴニック・タウラス",
@@ -20594,5 +23772,49 @@
    "7"
   ],
   "rcode": "XX"
+ },
+ {
+  "id": "BS39-XX03",
+  "name": "The EvilGodKing Deathpeers",
+  "name_jp": "邪神皇デスピアズ",
+  "type": "Ultimate",
+  "color": "red",
+  "cost": 6,
+  "reduction": {
+   "ultimate": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 10000
+   },
+   {
+    "cores": 3,
+    "bp": 16000
+   },
+   {
+    "cores": 5,
+    "bp": 22000
+   }
+  ],
+  "families": [
+   "Evil God"
+  ],
+  "text": "{{Sumcon|You control two or more Ultimates}}\n\n[LV3][LV4][LV5] (When Summoned)\nDestroy every opposing Spirit/Ultimate except for one.\n\n[LV3][LV4][LV5] (When Attacks/Blocks)\nSend the (Soul Core) from the opposing Life to their Trash.\n\n[LV4][LV5]\nThis Ultimate is unaffected by opposing effects.",
+  "image": "BS39-XX03.jpg",
+  "block": "39",
+  "saga": 7,
+  "fxComplete": false,
+  "residual": [
+   "{{Sumcon|You control two or more Ultimates}}",
+   "[LV3][LV4][LV5] (When Summoned)",
+   "Destroy every opposing Spirit/Ultimate except for one.",
+   "[LV3][LV4][LV5] (When Attacks/Blocks)",
+   "Send the (Soul Core) from the opposing Life to their Trash.",
+   "[LV4][LV5]",
+   "This Ultimate is unaffected by opposing effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  }
 ]

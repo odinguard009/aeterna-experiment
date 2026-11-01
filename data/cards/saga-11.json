@@ -652,6 +652,93 @@
   "rcode": "M"
  },
  {
+  "id": "BS52-017",
+  "name": "The NetherGreatSorcerer Echezeaux",
+  "name_jp": "冥府大魔導エシュゾ",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 6,
+  "reduction": {
+   "purple": 3,
+   "god": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 3,
+    "bp": 8000
+   },
+   {
+    "cores": 5,
+    "bp": 11000
+   }
+  ],
+  "families": [
+   "Celeste",
+   "Zombie"
+  ],
+  "text": "[LV1][LV2][LV3] (When Summoned)\nYou can discard three cards from your decktop. Then, if there is any \"Zombie\" family card in your Trash, besides an exactly-named \"The NetherGreatSorcerer Echezeaux\", return a Purple card from your Trash to the Hand, treating it as a \"Nether\"-named card.\n\n[LV1][LV2][LV3] (Your Attack Step)\nFor each two \"Zombie\" family Spirits you control, the costs of cards in the opposing Hand/Removed Zone increase by +1.",
+  "image": "The NetherGreatSorcerer Echezeaux.png",
+  "block": "52",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2][LV3] (When Summoned)",
+   "You can discard three cards from your decktop.",
+   "Then, if there is any \"Zombie\" family card in your Trash, besides an exactly-named \"The NetherGreatSorcerer Echezeaux\", return a Purple card from your Trash to the Hand, treating it as a \"Nether\"-named card.",
+   "[LV1][LV2][LV3] (Your Attack Step)",
+   "For each two \"Zombie\" family Spirits you control, the costs of cards in the opposing Hand/Removed Zone increase by +1."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS52-018",
+  "name": "The DestroyerEvilDragon Raga",
+  "name_jp": "破壊魔龍ラーガ",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 7,
+  "reduction": {
+   "purple": 3,
+   "god": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 6000
+   },
+   {
+    "cores": 3,
+    "bp": 9000
+   },
+   {
+    "cores": 5,
+    "bp": 11000
+   }
+  ],
+  "families": [
+   "Celeste",
+   "Death Dragon"
+  ],
+  "text": "When your Purple Grandwalker Nexus is destroyed, you can summon this facedown card from the Removed Zone, without paying the cost. When you've done so, destroy an opposing Spirit.\n\n[LV2][LV3] (When Attacks)\nOnce per turn, by destroying an opposing exhausted Spirit, refresh this Spirit.",
+  "image": "The DestroyerEvilDragon Raga.png",
+  "block": "52",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "When your Purple Grandwalker Nexus is destroyed, you can summon this facedown card from the Removed Zone, without paying the cost.",
+   "When you've done so, destroy an opposing Spirit.",
+   "[LV2][LV3] (When Attacks)",
+   "Once per turn, by destroying an opposing exhausted Spirit, refresh this Spirit."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS52-019",
   "name": "The VampireCount El-Salvatore",
   "name_jp": "吸血伯爵エル・サルバトール",
@@ -2261,6 +2348,51 @@
   "rcode": "C"
  },
  {
+  "id": "BS52-058",
+  "name": "Granat-Golem",
+  "name_jp": "グラナート・ゴレム",
+  "type": "Spirit",
+  "color": "blue",
+  "cost": 6,
+  "reduction": {
+   "blue": 3,
+   "god": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 2,
+    "bp": 8000
+   },
+   {
+    "cores": 4,
+    "bp": 12000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Celeste",
+   "Artificial Soldier"
+  ],
+  "text": "When the opponent Advent, you can pay one cost to summon this card from the Hand. When you've done so, end this turn. Also, if you have two counters or more, destroy the Spirit which Advent.\n\n[LV2][LV3] (When Attacks/Blocks)\nOnce per turn, by destroying an opposing Spirit with the highest cost, this Spirit refreshes.",
+  "image": "Granat-Golem.png",
+  "block": "52",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "When the opponent Advent, you can pay one cost to summon this card from the Hand.",
+   "When you've done so, end this turn.",
+   "Also, if you have two counters or more, destroy the Spirit which Advent.",
+   "[LV2][LV3] (When Attacks/Blocks)",
+   "Once per turn, by destroying an opposing Spirit with the highest cost, this Spirit refreshes."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS52-059",
   "name": "Fossil-Golem",
   "name_jp": "フォッシル・ゴレム",
@@ -2307,6 +2439,334 @@
    "7"
   ],
   "rcode": "C"
+ },
+ {
+  "id": "BS52-066",
+  "name": "Red Field",
+  "name_jp": "レッドフィールド",
+  "type": "Magic",
+  "color": "red",
+  "cost": 4,
+  "reduction": {
+   "red": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card has the \"Primal\" family.\n\nType: Field (While on the Field, the following effects are active)\n█ Every Grandwalker Nexus is fixed as having zero symbols.\n\nMain\nDraw two cards. Then, put this card onto your Field.",
+  "image": "Red Field.png",
+  "block": "52",
+  "saga": 11,
+  "mechanics": [
+   "Type: Field"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "This card has the \"Primal\" family.",
+   "Type: Field (While on the Field, the following effects are active)",
+   "█ Every Grandwalker Nexus is fixed as having zero symbols.",
+   "Main",
+   "Draw two cards.",
+   "Then, put this card onto your Field."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS52-067",
+  "name": "Penetrate Flame",
+  "name_jp": "ペネトレイトフレイム",
+  "type": "Magic",
+  "color": "red",
+  "cost": 5,
+  "reduction": {
+   "red": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Primal"
+  ],
+  "text": "When the opponent reduces your Life, if there is any Red-only card in your Trash, you can use this card from the Hand without paying the cost.\n\nFlash\nDestroy any number of opposing Spirits up to a total of 12000 BP. If you have one counter or more, this effect can't be prevented by opposing effects.",
+  "image": "Penetrate Flame.png",
+  "block": "52",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "When the opponent reduces your Life, if there is any Red-only card in your Trash, you can use this card from the Hand without paying the cost.",
+   "Flash",
+   "Destroy any number of opposing Spirits up to a total of 12000 BP.",
+   "If you have one counter or more, this effect can't be prevented by opposing effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS52-068",
+  "name": "Violet Field",
+  "name_jp": "ヴァイオレットフィールド",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 4,
+  "reduction": {
+   "purple": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card has \"Primal\" family.\n\nType: Field (While on the field, the following effects are active)\n█ Every Grandwalker Nexus has zero symbols.\n\nMain\nBy discarding a Purple Spirit card from your Hand, draw three cards. Then, put this card on your Field.",
+  "image": "Violet Field.png",
+  "block": "52",
+  "saga": 11,
+  "mechanics": [
+   "Type: Field"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "This card has \"Primal\" family.",
+   "Type: Field (While on the field, the following effects are active)",
+   "█ Every Grandwalker Nexus has zero symbols.",
+   "Main",
+   "By discarding a Purple Spirit card from your Hand, draw three cards.",
+   "Then, put this card on your Field."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS52-069",
+  "name": "Deathtament",
+  "name_jp": "デスタメント",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 4,
+  "reduction": {
+   "purple": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Primal"
+  ],
+  "text": "When your Life is reduced by the opponent, if you have any Purple-only card in your Trash, you can use this card from the Hand, without paying the cost.\n\nFlash\nDestroy an opposing Spirit with three cores or more on it. If you have one counter or more, this effect can't be prevented by opposing effects.",
+  "image": "Deathtament.png",
+  "block": "52",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "When your Life is reduced by the opponent, if you have any Purple-only card in your Trash, you can use this card from the Hand, without paying the cost.",
+   "Flash",
+   "Destroy an opposing Spirit with three cores or more on it.",
+   "If you have one counter or more, this effect can't be prevented by opposing effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS52-070",
+  "name": "Viridian Field",
+  "name_jp": "ビリジアンフィールド",
+  "type": "Magic",
+  "color": "green",
+  "cost": 3,
+  "reduction": {
+   "green": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card has \"Primal\" family.\n\nType: Field (While on the field, the following effects are active)\n█ Every Grandwalker Nexus has zero symbols.\n\nMain\nPut a core from the Void to your Trash. Then, put this card on your Field.",
+  "image": "Viridian Field.png",
+  "block": "52",
+  "saga": 11,
+  "mechanics": [
+   "Type: Field"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "This card has \"Primal\" family.",
+   "Type: Field (While on the field, the following effects are active)",
+   "█ Every Grandwalker Nexus has zero symbols.",
+   "Main",
+   "Put a core from the Void to your Trash.",
+   "Then, put this card on your Field."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS52-071",
+  "name": "Binding Melody",
+  "name_jp": "バインディングメロディ",
+  "type": "Magic",
+  "color": "green",
+  "cost": 4,
+  "reduction": {
+   "green": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card has \"Primal\" family.\n\nWhen this card is revealed from the deck by your Green \"Primal\" family Spirit effect, you can add it to the Hand.\n\n Flash\nReturn an opposing exhausted Spirit to the deckbottom. If you have one counter or more, this effect can't be prevented by opposing effects.",
+  "image": "Binding Melody.png",
+  "block": "52",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "This card has \"Primal\" family.",
+   "When this card is revealed from the deck by your Green \"Primal\" family Spirit effect, you can add it to the Hand.",
+   "Flash",
+   "Return an opposing exhausted Spirit to the deckbottom.",
+   "If you have one counter or more, this effect can't be prevented by opposing effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS52-072",
+  "name": "White Field",
+  "name_jp": "ホワイトフィールド",
+  "type": "Magic",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card has \"Primal\" family.\n\nType: Field (While on the field, the following effects are active)\n█ Every Grandwalker Nexus has zero symbols.\n\nMain\nReveal three cards from your decktop. Among them, either summon a White Cost 5 or less \"Primal\" family Spirit card, or deploy a White Nexus card, without paying the cost. Return any remaining cards to only the decktop or the deckbottom. Then, put this card on your Field.",
+  "image": "White Field.png",
+  "block": "52",
+  "saga": 11,
+  "mechanics": [
+   "Type: Field"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "This card has \"Primal\" family.",
+   "Type: Field (While on the field, the following effects are active)",
+   "█ Every Grandwalker Nexus has zero symbols.",
+   "Main",
+   "Reveal three cards from your decktop.",
+   "Among them, either summon a White Cost 5 or less \"Primal\" family Spirit card, or deploy a White Nexus card, without paying the cost.",
+   "Return any remaining cards to only the decktop or the deckbottom.",
+   "Then, put this card on your Field."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS52-073",
+  "name": "Yellow Field",
+  "name_jp": "イエローフィールド",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 3,
+  "reduction": {
+   "yellow": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card has \"Primal\" family.\n\nType: Field (While on the field, the following effects are active)\n█ Every Grandwalker Nexus on the Field has zero symbols.\n\nMain\nReveal two cards from your decktop. Add a card among them to your Hand. Discard the remaining card. Then, put this card on your Field.",
+  "image": "Yellow Field.png",
+  "block": "52",
+  "saga": 11,
+  "mechanics": [
+   "Type: Field"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "This card has \"Primal\" family.",
+   "Type: Field (While on the field, the following effects are active)",
+   "█ Every Grandwalker Nexus on the Field has zero symbols.",
+   "Main",
+   "Reveal two cards from your decktop.",
+   "Add a card among them to your Hand.",
+   "Discard the remaining card.",
+   "Then, put this card on your Field."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS52-074",
+  "name": "Nature's Menace",
+  "name_jp": "ネイチャーメナス",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 3,
+  "reduction": {
+   "yellow": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card has \"Primal\" family.\n\nWhen this card is sent to the Trash by the Core Charge of your exactly-named \"Grandwalker Demeter\", put a core from the Void to any Grandwalker Nexus you control.\n\nFlash\nDuring this turn, an opposing Spirit can't attack/block. Or, by banishing a Yellow card from your Trash, return an opposing Spirit to the Hand.",
+  "image": "Nature's Menace.png",
+  "block": "52",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "This card has \"Primal\" family.",
+   "When this card is sent to the Trash by the Core Charge of your exactly-named \"Grandwalker Demeter\", put a core from the Void to any Grandwalker Nexus you control.",
+   "Flash",
+   "During this turn, an opposing Spirit can't attack/block.",
+   "Or, by banishing a Yellow card from your Trash, return an opposing Spirit to the Hand."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS52-075",
+  "name": "Blue Field",
+  "name_jp": "ブルーフィールド",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 3,
+  "reduction": {
+   "blue": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Primal"
+  ],
+  "text": "Type: Field (While on the field, the following effects are active)\n█ Either player's Grandwalker Nexuses are fixed as having zero symbols.\n\nMain\nDraw two cards, then discard one card from your Hand. Then, put this card on your Field.",
+  "image": "Blue Field.png",
+  "block": "52",
+  "saga": 11,
+  "mechanics": [
+   "Type: Field"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Type: Field (While on the field, the following effects are active)",
+   "█ Either player's Grandwalker Nexuses are fixed as having zero symbols.",
+   "Main",
+   "Draw two cards, then discard one card from your Hand.",
+   "Then, put this card on your Field."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS52-076",
+  "name": "Negative Attack",
+  "name_jp": "ネガティブアタック",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 5,
+  "reduction": {
+   "blue": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card has \"Primal\" family.\n\nWhen the opponent activates an \"Unleash\"-named effect, if there is any Blue-only card in your Trash, you can use this card from the Hand, without paying the cost.\n\nFlash\nIgnoring the cost of Braves, destroy an opposing Cost 7 or less Spirit. Also, if you have one counter or more, this effect can't be prevented by opposing effects.",
+  "image": "Negative Attack.png",
+  "block": "52",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "This card has \"Primal\" family.",
+   "When the opponent activates an \"Unleash\"-named effect, if there is any Blue-only card in your Trash, you can use this card from the Hand, without paying the cost.",
+   "Flash",
+   "Ignoring the cost of Braves, destroy an opposing Cost 7 or less Spirit.",
+   "Also, if you have one counter or more, this effect can't be prevented by opposing effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS52-RV001",
@@ -2646,6 +3106,34 @@
    "10"
   ],
   "rcode": "M"
+ },
+ {
+  "id": "BS52-RV008",
+  "name": "Diamond Wall",
+  "name_jp": "白晶防壁",
+  "type": "Magic",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Primal"
+  ],
+  "text": "When your Life would be reduced by an opposing effect, by discarding this card from your Hand, one less Life is reduced.\n\nFlash\nRefresh one of your Spirits. Or, if you have one counter or more, during this turn, your Life can only be reduced by one.",
+  "image": "Diamond Wall.png",
+  "block": "52",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "When your Life would be reduced by an opposing effect, by discarding this card from your Hand, one less Life is reduced.",
+   "Flash",
+   "Refresh one of your Spirits.",
+   "Or, if you have one counter or more, during this turn, your Life can only be reduced by one."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS52-X01",
@@ -3033,6 +3521,46 @@
    "12"
   ],
   "rcode": "X"
+ },
+ {
+  "id": "BS52-X09",
+  "name": "God Break",
+  "name_jp": "ゴッドブレイク",
+  "type": "Magic",
+  "color": "red",
+  "cost": 3,
+  "reduction": {
+   "red": 1,
+   "purple": 1,
+   "green": 1,
+   "white": 1,
+   "yellow": 1,
+   "blue": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Primal"
+  ],
+  "text": "Type: Field (While on the Field, the following effects are active)\n█ The symbols of either player's Grandwalker Nexuses are fixed as zero.\n█ Neither player's deck can be discarded by non-\"Primal\" family Spirit/Ultimate effects.\n\nFlash\nDraw a card. Also, destroy an opposing non-\"Primal\" family Grandwalker Nexus. This effect can't be prevented by Grandphosis. Then, put this card onto your Field.",
+  "image": "Godbreak.png",
+  "block": "52",
+  "saga": 11,
+  "mechanics": [
+   "Type: Field"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Type: Field (While on the Field, the following effects are active)",
+   "█ The symbols of either player's Grandwalker Nexuses are fixed as zero.",
+   "█ Neither player's deck can be discarded by non-\"Primal\" family Spirit/Ultimate effects.",
+   "Flash",
+   "Draw a card.",
+   "Also, destroy an opposing non-\"Primal\" family Grandwalker Nexus.",
+   "This effect can't be prevented by Grandphosis.",
+   "Then, put this card onto your Field."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS52-XX01",
@@ -3946,6 +4474,45 @@
   "rcode": "R"
  },
  {
+  "id": "BS53-020",
+  "name": "The NetherKnight L'Evangile",
+  "name_jp": "冥府騎士レヴァンジル",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 5,
+  "reduction": {
+   "purple": 2,
+   "god": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 4000
+   },
+   {
+    "cores": 3,
+    "bp": 6000
+   }
+  ],
+  "families": [
+   "Celeste",
+   "Zombie"
+  ],
+  "text": "[LV1][LV2] (When Attacks)\nSend cores from an opposing Spirit to the Reserve until the number of cores on that Spirit is the same as this Spirit's.\n\n[LV1][LV2]\nWhen this Spirit is destroyed by an opposing effect, discard two random cards from the opposing Hand.",
+  "image": "The NetherKnight L'Evangile.png",
+  "block": "53",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2] (When Attacks)",
+   "Send cores from an opposing Spirit to the Reserve until the number of cores on that Spirit is the same as this Spirit's.",
+   "[LV1][LV2]",
+   "When this Spirit is destroyed by an opposing effect, discard two random cards from the opposing Hand."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS53-022",
   "name": "The DragonKnight Albert",
   "name_jp": "竜騎士アルべール",
@@ -4198,6 +4765,45 @@
    "7"
   ],
   "rcode": "R"
+ },
+ {
+  "id": "BS53-029",
+  "name": "The EighthToneBeast NoteKangaroo",
+  "name_jp": "八分音獣ノーツカンゴール",
+  "type": "Spirit",
+  "color": "green",
+  "cost": 4,
+  "reduction": {
+   "green": 2,
+   "god": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 4000
+   },
+   {
+    "cores": 2,
+    "bp": 6000
+   }
+  ],
+  "families": [
+   "Celeste",
+   "Imp"
+  ],
+  "text": "[LV1][LV2] (Either Attack Step)\nWhen you're summoning a card with Sound Speed/Absolute Sound Speed, you can pay the summon cost by sending cores, other than , from your Trash to any Spirits/Grandwalker Nexuses you control instead.\n\n[LV2] (Either Attack Step)\nWhen your Spirits are summoned, exhaust an opposing Spirit.",
+  "image": "The EighthToneBeast NoteKangaroo.png",
+  "block": "53",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2] (Either Attack Step)",
+   "When you're summoning a card with Sound Speed/Absolute Sound Speed, you can pay the summon cost by sending cores, other than , from your Trash to any Spirits/Grandwalker Nexuses you control instead.",
+   "[LV2] (Either Attack Step)",
+   "When your Spirits are summoned, exhaust an opposing Spirit."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS53-030",
@@ -5587,6 +6193,47 @@
   "rcode": "C"
  },
  {
+  "id": "BS53-064",
+  "name": "The DivineOrb Puruna-Karasha",
+  "name_jp": "神珠プルーナ・カラシャ",
+  "type": "Brave",
+  "color": "blue",
+  "cost": 4,
+  "reduction": {
+   "blue": 3
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   }
+  ],
+  "families": [
+   "Saga",
+   "God Arms",
+   "Primal"
+  ],
+  "text": "During Spirit Brave (When Attacks)\nDraw two cards, then discard a card from your Hand.\n\nDuring Nexus Brave Grand Field\nWhen you are summoning a \"Primal\" & \"Fighting Spirit\" family Spirit card, fill three of its  reduction symbols.",
+  "image": "The DivineOrb Puruna-Karasha.png",
+  "block": "53",
+  "saga": 11,
+  "mechanics": [
+   "Grand Field"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "During Spirit Brave (When Attacks)",
+   "Draw two cards, then discard a card from your Hand.",
+   "During Nexus Brave Grand Field",
+   "When you are summoning a \"Primal\" & \"Fighting Spirit\" family Spirit card, fill three of its  reduction symbols."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 3000
+  }
+ },
+ {
   "id": "BS53-065",
   "name": "The Dragon's Holy Sword",
   "name_jp": "龍の聖剣",
@@ -5620,6 +6267,146 @@
    "7"
   ],
   "rcode": "C"
+ },
+ {
+  "id": "BS53-067",
+  "name": "Nexus Hazard",
+  "name_jp": "ネクサスハザード",
+  "type": "Magic",
+  "color": "red",
+  "cost": 3,
+  "reduction": {
+   "red": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card has \"Primal\" family.\n\nFlash\nBy destroying an opposing Nexus, draw a card. Also, if the opponent controls three Nexuses or more, you can destroy an opposing Nexus.",
+  "image": "Nexus Hazard.png",
+  "block": "53",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "This card has \"Primal\" family.",
+   "Flash",
+   "By destroying an opposing Nexus, draw a card.",
+   "Also, if the opponent controls three Nexuses or more, you can destroy an opposing Nexus."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS53-068",
+  "name": "Burning Dust",
+  "name_jp": "バーニングダスト",
+  "type": "Magic",
+  "color": "red",
+  "cost": 4,
+  "reduction": {
+   "red": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card has \"Primal\" family.\n\nFlash\nDestroy an opposing one-symbol Spirit. If you have two counters or more, instead, destroy an opposing one-symbol Spirit/Ultimate, and the effects of the Spirit/Ultimate destroyed by this effect can't activate.",
+  "image": "Burning Dust.png",
+  "block": "53",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "This card has \"Primal\" family.",
+   "Flash",
+   "Destroy an opposing one-symbol Spirit.",
+   "If you have two counters or more, instead, destroy an opposing one-symbol Spirit/Ultimate, and the effects of the Spirit/Ultimate destroyed by this effect can't activate."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS53-069",
+  "name": "Demon's Finger",
+  "name_jp": "デモンズフィンガー",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 4,
+  "reduction": {
+   "purple": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Primal"
+  ],
+  "text": "This card in Trash is unaffected by any effects.\n\nFlash\nSend cores from every opposing Spirit to the Reserve until one core left on each of them. Also, if you have two counters or more, during this turn, your Life can't be reduced by the attacks of opposing Spirits with one core or less on them.",
+  "image": "Demon's Finger.png",
+  "block": "53",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "This card in Trash is unaffected by any effects.",
+   "Flash",
+   "Send cores from every opposing Spirit to the Reserve until one core left on each of them.",
+   "Also, if you have two counters or more, during this turn, your Life can't be reduced by the attacks of opposing Spirits with one core or less on them."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS53-070",
+  "name": "Dragoon Shoot",
+  "name_jp": "ドラグーンシュート",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 5,
+  "reduction": {
+   "purple": 4
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Primal"
+  ],
+  "text": "{{Burst|After your Life is reduced}}\nYou can summon a Red/Purple Cost 6 or less Spirit card from your Trash, without paying the cost. Then by paying the cost, activate this card's Flash effect.\n\nFlash\nSend a core from any opposing Spirit to the Reserve. Also, if you have two counters or more, send two cores from any opposing Spirits to the Reserve.",
+  "image": "Dragoon Shoot.png",
+  "block": "53",
+  "saga": 11,
+  "mechanics": [
+   "Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Burst|After your Life is reduced}}",
+   "You can summon a Red/Purple Cost 6 or less Spirit card from your Trash, without paying the cost.",
+   "Then by paying the cost, activate this card's Flash effect.",
+   "Flash",
+   "Send a core from any opposing Spirit to the Reserve.",
+   "Also, if you have two counters or more, send two cores from any opposing Spirits to the Reserve."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS53-071",
+  "name": "Binding Noise",
+  "name_jp": "バインディングノイズ",
+  "type": "Magic",
+  "color": "green",
+  "cost": 4,
+  "reduction": {
+   "green": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card has \"Primal\" family.\n\nFlash\nHeavy exhaust two opposing Spirits. Then, if you have three counters or more, return two opposing exhausted Spirits/Ultimates to the deckbottom.\nheb",
+  "image": "Binding Noise.png",
+  "block": "53",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "This card has \"Primal\" family.",
+   "Flash",
+   "Heavy exhaust two opposing Spirits.",
+   "Then, if you have three counters or more, return two opposing exhausted Spirits/Ultimates to the deckbottom.",
+   "heb"
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS53-072",
@@ -5656,6 +6443,164 @@
    "7"
   ],
   "rcode": "R"
+ },
+ {
+  "id": "BS53-073",
+  "name": "Mist Shield",
+  "name_jp": "ミストシールド",
+  "type": "Magic",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card has \"Primal\" family.\n\nThis card in Hand is unaffected by opposing effects.\n\nFlash\nTarget two opposing Spirits. During this turn, your Life can't be reduced by those Spirits.",
+  "image": "Mist Shield.png",
+  "block": "53",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "This card has \"Primal\" family.",
+   "This card in Hand is unaffected by opposing effects.",
+   "Flash",
+   "Target two opposing Spirits.",
+   "During this turn, your Life can't be reduced by those Spirits."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS53-074",
+  "name": "Dream Spark",
+  "name_jp": "ドリームスパーク",
+  "type": "Magic",
+  "color": "white",
+  "cost": 7,
+  "reduction": {
+   "white": 4
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card has \"Primal\" family.\n\nWhen your Life is reduced by the opponent, if there is any White-only Spirit card in your Trash, you can use this card from the Hand, without paying the cost.\n\nFlash\nReturn two opposing Spirits to the Hand. If you have one or more counters, this effect can't be prevented by opposing effects.",
+  "image": "Dream Spark.png",
+  "block": "53",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "This card has \"Primal\" family.",
+   "When your Life is reduced by the opponent, if there is any White-only Spirit card in your Trash, you can use this card from the Hand, without paying the cost.",
+   "Flash",
+   "Return two opposing Spirits to the Hand.",
+   "If you have one or more counters, this effect can't be prevented by opposing effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS53-075",
+  "name": "Pom Pom Pom Pom",
+  "name_jp": "ポムポムポムボム",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 3,
+  "reduction": {
+   "yellow": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card has the \"Primal\" family.\n\nFlash\nFor each two \"Primal\" family Spirits/Nexuses you control, return an opposing Ultimate to the deckbottom.",
+  "image": "Pom Pom Pom Pom.png",
+  "block": "53",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "This card has the \"Primal\" family.",
+   "Flash",
+   "For each two \"Primal\" family Spirits/Nexuses you control, return an opposing Ultimate to the deckbottom."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS53-076",
+  "name": "Mertipressure",
+  "name_jp": "メルティプレッシャー",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 4,
+  "reduction": {
+   "yellow": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card has \"Primal\"/\"Dark Artes\" family.\n\nWhen your Life is reduced by the opponent, if there is any Yellow-only card in your Trash, you can use this card from the Hand, without paying the cost.\n\nFlash\nDuring this turn, give an opposing Spirit -10000 BP, and destroy if it reaches 0 BP. If you have one counters or more, this effect can't be prevented by opposing effects.",
+  "image": "Mertipressure.png",
+  "block": "53",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "This card has \"Primal\"/\"Dark Artes\" family.",
+   "When your Life is reduced by the opponent, if there is any Yellow-only card in your Trash, you can use this card from the Hand, without paying the cost.",
+   "Flash",
+   "During this turn, give an opposing Spirit -10000 BP, and destroy if it reaches 0 BP.",
+   "If you have one counters or more, this effect can't be prevented by opposing effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS53-077",
+  "name": "Azure Stream Beam",
+  "name_jp": "蒼流線",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 3,
+  "reduction": {
+   "blue": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card has \"Primal\" family.\n\nFlash\nDuring this turn, give all your \"Primal\" family Spirits: \"(When Attacks) The opponent can only activate Burst effects that share the same colors as the symbols on their Field.\"",
+  "image": "Azure Stream Beam.png",
+  "block": "53",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "This card has \"Primal\" family.",
+   "Flash",
+   "During this turn, give all your \"Primal\" family Spirits: \"(When Attacks) The opponent can only activate Burst effects that share the same colors as the symbols on their Field.\""
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS53-078",
+  "name": "Spartan Throw",
+  "name_jp": "スパルタンスロー",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 4,
+  "reduction": {
+   "blue": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card has \"Primal\" family.\n\nWhen this card is sent to the Trash by your exactly-named \"Grandwalker Lakshmi\"'s Core Charge, put a core from the Void to any of your Grandwalker Nexus.\n\nFlash\nIgnoring the cost of Braves, destroy an opposing Cost 4/5/6 Spirit. Then, by sending three cores from any of your exactly-named \"Grandwalker Lakshmi\" to the Void, destroy an opposing Cost 7/8/9 Spirit.",
+  "image": "Spartan Throw.png",
+  "block": "53",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "This card has \"Primal\" family.",
+   "When this card is sent to the Trash by your exactly-named \"Grandwalker Lakshmi\"'s Core Charge, put a core from the Void to any of your Grandwalker Nexus.",
+   "Flash",
+   "Ignoring the cost of Braves, destroy an opposing Cost 4/5/6 Spirit.",
+   "Then, by sending three cores from any of your exactly-named \"Grandwalker Lakshmi\" to the Void, destroy an opposing Cost 7/8/9 Spirit."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS53-RV001",
@@ -6263,6 +7208,47 @@
    "7"
   ],
   "rcode": "X"
+ },
+ {
+  "id": "BS53-X08",
+  "name": "The GenesisOrb Hexa-Talisman",
+  "name_jp": "創醒の宝珠ヘキサ・タリスマン",
+  "type": "Brave",
+  "color": "red",
+  "cost": 2,
+  "reduction": {},
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   }
+  ],
+  "families": [
+   "Saga",
+   "God Arms",
+   "Primal"
+  ],
+  "text": "[LV1] (When Summoned)\nIf you have two counters or more, draw a card, and put a core from the Void to your Reserve.\n\nDuring Spirit Brave\nWhen this Spirit would leave the Field due to an opposing effect, by destroying this Brave, it remains on the Field, exhausted.\n\nDuring Nexus Brave Grand Field\nWhile your Hand is five or less, your Hand is unaffected by opposing effects.",
+  "image": "The GenesisOrb Hexa-Talisman.png",
+  "block": "53",
+  "saga": 11,
+  "mechanics": [
+   "Grand Field"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "[LV1] (When Summoned)",
+   "If you have two counters or more, draw a card, and put a core from the Void to your Reserve.",
+   "During Spirit Brave",
+   "When this Spirit would leave the Field due to an opposing effect, by destroying this Brave, it remains on the Field, exhausted.",
+   "During Nexus Brave Grand Field",
+   "While your Hand is five or less, your Hand is unaffected by opposing effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 3000
+  }
  },
  {
   "id": "BS53-X09",
@@ -9197,6 +10183,170 @@
   "rcode": "C"
  },
  {
+  "id": "BS54-068",
+  "name": "Sixth Blaze",
+  "name_jp": "シックスブレイズ",
+  "type": "Magic",
+  "color": "red",
+  "cost": 6,
+  "reduction": {
+   "red": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card has the \"Primal\"/\"Magibullet\" family.\n\nWhen your Life is reduced to three or less by the opponent, you can use this card from Hand without paying the cost.\n\nFlash\nIgnoring the \"BP+\" of Braves, destroy any number of opposing Spirits up to a total of 12000 BP, or any opposing Ultimates up to a total of 26000 BP. Effects of the Spirits/Ultimates destroyed by this effect can't activate.",
+  "image": "Sixth Blaze.png",
+  "block": "54",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "This card has the \"Primal\"/\"Magibullet\" family.",
+   "When your Life is reduced to three or less by the opponent, you can use this card from Hand without paying the cost.",
+   "Flash",
+   "Ignoring the \"BP+\" of Braves, destroy any number of opposing Spirits up to a total of 12000 BP, or any opposing Ultimates up to a total of 26000 BP.",
+   "Effects of the Spirits/Ultimates destroyed by this effect can't activate."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS54-069",
+  "name": "Returns Dragoon",
+  "name_jp": "リターンズドラグーン",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 5,
+  "reduction": {
+   "purple": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card has the \"Primal\" family.\n\nFlash\nSummon a Cost 7 or less \"DragonKnight\"-named card from your Trash without paying the cost. Then, you can brave one of your Braves to that Spirit.",
+  "image": "Returns Dragoon.png",
+  "block": "54",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "This card has the \"Primal\" family.",
+   "Flash",
+   "Summon a Cost 7 or less \"DragonKnight\"-named card from your Trash without paying the cost.",
+   "Then, you can brave one of your Braves to that Spirit."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS54-070",
+  "name": "Death Ataraxia",
+  "name_jp": "デスアタラクシア",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 6,
+  "reduction": {
+   "purple": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Primal",
+   "Magibullet"
+  ],
+  "text": "When your Life is reduced by the opponent, you can use this card from the Hand without paying the cost.\n\nFlash\nSend three cores from an opposing Spirit/Ultimate to the Reserve. Also, if your Trash has six or more cards, treat this card as colorless.",
+  "image": "Death Ataraxia.png",
+  "block": "54",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "When your Life is reduced by the opponent, you can use this card from the Hand without paying the cost.",
+   "Flash",
+   "Send three cores from an opposing Spirit/Ultimate to the Reserve.",
+   "Also, if your Trash has six or more cards, treat this card as colorless."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS54-071",
+  "name": "Growth Booster",
+  "name_jp": "グロウスブースター",
+  "type": "Magic",
+  "color": "green",
+  "cost": 5,
+  "reduction": {
+   "green": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card has the \"Primal\" family.\n\nFlash\nRefresh two \"Primal\" family Spirits you control. Also, if you have two counters or more, during this turn, while your \"Primal\" family Spirit is attacking, the opponent can't activate Burst effects.",
+  "image": "Growth Booster.png",
+  "block": "54",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "This card has the \"Primal\" family.",
+   "Flash",
+   "Refresh two \"Primal\" family Spirits you control.",
+   "Also, if you have two counters or more, during this turn, while your \"Primal\" family Spirit is attacking, the opponent can't activate Burst effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS54-072",
+  "name": "Vacuum Slash",
+  "name_jp": "真空爪破斬",
+  "type": "Magic",
+  "color": "green",
+  "cost": 6,
+  "reduction": {
+   "green": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Primal",
+   "Magibullet"
+  ],
+  "text": "When your Life is reduced to three or less by the opponent, you can use this card from the Hand without paying the cost.\n\nFlash\nReturn two opposing exhausted Spirits/Ultimates to the deckbottom. This effect can't be prevented by opposing effects.",
+  "image": "Vacuum Slash.png",
+  "block": "54",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "When your Life is reduced to three or less by the opponent, you can use this card from the Hand without paying the cost.",
+   "Flash",
+   "Return two opposing exhausted Spirits/Ultimates to the deckbottom.",
+   "This effect can't be prevented by opposing effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS54-073",
+  "name": "Reinforcement",
+  "name_jp": "リインフォースメント",
+  "type": "Magic",
+  "color": "white",
+  "cost": 5,
+  "reduction": {
+   "white": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card has \"Primal\" family.\n\nFlash\nReveal two cards from your decktop. Among them, summon any number of White-only Cost 6 or less \"Primal\" family Spirit cards, without paying the cost. Discard any remaining cards.",
+  "image": "Reinforcement.png",
+  "block": "54",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "This card has \"Primal\" family.",
+   "Flash",
+   "Reveal two cards from your decktop.",
+   "Among them, summon any number of White-only Cost 6 or less \"Primal\" family Spirit cards, without paying the cost.",
+   "Discard any remaining cards."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS54-074",
   "name": "Freezing Pillar",
   "name_jp": "フリージングピラー",
@@ -9239,6 +10389,114 @@
    "11"
   ],
   "rcode": "R"
+ },
+ {
+  "id": "BS54-075",
+  "name": "Twinkle Veil",
+  "name_jp": "トゥインクルベール",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 4,
+  "reduction": {
+   "yellow": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card has \"Primal\" family.\n\nFlash\nUntil your next Start Step, the opponent can't gain cores from the Void through via effects, nor can they activate Core Charge.",
+  "image": "BS54 075 (Fixed).png",
+  "block": "54",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "This card has \"Primal\" family.",
+   "Flash",
+   "Until your next Start Step, the opponent can't gain cores from the Void through via effects, nor can they activate Core Charge."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS54-076",
+  "name": "Reset Sphere",
+  "name_jp": "リセットスフィア",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 12,
+  "reduction": {
+   "yellow": 6
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card has \"Primal\" family, and you can't use it unless you pay one cost or more.\n\nFlash\nDestroy all Red/Purple/Green/White/Blue non-\"Primal\" family Spirits/Ultimates/Nexuses/Grandwalker Nexuses. Braves can't remain on the Field with this effect. If you have two counters or more, effects of Spirits/Ultimates/Nexuses destroyed by this effect can't activate. If you have four counters or more, these effects can't be prevented by either player's effects.",
+  "image": "Reset Sphere.png",
+  "block": "54",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "This card has \"Primal\" family, and you can't use it unless you pay one cost or more.",
+   "Flash",
+   "Destroy all Red/Purple/Green/White/Blue non-\"Primal\" family Spirits/Ultimates/Nexuses/Grandwalker Nexuses.",
+   "Braves can't remain on the Field with this effect.",
+   "If you have two counters or more, effects of Spirits/Ultimates/Nexuses destroyed by this effect can't activate.",
+   "If you have four counters or more, these effects can't be prevented by either player's effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS54-077",
+  "name": "Wave Smash",
+  "name_jp": "ウェーブスマッシュ",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 4,
+  "reduction": {
+   "blue": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card has the \"Primal\" family.\n\nFlash\nIgnoring the costs of Braves, destroy two opposing Cost 5 or less Spirits/Ultimates. Then, if you have two counters or more, you can return this card to the Hand. This \"return to Hand\" effect can only activate once per turn.",
+  "image": "Wave Smash.png",
+  "block": "54",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "This card has the \"Primal\" family.",
+   "Flash",
+   "Ignoring the costs of Braves, destroy two opposing Cost 5 or less Spirits/Ultimates.",
+   "Then, if you have two counters or more, you can return this card to the Hand.",
+   "This \"return to Hand\" effect can only activate once per turn."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS54-078",
+  "name": "Beast Rain",
+  "name_jp": "ビーストレイン",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 4,
+  "reduction": {
+   "blue": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card has \"Primal\" family.\n\nMain\nDraw three cards, then discard two cards from your Hand. Also, if you have two counters or more, destroy an opposing Spirit with the lowest cost.\n\nFlash\nDuring this turn, give a \"Fighting Spirit\" family Spirit you control +5000 BP.",
+  "image": "Beast Rain.png",
+  "block": "54",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "This card has \"Primal\" family.",
+   "Main",
+   "Draw three cards, then discard two cards from your Hand.",
+   "Also, if you have two counters or more, destroy an opposing Spirit with the lowest cost.",
+   "Flash",
+   "During this turn, give a \"Fighting Spirit\" family Spirit you control +5000 BP."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS54-RV001",
@@ -9879,6 +11137,83 @@
    "7"
   ],
   "rcode": "X"
+ },
+ {
+  "id": "BS54-X08",
+  "name": "True-Flame Demon-God",
+  "name_jp": "真・炎魔神",
+  "type": "Brave",
+  "color": "red",
+  "cost": 5,
+  "reduction": {
+   "red": 2,
+   "white": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 5000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Primal",
+   "Machine Dragon"
+  ],
+  "text": "This brave does not exhaust, and while in Spirit condition, cannot attack nor block.\n\nDuring Left/Right Brave (When Attacks)\nDiscard an opposing Burst. Or, destroy two opposing 10000 BP or less Spirits/20000 BP or less Ultimates, and effects of the destroyed Spirits/Ultimates can't activate.\nDouble Drive If there are \"Primal\"/\"God-King\" family Spirits braved to the left and right of this Brave, and you have three counters or more, send an opposing Life to the Reserve.",
+  "image": "True-Flame Demon-God.png",
+  "block": "54",
+  "saga": 11,
+  "mechanics": [
+   "Double Drive"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "This brave does not exhaust, and while in Spirit condition, cannot attack nor block.",
+   "During Left/Right Brave (When Attacks)",
+   "Discard an opposing Burst.",
+   "Or, destroy two opposing 10000 BP or less Spirits/20000 BP or less Ultimates, and effects of the destroyed Spirits/Ultimates can't activate.",
+   "Double Drive If there are \"Primal\"/\"God-King\" family Spirits braved to the left and right of this Brave, and you have three counters or more, send an opposing Life to the Reserve."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 6000,
+   "costGe": 4
+  }
+ },
+ {
+  "id": "BS54-X09",
+  "name": "Zero's Barrier",
+  "name_jp": "零ノ障壁",
+  "type": "Magic",
+  "color": "red",
+  "cost": 4,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Primal"
+  ],
+  "text": "Zero Counter\nWhen the opponent summons a Spirit/Ultimate/Brave without paying the cost, other than via Burst effects, you can immediately use the following effect of this card from the Hand without paying the cost:\n█ Destroy an opposing Spirit/Ultimate. After this effect resolves, by paying one cost, return this card to the Hand.\n\nFlash\nWhen this battle ends, end the Attack Step.",
+  "image": "Zero's Barrier.png",
+  "block": "54",
+  "saga": 11,
+  "mechanics": [
+   "Zero Counter"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Zero Counter",
+   "When the opponent summons a Spirit/Ultimate/Brave without paying the cost, other than via Burst effects, you can immediately use the following effect of this card from the Hand without paying the cost:",
+   "█ Destroy an opposing Spirit/Ultimate.",
+   "After this effect resolves, by paying one cost, return this card to the Hand.",
+   "Flash",
+   "When this battle ends, end the Attack Step."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS54-XX01",
@@ -12804,6 +14139,33 @@
   "rcode": "C"
  },
  {
+  "id": "BS55-068",
+  "name": "Red Zone",
+  "name_jp": "レッドゾーン",
+  "type": "Magic",
+  "color": "red",
+  "cost": 6,
+  "reduction": {
+   "red": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card has \"Primal\" family.\n\nFlash\nDuring this turn, the opponent can't end the Attack Step via effects, and when your Red-only \"Primal\" family Spirit destroys any opposing Spirits/Ultimates, send an opposing Life to the Reserve. This effect doesn't stack. Also, if you have three counters or more, negate all opposing active White Magic/Accel effects, except on-field effects.",
+  "image": "Red Zone.png",
+  "block": "55",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "This card has \"Primal\" family.",
+   "Flash",
+   "During this turn, the opponent can't end the Attack Step via effects, and when your Red-only \"Primal\" family Spirit destroys any opposing Spirits/Ultimates, send an opposing Life to the Reserve.",
+   "This effect doesn't stack.",
+   "Also, if you have three counters or more, negate all opposing active White Magic/Accel effects, except on-field effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS55-069",
   "name": "Dragoon Dive",
   "name_jp": "ドラグーンダイブ",
@@ -12851,6 +14213,144 @@
   "rcode": "C"
  },
  {
+  "id": "BS55-070",
+  "name": "The Yomi Path to Reincarnation",
+  "name_jp": "反魂ノ黄泉路",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 4,
+  "reduction": {
+   "purple": 2,
+   "green": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Spiritual Beast"
+  ],
+  "text": "When this card is sent to the Trash by the effect of your exactly-named \"Grandwalkers Izanagi & Izanami\", you can add it to the Hand.\n\nFlash\nSummon a Cost 4 or less \"Yomi\"/\"Kamiumi\" Spirit card from your Trash, without paying the cost. By sending five cores from any of your exactly-named \"Grandwalkers Izanagi & Izanami\" to the Void, change the \"Cost 4 or less\" text of this effect to \"Cost 8 or less\".",
+  "image": null,
+  "block": "55",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "When this card is sent to the Trash by the effect of your exactly-named \"Grandwalkers Izanagi & Izanami\", you can add it to the Hand.",
+   "Flash",
+   "Summon a Cost 4 or less \"Yomi\"/\"Kamiumi\" Spirit card from your Trash, without paying the cost.",
+   "By sending five cores from any of your exactly-named \"Grandwalkers Izanagi & Izanami\" to the Void, change the \"Cost 4 or less\" text of this effect to \"Cost 8 or less\"."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS55-071",
+  "name": "Reverse Jammer",
+  "name_jp": "リバースジャマー",
+  "type": "Magic",
+  "color": "green",
+  "cost": 6,
+  "reduction": {
+   "green": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Primal"
+  ],
+  "text": "During your Attack Step, when the opponent uses a Magic card, before the effect activates, by paying the cost and discarding this card from the Hand, immediately negate that effect.\n\nMain\nDiscard your entire Hand. When this effect discards any \"Plant Spirit\" family card, for each card in the opposing Hand, draw a card.",
+  "image": "Reverse Jammer.png",
+  "block": "55",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "During your Attack Step, when the opponent uses a Magic card, before the effect activates, by paying the cost and discarding this card from the Hand, immediately negate that effect.",
+   "Main",
+   "Discard your entire Hand.",
+   "When this effect discards any \"Plant Spirit\" family card, for each card in the opposing Hand, draw a card."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS55-072",
+  "name": "Kamiumi's Fierce Pursuit",
+  "name_jp": "神産ノ猛追",
+  "type": "Magic",
+  "color": "green",
+  "cost": 6,
+  "reduction": {
+   "green": 2,
+   "purple": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Plant Spirit"
+  ],
+  "text": "(Once per Turn: Same Turn) During your End Step, if you control any exactly-named \"Grandwalkers Izanagi & Izanami\", you can return this card from your Trash to the Hand.\n\nFlash\nReturn an opposing exhausted Spirit/Ultimate to the deckbottom. Also, if you control any exactly-named \"Grandwalkers Izanagi & Izanami\", refresh a \"Yomi\"/\"Kamiumi\" Spirit you control.",
+  "image": "Kamiumi's Fierce Pursuit.png",
+  "block": "55",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "(Once per Turn: Same Turn) During your End Step, if you control any exactly-named \"Grandwalkers Izanagi & Izanami\", you can return this card from your Trash to the Hand.",
+   "Flash",
+   "Return an opposing exhausted Spirit/Ultimate to the deckbottom.",
+   "Also, if you control any exactly-named \"Grandwalkers Izanagi & Izanami\", refresh a \"Yomi\"/\"Kamiumi\" Spirit you control."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS55-073",
+  "name": "Overdose",
+  "name_jp": "オーバードーズ",
+  "type": "Magic",
+  "color": "white",
+  "cost": 3,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card has \"Primal\" family.\n\nFlash\nDuring this turn, give all your Spirits +3000 BP. Also, if it's the opposing Attack Step, refresh all your Spirits.",
+  "image": "Overdose.jpg",
+  "block": "55",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "This card has \"Primal\" family.",
+   "Flash",
+   "During this turn, give all your Spirits +3000 BP.",
+   "Also, if it's the opposing Attack Step, refresh all your Spirits."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS55-074",
+  "name": "Blizzard Tempest",
+  "name_jp": "ブリザードテンペスト",
+  "type": "Magic",
+  "color": "white",
+  "cost": 5,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card has \"Primal\"/\"Ice Princess\" family.\n\nFlash\nReturn an opposing Spirit/Ultimate to the deckbottom. Also, if there are four or more \"Ice Princess\" family Spirit cards in your Trash, during this turn, your Life can only be reduced by one.",
+  "image": "Blizzard Tempest.jpg",
+  "block": "55",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "This card has \"Primal\"/\"Ice Princess\" family.",
+   "Flash",
+   "Return an opposing Spirit/Ultimate to the deckbottom.",
+   "Also, if there are four or more \"Ice Princess\" family Spirit cards in your Trash, during this turn, your Life can only be reduced by one."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS55-075",
   "name": "Holy Sign",
   "name_jp": "ホーリーサイン",
@@ -12885,6 +14385,89 @@
    "10"
   ],
   "rcode": "C"
+ },
+ {
+  "id": "BS55-076",
+  "name": "Trump Spark",
+  "name_jp": "トランプスパーク",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 6,
+  "reduction": {
+   "yellow": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card has \"Primal\"/\"Magibullet\" family.\n\nWhen your Life is reduced by the opponent, you can use this card from the Hand without paying the cost.\n\nFlash\nDuring this turn, give an opposing Spirit/Ultimate -10000 BP. Also, if your Life is five or more, during this turn, give an opposing Spirit/Ultimate -10000 BP. After this effect resolves, destroy all opposing Spirits/Ultimates with 0 BP.",
+  "image": "Trump Spark.png",
+  "block": "55",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "This card has \"Primal\"/\"Magibullet\" family.",
+   "When your Life is reduced by the opponent, you can use this card from the Hand without paying the cost.",
+   "Flash",
+   "During this turn, give an opposing Spirit/Ultimate -10000 BP.",
+   "Also, if your Life is five or more, during this turn, give an opposing Spirit/Ultimate -10000 BP.",
+   "After this effect resolves, destroy all opposing Spirits/Ultimates with 0 BP."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS55-077",
+  "name": "Mystery Trap",
+  "name_jp": "ミステリートラップ",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 4,
+  "reduction": {
+   "blue": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "When this card in Hand would be discarded by your \"WBS\"-named Spirit effect/exactly-named \"Grandwalker Lakshmi\"'s effect, instead of sending it to Trash, you can put it onto the Removed Zone.\n\nFlash\nDestroy two opposing Cost 3 or less Spirits. Or, if there are three or more \"WBS\"-named cards in your Trash, during this turn, opposing Cost 4 or more Spirits/Ultimates can't attack.",
+  "image": "Mystery Trap.jpg",
+  "block": "55",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "When this card in Hand would be discarded by your \"WBS\"-named Spirit effect/exactly-named \"Grandwalker Lakshmi\"'s effect, instead of sending it to Trash, you can put it onto the Removed Zone.",
+   "Flash",
+   "Destroy two opposing Cost 3 or less Spirits.",
+   "Or, if there are three or more \"WBS\"-named cards in your Trash, during this turn, opposing Cost 4 or more Spirits/Ultimates can't attack."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS55-078",
+  "name": "Tachyon Stream",
+  "name_jp": "タキオンストリーム",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 6,
+  "reduction": {
+   "blue": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Primal",
+   "Chrownos",
+   "Magibullet"
+  ],
+  "text": "When your Life is reduced by the opponent, you can use this card from the Hand without paying the cost.\n\nFlash\nIgnoring the cost of Braves, destroy an opposing Cost 6 or less Spirit/Ultimate, and the effects of the destroyed target can't activate.",
+  "image": "Tachyon Stream.jpg",
+  "block": "55",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "When your Life is reduced by the opponent, you can use this card from the Hand without paying the cost.",
+   "Flash",
+   "Ignoring the cost of Braves, destroy an opposing Cost 6 or less Spirit/Ultimate, and the effects of the destroyed target can't activate."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS55-RV001",
@@ -13598,6 +15181,39 @@
    "12"
   ],
   "rcode": "X"
+ },
+ {
+  "id": "BS55-XX01",
+  "name": "The AbsoluteDragonDeity Amaterasu-Dragon",
+  "name_jp": "絶対なる幻龍神アマテラス・ドラゴン",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 10,
+  "reduction": {},
+  "symbols": 3,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 0
+   }
+  ],
+  "families": [
+   "Crystalline Deity"
+  ],
+  "text": "This card is unaffected by any effects.\n\n[LV1]\nThis Spirit can't be braved, and is unaffected by any effects except its own effects. This Spirit's BP is equal to the number of cores on this Spirit x10000.\n\n[LV1] (When Summoned)\nDestroy all other Spirits.",
+  "image": "The AbsoluteDragonDeity Amaterasu-Dragon.png",
+  "block": "55",
+  "saga": 11,
+  "fxComplete": false,
+  "residual": [
+   "This card is unaffected by any effects.",
+   "[LV1]",
+   "This Spirit can't be braved, and is unaffected by any effects except its own effects.",
+   "This Spirit's BP is equal to the number of cores on this Spirit x10000.",
+   "[LV1] (When Summoned)",
+   "Destroy all other Spirits."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS55-XX02",

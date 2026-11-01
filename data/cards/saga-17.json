@@ -1781,6 +1781,55 @@
   "rcode": "M"
  },
  {
+  "id": "BS76-036",
+  "name": "The FrostyHarpFairy Harpian",
+  "name_jp": "霜の琴妖精ハーピアン",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 2,
+   "god": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   },
+   {
+    "cores": 2,
+    "bp": 7000
+   },
+   {
+    "cores": 5,
+    "bp": 9000
+   }
+  ],
+  "families": [
+   "Devotee",
+   "Frostling"
+  ],
+  "text": "[LV1-2-3] Flash - Silver Wheel\nYou can exhaust this Spirit. When you've done so, (Once per Turn: Same Name) you can reveal three cards from your decktop. Among them, add every \"Contractor Brigit\" to the Hand. Return any remaining cards to the deckbottom.\n\n[LV2-3] {{ua|White/Yellow}}\nThis Spirit is unaffected by opposing White/Yellow Spirit/Ultimate/Nexus/Magic effects.",
+  "image": "BS76-036 (Fixed).png",
+  "block": "76",
+  "saga": 17,
+  "mechanics": [
+   "Silver Wheel"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "[LV1-2-3] Flash - Silver Wheel",
+   "You can exhaust this Spirit.",
+   "When you've done so, (Once per Turn: Same Name) you can reveal three cards from your decktop.",
+   "Among them, add every \"Contractor Brigit\" to the Hand.",
+   "Return any remaining cards to the deckbottom.",
+   "[LV2-3] {{ua|White/Yellow}}",
+   "This Spirit is unaffected by opposing White/Yellow Spirit/Ultimate/Nexus/Magic effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS76-037",
   "name": "Platinum Toriba",
   "name_jp": "プラチナム・トリバ",
@@ -2434,6 +2483,55 @@
   "rcode": "R"
  },
  {
+  "id": "BS76-049",
+  "name": "The WaterLilyElephant Ganapati",
+  "name_jp": "睡蓮象ガナパティ",
+  "type": "Spirit",
+  "color": "yellow",
+  "cost": 5,
+  "reduction": {
+   "yellow": 3,
+   "god": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 6000
+   },
+   {
+    "cores": 2,
+    "bp": 8000
+   },
+   {
+    "cores": 4,
+    "bp": 12000
+   }
+  ],
+  "families": [
+   "Astroblazer",
+   "Devotee",
+   "Hunter Beast"
+  ],
+  "text": "When this card is sent to the Trash by your Yellow Mirage effect, during this turn, one of your \"Hunter Beast\" family Spirits can't be blocked. Then, you can summon this card.\n\n{{Mirage|Cost 3 ()}}\nDuring Set (Your Attack Step)\nWhen your Cost 4 or more “Hunter Beast” family Spirit attacks, you can send a card from your decktop to the Trash. If that card's cost is equal or inferior to the attacking target's, send a core from the opposing Life to the Reserve.",
+  "image": "BS76-049.png",
+  "block": "76",
+  "saga": 17,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "When this card is sent to the Trash by your Yellow Mirage effect, during this turn, one of your \"Hunter Beast\" family Spirits can't be blocked.",
+   "Then, you can summon this card.",
+   "{{Mirage|Cost 3 ()}}",
+   "During Set (Your Attack Step)",
+   "When your Cost 4 or more “Hunter Beast” family Spirit attacks, you can send a card from your decktop to the Trash.",
+   "If that card's cost is equal or inferior to the attacking target's, send a core from the opposing Life to the Reserve."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS76-050",
   "name": "The ElectromagneticDragon Raishin Vajdra",
   "name_jp": "電磁竜ライシンヴァジュドラ",
@@ -2855,6 +2953,56 @@
   "rcode": "C"
  },
  {
+  "id": "BS76-059",
+  "name": "The TraitorHero Alter-Hydrus",
+  "name_jp": "叛英傑オルタ・ハイドラス",
+  "type": "Spirit",
+  "color": "blue",
+  "cost": 7,
+  "reduction": {
+   "blue": 4,
+   "god": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 6000
+   },
+   {
+    "cores": 3,
+    "bp": 10000
+   },
+   {
+    "cores": 6,
+    "bp": 16000
+   }
+  ],
+  "families": [
+   "Primordial",
+   "Fusion Beast",
+   "Soldier"
+  ],
+  "text": "{{Mirage|Cost 6 ()}}\nDuring Set (When Set)\nYou can, ignoring the cost of Braves, destroy an opposing Cost 7 or less Spirit/Ultimate.\n\n[LV1-2-3]\nThe opponent can only use Magic cards once per turn.\n\n[LV2-3] (When Attacks)\nOnce per turn, by destroying a Nexus you or the opponent controls, refresh this Spirit.",
+  "image": "BS76-059.png",
+  "block": "76",
+  "saga": 17,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Mirage|Cost 6 ()}}",
+   "During Set (When Set)",
+   "You can, ignoring the cost of Braves, destroy an opposing Cost 7 or less Spirit/Ultimate.",
+   "[LV1-2-3]",
+   "The opponent can only use Magic cards once per turn.",
+   "[LV2-3] (When Attacks)",
+   "Once per turn, by destroying a Nexus you or the opponent controls, refresh this Spirit."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS76-060",
   "name": "The LotusTreasureSword Yaj-Veda",
   "type": "Brave",
@@ -2955,6 +3103,340 @@
    "13"
   ],
   "rcode": "M"
+ },
+ {
+  "id": "BS76-061",
+  "name": "Fox Demon-God",
+  "name_jp": "狐魔神",
+  "type": "Brave",
+  "color": "green",
+  "cost": 4,
+  "reduction": {
+   "green": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 3000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Bannerace",
+   "Blade Beast"
+  ],
+  "text": "This Brave does not exhaust, and while in Spirit condition, can't attack or block.\n\n(Once per Turn: Same Name) When this card is discarded from the Hand by your Green effect, you can pay one cost to summon it.\n\nDuring Left/Right Brave (When Attacks)\nDuring this turn, this Spirit's color and symbol are also treated as Red. Then, you can return an opposing exhausted Spirit/Nexus to the deckbottom.",
+  "image": "BS76-061.png",
+  "block": "76",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "This Brave does not exhaust, and while in Spirit condition, can't attack or block.",
+   "(Once per Turn: Same Name) When this card is discarded from the Hand by your Green effect, you can pay one cost to summon it.",
+   "During Left/Right Brave (When Attacks)",
+   "During this turn, this Spirit's color and symbol are also treated as Red.",
+   "Then, you can return an opposing exhausted Spirit/Nexus to the deckbottom."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 3000
+  }
+ },
+ {
+  "id": "BS76-062",
+  "name": "Racoon Dog Demon-God",
+  "name_jp": "狸魔神",
+  "type": "Brave",
+  "color": "green",
+  "cost": 4,
+  "reduction": {
+   "green": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 3000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Bannerace",
+   "Imp"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\nDuring Right Brave (When Attacks)\nYou can put a core from the Void to any of your Brave Spirit. When you've done so, you can heavy exhaust an opposing Spirit/Nexus.\n\nDuring Left Brave (Your Attack Step)\nWhen your \"Bannerace\" family Green Brave Spirit attacks, during this battle, that target can become Cost 6.",
+  "image": "BS76-062.png",
+  "block": "76",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "During Right Brave (When Attacks)",
+   "You can put a core from the Void to any of your Brave Spirit.",
+   "When you've done so, you can heavy exhaust an opposing Spirit/Nexus.",
+   "During Left Brave (Your Attack Step)",
+   "When your \"Bannerace\" family Green Brave Spirit attacks, during this battle, that target can become Cost 6."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 3000
+  }
+ },
+ {
+  "id": "BS76-063",
+  "name": "The SilverRingBlade Twinwheel",
+  "name_jp": "銀輪刃ツインホイール",
+  "type": "Brave",
+  "color": "white",
+  "cost": 3,
+  "reduction": {
+   "white": 1,
+   "god": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 4000
+   }
+  ],
+  "families": [
+   "Saga",
+   "God Arms",
+   "Frostling"
+  ],
+  "text": "When this card is sent to the Trash from deck by the effect of your \"Contractor Brigit\", you can add it to the Hand.\n\nDuring Nexus Brave Flash -  Silver Wheel\nYou can exhaust this Nexus. When you've done so, until your next Start Step, all your \"Contractor Brigit\" Grandwalker Nexuses can't be destroyed by opposing effects.",
+  "image": "BS76-063.png",
+  "block": "76",
+  "saga": 17,
+  "mechanics": [
+   "Silver Wheel"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "When this card is sent to the Trash from deck by the effect of your \"Contractor Brigit\", you can add it to the Hand.",
+   "During Nexus Brave Flash -  Silver Wheel",
+   "You can exhaust this Nexus.",
+   "When you've done so, until your next Start Step, all your \"Contractor Brigit\" Grandwalker Nexuses can't be destroyed by opposing effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 4000
+  }
+ },
+ {
+  "id": "BS76-064",
+  "name": "Lotus Bow",
+  "name_jp": "ロータス・ボウ",
+  "type": "Brave",
+  "color": "yellow",
+  "cost": 4,
+  "reduction": {
+   "yellow": 1,
+   "god": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 4000
+   }
+  ],
+  "families": [
+   "Saga",
+   "God Arms",
+   "Hunter Beast"
+  ],
+  "text": "[LV1] (When Summoned)\nYour counter +1, and reveal three cards from your decktop. Among them, add a \"Parvati\", or a \"Hunter Beast\" family card with Mani to the Hand. Discard any remaining cards.\n\nDuring Nexus Brave Contract Field\nThis Nexus can't be destroyed by opposing effects. Also, this Nexus gains the \"Hunter Beast\" family.",
+  "image": "BS76-064.png",
+  "block": "76",
+  "saga": 17,
+  "mechanics": [
+   "Contract Field"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "[LV1] (When Summoned)",
+   "Your counter +1, and reveal three cards from your decktop.",
+   "Among them, add a \"Parvati\", or a \"Hunter Beast\" family card with Mani to the Hand.",
+   "Discard any remaining cards.",
+   "During Nexus Brave Contract Field",
+   "This Nexus can't be destroyed by opposing effects.",
+   "Also, this Nexus gains the \"Hunter Beast\" family."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 4000
+  }
+ },
+ {
+  "id": "BS76-065",
+  "name": "Imaginate Queen Demon-God",
+  "name_jp": "異奏のクイーン魔神",
+  "type": "Brave",
+  "color": "yellow",
+  "cost": 4,
+  "reduction": {
+   "yellow": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 3000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Magician"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\nDuring Left/Right Brave (When Attacks)\nYou can return an opposing LV1 Spirit to the deckbottom.\nDouble Drive Then, while this Brave is braved to \"Imaginate\", or \"God-King\" family Spirits on the left and right, by sending a core from your Life to this Spirit, during this battle, the effects of every opposing Grandwalker Nexus can't activate.",
+  "image": "BS76-065.png",
+  "block": "76",
+  "saga": 17,
+  "mechanics": [
+   "Double Drive"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "During Left/Right Brave (When Attacks)",
+   "You can return an opposing LV1 Spirit to the deckbottom.",
+   "Double Drive Then, while this Brave is braved to \"Imaginate\", or \"God-King\" family Spirits on the left and right, by sending a core from your Life to this Spirit, during this battle, the effects of every opposing Grandwalker Nexus can't activate."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 3000
+  }
+ },
+ {
+  "id": "BS76-066",
+  "name": "Imaginate Acrobatics Demon-God",
+  "name_jp": "異奏の曲芸魔神",
+  "type": "Brave",
+  "color": "yellow",
+  "cost": 5,
+  "reduction": {
+   "yellow": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 5000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Clown"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\nFlash - (Opposing Attack Step)\nIf you control any \"Imaginate\", you can summon this card from the Hand/Removed Zone. When you've done so, during this turn, an opposing Spirit/Ultimate can't attack.\n\nDuring Left/Right Brave (When Attacks)\nThis Spirit can't be blocked by opposing LV1/LV3 Spirits/Ultimates.",
+  "image": "BS76-066.png",
+  "block": "76",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "Flash - (Opposing Attack Step)",
+   "If you control any \"Imaginate\", you can summon this card from the Hand/Removed Zone.",
+   "When you've done so, during this turn, an opposing Spirit/Ultimate can't attack.",
+   "During Left/Right Brave (When Attacks)",
+   "This Spirit can't be blocked by opposing LV1/LV3 Spirits/Ultimates."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 5000
+  }
+ },
+ {
+  "id": "BS76-067",
+  "name": "Hammer Axe",
+  "name_jp": "ハンマーアクス",
+  "type": "Brave",
+  "color": "blue",
+  "cost": 3,
+  "reduction": {
+   "blue": 1,
+   "god": 1
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   }
+  ],
+  "families": [
+   "Saga",
+   "Devotee",
+   "Artificial Soldier"
+  ],
+  "text": "This card/Brave is not counted towards how many Braves your Blue-only \"Contractor Hephaestus\" can brave to.\n\nDuring Spirit Brave (When Attacks)\nYour counter +1. Then, you can destroy an opposing Spirit/Ultimate with a cost equal or inferior to this Spirit's.\n\nDuring Nexus Brave {{cs|5}} Flash - (Either Attack Step)\n(Once per turn, send five cores from this Nexus to the Void) Destroy an opposing Spirit with a (When Manifests) effect.",
+  "image": "BS76-067.png",
+  "block": "76",
+  "saga": 17,
+  "mechanics": [
+   "Contract Skill"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "This card/Brave is not counted towards how many Braves your Blue-only \"Contractor Hephaestus\" can brave to.",
+   "During Spirit Brave (When Attacks)",
+   "Your counter +1.",
+   "Then, you can destroy an opposing Spirit/Ultimate with a cost equal or inferior to this Spirit's.",
+   "During Nexus Brave {{cs|5}} Flash - (Either Attack Step)",
+   "(Once per turn, send five cores from this Nexus to the Void) Destroy an opposing Spirit with a (When Manifests) effect."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 3000
+  }
+ },
+ {
+  "id": "BS76-068",
+  "name": "The GrandSpearHammer Hammerspear",
+  "name_jp": "神槍槌ハンマースピア",
+  "type": "Brave",
+  "color": "blue",
+  "cost": 5,
+  "reduction": {
+   "blue": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   }
+  ],
+  "families": [
+   "Saga",
+   "Devotee",
+   "Artificial Soldier"
+  ],
+  "text": "This card/Brave is not counted towards how many Braves your Blue-only \"Contractor Hephaestus\" can brave to.\n\n[LV1] (When Summoned)\nYour counter +1. Then, you can reveal a card from your decktop. If that's \"Contractor Hephaestus\", or an \"Artificial Soldier\" family card, add it to the Hand. Discard any remaining card.\n\nDuring Nexus Brave {{cs|3}} Flash - (Either Attack Step)\n(Once per turn, send three cores from this Nexus to the Void) Destroy an opposing Cost 7 or less Spirit/Ultimate.",
+  "image": "BS76-068.png",
+  "block": "76",
+  "saga": 17,
+  "mechanics": [
+   "Contract Skill"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "This card/Brave is not counted towards how many Braves your Blue-only \"Contractor Hephaestus\" can brave to.",
+   "[LV1] (When Summoned)",
+   "Your counter +1.",
+   "Then, you can reveal a card from your decktop.",
+   "If that's \"Contractor Hephaestus\", or an \"Artificial Soldier\" family card, add it to the Hand.",
+   "Discard any remaining card.",
+   "During Nexus Brave {{cs|3}} Flash - (Either Attack Step)",
+   "(Once per turn, send three cores from this Nexus to the Void) Destroy an opposing Cost 7 or less Spirit/Ultimate."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 5000
+  }
  },
  {
   "id": "BS76-069",
@@ -3467,6 +3949,272 @@
    "13"
   ],
   "rcode": "C"
+ },
+ {
+  "id": "BS76-081",
+  "name": "Dazzle Smog",
+  "name_jp": "ダズルスモッグ",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 3,
+  "reduction": {
+   "purple": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Bannerace"
+  ],
+  "text": "Flash\nTarget one of your \"Bannerace\" family Purple Spirits/Nexuses. When you've done so, draw a card. Then, including being in pre-advent condition, if you control any Purple Flag Nexus, during this turn, the chosen target is also treated as being exactly-named \"The DemonArmyFlagbearer Amon\".",
+  "image": "BS76-081.png",
+  "block": "76",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Target one of your \"Bannerace\" family Purple Spirits/Nexuses.",
+   "When you've done so, draw a card.",
+   "Then, including being in pre-advent condition, if you control any Purple Flag Nexus, during this turn, the chosen target is also treated as being exactly-named \"The DemonArmyFlagbearer Amon\"."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS76-082",
+  "name": "Juggling Soul",
+  "name_jp": "ジャグリングソウル",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 6,
+  "reduction": {
+   "purple": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Bannerace"
+  ],
+  "text": "While you have three or more \"The DemonArmyFlagbearer Amon\", including those in Trash/pre-advent condition, this card in Hand is unaffected by opposing effects, and becomes Cost 3.\n\nFlash\nSend a core from the opposing Field to the Reserve. If you have two or more \"The DemonArmyFlagbearer Amon\", including those in the Trash/pre-advent condition, this effect can send +2 cores to the Reserve.",
+  "image": "BS76-082.png",
+  "block": "76",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "While you have three or more \"The DemonArmyFlagbearer Amon\", including those in Trash/pre-advent condition, this card in Hand is unaffected by opposing effects, and becomes Cost 3.",
+   "Flash",
+   "Send a core from the opposing Field to the Reserve.",
+   "If you have two or more \"The DemonArmyFlagbearer Amon\", including those in the Trash/pre-advent condition, this effect can send +2 cores to the Reserve."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS76-083",
+  "name": "Wind Summoning",
+  "name_jp": "ウィンドサモニング",
+  "type": "Magic",
+  "color": "green",
+  "cost": 4,
+  "reduction": {
+   "green": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Bannerace"
+  ],
+  "text": "Main\nReveal three cards from your decktop. Among them, add a Green \"Bannerace\" family Spirit card to the Hand, or summon it. Then, summon without paying the cost up to one Imagine Brave card from the remaining cards, and return the rest to the deckbottom.\n\nFlash\nDuring this turn, give one of your \"Bannerace\" family Spirits +5000 BP.",
+  "image": "BS76-083.png",
+  "block": "76",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "Main",
+   "Reveal three cards from your decktop.",
+   "Among them, add a Green \"Bannerace\" family Spirit card to the Hand, or summon it.",
+   "Then, summon without paying the cost up to one Imagine Brave card from the remaining cards, and return the rest to the deckbottom.",
+   "Flash",
+   "During this turn, give one of your \"Bannerace\" family Spirits +5000 BP."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS76-084",
+  "name": "Marmon Shot",
+  "name_jp": "マーモンショット",
+  "type": "Magic",
+  "color": "green",
+  "cost": 6,
+  "reduction": {
+   "green": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Bannerace"
+  ],
+  "text": "(Once per Turn: Same Name) When any Green \"Bannerace\" family card is discarded from your Hand, you can return this card from the Trash to the Hand.\n\nFlash\nHeavy exhaust an opposing Spirit/Ultimate. Then, if you control any Green Flag Nexus, including those in Soul State/pre-advent condition, you can return an opposing exhausted Spirit/Ultimate to the deckbottom.",
+  "image": "BS76-084.png",
+  "block": "76",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "(Once per Turn: Same Name) When any Green \"Bannerace\" family card is discarded from your Hand, you can return this card from the Trash to the Hand.",
+   "Flash",
+   "Heavy exhaust an opposing Spirit/Ultimate.",
+   "Then, if you control any Green Flag Nexus, including those in Soul State/pre-advent condition, you can return an opposing exhausted Spirit/Ultimate to the deckbottom."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS76-085",
+  "name": "Photon Circle",
+  "name_jp": "フォトンサークル",
+  "type": "Magic",
+  "color": "white",
+  "cost": 2,
+  "reduction": {
+   "white": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Bannerace"
+  ],
+  "text": "(Once per Turn: Same Name) When your \"Glow Contract\" family Spirit Flag Contract Advents, you can return this card from the Trash to your Hand.\n\nFlash\nYou can send out one of your \"Platinum Bug\" Tokens. Then, if you have six counters or more, during this turn, all your \"Platinum Bug\" are unaffected by opposing effects.",
+  "image": "BS76-085.png",
+  "block": "76",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "(Once per Turn: Same Name) When your \"Glow Contract\" family Spirit Flag Contract Advents, you can return this card from the Trash to your Hand.",
+   "Flash",
+   "You can send out one of your \"Platinum Bug\" Tokens.",
+   "Then, if you have six counters or more, during this turn, all your \"Platinum Bug\" are unaffected by opposing effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS76-086",
+  "name": "Large Squash",
+  "name_jp": "ラージスクアッシュ",
+  "type": "Magic",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Bannerace"
+  ],
+  "text": "This card in Hand is unaffected by opposing effects.\n\nWhen this card is used, if you control any Flag Nexus, including those in pre-advent condition, until this Magic's effect resolves, it is unaffected by opposing effects.\n\nFlash\nReturn up to one opposing Spirit/Ultimate to the Hand. Then, by destroying one of your \"Platinum Bug\", during this turn, your Life can only be reduced by one.",
+  "image": "BS76-086.png",
+  "block": "76",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "This card in Hand is unaffected by opposing effects.",
+   "When this card is used, if you control any Flag Nexus, including those in pre-advent condition, until this Magic's effect resolves, it is unaffected by opposing effects.",
+   "Flash",
+   "Return up to one opposing Spirit/Ultimate to the Hand.",
+   "Then, by destroying one of your \"Platinum Bug\", during this turn, your Life can only be reduced by one."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS76-087",
+  "name": "Argent Diamond Gathering",
+  "name_jp": "白銀のダイヤモンドギャザリング",
+  "type": "Magic",
+  "color": "white",
+  "cost": 5,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Mounted Warrior"
+  ],
+  "text": "{{Burst|After your Spirit/Nexus is depleted/destroyed by the opponent}}\nReveal three cards from your decktop. You can summon any number of \"Argent\" Spirit cards among them, without paying the cost. Discard any remaining cards. Then by paying the cost, activate this card's Main effect.\n\nMain\n(Once per Turn: Same Name) For each \"Argent\" Spirit you control, put a core from the Void to your Reserve.",
+  "image": "BS76-087.png",
+  "block": "76",
+  "saga": 17,
+  "mechanics": [
+   "Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Burst|After your Spirit/Nexus is depleted/destroyed by the opponent}}",
+   "Reveal three cards from your decktop.",
+   "You can summon any number of \"Argent\" Spirit cards among them, without paying the cost.",
+   "Discard any remaining cards.",
+   "Then by paying the cost, activate this card's Main effect.",
+   "Main",
+   "(Once per Turn: Same Name) For each \"Argent\" Spirit you control, put a core from the Void to your Reserve."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS76-088",
+  "name": "Spread Lightning",
+  "name_jp": "スプレッドライトニング",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 7,
+  "reduction": {},
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Thunderive"
+  ],
+  "text": "When using this card from the Hand, for each opposing Spirit/Ultimate under \"can't attack/block\" effects, this card's cost gets -2. (Max. -6)\n\nFlash\nReturn an opposing Spirit/Ultimate under \"can't attack/block\" effects to the deckbottom. If you control any \"Contractor Indra\", you can return +2 targets to the deck via this effect.",
+  "image": "BS76-088.png",
+  "block": "76",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "When using this card from the Hand, for each opposing Spirit/Ultimate under \"can't attack/block\" effects, this card's cost gets -2.",
+   "(Max.",
+   "-6)",
+   "Flash",
+   "Return an opposing Spirit/Ultimate under \"can't attack/block\" effects to the deckbottom.",
+   "If you control any \"Contractor Indra\", you can return +2 targets to the deck via this effect."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS76-089",
+  "name": "Collapse Hammer",
+  "name_jp": "コラプスハンマー",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 5,
+  "reduction": {
+   "blue": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Primordial",
+   "Soldier"
+  ],
+  "text": "{{Burst|After your Spirit/Nexus is depleted/destroyed by the Opponent)}}\nYou can deploy one of your \"Primordial\" family Nexus cards from Trash/Soul State, without paying the cost. Then by paying the cost, activate this card's Flash effect.\n\nFlash\nDestroy any number of opposing Spirits/Ultimates up to a total cost of (the cost of one of your set Mirage), and when destroys, put a core from the Void to any of your \"Soldier\" family Spirit/Nexus.",
+  "image": "BS76-089.png",
+  "block": "76",
+  "saga": 17,
+  "mechanics": [
+   "Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Burst|After your Spirit/Nexus is depleted/destroyed by the Opponent)}}",
+   "You can deploy one of your \"Primordial\" family Nexus cards from Trash/Soul State, without paying the cost.",
+   "Then by paying the cost, activate this card's Flash effect.",
+   "Flash",
+   "Destroy any number of opposing Spirits/Ultimates up to a total cost of (the cost of one of your set Mirage), and when destroys, put a core from the Void to any of your \"Soldier\" family Spirit/Nexus."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS76-AX01",
@@ -4523,6 +5271,76 @@
   "rcode": "X"
  },
  {
+  "id": "BS76-X14",
+  "name": "Absolute Wind Demon-God",
+  "name_jp": "絶風魔神",
+  "type": "Brave",
+  "color": "red",
+  "cost": 5,
+  "reduction": {},
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 7000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Bannerace",
+   "Mounted Warrior"
+  ],
+  "text": "This Brave does not exhaust, and while in Spirit condition, can't attack or block.\n\n[LV1] (When Summoned)\nYou can banish all cards from the opposing Trash, and when banished, you can send six cores from any opposing Grandwalker Nexuses to the Void.\n\nDuring Left/Right Brave (When Attacks)\nThe opponent can't activate Burst effects.\nDouble Drive While this Brave is braved to \"Gale Contract\"/\"God-King\" family Spirits on the left and right, if your counter is six or more, the opponent can't use cards from their Hand.",
+  "image": "BS76-X14.png",
+  "block": "76",
+  "saga": 17,
+  "mechanics": [
+   "Double Drive"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "This Brave does not exhaust, and while in Spirit condition, can't attack or block.",
+   "[LV1] (When Summoned)",
+   "You can banish all cards from the opposing Trash, and when banished, you can send six cores from any opposing Grandwalker Nexuses to the Void.",
+   "During Left/Right Brave (When Attacks)",
+   "The opponent can't activate Burst effects.",
+   "Double Drive While this Brave is braved to \"Gale Contract\"/\"God-King\" family Spirits on the left and right, if your counter is six or more, the opponent can't use cards from their Hand."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 7000,
+   "costGe": 4
+  }
+ },
+ {
+  "id": "BS76-X15",
+  "name": "Driving Force",
+  "name_jp": "ドライビングフォース",
+  "type": "Magic",
+  "color": "red",
+  "cost": 3,
+  "reduction": {},
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Bannerace"
+  ],
+  "text": "When this card is revealed from the deck by your \"Bannerace\" family effect, you can add it to the Hand.\n\nFlash\nReveal three cards from your decktop. Among them, add an Imagine Brave card/card with Flag Contract Advent to the Hand. Discard any remaining cards. Then, you can deploy one of your Flag Nexus cards in Trash/Soul State/pre-advent condition, without paying the cost.",
+  "image": "BS76-X15.png",
+  "block": "76",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "When this card is revealed from the deck by your \"Bannerace\" family effect, you can add it to the Hand.",
+   "Flash",
+   "Reveal three cards from your decktop.",
+   "Among them, add an Imagine Brave card/card with Flag Contract Advent to the Hand.",
+   "Discard any remaining cards.",
+   "Then, you can deploy one of your Flag Nexus cards in Trash/Soul State/pre-advent condition, without paying the cost."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS77-005",
   "name": "Hitokaku",
   "name_jp": "ヒトカク",
@@ -4718,6 +5536,81 @@
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
  },
  {
+  "id": "BS77-053",
+  "name": "Adventure Demon-God",
+  "name_jp": "冒険魔神",
+  "type": "Brave",
+  "color": "green",
+  "cost": 4,
+  "reduction": {
+   "green": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 3000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Bannerace",
+   "Blade Beast"
+  ],
+  "text": "This Brave does not exhaust, and while in Spirit condition, can't attack or block.\n\n(Once per Turn: Same Name) When this card is discarded from the Hand by your Green effect, you can pay one cost to summon it.\n\nDuring Left/Right Brave (When Attacks)\nOnce per turn, when this Spirit's attack would reduce the opposing Life, instead of reducing the opposing Life, you can put two cores from the Void to this Spirit.",
+  "image": null,
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "This Brave does not exhaust, and while in Spirit condition, can't attack or block.",
+   "(Once per Turn: Same Name) When this card is discarded from the Hand by your Green effect, you can pay one cost to summon it.",
+   "During Left/Right Brave (When Attacks)",
+   "Once per turn, when this Spirit's attack would reduce the opposing Life, instead of reducing the opposing Life, you can put two cores from the Void to this Spirit."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS77-055",
+  "name": "Glow Insect Demon-God",
+  "name_jp": "光虫魔神",
+  "type": "Brave",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 4000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Bannerace",
+   "Glow Insect"
+  ],
+  "text": "This Brave doesn't exhaust and, while in Spirit condition, can't attack nor block.\n\nFlash- {{Accel|Cost 2 ()}}\nSend out up to one of your \"Platinum Bug\" Tokens. After this effect resolves, put this card onto the Removed Zone.\n\n During Left/Right Brave (When Attacks)\nYou can return an opposing Spirit with a cost equal or inferior to this Spirit's to the deckbottom.",
+  "image": null,
+  "block": "77",
+  "saga": 17,
+  "mechanics": [
+   "Accel"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust and, while in Spirit condition, can't attack nor block.",
+   "Flash- {{Accel|Cost 2 ()}}",
+   "Send out up to one of your \"Platinum Bug\" Tokens.",
+   "After this effect resolves, put this card onto the Removed Zone.",
+   "During Left/Right Brave (When Attacks)",
+   "You can return an opposing Spirit with a cost equal or inferior to this Spirit's to the deckbottom."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS77-066",
   "name": "The Imperial Palace in the Sea of Clouds",
   "name_jp": "雲海に沈む皇帝宮",
@@ -4783,6 +5676,112 @@
    "[LV2] Including those in pre-advent condition, while you control any \"The SeaShellFlagbearer Lije\", this Nexus' cost gets +2."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+ },
+ {
+  "id": "BS77-072",
+  "name": "Destroy Beam",
+  "name_jp": "デストロイビーム",
+  "type": "Magic",
+  "color": "red",
+  "cost": 7,
+  "reduction": {
+   "red": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Bannerace"
+  ],
+  "text": "This card in Hand is unaffected by opposing effects, and becomes Cost 3 if it's the opposing Attack Step.\n\nWhen this card is used, if you control any Flag Nexus, including those in Soul State/pre-advent condition, until this Magic's effect resolves, it is unaffected by opposing effects.\n\nFlash\nDestroy an opposing 20000 BP or less Spirit/Ultimate. Then, including being in Soul State/pre-advent condition, if you control any \"The FlameBladeFlagbearer Seiba\", destroy two opposing Spirits/Ultimates with two symbols or more, and during this step, the opponent can't summon Spirit cards.",
+  "image": null,
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "This card in Hand is unaffected by opposing effects, and becomes Cost 3 if it's the opposing Attack Step.",
+   "When this card is used, if you control any Flag Nexus, including those in Soul State/pre-advent condition, until this Magic's effect resolves, it is unaffected by opposing effects.",
+   "Flash",
+   "Destroy an opposing 20000 BP or less Spirit/Ultimate.",
+   "Then, including being in Soul State/pre-advent condition, if you control any \"The FlameBladeFlagbearer Seiba\", destroy two opposing Spirits/Ultimates with two symbols or more, and during this step, the opponent can't summon Spirit cards."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS77-076",
+  "name": "Lasso Bind",
+  "name_jp": "ラッソバインド",
+  "type": "Magic",
+  "color": "green",
+  "cost": 5,
+  "reduction": {
+   "green": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Bannerace"
+  ],
+  "text": "(Once per Turn: Same Name) When opposing Spirits/Ultimates are exhausted via an effect, you can pay one cost to use this card from the Trash.\n\nFlash\nHeavy exhaust an opposing Spirit/Ultimate. Then, exhaust an opposing Spirit/Ultimate. Then, including being in Soul State, if you control any Green Spirit/Nexus, during this turn, your Life can't be reduced by opposing heavily exhausted Spirits/Ultimates. After this effect resolves, if this card was used from the Trash, banish it.",
+  "image": null,
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "(Once per Turn: Same Name) When opposing Spirits/Ultimates are exhausted via an effect, you can pay one cost to use this card from the Trash.",
+   "Flash",
+   "Heavy exhaust an opposing Spirit/Ultimate.",
+   "Then, exhaust an opposing Spirit/Ultimate.",
+   "Then, including being in Soul State, if you control any Green Spirit/Nexus, during this turn, your Life can't be reduced by opposing heavily exhausted Spirits/Ultimates.",
+   "After this effect resolves, if this card was used from the Trash, banish it."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS77-AX01",
+  "name": "The QuadrupleBladeHornetKing Fong-Need",
+  "name_jp": null,
+  "type": "Spirit",
+  "color": "red",
+  "cost": 7,
+  "reduction": {
+   "red": 4
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 6000
+   },
+   {
+    "cores": 3,
+    "bp": 13000
+   },
+   {
+    "cores": 6,
+    "bp": 15000
+   }
+  ],
+  "families": [
+   "Vermillion Contract",
+   "Bannerace",
+   "Flying Fang"
+  ],
+  "text": "Flash - Flag Contract Advent: Vermillion Contract & C3 or more (Your Turn)\nBy sending your Soul Core to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\n(Once per Turn: Same Name) During the Flash Timing of either Attack Step, by paying two costs, Flag Contract Advent this card from the Hand, treating Soul Core as being sent to the Trash.\n\n[LV1-2-3] (When Advents)/(End of Your Main Step)\nYou can destroy an opposing Spirit with three or less symbols. If this Spirit is During Advent, this effect can't be prevented by opposing effects.\n\nDuring Advent [LV1-2-3] (When Attacks)\nBy sending three cores, besides Soul Core, from your Trash to this Spirit, refresh it.",
+  "image": null,
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "Flash - Flag Contract Advent: Vermillion Contract & C3 or more (Your Turn)",
+   "By sending your Soul Core to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
+   "(Once per Turn: Same Name) During the Flash Timing of either Attack Step, by paying two costs, Flag Contract Advent this card from the Hand, treating Soul Core as being sent to the Trash.",
+   "[LV1-2-3] (When Advents)/(End of Your Main Step)",
+   "You can destroy an opposing Spirit with three or less symbols.",
+   "If this Spirit is During Advent, this effect can't be prevented by opposing effects.",
+   "During Advent [LV1-2-3] (When Attacks)",
+   "By sending three cores, besides Soul Core, from your Trash to this Spirit, refresh it."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS77-CX01",

@@ -2105,6 +2105,10 @@
   "symbols": 2,
   "levels": [
    {
+    "cores": 1,
+    "bp": 6000
+   },
+   {
     "cores": 2,
     "bp": 13000
    },
@@ -3992,6 +3996,56 @@
   "rcode": "C"
  },
  {
+  "id": "BS31-097",
+  "name": "Soul Aura",
+  "name_jp": "ソウルオーラ",
+  "type": "Magic",
+  "color": "red",
+  "cost": 3,
+  "reduction": {
+   "red": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDuring this turn, give all your Spirits +3000 BP. Also, give your Spirit with Soul Core on it +3000 BP.",
+  "image": "Soul Aura.png",
+  "block": "31",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "During this turn, give all your Spirits +3000 BP.",
+   "Also, give your Spirit with Soul Core on it +3000 BP."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS31-098",
+  "name": "Conflagration Slash",
+  "name_jp": "火炎烈破斬",
+  "type": "Magic",
+  "color": "red",
+  "cost": 4,
+  "reduction": {
+   "red": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDestroy an opposing braved Brave. After this effect resolves, when (Soul Core) was used to pay the cost, destroy an opposing 7000 BP or less Spirit/Ultimate.",
+  "image": "Conflagration Slash.png",
+  "block": "31",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Destroy an opposing braved Brave.",
+   "After this effect resolves, when (Soul Core) was used to pay the cost, destroy an opposing 7000 BP or less Spirit/Ultimate."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS31-099",
   "name": "Soul Draw",
   "name_jp": "ソウルドロー",
@@ -4044,6 +4098,153 @@
   "rcode": "C"
  },
  {
+  "id": "BS31-100",
+  "name": "Shikigami of the Dead",
+  "name_jp": "式鬼神オブザデッド",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 3,
+  "reduction": {
+   "purple": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nSummon an \"Ogre Wizard\"/ \"Spiritual Beast\" family Spirit card/Brave card from your Trash.",
+  "image": "Shikigami of the Dead.png",
+  "block": "31",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Summon an \"Ogre Wizard\"/ \"Spiritual Beast\" family Spirit card/Brave card from your Trash."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS31-101",
+  "name": "Flux Curse Administration",
+  "name_jp": "呪葬流転掌",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 4,
+  "reduction": {
+   "purple": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Main- Send all cores from all opposing Nexuses to the Trash.\n\nFlash- If (Soul Core) was used to pay the cost, destroy an opposing exhausted Cost 6 or less Spirit/Ultimate.",
+  "image": "Flux Curse Administration.jpg",
+  "block": "31",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Main- Send all cores from all opposing Nexuses to the Trash.",
+   "Flash- If (Soul Core) was used to pay the cost, destroy an opposing exhausted Cost 6 or less Spirit/Ultimate."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS31-102",
+  "name": "Soul Shoot",
+  "name_jp": null,
+  "type": "Magic",
+  "color": "purple",
+  "cost": 5,
+  "reduction": {
+   "purple": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash- Send a core from any opposing Spirit/Ultimate to the Reserve. If (Soul Core) was used to pay the cost, also, send 1 more core from any opposing Spirit/Ultimate to the Reserve.",
+  "image": "Soul Shoot.jpg",
+  "block": "31",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Flash- Send a core from any opposing Spirit/Ultimate to the Reserve.",
+   "If (Soul Core) was used to pay the cost, also, send 1 more core from any opposing Spirit/Ultimate to the Reserve."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS31-103",
+  "name": "Body Flicker Technique",
+  "name_jp": "瞬身之術",
+  "type": "Magic",
+  "color": "green",
+  "cost": 3,
+  "reduction": {
+   "green": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nRefresh a \"Ninja Gale\" family you control. If (Soul Core) was used to pay the cost, also, refresh all Spirits you control with the same card name as the Spirit you refreshed via this effect.",
+  "image": "Body Flicker Technique (3).jpg",
+  "block": "31",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Refresh a \"Ninja Gale\" family you control.",
+   "If (Soul Core) was used to pay the cost, also, refresh all Spirits you control with the same card name as the Spirit you refreshed via this effect."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS31-104",
+  "name": "Wind Release Technique",
+  "name_jp": "風遁之術",
+  "type": "Magic",
+  "color": "green",
+  "cost": 4,
+  "reduction": {
+   "green": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nExhaust an opposing Spirit/Ultimate without Soul Core on it. Then, during this turn, give a Spirit you control +5000 BP.",
+  "image": "Wind Release Technique (2).jpg",
+  "block": "31",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Exhaust an opposing Spirit/Ultimate without Soul Core on it.",
+   "Then, during this turn, give a Spirit you control +5000 BP."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS31-105",
+  "name": "Body Substitution Technique",
+  "name_jp": "身代之術",
+  "type": "Magic",
+  "color": "green",
+  "cost": 4,
+  "reduction": {
+   "green": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Main- During this turn, when Spirit(s) you control is destroyed, exhaust an opposing Spirit. If (Soul Core) was used to pay the cost, also, return every destroyed Spirit you control to the Hand.\n\nFlash- If (Soul Core) was used to pay the cost, exhaust an opposing Spirit.",
+  "image": "Body Substitution Technique (2).jpg",
+  "block": "31",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Main- During this turn, when Spirit(s) you control is destroyed, exhaust an opposing Spirit.",
+   "If (Soul Core) was used to pay the cost, also, return every destroyed Spirit you control to the Hand.",
+   "Flash- If (Soul Core) was used to pay the cost, exhaust an opposing Spirit."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS31-106",
   "name": "Time Rewind",
   "name_jp": "タイムリワインド",
@@ -4082,6 +4283,134 @@
   "rcode": "C"
  },
  {
+  "id": "BS31-107",
+  "name": "Impregnable Wall",
+  "name_jp": "鉄壁ウォール",
+  "type": "Magic",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card in Trash is unaffected by all effects.\n\nFlash\nWhen this battle ends, end the Attack Step. Also, when  is used to pay the cost, all your Spirits that are destroyed by the opponent during this battle remain on Field, exhausted.",
+  "image": "Impregnable Wall.jpg",
+  "block": "31",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "This card in Trash is unaffected by all effects.",
+   "Flash",
+   "When this battle ends, end the Attack Step.",
+   "Also, when  is used to pay the cost, all your Spirits that are destroyed by the opponent during this battle remain on Field, exhausted."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS31-108",
+  "name": "Dream Bubble",
+  "name_jp": "ドリームバブル",
+  "type": "Magic",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nReturn an opposing Spirit to the Hand. If (Soul Core) was used to pay the cost, instead, return an opposing Spirit/Ultimate to the Hand.",
+  "image": "Dream Bubble.png",
+  "block": "31",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Return an opposing Spirit to the Hand.",
+   "If (Soul Core) was used to pay the cost, instead, return an opposing Spirit/Ultimate to the Hand."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS31-109",
+  "name": "Yellow Recover",
+  "name_jp": "イエローリカバー",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 3,
+  "reduction": {
+   "yellow": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nRefresh a Yellow Spirit you control. This effect can only be used once per turn.",
+  "image": "Yellow Recover.png",
+  "block": "31",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Refresh a Yellow Spirit you control.",
+   "This effect can only be used once per turn."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS31-110",
+  "name": "Tousenbo Wall",
+  "name_jp": "とうせんぼウォール",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 4,
+  "reduction": {
+   "yellow": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "While you control any [Nurikabe], treat all the reduction for this Magic card as filled.\n\nFlash\nDuring this turn, every opposing Spirit can't attack. If (Soul Core) was used to pay the cost, instead, during this turn, every opposing Spirit/Ultimate can't attack.",
+  "image": "Tousenbo Wall.png",
+  "block": "31",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "While you control any [Nurikabe], treat all the reduction for this Magic card as filled.",
+   "Flash",
+   "During this turn, every opposing Spirit can't attack.",
+   "If (Soul Core) was used to pay the cost, instead, during this turn, every opposing Spirit/Ultimate can't attack."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS31-111",
+  "name": "Fireball Attack",
+  "name_jp": "火球アタック",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 5,
+  "reduction": {
+   "yellow": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDuring this turn, give an opposing Spirit/Ultimate -6000 BP. Destroy the Spirit/Ultimate who is brought to 0 BP by this effect. If  (Soul Core) was used to pay the cost, instead, this effect targets an opposing Spirit/Ultimate for each \"Youkai\" family Spirit you control.",
+  "image": "Fireball Attack.png",
+  "block": "31",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "During this turn, give an opposing Spirit/Ultimate -6000 BP.",
+   "Destroy the Spirit/Ultimate who is brought to 0 BP by this effect.",
+   "If  (Soul Core) was used to pay the cost, instead, this effect targets an opposing Spirit/Ultimate for each \"Youkai\" family Spirit you control."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS31-112",
   "name": "Mantra Draw",
   "name_jp": "マントラドロー",
@@ -4114,6 +4443,56 @@
    "4"
   ],
   "rcode": "R"
+ },
+ {
+  "id": "BS31-113",
+  "name": "Blue Strike Blaze",
+  "name_jp": "蒼激ブレイズ",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 4,
+  "reduction": {
+   "blue": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDestroy two opposing Cost 4 or less Spirits/Ultimates. For each cost of the Spirits destroyed by this effect, discard a card from the opposing decktop.",
+  "image": "Blue Strike Blaze.png",
+  "block": "31",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Destroy two opposing Cost 4 or less Spirits/Ultimates.",
+   "For each cost of the Spirits destroyed by this effect, discard a card from the opposing decktop."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS31-114",
+  "name": "Hydro Exposure Dragon",
+  "name_jp": "ハイドロ曝龍",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 7,
+  "reduction": {
+   "blue": 4
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nTreat all opposing braved Braves as Cost 0, and destroy an opposing Cost 6 or less Spirit/Ultimate. If (Soul Core) was used to pay the cost, instead, treat all opposing braved Braves as Cost 0, and destroy three opposing Cost 6 or less Spirits/Ultimates.",
+  "image": "Hydro Exposure Dragon.png",
+  "block": "31",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Treat all opposing braved Braves as Cost 0, and destroy an opposing Cost 6 or less Spirit/Ultimate.",
+   "If (Soul Core) was used to pay the cost, instead, treat all opposing braved Braves as Cost 0, and destroy three opposing Cost 6 or less Spirits/Ultimates."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS31-CP01",
@@ -7358,6 +7737,45 @@
   "rcode": "R"
  },
  {
+  "id": "BS32-057",
+  "name": "Origamimonkey",
+  "name_jp": "折神モンキー",
+  "type": "Brave",
+  "color": "purple",
+  "cost": 4,
+  "reduction": {
+   "purple": 2,
+   "white": 2,
+   "yellow": 2
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   }
+  ],
+  "families": [
+   "Spiritual Beast"
+  ],
+  "text": "When Braved {{Catl|All Color}} (When Attacks)\nBy sending (Soul Core) from this Spirit to your trash, immediately activate one of your Soul Bursts.",
+  "image": "Origamimonkey.png",
+  "block": "32",
+  "saga": 6,
+  "mechanics": [
+   "Catalyze"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "When Braved {{Catl|All Color}} (When Attacks)",
+   "By sending (Soul Core) from this Spirit to your trash, immediately activate one of your Soul Bursts."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 3000
+  }
+ },
+ {
   "id": "BS32-058",
   "name": "The ArmoredBird Khirenjack",
   "name_jp": "鎧鳥キレンジャック",
@@ -7865,6 +8283,63 @@
   "rcode": "C"
  },
  {
+  "id": "BS32-072",
+  "name": "Flame Slash",
+  "name_jp": "天火烈刀斬",
+  "type": "Magic",
+  "color": "red",
+  "cost": 3,
+  "reduction": {
+   "red": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{Burst|s|After an opposing Spirit/Ultimate attacks}}\nDraw a card. Also, if this Burst was activated via Catalyze, during this turn, all your Spirits gain an extra Red symbol. Then, by paying the cost, activate this card's Flash effect.\n\nFlash\nDestroy an opposing Nexus. Also, if  was used to pay the cost, destroy an opposing Spirit/Ultimate with two symbols or more.",
+  "image": "Flame Slash.png",
+  "block": "32",
+  "saga": 6,
+  "mechanics": [
+   "Soul Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Burst|s|After an opposing Spirit/Ultimate attacks}}",
+   "Draw a card.",
+   "Also, if this Burst was activated via Catalyze, during this turn, all your Spirits gain an extra Red symbol.",
+   "Then, by paying the cost, activate this card's Flash effect.",
+   "Flash",
+   "Destroy an opposing Nexus.",
+   "Also, if  was used to pay the cost, destroy an opposing Spirit/Ultimate with two symbols or more."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS32-073",
+  "name": "Blazing Roar",
+  "name_jp": "火炎之咆哮",
+  "type": "Magic",
+  "color": "red",
+  "cost": 6,
+  "reduction": {
+   "red": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDestroy every opposing 3000 BP or less Spirit. If (Soul Core) was used to pay the cost, also, destroy an opposing 10000 BP or less Spirit/Ultimate.",
+  "image": "Blazing Roar.png",
+  "block": "32",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Destroy every opposing 3000 BP or less Spirit.",
+   "If (Soul Core) was used to pay the cost, also, destroy an opposing 10000 BP or less Spirit/Ultimate."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS32-074",
   "name": "Dark Initiation",
   "name_jp": "ダークイニシエーション",
@@ -7894,6 +8369,263 @@
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "rcode": "C"
+ },
+ {
+  "id": "BS32-075",
+  "name": "Illusion Soul Extraction",
+  "name_jp": "抜魂幻糸",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 4,
+  "reduction": {
+   "purple": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{Burst|s|After your Spirit/Ultimate is Destroyed by the Opponent}}\nDestroy an opposing exhausted Spirit. Then, by paying the cost, activate this card's Flash effect.\n\nFlash\nSend a core from any opposing Spirits to their Reserve. When this effect depletes any Spirit, draw a card.",
+  "image": "Illusion Soul Extraction.png",
+  "block": "32",
+  "saga": 6,
+  "mechanics": [
+   "Soul Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Burst|s|After your Spirit/Ultimate is Destroyed by the Opponent}}",
+   "Destroy an opposing exhausted Spirit.",
+   "Then, by paying the cost, activate this card's Flash effect.",
+   "Flash",
+   "Send a core from any opposing Spirits to their Reserve.",
+   "When this effect depletes any Spirit, draw a card."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS32-076",
+  "name": "Tatami Flip Technique",
+  "name_jp": "畳返之術",
+  "type": "Magic",
+  "color": "green",
+  "cost": 3,
+  "reduction": {
+   "green": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash - Exhaust an opposing Spirit. Then, return a \"Ninja Gale\" family Spirit you control to the Hand.",
+  "image": "Tatami Flip Technique.png",
+  "block": "32",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Flash - Exhaust an opposing Spirit.",
+   "Then, return a \"Ninja Gale\" family Spirit you control to the Hand."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS32-077",
+  "name": "Spiral Needle",
+  "name_jp": "螺旋ニードル",
+  "type": "Magic",
+  "color": "green",
+  "cost": 4,
+  "reduction": {
+   "green": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{Burst|s|After the opposing Hand increases via an opposing effect}}\nReveal two cards from your decktop. You can summon all Cost 5 or less Spirit cards among them, without paying the cost. Discard any remaining cards. Then, by paying the cost, activate this card's Flash effect.\n\nFlash\nDuring this turn, give a Spirit +3000 BP. Then, if that Spirit has 10000 BP or more, refresh that Spirit.",
+  "image": "Spiral Needle.jpg",
+  "block": "32",
+  "saga": 6,
+  "mechanics": [
+   "Soul Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Burst|s|After the opposing Hand increases via an opposing effect}}",
+   "Reveal two cards from your decktop.",
+   "You can summon all Cost 5 or less Spirit cards among them, without paying the cost.",
+   "Discard any remaining cards.",
+   "Then, by paying the cost, activate this card's Flash effect.",
+   "Flash",
+   "During this turn, give a Spirit +3000 BP.",
+   "Then, if that Spirit has 10000 BP or more, refresh that Spirit."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS32-078",
+  "name": "Limited Barrier",
+  "name_jp": "リミテッドバリア",
+  "type": "Magic",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDuring this turn, your Life can't be reduced by the attacks of Cost 4 or more Spirits/Ultimates. Also, if  was used to pay the cost, return an opposing Nexus to the Hand.",
+  "image": "Limited Barrier.png",
+  "block": "32",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "During this turn, your Life can't be reduced by the attacks of Cost 4 or more Spirits/Ultimates.",
+   "Also, if  was used to pay the cost, return an opposing Nexus to the Hand."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS32-079",
+  "name": "Force Cloak",
+  "name_jp": "フォースクローク",
+  "type": "Magic",
+  "color": "white",
+  "cost": 5,
+  "reduction": {
+   "white": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{Burst|s|After your Life is reduced}}\nReturn an opposing Spirit to the Hand. If this Burst was activated via Catalyze, also, during this battle, your attacking Spirit can't be blocked. Then, by paying the cost, activate this card's Flash effect.\n\nFlash\nReturn all opposing Spirits/Ultimates with two or more symbols to the Hand.",
+  "image": "Force Cloak.png",
+  "block": "32",
+  "saga": 6,
+  "mechanics": [
+   "Soul Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Burst|s|After your Life is reduced}}",
+   "Return an opposing Spirit to the Hand.",
+   "If this Burst was activated via Catalyze, also, during this battle, your attacking Spirit can't be blocked.",
+   "Then, by paying the cost, activate this card's Flash effect.",
+   "Flash",
+   "Return all opposing Spirits/Ultimates with two or more symbols to the Hand."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS32-080",
+  "name": "Yourai Spark",
+  "name_jp": "妖雷スパーク",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 3,
+  "reduction": {
+   "yellow": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{Burst|s|After your Life is reduced}}\nDuring this turn, give two opposing Spirits -5000 BP. Destroy every Spirit that has its BP brought to 0 by this effect. Then, by paying the cost, activate this card's Flash effect.\n\nFlash\nDraw a card, and during this turn, give a Spirit +2000 BP.",
+  "image": "Yourai Spark.png",
+  "block": "32",
+  "saga": 6,
+  "mechanics": [
+   "Soul Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Burst|s|After your Life is reduced}}",
+   "During this turn, give two opposing Spirits -5000 BP.",
+   "Destroy every Spirit that has its BP brought to 0 by this effect.",
+   "Then, by paying the cost, activate this card's Flash effect.",
+   "Flash",
+   "Draw a card, and during this turn, give a Spirit +2000 BP."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS32-081",
+  "name": "Divine Spirit Beam",
+  "name_jp": "聖天霊光破",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 4,
+  "reduction": {
+   "yellow": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nTarget an opposing Spirit/Ultimate. During this turn, that Spirit/Ultimate can't attack/block. If  (Soul Core) was used to pay the cost, change the target of effect to: for each \"War Princess\" family Spirit you control, target an opposing Spirit/Ultimate.",
+  "image": "Divine Spirit Beam.png",
+  "block": "32",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Target an opposing Spirit/Ultimate.",
+   "During this turn, that Spirit/Ultimate can't attack/block.",
+   "If  (Soul Core) was used to pay the cost, change the target of effect to: for each \"War Princess\" family Spirit you control, target an opposing Spirit/Ultimate."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS32-082",
+  "name": "Kannon Thousand Fists",
+  "name_jp": "観音千撃掌",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 5,
+  "reduction": {
+   "blue": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{Burst|s|After your Spirit is destroyed by the Opponent}}\nDestroy every opposing braved Braves. After this effect resolves, destroy an opposing Cost 6 or less Spirit/Ultimate. Then, by paying the cost, activate this card's Flash effect.\n\nFlash\nRefresh a \"Fighting Spirit\" family Spirit you control, and during this turn, treat that Spirit as being on its highest level.",
+  "image": "Kannon Thousand Fists.jpg",
+  "block": "32",
+  "saga": 6,
+  "mechanics": [
+   "Soul Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Burst|s|After your Spirit is destroyed by the Opponent}}",
+   "Destroy every opposing braved Braves.",
+   "After this effect resolves, destroy an opposing Cost 6 or less Spirit/Ultimate.",
+   "Then, by paying the cost, activate this card's Flash effect.",
+   "Flash",
+   "Refresh a \"Fighting Spirit\" family Spirit you control, and during this turn, treat that Spirit as being on its highest level."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS32-083",
+  "name": "Crush and Build",
+  "name_jp": "クラッシュアンドビルド",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 6,
+  "reduction": {
+   "blue": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDestroy any number of opposing Spirits up to a total of Cost 5. For each Spirit destroyed by this effect, you can deploy a Nexus card from your Trash, without paying the cost.",
+  "image": "Crush and Build II.jpg",
+  "block": "32",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Destroy any number of opposing Spirits up to a total of Cost 5.",
+   "For each Spirit destroyed by this effect, you can deploy a Nexus card from your Trash, without paying the cost."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS32-CP01",
@@ -7943,6 +8675,37 @@
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "rcode": "CP"
+ },
+ {
+  "id": "BS32-CP02",
+  "name": "General Transmigration",
+  "name_jp": "武将転生",
+  "type": "Magic",
+  "color": "red",
+  "cost": 4,
+  "reduction": {
+   "red": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{Burst|After your Spirit is Destroyed by the Opponent}}\nSummon a \"War Dragon\" family Spirit card that was destroyed when this Burst activated from your Trash, without paying the cost. However, any (When Summoned) effects of the Spirit don't activate. Then, by paying the cost, activate this card's Flash effect.\n\nFlash\nDuring this turn, give a \"War Dragon\" family Spirit you control +5000 BP.",
+  "image": "General Transmigration.jpg",
+  "block": "32",
+  "saga": 6,
+  "mechanics": [
+   "Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Burst|After your Spirit is Destroyed by the Opponent}}",
+   "Summon a \"War Dragon\" family Spirit card that was destroyed when this Burst activated from your Trash, without paying the cost.",
+   "However, any (When Summoned) effects of the Spirit don't activate.",
+   "Then, by paying the cost, activate this card's Flash effect.",
+   "Flash",
+   "During this turn, give a \"War Dragon\" family Spirit you control +5000 BP."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS32-X01",
@@ -11150,6 +11913,317 @@
   "rcode": "U"
  },
  {
+  "id": "BS33-072",
+  "name": "One-Shot Sure-Hit Draw",
+  "name_jp": "一発必中ドロー",
+  "type": "Magic",
+  "color": "red",
+  "cost": 2,
+  "reduction": {
+   "red": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Main\nReveal five cards from your decktop. Add a Spirit card with Awaken/True-Clash/Showdown/Consecutive Blade/Infinite Blade among them to the Hand. Return any remaining cards to the deckbottom.\n\nFlash\nDuring this turn, give a Spirit/Ultimate +2000 BP.",
+  "image": "One-Shot Sure-Hit Draw.png",
+  "block": "33",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Main",
+   "Reveal five cards from your decktop.",
+   "Add a Spirit card with Awaken/True-Clash/Showdown/Consecutive Blade/Infinite Blade among them to the Hand.",
+   "Return any remaining cards to the deckbottom.",
+   "Flash",
+   "During this turn, give a Spirit/Ultimate +2000 BP."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS33-073",
+  "name": "Fierce Dragon Flame",
+  "name_jp": "激龍フレイム",
+  "type": "Magic",
+  "color": "red",
+  "cost": 6,
+  "reduction": {
+   "red": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDestroy an opposing 6000 BP or less Spirit. Then, during this battle, if your Spirit with Soul Core is blocked by an opposing Spirit/Ultimate, send an opposing Life to their Reserve.",
+  "image": "Fierce Dragon Flame.png",
+  "block": "33",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Destroy an opposing 6000 BP or less Spirit.",
+   "Then, during this battle, if your Spirit with Soul Core is blocked by an opposing Spirit/Ultimate, send an opposing Life to their Reserve."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS33-074",
+  "name": "Conjuration",
+  "name_jp": "反魂呪",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 4,
+  "reduction": {
+   "purple": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nSummon a \"Nightling\" family Spirit card from your Trash without paying the cost. Also, during the opposing turn, if  was used to pay the cost, summon a Cost 2 or less Spirit card from your Trash without paying the cost.",
+  "image": null,
+  "block": "33",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Summon a \"Nightling\" family Spirit card from your Trash without paying the cost.",
+   "Also, during the opposing turn, if  was used to pay the cost, summon a Cost 2 or less Spirit card from your Trash without paying the cost."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS33-075",
+  "name": "Fuurin Kazan",
+  "name_jp": "封臨禍斬",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 5,
+  "reduction": {
+   "purple": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{Burst|s|After your Life is reduced}}\nDuring this turn, unless they send one core from the attacking/blocking Spirit/Ultimate to the Void, they can't attack/block. Then, by paying the cost, activate this card's Flash effect.\n\nFlash\nIf  (Soul Core) was used to pay the cost, destroy an opposing exhausted Spirit/Ultimate.",
+  "image": "Fuurin Kazan.png",
+  "block": "33",
+  "saga": 6,
+  "mechanics": [
+   "Soul Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Burst|s|After your Life is reduced}}",
+   "During this turn, unless they send one core from the attacking/blocking Spirit/Ultimate to the Void, they can't attack/block.",
+   "Then, by paying the cost, activate this card's Flash effect.",
+   "Flash",
+   "If  (Soul Core) was used to pay the cost, destroy an opposing exhausted Spirit/Ultimate."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS33-076",
+  "name": "Summoning Technique",
+  "name_jp": "口寄之術",
+  "type": "Magic",
+  "color": "green",
+  "cost": 1,
+  "reduction": {},
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nFlip one of your Bunshin Spirits face-up. If that card is a Spirit card, summon it without paying the cost. Otherwise, discard it.",
+  "image": "Summoning Technique.png",
+  "block": "33",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Flip one of your Bunshin Spirits face-up.",
+   "If that card is a Spirit card, summon it without paying the cost.",
+   "Otherwise, discard it."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS33-077",
+  "name": "Beast Fang Whirlwind Blade",
+  "name_jp": "獣牙旋風刃",
+  "type": "Magic",
+  "color": "green",
+  "cost": 3,
+  "reduction": {
+   "green": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nExhaust an opposing Spirit. If (Soul Core) was used to pay the cost, also, during this turn, for one of your \"Lord\"/\"Vassal\" family Spirits, when its attack reduces the opposing Life, send an opposing Life to the Reserve.",
+  "image": "Beast Fang Whirlwind Blade.png",
+  "block": "33",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Exhaust an opposing Spirit.",
+   "If (Soul Core) was used to pay the cost, also, during this turn, for one of your \"Lord\"/\"Vassal\" family Spirits, when its attack reduces the opposing Life, send an opposing Life to the Reserve."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS33-078",
+  "name": "Light Wings Sword",
+  "name_jp": "光翼之太刀",
+  "type": "Magic",
+  "color": "white",
+  "cost": 3,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDuring this turn, give a Spirit/Ultimate you control +3000 BP. Then, during this turn, that Spirit/Ultimate can block while exhausted.",
+  "image": "Light Wings Sword.png",
+  "block": "33",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "During this turn, give a Spirit/Ultimate you control +3000 BP.",
+   "Then, during this turn, that Spirit/Ultimate can block while exhausted."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS33-079",
+  "name": "Diamond Wall",
+  "name_jp": "白晶防壁",
+  "type": "Magic",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nReturn an opposing Spirit to the Hand. Also, if  was used to pay the cost, during this turn, your life can only be reduced by one.",
+  "image": "Diamond Wall.png",
+  "block": "33",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Return an opposing Spirit to the Hand.",
+   "Also, if  was used to pay the cost, during this turn, your life can only be reduced by one."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS33-080",
+  "name": "Kitsunebi Impact",
+  "name_jp": "狐火インパクト",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 5,
+  "reduction": {
+   "yellow": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "While you control [Kyuubi Fox], treat all reduction symbols of this Magic card being fulfilled.\n\nFlash\nWhen your \"Youkai\" family Spirit is not blocked, during this battle, that Spirit's symbol becomes two Yellow symbols.",
+  "image": "Kitsunebi Impact.png",
+  "block": "33",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "While you control [Kyuubi Fox], treat all reduction symbols of this Magic card being fulfilled.",
+   "Flash",
+   "When your \"Youkai\" family Spirit is not blocked, during this battle, that Spirit's symbol becomes two Yellow symbols."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS33-081",
+  "name": "Soul Waltz",
+  "name_jp": "魂円舞",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 5,
+  "reduction": {
+   "yellow": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{Burst|s|After Your Life is Decreased}}\nYou can target an opposing Spirit/Ultimate. During this turn, that Spirit/Ultimate cannot attack/block. Then, by paying the cost, activate this card's flash effect.\n\nFlash- During this turn, give an opposing Spirit/Ultimate -6000 BP. Destroy any Spirits/Ultimates that have their BP become 0 due to this effect.",
+  "image": "Soul Waltz.png",
+  "block": "33",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "{{Burst|s|After Your Life is Decreased}}",
+   "You can target an opposing Spirit/Ultimate.",
+   "During this turn, that Spirit/Ultimate cannot attack/block.",
+   "Then, by paying the cost, activate this card's flash effect.",
+   "Flash- During this turn, give an opposing Spirit/Ultimate -6000 BP.",
+   "Destroy any Spirits/Ultimates that have their BP become 0 due to this effect."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS33-082",
+  "name": "Brimming Summon Seas",
+  "name_jp": "湧力招海",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 3,
+  "reduction": {
+   "blue": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Main\nDraw two cards, then discard a card from your Hand. Also, if  was used to pay the cost, destroy an opposing Spirit with Rush.\n\nFlash\nDuring this turn, give a Spirit/Ultimate +3000 BP.",
+  "image": "Brimming Summon Seas.png",
+  "block": "33",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Main",
+   "Draw two cards, then discard a card from your Hand.",
+   "Also, if  was used to pay the cost, destroy an opposing Spirit with Rush.",
+   "Flash",
+   "During this turn, give a Spirit/Ultimate +3000 BP."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS33-083",
+  "name": "Halo Liquidation",
+  "name_jp": "天輪蒼破",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 4,
+  "reduction": {
+   "blue": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash- Destroy opposing Cost 0/3/5 Spirits, one of each. For each Spirit destroyed by this effect, put a core from the Void to your Reserve.",
+  "image": "Halo Liquidation.png",
+  "block": "33",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Flash- Destroy opposing Cost 0/3/5 Spirits, one of each.",
+   "For each Spirit destroyed by this effect, put a core from the Void to your Reserve."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS33-CP01",
   "name": "The IceHero Mibrock-Baragan",
   "name_jp": "氷の覇王ミブロック・バラガン",
@@ -11237,6 +12311,37 @@
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "rcode": "CP"
+ },
+ {
+  "id": "BS33-CP03",
+  "name": "Double Blaster",
+  "name_jp": "双光気弾",
+  "type": "Magic",
+  "color": "red",
+  "cost": 3,
+  "reduction": {
+   "red": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{Burst|s|After your Spirit is destroyed by the Opponent}}\nDraw two cards. Then by paying the cost, activate this card's Flash effect.\n\nFlash\nDestroy a Brave on an opposing Brave Spirit. Or, destroy an opposing Nexus.",
+  "image": "Double Blaster.png",
+  "block": "33",
+  "saga": 6,
+  "mechanics": [
+   "Soul Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Burst|s|After your Spirit is destroyed by the Opponent}}",
+   "Draw two cards.",
+   "Then by paying the cost, activate this card's Flash effect.",
+   "Flash",
+   "Destroy a Brave on an opposing Brave Spirit.",
+   "Or, destroy an opposing Nexus."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS33-X01",
@@ -12635,6 +13740,10 @@
    {
     "cores": 1,
     "bp": 3000
+   },
+   {
+    "cores": 3,
+    "bp": 6000
    }
   ],
   "families": [
@@ -14746,6 +15855,297 @@
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "rcode": "C"
+ },
+ {
+  "id": "BS34-073",
+  "name": "Great Eccentric Flame",
+  "name_jp": "焔大傾奇",
+  "type": "Magic",
+  "color": "red",
+  "cost": 5,
+  "reduction": {
+   "red": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDestroy any number of opposing Spirits up to a total of 7000 BP. If (Soul Core) was used to pay the cost, for each opposing Spirit destroyed by this effect, refresh an \"Emperor Beast\" family Spirit/Ultimate you control.",
+  "image": "Great Eccentric Flame.png",
+  "block": "34",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Destroy any number of opposing Spirits up to a total of 7000 BP.",
+   "If (Soul Core) was used to pay the cost, for each opposing Spirit destroyed by this effect, refresh an \"Emperor Beast\" family Spirit/Ultimate you control."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS34-074",
+  "name": "Life Manipulation Curse",
+  "name_jp": "命操呪",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 3,
+  "reduction": {
+   "purple": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{Burst|s|After an opposing Spirit/Ultimate attacks}}\nSend two cores from an opposing Spirit to their Reserve. If this Burst was activated via Catalyze, also, treat this Magic card as colorless. Then, by paying the cost, activate this card's Flash effect.\n\nFlash\nBy destroying a Spirit you control, the opponent destroy a Spirit they control.",
+  "image": "Life Manipulation Curse.png",
+  "block": "34",
+  "saga": 6,
+  "mechanics": [
+   "Soul Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Burst|s|After an opposing Spirit/Ultimate attacks}}",
+   "Send two cores from an opposing Spirit to their Reserve.",
+   "If this Burst was activated via Catalyze, also, treat this Magic card as colorless.",
+   "Then, by paying the cost, activate this card's Flash effect.",
+   "Flash",
+   "By destroying a Spirit you control, the opponent destroy a Spirit they control."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS34-075",
+  "name": "The HeavenlyDemonKing Advents",
+  "name_jp": "天魔王降臨",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 5,
+  "reduction": {
+   "purple": 2,
+   "white": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nReturn a Purple/White Spirit card from your Trash to the Hand. Then, if there is any [The HeavenlyDemonKing God-Sechs] in your Trash, you can summon a [The HeavenlyDemonKing God-Sechs -Type Destroy-] from your Hand, without paying the cost.",
+  "image": "The HeavenlyDemonKing Advents.png",
+  "block": "34",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Return a Purple/White Spirit card from your Trash to the Hand.",
+   "Then, if there is any [The HeavenlyDemonKing God-Sechs] in your Trash, you can summon a [The HeavenlyDemonKing God-Sechs -Type Destroy-] from your Hand, without paying the cost."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS34-076",
+  "name": "Divine Might Wind",
+  "name_jp": "神威ウィンド",
+  "type": "Magic",
+  "color": "green",
+  "cost": 3,
+  "reduction": {
+   "green": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash- Exhaust an opposing Spirit. Or, return up to three cards with the same name from the opposing Trash to the deckbottom.",
+  "image": "Divine Might Wind.png",
+  "block": "34",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Flash- Exhaust an opposing Spirit.",
+   "Or, return up to three cards with the same name from the opposing Trash to the deckbottom."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS34-077",
+  "name": "Ninja Gale Storm",
+  "name_jp": "忍風ストーム",
+  "type": "Magic",
+  "color": "green",
+  "cost": 4,
+  "reduction": {
+   "green": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nBy exhausting an opposing Spirit, refresh a \"Ninja Gale\" family Spirit you control. Also, if  was used to pay the cost, put a core from the Void to your Reserve.",
+  "image": "Ninja Gale Storm.png",
+  "block": "34",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "By exhausting an opposing Spirit, refresh a \"Ninja Gale\" family Spirit you control.",
+   "Also, if  was used to pay the cost, put a core from the Void to your Reserve."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS34-078",
+  "name": "Snow and Ice Circle",
+  "name_jp": "氷雪サークル",
+  "type": "Magic",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nTarget an opposing Spirit/Ultimate. During this turn, the targeted Spirit/Ultimate can't reduce your Life. If  (Soul Core) was used to pay the cost, two Spirits/Ultimates are targeted by this effect.",
+  "image": "Snow and Ice Circle.png",
+  "block": "34",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Target an opposing Spirit/Ultimate.",
+   "During this turn, the targeted Spirit/Ultimate can't reduce your Life.",
+   "If  (Soul Core) was used to pay the cost, two Spirits/Ultimates are targeted by this effect."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS34-079",
+  "name": "Eight-Pole Peerless Formation of the Genji",
+  "name_jp": "源氏八極無双陣",
+  "type": "Magic",
+  "color": "white",
+  "cost": 5,
+  "reduction": {
+   "white": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{Burst|s|After the opposing Hand increases via an opposing effect}}\nReturn an opposing Spirit to the decktop. Then, by paying the cost, activate this card's Flash effect.\n\nFlash\nReturn an opposing Spirit/Ultimate to the Hand. If there are a total of eight or more \"Genji\"-named Spirits on either Field, instead, return all opposing Spirits/Ultimates/Nexuses/Burst to the deckbottom, in any order.",
+  "image": "Eight-Pole Peerless Formation of the Genji.png",
+  "block": "34",
+  "saga": 6,
+  "mechanics": [
+   "Soul Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Burst|s|After the opposing Hand increases via an opposing effect}}",
+   "Return an opposing Spirit to the decktop.",
+   "Then, by paying the cost, activate this card's Flash effect.",
+   "Flash",
+   "Return an opposing Spirit/Ultimate to the Hand.",
+   "If there are a total of eight or more \"Genji\"-named Spirits on either Field, instead, return all opposing Spirits/Ultimates/Nexuses/Burst to the deckbottom, in any order."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS34-080",
+  "name": "Flower Dance Draw",
+  "name_jp": "舞華ドロー",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 3,
+  "reduction": {
+   "yellow": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "During (Your End Step), If Soul Core is in your Trash, return a [Flower Dance Draw] from the Trash to the Hand. This effect can only be used once per turn.\n\nFlash\nDuring this turn, give an opposing Spirit -3000 BP. If that Spirit is brought to 0 BP by this effect, destroy that Spirit, and draw a card.",
+  "image": "Flower Dance Draw.png",
+  "block": "34",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "During (Your End Step), If Soul Core is in your Trash, return a [Flower Dance Draw] from the Trash to the Hand.",
+   "This effect can only be used once per turn.",
+   "Flash",
+   "During this turn, give an opposing Spirit -3000 BP.",
+   "If that Spirit is brought to 0 BP by this effect, destroy that Spirit, and draw a card."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS34-081",
+  "name": "Hyakki Yakou",
+  "name_jp": "百鬼夜行",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 7,
+  "reduction": {
+   "yellow": 4
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nIf there is  in your Trash, summon up to 100 \"Youkai\" family Spirit cards from your Hand/Trash, without paying the cost.",
+  "image": "Hyakki Yakou.png",
+  "block": "34",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "If there is  in your Trash, summon up to 100 \"Youkai\" family Spirit cards from your Hand/Trash, without paying the cost."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS34-082",
+  "name": "Ocean Splitting Slash",
+  "name_jp": "海断一刀斬",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 4,
+  "reduction": {
+   "blue": 1,
+   "ultimate": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDestroy every opposing Spirit/Ultimate with a \"can't be blocked\" effect. After this effect resolves, if you control any \"Beast Head\" family Spirit/Ultimate, destroy an opposing Spirit with the lowest cost.",
+  "image": "Ocean Splitting Slash.png",
+  "block": "34",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Destroy every opposing Spirit/Ultimate with a \"can't be blocked\" effect.",
+   "After this effect resolves, if you control any \"Beast Head\" family Spirit/Ultimate, destroy an opposing Spirit with the lowest cost."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS34-083",
+  "name": "Ocean Call",
+  "name_jp": "オーシャンコール",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 6,
+  "reduction": {
+   "blue": 5
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Main\nSummon up to three Spirit cards with no printed effects from your Hand/Trash, without paying the cost.\n\nFlash\nDuring this turn, give all your Spirits with no printed effects +10000 BP.",
+  "image": "Ocean Call.png",
+  "block": "34",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "Main",
+   "Summon up to three Spirit cards with no printed effects from your Hand/Trash, without paying the cost.",
+   "Flash",
+   "During this turn, give all your Spirits with no printed effects +10000 BP."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS34-CP01",

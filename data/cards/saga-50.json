@@ -7647,6 +7647,37 @@
   "rcode": "C"
  },
  {
+  "id": "26RBS01-119",
+  "name": "Guard Effect",
+  "name_jp": "ガードエフェクト",
+  "type": "Magic",
+  "color": "white",
+  "cost": 5,
+  "reduction": {
+   "white": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Leucomyst"
+  ],
+  "text": "(Legacy)\nFlash\nTarget one of your White Spirits. During this battle, it can't be targeted by opposing Magic effects.",
+  "image": "26RBS01-119.png",
+  "block": "A",
+  "saga": 50,
+  "mechanics": [
+   "Legacy"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "(Legacy)",
+   "Flash",
+   "Target one of your White Spirits.",
+   "During this battle, it can't be targeted by opposing Magic effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "26RBS01-120",
   "name": "Punish Gate",
   "name_jp": "バニッシュゲート",
@@ -7929,6 +7960,34 @@
    "A"
   ],
   "rcode": "R"
+ },
+ {
+  "id": "26RBS01-125",
+  "name": "Sacrifice Strike",
+  "name_jp": "サクリファイスストライク",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 4,
+  "reduction": {
+   "blue": 3
+  },
+  "symbols": 1,
+  "levels": [],
+  "families": [
+   "Cyantree"
+  ],
+  "text": "Flash\nTarget one of your attacking Spirits with Rumble. Destroy it. Discard a number of cards from the opposing decktop equal to the number specified by its Rumble.",
+  "image": "26RBS01-125.png",
+  "block": "A",
+  "saga": 50,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Target one of your attacking Spirits with Rumble.",
+   "Destroy it.",
+   "Discard a number of cards from the opposing decktop equal to the number specified by its Rumble."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "26RBS01-126",
@@ -15359,6 +15418,39 @@
    "A"
   ],
   "rcode": "R"
+ },
+ {
+  "id": "26RBS02-092",
+  "name": "Boost Energy",
+  "name_jp": "ブーストエナジー",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 4,
+  "reduction": {
+   "blue": 2
+  },
+  "symbols": 1,
+  "levels": [],
+  "families": [
+   "Cyantree"
+  ],
+  "text": "{{Soul Magic|b}}\nYou can't use this card during Main Step.\n\nFlash\nYou can target one of your Nexuses. Send one or more cores from your Field/Reserve to it, and during this battle, it doesn't activate its Nexus effects, and is treated as a Spirit with \"LV1 5000 BP, LV2 7000 BP.\" Then, target one of your \"Cyantree\" family Spirits. During this battle, give it +2000 BP.",
+  "image": "26RBS02-092 (Fixed).png",
+  "block": "A",
+  "saga": 50,
+  "mechanics": [
+   "Soul Magic"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Soul Magic|b}}",
+   "You can't use this card during Main Step.",
+   "Flash",
+   "You can target one of your Nexuses.",
+   "Send one or more cores from your Field/Reserve to it, and during this battle, it doesn't activate its Nexus effects, and is treated as a Spirit with \"LV1 5000 BP, LV2 7000 BP.\" Then, target one of your \"Cyantree\" family Spirits.",
+   "During this battle, give it +2000 BP."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "26RBS02-CP01",
@@ -23073,6 +23165,34 @@
    "A"
   ],
   "rcode": "C"
+ },
+ {
+  "id": "26RBS03-095",
+  "name": "Furious Anger",
+  "name_jp": "フューリアスアンガー",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 4,
+  "reduction": {
+   "yellow": 2
+  },
+  "symbols": 1,
+  "levels": [],
+  "families": [
+   "Topaz"
+  ],
+  "text": "Flash\nIf all your Spirits are Cost 2/4/6/8 with the \"Topaz\" family, target an opposing Spirit. During this step, it loses one of its symbols. (You choose the symbol)",
+  "image": null,
+  "block": "A",
+  "saga": 50,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "If all your Spirits are Cost 2/4/6/8 with the \"Topaz\" family, target an opposing Spirit.",
+   "During this step, it loses one of its symbols.",
+   "(You choose the symbol)"
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "26RBS03-096",
@@ -34136,6 +34256,33 @@
   "rcode": "C"
  },
  {
+  "id": "26RDB01-058",
+  "name": "Howling Song",
+  "name_jp": "ハウリングソング",
+  "type": "Magic",
+  "color": "green",
+  "cost": 4,
+  "reduction": {
+   "green": 3
+  },
+  "symbols": 1,
+  "levels": [],
+  "families": [
+   "Diva"
+  ],
+  "text": "[Team: Green Wave]\n\nMain\nDuring this turn, give all your Green Wave Spirits: \" (During Attack) When blocked, target an opposing refreshed Spirit. Exhaust it.\"",
+  "image": "26RDB01-058.png",
+  "block": "A",
+  "saga": 50,
+  "fxComplete": false,
+  "residual": [
+   "Main",
+   "During this turn, give all your Green Wave Spirits: \" (During Attack) When blocked, target an opposing refreshed Spirit.",
+   "Exhaust it.\""
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "26RDB01-059",
   "name": "Deep Strike",
   "name_jp": "ディープストライク",
@@ -42967,6 +43114,34 @@
    "A"
   ],
   "rcode": "C"
+ },
+ {
+  "id": "26RSD08-013",
+  "name": "Twilight Fantasia Song",
+  "name_jp": "トワイライトファンタジアソング",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 5,
+  "reduction": {
+   "yellow": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Diva",
+   "Sword Eye"
+  ],
+  "text": "[Team: Yellow Rise]\n\nFlash\nTarget one of your Yellow Rise Spirits. During this battle, give it: \" (During Attack) When this Spirit's attack reduces the opposing Life, if your Life is three or less, put a core from the Void to your Life.\"",
+  "image": "26RSD08-013.png",
+  "block": "A",
+  "saga": 50,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Target one of your Yellow Rise Spirits.",
+   "During this battle, give it: \" (During Attack) When this Spirit's attack reduces the opposing Life, if your Life is three or less, put a core from the Void to your Life.\""
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "26RSD08-014",
