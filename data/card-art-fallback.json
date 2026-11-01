@@ -1,0 +1,27 @@
+{
+ "_note": "Card art the official site lacks: card id -> Fandom file path (battle-spirits.fandom.com, hash dir/name). Used as a fallback after the official image 404s. BS77 (releases 2026-11-21) has no art anywhere yet.",
+ "base": "https://static.wikia.nocookie.net/battle-spirits/images/",
+ "files": {
+  "BS13-X005A": "d/dc/X005A.jpg",
+  "BS13-X005E": "5/50/X005E.jpg",
+  "BS13-X005R": "a/ab/X005R.jpg",
+  "BS13-X005S": "d/d7/X005S.jpg",
+  "BS13-X005T": "3/3d/X005T.jpg",
+  "BS35-X005A": "d/dc/X005A.jpg",
+  "BS35-X005D": "b/bf/X005D.jpg",
+  "BS35-X005E": "5/50/X005E.jpg",
+  "BS35-X005R": "a/ab/X005R.jpg",
+  "BS35-X005S": "d/d7/X005S.jpg",
+  "BS35-X005T": "3/3d/X005T.jpg",
+  "BS18-X012A": "d/dd/X012A.jpg",
+  "BS18-X012D": "a/a5/X012D.jpg",
+  "BS18-X012E": "3/3e/X012E.jpg",
+  "BS18-X012R": "0/03/X012R.jpg",
+  "BS18-X012S": "1/14/X012S.jpg",
+  "BS18-X012T": "6/6e/X012T.jpg",
+  "BS18-X021": "8/8a/X021.jpg",
+  "BS13-X006": "a/a0/X006.jpg",
+  "BS08-X003D": "4/4d/X003D.jpg",
+  "SD69-TOKEN-RAD": "b/bf/SD69-T001-P.png"
+ }
+}

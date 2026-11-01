@@ -11,7 +11,7 @@ def chk(n, c, x=''):
     res.append(bool(c)); print(('PASS ' if c else 'FAIL ') + f'[{len(res)}] ' + n, x if not c else '')
 def ev(pg, js): return pg.evaluate(js)
 def newp(b, w=1280, h=800, fixtures=False):
-    ctx = b.new_context(viewport={'width': w, 'height': h}); pg = ctx.new_page(); errs = []; reqs = []
+    ctx = b.new_context(viewport={'width': w, 'height': h}); pg = ctx.new_page(); pg.add_init_script('window.BS_FIXTURES = true'); errs = []; reqs = []
     pg.on("pageerror", lambda e: errs.append(str(e)[:300])); pg.on("dialog", lambda d: (errs.append('DIALOG'), d.dismiss()))
     pg.on("console", lambda m: errs.append('CONSOLE:' + m.text[:200]) if m.type == 'error' else None)
     pg.on("request", lambda r: reqs.append(r.url))

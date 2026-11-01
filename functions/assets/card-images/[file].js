@@ -16,6 +16,10 @@
 const OFFICIAL_IMG = 'https://www.battlespirits.com/images/cardlist/';
 const USER_AGENT = 'AeternaCardArtSync/1.0 (unofficial fan project; read-only)';
 
+import FALLBACK from '../../../data/card-art-fallback.json';
+
+const FILE_ALIAS = { 'BS01-014': 'BS01-014A' };
+
 export async function onRequestGet({ request, params, waitUntil }) {
   const id = params.file;                      // the URL-decoded single path segment after /assets/card-images/
   // Card ids are letters/digits/hyphens (BS01-001, 26RBS01-001, SD69-TOKEN-RAD, ...); reject anything else.
@@ -25,12 +29,14 @@ export async function onRequestGet({ request, params, waitUntil }) {
 
   const cache = caches.default;
   const cacheKey = new URL(request.url);
+  cacheKey.search = '?cv=3';                   // bump to drop entries cached by older versions (the official HTML 404 page was cached for some cards)
   const cached = await cache.match(cacheKey);
   if (cached) return cached;
 
+  // FILE_ALIAS: ids whose official detail page names another file (BS01-014 The Shaman Dragno is BS01-014A there).
   // The official site files 10th-anniversary X cards as BS51-10thX04 (lower-case "th"; BS51-X04 is a different card) and a Rebirth back
   // face (<front id>B) as <front id>_b. No other fallback name: a guessed file is another card, and no picture beats the wrong one.
-  const n = id.replace(/-10THX/, '-10thX'), side = /^(.+\d)B$/.exec(id);
+  const n = FILE_ALIAS[id] || id.replace(/-10THX/, '-10thX'), side = /^(.+\d)B$/.exec(id);
   const names = [...new Set([...(side ? [`${side[1]}_b`] : []), n])];
   let res;
   for (const name of names) {
@@ -41,6 +47,9 @@ export async function onRequestGet({ request, params, waitUntil }) {
       continue;
     }
     if (res.ok && /^image\//i.test(res.headers.get('Content-Type') || 'image/')) break;      // an HTML 200 (the site's 404 page) is a miss: try the next name
+  }
+  if ((!res || !res.ok || !/^image\//i.test(res.headers.get('Content-Type') || 'image/')) && FALLBACK.files[id]) {      // cards the official site lacks: Fandom art
+    try { res = await fetch(`${FALLBACK.base}${FALLBACK.files[id]}/revision/latest?format=webp`, { headers: { 'user-agent': USER_AGENT, accept: 'image/webp' } }); } catch (e) { res = null; }
   }
   if (!res || !res.ok) return new Response(null, { status: 404 });
 

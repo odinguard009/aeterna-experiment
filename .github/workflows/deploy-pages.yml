@@ -24,7 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Stage the deploy directory (the single file + Pages Functions)
-        run: mkdir -p dist && cp index.html dist/ && cp -r functions dist/
+        run: mkdir -p dist && cp index.html dist/ && cp -r functions pwa dist/
       - name: Ensure the Pages project exists (the first run creates it)
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

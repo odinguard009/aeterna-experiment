@@ -2,7 +2,7 @@
    v0.138.0 ACCESSIBILITY (mockup "New features"): Text size (Normal / Large / Larger, menu screens) and the keyboard shortcuts list
    (press ? anywhere, or Settings > Accessibility). Display only; the battle keys themselves live in 13-render.js.
    --------------------------------------------------------------------- */
-const TEXT_SIZES = ['normal', 'large', 'larger'];
+const TEXT_SIZES = ['small', 'normal', 'large', 'larger'];
 function applyTextSize() { if (typeof document !== 'undefined') document.documentElement.dataset.ts = TEXT_SIZES.includes(SETTINGS.textSize) ? SETTINGS.textSize : 'normal'; }
 applyTextSize();
 function applyAccess() { if (typeof document !== 'undefined') { const d = document.documentElement.dataset; if (SETTINGS.cbShapes) d.cb = '1'; else delete d.cb; if (SETTINGS.hiContrast) d.hc = '1'; else delete d.hc; } }   // v0.143.0: colour-blind shapes, high contrast edges

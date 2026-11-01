@@ -141,6 +141,29 @@ test('CIMG-S5 10th-anniversary X ids use the official 10thX file (never the olde
   assert.equal((await hit(miss, '/assets/card-images/BS44-10THX01')).status, 404);
   assert.ok(urls.every((u) => u.includes('10thX')), 'no plain-X fallback for a 10thX id');
   urls.length = 0;
-  assert.equal((await hit(miss, '/assets/card-images/BS13-X005A')).status, 404);
-  assert.deepEqual(urls, [OFFICIAL + 'BS13-X005A.webp?v2'], 'no X0nn -> Xnn guess (that file is another card)');
+  assert.equal((await hit(miss, '/assets/card-images/BS13-X005Z')).status, 404);
+  assert.deepEqual(urls, [OFFICIAL + 'BS13-X005Z.webp?v2'], 'no X0nn -> Xnn guess (that file is another card)');
+});
+
+test('CIMG-S6 BS01-014 (The Shaman Dragno) is filed as BS01-014A on the official site', async () => {
+  const urls = [];
+  const route = cardImageRoute({ mirrorDir: mkdir(), fetchImpl: async (u) => { urls.push(u.slice(OFFICIAL.length)); return { ok: true, headers: { get: () => 'image/webp' }, arrayBuffer: async () => WEBP() }; } });
+  assert.equal((await hit(route, '/assets/card-images/BS01-014')).status, 200);
+  assert.deepEqual(urls, ['BS01-014A.webp?v2']);
+  assert.match(readFileSync('functions/assets/card-images/[file].js', 'utf8'), /'BS01-014': 'BS01-014A'/, 'the Pages function carries the same alias');
+});
+
+test('CIMG-S7 a card the official site lacks falls back to its Fandom art (21 ids), others stay a 404', async () => {
+  const fb = JSON.parse(readFileSync('data/card-art-fallback.json', 'utf8'));
+  assert.equal(Object.keys(fb.files).length, 21);
+  const urls = [];
+  const fetchImpl = async (u) => {
+    urls.push(u);
+    return u.startsWith(OFFICIAL) ? { ok: false, status: 404 } : { ok: true, headers: { get: () => 'image/webp' }, arrayBuffer: async () => WEBP() };
+  };
+  const route = cardImageRoute({ mirrorDir: mkdir(), fetchImpl });
+  assert.equal((await hit(route, '/assets/card-images/BS18-X012R')).status, 200);
+  assert.equal(urls.at(-1), `${fb.base}${fb.files['BS18-X012R']}/revision/latest?format=webp`);
+  assert.equal((await hit(route, '/assets/card-images/BS77-005')).status, 404, 'BS77 (unreleased) has no art anywhere');
+  assert.match(readFileSync('functions/assets/card-images/[file].js', 'utf8'), /card-art-fallback\.json/, 'the Pages function uses the same map');
 });
