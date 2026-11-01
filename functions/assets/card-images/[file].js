@@ -28,20 +28,21 @@ export async function onRequestGet({ request, params, waitUntil }) {
   const cached = await cache.match(cacheKey);
   if (cached) return cached;
 
-  // The official site files 10th-anniversary X cards as BS51-10thX04 (lower-case "th"; BS51-X04 is a different card), a Rebirth back face
-  // (<front id>B) as <front id>_b, and some old X0nn ids as Xnn.
+  // The official site files 10th-anniversary X cards as BS51-10thX04 (lower-case "th"; BS51-X04 is a different card) and a Rebirth back
+  // face (<front id>B) as <front id>_b. No other fallback name: a guessed file is another card, and no picture beats the wrong one.
   const n = id.replace(/-10THX/, '-10thX'), side = /^(.+\d)B$/.exec(id);
-  const names = [...new Set([...(side ? [`${side[1]}_b`] : []), n, ...(/-10thX/.test(n) ? [] : [n.replace(/-X0(\d\d)[A-Z]?$/, '-X$1')])])];
+  const names = [...new Set([...(side ? [`${side[1]}_b`] : []), n])];
   let res;
   for (const name of names) {
     try {
       res = await fetch(`${OFFICIAL_IMG}${name}.webp?v2`, { headers: { 'user-agent': USER_AGENT } });
     } catch (e) {
-      return new Response(null, { status: 502 });
+      res = null;                                // a timeout on one name still tries the next
+      continue;
     }
-    if (res.ok) break;
+    if (res.ok && /^image\//i.test(res.headers.get('Content-Type') || 'image/')) break;      // an HTML 200 (the site's 404 page) is a miss: try the next name
   }
-  if (!res.ok) return new Response(null, { status: 404 });
+  if (!res || !res.ok) return new Response(null, { status: 404 });
 
   // The official site answers a missing card with an HTTP 200 HTML page; never pass that through as art.
   const type = res.headers.get('Content-Type') || '';

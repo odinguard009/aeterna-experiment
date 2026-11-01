@@ -39,11 +39,11 @@ function script() { return SCRIPT || (SCRIPT = new vm.Script(engineScript() + EX
 
 /** A fresh engine in its own vm context (no DOM). Returns the export object (live getters for G). */
 // format: the headless host plays Eternal unless told otherwise (the game's own default is Standard since v0.97.0; recorded matches and the sims were made under Eternal rules).
-export function loadEngine({ sim = true, format = 'eternal' } = {}) {
+export function loadEngine({ sim = true, format = 'eternal', fixtures = false } = {}) {      // fixtures: register the vanilla Training cards (a sim always has them; the server's rooms never do)
   const store = new Map([['bse.format', format]]);
   const ctx = {
     console, setTimeout, clearTimeout, setInterval, clearInterval, queueMicrotask, structuredClone, URLSearchParams, TextDecoder, TextEncoder, atob, btoa,
-    BS_FIXTURES: true,                                  // register the vanilla Training cards (never in the product build)
+    ...(fixtures ? { BS_FIXTURES: true } : {}),
     location: { search: sim ? '?sim=1' : '' },          // sim: false = the rules of a real web match (coin toss, Starting Hand prompts), no delays
     navigator: { webdriver: true },                     // strict effect checks, as in the Playwright sims
     localStorage: { getItem: k => (store.has(k) ? store.get(k) : null), setItem: (k, v) => { store.set(k, String(v)); }, removeItem: k => { store.delete(k); } }
@@ -62,7 +62,7 @@ const deckOf = (E, d) => (typeof d === 'string' ? (E.PREBUILT.find(x => x.id ===
 // real: true plays a web match (coin toss, Starting Hand prompts; the first seat is always human): records replay in the page.
 // format: 'eternal' (default) or 'standard'; onBoard(E): called after every board view (tools/cpu_bench.mjs counts idle turns there).
 export async function playHeadless({ seed = 1, deckA = 'red', deckB = 'mitra', timeoutMs = 60000, profiles = null, fuzz = null, human = false, answer = firstAnswer, real = false, format = 'eternal', onBoard = null, keyA: keyAOpt = null, keyB: keyBOpt = null } = {}) {
-  const E = loadEngine({ sim: !real, format }), views = {}, errors = [], decisions = [], acted = { ok: 0, refused: 0 };
+  const E = loadEngine({ sim: !real, format, fixtures: true }), views = {}, errors = [], decisions = [], acted = { ok: 0, refused: 0 };
   let logs = 0;
   const A = deckOf(E, deckA), B = deckOf(E, deckB);
   if (!A || !B) return { over: false, errors: ['unknown deck ' + (A ? deckB : deckA)] };
@@ -117,7 +117,7 @@ export async function playHeadless({ seed = 1, deckA = 'red', deckB = 'mitra', t
 export async function replayPort(rec, { timeoutMs = 60000, viewer = false } = {}) {
   const p = rec && rec.port && rec.port.v === 2 ? rec.port : rec;
   if (!p || p.v !== 2) return { ok: false, reason: 'not a port record (v 2)' };
-  const E = loadEngine({ sim: !!p.sim }), errors = [];
+  const E = loadEngine({ sim: !!p.sim, fixtures: true }), errors = [];
   const onRej = e => { if (errors.length < 3) errors.push(String(e && e.stack ? e.stack.split('\n').slice(0, 3).join(' | ') : e)); };
   process.on('unhandledRejection', onRej);
   try {

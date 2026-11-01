@@ -12461,13 +12461,14 @@ async function clearImages() { Object.keys(IMG).forEach(id => { URL.revokeObject
    /assets/card-images/<card.id> (Aegis-style). v0.114.0: the key is the card id (not the Fandom
    File: name) because the official battlespirits.com image URL is derived directly from it.
    Empty when neither is available (offline, no image). */
+const ART_REV = 2;      // 2 = v0.205.3 (10thX files, Rebirth back faces)
 function cardImgSrc(id) {
   const k = artOf(id);           // v0.132.0 U14g2: the picture picked for this card
   if (IMG[k]) return IMG[k];
   const c = CARDS[k] || REB_BY_ID[k];      // a Rebirth back face is not a CARDS entry: its picture is <front id>B on the same mirror
   if (!c || !c.id) return '';
   const origin = (typeof onlineOrigin === 'function') ? onlineOrigin() : null;
-  return origin ? `${origin}/assets/card-images/${encodeURIComponent(c.id)}` : '';
+  return origin ? `${origin}/assets/card-images/${encodeURIComponent(c.id)}?a=${ART_REV}` : '';      // ?a=: bump ART_REV when the id -> official file mapping changes, so browser and edge caches drop the old art
 }
 const imgCls = id => (cardImgSrc(id) ? ' has-img' : '');
 const imgSty = id => { const s = cardImgSrc(id); return s ? `;background-image:url('${s}')` : ''; };

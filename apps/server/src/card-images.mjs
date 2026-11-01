@@ -18,12 +18,13 @@ import { join, resolve } from 'node:path';
 const OFFICIAL_IMG = 'https://www.battlespirits.com/images/cardlist/';
 const USER_AGENT = 'AeternaCardArtSync/1.0 (unofficial fan project; read-only)';
 const PREFIX = '/assets/card-images/';
-// The official site files the 10th-anniversary X cards as BS51-10thX04 (lower-case "th"); BS51-X04 is a different, older card, so there is
-// no plain-X fallback for them (the 2026-11-02 wrong-art report: Libra-Golem X showed Pheonix). Old X0nn / X0nnS ids sit under X0nn on some
-// pages and plain Xnn on others, so a miss tries the next name. A Rebirth back face (<front id>B, e.g. BS73-061B) is <front id>_b.
+// The official site files the 10th-anniversary X cards as BS51-10thX04 (lower-case "th"); BS51-X04 is a different, older card (the
+// 2026-11-02 wrong-art report: Libra-Golem X showed Pheonix). There is deliberately no other fallback name: the old X0nn -> Xnn guess
+// also hit different cards (BS13-X005A Sieg-Apollodragon -> BS13-X05 Rean), and no picture is better than the wrong one.
+// A Rebirth back face (<front id>B, e.g. BS73-061B) is <front id>_b.
 const officialNames = (id) => {
   const n = id.replace(/-10THX/, '-10thX'), side = /^(.+\d)B$/.exec(id);
-  return [...new Set([...(side ? [`${side[1]}_b`] : []), n, ...(/-10thX/.test(n) ? [] : [n.replace(/-X0(\d\d)[A-Z]?$/, '-X$1')])])];
+  return [...new Set([...(side ? [`${side[1]}_b`] : []), n])];
 };
 const isWebp = (buf) => buf.length >= 12 && buf.subarray(0, 4).toString('ascii') === 'RIFF' && buf.subarray(8, 12).toString('ascii') === 'WEBP';
 
@@ -43,7 +44,7 @@ export function cardImageRoute({ mirrorDir, officialImg = OFFICIAL_IMG, fetchImp
   const inflight = new Map();   // card id -> Promise<Buffer|null>, dedupes concurrent first requests
 
   async function download(id) {
-    for (const name of officialNames(id)) { const buf = await downloadOne(id, name); if (buf) return buf; }
+    for (const name of officialNames(id)) { const buf = await downloadOne(id, name).catch(() => null); if (buf) return buf; }      // a timeout on one name still tries the next
     return null;
   }
 

@@ -140,4 +140,7 @@ test('CIMG-S5 10th-anniversary X ids use the official 10thX file (never the olde
   urls.length = 0;
   assert.equal((await hit(miss, '/assets/card-images/BS44-10THX01')).status, 404);
   assert.ok(urls.every((u) => u.includes('10thX')), 'no plain-X fallback for a 10thX id');
+  urls.length = 0;
+  assert.equal((await hit(miss, '/assets/card-images/BS13-X005A')).status, 404);
+  assert.deepEqual(urls, [OFFICIAL + 'BS13-X005A.webp?v2'], 'no X0nn -> Xnn guess (that file is another card)');
 });

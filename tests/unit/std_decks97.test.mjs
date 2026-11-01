@@ -46,10 +46,10 @@ test('S97-3 the incomplete state appears when a card is missing and clears when 
   assert.equal(r.gone[0], 3); assert.match(r.gone[1], /incomplete, 3 missing/); assert.equal(r.gone[2], false);
   assert.equal(r.pickedWhileMissing, false, 'an incomplete starter is never the CPU deck');
 });
-test('S97-4 a random CPU deck in Standard is always a legal Standard starter, never the training deck; Training Red stays selectable', async () => {
+test('S97-4 a random CPU deck in Standard is always a legal Standard starter, never the training deck (practice decks are not in the product)', async () => {
   const r = await ev(() => { const keep = BS.SETTINGS.cpuDeck, out = []; BS.SETTINGS.cpuDeck = 'random'; for (let s = 1; s <= 40; s++) { BS.seedRng(s); const d = BS.cpuDeckFor('standard'); out.push([BS.CPU_DECK_NAME, BS.validateDeck(d, 'standard').ok]); } BS.SETTINGS.cpuDeck = 'train'; BS.cpuDeckFor('standard'); const t = BS.CPU_DECK_NAME; BS.SETTINGS.cpuDeck = keep; return { out, t }; });
   for (const [n, ok] of r.out) { assert.ok(ok, n); assert.doesNotMatch(n, /Training/); assert.match(n, /26R/); }
-  assert.match(r.t, /Training Red/);
+  assert.doesNotMatch(r.t, /Training/);
 });
 test('S97-5 defaults: Standard format, first-run deck is a Standard starter, CPU default is a Standard starter, names carry no developer notes', async () => {
   const r = await ev(() => ({ fmt: BS.FORMAT, def: BS.validateDeck(BS.defaultDeck(), 'standard'), cpu: BS.SETTINGS.cpuDeck, names: BS.PREBUILT.map(d => d.name), btn: BS.fmtButton('eternal') + '|' + BS.fmtButton('standard') }));

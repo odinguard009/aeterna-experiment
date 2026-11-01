@@ -12,6 +12,7 @@ Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.m
 - Side B effect text keeps every word of the wiki source: "Count +1" (was "+1"), "Core Charge: ...", "Grandwalker Rule", and wiki keyword templates such as Whirlwind, Grand Skill, Contract Skill are expanded.
 - Play deck cover is the same card as the My decks tile (chosen cover, then Key Spirit, then Key Nexus, then most played).
 - The vanilla Training practice cards no longer exist in the product (library, deck builder, card pages); they are registered only for CPU sims and unit tests.
+- No guessed image names: a card without its own official file shows the placeholder, never another card's art. Card pictures carry a `?a=2` revision so browsers drop the old cached (wrong) art. Practice cards are opt-in (`BS_FIXTURES`) for sims and tests.
 - Limits: the Rebirth Side B effects are display-only (still "Partly Implemented"). Revert: `git revert` the release commit; backup branch `backup/v0.205.2-pre-image-fixes`.
 
 ## v0.205.2
