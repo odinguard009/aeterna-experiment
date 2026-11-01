@@ -395,3 +395,25 @@ test('K-963 BS06-106 returns every Nexus of both sides to its owner Hand', async
     return [P.nexus.length, O.nexus.length, P.hand.length - h[0], O.hand.length - h[1]]; })()`);
   assert.deepEqual(r, [0, 0, 1, 1], JSON.stringify(r));
 });
+
+test('K-964 BS08-076 marks every opposing Cost 3 or less Spirit as must-attack', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const byCost = k => Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit' && BS.CARDS[i].cost === k);
+    O.spirits.length = 0; for (const k of [2, 3, 5]) { const s = BS.mkInst(byCost(k)); s.cores = 1; s.exhausted = false; O.spirits.push(s); }
+    const c = { p: P, opp: O, src: BS.mkInst('BS08-076'), ctx: {} };
+    await BS.FX_ACTIONS.MUST_ATTACK_ALL_OPP.run(c, BS.CARDS['BS08-076'].magic.actions[0]);
+    return O.spirits.map(s => s.mustAtk === G.turnNo); })()`);
+  assert.deepEqual(r, [true, true, false], JSON.stringify(r));
+});
+
+test('K-965 BS08-069 the opponent destroys Spirits down to the number you control (needs two or more)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const sp = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit');
+    const mk = (side, n) => { side.spirits.length = 0; for (let i = 0; i < n; i++) { const s = BS.mkInst(sp); s.cores = 1; side.spirits.push(s); } };
+    const run = async () => { const c = { p: P, opp: O, src: BS.mkInst('BS08-069'), ctx: {} }; await BS.FX_ACTIONS.DESTROY_OPP_DOWN_TO_OWN.run(c, {}); return O.spirits.length; };
+    mk(P, 2); mk(O, 5); const a = await run(); mk(P, 1); mk(O, 4); const b = await run();
+    return [a, b]; })()`);
+  assert.deepEqual(r, [2, 4], JSON.stringify(r));
+});

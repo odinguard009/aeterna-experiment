@@ -265,3 +265,30 @@ FX_ACTIONS.NEXUS_ALL_TO_HAND = {
     for (const side of [c.p, c.opp]) for (const x of side.nexus.slice()) { if (side === c.opp && fxImmune(side, x)) continue; bounceCard(side, x, 'hand'); k++; }
     c.ctx.did = k > 0; if (k) { checkDepletion(c.p); checkDepletion(c.opp); }
   } };
+
+/* v320 MUST_ATTACK_ALL_OPP {costLe}: "opposing Cost N or less Spirits must attack if possible" - every matching unexhausted opposing Spirit gets mustAtk (same marker as MUST_ATTACK_OPP). */
+FX_ACTIONS.MUST_ATTACK_ALL_OPP = {
+  chk: a => Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30 && Object.keys(a).every(k => ['do', 'if', 'costLe'].includes(k)),
+  txt: a => `every opposing Cost ${a.costLe} or less Spirit must attack at the start of the step if possible`,
+  cands: (c, a) => c.opp.spirits.filter(t => !t.exhausted && !fxImmune(c.opp, t) && CARDS[t.id].cost <= a.costLe),
+  can: (c, a) => FX_ACTIONS.MUST_ATTACK_ALL_OPP.cands(c, a).length > 0,
+  run: async (c, a) => {
+    const L = FX_ACTIONS.MUST_ATTACK_ALL_OPP.cands(c, a); c.ctx.did = L.length > 0;
+    for (const t of L) { t.mustAtk = G.turnNo; log(`${CARDS[t.id].name} must attack at the start of the step if possible.`); }
+  } };
+
+/* v321 DESTROY_OPP_DOWN_TO_OWN: "If you control two or more Spirits, the opponent destroys their Spirits until they control the same number as you." Needs 2+ own Spirits; the opponent chooses (CPU: weakest first). */
+FX_ACTIONS.DESTROY_OPP_DOWN_TO_OWN = {
+  chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
+  txt: () => 'if you control two or more Spirits, the opponent destroys Spirits they control until they control as many as you',
+  can: c => c.p.spirits.length >= 2 && c.opp.spirits.length > c.p.spirits.length,
+  run: async c => {
+    c.ctx.did = false; if (c.p.spirits.length < 2) return;
+    const want = c.p.spirits.length;
+    while (c.opp.spirits.length > want) {
+      const before = c.opp.spirits.length;
+      await FX_ACTIONS.DESTROY_OPP_OWN.run(c, { do: 'DESTROY_OPP_OWN' });
+      if (c.opp.spirits.length >= before) break;
+      c.ctx.did = true;
+    }
+  } };
