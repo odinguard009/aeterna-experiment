@@ -189,3 +189,14 @@ test('K-946 BS19-097 and BS06-093 give the attacker +1000 and keyword-gated extr
     return out; })()`);
   assert.deepEqual(r, [4000, 1000, 3000, 1000]);
 });
+
+test('K-947 BS12-074 reveals three, adds every matching family Spirit/Brave and trashes the rest', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; O.reserve.n = 5;
+    const fam = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && [].concat(BS.CARDS[k].families || BS.CARDS[k].family || []).includes('Galaxian')), oth = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !String(JSON.stringify(BS.CARDS[k].families || BS.CARDS[k].family || '')).match(/Galaxian|Astral/));
+    P.hand = []; P.trash = []; P.deck = [BS.mkInst(fam), BS.mkInst(oth), BS.mkInst(fam), BS.mkInst(oth)];
+    const m = BS.CARDS['BS12-074'].magic.by.MAIN.actions[0];
+    await BS.FX_ACTIONS.REVEAL_PICK.run({ p: P, opp: O, src: BS.mkInst('BS12-074'), ctx: {} }, m);
+    return [P.hand.length, P.trash.length, P.deck.length, !!fam]; })()`);
+  assert.deepEqual(r, [2, 1, 1, true]);
+});
