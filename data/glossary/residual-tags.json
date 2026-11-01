@@ -10624,11 +10624,6 @@
   "C_LEVEL",
   "K_ULTIMATE"
  ],
- "BS28-030": [
-  "A_REFRESH",
-  "C_LEVEL",
-  "K_ULTIMATE"
- ],
  "BS28-031": [
   "A_VOID",
   "C_LEVEL",
@@ -11177,12 +11172,6 @@
  ],
  "BS29-034": [
   "C_LIFE"
- ],
- "BS29-035": [
-  "A_VOID",
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "T_ALLY_ATTACKS"
  ],
  "BS29-036": [
   "C_LEVEL",
