@@ -193,6 +193,3 @@ newPortRecord, portRecord, boardSnapshot, runPortRecord, viewerReplayOf
 
 ## apps/web/src/16-events.js (283 lines, ~6.3k tokens) — EVENTS (delegation)
 hScrollable, HDRAG, GAME_ACTS, gameAct, replayOf, lastReplay, runReplay, loadScenario, testSetup, defBuiltin
-
-## Rebirth Side B (2026-11-01, display only)
-`tools/import_rebirth_sides.py` -> `data/index/rebirth-sides.json` (front id -> back record, never CARDS); `tools/build.mjs` embeds it as `BUILTIN_SIDES` (marker `/*SIDES_START*/` in `apps/web/src/11-human.js`, budget B16); `rebirthSideOf(id)` parses it lazily; flip button: `cp-flip` + `CP_SIDE` in `13n-cardpage.js`, `showCardDetail(id, ctx, uid, back)` in `11-human.js` (no flip for ctx 'hand').
