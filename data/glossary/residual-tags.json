@@ -1414,10 +1414,6 @@
   "A_REFRESH",
   "C_LEVEL"
  ],
- "BS06-042": [
-  "A_BOUNCE",
-  "C_LEVEL"
- ],
  "BS06-046": [
   "A_REFRESH",
   "C_LEVEL",
@@ -1766,10 +1762,6 @@
   "M_OPTIONAL",
   "T_ATTACKS",
   "T_SUMMONED"
- ],
- "BS07-047": [
-  "A_VOID",
-  "C_LEVEL"
  ],
  "BS07-048": [
   "A_EXHAUST",

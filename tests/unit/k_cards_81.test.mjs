@@ -167,3 +167,16 @@ test('K-854 BS01-071 and BS02-041 refresh themselves after a won battle only whi
     return out; })()`);
   assert.deepEqual(r, [false, false, false, false], JSON.stringify(r));
 });
+
+test('K-855 OPP_MAGIC_USED fires for the opponent of the caster (BS07-047, BS06-042)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true;
+    const s = BS.mkInst('BS07-047'); s.cores = 1; P.spirits = [s]; P.void = 3;
+    await BS.fireFx(P, 'OPP_MAGIC_USED', null, { subject: BS.mkInst('BS01-125') });
+    const m4 = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Magic' && BS.CARDS[k].cost === 4), m3 = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Magic' && BS.CARDS[k].cost === 3);
+    const t = BS.mkInst('BS06-042'); t.cores = 3; const out = [s.cores, P.void];
+    for (const m of [m3, m4]) { const b = BS.mkInst('BS01-001'); b.cores = 1; P.spirits = [t]; O.spirits = [b]; G.step = 5;
+      await BS.fireFx(P, 'OPP_MAGIC_USED', null, { subject: BS.mkInst(m) }); out.push(O.spirits.length); }
+    return out; })()`);
+  assert.deepEqual(r, [2, 2, 1, 0], JSON.stringify(r));
+});

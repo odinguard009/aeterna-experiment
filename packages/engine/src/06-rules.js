@@ -548,6 +548,7 @@ async function castMagic(p, ch) {                         // ch = { inst, target
     p.magicTurn = (p.magicTurn && p.magicTurn.turn === G.turnNo) ? p.magicTurn : { turn: G.turnNo, cards: [] };
     p.magicTurn.cards.push(inst.id);
     await fireFx(p, 'MAGIC_USED', null, { subject: inst });
+    await fireFx(opp, 'OPP_MAGIC_USED', null, { subject: inst });      // v284 "when the opponent uses a Magic card"
   }
   checkDepletion(p); checkDepletion(opp);
 }
