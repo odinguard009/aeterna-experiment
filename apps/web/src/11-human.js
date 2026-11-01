@@ -83,12 +83,12 @@ function cardDetailHTML(card, noArt) {
   return `${art}<div class="cd-info" style="border:2px solid ${col};border-radius:6px;padding:8px;text-align:left;margin-bottom:8px;">
       <div style="display:flex;justify-content:space-between;align-items:center;"><b>${esc(card.name)}</b>
         <span class="cd-cost" style="background:${col};color:${['yellow', 'white'].includes(card.symbol) ? '#141922' : '#fff'};">Cost ${card.cost}</span></div>
-      <div style="font-size:8.5px;color:var(--text-muted);margin-top:3px;">${esc(card.token ? 'Token Spirit' : card.type)} · ${esc(cap(card.symbol))} · ${card.symbols} symbol${card.symbols === 1 ? '' : 's'} · Reduction: ${esc(red)}</div>
-      ${(card.families || []).length ? `<div class="cd-fam" style="font-size:8.5px;margin-top:3px;"><b>Family:</b> ${card.families.map(f => esc(f)).join(', ')}</div>` : ''}
-      <div class="cd-lv" style="font-size:8.5px;margin-top:3px;">${lv}</div>
+      <div style="font-size:calc(8.5px*var(--t));color:var(--text-muted);margin-top:3px;">${esc(card.token ? 'Token Spirit' : card.type)} · ${esc(cap(card.symbol))} · ${card.symbols} symbol${card.symbols === 1 ? '' : 's'} · Reduction: ${esc(red)}</div>
+      ${(card.families || []).length ? `<div class="cd-fam" style="font-size:calc(8.5px*var(--t));margin-top:3px;"><b>Family:</b> ${card.families.map(f => esc(f)).join(', ')}</div>` : ''}
+      <div class="cd-lv" style="font-size:calc(8.5px*var(--t));margin-top:3px;">${lv}</div>
       ${noArt ? '' : legalityHTML(card)}
       ${pills ? `<div style="margin-top:4px;">${pills}</div>` : ''}</div>
-    <div style="font-size:9.5px;text-align:left;background:rgba(255,255,255,.05);padding:6px;border-radius:4px;border:1px solid var(--border-line);">
+    <div style="font-size:calc(9.5px*var(--t));text-align:left;background:rgba(255,255,255,.05);padding:6px;border-radius:4px;border:1px solid var(--border-line);">
       <b>Effect text:</b>${effectTextHTML(card, false)}${card.implemented ? '' : card.partial ? '<div class="warn-note">⚠ Only part of this effect text is implemented in this build yet.' + residualHTML(card) + '</div>' : '<div class="warn-note">⚠ This effect is not implemented in this build yet.</div>'}</div>`;
 }
 const residualHTML = card => (card.residual && card.residual.length ? '<br>Not implemented yet:<ul style="margin:2px 0 0 14px;padding:0;">' + card.residual.map(r => `<li>${esc(r)}</li>`).join('') + '</ul>' : '');

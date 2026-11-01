@@ -42,7 +42,7 @@ body.mk > .ae-pop{position:absolute;top:62px;right:24px;z-index:20}
 .mk .drow .thumb .cface.ph *{font-size:3.5px!important;line-height:1.1;margin:0}
 
 /* v0.138.0 Text size (Settings > Accessibility): the menu screens scale from their 14px base; the battle keeps its own sizes */
-html[data-ts="large"] .mk { font-size: 16px; } html[data-ts="larger"] .mk { font-size: 18px; }
+html[data-ts="small"] .mk { font-size: 13px; } html[data-ts="large"] .mk { font-size: 16px; } html[data-ts="larger"] .mk { font-size: 18px; }
 .kbd-list { display: grid; gap: 8px; text-align: left; }
 .kbd-row { display: flex; align-items: center; gap: 12px; }
 .kbd-row kbd { flex: none; min-width: 112px; padding: 4px 10px; text-align: center; font: 800 .82em var(--f-num, inherit); background: var(--ae-panel2, #0001); box-shadow: inset 0 0 0 1px var(--ae-line2); clip-path: var(--par, none); }
@@ -55,22 +55,22 @@ html[data-ts="large"] .mk { font-size: 16px; } html[data-ts="larger"] .mk { font
 #db-types,#lib-types{flex-wrap:wrap}                                                                         /* Spirit / Ultimate / Brave / Nexus ... wrap instead of being cut at the edge */
 [data-mode="light"] .mk .foot a{color:#8ff0d8;text-decoration:underline}                                      /* the footer bar stays dark in Light mode: the link needs a light colour */
 #home-cont > div:first-child{aspect-ratio:5/7;overflow:hidden;border-radius:4px}                              /* the 36 px thumbnail never shows overflowing text */
-#home-cont > div:first-child .cface.ph{font-size:4px;padding:2px;overflow:hidden}
+#home-cont > div:first-child .cface.ph{font-size:calc(4px*var(--t));padding:2px;overflow:hidden}
 #home-cont > div:first-child .cface.ph .ph-txt,#home-cont > div:first-child .cface.ph .ph-sub,#home-cont > div:first-child .cface.ph .ph-bp{display:none}
-#home-cont > div:first-child .cface.ph .ph-name{font-size:7px;line-height:1.05}
+#home-cont > div:first-child .cface.ph .ph-name{font-size:calc(7px*var(--t));line-height:1.05}
 /* v0.152.0 battle parity with mockup v14 (part 1): title tab subtitle, Card Panel frame + log */
-#view-playmat .ae-sub{display:none;align-self:center;margin-left:14px;font-size:12px;color:var(--ae-text2,#9aa4b2);white-space:nowrap}
+#view-playmat .ae-sub{display:none;align-self:center;margin-left:14px;font-size:calc(12px*var(--t));color:var(--ae-text2,#9aa4b2);white-space:nowrap}
 html.layout-pc #view-playmat .ae-sub{display:inline}
 @media (max-width:1100px){html.layout-pc #view-playmat .ae-sub{display:none}}
 #card-panel{display:flex;flex-direction:column}
-#card-panel .cp-title{font-size:10px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--ae-text2,#9aa4b2);margin-bottom:8px}
+#card-panel .cp-title{font-size:calc(10px*var(--t));font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--ae-text2,#9aa4b2);margin-bottom:8px}
 #card-panel .cp-ph{width:100%;aspect-ratio:5/7;border-radius:8px;border:1px solid var(--ae-line,#fff2);background:repeating-linear-gradient(135deg,#ffffff0a 0 6px,#ffffff04 6px 12px)}
 #card-panel .cp-hint{padding:14px 6px}
-#card-panel .cp-log{margin-top:auto;padding-top:10px;font-size:11px;line-height:1.35;color:var(--ae-text2,#9aa4b2)}
+#card-panel .cp-log{margin-top:auto;padding-top:10px;font-size:calc(11px*var(--t));line-height:1.35;color:var(--ae-text2,#9aa4b2)}
 #card-panel .cp-log>div{padding:3px 0;border-top:1px solid var(--ae-line,#fff1)}
-#card-panel .cp-lh{font-weight:900;letter-spacing:.14em;text-transform:uppercase;font-size:10px;border-top:0!important;color:var(--ae-text,#e6eaf0)}
+#card-panel .cp-lh{font-weight:900;letter-spacing:.14em;text-transform:uppercase;font-size:calc(10px*var(--t));border-top:0!important;color:var(--ae-text,#e6eaf0)}
 .mobile-stats-bar .stat-pill .pl{font-size:0}
-.mobile-stats-bar .stat-pill .pl::after{content:attr(data-f);font-size:10px;letter-spacing:0;text-transform:none;font-weight:700}
+.mobile-stats-bar .stat-pill .pl::after{content:attr(data-f);font-size:calc(10px*var(--t));letter-spacing:0;text-transform:none;font-weight:700}
 @media (max-width:380px){.mobile-stats-bar .stat-pill .pl[data-f="Reserve"]::after{content:"Res."}}
 /* v0.155.0 owner review batch 1 (2026-10-27) */
 html.layout-pc #view-play .pg>.hdcard{order:-2}                                                              /* Play (PC): the Start box sits right under the page header */
@@ -84,9 +84,9 @@ html.layout-pc #view-play .pg>.readybox{order:-1}
 .dk-st-row{display:grid;grid-template-columns:44px minmax(0,1fr) auto;align-items:center;gap:12px;padding:10px 14px;min-height:84px}
 .dk-st-th{width:44px;aspect-ratio:5/7;overflow:hidden;border-radius:4px}
 .dk-st-th .cface{width:100%;height:100%;object-fit:cover}
-.dk-st-th .cface.ph{font-size:4px;padding:2px;overflow:hidden}
+.dk-st-th .cface.ph{font-size:calc(4px*var(--t));padding:2px;overflow:hidden}
 .dk-st-th .cface.ph .ph-txt,.dk-st-th .cface.ph .ph-sub,.dk-st-th .cface.ph .ph-bp{display:none}
-.dk-st-th .cface.ph .ph-name{font-size:7px;line-height:1.05}
+.dk-st-th .cface.ph .ph-name{font-size:calc(7px*var(--t));line-height:1.05}
 .dk-st-nm{min-width:0;overflow-wrap:anywhere}
 .dk-st-sub{display:block;font-size:.78em;opacity:.7;margin-top:2px}
 .dk-st-row .btn{min-width:72px}
@@ -138,10 +138,10 @@ html:not(.layout-pc) .lob-ctl{right:12px;bottom:8px}
 .cp-art .cp-art-f{display:block;width:64px;aspect-ratio:5/7;overflow:hidden;border-radius:5px;box-shadow:0 0 0 2px transparent}
 .cp-art.on .cp-art-f{box-shadow:0 0 0 2px var(--you)}
 .cp-art .cface,.cp-rel .cface{width:100%;height:100%;object-fit:cover}
-.cp-art .cface.ph,.cp-rel .cface.ph{font-size:4px;padding:2px;overflow:hidden}
+.cp-art .cface.ph,.cp-rel .cface.ph{font-size:calc(4px*var(--t));padding:2px;overflow:hidden}
 .cp-art .cface.ph .ph-txt,.cp-art .cface.ph .ph-sub,.cp-rel .cface.ph .ph-txt,.cp-rel .cface.ph .ph-sub{display:none}
 .cp-rel{flex:none;width:84px;aspect-ratio:5/7;overflow:hidden;border:0;padding:0;background:none;border-radius:6px;cursor:pointer}
-.cp-rel .cface.ph{font-size:5px}
+.cp-rel .cface.ph{font-size:calc(5px*var(--t))}
 
 /* ---- v0.155.0 batch 3: battle PC. Card Panel on the right, fixed area sizes, core gems shrink to fit, step cues stay off the panel ---- */
 html.layout-pc #view-playmat .playmat-layout.has-cp { grid-template-columns: minmax(0, 1fr) 236px; }
@@ -154,15 +154,15 @@ html.layout-pc:has(#view-playmat.active .has-cp) #ae-fx { right: 240px; }   /* c
 html.layout-pc #view-playmat .g-core, html.layout-pc #view-playmat .core-gem { max-width: 100%; }
 
 /* ---- v0.155.0 batch 4: dialogs (Export tabs, Import format line, Avatar, History) and the mulligan "Easy" tag ---- */
-.mull-card { position: relative; } .mull-easy { position: absolute; left: 50%; bottom: 14px; translate: -50% 0; font-size: 9px; z-index: 2; }
+.mull-card { position: relative; } .mull-easy { position: absolute; left: 50%; bottom: 14px; translate: -50% 0; font-size: calc(9px*var(--t)); z-index: 2; }
 #modal-card-desc .vc { margin-top: 8px; display: inline-block; } #modal-card-desc .vc:empty { display: none; }
 #modal-card-desc .pg-avs { display: flex; flex-wrap: wrap; gap: 12px; } #modal-card-desc .pg-av { width: 56px; height: 56px; font-size: 1.3em; }
 #modal-card-desc .db-xtabs .chip { min-height: 34px; }
 
 /* ---- v0.155.0 batch 4: battle PC toward the mockup (Nexus row with its hand tag, fan hand, Mirage Set tag) ---- */
 html.layout-pc #view-playmat .field-row-wrapper.nexus-row { position: relative; }
-html.layout-pc #view-playmat .nx-tag { position: absolute; left: calc(50% + 74px); top: 50%; transform: translateY(-50%); z-index: 4; padding: 3px 14px; font-size: 11px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; clip-path: var(--par); border: 0; cursor: pointer; }
-html.layout-pc #view-playmat .nx-tag.cpu { background: var(--cpu); color: #fff; } html.layout-pc #view-playmat .nx-tag.cpu b { color: #fff; font-size: 11px; }
+html.layout-pc #view-playmat .nx-tag { position: absolute; left: calc(50% + 74px); top: 50%; transform: translateY(-50%); z-index: 4; padding: 3px 14px; font-size: calc(11px*var(--t)); font-weight: 900; letter-spacing: .08em; text-transform: uppercase; clip-path: var(--par); border: 0; cursor: pointer; }
+html.layout-pc #view-playmat .nx-tag.cpu { background: var(--cpu); color: #fff; } html.layout-pc #view-playmat .nx-tag.cpu b { color: #fff; font-size: calc(11px*var(--t)); }
 html.layout-pc #view-playmat .nx-tag.you { background: var(--you); color: var(--you-ink); }
 #view-playmat .ba-card.set-mirage { position: relative; }
 #view-playmat .ba-card.set-mirage .btag { position: absolute; left: -3px; right: -3px; bottom: -2px; z-index: 2; background: var(--you); color: var(--you-ink); font-size: .8em; font-weight: 900; letter-spacing: .06em; text-align: center; }
@@ -178,7 +178,7 @@ html.layout-pc #view-playmat .hand-area .tcg-card:hover, html.layout-pc #view-pl
 .cface.ph .ph-txt { background: #0b0e1355; padding: 2px 3px; border-radius: 2px; text-shadow: 0 1px 2px #000; }
 
 /* ---- v0.157.0: battle PC rows show the locked cells as dashed "Empty" slots (mockup .slot) ---- */
-html.layout-pc #view-playmat .field-row .slot-ph { flex: none; height: 90%; aspect-ratio: 63 / 88; display: flex; align-items: center; justify-content: center; border: 1px dashed var(--ae-line2, #ffffff40); color: var(--ae-text2); font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; opacity: .8; }
+html.layout-pc #view-playmat .field-row .slot-ph { flex: none; height: 90%; aspect-ratio: 63 / 88; display: flex; align-items: center; justify-content: center; border: 1px dashed var(--ae-line2, #ffffff40); color: var(--ae-text2); font-size: calc(11px*var(--t)); font-weight: 800; letter-spacing: .1em; text-transform: uppercase; opacity: .8; }
 html.layout-pc #view-playmat .field-row { justify-content: center; }
 
 /* ---- v0.158.0 (owner review round 3): Lobby, Deck, Library and Learn on phone; Lobby logo centred ---- */
@@ -318,14 +318,14 @@ html.layout-pc #view-playmat .field-row .fslot { height: min(97%, calc(var(--car
 /* Battle PC (owner review 2026-10-30): Void is a slim chip (the opponent's on top of its right column, yours under the hand row's left corner), Banished has the
    full box; the Hand Cnt box is gone (the hand count sits beside the Nexus); the empty Spirit slots sit on both sides so the cards stay in the middle */
 html.layout-pc #view-playmat .side-flank-pc .zone-box.zone-chip { flex: none; height: 46px; }
-html.layout-pc #view-playmat .zone-box.zone-chip .zone-label { font-size: 9px !important; }
+html.layout-pc #view-playmat .zone-box.zone-chip .zone-label { font-size: calc(9px*var(--t)) !important; }
 
 /* Round 4 (owner review 2026-10-30) */
 /* PC: smaller hand, Spirit and Nexus rows get the same height and the cards fill them; Void sits right under Banished (flank) */
 html.layout-pc #view-playmat .field-row-wrapper.nexus-row { flex: 1; }
 html.layout-pc #view-playmat .playmat-layout.has-cp { grid-template-rows: minmax(0, 1fr) 56px minmax(0, 1fr) auto; }
 /* PC: Card Panel folds to a slim strip; the board and the fx layer follow */
-#card-panel .cp-min { position: absolute; top: 6px; right: 6px; width: 24px; height: 24px; border: 1px solid var(--ae-line2, #ffffff40); background: var(--ae-chip, #ffffff10); color: var(--ae-text, #e6eaf0); cursor: pointer; font-size: 12px; line-height: 1; border-radius: 4px; z-index: 2; }
+#card-panel .cp-min { position: absolute; top: 6px; right: 6px; width: 24px; height: 24px; border: 1px solid var(--ae-line2, #ffffff40); background: var(--ae-chip, #ffffff10); color: var(--ae-text, #e6eaf0); cursor: pointer; font-size: calc(12px*var(--t)); line-height: 1; border-radius: 4px; z-index: 2; }
 #card-panel .cp-min:hover, #card-panel .cp-min:focus-visible { box-shadow: inset 0 0 0 1px var(--you); outline: none; }
 html.layout-pc #view-playmat .playmat-layout.has-cp { }
 html.layout-pc #view-playmat .playmat-layout.has-cp > #card-panel { position: relative; }

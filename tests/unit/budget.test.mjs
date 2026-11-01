@@ -35,6 +35,7 @@ const packLen = between('/*PACK_START*/', '/*PACK_END*/'), code = html.slice(0, 
 // v0.124.0 (U14d): raised 750 -> 760 KB on purpose: the Card Panel (U14b) and the arrow / shatter / exhaust-turn cues; U14e-U14i add more, each with a note.
 // v0.128.0 (U14f): raised B01 760 -> 772 KB and B04 96 -> 100 KB on purpose: deck builder Redo, Test hand, card size, ring, hover peek (U14g-U14i add more).
 // v0.134.0 (U14i): raised B04 100 -> 104 KB on purpose: the Report a Bug form and the U14h pages.|
+// v0.207.0 (text size): raised B01 1285 -> 1295 KB and B04 234 -> 240 KB on purpose: every px font is now calc(Npx*var(--t)) so the Small/Medium/Large/Extra large setting reaches all text.
 // v0.132.0 (U14g2): raised B01 772 -> 780 KB and B02 218 -> 220 KB on purpose: the Library card page (related printings, decks, art picker, tilt).
 // v0.133.0 (U14h): raised B01 780 -> 790 KB and B02 220 -> 224 KB on purpose: home extras, Profile, Glossary.
 // v0.136.0 (mockup parity part 1): raised B01 796 -> 806 KB, B02 226 -> 229 KB and B04 104 -> 110 KB on purpose: the Play, My Decks and Library pages follow the v14 mockup (markup + CSS).
@@ -86,7 +87,7 @@ const FONT_URL = /url\(data:font\/woff2;base64,[A-Za-z0-9+/=]+\)/g, SIDES_RE = /
 // v0.206.0 (Lane K): raised B01 1275 -> 1285 KB and B02 343 -> 346 KB on purpose: new Lane K actions and conditions (CHOOSE_ONE, EXHAUST_OPP lv, if.reserveGe, ...) add engine code.
 // v0.205.0 (Lane K, Standard block A close): raised B01 1245 -> 1260 KB and B02 333 -> 337 KB on purpose: MAGIC_SHIELD, SACRIFICE_RUMBLE,
 // SYMBOL_LOSE_OPP, GRANT_FX, EX_SYMBOL_TRASH, the pickedFamily condition and the Diva team/Soul Magic rules put the page 6 KB / 1.5 KB over.
-test('B01 index.html without the card pack stays under 1285 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 1285e3, Buffer.byteLength(noFont(code))));
+test('B01 index.html without the card pack stays under 1295 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 1295e3, Buffer.byteLength(noFont(code))));
 // v0.186.0 (Brave costLe): raised B02 290 -> 292 KB on purpose: the Brave combine condition costLe (parser, braveFits, types) put the page 0.9 KB over the limit.
 // v0.188.0 (R2): raised B02 292 -> 294 KB on purpose: the Family list, BP / core and colour-mode filters (shared by the Deck Builder and the Library) put the page 0.04 KB over the limit.
 // v0.195.0 (Lane K): raised B02 294 -> 296 KB on purpose: viaLegacy and BOUNCE_OPP n/bpLe put the engine 0.01 KB over the limit.
@@ -103,9 +104,9 @@ test('B03 the embedded card pack stays under 1.6 MB (room for all cards; never e
 // deck builder restyle; unused rules were trimmed first in v0.92.0. The next raise needs the same kind of note.
 // v0.151.0: raised B04 205 -> 210 KB on purpose: effect pop-ups, core landing flash and the UI audit fixes (~2 KB).
 // v0.205.2: raised B04 232 -> 234 KB on purpose: two-step Flash list, field-effects button, rectangular draw card (~1 KB).
-test('B04 the stylesheet stays under 234 KB', () => {
+test('B04 the stylesheet stays under 240 KB', () => {
   const css = (noFont(html).match(/<style[\s\S]*?<\/style>/g) || []).reduce((n, s) => n + s.length, 0);
-  assert.ok(css < 234e3, css);
+  assert.ok(css < 240e3, css);
 });
 test('B05 the page has one app script plus the tiny early theme script, and no external requests', () => {
   assert.equal((html.match(/<script/g) || []).length, 2);   // v0.141.0: the second one only paints the saved theme colour before boot (loading screen)
