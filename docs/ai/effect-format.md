@@ -319,3 +319,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v282 (Lane K): EXHAUST_OPP_MATCH {}: exhaust refreshed opposing Spirits until they have as many exhausted Spirits as you (the caster chooses which). BS03-139.
 - v283 (Lane K): CORE_TO_OTHER {n}: +n Reserve cores on another Spirit you control (the CPU picks the highest BP). BS01-066.
 - v284 (Lane K): trigger `OPP_MAGIC_USED` ("when the opponent uses a Magic card"; `match` filters the used card, which arrives as `ctx.subject`; a Burst does not fire it). Cards: BS07-047 (Void core to this Spirit), BS06-042 (Cost 4/5 Magic: return an opposing Spirit).
+- v285 (Lane K): `per.family` may be a list of family names (any of them counts, once per Spirit) in STATIC / BP_TARGET `per`. BS43-040.

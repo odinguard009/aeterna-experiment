@@ -200,3 +200,13 @@ test('K-857 BS41-002 is unaffected by opposing Spirit effects only while exhaust
     return out; })()`);
   assert.deepEqual(r, [true, false], JSON.stringify(r));
 });
+
+test('K-858 BS43-040 gets +3000 BP per Armed Machine / Machine Beast Spirit, a dual-family Spirit once', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true;
+    const ids = Object.keys(BS.CARDS).filter(k => BS.CARDS[k].type === 'Spirit' && (BS.CARDS[k].families || []).length);
+    const dual = ids.find(k => { const f = BS.CARDS[k].families; return f.includes('Armed Machine') && f.includes('Machine Beast'); });
+    const s = BS.mkInst('BS43-040'); s.cores = 6; const d = BS.mkInst(dual); d.cores = 1; O.spirits = [];
+    P.spirits = [s]; const a = BS.bpOf(s); P.spirits = [s, d]; const b = BS.bpOf(s); return [BS.CARDS['BS43-040'].families.some(f => ['Armed Machine', 'Machine Beast'].includes(f)), b - a]; })()`);
+  assert.deepEqual(r[1] === 3000 || r[1] === 6000 ? [r[1]] : r, [3000], JSON.stringify(r));
+});
