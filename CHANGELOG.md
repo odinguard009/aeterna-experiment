@@ -10,7 +10,8 @@ Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.m
 - Card art: BS01-014 The Shaman Dragno has no `BS01-014.webp` on the official site (its file is `BS01-014A`), so it showed the placeholder; both image proxies now map it. Scan of all 8,915 ids: no other card has a wrong picture; about 30 cards (BS13-X005*, BS35-X005*, BS18-X012*, BS77-* and a few more) have no image on the official site and keep the placeholder.
 - Android install: the home-screen shortcut used a generic icon. A web app manifest and PNG icons (192, 512, maskable, Apple touch) made from the real Aeterna logo now ship in `pwa/` and are deployed with the site. Remove and re-add an existing shortcut to see the new icon.
 - Full screen: a button next to the colour picker (PC top bar and phone bar) toggles browser full screen; hidden where the browser has no Fullscreen API.
-- Revert: `git revert` this release; `backup/v0.205.3-pre-fullscreen` holds the previous state.
+- Phone battle screen: the Effects button now sits in the bottom-right corner of your Field (above the deck/hand strip); the Active Effects list no longer overlaps (its rows reused the absolute `.fxl` class of the mockup theme, now `.fxrow`); a glossary pop-up opened from the card info is shown above the card zoom instead of behind it.
+- Revert: `git revert` this release; `backup/v0.206.1-pre-effects-ui`, `backup/v0.205.3-pre-fullscreen` holds the previous state.
 
 ## v0.206.0
 - Lane: K

@@ -298,3 +298,19 @@ function toggleFullscreen() {
   if (!ok) { document.querySelectorAll('.fsb').forEach(b => { /** @type {HTMLElement} */ (b).hidden = true; }); return; }
   document.addEventListener('fullscreenchange', sync); document.addEventListener('webkitfullscreenchange', sync);
 })();
+
+/* Effects button (owner request 2026-11-01): sits in the bottom-right corner of YOUR Field area, above the deck / hand strip. */
+(function placeFeBtn() {
+  const b = /** @type {HTMLElement|null} */ ($('fe-btn')), view = $('view-playmat'); if (!b || !view) return;
+  const place = () => {
+    if (!view.classList.contains('active')) return;
+    const rows = document.querySelectorAll('#app .field-row-wrapper [data-scroll^="player-"]');
+    const w = rows.length ? rows[rows.length - 1].closest('.field-row-wrapper') : null; if (!w) return;
+    const r = w.getBoundingClientRect(), vr = view.getBoundingClientRect();
+    b.style.right = 'auto'; b.style.bottom = 'auto';
+    b.style.left = Math.max(0, r.right - vr.left - b.offsetWidth - 6) + 'px'; b.style.top = Math.max(0, r.bottom - vr.top - b.offsetHeight - 6) + 'px';
+  };
+  let q = 0; const soon = () => { clearTimeout(q); q = setTimeout(place, 30); };
+  new MutationObserver(soon).observe($('app'), { childList: true, subtree: true });
+  window.addEventListener('resize', soon); soon();
+})();

@@ -19,3 +19,10 @@ test('FS-1 fullscreen buttons sit next to the colour buttons (PC and phone) and 
   assert.equal((html.match(/data-a="fullscreen"/g) || []).length, 2);
   assert.match(readFileSync('apps/web/src/16-events.js', 'utf8'), /a === 'fullscreen'\) toggleFullscreen\(\)/);
 });
+
+test('FX-1 Effects button sits in your Field corner, rows do not reuse the absolute .fxl class, dialogs sit above the card zoom', () => {
+  const ev = readFileSync('apps/web/src/16-events.js', 'utf8'), z = readFileSync('apps/web/src/12-zones.js', 'utf8'), css = readFileSync('apps/web/styles.css', 'utf8');
+  assert.match(ev, /function placeFeBtn/);
+  assert.match(z, /class="fxrow /); assert.doesNotMatch(z, /class="fxl /);
+  assert.match(css, /#action-modal\.modal-overlay \{ z-index: 210; \}/);
+});

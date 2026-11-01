@@ -283,6 +283,7 @@ img.cface{object-fit:cover;display:block;}
 .art-thumb.empty{cursor:default;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;border-style:dashed;color:var(--text-muted);font-size:26px;}
 .art-thumb.empty small{font-size:8px;text-align:center;line-height:1.3;}
 #zoom-overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.92);display:none;flex-direction:column;align-items:safe center;justify-content:safe center;gap:10px;padding:12px;cursor:zoom-out;overflow:hidden;}
+#action-modal.modal-overlay{z-index:210;}
 #zoom-overlay.active{display:flex;}
 #zoom-overlay .zc-card{width:var(--zw,280px);flex:none;font-size:calc(var(--zw,280px) / 24);box-shadow:0 0 30px rgba(0,0,0,.8);border-radius:8px;}
 #zoom-overlay .zc-side{display:flex;flex-direction:column;align-items:stretch;gap:8px;width:min(94vw,440px);flex:0 1 auto;min-height:0;max-height:100%;}
@@ -1033,8 +1034,8 @@ html[data-hc] :focus-visible{outline:3px solid #fff;outline-offset:2px;box-shado
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto !important;}.skip-link{transition:none;}}
 #fe-btn{position:absolute;right:10px;bottom:10px;z-index:30;min-height:32px;padding:0 12px;opacity:.92;}
 #view-playmat:not(.active) #fe-btn{display:none;}
-.fx-list .fxl{padding:6px 0;border-bottom:1px solid var(--ae-line2,#3338);text-align:left;}
-.fx-list .fxl.cpu b{color:var(--cpu,#ff7a7a);}.fx-list .fxl.you b{color:var(--you,#7ad0ff);}
+.fx-list .fxrow{padding:6px 0;border-bottom:1px solid var(--ae-line2,#3338);text-align:left;}
+.fx-list .fxrow.cpu b{color:var(--cpu,#ff7a7a);}.fx-list .fxrow.you b{color:var(--you,#7ad0ff);}
 .mk{--page:#0d1015;--page-fg:#eef1f5;--page-muted:#a9b2c1;--page-line:#ffffff24;--page-panel:#161a22;
 --bg1:#1b2029;--bg2:#11141a;--lattice:#ffffff08;
 --panel:#232935;--panel2:#161a22;--panel3:#0f1218;--line:#ffffff1a;--line2:#ffffff40;
@@ -9906,7 +9907,7 @@ function fieldFxRows() {
 function openFieldFx() {
   if (!G) return;
   const rows = fieldFxRows();
-  const html = rows.length ? `<div class="log-list fx-list">${rows.map(r => `<div class="fxl ${r.key === 'opponent' ? 'cpu' : 'you'}"><b>${r.key === 'opponent' ? 'CPU' : 'YOU'} · ${esc(r.name)}</b> <span class="mut">(${r.tag})</span><br>${esc(r.t)}</div>`).join('')}</div>` : 'No continuous effect is in force on the Field right now.';
+  const html = rows.length ? `<div class="log-list fx-list">${rows.map(r => `<div class="fxrow ${r.key === 'opponent' ? 'cpu' : 'you'}"><b>${r.key === 'opponent' ? 'CPU' : 'YOU'} · ${esc(r.name)}</b> <span class="mut">(${r.tag})</span><br>${esc(r.t)}</div>`).join('')}</div>` : 'No continuous effect is in force on the Field right now.';
   uiInfo('Active Effects', html);
 }
 function openLogModal() {
@@ -13208,6 +13209,22 @@ function toggleFullscreen() {
   const sync = () => { const on = !!(d.fullscreenElement || d.webkitFullscreenElement); document.querySelectorAll('.fsb').forEach(b => { b.setAttribute('aria-pressed', String(on)); b.setAttribute('aria-label', on ? 'Exit full screen' : 'Full screen'); b.setAttribute('title', on ? 'Exit full screen' : 'Full screen'); }); };
   if (!ok) { document.querySelectorAll('.fsb').forEach(b => { /** @type {HTMLElement} */ (b).hidden = true; }); return; }
   document.addEventListener('fullscreenchange', sync); document.addEventListener('webkitfullscreenchange', sync);
+})();
+
+/* Effects button (owner request 2026-11-01): sits in the bottom-right corner of YOUR Field area, above the deck / hand strip. */
+(function placeFeBtn() {
+  const b = /** @type {HTMLElement|null} */ ($('fe-btn')), view = $('view-playmat'); if (!b || !view) return;
+  const place = () => {
+    if (!view.classList.contains('active')) return;
+    const rows = document.querySelectorAll('#app .field-row-wrapper [data-scroll^="player-"]');
+    const w = rows.length ? rows[rows.length - 1].closest('.field-row-wrapper') : null; if (!w) return;
+    const r = w.getBoundingClientRect(), vr = view.getBoundingClientRect();
+    b.style.right = 'auto'; b.style.bottom = 'auto';
+    b.style.left = Math.max(0, r.right - vr.left - b.offsetWidth - 6) + 'px'; b.style.top = Math.max(0, r.bottom - vr.top - b.offsetHeight - 6) + 'px';
+  };
+  let q = 0; const soon = () => { clearTimeout(q); q = setTimeout(place, 30); };
+  new MutationObserver(soon).observe($('app'), { childList: true, subtree: true });
+  window.addEventListener('resize', soon); soon();
 })();
 </script>
 </body>

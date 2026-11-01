@@ -69,7 +69,7 @@ function fieldFxRows() {
 function openFieldFx() {
   if (!G) return;
   const rows = fieldFxRows();
-  const html = rows.length ? `<div class="log-list fx-list">${rows.map(r => `<div class="fxl ${r.key === 'opponent' ? 'cpu' : 'you'}"><b>${r.key === 'opponent' ? 'CPU' : 'YOU'} · ${esc(r.name)}</b> <span class="mut">(${r.tag})</span><br>${esc(r.t)}</div>`).join('')}</div>` : 'No continuous effect is in force on the Field right now.';
+  const html = rows.length ? `<div class="log-list fx-list">${rows.map(r => `<div class="fxrow ${r.key === 'opponent' ? 'cpu' : 'you'}"><b>${r.key === 'opponent' ? 'CPU' : 'YOU'} · ${esc(r.name)}</b> <span class="mut">(${r.tag})</span><br>${esc(r.t)}</div>`).join('')}</div>` : 'No continuous effect is in force on the Field right now.';
   uiInfo('Active Effects', html);
 }
 function openLogModal() {
