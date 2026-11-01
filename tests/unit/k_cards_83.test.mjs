@@ -98,3 +98,14 @@ test('K-895 BS25-056 / BS25-058 Ultimate Trigger on block: hit refreshes / retur
     return out; })()`);
   assert.deepEqual(r, [false, true, 0], JSON.stringify(r));
 });
+
+test('K-896 BS24-068 returns a 2+ symbol Spirit and an Ultimate Trigger hit makes it unblockable', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const u = BS.mkInst('BS24-068'); u.cores = 3; P.spirits = [u]; G.attacker = u; G.battleNo = 7; O.deck = [BS.mkInst('BS01-001')];
+    await BS.fireFx(P, 'ATTACKS', u, { attacker: u }); const hit = !!(u.noBlockBy && u.noBlockBy.all);
+    u.noBlockBy = null; O.deck = [BS.mkInst('BS24-068')];
+    await BS.fireFx(P, 'ATTACKS', u, { attacker: u }); const miss = !!(u.noBlockBy && u.noBlockBy.all);
+    return [hit, miss]; })()`);
+  assert.deepEqual(r, [true, false], JSON.stringify(r));
+});
