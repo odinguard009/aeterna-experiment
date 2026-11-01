@@ -91,3 +91,13 @@ test('K-846 EXHAUST_OPP_MATCH exhausts opposing Spirits until the exhausted coun
     const again = BS.FX_ACTIONS.EXHAUST_OPP_MATCH.can(c, a); return [ex1, again, c.ctx.did]; })()`);
   assert.deepEqual(r, [3, false, true], JSON.stringify(r));
 });
+
+test('K-847 CORE_TO_OTHER puts a Reserve core on another own Spirit, not on the source (BS01-066)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true;
+    const s = BS.mkInst('BS01-066'); s.cores = 2; const o = BS.mkInst('BS01-001'); o.cores = 1; P.spirits = [s, o]; P.reserve.n = 3;
+    const e = BS.CARDS['BS01-066'].effects[0]; const c = { p: P, opp: O, src: s, ctx: {} };
+    await BS.FX_ACTIONS.CORE_TO_OTHER.run(c, e.actions[0]); const alone = [s.cores, o.cores, P.reserve.n, c.ctx.did];
+    P.spirits = [s]; await BS.FX_ACTIONS.CORE_TO_OTHER.run(c, e.actions[0]); return [e.trigger, alone, s.cores, c.ctx.did]; })()`);
+  assert.deepEqual(r, ['ATTACKS', [2, 2, 2, true], 2, false], JSON.stringify(r));
+});

@@ -84,6 +84,7 @@ const FONT_URL = /url\(data:font\/woff2;base64,[A-Za-z0-9+/=]+\)/g, SIDES_RE = /
 // OPP_CORES_TO_TRASH, perSource, VOID_TO_CARD subject and the perSymbol/perLv/extended generators put the page 565 bytes over.
 // v0.205.1: raised B01 1260 -> 1275 KB and B02 337 -> 343 KB on purpose: the term glossary (TERM_GLOSSARY), template/term markup in the effect text and the Family row.
 // v0.207.0 (Lane K): raised B02 346 -> 348 KB on purpose: DESTROY_OPP_OWN, OWN_LIFE_TO_VOID, HAND_TO_REMOVED and the earlier Lane K additions.
+// v0.207.0 (Lane K): raised B02 348 -> 350 KB on purpose: CORE_TO_OTHER and the v277-v282 gzipped engine additions.
 // v0.206.0 (Lane K): raised B01 1275 -> 1285 KB and B02 343 -> 346 KB on purpose: new Lane K actions and conditions (CHOOSE_ONE, EXHAUST_OPP lv, if.reserveGe, ...) add engine code.
 // v0.205.0 (Lane K, Standard block A close): raised B01 1245 -> 1260 KB and B02 333 -> 337 KB on purpose: MAGIC_SHIELD, SACRIFICE_RUMBLE,
 // SYMBOL_LOSE_OPP, GRANT_FX, EX_SYMBOL_TRASH, the pickedFamily condition and the Diva team/Soul Magic rules put the page 6 KB / 1.5 KB over.
@@ -101,7 +102,7 @@ test('B01 index.html without the card pack stays under 1305 KB', () => assert.ok
 // v0.201.0 (owner request, ready-made decks): raised B02 320 -> 325 KB on purpose (the 26 official ready-deck recipes above; their data adds ~2.6 KB gzipped).
 // v0.212.0 (Lane K): raised B02 325 -> 330 KB on purpose: the CORES_ANY_TO_RESERVE action, the `depleted` condition, the
 // ALLY_LOST depl/byOpp flags and the ALLY_SUMMONED Legacy read put the gzipped page 155 bytes over the limit.
-test('B02 index.html without the card pack, gzipped, stays under 348 KB', () => { const n = gzipSync(noFont(code), { level: 9 }).length; assert.ok(n < 348e3, n); });
+test('B02 index.html without the card pack, gzipped, stays under 350 KB', () => { const n = gzipSync(noFont(code), { level: 9 }).length; assert.ok(n < 350e3, n); });
 test('B03 the embedded card pack stays under 1.6 MB (room for all cards; never embed staging data)', () => assert.ok(packLen < 1.6e6, packLen));
 // v0.93.0 (U6): raised 90 -> 96 KB on purpose (roadmap item U allows it with a note): U6-U8 add the My decks page and the
 // deck builder restyle; unused rules were trimmed first in v0.92.0. The next raise needs the same kind of note.

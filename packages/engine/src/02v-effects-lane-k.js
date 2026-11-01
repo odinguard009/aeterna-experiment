@@ -127,3 +127,16 @@ Object.assign(FX_ACTIONS, {      // v282 "Exhaust opposing Spirits until they co
       io.view({ type: 'board' });
     } },
 });
+Object.assign(FX_ACTIONS, {      // v283 "Gain n core(s) on target Spirit you control except this Spirit." (Reserve cores, like CORE_TO_SELF)
+  CORE_TO_OTHER: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 3 && Object.keys(a).every(k => ['do', 'if', 'n'].includes(k)),
+    txt: a => `+${a.n} core${a.n === 1 ? '' : 's'} to another Spirit of yours`,
+    cands: c => c.p.spirits.filter(s => s !== c.src),
+    can: c => c.p.reserve.n > 0 && FX_ACTIONS.CORE_TO_OTHER.cands(c).length > 0,
+    run: async (c, a) => {
+      const L = FX_ACTIONS.CORE_TO_OTHER.cands(c); c.ctx.did = false; if (!L.length || c.p.reserve.n < 1) return;
+      const t = c.p.cpu ? L.slice().sort((x, y) => bpOf(y) - bpOf(x))[0] : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap another Spirit of yours to receive the core${a.n === 1 ? '' : 's'} (glowing).`);
+      if (!t) return;
+      let k = 0; for (let j = 0; j < a.n; j++) if (addCore(c.p, t)) k++;
+      if (k) { c.ctx.did = true; log(`${CARDS[t.id].name} gets +${k} core${k === 1 ? '' : 's'}.`); io.view({ type: 'board' }); }
+    } },
+});
