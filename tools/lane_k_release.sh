@@ -26,7 +26,7 @@ git fetch -q origin main 2>/dev/null || true
 read -r new baseline complete < <(python3 - <<'PY' | tr -d '\r'
 import json, re, subprocess
 now = json.load(open('docs/reports/card-counts.json', encoding='utf-8'))['complete']
-m = re.search(r'->\s*([\d,]+)\s+of\s+[\d,]+', open('CHANGELOG.md', encoding='utf-8').read().split('\n## ', 2)[1])
+m = re.search(r'->\s*([\d,]+)\s+of\s+[\d,]+', open('CHANGELOG.md', encoding='utf-8').read().split('\n## ', 1)[1] and next((x for x in open('CHANGELOG.md', encoding='utf-8').read().split('\n## ')[1:] if re.search(r'->\s*[\d,]+\s+of\s+[\d,]+', x)), ''))
 if m:
     old = int(m.group(1).replace(',', ''))
 else:
@@ -53,7 +53,7 @@ if [ "$DRY" = 1 ]; then
   exit 0
 fi
 
-if ! git rebase origin/main; then git rebase --abort 2>/dev/null || true; echo "[release] rebase conflict; resolve by hand" >&2; exit 1; fi
+if git merge-base --is-ancestor origin/main HEAD; then echo "[release] origin/main already merged; no rebase"; elif ! git rebase origin/main; then git rebase --abort 2>/dev/null || true; echo "[release] rebase conflict; resolve by hand" >&2; exit 1; fi
 node - "$next" <<'NODE'
 const fs = require('fs');
 const v = process.argv[2];
