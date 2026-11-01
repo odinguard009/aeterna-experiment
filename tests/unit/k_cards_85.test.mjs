@@ -343,3 +343,15 @@ test('K-959 BS02-097 Flash sends every Trash core to one of your Spirits', async
     return [s.cores, P.trashCores.n, m.timing]; })()`);
   assert.deepEqual(r, [9, 0, ['FLASH']], JSON.stringify(r));
 });
+
+test('K-960 BS10-063 destroys every opposing Spirit sharing a family with the Spirit the battle destroyed', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const fam = Object.keys(BS.CARDS).filter(i => BS.CARDS[i].type === 'Spirit' && (BS.CARDS[i].families||[]).includes('Emperor Beast'));
+    const other = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit' && !(BS.CARDS[i].families||[]).includes('Emperor Beast'));
+    O.spirits.length = 0; for (const i of [fam[0], fam[1], other]) { const s = BS.mkInst(i); s.cores = 1; O.spirits.push(s); }
+    const c = { p: P, opp: O, src: BS.mkInst('BS10-063'), ctx: { victimId: fam[0] } };
+    await BS.FX_ACTIONS.DESTROY_SAME_FAMILY.run(c, { do: 'DESTROY_SAME_FAMILY' });
+    return [O.spirits.length, O.spirits[0].id === other, JSON.stringify(BS.CARDS['BS10-063'].effects[0].trigger)]; })()`);
+  assert.deepEqual(r.slice(0, 2), [1, true], JSON.stringify(r));
+});

@@ -68,7 +68,7 @@ async function doBattleInner(attKey, att) {
     if (ab <= bb && !safe(att)) removeSpirit(A, att, 'destroyed', 'battle');
     if (ab >= bb && G.evQ) G.evQ.push({ type: 'DESTROYS', key: A.key, inst: att });
     if (ab > bb && blk.winBounce && blk.winBounce.battleNo === G.battleNo) await runActions({ p: D, opp: A, src: blk, ctx: {} }, { actions: [{ do: 'BOUNCE_OPP', bpLe: blk.winBounce.bpLe, kind: 'spirit', to: 'hand' }] });      // v225
-    if (ab !== bb && G.evQ && !safe(ab > bb ? blk : att)) G.evQ.push(ab > bb ? { type: 'BATTLE_WIN', key: A.key, inst: att, att: true } : { type: 'BATTLE_WIN', key: D.key, inst: blk, att: false });   // v0.55 (When Battles): only the opposing Spirit destroyed (CR 8-1-6-2)
+    if (ab !== bb && G.evQ && !safe(ab > bb ? blk : att)) G.evQ.push(ab > bb ? { type: 'BATTLE_WIN', key: A.key, inst: att, att: true, vic: blk.id } : { type: 'BATTLE_WIN', key: D.key, inst: blk, att: false, vic: att.id });   // v0.55 (When Battles): only the opposing Spirit destroyed (CR 8-1-6-2)
     checkDepletion(A); checkDepletion(D);
     io.view({ type: 'board' });
     await flushBursts();
@@ -183,7 +183,7 @@ async function flushBursts() {                         // queued Bursts and even
     } else if (ev.type === 'DESTROYED') await fireFx(G.p[ev.key], 'DESTROYED', ev.inst, { subject: ev.inst, byOpp: !!ev.byOpp, byOppFx: !!ev.byOppFx, depl: !!ev.depl });
     else if (ev.type === 'IMMORTAL') await immortalOffer(G.p[ev.key], ev.inst);
     else if (ev.type === 'LEAVES') await fireFx(G.p[ev.key], 'LEAVES', ev.inst, { subject: ev.inst, byOpp: true, byOppFx: !!ev.byOppFx });
-    else if (ev.type === 'BATTLE_WIN') await fireFxMulti([{ owner: G.p[ev.key], trigger: 'BATTLE_WIN', src: ev.inst, ctx: { subject: ev.inst, attacking: !!ev.att } }, { owner: G.p[ev.key], trigger: 'ALLY_BATTLE_WIN', src: null, ctx: { subject: ev.inst, attacking: !!ev.att } }]), winRiderRun(ev);   // v0.78 also "... with your X Spirit" on other cards
+    else if (ev.type === 'BATTLE_WIN') await fireFxMulti([{ owner: G.p[ev.key], trigger: 'BATTLE_WIN', src: ev.inst, ctx: { subject: ev.inst, attacking: !!ev.att, victimId: ev.vic } }, { owner: G.p[ev.key], trigger: 'ALLY_BATTLE_WIN', src: null, ctx: { subject: ev.inst, attacking: !!ev.att } }]), winRiderRun(ev);   // v0.78 also "... with your X Spirit" on other cards
     else if (ev.type === 'DESTROYS') await fireFx(G.p[ev.key], 'ALLY_DESTROYS', null, { attacker: ev.inst, subject: ev.inst });
     releaseStandby(false);                               // v0.57.0: a card whose leave triggers have all resolved leaves Standby
   }

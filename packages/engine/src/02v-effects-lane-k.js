@@ -242,3 +242,15 @@ FX_ACTIONS.NEXUS_CORES_ALL_TO_TRASH = {
     }
     c.ctx.did = k > 0; if (k) log(`${CARDS[c.src.id].name}: ${k} core${k === 1 ? '' : 's'} move from the Nexuses to their owners' Trash.`);
   } };
+
+/* v318 DESTROY_SAME_FAMILY: "destroy every opposing Spirit with the same family as that destroyed Spirit" (BATTLE_WIN; ctx.victimId = the Spirit card the battle destroyed). */
+FX_ACTIONS.DESTROY_SAME_FAMILY = {
+  chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
+  txt: () => 'destroy every opposing Spirit that shares a family with the Spirit destroyed in this battle',
+  cands: c => { const v = c.ctx.victimId && CARDS[c.ctx.victimId], F = (v && v.families) || []; return F.length ? c.opp.spirits.filter(s => (CARDS[s.id].families || []).some(f => F.includes(f))) : []; },
+  can: c => !!c.ctx.victimId,
+  run: async c => {
+    const L = FX_ACTIONS.DESTROY_SAME_FAMILY.cands(c); c.ctx.did = false;
+    for (const s of L) if (c.opp.spirits.includes(s)) { removeSpirit(c.opp, s, 'destroyed', true); c.ctx.did = true; }
+    if (c.ctx.did) { log(`${CARDS[c.src.id].name}: ${L.length} opposing Spirit${L.length === 1 ? '' : 's'} sharing the destroyed Spirit's family are destroyed.`); checkDepletion(c.opp); }
+  } };
