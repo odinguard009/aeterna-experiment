@@ -277,7 +277,7 @@ with sync_playwright() as p:
     press(pg, 'Use Flash'); wait_for(pg, "document.querySelector('#modal-actions.vlist')")
     btns = pg.locator("#modal-actions .modal-btn").all_inner_texts()
     chk('Flash window offers the Contract Skill (Flash effect on a Nexus)', any('Mitra' in x for x in btns), btns)
-    press(pg, 'Pass'); settle(pg)
+    press(pg, 'Cancel'); press(pg, 'Pass'); settle(pg)
     chk('G: no page errors', not errs, errs)
 
     # ================= H. phone layout shows Void =================
