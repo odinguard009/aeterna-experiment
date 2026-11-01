@@ -4,6 +4,13 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.204.2
+- Lane: data (owner order 2026-11-02; text fix, no engine change)
+- **Soul Core icon restored in card text: 1,518 card rows (data/cards + data/import) now print "(Soul Core)" where the official page does.**
+- The Fandom/DeepSeek import had dropped the inline icon ("besides , from", "without  on it", "using  as part of their summon cost"). `tools/restore_soulcore.py` uses the official `textJp` (`{soulcore}`) as the truth and patches `text` and `residual`; `tools/restore_soulcore_manual.py` fixes 12 cards by hand (non-breaking-space gaps, two-icon Reverse Contract Advent clauses). Both are idempotent: re-run after every import. Report: `docs/reports/soulcore-audit.md`.
+- Docs: `docs/aegis-study.md` records the Aegis-vs-Aeterna battle UI comparison (13 gaps, nothing fixed yet).
+- Limits: 36 cards have no text gap by design (32 Soul Magic cards use the `soulMagic` field; BS64-039, BS71-CX01, BS74-X13, BS76-006 carry the icon in a keyword cost header); the `{pup}` (120), `{god}` (12), `{ultimate}` (9), `{all}` (1) and colour-symbol icons are still not restored in text.
+
 ## v0.204.1
 - Lane: data (owner order 2026-11-01; data release, not a Lane K complete-card cycle)
 - **Playable 6,922 -> 8,707 of 8,709 (1,785 staged cards promoted as partial playable cards; effects are NOT wired); complete 1,693 -> 1,696 of 8,709.**
