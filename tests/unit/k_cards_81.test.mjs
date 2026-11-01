@@ -268,3 +268,16 @@ test('K-863 BS01-102 gives Purple Spirits +1000 BP and draws at the Start Step o
     return out; })()`);
   assert.deepEqual(r, [1000, 1, 0], JSON.stringify(r));
 });
+
+test('K-864 BS01-106 gives fighting Spirits +1000 BP per exhausted own Spirit and refreshes all at the End Step', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const n = BS.mkInst('BS01-106'); n.cores = 3; P.nexus = [n];
+    const a = BS.mkInst('BS01-001'); a.cores = 1; const b = BS.mkInst('BS01-001'); b.cores = 1; const c = BS.mkInst('BS01-001'); c.cores = 1;
+    P.spirits = [a, b, c]; b.exhausted = true; c.exhausted = true; const out = [];
+    P.nexus = []; const base = BS.bpOf(a); P.nexus = [n];
+    out.push(BS.bpOf(a) - base); G.step = 5; G.active = P.key; G.attacker = a; out.push(BS.bpOf(a) - base); G.attacker = null;
+    await BS.fireFx(P, 'END_STEP', null, {}); out.push(P.spirits.filter(x => x.exhausted).length);
+    return out; })()`);
+  assert.deepEqual(r, [0, 2000, 0], JSON.stringify(r));
+});
