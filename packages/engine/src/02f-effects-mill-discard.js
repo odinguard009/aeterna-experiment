@@ -15,7 +15,7 @@ Object.assign(FX_ACTIONS, {
       log(`${_pn(c)}: ${top.length} card${top.length === 1 ? '' : 's'} from the opposing Deck go to the Trash.`);
       io.view({ type: 'board' });
     } },
-  OPP_CORES_TO_TRASH: { chk: a => (Number.isInteger(a.total) && a.total >= 1 && a.total <= 5) && (a.costLe == null || (Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30)),
+  OPP_CORES_TO_TRASH: { chk: a => (Number.isInteger(a.total) && a.total >= 1 && a.total <= 10) && (a.costLe == null || (Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30)),
     txt: a => `send ${a.total} core${a.total === 1 ? '' : 's'} from any opposing Spirits/Ultimates to the Trash`,
     cands: (c, a) => c.opp.spirits.filter(t => t.cores > 0 && !fxImmune(c.opp, t) && (a == null || a.costLe == null || CARDS[t.id].cost <= a.costLe)),
     can: (c, a) => FX_ACTIONS.OPP_CORES_TO_TRASH.cands(c, a).length > 0,

@@ -343,7 +343,7 @@ function simple(card, a) {
     case 'RESERVE_TO_LIFE':      // v191 n cores from the Reserve go to the Life (Soul Core untouched)
       return only(a, ['n']) && { body: `P.reserve.n = A.n + 2; P.life = 3; await run(src, RA); return P.life === 3 + A.n && P.reserve.n === 2 ? '' : 'life 3 -> ' + P.life + ', reserve ' + P.reserve.n;` };
     case 'OPP_CORES_TO_TRASH':      // v242 one opposing core goes to the opposing Trash
-      return only(a, ['total', 'costLe']) && { fix: [], body: `const t = sp(${J(FILL)}, O, 3); const t0 = O.trashCores.n, c0 = t.cores; await run(src, RA); return O.trashCores.n === t0 + 1 && t.cores === c0 - 1 ? '' : 'OPP_CORES_TO_TRASH: trash ' + t0 + ' -> ' + O.trashCores.n;` };
+      return only(a, ['total', 'costLe']) && { fix: [], body: `const t = sp(${J(FILL)}, O, 12); const t0 = O.trashCores.n, c0 = t.cores; await run(src, RA); const want = Math.min(A.total, 12); return O.trashCores.n === t0 + want && t.cores === c0 - want ? '' : 'OPP_CORES_TO_TRASH: trash ' + t0 + ' -> ' + O.trashCores.n + ', want +' + want;` };
     case 'OPP_CORES_TO_RESERVE':
       if (a.perSource) {      // v242 per-source totals
         if (!only(a, ['perSource', 'perMatch'])) return null;

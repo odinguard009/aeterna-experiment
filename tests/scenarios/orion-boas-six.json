@@ -1,0 +1,85 @@
+{
+  "name": "orion-boas-six",
+  "about": "v0.203.0 next cycle bundle 7: BS10-060 (When Summoned: discard 12 from the opposing deck), BS40-016 (When Destroyed by the opponent: 10 opposing cores to the Trash), BS25-021 (High Speed; summoned on the opposing attack step: exhaust two opposing Spirits), BS24-020 (destroyed by an opposing effect: return to Hand), BS54-RV003 (When Depleted/Destroyed by the opponent: heavy exhaust two) and BS13-054 (When Summoned: the opponent exhausts two Spirits).",
+  "rules": [
+    "STD:12-2-1-12@caad612c",
+    "SJP:core-move@eb7563c8"
+  ],
+  "turn": 4,
+  "active": "player",
+  "step": 4,
+  "players": {
+    "player": {
+      "reserve": 3,
+      "void": 6,
+      "spirits": [
+        {
+          "id": "BS10-060",
+          "cores": 4,
+          "as": "orion"
+        },
+        {
+          "id": "BS40-016",
+          "cores": 1,
+          "as": "boa"
+        },
+        {
+          "id": "BS25-021",
+          "cores": 2,
+          "as": "spada"
+        },
+        {
+          "id": "BS24-020",
+          "cores": 1,
+          "as": "axemoth"
+        },
+        {
+          "id": "BS54-RV003",
+          "cores": 1,
+          "as": "gabunohashi"
+        }
+      ],
+      "deck": [
+        "26RBS01-004",
+        "26RBS01-005"
+      ]
+    },
+    "opponent": {
+      "reserve": 4,
+      "spirits": [
+        {
+          "id": "26RBS01-004",
+          "cores": 2,
+          "as": "oppA"
+        },
+        {
+          "id": "26RBS01-031",
+          "cores": 2,
+          "as": "oppB"
+        },
+        {
+          "id": "26RBS01-005",
+          "cores": 1,
+          "as": "oppC"
+        }
+      ],
+      "deck": [
+        "26RBS01-005",
+        "26RBS01-005",
+        "26RBS01-005",
+        "26RBS01-005",
+        "26RBS01-005",
+        "26RBS01-005",
+        "26RBS01-005",
+        "26RBS01-005",
+        "26RBS01-005",
+        "26RBS01-005",
+        "26RBS01-005",
+        "26RBS01-005",
+        "26RBS01-005",
+        "26RBS01-005",
+        "26RBS01-005"
+      ]
+    }
+  }
+}
