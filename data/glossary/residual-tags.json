@@ -4278,11 +4278,6 @@
   "K_BURST",
   "T_SUMMONED"
  ],
- "BS14-026": [
-  "A_VOID",
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "BS14-030": [
   "A_DISCARD_OPP",
   "A_REFRESH",

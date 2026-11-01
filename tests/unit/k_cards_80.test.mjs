@@ -206,3 +206,13 @@ test('K-829 BS09-048 destroys a Cost 2 or less opposing Spirit only with a Green
     return [e.trigger, JSON.stringify(e.if), e.actions[0].do, e.actions[0].costLe]; })()`);
   assert.deepEqual(r, ['SUMMONED', '{"ctrl":{"n":1,"type":"Spirit","colors":["green"]}}', 'DESTROY', 2], JSON.stringify(r));
 });
+
+test('K-830 VOID_TO_CARD perLv puts cores equal to the Spirit level (BS14-026)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true;
+    const s = BS.mkInst('BS14-026'); s.cores = 3; P.spirits = [s]; P.void = 5; const lv = BS.lvNo(s);
+    const act = BS.CARDS['BS14-026'].effects[0].actions[0]; const ok = BS.FX_ACTIONS.VOID_TO_CARD.chk(act);
+    const before = s.cores; await BS.FX_ACTIONS.VOID_TO_CARD.run({ p: P, opp: O, src: s, ctx: {} }, act);
+    return [ok, s.cores - before === lv, lv >= 1]; })()`);
+  assert.deepEqual(r, [true, true, true], JSON.stringify(r));
+});
