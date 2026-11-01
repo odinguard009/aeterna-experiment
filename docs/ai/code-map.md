@@ -116,8 +116,8 @@ CPU_PROFILES, CPU_PROFILE_NAMES, CPU_SIM_PROFILES, cpuProfileName, cpuW, lifeVal
 ## apps/web/src/10-modals.js (149 lines, ~2.5k tokens) — MODALS (promise based)
 modalKind, paintModal, uiInfo, modal, PEEK, endPeek, paintPeek, startPeek, peekRefresh, closeModal, modalPress, PICK, clearPick, webPick, webPayment
 
-## apps/web/src/11-human.js (242 lines, ~6.1k tokens) — HUMAN ACTIONS: the dialogs of the human seat. Board actions are intent records (v0.84.0, F3 = M3 rest):
-humanCan, legalityHTML, FX_KW_START, FX_LINE_STOP, effectLines, fxMark, slashBreak, effectTextHTML, cardDetailHTML, residualHTML, ART_HEX, ART_CACHE, artMix, cardArtSVG, cardFacePlaceholder, cardFaceHTML, cardStripHTML, mullCardHTML, openZoom, handButtons, HAND_INTENTS, runHandAction, humanCast, humanAttack, onNext, showCardDetail, openHandModal, openFieldModal
+## apps/web/src/11-human.js (257 lines, ~6.4k tokens) — HUMAN ACTIONS: the dialogs of the human seat. Board actions are intent records (v0.84.0, F3 = M3 rest):
+humanCan, legalityHTML, FX_KW_START, FX_LINE_STOP, effectLines, fxMark, slashBreak, effectTextHTML, cardDetailHTML, residualHTML, ART_HEX, ART_CACHE, artMix, cardArtSVG, cardFacePlaceholder, cardFaceHTML, cardStripHTML, mullCardHTML, openZoom, handButtons, HAND_INTENTS, runHandAction, humanCast, humanAttack, onNext, REB_SIDES, rebirthSideOf, showCardDetail, openHandModal, openFieldModal
 
 ## apps/web/src/12-zones.js (71 lines, ~1.6k tokens) — ZONES, LOG, RULES COVERAGE
 openZoneModal, openLogModal, showRules
@@ -164,7 +164,7 @@ EMOTES, EMOTE_GAP, EMOTE_AT, emoteLeft, EFF_MS, effectPanel, emotePop, emoteSend
 ## apps/web/src/13m-lore.js (45 lines, ~1.5k tokens) — LORE (v0.131.0, U14g; docs/design/mockup-v14.html): the English flavor texts of the cards, read in order by series.
 LORE_SET, lore, SAGA_NAMES, SAGA_EXTRA, BS_SAGA_END, sagaOf, LORE_BY, loreKeyOf, loreSeries, loreTitle, LORE_FS, renderLore
 
-## apps/web/src/13n-cardpage.js (71 lines, ~2.4k tokens) — CARD PAGE (v0.132.0, U14g2; docs/design/mockup-v14.html): what the Library's card zoom adds under the card detail: the same
+## apps/web/src/13n-cardpage.js (72 lines, ~2.5k tokens) — CARD PAGE (v0.132.0, U14g2; docs/design/mockup-v14.html): what the Library's card zoom adds under the card detail: the same
 ART_KEY, normTxt, printSig, sameName, sameArt, artOk, artOf, ART_ALT, usedInDecks, setArt, cardPageHTML, cardTilt, CP_ID, cpIds, openCardPage, renderCardPage
 
 ## apps/web/src/13o-profile.js (17 lines, ~0.4k tokens) — PROFILE and GLOSSARY (v0.133.0, U14h): statistics read from the saved match history only, and the Learn page's keyword glossary.
@@ -191,5 +191,8 @@ closeMatch, startNewGame, matchSummary
 ## packages/engine/src/15b-replay.js (109 lines, ~2.5k tokens) — REPLAY RECORDS (v0.85.0, phase F4 = monorepo step M4 part 1; docs/ai/monorepo-plan.md "Design" 2)
 newPortRecord, portRecord, boardSnapshot, runPortRecord, viewerReplayOf
 
-## apps/web/src/16-events.js (282 lines, ~6.3k tokens) — EVENTS (delegation)
+## apps/web/src/16-events.js (283 lines, ~6.3k tokens) — EVENTS (delegation)
 hScrollable, HDRAG, GAME_ACTS, gameAct, replayOf, lastReplay, runReplay, loadScenario, testSetup, defBuiltin
+
+## Rebirth Side B (2026-11-01, display only)
+`tools/import_rebirth_sides.py` -> `data/index/rebirth-sides.json` (front id -> back record, never CARDS); `tools/build.mjs` embeds it as `BUILTIN_SIDES` (marker `/*SIDES_START*/` in `apps/web/src/11-human.js`, budget B16); `rebirthSideOf(id)` parses it lazily; flip button: `cp-flip` + `CP_SIDE` in `13n-cardpage.js`, `showCardDetail(id, ctx, uid, back)` in `11-human.js` (no flip for ctx 'hand').

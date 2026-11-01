@@ -52,16 +52,16 @@ test('RF-02 the card page flips Side A <-> Side B and the back is not a card', a
   } finally { await ctx.close(); }
 });
 
-test('RF-03 the detail modal flips on a library card, and never on a hand card', async () => {
+test('RF-03 the detail modal offers the flip on a library card and flips to Side A', async () => {
   const { ctx, page } = await open();
   try {
     const f = ids[0];
     const r = await page.evaluate(async f => {
-      showCardDetail(f, 'lib');
-      await new Promise(r => setTimeout(r, 200));
-      const labels = [...document.querySelectorAll('.modal button, dialog button, #modal button')].map(b => b.innerText);
-      return { labels, any: document.body.innerText.includes('Side B') };
+      const wait = () => new Promise(r => setTimeout(r, 200)), flip = () => [...document.querySelectorAll('button')].find(b => /↻ Side [AB]/.test(b.innerText));
+      showCardDetail(f, 'lib'); await wait();
+      const first = flip() && flip().innerText; flip().click(); await wait();
+      return { first, second: flip() && flip().innerText };
     }, f);
-    assert.ok(r.any, JSON.stringify(r.labels));
+    assert.match(r.first, /Side B/); assert.match(r.second, /Side A/);
   } finally { await ctx.close(); }
 });
