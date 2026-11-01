@@ -15,12 +15,21 @@ Object.assign(FX_ACTIONS, {
       log(`${_pn(c)}: ${top.length} card${top.length === 1 ? '' : 's'} from the opposing Deck go to the Trash.`);
       io.view({ type: 'board' });
     } },
-  OPP_CORES_TO_TRASH: { chk: a => (Number.isInteger(a.total) && a.total >= 1 && a.total <= 10) && (a.costLe == null || (Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30)),
-    txt: a => `send ${a.total} core${a.total === 1 ? '' : 's'} from any opposing Spirits/Ultimates to the Trash`,
-    cands: (c, a) => c.opp.spirits.filter(t => t.cores > 0 && !fxImmune(c.opp, t) && (a == null || a.costLe == null || CARDS[t.id].cost <= a.costLe)),
+  OPP_CORES_TO_TRASH: { chk: a => a.untilOne === true ? (a.total == null && a.costLe == null) : (a.untilOne == null && Number.isInteger(a.total) && a.total >= 1 && a.total <= 10 && (a.costLe == null || (Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30))),      // v271 untilOne: "send all but one of the Cores on one of the opposing Spirits to the Trash"
+    txt: a => a.untilOne ? 'send all but one core from an opposing Spirit to the Trash' : `send ${a.total} core${a.total === 1 ? '' : 's'} from any opposing Spirits/Ultimates to the Trash`,
+    cands: (c, a) => c.opp.spirits.filter(t => t.cores > (a && a.untilOne ? 1 : 0) && !fxImmune(c.opp, t) && (a == null || a.costLe == null || CARDS[t.id].cost <= a.costLe)),
     can: (c, a) => FX_ACTIONS.OPP_CORES_TO_TRASH.cands(c, a).length > 0,
     run: async (c, a) => {
       let moved = 0;
+      if (a.untilOne) {
+        const L = FX_ACTIONS.OPP_CORES_TO_TRASH.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
+        const t = c.p.cpu ? L.slice().sort((x, y) => y.cores - x.cores)[0] : await fxPickTarget(c, L, `✨ <b>${esc(_pn(c))}</b><br>Tap an opposing Spirit to leave with one core.`);
+        if (!t) { c.ctx.did = false; return; }
+        const m = Math.min(t.cores - 1, coreTakeCap(c.opp, t, t.cores - 1)); if (m <= 0) { c.ctx.did = false; return; }
+        coreEvN(c.opp, t.uid, 'trash', m, false); t.cores -= m; c.opp.trashCores.n += m;
+        log(`${_pn(c)}: ${m} core${m === 1 ? '' : 's'} from ${poss(c.opp)} ${CARDS[t.id].name} go to the Trash.`);
+        io.view({ type: 'board' }); return;
+      }
       for (let j = 0; j < a.total; j++) {
         const L = FX_ACTIONS.OPP_CORES_TO_TRASH.cands(c); if (!L.length) break;
         const t = c.p.cpu ? L.slice().sort((x, y) => bpOf(y) - bpOf(x))[0] : await fxPickTarget(c, L, `✨ <b>${esc(_pn(c))}</b><br>Tap an opposing Spirit to take a core from (${j + 1}/${a.total}).`);

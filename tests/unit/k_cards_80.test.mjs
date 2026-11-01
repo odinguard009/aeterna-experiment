@@ -189,3 +189,13 @@ test('K-827 RETURN_TRASH toBottom puts picked Spirits on the deckbottom (BS04-10
     return [BS.FX_ACTIONS.RETURN_TRASH.chk(act), P.trash.length, P.hand.length, P.deck.length - d0]; })()`);
   assert.deepEqual(r, [true, 0, 0, 3], JSON.stringify(r));
 });
+
+test('K-828 OPP_CORES_TO_TRASH untilOne leaves one core (BS09-012); BS06-018 untilOne to the Reserve', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true;
+    const s = BS.mkInst('BS01-002'); s.cores = 4; O.spirits = [s]; const t0 = O.trashCores.n;
+    const act = BS.CARDS['BS09-012'].effects[0].actions[0]; const ok = BS.FX_ACTIONS.OPP_CORES_TO_TRASH.chk(act);
+    await BS.FX_ACTIONS.OPP_CORES_TO_TRASH.run({ p: P, opp: O, src: BS.mkInst('BS09-012'), ctx: {} }, act);
+    return [ok, s.cores, O.trashCores.n - t0, BS.CARDS['BS06-018'].effects[0].actions[0].untilOne]; })()`);
+  assert.deepEqual(r, [true, 1, 3, true], JSON.stringify(r));
+});

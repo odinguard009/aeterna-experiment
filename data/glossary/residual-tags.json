@@ -1451,10 +1451,6 @@
   "C_LEVEL",
   "T_SUMMONED"
  ],
- "BS06-018": [
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "BS06-019": [
   "C_LEVEL",
   "T_ALLY_BLOCKED",
@@ -2383,10 +2379,6 @@
  ],
  "BS09-011": [
   "C_LEVEL"
- ],
- "BS09-012": [
-  "C_LEVEL",
-  "T_DESTROYED"
  ],
  "BS09-013": [
   "C_LEVEL"
