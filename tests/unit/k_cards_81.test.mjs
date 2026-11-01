@@ -252,3 +252,19 @@ test('K-861 BS18-065, BS21-069, BS21-070 Nexus battle bonuses and ALLY_BATTLE_WI
     return out; })()`);
   assert.deepEqual(r, [2000, 0, true, 3000, 0, 4, 2000, 0], JSON.stringify(r));
 });
+
+test('K-863 BS01-102 gives Purple Spirits +1000 BP and draws at the Start Step only when the Hand is not larger than the opponent\'s', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(() => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const n = BS.mkInst('BS01-102'); n.cores = 3; P.nexus = [n];
+    const sp = BS.mkInst('BS01-026'); sp.cores = 1; P.spirits = [sp]; const b0 = BS.bpOf(sp); P.nexus = []; const b = BS.bpOf(sp); P.nexus = [n];
+    const col = BS.CARDS[sp.id].color; const out = [];
+    out.push(BS.bpOf(sp) - b);
+    P.deck = [BS.mkInst('BS01-001'), BS.mkInst('BS01-001'), BS.mkInst('BS01-001')];
+    P.hand = [BS.mkInst('BS01-001')]; O.hand = [BS.mkInst('BS01-001'), BS.mkInst('BS01-001')];
+    const h0 = P.hand.length; BS.fireFx(P, 'START_STEP', null, {}); out.push(P.hand.length - h0);
+    P.hand = [BS.mkInst('BS01-001'), BS.mkInst('BS01-001'), BS.mkInst('BS01-001')];
+    const h1 = P.hand.length; BS.fireFx(P, 'START_STEP', null, {}); out.push(P.hand.length - h1);
+    return out; })()`);
+  assert.deepEqual(r, [1000, 1, 0], JSON.stringify(r));
+});
