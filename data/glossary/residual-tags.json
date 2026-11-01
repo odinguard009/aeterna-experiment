@@ -596,10 +596,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "BS03-015": [
-  "C_LEVEL",
-  "T_DESTROYED"
- ],
  "BS03-016": [
   "A_REMOVED_ZONE",
   "C_LEVEL",
@@ -2113,11 +2109,6 @@
   "C_LEVEL",
   "M_UP_TO",
   "T_ATTACKS"
- ],
- "BS08-002": [
-  "C_LEVEL",
-  "T_ATTACKS",
-  "T_SUMMONED"
  ],
  "BS08-003": [
   "A_DESTROY_BP",
@@ -5769,10 +5760,6 @@
  "BS17-045": [
   "C_LEVEL",
   "T_ATTACKS"
- ],
- "BS17-047": [
-  "A_BP_PLUS",
-  "C_LEVEL"
  ],
  "BS17-048": [
   "A_BP_PLUS",
@@ -10741,10 +10728,6 @@
   "C_LEVEL",
   "K_ULTIMATE",
   "T_ALLY_SUMMONED",
-  "T_ATTACKS"
- ],
- "BS28-047": [
-  "C_LEVEL",
   "T_ATTACKS"
  ],
  "BS28-048": [
@@ -16478,11 +16461,6 @@
   "K_ACCEL",
   "K_BRAVE",
   "T_SUMMONED"
- ],
- "BS38-RV004": [
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "T_DESTROYED"
  ],
  "BS38-RV005": [
   "C_LEVEL",
