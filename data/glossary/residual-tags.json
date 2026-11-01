@@ -1296,12 +1296,6 @@
   "C_LEVEL",
   "T_DESTROYED"
  ],
- "BS06-028": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "T_ALLY_BLOCKED",
-  "T_ATTACKS"
- ],
  "BS06-034": [
   "A_BP_PLUS",
   "A_REFRESH",

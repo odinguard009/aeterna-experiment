@@ -121,3 +121,11 @@ test('K-897 BS24-069 Ultimate Trigger hit returns an opposing Nexus and makes it
     return out; })()`);
   assert.deepEqual(r, [0, true, 3000], JSON.stringify(r));
 });
+
+test('K-898 BS06-028 when blocked the opponent exhausts one of their Spirits', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const a = BS.mkInst('BS06-028'); a.cores = 1; P.spirits = [a]; const b = BS.mkInst('BS01-001'); b.cores = 1; const c = BS.mkInst('BS01-001'); c.cores = 1; O.spirits = [b, c];
+    await BS.fireFx(P, 'ALLY_BLOCKED', a, { attacker: a, blocker: b }); return [b.exhausted, c.exhausted].filter(Boolean).length; })()`);
+  assert.equal(r, 1, JSON.stringify(r));
+});
