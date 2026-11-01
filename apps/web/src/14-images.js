@@ -86,7 +86,7 @@ async function clearImages() { Object.keys(IMG).forEach(id => { URL.revokeObject
 function cardImgSrc(id) {
   const k = artOf(id);           // v0.132.0 U14g2: the picture picked for this card
   if (IMG[k]) return IMG[k];
-  const c = CARDS[k];
+  const c = CARDS[k] || REB_BY_ID[k];      // a Rebirth back face is not a CARDS entry: its picture is <front id>B on the same mirror
   if (!c || !c.id) return '';
   const origin = (typeof onlineOrigin === 'function') ? onlineOrigin() : null;
   return origin ? `${origin}/assets/card-images/${encodeURIComponent(c.id)}` : '';

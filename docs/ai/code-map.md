@@ -2,8 +2,8 @@
 
 Top-level names per source part. Find the part here, then `grep -n "<name>" <part path>` and read only that range.
 
-## packages/engine/src/00-config.js (149 lines, ~4.8k tokens)
-SIM, STEPS, STEPS_STANDARD, FORMAT_KEY, FORMAT, STANDARD_BLOCKS, BAN_LIST_INFO, BANNED, LIMITED1, normCardNo, BAN_LISTS, banStatus, maxCopies, standardLegal, legalityOf, ABORT, other, esc, cap, TC_MINOR, titleCase, RNG_STATE, KEY_WEIGHT, seedRng, rng, newSeed, shuffle, removeFrom, KEYWORD_GLOSSARY, TERM_GLOSSARY, MAGIC_FX, MAGIC_TIMINGS, SYMBOL_KINDS
+## packages/engine/src/00-config.js (150 lines, ~4.8k tokens)
+SIM, TRAIN_FIXTURES, STEPS, STEPS_STANDARD, FORMAT_KEY, FORMAT, STANDARD_BLOCKS, BAN_LIST_INFO, BANNED, LIMITED1, normCardNo, BAN_LISTS, banStatus, maxCopies, standardLegal, legalityOf, ABORT, other, esc, cap, TC_MINOR, titleCase, RNG_STATE, KEY_WEIGHT, seedRng, rng, newSeed, shuffle, removeFrom, KEYWORD_GLOSSARY, TERM_GLOSSARY, MAGIC_FX, MAGIC_TIMINGS, SYMBOL_KINDS
 
 ## apps/web/src/00b-errors.js (57 lines, ~1.1k tokens) — IN-GAME ERROR CATCHER (v0.59.5, Q1 quality bundle, Aegis idea)
 $, dq, dqa, elq, evT, evC, evV, ERR_LOG, errReport, errNotice, onGameError
@@ -14,7 +14,7 @@ THEME_KEY, THEME_COLS, THEME, applyTheme, setTheme
 ## packages/protocol/src/00p-protocol.js (37 lines, ~0.8k tokens) — HOST PORT (v0.82.0, phase F2 = monorepo step M2; docs/ai/monorepo-plan.md "Design" 1)
 VIEW_TYPES, HOST_NONE, io, bindHost
 
-## packages/engine/src/01-cards.js (33 lines, ~0.6k tokens) — CARD DATABASE (Training cards + the built-in pack is registered further below)
+## packages/engine/src/01-cards.js (33 lines, ~0.7k tokens) — CARD DATABASE (Training cards + the built-in pack is registered further below)
 VERSION, CARDS, defCard, TRAIN, PRESET_DECK
 
 ## packages/engine/src/01a-card-pack.js (167 lines, ~2.4k tokens) — CARD PACK CODEC (v0.51.0; this part must load before 03-imported-cards.js: its consts are used at load): compact, synchronous format of the built-in card pack
@@ -116,7 +116,7 @@ CPU_PROFILES, CPU_PROFILE_NAMES, CPU_SIM_PROFILES, cpuProfileName, cpuW, lifeVal
 ## apps/web/src/10-modals.js (159 lines, ~2.8k tokens) — MODALS (promise based)
 modalKind, modalBtns, paintModal, uiInfo, modal, PEEK, endPeek, paintPeek, startPeek, peekRefresh, closeModal, modalPress, PICK, clearPick, webPick, webPayment
 
-## apps/web/src/11-human.js (287 lines, ~7.2k tokens) — HUMAN ACTIONS: the dialogs of the human seat. Board actions are intent records (v0.84.0, F3 = M3 rest):
+## apps/web/src/11-human.js (293 lines, ~7.4k tokens) — HUMAN ACTIONS: the dialogs of the human seat. Board actions are intent records (v0.84.0, F3 = M3 rest):
 humanCan, legalityHTML, FX_KW_START, FX_LINE_STOP, TPL_NAMES, descText, glossText, FX_TERM_RE, familyRowHTML, effectLines, fxMark, fxTerms, fxMark0, slashBreak, effectTextHTML, cardDetailHTML, residualHTML, ART_HEX, ART_CACHE, artMix, cardArtSVG, cardFacePlaceholder, cardFaceHTML, cardStripHTML, mullCardHTML, openZoom, handButtons, HAND_INTENTS, runHandAction, humanCast, humanAttack, onNext, REB_SIDES, rebirthSideOf, showCardDetail, openHandModal, openFieldModal
 
 ## apps/web/src/12-zones.js (98 lines, ~2k tokens) — ZONES, LOG, RULES COVERAGE

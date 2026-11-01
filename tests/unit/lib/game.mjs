@@ -12,7 +12,7 @@ export const PRODUCT_URL = pathToFileURL(join(ROOT, 'index.html')).href;
 function eternalCopy() {
   const src = join(ROOT, 'index.html'), dst = join(ROOT, 'build', 'index-eternal.html');
   if (!existsSync(dst) || statSync(dst).mtimeMs < statSync(src).mtimeMs) {
-    const s = readFileSync(src, 'utf8'), t = s.replace("let FORMAT = 'standard';", "let FORMAT = 'eternal';");
+    const s = readFileSync(src, 'utf8'), t = s.replace("let FORMAT = 'standard';", "let FORMAT = 'eternal';").replace("let TRAIN_FIXTURES = 'BS_FIXTURES' in globalThis;", 'let TRAIN_FIXTURES = true;');
     if (t === s) throw new Error('default-format line not found in index.html');
     mkdirSync(join(ROOT, 'build'), { recursive: true });
     const tmp = dst + '.' + process.pid; writeFileSync(tmp, t); renameSync(tmp, dst);      // atomic: parallel test files share the copy

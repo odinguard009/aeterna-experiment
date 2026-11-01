@@ -72,7 +72,7 @@ def main():
             continue
         for L in levels:
             L['cores'] = max(1, L['cores'])
-        text = R.clean_text(f.get('effect', ''))
+        text = R.clean_text(f.get('effect', ''), keep=True)
         fam = [f.get(k, '').strip() for k in ('family', 'family2', 'family3') if f.get(k, '').strip()]
         out[front['id']] = {
             'id': sid, 'name': R.page_id(title), 'name_jp': f.get('kanji') or f.get('jpname') or None,

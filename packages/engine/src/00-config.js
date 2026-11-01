@@ -8,6 +8,7 @@
    ===================================================================== */
 
 const SIM = new URLSearchParams(location.search).has('sim');   // dev: CPU plays both sides
+let TRAIN_FIXTURES = 'BS_FIXTURES' in globalThis;   // test builds only (headless.mjs defines BS_FIXTURES, tests/unit/lib/game.mjs flips this line): the vanilla Training cards exist for sims and unit tests, never in the product
 const STEPS = ['START', 'CORE', 'DRAW', 'REFRESH', 'MAIN', 'ATTACK', 'END'];
 const STEPS_STANDARD = ['START', 'CORE', 'DRAW', 'REFRESH', 'MAIN', 'ATTACK', 'MAIN 2', 'END'];
 /* Formats (official): Eternal = every card except the banned list; Standard = only cards with a letter block icon

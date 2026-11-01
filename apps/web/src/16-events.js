@@ -269,7 +269,7 @@ function loadScenario(spec) {
 }
 function testSetup() {            // dev hook: a quiet board with no match loop running
   SESSION++; clearPick(); closeModal(null);
-  G = newGame(PRESET_DECK, PRESET_DECK); G.busy = false; G.active = 'player'; G.step = 4; G.turnNo = 3; G.p.player.hand = []; G.p.opponent.hand = [];
+  const base = SIM || TRAIN_FIXTURES ? PRESET_DECK : PREBUILT.find(d => d.id === 'std01').cards; G = newGame(base, base); G.busy = false; G.active = 'player'; G.step = 4; G.turnNo = 3; G.p.player.hand = []; G.p.opponent.hand = [];
   switchView('view-playmat'); render(); return G;
 }
 const defBuiltin = o => { defCard(o); BUILTIN_IDS.add(o.id); };      // test fixtures register through this so their ids stay reserved

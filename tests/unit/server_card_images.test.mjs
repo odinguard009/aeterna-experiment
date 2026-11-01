@@ -129,3 +129,15 @@ test('CIMG-S4 the route is opt-in on createApi: mounted it serves, unmounted it 
     } finally { await new Promise((res) => bare.close(res)); }
   } finally { await new Promise((res) => api.close(res)); }
 });
+
+test('CIMG-S5 10th-anniversary X ids use the official 10thX file (never the older plain X card); a Rebirth back face is <front>_b', async () => {
+  const urls = [];
+  const route = cardImageRoute({ mirrorDir: mkdir(), fetchImpl: async (u) => { urls.push(u.slice(OFFICIAL.length)); return u.includes('_b') || u.includes('10thX') ? { ok: true, headers: { get: () => 'image/webp' }, arrayBuffer: async () => WEBP() } : { ok: false, status: 404 }; } });
+  assert.equal((await hit(route, '/assets/card-images/BS51-10THX04')).status, 200);
+  assert.equal((await hit(route, '/assets/card-images/BS73-061B')).status, 200);
+  assert.deepEqual(urls, ['BS51-10thX04.webp?v2', 'BS73-061_b.webp?v2']);
+  const miss = cardImageRoute({ mirrorDir: mkdir(), fetchImpl: async (u) => { urls.push(u); return { ok: false, status: 404 }; } });
+  urls.length = 0;
+  assert.equal((await hit(miss, '/assets/card-images/BS44-10THX01')).status, 404);
+  assert.ok(urls.every((u) => u.includes('10thX')), 'no plain-X fallback for a 10thX id');
+});

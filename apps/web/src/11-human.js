@@ -15,7 +15,12 @@ const FX_KW_START = /^(Burst:|Revive\b|Contract Skill\b|Contract Field\b|Awaken\
 const FX_LINE_STOP = ['(Can\'t Stack)', '[Can\'t Stack]', '(Unstackable)'];
 /* v0.205.1: the imported wiki text carries template calls ({{Invoke|Flash}}, {{Rush|Purple}}, {{Armor|Red}}, a {{#tag:tabber}} with a Japanese and an English version).
    descText turns them into readable words: a tabber keeps its English / Standard version, a call becomes a ⟦Name: args⟧ marker that fxMark renders as a tappable word. */
-const TPL_NAMES = { ha: 'Heavy Armor', ua: 'Ultra Armor', catl: 'Catalyze', adcon: 'Advent Condition', mirage: 'Mirage', burst: 'Burst', sumcon: 'Sumcon', invoke: 'Invoke', rush: 'Rush', accel: 'Accel', seal: 'Seal', mani: 'Mani', unleash: 'Unleash' };
+const TPL_NAMES = { ha: 'Heavy Armor', ua: 'Ultra Armor', catl: 'Catalyze', adcon: 'Advent Condition', mirage: 'Mirage', burst: 'Burst', sumcon: 'Sumcon', invoke: 'Invoke', rush: 'Rush', accel: 'Accel', seal: 'Seal', mani: 'Mani', unleash: 'Unleash',
+  // wiki template short names spelled out (Template:<name> on the Fandom wiki; owner review 2026-11-01: "Gs: 4" read like a lost word)
+  gs: 'Grand Skill', ww: 'Whirlwind', cs: 'Contract Skill', iw: 'Ice Wall', sb: 'Summon Bolt', pb: 'Poison Blade', uha: 'Ultra Heavy Armor', gp: 'Grandphosis', twt: 'Twinkle Trace',
+  ws: 'Windstorm', ia: 'Illusive Armor', ii: 'Illusive Immortality', mb: 'Mirage Boost', cb: 'Count Break', camou: 'Camouflage', astmu: 'Astromulet', meal: 'Mealtiply', disp: 'Dispersion',
+  shaman: 'Shamanism', msyn: 'Mirage Synchro', mflash: 'Mirage Flash', psa: 'PS Armor', vpsa: 'VPS Armor', 'cf unleash': 'CF Unleash', 'sa unleash': 'SA Unleash', 'in unleash': 'IN Unleash',
+  'd assault': 'D Assault', 'c count break': 'C Count Break', 'f change': 'F Change', 'b engage': 'B Engage', 'tw catl': 'TW Catalyze', 'w catl': 'W Catalyze' };
 function descText(raw) {
   let t = String(raw || ''); if (t.indexOf('{{') < 0) return t;
   t = t.replace(/\{\{#tag:\s*tabber\s*\|([\s\S]*)\}\}\s*$/, (m, body) => { const parts = body.split('{{!}}-{{!}}'); const pick = parts.find(p => /^\s*(Eng|English|Standard)/i.test(p)) || parts[parts.length - 1]; return pick.replace(/^\s*[^=\n]*=\s*/, '').trim(); });
@@ -184,13 +189,14 @@ const onNext = () => sendIntent({ type: 'next' });
 /*SIDES_START*//*SIDES_END*/
 /* Rebirth Side B (display only): the back face of a Rebirth front card, parsed on demand from the embedded sidecar; it is never a CARDS entry,
    so it cannot reach a deck, the Library list, the counts or a match. */
-let REB_SIDES = null; const REB_CACHE = {};
+let REB_SIDES = null; const REB_CACHE = {}, REB_BY_ID = {};   // REB_BY_ID: back-face id (BS73-061B) -> face, for its picture (cardImgSrc)
 function rebirthSideOf(id) {
   const f = CARDS[id]; if (!f || !f.rebirthTo || typeof BUILTIN_SIDES !== 'string' || !BUILTIN_SIDES) return null;
   if (REB_CACHE[id]) return REB_CACHE[id];
   if (!REB_SIDES) REB_SIDES = loadFlavor(BUILTIN_SIDES);
   const o = REB_SIDES[id], r = o ? parseCard(o) : null; if (!r || !r.card) return null;
-  return (REB_CACHE[id] = Object.assign({}, r.card, { desc: o.text || '', implemented: false, partial: true, residual: (o.residual || []).slice(), side: true }));
+  const face = (REB_CACHE[id] = Object.assign({}, r.card, { desc: o.text || '', implemented: false, partial: true, residual: (o.residual || []).slice(), side: true }));
+  REB_BY_ID[face.id] = face; return face;
 }
 async function showCardDetail(id, ctx, uid, back) {
   const card = CARDS[id]; if (!card) return;

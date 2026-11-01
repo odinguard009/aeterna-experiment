@@ -39,7 +39,7 @@ test('UF-03 Legacy and Rush carry a glossary note and render as clickable terms'
 
 test('UF-04 the image proxies map 10th-anniversary ids to the official file name', () => {
   for (const f of ['apps/server/src/card-images.mjs', 'functions/assets/card-images/[file].js'])
-    assert.ok(readFileSync(join(ROOT, f), 'utf8').includes("-10THX/, '-X'"), f);
+    assert.ok(readFileSync(join(ROOT, f), 'utf8').includes("-10THX/, '-10thX'"), f);
 });
 
 test('UF-05 a chosen deck cover survives loadSlots', async () => {

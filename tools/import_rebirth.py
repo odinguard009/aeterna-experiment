@@ -88,7 +88,13 @@ def card_fields(wikitext):
     return out
 
 
-def clean_text(s):
+# Rebirth Side B {{tk|...}} keyword tokens that print as an icon on the wiki (the bare argument lost the words): spelled out in the
+# game's own words. Only used with keep=True (the Side B sidecar); front-card imports keep their old behaviour.
+TK_WORDS = {'+1': 'Count +1', 'n+1': 'Count +1', '+0': 'Count +0', 'GWrule': 'Grandwalker Rule', 'rtp': 'Return to Primal',
+            'heb': '(A Heavy Exhausted card is turned upside down and becomes Exhausted after one refresh.)'}
+
+
+def clean_text(s, keep=False):
     s = re.sub(r'<br\s*/?>', '\n', s, flags=re.I)
     s = re.sub(r'\[\[file:[^\]]*\]\]', '', s, flags=re.I)
 
@@ -98,7 +104,15 @@ def clean_text(s):
         args = parts[1:]
         arg = args[0] if args else ''
         if name == 'tk':
+            if keep:
+                if arg in TK_WORDS:
+                    return TK_WORDS[arg]
+                if arg == 'team' and len(args) > 1:
+                    return args[1]
+                return ' '.join(args)
             return arg
+        if keep:                         # keyword templates ({{Unleash|2}}, {{ww|4}}) stay as templates: the game's text renderer spells them
+            return '{{' + m.group(1) + '}}'
         if name == 'ws':
             return 'Windstorm: ' + arg
         if name == 'mdrain':

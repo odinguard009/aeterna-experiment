@@ -4,6 +4,16 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.205.3
+- Lane: U/I
+- **Card art and deck cover fixes.**
+- Card art: the 10th-anniversary X cards (BS44-BS51 `10THX`) now load their own official picture (`BS51-10thX04`); the old mapping showed the older plain-X card (the Avatar / Galaxian mismatch) or nothing (Grand-Sagitto-Nova). Art cached under the old mapping is dropped once.
+- Rebirth Side B shows its own picture (`<front id>_b`) through the same image proxy (server and Cloudflare function) as every other card.
+- Side B effect text keeps every word of the wiki source: "Count +1" (was "+1"), "Core Charge: ...", "Grandwalker Rule", and wiki keyword templates such as Whirlwind, Grand Skill, Contract Skill are expanded.
+- Play deck cover is the same card as the My decks tile (chosen cover, then Key Spirit, then Key Nexus, then most played).
+- The vanilla Training practice cards no longer exist in the product (library, deck builder, card pages); they are registered only for CPU sims and unit tests.
+- Limits: the Rebirth Side B effects are display-only (still "Partly Implemented"). Revert: `git revert` the release commit; backup branch `backup/v0.205.2-pre-image-fixes`.
+
 ## v0.205.2
 - Lane: U/I
 - **Battle UI and CPU batch: clearer Flash window, Effects button, effect lines in the log, smarter CPU.**

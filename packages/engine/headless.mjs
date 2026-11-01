@@ -43,6 +43,7 @@ export function loadEngine({ sim = true, format = 'eternal' } = {}) {
   const store = new Map([['bse.format', format]]);
   const ctx = {
     console, setTimeout, clearTimeout, setInterval, clearInterval, queueMicrotask, structuredClone, URLSearchParams, TextDecoder, TextEncoder, atob, btoa,
+    BS_FIXTURES: true,                                  // register the vanilla Training cards (never in the product build)
     location: { search: sim ? '?sim=1' : '' },          // sim: false = the rules of a real web match (coin toss, Starting Hand prompts), no delays
     navigator: { webdriver: true },                     // strict effect checks, as in the Playwright sims
     localStorage: { getItem: k => (store.has(k) ? store.get(k) : null), setItem: (k, v) => { store.set(k, String(v)); }, removeItem: k => { store.delete(k); } }

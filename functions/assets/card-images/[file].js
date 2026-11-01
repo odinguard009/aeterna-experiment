@@ -28,10 +28,12 @@ export async function onRequestGet({ request, params, waitUntil }) {
   const cached = await cache.match(cacheKey);
   if (cached) return cached;
 
-  // The official site files 10th-anniversary cards as BS51-X04 (not BS51-10THX04) and some old X0nn ids as Xnn.
-  const base = id.replace(/-10THX/, '-X');
+  // The official site files 10th-anniversary X cards as BS51-10thX04 (lower-case "th"; BS51-X04 is a different card), a Rebirth back face
+  // (<front id>B) as <front id>_b, and some old X0nn ids as Xnn.
+  const n = id.replace(/-10THX/, '-10thX'), side = /^(.+\d)B$/.exec(id);
+  const names = [...new Set([...(side ? [`${side[1]}_b`] : []), n, ...(/-10thX/.test(n) ? [] : [n.replace(/-X0(\d\d)[A-Z]?$/, '-X$1')])])];
   let res;
-  for (const name of new Set([base, base.replace(/-X0(\d\d)[A-Z]?$/, '-X$1')])) {
+  for (const name of names) {
     try {
       res = await fetch(`${OFFICIAL_IMG}${name}.webp?v2`, { headers: { 'user-agent': USER_AGENT } });
     } catch (e) {
