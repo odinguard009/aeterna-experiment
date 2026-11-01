@@ -175,6 +175,7 @@ function simple(card, a) {
         const m = a.to === 'anyNexus' ? Object.assign({}, a.match, { type: 'Nexus' }) : a.match;
         return { fix: [{ m }], body: `const t = A.to === 'anyNexus' ? nx(${J(mid(m))}) : sp(${J(mid(m))}, P, 1), o = sp(${J(FILL)}, P, 1), c0 = t.cores; await run(src, RA); return t.cores === c0 + A.n && o.cores === 1 ? '' : 'matching ' + c0 + ' -> ' + t.cores + ', other ' + o.cores;` };
       }
+      if ((a.perNexus || a.perOtherSpirit) && a.to === 'self' && only(a, ['n', 'to', a.perNexus ? 'perNexus' : 'perOtherSpirit'])) return spirit && { onField: true, body: `P.void = 30; const c0 = src.cores; ${a.perNexus ? `nx(${J(FILL)}); nx(${J(FILL)});` : `sp(${J(FILL)}, P, 1); sp(${J(FILL)}, P, 1);`} const k = A.perNexus ? P.nexus.length : P.spirits.filter(x => x !== src).length; await run(src, RA); return src.cores === c0 + k * A.n ? '' : 'cores ' + c0 + ' -> ' + src.cores + ', want +' + k * A.n;` };      // v261 per Nexus / per other Spirit
       if (!only(a, ['n', 'to'])) return null;
       if (a.to === 'self') return spirit && { onField: true, body: `const c0 = src.cores, r = P.reserve.n; await run(src, RA); if (src.cores !== c0 + A.n) return 'cores ' + c0 + ' -> ' + src.cores; return P.reserve.n === r ? '' : 'the cores came from the Reserve';` };
       return a.to === 'anySpirit' && { body: `const t = sp(${J(FILL)}, P, 1); await run(src, RA); return t.cores === 1 + A.n ? '' : 'cores 1 -> ' + t.cores;` };
