@@ -51200,46 +51200,5 @@
   "M_THEN",
   "S_CANT_PREVENT",
   "T_ADVENT"
- ],
- "26RBS01-119": [],
- "26RBS01-125": [
-  "K_RUMBLE"
- ],
- "26RBS02-092": [
-  "A_BP_PLUS",
-  "K_STANDARD_SUCCESSION",
-  "M_OPTIONAL",
-  "M_THEN"
- ],
- "26RBS03-095": [
-  "S1_ALL_HAVE"
- ],
- "26RBS03-X04": [
-  "A_REVEAL_ADD",
-  "A_REVEAL_DECK",
-  "C_LEVEL",
-  "K_STANDARD_INVOKE",
-  "M_OPTIONAL",
-  "M_THEN",
-  "T_SUMMONED"
- ],
- "26RDB01-042": [
-  "A_VOID",
-  "M_OPTIONAL",
-  "S1_ALL_HAVE",
-  "T_SUMMONED"
- ],
- "26RDB01-058": [
-  "A_EXHAUST",
-  "A_REFRESH"
- ],
- "26RDB01-060": [
-  "K_STANDARD_SUCCESSION"
- ],
- "26RSD08-013": [
-  "A_VOID",
-  "A_VOID_TO_LIFE",
-  "C_LIFE",
-  "T_ALLY_LIFE_HIT"
  ]
 }

@@ -36,7 +36,11 @@
                                             the summoned card becomes ctx.picked (for "When this battle ends, destroy the summoned")
      OWN_CORE_TO_LIFE {match}               "Target one of your X Spirits. Send a core, besides [Soul Core], from it to your Life."
    A team is printed as the card's head line "[Team: X]" / "[Teams: X/Y]"; cardTeams reads it from the card text. */
-function cardTeams(k) { const m = /\[Teams?:\s*([^\]]+)\]/.exec((k && (k.desc || k.text)) || ''); return m ? m[1].split('/').map(x => x.trim()).filter(Boolean) : []; }
+function cardTeams(k) {
+  const tx = (k && (k.desc || k.text)) || '', m = /\[Teams?:\s*([^\]]+)\]/.exec(tx), L = m ? m[1].split('/').map(x => x.trim()).filter(Boolean) : [];
+  if (/This card has every team/.test(tx)) L.includes = () => true;      // v0.205 "This card has every team" (Diva On Stage): matches any team query
+  return L;
+}
 function allHaveShapeOK(q) { return !!q && typeof q === 'object' && (q.family != null || q.familyAny != null || q.team != null || q.costIn != null)
   && (q.family == null || typeof q.family === 'string') && (q.familyAny == null || (Array.isArray(q.familyAny) && q.familyAny.length > 0 && q.familyAny.every(x => typeof x === 'string' && x))) && (q.team == null || typeof q.team === 'string')
   && (q.costIn == null || (Array.isArray(q.costIn) && q.costIn.length > 0 && q.costIn.every(n => Number.isInteger(n) && n >= 0 && n <= 30)))
@@ -481,3 +485,73 @@ Object.assign(FX_ACTIONS, {
       checkDepletion(c.p); io.view({ type: 'board' });
       await fireFx(c.p, 'LIFE_UP', null, {});      // v191 "When your Life increases"
     } } });
+
+/* v0.205 MAGIC_SHIELD {match}: "Target one of your <X> Spirits. During this battle, it can't be targeted by opposing Magic effects." Mark noMagicB = the battle number, read by fxImmune (house reading: opposing Magic effects do not affect it, like Armor for Magic only). */
+FX_ACTIONS.MAGIC_SHIELD = {
+  chk: a => a.match == null || hasMatch(a.match),
+  txt: () => "during this battle, one of your matching Spirits can't be targeted by opposing Magic effects",
+  cands: (c, a) => c.p.spirits.filter(s => !a.match || fxMatch(CARDS[s.id], a.match, s)),
+  can: (c, a) => !!G && !!G.attacker && FX_ACTIONS.MAGIC_SHIELD.cands(c, a).length > 0,
+  run: async (c, a) => {
+    const L = FX_ACTIONS.MAGIC_SHIELD.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
+    const t = c.p.cpu ? L.slice().sort((x, y) => bpOf(y) - bpOf(x))[0] : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your Spirits to protect from opposing Magic this battle (glowing).`);
+    if (!t) { c.ctx.did = false; return; }
+    t.noMagicB = G.battleNo; log(`${CARDS[c.src.id].name}: ${poss(c.p)} ${CARDS[t.id].name} can't be targeted by opposing Magic this battle.`);
+  } };
+/* v0.205 SACRIFICE_RUMBLE: "Target one of your attacking Spirits with Rumble. Destroy it. Discard a number of cards from the opposing decktop equal to the number specified by its Rumble." */
+const rumbleNOf = (p, s) => { for (const { e } of fxEntries(s)) { const r = (e.actions || []).find(x => x.do === 'RUMBLE'); if (r) return r.n + rumblePlusOf(p); } return 0; };
+FX_ACTIONS.SACRIFICE_RUMBLE = {
+  chk: () => true,
+  txt: () => 'destroy one of your attacking Spirits with Rumble, then discard cards from the opposing decktop equal to its Rumble number',
+  cands: c => c.p.spirits.filter(s => G && G.attacker === s && rumbleNOf(c.p, s) > 0),
+  can: c => FX_ACTIONS.SACRIFICE_RUMBLE.cands(c).length > 0,
+  run: async c => {
+    const L = FX_ACTIONS.SACRIFICE_RUMBLE.cands(c); if (!L.length) { c.ctx.did = false; return; }
+    const t = L.length === 1 ? L[0] : c.p.cpu ? L[0] : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap your attacking Spirit with Rumble (glowing).`);
+    if (!t || !c.p.spirits.includes(t)) { c.ctx.did = false; return; }
+    const n = rumbleNOf(c.p, t);
+    log(`${CARDS[c.src.id].name}: ${poss(c.p)} ${CARDS[t.id].name} is destroyed.`);
+    removeSpirit(c.p, t, 'destroyed', false); checkDepletion(c.p);
+    if (!deckDiscardLocked()) { const top = c.opp.deck.splice(0, Math.min(n, c.opp.deck.length)); for (const x of top) c.opp.trash.push(x); log(`${CARDS[c.src.id].name}: ${top.length} card${top.length === 1 ? '' : 's'} from the opposing Deck go to the Trash.`); }
+    io.view({ type: 'board' });
+  } };
+
+/* v0.205 SYMBOL_LOSE_OPP: "Target an opposing Spirit. During this step/turn, it loses one of its symbols." Mark symLoseTurn = the turn number, read by attackSymbols (one fewer symbol; the symbol chosen does not matter for the count). */
+FX_ACTIONS.SYMBOL_LOSE_OPP = {
+  chk: () => true,
+  txt: () => 'during this step, an opposing Spirit loses one of its symbols',
+  cands: c => c.opp.spirits.filter(t => !fxImmune(c.opp, t, c)),
+  can: c => FX_ACTIONS.SYMBOL_LOSE_OPP.cands(c).length > 0,
+  run: async c => {
+    const L = FX_ACTIONS.SYMBOL_LOSE_OPP.cands(c); if (!L.length) { c.ctx.did = false; return; }
+    const t = c.p.cpu ? L.slice().sort((x, y) => attackSymbols(y) - attackSymbols(x))[0] : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap an opposing Spirit to lose a symbol (glowing).`);
+    if (!t) { c.ctx.did = false; return; }
+    t.symLoseTurn = G.turnNo; log(`${CARDS[c.src.id].name}: ${poss(c.opp)} ${CARDS[t.id].name} loses one of its symbols.`);
+  } };
+
+/* v0.205 GRANT_FX {to: 'pick'|'all', match?, until: 'turn'|'battle', fx: <one effect>}: "During this turn/battle, give [target / all your <X> Spirits]: \"(During Attack) When blocked, ...\"". The effect is stored on the instance (grantFx) and read by fxEntries while the turn/battle number matches. */
+FX_ACTIONS.GRANT_FX = {
+  chk: a => (a.to === 'pick' || a.to === 'all') && (a.until === 'turn' || a.until === 'battle') && (a.match == null || hasMatch(a.match)) && !!a.fx && typeof a.fx === 'object' && !parseEffects([a.fx]).error && a.fx.trigger !== 'STATIC',
+  txt: a => `${a.until === 'turn' ? 'this turn' : 'this battle'}, ${a.to === 'all' ? 'all your matching Spirits gain' : 'one of your matching Spirits gains'} an effect`,
+  cands: (c, a) => c.p.spirits.filter(s => !a.match || fxMatch(CARDS[s.id], a.match, s)),
+  can: (c, a) => FX_ACTIONS.GRANT_FX.cands(c, a).length > 0,
+  run: async (c, a) => {
+    const L = FX_ACTIONS.GRANT_FX.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
+    const e = parseEffects([a.fx]).effects[0];
+    const T = a.to === 'all' ? L : [c.p.cpu || L.length === 1 ? L.slice().sort((x, y) => bpOf(y) - bpOf(x))[0] : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your Spirits to give the effect (glowing).`)];
+    if (!T[0]) { c.ctx.did = false; return; }
+    for (const t of T) { (t.grantFx = (t.grantFx || []).filter(g => g.until === 'battle' ? g.battleNo === G.battleNo : g.turnNo === G.turnNo)).push({ e, until: a.until, turnNo: G.turnNo, battleNo: G.battleNo }); log(`${CARDS[c.src.id].name}: ${CARDS[t.id].name} gains an effect ${a.until === 'turn' ? 'this turn' : 'this battle'}.`); }
+  } };
+
+/* v0.205 EX_SYMBOL_TRASH {match}: "Target a <X> Spirit card in your Trash. During this step, one of its symbols is treated as an EX symbol." Marks exMark = {turn, step}, read by hasExSym (Legacy banish, "no EX Symbols in your Trash"). */
+FX_ACTIONS.EX_SYMBOL_TRASH = {
+  chk: a => hasMatch(a.match),
+  txt: () => 'during this step, a card in your Trash is treated as an EX-symbol card',
+  cands: (c, a) => c.p.trash.filter(t => CARDS[t.id] && !hasExSym(t) && fxMatch(CARDS[t.id], a.match)),
+  can: (c, a) => FX_ACTIONS.EX_SYMBOL_TRASH.cands(c, a).length > 0,
+  run: async (c, a) => {
+    const L = FX_ACTIONS.EX_SYMBOL_TRASH.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
+    const t = L.length === 1 || c.p.cpu ? L[0] : await chooseCard(c, L, `✨ ${CARDS[c.src.id].name}`, 'Choose a card in your Trash to be treated as an EX-symbol card this step.', true);
+    if (!t) { c.ctx.did = false; return; }
+    t.exMark = { turn: G.turnNo, step: G.step }; log(`${CARDS[c.src.id].name}: ${CARDS[t.id].name} in the Trash is treated as having an EX symbol this step.`);
+  } };

@@ -119,7 +119,8 @@ const symZeroAllOn = (q, i) => q.symZeroAll === G.turnNo && !fxImmune(q, i, q.sy
 const symSetOn = i => !!i.symSet && i.symSet.turn === G.turnNo && (!i.symSet.battle || i.symSet.battle === G.battleNo);   // v160 SYMBOLS_SET
 const attackSymbols = i => { const z = i.symZeroColor && i.symZeroColor.turn === G.turnNo ? i.symZeroColor.color : null;
   const base = i.symZeroTurn === G.turnNo || symZeroAllOn(G.p.player.spirits.includes(i) ? G.p.player : G.p.opponent, i) ? 0 : symSetOn(i) ? i.symSet.n : (Math.max(0, (CARDS[i.id].symbols || 0) + (i.brave ? CARDS[i.brave.id].symbols || 0 : 0)) + extraSymbolsOf(G.p.player.spirits.includes(i) ? G.p.player : G.p.opponent, i).length) + (i.symLockBattle != null && i.symLockBattle === G.battleNo ? (i.symLockN || 0) : (i.symBattle || 0) + symTurnCols(i).length);      // v244 EXTRA_SYMBOL counts as an attack symbol too
-  return z && symbolAttrs(CARDS[i.id]).some(a => [].concat(a).includes(z)) ? Math.max(0, base - 1) : base; };
+  const lost = i.symLoseTurn === G.turnNo ? 1 : 0;      // v0.205 SYMBOL_LOSE_OPP: "it loses one of its symbols" (the owner's choice of symbol does not change the count)
+  return Math.max(0, (z && symbolAttrs(CARDS[i.id]).some(a => [].concat(a).includes(z)) ? Math.max(0, base - 1) : base) - lost); };
 /* Symbols (Eternal rule manual VER.17.0): each printed symbol has one or more attributes.
    colour; "ultimate" (Ultimates, p. 39: reduces only Ultimate reduction symbols); "god" (Grandwalker Nexuses, p. 42: never reduces the six colours);
    a Contract Grandwalker Nexus has a coloured God symbol = God + its colour (p. 44). symbolColors entries: a colour, "ultimate", "god" or "god-<colour>".
@@ -216,10 +217,12 @@ function summonSymbols(p, card) {
    cards of the reduction colour from your Trash, one per reduction symbol, before the Field symbols reduce the cost; none banished = Legacy not activated;
    never with a fixed cost (costAlt). House reading: applied automatically with the fewest EX cards that give the lowest cost (a Field symbol that can pay
    a reduction symbol saves an EX card). EX colour = the card's colour(s) (no two-colour EX card exists in block A). */
+/* v0.205 EX_SYMBOL_TRASH: a Trash card is also an EX-symbol card while its exMark matches the current turn and step */
+const hasExSym = t => !!CARDS[t.id] && (CARDS[t.id].exSymbols > 0 || (!!t.exMark && !!G && t.exMark.turn === G.turnNo && t.exMark.step === G.step));
 function legacyPlan(p, card, syms, extra) {
   if (!card || !card.legacy || !p || costAltActive(p, card)) return null;
   const slots = []; for (const [k, n] of Object.entries(card.reduction || {})) for (let i = 0; i < n; i++) slots.push(k);
-  const pool = p.trash.filter(t => CARDS[t.id] && CARDS[t.id].exSymbols > 0);
+  const pool = p.trash.filter(t => hasExSym(t));
   if (!slots.length || !pool.length) return null;
   syms = syms || fieldSymbols(p, card.soulReduce, true).concat(trashSymsOn(p, card) ? p.trash.flatMap(t => symbolAttrs(CARDS[t.id])) : []);
   const fits = (k, a) => (k === 'all' ? a.some(x => COLORS.includes(x)) : a.includes(k));
@@ -476,7 +479,10 @@ function soulMagicHolder(p) {
 }
 function soulMagicOK(p, card) {
   if (!card || !card.soulMagic || !p) return false;
-  return soulMagicHolder(p) !== null && fieldSymbols(p).some(a => a.includes(card.soulMagic));
+  if (soulMagicHolder(p) === null) return false;
+  if (fieldSymbols(p).some(a => a.includes(card.soulMagic))) return true;
+  const fm = /symbols of all your "([^"]+)" family Spirits\/Nexuses are also treated as/.exec(card.text || '');      // v0.205 Diva On Stage: every "Diva" Spirit/Nexus also counts as the Soul Magic colour
+  return !!fm && fieldList(p).some(f => (CARDS[f.id].families || []).includes(fm[1]));
 }
 /* who pays how: an explicit choice (ch.soulMagic true/false) wins; otherwise Soul Magic when the normal cost cannot be paid,
    or for the CPU when the normal cost is 3 or more (one core instead of many) */

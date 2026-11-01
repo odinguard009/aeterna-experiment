@@ -4,6 +4,13 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.205.0
+- Lane: K (owner order: finish every incomplete Standard card before committing)
+- **Standard block A is complete: the last 9 partial 26R* cards now run every printed effect (+9 cards, schema 246); complete 1,696 -> 1,705 of 8,709.**
+- New mechanics: Magic Shield, Sacrifice Rumble, opposing symbol loss, granted effects (turn / battle), EX-symbol Trash cards, `pickedFamily` condition, REVEAL_PICK `also` + `diffName`, "has every team" and the Diva Soul Magic family rule; Misty Lylebit's High Speed condition.
+- Fixes: Soul Awaken no longer duplicates the Soul Core (it is removed from its source first); Magic immunity no longer applies when no battle has started (`undefined === undefined`).
+- Budgets B01/B02 raised on purpose (engine +6 KB). Limits: Boost Energy sends cores from the Reserve only; Furious Anger counts one fewer symbol without a colour choice; Magic Shield uses a Magic-immunity reading of "can't be targeted by opposing Magic"; Rindorin returns cards to the bottom in plain order; Misty's Attack Step is approximated by "your turn"; Howling Song affects the Green Wave Spirits on the Field at resolution.
+
 ## v0.204.3
 - Lane: data (owner order 2026-11-01; patch: card images and English flavor text, no engine change)
 - **Card-image proxy: an official image URL that answers HTTP 200 with an HTML page is now rejected.** The Node server and the Cloudflare Pages Function require `image/*` plus the WebP RIFF/WEBP header, delete a HTML entry already poisoned in the mirror and refetch it, and return 404 so the client keeps its colour placeholder. The cause of the "some cards have no picture" report was the proxy caching the official site's HTML 200 page as `.webp`.

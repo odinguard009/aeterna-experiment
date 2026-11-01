@@ -33,13 +33,13 @@ Object.assign(FX_ACTIONS, {
       else if (a.all) { const L = c.p.revealed.filter(x => fxMatch(CARDS[x.id], a.match) && (!a.diffName || CARDS[x.id].name !== nm)); for (const x of L) { removeFrom(c.p.revealed, x); c.p.hand.push(x); log(`${nm}: ${CARDS[x.id].name} is added to the Hand.`); } if (L.length) { handUp(c.p, L.length); t = L[0]; } }
       else if (a.max) { for (let j = 0; j < a.max; j++) { const u = await chooseCard(c, c.p.revealed.filter(x => fxMatch(CARDS[x.id], a.match) && (!a.diffName || CARDS[x.id].name !== nm)), `✨ ${nm}`, `Choose a revealed card to add to your Hand (${j + 1}/${a.max}).`, true); if (!u) break; removeFrom(c.p.revealed, u); c.p.hand.push(u); handUp(c.p, 1); log(`${nm}: ${CARDS[u.id].name} is added to the Hand.`); t = u; } }
       else t = await chooseCard(c, c.p.revealed.filter(x => fxMatch(CARDS[x.id], a.match) && (!a.diffName || CARDS[x.id].name !== nm)), `✨ ${nm}`, 'Choose a revealed card to add to your Hand.', true);
-      if (t && a.discard) { removeFrom(c.p.revealed, t); c.p.trash.push(t); log(`${nm}: ${CARDS[t.id].name} is discarded.`); }      // v100 "discard a <match> card among them"
+      if (t && a.discard) { c.ctx.picked = t; removeFrom(c.p.revealed, t); c.p.trash.push(t); log(`${nm}: ${CARDS[t.id].name} is discarded.`); }      // v100 "discard a <match> card among them"
       else if (t && !a.all && !a.max && !a.peek) { removeFrom(c.p.revealed, t); c.p.hand.push(t); handUp(c.p, 1); log(`${nm}: ${CARDS[t.id].name} is added to the Hand.`); }
       if (a.soulBonus && c.ctx && c.ctx.selfInst && c.ctx.selfInst.soulPaid) {      // v198 "If (Soul Core) was used to pay for the summon cost, add two cards instead"
         const u = await chooseCard(c, c.p.revealed.filter(x => fxMatch(CARDS[x.id], a.match) && (!a.diffName || CARDS[x.id].name !== nm)), `✨ ${nm}`, 'Choose a second revealed card to add to your Hand.', true);
         if (u) { removeFrom(c.p.revealed, u); c.p.hand.push(u); handUp(c.p, 1); t = t || u; log(`${nm}: ${CARDS[u.id].name} is added to the Hand (Soul Core bonus).`); }
       }
-      if (a.also) { const u = await chooseCard(c, c.p.revealed.filter(x => fxMatch(CARDS[x.id], a.also)), `✨ ${nm}`, 'You can add one more matching revealed card to your Hand.', true); if (u) { removeFrom(c.p.revealed, u); c.p.hand.push(u); handUp(c.p, 1); log(`${nm}: ${CARDS[u.id].name} is added to the Hand.`); } }      // v145 "add a X card, and a Y card"
+      if (a.also) { const u = await chooseCard(c, c.p.revealed.filter(x => fxMatch(CARDS[x.id], a.also) && (!a.diffName || CARDS[x.id].name !== nm)), `✨ ${nm}`, 'You can add one more matching revealed card to your Hand.', true); if (u) { removeFrom(c.p.revealed, u); c.p.hand.push(u); handUp(c.p, 1); log(`${nm}: ${CARDS[u.id].name} is added to the Hand.`); } }      // v145 "add a X card, and a Y card"
       const rest = c.p.revealed.splice(0);
       if (a.rest === 'trash') { for (const x of rest) c.p.trash.push(x); if (rest.length) log(`${nm}: ${rest.length} card${rest.length === 1 ? '' : 's'} discarded.`); }
       else {

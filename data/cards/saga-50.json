@@ -7668,14 +7668,23 @@
   "mechanics": [
    "Legacy"
   ],
-  "fxComplete": false,
-  "residual": [
-   "(Legacy)",
-   "Flash",
-   "Target one of your White Spirits.",
-   "During this battle, it can't be targeted by opposing Magic effects."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "MAGIC_SHIELD",
+     "match": {
+      "color": "white"
+     }
+    }
+   ]
+  }
  },
  {
   "id": "26RBS01-120",
@@ -7980,14 +7989,20 @@
   "image": "26RBS01-125.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Target one of your attacking Spirits with Rumble.",
-   "Destroy it.",
-   "Discard a number of cards from the opposing decktop equal to the number specified by its Rumble."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "SACRIFICE_RUMBLE"
+    }
+   ]
+  }
  },
  {
   "id": "26RBS01-126",
@@ -15441,16 +15456,36 @@
   "mechanics": [
    "Soul Magic"
   ],
-  "fxComplete": false,
-  "residual": [
-   "{{Soul Magic|b}}",
-   "You can't use this card during Main Step.",
-   "Flash",
-   "You can target one of your Nexuses.",
-   "Send one or more cores from your Field/Reserve to it, and during this battle, it doesn't activate its Nexus effects, and is treated as a Spirit with \"LV1 5000 BP, LV2 7000 BP.\" Then, target one of your \"Cyantree\" family Spirits.",
-   "During this battle, give it +2000 BP."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "soulMagic": "blue",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "NEXUS_AS_SPIRIT",
+     "match": {
+      "type": "Nexus"
+     },
+     "sendCore": "reserve"
+    },
+    {
+     "do": "BP_TARGET",
+     "n": 2000,
+     "to": "pick",
+     "battle": true,
+     "match": {
+      "family": [
+       "Cyantree"
+      ]
+     }
+    }
+   ]
+  }
  },
  {
   "id": "26RBS02-CP01",
@@ -23185,14 +23220,32 @@
   "image": null,
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "If all your Spirits are Cost 2/4/6/8 with the \"Topaz\" family, target an opposing Spirit.",
-   "During this step, it loses one of its symbols.",
-   "(You choose the symbol)"
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "SYMBOL_LOSE_OPP",
+     "if": {
+      "allHave": {
+       "family": "Topaz",
+       "costIn": [
+        2,
+        4,
+        6,
+        8
+       ],
+       "spiritsOnly": true
+      }
+     }
+    }
+   ]
+  }
  },
  {
   "id": "26RBS03-096",
@@ -23626,16 +23679,61 @@
   "image": null,
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (When Summoned) You can reveal three cards from your decktop. Discard a Spirit card among them. Return any remaining cards to the deckbottom in any order. Then, if the discarded card has the \"Dark Puce\" family, target an opposing Spirit. Send a core from it to the Reserve. (The opponent chooses which cores to send)",
-   "[LV2] (True Release) {{Invoke|Main}} (Once Per Turn) Target a Purple Spirit card in your Trash. During this step, one of its Purple symbols is treated as a Purple EX symbol."
-  ],
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
    "A"
   ],
-  "rcode": "X"
+  "rcode": "X",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "REVEAL_PICK",
+      "n": 3,
+      "match": {
+       "type": "Spirit"
+      },
+      "discard": true,
+      "rest": "bottom"
+     },
+     {
+      "do": "OPP_CORES_TO_RESERVE",
+      "targets": 1,
+      "each": 1,
+      "if": {
+       "pickedFamily": "Dark Puce"
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "ACTIVATE",
+    "invoke": true,
+    "timing": [
+     "MAIN"
+    ],
+    "once": true,
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "EX_SYMBOL_TRASH",
+      "match": {
+       "type": "Spirit",
+       "color": "purple"
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RBS03-X05",
@@ -33123,12 +33221,7 @@
   "image": "26RDB01-042.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "[Teams: Blue Beat/Pretty Animals]",
-   "Flash - (Your Attack Step) If all your Spirits/Nexuses have Blue Beat, and the (Soul Core) is in your Reserve, you can summon this card from the Hand. You can only use this effect of the same card name once per turn.",
-   "[LV1-2] (When Summoned) If you control four or more Blue Beat Spirits, put a core from the Void to this Spirit."
-  ],
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "collab": [
    "詩姫"
@@ -33136,7 +33229,39 @@
   "bicon": [
    "A"
   ],
-  "rcode": "R"
+  "rcode": "R",
+  "highSpeed": true,
+  "highSpeedOnce": true,
+  "highSpeedIf": {
+   "oppTurn": false,
+   "allHave": {
+    "team": "Blue Beat"
+   },
+   "soulInReserve": true
+  },
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "ctrl": {
+      "n": 4,
+      "type": "Spirit",
+      "team": "Blue Beat"
+     }
+    },
+    "actions": [
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "self"
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "26RDB01-043",
@@ -34274,13 +34399,35 @@
   "image": "26RDB01-058.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "Main",
-   "During this turn, give all your Green Wave Spirits: \" (During Attack) When blocked, target an opposing refreshed Spirit.",
-   "Exhaust it.\""
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "magic": {
+   "timing": [
+    "MAIN"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "GRANT_FX",
+     "to": "all",
+     "until": "turn",
+     "match": {
+      "team": "Green Wave"
+     },
+     "fx": {
+      "trigger": "ALLY_BLOCKED",
+      "self": true,
+      "actions": [
+       {
+        "do": "EXHAUST_OPP",
+        "n": 1
+       }
+      ]
+     }
+    }
+   ]
+  }
  },
  {
   "id": "26RDB01-059",
@@ -34373,23 +34520,50 @@
   ],
   "magic": {
    "timing": [
+    "MAIN",
     "FLASH"
    ],
-   "effect": "ACTIONS",
+   "effect": null,
    "value": 0,
-   "actions": [
-    {
-     "do": "BP_TARGET",
-     "n": 3000,
-     "to": "pick"
+   "by": {
+    "MAIN": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "REVEAL_PICK",
+       "n": 4,
+       "match": {
+        "type": "Spirit",
+        "family": [
+         "Diva"
+        ]
+       },
+       "also": {
+        "type": "Magic",
+        "family": [
+         "Diva"
+        ]
+       },
+       "diffName": true,
+       "rest": "bottom"
+      }
+     ]
+    },
+    "FLASH": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "BP_TARGET",
+       "n": 3000,
+       "to": "pick"
+      }
+     ]
     }
-   ]
+   }
   },
-  "fxComplete": false,
-  "residual": [
-   "{{Soul Magic|y}} This card has every team, and when using it via Soul Magic, the symbols of all your \"Diva\" family Spirits/Nexuses are also treated as Yellow.",
-   "Main Reveal four cards from your decktop. Among them, add to your Hand one of each \"Diva\" family Spirit card and Magic card, each with a card name different from this card's. Return any remaining cards to the deckbottom in any order."
-  ],
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "collab": [
    "詩姫"
@@ -34397,7 +34571,8 @@
   "bicon": [
    "A"
   ],
-  "rcode": "R"
+  "rcode": "R",
+  "soulMagic": "yellow"
  },
  {
   "id": "26RDB01-061",
@@ -43135,13 +43310,38 @@
   "image": "26RSD08-013.png",
   "block": "A",
   "saga": 50,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Target one of your Yellow Rise Spirits.",
-   "During this battle, give it: \" (During Attack) When this Spirit's attack reduces the opposing Life, if your Life is three or less, put a core from the Void to your Life.\""
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "GRANT_FX",
+     "to": "pick",
+     "until": "battle",
+     "match": {
+      "team": "Yellow Rise"
+     },
+     "fx": {
+      "trigger": "ALLY_LIFE_HIT",
+      "self": true,
+      "if": {
+       "lifeLe": 3
+      },
+      "actions": [
+       {
+        "do": "VOID_TO_LIFE",
+        "n": 1
+       }
+      ]
+     }
+    }
+   ]
+  }
  },
  {
   "id": "26RSD08-014",
