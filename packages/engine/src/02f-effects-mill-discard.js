@@ -6,11 +6,11 @@
 const _pn = c => CARDS[c.src.id].name;
 Object.assign(FX_ACTIONS, {
   /* send n cards from the top of your Deck to the Trash. family + counter/draw: when a card of that family is among them, counter +counter and draw (Hound-Beros) */
-  MILL_OPP: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 20,      // v237 "discard N cards from the opposing decktop"
-    txt: a => `send the top ${a.n} card${a.n === 1 ? '' : 's'} of the opposing Deck to the Trash`,
+  MILL_OPP: { chk: a => ((Number.isInteger(a.n) && a.n >= 1 && a.n <= 20) || (a.n == null && a.perOppHand === true)) && (a.perOppHand == null || a.perOppHand === true) && Object.keys(a).every(k => ['do', 'n', 'perOppHand', 'if'].includes(k)),   // v259 perOppHand: one card per card in the opposing Hand      // v237 "discard N cards from the opposing decktop"
+    txt: a => a.perOppHand ? 'send cards from the top of the opposing Deck to the Trash, one for each card in the opposing Hand' : `send the top ${a.n} card${a.n === 1 ? '' : 's'} of the opposing Deck to the Trash`,
     can: c => c.opp.deck.length > 0,
     run: async (c, a) => {
-      const top = c.opp.deck.splice(0, Math.min(a.n, c.opp.deck.length)); if (!top.length) { c.ctx.did = false; return; }
+      const top = c.opp.deck.splice(0, Math.min(a.perOppHand ? c.opp.hand.length : a.n, c.opp.deck.length)); if (!top.length) { c.ctx.did = false; return; }
       for (const x of top) c.opp.trash.push(x);
       log(`${_pn(c)}: ${top.length} card${top.length === 1 ? '' : 's'} from the opposing Deck go to the Trash.`);
       io.view({ type: 'board' });
