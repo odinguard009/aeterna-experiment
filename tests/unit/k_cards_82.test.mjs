@@ -54,3 +54,17 @@ test('K-868 BS01-099 draws +1 at the Draw Step, discarding one card at LV1 only'
     return out; })()`);
   assert.deepEqual(r, [0, 1, 1, 0], JSON.stringify(r));
 });
+
+test('K-869 BS02-084 returns a Void core when a Yellow Spirit dies in an Attack Step, and draws at LV2', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const n = BS.mkInst('BS02-084'); n.cores = 1; P.nexus = [n]; const out = [];
+    const y = BS.mkInst('BS02-049'), w = BS.mkInst('BS01-001');
+    P.deck = [1,2,3].map(() => BS.mkInst('BS01-001')); P.void = 3; G.step = 5;
+    let rs = P.reserve.n, h = P.hand.length; await BS.fireFx(P, 'ALLY_DIED', null, { subject: y }); out.push(P.reserve.n - rs, P.hand.length - h);
+    rs = P.reserve.n; await BS.fireFx(P, 'ALLY_DIED', null, { subject: w }); out.push(P.reserve.n - rs);
+    n.cores = 3; rs = P.reserve.n; h = P.hand.length; await BS.fireFx(P, 'ALLY_DIED', null, { subject: y }); out.push(P.reserve.n - rs, P.hand.length - h);
+    G.step = 3; rs = P.reserve.n; await BS.fireFx(P, 'ALLY_DIED', null, { subject: y }); out.push(P.reserve.n - rs);
+    return out; })()`);
+  assert.deepEqual(r, [1, 0, 0, 1, 1, 0], JSON.stringify(r));
+});
