@@ -71,7 +71,7 @@ echo "[session_start] version $(node -p "require('./package.json').version")"
 git log --oneline -5 | sed 's/^/[session_start]   /'
 grep -m1 -o '\*\*Next:.*' CLAUDE.md | cut -c1-400 | sed 's/^/[session_start] /' || true
 node tools/lane_next.mjs 2>/dev/null | sed 's/^/[session_start] /' || true   # lane order: F, S1 Standard Magic, U/I queue, then K Standard first (owner, 2026-10-21)
-# Lane K release per 50 (owner, 2026-10-28): new complete cards since the last released version, and local commits older than 24 h
+# Lane K release per 100 (owner, 2026-10-28): new complete cards since the last released version, and local commits older than 24 h
 # Baseline = the complete count printed in the newest CHANGELOG release ("1,368 -> 1,419 of 8,709"); the nearest git tag is wrong in a shallow
 # clone (measured 2026-10-30: it said v0.195.0 and printed 110/50 when 9 cards were new). The tag stays the fallback; the 24 h check counts from the last commit that touched CHANGELOG.md.
 REL=$(git describe --tags --abbrev=0 --match 'v[0-9]*' 2>/dev/null)
