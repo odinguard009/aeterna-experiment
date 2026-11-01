@@ -6606,11 +6606,24 @@
   "image": "Mummella.jpg",
   "block": "02",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Summoned) Move 1 core from target spirit your opponent controls to its owner's Reserve."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "OPP_CORES_TO_RESERVE",
+      "targets": 1,
+      "each": 1
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS02-018",
@@ -7051,12 +7064,28 @@
   "image": "Caprihorn.jpg",
   "block": "02",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (When Attacks) This spirit gets +1000 BP for each unexhausted spirit your opponent controls until end of turn."
-  ],
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "BP_PLUS",
+      "n": 1000,
+      "per": {
+       "type": "Spirit",
+       "side": "opp",
+       "state": "refreshed"
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS02-028",
@@ -12378,12 +12407,23 @@
   "image": null,
   "block": "03",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Destroyed) Refresh target exhausted spirit you control."
-  ],
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT"
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS03-050",
@@ -13421,12 +13461,24 @@
   "image": "Stone-Statue.jpg",
   "block": "03",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Summoned) Move the top card of your opponent's Deck to their Trash."
-  ],
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "MILL_OPP",
+      "n": 1
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS03-074",
@@ -17278,12 +17330,27 @@
   "image": "Duckle.jpg",
   "block": "04",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Attacks) If this is the first attack this turn, this spirit gets +2000BP until end of turn."
-  ],
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "firstAttack": true
+    },
+    "actions": [
+     {
+      "do": "BP_PLUS",
+      "n": 2000
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS04-025",
@@ -17456,12 +17523,31 @@
   "image": "BlackMonoqueiroz.jpg",
   "block": "04",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Summoned) During this turn, every \"Shellman\"/\"Shell Insect\" family Spirit you control gains +3000 BP."
-  ],
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "BP_PLUS",
+      "n": 3000,
+      "to": "own",
+      "match": {
+       "family": [
+        "Shellman",
+        "Shell Insect"
+       ]
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS04-030",
@@ -24052,12 +24138,21 @@
   "image": "The FierceHeadBeast Horngrizzly.jpg",
   "block": "06",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1] [LV2] [LV3] Rage (When Attacks) Your opponent must block if possible"
-  ],
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "MUST_BLOCK",
+    "to": "self",
+    "lv": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
  },
  {
   "id": "BS06-004",
@@ -25932,12 +26027,28 @@
   "image": "The ShieldSoldier Balder.jpg",
   "block": "06",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Blocks) For each exhausted Spirit you control, this Spirit gains +1000 BP."
-  ],
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "BLOCKS",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "BP_PLUS",
+      "n": 1000,
+      "per": {
+       "type": "Spirit",
+       "state": "exhausted"
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS06-044",

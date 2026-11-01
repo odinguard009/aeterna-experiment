@@ -41,7 +41,7 @@ Object.assign(FX_ACTIONS, {
       let L = (a.to || 'self') === 'self' ? [c.src] : a.to === 'attacker' ? (c.ctx.attacker ? [c.ctx.attacker] : []) : c.p.spirits.filter(s => fxMatch(CARDS[s.id], a.match));
       const pickN = (a.pick || 0) + (a.pickPerLegacy ? (c.src.legacyN || 0) : 0);      // v195
       if (pickN && L.length > pickN) { const ch = []; while (ch.length < pickN) { const t = await fxPickTarget(c, L.filter(x => !ch.includes(x)), `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap up to ${pickN} of your Spirits (${ch.length} chosen) for +${a.n} BP.`); if (!t) break; ch.push(t); } L = ch; }      // v0.196 pick: "target up to N Spirits you control"
-      const n = a.perReserve ? a.n * c.p.reserve.n : a.per ? a.n * perCount(c.p, a.per) : a.n;     // v0.72 per: counted when it resolves; v0.195 perReserve: cores in your Reserve
+      const n = a.perReserve ? a.n * c.p.reserve.n : a.per ? a.n * perCount(c.p, a.per, c.opp) : a.n;     // v0.72 per: counted when it resolves; v0.195 perReserve: cores in your Reserve
       if (n) for (const s of L) { s.bpMod = (s.bpMod || 0) + n; log(`${CARDS[s.id].name} gets +${n} BP.`); }
     } },
   CORE_TO_SELF: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5, txt: a => `+${a.n} core to this card`,
@@ -53,7 +53,7 @@ Object.assign(FX_ACTIONS, {
     can: (c, a) => FX_ACTIONS.REFRESH_SPIRIT.cands(c, a).length > 0,
     run: async (c, a) => {
       if (a.perBp) { for (let i = Math.floor(bpOf(c.src) / a.perBp); i > 0; i--) { const L = FX_ACTIONS.REFRESH_SPIRIT.cands(c, a); if (!L.length) break; const t = await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your exhausted Spirits to refresh (glowing).`); if (!t) break; refreshOne(t); log(`${CARDS[t.id].name} is refreshed.`); await fireFx(ownerOf(t) || c.p, 'REFRESHED', t, {}); } return; }      // v195 perBp: "for every 10000 BP this Spirit has, target a Cost 6 or less Spirit you control"
-      if (a.perN) { for (let i = Math.floor(perCount(c.p, a.per) / a.perN); i > 0; i--) { const L = FX_ACTIONS.REFRESH_SPIRIT.cands(c, a); if (!L.length) break; const t = await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your exhausted Spirits to refresh (glowing).`); if (!t) break; refreshOne(t); log(`${CARDS[t.id].name} is refreshed.`); await fireFx(ownerOf(t) || c.p, 'REFRESHED', t, {}); } return; }      // v139 "For every N <per> you control, target one ... Refresh them."
+      if (a.perN) { for (let i = Math.floor(perCount(c.p, a.per, c.opp) / a.perN); i > 0; i--) { const L = FX_ACTIONS.REFRESH_SPIRIT.cands(c, a); if (!L.length) break; const t = await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your exhausted Spirits to refresh (glowing).`); if (!t) break; refreshOne(t); log(`${CARDS[t.id].name} is refreshed.`); await fireFx(ownerOf(t) || c.p, 'REFRESHED', t, {}); } return; }      // v139 "For every N <per> you control, target one ... Refresh them."
       for (let k = a.count || 1; k > 0; k--) {      // v251 count (Charge: "refresh +1 bodies")
         const L = FX_ACTIONS.REFRESH_SPIRIT.cands(c, a), t = a.self ? L[0] : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your exhausted Spirits to refresh (glowing).`);
         if (!t) break; refreshOne(t); log(`${CARDS[t.id].name} is refreshed.`); await fireFx(ownerOf(t) || c.p, 'REFRESHED', t, {});

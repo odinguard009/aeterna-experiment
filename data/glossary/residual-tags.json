@@ -293,10 +293,6 @@
   "T_ALLY_LIFE_HIT",
   "T_ATTACKS"
  ],
- "BS02-017": [
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "BS02-021": [
   "C_LEVEL",
   "T_ATTACKS"
@@ -310,12 +306,6 @@
   "C_LEVEL",
   "M_OPTIONAL",
   "M_UP_TO",
-  "T_ATTACKS"
- ],
- "BS02-027": [
-  "A_BP_PLUS",
-  "A_EXHAUST",
-  "C_LEVEL",
   "T_ATTACKS"
  ],
  "BS02-028": [
@@ -686,12 +676,6 @@
   "C_LEVEL",
   "T_BLOCKS"
  ],
- "BS03-049": [
-  "A_EXHAUST",
-  "A_REFRESH",
-  "C_LEVEL",
-  "T_DESTROYED"
- ],
  "BS03-050": [
   "A_BP_PLUS",
   "C_LEVEL",
@@ -729,10 +713,6 @@
  "BS03-070": [
   "A_TRASH_TO_RESERVE",
   "C_LEVEL"
- ],
- "BS03-073": [
-  "C_LEVEL",
-  "T_SUMMONED"
  ],
  "BS03-075": [
   "C_LEVEL"
@@ -1002,11 +982,6 @@
   "M_BY_DOING",
   "T_ATTACKS"
  ],
- "BS04-024": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
  "BS04-025": [
   "A_EXHAUST",
   "A_REFRESH",
@@ -1020,11 +995,6 @@
  "BS04-028": [
   "A_CORE_TO_SELF",
   "C_LEVEL"
- ],
- "BS04-029": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "T_SUMMONED"
  ],
  "BS04-033": [
   "C_LEVEL",
@@ -1548,11 +1518,6 @@
   "C_LEVEL",
   "T_SUMMONED"
  ],
- "BS06-003": [
-  "C_LEVEL",
-  "S_MUST_BLOCK",
-  "T_ATTACKS"
- ],
  "BS06-005": [
   "C_LEVEL",
   "S_NO_RETURN"
@@ -1612,12 +1577,6 @@
  "BS06-042": [
   "A_BOUNCE",
   "C_LEVEL"
- ],
- "BS06-043": [
-  "A_BP_PLUS",
-  "A_EXHAUST",
-  "C_LEVEL",
-  "T_BLOCKS"
  ],
  "BS06-044": [
   "C_LEVEL",
@@ -2843,13 +2802,6 @@
  "BS10-002": [
   "C_LEVEL",
   "K_BRAVE"
- ],
- "BS10-006": [
-  "A_RETURN_TRASH",
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "K_BRAVE",
-  "T_SUMMONED"
  ],
  "BS10-008": [
   "A_REFRESH",

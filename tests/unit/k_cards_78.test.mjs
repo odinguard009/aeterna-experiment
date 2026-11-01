@@ -165,3 +165,12 @@ test('K-801 MUST_ATTACK (BS01-033) attacks at the start of the Attack Step; MUST
     return [f, k, BS.CARDS['BS40-037'].effects.length];`);
   assert.deepEqual(r, [true, true, 2], JSON.stringify(r));
 });
+
+test('K-802 BP_PLUS per state: exhausted own Spirits (BS06-043) and refreshed opposing Spirits (BS02-027)', async () => {
+  const r = await run(`const a = sp('BS06-043', P, 1); const e1 = sp('BS75-001', P, 1), e2 = sp('BS75-011', P, 1); e1.exhausted = true; e2.exhausted = true;
+    const c = { p: P, opp: O, src: a, ctx: {} }; await BS.FX_ACTIONS.BP_PLUS.run(c, { do: 'BP_PLUS', n: 1000, per: { type: 'Spirit', state: 'exhausted' } }); const x = BS.bpOf(a);
+    const b = sp('BS02-027', P, 2); sp('BS75-001', O, 1); const y = O.spirits[0]; y.exhausted = false;
+    const c2 = { p: P, opp: O, src: b, ctx: {} }; const before = BS.bpOf(b); await BS.FX_ACTIONS.BP_PLUS.run(c2, { do: 'BP_PLUS', n: 1000, per: { type: 'Spirit', side: 'opp', state: 'refreshed' } });
+    return [x - BS.CARDS['BS06-043'].levels[0].bp, BS.bpOf(b) - before];`);
+  assert.deepEqual(r, [2000, 1000], JSON.stringify(r));
+});
