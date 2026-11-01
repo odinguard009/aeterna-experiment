@@ -630,11 +630,6 @@
   "C_LEVEL",
   "T_SUMMONED"
  ],
- "BS03-032": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
  "BS03-033": [
   "C_LEVEL",
   "K_HIGH_SPEED"
@@ -1720,17 +1715,11 @@
  "BS06-093": [
   "A_BP_PLUS"
  ],
- "BS06-094": [
-  "M_UP_TO"
- ],
  "BS06-095": [
   "A_BP_PLUS",
   "A_DRAW"
  ],
  "BS06-096": [],
- "BS06-097": [
-  "A_EXHAUST"
- ],
  "BS06-098": [],
  "BS06-099": [
   "A_BP_PLUS"

@@ -182,3 +182,11 @@ test('K-803 BOUNCE_OPP match: only the opposing Spirit with the keyword is a can
     return [n, BS.CARDS['BS22-029'].effects.length, BS.CARDS['BS10-042'].effects.length];`);
   assert.deepEqual(r, [['BS19-017'], 1, 2], JSON.stringify(r));
 });
+
+test('K-804 EXHAUST_OPP lv: only the opposing LV1 Spirit is exhausted (BS03-032)', async () => {
+  const r = await run(`const a = sp('BS03-032', P, 3); const c0 = BS.CARDS['BS09-001']; const lv1 = sp('BS09-001', O, c0.levels[0].cores), lv2 = sp('BS09-001', O, c0.levels[1].cores);
+    const c = { p: P, opp: O, src: a, ctx: {} }; const act = { do: 'EXHAUST_OPP', n: 1, lv: 1 };
+    const n = BS.FX_ACTIONS.EXHAUST_OPP.cands(c, act);
+    return [n.length, n[0] === lv1, n.includes(lv2), BS.CARDS['BS03-032'].effects.length];`);
+  assert.deepEqual(r, [1, true, false, 1], JSON.stringify(r));
+});

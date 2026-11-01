@@ -83,6 +83,9 @@ function destroyCase(card, a) {
 const PRE_RESET = `for (const q of [P, O]) { q.spirits = q.spirits.filter(x => x === src); q.nexus = q.nexus.filter(x => x === src); q.trash = []; q.hand = []; q.deck = []; } for (let j = 0; j < 4; j++) dk(${J(FILL)});`;
 
 function exhaustCase(a, heavy) {
+  if (!heavy && a.lv != null && only(a, ['n', 'lv']) && a.n === 1) return { fix: [], body: `const cs = Object.values(BS.CARDS).filter(c => c.type === 'Spirit' && c.levels && c.levels.length >= 3 && c.levels[0].cores < c.levels[1].cores && c.levels[1].cores < c.levels[2].cores);
+      if (!cs.length) return ''; const c = cs[0], hit = sp(c.id, O, c.levels[A.lv - 1].cores), miss = sp(c.id, O, c.levels[A.lv % 3].cores);
+      await run(src, RA); if (!hit.exhausted) return 'the target of the chosen level was not exhausted'; return miss.exhausted ? 'a Spirit of another level was exhausted' : '';` };
   if (!only(a, heavy ? ['n', 'exhaustedOnly'] : ['n', 'costLe', 'oppChooses'])) return null;
   const c0 = a.costLe != null ? a.costLe : 3, flag = heavy ? 'heavy' : 'exhausted';
   const fix = [{ cost: c0, bp: 3000 }].concat(a.costLe != null ? [{ cost: c0 + 1, bp: 9000 }] : []);

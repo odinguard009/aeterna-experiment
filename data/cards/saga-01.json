@@ -11702,12 +11702,24 @@
   "image": "The SpiderWoman Arachnet.jpg",
   "block": "03",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (When Attacks) Exhaust target unexhausted LV1 spirit your opponent controls."
-  ],
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "U"
+  "rcode": "U",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "EXHAUST_OPP",
+      "n": 1,
+      "lv": 1
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS03-033",
@@ -28142,11 +28154,36 @@
   "image": "Trident Flare.jpg",
   "block": "06",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "Eng Version= (Flash Step)(Your Main Phase) Destroy up to 3 target spirits your opponent controls with 3000BP or less."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "magic": {
+   "timing": [
+    "MAIN",
+    "FLASH"
+   ],
+   "by": {
+    "MAIN": {
+     "effect": "ACTIONS",
+     "actions": [
+      {
+       "do": "DESTROY",
+       "n": 3,
+       "bpLe": 3000
+      }
+     ]
+    },
+    "FLASH": {
+     "effect": "ACTIONS",
+     "actions": [
+      {
+       "do": "DESTROY",
+       "n": 3,
+       "bpLe": 3000
+      }
+     ]
+    }
+   }
+  }
  },
  {
   "id": "BS06-095",
@@ -28213,11 +28250,36 @@
   "image": "Bloody Coffin.jpg",
   "block": "06",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "Eng Version= (Flash Step)(Your Main Phase) Destroy target exhausted spirit with a cost of 4 or less."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "magic": {
+   "timing": [
+    "MAIN",
+    "FLASH"
+   ],
+   "by": {
+    "MAIN": {
+     "effect": "ACTIONS",
+     "actions": [
+      {
+       "do": "DESTROY",
+       "costLe": 4,
+       "exhaustedOnly": true
+      }
+     ]
+    },
+    "FLASH": {
+     "effect": "ACTIONS",
+     "actions": [
+      {
+       "do": "DESTROY",
+       "costLe": 4,
+       "exhaustedOnly": true
+      }
+     ]
+    }
+   }
+  }
  },
  {
   "id": "BS06-098",
