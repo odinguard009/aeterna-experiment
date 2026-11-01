@@ -150,7 +150,7 @@ document.addEventListener('click', e => {
   else if (a === 'bug-close') bugOpen(false);
   else if (a === 'zoominfo') return;
   else if (a === 'zoomclose') $('zoom-overlay').classList.remove('active');
-  else if (a === 'gloss') uiInfo(`GLOSSARY: ${v}`, esc(KEYWORD_GLOSSARY[v] || ''));
+  else if (a === 'gloss') uiInfo(`GLOSSARY: ${v}`, esc(glossText(v) || 'No note for this word yet.'));
   else if (a === 'online') { switchView('view-online'); renderOnlineLobby(); }   // v0.109.0 M8 part 2: the online lobby (13j-online-lobby.js)
   else if (a === 'onl-quick') onlQuick();
   else if (a === 'onl-join') onlJoin();

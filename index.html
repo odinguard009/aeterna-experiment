@@ -321,6 +321,10 @@ img.cface{object-fit:cover;display:block;}
 .fx-line.fx-none{color:var(--text-muted);}
 .fx-lv{display:inline-block;padding:0 4px;margin-right:2px;border-radius:3px;background:var(--accent);color:#000;font-weight:bold;font-size:.85em;}
 .fx-tm{color:var(--accent);font-weight:bold;}
+.fx-term{cursor:pointer;border-bottom:1px dotted var(--accent);}
+.fx-tpl{display:inline-block;padding:0 4px;border:1px solid var(--accent);border-radius:3px;color:#e8b84a;font-weight:bold;}
+.fx-tpl[data-a]{cursor:pointer;}
+.fx-ta{color:var(--text-muted);font-style:italic;}
 .fx-kw{display:inline-block;padding:0 4px;border:1px solid currentColor;border-radius:3px;color:#e8b84a;font-weight:bold;}
 .fx-pay{margin-top:6px;color:var(--text-muted);font-size:.9em;}
 .live-st{margin-bottom:6px;padding:4px 6px;border-radius:4px;background:rgba(255,255,255,.07);color:var(--accent);font-size:11px;}
@@ -2199,7 +2203,7 @@ body.mk > .ae-pop{position:absolute;top:62px;right:24px;z-index:20}
 .mk .nv[aria-current="page"],.mk .tabbar button[aria-current="page"]{}
 .mk .dbox .cface,.mk .dbox .cf{flex:none;display:block;width:100%;aspect-ratio:5/7;height:auto;object-fit:cover;overflow:hidden;border-radius:7px;box-sizing:border-box;font-size:.78em}
 .mk .decksel{flex:none}
-.mk .dtile.open{position:relative;z-index:30}.mk .dtile .dk-menu{z-index:31}
+.mk .dtile.open{position:relative;z-index:30;transform:none!important;transition:none}.mk .dtile .dk-menu{z-index:31}
 .mk #view-library .pgrid{padding:18px 20px 20px;grid-auto-rows:max-content;flex:none;height:max(420px,calc(100vh - 340px))}
 .mk .lorenav button{display:flex;justify-content:space-between;width:100%;text-align:left}
 .mk .lorenav button.on{background:var(--you);color:var(--you-ink)}
@@ -2847,6 +2851,58 @@ const KEYWORD_GLOSSARY = {
   'RUMBLE': 'During Attack: at the end of the battle, discard X cards from the opposing decktop, minus the cost of the blocking Spirit card that is now in the opposing Trash (the attacker must still be on the Field).',
   'AMPLIFY': 'Amplify: for each matching Spirit you control, during this battle, this Spirit gains +N BP (printed as {{Amplify|family +N}}).'
 };
+/* v0.205.1: printed rule words and timing tags that card text shows without explaining them. Own wording (reminders, not rule text);
+   effect text marks each word as tappable (11-human.js fxMark) and the Learn glossary lists them. Aliases resolve in glossText (11-human.js). */
+const TERM_GLOSSARY = {
+  'Legacy': 'A Legacy Spirit can be summoned by banishing cards with an EX Symbol (from where its text says). Each EX Symbol card banished that way counts as "banished via this Legacy", and many Legacy effects get stronger with that number.',
+  'True Release': 'A card with True Release reaches LV2 with only its Soul Core on it (True Release state). Effects that say "in True Release state" check for this. Higher levels still count the Soul Core as one core.',
+  'Clash': 'Clash: while this Spirit attacks, opposing Spirits must block it if possible. Other effects can name "Spirits with Clash" (for example +BP in your Attack Step) and then apply only to Spirits that have this word.',
+  'Rush': 'Rush <colour>: while you have a Field symbol of that colour, the effect printed after it takes place. Without the symbol the effect after it is skipped.',
+  'Accel': 'Accel: use this card\'s Accel effect from your Hand by paying the Accel cost. Symbols on your Field reduce that cost. The card then goes where its text says (often the Removed Zone), not to the Trash.',
+  'Invoke': 'Invoke Flash / Invoke Main: an ability usable at that timing. Pay the cost shown before the arrow (▶) in full; if you cannot, the effect after the arrow does not happen.',
+  'Seal': 'Seal: put your Soul Core from the place the card names onto your Life. While it sits in your Life you are Sealed, and "During Seal" effects are active.',
+  'Unleash': 'Unleash N: when the trigger happens you can send N cores from the named Grandwalker Nexus to this Spirit. The rest of the effect works only if you did.',
+  'Tribute': 'Tribute: after paying the summon cost you must send all cores from one of your Spirits that meets the stated cost to the stated place (Trash or Void). Summoning without paying skips Tribute.',
+  'Assault': 'Assault N: this Spirit may be refreshed up to N times per turn by exhausting one of your Nexuses (used when it attacks).',
+  'Excite': 'Excite N: a counter-based condition. If you have N or more counters when the trigger happens, the stated effect (often returning this card from the Trash to your Hand) can be used.',
+  'Immortality': 'Immortality: when the stated Spirit would be destroyed, it can come back (summoned) as the card says. "Summoned via Immortality" effects check for that return.',
+  'Armor': 'Armor <colour>: this card is unaffected by opposing Spirit / Nexus / Magic effects of that colour.',
+  'Heavy Armor': 'Heavy Armor <colour>: unaffected by opposing Spirit / Brave / Nexus / Magic effects of that colour (and it keeps Burst effects from being activated).',
+  'Ultra Armor': 'Ultra Armor <colour>: unaffected by opposing Spirit / Ultimate / Nexus / Magic effects of that colour.',
+  'Soul Magic': 'Soul Magic: a Magic card printed with a Soul Core cost; it is cast as the card says while your Soul Core is where the card needs it.',
+  'Sumcon': 'Sumcon: the summon condition of an Ultimate card. You can summon it only while you meet the condition printed (a control, colour, cost, family, Life or counter requirement).',
+  'Mani': 'Mani: summon this card from your Hand during the stated timing. Send your Soul Core to the Trash and pay one cost from the named target as the card says. It is a Manifest-style summon.',
+  'Fast Draw': 'Fast Draw N: an Invoke-style Flash ability. By paying the stated cost (usually discarding a named card) you can use its effect at the printed timing, once per turn.',
+  'High Speed': 'High Speed: a Flash ability. You can summon this card from your Hand at Flash Timing by paying its cost with the Lv1 cores taken only from your Reserve.',
+  'Crush': 'Crush (When Attacks): discard cards from the top of the opposing Deck equal to this Spirit\'s level.',
+  'Holy Life': 'Holy Life (When Attacks): when this Spirit\'s attack reduces the opposing Life, put a core from the Void on your Life.',
+  'Silver Wheel': 'Silver Wheel: a Flash effect that costs you exhausting this Spirit.',
+  'Awaken': 'Awaken: move cores from your other Spirits to this Spirit within the printed limit.',
+  'Revive': 'Revive: a Spirit or Grandwalker Nexus that can be summoned again, paying its cost, from the place the card names (for example your Trash).',
+  'Oracle': 'Oracle: put a core on a Grandwalker Nexus as the card says (a Grandwalker only receives cores through effects that target it).',
+  'Core Charge': 'Core Charge: add cores to your target as the card says when the trigger happens (Neo-Core Charge: from your Spirits being summoned).',
+  'Over Count': 'Over Count (OC): active while your Count meets the stated number, whatever the level. Its + value is added to the BP of the Spirit.',
+  'Soul Core': 'The Soul Core is your special core. It can be in your Reserve, on a Field card, in your Life or in the Trash, and many effects (Advent, Manifest, Seal) move it.',
+  'Soul State': 'A Contract card in Soul State is not on the Field. It stands in for your Soul Core and can be deployed later by an effect; it is not "controlled" until then.',
+  'Grandwalker': 'A Grandwalker Nexus is a special Nexus. Cores can only be put on it by Oracle or by effects that target it, and cores on it go to the Void when it leaves the Field.',
+  'Brave': 'A Brave card can combine with a Spirit on your Field. A combined Brave belongs to that Spirit and gives it the BP and effects printed on the Brave.',
+  'Nether Immortality': 'Nether Immortality: when your matching "Nether" Spirit is destroyed, you can summon this card from your Trash.',
+  'When Summoned': 'Timing tag: the effect activates when this card is summoned.',
+  'When Attacks': 'Timing tag: the effect activates when this Spirit attacks (in your Attack Step).',
+  'When Blocks': 'Timing tag: the effect activates when this Spirit blocks.',
+  'When Destroyed': 'Timing tag: the effect activates when this card is destroyed (it resolves before the card goes to the Trash).',
+  'When Destroyed by the Opponent': 'Timing tag: only when an opposing effect, or a BP comparison with an opposing Spirit, destroyed it.',
+  'When Battles': 'Timing tag: activates around the battle of this Spirit; "(When Battles)" texts usually say whether it is before, during or after the comparison.',
+  'When Advents': 'Timing tag: the effect activates when this card advents (is stacked on a Spirit).',
+  'When Manifests': 'Timing tag: the effect activates when this card is summoned by Manifest.',
+  'During Attack': 'Timing tag: the effect applies as long as this Spirit is attacking.',
+  'Either Attack Step': 'Timing: your own or the opponent\'s Attack Step.',
+  'Your Attack Step': 'Timing: during your Attack Step.',
+  'Opposing Attack Step': 'Timing: during the opponent\'s Attack Step.',
+  'Once per Turn: Same Name': 'Limit: the effect can be used once per turn in total by all your cards with the same name.',
+  'Can\'t Stack': 'The same effect cannot activate more than once at a time (extra copies of it are ignored).'
+};
+Object.assign(KEYWORD_GLOSSARY, TERM_GLOSSARY);
 /* Magic effects (data driven; imported Magic cards pick one of these in their "magic" field) */
 const MAGIC_FX = {
   DESTROY_BP_LE: { side: 'opp', ok: (s, v) => bpOf(s) <= v, text: v => `Destroy 1 opposing Spirit with ${v} BP or less.`,
@@ -7614,7 +7670,7 @@ function loadSlots() {
   try {
     const o = JSON.parse(localStorage.getItem(SLOT_KEY));
     if (o && Array.isArray(o.slots) && o.slots.length === SLOT_COUNT) {
-      SLOTS = o.slots.map((x, i) => Object.assign({ name: String(x && x.name || 'Deck ' + (i + 1)).slice(0, 24), cards: cleanDeck(x && x.cards) }, x && x.used ? { used: true } : {}, x && x.look && typeof x.look === 'object' ? { look: x.look } : {}, x && x.key && CARDS[x.key] && CARDS[x.key].type === 'Spirit' ? { key: x.key } : {}));   // used: listed on My decks (v0.93.0); look: Deck look (v0.94.0); key: marked Key Spirit (v0.103.0)
+      SLOTS = o.slots.map((x, i) => Object.assign({ name: String(x && x.name || 'Deck ' + (i + 1)).slice(0, 24), cards: cleanDeck(x && x.cards) }, x && x.used ? { used: true } : {}, x && x.look && typeof x.look === 'object' ? { look: x.look } : {}, x && x.key && CARDS[x.key] && CARDS[x.key].type === 'Spirit' ? { key: x.key } : {}, x && x.cover && CARDS[x.cover] ? { cover: x.cover } : {}));   // cover: chosen Deck look cover card (kept on reload since v0.205.1); used: listed on My decks (v0.93.0); look: Deck look (v0.94.0); key: marked Key Spirit (v0.103.0)
       ACTIVE_SLOT = Number.isInteger(o.active) && o.active >= 0 && o.active < SLOT_COUNT ? o.active : 0; return;
     }
   } catch (e) { /* ignore */ }
@@ -9421,8 +9477,25 @@ function legalityHTML(card) {
    Reused everywhere effect text is shown (card detail, enlarged card, hand prompt). Input is plain card text; output is escaped HTML. */
 const FX_KW_START = /^(Burst:|Revive\b|Contract Skill\b|Contract Field\b|Awaken\b|Manifest\b|Mirage\b|Over Count\b|Brave\b|Seal\b|Grand Skill\b|Grand Field\b|Core Charge\b|Neo-Core Charge\b|Oracle\b|Unseal\b)/;
 const FX_LINE_STOP = ['(Can\'t Stack)', '[Can\'t Stack]', '(Unstackable)'];
+/* v0.205.1: the imported wiki text carries template calls ({{Invoke|Flash}}, {{Rush|Purple}}, {{Armor|Red}}, a {{#tag:tabber}} with a Japanese and an English version).
+   descText turns them into readable words: a tabber keeps its English / Standard version, a call becomes a ⟦Name: args⟧ marker that fxMark renders as a tappable word. */
+const TPL_NAMES = { ha: 'Heavy Armor', ua: 'Ultra Armor', catl: 'Catalyze', adcon: 'Advent Condition', mirage: 'Mirage', burst: 'Burst', sumcon: 'Sumcon', invoke: 'Invoke', rush: 'Rush', accel: 'Accel', seal: 'Seal', mani: 'Mani', unleash: 'Unleash' };
+function descText(raw) {
+  let t = String(raw || ''); if (t.indexOf('{{') < 0) return t;
+  t = t.replace(/\{\{#tag:\s*tabber\s*\|([\s\S]*)\}\}\s*$/, (m, body) => { const parts = body.split('{{!}}-{{!}}'); const pick = parts.find(p => /^\s*(Eng|English|Standard)/i.test(p)) || parts[parts.length - 1]; return pick.replace(/^\s*[^=\n]*=\s*/, '').trim(); });
+  return t.replace(/\{\{([^{}|]+)((?:\|[^{}]*)?)\}\}/g, (m, n, a) => {
+    n = n.trim(); if (n === '!') return '';
+    const nm = TPL_NAMES[n.toLowerCase()] || n.charAt(0).toUpperCase() + n.slice(1);
+    const args = a.split('|').slice(1).map(x => x.trim().replace(/^\((.*)\)$/, '$1').replace(/\s*\(\)$/, '').trim()).filter(x => x && x !== '!');
+    return '⟦' + nm + (args.length ? ': ' + args.join(' · ') : '') + '⟧';
+  });
+}
+/* tappable rule words (data-a="gloss"): the longest term first; the word is looked up in KEYWORD_GLOSSARY with its aliases */
+const glossText = v => KEYWORD_GLOSSARY[v] || KEYWORD_GLOSSARY[String(v).toUpperCase().replace(/[ -]+/g, '_')] || '';
+const FX_TERM_RE = new RegExp('\\b(' + Object.keys(TERM_GLOSSARY).concat(['Advent', 'Contract Advent', 'Manifest', 'Mirage', 'Burst', 'Flash', 'Rumble', 'Amplify', 'Heavy Exhaust']).filter(k => !k.includes("'")).sort((a, b) => b.length - a.length).map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')\\b', 'g');
+const familyRowHTML = c => (c.families || []).length ? `<div class="row" style="gap:6px;flex-wrap:wrap;align-items:center"><span class="cp-h">Family</span>${c.families.map(f => `<span class="tag dim">${esc(f)}</span>`).join('')}</div>` : '';
 function effectLines(text) {
-  let t = String(text || '').replace(/\s+/g, ' ').trim(); if (!t) return [];
+  let t = descText(text).replace(/\s+/g, ' ').trim(); if (!t) return [];
   t = t.replace(/(?<!\])\s*((?:\[LV\d\])+)/g, (m, run, i) => (i ? '\n' : '') + run)
        .replace(/([.!:)\]])\s+(?=(Burst:|Revive\b|Contract Skill\b|Contract Field\b|Awaken\b|Manifest\b|Mirage\b|Over Count\b|\(Flash\)|\[Flash\]|\[Main\]|\(Can't Stack\)|\[Can't Stack\]))/g, '$1\n');
   const out = [];
@@ -9434,6 +9507,18 @@ function effectLines(text) {
   return out;
 }
 function fxMark(line) {
+  return fxTerms(fxMark0(line));
+}
+/* text outside tags: ⟦marker⟧ -> tappable word, known rule words -> tappable (a word already inside a tappable chip stays as it is) */
+function fxTerms(h) {
+  return h.split(/(<[^>]+>|⟦[^⟧]*⟧)/).map(p => {
+    if (p.charAt(0) === '<') return p;
+    if (p.charAt(0) === '⟦') { const s = p.slice(1, -1), i = s.indexOf(': '), nm = i < 0 ? s : s.slice(0, i), rest = i < 0 ? '' : s.slice(i + 2);
+      return `<span class="fx-tpl"${glossText(nm.replace(/&#039;/g, "'")) ? ` data-a="gloss" data-v="${nm}"` : ''}>${nm}</span>${rest ? `<span class="fx-ta">${rest}</span>` : ''}`; }
+    return p.replace(FX_TERM_RE, (m, w) => `<span class="fx-term" data-a="gloss" data-v="${w}">${w}</span>`);
+  }).join('');
+}
+function fxMark0(line) {
   return esc(line)
     .replace(/\[LV(\d)\]/g, '<span class="fx-lv">LV$1</span>')
     .replace(/(\[(?:Can&#039;t Stack|Main|Flash)\]|\((?:Can&#039;t Stack|Unstackable)\))/g, '<span class="fx-kw">$1</span>')
@@ -9457,6 +9542,7 @@ function cardDetailHTML(card, noArt) {
       <div style="display:flex;justify-content:space-between;align-items:center;"><b>${esc(card.name)}</b>
         <span class="cd-cost" style="background:${col};color:${['yellow', 'white'].includes(card.symbol) ? '#141922' : '#fff'};">Cost ${card.cost}</span></div>
       <div style="font-size:8.5px;color:var(--text-muted);margin-top:3px;">${esc(card.token ? 'Token Spirit' : card.type)} · ${esc(cap(card.symbol))} · ${card.symbols} symbol${card.symbols === 1 ? '' : 's'} · Reduction: ${esc(red)}</div>
+      ${(card.families || []).length ? `<div class="cd-fam" style="font-size:8.5px;margin-top:3px;"><b>Family:</b> ${card.families.map(f => esc(f)).join(', ')}</div>` : ''}
       <div class="cd-lv" style="font-size:8.5px;margin-top:3px;">${lv}</div>
       ${noArt ? '' : legalityHTML(card)}
       ${pills ? `<div style="margin-top:4px;">${pills}</div>` : ''}</div>
@@ -9492,7 +9578,7 @@ function cardArtSVG(card) {
 }
 function cardFacePlaceholder(card, withCost, col, extra) {
   const bp = card.levels[0] && card.levels[0].bp != null ? card.levels[0].bp + ' BP' : card.brave ? 'Brave +' + card.brave.bp + ' BP' : '';
-  return `<div class="cface ph" style="--card-col:${col}${extra ? ';' + extra : ''}">${cardArtSVG(card)}<div class="ph-name">${esc(card.name)}</div><div class="ph-sub">${esc(card.token ? 'Token Spirit' : card.type)} · ${esc(cap(card.symbol))}${withCost ? ' · Cost ' + card.cost : ''}</div><div class="ph-txt">${slashBreak(esc(card.desc))}</div><div class="ph-bp">${bp}</div></div>`;
+  return `<div class="cface ph" style="--card-col:${col}${extra ? ';' + extra : ''}">${cardArtSVG(card)}<div class="ph-name">${esc(card.name)}</div><div class="ph-sub">${esc(card.token ? 'Token Spirit' : card.type)} · ${esc(cap(card.symbol))}${withCost ? ' · Cost ' + card.cost : ''}</div><div class="ph-txt">${slashBreak(esc(descText(card.desc).replace(/[⟦⟧]/g, '')))}</div><div class="ph-bp">${bp}</div></div>`;
 }
 function cardFaceHTML(card, withCost) {
   const col = `var(--color-${card.symbol})`;
@@ -11190,13 +11276,13 @@ function dkColors(cards) {                          // the deck's colours, most 
    Grandwalker / Contract Nexus (Grandwalker family, a "...Contractor" name or a CX Nexus), then the most-played card. The two other cover
    cards follow the same order. Display only. */
 const dkKeyNexus = id => { const c = CARDS[id]; return !!c && c.type === 'Nexus' && ((c.families || []).includes('Grandwalker') || /Contractor/.test(c.name) || /-CX\d+$/.test(id)); };
-function dkCover(cards, key) {                       // up to 3 card ids, the key card first
+function dkCover(cards, key, cover) {                // up to 3 card ids, the chosen cover (Deck look) first, then the key card
   const have = Object.keys(cards).filter(id => CARDS[id] && cards[id] > 0);
-  const rank = id => (key && id === key ? 0 : dkKeyNexus(id) ? 1 : 2);
+  const rank = id => (cover && id === cover ? -1 : key && id === key ? 0 : dkKeyNexus(id) ? 1 : 2);
   return have.sort((a, b) => rank(a) - rank(b) || cards[b] - cards[a] || DB_COLL.compare(a, b)).slice(0, 3);
 }
-function dkFan(cards, key) {                         // tile art: the cover cards, fanned (mockup .stack); the key card is the middle, front one
-  const top = dkCover(cards, key), kid = top[0]; if (top.length === 3) top.splice(1, 0, top.shift());   // key card to the middle slot
+function dkFan(cards, key, cover) {                         // tile art: the cover cards, fanned (mockup .stack); the key card is the middle, front one
+  const top = dkCover(cards, key, cover), kid = top[0]; if (top.length === 3) top.splice(1, 0, top.shift());   // key card to the middle slot
   return `<div class="stack" aria-hidden="true">${top.map(id => `<div class="cf${id === kid ? ' key' : ''}">${cardFaceHTML(CARDS[id], false)}</div>`).join('')}</div>`;
 }
 function dkStats(name) {                             // win rate and last played from the match history, matched by deck name
@@ -11221,7 +11307,7 @@ function dkTile(i, name, cards, starter) {
     : `<button class="btn sm grow" data-a="dk-edit" data-v="${i}" aria-label="Edit ${nm}">Edit</button><button class="btn sm pri grow" data-a="dk-play" data-v="${i}" aria-label="Play with ${nm}"${st.ok ? '' : ' disabled'}>Play</button><button class="ibtn sq dk-more" data-a="dk-more" data-v="${i}" aria-label="More actions for ${nm}" aria-haspopup="menu" aria-expanded="${open}">⋯</button>`;
   if (starter) { const kc = dkCover(cards, key)[0];   // the thumbnail is the Key Spirit (else the most played card)
     return `<div class="card flat dk-st-row" data-v="${i}"><div class="dk-st-th">${kc ? cardFaceHTML(CARDS[kc], false) : ''}</div><div class="dk-st-nm"><b>${nm}</b> ${kb}<span class="dk-st-sub">${esc(st.ok ? st.txt : deckTotal(cards) + ' cards')}</span></div>${btns}</div>`; }
-  return `<div class="card dtile${act ? ' on' : ''}${open ? ' open' : ''}" data-v="${i}">${dkFan(cards, key)}<div class="row"><b class="grow" style="font-size:1.02em" title="${nm}">${nm}</b>${kb}${act ? '<span class="tag">Active</span>' : ''}</div><div class="row" style="gap:6px">${dots}<span class="grow"></span><span class="${st.ok ? 'vc' : 'vc warn'}">${st.ok ? '✓ Legal' : deckTotal(cards) < 40 ? 'Needs ' + (40 - deckTotal(cards)) + ' more' : 'Not legal'}</span></div>${stat}<div class="row" style="gap:6px">${btns}</div>${menu}</div>`;
+  return `<div class="card dtile${act ? ' on' : ''}${open ? ' open' : ''}" data-v="${i}">${dkFan(cards, key, SLOTS[i] && SLOTS[i].cover)}<div class="row"><b class="grow" style="font-size:1.02em" title="${nm}">${nm}</b>${kb}${act ? '<span class="tag">Active</span>' : ''}</div><div class="row" style="gap:6px">${dots}<span class="grow"></span><span class="${st.ok ? 'vc' : 'vc warn'}">${st.ok ? '✓ Legal' : deckTotal(cards) < 40 ? 'Needs ' + (40 - deckTotal(cards)) + ' more' : 'Not legal'}</span></div>${stat}<div class="row" style="gap:6px">${btns}</div>${menu}</div>`;
 }
 function renderDecks() {
   if (!$('dk-list')) return;
@@ -12049,6 +12135,7 @@ function renderCardPage() {
   <div class="ciw" style="display:grid;grid-template-columns:330px 1fr;gap:30px;align-items:start"><div class="tilt" id="cp-tilt"><div class="cibig" style="width:300px;margin:0 auto">${cardFaceHTML(art, true)}</div><span class="mut hidem" style="display:block;text-align:center;font-size:.74em;margin-top:10px">Move the pointer over the card - it tilts and shines.</span></div>
   <div class="col" style="gap:12px;min-width:0"><div><span class="eyebrow">${esc(c.token ? 'Token Spirit' : c.type)} · ${esc(cap(c.symbol))}${sideCard ? ' · Rebirth ' + (showB ? 'Side B' : 'Side A') : ''}</span><h2 class="hd" style="font-size:1.9em">${esc(c.name)}</h2><span class="mut">${esc(c.id)}${(c.families || []).length ? ' · ' + esc(c.families.join(', ')) : ''}</span></div>
    <div class="row" style="gap:6px;flex-wrap:wrap">${tags}${sideCard ? `<button class="btn sm pri" data-a="cp-flip">↻ ${showB ? 'Side A' : 'Side B'}</button>` : ''}</div>
+   ${familyRowHTML(c)}
    <div class="card flat" style="padding:14px 16px;line-height:1.6">${effectTextHTML(c, false)}${c.implemented ? '' : residualHTML(c)}</div>${flv}${artBlock}${othBlock}
    ${lv ? `<div class="card flat" style="padding:8px 12px"><table class="tb"><tr><th>Level</th><th>Cores To Reach</th><th>BP</th></tr>${rows}</table></div>` : ''}
    <div class="row" style="gap:8px;flex-wrap:wrap"><button class="btn pri" data-a="cp-add"${can ? '' : ' disabled'}>+ Add To “${esc(sl.name)}”</button><button class="btn" data-a="cp-link">Copy Link</button></div><span class="sub" id="cp-msg" role="status" style="font-size:.84em"></span>${usedBlock}${relBlock}</div></div>`;
@@ -12850,7 +12937,7 @@ document.addEventListener('click', e => {
   else if (a === 'bug-close') bugOpen(false);
   else if (a === 'zoominfo') return;
   else if (a === 'zoomclose') $('zoom-overlay').classList.remove('active');
-  else if (a === 'gloss') uiInfo(`GLOSSARY: ${v}`, esc(KEYWORD_GLOSSARY[v] || ''));
+  else if (a === 'gloss') uiInfo(`GLOSSARY: ${v}`, esc(glossText(v) || 'No note for this word yet.'));
   else if (a === 'online') { switchView('view-online'); renderOnlineLobby(); }   // v0.109.0 M8 part 2: the online lobby (13j-online-lobby.js)
   else if (a === 'onl-quick') onlQuick();
   else if (a === 'onl-join') onlJoin();

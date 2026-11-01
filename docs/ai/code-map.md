@@ -2,8 +2,8 @@
 
 Top-level names per source part. Find the part here, then `grep -n "<name>" <part path>` and read only that range.
 
-## packages/engine/src/00-config.js (97 lines, ~3k tokens)
-SIM, STEPS, STEPS_STANDARD, FORMAT_KEY, FORMAT, STANDARD_BLOCKS, BAN_LIST_INFO, BANNED, LIMITED1, normCardNo, BAN_LISTS, banStatus, maxCopies, standardLegal, legalityOf, ABORT, other, esc, cap, TC_MINOR, titleCase, RNG_STATE, KEY_WEIGHT, seedRng, rng, newSeed, shuffle, removeFrom, KEYWORD_GLOSSARY, MAGIC_FX, MAGIC_TIMINGS, SYMBOL_KINDS
+## packages/engine/src/00-config.js (149 lines, ~4.8k tokens)
+SIM, STEPS, STEPS_STANDARD, FORMAT_KEY, FORMAT, STANDARD_BLOCKS, BAN_LIST_INFO, BANNED, LIMITED1, normCardNo, BAN_LISTS, banStatus, maxCopies, standardLegal, legalityOf, ABORT, other, esc, cap, TC_MINOR, titleCase, RNG_STATE, KEY_WEIGHT, seedRng, rng, newSeed, shuffle, removeFrom, KEYWORD_GLOSSARY, TERM_GLOSSARY, MAGIC_FX, MAGIC_TIMINGS, SYMBOL_KINDS
 
 ## apps/web/src/00b-errors.js (57 lines, ~1.1k tokens) — IN-GAME ERROR CATCHER (v0.59.5, Q1 quality bundle, Aegis idea)
 $, dq, dqa, elq, evT, evC, evV, ERR_LOG, errReport, errNotice, onGameError
@@ -116,8 +116,8 @@ CPU_PROFILES, CPU_PROFILE_NAMES, CPU_SIM_PROFILES, cpuProfileName, cpuW, lifeVal
 ## apps/web/src/10-modals.js (149 lines, ~2.5k tokens) — MODALS (promise based)
 modalKind, paintModal, uiInfo, modal, PEEK, endPeek, paintPeek, startPeek, peekRefresh, closeModal, modalPress, PICK, clearPick, webPick, webPayment
 
-## apps/web/src/11-human.js (257 lines, ~6.4k tokens) — HUMAN ACTIONS: the dialogs of the human seat. Board actions are intent records (v0.84.0, F3 = M3 rest):
-humanCan, legalityHTML, FX_KW_START, FX_LINE_STOP, effectLines, fxMark, slashBreak, effectTextHTML, cardDetailHTML, residualHTML, ART_HEX, ART_CACHE, artMix, cardArtSVG, cardFacePlaceholder, cardFaceHTML, cardStripHTML, mullCardHTML, openZoom, handButtons, HAND_INTENTS, runHandAction, humanCast, humanAttack, onNext, REB_SIDES, rebirthSideOf, showCardDetail, openHandModal, openFieldModal
+## apps/web/src/11-human.js (287 lines, ~7.2k tokens) — HUMAN ACTIONS: the dialogs of the human seat. Board actions are intent records (v0.84.0, F3 = M3 rest):
+humanCan, legalityHTML, FX_KW_START, FX_LINE_STOP, TPL_NAMES, descText, glossText, FX_TERM_RE, familyRowHTML, effectLines, fxMark, fxTerms, fxMark0, slashBreak, effectTextHTML, cardDetailHTML, residualHTML, ART_HEX, ART_CACHE, artMix, cardArtSVG, cardFacePlaceholder, cardFaceHTML, cardStripHTML, mullCardHTML, openZoom, handButtons, HAND_INTENTS, runHandAction, humanCast, humanAttack, onNext, REB_SIDES, rebirthSideOf, showCardDetail, openHandModal, openFieldModal
 
 ## apps/web/src/12-zones.js (71 lines, ~1.6k tokens) — ZONES, LOG, RULES COVERAGE
 openZoneModal, openLogModal, showRules
@@ -146,7 +146,7 @@ rvName, rvCards, rvField, rvSideHTML, rvFrameHTML, openViewer, replayFromRecord,
 ## apps/web/src/13g-anim.js (143 lines, ~2.9k tokens) — v0.92.0 U5b LIGHT BATTLE ANIMATIONS (roadmap item U, owner 2026-10-21; docs/DESIGN.md section 0, U5b)
 spdF, animMode, ANIM, rectOf, visEl, aeFx, aeBeam, CF_SEEN, flyGem, coreEnd, coreFly, coreFlows, drawFly, burstFlip, animCues
 
-## apps/web/src/13h-decks.js (185 lines, ~5k tokens) — v0.93.0 U6 MY DECKS (docs/DESIGN.md section 0, mockup docs/design/mockup-v11.html "My decks PC / phone")
+## apps/web/src/13h-decks.js (185 lines, ~5.1k tokens) — v0.93.0 U6 MY DECKS (docs/DESIGN.md section 0, mockup docs/design/mockup-v11.html "My decks PC / phone")
 DK_MENU, dkCards, dkUsed, dkFree, dkStatus, dkColors, dkKeyNexus, dkCover, dkFan, dkStats, dkAgo, dkTile, renderDecks, dkMenu, dkNewSlot, dkAct, RC_ID, openRecipe, RC_TYPES, renderRecipe
 
 ## apps/web/src/13i-online.js (412 lines, ~7.6k tokens) — ONLINE CLIENT (v0.108.0, roadmap M8 part 1; docs/ai/monorepo-plan.md M8)
@@ -164,7 +164,7 @@ EMOTES, EMOTE_GAP, EMOTE_AT, emoteLeft, EFF_MS, effectPanel, emotePop, emoteSend
 ## apps/web/src/13m-lore.js (45 lines, ~1.5k tokens) — LORE (v0.131.0, U14g; docs/design/mockup-v14.html): the English flavor texts of the cards, read in order by series.
 LORE_SET, lore, SAGA_NAMES, SAGA_EXTRA, BS_SAGA_END, sagaOf, LORE_BY, loreKeyOf, loreSeries, loreTitle, LORE_FS, renderLore
 
-## apps/web/src/13n-cardpage.js (72 lines, ~2.5k tokens) — CARD PAGE (v0.132.0, U14g2; docs/design/mockup-v14.html): what the Library's card zoom adds under the card detail: the same
+## apps/web/src/13n-cardpage.js (73 lines, ~2.5k tokens) — CARD PAGE (v0.132.0, U14g2; docs/design/mockup-v14.html): what the Library's card zoom adds under the card detail: the same
 ART_KEY, normTxt, printSig, sameName, sameArt, artOk, artOf, ART_ALT, usedInDecks, setArt, cardPageHTML, cardTilt, CP_ID, cpIds, openCardPage, renderCardPage
 
 ## apps/web/src/13o-profile.js (17 lines, ~0.4k tokens) — PROFILE and GLOSSARY (v0.133.0, U14h): statistics read from the saved match history only, and the Learn page's keyword glossary.

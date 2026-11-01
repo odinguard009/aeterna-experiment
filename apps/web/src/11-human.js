@@ -13,8 +13,25 @@ function legalityHTML(card) {
    Reused everywhere effect text is shown (card detail, enlarged card, hand prompt). Input is plain card text; output is escaped HTML. */
 const FX_KW_START = /^(Burst:|Revive\b|Contract Skill\b|Contract Field\b|Awaken\b|Manifest\b|Mirage\b|Over Count\b|Brave\b|Seal\b|Grand Skill\b|Grand Field\b|Core Charge\b|Neo-Core Charge\b|Oracle\b|Unseal\b)/;
 const FX_LINE_STOP = ['(Can\'t Stack)', '[Can\'t Stack]', '(Unstackable)'];
+/* v0.205.1: the imported wiki text carries template calls ({{Invoke|Flash}}, {{Rush|Purple}}, {{Armor|Red}}, a {{#tag:tabber}} with a Japanese and an English version).
+   descText turns them into readable words: a tabber keeps its English / Standard version, a call becomes a ⟦Name: args⟧ marker that fxMark renders as a tappable word. */
+const TPL_NAMES = { ha: 'Heavy Armor', ua: 'Ultra Armor', catl: 'Catalyze', adcon: 'Advent Condition', mirage: 'Mirage', burst: 'Burst', sumcon: 'Sumcon', invoke: 'Invoke', rush: 'Rush', accel: 'Accel', seal: 'Seal', mani: 'Mani', unleash: 'Unleash' };
+function descText(raw) {
+  let t = String(raw || ''); if (t.indexOf('{{') < 0) return t;
+  t = t.replace(/\{\{#tag:\s*tabber\s*\|([\s\S]*)\}\}\s*$/, (m, body) => { const parts = body.split('{{!}}-{{!}}'); const pick = parts.find(p => /^\s*(Eng|English|Standard)/i.test(p)) || parts[parts.length - 1]; return pick.replace(/^\s*[^=\n]*=\s*/, '').trim(); });
+  return t.replace(/\{\{([^{}|]+)((?:\|[^{}]*)?)\}\}/g, (m, n, a) => {
+    n = n.trim(); if (n === '!') return '';
+    const nm = TPL_NAMES[n.toLowerCase()] || n.charAt(0).toUpperCase() + n.slice(1);
+    const args = a.split('|').slice(1).map(x => x.trim().replace(/^\((.*)\)$/, '$1').replace(/\s*\(\)$/, '').trim()).filter(x => x && x !== '!');
+    return '⟦' + nm + (args.length ? ': ' + args.join(' · ') : '') + '⟧';
+  });
+}
+/* tappable rule words (data-a="gloss"): the longest term first; the word is looked up in KEYWORD_GLOSSARY with its aliases */
+const glossText = v => KEYWORD_GLOSSARY[v] || KEYWORD_GLOSSARY[String(v).toUpperCase().replace(/[ -]+/g, '_')] || '';
+const FX_TERM_RE = new RegExp('\\b(' + Object.keys(TERM_GLOSSARY).concat(['Advent', 'Contract Advent', 'Manifest', 'Mirage', 'Burst', 'Flash', 'Rumble', 'Amplify', 'Heavy Exhaust']).filter(k => !k.includes("'")).sort((a, b) => b.length - a.length).map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')\\b', 'g');
+const familyRowHTML = c => (c.families || []).length ? `<div class="row" style="gap:6px;flex-wrap:wrap;align-items:center"><span class="cp-h">Family</span>${c.families.map(f => `<span class="tag dim">${esc(f)}</span>`).join('')}</div>` : '';
 function effectLines(text) {
-  let t = String(text || '').replace(/\s+/g, ' ').trim(); if (!t) return [];
+  let t = descText(text).replace(/\s+/g, ' ').trim(); if (!t) return [];
   // break before a run of level tags (unless it follows another tag, e.g. [Spirit][LV1]), and before a block keyword / timing tag that starts a sentence
   t = t.replace(/(?<!\])\s*((?:\[LV\d\])+)/g, (m, run, i) => (i ? '\n' : '') + run)
        .replace(/([.!:)\]])\s+(?=(Burst:|Revive\b|Contract Skill\b|Contract Field\b|Awaken\b|Manifest\b|Mirage\b|Over Count\b|\(Flash\)|\[Flash\]|\[Main\]|\(Can't Stack\)|\[Can't Stack\]))/g, '$1\n');
@@ -27,6 +44,18 @@ function effectLines(text) {
   return out;
 }
 function fxMark(line) {
+  return fxTerms(fxMark0(line));
+}
+/* text outside tags: ⟦marker⟧ -> tappable word, known rule words -> tappable (a word already inside a tappable chip stays as it is) */
+function fxTerms(h) {
+  return h.split(/(<[^>]+>|⟦[^⟧]*⟧)/).map(p => {
+    if (p.charAt(0) === '<') return p;
+    if (p.charAt(0) === '⟦') { const s = p.slice(1, -1), i = s.indexOf(': '), nm = i < 0 ? s : s.slice(0, i), rest = i < 0 ? '' : s.slice(i + 2);
+      return `<span class="fx-tpl"${glossText(nm.replace(/&#039;/g, "'")) ? ` data-a="gloss" data-v="${nm}"` : ''}>${nm}</span>${rest ? `<span class="fx-ta">${rest}</span>` : ''}`; }
+    return p.replace(FX_TERM_RE, (m, w) => `<span class="fx-term" data-a="gloss" data-v="${w}">${w}</span>`);
+  }).join('');
+}
+function fxMark0(line) {
   return esc(line)
     .replace(/\[LV(\d)\]/g, '<span class="fx-lv">LV$1</span>')
     .replace(/(\[(?:Can&#039;t Stack|Main|Flash)\]|\((?:Can&#039;t Stack|Unstackable)\))/g, '<span class="fx-kw">$1</span>')
@@ -50,6 +79,7 @@ function cardDetailHTML(card, noArt) {
       <div style="display:flex;justify-content:space-between;align-items:center;"><b>${esc(card.name)}</b>
         <span class="cd-cost" style="background:${col};color:${['yellow', 'white'].includes(card.symbol) ? '#141922' : '#fff'};">Cost ${card.cost}</span></div>
       <div style="font-size:8.5px;color:var(--text-muted);margin-top:3px;">${esc(card.token ? 'Token Spirit' : card.type)} · ${esc(cap(card.symbol))} · ${card.symbols} symbol${card.symbols === 1 ? '' : 's'} · Reduction: ${esc(red)}</div>
+      ${(card.families || []).length ? `<div class="cd-fam" style="font-size:8.5px;margin-top:3px;"><b>Family:</b> ${card.families.map(f => esc(f)).join(', ')}</div>` : ''}
       <div class="cd-lv" style="font-size:8.5px;margin-top:3px;">${lv}</div>
       ${noArt ? '' : legalityHTML(card)}
       ${pills ? `<div style="margin-top:4px;">${pills}</div>` : ''}</div>
@@ -85,7 +115,7 @@ function cardArtSVG(card) {
 }
 function cardFacePlaceholder(card, withCost, col, extra) {
   const bp = card.levels[0] && card.levels[0].bp != null ? card.levels[0].bp + ' BP' : card.brave ? 'Brave +' + card.brave.bp + ' BP' : '';
-  return `<div class="cface ph" style="--card-col:${col}${extra ? ';' + extra : ''}">${cardArtSVG(card)}<div class="ph-name">${esc(card.name)}</div><div class="ph-sub">${esc(card.token ? 'Token Spirit' : card.type)} · ${esc(cap(card.symbol))}${withCost ? ' · Cost ' + card.cost : ''}</div><div class="ph-txt">${slashBreak(esc(card.desc))}</div><div class="ph-bp">${bp}</div></div>`;
+  return `<div class="cface ph" style="--card-col:${col}${extra ? ';' + extra : ''}">${cardArtSVG(card)}<div class="ph-name">${esc(card.name)}</div><div class="ph-sub">${esc(card.token ? 'Token Spirit' : card.type)} · ${esc(cap(card.symbol))}${withCost ? ' · Cost ' + card.cost : ''}</div><div class="ph-txt">${slashBreak(esc(descText(card.desc).replace(/[⟦⟧]/g, '')))}</div><div class="ph-bp">${bp}</div></div>`;
 }
 function cardFaceHTML(card, withCost) {
   const col = `var(--color-${card.symbol})`;

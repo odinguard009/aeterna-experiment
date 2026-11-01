@@ -66,6 +66,58 @@ const KEYWORD_GLOSSARY = {
   'RUMBLE': 'During Attack: at the end of the battle, discard X cards from the opposing decktop, minus the cost of the blocking Spirit card that is now in the opposing Trash (the attacker must still be on the Field).',
   'AMPLIFY': 'Amplify: for each matching Spirit you control, during this battle, this Spirit gains +N BP (printed as {{Amplify|family +N}}).'
 };
+/* v0.205.1: printed rule words and timing tags that card text shows without explaining them. Own wording (reminders, not rule text);
+   effect text marks each word as tappable (11-human.js fxMark) and the Learn glossary lists them. Aliases resolve in glossText (11-human.js). */
+const TERM_GLOSSARY = {
+  'Legacy': 'A Legacy Spirit can be summoned by banishing cards with an EX Symbol (from where its text says). Each EX Symbol card banished that way counts as "banished via this Legacy", and many Legacy effects get stronger with that number.',
+  'True Release': 'A card with True Release reaches LV2 with only its Soul Core on it (True Release state). Effects that say "in True Release state" check for this. Higher levels still count the Soul Core as one core.',
+  'Clash': 'Clash: while this Spirit attacks, opposing Spirits must block it if possible. Other effects can name "Spirits with Clash" (for example +BP in your Attack Step) and then apply only to Spirits that have this word.',
+  'Rush': 'Rush <colour>: while you have a Field symbol of that colour, the effect printed after it takes place. Without the symbol the effect after it is skipped.',
+  'Accel': 'Accel: use this card\'s Accel effect from your Hand by paying the Accel cost. Symbols on your Field reduce that cost. The card then goes where its text says (often the Removed Zone), not to the Trash.',
+  'Invoke': 'Invoke Flash / Invoke Main: an ability usable at that timing. Pay the cost shown before the arrow (▶) in full; if you cannot, the effect after the arrow does not happen.',
+  'Seal': 'Seal: put your Soul Core from the place the card names onto your Life. While it sits in your Life you are Sealed, and "During Seal" effects are active.',
+  'Unleash': 'Unleash N: when the trigger happens you can send N cores from the named Grandwalker Nexus to this Spirit. The rest of the effect works only if you did.',
+  'Tribute': 'Tribute: after paying the summon cost you must send all cores from one of your Spirits that meets the stated cost to the stated place (Trash or Void). Summoning without paying skips Tribute.',
+  'Assault': 'Assault N: this Spirit may be refreshed up to N times per turn by exhausting one of your Nexuses (used when it attacks).',
+  'Excite': 'Excite N: a counter-based condition. If you have N or more counters when the trigger happens, the stated effect (often returning this card from the Trash to your Hand) can be used.',
+  'Immortality': 'Immortality: when the stated Spirit would be destroyed, it can come back (summoned) as the card says. "Summoned via Immortality" effects check for that return.',
+  'Armor': 'Armor <colour>: this card is unaffected by opposing Spirit / Nexus / Magic effects of that colour.',
+  'Heavy Armor': 'Heavy Armor <colour>: unaffected by opposing Spirit / Brave / Nexus / Magic effects of that colour (and it keeps Burst effects from being activated).',
+  'Ultra Armor': 'Ultra Armor <colour>: unaffected by opposing Spirit / Ultimate / Nexus / Magic effects of that colour.',
+  'Soul Magic': 'Soul Magic: a Magic card printed with a Soul Core cost; it is cast as the card says while your Soul Core is where the card needs it.',
+  'Sumcon': 'Sumcon: the summon condition of an Ultimate card. You can summon it only while you meet the condition printed (a control, colour, cost, family, Life or counter requirement).',
+  'Mani': 'Mani: summon this card from your Hand during the stated timing. Send your Soul Core to the Trash and pay one cost from the named target as the card says. It is a Manifest-style summon.',
+  'Fast Draw': 'Fast Draw N: an Invoke-style Flash ability. By paying the stated cost (usually discarding a named card) you can use its effect at the printed timing, once per turn.',
+  'High Speed': 'High Speed: a Flash ability. You can summon this card from your Hand at Flash Timing by paying its cost with the Lv1 cores taken only from your Reserve.',
+  'Crush': 'Crush (When Attacks): discard cards from the top of the opposing Deck equal to this Spirit\'s level.',
+  'Holy Life': 'Holy Life (When Attacks): when this Spirit\'s attack reduces the opposing Life, put a core from the Void on your Life.',
+  'Silver Wheel': 'Silver Wheel: a Flash effect that costs you exhausting this Spirit.',
+  'Awaken': 'Awaken: move cores from your other Spirits to this Spirit within the printed limit.',
+  'Revive': 'Revive: a Spirit or Grandwalker Nexus that can be summoned again, paying its cost, from the place the card names (for example your Trash).',
+  'Oracle': 'Oracle: put a core on a Grandwalker Nexus as the card says (a Grandwalker only receives cores through effects that target it).',
+  'Core Charge': 'Core Charge: add cores to your target as the card says when the trigger happens (Neo-Core Charge: from your Spirits being summoned).',
+  'Over Count': 'Over Count (OC): active while your Count meets the stated number, whatever the level. Its + value is added to the BP of the Spirit.',
+  'Soul Core': 'The Soul Core is your special core. It can be in your Reserve, on a Field card, in your Life or in the Trash, and many effects (Advent, Manifest, Seal) move it.',
+  'Soul State': 'A Contract card in Soul State is not on the Field. It stands in for your Soul Core and can be deployed later by an effect; it is not "controlled" until then.',
+  'Grandwalker': 'A Grandwalker Nexus is a special Nexus. Cores can only be put on it by Oracle or by effects that target it, and cores on it go to the Void when it leaves the Field.',
+  'Brave': 'A Brave card can combine with a Spirit on your Field. A combined Brave belongs to that Spirit and gives it the BP and effects printed on the Brave.',
+  'Nether Immortality': 'Nether Immortality: when your matching "Nether" Spirit is destroyed, you can summon this card from your Trash.',
+  'When Summoned': 'Timing tag: the effect activates when this card is summoned.',
+  'When Attacks': 'Timing tag: the effect activates when this Spirit attacks (in your Attack Step).',
+  'When Blocks': 'Timing tag: the effect activates when this Spirit blocks.',
+  'When Destroyed': 'Timing tag: the effect activates when this card is destroyed (it resolves before the card goes to the Trash).',
+  'When Destroyed by the Opponent': 'Timing tag: only when an opposing effect, or a BP comparison with an opposing Spirit, destroyed it.',
+  'When Battles': 'Timing tag: activates around the battle of this Spirit; "(When Battles)" texts usually say whether it is before, during or after the comparison.',
+  'When Advents': 'Timing tag: the effect activates when this card advents (is stacked on a Spirit).',
+  'When Manifests': 'Timing tag: the effect activates when this card is summoned by Manifest.',
+  'During Attack': 'Timing tag: the effect applies as long as this Spirit is attacking.',
+  'Either Attack Step': 'Timing: your own or the opponent\'s Attack Step.',
+  'Your Attack Step': 'Timing: during your Attack Step.',
+  'Opposing Attack Step': 'Timing: during the opponent\'s Attack Step.',
+  'Once per Turn: Same Name': 'Limit: the effect can be used once per turn in total by all your cards with the same name.',
+  'Can\'t Stack': 'The same effect cannot activate more than once at a time (extra copies of it are ignored).'
+};
+Object.assign(KEYWORD_GLOSSARY, TERM_GLOSSARY);
 /* Magic effects (data driven; imported Magic cards pick one of these in their "magic" field) */
 const MAGIC_FX = {
   DESTROY_BP_LE: { side: 'opp', ok: (s, v) => bpOf(s) <= v, text: v => `Destroy 1 opposing Spirit with ${v} BP or less.`,
