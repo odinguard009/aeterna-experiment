@@ -93,3 +93,18 @@ test('K-871 BS03-108 refreshes one vanilla exhausted Spirit at LV1 and all of th
     return out; })()`);
   assert.deepEqual(r, [1, 2, true], JSON.stringify(r));
 });
+
+test('K-872 BS03-104 draws when a vanilla Spirit is destroyed in an Attack Step and exhausts an opposing Spirit when one wins (LV2)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const n = BS.mkInst('BS03-104'); n.cores = 1; P.nexus = [n]; const out = [];
+    const v = BS.mkInst('BS01-001'), t = BS.mkInst('BS31-008'); P.deck = [1,2,3].map(() => BS.mkInst('BS01-001')); G.step = 5; G.active = P.key;
+    let h = P.hand.length; await BS.fireFx(P, 'ALLY_DIED', null, { subject: v }); out.push(P.hand.length - h);
+    h = P.hand.length; await BS.fireFx(P, 'ALLY_DIED', null, { subject: t }); out.push(P.hand.length - h);
+    const e = BS.mkInst('BS01-001'); e.cores = 1; O.spirits = [e];
+    await BS.fireFx(P, 'ALLY_BATTLE_WIN', null, { subject: v, attacking: true }); out.push(!!e.exhausted);
+    n.cores = 3; await BS.fireFx(P, 'ALLY_BATTLE_WIN', null, { subject: t, attacking: true }); out.push(!!e.exhausted);
+    await BS.fireFx(P, 'ALLY_BATTLE_WIN', null, { subject: v, attacking: true }); out.push(!!e.exhausted);
+    return out; })()`);
+  assert.deepEqual(r, [1, 0, false, false, true], JSON.stringify(r));
+});
