@@ -4692,7 +4692,6 @@
   "K_BURST",
   "M_THEN"
  ],
- "BS14-108": [],
  "BS14-109": [
   "A_REFRESH",
   "C_OPP_TURN"
@@ -14940,12 +14939,6 @@
   "A_BP_PLUS",
   "C_LEVEL",
   "K_BRAVE"
- ],
- "BS36-002": [
-  "A_REVEAL_DECK",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_SUMMONED"
  ],
  "BS36-003": [
   "A_SEAL",
