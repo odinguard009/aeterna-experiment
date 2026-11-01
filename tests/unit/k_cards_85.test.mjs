@@ -53,3 +53,21 @@ test('K-935 BS44-091 returns every opposing Spirit with 7000 BP or less', async 
     return [O.spirits.length, O.spirits[0] === big, O.hand.length - h]; })()`);
   assert.deepEqual(r, [1, true, 1]);
 });
+
+test('K-936 BS03-087 mills one opposing card per core it held when destroyed', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const s = BS.mkInst('BS03-087'); s.lostCores = 3; const d = O.deck.length, t = O.trash.length;
+    await BS.FX_ACTIONS.MILL_OPP.run({ p: P, opp: O, src: s, ctx: {} }, BS.CARDS['BS03-087'].effects[0].actions[0]);
+    return [d - O.deck.length, O.trash.length - t, BS.CARDS['BS03-087'].effects[0].trigger]; })()`);
+  assert.deepEqual(r, [3, 3, 'DESTROYED']);
+});
+
+test('K-937 BS01-087 each player moves 1 core from a Spirit to the Trash', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const a = BS.mkInst('BS01-001'), o = BS.mkInst('BS01-001'); a.cores = 2; o.cores = 3; P.spirits = [a]; O.spirits = [o];
+    await BS.FX_ACTIONS.BOTH_CORES_TO_TRASH.run({ p: P, opp: O, src: BS.mkInst('BS01-087'), ctx: {} }, BS.CARDS['BS01-087'].effects[0].actions[0]);
+    return [a.cores, o.cores, BS.CARDS['BS01-087'].effects[0].lv]; })()`);
+  assert.deepEqual(r, [1, 2, [1, 2]]);
+});

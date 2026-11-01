@@ -49,10 +49,6 @@
   "C_LEVEL",
   "T_SUMMONED"
  ],
- "BS01-087": [
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "BS01-094": [
   "C_LEVEL",
   "M_BY_DOING",
@@ -520,10 +516,6 @@
  "BS03-086": [
   "C_LEVEL",
   "K_CRUSH"
- ],
- "BS03-087": [
-  "C_LEVEL",
-  "T_DESTROYED"
  ],
  "BS03-090": [
   "C_LEVEL",
