@@ -29609,11 +29609,35 @@
   "image": "Lightning Aura.jpg",
   "block": "06",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "Eng Version= (Flash Step)(Your Main Phase) Attacking spirits you control without Rage get +1000BP until end of turn and those with Rage get +3000BP until end of turn."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "BP_PLUS",
+     "n": 1000,
+     "to": "own",
+     "battle": "attacking",
+     "match": {
+      "notKeyword": "Rage"
+     }
+    },
+    {
+     "do": "BP_PLUS",
+     "n": 3000,
+     "to": "own",
+     "battle": "attacking",
+     "match": {
+      "keyword": "Rage"
+     }
+    }
+   ]
+  }
  },
  {
   "id": "BS06-094",

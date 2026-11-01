@@ -173,3 +173,19 @@ test('K-945 BS10-104 offers exhaust one opposing Spirit or exhaust three opposin
   const r = await page.evaluate(`(() => BS.CARDS['BS10-104'].magic.actions[0].options.map(o => o.map(x => [x.do, x.n, x.costLe || null])))()`);
   assert.deepEqual(r, [[['EXHAUST_OPP', 1, null]], [['EXHAUST_OPP', 3, 4]]]);
 });
+
+test('K-946 BS19-097 and BS06-093 give the attacker +1000 and keyword-gated extra BP', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; O.reserve.n = 5;
+    const hk = (k, w) => [].concat(BS.CARDS[k].keywords || [], BS.CARDS[k].mechanics || []).some(x => String(x).toUpperCase() === w.toUpperCase()) || (BS.CARDS[k].desc || BS.CARDS[k].text || '').includes(w + ' (');
+    const ids = Object.keys(BS.CARDS).filter(k => BS.CARDS[k].type === 'Spirit');
+    const ch = ids.find(k => hk(k, 'Charge')), rg = ids.find(k => hk(k, 'Rage')), pl = ids.find(k => !hk(k, 'Charge') && !hk(k, 'Rage'));
+    const out = [];
+    for (const [card, id] of [['BS19-097', ch], ['BS19-097', pl], ['BS06-093', rg], ['BS06-093', pl]]) {
+      const s = BS.mkInst(id); s.cores = 2; P.spirits = [s]; G.attacker = s; s.bpMod = 0;
+      for (const a of BS.CARDS[card].magic.actions) await BS.FX_ACTIONS.BP_PLUS.run({ p: P, opp: O, src: BS.mkInst(card), ctx: {} }, a);
+      out.push(s.bpMod);
+    }
+    return out; })()`);
+  assert.deepEqual(r, [4000, 1000, 3000, 1000]);
+});

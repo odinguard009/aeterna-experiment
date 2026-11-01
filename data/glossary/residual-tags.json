@@ -1392,9 +1392,6 @@
   "K_CRUSH",
   "T_ALLY_DESTROYS"
  ],
- "BS06-093": [
-  "A_BP_PLUS"
- ],
  "BS06-095": [
   "A_BP_PLUS",
   "A_DRAW"
@@ -6114,9 +6111,6 @@
  "BS19-096": [
   "C_LEVEL",
   "T_ALLY_ATTACKS"
- ],
- "BS19-097": [
-  "A_BP_PLUS"
  ],
  "BS19-099": [
   "A_EXHAUST"
