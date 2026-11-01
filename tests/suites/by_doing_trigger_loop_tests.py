@@ -35,7 +35,7 @@ d('ZT-6','ZT Mirage',[{trigger:'MIRAGE_OWN_LIFE',actions:[{do:'DRAW',n:1}]}]);
 d('ZT-7','ZT Activator',[{trigger:'ACTIVATE',timing:['MAIN'],actions:[{do:'SUMMON_HAND',match:{name:['ZT Two']}},{do:'COUNTER',n:1}]}]);
 return 1})()"""
 def page(b, extra=''):
-    pg = b.new_page(viewport={'width': 1280, 'height': 800}); pg.add_init_script('window.BS_FIXTURES = true'); errs = []; ALLERR.append(errs)
+    pg = b.new_page(viewport={'width': 1280, 'height': 800}); errs = []; ALLERR.append(errs)
     pg.on("pageerror", lambda e: errs.append(str(e)[:300])); pg.on("dialog", lambda d: (errs.append('DIALOG'), d.dismiss()))
     pg.on("console", lambda m: errs.append('CONSOLE:' + m.text[:200]) if m.type == 'error' else None)
     pg.goto(OUT); ready(pg); ev(pg, ZT); return pg

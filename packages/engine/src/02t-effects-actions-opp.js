@@ -264,6 +264,18 @@ Object.assign(FX_ACTIONS, {
     txt: a => `pay ${a.n} cost${a.n === 1 ? '' : 's'}`,
     can: (c, a) => coresAvailable(c.p) >= a.n,
     run: async (c, a) => { if (!(await payInvokeCost(c.p, c.src, { pay: a.n }))) c.ctx.did = false; } },
+  /* v257 CHOOSE_ONE {options:[[actions],[actions]]}: "Do A. Or, do B." The player picks one list (the CPU takes the first one that can run); each list is 1-2 plain actions. */
+  CHOOSE_ONE: { chk: a => Array.isArray(a.options) && a.options.length === 2 && a.options.every(o => Array.isArray(o) && o.length >= 1 && o.length <= 2 && o.every(x => x && x.do !== 'BY' && x.do !== 'CHOOSE_ONE' && x.if == null) && !parseActionList(o).error) && Object.keys(a).every(k => ['do', 'if', 'options'].includes(k)),
+    txt: a => a.options.map(o => o.map(x => FX_ACTIONS[x.do].txt(x)).join(', then ')).join(' / or, '),
+    can: (c, a) => a.options.some(o => !FX_ACTIONS[o[0].do].can || FX_ACTIONS[o[0].do].can(c, o[0])),
+    run: async (c, a) => {
+      const ok = a.options.map(o => !FX_ACTIONS[o[0].do].can || FX_ACTIONS[o[0].do].can(c, o[0])), cap = t => t.charAt(0).toUpperCase() + t.slice(1);
+      if (!ok.some(Boolean)) { c.ctx.did = false; return; }
+      let i = ok.indexOf(true);
+      if (ok[0] && ok[1] && !c.p.cpu) i = (await ask({ title: `✨ ${esc(_nm(c))}`, peek: true, html: 'Choose one effect.', buttons: [{ label: cap(FX_ACTIONS.CHOOSE_ONE.txt({ options: [a.options[0]] })), cls: 'primary', value: 0 }, { label: cap(FX_ACTIONS.CHOOSE_ONE.txt({ options: [a.options[1]] })), cls: 'blue', value: 1 }] })) ? 1 : 0;
+      c.ctx.did = true;
+      for (const x of a.options[i]) { if (G.over) return; await FX_ACTIONS[x.do].run(c, x); }
+    } },
   BY: { chk: a => !!a.cost && typeof a.cost === 'object' && a.cost.do !== 'BY' && !parseActionList([a.cost]).error && Array.isArray(a.then) && a.then.length >= 1 && a.then.length <= 4 && a.then.every(x => x && x.do !== 'BY') && !parseActionList(a.then).error && (a.ask == null || typeof a.ask === 'boolean'),
     txt: a => `${a.ask ? 'you can, ' : ''}by ${FX_ACTIONS[a.cost.do].txt(a.cost)}, ${a.then.map(x => FX_ACTIONS[x.do].txt(x)).join(', then ')}`,
     can: (c, a) => { const ok = x => !FX_ACTIONS[x.do].can || FX_ACTIONS[x.do].can(c, x); return ok(a.cost) && ok(a.then[0]); },

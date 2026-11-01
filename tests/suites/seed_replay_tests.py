@@ -9,7 +9,7 @@ res = []; ALLERR = []
 def chk(n, c, x=''):
     res.append(bool(c)); print(('PASS ' if c else 'FAIL ') + f'[{len(res)}] ' + n, x if not c else '')
 def page(b, sim=False):
-    pg = b.new_page(viewport={'width': 1280, 'height': 800}); pg.add_init_script('window.BS_FIXTURES = true'); errs = []; ALLERR.append(errs)
+    pg = b.new_page(viewport={'width': 1280, 'height': 800}); errs = []; ALLERR.append(errs)
     pg.on("pageerror", lambda e: errs.append(str(e)[:300])); pg.on("dialog", lambda d: (errs.append('DIALOG'), d.dismiss()))
     pg.goto(OUT + ('?sim=1' if sim else '')); ready(pg); return pg
 def ev(pg, js, *a): return pg.evaluate(js, *a) if a else pg.evaluate(js)

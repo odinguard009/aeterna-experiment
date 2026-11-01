@@ -19,8 +19,6 @@ try:
                 return 'file:///' + local.replace(os.sep, '/')
         return url
     def goto(self, url, *a, **k):
-        if not getattr(self, '_bs_fixtures', False):    # the product no longer registers the practice cards; the suites opt in (see 00-config.js)
-            self.add_init_script('window.BS_FIXTURES = true;'); self._bs_fixtures = True
         r = _orig(self, _file_url(url), *a, **k)
         try: self.evaluate(_JS)
         except Exception: pass

@@ -12,7 +12,7 @@ async function runActions(c, e, trg) {
     if (!FX_ACTIONS[a.do]) { fxUnknown('action', a.do); continue; }             // v0.59.4 strict effects (release: skip it)
     c.ctx.did = true;
     const by = G.fxBy, bySrc = G.fxSrc; G.fxBy = c.p.key; G.fxSrc = c.src;                 // v0.73: whose effect is resolving (LEAVES / byOppFx: "due to opposing effects", depletion and returns included)
-    try { await FX_ACTIONS[a.do].run(c, a); } finally { G.fxBy = by; G.fxSrc = bySrc; }
+    try { await FX_ACTIONS[a.do].run(c, chargeAction(c, a)); } finally { G.fxBy = by; G.fxSrc = bySrc; }
     last = c.ctx.did !== false;
     if (a.cost && !last) return;                        // v0.43: a cost that could not be paid stops the rest of the effect
   }

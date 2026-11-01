@@ -83,6 +83,9 @@ function destroyCase(card, a) {
 const PRE_RESET = `for (const q of [P, O]) { q.spirits = q.spirits.filter(x => x === src); q.nexus = q.nexus.filter(x => x === src); q.trash = []; q.hand = []; q.deck = []; } for (let j = 0; j < 4; j++) dk(${J(FILL)});`;
 
 function exhaustCase(a, heavy) {
+  if (!heavy && a.lv != null && only(a, ['n', 'lv']) && a.n === 1) return { fix: [], body: `const cs = Object.values(BS.CARDS).filter(c => c.type === 'Spirit' && c.levels && c.levels.length >= 3 && c.levels[0].cores < c.levels[1].cores && c.levels[1].cores < c.levels[2].cores);
+      if (!cs.length) return ''; const c = cs[0], hit = sp(c.id, O, c.levels[A.lv - 1].cores), miss = sp(c.id, O, c.levels[A.lv % 3].cores);
+      await run(src, RA); if (!hit.exhausted) return 'the target of the chosen level was not exhausted'; return miss.exhausted ? 'a Spirit of another level was exhausted' : '';` };
   if (!only(a, heavy ? ['n', 'exhaustedOnly'] : ['n', 'costLe', 'oppChooses'])) return null;
   const c0 = a.costLe != null ? a.costLe : 3, flag = heavy ? 'heavy' : 'exhausted';
   const fix = [{ cost: c0, bp: 3000 }].concat(a.costLe != null ? [{ cost: c0 + 1, bp: 9000 }] : []);
@@ -97,6 +100,12 @@ function exhaustCase(a, heavy) {
 
 function bounceCase(a) {
   if (a.all) return only(a, ['all', 'kind', 'to', 'bpLe']) && a.kind === 'spirit' && { fix: [{ cost: 3, bp: a.bpLe }, { cost: 3, bp: a.bpLe + 1000 }], body: `const a1 = sp(${J(sid(3, a.bpLe))}, O), a2 = sp(${J(sid(3, a.bpLe))}, O), big = sp(${J(sid(3, a.bpLe + 1000))}, O); await run(src, RA); return gone(a1) && gone(a2) && !gone(big) && O.hand.includes(a1) && O.hand.includes(a2) ? '' : 'BOUNCE all: wrong set returned';` };      // v242
+  if (a.match) {      // v255 match: only an opposing Spirit that matches is returned
+    if (!only(a, ['kind', 'to', 'match']) || a.kind !== 'spirit' || !['hand', 'deckBottom'].includes(a.to)) return null;
+    return { fix: [], body: `const yes = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && fxMatch(c, A.match)), no = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && !fxMatch(c, A.match)); if (!yes || !no) return '';
+      for (let j = 0; j < 3; j++) dk(${J(FILL)}, O);
+      const t = sp(yes.id, O), u = sp(no.id, O); await run(src, RA); if (!gone(t)) return 'the matching target is still on the field'; return gone(u) ? 'a non-matching target was returned' : '';` };
+  }
   if (!only(a, ['kind', 'to', 'bpLe', 'costLe', 'exhaustedOnly', 'n', 'refreshedOnly'])) return null;
   if (!['spirit', 'nexus', 'any'].includes(a.kind) || !['hand', 'deckBottom'].includes(a.to)) return null;
   const nexus = a.kind === 'nexus', cost = a.costLe != null ? a.costLe : 3, bp = a.bpLe != null ? a.bpLe : 3000, ex = a.exhaustedOnly ? 'true' : 'false';
@@ -380,7 +389,8 @@ function simple(card, a) {
 /** The generated case for one action of a card: { name, fix, onField, body } or { skip: shape }. */
 export function caseFor(card, ei, ai, a) {
   let r;
-  if (a.do === 'DESTROY') r = destroyCase(card, a);
+  if (a.do === 'CHOOSE_ONE') r = a.options.every(o => o.length === 1 && o[0].do === 'DRAW_BOTTOM' || o.length === 1 && o[0].do === 'DRAW') && a.options.every(o => o[0].n === a.options[0][0].n) ? { fix: [], body: `for (let j = 0; j < 6; j++) dk(${J(FILL)}); const h = P.hand.length; await run(src, RA); return P.hand.length - h === A.options[0][0].n ? '' : 'the chosen draw did not give ' + A.options[0][0].n + ' cards';` } : null;
+  else if (a.do === 'DESTROY') r = destroyCase(card, a);
   else if (a.do === 'EXHAUST_OPP') r = exhaustCase(a, false);
   else if (a.do === 'HEAVY_EXHAUST_OPP') r = exhaustCase(a, true);
   else if (a.do === 'BOUNCE_OPP') r = bounceCase(a);

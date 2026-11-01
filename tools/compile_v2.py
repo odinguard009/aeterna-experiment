@@ -252,10 +252,10 @@ def clause(x):
         mt = {'type': 'Spirit'}
         if m.group(1): mt['costLe'] = int(m.group(1))
         return [{'do': 'DESTROY_OWN', 'match': mt, 'voidByCost': True}]
-    m = re.match(r'^destroy an? (\d+) bp or less spirit$', x)      # v0.183 DESTROY_ANY bpLe (either side)
-    if m: return [{'do': 'DESTROY_ANY', 'kind': 'spirit', 'bpLe': int(m.group(1))}]
+    m = re.match(r'^destroy (?:an?|target) (\d+) ?bp or less spirit$|^destroy (?:an?|target) spirit with (\d+) ?bp or less$', x)      # v0.183 DESTROY_ANY bpLe (either side)
+    if m: return [{'do': 'DESTROY_ANY', 'kind': 'spirit', 'bpLe': int(m.group(1) or m.group(2))}]
     if x == 'destroy a nexus. if an opposing nexus is destroyed, draw a card': return [{'do': 'DESTROY_ANY', 'kind': 'nexus', 'drawIfOpp': True}]      # v0.183
-    m = re.match(r'^destroy (?:a nexus|an exhausted spirit)(?: you or (?:the|your) opponent controls)?$', x)      # v0.183 DESTROY_ANY (either side)
+    m = re.match(r'^destroy (?:a nexus|target nexus|an exhausted spirit|target exhausted spirit)(?: you or (?:the|your) opponent controls)?$', x)      # v0.183 DESTROY_ANY (either side)
     if m: return [{'do': 'DESTROY_ANY', 'kind': 'nexus'}] if 'nexus' in x else [{'do': 'DESTROY_ANY', 'kind': 'spirit', 'exhaustedOnly': True}]
     m = re.match(r'^(destroy|heavy exhaust|heavily exhaust|exhaust) (.+)$', x)
     if m:

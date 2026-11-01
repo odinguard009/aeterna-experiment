@@ -51,7 +51,7 @@ function parseCond(c) {
   if (typeof c !== 'object' || c === null) return { error: 'effect "if" must be an object' };
   for (const [k, v] of Object.entries(c)) {
     if (k === 'not') { const sub = parseCond(v); if (sub.error || Object.keys(v).length === 0 || 'not' in v) return { error: 'condition "not" must hold one valid condition (no nesting): ' + (sub.error || 'empty') }; continue; }      // v0.135
-    const okInt = ['oppLifeGe', 'blocksGe', 'oppExhaustedGe', 'oppReserveGe', 'handLe', 'lifeLe', 'anyLifeLe', 'counterGe', 'soulGe', 'oppHandGe', 'voidGe', 'soulLe', 'putGe', 'lifeGe', 'oppRemovedGe', 'removedGe', 'oppSpiritsLe', 'oppNexusGe', 'oppTrashGe', 'selfBpGe', 'blockerBpLe', 'attackerCostLe', 'oppRefreshedLe', 'legacyGe'].includes(k) && Number.isInteger(v);
+    const okInt = ['oppLifeGe', 'blocksGe', 'oppExhaustedGe', 'oppReserveGe', 'reserveGe', 'handLe', 'lifeLe', 'anyLifeLe', 'counterGe', 'soulGe', 'oppHandGe', 'voidGe', 'soulLe', 'putGe', 'lifeGe', 'oppRemovedGe', 'removedGe', 'oppSpiritsLe', 'oppNexusGe', 'oppTrashGe', 'selfBpGe', 'blockerBpLe', 'attackerCostLe', 'oppRefreshedLe', 'legacyGe'].includes(k) && Number.isInteger(v);
     const okStr = ((k === 'controlName' || k === 'hasName' || k === 'soulOn' || k === 'nexusBraved' || k === 'pickedKeyword' || k === 'pickedFamily' || k === 'attackerKeyword' || k === 'blockerKeyword') && typeof v === 'string' && v.length > 0 && v.length <= 60)
       || (k === 'controlName' && Array.isArray(v) && v.length > 1 && v.length <= 4 && v.every(y => typeof y === 'string' && y.length > 0 && y.length <= 60));
     const okCol = (k === 'trashAllColor' && COLORS.includes(v)) || k === 'hasSymbol' && (COLORS.includes(v) || (Array.isArray(v) && v.length >= 2 && v.length <= 3 && new Set(v).size === v.length && v.every(y => COLORS.includes(y))));      // v0.184: a list = all of those symbols
@@ -124,7 +124,7 @@ function parseEffects(arr) {
     if (e.match != null) { const m = e.match; if (typeof m !== 'object' || [].concat(m.name || [], m.family || [], m.familyAll || []).some(x => typeof x !== 'string')) return { error: '"match" must look like {"name":["Crimson"],"family":["Lava Fish"]}' }; if (m.costGe != null && !Number.isInteger(m.costGe)) return { error: '"match.costGe" must be a whole number' }; if (m.type != null && !['Spirit', 'Nexus', 'Magic', 'Brave', 'Ultimate'].includes(m.type)) return { error: '"match.type" must be Spirit, Nexus, Magic, Brave or Ultimate' }; if (m.keyword != null && (typeof m.keyword !== 'string' || !m.keyword.trim())) return { error: '"match.keyword" must be a string' }; if (m.keywordAny != null && !(Array.isArray(m.keywordAny) && m.keywordAny.length >= 2 && m.keywordAny.length <= 4 && m.keywordAny.every(x => typeof x === 'string' && x.trim()))) return { error: '"match.keywordAny" must be a list of 2-4 keywords' }; o.match = { name: m.name ? m.name.map(String) : undefined, family: m.family ? m.family.map(String) : undefined, familyAll: m.familyAll ? m.familyAll.map(String) : undefined, keyword: m.keyword ? String(m.keyword) : undefined, keywordAny: Array.isArray(m.keywordAny) && m.keywordAny.length >= 2 && m.keywordAny.length <= 4 && m.keywordAny.every(x => typeof x === 'string' && x) ? m.keywordAny.slice() : undefined, noText: m.noText === true || undefined, costGe: m.costGe != null ? m.costGe : undefined, costLe: Number.isInteger(m.costLe) ? m.costLe : undefined, costIn: Array.isArray(m.costIn) && m.costIn.length >= 1 && m.costIn.length <= 4 && m.costIn.every(x => Number.isInteger(x) && x >= 0 && x <= 30) ? m.costIn.slice() : undefined, type: m.type || undefined, color: m.color || undefined, noUlt: m.noUlt === true || undefined, symbolsGe: Number.isInteger(m.symbolsGe) && m.symbolsGe >= 1 && m.symbolsGe <= 5 ? m.symbolsGe : undefined, bpLe: Number.isInteger(m.bpLe) && m.bpLe >= 0 ? m.bpLe : undefined, team: typeof m.team === "string" && m.team ? m.team : undefined, exhausted: typeof m.exhausted === "boolean" ? m.exhausted : undefined, bpGe: Number.isInteger(m.bpGe) && m.bpGe >= 0 ? m.bpGe : undefined, bpBoosted: m.bpBoosted === true || undefined, originalNexus: m.originalNexus === true || undefined }; }
     if (e.trigger === 'STATIC' && e.flag != null) {
       if (!STATIC_FLAGS.includes(e.flag)) return { error: `STATIC "flag" must be one of ${STATIC_FLAGS.join(', ')}` };
-      o.flag = e.flag; o.to = e.to === 'own' || e.to === 'all' ? e.to : 'self'; if (e.braved === true) o.braved = true;      // v0.60 [When Braved] static effects
+      o.flag = e.flag; if (e.to === 'opp' && e.flag !== 'CANT_ATTACK' && e.flag !== 'CANT_BLOCK') return { error: 'STATIC "to":"opp" is only for CANT_ATTACK / CANT_BLOCK' }; o.to = e.to === 'own' || e.to === 'all' || e.to === 'opp' ? e.to : 'self'; if (e.braved === true) o.braved = true;      // v0.60 [When Braved] static effects
       if (e.flag === 'CORE_SAFE') {                               // v190 "the cores can't be moved / can't be brought to less than one"
         if (!['move', 'floor'].includes(e.mode)) return { error: 'CORE_SAFE "mode" must be "move" or "floor"' };
         o.mode = e.mode; o.to = ['self', 'own', 'oppBlockers'].includes(e.to) ? e.to : 'self';
@@ -134,6 +134,11 @@ function parseEffects(arr) {
         if (!COLORS.includes(e.color)) return { error: e.flag + ' needs a "color"' };
         o.color = e.color; o.n = Number.isInteger(e.n) && e.n >= 1 && e.n <= 3 ? e.n : 1;
         if (e.perSpirit != null) { const m = e.perSpirit; if (e.flag !== 'SUMMON_SYMBOL' || !m || !Array.isArray(m.costIn) || !m.costIn.length || m.costIn.length > 8 || !m.costIn.every(Number.isInteger) || Object.keys(m).length !== 1) return { error: '"perSpirit" (SUMMON_SYMBOL only) must look like {"costIn":[2]}' }; o.perSpirit = { costIn: m.costIn.slice() }; }      // v0.196 "all your Cost 2 Spirits gain an extra symbol": one per such Spirit
+      }
+      if (e.flag === 'CHARGE') {                                  // v250 Charge
+        if (!['cores', 'mill', 'bp', 'bpMinus', 'exhaust', 'refresh'].includes(e.kind)) return { error: 'CHARGE "kind" must be cores, mill, bp, bpMinus, exhaust or refresh' };
+        if (!Number.isInteger(e.n) || e.n < 1 || e.n > 2000) return { error: 'CHARGE needs a whole-number "n"' };
+        o.kind = e.kind; o.n = e.n; if (e.noUlt === true) o.noUlt = true;
       }
       if (e.flag === 'TREAT_LV3' && e.n != null) { if (e.n !== 2) return { error: 'TREAT_LV3 "n" must be 2 (default 3)' }; o.n = 2; }      // v0.184 "treated as being at LV2"
       if (e.flag === 'HAND_COST') {                               // v0.186 "The cost of all <family> Spirit cards in your Hand becomes N"
@@ -210,8 +215,9 @@ function parseEffects(arr) {
       if (e.flag === 'UNAFFECTED' && e.from != null) {               // v0.58 Armor / Heavy Armor / Ultra Armor / "unaffected by opposing <colour> <types> effects"
         const f = e.from, TY = ['Spirit', 'Brave', 'Nexus', 'Magic', 'Ultimate'];
         if (typeof f !== 'object' || (f.colors != null && (!Array.isArray(f.colors) || !f.colors.length || f.colors.some(x => !COLORS.includes(x))))
-          || (f.types != null && (!Array.isArray(f.types) || !f.types.length || f.types.some(x => !TY.includes(x))))) return { error: 'UNAFFECTED "from" must look like {"colors":["purple"],"types":["Spirit","Magic"]}' };
-        o.from = {}; if (f.colors) o.from.colors = f.colors.slice(); if (f.types) o.from.types = f.types.slice();
+          || (f.types != null && (!Array.isArray(f.types) || !f.types.length || f.types.some(x => !TY.includes(x))))
+          || (f.costLe != null && !(Number.isInteger(f.costLe) && f.costLe >= 0 && f.costLe <= 20) && f.costLe !== 'self' && f.costLe !== 'counters')) return { error: 'UNAFFECTED "from" must look like {"colors":["purple"],"types":["Spirit","Magic"],"costLe":5|"self"|"counters"}' };
+        o.from = {}; if (f.colors) o.from.colors = f.colors.slice(); if (f.types) o.from.types = f.types.slice(); if (f.costLe != null) o.from.costLe = f.costLe;
       }
       if (e.flag === 'COST_DESTROY_PLUS') {                       // v0.37: the limit of your "Cost Destruction effects" +n (optionally per Saga Brave you control, optionally only for sources of a family)
         if (!Number.isInteger(e.n) || e.n < 1 || e.n > 10) return { error: 'COST_DESTROY_PLUS needs a whole-number "n" (1-10)' };

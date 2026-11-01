@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Lane K release at 50 new complete cards: version + CHANGELOG + build + push main,
-# dispatch Regression, no waiting for CI/Regression (the next 50-cycle checks them).
+# Lane K release at 100 new complete cards: version + CHANGELOG + build + push main,
+# dispatch Regression, no waiting for CI/Regression (the next 100-cycle checks them).
 # Usage: bash tools/lane_k_release.sh [--dry-run] [--force] [--version X.Y.Z] [--notes FILE]
 set -euo pipefail
 cd "$(git rev-parse --show-toplevel)"
@@ -35,13 +35,13 @@ else:
 print(now - old, old, now)
 PY
 )
-echo "[release] complete=$complete baseline=$baseline new=$new/50"
-if [ "$new" -lt 50 ] && [ "$FORCE" = 0 ]; then echo "[release] not due ($new/50); nothing to do"; exit 0; fi
+echo "[release] complete=$complete baseline=$baseline new=$new/100"
+if [ "$new" -lt 100 ] && [ "$FORCE" = 0 ]; then echo "[release] not due ($new/100); nothing to do"; exit 0; fi
 
 if [ -n "$VERSION_ARG" ]; then next="$VERSION_ARG"; else
   next=$(node -e "const v=require('./package.json').version.split('.').map(Number); console.log(v[0]+'.'+(v[1]+1)+'.0')")
 fi
-nextTarget=$((complete + 50))
+nextTarget=$((complete + 100))
 nextVer=$(node -e "const v='$next'.split('.').map(Number); console.log(v[0]+'.'+(v[1]+1)+'.0')")
 echo "[release] v$next at complete $complete; next cycle v$nextVer at complete $nextTarget"
 [ -s "$NOTES" ] || { echo "[release] write $NOTES first (bullets: what changed, then limits)" >&2; exit 1; }
@@ -84,7 +84,7 @@ NODE
 # Mission state for the next cycle (part of the release commit).
 sed -i -E "s/^- last release:.*/- last release: v$next (complete $complete)/" docs/ai/lane-k-mission.md
 sed -i -E "s/^- next release:.*/- next release: v$nextVer (complete $nextTarget)/" docs/ai/lane-k-mission.md
-sed -i -E "s/^- cycle:.*/- cycle: 0\/50 new complete cards since v$next/" docs/ai/lane-k-mission.md
+sed -i -E "s/^- cycle:.*/- cycle: 0\/100 new complete cards since v$next/" docs/ai/lane-k-mission.md
 
 node tools/build.mjs
 bash tools/release_docs.sh
@@ -114,4 +114,4 @@ if due=$(bash tools/regression_due.sh 2>/dev/null); then
 else echo "[release] Regression: $due"; fi
 
 echo "[release] v$next pushed to main; CI and the GitHub Release run in the background."
-echo "[release] next boundary: check CI green, Release v$next exists, newest Regression green before the next 50-cycle."
+echo "[release] next boundary: check CI green, Release v$next exists, newest Regression green before the next 100-cycle."
