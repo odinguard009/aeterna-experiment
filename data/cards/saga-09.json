@@ -252,12 +252,29 @@
   "image": "Shamant-Baboon.png",
   "block": "44",
   "saga": 9,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Summoned)",
-   "Return a Grandwalker Nexus card from your Trash to your Hand."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "RETURN_TRASH",
+      "anyType": true,
+      "match": {
+       "type": "Nexus",
+       "family": [
+        "Grandwalker"
+       ]
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS44-007",

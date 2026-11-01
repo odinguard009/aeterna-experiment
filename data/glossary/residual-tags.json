@@ -11057,11 +11057,6 @@
   "K_ULTIMATE",
   "M_OPTIONAL"
  ],
- "BS30-009": [
-  "A_DRAW",
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "BS30-010": [
   "C_LEVEL",
   "K_ULTIMATE",
@@ -20615,12 +20610,6 @@
   "K_BURST",
   "K_GRANDWALKER",
   "M_OPTIONAL",
-  "T_SUMMONED"
- ],
- "BS44-006": [
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "K_GRANDWALKER",
   "T_SUMMONED"
  ],
  "BS44-007": [

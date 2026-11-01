@@ -129,3 +129,19 @@ test('K-898 BS06-028 when blocked the opponent exhausts one of their Spirits', a
     await BS.fireFx(P, 'ALLY_BLOCKED', a, { attacker: a, blocker: b }); return [b.exhausted, c.exhausted].filter(Boolean).length; })()`);
   assert.equal(r, 1, JSON.stringify(r));
 });
+
+test('K-899 BS30-009 mills three from the own deck then draws one', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const a = BS.mkInst('BS30-009'); a.cores = 1; P.spirits = [a]; P.deck = [1,2,3,4,5,6].map(() => BS.mkInst('BS01-001')); P.trash = []; P.hand = [];
+    await BS.fireFx(P, 'SUMMONED', a, { subject: a }); return [P.trash.length, P.hand.length, P.deck.length]; })()`);
+  assert.deepEqual(r, [3, 1, 2], JSON.stringify(r));
+});
+
+test('K-900 BS44-006 returns a Grandwalker Nexus card from the Trash to the Hand', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const a = BS.mkInst('BS44-006'); a.cores = 1; P.spirits = [a]; const n = BS.mkInst('BS48-SP01'); const o = BS.mkInst('BS01-109'); P.trash = [o, n]; P.hand = [];
+    await BS.fireFx(P, 'SUMMONED', a, { subject: a }); return [P.hand.map(x => x.id), P.trash.map(x => x.id)]; })()`);
+  assert.deepEqual(r, [['BS48-SP01'], ['BS01-109']], JSON.stringify(r));
+});
