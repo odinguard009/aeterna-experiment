@@ -31047,12 +31047,6 @@
   "M_OPTIONAL",
   "T_SUMMONED"
  ],
- "BS54-034": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "S_UNAFFECTED"
- ],
  "BS54-035": [
   "A_BANISH",
   "A_EXHAUST",
@@ -31831,12 +31825,6 @@
   "S_UNAFFECTED",
   "T_DESTROYED",
   "T_DESTROYED_OPP"
- ],
- "BS55-043": [
-  "C_LEVEL",
-  "K_ARMOR",
-  "K_BRAVE",
-  "S_UNAFFECTED"
  ],
  "BS55-044": [
   "A_REFRESH",
@@ -32818,12 +32806,6 @@
   "M_THEN",
   "T_ATTACKS",
   "T_SUMMONED"
- ],
- "BS56-033": [
-  "C_LEVEL",
-  "K_ARMOR",
-  "K_BRAVE",
-  "S_UNAFFECTED"
  ],
  "BS56-034": [
   "A_EXHAUST",
@@ -34326,12 +34308,6 @@
   "M_OPTIONAL",
   "T_MIRAGE_LIFE",
   "T_SUMMONED"
- ],
- "BS58-036": [
-  "C_LEVEL",
-  "K_ARMOR",
-  "K_BRAVE",
-  "S_UNAFFECTED"
  ],
  "BS58-037": [
   "A_VOID",

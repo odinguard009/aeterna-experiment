@@ -57,3 +57,30 @@ test('K-786 BS74-045: Awakened Dragon Spirits are unaffected by opposing purple/
     return res;`);
   assert.deepEqual(r, { purple: [true, true, false], white: [true, true, false], blue: [true, true, false], red: [false, false, false] }, JSON.stringify(r));
 });
+
+const RED = `Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit' && (BS.CARDS[i].colors || [BS.CARDS[i].symbol]).join() === 'red')`;
+const BLUE = `Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit' && (BS.CARDS[i].colors || [BS.CARDS[i].symbol]).join() === 'blue')`;
+
+test('K-787 BS55-043: every own Spirit is unaffected by opposing red effects, not blue ones', async () => {
+  const r = await run(`const t = sp('BS75-011', P, 1); sp('BS55-043', P, 3);
+    return [BS.fxImmune(P, t, by(sp(${RED}, O, 1))), BS.fxImmune(P, t, by(sp(${BLUE}, O, 1)))];`);
+  assert.deepEqual(r, [true, false], JSON.stringify(r));
+});
+
+test('K-788 BS56-033 LV2: itself and Astroblazer+Machine Beast Spirits resist red; a Machine Beast alone does not', async () => {
+  const r = await run(`const me = sp('BS56-033', P, 3); const both = sp('BS58-036', P, 1); const mbOnly = sp('BS73-035', P, 1); const red = sp(${RED}, O, 1);
+    return [BS.fxImmune(P, me, by(red)), BS.fxImmune(P, both, by(red)), BS.fxImmune(P, mbOnly, by(red))];`);
+  assert.deepEqual(r, [true, true, false], JSON.stringify(r));
+});
+
+test('K-789 BS58-036 LV2: own purple/white Proximate/Astroblazer Spirits resist red and purple effects', async () => {
+  const r = await run(`const me = sp('BS58-036', P, 3); const red = sp(${RED}, O, 1), blue = sp(${BLUE}, O, 1);
+    const a = [BS.fxImmune(P, me, by(red)), BS.fxImmune(P, me, by(blue))]; const other = sp('BS75-011', P, 1); return a.concat([BS.fxImmune(P, other, by(red))]);`);
+  assert.deepEqual(r, [true, false, false], JSON.stringify(r));
+});
+
+test('K-790 BS54-034: unaffected by opposing Spirit/Nexus effects only while you control a Grandstone Nexus', async () => {
+  const r = await run(`const t = sp('BS54-034', P, 3); const o = sp('BS75-011', O, 1); const before = BS.fxImmune(P, t, by(o));
+    const n = BS.mkInst('BS54-061'); n.cores = 0; P.nexus.push(n); return [before, BS.fxImmune(P, t, by(o))];`);
+  assert.deepEqual(r, [false, true], JSON.stringify(r));
+});
