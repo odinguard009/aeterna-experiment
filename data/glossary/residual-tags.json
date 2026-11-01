@@ -20618,11 +20618,6 @@
   "T_DESTROYED",
   "T_DESTROYED_OPP"
  ],
- "BS44-017": [
-  "C_CONTROL",
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "BS44-018": [
   "A_REVEAL_ADD",
   "A_REVEAL_DECK",
@@ -30220,13 +30215,6 @@
   "K_ULTIMATE",
   "M_OPTIONAL",
   "T_SUMMONED"
- ],
- "BS54-045": [
-  "A_RETURN_TRASH",
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "T_DESTROYED",
-  "T_DESTROYED_OPP"
  ],
  "BS54-046": [
   "C_LEVEL",

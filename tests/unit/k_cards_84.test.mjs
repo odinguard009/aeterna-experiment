@@ -99,3 +99,28 @@ test('K-913 BS20-027 exhausts every 3000 BP or less Spirit; with a White symbol 
     return out; })()`);
   assert.deepEqual(r, [[true, 0, 1], [true, 1, 0]], JSON.stringify(r));
 });
+
+test('K-914 BS44-017 sends an opposing Spirit core to the Reserve; with a Nexus it also draws', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const mk = id => { const x = BS.mkInst(id); x.cores = 3; return x; };
+    const nx = 'TRAIN-N1';
+    const out = [];
+    for (const n of [false, true]) {
+      const t = mk('BS44-017'); P.spirits = [t]; P.nexus = n ? [BS.mkInst(nx)] : []; const o = mk('BS01-001'); O.spirits = [o]; const c0 = o.cores; const d0 = P.deck.length;
+      await BS.fireFx(P, 'SUMMONED', t, { subject: t });
+      out.push([c0 - o.cores, d0 - P.deck.length]);
+    }
+    return out; })()`);
+  assert.deepEqual(r, [[1, 0], [1, 1]], JSON.stringify(r));
+});
+
+test('K-915 BS54-045 returns a Yellow Primal Nexus from the Trash when destroyed by the opponent', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const nid = Object.keys(BS.CARDS).find(k => { const c = BS.CARDS[k]; return c.type === 'Nexus' && (c.colors || [c.symbol]).includes('yellow') && (c.families || []).includes('Primal'); });
+    const t = BS.mkInst('BS54-045'); t.cores = 1; P.spirits = []; P.trash = [t, BS.mkInst(nid)]; t.lostLv = 0; P.hand = [];
+    await BS.fireFx(P, 'DESTROYED', t, { subject: t, byOpp: true });
+    return [P.hand.length, P.trash.length, !!nid]; })()`);
+  assert.deepEqual(r, [1, 1, true], JSON.stringify(r));
+});
