@@ -494,11 +494,6 @@
   "C_LEVEL",
   "T_BLOCKS"
  ],
- "BS03-050": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
  "BS03-053": [
   "C_LEVEL"
  ],
@@ -536,10 +531,6 @@
   "C_LEVEL"
  ],
  "BS03-079": [
-  "C_LEVEL"
- ],
- "BS03-082": [
-  "A_REFRESH",
   "C_LEVEL"
  ],
  "BS03-084": [
@@ -2915,11 +2906,6 @@
  "BS11-039": [
   "C_LEVEL",
   "M_OPTIONAL"
- ],
- "BS11-040": [
-  "A_REFRESH",
-  "C_LEVEL",
-  "K_BRAVE"
  ],
  "BS11-042": [
   "A_VOID",
@@ -9561,12 +9547,6 @@
   "K_ULTIMATE",
   "S_MUST_BLOCK",
   "T_ATTACKS"
- ],
- "BS27-008": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_SUMMONED"
  ],
  "BS27-009": [
   "C_LEVEL",

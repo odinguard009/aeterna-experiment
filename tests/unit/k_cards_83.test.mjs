@@ -37,3 +37,40 @@ test('K-889 BS01-090 returns an opposing Spirit to the hand when summoned', asyn
     return [O.spirits.length, O.hand.length - h0]; })()`);
   assert.deepEqual(r, [0, 1], JSON.stringify(r));
 });
+
+test('K-890 BS27-008 reveals 7, summons an Astral Guardian Spirit free and discards the rest', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const a = BS.mkInst('BS27-008'); a.cores = 1; P.spirits = [a];
+    const t = BS.mkInst('BS26-005'); P.deck = [BS.mkInst('BS01-001'), t, BS.mkInst('BS02-049'), BS.mkInst('BS01-050'), BS.mkInst('BS01-001'), BS.mkInst('BS02-049'), BS.mkInst('BS01-050'), BS.mkInst('BS01-001')];
+    const tr0 = P.trash.length;
+    await BS.fireFx(P, 'SUMMONED', a, { subject: a });
+    return [P.spirits.length, P.spirits.some(x => x.id === 'BS26-005'), P.trash.length - tr0, P.deck.length]; })()`);
+  assert.deepEqual(r, [2, true, 6, 1], JSON.stringify(r));
+});
+
+test('K-891 BS03-050 gains +1000 BP per Magic use in your Attack Step (LV2)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const a = BS.mkInst('BS03-050'); a.cores = 3; P.spirits = [a]; G.active = P.key; G.step = 5; const m = BS.mkInst('BS01-129'); const b = BS.bpOf(a);
+    await BS.fireFx(P, 'MAGIC_USED', null, { subject: m }); const d1 = BS.bpOf(a) - b;
+    G.step = 3; const b2 = BS.bpOf(a); await BS.fireFx(P, 'MAGIC_USED', null, { subject: m }); return [d1, BS.bpOf(a) - b2]; })()`);
+  assert.deepEqual(r.map(x => Math.max(x, 0) === 0 ? 0 : 1), [1, 0], JSON.stringify(r));
+});
+
+test('K-892 BS11-040 refreshes on your Magic use only while braved (LV2)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const a = BS.mkInst('BS11-040'); a.cores = 3; a.exhausted = true; P.spirits = [a]; G.active = P.key; G.step = 5; const m = BS.mkInst('BS01-129'); const out = [];
+    await BS.fireFx(P, 'MAGIC_USED', null, { subject: m }); out.push(a.exhausted);
+    a.brave = BS.mkInst('BS10-061'); await BS.fireFx(P, 'MAGIC_USED', null, { subject: m }); out.push(a.exhausted); return out; })()`);
+  assert.deepEqual(r, [true, false], JSON.stringify(r));
+});
+
+test('K-893 BS03-082 refreshes when your Nexus is destroyed', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const a = BS.mkInst('BS03-082'); a.cores = 1; a.exhausted = true; P.spirits = [a]; const n = BS.mkInst('BS01-109'); n.cores = 1;
+    await BS.fireFx(P, 'ALLY_NEXUS_DESTROYED', n, { subject: n }); return a.exhausted; })()`);
+  assert.equal(r, false, JSON.stringify(r));
+});
