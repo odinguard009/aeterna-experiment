@@ -35,7 +35,7 @@ const mid = m => `${FIX_PREFIX}M-` + [...JSON.stringify(m)].reduce((h, ch) => (M
 const fillMatches = m => !m.team && !m.keyword && (!m.family || m.family.includes('FXP')) && (!m.type || m.type === 'Spirit') && (m.costLe == null || m.costLe >= 1) && (!m.color || m.color === 'red');
 function matchCard(m) {
   const type = m.type || 'Spirit', id = mid(m);
-  return { id, name: id, type, color: m.color || 'red', cost: m.costLe != null ? m.costLe : 3, symbols: 1, levels: type === 'Nexus' ? [{ cores: 0 }] : [{ cores: 1, bp: 2000 }], families: m.family ? [m.family[0]] : ['FXM'], ...(m.team || m.keyword ? { desc: `${m.team ? `[Team: ${m.team}] ` : ''}${m.keyword ? `${m.keyword} (fixture)` : ''}` } : {}) };      // parseCard drops keywords: cardHasKeyword reads "Kw (" from the text
+  return { id, name: id, type, color: [].concat(m.color || 'red')[0], cost: m.costLe != null ? m.costLe : 3, symbols: 1, levels: type === 'Nexus' ? [{ cores: 0 }] : [{ cores: 1, bp: 2000 }], families: m.family ? [m.family[0]] : ['FXM'], ...(m.team || m.keyword ? { desc: `${m.team ? `[Team: ${m.team}] ` : ''}${m.keyword ? `${m.keyword} (fixture)` : ''}` } : {}) };      // parseCard drops keywords: cardHasKeyword reads "Kw (" from the text
 }
 
 /** Builds the fixture cards the cases need (import once with BS.importCards). */

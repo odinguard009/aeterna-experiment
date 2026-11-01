@@ -299,10 +299,6 @@
   "T_DESTROYED",
   "T_SUMMONED"
  ],
- "BS02-031": [
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "BS02-033": [
   "A_BP_PLUS",
   "C_LEVEL"
