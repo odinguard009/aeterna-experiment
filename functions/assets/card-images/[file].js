@@ -29,6 +29,7 @@ export async function onRequestGet({ request, params, waitUntil }) {
 
   const cache = caches.default;
   const cacheKey = new URL(request.url);
+  cacheKey.search = '?cv=3';                   // bump to drop entries cached by older versions (the official HTML 404 page was cached for some cards)
   const cached = await cache.match(cacheKey);
   if (cached) return cached;
 
