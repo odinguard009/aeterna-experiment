@@ -296,3 +296,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v258 (Lane K): `if.reserveGe` (N or more cores in your own Reserve; "while there is any core in your Reserve"). Cards: BS01-052.
 - v259 (Lane K): MILL_OPP.perOppHand (one deck-top card per card in the opposing Hand instead of a fixed n); BS04-111.
 - v260 (Lane K): RESERVE_TO_SPIRIT (send up to n cores from the Reserve to one of your Spirits); BS01-115.
+- v261 (Lane K): VOID_TO_CARD.perNexus / perOtherSpirit (to self: n cores per Nexus / other Spirit you control); BS03-030, BS01-X03.

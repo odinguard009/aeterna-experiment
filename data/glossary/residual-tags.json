@@ -230,11 +230,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "BS01-X03": [
-  "A_VOID",
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "BS01-X04": [
   "A_BP_PLUS",
   "C_LEVEL"
@@ -608,11 +603,6 @@
  "BS03-027": [
   "C_LEVEL",
   "K_HIGH_SPEED"
- ],
- "BS03-030": [
-  "A_VOID",
-  "C_LEVEL",
-  "T_SUMMONED"
  ],
  "BS03-033": [
   "C_LEVEL",
