@@ -117,9 +117,6 @@
  "BS01-130": [
   "A_BP_PLUS"
  ],
- "BS01-135": [
-  "A_BP_PLUS"
- ],
  "BS01-139": [
   "S_UNAFFECTED"
  ],
@@ -12084,9 +12081,6 @@
   "A_BOUNCE",
   "K_ULTIMATE",
   "M_REPLACEMENT"
- ],
- "BS31-109": [
-  "A_REFRESH"
  ],
  "BS31-110": [
   "K_ULTIMATE",

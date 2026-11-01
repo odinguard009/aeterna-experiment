@@ -4350,13 +4350,24 @@
   "image": "Yellow Recover.png",
   "block": "31",
   "saga": 6,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Refresh a Yellow Spirit you control.",
-   "This effect can only be used once per turn."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "once": true,
+   "actions": [
+    {
+     "do": "REFRESH_SPIRIT",
+     "match": {
+      "color": "yellow"
+     }
+    }
+   ]
+  }
  },
  {
   "id": "BS31-110",

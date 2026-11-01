@@ -21,3 +21,24 @@ test('K-932 BS03-133 sends two Reserve cores to Life, once per turn', async () =
     return [card.magic.once, moved, !!u1, !!u2, !!u3]; })()`);
   assert.deepEqual(r, [true, [2, 2], true, false, true]);
 });
+
+test('K-933 BS01-135 draws 1 and gives all your Spirits +1000 BP', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const a = BS.mkInst('BS01-001'), b = BS.mkInst('BS01-001'), o = BS.mkInst('BS01-001'); a.bpMod = b.bpMod = o.bpMod = 0;
+    P.spirits = [a, b]; O.spirits = [o]; const h = P.hand.length, d = P.deck.length;
+    const m = BS.CARDS['BS01-135'].magic;
+    for (const act of m.actions) await BS.FX_ACTIONS[act.do].run({ p: P, opp: O, src: BS.mkInst('BS01-135'), ctx: {} }, act);
+    return [P.hand.length - h, d - P.deck.length, a.bpMod, b.bpMod, o.bpMod || 0, m.timing]; })()`);
+  assert.deepEqual(r, [1, 1, 1000, 1000, 0, ['MAIN', 'FLASH']]);
+});
+
+test('K-934 BS31-109 refreshes only a yellow Spirit, once per turn', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const red = BS.mkInst('BS01-001'), yel = BS.mkInst('BS02-049'); red.exhausted = yel.exhausted = true; P.spirits = [red, yel];
+    const act = BS.CARDS['BS31-109'].magic.actions[0];
+    const cands = BS.FX_ACTIONS.REFRESH_SPIRIT.cands({ p: P, opp: O, src: BS.mkInst('BS31-109'), ctx: {} }, act);
+    return [BS.CARDS['BS31-109'].magic.once, cands.length, cands[0] === yel]; })()`);
+  assert.deepEqual(r, [true, 1, true]);
+});
