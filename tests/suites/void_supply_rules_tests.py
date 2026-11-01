@@ -21,7 +21,7 @@ def wait_btn(pg, t, ms=4000):
     return False
 def run(pg, js, ms=1200): ev(pg, "(()=>{window.pr=(async()=>{" + js + "})().catch(e=>console.error('RUNERR '+e.message));return 1})()"); settle(pg)
 def page(b):
-    pg = b.new_page(viewport={'width': 1280, 'height': 800}); errs = []; ALLERR.append(errs)
+    pg = b.new_page(viewport={'width': 1280, 'height': 800}); pg.add_init_script('window.BS_FIXTURES = true'); errs = []; ALLERR.append(errs)
     pg.on("pageerror", lambda e: errs.append(str(e)[:300])); pg.on("dialog", lambda d: (errs.append('DIALOG'), d.dismiss()))
     pg.on("console", lambda m: errs.append('CONSOLE:' + m.text[:200]) if m.type == 'error' else None)
     pg.goto(OUT); ready(pg); return pg
