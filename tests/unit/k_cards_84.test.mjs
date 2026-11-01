@@ -298,3 +298,20 @@ test('K-929 BS17-077 gives all your Spirits +3000 BP only if you control as many
     return [fewer, more, a.bpMod, b.bpMod, o1.bpMod || 0]; })()`);
   assert.deepEqual(r, [false, true, 3000, 3000, 0]);
 });
+
+test('K-930 BS18-083 destroys only opposing Spirits whose Cost is within your Blue symbols on the Field', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = false; O.cpu = false;
+    const act = BS.CARDS['BS18-083'].magic.actions[0];
+    const c = { p: P, opp: O, src: BS.mkInst('BS18-083'), ctx: {} };
+    const byCost = n => Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].cost === n && /^BS0/.test(k));
+    const lo = BS.mkInst(byCost(1)), hi = BS.mkInst(byCost(5)); lo.cores = hi.cores = 2; O.spirits = [lo, hi];
+    const own = BS.mkInst(byCost(1)); own.cores = 2; P.spirits = [own];
+    const blue = 'BS03-071';
+    const b = BS.mkInst(blue); b.cores = 3; P.spirits = [own, b];
+    let n; n = BS.symbolsOn(P).blue || 0;
+    const got = BS.FX_ACTIONS.DESTROY_ANY.cands(c, act).map(x => x === lo ? 'lo' : x === hi ? 'hi' : x === own ? 'own' : 'x');
+    return [n, got, BS.CARDS[lo.id].cost, BS.CARDS[hi.id].cost]; })()`);
+  const [n, got] = r; assert.ok(n >= 1, JSON.stringify(r));
+  assert.ok(got.includes('lo') && !got.includes('own') && !got.includes('hi') === (n < 5), JSON.stringify(r));
+});

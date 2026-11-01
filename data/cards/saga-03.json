@@ -19207,11 +19207,23 @@
   "image": "Iron Phalanx.png",
   "block": "18",
   "saga": 3,
-  "fxComplete": false,
-  "residual": [
-   "Flash- Destroy an opposing Spirit with a Cost equal to or less than the total number of Blue symbols on your field."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "DESTROY_ANY",
+     "kind": "spirit",
+     "costLeSymbol": "blue",
+     "oppOnly": true
+    }
+   ]
+  }
  },
  {
   "id": "BS18-084",

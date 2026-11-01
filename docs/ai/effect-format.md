@@ -335,3 +335,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v298 (Lane K): OPP_CORES_TO_RESERVE.allTargets + untilOne (all but one core from every matching target). Cards: BS37-022, BS06-014 (keepOne), BS36-017.
 - v299 (Lane K): DESTROY_ANY.costLe (spirit cost filter). Card: BS06-097.
 - v300 (Lane K): GRANT_FLAG.all (flag every matching Spirit you control, no target). Card: BS16-084 (also BS17-077 via BP_PLUS to:own + fewerSpirits:false).
+- v301 (Lane K): DESTROY_ANY.costLeSymbol (cost <= your Field symbols of that colour) + oppOnly. Card: BS18-083.
