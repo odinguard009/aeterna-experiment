@@ -38059,12 +38059,32 @@
   "image": "The ShieldKnight Guardner.jpg",
   "block": "09",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV2][LV3] (Opposing Attack Step) When your Red Spirit is destroyed, send a core from any opposing Spirit to their Reserve."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "U"
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image.",
+  "rcode": "U",
+  "effects": [
+   {
+    "trigger": "ALLY_DIED",
+    "lv": [
+     2,
+     3
+    ],
+    "match": {
+     "color": "red"
+    },
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": true
+    },
+    "actions": [
+     {
+      "do": "OPP_CORES_TO_RESERVE",
+      "targets": 1,
+      "each": 1
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS09-012",
@@ -39032,12 +39052,31 @@
   "image": "The LanceKnight Gautr.jpg",
   "block": "09",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (Opposing Attack Step) When your Life is reduced by an opposing Spirit, refresh three of your Yellow Spirits."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "U"
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image.",
+  "rcode": "U",
+  "effects": [
+   {
+    "trigger": "OWN_LIFE_HIT",
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": true
+    },
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT",
+      "match": {
+       "color": "yellow"
+      },
+      "count": 3
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS09-034",

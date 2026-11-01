@@ -264,3 +264,19 @@ test('K-884 BS02-067 and BS03-027 give hand cards an extra reduction symbol at L
     return out; })()`);
   assert.deepEqual(r, [0, 1, 0, 0, 1, 0], JSON.stringify(r));
 });
+
+test('K-885 BS09-033 refreshes three Yellow Spirits when your Life is reduced and BS09-011 sends an opposing core to the Reserve when a Red Spirit dies, both in the opposing Attack Step', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const out = []; const w = BS.mkInst('BS09-033'); w.cores = 1;
+    const ys = [0, 1, 2, 3].map(() => { const y = BS.mkInst('BS02-049'); y.cores = 1; y.exhausted = true; return y; });
+    P.spirits = [w, ...ys]; G.active = O.key; G.step = 5;
+    await BS.fireFx(P, 'OWN_LIFE_HIT', null, {}); out.push(ys.filter(y => !y.exhausted).length);
+    G.active = P.key; ys.forEach(y => { y.exhausted = true; }); await BS.fireFx(P, 'OWN_LIFE_HIT', null, {}); out.push(ys.filter(y => !y.exhausted).length);
+    const p = BS.mkInst('BS09-011'); p.cores = 3; const e = BS.mkInst('BS01-001'); e.cores = 2; O.spirits = [e]; P.spirits = [p]; const red = BS.mkInst('BS01-001');
+    G.active = O.key; G.step = 5; const rs = O.reserve.n;
+    await BS.fireFx(P, 'ALLY_DIED', null, { subject: red }); out.push(e.cores, O.reserve.n - rs);
+    p.cores = 1; await BS.fireFx(P, 'ALLY_DIED', null, { subject: red }); out.push(e.cores);
+    return out; })()`);
+  assert.deepEqual(r, [3, 0, 1, 1, 1], JSON.stringify(r));
+});

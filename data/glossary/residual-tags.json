@@ -2205,9 +2205,6 @@
   "C_LEVEL",
   "T_ATTACKS"
  ],
- "BS09-011": [
-  "C_LEVEL"
- ],
  "BS09-013": [
   "C_LEVEL"
  ],
@@ -2275,10 +2272,6 @@
  "BS09-032": [
   "A_BP_PLUS",
   "A_VOID",
-  "C_LEVEL"
- ],
- "BS09-033": [
-  "A_REFRESH",
   "C_LEVEL"
  ],
  "BS09-034": [
