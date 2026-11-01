@@ -3030,9 +3030,6 @@
   "A_BP_PLUS",
   "K_BRAVE"
  ],
- "BS10-098": [
-  "A_TRASH_TO_RESERVE"
- ],
  "BS10-101": [],
  "BS10-102": [],
  "BS10-103": [
@@ -16267,9 +16264,6 @@
   "A_VOID",
   "C_LEVEL",
   "K_ULTIMATE"
- ],
- "BS38-066": [
-  "A_DRAW"
  ],
  "BS38-067": [
   "A_DESTROY_TOTAL",

@@ -389,7 +389,8 @@ function simple(card, a) {
 /** The generated case for one action of a card: { name, fix, onField, body } or { skip: shape }. */
 export function caseFor(card, ei, ai, a) {
   let r;
-  if (a.do === 'DESTROY') r = destroyCase(card, a);
+  if (a.do === 'CHOOSE_ONE') r = a.options.every(o => o.length === 1 && o[0].do === 'DRAW_BOTTOM' || o.length === 1 && o[0].do === 'DRAW') && a.options.every(o => o[0].n === a.options[0][0].n) ? { fix: [], body: `for (let j = 0; j < 6; j++) dk(${J(FILL)}); const h = P.hand.length; await run(src, RA); return P.hand.length - h === A.options[0][0].n ? '' : 'the chosen draw did not give ' + A.options[0][0].n + ' cards';` } : null;
+  else if (a.do === 'DESTROY') r = destroyCase(card, a);
   else if (a.do === 'EXHAUST_OPP') r = exhaustCase(a, false);
   else if (a.do === 'HEAVY_EXHAUST_OPP') r = exhaustCase(a, true);
   else if (a.do === 'BOUNCE_OPP') r = bounceCase(a);
