@@ -322,3 +322,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v285 (Lane K): `per.family` may be a list of family names (any of them counts, once per Spirit) in STATIC / BP_TARGET `per`. BS43-040.
 - v286 (Lane K): condition `handLeOpp: true` = your Hand count is equal to or lower than the opponent's (false = higher).
 - v287 (Lane K): trigger `OPP_START_STEP` ("(Opposing Start Step)": fired for the player whose turn is NOT starting, right after START_STEP).
+- v288 (Lane K): `BP_TARGET.to:"summoned"` (on ALLY_SUMMONED: the just-summoned Spirit gets +n BP this turn, no battle/per/alt).

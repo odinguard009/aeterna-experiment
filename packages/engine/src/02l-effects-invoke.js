@@ -131,11 +131,12 @@ const invokeCostText = c => !c ? '' : c.pay ? `pay ${c.pay} cost${c.pay === 1 ? 
 const ownTargetCands = (c, a) => c.p.spirits.filter(s => fxMatch(CARDS[s.id], a.match, s) && (!a.match || !a.match.tr || (CARDS[s.id].trueRelease && lvNo(s) >= 2)) && (!a.attacking || s === G.attacker) && (!a.coreFromSelf || s !== c.src) && (!a.other || s !== c.src) && !fxImmune(c.p, s, c));
 Object.assign(FX_ACTIONS, {
   /* "during this battle/turn, this Spirit gains +N BP" (to:self) / "Target one of your [attacking] X Spirits. ... it gains +N BP" (to:pick) */
-  BP_TARGET: { chk: a => Number.isInteger(a.n) && a.n >= 1000 && a.n <= 30000 && ['self', 'pick'].includes(a.to) && (a.battle == null || a.battle === true) && (a.attacking == null || a.attacking === true) && invokeMatchOK(a.match) && (a.per == null || perOk(a.per)) && (a.perCores == null || (a.perCores === true && a.per == null)) && (a.alt == null || (a.to === 'pick' && typeof a.alt.name === 'string' && Number.isInteger(a.alt.n) && a.alt.n > a.n && a.alt.n <= 30000)),
+  BP_TARGET: { chk: a => Number.isInteger(a.n) && a.n >= 1000 && a.n <= 30000 && ['self', 'pick', 'summoned'].includes(a.to) && (a.to !== 'summoned' || (a.battle == null && a.per == null && a.perCores == null && a.alt == null)) && (a.battle == null || a.battle === true) && (a.attacking == null || a.attacking === true) && invokeMatchOK(a.match) && (a.per == null || perOk(a.per)) && (a.perCores == null || (a.perCores === true && a.per == null)) && (a.alt == null || (a.to === 'pick' && typeof a.alt.name === 'string' && Number.isInteger(a.alt.n) && a.alt.n > a.n && a.alt.n <= 30000)),
     txt: a => `${a.to === 'self' ? 'this Spirit gains' : 'one of your ' + (a.attacking ? 'attacking ' : '') + (a.match && a.match.family ? '"' + a.match.family.join('"/"') + '" ' : '') + 'Spirits gains'} +${a.n} BP${a.per ? ' for each matching card you control' : a.perCores ? ' for each core on it' : ''} during this ${a.battle ? 'battle' : 'turn'}`,
-    can: (c, a) => (!a.battle || !!G.attacker) && (a.to === 'self' ? c.p.spirits.includes(c.src) : ownTargetCands(c, a).length > 0),
+    can: (c, a) => (!a.battle || !!G.attacker) && (a.to === 'summoned' ? !!c.ctx.subject : a.to === 'self' ? c.p.spirits.includes(c.src) : ownTargetCands(c, a).length > 0),
     run: async (c, a) => {
-      let t = c.src;
+      let t = a.to === 'summoned' ? c.ctx.subject : c.src;      // v288 to:summoned = the Spirit that was just summoned (ALLY_SUMMONED)
+      if (!t) { c.ctx.did = false; return; }
       if (a.to === 'pick') {
         const L = ownTargetCands(c, a); if (!L.length) { c.ctx.did = false; return; }
         const fight = L.find(s => s === G.attacker || s === G.blocker);       // the CPU boosts its own fighting Spirit first

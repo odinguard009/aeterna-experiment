@@ -4632,16 +4632,39 @@
   "image": "The Hill of Violent Wind.jpg",
   "block": "01",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "{{#tag:tabber| Japanese version =",
-   "[LV1][LV2] (Opposing Start Step) Refresh a Spirit with High Speed you control.",
-   "[LV2] When your Spirit is summoned, during this turn, it gets +1000 BP. {{!}}-{{!}} English version =",
-   "[LV1][LV2] (Opponent's Start Step) Refresh target exhausted spirit you control with High Speed.",
-   "[LV2] (Permanent) Each time you summon a spirit it gets +1000BP until end of turn. }}"
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "C"
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image.",
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "OPP_START_STEP",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT",
+      "match": {
+       "keyword": "High Speed"
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_SUMMONED",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "BP_TARGET",
+      "n": 1000,
+      "to": "summoned"
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS01-110",
