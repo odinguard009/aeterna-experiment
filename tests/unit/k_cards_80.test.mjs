@@ -253,3 +253,15 @@ test('K-834 BS17-013 reacts to Cost 3 allies destroyed (not depleted) by the opp
     return [e.trigger, JSON.stringify(e.match), JSON.stringify(e.if), e.actions[0].do, e.actions[0].costLe, !!e.optional]; })()`);
   assert.deepEqual(r, ['ALLY_LOST', '{"costIn":[3],"type":"Spirit"}', '{"byOpp":true,"depleted":false}', 'DESTROY', 3, true], JSON.stringify(r));
 });
+
+test('K-835 HAND_TO_REMOVED puts a Magic from the Hand onto the Removed Zone (BS06-054)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true;
+    const act = BS.CARDS['BS06-054'].effects[0].actions[0]; const ok = BS.FX_ACTIONS.HAND_TO_REMOVED.chk(act);
+    const m = BS.mkInst('BS04-105'); P.hand = [m, BS.mkInst('BS01-002')]; const r0 = P.removed.length;
+    const c = { p: P, opp: O, src: BS.mkInst('BS06-054'), ctx: {} };
+    await BS.FX_ACTIONS.HAND_TO_REMOVED.run(c, act); const a1 = [P.hand.length, P.removed.length - r0];
+    await BS.FX_ACTIONS.HAND_TO_REMOVED.run(c, act);
+    return [ok, a1, c.ctx.did]; })()`);
+  assert.deepEqual(r, [true, [1, 1], false], JSON.stringify(r));
+});

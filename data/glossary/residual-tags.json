@@ -1507,12 +1507,6 @@
   "A_EXHAUST",
   "C_LEVEL"
  ],
- "BS06-054": [
-  "A_REMOVED_ZONE",
-  "C_LEVEL",
-  "M_BY_DOING",
-  "T_SUMMONED"
- ],
  "BS06-056": [
   "A_BP_PLUS",
   "C_LEVEL",
