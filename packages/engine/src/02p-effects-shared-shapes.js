@@ -344,7 +344,7 @@ Object.assign(FX_ACTIONS, {
     } } });
 Object.assign(FX_ACTIONS, {
   DESTROY_OWN: {
-    chk: a => hasMatch(a.match) && (a.voidByCost == null || a.voidByCost === true) && (a.other == null || a.other === true),
+    chk: a => hasMatch(a.match) && (a.voidByCost == null || a.voidByCost === true) && (a.other == null || a.other === true) && (a.drawLv == null || a.drawLv === true),      // v268 drawLv: "draw a number of cards equal to the level of the destroyed Spirit"
     txt: a => (a.other ? 'destroy another Spirit you control' : 'destroy one of your matching Spirits') + (a.voidByCost ? ', then put cores from the Void to your Reserve equal to its cost' : ''),
     cands: (c, a) => c.p.spirits.filter(s => (!a.other || s !== c.src) && fxMatch(CARDS[s.id], a.match)),
     can: (c, a) => FX_ACTIONS.DESTROY_OWN.cands(c, a).length > 0,
@@ -355,7 +355,8 @@ Object.assign(FX_ACTIONS, {
         : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your Spirits to destroy (glowing).`);
       if (!t || !c.p.spirits.includes(t)) { c.ctx.did = false; return; }
       log(`${CARDS[c.src.id].name}: ${poss(c.p)} ${CARDS[t.id].name} is destroyed.`);
-      removeSpirit(c.p, t, 'destroyed', false); checkDepletion(c.p);
+      const lv = lvNo(t); removeSpirit(c.p, t, 'destroyed', false); checkDepletion(c.p);
+      if (a.drawLv) draw(c.p, lv);
       if (a.voidByCost) { const m = takeFromVoid(c.p, CARDS[t.id].cost); c.p.reserve.n += m; log(`${CARDS[c.src.id].name}: ${m} core${m === 1 ? '' : 's'} move from the Void to the Reserve.`); }      // v0.183 (schema 46)
     } } });
 /* v0.197 ACTIVATE_SUMMONED {match}: "Target one of your <X> Spirits. Activate one of its (When Summoned) effects." The first effect it can resolve at its level is used (house reading of "one of"). */

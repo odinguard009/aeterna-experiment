@@ -303,3 +303,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v265 (Lane K): no new action shape; REFRESH_SPIRIT count/keyword-match and braved DESTROYED EXHAUST_OPP used by BS11-024, BS21-057, BS06-051, BS04-103; FX generator fixtures now support match.keyword.
 - v266 (Lane K): OPP_HAND_TO_BOTTOM gets top:true ("returns a card to the decktop", BS07-013). BS20-023 uses CHOOSE_ONE of VOID_TO_RESERVE / VOID_TO_CARD anySpirit.
 - v267 (Lane K): DESTROY_NEXUS_ALL gets drawEach:true (opposing only; draw one per destroyed Nexus, BS21-074). BS03-077 uses SUMMON_HAND from hand Nexus.
+- v268 (Lane K): DESTROY_OWN gets drawLv:true (draw cards equal to the destroyed Spirit's level, BS38-069). BS58-054 SUMMONED VOID_TO_CARD anyNexus; BS19-072 VOID_TO_MATCHING keyword Rush (targets 5 = the chk cap, approximates 'every').

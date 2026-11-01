@@ -6435,12 +6435,6 @@
   "C_LEVEL",
   "T_SUMMONED"
  ],
- "BS19-072": [
-  "A_VOID",
-  "A_VOID_TO_MATCHING",
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "BS19-074": [
   "A_REFRESH",
   "K_BRAVE",
@@ -16181,7 +16175,6 @@
   "K_ULTIMATE",
   "M_THEN"
  ],
- "BS38-069": [],
  "BS38-070": [
   "A_LIFE_TO_RESERVE",
   "K_ULTIMATE"
@@ -34013,11 +34006,6 @@
   "C_LEVEL",
   "K_MIRAGE",
   "T_ATTACKS",
-  "T_SUMMONED"
- ],
- "BS58-054": [
-  "A_VOID",
-  "C_LEVEL",
   "T_SUMMONED"
  ],
  "BS58-055": [

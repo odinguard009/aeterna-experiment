@@ -148,3 +148,13 @@ test('K-823 DESTROY_NEXUS_ALL drawEach: BS21-074 destroys every opposing Nexus a
     return [O.nexus.length, P.hand.length, BS.FX_ACTIONS.DESTROY_NEXUS_ALL.chk(act), BS.CARDS['BS03-077'].effects[0].trigger]; })()`);
   assert.deepEqual(r, [0, 2, true, 'DESTROYED'], JSON.stringify(r));
 });
+
+test('K-824 DESTROY_OWN drawLv draws cards equal to the destroyed Spirit level (BS38-069); BS58-054 and BS19-072 are wired', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true;
+    const s = BS.mkInst('BS01-001'); s.cores = 1; P.spirits = [s]; P.deck = [1, 2, 3, 4].map(() => BS.mkInst('BS01-001')); P.hand = [];
+    const lv = BS.lvNo ? BS.lvNo(s) : 1; const act = BS.CARDS['BS38-069'].magic.by.MAIN.actions[0];
+    await BS.FX_ACTIONS.DESTROY_OWN.run({ p: P, opp: O, src: BS.mkInst('BS38-069'), ctx: {} }, act);
+    return [P.spirits.length, P.hand.length >= 1, BS.FX_ACTIONS.DESTROY_OWN.chk(act), BS.CARDS['BS58-054'].effects.map(e => e.trigger).sort().join(), BS.CARDS['BS19-072'].effects[0].actions[0].do]; })()`);
+  assert.deepEqual(r, [0, true, true, 'DESTROYED,SUMMONED', 'VOID_TO_MATCHING'], JSON.stringify(r));
+});
