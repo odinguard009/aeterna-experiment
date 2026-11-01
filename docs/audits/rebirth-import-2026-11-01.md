@@ -38,3 +38,7 @@ partial, the cards only need to be playable.
 1. Add the 58 skipped pages by resolving their card numbers (set-list pages / card images).
 2. Import the back faces and implement the flip/reborn rule; the data model is already ready
    (`rebirthSide: true`, `rebirthTo`).
+
+## Side B (2026-11-01, display only)
+The 206 back faces are imported by `tools/import_rebirth_sides.py` into the sidecar `data/index/rebirth-sides.json` (keyed by front id; 206/206 matched from Fandom `Category:Rebirth Side B`). They are **not** `CARDS` entries, so counts, the Library list, decks, packs and the CPU never see them. The build embeds the sidecar as `BUILTIN_SIDES` (budget B16); the Library card page and the card detail modal show a "↻ Side B / ↻ Side A" button (no flip on a hand card mid-match). The flip rule itself is still not implemented; back effects are shown as text only. Side B art has no mirror yet, so generated art is used.
+Revert: `git revert` the UI commit; the sidecar can stay.
