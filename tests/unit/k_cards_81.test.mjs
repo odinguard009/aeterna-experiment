@@ -191,3 +191,12 @@ test('K-856 BS07-082 gives an own Assault Spirit +2000 BP per exhausted Nexus', 
     return [before, s.bpMod || 0]; })()`);
   assert.deepEqual(r, [0, 4000], JSON.stringify(r));
 });
+
+test('K-857 BS41-002 is unaffected by opposing Spirit effects only while exhausted', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true;
+    const s = BS.mkInst('BS41-002'); s.cores = 3; P.spirits = [s]; const src = BS.mkInst('BS01-001'); const out = [];
+    for (const ex of [true, false]) { s.exhausted = ex; out.push(!!BS.fxImmune(P, s, { p: O, src })); }
+    return out; })()`);
+  assert.deepEqual(r, [true, false], JSON.stringify(r));
+});
