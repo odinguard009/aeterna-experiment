@@ -101,3 +101,12 @@ test('K-847 CORE_TO_OTHER puts a Reserve core on another own Spirit, not on the 
     P.spirits = [s]; await BS.FX_ACTIONS.CORE_TO_OTHER.run(c, e.actions[0]); return [e.trigger, alone, s.cores, c.ctx.did]; })()`);
   assert.deepEqual(r, ['ATTACKS', [2, 2, 2, true], 2, false], JSON.stringify(r));
 });
+
+test('K-848 BS01-065 puts a Void core on a Spirit you control when summoned', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true;
+    const s = BS.mkInst('BS01-065'); s.cores = 1; P.spirits = [s]; P.void = 2;
+    const e = BS.CARDS['BS01-065'].effects[0]; const c = { p: P, opp: O, src: s, ctx: {} };
+    await BS.FX_ACTIONS.VOID_TO_CARD.run(c, e.actions[0]); return [e.trigger, s.cores, P.void]; })()`);
+  assert.deepEqual(r, ['SUMMONED', 2, 1], JSON.stringify(r));
+});
