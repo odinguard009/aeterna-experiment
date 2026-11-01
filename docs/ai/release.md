@@ -57,6 +57,6 @@ Rules that follow:
 ## Pre-release gate and Lane K chores (2026-11-02)
 - `bash tools/pre_release_check.sh` (~30 s) runs the checks that broke CI after Lane K releases: `import_fandom.py --check`, `staging_sync.py --check`, `audit_heads.py`, `compiler_wiring.mjs --check`, the engine load-order and destroy-filter tests, and the B01-B04 size budgets. `tools/lane_k_release.sh` runs it before the commit.
 - Staging (`data/import/saga-*.json`): never rerun `import_fandom.py` to prune; `python3 tools/staging_sync.py` drops cards that are already in `data/cards` and keeps the `apply_official.py` fields. `npm run loop` runs it and regenerates the compiler-wiring report.
-- `wrapImmunity` is called once, in `packages/engine/src/03a-effects-immunity-final.js`; do not call it in the lane files.
+- `wrapImmunity` is called once, in `packages/engine/src/03a-effects-immunity-final.js`; the lane files may still call it (idempotent, flag-guarded), but new code should not.
 - New K tests use `tests/unit/lib/node_board.mjs` (`sharedBoard()` without a browser); effects are async, so `await BS.fireFx(...)`.
 - `.github/workflows/lane-k-nightly.yml` runs the gate and `npm test` on `wip/lane-k` every night.
