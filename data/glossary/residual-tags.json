@@ -8,22 +8,10 @@
   "C_LEVEL",
   "T_ATTACKS"
  ],
- "BS01-024": [
-  "C_LEVEL",
-  "K_HIGH_SPEED",
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
  "BS01-025": [
   "C_LEVEL",
   "M_OPTIONAL",
   "T_BATTLE_WIN"
- ],
- "BS01-036": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "M_UP_TO",
-  "T_DESTROYED"
  ],
  "BS01-037": [
   "A_EXHAUST",
@@ -62,10 +50,6 @@
   "T_SUMMONED"
  ],
  "BS01-087": [
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
- "BS01-090": [
   "C_LEVEL",
   "T_SUMMONED"
  ],
