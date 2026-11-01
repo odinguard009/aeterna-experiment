@@ -124,7 +124,7 @@ function loadSlots() {
   try {
     const o = JSON.parse(localStorage.getItem(SLOT_KEY));
     if (o && Array.isArray(o.slots) && o.slots.length === SLOT_COUNT) {
-      SLOTS = o.slots.map((x, i) => Object.assign({ name: String(x && x.name || 'Deck ' + (i + 1)).slice(0, 24), cards: cleanDeck(x && x.cards) }, x && x.used ? { used: true } : {}, x && x.look && typeof x.look === 'object' ? { look: x.look } : {}, x && x.key && CARDS[x.key] && CARDS[x.key].type === 'Spirit' ? { key: x.key } : {}));   // used: listed on My decks (v0.93.0); look: Deck look (v0.94.0); key: marked Key Spirit (v0.103.0)
+      SLOTS = o.slots.map((x, i) => Object.assign({ name: String(x && x.name || 'Deck ' + (i + 1)).slice(0, 24), cards: cleanDeck(x && x.cards) }, x && x.used ? { used: true } : {}, x && x.look && typeof x.look === 'object' ? { look: x.look } : {}, x && x.key && CARDS[x.key] && CARDS[x.key].type === 'Spirit' ? { key: x.key } : {}, x && x.cover && CARDS[x.cover] ? { cover: x.cover } : {}));   // cover: chosen Deck look cover card (kept on reload since v0.205.1); used: listed on My decks (v0.93.0); look: Deck look (v0.94.0); key: marked Key Spirit (v0.103.0)
       ACTIVE_SLOT = Number.isInteger(o.active) && o.active >= 0 && o.active < SLOT_COUNT ? o.active : 0; return;
     }
   } catch (e) { /* ignore */ }

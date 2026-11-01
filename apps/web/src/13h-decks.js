@@ -26,13 +26,13 @@ function dkColors(cards) {                          // the deck's colours, most 
    Grandwalker / Contract Nexus (Grandwalker family, a "...Contractor" name or a CX Nexus), then the most-played card. The two other cover
    cards follow the same order. Display only. */
 const dkKeyNexus = id => { const c = CARDS[id]; return !!c && c.type === 'Nexus' && ((c.families || []).includes('Grandwalker') || /Contractor/.test(c.name) || /-CX\d+$/.test(id)); };
-function dkCover(cards, key) {                       // up to 3 card ids, the key card first
+function dkCover(cards, key, cover) {                // up to 3 card ids, the chosen cover (Deck look) first, then the key card
   const have = Object.keys(cards).filter(id => CARDS[id] && cards[id] > 0);
-  const rank = id => (key && id === key ? 0 : dkKeyNexus(id) ? 1 : 2);
+  const rank = id => (cover && id === cover ? -1 : key && id === key ? 0 : dkKeyNexus(id) ? 1 : 2);
   return have.sort((a, b) => rank(a) - rank(b) || cards[b] - cards[a] || DB_COLL.compare(a, b)).slice(0, 3);
 }
-function dkFan(cards, key) {                         // tile art: the cover cards, fanned (mockup .stack); the key card is the middle, front one
-  const top = dkCover(cards, key), kid = top[0]; if (top.length === 3) top.splice(1, 0, top.shift());   // key card to the middle slot
+function dkFan(cards, key, cover) {                         // tile art: the cover cards, fanned (mockup .stack); the key card is the middle, front one
+  const top = dkCover(cards, key, cover), kid = top[0]; if (top.length === 3) top.splice(1, 0, top.shift());   // key card to the middle slot
   return `<div class="stack" aria-hidden="true">${top.map(id => `<div class="cf${id === kid ? ' key' : ''}">${cardFaceHTML(CARDS[id], false)}</div>`).join('')}</div>`;
 }
 function dkStats(name) {                             // win rate and last played from the match history, matched by deck name
@@ -57,7 +57,7 @@ function dkTile(i, name, cards, starter) {
     : `<button class="btn sm grow" data-a="dk-edit" data-v="${i}" aria-label="Edit ${nm}">Edit</button><button class="btn sm pri grow" data-a="dk-play" data-v="${i}" aria-label="Play with ${nm}"${st.ok ? '' : ' disabled'}>Play</button><button class="ibtn sq dk-more" data-a="dk-more" data-v="${i}" aria-label="More actions for ${nm}" aria-haspopup="menu" aria-expanded="${open}">⋯</button>`;
   if (starter) { const kc = dkCover(cards, key)[0];   // the thumbnail is the Key Spirit (else the most played card)
     return `<div class="card flat dk-st-row" data-v="${i}"><div class="dk-st-th">${kc ? cardFaceHTML(CARDS[kc], false) : ''}</div><div class="dk-st-nm"><b>${nm}</b> ${kb}<span class="dk-st-sub">${esc(st.ok ? st.txt : deckTotal(cards) + ' cards')}</span></div>${btns}</div>`; }
-  return `<div class="card dtile${act ? ' on' : ''}${open ? ' open' : ''}" data-v="${i}">${dkFan(cards, key)}<div class="row"><b class="grow" style="font-size:1.02em" title="${nm}">${nm}</b>${kb}${act ? '<span class="tag">Active</span>' : ''}</div><div class="row" style="gap:6px">${dots}<span class="grow"></span><span class="${st.ok ? 'vc' : 'vc warn'}">${st.ok ? '✓ Legal' : deckTotal(cards) < 40 ? 'Needs ' + (40 - deckTotal(cards)) + ' more' : 'Not legal'}</span></div>${stat}<div class="row" style="gap:6px">${btns}</div>${menu}</div>`;
+  return `<div class="card dtile${act ? ' on' : ''}${open ? ' open' : ''}" data-v="${i}">${dkFan(cards, key, SLOTS[i] && SLOTS[i].cover)}<div class="row"><b class="grow" style="font-size:1.02em" title="${nm}">${nm}</b>${kb}${act ? '<span class="tag">Active</span>' : ''}</div><div class="row" style="gap:6px">${dots}<span class="grow"></span><span class="${st.ok ? 'vc' : 'vc warn'}">${st.ok ? '✓ Legal' : deckTotal(cards) < 40 ? 'Needs ' + (40 - deckTotal(cards)) + ' more' : 'Not legal'}</span></div>${stat}<div class="row" style="gap:6px">${btns}</div>${menu}</div>`;
 }
 function renderDecks() {
   if (!$('dk-list')) return;
