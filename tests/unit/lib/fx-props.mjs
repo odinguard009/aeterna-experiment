@@ -97,6 +97,12 @@ function exhaustCase(a, heavy) {
 
 function bounceCase(a) {
   if (a.all) return only(a, ['all', 'kind', 'to', 'bpLe']) && a.kind === 'spirit' && { fix: [{ cost: 3, bp: a.bpLe }, { cost: 3, bp: a.bpLe + 1000 }], body: `const a1 = sp(${J(sid(3, a.bpLe))}, O), a2 = sp(${J(sid(3, a.bpLe))}, O), big = sp(${J(sid(3, a.bpLe + 1000))}, O); await run(src, RA); return gone(a1) && gone(a2) && !gone(big) && O.hand.includes(a1) && O.hand.includes(a2) ? '' : 'BOUNCE all: wrong set returned';` };      // v242
+  if (a.match) {      // v255 match: only an opposing Spirit that matches is returned
+    if (!only(a, ['kind', 'to', 'match']) || a.kind !== 'spirit' || !['hand', 'deckBottom'].includes(a.to)) return null;
+    return { fix: [], body: `const yes = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && fxMatch(c, A.match)), no = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && !fxMatch(c, A.match)); if (!yes || !no) return '';
+      for (let j = 0; j < 3; j++) dk(${J(FILL)}, O);
+      const t = sp(yes.id, O), u = sp(no.id, O); await run(src, RA); if (!gone(t)) return 'the matching target is still on the field'; return gone(u) ? 'a non-matching target was returned' : '';` };
+  }
   if (!only(a, ['kind', 'to', 'bpLe', 'costLe', 'exhaustedOnly', 'n', 'refreshedOnly'])) return null;
   if (!['spirit', 'nexus', 'any'].includes(a.kind) || !['hand', 'deckBottom'].includes(a.to)) return null;
   const nexus = a.kind === 'nexus', cost = a.costLe != null ? a.costLe : 3, bp = a.bpLe != null ? a.bpLe : 3000, ex = a.exhaustedOnly ? 'true' : 'false';
