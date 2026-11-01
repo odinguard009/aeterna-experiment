@@ -209,3 +209,17 @@ test('K-923 BS30-010 sends one core per Infernal Lord Spirit you control', async
     return [a.cores, O.reserve.n - b, [].concat(BS.CARDS['BS30-010'].families || []).join()]; })()`);
   assert.equal(r[0] + r[1], 5); assert.ok(r[1] >= 1, JSON.stringify(r));
 });
+
+test('K-924 BS06-097 destroys an exhausted Spirit of Cost 4 or less only', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const act = BS.CARDS['BS06-097'].magic.by ? BS.CARDS['BS06-097'].magic.by.MAIN.actions[0] : BS.CARDS['BS06-097'].magic.actions[0];
+    const c = { p: P, opp: O, src: BS.mkInst('BS06-097'), ctx: {} };
+    const big = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].cost >= 6 && !BS.CARDS[k].id.startsWith('TRAIN'));
+    const a = BS.mkInst(big); a.exhausted = true; O.spirits = [a];
+    const can1 = BS.FX_ACTIONS.DESTROY_ANY.can(c, act);
+    const b = BS.mkInst('BS01-001'); b.exhausted = true; O.spirits = [a, b];
+    const can2 = BS.FX_ACTIONS.DESTROY_ANY.cands(c, act).map(x => x.id);
+    return [can1, can2, BS.CARDS['BS01-001'].cost]; })()`);
+  assert.equal(r[0], false); assert.deepEqual(r[1], ['BS01-001'], JSON.stringify(r));
+});
