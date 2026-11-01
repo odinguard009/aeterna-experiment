@@ -6449,12 +6449,6 @@
   "A_REFRESH",
   "K_BRAVE"
  ],
- "BS20-062": [
-  "A_BP_MINUS",
-  "C_LEVEL",
-  "K_RUSH",
-  "T_SUMMONED"
- ],
  "BS20-063": [
   "K_BRAVE",
   "K_RUSH"
@@ -11066,14 +11060,6 @@
  "BS30-015": [
   "C_LEVEL",
   "K_RUSH",
-  "T_SUMMONED"
- ],
- "BS30-016": [
-  "A_VOID",
-  "A_VOID_TO_MATCHING",
-  "C_LEVEL",
-  "K_BURST",
-  "K_ULTIMATE",
   "T_SUMMONED"
  ],
  "BS30-017": [

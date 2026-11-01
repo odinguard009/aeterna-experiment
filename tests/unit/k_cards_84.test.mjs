@@ -37,3 +37,32 @@ test('K-909 BS33-035 bounces an opposing Spirit; with the Soul Core it also adds
     return out; })()`);
   assert.deepEqual(r, [[1, 0], [1, 1]], JSON.stringify(r));
 });
+
+test('K-910 BS20-062 bounces an opposing Spirit; with a Yellow symbol it also gives an opposing Spirit -3000 BP', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const mk = id => { const x = BS.mkInst(id); x.cores = 1; return x; };
+    const out = [];
+    for (const yel of [false, true]) {
+      const yid = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].symbol === 'yellow' && !(BS.CARDS[k].effects || []).length && BS.CARDS[k].symbols >= 1); const b = mk('BS20-062'); const y = mk(yel ? yid : 'BS01-001'); P.spirits = [b, y]; const hid = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !(BS.CARDS[k].effects || []).length && (BS.CARDS[k].levels[0] || {}).bp >= 6000); const a = mk(hid), c = mk(hid); O.spirits = [a, c]; O.hand = [];
+      const b0 = BS.bpOf(c); await BS.fireFx(P, 'SUMMONED', b, { subject: b });
+      out.push([O.hand.length, O.spirits.length === 1 ? BS.bpOf(O.spirits[0]) - b0 : 'n/a']);
+    }
+    return out; })()`);
+  assert.deepEqual(r, [[1, 0], [1, -3000]], JSON.stringify(r));
+});
+
+test('K-911 BS30-016 puts a Void core on itself; with an opposing Burst set it also feeds two other Green Spirits', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const mk = id => { const x = BS.mkInst(id); x.cores = 1; return x; };
+    const out = [];
+    for (const burst of [false, true]) {
+      const t = mk('BS30-016'), g1 = mk('BS01-050'), g2 = mk('BS01-051'); P.spirits = [t, g1, g2]; P.void = 5; O.burst = burst ? BS.mkInst('BS01-001') : null;
+      const before = [t.cores, g1.cores, g2.cores];
+      await BS.fireFx(P, 'SUMMONED', t, { subject: t });
+      out.push([t.cores - before[0], g1.cores - before[1] + g2.cores - before[2]]);
+    }
+    return out; })()`);
+  assert.deepEqual(r, [[1, 0], [1, 2]], JSON.stringify(r));
+});
