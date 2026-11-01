@@ -150,3 +150,28 @@ test('K-875 BS06-084 and BS01-113 send the own Trash cores to the Reserve at the
     return out; })()`);
   assert.deepEqual(r, [0, 4, 1, 0, 1, 0, 3, 0, 1], JSON.stringify(r));
 });
+
+test('K-876 BS08-060 puts a Void core on a Shell Insect when a 6000 BP or less Spirit attacks and refreshes them at the End Step (LV2)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const n = BS.mkInst('BS08-060'); n.cores = 0; P.nexus = [n]; const out = [];
+    const s = BS.mkInst('BS01-050'); s.cores = 1; s.exhausted = true; P.spirits = [s];
+    const lo = BS.mkInst('BS01-001'); lo.cores = 1; O.spirits = [lo]; P.void = 3; G.active = O.key; G.step = 5;
+    await BS.fireFx(P, 'OPP_ATTACKS', null, { subject: lo, attacker: lo }); out.push(s.cores, P.void);
+    await BS.fireFx(P, 'END_STEP', null, {}); out.push(!!s.exhausted);
+    n.cores = 1; await BS.fireFx(P, 'END_STEP', null, {}); out.push(!!s.exhausted);
+    return out; })()`);
+  assert.deepEqual(r, [2, 2, true, false], JSON.stringify(r));
+});
+
+test('K-877 BS09-061 puts a Void core on a blocking Giant Beast and refreshes the family at the End Step (LV2)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const n = BS.mkInst('BS09-061'); n.cores = 0; P.nexus = [n]; const out = [];
+    const g = BS.mkInst('BS01-024'); g.cores = 1; g.exhausted = true; const w = BS.mkInst('BS01-001'); w.cores = 1; P.spirits = [g, w]; P.void = 3; G.active = O.key; G.step = 5;
+    await BS.fireFx(P, 'ALLY_BLOCKS', g, { subject: g, blocker: g }); out.push(g.cores, P.void);
+    await BS.fireFx(P, 'ALLY_BLOCKS', w, { subject: w, blocker: w }); out.push(w.cores);
+    await BS.fireFx(P, 'END_STEP', null, {}); out.push(!!g.exhausted); n.cores = 2; await BS.fireFx(P, 'END_STEP', null, {}); out.push(!!g.exhausted);
+    return out; })()`);
+  assert.deepEqual(r, [2, 2, 1, true, false], JSON.stringify(r));
+});

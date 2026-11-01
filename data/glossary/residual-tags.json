@@ -2074,11 +2074,6 @@
   "M_OPTIONAL",
   "T_SUMMONED"
  ],
- "BS08-060": [
-  "A_REFRESH",
-  "A_VOID",
-  "C_LEVEL"
- ],
  "BS08-061": [
   "C_LEVEL",
   "C_OPP_TURN",
@@ -2404,11 +2399,6 @@
   "A_EXHAUST",
   "C_LEVEL",
   "T_ALLY_SUMMONED"
- ],
- "BS09-061": [
-  "A_REFRESH",
-  "A_VOID",
-  "C_LEVEL"
  ],
  "BS09-062": [
   "A_EXHAUST",
