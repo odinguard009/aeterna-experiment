@@ -50735,12 +50735,6 @@
   "M_OPTIONAL",
   "T_MIRAGE_LIFE"
  ],
- "BS75-008": [
-  "C_LEVEL",
-  "C_ONCE",
-  "M_OPTIONAL",
-  "S_CORES_DRAW"
- ],
  "BS75-014": [
   "A_REVEAL_DECK",
   "C_LEVEL",
@@ -51034,13 +51028,6 @@
   "A_VOID"
  ],
  "BS75-044": [],
- "BS75-045": [
-  "A_VOID",
-  "C_LEVEL",
-  "K_GRANDWALKER",
-  "M_OPTIONAL",
-  "T_ALLY_ATTACKS"
- ],
  "BS75-046": [],
  "BS75-047": [],
  "BS75-048": [
