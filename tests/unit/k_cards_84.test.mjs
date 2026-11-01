@@ -179,3 +179,13 @@ test('K-920 BS36-017 sends two cores and returns a Death Dragon/Zombie Spirit', 
     return [a.cores, P.hand.length, P.trash.length]; })()`);
   assert.deepEqual(r, [2, 1, 0]);
 });
+
+test('K-921 BS26-055 sends a core from an opposing Cost 6 or less Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const t = BS.mkInst('BS26-055'); t.cores = 1; P.spirits = [t];
+    const a = BS.mkInst('BS01-001'); a.cores = 3; O.spirits = [a]; const b = O.reserve.n;
+    await BS.fireFx(P, 'SUMMONED', t, { subject: t });
+    return [a.cores, O.reserve.n - b]; })()`);
+  assert.deepEqual(r, [2, 1]);
+});
