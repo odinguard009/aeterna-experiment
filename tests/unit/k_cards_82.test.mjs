@@ -123,3 +123,15 @@ test('K-873 BS05-058 gives Evil Shadow Spirits +2000 BP in the own Attack Step a
     return out; })()`);
   assert.deepEqual(r, [2000, 0, false, true, false], JSON.stringify(r));
 });
+
+test('K-874 BS06-073 draws one extra card then discards one in the Draw Step and gives all Spirits +1000 BP in the own Attack Step (LV2)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const n = BS.mkInst('BS06-073'); n.cores = 0; P.nexus = [n]; const out = [];
+    P.deck = [1,2,3,4].map(() => BS.mkInst('BS01-001')); P.hand = [BS.mkInst('BS01-001')];
+    const h = P.hand.length, t = P.trash.length; await BS.fireFx(P, 'DRAW_STEP', null, {}); out.push(P.hand.length - h, P.trash.length - t);
+    const a = BS.mkInst('BS01-001'); a.cores = 2; P.spirits = [a]; G.active = P.key; G.step = 5;
+    P.nexus = []; const ba = BS.bpOf(a); P.nexus = [n]; out.push(BS.bpOf(a) - ba); n.cores = 1; out.push(BS.bpOf(a) - ba);
+    return out; })()`);
+  assert.deepEqual(r, [0, 1, 0, 1000], JSON.stringify(r));
+});
