@@ -231,3 +231,24 @@ test('K-860 BS20-067 gives all own Spirits +1000 BP per Terra Dragon in the own 
     return out; })()`);
   assert.equal(r[0] >= 1000 && r[0] % 1000 === 0, true, JSON.stringify(r)); assert.deepEqual(r.slice(1), [0, 0], JSON.stringify(r));
 });
+
+test('K-861 BS18-065, BS21-069, BS21-070 Nexus battle bonuses and ALLY_BATTLE_WIN effects', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true; const out = [];
+    const fam = f => Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && (BS.CARDS[k].families || []).includes(f));
+    const nx = id => { const n = BS.mkInst(id); n.cores = 5; return n; };
+    const win = async (sp, att) => { const keep = O.life; await BS.fireFx(P, 'ALLY_BATTLE_WIN', null, { subject: sp, attacking: att }); return keep; };
+    // BS18-065: +2000 to a Supreme Hero in an attack step, 0 outside; exhaust after a win
+    const h = BS.mkInst(fam('Supreme Hero')); h.cores = 1; O.spirits = []; P.spirits = [h]; P.nexus = []; G.step = 3; G.active = P.key; const b = BS.bpOf(h);
+    P.nexus = [nx('BS18-065')]; G.step = 5; out.push(BS.bpOf(h) - b); G.step = 3; out.push(BS.bpOf(h) - b);
+    const v = BS.mkInst('BS01-001'); v.cores = 1; O.spirits = [v]; G.step = 5; await win(h, true); out.push(v.exhausted);
+    // BS21-070: white Spirit +3000 in the opposing attack step; Armed Machine block win sends a Life to the Reserve
+    const w = BS.mkInst(Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && (BS.CARDS[k].colors || [BS.CARDS[k].color]).includes('white'))); w.cores = 1; P.nexus = []; P.spirits = [w]; G.step = 3; const b2 = BS.bpOf(w);
+    P.nexus = [nx('BS21-070')]; G.step = 5; G.active = O.key; out.push(BS.bpOf(w) - b2); G.active = P.key; out.push(BS.bpOf(w) - b2);
+    const am = BS.mkInst(fam('Armed Machine')); am.cores = 1; P.spirits = [am]; G.step = 5; G.active = O.key; O.life = 5; await BS.fireFx(P, 'ALLY_BATTLE_WIN', null, { subject: am, attacking: false }); out.push(O.life);
+    // BS21-069: battling Spirits +2000
+    P.nexus = []; G.active = P.key; const z = BS.mkInst('BS01-001'); z.cores = 1; P.spirits = [z]; G.step = 5; G.attacker = null; G.blocker = null; const b3 = BS.bpOf(z);
+    P.nexus = [nx('BS21-069')]; G.attacker = z; out.push(BS.bpOf(z) - b3); G.attacker = null; out.push(BS.bpOf(z) - b3);
+    return out; })()`);
+  assert.deepEqual(r, [2000, 0, true, 3000, 0, 4, 2000, 0], JSON.stringify(r));
+});

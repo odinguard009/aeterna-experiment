@@ -5969,11 +5969,6 @@
   "M_OPTIONAL",
   "T_ALLY_SUMMONED"
  ],
- "BS18-065": [
-  "A_BP_PLUS",
-  "A_EXHAUST",
-  "C_LEVEL"
- ],
  "BS18-066": [
   "A_REFRESH",
   "C_LEVEL",
@@ -6971,16 +6966,6 @@
  "BS21-068": [
   "C_LEVEL",
   "T_BLOCKS"
- ],
- "BS21-069": [
-  "A_BP_PLUS",
-  "A_LIFE_TO_RESERVE",
-  "C_LEVEL"
- ],
- "BS21-070": [
-  "A_BP_PLUS",
-  "A_LIFE_TO_RESERVE",
-  "C_LEVEL"
  ],
  "BS21-071": [
   "A_VOID",
