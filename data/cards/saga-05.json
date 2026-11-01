@@ -26100,12 +26100,27 @@
   "image": "The EvilSpear Shutori.png",
   "block": "30",
   "saga": 5,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Summoned) For each of your \"Infernal Lord\" family Spirit/Ultimate, send a core from an opposing Spirit to their Reserve."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "C"
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image.",
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "OPP_CORES_TO_RESERVE",
+      "perSource": "own",
+      "perMatch": {
+       "family": "Infernal Lord"
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS30-011",
@@ -26140,12 +26155,27 @@
   "image": "Bone-Griffon.png",
   "block": "30",
   "saga": 5,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Attacks) Send 1 core from 1 opposing Spirit/Ultimate to the Reserve. If this effect depleted a Spirit/Ultimate, draw 1 card from your deck."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "C"
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image.",
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "OPP_CORES_TO_RESERVE",
+      "targets": 1,
+      "each": 1,
+      "drawPerDepleted": true
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS30-012",

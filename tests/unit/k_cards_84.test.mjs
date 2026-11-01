@@ -189,3 +189,23 @@ test('K-921 BS26-055 sends a core from an opposing Cost 6 or less Spirit', async
     return [a.cores, O.reserve.n - b]; })()`);
   assert.deepEqual(r, [2, 1]);
 });
+
+test('K-922 BS30-011 draws a card when the core removal depletes the Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const t = BS.mkInst('BS30-011'); t.cores = 3; P.spirits = [t];
+    const a = BS.mkInst('BS01-001'); a.cores = 1; O.spirits = [a]; const h = P.hand.length;
+    await BS.fireFx(P, 'ATTACKS', t, { subject: t });
+    return [a.cores, P.hand.length - h]; })()`);
+  assert.equal(r[1], 1);
+});
+
+test('K-923 BS30-010 sends one core per Infernal Lord Spirit you control', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const t = BS.mkInst('BS30-010'); t.cores = 3; P.spirits = [t];
+    const a = BS.mkInst('BS01-001'); a.cores = 5; O.spirits = [a]; const b = O.reserve.n;
+    await BS.fireFx(P, 'SUMMONED', t, { subject: t });
+    return [a.cores, O.reserve.n - b, [].concat(BS.CARDS['BS30-010'].families || []).join()]; })()`);
+  assert.equal(r[0] + r[1], 5); assert.ok(r[1] >= 1, JSON.stringify(r));
+});

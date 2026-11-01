@@ -11005,17 +11005,6 @@
   "K_ULTIMATE",
   "M_OPTIONAL"
  ],
- "BS30-010": [
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "T_SUMMONED"
- ],
- "BS30-011": [
-  "A_DRAW",
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "T_ATTACKS"
- ],
  "BS30-012": [
   "A_DRAW",
   "A_SUMMON_FREE",
