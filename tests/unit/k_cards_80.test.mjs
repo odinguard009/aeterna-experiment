@@ -199,3 +199,10 @@ test('K-828 OPP_CORES_TO_TRASH untilOne leaves one core (BS09-012); BS06-018 unt
     return [ok, s.cores, O.trashCores.n - t0, BS.CARDS['BS06-018'].effects[0].actions[0].untilOne]; })()`);
   assert.deepEqual(r, [true, 1, 3, true], JSON.stringify(r));
 });
+
+test('K-829 BS09-048 destroys a Cost 2 or less opposing Spirit only with a Green Spirit on the Field', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const e = BS.CARDS['BS09-048'].effects[0];
+    return [e.trigger, JSON.stringify(e.if), e.actions[0].do, e.actions[0].costLe]; })()`);
+  assert.deepEqual(r, ['SUMMONED', '{"ctrl":{"n":1,"type":"Spirit","colors":["green"]}}', 'DESTROY', 2], JSON.stringify(r));
+});
