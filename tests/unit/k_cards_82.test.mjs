@@ -1,7 +1,7 @@
 // Lane K tests, file 82. Schema v286-: handLeOpp, OPP_START_STEP.
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { sharedBoard, closeBrowser } from './lib/game.mjs';
+import { sharedBoard, closeBrowser } from './lib/node_board.mjs';
 
 after(async () => { await closeBrowser(); });
 

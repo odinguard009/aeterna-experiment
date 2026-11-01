@@ -7859,6 +7859,9 @@ registerTokens();
   try { const a = JSON.parse(localStorage.getItem(CARDS_KEY)); if (Array.isArray(a)) a.forEach(o => { const r = parseCard(o); if (r.card) registerImported(r.card); }); } catch (e) { /* ignore */ }
 })();
 
+/* Last word on the action table (2026-11-02): every FX_ACTIONS entry defined in any 02* part gets the immunity wrapper here, so a
+   new part (02w, 02x ...) never has to remember its own wrapImmunity() call (test LO01 was the reminder). Idempotent: see 02k. */
+wrapImmunity(Object.values(FX_ACTIONS));
 /* ---------------------------------------------------------------------
    DECK STORAGE AND VALIDATION  (manual: 40 or more cards, max 3 per name,
    only one type of Contract card)

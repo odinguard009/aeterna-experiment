@@ -2,7 +2,7 @@
 // Schema v247: STATIC UNAFFECTED from.costLe (number | "self" | "counters"). Cards: BS75-035, BS75-041.
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { sharedBoard, closeBrowser } from './lib/game.mjs';
+import { sharedBoard, closeBrowser } from './lib/node_board.mjs';
 
 after(async () => { await closeBrowser(); });
 

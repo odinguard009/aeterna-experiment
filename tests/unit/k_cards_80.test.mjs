@@ -1,7 +1,7 @@
 // Lane K tests, file 80 (rule 1b). Schemas v259-v262: DISCARD_ANY_DRAW, DEPLOY_TRASH.all, MILL_OPP.perOppHand, RESERVE_TO_SPIRIT, VOID_TO_CARD per-count. Cards: BS16-049, BS19-005, BS02-092, BS02-093, BS04-098, BS02-107, BS03-146, BS03-148, BS02-068, BS02-069, BS04-111, BS01-078, BS01-115, BS03-030, BS01-X03.
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { sharedBoard, closeBrowser } from './lib/game.mjs';
+import { sharedBoard, closeBrowser } from './lib/node_board.mjs';
 
 after(async () => { await closeBrowser(); });
 

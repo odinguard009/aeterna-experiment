@@ -89,6 +89,9 @@ coresFromSpirits
 ## packages/engine/src/03-imported-cards.js (245 lines, ~6.7k tokens) — IMPORTED CARD DATA
 COLORS, BUILTIN_IDS, CARDS_KEY, IMPORTED, CARDS_VER, parseLevels, parseMagicOf, parseCard, registerImported, saveImported, importCards, clearImported, PACK_IDS, registerPack, TOKEN_IDS, registerTokens
 
+## packages/engine/src/03a-effects-immunity-final.js (3 lines, ~0.1k tokens)
+
+
 ## packages/engine/src/04-decks.js (163 lines, ~6.4k tokens) — DECK STORAGE AND VALIDATION
 deckTotal, cleanDeck, validateDeck, keyOfDeck, pickKey, fmtName, fmtButton, setFormat, errSummary, prebuiltDeck, stdDeck, readyDeck, prebuiltFmt, prebuiltOrder, prebuiltLabel, PREBUILT, defaultDeck, SLOT_KEY, SLOTS, ACTIVE_SLOT, loadSlots, PLAYER_DECK, saveDeck, switchSlot, loadPrebuilt, CPU_DECK_NAME, cpuDeckFor
 

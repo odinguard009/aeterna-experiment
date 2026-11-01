@@ -30,7 +30,7 @@ export function firstAnswer(seat, d) {
 const EXPORTS = `
 ;globalThis.__engine = { io, bindHost, VIEW_TYPES, DECISION_KINDS, cpuTurn, cpuAnswer, applyIntent, INTENT_TYPES, portRecord, boardSnapshot, runPortRecord, setFormat, closeMatch, ABORT,
   setReplayFast() { REPLAY = { fast: true, i: 0 }; }, get FORMAT() { return FORMAT; }, startNewGame, PREBUILT, PRESET_DECK, VERSION, CARDS, matchSummary, checkInvariants,
-  setSimDeckB(d) { SIM_DECK_B = d; }, canPlayCard, abTaxOK, parseCard, FX_ACTIONS, STEPS, setSimHuman(v) { SIM_HUMAN = !!v; }, setSimProfiles(o) { CPU_SIM_PROFILES = Object.assign({}, o || {}); }, setFuzz(o) { FUZZ = Object.assign({}, o || {}); },
+  setSimDeckB(d) { SIM_DECK_B = d; }, canPlayCard, abTaxOK, parseCard, FX_ACTIONS, STEPS, mkInst, newGame, testSetup() { SESSION++; const base = PRESET_DECK; G = newGame(base, base); G.busy = false; G.active = 'player'; G.step = 4; G.turnNo = 3; G.p.player.hand = []; G.p.opponent.hand = []; return G; }, setSimHuman(v) { SIM_HUMAN = !!v; }, setSimProfiles(o) { CPU_SIM_PROFILES = Object.assign({}, o || {}); }, setFuzz(o) { FUZZ = Object.assign({}, o || {}); },
   get G() { return G; }, get SIM() { return SIM; } };
 `;
 
@@ -51,6 +51,10 @@ export function loadEngine({ sim = true, format = 'eternal', fixtures = false } 
   for (const n of WEB_GAPS) ctx[n] = () => { throw new Error(`headless: the engine called the web prompt ${n}() (M3 routes it through io.decide)`); };
   vm.createContext(ctx);
   script().runInContext(ctx);
+  // BS: the explicit exports first, then any engine top-level name (function, let, const) looked up inside the context, so a test written against the page hook finds bpOf, fieldList, ...
+  ctx.BS = new Proxy(ctx.__engine, { get: (t, k) => { if (k in t || typeof k !== 'string' || !/^[A-Za-z_$][\w$]*$/.test(k)) return t[k]; try { return vm.runInContext(k, ctx); } catch (e) { return undefined; } } });
+  // the Node twin of the page hook window.BS (tests/unit/lib/node_board.mjs)
+  ctx.__engine.__eval = (code) => vm.runInContext(code, ctx);
   if (!sim) ctx.__engine.setReplayFast();
   return ctx.__engine;
 }

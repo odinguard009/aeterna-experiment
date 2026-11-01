@@ -2779,7 +2779,6 @@
   "BS77-CX02",
   "BS77-CX03"
  ],
- "level_problems": [],
  "number_conflicts": [
   {
    "id": "BS04-091",
@@ -10143,5 +10142,6 @@
  ],
  "ut_lines_missing": [
   "BS66-059"
- ]
+ ],
+ "level_problems": []
 }
