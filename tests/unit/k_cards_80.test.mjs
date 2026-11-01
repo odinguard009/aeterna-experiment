@@ -1,4 +1,4 @@
-// Lane K tests, file 80 (rule 1b). Schema v259: MILL_OPP.perOppHand. Cards: BS04-111.
+// Lane K tests, file 80 (rule 1b). Schema v259: MILL_OPP.perOppHand. Cards: BS04-111, BS01-078.
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { sharedBoard, closeBrowser } from './lib/game.mjs';
@@ -12,4 +12,12 @@ test('K-808 MILL_OPP perOppHand: one opposing deck-top card goes to the Trash pe
     const act = BS.CARDS['BS04-111'].magic.by.MAIN.actions[0]; const c = { p: P, opp: O, src: BS.mkInst('BS04-111'), ctx: {} };
     await BS.FX_ACTIONS.MILL_OPP.run(c, act); return [O.deck.length, O.trash.length - t0, BS.FX_ACTIONS.MILL_OPP.chk(act)]; })()`);
   assert.deepEqual(r, [3, 3, true], JSON.stringify(r));
+});
+
+test('K-809 BS01-078 moves one core from the Trash to the Reserve when it attacks', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; P.trashCores.n = 2; const r0 = P.reserve.n;
+    const e = BS.CARDS['BS01-078'].effects[0]; const c = { p: P, opp: O, src: BS.mkInst('BS01-078'), ctx: {} };
+    await BS.FX_ACTIONS.TRASH_CORES_TO.run(c, e.actions[0]); return [e.trigger, P.trashCores.n, P.reserve.n - r0]; })()`);
+  assert.deepEqual(r, ['ATTACKS', 1, 1], JSON.stringify(r));
 });

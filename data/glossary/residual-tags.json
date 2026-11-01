@@ -80,10 +80,6 @@
   "A_REFRESH",
   "C_LEVEL"
  ],
- "BS01-078": [
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
  "BS01-083": [
   "C_LEVEL",
   "T_ATTACKS"
@@ -1189,9 +1185,6 @@
  "BS04-109": [],
  "BS04-110": [
   "T_ACTIVATE"
- ],
- "BS04-111": [
-  "A_DISCARD_OPP"
  ],
  "BS04-112": [],
  "BS04-113": [
