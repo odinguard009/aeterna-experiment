@@ -84,7 +84,7 @@ if m: old, src = int(m.group(1).replace(',', '')), 'the newest CHANGELOG release
 elif rel: old, src = json.loads(subprocess.check_output(['git', 'show', rel + ':docs/reports/card-counts.json']))['complete'], rel
 else: sys.exit(0)
 new = now - old
-print(f"K release: {new}/50 new complete cards since {src}" + (" -> RELEASE DUE" if new >= 50 else ""))
+print(f"K release: {new}/100 new complete cards since {src}" + (" -> RELEASE DUE" if new >= 100 else ""))
 last = subprocess.run(['git', 'log', '-1', '--format=%H', '--', 'CHANGELOG.md'], capture_output=True, text=True).stdout.strip()   # the release commit
 if last:
     ts = subprocess.run(['git', 'log', last + '..HEAD', '--format=%ct'], capture_output=True, text=True).stdout.split()

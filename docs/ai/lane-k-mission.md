@@ -7,7 +7,7 @@ Owner order, 2026-10-31: work Lane K for all cards (Standard block A first, then
 - last Lane K release: v0.204.0 (complete 1693)
 - data release: v0.204.1 (complete 1696; 1,785 partial playable cards added without effects, owner order 2026-11-01; not a Lane K cycle)
 - next release: v0.205.0 (complete 1746)
-- cycle: 3/50 new complete cards since v0.204.0
+- cycle: 3/100 new complete cards since v0.204.0
 - release v0.204.0 verified 2026-11-01: +50 complete cards (1,643 -> 1,693 of 8,709); CI success (run 41263316751, 13m35s), Release workflow success (run 41264264079) and the GitHub Release v0.204.0 exists (https://github.com/odinguard009/aeterna-experiment/releases/tag/v0.204.0). The release Regression (run 41263536368) failed on one legacy check: `Goradon draws 2 for a Wurm` fired ALLY_BLOCKED outside the Attack Step - the BS75-001 clause was tightened to the printed "Your Attack Step + Red Wurm" scope in bundle 37. The scenario now sets `BS.G.step=5; BS.G.active=player` before the effect; fix commit 2a4fe3d on main and wip, and the follow-up Regression (run 41266532805) is green.
 - post-release plan towards the owner's 500-card target: the Magic pool is the biggest lever (172 partial Magic cards; a partial Magic usually keeps a compiled FLASH and misses MAIN, so author Main into `magic.by`), then the remaining single-clause Eternal cards, Mirage/Burst data and the mechanic clusters. Keep the release rhythm at every +50: v0.205.0 at 1,743, then 1,793, ...
 - release v0.203.0 verified 2026-11-01: +50 complete cards (1,593 -> 1,643 of 8,709); CI success (run 41252273110, 9m54s), Release workflow success (run 41252960688) and the GitHub Release v0.203.0 exists (https://github.com/odinguard009/aeterna-experiment/releases/tag/v0.203.0); Regression dispatched with 30 sims (tool said DUE: 11 core engine files changed since 9e2081a).
@@ -83,11 +83,11 @@ Owner order, 2026-10-31: work Lane K for all cards (Standard block A first, then
 2. `node tools/lane_k_packet.mjs` - writes `build/lane-k-packet.md` with the cards, texts, residual tags, rule notes and existing tests.
 3. Write the scenario/test first for a new engine mechanic; wire a missing glossary tag once in the engine, then express the cards as data.
 4. `npm run -s loop`; commit the bundle (not per card); `git push origin HEAD:wip/lane-k`.
-5. At 50 new complete cards: write `build/lane-k-release-notes.md` (bullets: what changed first, then limits), then `bash tools/lane_k_release.sh`. It pushes `main` and dispatches Regression without waiting.
+5. At 100 new complete cards: write `build/lane-k-release-notes.md` (bullets: what changed first, then limits), then `bash tools/lane_k_release.sh`. It pushes `main` and dispatches Regression without waiting.
 6. Before stopping (quota, end of session): update the handoff line above, leave the next bundle in the packet, and run `bash tools/session_gate.sh done ...` or `unlock`. Push `wip/lane-k` first.
 
 ## Rules that do not change
-- Release only at 50 new complete cards; early only for a schema/rule risk, commits older than 24 h, or an owner order.
+- Release only at 100 new complete cards; early only for a schema/rule risk, commits older than 24 h, or an owner order.
 - CI and Regression stay on. Do not wait for them: at the start of each 50-cycle check the previous release exists and the newest Regression is green; fix a red one first.
 - Keep the quality gates: `npm run -s loop`, `node tools/fx_validate.mjs`, the false-complete sample, CI and Regression, the type baseline. A card that fails twice is dropped, recorded here as blocked, and named in the release notes.
 - Never edit `index.html`, `build/` or generated reports by hand; `node tools/build.mjs` owns them.
