@@ -158,3 +158,13 @@ test('K-824 DESTROY_OWN drawLv draws cards equal to the destroyed Spirit level (
     return [P.spirits.length, P.hand.length >= 1, BS.FX_ACTIONS.DESTROY_OWN.chk(act), BS.CARDS['BS58-054'].effects.map(e => e.trigger).sort().join(), BS.CARDS['BS19-072'].effects[0].actions[0].do]; })()`);
   assert.deepEqual(r, [0, true, true, 'DESTROYED,SUMMONED', 'VOID_TO_MATCHING'], JSON.stringify(r));
 });
+
+test('K-825 BS41-085 CHOOSE_ONE returns a Spirit or three Astral Dragons from the Trash; BS10-043 draws on a Cost 2 ally death', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true;
+    P.trash = [BS.mkInst('BS01-001')]; P.hand = [];
+    const act = BS.CARDS['BS41-085'].magic.by.MAIN.actions[0]; await BS.FX_ACTIONS.CHOOSE_ONE.run({ p: P, opp: O, src: BS.mkInst('BS41-085'), ctx: {} }, act);
+    const e = BS.CARDS['BS10-043'].effects[0];
+    return [P.hand.length, P.trash.length, BS.FX_ACTIONS.CHOOSE_ONE.chk(act), e.trigger, JSON.stringify(e.match)]; })()`);
+  assert.deepEqual(r, [1, 0, true, 'ALLY_DIED', '{"costIn":[2]}'], JSON.stringify(r));
+});
