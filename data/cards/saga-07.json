@@ -21499,13 +21499,27 @@
   "image": "BS39-075.jpg",
   "block": "39",
   "saga": 7,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Refresh all your Cost 2 Spirits.",
-   "When three or more Spirits you control are refreshed by this effect, draw a card."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "REFRESH_SPIRIT",
+     "all": true,
+     "drawGe": 3,
+     "match": {
+      "costIn": [
+       2
+      ]
+     }
+    }
+   ]
+  }
  },
  {
   "id": "BS39-076",

@@ -242,3 +242,16 @@ test('K-950 BS10-105 destroys an own Cost 3+ Spirit, then 3 Void cores to the Re
     } return out; })()`);
   assert.deepEqual(r[0][0], 0); assert.equal(r[0][1], true, JSON.stringify(r)); assert.equal(r[1][0], 1); assert.equal(r[1][1], false, JSON.stringify(r));
 });
+
+test('K-951 BS39-075 refreshes all own Cost 2 Spirits and draws only when 3+ were refreshed', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { const out = [];
+    const two = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].cost === 2);
+    for (const n of [2, 3]) {
+      BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.spirits.length = 0; P.nexus.length = 0;
+      for (let i = 0; i < n; i++) { const s = BS.mkInst(two); s.cores = 1; s.exhausted = true; P.spirits.push(s); }
+      const h = P.hand.length; await BS.FX_ACTIONS.REFRESH_SPIRIT.run({ p: P, opp: O, src: BS.mkInst('BS39-075'), ctx: {} }, BS.CARDS['BS39-075'].magic.actions[0]);
+      out.push([P.spirits.filter(s => !s.exhausted).length, P.hand.length - h]);
+    } return out; })()`);
+  assert.deepEqual(r, [[2, 0], [3, 1]]);
+});
