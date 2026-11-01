@@ -11,7 +11,7 @@ async function beginTurn(key) {
   setStep(0); await wait(300);
   if (p.deck.length === 0) { win(other(key), `${poss(p)} deck is empty at the start step`); return; }
   setStep(1);
-  if (!G.over) { await fireFx(p, 'START_STEP', null, {}); await flushBursts(); }      // v238 "(Your Start Step)"
+  if (!G.over) { await fireFx(p, 'START_STEP', null, {}); await flushBursts(); await fireFx(G.p[other(p.key)], 'OPP_START_STEP', null, {}); await flushBursts(); }      // v238 "(Your Start Step)"
   if (G.turnNo === 1) log('First turn: the Core Step is skipped.');
   else {
     io.view({ type: 'core', side: key, kind: 'core', from: 'void', to: 'reserve' });   // v0.138.0: display cue, the old board still shows the core in the Void
