@@ -269,3 +269,13 @@ test('K-952 BS21-079/BS08-077 let exhausted Spirits block this turn (picked one 
     return { before, all, fam: !!fam, picked: P.spirits.filter(s => s.blockExT === G.turnNo).length >= 1 }; })()`);
   assert.ok(r.fam); assert.deepEqual(r.before, [false, false]); assert.deepEqual(r.all, [false, true], JSON.stringify(r)); assert.ok(r.picked);
 });
+
+test('K-953 BS05-030 (LV2) makes Ice Princess Spirit cards in hand cost 5, only at LV2', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const P = BS.G.p.player; P.cpu = true; P.nexus.length = 0;
+    const ip = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].cost >= 7 && (BS.CARDS[k].families || []).includes('Ice Princess'));
+    const z = BS.mkInst(ip); P.hand = [z]; P.reserve.n = 6; const base = BS.canPlayCard(P, z);
+    const s = BS.mkInst('BS05-030'); s.cores = 1; P.spirits = [s]; const lv1 = BS.canPlayCard(P, z);
+    s.cores = 2; const lv2 = BS.canPlayCard(P, z); return [!!ip, base, lv1, lv2]; })()`);
+  assert.ok(r[0], JSON.stringify(r)); assert.deepEqual(r.slice(1), [false, false, true], JSON.stringify(r));
+});
