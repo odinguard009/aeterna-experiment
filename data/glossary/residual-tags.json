@@ -6526,10 +6526,6 @@
   "M_UP_TO",
   "T_ATTACKS"
  ],
- "BS19-029": [
-  "A_EXHAUST",
-  "C_LEVEL"
- ],
  "BS19-032": [
   "A_EXHAUST",
   "A_LIFE_TO_RESERVE",
@@ -6588,9 +6584,6 @@
   "C_LEVEL",
   "K_RUSH",
   "T_SUMMONED"
- ],
- "BS19-052": [
-  "C_LEVEL"
  ],
  "BS19-053": [
   "A_REFRESH",
@@ -7265,9 +7258,6 @@
   "K_RUSH",
   "M_UP_TO",
   "T_ATTACKS"
- ],
- "BS21-039": [
-  "C_LEVEL"
  ],
  "BS21-041": [
   "A_REFRESH",

@@ -1293,13 +1293,30 @@
   "mechanics": [
    "Charge"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] Cards can't be discarded from either deck.",
-   "[LV2] Charge Your “opponent-targeting exhaustion effects“ exhausts +1 bodies."
-  ],
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "NO_DECK_DISCARD",
+    "to": "self",
+    "lv": [
+     1,
+     2
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "CHARGE",
+    "to": "self",
+    "lv": [
+     2
+    ],
+    "kind": "exhaust",
+    "n": 1
+   }
+  ]
  },
  {
   "id": "BS19-030",
@@ -2302,13 +2319,33 @@
   "image": "BS19-052.jpg",
   "block": "19",
   "saga": 4,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] Cards can't be discarded from either deck.",
-   "[LV1][LV2][LV3] Charge - Your “BP- effect” decreases 1000 further."
-  ],
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "NO_DECK_DISCARD",
+    "to": "self",
+    "lv": [
+     1,
+     2,
+     3
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "CHARGE",
+    "to": "self",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "kind": "bpMinus",
+    "n": 1000
+   }
+  ]
  },
  {
   "id": "BS19-053",
@@ -10872,13 +10909,29 @@
     "if": {
      "step": "ATTACK"
     }
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "CANT_ATTACK",
+    "to": "self",
+    "lv": [
+     1,
+     2
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "CHARGE",
+    "to": "self",
+    "lv": [
+     1,
+     2
+    ],
+    "kind": "bpMinus",
+    "n": 1000
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (Your Attack Step) This Spirit can't attack.",
-   "[LV1][LV2] Charge Your “BP- effect” decreases 1000 further."
-  ],
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "rcode": "U"
  },

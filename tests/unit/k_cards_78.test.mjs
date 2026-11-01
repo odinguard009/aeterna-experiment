@@ -128,3 +128,11 @@ test('K-796 Charge: core removal sends +1, deck discard +1 (non-Ultimate gate), 
     const opp = BS.chargeAction(c(sp('BS75-001', O, 1), O), { do: 'MILL_OPP', n: 2 }).n; return [base, b, t, m, d, bp, ex, opp];`);
   assert.deepEqual(r, [1, 2, 3, 3, 6000, 3000, 2, 2], JSON.stringify(r));
 });
+
+test('K-797 BS19-029 / BS19-052 / BS21-039: Charge by level together with NO_DECK_DISCARD and CANT_ATTACK', async () => {
+  const r = await run(`const c = src => ({ p: P, opp: O, src, ctx: {} });
+    const a = sp('BS19-029', P, 1), x1 = BS.chargeAction(c(a), { do: 'EXHAUST_OPP', n: 1 }).n; a.cores = 3; const x2 = BS.chargeAction(c(a), { do: 'EXHAUST_OPP', n: 1 }).n;
+    const b = sp('BS21-039', P, 1); const atk = BS.flagActive(P, 'CANT_ATTACK', b), nd = BS.flagActive(P, 'NO_DECK_DISCARD', sp('BS19-052', P, 1));
+    return [x1, x2, atk, nd];`);
+  assert.deepEqual(r, [1, 2, true, true], JSON.stringify(r));
+});
