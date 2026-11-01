@@ -652,10 +652,6 @@
   "A_BP_PLUS",
   "M_THEN"
  ],
- "BS03-143": [
-  "A_VOID",
-  "K_CRUSH"
- ],
  "BS03-147": [
   "A_BP_PLUS",
   "M_REPLACEMENT"
@@ -917,9 +913,6 @@
  "BS04-096": [
   "A_BP_PLUS",
   "A_VOID"
- ],
- "BS04-097": [
-  "A_BP_PLUS"
  ],
  "BS04-099": [
   "A_BP_PLUS",
@@ -1423,10 +1416,6 @@
  "BS06-101": [
   "A_EXHAUST",
   "A_VOID"
- ],
- "BS06-102": [
-  "A_VOID",
-  "T_ALLY_LIFE_HIT"
  ],
  "BS06-103": [
   "A_EXHAUST",
@@ -2691,10 +2680,6 @@
  ],
  "BS10-110": [
   "M_REPLACEMENT"
- ],
- "BS10-113": [
-  "A_DISCARD_OPP",
-  "T_ALLY_LIFE_HIT"
  ],
  "BS10-X01": [
   "A_AWAKEN",

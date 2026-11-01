@@ -71,3 +71,22 @@ test('K-937 BS01-087 each player moves 1 core from a Spirit to the Trash', async
     return [a.cores, o.cores, BS.CARDS['BS01-087'].effects[0].lv]; })()`);
   assert.deepEqual(r, [1, 2, [1, 2]]);
 });
+
+test('K-938 BS03-143 / BS06-102 / BS10-113 / BS04-097 grant turn-long effects to the matching Spirits', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.turnNo = 11;
+    const find = f => Object.keys(BS.CARDS).find(k => /^BS0/.test(k) && BS.CARDS[k].type === 'Spirit' && f(BS.CARDS[k]));
+    const crush = BS.mkInst('BS14-062'), plain = BS.mkInst('BS01-001');
+    const fs = BS.mkInst(find(k => (k.families || []).includes('Fighting Spirit'))), wb = BS.mkInst(find(k => (k.families || []).includes('Winged Beast')));
+    P.spirits = [crush, plain, fs, wb];
+    const run = async id => BS.FX_ACTIONS.GRANT_FX.run({ p: P, opp: O, src: BS.mkInst(id), ctx: {} }, BS.CARDS[id].magic.actions[0]);
+    await run('BS03-143'); const a = P.spirits.map(s => (s.grantFx || []).length);
+    P.spirits.forEach(s => { s.grantFx = []; });
+    await run('BS06-102'); const b = P.spirits.map(s => (s.grantFx || []).length);
+    P.spirits.forEach(s => { s.grantFx = []; });
+    await run('BS10-113'); const c = P.spirits.map(s => (s.grantFx || []).length);
+    P.spirits.forEach(s => { s.grantFx = []; });
+    await run('BS04-097'); const d = P.spirits.map(s => (s.grantFx || []).length);
+    return [a, b, c, d]; })()`);
+  assert.deepEqual(r, [[1, 0, 0, 0], [1, 1, 1, 1], [0, 0, 1, 0], [0, 0, 0, 1]], JSON.stringify(r));
+});
