@@ -683,19 +683,9 @@
   "C_LEVEL",
   "T_DESTROYED"
  ],
- "BS03-088": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
  "BS03-090": [
   "C_LEVEL",
   "K_CRUSH"
- ],
- "BS03-092": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "T_BLOCKS"
  ],
  "BS03-094": [
   "A_BP_PLUS",

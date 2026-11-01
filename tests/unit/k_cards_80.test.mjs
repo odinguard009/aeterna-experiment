@@ -282,3 +282,10 @@ test('K-837 CRUSH perKeyword discards n cards per own Spirit with Crush (BS11-04
     return [ok, d0 - O.deck.length]; })()`);
   assert.deepEqual(r, [true, 3], JSON.stringify(r));
 });
+
+test('K-838 BS03-088 / BS03-092 discard a Nexus from the Hand for +5000 BP (data shape)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup();
+    return ['BS03-088', 'BS03-092'].map(id => { const e = BS.CARDS[id].effects[0]; return [e.trigger, e.actions[0].do, e.actions[0].match.type, e.actions[1].n, e.actions[1].to]; }); })()`);
+  assert.deepEqual(r, [['ATTACKS', 'DISCARD_HAND', 'Nexus', 5000, 'own'], ['BLOCKS', 'DISCARD_HAND', 'Nexus', 5000, 'own']], JSON.stringify(r));
+});
