@@ -80,3 +80,14 @@ test('K-845 BS02-091: a 7000+ BP Spirit pays all its cores to the Void, then up 
     return [ok, paid, O.reserve.n - r0, o1.cores + o2.cores]; })()`);
   assert.deepEqual(r, [true, [3, false, true], 7, 1], JSON.stringify(r));
 });
+
+test('K-846 EXHAUST_OPP_MATCH exhausts opposing Spirits until the exhausted counts are equal (BS03-139)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true;
+    const mk = (ex) => { const s = BS.mkInst('BS01-001'); s.cores = 1; s.exhausted = ex; return s; };
+    P.spirits = [mk(true), mk(true), mk(true)]; O.spirits = [mk(true), mk(false), mk(false), mk(false)];
+    const a = BS.CARDS['BS03-139'].magic.by.FLASH.actions[0]; const c = { p: P, opp: O, src: BS.mkInst('BS03-139'), ctx: {} };
+    await BS.FX_ACTIONS.EXHAUST_OPP_MATCH.run(c, a); const ex1 = O.spirits.filter(s => s.exhausted).length;
+    const again = BS.FX_ACTIONS.EXHAUST_OPP_MATCH.can(c, a); return [ex1, again, c.ctx.did]; })()`);
+  assert.deepEqual(r, [3, false, true], JSON.stringify(r));
+});

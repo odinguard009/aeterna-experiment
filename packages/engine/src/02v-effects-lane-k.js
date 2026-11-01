@@ -111,3 +111,19 @@ Object.assign(FX_ACTIONS, {      // v281 "By sending all cores from a <bpGe> BP 
       io.view({ type: 'board' });
     } },
 });
+Object.assign(FX_ACTIONS, {      // v282 "Exhaust opposing Spirits until they control the same number of exhausted Spirits as you do."
+  EXHAUST_OPP_MATCH: { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
+    txt: () => 'exhaust opposing Spirits until they have as many exhausted Spirits as you',
+    need: c => c.p.spirits.filter(t => t.exhausted).length - c.opp.spirits.filter(t => t.exhausted).length,
+    cands: c => c.opp.spirits.filter(t => !t.exhausted && !fxImmune(c.opp, t)),
+    can: c => FX_ACTIONS.EXHAUST_OPP_MATCH.need(c) > 0 && FX_ACTIONS.EXHAUST_OPP_MATCH.cands(c).length > 0,
+    run: async (c, a) => {
+      const L = FX_ACTIONS.EXHAUST_OPP_MATCH.cands(c), k = Math.min(FX_ACTIONS.EXHAUST_OPP_MATCH.need(c), L.length); c.ctx.did = false; if (k <= 0) return;
+      const T = await pickOppSpirits(c, L, k, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the opposing Spirits to exhaust (glowing).`);
+      if (!T.length) return;
+      for (const t of T) { t.exhausted = true; log(`${CARDS[c.src.id].name}: ${poss(c.opp)} ${CARDS[t.id].name} is exhausted.`); }
+      c.ctx.did = true; await fireFx(c.p, 'EXHAUSTED_FX', null, { side: 'opp', fxSrc: c.src });
+      for (const t of T) await fireFx(c.opp, 'EXHAUSTED_FX', null, { side: 'own', subject: t, fxSrc: c.src });
+      io.view({ type: 'board' });
+    } },
+});
