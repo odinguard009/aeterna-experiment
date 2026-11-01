@@ -81,3 +81,15 @@ test('K-870 BS02-080 gives Spirits with 3+ cores +1000 BP in the own Attack Step
     return out; })()`);
   assert.deepEqual(r, [1000, 0, 4, 1, 4], JSON.stringify(r));
 });
+
+test('K-871 BS03-108 refreshes one vanilla exhausted Spirit at LV1 and all of them at LV2 in the opposing Attack start', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const n = BS.mkInst('BS03-108'); n.cores = 1; P.nexus = [n]; const out = [];
+    const mk = id => { const x = BS.mkInst(id); x.cores = 1; x.exhausted = true; return x; };
+    const v1 = mk('BS01-001'), v2 = mk('BS01-001'), t = mk('BS31-008'); P.spirits = [v1, v2, t];
+    await BS.fireFx(P, 'OPP_START_ATTACK', null, {}); out.push(P.spirits.filter(x => !x.exhausted).length);
+    n.cores = 3; await BS.fireFx(P, 'OPP_START_ATTACK', null, {}); out.push(P.spirits.filter(x => !x.exhausted).length, t.exhausted);
+    return out; })()`);
+  assert.deepEqual(r, [1, 2, true], JSON.stringify(r));
+});
