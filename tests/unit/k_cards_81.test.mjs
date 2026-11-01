@@ -119,3 +119,21 @@ test('K-849 BS01-125 makes both players destroy a Spirit they control', async ()
     for (const x of acts) await BS.FX_ACTIONS[x.do].run(c, x); return [P.spirits.length, O.spirits.length]; })()`);
   assert.deepEqual(r, [1, 0], JSON.stringify(r));
 });
+
+test('K-850 BS01-083 cannot be blocked by red Spirits when it attacks', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true;
+    const s = BS.mkInst('BS01-083'); s.cores = 1; P.spirits = [s];
+    const e = BS.CARDS['BS01-083'].effects[0]; const c = { p: P, opp: O, src: s, ctx: {} };
+    await BS.FX_ACTIONS.CANT_BE_BLOCKED_BY.run(c, e.actions[0]); return [e.trigger, JSON.stringify(s.noBlockBy.color)]; })()`);
+  assert.deepEqual([r[0], r[1]], ['ATTACKS', '["red"]'], JSON.stringify(r));
+});
+
+test('K-851 BS01-086 is unaffected by opposing Spirit and Magic effects but not by Nexus effects', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true;
+    const s = BS.mkInst('BS01-086'); s.cores = 1; P.spirits = [s];
+    const sp = (id) => ({ p: O, src: BS.mkInst(id), ctx: {} });
+    return [BS.fxImmune(P, s, sp('BS01-001')), BS.fxImmune(P, s, sp('BS01-098')), BS.fxImmune(P, s, sp('BS01-125'))]; })()`);
+  assert.deepEqual(r, [true, false, true], JSON.stringify(r));
+});
