@@ -265,3 +265,10 @@ test('K-835 HAND_TO_REMOVED puts a Magic from the Hand onto the Removed Zone (BS
     return [ok, a1, c.ctx.did]; })()`);
   assert.deepEqual(r, [true, [1, 1], false], JSON.stringify(r));
 });
+
+test('K-836 BS10-112 Main deploys a Nexus from the Trash, then returns another to the Hand; Flash keeps +3000 BP (data shape)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const m = BS.CARDS['BS10-112'].magic;
+    return [JSON.stringify(m.timing), m.by.MAIN.actions.map(a => a.do), m.by.FLASH && (m.by.FLASH.effect || null)]; })()`);
+  assert.deepEqual(r[0], '["MAIN","FLASH"]'); assert.deepEqual(r[1], ['DEPLOY_TRASH', 'RETURN_TRASH']);
+});

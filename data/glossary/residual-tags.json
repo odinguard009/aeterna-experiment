@@ -2960,11 +2960,6 @@
  "BS10-111": [
   "M_THEN"
  ],
- "BS10-112": [
-  "A_SUMMON_FREE",
-  "A_TRASH_TO_RESERVE",
-  "M_THEN"
- ],
  "BS10-113": [
   "A_DISCARD_OPP",
   "T_ALLY_LIFE_HIT"
