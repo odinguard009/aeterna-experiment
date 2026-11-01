@@ -157,3 +157,13 @@ test('K-853 BS03-022 exhausts an unexhausted opposing Spirit after winning a bat
     await BS.runActions({ p: P, opp: O, src: s, ctx: {} }, e, e.trigger); return [e.trigger, e.lv, b.exhausted]; })()`);
   assert.deepEqual(r, ['BATTLE_WIN', [2], true], JSON.stringify(r));
 });
+
+test('K-854 BS01-071 and BS02-041 refresh themselves after a won battle only while exhausted', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true; const out = [];
+    for (const id of ['BS01-071', 'BS02-041']) { const e = BS.CARDS[id].effects[0];
+      for (const ex of [true, false]) { const s = BS.mkInst(id); s.cores = 4; s.exhausted = ex; P.spirits = [s]; O.spirits = [];
+        await BS.fireFx(P, 'BATTLE_WIN', s, { attacker: s }); out.push(s.exhausted); } }
+    return out; })()`);
+  assert.deepEqual(r, [false, false, false, false], JSON.stringify(r));
+});

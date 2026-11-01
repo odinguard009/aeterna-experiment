@@ -61,11 +61,6 @@
   "C_LEVEL",
   "T_SUMMONED"
  ],
- "BS01-071": [
-  "A_EXHAUST",
-  "A_REFRESH",
-  "C_LEVEL"
- ],
  "BS01-087": [
   "C_LEVEL",
   "T_SUMMONED"
@@ -280,11 +275,6 @@
   "C_LEVEL",
   "M_REPLACEMENT",
   "T_DESTROYED"
- ],
- "BS02-041": [
-  "A_EXHAUST",
-  "A_REFRESH",
-  "C_LEVEL"
  ],
  "BS02-042": [
   "A_EXHAUST",
