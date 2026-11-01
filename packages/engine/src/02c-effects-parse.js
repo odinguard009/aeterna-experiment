@@ -164,8 +164,13 @@ function parseEffects(arr) {
         o.n = e.n;
       }
       if (e.flag === 'NO_ATTACK_LIFE') {                          // v0.186 attacks of Cost N or less Spirits can't reduce either Life
-        if (!Number.isInteger(e.costLe) || e.costLe < 0 || e.costLe > 30) return { error: 'NO_ATTACK_LIFE needs a whole-number "costLe" (0-30)' };
-        o.costLe = e.costLe;
+        if (e.costIn != null) {                                   // v308 costIn [3,4] + noTribute: "Cost 3/4 Spirits without Tribute"
+          if (!Array.isArray(e.costIn) || !e.costIn.length || !e.costIn.every(x => Number.isInteger(x) && x >= 0 && x <= 30) || e.costLe != null || (e.noTribute != null && e.noTribute !== true)) return { error: 'NO_ATTACK_LIFE costIn needs a list of costs (and no costLe)' };
+          o.costIn = e.costIn; if (e.noTribute) o.noTribute = true;
+        } else {
+          if (!Number.isInteger(e.costLe) || e.costLe < 0 || e.costLe > 30) return { error: 'NO_ATTACK_LIFE needs a whole-number "costLe" (0-30)' };
+          o.costLe = e.costLe;
+        }
       }
       if (e.flag === 'IMMORTALITY') {                             // v0.183 {{Immortality|Cost N/M}} / {{Immortality|<family>}} (engine immortalCands)
         const ci = e.costIn, fam = e.family;

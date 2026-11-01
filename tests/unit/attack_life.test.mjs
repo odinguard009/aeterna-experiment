@@ -28,3 +28,13 @@ test('HC186-01 HAND_COST sets the base cost of matching hand cards', async () =>
   const r = await g.page.evaluate(`(() => { BS.testSetup(); const P = BS.G.p.player; P.spirits = [BS.mkInst('T186-HC')]; const z = BS.mkInst('T186-ZED'); P.hand = [z]; P.reserve.n = 2; const a = BS.canPlayCard(P, z); P.spirits = []; return [a, BS.canPlayCard(P, z)]; })()`);
   assert.deepEqual(r, [true, false]);
 });
+
+test('ATL308-01 costIn + noTribute locks only Cost 3/4 Spirits without Tribute', async () => {
+  const mk = (id, cost, extra) => Object.assign({ id, name: id, type: 'Spirit', color: 'red', cost, symbols: 1, levels: [{ cores: 1, bp: 3000 }] }, extra);
+  const r0 = await g.page.evaluate(fix => BS.importCards(JSON.stringify(fix)), [mk('T308-LOCK', 4, { effects: [{ trigger: 'STATIC', flag: 'NO_ATTACK_LIFE', to: 'self', costIn: [3, 4], noTribute: true }] }), mk('T308-C3', 3), mk('T308-C3T', 3, { keywords: ['Tribute'], desc: 'Tribute (x)' }), mk('T308-C5', 5)]);
+  assert.equal(r0.ok, 4, JSON.stringify(r0));
+  const run = id => g.page.evaluate(`(async () => { BS.testSetup(); BS.SETTINGS.speed = 'instant'; const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = P.key; G.step = 3; P.cpu = true; O.cpu = true;
+    for (const q of [P, O]) { q.spirits = []; q.nexus = []; } const h = BS.mkInst('T308-LOCK'); h.exhausted = true; O.spirits.push(h);
+    const a = BS.mkInst('${id}'); P.spirits.push(a); const life = O.life; await BS.doBattle(P.key, a); return life - O.life; })()`);
+  assert.deepEqual([await run('T308-C3'), await run('T308-C3T'), await run('T308-C5')], [0, 1, 1]);
+});

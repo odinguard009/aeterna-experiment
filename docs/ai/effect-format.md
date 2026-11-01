@@ -342,3 +342,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v305: `if.handGe` (own hand size at least N), BS04-018.
 - v306: `match.notKeyword` (Spirits without that keyword, e.g. Tribute), BS09-072.
 - v307: `REFRESH_SPIRIT all:true [both:true] match` (refresh every matching exhausted Spirit, optionally both players'), BS02-106.
+- v308 (Lane K): STATIC `NO_ATTACK_LIFE` also takes `costIn` [N,..] with `noTribute:true` ("Neither player's Life can be reduced by the attacks of Cost 3/4 Spirits without Tribute"); `costLe` and `costIn` are exclusive. Card: BS08-033.
