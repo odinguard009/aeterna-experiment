@@ -2580,11 +2580,6 @@
   "C_LEVEL",
   "C_OPP_TURN"
  ],
- "BS10-035": [
-  "A_VOID",
-  "A_VOID_TO_LIFE",
-  "C_LEVEL"
- ],
  "BS10-042": [
   "C_LEVEL",
   "T_DESTROYED"
@@ -3607,10 +3602,6 @@
   "C_LEVEL",
   "M_OPTIONAL",
   "T_DESTROYED"
- ],
- "BS13-013": [
-  "C_LEVEL",
-  "T_SUMMONED"
  ],
  "BS13-014": [
   "A_SUMMON_FREE",
@@ -5401,10 +5392,6 @@
   "C_LEVEL",
   "K_BURST",
   "M_OPTIONAL"
- ],
- "BS18-011": [
-  "C_LEVEL",
-  "T_DESTROYED"
  ],
  "BS18-012": [
   "C_LEVEL",
@@ -7575,10 +7562,6 @@
  "BS24-030": [
   "C_LEVEL",
   "K_ULTIMATE"
- ],
- "BS24-031": [
-  "C_LEVEL",
-  "T_DESTROYED"
  ],
  "BS24-032": [
   "C_LEVEL",

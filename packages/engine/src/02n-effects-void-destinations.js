@@ -43,16 +43,16 @@
   const ok = a => ((a.targets === 1) || (a.targets >= 1 && a.targets <= 3)) && (a.costLe == null || (Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30)) && (a.coresLe == null || (Number.isInteger(a.coresLe) && a.coresLe >= 1 && a.coresLe <= 10))
     && [a.exhaustedOnly, a.keepOne, a.untilOne, a.fighting, a.eachLegacy, a.blockerOnly].every(v => v == null || v === true) && upOk(a.upgrade) && (a.eachPer == null || perOk(a.eachPer));
   const base = a => { const o = Object.assign({}, a); for (const k of NEW) delete o[k]; if (a.untilOne) o.each = 1; return o; };
-  O.chk = a => has(a) ? ok(a) && oChk(base(a)) : oChk(a);
-  O.cands = (c, a) => has(a) ? (upOn(c, a) && a.upgrade.soul ? c.opp.spirits.filter(t => (t.cores > 0 || t.soul) && !fxImmune(c.opp, t)) : oCands(c)).filter(t => (a.costLe == null || CARDS[t.id].cost <= a.costLe) && (!a.exhaustedOnly || t.exhausted || (upOn(c, a) && a.upgrade.anyTarget))
+  O.chk = a => a && a.allTargets ? oChk(a) : has(a) ? ok(a) && oChk(base(a)) : oChk(a);
+  O.cands = (c, a) => a && a.allTargets ? oCands(c, a) : has(a) ? (upOn(c, a) && a.upgrade.soul ? c.opp.spirits.filter(t => (t.cores > 0 || t.soul) && !fxImmune(c.opp, t)) : oCands(c)).filter(t => (a.costLe == null || CARDS[t.id].cost <= a.costLe) && (!a.exhaustedOnly || t.exhausted || (upOn(c, a) && a.upgrade.anyTarget))
     && (a.coresLe == null || totalCores(t) <= a.coresLe) && (!(a.keepOne || a.untilOne) || totalCores(t) > 1) && (!a.fighting || t === G.attacker || t === G.blocker) && (!a.blockerOnly || t === G.blocker)) : oCands(c);
-  O.can = (c, a) => has(a) ? O.cands(c, a).length > 0 : oCan(c, a);
-  O.txt = a => has(a) ? (a.untilOne ? 'send cores from an opposing ' : `send ${a.each} core${a.each === 1 ? '' : 's'} from an opposing `)
+  O.can = (c, a) => a && a.allTargets ? oCan(c, a) : has(a) ? O.cands(c, a).length > 0 : oCan(c, a);
+  O.txt = a => a && a.allTargets ? oTxt(a) : has(a) ? (a.untilOne ? 'send cores from an opposing ' : `send ${a.each} core${a.each === 1 ? '' : 's'} from an opposing `)
     + [a.exhaustedOnly ? 'exhausted' : '', a.costLe != null ? 'Cost ' + a.costLe + ' or less' : ''].filter(Boolean).concat(a.blockerOnly ? 'blocking Spirit' : 'Spirit').join(' ')
     + (a.coresLe != null ? ` with ${a.coresLe} core${a.coresLe === 1 ? '' : 's'} or less on it` : '') + ' to the Reserve'
     + (a.untilOne ? ' until one core remains' : a.keepOne ? ' (not below one core)' : '') + (a.drawPerDepleted ? ', and draw a card if it is depleted' : '') : oTxt(a);
   O.run = async (c, a) => {
-    if (!has(a)) return oRun(c, a);
+    if ((a && a.allTargets) || !has(a)) return oRun(c, a);
     const L = O.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
     if (a.targets > 1) {      // v199 "target three Spirits" (one action, one core each)
       const T = await pickOppSpirits(c, L, a.targets, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the opposing Spirits to send cores from (glowing).`);

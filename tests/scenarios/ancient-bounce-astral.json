@@ -1,0 +1,68 @@
+{
+  "name": "ancient-bounce-astral",
+  "about": "v0.203.0 next cycle bundle 8: BS18-011 (When Destroyed: destroy an opposing Ancient Dragon family Spirit), BS24-031 (When Destroyed: return every opposing Spirit with two or more symbols to the Hand), BS13-013 (When Summoned: one core each from every opposing Cost 3 or less Spirit to the Reserve) and BS10-035 (When your Astral Soul family Spirits are destroyed: a Void core to your Life).",
+  "rules": [
+    "STD:12-2-1-12@caad612c",
+    "SJP:core-move@eb7563c8"
+  ],
+  "turn": 4,
+  "active": "player",
+  "step": 4,
+  "players": {
+    "player": {
+      "reserve": 3,
+      "void": 8,
+      "spirits": [
+        {
+          "id": "BS18-011",
+          "cores": 1,
+          "as": "dragonSlayer"
+        },
+        {
+          "id": "BS24-031",
+          "cores": 1,
+          "as": "bouncer"
+        },
+        {
+          "id": "BS13-013",
+          "cores": 1,
+          "as": "coreMover"
+        },
+        {
+          "id": "BS10-035",
+          "cores": 3,
+          "as": "astralGain"
+        }
+      ],
+      "deck": [
+        "26RBS01-004",
+        "26RBS01-005"
+      ]
+    },
+    "opponent": {
+      "reserve": 4,
+      "spirits": [
+        {
+          "id": "BS01-021",
+          "cores": 1,
+          "as": "ancient"
+        },
+        {
+          "id": "BS09-018",
+          "cores": 1,
+          "as": "twoSymbols"
+        },
+        {
+          "id": "26RBS01-031",
+          "cores": 2,
+          "as": "cheapOne"
+        },
+        {
+          "id": "BS02-005",
+          "cores": 2,
+          "as": "cheapTwo"
+        }
+      ]
+    }
+  }
+}

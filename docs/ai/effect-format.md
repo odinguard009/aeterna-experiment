@@ -278,3 +278,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v240 (Lane K): VOID_TO_CARD.to subject (to that Spirit) and trigger SPIRIT_DIED (when any Spirit is destroyed, fired for both players). Cards: BS34-063, BS24-057.
 - v241 (Lane K): VOID_TO_RESERVE.perLv (cores equal to the destroyed Spirit's level) and RETURN_TRASH.all (return every matching Trash card). Cards: BS13-022, BS21-066.
 - v242 (Lane K): OPP_CORES_TO_RESERVE.perSource (own family/count, opposing field colours, your Nexuses) with perMatch, the OPP_CORES_TO_TRASH action, and a family list in a per query. Cards: BS10-020, BS36-013, BS16-017, BS15-013, BS50-014.
+- v243 (Lane K): DESTROY.match (family/colour filter), BOUNCE_OPP.symbolsGe, OPP_CORES_TO_RESERVE.allTargets (every matching target loses `each` cores). Cards: BS18-011, BS24-031, BS13-013, BS10-035.
