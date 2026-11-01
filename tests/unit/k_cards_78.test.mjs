@@ -158,3 +158,10 @@ test('K-800 NO_DESTROY_OPP (BS25-028 / BS28-001 / BS30-034): survives an opposin
     const u = sp('BS30-034', P, 1); BS.removeSpirit(P, u, 'destroyed', 'battle'); return [a, b, P.spirits.includes(u)];`);
   assert.deepEqual(r, [true, false, false], JSON.stringify(r));
 });
+
+test('K-801 MUST_ATTACK (BS01-033) attacks at the start of the Attack Step; MUST_ATTACK_OPP cards (BS36-031) carry the opposing start trigger', async () => {
+  const r = await run(`const a = sp('BS01-033', P, 2); a.cores = 4; const f = BS.flagActive(P, 'MUST_ATTACK', a);
+    const k = BS.CARDS['BS36-031'].effects.some(e => e.trigger === 'OPP_START_ATTACK' && e.actions[0].do === 'MUST_ATTACK_OPP');
+    return [f, k, BS.CARDS['BS40-037'].effects.length];`);
+  assert.deepEqual(r, [true, true, 2], JSON.stringify(r));
+});

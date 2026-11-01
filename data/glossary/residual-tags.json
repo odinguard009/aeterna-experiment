@@ -24,12 +24,6 @@
   "M_OPTIONAL",
   "T_BATTLE_WIN"
  ],
- "BS01-027": [
-  "C_LEVEL"
- ],
- "BS01-033": [
-  "C_LEVEL"
- ],
  "BS01-036": [
   "A_EXHAUST",
   "C_LEVEL",
@@ -14548,10 +14542,6 @@
   "A_SUMMON_FREE",
   "M_OPTIONAL"
  ],
- "BS35-035": [
-  "C_LEVEL",
-  "M_OPTIONAL"
- ],
  "BS35-036": [
   "A_BP_PLUS",
   "A_EXHAUST",
@@ -15198,10 +15188,6 @@
   "C_LEVEL",
   "K_BRAVE",
   "S_UNAFFECTED"
- ],
- "BS36-031": [
-  "C_LEVEL",
-  "M_OPTIONAL"
  ],
  "BS36-032": [
   "A_BP_PLUS",
@@ -18024,13 +18010,6 @@
   "K_ADVENT",
   "M_OPTIONAL",
   "T_SUMMONED"
- ],
- "BS40-037": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_DESTROYED",
-  "T_DESTROYED_OPP"
  ],
  "BS40-038": [
   "A_BP_PLUS",

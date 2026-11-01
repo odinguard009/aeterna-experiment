@@ -154,7 +154,7 @@ async function cpuAttack(p) {
   }
 }
 async function startAttackFx(p) { await fireFx(p, 'START_ATTACK', null, {}); if (!G.over) await fireFx(G.p[other(p.key)], 'OPP_START_ATTACK', null, {}); await flushBursts(); if (!G.over) await oppAttackHandFx(G.p[other(p.key)]); checkDepletion(p); checkDepletion(G.p[other(p.key)]); io.view({ type: 'board' });
-  for (const s of p.spirits.slice()) if (!G.over && s.mustAtk === G.turnNo && p.spirits.includes(s) && isSpiritForm(CARDS[s.id]) && !s.exhausted && !cantAttack(p, s) && abTaxOK(p, s) && !attackStepOver()) { s.mustAtk = 0; await doBattle(p.key, s); } }      // v162 MUST_ATTACK_OPP
+  for (const s of p.spirits.slice()) if (!G.over && (s.mustAtk === G.turnNo || flagActive(p, 'MUST_ATTACK', s)) && p.spirits.includes(s) && isSpiritForm(CARDS[s.id]) && !s.exhausted && !cantAttack(p, s) && abTaxOK(p, s) && !attackStepOver()) { s.mustAtk = 0; await doBattle(p.key, s); } }      // v162 MUST_ATTACK_OPP
 async function cpuTurn(p) {
   await wait(500);
   await cpuMain(p);
