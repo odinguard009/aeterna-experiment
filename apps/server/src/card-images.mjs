@@ -18,6 +18,8 @@ import { join, resolve } from 'node:path';
 const OFFICIAL_IMG = 'https://www.battlespirits.com/images/cardlist/';
 const USER_AGENT = 'AeternaCardArtSync/1.0 (unofficial fan project; read-only)';
 const PREFIX = '/assets/card-images/';
+// Fallback art for cards the official site lacks (data/card-art-fallback.json: Fandom files, served as WebP by the Fandom CDN).
+const FALLBACK = JSON.parse(readFileSync(new URL('../../../data/card-art-fallback.json', import.meta.url), 'utf8'));
 // The official site files the 10th-anniversary X cards as BS51-10thX04 (lower-case "th"); BS51-X04 is a different, older card (the
 // 2026-11-02 wrong-art report: Libra-Golem X showed Pheonix). There is deliberately no other fallback name: the old X0nn -> Xnn guess
 // also hit different cards (BS13-X005A Sieg-Apollodragon -> BS13-X05 Rean), and no picture is better than the wrong one.
@@ -47,11 +49,12 @@ export function cardImageRoute({ mirrorDir, officialImg = OFFICIAL_IMG, fetchImp
 
   async function download(id) {
     for (const name of officialNames(id)) { const buf = await downloadOne(id, name).catch(() => null); if (buf) return buf; }      // a timeout on one name still tries the next
-    return null;
+    const fb = FALLBACK.files[id];
+    return fb ? downloadOne(id, null, `${FALLBACK.base}${fb}/revision/latest?format=webp`).catch(() => null) : null;
   }
 
-  async function downloadOne(id, name) {
-    const res = await fetchImpl(`${officialImg}${name}.webp?v2`, { headers: { 'user-agent': USER_AGENT, accept: 'image/webp' }, signal: AbortSignal.timeout(timeoutMs) });
+  async function downloadOne(id, name, url = `${officialImg}${name}.webp?v2`) {
+    const res = await fetchImpl(url, { headers: { 'user-agent': USER_AGENT, accept: 'image/webp' }, signal: AbortSignal.timeout(timeoutMs) });
     if (!res.ok) return null;
     // The official site answers a missing card with an HTTP 200 HTML page (its 404 page). Refuse any
     // non-image answer before it is cached as a .webp file; otherwise the browser gets HTML and shows

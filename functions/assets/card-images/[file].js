@@ -16,6 +16,8 @@
 const OFFICIAL_IMG = 'https://www.battlespirits.com/images/cardlist/';
 const USER_AGENT = 'AeternaCardArtSync/1.0 (unofficial fan project; read-only)';
 
+import FALLBACK from '../../../data/card-art-fallback.json';
+
 const FILE_ALIAS = { 'BS01-014': 'BS01-014A' };
 
 export async function onRequestGet({ request, params, waitUntil }) {
@@ -44,6 +46,9 @@ export async function onRequestGet({ request, params, waitUntil }) {
       continue;
     }
     if (res.ok && /^image\//i.test(res.headers.get('Content-Type') || 'image/')) break;      // an HTML 200 (the site's 404 page) is a miss: try the next name
+  }
+  if ((!res || !res.ok || !/^image\//i.test(res.headers.get('Content-Type') || 'image/')) && FALLBACK.files[id]) {      // cards the official site lacks: Fandom art
+    try { res = await fetch(`${FALLBACK.base}${FALLBACK.files[id]}/revision/latest?format=webp`, { headers: { 'user-agent': USER_AGENT, accept: 'image/webp' } }); } catch (e) { res = null; }
   }
   if (!res || !res.ok) return new Response(null, { status: 404 });
 
