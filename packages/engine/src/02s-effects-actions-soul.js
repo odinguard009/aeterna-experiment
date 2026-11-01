@@ -59,12 +59,13 @@ Object.assign(FX_ACTIONS, {
       let from = null;
       if (c.p.spirits.some(s => s !== c.src && s.soul)) from = c.p.spirits.find(s => s !== c.src && s.soul);
       else if (c.p.nexus.some(n => n.soul)) from = c.p.nexus.find(n => n.soul);
-      else if (c.p.reserve.soul) { c.p.reserve.soul = false; from = 'reserve'; }
-      else if (c.p.trashCores.soul) { c.p.trashCores.soul = false; from = 'trash'; }
+      else if (c.p.reserve.soul && c.p.reserve.n > 0) { c.p.reserve.soul = false; c.p.reserve.n--; from = 'reserve'; }
+      else if (c.p.trashCores.soul && c.p.trashCores.n > 0) { c.p.trashCores.soul = false; c.p.trashCores.n--; from = 'trash'; }
       if (!from) { c.ctx.did = false; return; }
-      if (from !== 'reserve' && from !== 'trash') from.soul = false;
+      if (from !== 'reserve' && from !== 'trash') { from.soul = false; from.cores--; }
       c.src.cores += 1; c.src.soul = true; c.ctx.did = true;
       log(`${CARDS[c.src.id].name} receives the Soul Core${from === 'trash' ? ' from the Trash' : ''}.`);
+      checkDepletion(c.p);
       refreshOne(c.src); log(`${CARDS[c.src.id].name} is refreshed (Soul Awaken).`);
       await fireFx(ownerOf(c.src) || c.p, 'REFRESHED', c.src, {});
     } },
