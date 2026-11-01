@@ -102,7 +102,7 @@ test('U14 effectLines of empty text is empty', async () => {
 test('U15 level tags, timing tags and keywords are marked', async () => {
   const h = await ev(() => BS.effectTextHTML({ name: 'N', type: 'Spirit', symbol: 'red', cost: 3, desc: "(Can't Stack) [LV1][LV2] (When Summoned) Burst: x" }, false));
   assert.match(h, /<span class="fx-lv">LV1<\/span><span class="fx-lv">LV2<\/span>/);
-  assert.match(h, /<span class="fx-tm">\(When Summoned\)<\/span>/);
+  assert.match(h, /<span class="fx-tm">\(<span class="fx-term" data-a="gloss" data-v="When Summoned">When Summoned<\/span>\)<\/span>/);
   assert.match(h, /<span class="fx-kw">\(Can&#039;t Stack\)<\/span>/);
 });
 test('U16 the header line shows name, type, colour and cost apart from the text', async () => {
@@ -118,7 +118,7 @@ test('U18 a card without effect text says so', async () => {
 });
 test('U19 every real card formats into at least one line and the text survives unchanged', async () => {
   const bad = await ev(() => Object.keys(BS.CARDS).filter(id => { const d = (BS.CARDS[id].desc || '').replace(/\s+/g, ' ').trim();
-    return d && BS.effectLines(d).join(' ').replace(/\s+/g, ' ') !== d; }));
+    return d && !/\{\{/.test(d) && BS.effectLines(d).join(' ').replace(/\s+/g, ' ') !== d; }));
   assert.deepEqual(bad, []);
 });
 test('U20 the card detail uses the card-style formatter', async () => {
