@@ -222,6 +222,9 @@ header h1{font-size:11px;}
 .modal-btn.blue{box-shadow:inset 0 -3px 0 #3aa0ff,inset 0 0 0 1px var(--ae-line2);}
 .modal-btn.purple{box-shadow:inset 0 -3px 0 var(--ae-soulstate),inset 0 0 0 1px var(--ae-line2);}
 .modal-btn:disabled{opacity:0.4;cursor:not-allowed;}
+html #action-modal #modal-actions.vlist{display:flex;flex-direction:column;flex-wrap:nowrap;align-items:stretch;justify-content:flex-start;gap:6px;}
+html #action-modal #modal-actions.vlist .modal-btn{flex:none;width:100%;text-align:left;justify-content:flex-start;white-space:normal;}
+html #action-modal #modal-actions.vlist .modal-btn.cancel{margin-top:6px;text-align:center;}
 .glossary-pill{display:inline-block;background:rgba(229,169,60,0.2);color:var(--accent);border:1px solid var(--accent);border-radius:3px;padding:1px 4px;font-size:8px;font-weight:bold;margin:1px;cursor:pointer;}
 .pay-row{display:flex;align-items:center;gap:6px;font-size:10px;margin:4px 0;text-align:left;color:var(--text-main);}
 .pay-row .l{flex:1;}
@@ -1026,6 +1029,10 @@ html[data-hc] :focus-visible{outline:3px solid #fff;outline-offset:2px;box-shado
 .skip-link{position:fixed;left:8px;top:-48px;z-index:100000;padding:8px 14px;background:var(--accent,#19c9a6);color:#000;font-weight:700;border-radius:4px;text-decoration:none;transition:top .15s;}
 .skip-link:focus,.skip-link:focus-visible{top:8px;outline:2px solid #fff;}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto !important;}.skip-link{transition:none;}}
+#fe-btn{position:absolute;right:10px;bottom:10px;z-index:30;min-height:32px;padding:0 12px;opacity:.92;}
+#view-playmat:not(.active) #fe-btn{display:none;}
+.fx-list .fxl{padding:6px 0;border-bottom:1px solid var(--ae-line2,#3338);text-align:left;}
+.fx-list .fxl.cpu b{color:var(--cpu,#ff7a7a);}.fx-list .fxl.you b{color:var(--you,#7ad0ff);}
 .mk{--page:#0d1015;--page-fg:#eef1f5;--page-muted:#a9b2c1;--page-line:#ffffff24;--page-panel:#161a22;
 --bg1:#1b2029;--bg2:#11141a;--lattice:#ffffff08;
 --panel:#232935;--panel2:#161a22;--panel3:#0f1218;--line:#ffffff1a;--line2:#ffffff40;
@@ -2750,6 +2757,7 @@ html:not(.layout-pc) #ae-eff-stack{top:38px;}
 </div></div>
 <div id="view-playmat" class="app-view">
   <div id="app" class="viewport" tabindex="-1"></div>
+  <button id="fe-btn" class="btn-nav-small" data-a="field-fx" title="Effects in force on the Field" aria-label="Effects in force on the Field">✦ Effects</button>
 </div>
 
 <div id="log-drawer"><div class="ld-head"><span>📜 Game Log</span><span class="ld-acts"><button class="btn-nav-small" data-a="log-copy" id="log-copy">Copy</button><button class="btn-nav-small" data-a="log-close">Close ✕</button></span></div><div class="ld-body" id="ld-body"></div></div>
@@ -4123,7 +4131,7 @@ function fxCan(c, e) { return e.actions.some(a => { const d = FX_ACTIONS[a.do]; 
 /* run the actions of one effect. Each action sets ctx.did = false when it could not do anything; the next action can test {"prev":true/false} */
 async function runActions(c, e, trg) {
   let last = false;
-  if (c.src && c.src.id) { let text = ''; try { text = fxDescribe(e); } catch (x) { /* an unknown action name: the strict / release handling below reports it */ } io.view({ type: 'effect', side: c.p.key, id: c.src.id, text, trg: trg || '' }); }   // v0.125.0 U14d2: the Effect Active panel (display only, never changes the match)
+  if (c.src && c.src.id) { let text = ''; try { text = fxDescribe(e); } catch (x) { /* an unknown action name: the strict / release handling below reports it */ } io.view({ type: 'effect', side: c.p.key, id: c.src.id, text, trg: trg || '' }); if (text && CARDS[c.src.id]) log(`Effect · ${who(c.p)}: ${CARDS[c.src.id].name}${trg ? ' (' + String(trg).toLowerCase().replace(/_/g, ' ') + ')' : ''} — ${text}`); }   // v0.125.0 U14d2: the Effect Active panel (display only, never changes the match)
   for (const a of e.actions) {
     if (G.over) return;
     c.ctx.prev = last; last = false; if (c.ctx.viaFC == null && c.src) c.ctx.viaFC = !!c.src.viaFC; if (c.ctx.viaHS == null && c.src) c.ctx.viaHS = !!c.src.viaHS; if (c.ctx.viaLegacy == null && c.src) c.ctx.viaLegacy = (c.src.legacyN || 0) > 0; if (c.ctx.viaMagirrate == null && c.src) c.ctx.viaMagirrate = !!c.src.viaMagirrate;
@@ -7730,7 +7738,7 @@ const delay = ms => new Promise(r => { DELAYS++; setTimeout(() => { DELAYS--; r(
 const engineIdle = () => !!MODAL || DELAYS === 0;
 async function wait(ms) { const s = SESSION; await delay(ms); if (s !== SESSION) throw ABORT; }
 function log(t) { if (!G) return; G.last = t; G.history.push(t); G.hh = fnv(G.hh, t); G.hn = (G.hn || 0) + 1;
-  io.log(t); if (G.history.length > 300) G.history.shift(); }   // web host: sound per line (13e-host.js)
+  io.log(t); if (G.history.length > 800) G.history.shift(); }   // web host: sound per line (13e-host.js)
 
 function mkInst(id) { return { uid: ++UID, id, mirage: false, cores: 0, soul: false, exhausted: false, under: [], summonedTurn: 0, bpMod: 0, inSoulState: false }; }
 function newPlayer(key, name, cpu, counts) {
@@ -8700,6 +8708,7 @@ async function castMagic(p, ch) {                         // ch = { inst, target
     p.trashCores.soul = true;
   } else if (!free) payCost(p, c, ch.plan);
   log(`${who(p)} ${p.cpu ? 'casts' : 'cast'} ${card.name}${fromTrash ? ' from the Trash' : ''} (${free ? 'without paying the cost' : sm ? 'Soul Magic: paid the Soul Core' : 'paid ' + c}).`);
+  io.view({ type: 'effect', side: p.key, id: inst.id, text: String(magicText(card)).replace(/^(\[[^\]]*\])+ /, '').slice(0, 200), trg: '' });   // v0.205.2: the Effect Active panel also shows a cast Magic (display only)
   checkDepletion(p);
   const fromBurst = p.limbo === inst;                       // v0.44: cast from the Burst (burstFlash); maybeBurst moves it to the Trash afterwards
   const prevLimbo = p.limbo; if (!fromBurst) p.limbo = inst;   // the card being resolved is in no zone: count it while its effect runs (SIM invariants)
@@ -9117,6 +9126,7 @@ function summonableOpts(p) {
   return p.hand.filter(h => cpuCanPlay(p, h) && h !== p.burst && (CARDS[h.id].type !== 'Brave' || isSpiritForm(CARDS[h.id]))).concat(removedSummonable(p).filter(h => cpuCanPlay(p, h)));   // v0.50: Accel Spirits from the Removed Zone
 }
 async function cpuCastMain(p) {
+  const o = G.p[other(p.key)];
   for (let g = 0; g < 4 && !G.over; g++) {
     let best = null;
     for (const h of p.hand) {
@@ -9124,6 +9134,11 @@ async function cpuCastMain(p) {
       if (card.type !== 'Magic' || !m || !m.effect || !card.magic.timing.includes('MAIN') || !cpuCanPlay(p, h) || !magicUsable(p, h, 'main')) continue;
       let sc = 0, target = null;
       if (m.effect === 'DESTROY_BP_LE') { const t = magicTargets(p, h, 'main').sort((a, b) => bpOf(b) - bpOf(a))[0]; if (t) { target = t; sc = 10 + bpOf(t) / 1000; } }
+      else if (m.effect === 'EXHAUST_OPP') {                                  // v0.205.2: clear the one blocker that stops my best ready attacker
+        const rdy = o.spirits.filter(sp => !sp.exhausted && !sp.noAB), mine = p.spirits.filter(sp => !sp.exhausted && !cantAttack(p, sp)).sort((a, b) => bpOf(b) - bpOf(a))[0];
+        const t = magicTargets(p, h, 'main'), top = rdy.slice().sort((a, b) => bpOf(b) - bpOf(a))[0];
+        if (mine && top && t && t.includes(top) && bpOf(top) >= bpOf(mine) && rdy.filter(sp => bpOf(sp) >= bpOf(mine)).length === 1) { target = top; sc = 7; }
+      }
       else if (m.effect === 'REVEAL_ADD' && p.deck.length > m.value + 4 && p.hand.length <= 6) sc = 6;
       else if (m.effect === 'DRAW' && p.deck.length > m.value + 4 && p.hand.length <= 6) sc = 5;
       else if (m.effect === 'ACTIONS' && p.deck.length > 6) sc = 4;
@@ -9266,13 +9281,23 @@ function guardNeed(p, W) {
   if (threat >= p.life) return Math.min(o.spirits.length, Math.ceil(W.guard));
   return p.life <= 2 ? 1 : 0;
 }
+/* v0.205.2: how many Flash Magic cards the opponent can really cast now (in Hand and paid for). A held Flash can flip a fair fight,
+   so the CPU only attacks into an open Hand when the fight is clearly won or the attack is the game. */
+function cpuFlashThreat(o) {
+  const res = reserveTotal(o);
+  return o.hand.filter(h => { const c = CARDS[h.id]; return c.type === 'Magic' && c.magic && c.magic.timing.includes('FLASH') && effCost(o, c) <= res; }).length;
+}
 /* Attack Step: score attacking with a; 0 or less = keep it home */
 function cpuAttackScore(p, a, W = cpuW(p)) {
   const o = G.p[other(p.key)], oppB = o.spirits.filter(s => !s.exhausted && !s.noAB), sym = symOf(a), abp = bpOf(a);
   const dmg = W.oppLife * lifeLoss(o.life, Math.min(sym, o.life));
   if (!oppB.length) return dmg + 0.1;
   const maxB = oppB.reduce((m, b) => Math.max(m, bpOf(b)), 0);
-  if (abp > maxB) return Math.max(0.5, Math.min(dmg, Math.min(...oppB.map(b => W.unit * unitValue(b, W))))) + 0.1;    // they take the hit or lose a blocker
+  if (abp > maxB) {
+    const win = Math.max(0.5, Math.min(dmg, Math.min(...oppB.map(b => W.unit * unitValue(b, W))))) + 0.1;           // they take the hit or lose a blocker
+    const thr = cpuFlashThreat(o);
+    return thr && abp - maxB <= 3000 && o.life > sym ? win - W.risk * thr * W.unit * unitValue(a, W) * 0.5 : win;    // a thin lead can be flipped by a held Flash
+  }
   if (abp === maxB && o.life <= sym) return dmg;                                                                         // a trade at worst, game if unblocked
   return dmg * 0.25 - W.risk * W.unit * unitValue(a, W) - (abp === maxB ? 0 : 1);                                         // a stronger blocker waits
 }
@@ -9326,14 +9351,23 @@ function modalKind(c) {
     : /AREA|ZONE|SOUL STATE|TRASH|DECK|HAND|LIFE|RESERVE|COUNT|VOID|BANISHED/.test(t) ? 'ZONE'
     : vis.length <= 1 ? 'INFO' : 'CHOICE';
 }
+/* v0.205.2: a Flash Timing prompt is two steps in the page (the engine still asks one question, so records and replays are unchanged):
+   step 0 asks whether to use Flash at all (Use Flash / Pass); step 1 lists what can be used, one per line, with Cancel back to step 0 */
+function modalBtns() {
+  const c = MODAL.cfg;
+  if (!c.flash) return c.buttons || [];
+  if (MODAL.stage === 0) return [{ label: '⚡ Use Flash', cls: 'primary', value: '__flash1' }, { label: 'Pass', cls: 'cancel', value: null }];
+  return (c.buttons || []).filter(b => b.value !== null).concat([{ label: 'Cancel', cls: 'cancel', value: '__flash0' }]);
+}
 function paintModal() {
-  const c = MODAL.cfg, kind = modalKind(c), vis = (c.buttons || []).filter(b => !b.hidden);
+  const c = MODAL.cfg, kind = modalKind(c), btns = modalBtns(), vis = btns.filter(b => !b.hidden);
   const yes = kind !== 'RESULT' && kind !== 'MATCH SETUP' && vis.length >= 2 && vis.filter(b => /\bprimary\b/.test(b.cls || '')).length === 1 && vis.every(b => /\b(primary|cancel)\b/.test(b.cls || ''));
   $('modal-card-title').textContent = c.title || '';
-  $('modal-card-desc').innerHTML = c.html || '';
+  $('modal-card-desc').innerHTML = c.flash && MODAL.stage === 0 ? c.flash + '<br>Do you want to use Flash Timing?' : c.html || '';
+  $('modal-actions').classList.toggle('vlist', !!c.flash && MODAL.stage === 1);
   const mb = dq('#action-modal .modal-box');
   if (mb) { mb.classList.toggle('wide', !!c.wide); mb.dataset.kind = kind; mb.classList.toggle('lose', kind === 'RESULT' && /DEFEAT/.test(c.title)); }
-  $('modal-actions').innerHTML = (c.buttons || []).map((b, i) => b.hidden ? '' :
+  $('modal-actions').innerHTML = btns.map((b, i) => b.hidden ? '' :
     `<button class="modal-btn ${b.cls || ''}${yes && /\bprimary\b/.test(b.cls || '') ? ' yes' : ''}" ${b.dis ? 'disabled' : ''} data-mi="${i}">${esc(titleCase(b.label))}</button>`).join('')
     + (c.peek && G ? '<button class="modal-btn blue" data-peek="1">🔍 View Field</button>' : '');
 }
@@ -9345,7 +9379,7 @@ function modal(cfg) {
     /* v0.104.0 (A1e fix): only modals that stand for an engine decision go into the input record; UI-only dialogs
        (card menus, zone views, info/confirm prompts) are not part of a match's record, so replaying a record now hits
        exactly one recorded answer per engine prompt (a UI menu's answer used to close the replay's own modal and diverge). */
-    MODAL = { resolve: v => { if (!cfg.uiOnly) recIn({ m: v === undefined ? null : v }); resolve(v); }, cfg };
+    MODAL = { resolve: v => { if (!cfg.uiOnly) recIn({ m: v === undefined ? null : v }); resolve(v); }, cfg, stage: cfg.flash ? 0 : 1 };
     paintModal();
     if (/Flash Timing/.test(cfg.title || '')) aeRibbon('YOUR FLASH TIMING'); else if (/VICTORY|DEFEAT|MATCH OVER/.test(cfg.title || '')) aeRibbon(null);
     $('action-modal').classList.add('active');
@@ -9377,7 +9411,8 @@ function closeModal(val = null) {
 }
 function modalPress(i) {
   if (!MODAL) return;
-  const b = MODAL.cfg.buttons[i]; if (!b || b.dis) return;
+  const b = modalBtns()[i]; if (!b || b.dis) return;
+  if (b.value === '__flash1' || b.value === '__flash0') { MODAL.stage = b.value === '__flash1' ? 1 : 0; paintModal(); return; }
   if (MODAL.cfg.onPress && MODAL.cfg.onPress(b.value, b)) { paintModal(); return; }
   closeModal(b.value);
 }
@@ -9793,9 +9828,36 @@ function openZoneModal(key, zone) {
   const head = zone === 'trash' || zone === 'trashcards' ? 'Cards (newest first)' : 'Cards';
   modal({ uiOnly: true, title: `${label} ${zone.toUpperCase()}`, wide: list.length > 0, html: esc(desc) + cardStripHTML(list, head), buttons: [{ label: 'Close', cls: 'cancel', value: null }] });
 }
+/* v0.205.2 (owner): what is in force on the Field right now - continuous (STATIC) effects of the cards in play, effects granted for this turn / battle,
+   and BP changes - both sides, one line each. Display only: it reads the same entries the rules read and never changes the match. */
+function fieldFxRows() {
+  const rows = [];
+  for (const key of ['player', 'opponent']) {
+    const p = G.p[key];
+    for (const f of fieldList(p)) {
+      const c = CARDS[f.id], L = lvNo(f);
+      for (const { e, idx } of fxEntries(f)) {
+        const granted = idx >= GRANT_IDX;
+        if (!granted && e.trigger !== 'STATIC') continue;
+        if (e.lv && !e.lv.includes(L)) continue;
+        let t = ''; try { t = e.actions ? fxDescribe(e) : ''; } catch (x) { t = ''; }
+        if (!t) t = String(e.flag || e.trigger || '').toLowerCase().replace(/_/g, ' ') + (e.n != null ? ' ' + e.n : '');
+        rows.push({ key, id: f.id, name: c.name, tag: granted ? 'granted' : 'continuous', t });
+      }
+      if (f.bpMod) rows.push({ key, id: f.id, name: c.name, tag: 'BP', t: `${f.bpMod > 0 ? '+' : ''}${f.bpMod} BP until the end of the turn` });
+    }
+  }
+  return rows;
+}
+function openFieldFx() {
+  if (!G) return;
+  const rows = fieldFxRows();
+  const html = rows.length ? `<div class="log-list fx-list">${rows.map(r => `<div class="fxl ${r.key === 'opponent' ? 'cpu' : 'you'}"><b>${r.key === 'opponent' ? 'CPU' : 'YOU'} · ${esc(r.name)}</b> <span class="mut">(${r.tag})</span><br>${esc(r.t)}</div>`).join('')}</div>` : 'No continuous effect is in force on the Field right now.';
+  uiInfo('Active Effects', html);
+}
 function openLogModal() {
   if (!G) return;
-  uiInfo('Game Log', `<div class="log-list">${G.history.slice(-60).reverse().map(t => `<div>${esc(t)}</div>`).join('')}</div>`);
+  uiInfo('Game Log', `<div class="log-list">${G.history.slice(-200).reverse().map(t => `<div>${esc(t)}</div>`).join('')}</div>`);
 }
 function showRules() {
   uiInfo('Rules coverage (Eternal Ver.17.1 / Standard Ver.1.1)', `
@@ -11022,7 +11084,7 @@ function webView(ev) {
     default: throw new Error('unknown view record: ' + JSON.stringify(ev));
   }
 }
-const sfxOf = t => (/attacks with/.test(t) ? 'attack' : /destroyed|depleted/.test(t) ? 'destroy' : /lose[s]? \d+ Life/.test(t) ? 'hit' : /summon|deploy/.test(t) ? 'summon' : /draw/.test(t) ? 'card' : '');
+const sfxOf = t => /^Effect · /.test(t) ? '' : (/attacks with/.test(t) ? 'attack' : /destroyed|depleted/.test(t) ? 'destroy' : /lose[s]? \d+ Life/.test(t) ? 'hit' : /summon|deploy/.test(t) ? 'summon' : /draw/.test(t) ? 'card' : '');
 function choiceHTML(d) {
   if (!d.cards || !d.cards.length) return d.html || '';
   if (d.cardsStyle === 'mull') return `<div class="mull-list">${d.cards.map(id => mullCardHTML(CARDS[id], /Starting Hand/.test(d.title || ''))).join('')}</div>` + (d.html || '');
@@ -11035,7 +11097,7 @@ function webDecide(seat, d) {
     return Promise.resolve(cpuAnswer(seat, d));
   }
   switch (d && d.kind) {
-    case 'choice': return modal({ title: d.title, html: choiceHTML(d), buttons: d.buttons, peek: d.peek, wide: d.wide });
+    case 'choice': return modal({ title: d.title, html: choiceHTML(d), buttons: d.buttons, peek: d.peek, wide: d.wide, flash: /^⚡ Flash Timing/.test(d.title || '') ? String(d.html || '').split('<br>')[0] : undefined });
     case 'pick': return webPick(d);
     case 'payment': return webPayment(CARDS[d.card], d.cost, d.L);
     case 'info': return modal({ title: d.title, html: d.html, buttons: [{ label: 'Close', cls: 'cancel', value: null }] });
@@ -12964,6 +13026,7 @@ document.addEventListener('click', e => {
   else if (!G) return;
   else if (a === 'field' && PICK) { const u = Number(v.split(':')[2]); if (PICK.uids.has(u)) PICK.res(u); }
   else if (a === 'log') openLogModal();
+  else if (a === 'field-fx') openFieldFx();
   else if (GAME_ACTS.includes(a)) gameAct(a, v);
 });
 /* the board actions of the human; the replay calls the same function */

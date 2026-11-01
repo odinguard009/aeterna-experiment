@@ -170,6 +170,7 @@ document.addEventListener('click', e => {
   else if (!G) return;
   else if (a === 'field' && PICK) { const u = Number(v.split(':')[2]); if (PICK.uids.has(u)) PICK.res(u); }
   else if (a === 'log') openLogModal();
+  else if (a === 'field-fx') openFieldFx();
   else if (GAME_ACTS.includes(a)) gameAct(a, v);
 });
 /* the board actions of the human; the replay calls the same function */

@@ -11,14 +11,23 @@ function modalKind(c) {
     : /AREA|ZONE|SOUL STATE|TRASH|DECK|HAND|LIFE|RESERVE|COUNT|VOID|BANISHED/.test(t) ? 'ZONE'
     : vis.length <= 1 ? 'INFO' : 'CHOICE';
 }
+/* v0.205.2: a Flash Timing prompt is two steps in the page (the engine still asks one question, so records and replays are unchanged):
+   step 0 asks whether to use Flash at all (Use Flash / Pass); step 1 lists what can be used, one per line, with Cancel back to step 0 */
+function modalBtns() {
+  const c = MODAL.cfg;
+  if (!c.flash) return c.buttons || [];
+  if (MODAL.stage === 0) return [{ label: '⚡ Use Flash', cls: 'primary', value: '__flash1' }, { label: 'Pass', cls: 'cancel', value: null }];
+  return (c.buttons || []).filter(b => b.value !== null).concat([{ label: 'Cancel', cls: 'cancel', value: '__flash0' }]);
+}
 function paintModal() {
-  const c = MODAL.cfg, kind = modalKind(c), vis = (c.buttons || []).filter(b => !b.hidden);
+  const c = MODAL.cfg, kind = modalKind(c), btns = modalBtns(), vis = btns.filter(b => !b.hidden);
   const yes = kind !== 'RESULT' && kind !== 'MATCH SETUP' && vis.length >= 2 && vis.filter(b => /\bprimary\b/.test(b.cls || '')).length === 1 && vis.every(b => /\b(primary|cancel)\b/.test(b.cls || ''));
   $('modal-card-title').textContent = c.title || '';
-  $('modal-card-desc').innerHTML = c.html || '';
+  $('modal-card-desc').innerHTML = c.flash && MODAL.stage === 0 ? c.flash + '<br>Do you want to use Flash Timing?' : c.html || '';
+  $('modal-actions').classList.toggle('vlist', !!c.flash && MODAL.stage === 1);
   const mb = dq('#action-modal .modal-box');
   if (mb) { mb.classList.toggle('wide', !!c.wide); mb.dataset.kind = kind; mb.classList.toggle('lose', kind === 'RESULT' && /DEFEAT/.test(c.title)); }
-  $('modal-actions').innerHTML = (c.buttons || []).map((b, i) => b.hidden ? '' :
+  $('modal-actions').innerHTML = btns.map((b, i) => b.hidden ? '' :
     `<button class="modal-btn ${b.cls || ''}${yes && /\bprimary\b/.test(b.cls || '') ? ' yes' : ''}" ${b.dis ? 'disabled' : ''} data-mi="${i}">${esc(titleCase(b.label))}</button>`).join('')
     + (c.peek && G ? '<button class="modal-btn blue" data-peek="1">🔍 View Field</button>' : '');
 }
@@ -30,7 +39,7 @@ function modal(cfg) {
     /* v0.104.0 (A1e fix): only modals that stand for an engine decision go into the input record; UI-only dialogs
        (card menus, zone views, info/confirm prompts) are not part of a match's record, so replaying a record now hits
        exactly one recorded answer per engine prompt (a UI menu's answer used to close the replay's own modal and diverge). */
-    MODAL = { resolve: v => { if (!cfg.uiOnly) recIn({ m: v === undefined ? null : v }); resolve(v); }, cfg };
+    MODAL = { resolve: v => { if (!cfg.uiOnly) recIn({ m: v === undefined ? null : v }); resolve(v); }, cfg, stage: cfg.flash ? 0 : 1 };
     paintModal();
     if (/Flash Timing/.test(cfg.title || '')) aeRibbon('YOUR FLASH TIMING'); else if (/VICTORY|DEFEAT|MATCH OVER/.test(cfg.title || '')) aeRibbon(null);
     $('action-modal').classList.add('active');
@@ -62,7 +71,8 @@ function closeModal(val = null) {
 }
 function modalPress(i) {
   if (!MODAL) return;
-  const b = MODAL.cfg.buttons[i]; if (!b || b.dis) return;
+  const b = modalBtns()[i]; if (!b || b.dis) return;
+  if (b.value === '__flash1' || b.value === '__flash0') { MODAL.stage = b.value === '__flash1' ? 1 : 0; paintModal(); return; }
   if (MODAL.cfg.onPress && MODAL.cfg.onPress(b.value, b)) { paintModal(); return; }
   closeModal(b.value);
 }

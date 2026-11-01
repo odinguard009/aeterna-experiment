@@ -73,13 +73,23 @@ function guardNeed(p, W) {
   if (threat >= p.life) return Math.min(o.spirits.length, Math.ceil(W.guard));
   return p.life <= 2 ? 1 : 0;
 }
+/* v0.205.2: how many Flash Magic cards the opponent can really cast now (in Hand and paid for). A held Flash can flip a fair fight,
+   so the CPU only attacks into an open Hand when the fight is clearly won or the attack is the game. */
+function cpuFlashThreat(o) {
+  const res = reserveTotal(o);
+  return o.hand.filter(h => { const c = CARDS[h.id]; return c.type === 'Magic' && c.magic && c.magic.timing.includes('FLASH') && effCost(o, c) <= res; }).length;
+}
 /* Attack Step: score attacking with a; 0 or less = keep it home */
 function cpuAttackScore(p, a, W = cpuW(p)) {
   const o = G.p[other(p.key)], oppB = o.spirits.filter(s => !s.exhausted && !s.noAB), sym = symOf(a), abp = bpOf(a);
   const dmg = W.oppLife * lifeLoss(o.life, Math.min(sym, o.life));
   if (!oppB.length) return dmg + 0.1;
   const maxB = oppB.reduce((m, b) => Math.max(m, bpOf(b)), 0);
-  if (abp > maxB) return Math.max(0.5, Math.min(dmg, Math.min(...oppB.map(b => W.unit * unitValue(b, W))))) + 0.1;    // they take the hit or lose a blocker
+  if (abp > maxB) {
+    const win = Math.max(0.5, Math.min(dmg, Math.min(...oppB.map(b => W.unit * unitValue(b, W))))) + 0.1;           // they take the hit or lose a blocker
+    const thr = cpuFlashThreat(o);
+    return thr && abp - maxB <= 3000 && o.life > sym ? win - W.risk * thr * W.unit * unitValue(a, W) * 0.5 : win;    // a thin lead can be flipped by a held Flash
+  }
   if (abp === maxB && o.life <= sym) return dmg;                                                                         // a trade at worst, game if unblocked
   return dmg * 0.25 - W.risk * W.unit * unitValue(a, W) - (abp === maxB ? 0 : 1);                                         // a stronger blocker waits
 }

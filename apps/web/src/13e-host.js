@@ -66,7 +66,7 @@ function webView(ev) {
     default: throw new Error('unknown view record: ' + JSON.stringify(ev));
   }
 }
-const sfxOf = t => (/attacks with/.test(t) ? 'attack' : /destroyed|depleted/.test(t) ? 'destroy' : /lose[s]? \d+ Life/.test(t) ? 'hit' : /summon|deploy/.test(t) ? 'summon' : /draw/.test(t) ? 'card' : '');
+const sfxOf = t => /^Effect · /.test(t) ? '' : (/attacks with/.test(t) ? 'attack' : /destroyed|depleted/.test(t) ? 'destroy' : /lose[s]? \d+ Life/.test(t) ? 'hit' : /summon|deploy/.test(t) ? 'summon' : /draw/.test(t) ? 'card' : '');
 function choiceHTML(d) {
   if (!d.cards || !d.cards.length) return d.html || '';
   if (d.cardsStyle === 'mull') return `<div class="mull-list">${d.cards.map(id => mullCardHTML(CARDS[id], /Starting Hand/.test(d.title || ''))).join('')}</div>` + (d.html || '');
@@ -79,7 +79,7 @@ function webDecide(seat, d) {
     return Promise.resolve(cpuAnswer(seat, d));
   }
   switch (d && d.kind) {
-    case 'choice': return modal({ title: d.title, html: choiceHTML(d), buttons: d.buttons, peek: d.peek, wide: d.wide });
+    case 'choice': return modal({ title: d.title, html: choiceHTML(d), buttons: d.buttons, peek: d.peek, wide: d.wide, flash: /^⚡ Flash Timing/.test(d.title || '') ? String(d.html || '').split('<br>')[0] : undefined });
     case 'pick': return webPick(d);
     case 'payment': return webPayment(CARDS[d.card], d.cost, d.L);
     case 'info': return modal({ title: d.title, html: d.html, buttons: [{ label: 'Close', cls: 'cancel', value: null }] });

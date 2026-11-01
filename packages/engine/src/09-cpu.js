@@ -92,6 +92,7 @@ function summonableOpts(p) {
   return p.hand.filter(h => cpuCanPlay(p, h) && h !== p.burst && (CARDS[h.id].type !== 'Brave' || isSpiritForm(CARDS[h.id]))).concat(removedSummonable(p).filter(h => cpuCanPlay(p, h)));   // v0.50: Accel Spirits from the Removed Zone
 }
 async function cpuCastMain(p) {
+  const o = G.p[other(p.key)];
   for (let g = 0; g < 4 && !G.over; g++) {
     let best = null;
     for (const h of p.hand) {
@@ -99,6 +100,11 @@ async function cpuCastMain(p) {
       if (card.type !== 'Magic' || !m || !m.effect || !card.magic.timing.includes('MAIN') || !cpuCanPlay(p, h) || !magicUsable(p, h, 'main')) continue;
       let sc = 0, target = null;
       if (m.effect === 'DESTROY_BP_LE') { const t = magicTargets(p, h, 'main').sort((a, b) => bpOf(b) - bpOf(a))[0]; if (t) { target = t; sc = 10 + bpOf(t) / 1000; } }
+      else if (m.effect === 'EXHAUST_OPP') {                                  // v0.205.2: clear the one blocker that stops my best ready attacker
+        const rdy = o.spirits.filter(sp => !sp.exhausted && !sp.noAB), mine = p.spirits.filter(sp => !sp.exhausted && !cantAttack(p, sp)).sort((a, b) => bpOf(b) - bpOf(a))[0];
+        const t = magicTargets(p, h, 'main'), top = rdy.slice().sort((a, b) => bpOf(b) - bpOf(a))[0];
+        if (mine && top && t && t.includes(top) && bpOf(top) >= bpOf(mine) && rdy.filter(sp => bpOf(sp) >= bpOf(mine)).length === 1) { target = top; sc = 7; }
+      }
       else if (m.effect === 'REVEAL_ADD' && p.deck.length > m.value + 4 && p.hand.length <= 6) sc = 6;
       else if (m.effect === 'DRAW' && p.deck.length > m.value + 4 && p.hand.length <= 6) sc = 5;
       else if (m.effect === 'ACTIONS' && p.deck.length > 6) sc = 4;

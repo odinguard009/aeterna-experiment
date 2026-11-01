@@ -3,7 +3,7 @@ function fxCan(c, e) { return e.actions.some(a => { const d = FX_ACTIONS[a.do]; 
 /* run the actions of one effect. Each action sets ctx.did = false when it could not do anything; the next action can test {"prev":true/false} */
 async function runActions(c, e, trg) {
   let last = false;
-  if (c.src && c.src.id) { let text = ''; try { text = fxDescribe(e); } catch (x) { /* an unknown action name: the strict / release handling below reports it */ } io.view({ type: 'effect', side: c.p.key, id: c.src.id, text, trg: trg || '' }); }   // v0.125.0 U14d2: the Effect Active panel (display only, never changes the match)
+  if (c.src && c.src.id) { let text = ''; try { text = fxDescribe(e); } catch (x) { /* an unknown action name: the strict / release handling below reports it */ } io.view({ type: 'effect', side: c.p.key, id: c.src.id, text, trg: trg || '' }); if (text && CARDS[c.src.id]) log(`Effect · ${who(c.p)}: ${CARDS[c.src.id].name}${trg ? ' (' + String(trg).toLowerCase().replace(/_/g, ' ') + ')' : ''} — ${text}`); }   // v0.125.0 U14d2: the Effect Active panel (display only, never changes the match)
   for (const a of e.actions) {
     if (G.over) return;
     c.ctx.prev = last; last = false; if (c.ctx.viaFC == null && c.src) c.ctx.viaFC = !!c.src.viaFC; if (c.ctx.viaHS == null && c.src) c.ctx.viaHS = !!c.src.viaHS; if (c.ctx.viaLegacy == null && c.src) c.ctx.viaLegacy = (c.src.legacyN || 0) > 0; if (c.ctx.viaMagirrate == null && c.src) c.ctx.viaMagirrate = !!c.src.viaMagirrate;

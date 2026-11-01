@@ -45,9 +45,36 @@ function openZoneModal(key, zone) {
   const head = zone === 'trash' || zone === 'trashcards' ? 'Cards (newest first)' : 'Cards';
   modal({ uiOnly: true, title: `${label} ${zone.toUpperCase()}`, wide: list.length > 0, html: esc(desc) + cardStripHTML(list, head), buttons: [{ label: 'Close', cls: 'cancel', value: null }] });
 }
+/* v0.205.2 (owner): what is in force on the Field right now - continuous (STATIC) effects of the cards in play, effects granted for this turn / battle,
+   and BP changes - both sides, one line each. Display only: it reads the same entries the rules read and never changes the match. */
+function fieldFxRows() {
+  const rows = [];
+  for (const key of ['player', 'opponent']) {
+    const p = G.p[key];
+    for (const f of fieldList(p)) {
+      const c = CARDS[f.id], L = lvNo(f);
+      for (const { e, idx } of fxEntries(f)) {
+        const granted = idx >= GRANT_IDX;
+        if (!granted && e.trigger !== 'STATIC') continue;
+        if (e.lv && !e.lv.includes(L)) continue;
+        let t = ''; try { t = e.actions ? fxDescribe(e) : ''; } catch (x) { t = ''; }
+        if (!t) t = String(e.flag || e.trigger || '').toLowerCase().replace(/_/g, ' ') + (e.n != null ? ' ' + e.n : '');
+        rows.push({ key, id: f.id, name: c.name, tag: granted ? 'granted' : 'continuous', t });
+      }
+      if (f.bpMod) rows.push({ key, id: f.id, name: c.name, tag: 'BP', t: `${f.bpMod > 0 ? '+' : ''}${f.bpMod} BP until the end of the turn` });
+    }
+  }
+  return rows;
+}
+function openFieldFx() {
+  if (!G) return;
+  const rows = fieldFxRows();
+  const html = rows.length ? `<div class="log-list fx-list">${rows.map(r => `<div class="fxl ${r.key === 'opponent' ? 'cpu' : 'you'}"><b>${r.key === 'opponent' ? 'CPU' : 'YOU'} · ${esc(r.name)}</b> <span class="mut">(${r.tag})</span><br>${esc(r.t)}</div>`).join('')}</div>` : 'No continuous effect is in force on the Field right now.';
+  uiInfo('Active Effects', html);
+}
 function openLogModal() {
   if (!G) return;
-  uiInfo('Game Log', `<div class="log-list">${G.history.slice(-60).reverse().map(t => `<div>${esc(t)}</div>`).join('')}</div>`);
+  uiInfo('Game Log', `<div class="log-list">${G.history.slice(-200).reverse().map(t => `<div>${esc(t)}</div>`).join('')}</div>`);
 }
 function showRules() {
   uiInfo('Rules coverage (Eternal Ver.17.1 / Standard Ver.1.1)', `
