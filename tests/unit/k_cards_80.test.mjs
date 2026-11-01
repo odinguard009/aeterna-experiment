@@ -113,3 +113,10 @@ test('K-819 BS19-005 is complete: returns a Spirit from the Trash on summon, +10
     return [e.map(x => x.trigger + ':' + (x.actions ? x.actions[0].do : x.perHand)), JSON.stringify(e[1].if)]; })()`);
   assert.deepEqual(r, [['SUMMONED:RETURN_TRASH', 'STATIC:true'], '{"attackStep":true,"oppTurn":false}'], JSON.stringify(r));
 });
+
+test('K-820 BS11-024 and BS21-057 are wired with existing actions (REFRESH_SPIRIT count 2 High Speed; braved DESTROYED EXHAUST_OPP 2)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { const a = BS.CARDS['BS11-024'].effects, b = BS.CARDS['BS21-057'].effects;
+    return [a[1].actions[0].do + a[1].actions[0].count, JSON.stringify(a[1].lv), b[0].trigger + b[0].braved + b[0].actions[0].n]; })()`);
+  assert.deepEqual(r, ['REFRESH_SPIRIT2', '[2]', 'DESTROYEDtrue2'], JSON.stringify(r));
+});

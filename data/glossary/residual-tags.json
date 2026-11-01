@@ -3115,12 +3115,6 @@
   "M_OPTIONAL",
   "T_SUMMONED"
  ],
- "BS11-024": [
-  "A_REFRESH",
-  "C_LEVEL",
-  "K_HIGH_SPEED",
-  "T_ATTACKS"
- ],
  "BS11-025": [
   "A_EXHAUST",
   "C_LEVEL"
@@ -7117,10 +7111,6 @@
   "C_LEVEL",
   "T_ALLY_LIFE_HIT",
   "T_OPP_HAND_UP"
- ],
- "BS21-057": [
-  "A_EXHAUST",
-  "T_DESTROYED"
  ],
  "BS21-058": [
   "A_DISCARD_OPP",
