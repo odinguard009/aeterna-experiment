@@ -143,3 +143,11 @@ test('K-798 Charge kind refresh: Spirit-refreshing effects refresh one more body
     await BS.FX_ACTIONS.REFRESH_SPIRIT.run({ p: P, opp: O, src, ctx: {} }, act); return [act.count, x.exhausted, y.exhausted];`);
   assert.deepEqual(r, [2, false, false], JSON.stringify(r));
 });
+
+test('K-799 Spirit Soul (BS24-001 / BS38-042): an Ultimate being summoned yields an extra symbol of the Spirit colour at its levels only', async () => {
+  const r = await run(`const ult = Object.values(BS.CARDS).find(k => k.type === 'Ultimate'), spirit = BS.CARDS['BS75-001'];
+    const t = sp('BS24-001', P, 1); const a = summonSymbols(P, ult).length, b = summonSymbols(P, spirit).length;
+    const u = sp('BS38-042', P, 1); const c = summonSymbols(P, ult).map(x => x[0]).sort().join();
+    return [a, b, c];`);
+  assert.deepEqual(r, [1, 0, 'blue,red'], JSON.stringify(r));
+});

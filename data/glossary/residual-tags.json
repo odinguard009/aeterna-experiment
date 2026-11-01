@@ -8376,11 +8376,6 @@
  "X13-12": [
   "K_BRAVE"
  ],
- "BS24-001": [
-  "A_SYMBOL",
-  "C_LEVEL",
-  "K_ULTIMATE"
- ],
  "BS24-003": [
   "C_LEVEL",
   "K_BURST",
@@ -8410,10 +8405,6 @@
   "K_ULTIMATE",
   "T_ATTACKS",
   "T_SUMMONED"
- ],
- "BS24-011": [
-  "C_LEVEL",
-  "K_ULTIMATE"
  ],
  "BS24-012": [
   "A_DISCARD_OPP",
@@ -8494,10 +8485,6 @@
   "T_ALLY_ATTACKS",
   "T_ALLY_BLOCKED",
   "T_SUMMONED"
- ],
- "BS24-030": [
-  "C_LEVEL",
-  "K_ULTIMATE"
  ],
  "BS24-032": [
   "C_LEVEL",
@@ -9099,12 +9086,6 @@
   "M_OPTIONAL",
   "T_DESTROYED",
   "T_SUMMONED"
- ],
- "BS25-018": [
-  "A_SYMBOL",
-  "A_SYMBOL_PLUS",
-  "C_LEVEL",
-  "K_ULTIMATE"
  ],
  "BS25-019": [
   "K_ULTIMATE"
@@ -10253,11 +10234,6 @@
   "K_ULTIMATE",
   "M_BY_DOING"
  ],
- "BS27-033": [
-  "A_SYMBOL",
-  "C_LEVEL",
-  "K_ULTIMATE"
- ],
  "BS27-035": [
   "A_BP_PLUS",
   "C_LEVEL",
@@ -11261,11 +11237,6 @@
  "BS29-028": [
   "C_LIFE"
  ],
- "BS29-029": [
-  "A_SYMBOL",
-  "C_LEVEL",
-  "K_ULTIMATE"
- ],
  "BS29-030": [
   "A_EXHAUST",
   "A_REFRESH",
@@ -11730,10 +11701,6 @@
   "C_LEVEL",
   "K_ULTIMATE",
   "T_BATTLE_WIN"
- ],
- "BS30-014": [
-  "C_LEVEL",
-  "K_ULTIMATE"
  ],
  "BS30-015": [
   "C_LEVEL",
@@ -13956,11 +13923,6 @@
   "M_OPTIONAL",
   "T_ATTACKS"
  ],
- "BS34-004": [
-  "A_SYMBOL",
-  "C_LEVEL",
-  "K_ULTIMATE"
- ],
  "BS34-005": [
   "C_LEVEL",
   "M_OPTIONAL"
@@ -16159,10 +16121,6 @@
   "M_OPTIONAL",
   "T_ATTACKS"
  ],
- "BS38-011": [
-  "C_LEVEL",
-  "K_ULTIMATE"
- ],
  "BS38-012": [
   "A_LIFE_TO_RESERVE",
   "C_LEVEL",
@@ -16189,10 +16147,6 @@
   "A_BP_PLUS",
   "A_SEAL",
   "C_LEVEL"
- ],
- "BS38-018": [
-  "C_LEVEL",
-  "K_ULTIMATE"
  ],
  "BS38-019": [
   "A_EXHAUST",
@@ -16315,10 +16269,6 @@
  ],
  "BS38-040": [
   "C_LEVEL"
- ],
- "BS38-042": [
-  "C_LEVEL",
-  "K_ULTIMATE"
  ],
  "BS38-043": [
   "A_BP_PLUS",
