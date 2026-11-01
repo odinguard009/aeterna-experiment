@@ -15,6 +15,24 @@ Object.assign(FX_ACTIONS, {
       log(`${_pn(c)}: ${top.length} card${top.length === 1 ? '' : 's'} from the opposing Deck go to the Trash.`);
       io.view({ type: 'board' });
     } },
+  OPP_CORES_TO_TRASH: { chk: a => (Number.isInteger(a.total) && a.total >= 1 && a.total <= 5) && (a.costLe == null || (Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30)),
+    txt: a => `send ${a.total} core${a.total === 1 ? '' : 's'} from any opposing Spirits/Ultimates to the Trash`,
+    cands: (c, a) => c.opp.spirits.filter(t => t.cores > 0 && !fxImmune(c.opp, t) && (a == null || a.costLe == null || CARDS[t.id].cost <= a.costLe)),
+    can: (c, a) => FX_ACTIONS.OPP_CORES_TO_TRASH.cands(c, a).length > 0,
+    run: async (c, a) => {
+      let moved = 0;
+      for (let j = 0; j < a.total; j++) {
+        const L = FX_ACTIONS.OPP_CORES_TO_TRASH.cands(c); if (!L.length) break;
+        const t = c.p.cpu ? L.slice().sort((x, y) => bpOf(y) - bpOf(x))[0] : await fxPickTarget(c, L, `✨ <b>${esc(_pn(c))}</b><br>Tap an opposing Spirit to take a core from (${j + 1}/${a.total}).`);
+        if (!t) break;
+        const m = Math.min(1, t.cores, coreTakeCap(c.opp, t, 1)); if (!m) continue;
+        coreEvN(c.opp, t.uid, 'trash', m, false); t.cores -= m; c.opp.trashCores.n += m; moved += m;
+        log(`${_pn(c)}: ${m} core from ${poss(c.opp)} ${CARDS[t.id].name} goes to the Trash.`);
+      }
+      if (!moved) { c.ctx.did = false; return; }
+      checkDepletion(c.opp);
+      io.view({ type: 'board' });
+    } },
   MILL: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && (a.family == null || typeof a.family === 'string') && (a.counter == null || (Number.isInteger(a.counter) && a.counter >= 1 && a.counter <= 3)) && (a.draw == null || (Number.isInteger(a.draw) && a.draw >= 1 && a.draw <= 3)),
     txt: a => `send ${a.n} cards from your Deck to the Trash${a.family ? ', and if a "' + a.family + '" family card is among them' + (a.counter ? ' counter +' + a.counter : '') + (a.draw ? ' and draw ' + a.draw : '') : ''}`,
     can: c => c.p.deck.length > 0 && !deckDiscardLocked(),
@@ -66,15 +84,16 @@ Object.assign(FX_ACTIONS, {
     } },
   /* send cores from opposing Spirits/Ultimates to the opposing Reserve (not a destruction; a Spirit left below its Lv1 cores is depleted).
      {targets:T, each:K}: up to T different Spirits lose up to K cores each; {total:N}: N cores one by one from any Spirits. drawPerDepleted: draw 1 for each Spirit depleted by this (Vaplus). */
-  OPP_CORES_TO_RESERVE: { chk: a => ((Number.isInteger(a.targets) && a.targets >= 1 && a.targets <= 3 && Number.isInteger(a.each) && a.each >= 0 && a.each <= 5) || (Number.isInteger(a.total) && a.total >= 1 && a.total <= 5)) && (a.drawPerDepleted == null || typeof a.drawPerDepleted === 'boolean') && (a.costLe == null || (Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30)),      // v196 costLe: "target an opposing Cost N or less Spirit"
+  OPP_CORES_TO_RESERVE: { chk: a => ((Number.isInteger(a.targets) && a.targets >= 1 && a.targets <= 3 && Number.isInteger(a.each) && a.each >= 0 && a.each <= 5) || (Number.isInteger(a.total) && a.total >= 1 && a.total <= 5) || a.perSource != null) && (a.drawPerDepleted == null || typeof a.drawPerDepleted === 'boolean') && (a.costLe == null || (Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30)) && (a.perSource == null || ['own', 'oppColors', 'nexus'].includes(a.perSource)) && (a.perMatch == null || (a.perSource === 'own' && typeof a.perMatch === 'object')),      // v196 costLe: "target an opposing Cost N or less Spirit"
     txt: a => a.total ? `send ${a.total} cores from any opposing Spirits/Ultimates to the Reserve` : `send ${a.each} core${a.each === 1 ? '' : 's'} ${a.targets > 1 ? 'each from ' + a.targets + ' opposing Spirits/Ultimates' : 'from an opposing Spirit/Ultimate'} to the Reserve${a.drawPerDepleted ? ', and draw a card for each depleted target' : ''}`,
     cands: (c, a) => c.opp.spirits.filter(t => t.cores > 0 && !fxImmune(c.opp, t) && (a == null || a.costLe == null || CARDS[t.id].cost <= a.costLe)),
     can: (c, a) => FX_ACTIONS.OPP_CORES_TO_RESERVE.cands(c, a).length > 0,
     run: async (c, a) => {
       const hit = new Set(); let moved = 0;
       const take = (t, k) => { const m = Math.min(k, t.cores, coreTakeCap(c.opp, t, k)); hit.add(t); if (!m) return; coreEvN(c.opp, t.uid, 'reserve', m, false); t.cores -= m; c.opp.reserve.n += m; moved += m; log(`${_pn(c)}: ${m} core${m === 1 ? '' : 's'} from ${poss(c.opp)} ${CARDS[t.id].name} go to the Reserve.`); };      // v190 CORE_SAFE
-      if (a.total) {
-        for (let j = 0; j < a.total; j++) {
+      if (a.total || a.perSource) {
+        const total = a.perSource === 'oppColors' ? new Set(c.opp.spirits.concat(c.opp.nexus).map(x => { const k = CARDS[x.id]; return (k.colors || [k.color, k.symbol]).filter(Boolean); }).flat()).size : a.perSource === 'nexus' ? c.p.nexus.length : a.perSource === 'own' ? perCount(c.p, a.perMatch) : a.total;
+        for (let j = 0; j < total; j++) {
           const L = FX_ACTIONS.OPP_CORES_TO_RESERVE.cands(c); if (!L.length) break;
           const t = c.p.cpu ? L.slice().sort((x, y) => ((totalCores(x) - 1 < CARDS[x.id].levels[0].cores) ? 0 : 1) - ((totalCores(y) - 1 < CARDS[y.id].levels[0].cores) ? 0 : 1) || bpOf(y) - bpOf(x))[0] : await fxPickTarget(c, L, `✨ <b>${esc(_pn(c))}</b><br>Tap an opposing Spirit to take a core from (${j + 1}/${a.total}).`);
           if (!t) break; take(t, 1);

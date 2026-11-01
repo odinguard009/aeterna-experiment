@@ -80,7 +80,9 @@ const FONT_URL = /url\(data:font\/woff2;base64,[A-Za-z0-9+/=]+\)/g, FLAVOR_RE = 
 // v0.203.0 (Lane K cycle 36): raised B01 1235 -> 1240 KB and B02 331 -> 333 KB on purpose: the v230-v233 engine pieces
 // (firstBattle/oppLifeGe conditions, per.max, BP_TARGET.perCores, EXHAUST_OPP.nexus, STATIC.perSymbolColors) put the page
 // 43 bytes over B01 and the gzip 106 bytes over B02.
-test('B01 index.html without the card pack stays under 1240 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 1240e3, Buffer.byteLength(noFont(code))));
+// v0.204.0 (Lane K cycle 16): raised B01 1240 -> 1245 KB on purpose: START_STEP/SPIRIT_DIED/OPP_DRAWS triggers,
+// OPP_CORES_TO_TRASH, perSource, VOID_TO_CARD subject and the perSymbol/perLv/extended generators put the page 565 bytes over.
+test('B01 index.html without the card pack stays under 1245 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 1245e3, Buffer.byteLength(noFont(code))));
 // v0.186.0 (Brave costLe): raised B02 290 -> 292 KB on purpose: the Brave combine condition costLe (parser, braveFits, types) put the page 0.9 KB over the limit.
 // v0.188.0 (R2): raised B02 292 -> 294 KB on purpose: the Family list, BP / core and colour-mode filters (shared by the Deck Builder and the Library) put the page 0.04 KB over the limit.
 // v0.195.0 (Lane K): raised B02 294 -> 296 KB on purpose: viaLegacy and BOUNCE_OPP n/bpLe put the engine 0.01 KB over the limit.

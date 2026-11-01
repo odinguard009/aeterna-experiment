@@ -2551,10 +2551,6 @@
   "T_DESTROYED",
   "T_SUMMONED"
  ],
- "BS10-020": [
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
  "BS10-021": [
   "C_LEVEL"
  ],
@@ -4373,10 +4369,6 @@
   "A_BP_PLUS",
   "M_BY_DOING"
  ],
- "BS15-013": [
-  "C_LEVEL",
-  "T_DESTROYED"
- ],
  "BS15-014": [
   "A_EXHAUST",
   "C_LEVEL",
@@ -4770,10 +4762,6 @@
   "A_TRASH_TO_RESERVE",
   "C_LEVEL",
   "T_DESTROYED",
-  "T_SUMMONED"
- ],
- "BS16-017": [
-  "C_LEVEL",
   "T_SUMMONED"
  ],
  "BS16-018": [
@@ -13145,10 +13133,6 @@
   "C_LEVEL",
   "K_BRAVE"
  ],
- "BS36-013": [
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
  "BS36-015": [
   "A_LIFE_TO_RESERVE",
   "A_SEAL",
@@ -21054,10 +21038,6 @@
   "C_LEVEL",
   "K_BRAVE",
   "M_OPTIONAL"
- ],
- "BS50-014": [
-  "C_LEVEL",
-  "T_DESTROYED"
  ],
  "BS50-015": [
   "A_SUMMON_FREE",

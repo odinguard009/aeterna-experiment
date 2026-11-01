@@ -1,0 +1,32 @@
+{
+  "name": "opp-cores-five",
+  "about": "v0.203.0 next cycle bundle 6: BS10-020, BS36-013, BS16-017, BS15-013 and BS50-014 - opposing core moves with perSource (own family, opposing colours) and the new OPP_CORES_TO_TRASH.",
+  "rules": [
+    "STD:12-2-1-12@caad612c",
+    "SJP:core-move@eb7563c8"
+  ],
+  "turn": 4,
+  "active": "player",
+  "step": 4,
+  "players": {
+    "player": {
+      "reserve": 3,
+      "void": 8,
+      "spirits": [
+        { "id": "BS10-020", "cores": 1, "as": "astral" },
+        { "id": "BS36-013", "cores": 2, "as": "godKing" },
+        { "id": "BS16-017", "cores": 1, "as": "beast" },
+        { "id": "BS15-013", "cores": 1, "as": "colors" },
+        { "id": "BS50-014", "cores": 1, "as": "soulDraw" }
+      ],
+      "deck": ["26RBS01-004", "26RBS01-005"]
+    },
+    "opponent": {
+      "reserve": 4,
+      "spirits": [
+        { "id": "26RBS01-004", "cores": 2, "as": "redTwo" },
+        { "id": "26RBS01-031", "cores": 1, "as": "otherColour" }
+      ]
+    }
+  }
+}

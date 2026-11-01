@@ -4855,12 +4855,24 @@
   "image": "Elefog.png",
   "block": "15",
   "saga": 3,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Destroyed) For each color of Spirit/Nexus on the opposing field, send one core from any opposing Spirits to the Reserve."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "C"
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Clauses authored by hand in Lane K (v0.202.0).",
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "OPP_CORES_TO_RESERVE",
+      "perSource": "oppColors"
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS15-014",
@@ -8243,12 +8255,29 @@
   "image": "Kouenko.gif",
   "block": "16",
   "saga": 3,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Summoned) For each \"Spiritual Beast\" family Spirit you control, send a core from one opposing Spirit to the Reserve."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "R"
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Clauses authored by hand in Lane K (v0.202.0).",
+  "rcode": "R",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "OPP_CORES_TO_RESERVE",
+      "perSource": "own",
+      "perMatch": {
+       "type": "Spirit",
+       "family": "Spiritual Beast"
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS16-018",

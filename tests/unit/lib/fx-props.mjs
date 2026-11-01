@@ -51,6 +51,7 @@ export function fixtureCards(cases) {
 
 // One body per property; `A` is the action JSON as a literal, `S` the source card id.
 function destroyCase(card, a) {
+  if (a.ultimate) return only(a, ['ultimate']) && { body: `const before = O.spirits.length; await run(src, RA); return O.spirits.length === before ? '' : 'a non-Ultimate Spirit was destroyed by an Ultimate-only clause';` };      // v242 no Ultimate fixture: nothing may be destroyed
   if (!only(a, ['bpLe', 'costLe', 'coresLe', 'costLeSelf', 'nexus', 'costRank', 'exhaustedOnly', 'thenDraw', 'noFx', 'bpPer', 'costPerOwn'])) return null;      // bpPer: no own keyword Spirit in the fixture, so the plain bpLe bound holds
   const bounds = ['bpLe', 'costLe', 'coresLe', 'costLeSelf', 'nexus', 'costRank'].filter(k => a[k] != null);
   if (bounds.length !== 1) return null;
@@ -95,6 +96,7 @@ function exhaustCase(a, heavy) {
 }
 
 function bounceCase(a) {
+  if (a.all) return only(a, ['all', 'kind', 'to', 'bpLe']) && a.kind === 'spirit' && { fix: [{ cost: 3, bp: a.bpLe }, { cost: 3, bp: a.bpLe + 1000 }], body: `const a1 = sp(${J(sid(3, a.bpLe))}, O), a2 = sp(${J(sid(3, a.bpLe))}, O), big = sp(${J(sid(3, a.bpLe + 1000))}, O); await run(src, RA); return gone(a1) && gone(a2) && !gone(big) && O.hand.includes(a1) && O.hand.includes(a2) ? '' : 'BOUNCE all: wrong set returned';` };      // v242
   if (!only(a, ['kind', 'to', 'bpLe', 'costLe', 'exhaustedOnly', 'n', 'refreshedOnly'])) return null;
   if (!['spirit', 'nexus', 'any'].includes(a.kind) || !['hand', 'deckBottom'].includes(a.to)) return null;
   const nexus = a.kind === 'nexus', cost = a.costLe != null ? a.costLe : 3, bp = a.bpLe != null ? a.bpLe : 3000, ex = a.exhaustedOnly ? 'true' : 'false';
@@ -152,7 +154,7 @@ function simple(card, a) {
       if (O.trash.length !== A.n || O.deck.length !== 7 - A.n || top.some(x => !O.trash.includes(x))) return 'opposing trash ' + O.trash.length + ' deck ' + O.deck.length; if (P.trash.length) return 'own cards were discarded'; return '';` };
     case 'COUNTER': return only(a, ['n', 'max']) && { body: `await run(src, RA); const want = A.max != null ? Math.min(A.n, A.max) : A.n; if (P.count !== want) return 'count ' + P.count + ', want ' + want;
       P.count = A.max != null ? A.max : 0; if (A.max != null) { await run(src, RA); if (P.count !== A.max) return 'the counter went over its maximum'; } return '';` };
-    case 'VOID_TO_RESERVE': return only(a, ['n']) && { body: `const r = P.reserve.n; await run(src, RA); return P.reserve.n === r + A.n ? '' : 'reserve ' + r + ' -> ' + P.reserve.n;` };
+    case 'VOID_TO_RESERVE': return (a.perLv ? only(a, ['perLv']) : only(a, ['n'])) && { body: `const r = P.reserve.n; await run(src, RA); const want = A.perLv ? BS.lvNo(src) : A.n; return P.reserve.n === r + want ? '' : 'reserve ' + r + ' -> ' + P.reserve.n + ', want +' + want;` };      // v242 perLv
     case 'VOID_TO_TRASH': return only(a, ['n']) && { body: `const t = P.trashCores.n, r = P.reserve.n; await run(src, RA); return P.trashCores.n === t + A.n && P.reserve.n === r ? '' : 'trash cores ' + t + ' -> ' + P.trashCores.n;` };
     case 'VOID_TO_LIFE': return only(a, ['n']) && { body: `const l = P.life; await run(src, RA); return P.life === l + A.n ? '' : 'life ' + l + ' -> ' + P.life;` };
     case 'VOID_TO_CARD':
@@ -262,7 +264,8 @@ function simple(card, a) {
     case 'SELF_TO_HAND':      // v0.180 this Spirit goes from the Field back to its owner's Hand
       return only(a, []) && spirit && { onField: true, body: `await run(src, RA); return !P.spirits.includes(src) && P.hand.includes(src) ? '' : 'the Spirit did not return to the Hand';` };
     case 'RETURN_TRASH':      // v0.182 a matching card goes from the Trash to the Hand
-      if (!only(a, ['match', 'anyType']) || !okMatch(a.match) || (a.match.type === 'Nexus' && !a.anyType)) return null;
+      if (!only(a, ['match', 'anyType', 'all']) || !okMatch(a.match) || (a.match.type === 'Nexus' && !a.anyType)) return null;
+      if (a.all) return { fix: [{ m: a.match }], body: `const t1 = BS.mkInst(${J(mid(a.match))}), t2 = BS.mkInst(${J(mid(a.match))}); P.trash.push(t1, t2); await run(src, RA); return P.hand.includes(t1) && P.hand.includes(t2) && !P.trash.includes(t1) ? '' : 'RETURN_TRASH all: a matching card stayed in the Trash';` };      // v242
       return { fix: [{ m: a.match }], body: `const t = BS.mkInst(${J(mid(a.match))}); P.trash.push(t); await run(src, RA); return P.hand.includes(t) && !P.trash.includes(t) ? '' : 'the card did not return to the Hand';` };
     case 'DESTROY_ANY':      // v0.183 either side is legal; with only an opposing target (and a CPU-safe fixture) that one goes
       if (!only(a, ['kind', 'exhaustedOnly', 'bpLe'])) return null;
@@ -339,7 +342,15 @@ function simple(card, a) {
       return only(a, []) && { fix: [{ n: 2 }], body: `const t = nx(${J(nid(2))}, P); t.exhausted = true; await run(src, RA); return t.exhausted ? 'the Nexus is still exhausted' : '';` };
     case 'RESERVE_TO_LIFE':      // v191 n cores from the Reserve go to the Life (Soul Core untouched)
       return only(a, ['n']) && { body: `P.reserve.n = A.n + 2; P.life = 3; await run(src, RA); return P.life === 3 + A.n && P.reserve.n === 2 ? '' : 'life 3 -> ' + P.life + ', reserve ' + P.reserve.n;` };
+    case 'OPP_CORES_TO_TRASH':      // v242 one opposing core goes to the opposing Trash
+      return only(a, ['total', 'costLe']) && { fix: [], body: `const t = sp(${J(FILL)}, O, 3); const t0 = O.trashCores.n, c0 = t.cores; await run(src, RA); return O.trashCores.n === t0 + 1 && t.cores === c0 - 1 ? '' : 'OPP_CORES_TO_TRASH: trash ' + t0 + ' -> ' + O.trashCores.n;` };
     case 'OPP_CORES_TO_RESERVE':
+      if (a.perSource) {      // v242 per-source totals
+        if (!only(a, ['perSource', 'perMatch'])) return null;
+        if (a.perSource === 'own') return { fix: [], body: `const t = sp(${J(FILL)}, O, 3); const c0 = t.cores; await run(src, RA); return t.cores === c0 ? '' : 'perSource own without a matching Spirit still moved a core';` };
+        if (a.perSource === 'nexus') return { fix: [{ n: 2 }], body: `const t = sp(${J(FILL)}, O, 3); nx(${J(nid(2))}, P); const c0 = t.cores; await run(src, RA); return t.cores === c0 - 1 ? '' : 'perSource nexus: no core moved';` };
+        return { fix: [], body: `const t = sp(${J(FILL)}, O, 3); const c0 = t.cores; await run(src, RA); return t.cores === c0 - 1 ? '' : 'perSource oppColors: no core moved';` };      // one colour on the opposing field
+      }
       if (a.targets === 1 && only(a, ['targets', 'each', 'costLe', 'exhaustedOnly', 'coresLe', 'keepOne', 'untilOne', 'drawPerDepleted']) && !(a.drawPerDepleted && (a.keepOne || a.untilOne))
         && ['costLe', 'exhaustedOnly', 'coresLe', 'keepOne', 'untilOne', 'drawPerDepleted'].some(k => a[k] != null)) {      // v0.77 filters / floors / draw on depletion
         const T = a.costLe != null ? sid(a.costLe, 1000) : FILL, K = a.coresLe != null ? Math.min(a.coresLe, 4) : 4;
