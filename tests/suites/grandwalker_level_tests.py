@@ -2,7 +2,7 @@ from waits import settle, ready  # v0.87.0 (F5): state waits instead of fixed ti
 # v0.22: Lv of a Contract Grandwalker Nexus is decided by the Count (official Eternal rule). Every chk() is one numbered test.
 import json as _json_c, os as _os_c  # counts come from the card data, so a new colour needs no edit here
 _CARDS = _json_c.load(open(_os_c.path.join(_os_c.path.dirname(_os_c.path.abspath(__file__)), '..', '..', 'build', 'all-cards.json'), encoding='utf-8'))
-PACK_N = len(_CARDS); CONTRACTORS = sorted(c['id'] for c in _CARDS if c['type'] == 'Nexus' and '-CX' in c['id'] and c.get('levels'))   # BS76/BS77 CX Flagbearers have no levels yet (Flag Contract, open in roadmap-open.md): not Count-level
+PACK_N = len(_CARDS); CONTRACTORS = sorted(c['id'] for c in _CARDS if c['type'] == 'Nexus' and '-CX' in c['id'] and 'Grandwalker' in c.get('families', []))   # Contractor Grandwalkers only: the BS76/BS77 CX Flagbearers (family Flag) are not Count-level
 src = open('/tmp/claude-0/t4/mitra_tests.py', encoding='utf-8').read()
 exec(src.split("MITRA_FX =")[0])
 def run(pg, js, ms=700):

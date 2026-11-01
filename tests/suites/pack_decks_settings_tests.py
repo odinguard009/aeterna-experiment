@@ -105,7 +105,7 @@ with sync_playwright() as p:
         pg.reload(); ready(pg); pg.locator('[data-a=go-play]:visible').first.click()
         chk(f'{lab} PLAY: the choice survives a reload', pg.input_value('#play-cpu')=='rbs01-1')
         pg.click('#pl-fmt [data-v=standard]'); settle(pg)
-        chk(f'{lab} PLAY: in Standard an incomplete official deck says it will be replaced', 'not legal in STANDARD' in pg.locator('#play-cpu option[value=rbs02-6]').inner_text())
+        chk(f'{lab} PLAY: in Standard an incomplete official deck says it will be replaced', 'not legal in STANDARD' in pg.locator('#play-cpu option[value=rdb01-1]').inner_text())
         pg.click('#pl-fmt [data-v=eternal]')
         ov = ev(pg, "document.documentElement.scrollWidth<=window.innerWidth+1")
         chk(f'{lab} PLAY: fits the screen', ov and pg.locator('#view-play [data-a=start]').is_visible(), ov)

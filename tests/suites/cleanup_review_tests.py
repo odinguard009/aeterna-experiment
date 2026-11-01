@@ -1,7 +1,7 @@
 # v0.24: code review / cleanup suite. Every chk() is one numbered test. Needs PYTHONPATH with the fixtures helper for fixture checks only.
 import json as _json_c, os as _os_c  # counts come from the card data, so a new colour needs no edit here
 _CARDS = _json_c.load(open(_os_c.path.join(_os_c.path.dirname(_os_c.path.abspath(__file__)), '..', '..', 'build', 'all-cards.json'), encoding='utf-8'))
-import re as _re_c; PACK_N = sum(1 for _c in _CARDS if _re_c.match(r'(\d\dR)?(BSC|BS|SD|CB|DB)\d', _c['id']) and not _c.get('token')); CONTRACTORS = sorted(c['id'] for c in _CARDS if c['type'] == 'Nexus' and '-CX' in c['id'] and c.get('levels'))   # BS76/BS77 CX Flagbearers have no levels yet (Flag Contract, open in roadmap-open.md): not Count-level
+import re as _re_c; PACK_N = sum(1 for _c in _CARDS if _re_c.match(r'(\d\dR)?(BSC|BS|SD|CB|DB)\d', _c['id']) and not _c.get('token')); CONTRACTORS = sorted(c['id'] for c in _CARDS if c['type'] == 'Nexus' and '-CX' in c['id'] and 'Grandwalker' in c.get('families', []))   # Contractor Grandwalkers only: the BS76/BS77 CX Flagbearers (family Flag) are not Count-level
 from playwright.sync_api import sync_playwright
 from waits import settle, ready
 import json, sys, re, time
@@ -43,7 +43,7 @@ with sync_playwright() as p:
     # ---- C. built-in card data audit (all 63 pack cards)
     chk(f'C1 pack registers {PACK_N} cards (the Brave card too, Standard 26R BS/CB ids), all ids unique', ev(pg, "(()=>{const k=Object.keys(BS.CARDS).filter(i=>/^(\\d\\dR)?(BSC|BS|SD|CB|DB)\\d/.test(i)&&!BS.CARDS[i].token);return k.length===%d&&new Set(k).size===%d})()" % (PACK_N, PACK_N)))
     # v0.80.x data intake added the id families 26RDBxx-yyy and BSCxx-yyy and 3-letter promo codes (BS38-RVX01)
-    chk('C2 every pack card id looks like BSxx-yyy / SDxx-yyy / BSCxx-yyy / 26RBSxx-yyy / 26RCBxx-yyy / 26RDBxx-yyy', ev(pg, "Object.keys(BS.CARDS).filter(i=>/^(\\d\\dR)?(BSC|BS|SD|CB|DB)\\d/.test(i)&&!BS.CARDS[i].token).every(i=>/^(\\d\\dR)?(BSC|BS|SD|CB|DB)\\d\\d-[A-Z]{0,4}\\d{2,3}[A-Z]?$/.test(i))"))
+    chk('C2 every pack card id looks like BSxx-yyy / SDxx-yyy / BSCxx-yyy / 26RBSxx-yyy / 26RCBxx-yyy / 26RDBxx-yyy', ev(pg, "Object.keys(BS.CARDS).filter(i=>/^(\\d\\dR)?(BSC|BS|SD|CB|DB)\\d/.test(i)&&!BS.CARDS[i].token).every(i=>/^(\\d\\dR)?(BSC|BS|SD|CB|DB)\\d\\d-(10TH)?[A-Z]{0,4}\\d{2,3}[A-Z]?$/.test(i))"))
     chk('C3 colour is one of the six', ev(pg, "Object.values(BS.CARDS).every(c=>['red','purple','green','yellow','blue','white'].includes(c.symbol))"))
     chk('C4 cost within 0..30 and integer', ev(pg, "Object.values(BS.CARDS).every(c=>Number.isInteger(c.cost)&&c.cost>=0&&c.cost<=30)"))
     chk('C5 Spirit levels: cores strictly ascending, BP numeric', ev(pg, "Object.values(BS.CARDS).filter(c=>c.type==='Spirit').every(c=>c.levels.length>=1&&c.levels.every((l,i)=>Number.isInteger(l.cores)&&Number.isInteger(l.bp)&&(i===0||l.cores>c.levels[i-1].cores)))"))
