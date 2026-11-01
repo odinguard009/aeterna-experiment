@@ -64,3 +64,16 @@ Object.assign(FX_ACTIONS, {
     can: () => true,
     run: async (c, a) => { c.ctx.did = (await coresFromSpirits(c, c.opp, a.total, false)) > 0; } },
 });
+Object.assign(FX_ACTIONS, {      // v278 "Send a core from your Field or your Trash to the Void." (Field = Reserve; the CPU spends a Trash core first)
+  OWN_CORE_TO_VOID: { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
+    txt: () => 'send a core from your Reserve or your Trash to the Void',
+    can: c => c.p.trashCores.n > 0 || c.p.reserve.n > 0,
+    run: async (c, a) => {
+      const p = c.p, nm = CARDS[c.src.id].name, T = p.trashCores.n > 0, R = p.reserve.n > 0; c.ctx.did = false;
+      if (!T && !R) return;
+      let fromTrash = T;
+      if (T && R && !p.cpu) fromTrash = (await ask({ title: `✨ ${nm}`, peek: true, html: 'Send a core to the Void from:', buttons: [{ label: 'Trash', cls: 'primary', value: true }, { label: 'Reserve', cls: 'purple', value: false }] })) !== false;
+      if (fromTrash) { coreEvN(p, 'trash', 'void', 1, false); p.trashCores.n--; } else { coreEvN(p, 'reserve', 'void', 1, false); p.reserve.n--; }
+      p.void += 1; c.ctx.did = true; log(`${nm}: a core from ${poss(p)} ${fromTrash ? 'Trash' : 'Reserve'} goes to the Void.`); io.view({ type: 'board' });
+    } },
+});

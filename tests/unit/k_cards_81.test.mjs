@@ -27,3 +27,13 @@ test('K-840 BS02-031 deploys a white or green Nexus from the Trash free, not a r
     return [e.optional, L1, L2]; })()`);
   assert.deepEqual(r, [true, 0, 1], JSON.stringify(r));
 });
+
+test('K-841 OWN_CORE_TO_VOID moves a Trash core to the Void first, then a Reserve core (BS01-007)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true;
+    const a = BS.CARDS['BS01-007'].effects[0].actions[0]; const c = { p: P, opp: O, src: BS.mkInst('BS01-007'), ctx: {} };
+    P.trashCores.n = 1; P.reserve.n = 3; const v0 = P.void;
+    await BS.FX_ACTIONS.OWN_CORE_TO_VOID.run(c, a); const s1 = [P.trashCores.n, P.reserve.n, P.void - v0];
+    await BS.FX_ACTIONS.OWN_CORE_TO_VOID.run(c, a); return [s1, P.trashCores.n, P.reserve.n, P.void - v0, BS.FX_ACTIONS.OWN_CORE_TO_VOID.chk(a)]; })()`);
+  assert.deepEqual(r, [[0, 3, 1], 0, 2, 2, true], JSON.stringify(r));
+});

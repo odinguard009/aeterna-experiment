@@ -312,3 +312,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v275 (Lane K): new action `HAND_TO_REMOVED {match}` (cost "By putting a Magic card from your Hand face-up onto the Removed Zone, ..."; the CPU puts away the cheapest match; `ctx.did = false` when the Hand has none, so the next action carries `{"if":{"prev":true}}`).
 - v276 (Lane K): `CRUSH` got `perKeyword` (with an integer `n`): "For each of your Spirits with Crush, discard three cards from the opposing decktop" discards `n` times the count of your Spirits with that keyword (the Spirit itself counts once it is on the Field).
 - v277 (Lane K): OWN_CORES_TO_TRASH {total} and OPP_SELF_CORES_TO_TRASH {total}: the player moves total cores from their own spirits to the trash (own: needs at least total on spirits; opponent: up to total). BS09-070, BS08-072.
+- v278 (Lane K): OWN_CORE_TO_VOID {}: send one core from your Trash or Reserve to your Void (CPU: Trash first). BS01-007.
