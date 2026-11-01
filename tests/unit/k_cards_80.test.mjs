@@ -272,3 +272,13 @@ test('K-836 BS10-112 Main deploys a Nexus from the Trash, then returns another t
     return [JSON.stringify(m.timing), m.by.MAIN.actions.map(a => a.do), m.by.FLASH && (m.by.FLASH.effect || null)]; })()`);
   assert.deepEqual(r[0], '["MAIN","FLASH"]'); assert.deepEqual(r[1], ['DEPLOY_TRASH', 'RETURN_TRASH']);
 });
+
+test('K-837 CRUSH perKeyword discards n cards per own Spirit with Crush (BS11-048)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true;
+    const s = BS.mkInst('BS11-048'); s.cores = 1; P.spirits = [s]; const d0 = O.deck.length;
+    const act = BS.CARDS['BS11-048'].effects.find(e => e.trigger === 'SUMMONED').actions[0]; const ok = BS.FX_ACTIONS.CRUSH.chk(act);
+    await BS.FX_ACTIONS.CRUSH.run({ p: P, opp: O, src: s, ctx: {} }, act);
+    return [ok, d0 - O.deck.length]; })()`);
+  assert.deepEqual(r, [true, 3], JSON.stringify(r));
+});

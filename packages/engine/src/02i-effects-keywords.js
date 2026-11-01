@@ -42,11 +42,11 @@ function cpuHighSpeed(p, attKey, att, blk) {
   return p.life <= 2 && !p.spirits.some(s => !s.exhausted && !s.noAB) ? L.sort((a, b) => effCost(p, CARDS[a.id]) - effCost(p, CARDS[b.id]))[0] : null;
 }
 Object.assign(FX_ACTIONS, {
-  CRUSH: { chk: a => a.n === 'lv' || (Number.isInteger(a.n) && a.n >= 1 && a.n <= 10),
+  CRUSH: { chk: a => (a.n === 'lv' || (Number.isInteger(a.n) && a.n >= 1 && a.n <= 10)) && (a.perKeyword == null || (typeof a.perKeyword === 'string' && Number.isInteger(a.n))),      // v276 perKeyword: "For each of your Spirits with Crush, discard three cards from the opposing decktop"
     txt: a => `discard ${a.n === 'lv' ? "cards equal to this Spirit's level" : a.n + ' card' + (a.n === 1 ? '' : 's')} from the opposing decktop (Crush)`,
     can: c => c.opp.deck.length > 0,
     run: async (c, a) => {
-      const n = a.n === 'lv' ? (fieldList(c.p).includes(c.src) ? lvNo(c.src) : 0) : a.n;
+      const n = a.n === 'lv' ? (fieldList(c.p).includes(c.src) ? lvNo(c.src) : 0) : a.perKeyword ? a.n * c.p.spirits.filter(x => cardHasKeyword(CARDS[x.id], a.perKeyword)).length : a.n;
       const top = c.opp.deck.splice(0, Math.min(n, c.opp.deck.length)); if (!top.length) { c.ctx.did = false; return; }
       for (const x of top) c.opp.trash.push(x);
       c.ctx.crushed = top;
