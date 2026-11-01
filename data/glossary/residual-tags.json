@@ -2725,11 +2725,6 @@
   "C_LEVEL",
   "K_BRAVE"
  ],
- "BS10-088": [
-  "A_REFRESH",
-  "A_VOID",
-  "C_LEVEL"
- ],
  "BS10-090": [
   "A_BOUNCE",
   "A_BP_PLUS",
@@ -3856,12 +3851,6 @@
   "A_EXHAUST",
   "C_LEVEL",
   "T_ALLY_SUMMONED"
- ],
- "BS13-066": [
-  "A_REFRESH",
-  "A_VOID",
-  "C_LEVEL",
-  "T_ALLY_LOST"
  ],
  "BS13-067": [
   "A_EXHAUST",

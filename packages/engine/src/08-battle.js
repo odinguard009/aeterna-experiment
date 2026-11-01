@@ -170,7 +170,7 @@ async function flushBursts() {                         // queued Bursts and even
     } else if (ev.type === 'FXKILL') {
       await fireFx(G.p[ev.key], 'OPP_DESTROYED_FX', null, { bp: ev.bp, fxSrc: ev.src });
     } else if (ev.type === 'DIED') {
-      await fireFx(G.p[ev.key], 'ALLY_DIED', null, { subject: ev.inst, byBattle: !!ev.byBattle });
+      await fireFx(G.p[ev.key], 'ALLY_DIED', null, { subject: ev.inst, byBattle: !!ev.byBattle, byOpp: !!ev.byOpp });
       for (const q of [G.p.player, G.p.opponent]) await fireFx(q, 'SPIRIT_DIED', null, { subject: ev.inst, byBattle: !!ev.byBattle });      // v240 "when any Spirit is destroyed"      // v191 byBattle: "destroyed via BP comparison"
     } else if (ev.type === 'LOST') {
       await fireFx(G.p[ev.key], 'ALLY_LOST', null, { subject: ev.inst, depl: !!ev.depl, byOpp: !!ev.byOpp });      // v212

@@ -175,3 +175,31 @@ test('K-877 BS09-061 puts a Void core on a blocking Giant Beast and refreshes th
     return out; })()`);
   assert.deepEqual(r, [2, 2, 1, true, false], JSON.stringify(r));
 });
+
+test('K-878 BS10-088 puts a Void core on a blocking vanilla Spirit and refreshes the vanilla Spirits when an opposing Spirit attacks (LV2)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const n = BS.mkInst('BS10-088'); n.cores = 0; P.nexus = [n]; const out = [];
+    const v = BS.mkInst('BS01-001'); v.cores = 1; v.exhausted = true; const t = BS.mkInst('BS31-008'); t.cores = 1; t.exhausted = true; P.spirits = [v, t]; P.void = 3; G.active = O.key; G.step = 5;
+    await BS.fireFx(P, 'ALLY_BLOCKS', v, { subject: v, blocker: v }); out.push(v.cores);
+    await BS.fireFx(P, 'ALLY_BLOCKS', t, { subject: t, blocker: t }); out.push(t.cores);
+    const a = BS.mkInst('BS01-001'); a.cores = 1; O.spirits = [a];
+    await BS.fireFx(P, 'OPP_ATTACKS', null, { subject: a, attacker: a }); out.push(!!v.exhausted);
+    n.cores = 2; await BS.fireFx(P, 'OPP_ATTACKS', null, { subject: a, attacker: a }); out.push(!!v.exhausted, !!t.exhausted);
+    return out; })()`);
+  assert.deepEqual(r, [2, 1, true, false, true], JSON.stringify(r));
+});
+
+test('K-879 BS13-066 returns a Void core when an opposing effect or battle destroys a Spirit and on a Life hit with a refresh (LV2)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const n = BS.mkInst('BS13-066'); n.cores = 0; P.nexus = [n]; const out = [];
+    const y = BS.mkInst('BS01-001'); P.void = 5; let rs = P.reserve.n;
+    await BS.fireFx(P, 'ALLY_DIED', null, { subject: y, byOpp: true }); out.push(P.reserve.n - rs);
+    await BS.fireFx(P, 'ALLY_DIED', null, { subject: y }); out.push(P.reserve.n - rs);
+    const s = BS.mkInst('BS01-001'); s.cores = 1; s.exhausted = true; P.spirits = [s]; G.active = O.key; G.step = 5; rs = P.reserve.n;
+    await BS.fireFx(P, 'OWN_LIFE_HIT', null, {}); out.push(P.reserve.n - rs, !!s.exhausted);
+    n.cores = 2; await BS.fireFx(P, 'OWN_LIFE_HIT', null, {}); out.push(P.reserve.n - rs, !!s.exhausted);
+    return out; })()`);
+  assert.deepEqual(r, [1, 1, 0, true, 1, false], JSON.stringify(r));
+});

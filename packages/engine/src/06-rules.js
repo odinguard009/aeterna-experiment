@@ -344,7 +344,7 @@ function removeSpirit(p, s, why, byOpponent) {
   }
   s.lostFxSrc = G && G.fxBy === p.key && G.fxSrc ? G.fxSrc : null;      // v0.197 condition byOwnFx (the card of the own effect that removed it)
   if (why === 'destroyed' && G) p.lostSpiritTurn = G.turnNo;
-  if (why === 'destroyed' && G && G.evQ && !s.token && allyDiedHears(p)) G.evQ.push({ type: 'DIED', key: p.key, inst: s, byBattle: byOpponent === 'battle' });      // v155 ALLY_DIED; v191 byBattle ("destroyed via BP comparison")
+  if (why === 'destroyed' && G && G.evQ && !s.token && allyDiedHears(p)) G.evQ.push({ type: 'DIED', key: p.key, inst: s, byBattle: byOpponent === 'battle', byOpp: byOpponent === 'battle' || (!!G.fxBy && G.fxBy !== p.key) });      // v155 ALLY_DIED; v191 byBattle ("destroyed via BP comparison")
   if (why === 'destroyed' && G && G.evQ && oppDiedHears(p)) G.evQ.push({ type: 'OPP_DIED', key: p.key, inst: s, bp: bpAt });      // v192 OPP_DIED ("When opposing Spirits are destroyed", any cause)
   if (kill) G.evQ.push({ type: 'FXKILL', key: G.fxBy, bp: bp0, src: G.fxSrc || null });
   s.lostLv = lv; s.soulLost = s.soul;      // v0.176: the Soul Core it held when it left ("If (Soul Core) is on this Spirit" in a Destroyed trigger)
