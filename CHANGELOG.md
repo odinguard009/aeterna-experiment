@@ -4,6 +4,14 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.205.2
+- Lane: U/I
+- **Battle UI and CPU batch: clearer Flash window, Effects button, effect lines in the log, smarter CPU.**
+- Draw-card animation is a card-shaped rectangle. My decks starter picker has a Standard / Eternal choice. Deck builder and Library: Format (Eternal / Standard) and Status (complete / partial) dropdowns replace the two toggles.
+- Flash Timing window asks first ("Use Flash" / "Pass"), then lists usable cards vertically with a Cancel button. Newly active card effects pop up for player and CPU (stack of 4 on PC, 2 on phone). A "Effects" button in the lower corner of the field lists effects in force. Effect lines go into the battle log (history only, not in the replay hash, so saved games and sims are unchanged).
+- CPU: avoids thin-lead attacks, estimates Flash threat from public info only (no hand peeking), uses exhaust-opponent Magic to clear a lone blocker.
+- Limits: the Eternal starter list is empty (those decks are listed as ready decks). Budget B04 raised to 234 KB. Revert: `git revert` the release commit.
+
 ## v0.205.0
 - Lane: K (owner order: finish every incomplete Standard card before committing)
 - **Standard block A is complete: the last 9 partial 26R* cards now run every printed effect (+9 cards, schema 246); complete 1,696 -> 1,705 of 8,709.**
