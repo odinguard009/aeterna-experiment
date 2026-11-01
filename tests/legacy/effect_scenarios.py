@@ -67,7 +67,7 @@ with sync_playwright() as p:
     ev("BS.G.turnNo++; BS.G.p.player.hand=[]"); ev("BS.fireFx(BS.G.p.player,'ALLY_ATTACKS',A,{attacker:A})"); pg.wait_for_timeout(900)
     chk('once-per-turn resets next turn',ev("BS.G.p.player.hand.length")==1)
     # 10 Goradon blocked draw 2
-    ev(SETUP); ev("window.G1=mk('player','BS75-001',1); window.A=mk('player','BS75-002',1); BS.G.p.player.hand=[]")
+    ev(SETUP); ev("window.G1=mk('player','BS75-001',1); window.A=mk('player','BS75-002',1); BS.G.p.player.hand=[]; BS.G.step=5; BS.G.active=BS.G.p.player.key")      # v0.204.0: Goradon's clause is scoped to your Attack Step
     ev("BS.fireFx(BS.G.p.player,'ALLY_BLOCKED',A,{attacker:A})"); pg.wait_for_timeout(700)
     chk('Goradon draws 2 when Wurm blocked: name filter needs Wurm',ev("BS.G.p.player.hand.length")==0)
     ev("window.A=mk('player','BS76-X01',1)"); ev("BS.G.p.player.hand=[]; BS.fireFx(BS.G.p.player,'ALLY_BLOCKED',A,{attacker:A})"); pg.wait_for_timeout(700)
