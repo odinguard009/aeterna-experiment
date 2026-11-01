@@ -123,8 +123,8 @@ Object.assign(FX_ACTIONS, {
   SUMMON_SELF: { chk: () => true, txt: () => 'summon this card without paying the cost',
     can: c => !!c.burst && canPlaceFree(c.p, c.src),
     run: async c => { if (!c.burst || !canPlaceFree(c.p, c.src)) return; await summonFree(c.p, c.src); c.summoned = true; } },
-  VOID_TO_RESERVE: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5, txt: a => `put ${a.n} core${a.n === 1 ? '' : 's'} from the Void to your Reserve`,
-    run: async (c, a) => { const m = takeFromVoid(c.p, a.n); c.p.reserve.n += m; log(`${CARDS[c.src.id].name}: ${m} core${m === 1 ? '' : 's'} move from the Void to the Reserve.`); } },
+  VOID_TO_RESERVE: { chk: a => (Number.isInteger(a.n) && a.n >= 1 && a.n <= 5) || (a.perLv === true && a.n == null), txt: a => a.perLv ? 'put cores from the Void to your Reserve equal to this Spirit\'s level' : `put ${a.n} core${a.n === 1 ? '' : 's'} from the Void to your Reserve`,
+    run: async (c, a) => { const lv = c.src.lostLv != null ? c.src.lostLv + lvBase(CARDS[c.src.id]) : lvNo(c.src); const m = takeFromVoid(c.p, a.perLv ? lv : a.n); c.p.reserve.n += m; log(`${CARDS[c.src.id].name}: ${m} core${m === 1 ? '' : 's'} move from the Void to the Reserve.`); } },
   VOID_TO_TRASH: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5, txt: a => `put ${a.n} core${a.n === 1 ? '' : 's'} from the Void to your Trash`,      // v0.75: the cores come back to the Reserve in the next Refresh Step
     run: async (c, a) => { const m = takeFromVoid(c.p, a.n); c.p.trashCores.n += m; log(`${CARDS[c.src.id].name}: ${m} core${m === 1 ? '' : 's'} move from the Void to the Trash.`); } },
   CORE_OR_COUNTER: { chk: a => a.n === 1, txt: () => '+1 core to this Nexus, or +1 counter instead',

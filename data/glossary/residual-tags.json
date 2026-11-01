@@ -3646,11 +3646,6 @@
   "K_HIGH_SPEED",
   "M_BY_DOING"
  ],
- "BS13-022": [
-  "A_VOID",
-  "C_LEVEL",
-  "T_DESTROYED"
- ],
  "BS13-023": [
   "A_REFRESH",
   "C_LEVEL",
@@ -6573,12 +6568,6 @@
   "A_SYMBOL_PLUS",
   "C_LEVEL",
   "K_BRAVE"
- ],
- "BS21-066": [
-  "A_RETURN_TRASH",
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "T_SUMMONED"
  ],
  "BS21-067": [
   "A_DESTROY_BP",

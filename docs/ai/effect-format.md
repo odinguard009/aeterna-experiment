@@ -276,3 +276,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v238 (Lane K): trigger `START_STEP` ("Your Start Step", fires after the Start Step begins). Cards: BS10-089, BS21-017.
 - v239 (Lane K): `BOUNCE_OPP.all` ("return every N BP or less Spirit"). Cards: BS10-038, BS38-020, BS14-082.
 - v240 (Lane K): VOID_TO_CARD.to subject (to that Spirit) and trigger SPIRIT_DIED (when any Spirit is destroyed, fired for both players). Cards: BS34-063, BS24-057.
+- v241 (Lane K): VOID_TO_RESERVE.perLv (cores equal to the destroyed Spirit's level) and RETURN_TRASH.all (return every matching Trash card). Cards: BS13-022, BS21-066.
