@@ -133,6 +133,8 @@ def action_of(s, ctx):
         (r'^put ' + W + r' cores? from the void (?:on|to|onto) (?:any|a|one) spirit (?:you control|of yours)$', lambda m: [{'do': 'VOID_TO_CARD', 'n': num(m.group(1)), 'to': 'anySpirit'}]),
         (r'^destroy an opposing spirit with (?:one|1) core on it$', lambda m: [{'do': 'DESTROY', 'coresLe': 1}]),
         (r'^destroy an opposing spirit with ' + W + r' cores? or less on it$', lambda m: [{'do': 'DESTROY', 'coresLe': num(m.group(1))}]),
+        (r'^draw ' + W + r' cards?, then discard ' + W + r' cards?$', lambda m: [{'do': 'LOOT', 'draw': num(m.group(1)), 'discard': num(m.group(2))}]),      # Lane K 2026-11-01 old-wiki wording without "from your hand"
+        (r"^move the top " + W + r" cards of (?:your opponent's|the opposing) deck to (?:their|the opposing) trash$", lambda m: [{'do': 'CRUSH', 'n': crush_n(num(m.group(1)))}]),
         (r'^discard ' + W + r' cards? from the opposing deck ?top$|^discard ' + W + r' cards? from the top of the opposing deck$', lambda m: [{'do': 'CRUSH', 'n': crush_n(num(m.group(1) or m.group(2)))}]),
         (r'^put ' + W + r' cores? from the void (?:on|to|onto|in|into) your life$', lambda m: [{'do': 'VOID_TO_LIFE', 'n': num(m.group(1))}]),
         # v0.55: BP minus on one opposing Spirit (no BP-0 destruction rule: Eternal manual FAQ p. 68)
