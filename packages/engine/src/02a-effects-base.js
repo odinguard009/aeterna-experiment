@@ -201,7 +201,8 @@ const fxImmune = (owner, t, c) => !!t && ((!!t.soul && flagActive(owner, 'UNAFFE
 function unaffectedBy(owner, t, src) {
   const k = CARDS[src.id]; if (!k) return false;
   const cols = k.colors || [k.symbol];
-  return flagActive(owner, 'UNAFFECTED', t, e => !e.from || ((!e.from.colors || e.from.colors.some(x => cols.includes(x))) && (!e.from.types || e.from.types.includes(k.type))));
+  const lim = e => e.costLe == null ? Infinity : e.costLe === 'self' ? (CARDS[t.id] || {}).cost : e.costLe === 'counters' ? owner.count : e.costLe;      // v247 "unaffected by opposing effects with a cost equal or inferior to <n | this Spirit's | your counters>"
+  return flagActive(owner, 'UNAFFECTED', t, e => !e.from || ((!e.from.colors || e.from.colors.some(x => cols.includes(x))) && (!e.from.types || e.from.types.includes(k.type)) && (k.cost || 0) <= lim(e.from)));
 }
 /* v0.181 STATIC DRAW_PLUS {n} ("(Your Draw Step) You draw +N card(s)" / "increase the number of cards you draw by +N", optionally "If <cond>,"): extra cards in the owner's Draw Step */
 function drawPlusOf(p) {

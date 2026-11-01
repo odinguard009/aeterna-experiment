@@ -50959,12 +50959,6 @@
   "T_REVEALED",
   "T_SUMMONED"
  ],
- "BS75-035": [
-  "A_AWAKEN",
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "S_UNAFFECTED"
- ],
  "BS75-036": [
   "A_BP_PLUS",
   "A_REFRESH",
@@ -51014,10 +51008,6 @@
   "M_BY_DOING",
   "M_OPTIONAL",
   "T_ADVENT"
- ],
- "BS75-041": [
-  "C_LEVEL",
-  "S_UNAFFECTED"
  ],
  "BS75-042": [
   "A_VOID",
