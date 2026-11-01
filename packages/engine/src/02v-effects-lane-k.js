@@ -227,3 +227,18 @@ FX_ACTIONS.BLOCK_EXHAUSTED_TURN = {
     if (a.to === 'pick') c.ctx.picked = T[0];      // v314: a following WIN_RIDER stamps the same Spirit; battle:true limits it to this battle
     for (const t of T) { if (a.battle) t.blockExB = G.battleNo; else t.blockExT = G.turnNo; log(`${CARDS[c.src.id].name}: ${poss(c.p)} ${CARDS[t.id].name} can block while exhausted this turn.`); }
   } };
+
+/* v316 NEXUS_CORES_ALL_TO_TRASH: "Move all cores from all Nexuses to their owner's Trash." Both sides; protected Nexuses (fxImmune) are skipped for the opponent only. */
+FX_ACTIONS.NEXUS_CORES_ALL_TO_TRASH = {
+  chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
+  txt: () => "move all cores from all Nexuses to their owner's Trash",
+  can: c => c.p.nexus.some(x => x.cores > 0) || c.opp.nexus.some(x => x.cores > 0),
+  run: async c => {
+    let k = 0;
+    for (const side of [c.p, c.opp]) for (const x of side.nexus) {
+      if (x.cores <= 0 || (side === c.opp && fxImmune(side, x))) continue;
+      const m = Math.min(x.cores, coreTakeCap(side, x, x.cores)); if (!m) continue;
+      coreEvN(side, x.uid, 'trash', m, false); x.cores -= m; side.trashCores.n += m; k += m;
+    }
+    c.ctx.did = k > 0; if (k) log(`${CARDS[c.src.id].name}: ${k} core${k === 1 ? '' : 's'} move from the Nexuses to their owners' Trash.`);
+  } };

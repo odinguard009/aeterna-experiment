@@ -310,3 +310,15 @@ test('K-956 BS33-083 destroys one opposing Cost 0/3/5 Spirit each and refunds on
     return [O.spirits.map(s => BS.CARDS[s.id].cost), P.reserve.n, c.ctx.destroyed.length]; })()`);
   assert.deepEqual(r[0], [4]); assert.equal(r[2], 2); assert.equal(r[1], 2, JSON.stringify(r));
 });
+
+test('K-957 BS03-122 Main sends all Nexus cores of both sides to their owners Trash; Flash gives +1000 BP', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const nx = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Nexus');
+    const a = BS.mkInst(nx), b = BS.mkInst(nx); a.cores = 3; b.cores = 2; P.nexus.length = 0; O.nexus.length = 0; P.nexus.push(a); O.nexus.push(b);
+    const t0 = [P.trashCores.n, O.trashCores.n];
+    const m = BS.CARDS['BS03-122'].magic; const c = { p: P, opp: O, src: BS.mkInst('BS03-122'), ctx: {} };
+    await BS.FX_ACTIONS.NEXUS_CORES_ALL_TO_TRASH.run(c, m.by.MAIN.actions[0]);
+    return [a.cores, b.cores, P.trashCores.n - t0[0], O.trashCores.n - t0[1], m.by.FLASH.effect, m.by.FLASH.value]; })()`);
+  assert.deepEqual(r, [0, 0, 3, 2, 'BP_PLUS', 1000]);
+});
