@@ -135,3 +135,18 @@ test('K-874 BS06-073 draws one extra card then discards one in the Draw Step and
     return out; })()`);
   assert.deepEqual(r, [0, 1, 0, 1000], JSON.stringify(r));
 });
+
+test('K-875 BS06-084 and BS01-113 send the own Trash cores to the Reserve at the opposing step start; BS06-084 LV2 bounces an opposing Spirit; BS01-113 LV2 returns a Void core when a Spirit dies', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const out = []; const n = BS.mkInst('BS06-084'); n.cores = 0; P.nexus = [n];
+    P.trashCores.n = 4; let rs = P.reserve.n; await BS.fireFx(P, 'OPP_START_STEP', null, {}); out.push(P.trashCores.n, P.reserve.n - rs);
+    const e = BS.mkInst('BS01-001'); e.cores = 1; O.spirits = [e]; const oh = O.hand.length;
+    await BS.fireFx(P, 'START_STEP', null, {}); out.push(O.spirits.length); n.cores = 3; await BS.fireFx(P, 'START_STEP', null, {}); out.push(O.spirits.length, O.hand.length - oh);
+    const m = BS.mkInst('BS01-113'); m.cores = 0; P.nexus = [m]; P.trashCores.n = 3; rs = P.reserve.n;
+    await BS.fireFx(P, 'OPP_START_ATTACK', null, {}); out.push(P.trashCores.n, P.reserve.n - rs);
+    const y = BS.mkInst('BS01-001'); P.void = 2; G.active = O.key; G.step = 5; rs = P.reserve.n;
+    await BS.fireFx(P, 'ALLY_DIED', null, { subject: y }); out.push(P.reserve.n - rs); m.cores = 4; await BS.fireFx(P, 'ALLY_DIED', null, { subject: y }); out.push(P.reserve.n - rs);
+    return out; })()`);
+  assert.deepEqual(r, [0, 4, 1, 0, 1, 0, 3, 0, 1], JSON.stringify(r));
+});

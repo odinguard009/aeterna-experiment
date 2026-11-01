@@ -116,10 +116,6 @@
  "BS01-112": [
   "C_LEVEL"
  ],
- "BS01-113": [
-  "A_VOID",
-  "C_LEVEL"
- ],
  "BS01-116": [
   "A_BP_PLUS"
  ],
@@ -1461,10 +1457,6 @@
   "A_BP_PLUS",
   "A_EXHAUST",
   "A_VOID",
-  "C_LEVEL"
- ],
- "BS06-084": [
-  "A_TRASH_TO_RESERVE",
   "C_LEVEL"
  ],
  "BS06-085": [

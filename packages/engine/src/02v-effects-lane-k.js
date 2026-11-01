@@ -144,6 +144,11 @@ Object.assign(FX_ACTIONS, {      // v283 "Gain n core(s) on target Spirit you co
     txt: () => 'send all cores from the opposing Reserve to their Trash',
     can: c => c.opp.reserve.n > 0,
     run: async (c, a) => { const m = c.opp.reserve.n; c.ctx.did = m > 0; if (!m) return; coreEvN(c.opp, 'reserve', 'trash', m, false); c.opp.reserve.n -= m; c.opp.trashCores.n += m; log(`${CARDS[c.src.id].name}: ${m} core${m === 1 ? '' : 's'} from ${poss(c.opp)} Reserve go to the Trash.`); io.view({ type: 'board' }); } },
+  /* v291 "Send all cores from your Trash to your Reserve." */
+  TRASH_TO_RESERVE: { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
+    txt: () => 'send all cores from your Trash to your Reserve',
+    can: c => c.p.trashCores.n > 0,
+    run: async (c, a) => { const m = c.p.trashCores.n; c.ctx.did = m > 0; if (!m) return; coreEvN(c.p, 'trash', 'reserve', m, false); c.p.trashCores.n -= m; c.p.reserve.n += m; log(`${CARDS[c.src.id].name}: ${m} core${m === 1 ? '' : 's'} from the Trash go to ${poss(c.p)} Reserve.`); io.view({ type: 'board' }); } },
   /* v290 "Put a core from the Void to this Nexus/Spirit." */
   VOID_TO_SELF: { chk: a => Object.keys(a).every(k => ['do', 'if', 'n'].includes(k)) && (a.n == null || (Number.isInteger(a.n) && a.n >= 1 && a.n <= 3)),
     txt: a => `put ${a.n || 1} core${(a.n || 1) === 1 ? '' : 's'} from the Void to this card`,
