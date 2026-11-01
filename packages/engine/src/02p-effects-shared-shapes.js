@@ -185,6 +185,19 @@ Object.assign(FX_ACTIONS, {
       c.src.cores -= give; t.cores += give; c.ctx.did = true;
       log(`${CARDS[c.src.id].name}: ${give} core${give === 1 ? '' : 's'} go to ${CARDS[t.id].name}.`);
     } },
+  /* v260 "Send up to N cores from your Reserve to a Spirit you control" (the Soul Core stays in the Reserve; the CPU gives all N) */
+  RESERVE_TO_SPIRIT: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && Object.keys(a).every(k => ['do', 'if', 'n'].includes(k)),
+    txt: a => `send up to ${a.n} core${a.n === 1 ? '' : 's'} from your Reserve to one of your Spirits`,
+    cands: c => c.p.spirits,
+    can: c => c.p.reserve.n > 0 && c.p.spirits.length > 0,
+    run: async (c, a) => {
+      const L = c.p.spirits; if (!L.length || c.p.reserve.n <= 0) { c.ctx.did = false; return; }
+      const t = await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the Spirit that receives up to ${a.n} core${a.n === 1 ? '' : 's'} from your Reserve (glowing).`);
+      if (!t) { c.ctx.did = false; return; }
+      const give = Math.min(a.n, c.p.reserve.n); c.p.reserve.n -= give; t.cores += give; c.ctx.did = true;
+      log(`${CARDS[c.src.id].name}: ${give} core${give === 1 ? '' : 's'} go from the Reserve to ${CARDS[t.id].name}.`);
+      io.view({ type: 'board' });
+    } },
   /* v215 "the opponent returns N cards from their Hand to the deckbottom" (the CPU puts its cheapest card down) */
   OPP_HAND_TO_BOTTOM: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 4 && Object.keys(a).every(k => ['do', 'if', 'n'].includes(k)),
     txt: a => `the opponent returns ${a.n} card${a.n === 1 ? '' : 's'} from their Hand to the deckbottom`,

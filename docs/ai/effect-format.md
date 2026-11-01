@@ -295,3 +295,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v257 (Lane K): CHOOSE_ONE `options` (two action lists, the player picks one: "Do A. Or, do B."). Cards: BS38-066, BS10-098.
 - v258 (Lane K): `if.reserveGe` (N or more cores in your own Reserve; "while there is any core in your Reserve"). Cards: BS01-052.
 - v259 (Lane K): MILL_OPP.perOppHand (one deck-top card per card in the opposing Hand instead of a fixed n); BS04-111.
+- v260 (Lane K): RESERVE_TO_SPIRIT (send up to n cores from the Reserve to one of your Spirits); BS01-115.
