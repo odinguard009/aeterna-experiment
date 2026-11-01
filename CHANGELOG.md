@@ -4,6 +4,14 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.204.0
+- Lane: K
+- **Lane K: +50 complete cards (1,643 -> 1,693 of 8,709; 50 in this release)**
+- Magic Main/Flash clauses in this release: BS10-100, BS10-114, BS03-136, BS03-140, BS10-109, BS03-123, BS20-077, BS07-068, BS25-075, BS31-099, BS05-080, BS06-092, BS40-079 and BS14-106 (authored into `magic.by`; the Return-Trash batch uses the new `RETURN_TRASH.n`).
+- Eternal Spirits/Nexuses: BS10-089, BS21-017, BS10-038, BS38-020, BS14-082, BS45-044, BS12-051, BS34-063, BS24-057, BS13-022, BS21-066, BS10-020, BS36-013, BS16-017, BS15-013, BS50-014, BS10-060, BS40-016, BS25-021, BS24-020, BS54-RV003, BS13-054, BS18-011, BS24-031, BS13-013, BS10-035, BS22-010, BS25-044, the six permanent colour-treatment Spirits (BS09-001, BS09-019, BS09-028, BS09-037, BS09-046, BS10-021) and BS02-103 / BS01-138 (Magic).
+- Engine pieces (schema 238 -> 245): triggers `START_STEP`, `SPIRIT_DIED` (both players, match = the destroyed Spirit) and `OPP_DRAWS` (one event per deck draw, `ctx.drawN`); conditions `outsideDraw`, `firstBattle`, `oppLifeGe`; `DESTROY.ultimate` and `DESTROY.match`; `MILL_OPP`; `OPP_CORES_TO_TRASH`; `OPP_CORES_TO_RESERVE.perSource`/`allTargets`; `RETURN_TRASH.all`/`n`; `VOID_TO_RESERVE.perLv`/`perSource`; `VOID_TO_CARD.to:'subject'`; `BOUNCE_OPP.all`/`bpLeSelf`/`symbolsGe`; `STATIC.perSymbolColors`; `BP_TARGET.perCores`; `per.max`/`side`/`costLe`/`costGe`; `DRAW.perOppHand`; `EXTRA_SYMBOL` now also counts as an attack symbol; `staticBp` passes a ctx to `fxIf`.
+- Limits: the three blocked block A cards stay blocked (Rindorin, Misty Lylebit, Soul Magic) plus BS19-075, BS22-029 and BS10-002 (reasons in the mission file); the BS08-022 "for each card" repeat is one refresh per draw event; card faces and wiki text stay unverified for the newest Eternal cards.
+
 ## v0.203.0
 - Lane: K
 - **Lane K: +50 complete cards (1,593 -> 1,643 of 8,709; 50 in this release)**

@@ -4,9 +4,9 @@ Owner order, 2026-10-31: work Lane K for all cards (Standard block A first, then
 
 - status: ON
 - target: all cards (Standard block A first, then Eternal Saga 17 down; roadmap item L)
-- last release: v0.203.0 (complete 1643)
-- next release: v0.204.0 (complete 1693)
-- cycle: 50/50 new complete cards since v0.203.0
+- last release: v0.204.0 (complete 1693)
+- next release: v0.205.0 (complete 1743)
+- cycle: 0/50 new complete cards since v0.204.0
 - release v0.203.0 verified 2026-11-01: +50 complete cards (1,593 -> 1,643 of 8,709); CI success (run 41252273110, 9m54s), Release workflow success (run 41252960688) and the GitHub Release v0.203.0 exists (https://github.com/odinguard009/aeterna-experiment/releases/tag/v0.203.0); Regression dispatched with 30 sims (tool said DUE: 11 core engine files changed since 9e2081a).
 - gate notes for the next cycles: the pre-push gate needed three data refreshes for this release (importer for I18/I30, compiler_wiring, `rules_kb --pin-tests` for K08, and the BS19-075 note marker for C52-04); the local full quick set passed twice, while the pre-push hook once flaked on `ultimate.test.mjs` under load (it passes alone and in the quick set) - the release push used `--no-verify` and CI passed. Treat a file-level UI/ultimate timeout under load as an environment flake when the same file passes alone and the full set passed locally.
 - next cycle v0.204.0 at complete 1,693 (+50). Candidates already mapped: BS22-029 (Charge keyword), BS10-002 (LV3 override), BS08-061/BS10-089/BS14-082 (their second clause needs the opponent-draw piece from this release), BS34-063, BS21-017 (Curse keyword draw), BS24-057 (any cost 8+ destroyed).
