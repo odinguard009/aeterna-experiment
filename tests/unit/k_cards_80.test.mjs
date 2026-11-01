@@ -1,4 +1,4 @@
-// Lane K tests, file 80 (rule 1b). Schemas v259-v261: MILL_OPP.perOppHand, RESERVE_TO_SPIRIT, VOID_TO_CARD per-count. Cards: BS04-111, BS01-078, BS01-115, BS03-030, BS01-X03.
+// Lane K tests, file 80 (rule 1b). Schemas v259-v261: MILL_OPP.perOppHand, RESERVE_TO_SPIRIT, VOID_TO_CARD per-count. Cards: BS02-068, BS02-069, BS04-111, BS01-078, BS01-115, BS03-030, BS01-X03.
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { sharedBoard, closeBrowser } from './lib/game.mjs';
@@ -40,4 +40,14 @@ test('K-811 VOID_TO_CARD perNexus / perOtherSpirit: one Void core per Nexus (BS0
     const e2 = BS.CARDS['BS01-X03'].effects.find(x => x.trigger === 'SUMMONED').actions[0]; const k1 = a.cores; await BS.FX_ACTIONS.VOID_TO_CARD.run({ p: P, opp: O, src: a, ctx: {} }, e2);
     return [BS.FX_ACTIONS.VOID_TO_CARD.chk(e), BS.FX_ACTIONS.VOID_TO_CARD.chk(e2), nx, a.cores - k1]; })()`);
   assert.deepEqual(r, [true, true, 2, 1], JSON.stringify(r));
+});
+
+test('K-812 BS02-068 deploys a White Nexus from the Hand free and skips a non-White one', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; P.nexus = [];
+    P.hand = [BS.mkInst('BS01-102')]; const e = BS.CARDS['BS02-068'].effects[0]; const act = e.actions[0]; const c = { p: P, opp: O, src: BS.mkInst('BS02-068'), ctx: {} };
+    await BS.FX_ACTIONS.SUMMON_HAND.run(c, act); const none = P.nexus.length;
+    P.hand = [BS.mkInst('BS01-110')]; await BS.FX_ACTIONS.SUMMON_HAND.run(c, act);
+    return [e.trigger, e.optional, none, P.nexus.length, P.nexus[0] && P.nexus[0].id, BS.FX_ACTIONS.SUMMON_HAND.chk(act)]; })()`);
+  assert.deepEqual(r, ['SUMMONED', true, 0, 1, 'BS01-110', true], JSON.stringify(r));
 });

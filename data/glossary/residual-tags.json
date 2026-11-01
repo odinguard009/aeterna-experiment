@@ -384,18 +384,6 @@
   "A_SYMBOL",
   "C_LEVEL"
  ],
- "BS02-068": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
- "BS02-069": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
  "BS02-070": [
   "C_LEVEL"
  ],
