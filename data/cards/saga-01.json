@@ -6041,12 +6041,20 @@
   "image": "Leak Drive.jpg",
   "block": "01",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Immediately end the current battle."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "END_BATTLE_NOW"
+    }
+   ]
+  }
  },
  {
   "id": "BS01-149",
@@ -29808,12 +29816,20 @@
   "image": "Archaic Smile.jpg",
   "block": "06",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "When the battle resolves, end the battle without comparing BP."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "END_BATTLE_NOW"
+    }
+   ]
+  }
  },
  {
   "id": "BS06-110",

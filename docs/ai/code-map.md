@@ -62,7 +62,7 @@ INVOKE_WHEN, INVOKE_COSTS, invokeMatchOK, invokeParse, invokeWhenOK, exhaustOwnC
 ## packages/engine/src/02n-effects-void-destinations.js (81 lines, ~2.2k tokens)
 
 
-## packages/engine/src/02o-effects-battle-end.js (85 lines, ~1.7k tokens)
+## packages/engine/src/02o-effects-battle-end.js (88 lines, ~1.8k tokens)
 endOfBattle
 
 ## packages/engine/src/02p-effects-shared-shapes.js (616 lines, ~14.4k tokens)
@@ -107,7 +107,7 @@ fieldList, isGW, freeCores, freeTotal, totalCores, reserveTotal, minCores, isSpi
 ## packages/engine/src/07-turn.js (83 lines, ~1.6k tokens) — TURN FLOW
 isMainStep, revertNexusSpirits, setStep, beginTurn, endStep, win, matchLoop, checkInvariants
 
-## packages/engine/src/08-battle.js (191 lines, ~4.5k tokens) — BATTLE
+## packages/engine/src/08-battle.js (193 lines, ~4.6k tokens) — BATTLE
 successor, flashTiming, battleEndAttack, attackStepOver, doBattle, doBattleInner, maybeBurst, burstFlash, flushBursts
 
 ## packages/engine/src/09-cpu.js (174 lines, ~3k tokens) — CPU

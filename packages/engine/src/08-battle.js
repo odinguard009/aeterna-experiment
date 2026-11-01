@@ -39,6 +39,7 @@ async function doBattleInner(attKey, att) {
   if (A.spirits.includes(att)) { await maybeBurst(D, 'OPP_ATTACK', { attacker: att }); await flushBursts(); if (G.over) { G.attacker = null; return; } }   // v0.71 Burst "After an opposing Spirit attacks": after the attack's (When Attacks) effects
   att = (await flashTiming(attKey, att, null))[0];
   if (G.over) return;
+  if (G.battleCut === G.battleNo) { log('The battle ends immediately.'); io.view({ type: 'board' }); return; }
   if (!A.spirits.includes(att)) { log('The attack ends: the attacking Spirit left the field.'); io.view({ type: 'board' }); return; }
   const blockers = noBlockActive(D) || att.noBlockTurn === G.turnNo ? [] : D.spirits.filter(s => canBlockState(D, s) && abTaxOK(D, s) && !blockedByMark(att, s) && blockTaxOK(D, att, s) && !blockedInferior(D, att, s) && !unblockableLow(A, att, s));      // v213
   let blk = null;
@@ -59,6 +60,7 @@ async function doBattleInner(attKey, att) {
     if (G.over) return;
     [att, blk] = await flashTiming(attKey, att, blk);
     if (G.over) return;
+    if (G.battleCut === G.battleNo) { log('The battle ends immediately.'); io.view({ type: 'board' }); return; }
     if (!A.spirits.includes(att) || !D.spirits.includes(blk)) { log('The battle ends: a fighting Spirit left the field.'); io.view({ type: 'board' }); return; }
     const ab = bpOf(att), bb = bpOf(blk); G.battleResolved = true;      // v0.78 Curse: armed only when the battle reaches the BP comparison
     const safe = s => s.noBpDestroy === G.battleNo || s.noBpTurn === G.turnNo || bpCompareLocked(s);      // v0.196 NO_BP_DESTROY: "can't be destroyed by BP comparison" (this battle)

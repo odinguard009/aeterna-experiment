@@ -153,3 +153,16 @@ test('K-901 BS10-026 when blocked the opponent exhausts one of their Spirits', a
     await BS.fireFx(P, 'ALLY_BLOCKED', a, { attacker: a, blocker: b }); return [b.exhausted, c.exhausted].filter(Boolean).length; })()`);
   assert.equal(r, 1, JSON.stringify(r));
 });
+
+test('K-902 BS01-148 / BS06-109 / BS13-082 end the current battle at once (BS13-082 also refreshes a Spirit)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const out = [];
+    for (const id of ['BS01-148', 'BS06-109', 'BS13-082']) {
+      const a = BS.mkInst('BS01-001'); a.cores = 1; P.spirits = [a]; const x = BS.mkInst('BS01-001'); x.cores = 1; x.exhausted = true; P.spirits.push(x); G.attacker = a; G.battleNo = 11; G.battleCut = null; P.reserve.n = 20;
+      const m = BS.mkInst(id); P.hand = [m]; await BS.castMagic(P, { inst: m, target: null, plan: null, ctx: 'flash' });
+      out.push(G.battleCut === 11, x.exhausted);
+    }
+    return out; })()`);
+  assert.deepEqual(r, [true, true, true, true, true, false], JSON.stringify(r));
+});

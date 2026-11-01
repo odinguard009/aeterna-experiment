@@ -20,6 +20,9 @@
     can: () => inBattle(),
     run: async (c, a) => { queue(c, { then: a.then }); if (c.ctx.did !== false) log(`${CARDS[c.src.id].name}: an effect waits for the end of this battle.`); }
   };
+  // v0.208 END_BATTLE_NOW: "Immediately end the current battle." / "end the battle without comparing BP": no comparison and no Life damage (08-battle checks G.battleCut after each Flash window)
+  FX_ACTIONS.END_BATTLE_NOW = { chk: () => true, txt: () => 'immediately end the current battle', can: () => !!(G && G.attacker),
+    run: async c => { G.battleCut = G.battleNo; log(`${CARDS[c.src.id].name}: the battle ends immediately.`); } };
   FX_ACTIONS.CURSE = { chk: () => true, txt: () => 'Curse: at the end of this battle, destroy the opposing Spirit that blocked', can: () => inBattle(),
     run: async c => queue(c, { curse: true }) };
   FX_ACTIONS.BRILLIANCE = { chk: () => true, txt: () => 'Brilliance: at the end of this battle, return every Magic card you used during this battle to your Hand', can: () => inBattle(),
