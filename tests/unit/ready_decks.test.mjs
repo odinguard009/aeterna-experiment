@@ -1,4 +1,4 @@
-﻿// v0.201.0 owner request: the ready-made list holds only official Battle Spirits recipes: the ten Standard starters and the
+// v0.201.0 owner request: the ready-made list holds only official Battle Spirits recipes: the ten Standard starters and the
 // official deck-feature ready decks of the Standard sets (battlespirits.com "Deck Feature", feature/structure/<set>/deck_0N.php).
 // The hand-made colour / Contract decks are internal fixtures now (hidden, not listed anywhere); their recipes stay for the
 // engine tests and CPU sims (v0.162.0 rule).
@@ -38,15 +38,15 @@ test('RD-2 the published recipes are 40 cards, except the two pages that publish
   assert.deepEqual(odd, [['rbs01-5', 41], ['rdb01-1', 37]], 'battlespirits.com publishes 41 cards for 26RBS01 #5 and 37 for 26RDB01 #1');
 });
 
-test('RD-3 every complete ready deck validates as Standard; the three with a card still missing say so', async () => {
+test('RD-3 every complete ready deck validates as Standard; all published cards are in the library after the 2026-11-01 playable pass', async () => {
   const r = await ev(() => BS.PREBUILT.filter(d => d.kind === 'ready').map(d => [d.id, d.missing, BS.validateDeck(d.cards, 'standard'), BS.prebuiltLabel(d)]));
   const missing = r.filter(x => x[1] > 0).map(x => [x[0], x[1]]);
-  assert.deepEqual(missing, [['rbs02-6', 3], ['rbs03-5', 2], ['rdb01-3', 2]], '26RBS02-092 x3, 26RBS03-095 x2, 26RSD08-013 x2 are not in the library yet');
+  assert.deepEqual(missing, [], 'the playable pass put every ready-deck card in the library');
   for (const [id, miss, v, label] of r) {
     if (miss > 0) assert.match(label, new RegExp(`\\(incomplete, ${miss} missing\\)`));
     else if (id !== 'rdb01-1') assert.ok(v.ok, `${id}: ${v.errors.join(' / ')}`);   // rdb01-1 is 37 cards as published
   }
-  assert.equal(r.filter(x => x[1] === 0).length, 23, '23 of the 26 published recipes are fully in the library');
+  assert.equal(r.filter(x => x[1] === 0).length, 26, 'all 26 published recipes are fully in the library');
   assert.deepEqual(r.filter(x => x[1] === 0 && !x[2].ok).map(x => x[0]), ['rdb01-1'], 'only the 37-card published recipe is short of 40');
 });
 

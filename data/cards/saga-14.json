@@ -2026,6 +2026,49 @@
   "rcode": "C"
  },
  {
+  "id": "BS64-045",
+  "name": "The GrandflowerFairy Gekkabijin",
+  "name_jp": "神華の妖精ゲッカビジン",
+  "type": "Spirit",
+  "color": "yellow",
+  "cost": 3,
+  "reduction": {
+   "yellow": 1,
+   "god": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   },
+   {
+    "cores": 2,
+    "bp": 4000
+   }
+  ],
+  "families": [
+   "Celeste",
+   "Fairy"
+  ],
+  "text": "{{Mirage|Cost 4 ()}}\nDuring Set (Your Attack Step)\nWhen your Cost 6 or more \"Fairy\" family Spirit attacks, during that battle, that Spirit can gain an extra Yellow symbol for each three Flower Magic cards on your Field.\n\n[LV1][LV2] (When Summoned)\n(Once per Turn: Same Name) You can immediately use the Main/Flash effect of a Flower Magic card from your Hand, without paying the cost.",
+  "image": "BS64-045.png",
+  "block": "64",
+  "saga": 14,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Mirage|Cost 4 ()}}",
+   "During Set (Your Attack Step)",
+   "When your Cost 6 or more \"Fairy\" family Spirit attacks, during that battle, that Spirit can gain an extra Yellow symbol for each three Flower Magic cards on your Field.",
+   "[LV1][LV2] (When Summoned)",
+   "(Once per Turn: Same Name) You can immediately use the Main/Flash effect of a Flower Magic card from your Hand, without paying the cost."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS64-046",
   "name": "The MathematicWitch Mari-Mersenne",
   "name_jp": "数魔女マリー・メルセンヌ",
@@ -2656,6 +2699,53 @@
   "rcode": "R"
  },
  {
+  "id": "BS64-059",
+  "name": "The DemonLordButler Barandoll",
+  "name_jp": "魔卿執事バランドール",
+  "type": "Ultimate",
+  "color": "purple",
+  "cost": 5,
+  "reduction": {
+   "purple": 1,
+   "ultimate": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 8000
+   },
+   {
+    "cores": 3,
+    "bp": 12000
+   }
+  ],
+  "families": [
+   "Hell Contract",
+   "Evil God",
+   "Infernal Lord"
+  ],
+  "text": "Flash - {{Contract Advent|Hell Contract & C1 or more|(Either Attack Step)}}\nBy sending your  to the Trash, stack this from the Hand onto your target Ultimate.\n\n{{SuAdcon| You control one or more “The PartnerDemonLord Javad”, including being in Soul State/pre-advent condition}}\n\n[LV3][LV4] (When Advents/Attacks)\nSend two cores from an opposing Spirit to the Reserve. Also, (Once per Turn: Same Name) besides , you can send a core from your Trash to your Life.\n\nDuring OC [LV3][LV4] Flash - (Either Attack Step)\n(Once per Turn: Same Name) You can summon a Cost 6 or less \"Evil God\" family Ultimate card from your Hand, without paying the cost.",
+  "image": "BS64-059.png",
+  "block": "64",
+  "saga": 14,
+  "mechanics": [
+   "Contract Advent"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{Contract Advent|Hell Contract & C1 or more|(Either Attack Step)}}",
+   "By sending your  to the Trash, stack this from the Hand onto your target Ultimate.",
+   "{{SuAdcon| You control one or more “The PartnerDemonLord Javad”, including being in Soul State/pre-advent condition}}",
+   "[LV3][LV4] (When Advents/Attacks)",
+   "Send two cores from an opposing Spirit to the Reserve.",
+   "Also, (Once per Turn: Same Name) besides , you can send a core from your Trash to your Life.",
+   "During OC [LV3][LV4] Flash - (Either Attack Step)",
+   "(Once per Turn: Same Name) You can summon a Cost 6 or less \"Evil God\" family Ultimate card from your Hand, without paying the cost."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS64-060",
   "name": "The HellsoilBaron Judas",
   "name_jp": "獄土男爵ジュダス",
@@ -3203,6 +3293,43 @@
   "rcode": "C"
  },
  {
+  "id": "BS64-072",
+  "name": "Bounty Hunt",
+  "name_jp": "バウンティーハント",
+  "type": "Brave",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 4000
+   }
+  ],
+  "families": [
+   "Exalted Sword",
+   "Silver Zero"
+  ],
+  "text": "When this card is discarded via your Fast Draw, you can add it to the Hand.\n\nDuring Brave (When Attacks/Blocks)\nYou can put a card from your decktop facedown under your \"The PartnerBurai Vrick\", including those that are in Soul State/pre-advent condition. Or, by showing to the opponent a facedown “Judgment”/“Silver Zero” family card under any of your “The PartnerBurai Vrick”, including those that are in Soul State/pre-advent condition, add the card to the Hand.",
+  "image": "BS64-072.png",
+  "block": "64",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "When this card is discarded via your Fast Draw, you can add it to the Hand.",
+   "During Brave (When Attacks/Blocks)",
+   "You can put a card from your decktop facedown under your \"The PartnerBurai Vrick\", including those that are in Soul State/pre-advent condition.",
+   "Or, by showing to the opponent a facedown “Judgment”/“Silver Zero” family card under any of your “The PartnerBurai Vrick”, including those that are in Soul State/pre-advent condition, add the card to the Hand."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 4000
+  }
+ },
+ {
   "id": "BS64-073",
   "name": "The Spellbook of Numerology",
   "name_jp": "命数魔導書",
@@ -3246,6 +3373,43 @@
    "10"
   ],
   "rcode": "C"
+ },
+ {
+  "id": "BS64-074",
+  "name": "Lio Knuckle",
+  "name_jp": "ライオナックル",
+  "type": "Brave",
+  "color": "blue",
+  "cost": 3,
+  "reduction": {
+   "blue": 2
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   }
+  ],
+  "families": [
+   "Exalted Sword",
+   "Azure Wave"
+  ],
+  "text": "(Can't Stack) When your \"Raon\" Contract Advents, you can return this card from your Trash to the Hand.\n\nDuring Brave (Your Attack Step)\nThis Spirit is treated as being on its highest level. Also, while you have seven counters or more, all your \"Judgment\"/\"Azure Wave\" family Spirits are treated as being on their highest levels.",
+  "image": "BS64-074.png",
+  "block": "64",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "(Can't Stack) When your \"Raon\" Contract Advents, you can return this card from your Trash to the Hand.",
+   "During Brave (Your Attack Step)",
+   "This Spirit is treated as being on its highest level.",
+   "Also, while you have seven counters or more, all your \"Judgment\"/\"Azure Wave\" family Spirits are treated as being on their highest levels."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 5000
+  }
  },
  {
   "id": "BS64-075",
@@ -3615,6 +3779,226 @@
   "rcode": "C"
  },
  {
+  "id": "BS64-084",
+  "name": "Weapons Draw",
+  "name_jp": "ウェポンズドロー",
+  "type": "Magic",
+  "color": "red",
+  "cost": 4,
+  "reduction": {
+   "red": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Scarlet Flame"
+  ],
+  "text": "Main\nDraw two cards. Then, including being in Soul State/pre-advent condition, if you control any \"The Eagle Partner, Gut\", reveal three cards from your decktop, and add any number of \"Scarlet Flame\" family Brave cards among them to the Hand. Return any remaining cards to only the decktop or deckbottom.\n\nFlash\nDuring this turn, give one of your Spirits +3000 BP.",
+  "image": "BS64-084.png",
+  "block": "64",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "Main",
+   "Draw two cards.",
+   "Then, including being in Soul State/pre-advent condition, if you control any \"The Eagle Partner, Gut\", reveal three cards from your decktop, and add any number of \"Scarlet Flame\" family Brave cards among them to the Hand.",
+   "Return any remaining cards to only the decktop or deckbottom.",
+   "Flash",
+   "During this turn, give one of your Spirits +3000 BP."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS64-085",
+  "name": "Return of the Evil Gods",
+  "name_jp": "邪神再臨",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 8,
+  "reduction": {
+   "ultimate": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Evil God"
+  ],
+  "text": "While you have five counters or more, this card in Hand is Cost 4.\n\nFlash\nSummon/Advent an \"Evil God\" family Ultimate card from your Trash. When summoning via this effect, if it's your Attack Step, summon it without paying the cost.",
+  "image": "BS64-085.png",
+  "block": "64",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "While you have five counters or more, this card in Hand is Cost 4.",
+   "Flash",
+   "Summon/Advent an \"Evil God\" family Ultimate card from your Trash.",
+   "When summoning via this effect, if it's your Attack Step, summon it without paying the cost."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS64-086",
+  "name": "Spring Reverse",
+  "name_jp": "スプリングリバース",
+  "type": "Magic",
+  "color": "green",
+  "cost": 4,
+  "reduction": {
+   "green": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Jade Thunder"
+  ],
+  "text": "{{mirage|Cost 3 ()}}\nDuring Set\nBoth players' Nexuses' “can't Advent” effects can't activate. Also, when any player would Contract Advent onto a Contract Spirit, including those in Soul State/pre-advent condition, the (When Advents) effect of that Spirit is unaffected by “negate that effect” effects.\n\nMain\nDiscard your entire Hand. When this effect discards any “Jade Thunder” family cards, draw a card for each Spirit/Ultimate/Nexus the opponent controls.",
+  "image": "BS64-086.png",
+  "block": "64",
+  "saga": 14,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{mirage|Cost 3 ()}}",
+   "During Set",
+   "Both players' Nexuses' “can't Advent” effects can't activate.",
+   "Also, when any player would Contract Advent onto a Contract Spirit, including those in Soul State/pre-advent condition, the (When Advents) effect of that Spirit is unaffected by “negate that effect” effects.",
+   "Main",
+   "Discard your entire Hand.",
+   "When this effect discards any “Jade Thunder” family cards, draw a card for each Spirit/Ultimate/Nexus the opponent controls."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS64-087",
+  "name": "Bravery Barrier",
+  "name_jp": "ブレイヴリーバリア",
+  "type": "Magic",
+  "color": "white",
+  "cost": 3,
+  "reduction": {
+   "white": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Silver Zero"
+  ],
+  "text": "{{Excite|5}} (Can't Stack: {{Excite|5}} ) When the opposing Life is reduced by your \"Zero Contract\" family Spirit, if you have five counters or more, you can return this card from your Trash to the Hand.\n\nFlash\nIncluding being in pre-advent conditions, for each Contract Spirit you control, put a card from your decktop facedown onto the Removed Zone. While they are put onto the Removed Zone via this effect, they are treated as “Barrier When your Life would be reduced, by adding this card to the Hand, you reduce one less Life.” (You can only put up to three Barrier. Besides Barrier, those cards are unaffected by any other effects, and you can't use them.)",
+  "image": "BS64-087.png",
+  "block": "64",
+  "saga": 14,
+  "mechanics": [
+   "Excite"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Excite|5}} (Can't Stack: {{Excite|5}} ) When the opposing Life is reduced by your \"Zero Contract\" family Spirit, if you have five counters or more, you can return this card from your Trash to the Hand.",
+   "Flash",
+   "Including being in pre-advent conditions, for each Contract Spirit you control, put a card from your decktop facedown onto the Removed Zone.",
+   "While they are put onto the Removed Zone via this effect, they are treated as “Barrier When your Life would be reduced, by adding this card to the Hand, you reduce one less Life.” (You can only put up to three Barrier.",
+   "Besides Barrier, those cards are unaffected by any other effects, and you can't use them.)"
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS64-088",
+  "name": "Just as Calculated",
+  "name_jp": "ジャスト・アズ・カリキュレイテッド",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 3,
+  "reduction": {
+   "yellow": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Golden Cloud"
+  ],
+  "text": "Main\nIncluding being in Soul State/pre-advent condition, if you control any \"The PartnerCat Fermat\", your counter +1. Then, either draw a card, or summon a Cost 1~5 \"Golden Cloud\" family Spirit card from your Hand, without paying the cost.\n\n Flash\nDuring this turn, give an opposing Spirit/Ultimate -3000 BP, and return it to the Hand when its BP reaches 0.",
+  "image": "BS64-088.png",
+  "block": "64",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "Main",
+   "Including being in Soul State/pre-advent condition, if you control any \"The PartnerCat Fermat\", your counter +1.",
+   "Then, either draw a card, or summon a Cost 1~5 \"Golden Cloud\" family Spirit card from your Hand, without paying the cost.",
+   "Flash",
+   "During this turn, give an opposing Spirit/Ultimate -3000 BP, and return it to the Hand when its BP reaches 0."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS64-089",
+  "name": "Coleus Field",
+  "name_jp": "コリウスフィール",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 5,
+  "reduction": {
+   "yellow": 3,
+   "god": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Fairy"
+  ],
+  "text": "Type: Flower (While on the Field, the following effect remains active)\n█ When you're using a Flower Magic card, fulfill one of its reduction symbols.\n\nFlash\nDraw a card. Then, during this turn, give every opposing Spirit/Ultimate -7000 BP. Then, return every opposing 0 BP Spirit/Ultimate to the deckbottom. Then, put this card onto your Field.",
+  "image": "BS64-089.png",
+  "block": "64",
+  "saga": 14,
+  "mechanics": [
+   "Type: Flower"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Type: Flower (While on the Field, the following effect remains active)",
+   "█ When you're using a Flower Magic card, fulfill one of its reduction symbols.",
+   "Flash",
+   "Draw a card.",
+   "Then, during this turn, give every opposing Spirit/Ultimate -7000 BP.",
+   "Then, return every opposing 0 BP Spirit/Ultimate to the deckbottom.",
+   "Then, put this card onto your Field."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS64-090",
+  "name": "Hydric Submersion",
+  "name_jp": "ハイドリックサブマージョン",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 4,
+  "reduction": {
+   "blue": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Azure Wave"
+  ],
+  "text": "{{Burst|After the opposing Hand increases via an opposing effect}}\nFor each opposing card increased when this Burst activates, the opponent discards a card from their Hand. Then, by paying the cost, activate this card's Flash effect.\n\nFlash\nSummon a Cost 5 or less Spirit card with AFO from your Hand, without paying the cost.",
+  "image": "BS64-090.png",
+  "block": "64",
+  "saga": 14,
+  "mechanics": [
+   "Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Burst|After the opposing Hand increases via an opposing effect}}",
+   "For each opposing card increased when this Burst activates, the opponent discards a card from their Hand.",
+   "Then, by paying the cost, activate this card's Flash effect.",
+   "Flash",
+   "Summon a Cost 5 or less Spirit card with AFO from your Hand, without paying the cost."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS64-CX01",
   "name": "The Eagle Partner, Gut",
   "name_jp": "鷲相棒ガット",
@@ -3970,6 +4354,56 @@
    "10"
   ],
   "rcode": "X"
+ },
+ {
+  "id": "BS64-X06",
+  "name": "The Ruler of FourDemonLords God-Javad",
+  "name_jp": "四魔卿を統べる者ゴッド・ジャバド",
+  "type": "Ultimate",
+  "color": "red",
+  "cost": 9,
+  "reduction": {
+   "red": 1,
+   "purple": 1,
+   "green": 1,
+   "white": 1,
+   "yellow": 1,
+   "blue": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 16000
+   },
+   {
+    "cores": 3,
+    "bp": 23000
+   }
+  ],
+  "families": [
+   "Hell Contract",
+   "Evil God"
+  ],
+  "text": "Flash - {{Final Contract Advent|Hell Contract & C10 or more|(Your Turn)}}\nBy banishing the  from your Field/Reserve, stack this from the Hand onto your target Ultimate.\n\n{{SuAdcon| You control one or more “The PartnerDemonLord Javad”, including being in Soul State/pre-advent condition}}\n\nDuring Advent Quadruple Ultimate Trigger\nFor each Ultimate Trigger hit, send two cores from the opposing Field to the Trash. Triple Hit When it hits thrice or more, look at the entire opposing Hand, and discard three Spirit cards among them. Quadruple Hit When it hits four times, during this turn, this Ultimate's symbol is fixed as four Ultimate symbols.\nqutb",
+  "image": "BS64-x06.png",
+  "block": "64",
+  "saga": 14,
+  "mechanics": [
+   "Final Contract Advent"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{Final Contract Advent|Hell Contract & C10 or more|(Your Turn)}}",
+   "By banishing the  from your Field/Reserve, stack this from the Hand onto your target Ultimate.",
+   "{{SuAdcon| You control one or more “The PartnerDemonLord Javad”, including being in Soul State/pre-advent condition}}",
+   "During Advent Quadruple Ultimate Trigger",
+   "For each Ultimate Trigger hit, send two cores from the opposing Field to the Trash.",
+   "Triple Hit When it hits thrice or more, look at the entire opposing Hand, and discard three Spirit cards among them.",
+   "Quadruple Hit When it hits four times, during this turn, this Ultimate's symbol is fixed as four Ultimate symbols.",
+   "qutb"
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS64-X07",
@@ -6485,6 +6919,591 @@
   "rcode": "C"
  },
  {
+  "id": "BS65-048",
+  "name": "The ExtremeHarvestCow Yakushin",
+  "name_jp": "極豊牛ヤクシン",
+  "type": "Ultimate",
+  "color": "green",
+  "cost": 3,
+  "reduction": {
+   "ultimate": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 3,
+    "bp": 8000
+   },
+   {
+    "cores": 5,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Holies",
+   "Imp"
+  ],
+  "text": "{{Sumcon|You control no Spirits & have 0 Spirit cards in your Trash}}\n\n[LV3][LV4][LV5] (When Summoned)\nPut a core from the Void each to this Ultimate and an \"Extreme Contract\" family Ultimate you control.\n\n[LV4][LV5] (Your Attack Step)\nWhile your \"Holies\"/\"Incarnate\" family Ultimate is attacking, the opponent can't activate Burst effects.",
+  "image": "BS65-048.png",
+  "block": "65",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "{{Sumcon|You control no Spirits & have 0 Spirit cards in your Trash}}",
+   "[LV3][LV4][LV5] (When Summoned)",
+   "Put a core from the Void each to this Ultimate and an \"Extreme Contract\" family Ultimate you control.",
+   "[LV4][LV5] (Your Attack Step)",
+   "While your \"Holies\"/\"Incarnate\" family Ultimate is attacking, the opponent can't activate Burst effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS65-049",
+  "name": "The ExtremeShelledBug Beetbringer",
+  "name_jp": "極殻蟲ビートブリンガ",
+  "type": "Ultimate",
+  "color": "green",
+  "cost": 5,
+  "reduction": {
+   "ultimate": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 9000
+   },
+   {
+    "cores": 3,
+    "bp": 13000
+   }
+  ],
+  "families": [
+   "Holies",
+   "Blade Insect"
+  ],
+  "text": "{{Sumcon|You control one or more “The Extreme Partner, Zetter”, including being in Soul State/pre-advent condition}}\n\n[LV3][LV4] (When Summoned)\nYour counter +1, and put two cores from the Void to any of your Ultimates.\n\nUltimate Trigger [LV4] (Start of Your Attack Step)\n(Can't Stack) When Ultimate Trigger hits, put two cores from the Void to any of your \"Holies\" family Ultimates. Also, during this turn, while your \"Holies\" family Ultimate is attacking, the opponent can't end the Attack Step via effects.",
+  "image": "BS65-049.png",
+  "block": "65",
+  "saga": 14,
+  "mechanics": [
+   "Ultimate Trigger"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Sumcon|You control one or more “The Extreme Partner, Zetter”, including being in Soul State/pre-advent condition}}",
+   "[LV3][LV4] (When Summoned)",
+   "Your counter +1, and put two cores from the Void to any of your Ultimates.",
+   "Ultimate Trigger [LV4] (Start of Your Attack Step)",
+   "(Can't Stack) When Ultimate Trigger hits, put two cores from the Void to any of your \"Holies\" family Ultimates.",
+   "Also, during this turn, while your \"Holies\" family Ultimate is attacking, the opponent can't end the Attack Step via effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS65-050",
+  "name": "The ExtremeBladeWings Montanellus",
+  "name_jp": "極刃翼モンタネルス",
+  "type": "Ultimate",
+  "color": "green",
+  "cost": 6,
+  "reduction": {
+   "green": 1,
+   "ultimate": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 10000
+   },
+   {
+    "cores": 3,
+    "bp": 14000
+   }
+  ],
+  "families": [
+   "Extreme Contract",
+   "Holies",
+   "Shellman"
+  ],
+  "text": "Flash - {{Contract Advent|Extreme Contract & C3 or more|(Either Attack Step)}}\nBy sending your  to the Trash, stack this from the Hand onto your target Ultimate.\n\n{{SuAdcon|You control one or more “The Extreme Partner, Zetter”, including being in Soul State/pre-advent condition}}\n\nUltimate Trigger [LV3][LV4] (When Advents/Attacks)\nWhen Ultimate Trigger hits, your counter +1. Then, heavy exhaust two opposing Spirits.\nutb\n\nDuring OC [LV3][LV4] (When Attacks/Blocks)\nYou can return an opposing exhausted Spirit to the deckbottom.",
+  "image": "BS65-050.png",
+  "block": "65",
+  "saga": 14,
+  "mechanics": [
+   "Contract Advent"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{Contract Advent|Extreme Contract & C3 or more|(Either Attack Step)}}",
+   "By sending your  to the Trash, stack this from the Hand onto your target Ultimate.",
+   "{{SuAdcon|You control one or more “The Extreme Partner, Zetter”, including being in Soul State/pre-advent condition}}",
+   "Ultimate Trigger [LV3][LV4] (When Advents/Attacks)",
+   "When Ultimate Trigger hits, your counter +1.",
+   "Then, heavy exhaust two opposing Spirits.",
+   "utb",
+   "During OC [LV3][LV4] (When Attacks/Blocks)",
+   "You can return an opposing exhausted Spirit to the deckbottom."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS65-051",
+  "name": "The HeavenBladeFalcon Eperlato",
+  "name_jp": "天刃隼エペルラート",
+  "type": "Ultimate",
+  "color": "white",
+  "cost": 3,
+  "reduction": {
+   "ultimate": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 2,
+    "bp": 7000
+   }
+  ],
+  "families": [
+   "Holies",
+   "Machine Beast"
+  ],
+  "text": "{{sumcon|You control no Spirits & have 0 Spirit cards in your Trash}}\n\n[LV3][LV4] (When Summoned)\nPut a core from the Void to any of your White Ultimates. Then, return an opposing Nexus to the Hand.\n\n[LV4] (When Blocks)\nThis Ultimate gains +5000 BP.",
+  "image": "BS65-051.png",
+  "block": "65",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "{{sumcon|You control no Spirits & have 0 Spirit cards in your Trash}}",
+   "[LV3][LV4] (When Summoned)",
+   "Put a core from the Void to any of your White Ultimates.",
+   "Then, return an opposing Nexus to the Hand.",
+   "[LV4] (When Blocks)",
+   "This Ultimate gains +5000 BP."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS65-052",
+  "name": "The HeavenGuideRide Vertige",
+  "name_jp": "天導騎ヴェルテージュ",
+  "type": "Ultimate",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 1,
+   "ultimate": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 2,
+    "bp": 7000
+   }
+  ],
+  "families": [
+   "Holies",
+   "Armed Machine"
+  ],
+  "text": "{{sumcon|You control no Spirits & have 0 Spirit cards in your Trash}}\n\n[LV3][LV4]\nYour Cost 5 or less Ultimates can block while exhausted.\n\n[LV4]\nGive all your \"Holies\"/\"Incarnate\" family Ultimates: \"{{ha|Red/Purple/White}} This Ultimate is unaffected by opposing Red/Purple/White Spirit/Brave/Nexus/Magic effects.\"",
+  "image": "BS65-052.png",
+  "block": "65",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "{{sumcon|You control no Spirits & have 0 Spirit cards in your Trash}}",
+   "[LV3][LV4]",
+   "Your Cost 5 or less Ultimates can block while exhausted.",
+   "[LV4]",
+   "Give all your \"Holies\"/\"Incarnate\" family Ultimates: \"{{ha|Red/Purple/White}} This Ultimate is unaffected by opposing Red/Purple/White Spirit/Brave/Nexus/Magic effects.\""
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS65-053",
+  "name": "The HeavenDeityDragon Avan-Shivre",
+  "name_jp": "天神竜アヴァン・シヴル",
+  "type": "Ultimate",
+  "color": "white",
+  "cost": 6,
+  "reduction": {
+   "white": 1,
+   "ultimate": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 9000
+   },
+   {
+    "cores": 3,
+    "bp": 13000
+   }
+  ],
+  "families": [
+   "Extreme Contract",
+   "Holies",
+   "Armored Dragon"
+  ],
+  "text": "Flash - {{Contract Advent|Extreme Contract & C3 or more|(Either Attack Step)}}\nBy sending your  to the Trash, stack this from the Hand onto your target Ultimate.\n\n{{SuAdcon|You control one or more “The Extreme Partner, Zetter”, including being in Soul State/pre-advent condition}}\n\n[LV3][LV4] (When Summoned/Advents)\nYour counter +1. Then, you can return an opposing Spirit/Ultimate to the deckbottom.\n\nDuring OC Ultimate Trigger\nWhen Ultimate Trigger hits, immediately end the Attack Step.\nutb",
+  "image": "BS65-053.png",
+  "block": "65",
+  "saga": 14,
+  "mechanics": [
+   "Contract Advent"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{Contract Advent|Extreme Contract & C3 or more|(Either Attack Step)}}",
+   "By sending your  to the Trash, stack this from the Hand onto your target Ultimate.",
+   "{{SuAdcon|You control one or more “The Extreme Partner, Zetter”, including being in Soul State/pre-advent condition}}",
+   "[LV3][LV4] (When Summoned/Advents)",
+   "Your counter +1.",
+   "Then, you can return an opposing Spirit/Ultimate to the deckbottom.",
+   "During OC Ultimate Trigger",
+   "When Ultimate Trigger hits, immediately end the Attack Step.",
+   "utb"
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS65-054",
+  "name": "The HeavenWolfDuke Galykos",
+  "name_jp": "天狼公ガリュコス",
+  "type": "Ultimate",
+  "color": "white",
+  "cost": 7,
+  "reduction": {
+   "white": 2,
+   "ultimate": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 12000
+   },
+   {
+    "cores": 2,
+    "bp": 18000
+   }
+  ],
+  "families": [
+   "Extreme Contract",
+   "Holies",
+   "Android"
+  ],
+  "text": "Flash - {{Contract Advent|Extreme Contract & C5 or more|(Your Turn)}}\nBy sending your  to the Trash, stack this from the Hand onto your target Ultimate.\n\n{{SuAdcon|You control one or more “The Extreme Partner, Zetter”, including being in Soul State/pre-advent condition}}\n\nDuring Advent Double Ultimate Trigger\nFor each Ultimate Trigger hits, during this turn, the symbol of an Ultimate you control is fixed as two Ultimate symbols. Double Hit When it hits twice, during this turn, all your Ultimates can't be blocked.\nwutb",
+  "image": "65-054.png",
+  "block": "65",
+  "saga": 14,
+  "mechanics": [
+   "Contract Advent"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{Contract Advent|Extreme Contract & C5 or more|(Your Turn)}}",
+   "By sending your  to the Trash, stack this from the Hand onto your target Ultimate.",
+   "{{SuAdcon|You control one or more “The Extreme Partner, Zetter”, including being in Soul State/pre-advent condition}}",
+   "During Advent Double Ultimate Trigger",
+   "For each Ultimate Trigger hits, during this turn, the symbol of an Ultimate you control is fixed as two Ultimate symbols.",
+   "Double Hit When it hits twice, during this turn, all your Ultimates can't be blocked.",
+   "wutb"
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS65-055",
+  "name": "The HolyCub Leonnec",
+  "name_jp": "聖小獣レオネック",
+  "type": "Ultimate",
+  "color": "yellow",
+  "cost": 3,
+  "reduction": {
+   "ultimate": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 2,
+    "bp": 6000
+   },
+   {
+    "cores": 3,
+    "bp": 9000
+   }
+  ],
+  "families": [
+   "Holies",
+   "Hunter Beast"
+  ],
+  "text": "{{sumcon|You control no Spirits & have 0 Spirit cards in your Trash}}\n\n[LV3][LV4][LV5] (When Summoned)\nYour counter +1. Then, draw a card from the deckbottom.\n\n[LV5] (When Attacks)\nReturn a \"Holies\" family Magic card from your Trash to the Hand.",
+  "image": "65-055.png",
+  "block": "65",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "{{sumcon|You control no Spirits & have 0 Spirit cards in your Trash}}",
+   "[LV3][LV4][LV5] (When Summoned)",
+   "Your counter +1.",
+   "Then, draw a card from the deckbottom.",
+   "[LV5] (When Attacks)",
+   "Return a \"Holies\" family Magic card from your Trash to the Hand."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS65-056",
+  "name": "The HolyAngelia Sheltiel",
+  "name_jp": "聖天使シャルティエル",
+  "type": "Ultimate",
+  "color": "yellow",
+  "cost": 4,
+  "reduction": {
+   "yellow": 1,
+   "ultimate": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 6000
+   },
+   {
+    "cores": 3,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Extreme Contract",
+   "Holies",
+   "Divine Spirit"
+  ],
+  "text": "Flash - {{Contract Advent|Extreme Contract|(Your Turn)}}\nBy sending your  to the Trash, stack this from the Hand onto your target Ultimate.\n\n{{SuAdcon|You control no Spirits & have 0 Spirit cards in your Trash}}\n\n[LV3][LV4] (When Advents/Attacks)\nDraw a card from the deckbottom.\n\nDuring OC & During Advent Ultimate Trigger\nWhen Ultimate Trigger hits, put a core from the Void to your Life.\nutb",
+  "image": "65-056.png",
+  "block": "65",
+  "saga": 14,
+  "mechanics": [
+   "Contract Advent"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{Contract Advent|Extreme Contract|(Your Turn)}}",
+   "By sending your  to the Trash, stack this from the Hand onto your target Ultimate.",
+   "{{SuAdcon|You control no Spirits & have 0 Spirit cards in your Trash}}",
+   "[LV3][LV4] (When Advents/Attacks)",
+   "Draw a card from the deckbottom.",
+   "During OC & During Advent Ultimate Trigger",
+   "When Ultimate Trigger hits, put a core from the Void to your Life.",
+   "utb"
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS65-057",
+  "name": "The HolyDragonDuke Ephemera-Tirnog",
+  "name_jp": "聖龍公エファメラ・ティルノーグ",
+  "type": "Ultimate",
+  "color": "yellow",
+  "cost": 6,
+  "reduction": {
+   "yellow": 1,
+   "ultimate": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 8000
+   },
+   {
+    "cores": 2,
+    "bp": 10000
+   },
+   {
+    "cores": 3,
+    "bp": 13000
+   }
+  ],
+  "families": [
+   "Holies",
+   "Imaginary Beast"
+  ],
+  "text": "{{sumcon|You control one or more “The Extreme Partner, Zetter”, including being in Soul State/pre-advent condition}}\n\n[LV3][LV4][LV5] (When Summoned)\nYou can draw two cards from the deckbottom.\n\n[LV3][LV4][LV5] (Your Main Step)\n(Once per turn: Same Name) By exhausting this Ultimate, carry out the following Double Ultimate Trigger.\nDouble Ultimate Trigger For each Ultimate Trigger hits, during this turn, the effects of an opposing Spirit/Nexus can't activate. Double Hit Also, when it hits twice, draw two cards.\nwutb",
+  "image": "65-057.png",
+  "block": "65",
+  "saga": 14,
+  "mechanics": [
+   "Double Ultimate Trigger"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{sumcon|You control one or more “The Extreme Partner, Zetter”, including being in Soul State/pre-advent condition}}",
+   "[LV3][LV4][LV5] (When Summoned)",
+   "You can draw two cards from the deckbottom.",
+   "[LV3][LV4][LV5] (Your Main Step)",
+   "(Once per turn: Same Name) By exhausting this Ultimate, carry out the following Double Ultimate Trigger.",
+   "Double Ultimate Trigger For each Ultimate Trigger hits, during this turn, the effects of an opposing Spirit/Nexus can't activate.",
+   "Double Hit Also, when it hits twice, draw two cards.",
+   "wutb"
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS65-058",
+  "name": "The PrimeSapper Artifact-Golem",
+  "name_jp": "至工兵アーティファクト・ゴレム",
+  "type": "Ultimate",
+  "color": "blue",
+  "cost": 3,
+  "reduction": {
+   "blue": 1,
+   "ultimate": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 3,
+    "bp": 8000
+   }
+  ],
+  "families": [
+   "Holies",
+   "Artificial Soldier"
+  ],
+  "text": "{{sumcon|You control no Spirits & have 0 Spirit cards in your Trash}}\n\n[LV3][LV4] (When Summoned)\nYour counter +1. Then, draw two cards, and discard two cards from your Hand. If you control any \"The ExtremePartner, Zetter\", including those that are in pre-advent condition, this effect discards -1 card.\n\n[LV4] (Your Attack Step)\nWhen the opponent would use cards from their Hand/Removed Zone, they can't use it unless they pay one extra cost.",
+  "image": "65-058.png",
+  "block": "65",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "{{sumcon|You control no Spirits & have 0 Spirit cards in your Trash}}",
+   "[LV3][LV4] (When Summoned)",
+   "Your counter +1.",
+   "Then, draw two cards, and discard two cards from your Hand.",
+   "If you control any \"The ExtremePartner, Zetter\", including those that are in pre-advent condition, this effect discards -1 card.",
+   "[LV4] (Your Attack Step)",
+   "When the opponent would use cards from their Hand/Removed Zone, they can't use it unless they pay one extra cost."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS65-059",
+  "name": "The PrimeSeaDragon Supreme-Hydra",
+  "name_jp": "至海竜スプリーム・ハイドラ",
+  "type": "Ultimate",
+  "color": "blue",
+  "cost": 5,
+  "reduction": {
+   "blue": 2,
+   "ultimate": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 9000
+   },
+   {
+    "cores": 4,
+    "bp": 14000
+   }
+  ],
+  "families": [
+   "Extreme Contract",
+   "Holies",
+   "Ocean Emperor"
+  ],
+  "text": "Flash - {{Contract Advent|Extreme Contract & C2 or more|(Your Turn)}}\nBy sending your  to the Trash, stack this from the Hand onto your target Ultimate.\n\n{{SuAdcon|You control one or more “The Extreme Partner, Zetter”, including being in Soul State/pre-advent condition}}\n\nUltimate Trigger [LV3][LV4] (When Attacks)\nWhen Ultimate Trigger hits, destroy an opposing Spirit with the highest cost.\nutb\n\nDuring OC & During Advent [LV3][LV4] (Your Attack Step)\nWhen your Ultimate attacks, you can activate one of this Ultimate's Ultimate Trigger.",
+  "image": "65-059.png",
+  "block": "65",
+  "saga": 14,
+  "mechanics": [
+   "Contract Advent"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{Contract Advent|Extreme Contract & C2 or more|(Your Turn)}}",
+   "By sending your  to the Trash, stack this from the Hand onto your target Ultimate.",
+   "{{SuAdcon|You control one or more “The Extreme Partner, Zetter”, including being in Soul State/pre-advent condition}}",
+   "Ultimate Trigger [LV3][LV4] (When Attacks)",
+   "When Ultimate Trigger hits, destroy an opposing Spirit with the highest cost.",
+   "utb",
+   "During OC & During Advent [LV3][LV4] (Your Attack Step)",
+   "When your Ultimate attacks, you can activate one of this Ultimate's Ultimate Trigger."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS65-060",
+  "name": "The PrimeRaptorDuke Varlant",
+  "name_jp": "至鳥公ヴァーラント",
+  "type": "Ultimate",
+  "color": "blue",
+  "cost": 8,
+  "reduction": {
+   "blue": 2,
+   "ultimate": 4
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 13000
+   },
+   {
+    "cores": 4,
+    "bp": 24000
+   }
+  ],
+  "families": [
+   "Holies",
+   "Fighting Spirit"
+  ],
+  "text": "{{sumcon|You control one or more “The Extreme Partner, Zetter”, including being in Soul State/pre-advent condition}}\n\nThis set card can't be discarded by the opponent.\n\n{{Burst|After your Life is reduced}}\nDestroy an opposing Spirit/Ultimate with the highest cost. After this effect resolves, summon this card without paying the cost.\n\nUltimate Trigger [LV3][LV4] (When Summoned/Attacks)\nWhen Ultimate Trigger hits, you can draw two cards. When you've done so, discard cards from your Hand so that five or less cards left.\nutb",
+  "image": "65-060(1).png",
+  "block": "65",
+  "saga": 14,
+  "mechanics": [
+   "Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{sumcon|You control one or more “The Extreme Partner, Zetter”, including being in Soul State/pre-advent condition}}",
+   "This set card can't be discarded by the opponent.",
+   "{{Burst|After your Life is reduced}}",
+   "Destroy an opposing Spirit/Ultimate with the highest cost.",
+   "After this effect resolves, summon this card without paying the cost.",
+   "Ultimate Trigger [LV3][LV4] (When Summoned/Attacks)",
+   "When Ultimate Trigger hits, you can draw two cards.",
+   "When you've done so, discard cards from your Hand so that five or less cards left.",
+   "utb"
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS65-061",
   "name": "The MagicBayonet Hajar-Azraq",
   "name_jp": "魔銃剣ハジャル・アズラク",
@@ -7132,6 +8151,383 @@
   "rcode": "C"
  },
  {
+  "id": "BS65-077",
+  "name": "Mode Flugel",
+  "name_jp": "モールドフリューゲル",
+  "type": "Magic",
+  "color": "red",
+  "cost": 5,
+  "reduction": {
+   "red": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Scarlet Flame"
+  ],
+  "text": "{{Mirage|Cost 5 ()}}\nDuring Set\nThe Contract Advent of Cost 6 or more \"Sky Contract\" family cards in your Hand can also take \"Red-only & Cost 5 or more\" as target.\n\nMain\n(Once per Turn: Same Name) If you have five counters or more, summon an opposing Cost 4 or less Spirit card/Ultimate card from the opposing Trash without paying the cost by putting a core, besides , from the opposing Reserve/Trash onto it. However, any (When Summoned) effects of the Spirit/Ultimate can't activate.",
+  "image": "65-077.png",
+  "block": "65",
+  "saga": 14,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Mirage|Cost 5 ()}}",
+   "During Set",
+   "The Contract Advent of Cost 6 or more \"Sky Contract\" family cards in your Hand can also take \"Red-only & Cost 5 or more\" as target.",
+   "Main",
+   "(Once per Turn: Same Name) If you have five counters or more, summon an opposing Cost 4 or less Spirit card/Ultimate card from the opposing Trash without paying the cost by putting a core, besides , from the opposing Reserve/Trash onto it.",
+   "However, any (When Summoned) effects of the Spirit/Ultimate can't activate."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS65-078",
+  "name": "Bloody Sabbath",
+  "name_jp": "ブラッディサバト",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 4,
+  "reduction": {
+   "purple": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Blood Crystal"
+  ],
+  "text": "When this card is put onto the Removed Zone from the Hand via the effect of your \"The Infernal Partner, Camus\", including those that are in pre-advent condition, your counter +1, and draw a card.\n\nFlash\nSend up to five cores from any opposing Spirits/Ultimates/Nexuses to different opposing Spirits/Ultimates/Nexuses. The cores on opposing Spirits/Ultimates/Nexuses can't be brought to less than one via this effect. Also, if you have six counters or more, and you control any \"The Infernal Partner, Camus\", including those that are in Soul State/pre-advent condition, during this turn, your Life can't be reduced by the attacks of opposing Spirits/Ultimates with two cores or less on them.",
+  "image": "65-078.png",
+  "block": "65",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "When this card is put onto the Removed Zone from the Hand via the effect of your \"The Infernal Partner, Camus\", including those that are in pre-advent condition, your counter +1, and draw a card.",
+   "Flash",
+   "Send up to five cores from any opposing Spirits/Ultimates/Nexuses to different opposing Spirits/Ultimates/Nexuses.",
+   "The cores on opposing Spirits/Ultimates/Nexuses can't be brought to less than one via this effect.",
+   "Also, if you have six counters or more, and you control any \"The Infernal Partner, Camus\", including those that are in Soul State/pre-advent condition, during this turn, your Life can't be reduced by the attacks of opposing Spirits/Ultimates with two cores or less on them."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS65-079",
+  "name": "Core Blast",
+  "name_jp": "コアブラスト",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 5,
+  "reduction": {
+   "purple": 4
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Blood Crystal"
+  ],
+  "text": "Flash\nSend one core each from every opposing Spirit/Ultimate to their Reserve, and draw a card for each Spirit/Ultimate depleted.",
+  "image": "65-079.png",
+  "block": "65",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Send one core each from every opposing Spirit/Ultimate to their Reserve, and draw a card for each Spirit/Ultimate depleted."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS65-080",
+  "name": "Secret Ceremony",
+  "name_jp": "シークレットセレモニー",
+  "type": "Magic",
+  "color": "green",
+  "cost": 6,
+  "reduction": {
+   "green": 5
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Jade Thunder"
+  ],
+  "text": "Flash\nSummon a \"Gataru\"/“Grün∴Baum\", or a Spirit card with \"High Speed\"-named effects from your Hand, without paying the cost. If it's during either Attack Step, at the end of this battle, you can return the Spirit summoned by this effect to the Hand.",
+  "image": "65-080.png",
+  "block": "65",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Summon a \"Gataru\"/“Grün∴Baum\", or a Spirit card with \"High Speed\"-named effects from your Hand, without paying the cost.",
+   "If it's during either Attack Step, at the end of this battle, you can return the Spirit summoned by this effect to the Hand."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS65-081",
+  "name": "Magnetic Wall",
+  "name_jp": "マグネティックウォール",
+  "type": "Magic",
+  "color": "white",
+  "cost": 5,
+  "reduction": {
+   "ultimate": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Holies"
+  ],
+  "text": "This card can't be used unless you control no Spirits & have 0 Spirit cards in your Trash.\n\nFlash\nReturn an opposing Spirit/Nexus to the deckbottom. Then, you can discard a card from the opposing decktop. When any Spirit card/Ultimate card is discarded via this effect, when this battle ends, end the Attack Step.",
+  "image": "65-081.png",
+  "block": "65",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "This card can't be used unless you control no Spirits & have 0 Spirit cards in your Trash.",
+   "Flash",
+   "Return an opposing Spirit/Nexus to the deckbottom.",
+   "Then, you can discard a card from the opposing decktop.",
+   "When any Spirit card/Ultimate card is discarded via this effect, when this battle ends, end the Attack Step."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS65-082",
+  "name": "Familiar Summon: Piyo Field",
+  "name_jp": "使い魔召喚：ピヨフィールド",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 2,
+  "reduction": {
+   "yellow": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Golden Cloud"
+  ],
+  "text": "Type: Vision Flash - (It can be activated while on Field)\n█ By discarding this card, during this turn, give an opposing Spirit -5000 BP, and return it to the deckbottom if its BP is brought to 0.\n\nFlash\nIncluding being in Soul State/pre-advent condition, if you control any \"The Phantom Partner, Palm\", reveal three cards from your decktop. Return them to the decktop or deckbottom one by one. Then, put this card onto your Field.",
+  "image": "65-082.png",
+  "block": "65",
+  "saga": 14,
+  "mechanics": [
+   "Type: Vision"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Type: Vision Flash - (It can be activated while on Field)",
+   "█ By discarding this card, during this turn, give an opposing Spirit -5000 BP, and return it to the deckbottom if its BP is brought to 0.",
+   "Flash",
+   "Including being in Soul State/pre-advent condition, if you control any \"The Phantom Partner, Palm\", reveal three cards from your decktop.",
+   "Return them to the decktop or deckbottom one by one.",
+   "Then, put this card onto your Field."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS65-083",
+  "name": "ArcAngelia Summon: Avri Field",
+  "name_jp": "大天使召喚：アヴリフィールド",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 3,
+  "reduction": {
+   "yellow": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Golden Cloud"
+  ],
+  "text": "Type: Vision Flash - (It can be activated while on Field)\n█ (Can't use in Your Turn) By discarding this card, during this battle, an opposing Spirit/Ultimate is fixed as having zero symbols.\n\nMain\nIncluding being in Soul State/pre-advent condition, if you control any \"The Phantom Partner, Palm\", reveal four cards from your decktop. Among them, add a \"Golden Cloud\" family Spirit card/Brave card to the Hand. Return any remaining cards to the deckbottom. Then, put this card onto your Field.",
+  "image": "65-083.png",
+  "block": "65",
+  "saga": 14,
+  "mechanics": [
+   "Type: Vision"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Type: Vision Flash - (It can be activated while on Field)",
+   "█ (Can't use in Your Turn) By discarding this card, during this battle, an opposing Spirit/Ultimate is fixed as having zero symbols.",
+   "Main",
+   "Including being in Soul State/pre-advent condition, if you control any \"The Phantom Partner, Palm\", reveal four cards from your decktop.",
+   "Among them, add a \"Golden Cloud\" family Spirit card/Brave card to the Hand.",
+   "Return any remaining cards to the deckbottom.",
+   "Then, put this card onto your Field."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS65-084",
+  "name": "Sengoku Princess Summon: Tanpopo Field",
+  "name_jp": "戦国姫召喚：タンポポフィールド",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 4,
+  "reduction": {
+   "yellow": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Golden Cloud"
+  ],
+  "text": "Type: Vision (While on the Field, all the following effects remain active)\n█ During your turn, the LV1 effects of every opposing Nexus can't activate.\n\n█ By discarding this card during your Main Step, draw a card from your deckbottom.\n\nFlash\nIncluding being in Soul State/pre-advent condition, if you control any \"The Phantom Partner, Palm\", during this turn, give an opposing Spirit -7000 BP, and return it to the deckbottom when its BP is brought to 0. Then, put this card onto your Field.",
+  "image": "65-084.png",
+  "block": "65",
+  "saga": 14,
+  "mechanics": [
+   "Type: Vision"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Type: Vision (While on the Field, all the following effects remain active)",
+   "█ During your turn, the LV1 effects of every opposing Nexus can't activate.",
+   "█ By discarding this card during your Main Step, draw a card from your deckbottom.",
+   "Flash",
+   "Including being in Soul State/pre-advent condition, if you control any \"The Phantom Partner, Palm\", during this turn, give an opposing Spirit -7000 BP, and return it to the deckbottom when its BP is brought to 0.",
+   "Then, put this card onto your Field."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS65-085",
+  "name": "Cannon Angelia Summon: Kanon Field",
+  "name_jp": "砲天使召喚：カノンフィールド",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 5,
+  "reduction": {
+   "yellow": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Golden Cloud"
+  ],
+  "text": "Type: Vision Flash - (It can be activated while on Field)\n█ By discarding this card, target an opposing LV1 Spirit or an opposing LV3 Ultimate. During this turn, that Spirits/Ultimates can't attack/block.\n\n{{Burst|After an opposing Spirit/Ultimate's (When Summoned/Advents) effect resolves}}\nDuring this turn, give every opposing Spirit/Ultimate -20000 BP. Destroy every Spirit/Ultimate whose BP is brought to 0 by this effect. Then, by paying the cost, activate this card's Flash effect.\n\nFlash\nIncluding being in Soul State/pre-advent condition, if you control any \"The Phantom Partner, Palm\", draw two cards from the deckbottom.  Then, put this card onto your Field.",
+  "image": null,
+  "block": "65",
+  "saga": 14,
+  "mechanics": [
+   "Type: Vision"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Type: Vision Flash - (It can be activated while on Field)",
+   "█ By discarding this card, target an opposing LV1 Spirit or an opposing LV3 Ultimate.",
+   "During this turn, that Spirits/Ultimates can't attack/block.",
+   "{{Burst|After an opposing Spirit/Ultimate's (When Summoned/Advents) effect resolves}}",
+   "During this turn, give every opposing Spirit/Ultimate -20000 BP.",
+   "Destroy every Spirit/Ultimate whose BP is brought to 0 by this effect.",
+   "Then, by paying the cost, activate this card's Flash effect.",
+   "Flash",
+   "Including being in Soul State/pre-advent condition, if you control any \"The Phantom Partner, Palm\", draw two cards from the deckbottom.",
+   "Then, put this card onto your Field."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS65-086",
+  "name": "Earth Seraph Summon: Ramdi Field",
+  "name_jp": "土の熾天使召喚：ラムディフィールド",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 5,
+  "reduction": {
+   "yellow": 4
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Golden Cloud"
+  ],
+  "text": "This card in Trash can't be returned to the Hand/Remove Zone/Deck, and can't be switched in places.\n\nType: Vision Flash - (It can be activated while on Field)\n█ By discarding this card, during this turn, give an opposing Spirit/Ultimate -10000 BP, and return it to the deckbottom when its BP is brought to 0.\n\nFlash\nIncluding being in Soul State/pre-advent condition, if you control any \"The Phantom Partner, Palm\", during this turn, your Life can only be reduced by one. Then, put this card onto your Field.",
+  "image": "65-086.png",
+  "block": "65",
+  "saga": 14,
+  "mechanics": [
+   "Type: Vision"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "This card in Trash can't be returned to the Hand/Remove Zone/Deck, and can't be switched in places.",
+   "Type: Vision Flash - (It can be activated while on Field)",
+   "█ By discarding this card, during this turn, give an opposing Spirit/Ultimate -10000 BP, and return it to the deckbottom when its BP is brought to 0.",
+   "Flash",
+   "Including being in Soul State/pre-advent condition, if you control any \"The Phantom Partner, Palm\", during this turn, your Life can only be reduced by one.",
+   "Then, put this card onto your Field."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS65-087",
+  "name": "Elimination Wing",
+  "name_jp": "エリミネーションウィング",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 6,
+  "reduction": {
+   "ultimate": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Holies"
+  ],
+  "text": "This card can't be used unless you control no Spirits & have 0 Spirit cards in your Trash.\n\nFlash\nDuring this turn, two opposing Spirits/Ultimates can't attack/block. Then, you can discard a card from the opposing decktop. When any Spirit card/Ultimate card is discarded via this effect, during this turn, give an opposing Spirit/Ultimate -5000 BP. Activate this \"BP- effect\" four times, and destroy when the targets' BP is brought to 0.",
+  "image": "65-087.png",
+  "block": "65",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "This card can't be used unless you control no Spirits & have 0 Spirit cards in your Trash.",
+   "Flash",
+   "During this turn, two opposing Spirits/Ultimates can't attack/block.",
+   "Then, you can discard a card from the opposing decktop.",
+   "When any Spirit card/Ultimate card is discarded via this effect, during this turn, give an opposing Spirit/Ultimate -5000 BP.",
+   "Activate this \"BP- effect\" four times, and destroy when the targets' BP is brought to 0."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS65-088",
+  "name": "Magical Empress Summon: Ambro Field",
+  "name_jp": "魔導女皇召喚：アンブロフィールド",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 8,
+  "reduction": {
+   "yellow": 6
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Golden Cloud"
+  ],
+  "text": "Type: Vision Flash - (It can be activated while on Field)\n█ (Can't use in Main Step) By discarding this card, refresh a \"Golden Cloud\" family Spirit you control. Also, if you have eight counters or more, during this battle, that Spirit can't be blocked.\n\nFlash\nIncluding being in Soul State/pre-advent condition, if you control any \"The Phantom Partner, Palm\", return every opposing LV1/LV2 Spirits, and LV3/LV4 Ultimates to the deckbottom. Then, put this card onto your Field.",
+  "image": "65-088.png",
+  "block": "65",
+  "saga": 14,
+  "mechanics": [
+   "Type: Vision"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Type: Vision Flash - (It can be activated while on Field)",
+   "█ (Can't use in Main Step) By discarding this card, refresh a \"Golden Cloud\" family Spirit you control.",
+   "Also, if you have eight counters or more, during this battle, that Spirit can't be blocked.",
+   "Flash",
+   "Including being in Soul State/pre-advent condition, if you control any \"The Phantom Partner, Palm\", return every opposing LV1/LV2 Spirits, and LV3/LV4 Ultimates to the deckbottom.",
+   "Then, put this card onto your Field."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS65-089",
   "name": "Steam Innovation",
   "name_jp": "スチームイノベーション",
@@ -7173,6 +8569,33 @@
    "11"
   ],
   "rcode": "C"
+ },
+ {
+  "id": "BS65-090",
+  "name": "Steam Stampede",
+  "name_jp": "スチームスタンピード",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 4,
+  "reduction": {
+   "blue": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Azure Wave"
+  ],
+  "text": "Flash\nIgnoring the cost of Braves, target an opposing Cost 9 or less Spirit. Unless the opponent discards a number of cards from their decktop equal to the targeted Spirit's cost, destroy that Spirit.",
+  "image": "65-090.png",
+  "block": "65",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Ignoring the cost of Braves, target an opposing Cost 9 or less Spirit.",
+   "Unless the opponent discards a number of cards from their decktop equal to the targeted Spirit's cost, destroy that Spirit."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS65-CX01",
@@ -7299,6 +8722,47 @@
    "10"
   ],
   "rcode": "契約X"
+ },
+ {
+  "id": "BS65-CX04",
+  "name": "The Extreme Partner, Zetter",
+  "name_jp": "極相棒ゼッター",
+  "type": "Ultimate",
+  "color": "green",
+  "cost": 2,
+  "reduction": {
+   "ultimate": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 4000
+   },
+   {
+    "cores": 3,
+    "bp": 8000
+   }
+  ],
+  "families": [
+   "Extreme Contract",
+   "Holies"
+  ],
+  "text": "CArule\n\n{{Sumcon|You control no Spirits & have 0 Spirit cards in your Trash}}\n\nContract Pre-Advent/Ultimate [LV3][LV4]\nOnce per turn, when your Ultimate Trigger hits, you can refresh an Ultimate you control, and you can send the  from your Trash to the Reserve.\n\nContract Pre-Advent/Ultimate [LV3][LV4] (When Attacks)\nThe opponent can't activate Burst effects. Also, your counters +2, and put a core from the Void to any of your Ultimates.",
+  "image": "65-cx04.png",
+  "block": "65",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "CArule",
+   "{{Sumcon|You control no Spirits & have 0 Spirit cards in your Trash}}",
+   "Contract Pre-Advent/Ultimate [LV3][LV4]",
+   "Once per turn, when your Ultimate Trigger hits, you can refresh an Ultimate you control, and you can send the  from your Trash to the Reserve.",
+   "Contract Pre-Advent/Ultimate [LV3][LV4] (When Attacks)",
+   "The opponent can't activate Burst effects.",
+   "Also, your counters +2, and put a core from the Void to any of your Ultimates."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS65-X01",
@@ -7548,6 +9012,52 @@
    "10"
   ],
   "rcode": "X"
+ },
+ {
+  "id": "BS65-X06",
+  "name": "The ExtremeDivineStar Neo-Zetter",
+  "name_jp": "極限神星ネオ・ゼッター",
+  "type": "Ultimate",
+  "color": "green",
+  "cost": 8,
+  "reduction": {
+   "ultimate": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 15000
+   },
+   {
+    "cores": 3,
+    "bp": 25000
+   }
+  ],
+  "families": [
+   "Extreme Contract",
+   "Holies"
+  ],
+  "text": "Flash - {{Contract Advent|Extreme Contract & C6 or more|(Your Turn)}}\nBy sending your  to the Trash, stack this from the Hand onto your target Ultimate.\n\n{{SuAdcon|You control one or more “The Extreme Partner, Zetter”, including being in Soul State/pre-advent condition}}\n\n[LV3][LV4] (Your Attack Step)\n(Can't Stack) When your Ultimate Trigger hits, for each Trigger hit, you can send an opposing Life to the Reserve.\n\nDuring OC & During Advent Double Ultimate Trigger\nFor each Ultimate Trigger hit, heavy exhaust an opposing Spirit/Ultimate. Double Hit When it hits twice, during this battle, the opponent can't use cards from their Hand outside Flash Timing.\nwutb",
+  "image": "65-x06.png",
+  "block": "65",
+  "saga": 14,
+  "mechanics": [
+   "Contract Advent"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{Contract Advent|Extreme Contract & C6 or more|(Your Turn)}}",
+   "By sending your  to the Trash, stack this from the Hand onto your target Ultimate.",
+   "{{SuAdcon|You control one or more “The Extreme Partner, Zetter”, including being in Soul State/pre-advent condition}}",
+   "[LV3][LV4] (Your Attack Step)",
+   "(Can't Stack) When your Ultimate Trigger hits, for each Trigger hit, you can send an opposing Life to the Reserve.",
+   "During OC & During Advent Double Ultimate Trigger",
+   "For each Ultimate Trigger hit, heavy exhaust an opposing Spirit/Ultimate.",
+   "Double Hit When it hits twice, during this battle, the opponent can't use cards from their Hand outside Flash Timing.",
+   "wutb"
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS65-X07",
@@ -8577,6 +10087,94 @@
   "rcode": "C"
  },
  {
+  "id": "BS66-014",
+  "name": "The SerpentReaper Xolotl",
+  "name_jp": "蛇死神ショロトル",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 3,
+  "reduction": {
+   "purple": 1,
+   "god": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   },
+   {
+    "cores": 2,
+    "bp": 4000
+   },
+   {
+    "cores": 5,
+    "bp": 6000
+   }
+  ],
+  "families": [
+   "Dark Snake"
+  ],
+  "text": "[LV1][LV2][LV3] (When Summoned)\nYou can discard a card from your Hand. When you've done so, return either a \"Grandwalker Kukulkan\", or a Cost 5 or more \"Dark Snake\" family card from your Trash to the Hand.\n\n[LV1][LV2][LV3] (Your Main Step)\nYou can send the  from your Reserve/Trash to the Counter Area. When you've done so, you can put two cores from the Void to your Trash.",
+  "image": "66-014.png",
+  "block": "66",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2][LV3] (When Summoned)",
+   "You can discard a card from your Hand.",
+   "When you've done so, return either a \"Grandwalker Kukulkan\", or a Cost 5 or more \"Dark Snake\" family card from your Trash to the Hand.",
+   "[LV1][LV2][LV3] (Your Main Step)",
+   "You can send the  from your Reserve/Trash to the Counter Area.",
+   "When you've done so, you can put two cores from the Void to your Trash."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS66-015",
+  "name": "The NetherReaper Bressandes",
+  "name_jp": "冥府の死神ブレサンド",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 3,
+  "reduction": {
+   "purple": 1,
+   "god": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   },
+   {
+    "cores": 3,
+    "bp": 4000
+   },
+   {
+    "cores": 5,
+    "bp": 6000
+   }
+  ],
+  "families": [
+   "Celeste",
+   "Zombie"
+  ],
+  "text": "This card in Trash becomes Cost 8.\n\n[LV1][LV2][LV3] (Your Main Step)\nOnce per turn, by discarding a \"Nether\" card from your Hand, draw a card.\n\n[LV1][LV2][LV3] (Your Attack Step)\nWhile your Life is at three or less, instead of sending the cores from your Purple Grandwalker Nexuses to your Trash, you can send the cores to your \"Zombie\" family Spirits via your Nether Unleash.",
+  "image": "66-015.png",
+  "block": "66",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "This card in Trash becomes Cost 8.",
+   "[LV1][LV2][LV3] (Your Main Step)",
+   "Once per turn, by discarding a \"Nether\" card from your Hand, draw a card.",
+   "[LV1][LV2][LV3] (Your Attack Step)",
+   "While your Life is at three or less, instead of sending the cores from your Purple Grandwalker Nexuses to your Trash, you can send the cores to your \"Zombie\" family Spirits via your Nether Unleash."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS66-016",
   "name": "The BloodAllianceThirteenMarquess Nazaray",
   "name_jp": "血盟十三候ナザレイ",
@@ -8708,6 +10306,51 @@
    "10"
   ],
   "rcode": "M"
+ },
+ {
+  "id": "BS66-019",
+  "name": "The NetherEmpress Margaune",
+  "name_jp": "冥府女帝マルゴーヌ",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 6,
+  "reduction": {
+   "purple": 3,
+   "god": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 3,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Celeste",
+   "Zombie"
+  ],
+  "text": "While you control any \"Grandwalker Dionysus\", this set card is unaffected by opposing effects.\n\n{{Burst|After your Spirit/Nexus is destroyed by the Opponent}}\nSend cores from every opposing Spirit/Ultimate to the Reserve so that one core left on each of them, and for every two cores sent, draw a card (Max. 3). After this effect resolves, summon this card without paying the cost.\n\n[LV1][LV2] (When Attacks/Blocks)\nYou can send two cores from any opposing Spirits/Ultimates to the Reserve.",
+  "image": "66-019.png",
+  "block": "66",
+  "saga": 14,
+  "mechanics": [
+   "Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "While you control any \"Grandwalker Dionysus\", this set card is unaffected by opposing effects.",
+   "{{Burst|After your Spirit/Nexus is destroyed by the Opponent}}",
+   "Send cores from every opposing Spirit/Ultimate to the Reserve so that one core left on each of them, and for every two cores sent, draw a card (Max.",
+   "3).",
+   "After this effect resolves, summon this card without paying the cost.",
+   "[LV1][LV2] (When Attacks/Blocks)",
+   "You can send two cores from any opposing Spirits/Ultimates to the Reserve."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS66-020",
@@ -9363,6 +11006,50 @@
   "rcode": "C"
  },
  {
+  "id": "BS66-033",
+  "name": "The ArmoredBird Obsidian Turkey",
+  "name_jp": "鎧装鳥オブシディアンターキー",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 2,
+   "god": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 3,
+    "bp": 9000
+   }
+  ],
+  "families": [
+   "Armored Beast"
+  ],
+  "text": "[LV1][LV2] (When Summoned)\nYou can reveal four cards from your decktop. Among them, either add a White Nexus card to the Hand, or set an \"Armored Beast\" family Mirage card, without paying the cost. When you do, return your originally set Mirage to the Hand. Return any remaining cards to the deckbottom.\n\n[LV2] {{Uha|Purple/Green}}\nThis Spirit is unaffected by opposing Purple/Green effects.",
+  "image": "66-033.png",
+  "block": "66",
+  "saga": 14,
+  "mechanics": [
+   "Ultra Heavy Armor"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2] (When Summoned)",
+   "You can reveal four cards from your decktop.",
+   "Among them, either add a White Nexus card to the Hand, or set an \"Armored Beast\" family Mirage card, without paying the cost.",
+   "When you do, return your originally set Mirage to the Hand.",
+   "Return any remaining cards to the deckbottom.",
+   "[LV2] {{Uha|Purple/Green}}",
+   "This Spirit is unaffected by opposing Purple/Green effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS66-034",
   "name": "DeathParade-Guy",
   "name_jp": "デスパレード・ガイ",
@@ -9404,6 +11091,49 @@
    "10"
   ],
   "rcode": "C"
+ },
+ {
+  "id": "BS66-035",
+  "name": "Vishnaga-Parashurama",
+  "name_jp": "ヴィシュナーガ・パラシュラーマ",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 5,
+  "reduction": {
+   "white": 3,
+   "god": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 2,
+    "bp": 9000
+   }
+  ],
+  "families": [
+   "Celeste",
+   "Armored Dragon"
+  ],
+  "text": "{{Mirage|Cost 3 ()}}\nDuring Set\nWhen the opposing Hand increases via an opposing effect, for each card increased, you can +1 core to one of your White \"Hindida\" family Grandwalker Nexuses.\n\n[LV1][LV2] (When Summoned)\nDuring this turn, an \"Armored Dragon\" family Spirit you control can't be blocked.",
+  "image": "66-035.png",
+  "block": "66",
+  "saga": 14,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Mirage|Cost 3 ()}}",
+   "During Set",
+   "When the opposing Hand increases via an opposing effect, for each card increased, you can +1 core to one of your White \"Hindida\" family Grandwalker Nexuses.",
+   "[LV1][LV2] (When Summoned)",
+   "During this turn, an \"Armored Dragon\" family Spirit you control can't be blocked."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS66-036",
@@ -9473,6 +11203,98 @@
    "10"
   ],
   "rcode": "M"
+ },
+ {
+  "id": "BS66-037",
+  "name": "The UnderworldKingArmoredSacredBeast Mictlantecuhtli",
+  "name_jp": "冥王の鎧装神獣ミクトランテクトリ",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 7,
+  "reduction": {
+   "white": 3,
+   "god": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 7000
+   },
+   {
+    "cores": 3,
+    "bp": 13000
+   },
+   {
+    "cores": 5,
+    "bp": 15000
+   }
+  ],
+  "families": [
+   "Armored Beast",
+   "Giant Beast"
+  ],
+  "text": "You can set this card from the Removed Zone.\n\n{{mirage|Cost 2 ()}}\nDuring Set\nAll \"Armored Beast\" family cards in your Removed Zone are unaffected by opposing effects. Also, when your Life is reduced by the opponent, you can put a card from your decktop to the Removed Zone.\n\n[LV1][LV2][LV3] (When Attacks)\nFor every two \"Armored Beast\" family cards in your Removed Zone, this Spirit gains an extra White symbol.",
+  "image": "66-037.png",
+  "block": "66",
+  "saga": 14,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "You can set this card from the Removed Zone.",
+   "{{mirage|Cost 2 ()}}",
+   "During Set",
+   "All \"Armored Beast\" family cards in your Removed Zone are unaffected by opposing effects.",
+   "Also, when your Life is reduced by the opponent, you can put a card from your decktop to the Removed Zone.",
+   "[LV1][LV2][LV3] (When Attacks)",
+   "For every two \"Armored Beast\" family cards in your Removed Zone, this Spirit gains an extra White symbol."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS66-038",
+  "name": "Vishnaga-Kurma",
+  "name_jp": "ヴィシュナーガ・クールマ",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 7,
+  "reduction": {
+   "white": 4,
+   "god": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 6000
+   },
+   {
+    "cores": 2,
+    "bp": 12000
+   },
+   {
+    "cores": 4,
+    "bp": 14000
+   }
+  ],
+  "families": [
+   "Celeste",
+   "Armored Dragon"
+  ],
+  "text": "[LV1][LV2][LV3] (When Summoned)\nYou can summon either a Saga Brave card, or an \"Armored Dragon\" family Spirit card from your Hand, without paying the cost.\n\n[LV1][LV2][LV3]\nYour Cost 7 or more \"Armored Dragon\" family Spirits can't have their number of cores brought to less than two, nor be heavily exhausted, by opposing effects.",
+  "image": "66-038.png",
+  "block": "66",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2][LV3] (When Summoned)",
+   "You can summon either a Saga Brave card, or an \"Armored Dragon\" family Spirit card from your Hand, without paying the cost.",
+   "[LV1][LV2][LV3]",
+   "Your Cost 7 or more \"Armored Dragon\" family Spirits can't have their number of cores brought to less than two, nor be heavily exhausted, by opposing effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS66-039",
@@ -10280,6 +12102,276 @@
   "rcode": "C"
  },
  {
+  "id": "BS66-056",
+  "name": "Ultimate-AnkhSnake",
+  "name_jp": "アルティメット・アンクスネーク",
+  "type": "Ultimate",
+  "color": "purple",
+  "cost": 6,
+  "reduction": {
+   "ultimate": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 10000
+   },
+   {
+    "cores": 3,
+    "bp": 13000
+   }
+  ],
+  "families": [
+   "Incarnate",
+   "Dark Snake"
+  ],
+  "text": "{{Sumcon|You control one or more Incarnate Spirits, including being in Soul State/pre-advent condition}}\n\n[LV3][LV4] (When Summoned)\nYour counter +1. Then, draw two cards.\n\nUltimate Trigger [LV3][LV4] (When Attacks/Blocks)\nWhen Ultimate Trigger hits, draw a card. Critical Hit If the hit card is Cost 4 or less, return a \"Holies\"/\"Incarnate\" family Nexus card from your Trash to the Hand.\nutb",
+  "image": "66-056.png",
+  "block": "66",
+  "saga": 14,
+  "mechanics": [
+   "Ultimate Trigger"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Sumcon|You control one or more Incarnate Spirits, including being in Soul State/pre-advent condition}}",
+   "[LV3][LV4] (When Summoned)",
+   "Your counter +1.",
+   "Then, draw two cards.",
+   "Ultimate Trigger [LV3][LV4] (When Attacks/Blocks)",
+   "When Ultimate Trigger hits, draw a card.",
+   "Critical Hit If the hit card is Cost 4 or less, return a \"Holies\"/\"Incarnate\" family Nexus card from your Trash to the Hand.",
+   "utb"
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS66-057",
+  "name": "The ExtremeKickingBird Shamopler",
+  "name_jp": "極蹴鳥シャモップラー",
+  "type": "Ultimate",
+  "color": "green",
+  "cost": 4,
+  "reduction": {
+   "green": 1,
+   "ultimate": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 6000
+   },
+   {
+    "cores": 3,
+    "bp": 8000
+   }
+  ],
+  "families": [
+   "Holies",
+   "Winged Beast"
+  ],
+  "text": "{{Sumcon|You control one or more “The Extreme Partner, Zetter”, including being in Soul State/pre-advent condition}}\n\nFlash - High Speed\nThis card in Hand can be summoned by paying the cost with cores in the Reserve. In this case, cores to be put on this Ultimate must also be from the Reserve.\n\n[LV3][LV4] (When Summoned)\nHeavy exhaust two opposing Spirits. Also, during this turn, when your Ultimates would leave the Field due to the opponent, return two opposing exhausted Spirits to the deckbottom.",
+  "image": "66-057.png",
+  "block": "66",
+  "saga": 14,
+  "mechanics": [
+   "High Speed"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Sumcon|You control one or more “The Extreme Partner, Zetter”, including being in Soul State/pre-advent condition}}",
+   "Flash - High Speed",
+   "This card in Hand can be summoned by paying the cost with cores in the Reserve.",
+   "In this case, cores to be put on this Ultimate must also be from the Reserve.",
+   "[LV3][LV4] (When Summoned)",
+   "Heavy exhaust two opposing Spirits.",
+   "Also, during this turn, when your Ultimates would leave the Field due to the opponent, return two opposing exhausted Spirits to the deckbottom."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS66-058",
+  "name": "The HeavenSteelMachine Servaas",
+  "name_jp": "天鋼機セルファース",
+  "type": "Ultimate",
+  "color": "white",
+  "cost": 5,
+  "reduction": {
+   "white": 1,
+   "ultimate": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 8000
+   },
+   {
+    "cores": 2,
+    "bp": 13000
+   }
+  ],
+  "families": [
+   "Holies",
+   "Armed Machine"
+  ],
+  "text": "{{sumcon|You control no Spirits & have 0 Spirit cards in your Trash}}\n\n[LV3][LV4]\nGive all your \"Holies\"/\"Incarnate\" family Ultimates: \"{{ha|Red/Green/White}} This Ultimate is unaffected by opposing Red/Green/White Spirit/Brave/Nexus/Magic effects.\"\n\nUltimate Trigger [LV4] (Start of Your Attack Step)\n(Can't Stack) When Ultimate Trigger hits, after the step ends, an extra Refresh Step occurs, once and only once.\nutb",
+  "image": "66-058.png",
+  "block": "66",
+  "saga": 14,
+  "mechanics": [
+   "Ultimate Trigger"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{sumcon|You control no Spirits & have 0 Spirit cards in your Trash}}",
+   "[LV3][LV4]",
+   "Give all your \"Holies\"/\"Incarnate\" family Ultimates: \"{{ha|Red/Green/White}} This Ultimate is unaffected by opposing Red/Green/White Spirit/Brave/Nexus/Magic effects.\"",
+   "Ultimate Trigger [LV4] (Start of Your Attack Step)",
+   "(Can't Stack) When Ultimate Trigger hits, after the step ends, an extra Refresh Step occurs, once and only once.",
+   "utb"
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS66-059",
+  "name": "Ultimate-Physeter",
+  "name_jp": "アルティメット・ピュセーテール",
+  "type": "Ultimate",
+  "color": "yellow",
+  "cost": 8,
+  "reduction": {
+   "ultimate": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 11000
+   },
+   {
+    "cores": 2,
+    "bp": 16000
+   }
+  ],
+  "families": [
+   "Incarnate",
+   "Hunter Beast"
+  ],
+  "text": "{{Sumcon|You control one or more Incarnate Spirits, including being in Soul State/pre-advent condition}}\n\n{{Burst|After an opposing Spirit/Nexus' (When Summoned/Deployed) effect resolves}}\nSummon this card without paying the cost. Then, you can summon up to two Ultimate cards from your Hand, without paying the cost.\n\nUltimate Trigger\nWhen Ultimate Trigger hits, you can set this Ultimate as a Burst.\nutb",
+  "image": "66-059.png",
+  "block": "66",
+  "saga": 14,
+  "mechanics": [
+   "Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Sumcon|You control one or more Incarnate Spirits, including being in Soul State/pre-advent condition}}",
+   "{{Burst|After an opposing Spirit/Nexus' (When Summoned/Deployed) effect resolves}}",
+   "Summon this card without paying the cost.",
+   "Then, you can summon up to two Ultimate cards from your Hand, without paying the cost.",
+   "Ultimate Trigger",
+   "When Ultimate Trigger hits, you can set this Ultimate as a Burst.",
+   "utb"
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS66-060",
+  "name": "The HolyAngelia Halfiel",
+  "name_jp": "聖天使ハルフィエル",
+  "type": "Ultimate",
+  "color": "yellow",
+  "cost": 8,
+  "reduction": {
+   "yellow": 3,
+   "ultimate": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 9000
+   },
+   {
+    "cores": 3,
+    "bp": 15000
+   }
+  ],
+  "families": [
+   "Extreme Contract",
+   "Holies",
+   "Divine Spirit"
+  ],
+  "text": "Flash - {{Contract Advent|Extreme Contract & C6 or more|(Your Attack Step)}}\nBy sending your  to the Trash, stack this from the Hand onto your target Ultimate.\n\n{{SuAdcon| You control one or more “The Extreme Partner, Zetter”, including being in Soul State/pre-advent condition}}\n\nDuring Advent Double Ultimate Trigger\nFor each Ultimate Trigger hit, put a core from the Void to your Life. Double Hit When it hits twice, during this turn, effects of every opposing Grandwalker Nexus can't activate.\nwutb",
+  "image": "66-060.png",
+  "block": "66",
+  "saga": 14,
+  "mechanics": [
+   "Contract Advent"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{Contract Advent|Extreme Contract & C6 or more|(Your Attack Step)}}",
+   "By sending your  to the Trash, stack this from the Hand onto your target Ultimate.",
+   "{{SuAdcon| You control one or more “The Extreme Partner, Zetter”, including being in Soul State/pre-advent condition}}",
+   "During Advent Double Ultimate Trigger",
+   "For each Ultimate Trigger hit, put a core from the Void to your Life.",
+   "Double Hit When it hits twice, during this turn, effects of every opposing Grandwalker Nexus can't activate.",
+   "wutb"
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS66-061",
+  "name": "The PrimeArmorKnight Zeravius",
+  "name_jp": "至鎧騎ゼラヴィウス",
+  "type": "Ultimate",
+  "color": "blue",
+  "cost": 7,
+  "reduction": {
+   "blue": 3,
+   "ultimate": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 10000
+   },
+   {
+    "cores": 4,
+    "bp": 20000
+   }
+  ],
+  "families": [
+   "Extreme Contract",
+   "Holies",
+   "Beast Head"
+  ],
+  "text": "Flash - {{Contract Advent|Extreme Contract & C5 or more|(Your Turn)}}\nBy sending your  to the Trash, stack this from the Hand onto your target Ultimate.\n\n{{SuAdcon| You control one or more “The Extreme Partner, Zetter”, including being in Soul State/pre-advent condition}}\n\nUltimate Trigger [LV3][LV4] (When Attacks)\nWhen Ultimate Trigger hits, destroy any number of opposing Spirits up to a total cost of 8. Critical Hit If the hit card is a Magic card, Refresh Step doesn't occur for the opponent next turn.\nutb",
+  "image": "66-061.png",
+  "block": "66",
+  "saga": 14,
+  "mechanics": [
+   "Contract Advent"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{Contract Advent|Extreme Contract & C5 or more|(Your Turn)}}",
+   "By sending your  to the Trash, stack this from the Hand onto your target Ultimate.",
+   "{{SuAdcon| You control one or more “The Extreme Partner, Zetter”, including being in Soul State/pre-advent condition}}",
+   "Ultimate Trigger [LV3][LV4] (When Attacks)",
+   "When Ultimate Trigger hits, destroy any number of opposing Spirits up to a total cost of 8.",
+   "Critical Hit If the hit card is a Magic card, Refresh Step doesn't occur for the opponent next turn.",
+   "utb"
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS66-062",
   "name": "The DragonHalberd Drag Halberd",
   "name_jp": "竜斧槍ドラグハルバード",
@@ -10322,6 +12414,44 @@
   "rcode": "R"
  },
  {
+  "id": "BS66-063",
+  "name": "The SerpentineCreatorDagger Ce-Acatl",
+  "name_jp": "創蛇の短剣セーアカトル",
+  "type": "Brave",
+  "color": "purple",
+  "cost": 5,
+  "reduction": {
+   "purple": 3,
+   "god": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 4000
+   }
+  ],
+  "families": [
+   "Exalted Sword",
+   "Dark Snake"
+  ],
+  "text": "During Brave (Your Attack Step)\nThis Spirit's color is treated as colorless.\n\nDuring Brave (When Attacks)\nOnce per battle, when opposing Cost 6 or more Spirits/Ultimates are depleted by this Spirit's effect, send an opposing Life to the Reserve.",
+  "image": "66-063.png",
+  "block": "66",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "During Brave (Your Attack Step)",
+   "This Spirit's color is treated as colorless.",
+   "During Brave (When Attacks)",
+   "Once per battle, when opposing Cost 6 or more Spirits/Ultimates are depleted by this Spirit's effect, send an opposing Life to the Reserve."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 5000
+  }
+ },
+ {
   "id": "BS66-064",
   "name": "The HurricaneBlade Rafaga",
   "name_jp": "疾風刃ラファーガ",
@@ -10359,6 +12489,83 @@
    "10"
   ],
   "rcode": "R"
+ },
+ {
+  "id": "BS66-065",
+  "name": "The ArmorBreakingLongSword Ome-Acatl",
+  "name_jp": "甲破の長剣オメ・アカトル",
+  "type": "Brave",
+  "color": "white",
+  "cost": 5,
+  "reduction": {
+   "white": 2,
+   "god": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   }
+  ],
+  "families": [
+   "Exalted Sword",
+   "Armored Beast"
+  ],
+  "text": "During Brave (When Attacks/Blocks)\nIf there are five or less cards in your Removed Zone, you can reveal a card from your decktop. If that's an \"Armored Beast\" family card, put it onto the Removed Zone, and when put, return an opposing Spirit to the deckbottom. Discard any remaining cards.\n\nDuring Brave (When Depleted/Destroyed by the Opponent)\nYou can summon an \"Armored Beast\" family Spirit card from your Removed Zone, without paying the cost.",
+  "image": "66-065.png",
+  "block": "66",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "During Brave (When Attacks/Blocks)",
+   "If there are five or less cards in your Removed Zone, you can reveal a card from your decktop.",
+   "If that's an \"Armored Beast\" family card, put it onto the Removed Zone, and when put, return an opposing Spirit to the deckbottom.",
+   "Discard any remaining cards.",
+   "During Brave (When Depleted/Destroyed by the Opponent)",
+   "You can summon an \"Armored Beast\" family Spirit card from your Removed Zone, without paying the cost."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 6000
+  }
+ },
+ {
+  "id": "BS66-066",
+  "name": "Calendula Sword",
+  "name_jp": "カレンデュラソード",
+  "type": "Brave",
+  "color": "yellow",
+  "cost": 4,
+  "reduction": {
+   "ultimate": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 4000
+   }
+  ],
+  "families": [
+   "Exalted Sword",
+   "Holies"
+  ],
+  "text": "(Once per Turn: Same Name) When your Ultimate Trigger hits, after that effect resolves, you can pay one cost to summon this card from the Hand.\n\nDuring Brave\nThis Brave's cost becomes 0.",
+  "image": "66-066.png",
+  "block": "66",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "(Once per Turn: Same Name) When your Ultimate Trigger hits, after that effect resolves, you can pay one cost to summon this card from the Hand.",
+   "During Brave",
+   "This Brave's cost becomes 0."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 4000,
+   "costGe": 4
+  }
  },
  {
   "id": "BS66-067",
@@ -10766,6 +12973,258 @@
   "rcode": "C"
  },
  {
+  "id": "BS66-077",
+  "name": "Different Draw",
+  "name_jp": "ディフェレントドロー",
+  "type": "Magic",
+  "color": "red",
+  "cost": 4,
+  "reduction": {
+   "red": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Scarlet Flame"
+  ],
+  "text": "{{Mirage|Cost 2 ()}}\nDuring Set (When Set)\nYour counter +1. Then, destroy an opposing 7000 BP or less Spirit.\n\nMain\nDraw two cards. Then, including being in pre-advent condition, if you control any \"Petit Glow\", you can reveal four cards from the decktop. You can summon a Red Cost 5 or less Spirit card/Brave card among them, without paying the cost. Return any remaining cards to the deckbottom.",
+  "image": "66-077.png",
+  "block": "66",
+  "saga": 14,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Mirage|Cost 2 ()}}",
+   "During Set (When Set)",
+   "Your counter +1.",
+   "Then, destroy an opposing 7000 BP or less Spirit.",
+   "Main",
+   "Draw two cards.",
+   "Then, including being in pre-advent condition, if you control any \"Petit Glow\", you can reveal four cards from the decktop.",
+   "You can summon a Red Cost 5 or less Spirit card/Brave card among them, without paying the cost.",
+   "Return any remaining cards to the deckbottom."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS66-078",
+  "name": "Sphere Flame",
+  "name_jp": "スフィアフレイム",
+  "type": "Magic",
+  "color": "red",
+  "cost": 5,
+  "reduction": {
+   "red": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Scarlet Flame"
+  ],
+  "text": "While your Life or the opposing Life is three or less, this card in Hand becomes Cost 3.\n\nFlash\nDestroy an opposing Spirit/Ultimate with the lowest BP. Or, if you control any Brave Spirit with Red Contract Spirit card as pre-advent card, negate an opposing active White Magic/Accel effect, other than on-field effects.",
+  "image": "66-078.png",
+  "block": "66",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "While your Life or the opposing Life is three or less, this card in Hand becomes Cost 3.",
+   "Flash",
+   "Destroy an opposing Spirit/Ultimate with the lowest BP.",
+   "Or, if you control any Brave Spirit with Red Contract Spirit card as pre-advent card, negate an opposing active White Magic/Accel effect, other than on-field effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS66-079",
+  "name": "Reverse Feather",
+  "name_jp": "リバースフェザー",
+  "type": "Magic",
+  "color": "green",
+  "cost": 4,
+  "reduction": {
+   "green": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Jade Thunder"
+  ],
+  "text": "{{mirage|Cost 2 ()}}\nDuring Set (Your Attack Step)\nWhen your Spirits are summoned from the deck via your \"Jade Contract\" family Spirit effect, you can heavy exhaust an opposing Spirit/Ultimate.\n\nMain\nBy discarding your entire Hand (at least one card), draw a card for each card in the opposing Hand. Then, including being in Soul State/pre-advent condition, if you control any Green Contract Spirit, heavy exhaust an opposing Spirit/Ultimate.",
+  "image": "66-079.png",
+  "block": "66",
+  "saga": 14,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{mirage|Cost 2 ()}}",
+   "During Set (Your Attack Step)",
+   "When your Spirits are summoned from the deck via your \"Jade Contract\" family Spirit effect, you can heavy exhaust an opposing Spirit/Ultimate.",
+   "Main",
+   "By discarding your entire Hand (at least one card), draw a card for each card in the opposing Hand.",
+   "Then, including being in Soul State/pre-advent condition, if you control any Green Contract Spirit, heavy exhaust an opposing Spirit/Ultimate."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS66-080",
+  "name": "Holy Bind",
+  "name_jp": "ホーリーバインド",
+  "type": "Magic",
+  "color": "green",
+  "cost": 4,
+  "reduction": {
+   "ultimate": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Holies"
+  ],
+  "text": "This card can't be used unless you control no Spirits & have 0 Spirit cards in your Trash.\n\n(Once per Turn: Same Name) When your Ultimate Trigger hits, you can return this card from your Trash to the Hand.\n\nFlash\nExhaust an opposing Spirit/Ultimate. Then, you can discard a card from the opposing decktop. When any Spirit card/Ultimate card is discarded via this effect, exhaust an opposing Spirit/Ultimate.",
+  "image": "66-080.png",
+  "block": "66",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "This card can't be used unless you control no Spirits & have 0 Spirit cards in your Trash.",
+   "(Once per Turn: Same Name) When your Ultimate Trigger hits, you can return this card from your Trash to the Hand.",
+   "Flash",
+   "Exhaust an opposing Spirit/Ultimate.",
+   "Then, you can discard a card from the opposing decktop.",
+   "When any Spirit card/Ultimate card is discarded via this effect, exhaust an opposing Spirit/Ultimate."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS66-081",
+  "name": "Lightning Ride",
+  "name_jp": "ライトニングライド",
+  "type": "Magic",
+  "color": "green",
+  "cost": 5,
+  "reduction": {
+   "green": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Jade Thunder"
+  ],
+  "text": "(Once per turn: Same Name) During your End Step, including being in Soul State/pre-advent condition, if you control any \"Petit Lampo\", you can return this card from your Trash to the Hand.\n\nFlash\nReturn an opposing exhausted Spirit/Ultimate to the deckbottom. Then, including being in Soul State/pre-advent condition, if you control any Green Contract Spirits, send six cores from any opposing Grandwalker Nexuses to the Void.",
+  "image": "66-081.png",
+  "block": "66",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "(Once per turn: Same Name) During your End Step, including being in Soul State/pre-advent condition, if you control any \"Petit Lampo\", you can return this card from your Trash to the Hand.",
+   "Flash",
+   "Return an opposing exhausted Spirit/Ultimate to the deckbottom.",
+   "Then, including being in Soul State/pre-advent condition, if you control any Green Contract Spirits, send six cores from any opposing Grandwalker Nexuses to the Void."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS66-082",
+  "name": "Absolute Shooting",
+  "name_jp": "アブソリュートシューティング",
+  "type": "Magic",
+  "color": "white",
+  "cost": 7,
+  "reduction": {
+   "white": 4
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Silver Zero"
+  ],
+  "text": "While your Spirit with Load/Fast Draw is attacking, when the opponent uses a Magic card, before that effect activates, by paying the cost and discarding this card from the Hand, immediately negate that effect, and put that card to the Removed Zone.\n\nFlash {{Fast Draw|1}}\nThe effects of every opposing Spirit/Ultimate can't activate, and return an opposing Spirit/Ultimate to the deckbottom. By discarding one facedown card under your \"The PartnerBurai Vrick\", including those that are in Soul State/pre-advent condition, return +1 Spirit/Ultimate to the deck.",
+  "image": "66-082.png",
+  "block": "66",
+  "saga": 14,
+  "mechanics": [
+   "Fast Draw"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "While your Spirit with Load/Fast Draw is attacking, when the opponent uses a Magic card, before that effect activates, by paying the cost and discarding this card from the Hand, immediately negate that effect, and put that card to the Removed Zone.",
+   "Flash {{Fast Draw|1}}",
+   "The effects of every opposing Spirit/Ultimate can't activate, and return an opposing Spirit/Ultimate to the deckbottom.",
+   "By discarding one facedown card under your \"The PartnerBurai Vrick\", including those that are in Soul State/pre-advent condition, return +1 Spirit/Ultimate to the deck."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS66-083",
+  "name": "Kaiser Summon: Empereu Field",
+  "name_jp": "皇帝召喚：アンプルフィールド",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 3,
+  "reduction": {
+   "yellow": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Golden Cloud"
+  ],
+  "text": "Type: Vision Flash - (It can be activated while on Field)\n█ By discarding this card, during this battle, an opposing Spirit/Ultimate can't activate its effects.\n\nFlash\nIncluding being in Soul State/pre-advent condition, if you control any \"The Phantom Partner, Palm\", draw a card from the deckbottom. Then, during this turn, either treat an opposing Spirit/Nexus as LV1, or treat an opposing Ultimate as LV3. Then, put this card onto your Field.",
+  "image": "66-083.png",
+  "block": "66",
+  "saga": 14,
+  "mechanics": [
+   "Type: Vision"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Type: Vision Flash - (It can be activated while on Field)",
+   "█ By discarding this card, during this battle, an opposing Spirit/Ultimate can't activate its effects.",
+   "Flash",
+   "Including being in Soul State/pre-advent condition, if you control any \"The Phantom Partner, Palm\", draw a card from the deckbottom.",
+   "Then, during this turn, either treat an opposing Spirit/Nexus as LV1, or treat an opposing Ultimate as LV3.",
+   "Then, put this card onto your Field."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS66-084",
+  "name": "Evil Sacred Summon: Chaos Field",
+  "name_jp": "凶神召喚：カオスフィールド",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 4,
+  "reduction": {
+   "yellow": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Golden Cloud"
+  ],
+  "text": "Type: Vision (It can be activated while on Field)\n█ When the opposing Life is reduced, by discarding this card, put a core from the Void to your Reserve.\n\nFlash\nIncluding being in Soul State/pre-advent condition, if you control any \"The Phantom Partner, Palm\", during this turn, give an opposing Spirit -5000. Also, if it's the opposing Attack Step, immediately end the battle. Then, put this card onto your Field.",
+  "image": "66-084.png",
+  "block": "66",
+  "saga": 14,
+  "mechanics": [
+   "Type: Vision"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Type: Vision (It can be activated while on Field)",
+   "█ When the opposing Life is reduced, by discarding this card, put a core from the Void to your Reserve.",
+   "Flash",
+   "Including being in Soul State/pre-advent condition, if you control any \"The Phantom Partner, Palm\", during this turn, give an opposing Spirit -5000.",
+   "Also, if it's the opposing Attack Step, immediately end the battle.",
+   "Then, put this card onto your Field."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS66-085",
   "name": "Deep Sea Draw",
   "name_jp": "ディープシードロー",
@@ -10800,6 +13259,64 @@
    "10"
   ],
   "rcode": "C"
+ },
+ {
+  "id": "BS66-086",
+  "name": "Indiscrimate Sword",
+  "name_jp": "インディスクリメイトソード",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 4,
+  "reduction": {
+   "ultimate": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Holies"
+  ],
+  "text": "This card can't be used unless you control no Spirits & have 0 Spirit cards in your Trash.\n\nFlash\nDestroy an opposing Spirit/Ultimate with a cost equal or inferior to your number of counters. Then, you can discard a card from the opposing decktop. When any Spirit card/Ultimate card is discarded by this effect, destroy an opposing Spirit/Ultimate with the lowest cost. This effect can't be prevented by opposing effects.",
+  "image": "66-086.png",
+  "block": "66",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "This card can't be used unless you control no Spirits & have 0 Spirit cards in your Trash.",
+   "Flash",
+   "Destroy an opposing Spirit/Ultimate with a cost equal or inferior to your number of counters.",
+   "Then, you can discard a card from the opposing decktop.",
+   "When any Spirit card/Ultimate card is discarded by this effect, destroy an opposing Spirit/Ultimate with the lowest cost.",
+   "This effect can't be prevented by opposing effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS66-087",
+  "name": "Blue Bless",
+  "name_jp": "ブルーブレス",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 7,
+  "reduction": {
+   "blue": 5
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Azure Wave"
+  ],
+  "text": "When using this card from the Hand, if you have six counters or more, treat all reduction symbols as fulfilled.\n\nFlash\nRefresh a Spirit you control. Also, including being in Soul State/pre-advent condition, if you control any \"Petit Shack\", during this turn, the symbols of all opposing Spirits/Ultimates are fixed as zero.",
+  "image": "66-087.png",
+  "block": "66",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "When using this card from the Hand, if you have six counters or more, treat all reduction symbols as fulfilled.",
+   "Flash",
+   "Refresh a Spirit you control.",
+   "Also, including being in Soul State/pre-advent condition, if you control any \"Petit Shack\", during this turn, the symbols of all opposing Spirits/Ultimates are fixed as zero."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS66-CX01",
@@ -10975,6 +13492,98 @@
    "10"
   ],
   "rcode": "R"
+ },
+ {
+  "id": "BS66-RV002",
+  "name": "Ultimate-Grand-Woden",
+  "name_jp": "アルティメット・グラン・ウォーデン",
+  "type": "Ultimate",
+  "color": "white",
+  "cost": 8,
+  "reduction": {
+   "ultimate": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 15000
+   },
+   {
+    "cores": 2,
+    "bp": 20000
+   }
+  ],
+  "families": [
+   "Extreme Contract",
+   "Incarnate",
+   "Armed Machine"
+  ],
+  "text": "Flash - {{Contract Advent|Extreme Contract & C5 or more|(Either Attack Step)}}\nBy sending your  to the Trash, stack this from the Hand onto your target Spirit/Ultimate.\n\n{{SuAdcon|You control one or more Incarnate Spirits, including being in Soul State/pre-advent condition}}\n\n(Once per Turn: Same Name) If your Life is at three or less, you can Contract Advent this card from the Hand, treating your  as being sent to the Trash.\n\nUltimate Trigger [LV3][LV4][LV5] (When Attacks)\nWhen Ultimate Trigger hits, return three opposing Spirits to the Hand. Critical Hit If the hit card is Cost 3 or more, discard an opposing Burst, and return three opposing Ultimates to the Hand.\nutb",
+  "image": "Ultimate-Grand-Woden.png",
+  "block": "66",
+  "saga": 14,
+  "mechanics": [
+   "Contract Advent"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{Contract Advent|Extreme Contract & C5 or more|(Either Attack Step)}}",
+   "By sending your  to the Trash, stack this from the Hand onto your target Spirit/Ultimate.",
+   "{{SuAdcon|You control one or more Incarnate Spirits, including being in Soul State/pre-advent condition}}",
+   "(Once per Turn: Same Name) If your Life is at three or less, you can Contract Advent this card from the Hand, treating your  as being sent to the Trash.",
+   "Ultimate Trigger [LV3][LV4][LV5] (When Attacks)",
+   "When Ultimate Trigger hits, return three opposing Spirits to the Hand.",
+   "Critical Hit If the hit card is Cost 3 or more, discard an opposing Burst, and return three opposing Ultimates to the Hand.",
+   "utb"
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS66-RV003",
+  "name": "Ultimate-Alexander",
+  "name_jp": "アルティメット・アレクサンダー",
+  "type": "Ultimate",
+  "color": "blue",
+  "cost": 6,
+  "reduction": {
+   "ultimate": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 10000
+   },
+   {
+    "cores": 4,
+    "bp": 14000
+   }
+  ],
+  "families": [
+   "Extreme Contract",
+   "Incarnate",
+   "Fighting Spirit"
+  ],
+  "text": "Flash - {{Contract Advent|Extreme Contract & C3 or more|(Your Turn)}}\nBy sending your  to the Trash, stack this from the Hand onto your target Spirit/Ultimate.\n\n{{SuAdcon|You control one or more Incarnate Spirits, including being in Soul State/pre-advent condition}}\n\nUltimate Trigger [LV3][LV4] (When Attacks)\nWhen Ultimate Trigger hits, destroy an opposing Spirit with the lowest cost, and once per turn, this Ultimate can refresh.\nutb\n\nDuring OC [LV3][LV4] (Your Attack Step)\nAll your \"Holies\"/\"Incarnate\" family Spirits/Ultimates are unaffected by opposing Magic effects.",
+  "image": "Ultimate-Alexander.png",
+  "block": "66",
+  "saga": 14,
+  "mechanics": [
+   "Contract Advent"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{Contract Advent|Extreme Contract & C3 or more|(Your Turn)}}",
+   "By sending your  to the Trash, stack this from the Hand onto your target Spirit/Ultimate.",
+   "{{SuAdcon|You control one or more Incarnate Spirits, including being in Soul State/pre-advent condition}}",
+   "Ultimate Trigger [LV3][LV4] (When Attacks)",
+   "When Ultimate Trigger hits, destroy an opposing Spirit with the lowest cost, and once per turn, this Ultimate can refresh.",
+   "utb",
+   "During OC [LV3][LV4] (Your Attack Step)",
+   "All your \"Holies\"/\"Incarnate\" family Spirits/Ultimates are unaffected by opposing Magic effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS66-X01",
@@ -11484,6 +14093,40 @@
    "10"
   ],
   "rcode": "X"
+ },
+ {
+  "id": "BS66-X12",
+  "name": "Clown Princess Summon: Trister Field",
+  "name_jp": "導化姫召喚：トリスタフィールド",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 5,
+  "reduction": {
+   "yellow": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Golden Cloud"
+  ],
+  "text": "Type: Vision Flash - (It can be activated while on Field)\n█ By discarding this card, during this turn, the effects of your Magic with Vision that target opposing Spirits/Ultimates can't be prevented by opposing effects\n\nFlash\n(Once per Turn: Same Name) Return a Magic card with Vision from your Trash to the Hand. Then, you can put a Magic card with Vision from your Hand onto the Field. When you've done so, activate one of that card's Main/Flash effects. Then, put this card onto your Field.",
+  "image": "66-X12.png",
+  "block": "66",
+  "saga": 14,
+  "mechanics": [
+   "Type: Vision"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Type: Vision Flash - (It can be activated while on Field)",
+   "█ By discarding this card, during this turn, the effects of your Magic with Vision that target opposing Spirits/Ultimates can't be prevented by opposing effects",
+   "Flash",
+   "(Once per Turn: Same Name) Return a Magic card with Vision from your Trash to the Hand.",
+   "Then, you can put a Magic card with Vision from your Hand onto the Field.",
+   "When you've done so, activate one of that card's Main/Flash effects.",
+   "Then, put this card onto your Field."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS66-XV01",
@@ -14544,6 +17187,277 @@
   "rcode": "R"
  },
  {
+  "id": "BS67-058",
+  "name": "The PhantomDemonLord Forovozark",
+  "name_jp": "幻霊魔卿フォロヴォザルク",
+  "type": "Ultimate",
+  "color": "purple",
+  "cost": 5,
+  "reduction": {
+   "purple": 1,
+   "ultimate": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 7000
+   },
+   {
+    "cores": 3,
+    "bp": 12000
+   },
+   {
+    "cores": 6,
+    "bp": 17000
+   }
+  ],
+  "families": [
+   "Evil God",
+   "Evil Deity"
+  ],
+  "text": "{{Sumcon|You control one or more “The PartnerDemonLord Javad”, including being in Soul State/pre-advent condition}}\n\nWhen your \"Four Demon Lord\" is summoned, or attacks, you can immediately activate this set card.\n\n{{Burst|After your Life is reduced}}\nSummon this card without paying the cost.\n\n[LV3][LV4][LV5] (When Summoned)\nDuring this turn, increase the LV cost of one opposing Spirit by +1. By sending a core from your Field/Reserve to the Trash, change the \"one\" written in this effect to \"two\".",
+  "image": "67-058.png",
+  "block": "67",
+  "saga": 14,
+  "mechanics": [
+   "Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Sumcon|You control one or more “The PartnerDemonLord Javad”, including being in Soul State/pre-advent condition}}",
+   "When your \"Four Demon Lord\" is summoned, or attacks, you can immediately activate this set card.",
+   "{{Burst|After your Life is reduced}}",
+   "Summon this card without paying the cost.",
+   "[LV3][LV4][LV5] (When Summoned)",
+   "During this turn, increase the LV cost of one opposing Spirit by +1.",
+   "By sending a core from your Field/Reserve to the Trash, change the \"one\" written in this effect to \"two\"."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS67-059",
+  "name": "The ExtremeCub Kintora",
+  "name_jp": "極小獣キントラ",
+  "type": "Ultimate",
+  "color": "green",
+  "cost": 7,
+  "reduction": {
+   "green": 1,
+   "ultimate": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 10000
+   },
+   {
+    "cores": 3,
+    "bp": 12000
+   }
+  ],
+  "families": [
+   "Holies",
+   "Blade Beast"
+  ],
+  "text": "{{sumcon|You control one or more “The Extreme Partner, Zetter”, including being in Soul State/pre-advent condition}}\n\n{{Burst|After your Ultimate is depleted/destroyed by the Opponent}}\nReveal two cards from your decktop. You can pay one cost to summon a \"Holies\" family card among them. Discard any remaining cards. After this effect resolves, summon this card without paying the cost.\n\nUltimate Trigger [LV3][LV4] (When Summoned/Attacks)\nWhen Ultimate Trigger hits, heavy exhaust an opposing Spirit/Ultimate.\nutb",
+  "image": "67-059.png",
+  "block": "67",
+  "saga": 14,
+  "mechanics": [
+   "Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{sumcon|You control one or more “The Extreme Partner, Zetter”, including being in Soul State/pre-advent condition}}",
+   "{{Burst|After your Ultimate is depleted/destroyed by the Opponent}}",
+   "Reveal two cards from your decktop.",
+   "You can pay one cost to summon a \"Holies\" family card among them.",
+   "Discard any remaining cards.",
+   "After this effect resolves, summon this card without paying the cost.",
+   "Ultimate Trigger [LV3][LV4] (When Summoned/Attacks)",
+   "When Ultimate Trigger hits, heavy exhaust an opposing Spirit/Ultimate.",
+   "utb"
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS67-060",
+  "name": "The HeavenArmorBeast Vangurine",
+  "name_jp": "天鎧獣ヴァングリン",
+  "type": "Ultimate",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 1,
+   "ultimate": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 6000
+   },
+   {
+    "cores": 3,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Holies",
+   "Machine Beast"
+  ],
+  "text": "{{sumcon|You control one or more “The Extreme Partner, Zetter”, including being in Soul State/pre-advent condition}}\n\n[LV3][LV4] (When Summoned/Blocks)\nPut one core from the Void to this Ultimate.\n\n[LV3][LV4] (Your Main Step)\n(Once per Turn: Same Name) By exhausting this Ultimate, activate the following Ultimate Trigger.\nUltimate Trigger When Ultimate Trigger hits, return an opposing Spirit/Ultimate to the Hand.\nutb",
+  "image": "67-060.png",
+  "block": "67",
+  "saga": 14,
+  "mechanics": [
+   "Ultimate Trigger"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{sumcon|You control one or more “The Extreme Partner, Zetter”, including being in Soul State/pre-advent condition}}",
+   "[LV3][LV4] (When Summoned/Blocks)",
+   "Put one core from the Void to this Ultimate.",
+   "[LV3][LV4] (Your Main Step)",
+   "(Once per Turn: Same Name) By exhausting this Ultimate, activate the following Ultimate Trigger.",
+   "Ultimate Trigger When Ultimate Trigger hits, return an opposing Spirit/Ultimate to the Hand.",
+   "utb"
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS67-061",
+  "name": "The HolyDragonMachine Amphiptere",
+  "name_jp": "聖龍機アンピプテラ",
+  "type": "Ultimate",
+  "color": "yellow",
+  "cost": 5,
+  "reduction": {
+   "yellow": 1,
+   "ultimate": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 9000
+   },
+   {
+    "cores": 2,
+    "bp": 12000
+   }
+  ],
+  "families": [
+   "Holies",
+   "Imaginary Beast"
+  ],
+  "text": "{{Sumcon|You control no Spirits & have 0 Spirit cards in your Trash}}\n\n[LV3][LV4] (When Summoned)\nYour counter +1. Then, you can draw two cards from the deckbottom. Then, including in pre-advent condition, if you control any \"The Extreme Partner, Zetter\", target a color, and during this turn, every opposing Spirit is treated as having that color only.\n\n[LV4] (Your Attack Step)\nOpposing Blue Spirits can't block.",
+  "image": "67-061.png",
+  "block": "67",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "{{Sumcon|You control no Spirits & have 0 Spirit cards in your Trash}}",
+   "[LV3][LV4] (When Summoned)",
+   "Your counter +1.",
+   "Then, you can draw two cards from the deckbottom.",
+   "Then, including in pre-advent condition, if you control any \"The Extreme Partner, Zetter\", target a color, and during this turn, every opposing Spirit is treated as having that color only.",
+   "[LV4] (Your Attack Step)",
+   "Opposing Blue Spirits can't block."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS67-062",
+  "name": "The PrimeGuardBeast Cerberkeeper",
+  "name_jp": "至番獣ケルベキーパー",
+  "type": "Ultimate",
+  "color": "blue",
+  "cost": 6,
+  "reduction": {
+   "blue": 1,
+   "ultimate": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 10000
+   },
+   {
+    "cores": 4,
+    "bp": 14000
+   }
+  ],
+  "families": [
+   "Extreme Contract",
+   "Holies",
+   "Fusion Beast"
+  ],
+  "text": "Flash - {{Contract Advent|Extreme Contract & C3 or more|(Your Turn)}}\nBy sending your  to the Trash, stack this from the Hand onto your target Ultimate.\n\n{{SuAdcon|You control one or more “The Extreme Partner, Zetter”, including being in Soul State/pre-advent condition}}\n\nDuring Advent Ultimate Trigger\nWhen Ultimate Trigger hits, destroy an opposing Spirit with the lowest cost.\nutb\n\nDuring OC [LV3][LV4] (Your Attack Step)\nWhen your Ultimate Trigger hits, during this turn, increase the cost of every card in the opposing Hand by +1.",
+  "image": "67-062.png",
+  "block": "67",
+  "saga": 14,
+  "mechanics": [
+   "Contract Advent"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{Contract Advent|Extreme Contract & C3 or more|(Your Turn)}}",
+   "By sending your  to the Trash, stack this from the Hand onto your target Ultimate.",
+   "{{SuAdcon|You control one or more “The Extreme Partner, Zetter”, including being in Soul State/pre-advent condition}}",
+   "During Advent Ultimate Trigger",
+   "When Ultimate Trigger hits, destroy an opposing Spirit with the lowest cost.",
+   "utb",
+   "During OC [LV3][LV4] (Your Attack Step)",
+   "When your Ultimate Trigger hits, during this turn, increase the cost of every card in the opposing Hand by +1."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS67-063",
+  "name": "The UltimateNovaSword Zero-Sword",
+  "name_jp": "究極新星剣ゼロソード",
+  "type": "Brave",
+  "color": "red",
+  "cost": 5,
+  "reduction": {
+   "ultimate": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   }
+  ],
+  "families": [
+   "Exalted Sword",
+   "Incarnate"
+  ],
+  "text": "(Once per Turn: Same Name) When your \"Incarnate\" family Ultimate Contract Advents, you can immediately summon this card from the Hand by paying one cost. When you've done so, your counter +1.\n\nDuring Brave\nThis Brave's cost becomes 0.\n\nDuring Brave (When Attacks)\nYour counter +1. Also, when your Ultimate Trigger hits, you can destroy an opposing Nexus.",
+  "image": "67-063.png",
+  "block": "67",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "(Once per Turn: Same Name) When your \"Incarnate\" family Ultimate Contract Advents, you can immediately summon this card from the Hand by paying one cost.",
+   "When you've done so, your counter +1.",
+   "During Brave",
+   "This Brave's cost becomes 0.",
+   "During Brave (When Attacks)",
+   "Your counter +1.",
+   "Also, when your Ultimate Trigger hits, you can destroy an opposing Nexus."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "brave": {
+   "bp": 5000,
+   "costGe": 4
+  }
+ },
+ {
   "id": "BS67-064",
   "name": "The ShadowyBlade Shadow Dagger",
   "name_jp": "影刃シャドーダガー",
@@ -15171,6 +18085,40 @@
   "rcode": "C"
  },
  {
+  "id": "BS67-079",
+  "name": "Dead Flame",
+  "name_jp": "デッドフレイム",
+  "type": "Magic",
+  "color": "red",
+  "cost": 4,
+  "reduction": {},
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Judgment"
+  ],
+  "text": "{{Mirage|Cost 2}}\nDuring Set\nWhile your \"Judgment\" family Spirit is attacking, the opponent can't end the Attack Step via effects.\n\nMain\nDraw a card. Then, (Once per Turn: Same Name) reveal three cards from your decktop. Besides \"Dead Flame\", add every \"Judgment\" family card among them to the Hand. Discard any remaining cards. When cards are added via this effect, you can destroy an opposing Spirit/Ultimate with the lowest BP.",
+  "image": "67-079.png",
+  "block": "67",
+  "saga": 14,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Mirage|Cost 2}}",
+   "During Set",
+   "While your \"Judgment\" family Spirit is attacking, the opponent can't end the Attack Step via effects.",
+   "Main",
+   "Draw a card.",
+   "Then, (Once per Turn: Same Name) reveal three cards from your decktop.",
+   "Besides \"Dead Flame\", add every \"Judgment\" family card among them to the Hand.",
+   "Discard any remaining cards.",
+   "When cards are added via this effect, you can destroy an opposing Spirit/Ultimate with the lowest BP."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS67-080",
   "name": "Return Rider",
   "name_jp": "リターンライダー",
@@ -15212,6 +18160,272 @@
    "10"
   ],
   "rcode": "C"
+ },
+ {
+  "id": "BS67-081",
+  "name": "Dark Shoot",
+  "name_jp": "ダークシュート",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 7,
+  "reduction": {
+   "purple": 4
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Blood Crystal"
+  ],
+  "text": "Including being in Soul State, while you control any Spirit with \"Curse\"-named effects, this card in Hand becomes Cost 5.\n\nFlash\nTreat this card as colorless, and send two cores from the opposing Field to the Reserve. After this effect resolves, (Once per Turn: Same Name) if the opponent controls any Spirit/Ultimate, you can return this card to the Hand.",
+  "image": "67-081.png",
+  "block": "67",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "Including being in Soul State, while you control any Spirit with \"Curse\"-named effects, this card in Hand becomes Cost 5.",
+   "Flash",
+   "Treat this card as colorless, and send two cores from the opposing Field to the Reserve.",
+   "After this effect resolves, (Once per Turn: Same Name) if the opponent controls any Spirit/Ultimate, you can return this card to the Hand."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS67-082",
+  "name": "Dead Sonic",
+  "name_jp": "デッドソニック",
+  "type": "Magic",
+  "color": "green",
+  "cost": 4,
+  "reduction": {},
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Judgment"
+  ],
+  "text": "Main\n(Once per Turn: Same Name) You can reveal three cards from your decktop. Among them, summon/deploy any number of \"Judgment\" family cards, paying one cost each. Discard any remaining cards.\n\nFlash\nIf your Life is three or less, immediately activate this card's Main effect.",
+  "image": "67-082.png",
+  "block": "67",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "Main",
+   "(Once per Turn: Same Name) You can reveal three cards from your decktop.",
+   "Among them, summon/deploy any number of \"Judgment\" family cards, paying one cost each.",
+   "Discard any remaining cards.",
+   "Flash",
+   "If your Life is three or less, immediately activate this card's Main effect."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS67-083",
+  "name": "Beam Blast",
+  "name_jp": "ビームブラスト",
+  "type": "Magic",
+  "color": "white",
+  "cost": 3,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Silver Zero"
+  ],
+  "text": "(Can’t Stack) When your “Machine Contract” family Spirit {{Tk|Contract Advents}}, you can return this card from the Trash to the Hand.\n\nAt the start of Opposing Attack Step, you can use this card from the Hand.\n\nFlash\nTarget an opposing Spirit/Ultimate. During this turn, that Spirit/Ultimate must attack next if possible.",
+  "image": "67-083.png",
+  "block": "67",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "(Can’t Stack) When your “Machine Contract” family Spirit {{Tk|Contract Advents}}, you can return this card from the Trash to the Hand.",
+   "At the start of Opposing Attack Step, you can use this card from the Hand.",
+   "Flash",
+   "Target an opposing Spirit/Ultimate.",
+   "During this turn, that Spirit/Ultimate must attack next if possible."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS67-084",
+  "name": "Dream Sound",
+  "name_jp": "ドリームサウンド",
+  "type": "Magic",
+  "color": "white",
+  "cost": 5,
+  "reduction": {
+   "white": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Silver Zero"
+  ],
+  "text": "When this card is revealed from the deck by your \"Silver Zero\" family effect, by paying two costs, add it to the Hand.\n\nFlash\nReturn an opposing Spirit/Ultimate to the Hand. Then, including being in Soul State/pre-advent condition, if you control any \"Petit Stark\", during this turn, your Life can't be reduced by the attacks of opposing Cost 4 or more Spirits/Ultimates.",
+  "image": "67-084.png",
+  "block": "67",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "When this card is revealed from the deck by your \"Silver Zero\" family effect, by paying two costs, add it to the Hand.",
+   "Flash",
+   "Return an opposing Spirit/Ultimate to the Hand.",
+   "Then, including being in Soul State/pre-advent condition, if you control any \"Petit Stark\", during this turn, your Life can't be reduced by the attacks of opposing Cost 4 or more Spirits/Ultimates."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS67-085",
+  "name": "Chain Summon: Small Phynx Field",
+  "name_jp": "連召喚：子フィンクスフィールド",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 2,
+  "reduction": {
+   "yellow": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Golden Cloud"
+  ],
+  "text": "You can put up to 20 copies of this card in deck.\n\nType: Vision (The following effects are all active while on Field)\n█ Every opposing Spirit/Ultimate gets -1000 BP.\n█ By discarding this card during your Main Step, reveal a card from the opposing decktop. Return the revealed card to the decktop.\n\nFlash\nIncluding being in Soul State/pre-advent condition, if you control any \"The Phantom Partner, Palm\", during this turn, give one of your Spirits +2000 BP. Also, if it's the Opposing Turn, refresh a Yellow Spirit you control. After this effect resolves, put this card onto your Field.",
+  "image": "67-085.png",
+  "block": "67",
+  "saga": 14,
+  "mechanics": [
+   "Type: Vision"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "You can put up to 20 copies of this card in deck.",
+   "Type: Vision (The following effects are all active while on Field)",
+   "█ Every opposing Spirit/Ultimate gets -1000 BP.",
+   "█ By discarding this card during your Main Step, reveal a card from the opposing decktop.",
+   "Return the revealed card to the decktop.",
+   "Flash",
+   "Including being in Soul State/pre-advent condition, if you control any \"The Phantom Partner, Palm\", during this turn, give one of your Spirits +2000 BP.",
+   "Also, if it's the Opposing Turn, refresh a Yellow Spirit you control.",
+   "After this effect resolves, put this card onto your Field."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS67-086",
+  "name": "Rainbow Illusion",
+  "name_jp": "レインボーイリュージョン",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 4,
+  "reduction": {
+   "yellow": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Golden Cloud"
+  ],
+  "text": "You can use this face-up card from your deck.\n\nFlash\nIncluding being in Soul State/pre-advent condition, if you control any \"Petit Feaniel\", during this turn, an opposing Spirit/Ultimate can't attack. If you have five counters or more, instead, every opposing Spirit/Ultimate can't attack.",
+  "image": "67-086.png",
+  "block": "67",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "You can use this face-up card from your deck.",
+   "Flash",
+   "Including being in Soul State/pre-advent condition, if you control any \"Petit Feaniel\", during this turn, an opposing Spirit/Ultimate can't attack.",
+   "If you have five counters or more, instead, every opposing Spirit/Ultimate can't attack."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS67-087",
+  "name": "Hero Summon: LunaArk Field",
+  "name_jp": "覇王召喚：ルナアークフィールド",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 4,
+  "reduction": {
+   "yellow": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Golden Cloud"
+  ],
+  "text": "Type: Vision Flash - (It can be activated while on Field)\n█ By discarding this card, target an opposing Spirit/Ultimate. During this turn, the BP of up to two opposing Spirits/Ultimates becomes the same as that Spirit/Ultimate you targeted.\n\nFlash\nIncluding being in Soul State/pre-advent condition, if you control any \"The Phantom Partner, Palm\", during this turn, an opposing Spirit/Ultimate's BP becomes 1000. Then, put this card onto your Field.",
+  "image": "67-087.png",
+  "block": "67",
+  "saga": 14,
+  "mechanics": [
+   "Type: Vision"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Type: Vision Flash - (It can be activated while on Field)",
+   "█ By discarding this card, target an opposing Spirit/Ultimate.",
+   "During this turn, the BP of up to two opposing Spirits/Ultimates becomes the same as that Spirit/Ultimate you targeted.",
+   "Flash",
+   "Including being in Soul State/pre-advent condition, if you control any \"The Phantom Partner, Palm\", during this turn, an opposing Spirit/Ultimate's BP becomes 1000.",
+   "Then, put this card onto your Field."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS67-088",
+  "name": "Holy Average",
+  "name_jp": "ホーリーアベレージ",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 4,
+  "reduction": {
+   "yellow": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Golden Cloud"
+  ],
+  "text": "You can use this face-up card from your deck.\n\nFlash\nDraw a card. Then, if you control any \"Petit Feaniel\", including being in Soul State/Pre-advent condition, during this turn, an opposing Spirit/Ultimate gets -10000 BP, and destroy it if it reaches 0 BP.",
+  "image": "67-088.png",
+  "block": "67",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "You can use this face-up card from your deck.",
+   "Flash",
+   "Draw a card.",
+   "Then, if you control any \"Petit Feaniel\", including being in Soul State/Pre-advent condition, during this turn, an opposing Spirit/Ultimate gets -10000 BP, and destroy it if it reaches 0 BP."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS67-089",
+  "name": "Turn Down",
+  "name_jp": "ターンダウン",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 10,
+  "reduction": {},
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Azure Wave"
+  ],
+  "text": "When using this card, for each Spirit with AFO you control, this card's cost gets -2 (Max. -8).\n\nFlash\nDestroy an opposing Spirit/Ultimate with the lowest cost. After this effect resolves, destroy an opposing Spirit/Ultimate with the highest cost. If you control three or more Spirits with AFO, these effects can only be prevented by \"Armor\"-named effects.",
+  "image": "67-089.png",
+  "block": "67",
+  "saga": 14,
+  "fxComplete": false,
+  "residual": [
+   "When using this card, for each Spirit with AFO you control, this card's cost gets -2 (Max.",
+   "-8).",
+   "Flash",
+   "Destroy an opposing Spirit/Ultimate with the lowest cost.",
+   "After this effect resolves, destroy an opposing Spirit/Ultimate with the highest cost.",
+   "If you control three or more Spirits with AFO, these effects can only be prevented by \"Armor\"-named effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS67-CX01",
@@ -15338,6 +18552,54 @@
    "10"
   ],
   "rcode": "契約X"
+ },
+ {
+  "id": "BS67-RV001",
+  "name": "Ultimate-Siegfrieden",
+  "name_jp": "アルティメット・ジークフリーデン",
+  "type": "Ultimate",
+  "color": "red",
+  "cost": 9,
+  "reduction": {
+   "red": 2,
+   "white": 2,
+   "ultimate": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 12000
+   },
+   {
+    "cores": 3,
+    "bp": 20000
+   }
+  ],
+  "families": [
+   "Extreme Contract",
+   "Incarnate"
+  ],
+  "text": "Flash - {{Contract Advent|Extreme Contract & C6 or more|(Your Turn)}}\nBy sending your  to the Trash, stack this from the Hand onto your target Spirit/Ultimate.\n\n{{SuAdcon|You control one or more Incarnate Spirits, including being in Soul State/pre-advent condition}}\n\nUltimate Trigger [LV3][LV4][LV5] (When Attacks)\nWhen Ultimate Trigger hits, this Ultimate gains Red and White symbols, one of each. Also, for each cost of the card sent to the Trash, destroy an opposing 20000 BP or less Spirit/Ultimate.\nutb\n\nDuring OC & During Advent [LV3][LV4] Flash - (Either Attack Step)\nBy discarding two Ultimate cards from your Hand, refresh this Ultimate.",
+  "image": "67-RV001.png",
+  "block": "67",
+  "saga": 14,
+  "mechanics": [
+   "Contract Advent"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{Contract Advent|Extreme Contract & C6 or more|(Your Turn)}}",
+   "By sending your  to the Trash, stack this from the Hand onto your target Spirit/Ultimate.",
+   "{{SuAdcon|You control one or more Incarnate Spirits, including being in Soul State/pre-advent condition}}",
+   "Ultimate Trigger [LV3][LV4][LV5] (When Attacks)",
+   "When Ultimate Trigger hits, this Ultimate gains Red and White symbols, one of each.",
+   "Also, for each cost of the card sent to the Trash, destroy an opposing 20000 BP or less Spirit/Ultimate.",
+   "utb",
+   "During OC & During Advent [LV3][LV4] Flash - (Either Attack Step)",
+   "By discarding two Ultimate cards from your Hand, refresh this Ultimate."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS67-X01",
@@ -15673,6 +18935,58 @@
    "10"
   ],
   "rcode": "X"
+ },
+ {
+  "id": "BS67-X08",
+  "name": "The ExtremeHolyDragon Chocodraurum",
+  "name_jp": "極聖龍ショコドラウルム",
+  "type": "Ultimate",
+  "color": "yellow",
+  "cost": 7,
+  "reduction": {
+   "yellow": 1,
+   "ultimate": 2
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 10000
+   },
+   {
+    "cores": 2,
+    "bp": 14000
+   },
+   {
+    "cores": 3,
+    "bp": 17000
+   }
+  ],
+  "families": [
+   "Holies",
+   "Incarnate",
+   "Puppet Beast"
+  ],
+  "text": "{{sumcon|You control one or more Holies/Incarnate Spirit/Ultimate, including being in Soul State/pre-advent condition}}\n\nWhen your Cost 6 or more Ultimates Contract Advents, you can immediately activate this set card.\n\n{{Burst|After your Life is reduced}}\nSummon this card without paying the cost. Then, draw two cards from the deckbottom.\n\nUltimate Trigger [LV3][LV4][LV5] (When Summoned/Attacks)\nWhen Ultimate Trigger hits, during this turn, give every opposing Spirit/Ultimate -15000 BP. Destroy every Spirit/Ultimate that has its BP brought to 0 by this effect.\nutb",
+  "image": "67-X08.png",
+  "block": "67",
+  "saga": 14,
+  "mechanics": [
+   "Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{sumcon|You control one or more Holies/Incarnate Spirit/Ultimate, including being in Soul State/pre-advent condition}}",
+   "When your Cost 6 or more Ultimates Contract Advents, you can immediately activate this set card.",
+   "{{Burst|After your Life is reduced}}",
+   "Summon this card without paying the cost.",
+   "Then, draw two cards from the deckbottom.",
+   "Ultimate Trigger [LV3][LV4][LV5] (When Summoned/Attacks)",
+   "When Ultimate Trigger hits, during this turn, give every opposing Spirit/Ultimate -15000 BP.",
+   "Destroy every Spirit/Ultimate that has its BP brought to 0 by this effect.",
+   "utb"
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS67-X09",

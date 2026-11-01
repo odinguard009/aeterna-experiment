@@ -52,7 +52,7 @@ test('I09 symbols are whole numbers >= 0', () => {
   for (const c of all) assert.ok(Number.isInteger(c.symbols) && c.symbols >= 0, c.id);
 });
 test('I10 reduction uses known colours and whole numbers >= 1', () => {
-  for (const c of all) for (const [k, n] of Object.entries(c.reduction)) { assert.ok(COLORS.has(k) || k === 'ultimate', `${c.id} ${k}`); assert.ok(Number.isInteger(n) && n >= 1, c.id); }
+  for (const c of all) for (const [k, n] of Object.entries(c.reduction)) { assert.ok(COLORS.has(k) || k === 'ultimate' || k === 'god', `${c.id} ${k}`); assert.ok(Number.isInteger(n) && n >= 1, c.id); }
 });
 test('I11 level core thresholds ascend (wiki errors are listed in the report) and BP is never negative', () => {
   const listed = new Set(report.level_problems.map(p => p.id));

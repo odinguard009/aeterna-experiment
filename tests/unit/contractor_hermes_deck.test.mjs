@@ -39,9 +39,9 @@ test('G04 the green deck file matches the prebuilt deck', async () => {
   const r = await g.page.evaluate(() => BS.PREBUILT.find(x => x.id === 'green').cards);
   assert.deepEqual(file, r);
 });
-test('G05 the Magic cards and Trismegistus the deck leaves out are not in the pack', async () => {
+test('G05 the Magic cards the deck used to leave out are in the pack after the 2026-11-01 playable pass', async () => {
   const r = await g.page.evaluate(() => ['BS69-083', 'BS69-084', 'BS70-083', 'BS69-X04'].map(i => !!BS.CARDS[i]));
-  assert.deepEqual(r, [false, false, false, false]);
+  assert.deepEqual(r, [true, true, true, true]);
 });
 
 // ---- Heavy Exhaust ----
