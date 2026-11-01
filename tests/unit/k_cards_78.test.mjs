@@ -116,3 +116,15 @@ test('K-795 BS21-046 / BS22-040: to:"opp" CANT_ATTACK bars only the opposing Spi
     sp('BS22-040', P, 2); const three = sp(byCost(3), O, 1); out.push(BS.flagActive(O, 'CANT_ATTACK', three)); return out;`);
   assert.deepEqual(r, [true, false, false, true], JSON.stringify(r));
 });
+
+test('K-796 Charge: core removal sends +1, deck discard +1 (non-Ultimate gate), BP destruction limit +1000, BP- +1000, exhaust +1', async () => {
+  const r = await run(`const mk = (id, q) => sp(id, q, 3); const c = (src, q) => ({ p: q, opp: q === P ? O : P, src, ctx: {} });
+    const a = BS.chargeAction(c(sp('BS75-001', P, 1), P), { do: 'OPP_CORES_TO_RESERVE', targets: 1, each: 1 }); const base = a.each;
+    mk('BS23-015', P); const b = BS.chargeAction(c(sp('BS75-001', P, 1), P), { do: 'OPP_CORES_TO_RESERVE', targets: 1, each: 1 }).each, t = BS.chargeAction(c(sp('BS75-001', P, 1), P), { do: 'OPP_CORES_TO_RESERVE', total: 2 }).total;
+    mk('BS19-057', P); const m = BS.chargeAction(c(sp('BS75-001', P, 1), P), { do: 'MILL_OPP', n: 2 }).n;
+    mk('BS21-002', P); const d = BS.chargeAction(c(sp('BS75-001', P, 1), P), { do: 'DESTROY', bpLe: 5000 }).bpLe;
+    mk('BS20-037', P); const bp = BS.chargeAction(c(sp('BS75-001', P, 1), P), { do: 'BP_MINUS', n: 2000 }).n;
+    mk('BS20-020', P); const ex = BS.chargeAction(c(sp('BS75-001', P, 1), P), { do: 'EXHAUST_OPP', n: 1 }).n;
+    const opp = BS.chargeAction(c(sp('BS75-001', O, 1), O), { do: 'MILL_OPP', n: 2 }).n; return [base, b, t, m, d, bp, ex, opp];`);
+  assert.deepEqual(r, [1, 2, 3, 3, 6000, 3000, 2, 2], JSON.stringify(r));
+});

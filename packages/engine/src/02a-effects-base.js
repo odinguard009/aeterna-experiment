@@ -189,7 +189,7 @@ const perOk = q => !!q && typeof q === 'object' && PER_TYPES.includes(q.type) &&
 const perCount = (owner, q, opp) => { const o = q.side === 'opp' && opp ? opp : owner; return Math.min(q.max != null ? q.max : Infinity, (q.type === 'Nexus' ? o.nexus : o.spirits.filter(f => CARDS[f.id].type !== 'Ultimate')).filter(f => { const k = CARDS[f.id];
   return (!q.colors || q.colors.some(x => (k.colors || [k.color, k.symbol]).includes(x))) && (!q.family || (Array.isArray(q.family) ? q.family : [q.family]).some(f => (k.families || []).includes(f))) && (!q.name || k.name.includes(q.name)) && (!q.team || cardTeams(k).includes(q.team)) && (!q.keyword || cardHasKeyword(k, q.keyword)) && (q.costLe == null || (k.cost || 0) <= q.costLe) && (q.costGe == null || (k.cost || 0) >= q.costGe); }).length); };      // v231 "(Max.N)"; v235 side:'opp' + cost bounds
 function ownerOf(i) { if (!G) return null; for (const k of ['player', 'opponent']) if (fieldList(G.p[k]).includes(i)) return G.p[k]; return null; }
-const STATIC_FLAGS = ['MUST_BLOCK', 'LOW_ATK_ONCE', 'NO_RETURN', 'CORES_DRAW', 'UNAFFECTED_SOUL', 'COST_DESTROY_PLUS', 'EXTRA_REDUCTION', 'SUMMON_SYMBOL', 'NO_END_ATTACK', 'UNAFFECTED', 'HAND_UNAFFECTED', 'BLOCK_EXHAUSTED', 'CANT_ATTACK', 'CANT_BLOCK', 'NO_DECK_DISCARD', 'NO_ATTACK_LIFE', 'HAND_COST', 'DRAW_PLUS', 'TREAT_LV3', 'TRIBUTE_SAFE', 'IMMORTALITY', 'NO_BLOCK_INFERIOR', 'NO_BP_COMPARE', 'CAMOU', 'SUMMON_TAX', 'CORE_SAFE', 'LIFE_CORE_TO_TRASH', 'EXTRA_SYMBOL', 'NO_BLOCK_SHAMAN', 'BP_VIA_SHAMAN', 'NO_ATTACK_ONE_CORE', 'RUMBLE_PLUS', 'UNBLOCKABLE_LOW', 'BLOCKS_AS_ATTACKS', 'BLOCK_TAX', 'ZERO_BP_DECKBOTTOM', 'LIFE_HIT_PLUS', 'ATK_TAX', 'COST_RELIEF'];
+const STATIC_FLAGS = ['MUST_BLOCK', 'LOW_ATK_ONCE', 'NO_RETURN', 'CORES_DRAW', 'UNAFFECTED_SOUL', 'COST_DESTROY_PLUS', 'EXTRA_REDUCTION', 'SUMMON_SYMBOL', 'NO_END_ATTACK', 'UNAFFECTED', 'HAND_UNAFFECTED', 'BLOCK_EXHAUSTED', 'CANT_ATTACK', 'CANT_BLOCK', 'NO_DECK_DISCARD', 'NO_ATTACK_LIFE', 'HAND_COST', 'DRAW_PLUS', 'TREAT_LV3', 'TRIBUTE_SAFE', 'IMMORTALITY', 'NO_BLOCK_INFERIOR', 'NO_BP_COMPARE', 'CAMOU', 'SUMMON_TAX', 'CORE_SAFE', 'LIFE_CORE_TO_TRASH', 'EXTRA_SYMBOL', 'NO_BLOCK_SHAMAN', 'BP_VIA_SHAMAN', 'NO_ATTACK_ONE_CORE', 'RUMBLE_PLUS', 'UNBLOCKABLE_LOW', 'BLOCKS_AS_ATTACKS', 'BLOCK_TAX', 'ZERO_BP_DECKBOTTOM', 'LIFE_HIT_PLUS', 'ATK_TAX', 'COST_RELIEF', 'CHARGE'];
 /* flag effects: MUST_BLOCK (opposing Spirits must block this attacker), NO_RETURN (cannot be returned by opposing effects), CORES_DRAW (draw once per turn when cores are sent by your effects),
    UNAFFECTED_SOUL (Ometeotl Contract Field: this card is unaffected by opposing effects while a Soul Core is on it),
    NO_END_ATTACK (v0.43: while the matching Spirit of the owner attacks, the opponent can't end the Attack Step via effects; Sunya Lv3, Crimson Crater Lv2) */
@@ -223,6 +223,25 @@ const attackLifeLocked = att => !!G && ['player', 'opponent'].some(k => fieldLis
 const deckDiscardLocked = () => !!G && ['player', 'opponent'].some(k => fieldList(G.p[k]).some(s => flagActive(G.p[k], 'NO_DECK_DISCARD', s)));
 /* v143 STATIC NO_BP_COMPARE (to:'all', usually if {selfAttacking:true}): "Neither player's Spirits would be destroyed by BP comparison" */
 const bpCompareLocked = s => !!G && ['player', 'opponent'].some(k => flagActive(G.p[k], 'NO_BP_COMPARE', s));
+/* v250 Charge: STATIC CHARGE { kind, n, noUlt? } raises the numbers of the owner's matching effects (cores = core removal, mill = opposing-deck discard, bp = BP destruction limit, exhaust = opponent-targeting exhaustion). Sums over the owner's Field. */
+const CHARGE_KINDS = { OPP_CORES_TO_RESERVE: 'cores', MILL_OPP: 'mill', DESTROY: 'bp', EXHAUST_OPP: 'exhaust', BP_MINUS: 'bpMinus' };
+function chargeSum(owner, kind, srcCard) {
+  if (!G || !owner) return 0; let n = 0;
+  for (const src of fieldList(owner)) { const L = lvNo(src);
+    for (const { e } of fxEntries(src)) {
+      if (e.trigger !== 'STATIC' || e.flag !== 'CHARGE' || e.kind !== kind || (e.lv && !e.lv.includes(L)) || (e.noUlt && srcCard && CARDS[srcCard.id].type === 'Ultimate')) continue;
+      n += e.n;
+    } }
+  return n;
+}
+function chargeAction(c, a) {
+  const kind = CHARGE_KINDS[a.do]; if (!kind || (kind === 'bp' && a.bpLe == null)) return a;
+  const n = chargeSum(c.p, kind, c.src); if (!n) return a;
+  const b = Object.assign({}, a);
+  if (kind === 'cores') { if (b.total != null) b.total += n; else if (b.each != null) b.each += n; else return a; }
+  else if (kind === 'bp') b.bpLe += n; else if (kind === 'bpMinus') b.n = Math.min(30000, b.n + n); else b.n += n;
+  return b;
+}
 function flagActive(owner, flag, subject, pred) {
   if (!STATIC_FLAGS.includes(flag)) return fxUnknown('flag', flag);                  // v0.59.4 strict effects
   if (!G || !owner || !subject) return false;

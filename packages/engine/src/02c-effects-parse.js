@@ -135,6 +135,11 @@ function parseEffects(arr) {
         o.color = e.color; o.n = Number.isInteger(e.n) && e.n >= 1 && e.n <= 3 ? e.n : 1;
         if (e.perSpirit != null) { const m = e.perSpirit; if (e.flag !== 'SUMMON_SYMBOL' || !m || !Array.isArray(m.costIn) || !m.costIn.length || m.costIn.length > 8 || !m.costIn.every(Number.isInteger) || Object.keys(m).length !== 1) return { error: '"perSpirit" (SUMMON_SYMBOL only) must look like {"costIn":[2]}' }; o.perSpirit = { costIn: m.costIn.slice() }; }      // v0.196 "all your Cost 2 Spirits gain an extra symbol": one per such Spirit
       }
+      if (e.flag === 'CHARGE') {                                  // v250 Charge
+        if (!['cores', 'mill', 'bp', 'bpMinus', 'exhaust'].includes(e.kind)) return { error: 'CHARGE "kind" must be cores, mill, bp, bpMinus or exhaust' };
+        if (!Number.isInteger(e.n) || e.n < 1 || e.n > 2000) return { error: 'CHARGE needs a whole-number "n"' };
+        o.kind = e.kind; o.n = e.n; if (e.noUlt === true) o.noUlt = true;
+      }
       if (e.flag === 'TREAT_LV3' && e.n != null) { if (e.n !== 2) return { error: 'TREAT_LV3 "n" must be 2 (default 3)' }; o.n = 2; }      // v0.184 "treated as being at LV2"
       if (e.flag === 'HAND_COST') {                               // v0.186 "The cost of all <family> Spirit cards in your Hand becomes N"
         if (!Number.isInteger(e.n) || e.n < 0 || e.n > 30) return { error: 'HAND_COST needs a whole-number "n" (0-30)' };

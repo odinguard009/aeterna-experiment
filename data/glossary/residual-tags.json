@@ -6503,10 +6503,6 @@
   "K_RUSH",
   "T_SUMMONED"
  ],
- "BS19-017": [
-  "A_CORE_TO_SELF",
-  "C_LEVEL"
- ],
  "BS19-020": [
   "C_LEVEL",
   "K_BRAVE"
@@ -6615,22 +6611,11 @@
   "K_HOLY_LIFE",
   "K_RUSH"
  ],
- "BS19-057": [
-  "C_LEVEL",
-  "K_ULTIMATE"
- ],
- "BS19-059": [
-  "C_LEVEL",
-  "K_ULTIMATE"
- ],
  "BS19-060": [
   "C_LEVEL",
   "K_BURST",
   "K_RUSH",
   "T_ATTACKS"
- ],
- "BS19-061": [
-  "C_LEVEL"
  ],
  "BS19-064": [
   "C_LEVEL"
@@ -6898,9 +6883,6 @@
   "M_IF_YOU_DO",
   "M_OPTIONAL"
  ],
- "BS20-008": [
-  "C_LEVEL"
- ],
  "BS20-009": [
   "C_LEVEL",
   "K_RUSH",
@@ -6933,14 +6915,6 @@
   "C_LEVEL",
   "K_BRAVE",
   "T_SUMMONED"
- ],
- "BS20-018": [
-  "A_CORE_TO_SELF",
-  "C_LEVEL"
- ],
- "BS20-020": [
-  "A_EXHAUST",
-  "C_LEVEL"
  ],
  "BS20-021": [
   "K_HIGH_SPEED",
@@ -6994,12 +6968,6 @@
   "C_LEVEL",
   "M_OPTIONAL",
   "T_ATTACKS"
- ],
- "BS20-037": [
-  "C_LEVEL"
- ],
- "BS20-038": [
-  "C_LEVEL"
  ],
  "BS20-039": [
   "A_EXHAUST",
@@ -7193,9 +7161,6 @@
  "BS21-001": [
   "C_LEVEL",
   "T_ALLY_LOST"
- ],
- "BS21-002": [
-  "C_LEVEL"
  ],
  "BS21-003": [
   "A_BP_PLUS",
@@ -7704,9 +7669,6 @@
   "K_RUSH",
   "M_OPTIONAL"
  ],
- "BS22-053": [
-  "C_LEVEL"
- ],
  "BS22-054": [
   "C_LEVEL",
   "K_BRAVE",
@@ -7940,9 +7902,6 @@
   "C_LEVEL",
   "T_BATTLE_WIN"
  ],
- "BS23-007": [
-  "C_LEVEL"
- ],
  "BS23-008": [
   "C_LEVEL",
   "C_OPP_TURN",
@@ -7953,17 +7912,9 @@
   "A_EXHAUST",
   "C_LEVEL"
  ],
- "BS23-011": [
-  "A_CORE_TO_SELF",
-  "C_LEVEL"
- ],
  "BS23-013": [
   "C_LEVEL",
   "K_BRAVE"
- ],
- "BS23-015": [
-  "A_CORE_TO_SELF",
-  "C_LEVEL"
  ],
  "BS23-016": [
   "A_SUMMON_FREE",
