@@ -167,3 +167,9 @@ test('K-944 BS02-106 refreshes every exhausted Cost 2 Spirit of both players and
     return [P.spirits.map(s => s.exhausted), O.spirits.map(s => s.exhausted)]; })()`);
   assert.deepEqual(r, [[false, true], [false, true]]);
 });
+
+test('K-945 BS10-104 offers exhaust one opposing Spirit or exhaust three opposing Cost 4 or less Spirits', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(() => BS.CARDS['BS10-104'].magic.actions[0].options.map(o => o.map(x => [x.do, x.n, x.costLe || null])))()`);
+  assert.deepEqual(r, [[['EXHAUST_OPP', 1, null]], [['EXHAUST_OPP', 3, 4]]]);
+});
