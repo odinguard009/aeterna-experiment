@@ -114,3 +114,15 @@ test('K-940 BS01-112 returns an opposing Nexus at LV1+ and an opposing Spirit at
     return [lv1, lv2]; })()`);
   assert.deepEqual(r, [[0, 1, 1], [0, 0, 2]], JSON.stringify(r));
 });
+
+test('K-941 BS04-018 returns an opposing Spirit at the opponent\'s Start Step only with enough cards in hand (10 / 8 / 6 by level)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const s = BS.mkInst('BS04-018'); P.spirits = [s]; const out = [];
+    for (const [cores, hand] of [[1, 9], [1, 10], [3, 7], [3, 8], [4, 5], [4, 6]]) {
+      s.cores = cores; P.hand = Array.from({ length: hand }, () => BS.mkInst('BS01-001')); O.spirits = [BS.mkInst('BS01-001')]; O.hand = [];
+      await BS.fireFx(P, 'OPP_START_STEP', null, {}); out.push(O.spirits.length);
+    }
+    return out; })()`);
+  assert.deepEqual(r, [1, 0, 1, 0, 1, 0], JSON.stringify(r));
+});

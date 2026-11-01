@@ -339,3 +339,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v302 (Lane K): BP_PLUS.battle ("attacking"|"blocking", with to:own) = only your Spirit currently attacking / blocking. Cards: BS01-116, BS01-145.
 - v303 (Lane K): magic.once (one use per card name per turn). Card: BS03-133 (RESERVE_TO_LIFE n 2).
 - v304: MILL_OPP `perLostCores: true` (one card per core that was on this Spirit when destroyed; DESTROYED trigger only).
+- v305: `if.handGe` (own hand size at least N), BS04-018.
