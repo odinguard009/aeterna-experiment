@@ -198,6 +198,51 @@ Object.assign(FX_ACTIONS, {
       log(`${CARDS[c.src.id].name}: ${give} core${give === 1 ? '' : 's'} go from the Reserve to ${CARDS[t.id].name}.`);
       io.view({ type: 'board' });
     } },
+  /* v263 "Send a core from any opposing Nexus/the opposing Reserve to their Trash" (the CPU takes from the Nexus holding the most cores, else the Reserve) */
+  OPP_CORE_TO_TRASH_NR: { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
+    txt: () => 'send a core from an opposing Nexus or the opposing Reserve to their Trash',
+    cands: c => c.opp.nexus.filter(x => x.cores > 0 && !fxImmune(c.opp, x, c)),
+    can: c => c.opp.reserve.n > 0 || c.opp.nexus.some(x => x.cores > 0 && !fxImmune(c.opp, x, c)),
+    run: async (c, a) => {
+      const N = FX_ACTIONS.OPP_CORE_TO_TRASH_NR.cands(c), nm = CARDS[c.src.id].name; let t = null, res = c.opp.reserve.n > 0;
+      if (c.p.cpu) { if (N.length) { t = N.slice().sort((x, y) => y.cores - x.cores)[0]; res = false; } }
+      else if (N.length && res) { const v = await ask({ title: `✨ ${nm}`, html: 'Take a core from an opposing Nexus or from the opposing Reserve?', buttons: [{ label: 'Opposing Reserve', value: 'R' }, ...N.map((x, i) => ({ label: CARDS[x.id].name, value: String(i) }))] }); if (v !== 'R') { t = N[Number(v)] || N[0]; res = false; } }
+      else if (N.length) { t = await fxPickTarget(c, N, `✨ <b>${esc(nm)}</b><br>Tap an opposing Nexus to take a core from.`); res = false; }
+      if (t) { const m = Math.min(1, t.cores, coreTakeCap(c.opp, t, 1)); if (!m) { c.ctx.did = false; return; } coreEvN(c.opp, t.uid, 'trash', m, false); t.cores -= m; c.opp.trashCores.n += m; log(`${nm}: ${m} core from ${poss(c.opp)} ${CARDS[t.id].name} goes to the Trash.`); }
+      else if (res) { c.opp.reserve.n -= 1; c.opp.trashCores.n += 1; log(`${nm}: 1 core from ${poss(c.opp)} Reserve goes to the Trash.`); }
+      else { c.ctx.did = false; return; }
+      c.ctx.did = true; io.view({ type: 'board' });
+    } },
+  /* v263 "Both players send a total of N cores from Spirits they control to the owner's Trash" (each player picks their own Spirits; the CPU gives up cores from its lowest-BP Spirit first) */
+  BOTH_CORES_TO_TRASH: { chk: a => Number.isInteger(a.total) && a.total >= 1 && a.total <= 8 && Object.keys(a).every(k => ['do', 'if', 'total'].includes(k)),
+    txt: a => `both players send a total of ${a.total} cores from their Spirits to their Trash`,
+    can: () => true,
+    run: async (c, a) => {
+      const nm = CARDS[c.src.id].name; let moved = 0;
+      for (const q of [c.p, c.opp]) {
+        for (let j = 0; j < a.total; j++) {
+          const L = q.spirits.filter(x => x.cores > 0); if (!L.length) break;
+          const t = q.cpu ? L.slice().sort((x, y) => bpOf(x) - bpOf(y))[0] : await fxPickTarget({ p: q, opp: q === c.p ? c.opp : c.p, src: c.src, ctx: c.ctx }, L, `✨ <b>${esc(nm)}</b><br>Tap a Spirit of yours to send a core to the Trash (${j + 1}/${a.total}).`);
+          if (!t) break;
+          const m = Math.min(1, t.cores, coreTakeCap(q, t, 1)); if (!m) continue;
+          coreEvN(q, t.uid, 'trash', m, false); t.cores -= m; q.trashCores.n += m; moved += m;
+          log(`${nm}: 1 core from ${poss(q)} ${CARDS[t.id].name} goes to the Trash.`);
+        }
+      }
+      c.ctx.did = moved > 0; io.view({ type: 'board' });
+    } },
+  /* v263 "Put cores from the Void to a Nexus you control until it reaches [LV2]" (as many as the Void holds, up to the missing cores) */
+  VOID_TO_NEXUS_LV: { chk: a => (a.lv === 2 || a.lv === 3) && Object.keys(a).every(k => ['do', 'if', 'lv'].includes(k)),
+    txt: a => `put cores from the Void to a Nexus you control until it reaches LV${a.lv}`,
+    cands: (c, a) => c.p.nexus.filter(x => { const L = CARDS[x.id].levels; return L && L[a.lv - 1] && x.cores < L[a.lv - 1].cores; }),
+    can: (c, a) => c.p.void > 0 && FX_ACTIONS.VOID_TO_NEXUS_LV.cands(c, a).length > 0,
+    run: async (c, a) => {
+      const L = FX_ACTIONS.VOID_TO_NEXUS_LV.cands(c, a); if (!L.length || c.p.void <= 0) { c.ctx.did = false; return; }
+      const t = c.p.cpu ? L.slice().sort((x, y) => CARDS[y.id].cost - CARDS[x.id].cost)[0] : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the Nexus that receives cores from the Void until it reaches LV${a.lv}.`);
+      if (!t) { c.ctx.did = false; return; }
+      const give = Math.min(c.p.void, CARDS[t.id].levels[a.lv - 1].cores - t.cores); c.p.void -= give; t.cores += give; c.ctx.did = give > 0;
+      log(`${CARDS[c.src.id].name}: ${give} core${give === 1 ? '' : 's'} go from the Void to ${CARDS[t.id].name}.`); io.view({ type: 'board' });
+    } },
   /* v215 "the opponent returns N cards from their Hand to the deckbottom" (the CPU puts its cheapest card down) */
   OPP_HAND_TO_BOTTOM: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 4 && Object.keys(a).every(k => ['do', 'if', 'n'].includes(k)),
     txt: a => `the opponent returns ${a.n} card${a.n === 1 ? '' : 's'} from their Hand to the deckbottom`,

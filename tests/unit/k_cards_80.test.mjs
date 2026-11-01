@@ -1,4 +1,4 @@
-// Lane K tests, file 80 (rule 1b). Schemas v259-v262: DISCARD_ANY_DRAW, DEPLOY_TRASH.all, MILL_OPP.perOppHand, RESERVE_TO_SPIRIT, VOID_TO_CARD per-count. Cards: BS03-146, BS03-148, BS02-068, BS02-069, BS04-111, BS01-078, BS01-115, BS03-030, BS01-X03.
+// Lane K tests, file 80 (rule 1b). Schemas v259-v262: DISCARD_ANY_DRAW, DEPLOY_TRASH.all, MILL_OPP.perOppHand, RESERVE_TO_SPIRIT, VOID_TO_CARD per-count. Cards: BS02-092, BS02-093, BS04-098, BS02-107, BS03-146, BS03-148, BS02-068, BS02-069, BS04-111, BS01-078, BS01-115, BS03-030, BS01-X03.
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { sharedBoard, closeBrowser } from './lib/game.mjs';
@@ -69,4 +69,32 @@ test('K-814 DEPLOY_TRASH all: every Red/Green/Blue Nexus in the Trash is deploye
     await BS.FX_ACTIONS.DEPLOY_TRASH.run({ p: P, opp: O, src: BS.mkInst('BS03-148'), ctx: {} }, act);
     return [P.nexus.length, P.trash.map(x => x.id), BS.FX_ACTIONS.DEPLOY_TRASH.chk(act)]; })()`);
   assert.equal(r[0], 2, JSON.stringify(r)); assert.deepEqual(r[1], ['BS01-102']); assert.equal(r[2], true);
+});
+
+test('K-815 OPP_CORE_TO_TRASH_NR: the CPU takes a core from the opposing Nexus holding the most, else the Reserve (BS02-092)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true;
+    const n = BS.mkInst('BS01-098'); n.cores = 2; O.nexus = [n]; O.reserve.n = 3; const t0 = O.trashCores.n;
+    const act = BS.CARDS['BS02-092'].magic.by.MAIN.actions[0]; const c = () => ({ p: P, opp: O, src: BS.mkInst('BS02-092'), ctx: {} });
+    await BS.FX_ACTIONS.OPP_CORE_TO_TRASH_NR.run(c(), act); const a = [n.cores, O.reserve.n, O.trashCores.n - t0];
+    n.cores = 0; await BS.FX_ACTIONS.OPP_CORE_TO_TRASH_NR.run(c(), act); return [a, [n.cores, O.reserve.n, O.trashCores.n - t0], BS.FX_ACTIONS.OPP_CORE_TO_TRASH_NR.chk(act)]; })()`);
+  assert.deepEqual(r, [[1, 3, 1], [0, 2, 2], true], JSON.stringify(r));
+});
+
+test('K-816 BOTH_CORES_TO_TRASH: each player sends four cores from their Spirits to their own Trash (BS02-093)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true; P.spirits = []; O.spirits = [];
+    const mk = (q, n) => { const i = BS.mkInst('BS01-001'); i.cores = n; q.spirits.push(i); return i; }; const a = mk(P, 5), b = mk(O, 3); const pt = P.trashCores.n, ot = O.trashCores.n;
+    const act = BS.CARDS['BS02-093'].magic.by.MAIN.actions[0]; await BS.FX_ACTIONS.BOTH_CORES_TO_TRASH.run({ p: P, opp: O, src: BS.mkInst('BS02-093'), ctx: {} }, act);
+    return [a.cores, b.cores, P.trashCores.n - pt, O.trashCores.n - ot, BS.FX_ACTIONS.BOTH_CORES_TO_TRASH.chk(act)]; })()`);
+  assert.deepEqual(r, [1, 0, 4, 3, true], JSON.stringify(r));
+});
+
+test('K-817 VOID_TO_NEXUS_LV: Void cores fill a Nexus up to its LV2 threshold and no further (BS04-098)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true;
+    const n = BS.mkInst('BS01-098'); n.cores = 0; P.nexus = [n]; P.void = 20; const need = BS.CARDS['BS01-098'].levels[1].cores;
+    const act = BS.CARDS['BS04-098'].magic.by.MAIN.actions[0]; await BS.FX_ACTIONS.VOID_TO_NEXUS_LV.run({ p: P, opp: O, src: BS.mkInst('BS04-098'), ctx: {} }, act);
+    return [n.cores === need, P.void === 20 - need, BS.FX_ACTIONS.VOID_TO_NEXUS_LV.chk(act)]; })()`);
+  assert.deepEqual(r, [true, true, true], JSON.stringify(r));
 });
