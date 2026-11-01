@@ -4,6 +4,14 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.207.0
+- Lane: K
+- **Lane K: +100 complete cards (1,805 -> 1,905 of 8,709; 100 in this release)**
+- Mostly Eternal Nexus cards (levels 1/2) plus a few Spirits.
+- Engine: `TRASH_TO_RESERVE` action; `ALLY_DIED` now carries `byOpp` (so `if.byOpp` really works for "destroyed by the opponent", including the existing 26RBS03-081); STATIC `per` with `side: "opp"` now counts the opposing side (only BS14-080 uses it in STATIC); match key `coresLe`; a `coresGe` parser fix; effect schema 293.
+- Limits: several cards approximate the printed text (e.g. "defeats a Spirit" uses the narrower BATTLE_WIN triggers, "Opposing Attack Step" is step ATTACK on the opponent's turn, engine-chosen targets where the card lets the player choose). BS02-067's printed text has no colour word, Yellow was inferred. BS14-003 treats an empty Trash as "only Red cards". BS18-062 and BS02-076 stay partial (no level thresholds in their data). Some tests check only the stored flag or one branch. The human dialog paths of the newer actions have no automated test.
+- Size budgets B01/B02 were raised on purpose earlier in this cycle (1305 KB / 350 KB).
+
 ## v0.206.1
 - Lane: U/I
 - **Missing art, installable icon, fullscreen.**
