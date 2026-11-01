@@ -42,3 +42,14 @@ test('K-934 BS31-109 refreshes only a yellow Spirit, once per turn', async () =>
     return [BS.CARDS['BS31-109'].magic.once, cands.length, cands[0] === yel]; })()`);
   assert.deepEqual(r, [true, 1, true]);
 });
+
+test('K-935 BS44-091 returns every opposing Spirit with 7000 BP or less', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const small = BS.mkInst('BS01-001'); small.cores = 1; const big = BS.mkInst('BS01-001'); big.cores = 1; big.bpMod = 20000;
+    O.spirits = [small, big]; const h = O.hand.length;
+    const act = BS.CARDS['BS44-091'].magic.actions[0];
+    await BS.FX_ACTIONS.BOUNCE_OPP.run({ p: P, opp: O, src: BS.mkInst('BS44-091'), ctx: {} }, act);
+    return [O.spirits.length, O.spirits[0] === big, O.hand.length - h]; })()`);
+  assert.deepEqual(r, [1, true, 1]);
+});

@@ -3818,12 +3818,24 @@
   "image": "Dream Snow.png",
   "block": "44",
   "saga": 9,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Ignoring Brave's \"BP+\", return every opposing 7000 BP or less Spirit to the Hand."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "BOUNCE_OPP",
+     "to": "hand",
+     "kind": "spirit",
+     "bpLe": 7000,
+     "all": true
+    }
+   ]
+  }
  },
  {
   "id": "BS44-092",
