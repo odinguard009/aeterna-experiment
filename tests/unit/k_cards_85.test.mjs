@@ -322,3 +322,14 @@ test('K-957 BS03-122 Main sends all Nexus cores of both sides to their owners Tr
     return [a.cores, b.cores, P.trashCores.n - t0[0], O.trashCores.n - t0[1], m.by.FLASH.effect, m.by.FLASH.value]; })()`);
   assert.deepEqual(r, [0, 0, 3, 2, 'BP_PLUS', 1000]);
 });
+
+test('K-958 BS04-113 Main deploys a Nexus from the Trash free; Flash gives +3000 BP', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const nx = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Nexus' && !BS.CARDS[i].keywords?.length);
+    P.nexus.length = 0; P.trash.length = 0; P.trash.push(BS.mkInst(nx));
+    const m = BS.CARDS['BS04-113'].magic; const c = { p: P, opp: O, src: BS.mkInst('BS04-113'), ctx: {} };
+    await BS.FX_ACTIONS.DEPLOY_TRASH.run(c, m.by.MAIN.actions[0]);
+    return [P.nexus.length, P.trash.length, m.by.FLASH.value]; })()`);
+  assert.deepEqual(r, [1, 0, 3000], JSON.stringify(r));
+});

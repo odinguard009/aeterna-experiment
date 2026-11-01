@@ -21791,12 +21791,31 @@
   "image": "Nexus Repair.jpg",
   "block": "04",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "(Your Main Phase) Deploy target nexus card from your Trash without paying its cost.",
-   "(Flash Step)(Your Main Phase) Target spirit gets +3000BP until end of turn."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "MAIN",
+    "FLASH"
+   ],
+   "by": {
+    "MAIN": {
+     "effect": "ACTIONS",
+     "actions": [
+      {
+       "do": "DEPLOY_TRASH",
+       "match": {
+        "type": "Nexus"
+       }
+      }
+     ]
+    },
+    "FLASH": {
+     "effect": "BP_PLUS",
+     "value": 3000
+    }
+   }
+  }
  },
  {
   "id": "BS04-114",
