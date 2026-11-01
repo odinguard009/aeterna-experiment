@@ -38,6 +38,26 @@ FX_ACTIONS.HAND_TO_REMOVED = {
     if (G && G.evQ && !G.over) G.evQ.push({ type: 'REMOVED', key: c.p.key });
     log(`${CARDS[c.src.id].name}: ${who(c.p)} ${c.p.cpu ? 'puts' : 'put'} ${CARDS[d.id].name} face-up onto the Removed Zone.`); io.view({ type: 'board' });
   } };
+/* v0.208 REMOVE_ANY_DRAW {match}: "By putting any number of <X> cards from your Hand onto the Removed Zone, for each card you put, draw a card" (the CPU puts every matching card). */
+FX_ACTIONS.REMOVE_ANY_DRAW = {
+  chk: a => hasMatch(a.match) && Object.keys(a).every(k => ['do', 'if', 'match'].includes(k)),
+  txt: () => 'put any number of matching cards from your Hand onto the Removed Zone, draw a card for each',
+  cands: (c, a) => c.p.hand.filter(h => h !== c.src && fxMatch(CARDS[h.id], a.match)),
+  can: () => true,
+  run: async (c, a) => {
+    let n = 0;
+    for (;;) {
+      const L = FX_ACTIONS.REMOVE_ANY_DRAW.cands(c, a); if (!L.length) break;
+      const d = c.p.cpu ? L[0] : await chooseCard(c, L, `✨ ${CARDS[c.src.id].name}`, `Choose a card to put onto the Removed Zone (${n} so far; each draws a card). Skip to finish.`, true);
+      if (!d) break;
+      removeFrom(c.p.hand, d); c.p.removed.push(d); n++;
+      if (G && G.evQ && !G.over) G.evQ.push({ type: 'REMOVED', key: c.p.key });
+      log(`${CARDS[c.src.id].name}: ${who(c.p)} ${c.p.cpu ? 'puts' : 'put'} ${CARDS[d.id].name} onto the Removed Zone.`);
+    }
+    c.ctx.did = n > 0;
+    if (n) { const k = draw(c.p, n); log(`${CARDS[c.src.id].name}: ${who(c.p)} ${c.p.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'}.`); handUp(c.p, k); }
+    io.view({ type: 'board' });
+  } };
 /* v277 OWN_CORES_TO_TRASH {total} / OPP_SELF_CORES_TO_TRASH {total}: "By sending N cores from your Spirits to the Trash, ..." (cost; ctx.did = false when your Spirits hold fewer than N)
    and "The opponent sends N cores from their Spirits to their Trash" (the opponent chooses; the CPU gives up cores from its lowest-BP Spirit first). */
 async function coresFromSpirits(c, q, total, exact) {

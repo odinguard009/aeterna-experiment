@@ -329,3 +329,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v292 (Lane K): STATIC bp `per` with `side: "opp"` now counts the opposing side (the count was always taken on your own side before).
 - v293 (Lane K): match key `coresLe` (1-9): the Spirit has at most N cores on it (with `coresGe` it gives "with only one core").
 - v294 (Lane K): action `END_BATTLE_NOW` ("Immediately end the current battle" / "end the battle without comparing BP"): sets G.battleCut; 08-battle returns after the next Flash window with no BP comparison and no Life damage. Cards: BS01-148, BS06-109.
+- v295: REMOVE_ANY_DRAW {match} (put any number of matching Hand cards onto the Removed Zone, draw one per card).
