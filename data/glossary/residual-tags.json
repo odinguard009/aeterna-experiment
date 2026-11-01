@@ -30364,13 +30364,6 @@
   "C_LEVEL",
   "M_OPTIONAL"
  ],
- "BS53-037": [
-  "A_REFRESH",
-  "A_VOID",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "S_UNAFFECTED"
- ],
  "BS53-038": [
   "A_REFRESH",
   "C_LEVEL",

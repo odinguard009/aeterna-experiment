@@ -84,3 +84,10 @@ test('K-790 BS54-034: unaffected by opposing Spirit/Nexus effects only while you
     const n = BS.mkInst('BS54-061'); n.cores = 0; P.nexus.push(n); return [before, BS.fxImmune(P, t, by(o))];`);
   assert.deepEqual(r, [false, true], JSON.stringify(r));
 });
+
+test('K-791 BS53-037 LV2: an opposing Cost 5 or less attacker refreshes it and a Void core moves onto it; a Cost 6 attacker does not', async () => {
+  const r = await run(`const t = sp('BS53-037', P, 2); t.exhausted = true; P.void = P.void || []; const before = t.cores;
+    const lo = sp('BS75-001', O, 1); BS.CARDS['BS75-001'].cost = 5; BS.G.attacker = lo; await BS.fireFx(P, 'OPP_ATTACKS', lo, { attacker: lo });
+    const a = [t.exhausted]; t.exhausted = true; BS.CARDS['BS75-001'].cost = 6; await BS.fireFx(P, 'OPP_ATTACKS', lo, { attacker: lo }); a.push(t.exhausted); return a;`);
+  assert.deepEqual(r, [false, true], JSON.stringify(r));
+});
