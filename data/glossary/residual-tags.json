@@ -8708,12 +8708,6 @@
   "T_DESTROYED",
   "T_SUMMONED"
  ],
- "BS25-056": [
-  "A_REFRESH",
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "T_BLOCKS"
- ],
  "BS25-057": [
   "A_SUMMON_FREE",
   "C_LEVEL",
@@ -8721,12 +8715,6 @@
   "K_ULTIMATE",
   "M_OPTIONAL",
   "T_ATTACKS"
- ],
- "BS25-058": [
-  "A_BOUNCE",
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "T_BLOCKS"
  ],
  "BS25-059": [
   "C_LEVEL",

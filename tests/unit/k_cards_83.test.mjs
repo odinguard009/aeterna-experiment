@@ -84,3 +84,17 @@ test('K-894 BS03-017 destroys an opposing Spirit with exactly two cores when des
     await BS.fireFx(P, 'DESTROYED', a, { subject: a }); return [O.spirits.includes(two), O.spirits.includes(one), O.spirits.includes(three)]; })()`);
   assert.deepEqual(r, [false, true, true], JSON.stringify(r));
 });
+
+test('K-895 BS25-056 / BS25-058 Ultimate Trigger on block: hit refreshes / returns a Spirit, a miss does nothing', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const out = [];
+    const u = BS.mkInst('BS25-056'); u.cores = 4; u.exhausted = true; P.spirits = [u]; O.deck = [BS.mkInst('BS01-001')];
+    await BS.fireFx(P, 'BLOCKS', u, { subject: u }); out.push(u.exhausted);
+    u.exhausted = true; const hi = BS.mkInst('BS25-056'); O.deck = [hi];
+    await BS.fireFx(P, 'BLOCKS', u, { subject: u }); out.push(u.exhausted);
+    const b = BS.mkInst('BS25-058'); b.cores = 4; P.spirits = [b]; const s = BS.mkInst('BS01-001'); s.cores = 1; O.spirits = [s]; O.deck = [BS.mkInst('BS01-001')];
+    await BS.fireFx(P, 'BLOCKS', b, { subject: b }); out.push(O.spirits.length);
+    return out; })()`);
+  assert.deepEqual(r, [false, true, 0], JSON.stringify(r));
+});
