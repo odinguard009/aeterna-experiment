@@ -299,3 +299,14 @@ test('K-955 BS39-072: a Spirit blocks while exhausted this battle only and carri
     const during = BS.canBlockState(P, s); const rider = s.winRider ? s.winRider.draw : null; G.battleNo++; return [before, during, rider, BS.canBlockState(P, s)]; })()`);
   assert.deepEqual(r, [false, true, 2, false], JSON.stringify(r));
 });
+
+test('K-956 BS33-083 destroys one opposing Cost 0/3/5 Spirit each and refunds one Void core per Spirit destroyed', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; O.spirits.length = 0; O.nexus.length = 0;
+    const byCost = k => Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit' && BS.CARDS[i].cost === k);
+    for (const k of [3, 5, 4]) { const s = BS.mkInst(byCost(k)); s.cores = 1; O.spirits.push(s); }
+    P.reserve.n = 0; const c = { p: P, opp: O, src: BS.mkInst('BS33-083'), ctx: {} };
+    for (const a of BS.CARDS['BS33-083'].magic.actions) { if (a.if && c.ctx.did === false) continue; await BS.FX_ACTIONS[a.do].run(c, a); }
+    return [O.spirits.map(s => BS.CARDS[s.id].cost), P.reserve.n, c.ctx.destroyed.length]; })()`);
+  assert.deepEqual(r[0], [4]); assert.equal(r[2], 2); assert.equal(r[1], 2, JSON.stringify(r));
+});

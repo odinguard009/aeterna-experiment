@@ -12268,12 +12268,32 @@
   "image": "Halo Liquidation.png",
   "block": "33",
   "saga": 6,
-  "fxComplete": false,
-  "residual": [
-   "Flash- Destroy opposing Cost 0/3/5 Spirits, one of each.",
-   "For each Spirit destroyed by this effect, put a core from the Void to your Reserve."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "DESTROY_EACH_COST",
+     "costs": [
+      0,
+      3,
+      5
+     ]
+    },
+    {
+     "do": "VOID_TO_RESERVE",
+     "perDestroyed": true,
+     "if": {
+      "prev": true
+     }
+    }
+   ]
+  }
  },
  {
   "id": "BS33-CP01",
