@@ -315,3 +315,16 @@ test('K-930 BS18-083 destroys only opposing Spirits whose Cost is within your Bl
   const [n, got] = r; assert.ok(n >= 1, JSON.stringify(r));
   assert.ok(got.includes('lo') && !got.includes('own') && !got.includes('hi') === (n < 5), JSON.stringify(r));
 });
+
+test('K-931 BS01-116 and BS01-145 boost only your attacking / blocking Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const a = BS.mkInst('BS01-001'); a.cores = 2; const b = BS.mkInst('BS01-001'); b.cores = 2; const o = BS.mkInst('BS01-001'); o.cores = 2;
+    P.spirits = [a, b]; O.spirits = [o];
+    const run = async (id, att, blk) => { G.attacker = att; G.blocker = blk; a.bpMod = b.bpMod = o.bpMod = 0;
+      await BS.FX_ACTIONS.BP_PLUS.run({ p: P, opp: O, src: BS.mkInst(id), ctx: {} }, BS.CARDS[id].magic.actions[0]); return [a.bpMod || 0, b.bpMod || 0, o.bpMod || 0]; };
+    const off = await run('BS01-116', a, o), offOpp = await run('BS01-116', o, a);
+    const def = await run('BS01-145', o, b), defOpp = await run('BS01-145', a, o);
+    return [off, offOpp, def, defOpp]; })()`);
+  assert.deepEqual(r, [[2000, 0, 0], [0, 0, 0], [0, 3000, 0], [0, 0, 0]]);
+});

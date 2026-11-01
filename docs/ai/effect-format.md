@@ -336,3 +336,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v299 (Lane K): DESTROY_ANY.costLe (spirit cost filter). Card: BS06-097.
 - v300 (Lane K): GRANT_FLAG.all (flag every matching Spirit you control, no target). Card: BS16-084 (also BS17-077 via BP_PLUS to:own + fewerSpirits:false).
 - v301 (Lane K): DESTROY_ANY.costLeSymbol (cost <= your Field symbols of that colour) + oppOnly. Card: BS18-083.
+- v302 (Lane K): BP_PLUS.battle ("attacking"|"blocking", with to:own) = only your Spirit currently attacking / blocking. Cards: BS01-116, BS01-145.

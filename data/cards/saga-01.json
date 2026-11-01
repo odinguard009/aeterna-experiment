@@ -4992,11 +4992,23 @@
   "image": "Offensive Aura.jpg",
   "block": "01",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "Original (Jap Version) = Flash- During this turn, all your attacking Spirits gain +2000 BP."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "BP_PLUS",
+     "n": 2000,
+     "to": "own",
+     "battle": "attacking"
+    }
+   ]
+  }
  },
  {
   "id": "BS01-117",
@@ -5954,17 +5966,23 @@
   "image": "Defensive Aura.jpg",
   "block": "01",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "{{#tag:tabber|",
-   "Standard = Flash",
-   "During this turn, give all your blocking Spirits +3000 BP.",
-   "{{!}}-{{!}}",
-   "Eternal = Flash",
-   "During this turn, all your blocking Spirits gain +3000 BP.",
-   "}}"
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "BP_PLUS",
+     "n": 3000,
+     "to": "own",
+     "battle": "blocking"
+    }
+   ]
+  }
  },
  {
   "id": "BS01-146",
