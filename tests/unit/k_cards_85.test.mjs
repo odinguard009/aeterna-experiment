@@ -126,3 +126,22 @@ test('K-941 BS04-018 returns an opposing Spirit at the opponent\'s Start Step on
     return out; })()`);
   assert.deepEqual(r, [1, 0, 1, 0, 1, 0], JSON.stringify(r));
 });
+
+test('K-942 BS09-072 destroys exhausted opposing Spirits without Tribute only while both Red and Purple Spirits are controlled', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const purple = Object.keys(BS.CARDS).find(k => /^BS0/.test(k) && BS.CARDS[k].type === 'Spirit' && (BS.CARDS[k].colors || [BS.CARDS[k].symbol]).includes('purple'));
+    const act = BS.CARDS['BS09-072'].magic.actions[0];
+    const mk = () => { const a = BS.mkInst('BS01-001'), t = BS.mkInst('BS07-035'), c = BS.mkInst('BS01-001'); a.exhausted = true; t.exhausted = true; c.exhausted = false; a.cores = t.cores = c.cores = 2; O.spirits = [a, t, c]; };
+    const out = [];
+    O.reserve.n = 5; P.reserve.n = 5;
+    P.spirits = [BS.mkInst('BS01-001')]; mk(); out.push(0);
+    await BS.FX_ACTIONS.DESTROY.run({ p: P, opp: O, src: BS.mkInst('BS09-072'), ctx: {} }, act); out.push(O.spirits.length);
+    out.push(BS.fxIf ? !!BS.fxIf(P, O, act.if, {}) : null);
+    P.spirits = [BS.mkInst('BS01-001'), BS.mkInst(purple)]; mk();
+    out.push(BS.fxIf ? !!BS.fxIf(P, O, act.if, {}) : null);
+    await BS.FX_ACTIONS.DESTROY.run({ p: P, opp: O, src: BS.mkInst('BS09-072'), ctx: {} }, act); out.push(O.spirits.length, O.spirits.map(s => s.id + (s.exhausted ? 'x' : '')).join());
+    return out; })()`);
+  assert.deepEqual(r.slice(1, 5), [2, false, true, 2], JSON.stringify(r));
+  assert.equal(r[5], 'BS07-035x,BS01-001', JSON.stringify(r));
+});

@@ -340,3 +340,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v303 (Lane K): magic.once (one use per card name per turn). Card: BS03-133 (RESERVE_TO_LIFE n 2).
 - v304: MILL_OPP `perLostCores: true` (one card per core that was on this Spirit when destroyed; DESTROYED trigger only).
 - v305: `if.handGe` (own hand size at least N), BS04-018.
+- v306: `match.notKeyword` (Spirits without that keyword, e.g. Tribute), BS09-072.

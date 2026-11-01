@@ -40976,12 +40976,43 @@
   "image": "Shadow Blade.jpg",
   "block": "09",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "While you control both Red and Purple Spirits, destroy all exhausted opposing Spirits without Tribute."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "DESTROY",
+     "all": true,
+     "match": {
+      "exhausted": true,
+      "notKeyword": "Tribute"
+     },
+     "if": {
+      "ctrl": [
+       {
+        "n": 1,
+        "type": "Spirit",
+        "colors": [
+         "red"
+        ]
+       },
+       {
+        "n": 1,
+        "type": "Spirit",
+        "colors": [
+         "purple"
+        ]
+       }
+      ]
+     }
+    }
+   ]
+  }
  },
  {
   "id": "BS09-073",
