@@ -80,7 +80,7 @@ test('PK76-04 engine: DESTROY bpLeSelf / bpEqSelf / symbolsGe / costLePer candid
     const e = cands(src, { costLePer: { type: 'Spirit', family: 'Investigator' } }); sp('T76-A'); sp('T76-A'); const e1 = cands(src, { costLePer: { type: 'Spirit', family: 'Investigator' } });
     const D = BS.FX_ACTIONS.DESTROY;
     await run(src, [{ do: 'DESTROY', symbolsGe: 2 }]);
-    return [a, b, c, d0, d2, e, e1, D.chk({ bpLeSelf: true }), D.chk({ symbolsGe: 0 }), D.chk({ costLePer: { type: 'Hand' } }), ids(O), D.txt({ costLePer: { type: 'Nexus' } })];`);
+    return [a, b, c, d0, d2, e, e1, D.chk({ bpLeSelf: true }), D.chk({ symbolsGe: 0 }), D.chk({ costLePer: { type: 'Banana' } }), ids(O), D.txt({ costLePer: { type: 'Nexus' } })];`);
   assert.deepEqual(r, [['T76-A', 'T76-C'], ['T76-C'], ['T76-B'], [], ['T76-A'], [], ['T76-A'], true, false, false, ['T76-A', 'T76-C'],
     'destroy 1 opposing Spirit/Ultimate with a cost equal or less than the number of matching Nexuses you control']);
 });

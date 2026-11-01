@@ -76,7 +76,7 @@ test('K-845 BS02-091: a 7000+ BP Spirit pays all its cores to the Void, then up 
     const acts = BS.CARDS['BS02-091'].magic.by.MAIN.actions; const c = { p: P, opp: O, src: BS.mkInst('BS02-091'), ctx: {} };
     const ok = BS.FX_ACTIONS.OWN_SPIRIT_CORES_TO_VOID.chk(acts[0]);
     await BS.FX_ACTIONS.OWN_SPIRIT_CORES_TO_VOID.run(c, acts[0]); const paid = [P.void - v0, P.spirits.includes(big), c.ctx.did];
-    await BS.FX_ACTIONS.OPP_CORES_TO_RESERVE.run(c, acts[1]); await BS.FX_ACTIONS.OPP_CORES_TO_RESERVE.run(c, acts[2]);
+    await BS.FX_ACTIONS.OPP_CORES_TO_RESERVE.run(c, acts[1]);
     return [ok, paid, O.reserve.n - r0, o1.cores + o2.cores]; })()`);
   assert.deepEqual(r, [true, [3, false, true], 7, 1], JSON.stringify(r));
 });

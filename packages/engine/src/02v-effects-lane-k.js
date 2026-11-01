@@ -155,3 +155,4 @@ Object.assign(FX_ACTIONS, {      // v283 "Gain n core(s) on target Spirit you co
     can: c => c.p.void > 0 && fieldList(c.p).includes(c.src),
     run: async (c, a) => { const m = Math.min(a.n || 1, c.p.void); c.ctx.did = m > 0 && fieldList(c.p).includes(c.src); if (!c.ctx.did) return; c.p.void -= m; c.src.cores += m; log(`${CARDS[c.src.id].name}: ${m} core${m === 1 ? '' : 's'} go from the Void onto it.`); io.view({ type: 'board' }); } },
 });
+wrapImmunity(Object.values(FX_ACTIONS));   // the actions above are defined after 02k: LO01
