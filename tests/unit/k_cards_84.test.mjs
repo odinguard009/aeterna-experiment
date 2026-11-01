@@ -236,3 +236,35 @@ test('K-925 BS13-031 lets Armored Dragon Spirits block while exhausted on the op
     return [on, off]; })()`);
   assert.deepEqual(r, [[true, true, false], false]);
 });
+
+test('K-926 X13-10 moves a Void core to Life when a Beach Spirit is destroyed by the opponent while Life is 5 or less', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const t = BS.mkInst('X13-10'); t.cores = 1; P.spirits = [t];
+    const dead = BS.mkInst('X13-09'); dead.cores = 0;
+    P.void = 3; P.life = 4; const l0 = P.life, v0 = P.void;
+    await BS.fireFx(P, 'ALLY_DIED', null, { subject: dead, byOpp: true });
+    const hit = [P.life - l0, v0 - P.void];
+    await BS.fireFx(P, 'ALLY_DIED', null, { subject: dead, byOpp: false });
+    const own = P.life - l0;
+    P.life = 6; const l1 = P.life;
+    await BS.fireFx(P, 'ALLY_DIED', null, { subject: dead, byOpp: true });
+    return [hit, own, P.life - l1]; })()`);
+  assert.deepEqual(r[0], [1, 1], JSON.stringify(r)); assert.equal(r[1], 1, JSON.stringify(r)); assert.equal(r[2], 0, JSON.stringify(r));
+});
+
+test('K-927 BS66-RV001 moves a Void core to Life only for a Sieg Spirit destroyed by an opposing effect', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const t = BS.mkInst('BS66-RV001'); t.cores = 1; P.spirits = [t];
+    const dead = BS.mkInst('BS13-X005A'); dead.cores = 0;
+    P.void = 3; P.life = 3; const l0 = P.life;
+    await BS.fireFx(P, 'ALLY_DIED', null, { subject: dead, byOpp: true, byOppFx: false });
+    const bp = P.life - l0;
+    await BS.fireFx(P, 'ALLY_DIED', null, { subject: dead, byOpp: true, byOppFx: true });
+    const fx = P.life - l0;
+    const other = BS.mkInst('BS01-001'); other.cores = 0;
+    await BS.fireFx(P, 'ALLY_DIED', null, { subject: other, byOpp: true, byOppFx: true });
+    return [bp, fx, P.life - l0]; })()`);
+  assert.deepEqual(r, [0, 1, 1]);
+});

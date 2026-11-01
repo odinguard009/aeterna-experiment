@@ -7744,13 +7744,6 @@
   "M_UP_TO",
   "T_ATTACKS"
  ],
- "X13-10": [
-  "A_VOID",
-  "A_VOID_TO_LIFE",
-  "C_LEVEL",
-  "C_LIFE",
-  "T_ALLY_LOST"
- ],
  "X13-11": [
   "A_BRAVE_AS_SPIRIT",
   "A_SUMMON_FREE",
@@ -41474,12 +41467,6 @@
   "K_CRUSH",
   "M_UNSTACKABLE",
   "T_ATTACKS"
- ],
- "BS66-RV001": [
-  "A_VOID",
-  "A_VOID_TO_LIFE",
-  "C_LEVEL",
-  "M_OPTIONAL"
  ],
  "BS66-RV002": [
   "A_DISCARD_OPP",

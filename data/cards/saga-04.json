@@ -21726,11 +21726,33 @@
   "image": "X13-10.jpg",
   "block": "23",
   "saga": 4,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] When your \"Beach\"-named Spirit is destroyed by the opponent, if your Life is five or less, put a core from the Void to your Life."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "effects": [
+   {
+    "trigger": "ALLY_DIED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "match": {
+     "name": [
+      "Beach"
+     ]
+    },
+    "if": {
+     "byOpp": true,
+     "lifeLe": 5
+    },
+    "actions": [
+     {
+      "do": "VOID_TO_LIFE",
+      "n": 1
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "X13-11",
