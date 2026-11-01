@@ -1614,6 +1614,12 @@
   "C_LEVEL",
   "T_DESTROYED"
  ],
+ "BS06-028": [
+  "A_EXHAUST",
+  "C_LEVEL",
+  "T_ALLY_BLOCKED",
+  "T_ATTACKS"
+ ],
  "BS06-034": [
   "A_BP_PLUS",
   "A_REFRESH",
@@ -31746,6 +31752,12 @@
   "M_IF_YOU_DO",
   "M_OPTIONAL"
  ],
+ "BS55-XX01": [
+  "C_LEVEL",
+  "K_BRAVE",
+  "S_UNAFFECTED",
+  "T_SUMMONED"
+ ],
  "BS55-XX02": [
   "C_LEVEL",
   "K_BURST",
@@ -33155,6 +33167,15 @@
   "K_RUSH",
   "T_SUMMONED"
  ],
+ "BS58-015": [
+  "A_SUMMON_FREE",
+  "C_LEVEL",
+  "K_MIRAGE",
+  "K_ULTIMATE",
+  "M_IF_YOU_DO",
+  "M_OPTIONAL",
+  "T_SUMMONED"
+ ],
  "BS58-016": [
   "C_LEVEL",
   "K_MIRAGE",
@@ -34113,6 +34134,15 @@
   "K_ACCEL",
   "K_ULTIMATE",
   "M_BY_DOING",
+  "T_ALLY_ATTACKS"
+ ],
+ "BS59-057": [
+  "A_REMOVED_ZONE",
+  "A_SUMMON_FREE",
+  "C_LEVEL",
+  "K_ACCEL",
+  "K_MIRAGE",
+  "M_OPTIONAL",
   "T_ALLY_ATTACKS"
  ],
  "BS59-058": [
@@ -51101,6 +51131,19 @@
   "K_ULTIMATE",
   "M_OPTIONAL",
   "M_THEN"
+ ],
+ "BS77-AX01": [
+  "A_REFRESH",
+  "A_TRASH_TO_RESERVE",
+  "C_COUNTER",
+  "C_ONCE",
+  "C_OPP_TURN",
+  "K_ADVENT",
+  "M_BY_DOING",
+  "M_OPTIONAL",
+  "S_CANT_PREVENT",
+  "T_ADVENT",
+  "T_ATTACKS"
  ],
  "BS77-CX01": [
   "A_COUNTER",

@@ -7806,6 +7806,53 @@
   "rcode": "M"
  },
  {
+  "id": "BS58-015",
+  "name": "The Bal-Masque Margrave SpacePirate Seitz",
+  "name_jp": "バル・マスケ 辺境伯 宇宙海賊のザイツ",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 5,
+  "reduction": {
+   "purple": 2,
+   "blue": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 4000
+   },
+   {
+    "cores": 2,
+    "bp": 7000
+   },
+   {
+    "cores": 4,
+    "bp": 9000
+   }
+  ],
+  "families": [
+   "Astroblazer",
+   "Nightling"
+  ],
+  "text": "[LV1][LV2][LV3] Mirage Drain: Purple/Blue (When Summoned)\nYou can set a Purple/Blue card with Mirage effects from your Trash, without paying the cost. When you've done so, send a core from any opposing Spirit/Ultimate to the Trash.\n\n[LV2][LV3] Mirage Trance: Purple/Blue\nBesides (When Deployed) effects, your Purple/Blue Mirage also activates its LV1/LV2 Nexus effects.",
+  "image": "BS58 015.png",
+  "block": "58",
+  "saga": 12,
+  "mechanics": [
+   "Mirage Drain"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2][LV3] Mirage Drain: Purple/Blue (When Summoned)",
+   "You can set a Purple/Blue card with Mirage effects from your Trash, without paying the cost.",
+   "When you've done so, send a core from any opposing Spirit/Ultimate to the Trash.",
+   "[LV2][LV3] Mirage Trance: Purple/Blue",
+   "Besides (When Deployed) effects, your Purple/Blue Mirage also activates its [LV1]/[LV2] Nexus effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS58-016",
   "name": "The Bal-Masque Baronet Armgard",
   "name_jp": "バル・マスケ 準男爵 アルムガルト",
@@ -13529,6 +13576,55 @@
    "12"
   ],
   "rcode": "M"
+ },
+ {
+  "id": "BS59-057",
+  "name": "The SpacePirate Shariba-Luke",
+  "name_jp": "宇宙海賊シャリバ・ルーク",
+  "type": "Spirit",
+  "color": "blue",
+  "cost": 6,
+  "reduction": {
+   "blue": 3,
+   "purple": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 2,
+    "bp": 8000
+   },
+   {
+    "cores": 4,
+    "bp": 11000
+   }
+  ],
+  "families": [
+   "Astroblazer",
+   "Beast Head"
+  ],
+  "text": "Flash - Accel: Cost 5\nYou can deploy a Purple/Blue Nexus card with either the \"Proximate\" family or Mirage effects from the Trash, without paying the cost. After this effect resolves, put this card face-up onto your Removed Zone.\n\n[LV1][LV2][LV3] Mirage Trance: Purple/Blue\nBesides (When Deployed) effects, your Purple/Blue Mirage also activates its LV1/LV2 Nexus effects.\n\n[LV2][LV3] (Your Attack Step)\nWhen your Spirit with Mirage Trance attacks, you can destroy an opposing Spirit with the lowest cost.",
+  "image": "BS59 057.png",
+  "block": "59",
+  "saga": 12,
+  "mechanics": [
+   "Accel"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Flash - Accel: Cost 5",
+   "You can deploy a Purple/Blue Nexus card with either the \"Proximate\" family or Mirage effects from the Trash, without paying the cost.",
+   "After this effect resolves, put this card face-up onto your Removed Zone.",
+   "[LV1][LV2][LV3] Mirage Trance: Purple/Blue",
+   "Besides (When Deployed) effects, your Purple/Blue Mirage also activates its [LV1]/[LV2] Nexus effects.",
+   "[LV2][LV3] (Your Attack Step)",
+   "When your Spirit with Mirage Trance attacks, you can destroy an opposing Spirit with the lowest cost."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS59-058",

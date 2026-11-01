@@ -25079,6 +25079,44 @@
   "rcode": "C"
  },
  {
+  "id": "BS06-028",
+  "name": "Gabunohashi",
+  "name_jp": "ガブノハシ",
+  "type": "Spirit",
+  "color": "green",
+  "cost": 3,
+  "reduction": {
+   "green": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 1000
+   },
+   {
+    "cores": 3,
+    "bp": 5000
+   }
+  ],
+  "families": [
+   "Plant Spirit"
+  ],
+  "text": "[LV1][LV2] Windstorm: 1 (When Attacks)\nWhen this Spirit is blocked, the opponent exhausts one Spirit they control.",
+  "image": "Gabunohashi.jpg",
+  "block": "06",
+  "saga": 1,
+  "mechanics": [
+   "Windstorm"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2] Windstorm: 1 (When Attacks)",
+   "When this Spirit is blocked, the opponent exhausts one Spirit they control."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS06-029",
   "name": "Maparrot",
   "name_jp": "メイパロット",

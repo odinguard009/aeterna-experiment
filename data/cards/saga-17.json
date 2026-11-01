@@ -5737,6 +5737,53 @@
   "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
+  "id": "BS77-AX01",
+  "name": "The QuadrupleBladeHornetKing Fong-Need",
+  "name_jp": null,
+  "type": "Spirit",
+  "color": "red",
+  "cost": 7,
+  "reduction": {
+   "red": 4
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 6000
+   },
+   {
+    "cores": 3,
+    "bp": 13000
+   },
+   {
+    "cores": 6,
+    "bp": 15000
+   }
+  ],
+  "families": [
+   "Vermillion Contract",
+   "Bannerace",
+   "Flying Fang"
+  ],
+  "text": "Flash - Flag Contract Advent: Vermillion Contract & C3 or more (Your Turn)\nBy sending your Soul Core to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\n(Once per Turn: Same Name) During the Flash Timing of either Attack Step, by paying two costs, Flag Contract Advent this card from the Hand, treating Soul Core as being sent to the Trash.\n\n[LV1-2-3] (When Advents)/(End of Your Main Step)\nYou can destroy an opposing Spirit with three or less symbols. If this Spirit is During Advent, this effect can't be prevented by opposing effects.\n\nDuring Advent [LV1-2-3] (When Attacks)\nBy sending three cores, besides Soul Core, from your Trash to this Spirit, refresh it.",
+  "image": null,
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "Flash - Flag Contract Advent: Vermillion Contract & C3 or more (Your Turn)",
+   "By sending your Soul Core to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
+   "(Once per Turn: Same Name) During the Flash Timing of either Attack Step, by paying two costs, Flag Contract Advent this card from the Hand, treating Soul Core as being sent to the Trash.",
+   "[LV1-2-3] (When Advents)/(End of Your Main Step)",
+   "You can destroy an opposing Spirit with three or less symbols.",
+   "If this Spirit is During Advent, this effect can't be prevented by opposing effects.",
+   "During Advent [LV1-2-3] (When Attacks)",
+   "By sending three cores, besides Soul Core, from your Trash to this Spirit, refresh it."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS77-CX01",
   "name": "The FlameBladeFlagbearer Seiba",
   "name_jp": "炎刀の旗手セイバ",

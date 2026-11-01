@@ -12,10 +12,9 @@ import { openGame, closeBrowser } from '../tests/unit/lib/game.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const KEEP = ['id', 'name', 'name_jp', 'type', 'color', 'cost', 'reduction', 'symbols', 'levels', 'families', 'text', 'image', 'block', 'saga', 'rcode', 'collab', 'bicon'];
-// Fandom export has no levels for these Spirits (empty page data or a page template the export did not parse),
-// Remaining gaps after the 2026-11-01 official-field pass: BS55-XX01 and the three BS77 AX cards have no
-// usable official level table / no official page.
-export const KNOWN_GAPS = new Set(['BS55-XX01', 'BS77-AX01', 'BS77-AX02', 'BS77-AX03']);
+// Remaining gaps after the 2026-11-01 Fandom repair: the two BS77 AX pages are blank on Fandom
+// (moved from a category page, then blanked) and the BS77 set page lists no stats for them.
+export const KNOWN_GAPS = new Set(['BS77-AX02', 'BS77-AX03']);
 
 export function stagedCards() {
   const dir = join(ROOT, 'data/import'), out = [];

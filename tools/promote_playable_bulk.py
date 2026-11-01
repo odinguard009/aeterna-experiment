@@ -20,10 +20,8 @@ import sys
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 KNOWN_GAPS = {
-    'BS55-XX01': 'the official page has no level table',
-    'BS77-AX01': 'no official page',
-    'BS77-AX02': 'no official page',
-    'BS77-AX03': 'no official page',
+    'BS77-AX02': 'Fandom card page is blank (history: moved from a category page, then blanked); the BS77 set page lists no stats',
+    'BS77-AX03': 'Fandom card page is blank (history: moved from a category page, then blanked); the BS77 set page lists no stats',
 }
 ID_RE = re.compile(r'^(BS|SD|CB|BSC|LM|PB|P|X|CP|26R[A-Z]+)\d+-(?:[A-Z]*\d+[A-Z]?|10THX\d+)$')
 FIELDS = ('id', 'name', 'name_jp', 'type', 'color', 'cost', 'reduction', 'symbols', 'levels',
@@ -33,9 +31,9 @@ NOTE = ('Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only
 TEAM = re.compile(r'(?m)^[ \t]*\[Teams?:[^\]\n]+\][ \t]*(?:\n|$)')
 LEGACY = re.compile(r'(?m)^[ \t]*\(Legacy\)[ \t]*(?:\n|$)')
 COLORS = {'red', 'purple', 'green', 'white', 'yellow', 'blue'}
-# Fandom-only wiki markup the effect formatter cannot render; keep those rows staged until an English
-# text source exists (the official site is Japanese only).
-BAD_TEXT = {'BS06-028', 'BS58-015', 'BS59-057'}
+# Fandom-only wiki markup in the English text was repaired from the Fandom pages (2026-11-01);
+# nothing is skipped for text formatting any more.
+BAD_TEXT = set()
 
 
 def load(pattern):
