@@ -91,3 +91,20 @@ test('K-791 BS53-037 LV2: an opposing Cost 5 or less attacker refreshes it and a
     const a = [t.exhausted]; t.exhausted = true; BS.CARDS['BS75-001'].cost = 6; await BS.fireFx(P, 'OPP_ATTACKS', lo, { attacker: lo }); a.push(t.exhausted); return a;`);
   assert.deepEqual(r, [false, true], JSON.stringify(r));
 });
+
+test('K-792 BS42-002 LV2: unaffected by opposing Spirit effects only while exhausted', async () => {
+  const r = await run(`const t = sp('BS42-002', P, 3); const o = sp('BS75-011', O, 1); t.exhausted = false; const a = BS.fxImmune(P, t, by(o)); t.exhausted = true; return [a, BS.fxImmune(P, t, by(o))];`);
+  assert.deepEqual(r, [false, true], JSON.stringify(r));
+});
+
+test('K-793 BS70-036 LV2: unaffected by opposing red Spirit effects, not blue ones', async () => {
+  const r = await run(`const t = sp('BS70-036', P, 3); return [BS.fxImmune(P, t, by(sp(${RED}, O, 1))), BS.fxImmune(P, t, by(sp(${BLUE}, O, 1)))];`);
+  assert.deepEqual(r, [true, false], JSON.stringify(r));
+});
+
+test('K-794 BS12-028 LV2: own white Spirits resist opposing Brave effects only in the opposing Main Step', async () => {
+  const r = await run(`const me = sp('BS12-028', P, 3), ally = sp(Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit' && (BS.CARDS[i].colors || [BS.CARDS[i].symbol]).join() === 'white'), P, 1);
+    const brv = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Brave'); const src = BS.mkInst(brv); const c = { p: O, src };
+    const own = BS.fxImmune(P, ally, c); G.active = 'opponent'; G.step = 4; const opp = BS.fxImmune(P, ally, c); G.step = 5; const atk = BS.fxImmune(P, ally, c); return [own, opp, atk];`);
+  assert.deepEqual(r.slice(0, 3), [false, true, false], JSON.stringify(r));
+});

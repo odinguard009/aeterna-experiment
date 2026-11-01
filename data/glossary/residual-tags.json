@@ -3660,11 +3660,6 @@
   "C_LEVEL",
   "C_OPP_TURN"
  ],
- "BS12-028": [
-  "C_LEVEL",
-  "K_BRAVE",
-  "S_UNAFFECTED"
- ],
  "BS12-029": [
   "A_EXHAUST",
   "C_LEVEL",
@@ -17646,11 +17641,6 @@
   "M_OPTIONAL",
   "T_ATTACKS"
  ],
- "BS39-RV011": [
-  "C_LEVEL",
-  "K_BRAVE",
-  "S_UNAFFECTED"
- ],
  "BS39-RV012": [
   "C_LEVEL",
   "K_BRAVE",
@@ -19578,12 +19568,6 @@
   "A_BP_PLUS",
   "A_REMOVED_ZONE",
   "K_ACCEL"
- ],
- "BS42-002": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "K_BRAVE",
-  "S_UNAFFECTED"
  ],
  "BS42-003": [
   "A_VOID",
@@ -45718,10 +45702,6 @@
  "BS70-035": [
   "A_REMOVED_ZONE",
   "T_OPP_REMOVED"
- ],
- "BS70-036": [
-  "K_ULTIMATE",
-  "S_UNAFFECTED"
  ],
  "BS70-037": [],
  "BS70-038": [

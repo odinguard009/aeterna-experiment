@@ -11907,7 +11907,7 @@
   "mechanics": [
    "Silver Wheel"
   ],
-  "fxComplete": false,
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); not yet checked against the card image. v0.50.0: keyword effect wired (session D part 2).",
   "effects": [
    {
@@ -11935,10 +11935,27 @@
       }
      }
     ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "UNAFFECTED",
+    "to": "self",
+    "lv": [
+     2
+    ],
+    "from": {
+     "colors": [
+      "red",
+      "purple"
+     ],
+     "types": [
+      "Spirit",
+      "Ultimate",
+      "Nexus",
+      "Magic"
+     ]
+    }
    }
-  ],
-  "residual": [
-   "LV2: unaffected by opposing Red/Purple Spirit/Ultimate/Nexus/Magic effects"
   ],
   "bicon": [
    "11"
