@@ -2703,7 +2703,6 @@
   "K_BRAVE"
  ],
  "BS10-101": [],
- "BS10-102": [],
  "BS10-103": [
   "A_BP_PLUS"
  ],
@@ -5836,7 +5835,6 @@
   "M_THEN",
   "T_ALLY_LOST"
  ],
- "BS18-076": [],
  "BS18-077": [
   "A_RETURN_TRASH",
   "A_TRASH_TO_RESERVE"
@@ -17710,9 +17708,6 @@
   "K_ADVENT",
   "K_RUSH",
   "K_ULTIMATE"
- ],
- "BS40-086": [
-  "A_REFRESH"
  ],
  "BS40-087": [
   "K_ADVENT",

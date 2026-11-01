@@ -166,3 +166,24 @@ test('K-902 BS01-148 / BS06-109 / BS13-082 end the current battle at once (BS13-
     return out; })()`);
   assert.deepEqual(r, [true, true, true, true, true, false], JSON.stringify(r));
 });
+
+test('K-903 BS10-102 / BS18-076 leave one core on an opposing Spirit; BS40-086 refreshes two Winged Beast Spirits', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const out = [];
+    for (const id of ['BS10-102', 'BS18-076']) {
+      const s = BS.mkInst('BS01-001'); s.cores = 4; O.spirits = [s]; P.reserve.n = 20; const m = BS.mkInst(id); P.hand = [m];
+      await BS.castMagic(P, { inst: m, target: null, plan: null, ctx: 'flash' }); out.push(s.cores);
+    }
+    return out; })()`);
+  assert.deepEqual(r, [1, 1], JSON.stringify(r));
+});
+
+test('K-904 BS40-086 refreshes two Winged Beast Spirits you control', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const mk = id => { const x = BS.mkInst(id); x.cores = 1; x.exhausted = true; return x; };
+    const w = [mk('BS48-032'), mk('BS48-032'), mk('BS48-032')], o = mk('BS01-001'); P.spirits = [...w, o]; P.reserve.n = 20; const m = BS.mkInst('BS40-086'); P.hand = [m];
+    await BS.castMagic(P, { inst: m, target: null, plan: null, ctx: 'flash' }); return [w.filter(x => !x.exhausted).length, o.exhausted]; })()`);
+  assert.deepEqual(r, [2, true], JSON.stringify(r));
+});

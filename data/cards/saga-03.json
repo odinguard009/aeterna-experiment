@@ -18965,12 +18965,21 @@
   "image": "Crystal Crack.png",
   "block": "18",
   "saga": 3,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Send cores from an opposing Spirit to their Trash until only one core left on it."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "OPP_CORES_TO_TRASH",
+     "untilOne": true
+    }
+   ]
+  }
  },
  {
   "id": "BS18-077",
