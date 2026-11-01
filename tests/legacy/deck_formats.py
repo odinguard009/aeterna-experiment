@@ -47,7 +47,7 @@ with sync_playwright() as p:
     pg.locator("#modal-actions .modal-btn",has_text='Close').click()
     pg.fill('#db-search','Herak'); pg.wait_for_timeout(150)
     chk('limited card shows 1 badge',pg.locator('.ban-badge.lim').count()==1)
-    pg.locator('[data-a=dbcard] [data-a=dbinfo]').first.dispatch_event('click'); pg.wait_for_timeout(200)
+    pg.locator('[data-a=dbcard][data-v=BS75-054] [data-a=dbinfo]').first.dispatch_event('click'); pg.wait_for_timeout(200)
     pg.locator("#modal-actions .modal-btn",has_text='Add to deck').click(); pg.wait_for_timeout(300)
     chk('added once',pg.evaluate("BS.PLAYER_DECK?BS.PLAYER_DECK['BS75-054']:0")==1 or 'Add to Deck (1/1)' in pg.inner_text('#modal-actions'),pg.inner_text('#modal-actions'))
     chk('limit-1 add disabled at 1/1',pg.locator("#modal-actions .modal-btn[disabled]").count()>=1)
