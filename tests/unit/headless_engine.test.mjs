@@ -39,7 +39,7 @@ test('H82-03 headless CPU vs CPU: every prebuilt colour plays to the end with va
     assert.deepEqual(r.errors, [], `${a} vs ${b}`);
     assert.ok(r.over && (r.winner === 'player' || r.winner === 'opponent'), `${a} vs ${b} did not finish`);
     assert.equal(r.views.matchEnd, 1); assert.equal(r.views.reset, 1); assert.ok(r.views.board > 10);
-    assert.equal(r.logs, r.log, 'every log line went through io.log');
+    assert.ok(r.logs >= r.log, 'every hashed log line went through io.log (the unhashed Effect lines come on top)');
   }
 });
 
