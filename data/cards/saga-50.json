@@ -701,7 +701,7 @@
    "Red Cloud",
    "Luminaze"
   ],
-  "text": "(Legacy)\n[LV1-2] Clash (During Attack)\nOpposing Spirits must block if possible.\n\n[LV2] (True Release) (During Attack)\nWhen this Spirit's attack reduces the opposing Life, you can target up to three of your Spirits with Clash. Send up to a total of three cores, besides , from your Trash to them.",
+  "text": "(Legacy)\n[LV1-2] Clash (During Attack)\nOpposing Spirits must block if possible.\n\n[LV2] (True Release) (During Attack)\nWhen this Spirit's attack reduces the opposing Life, you can target up to three of your Spirits with Clash. Send up to a total of three cores, besides (Soul Core), from your Trash to them.",
   "image": "26RBS01-013.png",
   "block": "A",
   "saga": 50,
@@ -1409,7 +1409,7 @@
    "Dark Puce",
    "Corpse"
   ],
-  "text": "[LV1][LV2] (When Summoned) You can summon a Cost 3 or less \"Dark Puce\" family Spirit card from your Trash.\n\n[LV2] (When Destroyed)\nTarget an opposing Spirit. Send a core, besides , from it to the Reserve.",
+  "text": "[LV1][LV2] (When Summoned) You can summon a Cost 3 or less \"Dark Puce\" family Spirit card from your Trash.\n\n[LV2] (When Destroyed)\nTarget an opposing Spirit. Send a core, besides (Soul Core), from it to the Reserve.",
   "image": "26RBS01-025.png",
   "block": "A",
   "saga": 50,
@@ -1609,7 +1609,7 @@
    "Dark Puce",
    "Karmafiend"
   ],
-  "text": "[LV1][LV2] (When Summoned)\nTarget an opposing Spirit. Send a core, besides , from it to the Reserve. For each Spirit with Shamanism you control, send +1 core.\n\n[LV2] (True Release) (When Destroyed)\nFor each Spirit with Shamanism you control, draw a card.",
+  "text": "[LV1][LV2] (When Summoned)\nTarget an opposing Spirit. Send a core, besides (Soul Core), from it to the Reserve. For each Spirit with Shamanism you control, send +1 core.\n\n[LV2] (True Release) (When Destroyed)\nFor each Spirit with Shamanism you control, draw a card.",
   "image": "26RBS01-028.png",
   "block": "A",
   "saga": 50,
@@ -2285,7 +2285,7 @@
   "families": [
    "Armored Fish"
   ],
-  "text": "[LV2] (True Release) (When Attacks)\nYou can target an opposing Spirit without on it. Exhaust it.",
+  "text": "[LV2] (True Release) (When Attacks)\nYou can target an opposing Spirit without (Soul Core) on it. Exhaust it.",
   "image": "26RBS01-039.png",
   "block": "A",
   "saga": 50,
@@ -6072,7 +6072,7 @@
   "families": [
    "Dark Puce"
   ],
-  "text": "[LV1-2] {{Invoke|Main}} (Once Per Turn)\nDestroy one of your Purple Spirits ▶ Target an opposing Cost 3 or less Spirit. Send a core, besides , from it to the Reserve.\n\n[LV2] (Your Attack Step) (CSOPT)\nWhen the opposing Life is reduced by your Spirit with Shamanism, you can draw a card.",
+  "text": "[LV1-2] {{Invoke|Main}} (Once Per Turn)\nDestroy one of your Purple Spirits ▶ Target an opposing Cost 3 or less Spirit. Send a core, besides (Soul Core), from it to the Reserve.\n\n[LV2] (Your Attack Step) (CSOPT)\nWhen the opposing Life is reduced by your Spirit with Shamanism, you can draw a card.",
   "image": "26RBS01-095.png",
   "block": "A",
   "saga": 50,
@@ -6629,7 +6629,7 @@
   "families": [
    "Leucomyst"
   ],
-  "text": "[LV1-2] (Your Attack Step)\nAll your Spirits with Amplify can't be blocked by opposing Cost 2 or less Spirits.\n\n[LV2] (True Release) (Your Attack Step) (CSOPT)\nAt the end of battle of your Spirit with Amplify, target one of your attacking Spirits. Send a core, besides , from your Trash to it.",
+  "text": "[LV1-2] (Your Attack Step)\nAll your Spirits with Amplify can't be blocked by opposing Cost 2 or less Spirits.\n\n[LV2] (True Release) (Your Attack Step) (CSOPT)\nAt the end of battle of your Spirit with Amplify, target one of your attacking Spirits. Send a core, besides (Soul Core), from your Trash to it.",
   "image": "26RBS01-102.png",
   "block": "A",
   "saga": 50,
@@ -7859,7 +7859,7 @@
    "Topaz",
    "Echochant"
   ],
-  "text": "Flash\nTarget one of your \"Topaz\" family Spirits. Send a core, besides , from it to your Life. Then, if this card was used via Magirrate, target one of your Spirits with Magirrate. Refresh it.",
+  "text": "Flash\nTarget one of your \"Topaz\" family Spirits. Send a core, besides (Soul Core), from it to your Life. Then, if this card was used via Magirrate, target one of your Spirits with Magirrate. Refresh it.",
   "image": "26RBS01-123.png",
   "block": "A",
   "saga": 50,
@@ -10280,7 +10280,7 @@
   "families": [
    "Bloodrouse"
   ],
-  "text": "[LV2] (True Release) (When Attacks)\nIf your Spirit is destroyed this turn, target an opposing Spirit. Send a core, besides , from it to the Reserve.",
+  "text": "[LV2] (True Release) (When Attacks)\nIf your Spirit is destroyed this turn, target an opposing Spirit. Send a core, besides (Soul Core), from it to the Reserve.",
   "image": "26RBS02-014.png",
   "block": "A",
   "saga": 50,
@@ -10333,7 +10333,7 @@
   "families": [
    "Corpse"
   ],
-  "text": "[LV1][LV2] (When Destroyed)\nTarget an opposing exhausted Spirit. Send a core, besides , from it to the Reserve.",
+  "text": "[LV1][LV2] (When Destroyed)\nTarget an opposing exhausted Spirit. Send a core, besides (Soul Core), from it to the Reserve.",
   "image": "26RBS02-015.png",
   "block": "A",
   "saga": 50,
@@ -10608,7 +10608,7 @@
    "Dark Puce",
    "Karmafiend"
   ],
-  "text": "[LV1-2] (During Attack/Block) {{Invoke|Flash}}\nDestroy this Spirit ▶ Target an opposing attacking/blocking Spirit. Send two cores, besides , from it to the Reserve.",
+  "text": "[LV1-2] (During Attack/Block) {{Invoke|Flash}}\nDestroy this Spirit ▶ Target an opposing attacking/blocking Spirit. Send two cores, besides (Soul Core), from it to the Reserve.",
   "image": "26RBS02-019.png",
   "block": "A",
   "saga": 50,
@@ -10707,7 +10707,7 @@
    "Dark Puce",
    "Corpse"
   ],
-  "text": "When summoning this card via Shamanism, fulfill all its reduction symbols.\n\n[LV2] (When Destroyed)\nTarget two opposing exhausted Spirits. Send a core, besides , from each of them to the Reserve.",
+  "text": "When summoning this card via Shamanism, fulfill all its reduction symbols.\n\n[LV2] (When Destroyed)\nTarget two opposing exhausted Spirits. Send a core, besides (Soul Core), from each of them to the Reserve.",
   "image": "26RBS02-021.png",
   "block": "A",
   "saga": 50,
@@ -13061,7 +13061,7 @@
    "Topaz",
    "Wailwraith"
   ],
-  "text": "[LV1-2] (When Attacks)\nTarget an opposing Spirit. During this turn, give it -2000 BP. Then, if it has 0 BP, destroy it.\n\n[LV2] (During Attack)\nIf this is the second or subsequent attack of the turn, this Spirit can't be blocked by opposing Spirits without on it.",
+  "text": "[LV1-2] (When Attacks)\nTarget an opposing Spirit. During this turn, give it -2000 BP. Then, if it has 0 BP, destroy it.\n\n[LV2] (During Attack)\nIf this is the second or subsequent attack of the turn, this Spirit can't be blocked by opposing Spirits without (Soul Core) on it.",
   "image": "26RBS02-057.png",
   "block": "A",
   "saga": 50,
@@ -14181,7 +14181,7 @@
    "Red Cloud",
    "Windflame"
   ],
-  "text": "[LV1-2] (Start of Your Attack Step)\nTarget one of your \"Red Cloud\" family Spirits. During this turn, give it +2000 BP.\n\n[LV2] (True Release) (Your Attack Step) (Once Per Turn)\nAt the end of the battle of your 10000 BP or more Spirit, target one of your non-attacking Spirits. Send a core, besides , from your Trash to it.",
+  "text": "[LV1-2] (Start of Your Attack Step)\nTarget one of your \"Red Cloud\" family Spirits. During this turn, give it +2000 BP.\n\n[LV2] (True Release) (Your Attack Step) (Once Per Turn)\nAt the end of the battle of your 10000 BP or more Spirit, target one of your non-attacking Spirits. Send a core, besides (Soul Core), from your Trash to it.",
   "image": "26RBS02-074.png",
   "block": "A",
   "saga": 50,
@@ -14325,7 +14325,7 @@
    "Dark Puce",
    "Beastleptic"
   ],
-  "text": "[LV1-2] (When Deployed)\nIf there are no EX Symbols in your Trash, discard two cards from your decktop.\n\n[LV2] (Your End Step) (Can't Stack)\nIf you destroyed any Spirit with When Destroyed effects you control via your effects this turn, target an opposing exhausted Spirit. Send a core, besides , from it to the Reserve.",
+  "text": "[LV1-2] (When Deployed)\nIf there are no EX Symbols in your Trash, discard two cards from your decktop.\n\n[LV2] (Your End Step) (Can't Stack)\nIf you destroyed any Spirit with When Destroyed effects you control via your effects this turn, target an opposing exhausted Spirit. Send a core, besides (Soul Core), from it to the Reserve.",
   "image": "26RBS02-076 (Fixed).png",
   "block": "A",
   "saga": 50,
@@ -17026,7 +17026,7 @@
    "Red Cloud",
    "Dayspring"
   ],
-  "text": "[LV2] (During Attack)\nAt the end of battle, target one of your \"Red Cloud\"/ \"Windflame\"/ \"Dayspring\" family Spirits. Send a core, besides , from your Trash to it. If this Spirit has 10000 BP or more, send two cores instead.",
+  "text": "[LV2] (During Attack)\nAt the end of battle, target one of your \"Red Cloud\"/ \"Windflame\"/ \"Dayspring\" family Spirits. Send a core, besides (Soul Core), from your Trash to it. If this Spirit has 10000 BP or more, send two cores instead.",
   "image": null,
   "block": "A",
   "saga": 50,
@@ -17229,7 +17229,7 @@
    "Red Cloud",
    "Windflame"
   ],
-  "text": "[LV1-2] (Start of Your Attack Step)\nDuring this turn, all your \"Red Cloud\"/ \"Windflame\"/ \"Dayspring\" family Spirits gain +2000 BP.\n\n[LV2] (True Release) (Your Attack Step) (Once Per Turn)\nAt the end of the battle of your 10000 BP or more Spirit, target one of your \"Red Cloud\"/ \"Windflame\"/ \"Dayspring\" family Spirits. Send a core, besides , from your Trash to it.",
+  "text": "[LV1-2] (Start of Your Attack Step)\nDuring this turn, all your \"Red Cloud\"/ \"Windflame\"/ \"Dayspring\" family Spirits gain +2000 BP.\n\n[LV2] (True Release) (Your Attack Step) (Once Per Turn)\nAt the end of the battle of your 10000 BP or more Spirit, target one of your \"Red Cloud\"/ \"Windflame\"/ \"Dayspring\" family Spirits. Send a core, besides (Soul Core), from your Trash to it.",
   "image": null,
   "block": "A",
   "saga": 50,
@@ -17656,7 +17656,7 @@
    "Dark Puce",
    "Phantasprite"
   ],
-  "text": "[LV2] (When Attacks)\nTarget an opposing Cost 5 or less Spirit. Send two cores, besides , from it to the Reserve. Its number of cores can't be brought to less than one.",
+  "text": "[LV2] (When Attacks)\nTarget an opposing Cost 5 or less Spirit. Send two cores, besides (Soul Core), from it to the Reserve. Its number of cores can't be brought to less than one.",
   "image": null,
   "block": "A",
   "saga": 50,
@@ -17954,7 +17954,7 @@
    "Dark Puce",
    "Karmafiend"
   ],
-  "text": "[LV1][LV2] (When Summoned)\nTarget an opposing exhausted Spirit. Send a core, besides , from it to the Reserve. If there are three or more cores in the opposing Reserve, the target becomes any opposing Spirit instead.\n\n[LV2] (True Release) (During Attack)\nThis Spirit gains +2000 BP.",
+  "text": "[LV1][LV2] (When Summoned)\nTarget an opposing exhausted Spirit. Send a core, besides (Soul Core), from it to the Reserve. If there are three or more cores in the opposing Reserve, the target becomes any opposing Spirit instead.\n\n[LV2] (True Release) (During Attack)\nThis Spirit gains +2000 BP.",
   "image": null,
   "block": "A",
   "saga": 50,
@@ -18095,7 +18095,7 @@
   "families": [
    "Beastleptic"
   ],
-  "text": "[LV1-2] {{Shaman|Beastleptic & Cost 4 or less}} (When Destroyed)\nYou can target a Cost 4 or less \"Beastleptic\" family Spirit card in your Trash. Summon it.\n\n[LV2] (During Attack/Block) {{Invoke|Flash}} (Once Per Turn)\nDestroy one of your \"Beastleptic\" family Spirits ▶ Target an opposing Cost 5 or less Spirit. Send a core, besides , from it to the Reserve.",
+  "text": "[LV1-2] {{Shaman|Beastleptic & Cost 4 or less}} (When Destroyed)\nYou can target a Cost 4 or less \"Beastleptic\" family Spirit card in your Trash. Summon it.\n\n[LV2] (During Attack/Block) {{Invoke|Flash}} (Once Per Turn)\nDestroy one of your \"Beastleptic\" family Spirits ▶ Target an opposing Cost 5 or less Spirit. Send a core, besides (Soul Core), from it to the Reserve.",
   "image": null,
   "block": "A",
   "saga": 50,
@@ -18185,7 +18185,7 @@
   "families": [
    "Karmafiend"
   ],
-  "text": "[LV1-2] (Your Attack Step) (CSOPT)\nWhen your \"Dark Puce\" family Spirit is destroyed, target an opposing Spirit. Send a core, besides , from it to the Reserve.\n\n[LV2] (True Release) (When Attacks)\nTarget up to two opposing Cost 4 or less Spirits. Send a total of two cores, besides , from them to the Reserve. If it depletes, draw a card.",
+  "text": "[LV1-2] (Your Attack Step) (CSOPT)\nWhen your \"Dark Puce\" family Spirit is destroyed, target an opposing Spirit. Send a core, besides (Soul Core), from it to the Reserve.\n\n[LV2] (True Release) (When Attacks)\nTarget up to two opposing Cost 4 or less Spirits. Send a total of two cores, besides (Soul Core), from them to the Reserve. If it depletes, draw a card.",
   "image": null,
   "block": "A",
   "saga": 50,
@@ -18259,7 +18259,7 @@
   "families": [
    "Phantasprite"
   ],
-  "text": "(Legacy)\n[LV1][LV2] (When Summoned)\nTarget an opposing Spirit. Send a core, besides , from it to the Reserve. If there are three or more cores in the opposing Reserve, send one core from it to the Reserve instead. (The opponent chooses which core to send)",
+  "text": "(Legacy)\n[LV1][LV2] (When Summoned)\nTarget an opposing Spirit. Send a core, besides (Soul Core), from it to the Reserve. If there are three or more cores in the opposing Reserve, send one core from it to the Reserve instead. (The opponent chooses which core to send)",
   "image": null,
   "block": "A",
   "saga": 50,
@@ -18418,7 +18418,7 @@
   "families": [
    "Phantasprite"
   ],
-  "text": "When summoning this card from the Hand, if your Spirit was destroyed by your effect this turn, it becomes Cost 6. You can only use this effect of the same card name once per turn.\n\n[LV2] (True Release) (During Attack)\nWhen only the opposing Spirit is destroyed by BP comparison, target an opposing Spirit. Send two cores, besides , from it to the Reserve.",
+  "text": "When summoning this card from the Hand, if your Spirit was destroyed by your effect this turn, it becomes Cost 6. You can only use this effect of the same card name once per turn.\n\n[LV2] (True Release) (During Attack)\nWhen only the opposing Spirit is destroyed by BP comparison, target an opposing Spirit. Send two cores, besides (Soul Core), from it to the Reserve.",
   "image": null,
   "block": "A",
   "saga": 50,
@@ -19422,7 +19422,7 @@
    "Wollaguard",
    "Mineroid"
   ],
-  "text": "[LV1-2] (During Attack)\nAt the end of battle, if this Spirit is in refreshed state, and your Life is at two or less, you can send a core, besides , from your Reserve to your Life.\n\n[LV2] (True Release) (Can't Stack)\nWhen your Life increases, you can target an opposing Spirit. Return it to the Hand.",
+  "text": "[LV1-2] (During Attack)\nAt the end of battle, if this Spirit is in refreshed state, and your Life is at two or less, you can send a core, besides (Soul Core), from your Reserve to your Life.\n\n[LV2] (True Release) (Can't Stack)\nWhen your Life increases, you can target an opposing Spirit. Return it to the Hand.",
   "image": null,
   "block": "A",
   "saga": 50,
@@ -21811,7 +21811,7 @@
   "families": [
    "Purgatory Wings"
   ],
-  "text": "[LV1-2] (When Deployed)\nIf you control any Cost 4 or more \"Purgatory Wings\" family Spirit, target an opposing 4000 BP or less Spirit. Destroy it.\n\n[LV2] (Your End Step)\nYou can target a Cost 4 or more \"Purgatory Wings\" family Spirit you control. Send the from your Trash to it.",
+  "text": "[LV1-2] (When Deployed)\nIf you control any Cost 4 or more \"Purgatory Wings\" family Spirit, target an opposing 4000 BP or less Spirit. Destroy it.\n\n[LV2] (Your End Step)\nYou can target a Cost 4 or more \"Purgatory Wings\" family Spirit you control. Send the (Soul Core) from your Trash to it.",
   "image": null,
   "block": "A",
   "saga": 50,
@@ -21964,7 +21964,7 @@
   "families": [
    "Dark Puce"
   ],
-  "text": "[LV1-2] (Your Attack Step)\nWhen your Purple Spirit is blocked, target an opposing Spirit. Send a core from it to the Reserve. Its number of cores can't be brought to less than one. (The opponent chooses which core to send)\n\n[LV2] (Your Attack Step) (Can't Stack)\nWhen the opposing Life is reduced, target an opposing Cost 6 or less Spirit. Send a core, besides , from it to the Reserve.",
+  "text": "[LV1-2] (Your Attack Step)\nWhen your Purple Spirit is blocked, target an opposing Spirit. Send a core from it to the Reserve. Its number of cores can't be brought to less than one. (The opponent chooses which core to send)\n\n[LV2] (Your Attack Step) (Can't Stack)\nWhen the opposing Life is reduced, target an opposing Cost 6 or less Spirit. Send a core, besides (Soul Core), from it to the Reserve.",
   "image": null,
   "block": "A",
   "saga": 50,
@@ -22816,7 +22816,7 @@
   "families": [
    "Dark Puce"
   ],
-  "text": "Flash\nTarget an opposing Spirit with on it. Send a core from it to the Reserve. (The opponent chooses which core to send.)",
+  "text": "Flash\nTarget an opposing Spirit with (Soul Core) on it. Send a core from it to the Reserve. (The opponent chooses which core to send.)",
   "image": null,
   "block": "A",
   "saga": 50,
@@ -23388,7 +23388,7 @@
    "Bladessom",
    "Soaring Dragon"
   ],
-  "text": "(Legacy)\n[LV1-2] (When Summoned)\nTarget an opposing 4000 BP or less Spirit. Destroy it. For each EX Symbol of \"Red Cloud\"/\"Purgatory Wings\" family cards banished via this Legacy, the targeting BP gets +2000.\n\n[LV2] (True Release) (Your End Step)\nYou can send a core, besides , from your Trash to this Spirit.",
+  "text": "(Legacy)\n[LV1-2] (When Summoned)\nTarget an opposing 4000 BP or less Spirit. Destroy it. For each EX Symbol of \"Red Cloud\"/\"Purgatory Wings\" family cards banished via this Legacy, the targeting BP gets +2000.\n\n[LV2] (True Release) (Your End Step)\nYou can send a core, besides (Soul Core), from your Trash to this Spirit.",
   "image": null,
   "block": "A",
   "saga": 50,
@@ -23551,7 +23551,7 @@
   "families": [
    "Purgatory Wings"
   ],
-  "text": "(Legacy)\n[LV1-2] Soul Awaken (When Attacks)\nYou can send the from your Field/Trash to this Spirit. If you've done so, refresh this Spirit. You can only use Soul Awaken once per turn.\n\n[LV2] (True Release) (During Attack)\nAt the end of battle, send an opposing Life to Reserve. You can only use this effect of the same card name once per turn.",
+  "text": "(Legacy)\n[LV1-2] Soul Awaken (When Attacks)\nYou can send the (Soul Core) from your Field/Trash to this Spirit. If you've done so, refresh this Spirit. You can only use Soul Awaken once per turn.\n\n[LV2] (True Release) (During Attack)\nAt the end of battle, send an opposing Life to Reserve. You can only use this effect of the same card name once per turn.",
   "image": null,
   "block": "A",
   "saga": 50,
@@ -23662,7 +23662,7 @@
    "Dark Puce",
    "Bloodrouse"
   ],
-  "text": "(Legacy)\n[LV1-2] (When Summoned)\nYou can target a Cost 3 or less \"Dark Puce\" family Spirit card in your Trash. Summon it without paying the cost.\n\n[LV2] (True Release) (When Blocks)\nTarget an opposing attacking Spirit. Send a core, besides , from it to the Reserve.",
+  "text": "(Legacy)\n[LV1-2] (When Summoned)\nYou can target a Cost 3 or less \"Dark Puce\" family Spirit card in your Trash. Summon it without paying the cost.\n\n[LV2] (True Release) (When Blocks)\nTarget an opposing attacking Spirit. Send a core, besides (Soul Core), from it to the Reserve.",
   "image": null,
   "block": "A",
   "saga": 50,
@@ -23740,7 +23740,7 @@
    "Nightling",
    "Ogre Wizard"
   ],
-  "text": "(Legacy)\n[LV1-2] (When Summoned)\nBesides this Spirit, target a total of three Spirits you or the opponent controls. Send one core from each of them to the Reserve. (The owner chooses which core to send) If depletes, put a core from the Void to this Spirit.\n\n[LV2] (True Release) (When Attacks)\nTarget an opposing Cost 5 or less Spirit. Send cores from it to the Reserve until one core, besides , remains.",
+  "text": "(Legacy)\n[LV1-2] (When Summoned)\nBesides this Spirit, target a total of three Spirits you or the opponent controls. Send one core from each of them to the Reserve. (The owner chooses which core to send) If depletes, put a core from the Void to this Spirit.\n\n[LV2] (True Release) (When Attacks)\nTarget an opposing Cost 5 or less Spirit. Send cores from it to the Reserve until one core, besides (Soul Core), remains.",
   "image": "The SevenShogun Desperado.jpg",
   "block": "A",
   "saga": 50,
@@ -24711,7 +24711,7 @@
    "GAIM",
    "Kamen"
   ],
-  "text": "[LV1][LV2] (When Destroyed)\nTarget an opposing 3000 BP or less Spirit. Destroy it.\n\n[LV2] (Either Attack Step) {{Invoke|Flash}} (Once Per Turn)\nTarget one of your \"Kamen Rider Bravo\". Send a core, besides , from this Spirit to it, and during this battle, it gains +3000 BP.",
+  "text": "[LV1][LV2] (When Destroyed)\nTarget an opposing 3000 BP or less Spirit. Destroy it.\n\n[LV2] (Either Attack Step) {{Invoke|Flash}} (Once Per Turn)\nTarget one of your \"Kamen Rider Bravo\". Send a core, besides (Soul Core), from this Spirit to it, and during this battle, it gains +3000 BP.",
   "image": "26RCB01-002.png",
   "block": "A",
   "saga": 50,
@@ -24792,7 +24792,7 @@
    "GAIM",
    "Kamen"
   ],
-  "text": "[LV1][LV2] (Either Attack Step) {{Invoke|Flash}} (Once Per Turn)\nTarget one of your \"Kamen Rider Baron\". Send a core, besides , from this Spirit to it, and during this battle, it gains +3000 BP.",
+  "text": "[LV1][LV2] (Either Attack Step) {{Invoke|Flash}} (Once Per Turn)\nTarget one of your \"Kamen Rider Baron\". Send a core, besides (Soul Core), from this Spirit to it, and during this battle, it gains +3000 BP.",
   "image": null,
   "block": "A",
   "saga": 50,
@@ -24862,7 +24862,7 @@
    "GAIM",
    "Kamen"
   ],
-  "text": "[LV1][LV2] (Either Attack Step) {{Invoke|Flash}} (Once Per Turn)\nTarget one of your \"Kamen Rider Gaim\"/\"Kamen Rider Zangetsu\". Send a core, besides , from this Spirit to it, and during this battle, it gains +3000 BP.",
+  "text": "[LV1][LV2] (Either Attack Step) {{Invoke|Flash}} (Once Per Turn)\nTarget one of your \"Kamen Rider Gaim\"/\"Kamen Rider Zangetsu\". Send a core, besides (Soul Core), from this Spirit to it, and during this battle, it gains +3000 BP.",
   "image": null,
   "block": "A",
   "saga": 50,
@@ -25045,7 +25045,7 @@
    "GAIM",
    "Kamen"
   ],
-  "text": "[LV1][LV2] (Either Attack Step) {{Invoke|Flash}} (Once Per Turn)\nTarget one of your \"Kamen Rider Zangetsu\". Send a core, besides , from this Spirit to it, and during this battle, it gains +3000 BP.\n\n[LV2] (Either Attack Step) {{Invoke|Flash}} (Once Per Turn)\nTarget one of your \"Kamen Rider Baron\". Send a core, besides , from this Spirit to it, and during this battle, it gains +3000 BP.",
+  "text": "[LV1][LV2] (Either Attack Step) {{Invoke|Flash}} (Once Per Turn)\nTarget one of your \"Kamen Rider Zangetsu\". Send a core, besides (Soul Core), from this Spirit to it, and during this battle, it gains +3000 BP.\n\n[LV2] (Either Attack Step) {{Invoke|Flash}} (Once Per Turn)\nTarget one of your \"Kamen Rider Baron\". Send a core, besides (Soul Core), from this Spirit to it, and during this battle, it gains +3000 BP.",
   "image": null,
   "block": "A",
   "saga": 50,
@@ -26255,7 +26255,7 @@
    "ZEZTZ",
    "Kamen"
   ],
-  "text": "[LV1][LV2] (When Summoned)\nTarget an opposing Spirit. Send a core, besides , from it to the Reserve. If summoned via Form Change, send a core from it to the Reserve instead. (The opponent chooses which cores to send)\n\n[LV2] (When Attacks)\nYou can show a \"ZEZTZ\" family card from your Hand to the opponent and return it to the deckbottom. If returned, target an opposing Cost 5 or less exhausted Spirit. Destroy it.",
+  "text": "[LV1][LV2] (When Summoned)\nTarget an opposing Spirit. Send a core, besides (Soul Core), from it to the Reserve. If summoned via Form Change, send a core from it to the Reserve instead. (The opponent chooses which cores to send)\n\n[LV2] (When Attacks)\nYou can show a \"ZEZTZ\" family card from your Hand to the opponent and return it to the deckbottom. If returned, target an opposing Cost 5 or less exhausted Spirit. Destroy it.",
   "image": "26RCB01-023.png",
   "block": "A",
   "saga": 50,
@@ -28373,7 +28373,7 @@
    "EX-AID",
    "Kamen"
   ],
-  "text": "[LV1-2] Level Up (When Attacks/Blocks)\nIf this is the first attack/block of the turn, during this battle, this Spirit is treated as LV2.\n\n[LV2] (During Attack)\nWhen only the opposing Spirit is destroyed by comparing BP, you can send a core, besides , from your Trash to your Life.",
+  "text": "[LV1-2] Level Up (When Attacks/Blocks)\nIf this is the first attack/block of the turn, during this battle, this Spirit is treated as LV2.\n\n[LV2] (During Attack)\nWhen only the opposing Spirit is destroyed by comparing BP, you can send a core, besides (Soul Core), from your Trash to your Life.",
   "image": null,
   "block": "A",
   "saga": 50,
@@ -28706,7 +28706,7 @@
    "GAIM",
    "Bike"
   ],
-  "text": "[LV1-2] (Your Attack Step) (CSOPT)\nWhen the BP of your \"GAIM\" family Spirit is increased due to your \"BP+\" Flash effects, if your Hand is four or less, you can draw a card.\n\n[LV2] (True Release) (Your End Step)\nYou can target one of your \"Kamen Rider Gaim\". Send up to two cores, besides , from your Trash to it.",
+  "text": "[LV1-2] (Your Attack Step) (CSOPT)\nWhen the BP of your \"GAIM\" family Spirit is increased due to your \"BP+\" Flash effects, if your Hand is four or less, you can draw a card.\n\n[LV2] (True Release) (Your End Step)\nYou can target one of your \"Kamen Rider Gaim\". Send up to two cores, besides (Soul Core), from your Trash to it.",
   "image": "26RCB01-057.png",
   "block": "A",
   "saga": 50,
@@ -30360,7 +30360,7 @@
    "Diva",
    "Stage Style"
   ],
-  "text": "[Teams: Red Stella/Shiny Hearts]\n\n[LV1-2] (When Summoned)\nIf all your Spirits/Nexuses have Red Stella, send a core, besides , from your Trash to this Spirit. Then, target one of your exhausted Red Stella Spirits. Send a core, besides , from your Trash to it.\n\n[LV2] (Your End Step)\nYou can target one of your Red Stella Spirits. Refresh it.",
+  "text": "[Teams: Red Stella/Shiny Hearts]\n\n[LV1-2] (When Summoned)\nIf all your Spirits/Nexuses have Red Stella, send a core, besides (Soul Core), from your Trash to this Spirit. Then, target one of your exhausted Red Stella Spirits. Send a core, besides (Soul Core), from your Trash to it.\n\n[LV2] (Your End Step)\nYou can target one of your Red Stella Spirits. Refresh it.",
   "image": "26RDB01-002.png",
   "block": "A",
   "saga": 50,
@@ -31066,7 +31066,7 @@
    "Diva",
    "Stage Style"
   ],
-  "text": "[Teams: Red Stella/Shiny Hearts]\n\n[LV1-2] (During Attack)\nAt the end of battle, you can target one of your Red Stella Spirits. Send any number of cores from this Spirit to it.\n\n[LV2] (When Destroyed by the Opponent)\nIf all your Spirits/Nexuses have Red Stella, send a core, besides , from your Trash to your Life.",
+  "text": "[Teams: Red Stella/Shiny Hearts]\n\n[LV1-2] (During Attack)\nAt the end of battle, you can target one of your Red Stella Spirits. Send any number of cores from this Spirit to it.\n\n[LV2] (When Destroyed by the Opponent)\nIf all your Spirits/Nexuses have Red Stella, send a core, besides (Soul Core), from your Trash to your Life.",
   "image": "26RDB01-012.png",
   "block": "A",
   "saga": 50,
@@ -31145,7 +31145,7 @@
    "Diva",
    "Stage Style"
   ],
-  "text": "[Teams: Red Stella/Hyakka Ryouran]\n\n[LV1-2] (When Summoned)\nIf you control two or more exhausted Red Stella Spirits, target up to two opposing 5000 BP or less Spirits. Destroy them. For each Spirit destroyed, send a core, besides , from your Trash to this Spirit.",
+  "text": "[Teams: Red Stella/Hyakka Ryouran]\n\n[LV1-2] (When Summoned)\nIf you control two or more exhausted Red Stella Spirits, target up to two opposing 5000 BP or less Spirits. Destroy them. For each Spirit destroyed, send a core, besides (Soul Core), from your Trash to this Spirit.",
   "image": "26RDB01-013.png",
   "block": "A",
   "saga": 50,
@@ -31681,7 +31681,7 @@
    "Diva",
    "Stage Style"
   ],
-  "text": "[Teams: Green Wave/Twilight Gothic]\n\nFlash - (Opposing Attack Step)\nYou can summon this card from the Hand using cores from the Reserve to pay for the summon cost and putting onto it.\n\n[LV1-2] (When Summoned)\nIf you control any exhausted Green Wave Spirit, send up to two cores, besides , from your Trash to this Spirit.",
+  "text": "[Teams: Green Wave/Twilight Gothic]\n\nFlash - (Opposing Attack Step)\nYou can summon this card from the Hand using cores from the Reserve to pay for the summon cost and putting onto it.\n\n[LV1-2] (When Summoned)\nIf you control any exhausted Green Wave Spirit, send up to two cores, besides (Soul Core), from your Trash to this Spirit.",
   "image": "26RDB01-021.png",
   "block": "A",
   "saga": 50,
@@ -32849,7 +32849,7 @@
    "Diva",
    "Stage Style"
   ],
-  "text": "[Teams: Blue Beat/Legendoll]\n\n[LV1-2] (Your Attack Step)\nWhen your Blue Beat Spirit attacks, if is in your Reserve, you can target an opposing LV1 Spirit. During this battle, it can't block.",
+  "text": "[Teams: Blue Beat/Legendoll]\n\n[LV1-2] (Your Attack Step)\nWhen your Blue Beat Spirit attacks, if (Soul Core) is in your Reserve, you can target an opposing LV1 Spirit. During this battle, it can't block.",
   "image": "26RDB01-038.png",
   "block": "A",
   "saga": 50,
@@ -32911,7 +32911,7 @@
    "Diva",
    "Stage Style"
   ],
-  "text": "[Teams: Blue Beat/Pretty Animals]\n\n[LV1-2] (During Attack)\nThis Spirit gains +2000 BP.\n\n[LV2] (When Attacks)\nIf is in your Reserve, you can reveal two cards from your decktop. Among them, you can summon one Cost 5 or less Blue Beat Spirit card with a card name different from this Spirit's. Return any remaining cards to the deckbottom in any order.",
+  "text": "[Teams: Blue Beat/Pretty Animals]\n\n[LV1-2] (During Attack)\nThis Spirit gains +2000 BP.\n\n[LV2] (When Attacks)\nIf (Soul Core) is in your Reserve, you can reveal two cards from your decktop. Among them, you can summon one Cost 5 or less Blue Beat Spirit card with a card name different from this Spirit's. Return any remaining cards to the deckbottom in any order.",
   "image": "26RDB01-039.png",
   "block": "A",
   "saga": 50,
@@ -33039,7 +33039,7 @@
    "Diva",
    "Stage Style"
   ],
-  "text": "[Team: Blue Beat]\n\n[LV1-2] (During Attack) (Once Per Turn)\nWhen any opposing Cost 3 or less Spirit is destroyed, if all your Spirits/Nexuses have Blue Beat, this Spirit can refresh.\n\n[LV2] (When Attacks)\nIf the is in your Reserve, target an opposing Cost 3 or less Spirit. Destroy it.",
+  "text": "[Team: Blue Beat]\n\n[LV1-2] (During Attack) (Once Per Turn)\nWhen any opposing Cost 3 or less Spirit is destroyed, if all your Spirits/Nexuses have Blue Beat, this Spirit can refresh.\n\n[LV2] (When Attacks)\nIf the (Soul Core) is in your Reserve, target an opposing Cost 3 or less Spirit. Destroy it.",
   "image": "26RDB01-041.png",
   "block": "A",
   "saga": 50,
@@ -33119,14 +33119,14 @@
    "Diva",
    "Stage Style"
   ],
-  "text": "[Teams: Blue Beat/Pretty Animals]\n\nFlash - (Your Attack Step)\nIf all your Spirits/Nexuses have Blue Beat, and the is in your Reserve, you can summon this card from the Hand. You can only use this effect of the same card name once per turn.\n\n[LV1-2] (When Summoned)\nIf you control four or more Blue Beat Spirits, put a core from the Void to this Spirit.",
+  "text": "[Teams: Blue Beat/Pretty Animals]\n\nFlash - (Your Attack Step)\nIf all your Spirits/Nexuses have Blue Beat, and the (Soul Core) is in your Reserve, you can summon this card from the Hand. You can only use this effect of the same card name once per turn.\n\n[LV1-2] (When Summoned)\nIf you control four or more Blue Beat Spirits, put a core from the Void to this Spirit.",
   "image": "26RDB01-042.png",
   "block": "A",
   "saga": 50,
   "fxComplete": false,
   "residual": [
    "[Teams: Blue Beat/Pretty Animals]",
-   "Flash - (Your Attack Step) If all your Spirits/Nexuses have Blue Beat, and the is in your Reserve, you can summon this card from the Hand. You can only use this effect of the same card name once per turn.",
+   "Flash - (Your Attack Step) If all your Spirits/Nexuses have Blue Beat, and the (Soul Core) is in your Reserve, you can summon this card from the Hand. You can only use this effect of the same card name once per turn.",
    "[LV1-2] (When Summoned) If you control four or more Blue Beat Spirits, put a core from the Void to this Spirit."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
@@ -34414,7 +34414,7 @@
   "families": [
    "Diva"
   ],
-  "text": "[Team: Blue Beat]\n\nMain\nTarget a Blue Beat Nexus card in your Trash. Return it to the Hand. If there's in your Reserve, instead, change the target to any Blue Beat Spirit card/Nexus card.\n\nFlash\nTarget one of your Spirits. During this turn, give it +3000 BP.",
+  "text": "[Team: Blue Beat]\n\nMain\nTarget a Blue Beat Nexus card in your Trash. Return it to the Hand. If there's (Soul Core) in your Reserve, instead, change the target to any Blue Beat Spirit card/Nexus card.\n\nFlash\nTarget one of your Spirits. During this turn, give it +3000 BP.",
   "image": "26RDB01-061.png",
   "block": "A",
   "saga": 50,
@@ -35066,7 +35066,7 @@
    "Diva",
    "Stage Style"
   ],
-  "text": "(Legacy)\n\n[Team: Blue Beat]\n\n[LV1-2] (When Attacks)\nIf is in your Reserve, you can reveal three cards from your decktop. Among them, summon up to two Cost 5 or less Blue Beat Spirit cards. Return any remaining cards to the deckbottom in any order.\n\n[LV2] (Your Attack Step) (Can't Stack)\nWhen the opponent would block your Blue Beat Spirits, they can't block unless they pay two costs.",
+  "text": "(Legacy)\n\n[Team: Blue Beat]\n\n[LV1-2] (When Attacks)\nIf (Soul Core) is in your Reserve, you can reveal three cards from your decktop. Among them, summon up to two Cost 5 or less Blue Beat Spirit cards. Return any remaining cards to the deckbottom in any order.\n\n[LV2] (Your Attack Step) (Can't Stack)\nWhen the opponent would block your Blue Beat Spirits, they can't block unless they pay two costs.",
   "image": "26RDB01-X06.png",
   "block": "A",
   "saga": 50,
@@ -35501,7 +35501,7 @@
   "families": [
    "Windfang"
   ],
-  "text": "[LV1-2] (When Summoned)\nSend up to two cores, besides , from your Trash to this Spirit.\n\n[LV2] (Your End Step)\nYou can target one of your \"Windfang\" family Spirits/Nexuses. Send the from your Trash to it.",
+  "text": "[LV1-2] (When Summoned)\nSend up to two cores, besides (Soul Core), from your Trash to this Spirit.\n\n[LV2] (Your End Step)\nYou can target one of your \"Windfang\" family Spirits/Nexuses. Send the (Soul Core) from your Trash to it.",
   "image": "26RSD01-006.png",
   "block": "A",
   "saga": 50,
@@ -35781,7 +35781,7 @@
   "families": [
    "Windfang"
   ],
-  "text": "[LV1-2] (Your Attack Step) {{Invoke|Flash}}\nExhaust this Nexus ▶ Target one of your attacking \"Windfang\" family Spirits. During this battle, it gains +2000 BP.\n\n[LV2] (True Release) (Your Attack Step) (Once Per Turn)\nWhen you destroy any opposing Spirits, you can target one of your Spirits. Send a core, besides , from your Trash to it.",
+  "text": "[LV1-2] (Your Attack Step) {{Invoke|Flash}}\nExhaust this Nexus ▶ Target one of your attacking \"Windfang\" family Spirits. During this battle, it gains +2000 BP.\n\n[LV2] (True Release) (Your Attack Step) (Once Per Turn)\nWhen you destroy any opposing Spirits, you can target one of your Spirits. Send a core, besides (Soul Core), from your Trash to it.",
   "image": "26RSD01-010.png",
   "block": "A",
   "saga": 50,
@@ -35966,7 +35966,7 @@
   "families": [
    "Windfang"
   ],
-  "text": "Main\nTarget an opposing Nexus that isn't during True Release. Destroy it. Then, if you control any exhausted Red Spirit, send a core, besides , from your Trash to the Reserve.\n\nFlash\nTarget one of your Spirits. During this turn, give it +3000 BP.",
+  "text": "Main\nTarget an opposing Nexus that isn't during True Release. Destroy it. Then, if you control any exhausted Red Spirit, send a core, besides (Soul Core), from your Trash to the Reserve.\n\nFlash\nTarget one of your Spirits. During this turn, give it +3000 BP.",
   "image": "26RSD01-012.png",
   "block": "A",
   "saga": 50,
@@ -36171,7 +36171,7 @@
   "families": [
    "Windfang"
   ],
-  "text": "(Legacy)\n[LV1-2] (When Summoned)\nTarget an opposing 7000 BP or less Spirit. Destroy it.\n\n[LV2] (When Attacks)\nYou can target a \"Windfang\" family Spirit you control. Put up to two cores, besides , from your Trash to it.",
+  "text": "(Legacy)\n[LV1-2] (When Summoned)\nTarget an opposing 7000 BP or less Spirit. Destroy it.\n\n[LV2] (When Attacks)\nYou can target a \"Windfang\" family Spirit you control. Put up to two cores, besides (Soul Core), from your Trash to it.",
   "image": "26RSD01-X01.png",
   "block": "A",
   "saga": 50,
@@ -36337,7 +36337,7 @@
    "Dark Puce",
    "Bloodrouse"
   ],
-  "text": "[LV2] (When Destroyed)\nTarget an opposing Spirit. Send a core, besides , from it to the Reserve.",
+  "text": "[LV2] (When Destroyed)\nTarget an opposing Spirit. Send a core, besides (Soul Core), from it to the Reserve.",
   "image": "26RSD02-001.png",
   "block": "A",
   "saga": 50,
@@ -36487,7 +36487,7 @@
   "families": [
    "Bloodrouse"
   ],
-  "text": "[LV2] (True Release) (When Attacks)\nTarget an opposing Cost 4 or less Spirit. Send a core, besides from it to the Reserve.",
+  "text": "[LV2] (True Release) (When Attacks)\nTarget an opposing Cost 4 or less Spirit. Send a core, besides (Soul Core) from it to the Reserve.",
   "image": "26RSD02-004.png",
   "block": "A",
   "saga": 50,
@@ -36627,7 +36627,7 @@
   "families": [
    "Bloodrouse"
   ],
-  "text": "[LV1][LV2] (When Summoned)\nIf you control any exhausted \"Bloodrouse\" family Spirit, target an opposing Spirit. Send a core, besides , from it to the Reserve.\n\n[LV2] (True Release) (During Attack)\nThis Spirit gains +2000 BP.",
+  "text": "[LV1][LV2] (When Summoned)\nIf you control any exhausted \"Bloodrouse\" family Spirit, target an opposing Spirit. Send a core, besides (Soul Core), from it to the Reserve.\n\n[LV2] (True Release) (During Attack)\nThis Spirit gains +2000 BP.",
   "image": "26RSD02-007.png",
   "block": "A",
   "saga": 50,
@@ -36696,7 +36696,7 @@
   "families": [
    "Bloodrouse"
   ],
-  "text": "[LV2] (When Attacks)\nTarget an opposing Spirit. Send a core, besides , from it to the Reserve.",
+  "text": "[LV2] (When Attacks)\nTarget an opposing Spirit. Send a core, besides (Soul Core), from it to the Reserve.",
   "image": "26RSD02-008.png",
   "block": "A",
   "saga": 50,
@@ -36827,7 +36827,7 @@
   "families": [
    "Bloodrouse"
   ],
-  "text": "[LV1][LV2] (When Deployed)\nTarget an opposing Spirit. Send a core, besides , from it to the Reserve.\n\n[LV2] {{Invoke|Main}}\nDestroy this Nexus ▶ Target an opposing Cost 3 or less Spirit. Send cores from it to the Reserve until one core remains. (The opponent chooses which cores to send.)",
+  "text": "[LV1][LV2] (When Deployed)\nTarget an opposing Spirit. Send a core, besides (Soul Core), from it to the Reserve.\n\n[LV2] {{Invoke|Main}}\nDestroy this Nexus ▶ Target an opposing Cost 3 or less Spirit. Send cores from it to the Reserve until one core remains. (The opponent chooses which cores to send.)",
   "image": "26RSD02-010.png",
   "block": "A",
   "saga": 50,
@@ -37054,7 +37054,7 @@
   "families": [
    "Bloodrouse"
   ],
-  "text": "{{Soul Magic|p||If you control any Purple symbol, you can use it with just the .}}\nFlash\nTarget an opposing Spirit. Send two cores from it to the Reserve. (The opponent chooses which cores to send)",
+  "text": "{{Soul Magic|p||If you control any Purple symbol, you can use it with just the (Soul Core).}}\nFlash\nTarget an opposing Spirit. Send two cores from it to the Reserve. (The opponent chooses which cores to send)",
   "image": "26RSD02-014.png",
   "block": "A",
   "saga": 50,
@@ -37108,7 +37108,7 @@
   "families": [
    "Bloodrouse"
   ],
-  "text": "(Legacy)\n[LV1][LV2] (When Summoned)\nTarget an opposing Spirit. Send cores from it to the Reserve until one core remains. (The opponent chooses which cores to send.)\n\n[LV2] (When Attacks)\nTarget an opposing Spirit. Send a core, besides , from it to the Reserve. If it depletes, draw a card.",
+  "text": "(Legacy)\n[LV1][LV2] (When Summoned)\nTarget an opposing Spirit. Send cores from it to the Reserve until one core remains. (The opponent chooses which cores to send.)\n\n[LV2] (When Attacks)\nTarget an opposing Spirit. Send a core, besides (Soul Core), from it to the Reserve. If it depletes, draw a card.",
   "image": "26RSD02-X01.png",
   "block": "A",
   "saga": 50,
@@ -41630,7 +41630,7 @@
    "ZEZTZ",
    "Kamen"
   ],
-  "text": "[LV1-2] (When Summoned)\nIf summoned via Form Change, target two opposing Spirits. Send a core, besides , from each of them to the Reserve.",
+  "text": "[LV1-2] (When Summoned)\nIf summoned via Form Change, target two opposing Spirits. Send a core, besides (Soul Core), from each of them to the Reserve.",
   "image": "26RSD07-008.png",
   "block": "A",
   "saga": 50,
@@ -41753,7 +41753,7 @@
    "ZEZTZ",
    "Kamen"
   ],
-  "text": "[LV1][LV2] {{F Change|\"Zeztz\" & Cost 6}} {{Invoke|Main}}\nReturn this exhausted Spirit to the Hand, and you must summon a Cost 6 \"Zeztz\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn.\n\n[LV2] (When Attacks)\nYou can show a \"ZEZTZ\" family card from the Hand to the opponent and return it to the deckbottom. If returned, target an opposing Cost 5 or less Spirit. Send a core, besides , from it to the Reserve.",
+  "text": "[LV1][LV2] {{F Change|\"Zeztz\" & Cost 6}} {{Invoke|Main}}\nReturn this exhausted Spirit to the Hand, and you must summon a Cost 6 \"Zeztz\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn.\n\n[LV2] (When Attacks)\nYou can show a \"ZEZTZ\" family card from the Hand to the opponent and return it to the deckbottom. If returned, target an opposing Cost 5 or less Spirit. Send a core, besides (Soul Core), from it to the Reserve.",
   "image": "26RSD07-010.png",
   "block": "A",
   "saga": 50,
@@ -41848,7 +41848,7 @@
    "ZEZTZ",
    "Bike"
   ],
-  "text": "[LV1-2] (Your Main Step)\nIf you control any exhausted \"ZEZTZ\" family Spirit, this Nexus gains an extra Purple symbol.\n\n[LV2] (True Release) (Either Attack Step) (CSOPT)\nWhen your \"ZEZTZ\" family Spirits are destroyed, you can target an opposing Spirit. Send a core, besides , from it to the Reserve.",
+  "text": "[LV1-2] (Your Main Step)\nIf you control any exhausted \"ZEZTZ\" family Spirit, this Nexus gains an extra Purple symbol.\n\n[LV2] (True Release) (Either Attack Step) (CSOPT)\nWhen your \"ZEZTZ\" family Spirits are destroyed, you can target an opposing Spirit. Send a core, besides (Soul Core), from it to the Reserve.",
   "image": "26RSD07-011.png",
   "block": "A",
   "saga": 50,
@@ -42008,7 +42008,7 @@
   "families": [
    "ZEZTZ"
   ],
-  "text": "Flash\nIf all your Spirits/Nexuses have the \"ZEZTZ\" family, target an opposing Spirit. Send a core, besides , from it to the Reserve.",
+  "text": "Flash\nIf all your Spirits/Nexuses have the \"ZEZTZ\" family, target an opposing Spirit. Send a core, besides (Soul Core), from it to the Reserve.",
   "image": "26RSD07-013.png",
   "block": "A",
   "saga": 50,
@@ -42057,7 +42057,7 @@
   "families": [
    "ZEZTZ"
   ],
-  "text": "{{Soul Magic|p||If you control any Purple symbol, you can use it with just the .}}\nFlash\nTarget one of your \"ZEZTZ\" family Spirits. During this battle, give it +3000 BP. Then, if it has Form Change, draw a card.",
+  "text": "{{Soul Magic|p||If you control any Purple symbol, you can use it with just the (Soul Core).}}\nFlash\nTarget one of your \"ZEZTZ\" family Spirits. During this battle, give it +3000 BP. Then, if it has Form Change, draw a card.",
   "image": "26RSD07-014.png",
   "block": "A",
   "saga": 50,
@@ -42212,7 +42212,7 @@
    "ZEZTZ",
    "Kamen"
   ],
-  "text": "(Legacy)\n[LV1][LV2] {{F Change|\"Zeztz\" & Cost 8/9}} {{Invoke|Main}}\nReturn this exhausted Spirit to the Hand, and you must summon a Cost 8/9 \"Zeztz\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn.\n\n[LV2] (True Release) (When Attacks)\nTarget an opposing Spirit. Send a core, besides , from it to the Reserve.",
+  "text": "(Legacy)\n[LV1][LV2] {{F Change|\"Zeztz\" & Cost 8/9}} {{Invoke|Main}}\nReturn this exhausted Spirit to the Hand, and you must summon a Cost 8/9 \"Zeztz\" with a different name from your Hand, without paying the cost. You can only use this effect of the same card name once per turn.\n\n[LV2] (True Release) (When Attacks)\nTarget an opposing Spirit. Send a core, besides (Soul Core), from it to the Reserve.",
   "image": "26RSD07-X02.png",
   "block": "A",
   "saga": 50,
@@ -42360,7 +42360,7 @@
    "Stage Style",
    "Sword Eye"
   ],
-  "text": "[Team: Yellow Rise]\n\n[LV1-2] (When Summoned)\nIf you control any exhausted Yellow Rise Spirit, target a \"Sword Eye\" family Magic card in your Trash. Return it to your Hand.\n\n[LV2] (During Attack)\nWhen this Spirit's attack reduces the opposing Life, if your Life is at two or less, send a core, besides , from your Reserve to the Life.",
+  "text": "[Team: Yellow Rise]\n\n[LV1-2] (When Summoned)\nIf you control any exhausted Yellow Rise Spirit, target a \"Sword Eye\" family Magic card in your Trash. Return it to your Hand.\n\n[LV2] (During Attack)\nWhen this Spirit's attack reduces the opposing Life, if your Life is at two or less, send a core, besides (Soul Core), from your Reserve to the Life.",
   "image": "26RSD08-002.png",
   "block": "A",
   "saga": 50,
@@ -43399,7 +43399,7 @@
   "families": [
    "Purgatory Wings"
   ],
-  "text": "[LV1-2]\nWhile this Spirit has no on it, it can't attack.",
+  "text": "[LV1-2]\nWhile this Spirit has no (Soul Core) on it, it can't attack.",
   "image": "26RSD09-001.png",
   "block": "A",
   "saga": 50,
@@ -43715,7 +43715,7 @@
    "Red Cloud",
    "Purgatory Wings"
   ],
-  "text": "[LV1-2] (When Summoned)\nYou can target a Cost 4 or less \"Red Cloud\" family Spirit card in your Trash. Return it to your Hand.\n\n[LV2] (When Attacks)\nTarget an opposing 3000 BP or less Spirit. Destroy it. If the is in your Trash, the targeting BP becomes 4000 or less instead.",
+  "text": "[LV1-2] (When Summoned)\nYou can target a Cost 4 or less \"Red Cloud\" family Spirit card in your Trash. Return it to your Hand.\n\n[LV2] (When Attacks)\nTarget an opposing 3000 BP or less Spirit. Destroy it. If the (Soul Core) is in your Trash, the targeting BP becomes 4000 or less instead.",
   "image": "26RSD09-007.png",
   "block": "A",
   "saga": 50,
@@ -43862,7 +43862,7 @@
    "Red Cloud",
    "Purgatory Wings"
   ],
-  "text": "(Legacy)\n[LV1-2] (During Attack)\nThis Spirit gains +2000 BP.\n\n[LV2] (When Attacks)\nIf the is in your Trash, target an opposing 5000 BP or less Spirit. Destroy it.",
+  "text": "(Legacy)\n[LV1-2] (During Attack)\nThis Spirit gains +2000 BP.\n\n[LV2] (When Attacks)\nIf the (Soul Core) is in your Trash, target an opposing 5000 BP or less Spirit. Destroy it.",
   "image": "26RSD09-009.png",
   "block": "A",
   "saga": 50,
@@ -44183,7 +44183,7 @@
   "families": [
    "Purgatory Wings"
   ],
-  "text": "[LV1-2] (When Summoned)\nYou can reveal three cards from your decktop. Among them, add a \"Purgatory Wings\" family Spirit card with a card name different from this Spirit's to the Hand. Return any remaining cards to the deckbottom in any order. If (soul core) was used to pay for the summon cost, add two cards to Hand instead.\n\n[LV2] (Your Attack Step)\nIf the is in your Trash, all your Spirits gain +1000 BP.",
+  "text": "[LV1-2] (When Summoned)\nYou can reveal three cards from your decktop. Among them, add a \"Purgatory Wings\" family Spirit card with a card name different from this Spirit's to the Hand. Return any remaining cards to the deckbottom in any order. If (soul core) was used to pay for the summon cost, add two cards to Hand instead.\n\n[LV2] (Your Attack Step)\nIf the (Soul Core) is in your Trash, all your Spirits gain +1000 BP.",
   "image": "26RSD09-X01.png",
   "block": "A",
   "saga": 50,

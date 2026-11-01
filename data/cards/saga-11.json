@@ -169,13 +169,13 @@
    "Celeste",
    "War Dragon"
   ],
-  "text": "[LV1][LV2][LV3]\nGive all your \"Amahara\" family Grandwalker Nexuses the \"Primal\" family. Also, while  is on this Spirit, it can't attack nor be affected by opposing effects.\n\n[LV2][LV3] Flash - (Your Attack Step)\nBy exhausting this Spirit, draw a card.",
+  "text": "[LV1][LV2][LV3]\nGive all your \"Amahara\" family Grandwalker Nexuses the \"Primal\" family. Also, while (Soul Core) is on this Spirit, it can't attack nor be affected by opposing effects.\n\n[LV2][LV3] Flash - (Your Attack Step)\nBy exhausting this Spirit, draw a card.",
   "image": "The ShugenDragon Tengen.png",
   "block": "52",
   "saga": 11,
   "fxComplete": false,
   "residual": [
-   "[LV1][LV2][LV3] Give all your \"Amahara\" family Grandwalker Nexuses the \"Primal\" family. Also, while is on this Spirit, it can't attack nor be affected by opposing effects.",
+   "[LV1][LV2][LV3] Give all your \"Amahara\" family Grandwalker Nexuses the \"Primal\" family. Also, while (Soul Core) is on this Spirit, it can't attack nor be affected by opposing effects.",
    "[LV2][LV3] Flash - (Your Attack Step) By exhausting this Spirit, draw a card."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
@@ -303,7 +303,7 @@
    "Primal",
    "Dragon Warrior"
   ],
-  "text": "[LV1][LV2][LV3] (When Summoned)\nYou can destroy an opposing Nexus.\n\n[LV1][LV2][LV3] (Start of Your Attack Step)\nYou can put up to five cores,  other than , from your Trash to any of your Red \"Primal\" family Spirits/Nexuses.\n\n[LV2][LV3]\nYour originally Cost 5 or more Spirit's \"Nexus Destruction\" effects can also target non-\"Primal\" family Grandwalker Nexuses.",
+  "text": "[LV1][LV2][LV3] (When Summoned)\nYou can destroy an opposing Nexus.\n\n[LV1][LV2][LV3] (Start of Your Attack Step)\nYou can put up to five cores,  other than (Soul Core), from your Trash to any of your Red \"Primal\" family Spirits/Nexuses.\n\n[LV2][LV3]\nYour originally Cost 5 or more Spirit's \"Nexus Destruction\" effects can also target non-\"Primal\" family Grandwalker Nexuses.",
   "image": "Wise-Dragon.png",
   "block": "52",
   "saga": 11,
@@ -636,14 +636,14 @@
    "Primal",
    "Evil Shadow"
   ],
-  "text": "[LV1][LV2][LV3] (When Summoned)\nDestroy an opposing Spirit with three cores or more on it. Also, if you have one counter or more, during this turn, this Spirit's color is treated as colorless.\n\n[LV2][LV3] (When Attacks)\nSend the opposing  from their Field/Reserve to the Trash. Then, if you have two counters or more, destroy an opposing Spirit with the most cores on it.",
+  "text": "[LV1][LV2][LV3] (When Summoned)\nDestroy an opposing Spirit with three cores or more on it. Also, if you have one counter or more, during this turn, this Spirit's color is treated as colorless.\n\n[LV2][LV3] (When Attacks)\nSend the opposing (Soul Core) from their Field/Reserve to the Trash. Then, if you have two counters or more, destroy an opposing Spirit with the most cores on it.",
   "image": "The DragonKnight Varenbaran.png",
   "block": "52",
   "saga": 11,
   "fxComplete": false,
   "residual": [
    "[LV1][LV2][LV3] (When Summoned) Destroy an opposing Spirit with three cores or more on it. Also, if you have one counter or more, during this turn, this Spirit's color is treated as colorless.",
-   "[LV2][LV3] (When Attacks) Send the opposing from their Field/Reserve to the Trash. Then, if you have two counters or more, destroy an opposing Spirit with the most cores on it."
+   "[LV2][LV3] (When Attacks) Send the opposing (Soul Core) from their Field/Reserve to the Trash. Then, if you have two counters or more, destroy an opposing Spirit with the most cores on it."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
@@ -934,13 +934,13 @@
    "Celeste",
    "Imp"
   ],
-  "text": "[LV1][LV2][LV3] Flash - (Either Attack Step)\nReturn up to three Spirits with Sound Speed/Absolute Sound Speed you control to the Hand, and when a Spirit with Absolute Sound Speed is returned, send the  from the Trash to your Reserve. This effect can only be used once per turn.\n\n[LV1][LV2][LV3]\nWhen this Spirit would leave the Field due to opposing effects, it can remain on the Field, exhausted.",
+  "text": "[LV1][LV2][LV3] Flash - (Either Attack Step)\nReturn up to three Spirits with Sound Speed/Absolute Sound Speed you control to the Hand, and when a Spirit with Absolute Sound Speed is returned, send the (Soul Core) from the Trash to your Reserve. This effect can only be used once per turn.\n\n[LV1][LV2][LV3]\nWhen this Spirit would leave the Field due to opposing effects, it can remain on the Field, exhausted.",
   "image": "The SoundBeastMaestro Kongductor.png",
   "block": "52",
   "saga": 11,
   "fxComplete": false,
   "residual": [
-   "[LV1][LV2][LV3] Flash - (Either Attack Step) Return up to three Spirits with Sound Speed/Absolute Sound Speed you control to the Hand, and when a Spirit with Absolute Sound Speed is returned, send the from the Trash to your Reserve. This effect can only be used once per turn.",
+   "[LV1][LV2][LV3] Flash - (Either Attack Step) Return up to three Spirits with Sound Speed/Absolute Sound Speed you control to the Hand, and when a Spirit with Absolute Sound Speed is returned, send the (Soul Core) from the Trash to your Reserve. This effect can only be used once per turn.",
    "[LV1][LV2][LV3] When this Spirit would leave the Field due to opposing effects, it can remain on the Field, exhausted."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
@@ -1238,13 +1238,13 @@
    "Primal",
    "Armed Machine"
   ],
-  "text": "[LV1][LV2][LV3]\nWhile  is on this Spirit, or you have two counters or more, when your White \"Primal\" family Spirits are destroyed by opposing effects, they can remain on the Field, in the same condition.\n\n[LV2][LV3]\nWhen you would gain cores from the Void via your effects, instead of gaining cores, draw a card.",
+  "text": "[LV1][LV2][LV3]\nWhile (Soul Core) is on this Spirit, or you have two counters or more, when your White \"Primal\" family Spirits are destroyed by opposing effects, they can remain on the Field, in the same condition.\n\n[LV2][LV3]\nWhen you would gain cores from the Void via your effects, instead of gaining cores, draw a card.",
   "image": "The ArmorshieldMachine Raid-Cavalier.png",
   "block": "52",
   "saga": 11,
   "fxComplete": false,
   "residual": [
-   "[LV1][LV2][LV3] While is on this Spirit, or you have two counters or more, when your White \"Primal\" family Spirits are destroyed by opposing effects, they can remain on the Field, in the same condition.",
+   "[LV1][LV2][LV3] While (Soul Core) is on this Spirit, or you have two counters or more, when your White \"Primal\" family Spirits are destroyed by opposing effects, they can remain on the Field, in the same condition.",
    "[LV2][LV3] When you would gain cores from the Void via your effects, instead of gaining cores, draw a card."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
@@ -2835,13 +2835,13 @@
    "Vassal",
    "Nightling"
   ],
-  "text": "[LV1][LV2]\nWhile  is on this Spirit, this Spirit can't attack, and is unaffected by opposing effects.\n\n[LV1][LV2] (Either Main Step)\nWhen any player would gain cores from the Void, or would put cores onto a non-\"Primal\" family Grandwalker Nexus via Core Charge, those cores are put from the activating player's Life, instead of the Void. Neither player can activate Burst effects due to this effect.",
+  "text": "[LV1][LV2]\nWhile (Soul Core) is on this Spirit, this Spirit can't attack, and is unaffected by opposing effects.\n\n[LV1][LV2] (Either Main Step)\nWhen any player would gain cores from the Void, or would put cores onto a non-\"Primal\" family Grandwalker Nexus via Core Charge, those cores are put from the activating player's Life, instead of the Void. Neither player can activate Burst effects due to this effect.",
   "image": "Onmyou Child.png",
   "block": "52",
   "saga": 11,
   "fxComplete": false,
   "residual": [
-   "[LV1][LV2] While is on this Spirit, this Spirit can't attack, and is unaffected by opposing effects.",
+   "[LV1][LV2] While (Soul Core) is on this Spirit, this Spirit can't attack, and is unaffected by opposing effects.",
    "[LV1][LV2] (Either Main Step) When any player would gain cores from the Void, or would put cores onto a non-\"Primal\" family Grandwalker Nexus via Core Charge, those cores are put from the activating player's Life, instead of the Void. Neither player can activate Burst effects due to this effect."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
@@ -3254,7 +3254,7 @@
    "Celeste",
    "Imp"
   ],
-  "text": "Flash - Absolute Sound Speed (Either Attack Step)\nYou can summon this card from your Hand by including  when paying the cost.\n\n[LV1][LV2][LV3] (When Attacks/Blocks)\nHeavy exhaust two opposing Spirits. At the end of battle, send an opposing Life to the Reserve.\nheb",
+  "text": "Flash - Absolute Sound Speed (Either Attack Step)\nYou can summon this card from your Hand by including (Soul Core) when paying the cost.\n\n[LV1][LV2][LV3] (When Attacks/Blocks)\nHeavy exhaust two opposing Spirits. At the end of battle, send an opposing Life to the Reserve.\nheb",
   "image": "The AbsoluteSoundBeast Nubiara-Vatis.png",
   "block": "52",
   "saga": 11,
@@ -3263,7 +3263,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - Absolute Sound Speed (Either Attack Step) You can summon this card from your Hand by including when paying the cost.",
+   "Flash - Absolute Sound Speed (Either Attack Step) You can summon this card from your Hand by including (Soul Core) when paying the cost.",
    "[LV1][LV2][LV3] (When Attacks/Blocks) Heavy exhaust two opposing Spirits. At the end of battle, send an opposing Life to the Reserve. heb"
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
@@ -4026,7 +4026,7 @@
    "Lord",
    "War Dragon"
   ],
-  "text": "[LV1][LV2][LV3] {{catl|All Color}} (When Attacks)\nBy sending the  from this Spirit to your Trash, immediately activate one of your Soul Bursts. When you've done so, at the end of the battle, for each \"Lord\" family Spirit you control, send an opposing Life to the Reserve.\n\n[LV2][LV3] (When Attacks)\nYou can set a card with Burst effect from your Hand. Also, once per turn, this Spirit can refresh.",
+  "text": "[LV1][LV2][LV3] {{catl|All Color}} (When Attacks)\nBy sending the (Soul Core) from this Spirit to your Trash, immediately activate one of your Soul Bursts. When you've done so, at the end of the battle, for each \"Lord\" family Spirit you control, send an opposing Life to the Reserve.\n\n[LV2][LV3] (When Attacks)\nYou can set a card with Burst effect from your Hand. Also, once per turn, this Spirit can refresh.",
   "image": "The MachineCatalystGreatGeneral Muramasa-Dragon.png",
   "block": "53",
   "saga": 11,
@@ -4035,7 +4035,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "[LV1][LV2][LV3] {{catl|All Color}} (When Attacks) By sending the from this Spirit to your Trash, immediately activate one of your Soul Bursts. When you've done so, at the end of the battle, for each \"Lord\" family Spirit you control, send an opposing Life to the Reserve.",
+   "[LV1][LV2][LV3] {{catl|All Color}} (When Attacks) By sending the (Soul Core) from this Spirit to your Trash, immediately activate one of your Soul Bursts. When you've done so, at the end of the battle, for each \"Lord\" family Spirit you control, send an opposing Life to the Reserve.",
    "[LV2][LV3] (When Attacks) You can set a card with Burst effect from your Hand. Also, once per turn, this Spirit can refresh."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
@@ -4541,7 +4541,7 @@
    "Primal",
    "Evil Shadow"
   ],
-  "text": "[LV1][LV2][LV3] (When Summoned)\nFor each \"DragonKnight\"/\"DragonRideEmperor\"-named Spirit you control, send a core each from every opposing Spirit to the Reserve.\n\n[LV2][LV3] (When Attacks)\nSend a core, besides , from the opposing Trash to the Void.",
+  "text": "[LV1][LV2][LV3] (When Summoned)\nFor each \"DragonKnight\"/\"DragonRideEmperor\"-named Spirit you control, send a core each from every opposing Spirit to the Reserve.\n\n[LV2][LV3] (When Attacks)\nSend a core, besides (Soul Core), from the opposing Trash to the Void.",
   "image": "The DragonKnight Albert.png",
   "block": "53",
   "saga": 11,
@@ -4792,7 +4792,7 @@
    "Celeste",
    "Imp"
   ],
-  "text": "[LV1][LV2] (Either Attack Step)\nWhen you're summoning a card with Sound Speed/Absolute Sound Speed, you can pay the summon cost by sending cores, other than , from your Trash to any Spirits/Grandwalker Nexuses you control instead.\n\n[LV2] (Either Attack Step)\nWhen your Spirits are summoned, exhaust an opposing Spirit.",
+  "text": "[LV1][LV2] (Either Attack Step)\nWhen you're summoning a card with Sound Speed/Absolute Sound Speed, you can pay the summon cost by sending cores, other than (Soul Core), from your Trash to any Spirits/Grandwalker Nexuses you control instead.\n\n[LV2] (Either Attack Step)\nWhen your Spirits are summoned, exhaust an opposing Spirit.",
   "image": "The EighthToneBeast NoteKangaroo.png",
   "block": "53",
   "saga": 11,
@@ -6956,7 +6956,7 @@
    "Rouse Emperor",
    "Infernal Lord"
   ],
-  "text": "[LV1][LV2][LV3] (When Summoned)\nYou can summon/deploy up to three Purple Rebirth Spirit cards/Rebirth Nexus cards from your Trash, paying one cost each. If you have three counters or more, you can use cores from the opposing Reserve/Nexuses, except , to pay the costs. This effect can only be used once per turn.\n\n[LV2][LV3] (When Attacks)\nDuring this turn, increase the Level Cost of all opposing Spirits/Nexuses by +1.",
+  "text": "[LV1][LV2][LV3] (When Summoned)\nYou can summon/deploy up to three Purple Rebirth Spirit cards/Rebirth Nexus cards from your Trash, paying one cost each. If you have three counters or more, you can use cores from the opposing Reserve/Nexuses, except (Soul Core), to pay the costs. This effect can only be used once per turn.\n\n[LV2][LV3] (When Attacks)\nDuring this turn, increase the Level Cost of all opposing Spirits/Nexuses by +1.",
   "image": "The HellRouseKing Luciferd.png",
   "block": "53",
   "saga": 11,
@@ -7489,14 +7489,14 @@
    "Primal",
    "Dragon"
   ],
-  "text": "[LV1][LV2] (When Attacks)\nYou can target and attack an opposing Spirit. Also, if you have one counter or more, this Spirit gains +3000 BP.\n\n[LV2] (When Attacks)\nIf  is on this Spirit, draw cards until you have four cards in Hand.",
+  "text": "[LV1][LV2] (When Attacks)\nYou can target and attack an opposing Spirit. Also, if you have one counter or more, this Spirit gains +3000 BP.\n\n[LV2] (When Attacks)\nIf (Soul Core) is on this Spirit, draw cards until you have four cards in Hand.",
   "image": "The ThunderFourHeavenlyKings Dragon-The-Tsuna.png",
   "block": "54",
   "saga": 11,
   "fxComplete": false,
   "residual": [
    "[LV1][LV2] (When Attacks) You can target and attack an opposing Spirit. Also, if you have one counter or more, this Spirit gains +3000 BP.",
-   "[LV2] (When Attacks) If is on this Spirit, draw cards until you have four cards in Hand."
+   "[LV2] (When Attacks) If (Soul Core) is on this Spirit, draw cards until you have four cards in Hand."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
@@ -7697,7 +7697,7 @@
    "Primal",
    "Dragon"
   ],
-  "text": "[LV1][LV2][LV3] (Start of Your Attack Step)\nPut up to five cores, besides , from your Trash to any Spirits you control. When this effect puts two or more cores to any \"Dragno\"-named Spirits you control, besides any exactly-named \"The Legate Dragno\", draw two cards.\n\n[LV2][LV3] (Your Attack Step)\nWhen your \"Dragon\" family Spirit attacks, draw a card.",
+  "text": "[LV1][LV2][LV3] (Start of Your Attack Step)\nPut up to five cores, besides (Soul Core), from your Trash to any Spirits you control. When this effect puts two or more cores to any \"Dragno\"-named Spirits you control, besides any exactly-named \"The Legate Dragno\", draw two cards.\n\n[LV2][LV3] (Your Attack Step)\nWhen your \"Dragon\" family Spirit attacks, draw a card.",
   "image": "The Legate Dragno.png",
   "block": "54",
   "saga": 11,
@@ -9535,7 +9535,7 @@
    "Primal",
    "Imaginary Beast"
   ],
-  "text": "[LV1][LV2] (When Summoned)\nYou can return two \"Magibullet\" family Magic cards from your Trash to the Hand.\n\n[LV2] (When Attacks)\nBesides , you can send a core from this Spirit to your Life. Or, you can pay three costs to immediately use the Flash effect of a \"Magibullet\" family Magic card, or a Cost 12 Magic card from your Hand.",
+  "text": "[LV1][LV2] (When Summoned)\nYou can return two \"Magibullet\" family Magic cards from your Trash to the Hand.\n\n[LV2] (When Attacks)\nBesides (Soul Core), you can send a core from this Spirit to your Life. Or, you can pay three costs to immediately use the Flash effect of a \"Magibullet\" family Magic card, or a Cost 12 Magic card from your Hand.",
   "image": "The MagicianDragon Jaculus.png",
   "block": "54",
   "saga": 11,
@@ -9809,14 +9809,14 @@
    "Primal",
    "Fusion Beast"
   ],
-  "text": "[LV1]\nThis Spirit can't attack, and is unaffected by opposing effects.\n\n[LV1]\nNexuses without  on them can't activate their effects.\n\n[LV2] (When Attacks)\nThis Spirit gains +10000 BP, and its symbol becomes two Blue symbols.",
+  "text": "[LV1]\nThis Spirit can't attack, and is unaffected by opposing effects.\n\n[LV1]\nNexuses without (Soul Core) on them can't activate their effects.\n\n[LV2] (When Attacks)\nThis Spirit gains +10000 BP, and its symbol becomes two Blue symbols.",
   "image": "The Abyssman Daigusoku.png",
   "block": "54",
   "saga": 11,
   "fxComplete": false,
   "residual": [
    "[LV1] This Spirit can't attack, and is unaffected by opposing effects.",
-   "[LV1] Nexuses without on them can't activate their effects.",
+   "[LV1] Nexuses without (Soul Core) on them can't activate their effects.",
    "[LV2] (When Attacks) This Spirit gains +10000 BP, and its symbol becomes two Blue symbols."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
@@ -11245,7 +11245,7 @@
    "Primal",
    "Tri-Heaven Deity"
   ],
-  "text": "Flash -  {{Advent|Single color & Reborn|(Either Attack Step)}}\nBy sending your  to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Advents)\nDestroy two opposing 30000 BP or less Spirits/Ultimates. If you have three counters or more, cores on the opposing Spirits/Ultimates destroyed by this effect are sent to the Trash instead of Reserve.\n\n[LV2][LV3] (When Attacks)\nFor each counter you have, draw a card.",
+  "text": "Flash -  {{Advent|Single color & Reborn|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Advents)\nDestroy two opposing 30000 BP or less Spirits/Ultimates. If you have three counters or more, cores on the opposing Spirits/Ultimates destroyed by this effect are sent to the Trash instead of Reserve.\n\n[LV2][LV3] (When Attacks)\nFor each counter you have, draw a card.",
   "image": "The ThreeHeavenDeity Daybreaker.png",
   "block": "54",
   "saga": 11,
@@ -11254,7 +11254,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{Advent|Single color & Reborn|(Either Attack Step)}} By sending your to the Trash, stack this from your Hand onto your target Spirit.",
+   "Flash - {{Advent|Single color & Reborn|(Either Attack Step)}} By sending your (Soul Core) to the Trash, stack this from your Hand onto your target Spirit.",
    "[LV1][LV2][LV3] (When Advents) Destroy two opposing 30000 BP or less Spirits/Ultimates. If you have three counters or more, cores on the opposing Spirits/Ultimates destroyed by this effect are sent to the Trash instead of Reserve.",
    "[LV2][LV3] (When Attacks) For each counter you have, draw a card."
   ],
@@ -11290,7 +11290,7 @@
    "Primal",
    "Tri-Heaven Deity"
   ],
-  "text": "Flash -  {{Advent|Single color & Reborn|(Either Attack Step)}}\nBy sending your  to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2] (When Advents)\nFor each counter you have, you can reveal a card from your decktop. Among them, summon any number of \"Primal\" family Spirit cards, without paying the cost. Discard any remaining cards.\n\n[LV2] (When Attacks)\nDestroy an opposing Cost 12 or less Spirit/Ultimate.",
+  "text": "Flash -  {{Advent|Single color & Reborn|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2] (When Advents)\nFor each counter you have, you can reveal a card from your decktop. Among them, summon any number of \"Primal\" family Spirit cards, without paying the cost. Discard any remaining cards.\n\n[LV2] (When Attacks)\nDestroy an opposing Cost 12 or less Spirit/Ultimate.",
   "image": "The ThreeHeavenDeity Noontide.png",
   "block": "54",
   "saga": 11,
@@ -11313,7 +11313,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{Advent|Single color & Reborn|(Either Attack Step)}} By sending your to the Trash, stack this from your Hand onto your target Spirit.",
+   "Flash - {{Advent|Single color & Reborn|(Either Attack Step)}} By sending your (Soul Core) to the Trash, stack this from your Hand onto your target Spirit.",
    "[LV1][LV2] (When Advents) For each counter you have, you can reveal a card from your decktop. Among them, summon any number of \"Primal\" family Spirit cards, without paying the cost. Discard any remaining cards."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
@@ -11352,7 +11352,7 @@
    "Primal",
    "Tri-Heaven Deity"
   ],
-  "text": "Flash -  {{Advent|Single color & Reborn|(Either Attack Step)}}\nBy sending your  to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Advents)\nFor each counter you have, return an opposing Spirit/Ultimate to the decktop, and for each Spirit/Ultimate returned, put a core from the Void to your Life.\n\n[LV3] (When Attacks/Blocks)\nOnce per turn, this Spirit refreshes.",
+  "text": "Flash -  {{Advent|Single color & Reborn|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Advents)\nFor each counter you have, return an opposing Spirit/Ultimate to the decktop, and for each Spirit/Ultimate returned, put a core from the Void to your Life.\n\n[LV3] (When Attacks/Blocks)\nOnce per turn, this Spirit refreshes.",
   "image": "The ThreeHeavenDeity Sun-Down.png",
   "block": "54",
   "saga": 11,
@@ -11361,7 +11361,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{Advent|Single color & Reborn|(Either Attack Step)}} By sending your to the Trash, stack this from your Hand onto your target Spirit.",
+   "Flash - {{Advent|Single color & Reborn|(Either Attack Step)}} By sending your (Soul Core) to the Trash, stack this from your Hand onto your target Spirit.",
    "[LV1][LV2][LV3] (When Advents) For each counter you have, return an opposing Spirit/Ultimate to the decktop, and for each Spirit/Ultimate returned, put a core from the Void to your Life.",
    "[LV3] (When Attacks/Blocks) Once per turn, this Spirit refreshes."
   ],
@@ -11880,13 +11880,13 @@
    "Pastwalker",
    "Spiritual Beast"
   ],
-  "text": "[LV1][LV2]\nWhile  is on this Spirit, it can't attack, and is unaffected by opposing effects.\n\n[LV1][LV2]\nAll six-colored pre-Rebirth Nexuses can't flip. Also, when the Grand Skill of a six-colored Grandwalker Nexus would activate, unless the owner sends four cores from their Field/Reserve to the Trash, it can't activate.",
+  "text": "[LV1][LV2]\nWhile (Soul Core) is on this Spirit, it can't attack, and is unaffected by opposing effects.\n\n[LV1][LV2]\nAll six-colored pre-Rebirth Nexuses can't flip. Also, when the Grand Skill of a six-colored Grandwalker Nexus would activate, unless the owner sends four cores from their Field/Reserve to the Trash, it can't activate.",
   "image": "The YomiBeast RaiunGame.jpg",
   "block": "55",
   "saga": 11,
   "fxComplete": false,
   "residual": [
-   "[LV1][LV2] While is on this Spirit, it can't attack, and is unaffected by opposing effects.",
+   "[LV1][LV2] While (Soul Core) is on this Spirit, it can't attack, and is unaffected by opposing effects.",
    "[LV1][LV2] All six-colored pre-Rebirth Nexuses can't flip. Also, when the Grand Skill of a six-colored Grandwalker Nexus would activate, unless the owner sends four cores from their Field/Reserve to the Trash, it can't activate."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
@@ -13370,14 +13370,14 @@
    "Primal",
    "Drifting Spirit"
   ],
-  "text": "[LV1][LV2]\nCost 3 or less Blue Nexuses can't activate their effects.\n\n[LV1][LV2]\nWhile  is on this Spirit, it can't attack, and is unaffected by opposing effects.\n\n[LV2]\nWhile your Hand is six or less, your Hand is unaffected by opposing effects.",
+  "text": "[LV1][LV2]\nCost 3 or less Blue Nexuses can't activate their effects.\n\n[LV1][LV2]\nWhile (Soul Core) is on this Spirit, it can't attack, and is unaffected by opposing effects.\n\n[LV2]\nWhile your Hand is six or less, your Hand is unaffected by opposing effects.",
   "image": "The Fruitsel KiwiBirdman.png",
   "block": "55",
   "saga": 11,
   "fxComplete": false,
   "residual": [
    "[LV1][LV2] Cost 3 or less Blue Nexuses can't activate their effects.",
-   "[LV1][LV2] While is on this Spirit, it can't attack, and is unaffected by opposing effects.",
+   "[LV1][LV2] While (Soul Core) is on this Spirit, it can't attack, and is unaffected by opposing effects.",
    "[LV2] While your Hand is six or less, your Hand is unaffected by opposing effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
@@ -14982,7 +14982,7 @@
    "Rouse Emperor",
    "Plant Spirit"
   ],
-  "text": "[LV1][LV2] {{ww|2}} (When Attacks)\nHeavy exhaust two opposing Spirits/Ultimates.\nheb\n\n[LV2] {{cb|4}} (When Attacks)\nBy -4 counters (send four cores from your Counter Area to the Void), until the next opposing End Step, the opponent can't move cores, except , on their Field/Grandwalker Nexuses. Count Break can only be used once per game.",
+  "text": "[LV1][LV2] {{ww|2}} (When Attacks)\nHeavy exhaust two opposing Spirits/Ultimates.\nheb\n\n[LV2] {{cb|4}} (When Attacks)\nBy -4 counters (send four cores from your Counter Area to the Void), until the next opposing End Step, the opponent can't move cores, except (Soul Core), on their Field/Grandwalker Nexuses. Count Break can only be used once per game.",
   "image": "The HundredMillionYearTree Gaur-Cedar.png",
   "block": "55",
   "saga": 11,

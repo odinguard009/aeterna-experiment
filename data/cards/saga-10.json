@@ -340,7 +340,7 @@
    "Celeste",
    "Ancient Dragon"
   ],
-  "text": "Flash - Advent: Red & Cost 3 or more  (Either Attack Step)\n By sending your  to the Trash, stack this from your hand onto your target spirit.\n\n[LV1][LV2][LV3] (When Advents/Attacks) Destroy an opposing 10000 BP or less Spirit, and draw a card. Then, you can summon one of this Spirit's \"Ancient Dragon\" family pre-Advent cards.\n\n[LV2][LV3] Flash - (Either Attack Step) Once per turn, you can summon a \"Creation\" family card from your Hand/Removed Zone.",
+  "text": "Flash - Advent: Red & Cost 3 or more  (Either Attack Step)\n By sending your (Soul Core) to the Trash, stack this from your hand onto your target spirit.\n\n[LV1][LV2][LV3] (When Advents/Attacks) Destroy an opposing 10000 BP or less Spirit, and draw a card. Then, you can summon one of this Spirit's \"Ancient Dragon\" family pre-Advent cards.\n\n[LV2][LV3] Flash - (Either Attack Step) Once per turn, you can summon a \"Creation\" family card from your Hand/Removed Zone.",
   "image": "The ExplosiveDragon Ma-Zega -Humanoid Form-.png",
   "block": "48",
   "saga": 10,
@@ -515,7 +515,7 @@
    "Worldswalker",
    "Astral Dragon"
   ],
-  "text": "Flash -  {{Advent|Red & Cost 5 or more|(Either Attack Step)}}\nBy sending your  to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Advents/Attacks)\nBy destroying an opposing 10000 BP or less Spirit, refresh this Spirit.\n\n[LV2][LV3] (Your Attack Step)\nWhen opposing Spirits are destroyed by your effects, draw a card.",
+  "text": "Flash -  {{Advent|Red & Cost 5 or more|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Advents/Attacks)\nBy destroying an opposing 10000 BP or less Spirit, refresh this Spirit.\n\n[LV2][LV3] (Your Attack Step)\nWhen opposing Spirits are destroyed by your effects, draw a card.",
   "image": "The OceanStardragon Delphinios.png",
   "block": "48",
   "saga": 10,
@@ -1162,7 +1162,7 @@
    "Celeste",
    "Death Dragon"
   ],
-  "text": "Flash -  {{Advent|Death Dragon & Cost 4 or more|(Either Attack Step)}}\n By sending your  to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Summoned/Advents)\nYou can put two cards from your decktop facedown on the Removed Zone. When you've done so, send three cores from an opposing Spirit/Ultimate to their Reserve.\n\n[LV2][LV3] Flash - (When Attacks)\nBy putting one card from your Hand facedown onto the Removed Zone, this Spirit refreshes.",
+  "text": "Flash -  {{Advent|Death Dragon & Cost 4 or more|(Either Attack Step)}}\n By sending your (Soul Core) to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Summoned/Advents)\nYou can put two cards from your decktop facedown on the Removed Zone. When you've done so, send three cores from an opposing Spirit/Ultimate to their Reserve.\n\n[LV2][LV3] Flash - (When Attacks)\nBy putting one card from your Hand facedown onto the Removed Zone, this Spirit refreshes.",
   "image": "The DestroyerEvilDragon Maheshvara.png",
   "block": "48",
   "saga": 10,
@@ -1342,7 +1342,7 @@
    "Worldswalker",
    "Dark Snake"
   ],
-  "text": "Flash - {{Advent|Dark Snake & Cost 5 or more|(Either Attack Step)}}\nBy sending your  to the Trash, stack this from the Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Summoned/Advents)\n(Once per Turn: Same Name) You can summon any number of \"Dark Snake\" family Spirit cards from your Hand/Trash, up to a total of Cost 12, paying one cost for each.\n\n[LV3] (Your Attack Step)\nWhen your \"Dark Snake\" family Spirits are destroyed by the opponent, send an opposing Life to the Reserve.",
+  "text": "Flash - {{Advent|Dark Snake & Cost 5 or more|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Summoned/Advents)\n(Once per Turn: Same Name) You can summon any number of \"Dark Snake\" family Spirit cards from your Hand/Trash, up to a total of Cost 12, paying one cost for each.\n\n[LV3] (Your Attack Step)\nWhen your \"Dark Snake\" family Spirits are destroyed by the opponent, send an opposing Life to the Reserve.",
   "image": "The PrimordialSnakeEmperor Amun-Kematera.png",
   "block": "48",
   "saga": 10,
@@ -3046,7 +3046,7 @@
   "families": [
    "Worldswalker"
   ],
-  "text": "[Summon Condition: Your Life is at six or less]\n\nThis card/Ultimate gains families: \"Divine Spirit\"/ \"Imaginary Beast\"/ \"Fairy\"/ \"Magician\"/ \"Dark Artes\"/ \"Hunter Beast\"/ \"Song Bird\"/ \"Drifting Spirit\"/ \"Youkai\", and can also Core Charge as a Yellow Spirit card/Spirit of those families.\n\n[LV3][LV4][LV5] (When Summoned)\nBesides , you can send a core from your Trash to your Life. Also, you can destroy opposing Grandwalker Nexuses with the same name until there's only one copy of each.",
+  "text": "[Summon Condition: Your Life is at six or less]\n\nThis card/Ultimate gains families: \"Divine Spirit\"/ \"Imaginary Beast\"/ \"Fairy\"/ \"Magician\"/ \"Dark Artes\"/ \"Hunter Beast\"/ \"Song Bird\"/ \"Drifting Spirit\"/ \"Youkai\", and can also Core Charge as a Yellow Spirit card/Spirit of those families.\n\n[LV3][LV4][LV5] (When Summoned)\nBesides (Soul Core), you can send a core from your Trash to your Life. Also, you can destroy opposing Grandwalker Nexuses with the same name until there's only one copy of each.",
   "image": "The EgytianAngelia Medjel.png",
   "block": "48",
   "saga": 10,
@@ -4661,7 +4661,7 @@
   "symbols": 0,
   "levels": [],
   "families": [],
-  "text": "This card has \"Fairy\" family.\n\nDuring your End Step, if  is in your Trash, return an exactly-named \"Flower Dance Draw\" from your  Field/Trash to your Hand. This effect can only be used once per turn.\n\nFlash\nDuring this turn, give an opposing Spirit/Ultimate -3000 BP. If it is brought to 0 BP by this effect, destroy it, and draw a card. Then, put this card on your Field.",
+  "text": "This card has \"Fairy\" family.\n\nDuring your End Step, if (Soul Core) is in your Trash, return an exactly-named \"Flower Dance Draw\" from your  Field/Trash to your Hand. This effect can only be used once per turn.\n\nFlash\nDuring this turn, give an opposing Spirit/Ultimate -3000 BP. If it is brought to 0 BP by this effect, destroy it, and draw a card. Then, put this card on your Field.",
   "image": "Flower Dance Draw.png",
   "block": "48",
   "saga": 10,
@@ -4873,7 +4873,7 @@
    "Avatar",
    "Death Dragon"
   ],
-  "text": "Flash -  {{Grand Advent|Death Dragon & Cost 6 or more|(Either Attack Step)}}\nBy either sending your  to the Trash, or putting a core from your Grandwalker Nexus to a Spirit you control, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Advents)\nDestroy every Spirit/Ultimate/Nexus, except this Spirit. If you have four or more face-down cards on your Removed Zone, this effect doesn't destroy your Spirits/Nexuses.\n\n[LV2][LV3] Flash -  (When Attacks)\nBy banishing four face-down cards on your Removed Zone, send an opposing Life to their Trash.",
+  "text": "Flash -  {{Grand Advent|Death Dragon & Cost 6 or more|(Either Attack Step)}}\nBy either sending your (Soul Core) to the Trash, or putting a core from your Grandwalker Nexus to a Spirit you control, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Advents)\nDestroy every Spirit/Ultimate/Nexus, except this Spirit. If you have four or more face-down cards on your Removed Zone, this effect doesn't destroy your Spirits/Nexuses.\n\n[LV2][LV3] Flash -  (When Attacks)\nBy banishing four face-down cards on your Removed Zone, send an opposing Life to their Trash.",
   "image": "The DestroyerDragonDeity Valdrum.png",
   "block": "48",
   "saga": 10,
@@ -5932,7 +5932,7 @@
   "families": [
    "Terra Dragon"
   ],
-  "text": "Flash -  {{Advent|Cost 4 or more|(Either Attack Step)}}\nBy sending your  to the Trash, stack this from your hand onto your target spirit.\n\n[LV1][LV2][LV3] (When Advents)\nDestroy two opposing 10000 BP or less Spirits/Ultimates. Also, when advented onto a Blue Spirit, put two cores from the Void to this Spirit.\n\n[LV2][LV3]\nYour \"Terra Dragon\"/\"Ocean Emperor\" family Spirits can't be returned to the Hand/Deck by opposing effects.",
+  "text": "Flash -  {{Advent|Cost 4 or more|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, stack this from your hand onto your target spirit.\n\n[LV1][LV2][LV3] (When Advents)\nDestroy two opposing 10000 BP or less Spirits/Ultimates. Also, when advented onto a Blue Spirit, put two cores from the Void to this Spirit.\n\n[LV2][LV3]\nYour \"Terra Dragon\"/\"Ocean Emperor\" family Spirits can't be returned to the Hand/Deck by opposing effects.",
   "image": "The ArmoredFortress Barosauru-no-Nushi.png",
   "block": "49",
   "saga": 10,
@@ -6449,7 +6449,7 @@
    "Ogre Wizard",
    "Infernal Lord"
   ],
-  "text": "Flash -  {{Advent|Purple & Cost 6 or more|(Either Attack Step)}}\nBy sending your  to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Advents)\nYou can summon up to two \"SevenShogun\"/\"MakaiDeity\"-named Spirit cards from your Trash, paying one cost for each. This effect doesn't trigger opposing Bursts.\n\n[LV2][LV3]\nThe (When Summoned) effects of the Spirits summoned by this Spirit's effect don't trigger opposing Bursts.",
+  "text": "Flash -  {{Advent|Purple & Cost 6 or more|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Advents)\nYou can summon up to two \"SevenShogun\"/\"MakaiDeity\"-named Spirit cards from your Trash, paying one cost for each. This effect doesn't trigger opposing Bursts.\n\n[LV2][LV3]\nThe (When Summoned) effects of the Spirits summoned by this Spirit's effect don't trigger opposing Bursts.",
   "image": "The MakaiKnight Beliochs.png",
   "block": "49",
   "saga": 10,
@@ -6868,7 +6868,7 @@
   "families": [
    "Shellman"
   ],
-  "text": "[LV1][LV2][LV3] (When Summoned)\nYou can summon a Saga Brave card from your Hand, without paying the cost. Or, you can put a core from the Void to this Spirit.\n\n[LV2][LV3] (When Attacks)\nExhaust an opposing Spirit/Ultimate. Also, during this turn, the opponent can't send  to their Trash.",
+  "text": "[LV1][LV2][LV3] (When Summoned)\nYou can summon a Saga Brave card from your Hand, without paying the cost. Or, you can put a core from the Void to this Spirit.\n\n[LV2][LV3] (When Attacks)\nExhaust an opposing Spirit/Ultimate. Also, during this turn, the opponent can't send (Soul Core) to their Trash.",
   "image": "The ConvexKnight Kabudrum.png",
   "block": "49",
   "saga": 10,
@@ -7399,7 +7399,7 @@
    "Celeste",
    "Armored Dragon"
   ],
-  "text": "Flash -  {{Advent|Armored Dragon|(Either Attack Step)}}\nBy sending your  to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2] (When Summoned/Advents)\nDiscard an opposing Burst. Also, return an opposing Spirit/Ultimate to either the Hand or the deckbottom.\n\n[LV2] (Your Attack Step)\nWhen an opposing blocking Spirit is returned to the Hand, once per turn, send an opposing Life to their Reserve.",
+  "text": "Flash -  {{Advent|Armored Dragon|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2] (When Summoned/Advents)\nDiscard an opposing Burst. Also, return an opposing Spirit/Ultimate to either the Hand or the deckbottom.\n\n[LV2] (Your Attack Step)\nWhen an opposing blocking Spirit is returned to the Hand, once per turn, send an opposing Life to their Reserve.",
   "image": "Krishnaga-Rig-Ganna.png",
   "block": "49",
   "saga": 10,
@@ -8442,7 +8442,7 @@
    "Celeste",
    "Ocean Emperor"
   ],
-  "text": "Flash -  {{Advent|Cost 4 or more|(Either Attack Step)}}\nBy sending your  to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Advents)\nDestroy two opposing Cost 8 or less Spirits/Ultimates. Also, when advented onto a Red Spirit, destroy two opposing Nexuses. Opposing Bursts can't activate via these effects.\n\n[LV3]\nEvery \"Terra Dragon\"/\"Ocean Emperor\" family Spirit your control gains an extra Blue Symbol.",
+  "text": "Flash -  {{Advent|Cost 4 or more|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Advents)\nDestroy two opposing Cost 8 or less Spirits/Ultimates. Also, when advented onto a Red Spirit, destroy two opposing Nexuses. Opposing Bursts can't activate via these effects.\n\n[LV3]\nEvery \"Terra Dragon\"/\"Ocean Emperor\" family Spirit your control gains an extra Blue Symbol.",
   "image": "The OceanGeneral Isaribi-no-Tsukasa.png",
   "block": "49",
   "saga": 10,
@@ -8576,7 +8576,7 @@
    "Worldswalker",
    "Winged Beast"
   ],
-  "text": "[Summon Condition: You control one or more Winged Beast Spirit/Ultimate]\n\nWhen summoning this revealed card, ignore its Summon Condition.\n\n[LV3][LV4][LV5]\nWhile your \"Winged Beast\" family Ultimates are attacking, the opposing Burst can't activate, and the opponent can't send  to their Trash.\n\n[LV4][LV5] (When Attacks/Blocks)\nOnce per turn, you can refresh this Ultimate. When you've done so, exhaust an opposing Spirit.",
+  "text": "[Summon Condition: You control one or more Winged Beast Spirit/Ultimate]\n\nWhen summoning this revealed card, ignore its Summon Condition.\n\n[LV3][LV4][LV5]\nWhile your \"Winged Beast\" family Ultimates are attacking, the opposing Burst can't activate, and the opponent can't send (Soul Core) to their Trash.\n\n[LV4][LV5] (When Attacks/Blocks)\nOnce per turn, you can refresh this Ultimate. When you've done so, exhaust an opposing Spirit.",
   "image": null,
   "block": "49",
   "saga": 10,
@@ -8590,7 +8590,7 @@
   "fxComplete": false,
   "residual": [
    "When summoning this revealed card, ignore its Summon Condition.",
-   "[LV3][LV4][LV5] While your \"Winged Beast\" family Ultimates are attacking, the opposing Burst can't activate, and the opponent can't send to their Trash.",
+   "[LV3][LV4][LV5] While your \"Winged Beast\" family Ultimates are attacking, the opposing Burst can't activate, and the opponent can't send (Soul Core) to their Trash.",
    "[LV4][LV5] (When Attacks/Blocks) Once per turn, you can refresh this Ultimate. When you've done so, exhaust an opposing Spirit."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
@@ -8715,7 +8715,7 @@
    "Worldswalker",
    "Divine Spirit"
   ],
-  "text": "[Summon Condition: Your Life is at six or less]\n\nWhen your Life is reduced to three or less by the opponent, you can summon this card from the Hand.\n\n[LV3][LV4][LV5] (When Summoned)\nYou can send a core, besides , from your Reserve to your Life. Also, when summoned via an effect, during this turn, give an opposing Spirit -17000 BP. Destroy it if this effect brought its BP to 0.",
+  "text": "[Summon Condition: Your Life is at six or less]\n\nWhen your Life is reduced to three or less by the opponent, you can summon this card from the Hand.\n\n[LV3][LV4][LV5] (When Summoned)\nYou can send a core, besides (Soul Core), from your Reserve to your Life. Also, when summoned via an effect, during this turn, give an opposing Spirit -17000 BP. Destroy it if this effect brought its BP to 0.",
   "image": "The EgytianAngelia Netjerel.png",
   "block": "49",
   "saga": 10,
@@ -10911,7 +10911,7 @@
    "Terra Dragon",
    "Dragon"
   ],
-  "text": "[LV1][LV2][LV3] (When Summoned/Attacks)\nYou can return either an exactly-named \"Grandwalker Anubis\", or a \"Terra Dragon\" family card from your Trash to the Hand. If that card is Cost 6 or more, send up to four cores, besides , from your Trash to this Spirit. This effect can only be used once per turn.\n\n[LV2][LV3] (When Attacks)\nDestroy an opposing Nexus. After this effect resolves, either discard two cards from the opposing Removed Zone, or two Magic cards on the opposing Field.",
+  "text": "[LV1][LV2][LV3] (When Summoned/Attacks)\nYou can return either an exactly-named \"Grandwalker Anubis\", or a \"Terra Dragon\" family card from your Trash to the Hand. If that card is Cost 6 or more, send up to four cores, besides (Soul Core), from your Trash to this Spirit. This effect can only be used once per turn.\n\n[LV2][LV3] (When Attacks)\nDestroy an opposing Nexus. After this effect resolves, either discard two cards from the opposing Removed Zone, or two Magic cards on the opposing Field.",
   "image": "The UnderworldExecutioner Carno.jpg",
   "block": "50",
   "saga": 10,
@@ -10957,7 +10957,7 @@
    "Worldswalker",
    "Emperor Beast"
   ],
-  "text": "Flash - {{Advent|Cost 3 or more|(Either Attack Step)}}\nBy sending your  to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Summoned/Advents)\nDestroy any number of opposing Spirits up to a total of 6000 BP. The effects of Spirits destroyed by this effect can't activate.\n\n[LV2][LV3] (When Attacks/Blocks)\nYou can destroy an opposing 7000 BP or less Spirit. When this effect destroys, draw a card.",
+  "text": "Flash - {{Advent|Cost 3 or more|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Summoned/Advents)\nDestroy any number of opposing Spirits up to a total of 6000 BP. The effects of Spirits destroyed by this effect can't activate.\n\n[LV2][LV3] (When Attacks/Blocks)\nYou can destroy an opposing 7000 BP or less Spirit. When this effect destroys, draw a card.",
   "image": "The BlackBeast Zegroad.png",
   "block": "50",
   "saga": 10,
@@ -11300,7 +11300,7 @@
   "families": [
    "Evil Shadow"
   ],
-  "text": "[LV1][LV2] (When Destroyed) If  is on this Spirit, send a core from any opposing Spirit to the Trash.",
+  "text": "[LV1][LV2] (When Destroyed) If (Soul Core) is on this Spirit, send a core from any opposing Spirit to the Trash.",
   "image": "Armored Soul.png",
   "block": "50",
   "saga": 10,
@@ -11518,7 +11518,7 @@
    "Celeste",
    "Evil Shadow"
   ],
-  "text": "[LV1][LV2][LV3] (When Attacks)\nYou can send one of your Lives to this Spirit. When you've done so, you can summon from your Trash a Cost 3 or less \"Evil Shadow\"/\"Youkai\" family card, besides any exactly-named \"The TenShikiWarOgres Shiki Wakamaru\", without paying the cost. Your Bursts can't activate via this effect.\n{{Rush|Yellow}}\n(While you have a Yellow symbol, the following effect activate next)\n: If your Life is five or less, you can send a core, besides , from your Trash to your Life.",
+  "text": "[LV1][LV2][LV3] (When Attacks)\nYou can send one of your Lives to this Spirit. When you've done so, you can summon from your Trash a Cost 3 or less \"Evil Shadow\"/\"Youkai\" family card, besides any exactly-named \"The TenShikiWarOgres Shiki Wakamaru\", without paying the cost. Your Bursts can't activate via this effect.\n{{Rush|Yellow}}\n(While you have a Yellow symbol, the following effect activate next)\n: If your Life is five or less, you can send a core, besides (Soul Core), from your Trash to your Life.",
   "image": "The TenShikiWarOgres Shiki Wakamaru.jpg",
   "block": "50",
   "saga": 10,
@@ -11761,13 +11761,13 @@
   "families": [
    "Evil Shadow"
   ],
-  "text": "Flash - Advent: Evil Shadow/Youkai  (Either Attack Step)\n By sending your  to the Trash, stack this from your hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Summoned/Advents) You can discard a card from your Hand. When you've done so, draw two cards.\n\n[LV2] (Your Turn) Your Cost 5 or more \"Evil Shadow\"/\"Youkai\" family Spirits are unaffected by opposing Burst effects.",
+  "text": "Flash - Advent: Evil Shadow/Youkai  (Either Attack Step)\n By sending your (Soul Core) to the Trash, stack this from your hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Summoned/Advents) You can discard a card from your Hand. When you've done so, draw two cards.\n\n[LV2] (Your Turn) Your Cost 5 or more \"Evil Shadow\"/\"Youkai\" family Spirits are unaffected by opposing Burst effects.",
   "image": "The TenShikiWarOgres - Yami Benkei.png",
   "block": "50",
   "saga": 10,
   "fxComplete": false,
   "residual": [
-   "Flash - Advent: Evil Shadow/Youkai (Either Attack Step) By sending your to the Trash, stack this from your hand onto your target Spirit.",
+   "Flash - Advent: Evil Shadow/Youkai (Either Attack Step) By sending your (Soul Core) to the Trash, stack this from your hand onto your target Spirit.",
    "[LV1][LV2][LV3] (When Summoned/Advents) You can discard a card from your Hand. When you've done so, draw two cards.",
    "[LV2] (Your Turn) Your Cost 5 or more \"Evil Shadow\"/\"Youkai\" family Spirits are unaffected by opposing Burst effects."
   ],
@@ -11852,7 +11852,7 @@
    "Ogre Wizard",
    "Infernal Lord"
   ],
-  "text": "Flash -  {{Advent|\"Makai\" & Cost 5 or more|(Either Attack Step)}}\nBy sending your  to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Summoned/Advents)\nFor each \"Makai\"-named Spirit you control, send a core from any opposing Spirits/Ultimates to their Reserve. This effect can only be prevented by Heavy Armor/Ultra Armor.\n\n[LV2][LV3] Flash - (When Attacks)\nBy sending every core from an opposing LV2 Grandwalker Nexus to the Void, during this battle, this Spirit gains an extra Purple symbol.",
+  "text": "Flash -  {{Advent|\"Makai\" & Cost 5 or more|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Summoned/Advents)\nFor each \"Makai\"-named Spirit you control, send a core from any opposing Spirits/Ultimates to their Reserve. This effect can only be prevented by Heavy Armor/Ultra Armor.\n\n[LV2][LV3] Flash - (When Attacks)\nBy sending every core from an opposing LV2 Grandwalker Nexus to the Void, during this battle, this Spirit gains an extra Purple symbol.",
   "image": "The MakaiKnight Beelzeheart.jpg",
   "block": "50",
   "saga": 10,
@@ -12798,7 +12798,7 @@
    "Worldswalker",
    "Armed Machine"
   ],
-  "text": "Flash -  {{Advent|White and Cost 3 or more|(Either Attack Step)}}\nBy sending your  to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2] (When Advents/Attacks)\nBy returning an opposing Spirit/Ultimate to the Hand, put a core from the Void to this Spirit. This effect can only be prevented by \"remains on Field\" effects.\n\n[LV2] Flash - (Either Attack Step)\nOnce per Step, refresh a White \"Worldswalker\"/\"Avatar\" family Spirit/Ultimate you control.",
+  "text": "Flash -  {{Advent|White and Cost 3 or more|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2] (When Advents/Attacks)\nBy returning an opposing Spirit/Ultimate to the Hand, put a core from the Void to this Spirit. This effect can only be prevented by \"remains on Field\" effects.\n\n[LV2] Flash - (Either Attack Step)\nOnce per Step, refresh a White \"Worldswalker\"/\"Avatar\" family Spirit/Ultimate you control.",
   "image": "The HieroglyphHunter Jet-Beik.jpg",
   "block": "50",
   "saga": 10,
@@ -13100,7 +13100,7 @@
   "families": [
    "Youkai"
   ],
-  "text": "This card is also treated as a Magic card.\n\nFlash (This effect cannot be used while on the Field)\n(Once per Turn: Same Name) Return an opposing LV1 Spirit to the Hand. After this effect resolves, you can, instead of sending this card to the Trash, summon it without paying the cost.\n\n[LV2] (Your Turn)\nWhile  is on this Spirit, the effects of every opposing Cost 3/4 Nexus can't activate.",
+  "text": "This card is also treated as a Magic card.\n\nFlash (This effect cannot be used while on the Field)\n(Once per Turn: Same Name) Return an opposing LV1 Spirit to the Hand. After this effect resolves, you can, instead of sending this card to the Trash, summon it without paying the cost.\n\n[LV2] (Your Turn)\nWhile (Soul Core) is on this Spirit, the effects of every opposing Cost 3/4 Nexus can't activate.",
   "image": "Azuki Bean Washer.png",
   "block": "50",
   "saga": 10,
@@ -13462,7 +13462,7 @@
    "Celeste",
    "Artificial Soldier"
   ],
-  "text": "[LV1][LV2] This Spirit can't be returned to the Hand/Deck by opposing effects.\n\n[LV1][LV2] Except for , neither player can put cores to their Life through effects. Also, the Life of either player can only be reduced by one per Grandwalker Nexus each turn.",
+  "text": "[LV1][LV2] This Spirit can't be returned to the Hand/Deck by opposing effects.\n\n[LV1][LV2] Except for (Soul Core), neither player can put cores to their Life through effects. Also, the Life of either player can only be reduced by one per Grandwalker Nexus each turn.",
   "image": "Cyanite-Golem.png",
   "block": "50",
   "saga": 10,
@@ -13788,7 +13788,7 @@
   "families": [
    "Artificial Soldier"
   ],
-  "text": "Flash - Advent: Cost 3 or more  (Either Attack Step)\n By sending your  to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2] (When Advents/Attacks) For each Saga Brave you control, send one core from any opposing Grandwalker Nexus(es) to the Void. Then, you can pay one cost to summon one of this Spirit's Cost 6 or less \"Artificial Soldier\" family pre-Advent cards.",
+  "text": "Flash - Advent: Cost 3 or more  (Either Attack Step)\n By sending your (Soul Core) to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2] (When Advents/Attacks) For each Saga Brave you control, send one core from any opposing Grandwalker Nexus(es) to the Void. Then, you can pay one cost to summon one of this Spirit's Cost 6 or less \"Artificial Soldier\" family pre-Advent cards.",
   "image": "Kunzite-Golem.png",
   "block": "50",
   "saga": 10,
@@ -15134,13 +15134,13 @@
   "families": [
    "Youkai"
   ],
-  "text": "[LV1][LV2] (Your Main Step)\nWhile  is on this Spirit, when your \"Evil Shadow\"/\"Youkai\" family Spirit is summoned, draw a card.\n\n[LV2] (Your Main Step)\nWhen your Spirit with no printed effects is summoned, if your Life is five or less, put a core from the Void to your Life. This effect can only be used once per turn.",
+  "text": "[LV1][LV2] (Your Main Step)\nWhile (Soul Core) is on this Spirit, when your \"Evil Shadow\"/\"Youkai\" family Spirit is summoned, draw a card.\n\n[LV2] (Your Main Step)\nWhen your Spirit with no printed effects is summoned, if your Life is five or less, put a core from the Void to your Life. This effect can only be used once per turn.",
   "image": "Zashiki Girl.png",
   "block": "50",
   "saga": 10,
   "fxComplete": false,
   "residual": [
-   "[LV1][LV2] (Your Main Step) While is on this Spirit, when your \"Evil Shadow\"/\"Youkai\" family Spirit is summoned, draw a card.",
+   "[LV1][LV2] (Your Main Step) While (Soul Core) is on this Spirit, when your \"Evil Shadow\"/\"Youkai\" family Spirit is summoned, draw a card.",
    "[LV2] (Your Main Step) When your Spirit with no printed effects is summoned, if your Life is five or less, put a core from the Void to your Life. This effect can only be used once per turn."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
@@ -15222,14 +15222,14 @@
    "Vassal",
    "Youkai"
   ],
-  "text": "[LV1][LV2][LV3] (When Summoned)\nYou can return two \"Evil Shadow\"/\"Youkai\" family Spirit cards, other than exactly-named \"Kashaneko\", from your Trash to the Hand. This effect can only be used once per turn.\n\n[LV2][LV3] (When Attacks)\nBy sending  from this Spirit to your Trash, refresh two \"Evil Shadow\"/\"Youkai\" family Spirits you control, other than exactly-named \"Kashaneko\".",
+  "text": "[LV1][LV2][LV3] (When Summoned)\nYou can return two \"Evil Shadow\"/\"Youkai\" family Spirit cards, other than exactly-named \"Kashaneko\", from your Trash to the Hand. This effect can only be used once per turn.\n\n[LV2][LV3] (When Attacks)\nBy sending (Soul Core) from this Spirit to your Trash, refresh two \"Evil Shadow\"/\"Youkai\" family Spirits you control, other than exactly-named \"Kashaneko\".",
   "image": "Kashaneko.png",
   "block": "50",
   "saga": 10,
   "fxComplete": false,
   "residual": [
    "[LV1][LV2][LV3] (When Summoned) You can return two \"Evil Shadow\"/\"Youkai\" family Spirit cards, other than exactly-named \"Kashaneko\", from your Trash to the Hand. This effect can only be used once per turn.",
-   "[LV2][LV3] (When Attacks) By sending from this Spirit to your Trash, refresh two \"Evil Shadow\"/\"Youkai\" family Spirits you control, other than exactly-named \"Kashaneko\"."
+   "[LV2][LV3] (When Attacks) By sending (Soul Core) from this Spirit to your Trash, refresh two \"Evil Shadow\"/\"Youkai\" family Spirits you control, other than exactly-named \"Kashaneko\"."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
@@ -15445,7 +15445,7 @@
   "symbols": 0,
   "levels": [],
   "families": [],
-  "text": "When your exactly-named \"Nurikabe\" is summoned, you can return this card from the Trash to your Hand.\n\nFlash\nBanish this card and, during this turn, every opposing Spirit/Ultimate can't attack. Also, if  was used to pay the cost, during this turn, every opposing Spirit/Ultimate can't refresh.",
+  "text": "When your exactly-named \"Nurikabe\" is summoned, you can return this card from the Trash to your Hand.\n\nFlash\nBanish this card and, during this turn, every opposing Spirit/Ultimate can't attack. Also, if (Soul Core) was used to pay the cost, during this turn, every opposing Spirit/Ultimate can't refresh.",
   "image": "Tousenbo Wall.png",
   "block": "50",
   "saga": 10,
@@ -15568,7 +15568,7 @@
    "Avatar",
    "Evil Shadow"
   ],
-  "text": "When your \"Evil Shadow\"/\"Youkai\" family Spirits are destroyed by the opponent, you can summon this card from your Hand, without paying the cost.\n\n{{Unleash|2|Celestial}} [LV1][LV2][LV3] (When Attacks)\nYou can send two cores from your Purple/Yellow Grandwalker Nexuses to this Spirit. When you've done so, send  from the opposing Field/Reserve to their Trash, and send three cores from the opposing Field to their Reserve. Also, if you control any Yellow symbol, this Spirit can't be blocked.",
+  "text": "When your \"Evil Shadow\"/\"Youkai\" family Spirits are destroyed by the opponent, you can summon this card from your Hand, without paying the cost.\n\n{{Unleash|2|Celestial}} [LV1][LV2][LV3] (When Attacks)\nYou can send two cores from your Purple/Yellow Grandwalker Nexuses to this Spirit. When you've done so, send (Soul Core) from the opposing Field/Reserve to their Trash, and send three cores from the opposing Field to their Reserve. Also, if you control any Yellow symbol, this Spirit can't be blocked.",
   "image": "The MoonspiritOgreDeity Sumeraginga.jpg",
   "block": "50",
   "saga": 10,
@@ -15578,7 +15578,7 @@
   "fxComplete": false,
   "residual": [
    "When your \"Evil Shadow\"/\"Youkai\" family Spirits are destroyed by the opponent, you can summon this card from your Hand, without paying the cost.",
-   "{{Unleash|2|Celestial}} [LV1][LV2][LV3] (When Attacks) You can send two cores from your Purple/Yellow Grandwalker Nexuses to this Spirit. When you've done so, send from the opposing Field/Reserve to their Trash, and send three cores from the opposing Field to their Reserve. Also, if you control any Yellow symbol, this Spirit can't be blocked."
+   "{{Unleash|2|Celestial}} [LV1][LV2][LV3] (When Attacks) You can send two cores from your Purple/Yellow Grandwalker Nexuses to this Spirit. When you've done so, send (Soul Core) from the opposing Field/Reserve to their Trash, and send three cores from the opposing Field to their Reserve. Also, if you control any Yellow symbol, this Spirit can't be blocked."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
@@ -15656,7 +15656,7 @@
    "Avatar",
    "Armored Dragon"
   ],
-  "text": "Flash -  {{Grand Advent|Armored Dragon & Cost 5 or more|(Either Attack Step)}}\nBy either sending your  to the Trash, or putting a core from your Grandwalker Nexus to a Spirit you control, stack this from the Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Advents/Attacks)\nBy returning an opposing Spirit/Burst to the Hand, this Spirit refreshes. This effect can only be prevented by \"remain on Field\" effects.\n\n[LV3] {{ha|Red/White/Yellow/Blue}}\nThis Spirit is unaffected by opposing Red/White/Yellow/Blue Spirit/Brave/Nexus/Magic effects.",
+  "text": "Flash -  {{Grand Advent|Armored Dragon & Cost 5 or more|(Either Attack Step)}}\nBy either sending your (Soul Core) to the Trash, or putting a core from your Grandwalker Nexus to a Spirit you control, stack this from the Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Advents/Attacks)\nBy returning an opposing Spirit/Burst to the Hand, this Spirit refreshes. This effect can only be prevented by \"remain on Field\" effects.\n\n[LV3] {{ha|Red/White/Yellow/Blue}}\nThis Spirit is unaffected by opposing Red/White/Yellow/Blue Spirit/Brave/Nexus/Magic effects.",
   "image": null,
   "block": "50",
   "saga": 10,
@@ -16105,7 +16105,7 @@
    "Avatar",
    "Crystalline Deity"
   ],
-  "text": "Flash - {{Grand Advent|During Advent|(Either Attack Step)}}\nBy either sending your  to the Trash, or putting a core from your Grandwalker Nexus to any Spirit you control, stack this from your Hand onto your target Spirit.\n\n{{Unleash|4|Absolute}} [LV1][LV2][LV3] (When Advents)\nRefresh three Spirits you control. Then, when advented onto an \"Absolute\" family Spirit, if it's your Attack Step, you can put four cores from any of your exactly-named \"Grandwalker Zeus-Lolo\" to your Spirits. When you've done so, target a card in the opposing Hand/Removed Zone, and discard every other card.",
+  "text": "Flash - {{Grand Advent|During Advent|(Either Attack Step)}}\nBy either sending your (Soul Core) to the Trash, or putting a core from your Grandwalker Nexus to any Spirit you control, stack this from your Hand onto your target Spirit.\n\n{{Unleash|4|Absolute}} [LV1][LV2][LV3] (When Advents)\nRefresh three Spirits you control. Then, when advented onto an \"Absolute\" family Spirit, if it's your Attack Step, you can put four cores from any of your exactly-named \"Grandwalker Zeus-Lolo\" to your Spirits. When you've done so, target a card in the opposing Hand/Removed Zone, and discard every other card.",
   "image": "The AbsoluteDragonDeity Grand-Lolo-Dragoleon.png",
   "block": "50",
   "saga": 10,
@@ -16360,7 +16360,7 @@
    "Vassal",
    "War Dragon"
   ],
-  "text": "[LV1][LV2][LV3] (When Summoned) Destroy an opposing Nexus.\n\n[LV1][LV2][LV3] (When Attacks) Draw a card. Then, by sending  from this Spirit to the Trash, draw a card.\n{{Rush|White}}\n(While you have a White symbol, the following effect activates next)\n: Discard an opposing Burst.",
+  "text": "[LV1][LV2][LV3] (When Summoned) Destroy an opposing Nexus.\n\n[LV1][LV2][LV3] (When Attacks) Draw a card. Then, by sending (Soul Core) from this Spirit to the Trash, draw a card.\n{{Rush|White}}\n(While you have a White symbol, the following effect activates next)\n: Discard an opposing Burst.",
   "image": "The SorcererMusha Shikyou.png",
   "block": "51",
   "saga": 10,
@@ -16382,7 +16382,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "[LV1][LV2][LV3] (When Attacks) Draw a card. Then, by sending from this Spirit to the Trash, draw a card. {{Rush|White}} (While you have a White symbol, the following effect activates next) : Discard an opposing Burst."
+   "[LV1][LV2][LV3] (When Attacks) Draw a card. Then, by sending (Soul Core) from this Spirit to the Trash, draw a card. {{Rush|White}} (While you have a White symbol, the following effect activates next) : Discard an opposing Burst."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
@@ -16595,7 +16595,7 @@
    "Worldswalker",
    "Emperor Beast"
   ],
-  "text": "Flash - {{Advent|Cost 4 or more|(Either Attack Step)}}\nBy sending your  to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Summoned/Advents)\nDestroy an opposing 10000 BP or less Spirit/Ultimate.\n\n[LV2][LV3] (Your Turn)\nWhen this Spirit would leave the Field due to opposing effects, by sending two cores from any of your exactly-named \"Grandwalker Zeus-Lolo\" to the Void, it remains on the Field, in the same condition.",
+  "text": "Flash - {{Advent|Cost 4 or more|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Summoned/Advents)\nDestroy an opposing 10000 BP or less Spirit/Ultimate.\n\n[LV2][LV3] (Your Turn)\nWhen this Spirit would leave the Field due to opposing effects, by sending two cores from any of your exactly-named \"Grandwalker Zeus-Lolo\" to the Void, it remains on the Field, in the same condition.",
   "image": "The BlackBeast Zeruchtiger.png",
   "block": "51",
   "saga": 10,
@@ -16640,7 +16640,7 @@
    "Lord",
    "War Dragon"
   ],
-  "text": "Flash - {{Advent|War Dragon/Clever Machine & Cost 4 or more|(Either Attack Step)}}\nBy sending your  to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2] (When Summoned/Advents)\nDestroy two opposing Nexuses. Also, when this Spirit is advented, you can pay one cost to summon one of its pre-Advent cards.\n\n[LV2]\nFor each card in the opposing Hand, this Spirit gains +5000 BP.",
+  "text": "Flash - {{Advent|War Dragon/Clever Machine & Cost 4 or more|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2] (When Summoned/Advents)\nDestroy two opposing Nexuses. Also, when this Spirit is advented, you can pay one cost to summon one of its pre-Advent cards.\n\n[LV2]\nFor each card in the opposing Hand, this Spirit gains +5000 BP.",
   "image": "The KabukiDragon Keiji-Dragon.png",
   "block": "51",
   "saga": 10,
@@ -16649,7 +16649,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{Advent|War Dragon/Clever Machine & Cost 4 or more|(Either Attack Step)}} By sending your to the Trash, stack this from your Hand onto your target Spirit.",
+   "Flash - {{Advent|War Dragon/Clever Machine & Cost 4 or more|(Either Attack Step)}} By sending your (Soul Core) to the Trash, stack this from your Hand onto your target Spirit.",
    "[LV1][LV2] (When Summoned/Advents) Destroy two opposing Nexuses. Also, when this Spirit is advented, you can pay one cost to summon one of its pre-Advent cards.",
    "[LV2] For each card in the opposing Hand, this Spirit gains +5000 BP."
   ],
@@ -16784,13 +16784,13 @@
    "Celeste",
    "Ancient Dragon"
   ],
-  "text": "Flash - Advent: \"The HypocenterDragon Ma-On -Dragon Form-\"  (Either Attack Step)\n By sending your  to the Trash, stack this from your hand onto your target Spirit.\n\n[LV1][LV2] (When Advents) Refresh all your \"Ancient Dragon\" family Spirits. Also, if it's the opposing Attack Step, during this turn, this Spirit is unaffected by opposing effects.\n\n[During Advent] [LV2] (When Attacks/Blocks) You can destroy every opposing 30000 BP or less Spirit/Ultimate. This effect can only be used once per game.",
+  "text": "Flash - Advent: \"The HypocenterDragon Ma-On -Dragon Form-\"  (Either Attack Step)\n By sending your (Soul Core) to the Trash, stack this from your hand onto your target Spirit.\n\n[LV1][LV2] (When Advents) Refresh all your \"Ancient Dragon\" family Spirits. Also, if it's the opposing Attack Step, during this turn, this Spirit is unaffected by opposing effects.\n\n[During Advent] [LV2] (When Attacks/Blocks) You can destroy every opposing 30000 BP or less Spirit/Ultimate. This effect can only be used once per game.",
   "image": "The HypocenterDragon Ma-On -Humanoid Form-.png",
   "block": "51",
   "saga": 10,
   "fxComplete": false,
   "residual": [
-   "Flash - Advent: \"The HypocenterDragon Ma-On -Dragon Form-\" (Either Attack Step) By sending your to the Trash, stack this from your hand onto your target Spirit.",
+   "Flash - Advent: \"The HypocenterDragon Ma-On -Dragon Form-\" (Either Attack Step) By sending your (Soul Core) to the Trash, stack this from your hand onto your target Spirit.",
    "[LV1][LV2] (When Advents) Refresh all your \"Ancient Dragon\" family Spirits. Also, if it's the opposing Attack Step, during this turn, this Spirit is unaffected by opposing effects.",
    "[During Advent] [LV2] (When Attacks/Blocks) You can destroy every opposing 30000 BP or less Spirit/Ultimate. This effect can only be used once per game."
   ],
@@ -16864,7 +16864,7 @@
   "families": [
    "Zombie"
   ],
-  "text": "[LV1][LV2] (When Summoned/Destroyed)\nDraw a card.\n\n[LV1][LV2]\nWhile  is on this Spirit, every exactly-named \"Grandwalker Dionysus\" you control is unaffected by opposing Nexus effects.\n\n[LV2]\nWhile  is on this Spirit, this Spirit can't attack and is unaffected by opposing effects.",
+  "text": "[LV1][LV2] (When Summoned/Destroyed)\nDraw a card.\n\n[LV1][LV2]\nWhile (Soul Core) is on this Spirit, every exactly-named \"Grandwalker Dionysus\" you control is unaffected by opposing Nexus effects.\n\n[LV2]\nWhile (Soul Core) is on this Spirit, this Spirit can't attack and is unaffected by opposing effects.",
   "image": "The ImperialGuard Corpse Soldier.png",
   "block": "51",
   "saga": 10,
@@ -16898,7 +16898,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "[LV1][LV2] While is on this Spirit, every exactly-named \"Grandwalker Dionysus\" you control is unaffected by opposing Nexus effects.",
+   "[LV1][LV2] While (Soul Core) is on this Spirit, every exactly-named \"Grandwalker Dionysus\" you control is unaffected by opposing Nexus effects.",
    "[LV2] While is on this Spirit, this Spirit can't attack and is unaffected by opposing effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
@@ -17418,7 +17418,7 @@
    "Superstar",
    "Astral Dragon"
   ],
-  "text": "Flash -  {{Advent|Superstar & Cost 5 or more|(Either Attack Step)}}\nBy sending your  to the Trash, stack this from your Hand onto your target Spirit.\n\nWhen your Life is three or less, this card can also Advent from the Trash.\n\n[LV1][LV2][LV3] (When Summoned/Advents)\nSend two cores from the opposing Field to the Trash.\n\n[LV2][LV3] (When Attacks)\nYou can return an exactly-named \"The SuperCentaurusDeity Grand-Sagitto-Nova\" from your Trash to the Hand.",
+  "text": "Flash -  {{Advent|Superstar & Cost 5 or more|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, stack this from your Hand onto your target Spirit.\n\nWhen your Life is three or less, this card can also Advent from the Trash.\n\n[LV1][LV2][LV3] (When Summoned/Advents)\nSend two cores from the opposing Field to the Trash.\n\n[LV2][LV3] (When Attacks)\nYou can return an exactly-named \"The SuperCentaurusDeity Grand-Sagitto-Nova\" from your Trash to the Hand.",
   "image": "The SuperstarApostle Sagittowurm-Nix.png",
   "block": "51",
   "saga": 10,
@@ -17427,7 +17427,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{Advent|Superstar & Cost 5 or more|(Either Attack Step)}} By sending your to the Trash, stack this from your Hand onto your target Spirit.",
+   "Flash - {{Advent|Superstar & Cost 5 or more|(Either Attack Step)}} By sending your (Soul Core) to the Trash, stack this from your Hand onto your target Spirit.",
    "When your Life is three or less, this card can also Advent from the Trash.",
    "[LV1][LV2][LV3] (When Summoned/Advents) Send two cores from the opposing Field to the Trash.",
    "[LV2][LV3] (When Attacks) You can return an exactly-named \"The SuperCentaurusDeity Grand-Sagitto-Nova\" from your Trash to the Hand."
@@ -17467,7 +17467,7 @@
    "Celeste",
    "Zombie"
   ],
-  "text": "Flash -  {{Advent|Zombie & Cost 5 or more|(Either Attack Step)}}\nBy sending your  to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Summoned/Advents)\nYou can summon up to three Cost 8 or more \"Nether\"-named Spirit cards from your Hand/Trash, paying one cost for each. For each Spirit summoned by this effect, draw a card.",
+  "text": "Flash -  {{Advent|Zombie & Cost 5 or more|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Summoned/Advents)\nYou can summon up to three Cost 8 or more \"Nether\"-named Spirit cards from your Hand/Trash, paying one cost for each. For each Spirit summoned by this effect, draw a card.",
   "image": "The NetherCorpseGuru Haut-Brion.png",
   "block": "51",
   "saga": 10,
@@ -17476,7 +17476,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{Advent|Zombie & Cost 5 or more|(Either Attack Step)}} By sending your to the Trash, stack this from your Hand onto your target Spirit.",
+   "Flash - {{Advent|Zombie & Cost 5 or more|(Either Attack Step)}} By sending your (Soul Core) to the Trash, stack this from your Hand onto your target Spirit.",
    "[LV1][LV2][LV3] (When Summoned/Advents) You can summon up to three Cost 8 or more \"Nether\"-named Spirit cards from your Hand/Trash, paying one cost for each. For each Spirit summoned by this effect, draw a card."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
@@ -18006,7 +18006,7 @@
   "families": [
    "Imp"
   ],
-  "text": "Flash -  {{Advent|Imp & Cost 3 or more|(Either Attack Step)}}\nBy sending your  to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Advents)\nDuring this turn, when your Spirits with Sound Speed are destroyed by the opponent, return them to your Hand.\n\n[LV2][LV3] (Your Attack Step)\nYour Red/Green Grandwalker Nexuses in Grandphosis state gain +5000 BP.",
+  "text": "Flash -  {{Advent|Imp & Cost 3 or more|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Advents)\nDuring this turn, when your Spirits with Sound Speed are destroyed by the opponent, return them to your Hand.\n\n[LV2][LV3] (Your Attack Step)\nYour Red/Green Grandwalker Nexuses in Grandphosis state gain +5000 BP.",
   "image": "The QuarterToneSoundBeast Notesgiraffe.png",
   "block": "51",
   "saga": 10,
@@ -18385,7 +18385,7 @@
    "Vassal",
    "Clever Machine"
   ],
-  "text": "[LV1][LV2] (When Attacks/Blocks) Put one core from the Void to this Spirit. Also, if  is on this Spirit, return an opposing Spirit to the Hand.\n\n[LV2] Heavy Armor: Red/Purple - This Spirit is unaffected by opposing Red/Purple Spirit/Brave/Nexus/Magic effects.",
+  "text": "[LV1][LV2] (When Attacks/Blocks) Put one core from the Void to this Spirit. Also, if (Soul Core) is on this Spirit, return an opposing Spirit to the Hand.\n\n[LV2] Heavy Armor: Red/Purple - This Spirit is unaffected by opposing Red/Purple Spirit/Brave/Nexus/Magic effects.",
   "image": "Attacker ShiningHeavenCleverMachine Tajikarao.png",
   "block": "51",
   "saga": 10,
@@ -18416,7 +18416,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "[LV1][LV2] (When Attacks/Blocks) Put one core from the Void to this Spirit. Also, if is on this Spirit, return an opposing Spirit to the Hand."
+   "[LV1][LV2] (When Attacks/Blocks) Put one core from the Void to this Spirit. Also, if (Soul Core) is on this Spirit, return an opposing Spirit to the Hand."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
@@ -18763,7 +18763,7 @@
    "Celeste",
    "Armored Dragon"
   ],
-  "text": "Flash - Advent: Armored Dragon & Cost 4 or more  (Either Attack Step)\n By sending your  to the Trash, stack this from your Hand onto your target Spirit.\n\nWhen adventing onto a Spirit with Heavy Armor, you can Advent without sending  to the Trash.\n\n[LV1][LV2][LV3] (When Summoned/Advents) Return two opposing Spirits to the Hand, and put one core from the Void to this Spirit. Then, you can pay one cost to summon one of this Spirit's \"Armored Dragon\" family pre-Advent cards. However, any (When Summoned) effects of Spirit do not activate.",
+  "text": "Flash - Advent: Armored Dragon & Cost 4 or more  (Either Attack Step)\n By sending your (Soul Core) to the Trash, stack this from your Hand onto your target Spirit.\n\nWhen adventing onto a Spirit with Heavy Armor, you can Advent without sending (Soul Core) to the Trash.\n\n[LV1][LV2][LV3] (When Summoned/Advents) Return two opposing Spirits to the Hand, and put one core from the Void to this Spirit. Then, you can pay one cost to summon one of this Spirit's \"Armored Dragon\" family pre-Advent cards. However, any (When Summoned) effects of Spirit do not activate.",
   "image": "Vishnaga-Varaha.png",
   "block": "51",
   "saga": 10,
@@ -19352,14 +19352,14 @@
   "families": [
    "Ocean Emperor"
   ],
-  "text": "[LV1][LV2][LV3] (Opposing Turn)\nYour Life can only be reduced by one by opposing effects per turn.\n\n[LV2][LV3]\nWhile  is on this Spirit, this Spirit can't attack, and is unaffected by opposing effects.",
+  "text": "[LV1][LV2][LV3] (Opposing Turn)\nYour Life can only be reduced by one by opposing effects per turn.\n\n[LV2][LV3]\nWhile (Soul Core) is on this Spirit, this Spirit can't attack, and is unaffected by opposing effects.",
   "image": "Myoujin-Hydra.png",
   "block": "51",
   "saga": 10,
   "fxComplete": false,
   "residual": [
    "[LV1][LV2][LV3] (Opposing Turn) Your Life can only be reduced by one by opposing effects per turn.",
-   "[LV2][LV3] While is on this Spirit, this Spirit can't attack, and is unaffected by opposing effects."
+   "[LV2][LV3] While (Soul Core) is on this Spirit, this Spirit can't attack, and is unaffected by opposing effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
@@ -19607,7 +19607,7 @@
    "Celeste",
    "Ocean Emperor"
   ],
-  "text": "[LV1][LV2][LV3] (When Summoned)\nYou can put two cores from the Void to any \"Terra Dragon\" family Spirits you control.\n\n[LV2][LV3] (Your Attack Step)\nBesides this Spirit, while your \"Terra Dragon\"/\"Ocean Emperor\" family Spirit is attacking, the opponent can't send  to their Trash.",
+  "text": "[LV1][LV2][LV3] (When Summoned)\nYou can put two cores from the Void to any \"Terra Dragon\" family Spirits you control.\n\n[LV2][LV3] (Your Attack Step)\nBesides this Spirit, while your \"Terra Dragon\"/\"Ocean Emperor\" family Spirit is attacking, the opponent can't send (Soul Core) to their Trash.",
   "image": null,
   "block": "51",
   "saga": 10,
@@ -19636,7 +19636,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "[LV2][LV3] (Your Attack Step) Besides this Spirit, while your \"Terra Dragon\"/\"Ocean Emperor\" family Spirit is attacking, the opponent can't send to their Trash."
+   "[LV2][LV3] (Your Attack Step) Besides this Spirit, while your \"Terra Dragon\"/\"Ocean Emperor\" family Spirit is attacking, the opponent can't send (Soul Core) to their Trash."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
@@ -19716,7 +19716,7 @@
    "Spirit Arms",
    "Celeste"
   ],
-  "text": "During Spirit Brave (When Attacks)\nDraw a card. Then, if  is on this Spirit, destroy an opposing 7000 BP or less Spirit/Ultimate.\n\nDuring Nexus Brave {{gs|3}} Flash - (Either Attack Step)\n(Once per turn, send three cores from this Nexus to the Void) Return a \"Lord\" family Spirit card from your Trash to the Hand.",
+  "text": "During Spirit Brave (When Attacks)\nDraw a card. Then, if (Soul Core) is on this Spirit, destroy an opposing 7000 BP or less Spirit/Ultimate.\n\nDuring Nexus Brave {{gs|3}} Flash - (Either Attack Step)\n(Once per turn, send three cores from this Nexus to the Void) Return a \"Lord\" family Spirit card from your Trash to the Hand.",
   "image": "The HeavenlyBlade Crimson Dawn.png",
   "block": "51",
   "saga": 10,
@@ -20760,7 +20760,7 @@
    "Zombie",
    "Dark Snake"
   ],
-  "text": "[LV1][LV2][LV3] Spell Blight (When Destroyed by the Opponent)\nBy sending an opposing Life core to the Trash, this Spirit remains on the Field, refreshed.\n\n[LV1][LV2][LV3] (Opposing Attack Step)\nGive all your \"Zombie\" family Spirits: Spell Blight.\n\n[LV2][LV3]\nWhen your Spirit with Spell Blight reduces the opposing Life, other than , the cores from the opposing Life are sent to the Void instead of the Reserve/Trash.",
+  "text": "[LV1][LV2][LV3] Spell Blight (When Destroyed by the Opponent)\nBy sending an opposing Life core to the Trash, this Spirit remains on the Field, refreshed.\n\n[LV1][LV2][LV3] (Opposing Attack Step)\nGive all your \"Zombie\" family Spirits: Spell Blight.\n\n[LV2][LV3]\nWhen your Spirit with Spell Blight reduces the opposing Life, other than (Soul Core), the cores from the opposing Life are sent to the Void instead of the Reserve/Trash.",
   "image": "The NetherThreeGiants Queen-Merduk.jpg",
   "block": "51",
   "saga": 10,
@@ -20852,7 +20852,7 @@
    "Evil Deity",
    "Zombie"
   ],
-  "text": "[LV1][LV2][LV3] (When Summoned)\nPut up to three cards from your decktop underneath this Spirit, face down. (The cards underneath are discarded when this Spirit has left the Field.)\n\n[LV1][LV2][LV3]\nWhen this Spirit would leave the Field due to the opponent, by discarding a card underneath this Spirit, it remains on the Field, refreshed.\n\n[LV2][LV3] (When Attacks)\nBy discarding a card underneath this Spirit, destroy an opposing Spirit, and send an opposing Life, besides , to the Void.",
+  "text": "[LV1][LV2][LV3] (When Summoned)\nPut up to three cards from your decktop underneath this Spirit, face down. (The cards underneath are discarded when this Spirit has left the Field.)\n\n[LV1][LV2][LV3]\nWhen this Spirit would leave the Field due to the opponent, by discarding a card underneath this Spirit, it remains on the Field, refreshed.\n\n[LV2][LV3] (When Attacks)\nBy discarding a card underneath this Spirit, destroy an opposing Spirit, and send an opposing Life, besides (Soul Core), to the Void.",
   "image": null,
   "block": "51",
   "saga": 10,
@@ -21346,7 +21346,7 @@
    "Lord",
    "War Dragon"
   ],
-  "text": "Flash - {{Grand Advent|Lord & Cost 6 or more|(Your Turn)}}\nBy either sending your  to the Trash, or putting a core from your Grandwalker Nexus to a Spirit you control, stack this from your Hand onto your target Spirit.\n\n{{Unleash|1|Shining Heaven}} [LV1][LV2][LV3][LV4] (When Attacks)\nDestroy an opposing 20000 BP or less Spirit. Or, by sending a core from any exactly-named \"Grandwalker Amaterasu\" you control to this Spirit, during this battle, effects of every opposing Spirit/Ultimate can't activate, and return an opposing Spirit/Ultimate to the deckbottom. This effect can't be prevented by opposing effects. When you've done so, this Spirit refreshes.",
+  "text": "Flash - {{Grand Advent|Lord & Cost 6 or more|(Your Turn)}}\nBy either sending your (Soul Core) to the Trash, or putting a core from your Grandwalker Nexus to a Spirit you control, stack this from your Hand onto your target Spirit.\n\n{{Unleash|1|Shining Heaven}} [LV1][LV2][LV3][LV4] (When Attacks)\nDestroy an opposing 20000 BP or less Spirit. Or, by sending a core from any exactly-named \"Grandwalker Amaterasu\" you control to this Spirit, during this battle, effects of every opposing Spirit/Ultimate can't activate, and return an opposing Spirit/Ultimate to the deckbottom. This effect can't be prevented by opposing effects. When you've done so, this Spirit refreshes.",
   "image": "The ShiningHeavenDragonDeity Grand-Terasu.png",
   "block": "51",
   "saga": 10,
@@ -21355,7 +21355,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{Grand Advent|Lord & Cost 6 or more|(Your Turn)}} By either sending your to the Trash, or putting a core from your Grandwalker Nexus to a Spirit you control, stack this from your Hand onto your target Spirit.",
+   "Flash - {{Grand Advent|Lord & Cost 6 or more|(Your Turn)}} By either sending your (Soul Core) to the Trash, or putting a core from your Grandwalker Nexus to a Spirit you control, stack this from your Hand onto your target Spirit.",
    "{{Unleash|1|Shining Heaven}} [LV1][LV2][LV3][LV4] (When Attacks) Destroy an opposing 20000 BP or less Spirit. Or, by sending a core from any exactly-named \"Grandwalker Amaterasu\" you control to this Spirit, during this battle, effects of every opposing Spirit/Ultimate can't activate, and return an opposing Spirit/Ultimate to the deckbottom. This effect can't be prevented by opposing effects. Whe …"
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
@@ -21560,7 +21560,7 @@
    "Celeste",
    "Youkai"
   ],
-  "text": "Flash -  {{Advent|Evil Shadow/Youkai|(Either Attack Step)}}\nBy sending your  to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Advents)\nDuring this turn, give an opposing Spirit/Ultimate -1000 BP. Activate this effect ten times and destroy if it brought them to 0 BP.\n\n[LV2][LV3] Flash - (Either Attack Step)\nYou can pay one cost to summon a \"YoukaiEmperor\"/\"TenJudges\"-named Spirit card from your Hand/Trash. This effect can only be used once per turn.",
+  "text": "Flash -  {{Advent|Evil Shadow/Youkai|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Advents)\nDuring this turn, give an opposing Spirit/Ultimate -1000 BP. Activate this effect ten times and destroy if it brought them to 0 BP.\n\n[LV2][LV3] Flash - (Either Attack Step)\nYou can pay one cost to summon a \"YoukaiEmperor\"/\"TenJudges\"-named Spirit card from your Hand/Trash. This effect can only be used once per turn.",
   "image": "The TransmigrationTenJudges Godou.png",
   "block": "51",
   "saga": 10,
@@ -21569,7 +21569,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{Advent|Evil Shadow/Youkai|(Either Attack Step)}} By sending your to the Trash, stack this from your Hand onto your target Spirit.",
+   "Flash - {{Advent|Evil Shadow/Youkai|(Either Attack Step)}} By sending your (Soul Core) to the Trash, stack this from your Hand onto your target Spirit.",
    "[LV1][LV2][LV3] (When Advents) During this turn, give an opposing Spirit/Ultimate -1000 BP. Activate this effect ten times and destroy if it brought them to 0 BP.",
    "[LV2][LV3] Flash - (Either Attack Step) You can pay one cost to summon a \"YoukaiEmperor\"/\"TenJudges\"-named Spirit card from your Hand/Trash. This effect can only be used once per turn."
   ],

@@ -4484,7 +4484,7 @@
    "God-King",
    "Winged Beast"
   ],
-  "text": "[LV1][LV2] {{Seal|Seal}} (When Attacks)\nYou can send  from this Spirit to your Life.\n\n{{Seal|During Seal}} [LV1][LV2] Soar (When Attacks)\nAt the end of battle, by paying one cost, this Spirit refreshes. (The opponent can block with exhausted Spirits/Ultimates).\n\n[LV2] (When Attacks)\nFor each \"God-King\"/\"Ten Crown\" family Spirit you control, this Spirit gains +5000 BP.",
+  "text": "[LV1][LV2] {{Seal|Seal}} (When Attacks)\nYou can send (Soul Core) from this Spirit to your Life.\n\n{{Seal|During Seal}} [LV1][LV2] Soar (When Attacks)\nAt the end of battle, by paying one cost, this Spirit refreshes. (The opponent can block with exhausted Spirits/Ultimates).\n\n[LV2] (When Attacks)\nFor each \"God-King\"/\"Ten Crown\" family Spirit you control, this Spirit gains +5000 BP.",
   "image": "BS35-X03 (Fixed).jpg",
   "block": "35",
   "saga": 7,
@@ -4493,7 +4493,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "[LV1][LV2] {{Seal|Seal}} (When Attacks) You can send from this Spirit to your Life.",
+   "[LV1][LV2] {{Seal|Seal}} (When Attacks) You can send (Soul Core) from this Spirit to your Life.",
    "{{Seal|During Seal}} [LV1][LV2] Soar (When Attacks) At the end of battle, by paying one cost, this Spirit refreshes. (The opponent can block with exhausted Spirits/Ultimates).",
    "[LV2] (When Attacks) For each \"God-King\"/\"Ten Crown\" family Spirit you control, this Spirit gains +5000 BP."
   ],
@@ -15766,7 +15766,7 @@
    "Next Generation",
    "Shellman"
   ],
-  "text": "[Summon Condition: Your Life is at two or more]\n\n[LV3][LV4] (When Summoned)\nIf  was used to pay the summon cost, reveal three cards from your decktop. Among them, add an Ultimate card to the Hand. Discard any remaining cards.\n\n[LV4]\nYour Ultimate symbols are also treated as Red/Green symbols.",
+  "text": "[Summon Condition: Your Life is at two or more]\n\n[LV3][LV4] (When Summoned)\nIf (Soul Core) was used to pay the summon cost, reveal three cards from your decktop. Among them, add an Ultimate card to the Hand. Discard any remaining cards.\n\n[LV4]\nYour Ultimate symbols are also treated as Red/Green symbols.",
   "image": "BS38-CP05.jpg",
   "block": "38",
   "saga": 7,
@@ -15775,7 +15775,7 @@
   },
   "fxComplete": false,
   "residual": [
-   "[LV3][LV4] (When Summoned) If was used to pay the summon cost, reveal three cards from your decktop. Among them, add an Ultimate card to the Hand. Discard any remaining cards.",
+   "[LV3][LV4] (When Summoned) If (Soul Core) was used to pay the summon cost, reveal three cards from your decktop. Among them, add an Ultimate card to the Hand. Discard any remaining cards.",
    "[LV4] Your Ultimate symbols are also treated as Red/Green symbols."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
@@ -23754,7 +23754,7 @@
   "families": [
    "Galaxian"
   ],
-  "text": "Flash -  {{Advent|Galaxian & Cost 5 or more|(Either Attack Step)}}\nBy sending  to your Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Attacks)\nBy discarding a pre-Advent card beneath this Spirit, this Spirit refreshes, and can't be blocked.\n\nDuring Advent [LV2][LV3]\nThis Spirit is unaffected by opposing effects.",
+  "text": "Flash -  {{Advent|Galaxian & Cost 5 or more|(Either Attack Step)}}\nBy sending (Soul Core) to your Trash, stack this from your Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Attacks)\nBy discarding a pre-Advent card beneath this Spirit, this Spirit refreshes, and can't be blocked.\n\nDuring Advent [LV2][LV3]\nThis Spirit is unaffected by opposing effects.",
   "image": "BS39-XX02.jpg",
   "block": "39",
   "saga": 7,
@@ -23763,7 +23763,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{Advent|Galaxian & Cost 5 or more|(Either Attack Step)}} By sending to your Trash, stack this from your Hand onto your target Spirit.",
+   "Flash - {{Advent|Galaxian & Cost 5 or more|(Either Attack Step)}} By sending (Soul Core) to your Trash, stack this from your Hand onto your target Spirit.",
    "[LV1][LV2][LV3] (When Attacks) By discarding a pre-Advent card beneath this Spirit, this Spirit refreshes, and can't be blocked.",
    "During Advent [LV2][LV3] This Spirit is unaffected by opposing effects."
   ],

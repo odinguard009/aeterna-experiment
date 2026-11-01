@@ -249,7 +249,7 @@
    "Astroblazer",
    "Machine Dragon"
   ],
-  "text": "[LV1][LV2][LV3] (When Summoned/Attacks)\nYou can destroy an opposing 7000 BP or less Spirit/Ultimate. If you have a Mirage set, the effects of the Spirit/Ultimate destroyed by this effect can't activate.\n\n[LV2][LV3] (Start of Your Attack Step)\nPut up to five cores, besides , from your Trash to any Nexuses/\"Machine Dragon\" family Spirits you control. When cores are put via this effect, if you have four or less cards in Hand, you can draw two cards. This effect doesn't stack.",
+  "text": "[LV1][LV2][LV3] (When Summoned/Attacks)\nYou can destroy an opposing 7000 BP or less Spirit/Ultimate. If you have a Mirage set, the effects of the Spirit/Ultimate destroyed by this effect can't activate.\n\n[LV2][LV3] (Start of Your Attack Step)\nPut up to five cores, besides (Soul Core), from your Trash to any Nexuses/\"Machine Dragon\" family Spirits you control. When cores are put via this effect, if you have four or less cards in Hand, you can draw two cards. This effect doesn't stack.",
   "image": "The CosmicExpeditionDragon Espacion.png",
   "block": "56",
   "saga": 12,
@@ -1130,7 +1130,7 @@
    "Blade Insect",
    "Shellman"
   ],
-  "text": "While you have a Mirage set, this card in Hand is Cost 4.\n\n[LV1][LV2][LV3] (Your Attack Step)\nThe opponent can't move cores, besides , from their Spirits/Ultimates/Grandwalker Nexuses.\n\n[LV2][LV3] (When Attacks)\nOnce per turn, you can exhaust an opposing Spirit. When you've done so, refresh this Spirit.",
+  "text": "While you have a Mirage set, this card in Hand is Cost 4.\n\n[LV1][LV2][LV3] (Your Attack Step)\nThe opponent can't move cores, besides (Soul Core), from their Spirits/Ultimates/Grandwalker Nexuses.\n\n[LV2][LV3] (When Attacks)\nOnce per turn, you can exhaust an opposing Spirit. When you've done so, refresh this Spirit.",
   "image": "The InvestigatingOfficer Investibeetle.png",
   "block": "56",
   "saga": 12,
@@ -3958,7 +3958,7 @@
    "Proximate",
    "Nightling"
   ],
-  "text": "{{Mirage|Cost 2 ()}}\nDuring Set\nWhen an opposing Spirit attacks, if the opposing  isn't in the Reserve, you can send an opposing Life to the Trash. The opponent can't activate Burst effects/Rebirth with this effect.\n\n[LV1][LV2]\nWhen the opponent increases their Life to four or more, for each core increased, you can send an opposing Life to the Void.",
+  "text": "{{Mirage|Cost 2 ()}}\nDuring Set\nWhen an opposing Spirit attacks, if the opposing (Soul Core) isn't in the Reserve, you can send an opposing Life to the Trash. The opponent can't activate Burst effects/Rebirth with this effect.\n\n[LV1][LV2]\nWhen the opponent increases their Life to four or more, for each core increased, you can send an opposing Life to the Void.",
   "image": "BS57 010.png",
   "block": "57",
   "saga": 12,
@@ -3967,7 +3967,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "{{Mirage|Cost 2 ()}} During Set When an opposing Spirit attacks, if the opposing isn't in the Reserve, you can send an opposing Life to the Trash. The opponent can't activate Burst effects/Rebirth with this effect.",
+   "{{Mirage|Cost 2 ()}} During Set When an opposing Spirit attacks, if the opposing (Soul Core) isn't in the Reserve, you can send an opposing Life to the Trash. The opponent can't activate Burst effects/Rebirth with this effect.",
    "[LV1][LV2] When the opponent increases their Life to four or more, for each core increased, you can send an opposing Life to the Void."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
@@ -4001,14 +4001,14 @@
    "Proximate",
    "Nightling"
   ],
-  "text": "[LV1][LV2]\nThe opposing  is unaffected by opposing effects. Also, while the opposing  isn't in the Reserve, this Spirit can't be destroyed by opposing effects.\n\n[LV1][LV2] (Start of Your Attack Step)\nIf the opposing  isn't in the Reserve, you can draw a card.",
+  "text": "[LV1][LV2]\nThe opposing (Soul Core) is unaffected by opposing effects. Also, while the opposing (Soul Core) isn't in the Reserve, this Spirit can't be destroyed by opposing effects.\n\n[LV1][LV2] (Start of Your Attack Step)\nIf the opposing (Soul Core) isn't in the Reserve, you can draw a card.",
   "image": "BS57 011.png",
   "block": "57",
   "saga": 12,
   "fxComplete": false,
   "residual": [
-   "[LV1][LV2] The opposing is unaffected by opposing effects. Also, while the opposing isn't in the Reserve, this Spirit can't be destroyed by opposing effects.",
-   "[LV1][LV2] (Start of Your Attack Step) If the opposing isn't in the Reserve, you can draw a card."
+   "[LV1][LV2] The opposing (Soul Core) is unaffected by opposing effects. Also, while the opposing (Soul Core) isn't in the Reserve, this Spirit can't be destroyed by opposing effects.",
+   "[LV1][LV2] (Start of Your Attack Step) If the opposing (Soul Core) isn't in the Reserve, you can draw a card."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
@@ -4041,14 +4041,14 @@
    "Proximate",
    "Nightling"
   ],
-  "text": "[LV1][LV2] (When Summoned)\nBy discard a card from your Hand, draw a card. Then, if you have a Mirage set, you can destroy an opposing Spirit with one core or less on it.\n\n[LV1][LV2]\nWhen the opponent would deploy a Nexus card from the Hand, unless they use  to pay the cost, they can't deploy it.",
+  "text": "[LV1][LV2] (When Summoned)\nBy discard a card from your Hand, draw a card. Then, if you have a Mirage set, you can destroy an opposing Spirit with one core or less on it.\n\n[LV1][LV2]\nWhen the opponent would deploy a Nexus card from the Hand, unless they use (Soul Core) to pay the cost, they can't deploy it.",
   "image": "BS57 012.png",
   "block": "57",
   "saga": 12,
   "fxComplete": false,
   "residual": [
    "[LV1][LV2] (When Summoned) By discard a card from your Hand, draw a card. Then, if you have a Mirage set, you can destroy an opposing Spirit with one core or less on it.",
-   "[LV1][LV2] When the opponent would deploy a Nexus card from the Hand, unless they use to pay the cost, they can't deploy it."
+   "[LV1][LV2] When the opponent would deploy a Nexus card from the Hand, unless they use (Soul Core) to pay the cost, they can't deploy it."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
@@ -4214,15 +4214,15 @@
    "Astroblazer",
    "Nightling"
   ],
-  "text": "When your \"Nightling\" family Spirits are destroyed, you can pay one cost to summon this card from the Hand. This effect can only be used once per turn.\n\n[LV1][LV2][LV3]\nWhen the opponent would deploy a Nexus card from the Hand, unless they use  to pay the cost, they can't deploy it.\n\n[LV2][LV3] (When Attacks)\nBy sending the opposing  to the Reserve, draw two cards.",
+  "text": "When your \"Nightling\" family Spirits are destroyed, you can pay one cost to summon this card from the Hand. This effect can only be used once per turn.\n\n[LV1][LV2][LV3]\nWhen the opponent would deploy a Nexus card from the Hand, unless they use (Soul Core) to pay the cost, they can't deploy it.\n\n[LV2][LV3] (When Attacks)\nBy sending the opposing (Soul Core) to the Reserve, draw two cards.",
   "image": "BS57 017.png",
   "block": "57",
   "saga": 12,
   "fxComplete": false,
   "residual": [
    "When your \"Nightling\" family Spirits are destroyed, you can pay one cost to summon this card from the Hand. This effect can only be used once per turn.",
-   "[LV1][LV2][LV3] When the opponent would deploy a Nexus card from the Hand, unless they use to pay the cost, they can't deploy it.",
-   "[LV2][LV3] (When Attacks) By sending the opposing to the Reserve, draw two cards."
+   "[LV1][LV2][LV3] When the opponent would deploy a Nexus card from the Hand, unless they use (Soul Core) to pay the cost, they can't deploy it.",
+   "[LV2][LV3] (When Attacks) By sending the opposing (Soul Core) to the Reserve, draw two cards."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
@@ -4260,14 +4260,14 @@
    "Astroblazer",
    "Nightling"
   ],
-  "text": "[LV1][LV2][LV3] (Your Attack Step)\nAt the end of your \"Bal-Masque\"-named Spirit's battle, if the opposing  isn't in the Reserve, send an opposing Life to the Reserve. This effect doesn't stack.\n\n[LV2][LV3] (When Attacks)\nBy sending the opposing  to the Trash, summon a Cost 5 or less \"Nightling\" family Spirit card from your Trash without paying the cost.",
+  "text": "[LV1][LV2][LV3] (Your Attack Step)\nAt the end of your \"Bal-Masque\"-named Spirit's battle, if the opposing (Soul Core) isn't in the Reserve, send an opposing Life to the Reserve. This effect doesn't stack.\n\n[LV2][LV3] (When Attacks)\nBy sending the opposing (Soul Core) to the Trash, summon a Cost 5 or less \"Nightling\" family Spirit card from your Trash without paying the cost.",
   "image": "BS57 019.png",
   "block": "57",
   "saga": 12,
   "fxComplete": false,
   "residual": [
-   "[LV1][LV2][LV3] (Your Attack Step) At the end of your \"Bal-Masque\"-named Spirit's battle, if the opposing isn't in the Reserve, send an opposing Life to the Reserve. This effect doesn't stack.",
-   "[LV2][LV3] (When Attacks) By sending the opposing to the Trash, summon a Cost 5 or less \"Nightling\" family Spirit card from your Trash without paying the cost."
+   "[LV1][LV2][LV3] (Your Attack Step) At the end of your \"Bal-Masque\"-named Spirit's battle, if the opposing (Soul Core) isn't in the Reserve, send an opposing Life to the Reserve. This effect doesn't stack.",
+   "[LV2][LV3] (When Attacks) By sending the opposing (Soul Core) to the Trash, summon a Cost 5 or less \"Nightling\" family Spirit card from your Trash without paying the cost."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
@@ -4304,14 +4304,14 @@
    "Astroblazer",
    "Nightling"
   ],
-  "text": "[LV1][LV2][LV3] (Opposing Main Step)\nWhen the opponent would summon a Spirit card/Ultimate card from the Hand, unless they use the  to pay for the cost, they can't summon it.\n\n[LV2][LV3] (Your Attack Step)\nWhen the opponent would use a Magic card from the Hand, unless they use the  to pay the cost, they can't use it.",
+  "text": "[LV1][LV2][LV3] (Opposing Main Step)\nWhen the opponent would summon a Spirit card/Ultimate card from the Hand, unless they use the (Soul Core) to pay for the cost, they can't summon it.\n\n[LV2][LV3] (Your Attack Step)\nWhen the opponent would use a Magic card from the Hand, unless they use the (Soul Core) to pay the cost, they can't use it.",
   "image": "BS57 020.png",
   "block": "57",
   "saga": 12,
   "fxComplete": false,
   "residual": [
-   "[LV1][LV2][LV3] (Opposing Main Step) When the opponent would summon a Spirit card/Ultimate card from the Hand, unless they use the to pay for the cost, they can't summon it.",
-   "[LV2][LV3] (Your Attack Step) When the opponent would use a Magic card from the Hand, unless they use the to pay the cost, they can't use it."
+   "[LV1][LV2][LV3] (Opposing Main Step) When the opponent would summon a Spirit card/Ultimate card from the Hand, unless they use the (Soul Core) to pay for the cost, they can't summon it.",
+   "[LV2][LV3] (Your Attack Step) When the opponent would use a Magic card from the Hand, unless they use the (Soul Core) to pay the cost, they can't use it."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
@@ -4393,7 +4393,7 @@
    "Proximate",
    "Blade Insect"
   ],
-  "text": "{{Mirage|Cost 4 ()}}\nDuring Set (Your Attack Step)\nWhile your Green/Yellow \"Proximate\"/\"Astroblazer\" family Spirit is attacking, the opponent can't move cores, besides , on their Field.\n\n[LV1][LV2]\nWhen this Spirit would leave the Field due to the opponent, exhaust an opposing Spirit. Then, return this Spirit to the Hand.",
+  "text": "{{Mirage|Cost 4 ()}}\nDuring Set (Your Attack Step)\nWhile your Green/Yellow \"Proximate\"/\"Astroblazer\" family Spirit is attacking, the opponent can't move cores, besides (Soul Core), on their Field.\n\n[LV1][LV2]\nWhen this Spirit would leave the Field due to the opponent, exhaust an opposing Spirit. Then, return this Spirit to the Hand.",
   "image": "BS57 022.png",
   "block": "57",
   "saga": 12,
@@ -6190,7 +6190,7 @@
    }
   ],
   "families": [],
-  "text": "{{mirage|Cost 4 ()}}\nDuring Set (Your Attack Step)\nWhile your “Blade Insect” family Spirit is attacking, the opponent can't move cores, besides , on their Field.\n\n[LV1] (Either Main Step)\nEvery Cost 3 or less Spirit/Ultimate/Nexus/Grandwalker Nexus is fixed as having zero symbols. This effect can't be prevented by opposing effects.",
+  "text": "{{mirage|Cost 4 ()}}\nDuring Set (Your Attack Step)\nWhile your “Blade Insect” family Spirit is attacking, the opponent can't move cores, besides (Soul Core), on their Field.\n\n[LV1] (Either Main Step)\nEvery Cost 3 or less Spirit/Ultimate/Nexus/Grandwalker Nexus is fixed as having zero symbols. This effect can't be prevented by opposing effects.",
   "image": "BS57 066.png",
   "block": "57",
   "saga": 12,
@@ -6451,7 +6451,7 @@
   "symbols": 0,
   "levels": [],
   "families": [],
-  "text": "{{mirage|Cost 2 ()}}\nDuring Set\nWhen your \"Bal-Masque\"-named Spirit would activate a \"core removal\"/\"X cores or less destruction\" effect, treat that Spirit as colorless.\n\nFlash\nSend the opposing , or a core from any opposing Spirit/Ultimate to the Reserve, and when any Spirit/Ultimate is depleted, draw a card.",
+  "text": "{{mirage|Cost 2 ()}}\nDuring Set\nWhen your \"Bal-Masque\"-named Spirit would activate a \"core removal\"/\"X cores or less destruction\" effect, treat that Spirit as colorless.\n\nFlash\nSend the opposing (Soul Core), or a core from any opposing Spirit/Ultimate to the Reserve, and when any Spirit/Ultimate is depleted, draw a card.",
   "image": "BS57 075.png",
   "block": "57",
   "saga": 12,
@@ -6901,7 +6901,7 @@
    "Astroblazer",
    "Nightling"
   ],
-  "text": "[LV1][LV2][LV3] {{mdrain|Purple/Blue}} (When Summoned)\nYou can set a Purple/Blue card with Mirage effects from your Trash, without paying the cost. When you've done so, send two cores from the opposing Field to the Trash, and when Spirits/Ultimates are depleted, put a core from the Void to this Spirit.\n\n[LV2][LV3] (When Attacks)\nBy sending the opposing  to the Trash, summon a \"Nightling\" family card from your Trash, without paying the cost.",
+  "text": "[LV1][LV2][LV3] {{mdrain|Purple/Blue}} (When Summoned)\nYou can set a Purple/Blue card with Mirage effects from your Trash, without paying the cost. When you've done so, send two cores from the opposing Field to the Trash, and when Spirits/Ultimates are depleted, put a core from the Void to this Spirit.\n\n[LV2][LV3] (When Attacks)\nBy sending the opposing (Soul Core) to the Trash, summon a \"Nightling\" family card from your Trash, without paying the cost.",
   "image": "BS57 X03.png",
   "block": "57",
   "saga": 12,
@@ -6911,7 +6911,7 @@
   "fxComplete": false,
   "residual": [
    "[LV1][LV2][LV3] {{mdrain|Purple/Blue}} (When Summoned) You can set a Purple/Blue card with Mirage effects from your Trash, without paying the cost. When you've done so, send two cores from the opposing Field to the Trash, and when Spirits/Ultimates are depleted, put a core from the Void to this Spirit.",
-   "[LV2][LV3] (When Attacks) By sending the opposing to the Trash, summon a \"Nightling\" family card from your Trash, without paying the cost."
+   "[LV2][LV3] (When Attacks) By sending the opposing (Soul Core) to the Trash, summon a \"Nightling\" family card from your Trash, without paying the cost."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
@@ -7881,7 +7881,7 @@
    "Astroblazer",
    "Nightling"
   ],
-  "text": "{{Mirage|Cost 2 ()}}\nDuring Set\nYou can increase the number of cores to be sent to the Trash by your \"Bal-Masque\"-named Spirit's “Core Removal” effect by +1. While the opposing  isn't in the Reserve, you can change the “+1” text of this effect to \"+2\" instead.\n\n[LV1][LV2][LV3] (Your Attack Step)\nYour Purple/Blue “Proximate”/“Astroblazer” family Spirits can't be returned to the Hand/deck by opposing effects.",
+  "text": "{{Mirage|Cost 2 ()}}\nDuring Set\nYou can increase the number of cores to be sent to the Trash by your \"Bal-Masque\"-named Spirit's “Core Removal” effect by +1. While the opposing (Soul Core) isn't in the Reserve, you can change the “+1” text of this effect to \"+2\" instead.\n\n[LV1][LV2][LV3] (Your Attack Step)\nYour Purple/Blue “Proximate”/“Astroblazer” family Spirits can't be returned to the Hand/deck by opposing effects.",
   "image": "BS58 016.png",
   "block": "58",
   "saga": 12,
@@ -7890,7 +7890,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "{{Mirage|Cost 2 ()}} During Set You can increase the number of cores to be sent to the Trash by your \"Bal-Masque\"-named Spirit's “Core Removal” effect by +1. While the opposing isn't in the Reserve, you can change the “+1” text of this effect to \"+2\" instead.",
+   "{{Mirage|Cost 2 ()}} During Set You can increase the number of cores to be sent to the Trash by your \"Bal-Masque\"-named Spirit's “Core Removal” effect by +1. While the opposing (Soul Core) isn't in the Reserve, you can change the “+1” text of this effect to \"+2\" instead.",
    "[LV1][LV2][LV3] (Your Attack Step) Your Purple/Blue “Proximate”/“Astroblazer” family Spirits can't be returned to the Hand/deck by opposing effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
@@ -10106,7 +10106,7 @@
    }
   ],
   "families": [],
-  "text": "{{Mirage|Cost 3 ()}}\nDuring Set Flash - (Either Attack Step)\nBy discarding this Mirage, destroy an opposing exhausted Spirit.\n\n[LV1] (Your Main Step)\nYou can summon “Nightling” family Spirit cards from your Trash by using  as part of their summon cost.",
+  "text": "{{Mirage|Cost 3 ()}}\nDuring Set Flash - (Either Attack Step)\nBy discarding this Mirage, destroy an opposing exhausted Spirit.\n\n[LV1] (Your Main Step)\nYou can summon “Nightling” family Spirit cards from your Trash by using (Soul Core) as part of their summon cost.",
   "image": "BS58 064.png",
   "block": "58",
   "saga": 12,
@@ -10116,7 +10116,7 @@
   "fxComplete": false,
   "residual": [
    "{{Mirage|Cost 3 ()}} During Set Flash - (Either Attack Step) By discarding this Mirage, destroy an opposing exhausted Spirit.",
-   "[LV1] (Your Main Step) You can summon “Nightling” family Spirit cards from your Trash by using as part of their summon cost."
+   "[LV1] (Your Main Step) You can summon “Nightling” family Spirit cards from your Trash by using (Soul Core) as part of their summon cost."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
@@ -11693,7 +11693,7 @@
    "Astroblazer",
    "Nightling"
   ],
-  "text": "Flash - {{Accel|Cost 5 ()}}\nTreat this card as colorless, and send two cores from an opposing Spirit/Ultimate to the Reserve.  After this effect resolves, put this card face-up onto your Removed Zone.\n\n[LV1][LV2] (When Summoned)\nDestroy three opposing Spirits/Ultimates with two cores or less on them each. Also, if the opposing  isn't in the Reserve, draw two cards.\n\n[LV2] (When Attacks)\nDestroy an opposing exhausted Spirit/Ultimate.",
+  "text": "Flash - {{Accel|Cost 5 ()}}\nTreat this card as colorless, and send two cores from an opposing Spirit/Ultimate to the Reserve.  After this effect resolves, put this card face-up onto your Removed Zone.\n\n[LV1][LV2] (When Summoned)\nDestroy three opposing Spirits/Ultimates with two cores or less on them each. Also, if the opposing (Soul Core) isn't in the Reserve, draw two cards.\n\n[LV2] (When Attacks)\nDestroy an opposing exhausted Spirit/Ultimate.",
   "image": "BS59 016.png",
   "block": "59",
   "saga": 12,
@@ -11717,7 +11717,7 @@
   "fxComplete": false,
   "residual": [
    "Flash - {{Accel|Cost 5 ()}} Treat this card as colorless, and send two cores from an opposing Spirit/Ultimate to the Reserve. After this effect resolves, put this card face-up onto your Removed Zone.",
-   "[LV1][LV2] (When Summoned) Destroy three opposing Spirits/Ultimates with two cores or less on them each. Also, if the opposing isn't in the Reserve, draw two cards."
+   "[LV1][LV2] (When Summoned) Destroy three opposing Spirits/Ultimates with two cores or less on them each. Also, if the opposing (Soul Core) isn't in the Reserve, draw two cards."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [

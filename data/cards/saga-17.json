@@ -880,7 +880,7 @@
    "Bannerace",
    "Ogre Wizard"
   ],
-  "text": "Flash - {{Flag Contract Advent|Butler Contract|(Your Turn)}}\nBy sending your  to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\n(Once per Turn: Same Name) You can Flag Contract Advent this card from the Trash.\n\n[LV1-2] (When Advents/Attacks)\nOnce per turn, you can send a card from your decktop to the Trash. Then, you can return a \"Bannerace\" family Purple card from your Trash to the Hand. When you've done so, your counter +1.",
+  "text": "Flash - {{Flag Contract Advent|Butler Contract|(Your Turn)}}\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\n(Once per Turn: Same Name) You can Flag Contract Advent this card from the Trash.\n\n[LV1-2] (When Advents/Attacks)\nOnce per turn, you can send a card from your decktop to the Trash. Then, you can return a \"Bannerace\" family Purple card from your Trash to the Hand. When you've done so, your counter +1.",
   "image": "BS76-015.png",
   "block": "76",
   "saga": 17,
@@ -889,7 +889,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{Flag Contract Advent|Butler Contract|(Your Turn)}} By sending your to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
+   "Flash - {{Flag Contract Advent|Butler Contract|(Your Turn)}} By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
    "(Once per Turn: Same Name) You can Flag Contract Advent this card from the Trash.",
    "[LV1-2] (When Advents/Attacks) Once per turn, you can send a card from your decktop to the Trash. Then, you can return a \"Bannerace\" family Purple card from your Trash to the Hand. When you've done so, your counter +1."
   ],
@@ -928,7 +928,7 @@
    "Devotee",
    "Infernal Lord"
   ],
-  "text": "Flash - {{Mani|\"Contractor Hades\" & C5 or more|(Either Attack Step)}}\nBy sending your  to the Trash, pay one cost from the target to summon this card from the Hand.\n\n[LV1-2-3] (When Summoned)\nYou can send any number of cores from your Grandwalker Nexuses to the Void. For each core sent via this effect, send a core from any opposing Spirits/Ultimates to the Reserve.\n\n[LV2-3] (When Attacks)\nYour counter +1.",
+  "text": "Flash - {{Mani|\"Contractor Hades\" & C5 or more|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, pay one cost from the target to summon this card from the Hand.\n\n[LV1-2-3] (When Summoned)\nYou can send any number of cores from your Grandwalker Nexuses to the Void. For each core sent via this effect, send a core from any opposing Spirits/Ultimates to the Reserve.\n\n[LV2-3] (When Attacks)\nYour counter +1.",
   "image": "BS76-016.png",
   "block": "76",
   "saga": 17,
@@ -952,7 +952,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{Mani|\"Contractor Hades\" & C5 or more|(Either Attack Step)}} By sending your to the Trash, pay one cost from the target to summon this card from the Hand.",
+   "Flash - {{Mani|\"Contractor Hades\" & C5 or more|(Either Attack Step)}} By sending your (Soul Core) to the Trash, pay one cost from the target to summon this card from the Hand.",
    "[LV1-2-3] (When Summoned) You can send any number of cores from your Grandwalker Nexuses to the Void. For each core sent via this effect, send a core from any opposing Spirits/Ultimates to the Reserve."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
@@ -991,7 +991,7 @@
    "Bannerace",
    "Infernal Lord"
   ],
-  "text": "Flash - {{Flag Contract Advent|Butler Contract & C1 or more|(Either Attack Step)}}\nBy sending your  to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\n[LV1-2-3] (When Advents/Attacks)\nYou can send a card from your decktop to the Trash. Then, you can send two cores from the opposing Field to the Reserve. This \"core removal effect\" is treated as colorless.\n\nDuring Advent [LV2-3]\nWhile there are three or more \"The DemonArmyFlagbearer Amon\" in your Trash, you can send +2 cores to the Reserve via this Spirit's \"core removal effect\".",
+  "text": "Flash - {{Flag Contract Advent|Butler Contract & C1 or more|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\n[LV1-2-3] (When Advents/Attacks)\nYou can send a card from your decktop to the Trash. Then, you can send two cores from the opposing Field to the Reserve. This \"core removal effect\" is treated as colorless.\n\nDuring Advent [LV2-3]\nWhile there are three or more \"The DemonArmyFlagbearer Amon\" in your Trash, you can send +2 cores to the Reserve via this Spirit's \"core removal effect\".",
   "image": "BS76-017.png",
   "block": "76",
   "saga": 17,
@@ -1000,7 +1000,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{Flag Contract Advent|Butler Contract & C1 or more|(Either Attack Step)}} By sending your to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
+   "Flash - {{Flag Contract Advent|Butler Contract & C1 or more|(Either Attack Step)}} By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
    "[LV1-2-3] (When Advents/Attacks) You can send a card from your decktop to the Trash. Then, you can send two cores from the opposing Field to the Reserve. This \"core removal effect\" is treated as colorless.",
    "During Advent [LV2-3] While there are three or more \"The DemonArmyFlagbearer Amon\" in your Trash, you can send +2 cores to the Reserve via this Spirit's \"core removal effect\"."
   ],
@@ -1083,7 +1083,7 @@
    "Bannerace",
    "Evil Shadow"
   ],
-  "text": "Flash - {{Flag Contract Advent|Butler Contract & C4 or more|(Either Attack Step)}}\nBy sending your  to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\n[LV1-2-3] (When Advents)\nYou can discard two cards with the same card name from your Hand. When you've done so, put four cores from the Void to one of your \"Bannerace\" family Purple Spirits. During the next End Step, send four cores, besides , from your Field/Reserve/Trash to the Void.\n\nDuring Advent [LV2-3] Flash - (Your Attack Step)\nBy paying four costs, refresh this Spirit.",
+  "text": "Flash - {{Flag Contract Advent|Butler Contract & C4 or more|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\n[LV1-2-3] (When Advents)\nYou can discard two cards with the same card name from your Hand. When you've done so, put four cores from the Void to one of your \"Bannerace\" family Purple Spirits. During the next End Step, send four cores, besides (Soul Core), from your Field/Reserve/Trash to the Void.\n\nDuring Advent [LV2-3] Flash - (Your Attack Step)\nBy paying four costs, refresh this Spirit.",
   "image": "BS76-019.png",
   "block": "76",
   "saga": 17,
@@ -1092,7 +1092,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{Flag Contract Advent|Butler Contract & C4 or more|(Either Attack Step)}} By sending your to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
+   "Flash - {{Flag Contract Advent|Butler Contract & C4 or more|(Either Attack Step)}} By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
    "[LV1-2-3] (When Advents) You can discard two cards with the same card name from your Hand. When you've done so, put four cores from the Void to one of your \"Bannerace\" family Purple Spirits. During the next End Step, send four cores, besides , from your Field/Reserve/Trash to the Void.",
    "During Advent [LV2-3] Flash - (Your Attack Step) By paying four costs, refresh this Spirit."
   ],
@@ -1251,7 +1251,7 @@
    "Bannerace",
    "Blade Beast"
   ],
-  "text": "Flash - {{Flag Contract Advent|Gale Contract|(Either Attack Step)}}\nBy sending your  to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\n[LV1-2] (When Advents)\nYou can exhaust four opposing Cost 4 or less Spirits/Ultimates. Then, you can return an opposing exhausted Spirit/Ultimate that isn't During Advent to the deckbottom.\n\n[LV2] (Your Attack Step)\nWhen your \"Bannerace\" family Spirit attacks, you can send two cores from any opposing Grandwalker Nexuses to the Void.",
+  "text": "Flash - {{Flag Contract Advent|Gale Contract|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\n[LV1-2] (When Advents)\nYou can exhaust four opposing Cost 4 or less Spirits/Ultimates. Then, you can return an opposing exhausted Spirit/Ultimate that isn't During Advent to the deckbottom.\n\n[LV2] (Your Attack Step)\nWhen your \"Bannerace\" family Spirit attacks, you can send two cores from any opposing Grandwalker Nexuses to the Void.",
   "image": "BS76-023.png",
   "block": "76",
   "saga": 17,
@@ -1260,7 +1260,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{Flag Contract Advent|Gale Contract|(Either Attack Step)}} By sending your to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
+   "Flash - {{Flag Contract Advent|Gale Contract|(Either Attack Step)}} By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
    "[LV1-2] (When Advents) You can exhaust four opposing Cost 4 or less Spirits/Ultimates. Then, you can return an opposing exhausted Spirit/Ultimate that isn't During Advent to the deckbottom.",
    "[LV2] (Your Attack Step) When your \"Bannerace\" family Spirit attacks, you can send two cores from any opposing Grandwalker Nexuses to the Void."
   ],
@@ -1423,7 +1423,7 @@
    "Bannerace",
    "Blade Beast"
   ],
-  "text": "Flash - {{Flag Contract Advent|Gale Contract|(Your Turn)}}\nBy sending your  to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\n[LV1-2] (When Summoned/Advents)\nYou can heavy exhaust an opposing Cost 6 or less Spirit/Nexus. Then, you can put a core from the Void to any of your Spirit.\n\n[LV2] (Your Attack Step)\nWhen your Green \"Bannerace\" family Brave Spirit attacks, you can return an opposing Cost 4 or less exhausted Spirit/Nexus to the deckbottom.",
+  "text": "Flash - {{Flag Contract Advent|Gale Contract|(Your Turn)}}\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\n[LV1-2] (When Summoned/Advents)\nYou can heavy exhaust an opposing Cost 6 or less Spirit/Nexus. Then, you can put a core from the Void to any of your Spirit.\n\n[LV2] (Your Attack Step)\nWhen your Green \"Bannerace\" family Brave Spirit attacks, you can return an opposing Cost 4 or less exhausted Spirit/Nexus to the deckbottom.",
   "image": "BS76-027.png",
   "block": "76",
   "saga": 17,
@@ -1432,7 +1432,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{Flag Contract Advent|Gale Contract|(Your Turn)}} By sending your to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
+   "Flash - {{Flag Contract Advent|Gale Contract|(Your Turn)}} By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
    "[LV1-2] (When Summoned/Advents) You can heavy exhaust an opposing Cost 6 or less Spirit/Nexus. Then, you can put a core from the Void to any of your Spirit.",
    "[LV2] (Your Attack Step) When your Green \"Bannerace\" family Brave Spirit attacks, you can return an opposing Cost 4 or less exhausted Spirit/Nexus to the deckbottom."
   ],
@@ -1592,7 +1592,7 @@
    "Bannerace",
    "Winged Beast"
   ],
-  "text": "Flash - {{Flag Contract Advent|Gale Contract & C6 or more|(Either Attack Step)}}\nBy sending your  to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\n{{Seal|During Seal}} (Once per Turn: Same Name) You can Flag Contract Advent this card from the Hand, treating  as being sent to the Trash.\n\n[LV1-2] (When Advents)\nYou can heavy exhaust three opposing Spirits/Ultimates.",
+  "text": "Flash - {{Flag Contract Advent|Gale Contract & C6 or more|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\n{{Seal|During Seal}} (Once per Turn: Same Name) You can Flag Contract Advent this card from the Hand, treating (Soul Core) as being sent to the Trash.\n\n[LV1-2] (When Advents)\nYou can heavy exhaust three opposing Spirits/Ultimates.",
   "image": "BS76-031.png",
   "block": "76",
   "saga": 17,
@@ -1601,8 +1601,8 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{Flag Contract Advent|Gale Contract & C6 or more|(Either Attack Step)}} By sending your to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
-   "{{Seal|During Seal}} (Once per Turn: Same Name) You can Flag Contract Advent this card from the Hand, treating as being sent to the Trash.",
+   "Flash - {{Flag Contract Advent|Gale Contract & C6 or more|(Either Attack Step)}} By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
+   "{{Seal|During Seal}} (Once per Turn: Same Name) You can Flag Contract Advent this card from the Hand, treating (Soul Core) as being sent to the Trash.",
    "[LV1-2] (When Advents) You can heavy exhaust three opposing Spirits/Ultimates."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
@@ -1761,7 +1761,7 @@
    "Bannerace",
    "Armored Dragon"
   ],
-  "text": "Flash - {{Flag Contract Advent|Glow Contract|(Your Turn)}}\nBy sending your  to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\n[LV1-2-3] (When Advents/Attacks)\nOnce per turn, you can reveal three cards from your decktop. Among them, add a White \"Bannerace\" family card to the Hand. By destroying one of your \"Platinum Bug\", this effect adds +1 card to the Hand. Return any remaining cards to the deckbottom.\n\n[LV2-3] (When Attacks)\nFor each \"Platinum Bug\" you control, including those in pre-advent condition, you can send three cores from any opposing Grandwalker Nexuses to the Void.",
+  "text": "Flash - {{Flag Contract Advent|Glow Contract|(Your Turn)}}\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\n[LV1-2-3] (When Advents/Attacks)\nOnce per turn, you can reveal three cards from your decktop. Among them, add a White \"Bannerace\" family card to the Hand. By destroying one of your \"Platinum Bug\", this effect adds +1 card to the Hand. Return any remaining cards to the deckbottom.\n\n[LV2-3] (When Attacks)\nFor each \"Platinum Bug\" you control, including those in pre-advent condition, you can send three cores from any opposing Grandwalker Nexuses to the Void.",
   "image": "BS76-035.png",
   "block": "76",
   "saga": 17,
@@ -1770,7 +1770,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{Flag Contract Advent|Glow Contract|(Your Turn)}} By sending your to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
+   "Flash - {{Flag Contract Advent|Glow Contract|(Your Turn)}} By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
    "[LV1-2-3] (When Advents/Attacks) Once per turn, you can reveal three cards from your decktop. Among them, add a White \"Bannerace\" family card to the Hand. By destroying one of your \"Platinum Bug\", this effect adds +1 card to the Hand. Return any remaining cards to the deckbottom.",
    "[LV2-3] (When Attacks) For each \"Platinum Bug\" you control, including those in pre-advent condition, you can send three cores from any opposing Grandwalker Nexuses to the Void."
   ],
@@ -1902,7 +1902,7 @@
    "Bannerace",
    "Glow Insect"
   ],
-  "text": "Flash - {{Flag Contract Advent|Glow Contract & C1 or more|(Either Attack Step)}}\nBy sending your  to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\n[LV1-2-3] (When Advents/Attacks)\nBy returning an opposing Spirit/Nexus to the deckbottom, put a core from the Void to this Spirit.\n\n[LV2-3] (When Attacks/Blocks)\nYou can send out one of your \"Platinum Bug\" Tokens.",
+  "text": "Flash - {{Flag Contract Advent|Glow Contract & C1 or more|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\n[LV1-2-3] (When Advents/Attacks)\nBy returning an opposing Spirit/Nexus to the deckbottom, put a core from the Void to this Spirit.\n\n[LV2-3] (When Attacks/Blocks)\nYou can send out one of your \"Platinum Bug\" Tokens.",
   "image": "BS76-038.png",
   "block": "76",
   "saga": 17,
@@ -1911,7 +1911,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{Flag Contract Advent|Glow Contract & C1 or more|(Either Attack Step)}} By sending your to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
+   "Flash - {{Flag Contract Advent|Glow Contract & C1 or more|(Either Attack Step)}} By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
    "[LV1-2-3] (When Advents/Attacks) By returning an opposing Spirit/Nexus to the deckbottom, put a core from the Void to this Spirit.",
    "[LV2-3] (When Attacks/Blocks) You can send out one of your \"Platinum Bug\" Tokens."
   ],
@@ -2038,7 +2038,7 @@
    "Armed Machine",
    "Soldier"
   ],
-  "text": "Flash - {{Contract Advent|\"Argent\" & C2 or more|(Either Attack Step)}}\nBy sending your  to the Trash, stack this from the Hand onto your target Spirit.\n\nThis card in Hand is unaffected by opposing effects.\n\n[LV1][LV2]\nCards can't be discarded from either player's deck, and your Life can only be reduced by one per attack.\n\n[LV2] {{ua|Red/White/Yellow/Blue}}\nThis Spirit is unaffected by opposing Red/White/Yellow/Blue Spirit/ Ultimate/ Nexus/ Magic effects.",
+  "text": "Flash - {{Contract Advent|\"Argent\" & C2 or more|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit.\n\nThis card in Hand is unaffected by opposing effects.\n\n[LV1][LV2]\nCards can't be discarded from either player's deck, and your Life can only be reduced by one per attack.\n\n[LV2] {{ua|Red/White/Yellow/Blue}}\nThis Spirit is unaffected by opposing Red/White/Yellow/Blue Spirit/ Ultimate/ Nexus/ Magic effects.",
   "image": "BS76-040.png",
   "block": "76",
   "saga": 17,
@@ -2048,7 +2048,7 @@
   "handUnaffected": true,
   "fxComplete": false,
   "residual": [
-   "Flash - {{Contract Advent|\"Argent\" & C2 or more|(Either Attack Step)}} By sending your to the Trash, stack this from the Hand onto your target Spirit.",
+   "Flash - {{Contract Advent|\"Argent\" & C2 or more|(Either Attack Step)}} By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit.",
    "[LV1][LV2] Cards can't be discarded from either player's deck, and your Life can only be reduced by one per attack.",
    "[LV2] {{ua|Red/White/Yellow/Blue}} This Spirit is unaffected by opposing Red/White/Yellow/Blue Spirit/ Ultimate/ Nexus/ Magic effects."
   ],
@@ -2088,7 +2088,7 @@
    "Bannerace",
    "Glow Insect"
   ],
-  "text": "Flash - {{Flag Contract Advent|Glow Contract & C6 or more|(Either Attack Step)}}\nBy sending your  to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\nWhen this card is revealed from the deck by a \"Bannerace\" family effect, you can send out one of your \"Platinum Bug\" Tokens.\n\n[LV1-2-3] (When Advents/Attacks)\nYou can return an opposing Spirit/Ultimate/Nexus to the deckbottom. By destroying one of your \"Platinum Bug\", this effect returns +1 target.",
+  "text": "Flash - {{Flag Contract Advent|Glow Contract & C6 or more|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\nWhen this card is revealed from the deck by a \"Bannerace\" family effect, you can send out one of your \"Platinum Bug\" Tokens.\n\n[LV1-2-3] (When Advents/Attacks)\nYou can return an opposing Spirit/Ultimate/Nexus to the deckbottom. By destroying one of your \"Platinum Bug\", this effect returns +1 target.",
   "image": "BS76-041.png",
   "block": "76",
   "saga": 17,
@@ -2097,7 +2097,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{Flag Contract Advent|Glow Contract & C6 or more|(Either Attack Step)}} By sending your to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
+   "Flash - {{Flag Contract Advent|Glow Contract & C6 or more|(Either Attack Step)}} By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
    "When this card is revealed from the deck by a \"Bannerace\" family effect, you can send out one of your \"Platinum Bug\" Tokens.",
    "[LV1-2-3] (When Advents/Attacks) You can return an opposing Spirit/Ultimate/Nexus to the deckbottom. By destroying one of your \"Platinum Bug\", this effect returns +1 target."
   ],
@@ -2320,7 +2320,7 @@
    "Devotee",
    "Hunter Beast"
   ],
-  "text": "Flash - {{Mani|\"Contractor Parvati\"|(Your Turn)}}\nBy sending your  to the Trash, pay one cost from the target to summon this card from the Hand.\n\n[LV1-2-3] (When Manifests/Attacks)\nOnce per turn, you can draw a card from the deckbottom.\n\n[LV2-3] (Your Attack Step)\nWhen your \"Hunter Beast\" family Spirit attacks, you can send three cores from an opposing Grandwalker Nexus to the Void.",
+  "text": "Flash - {{Mani|\"Contractor Parvati\"|(Your Turn)}}\nBy sending your (Soul Core) to the Trash, pay one cost from the target to summon this card from the Hand.\n\n[LV1-2-3] (When Manifests/Attacks)\nOnce per turn, you can draw a card from the deckbottom.\n\n[LV2-3] (Your Attack Step)\nWhen your \"Hunter Beast\" family Spirit attacks, you can send three cores from an opposing Grandwalker Nexus to the Void.",
   "image": "BS76-046.png",
   "block": "76",
   "saga": 17,
@@ -2329,7 +2329,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{Mani|\"Contractor Parvati\"|(Your Turn)}} By sending your to the Trash, pay one cost from the target to summon this card from the Hand.",
+   "Flash - {{Mani|\"Contractor Parvati\"|(Your Turn)}} By sending your (Soul Core) to the Trash, pay one cost from the target to summon this card from the Hand.",
    "[LV1-2-3] (When Manifests/Attacks) Once per turn, you can draw a card from the deckbottom.",
    "[LV2-3] (Your Attack Step) When your \"Hunter Beast\" family Spirit attacks, you can send three cores from an opposing Grandwalker Nexus to the Void."
   ],
@@ -2559,7 +2559,7 @@
   "families": [
    "Thunderive"
   ],
-  "text": "Flash - {{Mani|\"Contractor Indra\" & C5 or more|(Either Attack Step)}}\nBy sending your  to the Trash, pay one cost from the target to summon this card from the Hand.\n\nThis card in Hand is unaffected by opposing effects.\n\n[LV1-2-3] (When Summoned)\nYou can send six cores from any opposing Grandwalker Nexuses to the Void.\n\n[LV2-3] (Your Attack Step)\nWhen your \"Thunderive\" family Spirit attacks, you can return an opposing Spirit/Ultimate under \"can't attack/block\" effects to the deckbottom.",
+  "text": "Flash - {{Mani|\"Contractor Indra\" & C5 or more|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, pay one cost from the target to summon this card from the Hand.\n\nThis card in Hand is unaffected by opposing effects.\n\n[LV1-2-3] (When Summoned)\nYou can send six cores from any opposing Grandwalker Nexuses to the Void.\n\n[LV2-3] (Your Attack Step)\nWhen your \"Thunderive\" family Spirit attacks, you can return an opposing Spirit/Ultimate under \"can't attack/block\" effects to the deckbottom.",
   "image": "BS76-050.png",
   "block": "76",
   "saga": 17,
@@ -2569,7 +2569,7 @@
   "handUnaffected": true,
   "fxComplete": false,
   "residual": [
-   "Flash - {{Mani|\"Contractor Indra\" & C5 or more|(Either Attack Step)}} By sending your to the Trash, pay one cost from the target to summon this card from the Hand.",
+   "Flash - {{Mani|\"Contractor Indra\" & C5 or more|(Either Attack Step)}} By sending your (Soul Core) to the Trash, pay one cost from the target to summon this card from the Hand.",
    "[LV1-2-3] (When Summoned) You can send six cores from any opposing Grandwalker Nexuses to the Void.",
    "[LV2-3] (Your Attack Step) When your \"Thunderive\" family Spirit attacks, you can return an opposing Spirit/Ultimate under \"can't attack/block\" effects to the deckbottom."
   ],
@@ -2604,7 +2604,7 @@
    "Devotee",
    "Artificial Soldier"
   ],
-  "text": "Flash - {{Mani|\"Contractor Hephaestus\"|(Your Turn)}}\nBy sending your  to the Trash, pay one cost from the target to summon this card from the Hand.\n\n[LV1-2] (When Manifests/Attacks)\nYou can draw a card. When you've done so,  discard a card from your Hand.\n\n[LV1-2] (Your Main Step)\n(Can't Stack) When your other \"Artificial Soldier\" family Spirits/Braves are summoned, your counter +1.",
+  "text": "Flash - {{Mani|\"Contractor Hephaestus\"|(Your Turn)}}\nBy sending your (Soul Core) to the Trash, pay one cost from the target to summon this card from the Hand.\n\n[LV1-2] (When Manifests/Attacks)\nYou can draw a card. When you've done so,  discard a card from your Hand.\n\n[LV1-2] (Your Main Step)\n(Can't Stack) When your other \"Artificial Soldier\" family Spirits/Braves are summoned, your counter +1.",
   "image": "BS76-051.png",
   "block": "76",
   "saga": 17,
@@ -2613,7 +2613,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{Mani|\"Contractor Hephaestus\"|(Your Turn)}} By sending your to the Trash, pay one cost from the target to summon this card from the Hand.",
+   "Flash - {{Mani|\"Contractor Hephaestus\"|(Your Turn)}} By sending your (Soul Core) to the Trash, pay one cost from the target to summon this card from the Hand.",
    "[LV1-2] (When Manifests/Attacks) You can draw a card. When you've done so, discard a card from your Hand.",
    "[LV1-2] (Your Main Step) (Can't Stack) When your other \"Artificial Soldier\" family Spirits/Braves are summoned, your counter +1."
   ],
@@ -2795,7 +2795,7 @@
    "Devotee",
    "Artificial Soldier"
   ],
-  "text": "Flash - {{Mani|\"Contractor Hephaestus\" & C4 or more|(Your Turn)}}\nBy sending your  to the Trash, pay one cost from the target to summon this card from the Hand.\n\n[LV1-2-3] (When Manifests/Attacks)\nYou can reveal three cards from your decktop. Among them, add a \"Contractor Hephaestus\" or a \"Devotee\" & \"Artificial Soldier\" family card to the Hand. Discard any remaining cards.\n\n[LV2-3] (Your Attack Step)\nWhile your \"Devotee\"/\"Concluser\" & \"Artificial Soldier\" family Spirit is attacking, the opponent can't activate Burst effects of Spirit cards.",
+  "text": "Flash - {{Mani|\"Contractor Hephaestus\" & C4 or more|(Your Turn)}}\nBy sending your (Soul Core) to the Trash, pay one cost from the target to summon this card from the Hand.\n\n[LV1-2-3] (When Manifests/Attacks)\nYou can reveal three cards from your decktop. Among them, add a \"Contractor Hephaestus\" or a \"Devotee\" & \"Artificial Soldier\" family card to the Hand. Discard any remaining cards.\n\n[LV2-3] (Your Attack Step)\nWhile your \"Devotee\"/\"Concluser\" & \"Artificial Soldier\" family Spirit is attacking, the opponent can't activate Burst effects of Spirit cards.",
   "image": "BS76-055.png",
   "block": "76",
   "saga": 17,
@@ -2804,7 +2804,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{Mani|\"Contractor Hephaestus\" & C4 or more|(Your Turn)}} By sending your to the Trash, pay one cost from the target to summon this card from the Hand.",
+   "Flash - {{Mani|\"Contractor Hephaestus\" & C4 or more|(Your Turn)}} By sending your (Soul Core) to the Trash, pay one cost from the target to summon this card from the Hand.",
    "[LV1-2-3] (When Manifests/Attacks) You can reveal three cards from your decktop. Among them, add a \"Contractor Hephaestus\" or a \"Devotee\" & \"Artificial Soldier\" family card to the Hand. Discard any remaining cards.",
    "[LV2-3] (Your Attack Step) While your \"Devotee\"/\"Concluser\" & \"Artificial Soldier\" family Spirit is attacking, the opponent can't activate Burst effects of Spirit cards."
   ],
@@ -2844,7 +2844,7 @@
    "Beast Head",
    "Soldier"
   ],
-  "text": "Flash - {{Mani|\"Contractor Khaos\" & C2 or more|(Your Turn)}}\nBy sending your  to the Trash, pay one cost from the target to summon this card from the Hand.\n\n[LV1-2-3] (When Manifests/Attacks)\nYou can draw two cards. When you've done so, discard two cards from your Hand. (Once per Turn: Same Name) When any Mirage card is discarded via this effect, your counter +1.\n\n[LV2-3] (When Attacks)\nYou can discard a Magic card on the opposing Field.",
+  "text": "Flash - {{Mani|\"Contractor Khaos\" & C2 or more|(Your Turn)}}\nBy sending your (Soul Core) to the Trash, pay one cost from the target to summon this card from the Hand.\n\n[LV1-2-3] (When Manifests/Attacks)\nYou can draw two cards. When you've done so, discard two cards from your Hand. (Once per Turn: Same Name) When any Mirage card is discarded via this effect, your counter +1.\n\n[LV2-3] (When Attacks)\nYou can discard a Magic card on the opposing Field.",
   "image": "BS76-056.png",
   "block": "76",
   "saga": 17,
@@ -2853,7 +2853,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{Mani|\"Contractor Khaos\" & C2 or more|(Your Turn)}} By sending your to the Trash, pay one cost from the target to summon this card from the Hand.",
+   "Flash - {{Mani|\"Contractor Khaos\" & C2 or more|(Your Turn)}} By sending your (Soul Core) to the Trash, pay one cost from the target to summon this card from the Hand.",
    "[LV1-2-3] (When Manifests/Attacks) You can draw two cards. When you've done so, discard two cards from your Hand. (Once per Turn: Same Name) When any Mirage card is discarded via this effect, your counter +1.",
    "[LV2-3] (When Attacks) You can discard a Magic card on the opposing Field."
   ],
@@ -4246,7 +4246,7 @@
    "Bannerace",
    "Death Dragon"
   ],
-  "text": "Flash - {{Flag Contract Advent|Butler Contract & C3 or more|(Your Turn)}}\nBy sending your  to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\n[LV1-2-3] {{D Assault|2}} (When Attacks)\nUp to twice per turn, you can send a total of three cards from your Hand and decktop to the Trash. When you've done so, this Spirit can refresh, and during this battle, you can increase the LV cost of an opposing Spirit/Nexus by +3.\n\nDuring Advent [LV2-3] (When Attacks)\nIf there are four or more cards with the same name in your Trash, you can send an opposing Life to the Reserve.",
+  "text": "Flash - {{Flag Contract Advent|Butler Contract & C3 or more|(Your Turn)}}\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\n[LV1-2-3] {{D Assault|2}} (When Attacks)\nUp to twice per turn, you can send a total of three cards from your Hand and decktop to the Trash. When you've done so, this Spirit can refresh, and during this battle, you can increase the LV cost of an opposing Spirit/Nexus by +3.\n\nDuring Advent [LV2-3] (When Attacks)\nIf there are four or more cards with the same name in your Trash, you can send an opposing Life to the Reserve.",
   "image": "BS76-AX01.png",
   "block": "76",
   "saga": 17,
@@ -4255,7 +4255,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{Flag Contract Advent|Butler Contract & C3 or more|(Your Turn)}} By sending your to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
+   "Flash - {{Flag Contract Advent|Butler Contract & C3 or more|(Your Turn)}} By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
    "[LV1-2-3] {{D Assault|2}} (When Attacks) Up to twice per turn, you can send a total of three cards from your Hand and decktop to the Trash. When you've done so, this Spirit can refresh, and during this battle, you can increase the LV cost of an opposing Spirit/Nexus by +3.",
    "During Advent [LV2-3] (When Attacks) If there are four or more cards with the same name in your Trash, you can send an opposing Life to the Reserve."
   ],
@@ -4295,7 +4295,7 @@
    "Bannerace",
    "Blade Beast"
   ],
-  "text": "Flash - {{Flag Contract Advent|Gale Contract & C3 or more|(Either Attack Step)}}\nBy sending your  to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\n(Once per Turn: Same Name) If you control any Brave, you can Flag Contract Advent this card from the Hand, treating  as being sent to the Trash.\n\n[LV1-2-3] (When Advents)/(Start of Either Attack Step)\nYou can heavy exhaust an opposing Spirit/Ultimate. Then, you can send four cores from any opposing Grandwalker Nexuses to the Void.\n\n[LV2-3] (When Attacks/Blocks)\nAt the end of battle, by returning one of your \"Bannerace\" family Green Spirits to the Hand, refresh this Spirit.",
+  "text": "Flash - {{Flag Contract Advent|Gale Contract & C3 or more|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\n(Once per Turn: Same Name) If you control any Brave, you can Flag Contract Advent this card from the Hand, treating (Soul Core) as being sent to the Trash.\n\n[LV1-2-3] (When Advents)/(Start of Either Attack Step)\nYou can heavy exhaust an opposing Spirit/Ultimate. Then, you can send four cores from any opposing Grandwalker Nexuses to the Void.\n\n[LV2-3] (When Attacks/Blocks)\nAt the end of battle, by returning one of your \"Bannerace\" family Green Spirits to the Hand, refresh this Spirit.",
   "image": "BS76-AX02.png",
   "block": "76",
   "saga": 17,
@@ -4304,8 +4304,8 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{Flag Contract Advent|Gale Contract & C3 or more|(Either Attack Step)}} By sending your to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
-   "(Once per Turn: Same Name) If you control any Brave, you can Flag Contract Advent this card from the Hand, treating as being sent to the Trash.",
+   "Flash - {{Flag Contract Advent|Gale Contract & C3 or more|(Either Attack Step)}} By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
+   "(Once per Turn: Same Name) If you control any Brave, you can Flag Contract Advent this card from the Hand, treating (Soul Core) as being sent to the Trash.",
    "[LV1-2-3] (When Advents)/(Start of Either Attack Step) You can heavy exhaust an opposing Spirit/Ultimate. Then, you can send four cores from any opposing Grandwalker Nexuses to the Void.",
    "[LV2-3] (When Attacks/Blocks) At the end of battle, by returning one of your \"Bannerace\" family Green Spirits to the Hand, refresh this Spirit."
   ],
@@ -4345,7 +4345,7 @@
    "Bannerace",
    "Glow Insect"
   ],
-  "text": "Flash - {{Flag Contract Advent|Glow Contract & C1 or more|(Your Turn)}}\nBy sending your  to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\n(Once per Turn: Same Name) If you have four counters or more, you can Flag Contract Advent this card from the Hand during Flash Timing of either Attack Step, treating  as being sent to the Trash.\n\n[LV1-2-3] (When Advents/Attacks)\nYou can send out one of your \"Platinum Bug\" Tokens. Then, you can return an opposing Spirit/Ultimate to the deckbottom.\n\nDuring Advent [LV2-3] (Either Attack Step)\nWhen any Spirit with (When Attacks) effect attacks, you can draw a card.",
+  "text": "Flash - {{Flag Contract Advent|Glow Contract & C1 or more|(Your Turn)}}\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\n(Once per Turn: Same Name) If you have four counters or more, you can Flag Contract Advent this card from the Hand during Flash Timing of either Attack Step, treating (Soul Core) as being sent to the Trash.\n\n[LV1-2-3] (When Advents/Attacks)\nYou can send out one of your \"Platinum Bug\" Tokens. Then, you can return an opposing Spirit/Ultimate to the deckbottom.\n\nDuring Advent [LV2-3] (Either Attack Step)\nWhen any Spirit with (When Attacks) effect attacks, you can draw a card.",
   "image": "BS76-AX03.png",
   "block": "76",
   "saga": 17,
@@ -4354,8 +4354,8 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{Flag Contract Advent|Glow Contract & C1 or more|(Your Turn)}} By sending your to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
-   "(Once per Turn: Same Name) If you have four counters or more, you can Flag Contract Advent this card from the Hand during Flash Timing of either Attack Step, treating as being sent to the Trash.",
+   "Flash - {{Flag Contract Advent|Glow Contract & C1 or more|(Your Turn)}} By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
+   "(Once per Turn: Same Name) If you have four counters or more, you can Flag Contract Advent this card from the Hand during Flash Timing of either Attack Step, treating (Soul Core) as being sent to the Trash.",
    "[LV1-2-3] (When Advents/Attacks) You can send out one of your \"Platinum Bug\" Tokens. Then, you can return an opposing Spirit/Ultimate to the deckbottom.",
    "During Advent [LV2-3] (Either Attack Step) When any Spirit with (When Attacks) effect attacks, you can draw a card."
   ],
@@ -4755,7 +4755,7 @@
    "Bannerace",
    "God-King"
   ],
-  "text": "Flash - {{SF Advent|Butler Contract & C5 or more|(Your Turn)}}\n(Once per Turn: Same Name) By sending your  to the Life, stack this from the Hand onto your target Spirit/Nexus.\n\n{{Seal|During Seal}} [LV1-2-3] Banner God-Army (When Advents)\nYou can draw two cards. Then, you can summon a Purple \"Bannerace\"/\"God-King\" family card from your Hand/Trash, without paying the cost.\n\n{{Seal|During Seal}} [LV2-3] Banner God Strike (Your Attack Step)\nWhile your \"Bannerace\"/\"God-King\" family Spirit is attacking, the opponent can't block unless they send a core from their Life to the Void.",
+  "text": "Flash - {{SF Advent|Butler Contract & C5 or more|(Your Turn)}}\n(Once per Turn: Same Name) By sending your (Soul Core) to the Life, stack this from the Hand onto your target Spirit/Nexus.\n\n{{Seal|During Seal}} [LV1-2-3] Banner God-Army (When Advents)\nYou can draw two cards. Then, you can summon a Purple \"Bannerace\"/\"God-King\" family card from your Hand/Trash, without paying the cost.\n\n{{Seal|During Seal}} [LV2-3] Banner God Strike (Your Attack Step)\nWhile your \"Bannerace\"/\"God-King\" family Spirit is attacking, the opponent can't block unless they send a core from their Life to the Void.",
   "image": "BS76-X03 (Fixed).png",
   "block": "76",
   "saga": 17,
@@ -4764,7 +4764,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{SF Advent|Butler Contract & C5 or more|(Your Turn)}} (Once per Turn: Same Name) By sending your to the Life, stack this from the Hand onto your target Spirit/Nexus.",
+   "Flash - {{SF Advent|Butler Contract & C5 or more|(Your Turn)}} (Once per Turn: Same Name) By sending your (Soul Core) to the Life, stack this from the Hand onto your target Spirit/Nexus.",
    "{{Seal|During Seal}} [LV1-2-3] Banner God-Army (When Advents) You can draw two cards. Then, you can summon a Purple \"Bannerace\"/\"God-King\" family card from your Hand/Trash, without paying the cost.",
    "{{Seal|During Seal}} [LV2-3] Banner God Strike (Your Attack Step) While your \"Bannerace\"/\"God-King\" family Spirit is attacking, the opponent can't block unless they send a core from their Life to the Void."
   ],
@@ -4804,7 +4804,7 @@
    "Bannerace",
    "Nightling"
   ],
-  "text": "Flash - {{Flag Contract Advent|Butler Contract & C6 or more|(Either Attack Step)}}\nBy sending your  to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\nThis card/Spirit is also treated as being exactly named \"The DemonArmyFlagbearer Amon\".\n\n(Once per Turn: Same Name) Besides this card, when your other \"The DemonArmyFlagbearer Amon\" is sent to the Trash from your Hand/Deck, you can Flag Contract Advent this card from the Trash, treating  as being sent to the Trash.\n\nDuring Advent [LV1-2-3] (When Advents/Attacks)\n(Once per Turn: Same Name) You can send a core from the opposing Field to the Trash for each of your \"The DemonArmyFlagbearer Amon\", including those in the Trash. Then, during this turn, all your \"Bannerace\" family Purple Spirits gain an extra Purple symbol.",
+  "text": "Flash - {{Flag Contract Advent|Butler Contract & C6 or more|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\nThis card/Spirit is also treated as being exactly named \"The DemonArmyFlagbearer Amon\".\n\n(Once per Turn: Same Name) Besides this card, when your other \"The DemonArmyFlagbearer Amon\" is sent to the Trash from your Hand/Deck, you can Flag Contract Advent this card from the Trash, treating (Soul Core) as being sent to the Trash.\n\nDuring Advent [LV1-2-3] (When Advents/Attacks)\n(Once per Turn: Same Name) You can send a core from the opposing Field to the Trash for each of your \"The DemonArmyFlagbearer Amon\", including those in the Trash. Then, during this turn, all your \"Bannerace\" family Purple Spirits gain an extra Purple symbol.",
   "image": "BS76-X04.png",
   "block": "76",
   "saga": 17,
@@ -4813,9 +4813,9 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{Flag Contract Advent|Butler Contract & C6 or more|(Either Attack Step)}} By sending your to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
+   "Flash - {{Flag Contract Advent|Butler Contract & C6 or more|(Either Attack Step)}} By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
    "This card/Spirit is also treated as being exactly named \"The DemonArmyFlagbearer Amon\".",
-   "(Once per Turn: Same Name) Besides this card, when your other \"The DemonArmyFlagbearer Amon\" is sent to the Trash from your Hand/Deck, you can Flag Contract Advent this card from the Trash, treating as being sent to the Trash.",
+   "(Once per Turn: Same Name) Besides this card, when your other \"The DemonArmyFlagbearer Amon\" is sent to the Trash from your Hand/Deck, you can Flag Contract Advent this card from the Trash, treating (Soul Core) as being sent to the Trash.",
    "During Advent [LV1-2-3] (When Advents/Attacks) (Once per Turn: Same Name) You can send a core from the opposing Field to the Trash for each of your \"The DemonArmyFlagbearer Amon\", including those in the Trash. Then, during this turn, all your \"Bannerace\" family Purple Spirits gain an extra Purple symbol."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
@@ -4850,7 +4850,7 @@
    "Bannerace",
    "Blade Beast"
   ],
-  "text": "Flash - {{Flag Contract Advent|Gale Contract & C1 or more|(Your Turn)}}\nBy sending your  to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\n[LV1-2] (When Advents)\n(Once per Turn: Same Name) You can reveal five cards from your decktop. You can summon any number of \"Bannerace\" family Imagine Brave cards among them, without paying the cost. Return any remaining cards to the deckbottom.\n\n[LV2] Flash - (Your Attack Step)\nOnce per turn, by exhausting an opposing Spirit/Ultimate, refresh one of your \"Bannerace\" family Green Spirits.",
+  "text": "Flash - {{Flag Contract Advent|Gale Contract & C1 or more|(Your Turn)}}\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\n[LV1-2] (When Advents)\n(Once per Turn: Same Name) You can reveal five cards from your decktop. You can summon any number of \"Bannerace\" family Imagine Brave cards among them, without paying the cost. Return any remaining cards to the deckbottom.\n\n[LV2] Flash - (Your Attack Step)\nOnce per turn, by exhausting an opposing Spirit/Ultimate, refresh one of your \"Bannerace\" family Green Spirits.",
   "image": "BS76-X05.png",
   "block": "76",
   "saga": 17,
@@ -4859,7 +4859,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{Flag Contract Advent|Gale Contract & C1 or more|(Your Turn)}} By sending your to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
+   "Flash - {{Flag Contract Advent|Gale Contract & C1 or more|(Your Turn)}} By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
    "[LV1-2] (When Advents) (Once per Turn: Same Name) You can reveal five cards from your decktop. You can summon any number of \"Bannerace\" family Imagine Brave cards among them, without paying the cost. Return any remaining cards to the deckbottom.",
    "[LV2] Flash - (Your Attack Step) Once per turn, by exhausting an opposing Spirit/Ultimate, refresh one of your \"Bannerace\" family Green Spirits."
   ],
@@ -4899,7 +4899,7 @@
    "Bannerace",
    "God-King"
   ],
-  "text": "Flash - {{SF Advent|Gale Contract & C5 or more|(Your Turn)}}\n(Once per Turn: Same Name) By sending your  to the Life, stack this from the Hand onto your target Spirit/Nexus.\n\n{{Seal|During Seal}} [LV1-2-3] Grand Twinkle Soar (When Attacks)\nBy paying two costs, refresh this Spirit. When you've done so, during this battle, all your Spirits gain +5000 BP, and the opponent can't move any cores, besides , from their Field/Grandwalker Nexuses/Trash.\n\nDuring Brave [LV2-3] (Your Attack Step)\nUnless the opponent exhausts two non-blocking Spirits they control, they can't block.",
+  "text": "Flash - {{SF Advent|Gale Contract & C5 or more|(Your Turn)}}\n(Once per Turn: Same Name) By sending your (Soul Core) to the Life, stack this from the Hand onto your target Spirit/Nexus.\n\n{{Seal|During Seal}} [LV1-2-3] Grand Twinkle Soar (When Attacks)\nBy paying two costs, refresh this Spirit. When you've done so, during this battle, all your Spirits gain +5000 BP, and the opponent can't move any cores, besides (Soul Core), from their Field/Grandwalker Nexuses/Trash.\n\nDuring Brave [LV2-3] (Your Attack Step)\nUnless the opponent exhausts two non-blocking Spirits they control, they can't block.",
   "image": "BS76-X06.png",
   "block": "76",
   "saga": 17,
@@ -4908,7 +4908,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{SF Advent|Gale Contract & C5 or more|(Your Turn)}} (Once per Turn: Same Name) By sending your to the Life, stack this from the Hand onto your target Spirit/Nexus.",
+   "Flash - {{SF Advent|Gale Contract & C5 or more|(Your Turn)}} (Once per Turn: Same Name) By sending your (Soul Core) to the Life, stack this from the Hand onto your target Spirit/Nexus.",
    "{{Seal|During Seal}} [LV1-2-3] Grand Twinkle Soar (When Attacks) By paying two costs, refresh this Spirit. When you've done so, during this battle, all your Spirits gain +5000 BP, and the opponent can't move any cores, besides , from their Field/Grandwalker Nexuses/Trash.",
    "During Brave [LV2-3] (Your Attack Step) Unless the opponent exhausts two non-blocking Spirits they control, they can't block."
   ],
@@ -4948,7 +4948,7 @@
    "Bannerace",
    "Glow Insect"
   ],
-  "text": "Flash - {{Flag Contract Advent|Glow Contract & C4 or more|(Either Attack Step)}}\nBy sending your  to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\nDuring Advent [LV1-2-3] Flash - (Either Attack Step)\nYou can destroy one of your \"Platinum Bug\". When you've done so, return an opposing Spirit/Ultimate to the deckbottom. This effect can't be prevented by opposing effects. Then, once per turn, this Spirit can refresh.\n\nDuring Advent [LV2-3] Flash - (Your Attack Step)\nBy discarding four of your \"Platinum Bug\" pre-advent cards, send up to two opposing Lives to the Trash.",
+  "text": "Flash - {{Flag Contract Advent|Glow Contract & C4 or more|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\nDuring Advent [LV1-2-3] Flash - (Either Attack Step)\nYou can destroy one of your \"Platinum Bug\". When you've done so, return an opposing Spirit/Ultimate to the deckbottom. This effect can't be prevented by opposing effects. Then, once per turn, this Spirit can refresh.\n\nDuring Advent [LV2-3] Flash - (Your Attack Step)\nBy discarding four of your \"Platinum Bug\" pre-advent cards, send up to two opposing Lives to the Trash.",
   "image": "BS76-X07.png",
   "block": "76",
   "saga": 17,
@@ -4957,7 +4957,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{Flag Contract Advent|Glow Contract & C4 or more|(Either Attack Step)}} By sending your to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
+   "Flash - {{Flag Contract Advent|Glow Contract & C4 or more|(Either Attack Step)}} By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
    "During Advent [LV1-2-3] Flash - (Either Attack Step) You can destroy one of your \"Platinum Bug\". When you've done so, return an opposing Spirit/Ultimate to the deckbottom. This effect can't be prevented by opposing effects. Then, once per turn, this Spirit can refresh.",
    "During Advent [LV2-3] Flash - (Your Attack Step) By discarding four of your \"Platinum Bug\" pre-advent cards, send up to two opposing Lives to the Trash."
   ],
@@ -4997,7 +4997,7 @@
    "Bannerace",
    "God-King"
   ],
-  "text": "Flash - {{SF Advent|Glow Contract & C6 or more|(Your Turn)}}\n(Once per Turn: Same Name) By sending your  to the Life, stack this from the Hand onto your target Spirit/Nexus.\n\n{{Burst|After your Life is reduced}}\nSummon this card without paying the cost, or Seal Flag Contract Advent it. Then, you can return up to two opposing Spirits/Ultimates/Nexuses to the deckbottom.\n\n{{Seal|During Seal}} During Advent [LV1-2-3] (When Advents/Attacks)\nOnce per turn, this Spirit can refresh.\n\n[LV2-3] True Fortress\nThis refreshed Spirit is unaffected by opposing effects.",
+  "text": "Flash - {{SF Advent|Glow Contract & C6 or more|(Your Turn)}}\n(Once per Turn: Same Name) By sending your (Soul Core) to the Life, stack this from the Hand onto your target Spirit/Nexus.\n\n{{Burst|After your Life is reduced}}\nSummon this card without paying the cost, or Seal Flag Contract Advent it. Then, you can return up to two opposing Spirits/Ultimates/Nexuses to the deckbottom.\n\n{{Seal|During Seal}} During Advent [LV1-2-3] (When Advents/Attacks)\nOnce per turn, this Spirit can refresh.\n\n[LV2-3] True Fortress\nThis refreshed Spirit is unaffected by opposing effects.",
   "image": "BS76-X08.png",
   "block": "76",
   "saga": 17,
@@ -5006,7 +5006,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{SF Advent|Glow Contract & C6 or more|(Your Turn)}} (Once per Turn: Same Name) By sending your to the Life, stack this from the Hand onto your target Spirit/Nexus.",
+   "Flash - {{SF Advent|Glow Contract & C6 or more|(Your Turn)}} (Once per Turn: Same Name) By sending your (Soul Core) to the Life, stack this from the Hand onto your target Spirit/Nexus.",
    "{{Burst|After your Life is reduced}} Summon this card without paying the cost, or Seal Flag Contract Advent it. Then, you can return up to two opposing Spirits/Ultimates/Nexuses to the deckbottom.",
    "{{Seal|During Seal}} During Advent [LV1-2-3] (When Advents/Attacks) Once per turn, this Spirit can refresh.",
    "[LV2-3] True Fortress This refreshed Spirit is unaffected by opposing effects."
@@ -5043,7 +5043,7 @@
    "Knight Contract",
    "Vanity Deity"
   ],
-  "text": "Flash - {{Contract Advent|Knight Contract & C8 or more|(Either Attack Step)}}\nBy sending your  to the Trash, stack this from the Hand onto your target Spirit.\n\n[LV1-2] (When Advents/Attacks)\nYou can return an opposing Spirit/Ultimate to the Hand for each of your \"Argent\", including those in pre-advent condition. Then, once per turn, you can refresh a Spirit you control.\n\nDuring Advent [LV2] (When Attacks)\nIf you have fewer cards in Hand than the opponent, the opponent returns cards from their Hand to the deckbottom until they have the same number of cards in Hand as you, and for every two cards returned, send an opposing Life to the Reserve. (Max. 3)",
+  "text": "Flash - {{Contract Advent|Knight Contract & C8 or more|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit.\n\n[LV1-2] (When Advents/Attacks)\nYou can return an opposing Spirit/Ultimate to the Hand for each of your \"Argent\", including those in pre-advent condition. Then, once per turn, you can refresh a Spirit you control.\n\nDuring Advent [LV2] (When Attacks)\nIf you have fewer cards in Hand than the opponent, the opponent returns cards from their Hand to the deckbottom until they have the same number of cards in Hand as you, and for every two cards returned, send an opposing Life to the Reserve. (Max. 3)",
   "image": "BS76-X09.png",
   "block": "76",
   "saga": 17,
@@ -5052,7 +5052,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{Contract Advent|Knight Contract & C8 or more|(Either Attack Step)}} By sending your to the Trash, stack this from the Hand onto your target Spirit.",
+   "Flash - {{Contract Advent|Knight Contract & C8 or more|(Either Attack Step)}} By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit.",
    "[LV1-2] (When Advents/Attacks) You can return an opposing Spirit/Ultimate to the Hand for each of your \"Argent\", including those in pre-advent condition. Then, once per turn, you can refresh a Spirit you control.",
    "During Advent [LV2] (When Attacks) If you have fewer cards in Hand than the opponent, the opponent returns cards from their Hand to the deckbottom until they have the same number of cards in Hand as you, and for every two cards returned, send an opposing Life to the Reserve. (Max. 3)"
   ],
@@ -5092,7 +5092,7 @@
    "God-King",
    "Drifting Spirit"
   ],
-  "text": "This card/Spirit is also treated as \"Imaginate\" with the \"Devotee\" family.\n\n[LV1-2-3] {{Seal|Imaginate Seal}} (When Summoned)\n(Once per Turn: Same Name) You can send the  from your Field/Reserve to your Life. When you've done so, you can put a core from the Void to your Trash.\n\n[LV1-2-3]\nThis Spirit can brave ignoring Brave Conditions. {{Seal|During Seal}} Also, when your \"GodKing\"/\"Imaginate\" are destroyed by opposing effects, by drawing a card from the deckbottom, all those targets remain on the Field, exhausted.",
+  "text": "This card/Spirit is also treated as \"Imaginate\" with the \"Devotee\" family.\n\n[LV1-2-3] {{Seal|Imaginate Seal}} (When Summoned)\n(Once per Turn: Same Name) You can send the (Soul Core) from your Field/Reserve to your Life. When you've done so, you can put a core from the Void to your Trash.\n\n[LV1-2-3]\nThis Spirit can brave ignoring Brave Conditions. {{Seal|During Seal}} Also, when your \"GodKing\"/\"Imaginate\" are destroyed by opposing effects, by drawing a card from the deckbottom, all those targets remain on the Field, exhausted.",
   "image": "BS76-X10.png",
   "block": "76",
   "saga": 17,
@@ -5102,7 +5102,7 @@
   "fxComplete": false,
   "residual": [
    "This card/Spirit is also treated as \"Imaginate\" with the \"Devotee\" family.",
-   "[LV1-2-3] {{Seal|Imaginate Seal}} (When Summoned) (Once per Turn: Same Name) You can send the from your Field/Reserve to your Life. When you've done so, you can put a core from the Void to your Trash.",
+   "[LV1-2-3] {{Seal|Imaginate Seal}} (When Summoned) (Once per Turn: Same Name) You can send the (Soul Core) from your Field/Reserve to your Life. When you've done so, you can put a core from the Void to your Trash.",
    "[LV1-2-3] This Spirit can brave ignoring Brave Conditions. {{Seal|During Seal}} Also, when your \"GodKing\"/\"Imaginate\" are destroyed by opposing effects, by drawing a card from the deckbottom, all those targets remain on the Field, exhausted."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
@@ -5186,7 +5186,7 @@
    "God-King",
    "Roaring Azure"
   ],
-  "text": "Flash - {{Mani|Seal|\"Contractor Huracan\" & C2 or more|(Your Turn)}}\nBy sending your  from the Field/Reserve to the Life, pay one cost from the target to summon this card from the Hand.\n\n [LV1-2-3] (When Attacks)\nDraw two cards, then discard a card from your Hand.\n\n{{Seal|During Seal}} [LV2-3] Roaring Stampede (When Attacks)\nTarget and attack the opposing Spirit with the lowest cost. Also, when the blocking Spirit is depleted/destroyed, discard six cards from the opposing decktop, and target the next opposing target with lowest cost to make it block. This \"target attack/block\" effect can't be prevented by opposing effects.",
+  "text": "Flash - {{Mani|Seal|\"Contractor Huracan\" & C2 or more|(Your Turn)}}\nBy sending your (Soul Core) from the Field/Reserve to the Life, pay one cost from the target to summon this card from the Hand.\n\n [LV1-2-3] (When Attacks)\nDraw two cards, then discard a card from your Hand.\n\n{{Seal|During Seal}} [LV2-3] Roaring Stampede (When Attacks)\nTarget and attack the opposing Spirit with the lowest cost. Also, when the blocking Spirit is depleted/destroyed, discard six cards from the opposing decktop, and target the next opposing target with lowest cost to make it block. This \"target attack/block\" effect can't be prevented by opposing effects.",
   "image": "BS76-X12.png",
   "block": "76",
   "saga": 17,
@@ -5212,7 +5212,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "Flash - {{Mani|Seal|\"Contractor Huracan\" & C2 or more|(Your Turn)}} By sending your from the Field/Reserve to the Life, pay one cost from the target to summon this card from the Hand.",
+   "Flash - {{Mani|Seal|\"Contractor Huracan\" & C2 or more|(Your Turn)}} By sending your (Soul Core) from the Field/Reserve to the Life, pay one cost from the target to summon this card from the Hand.",
    "{{Seal|During Seal}} [LV2-3] Roaring Stampede (When Attacks) Target and attack the opposing Spirit with the lowest cost. Also, when the blocking Spirit is depleted/destroyed, discard six cards from the opposing decktop, and target the next opposing target with lowest cost to make it block. This \"target attack/block\" effect can't be prevented by opposing effects."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
