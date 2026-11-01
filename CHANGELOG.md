@@ -4,6 +4,13 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.204.3
+- Lane: data (owner order 2026-11-01; patch: card images and English flavor text, no engine change)
+- **Card-image proxy: an official image URL that answers HTTP 200 with an HTML page is now rejected.** The Node server and the Cloudflare Pages Function require `image/*` plus the WebP RIFF/WEBP header, delete a HTML entry already poisoned in the mirror and refetch it, and return 404 so the client keeps its colour placeholder. The cause of the "some cards have no picture" report was the proxy caching the official site's HTML 200 page as `.webp`.
+- 79 cards have no official art at all (10THX/RVX promos, the X005A/D/E/R/S/T art variants, BS77); they keep the placeholder until an alternate image source exists. A Cloudflare/browser cache of old HTML needs a purge or hard refresh.
+- **Flavor texts are English-only.** 32 entries in `data/index/flavor.json` still carried Japanese or raw wiki parameters because an empty `enflavorN` swallowed the following `jpflavorN`; the parser is fixed, the English text comes from Fandom where available and the Japanese-only entries are translated. 15 empty `| jpflavor1 =` entries were removed and `<Br>` was stripped from 135 texts. No kana/kanji remains.
+- Tests: `server_card_images` CIMG-S5/S6 (HTML response and poisoned cache), new `flavor_language` FLAV-01/02; the full quick set passes except the Windows-only Stop-hook S3.
+
 ## v0.204.2
 - Lane: data (owner order 2026-11-02; text fix, no engine change)
 - **Soul Core icon restored in card text: 1,518 card rows (data/cards + data/import) now print "(Soul Core)" where the official page does.**
