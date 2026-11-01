@@ -4,6 +4,14 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.206.0
+- Lane: K
+- **Lane K: +100 complete cards (1,705 -> 1,805 of 8,709; 100 in this release)**
+- Lane K: 100 new complete cards (1,705 -> 1,805) from the Eternal blocks, plus compiler fixes that completed some BS01/BS03 cards as a side effect.
+- New mechanics: EXHAUST_OPP level filter (lv), CHOOSE_ONE (pick one of two action lists; CPU takes the first usable one), condition if.reserveGe, Destroy Magic variants, BOUNCE_OPP match; effect schema 258.
+- Limits: the human dialog of CHOOSE_ONE has no automated test; BS06-097 was kept partial because its target side (own or opposing) is unclear.
+- Size budget B01/B02 raised on purpose (1285 KB / 346 KB).
+
 ## v0.205.3
 - Lane: U/I
 - **Card art and deck cover fixes.**
