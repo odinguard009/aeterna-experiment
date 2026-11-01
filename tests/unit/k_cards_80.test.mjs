@@ -179,3 +179,13 @@ test('K-826 BOUNCE_OPP blockedOnly returns only the blocked attacker (BS06-044)'
     return [ok, O.spirits.length, O.spirits[0] === a, O.hand[0] === b, BS.CARDS['BS06-044'].effects.some(e => e.trigger === 'BLOCKS')]; })()`);
   assert.deepEqual(r, [true, 1, true, true, true], JSON.stringify(r));
 });
+
+test('K-827 RETURN_TRASH toBottom puts picked Spirits on the deckbottom (BS04-105)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true;
+    P.trash = [1, 2, 3].map(() => BS.mkInst('BS01-001')); P.hand = []; const d0 = P.deck.length;
+    const act = BS.CARDS['BS04-105'].magic.by.MAIN.actions[0];
+    await BS.FX_ACTIONS.RETURN_TRASH.run({ p: P, opp: O, src: BS.mkInst('BS04-105'), ctx: {} }, act);
+    return [BS.FX_ACTIONS.RETURN_TRASH.chk(act), P.trash.length, P.hand.length, P.deck.length - d0]; })()`);
+  assert.deepEqual(r, [true, 0, 0, 3], JSON.stringify(r));
+});
