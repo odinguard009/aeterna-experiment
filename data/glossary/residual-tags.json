@@ -2201,9 +2201,6 @@
   "M_UP_TO",
   "T_ATTACKS"
  ],
- "BS09-001": [
-  "C_LEVEL"
- ],
  "BS09-003": [
   "A_BP_PLUS",
   "C_LEVEL"
@@ -2254,9 +2251,6 @@
   "C_LEVEL",
   "T_ATTACKS"
  ],
- "BS09-019": [
-  "C_LEVEL"
- ],
  "BS09-021": [
   "A_EXHAUST",
   "A_REFRESH",
@@ -2293,9 +2287,6 @@
   "T_ATTACKS",
   "T_BATTLE_WIN"
  ],
- "BS09-028": [
-  "C_LEVEL"
- ],
  "BS09-031": [
   "A_EXHAUST",
   "C_LEVEL"
@@ -2325,9 +2316,6 @@
   "A_VOID",
   "C_LEVEL"
  ],
- "BS09-037": [
-  "C_LEVEL"
- ],
  "BS09-038": [
   "C_LEVEL",
   "M_OPTIONAL"
@@ -2355,9 +2343,6 @@
  ],
  "BS09-045": [
   "A_VOID",
-  "C_LEVEL"
- ],
- "BS09-046": [
   "C_LEVEL"
  ],
  "BS09-047": [
@@ -2550,9 +2535,6 @@
   "M_THEN",
   "T_DESTROYED",
   "T_SUMMONED"
- ],
- "BS10-021": [
-  "C_LEVEL"
  ],
  "BS10-026": [
   "A_EXHAUST",

@@ -32563,12 +32563,13 @@
   "image": "Yoroilizardon.jpg",
   "block": "09",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] This Spirit is also treated as a Blue Spirit."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "C"
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Colour treatment authored by hand in Lane K (2026-11-01): the printed permanent \"also treated as\" clause is stored as the card colours list.",
+  "rcode": "C",
+  "colors": [
+   "red",
+   "blue"
+  ]
  },
  {
   "id": "BS09-002",
@@ -33384,12 +33385,13 @@
   "image": "Ookuchiba.jpg",
   "block": "09",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] Treat this spirit as a Green spirit as well as a White spirit."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "C"
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Colour treatment authored by hand in Lane K (2026-11-01): the printed permanent \"also treated as\" clause is stored as the card colours list.",
+  "rcode": "C",
+  "colors": [
+   "green",
+   "white"
+  ]
  },
  {
   "id": "BS09-020",
@@ -33769,12 +33771,13 @@
   "image": "The Artifact Galar.jpg",
   "block": "09",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] Treat this spirit as a white spirit as well as a yellow spirit."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "C"
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Colour treatment authored by hand in Lane K (2026-11-01): the printed permanent \"also treated as\" clause is stored as the card colours list.",
+  "rcode": "C",
+  "colors": [
+   "white",
+   "yellow"
+  ]
  },
  {
   "id": "BS09-029",
@@ -34197,12 +34200,13 @@
   "image": "Pooka.jpg",
   "block": "09",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] Treat this spirit as a Yellow spirit as well as a Purple spirit."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "C"
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Colour treatment authored by hand in Lane K (2026-11-01): the printed permanent \"also treated as\" clause is stored as the card colours list.",
+  "rcode": "C",
+  "colors": [
+   "yellow",
+   "purple"
+  ]
  },
  {
   "id": "BS09-038",
@@ -34590,12 +34594,13 @@
   "image": "The Gatekeeper Alparkar.jpg",
   "block": "09",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] Treat this spirit as a blue spirit as well as a green spirit."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "C"
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Colour treatment authored by hand in Lane K (2026-11-01): the printed permanent \"also treated as\" clause is stored as the card colours list.",
+  "rcode": "C",
+  "colors": [
+   "blue",
+   "green"
+  ]
  },
  {
   "id": "BS09-047",
