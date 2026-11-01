@@ -188,9 +188,6 @@
  ],
  "BS01-118": [],
  "BS01-123": [],
- "BS01-138": [
-  "M_THEN"
- ],
  "BS01-149": [
   "T_ATTACKS",
   "T_BLOCKS"
@@ -470,9 +467,6 @@
  ],
  "BS02-098": [
   "A_SUMMON_FREE"
- ],
- "BS02-103": [
-  "A_VOID"
  ],
  "BS02-107": [
   "T_SUMMONED"
@@ -6642,10 +6636,6 @@
   "K_BRAVE",
   "M_OPTIONAL"
  ],
- "BS22-010": [
-  "A_SYMBOL",
-  "C_LEVEL"
- ],
  "BS22-011": [
   "A_EXHAUST",
   "C_LEVEL",
@@ -8197,9 +8187,6 @@
   "A_SYMBOL",
   "C_LEVEL",
   "K_ULTIMATE"
- ],
- "BS25-044": [
-  "C_LEVEL"
  ],
  "BS25-045": [
   "A_SUMMON_FREE",

@@ -1,12 +1,12 @@
 {
  "stats": {
-  "cards": 6919,
+  "cards": 6915,
   "per_saga": {
-   "1": 665,
+   "1": 663,
    "2": 296,
    "3": 362,
-   "4": 369,
-   "5": 642,
+   "4": 368,
+   "5": 641,
    "6": 346,
    "7": 509,
    "8": 470,
@@ -23,11 +23,11 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 1787,
+  "skipped_curated": 1791,
   "nexus_levels_added": 703,
   "nexus_levels_missing": 43,
   "level_problems": 3,
-  "image_problems": 423,
+  "image_problems": 422,
   "number_conflicts": 4,
   "merged": 107,
   "brave_unparsed": 171,
@@ -35,7 +35,7 @@
   "odd_reduction": 807,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 421
+  "without_image": 420
  },
  "tokens": [
   "BS73-T001",
@@ -124,6 +124,7 @@
   "BS01-121",
   "BS01-122",
   "BS01-134",
+  "BS01-138",
   "BS01-146",
   "BS01-X01",
   "BS02-001",
@@ -161,6 +162,7 @@
   "BS02-074",
   "BS02-099",
   "BS02-102",
+  "BS02-103",
   "BS03-001",
   "BS03-002",
   "BS03-004",
@@ -723,6 +725,7 @@
   "BS22-005",
   "BS22-006",
   "BS22-008",
+  "BS22-010",
   "BS22-013",
   "BS22-019",
   "BS22-022",
@@ -777,6 +780,7 @@
   "BS25-025",
   "BS25-036",
   "BS25-039",
+  "BS25-044",
   "BS26-010",
   "BS26-017",
   "BS26-024",
@@ -3004,11 +3008,6 @@
    "id": "BS25-041",
    "name": "The AngeliaDaughter Asahel",
    "problem": "no image"
-  },
-  {
-   "id": "BS25-044",
-   "name": "Gecko-Golem",
-   "problem": "no image (near: Gekko-Golem.jpg)"
   },
   {
    "id": "BS25-X02",

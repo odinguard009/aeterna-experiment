@@ -1,0 +1,31 @@
+{
+  "name": "magic-symbols",
+  "about": "v0.203.0 next cycle bundle 10: BS22-010 and BS25-044 (two extra White symbols in the Main Step) plus the Main clauses of the Magic cards BS02-103 (a Void core per Armed Machine Spirit) and BS01-138 (discard the Hand, then draw the opposing Hand size).",
+  "rules": [
+    "STD:12-2-1-12@caad612c",
+    "ETR:effects.simultaneous@77571ae4"
+  ],
+  "turn": 4,
+  "active": "player",
+  "step": 4,
+  "players": {
+    "player": {
+      "reserve": 3,
+      "void": 8,
+      "spirits": [
+        { "id": "BS22-010", "cores": 1, "as": "boneDile" },
+        { "id": "BS25-044", "cores": 1, "as": "gecko" },
+        { "id": "BS01-084", "cores": 1, "as": "gatling" }
+      ],
+      "hand": ["26RBS01-004", "26RBS01-005", "26RBS01-006"],
+      "deck": ["26RBS01-009", "26RBS01-010", "26RBS01-011", "26RBS01-012", "26RBS01-013", "26RBS01-014"]
+    },
+    "opponent": {
+      "reserve": 4,
+      "hand": ["26RBS01-004", "26RBS01-005", "26RBS01-006"],
+      "spirits": [
+        { "id": "26RBS01-004", "cores": 1, "as": "oppA" }
+      ]
+    }
+  }
+}
