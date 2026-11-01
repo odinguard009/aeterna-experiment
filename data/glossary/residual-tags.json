@@ -5237,12 +5237,6 @@
   "C_LEVEL",
   "K_BURST"
  ],
- "BS16-011": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
  "BS16-012": [
   "A_SUMMON_FREE",
   "C_LEVEL",
