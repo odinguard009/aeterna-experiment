@@ -289,7 +289,7 @@ test('K-886 BS14-003 gains +3000 BP in your Attack Step while only Red cards are
     G.step = 3; const off = BS.bpOf(a); out.push(base - off);
     G.step = 5; P.trash = [BS.mkInst('BS01-001'), BS.mkInst('BS02-049')]; out.push(BS.bpOf(a) - off);
     P.trash = []; P.spirits = []; const c = BS.mkInst('BS14-062'); c.cores = 1; const v = BS.mkInst('BS01-001'); v.cores = 1; P.spirits = [c, v]; P.burst = null;
-    const b0 = BS.bpOf(c); P.burst = BS.mkInst('BS01-001'); out.push(BS.bpOf(c) - b0, BS.bpOf(v) - BS.bpOf(v));
+    const b0 = BS.bpOf(c), v0 = BS.bpOf(v); P.burst = BS.mkInst('BS01-001'); out.push(BS.bpOf(c) - b0, BS.bpOf(v) - v0);
     G.step = 3; out.push(BS.bpOf(c) - b0);
     return out; })()`);
   assert.deepEqual(r, [3000, 0, 2000, 0, 0], JSON.stringify(r));
