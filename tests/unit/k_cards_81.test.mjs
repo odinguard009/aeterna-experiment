@@ -110,3 +110,12 @@ test('K-848 BS01-065 puts a Void core on a Spirit you control when summoned', as
     await BS.FX_ACTIONS.VOID_TO_CARD.run(c, e.actions[0]); return [e.trigger, s.cores, P.void]; })()`);
   assert.deepEqual(r, ['SUMMONED', 2, 1], JSON.stringify(r));
 });
+
+test('K-849 BS01-125 makes both players destroy a Spirit they control', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true;
+    const a = BS.mkInst('BS01-001'); a.cores = 1; const a2 = BS.mkInst('BS01-001'); a2.cores = 1; P.spirits = [a, a2]; const b = BS.mkInst('BS01-001'); b.cores = 1; O.spirits = [b];
+    const acts = BS.CARDS['BS01-125'].magic.by.FLASH.actions; const c = { p: P, opp: O, src: BS.mkInst('BS01-125'), ctx: {} };
+    for (const x of acts) await BS.FX_ACTIONS[x.do].run(c, x); return [P.spirits.length, O.spirits.length]; })()`);
+  assert.deepEqual(r, [1, 0], JSON.stringify(r));
+});
