@@ -120,7 +120,7 @@ Object.assign(FX_ACTIONS, {
       const take = (t, k) => { const m = Math.min(k, t.cores, coreTakeCap(c.opp, t, k)); hit.add(t); if (!m) return; coreEvN(c.opp, t.uid, 'reserve', m, false); t.cores -= m; c.opp.reserve.n += m; moved += m; log(`${_pn(c)}: ${m} core${m === 1 ? '' : 's'} from ${poss(c.opp)} ${CARDS[t.id].name} go to the Reserve.`); };      // v190 CORE_SAFE
       if (a.allTargets) {
         const L = FX_ACTIONS.OPP_CORES_TO_RESERVE.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
-        for (const t of L) take(t, a.each || 1);
+        for (const t of L) take(t, a.untilOne ? Math.max(0, t.cores - 1) : (a.each || 1));      // v298 untilOne with allTargets: all but one core from every target
       } else if (a.total || a.perSource) {
         const total = a.perSource === 'oppColors' ? new Set(c.opp.spirits.concat(c.opp.nexus).map(x => { const k = CARDS[x.id]; return (k.colors || [k.color, k.symbol]).filter(Boolean); }).flat()).size : a.perSource === 'nexus' ? c.p.nexus.length : a.perSource === 'own' ? perCount(c.p, a.perMatch) : a.total;
         for (let j = 0; j < total; j++) {

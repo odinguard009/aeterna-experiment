@@ -145,3 +145,37 @@ test('K-917 BS43-RV009 discards a random opposing card when its attack reduces t
     return O.hand.length; })()`);
   assert.equal(r, 1);
 });
+
+test('K-918 BS06-014 sends one core but never the last one', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const t = BS.mkInst('BS06-014'); t.cores = 1; P.spirits = [t];
+    const a = BS.mkInst('BS01-001'); a.cores = 1; O.spirits = [a]; const b4 = O.reserve.n;
+    await BS.fireFx(P, 'SUMMONED', t, { subject: t });
+    const one = [a.cores, O.reserve.n - b4]; a.cores = 3; const b5 = O.reserve.n;
+    await BS.fireFx(P, 'SUMMONED', t, { subject: t });
+    return [one, [a.cores, O.reserve.n - b5]]; })()`);
+  assert.deepEqual(r, [[1, 0], [2, 1]]);
+});
+
+test('K-919 BS37-022 leaves one core on every opposing Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const t = BS.mkInst('BS37-022'); t.cores = 3; P.spirits = [t];
+    const a = BS.mkInst('BS01-001'), b = BS.mkInst('BS01-002'); a.cores = 4; b.cores = 2; O.spirits = [a, b];
+    await BS.fireFx(P, 'SUMMONED', t, { subject: t });
+    return [a.cores, b.cores]; })()`);
+  assert.deepEqual(r, [1, 1]);
+});
+
+test('K-920 BS36-017 sends two cores and returns a Death Dragon/Zombie Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const t = BS.mkInst('BS36-017'); t.cores = 3; P.spirits = [t]; P.hand = [];
+    const z = 'BS01-029';
+    P.trash = [BS.mkInst(z)];
+    const a = BS.mkInst('BS01-001'); a.cores = 4; O.spirits = [a];
+    await BS.fireFx(P, 'ATTACKS', t, { subject: t });
+    return [a.cores, P.hand.length, P.trash.length]; })()`);
+  assert.deepEqual(r, [2, 1, 0]);
+});

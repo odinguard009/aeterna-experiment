@@ -1269,10 +1269,6 @@
   "T_ALLY_BLOCKED",
   "T_ATTACKS"
  ],
- "BS06-014": [
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "BS06-019": [
   "C_LEVEL",
   "T_ALLY_BLOCKED",
@@ -14440,12 +14436,6 @@
   "M_OPTIONAL",
   "T_SUMMONED"
  ],
- "BS36-017": [
-  "A_RETURN_TRASH",
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
  "BS36-018": [
   "A_EXHAUST",
   "A_SUMMON_FREE",
@@ -14952,11 +14942,6 @@
   "M_OPTIONAL",
   "T_DESTROYED",
   "T_DESTROYED_OPP",
-  "T_SUMMONED"
- ],
- "BS37-022": [
-  "C_LEVEL",
-  "K_ULTIMATE",
   "T_SUMMONED"
  ],
  "BS37-023": [
