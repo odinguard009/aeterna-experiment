@@ -200,3 +200,16 @@ test('K-947 BS12-074 reveals three, adds every matching family Spirit/Brave and 
     return [P.hand.length, P.trash.length, P.deck.length, !!fam]; })()`);
   assert.deepEqual(r, [2, 1, 1, true]);
 });
+
+test('K-948 BS26-079 stops Life loss from attacking Brave Spirits only', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { const out = [];
+    for (const braved of [true, false]) {
+      BS.testSetup(); BS.SETTINGS.speed = 'instant'; const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.coreShield = O.coreShield = null;
+      for (const q of [P, O]) { q.spirits.length = 0; q.nexus.length = 0; }
+      const a = BS.mkInst('26RBS01-001'); a.cores = 2; a.exhausted = false; if (braved) a.brave = BS.mkInst(Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Brave')); O.spirits.push(a);
+      await BS.FX_ACTIONS.LIFE_CORE_SHIELD.run({ p: P, opp: O, src: BS.mkInst('BS26-079'), ctx: {} }, BS.CARDS['BS26-079'].magic.actions[0]);
+      G.active = O.key; G.step = 5; const l = P.life; await BS.doBattle(O.key, a); out.push(l - P.life);
+    } return out; })()`);
+  assert.deepEqual(r, [0, 1]);
+});
