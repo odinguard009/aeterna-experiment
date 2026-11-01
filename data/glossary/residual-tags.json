@@ -5489,11 +5489,6 @@
   "C_LEVEL",
   "T_ALLY_LOST"
  ],
- "BS17-013": [
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_ALLY_LOST"
- ],
  "BS17-014": [
   "A_BP_PLUS",
   "A_VOID",

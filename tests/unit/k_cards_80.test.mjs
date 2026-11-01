@@ -246,3 +246,10 @@ test('K-833 OWN_LIFE_TO_VOID moves a Life core to the Void and fails with only a
     return [ok, after, P.life, c2.ctx.did]; })()`);
   assert.deepEqual(r, [true, [4, 1], 1, false], JSON.stringify(r));
 });
+
+test('K-834 BS17-013 reacts to Cost 3 allies destroyed (not depleted) by the opponent (data shape)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const e = BS.CARDS['BS17-013'].effects[0];
+    return [e.trigger, JSON.stringify(e.match), JSON.stringify(e.if), e.actions[0].do, e.actions[0].costLe, !!e.optional]; })()`);
+  assert.deepEqual(r, ['ALLY_LOST', '{"costIn":[3],"type":"Spirit"}', '{"byOpp":true,"depleted":false}', 'DESTROY', 3, true], JSON.stringify(r));
+});
