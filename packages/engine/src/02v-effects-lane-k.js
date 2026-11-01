@@ -58,6 +58,22 @@ FX_ACTIONS.REMOVE_ANY_DRAW = {
     if (n) { const k = draw(c.p, n); log(`${CARDS[c.src.id].name}: ${who(c.p)} ${c.p.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'}.`); handUp(c.p, k); }
     io.view({ type: 'board' });
   } };
+/* v0.208 BOTH_RESET_HAND {n}: "Both players discard their entire Hand. Then, both players draw N cards" (own side first, then the opponent). */
+FX_ACTIONS.BOTH_RESET_HAND = {
+  chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 7 && Object.keys(a).every(k => ['do', 'if', 'n'].includes(k)),
+  txt: a => `both players discard their entire Hand, then draw ${a.n} cards`,
+  can: () => true,
+  run: async (c, a) => {
+    const sides = [c, { ...c, p: c.opp, opp: c.p }];
+    for (const q of sides) {
+      const out = q.p.hand.filter(h => h !== c.src);
+      for (const d of out) { removeFrom(q.p.hand, d); q.p.trash.push(d); }
+      if (out.length) log(`${CARDS[c.src.id].name}: ${who(q.p)} ${q.p.cpu ? 'discards' : 'discard'} ${out.length} card${out.length === 1 ? '' : 's'}.`);
+      await sentToTrashFx(q, out, 'hand');
+    }
+    for (const q of sides) { const k = draw(q.p, a.n); log(`${CARDS[c.src.id].name}: ${who(q.p)} ${q.p.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'}.`); handUp(q.p, k); }
+    io.view({ type: 'board' });
+  } };
 /* v277 OWN_CORES_TO_TRASH {total} / OPP_SELF_CORES_TO_TRASH {total}: "By sending N cores from your Spirits to the Trash, ..." (cost; ctx.did = false when your Spirits hold fewer than N)
    and "The opponent sends N cores from their Spirits to their Trash" (the opponent chooses; the CPU gives up cores from its lowest-BP Spirit first). */
 async function coresFromSpirits(c, q, total, exact) {
