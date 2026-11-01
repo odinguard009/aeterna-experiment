@@ -353,6 +353,7 @@ function removeSpirit(p, s, why, byOpponent) {
   if ((why === 'destroyed' || depl) && !s.noFx && G && G.evQ && (CARDS[s.id].effects || []).some(e => e.trigger === 'DESTROYED' && (!depl || e.alsoDepleted))) G.evQ.push({ type: 'DESTROYED', key: p.key, inst: s, byOpp: !!byOpponent || depl, byOppFx: oppFx, depl });
   leaveEvent(p, s, !!byOpponent || oppFx, oppFx);   // (When Destroyed), manual p. 31; noFx = "the effects of the destroyed target can't activate"
   delete s.noFx;
+  s.lostCores = s.cores;      // v279 "the number of cores that were on this Spirit when it was destroyed"
   coreEvN(p, s.uid, 'reserve', s.cores, s.soul);          // v0.149.0: the cores of a destroyed / depleted Spirit fly to the Reserve
   p.reserve.n += s.cores; if (s.soul) p.reserve.soul = true;
   s.cores = 0; s.soul = false; s.exhausted = false; s.heavy = false; s.noAB = false; s.bpMod = 0; s.lv2Turn = false; s.lvHighTurn = false; s.lv2Battle = null; s.bpB = null; s.fxBattle = null; s.symBattle = 0; s.symLockBattle = null; s.symLockN = 0;      // v0.68: battle BP / Once Per Battle end when it leaves; v189 battle symbol marks

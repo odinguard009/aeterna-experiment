@@ -77,3 +77,8 @@ Object.assign(FX_ACTIONS, {      // v278 "Send a core from your Field or your Tr
       p.void += 1; c.ctx.did = true; log(`${nm}: a core from ${poss(p)} ${fromTrash ? 'Trash' : 'Reserve'} goes to the Void.`); io.view({ type: 'board' });
     } },
 });
+Object.assign(FX_ACTIONS, {      // v279 "Gain cores in your Reserve equal to the number of cores that were on this Spirit when it was destroyed."
+  VOID_TO_RESERVE_LOST: { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
+    txt: () => 'put cores from the Void to your Reserve equal to the cores this Spirit held when it left the Field',
+    run: async (c, a) => { const m = takeFromVoid(c.p, c.src.lostCores || 0); c.ctx.did = m > 0; if (!m) return; coreEvN(c.p, 'void', 'reserve', m, false); c.p.reserve.n += m; log(`${CARDS[c.src.id].name}: ${m} core${m === 1 ? '' : 's'} move from the Void to the Reserve.`); io.view({ type: 'board' }); } },
+});

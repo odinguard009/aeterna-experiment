@@ -37,3 +37,13 @@ test('K-841 OWN_CORE_TO_VOID moves a Trash core to the Void first, then a Reserv
     await BS.FX_ACTIONS.OWN_CORE_TO_VOID.run(c, a); return [s1, P.trashCores.n, P.reserve.n, P.void - v0, BS.FX_ACTIONS.OWN_CORE_TO_VOID.chk(a)]; })()`);
   assert.deepEqual(r, [[0, 3, 1], 0, 2, 2, true], JSON.stringify(r));
 });
+
+test('K-842 BS02-035: destroying it with 3 cores gains 3 more Reserve cores from the Void', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true;
+    const s = BS.mkInst('BS02-035'); s.cores = 3; P.spirits = [s]; const r0 = P.reserve.n;
+    BS.removeSpirit(P, s, 'destroyed', true); const lost = s.lostCores; const r1 = P.reserve.n;
+    const a = BS.CARDS['BS02-035'].effects[0].actions[0]; await BS.FX_ACTIONS.VOID_TO_RESERVE_LOST.run({ p: P, opp: O, src: s, ctx: {} }, a);
+    return [lost, r1 - r0, P.reserve.n - r1]; })()`);
+  assert.deepEqual(r, [3, 3, 3], JSON.stringify(r));
+});
