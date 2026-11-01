@@ -3963,10 +3963,6 @@
   "A_LIFE_TO_RESERVE",
   "K_BRAVE"
  ],
- "BS13-051": [
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "BS13-052": [
   "C_LEVEL",
   "K_BRAVE",
@@ -5094,13 +5090,6 @@
   "C_LEVEL",
   "K_BURST",
   "M_OPTIONAL",
-  "T_SUMMONED"
- ],
- "BS16-008": [
-  "A_DESTROY_BP",
-  "A_VOID",
-  "C_LEVEL",
-  "M_BY_DOING",
   "T_SUMMONED"
  ],
  "BS16-009": [

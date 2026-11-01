@@ -308,3 +308,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v270 (Lane K): `RETURN_TRASH.toBottom` (needs n): the picked Trash cards go to the deckbottom in pick order instead of the Hand; BS04-105.
 - v272 (Lane K): `OPP_CORES_TO_TRASH.untilOne` (no total/costLe): all but one core of one opposing Spirit go to the Trash; BS09-012. BS06-018 wired with the existing OPP_CORES_TO_RESERVE untilOne.
 - v273 (Lane K): `VOID_TO_CARD.perLv` (to self): n cores from the Void per level of this Spirit; BS14-026. BS09-048 wired with ctrl + DESTROY costLe.
+- v274 (Lane K): new actions `DESTROY_OPP_OWN` (no parameters: "the opponent destroys a Spirit they control", the opponent chooses; `ctx.did = false` when they control none) and `OWN_LIFE_TO_VOID {n}` (cost "By sending a core from your Life to the Void, ..."; the sealed Soul Core cannot pay; `ctx.did = false` then). Both are followed by `{"if":{"prev":true}}` actions inside an `optional` effect.

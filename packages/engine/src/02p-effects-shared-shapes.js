@@ -359,6 +359,31 @@ Object.assign(FX_ACTIONS, {
       if (a.drawLv) draw(c.p, lv);
       if (a.voidByCost) { const m = takeFromVoid(c.p, CARDS[t.id].cost); c.p.reserve.n += m; log(`${CARDS[c.src.id].name}: ${m} core${m === 1 ? '' : 's'} move from the Void to the Reserve.`); }      // v0.183 (schema 46)
     } } });
+/* v274 DESTROY_OPP_OWN: "The opponent destroys a Spirit they control." (the opponent chooses: the CPU gives up its weakest, a human taps one; ctx.did = false when they control none). */
+FX_ACTIONS.DESTROY_OPP_OWN = {
+  chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
+  txt: () => 'the opponent destroys one Spirit they control',
+  can: c => c.opp.spirits.length > 0,
+  run: async (c, a) => {
+    const L = c.opp.spirits.slice(); if (!L.length) { c.ctx.did = false; return; }
+    const t = c.opp.cpu ? L.sort((x, y) => (bpOf(x) - bpOf(y)) || (x.cores - y.cores))[0]
+      : await fxPickTarget(Object.assign({}, c, { p: c.opp }), L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Choose one of your Spirits to destroy (glowing).`);
+    if (!t || !c.opp.spirits.includes(t)) { c.ctx.did = false; return; }
+    log(`${CARDS[c.src.id].name}: ${poss(c.opp)} ${CARDS[t.id].name} is destroyed (the opponent chose it).`);
+    removeSpirit(c.opp, t, 'destroyed', true); checkDepletion(c.opp);
+  } };
+/* v274 OWN_LIFE_TO_VOID {n}: cost "By sending a core from your Life to the Void, ..." (the Soul Core can't go to the Void, so a lone sealed Soul Core in the Life can't pay; ctx.did = false then). */
+FX_ACTIONS.OWN_LIFE_TO_VOID = {
+  chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 2 && Object.keys(a).every(k => ['do', 'if', 'n'].includes(k)),
+  txt: a => `send ${a.n} core${a.n === 1 ? '' : 's'} from your Life to the Void`,
+  can: (c, a) => c.p.life - (c.p.lifeSoul ? 1 : 0) >= a.n,
+  run: async (c, a) => {
+    if (c.p.life - (c.p.lifeSoul ? 1 : 0) < a.n) { c.ctx.did = false; return; }
+    coreEvN(c.p, 'life', 'void', a.n, false); c.p.life -= a.n; c.p.void += a.n; c.p.lifeRedTurn = G.turnNo;
+    log(`${CARDS[c.src.id].name}: ${a.n} core${a.n === 1 ? '' : 's'} move from ${poss(c.p)} Life to the Void.`); io.view({ type: 'board' });
+    if (c.p.life <= 0) { win(c.opp.key, `${poss(c.p)} Life reached 0`); return; }
+    await maybeBurst(c.p, 'LIFE_DECREASE', {});
+  } };
 /* v0.197 ACTIVATE_SUMMONED {match}: "Target one of your <X> Spirits. Activate one of its (When Summoned) effects." The first effect it can resolve at its level is used (house reading of "one of"). */
 FX_ACTIONS.ACTIVATE_SUMMONED = {
   chk: a => hasMatch(a.match),

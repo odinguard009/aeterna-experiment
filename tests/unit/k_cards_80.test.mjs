@@ -223,3 +223,26 @@ test('K-831 BS14-075 draws when its Spirit destroys an opposing Spirit by attack
     return [e.trigger, JSON.stringify(e.if), e.actions[0].do, e.actions[0].n]; })()`);
   assert.equal(r[0], 'OPP_DIED'); assert.equal(r[2], 'DRAW');
 });
+
+test('K-832 DESTROY_OPP_OWN: the opponent loses its weakest Spirit (BS13-051)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true;
+    const a = BS.mkInst('BS01-002'), b = BS.mkInst('BS01-003'); a.cores = 1; b.cores = 1; O.spirits = [a, b]; const n0 = O.spirits.length;
+    const act = { do: 'DESTROY_OPP_OWN' }; const ok = BS.FX_ACTIONS.DESTROY_OPP_OWN.chk(act); const c = { p: P, opp: O, src: BS.mkInst('BS13-051'), ctx: {} };
+    await BS.FX_ACTIONS.DESTROY_OPP_OWN.run(c, act); const k = O.spirits.length;
+    O.spirits = []; await BS.FX_ACTIONS.DESTROY_OPP_OWN.run(c, act);
+    return [ok, n0, k, c.ctx.did]; })()`);
+  assert.deepEqual(r, [true, 2, 1, false], JSON.stringify(r));
+});
+
+test('K-833 OWN_LIFE_TO_VOID moves a Life core to the Void and fails with only a Soul Core (BS16-008)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true;
+    P.life = 5; P.lifeSoul = false; const v0 = P.void; const act = { do: 'OWN_LIFE_TO_VOID', n: 1 }; const ok = BS.FX_ACTIONS.OWN_LIFE_TO_VOID.chk(act);
+    const c = { p: P, opp: O, src: BS.mkInst('BS16-008'), ctx: {} };
+    await BS.FX_ACTIONS.OWN_LIFE_TO_VOID.run(c, act); const after = [P.life, P.void - v0];
+    P.life = 1; P.lifeSoul = true; const c2 = { p: P, opp: O, src: BS.mkInst('BS16-008'), ctx: {} };
+    await BS.FX_ACTIONS.OWN_LIFE_TO_VOID.run(c2, act);
+    return [ok, after, P.life, c2.ctx.did]; })()`);
+  assert.deepEqual(r, [true, [4, 1], 1, false], JSON.stringify(r));
+});
