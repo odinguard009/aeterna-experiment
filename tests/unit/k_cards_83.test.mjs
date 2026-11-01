@@ -187,3 +187,12 @@ test('K-904 BS40-086 refreshes two Winged Beast Spirits you control', async () =
     await BS.castMagic(P, { inst: m, target: null, plan: null, ctx: 'flash' }); return [w.filter(x => !x.exhausted).length, o.exhausted]; })()`);
   assert.deepEqual(r, [2, true], JSON.stringify(r));
 });
+
+test('K-906 BS41-050 may put a Magic card from the Hand onto the Removed Zone to draw a card', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const a = BS.mkInst('BS41-050'); a.cores = 1; P.spirits = [a]; const m = BS.mkInst('BS01-148'); P.hand = [m]; P.deck = [BS.mkInst('BS01-001'), BS.mkInst('BS01-001')];
+    await BS.fireFx(P, 'SUMMONED', a, { subject: a }); return [P.hand.map(x => x.id), (P.removed || []).length]; })()`);
+  assert.equal(r[0].length, 1, JSON.stringify(r));
+  assert.notEqual(r[0][0], 'BS01-148', JSON.stringify(r));
+});

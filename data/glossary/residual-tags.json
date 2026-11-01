@@ -18238,12 +18238,6 @@
   "M_REPLACEMENT",
   "T_DESTROYED"
  ],
- "BS41-050": [
-  "A_REMOVED_ZONE",
-  "C_LEVEL",
-  "M_BY_DOING",
-  "T_SUMMONED"
- ],
  "BS41-051": [
   "A_SUMMON_FREE",
   "C_LEVEL",
