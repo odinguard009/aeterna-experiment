@@ -213,3 +213,17 @@ test('K-948 BS26-079 stops Life loss from attacking Brave Spirits only', async (
     } return out; })()`);
   assert.deepEqual(r, [0, 1]);
 });
+
+test('K-949 BS01-139 Feather Barrier: the blocker (only) is unaffected by opposing effects this turn', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    for (const q of [P, O]) { q.spirits.length = 0; q.nexus.length = 0; }
+    const b = BS.mkInst('BS01-001'); b.cores = 1; P.spirits.push(b); const a = BS.mkInst('BS01-001'); a.cores = 1; O.spirits.push(a);
+    const src = BS.mkInst('BS01-001'); const ctx = { p: O, opp: P, src };
+    const m = BS.CARDS['BS01-139'].magic; const before = BS.fxImmune ? BS.fxImmune(P, b, ctx) : null;
+    await BS.FX_ACTIONS.BLOCKER_UNAFFECTED.run({ p: P, opp: O, src: BS.mkInst('BS01-139'), ctx: {} }, m.actions[0]);
+    G.blocker = null; const idle = BS.fxImmune ? BS.fxImmune(P, b, ctx) : null; G.blocker = b; const blocking = BS.fxImmune ? BS.fxImmune(P, b, ctx) : null;
+    return [m.timing[0], m.actions[0].do, before, idle, blocking]; })()`);
+  assert.equal(r[0], 'FLASH'); assert.equal(r[1], 'BLOCKER_UNAFFECTED');
+  assert.deepEqual(r.slice(2), [false, false, true], JSON.stringify(r));
+});

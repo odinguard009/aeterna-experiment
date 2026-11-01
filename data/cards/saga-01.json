@@ -5862,12 +5862,20 @@
   "image": "Feather Barrier.jpg",
   "block": "01",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "During this turn, a blocking Spirit you control is unaffected by opposing cards' effects."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "BLOCKER_UNAFFECTED"
+    }
+   ]
+  }
  },
  {
   "id": "BS01-140",

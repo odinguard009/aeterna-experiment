@@ -202,7 +202,7 @@ const STATIC_FLAGS = ['MUST_BLOCK', 'LOW_ATK_ONCE', 'NO_RETURN', 'CORES_DRAW', '
    whose source card has one of those colours and card types (Armor: Spirit/Nexus/Magic, Heavy Armor: Spirit/Brave/Nexus/Magic,
    Ultra Armor: Spirit/Ultimate/Nexus/Magic; no "from" = all opposing effects). c = the acting effect { p: its owner, src: its card }.
    Priority (Eternal manual FAQ Q4): "cannot be prevented" (action ignoreImmune) > "unaffected" > "cannot activate". */
-const fxImmune = (owner, t, c) => !!t && ((!!t.soul && flagActive(owner, 'UNAFFECTED_SOUL', t)) || (!!c && !!c.p && !!c.src && c.p !== owner && (unaffectedBy(owner, t, c.src) || (!!G && t.noMagicB != null && t.noMagicB === G.battleNo && CARDS[c.src.id].type === 'Magic'))));
+const fxImmune = (owner, t, c) => !!t && ((!!t.soul && flagActive(owner, 'UNAFFECTED_SOUL', t)) || (!!c && !!c.p && !!c.src && c.p !== owner && (unaffectedBy(owner, t, c.src) || (!!G && t.noMagicB != null && t.noMagicB === G.battleNo && CARDS[c.src.id].type === 'Magic') || (!!G && G.blocker === t && owner.blockUnaffTurn === G.turnNo))));      // v310 BLOCKER_UNAFFECTED
 function unaffectedBy(owner, t, src) {
   const k = CARDS[src.id]; if (!k) return false;
   const cols = k.colors || [k.symbol];

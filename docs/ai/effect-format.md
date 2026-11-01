@@ -344,3 +344,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v307: `REFRESH_SPIRIT all:true [both:true] match` (refresh every matching exhausted Spirit, optionally both players'), BS02-106.
 - v308 (Lane K): STATIC `NO_ATTACK_LIFE` also takes `costIn` [N,..] with `noTribute:true` ("Neither player's Life can be reduced by the attacks of Cost 3/4 Spirits without Tribute"); `costLe` and `costIn` are exclusive. Card: BS08-033.
 - v309 (Lane K): `LIFE_CORE_SHIELD {brave:true}` (no `cores`): "during this turn, your Life can't be reduced by the attacks of opposing Brave Spirits" (attacker with a Brave combined). Card: BS26-079.
+- v310 (Lane K): action `BLOCKER_UNAFFECTED` ("during this turn, a blocking Spirit you control is unaffected by opposing cards' effects"; sets `blockUnaffTurn` on the player, read by `fxImmune` for `G.blocker`). Card: BS01-139.

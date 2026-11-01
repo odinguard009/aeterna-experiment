@@ -558,6 +558,12 @@ FX_ACTIONS.MAGIC_SHIELD = {
     if (!t) { c.ctx.did = false; return; }
     t.noMagicB = G.battleNo; log(`${CARDS[c.src.id].name}: ${poss(c.p)} ${CARDS[t.id].name} can't be targeted by opposing Magic this battle.`);
   } };
+/* v310 BLOCKER_UNAFFECTED: "During this turn, a blocking Spirit you control is unaffected by opposing cards' effects." Marks blockUnaffTurn on the player; fxImmune treats the current blocker (G.blocker) as immune to every opposing effect while the mark matches the turn. */
+FX_ACTIONS.BLOCKER_UNAFFECTED = {
+  chk: () => true,
+  txt: () => "during this turn, a blocking Spirit you control is unaffected by opposing cards' effects",
+  can: () => !!G,
+  run: async c => { c.p.blockUnaffTurn = G.turnNo; log(`${CARDS[c.src.id].name}: ${poss(c.p)} blocking Spirits are unaffected by opposing effects this turn.`); } };
 /* v0.205 SACRIFICE_RUMBLE: "Target one of your attacking Spirits with Rumble. Destroy it. Discard a number of cards from the opposing decktop equal to the number specified by its Rumble." */
 const rumbleNOf = (p, s) => { for (const { e } of fxEntries(s)) { const r = (e.actions || []).find(x => x.do === 'RUMBLE'); if (r) return r.n + rumblePlusOf(p); } return 0; };
 FX_ACTIONS.SACRIFICE_RUMBLE = {
