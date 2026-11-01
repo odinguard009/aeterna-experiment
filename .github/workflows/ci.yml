@@ -17,9 +17,11 @@ concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  test:
+  # 2026-11-02: split in two parallel jobs so a run takes ~5 min instead of ~13 (target: under 10): the cheap checks, and the unit
+  # tests in 4 shards (BS_SHARD, tools/quick-tests.mjs). The wall-clock files run in shard 1 only.
+  checks:
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -35,7 +37,23 @@ jobs:
         run: node tools/fx_validate.mjs --staged
       - name: Engine coverage ratchet (V8 coverage over the smoke flows, ~20 s)
         run: npm run -s coverage:check
-      - name: Unit and property tests
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4]
+    env:
+      BS_SHARD: ${{ matrix.shard }}/4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install dev tools
+        run: npm ci && npx playwright install --with-deps chromium
+      - name: Unit and property tests (shard ${{ matrix.shard }} of 4)
         run: npm test
   # v0.106.0 (roadmap M7 step 2): the live half of the database work. The schema, the migration
   # runner and the Postgres binding of the store are exercised here, because `pg` and a server only

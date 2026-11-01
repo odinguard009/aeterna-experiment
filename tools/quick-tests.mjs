@@ -12,10 +12,14 @@ const SLOW = new Set(FULL ? [] : ['props.test.mjs', 'match_fuzzer.test.mjs']);  
 // v0.93.0: files with wall-clock limits (B09-B17: page ready, deck builder open, search) run alone after the parallel batch;
 // under 3 parallel files B15 measured 355 ms against its 300 ms limit (alone ~100-200 ms). No check is dropped (item T.7).
 const TIMING = new Set(['budget.test.mjs', 'deckbuilder_performance.test.mjs']);
+// BS_SHARD="i/n" (CI matrix, 2026-11-02): run every n-th file starting at i; the wall-clock files run in shard 1 only.
+const [shardI, shardN] = (process.env.BS_SHARD || '1/1').split('/').map(Number);
 const files = readdirSync('tests/unit')
   .filter((f) => f.endsWith('.test.mjs') && !SLOW.has(f) && !TIMING.has(f))
   .sort()
+  .filter((f, i) => i % shardN === shardI - 1)
   .map((f) => `tests/unit/${f}`);
+const timingFiles = shardI === 1 ? [...TIMING].sort() : [];
 
 // Item T (owner, 2026-10-21): node --test runs (cores - 1) files at a time, i.e. one by one on the 2-core session machine; most
 // files wait on a browser page, so 3 at a time took the set from 528 s to 320 s there with the same 1,338 passes. BS_TEST_CONC=1
@@ -28,7 +32,7 @@ const env = FULL ? { ...process.env } : { ...process.env, BS_QUICK: '1' };   // 
 const out = (fd, text) => { const b = Buffer.from(text || ''); for (let o = 0; o < b.length;) { try { o += writeSync(fd, b, o); } catch (e) { if (e.code !== 'EAGAIN') throw e; } } };
 const run = (args) => { const x = spawnSync(process.execPath, args, { env, encoding: 'utf8', maxBuffer: 512 * 1024 * 1024 }); out(1, x.stdout); out(2, x.stderr); return x; };
 const r = run(['--test', `--test-concurrency=${conc}`, ...files]);
-const t = run(['--test', '--test-concurrency=1', ...[...TIMING].sort().map((f) => `tests/unit/${f}`)]);
+const t = timingFiles.length ? run(['--test', '--test-concurrency=1', ...timingFiles.map((f) => `tests/unit/${f}`)]) : { stdout: '', status: 0 };
 const failed = [];
 for (const txt of [r.stdout || '', t.stdout || '']) {
   const L = txt.split('\n');
