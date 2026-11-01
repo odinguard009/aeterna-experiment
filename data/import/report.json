@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 6898,
+  "cards": 6889,
   "per_saga": {
    "1": 657,
    "2": 293,
@@ -18,16 +18,15 @@
    "14": 430,
    "15": 355,
    "16": 334,
-   "17": 110,
-   "50": 9
+   "17": 110
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 1808,
+  "skipped_curated": 1817,
   "nexus_levels_added": 703,
   "nexus_levels_missing": 43,
   "level_problems": 2,
-  "image_problems": 422,
+  "image_problems": 420,
   "number_conflicts": 4,
   "merged": 107,
   "brave_unparsed": 171,
@@ -35,7 +34,7 @@
   "odd_reduction": 807,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "without_image": 420
+  "without_image": 418
  },
  "tokens": [
   "BS73-T001",
@@ -1405,11 +1404,13 @@
   "26RBS01-116",
   "26RBS01-117",
   "26RBS01-118",
+  "26RBS01-119",
   "26RBS01-120",
   "26RBS01-121",
   "26RBS01-122",
   "26RBS01-123",
   "26RBS01-124",
+  "26RBS01-125",
   "26RBS01-126",
   "26RBS01-X01",
   "26RBS01-X02",
@@ -1614,6 +1615,7 @@
   "26RBS02-089",
   "26RBS02-090",
   "26RBS02-091",
+  "26RBS02-092",
   "26RBS02-X01",
   "26RBS02-X02",
   "26RBS02-X03",
@@ -1674,6 +1676,7 @@
   "26RDB01-039",
   "26RDB01-040",
   "26RDB01-041",
+  "26RDB01-042",
   "26RDB01-043",
   "26RDB01-044",
   "26RDB01-045",
@@ -1689,7 +1692,9 @@
   "26RDB01-055",
   "26RDB01-056",
   "26RDB01-057",
+  "26RDB01-058",
   "26RDB01-059",
+  "26RDB01-060",
   "26RDB01-061",
   "26RDB01-062",
   "26RDB01-063",
@@ -1712,6 +1717,7 @@
   "26RSD08-010",
   "26RSD08-011",
   "26RSD08-012",
+  "26RSD08-013",
   "26RSD08-014",
   "26RSD08-X01",
   "26RSD08-X02",
@@ -1839,12 +1845,14 @@
   "26RBS03-092",
   "26RBS03-093",
   "26RBS03-094",
+  "26RBS03-095",
   "26RBS03-096",
   "26RBS03-097",
   "26RBS03-098",
   "26RBS03-X01",
   "26RBS03-X02",
   "26RBS03-X03",
+  "26RBS03-X04",
   "26RBS03-X05",
   "26RBS03-X06",
   "26RBS03-X07",
@@ -4742,16 +4750,6 @@
   {
    "id": "BS77-RV004",
    "name": "The FortyFourthMachine Glorious-Racoon",
-   "problem": "no image"
-  },
-  {
-   "id": "26RBS03-095",
-   "name": "Furious Anger",
-   "problem": "no image"
-  },
-  {
-   "id": "26RBS03-X04",
-   "name": "The PurpleAsterBladessom Rindorin",
    "problem": "no image"
   }
  ],
