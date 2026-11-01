@@ -2484,12 +2484,6 @@
   "T_DESTROYED",
   "T_SUMMONED"
  ],
- "BS10-026": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "T_ALLY_BLOCKED",
-  "T_ATTACKS"
- ],
  "BS10-027": [
   "C_LEVEL",
   "K_BRAVE",
