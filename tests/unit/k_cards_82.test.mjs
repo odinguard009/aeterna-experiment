@@ -32,3 +32,14 @@ test('K-866 BS01-109 refreshes a High Speed Spirit at the Opposing Start Step an
     return out; })()`);
   assert.deepEqual(r, [false, 1000, 0], JSON.stringify(r));
 });
+
+test('K-867 BS01-103 empties the opposing Reserve (LV1+) and exhausts an opposing Spirit at LV2', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const n = BS.mkInst('BS01-103'); n.cores = 1; P.nexus = [n];
+    const s = BS.mkInst('BS01-001'); s.cores = 1; O.spirits = [s]; O.reserve.n = 4; const t0 = O.trashCores.n; const out = [];
+    await BS.fireFx(P, 'START_STEP', null, {}); out.push(O.reserve.n, O.trashCores.n - t0, !!s.exhausted);
+    n.cores = 3; O.reserve.n = 2; await BS.fireFx(P, 'START_STEP', null, {}); out.push(O.reserve.n, !!s.exhausted);
+    return out; })()`);
+  assert.deepEqual(r, [0, 4, false, 0, true], JSON.stringify(r));
+});

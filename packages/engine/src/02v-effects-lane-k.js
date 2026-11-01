@@ -139,4 +139,9 @@ Object.assign(FX_ACTIONS, {      // v283 "Gain n core(s) on target Spirit you co
       let k = 0; for (let j = 0; j < a.n; j++) if (addCore(c.p, t)) k++;
       if (k) { c.ctx.did = true; log(`${CARDS[t.id].name} gets +${k} core${k === 1 ? '' : 's'}.`); io.view({ type: 'board' }); }
     } },
+  /* v289 "Send all cores from the opposing Reserve to their Trash." */
+  OPP_RESERVE_TO_TRASH: { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
+    txt: () => 'send all cores from the opposing Reserve to their Trash',
+    can: c => c.opp.reserve.n > 0,
+    run: async (c, a) => { const m = c.opp.reserve.n; c.ctx.did = m > 0; if (!m) return; coreEvN(c.opp, 'reserve', 'trash', m, false); c.opp.reserve.n -= m; c.opp.trashCores.n += m; log(`${CARDS[c.src.id].name}: ${m} core${m === 1 ? '' : 's'} from ${poss(c.opp)} Reserve go to the Trash.`); io.view({ type: 'board' }); } },
 });
