@@ -22,8 +22,10 @@ const PREFIX = '/assets/card-images/';
 // 2026-11-02 wrong-art report: Libra-Golem X showed Pheonix). There is deliberately no other fallback name: the old X0nn -> Xnn guess
 // also hit different cards (BS13-X005A Sieg-Apollodragon -> BS13-X05 Rean), and no picture is better than the wrong one.
 // A Rebirth back face (<front id>B, e.g. BS73-061B) is <front id>_b.
+// FILE_ALIAS: ids whose official detail page names another file (BS01-014 The Shaman Dragno is BS01-014A there; checked on battlespirits.com).
+const FILE_ALIAS = { 'BS01-014': 'BS01-014A' };
 const officialNames = (id) => {
-  const n = id.replace(/-10THX/, '-10thX'), side = /^(.+\d)B$/.exec(id);
+  const n = FILE_ALIAS[id] || id.replace(/-10THX/, '-10thX'), side = /^(.+\d)B$/.exec(id);
   return [...new Set([...(side ? [`${side[1]}_b`] : []), n])];
 };
 const isWebp = (buf) => buf.length >= 12 && buf.subarray(0, 4).toString('ascii') === 'RIFF' && buf.subarray(8, 12).toString('ascii') === 'WEBP';

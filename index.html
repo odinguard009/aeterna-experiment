@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Aeterna</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%22140 70 360 360%22%3E%3Crect x=%22140%22 y=%2270%22 width=%22360%22 height=%22360%22 rx=%2264%22 fill=%22%230d1015%22/%3E%3Ccircle cx=%22320%22 cy=%22250%22 r=%22140%22 fill=%22none%22 stroke=%22%2317b897%22 stroke-width=%2222%22/%3E%3Cg fill=%22%239fe8d8%22%3E%3Cpath d=%22M200 168Q320 206 440 168L430 202Q320 238 210 202Z%22/%3E%3Crect x=%22236%22 y=%22236%22 width=%22168%22 height=%2222%22 rx=%223%22/%3E%3Cpath d=%22M252 362L272 362L278 214L258 214Z%22/%3E%3Cpath d=%22M388 362L368 362L362 214L382 214Z%22/%3E%3Crect x=%22308%22 y=%22206%22 width=%2224%22 height=%2236%22/%3E%3C/g%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="pwa/apple-touch-icon.png">
+<link rel="manifest" href="pwa/manifest.webmanifest">
 <script>try{var a=localStorage.getItem("aeterna.accent");if(/^#[0-9a-f]{6}$/i.test(a))document.documentElement.style.setProperty("--you",a)}catch(e){}</script>
 <meta name="theme-color" content="#0d1015">
 <style>
@@ -1091,6 +1093,7 @@ color-scheme:light;}
 .mk .ibtn{width:36px;height:36px;border:0;display:inline-grid;place-items:center;background:var(--chip);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);padding:0;font-size:15px;transition:filter .15s,transform .15s var(--ease)}
 .mk .ibtn:hover{filter:brightness(1.3);transform:scale(1.08)}
 .mk .ibtn.sq{clip-path:none;border-radius:8px;width:34px;height:34px}
+.mk .fsb[hidden]{display:none}
 .mk .chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line2);background:var(--chip);color:var(--text2);font-size:.82em;font-weight:700;padding:5px 11px;border-radius:999px;white-space:nowrap;transition:background .15s,color .15s,border-color .15s}
 .mk .chip:hover{color:var(--text);border-color:var(--text3)}
 .mk .chip.on{background:var(--you-soft);border-color:var(--you-text);color:var(--text)}
@@ -2239,7 +2242,7 @@ html[data-ts="large"] .mk{font-size:16px;}html[data-ts="larger"] .mk{font-size:1
 .kbd-row kbd{flex:none;min-width:112px;padding:4px 10px;text-align:center;font:800 .82em var(--f-num,inherit);background:var(--ae-panel2,#0001);box-shadow:inset 0 0 0 1px var(--ae-line2);clip-path:var(--par,none);}
 .mk .inf{min-width:24px}
 .mk .phonebar #pb-title{min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
-@media (max-width:380px){.mk .phonebar{gap:6px;padding:0 10px}.mk .phonebar .brand .logo{display:none}}
+@media (max-width:430px){.mk .phonebar{gap:6px;padding:0 10px}.mk .phonebar .brand .logo{display:none}}
 #db-types,#lib-types{flex-wrap:wrap}
 [data-mode="light"] .mk .foot a{color:#8ff0d8;text-decoration:underline}
 #home-cont > div:first-child{aspect-ratio:5/7;overflow:hidden;border-radius:4px}
@@ -2545,11 +2548,12 @@ html:not(.layout-pc) #ae-eff-stack{top:38px;}
 <g transform="translate(395.0 120.1)"><circle r="23" fill="#0d1015" stroke="var(--lg1)" stroke-width="2"/><g fill="#e5484d" stroke="#eef1f5" stroke-width="1.5" stroke-linejoin="round" transform="scale(.95)"><polygon points="-16,0 -8,-16 8,-16 16,0 8,16 -8,16"/><polygon points="-8,0 -4,-8 4,-8 8,0 4,8 -4,8" stroke="#ffffff" stroke-opacity=".6" stroke-width="1.2" fill="none" stroke-linejoin="round"/><path d="M-16 0H-8M16 0H8M-8-16L-4-8M8-16L4-8M-8 16L-4 8M8 16L4 8" stroke="#ffffff" stroke-opacity=".6" stroke-width="1.2" fill="none" stroke-linejoin="round"/></g></g><g transform="translate(470.0 250.0)"><circle r="23" fill="#0d1015" stroke="var(--lg1)" stroke-width="2"/><g fill="#2fbf71" stroke="#eef1f5" stroke-width="1.5" stroke-linejoin="round" transform="scale(.95)"><polygon points="-8,-16 8,-16 14,-9 14,9 8,16 -8,16 -14,9 -14,-9"/><polygon points="-5,-10 5,-10 8,-6 8,6 5,10 -5,10 -8,6 -8,-6" stroke="#ffffff" stroke-opacity=".6" stroke-width="1.2" fill="none" stroke-linejoin="round"/></g></g><g transform="translate(395.0 379.9)"><circle r="23" fill="#0d1015" stroke="var(--lg1)" stroke-width="2"/><g fill="#9b5de5" stroke="#eef1f5" stroke-width="1.5" stroke-linejoin="round" transform="scale(.95)"><ellipse rx="13.4" ry="16"/><ellipse rx="7" ry="9.5" stroke="#ffffff" stroke-opacity=".6" stroke-width="1.2" fill="none" stroke-linejoin="round"/><path d="M0-16V-9.5M0 16V9.5M-13.4 0H-7M13.4 0H7" stroke="#ffffff" stroke-opacity=".6" stroke-width="1.2" fill="none" stroke-linejoin="round"/></g></g><g transform="translate(245.0 379.9)"><circle r="23" fill="#0d1015" stroke="var(--lg1)" stroke-width="2"/><g fill="#eef1f5" stroke="#eef1f5" stroke-width="1.5" stroke-linejoin="round" transform="scale(.95)"><polygon points="-16,0 -11,-11.5 0,-16 11,-11.5 16,0 11,11.5 0,16 -11,11.5"/><path d="M0-16V16M-16 0H16M-11-11.5L11 11.5M11-11.5L-11 11.5" stroke="#6b7a88" stroke-opacity=".8" stroke-width="1.2" fill="none" stroke-linejoin="round"/><polygon points="-6,-6 0,-8 6,-6 8,0 6,6 0,8 -6,6 -8,0" stroke="#6b7a88" stroke-opacity=".8" stroke-width="1.2" fill="none" stroke-linejoin="round"/></g></g><g transform="translate(170.0 250.0)"><circle r="23" fill="#0d1015" stroke="var(--lg1)" stroke-width="2"/><g fill="#3aa0ff" stroke="#eef1f5" stroke-width="1.5" stroke-linejoin="round" transform="scale(.95)"><polygon points="0,-16 13.4,-8 13.4,8 0,16 -13.4,8 -13.4,-8"/><path d="M0-16V16M-13.4-8L13.4 8M13.4-8L-13.4 8" stroke="#ffffff" stroke-opacity=".6" stroke-width="1.2" fill="none" stroke-linejoin="round"/><polygon points="0,-8 7,-4 7,4 0,8 -7,4 -7,-4" stroke="#ffffff" stroke-opacity=".6" stroke-width="1.2" fill="none" stroke-linejoin="round"/></g></g><g transform="translate(245.0 120.1)"><circle r="23" fill="#0d1015" stroke="var(--lg1)" stroke-width="2"/><g fill="#ffd447" stroke="#eef1f5" stroke-width="1.5" stroke-linejoin="round" transform="scale(.95)"><ellipse rx="13.4" ry="16"/><ellipse cx="-3.5" cy="-6" rx="4" ry="6" fill="#fff" fill-opacity=".45" stroke="none" transform="rotate(-18 -3.5 -6)"/></g></g></symbol></svg>
 <nav id="app-nav" class="nav" aria-label="Main"><span class="brand" data-a="go-lobby"><svg class="lg" aria-hidden="true"><use href="#ae-logo"/></svg><span class="logo" translate="no">AETERNA</span></span><span id="app-tabs" class="mk-tabs"><button class="nv" data-a="go-lobby" data-nav="view-lobby">Home</button><button class="nv" data-a="go-play" data-nav="view-play">Play</button><button class="nv" data-a="go-decks" data-nav="view-decks">Decks</button><button class="nv" data-a="go-lib" data-nav="view-library">Library</button><button class="nv" data-a="go-howto" data-nav="view-howto">Learn</button></span><span class="sp"></span>
   <button class="ibtn colb" id="theme-btn" data-a="theme-pop" aria-label="Your colour" title="Your colour" aria-expanded="false" aria-controls="theme-pop"></button>
+  <button class="ibtn fsb" data-a="fullscreen" aria-label="Full screen" title="Full screen" aria-pressed="false">⛶</button>
   <div class="seg mini" role="group" aria-label="Mode"><button data-a="theme-mode" data-v="dark" aria-pressed="true">Dark</button><button data-a="theme-mode" data-v="light" aria-pressed="false">Light</button></div>
   <button class="ibtn" data-a="go-history" aria-label="Match history" title="History">↺</button><button class="ibtn" data-a="go-settings" aria-label="Settings" title="Settings">⚙</button>
   <button class="pchip" data-a="go-profile"><span class="av">A</span><span><b>Player</b><br><span class="mut">Offline</span></span></button>
 </nav>
-<div class="phonebar"><span class="brand" data-a="go-lobby"><svg class="lg" aria-hidden="true"><use href="#ae-logo"/></svg><span class="logo" style="font-size:17px;margin:0">AETERNA</span></span><span class="grow" id="pb-title" style="text-align:center;font-weight:800;font-size:.86em;letter-spacing:.12em;text-transform:uppercase;color:var(--text2)">Home</span><button class="ibtn colb" data-a="theme-pop" aria-label="Your colour"></button><button class="ibtn" data-a="go-settings" aria-label="Settings">⚙</button><button class="pchip" style="padding:3px" data-a="go-profile" aria-label="Profile"><span class="av" style="width:28px;height:28px">A</span></button></div>
+<div class="phonebar"><span class="brand" data-a="go-lobby"><svg class="lg" aria-hidden="true"><use href="#ae-logo"/></svg><span class="logo" style="font-size:17px;margin:0">AETERNA</span></span><span class="grow" id="pb-title" style="text-align:center;font-weight:800;font-size:.86em;letter-spacing:.12em;text-transform:uppercase;color:var(--text2)">Home</span><button class="ibtn colb" data-a="theme-pop" aria-label="Your colour"></button><button class="ibtn fsb" data-a="fullscreen" aria-label="Full screen" title="Full screen" aria-pressed="false">⛶</button><button class="ibtn" data-a="go-settings" aria-label="Settings">⚙</button><button class="pchip" style="padding:3px" data-a="go-profile" aria-label="Profile"><span class="av" style="width:28px;height:28px">A</span></button></div>
 <div id="theme-pop" class="ae-pop" role="dialog" aria-label="Your colour" hidden><div class="bar"></div><h3>Your colour</h3><div id="theme-grid" class="pgrid"></div></div>
 
 <div id="view-lobby" class="app-view active">
@@ -3086,7 +3090,7 @@ function bindHost(h) {
    type: 'Spirit' | 'Nexus' | 'Magic'      symbol: card color     symbols: number of symbols
    reduction: {color: n}         levels: [{cores, bp}]  (Nexus levels have no bp)
    --------------------------------------------------------------------- */
-const VERSION = '0.206.0';
+const VERSION = '0.206.1';
 const CARDS = {};
 function defCard(o) {
   CARDS[o.id] = Object.assign({ type: 'Spirit', reduction: {}, symbols: 1, families: [], keywords: [], implemented: true, desc: 'Vanilla test card (no effect).', block: 'A' }, o);
@@ -13004,6 +13008,7 @@ document.addEventListener('click', e => {
   else if (a === 'learn-open') learnOpen(Number(v));
   else if (a === 'go-history') historyDialog();
   else if (a === 'theme-pop') themePop();
+  else if (a === 'fullscreen') toggleFullscreen();
   else if (a === 'theme-mode') { navTheme('mode', v); if (G) render(); }
   else if (a === 'theme-color') { navTheme('color', v); if (G) render(); }
   else if (a === 'sound-toggle') navSound();
@@ -13189,6 +13194,21 @@ if (SIM) startNewGame();
   const ld = $('loader');
   if (ld) { if (SIM || navigator.webdriver || animMode() !== 'full') ld.remove(); else { ld.classList.add('done'); setTimeout(() => ld.remove(), 700); } }
 }
+
+/* Full screen (owner request 2026-11-01): the button sits next to the colour picker; browsers without the API (iPhone Safari) hide it. */
+function toggleFullscreen() {
+  const d = /** @type {any} */ (document), el = /** @type {any} */ (document.documentElement);
+  try {
+    if (d.fullscreenElement || d.webkitFullscreenElement) (d.exitFullscreen || d.webkitExitFullscreen).call(d);
+    else (el.requestFullscreen || el.webkitRequestFullscreen).call(el);
+  } catch (e) { /* refused (iframe, policy): nothing to do */ }
+}
+(function fullscreenButtons() {
+  const d = /** @type {any} */ (document), ok = !!(d.documentElement.requestFullscreen || d.documentElement.webkitRequestFullscreen);
+  const sync = () => { const on = !!(d.fullscreenElement || d.webkitFullscreenElement); document.querySelectorAll('.fsb').forEach(b => { b.setAttribute('aria-pressed', String(on)); b.setAttribute('aria-label', on ? 'Exit full screen' : 'Full screen'); b.setAttribute('title', on ? 'Exit full screen' : 'Full screen'); }); };
+  if (!ok) { document.querySelectorAll('.fsb').forEach(b => { /** @type {HTMLElement} */ (b).hidden = true; }); return; }
+  document.addEventListener('fullscreenchange', sync); document.addEventListener('webkitfullscreenchange', sync);
+})();
 </script>
 </body>
 </html>

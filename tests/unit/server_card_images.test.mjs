@@ -144,3 +144,11 @@ test('CIMG-S5 10th-anniversary X ids use the official 10thX file (never the olde
   assert.equal((await hit(miss, '/assets/card-images/BS13-X005A')).status, 404);
   assert.deepEqual(urls, [OFFICIAL + 'BS13-X005A.webp?v2'], 'no X0nn -> Xnn guess (that file is another card)');
 });
+
+test('CIMG-S6 BS01-014 (The Shaman Dragno) is filed as BS01-014A on the official site', async () => {
+  const urls = [];
+  const route = cardImageRoute({ mirrorDir: mkdir(), fetchImpl: async (u) => { urls.push(u.slice(OFFICIAL.length)); return { ok: true, headers: { get: () => 'image/webp' }, arrayBuffer: async () => WEBP() }; } });
+  assert.equal((await hit(route, '/assets/card-images/BS01-014')).status, 200);
+  assert.deepEqual(urls, ['BS01-014A.webp?v2']);
+  assert.match(readFileSync('functions/assets/card-images/[file].js', 'utf8'), /'BS01-014': 'BS01-014A'/, 'the Pages function carries the same alias');
+});
