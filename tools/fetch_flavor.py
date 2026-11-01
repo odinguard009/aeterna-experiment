@@ -43,7 +43,9 @@ def flavors(wikitext):
     """-> [(set, text)] in printing order"""
     sets = {m.group(1) or '1': m.group(2).strip().upper() for m in re.finditer(r'\|\s*set(\d*)\s*=\s*([^\n|]*)', wikitext)}
     out = []
-    for m in re.finditer(r'\|\s*enflavor(\d*)\s*=\s*(.*?)(?=\n\s*\||\n\}\})', wikitext, re.S):
+    # stop at the next parameter on the same line too: an empty `enflavorN =` followed by `| jpflavorN`
+    # used to swallow the Japanese text into the English index (2026-11-01 fix).
+    for m in re.finditer(r'\|\s*enflavor(\d*)\s*=\s*(.*?)(?=\s*\||\n\}\})', wikitext, re.S):
         n = m.group(1) or '1'; t = clean(m.group(2))
         if t:
             out.append((sets.get(n, ''), t))

@@ -12,12 +12,13 @@
        https://www.battlespirits.com/images/cardlist/<card-id>.webp?v2   (WebP, uniform size)
    The offline single-file game never imports this module; it only runs inside the online server.
    --------------------------------------------------------------------- */
-import { existsSync, readFileSync, writeFileSync, renameSync, mkdirSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync, renameSync, mkdirSync, unlinkSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 
 const OFFICIAL_IMG = 'https://www.battlespirits.com/images/cardlist/';
 const USER_AGENT = 'AeternaCardArtSync/1.0 (unofficial fan project; read-only)';
 const PREFIX = '/assets/card-images/';
+const isWebp = (buf) => buf.length >= 12 && buf.subarray(0, 4).toString('ascii') === 'RIFF' && buf.subarray(8, 12).toString('ascii') === 'WEBP';
 
 /**
  * @param {{ mirrorDir: string, officialImg?: string, fetchImpl?: typeof fetch, timeoutMs?: number }} deps
@@ -28,10 +29,15 @@ export function cardImageRoute({ mirrorDir, officialImg = OFFICIAL_IMG, fetchImp
   const inflight = new Map();   // card id -> Promise<Buffer|null>, dedupes concurrent first requests
 
   async function download(id) {
-    const res = await fetchImpl(`${officialImg}${id}.webp?v2`, { headers: { 'user-agent': USER_AGENT }, signal: AbortSignal.timeout(timeoutMs) });
+    const res = await fetchImpl(`${officialImg}${id}.webp?v2`, { headers: { 'user-agent': USER_AGENT, accept: 'image/webp' }, signal: AbortSignal.timeout(timeoutMs) });
     if (!res.ok) return null;
+    // The official site answers a missing card with an HTTP 200 HTML page (its 404 page). Refuse any
+    // non-image answer before it is cached as a .webp file; otherwise the browser gets HTML and shows
+    // no art (the 2026-11-01 "some cards have no picture" report).
+    const type = res.headers && typeof res.headers.get === 'function' ? (res.headers.get('content-type') || '') : '';
+    if (type && !/^image\//i.test(type)) return null;
     const buf = Buffer.from(await res.arrayBuffer());
-    if (!buf.length) return null;
+    if (!buf.length || !isWebp(buf)) return null;
     mkdirSync(dir, { recursive: true, mode: 0o755 });
     const tmp = join(dir, `.${id}.webp.partial`);          // atomic write so a crash never leaves a half file
     writeFileSync(tmp, buf, { mode: 0o644 });
@@ -41,7 +47,11 @@ export function cardImageRoute({ mirrorDir, officialImg = OFFICIAL_IMG, fetchImp
 
   async function getBytes(id) {
     const target = join(dir, `${id}.webp`);
-    if (existsSync(target)) return readFileSync(target);
+    if (existsSync(target)) {
+      const cached = readFileSync(target);
+      if (isWebp(cached)) return cached;             // older builds cached the official HTML 200 page here
+      try { unlinkSync(target); } catch (e) { /* a concurrent request may have removed it */ }
+    }
     if (inflight.has(id)) return inflight.get(id);
     const p = download(id).catch(() => null);
     inflight.set(id, p);
