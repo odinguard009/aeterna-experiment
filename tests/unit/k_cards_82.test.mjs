@@ -214,3 +214,17 @@ test('K-880 BS18-061 destroys an opposing 5000 BP or less Spirit when a Red Spir
     return [out, O.trash.length, P.nexus[0].cores, BS.CARDS["BS18-061"].effects.length]; })()`);
   assert.deepEqual(r, [[1, 0], 1, 2, 2], JSON.stringify(r));
 });
+
+test('K-881 BS14-080 gives Green Spirits +1000 BP per opposing Spirit in your Attack Step and refreshes them at your End Step (LV2)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const n = BS.mkInst('BS14-080'); n.cores = 0; P.nexus = [n]; const out = [];
+    const g = BS.mkInst('BS01-050'); g.cores = 1; g.exhausted = true; const r = BS.mkInst('BS01-001'); r.cores = 1; r.exhausted = true; P.spirits = [g, r];
+    const e1 = BS.mkInst('BS01-001'), e2 = BS.mkInst('BS01-001'); O.spirits = [e1, e2];
+    G.active = P.key; G.step = 5; 
+    G.step = 5; out.push(BS.bpOf(g) - BS.bpOf(r));
+    G.step = 3; out.push(BS.bpOf(g) - BS.bpOf(r));
+    n.cores = 2; await BS.fireFx(P, 'END_STEP', null, {}); out.push(!!g.exhausted, !!r.exhausted);
+    return out; })()`);
+  assert.deepEqual(r, [2000, 0, false, true], JSON.stringify(r));
+});
