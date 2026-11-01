@@ -109,12 +109,16 @@ Object.assign(FX_ACTIONS, {
       if (n) { const k = draw(c.p, n); log(`${CARDS[c.src.id].name}: ${who(c.p)} ${c.p.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'}.`); handUp(c.p, k); }
     } },
   /* v0.185 (schema 66) DEPLOY_TRASH {match}: "Target a <X> Nexus card in your Trash. Deploy it without paying the cost." (Nexus only) */
-  DEPLOY_TRASH: { chk: a => !!a.match && hasMatch(a.match) && Object.keys(a).every(k => ['do', 'match', 'if'].includes(k)),
-    txt: () => 'deploy a matching Nexus card from your Trash without paying the cost',
+  DEPLOY_TRASH: { chk: a => !!a.match && hasMatch(a.match) && (a.all == null || a.all === true) && Object.keys(a).every(k => ['do', 'match', 'all', 'if'].includes(k)),
+    txt: a => a.all ? 'deploy every matching Nexus card from your Trash without paying the cost' : 'deploy a matching Nexus card from your Trash without paying the cost',
     cands: (c, a) => c.p.trash.filter(t => CARDS[t.id].type === (a.match.type === 'Spirit' ? 'Spirit' : 'Nexus') && fxMatch(CARDS[t.id], a.match) && canPlaceFree(c.p, t)),      // v0.199 (schema 149) match.type "Spirit" summons a Spirit instead
     can: (c, a) => FX_ACTIONS.DEPLOY_TRASH.cands(c, a).length > 0,
     run: async (c, a) => {
       const L = FX_ACTIONS.DEPLOY_TRASH.cands(c, a); c.ctx.did = false; if (!L.length) return;
+      if (a.all) {      // v262 "Deploy every <X> Nexus card from your Trash, without paying the costs"
+        for (const t of L.slice()) { if (!c.p.trash.includes(t) || !canPlaceFree(c.p, t)) continue; removeFrom(c.p.trash, t); c.p.hand.push(t); if (await summonFree(c.p, t)) c.ctx.did = true; else { removeFrom(c.p.hand, t); c.p.trash.push(t); } }
+        return;
+      }
       let t;
       if (c.p.cpu) t = L.slice().sort((x, y) => CARDS[y.id].cost - CARDS[x.id].cost)[0];
       else {

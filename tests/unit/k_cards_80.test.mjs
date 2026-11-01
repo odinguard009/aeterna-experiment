@@ -1,4 +1,4 @@
-// Lane K tests, file 80 (rule 1b). Schemas v259-v261: MILL_OPP.perOppHand, RESERVE_TO_SPIRIT, VOID_TO_CARD per-count. Cards: BS02-068, BS02-069, BS04-111, BS01-078, BS01-115, BS03-030, BS01-X03.
+// Lane K tests, file 80 (rule 1b). Schemas v259-v262: DISCARD_ANY_DRAW, DEPLOY_TRASH.all, MILL_OPP.perOppHand, RESERVE_TO_SPIRIT, VOID_TO_CARD per-count. Cards: BS03-146, BS03-148, BS02-068, BS02-069, BS04-111, BS01-078, BS01-115, BS03-030, BS01-X03.
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { sharedBoard, closeBrowser } from './lib/game.mjs';
@@ -50,4 +50,23 @@ test('K-812 BS02-068 deploys a White Nexus from the Hand free and skips a non-Wh
     P.hand = [BS.mkInst('BS01-110')]; await BS.FX_ACTIONS.SUMMON_HAND.run(c, act);
     return [e.trigger, e.optional, none, P.nexus.length, P.nexus[0] && P.nexus[0].id, BS.FX_ACTIONS.SUMMON_HAND.chk(act)]; })()`);
   assert.deepEqual(r, ['SUMMONED', true, 0, 1, 'BS01-110', true], JSON.stringify(r));
+});
+
+test('K-813 DISCARD_ANY_DRAW: the CPU discards every Nexus in hand and draws one per card (BS03-146)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true;
+    P.hand = [BS.mkInst('BS01-102'), BS.mkInst('BS01-110'), BS.mkInst('BS01-001')]; P.deck = Array.from({ length: 5 }, () => BS.mkInst('BS01-001')); const t0 = P.trash.length;
+    const act = BS.CARDS['BS03-146'].magic.by.MAIN.actions[0]; await BS.FX_ACTIONS.DISCARD_ANY_DRAW.run({ p: P, opp: O, src: BS.mkInst('BS03-146'), ctx: {} }, act);
+    return [P.trash.length - t0, P.hand.length, P.deck.length, BS.FX_ACTIONS.DISCARD_ANY_DRAW.chk(act)]; })()`);
+  assert.deepEqual(r, [2, 3, 3, true], JSON.stringify(r));
+});
+
+test('K-814 DEPLOY_TRASH all: every Red/Green/Blue Nexus in the Trash is deployed, others stay (BS03-148)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; P.nexus = [];
+    const act = BS.CARDS['BS03-148'].magic.by.MAIN.actions[0]; const ids = ['BS01-098', 'BS01-099'];
+    P.trash = [BS.mkInst(ids[0]), BS.mkInst(ids[1]), BS.mkInst('BS01-102')];
+    await BS.FX_ACTIONS.DEPLOY_TRASH.run({ p: P, opp: O, src: BS.mkInst('BS03-148'), ctx: {} }, act);
+    return [P.nexus.length, P.trash.map(x => x.id), BS.FX_ACTIONS.DEPLOY_TRASH.chk(act)]; })()`);
+  assert.equal(r[0], 2, JSON.stringify(r)); assert.deepEqual(r[1], ['BS01-102']); assert.equal(r[2], true);
 });

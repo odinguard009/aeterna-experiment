@@ -66,6 +66,24 @@ Object.assign(FX_ACTIONS, {
       await sentToTrashFx(c, out, 'hand');               // v0.47 Hades Disaster discarded by Contractor Hades
       io.view({ type: 'board' });
     } },
+  /* v262 DISCARD_ANY_DRAW {match}: "Discard any number of <X> cards from your Hand. For each card you discarded, draw a card." (the player may stop at any time; the CPU discards every matching card) */
+  DISCARD_ANY_DRAW: { chk: a => hasMatch(a.match) && Object.keys(a).every(k => ['do', 'match', 'if'].includes(k)),
+    txt: () => 'discard any number of matching cards from your Hand, draw a card for each',
+    cands: (c, a) => c.p.hand.filter(h => h !== c.src && fxMatch(CARDS[h.id], a.match)),
+    can: () => true,
+    run: async (c, a) => {
+      const out = [];
+      for (;;) {
+        const L = FX_ACTIONS.DISCARD_ANY_DRAW.cands(c, a); if (!L.length) break;
+        const d = c.p.cpu ? L[0] : await chooseCard(c, L, `✨ ${_pn(c)}`, `Choose a card to discard (${out.length} so far; each draws a card). Skip to finish.`, true);
+        if (!d) break;
+        removeFrom(c.p.hand, d); c.p.trash.push(d); out.push(d);
+        log(`${_pn(c)}: ${who(c.p)} ${c.p.cpu ? 'discards' : 'discard'} ${CARDS[d.id].name}.`);
+      }
+      c.ctx.did = out.length > 0;
+      if (out.length) { await sentToTrashFx(c, out, 'hand'); const k = draw(c.p, out.length); log(`${_pn(c)}: ${who(c.p)} ${c.p.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'}.`); handUp(c.p, k); }
+      io.view({ type: 'board' });
+    } },
   /* v0.197 (schema 129) HAND_TO_BOTTOM {n:1..2}: "You can return N card(s) from your Hand to the deckbottom" (an optional cost-like step: did = N cards were returned; the CPU returns its cheapest cards while it keeps at least one). */
   HAND_TO_BOTTOM: { chk: a => Object.keys(a).every(k => ['do', 'if', 'n', 'forced'].includes(k)) && Number.isInteger(a.n) && a.n >= 1 && a.n <= 2 && (a.forced == null || a.forced === true),
     txt: a => `${a.forced ? '' : 'you can '}return ${a.n === 1 ? 'a card' : a.n + ' cards'} from your Hand to the deckbottom`,
