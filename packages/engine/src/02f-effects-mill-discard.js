@@ -141,7 +141,7 @@ Object.assign(FX_ACTIONS, {
       io.view({ type: 'board' });
     } },
   /* "Then, once per turn, your counter +n" (Contractor Hades' Contract Skill): the Count part has its own once-per-turn limit, the rest of the effect does not */
-  COUNTER_ONCE: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5, txt: a => `(once per turn) counter +${a.n}`,
+  COUNTER_ONCE: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 7, txt: a => `(once per turn) counter +${a.n}`,
     run: async (c, a) => {
       const k = 'cnt:' + _pn(c); c.p.onceUsed = c.p.onceUsed || {};
       if (c.p.onceUsed[k] === G.turnNo) { c.ctx.did = false; return; }

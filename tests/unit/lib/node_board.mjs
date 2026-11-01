@@ -15,16 +15,26 @@ function scenarioSource() {
   return src.slice(a, b + 3);
 }
 
+function make() {
+  const E = loadEngine({ sim: true, format: 'eternal', fixtures: false });
+  E.__eval(`var window = globalThis; function render() {} function testSetup() { return BS.testSetup(); } ${scenarioSource()}; BS.loadScenario = loadScenario;`);
+  E.bindHost({ name: 'node-board', view() {}, log() {}, async decide(seat, d) { return E.cpuAnswer(seat, JSON.parse(JSON.stringify(d))); } });   // no UI: views dropped, prompts answered by the CPU
+  return { errors: [], page: { async evaluate(code, arg) { if (typeof code === 'function') code = `(${code})(${arg === undefined ? '' : JSON.stringify(arg)})`;      // Playwright's function form
+    const r = await E.__eval(code); return r === undefined ? undefined : JSON.parse(JSON.stringify(r)); }, async close() {} } };
+}
 let shared = null;
 export async function sharedBoard() {
-  if (!shared) {
-    const E = loadEngine({ sim: true, format: 'eternal', fixtures: false });
-    E.__eval(`var window = globalThis; function render() {} function testSetup() { return BS.testSetup(); } ${scenarioSource()}; BS.loadScenario = loadScenario;`);
-    E.bindHost({ name: 'node-board', view() {}, log() {}, async decide(seat, d) { return E.cpuAnswer(seat, JSON.parse(JSON.stringify(d))); } });   // no UI: views dropped, prompts answered by the CPU
-    shared = { errors: [], page: { async evaluate(code, arg) { if (typeof code === 'function') code = `(${code})(${arg === undefined ? '' : JSON.stringify(arg)})`;      // Playwright's function form
-      const r = await E.__eval(code); return r === undefined ? undefined : JSON.parse(JSON.stringify(r)); } } };
-  }
+  if (!shared) shared = make();
   await shared.page.evaluate('BS.testSetup()');
   return shared;
 }
+/** A fresh engine per call (the Node twin of quietBoard()): for tests that change state which must not leak into the next test. */
+export async function quietBoard() {
+  const g = make();
+  await g.page.evaluate('BS.testSetup()');
+  return g;
+}
+/** Node twin of openGame(): a fresh engine, no page. Tests that need the DOM, page events or navigation fail here and stay on game.mjs. */
+export async function openGame() { return make(); }
 export async function closeBrowser() { shared = null; }
+export const ROOT = new URL('../../..', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1').replace(/\/$/, '');

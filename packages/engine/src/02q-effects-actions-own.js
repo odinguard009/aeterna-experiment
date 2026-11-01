@@ -5,11 +5,11 @@
    every other entry here is read from inside a function.
    ------------------------------------------------------------------------------------ */
 Object.assign(FX_ACTIONS, {
-  DRAW: { chk: a => ((Number.isInteger(a.n) && a.n >= 1 && a.n <= 5) || a.perOppHand === true) && (a.perOppHand == null || (a.perOppHand === true && a.per == null && a.dbl == null)) && (a.per == null || perOk(a.per)) && (a.dbl == null || (Number.isInteger(a.dbl) && a.dbl >= 0 && a.dbl <= 5 && a.per == null)), txt: a => a.dbl != null ? `draw ${a.n} card${a.n === 1 ? '' : 's'} (${a.n * 2} if your Hand is ${a.dbl} or less)` : a.per ? `draw ${a.n} card${a.n === 1 ? '' : 's'} for each of your matching Spirits/Nexuses` : `draw ${a.n} card${a.n === 1 ? '' : 's'}`,      // v137 per: "For each Spirit with X you control, draw a card"
+  DRAW: { chk: a => ((Number.isInteger(a.n) && a.n >= 1 && a.n <= 7) || a.perOppHand === true) && (a.perOppHand == null || (a.perOppHand === true && a.per == null && a.dbl == null)) && (a.per == null || perOk(a.per)) && (a.dbl == null || (Number.isInteger(a.dbl) && a.dbl >= 0 && a.dbl <= 5 && a.per == null)), txt: a => a.dbl != null ? `draw ${a.n} card${a.n === 1 ? '' : 's'} (${a.n * 2} if your Hand is ${a.dbl} or less)` : a.per ? `draw ${a.n} card${a.n === 1 ? '' : 's'} for each of your matching Spirits/Nexuses` : `draw ${a.n} card${a.n === 1 ? '' : 's'}`,      // v137 per: "For each Spirit with X you control, draw a card"
     run: async (c, a) => { const k = draw(c.p, a.perOppHand ? c.opp.hand.length : a.per ? a.n * perCount(c.p, a.per) : a.dbl != null && c.p.hand.length <= a.dbl ? a.n * 2 : a.n); log(`${CARDS[c.src.id].name}: ${who(c.p)} ${c.p.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'}.`); handUp(c.p, k); } },
   DRAW_UNTIL: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 10, txt: a => `draw until your Hand is ${a.n}`,      // v0.185 "draw until your Hand is three"
     run: async (c, a) => { const k = c.p.hand.length < a.n ? draw(c.p, a.n - c.p.hand.length) : 0; log(`${CARDS[c.src.id].name}: ${who(c.p)} ${c.p.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'}.`); handUp(c.p, k); } },
-  COUNTER: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && (a.max == null || (Number.isInteger(a.max) && a.max >= 1 && a.max <= 30)), txt: a => `counter +${a.n}${a.max ? ' (max ' + a.max + ' counters)' : ''}`,
+  COUNTER: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 7 && (a.max == null || (Number.isInteger(a.max) && a.max >= 1 && a.max <= 30)), txt: a => `counter +${a.n}${a.max ? ' (max ' + a.max + ' counters)' : ''}`,
     run: async (c, a) => {
       const n = a.max != null ? Math.max(0, Math.min(a.n, a.max - c.p.count)) : a.n;
       if (!n) { c.ctx.did = false; log(`${CARDS[c.src.id].name}: the counter is already at its maximum.`); return; }
@@ -32,7 +32,7 @@ Object.assign(FX_ACTIONS, {
       c.ctx.did = k > 0;
     } },
   /* "during this battle, this Spirit gains N extra symbol(s)" (cleared when the battle ends) */
-  SYMBOL_PLUS: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 3, txt: a => `during this battle, this Spirit gains ${a.n} extra symbol${a.n === 1 ? '' : 's'}`,
+  SYMBOL_PLUS: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5, txt: a => `during this battle, this Spirit gains ${a.n} extra symbol${a.n === 1 ? '' : 's'}`,
     can: c => c.p.spirits.includes(c.src) && !!G.attacker,
     run: async (c, a) => { c.src.symBattle = (c.src.symBattle || 0) + a.n; log(`${CARDS[c.src.id].name} gains ${a.n} extra symbol${a.n === 1 ? '' : 's'} during this battle.`); } },
   BP_PLUS: { chk: a => Number.isInteger(a.n) && a.n >= 1000 && ['self', 'attacker', 'own'].includes(a.to || 'self') && (a.pick == null || ((a.to || 'self') === 'own' && Number.isInteger(a.pick) && a.pick >= 1 && a.pick <= 3)) && (a.per == null || perOk(a.per)) && (a.perReserve == null || (a.perReserve === true && a.per == null && (a.to || 'self') === 'self')) && (a.pickPerLegacy == null || (a.pickPerLegacy === true && a.pick >= 1)),      // v195 pickPerLegacy: "for each EX Symbol banished via this Legacy, target +1 Spirits"
@@ -44,7 +44,7 @@ Object.assign(FX_ACTIONS, {
       const n = a.perReserve ? a.n * c.p.reserve.n : a.per ? a.n * perCount(c.p, a.per, c.opp) : a.n;     // v0.72 per: counted when it resolves; v0.195 perReserve: cores in your Reserve
       if (n) for (const s of L) { s.bpMod = (s.bpMod || 0) + n; log(`${CARDS[s.id].name} gets +${n} BP.`); }
     } },
-  CORE_TO_SELF: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5, txt: a => `+${a.n} core to this card`,
+  CORE_TO_SELF: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 7, txt: a => `+${a.n} core to this card`,
     can: c => c.p.reserve.n > 0,
     run: async (c, a) => { let k = 0; for (let j = 0; j < a.n; j++) if (addCore(c.p, c.src)) k++; if (k) log(`${CARDS[c.src.id].name} gets +${k} core${k === 1 ? '' : 's'}.`); } },
   REFRESH_SPIRIT: { chk: a => (a.match == null || hasMatch(a.match)) && (a.self == null || (a.self === true && a.match == null)) && (a.noAttack == null || a.noAttack === true) && (a.other == null || (a.other === true && a.self == null)) && (a.sameCostAttacker == null || a.sameCostAttacker === true) && (a.perBp == null || (Number.isInteger(a.perBp) && a.perBp >= 10000 && a.perBp <= 50000 && a.perBp % 1000 === 0 && a.self == null)) && (a.perN == null || (Number.isInteger(a.perN) && a.perN >= 1 && a.perN <= 4 && a.per != null && perOk(a.per) && a.self == null && a.bp == null && a.noAttack == null)) && (a.per == null || a.perN != null) && (a.count == null || (Number.isInteger(a.count) && a.count >= 2 && a.count <= 4 && a.self == null && a.perN == null && a.perBp == null)) && (a.bp == null || (a.bp && Number.isInteger(a.bp.n) && a.bp.n >= 1000 && a.bp.n <= 5000 && a.bp.n % 1000 === 0 && (a.bp.oppAttackStep == null || a.bp.oppAttackStep === true))),      // v0.195 bp {n, oppAttackStep}: "refresh it, and during this turn it gains +n BP" (only in the opposing Attack Step with oppAttackStep); v193 sameCostAttacker: "with the same cost as that Spirit"; v195 perBp: "for every N BP this Spirit has"
@@ -178,7 +178,7 @@ Object.assign(FX_ACTIONS, {
       log(`${CARDS[c.src.id].name}: ${m} core${m === 1 ? '' : 's'} move to ${CARDS[t.id].name}.`); checkDepletion(c.p); io.view({ type: 'board' });
     } },
   /* reveal n cards, add one matching card to the Hand, the rest go to the Trash or the bottom of the Deck (v0.33, e.g. Rainydle) */
-  CORE_TO_NEXUS: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && hasMatch(a.match) && (a.perDestroyedCost == null || (a.perDestroyedCost === true && Number.isInteger(a.max) && a.max >= 1 && a.max <= 30)), txt: a => `+${a.n} core to one of your matching Nexuses`,
+  CORE_TO_NEXUS: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 7 && hasMatch(a.match) && (a.perDestroyedCost == null || (a.perDestroyedCost === true && Number.isInteger(a.max) && a.max >= 1 && a.max <= 30)), txt: a => `+${a.n} core to one of your matching Nexuses`,
     cands: (c, a) => c.p.nexus.filter(x => fxMatch(CARDS[x.id], a.match)),
     can: (c, a) => c.p.reserve.n > 0 && FX_ACTIONS.CORE_TO_NEXUS.cands(c, a).length > 0,
     run: async (c, a) => {

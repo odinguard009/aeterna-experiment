@@ -1,7 +1,7 @@
 // v0.186 STATIC NO_ATTACK_LIFE {costLe}: "Neither player's Life can be reduced by the attacks of Cost N or less Spirits."
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { openGame, closeBrowser } from './lib/game.mjs';
+import { openGame, closeBrowser } from './lib/node_board.mjs';
 
 after(closeBrowser);
 let g;

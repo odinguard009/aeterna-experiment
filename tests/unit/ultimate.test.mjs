@@ -2,7 +2,7 @@
 // and Ultra Manifest (BS76-CP01 Generator-Dragon-Brahman: Soul Core onto this card, +1 core to the target Nexus, summon without paying).
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { openGame, closeBrowser } from './lib/game.mjs';
+import { openGame, closeBrowser } from './lib/node_board.mjs';
 
 let g;
 before(async () => { g = await openGame(''); });

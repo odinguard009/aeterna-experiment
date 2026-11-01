@@ -1,7 +1,7 @@
 // v0.41 Magic effect types (see docs/ai/roadmap-open.md): MAGIC_FX.ACTIONS, DESTROY_EACH_COST, SYMBOLS_ZERO_OPP, SUMMON_HAND from the Trash.
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { openGame, closeBrowser } from './lib/game.mjs';
+import { openGame, closeBrowser } from './lib/node_board.mjs';
 
 let g;
 before(async () => { g = await openGame(''); });

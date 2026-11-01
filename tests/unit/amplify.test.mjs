@@ -5,7 +5,7 @@
 // Scenario: tests/scenarios/amplify-leucomyst-bp.json. Rules: ETR:faq.bp (BP plus/minus).
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { openGame, closeBrowser } from './lib/game.mjs';
+import { openGame, closeBrowser } from './lib/node_board.mjs';
 
 let g;
 const FIX = [

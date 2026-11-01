@@ -2,7 +2,7 @@
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
-import { ROOT, openGame, closeBrowser } from './lib/game.mjs';
+import { ROOT, openGame, closeBrowser } from './lib/node_board.mjs';
 
 const TEXT = '[LV1] {{Assault|2}} (When Attacks)\nThis Spirit can, up to twice per turn, be refreshed by exhausting one of your Nexuses.';
 test('AS185-01 compiler: Assault sentence becomes an optional ASSAULT effect', () => {

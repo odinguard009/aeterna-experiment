@@ -3,7 +3,7 @@
 // the summoned card's When Summoned effects see viaFC; every other summon path clears it. Scenario: tests/scenarios/form-change-summon.json.
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { openGame, closeBrowser } from './lib/game.mjs';
+import { openGame, closeBrowser } from './lib/node_board.mjs';
 
 let g;
 const FC = { trigger: 'ACTIVATE', invoke: true, timing: ['MAIN'], once: true, sameName: true, lv: [1], actions: [{ do: 'FORM_CHANGE', match: { name: ['Zed'] }, costIn: [3] }] };

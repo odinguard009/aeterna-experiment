@@ -5,7 +5,7 @@
 // rules: ETR:tokens@06480141, ETR:brave.saga@9bf96f20
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { openGame, closeBrowser } from './lib/game.mjs';
+import { openGame, closeBrowser } from './lib/node_board.mjs';
 
 let g;
 const FIX = [

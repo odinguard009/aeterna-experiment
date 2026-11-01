@@ -1,7 +1,7 @@
 // v0.180.0 (Lane K): SUMMON_HAND noFx — "any (When Summoned) effects of the Spirit summoned by this effect can't activate" (BS02-034).
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { openGame, closeBrowser } from './lib/game.mjs';
+import { openGame, closeBrowser } from './lib/node_board.mjs';
 
 let g;
 before(async () => {

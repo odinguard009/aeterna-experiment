@@ -5,7 +5,7 @@
 // the opposing Life, put a core from the Void to your Life." (ALLY_LIFE_HIT self + VOID_TO_LIFE).
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { openGame, closeBrowser } from './lib/game.mjs';
+import { openGame, closeBrowser } from './lib/node_board.mjs';
 
 let g;
 before(async () => { g = await openGame(''); });

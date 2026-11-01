@@ -2,7 +2,7 @@
 // (ALLY_BLOCKED self + EXHAUST_OPP oppChooses n), and DESTROY_ANY (CPU only picks the opposing side).
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { openGame, closeBrowser } from './lib/game.mjs';
+import { openGame, closeBrowser } from './lib/node_board.mjs';
 
 let g;
 before(async () => { g = await openGame(''); });

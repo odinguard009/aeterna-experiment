@@ -3,7 +3,7 @@
 // rules: ETR:main.moving-cores@c47b46af, ETR:cost.paying@06d788b2, ETR:gw.nexus@8bea6dad
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { openGame, closeBrowser } from './lib/game.mjs';
+import { openGame, closeBrowser } from './lib/node_board.mjs';
 
 let g;
 before(async () => { g = await openGame(''); });

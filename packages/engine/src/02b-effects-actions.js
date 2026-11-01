@@ -90,7 +90,7 @@ const FX_ACTIONS = {
   /* v0.195 "You can exhaust this Spirit. If you've done so, ..." (optional effect; the next action reads prev) */
   EXHAUST_SELF: { chk: () => true, txt: () => 'exhaust this Spirit', can: c => (c.p.spirits.includes(c.src) || c.p.nexus.includes(c.src)) && !c.src.exhausted,      // v0.197 a Nexus can exhaust itself (Red Stella Stage)
     run: async c => { c.src.exhausted = true; log(`${CARDS[c.src.id].name} is exhausted.`); } },
-  ASSAULT: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5, txt: a => `refresh this Spirit by exhausting one of your Nexuses (up to ${a.n} per turn)`,      // v0.185 {{Assault|N}}
+  ASSAULT: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 7, txt: a => `refresh this Spirit by exhausting one of your Nexuses (up to ${a.n} per turn)`,      // v0.185 {{Assault|N}}
     can: c => c.src.exhausted && c.p.nexus.some(x => !x.exhausted),
     run: async (c, a) => {
       const s = c.src, used = s.assaultT === G.turnNo ? s.assaultN : 0, L = c.p.nexus.filter(x => !x.exhausted);

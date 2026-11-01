@@ -3,7 +3,7 @@
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { openGame, closeBrowser, ROOT } from './lib/game.mjs';
+import { openGame, closeBrowser, ROOT } from './lib/node_board.mjs';
 
 let g;
 before(async () => { g = await openGame(''); });

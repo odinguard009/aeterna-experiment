@@ -4,10 +4,5 @@
 - [Language](feedback-language.md) — chat only in Indonesian or English, never German
 - [Full auto](feedback-full-auto.md) — no questions to owner; web + project actions pre-approved for Aeterna; safety rules still apply
 - [Never end turn mid-chain](feedback-never-end-turn-chain.md) — push dies if turn ends; keep going until GO/STOP
-- [Lane K release per 50](feedback-lane-k-50.md) - wip/lane-k per bundle, main release at 100 new complete cards
-- [Lane K auto-repeat](feedback-lane-k-auto-repeat.md) - release at 100, then repeat until the owner says stop; pick best option on dialogs; check waits every 5 min
-- [Session end checklist](feedback-session-end-checklist.md) - push session branch, wait for Release + Regression, `done` with start=/budget=, add_repo tool in prompt
-- [Standard block A only](feedback-standard-block-a-only.md) - pause other cards until block A is done; same-effect Eternal cards are fine
-- [Lane K never stop](feedback-lane-k-never-stop.md) - never stop Lane K for any reason (owner repeated it 2026-10-31: no turn end for reports or dialogue; if stopped, restart at once); only the owner's stop or a quota error ends it
-- [Stop guard](feedback-stop-guard.md) - Stop hook holds chain sessions via .git/aeterna-chain marker; stops logged; `rantai off` to stop on purpose
-- [Model policy](feedback-model-policy.md) - main model DeepSeek V4.1 Flash (deepseek-flash); heavy work asks the V4 Pro `advisor` first, with a self-contained brief
+- [Lane K release per 50](feedback-lane-k-50.md) - wip/lane-k per bundle, main release at 50 new complete cards
+- [Auto git](feedback-auto-git.md) — commit/push/merge run automatically, no asking
