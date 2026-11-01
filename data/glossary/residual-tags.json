@@ -799,22 +799,13 @@
   "K_CRUSH",
   "T_BLOCKS"
  ],
- "BS03-123": [
-  "A_RETURN_TRASH",
-  "A_TRASH_TO_RESERVE"
- ],
  "BS03-130": [
   "A_VOID"
  ],
  "BS03-132": [
   "A_EXHAUST"
  ],
- "BS03-136": [],
  "BS03-137": [],
- "BS03-140": [
-  "A_RETURN_TRASH",
-  "A_TRASH_TO_RESERVE"
- ],
  "BS03-143": [
   "A_VOID",
   "K_CRUSH"
@@ -1318,10 +1309,6 @@
  "BS05-078": [
   "A_BP_PLUS"
  ],
- "BS05-080": [
-  "A_TRASH_TO_RESERVE",
-  "T_ACTIVATE"
- ],
  "BS05-081": [
   "T_ACTIVATE"
  ],
@@ -1578,10 +1565,6 @@
   "C_LEVEL",
   "K_CRUSH",
   "T_ALLY_DESTROYS"
- ],
- "BS06-092": [
-  "A_RETURN_TRASH",
-  "A_TRASH_TO_RESERVE"
  ],
  "BS06-101": [
   "A_EXHAUST",
@@ -1846,9 +1829,6 @@
  "BS07-066": [
   "C_LEVEL",
   "T_BLOCKS"
- ],
- "BS07-068": [
-  "A_BP_PLUS"
  ],
  "BS07-069": [
   "A_RETURN_TRASH",
@@ -2767,18 +2747,8 @@
  "BS10-098": [
   "A_TRASH_TO_RESERVE"
  ],
- "BS10-100": [
-  "A_RETURN_TRASH",
-  "A_TRASH_TO_RESERVE",
-  "K_BRAVE"
- ],
  "BS10-108": [
   "A_VOID"
- ],
- "BS10-109": [
-  "A_RETURN_TRASH",
-  "A_TRASH_TO_RESERVE",
-  "K_HOLY_LIFE"
  ],
  "BS10-111": [
   "M_THEN"
@@ -2791,9 +2761,6 @@
  "BS10-113": [
   "A_DISCARD_OPP",
   "T_ALLY_LIFE_HIT"
- ],
- "BS10-114": [
-  "K_BRAVE"
  ],
  "BS10-X01": [
   "A_AWAKEN",
@@ -4232,9 +4199,6 @@
   "K_BURST",
   "M_THEN",
   "M_UP_TO"
- ],
- "BS14-106": [
-  "A_VOID"
  ],
  "BS14-108": [],
  "BS14-111": [
@@ -6258,10 +6222,6 @@
  ],
  "BS20-076": [
   "T_ALLY_LOST"
- ],
- "BS20-077": [
-  "A_BP_PLUS",
-  "T_ACTIVATE"
  ],
  "BS20-X01": [
   "A_REFRESH",
@@ -8350,10 +8310,6 @@
   "A_BP_PLUS",
   "C_LEVEL",
   "K_CRUSH",
-  "K_ULTIMATE"
- ],
- "BS25-075": [
-  "A_BP_PLUS",
   "K_ULTIMATE"
  ],
  "BS25-079": [
@@ -11126,7 +11082,6 @@
   "C_LEVEL",
   "T_ATTACKS"
  ],
- "BS31-099": [],
  "BS31-106": [
   "A_REFRESH"
  ],
@@ -15868,7 +15823,6 @@
   "C_CONTROL",
   "K_ULTIMATE"
  ],
- "BS40-079": [],
  "BS40-089": [
   "A_SUMMON_FREE",
   "M_UP_TO"

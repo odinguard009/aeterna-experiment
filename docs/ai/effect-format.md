@@ -280,3 +280,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v242 (Lane K): OPP_CORES_TO_RESERVE.perSource (own family/count, opposing field colours, your Nexuses) with perMatch, the OPP_CORES_TO_TRASH action, and a family list in a per query. Cards: BS10-020, BS36-013, BS16-017, BS15-013, BS50-014.
 - v243 (Lane K): DESTROY.match (family/colour filter), BOUNCE_OPP.symbolsGe, OPP_CORES_TO_RESERVE.allTargets (every matching target loses `each` cores). Cards: BS18-011, BS24-031, BS13-013, BS10-035.
 - v244 (Lane K): DRAW.perOppHand (draw as many cards as the opposing Hand) and VOID_TO_RESERVE.perSource (own matching Spirits, your Nexuses, colours on the opposing field). Cards: BS22-010, BS25-044, BS02-103, BS01-138.
+- v245 (Lane K): RETURN_TRASH.n returns exactly n matching Trash cards. Cards: BS31-099, BS05-080, BS06-092, BS40-079, BS14-106 (Magic Main clauses).
