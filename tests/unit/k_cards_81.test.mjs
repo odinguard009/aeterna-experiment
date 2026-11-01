@@ -210,3 +210,14 @@ test('K-858 BS43-040 gets +3000 BP per Armed Machine / Machine Beast Spirit, a d
     P.spirits = [s]; const a = BS.bpOf(s); P.spirits = [s, d]; const b = BS.bpOf(s); return [BS.CARDS['BS43-040'].families.some(f => ['Armed Machine', 'Machine Beast'].includes(f)), b - a]; })()`);
   assert.deepEqual(r[1] === 3000 || r[1] === 6000 ? [r[1]] : r, [3000], JSON.stringify(r));
 });
+
+test('K-859 BS12-021 puts a Void core into the Reserve per Shellman and gives its families +1000 BP', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true;
+    const s = BS.mkInst('BS12-021'); s.cores = 3; const sh = Object.keys(BS.CARDS).find(k => k !== 'BS12-021' && BS.CARDS[k].type === 'Spirit' && (BS.CARDS[k].families || []).includes('Shellman')); const o = BS.mkInst(sh); o.cores = 1;
+    P.spirits = [s, o]; P.void = 5; const r0 = P.reserve.n; O.spirits = [];
+    const e = BS.CARDS['BS12-021'].effects[0]; await BS.runActions({ p: P, opp: O, src: s, ctx: {} }, e, e.trigger);
+    const plain = BS.mkInst('BS01-001'); plain.cores = 1; P.spirits = [s, o]; const b1 = BS.bpOf(o); P.spirits = [o]; const b0 = BS.bpOf(o);
+    return [P.reserve.n - r0, b1 - b0]; })()`);
+  assert.deepEqual(r, [2, 1000], JSON.stringify(r));
+});
