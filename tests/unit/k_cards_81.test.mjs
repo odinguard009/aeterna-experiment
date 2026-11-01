@@ -221,3 +221,13 @@ test('K-859 BS12-021 puts a Void core into the Reserve per Shellman and gives it
     return [P.reserve.n - r0, b1 - b0]; })()`);
   assert.deepEqual(r, [2, 1000], JSON.stringify(r));
 });
+
+test('K-860 BS20-067 gives all own Spirits +1000 BP per Terra Dragon in the own Attack Step only', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true; O.spirits = [];
+    const s = BS.mkInst('BS20-067'); s.cores = 2; const x = BS.mkInst('BS01-001'); x.cores = 1; const out = [];
+    P.spirits = [x]; const base = BS.bpOf(x); const td = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && (BS.CARDS[k].families || []).includes('Terra Dragon')); const t = BS.mkInst(td); t.cores = 1; P.spirits = [s, x, t];
+    for (const [step, act] of [[5, 'player'], [3, 'player'], [5, 'opponent']]) { G.step = step; G.active = act === 'player' ? P.key : O.key; out.push(BS.bpOf(x) - base); }
+    return out; })()`);
+  assert.equal(r[0] >= 1000 && r[0] % 1000 === 0, true, JSON.stringify(r)); assert.deepEqual(r.slice(1), [0, 0], JSON.stringify(r));
+});
