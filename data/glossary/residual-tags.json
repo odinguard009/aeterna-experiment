@@ -4003,10 +4003,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "BS14-003": [
-  "A_BP_PLUS",
-  "C_LEVEL"
- ],
  "BS14-005": [
   "A_RETURN_TRASH",
   "A_TRASH_TO_RESERVE",
@@ -4171,11 +4167,6 @@
  "BS14-061": [
   "C_LEVEL",
   "K_BURST"
- ],
- "BS14-062": [
-  "C_LEVEL",
-  "K_BURST",
-  "K_CRUSH"
  ],
  "BS14-064": [
   "A_EXHAUST",

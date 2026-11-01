@@ -109,12 +109,25 @@
   "image": "Scartooth.png",
   "block": "14",
   "saga": 3,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (Your Attack Step) While there are only Red cards in your Trash, this Spirit gains +3000 BP."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "C"
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image.",
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "bp": 3000,
+    "to": "self",
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": false,
+     "trashAllColor": "red"
+    }
+   }
+  ]
  },
  {
   "id": "BS14-004",
@@ -2740,13 +2753,31 @@
      2,
      3
     ]
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 2000,
+    "to": "own",
+    "match": {
+     "keywordAny": [
+      "Crush",
+      "Great Crush"
+     ]
+    },
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": false,
+     "burstSet": true
+    }
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (Your Attack Step) While you have a Burst set, every Spirit with Crush/Great Crush you control gets + 2000 BP."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image.",
   "rcode": "C"
  },
  {

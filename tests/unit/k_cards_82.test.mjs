@@ -280,3 +280,17 @@ test('K-885 BS09-033 refreshes three Yellow Spirits when your Life is reduced an
     return out; })()`);
   assert.deepEqual(r, [3, 0, 1, 1, 1], JSON.stringify(r));
 });
+
+test('K-886 BS14-003 gains +3000 BP in your Attack Step while only Red cards are in your Trash; BS14-062 gives Crush Spirits +2000 BP while you have a Burst set', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const out = []; const a = BS.mkInst('BS14-003'); a.cores = 1; P.spirits = [a]; P.trash = [BS.mkInst('BS01-001')];
+    G.active = P.key; G.step = 5; const base = BS.bpOf(a);
+    G.step = 3; const off = BS.bpOf(a); out.push(base - off);
+    G.step = 5; P.trash = [BS.mkInst('BS01-001'), BS.mkInst('BS02-049')]; out.push(BS.bpOf(a) - off);
+    P.trash = []; P.spirits = []; const c = BS.mkInst('BS14-062'); c.cores = 1; const v = BS.mkInst('BS01-001'); v.cores = 1; P.spirits = [c, v]; P.burst = null;
+    const b0 = BS.bpOf(c); P.burst = BS.mkInst('BS01-001'); out.push(BS.bpOf(c) - b0, BS.bpOf(v) - BS.bpOf(v));
+    G.step = 3; out.push(BS.bpOf(c) - b0);
+    return out; })()`);
+  assert.deepEqual(r, [3000, 0, 2000, 0, 0], JSON.stringify(r));
+});
