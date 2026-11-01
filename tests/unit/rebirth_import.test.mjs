@@ -32,7 +32,7 @@ test('RB-02 the Library and Deck Builder Rebirth chips show the imported cards',
       LIBF.groups.add('rebirth'); LIBF.complete = true; renderLibrary();
       const lib = document.getElementById('lib-count').textContent;
       BS.switchView('view-deckbuilder');
-      DBF.groups.add('rebirth'); DBF.complete = false; renderDeckBuilder();
+      DBF.groups.add('rebirth'); DBF.status = ''; renderDeckBuilder();
       const db = document.getElementById('db-count').textContent;
       return { lib, db, first: BS.CARDS['BS55-051'] && BS.CARDS['BS55-051'].rebirthTo };
     });

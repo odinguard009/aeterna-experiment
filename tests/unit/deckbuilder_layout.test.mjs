@@ -84,7 +84,7 @@ for (const screen of ['pc', 'phone']) {
       const shown = () => [...document.querySelectorAll('#db-card-list [data-a="dbcard"]')].map(e => e.dataset.v);
       ch('db-set', 'BS74'); const set = shown().every(id => id.startsWith('BS74-')) && shown().length > 0;
       ch('db-set', ''); BS.DBF.family = 'Dragon'; BS.renderDeckBuilder(); const fam = shown().every(id => (BS.CARDS[id].families || []).join(' ').toLowerCase().includes('dragon')) && shown().length > 0;
-      BS.DBF.family = ''; document.getElementById('db-legal').click(); const legal = shown().every(id => !BS.legalityOf(id, BS.FORMAT)); document.getElementById('db-legal').click();
+      BS.DBF.family = ''; ch('db-fmt', 'standard'); const legal = shown().length > 0 && shown().every(id => !BS.legalityOf(id, 'standard')); ch('db-fmt', '');
       document.querySelector('[data-a="db-chip"][data-v="types:Magic"]').click(); const mag = shown().every(id => BS.CARDS[id].type === 'Magic' && !BS.CARDS[id].contract);
       document.querySelector('[data-a="db-chip"][data-v="types:Magic"]').click();
       BS.DBF.sort = 'cost'; BS.renderDeckBuilder(); const costs = shown().map(id => BS.CARDS[id].cost); const byCost = costs.every((c, i) => !i || costs[i - 1] <= c);

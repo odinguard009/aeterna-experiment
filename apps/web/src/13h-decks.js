@@ -7,7 +7,7 @@
    DECKS (the deck-feature recipes of the Standard sets); both have Recipe (full list + source link) and Copy. A slot is listed
    when it has cards, a name of its own or the used mark (New / Import / Copy); a wiped slot is not listed even while active.
    --------------------------------------------------------------------- */
-let DK_MENU = -1, DK_Q = '', DK_SORT = 'slot';                                   // slot whose more menu / action sheet is open
+let DK_MENU = -1, DK_Q = '', DK_SORT = 'slot', DK_SFMT = '';      // DK_SFMT: which format's starter / ready decks show (''= the chosen play format)                                   // slot whose more menu / action sheet is open
 const dkCards = i => (i === ACTIVE_SLOT ? PLAYER_DECK : SLOTS[i].cards);
 function dkUsed(i) { return !!SLOTS[i].used || deckTotal(dkCards(i)) > 0 || !/^Deck \d+$/.test(SLOTS[i].name); }   // v0.201.0 fix: a wiped slot is no longer listed just because it is the active one (Delete left the deck on screen)
 const dkFree = () => SLOTS.findIndex((s, i) => !dkUsed(i));
@@ -72,7 +72,9 @@ function renderDecks() {
   else if (DK_SORT === 'wr') shown.sort((a, b) => (sk(b).wr == null ? -1 : sk(b).wr) - (sk(a).wr == null ? -1 : sk(a).wr));
   $('dk-list').innerHTML = shown.map(i => dkTile(i, SLOTS[i].name, dkCards(i))).join('') + (!q && dkFree() >= 0 ? '<button class="card flat dtile dk-add" data-a="dk-new" style="border:2px dashed var(--line2);align-items:center;justify-content:center;min-height:250px;color:var(--text2);background:transparent"><span style="font-size:42px">+</span><b>New deck</b><span class="sub" style="font-size:.8em">Blank, from a starter, or import</span></button>' : '');
   if ($('dk-sub')) $('dk-sub').textContent = `${used.includes(ACTIVE_SLOT) ? 1 : 0} active`;
-  const rows = kind => prebuiltOrder(FORMAT).filter(({ d }) => (d.kind || 'starter') === kind).map(({ d, i }) => dkTile(i, prebuiltLabel(d), d.cards, true)).join('');
+  const sf = DK_SFMT || FORMAT;
+  dqa('#dk-sfmt button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === sf)));
+  const rows = kind => prebuiltOrder(sf).filter(({ d }) => (d.kind || 'starter') === kind && prebuiltFmt(d) === sf).map(({ d, i }) => dkTile(i, prebuiltLabel(d), d.cards, true)).join('');
   $('dk-starters').innerHTML = rows('starter');
   if ($('dk-ready')) $('dk-ready').innerHTML = rows('ready');
   if ($('dk-ready-sec')) $('dk-ready-sec').style.display = rows('ready') ? '' : 'none';
@@ -94,6 +96,7 @@ function dkNewSlot(name, cards, keep, key) {        // the first free slot (made
   return true;
 }
 async function dkAct(a, v) {
+  if (a === 'dk-sfmt') { DK_SFMT = v === 'standard' ? 'standard' : 'eternal'; return renderDecks(); }
   const i = Number(v); if (a !== 'dk-more') DK_MENU = -1;
   if (a === 'dk-more') return dkMenu(i);
   if (a === 'dk-new') {                 // mockup New Deck dialog: Blank / From a starter deck / Import a list

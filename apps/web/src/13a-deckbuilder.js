@@ -65,7 +65,7 @@ function ddMenuEl(S, tb, btn, pick, clear) {
 }
 function ddPick(S, v, clear) { if (clear && S.dd === 'sort') { S.sort = ddSortDef(S); S.sortDir = 'asc'; return; } const items = ddList(S, S.dd); if (clear) items.forEach(i => i.set.delete(i.v)); else { const i = items.find(x => x.v === v); if (i) { if (i.set.has(i.v)) i.set.delete(i.v); else i.set.add(i.v); } } }
 const ddReset = S => { ['colors', 'costs', 'types', 'groups', 'bps', 'cores', 'fams', 'icons', 'rars', 'collabs'].forEach(g => S[g].clear()); S.cmode = S.ffall = false; S.fq = ''; };
-const DBF = { colors: new Set(), costs: new Set(), types: new Set(), groups: new Set(), bps: new Set(), cores: new Set(), fams: new Set(), icons: new Set(), rars: new Set(), collabs: new Set(), cmode: false, ffall: false, fq: '', set: '', family: '', legal: false, complete: false, only: false, dd: '', sort: 'default', sortDir: 'asc' };
+const DBF = { colors: new Set(), costs: new Set(), types: new Set(), groups: new Set(), bps: new Set(), cores: new Set(), fams: new Set(), icons: new Set(), rars: new Set(), collabs: new Set(), cmode: false, ffall: false, fq: '', set: '', family: '', fmt: '', status: '', only: false, dd: '', sort: 'default', sortDir: 'asc' };
 const DB_UNDO = [], DB_REDO = [];   // v0.128.0 U14f: Redo; any new change empties it
 let DB_IO = '';
 const dbArr = v => v == null || v === '' ? [] : Array.isArray(v) ? v : v instanceof Set ? [...v] : [String(v)];
@@ -121,7 +121,7 @@ function dbIndex() {
   return DBV.idx;
 }
 function dbSets() { return [...new Set(dbIndex().map(e => dbSetOf(e.id)))].sort(DB_COLL.compare); }
-function dbActiveCount() { return DBF.colors.size + DBF.costs.size + DBF.types.size + DBF.groups.size + DBF.bps.size + DBF.cores.size + DBF.fams.size + DBF.icons.size + DBF.rars.size + DBF.collabs.size + (DBF.set ? 1 : 0) + (DBF.family ? 1 : 0) + (DBF.legal ? 1 : 0) + (DBF.complete ? 1 : 0) + (DBF.only ? 1 : 0) + ((($('db-search') || {}).value) ? 1 : 0); }
+function dbActiveCount() { return DBF.colors.size + DBF.costs.size + DBF.types.size + DBF.groups.size + DBF.bps.size + DBF.cores.size + DBF.fams.size + DBF.icons.size + DBF.rars.size + DBF.collabs.size + (DBF.set ? 1 : 0) + (DBF.family ? 1 : 0) + (DBF.fmt ? 1 : 0) + (DBF.status ? 1 : 0) + (DBF.only ? 1 : 0) + ((($('db-search') || {}).value) ? 1 : 0); }
 /** R9: Sort menu. A value of null (no BP on a Magic, no rarity, ...) sorts last in both directions; ties fall back to the card code. */
 const DB_RARITY_ORDER = ['C', 'CP', 'U', 'R', 'M', 'X', 'XX', 'XV', 'NX', 'AX'];
 const DB_SORT_VAL = {
@@ -147,10 +147,10 @@ function dbSortCmp(key, dir) {
 }
 function dbFilter() {
   const q = ($('db-search').value || '').trim().toLowerCase(), only = DBF.only, fam = DBF.family.trim().toLowerCase();
-  const idx = dbIndex(), key = [CARDS_VER, q, only ? Object.keys(PLAYER_DECK).filter(id => PLAYER_DECK[id]).sort().join(',') : '', [...DBF.colors].join(), [...DBF.costs].join(), [...DBF.types].join(), [...DBF.groups].join(), [...DBF.bps].join(), [...DBF.cores].join(), [...DBF.fams].join('~'), [...DBF.icons].join(), [...DBF.rars].join(), [...DBF.collabs].join(), DBF.cmode, DBF.ffall, DBF.set, fam, DBF.legal, DBF.complete, DBF.sort, DBF.sortDir, FORMAT].join('|');
+  const idx = dbIndex(), key = [CARDS_VER, q, only ? Object.keys(PLAYER_DECK).filter(id => PLAYER_DECK[id]).sort().join(',') : '', [...DBF.colors].join(), [...DBF.costs].join(), [...DBF.types].join(), [...DBF.groups].join(), [...DBF.bps].join(), [...DBF.cores].join(), [...DBF.fams].join('~'), [...DBF.icons].join(), [...DBF.rars].join(), [...DBF.collabs].join(), DBF.cmode, DBF.ffall, DBF.set, fam, DBF.fmt, DBF.status, DBF.sort, DBF.sortDir, FORMAT].join('|');
   if (key === DBV.key) return DBV.list;
   DBV.key = key;
-  let l = idx.filter(e => (!only || PLAYER_DECK[e.id]) && (!q || e.s.includes(q)) && (!fam || e.f.includes(fam)) && (!DBF.set || dbSetOf(e.id) === DBF.set) && dbFilterOK(CARDS[e.id], DBF.colors, DBF.costs, DBF.types, DBF.cmode) && dbPlusOK(CARDS[e.id], DBF) && ([...DBF.groups].every(g => dbGroupOK(CARDS[e.id], g))) && (!DBF.legal || !legalityOf(e.id, FORMAT)) && (!DBF.complete || !fxMarked(CARDS[e.id])));
+  let l = idx.filter(e => (!only || PLAYER_DECK[e.id]) && (!q || e.s.includes(q)) && (!fam || e.f.includes(fam)) && (!DBF.set || dbSetOf(e.id) === DBF.set) && dbFilterOK(CARDS[e.id], DBF.colors, DBF.costs, DBF.types, DBF.cmode) && dbPlusOK(CARDS[e.id], DBF) && ([...DBF.groups].every(g => dbGroupOK(CARDS[e.id], g))) && (!DBF.fmt || !legalityOf(e.id, DBF.fmt)) && (!DBF.status || (DBF.status === 'partial') === fxMarked(CARDS[e.id])));
   const cmp = dbSortCmp(DBF.sort, DBF.sortDir); if (cmp) l = l.slice().sort(cmp);
   DBV.list = l.map(e => e.id);
   const tr = DBV.list.filter(id => id.startsWith('TRAIN-')).length;      // v0.99 U8a: Home counts real cards only; say which extra cards the builder shows
@@ -194,7 +194,7 @@ function dbBar() {
   $('db-colbtn').innerHTML = ddButton(DBF, 'colour', 'Colour', 'db-dd') + ddButton(DBF, 'type', 'Type', 'db-dd') + ddButton(DBF, 'cost', 'Cost', 'db-dd');
   $('db-groups').innerHTML = ddButton(DBF, 'group', 'Group', 'db-dd') + ddButton(DBF, 'family', 'Family', 'db-dd') + ddButton(DBF, 'bp', 'BP', 'db-dd') + ddButton(DBF, 'cores', 'Cores', 'db-dd') + ddButton(DBF, 'icon', 'Block', 'db-dd') + ddButton(DBF, 'rarity', 'Rarity', 'db-dd') + ddButton(DBF, 'collab', 'Collab', 'db-dd');
   $('db-sortbtn').innerHTML = ddButton(DBF, 'sort', 'Sort', 'db-dd');            // owner review 2026-10-30: Sort shares a row with the three flag chips
-  [['db-play', 'complete'], ['db-in', 'only'], ['db-legal', 'legal']].forEach(([id, k]) => { const b = $(id); b.classList.toggle('on', DBF[k]); b.setAttribute('aria-pressed', String(DBF[k])); });
+  { const b = $('db-in'); b.classList.toggle('on', DBF.only); b.setAttribute('aria-pressed', String(DBF.only)); $('db-cstatus').value = DBF.status; $('db-fmt').value = DBF.fmt; }
   dbMenu();
   if (set.dataset.sig !== sig) { set.innerHTML = '<option value="">All sets</option>' + sets.map(x => `<option value="${esc(x)}">${esc(x)}</option>`).join(''); set.dataset.sig = sig; }
   set.value = DBF.set;
@@ -262,12 +262,12 @@ function dbLook(v) {
   SLOTS[ACTIVE_SLOT].look = Object.assign(deckLook(ACTIVE_SLOT), { [k]: n }); saveDeck(); applyLook(); renderDbLook();
 }
 function dbToggle(group, v) {
-  if (group === 'flag') { if (v in { complete: 1, only: 1, legal: 1 }) DBF[v] = !DBF[v]; }
+  if (group === 'flag') { if (v === 'only') DBF.only = !DBF.only; }
   else { const s = DBF[group]; if (s.has(v)) s.delete(v); else s.add(v); }
   renderDeckBuilder();
 }
 function dbResetFilters() {
-  ddReset(DBF); DBF.set = ''; DBF.family = ''; DBF.legal = false; DBF.complete = false; DBF.only = false; DBF.dd = ''; DBF.sort = 'default'; DBF.sortDir = 'asc';
+  ddReset(DBF); DBF.set = ''; DBF.family = ''; DBF.fmt = ''; DBF.status = ''; DBF.only = false; DBF.dd = ''; DBF.sort = 'default'; DBF.sortDir = 'asc';
   $('db-search').value = ''; $('db-card-list').scrollTop = 0; renderDeckBuilder();
 }
 /* v0.119.0: an explicit Save (the deck already auto-saves, but the owner wanted a visible button). It also captures the

@@ -116,13 +116,13 @@ function renderLibrary() {
 const LIBV = { list: [], from: -1, to: -1, cols: 0, rowH: 0, raf: 0, timer: 0, key: '' };
 const LIB_GAP = 16, LIB_BUF = 2;
 const libSetOf = id => String(id).replace(/-.*$/, '');
-const LIBF = { colors: new Set(), costs: new Set(), types: new Set(), groups: new Set(), bps: new Set(), cores: new Set(), fams: new Set(), icons: new Set(), rars: new Set(), collabs: new Set(), cmode: false, ffall: false, fq: '', family: '', complete: true, partly: false, dd: '', sort: 'set', sortDir: 'asc', size: 'm', tab: 'cards', min: false };   // mockup toolbar state (v0.137.0)
+const LIBF = { colors: new Set(), costs: new Set(), types: new Set(), groups: new Set(), bps: new Set(), cores: new Set(), fams: new Set(), icons: new Set(), rars: new Set(), collabs: new Set(), cmode: false, ffall: false, fq: '', family: '', complete: true, partly: false, fmt: '', dd: '', sort: 'set', sortDir: 'asc', size: 'm', tab: 'cards', min: false };   // mockup toolbar state (v0.137.0)
 const LIB_SIZES = [['s', 'S', 8], ['m', 'M', 6], ['l', 'L', 4]];
-function libActive() { return LIBF.colors.size + LIBF.costs.size + LIBF.types.size + LIBF.groups.size + LIBF.bps.size + LIBF.cores.size + LIBF.fams.size + LIBF.icons.size + LIBF.rars.size + LIBF.collabs.size + (LIBF.family ? 1 : 0) + ((($('lib-set') || {}).value) ? 1 : 0) + (($('lib-search') || {}).value ? 1 : 0); }
+function libActive() { return LIBF.colors.size + LIBF.costs.size + LIBF.types.size + LIBF.groups.size + LIBF.bps.size + LIBF.cores.size + LIBF.fams.size + LIBF.icons.size + LIBF.rars.size + LIBF.collabs.size + (LIBF.family ? 1 : 0) + (LIBF.fmt ? 1 : 0) + ((($('lib-set') || {}).value) ? 1 : 0) + (($('lib-search') || {}).value ? 1 : 0); }
 function libFilter() {
   const q = (($('lib-search') || {}).value || '').trim().toLowerCase(), fam = LIBF.family.trim().toLowerCase();
   const set = (($('lib-set') || {}).value) || '';
-  const key = [CARDS_VER, q, set, fam, [...LIBF.colors], [...LIBF.costs], [...LIBF.types], [...LIBF.groups], [...LIBF.bps], [...LIBF.cores], [...LIBF.fams].join('~'), [...LIBF.icons].join(), [...LIBF.rars].join(), [...LIBF.collabs].join(), LIBF.cmode, LIBF.ffall, LIBF.complete, LIBF.partly, LIBF.sort, LIBF.sortDir].join('|');
+  const key = [CARDS_VER, q, set, fam, [...LIBF.colors], [...LIBF.costs], [...LIBF.types], [...LIBF.groups], [...LIBF.bps], [...LIBF.cores], [...LIBF.fams].join('~'), [...LIBF.icons].join(), [...LIBF.rars].join(), [...LIBF.collabs].join(), LIBF.cmode, LIBF.ffall, LIBF.complete, LIBF.partly, LIBF.fmt, LIBF.sort, LIBF.sortDir].join('|');
   if (key === LIBV.key) return LIBV.list;
   LIBV.key = key;
   let l = dbIndex().filter(e => {
@@ -131,6 +131,7 @@ function libFilter() {
     if (set && libSetOf(e.id) !== set) return false;
     const c = CARDS[e.id];
     if (LIBF.complete && fxMarked(c) && !LIBF.groups.has('rebirth')) return false;   // Rebirth cards are partial but must show under the Rebirth chip
+    if (LIBF.fmt && legalityOf(e.id, LIBF.fmt)) return false;
     if (LIBF.partly && !fxMarked(c)) return false;   // v0.158.0: the "! Partly Implemented" chip is a filter (only the cards marked "!")
     return dbFilterOK(c, LIBF.colors, LIBF.costs, LIBF.types, LIBF.cmode) && dbPlusOK(c, LIBF) && [...LIBF.groups].every(g => dbGroupOK(c, g));
   });
@@ -147,7 +148,7 @@ function libBar() {                                   // the mockup toolbar: col
   $('lib-colbtn').innerHTML = ddButton(LIBF, 'colour', 'Colour', 'lib-dd') + ddButton(LIBF, 'type', 'Type', 'lib-dd') + ddButton(LIBF, 'cost', 'Cost', 'lib-dd');
   $('lib-groups').innerHTML = ddButton(LIBF, 'group', 'Group', 'lib-dd') + ddButton(LIBF, 'family', 'Family', 'lib-dd') + ddButton(LIBF, 'bp', 'BP', 'lib-dd') + ddButton(LIBF, 'cores', 'Cores', 'lib-dd') + ddButton(LIBF, 'icon', 'Block', 'lib-dd') + ddButton(LIBF, 'rarity', 'Rarity', 'lib-dd') + ddButton(LIBF, 'collab', 'Collab', 'lib-dd');
   $('lib-sortbtn').innerHTML = ddButton(LIBF, 'sort', 'Sort', 'lib-dd');
-  $('lib-play').classList.toggle('on', LIBF.complete);
+  $('lib-status').value = LIBF.complete ? 'complete' : LIBF.partly ? 'partial' : ''; $('lib-fmt').value = LIBF.fmt;
   libMenu();
   $('lib-size').innerHTML = LIB_SIZES.map(([v, l]) => `<button data-a="lib-size" data-v="${v}" aria-pressed="${LIBF.size === v}">${l}</button>`).join('');
   if (document.activeElement !== $('lib-family')) $('lib-family').value = LIBF.family;
@@ -180,7 +181,7 @@ function libTool(a, v) {
   else if (a === 'lib-complete') { LIBF.complete = !LIBF.complete; if (LIBF.complete) LIBF.partly = false; }
   else if (a === 'lib-partly') { LIBF.partly = !LIBF.partly; if (LIBF.partly) LIBF.complete = false; }
   else if (a === 'lib-lore-min') { const k = v === 'head' ? 'lore-head-min' : 'lore-nav-min'; $('lib-lore-pane').classList.toggle(k); }
-  else if (a === 'lib-clear') { ddReset(LIBF); LIBF.family = ''; $('lib-set').value = ''; $('lib-search').value = ''; }
+  else if (a === 'lib-clear') { ddReset(LIBF); LIBF.family = ''; LIBF.fmt = ''; $('lib-set').value = ''; $('lib-search').value = ''; }
   else if (a === 'lib-lore-mv') { const ks = loreSeries().map(x => x[0]), i = ks.indexOf(LORE_SET) + Number(v); if (ks[i]) LORE_SET = ks[i]; }
   else if (a === 'lib-lore-by') { LORE_BY = v === 'saga' ? 'saga' : 'series'; LORE_SET = ''; }
   else if (a === 'lib-lore-set') LORE_SET = v;
@@ -280,6 +281,9 @@ document.addEventListener('change', async e => {
   else if (t.id === 'set-cb' || t.id === 'set-hc') { const k = t.id === 'set-cb' ? 'cbShapes' : 'hiContrast'; if (t.value === 'on') SETTINGS[k] = true; else delete SETTINGS[k]; saveSettings(); applyAccess(); }
   else if (t.id === 'set-lp') { if (t.value === 'off') SETTINGS.longpress = 'off'; else delete SETTINGS.longpress; saveSettings(); }
   else if (t.id === 'set-sound') { SETTINGS.sound = t.value === 'on'; saveSettings(); navTools(); if (SETTINGS.sound) sfx('summon'); }
+  else if (t.id === 'db-cstatus' || t.id === 'db-fmt') { DBF[t.id === 'db-fmt' ? 'fmt' : 'status'] = t.value; $('db-card-list').scrollTop = 0; renderDeckBuilder(); }
+  else if (t.id === 'lib-status') { LIBF.complete = t.value === 'complete'; LIBF.partly = t.value === 'partial'; $('lib-grid').scrollTop = 0; renderLibrary(); }
+  else if (t.id === 'lib-fmt') { LIBF.fmt = t.value; $('lib-grid').scrollTop = 0; renderLibrary(); }
   else if (t.id === 'lib-set') { $('lib-grid').scrollTop = 0; renderLibrary(); }   // v0.111.0 (card images): the Library browse grid filters
 });
 document.addEventListener('input', e => { if (evT(e).id === 'db-search') dbSearchInput(); else if (evT(e).id === 'lib-search') libSearchInput(); else if (evT(e).id === 'lib-family') { LIBF.family = /** @type {HTMLInputElement} */ (evT(e)).value; libSearchInput(); } });

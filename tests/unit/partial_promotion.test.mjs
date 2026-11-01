@@ -72,12 +72,12 @@ for (const [name, vp] of [['PC', { width: 1366, height: 768 }], ['phone', { widt
       const faces = [...document.querySelectorAll('#db-card-list [data-a="dbcard"]')];
       const bad = faces.filter(f => !!f.querySelector('.fx-mark') !== (BS.CARDS[f.dataset.v].implemented === false)).map(f => f.dataset.v);
       const s = document.getElementById('db-search'); s.value = ''; const all = parseInt(document.getElementById('db-count').textContent.replace(/,/g, ''), 10);
-      const cb = document.getElementById('db-play'); cb.click();   // v0.137.0: the Playable Only chip
+      const cb = document.getElementById('db-cstatus'); cb.value = 'complete'; cb.dispatchEvent(new Event('change', { bubbles: true }));   // the Status dropdown
       await new Promise(r => setTimeout(r, 50));
       const only = parseInt(document.getElementById('db-count').textContent.replace(/,/g, ''), 10);
       const marked = document.querySelectorAll('#db-card-list .fx-mark').length;
       const expect = Object.keys(BS.CARDS).filter(k => !BS.CARDS[k].token && !k.startsWith('TRAIN-') && BS.CARDS[k].implemented !== false).length;
-      cb.click();
+      cb.value = ''; cb.dispatchEvent(new Event('change', { bubbles: true }));
       const pid = Object.keys(BS.CARDS).find(k => BS.CARDS[k].implemented === false);
       s.value = pid; BS.renderDeckBuilder(); await new Promise(r => requestAnimationFrame(() => setTimeout(r)));
       const mk = document.querySelector(`#db-card-list [data-v="${pid}"] .fx-mark`); s.value = ''; BS.renderDeckBuilder();
