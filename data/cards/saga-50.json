@@ -7669,7 +7669,6 @@
    "Legacy"
   ],
   "fxComplete": true,
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
   "magic": {
    "timing": [
     "FLASH"
@@ -7990,7 +7989,6 @@
   "block": "A",
   "saga": 50,
   "fxComplete": true,
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
   "magic": {
    "timing": [
     "FLASH"
@@ -15457,7 +15455,6 @@
    "Soul Magic"
   ],
   "fxComplete": true,
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
   "soulMagic": "blue",
   "magic": {
    "timing": [
@@ -23221,7 +23218,6 @@
   "block": "A",
   "saga": 50,
   "fxComplete": true,
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
   "magic": {
    "timing": [
     "FLASH"
@@ -23680,7 +23676,6 @@
   "block": "A",
   "saga": 50,
   "fxComplete": true,
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "bicon": [
    "A"
   ],
@@ -33222,7 +33217,6 @@
   "block": "A",
   "saga": 50,
   "fxComplete": true,
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "collab": [
    "詩姫"
   ],
@@ -34400,7 +34394,6 @@
   "block": "A",
   "saga": 50,
   "fxComplete": true,
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
   "magic": {
    "timing": [
     "MAIN"
@@ -34564,7 +34557,6 @@
    }
   },
   "fxComplete": true,
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "collab": [
    "詩姫"
   ],
@@ -43311,7 +43303,6 @@
   "block": "A",
   "saga": 50,
   "fxComplete": true,
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
   "magic": {
    "timing": [
     "FLASH"
