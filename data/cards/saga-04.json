@@ -11104,12 +11104,24 @@
   "image": "BS21-046.jpg",
   "block": "21",
   "saga": 4,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (Opposing Attack Step) Opposing Cost 0 Spirits can't attack."
-  ],
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "CANT_ATTACK",
+    "to": "opp",
+    "lv": [
+     1,
+     2
+    ],
+    "match": {
+     "costLe": 0,
+     "noUlt": true
+    }
+   }
+  ]
  },
  {
   "id": "BS21-047",
@@ -14817,13 +14829,44 @@
   "image": "BS22-040.jpg",
   "block": "22",
   "saga": 4,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (Opposing Attack Step) Opposing Cost 3/4 Spirits can't attack.",
-   "[LV2][LV3] (Opposing Attack Step) Opposing Cost 7/8 Spirits can't attack."
-  ],
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "CANT_ATTACK",
+    "to": "opp",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "match": {
+     "costIn": [
+      3,
+      4
+     ],
+     "noUlt": true
+    }
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "CANT_ATTACK",
+    "to": "opp",
+    "lv": [
+     2,
+     3
+    ],
+    "match": {
+     "costIn": [
+      7,
+      8
+     ],
+     "noUlt": true
+    }
+   }
+  ]
  },
  {
   "id": "BS22-041",

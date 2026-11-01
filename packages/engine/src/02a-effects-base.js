@@ -232,10 +232,10 @@ function flagActive(owner, flag, subject, pred) {
     const L = lvNo(src), sideOpp = side === owner ? opp : owner;
     for (const { e } of fxEntries(src)) {
       if (e.trigger !== 'STATIC' || e.flag !== flag || (pred && !pred(e))) continue;
-      if (side !== owner && e.to !== 'all') continue;
+      if (side !== owner ? e.to !== 'all' && e.to !== 'opp' : e.to === 'opp') continue;      // v249 to:'opp' = only the OPPOSING Spirits of the source's owner ("Opposing Cost 0 Spirits can't attack")
       if (e.lv && !e.lv.includes(L)) continue;
       if (e.oc && !ocActive(src)) continue;
-      if (e.to === 'own' || e.to === 'all' ? !fxMatch(CARDS[subject.id], e.match) : src !== subject) continue;
+      if (e.to === 'own' || e.to === 'all' || e.to === 'opp' ? !fxMatch(CARDS[subject.id], e.match) : src !== subject) continue;
       if (!fxIf(side, sideOpp, e.if, { selfInst: src })) continue;
       return true;
     }

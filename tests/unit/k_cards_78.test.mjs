@@ -108,3 +108,11 @@ test('K-794 BS12-028 LV2: own white Spirits resist opposing Brave effects only i
     const own = BS.fxImmune(P, ally, c); G.active = 'opponent'; G.step = 4; const opp = BS.fxImmune(P, ally, c); G.step = 5; const atk = BS.fxImmune(P, ally, c); return [own, opp, atk];`);
   assert.deepEqual(r.slice(0, 3), [false, true, false], JSON.stringify(r));
 });
+
+test('K-795 BS21-046 / BS22-040: to:"opp" CANT_ATTACK bars only the opposing Spirits of the matching cost', async () => {
+  const r = await run(`const byCost = c => Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit' && BS.CARDS[i].cost === c);
+    sp('BS21-046', P, 1); const z = sp(byCost(0), O, 1), one = sp(byCost(1), O, 1), mine = sp(byCost(0), P, 1);
+    const out = [BS.flagActive(O, 'CANT_ATTACK', z), BS.flagActive(O, 'CANT_ATTACK', one), BS.flagActive(P, 'CANT_ATTACK', mine)];
+    sp('BS22-040', P, 2); const three = sp(byCost(3), O, 1); out.push(BS.flagActive(O, 'CANT_ATTACK', three)); return out;`);
+  assert.deepEqual(r, [true, false, false, true], JSON.stringify(r));
+});

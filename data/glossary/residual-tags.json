@@ -7328,9 +7328,6 @@
  "BS21-045": [
   "C_LEVEL"
  ],
- "BS21-046": [
-  "C_LEVEL"
- ],
  "BS21-048": [
   "A_REFRESH",
   "C_LEVEL",
@@ -7659,9 +7656,6 @@
   "C_LEVEL",
   "K_RUSH",
   "T_DESTROYED"
- ],
- "BS22-040": [
-  "C_LEVEL"
  ],
  "BS22-041": [
   "A_EXHAUST",
