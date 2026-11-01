@@ -67,3 +67,16 @@ test('K-844 BOTH_DESTROY_NEXUS destroys one Nexus each, and nothing when the opp
     O.nexus = [mk()]; await BS.FX_ACTIONS.BOTH_DESTROY_NEXUS.run(c, a); return [none, P.nexus.length, O.nexus.length, c.ctx.did]; })()`);
   assert.deepEqual(r, [[2, 0, false], 1, 0, true], JSON.stringify(r));
 });
+
+test('K-845 BS02-091: a 7000+ BP Spirit pays all its cores to the Void, then up to seven opposing cores go to their Reserve', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true;
+    const big = BS.mkInst('BS01-001'); big.cores = 3; big.bpMod = 20000; const small = BS.mkInst('BS01-001'); small.cores = 1; P.spirits = [small, big];
+    const o1 = BS.mkInst('BS01-001'); o1.cores = 4; const o2 = BS.mkInst('BS01-001'); o2.cores = 4; O.spirits = [o1, o2]; const r0 = O.reserve.n, v0 = P.void;
+    const acts = BS.CARDS['BS02-091'].magic.by.MAIN.actions; const c = { p: P, opp: O, src: BS.mkInst('BS02-091'), ctx: {} };
+    const ok = BS.FX_ACTIONS.OWN_SPIRIT_CORES_TO_VOID.chk(acts[0]);
+    await BS.FX_ACTIONS.OWN_SPIRIT_CORES_TO_VOID.run(c, acts[0]); const paid = [P.void - v0, P.spirits.includes(big), c.ctx.did];
+    await BS.FX_ACTIONS.OPP_CORES_TO_RESERVE.run(c, acts[1]); await BS.FX_ACTIONS.OPP_CORES_TO_RESERVE.run(c, acts[2]);
+    return [ok, paid, O.reserve.n - r0, o1.cores + o2.cores]; })()`);
+  assert.deepEqual(r, [true, [3, false, true], 7, 1], JSON.stringify(r));
+});

@@ -95,3 +95,19 @@ Object.assign(FX_ACTIONS, {      // v280 "Each player chooses and destroys a Nex
       io.view({ type: 'board' });
     } },
 });
+Object.assign(FX_ACTIONS, {      // v281 "By sending all cores from a <bpGe> BP or more Spirit you control to the Void, ..." (cost half; the Spirit is then depleted)
+  OWN_SPIRIT_CORES_TO_VOID: { chk: a => Number.isInteger(a.bpGe) && a.bpGe >= 1000 && a.bpGe <= 100000 && Object.keys(a).every(k => ['do', 'if', 'bpGe'].includes(k)),
+    txt: a => `send all cores from a Spirit of yours with ${a.bpGe} BP or more to the Void`,
+    cands: (c, a) => c.p.spirits.filter(t => t.cores > 0 && bpOf(t) >= a.bpGe && !t.noFx && !fxImmune(c.p, t)),
+    can: (c, a) => FX_ACTIONS.OWN_SPIRIT_CORES_TO_VOID.cands(c, a).length > 0,
+    run: async (c, a) => {
+      const L = FX_ACTIONS.OWN_SPIRIT_CORES_TO_VOID.cands(c, a); c.ctx.did = false; if (!L.length) return;
+      const nm = CARDS[c.src.id].name, t = c.p.cpu ? L.slice().sort((x, y) => x.cores - y.cores)[0] : await fxPickTarget(c, L, `✨ <b>${esc(nm)}</b><br>Tap the Spirit whose cores go to the Void (glowing).`);
+      if (!t) return;
+      const m = Math.min(t.cores, coreTakeCap(c.p, t, t.cores)); if (m <= 0) return;
+      coreEvN(c.p, t.uid, 'void', m, false); t.cores -= m; c.p.void += m; c.ctx.did = true;
+      log(`${nm}: ${m} core${m === 1 ? '' : 's'} from ${CARDS[t.id].name} go to the Void.`);
+      if (t.cores <= 0 && !t.soul) removeSpirit(c.p, t, 'depleted');
+      io.view({ type: 'board' });
+    } },
+});
