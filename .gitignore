@@ -12,3 +12,4 @@ brand/
 # codebase-memory MCP is registered in the profile patch instead, see .cbmignore).
 .vscode/
 .idea/
+.serena/
