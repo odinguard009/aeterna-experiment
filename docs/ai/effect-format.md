@@ -290,3 +290,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v252 (Lane K): STATIC NO_DESTROY_OPP (this Spirit cannot be destroyed by opposing effects; battle is unaffected). Cards: BS25-028, BS28-001, BS30-018, BS30-034.
 - v253 (Lane K): STATIC MUST_ATTACK ("If this Spirit can attack, it must attack": it attacks at the start of the Attack Step); OPP_START_ATTACK MUST_ATTACK_OPP wired for BS35-035, BS36-031, BS40-037 (with a free Pyroxene summon on destroy by opposing effect). Cards: BS01-027, BS01-033.
 - v254 (Lane K): per-count `state` ("exhausted" | "refreshed") on BP_PLUS `per`: "+N BP for each exhausted Spirit you control / unexhausted opposing Spirit". Cards: BS06-043, BS02-027; MUST_BLOCK (Rage) BS06-003; OPP_CORES_TO_RESERVE BS02-017; RETURN_TRASH BS10-006.
+- v255 (Lane K): BOUNCE_OPP `match` (the returned opposing Spirit must match, e.g. keyword). Cards: BS10-042, BS22-029.

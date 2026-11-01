@@ -343,10 +343,6 @@
   "A_REFRESH",
   "C_LEVEL"
  ],
- "BS02-043": [
-  "A_BP_PLUS",
-  "C_LEVEL"
- ],
  "BS02-047": [
   "C_LEVEL",
   "T_BLOCKS"
@@ -2836,10 +2832,6 @@
   "A_REFRESH",
   "C_LEVEL",
   "C_OPP_TURN"
- ],
- "BS10-042": [
-  "C_LEVEL",
-  "T_DESTROYED"
  ],
  "BS10-043": [
   "C_LEVEL"
@@ -7475,10 +7467,6 @@
   "K_BRAVE",
   "T_BATTLE_WIN",
   "T_SUMMONED"
- ],
- "BS22-029": [
-  "C_LEVEL",
-  "T_BLOCKS"
  ],
  "BS22-031": [
   "C_LEVEL",

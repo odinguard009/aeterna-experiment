@@ -174,3 +174,11 @@ test('K-802 BP_PLUS per state: exhausted own Spirits (BS06-043) and refreshed op
     return [x - BS.CARDS['BS06-043'].levels[0].bp, BS.bpOf(b) - before];`);
   assert.deepEqual(r, [2000, 1000], JSON.stringify(r));
 });
+
+test('K-803 BOUNCE_OPP match: only the opposing Spirit with the keyword is a candidate (BS22-029)', async () => {
+  const r = await run(`const a = sp('BS22-029', P, 1); sp('BS19-017', O, 1); sp('BS75-001', O, 1);
+    const c = { p: P, opp: O, src: a, ctx: {} }; const act = { do: 'BOUNCE_OPP', to: 'hand', kind: 'spirit', match: { keyword: 'Charge' } };
+    const n = BS.FX_ACTIONS.BOUNCE_OPP.cands(c, act).map(x => x.id);
+    return [n, BS.CARDS['BS22-029'].effects.length, BS.CARDS['BS10-042'].effects.length];`);
+  assert.deepEqual(r, [['BS19-017'], 1, 2], JSON.stringify(r));
+});
