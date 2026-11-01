@@ -180,3 +180,14 @@ test('K-855 OPP_MAGIC_USED fires for the opponent of the caster (BS07-047, BS06-
     return out; })()`);
   assert.deepEqual(r, [2, 2, 1, 0], JSON.stringify(r));
 });
+
+test('K-856 BS07-082 gives an own Assault Spirit +2000 BP per exhausted Nexus', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true;
+    const nx = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Nexus');
+    const s = BS.mkInst('BS07-054'); s.cores = 3; P.spirits = [s]; const a = BS.mkInst(nx), b = BS.mkInst(nx), c = BS.mkInst(nx); a.exhausted = true; b.exhausted = true; c.exhausted = false; P.nexus = [a, b, c];
+    const before = s.bpMod || 0; const acts = BS.CARDS['BS07-082'].magic.by.FLASH.actions;
+    await BS.runActions({ p: P, opp: O, src: BS.mkInst('BS07-082'), ctx: {} }, { actions: acts }, 'FLASH');
+    return [before, s.bpMod || 0]; })()`);
+  assert.deepEqual(r, [0, 4000], JSON.stringify(r));
+});

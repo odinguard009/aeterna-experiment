@@ -32994,11 +32994,32 @@
   "image": "Nexus Attack.jpg",
   "block": "07",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "Flash - During this turn, give one of your Spirits with \"Assault\"  +2000 BP for every exhausted Nexus on your Field."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "by": {
+    "FLASH": {
+     "effect": "ACTIONS",
+     "actions": [
+      {
+       "do": "BP_TARGET",
+       "n": 2000,
+       "to": "pick",
+       "match": {
+        "keyword": "Assault"
+       },
+       "per": {
+        "type": "Nexus",
+        "state": "exhausted"
+       }
+      }
+     ]
+    }
+   }
+  }
  },
  {
   "id": "BS07-083",
