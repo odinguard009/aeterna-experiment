@@ -5,7 +5,7 @@
 // the route is opt-in on createApi.
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, rmSync, existsSync } from 'node:fs';
+import { mkdtempSync, rmSync, existsSync, writeFileSync, readFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { createApi } from '../../apps/server/src/http.mjs';
@@ -15,12 +15,14 @@ const WEBP = () => Uint8Array.from([0x52, 0x49, 0x46, 0x46, 1, 2, 3, 4, 0x57, 0x
 const OFFICIAL = 'https://www.battlespirits.com/images/cardlist/';
 
 /** A fetch stub for the official image URL (derived from the card id). Tracks upstream fetches. */
-function fakeFetch({ bytes = WEBP(), haveImage = true } = {}) {
+function fakeFetch({ bytes = WEBP(), haveImage = true, contentType = 'image/webp' } = {}) {
   const calls = { image: 0 };
   const fetchImpl = async (url) => {
     if (url.startsWith(OFFICIAL) && url.endsWith('.webp?v2')) {
       calls.image += 1;
-      return haveImage ? { ok: true, arrayBuffer: async () => bytes } : { ok: false, status: 404 };
+      return haveImage
+        ? { ok: true, headers: { get: (k) => (k.toLowerCase() === 'content-type' ? contentType : null) }, arrayBuffer: async () => bytes }
+        : { ok: false, status: 404 };
     }
     return { ok: false, status: 404 };
   };
@@ -74,6 +76,27 @@ test('CIMG-S2 a card the official site lacks is a 404 and nothing is cached', as
   assert.equal(existsSync(join(dir, 'XXXXX-999.webp')), false);
 });
 
+test('CIMG-S5 an official HTTP 200 HTML page is rejected instead of cached as a webp', async () => {
+  const dir = mkdir();
+  const { fetchImpl, calls } = fakeFetch({ bytes: Buffer.from('<html>missing card</html>'), contentType: 'text/html' });
+  const route = cardImageRoute({ mirrorDir: dir, fetchImpl });
+  const r = await hit(route, '/assets/card-images/BS01-014');
+  assert.equal(r.status, 404);
+  assert.equal(calls.image, 1);
+  assert.equal(existsSync(join(dir, 'BS01-014.webp')), false);
+});
+test('CIMG-S6 an old HTML file already in the mirror is dropped and refetched', async () => {
+  const dir = mkdir();
+  writeFileSync(join(dir, 'BS76-001.webp'), '<html>old 200 page</html>');
+  const { fetchImpl, calls } = fakeFetch();
+  const route = cardImageRoute({ mirrorDir: dir, fetchImpl });
+  const r = await hit(route, '/assets/card-images/BS76-001');
+  assert.equal(r.status, 200);
+  assert.equal(calls.image, 1, 'the poisoned cache entry is fetched again');
+  const cached = readFileSync(join(dir, 'BS76-001.webp'));
+  assert.equal(cached.subarray(0, 4).toString('ascii'), 'RIFF');
+});
+
 test('CIMG-S3 separators, dot-files and extensions are refused, and non-GET is a 405', async () => {
   const { dir, route } = mount();
   for (const p of ['/assets/card-images/../secret', '/assets/card-images/.hidden', '/assets/card-images/a/b', '/assets/card-images/BS76-001.webp', '/assets/card-images/']) {
@@ -87,7 +110,7 @@ test('CIMG-S3 separators, dot-files and extensions are refused, and non-GET is a
 
 test('CIMG-S4 the route is opt-in on createApi: mounted it serves, unmounted it 404s', async () => {
   const dir = mkdir();
-  const { fetchImpl } = fakeFetch({ bytes: Uint8Array.from([9, 8, 7, 6, 5]).buffer });
+  const { fetchImpl } = fakeFetch();
   const accountsStub = { requestLogin: async () => ({}), consumeLogin: async () => null, accountFromCookie: async () => null, signOut: async () => {}, cookieFor: () => '' };
   const api = createApi({ accounts: accountsStub, origin: 'http://127.0.0.1', cardImages: cardImageRoute({ mirrorDir: dir, fetchImpl }) });
   await new Promise((res) => api.listen(0, '127.0.0.1', res));

@@ -36,7 +36,14 @@ export async function onRequestGet({ request, params, waitUntil }) {
   }
   if (!res.ok) return new Response(null, { status: 404 });
 
+  // The official site answers a missing card with an HTTP 200 HTML page; never pass that through as art.
+  const type = res.headers.get('Content-Type') || '';
+  if (type && !/^image\//i.test(type)) return new Response(null, { status: 404 });
   const buf = await res.arrayBuffer();
+  if (buf.byteLength < 12) return new Response(null, { status: 404 });
+  const head = new Uint8Array(buf, 0, 12);
+  const ascii = (a, b) => String.fromCharCode(...head.subarray(a, b));
+  if (ascii(0, 4) !== 'RIFF' || ascii(8, 12) !== 'WEBP') return new Response(null, { status: 404 });
   const out = new Response(buf, {
     headers: {
       'Content-Type': res.headers.get('Content-Type') || 'image/webp',
