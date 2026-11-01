@@ -5081,9 +5081,6 @@
   "M_THEN",
   "M_UP_TO"
  ],
- "BS16-084": [
-  "A_EXHAUST"
- ],
  "BS16-X01": [
   "A_REFRESH",
   "A_SUMMON_FREE",
@@ -5438,9 +5435,6 @@
  "BS17-076": [
   "K_BURST",
   "M_THEN"
- ],
- "BS17-077": [
-  "A_BP_PLUS"
  ],
  "BS17-078": [
   "A_EXHAUST",

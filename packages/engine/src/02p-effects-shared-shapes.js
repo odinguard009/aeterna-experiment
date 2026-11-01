@@ -160,12 +160,13 @@ function winRiderRun(ev) {
 Object.assign(FX_ACTIONS, {
   /* v209 "Target one of your [matching] Spirits. During this turn, give it: <keyword/flag>." (e.g. Clash = STATIC MUST_BLOCK):
      a one-turn flag mark on the chosen Spirit, read by flagActive. */
-  GRANT_FLAG: { chk: a => typeof a.flag === 'string' && STATIC_FLAGS.includes(a.flag) && (a.match == null || hasMatch(a.match)),
+  GRANT_FLAG: { chk: a => typeof a.flag === 'string' && STATIC_FLAGS.includes(a.flag) && (a.match == null || hasMatch(a.match)) && (a.all == null || a.all === true),      // v300 all: every matching Spirit you control now (no target)
     txt: a => `during this turn, give one of your ${a.match ? 'matching ' : ''}Spirits "${a.flag}"`,
     cands: (c, a) => c.p.spirits.filter(s => !a.match || fxMatch(CARDS[s.id], a.match, s)),
     can: (c, a) => FX_ACTIONS.GRANT_FLAG.cands(c, a).length > 0,
     run: async (c, a) => {
       const L = FX_ACTIONS.GRANT_FLAG.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
+      if (a.all) { for (const s of L) { s.grantFlag = a.flag; s.grantFlagTurn = G.turnNo; } log(`${CARDS[c.src.id].name}: ${L.length} of ${poss(c.p)} Spirits gain "${a.flag}" for this turn.`); return; }
       const t = await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your Spirits to give "${a.flag}" for this turn (glowing).`);
       if (!t) { c.ctx.did = false; return; }
       t.grantFlag = a.flag; t.grantFlagTurn = G.turnNo;

@@ -450,4 +450,4 @@ function bounceCard(owner, t, to) {                   // return a field card to 
   log(`${poss(owner)} ${CARDS[t.id].name} returns to the ${to === 'deckBottom' ? 'bottom of the Deck' : 'Hand'}.`);
 }
 const SOUL_SRC = ['self', 'hand', 'trash', 'handOrTrash', 'reveal'];
-const hasMatch = m => !!m && (m.name || m.notName || m.bpBoosted || m.family || m.costGe != null || m.costLe != null || m.costIn || m.type || m.typeAny || m.color || m.familyAll || m.keyword || m.keywordAny || m.noText || m.hasTrigger || m.team || m.coresGe != null || m.coresLe != null || m.originalNexus);
+const hasMatch = m => !!m && (m.name || m.notName || m.bpBoosted || m.family || m.costGe != null || m.costLe != null || m.costIn || m.type || m.typeAny || m.color || m.familyAll || m.keyword || m.keywordAny || m.noText || m.hasTrigger || m.team || m.coresGe != null || m.coresLe != null || m.originalNexus || m.symbolsGe != null);      // v300 symbolsGe counts as a match key

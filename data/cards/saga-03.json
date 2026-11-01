@@ -11912,12 +11912,25 @@
   "image": "Exhausted Guard.jpg",
   "block": "16",
   "saga": 3,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "During this turn, all your Spirits with two or more symbols can block while exhausted."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "GRANT_FLAG",
+     "flag": "BLOCK_EXHAUSTED",
+     "match": {
+      "symbolsGe": 2
+     },
+     "all": true
+    }
+   ]
+  }
  },
  {
   "id": "BS16-X01",
@@ -15359,12 +15372,25 @@
   "image": "Wild Wing.jpg",
   "block": "17",
   "saga": 3,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "If the number of your Spirits is equal or superior to that of the opponent's, during this turn, all your Spirits get +3000 BP."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "BP_PLUS",
+     "n": 3000,
+     "to": "own",
+     "if": {
+      "fewerSpirits": false
+     }
+    }
+   ]
+  }
  },
  {
   "id": "BS17-078",

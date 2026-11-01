@@ -268,3 +268,33 @@ test('K-927 BS66-RV001 moves a Void core to Life only for a Sieg Spirit destroye
     return [bp, fx, P.life - l0]; })()`);
   assert.deepEqual(r, [0, 1, 1]);
 });
+
+test('K-928 BS16-084 lets only your Spirits with two or more symbols block while exhausted this turn', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const two = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].symbols >= 2);
+    const a = BS.mkInst(two); a.cores = 3; a.exhausted = true; const b = BS.mkInst('BS01-001'); b.cores = 2; b.exhausted = true;
+    P.spirits = [a, b]; G.active = O.key; G.step = 5;
+    const before = BS.flagActive(P, 'BLOCK_EXHAUSTED', a);
+    const act = BS.CARDS['BS16-084'].magic.actions[0];
+    await BS.FX_ACTIONS.GRANT_FLAG.run({ p: P, opp: O, src: BS.mkInst('BS16-084'), ctx: {} }, act);
+    const after = [BS.flagActive(P, 'BLOCK_EXHAUSTED', a), BS.flagActive(P, 'BLOCK_EXHAUSTED', b), BS.CARDS['BS01-001'].symbols];
+    G.turnNo++; const next = BS.flagActive(P, 'BLOCK_EXHAUSTED', a);
+    return [before, after, next]; })()`);
+  assert.equal(r[0], false); assert.deepEqual(r[1].slice(0, 2), [true, false], JSON.stringify(r)); assert.equal(r[2], false);
+});
+
+test('K-929 BS17-077 gives all your Spirits +3000 BP only if you control as many Spirits as the opponent', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const a = BS.mkInst('BS01-001'); a.cores = 2; const b = BS.mkInst('BS01-001'); b.cores = 2; const o1 = BS.mkInst('BS01-001'); o1.cores = 2;
+    P.spirits = [a]; O.spirits = [o1, b];
+    const act = BS.CARDS['BS17-077'].magic.actions[0];
+    const ok = (s) => BS.fxIf(P, O, act.if, {});
+    const fewer = ok();
+    P.spirits = [a, b]; O.spirits = [o1];
+    const more = ok();
+    await BS.FX_ACTIONS.BP_PLUS.run({ p: P, opp: O, src: BS.mkInst('BS17-077'), ctx: {} }, act);
+    return [fewer, more, a.bpMod, b.bpMod, o1.bpMod || 0]; })()`);
+  assert.deepEqual(r, [false, true, 3000, 3000, 0]);
+});

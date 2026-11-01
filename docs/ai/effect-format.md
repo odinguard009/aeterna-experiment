@@ -334,3 +334,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v297 (v0.208 cycle): OPP_DISCARD_RANDOM {n 1..3} (random card from the opposing Hand) and DRAW_BOTH {n 1..3} (each player draws).
 - v298 (Lane K): OPP_CORES_TO_RESERVE.allTargets + untilOne (all but one core from every matching target). Cards: BS37-022, BS06-014 (keepOne), BS36-017.
 - v299 (Lane K): DESTROY_ANY.costLe (spirit cost filter). Card: BS06-097.
+- v300 (Lane K): GRANT_FLAG.all (flag every matching Spirit you control, no target). Card: BS16-084 (also BS17-077 via BP_PLUS to:own + fewerSpirits:false).
