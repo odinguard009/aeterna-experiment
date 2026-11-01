@@ -41,3 +41,11 @@ test('K-784 data: both cards carry the new from.costLe filter', async () => {
   const r = await page.evaluate(() => ['BS75-035', 'BS75-041'].map(i => { const c = BS.CARDS[i]; const e = c.effects.find(x => x.flag === 'UNAFFECTED'); return [true, e && e.from.costLe]; }));
   assert.deepEqual(r, [[true, 'counters'], [true, 'self']], JSON.stringify(r));
 });
+
+test('K-785 BS72-050 REVEAL_DEPLOY rest either: the CPU sends the unused revealed cards to the deckbottom', async () => {
+  const r = await run(`P.cpu = true; P.deck = []; for (let i = 0; i < 4; i++) P.deck.push(BS.mkInst('BS75-001')); P.deck.push(BS.mkInst('BS75-004'));
+    const s = sp('BS72-050', P, 3); const top0 = P.deck[0].id;
+    await BS.FX_ACTIONS.REVEAL_DEPLOY.run({ p: P, opp: O, src: s, ctx: {} }, { n: 4, match: { family: ['Scalostle'] }, pay: false, rest: 'either' });
+    return [P.deck.length, P.deck[P.deck.length - 1].id, P.deck[0].id === top0];`);
+  assert.deepEqual(r, [5, 'BS75-001', false], JSON.stringify(r));
+});
