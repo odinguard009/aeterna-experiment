@@ -355,3 +355,31 @@ test('K-960 BS10-063 destroys every opposing Spirit sharing a family with the Sp
     return [O.spirits.length, O.spirits[0].id === other, JSON.stringify(BS.CARDS['BS10-063'].effects[0].trigger)]; })()`);
   assert.deepEqual(r.slice(0, 2), [1, true], JSON.stringify(r));
 });
+
+test('K-961 BS04-089 sends every Trash core only to an Awaken Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const has = i => ((BS.CARDS[i].keywords || []).concat(BS.CARDS[i].mechanics || [])).some(k => String(k).toUpperCase() === 'AWAKEN');
+    const aw = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit' && has(i));
+    const pl = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit' && !has(i));
+    const a = BS.mkInst(aw), b = BS.mkInst(pl); a.cores = 1; b.cores = 1; P.spirits.length = 0; P.spirits.push(b, a); P.trashCores.n = 4;
+    const m = BS.CARDS['BS04-089'].magic; const c = { p: P, opp: O, src: BS.mkInst('BS04-089'), ctx: {} };
+    await BS.FX_ACTIONS.TRASH_CORES_TO.run(c, m.actions[0]);
+    return [a.cores, b.cores, P.trashCores.n, aw]; })()`);
+  assert.deepEqual(r.slice(0, 3), [5, 1, 0], JSON.stringify(r));
+});
+
+test('K-962 BS03-128 refunds a Void core per exhausted own Spirit; BS01-128 draws per exhausted opposing Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const sp = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit');
+    P.spirits.length = 0; O.spirits.length = 0;
+    for (const e of [true, true, false]) { const s = BS.mkInst(sp); s.cores = 1; s.exhausted = e; P.spirits.push(s); const t = BS.mkInst(sp); t.cores = 1; t.exhausted = e; O.spirits.push(t); }
+    P.void = 5; P.reserve.n = 0; let c = { p: P, opp: O, src: BS.mkInst('BS03-128'), ctx: {} };
+    await BS.FX_ACTIONS.VOID_TO_RESERVE.run(c, BS.CARDS['BS03-128'].magic.actions[0]);
+    const res = P.reserve.n; const h0 = P.hand.length;
+    c = { p: P, opp: O, src: BS.mkInst('BS01-128'), ctx: {} };
+    await BS.FX_ACTIONS.DRAW.run(c, BS.CARDS['BS01-128'].magic.by.MAIN.actions[0]);
+    return [res, P.hand.length - h0]; })()`);
+  assert.deepEqual(r, [2, 2], JSON.stringify(r));
+});

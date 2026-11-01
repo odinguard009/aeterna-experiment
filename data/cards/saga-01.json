@@ -5443,22 +5443,34 @@
   "image": "Chaos Draw.jpg",
   "block": "01",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "{{#tag:tabber|",
-   "Standard = Main",
-   "Draw a card for each opposing exhausted Spirit.",
-   "Flash",
-   "Target a Spirit you or the opponent controls.",
-   "During this turn, give it +3000 BP.",
-   "{{!}}-{{!}}",
-   "Eternal = Main",
-   "Draw a card from deck for each exhausted Spirit the opponent controls.",
-   "Flash",
-   "During this turn, give a Spirit +3000 BP.",
-   "}}"
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "MAIN",
+    "FLASH"
+   ],
+   "by": {
+    "MAIN": {
+     "effect": "ACTIONS",
+     "actions": [
+      {
+       "do": "DRAW",
+       "n": 1,
+       "per": {
+        "type": "Spirit",
+        "side": "opp",
+        "state": "exhausted"
+       }
+      }
+     ]
+    },
+    "FLASH": {
+     "effect": "BP_PLUS",
+     "value": 3000
+    }
+   }
+  }
  },
  {
   "id": "BS01-129",
@@ -16534,12 +16546,25 @@
   "image": "Multiple Cores.jpg",
   "block": "03",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "Standard = Flash",
-   "For each exhausted Spirit you control, put a core from the Void to your Reserve."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "VOID_TO_RESERVE",
+     "perSource": "own",
+     "perMatch": {
+      "type": "Spirit",
+      "state": "exhausted"
+     }
+    }
+   ]
+  }
  },
  {
   "id": "BS03-129",
@@ -21111,13 +21136,27 @@
   "image": "Great Link.jpg",
   "block": "04",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Send every core from your Trash to a Spirit with Awaken you control.",
-   "This effect can't be used in Main Step."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "TRASH_CORES_TO",
+     "n": 5,
+     "toPick": true,
+     "all": true,
+     "match": {
+      "type": "Spirit",
+      "keyword": "Awaken"
+     }
+    }
+   ]
+  }
  },
  {
   "id": "BS04-090",
