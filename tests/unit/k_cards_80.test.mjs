@@ -168,3 +168,14 @@ test('K-825 BS41-085 CHOOSE_ONE returns a Spirit or three Astral Dragons from th
     return [P.hand.length, P.trash.length, BS.FX_ACTIONS.CHOOSE_ONE.chk(act), e.trigger, JSON.stringify(e.match)]; })()`);
   assert.deepEqual(r, [1, 0, true, 'ALLY_DIED', '{"costIn":[2]}'], JSON.stringify(r));
 });
+
+test('K-826 BOUNCE_OPP blockedOnly returns only the blocked attacker (BS06-044)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true;
+    const a = BS.mkInst('BS01-001'), b = BS.mkInst('BS01-002'); a.cores = 1; b.cores = 1; O.spirits = [a, b]; O.hand = [];
+    const act = { do: 'BOUNCE_OPP', to: 'hand', kind: 'spirit', blockedOnly: true };
+    const ok = BS.FX_ACTIONS.BOUNCE_OPP.chk(act);
+    await BS.FX_ACTIONS.BOUNCE_OPP.run({ p: P, opp: O, src: BS.mkInst('BS06-044'), ctx: { attacker: b } }, act);
+    return [ok, O.spirits.length, O.spirits[0] === a, O.hand[0] === b, BS.CARDS['BS06-044'].effects.some(e => e.trigger === 'BLOCKS')]; })()`);
+  assert.deepEqual(r, [true, 1, true, true, true], JSON.stringify(r));
+});
