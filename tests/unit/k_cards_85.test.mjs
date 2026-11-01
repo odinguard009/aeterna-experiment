@@ -227,3 +227,18 @@ test('K-949 BS01-139 Feather Barrier: the blocker (only) is unaffected by opposi
   assert.equal(r[0], 'FLASH'); assert.equal(r[1], 'BLOCKER_UNAFFECTED');
   assert.deepEqual(r.slice(2), [false, false, true], JSON.stringify(r));
 });
+
+test('K-950 BS10-105 destroys an own Cost 3+ Spirit, then 3 Void cores to the Reserve; nothing without one', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { const out = [];
+    for (const id of ['BS01-001', null]) {
+      BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.spirits.length = 0; P.nexus.length = 0;
+      const ids = Object.keys(BS.CARDS).filter(k => BS.CARDS[k].type === 'Spirit');
+      const big = ids.find(k => BS.CARDS[k].cost >= 3), small = ids.find(k => BS.CARDS[k].cost <= 2);
+      const s = BS.mkInst(id ? big : small); s.cores = 1; P.spirits.push(s); P.reserve.n = 0; G.voidCores = G.voidCores; const v0 = P.void != null ? P.void : null;
+      const m = BS.CARDS['BS10-105'].magic; const c = { p: P, opp: O, src: BS.mkInst('BS10-105'), ctx: {} };
+      for (const a of m.actions) { if (a.if && a.if.prev && c.ctx.did === false) continue; c.ctx.did = undefined; await BS.FX_ACTIONS[a.do].run(c, a); }
+      out.push([P.spirits.length, P.reserve.n > 0]);
+    } return out; })()`);
+  assert.deepEqual(r[0][0], 0); assert.equal(r[0][1], true, JSON.stringify(r)); assert.equal(r[1][0], 1); assert.equal(r[1][1], false, JSON.stringify(r));
+});
