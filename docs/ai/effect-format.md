@@ -324,3 +324,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v287 (Lane K): trigger `OPP_START_STEP` ("(Opposing Start Step)": fired for the player whose turn is NOT starting, right after START_STEP).
 - v288 (Lane K): `BP_TARGET.to:"summoned"` (on ALLY_SUMMONED: the just-summoned Spirit gets +n BP this turn, no battle/per/alt).
 - v289 (Lane K): action `OPP_RESERVE_TO_TRASH` ("Send all cores from the opposing Reserve to their Trash"); BS01-103.
+- v290 (Lane K): action `VOID_TO_SELF {n?}` ("put a core from the Void to this Nexus/Spirit"); BS02-080 (ALLY_BATTLE_WIN match.coresGe).

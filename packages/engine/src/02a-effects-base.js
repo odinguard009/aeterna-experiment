@@ -338,7 +338,7 @@ function staticBp(i) {
       if (e.trigger !== 'STATIC' || !e.bp) continue;
       if (e.lv && !e.lv.includes(L)) continue;
       if (e.oc && !ocActive(src)) continue;
-      if ((e.to || 'self') === 'self' ? src !== i : (e.match != null && !fxMatch(CARDS[i.id], e.match))) continue;
+      if ((e.to || 'self') === 'self' ? src !== i : (e.match != null && !fxMatch(CARDS[i.id], e.match, i))) continue;
       if (e.targetRefreshed && i.exhausted) continue;      // v132 "Spirits in refreshed state gain +N BP"
       if (e.attackingOnly && G.attacker !== i) continue;
       if (e.blockingOnly && G.blocker !== i) continue;           // v0.159 (During Block)

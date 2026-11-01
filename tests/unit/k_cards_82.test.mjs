@@ -68,3 +68,16 @@ test('K-869 BS02-084 returns a Void core when a Yellow Spirit dies in an Attack 
     return out; })()`);
   assert.deepEqual(r, [1, 0, 0, 1, 1, 0], JSON.stringify(r));
 });
+
+test('K-870 BS02-080 gives Spirits with 3+ cores +1000 BP in the own Attack Step and puts a Void core on the Nexus after a win (LV2)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const n = BS.mkInst('BS02-080'); n.cores = 3; P.nexus = [n];
+    const a = BS.mkInst('BS01-001'); a.cores = 3; const b = BS.mkInst('BS01-001'); b.cores = 2; P.spirits = [a, b]; const out = [];
+    P.nexus = []; const ba = BS.bpOf(a), bb = BS.bpOf(b); P.nexus = [n]; G.active = P.key; G.step = 5;
+    out.push(BS.bpOf(a) - ba, BS.bpOf(b) - bb);
+    P.void = 2; await BS.fireFx(P, 'ALLY_BATTLE_WIN', null, { subject: a, attacking: true }); out.push(n.cores, P.void);
+    await BS.fireFx(P, 'ALLY_BATTLE_WIN', null, { subject: b, attacking: true }); out.push(n.cores);
+    return out; })()`);
+  assert.deepEqual(r, [1000, 0, 4, 1, 4], JSON.stringify(r));
+});
