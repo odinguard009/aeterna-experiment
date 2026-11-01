@@ -348,3 +348,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v311 (Lane K): REFRESH_SPIRIT `drawGe` (2-5, with `all`): draw a card when that many Spirits were refreshed by the action. Card: BS39-075.
 - v312 (Lane K): action `BLOCK_EXHAUSTED_TURN {to:'pick'|'all', match?}` ("during this turn, a Spirit you control / all your <X> Spirits can block while exhausted"; sets `blockExT`, read by `canBlockState`). Cards: BS21-079, BS08-077.
 - v313 (Lane K): BLOCK_EXHAUSTED_TURN `to:'picked'` (the Spirit chosen by the previous action, `ctx.picked`). Cards: BS33-078, BS48-RV010 (CHOOSE_ONE of a Refresh or +5000 BP and block while exhausted).
+- v314 (Lane K): BLOCK_EXHAUSTED_TURN `battle:true` (this battle only, sets `blockExB`) and `to:'pick'` now stores `ctx.picked` for a following WIN_RIDER. Card: BS39-072.

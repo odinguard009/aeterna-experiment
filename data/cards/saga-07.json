@@ -21410,13 +21410,27 @@
   "image": "BS39-072.jpg",
   "block": "39",
   "saga": 7,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "During this battle, a Spirit/Ultimate you control can block while exhausted.",
-   "When only the opposing Spirit/Ultimate is destroyed via BP comparison with that Spirit/Ultimate you control, draw two cards."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "BLOCK_EXHAUSTED_TURN",
+     "to": "pick",
+     "battle": true
+    },
+    {
+     "do": "WIN_RIDER",
+     "draw": 2,
+     "battle": true
+    }
+   ]
+  }
  },
  {
   "id": "BS39-073",

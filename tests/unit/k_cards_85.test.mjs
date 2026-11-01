@@ -289,3 +289,13 @@ test('K-954 BS33-078 / BS48-RV010: +BP then the same Spirit can block while exha
     const o = BS.CARDS['BS48-RV010'].magic.actions[0].options; return [before, BS.canBlockState(P, s), s.bpMod || 0, o.length, o[1].map(a => a.do)]; })()`);
   assert.equal(r[0], false); assert.equal(r[1], true, JSON.stringify(r)); assert.ok(r[2] >= 3000 || r[2] === 0, JSON.stringify(r)); assert.deepEqual(r.slice(3), [2, ['BP_TARGET', 'BLOCK_EXHAUSTED_TURN']]);
 });
+
+test('K-955 BS39-072: a Spirit blocks while exhausted this battle only and carries the draw-2 win rider', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.spirits.length = 0; P.nexus.length = 0;
+    const s = BS.mkInst('BS01-001'); s.cores = 1; s.exhausted = true; P.spirits.push(s); const a = BS.mkInst('BS01-001'); a.cores = 1; O.spirits.push(a); G.attacker = a; G.battleNo = (G.battleNo || 0) + 1;
+    const c = { p: P, opp: O, src: BS.mkInst('BS39-072'), ctx: {} }; const before = BS.canBlockState(P, s);
+    for (const x of BS.CARDS['BS39-072'].magic.actions) await BS.FX_ACTIONS[x.do].run(c, x);
+    const during = BS.canBlockState(P, s); const rider = s.winRider ? s.winRider.draw : null; G.battleNo++; return [before, during, rider, BS.canBlockState(P, s)]; })()`);
+  assert.deepEqual(r, [false, true, 2, false], JSON.stringify(r));
+});

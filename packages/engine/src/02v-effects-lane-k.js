@@ -216,13 +216,14 @@ FX_ACTIONS.BLOCKER_UNAFFECTED = {
   run: async c => { c.p.blockUnaffTurn = G.turnNo; log(`${CARDS[c.src.id].name}: ${poss(c.p)} blocking Spirits are unaffected by opposing effects this turn.`); } };
 /* v312 BLOCK_EXHAUSTED_TURN {to:'pick'|'all', match?}: "During this turn, [target Spirit you control / all your <X> Spirits] can block while exhausted." Marks blockExT = the turn number, read by canBlockState. */
 FX_ACTIONS.BLOCK_EXHAUSTED_TURN = {
-  chk: a => (a.to === 'pick' || a.to === 'all' || a.to === 'picked') && (a.match == null || hasMatch(a.match)),
+  chk: a => (a.to === 'pick' || a.to === 'all' || a.to === 'picked') && (a.match == null || hasMatch(a.match)) && (a.battle == null || (a.battle === true && a.to !== 'all')),
   txt: a => `during this turn, ${a.to === 'all' ? 'your matching Spirits' : 'one of your Spirits'} can block while exhausted`,
   cands: (c, a) => a.to === 'picked' ? (c.ctx.picked && c.p.spirits.includes(c.ctx.picked) ? [c.ctx.picked] : []) : c.p.spirits.filter(s => !a.match || fxMatch(CARDS[s.id], a.match, s)),      // to:'picked' = the Spirit chosen by the previous action (ctx.picked)
-  can: (c, a) => FX_ACTIONS.BLOCK_EXHAUSTED_TURN.cands(c, a).length > 0,
+  can: (c, a) => (!a.battle || !!G.attacker) && FX_ACTIONS.BLOCK_EXHAUSTED_TURN.cands(c, a).length > 0,
   run: async (c, a) => {
     const L = FX_ACTIONS.BLOCK_EXHAUSTED_TURN.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
     const T = a.to === 'all' || a.to === 'picked' ? L : [c.p.cpu || L.length === 1 ? L.slice().sort((x, y) => bpOf(y) - bpOf(x))[0] : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your Spirits to let it block while exhausted (glowing).`)];
     if (!T[0]) { c.ctx.did = false; return; }
-    for (const t of T) { t.blockExT = G.turnNo; log(`${CARDS[c.src.id].name}: ${poss(c.p)} ${CARDS[t.id].name} can block while exhausted this turn.`); }
+    if (a.to === 'pick') c.ctx.picked = T[0];      // v314: a following WIN_RIDER stamps the same Spirit; battle:true limits it to this battle
+    for (const t of T) { if (a.battle) t.blockExB = G.battleNo; else t.blockExT = G.turnNo; log(`${CARDS[c.src.id].name}: ${poss(c.p)} ${CARDS[t.id].name} can block while exhausted this turn.`); }
   } };
