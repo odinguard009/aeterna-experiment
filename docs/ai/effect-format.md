@@ -299,3 +299,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v261 (Lane K): VOID_TO_CARD.perNexus / perOtherSpirit (to self: n cores per Nexus / other Spirit you control); BS03-030, BS01-X03.
 - v262 (Lane K): `DEPLOY_TRASH.all` (deploy every matching Nexus from the Trash) and new action `DISCARD_ANY_DRAW {match}` (discard any number of matching Hand cards, draw one per card).
 - v263 (Lane K): OPP_CORE_TO_TRASH_NR, BOTH_CORES_TO_TRASH {total}, VOID_TO_NEXUS_LV {lv} (Void cores to a Nexus until its LV); BS02-092, BS02-093, BS04-098; BS02-107 via ACTIVATE_SUMMONED.
+- v264 (Lane K): per.type "Hand" (cards in your / the opposing Hand, `side`, `max`) for BP_PLUS etc.; BS16-049; BS19-005 via the static perHand.

@@ -5290,11 +5290,6 @@
  "BS16-047": [
   "C_LEVEL"
  ],
- "BS16-049": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
  "BS16-050": [
   "A_SUMMON_FREE",
   "A_VOID",
@@ -6301,13 +6296,6 @@
   "A_REFRESH",
   "C_LEVEL",
   "K_ARMOR"
- ],
- "BS19-005": [
-  "A_BP_PLUS",
-  "A_RETURN_TRASH",
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "T_SUMMONED"
  ],
  "BS19-006": [
   "C_LEVEL",

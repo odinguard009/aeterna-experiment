@@ -1,4 +1,4 @@
-// Lane K tests, file 80 (rule 1b). Schemas v259-v262: DISCARD_ANY_DRAW, DEPLOY_TRASH.all, MILL_OPP.perOppHand, RESERVE_TO_SPIRIT, VOID_TO_CARD per-count. Cards: BS02-092, BS02-093, BS04-098, BS02-107, BS03-146, BS03-148, BS02-068, BS02-069, BS04-111, BS01-078, BS01-115, BS03-030, BS01-X03.
+// Lane K tests, file 80 (rule 1b). Schemas v259-v262: DISCARD_ANY_DRAW, DEPLOY_TRASH.all, MILL_OPP.perOppHand, RESERVE_TO_SPIRIT, VOID_TO_CARD per-count. Cards: BS16-049, BS19-005, BS02-092, BS02-093, BS04-098, BS02-107, BS03-146, BS03-148, BS02-068, BS02-069, BS04-111, BS01-078, BS01-115, BS03-030, BS01-X03.
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { sharedBoard, closeBrowser } from './lib/game.mjs';
@@ -97,4 +97,19 @@ test('K-817 VOID_TO_NEXUS_LV: Void cores fill a Nexus up to its LV2 threshold an
     const act = BS.CARDS['BS04-098'].magic.by.MAIN.actions[0]; await BS.FX_ACTIONS.VOID_TO_NEXUS_LV.run({ p: P, opp: O, src: BS.mkInst('BS04-098'), ctx: {} }, act);
     return [n.cores === need, P.void === 20 - need, BS.FX_ACTIONS.VOID_TO_NEXUS_LV.chk(act)]; })()`);
   assert.deepEqual(r, [true, true, true], JSON.stringify(r));
+});
+
+test('K-818 per.type Hand: BS16-049 gets +1000 BP per card in the opposing Hand when it attacks', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.hand = [1, 2, 3, 4].map(() => BS.mkInst('BS01-001'));
+    const s = BS.mkInst('BS16-049'); s.cores = 1; P.spirits = [s]; const act = BS.CARDS['BS16-049'].effects[0].actions[0]; const b0 = s.bpMod || 0;
+    await BS.FX_ACTIONS.BP_PLUS.run({ p: P, opp: O, src: s, ctx: {} }, act); return [(s.bpMod || 0) - b0, BS.FX_ACTIONS.BP_PLUS.chk(act)]; })()`);
+  assert.deepEqual(r, [4000, true], JSON.stringify(r));
+});
+
+test('K-819 BS19-005 is complete: returns a Spirit from the Trash on summon, +1000 BP per own Hand card in its own Attack Step', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { const k = BS.CARDS['BS19-005']; const e = k.effects;
+    return [e.map(x => x.trigger + ':' + (x.actions ? x.actions[0].do : x.perHand)), JSON.stringify(e[1].if)]; })()`);
+  assert.deepEqual(r, [['SUMMONED:RETURN_TRASH', 'STATIC:true'], '{"attackStep":true,"oppTurn":false}'], JSON.stringify(r));
 });
