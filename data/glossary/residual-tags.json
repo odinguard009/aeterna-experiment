@@ -8142,13 +8142,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "BS24-069": [
-  "A_BOUNCE",
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "T_ATTACKS"
- ],
  "BS24-070": [
   "A_REFRESH",
   "C_LEVEL",

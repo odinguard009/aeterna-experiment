@@ -109,3 +109,15 @@ test('K-896 BS24-068 returns a 2+ symbol Spirit and an Ultimate Trigger hit make
     return [hit, miss]; })()`);
   assert.deepEqual(r, [true, false], JSON.stringify(r));
 });
+
+test('K-897 BS24-069 Ultimate Trigger hit returns an opposing Nexus and makes it unblockable; +3000 BP in the opposing Attack Step', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const u = BS.mkInst('BS24-069'); u.cores = 5; P.spirits = [u]; G.attacker = u; G.battleNo = 3; O.deck = [BS.mkInst('BS01-001')];
+    const nx = BS.mkInst('BS01-109'); nx.cores = 1; O.nexus = [nx];
+    await BS.fireFx(P, 'ATTACKS', u, { attacker: u });
+    const out = [O.nexus.length, !!(u.noBlockBy && u.noBlockBy.all)];
+    G.active = O.key; G.step = 5; const hi = BS.bpOf(u); G.active = P.key; const lo = BS.bpOf(u); out.push(hi - lo);
+    return out; })()`);
+  assert.deepEqual(r, [0, true, 3000], JSON.stringify(r));
+});
