@@ -535,10 +535,6 @@
   "C_LEVEL",
   "T_ATTACKS"
  ],
- "BS03-022": [
-  "A_EXHAUST",
-  "C_LEVEL"
- ],
  "BS03-024": [
   "C_LEVEL",
   "T_ATTACKS"
@@ -797,7 +793,6 @@
   "A_BP_PLUS",
   "M_REPLACEMENT"
  ],
- "BS03-149": [],
  "BS03-X09": [
   "A_REFRESH",
   "C_LEVEL",

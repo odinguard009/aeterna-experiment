@@ -137,3 +137,23 @@ test('K-851 BS01-086 is unaffected by opposing Spirit and Magic effects but not 
     return [BS.fxImmune(P, s, sp('BS01-001')), BS.fxImmune(P, s, sp('BS01-098')), BS.fxImmune(P, s, sp('BS01-125'))]; })()`);
   assert.deepEqual(r, [true, false, true], JSON.stringify(r));
 });
+
+test('K-852 BS03-149 destroys an opposing Spirit only with 3+ "Fighting Spirit" Spirits (BS03-149)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true;
+    const mk = () => { const s = BS.mkInst('BS03-072'); s.cores = 1; return s; };
+    const acts = BS.CARDS['BS03-149'].magic.by.FLASH.actions; const out = [];
+    for (const n of [2, 3]) { P.spirits = Array.from({ length: n }, mk); const b = BS.mkInst('BS01-001'); b.cores = 1; O.spirits = [b];
+      await BS.runActions({ p: P, opp: O, src: BS.mkInst('BS03-149'), ctx: {} }, { actions: acts }, 'FLASH'); out.push(O.spirits.length); }
+    return out; })()`);
+  assert.deepEqual(r, [1, 0], JSON.stringify(r));
+});
+
+test('K-853 BS03-022 exhausts an unexhausted opposing Spirit after winning a battle', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true;
+    const s = BS.mkInst('BS03-022'); s.cores = 3; P.spirits = [s]; const b = BS.mkInst('BS01-001'); b.cores = 1; O.spirits = [b];
+    const e = BS.CARDS['BS03-022'].effects[0];
+    await BS.runActions({ p: P, opp: O, src: s, ctx: {} }, e, e.trigger); return [e.trigger, e.lv, b.exhausted]; })()`);
+  assert.deepEqual(r, ['BATTLE_WIN', [2], true], JSON.stringify(r));
+});
