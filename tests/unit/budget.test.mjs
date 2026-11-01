@@ -46,7 +46,7 @@ const packLen = between('/*PACK_START*/', '/*PACK_END*/'), code = html.slice(0, 
 // v0.182.0 (Lane K): raised B02 285 -> 290 KB on purpose: Tribute, Assault, USE_FLASH, HAND_COST and NO_ATTACK_LIFE engine code.
 // v0.135.0 (Form Change): raised B01 790 -> 796 KB and B02 224 -> 226 KB on purpose: the FORM_CHANGE action, the viaFormChange condition and 8 more complete cards.
 // v0.125.0 (U14d2): B02 raised 212 -> 218 KB on purpose: the Effect Active panel, the emoticons and the 'effect' view record.
-const FONT_URL = /url\(data:font\/woff2;base64,[A-Za-z0-9+/=]+\)/g, FLAVOR_RE = /\/\*FLAVOR_START\*\/const BUILTIN_FLAVOR = "[A-Za-z0-9+\/=]*";\/\*FLAVOR_END\*\//, noFont = t => t.replace(FONT_URL, 'url()').replace(FLAVOR_RE, '/*FLAVOR*/');   // v0.131.0 U14g: the Lore flavor blob is data like the pack: its own budget B15
+const FONT_URL = /url\(data:font\/woff2;base64,[A-Za-z0-9+/=]+\)/g, SIDES_RE = /\/\*SIDES_START\*\/const BUILTIN_SIDES = "[A-Za-z0-9+\/=]*";\/\*SIDES_END\*\//, FLAVOR_RE = /\/\*FLAVOR_START\*\/const BUILTIN_FLAVOR = "[A-Za-z0-9+\/=]*";\/\*FLAVOR_END\*\//, noFont = t => t.replace(FONT_URL, 'url()').replace(FLAVOR_RE, '/*FLAVOR*/').replace(SIDES_RE, '/*SIDES*/');   // v0.131.0 U14g: the Lore flavor blob is data like the pack: its own budget B15
 // v0.153.0 (mockup parity part 2): raised B01 975 -> 985 KB on purpose: New Deck chooser, richer bug report form and concede wording (~2 KB) on top of the v0.151-v0.152 UI work.
 // v0.155.0 (owner review batch): raised B01 985 -> 1005 KB and B04 210 -> 225 KB on purpose: ~30 review items (Home background, deck-sheet sizes, filter groups, card-page and battle-layout CSS) are mostly stylesheet.
 // v0.158.0 (owner review round 3): B01 1015 -> 1030 KB: the shared Colour / Type / Cost / Group dropdowns, the Lore minimize controls and the phone and battle CSS.
@@ -158,4 +158,10 @@ test('B13 with all cards in the pack the phone layout is ready in under 4 s with
 test('B15 the Lore flavor blob (compressed English flavor texts) stays under 500 KB and is decoded lazily', () => {
   const m = html.match(FLAVOR_RE); assert.ok(m, 'blob present'); assert.ok(m[0].length < 500e3, m[0].length);
   assert.match(html, /const lore = \(\) => LORE_DATA \|\|/);
+});
+
+// 2026-11-01: the Rebirth Side B blob (display-only back faces) is data like the flavor blob: its own budget, outside B01/B02.
+test('B16 the Rebirth Side B blob stays under 80 KB and is decoded lazily', () => {
+  const m = html.match(SIDES_RE); assert.ok(m, 'blob present'); assert.ok(m[0].length < 80e3, m[0].length);
+  assert.match(html, /REB_SIDES = loadFlavor\(BUILTIN_SIDES\)/);
 });

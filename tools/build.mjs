@@ -62,6 +62,11 @@ function joinScript(parts, cards) {
     const fp = join(ROOT, 'data/index/flavor.json'), fl = existsSync(fp) ? readFileSync(fp, 'utf8') : '{}';
     js = js.replace('/*FLAVOR_START*//*FLAVOR_END*/', () => '/*FLAVOR_START*/const BUILTIN_FLAVOR = "' + deflateRawSync(Buffer.from(JSON.stringify(JSON.parse(fl)), 'utf8'), { level: 9 }).toString('base64') + '";/*FLAVOR_END*/');
   }
+  // Rebirth back faces (data/index/rebirth-sides.json, tools/import_rebirth_sides.py): display only, never CARDS entries; same blob form as the flavor index
+  if (js.includes('/*SIDES_START*//*SIDES_END*/')) {
+    const sp = join(ROOT, 'data/index/rebirth-sides.json'), sd = existsSync(sp) ? readFileSync(sp, 'utf8') : '{}';
+    js = js.replace('/*SIDES_START*//*SIDES_END*/', () => '/*SIDES_START*/const BUILTIN_SIDES = "' + deflateRawSync(Buffer.from(JSON.stringify(JSON.parse(sd)), 'utf8'), { level: 9 }).toString('base64') + '";/*SIDES_END*/');
+  }
   return js;
 }
 // v0.82.0 (F2 = M2): the script without the web host (packages/protocol + packages/engine parts only), for the

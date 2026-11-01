@@ -151,10 +151,23 @@ function runHandAction(p, inst, v) {
 const humanCast = inst => sendIntent({ type: 'cast', uid: inst.uid });
 const humanAttack = f => sendIntent({ type: 'attack', uid: f.uid });
 const onNext = () => sendIntent({ type: 'next' });
-async function showCardDetail(id, ctx, uid) {
+/*SIDES_START*//*SIDES_END*/
+/* Rebirth Side B (display only): the back face of a Rebirth front card, parsed on demand from the embedded sidecar; it is never a CARDS entry,
+   so it cannot reach a deck, the Library list, the counts or a match. */
+let REB_SIDES = null; const REB_CACHE = {};
+function rebirthSideOf(id) {
+  const f = CARDS[id]; if (!f || !f.rebirthTo || typeof BUILTIN_SIDES !== 'string' || !BUILTIN_SIDES) return null;
+  if (REB_CACHE[id]) return REB_CACHE[id];
+  if (!REB_SIDES) REB_SIDES = loadFlavor(BUILTIN_SIDES);
+  const o = REB_SIDES[id], r = o ? parseCard(o) : null; if (!r || !r.card) return null;
+  return (REB_CACHE[id] = Object.assign({}, r.card, { desc: o.text || '', implemented: false, partial: true, residual: (o.residual || []).slice(), side: true }));
+}
+async function showCardDetail(id, ctx, uid, back) {
   const card = CARDS[id]; if (!card) return;
+  const sideCard = ctx !== 'hand' ? rebirthSideOf(id) : null, showB = !!(back && sideCard);      // no flip for a hand card: that menu is a recorded match action
   let buttons = [], inst = null;
-  if (ctx === 'deck') {
+  if (showB) { /* the back face is a view only: no Add / Remove */ }
+  else if (ctx === 'deck') {
     const n = PLAYER_DECK[id] || 0;
     const mx = maxCopies(id, FORMAT), bad = legalityOf(id, FORMAT);
     buttons.push({ label: bad ? `🚫 Not legal in ${fmtName(FORMAT)}` : `＋ Add to deck (${n}/${mx})`, cls: 'primary', value: 'add', dis: !!bad || n >= mx });
@@ -163,10 +176,12 @@ async function showCardDetail(id, ctx, uid) {
     inst = G.p.player.hand.find(h => h.uid === uid) || null;
     if (inst) buttons = handButtons(G.p.player, inst, false);
   }
+  if (sideCard) buttons.push({ label: showB ? '↻ Side A' : '↻ Side B', cls: 'blue', value: 'flip' });
   buttons.push({ label: 'Close', cls: 'cancel', value: null });
   /* v0.105.1 fix (regression R15): with inst (a hand card mid-match) this menu carries the played action, so it records again -
      v0.104's uiOnly tagging was for view-only dialogs and wrongly swallowed these action menus (the replay diverged at a hand tap) */
-  const v = await modal({ uiOnly: !inst, title: '🎴 Card Detail', html: cardDetailHTML(card), buttons });
+  const v = await modal({ uiOnly: !inst, title: '🎴 Card Detail', html: showB ? cardDetailHTML(sideCard, true) : cardDetailHTML(card), buttons });
+  if (v === 'flip' && sideCard) { showCardDetail(id, ctx, uid, !showB); return; }
   if (inst) { runHandAction(G.p.player, inst, v); return; }
   if (ctx === 'deck' && (v === 'add' || v === 'sub')) {
     dbChange(id, v === 'add' ? 1 : -1); showCardDetail(id, 'deck');
