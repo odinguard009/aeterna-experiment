@@ -37416,11 +37416,27 @@
   "image": "Infinity Shield.jpg",
   "block": "08",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "Flash - During this turn, all your \"Machine Beast\"/\"Armed Machine\" family Spirits can block opposing Spirits while exhausted."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "BLOCK_EXHAUSTED_TURN",
+     "to": "all",
+     "match": {
+      "family": [
+       "Machine Beast",
+       "Armed Machine"
+      ]
+     }
+    }
+   ]
+  }
  },
  {
   "id": "BS08-078",

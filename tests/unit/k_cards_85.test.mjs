@@ -255,3 +255,17 @@ test('K-951 BS39-075 refreshes all own Cost 2 Spirits and draws only when 3+ wer
     } return out; })()`);
   assert.deepEqual(r, [[2, 0], [3, 1]]);
 });
+
+test('K-952 BS21-079/BS08-077 let exhausted Spirits block this turn (picked one / matching family)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.spirits.length = 0; P.nexus.length = 0;
+    const fam = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && (BS.CARDS[k].families || []).includes('Machine Beast'));
+    const mk = id => { const s = BS.mkInst(id); s.cores = 1; s.exhausted = true; P.spirits.push(s); return s; };
+    const a = mk('BS01-001'), b = mk(fam), x = mk('BS01-001');
+    const can = s => BS.canBlockState(P, s); const before = [can(a), can(b)];
+    await BS.FX_ACTIONS.BLOCK_EXHAUSTED_TURN.run({ p: P, opp: O, src: BS.mkInst('BS08-077'), ctx: {} }, BS.CARDS['BS08-077'].magic.actions[0]);
+    const all = [can(a), can(b)]; b.blockExT = null;
+    await BS.FX_ACTIONS.BLOCK_EXHAUSTED_TURN.run({ p: P, opp: O, src: BS.mkInst('BS21-079'), ctx: {} }, BS.CARDS['BS21-079'].magic.actions[0]);
+    return { before, all, fam: !!fam, picked: P.spirits.filter(s => s.blockExT === G.turnNo).length >= 1 }; })()`);
+  assert.ok(r.fam); assert.deepEqual(r.before, [false, false]); assert.deepEqual(r.all, [false, true], JSON.stringify(r)); assert.ok(r.picked);
+});

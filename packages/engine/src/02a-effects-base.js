@@ -74,7 +74,7 @@ function oppAttackLock(p, s) {      // v201 STATIC NO_ATTACK_ONE_CORE on the opp
   return false;
 }
 const cantAttack = (p, s) => !!s.noAB || (!!G && s.noAtkTurn === G.turnNo) || flagActive(p, 'CANT_ATTACK', s) || oppAttackLock(p, s) || lowAtkLocked(p, s);      // v214 LOW_ATK_ONCE      // v0.170: the printed "This Spirit can't attack." (STATIC flag CANT_ATTACK) besides the effect lock noAB
-const canBlockState = (p, s) => !s.noAB && !(s.noBlockB && s.noBlockB === G.battleNo) && !flagActive(p, 'CANT_BLOCK', s) && (!s.exhausted || flagActive(p, 'BLOCK_EXHAUSTED', s) || (s.blockExB != null && s.blockExB === G.battleNo));      // v0.89 S1: BLOCK_EXHAUSTED_OPP (02p)
+const canBlockState = (p, s) => !s.noAB && !(s.noBlockB && s.noBlockB === G.battleNo) && !flagActive(p, 'CANT_BLOCK', s) && (!s.exhausted || flagActive(p, 'BLOCK_EXHAUSTED', s) || (s.blockExB != null && s.blockExB === G.battleNo) || (s.blockExT != null && s.blockExT === G.turnNo));      // v312 BLOCK_EXHAUSTED_TURN; v0.89 S1: BLOCK_EXHAUSTED_OPP (02p)
 function fxIf(owner, opp, c, ctx) {
   if (!c) return true;
   for (const k in c) if (!FX_COND_KEYS.has(k)) return fxUnknown('condition', k);     // v0.59.4 strict effects
