@@ -443,11 +443,6 @@
   "T_OPP_REMOVED",
   "T_SUMMONED"
  ],
- "BS03-017": [
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_DESTROYED"
- ],
  "BS03-019": [
   "C_LEVEL",
   "T_ATTACKS",

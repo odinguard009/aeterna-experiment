@@ -74,3 +74,13 @@ test('K-893 BS03-082 refreshes when your Nexus is destroyed', async () => {
     await BS.fireFx(P, 'ALLY_NEXUS_DESTROYED', n, { subject: n }); return a.exhausted; })()`);
   assert.equal(r, false, JSON.stringify(r));
 });
+
+test('K-894 BS03-017 destroys an opposing Spirit with exactly two cores when destroyed (LV2)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const a = BS.mkInst('BS03-017'); a.cores = 0; a.lostLv = 1; P.spirits = []; P.trash = [a];
+    const mk = n => { const x = BS.mkInst('BS01-001'); x.cores = n; return x; };
+    const one = mk(1), three = mk(3), two = mk(2); O.spirits = [one, three, two];
+    await BS.fireFx(P, 'DESTROYED', a, { subject: a }); return [O.spirits.includes(two), O.spirits.includes(one), O.spirits.includes(three)]; })()`);
+  assert.deepEqual(r, [false, true, true], JSON.stringify(r));
+});
