@@ -341,3 +341,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v304: MILL_OPP `perLostCores: true` (one card per core that was on this Spirit when destroyed; DESTROYED trigger only).
 - v305: `if.handGe` (own hand size at least N), BS04-018.
 - v306: `match.notKeyword` (Spirits without that keyword, e.g. Tribute), BS09-072.
+- v307: `REFRESH_SPIRIT all:true [both:true] match` (refresh every matching exhausted Spirit, optionally both players'), BS02-106.

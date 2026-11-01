@@ -10827,12 +10827,27 @@
   "image": "Royal Potion.jpg",
   "block": "02",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Refresh all Cost 2 Spirits."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "REFRESH_SPIRIT",
+     "all": true,
+     "both": true,
+     "match": {
+      "costIn": [
+       2
+      ]
+     }
+    }
+   ]
+  }
  },
  {
   "id": "BS02-107",

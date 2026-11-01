@@ -145,3 +145,25 @@ test('K-942 BS09-072 destroys exhausted opposing Spirits without Tribute only wh
   assert.deepEqual(r.slice(1, 5), [2, false, true, 2], JSON.stringify(r));
   assert.equal(r[5], 'BS07-035x,BS01-001', JSON.stringify(r));
 });
+
+test('K-943 BS17-073 destroys one opposing 4000 BP or less Spirit and marks it so its When Destroyed effects stay silent', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    O.reserve.n = 5; const big = Object.keys(BS.CARDS).find(k => /^BS0/.test(k) && BS.CARDS[k].type === 'Spirit' && !(BS.CARDS[k].effects || []).some(e => e.trigger === 'STATIC') && (BS.CARDS[k].levels[0].bp || 0) >= 7000);
+    const lo = BS.mkInst('BS01-001'), hi = BS.mkInst(big); lo.cores = 1; hi.cores = 2; O.spirits = [lo, hi];
+    const bps = [BS.bpOf(lo), BS.bpOf(hi)];
+    await BS.FX_ACTIONS.DESTROY.run({ p: P, opp: O, src: BS.mkInst('BS17-073'), ctx: {} }, BS.CARDS['BS17-073'].magic.actions[0]);
+    return [bps[0] <= 4000, bps[1] > 4000, O.spirits.length, O.spirits[0] === hi, BS.CARDS['BS17-073'].magic.actions[0].noFx === true]; })()`);
+  assert.deepEqual(r, [true, true, 1, true, true], JSON.stringify(r));
+});
+
+test('K-944 BS02-106 refreshes every exhausted Cost 2 Spirit of both players and leaves other costs exhausted', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const c2 = Object.keys(BS.CARDS).find(k => /^BS0/.test(k) && BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].cost === 2), c4 = Object.keys(BS.CARDS).find(k => /^BS0/.test(k) && BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].cost === 4);
+    const mk = id => { const s = BS.mkInst(id); s.cores = 2; s.exhausted = true; return s; };
+    P.spirits = [mk(c2), mk(c4)]; O.spirits = [mk(c2), mk(c4)];
+    await BS.FX_ACTIONS.REFRESH_SPIRIT.run({ p: P, opp: O, src: BS.mkInst('BS02-106'), ctx: {} }, BS.CARDS['BS02-106'].magic.actions[0]);
+    return [P.spirits.map(s => s.exhausted), O.spirits.map(s => s.exhausted)]; })()`);
+  assert.deepEqual(r, [[false, true], [false, true]]);
+});

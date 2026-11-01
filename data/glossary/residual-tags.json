@@ -358,9 +358,6 @@
  "BS02-105": [
   "A_BP_PLUS"
  ],
- "BS02-106": [
-  "A_REFRESH"
- ],
  "BS02-109": [
   "M_REPLACEMENT"
  ],
@@ -5374,9 +5371,6 @@
   "C_LEVEL",
   "K_BRAVE",
   "S_UNAFFECTED"
- ],
- "BS17-073": [
-  "T_DESTROYED"
  ],
  "BS17-074": [
   "K_BRAVE",
