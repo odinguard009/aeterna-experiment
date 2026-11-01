@@ -18,6 +18,6 @@ Open = a glossary tag whose status is not `wired`. Tags are hints, not a parser;
 | K_STANDARD_SUCCESSION | missing | 2 | 2 |
 | S1_ALL_HAVE | partial | 2 | 2 |
 | A_REVEAL_ADD | partial | 1 | 0 |
-| A_REVEAL_DECK | partial | 1 | 0 |
 | K_STANDARD_INVOKE | partial | 1 | 0 |
+| A_REVEAL_DECK | partial | 1 | 0 |
 | A_VOID_TO_LIFE | partial | 1 | 1 |
