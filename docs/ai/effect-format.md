@@ -293,3 +293,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v255 (Lane K): BOUNCE_OPP `match` (the returned opposing Spirit must match, e.g. keyword). Cards: BS10-042, BS22-029.
 - v256 (Lane K): EXHAUST_OPP `lv` (exhaust an opposing Spirit of that level). Cards: BS03-032.
 - v257 (Lane K): CHOOSE_ONE `options` (two action lists, the player picks one: "Do A. Or, do B."). Cards: BS38-066, BS10-098.
+- v258 (Lane K): `if.reserveGe` (N or more cores in your own Reserve; "while there is any core in your Reserve"). Cards: BS01-052.

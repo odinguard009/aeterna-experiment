@@ -2237,12 +2237,22 @@
   "image": "Pelileaf.jpg",
   "block": "01",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV2] While there is any core in your Reserve, this Spirit gains +2000 BP."
-  ],
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "lv": [
+     2
+    ],
+    "bp": 2000,
+    "to": "self",
+    "if": {
+     "reserveGe": 1
+    }
+   }
+  ]
  },
  {
   "id": "BS01-053",
@@ -8986,13 +8996,46 @@
   "image": "The PreciousBeast Carbulc.jpg",
   "block": "02",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Destroyed) Gain 1 core in your Reserve for each \"Imaginary Beast\" spirit you control.",
-   "[LV2][LV3] (When Destroyed) Draw 1 card for each \"Imaginary Beast\" spirit you control."
-  ],
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "R"
+  "rcode": "R",
+  "effects": [
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "VOID_TO_RESERVE",
+      "perSource": "own",
+      "perMatch": {
+       "type": "Spirit",
+       "family": "Imaginary Beast"
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1,
+      "per": {
+       "family": "Imaginary Beast",
+       "type": "Spirit"
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS02-072",

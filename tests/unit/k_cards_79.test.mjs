@@ -1,5 +1,5 @@
 // Lane K tests, file 79 (rule 1b: at most 25 tests per file, sharedBoard from lib/game.mjs).
-// Schemas v256-v257: EXHAUST_OPP lv, CHOOSE_ONE. Cards: BS03-032, BS38-066, BS10-098.
+// Schemas v256-v258: EXHAUST_OPP lv, CHOOSE_ONE, if.reserveGe. Cards: BS03-032, BS38-066, BS10-098, BS01-052, BS02-071.
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { sharedBoard, closeBrowser } from './lib/game.mjs';
@@ -25,4 +25,10 @@ test('K-805 CHOOSE_ONE: the CPU takes the first option (BS38-066 draws two); BS1
     const act = BS.CARDS['BS38-066'].magic.by.MAIN.actions[0]; const c = { p: P, opp: O, src: a, ctx: {} };
     await BS.FX_ACTIONS.CHOOSE_ONE.run(c, act); return [P.hand.length, BS.CARDS['BS10-098'].magic.by.MAIN.actions[0].options[1][0].do];`);
   assert.deepEqual(r, [2, 'RETURN_TRASH'], JSON.stringify(r));
+});
+
+test('K-806 if.reserveGe: BS01-052 gains +2000 BP only while the Reserve holds a core; BS02-071 carries two Destroyed clauses', async () => {
+  const r = await run(`const a = sp('BS01-052', P, BS.CARDS['BS01-052'].levels[1].cores); P.reserve.n = 0; P.reserve.soul = false; const lo = BS.bpOf(a); P.reserve.n = 2; const hi = BS.bpOf(a);
+    return [hi - lo, BS.CARDS['BS02-071'].effects.length];`);
+  assert.deepEqual(r, [2000, 2], JSON.stringify(r));
 });

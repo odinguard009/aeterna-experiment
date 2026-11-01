@@ -50,10 +50,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "BS01-052": [
-  "A_BP_PLUS",
-  "C_LEVEL"
- ],
  "BS01-053": [
   "C_LEVEL",
   "K_HIGH_SPEED"
@@ -415,10 +411,6 @@
  ],
  "BS02-070": [
   "C_LEVEL"
- ],
- "BS02-071": [
-  "C_LEVEL",
-  "T_DESTROYED"
  ],
  "BS02-073": [
   "A_VOID",
