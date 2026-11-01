@@ -203,3 +203,14 @@ test('K-879 BS13-066 returns a Void core when an opposing effect or battle destr
     return out; })()`);
   assert.deepEqual(r, [1, 1, 0, true, 1, false], JSON.stringify(r));
 });
+
+test('K-880 BS18-061 destroys an opposing 5000 BP or less Spirit when a Red Spirit is destroyed by the opponent (LV2)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const n = BS.mkInst('BS18-061'); n.cores = 0; P.nexus = [n]; const out = [];
+    const y = BS.mkInst('BS01-001'); const e = BS.mkInst('BS01-001'); e.cores = 1; O.spirits = [e];
+    n.cores = 2; await BS.fireFx(P, 'ALLY_DIED', null, { subject: y }); out.push(O.spirits.length);
+    await BS.fireFx(P, 'ALLY_DIED', null, { subject: y, byOpp: true }); out.push(O.spirits.length);
+    return [out, O.trash.length, P.nexus[0].cores, BS.CARDS["BS18-061"].effects.length]; })()`);
+  assert.deepEqual(r, [[1, 0], 1, 2, 2], JSON.stringify(r));
+});

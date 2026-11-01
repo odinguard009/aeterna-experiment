@@ -5857,11 +5857,6 @@
  "BS18-060": [
   "K_BRAVE"
  ],
- "BS18-061": [
-  "A_DESTROY_BP",
-  "C_LEVEL",
-  "T_ALLY_LOST"
- ],
  "BS18-062": [
   "A_BP_PLUS",
   "A_DESTROY_NEXUS",
