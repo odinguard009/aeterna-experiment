@@ -16552,13 +16552,22 @@
   "image": "High Elixir.jpg",
   "block": "03",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Send two cores from your Reserve to your Life.",
-   "(This effect can only be used once per turn.)"
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "once": true,
+   "actions": [
+    {
+     "do": "RESERVE_TO_LIFE",
+     "n": 2
+    }
+   ]
+  }
  },
  {
   "id": "BS03-134",

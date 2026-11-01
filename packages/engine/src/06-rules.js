@@ -499,6 +499,7 @@ function magicUsable(p, inst, ctx, free) {   // free: "without paying the cost" 
   const timing = card.magic ? card.magic.timing : ['MAIN'];
   if (ctx === 'flash' && !timing.includes('FLASH')) return false;
   if (ctx !== 'flash' && card.magic && card.magic.noMain) return false;   // v0.44 (Can't Use in Main)
+  if (card.magic && card.magic.once && p.onceUsed && p.onceUsed['magic:' + card.name] === G.turnNo) return false;      // v303 once per turn
   if (!free && effCost(p, card) > coresAvailable(p) && !soulMagicOK(p, card)) return false;   // v0.64: Soul Magic pays with the Soul Core only
   if (magicFromTrash(p, inst) && !magicTrashOK(p, inst)) return false;
   const fm = magicFxAt(p, inst, ctx); if (card.magic && card.magic.by && !fm) return false;
@@ -521,6 +522,7 @@ async function castMagic(p, ch) {                         // ch = { inst, target
   const inst = ch.inst, fromTrash = magicFromTrash(p, inst), card = CARDS[inst.id], m = magicFxAt(p, inst, ch.ctx), free = !!ch.free, sm = !free && soulMagicPick(p, card, ch), alt = !sm && !free && costAltActive(p, card), c = free ? 0 : effCost(p, card), opp = G.p[other(p.key)];
   if (!sm && !free) legacyPay(p, inst);
   if (alt) { p.onceUsed = p.onceUsed || {}; p.onceUsed['costalt:' + card.name] = G.turnNo; }
+  if (card.magic && card.magic.once) { p.onceUsed = p.onceUsed || {}; p.onceUsed['magic:' + card.name] = G.turnNo; }      // v303
   const smHolder = sm ? soulMagicHolder(p) : null;              // chosen before the card leaves the Hand (symbols stay as they are)
   removeFrom(p.hand, inst); if (fromTrash) removeFrom(p.trash, inst);
   if (sm) {                                                     // v0.64 Soul Magic: the whole cost is the Soul Core, which goes to the Trash

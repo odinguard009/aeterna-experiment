@@ -42,6 +42,7 @@ function parseMagicOf(o, type, text, err2, int) {
       if (!int(value, 0, 99999)) err2.push('invalid "magic.value"');
       magic = /** @type {MagicSpec} */ ({ timing: Array.from(new Set(timing)), effect, value });
       if (m.noMain === true) magic.noMain = true;           // v0.44 "(Can't Use in Main)"
+      if (m.once === true) magic.once = true;               // v303 "(This effect can only be used once per turn.)": one use per card name per turn
       if (m.trashUse != null) {                              // v0.47 "while you control X, you can use this card from the Trash" (+ "when used from the Trash, instead ...", then banish)
         const t = m.trashUse, o2 = {};
         if (!t || typeof t !== 'object' || Array.isArray(t)) err2.push('"magic.trashUse" must look like {"if":{...},"actions":[...]}');
