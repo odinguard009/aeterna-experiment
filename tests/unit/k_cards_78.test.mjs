@@ -49,3 +49,11 @@ test('K-785 BS72-050 REVEAL_DEPLOY rest either: the CPU sends the unused reveale
     return [P.deck.length, P.deck[P.deck.length - 1].id, P.deck[0].id === top0];`);
   assert.deepEqual(r, [5, 'BS75-001', false], JSON.stringify(r));
 });
+
+test('K-786 BS74-045: Awakened Dragon Spirits are unaffected by opposing purple/white/blue effects only', async () => {
+  const r = await run(`const t = sp('BS74-045', P, 1), ally = sp('BS75-035', P, 1), other = sp('BS75-011', P, 1);
+    const find = col => Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit' && (BS.CARDS[i].colors || [BS.CARDS[i].symbol]).length === 1 && (BS.CARDS[i].colors || [BS.CARDS[i].symbol])[0] === col);
+    const res = {}; for (const col of ['purple', 'white', 'blue', 'red']) res[col] = [BS.fxImmune(P, t, by(sp(find(col), O, 1))), BS.fxImmune(P, ally, by(sp(find(col), O, 1))), BS.fxImmune(P, other, by(sp(find(col), O, 1)))];
+    return res;`);
+  assert.deepEqual(r, { purple: [true, true, false], white: [true, true, false], blue: [true, true, false], red: [false, false, false] }, JSON.stringify(r));
+});
