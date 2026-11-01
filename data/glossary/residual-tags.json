@@ -6547,10 +6547,6 @@
   "C_LEVEL",
   "C_OPP_TURN"
  ],
- "BS19-038": [
-  "A_REFRESH",
-  "C_LEVEL"
- ],
  "BS19-040": [
   "A_REFRESH",
   "A_SYMBOL",
@@ -7231,18 +7227,6 @@
   "C_LEVEL",
   "K_BRAVE",
   "T_ATTACKS"
- ],
- "BS21-028": [
-  "A_REFRESH",
-  "C_LEVEL"
- ],
- "BS21-031": [
-  "A_REFRESH",
-  "C_LEVEL"
- ],
- "BS21-033": [
-  "A_REFRESH",
-  "C_LEVEL"
  ],
  "BS21-034": [
   "A_BP_PLUS",

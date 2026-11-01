@@ -136,3 +136,10 @@ test('K-797 BS19-029 / BS19-052 / BS21-039: Charge by level together with NO_DEC
     return [x1, x2, atk, nd];`);
   assert.deepEqual(r, [1, 2, true, true], JSON.stringify(r));
 });
+
+test('K-798 Charge kind refresh: Spirit-refreshing effects refresh one more body (REFRESH_SPIRIT count)', async () => {
+  const r = await run(`P.cpu = true; sp('BS21-033', P, 1); const x = sp('BS75-001', P, 1), y = sp('BS75-011', P, 1); x.exhausted = true; y.exhausted = true;
+    const src = sp('BS75-004', P, 1); const act = BS.chargeAction({ p: P, opp: O, src, ctx: {} }, { do: 'REFRESH_SPIRIT' });
+    await BS.FX_ACTIONS.REFRESH_SPIRIT.run({ p: P, opp: O, src, ctx: {} }, act); return [act.count, x.exhausted, y.exhausted];`);
+  assert.deepEqual(r, [2, false, false], JSON.stringify(r));
+});

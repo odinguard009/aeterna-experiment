@@ -224,7 +224,7 @@ const deckDiscardLocked = () => !!G && ['player', 'opponent'].some(k => fieldLis
 /* v143 STATIC NO_BP_COMPARE (to:'all', usually if {selfAttacking:true}): "Neither player's Spirits would be destroyed by BP comparison" */
 const bpCompareLocked = s => !!G && ['player', 'opponent'].some(k => flagActive(G.p[k], 'NO_BP_COMPARE', s));
 /* v250 Charge: STATIC CHARGE { kind, n, noUlt? } raises the numbers of the owner's matching effects (cores = core removal, mill = opposing-deck discard, bp = BP destruction limit, exhaust = opponent-targeting exhaustion). Sums over the owner's Field. */
-const CHARGE_KINDS = { OPP_CORES_TO_RESERVE: 'cores', MILL_OPP: 'mill', DESTROY: 'bp', EXHAUST_OPP: 'exhaust', BP_MINUS: 'bpMinus' };
+const CHARGE_KINDS = { OPP_CORES_TO_RESERVE: 'cores', MILL_OPP: 'mill', DESTROY: 'bp', EXHAUST_OPP: 'exhaust', BP_MINUS: 'bpMinus', REFRESH_SPIRIT: 'refresh' };
 function chargeSum(owner, kind, srcCard) {
   if (!G || !owner) return 0; let n = 0;
   for (const src of fieldList(owner)) { const L = lvNo(src);
@@ -239,7 +239,7 @@ function chargeAction(c, a) {
   const n = chargeSum(c.p, kind, c.src); if (!n) return a;
   const b = Object.assign({}, a);
   if (kind === 'cores') { if (b.total != null) b.total += n; else if (b.each != null) b.each += n; else return a; }
-  else if (kind === 'bp') b.bpLe += n; else if (kind === 'bpMinus') b.n = Math.min(30000, b.n + n); else b.n += n;
+  else if (kind === 'bp') b.bpLe += n; else if (kind === 'refresh') { if (b.self || b.perN || b.perBp) return a; b.count = (b.count || 1) + n; } else if (kind === 'bpMinus') b.n = Math.min(30000, b.n + n); else b.n += n;
   return b;
 }
 function flagActive(owner, flag, subject, pred) {
