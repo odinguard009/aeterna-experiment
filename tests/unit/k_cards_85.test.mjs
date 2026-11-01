@@ -102,3 +102,15 @@ test('K-939 BS12-077 Main grants a turn-long attack effect to Parasite / Shell I
     return [P.spirits.map(s => (s.grantFx || []).length), m.timing]; })()`);
   assert.deepEqual(r, [[1, 0], ['MAIN', 'FLASH']], JSON.stringify(r));
 });
+
+test('K-940 BS01-112 returns an opposing Nexus at LV1+ and an opposing Spirit at LV2 on the Start Step', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const n = BS.mkInst('BS01-112'); n.cores = 1; P.nexus = [n];
+    const on = BS.mkInst('BS01-112'); on.cores = 0; O.nexus = [on]; const sp = BS.mkInst('BS01-001'); sp.cores = 1; O.spirits = [sp]; O.hand = [];
+    await BS.fireFx(P, 'START_STEP', null, {}); const lv1 = [O.nexus.length, O.spirits.length, O.hand.length];
+    O.nexus = [BS.mkInst('BS01-112')]; n.cores = 4; O.hand = [];
+    await BS.fireFx(P, 'START_STEP', null, {}); const lv2 = [O.nexus.length, O.spirits.length, O.hand.length];
+    return [lv1, lv2]; })()`);
+  assert.deepEqual(r, [[0, 1, 1], [0, 0, 2]], JSON.stringify(r));
+});
