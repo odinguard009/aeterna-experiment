@@ -10,7 +10,7 @@ test('K-PKT summary reports live card counts and the next tags', () => {
   const r = run(['--summary']);
   assert.equal(r.status, 0, r.stderr);
   const kv = Object.fromEntries(r.stdout.trim().split('\n').map((l) => l.split('=')));
-  assert.equal(kv.total, '8709');
+  assert.equal(kv.total, String(JSON.parse(readFileSync('docs/reports/card-counts.json', 'utf8')).total));
   assert.ok(Number(kv.complete) > 1000);
   assert.ok(Number(kv.blockA_partial) >= 0);
   assert.match(kv.next_tags, /[A-Z]/);
