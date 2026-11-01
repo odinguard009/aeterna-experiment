@@ -2258,9 +2258,6 @@
   "M_OPTIONAL",
   "T_ACTIVATE"
  ],
- "BS08-072": [
-  "M_BY_DOING"
- ],
  "BS08-073": [
   "K_HIGH_SPEED"
  ],
@@ -2585,9 +2582,6 @@
   "A_SUMMON_FREE",
   "K_CRUSH",
   "K_HIGH_SPEED"
- ],
- "BS09-070": [
-  "M_BY_DOING"
  ],
  "BS09-071": [
   "A_DRAW",
