@@ -333,3 +333,13 @@ test('K-958 BS04-113 Main deploys a Nexus from the Trash free; Flash gives +3000
     return [P.nexus.length, P.trash.length, m.by.FLASH.value]; })()`);
   assert.deepEqual(r, [1, 0, 3000], JSON.stringify(r));
 });
+
+test('K-959 BS02-097 Flash sends every Trash core to one of your Spirits', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const sp = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit'); const s = BS.mkInst(sp); s.cores = 1; P.spirits.length = 0; P.spirits.push(s);
+    P.trashCores.n = 8; const m = BS.CARDS['BS02-097'].magic; const c = { p: P, opp: O, src: BS.mkInst('BS02-097'), ctx: {} };
+    await BS.FX_ACTIONS.TRASH_CORES_TO.run(c, m.actions[0]);
+    return [s.cores, P.trashCores.n, m.timing]; })()`);
+  assert.deepEqual(r, [9, 0, ['FLASH']], JSON.stringify(r));
+});

@@ -351,3 +351,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v314 (Lane K): BLOCK_EXHAUSTED_TURN `battle:true` (this battle only, sets `blockExB`) and `to:'pick'` now stores `ctx.picked` for a following WIN_RIDER. Card: BS39-072.
 - v315 (Lane K): VOID_TO_RESERVE `perDestroyed:true` (one core per Spirit in `ctx.destroyed`, set by DESTROY_EACH_COST). Card: BS33-083.
 - v316 (Lane K): NEXUS_CORES_ALL_TO_TRASH (all cores on all Nexuses go to their owners' Trash; protected opposing Nexuses skipped). Card: BS03-122.
+- v317 (Lane K): TRASH_CORES_TO `all:true` with `toPick` (every core in the Trash to one matching Spirit). Card: BS02-097.
