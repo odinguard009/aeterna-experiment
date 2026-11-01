@@ -3986,6 +3986,243 @@
   "rcode": "C"
  },
  {
+  "id": "BS60-085",
+  "name": "Count Draw",
+  "name_jp": "カウントドロー",
+  "type": "Magic",
+  "color": "red",
+  "cost": 4,
+  "reduction": {
+   "red": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Scarlet Flame"
+  ],
+  "text": "{{mirage|Cost 3 ()}}\nDuring Set\nFor each of your counters, increase the limit of your \"BP destruction\" effects by +1000.\n\nMain\nDraw two cards. For every four counters you have, this effect draws +1 card.",
+  "image": "BS60 085.png",
+  "block": "60",
+  "saga": 13,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{mirage|Cost 3 ()}}",
+   "During Set",
+   "For each of your counters, increase the limit of your \"BP destruction\" effects by +1000.",
+   "Main",
+   "Draw two cards.",
+   "For every four counters you have, this effect draws +1 card."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS60-086",
+  "name": "Nova Flame",
+  "name_jp": "ノヴァフレイム",
+  "type": "Magic",
+  "color": "red",
+  "cost": 4,
+  "reduction": {
+   "red": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "When using this card during either Attack Step, if your Life is at two or less, this card becomes Cost 2.\n\nFlash\nDestroy an opposing one-symbol Spirit. By sending a core from your Life to the Void, instead, destroy an opposing Spirit with two symbols or more. You can't activate Burst effects/Rebirth via this \"Life reducing\" effect.",
+  "image": "BS60 086.png",
+  "block": "60",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "When using this card during either Attack Step, if your Life is at two or less, this card becomes Cost 2.",
+   "Flash",
+   "Destroy an opposing one-symbol Spirit.",
+   "By sending a core from your Life to the Void, instead, destroy an opposing Spirit with two symbols or more.",
+   "You can't activate Burst effects/Rebirth via this \"Life reducing\" effect."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS60-087",
+  "name": "Volcanic Flare",
+  "name_jp": "ヴォルカニックフレア",
+  "type": "Magic",
+  "color": "red",
+  "cost": 8,
+  "reduction": {
+   "red": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Scarlet Flame"
+  ],
+  "text": "While you have five or more counters, this card in Hand is Cost 4.\n\nFlash\nDestroy an opposing 25000 BP or less Spirit. This effect can't be prevented by opposing White effects. Then, if you control any \"The PartnerDragon Glow\", including being in Soul State/pre-advent, return a \"Scarlet Flame\" family Spirit card from the Trash to your Hand.",
+  "image": "BS60 087.png",
+  "block": "60",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "While you have five or more counters, this card in Hand is Cost 4.",
+   "Flash",
+   "Destroy an opposing 25000 BP or less Spirit.",
+   "This effect can't be prevented by opposing White effects.",
+   "Then, if you control any \"The PartnerDragon Glow\", including being in Soul State/pre-advent, return a \"Scarlet Flame\" family Spirit card from the Trash to your Hand."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS60-088",
+  "name": "Death Resurrection",
+  "name_jp": "デスリザレクション",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 4,
+  "reduction": {
+   "purple": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Blood Crystal"
+  ],
+  "text": "Flash\nSummon a Cost 3 or less \"Blood Crystal\" family Spirit card from your Trash, without paying the cost. Increase the cost of the card to be summoned by this effect by +1 for every three counters you have.",
+  "image": "BS60 088.png",
+  "block": "60",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Summon a Cost 3 or less \"Blood Crystal\" family Spirit card from your Trash, without paying the cost.",
+   "Increase the cost of the card to be summoned by this effect by +1 for every three counters you have."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS60-089",
+  "name": "Noir Shoot",
+  "name_jp": "ノワールシュート",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 8,
+  "reduction": {
+   "purple": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Blood Crystal"
+  ],
+  "text": "While you have five or more counters, this card in Hand is Cost 4.\n\nFlash\nDiscard four cards from your decktop, and for each \"Blood Crystal\" family card discarded, send a core from the opposing Field to the Reserve. Also, if you have four or more counters, this card is treated as colorless.",
+  "image": "BS60 089.png",
+  "block": "60",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "While you have five or more counters, this card in Hand is Cost 4.",
+   "Flash",
+   "Discard four cards from your decktop, and for each \"Blood Crystal\" family card discarded, send a core from the opposing Field to the Reserve.",
+   "Also, if you have four or more counters, this card is treated as colorless."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS60-090",
+  "name": "Increase",
+  "name_jp": "インクリース",
+  "type": "Magic",
+  "color": "green",
+  "cost": 4,
+  "reduction": {},
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Jade Thunder"
+  ],
+  "text": "{{mirage|Cost 2 ()}}\nDuring Set\nWhile you have six counters or more, the effects of every opposing heavily exhausted Spirit/Nexus can't activate, and those Spirits/Nexuses can't refresh.\n\nMain\nDiscard your entire Hand. When this effect discards any “Jade Thunder” family cards, draw a card for each card in the opposing Hand/Removed Zone. The opponent can't activate Nexus effects via this effect.",
+  "image": "BS60 090.png",
+  "block": "60",
+  "saga": 13,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{mirage|Cost 2 ()}}",
+   "During Set",
+   "While you have six counters or more, the effects of every opposing heavily exhausted Spirit/Nexus can't activate, and those Spirits/Nexuses can't refresh.",
+   "Main",
+   "Discard your entire Hand.",
+   "When this effect discards any “Jade Thunder” family cards, draw a card for each card in the opposing Hand/Removed Zone.",
+   "The opponent can't activate Nexus effects via this effect."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS60-091",
+  "name": "Binding Thunder",
+  "name_jp": "バインディングサンダ",
+  "type": "Magic",
+  "color": "green",
+  "cost": 4,
+  "reduction": {
+   "green": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Jade Thunder"
+  ],
+  "text": "(Once per turn: Same Name) During your End Step, by discarding a \"Jade Thunder\" family card from your Hand, return this card from the Trash to your Hand.\n\nFlash\nHeavy exhaust an opposing Spirit. Then, if you have six counters or more, you can return an opposing exhausted Spirit to the deckbottom.",
+  "image": "BS60 091.png",
+  "block": "60",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "(Once per turn: Same Name) During your End Step, by discarding a \"Jade Thunder\" family card from your Hand, return this card from the Trash to your Hand.",
+   "Flash",
+   "Heavy exhaust an opposing Spirit.",
+   "Then, if you have six counters or more, you can return an opposing exhausted Spirit to the deckbottom."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS60-092",
+  "name": "Clear Wall",
+  "name_jp": "クリアウォール",
+  "type": "Magic",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Silver Zero"
+  ],
+  "text": "Including being in Soul State/pre-advent condition, if you control any “The PartnerMachine Stark”, this set card is unaffected by opposing effects.\n\n{{Burst|After your Life is reduced}}\nYour counter can +2, and you can put a core from the Void to your Life. Then, by paying the cost, activate this card's Flash effect.\n\nFlash\nWhen this battle ends, end the Attack Step.",
+  "image": "BS60 092.png",
+  "block": "60",
+  "saga": 13,
+  "mechanics": [
+   "Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Including being in Soul State/pre-advent condition, if you control any “The PartnerMachine Stark”, this set card is unaffected by opposing effects.",
+   "{{Burst|After your Life is reduced}}",
+   "Your counter can +2, and you can put a core from the Void to your Life.",
+   "Then, by paying the cost, activate this card's Flash effect.",
+   "Flash",
+   "When this battle ends, end the Attack Step."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS60-093",
   "name": "Dream Buster",
   "name_jp": "ドリームバスター",
@@ -4032,6 +4269,69 @@
   "rcode": "C"
  },
  {
+  "id": "BS60-094",
+  "name": "Cloudy Blow",
+  "name_jp": "クラウディブロウ",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 4,
+  "reduction": {
+   "yellow": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Golden Cloud"
+  ],
+  "text": "{{Burst|After your Life is reduced}}\nYou can summon a Cost 8 or less \"Golden Cloud\" family Spirit card from your Hand, without paying the cost. When you've done so, put a core from the Void to your Life. Then, by paying the cost, activate this card's Flash effect.\n\nFlash\nDuring this turn, give an opposing Spirit/Ultimate -7000 BP, and destroy it when it reaches 0 BP. Then. if you have six counters or more, you can Contract Advent a \"Golden Cloud\" family Spirit card from your Hand, treating your  as being sent to the Trash.",
+  "image": "BS60 094.png",
+  "block": "60",
+  "saga": 13,
+  "mechanics": [
+   "Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Burst|After your Life is reduced}}",
+   "You can summon a Cost 8 or less \"Golden Cloud\" family Spirit card from your Hand, without paying the cost.",
+   "When you've done so, put a core from the Void to your Life.",
+   "Then, by paying the cost, activate this card's Flash effect.",
+   "Flash",
+   "During this turn, give an opposing Spirit/Ultimate -7000 BP, and destroy it when it reaches 0 BP.",
+   "Then.",
+   "if you have six counters or more, you can Contract Advent a \"Golden Cloud\" family Spirit card from your Hand, treating your  as being sent to the Trash."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS60-095",
+  "name": "Sanctified Light",
+  "name_jp": "サンクティファイドライト",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 8,
+  "reduction": {
+   "yellow": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Golden Cloud"
+  ],
+  "text": "While you have six counters or more, and you control any Yellow Contract Spirit, including those in pre-advent condition, this card in Hand is Cost 4.\n\nFlash\nDuring this battle, every opposing Spirit/Ultimate can't block, and the opponent can't use cards without the Yellow color from the Hand/Removed Zone. If you have six counters or more, the \"during this battle” written on this effect is changed to “during this Attack Step”.",
+  "image": "BS60 095.png",
+  "block": "60",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "While you have six counters or more, and you control any Yellow Contract Spirit, including those in pre-advent condition, this card in Hand is Cost 4.",
+   "Flash",
+   "During this battle, every opposing Spirit/Ultimate can't block, and the opponent can't use cards without the Yellow color from the Hand/Removed Zone.",
+   "If you have six counters or more, the \"during this battle” written on this effect is changed to “during this Attack Step”."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS60-096",
   "name": "Stream Draw",
   "name_jp": "ストリームドロー",
@@ -4066,6 +4366,34 @@
    "11"
   ],
   "rcode": "C"
+ },
+ {
+  "id": "BS60-097",
+  "name": "Blue Collision",
+  "name_jp": "ブルーコリジョン",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 5,
+  "reduction": {
+   "blue": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Azure Wave"
+  ],
+  "text": "While you have three or less Lives, this card in Hand is Cost 4.\n\nFlash\nIgnoring the cost of Braves, destroy an opposing Cost 6 or less Spirit. Also, if you have three counters or more, during this battle, your Life won't be reduced by opposing Spirits/Ultimates with printed effects.",
+  "image": "BS60 097.png",
+  "block": "60",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "While you have three or less Lives, this card in Hand is Cost 4.",
+   "Flash",
+   "Ignoring the cost of Braves, destroy an opposing Cost 6 or less Spirit.",
+   "Also, if you have three counters or more, during this battle, your Life won't be reduced by opposing Spirits/Ultimates with printed effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS60-098",
@@ -4777,6 +5105,36 @@
    "9"
   ],
   "rcode": "X"
+ },
+ {
+  "id": "BS60-XX02",
+  "name": "Oracle 0 Over Fool",
+  "name_jp": "オラクル0 オーバーフール",
+  "type": "Magic",
+  "color": "red",
+  "cost": 3,
+  "reduction": {},
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{mirage|Cost 2}}\nDuring Set\nYour set Burst is unaffected by opposing effects. Also, when your \"The Fool\" would leave the Field due to opposing effects, one of them can remain on the Field, exhausted.\n\nMain\nPut a core from the Void to your Reserve. Then, if you have at least three more counters than the opponent, draw two cards.",
+  "image": "BS60 XX02.png",
+  "block": "60",
+  "saga": 13,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{mirage|Cost 2}}",
+   "During Set",
+   "Your set Burst is unaffected by opposing effects.",
+   "Also, when your \"The Fool\" would leave the Field due to opposing effects, one of them can remain on the Field, exhausted.",
+   "Main",
+   "Put a core from the Void to your Reserve.",
+   "Then, if you have at least three more counters than the opponent, draw two cards."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS61-001",
@@ -6498,6 +6856,45 @@
   "rcode": "C"
  },
  {
+  "id": "BS61-036",
+  "name": "Godseeker ArmoredPriest Upatl",
+  "name_jp": "ゴッドシーカー 鎧装神官ウパトル",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 3,
+  "reduction": {
+   "white": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   },
+   {
+    "cores": 2,
+    "bp": 4000
+   }
+  ],
+  "families": [
+   "Armored Beast"
+  ],
+  "text": "[LV1][LV2] (When Summoned)\nYou can reveal three cards from your decktop. Put a “Grandwalker Tezcatlipoca”, and a non-“Godseeker” “Armored Beast” family card from among them to your Removed Zone. Return the remaining cards to the deckbottom.\n\n[LV2] Flash -\nOnce per turn, you can swap a card from Hand with an “Armored Beast” family card on your Removed Zone.",
+  "image": "BS61 036.png",
+  "block": "61",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2] (When Summoned)",
+   "You can reveal three cards from your decktop.",
+   "Put a “Grandwalker Tezcatlipoca”, and a non-“Godseeker” “Armored Beast” family card from among them to your Removed Zone.",
+   "Return the remaining cards to the deckbottom.",
+   "[LV2] Flash -",
+   "Once per turn, you can swap a card from Hand with an “Armored Beast” family card on your Removed Zone."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS61-037",
   "name": "The ArmoredBeast Gray Wolf",
   "name_jp": "鎧装獣グレイウルフ",
@@ -6669,6 +7066,94 @@
   "rcode": "M"
  },
  {
+  "id": "BS61-041",
+  "name": "The ArmoredKing Tloque-Nahuaque",
+  "name_jp": "鎧装王トロケ・ナワケ",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 5,
+  "reduction": {
+   "white": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 2,
+    "bp": 8000
+   },
+   {
+    "cores": 5,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Armored Beast"
+  ],
+  "text": "When your Life would be reduced, by summoning this card from the Removed Zone, your Life isn't reduced.\n\n[LV1][LV2][LV3] (When Summoned)\nYou can reveal two cards from your decktop. Put every \"Armored Beast\" family card among them to your Removed Zone. Discard any remaining cards.\n\n[LV2][LV3]\nGive every \"Armored Beast\" family Spirits you control: \"{{uha|Red/White}} This Spirit is unaffected by opposing Red/White effects.\"",
+  "image": "BS61 041.png",
+  "block": "61",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "When your Life would be reduced, by summoning this card from the Removed Zone, your Life isn't reduced.",
+   "[LV1][LV2][LV3] (When Summoned)",
+   "You can reveal two cards from your decktop.",
+   "Put every \"Armored Beast\" family card among them to your Removed Zone.",
+   "Discard any remaining cards.",
+   "[LV2][LV3]",
+   "Give every \"Armored Beast\" family Spirits you control: \"{{uha|Red/White}} This Spirit is unaffected by opposing Red/White effects.\""
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS61-042",
+  "name": "The ArmoredBird Obsidian Eagle",
+  "name_jp": "鎧装鳥コンゴウバード",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 5,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 6000
+   },
+   {
+    "cores": 2,
+    "bp": 7000
+   }
+  ],
+  "families": [
+   "Armored Beast"
+  ],
+  "text": "When this card is put onto the Removed Zone via switching in places/revealing by your \"Armored Beast\" family effect, you can immediately activate the following Burst.\n\n{{Burst|After an opposing Spirit's (When Summoned)/(When Advents) effect resolves}}\nReturn two opposing 12000 BP or less Spirits to the deckbottom. After this effect resolves, summon this card without paying the cost.\n\n[LV1][LV2] {{Uha|Red/Purple}}\nThis Spirit is unaffected by opposing Red/Purple effects.\n\n[LV2] (When Attacks)\nThis Spirit can't be blocked.",
+  "image": "BS61 042.png",
+  "block": "61",
+  "saga": 13,
+  "mechanics": [
+   "Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "When this card is put onto the Removed Zone via switching in places/revealing by your \"Armored Beast\" family effect, you can immediately activate the following Burst.",
+   "{{Burst|After an opposing Spirit's (When Summoned)/(When Advents) effect resolves}}",
+   "Return two opposing 12000 BP or less Spirits to the deckbottom.",
+   "After this effect resolves, summon this card without paying the cost.",
+   "[LV1][LV2] {{Uha|Red/Purple}}",
+   "This Spirit is unaffected by opposing Red/Purple effects.",
+   "[LV2] (When Attacks)",
+   "This Spirit can't be blocked."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS61-043",
   "name": "The RoyalGuard Recheryl",
   "name_jp": "皇室警護レイシャール",
@@ -6739,6 +7224,50 @@
    "9"
   ],
   "rcode": "R"
+ },
+ {
+  "id": "BS61-044",
+  "name": "The ArmoredRite Toxcatl-Turtle",
+  "name_jp": "鎧装祭祀トシュカトル・タートル",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 6,
+  "reduction": {
+   "white": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 4000
+   },
+   {
+    "cores": 2,
+    "bp": 6000
+   },
+   {
+    "cores": 4,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Armored Beast"
+  ],
+  "text": "When this card is put onto the Removed Zone via switching in places/revealing by your \"Armored Beast\" family effect, refresh an \"Armored Beast\" family Spirit you control.\n\n[LV1][LV2][LV3] (When Attacks)\nReturn an opposing Spirit/Ultimate to the Hand.\n\n[LV2][LV3] (When Attacks)\nYou can reveal a card from your decktop. If that's an \"Armored Beast\" family card, put it onto the Removed Zone. Discard any remaining card.",
+  "image": "BS61 044.png",
+  "block": "61",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "When this card is put onto the Removed Zone via switching in places/revealing by your \"Armored Beast\" family effect, refresh an \"Armored Beast\" family Spirit you control.",
+   "[LV1][LV2][LV3] (When Attacks)",
+   "Return an opposing Spirit/Ultimate to the Hand.",
+   "[LV2][LV3] (When Attacks)",
+   "You can reveal a card from your decktop.",
+   "If that's an \"Armored Beast\" family card, put it onto the Removed Zone.",
+   "Discard any remaining card."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS61-045",
@@ -6823,6 +7352,93 @@
    "9"
   ],
   "rcode": "C"
+ },
+ {
+  "id": "BS61-046",
+  "name": "The ArmoredBeast Obsidiagator",
+  "name_jp": "鎧装獣オブシディアゲーター",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 7,
+  "reduction": {
+   "white": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 2,
+    "bp": 7000
+   },
+   {
+    "cores": 3,
+    "bp": 11000
+   }
+  ],
+  "families": [
+   "Armored Beast"
+  ],
+  "text": "This card in Removed Zone is Cost 5. When this card is summoned from the Removed Zone, return an opposing Spirit to the deckbottom.\n\n[LV1][LV2][LV3] (When Attacks)\nDiscard an opposing Burst, and when you can't discard, send an opposing Life to the Reserve.\n\n[LV3] (When Attacks)\nThis Spirit gains an extra White symbol.",
+  "image": "BS61 046.png",
+  "block": "61",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "This card in Removed Zone is Cost 5.",
+   "When this card is summoned from the Removed Zone, return an opposing Spirit to the deckbottom.",
+   "[LV1][LV2][LV3] (When Attacks)",
+   "Discard an opposing Burst, and when you can't discard, send an opposing Life to the Reserve.",
+   "[LV3] (When Attacks)",
+   "This Spirit gains an extra White symbol."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS61-047",
+  "name": "The ArmoredDragon Obsidian Iguana",
+  "name_jp": "鎧装竜オブシディアンイグアナ",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 8,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 6000
+   },
+   {
+    "cores": 2,
+    "bp": 8000
+   },
+   {
+    "cores": 4,
+    "bp": 12000
+   }
+  ],
+  "families": [
+   "Armored Beast"
+  ],
+  "text": "When this card is put onto the Removed Zone via switching in places/revealing by your \"Armored Beast\" family effect, put a core from the Void to your Reserve.\n\nFlash - (Opposing Attack Step)\nYou can summon this card from the Removed Zone as Cost 5.\n\n[LV1][LV2][LV3] (When Summoned)\nReturn an opposing Spirit/Nexus to the Hand.\n\n[LV2][LV3] (When Attacks/Blocks)\nOnce per turn, this Spirit can refresh.",
+  "image": "BS61 047.png",
+  "block": "61",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "When this card is put onto the Removed Zone via switching in places/revealing by your \"Armored Beast\" family effect, put a core from the Void to your Reserve.",
+   "Flash - (Opposing Attack Step)",
+   "You can summon this card from the Removed Zone as Cost 5.",
+   "[LV1][LV2][LV3] (When Summoned)",
+   "Return an opposing Spirit/Nexus to the Hand.",
+   "[LV2][LV3] (When Attacks/Blocks)",
+   "Once per turn, this Spirit can refresh."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS61-048",
@@ -7636,6 +8252,125 @@
   "rcode": "C"
  },
  {
+  "id": "BS61-067",
+  "name": "Oracle I Over Magician",
+  "name_jp": "オラクルI オーバーマジシャン",
+  "type": "Magic",
+  "color": "red",
+  "cost": 4,
+  "reduction": {
+   "red": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Scarlet Flame"
+  ],
+  "text": "{{Mirage|Cost 2 ()}}\nDuring Set (Start of Your Attack Step)\nIf you control any Red “Proximate”/“Astroblazer”/“Scarlet Flame” family Spirit/Nexus, your counter +1. Then, return up to three cores from your Trash to “The Magician”.\n\nDuring Set (Start of Your Attack Step)\nYou can destroy an opposing 3000 BP or less Spirit/Ultimate.\n\nFlash\nIgnoring any \"BP+\" and \"give +BP\" effects, destroy an opposing 7000 BP or less Spirit/Ultimate.",
+  "image": "BS61 067.png",
+  "block": "61",
+  "saga": 13,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Mirage|Cost 2 ()}}",
+   "During Set (Start of Your Attack Step)",
+   "If you control any Red “Proximate”/“Astroblazer”/“Scarlet Flame” family Spirit/Nexus, your counter +1.",
+   "Then, return up to three cores from your Trash to “The Magician”.",
+   "During Set (Start of Your Attack Step)",
+   "You can destroy an opposing 3000 BP or less Spirit/Ultimate.",
+   "Flash",
+   "Ignoring any \"BP+\" and \"give +BP\" effects, destroy an opposing 7000 BP or less Spirit/Ultimate."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS61-068",
+  "name": "Flame Knuckle",
+  "name_jp": "フレイムナックル",
+  "type": "Magic",
+  "color": "red",
+  "cost": 5,
+  "reduction": {
+   "red": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Scarlet Flame"
+  ],
+  "text": "During your Attack Step, including being pre-advent, if you control any \"The PartnerDragon Glow\", you can pay one cost to use this card from the Hand.\n\nFlash\nDestroy an opposing 12000 BP or less Spirit/Ultimate. Also, if you have four counters or more, destroy an opposing Nexus, and the effects of the destroyed Nexus can't activate.",
+  "image": "BS61 068.png",
+  "block": "61",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "During your Attack Step, including being pre-advent, if you control any \"The PartnerDragon Glow\", you can pay one cost to use this card from the Hand.",
+   "Flash",
+   "Destroy an opposing 12000 BP or less Spirit/Ultimate.",
+   "Also, if you have four counters or more, destroy an opposing Nexus, and the effects of the destroyed Nexus can't activate."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS61-069",
+  "name": "Cutting Blood Strings",
+  "name_jp": "鮮血斬糸",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 4,
+  "reduction": {
+   "purple": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Blood Crystal"
+  ],
+  "text": "(Once per Turn: Same Name) When your \"Blood Crystal\" family Spirit effect destroys opposing Spirits/Ultimates, you can return this card from the Trash to your Hand.\n\nFlash\nDestroy a Spirit/Ultimate you or the opponent controls with 1/3/5 cores on it.",
+  "image": "BS61 069.png",
+  "block": "61",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "(Once per Turn: Same Name) When your \"Blood Crystal\" family Spirit effect destroys opposing Spirits/Ultimates, you can return this card from the Trash to your Hand.",
+   "Flash",
+   "Destroy a Spirit/Ultimate you or the opponent controls with 1/3/5 cores on it."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS61-070",
+  "name": "Fatal Attack",
+  "name_jp": "フェイタルアタック",
+  "type": "Magic",
+  "color": "green",
+  "cost": 8,
+  "reduction": {
+   "green": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Jade Thunder"
+  ],
+  "text": "While you have five or more counters, this card in Hand is Cost 4.\n\nFlash\nTarget up to three opposing Spirits/Ultimates. If those Spirits/Ultimates are in refreshed state, heavy exhaust them; if they are in exhausted state, return them to the deckbottom. Then, If you control any Green Contract Spirit, including being in Soul State/as pre-advent, during this turn, the opponent can't end the Attack Step via effects.",
+  "image": "BS61 070.png",
+  "block": "61",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "While you have five or more counters, this card in Hand is Cost 4.",
+   "Flash",
+   "Target up to three opposing Spirits/Ultimates.",
+   "If those Spirits/Ultimates are in refreshed state, heavy exhaust them; if they are in exhausted state, return them to the deckbottom.",
+   "Then, If you control any Green Contract Spirit, including being in Soul State/as pre-advent, during this turn, the opponent can't end the Attack Step via effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS61-071",
   "name": "Dimension Shift",
   "name_jp": "ディメンションシフト",
@@ -7678,6 +8413,124 @@
    "9"
   ],
   "rcode": "C"
+ },
+ {
+  "id": "BS61-072",
+  "name": "Tezcatle Shell",
+  "name_jp": "テスカトルシェル",
+  "type": "Magic",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Armored Beast"
+  ],
+  "text": "When this card was either revealed from deck, or sent to the Trash from deck by by your \"Armored Beast\" family effect, you can add it to your Hand. When added from the Trash to Hand via this effect, +1 core to one of your Grandwalker Nexuses.\n\nFlash\nDuring this turn, your Life can't be reduced by the attacks of opposing Cost 4 or more Spirits/Ultimates. Then, by sending two cores from any of your exactly-named \"Grandwalker Tezcatlipoca\" to the Void, return an opposing Spirit/Nexus to the deckbottom.",
+  "image": "BS61 072.png",
+  "block": "61",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "When this card was either revealed from deck, or sent to the Trash from deck by by your \"Armored Beast\" family effect, you can add it to your Hand.",
+   "When added from the Trash to Hand via this effect, +1 core to one of your Grandwalker Nexuses.",
+   "Flash",
+   "During this turn, your Life can't be reduced by the attacks of opposing Cost 4 or more Spirits/Ultimates.",
+   "Then, by sending two cores from any of your exactly-named \"Grandwalker Tezcatlipoca\" to the Void, return an opposing Spirit/Nexus to the deckbottom."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS61-073",
+  "name": "Oracle XVIII Over Moon",
+  "name_jp": "オラクルXVIII オーバームーン",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 4,
+  "reduction": {
+   "yellow": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Golden Cloud"
+  ],
+  "text": "{{mirage|Cost 2 ()}}\nDuring Set (Either Attack Step)\nWhen you use a \"Golden Cloud\" family Magic card, you can +1 counter. After that Magic effect resolves, once per turn, if you control \"The Moon\", you can use the Flash effect of a Magic card from your Hand, without paying the cost.\n\nDuring Set\nWhen your counter increases, during this turn, you can give an opposing Spirit -3000 BP, and destroy it when its BP reaches 0.\n\nFlash\n(Once per Turn: Same Name) Put a core from the Void to your Life.",
+  "image": "BS61 073.png",
+  "block": "61",
+  "saga": 13,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{mirage|Cost 2 ()}}",
+   "During Set (Either Attack Step)",
+   "When you use a \"Golden Cloud\" family Magic card, you can +1 counter.",
+   "After that Magic effect resolves, once per turn, if you control \"The Moon\", you can use the Flash effect of a Magic card from your Hand, without paying the cost.",
+   "During Set",
+   "When your counter increases, during this turn, you can give an opposing Spirit -3000 BP, and destroy it when its BP reaches 0.",
+   "Flash",
+   "(Once per Turn: Same Name) Put a core from the Void to your Life."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS61-074",
+  "name": "Lucky Wing",
+  "name_jp": "ラッキーウィング",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 4,
+  "reduction": {
+   "yellow": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Golden Cloud"
+  ],
+  "text": "Flash\nDuring this turn, an opposing Spirit/Ultimate can't attack/block. Then, if you have seven counters or more, refresh a \"Cloud Contract\" family Spirit you control.",
+  "image": "BS61 074.png",
+  "block": "61",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "During this turn, an opposing Spirit/Ultimate can't attack/block.",
+   "Then, if you have seven counters or more, refresh a \"Cloud Contract\" family Spirit you control."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS61-075",
+  "name": "Crazy Liquid",
+  "name_jp": "クレイジーリキッド",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 7,
+  "reduction": {
+   "blue": 6
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Azure Wave"
+  ],
+  "text": "Flash\nRefresh three Spirits you control with two symbols or more. Then, if you have seven counters or more, during this turn, all Spirits you control with two symbols or more can't be blocked by opposing Spirits/Ultimates with a different cost.",
+  "image": "BS61 075.png",
+  "block": "61",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Refresh three Spirits you control with two symbols or more.",
+   "Then, if you have seven counters or more, during this turn, all Spirits you control with two symbols or more can't be blocked by opposing Spirits/Ultimates with a different cost."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS61-CX01",
@@ -9038,6 +9891,50 @@
   "rcode": "C"
  },
  {
+  "id": "BS62-018",
+  "name": "Godseeker FeatheredSerpentPriest Culhuacan",
+  "name_jp": "ゴッドシーカー 羽蛇神官クルワカン",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 3,
+  "reduction": {
+   "purple": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 2000
+   },
+   {
+    "cores": 2,
+    "bp": 3000
+   },
+   {
+    "cores": 5,
+    "bp": 5000
+   }
+  ],
+  "families": [
+   "Dark Snake"
+  ],
+  "text": "[LV1][LV2][LV3] (When Summoned)\nYou can reveal three cards from your decktop. Add a “Grandwalker Kukulkan”, and a non-“Godseeker” “Dark Snake” family card from among them to your Hand. Discard any remaining cards.\n\n[LV1][LV2][LV3] (Your Main Step)\nYou can send the  from your Reserve/Trash to the Counter Area. When you've done so, you can put two cores from the Void to your Trash.",
+  "image": "BS62 018.png",
+  "block": "62",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2][LV3] (When Summoned)",
+   "You can reveal three cards from your decktop.",
+   "Add a “Grandwalker Kukulkan”, and a non-“Godseeker” “Dark Snake” family card from among them to your Hand.",
+   "Discard any remaining cards.",
+   "[LV1][LV2][LV3] (Your Main Step)",
+   "You can send the  from your Reserve/Trash to the Counter Area.",
+   "When you've done so, you can put two cores from the Void to your Trash."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS62-019",
   "name": "The DemonicDragonSageOgre Tatsu-Oboro",
   "name_jp": "魔仙龍鬼タツ・オボロ",
@@ -9081,6 +9978,91 @@
    "9"
   ],
   "rcode": "M"
+ },
+ {
+  "id": "BS62-020",
+  "name": "The EvilWarriorSerpent Texcoco",
+  "name_jp": "魔戦蛇テスココ",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 4,
+  "reduction": {
+   "purple": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   },
+   {
+    "cores": 2,
+    "bp": 5000
+   },
+   {
+    "cores": 5,
+    "bp": 7000
+   }
+  ],
+  "families": [
+   "Dark Snake"
+  ],
+  "text": "[LV1][LV2][LV3] (When Summoned/Attacks)\nOnce per turn, you can send two cores from an opposing Spirit to the Reserve. If  is in your Counter Area, you can activate this effect, ignoring the \"once per turn\".\n\n[LV2][LV3] (When Attacks)\nYou can send the  from the opposing Field/Trash to the Reserve. When you've done so, this Spirit refreshes.",
+  "image": "BS62 020.png",
+  "block": "62",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2][LV3] (When Summoned/Attacks)",
+   "Once per turn, you can send two cores from an opposing Spirit to the Reserve.",
+   "If  is in your Counter Area, you can activate this effect, ignoring the \"once per turn\".",
+   "[LV2][LV3] (When Attacks)",
+   "You can send the  from the opposing Field/Trash to the Reserve.",
+   "When you've done so, this Spirit refreshes."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS62-021",
+  "name": "The EvilWingedSerpent Otompan",
+  "name_jp": "魔翼蛇オトンパン",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 4,
+  "reduction": {
+   "purple": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   },
+   {
+    "cores": 2,
+    "bp": 4000
+   },
+   {
+    "cores": 4,
+    "bp": 5000
+   }
+  ],
+  "families": [
+   "Dark Snake"
+  ],
+  "text": "[LV1][LV2][LV3] (When Summoned)\nDraw a card. Also, if  is in your Counter Area, send two cores from an opposing Spirit to the Reserve.\n\n[LV2][LV3] (Your Attack Step)\nWhen the opponent activates an \"end the Attack Step\" effect, send an opposing Life to the Reserve.",
+  "image": "BS62 021.png",
+  "block": "62",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2][LV3] (When Summoned)",
+   "Draw a card.",
+   "Also, if  is in your Counter Area, send two cores from an opposing Spirit to the Reserve.",
+   "[LV2][LV3] (Your Attack Step)",
+   "When the opponent activates an \"end the Attack Step\" effect, send an opposing Life to the Reserve."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS62-022",
@@ -9128,6 +10110,48 @@
   "rcode": "R"
  },
  {
+  "id": "BS62-023",
+  "name": "The HornedWingedSerpent Tenoch-Titla",
+  "name_jp": "角翼蛇テノチ・ティトラ",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 6,
+  "reduction": {
+   "purple": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 3,
+    "bp": 7000
+   },
+   {
+    "cores": 5,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Dark Snake"
+  ],
+  "text": "[LV1][LV2][LV3] (When Summoned)\nSend a core from the opposing Field to the Reserve. For each Cost 7 or more cards in your Trash, this effect sends +1 core to the Reserve.\n\n[LV2][LV3] (When Attacks)\n(Once per Turn: Same Name) If  is in your Counter Area, you can pay one cost to summon a Cost 7 \"Dark Snake\" family Spirit card from your Hand/Trash.",
+  "image": "BS62 023.png",
+  "block": "62",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2][LV3] (When Summoned)",
+   "Send a core from the opposing Field to the Reserve.",
+   "For each Cost 7 or more cards in your Trash, this effect sends +1 core to the Reserve.",
+   "[LV2][LV3] (When Attacks)",
+   "(Once per Turn: Same Name) If  is in your Counter Area, you can pay one cost to summon a Cost 7 \"Dark Snake\" family Spirit card from your Hand/Trash."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS62-024",
   "name": "The TwinkleSpiritHorse Shrazire",
   "name_jp": "煌霊馬シュラーザイヤー",
@@ -9171,6 +10195,139 @@
    "9"
   ],
   "rcode": "C"
+ },
+ {
+  "id": "BS62-025",
+  "name": "The RedWingedSerpent Tlate-Lolco",
+  "name_jp": "赤翼蛇トラテ・ロルコ",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 7,
+  "reduction": {
+   "purple": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 3,
+    "bp": 7000
+   },
+   {
+    "cores": 5,
+    "bp": 12000
+   }
+  ],
+  "families": [
+   "Dark Snake"
+  ],
+  "text": "When your \"Dark Snake\" family Spirit is destroyed by the opponent, you can summon this set card, without paying the cost.\n\n{{Burst|After an opposing Spirit's (When Advents) effect resolves}}\nSummon this card without paying the cost.\n\n[LV1][LV2][LV3] (When Summoned)\n(Once per Turn: Same Name) You can summon a Cost 3/7 \"Dark Snake\" family Spirit card from your Trash, without paying the cost.\n\n[LV2][LV3] (When Attacks)\nYou can set this Spirit as Burst.",
+  "image": "BS62 025.png",
+  "block": "62",
+  "saga": 13,
+  "mechanics": [
+   "Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "When your \"Dark Snake\" family Spirit is destroyed by the opponent, you can summon this set card, without paying the cost.",
+   "{{Burst|After an opposing Spirit's (When Advents) effect resolves}}",
+   "Summon this card without paying the cost.",
+   "[LV1][LV2][LV3] (When Summoned)",
+   "(Once per Turn: Same Name) You can summon a Cost 3/7 \"Dark Snake\" family Spirit card from your Trash, without paying the cost.",
+   "[LV2][LV3] (When Attacks)",
+   "You can set this Spirit as Burst."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS62-026",
+  "name": "The WarSerpentKing Mixcoatl",
+  "name_jp": "戦蛇王ミシュコアトル",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 7,
+  "reduction": {
+   "purple": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 3,
+    "bp": 8000
+   },
+   {
+    "cores": 5,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Dark Snake"
+  ],
+  "text": "Flash - (Opposing Attack Step)\n(Once per Turn: Same Name) If an opposing During Advent Spirit is attacking, and  is in your Counter Area, you can pay one cost to summon this card from the Trash.\n\n[LV1][LV2][LV3] (When Attacks)\nSend a core from any opposing Spirit to the Reserve/Trash.\n\n[LV2][LV3] (When Attacks)\nOnce per turn, if there are two or less cores in the opposing Reserve, this Spirit can refresh.",
+  "image": "BS62 026.png",
+  "block": "62",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "Flash - (Opposing Attack Step)",
+   "(Once per Turn: Same Name) If an opposing During Advent Spirit is attacking, and  is in your Counter Area, you can pay one cost to summon this card from the Trash.",
+   "[LV1][LV2][LV3] (When Attacks)",
+   "Send a core from any opposing Spirit to the Reserve/Trash.",
+   "[LV2][LV3] (When Attacks)",
+   "Once per turn, if there are two or less cores in the opposing Reserve, this Spirit can refresh."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS62-027",
+  "name": "The WingedSerpentMotherGoddess Coatlicue",
+  "name_jp": "翼蛇の地母神コアトリクエ",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 7,
+  "reduction": {
+   "purple": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 6000
+   },
+   {
+    "cores": 2,
+    "bp": 11000
+   }
+  ],
+  "families": [
+   "Dark Snake"
+  ],
+  "text": "{{mirage|Cost 5 ()}}\nDuring Set (Opposing Turn)\nWhile  is in your Counter Area, when the opposing counter increases, if your Hand is six or less, you can draw a card.\n\n[LV1][LV2] (When Summoned)\nYou can draw three cards.\n\n[LV2] Flash - (Either Attack Step)\nOnce per turn, discard any number of cards from your Hand, and for each card discarded, send a core from one single opposing Spirit to the Reserve.",
+  "image": "BS62 027.png",
+  "block": "62",
+  "saga": 13,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{mirage|Cost 5 ()}}",
+   "During Set (Opposing Turn)",
+   "While  is in your Counter Area, when the opposing counter increases, if your Hand is six or less, you can draw a card.",
+   "[LV1][LV2] (When Summoned)",
+   "You can draw three cards.",
+   "[LV2] Flash - (Either Attack Step)",
+   "Once per turn, discard any number of cards from your Hand, and for each card discarded, send a core from one single opposing Spirit to the Reserve."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS62-028",
@@ -9694,6 +10851,43 @@
   "rcode": "C"
  },
  {
+  "id": "BS62-039",
+  "name": "The ArmoredBeast BlackHorn",
+  "name_jp": "鎧装獣ブラックホーン",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 3,
+  "reduction": {
+   "white": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   },
+   {
+    "cores": 2,
+    "bp": 5000
+   }
+  ],
+  "families": [
+   "Armored Beast"
+  ],
+  "text": "When your \"Armored Beast\" family Spirits would leave the Field due to the opponent, by discarding this card from the Removed Zone, one of those Spirits remains on the Field, exhausted.\n\n[LV1][LV2] (When Attacks)\nYou can put this Spirit onto the Removed Zone. When you do, return an opposing Spirit to the Hand.",
+  "image": "BS62 039.png",
+  "block": "62",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "When your \"Armored Beast\" family Spirits would leave the Field due to the opponent, by discarding this card from the Removed Zone, one of those Spirits remains on the Field, exhausted.",
+   "[LV1][LV2] (When Attacks)",
+   "You can put this Spirit onto the Removed Zone.",
+   "When you do, return an opposing Spirit to the Hand."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS62-040",
   "name": "The AuroraWarrior Knight-Stark",
   "name_jp": "極光機士ナイト・スターク",
@@ -9738,6 +10932,46 @@
    "9"
   ],
   "rcode": "R"
+ },
+ {
+  "id": "BS62-041",
+  "name": "The MoonShellArmoredSacredBeast Tecciztecatl",
+  "name_jp": "月甲の鎧装神獣テクシスカトル",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 5,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 2,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Armored Beast"
+  ],
+  "text": "When this card is put onto the Removed Zone via switching in places/revealing by your \"Armored Beast\" family effect, put a core from the Void to your Reserve.\n\n[LV1][LV2] (When Summoned)\n(Once per Turn: Same Name) You can reveal two cards from your decktop. Put every \"Armored Beast\" family card among them to your Removed Zone. Discard any remaining cards.\n\n[LV2] Flash - (Either Attack Step)\nOnce per turn, you can summon an \"Armored Beast\" family Spirit card from your Removed Zone.",
+  "image": "BS62 041.png",
+  "block": "62",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "When this card is put onto the Removed Zone via switching in places/revealing by your \"Armored Beast\" family effect, put a core from the Void to your Reserve.",
+   "[LV1][LV2] (When Summoned)",
+   "(Once per Turn: Same Name) You can reveal two cards from your decktop.",
+   "Put every \"Armored Beast\" family card among them to your Removed Zone.",
+   "Discard any remaining cards.",
+   "[LV2] Flash - (Either Attack Step)",
+   "Once per turn, you can summon an \"Armored Beast\" family Spirit card from your Removed Zone."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS62-042",
@@ -9844,6 +11078,53 @@
    "9"
   ],
   "rcode": "M"
+ },
+ {
+  "id": "BS62-044",
+  "name": "The ObsidianBladeArmoredBeast Itztli",
+  "name_jp": "黒曜刃の鎧装獣イツトリ",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 8,
+  "reduction": {
+   "white": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 2,
+    "bp": 10000
+   },
+   {
+    "cores": 4,
+    "bp": 14000
+   }
+  ],
+  "families": [
+   "Armored Beast"
+  ],
+  "text": "When the opposing counter increases to six or more, you can immediately activate this set card.\n\n{{Burst|After your Life is reduced}}\nReturn two opposing Cost 6 or less Spirits to the deckbottom. After this effect resolves, summon this card without paying the cost.\n\n[LV2][LV3] Flash - (Either Attack Step)\nOnce per turn, you can swap a card from Hand with an “Armored Beast” family card on your Removed Zone. When you've done so, this Spirit refreshes.",
+  "image": "BS62 044.png",
+  "block": "62",
+  "saga": 13,
+  "mechanics": [
+   "Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "When the opposing counter increases to six or more, you can immediately activate this set card.",
+   "{{Burst|After your Life is reduced}}",
+   "Return two opposing Cost 6 or less Spirits to the deckbottom.",
+   "After this effect resolves, summon this card without paying the cost.",
+   "[LV2][LV3] Flash - (Either Attack Step)",
+   "Once per turn, you can swap a card from Hand with an “Armored Beast” family card on your Removed Zone.",
+   "When you've done so, this Spirit refreshes."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS62-045",
@@ -10906,6 +12187,199 @@
   "rcode": "C"
  },
  {
+  "id": "BS62-070",
+  "name": "Repulsor Flame",
+  "name_jp": "リパルサーフレイム",
+  "type": "Magic",
+  "color": "red",
+  "cost": 3,
+  "reduction": {
+   "red": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Scarlet Flame"
+  ],
+  "text": "{{Mirage|Cost 2 ()}}\nDuring Set Flash - (Either Attack Step)\nIncluding being in Soul State/pre-advent condition, if you control any \"The PartnerWingedDragon Terad\", you can pay two costs. When you've done so, destroy an opposing 7000 BP or less Spirit. The cores on the Spirit destroyed by this effect are sent to the Trash instead of the Reserve.\n\nFlash\nDraw a card. Then, (Once per Turn: Same Name) including being in Soul State/pre-advent condition, if you control any \"The PartnerWingedDragon Terad\", you can return this card to your Hand.",
+  "image": "BS62 070.png",
+  "block": "62",
+  "saga": 13,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Mirage|Cost 2 ()}}",
+   "During Set Flash - (Either Attack Step)",
+   "Including being in Soul State/pre-advent condition, if you control any \"The PartnerWingedDragon Terad\", you can pay two costs.",
+   "When you've done so, destroy an opposing 7000 BP or less Spirit.",
+   "The cores on the Spirit destroyed by this effect are sent to the Trash instead of the Reserve.",
+   "Flash",
+   "Draw a card.",
+   "Then, (Once per Turn: Same Name) including being in Soul State/pre-advent condition, if you control any \"The PartnerWingedDragon Terad\", you can return this card to your Hand."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS62-071",
+  "name": "Gluttonic Core",
+  "name_jp": "グラトニックコア",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 4,
+  "reduction": {
+   "purple": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Dark Snake"
+  ],
+  "text": "When this card was either revealed from deck, or sent to the Trash from deck by your \"Dark Snake\" family effect, you can add it to your Hand. When added from the Trash to Hand via this effect, +1 core to one of your Grandwalker Nexuses.\n\nFlash\nTreat this card as colorless, and send a core from the opposing Field to the Reserve. Then, if the  is in your Counter Area, by sending two cores from one of your exactly-named \"Grandwalker Kukulkan\" to the Void, return this card to the Hand.",
+  "image": "BS62 071.png",
+  "block": "62",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "When this card was either revealed from deck, or sent to the Trash from deck by your \"Dark Snake\" family effect, you can add it to your Hand.",
+   "When added from the Trash to Hand via this effect, +1 core to one of your Grandwalker Nexuses.",
+   "Flash",
+   "Treat this card as colorless, and send a core from the opposing Field to the Reserve.",
+   "Then, if the  is in your Counter Area, by sending two cores from one of your exactly-named \"Grandwalker Kukulkan\" to the Void, return this card to the Hand."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS62-072",
+  "name": "Oracle XIV Over Temperance",
+  "name_jp": "オラクルXIV オーバーテンパランス",
+  "type": "Magic",
+  "color": "green",
+  "cost": 5,
+  "reduction": {
+   "green": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Jade Thunder"
+  ],
+  "text": "{{mirage|Cost 3 ()}}\nDuring Set (When Set)\n(Once per Turn: Same Name) Your counter +1, and put a core from the Void to your Reserve. Also, if you control “The Temperance”, put a core from the Void to your Trash.\n\nDuring Set (Your Attack Step)\nWhen your Green-only Spirit attacks, you can banish a card from the opposing Trash.\n\nFlash\nHeavy exhaust an opposing Spirit. Then, if you have six counters or more, refresh a “Jade Thunder” family Spirit you control.",
+  "image": "BS62 072.png",
+  "block": "62",
+  "saga": 13,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{mirage|Cost 3 ()}}",
+   "During Set (When Set)",
+   "(Once per Turn: Same Name) Your counter +1, and put a core from the Void to your Reserve.",
+   "Also, if you control “The Temperance”, put a core from the Void to your Trash.",
+   "During Set (Your Attack Step)",
+   "When your Green-only Spirit attacks, you can banish a card from the opposing Trash.",
+   "Flash",
+   "Heavy exhaust an opposing Spirit.",
+   "Then, if you have six counters or more, refresh a “Jade Thunder” family Spirit you control."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS62-073",
+  "name": "Oracle II Over High Priestess",
+  "name_jp": "オラクルII オーバーハイプリエステス",
+  "type": "Magic",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Silver Zero"
+  ],
+  "text": "When this card is revealed from the deck by your \"Silver Zero\" family Spirit effect, you can set it without paying the cost. When you do, return your originally set Mirage to the Hand.\n\n{{mirage|Cost 2 ()}}\nDuring Set (Your Attack Step)\nEvery \"The High Priestess\" you control gains an extra White symbol.\n\nDuring Set (Opposing Turn)\nWhen the opposing Hand increases via an opposing effect, you can draw a card.\n\nFlash\nRefresh a \"Silver Contract\"/\"Astroblazer\" family Spirit you control.",
+  "image": "BS62 073.png",
+  "block": "62",
+  "saga": 13,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "When this card is revealed from the deck by your \"Silver Zero\" family Spirit effect, you can set it without paying the cost.",
+   "When you do, return your originally set Mirage to the Hand.",
+   "{{mirage|Cost 2 ()}}",
+   "During Set (Your Attack Step)",
+   "Every \"The High Priestess\" you control gains an extra White symbol.",
+   "During Set (Opposing Turn)",
+   "When the opposing Hand increases via an opposing effect, you can draw a card.",
+   "Flash",
+   "Refresh a \"Silver Contract\"/\"Astroblazer\" family Spirit you control."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS62-074",
+  "name": "Phoenix Penfeather",
+  "name_jp": "フェニックスペンフェザー",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 4,
+  "reduction": {
+   "yellow": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Golden Cloud"
+  ],
+  "text": "(Once per Turn: Same Name) When your \"Pentan\"/\"Empereur\" is summoned/Advent, you can return this card from the Trash to your Hand.\n\n Flash\n(Can't use in Main Step) Your counter +1. Then, during this turn, give an opposing Spirit/Ultimate -1000 BP. Activate this \"BP- effect\" a number of times equal to the number of counters you have, and destroy when they reach 0 BP.",
+  "image": "BS62 074.png",
+  "block": "62",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "(Once per Turn: Same Name) When your \"Pentan\"/\"Empereur\" is summoned/Advent, you can return this card from the Trash to your Hand.",
+   "Flash",
+   "(Can't use in Main Step) Your counter +1.",
+   "Then, during this turn, give an opposing Spirit/Ultimate -1000 BP.",
+   "Activate this \"BP- effect\" a number of times equal to the number of counters you have, and destroy when they reach 0 BP."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS62-075",
+  "name": "Double Effect",
+  "name_jp": "ダブルエフェクト",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 8,
+  "reduction": {
+   "blue": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Azure Wave"
+  ],
+  "text": "While you have five or more counters, this card in Hand is Cost 4.\n\nFlash\nIgnoring the cost of Braves, destroy an opposing Cost 9 or less Spirit/Ultimate. After this effect resolves, if you control any \"The PartnerLion Raon\", including being in Soul State/as pre-advent, activate this effect once and only once more.",
+  "image": "BS62 075.png",
+  "block": "62",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "While you have five or more counters, this card in Hand is Cost 4.",
+   "Flash",
+   "Ignoring the cost of Braves, destroy an opposing Cost 9 or less Spirit/Ultimate.",
+   "After this effect resolves, if you control any \"The PartnerLion Raon\", including being in Soul State/as pre-advent, activate this effect once and only once more."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS62-CX01",
   "name": "The PartnerWingedDragon Terad",
   "name_jp": "相棒翼竜テラード",
@@ -11216,6 +12690,50 @@
    "9"
   ],
   "rcode": "X"
+ },
+ {
+  "id": "BS62-X06",
+  "name": "The TwilightAxeBeast Youalte-Puztli",
+  "name_jp": "宵闇の斧獣ヨナルデ＝パズトーリ",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 8,
+  "reduction": {
+   "white": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 7000
+   },
+   {
+    "cores": 2,
+    "bp": 10000
+   },
+   {
+    "cores": 3,
+    "bp": 13000
+   }
+  ],
+  "families": [
+   "Armored Beast"
+  ],
+  "text": "When this card is put onto the Removed Zone from the Field, or via switching in places/revealing by your \"Armored Beast\" family effect, you can summon a Cost 4 or less Spirit card from your Removed Zone, without paying the cost.\n\nFlash -\nYou can summon this card from the Removed Zone at Cost 5.\n\n[LV1][LV2][LV3] (When Summoned/Attacks)\nReturn an opposing Spirit/Ultimate/Nexus to the deckbottom.\n\n[LV2][LV3]\nWhen this Spirit would leave the Field due to opposing effects, you can put it onto your Removed Zone.",
+  "image": "BS62 X06.png",
+  "block": "62",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "When this card is put onto the Removed Zone from the Field, or via switching in places/revealing by your \"Armored Beast\" family effect, you can summon a Cost 4 or less Spirit card from your Removed Zone, without paying the cost.",
+   "Flash -",
+   "You can summon this card from the Removed Zone at Cost 5.",
+   "[LV1][LV2][LV3] (When Summoned/Attacks)",
+   "Return an opposing Spirit/Ultimate/Nexus to the deckbottom.",
+   "[LV2][LV3]",
+   "When this Spirit would leave the Field due to opposing effects, you can put it onto your Removed Zone."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS62-X07",
@@ -12452,6 +13970,52 @@
   "rcode": "C"
  },
  {
+  "id": "BS63-024",
+  "name": "The DaughterOfBeginning Mayahuel",
+  "name_jp": "始まりの娘マヤウェル",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 4,
+  "reduction": {
+   "purple": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   },
+   {
+    "cores": 2,
+    "bp": 5000
+   },
+   {
+    "cores": 5,
+    "bp": 7000
+   }
+  ],
+  "families": [
+   "Dark Snake"
+  ],
+  "text": "{{mirage|Cost 4 ()}}\nDuring Set Flash - (Opposing Attack Step)\nIf  is in your Counter Area, by banishing this Mirage, summon a Cost 7 \"Dark Snake\" family Spirit card from your Hand, without paying the cost.\n\n[LV1][LV2][LV3] (When Summoned)\nDraw a card. Then, send a core from any opposing Spirit to the Reserve.",
+  "image": "BS63-024.png",
+  "block": "63",
+  "saga": 13,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{mirage|Cost 4 ()}}",
+   "During Set Flash - (Opposing Attack Step)",
+   "If  is in your Counter Area, by banishing this Mirage, summon a Cost 7 \"Dark Snake\" family Spirit card from your Hand, without paying the cost.",
+   "[LV1][LV2][LV3] (When Summoned)",
+   "Draw a card.",
+   "Then, send a core from any opposing Spirit to the Reserve."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS63-025",
   "name": "The DevilMarshal Zavi-Baphorogue",
   "name_jp": "悪魔元帥ザビー・バフォローグ",
@@ -12661,6 +14225,48 @@
    "9"
   ],
   "rcode": "C"
+ },
+ {
+  "id": "BS63-030",
+  "name": "The GoldenWingedSerpent Koishtra",
+  "name_jp": "金翼蛇コイシュトラ",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 7,
+  "reduction": {
+   "purple": 4
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 6000
+   },
+   {
+    "cores": 3,
+    "bp": 10000
+   },
+   {
+    "cores": 5,
+    "bp": 14000
+   }
+  ],
+  "families": [
+   "Dark Snake"
+  ],
+  "text": "Flash - (Either Attack Step)\nWhile the opponent controls any Rebirth Spirit, if  is in your Counter Area, you can summon this card from the Hand by paying one cost.\n\n[LV1][LV2][LV3] (When Summoned/Attacks)\nYou can send cores from every opposing Spirit to the Reserve until only one core remains on each of them. Then, if  is in your Counter Area, you can send a core from any opposing Green/White/Blue Spirit to the Reserve.",
+  "image": "BS63-030.png",
+  "block": "63",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "Flash - (Either Attack Step)",
+   "While the opponent controls any Rebirth Spirit, if  is in your Counter Area, you can summon this card from the Hand by paying one cost.",
+   "[LV1][LV2][LV3] (When Summoned/Attacks)",
+   "You can send cores from every opposing Spirit to the Reserve until only one core remains on each of them.",
+   "Then, if  is in your Counter Area, you can send a core from any opposing Green/White/Blue Spirit to the Reserve."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS63-031",
@@ -13349,6 +14955,52 @@
   "rcode": "C"
  },
  {
+  "id": "BS63-044",
+  "name": "The ArmoredBeast ArmorHorn",
+  "name_jp": "鎧装獣アーマーホーン",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 3,
+  "reduction": {
+   "white": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   },
+   {
+    "cores": 2,
+    "bp": 5000
+   },
+   {
+    "cores": 4,
+    "bp": 7000
+   }
+  ],
+  "families": [
+   "Armored Beast"
+  ],
+  "text": "{{mirage|Cost 2 ()}}\nDuring Set\nWhile you control only \"Tezcatlipoca\" as Nexuses, all your \"Grandwalker Tezcatlipoca\" are unaffected by opposing Cost 4 or less effects.\n\n[LV1][LV2][LV3] (When Summoned)\nYou can put an \"Armored Beast\" family card from your Hand onto the Removed Zone. When you've done so, put a core from the Void to this Spirit.",
+  "image": "BS63-044.png",
+  "block": "63",
+  "saga": 13,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{mirage|Cost 2 ()}}",
+   "During Set",
+   "While you control only \"Tezcatlipoca\" as Nexuses, all your \"Grandwalker Tezcatlipoca\" are unaffected by opposing Cost 4 or less effects.",
+   "[LV1][LV2][LV3] (When Summoned)",
+   "You can put an \"Armored Beast\" family card from your Hand onto the Removed Zone.",
+   "When you've done so, put a core from the Void to this Spirit."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS63-045",
   "name": "The GunMachine Revol-Fighter",
   "name_jp": "銃機リボルファイター",
@@ -13764,6 +15416,47 @@
    "9"
   ],
   "rcode": "C"
+ },
+ {
+  "id": "BS63-054",
+  "name": "The WaterRockArmoredSacredBeast Tlaloc",
+  "name_jp": "水岩の鎧装神獣トラロック",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 7,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 7000
+   },
+   {
+    "cores": 2,
+    "bp": 10000
+   },
+   {
+    "cores": 4,
+    "bp": 12000
+   }
+  ],
+  "families": [
+   "Armored Beast"
+  ],
+  "text": "This card in Removed Zone is Cost 4.\n\n[LV1][LV2][LV3] (When Summoned/Attacks)\nOnce per turn, besides \"The WaterRockArmoredSacredBeast Tlaloc\", you can summon an \"Armored Beast\" family Spirit card from your Removed Zone, without paying the cost. When you've done so, return an opposing Spirit to the deckbottom.",
+  "image": "BS63-054.png",
+  "block": "63",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "This card in Removed Zone is Cost 4.",
+   "[LV1][LV2][LV3] (When Summoned/Attacks)",
+   "Once per turn, besides \"The WaterRockArmoredSacredBeast Tlaloc\", you can summon an \"Armored Beast\" family Spirit card from your Removed Zone, without paying the cost.",
+   "When you've done so, return an opposing Spirit to the deckbottom."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS63-055",
@@ -14939,6 +16632,73 @@
   "rcode": "C"
  },
  {
+  "id": "BS63-082",
+  "name": "Spiral Draw",
+  "name_jp": "スパイラルドロー",
+  "type": "Magic",
+  "color": "red",
+  "cost": 4,
+  "reduction": {
+   "red": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Scarlet Flame"
+  ],
+  "text": "When your counter increases to three or more, if you control any \"Bladra\", you can immediately activate this set card.\n\n{{Burst|After your Life is reduced}}\nDestroy two opposing 12000 or less Spirits. Then, by paying the cost, activate this card's Main effect.\n\nMain\nDraw two cards. Or, including being in Soul State/pre-advent condition, if you control any \"Wanderer Dan's Bladra\", draw cards until you have four cards in Hand.",
+  "image": "BS63-082.png",
+  "block": "63",
+  "saga": 13,
+  "mechanics": [
+   "Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "When your counter increases to three or more, if you control any \"Bladra\", you can immediately activate this set card.",
+   "{{Burst|After your Life is reduced}}",
+   "Destroy two opposing 12000 or less Spirits.",
+   "Then, by paying the cost, activate this card's Main effect.",
+   "Main",
+   "Draw two cards.",
+   "Or, including being in Soul State/pre-advent condition, if you control any \"Wanderer Dan's Bladra\", draw cards until you have four cards in Hand."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS63-083",
+  "name": "Saurays Force",
+  "name_jp": "サーレイズフォース",
+  "type": "Magic",
+  "color": "red",
+  "cost": 6,
+  "reduction": {
+   "red": 4
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Scarlet Flame"
+  ],
+  "text": "{{Mirage|Cost 3 ()}}\nDuring Set\nIncluding in pre-advent condition, while you control any \"The PartnerWingedDragon Terad\", all your Red-only Spirits gain the effect: \"(When Attacks) You can target and attack an opposing Spirit.\"\n\nFlash\nDestroy an opposing 15000 BP or less Spirit/Ultimate. If you have six counters or more, increase the limit of this \"BP destruction effect\" by +10000, and this \"BP destruction effect\" can only be prevented by \"Armor\"-named effects.",
+  "image": "BS63-083.png",
+  "block": "63",
+  "saga": 13,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Mirage|Cost 3 ()}}",
+   "During Set",
+   "Including in pre-advent condition, while you control any \"The PartnerWingedDragon Terad\", all your Red-only Spirits gain the effect: \"(When Attacks) You can target and attack an opposing Spirit.\"",
+   "Flash",
+   "Destroy an opposing 15000 BP or less Spirit/Ultimate.",
+   "If you have six counters or more, increase the limit of this \"BP destruction effect\" by +10000, and this \"BP destruction effect\" can only be prevented by \"Armor\"-named effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
   "id": "BS63-084",
   "name": "Oracle XV Over Devil",
   "name_jp": "オラクルXV オーバーデビル",
@@ -14975,6 +16735,200 @@
    "9"
   ],
   "rcode": "R"
+ },
+ {
+  "id": "BS63-085",
+  "name": "Reversal Incantation",
+  "name_jp": "リバーサルインカンテイション",
+  "type": "Magic",
+  "color": "green",
+  "cost": 3,
+  "reduction": {
+   "green": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Jade Thunder"
+  ],
+  "text": "{{mirage|Cost 2 ()}}\nDuring Set (Your Main Step)\n(Once per Turn: Same Name) By discarding this Mirage, discard a “Jade Thunder” family card from your Hand. When you've done so, draw a card, and the opponent discards a card from their Hand.\n\nFlash\nExhaust an opposing Spirit. Then, return a Spirit you control with “High Speed”/“Swift”-named effect to the Hand.",
+  "image": "BS63-085.png",
+  "block": "63",
+  "saga": 13,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{mirage|Cost 2 ()}}",
+   "During Set (Your Main Step)",
+   "(Once per Turn: Same Name) By discarding this Mirage, discard a “Jade Thunder” family card from your Hand.",
+   "When you've done so, draw a card, and the opponent discards a card from their Hand.",
+   "Flash",
+   "Exhaust an opposing Spirit.",
+   "Then, return a Spirit you control with “High Speed”/“Swift”-named effect to the Hand."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS63-086",
+  "name": "Steel Barrage",
+  "name_jp": "スティールバラッジ",
+  "type": "Magic",
+  "color": "white",
+  "cost": 5,
+  "reduction": {
+   "white": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Silver Zero"
+  ],
+  "text": "When this card is discarded by your Fast Draw, you can add it to your Hand.\n\nFlash {{Fast Draw|1}}\nReturn an opposing Spirit to the deckbottom. Then, by discarding one facedown card under your \"The PartnerBurai Vrick\", including those that are in Soul State/pre-advent condition, during this turn, your Life can only be reduced by one.",
+  "image": "BS63-086.png",
+  "block": "63",
+  "saga": 13,
+  "mechanics": [
+   "Fast Draw"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "When this card is discarded by your Fast Draw, you can add it to your Hand.",
+   "Flash {{Fast Draw|1}}",
+   "Return an opposing Spirit to the deckbottom.",
+   "Then, by discarding one facedown card under your \"The PartnerBurai Vrick\", including those that are in Soul State/pre-advent condition, during this turn, your Life can only be reduced by one."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS63-087",
+  "name": "Mathematic Down",
+  "name_jp": "マスマティックダウン",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 7,
+  "reduction": {
+   "yellow": 6
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Golden Cloud"
+  ],
+  "text": "(Can't Stack) When the opponent uses a Magic card, including being in Soul State/pre-advent condition, if you control any \"Fermat\", you can return this card from the Trash to your Hand.\n\nFlash\nDuring this turn, give an opposing Spirit -5000 BP. Activate this effect five times, and return any targets to the deckbottom when their BP are brought to 0. If you've summoned for two times or more during this turn, these effects can't be prevented by opposing effects.",
+  "image": "BS63-087.png",
+  "block": "63",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "(Can't Stack) When the opponent uses a Magic card, including being in Soul State/pre-advent condition, if you control any \"Fermat\", you can return this card from the Trash to your Hand.",
+   "Flash",
+   "During this turn, give an opposing Spirit -5000 BP.",
+   "Activate this effect five times, and return any targets to the deckbottom when their BP are brought to 0.",
+   "If you've summoned for two times or more during this turn, these effects can't be prevented by opposing effects."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS63-088",
+  "name": "Oracle XII Over Hanged Man",
+  "name_jp": "オラクルXII オーバーハングドマン",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 5,
+  "reduction": {
+   "blue": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{Mirage|Cost 3 ()}}\nDuring Set (When Set)\nLook at the contents of an opposing Burst, and if it's a Magic card, discard that Burst.\n\nDuring Set\nWhile your “Azure Wave” family Spirit is attacking, you choose the steps of your Enchain.\n\nFlash\nIgnoring the cost of Braves, destroy an opposing Cost 6 or less Spirit/Ultimate.",
+  "image": "BS63-088.png",
+  "block": "63",
+  "saga": 13,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Mirage|Cost 3 ()}}",
+   "During Set (When Set)",
+   "Look at the contents of an opposing Burst, and if it's a Magic card, discard that Burst.",
+   "During Set",
+   "While your “Azure Wave” family Spirit is attacking, you choose the steps of your Enchain.",
+   "Flash",
+   "Ignoring the cost of Braves, destroy an opposing Cost 6 or less Spirit/Ultimate."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS63-089",
+  "name": "Fatal Judge",
+  "name_jp": "フェイタルジャッジ",
+  "type": "Magic",
+  "color": "red",
+  "cost": 4,
+  "reduction": {
+   "red": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Judgment"
+  ],
+  "text": "This card's reduction symbols are also treated as Purple/Green/White/Yellow/Blue.\n\nFlash\nDestroy an opposing Nexus, and when destroyed, put a core from the Void to your Reserve. Then, if you have seven counters or more, you can summon a \"Judgment\" family Spirit card from your Hand, without paying the cost.",
+  "image": "BS63-089.png",
+  "block": "63",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "This card's reduction symbols are also treated as Purple/Green/White/Yellow/Blue.",
+   "Flash",
+   "Destroy an opposing Nexus, and when destroyed, put a core from the Void to your Reserve.",
+   "Then, if you have seven counters or more, you can summon a \"Judgment\" family Spirit card from your Hand, without paying the cost."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS63-090",
+  "name": "Oracle XX Over Judgment",
+  "name_jp": "オラクルXX オーバージャッジメント",
+  "type": "Magic",
+  "color": "red",
+  "cost": 7,
+  "reduction": {
+   "red": 1,
+   "purple": 1,
+   "green": 1,
+   "white": 1,
+   "yellow": 1,
+   "blue": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Judgment"
+  ],
+  "text": "This card in Trash is unaffected by any effect.\n\n When using this card from the Hand, including being in Soul State/pre-advent condition, if you control any \"Terad\"/\"Oboro\"/\"Gataru\"/\"Vrick\"/\"Fermat\"/\"Raon\", this card is Cost 4.\n\n{{mirage|Cost 4}}\nDuring Set (Your Attack Step)\nAt the end of battle of your Spirit with \"Terad\"/\"Oboro\"/\"Gataru\"/\"Vrick\"/\"Fermat\"/\"Raon\" as a pre-advent card, send an opposing Life to the Reserve.\n\nFlash\nImmediately end the battle. Also, during this turn, your Life can only be reduced by one.",
+  "image": null,
+  "block": "63",
+  "saga": 13,
+  "mechanics": [
+   "Mirage"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "This card in Trash is unaffected by any effect.",
+   "When using this card from the Hand, including being in Soul State/pre-advent condition, if you control any \"Terad\"/\"Oboro\"/\"Gataru\"/\"Vrick\"/\"Fermat\"/\"Raon\", this card is Cost 4.",
+   "{{mirage|Cost 4}}",
+   "During Set (Your Attack Step)",
+   "At the end of battle of your Spirit with \"Terad\"/\"Oboro\"/\"Gataru\"/\"Vrick\"/\"Fermat\"/\"Raon\" as a pre-advent card, send an opposing Life to the Reserve.",
+   "Flash",
+   "Immediately end the battle.",
+   "Also, during this turn, your Life can only be reduced by one."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
   "id": "BS63-CX01",
@@ -15566,5 +17520,123 @@
    "9"
   ],
   "rcode": "XX"
+ },
+ {
+  "id": "BSC22-114",
+  "name": "Buster Spear",
+  "name_jp": "バスタースピア",
+  "type": "Magic",
+  "color": "red",
+  "cost": 3,
+  "reduction": {},
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDestroy a Nexus you or the opponent controls. When this effect destroys any opposing Nexus, draw two cards.",
+  "image": "Buster Spear.jpg",
+  "block": "60",
+  "saga": 13,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Destroy a Nexus you or the opponent controls.",
+   "When this effect destroys any opposing Nexus, draw two cards."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "SD24-013",
+  "name": "King's Command",
+  "name_jp": "キングスコマンド",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 4,
+  "reduction": {
+   "blue": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{Burst|After an opposing Spirit/Brave's (When Summoned) effect resolves}}\nDraw three cards, then discard a card from your Hand. Then by paying the cost, activate this card's Flash effect.\n\nFlash\nDuring this turn, all opposing Cost 4 or more Spirits can't attack.",
+  "image": "SD24 013 (BS60).png",
+  "block": "60",
+  "saga": 13,
+  "mechanics": [
+   "Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Burst|After an opposing Spirit/Brave's (When Summoned) effect resolves}}",
+   "Draw three cards, then discard a card from your Hand.",
+   "Then by paying the cost, activate this card's Flash effect.",
+   "Flash",
+   "During this turn, all opposing Cost 4 or more Spirits can't attack."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "SD37-012",
+  "name": "Advent Draw",
+  "name_jp": "アドベントドロー",
+  "type": "Magic",
+  "color": "red",
+  "cost": 4,
+  "reduction": {
+   "red": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "{{Burst|After your Life is reduced}}\nDestroy any number of opposing Spirits/Ultimates up to a total of 7000 BP. Then, by paying the cost, activate this card's Main effect.\n\nMain\nDraw two cards. Then, you can reveal three cards from your decktop. Among them, add a Spirit card with Advent to your Hand. Discard any remaining cards.",
+  "image": "SD37 012 (BS60).png",
+  "block": "60",
+  "saga": 13,
+  "mechanics": [
+   "Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{Burst|After your Life is reduced}}",
+   "Destroy any number of opposing Spirits/Ultimates up to a total of 7000 BP.",
+   "Then, by paying the cost, activate this card's Main effect.",
+   "Main",
+   "Draw two cards.",
+   "Then, you can reveal three cards from your decktop.",
+   "Among them, add a Spirit card with Advent to your Hand.",
+   "Discard any remaining cards."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "SD56-RV009",
+  "name": "Burst Wall",
+  "name_jp": "絶甲氷盾",
+  "type": "Magic",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "This card in Trash is unaffected by any effects.\n\nThis card in Hand is unaffected by opposing effects, and can be used without paying the cost when your Life is reduced by the opponent.\n\n{{Burst|After your Life is reduced}}\nPut a core from the Void to your Life. Then by paying the cost, activate this card's Flash effect.\n\nFlash\nWhen this battle ends, end the Attack Step.",
+  "image": "Burst Wall.jpg",
+  "block": "60",
+  "saga": 13,
+  "mechanics": [
+   "Burst"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "This card in Trash is unaffected by any effects.",
+   "This card in Hand is unaffected by opposing effects, and can be used without paying the cost when your Life is reduced by the opponent.",
+   "{{Burst|After your Life is reduced}}",
+   "Put a core from the Void to your Life.",
+   "Then by paying the cost, activate this card's Flash effect.",
+   "Flash",
+   "When this battle ends, end the Attack Step."
+  ],
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  }
 ]

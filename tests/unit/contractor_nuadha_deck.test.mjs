@@ -47,9 +47,9 @@ test('B05 the blue deck file matches the prebuilt deck', async () => {
   const r = await g.page.evaluate(() => BS.PREBUILT.find(x => x.id === 'blue').cards);
   assert.deepEqual(file, r);
 });
-test('B06 the Magic cards are in the pack since v0.41; Dagda and Magic Soldier are still left out', async () => {
+test('B06 the Magic cards and Dagda / Magic Soldier are in the pack after the 2026-11-01 playable pass', async () => {
   const r = await g.page.evaluate(() => ['BS71-083', 'BS71-084', 'BS72-083', 'BS72-X07', 'BS71-059'].map(i => !!BS.CARDS[i]));
-  assert.deepEqual(r, [true, true, true, false, false]);
+  assert.deepEqual(r, [true, true, true, true, true]);
 });
 
 // ---- cost based destruction ----
