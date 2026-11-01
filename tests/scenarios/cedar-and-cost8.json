@@ -1,0 +1,31 @@
+{
+  "name": "cedar-and-cost8",
+  "about": "v0.203.0 next cycle bundle 4: BS34-063 The Single Cedar in the Shinobi's Forest (Nexus; when the opponent draws, refresh a Spirit/Ultimate you control; LV2 when your Blade Beast Spirit wins by BP comparing, put two Void cores on it) and BS24-057 (Your Attack Step: when any Cost 8 or more Spirit is destroyed, refresh this Spirit; new SPIRIT_DIED trigger).",
+  "rules": [
+    "STD:12-2-1-12@caad612c",
+    "ETR:effects.simultaneous@77571ae4"
+  ],
+  "turn": 4,
+  "active": "player",
+  "step": 5,
+  "players": {
+    "player": {
+      "reserve": 3,
+      "void": 8,
+      "spirits": [
+        { "id": "BS24-057", "cores": 1, "as": "watcher", "exhausted": true },
+        { "id": "BS01-053", "cores": 1, "as": "blade" }
+      ],
+      "nexus": [
+        { "id": "BS34-063", "cores": 1, "as": "cedar" }
+      ],
+      "deck": ["26RBS01-004", "26RBS01-005"]
+    },
+    "opponent": {
+      "reserve": 4,
+      "spirits": [
+        { "id": "26RBS01-004", "cores": 1, "as": "oppA" }
+      ]
+    }
+  }
+}

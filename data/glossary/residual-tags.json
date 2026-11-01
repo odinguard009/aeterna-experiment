@@ -7761,10 +7761,6 @@
   "M_OPTIONAL",
   "S_MUST_BLOCK"
  ],
- "BS24-057": [
-  "A_REFRESH",
-  "C_LEVEL"
- ],
  "BS24-058": [
   "A_DESTROY_BP",
   "C_LEVEL",
@@ -12429,12 +12425,6 @@
   "A_EXHAUST",
   "C_LEVEL",
   "T_ALLY_SUMMONED"
- ],
- "BS34-063": [
-  "A_REFRESH",
-  "A_VOID",
-  "C_LEVEL",
-  "K_ULTIMATE"
  ],
  "BS34-064": [
   "A_EXHAUST",

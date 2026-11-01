@@ -275,3 +275,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v237 (Lane K): `DESTROY.ultimate` ("destroy an opposing Ultimate") and `MILL_OPP {n}` ("discard N cards from the opposing decktop"). Cards: BS54-005, BS34-057, BS11-041.
 - v238 (Lane K): trigger `START_STEP` ("Your Start Step", fires after the Start Step begins). Cards: BS10-089, BS21-017.
 - v239 (Lane K): `BOUNCE_OPP.all` ("return every N BP or less Spirit"). Cards: BS10-038, BS38-020, BS14-082.
+- v240 (Lane K): VOID_TO_CARD.to subject (to that Spirit) and trigger SPIRIT_DIED (when any Spirit is destroyed, fired for both players). Cards: BS34-063, BS24-057.
