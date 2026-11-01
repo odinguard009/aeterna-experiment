@@ -193,7 +193,6 @@
   "A_VOID"
  ],
  "BS01-125": [],
- "BS01-126": [],
  "BS01-127": [
   "A_BP_PLUS",
   "A_EXHAUST"
@@ -907,9 +906,6 @@
   "A_VOID",
   "K_CRUSH"
  ],
- "BS03-145": [
-  "A_BP_PLUS"
- ],
  "BS03-146": [],
  "BS03-147": [
   "A_BP_PLUS",
@@ -1513,11 +1509,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "BS06-001": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "BS06-005": [
   "C_LEVEL",
   "S_NO_RETURN"
@@ -1767,7 +1758,6 @@
  "BS06-104": [
   "A_BP_PLUS"
  ],
- "BS06-105": [],
  "BS06-106": [
   "A_BP_PLUS"
  ],
@@ -5153,9 +5143,6 @@
  ],
  "BS15-079": [
   "M_OPTIONAL"
- ],
- "BS15-081": [
-  "A_REFRESH"
  ],
  "BS15-082": [
   "A_CANT_ATTACK_BLOCK",
