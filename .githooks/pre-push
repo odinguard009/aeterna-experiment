@@ -32,9 +32,11 @@ fi
 python3 tools/check_renames.py || { echo "[pre-push] tests still use removed names / old labels (fix them before the Regression run)"; exit 1; }
 # 2026-10-30: only a push to main runs the whole quick set (~20 min, a failure shows up at the end and the push is repeated).
 # Any other branch (the cloud session branch) gets the loop: build, lint, brand guard, smoke, FX/strict guards. CI runs npm test on main.
-if [ "$main" = 0 ]; then
+# 2026-11-01 (owner): the push to main also runs only the loop (~15 s); CI runs the whole quick set + props on every push to main.
+# Set BS_FULL=1 to run the whole quick set (~20 min) before pushing, e.g. `BS_FULL=1 git push origin HEAD:main`.
+if [ "$main" = 0 ] || [ "${BS_FULL:-0}" != 1 ]; then
   out=$(npm run -s loop 2>&1) || { echo "$out" | tail -20; echo "[pre-push] loop failing"; exit 1; }
-  echo "[pre-push] non-main push: build, lint, stale-reference check and loop ok; the full quick set runs on the push to main"; exit 0
+  echo "[pre-push] build, lint, stale-reference check and loop ok; the full quick set runs in CI on main (BS_FULL=1 runs it here)"; exit 0
 fi
 out=$(npm run -s test:quick 2>&1) || { echo "$out" | grep -E "^not ok|^✖|failing"; echo "[pre-push] quick tests failing"; exit 1; }
 echo "[pre-push] build, lint, stale-reference check and quick tests ok"
