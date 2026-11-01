@@ -223,3 +223,16 @@ test('K-924 BS06-097 destroys an exhausted Spirit of Cost 4 or less only', async
     return [can1, can2, BS.CARDS['BS01-001'].cost]; })()`);
   assert.equal(r[0], false); assert.deepEqual(r[1], ['BS01-001'], JSON.stringify(r));
 });
+
+test('K-925 BS13-031 lets Armored Dragon Spirits block while exhausted on the opposing Attack Step', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent;
+    const t = BS.mkInst('BS13-031'); t.cores = 2; const al = BS.mkInst('BS01-001'); al.cores = 2; al.exhausted = true;
+    P.spirits = [t, al]; G.active = O.key; G.step = 5;
+    const ad = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && [].concat(BS.CARDS[k].families || []).includes('Armored Dragon') && k !== 'BS13-031');
+    const d = BS.mkInst(ad); d.cores = 3; d.exhausted = true; P.spirits.push(d);
+    const f = (s) => BS.flagActive(P, 'BLOCK_EXHAUSTED', s);
+    const on = [f(t), f(d), f(al)]; G.active = P.key; const off = f(d);
+    return [on, off]; })()`);
+  assert.deepEqual(r, [[true, true, false], false]);
+});
