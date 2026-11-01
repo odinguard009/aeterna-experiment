@@ -124,3 +124,24 @@ test('K-915 BS54-045 returns a Yellow Primal Nexus from the Trash when destroyed
     return [P.hand.length, P.trash.length, !!nid]; })()`);
   assert.deepEqual(r, [1, 1, true], JSON.stringify(r));
 });
+
+test('K-916 BS03-084 makes each player draw on attack; when destroyed at LV2 the opponent discards a random card', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const t = BS.mkInst('BS03-084'); t.cores = 3; P.spirits = [t]; P.hand = []; O.hand = [BS.mkInst('BS01-001'), BS.mkInst('BS01-002')];
+    const pd = P.deck.length, od = O.deck.length; await BS.fireFx(P, 'ATTACKS', t, { subject: t });
+    const drew = [pd - P.deck.length, od - O.deck.length];
+    P.spirits = []; P.trash = [t]; t.lostLv = 1; O.hand = [BS.mkInst('BS01-001'), BS.mkInst('BS01-002')]; const ot = O.trash.length;
+    await BS.fireFx(P, 'DESTROYED', t, { subject: t });
+    return [drew, O.hand.length, O.trash.length - ot]; })()`);
+  assert.deepEqual(r, [[1, 1], 1, 1], JSON.stringify(r));
+});
+
+test('K-917 BS43-RV009 discards a random opposing card when its attack reduces the opposing Life', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const t = BS.mkInst('BS43-RV009'); t.cores = 3; P.spirits = [t]; O.hand = [BS.mkInst('BS01-001'), BS.mkInst('BS01-002')];
+    await BS.fireFx(P, 'ALLY_LIFE_HIT', t, { subject: t });
+    return O.hand.length; })()`);
+  assert.equal(r, 1);
+});

@@ -331,3 +331,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v294 (Lane K): action `END_BATTLE_NOW` ("Immediately end the current battle" / "end the battle without comparing BP"): sets G.battleCut; 08-battle returns after the next Flash window with no BP comparison and no Life damage. Cards: BS01-148, BS06-109.
 - v295: REMOVE_ANY_DRAW {match} (put any number of matching Hand cards onto the Removed Zone, draw one per card).
 - v296: BOTH_RESET_HAND {n} (both players discard their entire Hand, then each draws n).
+- v297 (v0.208 cycle): OPP_DISCARD_RANDOM {n 1..3} (random card from the opposing Hand) and DRAW_BOTH {n 1..3} (each player draws).

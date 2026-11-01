@@ -523,11 +523,6 @@
  "BS03-079": [
   "C_LEVEL"
  ],
- "BS03-084": [
-  "C_LEVEL",
-  "T_ATTACKS",
-  "T_DESTROYED"
- ],
  "BS03-085": [
   "C_LEVEL"
  ],
@@ -20227,11 +20222,6 @@
   "M_IF_YOU_DO",
   "M_OPTIONAL",
   "T_SUMMONED"
- ],
- "BS43-RV009": [
-  "C_LEVEL",
-  "T_ALLY_LIFE_HIT",
-  "T_ATTACKS"
  ],
  "BS43-RV010": [
   "C_LEVEL"

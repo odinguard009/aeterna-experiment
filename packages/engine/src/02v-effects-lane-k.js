@@ -74,6 +74,22 @@ FX_ACTIONS.BOTH_RESET_HAND = {
     for (const q of sides) { const k = draw(q.p, a.n); log(`${CARDS[c.src.id].name}: ${who(q.p)} ${q.p.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'}.`); handUp(q.p, k); }
     io.view({ type: 'board' });
   } };
+/* v0.208 OPP_DISCARD_RANDOM {n}: "The opponent discards N random cards from their Hand" (a random card that is not hand-protected; ctx.did = false when none). */
+FX_ACTIONS.OPP_DISCARD_RANDOM = {
+  chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 3 && Object.keys(a).every(k => ['do', 'if', 'n'].includes(k)),
+  txt: a => `discard ${a.n === 1 ? 'a random card' : a.n + ' random cards'} from the opposing Hand`,
+  can: c => c.opp.hand.length > 0,
+  run: async (c, a) => { let k = 0;
+    for (let j = 0; j < a.n; j++) { const L = c.opp.hand.filter(x => !handSafe(x, c.opp, c)); if (!L.length) break;
+      const d = L[Math.floor(Math.random() * L.length)]; removeFrom(c.opp.hand, d); c.opp.trash.push(d); k++;
+      log(`${CARDS[c.src.id].name}: ${who(c.opp)} ${c.opp.cpu ? 'discards' : 'discard'} ${CARDS[d.id].name} (random).`); }
+    if (!k) c.ctx.did = false; io.view({ type: 'board' }); } };
+/* v0.208 DRAW_BOTH {n}: "Each player draws N cards" (own side first). */
+FX_ACTIONS.DRAW_BOTH = {
+  chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 3 && Object.keys(a).every(k => ['do', 'if', 'n'].includes(k)),
+  txt: a => `each player draws ${a.n} card${a.n === 1 ? '' : 's'}`,
+  can: () => true,
+  run: async (c, a) => { for (const q of [c.p, c.opp]) { const k = draw(q, a.n); handUp(q, k); } io.view({ type: 'board' }); } };
 /* v277 OWN_CORES_TO_TRASH {total} / OPP_SELF_CORES_TO_TRASH {total}: "By sending N cores from your Spirits to the Trash, ..." (cost; ctx.did = false when your Spirits hold fewer than N)
    and "The opponent sends N cores from their Spirits to their Trash" (the opponent chooses; the CPU gives up cores from its lowest-BP Spirit first). */
 async function coresFromSpirits(c, q, total, exact) {
