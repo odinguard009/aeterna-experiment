@@ -4,6 +4,14 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.204.1
+- Lane: data (owner order 2026-11-01; data release, not a Lane K complete-card cycle)
+- **Playable 6,922 -> 8,707 of 8,709 (1,785 staged cards promoted as partial playable cards; effects are NOT wired); complete 1,693 -> 1,696 of 8,709.**
+- The promoted cards carry `fxComplete: false`, their printed text in `residual`, and the A1 note; they show the "!" partial mark, can go into decks and matches, but no effect runs until a Lane K session completes them in place.
+- Official card database pass (`data/sources/official-fields.json`): cost, levels, reduction (six colours plus the god/Ultimate icons) and Brave BP/combine were applied to `data/cards` and `data/import`; the five remaining cards were repaired from their Fandom pages (BS55-XX01, BS77-AX01, BS06-028, BS58-015, BS59-057); 16 symbol counts are inferred and documented in `docs/audits/bulk-playable-2026-11-01.md`.
+- `CP` and `10THX` card numbers are accepted; the BS74-BS76 and gold-icon checks now compare with the official card database; G05/B06/RD-3 were updated for the new library; staged records are 2 (BS77-AX02/AX03: blank Fandom pages, no official page).
+- Limits: effects are not wired for the 1,785 cards (the "!" partial state is intended); Rebirth is still display-only (no `rebirthTo`/`rebirthSide` data and no flip rule); BS77-AX02/AX03 stay staged; the Windows-only Stop-hook test S3 remains environment-only (the local full quick set passes everything else; CI runs it on Linux).
+
 ## v0.204.0
 - Lane: K
 - **Lane K: +50 complete cards (1,643 -> 1,693 of 8,709; 50 in this release)**
