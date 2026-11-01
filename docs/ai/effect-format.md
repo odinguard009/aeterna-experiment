@@ -314,3 +314,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v277 (Lane K): OWN_CORES_TO_TRASH {total} and OPP_SELF_CORES_TO_TRASH {total}: the player moves total cores from their own spirits to the trash (own: needs at least total on spirits; opponent: up to total). BS09-070, BS08-072.
 - v278 (Lane K): OWN_CORE_TO_VOID {}: send one core from your Trash or Reserve to your Void (CPU: Trash first). BS01-007.
 - v279 (Lane K): VOID_TO_RESERVE_LOST {}: Void cores to your Reserve equal to the cores this Spirit held when it was destroyed (removeSpirit now records s.lostCores). BS02-035.
+- v280 (Lane K): BOTH_DESTROY_NEXUS {}: each player destroys a Nexus they control, only if both control one (the opponent's pick is the engine's: weakest Nexus). BS02-088.

@@ -47,3 +47,23 @@ test('K-842 BS02-035: destroying it with 3 cores gains 3 more Reserve cores from
     return [lost, r1 - r0, P.reserve.n - r1]; })()`);
   assert.deepEqual(r, [3, 3, 3], JSON.stringify(r));
 });
+
+test('K-843 BS01-137 gives +1000 BP per exhausted opposing Spirit to a chosen Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true;
+    const a = BS.mkInst('BS01-001'); a.cores = 1; P.spirits = [a]; const o1 = BS.mkInst('BS01-001'), o2 = BS.mkInst('BS01-001'), o3 = BS.mkInst('BS01-001'); [o1, o2, o3].forEach(x => x.cores = 1); o1.exhausted = o2.exhausted = true; O.spirits = [o1, o2, o3];
+    const m = BS.CARDS['BS01-137'].magic; const b0 = BS.bpOf(a); const act = m.by.MAIN.actions[0];
+    await BS.FX_ACTIONS.BP_PLUS.run({ p: P, opp: O, src: BS.mkInst('BS01-137'), ctx: {} }, act);
+    return [JSON.stringify(m.timing), BS.bpOf(a) - b0]; })()`);
+  assert.deepEqual(r, ['["MAIN","FLASH"]', 2000], JSON.stringify(r));
+});
+
+test('K-844 BOTH_DESTROY_NEXUS destroys one Nexus each, and nothing when the opponent has none (BS02-088)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true;
+    const nx = Object.values(BS.CARDS).find(c => c.type === 'Nexus').id; const mk = () => { const n = BS.mkInst(nx); n.cores = 0; return n; };
+    const a = BS.CARDS['BS02-088'].magic.by.MAIN.actions[0]; const c = { p: P, opp: O, src: BS.mkInst('BS02-088'), ctx: {} };
+    P.nexus = [mk(), mk()]; O.nexus = []; await BS.FX_ACTIONS.BOTH_DESTROY_NEXUS.run(c, a); const none = [P.nexus.length, O.nexus.length, c.ctx.did];
+    O.nexus = [mk()]; await BS.FX_ACTIONS.BOTH_DESTROY_NEXUS.run(c, a); return [none, P.nexus.length, O.nexus.length, c.ctx.did]; })()`);
+  assert.deepEqual(r, [[2, 0, false], 1, 0, true], JSON.stringify(r));
+});

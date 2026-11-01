@@ -82,3 +82,16 @@ Object.assign(FX_ACTIONS, {      // v279 "Gain cores in your Reserve equal to th
     txt: () => 'put cores from the Void to your Reserve equal to the cores this Spirit held when it left the Field',
     run: async (c, a) => { const m = takeFromVoid(c.p, c.src.lostCores || 0); c.ctx.did = m > 0; if (!m) return; coreEvN(c.p, 'void', 'reserve', m, false); c.p.reserve.n += m; log(`${CARDS[c.src.id].name}: ${m} core${m === 1 ? '' : 's'} move from the Void to the Reserve.`); io.view({ type: 'board' }); } },
 });
+Object.assign(FX_ACTIONS, {      // v280 "Each player chooses and destroys a Nexus they control. Can't be used unless each player controls at least one Nexus."
+  BOTH_DESTROY_NEXUS: { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
+    txt: () => 'each player destroys a Nexus they control (only if both control one)',
+    can: c => c.p.nexus.length > 0 && c.opp.nexus.length > 0,
+    run: async (c, a) => {
+      c.ctx.did = false; if (!c.p.nexus.length || !c.opp.nexus.length) return;
+      const nm = CARDS[c.src.id].name, mine = c.p.nexus.filter(n => !n.noFx);
+      const t = c.p.cpu || mine.length < 2 ? mine.slice().sort((x, y) => x.cores - y.cores)[0] : await fxPickTarget(c, mine, `✨ <b>${esc(nm)}</b><br>Tap your Nexus to destroy (glowing).`);
+      const u = c.opp.nexus.filter(n => !n.noFx).sort((x, y) => x.cores - y.cores)[0];      // the opponent's own choice: the engine picks their weakest Nexus
+      for (const [q, x] of [[c.p, t], [c.opp, u]]) if (x) { log(`${nm}: ${poss(q)} ${CARDS[x.id].name} is destroyed.`); removeNexus(q, x, 'destroyed'); c.ctx.did = true; }
+      io.view({ type: 'board' });
+    } },
+});

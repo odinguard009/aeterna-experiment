@@ -191,10 +191,6 @@
  "BS01-135": [
   "A_BP_PLUS"
  ],
- "BS01-137": [
-  "A_BP_PLUS",
-  "A_EXHAUST"
- ],
  "BS01-139": [
   "S_UNAFFECTED"
  ],
@@ -443,7 +439,6 @@
   "C_OPP_TURN",
   "M_OPTIONAL"
  ],
- "BS02-088": [],
  "BS02-089": [
   "A_AWAKEN",
   "M_OPTIONAL"
