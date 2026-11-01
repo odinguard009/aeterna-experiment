@@ -5920,11 +5920,6 @@
   "C_LEVEL",
   "K_ARMOR"
  ],
- "BS19-006": [
-  "C_LEVEL",
-  "K_RUSH",
-  "T_SUMMONED"
- ],
  "BS19-008": [
   "A_BP_PLUS",
   "C_LEVEL",
@@ -6371,12 +6366,6 @@
   "M_OPTIONAL",
   "T_BATTLE_WIN",
   "T_SUMMONED"
- ],
- "BS20-027": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "K_RUSH",
-  "T_ATTACKS"
  ],
  "BS20-030": [
   "A_DISCARD_OPP",

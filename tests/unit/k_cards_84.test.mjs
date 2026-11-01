@@ -66,3 +66,36 @@ test('K-911 BS30-016 puts a Void core on itself; with an opposing Burst set it a
     return out; })()`);
   assert.deepEqual(r, [[1, 0], [1, 2]], JSON.stringify(r));
 });
+
+test('K-912 BS19-006 destroys an opposing Spirit with (When Summoned); with a Purple symbol it also draws', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const mk = id => { const x = BS.mkInst(id); x.cores = 1; return x; };
+    const sp = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && (BS.CARDS[k].effects || []).some(e => e.trigger === 'SUMMONED') && !(BS.CARDS[k].effects || []).some(e => e.trigger === 'DESTROYED'));
+    const van = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !(BS.CARDS[k].effects || []).length);
+    const pid = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].symbol === 'purple' && !(BS.CARDS[k].effects || []).length && BS.CARDS[k].symbols >= 1);
+    const out = [];
+    for (const pur of [false, true]) {
+      const t = mk('BS19-006'); P.spirits = [t]; if (pur) P.spirits.push(mk(pid)); const a = mk(sp), b = mk(van); O.spirits = [a, b]; P.hand = [];
+      const d0 = P.deck.length; await BS.fireFx(P, 'SUMMONED', t, { subject: t });
+      out.push([O.spirits.includes(a), O.spirits.includes(b), d0 - P.deck.length]);
+    }
+    return out; })()`);
+  assert.deepEqual(r, [[false, true, 0], [false, true, 1]], JSON.stringify(r));
+});
+
+test('K-913 BS20-027 exhausts every 3000 BP or less Spirit; with a White symbol it also bounces an opposing Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const mk = id => { const x = BS.mkInst(id); x.cores = 1; return x; };
+    const low = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !(BS.CARDS[k].effects || []).length && (BS.CARDS[k].levels[0] || {}).bp <= 3000 && (BS.CARDS[k].levels[0] || {}).bp > 0);
+    const wid = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].symbol === 'white' && !(BS.CARDS[k].effects || []).length && BS.CARDS[k].symbols >= 1);
+    const out = [];
+    for (const wh of [false, true]) {
+      const t = mk('BS20-027'); const l = mk(low); P.spirits = [t, l]; if (wh) P.spirits.push(mk(wid)); const o = mk(low); O.spirits = [o]; O.hand = [];
+      await BS.fireFx(P, 'ATTACKS', t, { subject: t });
+      out.push([!!l.exhausted, O.hand.length, O.spirits.length]);
+    }
+    return out; })()`);
+  assert.deepEqual(r, [[true, 0, 1], [true, 1, 0]], JSON.stringify(r));
+});
