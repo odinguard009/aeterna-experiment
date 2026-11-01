@@ -120,3 +120,13 @@ test('K-820 BS11-024 and BS21-057 are wired with existing actions (REFRESH_SPIRI
     return [a[1].actions[0].do + a[1].actions[0].count, JSON.stringify(a[1].lv), b[0].trigger + b[0].braved + b[0].actions[0].n]; })()`);
   assert.deepEqual(r, ['REFRESH_SPIRIT2', '[2]', 'DESTROYEDtrue2'], JSON.stringify(r));
 });
+
+test('K-821 BS04-103 refreshes three exhausted Giant/Armored Beast Spirits; BS06-051 is wired for Brilliance', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; P.spirits = [];
+    const fam = Object.values(BS.CARDS).filter(k => k.type === 'Spirit' && (k.families || []).some(f => f === 'Giant Beast' || f === 'Armored Beast')).slice(0, 4);
+    const sp = fam.map(k => { const i = BS.mkInst(k.id); i.cores = 1; i.exhausted = true; P.spirits.push(i); return i; });
+    const act = BS.CARDS['BS04-103'].magic.by.FLASH.actions[0]; await BS.FX_ACTIONS.REFRESH_SPIRIT.run({ p: P, opp: O, src: BS.mkInst('BS04-103'), ctx: {} }, act);
+    return [sp.length, sp.filter(s => !s.exhausted).length, BS.CARDS['BS06-051'].effects[0].trigger]; })()`);
+  assert.deepEqual(r, [4, 3, 'DESTROYED'], JSON.stringify(r));
+});

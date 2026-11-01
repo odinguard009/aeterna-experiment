@@ -20463,11 +20463,30 @@
   "image": "High Ether.jpg",
   "block": "04",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "Flash - Refresh 3 exhausted \"Giant Beast\" and or \"Armored Beast\" spirits you control."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "by": {
+    "FLASH": {
+     "effect": "ACTIONS",
+     "actions": [
+      {
+       "do": "REFRESH_SPIRIT",
+       "count": 3,
+       "match": {
+        "family": [
+         "Giant Beast",
+         "Armored Beast"
+        ]
+       }
+      }
+     ]
+    }
+   }
+  }
  },
  {
   "id": "BS04-104",
@@ -26724,12 +26743,26 @@
   "image": "Gremly.jpg",
   "block": "06",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV2][LV3] (When Destroyed) Refresh target exhausted spirit you control with Brilliance."
-  ],
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT",
+      "match": {
+       "keyword": "Brilliance"
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS06-052",

@@ -29,13 +29,13 @@ export const PRE = `BS.testSetup(); BS.SETTINGS.speed = 'instant'; const G = BS.
   const gone = (t, q = O) => !q.spirits.includes(t) && !q.nexus.includes(t);`;
 
 /* A fixture that matches a simple `match` (family / type / costLe / color): its id is derived from the match, so one card per match. */
-const MATCH_KEYS = ['family', 'type', 'costLe', 'color', 'team', 'typeAny'];
+const MATCH_KEYS = ['family', 'type', 'costLe', 'color', 'team', 'typeAny', 'keyword'];      // v265 keyword: the fixture card carries keywords:[kw]
 const okMatch = m => m && Object.keys(m).every(k => MATCH_KEYS.includes(k)) && (!m.typeAny || m.typeAny.includes('Spirit')) && (!m.type || m.type === 'Spirit' || m.type === 'Nexus') && (!m.family || m.family.length > 0);
 const mid = m => `${FIX_PREFIX}M-` + [...JSON.stringify(m)].reduce((h, ch) => (Math.imul(h ^ ch.charCodeAt(0), 16777619) >>> 0), 2166136261).toString(36);
-const fillMatches = m => !m.team && (!m.family || m.family.includes('FXP')) && (!m.type || m.type === 'Spirit') && (m.costLe == null || m.costLe >= 1) && (!m.color || m.color === 'red');
+const fillMatches = m => !m.team && !m.keyword && (!m.family || m.family.includes('FXP')) && (!m.type || m.type === 'Spirit') && (m.costLe == null || m.costLe >= 1) && (!m.color || m.color === 'red');
 function matchCard(m) {
   const type = m.type || 'Spirit', id = mid(m);
-  return { id, name: id, type, color: m.color || 'red', cost: m.costLe != null ? m.costLe : 3, symbols: 1, levels: type === 'Nexus' ? [{ cores: 0 }] : [{ cores: 1, bp: 2000 }], families: m.family ? [m.family[0]] : ['FXM'], ...(m.team ? { desc: `[Team: ${m.team}]` } : {}), ...(m.keyword ? { keywords: [m.keyword] } : {}) };
+  return { id, name: id, type, color: m.color || 'red', cost: m.costLe != null ? m.costLe : 3, symbols: 1, levels: type === 'Nexus' ? [{ cores: 0 }] : [{ cores: 1, bp: 2000 }], families: m.family ? [m.family[0]] : ['FXM'], ...(m.team || m.keyword ? { desc: `${m.team ? `[Team: ${m.team}] ` : ''}${m.keyword ? `${m.keyword} (fixture)` : ''}` } : {}) };      // parseCard drops keywords: cardHasKeyword reads "Kw (" from the text
 }
 
 /** Builds the fixture cards the cases need (import once with BS.importCards). */
@@ -325,6 +325,8 @@ function simple(card, a) {
         return { fix: a.match ? [{ m: a.match }] : [], body: `const ts = []; for (let j = 0; j < ${k + (a.all ? 0 : 1)}; j++) { const t = sp(${J(M)}, P, 1); t.exhausted = true; ts.push(t); } await run(src, RA);
         const done = ts.filter(t => !t.exhausted).length; return done === ${a.all ? k : a.n} ? '' : 'refreshed ' + done + ' of ' + ts.length + ', want ' + ${a.all ? k : a.n};` };
       }
+      if (only(a, ['match', 'count']) && a.count >= 2 && a.match && okMatch(a.match)) return { fix: [{ m: a.match }], body: `const ts = []; for (let j = 0; j <= A.count; j++) { const t = sp(${J(mid(a.match))}, P, 1); t.exhausted = true; ts.push(t); } await run(src, RA);      // v265 count: refresh up to N matching exhausted Spirits
+        const done = ts.filter(t => !t.exhausted).length; return done === A.count ? '' : 'refreshed ' + done + ', want ' + A.count;` };
       if (only(a, ['match', 'bp']) && okMatch(a.match)) return { fix: [{ m: a.match }], body: `const t = sp(${J(mid(a.match))}, P, 1); t.exhausted = true; await run(src, RA); if (t.exhausted) return 'the matching Spirit is still exhausted';
       ${fillMatches(a.match) ? '' : `${PRE_RESET} const f = sp(${J(FILL)}, P, 1); f.exhausted = true; await run(src, RA); if (!f.exhausted) return 'a Spirit that does not match was refreshed';`} return '';` };
       return only(a, ['bp']) && { body: `const t = sp(${J(FILL)}, P, 1); t.exhausted = true; await run(src, RA); return t.exhausted ? 'still exhausted' : '';` };

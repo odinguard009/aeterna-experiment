@@ -1126,10 +1126,6 @@
  ],
  "BS04-101": [],
  "BS04-102": [],
- "BS04-103": [
-  "A_EXHAUST",
-  "A_REFRESH"
- ],
  "BS04-104": [
   "A_BP_PLUS"
  ],
@@ -1522,12 +1518,6 @@
   "A_REFRESH",
   "C_LEVEL",
   "T_SUMMONED"
- ],
- "BS06-051": [
-  "A_EXHAUST",
-  "A_REFRESH",
-  "C_LEVEL",
-  "T_DESTROYED"
  ],
  "BS06-052": [
   "A_EXHAUST",
