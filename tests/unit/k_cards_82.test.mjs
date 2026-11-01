@@ -43,3 +43,14 @@ test('K-867 BS01-103 empties the opposing Reserve (LV1+) and exhausts an opposin
     return out; })()`);
   assert.deepEqual(r, [0, 4, false, 0, true], JSON.stringify(r));
 });
+
+test('K-868 BS01-099 draws +1 at the Draw Step, discarding one card at LV1 only', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const n = BS.mkInst('BS01-099'); n.cores = 1; P.nexus = [n]; const out = [];
+    P.deck = [1,2,3,4,5].map(() => BS.mkInst('BS01-001')); P.hand = [BS.mkInst('BS01-001'), BS.mkInst('BS01-001')];
+    let h = P.hand.length, d = P.trash.length; await BS.fireFx(P, 'DRAW_STEP', null, {}); out.push(P.hand.length - h, P.trash.length - d);
+    n.cores = 3; h = P.hand.length; d = P.trash.length; await BS.fireFx(P, 'DRAW_STEP', null, {}); out.push(P.hand.length - h, P.trash.length - d);
+    return out; })()`);
+  assert.deepEqual(r, [0, 1, 1, 0], JSON.stringify(r));
+});
