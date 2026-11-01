@@ -228,3 +228,16 @@ test('K-881 BS14-080 gives Green Spirits +1000 BP per opposing Spirit in your At
     return out; })()`);
   assert.deepEqual(r, [2000, 0, false, true], JSON.stringify(r));
 });
+
+test('K-882 BS15-065 gives Windstorm Spirit cards an extra Green reduction symbol and exhausts an opposing Spirit at your Start Step while the opponent has a Burst set (LV2)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const n = BS.mkInst('BS15-065'); n.cores = 0; P.nexus = [n]; const out = [];
+    out.push(BS.extraReduction(P, BS.CARDS['BS14-032']).length, BS.extraReduction(P, BS.CARDS['BS01-003']).length);
+    const e = BS.mkInst('BS01-001'); e.cores = 1; O.spirits = [e]; G.active = P.key;
+    await BS.fireFx(P, 'START_STEP', null, {}); out.push(!!e.exhausted);
+    n.cores = 1; await BS.fireFx(P, 'START_STEP', null, {}); out.push(!!e.exhausted);
+    O.burst = BS.mkInst('BS01-001'); await BS.fireFx(P, 'START_STEP', null, {}); out.push(!!e.exhausted);
+    return out; })()`);
+  assert.deepEqual(r, [1, 0, false, false, true], JSON.stringify(r));
+});

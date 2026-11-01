@@ -4725,12 +4725,6 @@
   "T_ALLY_ATTACKS",
   "T_SUMMONED"
  ],
- "BS15-065": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "K_BURST",
-  "S_EXTRA_REDUCTION"
- ],
  "BS15-066": [
   "A_BP_PLUS",
   "A_REFRESH",
