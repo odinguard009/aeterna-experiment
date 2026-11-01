@@ -13,10 +13,11 @@ test('V155-1 Play (PC): the Start box sits right under the header, above the thr
   assert.ok(r[0] < r[1] && r[1] < r[2], JSON.stringify(r));
 });
 test('V155-2 starter decks: equal cells in a grid; phone shows the Key card and the name only', async () => {
+  await page.evaluate(() => { BS.switchView('view-decks'); document.querySelector('#dk-sfmt [data-v="standard"]').click(); });
   const r = await page.evaluate(() => { BS.switchView('view-decks'); const rows = [...document.querySelectorAll('#dk-starters .dk-st-row')].map(e => e.getBoundingClientRect()); return { n: rows.length, w: new Set(rows.map(x => Math.round(x.width))).size, th: document.querySelectorAll('#dk-starters .dk-st-th').length }; });
   assert.ok(r.n >= 10 && r.w === 1 && r.th === r.n, JSON.stringify(r));
   await open(390, 780);
-  const p = await page.evaluate(() => { BS.switchView('view-decks'); const s = document.querySelector('#dk-starters .dk-st-sub'), t = document.querySelector('#dk-list .dtile'); return { sub: getComputedStyle(s).display, fan: [...t.querySelectorAll('.stack .cf')].filter(x => getComputedStyle(x).display !== 'none').length }; });
+  const p = await page.evaluate(() => { BS.switchView('view-decks'); document.querySelector('#dk-sfmt [data-v="standard"]').click(); const s = document.querySelector('#dk-starters .dk-st-sub'), t = document.querySelector('#dk-list .dtile'); return { sub: getComputedStyle(s).display, fan: [...t.querySelectorAll('.stack .cf')].filter(x => getComputedStyle(x).display !== 'none').length }; });
   assert.deepEqual(p, { sub: 'none', fan: 1 });
 });
 test('V155-3 card dialog: the card face is not cut into a parallelogram; Add / Remove share a row, Close spans', async () => {

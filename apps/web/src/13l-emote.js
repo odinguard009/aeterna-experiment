@@ -18,7 +18,7 @@ function effectPanel(ev) {
   const text = String(ev.text || '').slice(0, 200), trg = (typeof FX_TRIGGER_TEXT !== 'undefined' && FX_TRIGGER_TEXT[ev.trg]) || '';
   const dup = /** @type {HTMLElement[]} */ ([...st.children]).find(e => e.dataset.k === ev.id + '|' + text);        // the same effect again within 5 s refreshes its timer instead of stacking
   if (dup) { clearTimeout(+dup.dataset.t); dup.dataset.t = String(setTimeout(() => dup.remove(), EFF_MS)); return; }
-  const max = isPC() ? 3 : 1; while (st.children.length >= max) st.firstElementChild.remove();
+  const max = isPC() ? 4 : 2; while (st.children.length >= max) st.firstElementChild.remove();
   const d = document.createElement('div'); d.className = 'ae-eff' + (ev.side === 'opponent' ? ' cpu' : ''); d.dataset.k = ev.id + '|' + text;
   d.innerHTML = `<span class="ae-eff-h">${ev.side === 'opponent' ? 'CPU' : 'YOU'} · EFFECT${trg ? ' · ' + esc(trg) : ''}</span><b>${esc(c.name)}</b><span class="ae-eff-t">${esc(text)}</span><button class="ae-eff-x" type="button" aria-label="Close this effect pop-up">✕</button>`;
   d.querySelector('button').addEventListener('click', e => { e.stopPropagation(); clearTimeout(+d.dataset.t); d.remove(); });

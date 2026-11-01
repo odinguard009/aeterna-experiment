@@ -89,7 +89,7 @@ COLORS, BUILTIN_IDS, CARDS_KEY, IMPORTED, CARDS_VER, parseLevels, parseMagicOf, 
 ## packages/engine/src/04-decks.js (163 lines, ~6.4k tokens) — DECK STORAGE AND VALIDATION
 deckTotal, cleanDeck, validateDeck, keyOfDeck, pickKey, fmtName, fmtButton, setFormat, errSummary, prebuiltDeck, stdDeck, readyDeck, prebuiltFmt, prebuiltOrder, prebuiltLabel, PREBUILT, defaultDeck, SLOT_KEY, SLOTS, ACTIVE_SLOT, loadSlots, PLAYER_DECK, saveDeck, switchSlot, loadPrebuilt, CPU_DECK_NAME, cpuDeckFor
 
-## packages/engine/src/05-state.js (68 lines, ~1.3k tokens) — GAME STATE
+## packages/engine/src/05-state.js (69 lines, ~1.4k tokens) — GAME STATE
 SET_KEY, SETTINGS, SPEEDS, saveSettings, G, fnv, recIn, SIM_DECK_B, SIM_DECK_B_KEY, SIM_HUMAN, DELAYS, delay, engineIdle, wait, log, mkInst, newPlayer, contractToDeck, redrawHand, cpuWantsRedraw, newGame
 
 ## packages/engine/src/05b-decide.js (111 lines, ~2.5k tokens) — DECISIONS (v0.83.0, phase F3 = monorepo step M3 part 1; docs/ai/monorepo-plan.md "Design" 1)
@@ -110,7 +110,7 @@ successor, flashTiming, battleEndAttack, attackStepOver, doBattle, doBattleInner
 ## packages/engine/src/09-cpu.js (174 lines, ~3k tokens) — CPU
 cpuCanPlay, cpuLevelUp, cpuBurstFlash, cpuFlashChoice, summonableOpts, cpuCastMain, cpuMain, cpuBrave, cpuAttack, startAttackFx, cpuTurn
 
-## packages/engine/src/09a-cpu-eval.js (132 lines, ~2.2k tokens) — CPU EVALUATION POLICY (v0.32, Aegis study point 7)
+## packages/engine/src/09a-cpu-eval.js (131 lines, ~2.2k tokens) — CPU EVALUATION POLICY (v0.32, Aegis study point 7)
 CPU_PROFILES, CPU_PROFILE_NAMES, CPU_SIM_PROFILES, cpuProfileName, cpuW, lifeValue, lifeLoss, symOf, unitValue, cpuEval, cpuPlayScore, FUZZ, cpuSlips, fuzzPick, cpuPlayChoice, cpuKeepMagicOrPay, cpuLethal, guardNeed, cpuFlashThreat, cpuAttackScore, cpuAttackChoice, cpuBlockScore, cpuChooseBlock, setCpuProfile
 
 ## apps/web/src/10-modals.js (159 lines, ~2.8k tokens) — MODALS (promise based)

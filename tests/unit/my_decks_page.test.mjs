@@ -33,7 +33,7 @@ for (const screen of ['pc', 'phone']) {
       starters: document.querySelectorAll('#dk-starters .dk-st-row').length, ready: document.querySelectorAll('#dk-ready .dk-st-row').length,
       hiddenShown: BS.PREBUILT.filter(d => d.hidden).filter(d => (document.getElementById('dk-starters').textContent + document.getElementById('dk-ready').textContent).includes(d.name)).length,
       pre: BS.PREBUILT.filter(d => !d.hidden).length, sleeve: true, dots: document.querySelectorAll('#dk-list .dtile[data-v] .dot').length }));
-    assert.deepEqual([r.on, r.cur, r.h1, r.count, r.wide, r.starters + r.ready === r.pre, r.hiddenShown, r.sleeve, r.dots > 0], [true, 'view-decks', 'My decks', '1 / 8', false, true, 0, true, true]);
+    assert.deepEqual([r.on, r.cur, r.h1, r.count, r.wide, r.starters + r.ready <= r.pre, r.hiddenShown, r.sleeve, r.dots > 0], [true, 'view-decks', 'My decks', '1 / 8', false, true, 0, true, true]);
     const t = await tiles(page);
     assert.equal(t.length, 1); assert.equal(t[0].act, true); assert.match(t[0].st, /Legal/); assert.equal(t[0].play, true);
     await page.click('#dk-list [data-a="dk-edit"]');
@@ -71,6 +71,7 @@ for (const screen of ['pc', 'phone']) {
   test(`U93-3 ${screen}: starter decks are read-only with Copy; Import code fills a new slot; a full set of slots says so`, async () => {
     const { page, errors } = await open(screen);
     await page.evaluate(() => { BS.switchView('view-decks'); return 1; });
+    await page.click('#dk-sfmt [data-v="standard"]');      // the starters are listed per format since v0.205.2
     const red = await page.evaluate(() => BS.PREBUILT.findIndex(d => d.id === 'std01'));
     await page.click(`#dk-starters [data-a="dk-copy"][data-v="${red}"]`);
     let t = await tiles(page);

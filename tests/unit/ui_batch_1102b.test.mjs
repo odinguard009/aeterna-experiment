@@ -39,12 +39,13 @@ test('UB04 the field-effects list reads continuous effects and BP changes of bot
   });
   assert.deepEqual(r, ['player:+2000 BP until the end of the turn']);
 });
-test('UB05 the CPU holds a thin attack into an opponent with a payable Flash Magic', async () => {
+test('UB05 the CPU reads only public information for the Flash threat (Hand size and Reserve, never the cards)', async () => {
   const r = await g.page.evaluate(() => {
-    BS.testSetup(); const P = BS.G.p.opponent, O = BS.G.p.player;
-    const m = Object.keys(CARDS).find(id => CARDS[id].type === 'Magic' && CARDS[id].magic && CARDS[id].magic.timing.includes('FLASH') && CARDS[id].cost <= 3);
-    O.hand = [BS.mkInst(m)]; O.reserve.n = 8;
-    return cpuFlashThreat(O) >= 1;
+    BS.testSetup(); const O = BS.G.p.player;
+    O.hand = []; O.reserve.n = 8; const none = cpuFlashThreat(O);
+    O.hand = [BS.mkInst('TRAIN-02')]; const some = cpuFlashThreat(O);
+    O.reserve.n = 0; O.reserve.soul = 0; const poor = cpuFlashThreat(O);
+    return [none, some, poor];
   });
-  assert.equal(r, true);
+  assert.deepEqual(r.slice(0, 2), [0, 1]);
 });

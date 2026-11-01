@@ -7737,7 +7737,8 @@ const delay = ms => new Promise(r => { DELAYS++; setTimeout(() => { DELAYS--; r(
 /** The engine waits for nobody but a host: a prompt is open, or no engine pause is running. */
 const engineIdle = () => !!MODAL || DELAYS === 0;
 async function wait(ms) { const s = SESSION; await delay(ms); if (s !== SESSION) throw ABORT; }
-function log(t) { if (!G) return; G.last = t; G.history.push(t); G.hh = fnv(G.hh, t); G.hn = (G.hn || 0) + 1;
+function log(t) { if (!G) return; G.last = t; G.history.push(t); if (!/^Effect · /.test(t)) { G.hh = fnv(G.hh, t); G.hn = (G.hn || 0) + 1; }   // v0.205.2: the effect lines are history only; replays and saved hashes stay as they were
+ 
   io.log(t); if (G.history.length > 800) G.history.shift(); }   // web host: sound per line (13e-host.js)
 
 function mkInst(id) { return { uid: ++UID, id, mirage: false, cores: 0, soul: false, exhausted: false, under: [], summonedTurn: 0, bpMod: 0, inSoulState: false }; }
@@ -9281,11 +9282,10 @@ function guardNeed(p, W) {
   if (threat >= p.life) return Math.min(o.spirits.length, Math.ceil(W.guard));
   return p.life <= 2 ? 1 : 0;
 }
-/* v0.205.2: how many Flash Magic cards the opponent can really cast now (in Hand and paid for). A held Flash can flip a fair fight,
-   so the CPU only attacks into an open Hand when the fight is clearly won or the attack is the game. */
+/* v0.205.2: a held Flash can flip a fair fight. Public information only (the CPU never reads the human's Hand): a Hand with cards and
+   enough Reserve to pay a typical Flash. 1 = possible threat. */
 function cpuFlashThreat(o) {
-  const res = reserveTotal(o);
-  return o.hand.filter(h => { const c = CARDS[h.id]; return c.type === 'Magic' && c.magic && c.magic.timing.includes('FLASH') && effCost(o, c) <= res; }).length;
+  return o.hand.length > 0 && reserveTotal(o) >= 3 ? 1 : 0;
 }
 /* Attack Step: score attacking with a; 0 or less = keep it home */
 function cpuAttackScore(p, a, W = cpuW(p)) {
@@ -12062,7 +12062,7 @@ function effectPanel(ev) {
   const text = String(ev.text || '').slice(0, 200), trg = (typeof FX_TRIGGER_TEXT !== 'undefined' && FX_TRIGGER_TEXT[ev.trg]) || '';
   const dup = /** @type {HTMLElement[]} */ ([...st.children]).find(e => e.dataset.k === ev.id + '|' + text);        // the same effect again within 5 s refreshes its timer instead of stacking
   if (dup) { clearTimeout(+dup.dataset.t); dup.dataset.t = String(setTimeout(() => dup.remove(), EFF_MS)); return; }
-  const max = isPC() ? 3 : 1; while (st.children.length >= max) st.firstElementChild.remove();
+  const max = isPC() ? 4 : 2; while (st.children.length >= max) st.firstElementChild.remove();
   const d = document.createElement('div'); d.className = 'ae-eff' + (ev.side === 'opponent' ? ' cpu' : ''); d.dataset.k = ev.id + '|' + text;
   d.innerHTML = `<span class="ae-eff-h">${ev.side === 'opponent' ? 'CPU' : 'YOU'} · EFFECT${trg ? ' · ' + esc(trg) : ''}</span><b>${esc(c.name)}</b><span class="ae-eff-t">${esc(text)}</span><button class="ae-eff-x" type="button" aria-label="Close this effect pop-up">✕</button>`;
   d.querySelector('button').addEventListener('click', e => { e.stopPropagation(); clearTimeout(+d.dataset.t); d.remove(); });

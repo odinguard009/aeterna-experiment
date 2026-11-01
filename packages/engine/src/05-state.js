@@ -20,7 +20,8 @@ const delay = ms => new Promise(r => { DELAYS++; setTimeout(() => { DELAYS--; r(
 /** The engine waits for nobody but a host: a prompt is open, or no engine pause is running. */
 const engineIdle = () => !!MODAL || DELAYS === 0;
 async function wait(ms) { const s = SESSION; await delay(ms); if (s !== SESSION) throw ABORT; }
-function log(t) { if (!G) return; G.last = t; G.history.push(t); G.hh = fnv(G.hh, t); G.hn = (G.hn || 0) + 1;
+function log(t) { if (!G) return; G.last = t; G.history.push(t); if (!/^Effect · /.test(t)) { G.hh = fnv(G.hh, t); G.hn = (G.hn || 0) + 1; }   // v0.205.2: the effect lines are history only; replays and saved hashes stay as they were
+ 
   io.log(t); if (G.history.length > 800) G.history.shift(); }   // web host: sound per line (13e-host.js)
 
 function mkInst(id) { return { uid: ++UID, id, mirage: false, cores: 0, soul: false, exhausted: false, under: [], summonedTurn: 0, bpMod: 0, inSoulState: false }; }

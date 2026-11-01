@@ -73,11 +73,10 @@ function guardNeed(p, W) {
   if (threat >= p.life) return Math.min(o.spirits.length, Math.ceil(W.guard));
   return p.life <= 2 ? 1 : 0;
 }
-/* v0.205.2: how many Flash Magic cards the opponent can really cast now (in Hand and paid for). A held Flash can flip a fair fight,
-   so the CPU only attacks into an open Hand when the fight is clearly won or the attack is the game. */
+/* v0.205.2: a held Flash can flip a fair fight. Public information only (the CPU never reads the human's Hand): a Hand with cards and
+   enough Reserve to pay a typical Flash. 1 = possible threat. */
 function cpuFlashThreat(o) {
-  const res = reserveTotal(o);
-  return o.hand.filter(h => { const c = CARDS[h.id]; return c.type === 'Magic' && c.magic && c.magic.timing.includes('FLASH') && effCost(o, c) <= res; }).length;
+  return o.hand.length > 0 && reserveTotal(o) >= 3 ? 1 : 0;
 }
 /* Attack Step: score attacking with a; 0 or less = keep it home */
 function cpuAttackScore(p, a, W = cpuW(p)) {
