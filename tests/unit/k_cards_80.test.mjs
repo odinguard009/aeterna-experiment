@@ -216,3 +216,10 @@ test('K-830 VOID_TO_CARD perLv puts cores equal to the Spirit level (BS14-026)',
     return [ok, s.cores - before === lv, lv >= 1]; })()`);
   assert.deepEqual(r, [true, true, true], JSON.stringify(r));
 });
+
+test('K-831 BS14-075 draws when its Spirit destroys an opposing Spirit by attack (data shape)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const e = BS.CARDS['BS14-075'].effects[0];
+    return [e.trigger, JSON.stringify(e.if), e.actions[0].do, e.actions[0].n]; })()`);
+  assert.equal(r[0], 'OPP_DIED'); assert.equal(r[2], 'DRAW');
+});
