@@ -301,3 +301,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v263 (Lane K): OPP_CORE_TO_TRASH_NR, BOTH_CORES_TO_TRASH {total}, VOID_TO_NEXUS_LV {lv} (Void cores to a Nexus until its LV); BS02-092, BS02-093, BS04-098; BS02-107 via ACTIVATE_SUMMONED.
 - v264 (Lane K): per.type "Hand" (cards in your / the opposing Hand, `side`, `max`) for BP_PLUS etc.; BS16-049; BS19-005 via the static perHand.
 - v265 (Lane K): no new action shape; REFRESH_SPIRIT count/keyword-match and braved DESTROYED EXHAUST_OPP used by BS11-024, BS21-057, BS06-051, BS04-103; FX generator fixtures now support match.keyword.
+- v266 (Lane K): OPP_HAND_TO_BOTTOM gets top:true ("returns a card to the decktop", BS07-013). BS20-023 uses CHOOSE_ONE of VOID_TO_RESERVE / VOID_TO_CARD anySpirit.

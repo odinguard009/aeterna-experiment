@@ -244,15 +244,15 @@ Object.assign(FX_ACTIONS, {
       log(`${CARDS[c.src.id].name}: ${give} core${give === 1 ? '' : 's'} go from the Void to ${CARDS[t.id].name}.`); io.view({ type: 'board' });
     } },
   /* v215 "the opponent returns N cards from their Hand to the deckbottom" (the CPU puts its cheapest card down) */
-  OPP_HAND_TO_BOTTOM: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 4 && Object.keys(a).every(k => ['do', 'if', 'n'].includes(k)),
-    txt: a => `the opponent returns ${a.n} card${a.n === 1 ? '' : 's'} from their Hand to the deckbottom`,
+  OPP_HAND_TO_BOTTOM: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 4 && (a.top == null || a.top === true) && Object.keys(a).every(k => ['do', 'if', 'n', 'top'].includes(k)),      // v266 top: "to the decktop"
+    txt: a => `the opponent returns ${a.n} card${a.n === 1 ? '' : 's'} from their Hand to the deck${a.top ? 'top' : 'bottom'}`,
     can: c => c.opp.hand.length > 0,
     run: async (c, a) => {
       let n = 0;
       for (let j = 0; j < a.n; j++) {
         const h = c.opp.hand; if (!h.length) break;
         const k = h.slice().sort((x, y) => CARDS[x.id].cost - CARDS[y.id].cost)[0];
-        removeFrom(h, k); c.opp.deck.push(k); n++;
+        removeFrom(h, k); if (a.top) c.opp.deck.unshift(k); else c.opp.deck.push(k); n++;
       }
       if (n) log(`${poss(c.opp)} returns ${n} card${n === 1 ? '' : 's'} from the Hand to the deckbottom.`);
       else c.ctx.did = false;

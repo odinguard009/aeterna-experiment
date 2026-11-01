@@ -130,3 +130,12 @@ test('K-821 BS04-103 refreshes three exhausted Giant/Armored Beast Spirits; BS06
     return [sp.length, sp.filter(s => !s.exhausted).length, BS.CARDS['BS06-051'].effects[0].trigger]; })()`);
   assert.deepEqual(r, [4, 3, 'DESTROYED'], JSON.stringify(r));
 });
+
+test('K-822 OPP_HAND_TO_BOTTOM top:true puts the card on the decktop (BS07-013); BS20-023 is wired as a choice', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true;
+    const h = BS.mkInst('BS01-001'); O.hand = [h]; O.deck = [BS.mkInst('BS01-002')];
+    const act = BS.CARDS['BS07-013'].effects[0].actions[0]; await BS.FX_ACTIONS.OPP_HAND_TO_BOTTOM.run({ p: P, opp: O, src: BS.mkInst('BS07-013'), ctx: {} }, act);
+    return [O.deck[0] === h, O.hand.length, BS.FX_ACTIONS.OPP_HAND_TO_BOTTOM.chk(act), BS.CARDS['BS20-023'].effects[0].actions[0].do]; })()`);
+  assert.deepEqual(r, [true, 0, true, 'CHOOSE_ONE'], JSON.stringify(r));
+});

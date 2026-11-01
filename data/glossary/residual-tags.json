@@ -1745,10 +1745,6 @@
  "BS07-008": [
   "C_LEVEL"
  ],
- "BS07-013": [
-  "C_LEVEL",
-  "T_DESTROYED"
- ],
  "BS07-015": [
   "A_TRASH_TO_RESERVE",
   "C_LEVEL",
@@ -6725,11 +6721,6 @@
   "A_EXHAUST",
   "C_LEVEL",
   "T_BATTLE_WIN"
- ],
- "BS20-023": [
-  "A_VOID",
-  "C_LEVEL",
-  "T_ATTACKS"
  ],
  "BS20-025": [
   "A_BP_PLUS",
