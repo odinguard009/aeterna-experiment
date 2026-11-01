@@ -10431,7 +10431,7 @@ let DB_LP = 0, DB_LP_AT = 0;
 document.addEventListener('pointerdown', e => {
   const c = evC(e, '#db-card-list [data-a="dbcard"]'); clearTimeout(DB_LP);
   if (!c || e.pointerType !== 'touch' || SETTINGS.longpress === 'off') return;
-  DB_LP = setTimeout(() => { DB_LP_AT = Date.now(); showCardDetail(c.dataset.v, 'deck'); }, 550);
+  DB_LP = setTimeout(() => { DB_LP_AT = Date.now(); showCardDetail(c.dataset.v, 'deck'); DB_LP_AT = Date.now(); }, 550);   // stamped again after the (slow on a big library) detail render, so the 800 ms tap guard starts when it is on screen
 });
 ['pointerup', 'pointercancel', 'pointermove', 'scroll'].forEach(n => document.addEventListener(n, () => clearTimeout(DB_LP), true));
 /* hover peek (PC): the card enlarged beside the pointer after a short pause */
