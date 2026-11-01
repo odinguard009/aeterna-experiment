@@ -28,11 +28,16 @@ export async function onRequestGet({ request, params, waitUntil }) {
   const cached = await cache.match(cacheKey);
   if (cached) return cached;
 
+  // The official site files 10th-anniversary cards as BS51-X04 (not BS51-10THX04) and some old X0nn ids as Xnn.
+  const base = id.replace(/-10THX/, '-X');
   let res;
-  try {
-    res = await fetch(`${OFFICIAL_IMG}${id}.webp?v2`, { headers: { 'user-agent': USER_AGENT } });
-  } catch (e) {
-    return new Response(null, { status: 502 });
+  for (const name of new Set([base, base.replace(/-X0(\d\d)[A-Z]?$/, '-X$1')])) {
+    try {
+      res = await fetch(`${OFFICIAL_IMG}${name}.webp?v2`, { headers: { 'user-agent': USER_AGENT } });
+    } catch (e) {
+      return new Response(null, { status: 502 });
+    }
+    if (res.ok) break;
   }
   if (!res.ok) return new Response(null, { status: 404 });
 

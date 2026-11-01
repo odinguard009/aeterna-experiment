@@ -18,6 +18,9 @@ import { join, resolve } from 'node:path';
 const OFFICIAL_IMG = 'https://www.battlespirits.com/images/cardlist/';
 const USER_AGENT = 'AeternaCardArtSync/1.0 (unofficial fan project; read-only)';
 const PREFIX = '/assets/card-images/';
+// The official site files the 10th-anniversary Constellation Spirits as BS51-X04, not BS51-10THX04.
+// Old X0nn / X0nnS ids sit under X0nn on some pages and plain Xnn on others, so a miss tries the next name.
+const officialNames = (id) => [...new Set([id.replace(/-10THX/, '-X'), id.replace(/-10THX/, '-X').replace(/-X0(\d\d)[A-Z]?$/, '-X$1')])];
 const isWebp = (buf) => buf.length >= 12 && buf.subarray(0, 4).toString('ascii') === 'RIFF' && buf.subarray(8, 12).toString('ascii') === 'WEBP';
 
 /**
@@ -29,7 +32,12 @@ export function cardImageRoute({ mirrorDir, officialImg = OFFICIAL_IMG, fetchImp
   const inflight = new Map();   // card id -> Promise<Buffer|null>, dedupes concurrent first requests
 
   async function download(id) {
-    const res = await fetchImpl(`${officialImg}${id}.webp?v2`, { headers: { 'user-agent': USER_AGENT, accept: 'image/webp' }, signal: AbortSignal.timeout(timeoutMs) });
+    for (const name of officialNames(id)) { const buf = await downloadOne(id, name); if (buf) return buf; }
+    return null;
+  }
+
+  async function downloadOne(id, name) {
+    const res = await fetchImpl(`${officialImg}${name}.webp?v2`, { headers: { 'user-agent': USER_AGENT, accept: 'image/webp' }, signal: AbortSignal.timeout(timeoutMs) });
     if (!res.ok) return null;
     // The official site answers a missing card with an HTTP 200 HTML page (its 404 page). Refuse any
     // non-image answer before it is cached as a .webp file; otherwise the browser gets HTML and shows
