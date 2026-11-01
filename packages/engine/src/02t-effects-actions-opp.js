@@ -58,11 +58,13 @@ Object.assign(FX_ACTIONS, {
       for (const q of Q) checkDepletion(q);
     } },
   /* v0.183 (schema 45) "Destroy all Nexuses" (both sides) / "every Nexus on the opposing Field" / "every LV1 Nexus" / "all Nexuses with a core on them" */
-  DESTROY_NEXUS_ALL: { chk: a => (a.opposing == null || a.opposing === true) && (a.withCore == null || a.withCore === true) && (a.lv == null || [1, 2, 3].includes(a.lv)) && Object.keys(a).every(k => ['do', 'opposing', 'lv', 'withCore', 'if'].includes(k)),
+  DESTROY_NEXUS_ALL: { chk: a => (a.opposing == null || a.opposing === true) && (a.withCore == null || a.withCore === true) && (a.lv == null || [1, 2, 3].includes(a.lv)) && (a.drawEach == null || (a.drawEach === true && a.opposing === true)) && Object.keys(a).every(k => ['do', 'opposing', 'lv', 'withCore', 'drawEach', 'if'].includes(k)),      // v267 drawEach: "for each Nexus destroyed, draw a card"
     txt: a => `destroy every ${a.opposing ? 'opposing ' : ''}${a.lv ? 'LV' + a.lv + ' ' : ''}Nexus${a.withCore ? ' with a core on it' : ''}${a.opposing ? '' : ' (both sides)'}`,
     can: () => true,
     run: async (c, a) => {
-      for (const q of a.opposing ? [c.opp] : [c.opp, c.p]) for (const x of q.nexus.filter(x => (!a.lv || lvNo(x) === a.lv) && (!a.withCore || x.cores > 0))) removeNexus(q, x, 'destroyed');
+      let k = 0;
+      for (const q of a.opposing ? [c.opp] : [c.opp, c.p]) for (const x of q.nexus.filter(x => (!a.lv || lvNo(x) === a.lv) && (!a.withCore || x.cores > 0))) { removeNexus(q, x, 'destroyed'); k++; }
+      if (a.drawEach && k) draw(c.p, k);
     } },
   /* v0.196 DESTROY_EITHER {two, one} "Target either two opposing <two> BP or less Spirits or an opposing <one> BP or less Spirit. Destroy those": the owner picks the branch when both are possible (the CPU takes two) */
   DESTROY_EITHER: { chk: a => Number.isInteger(a.two) && Number.isInteger(a.one) && a.two < a.one && a.two >= 1000 && a.one <= 12000,

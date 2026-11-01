@@ -139,3 +139,12 @@ test('K-822 OPP_HAND_TO_BOTTOM top:true puts the card on the decktop (BS07-013);
     return [O.deck[0] === h, O.hand.length, BS.FX_ACTIONS.OPP_HAND_TO_BOTTOM.chk(act), BS.CARDS['BS20-023'].effects[0].actions[0].do]; })()`);
   assert.deepEqual(r, [true, 0, true, 'CHOOSE_ONE'], JSON.stringify(r));
 });
+
+test('K-823 DESTROY_NEXUS_ALL drawEach: BS21-074 destroys every opposing Nexus and draws one card per Nexus; BS03-077 is wired', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true;
+    O.nexus = [BS.mkInst('BS01-098'), BS.mkInst('BS01-099')]; P.deck = [1, 2, 3, 4].map(() => BS.mkInst('BS01-001')); P.hand = [];
+    const act = BS.CARDS['BS21-074'].magic.by.MAIN.actions[0]; await BS.FX_ACTIONS.DESTROY_NEXUS_ALL.run({ p: P, opp: O, src: BS.mkInst('BS21-074'), ctx: {} }, act);
+    return [O.nexus.length, P.hand.length, BS.FX_ACTIONS.DESTROY_NEXUS_ALL.chk(act), BS.CARDS['BS03-077'].effects[0].trigger]; })()`);
+  assert.deepEqual(r, [0, 2, true, 'DESTROYED'], JSON.stringify(r));
+});

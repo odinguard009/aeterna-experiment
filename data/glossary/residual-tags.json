@@ -660,10 +660,6 @@
  "BS03-075": [
   "C_LEVEL"
  ],
- "BS03-077": [
-  "C_LEVEL",
-  "T_DESTROYED"
- ],
  "BS03-079": [
   "C_LEVEL"
  ],
@@ -7166,7 +7162,6 @@
   "M_OPTIONAL",
   "T_SUMMONED"
  ],
- "BS21-074": [],
  "BS21-075": [
   "K_RUSH"
  ],
