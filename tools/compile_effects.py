@@ -857,12 +857,14 @@ def trig_effects(p, card, trig, tmatch, lv, rush, flags, extra=None):
 
 # ---------- Magic paragraphs ----------
 MAGIC_HEAD = [
-    (r'^\(Flash Step\)\s*\(Your Main Ph(?:a|r)ase\)\s*', ['MAIN', 'FLASH']),
+    (r'^\(Flash Step\)\s*\(Your Main Ph(?:a|r)?ase\)\s*', ['MAIN', 'FLASH']),
     (r'^\(Main Step\)\s*\(Flash Step\)\s*', ['MAIN', 'FLASH']),
     (r'^Flash\s*-?\s*', ['FLASH']),
     (r'^Main\s*-?\s*', ['MAIN']),
     (r'^\(Flash Step\)\s*', ['FLASH']),
-    (r'^\(Main Step\)\s*|^\(Your Main Ph(?:a|r)ase\)\s*', ['MAIN']),
+    (r'^\(Main Step\)\s*|^\(Your Main Ph(?:a|r)?ase\)\s*', ['MAIN']),
+    (r'^\(Flash\)\s*-?\s*', ['FLASH']),          # Lane K 2026-11-01: old wiki heads "(Flash) ...", "(Your Main Phase) ..." alone
+    (r'^\(Main\)\s*-?\s*', ['MAIN']),
 ]
 
 def magic_spec(body, tim=()):
@@ -921,6 +923,7 @@ def magic_card(paras, n=None):
             m = re.match(rx, p)
             if m: tim = ts; p = p[m.end():]; break
         if tim is None: raise Review('Magic paragraph without Main/Flash: ' + p[:80])
+        if tim == ['MAIN', 'FLASH'] and 'MAIN' in by and 'FLASH' not in by: tim = ['FLASH']      # Lane K 2026-11-01: "(Main) X" then "(Flash Step)(Your Main Phase) Y" = Main X, Flash Y (garbled export head)
         spec = magic_spec(p, tim)
         for t in tim:
             if t in by: raise Review('two effects for the same timing')
