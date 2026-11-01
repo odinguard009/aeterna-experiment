@@ -558,24 +558,6 @@ FX_ACTIONS.MAGIC_SHIELD = {
     if (!t) { c.ctx.did = false; return; }
     t.noMagicB = G.battleNo; log(`${CARDS[c.src.id].name}: ${poss(c.p)} ${CARDS[t.id].name} can't be targeted by opposing Magic this battle.`);
   } };
-/* v310 BLOCKER_UNAFFECTED: "During this turn, a blocking Spirit you control is unaffected by opposing cards' effects." Marks blockUnaffTurn on the player; fxImmune treats the current blocker (G.blocker) as immune to every opposing effect while the mark matches the turn. */
-FX_ACTIONS.BLOCKER_UNAFFECTED = {
-  chk: () => true,
-  txt: () => "during this turn, a blocking Spirit you control is unaffected by opposing cards' effects",
-  can: () => !!G,
-  run: async c => { c.p.blockUnaffTurn = G.turnNo; log(`${CARDS[c.src.id].name}: ${poss(c.p)} blocking Spirits are unaffected by opposing effects this turn.`); } };
-/* v312 BLOCK_EXHAUSTED_TURN {to:'pick'|'all', match?}: "During this turn, [target Spirit you control / all your <X> Spirits] can block while exhausted." Marks blockExT = the turn number, read by canBlockState. */
-FX_ACTIONS.BLOCK_EXHAUSTED_TURN = {
-  chk: a => (a.to === 'pick' || a.to === 'all') && (a.match == null || hasMatch(a.match)),
-  txt: a => `during this turn, ${a.to === 'all' ? 'your matching Spirits' : 'one of your Spirits'} can block while exhausted`,
-  cands: (c, a) => c.p.spirits.filter(s => !a.match || fxMatch(CARDS[s.id], a.match, s)),
-  can: (c, a) => FX_ACTIONS.BLOCK_EXHAUSTED_TURN.cands(c, a).length > 0,
-  run: async (c, a) => {
-    const L = FX_ACTIONS.BLOCK_EXHAUSTED_TURN.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
-    const T = a.to === 'all' ? L : [c.p.cpu || L.length === 1 ? L.slice().sort((x, y) => bpOf(y) - bpOf(x))[0] : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your Spirits to let it block while exhausted (glowing).`)];
-    if (!T[0]) { c.ctx.did = false; return; }
-    for (const t of T) { t.blockExT = G.turnNo; log(`${CARDS[c.src.id].name}: ${poss(c.p)} ${CARDS[t.id].name} can block while exhausted this turn.`); }
-  } };
 /* v0.205 SACRIFICE_RUMBLE: "Target one of your attacking Spirits with Rumble. Destroy it. Discard a number of cards from the opposing decktop equal to the number specified by its Rumble." */
 const rumbleNOf = (p, s) => { for (const { e } of fxEntries(s)) { const r = (e.actions || []).find(x => x.do === 'RUMBLE'); if (r) return r.n + rumblePlusOf(p); } return 0; };
 FX_ACTIONS.SACRIFICE_RUMBLE = {

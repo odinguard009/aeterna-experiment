@@ -65,7 +65,7 @@ INVOKE_WHEN, INVOKE_COSTS, invokeMatchOK, invokeParse, invokeWhenOK, exhaustOwnC
 ## packages/engine/src/02o-effects-battle-end.js (88 lines, ~1.8k tokens)
 endOfBattle
 
-## packages/engine/src/02p-effects-shared-shapes.js (635 lines, ~15k tokens)
+## packages/engine/src/02p-effects-shared-shapes.js (617 lines, ~14.5k tokens)
 cardTeams, allHaveShapeOK, allHaveOK, winRiderRun, fxOppMark, blockTaxOK, payAtkTax, payBlockTax, blockedInferior, unblockableLow, shamanNoBlock, blockedByMark, rumbleNOf
 
 ## packages/engine/src/02q-effects-actions-own.js (250 lines, ~7.4k tokens)
@@ -83,7 +83,7 @@ cardTeams, allHaveShapeOK, allHaveOK, winRiderRun, fxOppMark, blockTaxOK, payAtk
 ## packages/engine/src/02u-effects-form-change.js (32 lines, ~0.7k tokens) — FORM CHANGE (v0.135.0, schema v8; Kamen Rider cross-over cards): {{F Change|"X" & Cost N}} {{Invoke|Main}}
 fcCands
 
-## packages/engine/src/02v-effects-lane-k.js (209 lines, ~4.4k tokens)
+## packages/engine/src/02v-effects-lane-k.js (228 lines, ~4.9k tokens)
 coresFromSpirits
 
 ## packages/engine/src/03-imported-cards.js (246 lines, ~6.7k tokens) — IMPORTED CARD DATA

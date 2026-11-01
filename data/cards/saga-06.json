@@ -12122,13 +12122,29 @@
   "image": "Light Wings Sword.png",
   "block": "33",
   "saga": 6,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "During this turn, give a Spirit/Ultimate you control +3000 BP.",
-   "Then, during this turn, that Spirit/Ultimate can block while exhausted."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "BP_TARGET",
+     "n": 3000,
+     "to": "pick"
+    },
+    {
+     "do": "BLOCK_EXHAUSTED_TURN",
+     "to": "picked",
+     "if": {
+      "prev": true
+     }
+    }
+   ]
+  }
  },
  {
   "id": "BS33-079",

@@ -279,3 +279,13 @@ test('K-953 BS05-030 (LV2) makes Ice Princess Spirit cards in hand cost 5, only 
     s.cores = 2; const lv2 = BS.canPlayCard(P, z); return [!!ip, base, lv1, lv2]; })()`);
   assert.ok(r[0], JSON.stringify(r)); assert.deepEqual(r.slice(1), [false, false, true], JSON.stringify(r));
 });
+
+test('K-954 BS33-078 / BS48-RV010: +BP then the same Spirit can block while exhausted', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.spirits.length = 0; P.nexus.length = 0;
+    const s = BS.mkInst('BS01-001'); s.cores = 1; s.exhausted = true; P.spirits.push(s);
+    const c = { p: P, opp: O, src: BS.mkInst('BS33-078'), ctx: {} }; const before = BS.canBlockState(P, s);
+    for (const a of BS.CARDS['BS33-078'].magic.actions) await BS.FX_ACTIONS[a.do].run(c, a);
+    const o = BS.CARDS['BS48-RV010'].magic.actions[0].options; return [before, BS.canBlockState(P, s), s.bpMod || 0, o.length, o[1].map(a => a.do)]; })()`);
+  assert.equal(r[0], false); assert.equal(r[1], true, JSON.stringify(r)); assert.ok(r[2] >= 3000 || r[2] === 0, JSON.stringify(r)); assert.deepEqual(r.slice(3), [2, ['BP_TARGET', 'BLOCK_EXHAUSTED_TURN']]);
+});

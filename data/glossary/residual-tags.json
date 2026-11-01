@@ -13001,12 +13001,6 @@
   "A_LIFE_TO_RESERVE",
   "T_ALLY_LIFE_HIT"
  ],
- "BS33-078": [
-  "A_BP_PLUS",
-  "A_EXHAUST",
-  "K_ULTIMATE",
-  "M_THEN"
- ],
  "BS33-079": [],
  "BS33-080": [],
  "BS33-081": [
@@ -25138,12 +25132,6 @@
  ],
  "BS48-RV009": [
   "A_EXHAUST",
-  "K_ULTIMATE"
- ],
- "BS48-RV010": [
-  "A_BP_PLUS",
-  "A_EXHAUST",
-  "A_REFRESH",
   "K_ULTIMATE"
  ],
  "BS48-RV011": [

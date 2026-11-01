@@ -4640,13 +4640,38 @@
   "image": "BS19-107.jpg",
   "block": "48",
   "saga": 10,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Refresh a Spirit/Ultimate you control.",
-   "Or, during this turn, give a Spirit/Ultimate you control +5000 BP, and that Spirit/Ultimate can block while exhausted."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "CHOOSE_ONE",
+     "options": [
+      [
+       {
+        "do": "REFRESH_SPIRIT"
+       }
+      ],
+      [
+       {
+        "do": "BP_TARGET",
+        "n": 5000,
+        "to": "pick"
+       },
+       {
+        "do": "BLOCK_EXHAUSTED_TURN",
+        "to": "picked"
+       }
+      ]
+     ]
+    }
+   ]
+  }
  },
  {
   "id": "BS48-RV011",
