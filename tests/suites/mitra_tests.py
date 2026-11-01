@@ -274,6 +274,7 @@ with sync_playwright() as p:
     ev(pg, "mi.cores=3;BS.G.turnNo++")
     ev(pg, "window.fp=BS.flashTiming('player',mk('player','TRAIN-02',2),null);0")
     wait_for(pg, "document.getElementById('action-modal').classList.contains('active')")
+    press(pg, 'Use Flash'); wait_for(pg, "document.querySelector('#modal-actions.vlist')")
     btns = pg.locator("#modal-actions .modal-btn").all_inner_texts()
     chk('Flash window offers the Contract Skill (Flash effect on a Nexus)', any('Mitra' in x for x in btns), btns)
     press(pg, 'Pass'); settle(pg)

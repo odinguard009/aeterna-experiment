@@ -104,6 +104,7 @@ with sync_playwright() as p:
     ev(pg, "BS.G.p.player.cpu=false;BS.G.active='player';BS.G.step=5;window.pa=mk('player','BS74-043',2);window.ik=put('player','hand','BS74-042');BS.G.p.player.count=2;BS.G.p.player.made+=2;")
     ev(pg, "window.fp=BS.flashTiming('player',pa,null);0")
     wait_for(pg, "document.getElementById('action-modal').classList.contains('active')")
+    press(pg, 'Use Flash'); wait_for(pg, "document.querySelector('#modal-actions.vlist')")
     btns = pg.locator("#modal-actions .modal-btn").all_inner_texts()
     chk('Flash window offers Contract Advent for the hand card', any('Contract Advent' in x and 'Iktis' in x for x in btns), btns)
     press(pg, 'Contract Advent'); wait_for(pg, "document.getElementById('action-modal').classList.contains('active')"); press(pg, 'Paanch'); settle(pg)

@@ -57,7 +57,7 @@ with sync_playwright() as p:
     pg, errs = fresh("window.ot=mk('player','TRAIN-01',1);")
     chk('Flash: unusable with only non-Wurm Spirits', ev(pg, "!BS.magicUsable(P,wd,'flash')"))
     # v0.51.1: check the rendered effect text only (the old check also matched the uncompressed pack inside the page source)
-    chk('magicText shows both effects', ev(pg, "/\\(Main\\)[\\s\\S]*reveal[\\s\\S]*\\(Flash\\)[\\s\\S]*\\+5000/i.test(BS.effectTextHTML(BS.CARDS['BS75-074'],true))"))
+    chk('magicText shows both effects', ev(pg, "/\\(Main\\)[\\s\\S]*reveal[\\s\\S]*\\(Flash\\)[\\s\\S]*\\+5000/i.test(BS.effectTextHTML(BS.CARDS['BS75-074'],true).replace(/<[^>]+>/g,''))"))
     # CPU
     pg, errs = fresh("window.sg=put('player','soulState','BS75-CX01');for(let i=0;i<10;i++)put('player','deck',i%2?'BS75-001':'TRAIN-01');")
     run(pg, "await BS.cpuCastMain(P);", 900)

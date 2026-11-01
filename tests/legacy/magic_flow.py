@@ -96,6 +96,7 @@ with sync_playwright() as p:
         if w==1280: chk(T+'BANISHED flank on PC','BANISHED' in txt)
         else:
             chk(T+'BAN pill shows count',pg.evaluate("[...document.querySelectorAll('.stat-pill')].some(e=>e.textContent.startsWith('BAN: '))"))
+            pg.evaluate("document.querySelectorAll('#ae-eff-stack .ae-eff').forEach(e=>e.remove())")   # v0.205.2: the effect pop-up of the Magic cast sits over the CPU stats row on a phone
             pg.locator("[data-a=zone][data-v='opponent:removed']").first.click(force=True); pg.wait_for_timeout(200)
             chk(T+'banished zone modal lists card','Spark Lizard' in modal(pg) and 'Banished' in modal(pg),modal(pg)[:100]); btn('Close').click()
             y=pg.evaluate("(()=>{const q=s=>document.querySelector(s).getBoundingClientRect();const bars=[...document.querySelectorAll('.mobile-stats-bar')].map(e=>e.getBoundingClientRect());const rows=[...document.querySelectorAll('.field-row-wrapper')].map(e=>e.getBoundingClientRect());const hh=q('.hand-area');return {bars:bars.map(b=>[b.top|0,b.bottom|0]),rows:rows.map(b=>[b.top|0,b.bottom|0]),hand:hh.top|0}})()")
