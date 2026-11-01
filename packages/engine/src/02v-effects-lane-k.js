@@ -254,3 +254,14 @@ FX_ACTIONS.DESTROY_SAME_FAMILY = {
     for (const s of L) if (c.opp.spirits.includes(s)) { removeSpirit(c.opp, s, 'destroyed', true); c.ctx.did = true; }
     if (c.ctx.did) { log(`${CARDS[c.src.id].name}: ${L.length} opposing Spirit${L.length === 1 ? '' : 's'} sharing the destroyed Spirit's family are destroyed.`); checkDepletion(c.opp); }
   } };
+
+/* v319 NEXUS_ALL_TO_HAND: "Move all Nexuses to their owners' Hand." Both sides; protected opposing Nexuses (fxImmune) stay. */
+FX_ACTIONS.NEXUS_ALL_TO_HAND = {
+  chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
+  txt: () => "return all Nexuses to their owners' Hands",
+  can: c => c.p.nexus.length + c.opp.nexus.length > 0,
+  run: async c => {
+    let k = 0;
+    for (const side of [c.p, c.opp]) for (const x of side.nexus.slice()) { if (side === c.opp && fxImmune(side, x)) continue; bounceCard(side, x, 'hand'); k++; }
+    c.ctx.did = k > 0; if (k) { checkDepletion(c.p); checkDepletion(c.opp); }
+  } };

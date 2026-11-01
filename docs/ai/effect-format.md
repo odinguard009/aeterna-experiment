@@ -354,3 +354,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v317 (Lane K): TRASH_CORES_TO `all:true` with `toPick` (every core in the Trash to one matching Spirit). Card: BS02-097.
 - v318 (Lane K): DESTROY_SAME_FAMILY (BATTLE_WIN ctx.victimId, the Spirit the battle destroyed; every opposing Spirit sharing a family is destroyed). Card: BS10-063.
 - v318 note: BS04-089 reuses TRASH_CORES_TO all:true with match.keyword Awaken (no schema change).
+- v319 (Lane K): NEXUS_ALL_TO_HAND (every Nexus of both sides returns to its owner's Hand; protected opposing Nexuses stay). Card: BS06-106.

@@ -383,3 +383,15 @@ test('K-962 BS03-128 refunds a Void core per exhausted own Spirit; BS01-128 draw
     return [res, P.hand.length - h0]; })()`);
   assert.deepEqual(r, [2, 2], JSON.stringify(r));
 });
+
+test('K-963 BS06-106 returns every Nexus of both sides to its owner Hand', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const nx = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Nexus');
+    P.nexus.length = 0; O.nexus.length = 0; const a = BS.mkInst(nx), b = BS.mkInst(nx); a.cores = 1; b.cores = 2; P.nexus.push(a); O.nexus.push(b);
+    const h = [P.hand.length, O.hand.length];
+    const c = { p: P, opp: O, src: BS.mkInst('BS06-106'), ctx: {} };
+    await BS.FX_ACTIONS.NEXUS_ALL_TO_HAND.run(c, BS.CARDS['BS06-106'].magic.by.MAIN.actions[0]);
+    return [P.nexus.length, O.nexus.length, P.hand.length - h[0], O.hand.length - h[1]]; })()`);
+  assert.deepEqual(r, [0, 0, 1, 1], JSON.stringify(r));
+});
