@@ -7940,9 +7940,6 @@
   "T_DESTROYED",
   "T_DESTROYED_OPP"
  ],
- "BS25-007": [
-  "K_ULTIMATE"
- ],
  "BS25-008": [
   "C_LEVEL",
   "K_ULTIMATE"
@@ -10030,9 +10027,6 @@
   "K_ULTIMATE",
   "T_BLOCKS"
  ],
- "BS29-028": [
-  "C_LIFE"
- ],
  "BS29-030": [
   "A_EXHAUST",
   "A_REFRESH",
@@ -10066,9 +10060,6 @@
   "T_DESTROYED",
   "T_DESTROYED_OPP",
   "T_MAGIC_USED"
- ],
- "BS29-034": [
-  "C_LIFE"
  ],
  "BS29-036": [
   "C_LEVEL",
@@ -18890,7 +18881,6 @@
   "K_RUSH",
   "T_ATTACKS"
  ],
- "BS43-047": [],
  "BS43-048": [
   "A_REMOVED_ZONE",
   "C_LEVEL",

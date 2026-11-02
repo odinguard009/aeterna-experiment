@@ -223,3 +223,19 @@ test('K-1146 SD22-014 Main gives High Speed Spirits +5000 BP only; BS08-070 Main
     out.back = P.hand.some(x => x.id === tr.id); out.ok = BS.CARDS['SD22-014'].fxComplete !== false && BS.CARDS['BS08-070'].fxComplete !== false; return out; })()`);
   assert.deepEqual(r, { da: 5000, db: 0, back: true, ok: true }, JSON.stringify(r));
 });
+
+test('K-1147 costAlt: BS29-028 costs 6 while Life <= 3, BS25-007 costs 3 with a Red Ultimate, BS43-047 costs 4 with a Shinekind/Birthgem Deity', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(() => { BS.testSetup(); const G = BS.G, P = G.p.player; G.active = P.key; G.step = 4; P.spirits = [];
+    const out = {}, c = id => BS.CARDS[id];
+    P.life = 5; out.lifeHi = costAltActive(P, c('BS29-028')); P.life = 3; out.lifeLo = costAltActive(P, c('BS29-034'));
+    out.lowCost = effCost(P, c('BS29-028')) <= 6;
+    out.noUlt = costAltActive(P, c('BS25-007'));
+    const ult = BS.CARDS['BS34-CP07']; const u = BS.mkInst(ult.id); u.cores = 1; P.spirits = [u];
+    out.ult = costAltActive(P, c('BS25-007'));
+    P.spirits = []; out.noFam = costAltActive(P, c('BS43-047'));
+    const fam = BS.CARDS['BS50-X01']; const s = BS.mkInst(fam.id); s.cores = 1; P.spirits = [s];
+    out.fam = costAltActive(P, c('BS43-047'));
+    out.done = ['BS25-007', 'BS29-028', 'BS29-034', 'BS43-047'].every(i => c(i).fxComplete !== false); return out; })()`);
+  assert.deepEqual(r, { lifeHi: false, lifeLo: true, lowCost: true, noUlt: false, ult: true, noFam: false, fam: true, done: true }, JSON.stringify(r));
+});
