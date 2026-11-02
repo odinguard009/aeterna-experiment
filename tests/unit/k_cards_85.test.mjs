@@ -926,3 +926,12 @@ test('K-1016 RETURN_TRASH Burst filter: BS28-014 returns a Purple Burst card fro
     await BS.fireFx(P, 'DESTROYED', src, { subject: src, byOpp: true }); out.push(P.hand.length, P.hand[0] && P.hand[0].id === bu, P.trash.some(t => t.id === nb)); return out; })()`);
   assert.deepEqual(r, [0, 1, true, true], JSON.stringify(r));
 });
+
+test('K-1017 per NexusBrave: BS72-014 gets +5000 BP for each Brave on your Nexuses, once per turn across both triggers', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.coreShield = O.coreShield = null; P.spirits.length = 0; P.nexus.length = 0; O.spirits.length = 0;
+    const br = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Brave'); const nx = Object.keys(BS.CARDS).find(k => /^BS[0-9][0-9]-/.test(k) && BS.CARDS[k].type === 'Nexus');
+    const s = BS.mkInst('BS72-014'); s.cores = 1; P.spirits.push(s); const n1 = BS.mkInst(nx), n2 = BS.mkInst(nx); n1.brave = BS.mkInst(br); n2.brave = BS.mkInst(br); P.nexus.push(n1, n2, BS.mkInst(nx));
+    const b0 = BS.bpOf(s); await BS.fireFx(P, 'SUMMONED', s, {}); const b1 = BS.bpOf(s); await BS.fireFx(P, 'ATTACKS', s, {}); const b2 = BS.bpOf(s); return [b1 - b0, b2 - b1]; })()`);
+  assert.deepEqual(r, [10000, 0], JSON.stringify(r));
+});

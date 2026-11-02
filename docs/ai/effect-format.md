@@ -391,3 +391,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v353 (Lane K): STATIC flag `NO_DESTROY` (no parameters): the Spirit cannot be destroyed by any cause (effects and BP comparison); `removeSpirit` returns early with a log line. BS28-028 (`if burstSet`).
 - v354 (Lane K): CANT_BLOCK_OPP_ALL {costLe} (opposing Spirits can't block this turn; mark noBlockT read by canBlockState).
 - v355 (Lane K): match.hasBurst (card with a printed {{Burst|...}} effect), used by RETURN_TRASH.
+- v356 (Lane K): per.type 'NexusBrave' (count of Braves on your Nexuses) for BP_PLUS.
