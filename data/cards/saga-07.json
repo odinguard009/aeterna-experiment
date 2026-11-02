@@ -13102,12 +13102,36 @@
   "image": "BS38-010.jpg",
   "block": "38",
   "saga": 7,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Attacks) You can discard a card from your Hand. When you've done so, destroy an opposing Spirit with one or less core on it."
-  ],
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "BY",
+      "ask": true,
+      "cost": {
+       "do": "DISCARD_HAND",
+       "n": 1
+      },
+      "then": [
+       {
+        "do": "DESTROY",
+        "coresLe": 1
+       }
+      ]
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS38-011",

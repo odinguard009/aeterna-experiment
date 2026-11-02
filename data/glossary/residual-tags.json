@@ -831,9 +831,6 @@
  "BS04-092": [
   "A_REFRESH"
  ],
- "BS04-095": [
-  "A_BP_PLUS"
- ],
  "BS04-096": [
   "A_BP_PLUS",
   "A_VOID"
@@ -14624,12 +14621,6 @@
   "C_LEVEL",
   "K_BURST",
   "K_ULTIMATE",
-  "M_OPTIONAL",
-  "T_ATTACKS"
- ],
- "BS38-010": [
-  "C_LEVEL",
-  "M_IF_YOU_DO",
   "M_OPTIONAL",
   "T_ATTACKS"
  ],

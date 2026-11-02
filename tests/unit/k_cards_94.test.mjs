@@ -146,3 +146,14 @@ test('K-1140 SD02-006 deploys a Nexus from the Trash; SD16-001 mills 2; SD42-006
   r = await page.evaluate(run('SD42-006', 'START_ATTACK', false, `P.hand.push(BS.mkInst('CB15-033'));`, `{ sp: P.spirits.length, h: P.hand.length }`));
   assert.deepEqual([r.impl, r.sp, r.h], [true, 1, 0], JSON.stringify(r));
 });
+
+test('K-1141 BS38-010 discards a card to destroy a 1-core Spirit; BS04-095 Main removes a core from an opposing Spirit', async () => {
+  const { page } = await sharedBoard();
+  let r = await page.evaluate(run('BS38-010', 'ATTACKS', false, `${foe(0)} P.hand.push(BS.mkInst('BS01-001')); const h0 = P.hand.length;`, `{ sp: O.spirits.length, h: h0 - P.hand.length }`));
+  assert.deepEqual([r.impl, r.sp, r.h], [true, 0, 1], JSON.stringify(r));
+  r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.step = 4; G.active = P.key;
+    const s = BS.mkInst('BS01-001'); s.cores = 3; O.spirits.push(s); P.reserve.n = 20; const m = BS.mkInst('BS04-095'); P.hand = [m];
+    await BS.castMagic(P, { inst: m, target: null, plan: null, ctx: 'main' });
+    return { c: s.cores, impl: BS.CARDS['BS04-095'].implemented === true }; })()`);
+  assert.deepEqual([r.impl, r.c], [true, 2], JSON.stringify(r));
+});
