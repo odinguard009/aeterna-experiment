@@ -287,3 +287,12 @@ test('K-1025 SD01-005 cannot be returned by opposing effects; Charge cards SD10-
     return { flag: s && BS.CARDS['SD01-005'].effects[0].flag, kept: P.spirits.length, w: ['SD10-001','SD10-005','SD15-001'].every(w) }; })()`);
   assert.deepEqual(r, { flag: 'NO_RETURN', kept: 1, w: true }, JSON.stringify(r));
 });
+
+test('K-1026 SD31-001 and SD01-016 have High Speed; SD28-005 is wired as an attack-step BP boost', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup();
+    const hs = ['SD31-001', 'SD01-016'].every(id => BS.CARDS[id].highSpeed === true && BS.CARDS[id].implemented === true);
+    const e = BS.CARDS['SD28-005'].effects[0];
+    return { hs, impl: BS.CARDS['SD28-005'].implemented === true, bp: e.bp, step: e.if.step }; })()`);
+  assert.deepEqual(r, { hs: true, impl: true, bp: 3000, step: 'ATTACK' }, JSON.stringify(r));
+});

@@ -54737,9 +54737,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "SD01-016": [
-  "C_LEVEL"
- ],
  "SD01-018": [
   "A_EXHAUST",
   "A_REFRESH",
@@ -56018,11 +56015,6 @@
   "C_LEVEL",
   "M_OPTIONAL"
  ],
- "SD28-005": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "K_ULTIMATE"
- ],
  "SD28-006": [
   "A_EXHAUST",
   "C_LEVEL",
@@ -56197,7 +56189,6 @@
   "M_OPTIONAL",
   "T_ATTACKS"
  ],
- "SD31-001": [],
  "SD31-002": [
   "A_EXHAUST",
   "C_LEVEL",

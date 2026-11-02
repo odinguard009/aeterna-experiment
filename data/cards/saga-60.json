@@ -19143,12 +19143,10 @@
   "image": "SD01-016.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] Flash [Lightning Speed] This Spirit can be summoned from your hand at the timing of Flash. The cores and cost placed on the Spirit must all be paid from the Reserve."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: hand translation); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "highSpeed": true
  },
  {
   "id": "SD01-017",
@@ -30527,12 +30525,29 @@
   "image": "SD28-005.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (Either Attack Step) All your Spirits/Ultimates with the \"Shellman\" / \"Blade Insect\" family gain +3000 BP."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: hand translation); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "bp": 3000,
+    "to": "own",
+    "match": {
+     "family": [
+      "Shellman",
+      "Blade Insect"
+     ]
+    },
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "step": "ATTACK"
+    }
+   }
+  ]
  },
  {
   "id": "SD28-006",
@@ -31741,12 +31756,10 @@
   "image": "SD31-001.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Flash [Lightning Speed] This Spirit card in your hand can be summoned by using the Reserve for its summon cost and for the cores placed on it."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: hand translation); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "highSpeed": true
  },
  {
   "id": "SD31-002",
