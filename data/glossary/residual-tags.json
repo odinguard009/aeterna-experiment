@@ -11098,12 +11098,6 @@
   "K_BRAVE",
   "K_ULTIMATE"
  ],
- "BS31-002": [
-  "A_DESTROY_BP",
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "T_DESTROYED"
- ],
  "BS31-003": [
   "A_BP_PLUS",
   "C_LEVEL",
@@ -11125,11 +11119,6 @@
   "K_ULTIMATE",
   "S_MUST_BLOCK",
   "T_ALLY_BLOCKED",
-  "T_ATTACKS"
- ],
- "BS31-006": [
-  "A_DESTROY_NEXUS",
-  "C_LEVEL",
   "T_ATTACKS"
  ],
  "BS31-007": [
@@ -11585,13 +11574,6 @@
   "C_LEVEL",
   "F_OTHER_NOSTACK",
   "T_SUMMONED"
- ],
- "BS31-CP05": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_DESTROYED",
-  "T_DESTROYED_OPP"
  ],
  "BS31-X01": [
   "A_LIFE_TO_RESERVE",
