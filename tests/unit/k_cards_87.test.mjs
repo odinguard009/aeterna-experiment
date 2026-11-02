@@ -64,3 +64,9 @@ test('K-874 BS43-RV012 data: SUMMONED exhaust + Rush Red DESTROY_BRAVE', async (
   assert.equal(r.fx, true);
   assert.deepEqual(r.a, ['EXHAUST_OPP', 'DESTROY_BRAVE:red']);
 });
+
+test('K-875 BS27-005 and BS22-039 Rush data (hasSymbol-gated second step)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(() => ['BS27-005', 'BS22-039'].map(id => { const c = BS.CARDS[id]; return { ok: c.fxComplete !== false, a: c.effects.find(e => e.actions.some(a => a.if && a.if.hasSymbol)).actions.map(a => a.do + (a.if ? ':' + a.if.hasSymbol : '')) }; }));
+  assert.deepEqual(r, [{ ok: true, a: ['DESTROY', 'VOID_TO_CARD:green'] }, { ok: true, a: ['REFRESH_SPIRIT', 'DESTROY:red'] }]);
+});
