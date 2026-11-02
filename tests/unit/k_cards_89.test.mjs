@@ -82,3 +82,24 @@ test('K-922 SD20-013 Flash +3000 BP; SD23-015 Flash -5000 BP destroys at 0', asy
   });
   assert.equal(r.up, 3000, JSON.stringify(r)); assert.equal(r.foe, 0, JSON.stringify(r));
 });
+
+test('K-923 SD attack-draw cards draw one at their Lv; SD17-001/SD06-008 are also Green/Red', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player; G.active = P.key; P.cpu = true;
+    const out = {};
+    for (const id of ['SD06-002', 'SD10-003', 'SD19-003', 'SD42-002', 'SD37-001']) {
+      P.spirits.length = 0; const s = BS.mkInst(id); s.cores = 3; P.spirits.push(s);
+      const h = P.hand.length; await BS.fireFx(P, 'ATTACKS', s, {}); out[id] = P.hand.length - h;
+    }
+    P.spirits.length = 0; const lo = BS.mkInst('SD06-002'); lo.cores = 1; P.spirits.push(lo);
+    const h = P.hand.length; await BS.fireFx(P, 'ATTACKS', lo, {}); out.lv1 = P.hand.length - h;
+    out.c1 = BS.CARDS['SD17-001'].colors; out.c2 = BS.CARDS['SD06-008'].colors;
+    return out;
+  });
+  const j = JSON.stringify(r);
+  for (const id of ['SD06-002', 'SD10-003', 'SD19-003', 'SD42-002', 'SD37-001']) assert.equal(r[id], 1, j);
+  assert.equal(r.lv1, 0, j);
+  assert.ok(r.c1.includes('green') && r.c2.includes('red'), j);
+});
