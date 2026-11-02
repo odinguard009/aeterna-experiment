@@ -30349,12 +30349,6 @@
   "M_OPTIONAL",
   "T_ATTACKS"
  ],
- "BS55-031": [
-  "A_BANISH",
-  "A_REFRESH",
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
  "BS55-033": [
   "A_EXHAUST",
   "A_VOID",
@@ -39438,12 +39432,6 @@
   "K_MIRAGE",
   "T_MIRAGE_LIFE",
   "T_SUMMONED"
- ],
- "BS65-040": [
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "M_THEN",
-  "T_ATTACKS"
  ],
  "BS65-041": [
   "A_CORE_TO_SELF",

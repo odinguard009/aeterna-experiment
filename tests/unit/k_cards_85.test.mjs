@@ -995,3 +995,25 @@ test('K-1023 BS55-060 reveals 3 and adds a blue Chrownos; BS56-015 mills 3 then 
     await BS.fireFx(P, 'SUMMONED', t, {}); return [a, P.hand.map(x => x.id).includes(ab), P.trash.length]; })()`);
   assert.deepEqual([r[0][0], r[0][1], r[1], r[2]], [true, 2, true, 3], JSON.stringify(r));
 });
+
+test('K-1024 BS65-040: mills 3 from the opposing deck, destroys the lowest-cost opposing Spirit only with 5+ cards in the opposing Trash', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.coreShield = O.coreShield = null; P.spirits.length = 0; O.spirits.length = 0; O.trash.length = 0;
+    const ids = Object.keys(BS.CARDS).filter(k => /^BS0[0-9]-/.test(k) && BS.CARDS[k].type === 'Spirit'); const lo = ids.find(k => BS.CARDS[k].cost <= 2), hi = ids.find(k => BS.CARDS[k].cost >= 5);
+    const s = BS.mkInst('BS65-040'); s.cores = 3; P.spirits.push(s); const a = BS.mkInst(lo), b = BS.mkInst(hi); a.cores = b.cores = 1; O.spirits.push(a, b);
+    O.deck.length = 0; for (let i = 0; i < 6; i++) O.deck.push(BS.mkInst(lo)); await BS.fireFx(P, 'ATTACKS', s, {}); const t1 = O.trash.length, alive1 = [O.spirits.includes(a), O.spirits.includes(b)];
+    return [t1, alive1]; })()`);
+  assert.deepEqual(r, [3, [true, true]], JSON.stringify(r));
+  const r2 = await page.evaluate(`(async () => { const G = BS.G, P = G.p.player, O = G.p.opponent; const s = P.spirits[0]; const a = O.spirits[0], b = O.spirits[1]; O.deck.length = 0; for (let i = 0; i < 6; i++) O.deck.push(BS.mkInst(a.id));
+    O.trash.length = 2; await BS.fireFx(P, 'ATTACKS', s, {}); return [O.trash.length >= 5, O.spirits.includes(a), O.spirits.includes(b)]; })()`);
+  assert.deepEqual(r2, [true, false, true], JSON.stringify(r2));
+});
+
+test('K-1025 BS55-031: banishes two cards from the opposing Trash to refresh itself, nothing with fewer than two', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.spirits.length = 0; O.trash.length = 0; O.removed.length = 0;
+    const id = Object.keys(BS.CARDS).find(k => /^BS0[0-9]-/.test(k) && BS.CARDS[k].type === 'Spirit'); const s = BS.mkInst('BS55-031'); s.cores = 3; s.exhausted = true; P.spirits.push(s);
+    O.trash.push(BS.mkInst(id)); await BS.fireFx(P, 'ATTACKS', s, {}); const one = [s.exhausted, O.trash.length, O.removed.length];
+    G.turnNo++; O.trash.push(BS.mkInst(id), BS.mkInst(id)); await BS.fireFx(P, 'ATTACKS', s, {}); return [one, [s.exhausted, O.trash.length, O.removed.length]]; })()`);
+  assert.deepEqual(r, [[true, 1, 0], [false, 1, 2]], JSON.stringify(r));
+});
