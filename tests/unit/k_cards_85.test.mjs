@@ -608,3 +608,15 @@ test('K-983 BS04-114 destroys own Nexuses and the opponent loses as many Spirits
     return [P.nexus.length, O.spirits.length]; })()`);
   assert.deepEqual(r, [0, 1], JSON.stringify(r));
 });
+
+test('K-984 BS03-137 and BS01-041 use existing actions (data shape + effect)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.spirits.length = 0; O.spirits.length = 0;
+    const mg = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit' && (BS.CARDS[i].families || []).includes('Magician'));
+    const mk = id => { const s = BS.mkInst(id); s.cores = 1; return s; }; const out = [];
+    for (const k of [3, 4]) { P.spirits.length = 0; O.spirits.length = 0; for (let i = 0; i < k; i++) P.spirits.push(mk(mg)); const t = mk(mg); O.spirits.push(t);
+      await BS.runActions({ p: P, opp: O, src: BS.mkInst('BS03-137'), ctx: {} }, { actions: BS.CARDS['BS03-137'].magic.by.MAIN.actions }); out.push(!!t.lv1Turn); }
+    const e = BS.CARDS['BS01-041'].effects[0]; out.push(e.trigger, e.actions[0].do);
+    return out; })()`);
+  assert.deepEqual(r, [false, true, 'SUMMONED', 'SPIRIT_BUT_ONE_TO_RESERVE'], JSON.stringify(r));
+});
