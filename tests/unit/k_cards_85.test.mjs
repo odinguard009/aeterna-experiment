@@ -654,3 +654,9 @@ test('K-987 BS09-018 sends cores from opposing Spirits equal to its level', asyn
   assert.ok(r[0] >= 1 && r[0] <= 3 && (r[1] == null || r[0] === r[1]), JSON.stringify(r));
   assert.equal(r[2], 'void');
 });
+
+test('K-988 BS09-054 has Tribute data and an optional Assault refresh on attack', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(() => { const k = BS.CARDS['BS09-054']; const e = k.effects.find(x => x.trigger === 'ATTACKS'); return [k.tribute.costGe, k.tribute.to, e.lv.join(), e.optional, e.actions[0].do, e.actions[0].n]; })()`);
+  assert.deepEqual(r, [3, 'void', '2,3', true, 'ASSAULT', 1], JSON.stringify(r));
+});

@@ -2146,13 +2146,6 @@
   "K_CRUSH",
   "T_ATTACKS"
  ],
- "BS09-054": [
-  "A_EXHAUST",
-  "A_REFRESH",
-  "A_VOID",
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
  "BS09-055": [
   "A_DISCARD_HAND",
   "C_LEVEL",
