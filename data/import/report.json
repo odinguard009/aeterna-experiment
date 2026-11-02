@@ -1,18 +1,18 @@
 {
  "stats": {
-  "cards": 6415,
+  "cards": 6410,
   "per_saga": {
    "1": 484,
-   "2": 262,
+   "2": 261,
    "3": 333,
-   "4": 311,
-   "5": 596,
+   "4": 309,
+   "5": 595,
    "6": 327,
    "7": 473,
    "8": 441,
    "9": 472,
    "10": 487,
-   "11": 317,
+   "11": 316,
    "12": 312,
    "13": 387,
    "14": 424,
@@ -22,18 +22,18 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2291,
+  "skipped_curated": 2296,
   "nexus_levels_added": 672,
   "nexus_levels_missing": 43,
   "merged": 107,
-  "image_problems": 410,
+  "image_problems": 408,
   "brave_unparsed": 170,
   "ut_lines_added": 114,
   "odd_reduction": 804,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
   "number_conflicts": 3,
-  "without_image": 408
+  "without_image": 406
  },
  "tokens": [
   "BS73-T001",
@@ -677,6 +677,7 @@
   "BS12-030",
   "BS12-033",
   "BS12-035",
+  "BS12-038",
   "BS12-041",
   "BS12-044",
   "BS12-048",
@@ -924,6 +925,7 @@
   "BS20-011",
   "BS20-012",
   "BS20-014",
+  "BS20-015",
   "BS20-018",
   "BS20-019",
   "BS20-020",
@@ -971,6 +973,7 @@
   "BS21-019",
   "BS21-020",
   "BS21-021",
+  "BS21-022",
   "BS21-023",
   "BS21-028",
   "BS21-029",
@@ -1063,6 +1066,7 @@
   "BS24-017",
   "BS24-020",
   "BS24-021",
+  "BS24-025",
   "BS24-030",
   "BS24-031",
   "BS24-035",
@@ -1445,6 +1449,7 @@
   "BS53-003",
   "BS53-011",
   "BS53-037",
+  "BS53-RV005",
   "BS54-005",
   "BS54-021",
   "BS54-034",
@@ -3288,11 +3293,6 @@
    "problem": "no image (near: the HevyBootsEmpeor Vidar.jpg)"
   },
   {
-   "id": "BS12-038",
-   "name": "The Angelia of Olimpics Phaleg",
-   "problem": "no image (near: the Angelia of Olimpic Phaleg.jpg)"
-  },
-  {
    "id": "BS12-061",
    "name": "The Birthplace of the Sword",
    "problem": "no image (near: The Birsthplace of the Sword.jpg)"
@@ -4941,11 +4941,6 @@
    "id": "BS53-X09",
    "name": "Grandwalker Lakshmi",
    "problem": "no image (near: The Grandwalker Lakshmi.png)"
-  },
-  {
-   "id": "BS53-RV005",
-   "name": "The Angelia of Olimpics Phaleg",
-   "problem": "no image (near: The Angelia of Olimpics Phaleg (Revival).png)"
   },
   {
    "id": "BS54-027",

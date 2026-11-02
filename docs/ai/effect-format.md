@@ -413,3 +413,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v375: CHOOSE_ONE accepts 2 or 3 options (the human gets one button per runnable option).
 - v376 (Lane K): LIFE_CAP_ALL (no params): during this turn the caster's Life can only be reduced by one per attack of opposing unblocked Spirits (player.lifeCapAll = turn number, read in 08-battle). Cards: SD01-039, BS60-CP03.
 - v377 (Lane K): CANT_BLOCK_PER {per:<match>}: for each matching Spirit you control, target an opposing Spirit; during this turn those can't block (noAB + noABTurn). Cards: BS12-038, BS53-RV005.
+- v378 (Lane K): EXHAUST_OPP nonBrave:true (skip braved Spirits), DESTROY_ANY braveOnly:true (needs spirit + oppOnly; only Spirits with a Brave combined). Cards: BS21-022, BS20-015.

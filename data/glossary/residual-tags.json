@@ -6001,13 +6001,6 @@
   "C_LEVEL",
   "T_BLOCKS"
  ],
- "BS20-015": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "K_BRAVE",
-  "K_RUSH",
-  "T_ATTACKS"
- ],
  "BS20-016": [
   "C_LEVEL",
   "K_RUSH",
@@ -6283,13 +6276,6 @@
   "C_LEVEL",
   "K_RUSH",
   "T_SUMMONED"
- ],
- "BS21-022": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "K_BRAVE",
-  "K_RUSH",
-  "T_ATTACKS"
  ],
  "BS21-024": [
   "A_EXHAUST",

@@ -70,3 +70,20 @@ test('K-1114 BS24-025 (When Summoned): Rush Yellow gates the can\'t-block target
     return { noAB: !!s.noAB, impl: BS.CARDS['BS24-025'].implemented === true }; })()`);
   assert.equal(r.impl, true, JSON.stringify(r));
 });
+
+const runFx = (id, trig, setup, read) => `(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.step = 4; G.active = P.key;
+  const m = BS.mkInst('${id}'); const e = BS.CARDS['${id}'].effects.find(x => x.trigger === '${trig}'); ${setup}
+  await BS.runActions({ p: P, opp: O, src: m, ctx: { selfInst: m } }, { actions: e.actions });
+  return { impl: BS.CARDS['${id}'].implemented === true, ...(${read}) }; })()`;
+
+test('K-1115 BS21-022 When Attacks: exhausts a non-braved opposing Spirit only', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(runFx('BS21-022', 'ATTACKS', `const a = BS.mkInst('BS01-001'), b = BS.mkInst('BS01-001'); a.cores = b.cores = 1; a.brave = BS.mkInst('BS53-064'); O.spirits.push(a, b);`, `{ ex: O.spirits.map(s => !!s.exhausted) }`));
+  assert.equal(r.impl, true, JSON.stringify(r)); assert.deepEqual(r.ex, [false, true], JSON.stringify(r));
+});
+
+test('K-1116 BS20-015 When Attacks: destroys only an exhausted braved opposing Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(runFx('BS20-015', 'ATTACKS', `const a = BS.mkInst('BS01-001'), b = BS.mkInst('BS01-001'); a.cores = b.cores = 1; a.exhausted = b.exhausted = true; b.brave = BS.mkInst('BS53-064'); O.spirits.push(a, b);`, `{ n: O.spirits.length, brave: O.spirits.map(s => !!s.brave) }`));
+  assert.equal(r.impl, true, JSON.stringify(r)); assert.equal(r.n, 1, JSON.stringify(r)); assert.deepEqual(r.brave, [false], JSON.stringify(r));
+});
