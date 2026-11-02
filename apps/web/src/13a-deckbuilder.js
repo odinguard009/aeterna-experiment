@@ -276,11 +276,11 @@ let DB_SAVE_T = 0, DB_NAME_T = 0, DB_NAME_SLOT = -1;   // DB_NAME_SLOT: the deck
 function dbSaved(ok) { const d = $('db-savedot'); if (d) { d.classList.toggle('busy', !ok); d.lastElementChild.textContent = ok ? 'Saved' : 'Saving…'; } }
 function dbNameCommit() {                            // write the typed name into the deck it was typed for, once
   clearTimeout(DB_NAME_T); const s = DB_NAME_SLOT, nm = $('db-name'); DB_NAME_SLOT = -1;
-  if (s >= 0 && s < SLOTS.length && nm) SLOTS[s].name = (nm.value.trim() || 'Deck ' + (s + 1)).slice(0, 24);
+  if (s >= 0 && s < SLOTS.length && nm) { SLOTS[s].name = (nm.value.trim() || 'Deck ' + (s + 1)).slice(0, 24); if (!/^Deck \d+$/.test(SLOTS[s].name)) SLOTS[s].used = true; }   // a renamed deck stays listed even while empty
 }
 function dbNameInput() {                             // the deck name saves while you type (mockup: Saving… / Saved)
   dbSaved(false); clearTimeout(DB_NAME_T); DB_NAME_SLOT = ACTIVE_SLOT;
-  DB_NAME_T = setTimeout(() => { dbNameCommit(); saveDeck(); dbSaved(true); }, 400);
+  DB_NAME_T = setTimeout(() => { const nm = $('db-name'); if (nm && !nm.value.trim()) { dbSaved(true); return; } dbNameCommit(); saveDeck(); dbSaved(true); }, 400);   // an emptied field is not turned into "Deck N" while you are still typing (the change event settles it)
 }
 function dbSave(silent) {
   dbNameCommit(); const nm = $('db-name'); if (nm) nm.value = SLOTS[ACTIVE_SLOT].name;

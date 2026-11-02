@@ -18,12 +18,12 @@ const recipes = () => readdirSync(join(ROOT, 'data/decks')).filter(f => /^standa
 
 test('S97-1 the ten Standard starters are in PREBUILT with the full official recipe (40 cards each)', async () => {
   const r = recipes(); assert.equal(r.length, 10);
-  const got = await ev(() => BS.PREBUILT.filter(d => d.kind === 'starter').map(d => [d.id, d.recipe]));
+  const got = await ev(() => BS.PREBUILT.filter(d => d.kind === 'starter' && d.format === 'standard').map(d => [d.id, d.recipe]));
   assert.deepEqual(got.map(x => x[0]), r.map(x => x.id));
   for (const [i, [, rec]] of got.entries()) { assert.deepEqual(rec, r[i].rec, r[i].f); assert.equal(Object.values(rec).reduce((a, b) => a + b, 0), 40, r[i].f); }
 });
 test('S97-2 every complete starter validates as Standard; only an incomplete one is short, and it says so', async () => {
-  const r = await ev(() => BS.PREBUILT.filter(d => d.kind === 'starter').map(d => [d.id, d.missing, BS.validateDeck(d.cards, 'standard'), BS.prebuiltLabel(d)]));
+  const r = await ev(() => BS.PREBUILT.filter(d => d.kind === 'starter' && d.format === 'standard').map(d => [d.id, d.missing, BS.validateDeck(d.cards, 'standard'), BS.prebuiltLabel(d)]));
   for (const [id, missing, v, label] of r) {
     if (missing === 0) assert.ok(v.ok, `${id}: ${v.errors.join(' / ')}`);
     else { assert.ok(!v.ok); assert.match(label, new RegExp(`\\(incomplete, ${missing} missing\\)`)); }

@@ -92,8 +92,8 @@ COLORS, BUILTIN_IDS, CARDS_KEY, IMPORTED, CARDS_VER, parseLevels, parseMagicOf, 
 ## packages/engine/src/03a-effects-immunity-final.js (3 lines, ~0.1k tokens)
 
 
-## packages/engine/src/04-decks.js (163 lines, ~6.4k tokens) — DECK STORAGE AND VALIDATION
-deckTotal, cleanDeck, validateDeck, keyOfDeck, pickKey, fmtName, fmtButton, setFormat, errSummary, prebuiltDeck, stdDeck, readyDeck, prebuiltFmt, prebuiltOrder, prebuiltLabel, PREBUILT, defaultDeck, SLOT_KEY, SLOTS, ACTIVE_SLOT, loadSlots, PLAYER_DECK, saveDeck, switchSlot, loadPrebuilt, CPU_DECK_NAME, cpuDeckFor
+## packages/engine/src/04-decks.js (206 lines, ~9.8k tokens) — DECK STORAGE AND VALIDATION
+deckTotal, cleanDeck, validateDeck, keyOfDeck, pickKey, fmtName, fmtButton, setFormat, errSummary, prebuiltDeck, stdDeck, eternalDeck, readyDeck, prebuiltFmt, prebuiltOrder, prebuiltLabel, PREBUILT, defaultDeck, SLOT_KEY, SLOTS, ACTIVE_SLOT, loadSlots, PLAYER_DECK, saveDeck, switchSlot, loadPrebuilt, CPU_DECK_NAME, cpuDeckFor
 
 ## packages/engine/src/05-state.js (69 lines, ~1.4k tokens) — GAME STATE
 SET_KEY, SETTINGS, SPEEDS, saveSettings, G, fnv, recIn, SIM_DECK_B, SIM_DECK_B_KEY, SIM_HUMAN, DELAYS, delay, engineIdle, wait, log, mkInst, newPlayer, contractToDeck, redrawHand, cpuWantsRedraw, newGame
@@ -131,7 +131,7 @@ openZoneModal, fieldFxRows, openFieldFx, openLogModal, showRules
 ## apps/web/src/13-render.js (379 lines, ~9k tokens) — RENDERING
 nameHTML, isPC, applyLayout, _rz, colorVar, cardColors, isMulti, colorSty, symSlices, symCount, isUltimate, cardCls, rebMark, symBadgeHTML, handCardHTML, gemsHTML, fieldCardHTML, rowHTML, burstAreaHTML, soulAreaHTML, PILL_FULL, fieldAreaHTML, zoneBox, pv, zoneChip, trashBox, pileHTML, lifePlate, resPlate, STEP_WARN, stepTargets, stepWarn, stepClick, SLEEVE_TINTS, CORE_LOOKS, deckLook, coreVars, SLEEVE_IMG, sleeveImgCss, applyLook, hintText, renderBoard, fitGems, render, CUE, fxCueReset, aeRibbon, aeStrip, fxCues, LOG_OPEN, updateLogDrawer, toggleFullscreen, toggleLog, magBtnHTML, liveStatusHTML, HIST_KEY, HISTORY, recordMatch, histHTML, lifeTxt, switchView, renderSettings, renderLobby
 
-## apps/web/src/13a-deckbuilder.js (547 lines, ~13.2k tokens) — DECK BUILDER (v0.53.0 redesign; list performance from v0.52.1)
+## apps/web/src/13a-deckbuilder.js (547 lines, ~13.3k tokens) — DECK BUILDER (v0.53.0 redesign; list performance from v0.52.1)
 DB_COLORS, DB_TYPES, DB_COSTS, DB_GROUP_ALL, DB_TYPE_GROUPS, DB_GROUPS, RAINBOW, filterPipsHTML, filterTypesHTML, DB_BPS, DB_CORES, DB_FAMS, DB_ICONS, DB_VALS, dbVals, dbFamilies, ddMode, ddList, ddSel, ddSortDef, ddButton, ddMenuEl, ddPick, ddReset, DBF, DB_UNDO, DB_IO, dbArr, dbTypeOf, dbSetOf, dbFilterOK, dbPlusOK, dbGroupOK, DBV, DB_GAP, DB_COLL, dbIndex, dbSets, dbActiveCount, DB_RARITY_ORDER, DB_SORT_VAL, DB_SORT_KEYS, dbSortCmp, dbFilter, fxMarked, FX_MARK_LBL, fxMarkHTML, dbCardHTML, dbWindow, dbScroll, dbSearchInput, dbBar, DB_MIN, dbMinApply, dbMinToggle, dbMenu, dbDd, DB_TAB, dbTab, renderDbLook, dbCover, SLEEVE_BLOB, dbSleeveSet, dbSleeveClear, dbLook, dbToggle, dbResetFilters, DB_SAVE_T, dbSaved, dbNameCommit, dbNameInput, dbSave, dbSnap, dbCanAdd, dbChange, dbReplace, dbClear, dbUndo, dbRedo, dbTestHand, DB_SIZE_KEY, DB_SIZE, dbSize, dbFlyFrom, dbFlyTo, DB_LP, DB_PEEK, dbPeekHide, dbTap, dbKey, dbDetect, dbCsv, dbDeckPng, dbImport, dbExport, dbShareCode, dbShareResolve, dbShare, DB_COLCH, dbRingHTML, dbChips, dbStatsHTML, dbRowsHTML, renderDbDeck, dbPlayNow, dbSheet, renderDeckBuilder
 
 ## apps/web/src/13b-nav.js (109 lines, ~3.1k tokens) — APP NAVIGATION + HOME (v0.65.0, UI/UX overhaul U2; docs/DESIGN.md section 0, mockup docs/design/mockup-v11.html)

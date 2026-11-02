@@ -207,6 +207,8 @@ html:not(.layout-pc) #db-dk-list .drow .q{min-width:18px}
 @container fr (max-width:700px){.mk #db-types,.mk #lib-types,.mk .btool .costs,.mk #db-tbar .vsep,.mk #lib-tbar .vsep{display:none}}
 /* Library phone: minimize buttons, the Lore header and lists */
 #view-library.lib-min #lib-chips{display:none}
+.lib-ctl{align-items:center}
+#lib-lore-nav{min-height:62px}   /* series and saga lists differ by one text line: keep the list height equal so the lore text does not jump */
 .lore-minb{display:none;align-self:flex-start}
 html:not(.layout-pc) .lore-minb{display:inline-flex}
 html:not(.layout-pc) #lib-lore-pane.lore-nav-min .lorenav .seg,html:not(.layout-pc) #lib-lore-pane.lore-nav-min .lorenav .lbl2,html:not(.layout-pc) #lib-lore-pane.lore-nav-min #lib-lore-nav{display:none}

@@ -91,7 +91,7 @@ function dkNewSlot(name, cards, keep, key) {        // the first free slot (made
   if (i < 0) { uiInfo('No free deck slot', `All ${SLOTS.length} deck slots are in use. Delete a deck first.`); return false; }
   const sl = { name: (name || SLOTS[i].name).slice(0, 24), cards: cleanDeck(cards || {}), used: true };
   const k = keyOfDeck(sl.cards, key); if (k) sl.key = k;   // copied starters / duplicates bring their Key Spirit (v0.103.0)
-  if (keep) { SLOTS[i] = sl; saveDeck(); return true; }
+  if (keep) { SLOTS[i] = sl; if (i === ACTIVE_SLOT) PLAYER_DECK = Object.assign({}, sl.cards); saveDeck(); return true; }   // the active slot's cards live in PLAYER_DECK: without this saveDeck() wiped the copy
   switchSlot(i); SLOTS[i] = sl; PLAYER_DECK = Object.assign({}, sl.cards); saveDeck();
   return true;
 }

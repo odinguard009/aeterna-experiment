@@ -60,7 +60,7 @@ test('KEY-2 every prebuilt deck names its own valid Key Spirit; pickKey is deter
     return { rows, empty: BS.pickKey({}), copyWins: BS.pickKey({ 'BS75-002': 3, 'BS75-001': 2 }), idWins: BS.pickKey({ 'BS75-002': 3, 'BS75-001': 3 }), twoTie: BS.pickKey({ 'BS75-003': 2, 'BS75-002': 2 }), noSpirit: BS.pickKey({ [magic]: 3 }) };
   });
   assert.ok(errors.length === 0, 'page errors: ' + errors.join(' | '));
-  assert.equal(r.rows.length, 42, 'std01-std10, the six internal colour fixtures and the 26 official ready decks carry keys');
+  assert.equal(r.rows.length, 82, 'std01-std10, the six internal colour fixtures, the 26 official ready decks and the 40 Eternal starter decks carry keys');
   for (const [id, key, copied, errs, picked, kind] of r.rows) {
     assert.ok(copied, id + ': key ' + key + ' has at least one copy in the deck');
     assert.equal(errs, 0, id + ': key validation errors');

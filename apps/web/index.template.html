@@ -195,7 +195,7 @@
   <div class="bld" id="bld">
     <section class="bpool" aria-label="Card pool">
       <div class="btool" id="db-tbar">
-        <div class="r1"><div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="db-search" class="in" type="search" placeholder="Search name, code or text" aria-label="Search cards ( / )" autocomplete="off" spellcheck="false" style="width:100%"></div><button class="btn sm" id="db-min" data-a="db-min" aria-pressed="false" aria-controls="db-tbar" title="Hide the filter buttons and keep the search">▲ Hide filters</button>
+        <div class="r1"><div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="db-search" class="in" type="search" placeholder="Search name, code or text" aria-label="Search cards ( / )" autocomplete="off" spellcheck="false" style="width:100%"></div><button class="btn sm" id="db-min" data-a="db-min" aria-pressed="false" aria-controls="db-tbar" title="Hide the filter buttons and keep the search">▲ Hide filters</button></div>
           <select id="db-set" class="in hidem" title="Set" aria-label="Set"></select>
           <input id="db-family" class="in hidem" type="search" placeholder="Family" aria-label="Family" autocomplete="off" style="max-width:150px">
           <div class="seg hidem" role="group" aria-label="Card size" id="db-size"></div></div>
@@ -240,8 +240,8 @@
 </div>
 <div id="view-library" class="app-view"><div class="pg scroll" style="padding:0">
   <div class="card flat hdcard lib-hd" style="margin:16px 20px 0"><div class="grow"><span class="eyebrow" id="lib-eyebrow">Library</span><h2 class="hd" id="lib-title">All Cards</h2><span class="sub" id="lib-sub">Search and filter the whole card data. Click a card for its page.</span></div>
-    <div class="seg" role="group" aria-label="Library view" id="lib-tabs"><button data-a="lib-tab" data-v="cards" aria-pressed="true">Cards</button><button data-a="lib-tab" data-v="lore" aria-pressed="false">Lore</button></div>
-    <button class="btn sm" id="lib-min" data-a="lib-min" aria-pressed="false" title="Hide the header and the filter rows to see more cards">▲ Hide filters</button>
+    <div class="row lib-ctl" style="gap:8px;flex-wrap:nowrap;flex:0 0 auto"><div class="seg" role="group" aria-label="Library view" id="lib-tabs"><button data-a="lib-tab" data-v="cards" aria-pressed="true">Cards</button><button data-a="lib-tab" data-v="lore" aria-pressed="false">Lore</button></div>
+    <button class="btn sm" id="lib-min" data-a="lib-min" aria-pressed="false" title="Hide the header and the filter rows to see more cards">▲ Hide filters</button></div>
     <span id="lib-chips" class="row" style="gap:8px"><button class="chip on" id="lib-complete" data-a="lib-complete" aria-pressed="true">Complete Effects Only</button><button class="chip" id="lib-partly" data-a="lib-partly" aria-pressed="false"><b style="color:var(--yes-text)">!</b> Partly Implemented</button></span></div>
   <section id="lib-cards-pane" class="bpool" style="border:0;display:flex;flex-direction:column;min-height:0;flex:1">
     <div class="btool" id="lib-tbar">
