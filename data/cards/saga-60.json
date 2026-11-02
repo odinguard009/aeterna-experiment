@@ -220,13 +220,60 @@
   "image": "BS49-CP02.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "［Lv1-Lv2］『このスピリットの召喚時』 ボイドからコア2個をこのスピリットに置く。自分の緑の創界神ネクサスがあるとき、この効果で相手のバーストは発動できない。 ［Lv1-Lv2］『このスピリットのアタック時』 相手のバーストは発動できない。さらに、このスピリットをBP+15000する。",
-   "［Lv2］『自分のエンドステップ』 自分の緑1色のスピリットすべてを回復できる。"
-  ],
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
-  "rcode": "CP"
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending. Wired v366: match.mono. Burst clause on the Void placement treated as no-op (Void core placement never fires Burst).",
+  "rcode": "CP",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "VOID_TO_CARD",
+      "n": 2,
+      "to": "self"
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "NO_BURST_BATTLE"
+     },
+     {
+      "do": "BP_PLUS",
+      "n": 15000
+     }
+    ]
+   },
+   {
+    "trigger": "END_STEP",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT",
+      "all": true,
+      "match": {
+       "color": [
+        "green"
+       ],
+       "mono": true
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS49-CP03",

@@ -42,6 +42,7 @@ function fxMatch(card, m, inst) {
   if (m.notName && m.notName.some(n => card.name.toLowerCase().includes(n.toLowerCase()))) return false;      // v171 "besides <name>"
   if (m.bpBoosted && !(inst && lvIndex(inst) >= 0 && bpOf(inst) > (card.levels[lvIndex(inst)].bp || 0))) return false;      // v171 "under BP+ effects": current BP above the printed level BP
   if (m.noUlt && card.type === 'Ultimate') return false;      // v0.59: the text says "Spirit"; texts that include Ultimates print "Spirit/Ultimate"
+  if (m.mono === true && (card.colors || [card.symbol]).length !== 1) return false;      // v366 "<colour> 1-colour" (exactly one colour)
   if (m.color && ![].concat(m.color).some(x => (card.colors || [card.symbol]).includes(x))) return false;      // v0.39: "Purple" Sorcerer cards (colour = card colour); v0.75: "Red/White" = either colour
   if (m.costGe != null && card.cost < m.costGe) return false;
   if (m.costLe != null && card.cost > m.costLe) return false;      // v0.69 "Cost N or less" (reveal effects)

@@ -326,3 +326,22 @@ test('K-893 BS03-093: when this Spirit attacks it gets BP +2000', async () => {
   });
   assert.equal(r.d, 2000, JSON.stringify(r));
 });
+
+test('K-894 BS49-CP02: Lv2 end step refreshes only mono-green Spirits; attack gives +15000', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player; G.active = P.key; P.cpu = true; P.spirits.length = 0;
+    const ids = Object.keys(BS.CARDS).filter(id => BS.CARDS[id].type === 'Spirit');
+    const col = id => BS.CARDS[id].colors || [BS.CARDS[id].symbol];
+    const mono = ids.find(id => { const c = col(id); return c.length === 1 && c[0] === 'green'; });
+    const dual = ids.find(id => { const c = col(id); return c.length === 2 && c.includes('green'); });
+    const s = BS.mkInst('BS49-CP02'); s.cores = 3; P.spirits.push(s);
+    const a = BS.mkInst(mono), b = BS.mkInst(dual); a.cores = 1; b.cores = 1; a.exhausted = b.exhausted = true; P.spirits.push(a, b);
+    await BS.fireFx(P, 'END_STEP', s, { subject: s });
+    const b0 = BS.bpOf(s); await BS.fireFx(P, 'ATTACKS', s, { subject: s, attacker: s });
+    return { monoEx: a.exhausted, dualEx: b.exhausted, d: BS.bpOf(s) - b0, mono, dual };
+  });
+  const m = JSON.stringify(r);
+  assert.equal(!!r.monoEx, false, m); assert.equal(!!r.dualEx, true, m); assert.equal(r.d, 15000, m);
+});
