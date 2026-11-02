@@ -1703,10 +1703,6 @@
   "M_OPTIONAL",
   "T_SUMMONED"
  ],
- "BS08-007": [
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "BS08-008": [
   "A_BP_PLUS",
   "C_LEVEL"
@@ -1823,12 +1819,6 @@
  "BS08-043": [
   "C_LEVEL",
   "M_OPTIONAL",
-  "T_SUMMONED"
- ],
- "BS08-044": [
-  "A_RETURN_TRASH",
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
   "T_SUMMONED"
  ],
  "BS08-045": [

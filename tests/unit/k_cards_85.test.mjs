@@ -620,3 +620,14 @@ test('K-984 BS03-137 and BS01-041 use existing actions (data shape + effect)', a
     return out; })()`);
   assert.deepEqual(r, [false, true, 'SUMMONED', 'SPIRIT_BUT_ONE_TO_RESERVE'], JSON.stringify(r));
 });
+
+test('K-985 BS08-007 destroys opposing 5000 BP or less Spirits with a When Summoned effect; BS08-044 has Tribute data', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.spirits.length = 0; O.spirits.length = 0;
+    const withS = Object.keys(BS.CARDS).find(i => { const k = BS.CARDS[i]; return k.type === 'Spirit' && (k.effects || []).some(e => e.trigger === 'SUMMONED') && k.levels && k.levels[0].bp <= 3000 && !(k.effects || []).some(e => e.trigger === 'STATIC'); });
+    const without = Object.keys(BS.CARDS).find(i => { const k = BS.CARDS[i]; return k.type === 'Spirit' && !(k.effects || []).some(e => e.trigger === 'SUMMONED') && k.levels && k.levels[0].bp <= 3000 && !(k.effects || []).some(e => e.trigger === 'STATIC'); });
+    const mk = id => { const s = BS.mkInst(id); s.cores = 1; return s; }; const a = mk(withS), b = mk(without); O.spirits.push(a, b);
+    await BS.runActions({ p: P, opp: O, src: BS.mkInst('BS08-007'), ctx: {} }, { actions: BS.CARDS['BS08-007'].effects.find(e => e.trigger === 'SUMMONED').actions });
+    return [O.spirits.includes(a), O.spirits.includes(b), BS.CARDS['BS08-044'].tribute.to]; })()`);
+  assert.deepEqual(r, [false, true, 'trash'], JSON.stringify(r));
+});
