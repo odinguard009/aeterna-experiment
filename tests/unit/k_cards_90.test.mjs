@@ -162,3 +162,14 @@ test('K-1014 SD55-013 draws until the Hand is four, or draws three with two coun
     return out; })()`);
   assert.deepEqual(r, [4, 3], JSON.stringify(r));
 });
+
+test('K-1015 SD62-015 Flash gives an "Evangelion"-named Spirit +3000 BP and ignores others; Main choice is wired', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const eva = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && c.name.includes('Evangelion'));
+    const e = BS.mkInst(eva.id); e.cores = 2; const o = BS.mkInst('BS01-001'); o.cores = 1; P.spirits = [o, e]; P.reserve.n = 20;
+    const e0 = BS.bpOf(e), o0 = BS.bpOf(o); const m = BS.mkInst('SD62-015'); P.hand = [m];
+    await BS.castMagic(P, { inst: m, target: null, plan: null, ctx: 'flash' });
+    return { de: BS.bpOf(e) - e0, doo: BS.bpOf(o) - o0, ok: BS.CARDS['SD62-015'].fxComplete !== false }; })()`);
+  assert.deepEqual(r, { de: 3000, doo: 0, ok: true }, JSON.stringify(r));
+});
