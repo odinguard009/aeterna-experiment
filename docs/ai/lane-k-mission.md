@@ -2,6 +2,8 @@
 
 Owner order, 2026-10-31: work Lane K for all cards (Standard block A first, then Eternal by Saga), one session at a time, alternating DeepSeek (DSH) and Claude. Release only at 50 new complete cards. Read this file before any Lane K session; the chat prompt only says "continue the Lane K mission".
 
+- DSH setup (2026-11-02): a DeepSeek-harness session starts from `docs/ai/dsh/start-prompt.md`; MCP install and rules are in `docs/ai/dsh/README.md`.
+- open (2026-11-02): Regression on `main` fails the same way since at least 2026-11-01 (legacy `hscroll_layout`: 7 checks crash at line 32, the `go-play` click is intercepted after `dbSheet('menu')`; seed_replay once). Not caused by v0.209.1; `wip/lane-k` Regression was green at 06:17. Fix before the next release.
 - status: ON
 - target: all cards (Standard block A first, then Eternal Saga 17 down; roadmap item L)
 - last Lane K release: v0.204.0 (complete 1693)
