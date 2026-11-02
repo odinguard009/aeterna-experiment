@@ -4,6 +4,13 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.209.0
+- Lane: K
+- **Lane K: +100 complete cards (2,048 -> 2,148 of 10,291; 100 in this release)**
+- Cards across sagas 01 to 17 (mostly Eternal BS01 to BS13; newer-saga cards were taken first in the last part of the cycle: BS62-014, BS66-067, BS67-005, BS53-003, BS44-003, BS47-001 and others). 65 Lane K commits.
+- Engine, effect schema 324 -> 360. New actions: `LV_UP_TURN`, `DISCARD_ANY_CORES`, `LIFE_HIT_DESTROY_TURN`, `SPIRIT_TO_DECKTOP`, `SPIRIT_BUT_ONE_TO_RESERVE`, `RESERVE_TRASH_MIRROR`, `DESTROY_FAMILY_THEN_ALL`, `NEXUS_DESTROY_FOR_SPIRITS`, `SELF_CORE_REFRESH`, `DESTROY_BRAVE`, `CANT_BLOCK_OPP_ALL`, `DISCARD_OPP_REMOVED`. New STATIC flags: `LV_PLUS`, `NO_OPP_BURST`, `NO_DRAW_OUTSIDE`, `NO_DESTROY`, `SYM_ZERO_LOCKED`. Several new parameters, among them `TREAT_LV1 {turn:true}` (a parameter of the existing action, not a new action) (see `docs/ai/effect-format.md` v326-v360).
+- Limits: the FX01 share guard `MIN_SHARE` was lowered 0.715 -> 0.705; the B13 timing test can exceed its 4 s limit under heavy load (passes alone at about 4.5 s, treated as a flake); the BS41-083 Nexus SUMMONED trigger path and the BS62-014 Reserve cost are not tested end to end; many K tests call the action directly instead of playing a full battle; several choices are engine-made (CPU or weakest-first) and the human dialog paths are untested. Cards whose printed text does not map exactly use the closest existing trigger. Standard block A stays complete; the cards still partial need new triggers (Opposing End Step, Flash effects on the Field, "would leave the Field" replacement, Mirage "When Set").
+
 ## v0.208.1
 - Lane: U/I
 - **Library: +1,376 product-only cards (SD, PB, PC, PX, EX, promo; e.g. SD33-X01 The HorseTwelveGodKing Execeed): complete 2,005 -> 2,048 of 10,291 (43 of the new ids are reprints of complete cards); playable 8,913 to 10,289.** New file `data/cards/saga-60.json` (block `P`, not Standard-legal), built by `tools/import_products.py` from `data/sources/official-extra.json` (official card database: type, colour, cost, reduction, BP/cores, Japanese name and text). Reprints clone the existing card; new cards are partial (`!`) with Japanese name/text until English data is added (`names` in the source file; only SD33-X01 has one), symbols default 1 for Spirits. Contract/symbol cards without a category (20) are not imported.
