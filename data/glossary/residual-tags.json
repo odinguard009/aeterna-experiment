@@ -10082,10 +10082,6 @@
   "C_LEVEL",
   "K_ULTIMATE"
  ],
- "BS29-001": [
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
  "BS29-002": [
   "C_LEVEL",
   "K_BRAVE",
@@ -12855,12 +12851,6 @@
   "C_LEVEL",
   "K_BURST",
   "M_BY_DOING",
-  "T_ATTACKS"
- ],
- "BS34-007": [
-  "A_SYMBOL",
-  "A_SYMBOL_PLUS",
-  "C_LEVEL",
   "T_ATTACKS"
  ],
  "BS34-009": [
@@ -17326,13 +17316,6 @@
   "A_BP_PLUS",
   "C_LEVEL",
   "K_ADVENT",
-  "T_ATTACKS"
- ],
- "BS40-RV003": [
-  "A_SYMBOL",
-  "A_SYMBOL_PLUS",
-  "C_LEVEL",
-  "M_BY_DOING",
   "T_ATTACKS"
  ],
  "BS40-RV004": [

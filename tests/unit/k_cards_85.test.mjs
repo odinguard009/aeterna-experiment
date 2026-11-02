@@ -1037,3 +1037,13 @@ test('K-1027 BS58-021 puts a Void core on the Reserve and on a Red/Green Astrobl
     await BS.fireFx(P, 'SUMMONED', s, {}); return [P.reserve.n - rs, a.cores - ac]; })()`);
   assert.deepEqual(r, [1, 1], JSON.stringify(r));
 });
+
+test('K-1028 BS34-007/BS29-001 extra symbol at Lv3 in the Attack Step; BS40-RV003 discards a card for an extra Purple symbol', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player; P.cpu = true; P.spirits.length = 0; G.step = 5;
+    const a = BS.mkInst('BS29-001'); a.cores = 7; P.spirits.push(a); const x = BS.attackSymbols(a); a.cores = 2; const y = BS.attackSymbols(a);
+    const b = BS.mkInst('BS34-007'); b.cores = 5; P.spirits.push(b); const b0 = BS.attackSymbols(b); b.soul = true; const b1 = BS.attackSymbols(b);
+    const c = BS.mkInst('BS40-RV003'); c.cores = 3; P.spirits.push(c); const c0 = BS.attackSymbols(c); const id = Object.keys(BS.CARDS)[5]; P.hand.length = 0; P.hand.push(BS.mkInst(id));
+    await BS.fireFx(P, 'ATTACKS', c, {}); return [x - y, b1 - b0, P.hand.length, BS.attackSymbols(c) - c0]; })()`);
+  assert.deepEqual(r, [1, 1, 0, 1], JSON.stringify(r));
+});
