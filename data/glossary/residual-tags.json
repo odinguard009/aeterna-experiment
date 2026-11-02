@@ -20173,13 +20173,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "BS44-014": [
-  "A_VOID",
-  "C_LEVEL",
-  "K_GRANDWALKER",
-  "T_DESTROYED",
-  "T_DESTROYED_OPP"
- ],
  "BS44-015": [
   "C_LEVEL",
   "T_DESTROYED",

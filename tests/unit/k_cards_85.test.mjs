@@ -850,3 +850,12 @@ test('K-1008 UNBLOCKABLE_LOW match/blockerType: BS28-039 Pentan attackers dodge 
   assert.equal(JSON.stringify(r[0]), JSON.stringify([true, false, false]), JSON.stringify(r));
   assert.ok(r[1][1] === false, JSON.stringify(r));
 });
+
+test('K-1009 BS44-014 puts a Void core on an Egyt Grandwalker Nexus when destroyed by the opponent', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player; P.spirits.length = 0; P.nexus.length = 0; G.p.opponent.spirits.length = 0; G.turn = 'player';
+    const eg = BS.mkInst('BS44-X08'), nx = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Nexus' && !(BS.CARDS[i].families || []).includes('Egyt')), ot = BS.mkInst(nx);
+    P.nexus.push(ot, eg); const t = BS.mkInst('BS44-014'); P.trash.push(t); t.lostLv = 0; P.cpu = true; const e0 = eg.cores, o0 = ot.cores;
+    await BS.fireFx(P, 'DESTROYED', t, { subject: t, byOpp: true }); return [eg.cores - e0, ot.cores - o0]; })()`);
+  assert.deepEqual(r, [1, 0], JSON.stringify(r));
+});
