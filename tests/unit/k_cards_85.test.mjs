@@ -692,3 +692,11 @@ test('K-991 TREAT_LV2 all+highest marks every own Spirit; BS17-059/Brilliance ca
     return [a.lvHighTurn, b.lvHighTurn, t.do, t.all, br.join()]; })()`);
   assert.deepEqual(r, [true, true, 'TREAT_LV1', true, 'true,true,true'], JSON.stringify(r));
 });
+
+test('K-992 NO_OPP_BURST locks the opponent Burst only while a matching Spirit attacks (BS29-018)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(() => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.spirits.length = 0;
+    const s = BS.mkInst('BS29-018'); s.cores = 1; P.spirits.push(s); const plain = BS.mkInst(Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit' && !(BS.CARDS[i].families || []).includes('Investigator'))); plain.cores = 1; P.spirits.push(plain);
+    const out = []; G.attacker = null; out.push(BS.burstLocked(O)); G.attacker = plain; out.push(BS.burstLocked(O)); G.attacker = s; out.push(BS.burstLocked(O)); out.push(BS.burstLocked(P)); G.attacker = null; return out; })()`);
+  assert.deepEqual(r, [false, false, true, false], JSON.stringify(r));
+});

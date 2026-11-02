@@ -97,6 +97,7 @@ async function doBattleInner(attKey, att) {
 async function maybeBurst(owner, trigger, ctx) {
   const b = owner.burst; if (!b || b.mirage || !G || G.over) return false;
   if (G.noBurst === owner.key) return false;           // v0.38 "the opponent can't activate Burst effects" (this battle)
+  if (burstLocked(owner)) return false;      // v340 static NO_OPP_BURST
   const def = CARDS[b.id].burst, opp = G.p[other(owner.key)];
   const when = def && def.when === 'OPP_SUMMON_ADV_FX' && (trigger === 'OPP_SUMMON_FX' || trigger === 'OPP_ADVENT_FX') ? def.when : trigger;   // v0.71 "(When Summoned/Advents)" Burst condition
   const also = !!def && !!def.also && def.also.when === trigger && (!ctx || !ctx.subject || fxMatch(CARDS[ctx.subject.id], def.also.match)) && (!def.also.if || fxIf(owner, opp, def.also.if));   // v0.47 Dana Draw

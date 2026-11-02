@@ -200,6 +200,10 @@ function parseEffects(arr) {
         if (!Number.isInteger(e.pay) || e.pay < 1 || e.pay > 3) return { error: 'BLOCK_TAX needs a whole-number "pay" (1-3)' };
         o.match = e.match; o.pay = e.pay;
       }
+      if (e.flag === 'NO_OPP_BURST') {                            // v340 "while your <match> Spirit is attacking/battling, the opponent can't activate Bursts"
+        if (!hasMatch(e.match) || !['attacking', 'battling'].includes(e.mode)) return { error: 'NO_OPP_BURST needs a "match" and "mode" attacking/battling' };
+        o.match = e.match; o.mode = e.mode;
+      }
       if (e.flag === 'ZERO_BP_DECKBOTTOM') {                      // v221 "opposing Spirits destroyed at 0 BP are returned to the deckbottom"
         if (!hasMatch(e.match)) return { error: 'ZERO_BP_DECKBOTTOM needs a "match"' };
         o.match = e.match;

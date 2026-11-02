@@ -9781,10 +9781,6 @@
  "BS28-020": [
   "M_OPTIONAL"
  ],
- "BS28-023": [
-  "A_NO_BURST",
-  "C_LEVEL"
- ],
  "BS28-024": [
   "A_VOID",
   "C_LEVEL",
@@ -10269,10 +10265,6 @@
   "C_LEVEL",
   "K_BRAVE",
   "T_SUMMONED"
- ],
- "BS29-018": [
-  "A_NO_BURST",
-  "C_LEVEL"
  ],
  "BS29-019": [
   "C_LEVEL",
@@ -17771,10 +17763,6 @@
   "C_LEVEL",
   "S_UNAFFECTED",
   "T_ATTACKS"
- ],
- "BS41-028": [
-  "A_NO_BURST",
-  "C_LEVEL"
  ],
  "BS41-029": [
   "A_EXHAUST",
