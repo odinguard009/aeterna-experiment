@@ -373,3 +373,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v335 (Lane K): actions `DESTROY_FAMILY_THEN_ALL {family,n}` (BS04-108) and `NEXUS_DESTROY_FOR_SPIRITS` (BS04-114).
 - v336 (Lane K): OPP_CORES_TO_RESERVE perSource 'srcLv' = one core per level of the source Spirit (BS09-018, Tribute data set from the head).
 - v337 (Lane K): condition `sameLvBattle` (this Spirit is battling a Spirit of the same LV; BS03-008 ALLY_BLOCKED self, BS04-041 BLOCKS).
+- v338 (Lane K): ctrl `name` accepts a list of names (any matches; BS04-052 "Pentan"/"Empereur"-named Spirits).

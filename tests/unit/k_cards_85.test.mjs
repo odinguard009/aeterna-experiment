@@ -671,3 +671,13 @@ test('K-989 sameLvBattle condition is true only when both battlers have the same
     return out; })()`);
   assert.deepEqual(r, [true, false, false, true, 3000, true], JSON.stringify(r));
 });
+
+test('K-990 ctrl name list counts Spirits matching any of the names (BS04-052)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(() => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.spirits.length = 0;
+    const ids = Object.keys(BS.CARDS).filter(i => BS.CARDS[i].type === 'Spirit'); const pn = ids.find(i => BS.CARDS[i].name.includes('Pentan')); const em = ids.find(i => BS.CARDS[i].name.includes('Empereur'));
+    const mk = id => { const s = BS.mkInst(id); s.cores = 1; return s; }; const q = () => BS.fxIf(P, O, { ctrl: { n: 3, type: 'Spirit', name: ['Pentan', 'Empereur'] } }, {}); const out = [];
+    P.spirits.push(mk(pn), mk(em)); out.push(q()); P.spirits.push(mk(pn)); out.push(q());
+    const e = BS.CARDS['BS04-052'].effects[0]; out.push(e.flag, e.if.ctrl.name.length); return out; })()`);
+  assert.deepEqual(r, [false, true, 'DRAW_PLUS', 2], JSON.stringify(r));
+});
