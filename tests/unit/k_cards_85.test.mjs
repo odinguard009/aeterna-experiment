@@ -765,3 +765,13 @@ test('K-1000 match.redColorsGe: BS09-003 gives +2000 BP only to own Spirits with
     P.spirits.splice(0,1); const d = BS.bpOf(s1); G.step = 5; return [m1 - m0, s2 - s0]; })()`);
   assert.deepEqual(r, [2000, 0], JSON.stringify(r));
 });
+
+test('K-1001 OPP_CORES_TO_RESERVE eachPerNexus: BS44-022 sends 1 core plus 1 per own Nexus from one opposing Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.spirits.length = 0; O.spirits.length = 0; P.nexus.length = 0;
+    const ids = Object.keys(BS.CARDS).filter(i => BS.CARDS[i].type === 'Spirit' && i !== 'BS44-022'), nx = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Nexus');
+    const s = BS.mkInst('BS44-022'); s.cores = 3; P.spirits.push(s); P.nexus.push(BS.mkInst(nx), BS.mkInst(nx));
+    const t = BS.mkInst(ids[0]); t.cores = 6; O.spirits.push(t); G.turn = 'player'; const r0 = O.reserve.n;
+    await BS.fireFx(P, 'ATTACKS', s, {}); return [6 - t.cores, O.reserve.n - r0]; })()`);
+  assert.deepEqual(r, [3, 3], JSON.stringify(r));
+});

@@ -111,7 +111,7 @@ Object.assign(FX_ACTIONS, {
     } },
   /* send cores from opposing Spirits/Ultimates to the opposing Reserve (not a destruction; a Spirit left below its Lv1 cores is depleted).
      {targets:T, each:K}: up to T different Spirits lose up to K cores each; {total:N}: N cores one by one from any Spirits. drawPerDepleted: draw 1 for each Spirit depleted by this (Vaplus). */
-  OPP_CORES_TO_RESERVE: { chk: a => ((Number.isInteger(a.targets) && a.targets >= 1 && a.targets <= 3 && Number.isInteger(a.each) && a.each >= 0 && a.each <= 5) || (Number.isInteger(a.total) && a.total >= 1 && a.total <= 7) || a.perSource != null || a.allTargets === true) && (a.drawPerDepleted == null || typeof a.drawPerDepleted === 'boolean') && (a.costLe == null || (Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30)) && (a.perSource == null || ['own', 'oppColors', 'nexus', 'srcLv'].includes(a.perSource)) && (a.allTargets == null || (a.allTargets === true && Number.isInteger(a.each) && a.each >= 1 && a.each <= 5)) && (a.perMatch == null || (a.perSource === 'own' && typeof a.perMatch === 'object')),      // v196 costLe: "target an opposing Cost N or less Spirit"
+  OPP_CORES_TO_RESERVE: { chk: a => (a.eachPerNexus == null || (a.eachPerNexus === true && a.targets === 1 && a.each === 1)) && ((Number.isInteger(a.targets) && a.targets >= 1 && a.targets <= 3 && Number.isInteger(a.each) && a.each >= 0 && a.each <= 5) || (Number.isInteger(a.total) && a.total >= 1 && a.total <= 7) || a.perSource != null || a.allTargets === true) && (a.drawPerDepleted == null || typeof a.drawPerDepleted === 'boolean') && (a.costLe == null || (Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30)) && (a.perSource == null || ['own', 'oppColors', 'nexus', 'srcLv'].includes(a.perSource)) && (a.allTargets == null || (a.allTargets === true && Number.isInteger(a.each) && a.each >= 1 && a.each <= 5)) && (a.perMatch == null || (a.perSource === 'own' && typeof a.perMatch === 'object')),      // v196 costLe: "target an opposing Cost N or less Spirit"
     txt: a => a.total ? `send ${a.total} cores from any opposing Spirits/Ultimates to the Reserve` : `send ${a.each} core${a.each === 1 ? '' : 's'} ${a.targets > 1 ? 'each from ' + a.targets + ' opposing Spirits/Ultimates' : 'from an opposing Spirit/Ultimate'} to the Reserve${a.drawPerDepleted ? ', and draw a card for each depleted target' : ''}`,
     cands: (c, a) => c.opp.spirits.filter(t => t.cores > 0 && !fxImmune(c.opp, t) && (a == null || a.costLe == null || CARDS[t.id].cost <= a.costLe)),
     can: (c, a) => FX_ACTIONS.OPP_CORES_TO_RESERVE.cands(c, a).length > 0,
@@ -131,7 +131,7 @@ Object.assign(FX_ACTIONS, {
       } else {
         const L = FX_ACTIONS.OPP_CORES_TO_RESERVE.cands(c); if (!L.length) { c.ctx.did = false; return; }
         const T = await pickOppSpirits(c, L, a.targets, `✨ <b>${esc(_pn(c))}</b><br>Tap the opposing Spirit to send ${a.each} core${a.each === 1 ? '' : 's'} from (glowing).`);
-        for (const t of T) take(t, a.each);
+        for (const t of T) take(t, a.eachPerNexus ? 1 + c.p.nexus.length : a.each);      // v344 eachPerNexus: "one opposing Spirit; for each Nexus you control, +1 core"
       }
       if (!moved) { c.ctx.did = false; return; }
       checkDepletion(c.opp);
