@@ -382,3 +382,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v344 (Lane K): `OPP_CORES_TO_RESERVE` takes `eachPerNexus: true` with `targets: 1, each: 1` (one Spirit loses 1 core plus 1 per own Nexus, BS44-022).
 - v345 (Lane K): `VOID_TO_CARD` takes `perMatchSpirit` (to self: n cores per matching own Spirit, BS09-024).
 - v346 (Lane K): new action `SELF_CORE_REFRESH` ("By sending 1 core from this Spirit to your Trash, refresh this Spirit", BS17-024).
+- v347 (Lane K): `allHave` accepts `color` (all your cards are that colour, single-colour cards only); `TRASH_TO_RESERVE` accepts `n` (1..5, default all). BS15-039.

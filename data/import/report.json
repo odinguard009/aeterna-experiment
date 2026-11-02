@@ -1,10 +1,10 @@
 {
  "stats": {
-  "cards": 6545,
+  "cards": 6544,
   "per_saga": {
    "1": 485,
    "2": 267,
-   "3": 336,
+   "3": 335,
    "4": 324,
    "5": 610,
    "6": 338,
@@ -22,7 +22,7 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2161,
+  "skipped_curated": 2162,
   "nexus_levels_added": 674,
   "nexus_levels_missing": 43,
   "merged": 107,
@@ -760,6 +760,7 @@
   "BS15-025",
   "BS15-029",
   "BS15-037",
+  "BS15-039",
   "BS15-040",
   "BS15-046",
   "BS15-056",

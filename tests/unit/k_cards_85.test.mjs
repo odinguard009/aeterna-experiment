@@ -808,3 +808,13 @@ test('K-1004 BS16-022 gives a Void core to the Reserve only in an attack step; B
     return [main, att, h1, h2]; })()`);
   assert.deepEqual(r, [0, 1, false, true], JSON.stringify(r));
 });
+
+test('K-1005 BS15-039 sends two Trash cores to the Reserve at the opposing Start Step only while all your cards are Yellow', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player; P.spirits.length = 0; P.nexus.length = 0; G.p.opponent.spirits.length = 0; G.p.opponent.nexus.length = 0; G.turn = 'opponent';
+    const s = BS.mkInst('BS15-039'); s.cores = 3; P.spirits.push(s); P.trashCores.n = 5; const y = (BS.CARDS['BS15-039'].colors || [BS.CARDS['BS15-039'].symbol]).join();
+    const r0 = P.reserve.n; await BS.fireFx(P, 'OPP_START_STEP', null, {}); const on = [P.reserve.n - r0, P.trashCores.n];
+    const other = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit' && !(BS.CARDS[i].colors || [BS.CARDS[i].symbol]).includes('yellow'));
+    P.spirits.push(BS.mkInst(other)); await BS.fireFx(P, 'OPP_START_STEP', null, {}); return [y, on, P.reserve.n - r0]; })()`);
+  assert.deepEqual(r, ['yellow', [2, 3], 2], JSON.stringify(r));
+});

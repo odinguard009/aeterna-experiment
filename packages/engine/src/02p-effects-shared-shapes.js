@@ -41,15 +41,15 @@ function cardTeams(k) {
   if (/This card has every team/.test(tx)) L.includes = () => true;      // v0.205 "This card has every team" (Diva On Stage): matches any team query
   return L;
 }
-function allHaveShapeOK(q) { return !!q && typeof q === 'object' && (q.family != null || q.familyAny != null || q.team != null || q.costIn != null)
+function allHaveShapeOK(q) { return !!q && typeof q === 'object' && (q.family != null || q.familyAny != null || q.team != null || q.costIn != null || q.color != null)
   && (q.family == null || typeof q.family === 'string') && (q.familyAny == null || (Array.isArray(q.familyAny) && q.familyAny.length > 0 && q.familyAny.every(x => typeof x === 'string' && x))) && (q.team == null || typeof q.team === 'string')
   && (q.costIn == null || (Array.isArray(q.costIn) && q.costIn.length > 0 && q.costIn.every(n => Number.isInteger(n) && n >= 0 && n <= 30)))
-  && (q.spiritsOnly == null || q.spiritsOnly === true) && (q.nexusOnly == null || (q.nexusOnly === true && !q.spiritsOnly)); }
+  && (q.color == null || ['red','purple','green','white','yellow','blue'].includes(q.color)) && (q.spiritsOnly == null || q.spiritsOnly === true) && (q.nexusOnly == null || (q.nexusOnly === true && !q.spiritsOnly)); }
 function allHaveOK(owner, q) {
   if (!allHaveShapeOK(q)) return fxUnknown('condition', 'allHave');
   const L = q.spiritsOnly ? owner.spirits : q.nexusOnly ? owner.nexus : fieldList(owner);
   return L.length > 0 && L.every(f => { const k = CARDS[f.id];
-    return (!q.family || (k.families || []).includes(q.family)) && (!q.familyAny || q.familyAny.some(x => (k.families || []).includes(x))) && (!q.team || cardTeams(k).includes(q.team)) && (!q.costIn || q.costIn.includes(k.cost)); });
+    return (!q.family || (k.families || []).includes(q.family)) && (!q.familyAny || q.familyAny.some(x => (k.families || []).includes(x))) && (!q.team || cardTeams(k).includes(q.team)) && (!q.costIn || q.costIn.includes(k.cost)) && (!q.color || (k.colors || [k.symbol]).every(x => x === q.color)); });
 }
 (() => {
   const E = FX_ACTIONS.EXHAUST_OPP, eChk = E.chk, eCands = E.cands, eTxt = E.txt;
