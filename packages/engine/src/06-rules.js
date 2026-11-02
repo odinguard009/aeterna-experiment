@@ -18,7 +18,21 @@ const isUlt = i => !!i && !!CARDS[i.id] && CARDS[i.id].type === 'Ultimate';
 const lvBase = card => (card && card.lvBase) || 1;
 const lvNo = i => lvIndex(i) + lvBase(CARDS[i.id]);
 /* Summon condition (Ultimates, {{sumcon|...}}): checked for every summon or Advent of the card; house reading v0.46 (manual page not read this session) */
-const summonOK = (p, card) => !card || !card.summonIf || (!!G && fxIf(p, G.p[other(p.key)], card.summonIf, null));
+const summonOK = (p, card) => !card || !card.summonIf || (!!G && (fxIf(p, G.p[other(p.key)], card.summonIf, null) || ignoreSumCond(p, card)));
+/* v379 STATIC IGNORE_SUMMON_COND: "ignore the summon conditions of all your <match> Ultimate cards" (a source on your Field at an active level) */
+function ignoreSumCond(p, card) {
+  const opp = G.p[other(p.key)];
+  for (const src of fieldList(p)) { const L = lvNo(src);
+    for (const { e } of fxEntries(src)) if (e.trigger === 'STATIC' && e.flag === 'IGNORE_SUMMON_COND' && (!e.lv || e.lv.includes(L)) && fxMatch(card, e.match) && fxIf(p, opp, e.if, { selfInst: src })) return true; }
+  return false;
+}
+/* v379 STATIC ULT_SYMBOL_AS: "your Ultimate symbols are also treated as <colours> symbols" (each symbol of a matching Ultimate gains those attributes) */
+function ultSymbolExtra(p, card) {
+  const out = [], opp = G.p[other(p.key)];
+  for (const src of fieldList(p)) { const L = lvNo(src);
+    for (const { e } of fxEntries(src)) if (e.trigger === 'STATIC' && e.flag === 'ULT_SYMBOL_AS' && (!e.lv || e.lv.includes(L)) && (!e.match || fxMatch(card, e.match)) && fxIf(p, opp, e.if, { selfInst: src })) for (const c of e.colors) if (!out.includes(c)) out.push(c); }
+  return out;
+}
 const spare = f => totalCores(f) - minCores(CARDS[f.id]);
 const coresAvailable = p => reserveTotal(p) + fieldList(p).reduce((s, i) => s + freeTotal(i), 0);
 /* Official rule (Eternal manual): the Lv of a Contract Grandwalker Nexus ("...Contractor ...") is decided by your Count, not by the cores on it. levels[].cores is then the Count needed. */
@@ -173,7 +187,7 @@ function extraSymbolsOf(owner, i) {
 /* symbols usable for cost reduction: Field cards only (not Soul State, p. 55, unless the card being paid says so; not the Burst Area, p. 49) */
 function fieldSymbols(p, withSoulState, withStandby) {     // withStandby: cost reduction also counts cards waiting in Standby (v0.57.0)
   const out = [];
-  for (const i of fieldList(p).concat(withSoulState ? p.soulState : [], withStandby ? (p.standby || []) : [])) for (const a of symbolAttrs(CARDS[i.id]).concat(i.brave ? symbolAttrs(CARDS[i.brave.id]) : [], symTurnCols(i).map(k => [k]), fieldList(p).includes(i) ? extraSymbolsOf(p, i) : [])) out.push(a);
+  for (const i of fieldList(p).concat(withSoulState ? p.soulState : [], withStandby ? (p.standby || []) : [])) for (const a of (CARDS[i.id].type === 'Ultimate' && G ? symbolAttrs(CARDS[i.id]).map(a => a.concat(ultSymbolExtra(p, CARDS[i.id]).filter(c => !a.includes(c)))) : symbolAttrs(CARDS[i.id])).concat(i.brave ? symbolAttrs(CARDS[i.brave.id]) : [], symTurnCols(i).map(k => [k]), fieldList(p).includes(i) ? extraSymbolsOf(p, i) : [])) out.push(a);
   return out;
 }
 function symbolsOn(p, withSoulState) {        // count per attribute (a two-attribute symbol counts in both)

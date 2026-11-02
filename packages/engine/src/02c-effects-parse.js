@@ -156,6 +156,14 @@ function parseEffects(arr) {
         if (!Number.isInteger(e.n) || e.n < 1000 || e.n > 5000 || e.n % 1000 !== 0) return { error: 'BP_VIA_SHAMAN needs a whole-number "n" (1000-5000, step 1000)' };
         o.n = e.n;
       }
+      if (e.flag === 'IGNORE_SUMMON_COND') {                      // v379 "ignore the summon conditions of all your <match> Ultimate cards"
+        if (!hasMatch(e.match)) return { error: 'IGNORE_SUMMON_COND needs a "match"' };
+        o.to = 'self';
+      }
+      if (e.flag === 'ULT_SYMBOL_AS') {                           // v379 "all your Ultimate symbols are also treated as Red/Blue symbols"
+        if (!Array.isArray(e.colors) || !e.colors.length || e.colors.length > 3 || !e.colors.every(c => COLORS.includes(c))) return { error: 'ULT_SYMBOL_AS needs "colors" (1-3 of the six colours)' };
+        o.colors = e.colors.slice(); o.to = 'self';
+      }
       if (e.flag === 'EXTRA_SYMBOL') {                            // v193 "this Nexus gains an extra Blue symbol" (a conditional extra Field symbol)
         if (!COLORS.includes(e.color)) return { error: 'EXTRA_SYMBOL needs a "color"' };
         o.color = e.color; o.n = Number.isInteger(e.n) && e.n >= 1 && e.n <= 3 ? e.n : 1;

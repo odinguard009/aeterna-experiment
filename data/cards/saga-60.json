@@ -30780,14 +30780,60 @@
   "image": "SD28-007.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "{{Sumcon| You control one or more Cost 1 or higher Spirits}}",
-   "[LV3][LV4] Ignore the summon conditions of all your Green Ultimate cards. The Ultimate symbols of all your \"Shellman\" family Ultimates are also treated as Green symbols.",
-   "Ultimate Trigger [LV4] (When Attacks) When Ultimate-Trigger hits, exhaust two opposing Spirits. utb"
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "IGNORE_SUMMON_COND",
+    "match": {
+     "type": "Ultimate",
+     "color": [
+      "green"
+     ]
+    },
+    "lv": [
+     3,
+     4
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "ULT_SYMBOL_AS",
+    "colors": [
+     "green"
+    ],
+    "lv": [
+     3,
+     4
+    ],
+    "match": {
+     "type": "Ultimate",
+     "family": [
+      "Shellman"
+     ]
+    }
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     4
+    ],
+    "actions": [
+     {
+      "do": "ULT_TRIGGER"
+     },
+     {
+      "do": "EXHAUST_OPP",
+      "n": 2,
+      "if": {
+       "utHit": true
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD28-008",

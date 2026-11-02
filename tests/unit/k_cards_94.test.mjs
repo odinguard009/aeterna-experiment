@@ -97,3 +97,18 @@ test('K-1135 SD25-002 carries the block and no-destroy flags and the White colou
   const r = await page.evaluate(`(() => { BS.testSetup(); const c = BS.CARDS['SD25-002']; return { impl: c.implemented === true, colors: c.colors, flags: c.effects.map(e => e.flag) }; })()`);
   assert.equal(r.impl, true, JSON.stringify(r)); assert.deepEqual(r.colors, ['red', 'white']); assert.deepEqual(r.flags, ['BLOCK_EXHAUSTED', 'NO_DESTROY_OPP']);
 });
+
+test('K-1136 IGNORE_SUMMON_COND lets a Cost 7 Ultimate be summoned without its condition', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(() => { BS.testSetup(); const G = BS.G, P = G.p.player; const ult = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Ultimate' && BS.CARDS[k].summonIf && BS.CARDS[k].cost <= 7 && k !== 'BS26-046');
+    const before = BS.summonOK(P, BS.CARDS[ult]); const m = BS.mkInst('BS26-046'); m.cores = 3; P.spirits.push(m); const after = BS.summonOK(P, BS.CARDS[ult]);
+    return { ult, before, after, lv: BS.lvNo(m) }; })()`);
+  assert.equal(r.before, false, JSON.stringify(r)); assert.equal(r.after, true, JSON.stringify(r));
+});
+
+test('K-1137 ULT_SYMBOL_AS makes Ultimate symbols also count as the printed colours', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(() => { BS.testSetup(); const G = BS.G, P = G.p.player; G.step = 2; const m = BS.mkInst('BS26-046'); m.cores = 3; P.spirits.push(m);
+    return { s: BS.symbolsOn(P), lv: BS.lvNo(m), isU: BS.CARDS['BS26-046'].type }; })()`);
+  assert.ok(r.s.red >= 1 && r.s.ultimate >= 1, JSON.stringify(r));
+});

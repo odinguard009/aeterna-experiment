@@ -8682,19 +8682,11 @@
   "T_ALLY_SUMMONED",
   "T_SUMMONED"
  ],
- "BS26-046": [
-  "C_LEVEL",
-  "K_ULTIMATE"
- ],
  "BS26-047": [
   "A_REFRESH",
   "C_LEVEL",
   "K_ULTIMATE",
   "T_DESTROYED"
- ],
- "BS26-048": [
-  "C_LEVEL",
-  "K_ULTIMATE"
  ],
  "BS26-049": [
   "A_REFRESH",
@@ -8702,10 +8694,6 @@
   "C_LEVEL",
   "K_ULTIMATE",
   "T_BLOCKS"
- ],
- "BS26-050": [
-  "C_LEVEL",
-  "K_ULTIMATE"
  ],
  "BS26-051": [
   "A_VOID",
@@ -9745,10 +9733,6 @@
   "M_OPTIONAL",
   "T_ATTACKS"
  ],
- "BS28-063": [
-  "C_LEVEL",
-  "K_ULTIMATE"
- ],
  "BS28-064": [],
  "BS28-065": [
   "C_LEVEL",
@@ -10693,13 +10677,6 @@
   "A_VOID",
   "C_LEVEL",
   "C_LIFE",
-  "K_ULTIMATE",
-  "T_ATTACKS"
- ],
- "BS30-051": [
-  "A_RETURN_TRASH",
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
   "K_ULTIMATE",
   "T_ATTACKS"
  ],
@@ -55835,12 +55812,6 @@
   "M_OPTIONAL",
   "T_ATTACKS",
   "T_SUMMONED"
- ],
- "SD28-007": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "T_ATTACKS"
  ],
  "SD28-008": [
   "A_EXHAUST",

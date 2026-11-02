@@ -11870,12 +11870,34 @@
       }
      }
     ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "IGNORE_SUMMON_COND",
+    "match": {
+     "type": "Ultimate",
+     "costLe": 7
+    },
+    "lv": [
+     3,
+     4,
+     5
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "ULT_SYMBOL_AS",
+    "colors": [
+     "red"
+    ],
+    "lv": [
+     3,
+     4,
+     5
+    ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV3][LV4][LV5] Ignore the summon conditions of all your originally Cost 7 or less Ultimate cards. All your Ultimate symbols are also treated as Red symbols."
-  ],
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "rcode": "U"
  },
@@ -11983,12 +12005,32 @@
       }
      }
     ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "IGNORE_SUMMON_COND",
+    "match": {
+     "type": "Ultimate",
+     "costLe": 7
+    },
+    "lv": [
+     3,
+     4
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "ULT_SYMBOL_AS",
+    "colors": [
+     "green"
+    ],
+    "lv": [
+     3,
+     4
+    ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV3][LV4] Ignore the summon conditions of all your originally Cost 7 or less Ultimate cards. All your Ultimate symbols are also treated as Green symbols."
-  ],
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "rcode": "U"
  },
@@ -12105,12 +12147,34 @@
       }
      }
     ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "IGNORE_SUMMON_COND",
+    "match": {
+     "type": "Ultimate",
+     "costLe": 7
+    },
+    "lv": [
+     3,
+     4,
+     5
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "ULT_SYMBOL_AS",
+    "colors": [
+     "yellow"
+    ],
+    "lv": [
+     3,
+     4,
+     5
+    ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV3][LV4][LV5] Ignore the summon conditions of all your originally Cost 7 or less Ultimate cards. All your Ultimate symbols are also treated as Yellow symbols."
-  ],
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "rcode": "U"
  },
@@ -20767,12 +20831,24 @@
       }
      }
     ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "ULT_SYMBOL_AS",
+    "colors": [
+     "red",
+     "blue"
+    ],
+    "lv": [
+     3,
+     4
+    ],
+    "if": {
+     "step": "MAIN"
+    }
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV3][LV4] (Your Main Step) All your Ultimate symbols are also treated as Red/Blue symbols."
-  ],
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "rcode": "U"
  },
@@ -28518,13 +28594,67 @@
     "costGe": 1
    }
   },
-  "fxComplete": false,
-  "residual": [
-   "[LV3][LV4][LV5] Ignore the summon conditions of all your \"Fusion Beast\" family Ultimate cards. The Ultimate symbols of all your Blue Ultimates are also treated as Blue symbols.",
-   "Ultimate Trigger [LV4][LV5] (When Attacks) When Ultimate Trigger hits, return two Nexus cards from your Trash to the Hand. utb"
-  ],
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "U"
+  "rcode": "U",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "IGNORE_SUMMON_COND",
+    "match": {
+     "type": "Ultimate",
+     "family": [
+      "Fusion Beast"
+     ]
+    },
+    "lv": [
+     3,
+     4,
+     5
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "ULT_SYMBOL_AS",
+    "colors": [
+     "blue"
+    ],
+    "lv": [
+     3,
+     4,
+     5
+    ],
+    "match": {
+     "type": "Ultimate",
+     "color": [
+      "blue"
+     ]
+    }
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     4,
+     5
+    ],
+    "actions": [
+     {
+      "do": "ULT_TRIGGER"
+     },
+     {
+      "do": "RETURN_TRASH",
+      "n": 2,
+      "anyType": true,
+      "match": {
+       "type": "Nexus"
+      },
+      "if": {
+       "utHit": true
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS30-052",
