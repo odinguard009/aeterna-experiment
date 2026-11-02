@@ -157,3 +157,14 @@ test('K-1141 BS38-010 discards a card to destroy a 1-core Spirit; BS04-095 Main 
     return { c: s.cores, impl: BS.CARDS['BS04-095'].implemented === true }; })()`);
   assert.deepEqual([r.impl, r.c], [true, 2], JSON.stringify(r));
 });
+
+test('K-1142 BS35-058 destroys Cost 4 or less by discarding, else Cost 2 or less; BS35-060 wipes Cost 3 or less, or opposing Cost 10 or less with an empty Hand', async () => {
+  const { page } = await sharedBoard();
+  const mk = (cost) => `{ const s = BS.mkInst('BS01-001'); s.cores = 1; s.cost = ${cost}; O.spirits.push(s); }`;
+  let r = await page.evaluate(run('BS35-060', 'SUMMONED', false, `P.hand = [BS.mkInst('BS01-001')]; const lo = BS.mkInst('BS01-001'); lo.cores = 1; O.spirits.push(lo); const hi = BS.mkInst('BS01-018'); hi.cores = 1; O.spirits.push(hi);`, `{ n: O.spirits.length, cost: O.spirits.map(s => BS.CARDS[s.id].cost) }`));
+  assert.equal(r.impl, true, JSON.stringify(r)); assert.ok(r.n < 2, JSON.stringify(r));
+  r = await page.evaluate(run('BS35-060', 'SUMMONED', false, `P.hand = []; const hi = BS.mkInst('BS01-018'); hi.cores = 1; O.spirits.push(hi); const hi2 = BS.mkInst('BS01-001'); hi2.cores = 1; O.spirits.push(hi2);`, `{ n: O.spirits.length }`));
+  assert.equal(r.n, 0, JSON.stringify(r));
+  r = await page.evaluate(run('BS35-058', 'ATTACKS', false, `P.hand = [BS.mkInst('BS01-001')]; const lo = BS.mkInst('BS01-001'); lo.cores = 1; O.spirits.push(lo);`, `{ n: O.spirits.length, h: P.hand.length }`));
+  assert.deepEqual([r.impl, r.n, r.h], [true, 0, 0], JSON.stringify(r));
+});

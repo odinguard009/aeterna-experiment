@@ -13261,19 +13261,8 @@
   "M_OPTIONAL",
   "T_ATTACKS"
  ],
- "BS35-058": [
-  "C_LEVEL",
-  "M_BY_DOING",
-  "M_REPLACEMENT",
-  "T_ATTACKS"
- ],
  "BS35-059": [
   "C_LEVEL"
- ],
- "BS35-060": [
-  "C_LEVEL",
-  "M_REPLACEMENT",
-  "T_SUMMONED"
  ],
  "BS35-062": [
   "C_LEVEL",
