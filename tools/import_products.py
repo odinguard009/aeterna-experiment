@@ -5,7 +5,7 @@ library cards (`fxComplete: false`, `residual`), from the official-site detail d
 Reprints of a card already in the library are clones of it (new id, same stats and effects). New cards carry the
 Japanese name until an English name is added to `names` in the source file. Symbols are not on the official page: 1 for
 Spirits/Ultimates, 0 otherwise (note says so)."""
-import json, glob, os, re
+import json, glob, os, re, unicodedata
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 SRC = json.load(open(os.path.join(ROOT, 'data/sources/official-extra.json'), encoding='utf-8'))
 base = {}
@@ -50,7 +50,7 @@ for cid, r in sorted(SRC['cards'].items()):
          'symbols': 1 if r['type'] in ('Spirit', 'Ultimate') else 0, 'levels': levels,
          'families': [x for x in re.split(r'[・/]', r.get('familiesJp') or '') if x], 'text': text,
          'image': cid + '.png', 'block': 'P', 'saga': 60, 'fxComplete': False, 'residual': chunks(r['textJp']) or ['(no ability)'],
-         'note': NOTE, 'rcode': r.get('rarity') or 'C'}
+         'note': NOTE, 'rcode': unicodedata.normalize('NFKC', r.get('rarity') or 'C')}
     if r['type'] == 'Brave' and r.get('braveBp'):
         c['brave'] = {'bp': r['braveBp'], 'costGe': 3}
     out.append(c)

@@ -35848,7 +35848,7 @@
    "［Lv2-Lv3］『このスピリットのアタック時』 BP5000以下の相手のスピリット1体を破壊する。系統：「仮面」を持つ自分のスピリット1体につき、この「BP破壊効果」の上限を+1000する。"
   ],
   "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
-  "rcode": "Ｍ"
+  "rcode": "M"
  },
  {
   "id": "SD42-011",
@@ -38058,7 +38058,7 @@
    "［Lv2-Lv3：フラッシュ］『このスピリットのアタック時』 このスピリットの煌臨元カード1枚を破棄することで、このスピリットは回復する。"
   ],
   "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
-  "rcode": "Ｘ"
+  "rcode": "X"
  },
  {
   "id": "SD46-001",
