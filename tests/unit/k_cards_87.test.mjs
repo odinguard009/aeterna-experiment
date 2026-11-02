@@ -258,3 +258,19 @@ test('K-889 BS68-034 summoned: Void core to itself; counter +1 only at five or l
   const lo = await run(5), hi = await run(6), r = JSON.stringify([lo, hi]);
   assert.equal(lo.cnt, 6, r); assert.equal(hi.cnt, 6, r); assert.equal(lo.exh, false, r); assert.equal(hi.exh, false, r);
 });
+
+test('K-890 BS70-005: +1000 BP per counter; Lv3 start of the Attack Step gives every "Glow" Spirit a Red symbol', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player; G.active = P.key; P.cpu = true; P.spirits.length = 0;
+    const s = BS.mkInst('BS70-005'); s.cores = 4; P.spirits.push(s);
+    const gid = Object.keys(BS.CARDS).find(id => BS.CARDS[id].type === 'Spirit' && /glow/i.test(BS.CARDS[id].name));
+    const g = BS.mkInst(gid); g.cores = 1; P.spirits.push(g);
+    P.count = 0; const b0 = BS.bpOf(s); P.count = 4; const b4 = BS.bpOf(s);
+    await BS.fireFx(P, 'START_ATTACK', s, { subject: s });
+    return { d: b4 - b0, gid, sym: g.symTurn ? g.symTurn.cols : null, own: s.symTurn ? s.symTurn.cols : null };
+  });
+  const m = JSON.stringify(r);
+  assert.equal(r.d, 4000, m); assert.deepEqual(r.sym, ['red'], m);
+});

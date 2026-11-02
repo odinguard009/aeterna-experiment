@@ -243,6 +243,7 @@ function parseEffects(arr) {
       if (e.perCores === true) { if (o.to !== 'self' || o.per) return { error: 'STATIC "perCores" needs to: self and no per' }; o.perCores = true; }
       if (e.perSymbolColors === true) { if (o.to !== 'self' || o.per) return { error: 'STATIC "perSymbolColors" needs to: self and no per' }; o.perSymbolColors = true; }      // v232 "for each symbol colour you have"      // v0.185 "This Spirit gains +N BP for each core on it."
       if (e.perReserve === true) { if (o.to !== 'self' || o.per || o.perHand) return { error: 'STATIC "perReserve" needs to: self and no per' }; o.perReserve = true; }      // v0.195 "+N BP for each core in your Reserve"
+      if (e.perCounter === true) { if (o.to !== 'self' || o.per) return { error: 'STATIC "perCounter" needs to: self and no per' }; o.perCounter = true; }      // v365 "This Spirit gains +N BP for each counter you have."
       if (e.perHand === true) { if (o.to !== 'self' || o.per) return { error: 'STATIC "perHand" needs to: self and no per' }; o.perHand = true; }      // v0.180 "This Spirit gains +N BP for each card in your Hand."
     } else {
       if (!Array.isArray(e.actions) || !e.actions.length || e.actions.length > 6) return { error: 'every triggered effect needs 1-6 "actions"' };

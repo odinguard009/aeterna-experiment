@@ -27,11 +27,11 @@
 - [ ] Done when the note has one originality ledger table ("keep" vs "do differently") per source.
 
 ### Task 2: Shared slice kit
-**Files:** Create `docs/design/slices/kit.js` data (zones, sample cards) inlined into each slice.
+**Files:** Create the shared kit data (kit.js idea, not kept as a file) (zones, sample cards) inlined into each slice.
 - [ ] Done when the zone list and 6 sample cards exist once and are pasted identically into all three files.
 
 ### Tasks 3-5: Directions
-**Files:** Create `docs/design/slices/direction-a.html`, `direction-b.html`, `direction-c.html`
+**Files:** Create `docs/design/slices/direction-a.html`, `docs/design/slices/direction-b.html`, `docs/design/slices/direction-c.html`
 - [ ] Each: Lobby home screen, Battle screen, tap NEXT or an attacker to play attack, block prompt, Life shatter.
 - [ ] Done when each opens at 375 px with no horizontal scroll and the distinctness test passes (swap palettes: still different).
 

@@ -400,3 +400,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v362 (Lane K): match.noBurst (card without a printed {{Burst|...}} effect), "add a Magic card without Burst effects" via REVEAL_PICK. Card: BS31-053.
 - v363 (Lane K): REVEAL_PICK (plain add) sets ctx.picked, so pickedFamily works after an add ("if a Birthgem Deity is added, draw"). Card: BS42-050.
 - v364 (Lane K): condition `mirageColor` (array of colors): "if you have a Purple/White Mirage set" (the set Mirage card has any listed color). Cards: BS58-037.
+- v365 (Lane K): STATIC `perCounter` ("This Spirit gains +N BP for each counter you have"; to: self). Card: BS70-005.

@@ -26,7 +26,7 @@ FX_STRICT, FX_WARNED, fxUnknown, FX_COND_KEYS, FX_TRIGGERS, FX_TRIGGER_TEXT, BR_
 ## packages/engine/src/02b-effects-actions.js (144 lines, ~5.9k tokens)
 FX_ACTIONS
 
-## packages/engine/src/02c-effects-parse.js (293 lines, ~9.7k tokens)
+## packages/engine/src/02c-effects-parse.js (294 lines, ~9.8k tokens)
 canPlaceFree, canPlaceBraveFree, summonFree, canPlacePaid, canPlaceBy, summonPaid, tributePay, summonBy, fxDescribe, BURST_WHEN, parseCond, parseActionList, parseBurst, parseEffects
 
 ## packages/engine/src/02d-effects-resolve.js (399 lines, ~8k tokens)
@@ -41,7 +41,7 @@ _pn
 ## packages/engine/src/02g-effects-attack-lock.js (95 lines, ~2.2k tokens) — v0.40 YELLOW (Contractor Indra / Thunderive): "can't attack/block" (permanent flag noAB), drawing from the bottom of the Deck, discarding the whole Hand,
 
 
-## packages/engine/src/02h-effects-magic.js (192 lines, ~4.7k tokens) — v0.41 MAGIC effect types (Dana Draw, Whirling Tide, Magic Bullet, Hades Disaster, Thunder Counter, Lightning Tempest).
+## packages/engine/src/02h-effects-magic.js (193 lines, ~4.8k tokens) — v0.41 MAGIC effect types (Dana Draw, Whirling Tide, Magic Bullet, Hades Disaster, Thunder Counter, Lightning Tempest).
 endAttackLocked, _matchTxt, gwCorePlus, sentToTrashFx, abTaxOn, abTaxOK, payAbTax, oppAttackHandFx, braveSummonedFx, braveSummonedEvs
 
 ## packages/engine/src/02i-effects-keywords.js (72 lines, ~1.4k tokens) — v0.49 KEYWORD EFFECTS as engine data (session D, part 1): High Speed, Crush, Holy Life.

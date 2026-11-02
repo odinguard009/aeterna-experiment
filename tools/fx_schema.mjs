@@ -9,7 +9,7 @@ import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-export const SCHEMA_VERSION = 364;
+export const SCHEMA_VERSION = 365;
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = join(ROOT, 'packages/engine/src');
 export const SCHEMA_PATH = join(ROOT, 'packages/engine/fx-schema.json');

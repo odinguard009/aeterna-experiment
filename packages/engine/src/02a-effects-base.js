@@ -375,7 +375,7 @@ function staticBp(i) {
       if (e.fightingOnly && G.attacker !== i && G.blocker !== i) continue;      // v0.168 "attacking/blocking Spirits"
       if (!fxIf(o, opp, e.if, { selfInst: i, attacker: G.attacker, blocker: G.blocker })) continue;      // v229 ctx for "While ... on this Spirit" style conditions in static BP
       if (e.noStack) { const k = CARDS[src.id].name + ':' + e.bp + ':' + JSON.stringify(e.match || null); if (seenNS.has(k)) continue; seenNS.add(k); }      // v0.168 (Can't Stack): one copy counts
-      sum += e.perHand ? e.bp * o.hand.length : e.perReserve ? e.bp * o.reserve.n : e.perCores ? e.bp * (i.cores || 0) : e.perSymbolColors ? e.bp * Object.values(symbolsOn(o)).filter(Boolean).length : e.per ? e.bp * (perCount(o, e.per, opp) - (e.besides && perCount({ spirits: [src], nexus: [src] }, e.per) ? 1 : 0)) : e.bp;      // v0.72 "For each X you control, this Spirit gains +N BP" (per)
+      sum += e.perCounter ? e.bp * (o.count || 0) : e.perHand ? e.bp * o.hand.length : e.perReserve ? e.bp * o.reserve.n : e.perCores ? e.bp * (i.cores || 0) : e.perSymbolColors ? e.bp * Object.values(symbolsOn(o)).filter(Boolean).length : e.per ? e.bp * (perCount(o, e.per, opp) - (e.besides && perCount({ spirits: [src], nexus: [src] }, e.per) ? 1 : 0)) : e.bp;      // v0.72 "For each X you control, this Spirit gains +N BP" (per)
     }
   }
   return sum;
