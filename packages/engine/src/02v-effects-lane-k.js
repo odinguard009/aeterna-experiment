@@ -445,4 +445,18 @@ FX_ACTIONS.NEXUS_DESTROY_FOR_SPIRITS = {
     checkDepletion(c.opp); c.ctx.did = true; io.view({ type: 'board' });
   } };
 
+/* v346 SELF_CORE_REFRESH: "By sending 1 core from this Spirit to your Trash, refresh this Spirit." (cost = one core of this Spirit; ctx.did = false when it is not exhausted or has no core; the CPU only pays while the Spirit keeps its current level) */
+FX_ACTIONS.SELF_CORE_REFRESH = {
+  chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
+  txt: () => 'send a core from this Spirit to your Trash to refresh it',
+  can: c => !!c.src && c.p.spirits.includes(c.src) && c.src.exhausted && c.src.cores > 0,
+  run: async c => {
+    const s = c.src;
+    if (!s || !c.p.spirits.includes(s) || !s.exhausted || s.cores < 1 || (c.p.cpu && lvIndex(s) > 0 && s.cores - 1 < CARDS[s.id].levels[lvIndex(s)].cores)) { c.ctx.did = false; return; }
+    const m = Math.min(1, s.cores, coreTakeCap(c.p, s, 1)); if (!m) { c.ctx.did = false; return; }
+    coreEvN(c.p, s.uid, 'trash', m, false); s.cores -= m; c.p.trashCores.n += m;
+    log(`${CARDS[s.id].name}: 1 core goes to the Trash.`);
+    if (!c.p.spirits.includes(s)) return;
+    refreshOne(s); log(`${CARDS[s.id].name} is refreshed.`); await fireFx(c.p, 'REFRESHED', s, {});
+  } };
 wrapImmunity(Object.values(FX_ACTIONS));   // the actions above are defined after 02k: LO01

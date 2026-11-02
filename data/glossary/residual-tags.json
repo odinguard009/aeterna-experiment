@@ -4986,11 +4986,6 @@
   "T_ALLY_BLOCKED",
   "T_ATTACKS"
  ],
- "BS17-024": [
-  "A_REFRESH",
-  "C_LEVEL",
-  "M_BY_DOING"
- ],
  "BS17-025": [
   "A_EXHAUST",
   "A_REFRESH",

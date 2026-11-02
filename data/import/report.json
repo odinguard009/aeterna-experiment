@@ -1,10 +1,10 @@
 {
  "stats": {
-  "cards": 6548,
+  "cards": 6547,
   "per_saga": {
    "1": 485,
    "2": 267,
-   "3": 338,
+   "3": 337,
    "4": 324,
    "5": 610,
    "6": 338,
@@ -22,7 +22,7 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2158,
+  "skipped_curated": 2159,
   "nexus_levels_added": 674,
   "nexus_levels_missing": 43,
   "merged": 107,
@@ -806,6 +806,7 @@
   "BS17-019",
   "BS17-020",
   "BS17-022",
+  "BS17-024",
   "BS17-027",
   "BS17-028",
   "BS17-030",

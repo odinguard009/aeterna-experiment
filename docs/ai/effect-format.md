@@ -381,3 +381,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v343 (Lane K): `match.redColorsGe` (cost reduction symbols of N or more different colors, BS09-003).
 - v344 (Lane K): `OPP_CORES_TO_RESERVE` takes `eachPerNexus: true` with `targets: 1, each: 1` (one Spirit loses 1 core plus 1 per own Nexus, BS44-022).
 - v345 (Lane K): `VOID_TO_CARD` takes `perMatchSpirit` (to self: n cores per matching own Spirit, BS09-024).
+- v346 (Lane K): new action `SELF_CORE_REFRESH` ("By sending 1 core from this Spirit to your Trash, refresh this Spirit", BS17-024).

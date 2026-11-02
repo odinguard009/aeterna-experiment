@@ -785,3 +785,13 @@ test('K-1002 VOID_TO_CARD perMatchSpirit: BS09-024 adds one core per matching Be
     await BS.fireFx(P, 'SUMMONED', s, {}); return [s.cores - c0]; })()`);
   assert.deepEqual(r, [2], JSON.stringify(r));
 });
+
+test('K-1003 SELF_CORE_REFRESH: BS17-024 pays one of its cores to refresh itself, only while exhausted', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player; P.spirits.length = 0;
+    const s = BS.mkInst('BS17-024'); s.cores = BS.CARDS['BS17-024'].levels[1].cores + 1; P.spirits.push(s); G.turn = 'player'; P.cpu = true;
+    const run = () => BS.FX_ACTIONS.SELF_CORE_REFRESH.run({ p: P, opp: G.p.opponent, src: s, ctx: {} }, { do: 'SELF_CORE_REFRESH' });
+    const ctx0 = { did: true }; s.exhausted = false; const c0 = s.cores; await run(); const notEx = [s.cores - c0, s.exhausted];
+    s.exhausted = true; await run(); return [notEx, s.cores - c0, s.exhausted]; })()`);
+  assert.deepEqual(r, [[0, false], -1, false], JSON.stringify(r));
+});
