@@ -6401,9 +6401,6 @@
   "K_RUSH",
   "T_BLOCKS"
  ],
- "BS21-045": [
-  "C_LEVEL"
- ],
  "BS21-048": [
   "A_REFRESH",
   "C_LEVEL",
@@ -9821,10 +9818,6 @@
   "A_BP_PLUS",
   "A_EXHAUST",
   "C_LEVEL"
- ],
- "BS28-039": [
-  "C_LEVEL",
-  "K_ULTIMATE"
  ],
  "BS28-040": [
   "A_EXHAUST",

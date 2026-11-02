@@ -836,3 +836,17 @@ test('K-1007 MILL_OPP perMatchSpirit: BS40-058 mills one opposing card per Roari
     await BS.fireFx(P, 'DESTROYED', t, { subject: t, byOpp: true }); return [ra.length, d0 - O.deck.length, O.trash.length - t0]; })()`);
   assert.deepEqual(r, [2, 2, 2], JSON.stringify(r));
 });
+
+test('K-1008 UNBLOCKABLE_LOW match/blockerType: BS28-039 Pentan attackers dodge Ultimate blockers, BS21-045 Astral Soul attackers dodge 0 BP blockers', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.spirits.length = 0; O.spirits.length = 0; G.turn = 'player'; G.step = 5; G.active = P.key;
+    const ult = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Ultimate'), sp = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit' && !/Pentan/.test(BS.CARDS[i].name) && !(BS.CARDS[i].families || []).includes('Astral Soul'));
+    const pen = BS.mkInst('BS28-039'); pen.cores = 3; P.spirits.push(pen); const other = BS.mkInst(sp); other.cores = 3; P.spirits.push(other);
+    const u = BS.mkInst(ult); u.cores = 3; const n = BS.mkInst(sp); n.cores = 3; O.spirits.push(u, n);
+    const a = [BS.unblockableLow(P, pen, u), BS.unblockableLow(P, pen, n), BS.unblockableLow(P, other, u)];
+    P.spirits.length = 0; const as = Object.keys(BS.CARDS).find(i => i !== 'BS21-045' && (BS.CARDS[i].families || []).includes('Astral Soul') && BS.CARDS[i].type === 'Spirit');
+    const ast = BS.mkInst('BS21-045'); ast.cores = 3; P.spirits.push(ast); n.bpBonus = -BS.bpOf(n); n.tmpBp = -BS.bpOf(n); const z = BS.bpOf(n) <= 0; const b = [BS.unblockableLow(P, ast, n), BS.unblockableLow(P, other, n)];
+    return [a, z ? b : [null, false]]; })()`);
+  assert.equal(JSON.stringify(r[0]), JSON.stringify([true, false, false]), JSON.stringify(r));
+  assert.ok(r[1][1] === false, JSON.stringify(r));
+});

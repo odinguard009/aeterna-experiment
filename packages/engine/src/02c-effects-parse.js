@@ -188,8 +188,9 @@ function parseEffects(arr) {
         o.n = e.n;
       }
       if (e.flag === 'UNBLOCKABLE_LOW') {                         // v213 "can't be blocked by opposing N BP or less Spirits"
-        if (!Number.isInteger(e.bpLe) || e.bpLe < 0 || e.bpLe > 30000) return { error: 'UNBLOCKABLE_LOW needs a whole-number "bpLe"' };
-        o.bpLe = e.bpLe;
+        if (e.blockerType != null) { if (e.blockerType !== 'Ultimate' || e.bpLe != null) return { error: 'UNBLOCKABLE_LOW "blockerType" must be "Ultimate" and replaces "bpLe"' }; o.blockerType = 'Ultimate'; }      // v349 "can't be blocked by opposing Ultimates"
+        else { if (!Number.isInteger(e.bpLe) || e.bpLe < 0 || e.bpLe > 30000) return { error: 'UNBLOCKABLE_LOW needs a whole-number "bpLe"' };
+        o.bpLe = e.bpLe; }
       }
       if (e.flag === 'LOW_ATK_ONCE') {                            // v214 "Cost N or less Spirits can only attack once per turn in total"
         if (!Number.isInteger(e.costLe) || e.costLe < 0 || e.costLe > 30) return { error: 'LOW_ATK_ONCE needs a whole-number "costLe"' };

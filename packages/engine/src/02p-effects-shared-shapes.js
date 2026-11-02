@@ -507,7 +507,7 @@ const blockedInferior = (D, att, s) => flagActive(D, 'NO_BLOCK_INFERIOR', s) && 
 const unblockableLow = (A, att, s) => { if (!A || !att) return false; const L = lvNo(att), opp = G.p[other(A.key)];
   return fieldList(A).some(f => (f === att || A.spirits.includes(f)) && fxEntries(f).some(({ e }) => e.trigger === 'STATIC' && e.flag === 'UNBLOCKABLE_LOW'
     && (e.to !== 'self' || f === att) && !(e.lv && !e.lv.includes(f === att ? L : lvNo(f))) && (!e.oc || ocActive(f)) && fxIf(A, opp, e.if, { selfInst: f })
-    && bpOf(s) <= e.bpLe)); };      // v213      // v0.195 "can't block Spirits with BP inferior to this Spirit's"
+    && (e.blockerType ? CARDS[s.id].type === e.blockerType : bpOf(s) <= e.bpLe) && (!e.match || fxMatch(CARDS[att.id], e.match, att)))); };      // v213      // v0.195 "can't block Spirits with BP inferior to this Spirit's"
 const shamanNoBlock = (att, s) => {      // v201 NO_BLOCK_SHAMAN: Spirits summoned via Shamanism this turn can't be blocked by opposing Cost N or less Spirits
   if (!G || att.viaShamanTurn !== G.turnNo) return false;
   const ow = ownerOf(att); if (!ow) return false;
