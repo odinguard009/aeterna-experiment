@@ -158,8 +158,13 @@ function extraSymbolsOf(owner, i) {
   for (const { e } of fxEntries(i)) {
     if (e.trigger !== 'STATIC' || e.flag !== 'EXTRA_SYMBOL' || (e.lv && !e.lv.includes(L))) continue;
     if (!fxIf(owner, opp, e.if, { selfInst: i })) continue;
+    if (e.to === 'own') continue;
     for (let k = 0; k < (e.n || 1); k++) out.push([e.color]);
   }
+  for (const src of fieldList(owner)) { const SL = lvNo(src);      // v358 to:'own' + match: "all your Cost 6 or more Thunderive Spirits gain an extra Yellow symbol"
+    for (const { e } of fxEntries(src)) {
+      if (e.trigger !== 'STATIC' || e.flag !== 'EXTRA_SYMBOL' || e.to !== 'own' || (e.lv && !e.lv.includes(SL)) || !fxMatch(CARDS[i.id], e.match, i) || !fxIf(owner, opp, e.if, { selfInst: src })) continue;
+      for (let k = 0; k < (e.n || 1); k++) out.push([e.color]); } }
   return out;
 }
 /* symbols usable for cost reduction: Field cards only (not Soul State, p. 55, unless the card being paid says so; not the Burst Area, p. 49) */

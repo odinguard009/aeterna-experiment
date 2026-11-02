@@ -945,3 +945,13 @@ test('K-1018 SYM_ZERO_LOCKED: BS76-044 fixes the symbols of opposing Spirits und
     G.active = 'player'; G.turn = 'player'; out.push(BS.attackSymbols(a) >= 1); return out; })()`);
   assert.deepEqual(r, [0, true, true], JSON.stringify(r));
 });
+
+test('K-1019 EXTRA_SYMBOL to:own: BS75-050 at Lv3 gives Cost 6+ Thunderive Spirits an extra symbol, not cheaper ones or Lv2', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.spirits.length = 0; O.spirits.length = 0;
+    const th = Object.keys(BS.CARDS).filter(k => /^BS[0-9][0-9]-/.test(k) && BS.CARDS[k].type === 'Spirit' && (BS.CARDS[k].families || []).includes('Thunderive') && k !== 'BS75-050');
+    const hi = th.find(k => BS.CARDS[k].cost >= 6), lo = th.find(k => BS.CARDS[k].cost <= 5); const a = BS.mkInst(hi), b = BS.mkInst(lo); a.cores = b.cores = 2; P.spirits.push(a, b);
+    const base = [BS.attackSymbols(a), BS.attackSymbols(b)]; const s = BS.mkInst('BS75-050'); s.cores = 3; P.spirits.push(s); const lv3 = [BS.attackSymbols(a), BS.attackSymbols(b)];
+    s.cores = 2; const lv2 = BS.attackSymbols(a); return [lv3[0] - base[0], lv3[1] - base[1], lv2 - base[0], BS.CARDS['BS75-050'].levels.length]; })()`);
+  assert.deepEqual(r.slice(0, 3), [1, 0, 0], JSON.stringify(r));
+});

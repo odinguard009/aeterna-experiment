@@ -393,3 +393,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v355 (Lane K): match.hasBurst (card with a printed {{Burst|...}} effect), used by RETURN_TRASH.
 - v356 (Lane K): per.type 'NexusBrave' (count of Braves on your Nexuses) for BP_PLUS.
 - v357 (Lane K): STATIC flag SYM_ZERO_LOCKED (opposing Spirits under can't attack/block have symbols fixed at zero; read by attackSymbols).
+- v358 (Lane K): EXTRA_SYMBOL to:'own' + match (extra symbol for matching own Spirits; extraSymbolsOf scans the own field).
