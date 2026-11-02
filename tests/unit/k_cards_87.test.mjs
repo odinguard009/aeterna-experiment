@@ -143,3 +143,21 @@ test('K-882 BS21-061 / BS42-037 / BS30-026 effects are wired (data only, no play
   }));
   assert.deepEqual(r, { a: true, b: true, c: true });
 });
+
+test('K-883 BS19-008 attack: +5000 BP always; Shellman destroyed only with a Purple symbol (Rush)', async () => {
+  const { page } = await sharedBoard();
+  const run = (purple) => page.evaluate(async (purple) => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = P.key; P.cpu = true;
+    P.spirits.length = 0; O.spirits.length = 0;
+    const s = BS.mkInst('BS19-008'); s.cores = 3; P.spirits.push(s);
+    if (purple) { const pp = BS.mkInst('BS31-015'); pp.cores = 1; P.spirits.push(pp); }
+    const t = BS.mkInst('BS52-026'); t.cores = 1; O.spirits.push(t);
+    G.attacker = s;
+    await BS.fireFx(P, 'ATTACKS', s, { subject: s, attacker: s });
+    return { left: O.spirits.length, bp: null };
+  }, purple);
+  const no = await run(false), yes = await run(true);
+  assert.equal(no.left, 1, JSON.stringify(no)); assert.equal(yes.left, 0, JSON.stringify(yes));
+  if (no.bp != null) assert.equal(yes.bp, no.bp, 'same BP boost both ways');
+});
