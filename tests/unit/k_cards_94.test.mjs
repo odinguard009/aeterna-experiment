@@ -126,3 +126,13 @@ test('K-1138 BS26-051 Ultimate Trigger hit: by destroying a Cost 5 or less Spiri
     return { ...a, ex: !!b.exhausted, bc: b.cores, impl: BS.CARDS['BS26-051'].implemented === true }; })()`);
   assert.equal(r.impl, true, JSON.stringify(r)); assert.equal(r.sp, 0, JSON.stringify(r)); assert.equal(r.ex, false, JSON.stringify(r)); assert.equal(r.bc, 4, JSON.stringify(r));
 });
+
+test('K-1139 SD13-007 destroys an opposing exhausted non-braved Spirit only; SD06-004 +3000 BP skips braved Spirits', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.step = 4; G.active = P.key;
+    const m = BS.mkInst('SD13-007'); const a = BS.mkInst('BS01-001'); a.cores = 1; a.exhausted = true; a.brave = { id: 'SD13-007' }; const b = BS.mkInst('BS01-001'); b.cores = 1; b.exhausted = true; const c = BS.mkInst('BS01-001'); c.cores = 1; O.spirits.push(a, b, c);
+    const fx = BS.CARDS['SD13-007'].effects.find(e => e.trigger === 'ATTACKS');
+    await BS.runActions({ p: P, opp: O, src: m, ctx: { selfInst: m } }, { actions: fx.actions });
+    return { left: O.spirits.length, a: O.spirits.includes(a), b: O.spirits.includes(b), c: O.spirits.includes(c), impl: BS.CARDS['SD13-007'].implemented === true }; })()`);
+  assert.equal(r.impl, true, JSON.stringify(r)); assert.deepEqual([r.a, r.b, r.c], [true, false, true], JSON.stringify(r));
+});

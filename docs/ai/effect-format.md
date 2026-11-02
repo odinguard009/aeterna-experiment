@@ -415,3 +415,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v377 (Lane K): CANT_BLOCK_PER {per:<match>}: for each matching Spirit you control, target an opposing Spirit; during this turn those can't block (noAB + noABTurn). Cards: BS12-038, BS53-RV005.
 - v378 (Lane K): EXHAUST_OPP nonBrave:true (skip braved Spirits), DESTROY_ANY braveOnly:true (needs spirit + oppOnly; only Spirits with a Brave combined). Cards: BS21-022, BS20-015.
 - v379 (Lane K): STATIC flags IGNORE_SUMMON_COND {match} (summonOK passes for matching cards while the source is on the Field at an active level) and ULT_SYMBOL_AS {colors, match?} (each Ultimate symbol of a matching Ultimate gains those attributes in fieldSymbols). Cards: BS26-046/048/050, BS28-063, SD28-007, BS30-051.
+- v380 (Lane K): match.noBrave:true ("non-braved Spirit": no Brave combined; needs the instance). Cards: SD06-004, SD56-RV002, SD13-007.

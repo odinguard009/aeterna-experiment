@@ -54765,12 +54765,6 @@
   "S_MUST_BLOCK",
   "T_ATTACKS"
  ],
- "SD06-004": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "K_BRAVE",
-  "K_BURST"
- ],
  "SD06-005": [
   "A_BP_PLUS",
   "A_DESTROY_BP",
@@ -54998,12 +54992,6 @@
   "C_LEVEL",
   "K_RUSH",
   "T_ATTACKS",
-  "T_SUMMONED"
- ],
- "SD13-007": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "K_BRAVE",
   "T_SUMMONED"
  ],
  "SD13-008": [
@@ -58507,12 +58495,6 @@
   "M_OPTIONAL"
  ],
  "SD56-RV001": [],
- "SD56-RV002": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "K_BRAVE",
-  "K_BURST"
- ],
  "SD56-RV003": [
   "C_LEVEL",
   "K_BURST",

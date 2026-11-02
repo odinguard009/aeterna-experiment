@@ -21781,12 +21781,28 @@
   "image": "SD06-004.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (Your Attack Step) While you have a set Burst, all your non-braved Spirits gain +3000 BP."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "bp": 3000,
+    "to": "own",
+    "match": {
+     "noBrave": true
+    },
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "attackStep": true,
+     "oppTurn": false,
+     "burstSet": true
+    }
+   }
+  ]
  },
  {
   "id": "SD06-005",
@@ -23936,17 +23952,40 @@
   "image": "SD13-007.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1] (When Summoned) Draw a card.",
-   "When Braved (When Brave Attacks) Destroy an opposing exhausted non-braved Spirit."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
   "rcode": "C",
   "brave": {
    "bp": 2000,
    "costGe": 3
-  }
+  },
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1
+    ],
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "braved": true,
+    "actions": [
+     {
+      "do": "DESTROY",
+      "exhaustedOnly": true,
+      "match": {
+       "noBrave": true
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD13-008",
@@ -46435,12 +46474,28 @@
   "image": "SD56-RV002.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (Your Attack Step) While you have a set Burst, all your non-braved Spirits gain +3000 BP."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "bp": 3000,
+    "to": "own",
+    "match": {
+     "noBrave": true
+    },
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "attackStep": true,
+     "oppTurn": false,
+     "burstSet": true
+    }
+   }
+  ]
  },
  {
   "id": "SD56-RV003",
