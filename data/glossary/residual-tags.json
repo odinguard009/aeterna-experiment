@@ -53751,9 +53751,6 @@
   "A_BANISH",
   "A_BP_PLUS"
  ],
- "PB44-RV006": [
-  "A_END_ATTACK"
- ],
  "PB44-RV007": [
   "A_SUMMON_FREE",
   "C_LEVEL",
@@ -57285,12 +57282,6 @@
   "K_RUSH",
   "T_ATTACKS"
  ],
- "SD44-004": [
-  "A_REFRESH",
-  "C_LEVEL",
-  "K_RUSH",
-  "T_ATTACKS"
- ],
  "SD44-005": [
   "A_REMOVED_ZONE",
   "A_VOID",
@@ -58069,9 +58060,6 @@
  "SD50-CP04": [
   "A_BP_MINUS",
   "M_OPTIONAL"
- ],
- "SD50-CP05": [
-  "A_END_ATTACK"
  ],
  "SD50-X01": [
   "A_LIFE_TO_RESERVE",

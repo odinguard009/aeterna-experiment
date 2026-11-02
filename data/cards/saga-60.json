@@ -14377,14 +14377,21 @@
   "image": "PB44-RV006.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Type: Song",
-   "This card has \"Idol\" family.",
-   "Flash When this battle ends, end the Attack Step."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "PB"
+  "rcode": "PB",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "END_ATTACK_AFTER_BATTLE"
+    }
+   ]
+  }
  },
  {
   "id": "PB44-RV007",
@@ -39046,12 +39053,33 @@
   "image": "SD44-004.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV2][LV3] (When Attacks/Blocks) Once per turn, this Spirit refreshes. {{Rush|Red}} (While you have a Red symbol, the following effect activates next) (Red Core): Draw a card."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "alsoBlocks": true,
+    "lv": [
+     2,
+     3
+    ],
+    "once": true,
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT",
+      "self": true
+     },
+     {
+      "do": "DRAW",
+      "n": 1,
+      "if": {
+       "hasSymbol": "red"
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD44-005",
@@ -42712,14 +42740,21 @@
   "image": "SD50-CP05.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Type: Song",
-   "This card has \"Idol\" family.",
-   "Flash When this battle ends, end the Attack Step."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP"
+  "rcode": "CP",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "END_ATTACK_AFTER_BATTLE"
+    }
+   ]
+  }
  },
  {
   "id": "SD50-X01",
