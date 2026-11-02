@@ -54723,10 +54723,6 @@
   "K_ACCEL",
   "T_ACTIVATE"
  ],
- "SD01-005": [
-  "C_LEVEL",
-  "S_NO_RETURN"
- ],
  "SD01-008": [
   "A_LIFE_TO_RESERVE",
   "C_LEVEL",
@@ -55051,16 +55047,10 @@
   "M_THEN",
   "T_SUMMONED"
  ],
- "SD10-001": [
-  "C_LEVEL"
- ],
  "SD10-002": [
   "A_BP_PLUS",
   "C_LEVEL",
   "T_ATTACKS"
- ],
- "SD10-005": [
-  "C_LEVEL"
  ],
  "SD10-008": [
   "A_BP_PLUS",
@@ -55276,9 +55266,6 @@
   "C_LEVEL",
   "K_HIGH_SPEED",
   "S_OPP_NO_BLOCK"
- ],
- "SD15-001": [
-  "C_LEVEL"
  ],
  "SD15-002": [
   "A_EXHAUST",

@@ -276,3 +276,14 @@ test('K-1024 SD31-007 returns a Void core and exhausts only with the Soul Core; 
     return { out, wired: c.implemented === true && c.effects.some(e => e.flag === 'MUST_BLOCK') }; })()`);
   assert.deepEqual(r, { out: [false, true], wired: true }, JSON.stringify(r));
 });
+
+test('K-1025 SD01-005 cannot be returned by opposing effects; Charge cards SD10-001/005/SD15-001 are wired', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const s = BS.mkInst('SD01-005'); s.cores = 2; P.spirits = [s];
+    const a = BS.mkInst('BS01-001'); a.cores = 1; O.spirits = [a];
+    await BS.fireFx(O, 'ATTACKS', a, { attacker: a });
+    const w = id => { const c = BS.CARDS[id]; return c.implemented === true && c.effects.some(e => e.flag === 'CHARGE'); };
+    return { flag: s && BS.CARDS['SD01-005'].effects[0].flag, kept: P.spirits.length, w: ['SD10-001','SD10-005','SD15-001'].every(w) }; })()`);
+  assert.deepEqual(r, { flag: 'NO_RETURN', kept: 1, w: true }, JSON.stringify(r));
+});

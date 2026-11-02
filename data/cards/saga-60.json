@@ -18678,12 +18678,20 @@
   "image": "SD01-005.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] This Spirit can't be returned to the Hand from your Field by opposing Spirit/Nexus/Magic effects."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "NO_RETURN",
+    "to": "self",
+    "lv": [
+     1,
+     2
+    ]
+   }
+  ]
  },
  {
   "id": "SD01-006",
@@ -22223,12 +22231,23 @@
   "image": "SD10-001.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] Charge Increase the limit of your \"BP Destruction effects\" by +1000."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: hand translation); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "CHARGE",
+    "to": "self",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "kind": "bp",
+    "n": 1000
+   }
+  ]
  },
  {
   "id": "SD10-002",
@@ -22396,12 +22415,23 @@
   "image": "SD10-005.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] Charge Increase the limit of your \"BP Destruction effects\" by +1000."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: hand translation); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "CHARGE",
+    "to": "self",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "kind": "bp",
+    "n": 1000
+   }
+  ]
  },
  {
   "id": "SD10-006",
@@ -24299,12 +24329,22 @@
   "image": "SD15-001.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] Charge Your “BP- effect” decreases 1000 further."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "CHARGE",
+    "to": "self",
+    "lv": [
+     1,
+     2
+    ],
+    "kind": "bpMinus",
+    "n": 1000
+   }
+  ]
  },
  {
   "id": "SD15-002",
