@@ -57,3 +57,10 @@ test('K-873 BS40-050: +15000 BP and an extra Yellow symbol only with five Drifti
   assert.equal(r.b[0] - r.a[0], 15000, JSON.stringify(r));
   assert.equal(r.b[1] - r.a[1], 1, JSON.stringify(r));
 });
+
+test('K-874 BS43-RV012 data: SUMMONED exhaust + Rush Red DESTROY_BRAVE', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(() => { const c = BS.CARDS['BS43-RV012']; return { fx: c.fxComplete !== false, a: c.effects[0].actions.map(a => a.do + (a.if ? ':' + a.if.hasSymbol : '')) }; });
+  assert.equal(r.fx, true);
+  assert.deepEqual(r.a, ['EXHAUST_OPP', 'DESTROY_BRAVE:red']);
+});
