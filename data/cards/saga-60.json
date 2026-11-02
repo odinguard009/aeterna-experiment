@@ -5113,12 +5113,29 @@
   "image": "EX002.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (Your Attack Step) All your \"Dragon\"/\"Winged Dragon\" family Spirits gain +1000 BP."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "EX"
+  "rcode": "EX",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "bp": 1000,
+    "to": "own",
+    "match": {
+     "family": [
+      "Dragon",
+      "Winged Dragon"
+     ]
+    },
+    "lv": [
+     2
+    ],
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": false
+    }
+   }
+  ]
  },
  {
   "id": "EX003",
@@ -18635,12 +18652,31 @@
   "image": "SD01-006.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] Flash - Awaken You can send any number of cores from Spirits you control to this Spirit."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "U"
+  "rcode": "U",
+  "effects": [
+   {
+    "trigger": "ACTIVATE",
+    "timing": [
+     "MAIN",
+     "FLASH"
+    ],
+    "once": false,
+    "cpuSkip": true,
+    "optional": true,
+    "actions": [
+     {
+      "do": "AWAKEN"
+     }
+    ],
+    "lv": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
  },
  {
   "id": "SD01-007",
@@ -18835,12 +18871,24 @@
   "image": "SD01-011.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] Curse (When Attacks) Destroy an opposing Spirit that blocked at the end of battle."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "actions": [
+     {
+      "do": "CURSE"
+     }
+    ],
+    "lv": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
  },
  {
   "id": "SD01-012",
@@ -18870,13 +18918,37 @@
   "image": "SD01-012.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Summoned) Draw a card.",
-   "[LV2] (When Attacks) When only the opposing Spirit is destroyed by BP comparison, draw a card."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "U"
+  "rcode": "U",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "BATTLE_WIN",
+    "lv": [
+     2
+    ],
+    "attackingOnly": true,
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD01-013",
@@ -19207,13 +19279,42 @@
   "image": "SD01-020.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] {{Armor|Red}} This Spirit is unaffected by opposing Spirit/Nexus/Magic effects of the stated color.",
-   "[LV2] (When Blocks) This Spirit gains +2000 BP."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "UNAFFECTED",
+    "to": "self",
+    "lv": [
+     1,
+     2
+    ],
+    "from": {
+     "colors": [
+      "red"
+     ],
+     "types": [
+      "Spirit",
+      "Nexus",
+      "Magic"
+     ]
+    }
+   },
+   {
+    "trigger": "BLOCKS",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "BP_PLUS",
+      "n": 2000
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD01-021",
@@ -20604,12 +20705,24 @@
   "image": "SD02-020.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] When this Spirit becomes the target of Tribute, put two cores from the Void to your Reserve."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "TRIBUTED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "VOID_TO_RESERVE",
+      "n": 2
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD02-021",
@@ -20713,12 +20826,27 @@
   "image": "SD03-002.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] While you control two or fewer Spirits, treat this Spirit as being at LV3."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "TREAT_LV3",
+    "to": "self",
+    "if": {
+     "ctrl": {
+      "type": "Spirit",
+      "nLe": 2
+     }
+    },
+    "lv": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
  },
  {
   "id": "SD03-003",
@@ -21066,17 +21194,37 @@
   "image": "SD03-011.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1] (When Summoned) Destroy an opposing Nexus.",
-   "During Brave (When Attacks) Destroy an opposing Nexus"
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
   "rcode": "R",
   "brave": {
    "bp": 3000,
    "costGe": 3
-  }
+  },
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "nexus": true
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "actions": [
+     {
+      "do": "DESTROY",
+      "nexus": true
+     }
+    ],
+    "braved": true
+   }
+  ]
  },
  {
   "id": "SD03-012",
@@ -21768,13 +21916,16 @@
   "image": "SD06-013.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "{{Burst|After an opposing Spirit/Brave's (When Summoned) effect resolves}} Draw two cards. Then by paying the cost, activate this card's Main effect.",
-   "Main Draw two cards."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "magic": {
+   "timing": [
+    "MAIN"
+   ],
+   "effect": "DRAW",
+   "value": 2
+  }
  },
  {
   "id": "SD06-014",
@@ -22327,17 +22478,37 @@
   "image": "SD10-011.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1] (When Summoned) Destroy an opposing Nexus.",
-   "When Braved (When Brave Attacks) Destroy an opposing 3000 BP or less Spirit."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
   "rcode": "C",
   "brave": {
    "bp": 3000,
    "costGe": 3
-  }
+  },
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "nexus": true
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "actions": [
+     {
+      "do": "DESTROY",
+      "bpLe": 3000
+     }
+    ],
+    "braved": true
+   }
+  ]
  },
  {
   "id": "SD10-012",
@@ -24692,13 +24863,32 @@
   "image": "SD17-006.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] Clash (When Attacks) The opponent must block if possible.",
-   "[LV2] (When Attacks) Draw a card."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "U"
+  "rcode": "U",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "MUST_BLOCK",
+    "to": "self",
+    "lv": [
+     1,
+     2
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD17-007",
@@ -25864,13 +26054,45 @@
   "image": "SD20-004.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (Opposing Attack Step) This Spirit can block while exhausted.",
-   "[LV2][LV3] {{ha|Red}} This Spirit is unaffected by opposing Red Spirit/Brave/Nexus/Magic effects."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "BLOCK_EXHAUSTED",
+    "to": "self",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": true
+    }
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "UNAFFECTED",
+    "to": "self",
+    "lv": [
+     2,
+     3
+    ],
+    "from": {
+     "colors": [
+      "red"
+     ],
+     "types": [
+      "Spirit",
+      "Brave",
+      "Nexus",
+      "Magic"
+     ]
+    }
+   }
+  ]
  },
  {
   "id": "SD20-005",
@@ -26838,13 +27060,22 @@
   "image": "SD22-016.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "{{Burst|After your Life is reduced}} Exhaust an opposing Spirit. Then, by paying the cost, activate this card's Flash effect.",
-   "Flash Exhaust an opposing Spirit/Ultimate."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "U"
+  "rcode": "U",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "EXHAUST_OPP",
+     "n": 1
+    }
+   ]
+  }
  },
  {
   "id": "SD22-X01",
@@ -28286,13 +28517,16 @@
   "image": "SD25-006.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "{{Burst|After your Spirit is destroyed by the Opponent}} Draw two cards. Then by paying the cost, activate this card's Flash effect.",
-   "Flash Destroy an opposing 4000 BP or less Spirit."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "R"
+  "rcode": "R",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "DESTROY_BP_LE",
+   "value": 4000
+  }
  },
  {
   "id": "SD25-007",
@@ -31250,13 +31484,24 @@
   "image": "SD32-001.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Summoned) Draw a card.",
-   "[LV1][LV2] This Spirit's color and symbol are also treated as White."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD32-002",
@@ -32037,13 +32282,16 @@
   "image": "SD33-014.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "{{Burst|After your Life is reduced}} Destroy an opposing 10000 BP or less Spirit/Ultimate. Then, by paying the cost, activate this card's Main effect.",
-   "Main Draw two cards."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "magic": {
+   "timing": [
+    "MAIN"
+   ],
+   "effect": "DRAW",
+   "value": 2
+  }
  },
  {
   "id": "SD33-X01",
@@ -32122,12 +32370,29 @@
   "image": "SD34-001.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Depleted/Destroyed by the Opponent) Destroy an opposing Nexus."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "if": {
+     "byOpp": true
+    },
+    "alsoDepleted": true,
+    "actions": [
+     {
+      "do": "DESTROY",
+      "nexus": true
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD34-002",
@@ -32157,12 +32422,28 @@
   "image": "SD34-002.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Depleted/Destroyed by the Opponent) Exhaust an opposing Spirit/Ultimate."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "byOpp": true
+    },
+    "alsoDepleted": true,
+    "actions": [
+     {
+      "do": "EXHAUST_OPP",
+      "n": 1
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD34-003",
@@ -32192,13 +32473,41 @@
   "image": "SD34-003.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Summoned) Draw a card.",
-   "[LV1][LV2] (When Depleted/Destroyed by the Opponent) Exhaust an opposing Spirit/Ultimate."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "byOpp": true
+    },
+    "alsoDepleted": true,
+    "actions": [
+     {
+      "do": "EXHAUST_OPP",
+      "n": 1
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD34-004",
@@ -32793,13 +33102,24 @@
   "image": "SD35-005.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Flash - High Speed This Spirit card in Hand can be summoned by paying the cost with cores in the Reserve. In this case, cores to be put on this Spirit must also be from the Reserve.",
-   "[LV1][LV2] (When Summoned) During this turn, this Spirit gains +3000 BP."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "BP_PLUS",
+      "n": 3000
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD35-006",
@@ -34124,13 +34444,41 @@
   "image": "SD38-002.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Summoned) Put a core from the Void to your Reserve.",
-   "[LV2][LV3] (When Destroyed by the Opponent) Exhaust an opposing Spirit/Ultimate."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "VOID_TO_RESERVE",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     2,
+     3
+    ],
+    "if": {
+     "byOpp": true
+    },
+    "actions": [
+     {
+      "do": "EXHAUST_OPP",
+      "n": 1
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD38-003",
@@ -35448,13 +35796,25 @@
   "image": "SD40-007.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Summoned) Put a core from the Void to any of your Spirits.",
-   "[LV1][LV2] This Spirit's color and symbols are also treated as Red."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "anySpirit"
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD40-008",
@@ -35658,12 +36018,20 @@
   "image": "SD41-001.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "{{Immortality|Cost 0/3}} (Either Attack Step) This Spirit card in your Trash can be summoned when your Cost 0/3 Spirit is destroyed."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "IMMORTALITY",
+    "to": "self",
+    "costIn": [
+     0,
+     3
+    ]
+   }
+  ]
  },
  {
   "id": "SD41-002",
@@ -36138,13 +36506,38 @@
   "image": "SD42-003.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Summoned) Destroy an opposing Nexus.",
-   "[LV2][LV3] (When Attacks) This Spirit gains +4000 BP."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "nexus": true
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "BP_PLUS",
+      "n": 4000
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD42-004",
@@ -36720,13 +37113,41 @@
   "image": "SD43-001.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Attacks) Draw a card.",
-   "During Brave [LV1][LV2] All your \"Astral Soul\"/ \"Astral Deity\"/ \"Galaxian\" family Spirits get +5000 BP."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 5000,
+    "to": "own",
+    "match": {
+     "family": [
+      "Astral Soul",
+      "Astral Deity",
+      "Galaxian"
+     ]
+    },
+    "lv": [
+     1,
+     2
+    ],
+    "braved": true
+   }
+  ]
  },
  {
   "id": "SD43-002",
@@ -36846,14 +37267,47 @@
   "image": "SD43-004.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] This Spirit's color and symbol are also treated as Red.",
-   "[LV1][LV2][LV3] {{ha|Red/Purple/Blue}} This Spirit is unaffected by opposing Red/Purple/Blue Spirit/Brave/Nexus/Magic effects.",
-   "[LV2][LV3] (Opposing Attack Step) This Spirit can block while exhausted."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "UNAFFECTED",
+    "to": "self",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "from": {
+     "colors": [
+      "red",
+      "purple",
+      "blue"
+     ],
+     "types": [
+      "Spirit",
+      "Brave",
+      "Nexus",
+      "Magic"
+     ]
+    }
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "BLOCK_EXHAUSTED",
+    "to": "self",
+    "lv": [
+     2,
+     3
+    ],
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": true
+    }
+   }
+  ]
  },
  {
   "id": "SD43-005",

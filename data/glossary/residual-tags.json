@@ -51759,10 +51759,6 @@
   "S_UNAFFECTED",
   "T_SUMMONED"
  ],
- "EX002": [
-  "A_BP_PLUS",
-  "C_LEVEL"
- ],
  "EX004": [
   "C_LEVEL",
   "S_MUST_BLOCK",
@@ -54751,11 +54747,6 @@
   "C_LEVEL",
   "S_NO_RETURN"
  ],
- "SD01-006": [
-  "A_AWAKEN",
-  "C_LEVEL",
-  "M_OPTIONAL"
- ],
  "SD01-007": [],
  "SD01-008": [
   "A_LIFE_TO_RESERVE",
@@ -54768,15 +54759,6 @@
  ],
  "SD01-009": [],
  "SD01-010": [],
- "SD01-011": [
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
- "SD01-012": [
-  "C_LEVEL",
-  "T_ATTACKS",
-  "T_SUMMONED"
- ],
  "SD01-013": [
   "C_LEVEL",
   "T_ATTACKS",
@@ -54795,13 +54777,6 @@
   "T_ATTACKS"
  ],
  "SD01-019": [],
- "SD01-020": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "K_ARMOR",
-  "S_UNAFFECTED",
-  "T_BLOCKS"
- ],
  "SD01-021": [
   "C_LEVEL",
   "T_DESTROYED"
@@ -54974,14 +54949,7 @@
  "SD02-019": [
   "C_LEVEL"
  ],
- "SD02-020": [
-  "A_VOID",
-  "C_LEVEL"
- ],
  "SD02-021": [
-  "C_LEVEL"
- ],
- "SD03-002": [
   "C_LEVEL"
  ],
  "SD03-004": [
@@ -55016,13 +54984,6 @@
  "SD03-010": [
   "A_DESTROY_BP",
   "T_ATTACKS"
- ],
- "SD03-011": [
-  "C_LEVEL",
-  "K_BRAVE",
-  "T_ATTACKS",
-  "T_DURING_BRAVE",
-  "T_SUMMONED"
  ],
  "SD03-012": [
   "A_REFRESH",
@@ -55111,12 +55072,6 @@
   "K_BRAVE",
   "K_BURST"
  ],
- "SD06-013": [
-  "K_BRAVE",
-  "K_BURST",
-  "M_THEN",
-  "T_SUMMONED"
- ],
  "SD06-014": [
   "A_RETURN_TRASH",
   "A_TRASH_TO_RESERVE",
@@ -55176,11 +55131,6 @@
   "C_LEVEL",
   "M_OPTIONAL",
   "T_ATTACKS",
-  "T_SUMMONED"
- ],
- "SD10-011": [
-  "C_LEVEL",
-  "K_BRAVE",
   "T_SUMMONED"
  ],
  "SD10-012": [
@@ -55518,11 +55468,6 @@
   "K_RUSH",
   "T_SUMMONED"
  ],
- "SD17-006": [
-  "C_LEVEL",
-  "S_MUST_BLOCK",
-  "T_ATTACKS"
- ],
  "SD17-007": [
   "A_BP_PLUS",
   "A_VOID",
@@ -55675,13 +55620,6 @@
   "C_LEVEL",
   "C_LIFE",
   "T_BLOCKS"
- ],
- "SD20-004": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "K_ARMOR",
-  "K_BRAVE",
-  "S_UNAFFECTED"
  ],
  "SD20-005": [
   "A_VOID",
@@ -55844,12 +55782,6 @@
   "M_OPTIONAL",
   "T_ALLY_SUMMONED",
   "T_MIRAGE_LIFE"
- ],
- "SD22-016": [
-  "A_EXHAUST",
-  "K_BURST",
-  "K_ULTIMATE",
-  "M_THEN"
  ],
  "SD22-X01": [
   "A_BP_PLUS",
@@ -56089,10 +56021,6 @@
   "S_MUST_BLOCK",
   "T_ATTACKS",
   "T_SUMMONED"
- ],
- "SD25-006": [
-  "K_BURST",
-  "M_THEN"
  ],
  "SD25-007": [
   "A_BP_PLUS",
@@ -56594,10 +56522,6 @@
   "M_OPTIONAL",
   "T_ATTACKS"
  ],
- "SD32-001": [
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "SD32-002": [
   "C_LEVEL",
   "K_ARMOR",
@@ -56699,11 +56623,6 @@
   "A_SEAL",
   "K_ULTIMATE"
  ],
- "SD33-014": [
-  "K_BURST",
-  "K_ULTIMATE",
-  "M_THEN"
- ],
  "SD33-X01": [
   "A_DESTROY_BP",
   "A_LIFE_TO_RESERVE",
@@ -56713,23 +56632,6 @@
   "M_IF_YOU_DO",
   "M_OPTIONAL",
   "T_ATTACKS"
- ],
- "SD34-001": [
-  "C_LEVEL",
-  "T_DESTROYED_OPP"
- ],
- "SD34-002": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "T_DESTROYED_OPP"
- ],
- "SD34-003": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "T_DESTROYED_OPP",
-  "T_SUMMONED"
  ],
  "SD34-004": [
   "A_BP_PLUS",
@@ -56825,12 +56727,6 @@
   "A_BP_PLUS",
   "A_SEAL",
   "C_LEVEL"
- ],
- "SD35-005": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "K_HIGH_SPEED",
-  "T_SUMMONED"
  ],
  "SD35-006": [
   "A_EXHAUST",
@@ -57075,15 +56971,6 @@
   "M_BY_DOING",
   "T_DESTROYED",
   "T_DESTROYED_OPP"
- ],
- "SD38-002": [
-  "A_EXHAUST",
-  "A_VOID",
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "T_DESTROYED",
-  "T_DESTROYED_OPP",
-  "T_SUMMONED"
  ],
  "SD38-003": [
   "A_REFRESH",
@@ -57330,11 +57217,6 @@
   "K_ACCEL",
   "K_ULTIMATE"
  ],
- "SD40-007": [
-  "A_VOID",
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "SD40-008": [
   "A_DESTROY_NEXUS",
   "A_REMOVED_ZONE",
@@ -57382,7 +57264,6 @@
   "T_REVEALED",
   "T_SUMMONED"
  ],
- "SD41-001": [],
  "SD41-002": [
   "A_SUMMON_FREE",
   "C_ONCE",
@@ -57451,12 +57332,6 @@
   "A_SYMBOL",
   "A_SYMBOL_PLUS",
   "C_LEVEL"
- ],
- "SD42-003": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "T_ATTACKS",
-  "T_SUMMONED"
  ],
  "SD42-004": [
   "A_REFRESH"
@@ -57553,13 +57428,6 @@
   "M_OPTIONAL",
   "T_ADVENT"
  ],
- "SD43-001": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "K_BRAVE",
-  "T_ATTACKS",
-  "T_DURING_BRAVE"
- ],
  "SD43-002": [
   "A_DRAW",
   "C_LEVEL",
@@ -57574,13 +57442,6 @@
   "K_BURST",
   "S_UNAFFECTED",
   "T_SUMMONED"
- ],
- "SD43-004": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "K_ARMOR",
-  "K_BRAVE",
-  "S_UNAFFECTED"
  ],
  "SD43-005": [
   "A_REFRESH",
