@@ -95,3 +95,24 @@ test('K-899 BS21-064 (Lv1) and BS45-073 (Lv4, own Main Step only) gain an extra 
   const m = JSON.stringify(r);
   assert.deepEqual(r.inMain, [1, 1], m); assert.deepEqual(r.inAtk, [1, 0], m);
 });
+
+test('K-900 BS35-001 (+15000 on attack) and BS37-025 (+5000 static) apply only During Seal', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player; G.active = P.key; P.cpu = true; P.spirits.length = 0;
+    const a = BS.mkInst('BS35-001'); a.cores = 2; P.spirits.push(a);
+    const b = BS.mkInst('BS37-025'); b.cores = 2; P.spirits.push(b);
+    const out = {};
+    for (const sealed of [false, true]) {
+      P.lifeSoul = sealed;
+      const a0 = BS.bpOf(a); a.bpMod = 0; const base = BS.bpOf(b);
+      await BS.fireFx(P, 'ATTACKS', a, { subject: a, attacker: a });
+      out['atk' + sealed] = BS.bpOf(a) - a0; out['st' + sealed] = BS.bpOf(b); a.bpMod = 0;
+    }
+    out.diff = out.sttrue - out.stfalse;
+    return out;
+  });
+  const m = JSON.stringify(r);
+  assert.equal(r.atkfalse, 0, m); assert.equal(r.atktrue, 15000, m); assert.equal(r.diff, 5000, m);
+});
