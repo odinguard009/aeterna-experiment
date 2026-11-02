@@ -982,3 +982,16 @@ test('K-1022 BS70-035: costs 5 instead of 8 only while the opposing Removed Zone
     const c = BS.CARDS['BS70-035']; const before = BS.effCost(P, c); for (let i = 0; i < 3; i++) O.removed.push(BS.mkInst('BS70-035')); const after = BS.effCost(P, c); return [before - after, c.cost]; })()`);
   assert.deepEqual(r, [3, 8], JSON.stringify(r));
 });
+
+test('K-1023 BS55-060 reveals 3 and adds a blue Chrownos; BS56-015 mills 3 then returns a purple/blue Astroblazer Spirit from the Trash', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.coreShield = O.coreShield = null; P.spirits.length = 0; P.hand.length = 0; P.trash.length = 0;
+    const ch = Object.keys(BS.CARDS).find(k => /^BS[0-9][0-9]-/.test(k) && BS.CARDS[k].type === 'Spirit' && (BS.CARDS[k].families || []).includes('Chrownos') && BS.CARDS[k].symbol === 'blue');
+    const filler = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !(BS.CARDS[k].families || []).includes('Chrownos'));
+    P.deck.length = 0; P.deck.push(BS.mkInst(filler), BS.mkInst(ch), BS.mkInst(filler), BS.mkInst(filler)); const s = BS.mkInst('BS55-060'); s.cores = 1; P.spirits.push(s);
+    await BS.fireFx(P, 'SUMMONED', s, {}); const a = [P.hand.map(x => x.id).includes(ch), P.trash.length];
+    const ab = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && (BS.CARDS[k].families || []).includes('Astroblazer') && ['purple', 'blue'].includes(BS.CARDS[k].symbol));
+    P.hand.length = 0; P.trash.length = 0; P.deck.length = 0; P.deck.push(BS.mkInst(filler), BS.mkInst(filler), BS.mkInst(filler), BS.mkInst(filler)); P.trash.push(BS.mkInst(ab)); const t = BS.mkInst('BS56-015'); t.cores = 1; P.spirits.push(t);
+    await BS.fireFx(P, 'SUMMONED', t, {}); return [a, P.hand.map(x => x.id).includes(ab), P.trash.length]; })()`);
+  assert.deepEqual([r[0][0], r[0][1], r[1], r[2]], [true, 2, true, 3], JSON.stringify(r));
+});

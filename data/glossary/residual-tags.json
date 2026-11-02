@@ -30549,13 +30549,6 @@
   "M_REPLACEMENT",
   "T_ATTACKS"
  ],
- "BS55-060": [
-  "A_REVEAL_ADD",
-  "A_REVEAL_DECK",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
  "BS55-061": [
   "A_SUMMON_FREE",
   "C_LEVEL",
@@ -31261,15 +31254,6 @@
   "K_ULTIMATE",
   "M_OPTIONAL",
   "T_ATTACKS"
- ],
- "BS56-015": [
-  "A_MILL",
-  "A_RETURN_TRASH",
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "M_THEN",
-  "T_SUMMONED"
  ],
  "BS56-016": [
   "C_LEVEL",
