@@ -364,4 +364,11 @@ FX_ACTIONS.DISCARD_ANY_CORES = {
     io.view({ type: 'board' });
   } };
 
+/* v329 LIFE_HIT_DESTROY_TURN: "During this turn, when the attack of an opposing Spirit without Tribute reduces your Life, destroy that Spirit." Marks lifeHitDestroy on the player (turn number); 08-battle destroys the unblocked attacker after the Life loss unless it has Tribute or is protected (fxImmune). */
+FX_ACTIONS.LIFE_HIT_DESTROY_TURN = {
+  chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
+  txt: () => 'during this turn, when an opposing Spirit without Tribute reduces your Life by attacking, destroy that Spirit',
+  can: c => c.p.lifeHitDestroy !== G.turnNo,
+  run: async c => { if (c.p.lifeHitDestroy === G.turnNo) { c.ctx.did = false; return; } c.p.lifeHitDestroy = G.turnNo; log(`${_nm(c)}: this turn, an attack without Tribute that reduces ${poss(c.p)} Life gets its Spirit destroyed.`); } };
+
 wrapImmunity(Object.values(FX_ACTIONS));   // the actions above are defined after 02k: LO01

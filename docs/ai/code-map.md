@@ -83,7 +83,7 @@ cardTeams, allHaveShapeOK, allHaveOK, winRiderRun, fxOppMark, blockTaxOK, payAtk
 ## packages/engine/src/02u-effects-form-change.js (32 lines, ~0.7k tokens) — FORM CHANGE (v0.135.0, schema v8; Kamen Rider cross-over cards): {{F Change|"X" & Cost N}} {{Invoke|Main}}
 fcCands
 
-## packages/engine/src/02v-effects-lane-k.js (367 lines, ~7.7k tokens)
+## packages/engine/src/02v-effects-lane-k.js (374 lines, ~7.9k tokens)
 coresFromSpirits
 
 ## packages/engine/src/03-imported-cards.js (246 lines, ~6.7k tokens) — IMPORTED CARD DATA
@@ -110,7 +110,7 @@ fieldList, isGW, freeCores, freeTotal, totalCores, reserveTotal, minCores, isSpi
 ## packages/engine/src/07-turn.js (83 lines, ~1.6k tokens) — TURN FLOW
 isMainStep, revertNexusSpirits, setStep, beginTurn, endStep, win, matchLoop, checkInvariants
 
-## packages/engine/src/08-battle.js (193 lines, ~4.6k tokens) — BATTLE
+## packages/engine/src/08-battle.js (194 lines, ~4.7k tokens) — BATTLE
 successor, flashTiming, battleEndAttack, attackStepOver, doBattle, doBattleInner, maybeBurst, burstFlash, flushBursts
 
 ## packages/engine/src/09-cpu.js (174 lines, ~3k tokens) — CPU

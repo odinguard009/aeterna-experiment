@@ -88,6 +88,7 @@ async function doBattleInner(attKey, att) {
   if (D.life <= 0) { win(attKey, `${poss(D)} Life reached 0`); return; }
   if (dmg > 0 && att.lifeHitNexus && att.lifeHitNexus.turn === G.turnNo) await runActions({ p: A, opp: D, src: att, ctx: {} }, { actions: [{ do: 'DESTROY', nexus: true, costLe: att.lifeHitNexus.costLe }] });      // v167 LIFE_HIT_NEXUS
   if (dmg > 0) { await fireFxMulti([{ owner: A, trigger: 'ALLY_LIFE_HIT', src: null, ctx: { attacker: att } }, { owner: A, trigger: 'MIRAGE_OPP_LIFE', src: null, ctx: {} }, { owner: D, trigger: 'OWN_LIFE_HIT', src: null, ctx: { attacker: att } }, { owner: D, trigger: 'MIRAGE_OWN_LIFE', src: null, ctx: {} }]); if (G.over) return; }
+  if (dmg > 0 && D.lifeHitDestroy === G.turnNo && !CARDS[att.id].tribute && A.spirits.includes(att) && !fxImmune(A, att)) { log(`${CARDS[att.id].name} is destroyed by ${poss(D)} trap.`); removeSpirit(A, att, 'destroyed', true); checkDepletion(A); if (G.over) return; }      // v329 LIFE_HIT_DESTROY_TURN
   await maybeBurst(D, 'LIFE_DECREASE', { attacker: att });
   await flushBursts();
   io.view({ type: 'board' });

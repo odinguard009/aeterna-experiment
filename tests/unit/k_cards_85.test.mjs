@@ -515,3 +515,11 @@ test('K-974 BS04-094 discards cards and sends that many cores from one opposing 
     return [4 - s.cores, O.trashCores.n - tc, 4 - P.hand.length]; })()`);
   assert.deepEqual(r, [2, 2, 2], JSON.stringify(r));
 });
+
+test('K-975 BS08-078 arms the life-hit trap for this turn (flag only; the battle hook is not fought out here)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.turnNo = 11; P.lifeHitDestroy = null;
+    await BS.FX_ACTIONS.LIFE_HIT_DESTROY_TURN.run({ p: P, opp: O, src: BS.mkInst('BS08-078'), ctx: {} }, BS.CARDS['BS08-078'].magic.actions[0]);
+    return P.lifeHitDestroy; })()`);
+  assert.equal(r, 11);
+});

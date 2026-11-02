@@ -37685,11 +37685,20 @@
   "image": "Destruction Barrier.jpg",
   "block": "08",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "Flash- During this turn, when the attack of an opposing Spirit without Tribute reduces your life, destroy that Spirit."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "LIFE_HIT_DESTROY_TURN"
+    }
+   ]
+  }
  },
  {
   "id": "BS08-079",
