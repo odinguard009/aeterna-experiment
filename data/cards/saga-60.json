@@ -22888,12 +22888,25 @@
   "image": "SD13-001.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "［Lv1-Lv2］『このスピリットの破壊時』 疲労状態のコスト3以下の相手のスピリット1体を破壊する。"
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "costLe": 3,
+      "exhaustedOnly": true
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD13-002",

@@ -103,3 +103,21 @@ test('K-923 SD attack-draw cards draw one at their Lv; SD17-001/SD06-008 are als
   assert.equal(r.lv1, 0, j);
   assert.ok(r.c1.includes('green') && r.c2.includes('red'), j);
 });
+
+test('K-924 SD13-001: when destroyed, destroys an exhausted cost<=3 foe only', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = P.key; P.cpu = true; O.cpu = true;
+    P.spirits.length = 0; O.spirits.length = 0; P.trash.length = 0;
+    const s = BS.mkInst('SD13-001'); s.cores = 0; s.lostLv = 1; P.trash.push(s);
+    const a = BS.mkInst('BS01-002'); a.cores = 1; a.exhausted = false; O.spirits.push(a);
+    await BS.fireFx(P, 'DESTROYED', s, { subject: s });
+    const none = O.spirits.length;
+    a.exhausted = true;
+    await BS.fireFx(P, 'DESTROYED', s, { subject: s });
+    return { none, after: O.spirits.length, cost: BS.CARDS['BS01-002'].cost };
+  });
+  const j = JSON.stringify(r);
+  assert.equal(r.none, 1, j); assert.equal(r.after, 0, j);
+});
