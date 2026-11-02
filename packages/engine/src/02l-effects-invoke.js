@@ -231,9 +231,20 @@ function cpuInvokeOK(p, f, e, timing) {
    in Standard a Spirit at 0 BP is not destroyed by the rules (Eternal manual FAQ p. 68, as in v0.55), only by this text */
 (() => {
   const M = FX_ACTIONS.BP_MINUS, mChk = M.chk, mRun = M.run, mTxt = M.txt;
-  M.chk = a => (a.zeroDestroy == null || a.zeroDestroy === true) && (a.zeroBottom == null || a.zeroBottom === true) && (a.all == null || a.all === true) && (a.nPer == null || (a.nPer && /^[A-Za-z ]{3,30}$/.test(a.nPer.team) && Number.isInteger(a.nPer.n) && a.nPer.n >= 1000 && a.nPer.n <= 5000 && a.nPer.n % 1000 === 0)) && (a.nLegacy == null || (Number.isInteger(a.nLegacy) && a.nLegacy >= 1000 && a.nLegacy <= 5000 && a.nLegacy % 1000 === 0)) && (a.perTrash == null || (!!a.perTrash && Number.isInteger(a.perTrash.n) && a.perTrash.n >= 1000 && a.perTrash.n <= 5000 && a.perTrash.n % 1000 === 0 && hasMatch(a.perTrash.match))) && mChk(a);      // v0.195 nLegacy: "for each EX Symbol banished via this Legacy, BP- decreases n further"; v196 perTrash: "for each <match> card in your Trash, this BP- decreases n further"
-  M.txt = a => mTxt(a) + (a.zeroDestroy ? ', then destroy it if it has 0 BP' : '') + (a.zeroBottom ? ', then return it to the deckbottom if it has 0 BP' : '');
+  M.chk = a => (a.battle == null || (a.battle === true && !a.all && !a.nPer && !a.nLegacy && !a.perTrash && !a.zeroBottom && (a.targets == null || a.targets === 1))) && (a.zeroDraw == null || (a.zeroDraw === true && a.battle === true)) && (a.zeroDestroy == null || a.zeroDestroy === true) && (a.zeroBottom == null || a.zeroBottom === true) && (a.all == null || a.all === true) && (a.nPer == null || (a.nPer && /^[A-Za-z ]{3,30}$/.test(a.nPer.team) && Number.isInteger(a.nPer.n) && a.nPer.n >= 1000 && a.nPer.n <= 5000 && a.nPer.n % 1000 === 0)) && (a.nLegacy == null || (Number.isInteger(a.nLegacy) && a.nLegacy >= 1000 && a.nLegacy <= 5000 && a.nLegacy % 1000 === 0)) && (a.perTrash == null || (!!a.perTrash && Number.isInteger(a.perTrash.n) && a.perTrash.n >= 1000 && a.perTrash.n <= 5000 && a.perTrash.n % 1000 === 0 && hasMatch(a.perTrash.match))) && mChk(a);      // v0.195 nLegacy: "for each EX Symbol banished via this Legacy, BP- decreases n further"; v196 perTrash: "for each <match> card in your Trash, this BP- decreases n further"
+  M.txt = a => (a.battle ? mTxt(a).replace('this turn', 'this battle') : mTxt(a)) + (a.zeroDraw ? ', and draw a card the first time it is brought to 0 BP this turn' : '') + (a.zeroDestroy ? ', then destroy it if it has 0 BP' : '') + (a.zeroBottom ? ', then return it to the deckbottom if it has 0 BP' : '');
   M.run = async (c, a) => {
+    if (a.battle) {      // v381 "During this battle, give an opposing Spirit -N BP. If its BP is brought to 0, destroy it / (first time this turn) draw a card"
+      const L = FX_ACTIONS.BP_MINUS.cands(c, a); if (!L.length || !G || !G.attacker) { c.ctx.did = false; return; }
+      const T = await pickOppSpirits(c, L, 1, `✨ <b>${esc(_nm(c))}</b><br>Tap the opposing Spirit to give -${a.n} BP during this battle (glowing).`);
+      if (!T.length) { c.ctx.did = false; return; }
+      const t = T[0], was = bpOf(t); addBattleBp(t, -a.n); log(`${_nm(c)}: ${poss(c.opp)} ${CARDS[t.id].name} gets -${a.n} BP during this battle (${bpOf(t)} BP).`);
+      if (was > 0 && bpOf(t) === 0 && !fxImmune(c.opp, t, c)) {
+        if (a.zeroDraw && t.zeroDrawTurn !== G.turnNo) { t.zeroDrawTurn = G.turnNo; await FX_ACTIONS.DRAW.run(c, { n: 1 }); }
+        if (a.zeroDestroy) { removeSpirit(c.opp, t, 'destroyed', true); checkDepletion(c.opp); }
+      }
+      return;
+    }
     const before = new Map(c.opp.spirits.map(t => [t, t.bpMod || 0]));
     if (a.all) {      // v0.197 "give every opposing Spirit -N BP"
       const L = c.opp.spirits.filter(t => !fxImmune(c.opp, t, c)); if (!L.length) { c.ctx.did = false; return; }

@@ -182,3 +182,16 @@ test('K-1143 BS33-001 / BS41-RV001 get a Red symbol when summoning matching name
     return n0 - O.deck.length; })()`);
   assert.equal(m, 0, 'deck discard is blocked while Kamahashi is on the Field');
 });
+
+test('K-1144 SD23-005 destroys a Spirit that its battle -3000 BP brings to 0; SD23-003 draws once per turn at 0 BP; the minus ends with the battle', async () => {
+  const { page } = await sharedBoard();
+  const battle = (id, trig, extra, read) => run(id, trig, false, `G.attacker = m; G.battleNo = 7; ${extra}`, read);
+  let r = await page.evaluate(battle('SD23-005', 'ATTACKS', `{ const s = BS.mkInst('BS01-001'); s.cores = 1; O.spirits.push(s); }`, `{ n: O.spirits.length }`));
+  assert.deepEqual([r.impl, r.n], [true, 0], JSON.stringify(r));
+  r = await page.evaluate(battle('SD23-005', 'ATTACKS', `{ const s = BS.mkInst('BS01-018'); s.cores = 1; O.spirits.push(s); }`, `{ n: O.spirits.length, bp: BS.bpOf(O.spirits[0]) }`));
+  assert.deepEqual([r.n, r.bp], [1, 1000], JSON.stringify(r));
+  r = await page.evaluate(battle('SD23-003', 'ATTACKS', `P.deck = [BS.mkInst('BS01-001'), BS.mkInst('BS01-001')]; { const s = BS.mkInst('BS01-001'); s.cores = 1; O.spirits.push(s); } const h0 = P.hand.length;`, `{ d: P.hand.length - h0, n: O.spirits.length }`));
+  assert.deepEqual([r.impl, r.d, r.n], [true, 1, 1], JSON.stringify(r));
+  r = await page.evaluate(`(() => { BS.G.attacker = null; return BS.bpOf(BS.G.p.opponent.spirits[0]); })()`);
+  assert.equal(r, 1000, 'bpOf outside a battle ignores the battle minus (cards keep printed BP)');
+});
