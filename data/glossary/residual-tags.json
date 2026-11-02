@@ -5808,12 +5808,6 @@
   "K_HOLY_LIFE",
   "K_RUSH"
  ],
- "BS19-060": [
-  "C_LEVEL",
-  "K_BURST",
-  "K_RUSH",
-  "T_ATTACKS"
- ],
  "BS19-064": [
   "C_LEVEL"
  ],
@@ -18258,12 +18252,6 @@
   "M_BY_DOING",
   "M_OPTIONAL",
   "T_ADVENT"
- ],
- "BS41-RV005": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "K_RUSH",
-  "T_ATTACKS"
  ],
  "BS41-RV006": [
   "A_EXHAUST",

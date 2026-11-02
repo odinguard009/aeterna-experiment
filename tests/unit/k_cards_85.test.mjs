@@ -700,3 +700,9 @@ test('K-992 NO_OPP_BURST locks the opponent Burst only while a matching Spirit a
     const out = []; G.attacker = null; out.push(BS.burstLocked(O)); G.attacker = plain; out.push(BS.burstLocked(O)); G.attacker = s; out.push(BS.burstLocked(O)); out.push(BS.burstLocked(P)); G.attacker = null; return out; })()`);
   assert.deepEqual(r, [false, false, true, false], JSON.stringify(r));
 });
+
+test('K-993 Rush burst-lock cards: BS41-RV005 and BS19-060 have the NO_BURST_BATTLE and red-gated effects', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(() => { const sh = id => BS.CARDS[id].effects.map(e => e.trigger + ':' + (e.if ? e.if.hasSymbol : '-') + ':' + e.actions.map(a => a.do).join('+')).join('|'); return [sh('BS41-RV005'), sh('BS19-060')]; })()`);
+  assert.deepEqual(r, ['ATTACKS:-:NO_BURST_BATTLE|BLOCKS:-:NO_BURST_BATTLE|ATTACKS:red:DESTROY+BP_PLUS|BLOCKS:red:DESTROY+BP_PLUS', 'ATTACKS:-:NO_BURST_BATTLE|ATTACKS:red:DRAW'], JSON.stringify(r));
+});

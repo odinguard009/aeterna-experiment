@@ -10386,15 +10386,80 @@
   "mechanics": [
    "Rush"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Attacks/Blocks) The opponent can't activate their Bursts. {{Rush|Red}} (While you have Red symbols, the following effects activate next) : Destroy an opposing Spirit with a BP equal or inferior to this Spirit's. : This Spirit gains +10000 BP."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image.",
   "bicon": [
    "4"
   ],
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "NO_BURST_BATTLE"
+     }
+    ]
+   },
+   {
+    "trigger": "BLOCKS",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "NO_BURST_BATTLE"
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "hasSymbol": "red"
+    },
+    "actions": [
+     {
+      "do": "DESTROY",
+      "bpLeSelf": true
+     },
+     {
+      "do": "BP_PLUS",
+      "n": 10000,
+      "to": "self"
+     }
+    ]
+   },
+   {
+    "trigger": "BLOCKS",
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "hasSymbol": "red"
+    },
+    "actions": [
+     {
+      "do": "DESTROY",
+      "bpLeSelf": true
+     },
+     {
+      "do": "BP_PLUS",
+      "n": 10000,
+      "to": "self"
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS41-RV006",
