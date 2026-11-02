@@ -87,3 +87,33 @@ test('K-1116 BS20-015 When Attacks: destroys only an exhausted braved opposing S
   const r = await page.evaluate(runFx('BS20-015', 'ATTACKS', `const a = BS.mkInst('BS01-001'), b = BS.mkInst('BS01-001'); a.cores = b.cores = 1; a.exhausted = b.exhausted = true; b.brave = BS.mkInst('BS53-064'); O.spirits.push(a, b);`, `{ n: O.spirits.length, brave: O.spirits.map(s => !!s.brave) }`));
   assert.equal(r.impl, true, JSON.stringify(r)); assert.equal(r.n, 1, JSON.stringify(r)); assert.deepEqual(r.brave, [false], JSON.stringify(r));
 });
+
+test('K-1117 BS24-032 When Attacks: bounces an opposing Nexus; Purple Rush cores stay without a Purple symbol', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(runFx('BS24-032', 'ATTACKS', `const s = BS.mkInst('BS01-001'); s.cores = 3; O.spirits.push(s); O.nexus = [BS.mkInst('BS01-100')]; P.spirits = [];`, `{ nx: O.nexus.length, cores: O.spirits[0].cores }`));
+  assert.equal(r.impl, true, JSON.stringify(r)); assert.equal(r.nx, 0, JSON.stringify(r)); assert.equal(r.cores, 3, JSON.stringify(r));
+});
+
+test('K-1118 BS23-049 When Attacks: LV up for the turn, Void core only with a Green symbol', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(runFx('BS23-049', 'ATTACKS', `P.spirits = [m]; m.cores = 1; const v0 = P.void.n;`, `{ v: P.void.n - v0, c: m.cores }`));
+  assert.equal(r.impl, true, JSON.stringify(r)); assert.equal(r.c, 1, JSON.stringify(r));
+});
+
+test('K-1119 BS23-021 When Destroyed: takes a Void core; Rush clauses need Red and White', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(runFx('BS23-021', 'DESTROYED', `const s = BS.mkInst('BS01-001'); s.cores = 1; O.spirits.push(s); O.nexus = [BS.mkInst('BS01-100')];`, `{ sp: O.spirits.length, nx: O.nexus.length }`));
+  assert.equal(r.impl, true, JSON.stringify(r)); assert.equal(r.sp, 1, JSON.stringify(r)); assert.equal(r.nx, 1, JSON.stringify(r));
+});
+
+test('K-1120 BS24-005 When Summoned: destroys a 2000 BP or less Spirit; Rush needs Green', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(runFx('BS24-005', 'SUMMONED', `const a = BS.mkInst('BS01-001'), b = BS.mkInst('BS01-001'); a.cores = b.cores = 1; a.exhausted = b.exhausted = false; O.spirits.push(a, b); P.spirits = [];`, `{ sp: O.spirits.length, ex: O.spirits.map(s => !!s.exhausted) }`));
+  assert.equal(r.impl, true, JSON.stringify(r)); assert.equal(r.sp, 1, JSON.stringify(r)); assert.deepEqual(r.ex, [false], JSON.stringify(r));
+});
+
+test('K-1121 BS19-051 When Summoned: all opposing Spirits are LV1 this turn', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(runFx('BS19-051', 'SUMMONED', `const a = BS.mkInst('BS01-001'); a.cores = 5; O.spirits.push(a); P.spirits = [];`, `{ n: O.spirits.length }`));
+  assert.equal(r.impl, true, JSON.stringify(r)); assert.equal(r.n, 1, JSON.stringify(r));
+});
