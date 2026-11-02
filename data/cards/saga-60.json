@@ -31517,12 +31517,22 @@
   "image": "SD29-001.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV3] While is on this Spirit, this Spirit gains +6000 BP."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "bp": 6000,
+    "to": "self",
+    "lv": [
+     3
+    ],
+    "if": {
+     "selfSoul": true
+    }
+   }
+  ]
  },
  {
   "id": "SD29-002",
@@ -31795,13 +31805,41 @@
   "image": "SD29-008.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (Your Attack Step) When your Spirits are blocked, draw a card.",
-   "[LV2] (Your Attack Step) Your Spirits with Soul Core on them gain +10000 BP."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "U"
+  "rcode": "U",
+  "effects": [
+   {
+    "trigger": "ALLY_BLOCKED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     }
+    ],
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": false
+    }
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 10000,
+    "to": "own",
+    "lv": [
+     2
+    ],
+    "if": {
+     "attackStep": true,
+     "oppTurn": false,
+     "selfSoul": true
+    }
+   }
+  ]
  },
  {
   "id": "SD29-009",
