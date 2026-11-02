@@ -103,3 +103,21 @@ test('K-1010 SD17-014 destroys a 3000 BP Spirit then, with a Green symbol, exhau
   assert.ok(r.opp <= 1, JSON.stringify(r));
   assert.equal(r.wired, true);
 });
+
+test('K-1011 SD45-013 draws two and destroys an opposing 10000 BP or less Spirit only while a "Mega" family Spirit is controlled', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const mk = (id, n) => { const x = BS.mkInst(id); x.cores = n; return x; };
+    const out = [];
+    for (const mega of [false, true]) {
+      P.spirits = mega ? [mk('SD45-005', 2)] : [mk('BS01-001', 1)]; O.spirits = [mk('BS01-001', 1)];
+      P.deck = Array.from({ length: 6 }, () => BS.mkInst('BS01-001')); P.reserve.n = 20;
+      const m = BS.mkInst('SD45-013'); P.hand = [m];
+      await BS.castMagic(P, { inst: m, target: null, plan: null, ctx: 'main' });
+      out.push({ hand: P.hand.length, opp: O.spirits.length });
+    }
+    return out; })()`);
+  assert.equal(r[0].opp, 1, JSON.stringify(r));
+  assert.equal(r[1].opp, 0, JSON.stringify(r));
+  assert.ok(r[0].hand >= 2, JSON.stringify(r));
+});
