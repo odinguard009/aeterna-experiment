@@ -4545,13 +4545,33 @@
   "image": "Brave Destruction.jpg",
   "block": "24",
   "saga": 5,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Destroy a Brave on an opposing Brave Spirit.",
-   "Or, destroy an opposing 3000 BP or less Spirit."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "CHOOSE_ONE",
+     "options": [
+      [
+       {
+        "do": "DESTROY_BRAVE"
+       }
+      ],
+      [
+       {
+        "do": "DESTROY",
+        "bpLe": 3000
+       }
+      ]
+     ]
+    }
+   ]
+  }
  },
  {
   "id": "BS24-098",
@@ -9122,13 +9142,35 @@
   "image": "Binding Scale.png",
   "block": "25",
   "saga": 5,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Exhaust an opposing Spirit/Ultimate.",
-   "Or, during this turn, give one Spirit/Ultimate +10000 BP."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "CHOOSE_ONE",
+     "options": [
+      [
+       {
+        "do": "EXHAUST_OPP",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "do": "BP_TARGET",
+        "n": 10000,
+        "to": "pick"
+       }
+      ]
+     ]
+    }
+   ]
+  }
  },
  {
   "id": "BS25-078",

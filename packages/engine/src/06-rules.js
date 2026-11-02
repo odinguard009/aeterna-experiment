@@ -549,12 +549,14 @@ async function castMagic(p, ch) {                         // ch = { inst, target
   if (!sm && !free) legacyPay(p, inst);
   if (alt) { p.onceUsed = p.onceUsed || {}; p.onceUsed['costalt:' + card.name] = G.turnNo; }
   if (card.magic && card.magic.once) { p.onceUsed = p.onceUsed || {}; p.onceUsed['magic:' + card.name] = G.turnNo; }      // v303
+  inst.soulPaid = false;
   const smHolder = sm ? soulMagicHolder(p) : null;              // chosen before the card leaves the Hand (symbols stay as they are)
   removeFrom(p.hand, inst); if (fromTrash) removeFrom(p.trash, inst);
   if (sm) {                                                     // v0.64 Soul Magic: the whole cost is the Soul Core, which goes to the Trash
+    inst.soulPaid = true;
     if (smHolder === 'reserve') p.reserve.soul = false; else smHolder.soul = false;
     p.trashCores.soul = true;
-  } else if (!free) payCost(p, c, ch.plan);
+  } else if (!free) inst.soulPaid = payCost(p, c, ch.plan);      // v370 "If (Soul Core) was used to pay the cost" on a Magic
   log(`${who(p)} ${p.cpu ? 'casts' : 'cast'} ${card.name}${fromTrash ? ' from the Trash' : ''} (${free ? 'without paying the cost' : sm ? 'Soul Magic: paid the Soul Core' : 'paid ' + c}).`);
   io.view({ type: 'effect', side: p.key, id: inst.id, text: String(magicText(card)).replace(/^(\[[^\]]*\])+ /, '').slice(0, 200), trg: '' });   // v0.205.2: the Effect Active panel also shows a cast Magic (display only)
   checkDepletion(p);

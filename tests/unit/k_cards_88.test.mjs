@@ -129,3 +129,22 @@ test('K-901 BS35-002 gains +5000 BP only while a War Dragon Spirit holds a Soul 
   });
   assert.equal(r.d, 5000, JSON.stringify(r));
 });
+
+test('K-902 BS31-108 bounces an Ultimate only when the Magic was cast with its Soul Core paid', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = P.key; P.cpu = true; O.cpu = true;
+    const out = {};
+    for (const paid of [false, true]) {
+      P.spirits.length = 0; O.spirits.length = 0;
+      const u = BS.mkInst(Object.keys(BS.CARDS).find(id => BS.CARDS[id].type === 'Ultimate')); u.cores = 3; O.spirits.push(u);
+      const m = BS.mkInst('BS31-108'); m.soulPaid = paid;
+      await BS.runActions({ p: P, opp: O, src: m, ctx: { selfInst: m } }, { actions: BS.CARDS['BS31-108'].magic.actions });
+      out['left' + paid] = O.spirits.length;
+    }
+    return out;
+  });
+  const m = JSON.stringify(r);
+  assert.equal(r.leftfalse, 1, m); assert.equal(r.lefttrue, 0, m);
+});

@@ -145,6 +145,6 @@ const MAGIC_FX = {
 };
 /* v0.41: a Magic card can run any list of engine actions (FX_ACTIONS) as its effect: magic { effect: 'ACTIONS', actions: [...] }; an action may carry its own "if" */
 MAGIC_FX.ACTIONS = { side: null, text: (v, m) => cap((m.actions || []).map(a => FX_ACTIONS[a.do].txt(a)).join(', then ')) + '.',
-  apply: async (p, opp, t, v, m, inst) => { await runActions({ p, opp, src: inst, ctx: {} }, { actions: m.actions }); } };
+  apply: async (p, opp, t, v, m, inst) => { await runActions({ p, opp, src: inst, ctx: { selfInst: inst } }, { actions: m.actions }); } };
 const MAGIC_TIMINGS = ['MAIN', 'FLASH'];
 const SYMBOL_KINDS = ['ultimate', 'god'];          // special symbols besides the six colours (rule manual p. 13)

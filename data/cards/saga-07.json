@@ -3764,13 +3764,33 @@
   "image": "BS35-085 (Fixed).jpg",
   "block": "35",
   "saga": 7,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Destroy all 3000 BP or less Spirits.",
-   "Or, destroy a Brave on an opposing Brave Spirit."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "CHOOSE_ONE",
+     "options": [
+      [
+       {
+        "do": "DESTROY_EVERY",
+        "bpLe": 3000
+       }
+      ],
+      [
+       {
+        "do": "DESTROY_BRAVE"
+       }
+      ]
+     ]
+    }
+   ]
+  }
  },
  {
   "id": "BS35-086",
@@ -3939,13 +3959,33 @@
   "image": "BS35-091 (Fixed).jpg",
   "block": "35",
   "saga": 7,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "During this turn, give all your Spirits +3000 BP.",
-   "During Seal Instead, during this turn, give all your Spirits +10000 BP."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "BP_PLUS",
+     "n": 3000,
+     "to": "own",
+     "if": {
+      "sealed": false
+     }
+    },
+    {
+     "do": "BP_PLUS",
+     "n": 10000,
+     "to": "own",
+     "if": {
+      "sealed": true
+     }
+    }
+   ]
+  }
  },
  {
   "id": "BS35-092",
@@ -3990,13 +4030,31 @@
   "image": "BS35-093 (Fixed).jpg",
   "block": "35",
   "saga": 7,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Exhaust two opposing Spirits/Ultimates.",
-   "During Seal Then, return all opposing exhausted Spirits/Ultimates to the Hand."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "EXHAUST_OPP",
+     "n": 2
+    },
+    {
+     "do": "BOUNCE_OPP",
+     "to": "hand",
+     "kind": "spirit",
+     "exhaustedOnly": true,
+     "all": true,
+     "if": {
+      "sealed": true
+     }
+    }
+   ]
+  }
  },
  {
   "id": "BS35-094",
@@ -4073,13 +4131,28 @@
   "image": "BS35-096 (Fixed).jpg",
   "block": "35",
   "saga": 7,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Return an opposing Spirit/Ultimate to the Hand.",
-   "During Seal Also, refresh one of your Spirits."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "BOUNCE_OPP",
+     "to": "hand",
+     "kind": "spirit"
+    },
+    {
+     "do": "REFRESH_SPIRIT",
+     "if": {
+      "sealed": true
+     }
+    }
+   ]
+  }
  },
  {
   "id": "BS35-097",
@@ -4171,14 +4244,30 @@
   "image": "BS35-100 (Fixed).jpg",
   "block": "35",
   "saga": 7,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "During this turn, give a Spirit +3000 BP.",
-   "If your Hand has zero cards, also, draw three cards.",
-   "Then, discard a card from your Hand."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "BP_TARGET",
+     "n": 3000,
+     "to": "pick"
+    },
+    {
+     "do": "LOOT",
+     "draw": 3,
+     "discard": 1,
+     "if": {
+      "handLe": 0
+     }
+    }
+   ]
+  }
  },
  {
   "id": "BS35-101",
@@ -17859,13 +17948,31 @@
   "image": "Mercury Goblet.jpg",
   "block": "38",
   "saga": 7,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Destroy an opposing Spirit/Ultimate with the lowest cost.",
-   "During Seal Instead, destroy an opposing Spirit/Ultimate with the highest cost."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "DESTROY",
+     "costRank": "lowest",
+     "if": {
+      "sealed": false
+     }
+    },
+    {
+     "do": "DESTROY",
+     "costRank": "highest",
+     "if": {
+      "sealed": true
+     }
+    }
+   ]
+  }
  },
  {
   "id": "BS38-RV041",

@@ -405,3 +405,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v367 (Lane K): condition `subjViaEffect` (ALLY_SUMMONED: the summoned Spirit entered via an effect). Card: BS68-004.
 - v368 (Lane K): STATIC flag `FX_SUMMON_EXHAUSTED` (to: opp; opposing Spirits summoned by effects enter exhausted, filtered by `match`) and `match.notColor`. Card: BS35-026.
 - v369 (Lane K): `ctrlFamily.soul` (the matching Spirit must hold a Soul Core). Card: BS35-002.
+- v370 (Lane K): `if.soulPaid` now also applies to Magic casts (`castMagic` sets `inst.soulPaid`; Soul Magic counts as paid). Cards: BS31-108, BS32-073 and ten more old Flash Magic.

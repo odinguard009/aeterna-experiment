@@ -3953,13 +3953,21 @@
   "mechanics": [
    "Whirlwind"
   ],
-  "fxComplete": false,
-  "residual": [
-   "Flash {{ww|1}}",
-   "Heavy exhaust one opposing Spirit/Ultimate.",
-   "heb"
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "HEAVY_EXHAUST_OPP",
+     "n": 1
+    }
+   ]
+  }
  },
  {
   "id": "BS40-085",

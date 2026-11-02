@@ -4273,13 +4273,27 @@
   "image": "Wind Release Technique (2).jpg",
   "block": "31",
   "saga": 6,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Exhaust an opposing Spirit/Ultimate without Soul Core on it.",
-   "Then, during this turn, give a Spirit you control +5000 BP."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "EXHAUST_OPP",
+     "n": 1,
+     "noSoul": true
+    },
+    {
+     "do": "BP_TARGET",
+     "n": 5000,
+     "to": "pick"
+    }
+   ]
+  }
  },
  {
   "id": "BS31-105",
@@ -4387,13 +4401,36 @@
   "image": "Dream Bubble.png",
   "block": "31",
   "saga": 6,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Return an opposing Spirit to the Hand.",
-   "If (Soul Core) was used to pay the cost, instead, return an opposing Spirit/Ultimate to the Hand."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "BOUNCE_OPP",
+     "to": "hand",
+     "kind": "spirit",
+     "match": {
+      "type": "Spirit"
+     },
+     "if": {
+      "soulPaid": false
+     }
+    },
+    {
+     "do": "BOUNCE_OPP",
+     "to": "hand",
+     "kind": "spirit",
+     "if": {
+      "soulPaid": true
+     }
+    }
+   ]
+  }
  },
  {
   "id": "BS31-109",
@@ -8404,13 +8441,29 @@
   "image": "Blazing Roar.png",
   "block": "32",
   "saga": 6,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Destroy every opposing 3000 BP or less Spirit.",
-   "If (Soul Core) was used to pay the cost, also, destroy an opposing 10000 BP or less Spirit/Ultimate."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "DESTROY_EVERY",
+     "bpLe": 3000,
+     "opposing": true
+    },
+    {
+     "do": "DESTROY",
+     "bpLe": 10000,
+     "if": {
+      "soulPaid": true
+     }
+    }
+   ]
+  }
  },
  {
   "id": "BS32-074",
