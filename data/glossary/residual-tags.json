@@ -111,7 +111,6 @@
   "A_EXHAUST",
   "M_THEN"
  ],
- "BS01-141": [],
  "BS01-142": [
   "A_EXHAUST",
   "A_REFRESH"
@@ -345,13 +344,9 @@
  "BS02-100": [],
  "BS02-101": [],
  "BS02-104": [],
- "BS02-105": [
-  "A_BP_PLUS"
- ],
  "BS02-109": [
   "M_REPLACEMENT"
  ],
- "BS02-110": [],
  "BS02-111": [],
  "BS02-X05": [
   "A_AWAKEN",
@@ -3700,7 +3695,6 @@
   "A_VOID",
   "T_SUMMONED"
  ],
- "BS13-083": [],
  "BS13-084": [
   "A_SUMMON_FREE",
   "M_THEN",

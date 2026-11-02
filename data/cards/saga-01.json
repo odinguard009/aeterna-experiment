@@ -5931,13 +5931,20 @@
   "image": "Invisible Cloak.jpg",
   "block": "01",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Target a Spirit.",
-   "During this turn, the targeted Spirit can't be blocked."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "UNBLOCKABLE_PICK"
+    }
+   ]
+  }
  },
  {
   "id": "BS01-142",
@@ -10836,12 +10843,32 @@
   "image": "Great Wall.jpg",
   "block": "02",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "Eng Version= (Your Main Phase) All spirits with a cost of 6 or 8 cannot attack or block until end of turn.",
-   "(Flash Step)(Your Main Phase) Target spirit gets +2000BP until end of turn."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "MAIN",
+    "FLASH"
+   ],
+   "by": {
+    "MAIN": {
+     "effect": "ACTIONS",
+     "actions": [
+      {
+       "do": "CANT_ATTACK_BLOCK_ALL",
+       "costIn": [
+        6,
+        8
+       ]
+      }
+     ]
+    },
+    "FLASH": {
+     "effect": "BP_PLUS",
+     "value": 2000
+    }
+   }
+  }
  },
  {
   "id": "BS02-106",
@@ -11015,12 +11042,21 @@
   "image": "Heavy Gate.jpg",
   "block": "02",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "During this turn, all Cost 1 or less Spirits can't attack nor block."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "CANT_ATTACK_BLOCK_ALL",
+     "costLe": 1
+    }
+   ]
+  }
  },
  {
   "id": "BS02-111",

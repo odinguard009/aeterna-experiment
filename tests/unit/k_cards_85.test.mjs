@@ -430,3 +430,36 @@ test('K-966 TREAT_HIGHEST: BS07-006 at LV3 lifts own Deified General Spirits to 
     return [hi, lo, top]; })()`);
   assert.deepEqual(r, [r[2], 0, r[2]], JSON.stringify(r));
 });
+
+test('K-967 BS13-083 treats every own multi-level Spirit as highest this turn', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.spirits.length = 0;
+    const a = BS.mkInst('BS15-005'), b = BS.mkInst('BS06-010'); a.cores = 1; b.cores = 1; P.spirits.push(a, b);
+    const before = [BS.lvIndex(a), BS.lvIndex(b)];
+    await BS.FX_ACTIONS.TREAT_HIGHEST_ALL.run({ p: P, opp: O, src: BS.mkInst('BS13-083'), ctx: {} }, BS.CARDS['BS13-083'].magic.actions[0]);
+    return [before, [BS.lvIndex(a), BS.lvIndex(b)]]; })()`);
+  assert.deepEqual(r, [[0, 0], [2, 2]], JSON.stringify(r));
+});
+
+test('K-968 BS02-110 / BS02-105 lock matching Spirits of both sides for the turn', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const byCost = k => Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit' && BS.CARDS[i].cost === k);
+    const mk = (side, ks) => { side.spirits.length = 0; for (const k of ks) { const s = BS.mkInst(byCost(k)); s.cores = 1; side.spirits.push(s); } };
+    mk(P, [1, 3]); mk(O, [0, 2]);
+    await BS.FX_ACTIONS.CANT_ATTACK_BLOCK_ALL.run({ p: P, opp: O, src: BS.mkInst('BS02-110'), ctx: {} }, BS.CARDS['BS02-110'].magic.actions[0]);
+    const a = P.spirits.concat(O.spirits).map(s => !!s.noAB);
+    mk(P, [6, 7]); mk(O, [8, 5]);
+    await BS.FX_ACTIONS.CANT_ATTACK_BLOCK_ALL.run({ p: P, opp: O, src: BS.mkInst('BS02-105'), ctx: {} }, BS.CARDS['BS02-105'].magic.by.MAIN.actions[0]);
+    return [a, P.spirits.concat(O.spirits).map(s => !!s.noAB)]; })()`);
+  assert.deepEqual(r, [[true, false, true, false], [true, false, true, false]], JSON.stringify(r));
+});
+
+test('K-969 BS01-141 marks one own Spirit as unblockable this turn', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.spirits.length = 0;
+    const sp = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit'); const s = BS.mkInst(sp); s.cores = 1; P.spirits.push(s);
+    await BS.FX_ACTIONS.UNBLOCKABLE_PICK.run({ p: P, opp: O, src: BS.mkInst('BS01-141'), ctx: {} }, BS.CARDS['BS01-141'].magic.actions[0]);
+    return s.noBlockTurn === G.turnNo; })()`);
+  assert.equal(r, true);
+});

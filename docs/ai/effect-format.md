@@ -358,3 +358,5 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v320 (Lane K): MUST_ATTACK_ALL_OPP {costLe} (every matching opposing Spirit must attack; same mustAtk marker as MUST_ATTACK_OPP). Card: BS08-076.
 - v321 (Lane K): DESTROY_OPP_DOWN_TO_OWN (needs 2+ own Spirits; the opponent destroys Spirits of their choice, via DESTROY_OPP_OWN, until the counts match). Card: BS08-069.
 - v322: STATIC flag `TREAT_HIGHEST` (to own, match, lv, if): matching own Spirits are treated as being on their highest level (BS07-006, BS07-034, BS08-065, BS11-047).
+- v323: action `TREAT_HIGHEST_ALL` (no params): during this turn every Spirit you control on the Field is treated as being on its highest level (BS13-083).
+- v324: action `CANT_ATTACK_BLOCK_ALL {costLe | costIn}`: during this turn all matching Spirits of both sides cannot attack/block (BS02-110, BS02-105). BS01-141 reuses `UNBLOCKABLE_PICK` with no params (own Spirits only).
