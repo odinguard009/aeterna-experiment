@@ -219,3 +219,25 @@ test('K-887 BS56-012 summoned: discard 1 draw 1, one more draw only with a Blue 
   assert.equal(none, 2, r); assert.equal(green, 2, r);
   assert.equal(blue, 2, r); assert.equal(blueM, 3, r);
 });
+
+test('K-888 BS45-020 / BS44-015 destroyed by the opponent: core to Reserve, return to hand under their conditions', async () => {
+  const { page } = await sharedBoard();
+  const run = (id, life, nexus) => page.evaluate(async ([id, life, nexus]) => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = O.key; P.cpu = true;
+    P.spirits.length = 0; O.spirits.length = 0; P.nexus = []; P.life = life;
+    if (nexus) { const nx = BS.mkInst('BS36-069'); nx.cores = 0; P.nexus.push(nx); }
+    O.trashCores.n = 0; O.spirits.push(Object.assign(BS.mkInst('BS48-042'), { cores: 2 }));
+    const s = BS.mkInst(id); s.lostLv = 0; P.hand.length = 0; P.trash = P.trash || []; P.trash.push(s);
+    const before = P.reserve.n;
+    await BS.fireFx(P, 'DESTROYED', s, { subject: s, byOpp: true });
+    return { hand: P.hand.length, res: P.reserve.n - before, oppCores: O.spirits[0].cores };
+  }, [id, life, nexus]);
+  const a3 = await run('BS45-020', 3, false), a4 = await run('BS45-020', 4, false);
+  const m = JSON.stringify([a3, a4]);
+  assert.equal(a3.hand, 0, m); assert.equal(a4.hand, 1, m);
+  const b0 = await run('BS44-015', 3, false), b1 = await run('BS44-015', 3, true);
+  const n = JSON.stringify([b0, b1]);
+  assert.equal(b0.hand, 1, n); assert.equal(b1.hand, 1, n);
+  assert.equal(b0.oppCores, 2, n); assert.equal(b1.oppCores, 1, n);
+});

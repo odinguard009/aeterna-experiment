@@ -704,15 +704,40 @@
   "image": "Smog Phynx.png",
   "block": "44",
   "saga": 9,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Destroyed by the Opponent) This Spirit returns to your hand. Also, if you control a Nexus, send one core from any opposing Spirit(s) to the Reserve."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Destroyed by the opponent: returns to Hand; with a Nexus send a core from an opposing Spirit to the Reserve.",
   "bicon": [
    "5"
   ],
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "if": {
+     "byOpp": true
+    },
+    "actions": [
+     {
+      "do": "SELF_TO_HAND"
+     },
+     {
+      "do": "OPP_CORES_TO_RESERVE",
+      "targets": 1,
+      "each": 1,
+      "if": {
+       "nexusGe": {
+        "n": 1
+       }
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS44-016",
@@ -6201,15 +6226,47 @@
   "image": "Yukisemi.jpg",
   "block": "45",
   "saga": 9,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Destroyed by the Opponent) Put one core from the Void to your Reserve. Also, if your Life is at four or more, you can return this Spirit to the Hand."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Destroyed by the opponent: core to Reserve; with Life 4+ may return to Hand.",
   "bicon": [
    "5"
   ],
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "byOpp": true
+    },
+    "actions": [
+     {
+      "do": "VOID_TO_RESERVE",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "byOpp": true,
+     "lifeGe": 4
+    },
+    "optional": true,
+    "actions": [
+     {
+      "do": "SELF_TO_HAND"
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS45-021",
