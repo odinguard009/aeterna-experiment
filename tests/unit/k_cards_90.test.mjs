@@ -91,3 +91,15 @@ test('K-1009 SD06-015 Burst (Life reduced) destroys three opposing 4000 BP or le
   const r = await page.evaluate(`(() => { const c = BS.CARDS['SD06-015']; return c.fxComplete !== false && c.burst.when === 'LIFE_DECREASE' && c.burst.thenFlash === true && !!c.magic; })()`);
   assert.equal(r, true);
 });
+
+test('K-1010 SD17-014 destroys a 3000 BP Spirit then, with a Green symbol, exhausts another; SD14-008 / SD11-014 / SD11-015 / SD33-012 are wired', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const mk = (id, n) => { const x = BS.mkInst(id); x.cores = n; return x; };
+    const a = mk('BS01-001', 1), b = mk('BS01-001', 1); O.spirits = [a, b]; P.reserve.n = 20;
+    const m = BS.mkInst('SD17-014'); P.hand = [m];
+    await BS.castMagic(P, { inst: m, target: null, plan: null, ctx: 'flash' });
+    return { opp: O.spirits.length, wired: ['SD14-008', 'SD11-014', 'SD11-015', 'SD33-012'].every(id => BS.CARDS[id].fxComplete !== false && !!BS.CARDS[id].magic) }; })()`);
+  assert.ok(r.opp <= 1, JSON.stringify(r));
+  assert.equal(r.wired, true);
+});

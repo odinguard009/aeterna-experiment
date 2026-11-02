@@ -55194,15 +55194,6 @@
   "S_UNAFFECTED",
   "T_DESTROYED"
  ],
- "SD11-014": [
-  "A_END_ATTACK",
-  "A_EXHAUST",
-  "K_RUSH"
- ],
- "SD11-015": [
-  "A_REFRESH",
-  "K_RUSH"
- ],
  "SD11-016": [
   "A_DESTROY_TOTAL",
   "A_DISCARD_OPP",
@@ -55304,10 +55295,6 @@
   "K_BRAVE",
   "K_HIGH_SPEED",
   "T_BATTLE_WIN"
- ],
- "SD14-008": [
-  "A_REFRESH",
-  "K_RUSH"
  ],
  "SD14-X01": [
   "A_BP_PLUS",
@@ -55459,10 +55446,6 @@
   "A_BP_PLUS",
   "A_REFRESH",
   "C_LEVEL"
- ],
- "SD17-014": [
-  "A_EXHAUST",
-  "K_RUSH"
  ],
  "SD17-015": [
   "A_DESTROY_TOTAL",
@@ -56532,10 +56515,6 @@
   "A_SUMMON_FREE",
   "C_LEVEL",
   "M_OPTIONAL"
- ],
- "SD33-012": [
-  "A_DESTROY_BP",
-  "K_BRAVE"
  ],
  "SD33-013": [
   "A_DESTROY_BP",

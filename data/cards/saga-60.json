@@ -23383,12 +23383,28 @@
   "image": "SD11-014.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Flash When this battle ends, end the Attack Step. {{Rush|Green}} (While you have a Green symbol, the following effect activates next) (Green Core): Exhaust an opposing Spirit."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "END_ATTACK_AFTER_BATTLE"
+    },
+    {
+     "do": "EXHAUST_OPP",
+     "n": 1,
+     "if": {
+      "hasSymbol": "green"
+     }
+    }
+   ]
+  }
  },
  {
   "id": "SD11-015",
@@ -23407,12 +23423,32 @@
   "image": "SD11-015.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Flash Return an opposing Spirit to the Hand. {{Rush|Green}} (While you have a Green symbol, the following effect activates next) (Green Core): Refresh a White Spirit you control."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "U"
+  "rcode": "U",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "BOUNCE_OPP",
+     "to": "hand",
+     "kind": "spirit"
+    },
+    {
+     "do": "REFRESH_SPIRIT",
+     "match": {
+      "color": "white"
+     },
+     "if": {
+      "hasSymbol": "green"
+     }
+    }
+   ]
+  }
  },
  {
   "id": "SD11-016",
@@ -24076,12 +24112,32 @@
   "image": "SD14-008.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Flash Refresh three \"Parasite\" family Spirits you control. {{Rush|Blue}} (While you have a Blue symbol, the following effect activates next) (Blue Core): Destroy an opposing Cost 3 or less Spirit."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "U"
+  "rcode": "U",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "REFRESH_SPIRIT",
+     "count": 3,
+     "match": {
+      "family": "Parasite"
+     }
+    },
+    {
+     "do": "DESTROY",
+     "costLe": 3,
+     "if": {
+      "hasSymbol": "blue"
+     }
+    }
+   ]
+  }
  },
  {
   "id": "SD14-X01",
@@ -25302,12 +25358,29 @@
   "image": "SD17-014.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Flash Destroy an opposing 3000 BP or less Spirit. {{Rush|Green}} (While you have a Green symbol, the following effect activates next) (Green Core): Exhaust an opposing Spirit."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "DESTROY",
+     "bpLe": 3000
+    },
+    {
+     "do": "EXHAUST_OPP",
+     "n": 1,
+     "if": {
+      "hasSymbol": "green"
+     }
+    }
+   ]
+  }
  },
  {
   "id": "SD17-015",
@@ -32537,12 +32610,38 @@
   "image": "SD33-012.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Flash Destroy an opposing Nexus. Or, destroy an opposing 9000 BP or less Brave Spirit."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "CHOOSE_ONE",
+     "options": [
+      [
+       {
+        "do": "DESTROY",
+        "nexus": true
+       }
+      ],
+      [
+       {
+        "do": "DESTROY",
+        "bpLe": 9000,
+        "match": {
+         "type": "Brave"
+        }
+       }
+      ]
+     ]
+    }
+   ]
+  }
  },
  {
   "id": "SD33-013",
