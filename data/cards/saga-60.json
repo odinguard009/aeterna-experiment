@@ -19859,12 +19859,27 @@
   "image": "SD01-035.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Flash Draw a card. During this turn, give a Spirit +1000 BP."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "DRAW",
+     "n": 1
+    },
+    {
+     "do": "BP_TARGET",
+     "n": 1000,
+     "to": "pick"
+    }
+   ]
+  }
  },
  {
   "id": "SD01-036",
@@ -22608,12 +22623,30 @@
   "image": "SD10-014.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Flash Destroy two opposing 2000 BP or less Spirits."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "DESTROY_ANY",
+     "kind": "spirit",
+     "bpLe": 2000,
+     "oppOnly": true
+    },
+    {
+     "do": "DESTROY_ANY",
+     "kind": "spirit",
+     "bpLe": 2000,
+     "oppOnly": true
+    }
+   ]
+  }
  },
  {
   "id": "SD10-015",

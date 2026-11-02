@@ -54836,9 +54836,6 @@
   "A_BP_PLUS",
   "M_THEN"
  ],
- "SD01-035": [
-  "A_BP_PLUS"
- ],
  "SD01-036": [
   "A_BP_PLUS",
   "T_ATTACKS"
@@ -55138,7 +55135,6 @@
   "C_LEVEL",
   "T_ALLY_ATTACKS"
  ],
- "SD10-014": [],
  "SD10-015": [
   "A_END_ATTACK"
  ],
