@@ -20356,14 +20356,6 @@
   "T_ALLY_SUMMONED",
   "T_SUMMONED"
  ],
- "BS44-054": [
-  "A_DRAW",
-  "A_VOID",
-  "C_LEVEL",
-  "K_GRANDWALKER",
-  "M_BY_DOING",
-  "T_SUMMONED"
- ],
  "BS44-055": [
   "A_REFRESH",
   "C_LEVEL",
@@ -28691,14 +28683,6 @@
   "C_OPP_TURN",
   "K_BURST",
   "K_ULTIMATE"
- ],
- "BS53-003": [
-  "A_DESTROY_BP",
-  "A_VOID",
-  "C_LEVEL",
-  "K_GRANDWALKER",
-  "M_BY_DOING",
-  "T_ATTACKS"
  ],
  "BS53-004": [
   "A_RETURN_TRASH",
@@ -41188,13 +41172,6 @@
   "C_ONCE",
   "M_OPTIONAL",
   "T_ATTACKS"
- ],
- "BS67-005": [
-  "A_COUNTER",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "M_THEN",
-  "T_ALLY_ATTACKS"
  ],
  "BS67-006": [
   "A_SUMMON_FREE",

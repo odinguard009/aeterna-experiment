@@ -1071,3 +1071,16 @@ test('K-1030 BS43-RV007 destroys an opposing Spirit only after discarding a Remo
     O.removed.push(BS.mkInst(id)); await BS.fireFx(P, 'SUMMONED', s, {}); return [none, O.spirits.length, O.removed.length]; })()`);
   assert.deepEqual(r, [1, 0, 0], JSON.stringify(r));
 });
+
+test('K-1031 BS44-054 draws and BS53-003 destroys only after an opposing Grandwalker Nexus core goes to the Void; BS67-005 counter and draw on a Judgment attack', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.coreShield = O.coreShield = null; P.spirits.length = 0; O.spirits.length = 0; O.nexus.length = 0;
+    const ids = Object.keys(BS.CARDS); const gw = ids.find(k => BS.CARDS[k].type === 'Nexus' && (BS.CARDS[k].families || []).some(f => /grandwalker/i.test(f))); const sp = ids.find(k => /^BS0[0-9]-/.test(k) && BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].levels[0].bp <= 5000);
+    const a = BS.mkInst('BS44-054'); a.cores = 1; P.spirits.push(a); const h0 = P.hand.length; await BS.fireFx(P, 'SUMMONED', a, {}); const noNx = P.hand.length - h0;
+    const n = BS.mkInst(gw); n.cores = 2; O.nexus.push(n); const v0 = O.void; await BS.fireFx(P, 'SUMMONED', a, {}); const drew = P.hand.length - h0 - noNx;
+    const b = BS.mkInst('BS53-003'); b.cores = 1; P.spirits.push(b); const o = BS.mkInst(sp); o.cores = 1; O.spirits.push(o); n.cores = 0; await BS.fireFx(P, 'ATTACKS', b, {}); const kept = O.spirits.length;
+    n.cores = 2; await BS.fireFx(P, 'ATTACKS', b, {}); const gone = O.spirits.length;
+    const j = BS.mkInst('BS67-005'); j.cores = 1; P.spirits.push(j); const jf = ids.find(k => BS.CARDS[k].type === 'Spirit' && (BS.CARDS[k].families || []).includes('Judgment') && k !== 'BS67-005'); const att = BS.mkInst(jf); att.cores = 1; P.spirits.push(att);
+    const c0 = P.count, h1 = P.hand.length; await BS.fireFx(P, 'ALLY_ATTACKS', j, { attacker: att }); return [noNx, drew, O.void - v0, n.cores, kept, gone, (P.count || 0) - (c0 || 0), P.hand.length - h1]; })()`);
+  assert.deepEqual(r, [0, 1, 2, 1, 1, 0, 1, 1], JSON.stringify(r));
+});
