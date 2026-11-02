@@ -906,3 +906,12 @@ test('K-1014 NO_DESTROY: BS28-028 cannot be destroyed (battle or effect) while i
     P.burst = null; BS.removeSpirit(P, s, 'destroyed', 'battle'); out.push(P.spirits.includes(s)); return out; })()`);
   assert.deepEqual(r, [true, true, false], JSON.stringify(r));
 });
+
+test('K-1015 CANT_BLOCK_OPP_ALL: BS19-075 stops opposing Cost 3 or less Spirits from blocking this turn only', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.coreShield = O.coreShield = null; P.spirits.length = 0; O.spirits.length = 0;
+    const lo = Object.keys(BS.CARDS).find(k => /^BS0[0-9]-/.test(k) && BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].cost === 3), hi = Object.keys(BS.CARDS).find(k => /^BS0[0-9]-/.test(k) && BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].cost === 8);
+    const a = BS.mkInst(lo), b = BS.mkInst(hi); a.cores = b.cores = 2; O.spirits.push(a, b); const src = BS.mkInst('BS19-075'); src.cores = 1; P.spirits.push(src);
+    await BS.fireFx(P, 'SUMMONED', src, {}); const out = [BS.canBlockState(O, a), BS.canBlockState(O, b)]; G.turnNo++; out.push(BS.canBlockState(O, a)); return out; })()`);
+  assert.deepEqual(r, [false, true, true], JSON.stringify(r));
+});

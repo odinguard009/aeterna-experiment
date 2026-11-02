@@ -83,7 +83,7 @@ const burstLocked = owner => { if (!G) return false; const opp = G.p[other(owner
       if (subj(G.attacker) || (e.mode === 'battling' && subj(G.blocker))) return true; } }
   return false; };
 const cantAttack = (p, s) => !!s.noAB || (!!G && s.noAtkTurn === G.turnNo) || flagActive(p, 'CANT_ATTACK', s) || oppAttackLock(p, s) || lowAtkLocked(p, s);      // v214 LOW_ATK_ONCE      // v0.170: the printed "This Spirit can't attack." (STATIC flag CANT_ATTACK) besides the effect lock noAB
-const canBlockState = (p, s) => !s.noAB && !(s.noBlockB && s.noBlockB === G.battleNo) && !flagActive(p, 'CANT_BLOCK', s) && (!s.exhausted || flagActive(p, 'BLOCK_EXHAUSTED', s) || (s.blockExB != null && s.blockExB === G.battleNo) || (s.blockExT != null && s.blockExT === G.turnNo));      // v312 BLOCK_EXHAUSTED_TURN; v0.89 S1: BLOCK_EXHAUSTED_OPP (02p)
+const canBlockState = (p, s) => !s.noAB && !(s.noBlockB && s.noBlockB === G.battleNo) && !(s.noBlockT != null && s.noBlockT === G.turnNo) && !flagActive(p, 'CANT_BLOCK', s) && (!s.exhausted || flagActive(p, 'BLOCK_EXHAUSTED', s) || (s.blockExB != null && s.blockExB === G.battleNo) || (s.blockExT != null && s.blockExT === G.turnNo));      // v312 BLOCK_EXHAUSTED_TURN; v0.89 S1: BLOCK_EXHAUSTED_OPP (02p)
 /* v351 NO_DRAW_OUTSIDE: "Neither player can draw outside Draw Step" (read by draw(): any active copy on either Field blocks draws unless G.step is the Draw Step) */
 const drawLocked = () => { if (!G || G.over || G.step === 2) return false;
   for (const q of [G.p.player, G.p.opponent]) for (const src of fieldList(q)) { const L = lvNo(src);

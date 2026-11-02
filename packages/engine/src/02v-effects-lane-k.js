@@ -315,6 +315,14 @@ FX_ACTIONS.CANT_ATTACK_BLOCK_ALL = {
     for (const t of L) { t.noAB = true; t.noABTurn = G.turnNo; }
     if (L.length) { log(`${CARDS[c.src.id].name}: ${L.length} Spirit${L.length === 1 ? '' : 's'} can't attack/block during this turn.`); io.view({ type: 'board' }); }
   } };
+/* v354 CANT_BLOCK_OPP_ALL {costLe}: "During this turn, every opposing Cost N or less Spirit can't block." Opposing side only; protected Spirits skipped; mark noBlockT = turn number (read by canBlockState). */
+FX_ACTIONS.CANT_BLOCK_OPP_ALL = {
+  chk: a => Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30 && Object.keys(a).every(k => ['do', 'if', 'costLe'].includes(k)),
+  txt: a => `during this turn, every opposing Spirit with cost ${a.costLe} or less can't block`,
+  cands: (c, a) => c.opp.spirits.filter(s => CARDS[s.id].cost <= a.costLe && !fxImmune(c.opp, s, c)),
+  can: (c, a) => FX_ACTIONS.CANT_BLOCK_OPP_ALL.cands(c, a).length > 0,
+  run: async (c, a) => { const L = FX_ACTIONS.CANT_BLOCK_OPP_ALL.cands(c, a); c.ctx.did = L.length > 0; for (const t of L) t.noBlockT = G.turnNo;
+    if (L.length) log(`${CARDS[c.src.id].name}: ${L.length} opposing Spirit${L.length === 1 ? '' : 's'} can't block during this turn.`); } };
 /* v325 SPIRITS_ALL_TO_HAND {costLe}: "Return every Cost N or less Spirit to its owner's Hand." Both sides; protected opposing Spirits are skipped (fxImmune). */
 FX_ACTIONS.SPIRITS_ALL_TO_HAND = {
   chk: a => Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30 && Object.keys(a).every(k => ['do', 'if', 'costLe'].includes(k)),
