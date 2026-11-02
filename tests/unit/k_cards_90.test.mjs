@@ -235,3 +235,14 @@ test('K-1021 SD23-012 gives -2000 BP and refreshes a Yellow Spirit only on the o
     return out; })()`);
   assert.equal(r[0].d, -2000, JSON.stringify(r)); assert.equal(r[0].ref, false, JSON.stringify(r)); assert.equal(r[1].ref, true, JSON.stringify(r));
 });
+
+test('K-1022 SD13-006 destroys only an exhausted Cost 6 or less Spirit; the Braves draw and destroy', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const s = BS.mkInst('SD13-006'); s.cores = 3; P.spirits = [s];
+    const a = BS.mkInst('BS01-001'); a.cores = 1; const b = BS.mkInst('BS01-001'); b.cores = 1; b.exhausted = true; O.spirits = [a, b];
+    await BS.fireFx(P, 'ATTACKS', s, { attacker: s });
+    const wired = ['SD03-010', 'SD43-RV004'].every(id => { const c = BS.CARDS[id]; return c.implemented === true && c.effects[0].braved === true; });
+    return { left: O.spirits.length, exhLeft: O.spirits.filter(x => x.exhausted).length, wired }; })()`);
+  assert.deepEqual(r, { left: 1, exhLeft: 0, wired: true }, JSON.stringify(r));
+});

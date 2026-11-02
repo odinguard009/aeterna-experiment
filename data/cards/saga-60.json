@@ -21277,16 +21277,29 @@
   "image": "SD03-010.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "When Braved (When Attacks) Draw a card, and destroy an opposing 4000 BP or less Spirit."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
   "rcode": "C",
   "brave": {
    "bp": 2000,
    "costGe": 3
-  }
+  },
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     },
+     {
+      "do": "DESTROY",
+      "bpLe": 4000
+     }
+    ],
+    "braved": true
+   }
+  ]
  },
  {
   "id": "SD03-011",
@@ -23790,12 +23803,35 @@
   "image": "SD13-006.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Attacks) Destroy an opposing exhausted Cost 6 or less Spirit. {{Rush|Yellow}} (While you have a Yellow symbol, the following effect activates next.) (Yellow Core): This Spirit can't be blocked by opposing LV2/LV3 Spirits."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "R"
+  "rcode": "R",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "exhaustedOnly": true,
+      "costLe": 6
+     },
+     {
+      "do": "CANT_BE_BLOCKED_BY",
+      "levels": [
+       2,
+       3
+      ],
+      "if": {
+       "hasSymbol": "yellow"
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD13-007",
@@ -38482,16 +38518,29 @@
   "image": "SD43-RV004.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "When Braved (When Attacks) Draw a card, and destroy an opposing 4000 BP or less Spirit."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
   "rcode": "C",
   "brave": {
    "bp": 4000,
    "costGe": 3
-  }
+  },
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     },
+     {
+      "do": "DESTROY",
+      "bpLe": 4000
+     }
+    ],
+    "braved": true
+   }
+  ]
  },
  {
   "id": "SD43-X01",

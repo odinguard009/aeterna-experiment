@@ -54939,10 +54939,6 @@
   "K_ULTIMATE",
   "T_ATTACKS"
  ],
- "SD03-010": [
-  "A_DESTROY_BP",
-  "T_ATTACKS"
- ],
  "SD03-012": [
   "A_REFRESH",
   "T_ATTACKS"
@@ -55214,12 +55210,6 @@
   "K_RUSH",
   "T_ATTACKS",
   "T_SUMMONED"
- ],
- "SD13-006": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "K_RUSH",
-  "T_ATTACKS"
  ],
  "SD13-007": [
   "A_EXHAUST",
@@ -57326,10 +57316,6 @@
  "SD43-RV003": [
   "A_REFRESH",
   "C_LEVEL",
-  "T_ATTACKS"
- ],
- "SD43-RV004": [
-  "A_DESTROY_BP",
   "T_ATTACKS"
  ],
  "SD43-X01": [
