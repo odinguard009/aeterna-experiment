@@ -37994,11 +37994,31 @@
   "image": "Dark Power.jpg",
   "block": "08",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "Flash- During this turn, for each exhausted Spirit you control, all \"Dark\"/\"Black\"-named Spirits you control gain +2000 BP."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "BP_PLUS",
+     "n": 2000,
+     "to": "own",
+     "match": {
+      "name": [
+       "Dark",
+       "Black"
+      ]
+     },
+     "per": {
+      "type": "Spirit",
+      "state": "exhausted"
+     }
+    }
+   ]
+  }
  },
  {
   "id": "BS08-076",

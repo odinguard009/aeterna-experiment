@@ -73,3 +73,25 @@ test('K-1155 SD37-013 / BS40-080 / BS31-098 destroy a braved Brave, then the fol
     assert.equal(r.ok, true, JSON.stringify(r)); if (left == null) assert.ok(r.left < 3 && r.brave === 0, id + ' ' + JSON.stringify(r)); else assert.equal(r.left, left, id + ' ' + JSON.stringify(r));
   }
 });
+
+test('K-1156 BS11-081 draws a card and gives Brilliance/Holy Life Spirits +1000 BP', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4;
+    const kw = k => Object.values(BS.CARDS).find(c => c.type === 'Spirit' && BS.cardHasKeyword(c, k)).id;
+    const mk = id => { const s = BS.mkInst(id); s.cores = 1; return s; };
+    const a = mk(kw('Brilliance')), b = mk(kw('Holy Life')), z = mk('BS01-001'); P.spirits = [a, b, z]; const m = BS.mkInst('BS11-081'); const h0 = P.hand.length, base = [a, b, z].map(s => BS.bpOf(s));
+    await BS.runActions({ p: P, opp: O, src: m, ctx: { selfInst: m } }, { actions: BS.CARDS['BS11-081'].magic.actions });
+    return { d: P.hand.length - h0, bp: [a, b, z].map((s, i) => BS.bpOf(s) - base[i]), ok: BS.CARDS['BS11-081'].fxComplete !== false }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.d, 1, JSON.stringify(r)); assert.deepEqual(r.bp, [1000, 1000, 0], JSON.stringify(r));
+});
+
+test('K-1157 BS08-075 gives Dark/Black-named Spirits +2000 BP per exhausted Spirit you control', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4;
+    const dk = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && /^(Dark|Black)/.test(c.name)).id;
+    const mk = (id, ex) => { const s = BS.mkInst(id); s.cores = 1; s.exhausted = ex; return s; };
+    const a = mk(dk, true), b = mk('BS01-001', true), c = mk('BS01-001', false); P.spirits = [a, b, c]; const m = BS.mkInst('BS08-075'); const base = [a, c].map(s => BS.bpOf(s));
+    await BS.runActions({ p: P, opp: O, src: m, ctx: { selfInst: m } }, { actions: BS.CARDS['BS08-075'].magic.actions });
+    return { bp: [a, c].map((s, i) => BS.bpOf(s) - base[i]), ok: BS.CARDS['BS08-075'].fxComplete !== false }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.deepEqual(r.bp, [4000, 0], JSON.stringify(r));
+});

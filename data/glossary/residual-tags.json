@@ -1890,10 +1890,6 @@
   "A_BP_PLUS",
   "T_ACTIVATE"
  ],
- "BS08-075": [
-  "A_BP_PLUS",
-  "A_EXHAUST"
- ],
  "BS08-080": [
   "M_OPTIONAL"
  ],
@@ -2787,10 +2783,6 @@
   "K_BRAVE"
  ],
  "BS11-080": [],
- "BS11-081": [
-  "A_BP_PLUS",
-  "K_HOLY_LIFE"
- ],
  "BS11-082": [],
  "BS11-083": [],
  "BS11-084": [

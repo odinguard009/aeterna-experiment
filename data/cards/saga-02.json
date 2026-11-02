@@ -8579,13 +8579,31 @@
   "image": "Lightning Delivery.jpg",
   "block": "11",
   "saga": 2,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Draw a card.",
-   "During this turn, give all your Spirits with Brilliance/Holy Life +1000 BP."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "DRAW",
+     "n": 1
+    },
+    {
+     "do": "BP_PLUS",
+     "n": 1000,
+     "to": "own",
+     "match": {
+      "keywordAny": [
+       "Brilliance",
+       "Holy Life"
+      ]
+     }
+    }
+   ]
+  }
  },
  {
   "id": "BS11-082",
