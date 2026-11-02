@@ -116,8 +116,8 @@ document.addEventListener('click', e => {
   else if (a === 'set-dlimgs') {
     if (IMGDL) { IMGDL.stop = true; return; }
     const btn = $('set-dl'), msg = $('set-dl-st'); if (btn) btn.textContent = 'Stop';
-    downloadAllImages((st, n) => { if (msg) msg.textContent = `${n} / ${st.total} cards checked: ${st.ok} saved, ${st.skip} already here, ${st.fail} not available.`; }).then(r => {
-      if (btn) btn.textContent = 'Download';
+    downloadAllImages((st, n) => { const bar = $('set-dl-bar'); if (bar) { bar.hidden = false; bar.max = st.total || 1; bar.value = n; } if (msg) msg.textContent = `${n} / ${st.total} cards checked: ${st.ok} saved, ${st.skip} already here, ${st.fail} not available.`; }).then(r => {
+      if (btn) btn.textContent = r.stopped || r.fail ? 'Resume' : 'Download'; const bar = $('set-dl-bar'); if (bar) bar.hidden = true;
       if (msg) msg.textContent = r.err ? r.err : `${r.stopped ? 'Stopped' : 'Done'}: ${r.ok} saved, ${r.skip} already here, ${r.fail} not available (${r.total} cards).`;
       refreshViews(); renderSetPage();
     });

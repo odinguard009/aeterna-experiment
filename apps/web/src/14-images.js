@@ -77,34 +77,6 @@ async function importImages(files) {
   }
   return { ok, miss };
 }
-/* 2026-11-02: "Download all card pictures" (Settings): every card's picture from the picture server (the same /assets/card-images route the cards use online)
-   is stored on this device (IndexedDB, like pictures added in the Library), so the art works offline. Resumable: a card that already has a picture is skipped. */
-let IMGDL = null;                                    // { stop: bool } while a download runs
-async function downloadAllImages(report) {
-  const origin = (typeof onlineOrigin === 'function') ? onlineOrigin() : null;
-  if (!origin) return { ok: 0, skip: 0, fail: 0, total: 0, err: 'No picture server: open the game from its web address (or set the online server) first.' };
-  if (!IDB) IDB = await idbOpen();
-  if (!IDB) return { ok: 0, skip: 0, fail: 0, total: 0, err: 'This browser blocks local storage, so pictures cannot be saved.' };
-  const ids = Object.keys(CARDS).filter(id => !CARDS[id].token && !/^TRAIN-/.test(id)), st = { ok: 0, skip: 0, fail: 0, total: ids.length, err: '' };
-  IMGDL = { stop: false }; let n = 0, next = 0, streak = 0;
-  const one = async () => {
-    while (!IMGDL.stop && next < ids.length && !st.err) {
-      const id = ids[next++];
-      if (IMG[id]) st.skip++;
-      else {
-        try {
-          const r = await fetch(`${origin}/assets/card-images/${encodeURIComponent(id)}?a=${ART_REV}`);
-          const b = r.ok ? await r.blob() : null;
-          if (b && b.size && /^image\//.test(b.type)) { setImg(id, b); await idbTx('readwrite', s => s.put(b, id)); st.ok++; streak = 0; } else { st.fail++; streak++; }
-        } catch (e) { st.fail++; streak++; }
-        if (streak >= 25 && !st.ok) st.err = 'The picture server does not answer.';
-      }
-      if (++n % 20 === 0 || n === ids.length) report(st, n);
-    }
-  };
-  await Promise.all([one(), one(), one(), one(), one(), one()]);
-  st.stopped = IMGDL.stop; IMGDL = null; report(st, n); return st;
-}
 async function clearImages() { Object.keys(IMG).forEach(id => { URL.revokeObjectURL(IMG[id]); delete IMG[id]; }); await idbTx('readwrite', st => { st.clear(); if (MAT.blob) st.put(MAT.blob, MAT_KEY); if (LOBBYBG.blob) st.put(LOBBYBG.blob, LOBBYBG_KEY); for (const i of Object.keys(SLEEVE_BLOB)) st.put(SLEEVE_BLOB[i], '~sleeve:' + i); }); }   // the playmat is not a card image: it stays
 /* v0.112.0 (card images online): the card image URL for an id. The player's own image (IndexedDB
    blob) always wins; otherwise, when an online server is present, the official art mirrored at
