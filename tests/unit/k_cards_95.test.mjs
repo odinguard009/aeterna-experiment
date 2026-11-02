@@ -194,3 +194,19 @@ test('K-1166 SD24-003 gets a Void core when a Fighting Spirit Ultimate is summon
     return { before, after, idle, fight, ok: BS.CARDS['SD24-003'].fxComplete !== false && BS.CARDS['BS25-048'].fxComplete !== false }; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.after, r.before + 1, JSON.stringify(r)); assert.equal(r.fight, r.idle + 2000, JSON.stringify(r));
 });
+
+test('K-1167 BS69-058 gives Roaring Azure Spirits +3000 BP when it heavily exhausts', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = O.key; G.step = 4;
+    const ra = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && (c.families || []).includes('Roaring Azure') && c.id !== 'BS69-058').id;
+    const o = BS.mkInst('BS69-058'); o.cores = 3; const f = BS.mkInst(ra); f.cores = 2; P.spirits = [o, f]; const before = BS.bpOf(f);
+    await BS.fireFx(P, 'EXHAUSTED_FX', o, { subject: o, side: 'own', heavy: true }); const after = BS.bpOf(f);
+    return { before, after, ok: BS.CARDS['BS69-058'].fxComplete !== false }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.after, r.before + 3000, JSON.stringify(r));
+});
+
+test('K-1168 BS07-038 is complete and carries the Flash invoke that exhausts itself', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(() => { const c = BS.CARDS['BS07-038']; const e = (c.fx || c.effects || []).find(x => x.invoke); return { ok: c.fxComplete !== false, ex: !!(e && e.cost && e.cost.exhaustSelf), n: e && e.actions[0].n }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.ex, true, JSON.stringify(r)); assert.equal(r.n, 2000, JSON.stringify(r));
+});

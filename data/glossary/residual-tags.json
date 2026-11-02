@@ -1442,12 +1442,6 @@
   "T_ATTACKS",
   "T_BLOCKS"
  ],
- "BS07-038": [
-  "A_BP_PLUS",
-  "A_EXHAUST",
-  "C_LEVEL",
-  "K_HOLY_LIFE"
- ],
  "BS07-041": [
   "C_LEVEL",
   "T_BATTLE_WIN"
@@ -42703,12 +42697,6 @@
   "K_ULTIMATE",
   "M_OPTIONAL",
   "T_SUMMONED"
- ],
- "BS69-058": [
-  "A_BP_PLUS",
-  "A_EXHAUST",
-  "C_LEVEL",
-  "M_OPTIONAL"
  ],
  "BS69-059": [
   "A_EXHAUST",
