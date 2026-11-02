@@ -17228,16 +17228,27 @@
   "mechanics": [
    "Rush"
   ],
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Destroy an opposing Cost 4 or less Spirit.",
-   "This effect can't be used during Main Step.",
-   "{{Rush|White}}",
-   "(While you have a White symbol, the following effect activates next)",
-   ": Discard an opposing Burst."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "DESTROY",
+     "costLe": 4
+    },
+    {
+     "do": "DISCARD_OPP_BURST",
+     "if": {
+      "hasSymbol": "white"
+     }
+    }
+   ]
+  }
  },
  {
   "id": "BS22-084",

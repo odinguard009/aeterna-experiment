@@ -279,3 +279,24 @@ test('K-908 BS24-110 exhausts every 5000-BP-or-less foe only with a green symbol
   const m = JSON.stringify(r);
   assert.equal(r.nosym, 0, m); assert.ok(r.sym >= 1, m);
 });
+
+test('K-909 BS22-083 discards the opposing Burst only with a white symbol', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = P.key; P.cpu = true; O.cpu = true;
+    const wht = Object.keys(BS.CARDS).find(id => /^BS0/.test(id) && BS.CARDS[id].type === 'Spirit' && BS.CARDS[id].symbol === 'white' && BS.CARDS[id].symbols >= 1);
+    const out = {};
+    for (const [tag, withSym] of [['sym', true], ['nosym', false]]) {
+      P.spirits.length = 0; O.spirits.length = 0; O.burst = BS.mkInst('BS01-002');
+      if (withSym) { const s = BS.mkInst(wht); s.cores = 2; P.spirits.push(s); }
+      const f = BS.mkInst('BS01-002'); f.cores = 1; O.spirits.push(f);
+      const m = BS.mkInst('BS22-083');
+      await BS.runActions({ p: P, opp: O, src: m, ctx: { selfInst: m } }, { actions: BS.CARDS['BS22-083'].magic.actions });
+      out[tag] = [O.spirits.length, !!O.burst];
+    }
+    return out;
+  });
+  const m = JSON.stringify(r);
+  assert.deepEqual(r.sym, [0, false], m); assert.deepEqual(r.nosym, [0, true], m);
+});
