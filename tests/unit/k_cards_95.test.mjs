@@ -63,3 +63,13 @@ test('K-1154 BS35-092 exhausts one Spirit or three Cost 4 or less; with the Soul
     assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.ex, n, JSON.stringify(r));
   }
 });
+
+test('K-1155 SD37-013 / BS40-080 / BS31-098 destroy a braved Brave, then the follow-up destroy', async () => {
+  const { page } = await sharedBoard();
+  const brv = `Object.values(BS.CARDS).find(c => c.type === 'Brave').id`;
+  const setup = `const L = ${cheap}; const a = mk(L[0]); a.brave = BS.mkInst(${brv}); O.spirits = [a, mk(L[1]), mk(L[2])];`;
+  for (const [id, soul, left] of [['SD37-013', false, 2], ['BS31-098', false, 3], ['BS31-098', true, 2], ['BS40-080', false, null]]) {
+    const r = await page.evaluate(runMagic(id, soul, setup, `{ left: O.spirits.length, brave: O.spirits.filter(s => s.brave).length }`));
+    assert.equal(r.ok, true, JSON.stringify(r)); if (left == null) assert.ok(r.left < 3 && r.brave === 0, id + ' ' + JSON.stringify(r)); else assert.equal(r.left, left, id + ' ' + JSON.stringify(r));
+  }
+});

@@ -4157,13 +4157,26 @@
   "image": "Conflagration Slash.png",
   "block": "31",
   "saga": 6,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Destroy an opposing braved Brave.",
-   "After this effect resolves, when (Soul Core) was used to pay the cost, destroy an opposing 7000 BP or less Spirit/Ultimate."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "DESTROY_BRAVE"
+    },
+    {
+     "do": "DESTROY",
+     "bpLe": 7000,
+     "if": {
+      "soulPaid": true
+     }
+    }
+   ]
+  }
  },
  {
   "id": "BS31-099",

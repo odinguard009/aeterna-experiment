@@ -3846,13 +3846,23 @@
   "image": "Saint Flame.jpg",
   "block": "40",
   "saga": 8,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Destroy an opposing braved Brave.",
-   "After this effect resolves, destroy any number of opposing Spirits/Ultimates up to a total of 10000 BP."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "DESTROY_BRAVE"
+    },
+    {
+     "do": "DESTROY_TOTAL",
+     "total": 10000
+    }
+   ]
+  }
  },
  {
   "id": "BS40-081",

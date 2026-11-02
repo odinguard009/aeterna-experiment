@@ -11433,11 +11433,6 @@
  "BS31-097": [
   "A_BP_PLUS"
  ],
- "BS31-098": [
-  "A_DESTROY_BP",
-  "K_BRAVE",
-  "K_ULTIMATE"
- ],
  "BS31-100": [
   "K_BRAVE"
  ],
@@ -16724,12 +16719,6 @@
   "A_TRASH_TO_RESERVE",
   "C_CONTROL",
   "K_ULTIMATE"
- ],
- "BS40-080": [
-  "A_DESTROY_TOTAL",
-  "K_BRAVE",
-  "K_ULTIMATE",
-  "M_UP_TO"
  ],
  "BS40-081": [
   "K_ULTIMATE"
@@ -56304,11 +56293,6 @@
   "A_EXHAUST",
   "C_LEVEL",
   "K_ADVENT",
-  "K_ULTIMATE"
- ],
- "SD37-013": [
-  "A_DESTROY_BP",
-  "K_BRAVE",
   "K_ULTIMATE"
  ],
  "SD37-014": [
