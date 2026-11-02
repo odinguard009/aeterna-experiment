@@ -27260,12 +27260,41 @@
   "image": "SD20-015.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Flash Return every opposing Cost 3 or less Spirit to the Hand. Or, return an opposing non-braved Spirit to the Hand."
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "fxComplete": true,
+  "rcode": "C",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "CHOOSE_ONE",
+     "options": [
+      [
+       {
+        "do": "BOUNCE_OPP",
+        "to": "hand",
+        "kind": "spirit",
+        "costLe": 3,
+        "all": true
+       }
+      ],
+      [
+       {
+        "do": "BOUNCE_OPP",
+        "to": "hand",
+        "kind": "spirit",
+        "match": {
+         "noBrave": true
+        }
+       }
+      ]
+     ]
+    }
+   ]
+  }
  },
  {
   "id": "SD20-016",

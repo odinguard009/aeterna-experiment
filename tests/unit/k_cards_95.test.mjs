@@ -19,3 +19,15 @@ test('K-1150 BS19-107 refreshes a Spirit, or (nothing to refresh) gives all your
   assert.deepEqual(r.first, { ex: false, d: 0 }, JSON.stringify(r));
   assert.equal(r.second, 3000, JSON.stringify(r));
 });
+
+test('K-1151 SD20-015 returns every opposing Cost 3 or less Spirit, or one non-braved Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4;
+    const mk = id => { const s = BS.mkInst(id); s.cores = 1; return s; };
+    const cheap = Object.values(BS.CARDS).filter(c => c.type === 'Spirit' && c.cost <= 3).slice(0, 2).map(c => c.id);
+    O.spirits = [mk(cheap[0]), mk(cheap[1])]; P.reserve.n = 20; const m = BS.mkInst('SD20-015'); P.hand = [m]; const h0 = O.hand.length;
+    await BS.castMagic(P, { inst: m, target: null, plan: null, ctx: 'flash' });
+    return { left: O.spirits.length, hand: O.hand.length - h0, ok: BS.CARDS['SD20-015'].fxComplete !== false }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r));
+  assert.deepEqual([r.left, r.hand], [0, 2], JSON.stringify(r));
+});
