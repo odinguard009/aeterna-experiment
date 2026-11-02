@@ -494,3 +494,13 @@ test('K-972 BS08-079 treats an opposing Spirit as LV1 for the turn', async () =>
     return [before, BS.lvIndex(s)]; })()`);
   assert.deepEqual(r, [2, 0], JSON.stringify(r));
 });
+
+test('K-973 BS03-141 raises a Spirit by one LV for the turn', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.spirits.length = 0;
+    const sp = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit' && BS.CARDS[i].levels.length > 2); const s = BS.mkInst(sp); s.cores = BS.CARDS[sp].levels[0].cores; P.spirits.push(s);
+    const before = BS.lvIndex(s);
+    await BS.FX_ACTIONS.LV_UP_TURN.run({ p: P, opp: O, src: BS.mkInst('BS03-141'), ctx: {} }, BS.CARDS['BS03-141'].magic.actions[0]);
+    return [before, BS.lvIndex(s)]; })()`);
+  assert.deepEqual(r, [0, 1], JSON.stringify(r));
+});

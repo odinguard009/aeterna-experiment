@@ -1,8 +1,8 @@
 {
  "stats": {
-  "cards": 6596,
+  "cards": 6595,
   "per_saga": {
-   "1": 512,
+   "1": 511,
    "2": 267,
    "3": 340,
    "4": 328,
@@ -22,7 +22,7 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2110,
+  "skipped_curated": 2111,
   "nexus_levels_added": 675,
   "nexus_levels_missing": 43,
   "number_conflicts": 4,
@@ -303,6 +303,7 @@
   "BS03-136",
   "BS03-139",
   "BS03-140",
+  "BS03-141",
   "BS03-143",
   "BS03-144",
   "BS03-145",

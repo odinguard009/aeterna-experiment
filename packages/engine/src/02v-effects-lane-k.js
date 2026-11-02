@@ -326,4 +326,17 @@ FX_ACTIONS.SPIRITS_ALL_TO_HAND = {
     c.ctx.did = k > 0; if (k) { checkDepletion(c.p); checkDepletion(c.opp); io.view({ type: 'board' }); }
   } };
 
+/* v327 LV_UP_TURN: "Target a Spirit you or the opponent controls. During this turn, it is treated as being one LV higher." inst.lvPlusTurn, read by lvIndex (capped at the highest level), cleared at turn end / on leaving the Field. Protected opposing Spirits (fxImmune) are not targetable. */
+FX_ACTIONS.LV_UP_TURN = {
+  chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
+  txt: () => 'target a Spirit; during this turn, it is treated as being one LV higher',
+  cands: c => [...c.p.spirits, ...c.opp.spirits.filter(t => !fxImmune(c.opp, t))].filter(t => CARDS[t.id].levels.length > 1 && !t.lvPlusTurn),
+  can: c => FX_ACTIONS.LV_UP_TURN.cands(c).length > 0,
+  run: async c => {
+    const L = FX_ACTIONS.LV_UP_TURN.cands(c); if (!L.length) { c.ctx.did = false; return; }
+    const t = c.p.cpu ? (L.find(s => c.p.spirits.includes(s)) || L[0]) : await fxPickTarget(c, L, `✨ <b>${esc(_nm(c))}</b><br>Tap a Spirit to treat as one LV higher (glowing).`);
+    if (!t) { c.ctx.did = false; return; }
+    t.lvPlusTurn = true; io.view({ type: 'board' }); log(`${CARDS[t.id].name} is treated as being one LV higher this turn.`);
+  } };
+
 wrapImmunity(Object.values(FX_ACTIONS));   // the actions above are defined after 02k: LO01

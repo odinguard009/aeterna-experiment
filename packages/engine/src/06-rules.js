@@ -45,6 +45,7 @@ function lvIndex(i) {
   if (i.lv1Battle && G && G.battleNo != null && i.lv1Battle === G.battleNo && k > 0) k = 0;      // v205 TREAT_LV1: "During this battle, treat it as LV1"
   if (i.lv2Turn && L.length > 1 && k < 1) k = 1;      // v0.196 TREAT_LV2 action
   if ((i.lvHighTurn || treatHighest(i)) && L.length > 1) k = L.length - 1;      // v184 TREAT_LV2 highest
+  if (i.lvPlusTurn && L.length > 1) k = Math.min(L.length - 1, Math.max(k, 0) + 1);      // v327 LV_UP_TURN
   if (i.lv1Turn && k > 0) k = 0;      // v326 TREAT_LV1 turn:true: "During this turn, treat an opposing Spirit as being Level 1"
   if (card.trueRelease && i.soul && L.length > 1 && k < 1) k = 1;   // v0.66 True Release (Standard CR 12-2-1-1): the Soul Core alone fulfils LV2 (a rule, not an effect)
   return k;
@@ -364,7 +365,7 @@ function removeSpirit(p, s, why, byOpponent) {
   s.lostCores = s.cores;      // v279 "the number of cores that were on this Spirit when it was destroyed"
   coreEvN(p, s.uid, 'reserve', s.cores, s.soul);          // v0.149.0: the cores of a destroyed / depleted Spirit fly to the Reserve
   p.reserve.n += s.cores; if (s.soul) p.reserve.soul = true;
-  s.cores = 0; s.soul = false; s.exhausted = false; s.heavy = false; s.noAB = false; s.bpMod = 0; s.lv2Turn = false; s.lvHighTurn = false; s.lv1Turn = false; s.lv2Battle = null; s.bpB = null; s.fxBattle = null; s.symBattle = 0; s.symLockBattle = null; s.symLockN = 0;      // v0.68: battle BP / Once Per Battle end when it leaves; v189 battle symbol marks
+  s.cores = 0; s.soul = false; s.exhausted = false; s.heavy = false; s.noAB = false; s.bpMod = 0; s.lv2Turn = false; s.lvHighTurn = false; s.lv1Turn = false; s.lvPlusTurn = false; s.lv2Battle = null; s.bpB = null; s.fxBattle = null; s.symBattle = 0; s.symLockBattle = null; s.symLockN = 0;      // v0.68: battle BP / Once Per Battle end when it leaves; v189 battle symbol marks
   const under = s.under; s.under = [];
   for (const u of under) { u.under = []; p.trash.push(u); }
   shedBrave(p, s, p.trash);
