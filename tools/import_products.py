@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Adds cards that exist only in starter-deck / premium-box / promo products (missing from the saga files) as partial
 library cards (`fxComplete: false`, `residual`), from the official-site detail data in data/sources/official-extra.json.
-  python3 tools/import_products.py      -> data/cards/saga-60.json + data/import/saga-60.json (idempotent)
+  python3 tools/import_products.py      -> data/cards/saga-60.json (idempotent)
 Reprints of a card already in the library are clones of it (new id, same stats and effects). New cards carry the
 Japanese name until an English name is added to `names` in the source file. Symbols are not on the official page: 1 for
 Spirits/Ultimates, 0 otherwise (note says so)."""
@@ -40,7 +40,10 @@ for cid, r in sorted(SRC['cards'].items()):
     if r['type'] not in ('Spirit', 'Ultimate', 'Brave', 'Nexus', 'Magic'):
         continue                                                  # no category on the page (contract/symbol cards): not importable yet
     cols = r['colors']
-    levels = [{'cores': cr, 'bp': bp} if bp is not None else {'cores': cr} for bp, cr in r['levels']] if r['type'] in ('Spirit', 'Ultimate', 'Brave') else [{'cores': cr} for _, cr in r['levels']]
+    if r['type'] in ('Spirit', 'Ultimate', 'Brave'):
+        levels = [{'cores': cr, 'bp': bp} for bp, cr in r['levels'] if bp is not None]      # parseCard needs a numeric bp on every level
+    else:
+        levels = [{'cores': cr} for _, cr in r['levels']]
     text = '\n'.join(r['textJp'])
     c = {'id': cid, 'name': SRC.get('names', {}).get(cid) or r['nameJp'], 'name_jp': r['nameJp'], 'type': r['type'],
          'color': cols[0] if cols else 'white', 'cost': r['cost'] or 0, 'reduction': r.get('reductionBy') or {},
@@ -51,6 +54,6 @@ for cid, r in sorted(SRC['cards'].items()):
     if r['type'] == 'Brave' and r.get('braveBp'):
         c['brave'] = {'bp': r['braveBp'], 'costGe': 3}
     out.append(c)
-for d in ('data/cards', 'data/import'):
+for d in ('data/cards',):                                          # no staging copy: the staging tests expect the Fandom intake format
     json.dump(out, open(os.path.join(ROOT, d, 'saga-60.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 print(len(out), 'cards')
