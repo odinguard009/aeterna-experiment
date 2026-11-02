@@ -3967,12 +3967,6 @@
   "A_BP_PLUS",
   "K_BURST"
  ],
- "BS14-094": [
-  "K_BRAVE",
-  "K_BURST",
-  "M_THEN",
-  "T_SUMMONED"
- ],
  "BS14-095": [
   "K_BURST",
   "M_BY_DOING",
@@ -4810,11 +4804,6 @@
  "BS16-077": [
   "A_BP_PLUS",
   "A_REFRESH",
-  "M_THEN"
- ],
- "BS16-078": [
-  "C_LIFE",
-  "K_BURST",
   "M_THEN"
  ],
  "BS16-079": [],
@@ -7879,10 +7868,6 @@
   "K_BURST",
   "K_RUSH",
   "T_ALLY_LOST"
- ],
- "BS24-101": [
-  "K_BURST",
-  "M_THEN"
  ],
  "BS24-102": [
   "A_EXHAUST",
