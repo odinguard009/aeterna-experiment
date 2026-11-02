@@ -4952,11 +4952,8 @@
   "image": "EX001.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified; English text/name pending.",
   "rcode": "EX"
  },
  {
@@ -5026,11 +5023,8 @@
   "image": "EX003.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified; English text/name pending.",
   "rcode": "EX"
  },
  {
@@ -18080,11 +18074,8 @@
   "image": "SD01-001.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified; English text/name pending.",
   "rcode": "C"
  },
  {
@@ -18115,11 +18106,8 @@
   "image": "SD01-002.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified; English text/name pending.",
   "rcode": "C"
  },
  {
@@ -18310,11 +18298,8 @@
   "image": "SD01-007.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified; English text/name pending.",
   "rcode": "C"
  },
  {
@@ -18393,11 +18378,8 @@
   "image": "SD01-009.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified; English text/name pending.",
   "rcode": "C"
  },
  {
@@ -18432,11 +18414,8 @@
   "image": "SD01-010.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified; English text/name pending.",
   "rcode": "C"
  },
  {
@@ -18580,11 +18559,8 @@
   "image": "SD01-014.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified; English text/name pending.",
   "rcode": "C"
  },
  {
@@ -18613,11 +18589,8 @@
   "image": "SD01-015.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified; English text/name pending.",
   "rcode": "C"
  },
  {
@@ -18808,11 +18781,8 @@
   "image": "SD01-019.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified; English text/name pending.",
   "rcode": "C"
  },
  {
@@ -18914,11 +18884,8 @@
   "image": "SD01-022.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified; English text/name pending.",
   "rcode": "C"
  },
  {
@@ -20334,11 +20301,8 @@
   "image": "SD03-001.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified; English text/name pending.",
   "rcode": "C"
  },
  {
@@ -20488,11 +20452,8 @@
   "image": "SD03-005.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified; English text/name pending.",
   "rcode": "C"
  },
  {
@@ -20973,11 +20934,8 @@
   "image": "SD06-001.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified; English text/name pending.",
   "rcode": "C"
  },
  {
@@ -21751,11 +21709,8 @@
   "image": "SD10-006.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified; English text/name pending.",
   "rcode": "C"
  },
  {
@@ -22237,11 +22192,8 @@
   "image": "SD11-002.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified; English text/name pending.",
   "rcode": "C"
  },
  {
@@ -24443,11 +24395,8 @@
   "image": "SD17-010.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified; English text/name pending.",
   "rcode": "C"
  },
  {
@@ -24744,11 +24693,8 @@
   "image": "SD19-001.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified; English text/name pending.",
   "rcode": "C"
  },
  {
@@ -25334,11 +25280,8 @@
   "image": "SD20-001.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified; English text/name pending.",
   "rcode": "C"
  },
  {
@@ -25915,11 +25858,8 @@
   "image": "SD22-001.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified; English text/name pending.",
   "rcode": "C"
  },
  {
@@ -29547,11 +29487,8 @@
   "image": "SD29-002.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified; English text/name pending.",
   "rcode": "C"
  },
  {
@@ -30298,11 +30235,8 @@
   "image": "SD31-004.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified; English text/name pending.",
   "rcode": "C"
  },
  {
@@ -31215,11 +31149,8 @@
   "image": "SD33-004.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified; English text/name pending.",
   "rcode": "C"
  },
  {
@@ -31820,11 +31751,8 @@
   "image": "SD34-006.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified; English text/name pending.",
   "rcode": "C"
  },
  {
