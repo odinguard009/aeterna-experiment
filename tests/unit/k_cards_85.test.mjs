@@ -1111,3 +1111,13 @@ test('K-1034 BS62-014 summons PartnerMusha Oboro from the Hand, then destroys it
     return [none, P.spirits.map(s => s.id), P.hand.length]; })()`);
   assert.deepEqual(r[0], [1, 'BS62-014'], JSON.stringify(r)); assert.deepEqual(r[1], ['BS61-CX01'], JSON.stringify(r));
 });
+
+test('K-1035 BS66-067 discards from the opposing decktop when it attacks or blocks only while braved', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.spirits.length = 0; O.spirits.length = 0;
+    const a = BS.mkInst('BS66-067'); a.cores = 1; P.spirits.push(a); const out = [];
+    for (const braved of [false, true]) { a.brave = braved ? BS.mkInst('BS10-061') : null;
+      for (const t of ['ATTACKS', 'BLOCKS']) { const d = O.deck.length; await BS.fireFx(P, t, a, { subject: a }); out.push(d - O.deck.length); } }
+    return out; })()`);
+  assert.deepEqual(r, [0, 0, 1, 1], JSON.stringify(r));
+});

@@ -40674,12 +40674,6 @@
   "M_OPTIONAL",
   "T_DURING_BRAVE"
  ],
- "BS66-067": [
-  "K_BRAVE",
-  "K_CRUSH",
-  "T_ATTACKS",
-  "T_DURING_BRAVE"
- ],
  "BS66-068": [
   "A_COUNTER",
   "A_DRAW",
