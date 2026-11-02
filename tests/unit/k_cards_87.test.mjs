@@ -176,3 +176,12 @@ test('K-884 BS60-028 summoned: counter +1, then heavy exhaust only with four cou
   assert.deepEqual(lo, { count: 3, heavy: false }, JSON.stringify(lo));
   assert.deepEqual(hi, { count: 4, heavy: true }, JSON.stringify(hi));
 });
+
+test('K-885 BS59-RV003 summoned: exhausts one Spirit; the Cost 3 or less destroy needs a Mirage set', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(() => {
+    const fx = BS.CARDS['BS59-RV003'].effects;
+    return { trig: fx.map(e => e.trigger).sort(), mirage: fx.every(e => e.actions[1].do === 'DESTROY' && e.actions[1].if.mirageSet === true) };
+  });
+  assert.deepEqual(r, { trig: ['DESTROYED', 'SUMMONED'], mirage: true });
+});
