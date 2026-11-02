@@ -35,3 +35,9 @@ test('K-871 Meal: reveal two, summon only the Spirit within the cost limit, tras
   assert.ok(!r.field.includes(r.hi), JSON.stringify(r));
   assert.ok(r.trash.includes(r.hi) && r.dd === 2, JSON.stringify(r));
 });
+
+test('K-872 BS35-046 is complete: Meal cost 3 plus Destroyed returns a Drifting Spirit from Trash', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(() => { const c = BS.CARDS['BS35-046']; return [c.implemented !== false, c.effects.map(e => e.trigger), c.effects[0].actions[0].match.costLe, c.effects[1].actions[0].do]; });
+  assert.deepEqual(r, [true, ['SUMMONED', 'DESTROYED'], 3, 'RETURN_TRASH'], JSON.stringify(r));
+});
