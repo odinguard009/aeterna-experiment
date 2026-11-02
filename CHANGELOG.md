@@ -4,6 +4,13 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.209.2
+- Lane: U/I
+- **Owner request, no new complete cards (2,148 -> 2,148 of 10,291)**
+- **English only:** all 1,262 product-only cards in `data/cards/saga-60.json` that still showed Japanese now have an English name, families and effect text (name, text, families, residual clauses, rcode). 1,207 come from the Fandom wiki (`tools/fetch_saga60_en.py` on a runner, `tools/merge_saga60_en.py`), 55 were translated by hand (`data/import/saga60-en-manual.json`) in the wiki's wording. `name_jp` stays for reference. Test: `saga60_english.test.mjs`.
+- **Deck builder (phone):** Hide/Show filters no longer covers the deck sheet's minimize button; it is hidden while the sheet is open and not minimized. Test: `hide_filters_sheet.test.mjs`.
+- Revert note: `git revert` the release commit; backup `backup/v0.209.1`.
+
 ## v0.209.1
 - Lane: U/I
 - **Owner request, no new complete cards (2,148 -> 2,148 of 10,291)**
