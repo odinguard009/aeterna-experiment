@@ -22447,12 +22447,25 @@
   "image": "SD11-006.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "［Lv1-Lv2-Lv3］『相手のアタックステップ』 自分の白のスピリットすべてをBP+2000する。"
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "bp": 2000,
+    "to": "own",
+    "match": {
+     "color": [
+      "white"
+     ]
+    },
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": true
+    }
+   }
+  ]
  },
  {
   "id": "SD11-007",
@@ -24307,12 +24320,26 @@
   "image": "SD17-005.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "［Lv1-Lv2-Lv3］『自分のアタックステップ』 系統：「地竜」を持つ自分のスピリットすべてをBP+2000する。"
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
-  "rcode": "U"
+  "rcode": "U",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "bp": 2000,
+    "to": "own",
+    "match": {
+     "family": [
+      "地竜",
+      "Terra Dragon"
+     ]
+    },
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": false
+    }
+   }
+  ]
  },
  {
   "id": "SD17-006",
@@ -25804,12 +25831,16 @@
   "image": "SD20-013.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "［フラッシュ］ このターンの間、スピリット/アルティメット1体をBP+3000する。"
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
-  "rcode": "C"
+  "rcode": "C",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "BP_PLUS",
+   "value": 3000
+  }
  },
  {
   "id": "SD20-014",
@@ -26653,12 +26684,24 @@
   "image": "SD23-004.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "［Lv1-Lv2］『このスピリットの召喚時』 このターンの間、相手のスピリット1体をBP-3000する。"
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "BP_MINUS",
+      "n": 3000
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD23-005",
@@ -27022,12 +27065,23 @@
   "image": "SD23-015.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "［フラッシュ］ このターンの間、相手のスピリット/アルティメット1体をBP-5000する。この効果でBP0になったスピリット/アルティメットを破壊する。"
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
-  "rcode": "U"
+  "rcode": "U",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "BP_MINUS",
+     "n": 5000,
+     "zeroDestroy": true
+    }
+   ]
+  }
  },
  {
   "id": "SD23-016",
@@ -28035,12 +28089,23 @@
   "image": "SD26-001.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "［Lv2］『このスピリットのアタック時』 このスピリットをBP+3000する。"
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "BP_PLUS",
+      "n": 3000
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD26-002",

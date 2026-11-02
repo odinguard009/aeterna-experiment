@@ -46,3 +46,39 @@ test('K-919 SD03-003 attack +2000; K-920 SD03-007 also counts as Red', async () 
   assert.equal(r.d, 2000, JSON.stringify(r));
   assert.deepEqual(r.colors, ['blue', 'red'], JSON.stringify(r));
 });
+
+test('K-921 SD26-001 attack +3000 at Lv2; SD23-004 summon -3000 BP on a foe', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = P.key; P.cpu = true; O.cpu = true; P.spirits.length = 0; O.spirits.length = 0;
+    const s = BS.mkInst('SD26-001'); s.cores = 2; P.spirits.push(s);
+    const b0 = BS.bpOf(s);
+    await BS.fireFx(P, 'ATTACKS', s, {});
+    const f = BS.mkInst('BS01-002'); f.cores = 2; O.spirits.push(f);
+    const f0 = BS.bpOf(f);
+    const m = BS.mkInst('SD23-004'); m.cores = 1; P.spirits.push(m);
+    await BS.fireFx(P, 'SUMMONED', m, {});
+    return { a: BS.bpOf(s) - b0, f: f0 - BS.bpOf(f) };
+  });
+  assert.equal(r.a, 3000, JSON.stringify(r)); assert.equal(r.f, 3000, JSON.stringify(r));
+});
+
+test('K-922 SD20-013 Flash +3000 BP; SD23-015 Flash -5000 BP destroys at 0', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = P.key; P.cpu = true; O.cpu = true;
+    P.spirits.length = 0; O.spirits.length = 0; P.hand.length = 0; P.reserve.n = 8;
+    const s = BS.mkInst('BS01-002'); s.cores = 1; P.spirits.push(s);
+    const b0 = BS.bpOf(s);
+    const m = BS.mkInst('SD20-013'); P.hand.push(m);
+    await BS.castMagic(P, { inst: m, target: s, plan: null, ctx: 'flash' });
+    const up = BS.bpOf(s) - b0;
+    const f = BS.mkInst('BS01-002'); f.cores = 1; O.spirits.push(f);
+    const m2 = BS.mkInst('SD23-015'); P.hand.push(m2);
+    await BS.castMagic(P, { inst: m2, target: f, plan: null, ctx: 'flash' });
+    return { up, foe: O.spirits.length, bp: BS.bpOf(f) };
+  });
+  assert.equal(r.up, 3000, JSON.stringify(r)); assert.equal(r.foe, 0, JSON.stringify(r));
+});
