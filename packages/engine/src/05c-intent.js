@@ -91,6 +91,7 @@ async function intentMirage(p, inst) {
   if (!seatCan(p.key) || !isMainStep() || !p.hand.includes(inst) || p.mirageSetThisTurn) return false;
   removeFrom(p.hand, inst); payCost(p, c, plan); checkDepletion(p);
   setBurst(p, inst, true); boardView();
+  await fireFx(p, 'MIRAGE_SET', inst, {});      // v341 During Set (When Set)
   return true;
 }
 /* Brave (manual p. 34-36): summon directly combined with a Spirit; combine / separate in the Main Step at no cost */

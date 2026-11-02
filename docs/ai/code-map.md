@@ -68,7 +68,7 @@ endOfBattle
 ## packages/engine/src/02p-effects-shared-shapes.js (617 lines, ~14.6k tokens)
 cardTeams, allHaveShapeOK, allHaveOK, winRiderRun, fxOppMark, blockTaxOK, payAtkTax, payBlockTax, blockedInferior, unblockableLow, shamanNoBlock, blockedByMark, rumbleNOf
 
-## packages/engine/src/02q-effects-actions-own.js (250 lines, ~7.4k tokens)
+## packages/engine/src/02q-effects-actions-own.js (251 lines, ~7.4k tokens)
 
 
 ## packages/engine/src/02r-effects-actions-deck.js (144 lines, ~5.1k tokens)
@@ -101,7 +101,7 @@ SET_KEY, SETTINGS, SPEEDS, saveSettings, G, fnv, recIn, SIM_DECK_B, SIM_DECK_B_K
 ## packages/engine/src/05b-decide.js (111 lines, ~2.5k tokens) — DECISIONS (v0.83.0, phase F3 = monorepo step M3 part 1; docs/ai/monorepo-plan.md "Design" 1)
 DECISION_KINDS, cardIds, portAsk, decide, ask, info, pickFromField, portPick, portCpu, askBlock, askPayment, uniqById, prepareHumanMagic, humanFlashChoice
 
-## packages/engine/src/05c-intent.js (286 lines, ~4.7k tokens) — INTENTS (v0.84.0, phase F3 part 2 = monorepo step M3 rest; docs/ai/monorepo-plan.md "Design" 1)
+## packages/engine/src/05c-intent.js (287 lines, ~4.7k tokens) — INTENTS (v0.84.0, phase F3 part 2 = monorepo step M3 rest; docs/ai/monorepo-plan.md "Design" 1)
 INTENT_TYPES, CORE_OPS, INTENT_MAX, SEAT_LOOP, seatCan, seatLoopOpen, boardView, endTurnNow, seatTurn, handOf, fieldOf, intentNext, intentSummon, intentCast, intentMirage, intentBraveSummon, intentBraveField, intentCore, intentAttack, applyIntent, cpuPaymentPlan, cpuIntent, cpuAnswer
 
 ## packages/engine/src/06-rules.js (612 lines, ~13k tokens) — RULES HELPERS
