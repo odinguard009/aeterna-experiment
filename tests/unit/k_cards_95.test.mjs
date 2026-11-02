@@ -95,3 +95,19 @@ test('K-1157 BS08-075 gives Dark/Black-named Spirits +2000 BP per exhausted Spir
     return { bp: [a, c].map((s, i) => BS.bpOf(s) - base[i]), ok: BS.CARDS['BS08-075'].fxComplete !== false }; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.deepEqual(r.bp, [4000, 0], JSON.stringify(r));
 });
+
+test('K-1158 BS01-142 / BS09-076 / BS06-103 refresh all exhausted Spirits; the non-exempt ones cannot attack this turn', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4; G.turnNo = 5;
+    const find = f => Object.values(BS.CARDS).find(c => c.type === 'Spirit' && f(c)).id;
+    const tri = find(c => BS.cardHasKeyword(c, 'Tribute')), mw = find(c => (c.families || []).includes('Mounted Warrior')), pl = find(c => !BS.cardHasKeyword(c, 'Tribute') && !(c.families || []).includes('Mounted Warrior'));
+    const mk = id => { const s = BS.mkInst(id); s.cores = 1; s.exhausted = true; return s; }; const out = {};
+    for (const [id, ex] of [['BS01-142', null], ['BS09-076', tri], ['BS06-103', mw]]) {
+      const a = mk(pl), b = mk(ex || pl); P.spirits = [a, b]; const m = BS.mkInst(id);
+      await BS.runActions({ p: P, opp: O, src: m, ctx: { selfInst: m } }, { actions: BS.CARDS[id].magic.actions });
+      out[id] = { refreshed: [a, b].map(s => !s.exhausted), noAtk: [a, b].map(s => s.noAtkTurn === G.turnNo), ok: BS.CARDS[id].fxComplete !== false }; }
+    return out; })()`);
+  for (const id of ['BS01-142', 'BS09-076', 'BS06-103']) assert.equal(r[id].ok, true, JSON.stringify(r));
+  assert.deepEqual(r['BS01-142'].noAtk, [true, true], JSON.stringify(r));
+  for (const id of ['BS09-076', 'BS06-103']) { assert.deepEqual(r[id].refreshed, [true, true], JSON.stringify(r)); assert.deepEqual(r[id].noAtk, [true, false], id + JSON.stringify(r)); }
+});

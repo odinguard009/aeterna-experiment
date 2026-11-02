@@ -106,10 +106,6 @@
   "A_EXHAUST",
   "M_THEN"
  ],
- "BS01-142": [
-  "A_EXHAUST",
-  "A_REFRESH"
- ],
  "BS01-143": [],
  "BS01-144": [],
  "BS01-149": [
@@ -1315,10 +1311,6 @@
   "A_EXHAUST",
   "A_VOID"
  ],
- "BS06-103": [
-  "A_EXHAUST",
-  "A_REFRESH"
- ],
  "BS06-104": [
   "A_BP_PLUS"
  ],
@@ -2168,10 +2160,6 @@
  "BS09-074": [
   "A_REFRESH",
   "T_ALLY_DESTROYS"
- ],
- "BS09-076": [
-  "A_EXHAUST",
-  "A_REFRESH"
  ],
  "BS09-077": [
   "C_OPP_TURN",

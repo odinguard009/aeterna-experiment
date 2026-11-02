@@ -5984,12 +5984,21 @@
   "image": "Pure Elixir.jpg",
   "block": "01",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "Original (Jap Version) = Flash- Refresh all exhausted Spirits you control.",
-   "During this turn, the Spirit refreshed by this effect cannot attack."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "REFRESH_SPIRIT",
+     "all": true,
+     "noAttack": true
+    }
+   ]
+  }
  },
  {
   "id": "BS01-143",
@@ -30444,13 +30453,31 @@
   "image": "Chivalry.jpg",
   "block": "06",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "Eng Version=",
-   "(Flash Step)(Your Main Phrase) Refresh all exhausted spirits you control.",
-   "Non-\"Mounted Warrior\" spirits refreshed by this effect cannot attack this turn."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "magic": {
+   "timing": [
+    "MAIN",
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "REFRESH_SPIRIT",
+     "all": true,
+     "match": {
+      "family": [
+       "Mounted Warrior"
+      ]
+     }
+    },
+    {
+     "do": "REFRESH_SPIRIT",
+     "all": true,
+     "noAttack": true
+    }
+   ]
+  }
  },
  {
   "id": "BS06-104",
@@ -41951,12 +41978,28 @@
   "image": "Emergency.jpg",
   "block": "09",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "Flash- Refresh all your exhausted Spirits.",
-   "During this turn, Spirits without Tribute refreshed by this effect cannot attack."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "REFRESH_SPIRIT",
+     "all": true,
+     "match": {
+      "keyword": "Tribute"
+     }
+    },
+    {
+     "do": "REFRESH_SPIRIT",
+     "all": true,
+     "noAttack": true
+    }
+   ]
+  }
  },
  {
   "id": "BS09-077",
