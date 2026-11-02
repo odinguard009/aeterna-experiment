@@ -209,3 +209,17 @@ test('K-1145 BS13-003 two Red symbols for a Cost 7+ Spirit, SD42-001 one for a K
     out.ok = BS.CARDS['BS13-003'].fxComplete !== false && BS.CARDS['SD42-001'].fxComplete !== false; return out; })()`);
   assert.deepEqual(r, { big: 2, small: 0, kam: 1, non: 0, ok: true }, JSON.stringify(r));
 });
+
+test('K-1146 SD22-014 Main gives High Speed Spirits +5000 BP only; BS08-070 Main returns a Tribute Spirit from the Trash', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4;
+    const hs = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && cardHasKeyword(c, 'High Speed')), tr = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && cardHasKeyword(c, 'Tribute'));
+    const a = BS.mkInst(hs.id); a.cores = 1; const b = BS.mkInst('BS01-001'); b.cores = 1; P.spirits = [a, b]; P.reserve.n = 20;
+    const a0 = BS.bpOf(a), b0 = BS.bpOf(b); const m = BS.mkInst('SD22-014'); P.hand = [m];
+    await BS.castMagic(P, { inst: m, target: null, plan: null, ctx: 'main' });
+    const out = { da: BS.bpOf(a) - a0, db: BS.bpOf(b) - b0 };
+    P.trash = [BS.mkInst(tr.id), BS.mkInst('BS01-001')]; P.hand = []; const m2 = BS.mkInst('BS08-070'); P.hand = [m2]; P.reserve.n = 20;
+    await BS.castMagic(P, { inst: m2, target: null, plan: null, ctx: 'main' });
+    out.back = P.hand.some(x => x.id === tr.id); out.ok = BS.CARDS['SD22-014'].fxComplete !== false && BS.CARDS['BS08-070'].fxComplete !== false; return out; })()`);
+  assert.deepEqual(r, { da: 5000, db: 0, back: true, ok: true }, JSON.stringify(r));
+});

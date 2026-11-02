@@ -27840,13 +27840,34 @@
   "image": "SD22-014.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Main During this turn, all your Spirits/Ultimates with High Speed get +5000 BP.",
-   "Flash During this turn, give a Spirit/Ultimate +5000 BP."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "magic": {
+   "timing": [
+    "MAIN",
+    "FLASH"
+   ],
+   "by": {
+    "MAIN": {
+     "effect": "ACTIONS",
+     "actions": [
+      {
+       "do": "BP_PLUS",
+       "n": 5000,
+       "to": "own",
+       "match": {
+        "keyword": "High Speed"
+       }
+      }
+     ]
+    },
+    "FLASH": {
+     "effect": "BP_PLUS",
+     "value": 5000
+    }
+   }
+  }
  },
  {
   "id": "SD22-015",

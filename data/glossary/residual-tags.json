@@ -1878,10 +1878,6 @@
   "A_LIFE_TO_RESERVE",
   "T_ATTACKS"
  ],
- "BS08-070": [
-  "A_BP_PLUS",
-  "A_TRASH_TO_RESERVE"
- ],
  "BS08-071": [
   "A_BP_PLUS",
   "M_OPTIONAL",
@@ -55306,11 +55302,6 @@
   "K_ULTIMATE",
   "M_THEN",
   "T_SUMMONED"
- ],
- "SD22-014": [
-  "A_BP_PLUS",
-  "K_HIGH_SPEED",
-  "K_ULTIMATE"
  ],
  "SD22-015": [
   "A_DRAW",
