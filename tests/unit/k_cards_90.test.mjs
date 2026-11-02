@@ -148,3 +148,17 @@ test('K-1013 SD19-013 / SD64-RV009 draw two, plus one while an Ultimate is contr
     return out; })()`);
   assert.deepEqual(r, [2, 2, 3, 3], JSON.stringify(r));
 });
+
+test('K-1014 SD55-013 draws until the Hand is four, or draws three with two counters', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const out = [];
+    for (const ctr of [0, 2]) {
+      P.count = ctr; P.deck = Array.from({ length: 10 }, () => BS.mkInst('BS01-001')); P.reserve.n = 20;
+      const m = BS.mkInst('SD55-013'); P.hand = [m];
+      await BS.castMagic(P, { inst: m, target: null, plan: null, ctx: 'main' });
+      out.push(P.hand.length);
+    }
+    return out; })()`);
+  assert.deepEqual(r, [4, 3], JSON.stringify(r));
+});
