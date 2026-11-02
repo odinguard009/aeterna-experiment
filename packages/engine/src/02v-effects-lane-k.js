@@ -475,4 +475,14 @@ FX_ACTIONS.SELF_CORE_REFRESH = {
     for (const s of c.opp.spirits.filter(hit)) removeSpirit(c.opp, s, 'destroyed', true);
     checkDepletion(c.opp); };
 })();
+/* v352 DESTROY_BRAVE: "Destroy a Brave on an opposing Brave Spirit." The chosen opposing Spirit keeps its cores; its combined Brave card goes to its owner's Trash. Protected Spirits (fxImmune) cannot be chosen; ctx.did = false when there is none. */
+Object.assign(FX_ACTIONS, {
+  DESTROY_BRAVE: { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => 'destroy a Brave on an opposing Brave Spirit',
+    cands: c => c.opp.spirits.filter(t => t.brave && !fxImmune(c.opp, t)),
+    can: c => FX_ACTIONS.DESTROY_BRAVE.cands(c).length > 0,
+    run: async (c) => { const L = FX_ACTIONS.DESTROY_BRAVE.cands(c); if (!L.length) { c.ctx.did = false; return; }
+      const t = c.p.cpu ? L.slice().sort((a, b) => bpOf(b) - bpOf(a))[0] : await fxPickTarget(c, L, `✨ <b>${esc(_nm(c))}</b><br>Tap the opposing Brave Spirit whose Brave is destroyed (glowing).`);
+      if (!t || !t.brave) { c.ctx.did = false; return; }
+      const b = t.brave; t.brave = null; c.opp.trash.push(b); log(`${_nm(c)}: ${poss(c.opp)} ${CARDS[b.id].name} is destroyed.`); checkDepletion(c.opp); } },
+});
 wrapImmunity(Object.values(FX_ACTIONS));   // the actions above are defined after 02k: LO01

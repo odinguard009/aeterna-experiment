@@ -2565,11 +2565,6 @@
   "C_LEVEL",
   "M_OPTIONAL"
  ],
- "BS11-014": [
-  "C_LEVEL",
-  "K_BRAVE",
-  "T_DESTROYED"
- ],
  "BS11-015": [
   "C_LEVEL",
   "K_BRAVE",
@@ -3163,9 +3158,6 @@
   "M_UP_TO"
  ],
  "BS12-075": [],
- "BS12-076": [
-  "K_BRAVE"
- ],
  "BS12-078": [
   "A_EXHAUST",
   "A_REFRESH",

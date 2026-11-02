@@ -877,3 +877,14 @@ test('K-1011 NO_DRAW_OUTSIDE: BS08-047 blocks draws for both players outside the
     P.spirits.length = 0; G.step = 3; const h = O.hand.length; await BS.FX_ACTIONS.DRAW.run({ p: O, opp: P, src: s, ctx: {} }, { do: 'DRAW', n: 1 }); out.push(O.hand.length - h); return out; })()`);
   assert.deepEqual(r, [0, 0, 1, 1, 1], JSON.stringify(r));
 });
+
+test('K-1012 DESTROY_BRAVE: BS11-014 (When Destroyed) and BS12-076 Flash trash the Brave of an opposing Brave Spirit and leave the Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.coreShield = O.coreShield = null; for (const q of [P, O]) { q.spirits.length = 0; q.nexus.length = 0; }
+    const br = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Brave'); const a = BS.mkInst('BS01-001'); a.cores = 2; a.brave = BS.mkInst(br); const b = BS.mkInst('BS01-002'); b.cores = 2; O.spirits.push(a, b);
+    const c = { p: P, opp: O, src: BS.mkInst('BS12-076'), ctx: {} }; const act = BS.CARDS['BS12-076'].magic.by.FLASH.actions[0];
+    await BS.FX_ACTIONS.DESTROY_BRAVE.run(c, act); const first = [O.spirits.includes(a), !a.brave, O.trash.some(t => t.id === br)];
+    const c2 = { p: P, opp: O, src: BS.mkInst('BS11-014'), ctx: {} }; await BS.FX_ACTIONS.DESTROY_BRAVE.run(c2, act);
+    return [first, c2.ctx.did === false, JSON.stringify(BS.CARDS['BS11-014'].effects.map(e => e.trigger)), 0]; })()`);
+  assert.deepEqual(r, [[true, true, true], true, '["ATTACKS","DESTROYED"]', 0], JSON.stringify(r));
+});
