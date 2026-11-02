@@ -31446,12 +31446,32 @@
   "image": "SD29-009.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Attacks) Destroy an opposing Nexus. If this Spirit has (Soul Core)(Soul Core) on it, also, destroy an opposing 8000 BP or less Spirit/Ultimate."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "U"
+  "rcode": "U",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "nexus": true
+     },
+     {
+      "do": "DESTROY",
+      "bpLe": 8000,
+      "if": {
+       "selfSoul": true
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD29-010",
@@ -31773,12 +31793,31 @@
   "image": "SD30-001.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV2][LV3] (When Attacks) Destroy an opposing Nexus. If this Spirit has (Soul Core) (Soul Core) on it, also, draw a card."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "nexus": true
+     },
+     {
+      "do": "DRAW",
+      "n": 1,
+      "if": {
+       "selfSoul": true
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD30-002",
@@ -31922,12 +31961,31 @@
   "image": "SD31-002.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Destroyed) Exhaust an opposing Spirit. If (Soul Core)(Soul Core) is on this Spirit, also, exhaust an opposing Spirit."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "U"
+  "rcode": "U",
+  "effects": [
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "EXHAUST_OPP",
+      "n": 1
+     },
+     {
+      "do": "EXHAUST_OPP",
+      "n": 1,
+      "if": {
+       "selfSoul": true
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD31-003",
@@ -32858,12 +32916,27 @@
   "image": "SD33-002.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Attacks) If (Soul Core) (Soul Core) is on this Spirit, draw a card."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1,
+      "if": {
+       "selfSoul": true
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD33-003",
@@ -32898,12 +32971,37 @@
   "image": "SD33-003.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Attacks) Destroy an opposing 3000 BP or less Spirit. If (Soul Core)(Soul Core) is on this Spirit, instead, draw a card."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "bpLe": 3000,
+      "if": {
+       "not": {
+        "selfSoul": true
+       }
+      }
+     },
+     {
+      "do": "DRAW",
+      "n": 1,
+      "if": {
+       "selfSoul": true
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD33-004",

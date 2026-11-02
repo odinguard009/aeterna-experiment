@@ -55991,12 +55991,6 @@
   "A_BP_PLUS",
   "C_LEVEL"
  ],
- "SD29-009": [
-  "A_DESTROY_BP",
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "T_ATTACKS"
- ],
  "SD29-010": [
   "A_DESTROY_BP",
   "C_LEVEL",
@@ -56025,10 +56019,6 @@
   "S_MUST_BLOCK",
   "T_ATTACKS"
  ],
- "SD30-001": [
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
  "SD30-002": [
   "A_BP_PLUS",
   "C_LEVEL",
@@ -56042,11 +56032,6 @@
   "K_ULTIMATE",
   "M_OPTIONAL",
   "T_ATTACKS"
- ],
- "SD31-002": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "T_DESTROYED"
  ],
  "SD31-003": [
   "A_EXHAUST",
@@ -56179,15 +56164,6 @@
  ],
  "SD33-001": [
   "C_LEVEL"
- ],
- "SD33-002": [
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
- "SD33-003": [
-  "C_LEVEL",
-  "M_REPLACEMENT",
-  "T_ATTACKS"
  ],
  "SD33-005": [
   "A_BP_PLUS",
