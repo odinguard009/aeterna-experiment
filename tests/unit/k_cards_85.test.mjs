@@ -975,3 +975,10 @@ test('K-1021 BS70-034: at Lv2 in the Attack Step with 3+ opposing Removed cards,
     s.cores = 1; const lv1 = BS.attackSymbols(a); s.cores = 3; G.step = 3; const main = BS.attackSymbols(a); return [withR - none, lv1 - none, main - none]; })()`);
   assert.deepEqual(r, [1, 0, 0], JSON.stringify(r));
 });
+
+test('K-1022 BS70-035: costs 5 instead of 8 only while the opposing Removed Zone holds 3+ cards', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.spirits.length = 0; O.removed.length = 0;
+    const c = BS.CARDS['BS70-035']; const before = BS.effCost(P, c); for (let i = 0; i < 3; i++) O.removed.push(BS.mkInst('BS70-035')); const after = BS.effCost(P, c); return [before - after, c.cost]; })()`);
+  assert.deepEqual(r, [3, 8], JSON.stringify(r));
+});
