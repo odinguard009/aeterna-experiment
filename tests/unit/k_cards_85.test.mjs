@@ -1121,3 +1121,19 @@ test('K-1035 BS66-067 discards from the opposing decktop when it attacks or bloc
     return out; })()`);
   assert.deepEqual(r, [0, 0, 1, 1], JSON.stringify(r));
 });
+
+test('K-1036 BS42-063 deploys a Cost 4 or less Nexus from the Hand when summoned', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.spirits.length = 0; P.nexus.length = 0;
+    const a = BS.mkInst('BS42-063'); a.cores = 1; P.spirits.push(a); P.hand = [BS.mkInst('BS01-110')];
+    await BS.fireFx(P, 'SUMMONED', a, { subject: a }); return [P.nexus.map(n => n.id), P.hand.length]; })()`);
+  assert.deepEqual(r, [['BS01-110'], 0], JSON.stringify(r));
+});
+
+test('K-1037 BS44-058 puts a Void core on a Nexus only when destroyed by the opponent', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.spirits.length = 0;
+    const n = BS.mkInst('BS01-112'); n.cores = 1; P.nexus = [n]; const a = BS.mkInst('BS44-058'); a.cores = 0; a.lostLv = 0; P.trash = [a]; P.void = Math.max(P.void || 0, 3);
+    const out = []; for (const byOpp of [false, true]) { const c0 = n.cores; await BS.fireFx(P, 'DESTROYED', a, { subject: a, byOpp }); out.push(n.cores - c0); } return out; })()`);
+  assert.equal(r[1], 1, JSON.stringify(r)); assert.equal(r[0], 0, JSON.stringify(r));
+});

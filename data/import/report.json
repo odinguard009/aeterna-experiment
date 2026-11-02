@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 6507,
+  "cards": 6505,
   "per_saga": {
    "1": 484,
    "2": 263,
@@ -9,8 +9,8 @@
    "5": 604,
    "6": 337,
    "7": 493,
-   "8": 451,
-   "9": 479,
+   "8": 450,
+   "9": 478,
    "10": 490,
    "11": 317,
    "12": 321,
@@ -22,18 +22,18 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2199,
+  "skipped_curated": 2201,
   "nexus_levels_added": 673,
   "nexus_levels_missing": 43,
   "merged": 107,
-  "image_problems": 411,
+  "image_problems": 410,
   "brave_unparsed": 171,
   "ut_lines_added": 114,
   "odd_reduction": 805,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
   "number_conflicts": 3,
-  "without_image": 409
+  "without_image": 408
  },
  "tokens": [
   "BS73-T001",
@@ -1312,6 +1312,7 @@
   "BS42-027",
   "BS42-029",
   "BS42-041",
+  "BS42-063",
   "BS42-RV009",
   "BS42-RV011",
   "BS43-011",
@@ -1334,6 +1335,7 @@
   "BS44-028",
   "BS44-049",
   "BS44-054",
+  "BS44-058",
   "BS44-072",
   "BS44-091",
   "BS45-029",
@@ -4320,11 +4322,6 @@
    "id": "BS44-056",
    "name": "The DivineWorldNavigator Trickster",
    "problem": "no image (near: The DivineWorldGuide Trickster.png)"
-  },
-  {
-   "id": "BS44-058",
-   "name": "The SandseaBeast Dorcas Gazelle",
-   "problem": "no image (near: The SandseaBeast Dorcus Gazelle.png)"
   },
   {
    "id": "BS44-061",

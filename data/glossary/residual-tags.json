@@ -18623,12 +18623,6 @@
  "BS42-062": [
   "C_LEVEL"
  ],
- "BS42-063": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
  "BS42-064": [
   "C_LEVEL",
   "T_SUMMONED"
@@ -20366,13 +20360,6 @@
   "K_BURST",
   "S_UNAFFECTED",
   "T_ATTACKS"
- ],
- "BS44-058": [
-  "A_VOID",
-  "C_LEVEL",
-  "K_GRANDWALKER",
-  "T_DESTROYED",
-  "T_DESTROYED_OPP"
  ],
  "BS44-059": [
   "C_LEVEL",
