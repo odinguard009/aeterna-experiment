@@ -6894,9 +6894,6 @@
   "M_OPTIONAL",
   "T_SUMMONED"
  ],
- "BS23-046": [
-  "C_LEVEL"
- ],
  "BS23-047": [
   "C_LEVEL",
   "K_BURST",
@@ -7238,9 +7235,6 @@
   "A_VOID",
   "C_LEVEL",
   "M_REPLACEMENT"
- ],
- "BS24-014": [
-  "C_LEVEL"
  ],
  "BS24-016": [
   "C_LEVEL",
@@ -12908,9 +12902,6 @@
   "M_BY_DOING",
   "T_ATTACKS"
  ],
- "BS35-023": [
-  "C_LEVEL"
- ],
  "BS35-024": [
   "C_LEVEL",
   "K_BRAVE",
@@ -13133,10 +13124,6 @@
   "A_BP_PLUS",
   "A_SEAL",
   "A_VOID",
-  "C_LEVEL"
- ],
- "BS35-074": [
-  "A_TRASH_TO_RESERVE",
   "C_LEVEL"
  ],
  "BS35-075": [
@@ -55677,9 +55664,6 @@
   "K_ULTIMATE",
   "S_UNAFFECTED"
  ],
- "SD33-001": [
-  "C_LEVEL"
- ],
  "SD33-005": [
   "A_BP_PLUS",
   "A_SEAL",
@@ -55706,10 +55690,6 @@
   "M_OPTIONAL",
   "T_ATTACKS",
   "T_SUMMONED"
- ],
- "SD33-010": [
-  "A_DESTROY_BP",
-  "C_LEVEL"
  ],
  "SD33-011": [
   "A_SUMMON_FREE",

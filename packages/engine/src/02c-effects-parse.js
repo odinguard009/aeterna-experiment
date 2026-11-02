@@ -174,6 +174,11 @@ function parseEffects(arr) {
         if (!COLORS.includes(e.color)) return { error: 'EXTRA_SYMBOL needs a "color"' };
         o.color = e.color; o.n = Number.isInteger(e.n) && e.n >= 1 && e.n <= 3 ? e.n : 1;
       }
+      if (e.flag === 'SUMMON_DISCOUNT') {                         // v391 "when you're summoning <match>, its cost gets -N" (own field; summonDiscountOf in effCost)
+        if (!Number.isInteger(e.n) || e.n < 1 || e.n > 3) return { error: 'SUMMON_DISCOUNT needs a whole-number "n" (1-3)' };
+        if (!o.match) return { error: 'SUMMON_DISCOUNT needs a "match"' };
+        o.n = e.n;
+      }
       if (e.flag === 'SUMMON_TAX') {                              // v180 "the opponent can't summon <match> unless they pay N extra cost" (effCost of the opposing player)
         if (!Number.isInteger(e.n) || e.n < 1 || e.n > 3) return { error: 'SUMMON_TAX needs a whole-number "n" (1-3)' };
         if (!o.match) return { error: 'SUMMON_TAX needs a "match"' };

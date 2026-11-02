@@ -426,3 +426,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v388 (Lane K): Burst `when: ALLY_LOST` ("After your Spirit is depleted/destroyed by the opponent"; also fires on destroyed-by-opponent); `DESTROY` takes `bpRank: lowest|highest` (the opposing Spirit/Ultimate with the lowest/highest BP).
 - v389 (Lane K): condition `srcSoul` (boolean; static BP of a source Spirit: a Soul Core is on the source, not on the receiving Spirit): SD31-006, BS32-003.
 - v390 (Lane K): match key `hasSoul` (boolean; the receiving Spirit has a Soul Core on it): BS31-097.
+- v391 (Lane K): STATIC flag `SUMMON_DISCOUNT {n 1-3, match}` on the own field: "when you are summoning <match>, its cost gets -N" (`summonDiscountOf` in effCost, applies to every effCost caller, not only Hand summons). Cards: BS23-046, BS35-023, SD33-001.

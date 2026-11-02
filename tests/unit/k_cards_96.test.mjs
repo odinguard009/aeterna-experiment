@@ -69,3 +69,15 @@ test('K-1180 BS05-074 exhausts two opposing Spirits only with two symbol colours
     return { none, burst: BS.CARDS['BS18-X03'].burst && BS.CARDS['BS18-X03'].burst.when, ok: BS.CARDS['BS05-074'].fxComplete !== false && BS.CARDS['BS18-X03'].fxComplete !== false }; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.none, 0, JSON.stringify(r)); assert.equal(r.burst, 'ALLY_DESTROYED', JSON.stringify(r));
 });
+
+test('K-1181 SUMMON_DISCOUNT (SD33-001, BS35-023): matching Spirit cards cost 1 less while the Spirit is on the field; others unchanged', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const gk = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && (c.families || []).includes('God-King') && c.cost >= 3 && c.symbol === 'green');
+    const other = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && !(c.families || []).includes('God-King') && c.cost >= 3 && c.symbol === 'green');
+    P.spirits = []; const g0 = BS.effCost(P, gk), o0 = BS.effCost(P, other);
+    const a = BS.mkInst('SD33-001'); a.cores = 3; P.spirits = [a]; const g1 = BS.effCost(P, gk), o1 = BS.effCost(P, other);
+    const b = BS.mkInst('BS35-023'); b.cores = 2; P.spirits = [b]; const g2 = BS.effCost(P, gk), o2 = BS.effCost(P, other);
+    return { d1: g0 - g1, d0: o0 - o1, d2: (g0 - g2) - (o0 - o2), ok: ['SD33-001', 'BS35-023', 'BS35-074', 'SD33-010', 'BS23-046', 'BS24-014'].every(k => BS.CARDS[k].fxComplete !== false) }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.d1, 1, JSON.stringify(r)); assert.equal(r.d0, 0, JSON.stringify(r)); assert.equal(r.d2, 1, JSON.stringify(r));
+});

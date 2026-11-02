@@ -303,6 +303,12 @@ function summonTaxOf(p, card) {                  // v180 STATIC SUMMON_TAX on th
     for (const { e } of fxEntries(src)) if (e.trigger === 'STATIC' && e.flag === 'SUMMON_TAX' && !(e.lv && !e.lv.includes(L)) && fxMatch(card, e.match) && fxIf(opp, p, e.if, { selfInst: src })) n += e.n; }
   return n;
 }
+function summonDiscountOf(p, card) {             // v391 STATIC SUMMON_DISCOUNT on the own field: "when you're summoning <match>, its cost gets -N"
+  if (!G || card.type !== 'Spirit') return 0; const opp = G.p[other(p.key)]; let n = 0;
+  for (const src of fieldList(p)) { const L = lvNo(src);
+    for (const { e } of fxEntries(src)) if (e.trigger === 'STATIC' && e.flag === 'SUMMON_DISCOUNT' && !(e.lv && !e.lv.includes(L)) && fxMatch(card, e.match) && fxIf(p, opp, e.if, { selfInst: src })) n += e.n; }
+  return n;
+}
 const trashSymsOn = (p, card) => !!card && (card.trashSymbols || !!(card.trashSymbolsIf && (p.attacksThisTurn || 0) >= card.trashSymbolsIf.attacksGe));      // v192 trashSymbolsIf {attacksGe: "if you've made N or more attacks this turn"}
 function effCost(p, card) {                       // cost reduction is mandatory when possible
   const syms = fieldSymbols(p, card.soulReduce, true);
@@ -314,7 +320,7 @@ function effCost(p, card) {                       // cost reduction is mandatory
   const per = card.costPer ? Math.min(card.costPer.max, card.costPer.n * p.spirits.filter(s => (CARDS[s.id].families || []).includes(card.costPer.family)).length) : 0;      // v0.196 costPer
   const redTotal = Object.values(card.reduction || {}).reduce((a, b) => a + b, 0);
   const redIf = card.reduceIf && G && fxIf(p, G.p[other(p.key)], card.reduceIf, {}) ? (card.reducePerOppReserve ? Math.min(redTotal, G.p[other(p.key)].reserve.n + (G.p[other(p.key)].reserve.soul ? 1 : 0)) : redTotal) : 0;      // v208 "When summoning this card, if <cond>, fulfill all / one per opposing Reserve core of its reduction symbols"
-  return Math.max(0, (costAltActive(p, card) ? Math.min(base, card.costAlt.cost) : base) - (redIf ? Math.max(r, redIf) : r) - per) + summonTaxOf(p, card);
+  return Math.max(0, (costAltActive(p, card) ? Math.min(base, card.costAlt.cost) : base) - (redIf ? Math.max(r, redIf) : r) - per - summonDiscountOf(p, card)) + summonTaxOf(p, card);
 }
 function legacyPay(p, inst) {                     // v0.69: banish the Legacy cards (call once, before the cost is paid: the state must still be the one effCost saw)
   const lp = legacyPlan(p, CARDS[inst.id]); inst.legacyN = lp ? lp.n : 0; inst.legacyCards = lp ? lp.cards.map(t => t.id) : [];      // v193: the banished ids ("EX Symbols of <family> cards banished via this Legacy")

@@ -33359,12 +33359,26 @@
   "image": "SD33-001.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (Your Main Step) When summoning a “God-King” family Spirit card from your Hand, its cost gets -1."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "SUMMON_DISCOUNT",
+    "n": 1,
+    "match": {
+     "family": [
+      "God-King"
+     ]
+    },
+    "lv": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
  },
  {
   "id": "SD33-002",
@@ -33744,13 +33758,23 @@
   "image": "SD33-010.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (Your Main Step) When summoning an originally Cost 8 or more Spirit card from your Hand, its cost gets -1.",
-   "[LV2] (Opposing Attack Step) When your Life is reduced by the opponent, destroy an opposing 7000 BP or less Spirit."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "SUMMON_DISCOUNT",
+    "n": 1,
+    "match": {
+     "costGe": 8
+    },
+    "lv": [
+     1,
+     2
+    ]
+   }
+  ]
  },
  {
   "id": "SD33-011",
