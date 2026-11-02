@@ -1047,3 +1047,27 @@ test('K-1028 BS34-007/BS29-001 extra symbol at Lv3 in the Attack Step; BS40-RV00
     await BS.fireFx(P, 'ATTACKS', c, {}); return [x - y, b1 - b0, P.hand.length, BS.attackSymbols(c) - c0]; })()`);
   assert.deepEqual(r, [1, 1, 0, 1], JSON.stringify(r));
 });
+
+test('K-1029 DISCARD_OPP_REMOVED: BS49-003 needs exactly 2 to refresh, BS24-012 discards one per Spirit, BS48-021 only Green/White/Blue', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.coreShield = O.coreShield = null; P.spirits.length = 0; O.spirits.length = 0;
+    const ids = Object.keys(BS.CARDS); const red = ids.find(k => BS.CARDS[k].symbol === 'red'), grn = ids.find(k => BS.CARDS[k].symbol === 'green');
+    O.removed.length = 0; O.trash.length = 0; O.removed.push(BS.mkInst(red)); const a = BS.mkInst('BS49-003'); a.cores = 3; a.exhausted = true; P.spirits.push(a);
+    await BS.fireFx(P, 'ATTACKS', a, {}); const one = [O.removed.length, a.exhausted];
+    O.removed.push(BS.mkInst(red)); await BS.fireFx(P, 'ATTACKS', a, {}); const two = [O.removed.length, O.trash.length, a.exhausted];
+    P.spirits.length = 0; O.removed.length = 0; for (let i = 0; i < 4; i++) O.removed.push(BS.mkInst(red)); const b = BS.mkInst('BS24-012'); b.cores = 1; const b2 = BS.mkInst(ids.find(k => BS.CARDS[k].type === 'Spirit')); b2.cores = 1; P.spirits.push(b, b2);
+    await BS.fireFx(P, 'SUMMONED', b, {}); const per = O.removed.length;
+    P.spirits.length = 0; O.removed.length = 0; O.removed.push(BS.mkInst(red)); O.removed.push(BS.mkInst(grn)); const c = BS.mkInst('BS48-021'); c.cores = 1; P.spirits.push(c);
+    await BS.fireFx(P, 'ALLY_ATTACKS', c, { attacker: c }); const left = O.removed.map(x => BS.CARDS[x.id].symbol);
+    return [one, two, per, left]; })()`);
+  assert.deepEqual(r[0], [1, true], JSON.stringify(r)); assert.deepEqual(r[1], [0, 2, false], JSON.stringify(r)); assert.equal(r[2], 2, JSON.stringify(r)); assert.deepEqual(r[3], ['red'], JSON.stringify(r));
+});
+
+test('K-1030 BS43-RV007 destroys an opposing Spirit only after discarding a Removed card', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.coreShield = O.coreShield = null; P.spirits.length = 0; O.spirits.length = 0;
+    const id = Object.keys(BS.CARDS).find(k => /^BS0[0-9]-/.test(k) && BS.CARDS[k].type === 'Spirit'); const o = BS.mkInst(id); o.cores = 1; O.spirits.push(o);
+    const s = BS.mkInst('BS43-RV007'); s.cores = 1; P.spirits.push(s); O.removed.length = 0; await BS.fireFx(P, 'SUMMONED', s, {}); const none = O.spirits.length;
+    O.removed.push(BS.mkInst(id)); await BS.fireFx(P, 'SUMMONED', s, {}); return [none, O.spirits.length, O.removed.length]; })()`);
+  assert.deepEqual(r, [1, 0, 0], JSON.stringify(r));
+});

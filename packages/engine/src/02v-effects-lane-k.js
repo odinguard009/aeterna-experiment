@@ -323,6 +323,20 @@ FX_ACTIONS.CANT_BLOCK_OPP_ALL = {
   can: (c, a) => FX_ACTIONS.CANT_BLOCK_OPP_ALL.cands(c, a).length > 0,
   run: async (c, a) => { const L = FX_ACTIONS.CANT_BLOCK_OPP_ALL.cands(c, a); c.ctx.did = L.length > 0; for (const t of L) t.noBlockT = G.turnNo;
     if (L.length) log(`${CARDS[c.src.id].name}: ${L.length} opposing Spirit${L.length === 1 ? '' : 's'} can't block during this turn.`); } };
+/* v360 DISCARD_OPP_REMOVED {n | all | perSpirit, match?, exact?}: "discard a card / N cards / every <match> card from the opposing Removed Zone" (the cards go to their Trash).
+   perSpirit: one card per Spirit/Ultimate you control. exact: all n cards must be available, otherwise nothing happens ("by discarding two cards ..."). Sets ctx.did and ctx.removedN. */
+FX_ACTIONS.DISCARD_OPP_REMOVED = {
+  chk: a => ((Number.isInteger(a.n) && a.n >= 1 && a.n <= 10) || a.all === true || a.perSpirit === true) && (a.match == null || hasMatch(a.match)) && (a.exact == null || (a.exact === true && Number.isInteger(a.n))) && Object.keys(a).every(k => ['do', 'if', 'n', 'all', 'perSpirit', 'match', 'exact'].includes(k)),
+  txt: a => `discard ${a.all ? 'every' : a.perSpirit ? 'one per Spirit you control' : a.n} ${a.match ? 'matching ' : ''}card${a.n === 1 ? '' : 's'} from the opposing Removed Zone`,
+  cands: (c, a) => c.opp.removed.filter(t => !a.match || fxMatch(CARDS[t.id], a.match)),
+  can: (c, a) => { const L = FX_ACTIONS.DISCARD_OPP_REMOVED.cands(c, a); return L.length >= (a.exact ? a.n : 1); },
+  run: async (c, a) => {
+    const L = FX_ACTIONS.DISCARD_OPP_REMOVED.cands(c, a), want = a.all ? L.length : a.perSpirit ? c.p.spirits.length : a.n;
+    if (!L.length || want < 1 || (a.exact && L.length < want)) { c.ctx.did = false; c.ctx.removedN = 0; return; }
+    let k = 0;
+    for (let j = 0; j < Math.min(want, L.length); j++) { const pool = FX_ACTIONS.DISCARD_OPP_REMOVED.cands(c, a); const t = a.all || pool.length <= want - j ? pool[0] : await chooseCard(c, pool, `✨ ${CARDS[c.src.id].name}`, 'Choose a card from the opposing Removed Zone to discard.', false); if (!t) break; removeFrom(c.opp.removed, t); c.opp.trash.push(t); k++; }
+    c.ctx.did = k > 0; c.ctx.removedN = k; if (k) { log(`${CARDS[c.src.id].name}: ${k} card${k === 1 ? '' : 's'} from ${poss(c.opp)} Removed Zone go to their Trash.`); io.view({ type: 'board' }); }
+  } };
 /* v325 SPIRITS_ALL_TO_HAND {costLe}: "Return every Cost N or less Spirit to its owner's Hand." Both sides; protected opposing Spirits are skipped (fxImmune). */
 FX_ACTIONS.SPIRITS_ALL_TO_HAND = {
   chk: a => Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30 && Object.keys(a).every(k => ['do', 'if', 'costLe'].includes(k)),

@@ -395,3 +395,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v357 (Lane K): STATIC flag SYM_ZERO_LOCKED (opposing Spirits under can't attack/block have symbols fixed at zero; read by attackSymbols).
 - v358 (Lane K): EXTRA_SYMBOL to:'own' + match (extra symbol for matching own Spirits; extraSymbolsOf scans the own field).
 - v359 (Lane K): BS70-034 reuses STATIC EXTRA_SYMBOL `to:own` with the `oppRemovedGe` condition; no new engine code.
+- v360 (Lane K): DISCARD_OPP_REMOVED action (n | all | perSpirit, optional match/exact): moves cards from the opponent's Removed Zone to their trash.
