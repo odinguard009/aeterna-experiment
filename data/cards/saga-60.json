@@ -26015,12 +26015,36 @@
   "image": "SD19-007.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Battles) Destroy an opposing 3000 BP or less Spirit. If you control any Ultimate, also, draw a card."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "alsoBlocks": true,
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "bpLe": 3000
+     },
+     {
+      "do": "DRAW",
+      "n": 1,
+      "if": {
+       "ctrl": {
+        "n": 1,
+        "type": "Ultimate"
+       }
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD19-008",
@@ -28386,12 +28410,42 @@
   "image": "SD24-002.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Destroyed) Destroy an opposing Spirit with cost 2 or less. If you have an Ultimate, destroy an opposing Spirit with cost 3 or less instead."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: hand translation); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "costLe": 3,
+      "if": {
+       "ctrl": {
+        "n": 1,
+        "type": "Ultimate"
+       }
+      }
+     },
+     {
+      "do": "DESTROY",
+      "costLe": 2,
+      "if": {
+       "not": {
+        "ctrl": {
+         "n": 1,
+         "type": "Ultimate"
+        }
+       }
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD24-003",
@@ -50526,12 +50580,35 @@
   "image": "SD64-RV003.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Attacks) This Spirit gains +3000 BP. While you control any Ultimate, also, this Spirit gains +3000 BP."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "BP_PLUS",
+      "n": 3000
+     },
+     {
+      "do": "BP_PLUS",
+      "n": 3000,
+      "if": {
+       "ctrl": {
+        "n": 1,
+        "type": "Ultimate"
+       }
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD64-RV004",
@@ -50604,12 +50681,36 @@
   "image": "SD64-RV005.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Battles) Destroy an opposing 3000 BP or less Spirit. If you control any Ultimate, also, draw a card."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "alsoBlocks": true,
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "bpLe": 3000
+     },
+     {
+      "do": "DRAW",
+      "n": 1,
+      "if": {
+       "ctrl": {
+        "n": 1,
+        "type": "Ultimate"
+       }
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD64-RV006",
@@ -52427,12 +52528,31 @@
   "image": "SD67-RV003.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Blocks) This Spirit gains +3000 BP. Also, if your Life is at three or less, this Spirit gains +3000 BP."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "BLOCKS",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "BP_PLUS",
+      "n": 3000
+     },
+     {
+      "do": "BP_PLUS",
+      "n": 3000,
+      "if": {
+       "lifeLe": 3
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD67-RV004",

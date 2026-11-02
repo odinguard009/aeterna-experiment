@@ -55430,11 +55430,6 @@
   "S_CANT_PREVENT",
   "T_ATTACKS"
  ],
- "SD19-007": [
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "T_BATTLE_WIN"
- ],
  "SD19-008": [
   "A_LIFE_TO_RESERVE",
   "C_LEVEL",
@@ -55717,12 +55712,6 @@
  ],
  "SD24-001": [
   "C_LEVEL",
-  "T_DESTROYED"
- ],
- "SD24-002": [
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "M_REPLACEMENT",
   "T_DESTROYED"
  ],
  "SD24-003": [
@@ -59674,19 +59663,8 @@
   "K_ULTIMATE",
   "T_MIRAGE_LIFE"
  ],
- "SD64-RV003": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "T_ATTACKS"
- ],
  "SD64-RV004": [
   "C_LEVEL"
- ],
- "SD64-RV005": [
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "T_BATTLE_WIN"
  ],
  "SD64-RV006": [
   "A_BP_PLUS",
@@ -60066,12 +60044,6 @@
   "M_BY_DOING",
   "T_DESTROYED",
   "T_DESTROYED_OPP"
- ],
- "SD67-RV003": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "C_LIFE",
-  "T_BLOCKS"
  ],
  "SD67-RV004": [
   "C_LEVEL",

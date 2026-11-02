@@ -246,3 +246,19 @@ test('K-1022 SD13-006 destroys only an exhausted Cost 6 or less Spirit; the Brav
     return { left: O.spirits.length, exhLeft: O.spirits.filter(x => x.exhausted).length, wired }; })()`);
   assert.deepEqual(r, { left: 1, exhLeft: 0, wired: true }, JSON.stringify(r));
 });
+
+test('K-1023 SD24-002 destroys Cost 2 or less, or Cost 3 or less while an Ultimate is controlled; four more are wired', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const c3 = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && c.cost === 3 && !(c.effects || []).length);
+    const ult = Object.values(BS.CARDS).find(c => c.type === 'Ultimate');
+    const out = [];
+    for (const hasU of [false, true]) {
+      const s = BS.mkInst('SD24-002'); s.lostLv = 0; P.trash = [s]; const u = BS.mkInst(ult.id); u.cores = 5; P.spirits = hasU ? [u] : [];
+      const t = BS.mkInst(c3.id); t.cores = 1; O.spirits = [t];
+      await BS.fireFx(P, 'DESTROYED', s, {}); out.push(O.spirits.length);
+    }
+    const wired = ['SD64-RV003', 'SD67-RV003', 'SD19-007', 'SD64-RV005'].every(id => BS.CARDS[id].implemented === true);
+    return { out, wired }; })()`);
+  assert.deepEqual(r, { out: [1, 0], wired: true }, JSON.stringify(r));
+});
