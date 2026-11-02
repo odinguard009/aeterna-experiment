@@ -20489,12 +20489,44 @@
   "mechanics": [
    "Rush"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Attacks) By destroying an opposing Cost 2/4 Spirit, put a core from the Void to this Spirit. {{Rush|Green}} (While you have Green symbols, the following effect activates next) : If this was the first attack of your turn, this Spirit refreshes."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "C"
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Wired: destroy Cost 2/4 then a Void core; Rush Green = refresh on the first attack.",
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "costIn": [
+       2,
+       4
+      ]
+     },
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "self",
+      "if": {
+       "prev": true
+      }
+     },
+     {
+      "do": "REFRESH_SPIRIT",
+      "self": true,
+      "if": {
+       "hasSymbol": "green",
+       "firstAttack": true
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS39-044",
