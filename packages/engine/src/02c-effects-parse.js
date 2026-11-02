@@ -67,13 +67,14 @@ function parseCond(c) {
       || (k === 'allHave' && allHaveShapeOK(v) && Object.keys(v).every(y => ['family', 'familyAny', 'team', 'costIn', 'color', 'spiritsOnly', 'nexusOnly'].includes(y)))
       || (k === 'ctrlFamily' && !!v && typeof v === 'object' && Array.isArray(v.any) && v.any.length > 0 && v.any.every(x => typeof x === 'string' && x) && typeof v.is === 'boolean' && Object.keys(v).every(y => ['any', 'is', 'withNexus'].includes(y)) && (v.withNexus == null || v.withNexus === true));   // v0.88 S1 (02p)
     const okSym = (k === 'pickedCostIn' && Array.isArray(v) && v.length > 0 && v.length <= 8 && v.every(Number.isInteger)) || k === 'symbolsOnGe' && !!v && typeof v === 'object' && COLORS.includes(v.color) && Number.isInteger(v.n) && v.n >= 1 && v.n <= 10 && Object.keys(v).every(y => ['color', 'n'].includes(y));      // v0.168
+    const okMirCol = k === 'mirageColor' && Array.isArray(v) && v.length > 0 && v.every(y => COLORS.includes(y));      // v364
     const okOnlySym = k === 'onlySymbols' && COLORS.includes(v);      // v0.179
     const okByOwn = k === 'byOwnFx' && !!v && typeof v === 'object' && Array.isArray(v.family) && v.family.length > 0 && v.family.every(x => typeof x === 'string' && x);
     const okTrash = k === 'trashGe' && !!v && typeof v === 'object' && Number.isInteger(v.n) && v.n >= 1 && v.n <= 20 && hasMatch(v.match);
     const okMagic = k === 'magicUsed' && !!v && typeof v === 'object' && [].concat(v.name || [], v.family || []).every(x => typeof x === 'string')
       && (v.type == null || ['Spirit', 'Nexus', 'Magic', 'Brave'].includes(v.type)) && Object.keys(v).every(y => ['name', 'family', 'type', 'color', 'costGe', 'costLe', 'team'].includes(y)) && (v.team == null || typeof v.team === 'string');   // v0.116 "if you used a <family> Magic card this turn"
     const okOppCtrl = k === 'oppCtrlMatch' && hasMatch(v);      // v198 "If the opponent controls a Cost N or less Spirit"
-    if (!okInt && !okStr && !okBool && !okCol && !okStep && !okCtrl && !okNexus && !okS1 && !okTrash && !okByOwn && !okMagic && !okOppCtrl && !okSym && !okOnlySym) return { error: `unknown or invalid condition "${k}" (${[...FX_COND_KEYS].join(', ')})` };
+    if (!okInt && !okStr && !okBool && !okCol && !okStep && !okCtrl && !okNexus && !okS1 && !okTrash && !okByOwn && !okMagic && !okOppCtrl && !okSym && !okOnlySym && !okMirCol) return { error: `unknown or invalid condition "${k}" (${[...FX_COND_KEYS].join(', ')})` };
   }
   return { cond: Object.assign({}, c) };
 }

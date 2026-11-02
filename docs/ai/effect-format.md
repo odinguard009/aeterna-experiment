@@ -399,3 +399,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v361 (Lane K): `MIRAGE_SET` trigger ("During Set (When Set)": fires from the set Mirage when a card is set, by hand, CPU or the `MIRAGE_SET` action) and the `mirageSet` condition ("if you have a Mirage set"). Earlier commit subjects that say "schema 341" mean this version.
 - v362 (Lane K): match.noBurst (card without a printed {{Burst|...}} effect), "add a Magic card without Burst effects" via REVEAL_PICK. Card: BS31-053.
 - v363 (Lane K): REVEAL_PICK (plain add) sets ctx.picked, so pickedFamily works after an add ("if a Birthgem Deity is added, draw"). Card: BS42-050.
+- v364 (Lane K): condition `mirageColor` (array of colors): "if you have a Purple/White Mirage set" (the set Mirage card has any listed color). Cards: BS58-037.

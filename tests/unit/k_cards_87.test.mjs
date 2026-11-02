@@ -185,3 +185,19 @@ test('K-885 BS59-RV003 summoned: exhausts one Spirit; the Cost 3 or less destroy
   });
   assert.deepEqual(r, { trig: ['DESTROYED', 'SUMMONED'], mirage: true });
 });
+
+test('K-886 BS58-037 attack: core from an opposing Spirit goes to the Reserve only with a Purple/White Mirage set', async () => {
+  const { page } = await sharedBoard();
+  const run = (mir) => page.evaluate(async (mir) => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = P.key; P.cpu = true;
+    P.spirits.length = 0; O.spirits.length = 0;
+    const s = BS.mkInst('BS58-037'); s.cores = 2; P.spirits.push(s);
+    const t = BS.mkInst('BS52-026'); t.cores = 2; O.spirits.push(t);
+    P.mirage = mir ? BS.mkInst(mir) : null; G.attacker = s;
+    await BS.fireFx(P, 'ATTACKS', s, { subject: s, attacker: s });
+    return t.cores;
+  }, mir);
+  const none = await run(null), blue = await run('BS58-017'), purple = await run('BS58-016');
+  const m = JSON.stringify([none, blue, purple]); assert.equal(none, 2, m); assert.equal(blue, 2, m); assert.equal(purple, 1, m);
+});
