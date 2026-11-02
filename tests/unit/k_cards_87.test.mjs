@@ -82,3 +82,17 @@ test('K-877 BS36-038 and BS59-045 BP_MINUS zeroDestroy data', async () => {
   const r = await page.evaluate(() => ['BS36-038', 'BS59-045'].map(id => { const c = BS.CARDS[id]; return [c.fxComplete !== false, c.effects.map(e => e.trigger + ':' + e.actions.map(a => a.do + (a.zeroDestroy ? '!' : '')).join('+'))]; }));
   assert.deepEqual(r, [[true, ['ATTACKS:BP_MINUS!']], [true, ['SUMMONED:BP_MINUS!+VOID_TO_CARD', 'ATTACKS:BP_MINUS!+VOID_TO_CARD']]]);
 });
+
+test('K-878 BS44-038 reveals three and summons a paid Cost<=5 Machine Beast; BS50-042 is complete', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player; G.active = P.key; P.cpu = true;
+    const mb = 'BS48-042'; P.reserve.n = 20;
+    const m = BS.mkInst('BS44-038'); P.hand.push(m);
+    P.deck.length = 0; for (let i = 0; i < 4; i++) P.deck.push(BS.mkInst(mb)); P.deck.unshift(BS.mkInst(mb));
+    await BS.summonFree(P, m);
+    return { mbOnField: BS.fieldList(P).filter(f => f.id === mb).length, a: BS.CARDS['BS50-042'].implemented !== false };
+  });
+  assert.ok(r.mbOnField >= 1 && r.a, JSON.stringify(r));
+});
