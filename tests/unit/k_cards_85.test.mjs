@@ -484,3 +484,13 @@ test('K-971 BS04-102 returns every Cost 1 or less Spirit of both sides to hand',
     return [P.spirits.length, O.spirits.length, P.hand.length - h[0], O.hand.length - h[1]]; })()`);
   assert.deepEqual(r, [1, 1, 1, 1], JSON.stringify(r));
 });
+
+test('K-972 BS08-079 treats an opposing Spirit as LV1 for the turn', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; O.spirits.length = 0;
+    const sp = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit' && BS.CARDS[i].levels.length > 2); const s = BS.mkInst(sp); s.cores = BS.CARDS[sp].levels[2].cores; O.spirits.push(s);
+    const before = BS.lvIndex(s);
+    await BS.FX_ACTIONS.TREAT_LV1.run({ p: P, opp: O, src: BS.mkInst('BS08-079'), ctx: {} }, BS.CARDS['BS08-079'].magic.by.MAIN.actions[0]);
+    return [before, BS.lvIndex(s)]; })()`);
+  assert.deepEqual(r, [2, 0], JSON.stringify(r));
+});

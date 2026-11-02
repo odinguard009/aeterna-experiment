@@ -361,3 +361,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v323: action `TREAT_HIGHEST_ALL` (no params): during this turn every Spirit you control on the Field is treated as being on its highest level (BS13-083).
 - v324: action `CANT_ATTACK_BLOCK_ALL {costLe | costIn}`: during this turn all matching Spirits of both sides cannot attack/block (BS02-110, BS02-105). BS01-141 reuses `UNBLOCKABLE_PICK` with no params (own Spirits only).
 - v325: action `SPIRITS_ALL_TO_HAND {costLe}`: return every Cost N or less Spirit of both sides to its owner's Hand (BS04-102).
+- v326 (Lane K): `TREAT_LV1 {turn:true}` ("During this turn, treat an opposing Spirit as being Level 1": `inst.lv1Turn`, read by lvIndex, cleared at turn end / on leaving the Field). Card: BS08-079.
