@@ -13507,38 +13507,11 @@
   "M_THEN",
   "T_BLOCKS"
  ],
- "BS35-045": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
- "BS35-046": [
-  "A_RETURN_TRASH",
-  "A_SUMMON_FREE",
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_DESTROYED",
-  "T_SUMMONED"
- ],
- "BS35-047": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
  "BS35-049": [
   "A_SUMMON_FREE",
   "C_LEVEL",
   "M_OPTIONAL",
   "T_DESTROYED_OPP"
- ],
- "BS35-050": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_SUMMONED"
  ],
  "BS35-051": [
   "A_RETURN_TRASH",
@@ -14157,12 +14130,6 @@
   "M_OPTIONAL",
   "M_REPLACEMENT",
   "T_ATTACKS",
-  "T_SUMMONED"
- ],
- "BS36-044": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "M_OPTIONAL",
   "T_SUMMONED"
  ],
  "BS36-045": [
@@ -15106,12 +15073,6 @@
   "A_BP_PLUS",
   "A_SEAL",
   "C_LEVEL"
- ],
- "BS38-035": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_SUMMONED"
  ],
  "BS38-036": [
   "A_SEAL",
@@ -32145,10 +32106,6 @@
   "T_ATTACKS",
   "T_MIRAGE_LIFE"
  ],
- "BS57-048": [
-  "C_LEVEL",
-  "M_OPTIONAL"
- ],
  "BS57-049": [
   "A_EXHAUST",
   "A_REFRESH",
@@ -32639,13 +32596,6 @@
   "M_IF_YOU_DO",
   "M_OPTIONAL",
   "T_MIRAGE_LIFE"
- ],
- "BS58-019": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "K_MIRAGE",
-  "M_IF_YOU_DO",
-  "M_OPTIONAL"
  ],
  "BS58-020": [
   "A_EXHAUST",
@@ -46419,9 +46369,6 @@
   "M_OPTIONAL",
   "M_UP_TO",
   "T_SUMMONED"
- ],
- "BS72-049": [
-  "M_OPTIONAL"
  ],
  "BS72-051": [
   "A_EXHAUST",

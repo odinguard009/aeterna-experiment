@@ -41,3 +41,19 @@ test('K-872 BS35-046 is complete: Meal cost 3 plus Destroyed returns a Drifting 
   const r = await page.evaluate(() => { const c = BS.CARDS['BS35-046']; return [c.implemented !== false, c.effects.map(e => e.trigger), c.effects[0].actions[0].match.costLe, c.effects[1].actions[0].do]; });
   assert.deepEqual(r, [true, ['SUMMONED', 'DESTROYED'], 3, 'RETURN_TRASH'], JSON.stringify(r));
 });
+
+test('K-873 BS40-050: +15000 BP and an extra Yellow symbol only with five Drifting Spirits', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(() => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player; G.active = P.key;
+    const ds = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && (BS.CARDS[k].families || []).includes('Drifting Spirit') && !BS.CARDS[k].effects && !BS.CARDS[k].token);
+    const m = BS.mkInst('BS40-050'); m.cores = 3; P.spirits.push(m);
+    const bp = () => BS.bpOf ? BS.bpOf(m) : null, sym = () => BS.symbolsOn(P).yellow || 0;
+    const a = [bp(), sym()];
+    for (let i = 0; i < 4; i++) { const x = BS.mkInst(ds); x.cores = 1; P.spirits.push(x); }
+    return { a, b: [bp(), sym()] };
+  });
+  assert.equal(r.b[0] - r.a[0], 15000, JSON.stringify(r));
+  assert.equal(r.b[1] - r.a[1], 1, JSON.stringify(r));
+});
