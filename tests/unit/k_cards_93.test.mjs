@@ -27,3 +27,16 @@ test('K-1109 BS16-078 Burst: only with Life 2 or less, summon a Green Spirit fro
   const r = await page.evaluate(`(async () => { const b = BS.CARDS['BS16-078'].burst; return { lifeLe: b.if && b.if.lifeLe, then: b.thenFlash === true, impl: BS.CARDS['BS16-078'].implemented === true, a: b.actions[0].do }; })()`);
   assert.deepEqual(r, { lifeLe: 2, then: true, impl: true, a: 'SUMMON_HAND' });
 });
+
+test('K-1110 BS25-079 Burst: all your White Spirits refresh, others stay exhausted', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(run('BS25-079', `const w = BS.mkInst('BS01-074'); const o = BS.mkInst('BS01-001'); w.cores = o.cores = 1; w.exhausted = o.exhausted = true; P.spirits.push(w, o); globalThis.__w = [w, o];`, `{ ex: __w.map(x => x.exhausted) }`));
+  assert.equal(r.ok, true, JSON.stringify(r));
+  assert.deepEqual(r.ex, [false, true], JSON.stringify(r));
+});
+
+test('K-1111 BS34-072 Burst: destroys an opposing 5000 BP or less Spirit and an opposing Nexus', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(run('BS34-072', `const s = BS.mkInst('BS01-001'); s.cores = 1; O.spirits.push(s); O.nexus = [BS.mkInst('BS01-100')];`, `{ sp: O.spirits.length, nx: O.nexus.length, main: b.thenMain === true }`));
+  assert.equal(r.sp, 0, JSON.stringify(r)); assert.equal(r.nx, 0, JSON.stringify(r)); assert.equal(r.main, true);
+});

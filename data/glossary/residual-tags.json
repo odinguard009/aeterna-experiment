@@ -8369,10 +8369,6 @@
   "K_ULTIMATE",
   "S_EXTRA_REDUCTION"
  ],
- "BS25-079": [
-  "A_REFRESH",
-  "K_BURST"
- ],
  "BS25-080": [
   "A_BP_MINUS",
   "A_DRAW",
@@ -12970,10 +12966,6 @@
  ],
  "BS34-071": [
   "C_LEVEL"
- ],
- "BS34-072": [
-  "K_BURST",
-  "M_THEN"
  ],
  "BS34-073": [
   "A_DESTROY_TOTAL",
