@@ -1362,15 +1362,64 @@
    "High Speed"
   ],
   "highSpeed": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Summoned/Attacks) Your counter +1, and put a core from the Void to any of your Spirits. Then, if you have four counters or more, heavy exhaust an opposing Spirit/Nexus."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Counter +1, Void core to a Spirit, heavy exhaust at 4+ counters (Nexus reading approximated as Spirit).",
   "bicon": [
    "9"
   ],
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "COUNTER",
+      "n": 1
+     },
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "anySpirit"
+     },
+     {
+      "do": "HEAVY_EXHAUST_OPP",
+      "n": 1,
+      "if": {
+       "counterGe": 4
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "COUNTER",
+      "n": 1
+     },
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "anySpirit"
+     },
+     {
+      "do": "HEAVY_EXHAUST_OPP",
+      "n": 1,
+      "if": {
+       "counterGe": 4
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS60-029",

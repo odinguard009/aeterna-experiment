@@ -161,3 +161,18 @@ test('K-883 BS19-008 attack: +5000 BP always; Shellman destroyed only with a Pur
   assert.equal(no.left, 1, JSON.stringify(no)); assert.equal(yes.left, 0, JSON.stringify(yes));
   if (no.bp != null) assert.equal(yes.bp, no.bp, 'same BP boost both ways');
 });
+
+test('K-884 BS60-028 summoned: counter +1, then heavy exhaust only with four counters or more', async () => {
+  const { page } = await sharedBoard();
+  const run = (start) => page.evaluate(async (start) => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = P.key; P.cpu = true; P.reserve.n = 20;
+    O.spirits.length = 0; const t = BS.mkInst('BS52-026'); t.cores = 1; O.spirits.push(t);
+    P.count = start; const m = BS.mkInst('BS60-028'); P.hand.push(m);
+    await BS.summonFree(P, m);
+    return { count: P.count, heavy: !!t.heavy };
+  }, start);
+  const lo = await run(2), hi = await run(3);
+  assert.deepEqual(lo, { count: 3, heavy: false }, JSON.stringify(lo));
+  assert.deepEqual(hi, { count: 4, heavy: true }, JSON.stringify(hi));
+});

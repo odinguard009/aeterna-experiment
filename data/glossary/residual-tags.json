@@ -5635,12 +5635,6 @@
   "C_LEVEL",
   "K_ARMOR"
  ],
- "BS19-008": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "K_RUSH",
-  "T_ATTACKS"
- ],
  "BS19-009": [
   "A_DESTROY_BP",
   "C_LEVEL",
@@ -6410,10 +6404,6 @@
   "A_SYMBOL_PLUS",
   "C_LEVEL",
   "K_BRAVE"
- ],
- "BS21-061": [
-  "A_BP_PLUS",
-  "T_BLOCKS"
  ],
  "BS21-062": [
   "A_VOID",
@@ -10691,13 +10681,6 @@
  "BS30-024": [
   "C_LEVEL",
   "T_SUMMONED"
- ],
- "BS30-026": [
-  "C_LEVEL",
-  "K_BRAVE",
-  "K_ULTIMATE",
-  "T_ATTACKS",
-  "T_DURING_BRAVE"
  ],
  "BS30-027": [
   "C_LEVEL",
@@ -18356,10 +18339,6 @@
   "T_ADVENT",
   "T_ATTACKS"
  ],
- "BS42-037": [
-  "C_LEVEL",
-  "K_ARMOR"
- ],
  "BS42-038": [
   "C_LEVEL",
   "K_BRAVE",
@@ -18439,10 +18418,6 @@
   "M_OPTIONAL",
   "T_DESTROYED",
   "T_DESTROYED_OPP"
- ],
- "BS42-050": [
-  "C_LEVEL",
-  "T_SUMMONED"
  ],
  "BS42-051": [
   "A_REMOVED_ZONE",
