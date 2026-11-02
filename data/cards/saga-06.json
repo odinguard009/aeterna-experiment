@@ -4282,12 +4282,29 @@
   "image": "Soul Shoot.jpg",
   "block": "31",
   "saga": 6,
-  "fxComplete": false,
-  "residual": [
-   "Flash- Send a core from any opposing Spirit/Ultimate to the Reserve.",
-   "If (Soul Core) was used to pay the cost, also, send 1 more core from any opposing Spirit/Ultimate to the Reserve."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "OPP_CORES_TO_RESERVE",
+     "targets": 1,
+     "each": 1
+    },
+    {
+     "do": "OPP_CORES_TO_RESERVE",
+     "targets": 1,
+     "each": 1,
+     "if": {
+      "soulPaid": true
+     }
+    }
+   ]
+  }
  },
  {
   "id": "BS31-103",
@@ -16371,13 +16388,40 @@
   "image": "Ninja Gale Storm.png",
   "block": "34",
   "saga": 6,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "By exhausting an opposing Spirit, refresh a \"Ninja Gale\" family Spirit you control.",
-   "Also, if  was used to pay the cost, put a core from the Void to your Reserve."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "BY",
+     "cost": {
+      "do": "EXHAUST_OPP",
+      "n": 1
+     },
+     "then": [
+      {
+       "do": "REFRESH_SPIRIT",
+       "match": {
+        "family": [
+         "Ninja Gale"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "do": "VOID_TO_RESERVE",
+     "n": 1,
+     "if": {
+      "soulPaid": true
+     }
+    }
+   ]
+  }
  },
  {
   "id": "BS34-078",

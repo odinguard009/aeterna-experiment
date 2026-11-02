@@ -11445,10 +11445,6 @@
   "A_EXHAUST",
   "K_ULTIMATE"
  ],
- "BS31-102": [
-  "A_OPP_CORES_TO_RESERVE",
-  "K_ULTIMATE"
- ],
  "BS31-103": [
   "A_REFRESH"
  ],
@@ -12830,11 +12826,6 @@
   "A_EXHAUST",
   "M_UP_TO"
  ],
- "BS34-077": [
-  "A_EXHAUST",
-  "A_REFRESH",
-  "A_VOID"
- ],
  "BS34-078": [
   "K_ULTIMATE"
  ],
@@ -13385,10 +13376,6 @@
  "BS35-090": [
   "A_EXHAUST",
   "K_ULTIMATE"
- ],
- "BS35-092": [
-  "A_EXHAUST",
-  "M_REPLACEMENT"
  ],
  "BS35-094": [
   "A_RETURN_TRASH",

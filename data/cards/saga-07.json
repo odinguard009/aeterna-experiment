@@ -4148,14 +4148,54 @@
   "image": "BS35-092 (Fixed).jpg",
   "block": "35",
   "saga": 7,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Exhaust an opposing Spirit.",
-   "Or, exhaust three opposing Cost 4 or less Spirits.",
-   "If  (Soul Core) was used to pay for the cost, instead, exhaust an opposing Spirit and three opposing Cost 4 or less Spirits."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "CHOOSE_ONE",
+     "options": [
+      [
+       {
+        "do": "EXHAUST_OPP",
+        "n": 1
+       }
+      ],
+      [
+       {
+        "do": "EXHAUST_OPP",
+        "n": 3,
+        "costLe": 4
+       }
+      ]
+     ],
+     "if": {
+      "not": {
+       "soulPaid": true
+      }
+     }
+    },
+    {
+     "do": "EXHAUST_OPP",
+     "n": 1,
+     "if": {
+      "soulPaid": true
+     }
+    },
+    {
+     "do": "EXHAUST_OPP",
+     "n": 3,
+     "costLe": 4,
+     "if": {
+      "soulPaid": true
+     }
+    }
+   ]
+  }
  },
  {
   "id": "BS35-093",
