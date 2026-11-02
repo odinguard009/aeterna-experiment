@@ -403,3 +403,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v365 (Lane K): STATIC `perCounter` ("This Spirit gains +N BP for each counter you have"; to: self). Card: BS70-005.
 - v366 (Lane K): match `mono: true` (the card has exactly one colour, "green 1-colour"). Card: BS49-CP02.
 - v367 (Lane K): condition `subjViaEffect` (ALLY_SUMMONED: the summoned Spirit entered via an effect). Card: BS68-004.
+- v368 (Lane K): STATIC flag `FX_SUMMON_EXHAUSTED` (to: opp; opposing Spirits summoned by effects enter exhausted, filtered by `match`) and `match.notColor`. Card: BS35-026.

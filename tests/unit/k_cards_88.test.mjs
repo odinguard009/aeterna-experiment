@@ -42,3 +42,21 @@ test('K-896 BS68-004: draws when a red Devotee/Concluser enters via an effect, o
   const m = JSON.stringify(r);
   assert.equal(r.d0, 0, m); assert.equal(r.d1, 1, m); assert.equal(r.d2, 1, m);
 });
+
+test('K-897 BS35-026: opposing non-Green Spirits summoned by an effect enter exhausted; Green ones do not', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = P.key; P.cpu = true; O.cpu = true; P.spirits.length = 0; O.spirits.length = 0; O.reserve.n = 20;
+    const s = BS.mkInst('BS35-026'); s.cores = 1; P.spirits.push(s);
+    const ids = Object.keys(BS.CARDS).filter(i => { const k = BS.CARDS[i]; return k.type === 'Spirit' && k.levels[0].cores === 1; });
+    const col = i => BS.CARDS[i].colors || [BS.CARDS[i].symbol];
+    const red = ids.find(i => col(i).length === 1 && col(i)[0] === 'red'), grn = ids.find(i => col(i).length === 1 && col(i)[0] === 'green');
+    const a = BS.mkInst(red), b = BS.mkInst(grn); O.hand.push(a, b);
+    await BS.summonFree(O, a); await BS.summonFree(O, b);
+    const own = BS.mkInst(red); P.hand.push(own); await BS.summonFree(P, own);
+    return { a: !!a.exhausted, b: !!b.exhausted, own: !!own.exhausted };
+  });
+  const m = JSON.stringify(r);
+  assert.equal(r.a, true, m); assert.equal(r.b, false, m); assert.equal(r.own, false, m);
+});
