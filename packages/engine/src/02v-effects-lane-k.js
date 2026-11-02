@@ -466,4 +466,13 @@ FX_ACTIONS.SELF_CORE_REFRESH = {
   M.txt = a => a.perMatchSpirit ? 'send cards from the top of the opposing Deck to the Trash, one for each matching Spirit you control' : mTxt(a);
   M.run = async (c, a) => { if (a.perMatchSpirit == null) return mRun(c, a); const n = cnt(c, a); if (!n) { c.ctx.did = false; return; } return mRun(c, { do: 'MILL_OPP', n }); };
 })();
+/* v350 DESTROY_EVERY match: "Destroy every opposing Cost 11 or less Brave Spirit" (match {hasBrave:true}) */
+(() => {
+  const D = FX_ACTIONS.DESTROY_EVERY, dChk = D.chk, dRun = D.run;
+  D.chk = a => a.match != null ? (a.opposing === true && hasMatch(a.match) && dChk((({ match, ...r }) => r)(a)) && Object.keys(a).every(k => ['do', 'bpLe', 'costLe', 'costIs', 'opposing', 'match', 'if'].includes(k))) : dChk(a);
+  D.run = async (c, a) => { if (a.match == null) return dRun(c, a);
+    const hit = s => (a.bpLe != null ? bpOf(s) <= a.bpLe : a.costLe != null ? CARDS[s.id].cost <= a.costLe : CARDS[s.id].cost === a.costIs) && fxMatch(CARDS[s.id], a.match, s);
+    for (const s of c.opp.spirits.filter(hit)) removeSpirit(c.opp, s, 'destroyed', true);
+    checkDepletion(c.opp); };
+})();
 wrapImmunity(Object.values(FX_ACTIONS));   // the actions above are defined after 02k: LO01

@@ -1,9 +1,9 @@
 {
  "stats": {
-  "cards": 6539,
+  "cards": 6538,
   "per_saga": {
    "1": 485,
-   "2": 267,
+   "2": 266,
    "3": 335,
    "4": 323,
    "5": 609,
@@ -22,18 +22,18 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2167,
+  "skipped_curated": 2168,
   "nexus_levels_added": 674,
   "nexus_levels_missing": 43,
   "merged": 107,
-  "image_problems": 412,
+  "image_problems": 411,
   "brave_unparsed": 171,
   "ut_lines_added": 114,
   "odd_reduction": 805,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
   "number_conflicts": 3,
-  "without_image": 410
+  "without_image": 409
  },
  "tokens": [
   "BS73-T001",
@@ -676,6 +676,7 @@
   "BS12-035",
   "BS12-041",
   "BS12-044",
+  "BS12-048",
   "BS12-051",
   "BS12-054",
   "BS12-060",
@@ -3169,11 +3170,6 @@
    "id": "BS12-038",
    "name": "The Angelia of Olimpics Phaleg",
    "problem": "no image (near: the Angelia of Olimpic Phaleg.jpg)"
-  },
-  {
-   "id": "BS12-048",
-   "name": "Captain-Orcard",
-   "problem": "no image (near: Captain-Orcad.jpg)"
   },
   {
    "id": "BS12-061",

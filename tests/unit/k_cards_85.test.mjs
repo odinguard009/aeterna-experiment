@@ -859,3 +859,12 @@ test('K-1009 BS44-014 puts a Void core on an Egyt Grandwalker Nexus when destroy
     await BS.fireFx(P, 'DESTROYED', t, { subject: t, byOpp: true }); return [eg.cores - e0, ot.cores - o0]; })()`);
   assert.deepEqual(r, [1, 0], JSON.stringify(r));
 });
+
+test('K-1010 DESTROY_EVERY match hasBrave: BS12-048 destroys every opposing Cost 11 or less Spirit with a Brave, not plain Spirits', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; BS.SETTINGS.speed = 'instant'; P.cpu = O.cpu = true; P.coreShield = O.coreShield = null; for (const q of [P, O]) { q.spirits.length = 0; q.nexus.length = 0; } G.turn = 'player';
+    const ids = Object.keys(BS.CARDS).filter(i => /^BS[0-9][0-9]-/.test(i) && BS.CARDS[i].type === 'Spirit' && BS.CARDS[i].cost <= 11 && i !== 'BS12-048'), br = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Brave');
+    const s = BS.mkInst('BS12-048'); s.cores = 1; P.spirits.push(s); const a = BS.mkInst(ids[0]), b = BS.mkInst(ids[1]); a.cores = 2; b.cores = 2; a.brave = BS.mkInst(br); O.spirits.push(a, b);
+    await BS.fireFx(P, 'SUMMONED', s, {}); return [O.spirits.includes(a), O.spirits.includes(b)]; })()`);
+  assert.deepEqual(r, [false, true], JSON.stringify(r));
+});
