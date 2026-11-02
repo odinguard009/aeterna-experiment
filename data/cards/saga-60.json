@@ -22007,12 +22007,24 @@
   "image": "SD10-004.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Destroyed) Destroy an opposing Spirit with 4000 BP or less."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: hand translation); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "bpLe": 4000
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD10-005",
@@ -22121,12 +22133,25 @@
   "image": "SD10-007.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Attacks) Destroy an opposing Spirit with 3000 BP or less."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: hand translation); effects not wired yet, symbols unverified;",
-  "rcode": "U"
+  "rcode": "U",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "bpLe": 3000
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD10-008",
@@ -25191,12 +25216,24 @@
   "image": "SD19-004.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Destroyed) Destroy an opposing Spirit with 4000 BP or less."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: hand translation); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "bpLe": 4000
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD19-005",
@@ -28476,12 +28513,25 @@
   "image": "SD26-004.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Attacks) Destroy an opposing Spirit with a BP equal or inferior to this Spirit's."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "bpLeSelf": true
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD26-005",
@@ -31673,12 +31723,25 @@
   "image": "SD33-006.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Attacks) Destroy an opposing 4000 BP or less Spirit."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "bpLe": 4000
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD33-007",
@@ -33566,12 +33629,24 @@
   "image": "SD37-004.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Summoned) Destroy an opposing 5000 BP or less Spirit/Ultimate."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "bpLe": 5000
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD37-005",
@@ -34590,12 +34665,22 @@
   "image": "SD39-004.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (When Attacks) Discard an opposing Burst."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "DISCARD_OPP_BURST"
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD39-005",
@@ -39680,16 +39765,27 @@
   "image": "SD48-011.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1] (When Summoned) Destroy an opposing 5000 BP or less Spirit."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
   "rcode": "C",
   "brave": {
    "bp": 4000,
    "costGe": 3
-  }
+  },
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "bpLe": 5000
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD48-012",
