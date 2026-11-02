@@ -34,7 +34,8 @@ Object.assign(FX_ACTIONS, {
       else if (a.max) { for (let j = 0; j < a.max; j++) { const u = await chooseCard(c, c.p.revealed.filter(x => fxMatch(CARDS[x.id], a.match) && (!a.diffName || CARDS[x.id].name !== nm)), `✨ ${nm}`, `Choose a revealed card to add to your Hand (${j + 1}/${a.max}).`, true); if (!u) break; removeFrom(c.p.revealed, u); c.p.hand.push(u); handUp(c.p, 1); log(`${nm}: ${CARDS[u.id].name} is added to the Hand.`); t = u; } }
       else t = await chooseCard(c, c.p.revealed.filter(x => fxMatch(CARDS[x.id], a.match) && (!a.diffName || CARDS[x.id].name !== nm)), `✨ ${nm}`, 'Choose a revealed card to add to your Hand.', true);
       if (t && a.discard) { c.ctx.picked = t; removeFrom(c.p.revealed, t); c.p.trash.push(t); log(`${nm}: ${CARDS[t.id].name} is discarded.`); }      // v100 "discard a <match> card among them"
-      else if (t && !a.all && !a.max && !a.peek) { removeFrom(c.p.revealed, t); c.p.hand.push(t); handUp(c.p, 1); log(`${nm}: ${CARDS[t.id].name} is added to the Hand.`); }
+      else if (t && !a.all && !a.max && !a.peek) { removeFrom(c.p.revealed, t); c.p.hand.push(t); c.ctx.picked = t; handUp(c.p, 1);      // v363 the added card is ctx.picked (pickedFamily "if a X is added")
+    log(`${nm}: ${CARDS[t.id].name} is added to the Hand.`); }
       if (a.soulBonus && c.ctx && c.ctx.selfInst && c.ctx.selfInst.soulPaid) {      // v198 "If (Soul Core) was used to pay for the summon cost, add two cards instead"
         const u = await chooseCard(c, c.p.revealed.filter(x => fxMatch(CARDS[x.id], a.match) && (!a.diffName || CARDS[x.id].name !== nm)), `✨ ${nm}`, 'Choose a second revealed card to add to your Hand.', true);
         if (u) { removeFrom(c.p.revealed, u); c.p.hand.push(u); handUp(c.p, 1); t = t || u; log(`${nm}: ${CARDS[u.id].name} is added to the Hand (Soul Core bonus).`); }

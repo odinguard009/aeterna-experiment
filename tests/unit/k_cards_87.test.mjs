@@ -117,3 +117,19 @@ test('K-880 SD40-006 / BS74-RV002 Void core, counter and Ninja Gale refresh only
   }));
   for (const x of r) assert.deepEqual(x, [['VOID_TO_CARD', false], ['COUNTER', true], ['REFRESH_SPIRIT', true]]);
 });
+
+test('K-881 BS42-050 adds the revealed Birthgem Deity Spirit and draws; a plain Divine Spirit does not draw', async () => {
+  const { page } = await sharedBoard();
+  const run = (pick) => page.evaluate(async (pick) => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player; G.active = P.key; P.cpu = true; P.reserve.n = 20;
+    const m = BS.mkInst('BS42-050'); P.hand.push(m);
+    P.deck.length = 0; for (let i = 0; i < 6; i++) P.deck.push(BS.mkInst('BS48-042')); P.deck.unshift(BS.mkInst(pick));
+    const h0 = P.hand.length - 1;      // minus the summoned card
+    await BS.summonFree(P, m);
+    return { gained: P.hand.length - h0, hasPick: P.hand.some(x => x.id === pick) };
+  }, pick);
+  const bg = await run('BS50-X01'), dv = await run('BS42-050');
+  assert.equal(bg.hasPick, true); assert.equal(bg.gained, 2, JSON.stringify(bg));
+  assert.equal(dv.hasPick, true); assert.equal(dv.gained, 1, JSON.stringify(dv));
+});
