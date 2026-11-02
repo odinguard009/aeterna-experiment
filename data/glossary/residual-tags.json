@@ -1435,9 +1435,6 @@
   "T_ATTACKS",
   "T_BATTLE_WIN"
  ],
- "BS07-006": [
-  "C_LEVEL"
- ],
  "BS07-007": [
   "A_DESTROY_BP",
   "A_RETURN_TRASH",
@@ -1515,9 +1512,6 @@
  "BS07-033": [
   "C_LEVEL",
   "M_OPTIONAL"
- ],
- "BS07-034": [
-  "C_LEVEL"
  ],
  "BS07-035": [
   "C_LEVEL",
@@ -1953,9 +1947,6 @@
   "A_SUMMON_FREE",
   "C_LEVEL",
   "K_CRUSH"
- ],
- "BS08-065": [
-  "C_LEVEL"
  ],
  "BS08-066": [
   "A_VOID",
@@ -2793,10 +2784,6 @@
   "K_CRUSH",
   "M_UP_TO",
   "T_ATTACKS"
- ],
- "BS11-047": [
-  "A_BP_PLUS",
-  "C_LEVEL"
  ],
  "BS11-049": [
   "C_LEVEL",

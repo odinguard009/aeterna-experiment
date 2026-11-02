@@ -357,3 +357,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v319 (Lane K): NEXUS_ALL_TO_HAND (every Nexus of both sides returns to its owner's Hand; protected opposing Nexuses stay). Card: BS06-106.
 - v320 (Lane K): MUST_ATTACK_ALL_OPP {costLe} (every matching opposing Spirit must attack; same mustAtk marker as MUST_ATTACK_OPP). Card: BS08-076.
 - v321 (Lane K): DESTROY_OPP_DOWN_TO_OWN (needs 2+ own Spirits; the opponent destroys Spirits of their choice, via DESTROY_OPP_OWN, until the counts match). Card: BS08-069.
+- v322: STATIC flag `TREAT_HIGHEST` (to own, match, lv, if): matching own Spirits are treated as being on their highest level (BS07-006, BS07-034, BS08-065, BS11-047).

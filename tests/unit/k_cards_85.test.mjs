@@ -417,3 +417,16 @@ test('K-965 BS08-069 the opponent destroys Spirits down to the number you contro
     return [a, b]; })()`);
   assert.deepEqual(r, [2, 4], JSON.stringify(r));
 });
+
+test('K-966 TREAT_HIGHEST: BS07-006 at LV3 lifts own Deified General Spirits to their highest level; off at LV1', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player; P.spirits.length = 0;
+    const src = BS.mkInst('BS07-006'); P.spirits.push(src);
+    const t = BS.mkInst('BS15-005'); t.cores = 1; P.spirits.push(t);
+    const top = BS.CARDS['BS15-005'].levels.length - 1;
+    src.cores = BS.CARDS['BS07-006'].levels[BS.CARDS['BS07-006'].levels.length - 1].cores;
+    const hi = BS.lvIndex(t);
+    src.cores = 1; const lo = BS.lvIndex(t);
+    return [hi, lo, top]; })()`);
+  assert.deepEqual(r, [r[2], 0, r[2]], JSON.stringify(r));
+});

@@ -29,6 +29,12 @@ function treatLv3(i) {      // the level (2 or 3) the Spirit is treated as being
   const o = ownerOf(i); if (!o || !o.spirits.includes(i)) return 0;
   _tl3 = true; try { return [3, 2].find(n => flagActive(o, 'TREAT_LV3', i, e => (e.n || 3) === n)) || 0; } finally { _tl3 = false; }
 }
+let _th = false;      // v322 re-entrancy guard for TREAT_HIGHEST (flagActive reads lvNo)
+function treatHighest(i) {      // STATIC TREAT_HIGHEST: "all your <match> Spirits are treated as being on their highest level"
+  if (_th || !G) return false;
+  const o = ownerOf(i); if (!o || !o.spirits.includes(i)) return false;
+  _th = true; try { return flagActive(o, 'TREAT_HIGHEST', i); } finally { _th = false; }
+}
 function lvIndex(i) {
   const card = CARDS[i.id], L = card.levels; let t, k = -1;
   if (card.countLv) { const o = ownerOf(i); t = o ? o.count : 0; } else t = totalCores(i);
@@ -37,7 +43,7 @@ function lvIndex(i) {
   if (i.lv2Battle && G && G.attacker && i.lv2Battle === G.battleNo && L.length > 1 && k < 1) k = 1;      // v0.196 TREAT_LV2 battle:true (Level Up)
   if (i.lv1Battle && G && G.battleNo != null && i.lv1Battle === G.battleNo && k > 0) k = 0;      // v205 TREAT_LV1: "During this battle, treat it as LV1"
   if (i.lv2Turn && L.length > 1 && k < 1) k = 1;      // v0.196 TREAT_LV2 action
-  if (i.lvHighTurn && L.length > 1) k = L.length - 1;      // v184 TREAT_LV2 highest
+  if ((i.lvHighTurn || treatHighest(i)) && L.length > 1) k = L.length - 1;      // v184 TREAT_LV2 highest
   if (card.trueRelease && i.soul && L.length > 1 && k < 1) k = 1;   // v0.66 True Release (Standard CR 12-2-1-1): the Soul Core alone fulfils LV2 (a rule, not an effect)
   return k;
 }
