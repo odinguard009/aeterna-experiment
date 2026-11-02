@@ -239,3 +239,15 @@ test('K-1147 costAlt: BS29-028 costs 6 while Life <= 3, BS25-007 costs 3 with a 
     out.done = ['BS25-007', 'BS29-028', 'BS29-034', 'BS43-047'].every(i => c(i).fxComplete !== false); return out; })()`);
   assert.deepEqual(r, { lifeHi: false, lifeLo: true, lowCost: true, noUlt: false, ult: true, noFam: false, fam: true, done: true }, JSON.stringify(r));
 });
+
+test('K-1148 BS54-078 Main loots 3/2 and destroys the lowest-cost opposing Spirit only with 2 counters; Flash gives a Fighting Spirit +5000', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4;
+    const out = {}; out.fam = BS.CARDS['BS54-078'].families.includes('Primal');
+    const run = async n => { P.count = n; P.deck = [BS.mkInst('BS01-001'), BS.mkInst('BS01-001'), BS.mkInst('BS01-001'), BS.mkInst('BS01-001')]; P.reserve.n = 20;
+      const lo = BS.mkInst('BS01-001'), hi = BS.mkInst('BS01-018'); lo.cores = 1; hi.cores = 1; O.spirits = [hi, lo]; const m = BS.mkInst('BS54-078'); P.hand = [m]; const h0 = P.hand.length;
+      await BS.castMagic(P, { inst: m, target: null, plan: null, ctx: 'main' }); return { hand: P.hand.length - h0, opp: O.spirits.length }; };
+    out.c1 = await run(1); out.c2 = await run(2); out.ok = BS.CARDS['BS54-078'].fxComplete !== false; return out; })()`);
+  assert.equal(r.fam, true, JSON.stringify(r)); assert.equal(r.ok, true);
+  assert.equal(r.c1.opp, 2, JSON.stringify(r)); assert.equal(r.c2.opp, 1, JSON.stringify(r));
+});
