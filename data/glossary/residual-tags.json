@@ -51197,7 +51197,6 @@
  "BS60-CP02": [
   "A_REFRESH"
  ],
- "BS60-CP03": [],
  "BS61-CP01": [
   "A_REFRESH",
   "A_SUMMON_FREE",
@@ -54763,7 +54762,6 @@
  "SD01-038": [
   "A_BP_PLUS"
  ],
- "SD01-039": [],
  "SD01-040": [
   "A_REFRESH",
   "M_THEN"

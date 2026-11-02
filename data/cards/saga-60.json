@@ -2704,12 +2704,21 @@
   "image": "BS60-CP03.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Flash During this turn, your Life can only be reduced by one by the attacks of opposing unblocked Spirits."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP"
+  "rcode": "CP",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "LIFE_CAP_ALL"
+    }
+   ]
+  }
  },
  {
   "id": "BS61-CP01",
@@ -20068,12 +20077,21 @@
   "image": "SD01-039.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Flash During this turn, your Life can only be reduced by one by the attacks of opposing unblocked Spirits."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "R"
+  "rcode": "R",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "LIFE_CAP_ALL"
+    }
+   ]
+  }
  },
  {
   "id": "SD01-040",

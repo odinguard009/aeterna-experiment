@@ -40,3 +40,12 @@ test('K-1111 BS34-072 Burst: destroys an opposing 5000 BP or less Spirit and an 
   const r = await page.evaluate(run('BS34-072', `const s = BS.mkInst('BS01-001'); s.cores = 1; O.spirits.push(s); O.nexus = [BS.mkInst('BS01-100')];`, `{ sp: O.spirits.length, nx: O.nexus.length, main: b.thenMain === true }`));
   assert.equal(r.sp, 0, JSON.stringify(r)); assert.equal(r.nx, 0, JSON.stringify(r)); assert.equal(r.main, true);
 });
+
+test('K-1112 SD01-039 / BS60-CP03 Flash: Life can only be reduced by one per attack this turn (LIFE_CAP_ALL)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const m = BS.mkInst('SD01-039'); const a = BS.CARDS['SD01-039'].magic.actions, b = BS.CARDS['BS60-CP03'].magic.actions;
+    await BS.runActions({ p: P, opp: O, src: m, ctx: { selfInst: m } }, { actions: a });
+    return { cap: P.lifeCapAll === G.turnNo, same: JSON.stringify(a) === JSON.stringify(b), impl: BS.CARDS['SD01-039'].implemented === true && BS.CARDS['BS60-CP03'].implemented === true }; })()`);
+  assert.deepEqual(r, { cap: true, same: true, impl: true });
+});

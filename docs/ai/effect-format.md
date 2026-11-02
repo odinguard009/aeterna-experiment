@@ -411,3 +411,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v373 (Lane K): `magic.summonAfter:true` (with `alsoMagic`, optional `summonOnce:true` = Once per Turn: Same Name) = "after this effect resolves you can summon this card without paying the cost" instead of the Trash.
 - v374 (Lane K): per.type `Counter` (count of your / the opposing counters) for BP_PLUS etc. Card: BS71-023 (Mirage During Set).
 - v375: CHOOSE_ONE accepts 2 or 3 options (the human gets one button per runnable option).
+- v376 (Lane K): LIFE_CAP_ALL (no params): during this turn the caster's Life can only be reduced by one per attack of opposing unblocked Spirits (player.lifeCapAll = turn number, read in 08-battle). Cards: SD01-039, BS60-CP03.

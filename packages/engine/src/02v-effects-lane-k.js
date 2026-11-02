@@ -135,6 +135,11 @@ Object.assign(FX_ACTIONS, {      // v279 "Gain cores in your Reserve equal to th
     run: async (c, a) => { const m = takeFromVoid(c.p, c.src.lostCores || 0); c.ctx.did = m > 0; if (!m) return; coreEvN(c.p, 'void', 'reserve', m, false); c.p.reserve.n += m; log(`${CARDS[c.src.id].name}: ${m} core${m === 1 ? '' : 's'} move from the Void to the Reserve.`); io.view({ type: 'board' }); } },
 });
 Object.assign(FX_ACTIONS, {      // v280 "Each player chooses and destroys a Nexus they control. Can't be used unless each player controls at least one Nexus."
+  /* v0.212 LIFE_CAP_ALL "During this turn, your Life can only be reduced by one by the attacks of opposing unblocked Spirits." (player.lifeCapAll = turn number, read by 08-battle) */
+  LIFE_CAP_ALL: { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
+    txt: () => 'during this turn, your Life can only be reduced by one by the attacks of opposing unblocked Spirits',
+    can: () => true,
+    run: async c => { c.p.lifeCapAll = G.turnNo; io.view({ type: 'board' }); log(`${_nm(c)}: ${poss(c.p)} Life can only be reduced by one per attack this turn.`); } },
   BOTH_DESTROY_NEXUS: { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
     txt: () => 'each player destroys a Nexus they control (only if both control one)',
     can: c => c.p.nexus.length > 0 && c.opp.nexus.length > 0,
