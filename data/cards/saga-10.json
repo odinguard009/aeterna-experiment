@@ -6675,7 +6675,8 @@
          "to": "anyNexus",
          "match": {
           "family": [
-           "Grandwalker"
+           "Grandwalker",
+           "Grandstone"
           ],
           "color": [
            "green"
