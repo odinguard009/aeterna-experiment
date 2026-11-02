@@ -733,3 +733,9 @@ test('K-996 static BP: BS43-RV005 reaches one-core Spirits in the own attack ste
     const w = BS.CARDS['BS31-011'].effects.find(x => x.bp === 10000); return [e, w.bp, w.if.selfSoul, w.match.family[0], typeof b0]; })()`);
   assert.deepEqual(r, [2, 10000, true, 'War Dragon', 'number'], JSON.stringify(r));
 });
+
+test('K-997 ALLY_LOST draw cards and the Investigator attack boost have the expected shapes (BS30-028, BS21-001, BS30-002)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(() => { const sh = id => BS.CARDS[id].effects.map(e => e.trigger + ':' + e.actions.map(a => a.do).join('+')).join('|'); return [sh('BS30-028'), sh('BS21-001'), sh('BS30-002')]; })()`);
+  assert.deepEqual(r, ['ALLY_LOST:DRAW', 'ALLY_LOST:DRAW', 'ALLY_ATTACKS:BP_PLUS|ALLY_ATTACKS:DRAW'], JSON.stringify(r));
+});

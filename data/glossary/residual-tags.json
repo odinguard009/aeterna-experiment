@@ -6315,10 +6315,6 @@
   "T_ATTACKS",
   "T_DURING_BRAVE"
  ],
- "BS21-001": [
-  "C_LEVEL",
-  "T_ALLY_LOST"
- ],
  "BS21-003": [
   "A_BP_PLUS",
   "A_VOID",
@@ -10695,12 +10691,6 @@
   "C_LEVEL",
   "K_ULTIMATE"
  ],
- "BS30-002": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "M_THEN",
-  "T_ALLY_ATTACKS"
- ],
  "BS30-004": [
   "A_RETURN_TRASH",
   "A_SYMBOL",
@@ -10812,11 +10802,6 @@
   "K_ULTIMATE",
   "T_BATTLE_WIN",
   "T_MAGIC_USED"
- ],
- "BS30-028": [
-  "C_LEVEL",
-  "T_DESTROYED",
-  "T_DESTROYED_OPP"
  ],
  "BS30-029": [
   "A_BP_PLUS",
