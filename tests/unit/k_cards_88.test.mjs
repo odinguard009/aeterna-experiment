@@ -60,3 +60,20 @@ test('K-897 BS35-026: opposing non-Green Spirits summoned by an effect enter exh
   const m = JSON.stringify(r);
   assert.equal(r.a, true, m); assert.equal(r.b, false, m); assert.equal(r.own, false, m);
 });
+
+test('K-898 BS22-011: when destroyed, destroys an opposing exhausted Brave of cost 12 or less, not a Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = P.key; P.cpu = true; P.spirits.length = 0; O.spirits.length = 0;
+    const s = BS.mkInst('BS22-011'); s.cores = 0; s.lostLv = 0; P.trash = [s];
+    const sp = BS.mkInst('BS22-011'); sp.cores = 1; sp.exhausted = true;
+    const br = BS.mkInst('BS21-064'); br.cores = 1; br.exhausted = true;
+    const fresh = BS.mkInst('BS21-064'); fresh.cores = 1;
+    O.spirits.push(sp, br, fresh);
+    await BS.fireFx(P, 'DESTROYED', s, { subject: s });
+    return { sp: O.spirits.includes(sp), br: O.spirits.includes(br), fresh: O.spirits.includes(fresh) };
+  });
+  const m = JSON.stringify(r);
+  assert.equal(r.br, false, m); assert.equal(r.sp, true, m); assert.equal(r.fresh, true, m);
+});
