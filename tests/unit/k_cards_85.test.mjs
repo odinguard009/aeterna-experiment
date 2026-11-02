@@ -1102,3 +1102,12 @@ test('K-1033 BS39-019 sends an opposing Life to the Reserve on a life hit only d
     P.lifeSoul = true; const l1 = O.life, r1 = O.reserve.n; await BS.fireFx(P, 'ALLY_LIFE_HIT', null, { attacker: a }); return [no, l1 - O.life, O.reserve.n - r1]; })()`);
   assert.deepEqual(r[0], [0, 0], JSON.stringify(r)); assert.equal(r[1], 1, JSON.stringify(r));
 });
+
+test('K-1034 BS62-014 summons PartnerMusha Oboro from the Hand, then destroys itself', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.spirits.length = 0; O.spirits.length = 0;
+    const a = BS.mkInst('BS62-014'); a.cores = 1; P.spirits.push(a); P.hand = []; await BS.fireFx(P, 'SUMMONED', a, { subject: a }); const none = [P.spirits.length, P.spirits[0] && P.spirits[0].id];
+    P.hand = [BS.mkInst('BS61-CX01')]; P.reserve.n = 5; await BS.fireFx(P, 'SUMMONED', a, { subject: a });
+    return [none, P.spirits.map(s => s.id), P.hand.length]; })()`);
+  assert.deepEqual(r[0], [1, 'BS62-014'], JSON.stringify(r)); assert.deepEqual(r[1], ['BS61-CX01'], JSON.stringify(r));
+});
