@@ -258,3 +258,24 @@ test('K-907 BS58-079 Rush destroys an Ultimate with 3+ cores only with a purple 
   const m = JSON.stringify(r);
   assert.equal(r.sym3, 0, m); assert.equal(r.sym2, 1, m); assert.equal(r.nosym3, 1, m);
 });
+
+test('K-908 BS24-110 exhausts every 5000-BP-or-less foe only with a green symbol', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = P.key; P.cpu = true; O.cpu = true;
+    const grn = Object.keys(BS.CARDS).find(id => /^BS0/.test(id) && BS.CARDS[id].type === 'Spirit' && BS.CARDS[id].symbol === 'green' && BS.CARDS[id].symbols >= 1);
+    const out = {};
+    for (const [tag, withSym] of [['sym', true], ['nosym', false]]) {
+      P.spirits.length = 0; O.spirits.length = 0;
+      if (withSym) { const s = BS.mkInst(grn); s.cores = 2; P.spirits.push(s); }
+      for (let i = 0; i < 3; i++) { const f = BS.mkInst('BS01-002'); f.cores = 1; O.spirits.push(f); }
+      const m = BS.mkInst('BS24-110');
+      await BS.runActions({ p: P, opp: O, src: m, ctx: { selfInst: m } }, { actions: BS.CARDS['BS24-110'].magic.actions });
+      out[tag] = O.spirits.filter(x => x.exhausted).length;
+    }
+    return out;
+  });
+  const m = JSON.stringify(r);
+  assert.equal(r.nosym, 0, m); assert.ok(r.sym >= 1, m);
+});
