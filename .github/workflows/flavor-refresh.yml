@@ -1,0 +1,28 @@
+# Refreshes data/index/flavor.json (English flavor text for the Library's Lore tab) from the Fandom wiki on a GitHub runner,
+# because the laptop sessions cannot reach battle-spirits.fandom.com. Manual only; the result lands on branch wip/flavor-refresh
+# and is merged by a session after a look (tools/fetch_flavor.py is read-only GET, 50 titles per call).
+name: Flavor refresh
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  refresh:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch flavor texts
+        run: python3 tools/fetch_flavor.py
+      - name: Push the result
+        run: |
+          git config user.name "odinguard009"
+          git config user.email "70865815+odinguard009@users.noreply.github.com"
+          if git diff --quiet -- data/index/flavor.json; then echo "no change"; exit 0; fi
+          git checkout -B wip/flavor-refresh
+          git add data/index/flavor.json
+          git commit -m "data: refresh English flavor texts (flavor-refresh workflow)"
+          git push -f origin wip/flavor-refresh
