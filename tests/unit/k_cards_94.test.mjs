@@ -251,3 +251,18 @@ test('K-1148 BS54-078 Main loots 3/2 and destroys the lowest-cost opposing Spiri
   assert.equal(r.fam, true, JSON.stringify(r)); assert.equal(r.ok, true);
   assert.equal(r.c1.opp, 2, JSON.stringify(r)); assert.equal(r.c2.opp, 1, JSON.stringify(r));
 });
+
+test('K-1149 BS10-097 attacking Spirits +1000 and attacking Brave Spirits +3000 more; BS10-106 the same for blocking at +2000/+3000', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4;
+    const out = {}; const brv = Object.values(BS.CARDS).find(c => c.type === 'Brave').id;
+    const mk = (braved) => { const s = BS.mkInst('BS01-001'); s.cores = 1; if (braved) s.brave = BS.mkInst(brv); return s; };
+    const go = async (id, role, useB) => { const a = mk(false), b = mk(true); P.spirits = [a, b]; P.reserve.n = 20; P.hand = []; const m = BS.mkInst(id); P.hand = [m];
+      const who = useB ? b : a; G.attacker = role === 'attacking' ? who : O.spirits[0] || null; G.blocker = role === 'blocking' ? who : null;
+      const a0 = BS.bpOf(a), b0 = BS.bpOf(b); G.battleNo = 3;
+      await BS.castMagic(P, { inst: m, target: null, plan: null, ctx: 'flash' }); return useB ? BS.bpOf(b) - b0 : BS.bpOf(a) - a0; };
+    out.atk = [await go('BS10-097', 'attacking'), await go('BS10-097', 'attacking', true)]; out.blk = [await go('BS10-106', 'blocking'), await go('BS10-106', 'blocking', true)]; out.ok = BS.CARDS['BS10-097'].fxComplete !== false && BS.CARDS['BS10-106'].fxComplete !== false; return out; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r));
+  assert.deepEqual(r.atk, [1000, 4000], JSON.stringify(r));
+  assert.deepEqual(r.blk, [2000, 5000], JSON.stringify(r));
+});
