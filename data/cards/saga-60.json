@@ -26676,11 +26676,11 @@
   "block": "P",
   "saga": 60,
   "fxComplete": false,
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "rcode": "U",
   "residual": [
    "[LV1][LV2][LV3] This Spirit's color and symbol are also treated as White."
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "U"
+  ]
  },
  {
   "id": "SD20-003",
@@ -29222,14 +29222,42 @@
   "image": "SD25-002.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] This Spirit's color and symbol are also treated as White.",
-   "[LV1][LV2][LV3] (Opposing Attack Step) All your \"Astral Dragon\" family Spirits can block while exhausted.",
-   "[LV2][LV3] This Spirit can't be destroyed by opposing effects."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "U"
+  "rcode": "U",
+  "colors": [
+   "red",
+   "white"
+  ],
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "BLOCK_EXHAUSTED",
+    "to": "own",
+    "match": {
+     "family": [
+      "Astral Dragon"
+     ]
+    },
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": true
+    }
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "NO_DESTROY_OPP",
+    "lv": [
+     2,
+     3
+    ]
+   }
+  ]
  },
  {
   "id": "SD25-003",
@@ -34283,14 +34311,46 @@
   "image": "SD35-006.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] This Spirit's color and symbol are also treated as White.",
-   "[LV1][LV2][LV3] (Your End Step) This Spirit refreshes.",
-   "[LV2][LV3] (When Destroyed by the Opponent) Return an opposing exhausted Spirit to the deckbottom."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "colors": [
+   "green",
+   "white"
+  ],
+  "effects": [
+   {
+    "trigger": "END_STEP",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "REFRESH"
+     }
+    ]
+   },
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     2,
+     3
+    ],
+    "if": {
+     "byOpp": true
+    },
+    "actions": [
+     {
+      "do": "BOUNCE_OPP",
+      "to": "deckBottom",
+      "kind": "spirit",
+      "exhaustedOnly": true
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD35-007",

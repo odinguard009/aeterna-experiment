@@ -85,3 +85,15 @@ test('K-1133 BS31-016 sends a core to the Reserve; with the Soul Core it also re
     assert.deepEqual([r.impl, r.c, r.d], [true, 1, d], JSON.stringify(r));
   }
 });
+
+test('K-1134 SD35-006 when destroyed by the opponent returns an exhausted opposing Spirit to the deckbottom', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(run('SD35-006', 'DESTROYED', false, `{ const a = BS.mkInst('BS01-001'); a.cores = 1; a.exhausted = true; O.spirits.push(a); const b = BS.mkInst('BS01-001'); b.cores = 1; O.spirits.push(b); }`, `{ sp: O.spirits.length, ex: O.spirits.filter(s => s.exhausted).length, dk: O.deck.length }`));
+  assert.equal(r.impl, true, JSON.stringify(r)); assert.deepEqual([r.sp, r.ex], [1, 0], JSON.stringify(r));
+});
+
+test('K-1135 SD25-002 carries the block and no-destroy flags and the White colour', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(() => { BS.testSetup(); const c = BS.CARDS['SD25-002']; return { impl: c.implemented === true, colors: c.colors, flags: c.effects.map(e => e.flag) }; })()`);
+  assert.equal(r.impl, true, JSON.stringify(r)); assert.deepEqual(r.colors, ['red', 'white']); assert.deepEqual(r.flags, ['BLOCK_EXHAUSTED', 'NO_DESTROY_OPP']);
+});

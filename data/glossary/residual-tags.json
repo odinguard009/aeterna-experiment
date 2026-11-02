@@ -55610,10 +55610,6 @@
   "C_LEVEL",
   "K_ULTIMATE"
  ],
- "SD25-002": [
-  "A_EXHAUST",
-  "C_LEVEL"
- ],
  "SD25-003": [
   "A_DESTROY_BP",
   "C_LEVEL",
@@ -56266,13 +56262,6 @@
   "A_BP_PLUS",
   "A_SEAL",
   "C_LEVEL"
- ],
- "SD35-006": [
-  "A_EXHAUST",
-  "A_REFRESH",
-  "C_LEVEL",
-  "T_DESTROYED",
-  "T_DESTROYED_OPP"
  ],
  "SD35-007": [
   "A_EXHAUST",
