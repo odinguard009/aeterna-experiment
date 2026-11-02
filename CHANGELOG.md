@@ -4,6 +4,13 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.210.0
+- Lane: K
+- **Lane K: +101 complete cards (2,148 -> 2,249 of 10,291; 101 in this release)**
+- Cards: +108 complete by the official count (2,141 at tag v0.209.2 -> 2,249; the heading counts +101 from the 2,148 of the v0.209.0 line, main's v0.209.1/.2 data changes lowered that baseline by 7, `docs/reports/card-counts.json`). 17 vanilla SD cards (SD01-001, -002, -007, -009, -010, -014, -015, -019, SD03-005, SD10-006, SD11-002, SD17-010, SD22-001, SD29-002, SD31-004, SD33-004, SD34-006) stay partial with the `(no ability)` residual as in main v0.209.2; they are not in the count. About 90 Lane K commits.
+- Engine, effect schema 360 -> 375. New: `magic.alsoMagic` and `magic.summonAfter` (a Spirit that is also a Magic: its Flash is usable from the Hand and the card can be summoned free after it resolves), `per.type: "Counter"`, `DESTROY.ultCoresGe`, and `CHOOSE_ONE` now takes 2 or 3 options (see `docs/ai/effect-format.md`, v361 to v375).
+- Limits: the saga-60 product cards now carry main's English text (v0.209.2) merged with the Lane K effects; where a card was wired against Japanese text its family names may still need a recheck; the "treated as <colour>" cards use `colors` (colour only, cards whose text also says "symbol" were left partial); SD17-005 and SD11-006 (static BP) are covered by validation only, not by a battle test; the SD20-013 and SD23-015 "Spirit/Ultimate" targets follow the existing BP_PLUS/BP_MINUS Magic convention and were not cast at an Ultimate; the 3-option `CHOOSE_ONE` human dialog was not tried by hand; BS49-027 also accepts the `Grandstone` family for its Nexus option (same as `isGW`).
+
 ## v0.209.2
 - Lane: U/I
 - **Owner request, no new complete cards (2,148 -> 2,148 of 10,291)**
