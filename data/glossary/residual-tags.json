@@ -8688,19 +8688,6 @@
   "K_ULTIMATE",
   "T_DESTROYED"
  ],
- "BS26-049": [
-  "A_REFRESH",
-  "A_VOID",
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "T_BLOCKS"
- ],
- "BS26-051": [
-  "A_VOID",
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "T_ATTACKS"
- ],
  "BS26-052": [
   "K_BRAVE",
   "K_ULTIMATE"

@@ -112,3 +112,17 @@ test('K-1137 ULT_SYMBOL_AS makes Ultimate symbols also count as the printed colo
     return { s: BS.symbolsOn(P), lv: BS.lvNo(m), isU: BS.CARDS['BS26-046'].type }; })()`);
   assert.ok(r.s.red >= 1 && r.s.ultimate >= 1, JSON.stringify(r));
 });
+
+test('K-1138 BS26-051 Ultimate Trigger hit: by destroying a Cost 5 or less Spirit, a Void core goes to the Reserve; BS26-049 refreshes on a block hit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.step = 4; G.active = P.key; P.void = 3;
+    const m = BS.mkInst('BS26-051'); m.cores = 3; P.spirits.push(m); const s = BS.mkInst('BS01-001'); s.cores = 1; O.spirits.push(s);
+    const r0 = P.reserve; const fx = BS.CARDS['BS26-051'].effects.find(e => e.trigger === 'ATTACKS');
+    await BS.runActions({ p: P, opp: O, src: m, ctx: { selfInst: m, utHit: true } }, { actions: fx.actions.filter(a => a.do !== 'ULT_TRIGGER') });
+    const a = { sp: O.spirits.length, dres: (typeof P.reserve === 'number' ? P.reserve : BS.reserveTotal(P)) - (typeof r0 === 'number' ? r0 : 0) };
+    const b = BS.mkInst('BS26-049'); b.cores = 3; b.exhausted = true; P.spirits.push(b);
+    const fb = BS.CARDS['BS26-049'].effects.find(e => e.trigger === 'BLOCKS');
+    await BS.runActions({ p: P, opp: O, src: b, ctx: { selfInst: b, utHit: true } }, { actions: fb.actions.filter(a => a.do !== 'ULT_TRIGGER') });
+    return { ...a, ex: !!b.exhausted, bc: b.cores, impl: BS.CARDS['BS26-051'].implemented === true }; })()`);
+  assert.equal(r.impl, true, JSON.stringify(r)); assert.equal(r.sp, 0, JSON.stringify(r)); assert.equal(r.ex, false, JSON.stringify(r)); assert.equal(r.bc, 4, JSON.stringify(r));
+});
