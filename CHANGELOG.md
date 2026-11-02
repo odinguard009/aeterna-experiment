@@ -5,12 +5,15 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
 ## v0.209.1
-- Lane: U/I (owner request; no card change: 10,289 of 10,291 playable, 2,148 complete)
+- Lane: U/I
+- **Owner request, no new complete cards (2,148 -> 2,148 of 10,291)**
 - **My decks, Eternal toggle:** 40 Eternal starter decks (one per printed SD set) now fill the empty Eternal recipe list. Copy counts are approximations (3 per card, X cards 1, banned cards dropped, 1-copy limits kept, trimmed to 40), because the official counts are not in the repo. They are never picked as CPU opponents. Generator: `tools/gen_eternal_starters.py`.
 - **Deck names:** a renamed deck that is still empty stays listed and keeps its name; clearing the name field while typing no longer turns the name into "Deck N"; copying a deck into the active empty slot keeps its cards. Tests: `deck_names_eternal.test.mjs`.
 - **Library:** Show/Hide filters sits right beside the Cards/Lore tabs; the Lore list keeps one height in series and saga mode, so the page no longer jumps.
 - **Lore flavor text:** `data/index/flavor.json` refreshed from the Fandom wiki on a runner (5,447 -> 6,491 cards). Cards whose wiki page has no English flavor text stay empty; nothing is invented.
 - Budget B02 raised 365 -> 370 KB on purpose (Eternal recipes).
+- Revert: `git revert 2cebe891`, or restore branch `backup/v0.209.0` (the state before this release).
+- Not done: flavor text covers 6,491 of 10,291 cards (the rest have none on the wiki); the Cards and Lore tabs still sit a little higher or lower when the filter chips hide.
 
 ## v0.209.0
 - Lane: K
