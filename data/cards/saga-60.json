@@ -24295,12 +24295,28 @@
   "image": "SD14-004.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Flash - High Speed This card in Hand can be summoned by paying the cost with cores in the Reserve. In this case, cores to be put on this Spirit must also be from the Reserve. {{Rush|Blue}} (While you have a Blue symbol, the following effect activates next) (Blue Core): Destroy an opposing Cost 3 or less Spirit."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "costLe": 3,
+      "if": {
+       "hasSymbol": "blue",
+       "viaHS": true
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD14-005",

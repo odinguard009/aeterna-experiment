@@ -5564,10 +5564,6 @@
   "M_OPTIONAL",
   "T_ATTACKS"
  ],
- "BS19-024": [
-  "K_HIGH_SPEED",
-  "K_RUSH"
- ],
  "BS19-025": [
   "C_LEVEL",
   "K_RUSH",
@@ -5915,10 +5911,6 @@
   "C_LEVEL",
   "K_BRAVE",
   "T_SUMMONED"
- ],
- "BS20-021": [
-  "K_HIGH_SPEED",
-  "K_RUSH"
  ],
  "BS20-022": [
   "A_EXHAUST",
@@ -54778,10 +54770,6 @@
   "K_HIGH_SPEED",
   "K_RUSH",
   "T_ATTACKS"
- ],
- "SD14-004": [
-  "K_HIGH_SPEED",
-  "K_RUSH"
  ],
  "SD14-005": [
   "A_CORE_TO_SELF",
