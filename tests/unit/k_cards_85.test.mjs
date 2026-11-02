@@ -1156,3 +1156,12 @@ test('K-1039 BS41-083 summons a Cost 6 or less Pirate Spirit from the Hand free 
     await BS.fireFx(P, 'SUMMONED', n, { subject: n }); return [P.spirits.map(s => s.id), P.hand.length]; })()`);
   assert.deepEqual(r, [['BS11-042'], 0], JSON.stringify(r));
 });
+
+test('K-1040 BS47-001 puts a Void core only on a Red Grandwalker Nexus when it attacks or blocks at LV3', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.spirits.length = 0;
+    const a = BS.mkInst('BS47-001'); a.cores = 3; P.spirits.push(a); const x = BS.mkInst('BS01-112'); x.cores = 1; const g = BS.mkInst('BS44-CP02'); g.cores = 1; P.nexus = [x, g];
+    G.void = Math.max(G.void || 0, 3); P.void = Math.max(P.void || 0, 3); const out = [];
+    for (const t of ['ATTACKS', 'BLOCKS']) { await BS.fireFx(P, t, a, { subject: a }); } return [x.cores, g.cores]; })()`);
+  assert.deepEqual(r, [1, 3], JSON.stringify(r));
+});
