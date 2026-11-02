@@ -294,3 +294,23 @@ test('K-891 BS70-025: Void core when Frau is summoned (once per turn); Lv2 destr
   const m = JSON.stringify(r);
   assert.equal(r.c1, 5, m); assert.equal(r.c2, 5, m); assert.equal(r.oh, 1, m);
 });
+
+test('K-892 BS69-006: Primordial ally attack destroys an opposing Spirit with BP <= the attacker; Lv2 attack draws two', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = P.key; P.cpu = true;
+    P.spirits.length = 0; O.spirits.length = 0;
+    const s = BS.mkInst('BS69-006'); s.cores = 1; P.spirits.push(s);
+    const lo = BS.mkInst('BS48-042'), hi = BS.mkInst('BS48-042'); lo.cores = 1; hi.cores = 9; O.spirits.push(lo, hi);
+    const bs = BS.bpOf(s), bl = BS.bpOf(lo), bh = BS.bpOf(hi);
+    const h0 = P.hand.length;
+    await BS.fireFx(P, 'ALLY_ATTACKS', s, { subject: s, attacker: s });
+    s.cores = 3;
+    await BS.fireFx(P, 'ATTACKS', s, { subject: s, attacker: s });
+    return { bs, bl, bh, loAlive: O.spirits.includes(lo), hiAlive: O.spirits.includes(hi), dh: P.hand.length - h0 };
+  });
+  const m = JSON.stringify(r);
+  assert.equal(r.dh, 2, m); assert.equal(r.hiAlive, true, m);
+  assert.ok(r.bl <= r.bs && r.bh > r.bs, m); assert.equal(r.loAlive, false, m);
+});

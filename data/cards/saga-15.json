@@ -5321,14 +5321,43 @@
   "image": "BS69-006+.png",
   "block": "69",
   "saga": 15,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (Your Attack Step)",
-   "(Can't stack) When your \"Primordial\" family Spirit attacks, destroy an opposing Spirit/Ultimate with a BP equal or inferior to that Spirit's.",
-   "[LV2][LV3] (When Attacks)",
-   "Draw two cards."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": " Wired with DESTROY bpLeAttacker.",
+  "effects": [
+   {
+    "trigger": "ALLY_ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "noStack": true,
+    "match": {
+     "family": [
+      "Primordial"
+     ]
+    },
+    "actions": [
+     {
+      "do": "DESTROY",
+      "bpLeAttacker": true
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 2
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS69-007",
