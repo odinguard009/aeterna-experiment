@@ -881,17 +881,11 @@
   "A_TRASH_TO_RESERVE",
   "T_ACTIVATE"
  ],
- "BS04-108": [
-  "T_ACTIVATE"
- ],
  "BS04-109": [],
  "BS04-110": [
   "T_ACTIVATE"
  ],
  "BS04-112": [],
- "BS04-114": [
-  "A_BP_PLUS"
- ],
  "BS04-X13": [
   "A_VOID",
   "C_LEVEL",

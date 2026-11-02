@@ -586,3 +586,25 @@ test('K-981 BS04-107 treats every opposing Spirit as LV1 only with a 2+ symbol S
     return out; })()`);
   assert.deepEqual(r, [[false, false], [true, true]], JSON.stringify(r));
 });
+
+test('K-982 BS04-108 needs five Magicians, then wipes both Fields', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const mg = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit' && (BS.CARDS[i].families || []).includes('Magician'));
+    const sp = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit' && !(BS.CARDS[i].families || []).includes('Magician'));
+    const mk = id => { const s = BS.mkInst(id); s.cores = 1; return s; }; const out = [];
+    for (const k of [4, 5]) { P.spirits.length = 0; O.spirits.length = 0; for (let i = 0; i < k; i++) P.spirits.push(mk(mg)); P.spirits.push(mk(sp)); O.spirits.push(mk(sp), mk(sp));
+      await BS.runActions({ p: P, opp: O, src: BS.mkInst('BS04-108'), ctx: {} }, { actions: BS.CARDS['BS04-108'].magic.by.MAIN.actions }); out.push([P.spirits.length, O.spirits.length]); }
+    return out; })()`);
+  assert.deepEqual(r, [[5, 2], [1, 0]], JSON.stringify(r));
+});
+
+test('K-983 BS04-114 destroys own Nexuses and the opponent loses as many Spirits', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.nexus.length = 0; O.spirits.length = 0;
+    const nx = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Nexus'); const sp = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit');
+    P.nexus.push(BS.mkInst(nx), BS.mkInst(nx)); for (let i = 0; i < 3; i++) { const s = BS.mkInst(sp); s.cores = 1; O.spirits.push(s); }
+    await BS.FX_ACTIONS.NEXUS_DESTROY_FOR_SPIRITS.run({ p: P, opp: O, src: BS.mkInst('BS04-114'), ctx: {} }, BS.CARDS['BS04-114'].magic.by.MAIN.actions[0]);
+    return [P.nexus.length, O.spirits.length]; })()`);
+  assert.deepEqual(r, [0, 1], JSON.stringify(r));
+});

@@ -21895,17 +21895,32 @@
   "saga": 1,
   "magic": {
    "timing": [
+    "MAIN",
     "FLASH"
    ],
-   "effect": "BP_PLUS",
-   "value": 4000
+   "by": {
+    "MAIN": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "DESTROY_FAMILY_THEN_ALL",
+       "family": "Magician",
+       "n": 5
+      }
+     ]
+    },
+    "FLASH": {
+     "effect": "BP_PLUS",
+     "value": 4000
+    }
+   }
   },
-  "fxComplete": false,
-  "residual": [
-   "Main - If you control 5 or more \"Magician\" spirits, destroy all of them. In that case, destroy all spirits your opponent controls."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "U"
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image.",
+  "rcode": "U",
+  "effects": [],
+  "residual": []
  },
  {
   "id": "BS04-109",
@@ -22086,16 +22101,41 @@
   "image": "Tidal Tide.jpg",
   "block": "04",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "Main",
-   "Destroy any number of Nexuses you control.",
-   "For each Nexus destroyed, the opponent destroys a Spirit they control.",
-   "This effect can only be used if you control a Spirit with two or more symbols.",
-   "Flash",
-   "During this turn, a Spirit with two or more symbols gain +5000 BP."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "MAIN",
+    "FLASH"
+   ],
+   "by": {
+    "MAIN": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "NEXUS_DESTROY_FOR_SPIRITS",
+       "if": {
+        "ctrl": {
+         "n": 1,
+         "type": "Both",
+         "symbolsGe": 2
+        }
+       }
+      }
+     ]
+    },
+    "FLASH": {
+     "effect": "BP_PLUS_MATCH",
+     "value": 5000,
+     "match": {
+      "symbolsGe": 2
+     }
+    }
+   }
+  },
+  "effects": [],
+  "residual": []
  },
  {
   "id": "BS04-X13",

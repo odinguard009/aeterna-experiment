@@ -418,4 +418,30 @@ FX_ACTIONS.RESERVE_TRASH_MIRROR = {
     c.ctx.did = true; log(`${_nm(c)}: ${n} core${n === 1 ? '' : 's'} from ${poss(c.p)} Reserve and ${m} from ${poss(c.opp)} Reserve go to the Trash.`); io.view({ type: 'board' });
   } };
 
+/* v335 DESTROY_FAMILY_THEN_ALL {family,n}: "If you control n or more <family> Spirits, destroy all of them. In that case, destroy all Spirits your opponent controls." */
+FX_ACTIONS.DESTROY_FAMILY_THEN_ALL = {
+  chk: a => typeof a.family === 'string' && !!a.family && Number.isInteger(a.n) && a.n >= 1 && a.n <= 9 && Object.keys(a).every(k => ['do', 'family', 'n', 'if'].includes(k)),
+  txt: a => `if you control ${a.n}+ "${a.family}" Spirits, destroy all of them; then destroy every opposing Spirit`,
+  can: (c, a) => c.p.spirits.filter(s => (CARDS[s.id].families || []).includes(a.family)).length >= a.n,
+  run: async (c, a) => {
+    const L = c.p.spirits.filter(s => (CARDS[s.id].families || []).includes(a.family)); if (L.length < a.n) { c.ctx.did = false; return; }
+    for (const s of L) removeSpirit(c.p, s, 'destroyed', false);
+    for (const s of c.opp.spirits.filter(x => !fxImmune(c.opp, x))) removeSpirit(c.opp, s, 'destroyed', true);
+    checkDepletion(c.p); checkDepletion(c.opp); c.ctx.did = true; io.view({ type: 'board' });
+  } };
+/* v335 NEXUS_DESTROY_FOR_SPIRITS: "Destroy any number of Nexuses you control. For each Nexus destroyed, the opponent destroys a Spirit they control." Human picks 0..n; the CPU destroys as many as the opponent has Spirits (up to its Nexuses, fewest cores first). The opponent's Spirits are chosen by the engine (lowest BP first). */
+FX_ACTIONS.NEXUS_DESTROY_FOR_SPIRITS = {
+  chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
+  txt: () => 'destroy any number of your Nexuses; for each, the opponent destroys a Spirit they control',
+  can: c => c.p.nexus.length > 0,
+  run: async c => {
+    const L = c.p.nexus.filter(n => !n.noFx).sort((x, y) => x.cores - y.cores); const cap = Math.min(L.length, 5); let n = 0;
+    if (c.p.cpu) n = Math.min(cap, c.opp.spirits.length);
+    else { const btn = []; for (let j = 0; j <= cap; j++) btn.push({ label: String(j), cls: j ? 'primary' : 'blue', value: j }); n = await ask({ title: `✨ ${esc(_nm(c))}`, html: 'How many of your Nexuses to destroy?', buttons: btn }) || 0; }
+    if (n <= 0) { c.ctx.did = false; return; }
+    for (const t of L.slice(0, n)) { log(`${_nm(c)}: ${CARDS[t.id].name} is destroyed.`); removeNexus(c.p, t, 'destroyed'); }
+    for (let i = 0; i < n; i++) { const V = c.opp.spirits.filter(x => !fxImmune(c.opp, x)).sort((x, y) => bpOf(x) - bpOf(y)); if (!V.length) break; log(`${CARDS[V[0].id].name} is destroyed.`); removeSpirit(c.opp, V[0], 'destroyed', true); }
+    checkDepletion(c.opp); c.ctx.did = true; io.view({ type: 'board' });
+  } };
+
 wrapImmunity(Object.values(FX_ACTIONS));   // the actions above are defined after 02k: LO01
