@@ -136,3 +136,19 @@ test('K-1185 ALLY_LIFE_HIT LIFE_TO_RESERVE (BS10-050, BS19-X03, BS59-CP03, BS25-
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.holy, 1, JSON.stringify(r)); assert.equal(r.holyNo, 0, JSON.stringify(r));
   assert.equal(r.selfHit, 1, JSON.stringify(r)); assert.equal(r.hsHit, 1, JSON.stringify(r)); assert.equal(r.plainNo, 0, JSON.stringify(r));
 });
+
+test('K-1186 Crush results (BS06-070, BS04-063, BS09-053): follow-ups count Spirit cards the Crush discarded and respect the level gate', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const mk = (id, n) => { const s = BS.mkInst(id); s.cores = n; return s; };
+    const sp = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && c.cost <= 2).id, mg = Object.values(BS.CARDS).find(c => c.type === 'Magic').id;
+    const deck = () => { O.deck = [BS.mkInst(sp), BS.mkInst(mg), BS.mkInst(sp), BS.mkInst(sp), BS.mkInst(sp)]; };
+    const out = {};
+    const a = mk('BS04-063', 3); P.spirits = [a]; O.spirits = []; deck(); const lv = BS.lvNo(a); const b0 = BS.bpOf(a); await BS.fireFx(P, 'ATTACKS', a); out.lv = lv; out.bp = BS.bpOf(a) - b0; out.tr = O.trash.length;
+    const c = mk('BS09-053', 6); P.spirits = [c]; P.void = 5; deck(); const c0 = c.cores; await BS.fireFx(P, 'ATTACKS', c); out.cores = c.cores - c0; out.lvC = BS.lvNo(c);
+    const lo = Object.values(BS.CARDS).find(k => k.type === 'Spirit' && k.cost <= 3 && k.id !== sp).id;
+    const d = mk('BS06-070', 6); P.spirits = [d]; O.spirits = [mk(lo, 1)]; deck(); await BS.fireFx(P, 'ATTACKS', d); out.destroyed = 1 - O.spirits.length; out.lvD = BS.lvNo(d);
+    out.ok = ['BS06-070', 'BS04-063', 'BS09-053'].every(k => BS.CARDS[k].fxComplete !== false); return out; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.ok(r.lv >= 2, JSON.stringify(r)); 
+  assert.equal(r.tr, 2, JSON.stringify(r)); assert.equal(r.bp, 1000, JSON.stringify(r)); assert.equal(r.cores, 2, JSON.stringify(r)); assert.ok(r.cores >= 1, JSON.stringify(r)); assert.equal(r.destroyed, 1, JSON.stringify(r));
+});

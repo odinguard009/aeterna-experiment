@@ -706,12 +706,6 @@
   "C_LEVEL",
   "M_REPLACEMENT"
  ],
- "BS04-063": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "K_CRUSH",
-  "T_ATTACKS"
- ],
  "BS04-065": [
   "C_LEVEL",
   "T_DESTROYED"
@@ -1188,11 +1182,6 @@
  ],
  "BS06-068": [
   "C_LEVEL"
- ],
- "BS06-070": [
-  "C_LEVEL",
-  "K_CRUSH",
-  "T_ATTACKS"
  ],
  "BS06-074": [
   "A_EXHAUST",
@@ -2025,12 +2014,6 @@
   "M_UP_TO",
   "T_ATTACKS",
   "T_SUMMONED"
- ],
- "BS09-053": [
-  "A_VOID",
-  "C_LEVEL",
-  "K_CRUSH",
-  "T_ATTACKS"
  ],
  "BS09-055": [
   "A_DISCARD_HAND",
