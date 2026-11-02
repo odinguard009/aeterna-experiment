@@ -19845,13 +19845,42 @@
   "image": "SD01-034.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Main Draw two cards. Then, reveal a card from your decktop. If that card is a Red Spirit card, add it to your Hand. Return any remaining card to the decktop.",
-   "Flash During this turn, give a Spirit +2000 BP."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "U"
+  "rcode": "U",
+  "magic": {
+   "timing": [
+    "MAIN",
+    "FLASH"
+   ],
+   "effect": null,
+   "value": 0,
+   "by": {
+    "MAIN": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "DRAW",
+       "n": 2
+      },
+      {
+       "do": "REVEAL_PICK",
+       "n": 1,
+       "match": {
+        "type": "Spirit",
+        "color": "red"
+       },
+       "rest": "top"
+      }
+     ]
+    },
+    "FLASH": {
+     "effect": "BP_PLUS",
+     "value": 2000
+    }
+   }
+  }
  },
  {
   "id": "SD01-035",
@@ -22716,13 +22745,46 @@
   "image": "SD10-016.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Main Draw two cards. Then, reveal two cards from your decktop, and add every Spirit card/Brave card with Charge among them to the Hand. Return any remaining cards to your decktop in any order.",
-   "Flash During this turn, give a Spirit +3000 BP."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "R"
+  "rcode": "R",
+  "magic": {
+   "timing": [
+    "MAIN",
+    "FLASH"
+   ],
+   "effect": null,
+   "value": 0,
+   "by": {
+    "MAIN": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "DRAW",
+       "n": 2
+      },
+      {
+       "do": "REVEAL_PICK",
+       "n": 2,
+       "match": {
+        "typeAny": [
+         "Spirit",
+         "Brave"
+        ],
+        "keyword": "Charge"
+       },
+       "all": true,
+       "rest": "top"
+      }
+     ]
+    },
+    "FLASH": {
+     "effect": "BP_PLUS",
+     "value": 3000
+    }
+   }
+  }
  },
  {
   "id": "SD10-X01",
@@ -25283,13 +25345,45 @@
   "image": "SD17-016.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Main Draw two cards. Then, reveal two cards from your decktop. Among them, add a Spirit card/Brave card with Rush to your Hand. Return any remaining cards to the decktop in any order.",
-   "Flash During this turn, give a Spirit +3000 BP."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "U"
+  "rcode": "U",
+  "magic": {
+   "timing": [
+    "MAIN",
+    "FLASH"
+   ],
+   "effect": null,
+   "value": 0,
+   "by": {
+    "MAIN": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "DRAW",
+       "n": 2
+      },
+      {
+       "do": "REVEAL_PICK",
+       "n": 2,
+       "match": {
+        "typeAny": [
+         "Spirit",
+         "Brave"
+        ],
+        "keyword": "Rush"
+       },
+       "rest": "top"
+      }
+     ]
+    },
+    "FLASH": {
+     "effect": "BP_PLUS",
+     "value": 3000
+    }
+   }
+  }
  },
  {
   "id": "SD17-X01",

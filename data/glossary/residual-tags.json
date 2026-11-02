@@ -54828,10 +54828,6 @@
   "A_DESTROY_BP",
   "M_THEN"
  ],
- "SD01-034": [
-  "A_BP_PLUS",
-  "M_THEN"
- ],
  "SD01-036": [
   "A_BP_PLUS",
   "T_ATTACKS"
@@ -55129,11 +55125,6 @@
  ],
  "SD10-015": [
   "A_END_ATTACK"
- ],
- "SD10-016": [
-  "A_BP_PLUS",
-  "K_BRAVE",
-  "M_THEN"
  ],
  "SD10-X01": [
   "A_BRAVE_AS_SPIRIT",
@@ -55499,11 +55490,6 @@
   "A_REFRESH",
   "K_RUSH",
   "M_UP_TO"
- ],
- "SD17-016": [
-  "A_BP_PLUS",
-  "K_BRAVE",
-  "M_THEN"
  ],
  "SD17-X01": [
   "A_BP_PLUS",

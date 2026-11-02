@@ -58,3 +58,17 @@ test('K-1005 SD19-016 / SD67-RV006 and SD65-RV002 are fully wired', async () => 
   const r = await page.evaluate(`['SD19-016', 'SD67-RV006', 'SD65-RV002', 'SD01-037', 'SD29-014', 'PC02-RV002'].map(id => BS.CARDS[id].fxComplete !== false && !!BS.CARDS[id].magic)`);
   assert.deepEqual(r, [true, true, true, true, true, true], JSON.stringify(r));
 });
+
+test('K-1006 SD10-016 / SD17-016 / SD01-034 draw 2 then pick from the reveal', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const out = {};
+    for (const id of ['SD10-016', 'SD17-016', 'SD01-034']) {
+      P.deck = Array.from({ length: 8 }, () => BS.mkInst('BS01-001')); P.reserve.n = 20; const m = BS.mkInst(id); P.hand = [m];
+      const d0 = P.deck.length;
+      await BS.castMagic(P, { inst: m, target: null, plan: null, ctx: 'main' });
+      out[id] = { hand: P.hand.length, deckLost: d0 - P.deck.length };
+    }
+    return out; })()`);
+  for (const id of Object.keys(r)) { assert.ok(r[id].hand >= 2 && r[id].hand <= 4, id + JSON.stringify(r)); assert.ok(r[id].deckLost >= 2, id + JSON.stringify(r)); }
+});
