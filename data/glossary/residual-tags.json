@@ -54054,10 +54054,6 @@
   "M_OPTIONAL",
   "T_ATTACKS"
  ],
- "PC02-RV002": [
-  "A_BP_MINUS",
-  "K_ULTIMATE"
- ],
  "PC02-X01": [
   "A_CANT_ATTACK_BLOCK",
   "A_COUNTER",
@@ -54840,10 +54836,6 @@
   "A_BP_PLUS",
   "T_ATTACKS"
  ],
- "SD01-037": [
-  "A_BP_PLUS",
-  "A_VOID"
- ],
  "SD01-038": [
   "A_BP_PLUS"
  ],
@@ -55592,7 +55584,6 @@
   "A_DESTROY_TOTAL",
   "M_UP_TO"
  ],
- "SD19-016": [],
  "SD19-X01": [
   "A_AWAKEN",
   "A_BP_PLUS",
@@ -55668,10 +55659,6 @@
  "SD20-015": [
   "A_BOUNCE",
   "K_BRAVE"
- ],
- "SD20-016": [
-  "A_REFRESH",
-  "M_THEN"
  ],
  "SD20-X01": [
   "A_REFRESH",
@@ -56110,11 +56097,6 @@
   "A_DESTROY_BP",
   "C_LEVEL"
  ],
- "SD26-013": [
-  "A_BP_PLUS",
-  "C_LIFE",
-  "K_ULTIMATE"
- ],
  "SD26-014": [
   "A_BP_PLUS",
   "A_END_ATTACK",
@@ -56382,11 +56364,6 @@
   "A_REFRESH",
   "C_LEVEL",
   "K_ULTIMATE"
- ],
- "SD29-014": [
-  "A_BP_PLUS",
-  "A_TRASH_TO_RESERVE",
-  "M_THEN"
  ],
  "SD29-X01": [
   "A_BP_PLUS",
@@ -60025,11 +60002,6 @@
   "K_ULTIMATE",
   "T_SUMMONED"
  ],
- "SD65-RV002": [
-  "A_BP_PLUS",
-  "A_DESTROY_BP",
-  "K_ULTIMATE"
- ],
  "SD65-RV003": [
   "A_DESTROY_TOTAL",
   "K_BURST",
@@ -60324,7 +60296,6 @@
   "M_THEN",
   "T_SUMMONED"
  ],
- "SD67-RV006": [],
  "SD67-X01": [
   "A_DESTROY_COST",
   "A_LIFE_TO_RESERVE",

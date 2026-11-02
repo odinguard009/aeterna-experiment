@@ -15611,12 +15611,23 @@
   "image": "PC02-RV002.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Flash During this turn, give an opposing Spirit/Ultimate -5000 BP. Destroy the Spirit/Ultimate that has its BP brought to 0 by this effect."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "PC"
+  "rcode": "PC",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "BP_MINUS",
+     "n": 5000,
+     "zeroDestroy": true
+    }
+   ]
+  }
  },
  {
   "id": "PC02-X01",
@@ -19923,12 +19934,27 @@
   "image": "SD01-037.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Flash Put a core from the Void to your Reserve. During this turn, give a Spirit +1000 BP."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "VOID_TO_RESERVE",
+     "n": 1
+    },
+    {
+     "do": "BP_TARGET",
+     "n": 1000,
+     "to": "pick"
+    }
+   ]
+  }
  },
  {
   "id": "SD01-038",
@@ -21471,11 +21497,11 @@
   "block": "P",
   "saga": 60,
   "fxComplete": false,
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "rcode": "C",
   "residual": [
    "Flash Destroy an opposing Cost 3 or less Spirit. Or, return a Nexus card from your Trash to the Hand."
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  ]
  },
  {
   "id": "SD06-001",
@@ -25915,12 +25941,37 @@
   "image": "SD19-016.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Flash Destroy an opposing 8000 BP or less Spirit. Or, destroy all 4000 BP or less Spirits."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "CHOOSE_ONE",
+     "options": [
+      [
+       {
+        "do": "DESTROY_ANY",
+        "kind": "spirit",
+        "bpLe": 8000,
+        "oppOnly": true
+       }
+      ],
+      [
+       {
+        "do": "DESTROY_EVERY",
+        "bpLe": 4000
+       }
+      ]
+     ]
+    }
+   ]
+  }
  },
  {
   "id": "SD19-X01",
@@ -26529,12 +26580,26 @@
   "image": "SD20-016.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Flash Return an opposing Spirit to the Hand. Then, refresh one of your Spirits."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "R"
+  "rcode": "R",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "BOUNCE_OPP",
+     "to": "hand",
+     "kind": "spirit"
+    },
+    {
+     "do": "REFRESH_SPIRIT"
+    }
+   ]
+  }
  },
  {
   "id": "SD20-X01",
@@ -29174,13 +29239,40 @@
   "image": "SD26-013.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Main Draw two cards. If your Life is at two or less, also, draw a card.",
-   "Flash During this turn, give a Spirit/Ultimate +2000 BP."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "magic": {
+   "timing": [
+    "MAIN",
+    "FLASH"
+   ],
+   "effect": null,
+   "value": 0,
+   "by": {
+    "MAIN": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "DRAW",
+       "n": 2
+      },
+      {
+       "do": "DRAW",
+       "n": 1,
+       "if": {
+        "lifeLe": 2
+       }
+      }
+     ]
+    },
+    "FLASH": {
+     "effect": "BP_PLUS",
+     "value": 2000
+    }
+   }
+  }
  },
  {
   "id": "SD26-014",
@@ -30723,13 +30815,43 @@
   "image": "SD29-014.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Main Draw two cards. Then, return a \"War Dragon\" family Spirit card from your Trash to your Hand.",
-   "Flash During this turn, give a Spirit +2000 BP."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "U"
+  "rcode": "U",
+  "magic": {
+   "timing": [
+    "MAIN",
+    "FLASH"
+   ],
+   "effect": null,
+   "value": 0,
+   "by": {
+    "MAIN": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "DRAW",
+       "n": 2
+      },
+      {
+       "do": "RETURN_TRASH",
+       "anyType": true,
+       "match": {
+        "type": "Spirit",
+        "family": [
+         "War Dragon"
+        ]
+       }
+      }
+     ]
+    },
+    "FLASH": {
+     "effect": "BP_PLUS",
+     "value": 2000
+    }
+   }
+  }
  },
  {
   "id": "SD29-015",
@@ -50242,13 +50364,42 @@
   "image": "SD65-RV002.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Main Draw two cards. Also, if (Soul Core) was used to pay the cost, destroy an opposing 4000 BP or less Spirit.",
-   "Flash During this turn, give a Spirit/Ultimate +2000 BP."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "magic": {
+   "timing": [
+    "MAIN",
+    "FLASH"
+   ],
+   "effect": null,
+   "value": 0,
+   "by": {
+    "MAIN": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "DRAW",
+       "n": 2
+      },
+      {
+       "do": "DESTROY_ANY",
+       "kind": "spirit",
+       "bpLe": 4000,
+       "oppOnly": true,
+       "if": {
+        "soulPaid": true
+       }
+      }
+     ]
+    },
+    "FLASH": {
+     "effect": "BP_PLUS",
+     "value": 2000
+    }
+   }
+  }
  },
  {
   "id": "SD65-RV003",
@@ -51614,12 +51765,37 @@
   "image": "SD67-RV006.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Flash Destroy an opposing 8000 BP or less Spirit. Or, destroy all 4000 BP or less Spirits."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "CHOOSE_ONE",
+     "options": [
+      [
+       {
+        "do": "DESTROY_ANY",
+        "kind": "spirit",
+        "bpLe": 8000,
+        "oppOnly": true
+       }
+      ],
+      [
+       {
+        "do": "DESTROY_EVERY",
+        "bpLe": 4000
+       }
+      ]
+     ]
+    }
+   ]
+  }
  },
  {
   "id": "SD67-X01",

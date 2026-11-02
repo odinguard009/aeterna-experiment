@@ -30,3 +30,31 @@ test('K-1002 SD01-035 draws a card and gives a Spirit +1000 BP', async () => {
   assert.equal(r.hand, 1, JSON.stringify(r));
   assert.equal(r.d, 1000, JSON.stringify(r));
 });
+
+test('K-1003 SD26-013 draws 2 (+1 at Life 2 or less); SD29-014 draws 2 and returns a War Dragon from the Trash', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const out = [];
+    for (const lf of [5, 2]) {
+      P.life = lf; P.deck = Array.from({ length: 6 }, () => BS.mkInst('BS01-001')); P.reserve.n = 20; const m = BS.mkInst('SD26-013'); P.hand = [m];
+      await BS.castMagic(P, { inst: m, target: null, plan: null, ctx: 'main' }); out.push(P.hand.length);
+    }
+    return out; })()`);
+  assert.ok(r[1] === r[0] + 1, JSON.stringify(r));
+});
+
+test('K-1004 SD20-016 bounces an opposing Spirit and refreshes one of yours; SD01-037 puts a core from the Void into the Reserve', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const s = BS.mkInst('BS01-001'); s.cores = 1; s.exhausted = true; P.spirits = [s]; const o = BS.mkInst('BS01-001'); o.cores = 1; O.spirits = [o];
+    P.reserve.n = 20; const m = BS.mkInst('SD20-016'); P.hand = [m];
+    await BS.castMagic(P, { inst: m, target: null, plan: null, ctx: 'flash' });
+    return { opp: O.spirits.length, refreshed: !s.exhausted }; })()`);
+  assert.deepEqual(r, { opp: 0, refreshed: true }, JSON.stringify(r));
+});
+
+test('K-1005 SD19-016 / SD67-RV006 and SD65-RV002 are fully wired', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`['SD19-016', 'SD67-RV006', 'SD65-RV002', 'SD01-037', 'SD29-014', 'PC02-RV002'].map(id => BS.CARDS[id].fxComplete !== false && !!BS.CARDS[id].magic)`);
+  assert.deepEqual(r, [true, true, true, true, true, true], JSON.stringify(r));
+});
