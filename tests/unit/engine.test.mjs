@@ -151,13 +151,17 @@ test('E22 every card renders its detail panel and card-style effect text without
 });
 // Item T (owner, 2026-10-21): with ~6,000 playable Spirits/Nexuses this took 73 s and ran in every `npm run loop` (smoke set). In the
 // quick loop (BS_QUICK) it takes every 20th card in id order (fixed sample, still > 250 cards); CI (`npm test`) keeps every card.
+// E23 deals every Spirit / Nexus of the pack onto a board in chunks of 12 (a real Field never holds more than about a dozen). One board with the whole
+// pack made level lookups cubic once STATIC level flags (TREAT_HIGHEST, TREAT_LV3) existed, and froze the CI shard (2026-11-02). Each chunk must render in < 2 s.
 const E23_STEP = process.env.BS_QUICK ? 20 : 1;
-test('E23 a field with every Spirit and Nexus of the pack renders and keeps the invariants', async () => {
-  const r = await ev((step) => { const p = BS.G.p.player; let added = 0, seen = 0;
-    for (const [id, c] of Object.entries(BS.CARDS)) { if (c.type !== 'Spirit' && c.type !== 'Nexus') continue; if (id.startsWith('TRAIN') || id.startsWith('TST')) continue; if (seen++ % step) continue;
-      const i = BS.mkInst(id); const need = c.type === 'Spirit' && !c.countLv ? c.levels[0].cores : 0; i.cores = need; BS.takeFromVoid(p, need);
-      (c.type === 'Spirit' ? p.spirits : p.nexus).push(i); p.deckSize++; added++; }
-    let e = null; try { BS.render(); BS.checkInvariants(); } catch (x) { e = x.message; } return { added, e }; }, E23_STEP);
-  assert.ok(r.added > (E23_STEP > 1 ? 250 : 20), `${r.added} cards on the field`); assert.equal(r.e, null);
+test('E23 every Spirit and Nexus of the pack renders in a realistic field and keeps the invariants', async () => {
+  const r = await ev((step) => { let added = 0, seen = 0, worst = 0, e = null; const ids = [];
+    for (const [id, c] of Object.entries(BS.CARDS)) { if (c.type !== 'Spirit' && c.type !== 'Nexus') continue; if (id.startsWith('TRAIN') || id.startsWith('TST')) continue; if (seen++ % step) continue; ids.push(id); }
+    for (let k = 0; k < ids.length && !e; k += 12) { BS.testSetup(); for (const q of Object.values(BS.G.p)) q.deckSize = q.deck.length; const p = BS.G.p.player;
+      for (const id of ids.slice(k, k + 12)) { const c = BS.CARDS[id], i = BS.mkInst(id); const need = c.type === 'Spirit' && !c.countLv ? c.levels[0].cores : 0; i.cores = need; BS.takeFromVoid(p, need);
+        (c.type === 'Spirit' ? p.spirits : p.nexus).push(i); p.deckSize++; added++; }
+      const t0 = performance.now(); try { BS.render(); BS.checkInvariants(); } catch (x) { e = x.message; } worst = Math.max(worst, performance.now() - t0); }
+    return { added, e, worst: Math.round(worst) }; }, E23_STEP);
+  assert.ok(r.added > (E23_STEP > 1 ? 250 : 20), `${r.added} cards on the field`); assert.equal(r.e, null); assert.ok(r.worst < 2000, `slowest chunk ${r.worst} ms`);
 });
 test('E24 no page errors were raised by the engine tests', () => { assert.deepEqual(errors, []); });
