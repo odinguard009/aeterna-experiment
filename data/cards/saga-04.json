@@ -4648,13 +4648,33 @@
   "image": "BS19-107.jpg",
   "block": "19",
   "saga": 4,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Refresh a Spirit you control.",
-   "Or, during this turn, give all your Spirits +3000 BP."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "CHOOSE_ONE",
+     "options": [
+      [
+       {
+        "do": "REFRESH_SPIRIT"
+       }
+      ],
+      [
+       {
+        "do": "BP_PLUS",
+        "n": 3000,
+        "to": "own"
+       }
+      ]
+     ]
+    }
+   ]
+  }
  },
  {
   "id": "BS19-108",

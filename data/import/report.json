@@ -1,11 +1,11 @@
 {
  "stats": {
-  "cards": 6373,
+  "cards": 6372,
   "per_saga": {
    "1": 482,
    "2": 258,
    "3": 333,
-   "4": 305,
+   "4": 304,
    "5": 583,
    "6": 322,
    "7": 469,
@@ -22,7 +22,7 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2333,
+  "skipped_curated": 2334,
   "nexus_levels_added": 672,
   "nexus_levels_missing": 43,
   "merged": 107,
@@ -921,6 +921,7 @@
   "BS19-097",
   "BS19-098",
   "BS19-105",
+  "BS19-107",
   "BS19-109",
   "BS19-111",
   "BS20-001",
