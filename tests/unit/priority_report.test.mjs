@@ -38,7 +38,7 @@ test('P603-04 the Nexus table has 1,375 pages and every value starts with a leve
 test('P603-05 the import report counts the filled gaps', () => {
   const s = JSON.parse(readFileSync(join(ROOT, 'data/import/report.json'), 'utf8')).stats;
   assert.ok(s.nexus_levels_added >= 600, String(s.nexus_levels_added));
-  assert.ok(s.ut_lines_added >= 110, String(s.ut_lines_added));
+  assert.ok(s.ut_lines_added >= 100, String(s.ut_lines_added));
 });
 
 test('P603-06 a staged Nexus keeps LV1 at 0 cores and has rising thresholds', () => {

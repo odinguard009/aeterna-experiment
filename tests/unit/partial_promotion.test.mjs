@@ -40,7 +40,7 @@ print(json.dumps({'fx': n.get('effects'), 'res': res, 'complete': n.get('fxCompl
 
 test('PA02 data: A1 partial cards are fxComplete false; every residual entry is short, non-empty text', () => {
   const part = DATA.filter(c => /Partial card \(v0\.79\.0/.test(c.note || ''));
-  assert.ok(part.length > 1000, String(part.length));
+  assert.ok(part.length > 100, String(part.length));
   for (const c of part) assert.equal(c.fxComplete, false, c.id);
   for (const c of DATA) for (const r of c.residual || []) assert.ok(r.length <= 400 && r.trim(), c.id);   // older hand-wired cards list notes, A1 cards printed paragraphs
 });

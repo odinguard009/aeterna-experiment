@@ -21565,7 +21565,6 @@
   "block": "04",
   "saga": 1,
   "fxComplete": true,
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
   "magic": {
    "timing": [
     "MAIN",
@@ -30734,11 +30733,27 @@
   "image": "Muscle Charge.jpg",
   "block": "06",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "Eng Version= (Flash Step)(Your Main Phase) Each \"Fighting Spirit\" spirit you control is treated as being at the highest LV it has until end of turn."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "magic": {
+   "timing": [
+    "MAIN",
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "TREAT_LV2",
+     "all": true,
+     "highest": true,
+     "match": {
+      "family": [
+       "Fighting Spirit"
+      ]
+     }
+    }
+   ]
+  }
  },
  {
   "id": "BS06-113",
@@ -37850,7 +37865,6 @@
   "block": "08",
   "saga": 1,
   "fxComplete": true,
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
   "magic": {
    "timing": [
     "MAIN",

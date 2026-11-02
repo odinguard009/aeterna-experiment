@@ -111,3 +111,24 @@ test('K-1158 BS01-142 / BS09-076 / BS06-103 refresh all exhausted Spirits; the n
   assert.deepEqual(r['BS01-142'].noAtk, [true, true], JSON.stringify(r));
   for (const id of ['BS09-076', 'BS06-103']) { assert.deepEqual(r[id].refreshed, [true, true], JSON.stringify(r)); assert.deepEqual(r[id].noAtk, [true, false], id + JSON.stringify(r)); }
 });
+
+test('K-1159 BS06-112 treats only your Fighting Spirit family Spirits as their highest LV', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4;
+    const fs = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && c.levels.length > 1 && (c.families || []).includes('Fighting Spirit')).id;
+    const ot = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && c.levels.length > 1 && !(c.families || []).includes('Fighting Spirit')).id;
+    const a = BS.mkInst(fs), b = BS.mkInst(ot); a.cores = b.cores = 1; P.spirits = [a, b]; const m = BS.mkInst('BS06-112');
+    await BS.runActions({ p: P, opp: O, src: m, ctx: { selfInst: m } }, { actions: BS.CARDS['BS06-112'].magic.actions });
+    return { a: !!a.lvHighTurn, b: !!b.lvHighTurn, ok: BS.CARDS['BS06-112'].fxComplete !== false }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.deepEqual([r.a, r.b], [true, false], JSON.stringify(r));
+});
+
+test('K-1160 BS31-112 draws three and discards two, or one with a WisdomKing/Douji Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4;
+    const wk = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && /WisdomKing/.test(c.name)).id; const out = [];
+    for (const sp of [[], [wk]]) { P.spirits = sp.map(id => { const s = BS.mkInst(id); s.cores = 1; return s; }); const h0 = P.hand.length; const m = BS.mkInst('BS31-112');
+      await BS.runActions({ p: P, opp: O, src: m, ctx: { selfInst: m } }, { actions: BS.CARDS['BS31-112'].magic.by.MAIN.actions }); out.push(P.hand.length - h0); }
+    return { out, ok: BS.CARDS['BS31-112'].fxComplete !== false }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.deepEqual(r.out, [1, 2], JSON.stringify(r));
+});

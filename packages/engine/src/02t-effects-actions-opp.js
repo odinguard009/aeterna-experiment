@@ -78,9 +78,9 @@ Object.assign(FX_ACTIONS, {
       for (let i = 0; i < (both ? 2 : 1); i++) await D.run(c, { do: 'DESTROY', bpLe: both ? a.two : a.one });
     } },
   /* v0.196 TREAT_LV2 {match} "Target one of your <match> Spirits. During this turn, treat it as LV2" (inst.lv2Turn, read by lvIndex, cleared at the end of the turn) */
-  TREAT_LV2: { chk: a => (hasMatch(a.match) || a.self === true || (a.all === true && a.highest === true && !a.match)) && (a.battle == null || a.battle === true) && (a.highest == null || (a.highest === true && !a.battle && !a.self)),
+  TREAT_LV2: { chk: a => (hasMatch(a.match) || a.self === true || (a.all === true && a.highest === true && (a.match == null || hasMatch(a.match)))) && (a.battle == null || a.battle === true) && (a.highest == null || (a.highest === true && !a.battle && !a.self)),
     txt: a => `target one of your matching Spirits; during this turn, treat it as ${a.highest ? 'its highest level' : 'LV2'}`,
-    cands: (c, a) => (a.self ? c.p.spirits.filter(s => s === c.src) : c.p.spirits.filter(s => a.all || fxMatch(CARDS[s.id], a.match, s))).filter(s => CARDS[s.id].levels.length > 1 && !(a.highest ? s.lvHighTurn : s.lv2Turn)),
+    cands: (c, a) => (a.self ? c.p.spirits.filter(s => s === c.src) : c.p.spirits.filter(s => (a.all && !a.match) || fxMatch(CARDS[s.id], a.match, s))).filter(s => CARDS[s.id].levels.length > 1 && !(a.highest ? s.lvHighTurn : s.lv2Turn)),
     can: (c, a) => FX_ACTIONS.TREAT_LV2.cands(c, a).length > 0,
     run: async (c, a) => {
       const L = FX_ACTIONS.TREAT_LV2.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
