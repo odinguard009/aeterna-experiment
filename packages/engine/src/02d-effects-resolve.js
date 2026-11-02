@@ -35,7 +35,7 @@ function collectFx(ev) {
   else if (trigger === 'ATTACKS' && src && blocksAsAtkOn(owner, src)) { collect('ATTACKS', src); collect('BLOCKS', src); }      // v218
   else if (trigger === 'SUMMONED' || trigger === 'REFRESHED' || trigger === 'ATTACKS' || trigger === 'MANIFEST' || trigger === 'DESTROYED' || trigger === 'LEAVES' || trigger === 'BATTLE_WIN' || trigger === 'TRIBUTED' || trigger === 'NEXUS_EXHAUST') collect(trigger, src);
   else if (trigger === 'BLOCKS') { for (const { e, idx } of fxEntries(src)) { if (e.trigger === 'BLOCKS' || (e.trigger === 'ATTACKS' && e.alsoBlocks)) add('BLOCKS', src, e, idx); } }
-  else if (trigger === 'MIRAGE_OWN_LIFE' || trigger === 'MIRAGE_OPP_LIFE') { if (owner.mirage) collect(trigger, owner.mirage); }
+  else if (trigger === 'MIRAGE_OWN_LIFE' || trigger === 'MIRAGE_OPP_LIFE' || trigger === 'MIRAGE_SET') { if (owner.mirage) collect(trigger, owner.mirage); }
   else for (const f of fieldList(owner)) collect(trigger, f);
   if (trigger === 'ALLY_DIED' || trigger === 'EXHAUSTED_FX') for (const t of owner.trash) for (const { e, idx } of fxEntries(t)) if (e.trigger === trigger && e.zone === 'trash') add(trigger, t, e, idx);      // v155 zone:'trash'
   if (trigger === 'ALLY_BLOCKED' || trigger === 'SILVER_WHEEL') for (const h of owner.hand) collect(trigger, h);           // zone:'hand' effects (e.g. deploy this from the Hand)
@@ -45,7 +45,7 @@ function collectFx(ev) {
 }
 function fxValid(it) {
   const { owner, opp, f, idx, e, trg, ctx } = it, subj = ctx.subject || ctx.attacker;
-  const isMir = trg === 'MIRAGE_OWN_LIFE' || trg === 'MIRAGE_OPP_LIFE';
+  const isMir = trg === 'MIRAGE_OWN_LIFE' || trg === 'MIRAGE_OPP_LIFE' || trg === 'MIRAGE_SET';
   const fromHand = e.zone === 'hand', fromTrash = e.zone === 'trash', dead = trg === 'DESTROYED' || trg === 'LEAVES';
   if (isMir ? !(owner.mirage === f && f.mirage) : fromTrash ? !owner.trash.includes(f) : fromHand ? !owner.hand.includes(f) : trg === 'LEAVES' ? fieldList(owner).includes(f) : dead ? !(owner.trash.includes(f) || owner.standby.includes(f) || owner.soulState.includes(f)) : !fieldList(owner).includes(f)) return false;
   if (!isMir && !fromHand && !fromTrash && e.lv && !e.lv.includes(dead ? f.lostLv + lvBase(CARDS[f.id]) : lvNo(f))) return false;

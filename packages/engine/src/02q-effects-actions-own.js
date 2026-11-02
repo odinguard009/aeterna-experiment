@@ -164,6 +164,7 @@ Object.assign(FX_ACTIONS, {
       if (!FX_ACTIONS.MIRAGE_SET.can(c)) { c.ctx.did = false; return; }
       removeFrom(c.p.revealed, c.src); removeFrom(c.p.hand, c.src); c.src.mirage = true; c.p.mirage = c.src;
       log(`${who(c.p)} ${c.p.cpu ? 'sets' : 'set'} a Mirage face up without paying the cost: ${CARDS[c.src.id].name}.`);
+      await fireFx(c.p, 'MIRAGE_SET', c.src, {});
     } },
   DEPLOY_SELF: { chk: () => true, txt: () => 'summon/deploy this card without paying the cost',
     can: c => (c.p.revealed.includes(c.src) || c.p.hand.includes(c.src)) && canPlaceFree(c.p, c.src),
