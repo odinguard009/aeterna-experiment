@@ -83,7 +83,7 @@ cardTeams, allHaveShapeOK, allHaveOK, winRiderRun, fxOppMark, blockTaxOK, payAtk
 ## packages/engine/src/02u-effects-form-change.js (32 lines, ~0.7k tokens) — FORM CHANGE (v0.135.0, schema v8; Kamen Rider cross-over cards): {{F Change|"X" & Cost N}} {{Invoke|Main}}
 fcCands
 
-## packages/engine/src/02v-effects-lane-k.js (515 lines, ~11.5k tokens)
+## packages/engine/src/02v-effects-lane-k.js (528 lines, ~11.9k tokens)
 coresFromSpirits
 
 ## packages/engine/src/03-imported-cards.js (248 lines, ~6.9k tokens) — IMPORTED CARD DATA

@@ -49,3 +49,24 @@ test('K-1112 SD01-039 / BS60-CP03 Flash: Life can only be reduced by one per att
     return { cap: P.lifeCapAll === G.turnNo, same: JSON.stringify(a) === JSON.stringify(b), impl: BS.CARDS['SD01-039'].implemented === true && BS.CARDS['BS60-CP03'].implemented === true }; })()`);
   assert.deepEqual(r, { cap: true, same: true, impl: true });
 });
+
+test('K-1113 BS12-038 / BS53-RV005 (When Summoned): one opposing Spirit per matching Spirit can\'t block this turn', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key;
+    const a = BS.mkInst('BS12-038'), b = BS.mkInst('BS12-038'); a.cores = b.cores = 1; P.spirits.push(a, b);
+    for (let i = 0; i < 3; i++) { const s = BS.mkInst('BS01-001'); s.cores = 1; O.spirits.push(s); }
+    const fx = BS.CARDS['BS12-038'].effects.find(e => e.trigger === 'SUMMONED');
+    await BS.runActions({ p: P, opp: O, src: a, ctx: { selfInst: a } }, { actions: fx.actions });
+    return { two: O.spirits.filter(s => s.noAB).length, impl: BS.CARDS['BS12-038'].implemented === true && BS.CARDS['BS53-RV005'].implemented === true }; })()`);
+  assert.deepEqual(r, { two: 2, impl: true });
+});
+
+test('K-1114 BS24-025 (When Summoned): Rush Yellow gates the can\'t-block target', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key;
+    const m = BS.mkInst('BS24-025'); m.cores = 1; P.spirits.push(m); const s = BS.mkInst('BS01-001'); s.cores = 1; O.spirits.push(s);
+    const fx = BS.CARDS['BS24-025'].effects.find(e => e.trigger === 'SUMMONED');
+    await BS.runActions({ p: P, opp: O, src: m, ctx: { selfInst: m } }, { actions: fx.actions });
+    return { noAB: !!s.noAB, impl: BS.CARDS['BS24-025'].implemented === true }; })()`);
+  assert.equal(r.impl, true, JSON.stringify(r));
+});

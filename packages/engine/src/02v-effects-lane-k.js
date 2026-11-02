@@ -140,6 +140,19 @@ Object.assign(FX_ACTIONS, {      // v280 "Each player chooses and destroys a Nex
     txt: () => 'during this turn, your Life can only be reduced by one by the attacks of opposing unblocked Spirits',
     can: () => true,
     run: async c => { c.p.lifeCapAll = G.turnNo; io.view({ type: 'board' }); log(`${_nm(c)}: ${poss(c.p)} Life can only be reduced by one per attack this turn.`); } },
+  /* v0.212 CANT_BLOCK_PER {per} "For each <match> Spirit you control, target an opposing Spirit. During this turn, those can't block." (up to that many distinct targets; noAB + noABTurn like CANT_ATTACK_BLOCK turn:true, it is the owner's turn so attack does not matter) */
+  CANT_BLOCK_PER: { chk: a => Object.keys(a).every(k => ['do', 'if', 'per'].includes(k)) && hasMatch(a.per),
+    txt: () => 'for each matching Spirit you control, target an opposing Spirit; during this turn those can\'t block',
+    cands: c => c.opp.spirits.filter(t => !t.noAB && !fxImmune(c.opp, t)),
+    can: c => FX_ACTIONS.CANT_BLOCK_PER.cands(c).length > 0,
+    run: async (c, a) => {
+      const n = c.p.spirits.filter(s => fxMatch(CARDS[s.id], a.per, s)).length, L = FX_ACTIONS.CANT_BLOCK_PER.cands(c);
+      if (!n || !L.length) { c.ctx.did = false; return; }
+      const T = await pickOppSpirits(c, L, Math.min(n, L.length), `✨ <b>${esc(_nm(c))}</b><br>Tap the opposing Spirits that can't block this turn (glowing).`);
+      if (!T.length) { c.ctx.did = false; return; }
+      for (const t of T) { t.noAB = true; t.noABTurn = G.turnNo; log(`${_nm(c)}: ${poss(c.opp)} ${CARDS[t.id].name} can't block during this turn.`); }
+      io.view({ type: 'board' });
+    } },
   BOTH_DESTROY_NEXUS: { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
     txt: () => 'each player destroys a Nexus they control (only if both control one)',
     can: c => c.p.nexus.length > 0 && c.opp.nexus.length > 0,

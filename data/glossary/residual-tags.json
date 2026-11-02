@@ -2995,10 +2995,6 @@
   "C_LEVEL",
   "M_OPTIONAL"
  ],
- "BS12-038": [
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "BS12-039": [
   "A_REFRESH",
   "A_RETURN_TRASH",
@@ -7461,12 +7457,6 @@
  "BS24-024": [
   "C_LEVEL",
   "K_BRAVE",
-  "T_SUMMONED"
- ],
- "BS24-025": [
-  "A_VOID",
-  "C_LEVEL",
-  "K_RUSH",
   "T_SUMMONED"
  ],
  "BS24-026": [
@@ -28823,10 +28813,6 @@
   "K_BRAVE",
   "S_UNAFFECTED",
   "T_DURING_BRAVE"
- ],
- "BS53-RV005": [
-  "C_LEVEL",
-  "T_SUMMONED"
  ],
  "BS53-RV006": [
   "A_LIFE_TO_RESERVE",
