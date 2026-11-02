@@ -55523,10 +55523,6 @@
   "K_BURST",
   "M_THEN"
  ],
- "SD19-015": [
-  "A_DESTROY_TOTAL",
-  "M_UP_TO"
- ],
  "SD19-X01": [
   "A_AWAKEN",
   "A_BP_PLUS",
@@ -59793,10 +59789,6 @@
   "C_LEVEL",
   "K_ULTIMATE",
   "M_REPLACEMENT"
- ],
- "SD64-RV010": [
-  "A_DESTROY_TOTAL",
-  "M_UP_TO"
  ],
  "SD64-X01": [
   "A_CORE_TO_SELF",

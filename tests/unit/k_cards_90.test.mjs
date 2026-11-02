@@ -173,3 +173,19 @@ test('K-1015 SD62-015 Flash gives an "Evangelion"-named Spirit +3000 BP and igno
     return { de: BS.bpOf(e) - e0, doo: BS.bpOf(o) - o0, ok: BS.CARDS['SD62-015'].fxComplete !== false }; })()`);
   assert.deepEqual(r, { de: 3000, doo: 0, ok: true }, JSON.stringify(r));
 });
+
+test('K-1016 SD19-015 destroys up to 5000 BP total and returns a Spirit from the Trash only when something was destroyed', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const out = [];
+    for (const has of [false, true]) {
+      const o = BS.mkInst('BS01-001'); o.cores = 1; O.spirits = has ? [o] : [];
+      P.trash = [BS.mkInst('BS01-001')]; P.reserve.n = 20; const m = BS.mkInst('SD19-015'); P.hand = [m];
+      await BS.castMagic(P, { inst: m, target: null, plan: null, ctx: 'flash' });
+      out.push({ opp: O.spirits.length, hand: P.hand.length });
+    }
+    return out; })()`);
+  assert.equal(r[1].opp, 0, JSON.stringify(r));
+  assert.equal(r[1].hand, 1, JSON.stringify(r));
+  assert.equal(r[0].hand, 0, JSON.stringify(r));
+});

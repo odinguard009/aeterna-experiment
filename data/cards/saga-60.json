@@ -26117,12 +26117,31 @@
   "image": "SD19-015.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Flash Destroy any number of opposing Spirits up to a total of 5000 BP. When this effect destroys any Spirit, return a Spirit card from the Trash to your Hand."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "U"
+  "rcode": "U",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "DESTROY_TOTAL",
+     "total": 5000
+    },
+    {
+     "do": "RETURN_TRASH",
+     "match": {
+      "type": "Spirit"
+     },
+     "if": {
+      "prev": true
+     }
+    }
+   ]
+  }
  },
  {
   "id": "SD19-016",
@@ -50508,12 +50527,31 @@
   "image": "SD64-RV010.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Flash Destroy any number of opposing Spirits up to a total of 5000 BP. When this effect destroys any Spirit, return a Spirit card from the Trash to your Hand."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "DESTROY_TOTAL",
+     "total": 5000
+    },
+    {
+     "do": "RETURN_TRASH",
+     "match": {
+      "type": "Spirit"
+     },
+     "if": {
+      "prev": true
+     }
+    }
+   ]
+  }
  },
  {
   "id": "SD64-X01",
