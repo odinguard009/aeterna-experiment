@@ -396,3 +396,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v358 (Lane K): EXTRA_SYMBOL to:'own' + match (extra symbol for matching own Spirits; extraSymbolsOf scans the own field).
 - v359 (Lane K): BS70-034 reuses STATIC EXTRA_SYMBOL `to:own` with the `oppRemovedGe` condition; no new engine code.
 - v360 (Lane K): DISCARD_OPP_REMOVED action (n | all | perSpirit, optional match/exact): moves cards from the opponent's Removed Zone to their trash.
+- v361 (Lane K): `MIRAGE_SET` trigger ("During Set (When Set)": fires from the set Mirage when a card is set, by hand, CPU or the `MIRAGE_SET` action) and the `mirageSet` condition ("if you have a Mirage set"). Earlier commit subjects that say "schema 341" mean this version.
