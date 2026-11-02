@@ -2444,7 +2444,7 @@
   "mechanics": [
    "Burst"
   ],
-  "fxComplete": false,
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); not yet checked against the card image.",
   "burst": {
    "when": "ALLY_DESTROYED",
@@ -2485,9 +2485,6 @@
      }
     ]
    }
-  ],
-  "residual": [
-   "[LV1-2-3] (When Summoned) You can return an opposing LV1 Spirit to the deckbottom. Then, if there is any opposing Spirit under \"can't attack/block\" effects, you can return an opposing LV2 Spirit to the deckbottom."
   ],
   "bicon": [
    "13"

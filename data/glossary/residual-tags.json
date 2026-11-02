@@ -50476,13 +50476,6 @@
   "T_MANIFESTS"
  ],
  "BS76-047": [],
- "BS76-048": [
-  "A_CANT_ATTACK_BLOCK",
-  "C_OPP_NO_AB",
-  "M_OPTIONAL",
-  "M_THEN",
-  "T_SUMMONED"
- ],
  "BS76-049": [
   "A_LIFE_TO_RESERVE",
   "K_MIRAGE",

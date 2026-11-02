@@ -955,3 +955,13 @@ test('K-1019 EXTRA_SYMBOL to:own: BS75-050 at Lv3 gives Cost 6+ Thunderive Spiri
     s.cores = 2; const lv2 = BS.attackSymbols(a); return [lv3[0] - base[0], lv3[1] - base[1], lv2 - base[0], BS.CARDS['BS75-050'].levels.length]; })()`);
   assert.deepEqual(r.slice(0, 3), [1, 0, 0], JSON.stringify(r));
 });
+
+test('K-1020 BS76-048: returns an opposing Lv1 Spirit to the deckbottom, and an Lv2 one only if some opposing Spirit is under can\'t attack/block', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.coreShield = O.coreShield = null; P.spirits.length = 0; O.spirits.length = 0;
+    const id = Object.keys(BS.CARDS).find(k => /^BS0[0-9]-/.test(k) && BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].levels.length >= 2 && BS.CARDS[k].levels[1].cores === 2 && BS.CARDS[k].levels[0].cores === 1);
+    const src = BS.mkInst('BS76-048'); src.cores = 1; P.spirits.push(src); const a = BS.mkInst(id), b = BS.mkInst(id); a.cores = 1; b.cores = 2; O.spirits.push(a, b);
+    await BS.fireFx(P, 'SUMMONED', src, {}); const first = [O.spirits.includes(a), O.spirits.includes(b)];
+    const c = BS.mkInst(id), d = BS.mkInst(id); c.cores = 1; d.cores = 2; O.spirits.length = 0; O.spirits.push(c, d); const e = BS.mkInst(id); e.cores = 1; e.noAB = true; O.spirits.push(e); await BS.fireFx(P, 'SUMMONED', src, {}); return [first, [O.spirits.includes(c), O.spirits.includes(d), O.spirits.includes(e)]]; })()`);
+  assert.deepEqual(r, [[false, true], [false, false, true]], JSON.stringify(r));
+});
