@@ -898,3 +898,11 @@ test('K-1013 BLOCK_EXHAUSTED attackerCostLe: BS11-043 (Lv2) blocks exhausted onl
     s.cores = 1; G.attacker = a; out.push(BS.canBlockState(P, s)); return out; })()`);
   assert.deepEqual(r, [true, false, false], JSON.stringify(r));
 });
+
+test('K-1014 NO_DESTROY: BS28-028 cannot be destroyed (battle or effect) while its owner has a Burst set, and dies without one', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player; P.spirits.length = 0; const s = BS.mkInst('BS28-028'); s.cores = 2; P.spirits.push(s); const out = [];
+    P.burst = BS.mkInst('BS01-001'); BS.removeSpirit(P, s, 'destroyed', 'battle'); out.push(P.spirits.includes(s)); BS.removeSpirit(P, s, 'destroyed', true); out.push(P.spirits.includes(s));
+    P.burst = null; BS.removeSpirit(P, s, 'destroyed', 'battle'); out.push(P.spirits.includes(s)); return out; })()`);
+  assert.deepEqual(r, [true, true, false], JSON.stringify(r));
+});

@@ -346,6 +346,7 @@ function leaveEvent(p, s, byOpp, byOppFx) {
   G.evQ.push({ type: 'LEAVES', key: p.key, inst: s, byOppFx: !!byOppFx });
 }
 function removeSpirit(p, s, why, byOpponent) {
+  if (why === 'destroyed' && p.spirits.includes(s) && flagActive(p, 'NO_DESTROY', s)) { log(`${CARDS[s.id].name} cannot be destroyed.`); return; }      // v353 STATIC NO_DESTROY (any cause, battle included)
   if (why === 'destroyed' && byOpponent !== 'battle' && G && G.fxBy && G.fxBy !== p.key && p.spirits.includes(s) && flagActive(p, 'NO_DESTROY_OPP', s)) { log(`${CARDS[s.id].name} cannot be destroyed by opposing effects.`); return; }      // v252 STATIC NO_DESTROY_OPP
   const lv = p.spirits.includes(s) ? lvIndex(s) : -1;
   const kill = why === 'destroyed' && byOpponent !== 'battle' && !!G && !!G.evQ && !!G.fxBy && G.fxBy !== p.key && fieldList(G.p[G.fxBy]).some(f => fxEntries(f).some(({ e }) => e.trigger === 'OPP_DESTROYED_FX')),      // v0.196 someone can react to "opposing Spirits destroyed by your effect"
