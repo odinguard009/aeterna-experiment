@@ -310,3 +310,17 @@ test('K-1027 SD14-001 gains 1000 BP per Reserve core when attacking; SD55-004 de
   assert.equal(r.gain, r.res * 1000, JSON.stringify(r));
   assert.deepEqual([r.left, r.drew], [0, 1], JSON.stringify(r));
 });
+
+test('K-1028 SD33-013 destroys a 5000 BP or less Spirit when not sealed; SD24-001 and SD03-017 are wired', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const small = BS.mkInst('BS01-001'); small.cores = 1; const bc = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && !(c.effects || []).length && c.levels[c.levels.length - 1].bp >= 9000);
+    const big = BS.mkInst(bc.id); big.cores = bc.levels[bc.levels.length - 1].cores; O.spirits = [small, big];
+    const m = BS.mkInst('SD33-013'); P.hand = [m]; P.reserve.n = 20;
+    await BS.castMagic(P, { inst: m, target: null, plan: null, ctx: 'flash' });
+    const w = ['SD24-001', 'SD03-017'].every(id => BS.CARDS[id].implemented === true);
+    return { bigKept: O.spirits.includes(big), smallBp: BS.bpOf(small), left: O.spirits.length, w }; })()`);
+  assert.equal(r.w, true, JSON.stringify(r));
+  assert.equal(r.bigKept, true, JSON.stringify(r));
+  assert.ok(r.left <= 2 && r.left >= 1, JSON.stringify(r));
+});

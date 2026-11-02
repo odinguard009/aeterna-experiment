@@ -54952,10 +54952,6 @@
   "M_OPTIONAL",
   "M_UP_TO"
  ],
- "SD03-017": [
-  "A_RETURN_TRASH",
-  "A_TRASH_TO_RESERVE"
- ],
  "SD06-003": [
   "C_LEVEL",
   "K_BURST",
@@ -55684,10 +55680,6 @@
   "T_ATTACKS",
   "T_BATTLE_WIN"
  ],
- "SD24-001": [
-  "C_LEVEL",
-  "T_DESTROYED"
- ],
  "SD24-003": [
   "A_VOID",
   "C_LEVEL",
@@ -56365,11 +56357,6 @@
   "A_SUMMON_FREE",
   "C_LEVEL",
   "M_OPTIONAL"
- ],
- "SD33-013": [
-  "A_DESTROY_BP",
-  "A_SEAL",
-  "K_ULTIMATE"
  ],
  "SD33-X01": [
   "A_DESTROY_BP",

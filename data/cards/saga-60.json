@@ -21570,12 +21570,38 @@
   "image": "SD03-017.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
   "rcode": "C",
-  "residual": [
-   "Flash Destroy an opposing Cost 3 or less Spirit. Or, return a Nexus card from your Trash to the Hand."
-  ]
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "CHOOSE_ONE",
+     "options": [
+      [
+       {
+        "do": "DESTROY",
+        "costLe": 3
+       }
+      ],
+      [
+       {
+        "do": "RETURN_TRASH",
+        "anyType": true,
+        "match": {
+         "type": "Nexus"
+        }
+       }
+      ]
+     ]
+    }
+   ]
+  }
  },
  {
   "id": "SD06-001",
@@ -28434,12 +28460,33 @@
   "image": "SD24-001.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When this Spirit is destroyed by an opponent) You may open the top 3 cards of your deck. Add 1 Nexus card among them to your hand. Return the rest to the top of your deck in any order."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: hand translation); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "if": {
+     "byOpp": true
+    },
+    "optional": true,
+    "actions": [
+     {
+      "do": "REVEAL_PICK",
+      "n": 3,
+      "match": {
+       "type": "Nexus"
+      },
+      "rest": "top"
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD24-002",
@@ -33152,12 +33199,32 @@
   "image": "SD33-013.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Flash Destroy an opposing 5000 BP or less Spirit/Ultimate. During Seal Instead, destroy an opposing 15000 BP or less Spirit/Ultimate."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "R"
+  "rcode": "R",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "DESTROY",
+     "bpLe": 5000,
+     "if": {
+      "sealed": false
+     }
+    },
+    {
+     "do": "DESTROY",
+     "bpLe": 15000,
+     "if": {
+      "sealed": true
+     }
+    }
+   ]
+  }
  },
  {
   "id": "SD33-014",
