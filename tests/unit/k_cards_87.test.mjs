@@ -241,3 +241,20 @@ test('K-888 BS45-020 / BS44-015 destroyed by the opponent: core to Reserve, retu
   assert.equal(b0.hand, 1, n); assert.equal(b1.hand, 1, n);
   assert.equal(b0.oppCores, 2, n); assert.equal(b1.oppCores, 1, n);
 });
+
+test('K-889 BS68-034 summoned: Void core to itself; counter +1 only at five or less; refreshes on an opposing attack', async () => {
+  const { page } = await sharedBoard();
+  const run = (start) => page.evaluate(async (start) => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = P.key; P.cpu = true; P.reserve.n = 20; P.void = 3;
+    P.count = start; const m = BS.mkInst('BS68-034'); P.hand.push(m);
+    await BS.summonFree(P, m);
+    const out = { cnt: P.count, void: P.void };
+    m.cores = 3; m.exhausted = true; G.active = O.key; const a = BS.mkInst('BS48-042'); O.spirits.push(a);
+    await BS.fireFx(P, 'OPP_ATTACKS', m, { subject: a, attacker: a });
+    out.exh = !!m.exhausted; out.lv = BS.lvNo(m);
+    return out;
+  }, start);
+  const lo = await run(5), hi = await run(6), r = JSON.stringify([lo, hi]);
+  assert.equal(lo.cnt, 6, r); assert.equal(hi.cnt, 6, r); assert.equal(lo.exh, false, r); assert.equal(hi.exh, false, r);
+});
