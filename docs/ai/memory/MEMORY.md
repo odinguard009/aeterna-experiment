@@ -6,3 +6,4 @@
 - [Never end turn mid-chain](feedback-never-end-turn-chain.md) — push dies if turn ends; keep going until GO/STOP
 - [Lane K release per 50](feedback-lane-k-50.md) - wip/lane-k per bundle, main release at 50 new complete cards
 - [Auto git](feedback-auto-git.md) — commit/push/merge run automatically, no asking
+- [Measure before claiming](feedback-measure-before-claiming.md) — read real timings/output before stating them; CI ≈ 4 min, not 20

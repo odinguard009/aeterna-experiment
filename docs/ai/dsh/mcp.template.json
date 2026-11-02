@@ -1,0 +1,11 @@
+{
+  "_note": "Template. Replace <HOME> with your home folder. No tokens here: the github wrapper reads `gh auth token`.",
+  "mcpServers": {
+    "sequential-thinking": { "command": "node", "args": ["<HOME>/.dsh/mcp/node_seqthinking/node_modules/@modelcontextprotocol/server-sequential-thinking/dist/index.js"] },
+    "serena": { "command": "<HOME>/.dsh/mcp/venv-serena/Scripts/serena.exe", "args": ["start-mcp-server", "--context", "claude-code", "--project-from-cwd"] },
+    "basic-memory": { "command": "<HOME>/.dsh/mcp/venv-basic-memory/Scripts/basic-memory.exe", "args": ["mcp"] },
+    "github": { "command": "<HOME>/.dsh/mcp/github/run-github-mcp.cmd", "args": [] },
+    "context7": { "command": "cmd", "args": ["/c", "context7-mcp"] },
+    "codebase-memory-mcp": { "command": "codebase-memory-mcp", "args": [] }
+  }
+}
