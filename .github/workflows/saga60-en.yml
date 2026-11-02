@@ -1,0 +1,26 @@
+# Fetches English names / families / effect text for the Japanese-only product cards (data/cards/saga-60.json) from the Fandom wiki
+# on a GitHub runner (laptop sessions cannot reach battle-spirits.fandom.com). Manual only; result lands on branch wip/saga60-en.
+name: Saga60 English fetch
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch
+        run: python3 tools/fetch_saga60_en.py
+      - name: Push the result
+        run: |
+          git config user.name "odinguard009"
+          git config user.email "70865815+odinguard009@users.noreply.github.com"
+          git checkout -B wip/saga60-en
+          git add data/sources/fandom-saga60-en.json
+          git commit -m "data: Fandom English data for the saga-60 product cards (saga60-en workflow)"
+          git push -f origin wip/saga60-en

@@ -356,3 +356,5 @@ html.layout-pc #ae-eff-stack { left: 8px; top: 46px; bottom: auto; }
 .ae-eff { cursor: pointer; }
 .ae-eff:focus-visible { outline: 2px solid var(--you); outline-offset: 1px; }
 html:not(.layout-pc) #ae-eff-stack { top: 38px; }
+/* phone: while the deck sheet covers the builder (normal or maximized) the Hide/Show filters button is hidden; it sat above the sheet and covered its minimize button (owner 2026-11-02) */
+html:not(.layout-pc) .mk #view-deckbuilder.db-open-deck:not([data-dsize="min"]) #db-tbar .r1>#db-min{display:none}
