@@ -29,7 +29,7 @@ with sync_playwright() as p:
                     chk(t+' zoom fits viewport',r[0] and r[1],r)
                     pg.mouse.click(5,5); time.sleep(.2)
                     chk(t+' zoom closes on backdrop',not pg.evaluate("document.getElementById('zoom-overlay').classList.contains('active')"))
-                    pg.locator("#modal-actions .modal-btn",has_text='Close').click()
+                    if act(pg): pg.locator("#modal-actions .modal-btn",has_text='Close').click()   # the backdrop click may close the card detail too (zoom in front since v0.207)
                     pg.evaluate("for(const k of Object.keys(BS.IMG)) delete BS.IMG[k]")
                 pg.evaluate("document.getElementById('view-deckbuilder').classList.contains('active')&&innerWidth<900&&BS.dbSheet('menu')"); pg.locator("[data-a=go-decks]:visible").first.dispatch_event("click"); time.sleep(.2)   # v0.119.0: the deck builder menu now has Back to My decks (not Back to Lobby); nav Play is used next
             pg.locator('[data-a=go-play]:visible').first.click(); pg.click('[data-a=start]')
