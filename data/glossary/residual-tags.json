@@ -55519,11 +55519,6 @@
   "C_LEVEL",
   "K_ULTIMATE"
  ],
- "SD19-013": [
-  "A_BP_PLUS",
-  "C_CONTROL",
-  "K_ULTIMATE"
- ],
  "SD19-014": [
   "K_BURST",
   "M_THEN"
@@ -59806,11 +59801,6 @@
   "C_LEVEL",
   "K_ULTIMATE",
   "M_REPLACEMENT"
- ],
- "SD64-RV009": [
-  "A_BP_PLUS",
-  "C_CONTROL",
-  "K_ULTIMATE"
  ],
  "SD64-RV010": [
   "A_DESTROY_TOTAL",

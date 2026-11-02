@@ -26033,13 +26033,43 @@
   "image": "SD19-013.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Main Draw two cards. Also, if you control any Ultimate, draw a card.",
-   "Flash During this turn, give a Spirit/Ultimate +1000 BP."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "R"
+  "rcode": "R",
+  "magic": {
+   "timing": [
+    "MAIN",
+    "FLASH"
+   ],
+   "effect": null,
+   "value": 0,
+   "by": {
+    "MAIN": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "DRAW",
+       "n": 2
+      },
+      {
+       "do": "DRAW",
+       "n": 1,
+       "if": {
+        "ctrl": {
+         "n": 1,
+         "type": "Ultimate"
+        }
+       }
+      }
+     ]
+    },
+    "FLASH": {
+     "effect": "BP_PLUS",
+     "value": 1000
+    }
+   }
+  }
  },
  {
   "id": "SD19-014",
@@ -50338,13 +50368,43 @@
   "image": "SD64-RV009.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Main Draw two cards. Also, if you control any Ultimate, draw a card.",
-   "Flash During this turn, give a Spirit/Ultimate +1000 BP."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "magic": {
+   "timing": [
+    "MAIN",
+    "FLASH"
+   ],
+   "effect": null,
+   "value": 0,
+   "by": {
+    "MAIN": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "DRAW",
+       "n": 2
+      },
+      {
+       "do": "DRAW",
+       "n": 1,
+       "if": {
+        "ctrl": {
+         "n": 1,
+         "type": "Ultimate"
+        }
+       }
+      }
+     ]
+    },
+    "FLASH": {
+     "effect": "BP_PLUS",
+     "value": 1000
+    }
+   }
+  }
  },
  {
   "id": "SD64-RV010",

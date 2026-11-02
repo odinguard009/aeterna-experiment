@@ -132,3 +132,19 @@ test('K-1012 SD24-014 / SD25-007 Burst (Life reduced) wiring; SD24-014 Flash giv
   assert.equal(r.d, 4000, JSON.stringify(r));
   assert.equal(r.w, true);
 });
+
+test('K-1013 SD19-013 / SD64-RV009 draw two, plus one while an Ultimate is controlled', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const out = [];
+    const ult = Object.values(BS.CARDS).find(c => c.type === 'Ultimate');
+    for (const withU of [false, true]) for (const id of ['SD19-013', 'SD64-RV009']) {
+      const u = BS.mkInst(ult.id); u.cores = 5; P.spirits = withU ? [u] : [];
+      P.deck = Array.from({ length: 8 }, () => BS.mkInst('BS01-001')); P.reserve.n = 20;
+      const m = BS.mkInst(id); P.hand = [m];
+      await BS.castMagic(P, { inst: m, target: null, plan: null, ctx: 'main' });
+      out.push(P.hand.length);
+    }
+    return out; })()`);
+  assert.deepEqual(r, [2, 2, 3, 3], JSON.stringify(r));
+});
