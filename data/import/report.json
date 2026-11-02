@@ -1,11 +1,11 @@
 {
  "stats": {
-  "cards": 6403,
+  "cards": 6402,
   "per_saga": {
    "1": 484,
    "2": 261,
    "3": 333,
-   "4": 306,
+   "4": 305,
    "5": 593,
    "6": 327,
    "7": 473,
@@ -22,7 +22,7 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2303,
+  "skipped_curated": 2304,
   "nexus_levels_added": 672,
   "nexus_levels_missing": 43,
   "merged": 107,
@@ -988,6 +988,7 @@
   "BS21-039",
   "BS21-040",
   "BS21-043",
+  "BS21-044",
   "BS21-045",
   "BS21-046",
   "BS21-047",

@@ -6325,14 +6325,6 @@
   "K_RUSH",
   "T_ATTACKS"
  ],
- "BS21-044": [
-  "A_RETURN_TRASH",
-  "A_TRASH_TO_RESERVE",
-  "A_VOID",
-  "C_LEVEL",
-  "K_RUSH",
-  "T_BLOCKS"
- ],
  "BS21-048": [
   "A_REFRESH",
   "C_LEVEL",

@@ -135,3 +135,9 @@ test('K-1123 BS43-092 Main/Flash variants exist and Flash takes two cores', asyn
     return { impl: BS.CARDS['BS43-092'].implemented === true, main: m.by.MAIN.actions[0].do, cores: a.cores }; })()`);
   assert.deepEqual(r, { impl: true, main: 'DISCARD_OPP_REMOVED', cores: 1 });
 });
+
+test('K-1124 BS21-044 When Blocks: returns a Yellow Magic from the Trash, not a Red one', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(runFx('BS21-044', 'BLOCKS', `P.trash.length = 0; P.trash.push(BS.mkInst('BS01-114'), BS.mkInst('BS02-104')); P.spirits = []; const h0 = P.hand.length;`, `{ hand: P.hand.length - h0, trash: P.trash.map(x => x.id) }`));
+  assert.equal(r.impl, true, JSON.stringify(r)); assert.equal(r.hand, 1, JSON.stringify(r)); assert.deepEqual(r.trash, ['BS01-114'], JSON.stringify(r));
+});
