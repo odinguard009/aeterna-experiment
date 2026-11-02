@@ -4,6 +4,14 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.211.0
+- Lane: K
+- **Lane K: +100 complete cards (2,249 -> 2,349 of 10,291; 100 in this release)**
+- Cards: +100 complete by the official count (2,249 -> 2,349), all in `data/cards/saga-60.json` (Standard saga-60 product cards, about 30 Lane K commits). Effect schema stays 375 (no new engine mechanic): the cards use existing forms (Charge BP / BP-minus, NO_RETURN, MUST_BLOCK, `highSpeed` for "Lightning Speed", attack-step BP statics, Rush via `hasSymbol`, `selfSoul`, `perReserve`, `coresLe` with `thenDraw`, Seal and CHOOSE_ONE Magic).
+- Tests: `tests/unit/k_cards_90.test.mjs` K-1017..K-1029 (behaviour for most of the batches, wiring-only checks for the rest).
+- Limits: cards printed with a doubled "(Soul Core)(Soul Core)" (SD31-002, SD33-002, SD33-003 and similar) stay partial because that wording is not verified against a rule source; "non-braved" BP statics (SD06-004, SD56-RV002), "during this battle" BP effects and several Rush-with-choice Magic cards also stay partial. SD28-005 and the Charge cards are checked by wiring, not by a battle test; SD14-002's Rush destroy was verified by data shape only.
+- Limit: SD01-005 NO_RETURN also blocks returns to the deck bottom, which the card does not print; not covered by K-1025.
+
 ## v0.210.0
 - Lane: K
 - **Lane K: +101 complete cards (2,148 -> 2,249 of 10,291; 101 in this release)**
