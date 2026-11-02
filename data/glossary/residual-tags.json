@@ -31308,11 +31308,6 @@
   "C_LEVEL",
   "T_ALLY_SUMMONED"
  ],
- "BS56-024": [
-  "A_REFRESH",
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "BS56-025": [
   "A_BANISH",
   "C_LEVEL",
@@ -32774,12 +32769,6 @@
   "K_MIRAGE",
   "K_ULTIMATE",
   "T_MIRAGE_LIFE"
- ],
- "BS58-021": [
-  "A_VOID",
-  "A_VOID_TO_MATCHING",
-  "C_LEVEL",
-  "T_SUMMONED"
  ],
  "BS58-022": [
   "A_REFRESH",
@@ -38557,13 +38546,6 @@
   "K_ULTIMATE",
   "S_OPP_NO_BLOCK",
   "T_ATTACKS",
-  "T_SUMMONED"
- ],
- "BS64-061": [
-  "A_EXHAUST",
-  "A_VOID",
-  "C_LEVEL",
-  "K_ULTIMATE",
   "T_SUMMONED"
  ],
  "BS64-062": [

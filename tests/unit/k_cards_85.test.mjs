@@ -1017,3 +1017,23 @@ test('K-1025 BS55-031: banishes two cards from the opposing Trash to refresh its
     G.turnNo++; O.trash.push(BS.mkInst(id), BS.mkInst(id)); await BS.fireFx(P, 'ATTACKS', s, {}); return [one, [s.exhausted, O.trash.length, O.removed.length]]; })()`);
   assert.deepEqual(r, [[true, 1, 0], [false, 1, 2]], JSON.stringify(r));
 });
+
+test('K-1026 BS56-024 refreshes an Astroblazer/Blade Insect Spirit only in the Attack Step; BS64-061 adds a Void core and exhausts only in the Attack Step', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.coreShield = O.coreShield = null; P.spirits.length = 0; O.spirits.length = 0;
+    const id = Object.keys(BS.CARDS).find(k => /^BS0[0-9]-/.test(k) && BS.CARDS[k].type === 'Spirit'); const bi = Object.keys(BS.CARDS).find(k => /^BS[0-9][0-9]-/.test(k) && BS.CARDS[k].type === 'Spirit' && (BS.CARDS[k].families || []).includes('Blade Insect') && k !== 'BS56-024');
+    const s = BS.mkInst('BS56-024'); s.cores = 1; const a = BS.mkInst(bi); a.cores = 1; a.exhausted = true; P.spirits.push(s, a);
+    G.step = 3; await BS.fireFx(P, 'SUMMONED', s, {}); const main = a.exhausted; G.step = 5; await BS.fireFx(P, 'SUMMONED', s, {}); const atk = a.exhausted;
+    const u = BS.mkInst('BS64-061'); u.cores = 4; const o = BS.mkInst(id); o.cores = 1; O.spirits.push(o); P.spirits.push(u); G.void = G.void; const before = u.cores; G.step = 3; await BS.fireFx(P, 'SUMMONED', u, {}); const m2 = o.exhausted; G.step = 5; await BS.fireFx(P, 'SUMMONED', u, {});
+    return [main, atk, m2, o.exhausted]; })()`);
+  assert.deepEqual(r, [true, false, false, true], JSON.stringify(r));
+});
+
+test('K-1027 BS58-021 puts a Void core on the Reserve and on a Red/Green Astroblazer Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player; P.cpu = true; P.spirits.length = 0;
+    const ab = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && (BS.CARDS[k].families || []).includes('Astroblazer') && ['red', 'green'].includes(BS.CARDS[k].symbol) && k !== 'BS58-021');
+    const s = BS.mkInst('BS58-021'); s.cores = 1; const a = BS.mkInst(ab); a.cores = 1; P.spirits.push(s, a); const rs = P.reserve.n, ac = a.cores; G.void = Math.max(G.void || 0, 5); if (G.p.player.void != null) G.p.player.void = 5;
+    await BS.fireFx(P, 'SUMMONED', s, {}); return [P.reserve.n - rs, a.cores - ac]; })()`);
+  assert.deepEqual(r, [1, 1], JSON.stringify(r));
+});
