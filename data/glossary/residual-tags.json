@@ -55105,6 +55105,8 @@
   "M_IF_YOU_DO",
   "M_OPTIONAL"
  ],
+ "SD01-001": [],
+ "SD01-002": [],
  "SD01-003": [
   "A_BP_PLUS",
   "A_REMOVED_ZONE",
@@ -55127,6 +55129,7 @@
   "C_LEVEL",
   "M_OPTIONAL"
  ],
+ "SD01-007": [],
  "SD01-008": [
   "A_LIFE_TO_RESERVE",
   "C_LEVEL",
@@ -55136,6 +55139,8 @@
   "S_MUST_BLOCK",
   "T_ATTACKS"
  ],
+ "SD01-009": [],
+ "SD01-010": [],
  "SD01-011": [
   "C_LEVEL",
   "T_ATTACKS"
@@ -55150,6 +55155,8 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
+ "SD01-014": [],
+ "SD01-015": [],
  "SD01-016": [
   "C_LEVEL"
  ],
@@ -55160,6 +55167,7 @@
   "C_LIFE",
   "T_ATTACKS"
  ],
+ "SD01-019": [],
  "SD01-020": [
   "A_BP_PLUS",
   "C_LEVEL",
@@ -55368,6 +55376,7 @@
   "M_OPTIONAL",
   "T_ATTACKS"
  ],
+ "SD03-005": [],
  "SD03-006": [
   "A_REFRESH",
   "C_LEVEL",
@@ -55552,6 +55561,7 @@
  "SD10-005": [
   "C_LEVEL"
  ],
+ "SD10-006": [],
  "SD10-007": [
   "C_LEVEL",
   "T_ATTACKS"
@@ -55617,6 +55627,7 @@
   "C_LEVEL",
   "K_ARMOR"
  ],
+ "SD11-002": [],
  "SD11-003": [
   "A_BP_PLUS",
   "A_EXHAUST",
@@ -55954,6 +55965,7 @@
   "S_MUST_BLOCK",
   "T_ATTACKS"
  ],
+ "SD17-010": [],
  "SD17-011": [
   "A_RETURN_TRASH",
   "A_TRASH_TO_RESERVE",
@@ -56181,6 +56193,7 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
+ "SD22-001": [],
  "SD22-002": [
   "K_HIGH_SPEED"
  ],
@@ -56846,6 +56859,7 @@
   "A_BP_PLUS",
   "C_LEVEL"
  ],
+ "SD29-002": [],
  "SD29-003": [
   "A_BP_PLUS",
   "A_DRAW",
@@ -56962,6 +56976,7 @@
   "T_DESTROYED_OPP",
   "T_SUMMONED"
  ],
+ "SD31-004": [],
  "SD31-005": [
   "A_VOID",
   "C_LEVEL",
@@ -57105,6 +57120,7 @@
   "M_REPLACEMENT",
   "T_ATTACKS"
  ],
+ "SD33-004": [],
  "SD33-005": [
   "A_BP_PLUS",
   "A_SEAL",
@@ -57199,6 +57215,7 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
+ "SD34-006": [],
  "SD34-007": [
   "C_LEVEL",
   "K_ULTIMATE",
