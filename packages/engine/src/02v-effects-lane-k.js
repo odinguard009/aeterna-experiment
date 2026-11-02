@@ -315,4 +315,15 @@ FX_ACTIONS.CANT_ATTACK_BLOCK_ALL = {
     for (const t of L) { t.noAB = true; t.noABTurn = G.turnNo; }
     if (L.length) { log(`${CARDS[c.src.id].name}: ${L.length} Spirit${L.length === 1 ? '' : 's'} can't attack/block during this turn.`); io.view({ type: 'board' }); }
   } };
+/* v325 SPIRITS_ALL_TO_HAND {costLe}: "Return every Cost N or less Spirit to its owner's Hand." Both sides; protected opposing Spirits are skipped (fxImmune). */
+FX_ACTIONS.SPIRITS_ALL_TO_HAND = {
+  chk: a => Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30 && Object.keys(a).every(k => ['do', 'if', 'costLe'].includes(k)),
+  txt: a => `return every Cost ${a.costLe} or less Spirit to its owner's Hand`,
+  can: c => c.p.spirits.concat(c.opp.spirits).some(s => CARDS[s.id].cost <= 30),
+  run: async (c, a) => {
+    let k = 0;
+    for (const side of [c.p, c.opp]) for (const x of side.spirits.slice()) { if (CARDS[x.id].cost > a.costLe || (side === c.opp && fxImmune(side, x, c))) continue; bounceCard(side, x, 'hand'); k++; }
+    c.ctx.did = k > 0; if (k) { checkDepletion(c.p); checkDepletion(c.opp); io.view({ type: 'board' }); }
+  } };
+
 wrapImmunity(Object.values(FX_ACTIONS));   // the actions above are defined after 02k: LO01

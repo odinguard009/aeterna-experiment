@@ -473,3 +473,14 @@ test('K-970 BS01-129 sends one core from an opposing Spirit to its owner Reserve
     return [s.cores, O.reserve.n - rs]; })()`);
   assert.deepEqual(r, [2, 1], JSON.stringify(r));
 });
+
+test('K-971 BS04-102 returns every Cost 1 or less Spirit of both sides to hand', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const byCost = k => Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit' && BS.CARDS[i].cost === k);
+    const mk = (side, ks) => { side.spirits.length = 0; for (const k of ks) { const s = BS.mkInst(byCost(k)); s.cores = 1; side.spirits.push(s); } };
+    mk(P, [1, 3]); mk(O, [0, 2]); const h = [P.hand.length, O.hand.length];
+    await BS.FX_ACTIONS.SPIRITS_ALL_TO_HAND.run({ p: P, opp: O, src: BS.mkInst('BS04-102'), ctx: {} }, BS.CARDS['BS04-102'].magic.actions[0]);
+    return [P.spirits.length, O.spirits.length, P.hand.length - h[0], O.hand.length - h[1]]; })()`);
+  assert.deepEqual(r, [1, 1, 1, 1], JSON.stringify(r));
+});

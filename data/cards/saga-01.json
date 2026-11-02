@@ -21537,12 +21537,21 @@
   "image": "Dream Hand.jpg",
   "block": "04",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Return every Cost 1 or less Spirit to its owner's Hand."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "SPIRITS_ALL_TO_HAND",
+     "costLe": 1
+    }
+   ]
+  }
  },
  {
   "id": "BS04-103",
