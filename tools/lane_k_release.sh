@@ -77,7 +77,7 @@ if (i < 0) throw new Error('CHANGELOG.md has no release section');
 const n = Number(newCards).toLocaleString('en-US');
 const b = Number(baseline).toLocaleString('en-US');
 const c = Number(complete).toLocaleString('en-US');
-const head = `## v${ver}\n- Lane: K\n- **Lane K: +${newCards} complete cards (${b} -> ${c} of 8,709; ${n} in this release)**\n${notes}\n\n`;
+const head = `## v${ver}\n- Lane: K\n- **Lane K: +${newCards} complete cards (${b} -> ${c} of 10,291; ${n} in this release)**\n${notes}\n\n`;
 fs.writeFileSync('CHANGELOG.md', cl.slice(0, i + 1) + head + cl.slice(i + 1));
 NODE
 
@@ -91,7 +91,7 @@ bash tools/release_docs.sh
 npm run -s check
 bash tools/pre_release_check.sh   # cheap gate: staging, heads, compiler wiring, load order, size budgets (2026-11-02)
 git add -A
-git commit -m "release v$next: Lane K, +$new complete cards ($complete of 8,709)"
+git commit -m "release v$next: Lane K, +$new complete cards ($complete of 10,291)"
 git checkout main
 git merge --ff-only wip/lane-k
 git push origin main
