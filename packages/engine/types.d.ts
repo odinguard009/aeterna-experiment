@@ -14,7 +14,7 @@ interface MagicVariant { effect: string; value: number; actions?: any[]; match?:
 interface MagicSpec {
   timing: string[]; effect: string | null; value: number; noMain?: boolean; once?: boolean;
   trashUse?: { if?: any; actions?: any[] }; oppAttackHand?: { gwToVoid: number; match: any };
-  actions?: any[]; by?: Record<string, MagicVariant>;
+  actions?: any[]; alsoMagic?: any; summonAfter?: any; summonOnce?: any; by?: Record<string, MagicVariant>;
 }
 /** `costAlt`: a lower cost while a condition holds. */
 interface CostAlt { cost: number; once: boolean; if?: any }
