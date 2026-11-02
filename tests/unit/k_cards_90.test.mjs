@@ -324,3 +324,15 @@ test('K-1028 SD33-013 destroys a 5000 BP or less Spirit when not sealed; SD24-00
   assert.equal(r.bigKept, true, JSON.stringify(r));
   assert.ok(r.left <= 2 && r.left >= 1, JSON.stringify(r));
 });
+
+test('K-1029 SD14-002 refreshes a Parasite and, with a Blue symbol, destroys a Cost 2 or less Spirit; SD17-008 is wired', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const s = BS.mkInst('SD14-002'); s.lostLv = 0; P.trash = [s]; s.cores = 0; P.spirits = [];
+    const t = BS.mkInst('BS01-001'); t.cores = 1; O.spirits = [t];
+    const e = BS.CARDS['SD14-002'].effects[0].actions[1];
+    await BS.fireFx(P, 'DESTROYED', s, {});
+    const w = BS.CARDS['SD17-008'].implemented === true && BS.CARDS['SD17-008'].effects.some(x => x.flag === 'MUST_BLOCK');
+    return { cond: e.if.hasSymbol, w, impl: BS.CARDS['SD14-002'].implemented === true }; })()`);
+  assert.deepEqual(r, { cond: 'blue', w: true, impl: true }, JSON.stringify(r));
+});

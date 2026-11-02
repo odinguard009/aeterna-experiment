@@ -55210,12 +55210,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "SD14-002": [
-  "A_REFRESH",
-  "C_LEVEL",
-  "K_RUSH",
-  "T_DESTROYED"
- ],
  "SD14-003": [
   "A_VOID",
   "C_LEVEL",
@@ -55347,13 +55341,6 @@
  ],
  "SD17-002": [
   "C_LEVEL"
- ],
- "SD17-008": [
-  "A_REFRESH",
-  "C_LEVEL",
-  "K_RUSH",
-  "S_MUST_BLOCK",
-  "T_ATTACKS"
  ],
  "SD17-009": [
   "C_LEVEL",

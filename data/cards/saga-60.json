@@ -24061,12 +24061,35 @@
   "image": "SD14-002.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Destroyed) Refresh a \"Parasite\" family Spirit you control. {{Rush|Blue}} (While you have a Blue symbol, the following effect activates next) (Blue Core): Destroy an opposing Cost 2 or less Spirit."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT",
+      "match": {
+       "family": [
+        "Parasite"
+       ]
+      }
+     },
+     {
+      "do": "DESTROY",
+      "costLe": 2,
+      "if": {
+       "hasSymbol": "blue"
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD14-003",
@@ -25377,12 +25400,37 @@
   "image": "SD17-008.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] Clash (When Attacks) The opponent must block if possible. {{Rush|Green}} (While you have a Green symbol, the following effect activates next) (Green Core): If this is the first attack of your turn, refresh this Spirit."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "U"
+  "rcode": "U",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "MUST_BLOCK",
+    "to": "self",
+    "lv": [
+     1,
+     2
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT",
+      "self": true,
+      "if": {
+       "hasSymbol": "green",
+       "firstAttack": true
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD17-009",
