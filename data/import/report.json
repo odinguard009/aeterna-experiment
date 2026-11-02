@@ -1,13 +1,13 @@
 {
  "stats": {
-  "cards": 6327,
+  "cards": 6326,
   "per_saga": {
    "1": 468,
    "2": 255,
    "3": 328,
    "4": 302,
    "5": 578,
-   "6": 317,
+   "6": 316,
    "7": 463,
    "8": 435,
    "9": 471,
@@ -22,7 +22,7 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2379,
+  "skipped_curated": 2380,
   "nexus_levels_added": 670,
   "nexus_levels_missing": 43,
   "merged": 107,
@@ -1242,6 +1242,7 @@
   "BS31-CP05",
   "BS31-CP06",
   "BS32-001",
+  "BS32-003",
   "BS32-006",
   "BS32-010",
   "BS32-012",

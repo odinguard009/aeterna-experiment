@@ -31599,13 +31599,36 @@
   "image": "SD29-003.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Attacks) When this Spirit is blocked, draw one card.",
-   "[LV2] While (Soul Core) (Soul Core) is on this Spirit, this Spirit gains +4000 BP."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ALLY_BLOCKED",
+    "self": true,
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 4000,
+    "to": "self",
+    "lv": [
+     2
+    ],
+    "if": {
+     "selfSoul": true
+    }
+   }
+  ]
  },
  {
   "id": "SD29-004",
@@ -32556,13 +32579,41 @@
   "image": "SD31-006.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] While a {soulcore} (Soul Core) is on this Spirit, all your Spirits with the \"Ninja Gale\" family gain +4000 BP.",
-   "[LV2][LV3] When the opponent draws, this Spirit Refreshes."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: hand translation); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "bp": 4000,
+    "to": "own",
+    "match": {
+     "family": [
+      "Ninja Gale"
+     ]
+    },
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "if": {
+     "srcSoul": true
+    }
+   },
+   {
+    "trigger": "OPP_DRAWS",
+    "lv": [
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "REFRESH"
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD31-007",

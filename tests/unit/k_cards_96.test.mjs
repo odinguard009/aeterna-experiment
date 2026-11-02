@@ -28,3 +28,13 @@ test('K-1176 selfSoul static BP (SD29-001, SD29-008): +BP only while a Soul Core
     return { lv, d1: b1 - b0, d2: o1 - o0, lvM: BS.lvNo(m), ok: BS.CARDS['SD29-001'].fxComplete !== false && BS.CARDS['SD29-008'].fxComplete !== false }; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.lv, 3, JSON.stringify(r)); assert.equal(r.d1, 6000, JSON.stringify(r)); assert.equal(r.d2, 10000, JSON.stringify(r));
 });
+
+test('K-1177 Soul Core family BP (SD31-006, BS32-003): own family Spirits gain +4000 only while a Soul Core is on the source', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player; P.cpu = true; G.active = P.key; G.step = 5;
+    const out = {}; for (const [src, fam] of [['SD31-006', 'Ninja Gale'], ['BS32-003', 'Emperor Beast']]) {
+      const s = BS.mkInst(src); s.cores = 5; const t = BS.mkInst(Object.keys(BS.CARDS).find(k => /^(BS|SD)/.test(k) && k !== src && (BS.CARDS[k].families || []).includes(fam) && BS.CARDS[k].type === 'Spirit')); t.cores = 5; P.spirits = [s, t];
+      s.soul = false; const a = BS.bpOf(t); s.soul = true; const b = BS.bpOf(t); out[src] = b - a; }
+    out.ok = BS.CARDS['SD31-006'].fxComplete !== false && BS.CARDS['BS32-003'].fxComplete !== false && BS.CARDS['SD29-003'].fxComplete !== false; return out; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r['SD31-006'], 4000, JSON.stringify(r)); assert.equal(r['BS32-003'], 4000, JSON.stringify(r));
+});

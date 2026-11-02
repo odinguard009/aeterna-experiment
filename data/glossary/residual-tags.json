@@ -11426,11 +11426,6 @@
   "S_NO_RETURN",
   "T_START_ATTACK"
  ],
- "BS32-003": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "BS32-004": [
   "C_LEVEL",
   "K_BURST",
@@ -55517,17 +55512,6 @@
   "T_ALLY_SUMMONED",
   "T_DURING_BRAVE"
  ],
- "SD29-001": [
-  "A_BP_PLUS",
-  "C_LEVEL"
- ],
- "SD29-003": [
-  "A_BP_PLUS",
-  "A_DRAW",
-  "C_LEVEL",
-  "T_ALLY_BLOCKED",
-  "T_ATTACKS"
- ],
  "SD29-004": [
   "A_BP_PLUS",
   "C_LEVEL",
@@ -55549,10 +55533,6 @@
   "S_MUST_BLOCK",
   "T_ATTACKS",
   "T_BATTLE_WIN"
- ],
- "SD29-008": [
-  "A_BP_PLUS",
-  "C_LEVEL"
  ],
  "SD29-010": [
   "A_DESTROY_BP",
@@ -55608,11 +55588,6 @@
   "A_VOID",
   "C_LEVEL",
   "T_SUMMONED"
- ],
- "SD31-006": [
-  "A_BP_PLUS",
-  "A_REFRESH",
-  "C_LEVEL"
  ],
  "SD31-008": [
   "A_EXHAUST",
