@@ -28499,13 +28499,34 @@
   "image": "SD24-014.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "{{Burst|After your Life is reduced}} Destroy any number of opposing Spirits up to a total cost of 5. Then, by paying the cost, activate this card's Flash effect.",
-   "Flash During this turn, give a Spirit/Ultimate +4000 BP."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "U"
+  "rcode": "U",
+  "burst": {
+   "when": "LIFE_DECREASE",
+   "actions": [
+    {
+     "do": "DESTROY_TOTAL",
+     "byCost": true,
+     "total": 5
+    }
+   ],
+   "thenFlash": true
+  },
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "BP_TARGET",
+     "n": 4000,
+     "to": "pick"
+    }
+   ]
+  }
  },
  {
   "id": "SD24-015",
@@ -28853,13 +28874,45 @@
   "image": "SD25-007.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "{{Burst|After your Life is reduced}} Destroy any number of opposing Spirits up to a total of 7000 BP. Then by paying the cost, activate this card's Flash effect.",
-   "Flash During this turn, give a Spirit/Ultimate +3000 BP. Or, destroy a Brave on an opposing Brave Spirit."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "U"
+  "rcode": "U",
+  "burst": {
+   "when": "LIFE_DECREASE",
+   "actions": [
+    {
+     "do": "DESTROY_TOTAL",
+     "total": 7000
+    }
+   ],
+   "thenFlash": true
+  },
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "CHOOSE_ONE",
+     "options": [
+      [
+       {
+        "do": "BP_TARGET",
+        "n": 3000,
+        "to": "pick"
+       }
+      ],
+      [
+       {
+        "do": "DESTROY_BRAVE"
+       }
+      ]
+     ]
+    }
+   ]
+  }
  },
  {
   "id": "SD25-X01",

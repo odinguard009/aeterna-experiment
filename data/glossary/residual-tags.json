@@ -55880,13 +55880,6 @@
   "K_ULTIMATE",
   "S_UNAFFECTED"
  ],
- "SD24-014": [
-  "A_BP_PLUS",
-  "K_BURST",
-  "K_ULTIMATE",
-  "M_THEN",
-  "M_UP_TO"
- ],
  "SD24-015": [
   "A_REFRESH"
  ],
@@ -55940,15 +55933,6 @@
   "S_MUST_BLOCK",
   "T_ATTACKS",
   "T_SUMMONED"
- ],
- "SD25-007": [
-  "A_BP_PLUS",
-  "A_DESTROY_TOTAL",
-  "K_BRAVE",
-  "K_BURST",
-  "K_ULTIMATE",
-  "M_THEN",
-  "M_UP_TO"
  ],
  "SD25-X01": [
   "A_DESTROY_BP",

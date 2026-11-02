@@ -121,3 +121,14 @@ test('K-1011 SD45-013 draws two and destroys an opposing 10000 BP or less Spirit
   assert.equal(r[1].opp, 0, JSON.stringify(r));
   assert.ok(r[0].hand >= 2, JSON.stringify(r));
 });
+
+test('K-1012 SD24-014 / SD25-007 Burst (Life reduced) wiring; SD24-014 Flash gives +4000 BP', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const s = BS.mkInst('BS01-001'); s.cores = 1; P.spirits = [s]; P.reserve.n = 20; const b0 = BS.bpOf(s);
+    const m = BS.mkInst('SD24-014'); P.hand = [m];
+    await BS.castMagic(P, { inst: m, target: null, plan: null, ctx: 'flash' });
+    return { d: BS.bpOf(s) - b0, w: ['SD24-014', 'SD25-007'].every(id => BS.CARDS[id].fxComplete !== false && BS.CARDS[id].burst.when === 'LIFE_DECREASE' && BS.CARDS[id].burst.thenFlash === true) }; })()`);
+  assert.equal(r.d, 4000, JSON.stringify(r));
+  assert.equal(r.w, true);
+});
