@@ -152,3 +152,26 @@ test('K-1186 Crush results (BS06-070, BS04-063, BS09-053): follow-ups count Spir
   assert.equal(r.ok, true, JSON.stringify(r)); assert.ok(r.lv >= 2, JSON.stringify(r)); 
   assert.equal(r.tr, 2, JSON.stringify(r)); assert.equal(r.bp, 1000, JSON.stringify(r)); assert.equal(r.cores, 2, JSON.stringify(r)); assert.ok(r.cores >= 1, JSON.stringify(r)); assert.equal(r.destroyed, 1, JSON.stringify(r));
 });
+
+test('K-1187 battle wins, braved TREAT_LV3, hand discard (BS05-022, BS34-056, BS04-004, BS10-002, BS08-050)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const mk = (id, n) => { const s = BS.mkInst(id); s.cores = n; return s; };
+    const sp = Object.values(BS.CARDS).filter(c => c.type === 'Spirit' && c.id !== 'BS05-022');
+    const blue = sp.find(c => BS.fxMatch(c, { color: 'blue', keyword: 'Crush' })), red = sp.find(c => BS.fxMatch(c, { notColor: 'blue' }) && !BS.fxMatch(c, { color: 'blue' }));
+    const out = {}; const ex = s => { s.exhausted = true; return s; };
+    const a = mk('BS05-022', 5); const b = ex(mk(blue.id, 1)), r1 = ex(mk(red.id, 1)); P.spirits = [a, b, r1];
+    await BS.fireFxMulti([{ owner: P, trigger: 'BATTLE_WIN', src: a, ctx: { subject: a, attacking: true } }]); out.blueRef = !b.exhausted; out.redStay = r1.exhausted;
+    const aw = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && BS.fxMatch(c, { keyword: 'Awaken' }) && c.id !== 'BS04-004');
+    const d = ex(mk('BS04-004', 6)), w = ex(mk(aw.id, 1)); P.spirits = [d, w]; await BS.fireFxMulti([{ owner: P, trigger: 'BATTLE_WIN', src: d, ctx: { subject: d, attacking: true } }]); out.awRef = !w.exhausted; out.selfStay = d.exhausted;
+    const fb = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && (c.families || []).includes('Fusion Beast') && c.cost <= 6);
+    const att = mk(fb.id, 2), h = mk('BS34-056', 4); P.spirits = [h, att]; const lo = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && c.cost <= BS.CARDS[fb.id].cost && c.id !== fb.id);
+    O.spirits = [mk(lo.id, 1)]; await BS.fireFxMulti([{ owner: P, trigger: 'ALLY_BATTLE_WIN', src: null, ctx: { subject: att, attacking: true } }]); out.destroyed = 1 - O.spirits.length;
+    const q = mk('BS10-002', 1); P.spirits = [q]; out.lv0 = BS.lvNo(q); const hb = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && c.cost <= 3 && c.id !== 'BS10-002'); const bs = mk(hb.id, 1); bs.brave = BS.mkInst(Object.values(BS.CARDS).find(c => c.type === 'Brave').id); P.spirits = [q, bs]; out.lv1 = BS.lvNo(q);
+    const e = mk('BS08-050', 3); P.spirits = [e]; O.hand = Array.from({ length: 7 }, () => BS.mkInst(sp[0].id)); await BS.fireFx(P, 'SUMMONED', e); out.hand = O.hand.length;
+    O.hand = Array.from({ length: 5 }, () => BS.mkInst(sp[0].id)); await BS.fireFx(P, 'SUMMONED', e); out.hand5 = O.hand.length;
+    out.ok = ['BS05-022', 'BS34-056', 'BS04-004', 'BS10-002', 'BS08-050'].every(k => BS.CARDS[k].fxComplete !== false); return out; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.blueRef, true, JSON.stringify(r)); assert.equal(r.redStay, true, JSON.stringify(r));
+  assert.equal(r.awRef, true, JSON.stringify(r)); assert.equal(r.selfStay, true, JSON.stringify(r)); assert.equal(r.destroyed, 1, JSON.stringify(r));
+  assert.ok(r.lv1 === 3 && r.lv0 < 3, JSON.stringify(r)); assert.equal(r.hand, 3, JSON.stringify(r)); assert.equal(r.hand5, 5, JSON.stringify(r));
+});

@@ -53201,12 +53201,25 @@
      2,
      3
     ]
+   },
+   {
+    "trigger": "BATTLE_WIN",
+    "lv": [
+     3
+    ],
+    "attackingOnly": true,
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT",
+      "other": true,
+      "match": {
+       "keyword": "Awaken"
+      }
+     }
+    ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV3] (When Attacks) When only the opposing Spirit is destroyed via BP comparison, besides [DarkDinohound], refresh a Spirit with Awaken you control."
-  ],
+  "fxComplete": true,
   "note": "Reprint of BS04-004 (same name and stats), added v0.210.0 from the official product list.",
   "rcode": "C"
  },

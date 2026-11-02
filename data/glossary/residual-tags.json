@@ -599,12 +599,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "BS04-004": [
-  "A_AWAKEN",
-  "A_REFRESH",
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
  "BS04-007": [
   "C_LEVEL",
   "T_ATTACKS",
@@ -876,12 +870,6 @@
  "BS05-017": [
   "A_EXHAUST",
   "C_LEVEL",
-  "T_ATTACKS"
- ],
- "BS05-022": [
-  "A_REFRESH",
-  "C_LEVEL",
-  "K_CRUSH",
   "T_ATTACKS"
  ],
  "BS05-026": [
@@ -1733,10 +1721,6 @@
   "M_BY_DOING",
   "T_ATTACKS"
  ],
- "BS08-050": [
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "BS08-051": [
   "A_EXHAUST",
   "A_REFRESH",
@@ -2145,10 +2129,6 @@
   "A_VOID",
   "C_LEVEL",
   "T_ATTACKS"
- ],
- "BS10-002": [
-  "C_LEVEL",
-  "K_BRAVE"
  ],
  "BS10-008": [
   "A_REFRESH",
@@ -12497,9 +12477,6 @@
   "M_BY_DOING",
   "S_UNAFFECTED",
   "T_ATTACKS"
- ],
- "BS34-056": [
-  "C_LEVEL"
  ],
  "BS34-058": [
   "A_SUMMON_FREE",
@@ -59052,12 +59029,6 @@
   "M_THEN",
   "T_ATTACKS",
   "T_DURING_BRAVE"
- ],
- "SD66-RV003": [
-  "A_AWAKEN",
-  "A_REFRESH",
-  "C_LEVEL",
-  "T_ATTACKS"
  ],
  "SD66-X01": [
   "A_DESTROY_COST",

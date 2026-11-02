@@ -430,3 +430,5 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v392 (Lane K): STATIC flag `MAGIC_WALL {colors[]}` (to self): "when the opponent casts a Magic of one of these colours on their turn, exhaust this Spirit to negate it" (`magicWallNegate` in castMagic; not applied to Burst-cast Magic). Cards: BS11-028, BS12-029, BS16-031, BS08-036.
 - v393 (Lane K): `BOUNCE_OPP.to` accepts `deckTop` ("return to the decktop"). Cards: SD02-021 (with SD02-018/019 on TRIBUTED).
 - v394 (Lane K): Crush results. Conditions `crushedSpiritGe` (Spirit cards discarded by this effect's CRUSH) and `selfLvGe` (source level gate); BP_PLUS `perCrushed:'spirit'` and VOID_TO_CARD `perCrushed:true` count the cards `ctx.crushed`.
+- v395 (Lane K): `ctrl` entries accept `braved:true` (a Spirit that has a Brave combined). Card: BS10-002 (TREAT_LV3 while you control a Brave Spirit).
+- v396 (Lane K): `OPP_DISCARD.downTo` (instead of `n`): the opponent discards until only that many cards remain. Card: BS08-050.

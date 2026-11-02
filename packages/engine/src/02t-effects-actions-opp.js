@@ -143,12 +143,12 @@ Object.assign(FX_ACTIONS, {
       log(`${nm}: ${who(o)} ${o.cpu ? 'discards' : 'discard'} ${CARDS[d.id].name}, the effect does not apply.`);
     } },
   /* v0.180 "The opponent discards N card(s) from their Hand": the opponent picks (modal for the human, the CPU throws away the cheapest). */
-  OPP_DISCARD: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 3,
-    txt: a => `the opponent discards ${a.n === 1 ? 'a card' : a.n + ' cards'} from their Hand`,
+  OPP_DISCARD: { chk: a => a.downTo != null ? (Number.isInteger(a.downTo) && a.downTo >= 1 && a.downTo <= 5 && a.n == null) : (Number.isInteger(a.n) && a.n >= 1 && a.n <= 3),      // v396 downTo: "discards until only N cards remain"
+    txt: a => a.downTo != null ? `the opponent discards cards until ${a.downTo} remain in their Hand` : `the opponent discards ${a.n === 1 ? 'a card' : a.n + ' cards'} from their Hand`,
     can: c => c.opp.hand.length > 0,
     run: async (c, a) => {
       const nm = CARDS[c.src.id].name, o = c.opp; let k = 0;
-      for (let j = 0; j < a.n; j++) {
+      for (let j = 0, N = a.downTo != null ? Math.max(0, o.hand.length - a.downTo) : a.n; j < N; j++) {
         const L = o.hand.filter(x => !handSafe(x, o, c)); if (!L.length) break;
         let d;
         if (o.cpu) d = L.slice().sort((x, y) => CARDS[x.id].cost - CARDS[y.id].cost)[0];
