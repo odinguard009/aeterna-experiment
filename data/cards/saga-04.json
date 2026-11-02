@@ -4750,15 +4750,28 @@
   "mechanics": [
    "Rush"
   ],
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "When the battle resolves, end the battle without comparing BP.",
-   "{{Rush|White}}",
-   "(While you have a White symbol, the following effect activates next)",
-   ": Return an opposing Spirit to the Hand."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "END_BATTLE_NOW"
+    },
+    {
+     "do": "BOUNCE_OPP",
+     "to": "hand",
+     "kind": "spirit",
+     "if": {
+      "hasSymbol": "white"
+     }
+    }
+   ]
+  }
  },
  {
   "id": "BS19-112",
@@ -16961,15 +16974,34 @@
   "mechanics": [
    "Rush"
   ],
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "By destroying a Brave on an opposing Brave Spirit, draw a card.",
-   "{{Rush|Blue}}",
-   "(While you have a Blue symbol, the following effect activates next)",
-   ": Destroy an opposing Cost 4 or less Spirit."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "DESTROY_BRAVE"
+    },
+    {
+     "do": "DRAW",
+     "n": 1,
+     "if": {
+      "prev": true
+     }
+    },
+    {
+     "do": "DESTROY",
+     "costLe": 4,
+     "if": {
+      "hasSymbol": "blue"
+     }
+    }
+   ]
+  }
  },
  {
   "id": "BS22-076",

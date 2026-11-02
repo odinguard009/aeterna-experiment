@@ -212,3 +212,27 @@ test('K-905 BS33-082 Main destroys a Rush Spirit only with Soul Core paid; BS31-
   assert.ok(r.rush, m); assert.equal(r.rushfalse, true, m); assert.equal(r.rushtrue, false, m);
   assert.equal(r.reffalse, false, m); assert.equal(r.reftrue, true, m);
 });
+
+test('K-906 BS19-111 and BS22-075 Rush parts run only while the Field has the symbol colour', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = P.key; P.cpu = true; O.cpu = true;
+    const mine = col => Object.keys(BS.CARDS).find(id => /^BS0/.test(id) && BS.CARDS[id].type === 'Spirit' && BS.CARDS[id].symbol === col && BS.CARDS[id].symbols >= 1);
+    const foe = 'BS01-002';
+    const out = {};
+    for (const [id, col, other] of [['BS19-111', 'white', 'red'], ['BS22-075', 'blue', 'red']]) {
+      for (const c of [col, other]) {
+        P.spirits.length = 0; O.spirits.length = 0;
+        const s = BS.mkInst(mine(c)); s.cores = 2; P.spirits.push(s); const f = BS.mkInst(foe); f.cores = 1; O.spirits.push(f);
+        const m = BS.mkInst(id);
+        await BS.runActions({ p: P, opp: O, src: m, ctx: { selfInst: m } }, { actions: BS.CARDS[id].magic.actions });
+        out[id + c] = O.spirits.length;
+      }
+    }
+    return out;
+  });
+  const m = JSON.stringify(r);
+  assert.equal(r['BS19-111white'], 0, m); assert.equal(r['BS19-111red'], 1, m);
+  assert.equal(r['BS22-075blue'], 0, m); assert.equal(r['BS22-075red'], 1, m);
+});
