@@ -2227,12 +2227,6 @@
   "K_HOLY_LIFE",
   "T_ATTACKS"
  ],
- "BS10-050": [
-  "A_LIFE_TO_RESERVE",
-  "C_LEVEL",
-  "K_HOLY_LIFE",
-  "T_ALLY_LIFE_HIT"
- ],
  "BS10-053": [
   "C_LEVEL",
   "K_BRAVE"
@@ -5763,12 +5757,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "BS19-X03": [
-  "A_LIFE_TO_RESERVE",
-  "C_LEVEL",
-  "K_HIGH_SPEED",
-  "T_ALLY_LIFE_HIT"
- ],
  "BS19-X04": [
   "A_REFRESH",
   "C_LEVEL",
@@ -7854,11 +7842,6 @@
   "C_LEVEL",
   "M_OPTIONAL",
   "T_BATTLE_WIN"
- ],
- "BS25-024": [
-  "A_LIFE_TO_RESERVE",
-  "C_LEVEL",
-  "K_ULTIMATE"
  ],
  "BS25-026": [
   "A_EXHAUST",
@@ -50602,12 +50585,6 @@
   "K_ULTIMATE",
   "T_ATTACKS",
   "T_SUMMONED"
- ],
- "BS59-CP03": [
-  "A_LIFE_TO_RESERVE",
-  "C_LEVEL",
-  "K_HIGH_SPEED",
-  "T_ALLY_LIFE_HIT"
  ],
  "BS59-CP04": [
   "A_SUMMON_FREE",

@@ -2299,12 +2299,37 @@
       }
      }
     ]
+   },
+   {
+    "trigger": "ALLY_LIFE_HIT",
+    "lv": [
+     2
+    ],
+    "self": true,
+    "actions": [
+     {
+      "do": "LIFE_TO_RESERVE",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_LIFE_HIT",
+    "lv": [
+     2
+    ],
+    "match": {
+     "keyword": "High Speed"
+    },
+    "actions": [
+     {
+      "do": "LIFE_TO_RESERVE",
+      "n": 1
+     }
+    ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (Your Attack Step) When the attack of this Spirit or your Spirits with High Speed reduces the opposing Life, send a core from the opposing Life to their Reserve."
-  ],
+  "fxComplete": true,
   "note": "Reprint of BS19-X03 (same name and stats), added v0.210.0 from the official product list.",
   "rcode": "X"
  },

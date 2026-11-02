@@ -121,3 +121,18 @@ test('K-1184 TRIBUTED (SD02-018/019/021): destroys two 4000 BP or less Spirits, 
     out.ok = ['SD02-018', 'SD02-019', 'SD02-021'].every(k => BS.CARDS[k].fxComplete !== false); return out; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.destroyed, 2, JSON.stringify(r)); assert.equal(r.cores, 2, JSON.stringify(r)); assert.equal(r.top, true, JSON.stringify(r));
 });
+
+test('K-1185 ALLY_LIFE_HIT LIFE_TO_RESERVE (BS10-050, BS19-X03, BS59-CP03, BS25-024): the matching attacker sends an opposing Life to the Reserve, others do not', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const mk = (id, n) => { const s = BS.mkInst(id); s.cores = n; return s; };
+    const hit = async (holder, atk) => { P.spirits = [holder].concat(atk === holder ? [] : [atk]); const l0 = O.life; await BS.fireFxMulti([{ owner: P, trigger: 'ALLY_LIFE_HIT', src: null, ctx: { attacker: atk } }]); return l0 - O.life; };
+    const holy = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && c.id !== 'BS10-050' && BS.fxMatch(c, { keyword: 'Holy Life' })), plain = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && c.cost <= 2 && !BS.fxMatch(c, { keyword: 'Holy Life' }) && !BS.fxMatch(c, { keyword: 'High Speed' }));
+    const hs = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && BS.fxMatch(c, { keyword: 'High Speed' }) && !['BS19-X03', 'BS59-CP03'].includes(c.id));
+    const out = {}; const o = () => { O.life = 5; };
+    o(); const n = mk('BS10-050', 3); out.holy = await hit(n, mk(holy.id, 1)); o(); out.holyNo = await hit(n, mk(plain.id, 1));
+    o(); const m = mk('BS19-X03', 3); out.selfHit = await hit(m, m); o(); out.hsHit = await hit(m, mk(hs.id, 1)); o(); out.plainNo = await hit(m, mk(plain.id, 1));
+    out.ok = ['BS10-050', 'BS19-X03', 'BS59-CP03', 'BS25-024'].every(k => BS.CARDS[k].fxComplete !== false); return out; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.holy, 1, JSON.stringify(r)); assert.equal(r.holyNo, 0, JSON.stringify(r));
+  assert.equal(r.selfHit, 1, JSON.stringify(r)); assert.equal(r.hsHit, 1, JSON.stringify(r)); assert.equal(r.plainNo, 0, JSON.stringify(r));
+});
