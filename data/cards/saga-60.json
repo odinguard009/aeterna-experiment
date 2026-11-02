@@ -34788,15 +34788,46 @@
    "High Speed"
   ],
   "highSpeed": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Summoned) Put a core from the Void to any of your Spirits. Also, when summoned via an effect, your counter +1, and refresh a \"Ninja Gale\" family Spirit you control."
-  ],
-  "note": "Reprint of BS74-RV002 (same name and stats), added v0.210.0 from the official product list.",
+  "fxComplete": true,
+  "note": "Reprint of BS74-RV002 (same name and stats), added v0.210.0 from the official product list. Summon: Void core to any Spirit; via an effect also counter +1 and refresh a Ninja Gale Spirit.",
   "bicon": [
    "12"
   ],
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "anySpirit"
+     },
+     {
+      "do": "COUNTER",
+      "n": 1,
+      "if": {
+       "viaEffect": true
+      }
+     },
+     {
+      "do": "REFRESH_SPIRIT",
+      "match": {
+       "family": [
+        "Ninja Gale"
+       ]
+      },
+      "if": {
+       "viaEffect": true
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD40-007",

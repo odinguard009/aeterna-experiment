@@ -108,3 +108,12 @@ test('K-879 BS31-053 reveals 6 with Soul Core paid and picks only a Burst-less M
   });
   assert.deepEqual(r.picks, [[3, false, true], [6, true, true]]);
 });
+
+test('K-880 SD40-006 / BS74-RV002 Void core, counter and Ninja Gale refresh only via an effect', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(() => ['SD40-006', 'BS74-RV002'].map(id => {
+    const e = BS.CARDS[id].effects.find(x => x.trigger === 'SUMMONED');
+    return e.actions.map(a => [a.do, !!(a.if && a.if.viaEffect)]);
+  }));
+  for (const x of r) assert.deepEqual(x, [['VOID_TO_CARD', false], ['COUNTER', true], ['REFRESH_SPIRIT', true]]);
+});
