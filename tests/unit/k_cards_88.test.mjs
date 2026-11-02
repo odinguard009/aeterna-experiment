@@ -360,3 +360,18 @@ test('K-912 alsoMagic Spirit with BP_MINUS zeroDestroy destroys a foe brought to
   const m = JSON.stringify(r);
   assert.ok(r.lowBp > 3000 ? r.low === 1 : r.low === 0, m);
 });
+
+test('K-913 BS43-X05 summonAfter: Flash -10000 BP destroys at 0, then the card is summoned free instead of the Trash', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = P.key; P.cpu = true; O.cpu = true;
+    P.spirits.length = 0; O.spirits.length = 0; P.hand.length = 0; P.trash.length = 0;
+    const f = BS.mkInst('BS01-002'); f.cores = 1; O.spirits.push(f);
+    const m = BS.mkInst('BS43-X05'); P.hand.push(m); P.reserve.n = 6;
+    await BS.castMagic(P, { inst: m, target: f, plan: null, ctx: 'flash' });
+    return { foe: O.spirits.length, onField: P.spirits.includes(m), inTrash: P.trash.includes(m), usable: BS.magicUsable(P, m, 'main') };
+  });
+  const m = JSON.stringify(r);
+  assert.equal(r.foe, 0, m); assert.equal(r.onField, true, m); assert.equal(r.inTrash, false, m);
+});
