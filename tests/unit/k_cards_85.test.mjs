@@ -660,3 +660,14 @@ test('K-988 BS09-054 has Tribute data and an optional Assault refresh on attack'
   const r = await page.evaluate(`(() => { const k = BS.CARDS['BS09-054']; const e = k.effects.find(x => x.trigger === 'ATTACKS'); return [k.tribute.costGe, k.tribute.to, e.lv.join(), e.optional, e.actions[0].do, e.actions[0].n]; })()`);
   assert.deepEqual(r, [3, 'void', '2,3', true, 'ASSAULT', 1], JSON.stringify(r));
 });
+
+test('K-989 sameLvBattle condition is true only when both battlers have the same LV', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(() => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.spirits.length = 0; O.spirits.length = 0;
+    const att = BS.mkInst('BS03-008'); att.cores = 1; const blk = BS.mkInst('BS03-008'); blk.cores = 1; P.spirits.push(att); O.spirits.push(blk); const out = [];
+    const q = () => BS.fxIf(P, O, { sameLvBattle: true }, { selfInst: att });
+    G.attacker = att; G.blocker = blk; out.push(q()); blk.cores = 9; out.push(q()); G.blocker = null; out.push(q()); G.attacker = null;
+    const e = BS.CARDS['BS03-008'].effects.find(x => x.trigger === 'ALLY_BLOCKED'); out.push(e.self, e.actions[0].n, BS.CARDS['BS04-041'].effects.some(x => x.trigger === 'BLOCKS' && x.if && x.if.sameLvBattle));
+    return out; })()`);
+  assert.deepEqual(r, [true, false, false, true, 3000, true], JSON.stringify(r));
+});

@@ -11624,12 +11624,29 @@
   "image": "The BladeDragon Stegorasaurus.jpg",
   "block": "03",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Attacks) When this Spirit is blocked by a Spirit with the same LV, this Spirit gains +3000 BP."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "C"
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image.",
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ALLY_BLOCKED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "self": true,
+    "if": {
+     "sameLvBattle": true
+    },
+    "actions": [
+     {
+      "do": "BP_PLUS",
+      "n": 3000
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS03-009",
@@ -19500,13 +19517,27 @@
       "Magic"
      ]
     }
+   },
+   {
+    "trigger": "BLOCKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "if": {
+     "sameLvBattle": true
+    },
+    "actions": [
+     {
+      "do": "BP_PLUS",
+      "n": 3000
+     }
+    ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "Jap Version = [LV1][LV2][LV3] (When Blocks) When blocking a Spirit at the same Lv, this Spirit gains +3000 BP."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image.",
   "rcode": "C"
  },
  {

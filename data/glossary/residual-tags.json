@@ -377,12 +377,6 @@
   "C_LEVEL",
   "T_ATTACKS"
  ],
- "BS03-008": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "T_ALLY_BLOCKED",
-  "T_ATTACKS"
- ],
  "BS03-012": [
   "A_RETURN_TRASH",
   "A_TRASH_TO_RESERVE",
@@ -706,11 +700,6 @@
   "A_BP_PLUS",
   "C_LEVEL",
   "K_HIGH_SPEED"
- ],
- "BS04-041": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "T_BLOCKS"
  ],
  "BS04-042": [
   "A_EXHAUST",
