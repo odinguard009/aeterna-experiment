@@ -78,7 +78,7 @@ function fxValid(it) {
   if (trg === 'BP_REACHED' && !(subj && bpOf(subj) >= e.bpGe && !(ctx.bpFrom >= e.bpGe))) return false;
   if (e.once && usedThisTurn(owner, f, idx, e)) return false;
   if (trg === 'DESTROYED' && ctx.depl && !e.alsoDepleted) return false;      // v0.177 a depletion is not a plain (When Destroyed)
-  if (!fxIf(owner, opp, e.if, Object.assign({}, ctx, { viaFC: ctx.viaFC == null ? !!f.viaFC : ctx.viaFC, viaHS: !!f.viaHS, viaLegacy: (f.legacyN || 0) > 0 || (trg === 'ALLY_SUMMONED' && subj ? (subj.legacyN || 0) > 0 : false), selfUid: f.uid, selfInst: f }))) return false;      // v212 ALLY_SUMMONED reads the summoned card's Legacy
+  if (!fxIf(owner, opp, e.if, Object.assign({}, ctx, { viaFC: ctx.viaFC == null ? !!f.viaFC : ctx.viaFC, viaHS: !!f.viaHS, subjViaFx: trg === 'ALLY_SUMMONED' && subj ? !!subj.viaFx : false, viaLegacy: (f.legacyN || 0) > 0 || (trg === 'ALLY_SUMMONED' && subj ? (subj.legacyN || 0) > 0 : false), selfUid: f.uid, selfInst: f }))) return false;      // v212 ALLY_SUMMONED reads the summoned card's Legacy
   return fxCan({ p: owner, opp, src: f, ctx }, e);
 }
 async function fireFxMulti(events) {

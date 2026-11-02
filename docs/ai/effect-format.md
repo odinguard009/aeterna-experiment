@@ -402,3 +402,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v364 (Lane K): condition `mirageColor` (array of colors): "if you have a Purple/White Mirage set" (the set Mirage card has any listed color). Cards: BS58-037.
 - v365 (Lane K): STATIC `perCounter` ("This Spirit gains +N BP for each counter you have"; to: self). Card: BS70-005.
 - v366 (Lane K): match `mono: true` (the card has exactly one colour, "green 1-colour"). Card: BS49-CP02.
+- v367 (Lane K): condition `subjViaEffect` (ALLY_SUMMONED: the summoned Spirit entered via an effect). Card: BS68-004.
