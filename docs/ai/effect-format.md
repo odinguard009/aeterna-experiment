@@ -377,3 +377,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v339 (Lane K): TREAT_LV2 `all` (with highest): every own Spirit is treated as its highest LV this turn (BS04-069); BS17-059 uses TREAT_LV1 all; BS04-047, BS08-042, BS17-045 use BRILLIANCE.
 - v340 (Lane K): STATIC flag `NO_OPP_BURST` {match, mode attacking|battling}: while a matching own Spirit attacks (or battles), the opponent can't activate Bursts (BS29-018, BS41-028, BS28-023).
 - v341 (Lane K): STATIC flag `LV_PLUS` (to own, match, lv, if): "all your <match> Spirits are treated as being one level higher" (BS22-047, BS46-RV006, BS38-RV034, BS41-083); read by lvIndex with a re-entrancy guard, capped at the highest level.
+- v342 (Lane K): `LV_UP_TURN` takes `self: true` ("Treat this Spirit as being one level higher", BS20-048).

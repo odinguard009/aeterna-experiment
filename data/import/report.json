@@ -1,11 +1,11 @@
 {
  "stats": {
-  "cards": 6552,
+  "cards": 6551,
   "per_saga": {
    "1": 487,
    "2": 267,
    "3": 338,
-   "4": 325,
+   "4": 324,
    "5": 610,
    "6": 338,
    "7": 495,
@@ -22,7 +22,7 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2154,
+  "skipped_curated": 2155,
   "nexus_levels_added": 674,
   "nexus_levels_missing": 43,
   "merged": 107,
@@ -926,6 +926,7 @@
   "BS20-042",
   "BS20-043",
   "BS20-046",
+  "BS20-048",
   "BS20-049",
   "BS20-050",
   "BS20-051",

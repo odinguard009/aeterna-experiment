@@ -745,3 +745,11 @@ test('K-998 OPP_HAND_UP cards fire once per event (BS43-084, BS31-042 discard, B
   const r = await page.evaluate(`(() => { const sh = id => BS.CARDS[id].effects.filter(e => e.trigger === 'OPP_HAND_UP').map(e => e.actions.map(a => a.do + (a.n || '')).join('+')).join('|'); return [sh('BS43-084'), sh('BS31-042'), sh('BS42-027')]; })()`);
   assert.deepEqual(r, ['OPP_DISCARD1', 'OPP_DISCARD1', 'VOID_TO_RESERVE1'], JSON.stringify(r));
 });
+
+test('K-999 LV_UP_TURN self: BS20-048 attacking is treated as one LV higher this turn (BS20-048)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player; P.spirits.length = 0;
+    const s = BS.mkInst('BS20-048'); s.cores = BS.CARDS['BS20-048'].levels[0].cores; P.spirits.push(s); G.turn = 'player';
+    const before = BS.lvIndex(s); await BS.fireFx(P, 'ATTACKS', s, {}); return [before, BS.lvIndex(s), s.lvPlusTurn === true]; })()`);
+  assert.deepEqual(r, [0, 1, true], JSON.stringify(r));
+});
