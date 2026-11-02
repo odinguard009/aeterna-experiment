@@ -463,3 +463,13 @@ test('K-969 BS01-141 marks one own Spirit as unblockable this turn', async () =>
     return s.noBlockTurn === G.turnNo; })()`);
   assert.equal(r, true);
 });
+
+test('K-970 BS01-129 sends one core from an opposing Spirit to its owner Reserve', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; O.spirits.length = 0;
+    const sp = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit'); const s = BS.mkInst(sp); s.cores = 3; O.spirits.push(s);
+    const rs = O.reserve.n;
+    await BS.FX_ACTIONS.OPP_CORES_TO_RESERVE.run({ p: P, opp: O, src: BS.mkInst('BS01-129'), ctx: {} }, BS.CARDS['BS01-129'].magic.actions[0]);
+    return [s.cores, O.reserve.n - rs]; })()`);
+  assert.deepEqual(r, [2, 1], JSON.stringify(r));
+});
