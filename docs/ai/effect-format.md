@@ -404,3 +404,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v366 (Lane K): match `mono: true` (the card has exactly one colour, "green 1-colour"). Card: BS49-CP02.
 - v367 (Lane K): condition `subjViaEffect` (ALLY_SUMMONED: the summoned Spirit entered via an effect). Card: BS68-004.
 - v368 (Lane K): STATIC flag `FX_SUMMON_EXHAUSTED` (to: opp; opposing Spirits summoned by effects enter exhausted, filtered by `match`) and `match.notColor`. Card: BS35-026.
+- v369 (Lane K): `ctrlFamily.soul` (the matching Spirit must hold a Soul Core). Card: BS35-002.

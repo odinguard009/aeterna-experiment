@@ -116,3 +116,16 @@ test('K-900 BS35-001 (+15000 on attack) and BS37-025 (+5000 static) apply only D
   const m = JSON.stringify(r);
   assert.equal(r.atkfalse, 0, m); assert.equal(r.atktrue, 15000, m); assert.equal(r.diff, 5000, m);
 });
+
+test('K-901 BS35-002 gains +5000 BP only while a War Dragon Spirit holds a Soul Core', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player; G.active = P.key; P.cpu = true; P.spirits.length = 0;
+    const a = BS.mkInst('BS35-002'); a.cores = 3; P.spirits.push(a);
+    const w = BS.mkInst(Object.keys(BS.CARDS).find(id => (BS.CARDS[id].families || []).includes('War Dragon') && BS.CARDS[id].type === 'Spirit' && id !== 'BS35-002')); w.cores = 2; P.spirits.push(w);
+    w.soul = false; const off = BS.bpOf(a); w.soul = true; const on = BS.bpOf(a);
+    return { d: on - off };
+  });
+  assert.equal(r.d, 5000, JSON.stringify(r));
+});

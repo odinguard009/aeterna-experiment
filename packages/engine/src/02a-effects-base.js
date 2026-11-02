@@ -200,7 +200,7 @@ function fxIf(owner, opp, c, ctx) {
   if (c.oppLifeGe != null && opp.life < c.oppLifeGe) return false;      // v230 "the opposing Life is N or more"
   if (c.blocksGe != null && owner.spirits.filter(f => (CARDS[f.id].effects || []).some(x => x.trigger === 'BLOCKS')).length < c.blocksGe) return false;      // v218 "three or more Spirits with When Blocks effects"
   if (c.idle != null && !!(G && ctx && (ctx.subject === G.attacker || ctx.subject === G.blocker)) === c.idle) return false;      // idle: true keeps only non-attacking/non-blocking subjects      // v221 "your non-attacking/non-blocking Spirits"
-  if (c.ctrlFamily != null && (c.ctrlFamily.withNexus ? fieldList(owner) : owner.spirits).some(f => c.ctrlFamily.any.some(x => (CARDS[f.id].families || []).includes(x))) !== c.ctrlFamily.is) return false;   // v0.89 S1 "if you control any X/Y family Spirit"                             // v0.88 S1 "if all your Spirits/Nexuses have X" (02p)
+  if (c.ctrlFamily != null && (c.ctrlFamily.withNexus ? fieldList(owner) : owner.spirits).some(f => (!c.ctrlFamily.soul || f.soul) && c.ctrlFamily.any.some(x => (CARDS[f.id].families || []).includes(x))) !== c.ctrlFamily.is) return false;   // v0.89 S1 "if you control any X/Y family Spirit"                             // v0.88 S1 "if all your Spirits/Nexuses have X" (02p)
   if (c.magicUsed != null && !(owner.magicTurn && owner.magicTurn.turn === G.turnNo && owner.magicTurn.cards.some(id => fxMatch(CARDS[id], c.magicUsed)))) return false;   // v0.116 "if you used a <family>/<colour> Magic card this turn"
   return true;
 }
