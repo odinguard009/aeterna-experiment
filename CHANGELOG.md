@@ -4,6 +4,15 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.212.0
+- Lane: K
+- **Lane K: +100 complete cards (2,349 -> 2,449 of 10,291; 100 in this release)**
+- Cards: +100 complete by the official count (2,349 -> 2,449), spread over `data/cards/` saga-01..11, saga-14 and saga-60 (about 37 Lane K commits).
+- Engine: effect schema 375 -> 383. New: BURST_SET / OPP_BURST_SET triggers, VOID_TO_CARD `anyCard`, REFRESH_SPIRIT `subject` and `all`+`noAttack`, TREAT_LV2 `all`+`match`, BP_MINUS `battle` (zeroDestroy / zeroDraw), BP_PLUS passes the instance to `fxMatch`, EXHAUST_OPP `nonBrave`, DESTROY_ANY `braveOnly`, CANT_BLOCK_PER, LIFE_CAP_ALL, `selfSoul` / `soulPaid` bonus clauses; MILL_OPP honours NO_DECK_DISCARD (no schema change).
+- Tests: `tests/unit/k_cards_91..95.test.mjs` (K-1101..K-1166).
+- Limits: the full quick set runs only in CI on `main` for this release; locally only the loop (smoke + changed tests) ran. Cards needing two invoke costs, "discard up to", name-based conditions, summon-cost reduction, a "remains on the Field" replacement, Mirage/Grandwalker/colour-treatment effects stay partial. BS77-AX02/AX03 are stat-less stubs and stay unpromoted.
+- Regression on `main` was green for v0.210.0 and v0.211.0; the earlier `hscroll_layout` failure is fixed (see docs/ai/lane-k-mission.md).
+
 ## v0.211.0
 - Lane: K
 - **Lane K: +100 complete cards (2,249 -> 2,349 of 10,291; 100 in this release)**
