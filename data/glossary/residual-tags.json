@@ -55551,9 +55551,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "SD22-002": [
-  "K_HIGH_SPEED"
- ],
  "SD22-003": [
   "A_VOID",
   "C_LEVEL",
@@ -56047,9 +56044,6 @@
   "K_ULTIMATE",
   "M_UP_TO",
   "T_ATTACKS"
- ],
- "SD28-001": [
-  "K_HIGH_SPEED"
  ],
  "SD28-002": [
   "A_EXHAUST",
