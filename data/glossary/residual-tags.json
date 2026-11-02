@@ -8063,10 +8063,6 @@
   "M_OPTIONAL",
   "T_SUMMONED"
  ],
- "BS25-048": [
-  "A_BP_PLUS",
-  "C_LEVEL"
- ],
  "BS25-049": [
   "A_SUMMON_FREE",
   "A_VOID",
@@ -55267,12 +55263,6 @@
   "K_ULTIMATE",
   "T_ATTACKS",
   "T_BATTLE_WIN"
- ],
- "SD24-003": [
-  "A_VOID",
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "T_ALLY_SUMMONED"
  ],
  "SD24-004": [
   "A_BP_PLUS",

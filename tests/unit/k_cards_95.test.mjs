@@ -181,3 +181,16 @@ test('K-1165 BS39-029 refreshes the blocking Machine Beast; SD03-008 puts cores 
     await BS.fireFx(P, 'ATTACKS', s, {}); return { ref, cores: n.cores, lv, ok: BS.CARDS['SD03-008'].fxComplete !== false && BS.CARDS['BS39-029'].fxComplete !== false }; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.ref, true, JSON.stringify(r)); assert.ok(r.cores >= 1, JSON.stringify(r));
 });
+
+test('K-1166 SD24-003 gets a Void core when a Fighting Spirit Ultimate is summoned; BS25-048 buffs battling Fighting Spirits', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4;
+    const ult = Object.values(BS.CARDS).find(c => c.type === 'Ultimate' && (c.families || []).includes('Fighting Spirit')).id;
+    const a = BS.mkInst('SD24-003'); a.cores = 2; const u = BS.mkInst(ult); P.spirits = [a, u]; const before = a.cores;
+    await BS.fireFx(P, 'ALLY_SUMMONED', u, { subject: u }); const after = a.cores;
+    const fs = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && (c.families || []).includes('Fighting Spirit') && c.id !== 'BS25-048').id;
+    const p = BS.mkInst('BS25-048'); p.cores = 2; const f = BS.mkInst(fs); f.cores = 2; P.spirits = [p, f]; G.step = 5; G.attacker = null; G.blocker = null;
+    const idle = BS.bpOf(f); G.attacker = f; const fight = BS.bpOf(f);
+    return { before, after, idle, fight, ok: BS.CARDS['SD24-003'].fxComplete !== false && BS.CARDS['BS25-048'].fxComplete !== false }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.after, r.before + 1, JSON.stringify(r)); assert.equal(r.fight, r.idle + 2000, JSON.stringify(r));
+});

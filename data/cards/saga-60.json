@@ -28831,12 +28831,35 @@
   "image": "SD24-003.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (Your Main Step) When your Ultimate with the \"Fighting Spirit\" family is summoned, place 1 core from the Void on this Spirit."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: hand translation); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ALLY_SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "match": {
+     "type": "Ultimate",
+     "family": [
+      "Fighting Spirit"
+     ]
+    },
+    "if": {
+     "step": "MAIN",
+     "oppTurn": false
+    },
+    "actions": [
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "self"
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD24-004",
