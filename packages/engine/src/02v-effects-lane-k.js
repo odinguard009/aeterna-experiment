@@ -526,3 +526,13 @@ Object.assign(FX_ACTIONS, {
       const b = t.brave; t.brave = null; c.opp.trash.push(b); log(`${_nm(c)}: ${poss(c.opp)} ${CARDS[b.id].name} is destroyed.`); checkDepletion(c.opp); } },
 });
 wrapImmunity(Object.values(FX_ACTIONS));   // the actions above are defined after 02k: LO01
+// v385/v386: attack an opposing Spirit instead of the Life (moved here from 02p, size cap)
+FX_ACTIONS.ATTACK_SPIRIT = { chk: a => (a.bpLe == null || (Number.isInteger(a.bpLe) && a.bpLe >= 1000)) && (a.state == null || a.state === 'refreshed' || a.state === 'exhausted') && (a.kind == null || a.kind === 'spirit') && (a.coresLe == null || Number.isInteger(a.coresLe)) && (a.coresGe == null || Number.isInteger(a.coresGe)) && (a.highest == null || a.highest === true) && Object.keys(a).every(k => ['do', 'bpLe', 'state', 'kind', 'coresLe', 'coresGe', 'highest', 'if'].includes(k)),
+  txt: () => 'target an opposing Spirit and attack it',
+  cands: (c, a) => c.opp.spirits.filter(t => (!a.bpLe || bpOf(t) <= a.bpLe) && (!a.state || t.exhausted === (a.state === 'exhausted')) && (a.kind !== 'spirit' || CARDS[t.id].type !== 'Ultimate') && (a.coresLe == null || totalCores(t) <= a.coresLe) && (a.coresGe == null || totalCores(t) >= a.coresGe) && (!a.highest || bpOf(t) >= Math.max(...c.opp.spirits.map(bpOf))) && !fxImmune(c.opp, t)),
+  can: (c, a) => !!G.attacker && G.attacker === c.src && FX_ACTIONS.ATTACK_SPIRIT.cands(c, a).length > 0,
+  run: async (c, a) => {
+    const L = G.attacker === c.src ? FX_ACTIONS.ATTACK_SPIRIT.cands(c, a) : [], t = L.length && await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the opposing Spirit to attack instead of the Life (glowing).`);
+    if (!t) { c.ctx.did = false; return; }
+    c.src.atkT = { s: t, b: G.battleNo }; log(`${CARDS[c.src.id].name} targets ${poss(c.opp)} ${CARDS[t.id].name} and attacks it.`);
+  } };

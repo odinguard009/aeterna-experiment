@@ -254,3 +254,13 @@ test('K-1172 ATTACK_SPIRIT (BS01-037): the attack goes at an opposing exhausted 
     return { life: O.life - life, gone: !O.spirits.includes(t), blockerKept: O.spirits.includes(b) && !b.exhausted, lv: BS.lvNo(a), ok: BS.CARDS['BS01-037'].fxComplete !== false }; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.life, 0, JSON.stringify(r)); assert.equal(r.gone, true, JSON.stringify(r)); assert.equal(r.blockerKept, true, JSON.stringify(r));
 });
+
+test('K-1173 ATTACK_SPIRIT coresLe/coresGe (BS01-044): only an opposing Spirit with exactly one core can be targeted', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const ids = Object.values(BS.CARDS).filter(c => c.type === 'Spirit' && c.cost <= 2 && !c.effects).slice(0, 2).map(c => c.id);
+    const a = BS.mkInst('BS01-044'); a.cores = 7; const t1 = BS.mkInst(ids[0]); t1.cores = 3; const t2 = BS.mkInst(ids[1]); t2.cores = 1;
+    P.spirits = [a]; O.spirits = [t1, t2]; const life = O.life; await BS.doBattle(P.key, a);
+    return { life: O.life - life, t1: O.spirits.includes(t1), t2gone: !O.spirits.includes(t2), ok: BS.CARDS['BS01-044'].fxComplete !== false }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.life, 0, JSON.stringify(r)); assert.equal(r.t2gone, true, JSON.stringify(r)); assert.equal(r.t1, true, JSON.stringify(r));
+});
