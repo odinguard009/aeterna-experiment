@@ -186,3 +186,29 @@ test('K-904 BS12-084 destroys the lowest-cost opposing Spirit; BS21-076 leaves o
   const m = JSON.stringify(r);
   assert.deepEqual(r.left, [r.hi], m); assert.deepEqual(r.cores, [1, 1], m);
 });
+
+test('K-905 BS33-082 Main destroys a Rush Spirit only with Soul Core paid; BS31-106 Flash refreshes only with Soul Core paid', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = P.key; P.cpu = true; O.cpu = true;
+    const rush = Object.keys(BS.CARDS).find(id => BS.CARDS[id].type === 'Spirit' && (BS.CARDS[id].mechanics || []).includes('Rush'));
+    const plain = Object.keys(BS.CARDS).find(id => /^BS0/.test(id) && BS.CARDS[id].type === 'Spirit' && !(BS.CARDS[id].effects || []).length);
+    const out = { rush };
+    for (const paid of [false, true]) {
+      O.spirits.length = 0; P.spirits.length = 0; P.deck.length = Math.max(P.deck.length, 5);
+      const a = BS.mkInst(rush); a.cores = 2; O.spirits.push(a); const b = BS.mkInst(plain); b.cores = 2; O.spirits.push(b);
+      const m = BS.mkInst('BS33-082'); m.soulPaid = paid;
+      await BS.runActions({ p: P, opp: O, src: m, ctx: { selfInst: m } }, { actions: BS.CARDS['BS33-082'].magic.by.MAIN.actions });
+      out['rush' + paid] = O.spirits.includes(a);
+      const s = BS.mkInst(plain); s.cores = 2; s.exhausted = true; P.spirits.length = 0; P.spirits.push(s);
+      const n = BS.mkInst('BS31-106'); n.soulPaid = paid;
+      await BS.runActions({ p: P, opp: O, src: n, ctx: { selfInst: n } }, { actions: BS.CARDS['BS31-106'].magic.by.FLASH.actions });
+      out['ref' + paid] = !s.exhausted;
+    }
+    return out;
+  });
+  const m = JSON.stringify(r);
+  assert.ok(r.rush, m); assert.equal(r.rushfalse, true, m); assert.equal(r.rushtrue, false, m);
+  assert.equal(r.reffalse, false, m); assert.equal(r.reftrue, true, m);
+});
