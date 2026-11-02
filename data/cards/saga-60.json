@@ -67,12 +67,25 @@
   "image": "BS03-093.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[Lv1-Lv2-Lv3]『このスピリットのアタック時』このスピリットをBP+2000する。"
-  ],
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
-  "rcode": "C"
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending. Wired: ATTACKS BP_PLUS 2000.",
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "BP_PLUS",
+      "n": 2000
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS04-093",

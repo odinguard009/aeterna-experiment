@@ -314,3 +314,15 @@ test('K-892 BS69-006: Primordial ally attack destroys an opposing Spirit with BP
   assert.equal(r.dh, 2, m); assert.equal(r.hiAlive, true, m);
   assert.ok(r.bl <= r.bs && r.bh > r.bs, m); assert.equal(r.loAlive, false, m);
 });
+
+test('K-893 BS03-093: when this Spirit attacks it gets BP +2000', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player; G.active = P.key; P.cpu = true; P.spirits.length = 0;
+    const s = BS.mkInst('BS03-093'); s.cores = 2; P.spirits.push(s);
+    const b0 = BS.bpOf(s); await BS.fireFx(P, 'ATTACKS', s, { subject: s, attacker: s });
+    return { d: BS.bpOf(s) - b0 };
+  });
+  assert.equal(r.d, 2000, JSON.stringify(r));
+});
