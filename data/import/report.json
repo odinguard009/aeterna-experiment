@@ -1,8 +1,8 @@
 {
  "stats": {
-  "cards": 6538,
+  "cards": 6537,
   "per_saga": {
-   "1": 485,
+   "1": 484,
    "2": 266,
    "3": 335,
    "4": 323,
@@ -22,7 +22,7 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2168,
+  "skipped_curated": 2169,
   "nexus_levels_added": 674,
   "nexus_levels_missing": 43,
   "merged": 107,
@@ -528,6 +528,7 @@
   "BS08-042",
   "BS08-044",
   "BS08-046",
+  "BS08-047",
   "BS08-048",
   "BS08-049",
   "BS08-060",

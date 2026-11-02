@@ -433,6 +433,7 @@ function drawKeyFirst(p) {                       // the picked Key copy moves to
 }
 function draw(p, n) {
   let k = 0;
+  if (typeof drawLocked === 'function' && drawLocked()) return 0;      // v351 NO_DRAW_OUTSIDE
   for (; k < n && p.deck.length; k++) { if (p.keySpirit && keyDrawActive(p)) drawKeyFirst(p); p.hand.push(p.deck.shift()); }
   if (k && G && !G.over && G.evQ) G.evQ.push({ type: 'DRAWS', key: p.key, n: k });      // v236 "when the opponent draws"
   return k;

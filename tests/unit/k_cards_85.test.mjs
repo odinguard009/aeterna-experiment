@@ -868,3 +868,12 @@ test('K-1010 DESTROY_EVERY match hasBrave: BS12-048 destroys every opposing Cost
     await BS.fireFx(P, 'SUMMONED', s, {}); return [O.spirits.includes(a), O.spirits.includes(b)]; })()`);
   assert.deepEqual(r, [false, true], JSON.stringify(r));
 });
+
+test('K-1011 NO_DRAW_OUTSIDE: BS08-047 blocks draws for both players outside the Draw Step only', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.spirits.length = 0; O.spirits.length = 0; G.turn = 'player';
+    const s = BS.mkInst('BS08-047'); s.cores = 1; P.spirits.push(s); const out = [];
+    for (const [pl, st] of [[P, 3], [O, 3], [P, 2], [O, 2]]) { G.step = st; const h = pl.hand.length; await BS.FX_ACTIONS.DRAW.run({ p: pl, opp: pl === P ? O : P, src: s, ctx: {} }, { do: 'DRAW', n: 1 }); out.push(pl.hand.length - h); }
+    P.spirits.length = 0; G.step = 3; const h = O.hand.length; await BS.FX_ACTIONS.DRAW.run({ p: O, opp: P, src: s, ctx: {} }, { do: 'DRAW', n: 1 }); out.push(O.hand.length - h); return out; })()`);
+  assert.deepEqual(r, [0, 0, 1, 1, 1], JSON.stringify(r));
+});
