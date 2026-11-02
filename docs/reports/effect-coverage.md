@@ -4,139 +4,139 @@
 
 | Tag | Kind | Meaning | Engine | Status | Cards |
 |---|---|---|---|---|---|
-| T_SUMMONED | trigger | (When Summoned) | SUMMONED | wired | 2392 |
-| T_ATTACKS | trigger | (When Attacks) | ATTACKS | wired | 2574 |
-| T_ALLY_ATTACKS | trigger | When your X attacks | ALLY_ATTACKS | wired | 243 |
-| T_ALLY_BLOCKED | trigger | When your X is blocked | ALLY_BLOCKED | wired | 92 |
-| T_ALLY_SUMMONED | trigger | When your target Spirit is summoned (Neo-Core Charge) | ALLY_SUMMONED | wired | 235 |
-| T_ADVENT | trigger | (When Advents) | ADVENT | wired | 231 |
-| T_START_ATTACK | trigger | (Start of Your Attack Step) | START_ATTACK | wired | 97 |
-| T_ALLY_LIFE_HIT | trigger | When your X reduces the opposing Life | ALLY_LIFE_HIT | wired | 134 |
-| T_ALLY_LOST | trigger | When your Spirit is depleted/destroyed by the opponent | ALLY_LOST | partial | 163 |
-| T_OPP_HAND_UP | trigger | When the opposing Hand increases | OPP_HAND_UP | wired | 74 |
-| T_MIRAGE_LIFE | trigger | [During Set] when a Life is reduced | MIRAGE_OWN_LIFE / MIRAGE_OPP_LIFE | partial | 313 |
-| T_REVEALED | trigger | When revealed from the deck | REVEALED (+ actions MIRAGE_SET, DEPLOY_SELF) | partial | 77 |
-| T_ALLY_DESTROYS | trigger | When your X destroys an opposing Spirit | ALLY_DESTROYS (battle only) | partial | 8 |
+| T_SUMMONED | trigger | (When Summoned) | SUMMONED | wired | 2780 |
+| T_ATTACKS | trigger | (When Attacks) | ATTACKS | wired | 3054 |
+| T_ALLY_ATTACKS | trigger | When your X attacks | ALLY_ATTACKS | wired | 271 |
+| T_ALLY_BLOCKED | trigger | When your X is blocked | ALLY_BLOCKED | wired | 106 |
+| T_ALLY_SUMMONED | trigger | When your target Spirit is summoned (Neo-Core Charge) | ALLY_SUMMONED | wired | 263 |
+| T_ADVENT | trigger | (When Advents) | ADVENT | wired | 290 |
+| T_START_ATTACK | trigger | (Start of Your Attack Step) | START_ATTACK | wired | 121 |
+| T_ALLY_LIFE_HIT | trigger | When your X reduces the opposing Life | ALLY_LIFE_HIT | wired | 142 |
+| T_ALLY_LOST | trigger | When your Spirit is depleted/destroyed by the opponent | ALLY_LOST | partial | 181 |
+| T_OPP_HAND_UP | trigger | When the opposing Hand increases | OPP_HAND_UP | wired | 83 |
+| T_MIRAGE_LIFE | trigger | [During Set] when a Life is reduced | MIRAGE_OWN_LIFE / MIRAGE_OPP_LIFE | partial | 363 |
+| T_REVEALED | trigger | When revealed from the deck | REVEALED (+ actions MIRAGE_SET, DEPLOY_SELF) | partial | 97 |
+| T_ALLY_DESTROYS | trigger | When your X destroys an opposing Spirit | ALLY_DESTROYS (battle only) | partial | 9 |
 | T_FROM_HAND_BLOCKED | trigger | Deploy/summon this from the Hand when your X is blocked | ALLY_BLOCKED zone:'hand' + DEPLOY_SELF | wired | 1 |
-| T_ACTIVATE | trigger | [Main] / (Flash) activated abilities | ACTIVATE | wired | 100 |
-| A_DRAW | action | Draw N cards | DRAW | wired | 257 |
-| A_COUNTER | action | Your counter +N | COUNTER | wired | 310 |
-| A_DESTROY_BP | action | Destroy an opposing Spirit with BP N or less | DESTROY | wired | 204 |
-| A_DESTROY_NEXUS | action | Destroy an opposing Nexus | DESTROY nexus:true | wired | 70 |
-| A_BOUNCE | action | Return an opposing Spirit/Nexus to the Hand | BOUNCE_OPP | wired | 116 |
-| A_BANISH | action | Banish | MAGIC_FX BANISH_BP_LE / BANISH_DESTROYED | partial | 164 |
-| A_BP_PLUS | action | +N BP this turn | BP_PLUS / STATIC bp | wired | 1117 |
-| A_REFRESH | action | Refresh a Spirit | REFRESH / REFRESH_SPIRIT | wired | 1236 |
-| A_CORE_TO_SELF | action | +1 core to this card | CORE_TO_SELF | wired | 190 |
-| A_TRASH_TO_RESERVE | action | Cores from the Trash to cards/Reserve | TRASH_CORES_TO | wired | 498 |
-| A_VOID | action | Cores to/from the Void | VOID_TO_RESERVE / VOID_TO_CARD / VOID_TO_TRASH / NEXUS_CORES_TO_VOID | wired | 1709 |
-| A_SOUL_STATE | action | Enter / leave Soul State | SOUL_ENTER / SOUL_SUMMON / SOUL_RETURN | wired | 361 |
-| A_SUMMON_FREE | action | Summon/deploy without paying the cost | SUMMON_HAND / SUMMON_SELF / SUMMON_FREE | wired | 1248 |
+| T_ACTIVATE | trigger | [Main] / (Flash) activated abilities | ACTIVATE | wired | 104 |
+| A_DRAW | action | Draw N cards | DRAW | wired | 295 |
+| A_COUNTER | action | Your counter +N | COUNTER | wired | 339 |
+| A_DESTROY_BP | action | Destroy an opposing Spirit with BP N or less | DESTROY | wired | 283 |
+| A_DESTROY_NEXUS | action | Destroy an opposing Nexus | DESTROY nexus:true | wired | 91 |
+| A_BOUNCE | action | Return an opposing Spirit/Nexus to the Hand | BOUNCE_OPP | wired | 135 |
+| A_BANISH | action | Banish | MAGIC_FX BANISH_BP_LE / BANISH_DESTROYED | partial | 181 |
+| A_BP_PLUS | action | +N BP this turn | BP_PLUS / STATIC bp | wired | 1286 |
+| A_REFRESH | action | Refresh a Spirit | REFRESH / REFRESH_SPIRIT | wired | 1426 |
+| A_CORE_TO_SELF | action | +1 core to this card | CORE_TO_SELF | wired | 218 |
+| A_TRASH_TO_RESERVE | action | Cores from the Trash to cards/Reserve | TRASH_CORES_TO | wired | 575 |
+| A_VOID | action | Cores to/from the Void | VOID_TO_RESERVE / VOID_TO_CARD / VOID_TO_TRASH / NEXUS_CORES_TO_VOID | wired | 1945 |
+| A_SOUL_STATE | action | Enter / leave Soul State | SOUL_ENTER / SOUL_SUMMON / SOUL_RETURN | wired | 413 |
+| A_SUMMON_FREE | action | Summon/deploy without paying the cost | SUMMON_HAND / SUMMON_SELF / SUMMON_FREE | wired | 1455 |
 | A_SUMMON_PAID | action | Summon/deploy by paying the cost (cost reduction applies) | SUMMON_HAND / SOUL_SUMMON with pay:true; Revive | wired | 0 |
-| A_RETURN_TRASH | action | Return a card from the Trash to the Hand | RETURN_TRASH | wired | 316 |
-| A_REVEAL_DECK | action | Reveal N cards from the decktop and pick | SOUL_ENTER src:reveal / REVEAL_DEPLOY / REVEAL_ADD (Magic) | partial | 294 |
-| A_AWAKEN | action | Send cores from your Spirits to this Spirit | AWAKEN | wired | 72 |
-| A_LIFE_TO_RESERVE | action | Send Life to the Reserve | LIFE_TO_RESERVE | wired | 252 |
-| A_EXHAUST | action | Exhaust / depletion effects | EXHAUST_OPP (effect action) and MAGIC_FX EXHAUST_OPP | wired | 1660 |
-| A_DISCARD_OPP | action | Opponent discards | DISCARD_OPP_BURST only | partial | 255 |
-| A_SYMBOL | action | Extra symbol / symbol change | SYMBOL_PLUS (this battle) / SYMBOL_PLUS_TURN (this turn, coloured) | partial | 255 |
-| A_END_ATTACK | action | End the Attack Step | END_ATTACK_AFTER_BATTLE / STATIC NO_END_ATTACK | wired | 110 |
-| A_SEAL | action | Seal | SEAL action; manifest/contractAdvent "seal":true; fxIf sealed; p.lifeSoul | wired | 145 |
-| C_LIFE | condition | If your Life is N or less | lifeLe / lifeGe | wired | 134 |
-| C_COUNTER | condition | Counter N or more / C-cost | counterGe | wired | 331 |
-| C_CONTROL | condition | If you control (incl. Soul State) a named card | controlName / hasName | wired | 300 |
-| C_ONCE | condition | (Once per Turn: Same Name) | once / sameName | wired | 433 |
-| C_OPP_TURN | condition | Opposing turn / Your turn | oppTurn | partial | 434 |
-| C_LEVEL | condition | [LV1][LV2] level gating | lv | wired | 6960 |
-| S_MUST_BLOCK | static | Must block if possible | STATIC flag MUST_BLOCK | wired | 92 |
-| S_NO_RETURN | static | Can't be returned from the Field | STATIC flag NO_RETURN | wired | 77 |
+| A_RETURN_TRASH | action | Return a card from the Trash to the Hand | RETURN_TRASH | wired | 353 |
+| A_REVEAL_DECK | action | Reveal N cards from the decktop and pick | SOUL_ENTER src:reveal / REVEAL_DEPLOY / REVEAL_ADD (Magic) | partial | 350 |
+| A_AWAKEN | action | Send cores from your Spirits to this Spirit | AWAKEN | wired | 83 |
+| A_LIFE_TO_RESERVE | action | Send Life to the Reserve | LIFE_TO_RESERVE | wired | 320 |
+| A_EXHAUST | action | Exhaust / depletion effects | EXHAUST_OPP (effect action) and MAGIC_FX EXHAUST_OPP | wired | 1842 |
+| A_DISCARD_OPP | action | Opponent discards | DISCARD_OPP_BURST only | partial | 271 |
+| A_SYMBOL | action | Extra symbol / symbol change | SYMBOL_PLUS (this battle) / SYMBOL_PLUS_TURN (this turn, coloured) | partial | 310 |
+| A_END_ATTACK | action | End the Attack Step | END_ATTACK_AFTER_BATTLE / STATIC NO_END_ATTACK | wired | 136 |
+| A_SEAL | action | Seal | SEAL action; manifest/contractAdvent "seal":true; fxIf sealed; p.lifeSoul | wired | 161 |
+| C_LIFE | condition | If your Life is N or less | lifeLe / lifeGe | wired | 163 |
+| C_COUNTER | condition | Counter N or more / C-cost | counterGe | wired | 387 |
+| C_CONTROL | condition | If you control (incl. Soul State) a named card | controlName / hasName | wired | 339 |
+| C_ONCE | condition | (Once per Turn: Same Name) | once / sameName | wired | 505 |
+| C_OPP_TURN | condition | Opposing turn / Your turn | oppTurn | partial | 506 |
+| C_LEVEL | condition | [LV1][LV2] level gating | lv | wired | 7983 |
+| S_MUST_BLOCK | static | Must block if possible | STATIC flag MUST_BLOCK | wired | 119 |
+| S_NO_RETURN | static | Can't be returned from the Field | STATIC flag NO_RETURN | wired | 84 |
 | S_CORES_DRAW | static | Draw when cores are sent to this Spirit | STATIC flag CORES_DRAW | wired | 1 |
-| S_UNAFFECTED | static | Unaffected by opposing effects | STATIC flag UNAFFECTED {to: self|own, match, from: {colors, types}} (v0.58) and UNAFFECTED_SOUL (Ometeotl) via fxImmune(owner, target, acting effect); every FX_ACTIONS cands list skips immune opposing targets (02k-effects-immunity.js); HAND_UNAFFECTED (your Hand), card flags handUnaffected / trashUnaffected | partial | 754 |
-| S_CANT_PREVENT | static | Can't be prevented/negated | action flag ignoreImmune (DESTROY coresLe since v0.39; every cands list honours it since v0.58) | partial | 104 |
-| K_BURST | keyword | Burst | card.burst | wired | 1008 |
+| S_UNAFFECTED | static | Unaffected by opposing effects | STATIC flag UNAFFECTED {to: self|own, match, from: {colors, types}} (v0.58) and UNAFFECTED_SOUL (Ometeotl) via fxImmune(owner, target, acting effect); every FX_ACTIONS cands list skips immune opposing targets (02k-effects-immunity.js); HAND_UNAFFECTED (your Hand), card flags handUnaffected / trashUnaffected | partial | 862 |
+| S_CANT_PREVENT | static | Can't be prevented/negated | action flag ignoreImmune (DESTROY coresLe since v0.39; every cands list honours it since v0.58) | partial | 128 |
+| K_BURST | keyword | Burst | card.burst | wired | 1172 |
 | K_FLASH_BURST_FOLLOWUP | keyword | Burst then pay to use the Flash effect | burst.thenFlash (burstFlash) | wired | 2 |
-| K_MIRAGE | keyword | Mirage | card.mirage | partial | 378 |
-| K_ADVENT | keyword | Advent / Contract Advent | advent / contractAdvent | wired | 730 |
+| K_MIRAGE | keyword | Mirage | card.mirage | partial | 434 |
+| K_ADVENT | keyword | Advent / Contract Advent | advent / contractAdvent | wired | 879 |
 | K_MANIFEST | keyword | Manifest / Ultra Manifest | manifest {name, counterGe, turn: YOURS | EITHER_ATTACK | YOUR_ATTACK, ultra | seal}, trigger MANIFEST | wired | 68 |
 | K_REVIVE | keyword | Revive | revive:true | wired | 24 |
-| K_CONTRACT | keyword | Contract Field / Contract Skill | ACTIVATE + CONTRACT_FIELD_ADVENT | wired | 50 |
-| K_GRANDWALKER | keyword | Grandwalker Nexus core effects | (partly via VOID_/NEXUS_ actions) | partial | 863 |
+| K_CONTRACT | keyword | Contract Field / Contract Skill | ACTIVATE + CONTRACT_FIELD_ADVENT | wired | 58 |
+| K_GRANDWALKER | keyword | Grandwalker Nexus core effects | (partly via VOID_/NEXUS_ actions) | partial | 988 |
 | K_OVER_COUNT | keyword | Over Count | card "overCount": {count, bp}; effect modifier oc:true | wired | 4 |
-| K_BRAVE | keyword | Brave (braving) | type Brave + "brave": {bp, family, name, costGe, nexus:{name}}; combineBrave / separateBrave / braveSummon | partial | 1319 |
-| K_ULTIMATE | keyword | Ultimate (card type). Since v0.46 Ultimate cards can be summoned (summon condition summonIf, LV3+ levels, Ultimate symbol), attack and block; not a Brave or Contract Advent target | type Ultimate, summonIf (v0.56: lifeGe, ctrl = you control N or more colour/cost/family Spirits/Ultimates), lvBase 3, lvNo; v0.56 Ultimate Trigger action ULT_TRIGGER + condition utHit (compiler: inline [LVn] (When Attacks) form only); open: Ultimate Trigger level/timing missing in the Fandom export, Double/Triple Ultimate Trigger, Guard / Trigger Counter, effects printed for Spirits only still reach Ultimates | partial | 2406 |
-| K_TOKEN | keyword | Tokens | data/cards/tokens.json (type "Token Spirit" -> Spirit + token:true); action SEND_TOKEN {token,n,ask}; sendToken / tokenHome; per-player Token supply | wired | 31 |
+| K_BRAVE | keyword | Brave (braving) | type Brave + "brave": {bp, family, name, costGe, nexus:{name}}; combineBrave / separateBrave / braveSummon | partial | 1509 |
+| K_ULTIMATE | keyword | Ultimate (card type). Since v0.46 Ultimate cards can be summoned (summon condition summonIf, LV3+ levels, Ultimate symbol), attack and block; not a Brave or Contract Advent target | type Ultimate, summonIf (v0.56: lifeGe, ctrl = you control N or more colour/cost/family Spirits/Ultimates), lvBase 3, lvNo; v0.56 Ultimate Trigger action ULT_TRIGGER + condition utHit (compiler: inline [LVn] (When Attacks) form only); open: Ultimate Trigger level/timing missing in the Fandom export, Double/Triple Ultimate Trigger, Guard / Trigger Counter, effects printed for Spirits only still reach Ultimates | partial | 2794 |
+| K_TOKEN | keyword | Tokens | data/cards/tokens.json (type "Token Spirit" -> Spirit + token:true); action SEND_TOKEN {token,n,ask}; sendToken / tokenHome; per-player Token supply | wired | 34 |
 | K_HEAVY_EXHAUST | keyword | Heavy Exhaust | HEAVY_EXHAUST_OPP (setHeavy / refreshOne; flag heavy next to exhausted) | wired | 0 |
 | K_STANDARD_SUCCESSION | keyword | Standard: Succession / Soul Magic / Shinkai-ho | (not wired) | missing | 33 |
-| K_SEAL | keyword | Seal (Sealed state) | (not wired) | missing | 12 |
-| K_HIGH_SPEED | keyword | Flash - High Speed: summon this card from the Hand paying the cost and its Lv1 cores from the Reserve only | card "highSpeed": true; highSpeedOK / highSpeedSummon in the Flash Timing (human button, cpuHighSpeed) | wired | 162 |
-| K_CRUSH | keyword | Crush (When Attacks): discard cards equal to this Spirit's level from the opposing decktop | action CRUSH {n:"lv"|1-5}; ctx.crushed | wired | 85 |
-| K_HOLY_LIFE | keyword | Holy Life (When Attacks): when this Spirit's attack reduces the opposing Life, put a Void core on your Life | ALLY_LIFE_HIT self + VOID_TO_LIFE | wired | 60 |
+| K_SEAL | keyword | Seal (Sealed state) | (not wired) | missing | 13 |
+| K_HIGH_SPEED | keyword | Flash - High Speed: summon this card from the Hand paying the cost and its Lv1 cores from the Reserve only | card "highSpeed": true; highSpeedOK / highSpeedSummon in the Flash Timing (human button, cpuHighSpeed) | wired | 186 |
+| K_CRUSH | keyword | Crush (When Attacks): discard cards equal to this Spirit's level from the opposing decktop | action CRUSH {n:"lv"|1-5}; ctx.crushed | wired | 88 |
+| K_HOLY_LIFE | keyword | Holy Life (When Attacks): when this Spirit's attack reduces the opposing Life, put a Void core on your Life | ALLY_LIFE_HIT self + VOID_TO_LIFE | wired | 61 |
 | K_ULTRA_HOLY_LIFE | keyword | Ultra Holy Life (When Attacks): when blocked draw from the deckbottom; when not blocked put a Void core on your Life | (not wired: needs a "not blocked" trigger) | missing | 12 |
-| K_ACCEL | keyword | Accel: use this card's Accel effect from the Hand by paying the Accel cost; the card then goes where the text says (usually the Removed Zone) | ACCEL effect (cost, timing, optional reduction) used from the Hand; card then to the Removed Zone; Accel Spirits summonable from the Removed Zone in your Main Step (useAccel, summonFromRemoved) | partial | 244 |
+| K_ACCEL | keyword | Accel: use this card's Accel effect from the Hand by paying the Accel cost; the card then goes where the text says (usually the Removed Zone) | ACCEL effect (cost, timing, optional reduction) used from the Hand; card then to the Removed Zone; Accel Spirits summonable from the Removed Zone in your Main Step (useAccel, summonFromRemoved) | partial | 282 |
 | K_SILVER_WHEEL | keyword | Silver Wheel: a Flash effect that exhausts this Spirit as its cost | ACTIVATE {silverWheel, timing Main+Flash, cost exhaustSelf, once:false}; trigger SILVER_WHEEL after it resolves | partial | 15 |
-| K_ARMOR | keyword | Armor / Heavy Armor / Ultra Armor: unaffected by opposing effects of the listed colours | compiler unaffected_para -> STATIC UNAFFECTED from {colors, types} (v0.58) | partial | 286 |
+| K_ARMOR | keyword | Armor / Heavy Armor / Ultra Armor: unaffected by opposing effects of the listed colours | compiler unaffected_para -> STATIC UNAFFECTED from {colors, types} (v0.58) | partial | 313 |
 | K_NETHER_IMMORTALITY | keyword | Nether Immortality: when your matching "Nether" is destroyed, summon this card from the Trash | (not wired; close to DESTROYED + summon from Trash) | missing | 3 |
-| T_BLOCKS | trigger | (When Blocks): this Spirit blocks | BLOCKS; ATTACKS with alsoBlocks:true | wired | 181 |
-| T_DESTROYED | trigger | (When Destroyed) | DESTROYED | partial | 416 |
-| M_OPTIONAL | modifier | 'You can' = optional; 'You do' = mandatory | optional:true | wired | 3479 |
-| M_BY_DOING | modifier | 'By doing X, do Y': X is a requirement | BY {cost, then, ask} | wired | 937 |
-| M_IF_YOU_DO | modifier | 'You can X. If you do / When you've done so, Y' | if:{prev:true} | wired | 590 |
-| M_THEN | modifier | 'Then': the next part resolves even if the previous part could not | default (no if) | wired | 1081 |
-| M_UP_TO | modifier | 'Up to X' can be 0 | human may stop / choose 0 | wired | 457 |
-| M_UNSTACKABLE | modifier | (Can't Stack): same effect cannot activate more than once at the same timing | noStack (effect field) | wired | 183 |
-| M_REPLACEMENT | modifier | 'Instead' = replacement effect | (Soul State 'instead' only) | partial | 334 |
+| T_BLOCKS | trigger | (When Blocks): this Spirit blocks | BLOCKS; ATTACKS with alsoBlocks:true | wired | 199 |
+| T_DESTROYED | trigger | (When Destroyed) | DESTROYED | partial | 459 |
+| M_OPTIONAL | modifier | 'You can' = optional; 'You do' = mandatory | optional:true | wired | 4005 |
+| M_BY_DOING | modifier | 'By doing X, do Y': X is a requirement | BY {cost, then, ask} | wired | 1095 |
+| M_IF_YOU_DO | modifier | 'You can X. If you do / When you've done so, Y' | if:{prev:true} | wired | 744 |
+| M_THEN | modifier | 'Then': the next part resolves even if the previous part could not | default (no if) | wired | 1237 |
+| M_UP_TO | modifier | 'Up to X' can be 0 | human may stop / choose 0 | wired | 527 |
+| M_UNSTACKABLE | modifier | (Can't Stack): same effect cannot activate more than once at the same timing | noStack (effect field) | wired | 201 |
+| M_REPLACEMENT | modifier | 'Instead' = replacement effect | (Soul State 'instead' only) | partial | 364 |
 | P_PRIORITY | rule | Priority: cannot > must > do = can; cannot be prevented > unaffected > cannot activate | v0.58: can't-block removes blockers before MUST_BLOCK; unaffected Spirits are not bound by MUST_BLOCK; ignoreImmune beats unaffected | partial | 0 |
 | P_SIMULTANEOUS | rule | Simultaneous triggers: continuous effects first, then triggered; the turn player orders within a category | fireFx ordering (owner only) | partial | 0 |
 | P_TARGETING | rule | Targets are chosen when the effect resolves and are not changed if they stop matching | (by design) | wired | 0 |
 | A_SOUL_TO_NEXUS | action | send your Soul Core to a named Grandwalker Nexus | SOUL_TO_NEXUS (+ trigger SOUL_PLACED) | wired | 5 |
 | T_SOUL_PLACED | trigger | when your Soul Core is sent/placed on your Nexus | SOUL_PLACED | wired | 3 |
 | T_MANIFESTS | trigger | (When Manifests) | MANIFEST | wired | 61 |
-| A_DESTROY_TOTAL | action | destroy any number of opposing Spirits up to a total BP | DESTROY_TOTAL | wired | 45 |
-| A_SEND_TOKEN | action | send out a Token from your Token supply | SEND_TOKEN | wired | 28 |
-| A_SYMBOL_PLUS | action | this Spirit gains extra symbols during this battle | SYMBOL_PLUS (inst.symBattle, cleared when the battle ends) | wired | 168 |
-| A_DESTROY_NOFX | action | destroy, and the effects of the destroyed target can't activate | DESTROY noFx:true | wired | 10 |
-| A_DESTROY_COST | action | destroy an opposing Spirit/Ultimate by cost: Cost N or less, cost equal or inferior to this Spirit's / the discarded card's, or the lowest/highest cost | DESTROY costLe | costLeSelf | costLeDiscarded | costRank | costBoost | wired | 178 |
+| A_DESTROY_TOTAL | action | destroy any number of opposing Spirits up to a total BP | DESTROY_TOTAL | wired | 63 |
+| A_SEND_TOKEN | action | send out a Token from your Token supply | SEND_TOKEN | wired | 31 |
+| A_SYMBOL_PLUS | action | this Spirit gains extra symbols during this battle | SYMBOL_PLUS (inst.symBattle, cleared when the battle ends) | wired | 207 |
+| A_DESTROY_NOFX | action | destroy, and the effects of the destroyed target can't activate | DESTROY noFx:true | wired | 12 |
+| A_DESTROY_COST | action | destroy an opposing Spirit/Ultimate by cost: Cost N or less, cost equal or inferior to this Spirit's / the discarded card's, or the lowest/highest cost | DESTROY costLe | costLeSelf | costLeDiscarded | costRank | costBoost | wired | 205 |
 | M_COST_DESTROY_LIMIT | mechanic | increase the limit of your Cost Destruction effects (Bulwark Temple, Railgun on a Nexus) | STATIC flag COST_DESTROY_PLUS {n, perSagaBrave, srcFamily, nexusBrave} | wired | 1 |
-| A_LOOT | action | draw N cards, then discard M cards from the Hand (extra draws and fewer discards under conditions) | LOOT {draw, discard, drawPlus, discardLessPerName, famCostDestroy} | wired | 23 |
+| A_LOOT | action | draw N cards, then discard M cards from the Hand (extra draws and fewer discards under conditions) | LOOT {draw, discard, drawPlus, discardLessPerName, famCostDestroy} | wired | 24 |
 | A_CORE_OR_COUNTER | action | Neo-Core Charge Contract Field: instead of +1 core to the Nexus, +1 counter | CORE_OR_COUNTER | wired | 1 |
-| T_DURING_BRAVE | trigger | [During Brave]: the effect works only while a Brave is combined with this Spirit | effect flag braved:true; condition nexusBraved | wired | 159 |
-| A_BRAVE_AS_SPIRIT | action | an effect summons a Brave card (from the Hand or revealed cards) as a Spirit without paying the cost | SUMMON_HAND / REVEAL_DEPLOY allowBrave:true | partial | 55 |
-| T_OPP_REMOVED | trigger | When cards are put onto the opposing Removed Zone | OPP_REMOVED (event REMOVED from toRemoved) | wired | 44 |
-| A_REMOVED_ZONE | action | Put onto the Removed Zone (hand, Trash, Spirit) | REMOVE_OPP_HAND, OPP_CHOOSES_REMOVE_HAND, REMOVE_OPP_TRASH, SEND_REMOVED | partial | 513 |
-| A_NO_BURST | action | The opponent can't activate Burst effects (this battle) | NO_BURST_BATTLE (G.noBurst, cleared when the battle ends) | partial | 99 |
-| A_VOID_TO_MATCHING | action | Put a core from the Void each to several matching Spirits/Nexuses | VOID_TO_MATCHING | wired | 54 |
-| A_MILL | action | Send cards from the top of your Deck to the Trash (discard from the decktop) | MILL (n, optional family + counter/draw); DECK_TO_TRASH_CORES for the Contractor Nexus version | wired | 107 |
-| A_DISCARD_HAND | action | Discard cards from your Hand (the cost of "by discarding a card from your Hand, ...") | DISCARD_HAND as the cost of BY (the CPU throws away its cheapest card); match.color limits it to e.g. Purple | wired | 48 |
-| A_OPP_CORES_TO_RESERVE | action | Send cores from opposing Spirits/Ultimates to the opposing Reserve | OPP_CORES_TO_RESERVE ({targets, each} or {total}; drawPerDepleted) | wired | 54 |
+| T_DURING_BRAVE | trigger | [During Brave]: the effect works only while a Brave is combined with this Spirit | effect flag braved:true; condition nexusBraved | wired | 205 |
+| A_BRAVE_AS_SPIRIT | action | an effect summons a Brave card (from the Hand or revealed cards) as a Spirit without paying the cost | SUMMON_HAND / REVEAL_DEPLOY allowBrave:true | partial | 63 |
+| T_OPP_REMOVED | trigger | When cards are put onto the opposing Removed Zone | OPP_REMOVED (event REMOVED from toRemoved) | wired | 45 |
+| A_REMOVED_ZONE | action | Put onto the Removed Zone (hand, Trash, Spirit) | REMOVE_OPP_HAND, OPP_CHOOSES_REMOVE_HAND, REMOVE_OPP_TRASH, SEND_REMOVED | partial | 580 |
+| A_NO_BURST | action | The opponent can't activate Burst effects (this battle) | NO_BURST_BATTLE (G.noBurst, cleared when the battle ends) | partial | 109 |
+| A_VOID_TO_MATCHING | action | Put a core from the Void each to several matching Spirits/Nexuses | VOID_TO_MATCHING | wired | 67 |
+| A_MILL | action | Send cards from the top of your Deck to the Trash (discard from the decktop) | MILL (n, optional family + counter/draw); DECK_TO_TRASH_CORES for the Contractor Nexus version | wired | 145 |
+| A_DISCARD_HAND | action | Discard cards from your Hand (the cost of "by discarding a card from your Hand, ...") | DISCARD_HAND as the cost of BY (the CPU throws away its cheapest card); match.color limits it to e.g. Purple | wired | 55 |
+| A_OPP_CORES_TO_RESERVE | action | Send cores from opposing Spirits/Ultimates to the opposing Reserve | OPP_CORES_TO_RESERVE ({targets, each} or {total}; drawPerDepleted) | wired | 60 |
 | A_COUNTER_ONCE | action | Counter +n, limited to once per turn inside a longer effect | COUNTER_ONCE (p.onceUsed key per card name) | wired | 0 |
-| A_DESTROY_CORES_LE | action | Destroy an opposing Spirit/Ultimate with N cores or less on it | DESTROY coresLe (totalCores, Soul Core included) | wired | 10 |
-| A_CANT_ATTACK_BLOCK | action | An opposing Spirit/Ultimate can't attack/block during this game | CANT_ATTACK_BLOCK (flag noAB on the Spirit; reset when it leaves the Field) | partial | 71 |
+| A_DESTROY_CORES_LE | action | Destroy an opposing Spirit/Ultimate with N cores or less on it | DESTROY coresLe (totalCores, Soul Core included) | wired | 11 |
+| A_CANT_ATTACK_BLOCK | action | An opposing Spirit/Ultimate can't attack/block during this game | CANT_ATTACK_BLOCK (flag noAB on the Spirit; reset when it leaves the Field) | partial | 95 |
 | C_OPP_NO_AB | condition | If any opposing Spirit is under can't attack/block effects | if.oppNoAB | wired | 9 |
 | C_OPP_NEXUS | condition | If the opponent controls any Nexus | if.oppNexusGe | wired | 7 |
-| A_DRAW_BOTTOM | action | Draw from the bottom of the Deck | DRAW_BOTTOM | wired | 63 |
-| A_REVEAL_ADD | action | Reveal cards from the Deck top, add matching cards, discard the rest | REVEAL_ADD ({n, add, match, moreIf}) | partial | 176 |
+| A_DRAW_BOTTOM | action | Draw from the bottom of the Deck | DRAW_BOTTOM | wired | 72 |
+| A_REVEAL_ADD | action | Reveal cards from the Deck top, add matching cards, discard the rest | REVEAL_ADD ({n, add, match, moreIf}) | partial | 211 |
 | A_DISCARD_ALL_HAND | action | Discard the entire Hand (at least one card) | DISCARD_ALL_HAND (cost of BY) | wired | 10 |
-| A_VOID_TO_LIFE | action | Put a core from the Void on your Life | VOID_TO_LIFE ({n, lifeLe}) | partial | 135 |
+| A_VOID_TO_LIFE | action | Put a core from the Void on your Life | VOID_TO_LIFE ({n, lifeLe}) | partial | 145 |
 | A_LIFE_TO_SELF | action | Send one of your Lives to this Spirit | LIFE_TO_SELF | partial | 2 |
-| A_NEXUS_CORES_TO_SELF | action | Send cores from your Nexus to this Spirit | NEXUS_CORES_TO_SELF | wired | 2 |
-| A_SELF_TO_HAND | action | Return this Spirit to your Hand | SELF_TO_HAND | wired | 37 |
-| S_EXTRA_REDUCTION | static | All your matching cards gain an extra reduction symbol | STATIC flag EXTRA_REDUCTION ({color, n, match, lv}) | partial | 11 |
-| F_OTHER_NOSTACK | flag | "Your other X" and "(Can't Stack)" | effect flags other / noStack | wired | 240 |
-| K_UNLEASH | keyword | SA Unleash N: when the trigger happens, you can send N cores from the named Grandwalker Nexus to this Spirit; the rest applies only when you did | BY {cost: NEXUS_CORES_TO_SELF {n,name}, then: [...]} (Vajrawurm, Agateram) | wired | 88 |
-| A_LIFE_TO_TRASH | action | Send opposing Life to the Trash (optionally one per differently named <family> Brave you control) | OPP_LIFE_TO_TRASH {n | perBraveNames} | wired | 34 |
-| S_OPP_NO_BLOCK | static | (Your Attack Step) the opponent can't block | OPP_NO_BLOCK {minLv} at START_ATTACK; noBlockActive() empties the blocker list while the source stays at minLv | partial | 29 |
+| A_NEXUS_CORES_TO_SELF | action | Send cores from your Nexus to this Spirit | NEXUS_CORES_TO_SELF | wired | 3 |
+| A_SELF_TO_HAND | action | Return this Spirit to your Hand | SELF_TO_HAND | wired | 42 |
+| S_EXTRA_REDUCTION | static | All your matching cards gain an extra reduction symbol | STATIC flag EXTRA_REDUCTION ({color, n, match, lv}) | partial | 12 |
+| F_OTHER_NOSTACK | flag | "Your other X" and "(Can't Stack)" | effect flags other / noStack | wired | 264 |
+| K_UNLEASH | keyword | SA Unleash N: when the trigger happens, you can send N cores from the named Grandwalker Nexus to this Spirit; the rest applies only when you did | BY {cost: NEXUS_CORES_TO_SELF {n,name}, then: [...]} (Vajrawurm, Agateram) | wired | 92 |
+| A_LIFE_TO_TRASH | action | Send opposing Life to the Trash (optionally one per differently named <family> Brave you control) | OPP_LIFE_TO_TRASH {n | perBraveNames} | wired | 44 |
+| S_OPP_NO_BLOCK | static | (Your Attack Step) the opponent can't block | OPP_NO_BLOCK {minLv} at START_ATTACK; noBlockActive() empties the blocker list while the source stays at minLv | partial | 31 |
 | G_SUBJ_BRAVED | condition | When your <family> Brave Spirit attacks | ALLY_ATTACKS + subjBraved:<family> (attacker has a combined Brave; the Spirit or the Brave is of the family) | wired | 13 |
-| M_TRASH_TRIGGER | trigger | When this card is sent to the Trash from the Deck/Hand by the effect of your <X>: add it to the Hand and/or +1 core to a Grandwalker Nexus | card field trashTrigger {from, by, add, gwCore}; sentToTrashFx from DECK_TO_TRASH_CORES, MILL, DISCARD_HAND | wired | 36 |
+| M_TRASH_TRIGGER | trigger | When this card is sent to the Trash from the Deck/Hand by the effect of your <X>: add it to the Hand and/or +1 core to a Grandwalker Nexus | card field trashTrigger {from, by, add, gwCore}; sentToTrashFx from DECK_TO_TRASH_CORES, MILL, DISCARD_HAND | wired | 37 |
 | M_TRASH_USE | mechanic | While you control <X>, you can use this Magic card from the Trash (then it is banished) | magic.trashUse {if, actions?}: magicUsable/castMagic accept a Trash card, trashUse.actions replace the effect, the card goes to the Removed Zone | wired | 3 |
 | AB_CORE_TAX_TURN | action | During this turn, an opposing Spirit/Ultimate can attack/block only by sending a core from itself to the Trash | AB_CORE_TAX_TURN sets opp.abTax; doBattleInner asks payAbTax for the attacker and the blocker; abTaxOK filters CPU attackers and all blockers | wired | 1 |
 | M_TRASH_SYMBOLS | static | When using this card, you can also use symbols from your Trash to reduce the cost | card flag trashSymbols: effCost adds the symbols of Trash cards to the Field symbols | wired | 2 |
-| M_HAND_UNAFFECTED | static | This card in the Hand/Removed Zone is unaffected by opposing effects | card flag handUnaffected: REMOVE_OPP_HAND, OPP_CHOOSES_REMOVE_HAND and OPP_DISCARD_MAGIC_OR skip it (no opposing effect acts on the Removed Zone yet) | wired | 2 |
+| M_HAND_UNAFFECTED | static | This card in the Hand/Removed Zone is unaffected by opposing effects | card flag handUnaffected: REMOVE_OPP_HAND, OPP_CHOOSES_REMOVE_HAND and OPP_DISCARD_MAGIC_OR skip it (no opposing effect acts on the Removed Zone yet) | wired | 3 |
 | M_OPP_ATTACK_HAND | trigger | At the start of the opposing Attack Step, by sending N cores from your <X> Grandwalker Nexus to the Void, pay the cost to use this card from the Hand | magic.oppAttackHand {gwToVoid, match}; oppAttackHandFx after START_ATTACK | wired | 1 |
-| K_BURST_THEN_MAIN | keyword | Burst: then by paying the cost, activate the Main effect of this card; also activates when your <family> Brave is summoned (condition) | burst.thenMain -> burstFlash(p, inst, 'main'); burst.also {when:BRAVE_SUMMONED, match, if} -> maybeBurst from braveSummonedFx | wired | 33 |
-| A_BP_MINUS | action | Give opposing Spirits -N BP (this turn) | action BP_MINUS {n} (one opposing Spirit, v0.55) | partial | 253 |
-| T_BATTLE_WIN | trigger | (When Battles) when only the opposing Spirit is destroyed by BP comparison | BATTLE_WIN (v0.55) | partial | 138 |
-| K_RUSH | keyword | Rush: while you have a X symbol, the following effect activates next | per-action if {hasSymbol: colour} (v0.55) | partial | 207 |
-| T_DESTROYED_OPP | trigger | (When Destroyed by the Opponent) | DESTROYED + if {byOpp:true} (v0.55) | partial | 152 |
+| K_BURST_THEN_MAIN | keyword | Burst: then by paying the cost, activate the Main effect of this card; also activates when your <family> Brave is summoned (condition) | burst.thenMain -> burstFlash(p, inst, 'main'); burst.also {when:BRAVE_SUMMONED, match, if} -> maybeBurst from braveSummonedFx | wired | 36 |
+| A_BP_MINUS | action | Give opposing Spirits -N BP (this turn) | action BP_MINUS {n} (one opposing Spirit, v0.55) | partial | 289 |
+| T_BATTLE_WIN | trigger | (When Battles) when only the opposing Spirit is destroyed by BP comparison | BATTLE_WIN (v0.55) | partial | 159 |
+| K_RUSH | keyword | Rush: while you have a X symbol, the following effect activates next | per-action if {hasSymbol: colour} (v0.55) | partial | 236 |
+| T_DESTROYED_OPP | trigger | (When Destroyed by the Opponent) | DESTROYED + if {byOpp:true} (v0.55) | partial | 172 |
 | K_STANDARD_INVOKE | keyword | {{Invoke|Flash}} / {{Invoke|Main}} <cost> ▶ <effect> | ACTIVATE {invoke:true, timing, when, once, oncePer, cost} (v0.68, 02l-effects-invoke.js) | partial | 108 |
 | S1_LIFE_REDUCED | condition | If your Life was reduced (during) this turn | if {lifeReduced: true|false} (v0.88, 02a fxIf; lifeTake records p.lifeRedTurn) | wired | 10 |
 | S1_ALL_HAVE | condition | If all your Spirits/Nexuses have the X family / have <Team>; If all your Spirits are Cost 2/4/6/8 with the X family | if {allHave: {family|team|costIn, spiritsOnly}} (v0.88, 02p-effects-shared-shapes.js; teams from the [Team: X] / [Teams: X/Y] head line) | partial | 43 |
@@ -144,50 +144,50 @@
 | S1_LIFE_SHIELD | action | During this turn, your Life can't be reduced by its attack. | LIFE_SHIELD {n} (v0.89, 02p; 08-battle) | wired | 2 |
 | S1_BLOCK_EXHAUSTED_OPP | action | Target an opposing Spirit. During this battle, it can block even while exhausted. | BLOCK_EXHAUSTED_OPP (v0.89, 02p; canBlockState) | wired | 4 |
 | S1_DESTROY_PICKED | action | When this battle ends, destroy it. | END_BATTLE {then: [DESTROY_PICKED]} (v0.89, 02p / 02o) | wired | 2 |
-| T_MAGIC_USED | trigger | (When you use a Magic card) | MAGIC_USED | wired | 57 |
+| T_MAGIC_USED | trigger | (When you use a Magic card) | MAGIC_USED | wired | 58 |
 | C_MAGIC_USED_TURN | condition | If you used a X Magic card this turn | magicUsed | wired | 5 |
 | K_RUMBLE | keyword | Rumble (During Attack): at the end of battle, discard X cards from the opposing decktop, minus the cost of the blocking Spirit in the opposing Trash | action RUMBLE {n:1-7} (queued at ATTACKS, resolved at the end of battle) | wired | 16 |
 | K_AMPLIFY | keyword | Amplify: for each matching Spirit you control, during this battle, this Spirit gains +N BP | BP_TARGET {battle:true, per:{type:'Spirit',family}} on an ACTIVATE Invoke; the card carries keywords ['Amplify'] | wired | 18 |
 
 ## Missing / partial tags by number of cards that need them
 
-- **K_ULTIMATE** (partial, 2406 cards): Ultimate (card type). Since v0.46 Ultimate cards can be summoned (summon condition summonIf, LV3+ levels, Ultimate symbol), attack and block; not a Brave or Contract Advent target. 
-- **K_BRAVE** (partial, 1319 cards): Brave (braving). {"type":"Brave","brave":{"bp":5000,"family":["Ancient Dragon"]}}
-- **K_GRANDWALKER** (partial, 863 cards): Grandwalker Nexus core effects. Core Charge, Grand Skill/Field are per card
-- **S_UNAFFECTED** (partial, 754 cards): Unaffected by opposing effects. Banve, Unnis, Z Thunder
-- **A_REMOVED_ZONE** (partial, 513 cards): Put onto the Removed Zone (hand, Trash, Spirit). {"do":"SEND_REMOVED","n":1}
-- **C_OPP_TURN** (partial, 434 cards): Opposing turn / Your turn. Your Turn limit on Flash only partly
-- **T_DESTROYED** (partial, 416 cards): (When Destroyed). {"trigger":"DESTROYED","lv":[2]}
-- **K_MIRAGE** (partial, 378 cards): Mirage. 
-- **M_REPLACEMENT** (partial, 334 cards): 'Instead' = replacement effect. 
-- **T_MIRAGE_LIFE** (partial, 313 cards): [During Set] when a Life is reduced. Other Mirage triggers (Flash, Soul State) are not wired
-- **A_REVEAL_DECK** (partial, 294 cards): Reveal N cards from the decktop and pick. Spirit/Nexus reveal-and-deploy not generic yet
-- **K_ARMOR** (partial, 286 cards): Armor / Heavy Armor / Ultra Armor: unaffected by opposing effects of the listed colours. BS02-040, BS14-035, BS17-035, BS20-035
-- **A_DISCARD_OPP** (partial, 255 cards): Opponent discards. 
-- **A_SYMBOL** (partial, 255 cards): Extra symbol / symbol change. Magma Call Flash
-- **A_BP_MINUS** (partial, 253 cards): Give opposing Spirits -N BP (this turn). {"do":"BP_MINUS","n":3000}
-- **K_ACCEL** (partial, 244 cards): Accel: use this card's Accel effect from the Hand by paying the Accel cost; the card then goes where the text says (usually the Removed Zone). BS68-045
-- **K_RUSH** (partial, 207 cards): Rush: while you have a X symbol, the following effect activates next. {"do":"DRAW","n":1,"if":{"hasSymbol":"purple"}}
-- **A_REVEAL_ADD** (partial, 176 cards): Reveal cards from the Deck top, add matching cards, discard the rest. {"do":"REVEAL_ADD","n":3,"add":1,"match":{"family":["Thunderive"]},"moreIf":{"counterGe":8}}
-- **A_BANISH** (partial, 164 cards): Banish. Not available as an effect action
-- **T_ALLY_LOST** (partial, 163 cards): When your Spirit is depleted/destroyed by the opponent. Burst version uses ALLY_DESTROYED
-- **T_DESTROYED_OPP** (partial, 152 cards): (When Destroyed by the Opponent). {"trigger":"DESTROYED","if":{"byOpp":true}}
-- **T_BATTLE_WIN** (partial, 138 cards): (When Battles) when only the opposing Spirit is destroyed by BP comparison. {"trigger":"BATTLE_WIN","lv":[2]}
-- **A_VOID_TO_LIFE** (partial, 135 cards): Put a core from the Void on your Life. {"do":"VOID_TO_LIFE","n":1,"lifeLe":3}
+- **K_ULTIMATE** (partial, 2794 cards): Ultimate (card type). Since v0.46 Ultimate cards can be summoned (summon condition summonIf, LV3+ levels, Ultimate symbol), attack and block; not a Brave or Contract Advent target. 
+- **K_BRAVE** (partial, 1509 cards): Brave (braving). {"type":"Brave","brave":{"bp":5000,"family":["Ancient Dragon"]}}
+- **K_GRANDWALKER** (partial, 988 cards): Grandwalker Nexus core effects. Core Charge, Grand Skill/Field are per card
+- **S_UNAFFECTED** (partial, 862 cards): Unaffected by opposing effects. Banve, Unnis, Z Thunder
+- **A_REMOVED_ZONE** (partial, 580 cards): Put onto the Removed Zone (hand, Trash, Spirit). {"do":"SEND_REMOVED","n":1}
+- **C_OPP_TURN** (partial, 506 cards): Opposing turn / Your turn. Your Turn limit on Flash only partly
+- **T_DESTROYED** (partial, 459 cards): (When Destroyed). {"trigger":"DESTROYED","lv":[2]}
+- **K_MIRAGE** (partial, 434 cards): Mirage. 
+- **M_REPLACEMENT** (partial, 364 cards): 'Instead' = replacement effect. 
+- **T_MIRAGE_LIFE** (partial, 363 cards): [During Set] when a Life is reduced. Other Mirage triggers (Flash, Soul State) are not wired
+- **A_REVEAL_DECK** (partial, 350 cards): Reveal N cards from the decktop and pick. Spirit/Nexus reveal-and-deploy not generic yet
+- **K_ARMOR** (partial, 313 cards): Armor / Heavy Armor / Ultra Armor: unaffected by opposing effects of the listed colours. BS02-040, BS14-035, BS17-035, BS20-035
+- **A_SYMBOL** (partial, 310 cards): Extra symbol / symbol change. Magma Call Flash
+- **A_BP_MINUS** (partial, 289 cards): Give opposing Spirits -N BP (this turn). {"do":"BP_MINUS","n":3000}
+- **K_ACCEL** (partial, 282 cards): Accel: use this card's Accel effect from the Hand by paying the Accel cost; the card then goes where the text says (usually the Removed Zone). BS68-045
+- **A_DISCARD_OPP** (partial, 271 cards): Opponent discards. 
+- **K_RUSH** (partial, 236 cards): Rush: while you have a X symbol, the following effect activates next. {"do":"DRAW","n":1,"if":{"hasSymbol":"purple"}}
+- **A_REVEAL_ADD** (partial, 211 cards): Reveal cards from the Deck top, add matching cards, discard the rest. {"do":"REVEAL_ADD","n":3,"add":1,"match":{"family":["Thunderive"]},"moreIf":{"counterGe":8}}
+- **T_ALLY_LOST** (partial, 181 cards): When your Spirit is depleted/destroyed by the opponent. Burst version uses ALLY_DESTROYED
+- **A_BANISH** (partial, 181 cards): Banish. Not available as an effect action
+- **T_DESTROYED_OPP** (partial, 172 cards): (When Destroyed by the Opponent). {"trigger":"DESTROYED","if":{"byOpp":true}}
+- **T_BATTLE_WIN** (partial, 159 cards): (When Battles) when only the opposing Spirit is destroyed by BP comparison. {"trigger":"BATTLE_WIN","lv":[2]}
+- **A_VOID_TO_LIFE** (partial, 145 cards): Put a core from the Void on your Life. {"do":"VOID_TO_LIFE","n":1,"lifeLe":3}
+- **S_CANT_PREVENT** (partial, 128 cards): Can't be prevented/negated. 
+- **A_NO_BURST** (partial, 109 cards): The opponent can't activate Burst effects (this battle). {"do":"NO_BURST_BATTLE"}
 - **K_STANDARD_INVOKE** (partial, 108 cards): {{Invoke|Flash}} / {{Invoke|Main}} <cost> ▶ <effect>. {"trigger":"ACTIVATE","invoke":true,"timing":["MAIN","FLASH"],"when":"duringAttack","once":true,"cost":{"discard":{"match":{"family":["Windfang"]}}},"actions":[{"do":"BP_TARGET","n":3000,"to":"self","battle":true}]}
-- **S_CANT_PREVENT** (partial, 104 cards): Can't be prevented/negated. 
-- **A_NO_BURST** (partial, 99 cards): The opponent can't activate Burst effects (this battle). {"do":"NO_BURST_BATTLE"}
-- **T_REVEALED** (partial, 77 cards): When revealed from the deck. {"trigger":"REVEALED","optional":true,"actions":[{"do":"MIRAGE_SET"}]}
-- **A_CANT_ATTACK_BLOCK** (partial, 71 cards): An opposing Spirit/Ultimate can't attack/block during this game. {"do":"CANT_ATTACK_BLOCK","n":1}
-- **A_BRAVE_AS_SPIRIT** (partial, 55 cards): an effect summons a Brave card (from the Hand or revealed cards) as a Spirit without paying the cost. {"do":"SUMMON_HAND","from":"hand","allowBrave":true,"match":{"family":["Scalostle"],"type":"Brave"}}
+- **T_REVEALED** (partial, 97 cards): When revealed from the deck. {"trigger":"REVEALED","optional":true,"actions":[{"do":"MIRAGE_SET"}]}
+- **A_CANT_ATTACK_BLOCK** (partial, 95 cards): An opposing Spirit/Ultimate can't attack/block during this game. {"do":"CANT_ATTACK_BLOCK","n":1}
+- **A_BRAVE_AS_SPIRIT** (partial, 63 cards): an effect summons a Brave card (from the Hand or revealed cards) as a Spirit without paying the cost. {"do":"SUMMON_HAND","from":"hand","allowBrave":true,"match":{"family":["Scalostle"],"type":"Brave"}}
 - **S1_ALL_HAVE** (partial, 43 cards): If all your Spirits/Nexuses have the X family / have <Team>; If all your Spirits are Cost 2/4/6/8 with the X family. {"do":"DESTROY","bpLe":5000,"if":{"allHave":{"family":"GAIM"}}}
 - **K_STANDARD_SUCCESSION** (missing, 33 cards): Standard: Succession / Soul Magic / Shinkai-ho. 
-- **S_OPP_NO_BLOCK** (partial, 29 cards): (Your Attack Step) the opponent can't block. {"trigger":"START_ATTACK","actions":[{"do":"OPP_DISCARD_MAGIC_OR"},{"do":"OPP_NO_BLOCK","minLv":2,"if":{"prev":true}}]}
+- **S_OPP_NO_BLOCK** (partial, 31 cards): (Your Attack Step) the opponent can't block. {"trigger":"START_ATTACK","actions":[{"do":"OPP_DISCARD_MAGIC_OR"},{"do":"OPP_NO_BLOCK","minLv":2,"if":{"prev":true}}]}
 - **K_SILVER_WHEEL** (partial, 15 cards): Silver Wheel: a Flash effect that exhausts this Spirit as its cost. BS70-036
-- **K_SEAL** (missing, 12 cards): Seal (Sealed state). 
+- **K_SEAL** (missing, 13 cards): Seal (Sealed state). 
 - **K_ULTRA_HOLY_LIFE** (missing, 12 cards): Ultra Holy Life (When Attacks): when blocked draw from the deckbottom; when not blocked put a Void core on your Life. 
-- **S_EXTRA_REDUCTION** (partial, 11 cards): All your matching cards gain an extra reduction symbol. {"trigger":"STATIC","flag":"EXTRA_REDUCTION","to":"own","match":{"family":["Thunderive"]},"color":"yellow"}
-- **T_ALLY_DESTROYS** (partial, 8 cards): When your X destroys an opposing Spirit. {"trigger":"ALLY_DESTROYS","match":{"name":["Crimson"]}}
+- **S_EXTRA_REDUCTION** (partial, 12 cards): All your matching cards gain an extra reduction symbol. {"trigger":"STATIC","flag":"EXTRA_REDUCTION","to":"own","match":{"family":["Thunderive"]},"color":"yellow"}
+- **T_ALLY_DESTROYS** (partial, 9 cards): When your X destroys an opposing Spirit. {"trigger":"ALLY_DESTROYS","match":{"name":["Crimson"]}}
 - **K_NETHER_IMMORTALITY** (missing, 3 cards): Nether Immortality: when your matching "Nether" is destroyed, summon this card from the Trash. 
 - **A_LIFE_TO_SELF** (partial, 2 cards): Send one of your Lives to this Spirit. {"do":"BY","cost":{"do":"LIFE_TO_SELF","n":1},"then":[]}
 

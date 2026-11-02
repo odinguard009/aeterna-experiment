@@ -1,0 +1,227 @@
+{
+ "_families": {
+  "制服": "School Style",
+  "成熟期": "Champion",
+  "究極体": "Ultimate (Family)"
+ },
+ "BS03-093": {
+  "name": "Minotaur Burtania",
+  "text": "[LV1][LV2][LV3] (When Attacks)\nThis Spirit gains +2000 BP."
+ },
+ "BS04-093": {
+  "name": "Euthanasia",
+  "text": "Flash\nFor this turn, \"When this Spirit is destroyed\" effects of all opposing Spirits do not activate."
+ },
+ "EX010": {
+  "name": "Thunderclap Dragon Rind-Gloam",
+  "text": "[LV1][LV2][LV3] (Your Attack Step)\nAll your Spirits with the \"Astral Dragon\" / \"Winged Dragon\" family gain +1000 BP."
+ },
+ "EX021": {
+  "name": "Underworld Wheel Vhel",
+  "text": "<Union condition: Cost 4 or more>\n<When United> (When Union Attacks)\nDraw a card from your deck, and place 1 core from an opposing Spirit with cost 4 or less in the opposing Reserve."
+ },
+ "LM18-G04": {
+  "name": "Godzilla (vs Destoroyah)",
+  "text": "Flash\n[Accel] Cost 5 {red}{red}{purple}{purple} (This effect can be used from your hand.)\nPlace 2 cores from an opposing Spirit/Ultimate in the opposing Reserve.\nAfter this effect, open this card and keep it in your hand.\n\n[LV2][LV3] (When Attacks)\nYou may discard the top 2 cards of your deck. For each Spirit card among them with \"Godzilla\" / \"Destoroyah\" in its card name, add 1 Red symbol to this Spirit."
+ },
+ "LM18-G05": {
+  "name": "Godzilla (x Mechagodzilla)",
+  "text": "[LV1][LV2][LV3] (When Attacks)\nYou may open the top 3 cards of your deck. Add 1 Spirit card among them with \"Godzilla\" / \"Type 3 Kiryu\" in its card name to your hand. Discard the rest. When you add a Spirit card to your hand with this effect, discard 1 opposing Burst.\n\n[LV2][LV3]\nAll your Spirits with \"Godzilla\" / \"Type 3 Kiryu\" in their card names are not affected by the effects of opposing Spirits/Ultimates."
+ },
+ "LM18-G06": {
+  "name": "Godzilla (2016) Fourth Form",
+  "text": "This card/Spirit is also treated as having the card name \"Shin Godzilla (Fourth Form)\".\nFlash\n[Change] Cost 7 {red}{red}{red}{red} (This effect can be used from your hand.)\nDestroy an opposing Spirit/Ultimate with 30000 BP or less.\nAfter this effect, discard this card, or swap it with your Refreshed Spirit with cost 6 or more that has \"Godzilla\" in its card name. If in battle, the battle continues.\n\n[LV2][LV3] Flash (Either Attack Step)\nBy discarding 1 card from your hand, destroy an opposing Spirit/Ultimate with BP equal to or less than this Spirit's BP."
+ },
+ "P18-04": {
+  "name": "Meicoomon",
+  "text": "[LV1][LV2][LV3] (When Summoned)\nYou may open the top card of your deck. If it is a Spirit card with the \"Perfect\" / \"Ultimate\" family, add it to your hand. Discard the rest.\n\n[LV2][LV3] [Super Digivolve: 2 or more colors] (When Attacks)\nBy returning this Spirit to your hand, summon 1 Spirit card with the \"Perfect\" family and 2 or more colors from your hand without paying its cost."
+ },
+ "PB12-03": {
+  "name": "Comedy King Pentan",
+  "text": "[LV1][LV2][LV3] (When Summoned)\nFor this turn, all Spirits are treated as having \"Pentan\" in their card names.\n\n[LV2][LV3]\nAll your Spirits with \"Pentan\" in their card names return to your hand when they are destroyed by your opponent. All opposing Spirits with \"Pentan\" in their card names return to their owner's hand when they are destroyed by you."
+ },
+ "SD01-016": {
+  "name": "Waterstrider-Borg",
+  "text": "[LV1][LV2] Flash\n[Lightning Speed] This Spirit can be summoned from your hand at the timing of Flash. The cores and cost placed on the Spirit must all be paid from the Reserve."
+ },
+ "SD01-040": {
+  "name": "Armor Purge",
+  "text": "Flash\nRefresh all your Spirits with [Armor]. Then, for this turn, all your Spirits treat [Armor] as if they do not have it, and cannot gain it."
+ },
+ "SD06-005": {
+  "name": "Twin Blade Dragon",
+  "text": "[LV1][LV2][LV3] (When Attacks)\nDraw a card from your deck. If you have a Burst set, additionally destroy an opposing Spirit with 4000 BP or less.\n\n[LV2][LV3] Flash (Your Attack Step)\nBy discarding 1 of your Bursts, for this turn, 1 of your Spirits gains +5000 BP."
+ },
+ "SD10-001": {
+  "name": "Light Bladra",
+  "text": "[LV1][LV2][LV3] Charge\nIncrease the limit of your \"BP Destruction effects\" by +1000."
+ },
+ "SD10-002": {
+  "name": "Glory Guardler",
+  "text": "[LV1][LV2] (When Attacks)\nThis Spirit gains +2000 BP.\n\n[LV2] Charge\nIncrease the limit of your \"BP Destruction effects\" by +1000."
+ },
+ "SD10-003": {
+  "name": "Mirage Wyvern",
+  "text": "[LV2][LV3] (When Attacks)\nDraw a card from your deck."
+ },
+ "SD10-004": {
+  "name": "Steam Dragon Seasmoker",
+  "text": "[LV1][LV2] (When Destroyed)\nDestroy an opposing Spirit with 4000 BP or less."
+ },
+ "SD10-005": {
+  "name": "Bronze Wurm",
+  "text": "[LV1][LV2][LV3] Charge\nIncrease the limit of your \"BP Destruction effects\" by +1000."
+ },
+ "SD10-007": {
+  "name": "Fire Whirl Dragon Firestorm",
+  "text": "[LV1][LV2][LV3] (When Attacks)\nDestroy an opposing Spirit with 3000 BP or less."
+ },
+ "SD11-001": {
+  "name": "Shrikun",
+  "text": "[LV1][LV2] [Heavy Armor: Red]\nThis Spirit is not affected by the effects of opposing Red Spirits/Braves/Nexuses/Magic.\n\n[LV2]\nThis Spirit is also treated as a Green Spirit."
+ },
+ "SD11-003": {
+  "name": "Dark Caribou",
+  "text": "[LV1][LV2] (When Blocks)\nThis Spirit gains +3000 BP.\n\n[LV2] (When Blocks)\nPlace 1 core from the Void on this Spirit.\n[Chain: Condition <Green Symbol>]\n(If you have a Green symbol, continue to activate the effect below.)\nGreen: Exhaust an opposing Spirit."
+ },
+ "SD11-004": {
+  "name": "Rhinogold",
+  "text": "[LV1][LV2][LV3]\nThis Spirit can block while Exhausted.\n\n[LV2][LV3] (When Blocks)\nThis Spirit gains +3000 BP."
+ },
+ "SD11-006": {
+  "name": "Blanc Falcon",
+  "text": "[LV1][LV2][LV3] (Opposing Attack Step)\nAll your White Spirits gain +2000 BP."
+ },
+ "SD17-001": {
+  "name": "Pinacochasaurus",
+  "text": "[LV1][LV2][LV3]\nThis Spirit is also treated as a Green Spirit."
+ },
+ "SD17-003": {
+  "name": "Blade Dragon Stegodita",
+  "text": "[LV1][LV2][LV3] [Clash] (When Attacks)\nThe opponent must block if able."
+ },
+ "SD19-004": {
+  "name": "Buzz Ryuman",
+  "text": "[LV1][LV2] (When Destroyed)\nDestroy an opposing Spirit with 4000 BP or less."
+ },
+ "SD19-006": {
+  "name": "Dragonite",
+  "text": "[LV1][LV2] (When Summoned)\nIf you have an Ultimate, destroy an opposing Nexus.\n[LV1][LV2] (When Attacks)\nDraw a card from your deck."
+ },
+ "SD19-008": {
+  "name": "Ultimate Goradon",
+  "text": "<Summon condition: 1 or more of your Red Spirits>\n[U Trigger] [LV4][LV5] (When this Ultimate Attacks)\nWhen the U Trigger hits, the opponent must block if able. However, an Ultimate does not have to block. If blocked by an opposing Spirit, place 1 core from the opposing Life in the opposing Reserve.\n(U Trigger: Place the top card of the opposing deck in the Trash. If its cost is lower than this Ultimate's, it is a hit.)"
+ },
+ "SD19-009": {
+  "name": "Dragno Ultimate Soldier",
+  "text": "<Summon condition: 1 or more of your Red Spirits>\n[U Trigger] [LV3][LV4] (When this Ultimate Attacks)\nWhen the U Trigger hits, the opponent must block if able. However, an Ultimate does not have to block. If blocked by an opposing Spirit, place 1 core from the opposing Life in the opposing Reserve.\n(U Trigger: Place the top card of the opposing deck in the Trash. If its cost is lower than this Ultimate's, it is a hit.)"
+ },
+ "SD19-010": {
+  "name": "Ultimate Ma-Goo",
+  "text": "<Summon condition: 1 or more of your Red Spirits>\n[LV3][LV4] (When this Ultimate is Summoned)\nDestroy an opposing Spirit with 6000 BP or less.\n\n[U Trigger] [LV4] (When this Ultimate Attacks)\nWhen the U Trigger hits, the opponent must block if able. However, an Ultimate does not have to block. If blocked by an opposing Spirit, place 1 core from the opposing Life in the opposing Reserve.\n(U Trigger: Place the top card of the opposing deck in the Trash. If its cost is lower than this Ultimate's, it is a hit.)"
+ },
+ "SD19-014": {
+  "name": "Blazing Burst",
+  "text": "Burst: After your Life is reduced\nDestroy an opposing Spirit with 5000 BP or less. Then, by paying the cost, activate this card's Flash effect.\n\nFlash\nBy destroying 1 of your Red Spirits, for this turn, your Life is reduced by only 1 from attacks of opposing Spirits."
+ },
+ "SD23-001": {
+  "name": "Hanepo",
+  "text": "[LV1][LV2] (When this Spirit is destroyed by an opponent)\nIf you have a Spirit with \"Fairy\" in its card name, draw 2 cards from your deck."
+ },
+ "SD23-002": {
+  "name": "Fairy Mona",
+  "text": "[LV2] (Either Attack Step)\nWhen a battle is resolved and the opposing Spirit in the battle has 3000 BP or less, you may open the top card of your deck. If it is a Yellow Ultimate card, add it to your hand. If it is any other card, discard it."
+ },
+ "SD23-006": {
+  "name": "Fairy Actia",
+  "text": "[LV1][LV2] (Opposing Attack Step)\nWhen a battle is resolved and the opposing Spirit in the battle has 3000 BP or less, your Life is not reduced by that Spirit's attack.\n\n[LV2] (Either Attack Step)\nWhen a battle is resolved and the opposing Spirit in the battle has 3000 BP or less, place 1 core from the Void in your Reserve."
+ },
+ "SD23-011": {
+  "name": "Eiren's Fortress in the Clouds",
+  "text": "[LV1][LV2]\nWhen your Spirit with the \"Celestial Spirit\" family returns to your hand/deck by the effect of an opposing Spirit/Magic, for each Spirit returned, place 1 core from the Void in your Life.\n\n[LV2] (Either Attack Step)\nWhen an opposing Spirit in battle becomes 0 BP for the first time in a turn, draw a card from your deck."
+ },
+ "SD24-001": {
+  "name": "Giant Soldier Marcius",
+  "text": "[LV1][LV2][LV3] (When this Spirit is destroyed by an opponent)\nYou may open the top 3 cards of your deck. Add 1 Nexus card among them to your hand. Return the rest to the top of your deck in any order."
+ },
+ "SD24-002": {
+  "name": "Black Warrior Kratos",
+  "text": "[LV1][LV2] (When Destroyed)\nDestroy an opposing Spirit with cost 2 or less. If you have an Ultimate, destroy an opposing Spirit with cost 3 or less instead."
+ },
+ "SD24-003": {
+  "name": "Giant Teacher Aristotle",
+  "text": "[LV1][LV2] (Your Main Step)\nWhen your Ultimate with the \"Fighting Spirit\" family is summoned, place 1 core from the Void on this Spirit."
+ },
+ "SD24-006": {
+  "name": "Brave General Craterus",
+  "text": "Burst: After your Life is reduced\nSummon this Spirit card.\n[LV1][LV2][LV3] [Assault: 1] (When Attacks)\nOnce per turn, this Spirit can be Refreshed by Exhausting 1 of your Nexuses."
+ },
+ "SD24-011": {
+  "name": "Capital Alexandria",
+  "text": "[LV1][LV2] (When this Nexus is placed)\nFor this turn, 1 of your Ultimates with the \"Fighting Spirit\" family gains \"[Assault: 1] (When this Ultimate Attacks) Once per turn, this Ultimate can be Refreshed by Exhausting 1 of your Nexuses.\"\n\n[LV2] (Your Attack Step)\nAll your Spirits/Ultimates with the \"Fighting Spirit\" family gain +3000 BP."
+ },
+ "SD26-001": {
+  "name": "Thrust Shepherd",
+  "text": "[LV2] (When Attacks)\nThis Spirit gains +3000 BP."
+ },
+ "SD28-002": {
+  "name": "Kokuwan",
+  "text": "[LV1][LV2] [Spirit Soul: Green]\nWhen you summon an Ultimate card, add {green} (1 Green symbol) to this Spirit.\n[LV1][LV2] (When Destroyed)\nExhaust 1 opposing Ultimate that is not united."
+ },
+ "SD28-003": {
+  "name": "Usubaageha",
+  "text": "[LV1][LV2] (When Summoned)\nPlace 1 core from the Void in your Reserve.\n\n[LV2]\nWhile your Ultimate with the \"Shellman\" family is in battle, the opponent cannot activate Bursts."
+ },
+ "SD28-004": {
+  "name": "Akagane",
+  "text": "[LV1][LV2]\nThis Spirit cannot be destroyed by opposing effects.\n\n[LV2] (Either Attack Step)\nWhen your Green cards are placed in the Trash by an opposing U Trigger, you can add all of them to your hand after the U Trigger."
+ },
+ "SD28-005": {
+  "name": "Gorongoro",
+  "text": "[LV1][LV2] (Either Attack Step)\nAll your Spirits/Ultimates with the \"Shellman\" / \"Blade Insect\" family gain +3000 BP."
+ },
+ "SD28-006": {
+  "name": "Flash Sword Saint Dorsalis",
+  "text": "[LV1][LV2][LV3] (When Summoned)\nYou can summon 1 Green Brave card with the \"Blade Beast\" family from your hand without paying its cost.\n\n[LV2][LV3] (When Attacks)\nExhaust an opposing Spirit.\n\n<When United> [LV3] (Your Attack Step)\nYou can change the target of this Spirit's \"Exhaust effect on the opponent\" from Spirits to Ultimates."
+ },
+ "SD30-X01": {
+  "name": "Sengoku Siegfried",
+  "text": "[LV1][LV2][LV3] Flash [Awakening]\nYou can place any number of your Spirits' cores on this Spirit.\n[LV1][LV2][LV3] (When Attacks)\nDestroy an opposing Spirit/Ultimate with 10000 BP or less.\n\n[LV2][LV3]\nWhile a {soulcore} (Soul Core) is on this Spirit, add 1 Red symbol to this Spirit."
+ },
+ "SD31-001": {
+  "name": "Armored Moth Ninja Nomikage",
+  "text": "Flash\n[Lightning Speed] This Spirit card in your hand can be summoned by using the Reserve for its summon cost and for the cores placed on it."
+ },
+ "SD31-006": {
+  "name": "Armored Moth Ninja Girizo",
+  "text": "[LV1][LV2][LV3]\nWhile a {soulcore} (Soul Core) is on this Spirit, all your Spirits with the \"Ninja Gale\" family gain +4000 BP.\n\n[LV2][LV3]\nWhen the opponent draws, this Spirit Refreshes."
+ },
+ "SD31-008": {
+  "name": "Alien Fang Ninja Sendo Fox",
+  "text": "[LV1][LV2] [Catalyst: All colors] (When Attacks)\nBy placing this Spirit's {soulcore} (Soul Core) in your Trash, immediately activate 1 of your S Bursts.\n\n[LV2] (When Attacks)\nExhaust an opposing Spirit."
+ },
+ "SD32-003": {
+  "name": "Clockwork Warrior Jako",
+  "text": "[LV1][LV2] (When Summoned)\nReturn an opposing Spirit to the Hand.\nWhen a Soul Core is on a Red Spirit of yours other than this Spirit, additionally draw a card from your deck.\n[LV1][LV2]\nThis Spirit's color and symbol are also treated as Red."
+ },
+ "SD32-004": {
+  "name": "Clockwork Warrior Itekaze",
+  "text": "S Burst: After your Spirit is removed/destroyed by an opponent\nReturn an opposing Spirit to the Hand.\nAfter this effect, summon this Spirit card without paying its cost.\n[LV1][LV2][LV3]\nThis Spirit's color and symbol are also treated as Red/Purple.\n\n[LV2][LV3]\nWhile a {soulcore} (Soul Core) is on this Spirit, all your Spirits with 2 or more colors gain +3000 BP."
+ },
+ "SD32-X01": {
+  "name": "Black Emperor General Darkness Griffon",
+  "text": "[LV1][LV2][LV3] (When Summoned)\nFor each color of your symbols, return 1 opposing Spirit/Ultimate to the Hand.\nIf a {soulcore} (Soul Core) was used for the summon cost, all cores on the opposing Spirits/Ultimates returned to the hand by this effect are placed in the Trash instead of the opposing Reserve.\n\n[LV2][LV3] (When Attacks)\nOnce per turn, destroy an Exhausted opposing Spirit, and this Spirit Refreshes."
+ },
+ "SD43-005": {
+  "name": "Cannon Phoenix God Phoenic Seiser",
+  "text": "Burst: After your Life is reduced\nReturn 2 opposing Spirits to the Hand. Or, return 2 opposing Nexuses to the Hand.\nAfter this effect, summon this card without paying its cost.\n[LV1][LV2] (When Summoned/Destroyed)\nYou can summon 1 Brave card from your hand by paying 1 cost.\n\n[LV2] (When Attacks)\nOnce per turn, this Spirit Refreshes."
+ },
+ "SD48-001": {
+  "name": "Little Ancient Dragon Scharlach Rot",
+  "text": "[LV1][LV2] (When Attacks)\nDraw a card from your deck.\n\n[LV2]\nAll your Spirits/Creation God Nexuses that are united with a Myth Brave gain +3000 BP."
+ },
+ "SD49-007": {
+  "name": "Cancer Shell",
+  "text": "This card has the \"Light Guide\" family.\nMain\nOpen the top 2 cards of your deck. Add 1 card with the \"Light Guide\" family among them to your hand. Discard the rest.\n\nFlash\nReturn an opposing Spirit/Ultimate with 12000 BP or less to the Hand. Or, by placing 4 cores of 1 of your Creation God Nexuses with the \"Light Guide\" family in the Void, when this battle ends, end the Attack Step."
+ }
+}
