@@ -12875,12 +12875,23 @@
   "image": "BS21-076.jpg",
   "block": "21",
   "saga": 4,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Send cores from two opposing Spirits to the Reserve until only one core left on each of them."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "OPP_CORES_TO_RESERVE",
+     "targets": 2,
+     "each": 1,
+     "untilOne": true
+    }
+   ]
+  }
  },
  {
   "id": "BS21-077",

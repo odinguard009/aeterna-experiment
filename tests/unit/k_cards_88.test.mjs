@@ -168,3 +168,21 @@ test('K-903 SD29-013 destroys two small Spirits (+ a Nexus with Soul Core); SD29
   const m = JSON.stringify(r);
   assert.equal(r.a, 1, m); assert.equal(r.c0, 1, m); assert.equal(r.c1, 0, m);
 });
+
+test('K-904 BS12-084 destroys the lowest-cost opposing Spirit; BS21-076 leaves one core on two opposing Spirits', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = P.key; P.cpu = true; O.cpu = true;
+    const sp = Object.keys(BS.CARDS).filter(id => /^BS0/.test(id) && BS.CARDS[id].type === 'Spirit' && !(BS.CARDS[id].effects || []).length);
+    const lo = sp.find(id => BS.CARDS[id].cost === 1), hi = sp.find(id => BS.CARDS[id].cost >= 4);
+    const run = async id => { const m = BS.mkInst(id); await BS.runActions({ p: P, opp: O, src: m, ctx: { selfInst: m } }, { actions: BS.CARDS[id].magic.actions }); };
+    O.spirits.length = 0; const a = BS.mkInst(lo), b = BS.mkInst(hi); a.cores = 2; b.cores = 2; O.spirits.push(a, b);
+    await run('BS12-084'); const left = O.spirits.map(x => x.id);
+    O.spirits.length = 0; const c = BS.mkInst(lo), d = BS.mkInst(hi); c.cores = 4; d.cores = 4; O.spirits.push(c, d);
+    await run('BS21-076');
+    return { left, lo, hi, cores: [c.cores, d.cores] };
+  });
+  const m = JSON.stringify(r);
+  assert.deepEqual(r.left, [r.hi], m); assert.deepEqual(r.cores, [1, 1], m);
+});

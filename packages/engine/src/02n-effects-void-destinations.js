@@ -57,7 +57,8 @@
     if (a.targets > 1) {      // v199 "target three Spirits" (one action, one core each)
       const T = await pickOppSpirits(c, L, a.targets, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the opposing Spirits to send cores from (glowing).`);
       let movedN = 0;
-      for (const t of T) { const m = Math.max(0, Math.min(a.each + (a.eachPer ? perCount(c.p, a.eachPer) : 0) + (a.eachLegacy ? (c.src.legacyN || 0) : 0), t.cores, coreTakeCap(c.opp, t, Infinity))); if (!m) continue; coreEvN(c.opp, t.uid, 'reserve', m, false); t.cores -= m; c.opp.reserve.n += m; movedN += m; }
+      for (const t of T) { const m = Math.max(0, Math.min(a.untilOne ? Math.max(0, t.cores - 1) : a.each + (a.eachPer ? perCount(c.p, a.eachPer) : 0) + (a.eachLegacy ? (c.src.legacyN || 0) : 0), t.cores, coreTakeCap(c.opp, t, Infinity))); if (!m) continue;      // v370 untilOne also with targets 2-3
+      coreEvN(c.opp, t.uid, 'reserve', m, false); t.cores -= m; c.opp.reserve.n += m; movedN += m; }
       if (!movedN) { c.ctx.did = false; return; }
       log(`${CARDS[c.src.id].name}: ${movedN} core${movedN === 1 ? '' : 's'} from ${poss(c.opp)} Spirits go to the Reserve.`); checkDepletion(c.opp); io.view({ type: 'board' }); return;
     }
