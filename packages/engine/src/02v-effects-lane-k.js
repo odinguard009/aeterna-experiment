@@ -371,4 +371,20 @@ FX_ACTIONS.LIFE_HIT_DESTROY_TURN = {
   can: c => c.p.lifeHitDestroy !== G.turnNo,
   run: async c => { if (c.p.lifeHitDestroy === G.turnNo) { c.ctx.did = false; return; } c.p.lifeHitDestroy = G.turnNo; log(`${_nm(c)}: this turn, an attack without Tribute that reduces ${poss(c.p)} Life gets its Spirit destroyed.`); } };
 
+/* v330 SPIRIT_TO_DECKTOP: "Move target Spirit to the top of its owner's Deck." Any Spirit; protected opposing Spirits are skipped. Reuses bounceCard(..., 'deckBottom') and then moves the card from the bottom to the top (Tokens just go home). */
+FX_ACTIONS.SPIRIT_TO_DECKTOP = {
+  chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
+  txt: () => "move a Spirit to the top of its owner's Deck",
+  cands: c => [...c.p.spirits, ...c.opp.spirits.filter(t => !fxImmune(c.opp, t))],
+  can: c => FX_ACTIONS.SPIRIT_TO_DECKTOP.cands(c).length > 0,
+  run: async c => {
+    const L = FX_ACTIONS.SPIRIT_TO_DECKTOP.cands(c); if (!L.length) { c.ctx.did = false; return; }
+    const t = c.p.cpu ? (L.find(s => c.opp.spirits.includes(s)) || L[0]) : await fxPickTarget(c, L, `✨ <b>${esc(_nm(c))}</b><br>Tap a Spirit to move to the top of its owner's Deck (glowing).`);
+    if (!t) { c.ctx.did = false; return; }
+    const own = c.p.spirits.includes(t) ? c.p : c.opp;
+    bounceCard(own, t, 'deckBottom');
+    if (own.deck[own.deck.length - 1] === t) { own.deck.pop(); own.deck.unshift(t); log(`${CARDS[t.id].name} is moved to the top of ${poss(own)} Deck.`); }
+    checkDepletion(own); io.view({ type: 'board' });
+  } };
+
 wrapImmunity(Object.values(FX_ACTIONS));   // the actions above are defined after 02k: LO01

@@ -523,3 +523,13 @@ test('K-975 BS08-078 arms the life-hit trap for this turn (flag only; the battle
     return P.lifeHitDestroy; })()`);
   assert.equal(r, 11);
 });
+
+test('K-976 BS01-147 moves a Spirit to the top of its owner Deck', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; O.spirits.length = 0; P.spirits.length = 0;
+    const sp = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit'); const s = BS.mkInst(sp); s.cores = 2; O.spirits.push(s);
+    const n = O.deck.length;
+    await BS.FX_ACTIONS.SPIRIT_TO_DECKTOP.run({ p: P, opp: O, src: BS.mkInst('BS01-147'), ctx: {} }, BS.CARDS['BS01-147'].magic.by.MAIN.actions[0]);
+    return [O.spirits.length, O.deck.length - n, O.deck[0] === s]; })()`);
+  assert.deepEqual(r, [0, 1, true], JSON.stringify(r));
+});
