@@ -236,3 +236,25 @@ test('K-906 BS19-111 and BS22-075 Rush parts run only while the Field has the sy
   assert.equal(r['BS19-111white'], 0, m); assert.equal(r['BS19-111red'], 1, m);
   assert.equal(r['BS22-075blue'], 0, m); assert.equal(r['BS22-075red'], 1, m);
 });
+
+test('K-907 BS58-079 Rush destroys an Ultimate with 3+ cores only with a purple symbol', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = P.key; P.cpu = true; O.cpu = true;
+    const ult = Object.keys(BS.CARDS).find(id => BS.CARDS[id].type === 'Ultimate');
+    const pur = Object.keys(BS.CARDS).find(id => /^BS0/.test(id) && BS.CARDS[id].type === 'Spirit' && BS.CARDS[id].symbol === 'purple' && BS.CARDS[id].symbols >= 1);
+    const out = {};
+    for (const [tag, withSym, cores] of [['sym3', true, 3], ['sym2', true, 2], ['nosym3', false, 3]]) {
+      P.spirits.length = 0; O.spirits.length = 0; O.nexus.length = 0;
+      if (withSym) { const s = BS.mkInst(pur); s.cores = 2; P.spirits.push(s); }
+      const u = BS.mkInst(ult); u.cores = cores; O.spirits.push(u);
+      const m = BS.mkInst('BS58-079');
+      await BS.runActions({ p: P, opp: O, src: m, ctx: { selfInst: m } }, { actions: BS.CARDS['BS58-079'].magic.actions.slice(2) });
+      out[tag] = O.spirits.length;
+    }
+    return out;
+  });
+  const m = JSON.stringify(r);
+  assert.equal(r.sym3, 0, m); assert.equal(r.sym2, 1, m); assert.equal(r.nosym3, 1, m);
+});

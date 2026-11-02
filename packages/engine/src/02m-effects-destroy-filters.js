@@ -90,3 +90,12 @@
     return a.costLeSubj === true && sub ? L.filter(t => CARDS[t.id].cost <= (CARDS[sub.id].cost || 0)) : L; };
   D.txt = a => a.costLeSubj ? "destroy an opposing Spirit with a cost equal or inferior to that Spirit's" : dTxt(a);
 })();
+
+/* v371 DESTROY.ultCoresGe "an opposing Ultimate with N cores or more on it" (needs ultimate:true) */
+(() => {
+  const D = FX_ACTIONS.DESTROY, dChk = D.chk, dCands = D.cands, dTxt = D.txt;
+  const bare = a => { const o = Object.assign({}, a); delete o.ultCoresGe; return o; };
+  D.chk = a => (a.ultCoresGe == null || (a.ultimate === true && Number.isInteger(a.ultCoresGe) && a.ultCoresGe >= 1 && a.ultCoresGe <= 9)) && dChk(bare(a));
+  D.cands = (c, a) => { const L = dCands(c, bare(a)); return a.ultCoresGe != null ? L.filter(t => totalCores(t) >= a.ultCoresGe) : L; };
+  D.txt = a => a.ultCoresGe != null ? `destroy an opposing Ultimate with ${a.ultCoresGe} cores or more on it` : dTxt(a);
+})();
