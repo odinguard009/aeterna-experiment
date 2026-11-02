@@ -818,3 +818,12 @@ test('K-1005 BS15-039 sends two Trash cores to the Reserve at the opposing Start
     P.spirits.push(BS.mkInst(other)); await BS.fireFx(P, 'OPP_START_STEP', null, {}); return [y, on, P.reserve.n - r0]; })()`);
   assert.deepEqual(r, ['yellow', [2, 3], 2], JSON.stringify(r));
 });
+
+test('K-1006 BS62-045 refreshes another Golden Cloud Spirit when destroyed by an opposing effect', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.spirits.length = 0; O.spirits.length = 0; G.turn = 'player';
+    const g = Object.keys(BS.CARDS).find(i => i !== 'BS62-045' && BS.CARDS[i].type === 'Spirit' && (BS.CARDS[i].families || []).includes('Golden Cloud')), n = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit' && !(BS.CARDS[i].families || []).includes('Golden Cloud'));
+    const t = BS.mkInst('BS62-045'); t.cores = 2; const a = BS.mkInst(g), b = BS.mkInst(n); a.cores = 1; b.cores = 1; a.exhausted = true; b.exhausted = true; P.spirits.push(a, b);
+    P.trash.push(t); t.lostLv = 1; P.cpu = true; await BS.fireFx(P, 'DESTROYED', t, { subject: t, byOpp: true, byOppFx: true }); return [a.exhausted, b.exhausted, !!g]; })()`);
+  assert.deepEqual(r, [false, true, true], JSON.stringify(r));
+});

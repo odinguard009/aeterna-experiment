@@ -36617,12 +36617,6 @@
   "M_IF_YOU_DO",
   "M_OPTIONAL"
  ],
- "BS62-045": [
-  "A_REFRESH",
-  "C_LEVEL",
-  "F_OTHER_NOSTACK",
-  "T_DESTROYED"
- ],
  "BS62-046": [
   "A_BOUNCE",
   "A_VOID",
