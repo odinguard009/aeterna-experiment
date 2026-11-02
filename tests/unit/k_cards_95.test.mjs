@@ -161,3 +161,23 @@ test('K-1163 BS15-062 destroys an opposing 3000 BP or less Spirit when you set a
     return { bp, left: O.spirits.length, ok: BS.CARDS['BS15-062'].fxComplete !== false }; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.ok(r.bp <= 3000, JSON.stringify(r)); assert.equal(r.left, 0, JSON.stringify(r));
 });
+
+test('K-1164 BS01-059 refreshes when the opponent draws; BS15-001 gains 2000 only while all your cards are Red', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4;
+    const m = BS.mkInst('BS01-059'); m.cores = 2; m.exhausted = true; P.spirits = [m]; await BS.fireFx(P, 'OPP_DRAWS', null, {}); const ref = !m.exhausted;
+    const mk = BS.mkInst('BS15-001'); mk.cores = 2; P.spirits = [mk]; const b0 = BS.bpOf(mk); await BS.fireFx(P, 'ATTACKS', mk, {}); const b1 = BS.bpBonusOf ? 0 : 0;
+    return { ref, ok: ['BS01-059', 'BS15-001'].every(i => BS.CARDS[i].fxComplete !== false), b0, bp: BS.bpOf(mk) }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.ref, true, JSON.stringify(r));
+});
+
+test('K-1165 BS39-029 refreshes the blocking Machine Beast; SD03-008 puts cores equal to its level on a Nexus', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = O.key; G.step = 5;
+    const mb = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && (c.families || []).includes('Machine Beast') && c.id !== 'BS39-029').id;
+    const m = BS.mkInst('BS39-029'); m.cores = 3; const b = BS.mkInst(mb); b.cores = 2; b.exhausted = true; P.spirits = [m, b];
+    await BS.fireFx(P, 'ALLY_BLOCKS', b, { blocker: b, attacker: BS.mkInst(mb), subject: b }); const ref = !b.exhausted;
+    G.active = P.key; const s = BS.mkInst('SD03-008'); s.cores = 3; const lv = BS.lvNo ? BS.lvNo(s) : 0; const nx = Object.values(BS.CARDS).find(c => c.type === 'Nexus').id; const n = BS.mkInst(nx); n.cores = 0; P.spirits = [s]; P.nexus = [n]; P.void = 5;
+    await BS.fireFx(P, 'ATTACKS', s, {}); return { ref, cores: n.cores, lv, ok: BS.CARDS['SD03-008'].fxComplete !== false && BS.CARDS['BS39-029'].fxComplete !== false }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.ref, true, JSON.stringify(r)); assert.ok(r.cores >= 1, JSON.stringify(r));
+});

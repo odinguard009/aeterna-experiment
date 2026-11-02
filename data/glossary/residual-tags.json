@@ -37,10 +37,6 @@
   "A_CORE_TO_SELF",
   "C_LEVEL"
  ],
- "BS01-059": [
-  "A_REFRESH",
-  "C_LEVEL"
- ],
  "BS01-067": [
   "C_LEVEL",
   "T_SUMMONED"
@@ -228,10 +224,6 @@
   "A_BP_PLUS",
   "C_LEVEL",
   "T_BLOCKS"
- ],
- "BS02-057": [
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL"
  ],
  "BS02-058": [
   "C_LEVEL"
@@ -4041,11 +4033,6 @@
   "M_OPTIONAL",
   "T_DESTROYED",
   "T_SUMMONED"
- ],
- "BS15-001": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "T_ATTACKS"
  ],
  "BS15-003": [
   "A_DESTROY_NEXUS",
@@ -15512,10 +15499,6 @@
   "M_OPTIONAL",
   "S_NO_RETURN",
   "S_UNAFFECTED"
- ],
- "BS39-029": [
-  "A_REFRESH",
-  "C_LEVEL"
  ],
  "BS39-030": [
   "A_REMOVED_ZONE",
@@ -54576,11 +54559,6 @@
   "C_LEVEL",
   "K_BRAVE",
   "M_OPTIONAL",
-  "T_ATTACKS"
- ],
- "SD03-008": [
-  "A_VOID",
-  "C_LEVEL",
   "T_ATTACKS"
  ],
  "SD03-009": [

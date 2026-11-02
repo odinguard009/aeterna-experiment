@@ -418,3 +418,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v380 (Lane K): match.noBrave:true ("non-braved Spirit": no Brave combined; needs the instance). Cards: SD06-004, SD56-RV002, SD13-007.
 - v381 (Lane K): BP_MINUS battle:true ("During this battle, give an opposing Spirit -N BP"; battle-scoped via addBattleBp), with zeroDestroy (destroy at 0 BP) and zeroDraw:true (draw a card the first time it is brought to 0 BP that turn). Cards: SD23-005, SD23-003.
 - v382 (Lane K): triggers BURST_SET / OPP_BURST_SET (fireBurstSet after a human, CPU or SET_BURST burst set; fires own and opposing field), VOID_TO_CARD to:'anyCard' (Spirit or Nexus). Cards: BS15-062, BS17-017, BS17-050, BS44-037, BS35-081.
+- v383 (Lane K): REFRESH_SPIRIT subject:true (refresh the trigger subject, e.g. the blocking ally). Cards: BS01-059, BS02-057, BS15-001, BS39-029, SD03-008.
