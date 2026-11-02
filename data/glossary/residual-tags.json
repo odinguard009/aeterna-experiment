@@ -3219,10 +3219,6 @@
   "M_OPTIONAL",
   "M_REPLACEMENT"
  ],
- "BS13-003": [
-  "A_SYMBOL",
-  "C_LEVEL"
- ],
  "BS13-004": [
   "A_SUMMON_FREE",
   "C_LEVEL",
@@ -56744,12 +56740,6 @@
   "C_OPP_TURN",
   "K_BURST",
   "T_ATTACKS"
- ],
- "SD42-001": [
-  "A_BP_PLUS",
-  "A_SYMBOL",
-  "A_SYMBOL_PLUS",
-  "C_LEVEL"
  ],
  "SD42-004": [
   "A_REFRESH"

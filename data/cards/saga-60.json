@@ -37750,13 +37750,45 @@
   "image": "SD42-001.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (Your Main Step) When you're summoning a \"Kamen\" family Spirit card, this Spirit gains an extra Red symbol.",
-   "[LV2] (Your Attack Step) All your \"Kamen\" family Spirits gain +2000 BP."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "SUMMON_SYMBOL",
+    "to": "self",
+    "lv": [
+     1,
+     2
+    ],
+    "color": "red",
+    "n": 1,
+    "match": {
+     "family": [
+      "Kamen"
+     ],
+     "type": "Spirit"
+    }
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 2000,
+    "to": "own",
+    "if": {
+     "attackStep": true,
+     "oppTurn": false
+    },
+    "match": {
+     "family": [
+      "Kamen"
+     ]
+    },
+    "lv": [
+     2
+    ]
+   }
+  ]
  },
  {
   "id": "SD42-002",

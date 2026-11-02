@@ -195,3 +195,17 @@ test('K-1144 SD23-005 destroys a Spirit that its battle -3000 BP brings to 0; SD
   r = await page.evaluate(`(() => { BS.G.attacker = null; return BS.bpOf(BS.G.p.opponent.spirits[0]); })()`);
   assert.equal(r, 1000, 'bpOf outside a battle ignores the battle minus (cards keep printed BP)');
 });
+
+test('K-1145 BS13-003 two Red symbols for a Cost 7+ Spirit, SD42-001 one for a Kamen Spirit plus +2000 BP at LV2', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(() => { BS.testSetup(); const G = BS.G, P = G.p.player; G.active = P.key; G.step = 4;
+    const out = {};
+    const a = BS.mkInst('BS13-003'); a.cores = BS.CARDS['BS13-003'].levels[0].cores; P.spirits = [a];
+    const big = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && c.cost >= 7), small = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && c.cost <= 3 && !(c.families || []).includes('Kamen'));
+    out.big = summonSymbols(P, big).length; out.small = summonSymbols(P, small).length;
+    const b = BS.mkInst('SD42-001'); b.cores = BS.CARDS['SD42-001'].levels[0].cores; P.spirits = [b];
+    const kam = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && (c.families || []).includes('Kamen'));
+    out.kam = summonSymbols(P, kam).length; out.non = summonSymbols(P, small).length;
+    out.ok = BS.CARDS['BS13-003'].fxComplete !== false && BS.CARDS['SD42-001'].fxComplete !== false; return out; })()`);
+  assert.deepEqual(r, { big: 2, small: 0, kam: 1, non: 0, ok: true }, JSON.stringify(r));
+});
