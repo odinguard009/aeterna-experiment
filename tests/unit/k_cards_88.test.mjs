@@ -300,3 +300,24 @@ test('K-909 BS22-083 discards the opposing Burst only with a white symbol', asyn
   const m = JSON.stringify(r);
   assert.deepEqual(r.sym, [0, false], m); assert.deepEqual(r.nosym, [0, true], m);
 });
+
+test('K-910 BS23-080 Rush destroys an exhausted cost<=7 foe only with purple and green symbols', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = P.key; P.cpu = true; O.cpu = true;
+    const find = col => Object.keys(BS.CARDS).find(id => /^BS0/.test(id) && BS.CARDS[id].type === 'Spirit' && BS.CARDS[id].symbol === col && BS.CARDS[id].symbols >= 1);
+    const out = {};
+    for (const [tag, cols] of [['both', ['purple', 'green']], ['one', ['purple']]]) {
+      P.spirits.length = 0; O.spirits.length = 0;
+      for (const c of cols) { const s = BS.mkInst(find(c)); s.cores = 2; P.spirits.push(s); }
+      const f = BS.mkInst('BS01-002'); f.cores = 1; f.exhausted = true; O.spirits.push(f);
+      const m = BS.mkInst('BS23-080');
+      await BS.runActions({ p: P, opp: O, src: m, ctx: { selfInst: m } }, { actions: BS.CARDS['BS23-080'].magic.actions.slice(1) });
+      out[tag] = O.spirits.length;
+    }
+    return out;
+  });
+  const m = JSON.stringify(r);
+  assert.equal(r.both, 0, m); assert.equal(r.one, 1, m);
+});

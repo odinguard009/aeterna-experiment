@@ -21063,16 +21063,42 @@
   "mechanics": [
    "Rush"
   ],
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Return an opposing Spirit to the Hand.",
-   "{{Rush|Purple/Green}}",
-   "(While you have Purple/Green symbols, the following effect activate next)",
-   ": Destroy an opposing exhausted Cost 7 or less Spirit.",
-   ": During this battle, the opponent can't activate Bursts."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "BOUNCE_OPP",
+     "to": "hand",
+     "kind": "spirit"
+    },
+    {
+     "do": "DESTROY",
+     "costLe": 7,
+     "exhaustedOnly": true,
+     "if": {
+      "hasSymbol": [
+       "purple",
+       "green"
+      ]
+     }
+    },
+    {
+     "do": "NO_BURST_BATTLE",
+     "if": {
+      "hasSymbol": [
+       "purple",
+       "green"
+      ]
+     }
+    }
+   ]
+  }
  },
  {
   "id": "BS23-081",
