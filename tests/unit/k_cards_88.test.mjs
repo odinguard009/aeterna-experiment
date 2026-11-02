@@ -408,3 +408,17 @@ test('K-915 BS63-021: when destroyed counter +2 and returns The PartnerMusha Obo
   const j = JSON.stringify(r);
   assert.equal(r.r1.count, 2, j); assert.equal(r.r1.back, true, j); assert.equal(r.count2, 2, j);
 });
+
+test('K-916 BS49-027: Void core goes to the Reserve (CPU default) via CHOOSE_ONE; one Void core moved', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = P.key; P.cpu = true; O.cpu = true; P.spirits.length = 0; O.spirits.length = 0; P.hand.length = 0; P.trash.length = 0; P.void = 3; P.reserve.n = 0;
+    const s = BS.mkInst('BS49-027'); s.cores = 1; P.spirits.push(s);
+    const before = P.reserve.n + s.cores + P.void;
+    await BS.fireFx(P, 'SUMMONED', s, {});
+    return { voidUsed: 3 - P.void, conserved: P.reserve.n + s.cores + P.void === before };
+  });
+  const j = JSON.stringify(r);
+  assert.equal(r.voidUsed, 1, j); assert.equal(r.conserved, true, j);
+});

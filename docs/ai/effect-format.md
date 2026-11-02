@@ -410,3 +410,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v372 (Lane K): `magic.alsoMagic:true` on a Spirit card = "this card is also treated as a Magic card": its Flash effect is usable from the Hand (`magicUsable`), then the card goes to the Trash. Cards: BS43-050, BS33-044.
 - v373 (Lane K): `magic.summonAfter:true` (with `alsoMagic`, optional `summonOnce:true` = Once per Turn: Same Name) = "after this effect resolves you can summon this card without paying the cost" instead of the Trash.
 - v374 (Lane K): per.type `Counter` (count of your / the opposing counters) for BP_PLUS etc. Card: BS71-023 (Mirage During Set).
+- v375: CHOOSE_ONE accepts 2 or 3 options (the human gets one button per runnable option).
