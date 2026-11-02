@@ -708,10 +708,6 @@
  "BS04-045": [
   "C_LEVEL"
  ],
- "BS04-047": [
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
  "BS04-049": [
   "C_LEVEL"
  ],
@@ -760,10 +756,6 @@
   "M_BY_DOING",
   "T_ATTACKS",
   "T_BLOCKS"
- ],
- "BS04-069": [
-  "C_LEVEL",
-  "T_SUMMONED"
  ],
  "BS04-071": [
   "C_LEVEL",
@@ -1796,10 +1788,6 @@
   "C_LEVEL",
   "K_HOLY_LIFE",
   "T_ALLY_LIFE_HIT",
-  "T_ATTACKS"
- ],
- "BS08-042": [
-  "C_LEVEL",
   "T_ATTACKS"
  ],
  "BS08-043": [
@@ -5095,10 +5083,6 @@
   "T_ALLY_LOST",
   "T_SUMMONED"
  ],
- "BS17-045": [
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
  "BS17-048": [
   "A_BP_PLUS",
   "A_VOID",
@@ -5150,10 +5134,6 @@
   "K_BRAVE",
   "K_BURST",
   "S_UNAFFECTED"
- ],
- "BS17-059": [
-  "C_LEVEL",
-  "T_SUMMONED"
  ],
  "BS17-060": [
   "C_LEVEL",

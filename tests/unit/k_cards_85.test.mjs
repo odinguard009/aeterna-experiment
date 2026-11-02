@@ -681,3 +681,14 @@ test('K-990 ctrl name list counts Spirits matching any of the names (BS04-052)',
     const e = BS.CARDS['BS04-052'].effects[0]; out.push(e.flag, e.if.ctrl.name.length); return out; })()`);
   assert.deepEqual(r, [false, true, 'DRAW_PLUS', 2], JSON.stringify(r));
 });
+
+test('K-991 TREAT_LV2 all+highest marks every own Spirit; BS17-059/Brilliance cards have the shapes', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.spirits.length = 0; O.spirits.length = 0;
+    const multi = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit' && BS.CARDS[i].levels.length > 1);
+    const a = BS.mkInst(multi), b = BS.mkInst(multi); a.cores = 1; b.cores = 1; P.spirits.push(a, b);
+    await BS.runActions({ p: P, opp: O, src: BS.mkInst('BS04-069'), ctx: {} }, { actions: BS.CARDS['BS04-069'].effects.find(e => e.trigger === 'SUMMONED').actions });
+    const t = BS.CARDS['BS17-059'].effects[0].actions[0]; const br = ['BS04-047', 'BS08-042', 'BS17-045'].map(i => BS.CARDS[i].effects.some(e => e.trigger === 'ATTACKS' && e.actions[0].do === 'BRILLIANCE'));
+    return [a.lvHighTurn, b.lvHighTurn, t.do, t.all, br.join()]; })()`);
+  assert.deepEqual(r, [true, true, 'TREAT_LV1', true, 'true,true,true'], JSON.stringify(r));
+});
