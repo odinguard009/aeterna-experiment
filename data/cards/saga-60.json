@@ -45761,13 +45761,35 @@
   "image": "SD56-RV008.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "{{Burst|After your Life is reduced}} Destroy three opposing 4000 BP or less Spirits. Then, by paying the cost, activate this card's Flash effect.",
-   "Flash Destroy an opposing Brave Spirit."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "burst": {
+   "when": "LIFE_DECREASE",
+   "actions": [
+    {
+     "do": "DESTROY",
+     "bpLe": 4000,
+     "n": 3
+    }
+   ],
+   "thenFlash": true
+  },
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "DESTROY",
+     "match": {
+      "type": "Brave"
+     }
+    }
+   ]
+  }
  },
  {
   "id": "SD56-RV010",
