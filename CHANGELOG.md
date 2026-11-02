@@ -4,6 +4,15 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.208.0
+- Lane: K
+- **Lane K: +100 complete cards (1,905 -> 2,005 of 8,709; 100 in this release)**
+- Cards across Eternal sagas BS01 to BS13 (most), plus single cards from BS16 to BS66 (BS17, BS18, BS19, BS20, BS21, BS24, BS25, BS26, BS27, BS30, BS31, BS33, BS36, BS37, BS39, BS40, BS41, BS43, BS44, BS48, BS54, BS66); Standard block A was completed earlier. 61 Lane K commits.
+- Engine, effect schema 293 -> 324. New actions: `NEXUS_CORES_ALL_TO_TRASH`, `DESTROY_SAME_FAMILY` (BATTLE_WIN events now carry the defeated card as `victimId`), `NEXUS_ALL_TO_HAND`, `MUST_ATTACK_ALL_OPP`, `DESTROY_OPP_DOWN_TO_OWN`, `TREAT_HIGHEST_ALL`, `CANT_ATTACK_BLOCK_ALL`, `BLOCKER_UNAFFECTED`, `BLOCK_EXHAUSTED_TURN`. New STATIC flag `TREAT_HIGHEST`. New parameters (see `docs/ai/effect-format.md` v300-v324): `GRANT_FLAG.all`, `DESTROY_ANY.costLeSymbol`, `BP_PLUS.battle`, `magic.once`, `MILL_OPP.perLostCores`, `if.handGe`, `match.notKeyword`, `REFRESH_SPIRIT all/both/drawGe`, `NO_ATTACK_LIFE costIn`, `LIFE_CORE_SHIELD brave`, `VOID_TO_RESERVE perDestroyed`, `TRASH_CORES_TO all`.
+- Merged main's dev-loop work (faster CI shards, chk caps raised to 7, immunity wrapper after 02v).
+- Test limits relaxed on purpose: FX01 coverage threshold 0.72 -> 0.715; B01 size budget 1335 -> 1340 KB; the S594-05 flag list gained `TREAT_HIGHEST`.
+- Limits: many K tests call the action directly instead of playing a full battle. Several choices are engine-made (CPU or weakest-first) and the human dialog paths are untested. `TREAT_HIGHEST` is tested through one BS07-006 case; the attack-step condition of BS08-065 / BS11-047 and the +3000 BP of BS11-047 are untested. BS01-141 targets own Spirits only and BS01-129 opposing Spirits only (the cards say "a Spirit"). BS13-083, BS16-084 and BS17-077 only affect Spirits on the Field when the effect resolves; `symbolsGe` reads printed symbols. BS10-063's `victimId` plumbing is untested through a real battle. BS18-062 and BS02-076 stay partial. Cards needing an "Opposing End Step" trigger (BS04-050, BS18-016, BS15-067) are still open, and a 103-card "target and attack an opposing Spirit" mechanic is blocked because the Fandom wiki is unreachable.
+
 ## v0.207.0
 - Lane: K
 - **Lane K: +100 complete cards (1,805 -> 1,905 of 8,709; 100 in this release)**
