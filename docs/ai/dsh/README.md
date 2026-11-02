@@ -12,7 +12,7 @@ Run the installer (idempotent, each step may fail without stopping the rest):
 powershell -ExecutionPolicy Bypass -File docs/ai/dsh/install-mcp.ps1
 ```
 
-It installs under `%USERPROFILE%\.dsh\mcp`: sequential-thinking (npm), serena and basic-memory (own venvs), the GitHub MCP server (release zip + a wrapper that takes the token from `gh auth token`), context7 and codebase-memory-mcp (npm). Then register them in the DSH desktop app: paste `docs/ai/dsh/cordis.mcp.template.yml` into `%USERPROFILE%\.dsh\profiles\desktop\cordis.patch.yml` (replace `<HOME>` and `<WORKSPACE>`) and restart the app. Servers load at the next app start, not in the running session. codebase-memory-mcp is Claude-side only (the installer still adds it; skip it if the app has no way to register it); the DSH desktop app has no `claude` CLI, so `settings_sync.sh restore` may warn about MCP registration - ignore that.
+It installs under `%USERPROFILE%\.dsh\mcp`: sequential-thinking (npm), serena and basic-memory (own venvs), the GitHub MCP server (release zip + a wrapper that takes the token from `gh auth token`), context7 and codebase-memory-mcp (npm). Then register them in the DSH desktop app: paste `docs/ai/dsh/cordis.mcp.template.yml` into the file cordis.patch.yml in the .dsh profiles desktop folder under your user profile (replace `<HOME>` and `<WORKSPACE>`) and restart the app. Servers load at the next app start, not in the running session. codebase-memory-mcp is Claude-side only (the installer still adds it; skip it if the app has no way to register it); the DSH desktop app has no `claude` CLI, so `settings_sync.sh restore` may warn about MCP registration - ignore that.
 
 | Server | Use in Lane K |
 | --- | --- |
