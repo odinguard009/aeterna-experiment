@@ -4,6 +4,13 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.208.1
+- Lane: U/I
+- **Library: +1,376 product-only cards (SD, PB, PC, PX, EX, promo; e.g. SD33-X01 The HorseTwelveGodKing Execeed): complete 2,005 -> 2,048 of 10,291 (43 of the new ids are reprints of complete cards); playable 8,913 to 10,289.** New file `data/cards/saga-60.json` (block `P`, not Standard-legal), built by `tools/import_products.py` from `data/sources/official-extra.json` (official card database: type, colour, cost, reduction, BP/cores, Japanese name and text). Reprints clone the existing card; new cards are partial (`!`) with Japanese name/text until English data is added (`names` in the source file; only SD33-X01 has one), symbols default 1 for Spirits. Contract/symbol cards without a category (20) are not imported.
+- Search: a typed Library query now also finds partial cards (the Library defaults to Complete-only, which hid SD33-X01); family names are searchable in Library and Deck Builder. New tests LS01/LS02.
+- Effect paragraphs follow the source lines (junk marker lines dropped, level runs deduped, bare tags join their text, block bullets on their own lines).
+- Limits: pack limits raised 1.6 -> 2.1 MB (B03, P09); card id check accepts PC/PX/EX ids; B13 (4x CPU throttle) is over 4 s on this laptop with or without the new cards, so it was not used as a gate here.
+
 ## v0.208.0
 - Lane: K
 - **Lane K: +100 complete cards (1,905 -> 2,005 of 8,709; 100 in this release)**

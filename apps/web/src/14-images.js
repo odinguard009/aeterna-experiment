@@ -131,7 +131,7 @@ function libFilter() {
     if (fam && !e.f.includes(fam)) return false;
     if (set && libSetOf(e.id) !== set) return false;
     const c = CARDS[e.id];
-    if (LIBF.complete && fxMarked(c) && !LIBF.groups.has('rebirth')) return false;   // Rebirth cards are partial but must show under the Rebirth chip
+    if (LIBF.complete && !q && fxMarked(c) && !LIBF.groups.has('rebirth')) return false;   // a typed search shows partial cards too (2026-11-02: SD33-X01 was hidden behind the default Complete filter); Rebirth cards are partial but must show under the Rebirth chip
     if (LIBF.fmt && legalityOf(e.id, LIBF.fmt)) return false;
     if (LIBF.partly && !fxMarked(c)) return false;   // v0.158.0: the "! Partly Implemented" chip is a filter (only the cards marked "!")
     return dbFilterOK(c, LIBF.colors, LIBF.costs, LIBF.types, LIBF.cmode) && dbPlusOK(c, LIBF) && [...LIBF.groups].every(g => dbGroupOK(c, g));
