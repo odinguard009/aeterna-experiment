@@ -11417,10 +11417,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "BS31-011": [
-  "A_BP_PLUS",
-  "C_LEVEL"
- ],
  "BS31-012": [
   "A_DESTROY_BP",
   "C_LEVEL",
@@ -19860,10 +19856,6 @@
   "K_ADVENT",
   "M_IF_YOU_DO",
   "M_OPTIONAL"
- ],
- "BS43-RV005": [
-  "A_BP_PLUS",
-  "C_LEVEL"
  ],
  "BS43-RV006": [
   "A_SUMMON_FREE",

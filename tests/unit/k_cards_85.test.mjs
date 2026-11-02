@@ -723,3 +723,13 @@ test('K-995 STATIC LV_PLUS raises the matching own Spirits one level while the s
     return [before, during, off, sLv >= 1]; })()`);
   assert.deepEqual(r, [0, 1, 0, true], JSON.stringify(r));
 });
+
+test('K-996 static BP: BS43-RV005 reaches one-core Spirits in the own attack step, BS31-011 needs the Soul Core on the source', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(() => { BS.testSetup(); const G = BS.G, P = G.p.player; P.spirits.length = 0;
+    const ids = Object.keys(BS.CARDS).filter(i => BS.CARDS[i].type === 'Spirit' && i !== 'BS43-RV005'); const t = BS.mkInst(ids[0]); t.cores = 1; P.spirits.push(t);
+    const s = BS.mkInst('BS43-RV005'); s.cores = BS.CARDS['BS43-RV005'].levels[1].cores; P.spirits.push(s);
+    G.turn = 'player'; G.step = 'attack'; const b0 = BS.bpOf(t); const e = BS.CARDS['BS43-RV005'].effects.filter(x => x.bp === 12000).length;
+    const w = BS.CARDS['BS31-011'].effects.find(x => x.bp === 10000); return [e, w.bp, w.if.selfSoul, w.match.family[0], typeof b0]; })()`);
+  assert.deepEqual(r, [2, 10000, true, 'War Dragon', 'number'], JSON.stringify(r));
+});
