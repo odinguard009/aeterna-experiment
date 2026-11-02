@@ -19373,12 +19373,27 @@
   "image": "SD01-021.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Destroyed) Return every opposing Cost 1 or less Spirit to the Hand."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "BOUNCE_OPP",
+      "to": "hand",
+      "kind": "spirit",
+      "costLe": 1,
+      "all": true
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD01-022",
@@ -23628,12 +23643,33 @@
   "image": "SD13-003.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV2][LV3] (When Destroyed) Destroy an opposing exhausted Spirit. {{Rush|Yellow}} (While you have a Yellow symbol, the following effect activates next.) (Yellow Core): Draw a card."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "DESTROY_ANY",
+      "kind": "spirit",
+      "exhaustedOnly": true,
+      "oppOnly": true
+     },
+     {
+      "do": "DRAW",
+      "n": 1,
+      "if": {
+       "hasSymbol": "yellow"
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD13-004",
@@ -24981,12 +25017,32 @@
   "image": "SD17-004.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Summoned) Destroy an opposing Nexus. {{Rush|Green}} (While you have a Green symbol, the following effect activates next) (Green Core): Put a core from the Void to this Spirit."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "nexus": true
+     },
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "self",
+      "if": {
+       "hasSymbol": "green"
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD17-005",
@@ -25126,12 +25182,32 @@
   "image": "SD17-007.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Attacks) This Spirit gains +3000 BP. {{Rush|Green}} (While you have a Green symbol, the following effect activates next) (Green Core): Put a core from the Void to this Spirit."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "BP_PLUS",
+      "n": 3000
+     },
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "self",
+      "if": {
+       "hasSymbol": "green"
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD17-008",
@@ -25754,12 +25830,35 @@
   "image": "SD19-005.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Attacks) This Spirit gains +3000 BP. While you control any Ultimate, also, this Spirit gains +3000 BP."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "BP_PLUS",
+      "n": 3000
+     },
+     {
+      "do": "BP_PLUS",
+      "n": 3000,
+      "if": {
+       "ctrl": {
+        "n": 1,
+        "type": "Ultimate"
+       }
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD19-006",
@@ -25789,12 +25888,43 @@
   "image": "SD19-006.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Summoned) If you have an Ultimate, destroy an opposing Nexus. [LV1][LV2] (When Attacks) Draw a card from your deck."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: hand translation); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "nexus": true,
+      "if": {
+       "ctrl": {
+        "n": 1,
+        "type": "Ultimate"
+       }
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD19-007",
@@ -26343,12 +26473,31 @@
   "image": "SD20-003.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Blocks) This Spirit gains +3000 BP. Also, if your Life is at three or less, this Spirit gains +3000 BP."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "BLOCKS",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "BP_PLUS",
+      "n": 3000
+     },
+     {
+      "do": "BP_PLUS",
+      "n": 3000,
+      "if": {
+       "lifeLe": 3
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD20-004",
@@ -26490,12 +26639,35 @@
   "image": "SD20-006.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Summoned) Return an opposing 5000 BP or less Spirit to the Hand. Also, if your Life is at three or less, return an opposing 5000 BP or less Spirit to the Hand."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "BOUNCE_OPP",
+      "to": "hand",
+      "kind": "spirit",
+      "bpLe": 5000
+     },
+     {
+      "do": "BOUNCE_OPP",
+      "to": "hand",
+      "kind": "spirit",
+      "bpLe": 5000,
+      "if": {
+       "lifeLe": 3
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD20-007",

@@ -54756,10 +54756,6 @@
   "C_LIFE",
   "T_ATTACKS"
  ],
- "SD01-021": [
-  "C_LEVEL",
-  "T_DESTROYED"
- ],
  "SD01-024": [
   "A_BP_PLUS",
   "A_REFRESH",
@@ -55212,12 +55208,6 @@
  "SD13-002": [
   "C_LEVEL"
  ],
- "SD13-003": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "K_RUSH",
-  "T_DESTROYED"
- ],
  "SD13-004": [
   "C_LEVEL",
   "K_RUSH",
@@ -55403,19 +55393,6 @@
   "S_MUST_BLOCK",
   "T_ATTACKS"
  ],
- "SD17-004": [
-  "A_VOID",
-  "C_LEVEL",
-  "K_RUSH",
-  "T_SUMMONED"
- ],
- "SD17-007": [
-  "A_BP_PLUS",
-  "A_VOID",
-  "C_LEVEL",
-  "K_RUSH",
-  "T_ATTACKS"
- ],
  "SD17-008": [
   "A_REFRESH",
   "C_LEVEL",
@@ -55471,19 +55448,6 @@
  "SD19-002": [
   "C_LEVEL"
  ],
- "SD19-005": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "T_ATTACKS"
- ],
- "SD19-006": [
-  "A_DESTROY_NEXUS",
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "T_ATTACKS",
-  "T_SUMMONED"
- ],
  "SD19-007": [
   "C_LEVEL",
   "K_ULTIMATE",
@@ -55536,12 +55500,6 @@
  "SD20-002": [
   "C_LEVEL"
  ],
- "SD20-003": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "C_LIFE",
-  "T_BLOCKS"
- ],
  "SD20-005": [
   "A_VOID",
   "C_LEVEL",
@@ -55549,11 +55507,6 @@
   "K_BRAVE",
   "S_UNAFFECTED",
   "T_BLOCKS"
- ],
- "SD20-006": [
-  "C_LEVEL",
-  "C_LIFE",
-  "T_SUMMONED"
  ],
  "SD20-007": [
   "A_BP_PLUS",
