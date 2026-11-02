@@ -739,3 +739,9 @@ test('K-997 ALLY_LOST draw cards and the Investigator attack boost have the expe
   const r = await page.evaluate(`(() => { const sh = id => BS.CARDS[id].effects.map(e => e.trigger + ':' + e.actions.map(a => a.do).join('+')).join('|'); return [sh('BS30-028'), sh('BS21-001'), sh('BS30-002')]; })()`);
   assert.deepEqual(r, ['ALLY_LOST:DRAW', 'ALLY_LOST:DRAW', 'ALLY_ATTACKS:BP_PLUS|ALLY_ATTACKS:DRAW'], JSON.stringify(r));
 });
+
+test('K-998 OPP_HAND_UP cards fire once per event (BS43-084, BS31-042 discard, BS42-027 void core)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(() => { const sh = id => BS.CARDS[id].effects.filter(e => e.trigger === 'OPP_HAND_UP').map(e => e.actions.map(a => a.do + (a.n || '')).join('+')).join('|'); return [sh('BS43-084'), sh('BS31-042'), sh('BS42-027')]; })()`);
+  assert.deepEqual(r, ['OPP_DISCARD1', 'OPP_DISCARD1', 'VOID_TO_RESERVE1'], JSON.stringify(r));
+});

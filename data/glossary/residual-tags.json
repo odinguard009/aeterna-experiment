@@ -11504,11 +11504,6 @@
   "A_VOID",
   "C_LEVEL"
  ],
- "BS31-042": [
-  "A_DISCARD_OPP",
-  "C_LEVEL",
-  "C_OPP_TURN"
- ],
  "BS31-043": [
   "A_BP_PLUS",
   "C_LEVEL",
@@ -18499,13 +18494,6 @@
   "M_OPTIONAL",
   "T_SUMMONED"
  ],
- "BS42-027": [
-  "A_VOID",
-  "C_LEVEL",
-  "C_OPP_TURN",
-  "M_OPTIONAL",
-  "T_OPP_HAND_UP"
- ],
  "BS42-028": [
   "A_REFRESH",
   "A_VOID",
@@ -19727,12 +19715,6 @@
   "K_BURST",
   "M_OPTIONAL",
   "T_REVEALED"
- ],
- "BS43-084": [
-  "A_DISCARD_OPP",
-  "C_LEVEL",
-  "C_OPP_TURN",
-  "T_OPP_HAND_UP"
  ],
  "BS43-085": [
   "A_DRAW",

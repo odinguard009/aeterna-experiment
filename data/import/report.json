@@ -1,15 +1,15 @@
 {
  "stats": {
-  "cards": 6555,
+  "cards": 6552,
   "per_saga": {
    "1": 487,
    "2": 267,
    "3": 338,
    "4": 325,
    "5": 610,
-   "6": 339,
+   "6": 338,
    "7": 495,
-   "8": 457,
+   "8": 455,
    "9": 482,
    "10": 492,
    "11": 320,
@@ -22,18 +22,18 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2151,
-  "nexus_levels_added": 675,
+  "skipped_curated": 2154,
+  "nexus_levels_added": 674,
   "nexus_levels_missing": 43,
   "merged": 107,
-  "image_problems": 413,
+  "image_problems": 412,
   "brave_unparsed": 171,
   "ut_lines_added": 114,
   "odd_reduction": 805,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
   "number_conflicts": 3,
-  "without_image": 411
+  "without_image": 410
  },
  "tokens": [
   "BS73-T001",
@@ -1119,6 +1119,7 @@
   "BS31-038",
   "BS31-039",
   "BS31-041",
+  "BS31-042",
   "BS31-046",
   "BS31-049",
   "BS31-050",
@@ -1283,6 +1284,7 @@
   "BS42-014",
   "BS42-015",
   "BS42-016",
+  "BS42-027",
   "BS42-029",
   "BS42-041",
   "BS42-RV009",
@@ -1294,6 +1296,7 @@
   "BS43-040",
   "BS43-043",
   "BS43-055",
+  "BS43-084",
   "BS43-RV005",
   "BS43-RV009",
   "BS43-RV013",
@@ -2614,7 +2617,6 @@
   "BS43-081",
   "BS43-082",
   "BS43-083",
-  "BS43-084",
   "BS43-085",
   "BS43-086",
   "BS43-087",
@@ -3859,11 +3861,6 @@
    "id": "BS42-026",
    "name": "The VioletCorpseBrigade White Enigma Dragon",
    "problem": "no image (near: The DeathVioletBridage WhiteEnigmaDragon.jpg)"
-  },
-  {
-   "id": "BS42-027",
-   "name": "The KingBeastTribe Bamboo Kodkod",
-   "problem": "no image (near: The KingBeastTribe Bamboo Dokodo.jpg)"
   },
   {
    "id": "BS42-028",
