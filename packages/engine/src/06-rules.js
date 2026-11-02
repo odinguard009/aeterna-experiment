@@ -26,6 +26,14 @@ function ignoreSumCond(p, card) {
     for (const { e } of fxEntries(src)) if (e.trigger === 'STATIC' && e.flag === 'IGNORE_SUMMON_COND' && (!e.lv || e.lv.includes(L)) && fxMatch(card, e.match) && fxIf(p, opp, e.if, { selfInst: src })) return true; }
   return false;
 }
+/* v384 STATIC ALSO_TREATED (to self): "this Spirit's color and symbol are also treated as <colours>": symbol:true adds those attributes to every symbol of the card, color:true adds them to its colours (fxMatch colour tests and "unaffected by opposing <colour> effects"); level-gated, no condition, Field only */
+function alsoTreated(i, what) {
+  if (!G || !i || !CARDS[i.id] || !(fieldList(G.p.player).includes(i) || fieldList(G.p.opponent).includes(i))) return [];
+  const L = lvNo(i), out = [];
+  for (const { e } of fxEntries(i)) if (e.trigger === 'STATIC' && e.flag === 'ALSO_TREATED' && e[what] && (!e.lv || e.lv.includes(L))) for (const c of e.colors) if (!out.includes(c)) out.push(c);
+  return out;
+}
+const alsoSyms = (i, arr) => { const x = alsoTreated(i, 'symbol'); return x.length ? arr.map(a => a.concat(x.filter(c => !a.includes(c)))) : arr; };
 /* v379 STATIC ULT_SYMBOL_AS: "your Ultimate symbols are also treated as <colours> symbols" (each symbol of a matching Ultimate gains those attributes) */
 function ultSymbolExtra(p, card) {
   const out = [], opp = G.p[other(p.key)];
@@ -187,7 +195,7 @@ function extraSymbolsOf(owner, i) {
 /* symbols usable for cost reduction: Field cards only (not Soul State, p. 55, unless the card being paid says so; not the Burst Area, p. 49) */
 function fieldSymbols(p, withSoulState, withStandby) {     // withStandby: cost reduction also counts cards waiting in Standby (v0.57.0)
   const out = [];
-  for (const i of fieldList(p).concat(withSoulState ? p.soulState : [], withStandby ? (p.standby || []) : [])) for (const a of (CARDS[i.id].type === 'Ultimate' && G ? symbolAttrs(CARDS[i.id]).map(a => a.concat(ultSymbolExtra(p, CARDS[i.id]).filter(c => !a.includes(c)))) : symbolAttrs(CARDS[i.id])).concat(i.brave ? symbolAttrs(CARDS[i.brave.id]) : [], symTurnCols(i).map(k => [k]), fieldList(p).includes(i) ? extraSymbolsOf(p, i) : [])) out.push(a);
+  for (const i of fieldList(p).concat(withSoulState ? p.soulState : [], withStandby ? (p.standby || []) : [])) for (const a of alsoSyms(i, (CARDS[i.id].type === 'Ultimate' && G ? symbolAttrs(CARDS[i.id]).map(a => a.concat(ultSymbolExtra(p, CARDS[i.id]).filter(c => !a.includes(c)))) : symbolAttrs(CARDS[i.id])).concat(i.brave ? symbolAttrs(CARDS[i.brave.id]) : [], symTurnCols(i).map(k => [k]), fieldList(p).includes(i) ? extraSymbolsOf(p, i) : []))) out.push(a);
   return out;
 }
 function symbolsOn(p, withSoulState) {        // count per attribute (a two-attribute symbol counts in both)

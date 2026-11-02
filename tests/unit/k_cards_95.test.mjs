@@ -210,3 +210,37 @@ test('K-1168 BS07-038 is complete and carries the Flash invoke that exhausts its
   const r = await page.evaluate(`(() => { const c = BS.CARDS['BS07-038']; const e = (c.fx || c.effects || []).find(x => x.invoke); return { ok: c.fxComplete !== false, ex: !!(e && e.cost && e.cost.exhaustSelf), n: e && e.actions[0].n }; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.ex, true, JSON.stringify(r)); assert.equal(r.n, 2000, JSON.stringify(r));
 });
+
+test('K-1169 ALSO_TREATED: a level-gated extra colour and symbol (SD20-002, BS25-029, SD02-001)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player; P.cpu = true; G.active = P.key; G.step = 4;
+    const w = BS.mkInst('SD20-002'); w.cores = 1; P.spirits = [w]; const k = BS.CARDS['SD20-002']; const lv1 = BS.lvNo(w);
+    const sym = (BS.symbolsOn(P).white || 0), col = BS.fxMatch(k, { color: ['white'] }, w), colOther = BS.fxMatch(k, { color: ['white'] }, BS.mkInst('SD20-002'));
+    const b = BS.mkInst('BS25-029'); b.cores = 1; const kb = BS.CARDS['BS25-029']; P.spirits = [b]; const blue1 = BS.fxMatch(kb, { color: ['blue'] }, b), red1 = BS.fxMatch(kb, { color: ['red'] }, b);
+    b.cores = 4; const red2 = BS.fxMatch(kb, { color: ['red'] }, b), lv2 = BS.lvNo(b);
+    return { lv1, sym, col, colOther, blue1, red1, red2, lv2, base: kb.colors || [kb.symbol], ok: ['SD20-002', 'BS25-029', 'SD02-001'].every(i => BS.CARDS[i].fxComplete !== false) }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.col, true, JSON.stringify(r)); assert.ok(r.sym >= 1, JSON.stringify(r));
+  assert.equal(r.blue1, true, JSON.stringify(r)); assert.equal(r.red1, false, JSON.stringify(r)); assert.equal(r.red2, true, JSON.stringify(r));
+});
+
+test('K-1170 BS09-023 puts a Void core on each of two White Spirits when summoned', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player; P.cpu = true; G.active = P.key; G.step = 4;
+    const wh = Object.values(BS.CARDS).filter(c => c.type === 'Spirit' && (c.colors || [c.symbol]).length === 1 && (c.colors || [c.symbol])[0] === 'white' && c.id !== 'BS09-023').slice(0, 2).map(c => c.id);
+    const s = BS.mkInst('BS09-023'); s.cores = 2; const a = BS.mkInst(wh[0]); a.cores = 1; const b = BS.mkInst(wh[1]); b.cores = 1; P.spirits = [s, a, b]; P.void = 5;
+    await BS.fireFx(P, 'SUMMONED', s, { subject: s }); const tot = [s, a, b].map(x => x.cores);
+    return { tot, ok: BS.CARDS['BS09-023'].fxComplete !== false }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.tot.reduce((x, y) => x + y, 0), 6, JSON.stringify(r));
+});
+
+test('K-1171 SD43-002 destroys a small opposing Spirit and draws; BS09-040 exhausts two Cost 3 or less Spirits when blocking', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4;
+    const low = Object.values(BS.CARDS).filter(c => c.type === 'Spirit' && c.cost <= 3 && BS.CARDS[c.id]).slice(0, 2).map(c => c.id);
+    const s = BS.mkInst('SD43-002'); s.cores = 2; const t = BS.mkInst(low[0]); t.cores = 1; P.spirits = [s]; O.spirits = [t]; const h0 = P.hand.length;
+    await BS.fireFx(P, 'SUMMONED', s, { subject: s }); const gone = !O.spirits.includes(t), drew = P.hand.length - h0;
+    G.active = O.key; G.step = 5; const bl = BS.mkInst('BS09-040'); bl.cores = 2; const a = BS.mkInst(low[0]), b = BS.mkInst(low[1]); a.cores = 1; b.cores = 1; P.spirits = [bl]; O.spirits = [a, b];
+    await BS.fireFx(P, 'BLOCKS', bl, { subject: bl, blocker: bl }); const ex = [a, b].filter(x => x.exhausted).length;
+    return { gone, drew, ex, ok: ['SD43-002', 'BS09-040'].every(i => BS.CARDS[i].fxComplete !== false) }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.gone, true, JSON.stringify(r)); assert.equal(r.drew, 1, JSON.stringify(r)); assert.equal(r.ex, 2, JSON.stringify(r));
+});

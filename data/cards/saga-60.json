@@ -15386,13 +15386,38 @@
   "image": "PC01-RV002.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1] This Spirit's color and symbol are also treated as Blue.",
-   "[LV2][LV3] This Spirit's color and symbol are also treated as Red."
-  ],
+  "fxComplete": true,
   "note": "Reprint of BS25-029 (same name and stats), added v0.210.0 from the official product list.",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "ALSO_TREATED",
+    "to": "self",
+    "lv": [
+     1
+    ],
+    "colors": [
+     "blue"
+    ],
+    "symbol": true,
+    "color": true
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "ALSO_TREATED",
+    "to": "self",
+    "lv": [
+     2,
+     3
+    ],
+    "colors": [
+     "red"
+    ],
+    "symbol": true,
+    "color": true
+   }
+  ]
  },
  {
   "id": "PC01-RV003",
@@ -20151,12 +20176,24 @@
   "image": "SD02-001.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV2][LV3] This Spirit is also treated as a Blue Spirit."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "ALSO_TREATED",
+    "to": "self",
+    "lv": [
+     2,
+     3
+    ],
+    "colors": [
+     "blue"
+    ],
+    "color": true
+   }
+  ]
  },
  {
   "id": "SD02-002",
@@ -25220,12 +25257,24 @@
   "image": "SD17-002.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV2][LV3] This Spirit is also treated as a Green Spirit."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "ALSO_TREATED",
+    "to": "self",
+    "lv": [
+     2,
+     3
+    ],
+    "colors": [
+     "green"
+    ],
+    "color": true
+   }
+  ]
  },
  {
   "id": "SD17-003",
@@ -26773,11 +26822,25 @@
   "image": "SD20-002.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
   "rcode": "U",
-  "residual": [
-   "[LV1][LV2][LV3] This Spirit's color and symbol are also treated as White."
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "ALSO_TREATED",
+    "to": "self",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "colors": [
+     "white"
+    ],
+    "symbol": true,
+    "color": true
+   }
   ]
  },
  {
@@ -27624,14 +27687,50 @@
   "image": "SD22-006.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1] This Spirit's color and symbol are also treated as Purple.",
-   "[LV2] This Spirit's color and symbol are also treated as Red.",
-   "[LV3] This Spirit's color and symbol are also treated as White."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "U"
+  "rcode": "U",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "ALSO_TREATED",
+    "to": "self",
+    "lv": [
+     1
+    ],
+    "colors": [
+     "purple"
+    ],
+    "symbol": true,
+    "color": true
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "ALSO_TREATED",
+    "to": "self",
+    "lv": [
+     2
+    ],
+    "colors": [
+     "red"
+    ],
+    "symbol": true,
+    "color": true
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "ALSO_TREATED",
+    "to": "self",
+    "lv": [
+     3
+    ],
+    "colors": [
+     "white"
+    ],
+    "symbol": true,
+    "color": true
+   }
+  ]
  },
  {
   "id": "SD22-007",
@@ -38677,13 +38776,41 @@
   "image": "SD43-002.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Summoned) By destroying an opposing 5000 BP or less Spirit, draw one card.",
-   "[LV1][LV2][LV3] This Spirit's color and symbol are also treated as White."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "bpLe": 5000,
+      "thenDraw": 1
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "ALSO_TREATED",
+    "to": "self",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "colors": [
+     "white"
+    ],
+    "symbol": true,
+    "color": true
+   }
+  ]
  },
  {
   "id": "SD43-003",
@@ -51410,14 +51537,50 @@
   "image": "SD64-RV004.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1] This Spirit's color and symbol are also treated as Purple.",
-   "[LV2] This Spirit's color and symbol are also treated as Red.",
-   "[LV3] This Spirit's color and symbol are also treated as White."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "ALSO_TREATED",
+    "to": "self",
+    "lv": [
+     1
+    ],
+    "colors": [
+     "purple"
+    ],
+    "symbol": true,
+    "color": true
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "ALSO_TREATED",
+    "to": "self",
+    "lv": [
+     2
+    ],
+    "colors": [
+     "red"
+    ],
+    "symbol": true,
+    "color": true
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "ALSO_TREATED",
+    "to": "self",
+    "lv": [
+     3
+    ],
+    "colors": [
+     "white"
+    ],
+    "symbol": true,
+    "color": true
+   }
+  ]
  },
  {
   "id": "SD64-RV005",

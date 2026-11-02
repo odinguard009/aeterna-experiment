@@ -425,9 +425,6 @@
   "C_LEVEL",
   "T_BLOCKS"
  ],
- "BS03-053": [
-  "C_LEVEL"
- ],
  "BS03-055": [
   "A_BP_PLUS",
   "C_LEVEL"
@@ -1965,12 +1962,6 @@
   "A_REFRESH",
   "C_LEVEL"
  ],
- "BS09-023": [
-  "A_VOID",
-  "A_VOID_TO_MATCHING",
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "BS09-025": [
   "A_DISCARD_OPP",
   "A_SUMMON_FREE",
@@ -2026,11 +2017,6 @@
   "C_LEVEL",
   "M_BY_DOING",
   "T_DESTROYED"
- ],
- "BS09-040": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "T_BLOCKS"
  ],
  "BS09-043": [
   "C_LEVEL",
@@ -2576,9 +2562,6 @@
   "A_REFRESH",
   "C_LEVEL",
   "T_ATTACKS"
- ],
- "BS11-033": [
-  "C_LEVEL"
  ],
  "BS11-034": [
   "C_LEVEL",
@@ -7967,9 +7950,6 @@
   "M_REPLACEMENT",
   "T_BLOCKS"
  ],
- "BS25-029": [
-  "C_LEVEL"
- ],
  "BS25-030": [
   "A_REFRESH",
   "C_LEVEL",
@@ -8939,11 +8919,6 @@
   "C_LEVEL",
   "S_NO_RETURN"
  ],
- "BS27-021": [
-  "A_VOID",
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "BS27-022": [
   "A_REFRESH",
   "C_LEVEL",
@@ -9892,9 +9867,6 @@
  ],
  "BS29-015": [
   "K_ULTIMATE"
- ],
- "BS29-016": [
-  "C_LEVEL"
  ],
  "BS29-017": [
   "C_LEVEL",
@@ -19139,12 +19111,6 @@
  "BS43-RV011": [
   "A_SUMMON_FREE",
   "C_LEVEL"
- ],
- "BS43-RV014": [
-  "A_VOID",
-  "A_VOID_TO_MATCHING",
-  "C_LEVEL",
-  "T_SUMMONED"
  ],
  "BS43-RV015": [
   "A_DISCARD_OPP",
@@ -53624,9 +53590,6 @@
   "C_LEVEL",
   "K_ULTIMATE"
  ],
- "PC01-RV002": [
-  "C_LEVEL"
- ],
  "PC01-RV003": [
   "A_DESTROY_BP",
   "C_LEVEL",
@@ -54444,9 +54407,6 @@
   "A_REFRESH",
   "M_THEN"
  ],
- "SD02-001": [
-  "C_LEVEL"
- ],
  "SD02-002": [
   "A_EXHAUST",
   "C_LEVEL",
@@ -54943,9 +54903,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "SD17-002": [
-  "C_LEVEL"
- ],
  "SD17-009": [
   "C_LEVEL",
   "S_MUST_BLOCK",
@@ -55035,9 +54992,6 @@
   "S_MUST_BLOCK",
   "T_ATTACKS"
  ],
- "SD20-002": [
-  "C_LEVEL"
- ],
  "SD20-005": [
   "A_VOID",
   "C_LEVEL",
@@ -55106,9 +55060,6 @@
   "K_HIGH_SPEED",
   "K_ULTIMATE",
   "T_DESTROYED"
- ],
- "SD22-006": [
-  "C_LEVEL"
  ],
  "SD22-007": [
   "A_BP_PLUS",
@@ -56669,11 +56620,6 @@
   "M_BY_DOING",
   "M_OPTIONAL",
   "T_ADVENT"
- ],
- "SD43-002": [
-  "A_DRAW",
-  "C_LEVEL",
-  "T_SUMMONED"
  ],
  "SD43-003": [
   "A_SUMMON_FREE",
@@ -59099,9 +59045,6 @@
   "C_LEVEL",
   "K_ULTIMATE",
   "T_MIRAGE_LIFE"
- ],
- "SD64-RV004": [
-  "C_LEVEL"
  ],
  "SD64-RV006": [
   "A_BP_PLUS",

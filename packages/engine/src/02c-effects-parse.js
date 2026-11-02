@@ -164,6 +164,12 @@ function parseEffects(arr) {
         if (!Array.isArray(e.colors) || !e.colors.length || e.colors.length > 3 || !e.colors.every(c => COLORS.includes(c))) return { error: 'ULT_SYMBOL_AS needs "colors" (1-3 of the six colours)' };
         o.colors = e.colors.slice(); o.to = 'self';
       }
+      if (e.flag === 'ALSO_TREATED') {                            // v384 "this Spirit's color and symbol are also treated as Red" (self, level-gated)
+        if (!Array.isArray(e.colors) || !e.colors.length || e.colors.length > 6 || !e.colors.every(c => COLORS.includes(c))) return { error: 'ALSO_TREATED needs "colors" (the six colours)' };
+        if (e.symbol !== true && e.color !== true) return { error: 'ALSO_TREATED needs "symbol":true and/or "color":true' };
+        if (e.if != null || e.match != null || (e.to != null && e.to !== 'self')) return { error: 'ALSO_TREATED is unconditional and applies to this card only' };
+        o.colors = e.colors.slice(); o.to = 'self'; if (e.symbol === true) o.symbol = true; if (e.color === true) o.color = true;
+      }
       if (e.flag === 'EXTRA_SYMBOL') {                            // v193 "this Nexus gains an extra Blue symbol" (a conditional extra Field symbol)
         if (!COLORS.includes(e.color)) return { error: 'EXTRA_SYMBOL needs a "color"' };
         o.color = e.color; o.n = Number.isInteger(e.n) && e.n >= 1 && e.n <= 3 ? e.n : 1;
