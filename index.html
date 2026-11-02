@@ -2267,6 +2267,7 @@ html.layout-pc #view-playmat .ae-sub{display:inline}
 .mobile-stats-bar .stat-pill .pl{font-size:0}
 .mobile-stats-bar .stat-pill .pl::after{content:attr(data-f);font-size:calc(10px*var(--t));letter-spacing:0;text-transform:none;font-weight:700}
 @media (max-width:380px){.mobile-stats-bar .stat-pill .pl[data-f="Reserve"]::after{content:"Res."}}
+html[data-ts="large"] .mobile-stats-bar .stat-pill .pl[data-f="Reserve"]::after,html[data-ts="larger"] .mobile-stats-bar .stat-pill .pl[data-f="Reserve"]::after{content:"Res."}
 html.layout-pc #view-play .pg>.hdcard{order:-2}
 html.layout-pc #view-play .pg>.readybox{order:-1}
 #view-online .menu-btn{display:flex;align-items:center;gap:14px;text-align:left;width:min(100%,520px)}
@@ -2592,7 +2593,7 @@ html:not(.layout-pc) #ae-eff-stack{top:38px;}
         <section class="set-card" id="set-s-game" aria-label="Game" hidden><div class="setrow"><div class="grow"><b>Speed</b><span class="sub" style="font-size:.84em">Animation and CPU pause length.</span></div><div class="ctl"><select id="set-speed" class="in" aria-label="Game speed"><option value="slow">Slow</option><option value="normal">Normal</option><option value="fast">Fast</option><option value="instant">Instant</option></select></div></div><div class="setrow"><div class="grow"><b>Effect pop-ups</b><span class="sub" style="font-size:.84em">A short info card when a Spirit or card effect runs. It never asks anything and closes after 5 seconds or with its X.</span></div><div class="ctl"><select id="set-effpop" class="in" aria-label="Effect pop-ups"><option value="on">On</option><option value="off">Off</option></select></div></div><div class="setrow"><div class="grow"><b>Style</b><span class="sub" style="font-size:.84em">How the CPU weighs attacks, blocks and plays (balanced is the default).</span></div><div class="ctl"><select id="set-cpu" class="in" aria-label="CPU style"></select></div></div><div class="setrow"><div class="grow"><b>Server URL</b><span class="sub" style="font-size:.84em">Base address of the Aeterna server (http, no trailing slash). Leave empty to use this page's own address when the server serves it; the online room connects to the WebSocket one port up. Online rooms play Standard.</span></div><div class="ctl"><input id="set-online-url" aria-label="Online server URL" class="in" type="url" placeholder="http://localhost:8080" autocomplete="off" spellcheck="false"></div></div></section>
         <section class="set-card" id="set-s-sound" aria-label="Animation And Sound" hidden><div class="setrow"><div class="grow"><b>Animations</b><span class="sub" style="font-size:.84em">Attack beam, Life shatter and other short battle cues. Reduced keeps only fades. Auto follows the device's reduced-motion setting.</span></div><div class="ctl"><select id="set-anim" class="in" aria-label="Animations"><option value="auto">Auto (device)</option><option value="full">Full</option><option value="reduced">Reduced</option><option value="off">Off</option></select></div></div><div class="setrow"><div class="grow"><b>Sound effects</b><span class="sub" style="font-size:.84em">Short synthesized sounds for attacks, hits, summons and draws (no audio files).</span></div><div class="ctl"><select id="set-sound" class="in" aria-label="Sound"><option value="off">Off</option><option value="on">On</option></select></div></div></section>
         <section class="set-card" id="set-s-access" aria-label="Accessibility" hidden><div class="setrow"><div class="grow"><b>Long-press for card info</b><span class="sub" style="font-size:.84em">Deck builder on a touch screen: hold a card to read it instead of adding it.</span></div><div class="ctl"><select id="set-lp" class="in" aria-label="Long-press for card info"><option value="on">On</option><option value="off">Off</option></select></div></div><div class="setrow"><div class="grow"><b>Text size</b><span class="sub" style="font-size:.84em">Bigger text on the menu screens (Home, Decks, Library, Settings).</span></div><div class="ctl"><select id="set-ts" class="in" aria-label="Text size"><option value="small">Small</option><option value="normal">Medium</option><option value="large">Large</option><option value="larger">Extra large</option></select></div></div><div class="setrow"><div class="grow"><b>Colour-blind markers</b><span class="sub" style="font-size:.84em">Adds a shape to each card colour so colours are never the only signal.</span></div><div class="ctl"><select id="set-cb" class="in" aria-label="Colour-blind markers"><option value="off">Off</option><option value="on">On</option></select></div></div><div class="setrow"><div class="grow"><b>High contrast edges</b><span class="sub" style="font-size:.84em">Thicker card borders and focus rings.</span></div><div class="ctl"><select id="set-hc" class="in" aria-label="High contrast edges"><option value="off">Off</option><option value="on">On</option></select></div></div><div class="setrow"><div class="grow"><b>Keyboard shortcuts</b><span class="sub" style="font-size:.84em">Also opens with the ? key.</span></div><div class="ctl"><button class="btn sm" data-a="shortcuts">Show list</button></div></div></section>
-        <section class="set-card" id="set-s-data" aria-label="Cards And Saved Data" hidden><div class="setrow"><div class="grow"><b>Your card images</b><span class="sub" style="font-size:.84em"><span id="set-imgs">Pictures you add in the Library. They stay on this device.</span></span></div><div class="ctl"><button class="btn sm" data-a="go-lib">Open Library</button></div></div><div class="setrow"><div class="grow"><b>Download all card pictures</b><span class="sub" style="font-size:.84em" id="set-dl-st" role="status">Saves every card's picture on this device so the art also works offline. Needs the picture server and some storage space (several hundred MB); you can stop and continue later.</span></div><div class="ctl"><button class="btn sm" id="set-dl" data-a="set-dlimgs">Download</button></div></div><div class="setrow"><div class="grow"><b>Reset settings</b><span class="sub" style="font-size:.84em">Decks, imported cards, images and settings stay in this browser only. Reset puts speed, sound, CPU deck and CPU style back to the defaults.</span></div><div class="ctl"><button class="btn sm dng" data-a="set-reset">Reset</button></div></div></section>
+        <section class="set-card" id="set-s-data" aria-label="Cards And Saved Data" hidden><div class="setrow"><div class="grow"><b>Your card images</b><span class="sub" style="font-size:.84em"><span id="set-imgs">Pictures you add in the Library. They stay on this device.</span></span></div><div class="ctl"><button class="btn sm" data-a="go-lib">Open Library</button></div></div><div class="setrow"><div class="grow"><b>Download all card pictures</b><span class="sub" style="font-size:.84em" id="set-dl-st" role="status">Saves every card's picture on this device so the art also works offline. Needs the picture server and some storage space (several hundred MB); you can stop and continue later.</span><progress id="set-dl-bar" value="0" max="1" hidden style="width:100%;height:8px;margin-top:6px"></progress></div><div class="ctl"><button class="btn sm" id="set-dl" data-a="set-dlimgs">Download</button></div></div><div class="setrow"><div class="grow"><b>Reset settings</b><span class="sub" style="font-size:.84em">Decks, imported cards, images and settings stay in this browser only. Reset puts speed, sound, CPU deck and CPU style back to the defaults.</span></div><div class="ctl"><button class="btn sm dng" data-a="set-reset">Reset</button></div></div></section>
                 <section class="set-card" id="set-s-history" aria-label="Match history" hidden><h3 class="pf-h">Match history</h3>
           <div id="set-hist" class="set-hist"></div>
           <div class="setrow"><div class="grow"><b>Clear history</b><span class="sub" style="font-size:.84em">Removes the list of finished matches.</span></div><div class="ctl"><button class="btn sm dng" data-a="hist-clear">Clear</button></div></div>
@@ -12230,6 +12231,34 @@ document.addEventListener('change', e => {
   const t = /** @type {HTMLInputElement} */ (e.target);
   if (t && t.id === 'set-online-url') { SETTINGS.onlineUrl = String(t.value || '').trim().replace(/\/+$/, ''); saveSettings(); }
 });
+/* 2026-11-02: "Download all card pictures" (Settings): every card's picture from the picture server (the same /assets/card-images route the cards use online)
+   is stored on this device (IndexedDB, like pictures added in the Library), so the art works offline. Resumable: a card that already has a picture is skipped. */
+let IMGDL = null;                                    // { stop: bool } while a download runs
+async function downloadAllImages(report) {
+  const origin = (typeof onlineOrigin === 'function') ? onlineOrigin() : null;
+  if (!origin) return { ok: 0, skip: 0, fail: 0, total: 0, err: 'No picture server: open the game from its web address (or set the online server) first.' };
+  if (!IDB) IDB = await idbOpen();
+  if (!IDB) return { ok: 0, skip: 0, fail: 0, total: 0, err: 'This browser blocks local storage, so pictures cannot be saved.' };
+  const ids = Object.keys(CARDS).filter(id => !CARDS[id].token && !/^TRAIN-/.test(id)), st = { ok: 0, skip: 0, fail: 0, total: ids.length, err: '' };
+  IMGDL = { stop: false }; let n = 0, next = 0, streak = 0;
+  const one = async () => {
+    while (!IMGDL.stop && next < ids.length && !st.err) {
+      const id = ids[next++];
+      if (IMG[id]) st.skip++;
+      else {
+        try {
+          const r = await fetch(`${origin}/assets/card-images/${encodeURIComponent(id)}?a=${ART_REV}`);
+          const b = r.ok ? await r.blob() : null;
+          if (b && b.size && /^image\//.test(b.type)) { setImg(id, b); await idbTx('readwrite', s => s.put(b, id)); st.ok++; streak = 0; } else { st.fail++; streak++; }
+        } catch (e) { st.fail++; streak++; }
+        if (streak >= 25 && !st.ok) st.err = 'The picture server does not answer.';
+      }
+      if (++n % 20 === 0 || n === ids.length) report(st, n);
+    }
+  };
+  await Promise.all([one(), one(), one(), one(), one(), one()]);
+  st.stopped = IMGDL.stop; IMGDL = null; report(st, n); return st;
+}
 /* ---------------------------------------------------------------------
    ONLINE LOBBY + ACCOUNT (v0.109.0, roadmap M8 part 2; docs/ai/monorepo-plan.md M8)
    The lobby that sits before a match and the account panel beside it. The match terminal itself is 13i-online.js;
@@ -12773,34 +12802,6 @@ async function importImages(files) {
   }
   return { ok, miss };
 }
-/* 2026-11-02: "Download all card pictures" (Settings): every card's picture from the picture server (the same /assets/card-images route the cards use online)
-   is stored on this device (IndexedDB, like pictures added in the Library), so the art works offline. Resumable: a card that already has a picture is skipped. */
-let IMGDL = null;                                    // { stop: bool } while a download runs
-async function downloadAllImages(report) {
-  const origin = (typeof onlineOrigin === 'function') ? onlineOrigin() : null;
-  if (!origin) return { ok: 0, skip: 0, fail: 0, total: 0, err: 'No picture server: open the game from its web address (or set the online server) first.' };
-  if (!IDB) IDB = await idbOpen();
-  if (!IDB) return { ok: 0, skip: 0, fail: 0, total: 0, err: 'This browser blocks local storage, so pictures cannot be saved.' };
-  const ids = Object.keys(CARDS).filter(id => !CARDS[id].token && !/^TRAIN-/.test(id)), st = { ok: 0, skip: 0, fail: 0, total: ids.length, err: '' };
-  IMGDL = { stop: false }; let n = 0, next = 0, streak = 0;
-  const one = async () => {
-    while (!IMGDL.stop && next < ids.length && !st.err) {
-      const id = ids[next++];
-      if (IMG[id]) st.skip++;
-      else {
-        try {
-          const r = await fetch(`${origin}/assets/card-images/${encodeURIComponent(id)}?a=${ART_REV}`);
-          const b = r.ok ? await r.blob() : null;
-          if (b && b.size && /^image\//.test(b.type)) { setImg(id, b); await idbTx('readwrite', s => s.put(b, id)); st.ok++; streak = 0; } else { st.fail++; streak++; }
-        } catch (e) { st.fail++; streak++; }
-        if (streak >= 25 && !st.ok) st.err = 'The picture server does not answer.';
-      }
-      if (++n % 20 === 0 || n === ids.length) report(st, n);
-    }
-  };
-  await Promise.all([one(), one(), one(), one(), one(), one()]);
-  st.stopped = IMGDL.stop; IMGDL = null; report(st, n); return st;
-}
 async function clearImages() { Object.keys(IMG).forEach(id => { URL.revokeObjectURL(IMG[id]); delete IMG[id]; }); await idbTx('readwrite', st => { st.clear(); if (MAT.blob) st.put(MAT.blob, MAT_KEY); if (LOBBYBG.blob) st.put(LOBBYBG.blob, LOBBYBG_KEY); for (const i of Object.keys(SLEEVE_BLOB)) st.put(SLEEVE_BLOB[i], '~sleeve:' + i); }); }   // the playmat is not a card image: it stays
 /* v0.112.0 (card images online): the card image URL for an id. The player's own image (IndexedDB
    blob) always wins; otherwise, when an online server is present, the official art mirrored at
@@ -13325,8 +13326,8 @@ document.addEventListener('click', e => {
   else if (a === 'set-dlimgs') {
     if (IMGDL) { IMGDL.stop = true; return; }
     const btn = $('set-dl'), msg = $('set-dl-st'); if (btn) btn.textContent = 'Stop';
-    downloadAllImages((st, n) => { if (msg) msg.textContent = `${n} / ${st.total} cards checked: ${st.ok} saved, ${st.skip} already here, ${st.fail} not available.`; }).then(r => {
-      if (btn) btn.textContent = 'Download';
+    downloadAllImages((st, n) => { const bar = $('set-dl-bar'); if (bar) { bar.hidden = false; bar.max = st.total || 1; bar.value = n; } if (msg) msg.textContent = `${n} / ${st.total} cards checked: ${st.ok} saved, ${st.skip} already here, ${st.fail} not available.`; }).then(r => {
+      if (btn) btn.textContent = r.stopped || r.fail ? 'Resume' : 'Download'; const bar = $('set-dl-bar'); if (bar) bar.hidden = true;
       if (msg) msg.textContent = r.err ? r.err : `${r.stopped ? 'Stopped' : 'Done'}: ${r.ok} saved, ${r.skip} already here, ${r.fail} not available (${r.total} cards).`;
       refreshViews(); renderSetPage();
     });

@@ -117,7 +117,7 @@ test('U18 a card without effect text says so', async () => {
   assert.match(await ev(() => BS.effectTextHTML({ name: 'V', type: 'Spirit', symbol: 'red', cost: 1, desc: '' }, false)), /No effect text\./);
 });
 test('U19 every real card formats into at least one line and the text survives unchanged', async () => {
-  const bad = await ev(() => Object.keys(BS.CARDS).filter(id => { const d = (BS.CARDS[id].desc || '').replace(/\s+/g, ' ').trim();
+  const bad = await ev(() => Object.keys(BS.CARDS).filter(id => { const d = (BS.CARDS[id].desc || '').replace(/\s+/g, ' ').trim().replace(/\[Lv(?=\d)/g, '[LV');
     return d && !/\{\{/.test(d) && BS.effectLines(d).join(' ').replace(/\s+/g, ' ') !== d; }));
   assert.deepEqual(bad, []);
 });

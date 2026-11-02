@@ -72,6 +72,7 @@ html.layout-pc #view-playmat .ae-sub{display:inline}
 .mobile-stats-bar .stat-pill .pl{font-size:0}
 .mobile-stats-bar .stat-pill .pl::after{content:attr(data-f);font-size:calc(10px*var(--t));letter-spacing:0;text-transform:none;font-weight:700}
 @media (max-width:380px){.mobile-stats-bar .stat-pill .pl[data-f="Reserve"]::after{content:"Res."}}
+html[data-ts="large"] .mobile-stats-bar .stat-pill .pl[data-f="Reserve"]::after,html[data-ts="larger"] .mobile-stats-bar .stat-pill .pl[data-f="Reserve"]::after{content:"Res."}   /* big text: the long word no longer clips */
 /* v0.155.0 owner review batch 1 (2026-10-27) */
 html.layout-pc #view-play .pg>.hdcard{order:-2}                                                              /* Play (PC): the Start box sits right under the page header */
 html.layout-pc #view-play .pg>.readybox{order:-1}
