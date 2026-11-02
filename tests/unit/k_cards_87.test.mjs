@@ -96,3 +96,15 @@ test('K-878 BS44-038 reveals three and summons a paid Cost<=5 Machine Beast; BS5
   });
   assert.ok(r.mbOnField >= 1 && r.a, JSON.stringify(r));
 });
+
+test('K-879 BS31-053 reveals 6 with Soul Core paid and picks only a Burst-less Magic', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(() => {
+    const e = BS.CARDS['BS31-053'].effects.find(x => x.trigger === 'SUMMONED');
+    const picks = e.actions.map(a => [a.n, a.if.soulPaid, a.match.noBurst]);
+    const bur = Object.values(BS.CARDS).find(c => c.type === 'Magic' && /\{\{Burst\|/.test(c.desc || c.text || ''));
+    const non = Object.values(BS.CARDS).find(c => c.type === 'Magic' && !c.burst && !/\{\{Burst\|/.test(c.desc || c.text || ''));
+    return { picks, fc: BS.CARDS['BS31-053'].fxComplete, bur: !!bur, non: !!non };
+  });
+  assert.deepEqual(r.picks, [[3, false, true], [6, true, true]]);
+});
