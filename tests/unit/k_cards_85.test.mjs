@@ -775,3 +775,13 @@ test('K-1001 OPP_CORES_TO_RESERVE eachPerNexus: BS44-022 sends 1 core plus 1 per
     await BS.fireFx(P, 'ATTACKS', s, {}); return [6 - t.cores, O.reserve.n - r0]; })()`);
   assert.deepEqual(r, [3, 3], JSON.stringify(r));
 });
+
+test('K-1002 VOID_TO_CARD perMatchSpirit: BS09-024 adds one core per matching Beast Spirit you control', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player; P.spirits.length = 0;
+    const s = BS.mkInst('BS09-024'); s.cores = 1; P.spirits.push(s);
+    const other = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit' && i !== 'BS09-024' && (BS.CARDS[i].families || []).includes('Giant Beast')), none = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit' && !(BS.CARDS[i].families || []).some(f => /Beast/.test(f)));
+    P.spirits.push(BS.mkInst(other), BS.mkInst(none)); G.turn = 'player'; const c0 = s.cores;
+    await BS.fireFx(P, 'SUMMONED', s, {}); return [s.cores - c0]; })()`);
+  assert.deepEqual(r, [2], JSON.stringify(r));
+});
