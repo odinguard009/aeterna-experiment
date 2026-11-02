@@ -124,7 +124,7 @@ async function cpuMain(p) {
     const mh = p.hand.find(h => CARDS[h.id].mirage && (CARDS[h.id].effects || []).some(e => e.trigger === 'MIRAGE_OWN_LIFE' || e.trigger === 'MIRAGE_OPP_LIFE' || e.trigger === 'MIRAGE_SET') && CARDS[h.id].mirage.cost <= reserveTotal(p) && mirageUsable(p, h));
     if (mh) { removeFrom(p.hand, mh); payCost(p, CARDS[mh.id].mirage.cost, null); checkDepletion(p); setBurst(p, mh, true); await fireFx(p, 'MIRAGE_SET', mh, {}); io.view({ type: 'board' }); await wait(400); }
   }
-  if (!p.burstSetThisTurn && !p.burst) { const b = p.hand.find(h => CARDS[h.id].burst); if (b) { setBurst(p, b); io.view({ type: 'board' }); await wait(400); } }
+  if (!p.burstSetThisTurn && !p.burst) { const b = p.hand.find(h => CARDS[h.id].burst); if (b) { setBurst(p, b); io.view({ type: 'board' }); await fireBurstSet(p); await wait(400); } }
   for (let g = 0; g < 14 && !G.over; g++) {
     const opts = summonableOpts(p);                                       // v0.105.0 (M6 step 2): shared with the cpuAnswer summon route
     if (!opts.length) break;

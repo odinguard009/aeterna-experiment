@@ -119,7 +119,7 @@ Object.assign(FX_ACTIONS, {
     run: async c => {
       const L = FX_ACTIONS.SET_BURST.cands(c); if (!L.length) { c.ctx.did = false; return; }
       const h = c.p.cpu ? L.slice().sort((x, y) => CARDS[x.id].cost - CARDS[y.id].cost)[0] : await chooseCard(c, L, `✨ ${_pn(c)}`, 'Choose a card with Burst effect from your Hand to set.', false);
-      setBurst(c.p, h, false); io.view({ type: 'board' });
+      setBurst(c.p, h, false); io.view({ type: 'board' }); await fireBurstSet(c.p);
     } },
   DISCARD_OPP_BURST: { chk: () => true, txt: () => 'discard the opposing Burst',
     run: async c => { const b = c.opp.burst; if (!b) { c.ctx.did = false; return; } c.opp.burst = null; b.mirage = false; c.opp.trash.push(b); log(`${CARDS[c.src.id].name}: the opposing Burst is discarded.`); } },

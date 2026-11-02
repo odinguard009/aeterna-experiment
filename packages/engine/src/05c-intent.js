@@ -181,7 +181,7 @@ async function applyIntent(key, it) {
       if (it.type === 'cast') return intentCast(p, inst);
       if (it.type === 'mirage') return intentMirage(p, inst);
       if (it.type === 'brave') return intentBraveSummon(p, inst);
-      if (it.type === 'burst') { if (!CARDS[inst.id].burst || p.burstSetThisTurn) return false; setBurst(p, inst); boardView(); return true; }
+      if (it.type === 'burst') { if (!CARDS[inst.id].burst || p.burstSetThisTurn) return false; setBurst(p, inst); boardView(); await fireBurstSet(p); return true; }
       if (!CARDS[inst.id].manifest) return false;
       const ok = await humanManifest(inst); boardView(); return !!ok;
     }

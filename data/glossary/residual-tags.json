@@ -4310,11 +4310,6 @@
   "C_LEVEL",
   "T_ALLY_LOST"
  ],
- "BS15-062": [
-  "A_DESTROY_BP",
-  "C_LEVEL",
-  "K_BURST"
- ],
  "BS15-063": [
   "A_DISCARD_HAND",
   "A_EXHAUST",
@@ -4886,10 +4881,6 @@
   "M_BY_DOING",
   "T_ALLY_LOST"
  ],
- "BS17-017": [
-  "C_LEVEL",
-  "K_BURST"
- ],
  "BS17-021": [
   "C_LEVEL",
   "K_BURST",
@@ -4992,11 +4983,6 @@
   "K_BURST",
   "M_OPTIONAL",
   "T_SUMMONED"
- ],
- "BS17-050": [
-  "A_VOID",
-  "C_LEVEL",
-  "K_BURST"
  ],
  "BS17-051": [
   "A_LIFE_TO_RESERVE",
@@ -13317,12 +13303,6 @@
   "C_OPP_TURN",
   "M_OPTIONAL"
  ],
- "BS35-081": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "K_BURST",
-  "M_OPTIONAL"
- ],
  "BS35-082": [
   "A_RETURN_TRASH",
   "A_TRASH_TO_RESERVE",
@@ -19659,13 +19639,6 @@
   "C_LEVEL",
   "K_GRANDWALKER",
   "M_BY_DOING"
- ],
- "BS44-037": [
-  "A_BOUNCE",
-  "C_LEVEL",
-  "K_BURST",
-  "K_ULTIMATE",
-  "M_OPTIONAL"
  ],
  "BS44-039": [
   "A_BP_PLUS",

@@ -489,6 +489,8 @@ function setBurst(p, inst, mirage) {          // the Burst Area holds one card: 
   }
   log(mirage ? `${who(p)} ${p.cpu ? 'sets' : 'set'} a Mirage face up: ${CARDS[inst.id].name}.` : `${who(p)} ${p.cpu ? 'sets' : 'set'} a Burst.`);
 }
+/* v382 "When you / the opponent set(s) a Burst": BURST_SET for the setter's Field, OPP_BURST_SET for the other side (face-up Mirages do not count) */
+async function fireBurstSet(p) { if (!G || G.over) return; await fireFx(p, 'BURST_SET', null, {}); await fireFx(G.p[other(p.key)], 'OPP_BURST_SET', null, {}); }
 const mirageUsable = (p, inst) => !!CARDS[inst.id].mirage && !p.mirageSetThisTurn && CARDS[inst.id].mirage.cost <= coresAvailable(p);
 
 /* Magic cards: [Main] in the Main Step, [Flash] also in the Flash Timings of a battle */

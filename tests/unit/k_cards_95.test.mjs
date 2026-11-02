@@ -132,3 +132,32 @@ test('K-1160 BS31-112 draws three and discards two, or one with a WisdomKing/Dou
     return { out, ok: BS.CARDS['BS31-112'].fxComplete !== false }; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.deepEqual(r.out, [1, 2], JSON.stringify(r));
 });
+
+test('K-1161 BS17-017 sends a core from an opposing Spirit to the Trash when its owner sets a Burst', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4;
+    const id = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && c.cost <= 3 && !c.effects && c.id !== 'BS17-017').id;
+    const m = BS.mkInst('BS17-017'); m.cores = 3; P.spirits = [m]; const t = BS.mkInst(id); t.cores = 2; O.spirits = [t]; const tr = O.trashCores.n;
+    await BS.fireFx(P, 'BURST_SET', null, {}); await BS.fireFx(O, 'OPP_BURST_SET', null, {});
+    return { cores: t.cores, trash: O.trashCores.n - tr, ok: BS.CARDS['BS17-017'].fxComplete !== false }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.cores, 1, JSON.stringify(r)); assert.equal(r.trash, 1, JSON.stringify(r));
+});
+
+test('K-1162 BS17-050 puts a core from the Void on a Spirit when the opponent sets a Burst, not when you do', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4;
+    const m = BS.mkInst('BS17-050'); m.cores = 2; P.spirits = [m]; P.void = 3;
+    await BS.fireFx(P, 'BURST_SET', null, {}); const a = m.cores; await BS.fireFx(O, 'BURST_SET', null, {}); await BS.fireFx(P, 'OPP_BURST_SET', null, {});
+    return { a, b: m.cores, ok: BS.CARDS['BS17-050'].fxComplete !== false }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.a, 2, JSON.stringify(r)); assert.equal(r.b, 3, JSON.stringify(r));
+});
+
+test('K-1163 BS15-062 destroys an opposing 3000 BP or less Spirit when you set a Burst in your Main Step', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4;
+    const n = BS.mkInst('BS15-062'); n.cores = 2; P.nexus = [n]; const id = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && c.cost <= 2 && !c.effects).id;
+    const t = BS.mkInst(id); t.cores = 1; O.spirits = [t]; const bp = BS.bpOf(t);
+    await BS.fireFx(P, 'BURST_SET', null, {});
+    return { bp, left: O.spirits.length, ok: BS.CARDS['BS15-062'].fxComplete !== false }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.ok(r.bp <= 3000, JSON.stringify(r)); assert.equal(r.left, 0, JSON.stringify(r));
+});
