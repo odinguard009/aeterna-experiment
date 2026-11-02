@@ -11918,9 +11918,6 @@
   "K_HOLY_LIFE",
   "K_ULTIMATE"
  ],
- "BS32-042": [
-  "A_BP_MINUS"
- ],
  "BS32-043": [
   "A_REMOVED_ZONE",
   "C_LEVEL",
@@ -12432,7 +12429,6 @@
  "BS33-043": [
   "C_LEVEL"
  ],
- "BS33-044": [],
  "BS33-045": [
   "C_LEVEL",
   "T_ATTACKS"
@@ -12870,9 +12866,6 @@
   "K_BURST",
   "K_ULTIMATE",
   "T_ATTACKS"
- ],
- "BS34-042": [
-  "A_BP_MINUS"
  ],
  "BS34-043": [
   "A_RETURN_TRASH",
@@ -19119,7 +19112,6 @@
   "M_OPTIONAL",
   "M_REPLACEMENT"
  ],
- "BS43-050": [],
  "BS43-051": [
   "A_BP_PLUS",
   "C_LEVEL"
@@ -19714,14 +19706,6 @@
   "M_THEN",
   "T_ATTACKS",
   "T_OPP_HAND_UP"
- ],
- "BS43-X05": [
-  "A_BP_MINUS",
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "M_REPLACEMENT",
-  "T_DESTROYED_OPP"
  ],
  "BS43-X06": [
   "A_REMOVED_ZONE",
@@ -52371,9 +52355,6 @@
   "A_EXHAUST",
   "C_LEVEL",
   "T_SUMMONED"
- ],
- "SD57-RV003": [
-  "A_BP_MINUS"
  ],
  "SD57-RV004": [
   "A_RETURN_TRASH",

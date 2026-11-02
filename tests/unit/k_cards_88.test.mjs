@@ -375,3 +375,20 @@ test('K-913 BS43-X05 summonAfter: Flash -10000 BP destroys at 0, then the card i
   const m = JSON.stringify(r);
   assert.equal(r.foe, 0, m); assert.equal(r.onField, true, m); assert.equal(r.inTrash, false, m);
 });
+
+test('K-914 BS71-023: Mirage set gives every Weapon Insect +1000 BP per counter (per.type Counter)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player; G.active = P.key; P.cpu = true; P.spirits.length = 0; P.count = 3;
+    const wi = Object.keys(BS.CARDS).find(k => (BS.CARDS[k].families || []).includes('Weapon Insect') && BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].effects);
+    const a = BS.mkInst(wi); a.cores = 1; P.spirits.push(a);
+    const o = BS.mkInst('BS01-002'); o.cores = 1; P.spirits.push(o);
+    const m = BS.mkInst('BS71-023'); m.mirage = true; P.mirage = m;
+    const b0 = [BS.bpOf(a), BS.bpOf(o)];
+    await BS.fireFx(P, 'MIRAGE_SET', m, {});
+    return { wiBefore: b0[0], d: BS.bpOf(a) - b0[0], other: BS.bpOf(o) - b0[1], cplt: BS.CARDS['BS71-023'].fxComplete };
+  });
+  const j = JSON.stringify(r);
+  assert.equal(r.d, 3000, j); assert.equal(r.other, 0, j);
+});
