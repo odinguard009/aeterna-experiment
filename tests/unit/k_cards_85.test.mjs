@@ -706,3 +706,9 @@ test('K-993 Rush burst-lock cards: BS41-RV005 and BS19-060 have the NO_BURST_BAT
   const r = await page.evaluate(`(() => { const sh = id => BS.CARDS[id].effects.map(e => e.trigger + ':' + (e.if ? e.if.hasSymbol : '-') + ':' + e.actions.map(a => a.do).join('+')).join('|'); return [sh('BS41-RV005'), sh('BS19-060')]; })()`);
   assert.deepEqual(r, ['ATTACKS:-:NO_BURST_BATTLE|BLOCKS:-:NO_BURST_BATTLE|ATTACKS:red:DESTROY+BP_PLUS|BLOCKS:red:DESTROY+BP_PLUS', 'ATTACKS:-:NO_BURST_BATTLE|ATTACKS:red:DRAW'], JSON.stringify(r));
 });
+
+test('K-994 NO_RETURN statics for BS06-005 (Terra Dragon) and BS42-015 (VioletCorpse, own attack step)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(() => { const f = id => BS.CARDS[id].effects.find(e => e.flag === 'NO_RETURN'), a = f('BS06-005'), b = f('BS42-015'); return [a.flag, a.match.family[0], b.flag, b.match.name[0], b.if.attackStep]; })()`);
+  assert.deepEqual(r, ['NO_RETURN', 'Terra Dragon', 'NO_RETURN', 'VioletCorpse', true], JSON.stringify(r));
+});

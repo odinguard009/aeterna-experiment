@@ -1135,10 +1135,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "BS06-005": [
-  "C_LEVEL",
-  "S_NO_RETURN"
- ],
  "BS06-010": [
   "A_REFRESH",
   "C_LEVEL",
@@ -18466,10 +18462,6 @@
   "K_ADVENT",
   "K_ULTIMATE",
   "M_BY_DOING"
- ],
- "BS42-015": [
-  "C_LEVEL",
-  "S_NO_RETURN"
  ],
  "BS42-017": [
   "A_REMOVED_ZONE",

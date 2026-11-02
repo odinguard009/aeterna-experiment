@@ -1,15 +1,15 @@
 {
  "stats": {
-  "cards": 6565,
+  "cards": 6563,
   "per_saga": {
-   "1": 488,
+   "1": 487,
    "2": 267,
    "3": 338,
    "4": 327,
    "5": 613,
    "6": 340,
    "7": 495,
-   "8": 459,
+   "8": 458,
    "9": 483,
    "10": 492,
    "11": 320,
@@ -22,18 +22,18 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2141,
+  "skipped_curated": 2143,
   "nexus_levels_added": 675,
   "nexus_levels_missing": 43,
   "merged": 107,
-  "image_problems": 414,
+  "image_problems": 413,
   "brave_unparsed": 171,
   "ut_lines_added": 114,
   "odd_reduction": 805,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
   "number_conflicts": 3,
-  "without_image": 412
+  "without_image": 411
  },
  "tokens": [
   "BS73-T001",
@@ -414,6 +414,7 @@
   "BS06-002",
   "BS06-003",
   "BS06-004",
+  "BS06-005",
   "BS06-006",
   "BS06-007",
   "BS06-008",
@@ -1274,6 +1275,7 @@
   "BS41-RV005",
   "BS42-002",
   "BS42-014",
+  "BS42-015",
   "BS42-016",
   "BS42-029",
   "BS42-041",
@@ -3819,11 +3821,6 @@
    "id": "BS42-012",
    "name": "The TwinkleStarEighthApostle Proteus",
    "problem": "no image (near: The TwinkleStarEightApostle Proteus.jpg)"
-  },
-  {
-   "id": "BS42-015",
-   "name": "The VioletCorpseBrigade Bonehead-Drago",
-   "problem": "no image"
   },
   {
    "id": "BS42-018",
