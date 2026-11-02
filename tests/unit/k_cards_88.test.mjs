@@ -392,3 +392,19 @@ test('K-914 BS71-023: Mirage set gives every Weapon Insect +1000 BP per counter 
   const j = JSON.stringify(r);
   assert.equal(r.d, 3000, j); assert.equal(r.other, 0, j);
 });
+
+test('K-915 BS63-021: when destroyed counter +2 and returns The PartnerMusha Oboro from the Trash, once per turn', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player; G.active = P.key; P.cpu = true; P.spirits.length = 0; P.hand.length = 0; P.trash.length = 0; P.count = 0; P.void = 5;
+    const s = BS.mkInst('BS63-021'); s.cores = 0; s.lostLv = 1; P.trash.push(s);
+    const ob = Object.keys(BS.CARDS).find(k => BS.CARDS[k].name === 'The PartnerMusha Oboro'); const o = BS.mkInst(ob); P.trash.push(o);
+    await BS.fireFx(P, 'DESTROYED', s, { subject: s });
+    const r1 = { count: P.count, back: P.hand.includes(o) };
+    await BS.fireFx(P, 'DESTROYED', s, { subject: s });
+    return { r1, count2: P.count, cplt: BS.CARDS['BS63-021'].fxComplete };
+  });
+  const j = JSON.stringify(r);
+  assert.equal(r.r1.count, 2, j); assert.equal(r.r1.back, true, j); assert.equal(r.count2, 2, j);
+});
