@@ -201,3 +201,21 @@ test('K-886 BS58-037 attack: core from an opposing Spirit goes to the Reserve on
   const none = await run(null), blue = await run('BS58-017'), purple = await run('BS58-016');
   const m = JSON.stringify([none, blue, purple]); assert.equal(none, 2, m); assert.equal(blue, 2, m); assert.equal(purple, 1, m);
 });
+
+test('K-887 BS56-012 summoned: discard 1 draw 1, one more draw only with a Blue Mirage set', async () => {
+  const { page } = await sharedBoard();
+  const run = (mir) => page.evaluate(async (mir) => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player; G.active = P.key; P.cpu = true; P.reserve.n = 20;
+    P.deck.length = 0; for (let i = 0; i < 6; i++) P.deck.push(BS.mkInst('BS48-042'));
+    P.hand.length = 0; for (let i = 0; i < 2; i++) P.hand.push(BS.mkInst('BS48-042'));
+    const m = BS.mkInst('BS56-012'); P.hand.push(m); P.mirage = mir ? BS.mkInst(mir) : null;
+    await BS.summonFree(P, m);
+    return P.hand.length;
+  }, mir);
+  const none = await run(null), green = await run('BS58-017'), blue = await run('BS58-016');
+  const blueM = await run('BS56-RV006');
+  const r = JSON.stringify([none, green, blue, blueM]);
+  assert.equal(none, 2, r); assert.equal(green, 2, r);
+  assert.equal(blue, 2, r); assert.equal(blueM, 3, r);
+});
