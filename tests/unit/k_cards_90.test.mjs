@@ -262,3 +262,17 @@ test('K-1023 SD24-002 destroys Cost 2 or less, or Cost 3 or less while an Ultima
     return { out, wired }; })()`);
   assert.deepEqual(r, { out: [1, 0], wired: true }, JSON.stringify(r));
 });
+
+test('K-1024 SD31-007 returns a Void core and exhausts only with the Soul Core; SD17-003 is wired', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const out = [];
+    for (const soul of [false, true]) {
+      const s = BS.mkInst('SD31-007'); s.cores = 3; s.soul = soul; P.spirits = [s];
+      const t = BS.mkInst('BS01-001'); t.cores = 1; O.spirits = [t];
+      await BS.fireFx(P, 'ATTACKS', s, { attacker: s }); out.push(t.exhausted === true);
+    }
+    const c = BS.CARDS['SD17-003'];
+    return { out, wired: c.implemented === true && c.effects.some(e => e.flag === 'MUST_BLOCK') }; })()`);
+  assert.deepEqual(r, { out: [false, true], wired: true }, JSON.stringify(r));
+});

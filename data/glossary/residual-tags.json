@@ -55373,11 +55373,6 @@
  "SD17-002": [
   "C_LEVEL"
  ],
- "SD17-003": [
-  "C_LEVEL",
-  "S_MUST_BLOCK",
-  "T_ATTACKS"
- ],
  "SD17-008": [
   "A_REFRESH",
   "C_LEVEL",
@@ -56238,12 +56233,6 @@
   "A_BP_PLUS",
   "A_REFRESH",
   "C_LEVEL"
- ],
- "SD31-007": [
-  "A_EXHAUST",
-  "A_VOID",
-  "C_LEVEL",
-  "T_ATTACKS"
  ],
  "SD31-008": [
   "A_EXHAUST",

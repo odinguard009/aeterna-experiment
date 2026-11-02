@@ -25037,12 +25037,21 @@
   "image": "SD17-003.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] [Clash] (When Attacks) The opponent must block if able."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: hand translation); effects not wired yet, symbols unverified;",
-  "rcode": "U"
+  "rcode": "U",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "MUST_BLOCK",
+    "to": "self",
+    "lv": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
  },
  {
   "id": "SD17-004",
@@ -31914,12 +31923,31 @@
   "image": "SD31-007.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Attacks) Put a core from the Void to your Reserve. Also , if (Soul Core) is on this Spirit, exhaust an opposing Spirit."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "U"
+  "rcode": "U",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "VOID_TO_RESERVE",
+      "n": 1
+     },
+     {
+      "do": "EXHAUST_OPP",
+      "n": 1,
+      "if": {
+       "selfSoul": true
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD31-008",
