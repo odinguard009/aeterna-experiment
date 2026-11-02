@@ -272,15 +272,18 @@ function dbResetFilters() {
 }
 /* v0.119.0: an explicit Save (the deck already auto-saves, but the owner wanted a visible button). It also captures the
    name input before persisting, and flashes "SAVED ✓" unless silent (the back button calls it silently). */
-let DB_SAVE_T = 0, DB_NAME_T = 0;
+let DB_SAVE_T = 0, DB_NAME_T = 0, DB_NAME_SLOT = -1;   // DB_NAME_SLOT: the deck whose name is being typed (-1: nothing pending); a stale input never renames another deck (2026-11-02 report)
 function dbSaved(ok) { const d = $('db-savedot'); if (d) { d.classList.toggle('busy', !ok); d.lastElementChild.textContent = ok ? 'Saved' : 'Saving…'; } }
-function dbNameInput(v) {                            // the deck name saves while you type (mockup: Saving… / Saved)
-  dbSaved(false); clearTimeout(DB_NAME_T);
-  DB_NAME_T = setTimeout(() => { SLOTS[ACTIVE_SLOT].name = (v.trim() || 'Deck ' + (ACTIVE_SLOT + 1)).slice(0, 24); saveDeck(); dbSaved(true); }, 400);
+function dbNameCommit() {                            // write the typed name into the deck it was typed for, once
+  clearTimeout(DB_NAME_T); const s = DB_NAME_SLOT, nm = $('db-name'); DB_NAME_SLOT = -1;
+  if (s >= 0 && s < SLOTS.length && nm) SLOTS[s].name = (nm.value.trim() || 'Deck ' + (s + 1)).slice(0, 24);
+}
+function dbNameInput() {                             // the deck name saves while you type (mockup: Saving… / Saved)
+  dbSaved(false); clearTimeout(DB_NAME_T); DB_NAME_SLOT = ACTIVE_SLOT;
+  DB_NAME_T = setTimeout(() => { dbNameCommit(); saveDeck(); dbSaved(true); }, 400);
 }
 function dbSave(silent) {
-  const nm = $('db-name');
-  if (nm) { SLOTS[ACTIVE_SLOT].name = (nm.value.trim() || 'Deck ' + (ACTIVE_SLOT + 1)).slice(0, 24); nm.value = SLOTS[ACTIVE_SLOT].name; }
+  dbNameCommit(); const nm = $('db-name'); if (nm) nm.value = SLOTS[ACTIVE_SLOT].name;
   saveDeck(); dbSaved(true);
   if (silent) return;
   const b = $('db-save');
@@ -540,5 +543,5 @@ document.addEventListener('input', e => {
   const t = evV(e);
   if (t.id === 'db-io') DB_IO = t.value;
   else if (t.id === 'db-family') { DBF.family = t.value; dbSearchInput(); }
-  else if (t.id === 'db-name') dbNameInput(t.value);
+  else if (t.id === 'db-name') dbNameInput();
 });

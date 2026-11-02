@@ -1,6 +1,6 @@
 :where(.mk) .cface.ph{font-size:14px}   /* card placeholder text keeps its size whatever the menu text size */
 :root{--t:1;--tb:1}   /* text size (Settings > Accessibility): --t scales every px font; the battle screen scales less so its fixed layout holds */
-html[data-ts="small"]{--t:.9;--tb:.95}html[data-ts="large"]{--t:1.15;--tb:1.04}html[data-ts="larger"]{--t:1.3;--tb:1.04}
+html[data-ts="small"]{--t:.9;--tb:.92}html[data-ts="large"]{--t:1.15;--tb:1.12}html[data-ts="larger"]{--t:1.3;--tb:1.22}
 #view-playmat{--t:var(--tb)}.cface.ph,.cface.ph *{--t:1}
   :root {
     --bg-main: #060b0f;
