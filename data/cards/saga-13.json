@@ -9823,6 +9823,7 @@
      {
       "do": "SUMMON_HAND",
       "from": "hand",
+      "pay": true,
       "match": {
        "name": [
         "The PartnerMusha Oboro"
