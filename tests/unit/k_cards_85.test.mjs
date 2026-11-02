@@ -795,3 +795,16 @@ test('K-1003 SELF_CORE_REFRESH: BS17-024 pays one of its cores to refresh itself
     s.exhausted = true; await run(); return [notEx, s.cores - c0, s.exhausted]; })()`);
   assert.deepEqual(r, [[0, false], -1, false], JSON.stringify(r));
 });
+
+test('K-1004 BS16-022 gives a Void core to the Reserve only in an attack step; BS41-025 returns to hand when destroyed by opp with 2+ opposing Spirits', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.spirits.length = 0; O.spirits.length = 0; G.turn = 'player';
+    const a = BS.mkInst('BS16-022'); a.cores = 2; P.spirits.push(a); G.step = 3; const r0 = P.reserve.n; await BS.fireFx(P, 'SUMMONED', a, {}); const main = P.reserve.n - r0;
+    G.step = 5; await BS.fireFx(P, 'SUMMONED', a, {}); const att = P.reserve.n - r0;
+    const ids = Object.keys(BS.CARDS).filter(i => BS.CARDS[i].type === 'Spirit' && i !== 'BS41-025');
+    const b = BS.mkInst('BS41-025'); b.cores = 4; P.spirits.push(b); O.spirits.push(BS.mkInst(ids[0]));
+    P.spirits.splice(P.spirits.indexOf(b), 1); P.trash.push(b); b.lostLv = 1; await BS.fireFx(P, 'DESTROYED', b, { subject: b, byOpp: true }); const h1 = P.hand.includes(b);
+    O.spirits.push(BS.mkInst(ids[1])); await BS.fireFx(P, 'DESTROYED', b, { subject: b, byOpp: true }); const h2 = P.hand.includes(b);
+    return [main, att, h1, h2]; })()`);
+  assert.deepEqual(r, [0, 1, false, true], JSON.stringify(r));
+});

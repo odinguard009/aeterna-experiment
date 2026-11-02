@@ -4606,11 +4606,6 @@
   "K_HIGH_SPEED",
   "M_UP_TO"
  ],
- "BS16-022": [
-  "A_VOID",
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "BS16-026": [
   "A_VOID",
   "C_LEVEL",
@@ -17683,12 +17678,6 @@
   "C_LEVEL",
   "M_OPTIONAL",
   "M_REPLACEMENT"
- ],
- "BS41-025": [
-  "A_SELF_TO_HAND",
-  "C_LEVEL",
-  "T_DESTROYED",
-  "T_DESTROYED_OPP"
  ],
  "BS41-026": [
   "C_LEVEL",
