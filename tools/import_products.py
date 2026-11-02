@@ -49,8 +49,9 @@ for cid, r in sorted(SRC['cards'].items()):
          'color': cols[0] if cols else 'white', 'cost': r['cost'] or 0, 'reduction': r.get('reductionBy') or {},
          'symbols': 1 if r['type'] in ('Spirit', 'Ultimate') else 0, 'levels': levels,
          'families': [x for x in re.split(r'[・/]', r.get('familiesJp') or '') if x], 'text': text,
-         'image': cid + '.png', 'block': 'P', 'saga': 60, 'fxComplete': False, 'residual': chunks(r['textJp']) or ['(no ability)'],
+         'image': cid + '.png', 'block': 'P', 'saga': 60, 'fxComplete': not chunks(r['textJp']), 'residual': chunks(r['textJp']),
          'note': NOTE, 'rcode': unicodedata.normalize('NFKC', r.get('rarity') or 'C')}
+    if not c['residual']: del c['residual']                        # vanilla card: nothing printed, so it is complete
     if r['type'] == 'Brave' and r.get('braveBp'):
         c['brave'] = {'bp': r['braveBp'], 'costGe': 3}
     out.append(c)
