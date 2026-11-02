@@ -18244,12 +18244,24 @@
   "image": "SD01-004.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "［Lv1-Lv2］『このスピリットのアタック時』このスピリットをBP+2000する。"
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "BP_PLUS",
+      "n": 2000
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD01-005",
@@ -18980,12 +18992,25 @@
   "image": "SD01-023.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "［Lv2-Ｌｖ3］自分の白のスピリットすべてをBP+1000する。"
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "bp": 1000,
+    "to": "own",
+    "lv": [
+     2,
+     3
+    ],
+    "match": {
+     "color": [
+      "white"
+     ]
+    }
+   }
+  ]
  },
  {
   "id": "SD01-024",
