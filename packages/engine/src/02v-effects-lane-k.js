@@ -387,4 +387,35 @@ FX_ACTIONS.SPIRIT_TO_DECKTOP = {
     checkDepletion(own); io.view({ type: 'board' });
   } };
 
+/* v332 SPIRIT_BUT_ONE_TO_RESERVE: "Move all but 1 core from target Spirit to its owner's Reserve." Any Spirit with 2+ cores; protected opposing Spirits are skipped; the CPU takes the opposing one with the most cores (else its own). */
+FX_ACTIONS.SPIRIT_BUT_ONE_TO_RESERVE = {
+  chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
+  txt: () => "move all but 1 core from a Spirit to its owner's Reserve",
+  cands: c => [...c.p.spirits, ...c.opp.spirits.filter(t => !fxImmune(c.opp, t))].filter(t => t.cores > 1),
+  can: c => FX_ACTIONS.SPIRIT_BUT_ONE_TO_RESERVE.cands(c).length > 0,
+  run: async c => {
+    const L = FX_ACTIONS.SPIRIT_BUT_ONE_TO_RESERVE.cands(c); if (!L.length) { c.ctx.did = false; return; }
+    const t = c.p.cpu ? (L.filter(s => c.opp.spirits.includes(s)).sort((x, y) => y.cores - x.cores)[0] || L[0]) : await fxPickTarget(c, L, `✨ <b>${esc(_nm(c))}</b><br>Tap a Spirit to leave with one core (glowing).`);
+    if (!t) { c.ctx.did = false; return; }
+    const own = c.p.spirits.includes(t) ? c.p : c.opp;
+    const m = Math.min(t.cores - 1, coreTakeCap(own, t, t.cores - 1)); if (m <= 0) { c.ctx.did = false; return; }
+    coreEvN(own, t.uid, 'reserve', m, false); t.cores -= m; own.reserve.n += m;
+    log(`${_nm(c)}: ${m} core${m === 1 ? '' : 's'} from ${poss(own)} ${CARDS[t.id].name} go to the Reserve.`); io.view({ type: 'board' });
+  } };
+
+/* v332 RESERVE_TRASH_MIRROR: "Move any number of cores from your Reserve to your Trash. Then move the same number of cores from the opposing Reserve to their Trash." The human picks 0-5; the CPU sends two (or fewer). The opposing part is capped by the opposing Reserve. */
+FX_ACTIONS.RESERVE_TRASH_MIRROR = {
+  chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
+  txt: () => 'move any number of cores from your Reserve to your Trash; then the same number from the opposing Reserve to their Trash',
+  can: c => c.p.reserve.n > 0,
+  run: async c => {
+    const cap = Math.min(5, c.p.reserve.n); let n = 0;
+    if (c.p.cpu) n = Math.min(2, cap);
+    else { const btn = []; for (let j = 0; j <= cap; j++) btn.push({ label: String(j), cls: j ? 'primary' : 'blue', value: j }); n = await ask({ title: `✨ ${esc(_nm(c))}`, html: 'How many cores from your Reserve to your Trash?', buttons: btn }) || 0; }
+    if (n <= 0) { c.ctx.did = false; return; }
+    c.p.reserve.n -= n; c.p.trashCores.n += n;
+    const m = Math.min(n, c.opp.reserve.n); c.opp.reserve.n -= m; c.opp.trashCores.n += m;
+    c.ctx.did = true; log(`${_nm(c)}: ${n} core${n === 1 ? '' : 's'} from ${poss(c.p)} Reserve and ${m} from ${poss(c.opp)} Reserve go to the Trash.`); io.view({ type: 'board' });
+  } };
+
 wrapImmunity(Object.values(FX_ACTIONS));   // the actions above are defined after 02k: LO01

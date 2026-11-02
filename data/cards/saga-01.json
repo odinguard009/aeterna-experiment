@@ -16496,12 +16496,34 @@
   "image": "Poison Mist.jpg",
   "block": "03",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "Eng Version= (Flash Step)(Your Main Phase) Move any number of cores from your Reserve to your Trash.",
-   "Then, move the same number of cores from your opponent's Reserve to their Trash."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "MAIN",
+    "FLASH"
+   ],
+   "by": {
+    "MAIN": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "RESERVE_TRASH_MIRROR"
+      }
+     ]
+    },
+    "FLASH": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "RESERVE_TRASH_MIRROR"
+      }
+     ]
+    }
+   }
+  }
  },
  {
   "id": "BS03-125",
@@ -16520,12 +16542,29 @@
   "image": "Weakness.jpg",
   "block": "03",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "Eng Version= (Your Main Phase) Move all but 1 core from target spirit to its owner's reserve.",
-   "(Flash Step)(Your Main Phase) Target spirit gets +3000BP until end of turn."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "MAIN",
+    "FLASH"
+   ],
+   "by": {
+    "MAIN": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "SPIRIT_BUT_ONE_TO_RESERVE"
+      }
+     ]
+    },
+    "FLASH": {
+     "effect": "BP_PLUS",
+     "value": 3000
+    }
+   }
+  }
  },
  {
   "id": "BS03-126",

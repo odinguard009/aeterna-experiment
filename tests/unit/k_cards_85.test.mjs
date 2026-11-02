@@ -543,3 +543,20 @@ test('K-977 BS02-095 destroys an own Nexus, then empties every opposing Nexus', 
     return [P.nexus.length, b.cores, o.cores, O.trashCores.n - t]; })()`);
   assert.deepEqual(r, [1, 2, 0, 3], JSON.stringify(r));
 });
+
+test('K-978 BS03-125 leaves one core on the Spirit and moves the rest to its owner Reserve', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.spirits.length = 0; O.spirits.length = 0;
+    const sp = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit'); const s = BS.mkInst(sp); s.cores = 4; O.spirits.push(s); const rs = O.reserve.n;
+    await BS.FX_ACTIONS.SPIRIT_BUT_ONE_TO_RESERVE.run({ p: P, opp: O, src: BS.mkInst('BS03-125'), ctx: {} }, BS.CARDS['BS03-125'].magic.by.MAIN.actions[0]);
+    return [s.cores, O.reserve.n - rs]; })()`);
+  assert.deepEqual(r, [1, 3], JSON.stringify(r));
+});
+
+test('K-979 BS03-124 sends cores from both Reserves to the Trash (CPU: two)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.reserve.n = 5; O.reserve.n = 1; const tp = P.trashCores.n, to = O.trashCores.n;
+    await BS.FX_ACTIONS.RESERVE_TRASH_MIRROR.run({ p: P, opp: O, src: BS.mkInst('BS03-124'), ctx: {} }, BS.CARDS['BS03-124'].magic.by.MAIN.actions[0]);
+    return [P.reserve.n, P.trashCores.n - tp, O.reserve.n, O.trashCores.n - to]; })()`);
+  assert.deepEqual(r, [3, 2, 0, 1], JSON.stringify(r));
+});
