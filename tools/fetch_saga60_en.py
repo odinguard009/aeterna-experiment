@@ -58,9 +58,11 @@ def link_text(s):
     return s.strip()
 
 
-def set_rows(text):
-    """-> {id: english name} from the wikitext tables of a set page"""
+def set_rows(text, prefix=''):
+    """-> {id: english name} from the wikitext tables of a set page (older sets list bare numbers: 001, X01)"""
     out = {}
+    for m in re.finditer(r'^\|\s*((?:[A-Z]{1,3})?\d{1,3}[A-Za-z]?)\s*\n\|\s*\[\[([^\]|]+)(?:\|[^\]]*)?\]\]', text, re.M):
+        if prefix: out.setdefault(prefix + '-' + m.group(1), m.group(2).strip())
     for m in re.finditer(r'^\|\s*([A-Z0-9]{2,5}-[A-Z]{0,3}\d{1,3}[A-Za-z]?)\s*\n\|\s*(\[\[[^\n]*?\]\][^\n]*)', text, re.M):
         raw = m.group(2)
         link = re.match(r'\[\[([^\]|]+)(?:\|[^\]]*)?\]\]', raw)
@@ -83,7 +85,25 @@ def main():
         pages(prefixes, cache)
     names = {}
     for p in prefixes:
-        if cache.get(p): names.update(set_rows(cache[p]))
+        if cache.get(p): names.update(set_rows(cache[p], p))
+    jpn = {c['id']: c.get('name_jp') or c['name'] for c in cards}
+    norm = lambda x: re.sub(r'\s+', '', (x or '').translate(str.maketrans('［］（）', '[]()')))
+    if '--offline' not in sys.argv:
+        for i in ids:                       # fallback: full-text search for the Japanese name, verified against the page's `kanji`
+            if i in names: continue
+            key = 'search:' + jpn[i]
+            if key not in cache:
+                try:
+                    hits = api({'action': 'query', 'list': 'search', 'srsearch': jpn[i], 'srlimit': 4}).get('query', {}).get('search', [])
+                except Exception:
+                    hits = []
+                cache[key] = [h['title'] for h in hits]
+                time.sleep(1)
+            cand = cache[key]
+            pages(cand, cache)
+            for t in cand:
+                if cache.get(t) and norm(param(cache[t], 'kanji')) == norm(jpn[i]):
+                    names[i] = t; break
     want = sorted({names[i] for i in ids if i in names})
     if '--offline' not in sys.argv:
         pages(want, cache)
