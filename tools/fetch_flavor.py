@@ -32,7 +32,9 @@ def api(params):
 
 
 def clean(t):
-    t = re.sub(r'<br\s*/?>', ' ', t)
+    t = re.sub(r'<br\s*/?>', ' ', t, flags=re.I)
+    t = re.split(r'\|\s*(?:jp|en)?flavor\d*\s*=', t, flags=re.I)[0]      # a parameter that leaked into the text
+    if re.search(r'[぀-ヿ㐀-鿿]', t): return ''           # Japanese text: the Lore tab is English only
     t = re.sub(r'\[\[(?:[^\]|]*\|)?([^\]]*)\]\]', r'\1', t)
     t = re.sub(r'\{\{[^{}|]*\|([^{}|]*)[^{}]*\}\}', r'\1', t)
     t = t.replace("'''", '').replace("''", '')
