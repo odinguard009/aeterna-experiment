@@ -378,3 +378,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v340 (Lane K): STATIC flag `NO_OPP_BURST` {match, mode attacking|battling}: while a matching own Spirit attacks (or battles), the opponent can't activate Bursts (BS29-018, BS41-028, BS28-023).
 - v341 (Lane K): STATIC flag `LV_PLUS` (to own, match, lv, if): "all your <match> Spirits are treated as being one level higher" (BS22-047, BS46-RV006, BS38-RV034, BS41-083); read by lvIndex with a re-entrancy guard, capped at the highest level.
 - v342 (Lane K): `LV_UP_TURN` takes `self: true` ("Treat this Spirit as being one level higher", BS20-048).
+- v343 (Lane K): `match.redColorsGe` (cost reduction symbols of N or more different colors, BS09-003).

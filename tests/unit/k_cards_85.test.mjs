@@ -753,3 +753,15 @@ test('K-999 LV_UP_TURN self: BS20-048 attacking is treated as one LV higher this
     const before = BS.lvIndex(s); await BS.fireFx(P, 'ATTACKS', s, {}); return [before, BS.lvIndex(s), s.lvPlusTurn === true]; })()`);
   assert.deepEqual(r, [0, 1, true], JSON.stringify(r));
 });
+
+test('K-1000 match.redColorsGe: BS09-003 gives +2000 BP only to own Spirits with reduction symbols of two or more colors, in the own attack step', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(() => { BS.testSetup(); const G = BS.G, P = G.p.player; P.spirits.length = 0;
+    const ids = Object.keys(BS.CARDS).filter(i => BS.CARDS[i].type === 'Spirit' && i !== 'BS09-003');
+    const multi = ids.find(i => Object.keys(BS.CARDS[i].reduction).length >= 2), single = ids.find(i => !i.startsWith('TRAIN') && Object.keys(BS.CARDS[i].reduction).length === 1);
+    const m = BS.mkInst(multi), s1 = BS.mkInst(single); m.cores = 1; s1.cores = 1; const src = BS.mkInst('BS09-003'); src.cores = BS.CARDS['BS09-003'].levels[1].cores;
+    P.spirits.push(src, m); P.spirits.push(s1); G.turn = 'player'; G.step = 3; const m0 = BS.bpOf(m);
+    G.step = 5; const m1 = BS.bpOf(m), s2 = BS.bpOf(s1); G.step = 3; const s0 = BS.bpOf(s1);
+    P.spirits.splice(0,1); const d = BS.bpOf(s1); G.step = 5; return [m1 - m0, s2 - s0]; })()`);
+  assert.deepEqual(r, [2000, 0], JSON.stringify(r));
+});
