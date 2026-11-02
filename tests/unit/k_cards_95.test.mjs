@@ -264,3 +264,16 @@ test('K-1173 ATTACK_SPIRIT coresLe/coresGe (BS01-044): only an opposing Spirit w
     return { life: O.life - life, t1: O.spirits.includes(t1), t2gone: !O.spirits.includes(t2), ok: BS.CARDS['BS01-044'].fxComplete !== false }; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.life, 0, JSON.stringify(r)); assert.equal(r.t2gone, true, JSON.stringify(r)); assert.equal(r.t1, true, JSON.stringify(r));
 });
+
+test('K-1174 symColorsGe (BS34-016 Six Heaven Rush): destroys an opposing exhausted Spirit only with two or more symbol colours', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 3;
+    const pool = Object.values(BS.CARDS).filter(c => /^BS0/.test(c.id) && c.type === 'Spirit' && c.cost <= 4 && c.symbols >= 1 && c.symbol && !String(c.symbol).includes('/'));
+    const A = pool.find(c => c.symbol === pool[0].symbol), B = pool.find(c => c.symbol !== pool[0].symbol), V = pool.find(c => c.id !== A.id && c.id !== B.id);
+    const run = async mix => { const a = BS.mkInst('BS34-016'); a.cores = 3; const t = BS.mkInst(V.id); t.cores = 1; t.exhausted = true;
+      P.spirits = [a, ...mix.map(c => { const x = BS.mkInst(c.id); x.cores = 1; return x; })]; O.spirits = [t]; await BS.fireFx(P, 'SUMMONED', a); return { colors: Object.values(BS.symbolsOn(P)).filter(v => v >= 1).length, gone: !O.spirits.includes(t) }; };
+    const lone = await run([]), two = await run([A, B]);
+    return { lone, two, ok: BS.CARDS['BS34-016'].fxComplete !== false }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.two.gone, true, JSON.stringify(r));
+  assert.equal(r.lone.gone, r.lone.colors >= 2, JSON.stringify(r));
+});

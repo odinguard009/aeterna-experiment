@@ -47545,12 +47545,34 @@
   "mechanics": [
    "Six Heaven Rush"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Summoned) Draw a card. {{Six Heaven Rush|2}} If you have two or more symbol colors, destroy an opposing exhausted Spirit."
-  ],
+  "fxComplete": true,
   "note": "Reprint of BS34-016 (same name and stats), added v0.210.0 from the official product list.",
-  "rcode": "U"
+  "rcode": "U",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     },
+     {
+      "do": "DESTROY",
+      "match": {
+       "exhausted": true
+      },
+      "if": {
+       "symColorsGe": 2
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD57-RV002",
