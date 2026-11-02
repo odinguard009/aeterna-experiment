@@ -87,6 +87,7 @@ def main():
     want = sorted({names[i] for i in ids if i in names})
     if '--offline' not in sys.argv:
         pages(want, cache)
+        os.makedirs(os.path.dirname(CACHE), exist_ok=True)
         json.dump(cache, open(CACHE, 'w', encoding='utf8'))
     out = {}
     for i in ids:
