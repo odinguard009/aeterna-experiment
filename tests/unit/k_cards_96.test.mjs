@@ -47,3 +47,12 @@ test('K-1178 BS33-036 / BS33-039 / SD34-004 are complete; BS33-036 gives Armored
     return { d: b - a, ok: ['BS33-036', 'BS33-039', 'SD34-004'].every(k => BS.CARDS[k].fxComplete !== false), burst: BS.CARDS['BS33-039'].burst && BS.CARDS['BS33-039'].burst.when }; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.d, 5000, JSON.stringify(r)); assert.equal(r.burst, 'ALLY_DESTROYED', JSON.stringify(r));
 });
+
+test('K-1179 BS31-097 Soul Aura: all Spirits +3000, a Spirit with Soul Core +3000 more', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const a = BS.mkInst('BS01-044'), b = BS.mkInst('BS01-044'); a.cores = b.cores = 3; b.soul = true; P.spirits = [a, b]; const a0 = BS.bpOf(a), b0 = BS.bpOf(b);
+    const acts = BS.CARDS['BS31-097'].magic.actions; await BS.runActions({ p: P, opp: O, src: a, ctx: {} }, { actions: acts });
+    return { da: BS.bpOf(a) - a0, db: BS.bpOf(b) - b0, ok: BS.CARDS['BS31-097'].fxComplete !== false }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.da, 3000, JSON.stringify(r)); assert.equal(r.db, 6000, JSON.stringify(r));
+});

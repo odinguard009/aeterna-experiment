@@ -38,7 +38,7 @@ function fxEntries(f) {
 /* v189 "When your Nexuses, or your Spirits that are originally Nexuses are destroyed": only queue the event while a card on the Field hears it */
 const nexusDeathHears = p => !!G && !!G.evQ && fieldList(p).some(f => fxEntries(f).some(({ e }) => e.trigger === 'ALLY_NEXUS_DESTROYED'));
 function fxMatch(card, m, inst) {
-  if (!m || (!m.name && !m.notName && !m.notColor && !m.bpBoosted && !m.family && !m.familyAll && !m.keyword && !m.keywordAny && !m.notKeyword && !m.notKeyword && !m.noText && !m.hasTrigger && m.costGe == null && m.costLe == null && !m.costIn && !m.type && !m.color && !m.noUlt && !m.team && m.symbolsGe == null && m.redColorsGe == null && !m.hasBrave && !m.noBrave && !m.hasBurst && !m.noBurst && m.bpLe == null && m.bpGe == null && m.exhausted == null && m.coresGe == null && m.coresLe == null && !m.originalNexus)) return true;      // v214 originalNexus must not be treated as an empty match
+  if (!m || (!m.name && !m.notName && !m.notColor && !m.bpBoosted && !m.family && !m.familyAll && !m.keyword && !m.keywordAny && !m.notKeyword && !m.notKeyword && !m.noText && !m.hasTrigger && m.costGe == null && m.costLe == null && !m.costIn && !m.type && !m.color && !m.noUlt && !m.team && m.symbolsGe == null && m.redColorsGe == null && !m.hasBrave && !m.noBrave && !m.hasBurst && !m.noBurst && m.bpLe == null && m.bpGe == null && m.exhausted == null && m.hasSoul == null && m.coresGe == null && m.coresLe == null && !m.originalNexus)) return true;      // v214 originalNexus must not be treated as an empty match
   if (m.notName && m.notName.some(n => card.name.toLowerCase().includes(n.toLowerCase()))) return false;      // v171 "besides <name>"
   if (m.bpBoosted && !(inst && lvIndex(inst) >= 0 && bpOf(inst) > (card.levels[lvIndex(inst)].bp || 0))) return false;      // v171 "under BP+ effects": current BP above the printed level BP
   if (m.noUlt && card.type === 'Ultimate') return false;      // v0.59: the text says "Spirit"; texts that include Ultimates print "Spirit/Ultimate"
@@ -56,6 +56,7 @@ function fxMatch(card, m, inst) {
   if (m.bpGe != null && !(inst && bpOf(inst) >= m.bpGe)) return false;      // v0.199 "your 10000 BP or more Spirit" (current BP)
   if (m.coresGe != null && !(inst && totalCores(inst) >= m.coresGe)) return false;      // v189 "with one or more core on it"
   if (m.coresLe != null && !(inst && totalCores(inst) <= m.coresLe)) return false;      // v293 "with only one core on it" (coresGe 1 + coresLe 1)
+  if (m.hasSoul != null && !(inst && !!inst.soul === m.hasSoul)) return false;      // v390 "your Spirit with (Soul Core) on it"
   if (m.exhausted != null && !(inst && !!inst.exhausted === m.exhausted)) return false;      // v176 "your exhausted <match> Spirits"
   if (m.bpLe != null && !(inst && bpOf(inst) <= m.bpLe)) return false;      // v0.183 "an opposing 6000 BP or less Spirit" (current BP; needs the instance)
   if (m.noBurst && (card.burst || /\{\{Burst\|/.test(card.desc || card.text || ''))) return false;      // v362 "without Burst effects"
