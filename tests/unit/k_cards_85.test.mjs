@@ -1137,3 +1137,22 @@ test('K-1037 BS44-058 puts a Void core on a Nexus only when destroyed by the opp
     const out = []; for (const byOpp of [false, true]) { const c0 = n.cores; await BS.fireFx(P, 'DESTROYED', a, { subject: a, byOpp }); out.push(n.cores - c0); } return out; })()`);
   assert.equal(r[1], 1, JSON.stringify(r)); assert.equal(r[0], 0, JSON.stringify(r));
 });
+
+test('K-1038 BS44-003 refreshes once per turn at LV2 only with another Astral Dragon', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.spirits.length = 0; O.spirits.length = 0;
+    const a = BS.mkInst('BS44-003'); a.cores = 3; P.spirits.push(a); const out = [];
+    a.exhausted = true; await BS.fireFx(P, 'ATTACKS', a, { subject: a }); out.push(a.exhausted);
+    const b = BS.mkInst('BS44-003'); b.cores = 1; P.spirits.push(b);
+    a.exhausted = true; await BS.fireFx(P, 'ATTACKS', a, { subject: a }); out.push(a.exhausted);
+    a.exhausted = true; await BS.fireFx(P, 'ATTACKS', a, { subject: a }); out.push(a.exhausted); return out; })()`);
+  assert.deepEqual(r, [true, false, true], JSON.stringify(r));
+});
+
+test('K-1039 BS41-083 summons a Cost 6 or less Pirate Spirit from the Hand free when deployed', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.spirits.length = 0; P.nexus.length = 0;
+    const n = BS.mkInst('BS41-083'); n.cores = 1; P.nexus.push(n); P.hand = [BS.mkInst('BS11-042')]; P.reserve.n = 0;
+    await BS.fireFx(P, 'SUMMONED', n, { subject: n }); return [P.spirits.map(s => s.id), P.hand.length]; })()`);
+  assert.deepEqual(r, [['BS11-042'], 0], JSON.stringify(r));
+});

@@ -17926,11 +17926,6 @@
   "M_OPTIONAL",
   "T_ALLY_ATTACKS"
  ],
- "BS41-083": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "M_OPTIONAL"
- ],
  "BS41-084": [
   "K_ADVENT",
   "K_ULTIMATE",
@@ -20000,12 +19995,6 @@
   "C_LEVEL",
   "F_OTHER_NOSTACK",
   "T_SUMMONED"
- ],
- "BS44-003": [
-  "A_REFRESH",
-  "C_LEVEL",
-  "F_OTHER_NOSTACK",
-  "T_ATTACKS"
  ],
  "BS44-004": [
   "A_BP_PLUS",
