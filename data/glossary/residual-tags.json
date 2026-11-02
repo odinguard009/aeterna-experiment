@@ -2659,10 +2659,6 @@
   "C_LEVEL",
   "K_CRUSH"
  ],
- "BS11-043": [
-  "A_EXHAUST",
-  "C_LEVEL"
- ],
  "BS11-045": [
   "C_LEVEL",
   "T_ATTACKS"
@@ -15684,10 +15680,6 @@
   "C_OPP_TURN",
   "M_OPTIONAL",
   "M_THEN"
- ],
- "BS38-RV034": [
-  "A_EXHAUST",
-  "C_LEVEL"
  ],
  "BS38-RV035": [
   "A_SEAL",

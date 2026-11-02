@@ -888,3 +888,13 @@ test('K-1012 DESTROY_BRAVE: BS11-014 (When Destroyed) and BS12-076 Flash trash t
     return [first, c2.ctx.did === false, JSON.stringify(BS.CARDS['BS11-014'].effects.map(e => e.trigger)), 0]; })()`);
   assert.deepEqual(r, [[true, true, true], true, '["ATTACKS","DESTROYED"]', 0], JSON.stringify(r));
 });
+
+test('K-1013 BLOCK_EXHAUSTED attackerCostLe: BS11-043 (Lv2) blocks exhausted only against Cost 5 or less attackers (BS38-RV034 uses the same flag with to:own, untested)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; for (const q of [P, O]) { q.spirits.length = 0; q.nexus.length = 0; }
+    const lo = Object.keys(BS.CARDS).find(k => /^BS0[0-9]-/.test(k) && BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].cost === 3), hi = Object.keys(BS.CARDS).find(k => /^BS0[0-9]-/.test(k) && BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].cost === 8);
+    const s = BS.mkInst('BS11-043'); s.cores = 3; s.exhausted = true; P.spirits.push(s); const a = BS.mkInst(lo), b = BS.mkInst(hi); a.cores = b.cores = 2; O.spirits.push(a, b);
+    G.active = 'opponent'; G.turn = 'opponent'; G.step = 5; const out = []; G.attacker = a; out.push(BS.canBlockState(P, s)); G.attacker = b; out.push(BS.canBlockState(P, s));
+    s.cores = 1; G.attacker = a; out.push(BS.canBlockState(P, s)); return out; })()`);
+  assert.deepEqual(r, [true, false, false], JSON.stringify(r));
+});
