@@ -4229,12 +4229,31 @@
   "image": "BS69-CP01.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Attacks) If you control two or more \"Winged Dragon\" family Spirits, this Spirit gains +1000 BP."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP"
+  "rcode": "CP",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "BP_PLUS",
+      "n": 1000,
+      "if": {
+       "ctrl": {
+        "n": 2,
+        "type": "Both",
+        "family": "Winged Dragon"
+       }
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS69-CP02",

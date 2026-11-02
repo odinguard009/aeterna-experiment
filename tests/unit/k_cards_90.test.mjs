@@ -195,3 +195,15 @@ test('K-1017 eight saga-60 Spirits are complete and carry their effects', async 
   const r = await page.evaluate(`(() => ['SD01-021','SD19-005','SD19-006','SD20-003','SD20-006','SD17-007','SD17-004','SD13-003'].map(id => { const c = BS.CARDS[id]; return [id, c.implemented === true && !(c.residual || []).length && (c.effects || []).length > 0]; }))()`);
   assert.deepEqual(r.filter(x => !x[1]), [], JSON.stringify(r));
 });
+
+test('K-1018 BS69-CP01 gains +1000 BP on attack only with two Winged Dragon Spirits', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player; P.cpu = G.p.opponent.cpu = true;
+    const wd = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && c.id !== 'BS69-CP01' && (c.families || []).includes('Winged Dragon'));
+    const s = BS.mkInst('BS69-CP01'); s.cores = 3; const w = BS.mkInst(wd.id); w.cores = 2;
+    const out = [];
+    for (const sp of [[s], [s, w]]) { P.spirits = sp; const b = BS.bpOf(s);
+      await BS.fireFx(P, 'ATTACKS', s, { attacker: s }); out.push(BS.bpOf(s) - b); }
+    return out; })()`);
+  assert.deepEqual(r, [0, 1000], JSON.stringify(r));
+});

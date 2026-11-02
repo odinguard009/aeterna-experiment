@@ -51560,11 +51560,6 @@
   "S_UNAFFECTED",
   "T_MIRAGE_LIFE"
  ],
- "BS69-CP01": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
  "BS69-CP02": [
   "A_DRAW",
   "A_REFRESH",
