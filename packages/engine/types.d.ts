@@ -12,7 +12,7 @@ interface CardDef {
 interface MagicVariant { effect: string; value: number; actions?: any[]; match?: any; if?: any }
 /** `magic` of a Magic card after parseCard. */
 interface MagicSpec {
-  timing: string[]; effect: string | null; value: number; noMain?: boolean;
+  timing: string[]; effect: string | null; value: number; noMain?: boolean; once?: boolean;
   trashUse?: { if?: any; actions?: any[] }; oppAttackHand?: { gwToVoid: number; match: any };
   actions?: any[]; by?: Record<string, MagicVariant>;
 }

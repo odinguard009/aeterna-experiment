@@ -61,6 +61,7 @@ def audit(c, r):
             lv = lvs(m.group(1) or '')
             for cls in want:
                 cand = [e for t in ALT[cls] for e in trig.get(t, []) if t != 'ATTACKS' or cls == 'attack' or e.get('alsoBlocks')]
+                if cls == 'attack': cand += [e for e in trig.get('MAGIC_USED', []) if (e.get('if') or {}).get('attackStep')]      # "when this Spirit attacks, whenever you use a Magic": MAGIC_USED gated by attackStep
                 if not cand:
                     probs.append('head 『%s』 has no %s effect' % (m.group(2), '/'.join(sorted(ALT[cls]))))
                 elif lv and len(want) == 1 and not any(e.get('lv') is None or sorted(e['lv']) == lv for e in cand):
@@ -78,6 +79,7 @@ def audit(c, r):
     have = set(re.findall(r'(\d+)', fx))  # also the 3 in a key such as oppReserveGe3
     dos = re.findall(r'"do": "(\w+)"', fx)  # N copies of one action also encode "N spirits"
     have |= {str(dos.count(d)) for d in set(dos)} | {str(dos.count(d) // 2) for d in set(dos)}  # a branch pair (if / else) halves it
+    if '"DESTROY_OPP_DOWN_TO_OWN"' in fx: have.add('2')      # the action itself needs 2+ own Spirits (v321)
     for m in sorted(set(re.findall(r'(\d+)(?=[枚体個点つ])', body)) - {'1'} - have):
         probs.append('count %s in the text is not a number in the compiled effect' % m)
     return probs

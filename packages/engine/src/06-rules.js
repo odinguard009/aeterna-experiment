@@ -29,11 +29,14 @@ function treatLv3(i) {      // the level (2 or 3) the Spirit is treated as being
   const o = ownerOf(i); if (!o || !o.spirits.includes(i)) return 0;
   _tl3 = true; try { return [3, 2].find(n => flagActive(o, 'TREAT_LV3', i, e => (e.n || 3) === n)) || 0; } finally { _tl3 = false; }
 }
+// ids of cards that carry a TREAT_HIGHEST flag, built once: the old per-call scan of every Field card's effects made lvIndex cubic on a big Field (the E23 hang, 2026-11-02)
+let TH_IDS = null;
+const thIds = () => TH_IDS || (TH_IDS = new Set(Object.keys(CARDS).filter(k => (CARDS[k].effects || []).some(e => e.flag === 'TREAT_HIGHEST'))));
 let _th = false;      // v322 re-entrancy guard for TREAT_HIGHEST (flagActive reads lvNo)
 function treatHighest(i) {      // STATIC TREAT_HIGHEST: "all your <match> Spirits are treated as being on their highest level"
   if (_th || !G) return false;
   const o = ownerOf(i); if (!o || !o.spirits.includes(i)) return false;
-  if (!fieldList(o).some(f => (CARDS[f.id].effects || []).some(e => e.flag === 'TREAT_HIGHEST'))) return false;      // cheap exit: only a source on the Field with the flag can matter
+  if (!fieldList(o).some(f => thIds().has(f.id))) return false;      // cheap exit: only a source on the Field with the flag can matter
   _th = true; try { return flagActive(o, 'TREAT_HIGHEST', i); } finally { _th = false; }
 }
 let _lp = false;      // v341 re-entrancy guard for STATIC LV_PLUS (flagActive reads lvNo)

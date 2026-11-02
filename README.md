@@ -4,7 +4,7 @@ A fan-made, single-file web simulator for a trading card game. You play against 
 
 ## What it does
 - Play a full match against the CPU on PC (playmat layout) or phone (stacked layout), from one HTML file with no install and no network.
-- Card pool: all 8,709 cards (Saga 1-17 and Standard block A) load from a compact built-in pack; the cards whose effects are wired and tested are playable (count below).
+- Card pool: all 10,289 cards (Saga 1-17, Standard block A and 1,376 starter-deck, premium-box and promo cards) load from a compact built-in pack; the cards whose effects are wired and tested are playable (count below).
 - Deck builder with filters, cost curve, ready-made decks and format legality.
 - Standard (the default) and Eternal (preview: most Eternal cards are still partial) formats with the ban list, and the ten official Standard starter decks; the rules follow the official manuals, with sources and open points tracked in `docs/manual-notes.md`.
 - Data-driven rules engine: card effects are data (triggers, actions, conditions), compiled from card text and checked by tests.
@@ -13,7 +13,7 @@ A fan-made, single-file web simulator for a trading card game. You play against 
 Card images are not included; you can import your own in the game (Library).
 
 ## Status
-Current build: **v0.208.0** (8,913 of 8,915 cards playable, 2,105 complete). Download `aeterna-v0.208.0.html` from the [latest release](https://github.com/odinguard009/aeterna-experiment/releases/latest) and open it in Chrome or Edge; release notes are in [CHANGELOG.md](CHANGELOG.md).
+Current build: **v0.208.1** (10,289 of 10,291 cards playable, 2,148 complete). Download `aeterna-v0.208.1.html` from the [latest release](https://github.com/odinguard009/aeterna-experiment/releases/latest) and open it in Chrome or Edge; release notes are in [CHANGELOG.md](CHANGELOG.md).
 
 Next: card sessions that add the mechanics unlocking the most cards, alternating with the move to a TypeScript workspace (server and online play later). Open items: [`docs/ai/roadmap-open.md`](docs/ai/roadmap-open.md); progress page: [`docs/progress.html`](docs/progress.html); mind map: [`docs/roadmap.html`](docs/roadmap.html).
 

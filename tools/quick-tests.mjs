@@ -39,8 +39,10 @@ const out = (fd, text) => { const b = Buffer.from(text || ''); for (let o = 0; o
 const run = (args) => { const x = spawnSync(process.execPath, args, { env, encoding: 'utf8', maxBuffer: 512 * 1024 * 1024 }); out(1, x.stdout); out(2, x.stderr); return x; };
 // BS_TIMES_OUT=<file>: also write a junit report there (per-test times, aggregated per file by tools/shard_times.mjs)
 const rep = process.env.BS_TIMES_OUT ? (mkdirSync('build', { recursive: true }), ['--test-reporter=tap', '--test-reporter-destination=stdout', '--test-reporter=junit', `--test-reporter-destination=${process.env.BS_TIMES_OUT}`]) : [];
-const r = run(['--test', ...rep, `--test-concurrency=${conc}`, ...files]);
-const t = timingFiles.length ? run(['--test', '--test-concurrency=1', ...timingFiles.map((f) => `tests/unit/${f}`)]) : { stdout: '', status: 0 };
+// 2026-11-02: a hung test used to freeze the whole step (spawnSync prints nothing until the child exits) until CI cancelled the job; now it fails by name after 5 min.
+const GUARD = ['--test-timeout=300000', '--test-force-exit'];
+const r = run(['--test', ...GUARD, ...rep, `--test-concurrency=${conc}`, ...files]);
+const t = timingFiles.length ? run(['--test', ...GUARD, '--test-concurrency=1', ...timingFiles.map((f) => `tests/unit/${f}`)]) : { stdout: '', status: 0 };
 const failed = [];
 for (const txt of [r.stdout || '', t.stdout || '']) {
   const L = txt.split('\n');
