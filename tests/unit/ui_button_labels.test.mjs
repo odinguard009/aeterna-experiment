@@ -117,8 +117,10 @@ test('U18 a card without effect text says so', async () => {
   assert.match(await ev(() => BS.effectTextHTML({ name: 'V', type: 'Spirit', symbol: 'red', cost: 1, desc: '' }, false)), /No effect text\./);
 });
 test('U19 every real card formats into at least one line and the text survives unchanged', async () => {
-  const bad = await ev(() => Object.keys(BS.CARDS).filter(id => { const d = (BS.CARDS[id].desc || '').replace(/\s+/g, ' ').trim().replace(/\[Lv(?=\d)/g, '[LV');
-    return d && !/\{\{/.test(d) && BS.effectLines(d).join(' ').replace(/\s+/g, ' ') !== d; }));
+  // v0.209: wiki marker lines and repeated level tags are dropped on purpose, so compare the words without them
+  const bad = await ev(() => { const n = x => x.replace(/\[Lv(?=\d)/g, '[LV').replace(/\[LV[\d-]+\]/g, ' ').replace(/(?:^|\s)(?:[a-z]?utb|uhand|heb|(?:GP)?GWrule|[CF]Arule)(?=\s|$)/g, ' ').replace(/[█◆■]/g, ' ').replace(/\s+/g, ' ').trim();
+    return Object.keys(BS.CARDS).filter(id => { const d = (BS.CARDS[id].desc || '').replace(/\s+/g, ' ').trim();
+      return d && !/\{\{/.test(d) && n(BS.effectLines(d).join(' ')) !== n(d); }); });
   assert.deepEqual(bad, []);
 });
 test('U20 the card detail uses the card-style formatter', async () => {
@@ -188,3 +190,7 @@ for (const screen of ['pc', 'phone']) {
   });
   test(`U28-${screen} no page errors`, async () => { assert.deepEqual((await open(screen)).errors, []); });
 }
+test('U14 effectLines drops wiki marker lines, keeps source paragraphs and joins bare level tags', async () => {
+  const r = await ev(() => BS.effectLines('[LV1][LV2][LV3] (Flash Step) Move cores.\n\nutb\n[LV2] When Attacks: draw.\n\n█ Destroy it.'));
+  assert.deepEqual(r, ['[LV1][LV2][LV3] (Flash Step) Move cores.', '[LV2] When Attacks: draw.', '█ Destroy it.']);
+});

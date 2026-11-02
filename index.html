@@ -10033,16 +10033,39 @@ function descText(raw) {
 const glossText = v => KEYWORD_GLOSSARY[v] || KEYWORD_GLOSSARY[String(v).toUpperCase().replace(/[ -]+/g, '_')] || '';
 const FX_TERM_RE = new RegExp('\\b(' + Object.keys(TERM_GLOSSARY).concat(['Advent', 'Contract Advent', 'Manifest', 'Mirage', 'Burst', 'Flash', 'Rumble', 'Amplify', 'Heavy Exhaust']).filter(k => !k.includes("'")).sort((a, b) => b.length - a.length).map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')\\b', 'g');
 const familyRowHTML = c => (c.families || []).length ? `<div class="row" style="gap:6px;flex-wrap:wrap;align-items:center"><span class="cp-h">Family</span>${c.families.map(f => `<span class="tag dim">${esc(f)}</span>`).join('')}</div>` : '';
+/* v0.209: the imported text keeps the wiki's own lines, so the source paragraphs are respected (the old version flattened them) and the
+   wiki leftovers are dropped: marker lines (utb, heb, GWrule, CArule ...), a level run that repeats ([LV1][LV2][LV3] [LV2][LV3]) keeps its last part,
+   header-only lines (Main / Flash / Trigger Counter / a bare level tag) join the line below them, a block marker (█ ◆ ■) starts its own line. */
+const FX_JUNK = /^(?:[a-z]?utb|uhand|heb|(?:GP)?GWrule|[CF]Arule)$/;
+const FX_HEAD = /^(?:(?:\[LV[\d-]+\]\s*)+|(?:Main|Flash|Trigger Counter|Core Charge:|Neo-Core Charge:)(?:\s*-\s*[A-Za-z ]+)?[:-]?|During (?:Set|Brave|Seal|Soul)(?: \(When \w+\))?)$/;
+function fxLevelRuns(t) {
+  return t.replace(/(?:\[LV\d(?:-\d)*\]\s*){2,}/g, run => {
+    const tags = run.match(/\[LV\d(?:-\d)*\]/g); let from = 0;
+    tags.forEach((x, i) => { if (i && parseInt(x.slice(3), 10) <= parseInt(tags[i - 1].slice(3), 10)) from = i; });
+    return tags.slice(from).join('') + ' ';
+  });
+}
 function effectLines(text) {
-  let t = descText(text).replace(/\s+/g, ' ').trim(); if (!t) return [];
-  t = t.replace(/\[Lv(\d)/g, '[LV$1').replace(/(?<!\])\s*((?:\[LV\d(?:-\d)*\])+)/g, (m, run, i) => (i ? '\n' : '') + run)
-       .replace(/([.!:)\]])\s+(?=(Burst:|Revive\b|Contract Skill\b|Contract Field\b|Awaken\b|Manifest\b|Mirage\b|Over Count\b|\(Flash\)|\[Flash\]|\[Main\]|\(Can't Stack\)|\[Can't Stack\]))/g, '$1\n');
-  const out = [];
-  for (let line of t.split('\n')) {
-    line = line.trim(); if (!line) continue;
-    for (const k of FX_LINE_STOP) if (line.startsWith(k) && line.length > k.length) { out.push(k); line = line.slice(k.length).trim(); }
-    if (line) out.push(line);
+  const paras = [];
+  for (let l of descText(text).split(/\n/)) {
+    l = l.replace(/\s+/g, ' ').trim(); if (!l || FX_JUNK.test(l)) continue;
+    const prev = paras.length ? paras[paras.length - 1] : '';
+    if (prev && /^[a-z]/.test(l) && !/[.!?:)"\]”]$/.test(prev) && !FX_HEAD.test(prev)) paras[paras.length - 1] = prev + ' ' + l;
+    else if (prev && FX_HEAD.test(prev)) paras[paras.length - 1] = prev + ' ' + l;
+    else paras.push(l);
   }
+  const out = [];
+  for (const para of paras) {
+    const t = fxLevelRuns(para).replace(/\[Lv(\d)/g, '[LV$1').replace(/(?<!\])\s*((?:\[LV\d(?:-\d)*\])+)/g, (m, run, i) => (i ? '\n' : '') + run)
+         .replace(/\s*([█◆■])/g, '\n$1')
+         .replace(/([.!:)\]])\s+(?=(Burst:|Revive\b|Contract Skill\b|Contract Field\b|Awaken\b|Manifest\b|Mirage\b|Over Count\b|\(Flash\)|\[Flash\]|\[Main\]|\(Can't Stack\)|\[Can't Stack\]|\(Flash Step\)))/g, '$1\n');
+    for (let line of t.split('\n')) {
+      line = line.trim(); if (!line) continue;
+      for (const k of FX_LINE_STOP) if (line.startsWith(k) && line.length > k.length) { out.push(k); line = line.slice(k.length).trim(); }
+      if (line) out.push(line);
+    }
+  }
+  for (let i = out.length - 2; i >= 0; i--) if (/^(?:\[LV[\d-]+\])+$/.test(out[i])) out.splice(i, 2, out[i] + ' ' + out[i + 1]);
   return out;
 }
 function fxMark(line) {
