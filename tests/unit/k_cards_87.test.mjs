@@ -274,3 +274,23 @@ test('K-890 BS70-005: +1000 BP per counter; Lv3 start of the Attack Step gives e
   const m = JSON.stringify(r);
   assert.equal(r.d, 4000, m); assert.deepEqual(r.sym, ['red'], m);
 });
+
+test('K-891 BS70-025: Void core when Frau is summoned (once per turn); Lv2 destroyed by the opponent discards a random opposing card', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = P.key; P.cpu = true; P.reserve.n = 20; P.void = 5;
+    P.spirits.length = 0; const s = BS.mkInst('BS70-025'); s.cores = 4; P.spirits.push(s);
+    const fr = BS.mkInst('BS64-CX02'); P.hand.push(fr);
+    await BS.summonFree(P, fr);
+    const c1 = s.cores, v1 = P.void;
+    const fr2 = BS.mkInst('BS64-CX02'); P.hand.push(fr2); await BS.summonFree(P, fr2);
+    const c2 = s.cores;
+    O.hand.length = 0; for (let i = 0; i < 2; i++) O.hand.push(BS.mkInst('BS48-042'));
+    P.spirits = P.spirits.filter(x => x !== s); P.trash.push(s); s.lostLv = 1;
+    await BS.fireFx(P, 'DESTROYED', s, { subject: s, byOpp: true });
+    return { c1, v1, c2, oh: O.hand.length };
+  });
+  const m = JSON.stringify(r);
+  assert.equal(r.c1, 5, m); assert.equal(r.c2, 5, m); assert.equal(r.oh, 1, m);
+});
