@@ -50455,11 +50455,6 @@
   "M_OPTIONAL",
   "S_UNAFFECTED"
  ],
- "BS76-044": [
-  "A_CANT_ATTACK_BLOCK",
-  "C_OPP_NO_AB",
-  "K_ULTIMATE"
- ],
  "BS76-045": [
   "A_REMOVED_ZONE",
   "A_VOID",

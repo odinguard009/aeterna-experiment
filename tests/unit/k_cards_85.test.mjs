@@ -935,3 +935,13 @@ test('K-1017 per NexusBrave: BS72-014 gets +5000 BP for each Brave on your Nexus
     const b0 = BS.bpOf(s); await BS.fireFx(P, 'SUMMONED', s, {}); const b1 = BS.bpOf(s); await BS.fireFx(P, 'ATTACKS', s, {}); const b2 = BS.bpOf(s); return [b1 - b0, b2 - b1]; })()`);
   assert.deepEqual(r, [10000, 0], JSON.stringify(r));
 });
+
+test('K-1018 SYM_ZERO_LOCKED: BS76-044 fixes the symbols of opposing Spirits under can\'t attack/block at zero in the opposing Attack Step only', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.coreShield = O.coreShield = null; P.spirits.length = 0; O.spirits.length = 0;
+    const two = Object.keys(BS.CARDS).find(k => /^BS0[0-9]-/.test(k) && BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].symbols >= 1);
+    const src = BS.mkInst('BS76-044'); src.cores = 1; P.spirits.push(src); const a = BS.mkInst(two), b = BS.mkInst(two); a.cores = b.cores = 2; O.spirits.push(a, b); a.noAB = true;
+    G.active = 'opponent'; G.turn = 'opponent'; G.step = 5; const out = [BS.attackSymbols(a), BS.attackSymbols(b) >= 1];
+    G.active = 'player'; G.turn = 'player'; out.push(BS.attackSymbols(a) >= 1); return out; })()`);
+  assert.deepEqual(r, [0, true, true], JSON.stringify(r));
+});
