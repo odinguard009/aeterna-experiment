@@ -390,3 +390,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v352 (Lane K): action `DESTROY_BRAVE` (no parameters): the player (CPU: highest BP) picks an opposing Spirit that carries a Brave and is not protected; the Brave goes to its owner's Trash, the Spirit stays. ctx.did = false when none. BS11-014, BS12-076.
 - v353 (Lane K): STATIC flag `NO_DESTROY` (no parameters): the Spirit cannot be destroyed by any cause (effects and BP comparison); `removeSpirit` returns early with a log line. BS28-028 (`if burstSet`).
 - v354 (Lane K): CANT_BLOCK_OPP_ALL {costLe} (opposing Spirits can't block this turn; mark noBlockT read by canBlockState).
+- v355 (Lane K): match.hasBurst (card with a printed {{Burst|...}} effect), used by RETURN_TRASH.

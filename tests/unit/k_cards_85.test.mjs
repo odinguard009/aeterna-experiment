@@ -915,3 +915,14 @@ test('K-1015 CANT_BLOCK_OPP_ALL: BS19-075 stops opposing Cost 3 or less Spirits 
     await BS.fireFx(P, 'SUMMONED', src, {}); const out = [BS.canBlockState(O, a), BS.canBlockState(O, b)]; G.turnNo++; out.push(BS.canBlockState(O, a)); return out; })()`);
   assert.deepEqual(r, [false, true, true], JSON.stringify(r));
 });
+
+test('K-1016 RETURN_TRASH Burst filter: BS28-014 returns a Purple Burst card from the Trash only when destroyed by the opponent', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.coreShield = O.coreShield = null; P.cpu = true; P.hand.length = 0; P.trash.length = 0;
+    const bu = Object.keys(BS.CARDS).find(k => /^BS[0-9][0-9]-/.test(k) && /\\{\\{Burst\\|/.test(BS.CARDS[k].desc || BS.CARDS[k].text || '') && (BS.CARDS[k].colors || [BS.CARDS[k].symbol]).includes('purple')),
+      nb = Object.keys(BS.CARDS).find(k => /^BS[0-9][0-9]-/.test(k) && !/\\{\\{Burst\\|/.test(BS.CARDS[k].desc || BS.CARDS[k].text || '') && (BS.CARDS[k].colors || [BS.CARDS[k].symbol]).includes('purple'));
+    P.trash.push(BS.mkInst(nb), BS.mkInst(bu)); const src = BS.mkInst('BS28-014'); src.cores = 1; src.lostLv = 1; P.trash.push(src); const out = [];
+    await BS.fireFx(P, 'DESTROYED', src, { subject: src, byOpp: false }); out.push(P.hand.length);
+    await BS.fireFx(P, 'DESTROYED', src, { subject: src, byOpp: true }); out.push(P.hand.length, P.hand[0] && P.hand[0].id === bu, P.trash.some(t => t.id === nb)); return out; })()`);
+  assert.deepEqual(r, [0, 1, true, true], JSON.stringify(r));
+});
