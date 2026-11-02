@@ -38,3 +38,12 @@ test('K-1177 Soul Core family BP (SD31-006, BS32-003): own family Spirits gain +
     out.ok = BS.CARDS['SD31-006'].fxComplete !== false && BS.CARDS['BS32-003'].fxComplete !== false && BS.CARDS['SD29-003'].fxComplete !== false; return out; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r['SD31-006'], 4000, JSON.stringify(r)); assert.equal(r['BS32-003'], 4000, JSON.stringify(r));
 });
+
+test('K-1178 BS33-036 / BS33-039 / SD34-004 are complete; BS33-036 gives Armored Dragon +5000 only with a Soul Core on it', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player; P.cpu = true; G.active = P.key; G.step = 5;
+    const s = BS.mkInst('BS33-036'); s.cores = 3; const t = BS.mkInst(Object.keys(BS.CARDS).find(k => /^(BS|SD)/.test(k) && k !== 'BS33-036' && (BS.CARDS[k].families || []).includes('Armored Dragon') && BS.CARDS[k].type === 'Spirit')); t.cores = 5; P.spirits = [s, t];
+    s.soul = false; const a = BS.bpOf(t); s.soul = true; const b = BS.bpOf(t);
+    return { d: b - a, ok: ['BS33-036', 'BS33-039', 'SD34-004'].every(k => BS.CARDS[k].fxComplete !== false), burst: BS.CARDS['BS33-039'].burst && BS.CARDS['BS33-039'].burst.when }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.d, 5000, JSON.stringify(r)); assert.equal(r.burst, 'ALLY_DESTROYED', JSON.stringify(r));
+});

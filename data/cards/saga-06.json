@@ -10885,14 +10885,55 @@
       "Brave"
      ]
     }
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 5000,
+    "to": "own",
+    "match": {
+     "family": [
+      "Armored Dragon"
+     ]
+    },
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "srcSoul": true
+    }
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "UNAFFECTED",
+    "to": "self",
+    "lv": [
+     1,
+     2
+    ],
+    "from": {
+     "types": [
+      "Spirit",
+      "Brave"
+     ]
+    }
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "ALSO_TREATED",
+    "to": "self",
+    "lv": [
+     2
+    ],
+    "colors": [
+     "blue"
+    ],
+    "symbol": true,
+    "color": true
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] While (Soul Core) is on this Spirit, all your \"Armored Dragon\" family Spirits/Ultimates gain +5000 BP.",
-   "[LV2] This Spirit's color and symbol are also treated as Blue."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image.",
   "bicon": [
    "6"
   ],
@@ -11005,13 +11046,40 @@
   "mechanics": [
    "Soul Burst"
   ],
-  "fxComplete": false,
-  "residual": [
-   "{{Burst|s|After your Spirit/Ultimate is destroyed by the Opponent}} Return an opposing Nexus to the Hand. After this effect resolves, summon this Spirit card without paying the cost.",
-   "[LV2] While there is (Soul Core) on this Spirit, all your \"Machine Beast\" family Spirits gain +4000 BP."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "C"
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image.",
+  "rcode": "C",
+  "burst": {
+   "when": "ALLY_DESTROYED",
+   "actions": [
+    {
+     "do": "BOUNCE_OPP",
+     "to": "hand",
+     "kind": "nexus"
+    },
+    {
+     "do": "SUMMON_SELF"
+    }
+   ]
+  },
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "bp": 4000,
+    "to": "own",
+    "match": {
+     "family": [
+      "Machine Beast"
+     ]
+    },
+    "lv": [
+     2
+    ],
+    "if": {
+     "srcSoul": true
+    }
+   }
+  ]
  },
  {
   "id": "BS33-040",

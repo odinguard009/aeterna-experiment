@@ -34152,13 +34152,45 @@
   "image": "SD34-004.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Depleted/Destroyed by the Opponent) Send three cores from an opposing Spirit/Ultimate to their Reserve.",
-   "[LV2][LV3] While (Soul Core) (Soul Core) is on this Spirit, all your \"Dark Snake\"/\"Death Dragon\" family Spirits gain +4000 BP."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "DESTROYED",
+    "alsoDepleted": true,
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "OPP_CORES_TO_RESERVE",
+      "targets": 1,
+      "each": 3
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 4000,
+    "to": "own",
+    "match": {
+     "family": [
+      "Dark Snake",
+      "Death Dragon"
+     ]
+    },
+    "lv": [
+     2,
+     3
+    ],
+    "if": {
+     "srcSoul": true
+    }
+   }
+  ]
  },
  {
   "id": "SD34-005",

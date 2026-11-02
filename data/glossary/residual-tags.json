@@ -12068,11 +12068,6 @@
   "K_ULTIMATE",
   "T_DESTROYED"
  ],
- "BS33-036": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "K_ULTIMATE"
- ],
  "BS33-037": [
   "A_DISCARD_OPP",
   "C_LEVEL",
@@ -12082,13 +12077,6 @@
   "C_LEVEL",
   "M_BY_DOING",
   "T_ATTACKS"
- ],
- "BS33-039": [
-  "A_BP_PLUS",
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "K_BURST",
-  "K_ULTIMATE"
  ],
  "BS33-040": [
   "A_SUMMON_FREE",
@@ -55748,12 +55736,6 @@
   "M_IF_YOU_DO",
   "M_OPTIONAL",
   "T_ATTACKS"
- ],
- "SD34-004": [
-  "A_BP_PLUS",
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "T_DESTROYED_OPP"
  ],
  "SD34-005": [
   "A_EXHAUST",
