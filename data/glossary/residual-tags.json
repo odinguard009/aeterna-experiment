@@ -10672,13 +10672,6 @@
   "K_RUSH",
   "M_THEN"
  ],
- "BS30-019": [
-  "A_EXHAUST",
-  "A_VOID",
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "T_ATTACKS"
- ],
  "BS30-020": [
   "A_EXHAUST",
   "C_LEVEL",
@@ -15948,13 +15941,6 @@
   "A_SYMBOL_PLUS",
   "C_LEVEL",
   "K_BURST"
- ],
- "BS39-019": [
-  "A_LIFE_TO_RESERVE",
-  "A_SEAL",
-  "C_LEVEL",
-  "T_ALLY_LIFE_HIT",
-  "T_ATTACKS"
  ],
  "BS39-020": [
   "A_BP_PLUS",

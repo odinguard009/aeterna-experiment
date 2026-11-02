@@ -1084,3 +1084,21 @@ test('K-1031 BS44-054 draws and BS53-003 destroys only after an opposing Grandwa
     const c0 = P.count, h1 = P.hand.length; await BS.fireFx(P, 'ALLY_ATTACKS', j, { attacker: att }); return [noNx, drew, O.void - v0, n.cores, kept, gone, (P.count || 0) - (c0 || 0), P.hand.length - h1]; })()`);
   assert.deepEqual(r, [0, 1, 2, 1, 1, 0, 1, 1], JSON.stringify(r));
 });
+
+test('K-1032 BS30-019 exhausts an opposing Spirit, then puts a Void core on one of its Spirits', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.coreShield = O.coreShield = null; P.spirits.length = 0; O.spirits.length = 0;
+    const id = Object.keys(BS.CARDS).find(k => /^BS0[0-9]-/.test(k) && BS.CARDS[k].type === 'Spirit'); const o = BS.mkInst(id); o.cores = 1; O.spirits.push(o);
+    const a = BS.mkInst('BS30-019'); a.cores = 1; P.spirits.push(a); G.void = Math.max(G.void || 0, 3); P.void = Math.max(P.void || 0, 3);
+    const c0 = a.cores; await BS.fireFx(P, 'ATTACKS', a, {}); const ex = o.exhausted, gain = a.cores - c0;
+    o.exhausted = true; const c1 = a.cores; await BS.fireFx(P, 'ATTACKS', a, {}); return [ex, gain, a.cores - c1]; })()`);
+  assert.equal(r[0], true, JSON.stringify(r)); assert.equal(r[1], 1, JSON.stringify(r));
+});
+
+test('K-1033 BS39-019 sends an opposing Life to the Reserve on a life hit only during Seal', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.coreShield = O.coreShield = null; P.spirits.length = 0; O.spirits.length = 0;
+    const a = BS.mkInst('BS39-019'); a.cores = 3; P.spirits.push(a); P.lifeSoul = false; const l0 = O.life, r0 = O.reserve.n; await BS.fireFx(P, 'ALLY_LIFE_HIT', null, { attacker: a }); const no = [l0 - O.life, O.reserve.n - r0];
+    P.lifeSoul = true; const l1 = O.life, r1 = O.reserve.n; await BS.fireFx(P, 'ALLY_LIFE_HIT', null, { attacker: a }); return [no, l1 - O.life, O.reserve.n - r1]; })()`);
+  assert.deepEqual(r[0], [0, 0], JSON.stringify(r)); assert.equal(r[1], 1, JSON.stringify(r));
+});
