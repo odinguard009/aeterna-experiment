@@ -12435,11 +12435,6 @@
   "C_LEVEL",
   "T_ALLY_ATTACKS"
  ],
- "BS34-016": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "BS34-017": [
   "C_LEVEL",
   "K_BURST",
@@ -29319,15 +29314,6 @@
   "M_OPTIONAL",
   "T_ATTACKS",
   "T_SUMMONED"
- ],
- "BS55-008": [
-  "A_RETURN_TRASH",
-  "A_SUMMON_FREE",
-  "A_TRASH_TO_RESERVE",
-  "K_BURST",
-  "K_ULTIMATE",
-  "M_THEN",
-  "T_ALLY_LOST"
  ],
  "BS55-009": [
   "A_SUMMON_FREE",
@@ -58259,11 +58245,6 @@
   "M_IF_YOU_DO",
   "M_OPTIONAL"
  ],
- "SD57-RV001": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "T_SUMMONED"
- ],
  "SD57-RV004": [
   "A_RETURN_TRASH",
   "A_SUMMON_FREE",
@@ -59189,20 +59170,6 @@
   "M_BY_DOING",
   "M_IF_YOU_DO",
   "M_OPTIONAL",
-  "T_SUMMONED"
- ],
- "SD66-006": [
-  "A_COUNTER",
-  "A_DESTROY_COST",
-  "A_DESTROY_NEXUS",
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "K_BURST",
-  "K_ULTIMATE",
-  "M_OPTIONAL",
-  "M_THEN",
-  "T_ALLY_LOST",
-  "T_ATTACKS",
   "T_SUMMONED"
  ],
  "SD66-007": [

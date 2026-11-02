@@ -422,6 +422,7 @@ function removeSpirit(p, s, why, byOpponent) {
   log(`${poss(p)} ${CARDS[s.id].name} is ${why}.`);
   if (why === 'destroyed' && G && G.evQ && STEPS[G.step] === 'ATTACK' && p.trash.some(x => (CARDS[x.id].effects || []).some(e => e.flag === 'IMMORTALITY'))) G.evQ.push({ type: 'IMMORTAL', key: p.key, inst: s });      // v0.183 Immortality (02j)
   if (why === 'destroyed' && byOpponent && G && G.burstQ) G.burstQ.push({ key: p.key });
+  else if (depl && G && G.burstQ) G.burstQ.push({ key: p.key, when: 'ALLY_LOST' });      // v388 Burst "After your Spirit is depleted/destroyed by the opponent"
   if (G && G.evQ && ((why === 'destroyed' && byOpponent) || why === 'depleted')) G.evQ.push({ type: 'LOST', key: p.key, inst: s, depl: why === 'depleted', byOpp: !!(byOpponent || oppFx) });      // v212 depleted/byOpp
   const zbDeck = why === 'destroyed' && bpAt === 0 && G && G.fxBy && G.fxBy !== p.key && fieldList(G.p[G.fxBy]).some(f => { const L = lvNo(f), oppp = G.p[other(G.fxBy)];
     return fxEntries(f).some(({ e }) => e.trigger === 'STATIC' && e.flag === 'ZERO_BP_DECKBOTTOM' && (!e.lv || e.lv.includes(L)) && (!e.oc || ocActive(f)) && fxIf(G.p[G.fxBy], oppp, e.if || {}, { selfInst: f }) && fxMatch(CARDS[s.id], e.match, s)); });      // v221

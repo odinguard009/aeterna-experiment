@@ -52698,14 +52698,51 @@
   "image": "SD66-006.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "{{Burst|After your Spirit is depleted/destroyed by the opponent}} Summon this card without paying the cost.",
-   "[LV1][LV2][LV3] (When Summoned) You can destroy an opposing Spirit/Ultimate with the lowest BP.",
-   "[LV2][LV3] (When Attacks) Your counter +1. Then, destroy an opposing Nexus."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "R"
+  "rcode": "R",
+  "burst": {
+   "when": "ALLY_LOST",
+   "actions": [
+    {
+     "do": "SUMMON_SELF"
+    }
+   ]
+  },
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "DESTROY",
+      "bpRank": "lowest"
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "COUNTER",
+      "n": 1
+     },
+     {
+      "do": "DESTROY",
+      "nexus": true
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD66-007",

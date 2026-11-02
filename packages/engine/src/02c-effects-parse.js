@@ -47,7 +47,7 @@ async function tributePay(p, inst) {      // v0.182 Tribute: after the cost is p
 }
 const summonBy = (p, inst, pay, opts) => pay ? summonPaid(p, inst, opts) : summonFree(p, inst, opts);
 function fxDescribe(e) { return (e.invoke && e.cost ? invokeCostText(e.cost) + ' ▶ ' : '') + e.actions.map(a => FX_ACTIONS[a.do].txt(a)).join(', then '); }
-const BURST_WHEN = { LIFE_DECREASE: 'After your Life is reduced', ALLY_DESTROYED: 'After your Spirit is destroyed by the opponent', OPP_SUMMON_FX: "After an opposing Spirit's (When Summoned) effect activates", OPP_HAND_UP: 'After the opposing Hand increases with an opposing effect', OPP_ATTACK: 'After an opposing Spirit attacks', OPP_SUMMON_ADV_FX: "After an opposing Spirit's (When Summoned/Advents) effect resolves" };   // v0.71 OPP_ATTACK, OPP_SUMMON_ADV_FX
+const BURST_WHEN = { LIFE_DECREASE: 'After your Life is reduced', ALLY_DESTROYED: 'After your Spirit is destroyed by the opponent', ALLY_LOST: 'After your Spirit is depleted/destroyed by the opponent', OPP_SUMMON_FX: "After an opposing Spirit's (When Summoned) effect activates", OPP_HAND_UP: 'After the opposing Hand increases with an opposing effect', OPP_ATTACK: 'After an opposing Spirit attacks', OPP_SUMMON_ADV_FX: "After an opposing Spirit's (When Summoned/Advents) effect resolves" };   // v0.71 OPP_ATTACK, OPP_SUMMON_ADV_FX
 function parseCond(c) {
   if (typeof c !== 'object' || c === null) return { error: 'effect "if" must be an object' };
   for (const [k, v] of Object.entries(c)) {

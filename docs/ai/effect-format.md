@@ -423,3 +423,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v385 (Lane K): action `ATTACK_SPIRIT` (`state` exhausted|refreshed, `bpLe`, `kind:"spirit"` = not an Ultimate): "(When Attacks) target an opposing Spirit and attack it"; the attack goes against that Spirit instead of the Life, it cannot be blocked and the BP comparison is with the target (08-battle `atkT`).
 - v386 (Lane K): `ATTACK_SPIRIT` takes `coresLe`, `coresGe` (cores on the target) and `highest:true` (highest BP on the opposing Field).
 - v387 (Lane K): condition `symColorsGe` (N) = you have symbols of N or more colours (Six Heaven Rush).
+- v388 (Lane K): Burst `when: ALLY_LOST` ("After your Spirit is depleted/destroyed by the opponent"; also fires on destroyed-by-opponent); `DESTROY` takes `bpRank: lowest|highest` (the opposing Spirit/Ultimate with the lowest/highest BP).
