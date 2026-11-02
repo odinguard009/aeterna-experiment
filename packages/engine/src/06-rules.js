@@ -33,6 +33,7 @@ let _th = false;      // v322 re-entrancy guard for TREAT_HIGHEST (flagActive re
 function treatHighest(i) {      // STATIC TREAT_HIGHEST: "all your <match> Spirits are treated as being on their highest level"
   if (_th || !G) return false;
   const o = ownerOf(i); if (!o || !o.spirits.includes(i)) return false;
+  if (!fieldList(o).some(f => (CARDS[f.id].effects || []).some(e => e.flag === 'TREAT_HIGHEST'))) return false;      // cheap exit: only a source on the Field with the flag can matter
   _th = true; try { return flagActive(o, 'TREAT_HIGHEST', i); } finally { _th = false; }
 }
 function lvIndex(i) {
