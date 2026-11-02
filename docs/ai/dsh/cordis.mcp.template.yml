@@ -1,0 +1,44 @@
+# DSH desktop app: add this block to %USERPROFILE%\.dsh\profiles\desktop\cordis.patch.yml (same format as the owner's machine, 2026-10-31).
+# Replace <HOME> with your home folder (e.g. C:\Users\you) and <WORKSPACE> with the folder where you cloned aeterna. No tokens: the github wrapper reads `gh auth token`.
+# Tools appear to the model as mcp__<serverName>__<tool>. Restart the DSH app afterwards.
+- insert:
+    - id: mcp-sequentialthinking
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: sequentialthinking
+        transport: stdio
+        command: 'node'
+        args:
+          - '<HOME>\.dsh\mcp\node_seqthinking\node_modules\@modelcontextprotocol\server-sequential-thinking\dist\index.js'
+    - id: mcp-github
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: github
+        transport: stdio
+        command: 'C:\Windows\System32\cmd.exe'
+        args:
+          - '/c'
+          - '<HOME>\.dsh\mcp\github\run-github-mcp.cmd'
+    - id: mcp-serena
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: serena
+        transport: stdio
+        command: '<HOME>\.dsh\mcp\venv-serena\Scripts\serena.exe'
+        args: ['start-mcp-server', '--context', 'claude-code', '--agent-interface', 'tools', '--enable-web-dashboard', 'false']
+        cwd: '<WORKSPACE>\aeterna'
+    - id: mcp-basic-memory
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: basic-memory
+        transport: stdio
+        command: '<HOME>\.dsh\mcp\venv-basic-memory\Scripts\basic-memory.exe'
+        args: ['mcp']
+        env:
+          BASIC_MEMORY_NO_PROMOS: '1'
+    - id: mcp-context7
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: context7
+        transport: streamable-http
+        url: 'https://mcp.context7.com/mcp'

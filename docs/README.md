@@ -65,4 +65,4 @@ Generated reports live in `reports/` (first line names the tool).
 - `ai/owner-instructions.md` (hand): the owner's instructions in their words.
 - `ai/deleted-branches.md` (hand): backup branches listed for deletion, restorable by SHA.
 - `ai/lane-k-mission.md` (hand): Lane K mission state, model routing and handoff for DeepSeek/Claude sessions; tools `tools/lane_k_packet.mjs`, `tools/lane_k_status.sh`, `tools/lane_k_guard.sh`, `tools/lane_k_release.sh`.
-- `ai/dsh/` (hand): DeepSeek-harness setup for Lane K: `ai/dsh/README.md` (bootstrap, MCP list, rules), `ai/dsh/start-prompt.md` (paste-ready prompt), `ai/dsh/install-mcp.ps1` + `ai/dsh/mcp.template.json` (MCP install, no secrets).
+- `ai/dsh/` (hand): DeepSeek-harness setup for Lane K: `ai/dsh/README.md` (bootstrap, MCP list, rules), `ai/dsh/start-prompt.md` (paste-ready prompt), `ai/dsh/install-mcp.ps1` + `ai/dsh/cordis.mcp.template.yml` (MCP install, no secrets).

@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Aeterna Slice A Tabletop</title>
+<style>
+:root{--bg:#121417;--mat:#1b1f24;--line:#2d343c;--ink:#e9eef3;--dim:#8d99a6;--me:#2fc7b0;--cpu:#ef4d52;--gem:#f4c352;
+--cR:#ef4d52;--cB:#4aa3ff;--cG:#4cc38a;--cW:#e9ecef;--cY:#f4c352;--cP:#a885ff}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);color:var(--ink);font:14px/1.3 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow:hidden;overflow-x:clip}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.scr{position:fixed;inset:0;display:none;flex-direction:column}
+.scr.on{display:flex}
+/* tiles */
+.t{position:relative;width:var(--tw,56px);height:var(--th,78px);flex:none;background:linear-gradient(#272d34,#1a1e23);border:1px solid var(--line);border-top:3px solid var(--cc);
+ clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%);padding:3px 4px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;text-align:left}
+.t b{font:600 10px/1.1 inherit;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+.t u{text-decoration:none;font:700 11px ui-monospace,Consolas,monospace;color:var(--cc)}
+.t i{position:absolute;right:3px;top:1px;font:700 9px ui-monospace,monospace;color:var(--dim);font-style:normal}
+.t .cr{position:absolute;left:3px;bottom:14px;display:flex;gap:2px}
+.cr s{width:7px;height:7px;background:var(--gem);transform:rotate(45deg);box-shadow:0 0 4px #f4c35288}
+.cR{--cc:var(--cR)}.cB{--cc:var(--cB)}.cG{--cc:var(--cG)}.cW{--cc:var(--cW)}.cY{--cc:var(--cY)}.cP{--cc:var(--cP)}
+.row .t{flex:1;width:auto;min-width:0;height:96px}.t b{overflow-wrap:break-word;hyphens:auto}
+.t.nx{--tw:40px;--th:34px;padding:2px 3px}.t.nx b{font-size:9px;-webkit-line-clamp:2}
+.t.empty{background:none;border:1px dashed var(--line);border-top:1px dashed var(--line);clip-path:none}
+/* lobby */
+#lobby{background:radial-gradient(120% 60% at 0 0,#1d2a2c 0,transparent 60%),var(--bg)}
+.top{height:52px;padding:0 16px;display:flex;align-items:center;justify-content:space-between;flex:none}
+.logo{font:800 20px/1 system-ui;letter-spacing:.18em;transform:skewX(-8deg);color:var(--me)}
+.chip{min-height:44px;min-width:44px;display:grid;place-items:center;padding:0 12px;border:1px solid var(--line);background:#181c20;clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%)}
+.scroll{flex:1;overflow-y:auto;overflow-x:hidden;padding:4px 16px 110px}
+h2{font:700 11px/1 system-ui;letter-spacing:.16em;color:var(--dim);text-transform:uppercase;margin:18px 0 8px}
+.resume{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:12px;border:1px solid var(--line);background:linear-gradient(120deg,#1e2a2a,#181c20);clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,0 100%)}
+.mini{height:84px;border:1px solid var(--line);background:#14171a;position:relative;display:grid;grid-template-rows:1fr 1fr;gap:6px;padding:6px}
+.mini div{display:flex;gap:3px;align-items:center;justify-content:center}.mini div span{width:12px;height:16px;background:var(--cpu);opacity:.8}.mini div:last-child span{background:var(--me)}
+.resume h3{font:700 16px/1.2 system-ui}.resume p{color:var(--dim);font-size:12px;margin:2px 0 8px}
+.go{min-height:44px;padding:0 18px;background:var(--me);color:#04201b;font-weight:800;letter-spacing:.06em;clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%)}
+.shelf{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:0 16px 6px}
+.sleeve{flex:none;width:96px;height:132px;scroll-snap-align:start;border:1px solid var(--line);background:linear-gradient(160deg,var(--cc),#15181c 70%);padding:8px;display:flex;flex-direction:column;justify-content:flex-end;text-align:left;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%)}
+.sleeve b{font-size:12px;display:block}.sleeve small{color:#fffa;font-size:11px}
+.sleeve.new{background:none;border:1px dashed var(--dim);align-items:center;justify-content:center;color:var(--dim)}
+.rib{display:flex;align-items:center;justify-content:space-between;min-height:56px;margin-bottom:8px;padding:0 16px;border-left:4px solid var(--me);background:#181c20;width:100%;text-align:left}
+.rib small{color:var(--dim);display:block;font-size:12px}
+.rib em{font-style:normal;font-size:11px;color:var(--me);border:1px solid var(--me);padding:2px 8px}
+.dock{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:6px;padding:6px;background:#0c0e10ee;border:1px solid var(--line);border-radius:30px;backdrop-filter:blur(6px)}
+.dock button{min-width:56px;min-height:48px;border-radius:24px;font-size:12px;color:var(--dim)}
+.dock .c{background:var(--me);color:#04201b;font-weight:800;padding:0 22px}
+.dock button.on{color:var(--ink)}
+/* battle */
+#battle{display:none;grid-template-columns:minmax(0,1fr);grid-template-rows:40px 1fr 60px 1fr 128px}
+#battle.on{display:grid}
+.bar{display:flex;align-items:center;justify-content:space-between;padding:0 8px;background:#0e1013}
+.bar .tn{font:700 12px system-ui;letter-spacing:.12em;color:var(--me);transform:skewX(-8deg);padding:4px 12px;background:#12332f}
+.bar button{min-width:44px;min-height:40px;font-size:12px;color:var(--dim)}
+.half{display:grid;grid-template-columns:1fr 70px;gap:6px;padding:6px 6px;background:var(--mat);position:relative;min-height:0}
+.half.me{grid-template-columns:70px 1fr;background:#192226}
+.half.cpu{background:#241b1d}
+.field{display:flex;flex-direction:column;justify-content:space-between;gap:4px;min-width:0}
+.rail{display:flex;flex-direction:column;gap:2px;justify-content:center}
+.ch{display:flex;justify-content:space-between;align-items:center;height:26px;padding:0 6px;border:1px solid var(--line);background:#14171a;font-size:11px;color:var(--dim);clip-path:polygon(6px 0,100% 0,100% 100%,0 100%)}
+.ch b{color:var(--ink);font:700 12px ui-monospace,monospace}
+.lifeRow{display:flex;gap:6px;align-items:center;height:22px}
+.lifeRow small{font-size:10px;letter-spacing:.14em;color:var(--dim);margin-right:2px}
+.lf{width:16px;height:16px;transform:rotate(45deg);background:var(--cc2);box-shadow:0 0 8px var(--cc2)}
+.cpu .lf{--cc2:var(--cpu)}.me .lf{--cc2:var(--me)}
+.row{display:flex;gap:3px;justify-content:space-between}
+.nxRow{display:flex;gap:4px}
+.band{background:#0e1013;display:flex;flex-direction:column;justify-content:center;gap:4px;padding:0 84px 0 8px;position:relative}
+.steps{display:flex;gap:2px}.steps span{flex:1;height:20px;display:grid;place-items:center;font:700 9px system-ui;letter-spacing:.04em;color:var(--dim);background:#181c20;transform:skewX(-14deg)}
+.steps span.on{background:var(--me);color:#04201b}
+.msg{font-size:12px;color:var(--ink);height:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.next{position:absolute;right:8px;top:50%;margin-top:-34px;width:68px;height:68px;border-radius:50%;background:var(--me);color:#04201b;font:800 12px system-ui;letter-spacing:.06em;box-shadow:0 0 0 4px #0e1013,0 0 18px #2fc7b055;z-index:4}
+.hand{background:#0e1013;display:flex;justify-content:center;align-items:flex-end;padding:0 8px 10px;position:relative;overflow:hidden}
+.hand .t{--tw:58px;--th:98px;margin-left:-8px;transform-origin:50% 140%;transform:rotate(var(--rot)) translateY(var(--ty,0));transition:transform .18s}
+.hand .t:first-child{margin-left:0}
+.hand .t b{font-size:11px}
+.hand .t.up{transform:rotate(0) translateY(-22px);z-index:5}
+#sheet{position:absolute;left:0;right:0;bottom:0;background:#0b0d0fef;border-top:2px solid var(--cpu);padding:12px 16px calc(14px + env(safe-area-inset-bottom));transform:translateY(105%);transition:transform .22s;z-index:8}
+#sheet.on{transform:none}
+#sheet h4{font:800 15px system-ui;margin-bottom:2px;color:var(--cpu)}#sheet p{color:var(--dim);font-size:12px;margin-bottom:10px}
+.opts{display:grid;gap:8px}.opts button{min-height:48px;border:1px solid var(--line);background:#181c20;text-align:left;padding:0 14px}
+.opts button b{color:var(--me)}
+#beam{position:fixed;height:3px;background:linear-gradient(90deg,transparent,#ff8d90,#fff);transform-origin:0 50%;box-shadow:0 0 12px #ef4d52;z-index:7;display:none;pointer-events:none}
+.shard{position:fixed;width:8px;height:8px;background:var(--me);z-index:9;pointer-events:none}
+@media (prefers-reduced-motion:reduce){.hand .t,#sheet{transition:none}}
+</style></head>
+<body>
+<section id="lobby" class="scr on">
+ <div class="top"><div class="logo">AETERNA</div><button class="chip" aria-label="Profile">Lv 7</button></div>
+ <div class="scroll">
+  <h2>Pick up where you left off</h2>
+  <div class="resume"><div class="mini"><div><span></span><span></span><span></span><span></span><span></span></div><div><span></span><span></span><span></span><span></span></div></div>
+   <div><h3>Turn 4, Life 5 to 4</h3><p>Ember Rush vs Normal CPU</p><button class="go" onclick="show('battle')">RESUME</button></div></div>
+  <h2>Your decks</h2>
+  <div class="shelf">
+   <button class="sleeve cR" style="--cc:#a8343a"><b>Ember Rush</b><small>50 cards</small></button>
+   <button class="sleeve cB" style="--cc:#2a6fb0"><b>Tide Wall</b><small>50 cards</small></button>
+   <button class="sleeve cG" style="--cc:#2f8a5e"><b>Moss Pack</b><small>48 cards</small></button>
+   <button class="sleeve new">+ New deck</button>
+  </div>
+  <h2>Play</h2>
+  <button class="rib" onclick="show('battle')"><span>Versus CPU<small>Easy, Normal or Hard</small></span><em>Normal</em></button>
+  <button class="rib"><span>Learn the rules<small>16 short chapters</small></span><em>3 / 16</em></button>
+  <button class="rib"><span>Sandbox<small>Test hand and draw odds</small></span><em>Open</em></button>
+  <h2>Today</h2>
+  <button class="rib"><span>Win one match<small>Reward: card sleeve</small></span><em>0 / 1</em></button>
+ </div>
+ <nav class="dock"><button class="on">Lobby</button><button class="c" onclick="show('battle')">PLAY</button><button>Decks</button></nav>
+</section>
+
+<section id="battle" class="scr">
+ <div class="bar"><button onclick="show('lobby')">Back</button><div class="tn" id="tn">YOUR TURN 4</div><button id="mot" onclick="toggleMotion()">Motion: full</button></div>
+ <div class="half cpu" id="cpu"></div>
+ <div class="band"><div class="steps" id="steps"></div><div class="msg" id="msg">Tap NEXT to preview an attack.</div><button class="next" id="next" onclick="moment()">NEXT</button></div>
+ <div class="half me" id="me"></div>
+ <div class="hand" id="hand"></div>
+ <div id="sheet"></div>
+</section>
+<div id="beam"></div>
+
+<script>
+/* KIT: identical in all slices */
+const KIT={steps:['Start','Core','Draw','Refresh','Main','Attack','End'],
+zones:['Life','Reserve','Count','Trash','Deck','Void','Banished','Burst/Mirage','Soul State','Nexus','Spirits','Hand','Steps','NEXT'],
+cards:[
+{n:'Ashen Drake',c:'R',lv:2,bp:5000,cost:4},
+{n:'Tidal Sentinel',c:'B',lv:1,bp:3000,cost:2},
+{n:'Archwarden of the Hollow Meridian Gate',c:'W',lv:3,bp:12000,cost:7},
+{n:'Moss Hound',c:'G',lv:1,bp:900,cost:1},
+{n:'Nightglass Seer',c:'P',lv:2,bp:100,cost:3},
+{n:'Sunlit Bulwark',c:'Y',lv:2,bp:7000,cost:5}],
+nexus:['Old Forge','Quiet Harbor','Rift Gate'],
+me:{life:5,reserve:3,count:4,trash:2,deck:31,void:0,banished:1,burst:1,soul:0,spirits:[0,1,3,4,5],hand:[0,1,2,3,4,5]},
+cpu:{life:5,reserve:2,count:3,trash:4,deck:29,void:1,banished:0,burst:0,soul:0,spirits:[2,0,1,4,5],hand:5}};
+let REDUCE=false;const RM=()=>REDUCE||matchMedia('(prefers-reduced-motion: reduce)').matches;
+const wait=ms=>new Promise(r=>setTimeout(r,RM()?0:ms));
+/* end KIT */
+
+const $=s=>document.querySelector(s);
+const S={me:{...KIT.me},cpu:{...KIT.cpu},step:5,busy:false};
+const tile=(i,k='',cores=0)=>{const c=KIT.cards[i];return `<div class="t c${c.c} ${k}" data-i="${i}"><i>${c.lv}</i><b>${c.n}</b><u>${c.bp}</u>${cores?`<span class="cr">${'<s></s>'.repeat(cores)}</span>`:''}</div>`};
+function half(id){
+ const s=S[id],rail=[['Deck',s.deck],['Trash',s.trash],['Void',s.void],['Banished',s.banished],['Count',s.count],['Reserve',s.reserve],['Burst',s.burst?'Set':'-'],['Soul',s.soul?'On':'-']];
+ const life=`<div class="lifeRow"><small>LIFE</small>${'<i class="lf"></i>'.repeat(s.life)}</div>`;
+ const nx=`<div class="nxRow">${KIT.nexus.map((n,i)=>`<div class="t nx cB"><b>${n}</b></div>`).join('')}</div>`;
+ const sp=`<div class="row" id="sp-${id}">${s.spirits.map((i,k)=>tile(i,'',k<2?2:k<3?1:0)).join('')}</div>`;
+ const rl=`<div class="rail">${rail.map(r=>`<div class="ch">${r[0]}<b>${r[1]}</b></div>`).join('')}</div>`;
+ const f=id==='cpu'?`<div class="field">${life}${nx}${sp}</div>`:`<div class="field">${sp}${nx}${life}</div>`;
+ $('#'+id).innerHTML=id==='cpu'?f+rl:rl+f;
+}
+function render(){
+ half('cpu');half('me');
+ $('#steps').innerHTML=KIT.steps.map((s,i)=>`<span class="${i===S.step?'on':''}">${s.toUpperCase()}</span>`).join('');
+ $('#hand').innerHTML=KIT.me.hand.map((i,k,a)=>{const m=(a.length-1)/2;return tile(i,'').replace('class="t','style="--rot:'+((k-m)*4)+'deg;--ty:'+(Math.abs(k-m)*3)+'px" class="t')}).join('');
+ $('#hand').querySelectorAll('.t').forEach(t=>t.onclick=()=>{const u=t.classList.contains('up');$('#hand').querySelectorAll('.up').forEach(x=>x.classList.remove('up'));if(!u)t.classList.add('up')});
+}
+function show(id){document.querySelectorAll('.scr').forEach(s=>s.classList.toggle('on',s.id===id));if(id==='battle'){S.me=JSON.parse(JSON.stringify(KIT.me));S.cpu=JSON.parse(JSON.stringify(KIT.cpu));S.step=5;render();say('Tap NEXT to preview an attack.')}}
+function say(t){$('#msg').textContent=t}
+function toggleMotion(){REDUCE=!REDUCE;$('#mot').textContent='Motion: '+(REDUCE?'reduced':'full')}
+function anim(el,kf,o){return RM()?Promise.resolve():el.animate(kf,o).finished.catch(()=>{})}
+function ask(title,text,opts){return new Promise(res=>{const sh=$('#sheet');sh.innerHTML=`<h4>${title}</h4><p>${text}</p><div class="opts">${opts.map((o,i)=>`<button data-i="${i}">${o}</button>`).join('')}</div>`;sh.classList.add('on');sh.querySelectorAll('button').forEach(b=>b.onclick=()=>{sh.classList.remove('on');res(+b.dataset.i)})})}
+function center(el){const r=el.getBoundingClientRect();return[r.left+r.width/2,r.top+r.height/2]}
+async function moment(){
+ if(S.busy)return;S.busy=true;$('#next').disabled=true;render();
+ const atk=$('#sp-cpu .t'),life=$('#me .lf:last-child');
+ say('Archwarden of the Hollow Meridian Gate attacks!');
+ $('#tn').textContent='CPU ATTACKS';
+ await anim(atk,[{transform:'none'},{transform:'translateY(-6px) scale(1.12)',offset:.3},{transform:'translateY(34px) scale(1.12)'}],{duration:420,easing:'cubic-bezier(.5,0,.8,.4)',fill:'forwards'});
+ const pick=await ask('Block?','Archwarden attacks (BP 12000). Choose a Spirit or take the hit.',['<b>Block</b> with Sunlit Bulwark (BP 7000)','<b>Block</b> with Tidal Sentinel (BP 3000)','Take it (Life 5 to 4)']);
+ if(pick<2){
+  const bl=document.querySelector('#sp-me .t[data-i="'+(pick?1:5)+'"]');
+  await anim(bl,[{transform:'none'},{transform:'translateY(-40px) scale(1.15)'}],{duration:220,fill:'forwards'});
+  await anim(atk,[{transform:'translateY(34px) scale(1.12)'},{transform:'translateY(34px) scale(1.12) rotate(3deg)',offset:.2},{transform:'translateY(34px) scale(1.12)'}],{duration:160});
+  await anim(bl,[{opacity:1},{opacity:0,transform:'translateY(-40px) scale(.8)'}],{duration:320,fill:'forwards'});
+  say('Blocked. Your Spirit was destroyed; no Life lost.');
+ }else{
+  const [x0,y0]=center(atk),[x1,y1]=center(life),b=$('#beam');
+  if(!RM()){b.style.display='block';b.style.left=x0+'px';b.style.top=y0+'px';const L=Math.hypot(x1-x0,y1-y0);b.style.width=L+'px';b.style.transform=`rotate(${Math.atan2(y1-y0,x1-x0)}rad)`;
+   await b.animate([{clipPath:'inset(0 100% 0 0)'},{clipPath:'inset(0 0 0 0)'}],{duration:180,fill:'forwards'}).finished;
+   for(let k=0;k<7;k++){const s=document.createElement('i');s.className='shard';s.style.left=x1+'px';s.style.top=y1+'px';document.body.appendChild(s);
+    const a=k/7*6.28,d=40+Math.random()*30;s.animate([{transform:'none',opacity:1},{transform:`translate(${Math.cos(a)*d}px,${Math.sin(a)*d}px) rotate(200deg) scale(.2)`,opacity:0}],{duration:520,easing:'ease-out'}).finished.then(()=>s.remove())}
+   life.animate([{transform:'rotate(45deg) scale(1)'},{transform:'rotate(45deg) scale(1.8)',opacity:1,offset:.3},{transform:'rotate(45deg) scale(0)',opacity:0}],{duration:360,fill:'forwards'});
+   await wait(420);b.style.display='none'}
+  S.me.life--;render();say('Life 5 to 4. Your Life was broken.');
+ }
+ $('#tn').textContent='YOUR TURN 4';S.busy=false;$('#next').disabled=false;
+}
+render();
+</script></body></html>

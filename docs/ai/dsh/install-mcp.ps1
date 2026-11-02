@@ -27,5 +27,5 @@ Step 'github' {
   Set-Content (Join-Path $g 'run-github-mcp.cmd') -Value $cmd -Encoding ascii
 }
 Step 'context7' { npm install -g @upstash/context7-mcp }
-Step 'codebase-memory-mcp' { npm install -g codebase-memory-mcp }
-Write-Host "Done. Register the servers with docs/ai/dsh/mcp.template.json and restart the harness."
+
+Write-Host "Done. Register the servers with docs/ai/dsh/cordis.mcp.template.yml and restart the harness."
