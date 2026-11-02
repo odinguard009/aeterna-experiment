@@ -102,6 +102,7 @@ document.addEventListener('click', e => {
   else if (a === 'theme-color') { navTheme('color', v); if (G) render(); }
   else if (a === 'sound-toggle') navSound();
   else if (a === 'log-toggle') toggleLog();
+  else if (a === 'fullscreen') toggleFullscreen();
   else if (a === 'cp-min') cpMinToggle();
   else if (a === 'log-close') toggleLog(false);
   else if (a === 'log-copy') {      // owner review 2026-10-27: copy the whole match log as plain text
@@ -112,6 +113,15 @@ document.addEventListener('click', e => {
   else if (a === 'rv-watch') replayWatch(Number(v));
   else if (a === 'rv-save') replaySave(Number(v));
   else if (a === 'hist-clear') { HISTORY = []; try { localStorage.removeItem(HIST_KEY); } catch (e) { /* blocked */ } renderSettings(); }
+  else if (a === 'set-dlimgs') {
+    if (IMGDL) { IMGDL.stop = true; return; }
+    const btn = $('set-dl'), msg = $('set-dl-st'); if (btn) btn.textContent = 'Stop';
+    downloadAllImages((st, n) => { if (msg) msg.textContent = `${n} / ${st.total} cards checked: ${st.ok} saved, ${st.skip} already here, ${st.fail} not available.`; }).then(r => {
+      if (btn) btn.textContent = 'Download';
+      if (msg) msg.textContent = r.err ? r.err : `${r.stopped ? 'Stopped' : 'Done'}: ${r.ok} saved, ${r.skip} already here, ${r.fail} not available (${r.total} cards).`;
+      refreshViews(); renderSetPage();
+    });
+  }
   else if (a === 'set-reset') { SETTINGS.speed = 'normal'; SETTINGS.sound = false; delete SETTINGS.anim; delete SETTINGS.effPop; delete SETTINGS.textSize; delete SETTINGS.cbShapes; delete SETTINGS.hiContrast; applyTextSize(); applyAccess(); SETTINGS.cpuDeck = 'std03'; SETTINGS.cpuProfile = 'balanced'; delete SETTINGS.cpuRandom; delete SETTINGS.cpuLevel; delete SETTINGS.firstTurn; delete SETTINGS.hints; saveSettings(); renderSettings(); $('set-msg').textContent = 'Settings reset.'; }
   else if (a === 'go-lib') switchView('view-library');
   else if (a === 'set-sec') setSection(v);

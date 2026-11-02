@@ -38,7 +38,7 @@ const familyRowHTML = c => (c.families || []).length ? `<div class="row" style="
 function effectLines(text) {
   let t = descText(text).replace(/\s+/g, ' ').trim(); if (!t) return [];
   // break before a run of level tags (unless it follows another tag, e.g. [Spirit][LV1]), and before a block keyword / timing tag that starts a sentence
-  t = t.replace(/(?<!\])\s*((?:\[LV\d\])+)/g, (m, run, i) => (i ? '\n' : '') + run)
+  t = t.replace(/\[Lv(\d)/g, '[LV$1').replace(/(?<!\])\s*((?:\[LV\d(?:-\d)*\])+)/g, (m, run, i) => (i ? '\n' : '') + run)
        .replace(/([.!:)\]])\s+(?=(Burst:|Revive\b|Contract Skill\b|Contract Field\b|Awaken\b|Manifest\b|Mirage\b|Over Count\b|\(Flash\)|\[Flash\]|\[Main\]|\(Can't Stack\)|\[Can't Stack\]))/g, '$1\n');
   const out = [];
   for (let line of t.split('\n')) {
@@ -62,7 +62,7 @@ function fxTerms(h) {
 }
 function fxMark0(line) {
   return esc(line)
-    .replace(/\[LV(\d)\]/g, '<span class="fx-lv">LV$1</span>')
+    .replace(/\[LV(\d(?:-\d)*)\]/g, '<span class="fx-lv">LV$1</span>')
     .replace(/(\[(?:Can&#039;t Stack|Main|Flash)\]|\((?:Can&#039;t Stack|Unstackable)\))/g, '<span class="fx-kw">$1</span>')
     .replace(/\(([A-Z][^()]{0,40})\)/g, (m, x) => /^Can&#039;t Stack$/.test(x) ? m : `<span class="fx-tm">(${x})</span>`)
     .replace(new RegExp('^(' + FX_KW_START.source.slice(2, -1) + ')'), '<span class="fx-kw">$1</span>');
@@ -144,6 +144,7 @@ function mullCardHTML(card, mark) {   // mark (v0.155.0, mockup mulligan): an "E
 }
 function openZoom(id, uid) {
   const card = CARDS[id], z = $('zoom-overlay'); if (!card || !z) return;
+  if (MODAL && MODAL.cfg.uiOnly && MODAL.cfg.title === '🎴 Card Detail' && $('action-modal').classList.contains('active')) closeModal(null);   // 2026-11-02: the zoom sits below dialogs (z 200 < 210), so the magnifier on the Card Detail art opened it behind that dialog
   if (uid == null && (['view-library', 'view-card'].some(v => $(v).classList.contains('active')))) return openCardPage(id);   // v0.137.0: the Library card is a page
   /* Aegis-style: landscape / PC = card left, scrolling detail panel right; portrait = card on top, scrolling panel below */
   const W = window.innerWidth, H = window.innerHeight, land = W >= H * 1.1;
