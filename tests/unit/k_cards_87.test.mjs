@@ -133,3 +133,13 @@ test('K-881 BS42-050 adds the revealed Birthgem Deity Spirit and draws; a plain 
   assert.equal(bg.hasPick, true); assert.equal(bg.gained, 2, JSON.stringify(bg));
   assert.equal(dv.hasPick, true); assert.equal(dv.gained, 1, JSON.stringify(dv));
 });
+
+test('K-882 BS21-061 / BS42-037 / BS30-026 effects are wired (data only, no play)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(() => ({
+    a: BS.CARDS['BS21-061'].effects.some(e => e.trigger === 'BLOCKS' && e.braved && e.actions[0].do === 'BP_PLUS'),
+    b: BS.CARDS['BS42-037'].effects.some(e => e.flag === 'EXTRA_SYMBOL' && e.color === 'blue' && e.if.selfSoul),
+    c: BS.CARDS['BS30-026'].effects.some(e => e.braved && e.actions[0].do === 'BOUNCE_OPP' && e.actions[0].match.type === 'Ultimate'),
+  }));
+  assert.deepEqual(r, { a: true, b: true, c: true });
+});
