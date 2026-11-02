@@ -366,3 +366,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v328 (Lane K): action `DISCARD_ANY_CORES` ("discard any number of cards from your Hand; for each, send a core from a single opposing Spirit to the Trash"; target first, cap = its cores). Card: BS04-094.
 - v329 (Lane K): action `LIFE_HIT_DESTROY_TURN` ("during this turn, when the attack of an opposing Spirit without Tribute reduces your Life, destroy that Spirit": player.lifeHitDestroy = turn; 08-battle destroys the unblocked attacker after the Life loss; only the unblocked-attack path). Card: BS08-078.
 - v330 (Lane K): action `SPIRIT_TO_DECKTOP` ("move target Spirit to the top of its owner's Deck", either side, protected opposing Spirits skipped). Card: BS01-147.
+- v331 (Lane K): `NEXUS_CORES_ALL_TO_TRASH {oppOnly:true}` ("send every core from all opposing Nexuses to their Trash"). Card: BS02-095 (BY DESTROY_OWN_NEXUS then it).

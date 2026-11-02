@@ -533,3 +533,13 @@ test('K-976 BS01-147 moves a Spirit to the top of its owner Deck', async () => {
     return [O.spirits.length, O.deck.length - n, O.deck[0] === s]; })()`);
   assert.deepEqual(r, [0, 1, true], JSON.stringify(r));
 });
+
+test('K-977 BS02-095 destroys an own Nexus, then empties every opposing Nexus', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.nexus.length = 0; O.nexus.length = 0;
+    const nx = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Nexus'); const a = BS.mkInst(nx), b = BS.mkInst(nx), o = BS.mkInst(nx); a.cores = 1; b.cores = 2; o.cores = 3; P.nexus.push(a, b); O.nexus.push(o);
+    const t = O.trashCores.n;
+    await BS.runActions({ p: P, opp: O, src: BS.mkInst('BS02-095'), ctx: {} }, { actions: BS.CARDS['BS02-095'].magic.actions });
+    return [P.nexus.length, b.cores, o.cores, O.trashCores.n - t]; })()`);
+  assert.deepEqual(r, [1, 2, 0, 3], JSON.stringify(r));
+});

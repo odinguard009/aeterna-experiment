@@ -10556,12 +10556,29 @@
   "image": "Sacrifice.jpg",
   "block": "02",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "By destroying a Nexus you control, send every core from all opposing Nexuses to their Trash."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "BY",
+     "cost": {
+      "do": "DESTROY_OWN_NEXUS"
+     },
+     "then": [
+      {
+       "do": "NEXUS_CORES_ALL_TO_TRASH",
+       "oppOnly": true
+      }
+     ]
+    }
+   ]
+  }
  },
  {
   "id": "BS02-096",
