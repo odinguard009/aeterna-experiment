@@ -18483,11 +18483,8 @@
   "image": "SD01-001.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); vanilla Spirit (the Fandom effect field is empty), symbols unverified;",
   "rcode": "C"
  },
  {
@@ -18518,11 +18515,8 @@
   "image": "SD01-002.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); vanilla Spirit (the Fandom effect field is empty), symbols unverified;",
   "rcode": "C"
  },
  {
@@ -18744,11 +18738,8 @@
   "image": "SD01-007.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); vanilla Spirit (the Fandom effect field is empty), symbols unverified;",
   "rcode": "C"
  },
  {
@@ -18827,11 +18818,8 @@
   "image": "SD01-009.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); vanilla Spirit (the Fandom effect field is empty), symbols unverified;",
   "rcode": "C"
  },
  {
@@ -18866,11 +18854,8 @@
   "image": "SD01-010.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); vanilla Spirit (the Fandom effect field is empty), symbols unverified;",
   "rcode": "C"
  },
  {
@@ -19050,11 +19035,8 @@
   "image": "SD01-014.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); vanilla Spirit (the Fandom effect field is empty), symbols unverified;",
   "rcode": "C"
  },
  {
@@ -19083,11 +19065,8 @@
   "image": "SD01-015.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); vanilla Spirit (the Fandom effect field is empty), symbols unverified;",
   "rcode": "C"
  },
  {
@@ -19278,11 +19257,8 @@
   "image": "SD01-019.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); vanilla Spirit (the Fandom effect field is empty), symbols unverified;",
   "rcode": "C"
  },
  {
@@ -21061,11 +21037,8 @@
   "image": "SD03-005.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); vanilla Spirit (the Fandom effect field is empty), symbols unverified;",
   "rcode": "C"
  },
  {
@@ -22374,11 +22347,8 @@
   "image": "SD10-006.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); vanilla Spirit (the Fandom effect field is empty), symbols unverified;",
   "rcode": "C"
  },
  {
@@ -22933,11 +22903,8 @@
   "image": "SD11-002.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); vanilla Spirit (the Fandom effect field is empty), symbols unverified;",
   "rcode": "C"
  },
  {
@@ -25177,11 +25144,8 @@
   "image": "SD17-010.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); vanilla Spirit (the Fandom effect field is empty), symbols unverified;",
   "rcode": "C"
  },
  {
@@ -26764,11 +26728,8 @@
   "image": "SD22-001.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); vanilla Spirit (the Fandom effect field is empty), symbols unverified;",
   "rcode": "C"
  },
  {
@@ -26905,13 +26866,31 @@
   "image": "SD22-005.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Flash - High Speed This Spirit card in Hand can be summoned by paying the cost with cores in the Reserve. In this case, cores to be put on this Spirit must also be from the Reserve.",
-   "[LV1][LV2] (When Summoned) When summoned during (Either Attack Step), put a core from the Void to your Reserve."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "attackStep": true
+    },
+    "actions": [
+     {
+      "do": "VOID_TO_RESERVE",
+      "n": 1
+     }
+    ]
+   }
+  ],
+  "highSpeed": true,
+  "mechanics": [
+   "High Speed"
+  ]
  },
  {
   "id": "SD22-006",
@@ -30479,11 +30458,8 @@
   "image": "SD29-002.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); vanilla Spirit (the Fandom effect field is empty), symbols unverified;",
   "rcode": "C"
  },
  {
@@ -31295,11 +31271,8 @@
   "image": "SD31-004.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); vanilla Spirit (the Fandom effect field is empty), symbols unverified;",
   "rcode": "C"
  },
  {
@@ -32214,11 +32187,8 @@
   "image": "SD33-004.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); vanilla Spirit (the Fandom effect field is empty), symbols unverified;",
   "rcode": "C"
  },
  {
@@ -32890,11 +32860,8 @@
   "image": "SD34-006.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "(no ability)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "fxComplete": true,
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); vanilla Spirit (the Fandom effect field is empty), symbols unverified;",
   "rcode": "C"
  },
  {
@@ -51702,13 +51669,31 @@
   "image": "SD67-RV002.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Flash - High Speed This Spirit card in Hand can be summoned by paying the cost with cores in the Reserve. In this case, cores to be put on this Spirit must also be from the Reserve.",
-   "[LV1][LV2] (When Summoned) When summoned during (Either Attack Step), put a core from the Void to your Reserve."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "attackStep": true
+    },
+    "actions": [
+     {
+      "do": "VOID_TO_RESERVE",
+      "n": 1
+     }
+    ]
+   }
+  ],
+  "highSpeed": true,
+  "mechanics": [
+   "High Speed"
+  ]
  },
  {
   "id": "SD67-RV003",

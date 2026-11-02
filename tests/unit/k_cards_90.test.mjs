@@ -72,3 +72,10 @@ test('K-1006 SD10-016 / SD17-016 / SD01-034 draw 2 then pick from the reveal', a
     return out; })()`);
   for (const id of Object.keys(r)) { assert.ok(r[id].hand >= 2 && r[id].hand <= 4, id + JSON.stringify(r)); assert.ok(r[id].deckLost >= 2, id + JSON.stringify(r)); }
 });
+
+test('K-1007 seventeen empty-text saga-60 Spirits are complete vanilla cards; SD22-005 / SD67-RV002 return a Void core when summoned in an Attack Step', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`['SD01-001', 'SD01-014', 'SD03-005', 'SD34-006', 'SD33-004'].map(id => BS.CARDS[id].fxComplete !== false && !(BS.CARDS[id].effects || []).length)
+    .concat(['SD22-005', 'SD67-RV002'].map(id => BS.CARDS[id].fxComplete !== false && BS.CARDS[id].effects.length === 1))`);
+  assert.deepEqual(r, [true, true, true, true, true, true, true], JSON.stringify(r));
+});
