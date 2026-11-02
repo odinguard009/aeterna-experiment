@@ -2647,13 +2647,20 @@
   "image": "BS60-CP01.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Discard any number of cards from your Hand.",
-   "For each card discarded, send a core from a single opposing Spirit to the Trash."
-  ],
-  "note": "Reprint of BS04-094 (same name and stats), added v0.210.0 from the official product list."
+  "fxComplete": true,
+  "note": "Reprint of BS04-094 (same name and stats), added v0.210.0 from the official product list.",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "DISCARD_ANY_CORES"
+    }
+   ]
+  }
  },
  {
   "id": "BS60-CP02",
@@ -11807,15 +11814,31 @@
   "image": "PB39-RV001.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (Opposing Start Step) If you control only Yellow Spirits/Nexuses, send two cores from your Trash to your Reserve."
-  ],
+  "fxComplete": true,
   "note": "Reprint of BS15-039 (same name and stats), added v0.210.0 from the official product list.",
   "bicon": [
    "4"
   ],
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "OPP_START_STEP",
+    "lv": [
+     2
+    ],
+    "if": {
+     "allHave": {
+      "color": "yellow"
+     }
+    },
+    "actions": [
+     {
+      "do": "TRASH_TO_RESERVE",
+      "n": 2
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "PB39-RV002",
@@ -49253,12 +49276,25 @@
       }
      }
     ]
+   },
+   {
+    "trigger": "OPP_HAND_UP",
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "oppTurn": true
+    },
+    "actions": [
+     {
+      "do": "OPP_DISCARD",
+      "n": 1
+     }
+    ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (Opposing Turn) When the opposing Hand increases via an opposing effect, for each card increased, the opponent discards a card from their Hand."
-  ],
+  "fxComplete": true,
   "note": "Reprint of BS43-084 (same name and stats), added v0.210.0 from the official product list.",
   "bicon": [
    "7"

@@ -51235,7 +51235,6 @@
   "T_DURING_BRAVE",
   "T_SUMMONED"
  ],
- "BS60-CP01": [],
  "BS60-CP02": [
   "A_REFRESH"
  ],
@@ -53077,10 +53076,6 @@
   "M_OPTIONAL",
   "T_ALLY_SUMMONED",
   "T_MIRAGE_LIFE"
- ],
- "PB39-RV001": [
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL"
  ],
  "PB39-RV002": [
   "A_REFRESH",
@@ -59839,12 +59834,6 @@
   "M_IF_YOU_DO",
   "M_OPTIONAL",
   "T_START_ATTACK"
- ],
- "SD63-RV001": [
-  "A_DISCARD_OPP",
-  "C_LEVEL",
-  "C_OPP_TURN",
-  "T_OPP_HAND_UP"
  ],
  "SD63-TCP02": [
   "C_LEVEL",
