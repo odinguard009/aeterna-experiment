@@ -11784,7 +11784,7 @@
   "image": "BS70-034.png",
   "block": "70",
   "saga": 15,
-  "fxComplete": false,
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); not yet checked against the card image. God reduction icon from Fandom (official list did not load BS69/BS70), v0.44.6.",
   "effects": [
    {
@@ -11810,10 +11810,20 @@
       }
      }
     ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "EXTRA_SYMBOL",
+    "color": "green",
+    "to": "own",
+    "lv": [
+     2
+    ],
+    "if": {
+     "step": "ATTACK",
+     "oppRemovedGe": 3
+    }
    }
-  ],
-  "residual": [
-   "LV2 (Your Attack Step): while the opposing Removed Zone holds three or more cards, all your Spirits gain an extra Green symbol"
   ],
   "bicon": [
    "11"

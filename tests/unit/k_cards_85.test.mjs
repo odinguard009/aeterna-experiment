@@ -965,3 +965,13 @@ test('K-1020 BS76-048: returns an opposing Lv1 Spirit to the deckbottom, and an 
     const c = BS.mkInst(id), d = BS.mkInst(id); c.cores = 1; d.cores = 2; O.spirits.length = 0; O.spirits.push(c, d); const e = BS.mkInst(id); e.cores = 1; e.noAB = true; O.spirits.push(e); await BS.fireFx(P, 'SUMMONED', src, {}); return [first, [O.spirits.includes(c), O.spirits.includes(d), O.spirits.includes(e)]]; })()`);
   assert.deepEqual(r, [[false, true], [false, false, true]], JSON.stringify(r));
 });
+
+test('K-1021 BS70-034: at Lv2 in the Attack Step with 3+ opposing Removed cards, every own Spirit gains an extra Green symbol', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.spirits.length = 0; O.spirits.length = 0; O.removed.length = 0;
+    const id = Object.keys(BS.CARDS).find(k => /^BS0[0-9]-/.test(k) && BS.CARDS[k].type === 'Spirit'); const a = BS.mkInst(id); a.cores = 2; P.spirits.push(a);
+    const s = BS.mkInst('BS70-034'); s.cores = 3; P.spirits.push(s); G.step = 5;
+    const none = BS.attackSymbols(a); for (let i = 0; i < 3; i++) O.removed.push(BS.mkInst(id)); const withR = BS.attackSymbols(a);
+    s.cores = 1; const lv1 = BS.attackSymbols(a); s.cores = 3; G.step = 3; const main = BS.attackSymbols(a); return [withR - none, lv1 - none, main - none]; })()`);
+  assert.deepEqual(r, [1, 0, 0], JSON.stringify(r));
+});
