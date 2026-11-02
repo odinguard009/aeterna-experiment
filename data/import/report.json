@@ -1,15 +1,15 @@
 {
  "stats": {
-  "cards": 6385,
+  "cards": 6382,
   "per_saga": {
    "1": 483,
    "2": 261,
    "3": 333,
    "4": 305,
    "5": 586,
-   "6": 323,
+   "6": 322,
    "7": 469,
-   "8": 440,
+   "8": 438,
    "9": 472,
    "10": 486,
    "11": 316,
@@ -22,18 +22,18 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2321,
+  "skipped_curated": 2324,
   "nexus_levels_added": 672,
   "nexus_levels_missing": 43,
   "merged": 107,
-  "image_problems": 408,
+  "image_problems": 407,
   "brave_unparsed": 170,
   "ut_lines_added": 107,
   "odd_reduction": 804,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
   "number_conflicts": 3,
-  "without_image": 406
+  "without_image": 405
  },
  "tokens": [
   "BS73-T001",
@@ -1216,6 +1216,7 @@
   "BS32-059",
   "BS32-064",
   "BS32-073",
+  "BS33-001",
   "BS33-005",
   "BS33-012",
   "BS33-015",
@@ -1386,6 +1387,7 @@
   "BS41-064",
   "BS41-083",
   "BS41-085",
+  "BS41-RV001",
   "BS41-RV005",
   "BS42-002",
   "BS42-014",
@@ -1401,6 +1403,7 @@
   "BS42-RV011",
   "BS43-011",
   "BS43-016",
+  "BS43-022",
   "BS43-024",
   "BS43-028",
   "BS43-040",
@@ -4256,11 +4259,6 @@
    "id": "BS43-020",
    "name": "The Lorekeeper Schlange",
    "problem": "no image"
-  },
-  {
-   "id": "BS43-022",
-   "name": "The WindDemon Kamahashi",
-   "problem": "no image (near: The WindDemon Kamabashi.png)"
   },
   {
    "id": "BS43-025",

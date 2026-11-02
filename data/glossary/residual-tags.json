@@ -12076,11 +12076,6 @@
   "C_LEVEL",
   "K_ULTIMATE"
  ],
- "BS33-001": [
-  "A_SYMBOL",
-  "A_SYMBOL_PLUS",
-  "C_LEVEL"
- ],
  "BS33-002": [
   "A_REFRESH",
   "C_LEVEL",
@@ -17642,11 +17637,6 @@
   "M_UP_TO",
   "T_ATTACKS"
  ],
- "BS41-RV001": [
-  "A_SYMBOL",
-  "A_SYMBOL_PLUS",
-  "C_LEVEL"
- ],
  "BS41-RV002": [
   "A_DESTROY_BP",
   "A_REFRESH",
@@ -18752,11 +18742,6 @@
   "A_REMOVED_ZONE",
   "K_ACCEL",
   "M_UP_TO"
- ],
- "BS43-022": [
-  "A_SYMBOL",
-  "A_SYMBOL_PLUS",
-  "C_LEVEL"
  ],
  "BS43-023": [
   "A_DISCARD_OPP",

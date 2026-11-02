@@ -168,3 +168,17 @@ test('K-1142 BS35-058 destroys Cost 4 or less by discarding, else Cost 2 or less
   r = await page.evaluate(run('BS35-058', 'ATTACKS', false, `P.hand = [BS.mkInst('BS01-001')]; const lo = BS.mkInst('BS01-001'); lo.cores = 1; O.spirits.push(lo);`, `{ n: O.spirits.length, h: P.hand.length }`));
   assert.deepEqual([r.impl, r.n, r.h], [true, 0, 0], JSON.stringify(r));
 });
+
+test('K-1143 BS33-001 / BS41-RV001 get a Red symbol when summoning matching names; BS43-022 stops deck discards and has the Main Step symbol', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(() => { BS.testSetup();
+    const fl = id => BS.CARDS[id].effects.filter(e => e.trigger === 'STATIC').map(e => e.flag);
+    return { a: fl('BS33-001'), b: fl('BS41-RV001'), c: fl('BS43-022'), impl: ['BS33-001', 'BS41-RV001', 'BS43-022'].map(i => BS.CARDS[i].implemented === true) }; })()`);
+  assert.deepEqual(r.a, ['SUMMON_SYMBOL'], JSON.stringify(r)); assert.deepEqual(r.b, ['SUMMON_SYMBOL'], JSON.stringify(r));
+  assert.deepEqual(r.c, ['NO_DECK_DISCARD', 'EXTRA_SYMBOL'], JSON.stringify(r)); assert.deepEqual(r.impl, [true, true, true], JSON.stringify(r));
+  const m = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.step = 4; G.active = P.key;
+    const x = BS.mkInst('BS43-022'); x.cores = 1; P.spirits.push(x); O.deck = Array.from({ length: 5 }, () => BS.mkInst('BS01-001')); const n0 = O.deck.length;
+    await BS.runActions({ p: P, opp: O, src: BS.mkInst('BS01-001'), ctx: {} }, { actions: [{ do: 'MILL_OPP', n: 2 }] });
+    return n0 - O.deck.length; })()`);
+  assert.equal(m, 0, 'deck discard is blocked while Kamahashi is on the Field');
+});
