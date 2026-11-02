@@ -79,3 +79,9 @@ test('K-1007 seventeen empty-text saga-60 Spirits are complete vanilla cards; SD
     .concat(['SD22-005', 'SD67-RV002'].map(id => BS.CARDS[id].fxComplete !== false && BS.CARDS[id].effects.length === 1))`);
   assert.deepEqual(r, [true, true, true, true, true, true, true], JSON.stringify(r));
 });
+
+test('K-1008 EX010 (+1000 BP for Astral/Winged Dragon in the Attack Step) and SD29-007 (reveal four, War Dragon to hand) are wired', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`['EX010', 'SD29-007'].map(id => BS.CARDS[id].fxComplete !== false && (BS.CARDS[id].effects || []).length === 1)`);
+  assert.deepEqual(r, [true, true], JSON.stringify(r));
+});

@@ -51800,10 +51800,6 @@
   "M_BY_DOING",
   "T_DESTROYED"
  ],
- "EX010": [
-  "A_BP_PLUS",
-  "C_LEVEL"
- ],
  "EX011": [
   "K_ARMOR",
   "S_UNAFFECTED"
@@ -56296,10 +56292,6 @@
   "S_MUST_BLOCK",
   "T_ATTACKS",
   "T_BATTLE_WIN"
- ],
- "SD29-007": [
-  "C_LEVEL",
-  "T_SUMMONED"
  ],
  "SD29-008": [
   "A_BP_PLUS",

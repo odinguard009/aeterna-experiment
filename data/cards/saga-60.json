@@ -5460,12 +5460,31 @@
   "image": "EX010.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (Your Attack Step) All your Spirits with the \"Astral Dragon\" / \"Winged Dragon\" family gain +1000 BP."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: hand translation); effects not wired yet, symbols unverified;",
-  "rcode": "EX"
+  "rcode": "EX",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "bp": 1000,
+    "to": "own",
+    "if": {
+     "attackStep": true,
+     "oppTurn": false
+    },
+    "match": {
+     "family": [
+      "Astral Dragon",
+      "Winged Dragon"
+     ]
+    },
+    "lv": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
  },
  {
   "id": "EX011",
@@ -30642,12 +30661,32 @@
   "image": "SD29-007.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Summoned) Reveal four cards from your decktop. Among them, add one \"War Dragon\" family Spirit card to the Hand. Discard any remaining cards."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "REVEAL_PICK",
+      "n": 4,
+      "match": {
+       "type": "Spirit",
+       "family": [
+        "War Dragon"
+       ]
+      },
+      "rest": "trash"
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD29-008",
