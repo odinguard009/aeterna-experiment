@@ -2031,11 +2031,6 @@
   "M_OPTIONAL",
   "T_ATTACKS"
  ],
- "BS09-018": [
-  "A_VOID",
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
  "BS09-021": [
   "A_EXHAUST",
   "A_REFRESH",

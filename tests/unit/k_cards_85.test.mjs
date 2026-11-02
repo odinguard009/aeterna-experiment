@@ -643,3 +643,14 @@ test('K-986 BS09-009 destroys a 3000 BP or less Spirit and two opposing Nexuses;
     return [O.spirits.length, O.nexus.length, BS.CARDS['BS09-009'].tribute.to]; })()`);
   assert.deepEqual(r, [0, 1, 'void'], JSON.stringify(r));
 });
+
+test('K-987 BS09-018 sends cores from opposing Spirits equal to its level', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; O.spirits.length = 0;
+    const sp = Object.keys(BS.CARDS).find(i => { const k = BS.CARDS[i]; return k.type === 'Spirit' && k.levels && k.levels[0].bp <= 3000 && !(k.effects || []).some(e => e.trigger === 'STATIC'); });
+    const s = BS.mkInst(sp); s.cores = 5; O.spirits.push(s); const src = BS.mkInst('BS09-018'); src.cores = 2; const lv = BS.lvNo ? BS.lvNo(src) : null;
+    const before = O.reserve.n; await BS.runActions({ p: P, opp: O, src, ctx: {} }, { actions: BS.CARDS['BS09-018'].effects.find(e => e.trigger === 'ATTACKS').actions });
+    return [O.reserve.n - before, lv, BS.CARDS['BS09-018'].tribute.to]; })()`);
+  assert.ok(r[0] >= 1 && r[0] <= 3 && (r[1] == null || r[0] === r[1]), JSON.stringify(r));
+  assert.equal(r[2], 'void');
+});

@@ -366,6 +366,7 @@ function simple(card, a) {
         if (!only(a, ['perSource', 'perMatch'])) return null;
         if (a.perSource === 'own') return { fix: [], body: `const t = sp(${J(FILL)}, O, 3); const c0 = t.cores; await run(src, RA); return t.cores === c0 ? '' : 'perSource own without a matching Spirit still moved a core';` };
         if (a.perSource === 'nexus') return { fix: [{ n: 2 }], body: `const t = sp(${J(FILL)}, O, 3); nx(${J(nid(2))}, P); const c0 = t.cores; await run(src, RA); return t.cores === c0 - 1 ? '' : 'perSource nexus: no core moved';` };
+        if (a.perSource === 'srcLv') return { fix: [], body: `const t = sp(${J(FILL)}, O, 3); const c0 = t.cores; await run(src, RA); return t.cores < c0 ? '' : 'perSource srcLv: no core moved';` };      // v336 one core per level of the source
         return { fix: [], body: `const t = sp(${J(FILL)}, O, 3); const c0 = t.cores; await run(src, RA); return t.cores === c0 - 1 ? '' : 'perSource oppColors: no core moved';` };      // one colour on the opposing field
       }
       if (a.targets === 1 && only(a, ['targets', 'each', 'costLe', 'exhaustedOnly', 'coresLe', 'keepOne', 'untilOne', 'drawPerDepleted']) && !(a.drawPerDepleted && (a.keepOne || a.untilOne))
