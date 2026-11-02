@@ -85,3 +85,9 @@ test('K-1008 EX010 (+1000 BP for Astral/Winged Dragon in the Attack Step) and SD
   const r = await page.evaluate(`['EX010', 'SD29-007'].map(id => BS.CARDS[id].fxComplete !== false && (BS.CARDS[id].effects || []).length === 1)`);
   assert.deepEqual(r, [true, true], JSON.stringify(r));
 });
+
+test('K-1009 SD06-015 Burst (Life reduced) destroys three opposing 4000 BP or less Spirits, then offers its Flash', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(() => { const c = BS.CARDS['SD06-015']; return c.fxComplete !== false && c.burst.when === 'LIFE_DECREASE' && c.burst.thenFlash === true && !!c.magic; })()`);
+  assert.equal(r, true);
+});
