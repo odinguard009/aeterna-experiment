@@ -29935,12 +29935,33 @@
   "image": "SD29-013.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "［フラッシュ］ BP3000以下の相手のスピリット2体を破壊する。 コストの支払いに {soulcore} (ソウルコア)を使用していたら、さらに、相手のネクサス1つを破壊する。"
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
-  "rcode": "U"
+  "rcode": "U",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "DESTROY",
+     "bpLe": 3000,
+     "n": 2,
+     "match": {
+      "type": "Spirit"
+     }
+    },
+    {
+     "do": "DESTROY",
+     "nexus": true,
+     "if": {
+      "soulPaid": true
+     }
+    }
+   ]
+  }
  },
  {
   "id": "SD29-014",
@@ -29988,12 +30009,36 @@
   "image": "SD29-015.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "［フラッシュ］ BP8000以下の相手のスピリット1体を破壊する。 コストの支払いに {soulcore} (ソウルコア)を使用していたら、かわりに、BP20000以下の相手のアルティメット1体を破壊する。"
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending.",
-  "rcode": "R"
+  "rcode": "R",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "DESTROY",
+     "bpLe": 8000,
+     "match": {
+      "type": "Spirit"
+     },
+     "if": {
+      "soulPaid": false
+     }
+    },
+    {
+     "do": "DESTROY",
+     "bpLe": 20000,
+     "ultimate": true,
+     "if": {
+      "soulPaid": true
+     }
+    }
+   ]
+  }
  },
  {
   "id": "SD29-X01",

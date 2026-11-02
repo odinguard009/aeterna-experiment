@@ -148,3 +148,23 @@ test('K-902 BS31-108 bounces an Ultimate only when the Magic was cast with its S
   const m = JSON.stringify(r);
   assert.equal(r.leftfalse, 1, m); assert.equal(r.lefttrue, 0, m);
 });
+
+test('K-903 SD29-013 destroys two small Spirits (+ a Nexus with Soul Core); SD29-015 widens to an Ultimate with Soul Core', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = P.key; P.cpu = true; O.cpu = true;
+    const small = Object.keys(BS.CARDS).find(id => BS.CARDS[id].type === 'Spirit' && BS.CARDS[id].levels && BS.CARDS[id].levels[0].bp <= 3000);
+    const ult = Object.keys(BS.CARDS).find(id => BS.CARDS[id].type === 'Ultimate' && BS.CARDS[id].levels && BS.CARDS[id].levels[0].bp <= 20000);
+    const run = async (id, paid) => {
+      P.spirits.length = 0; O.spirits.length = 0;
+      for (const sid of [small, small, ult]) { const s = BS.mkInst(sid); s.cores = 3; O.spirits.push(s); }
+      const m = BS.mkInst(id); m.soulPaid = paid;
+      await BS.runActions({ p: P, opp: O, src: m, ctx: { selfInst: m } }, { actions: BS.CARDS[id].magic.actions });
+      return O.spirits.filter(x => BS.CARDS[x.id].type === 'Ultimate').length;
+    };
+    return { a: await run('SD29-013', false), c0: await run('SD29-015', false), c1: await run('SD29-015', true) };
+  });
+  const m = JSON.stringify(r);
+  assert.equal(r.a, 1, m); assert.equal(r.c0, 1, m); assert.equal(r.c1, 0, m);
+});
