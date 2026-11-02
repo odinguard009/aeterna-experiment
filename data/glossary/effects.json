@@ -110,6 +110,16 @@
     "rule": "Eternal Rule Manual p. 49 (ETR:burst-area): a Mirage sits in the Burst Area outside the Field; a [During Set] effect that watches a Life decrease is card text."
   },
   {
+    "id": "C_MIRAGE_SET",
+    "kind": "condition",
+    "meaning": "While a Mirage is set (any / of a given colour)",
+    "pattern": "Mirage set",
+    "engine": "if.mirageSet (boolean) / if.mirageColor (array of colours; the set Mirage must carry one of them)",
+    "status": "wired",
+    "example": "{\"if\":{\"mirageColor\":[\"purple\",\"white\"]}} (BS58-037)",
+    "rule": "Eternal Rule Manual p. 49 (ETR:burst-area): the Mirage sits in the Burst Area; its colour is read from colours, else colour and symbol."
+  },
+  {
     "id": "T_REVEALED",
     "kind": "trigger",
     "meaning": "When revealed from the deck",

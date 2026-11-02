@@ -19953,11 +19953,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "BS44-015": [
-  "C_LEVEL",
-  "T_DESTROYED",
-  "T_DESTROYED_OPP"
- ],
  "BS44-018": [
   "A_REVEAL_ADD",
   "A_REVEAL_DECK",
@@ -20848,14 +20843,6 @@
  ],
  "BS45-019": [
   "C_LEVEL"
- ],
- "BS45-020": [
-  "A_SELF_TO_HAND",
-  "A_VOID",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_DESTROYED",
-  "T_DESTROYED_OPP"
  ],
  "BS45-021": [
   "A_VOID",
@@ -30981,12 +30968,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "BS56-012": [
-  "C_LEVEL",
-  "K_MIRAGE",
-  "M_BY_DOING",
-  "T_SUMMONED"
- ],
  "BS56-013": [
   "A_EXHAUST",
   "C_LEVEL",
@@ -32617,12 +32598,6 @@
   "T_MIRAGE_LIFE",
   "T_SUMMONED"
  ],
- "BS58-037": [
-  "A_VOID",
-  "C_LEVEL",
-  "K_MIRAGE",
-  "T_ATTACKS"
- ],
  "BS58-038": [
   "A_SUMMON_FREE",
   "C_LEVEL",
@@ -33751,12 +33726,6 @@
   "S_NO_RETURN",
   "T_SUMMONED"
  ],
- "BS59-RV003": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "K_MIRAGE",
-  "T_SUMMONED"
- ],
  "BS59-RV004": [
   "A_BP_PLUS",
   "A_EXHAUST",
@@ -34302,14 +34271,6 @@
   "C_CONTROL",
   "C_LEVEL",
   "K_GRANDWALKER",
-  "T_SUMMONED"
- ],
- "BS60-028": [
-  "A_COUNTER",
-  "A_EXHAUST",
-  "A_VOID",
-  "C_LEVEL",
-  "M_THEN",
   "T_SUMMONED"
  ],
  "BS60-029": [
