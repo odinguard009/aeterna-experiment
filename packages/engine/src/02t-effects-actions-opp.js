@@ -89,12 +89,13 @@ Object.assign(FX_ACTIONS, {
       if (a.highest) t.lvHighTurn = true; else if (a.battle) t.lv2Battle = G.battleNo; else t.lv2Turn = true; io.view({ type: 'board' });
     } },
   /* v205 TREAT_LV1 "Target an opposing attacking Spirit. During this battle, treat it as LV1" (inst.lv1Battle, read by lvIndex) */
-  TREAT_LV1: { chk: a => invokeMatchOK(a.match) && (a.attacking == null || a.attacking === true) && (a.turn == null || (a.turn === true && a.attacking == null)),
+  TREAT_LV1: { chk: a => invokeMatchOK(a.match) && (a.attacking == null || a.attacking === true) && (a.turn == null || (a.turn === true && a.attacking == null)) && (a.all == null || (a.all === true && a.turn === true)),      // v333 all: every opposing Spirit
     txt: () => 'target an opposing attacking Spirit; during this battle, treat it as LV1',
     cands: (c, a) => c.opp.spirits.filter(s => (!a.attacking || s === G.attacker) && !(a.turn && s.lv1Turn) && (!a.match || fxMatch(CARDS[s.id], a.match, s))),
     can: (c, a) => FX_ACTIONS.TREAT_LV1.cands(c, a).length > 0,
     run: async (c, a) => {
       const L = FX_ACTIONS.TREAT_LV1.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
+      if (a.all) { for (const s of L) if (!fxImmune(c.opp, s)) s.lv1Turn = true; io.view({ type: 'board' }); log('Opposing Spirits are treated as LV1 during this turn.'); return; }
       const t = c.p.cpu ? (L.find(s => s === G.attacker) || L[0]) : await fxPickTarget(c, L, `✨ <b>${esc(_nm(c))}</b><br>Tap the opposing attacking Spirit to treat as LV1 (glowing).`);
       if (!t) { c.ctx.did = false; return; }
       if (a.turn) t.lv1Turn = true; else t.lv1Battle = G.battleNo; io.view({ type: 'board' }); log(`${CARDS[t.id].name} is treated as LV1 during this ${a.turn ? 'turn' : 'battle'}.`);

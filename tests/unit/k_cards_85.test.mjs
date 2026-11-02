@@ -574,3 +574,15 @@ test('K-980 BS04-091 destroys only while an own Spirit has 2+ symbols', async ()
     return out; })()`);
   assert.deepEqual(r, [1, 0], JSON.stringify(r));
 });
+
+test('K-981 BS04-107 treats every opposing Spirit as LV1 only with a 2+ symbol Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const ids = Object.keys(BS.CARDS).filter(i => BS.CARDS[i].type === 'Spirit');
+    const two = ids.find(i => (BS.CARDS[i].symbols || 0) >= 2), one = ids.find(i => (BS.CARDS[i].symbols || 0) < 2);
+    const mk = id => { const s = BS.mkInst(id); s.cores = 1; return s; }; const out = [];
+    for (const own of [one, two]) { P.spirits.length = 0; O.spirits.length = 0; P.spirits.push(mk(own)); const a = mk(one), b = mk(one); a.lv1Turn = b.lv1Turn = false; O.spirits.push(a, b);
+      await BS.runActions({ p: P, opp: O, src: BS.mkInst('BS04-107'), ctx: {} }, { actions: BS.CARDS['BS04-107'].magic.by.MAIN.actions }); out.push([!!a.lv1Turn, !!b.lv1Turn]); }
+    return out; })()`);
+  assert.deepEqual(r, [[false, false], [true, true]], JSON.stringify(r));
+});
