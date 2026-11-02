@@ -42,6 +42,7 @@ async function doBattleInner(attKey, att) {
   if (G.battleCut === G.battleNo) { log('The battle ends immediately.'); io.view({ type: 'board' }); return; }
   if (!A.spirits.includes(att)) { log('The attack ends: the attacking Spirit left the field.'); io.view({ type: 'board' }); return; }
   const blockers = noBlockActive(D) || att.noBlockTurn === G.turnNo ? [] : D.spirits.filter(s => canBlockState(D, s) && abTaxOK(D, s) && !blockedByMark(att, s) && blockTaxOK(D, att, s) && !blockedInferior(D, att, s) && !unblockableLow(A, att, s));      // v213
+  const atkT = att.atkT && att.atkT.b === G.battleNo && D.spirits.includes(att.atkT.s) ? att.atkT.s : null;      // v385 ATTACK_SPIRIT: this attack targets that Spirit instead of the Life: no block, BP comparison with it
   let blk = null;
   /* v0.58 priority "cannot" > "must" > "do" = "can" (JP 17.0 item 9): Spirits that can't block were removed above; a Spirit unaffected by the
      attacker's effects is not bound by its "must block" (FAQ Q4: unaffected > the effect) */
@@ -49,14 +50,17 @@ async function doBattleInner(attKey, att) {
   const must = bound.length > 0 && flagActive(A, 'MUST_BLOCK', att);
   const marked = bound.filter(b => b.mustB === G.battleNo);      // v0.185 MUST_BLOCK_OPP: only the marked Spirits are bound (and are the only choice)
   if (must) log(`${CARDS[att.id].name}: opposing Spirits must block if possible.`);
-  if (blockers.length) blk = await askBlock(att, D, marked.length ? marked : blockers, must || marked.length > 0, marked.length ? marked : bound);   // v0.105.0 (M6 step 1): CPU seats answer the port too; cpuAnswer routes this pick to the same cpuChooseBlock
-  if (blk && !(await payAbTax(D, blk, 'block'))) blk = null;
-  if (blk && !(await payBlockTax(D, att, blk))) blk = null;
+  if (blockers.length && !atkT) blk = await askBlock(att, D, marked.length ? marked : blockers, must || marked.length > 0, marked.length ? marked : bound);   // v0.105.0 (M6 step 1): CPU seats answer the port too; cpuAnswer routes this pick to the same cpuChooseBlock
+  if (atkT) blk = atkT;
+  if (blk && !atkT && !(await payAbTax(D, blk, 'block'))) blk = null;
+  if (blk && !atkT && !(await payBlockTax(D, att, blk))) blk = null;
   if (blk) {
-    blk.exhausted = true; G.blocker = blk; D.blocksThisTurn = (D.blocksThisTurn || 0) + 1;
+    G.blocker = blk;
+    if (atkT) log(`${CARDS[att.id].name} attacks ${CARDS[blk.id].name} (${bpOf(blk)} BP) directly.`);
+    else { blk.exhausted = true; D.blocksThisTurn = (D.blocksThisTurn || 0) + 1;
     log(`${who(D)} ${D.cpu ? 'blocks' : 'block'} with ${CARDS[blk.id].name} (${bpOf(blk)} BP).`);
     io.view({ type: 'board' }); await wait(450);
-    await fireFxMulti([{ owner: A, trigger: 'ALLY_BLOCKED', src: att, ctx: { attacker: att, blocker: blk } }, { owner: D, trigger: 'BLOCKS', src: blk, ctx: { attacker: att, blocker: blk } }, { owner: D, trigger: 'ALLY_BLOCKS', src: blk, ctx: { attacker: att, blocker: blk, subject: blk } }]);   // manual p. 30: one pool after the block
+    await fireFxMulti([{ owner: A, trigger: 'ALLY_BLOCKED', src: att, ctx: { attacker: att, blocker: blk } }, { owner: D, trigger: 'BLOCKS', src: blk, ctx: { attacker: att, blocker: blk } }, { owner: D, trigger: 'ALLY_BLOCKS', src: blk, ctx: { attacker: att, blocker: blk, subject: blk } }]); }   // manual p. 30: one pool after the block
     if (G.over) return;
     [att, blk] = await flashTiming(attKey, att, blk);
     if (G.over) return;

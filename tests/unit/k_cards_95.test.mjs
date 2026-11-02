@@ -244,3 +244,13 @@ test('K-1171 SD43-002 destroys a small opposing Spirit and draws; BS09-040 exhau
     return { gone, drew, ex, ok: ['SD43-002', 'BS09-040'].every(i => BS.CARDS[i].fxComplete !== false) }; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.gone, true, JSON.stringify(r)); assert.equal(r.drew, 1, JSON.stringify(r)); assert.equal(r.ex, 2, JSON.stringify(r));
 });
+
+test('K-1172 ATTACK_SPIRIT (BS01-037): the attack goes at an opposing exhausted Spirit, cannot be blocked and spares the Life', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const ids = Object.values(BS.CARDS).filter(c => c.type === 'Spirit' && c.cost <= 2 && !c.effects).slice(0, 2).map(c => c.id);
+    const a = BS.mkInst('BS01-037'); a.cores = 6; const t = BS.mkInst(ids[0]); t.cores = 1; t.exhausted = true; const b = BS.mkInst(ids[1]); b.cores = 1;
+    P.spirits = [a]; O.spirits = [t, b]; const life = O.life; await BS.doBattle(P.key, a);
+    return { life: O.life - life, gone: !O.spirits.includes(t), blockerKept: O.spirits.includes(b) && !b.exhausted, lv: BS.lvNo(a), ok: BS.CARDS['BS01-037'].fxComplete !== false }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.life, 0, JSON.stringify(r)); assert.equal(r.gone, true, JSON.stringify(r)); assert.equal(r.blockerKept, true, JSON.stringify(r));
+});

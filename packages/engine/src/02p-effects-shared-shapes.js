@@ -432,6 +432,16 @@ FX_ACTIONS.MUST_BLOCK_OPP = { chk: a => (a.bpLe == null || (Number.isInteger(a.b
     if (!t) { c.ctx.did = false; return; }
     t.blockExB = t.mustB = G.battleNo; log(`${CARDS[c.src.id].name}: ${poss(c.opp)} ${CARDS[t.id].name} must block if possible, even while exhausted, during this battle.`);
   } };
+/* v385 (schema 385) "(When Attacks) You can target an opposing [exhausted | refreshed | N BP or less] Spirit[/Ultimate] and attack it": the attack goes against that Spirit instead of the Life; it can't be blocked, the BP comparison is with the target (08-battle atkT) */
+FX_ACTIONS.ATTACK_SPIRIT = { chk: a => (a.bpLe == null || (Number.isInteger(a.bpLe) && a.bpLe >= 1000)) && (a.state == null || a.state === 'refreshed' || a.state === 'exhausted') && (a.kind == null || a.kind === 'spirit') && Object.keys(a).every(k => ['do', 'bpLe', 'state', 'kind', 'if'].includes(k)),
+  txt: () => 'target an opposing Spirit and attack it',
+  cands: (c, a) => c.opp.spirits.filter(t => (!a.bpLe || bpOf(t) <= a.bpLe) && (!a.state || t.exhausted === (a.state === 'exhausted')) && (a.kind !== 'spirit' || CARDS[t.id].type !== 'Ultimate') && !fxImmune(c.opp, t)),
+  can: (c, a) => !!G.attacker && G.attacker === c.src && FX_ACTIONS.ATTACK_SPIRIT.cands(c, a).length > 0,
+  run: async (c, a) => {
+    const L = G.attacker === c.src ? FX_ACTIONS.ATTACK_SPIRIT.cands(c, a) : [], t = L.length && await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the opposing Spirit to attack instead of the Life (glowing).`);
+    if (!t) { c.ctx.did = false; return; }
+    c.src.atkT = { s: t, b: G.battleNo }; log(`${CARDS[c.src.id].name} targets ${poss(c.opp)} ${CARDS[t.id].name} and attacks it.`);
+  } };
 // v0.172.0: marks on a targeted opposing Spirit: noRefreshT (skips the next opposing Refresh Step), noBlockB (can't block this battle)
 const fxOppMark = (k, key, f, val, ask, txt) => ({ chk: () => true, txt: () => txt, cands: c => c.opp.spirits.filter(t => f(t) && !fxImmune(c.opp, t)),
   can: c => FX_ACTIONS[k].cands(c).length > 0,
