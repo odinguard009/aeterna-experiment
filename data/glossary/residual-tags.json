@@ -5918,9 +5918,6 @@
  "BS19-110": [
   "A_REFRESH"
  ],
- "BS19-111": [
-  "K_RUSH"
- ],
  "BS19-112": [],
  "BS19-113": [
   "M_UP_TO"
@@ -6782,10 +6779,6 @@
  "BS22-073": [
   "M_OPTIONAL"
  ],
- "BS22-075": [
-  "K_BRAVE",
-  "K_RUSH"
- ],
  "BS22-076": [
   "M_BY_DOING"
  ],
@@ -6816,10 +6809,6 @@
   "A_VOID",
   "K_RUSH",
   "M_UP_TO"
- ],
- "BS22-083": [
-  "K_BURST",
-  "K_RUSH"
  ],
  "BS22-084": [
   "K_BRAVE"
@@ -7278,11 +7267,6 @@
  "BS23-079": [
   "A_EXHAUST",
   "S_UNAFFECTED"
- ],
- "BS23-080": [
-  "A_EXHAUST",
-  "A_NO_BURST",
-  "K_RUSH"
  ],
  "BS23-081": [
   "A_END_ATTACK",
@@ -7927,11 +7911,6 @@
  "BS24-109": [
   "K_BURST",
   "M_THEN"
- ],
- "BS24-110": [
-  "A_BP_MINUS",
-  "A_EXHAUST",
-  "K_RUSH"
  ],
  "BS24-111": [
   "K_ULTIMATE",
@@ -32834,10 +32813,6 @@
   "M_THEN",
   "M_UP_TO",
   "T_MIRAGE_LIFE"
- ],
- "BS58-079": [
-  "K_RUSH",
-  "K_ULTIMATE"
  ],
  "BS58-080": [
   "C_CONTROL",

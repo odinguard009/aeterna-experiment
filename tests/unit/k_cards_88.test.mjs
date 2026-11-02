@@ -321,3 +321,22 @@ test('K-910 BS23-080 Rush destroys an exhausted cost<=7 foe only with purple and
   const m = JSON.stringify(r);
   assert.equal(r.both, 0, m); assert.equal(r.one, 1, m);
 });
+
+test('K-911 alsoMagic: a Spirit with a Magic Flash is usable only from the Hand, only in Flash, and ends in the Trash', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = P.key; P.cpu = true; O.cpu = true;
+    P.spirits.length = 0; O.spirits.length = 0; P.hand.length = 0;
+    const f = BS.mkInst('BS01-002'); f.cores = 1; O.spirits.push(f);
+    const m = BS.mkInst('BS43-050'); P.hand.push(m); P.reserve.n = 6;
+    const out = { main: BS.magicUsable(P, m, 'main'), flash: BS.magicUsable(P, m, 'flash') };
+    await BS.castMagic(P, { inst: m, target: f, plan: null, ctx: 'flash' });
+    out.inTrash = P.trash.includes(m); out.inHand = P.hand.includes(m); out.zero = f.symZeroTurn != null || O.symZeroTurn != null || JSON.stringify(O).includes('symZero');
+    const f2 = BS.mkInst('BS43-050'); P.spirits.push(f2); out.field = BS.magicUsable(P, f2, 'flash');
+    return out;
+  });
+  const m = JSON.stringify(r);
+  assert.equal(r.main, false, m); assert.equal(r.flash, true, m);
+  assert.equal(r.inTrash, true, m); assert.equal(r.inHand, false, m); assert.equal(r.field, false, m);
+});

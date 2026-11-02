@@ -407,3 +407,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v369 (Lane K): `ctrlFamily.soul` (the matching Spirit must hold a Soul Core). Card: BS35-002.
 - v370 (Lane K): `if.soulPaid` now also applies to Magic casts (`castMagic` sets `inst.soulPaid`; Soul Magic counts as paid). Cards: BS31-108, BS32-073 and ten more old Flash Magic.
 - v371 (Lane K): `DESTROY.ultCoresGe` (with `ultimate:true`) = "an opposing Ultimate with N cores or more on it". Card: BS58-079.
+- v372 (Lane K): `magic.alsoMagic:true` on a Spirit card = "this card is also treated as a Magic card": its Flash effect is usable from the Hand (`magicUsable`), then the card goes to the Trash. Cards: BS43-050, BS33-044.

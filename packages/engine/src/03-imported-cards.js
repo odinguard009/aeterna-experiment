@@ -31,7 +31,7 @@ function parseLevels(o, type, err, int) {
 }
 function parseMagicOf(o, type, text, err2, int) {
     let magic = null;
-    if (type === 'Magic') {
+    if (type === 'Magic' || (type === 'Spirit' && o.magic && o.magic.alsoMagic === true)) {      // v371 alsoMagic: a Spirit card "also treated as a Magic card" (its Flash is usable from the Hand)
       const m = o.magic && typeof o.magic === 'object' ? o.magic : {};
       let timing = Array.isArray(m.timing) ? m.timing.map(x => String(x).toUpperCase()) : null;
       if (!timing) timing = /\bflash\b/i.test(text) ? (/\bmain\b/i.test(text) ? ['MAIN', 'FLASH'] : ['FLASH']) : ['MAIN'];
@@ -41,6 +41,7 @@ function parseMagicOf(o, type, text, err2, int) {
       const value = m.value == null ? 0 : Number(m.value);
       if (!int(value, 0, 99999)) err2.push('invalid "magic.value"');
       magic = /** @type {MagicSpec} */ ({ timing: Array.from(new Set(timing)), effect, value });
+      if (m.alsoMagic === true && type === 'Spirit') magic.alsoMagic = true;
       if (m.noMain === true) magic.noMain = true;           // v0.44 "(Can't Use in Main)"
       if (m.once === true) magic.once = true;               // v303 "(This effect can only be used once per turn.)": one use per card name per turn
       if (m.trashUse != null) {                              // v0.47 "while you control X, you can use this card from the Trash" (+ "when used from the Trash, instead ...", then banish)

@@ -521,7 +521,7 @@ function soulMagicPick(p, card, ch) {
   return c > coresAvailable(p) || (!!p.cpu && c >= 3);
 }
 function magicUsable(p, inst, ctx, free) {   // free: "without paying the cost" (USE_FLASH)
-  const card = CARDS[inst.id]; if (!card || card.type !== 'Magic') return false;
+  const card = CARDS[inst.id]; if (!card || (card.type !== 'Magic' && !(card.magic && card.magic.alsoMagic && ctx === 'flash' && p.hand.includes(inst)))) return false;      // v371 alsoMagic: a Spirit "also treated as a Magic card" can be used from the Hand only
   const timing = card.magic ? card.magic.timing : ['MAIN'];
   if (ctx === 'flash' && !timing.includes('FLASH')) return false;
   if (ctx !== 'flash' && card.magic && card.magic.noMain) return false;   // v0.44 (Can't Use in Main)
