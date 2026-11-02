@@ -339,4 +339,29 @@ FX_ACTIONS.LV_UP_TURN = {
     t.lvPlusTurn = true; io.view({ type: 'board' }); log(`${CARDS[t.id].name} is treated as being one LV higher this turn.`);
   } };
 
+/* v328 DISCARD_ANY_CORES: "Discard any number of cards from your Hand. For each card discarded, send a core from a single opposing Spirit to the Trash." The Spirit is chosen first (protected ones are skipped), then up to its core count of cards may be discarded; the CPU discards up to 2 and keeps at least one card. */
+FX_ACTIONS.DISCARD_ANY_CORES = {
+  chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
+  txt: () => 'discard any number of cards from your Hand; for each, send a core from a single opposing Spirit to the Trash',
+  cands: c => c.opp.spirits.filter(t => t.cores > 0 && !fxImmune(c.opp, t)),
+  can: c => FX_ACTIONS.DISCARD_ANY_CORES.cands(c).length > 0 && c.p.hand.some(h => h !== c.src),
+  run: async c => {
+    const L = FX_ACTIONS.DISCARD_ANY_CORES.cands(c); if (!L.length) { c.ctx.did = false; return; }
+    const t = c.p.cpu ? L.slice().sort((x, y) => y.cores - x.cores)[0] : await fxPickTarget(c, L, `✨ <b>${esc(_nm(c))}</b><br>Tap a single opposing Spirit to take cores from.`);
+    if (!t) { c.ctx.did = false; return; }
+    const out = [];
+    while (out.length < t.cores) {
+      const H = c.p.hand.filter(h => h !== c.src); if (!H.length || (c.p.cpu && (out.length >= 2 || H.length < 2))) break;
+      const d = c.p.cpu ? H.slice().sort((x, y) => CARDS[x.id].cost - CARDS[y.id].cost)[0] : await chooseCard(c, H, `✨ ${_pn(c)}`, `Choose a card to discard (${out.length} so far; each sends a core to the Trash). Skip to finish.`, true);
+      if (!d) break;
+      removeFrom(c.p.hand, d); c.p.trash.push(d); out.push(d);
+      log(`${_pn(c)}: ${who(c.p)} ${c.p.cpu ? 'discards' : 'discard'} ${CARDS[d.id].name}.`);
+    }
+    c.ctx.did = out.length > 0; if (!out.length) return;
+    await sentToTrashFx(c, out, 'hand');
+    const m = Math.min(out.length, t.cores, coreTakeCap(c.opp, t, out.length));
+    if (m > 0) { coreEvN(c.opp, t.uid, 'trash', m, false); t.cores -= m; c.opp.trashCores.n += m; log(`${_pn(c)}: ${m} core${m === 1 ? '' : 's'} from ${poss(c.opp)} ${CARDS[t.id].name} go to the Trash.`); }
+    io.view({ type: 'board' });
+  } };
+
 wrapImmunity(Object.values(FX_ACTIONS));   // the actions above are defined after 02k: LO01

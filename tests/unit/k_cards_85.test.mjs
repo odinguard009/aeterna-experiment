@@ -504,3 +504,14 @@ test('K-973 BS03-141 raises a Spirit by one LV for the turn', async () => {
     return [before, BS.lvIndex(s)]; })()`);
   assert.deepEqual(r, [0, 1], JSON.stringify(r));
 });
+
+test('K-974 BS04-094 discards cards and sends that many cores from one opposing Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; O.spirits.length = 0;
+    const sp = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit'); const s = BS.mkInst(sp); s.cores = 4; O.spirits.push(s);
+    P.hand.length = 0; for (let j = 0; j < 4; j++) P.hand.push(BS.mkInst(sp));
+    const tc = O.trashCores.n;
+    await BS.FX_ACTIONS.DISCARD_ANY_CORES.run({ p: P, opp: O, src: BS.mkInst('BS04-094'), ctx: {} }, BS.CARDS['BS04-094'].magic.actions[0]);
+    return [4 - s.cores, O.trashCores.n - tc, 4 - P.hand.length]; })()`);
+  assert.deepEqual(r, [2, 2, 2], JSON.stringify(r));
+});

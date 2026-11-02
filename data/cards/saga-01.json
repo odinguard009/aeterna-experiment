@@ -21301,13 +21301,20 @@
   "image": "Danse Macabre.jpg",
   "block": "04",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Discard any number of cards from your Hand.",
-   "For each card discarded, send a core from a single opposing Spirit to the Trash."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "DISCARD_ANY_CORES"
+    }
+   ]
+  }
  },
  {
   "id": "BS04-095",
