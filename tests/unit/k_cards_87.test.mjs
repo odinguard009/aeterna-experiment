@@ -76,3 +76,9 @@ test('K-876 BS39-043, BS40-RV001, BS51-007 Rush refresh steps are complete and g
   const r = await page.evaluate(() => ['BS39-043', 'BS40-RV001', 'BS51-007'].map(id => { const c = BS.CARDS[id]; const a = c.effects.flatMap(e => e.actions).filter(x => x.if && x.if.hasSymbol); return [c.fxComplete !== false, a.length]; }));
   assert.deepEqual(r, [[true, 1], [true, 1], [true, 1]]);
 });
+
+test('K-877 BS36-038 and BS59-045 BP_MINUS zeroDestroy data', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(() => ['BS36-038', 'BS59-045'].map(id => { const c = BS.CARDS[id]; return [c.fxComplete !== false, c.effects.map(e => e.trigger + ':' + e.actions.map(a => a.do + (a.zeroDestroy ? '!' : '')).join('+'))]; }));
+  assert.deepEqual(r, [[true, ['ATTACKS:BP_MINUS!']], [true, ['SUMMONED:BP_MINUS!+VOID_TO_CARD', 'ATTACKS:BP_MINUS!+VOID_TO_CARD']]]);
+});
