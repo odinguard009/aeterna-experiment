@@ -700,14 +700,15 @@
    "Grandwalker",
    "Codeman"
   ],
-  "text": "GWrule\n\n{{tk|Core Charge:|(Cost 3 or more) (This Nexus can only hold up to 5 cores)}}\n◆When you summon/advent a target Spirit, you can put one core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void onto this Nexus.\n\n{{gs|3}} [LV1][LV2] Flash - (Your Attack Step)\n(Once per turn, send three cores from this Nexus to the Void) If your Life is five or less, besides (Soul Core), send a core from your Trash to your Life.\n\nGrand Field [LV2]\nWhen you're summoning a \"Minion\" family card, by exhausting this Nexus, treat up to two costs being paid from your Reserve. This effect can only be used once per turn.",
+  "text": "GWrule\n\nCore Charge: (Cost 3 or more) (This Nexus can only hold up to 5 cores)\n◆When you summon/advent a target Spirit, you can put one core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void onto this Nexus.\n\n{{gs|3}} [LV1][LV2] Flash - (Your Attack Step)\n(Once per turn, send three cores from this Nexus to the Void) If your Life is five or less, besides (Soul Core), send a core from your Trash to your Life.\n\nGrand Field [LV2]\nWhen you're summoning a \"Minion\" family card, by exhausting this Nexus, treat up to two costs being paid from your Reserve. This effect can only be used once per turn.",
   "image": "BS53-CP09.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "GWrule",
-   "{{tk|Core Charge:|(Cost 3 or more) (This Nexus can only hold up to 5 cores)}} ◆When you summon/advent a target Spirit, you can put one core from the Void onto this Nexus. ◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void onto this Nexus.",
+   "Core Charge: (Cost 3 or more) (This Nexus can only hold up to 5 cores) ◆When you summon/advent a target Spirit, you can put one core from the Void onto this Nexus. ◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash.",
+   "For each target card among them, put one core from the Void onto this Nexus.",
    "{{gs|3}} [LV1][LV2] Flash - (Your Attack Step) (Once per turn, send three cores from this Nexus to the Void) If your Life is five or less, besides (Soul Core), send a core from your Trash to your Life.",
    "Grand Field [LV2] When you're summoning a \"Minion\" family card, by exhausting this Nexus, treat up to two costs being paid from your Reserve. This effect can only be used once per turn."
   ],
@@ -735,14 +736,15 @@
    "Grandwalker",
    "Codeman"
   ],
-  "text": "GWrule\n\n{{tk|Core Charge:|(Cost 3 or more) (This Nexus can only hold up to 5 cores)}}\n◆When you summon/advent a target Spirit, you can put one core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void onto this Nexus.\n\n{{gs|5}} [LV1][LV2] Flash - (Either Attack Step)\n(Send five cores from this Nexus to the Void) Return an opposing Cost 7 or less Spirit to the deckbottom.\n\nGrand Field [LV2]\nWhen you're summoning a \"Minion\" family card, by exhausting this Nexus, treat up to two costs being paid from your Reserve. This effect can only be used once per turn.",
+  "text": "GWrule\n\nCore Charge: (Cost 3 or more) (This Nexus can only hold up to 5 cores)\n◆When you summon/advent a target Spirit, you can put one core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void onto this Nexus.\n\n{{gs|5}} [LV1][LV2] Flash - (Either Attack Step)\n(Send five cores from this Nexus to the Void) Return an opposing Cost 7 or less Spirit to the deckbottom.\n\nGrand Field [LV2]\nWhen you're summoning a \"Minion\" family card, by exhausting this Nexus, treat up to two costs being paid from your Reserve. This effect can only be used once per turn.",
   "image": "BS53-CP10.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "GWrule",
-   "{{tk|Core Charge:|(Cost 3 or more) (This Nexus can only hold up to 5 cores)}} ◆When you summon/advent a target Spirit, you can put one core from the Void onto this Nexus. ◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void onto this Nexus.",
+   "Core Charge: (Cost 3 or more) (This Nexus can only hold up to 5 cores) ◆When you summon/advent a target Spirit, you can put one core from the Void onto this Nexus. ◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash.",
+   "For each target card among them, put one core from the Void onto this Nexus.",
    "{{gs|5}} [LV1][LV2] Flash - (Either Attack Step) (Send five cores from this Nexus to the Void) Return an opposing Cost 7 or less Spirit to the deckbottom.",
    "Grand Field [LV2] When you're summoning a \"Minion\" family card, by exhausting this Nexus, treat up to two costs being paid from your Reserve. This effect can only be used once per turn."
   ],
@@ -771,14 +773,15 @@
    "Diva",
    "Codeman"
   ],
-  "text": "GWrule\n\n{{tk|Core Charge:|(Cost 3 or more) (This Nexus can only hold up to 5 cores)}}\n◆When you summon/advent a target Spirit, you can put one core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void onto this Nexus.\n\n{{gs|4}} [LV1][LV2] Flash - (Either Attack Step)\n(Send four cores from this Nexus to the Void) Refresh a Spirit you control.\n\nGrand Field [LV2]\nAll your Spirits can't be blocked by opposing LV1 Spirits. Also, all your \"Minion\" family Spirits can't be blocked by opposing LV2 Spirits.",
+  "text": "GWrule\n\nCore Charge: (Cost 3 or more) (This Nexus can only hold up to 5 cores)\n◆When you summon/advent a target Spirit, you can put one core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void onto this Nexus.\n\n{{gs|4}} [LV1][LV2] Flash - (Either Attack Step)\n(Send four cores from this Nexus to the Void) Refresh a Spirit you control.\n\nGrand Field [LV2]\nAll your Spirits can't be blocked by opposing LV1 Spirits. Also, all your \"Minion\" family Spirits can't be blocked by opposing LV2 Spirits.",
   "image": "BS53-CP11.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "GWrule",
-   "{{tk|Core Charge:|(Cost 3 or more) (This Nexus can only hold up to 5 cores)}} ◆When you summon/advent a target Spirit, you can put one core from the Void onto this Nexus. ◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void onto this Nexus.",
+   "Core Charge: (Cost 3 or more) (This Nexus can only hold up to 5 cores) ◆When you summon/advent a target Spirit, you can put one core from the Void onto this Nexus. ◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash.",
+   "For each target card among them, put one core from the Void onto this Nexus.",
    "{{gs|4}} [LV1][LV2] Flash - (Either Attack Step) (Send four cores from this Nexus to the Void) Refresh a Spirit you control.",
    "Grand Field [LV2] All your Spirits can't be blocked by opposing LV1 Spirits. Also, all your \"Minion\" family Spirits can't be blocked by opposing LV2 Spirits."
   ],
@@ -806,14 +809,15 @@
    "Grandwalker",
    "Codeman"
   ],
-  "text": "GWrule\n\n{{tk|Core Charge:|(Cost 3 or more) (This Nexus can only hold up to 5 cores)}}\n◆When you summon/advent a target Spirit, you can put one core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void onto this Nexus.\n\n{{gs|4}} [LV1][LV2] Flash - (Opposing Attack Step)\n(Send four cores from this Nexus to the Void) During this battle, ignoring the costs of Braves, attacks of opposing Cost 6 or less Spirits can't reduce your Life.\n\nGrand Field [LV2]\nWhen your Spirit attacks, send a core from any opposing Spirit to the Reserve. When your \"Minion\" family Spirit attacks, cores that are sent to the Reserve by this effect are sent to the Trash instead.",
+  "text": "GWrule\n\nCore Charge: (Cost 3 or more) (This Nexus can only hold up to 5 cores)\n◆When you summon/advent a target Spirit, you can put one core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void onto this Nexus.\n\n{{gs|4}} [LV1][LV2] Flash - (Opposing Attack Step)\n(Send four cores from this Nexus to the Void) During this battle, ignoring the costs of Braves, attacks of opposing Cost 6 or less Spirits can't reduce your Life.\n\nGrand Field [LV2]\nWhen your Spirit attacks, send a core from any opposing Spirit to the Reserve. When your \"Minion\" family Spirit attacks, cores that are sent to the Reserve by this effect are sent to the Trash instead.",
   "image": "BS53-CP12.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "GWrule",
-   "{{tk|Core Charge:|(Cost 3 or more) (This Nexus can only hold up to 5 cores)}} ◆When you summon/advent a target Spirit, you can put one core from the Void onto this Nexus. ◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void onto this Nexus.",
+   "Core Charge: (Cost 3 or more) (This Nexus can only hold up to 5 cores) ◆When you summon/advent a target Spirit, you can put one core from the Void onto this Nexus. ◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash.",
+   "For each target card among them, put one core from the Void onto this Nexus.",
    "{{gs|4}} [LV1][LV2] Flash - (Opposing Attack Step) (Send four cores from this Nexus to the Void) During this battle, ignoring the costs of Braves, attacks of opposing Cost 6 or less Spirits can't reduce your Life.",
    "Grand Field [LV2] When your Spirit attacks, send a core from any opposing Spirit to the Reserve. When your \"Minion\" family Spirit attacks, cores that are sent to the Reserve by this effect are sent to the Trash instead."
   ],
@@ -1084,14 +1088,14 @@
    "Grandstone",
    "Primal"
   ],
-  "text": "GSTrule\n\n{{tk|Release:|(When your Life or the opposing Life is reduced)}}\n◆When the Release condition is fulfilled, you can put one core from the Void to this Nexus.\n\n[LV1] Rebirth5\nWhen the number of cores on this Nexus becomes four or more, this Nexus can be flipped (all but one cores on it are sent to the Void).\n\nGrand Mystery [LV1]\nEvery Cost 3 or less Nexus/Grandwalker Nexus has zero symbols. Also, effects of six-colored Nexuses/Grandwalker Nexuses can't activate.",
+  "text": "GSTrule\n\nRelease: (When your Life or the opposing Life is reduced)\n◆When the Release condition is fulfilled, you can put one core from the Void to this Nexus.\n\n[LV1] Rebirth5\nWhen the number of cores on this Nexus becomes four or more, this Nexus can be flipped (all but one cores on it are sent to the Void).\n\nGrand Mystery [LV1]\nEvery Cost 3 or less Nexus/Grandwalker Nexus has zero symbols. Also, effects of six-colored Nexuses/Grandwalker Nexuses can't activate.",
   "image": "BS55-TX04.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "GSTrule",
-   "{{tk|Release:|(When your Life or the opposing Life is reduced)}} ◆When the Release condition is fulfilled, you can put one core from the Void to this Nexus.",
+   "Release: (When your Life or the opposing Life is reduced) ◆When the Release condition is fulfilled, you can put one core from the Void to this Nexus.",
    "[LV1] Rebirth5 When the number of cores on this Nexus becomes four or more, this Nexus can be flipped (all but one cores on it are sent to the Void).",
    "Grand Mystery [LV1] Every Cost 3 or less Nexus/Grandwalker Nexus has zero symbols. Also, effects of six-colored Nexuses/Grandwalker Nexuses can't activate."
   ],
@@ -2399,14 +2403,14 @@
    "Proximate",
    "Galaxian"
   ],
-  "text": "GWrule\n\n{{tk|Core Charge:|(Galaxian & Cost 3 or more) (Rebirth Nexus)}}\n◆When you summon/advent/deploy a target Spirit/Nexus, you can put one core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same name as this Nexus, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void onto this Nexus.\n\nThis card's reduction symbols are also treated as Purple/Green/White/Yellow/Blue.\n\n{{gs|2}} [LV1][LV2] Flash - (Either Attack Step)\n(Send two cores from this Nexus to the Void) Put a card from your Hand to the Removed Zone. When you've done so, destroy an opposing Spirit with the same color as the card being put.\n\n{{gs|4}} [LV2] Flash - (Either Attack Step)\n(Once per turn, send four cores from this Nexus to the Void) Pay one cost to summon a \"Proximate\"/\"Astroblazer\" & \"Galaxian\" family Spirit card from your Removed Zone.",
+  "text": "GWrule\n\nCore Charge: (Galaxian & Cost 3 or more) (Rebirth Nexus)\n◆When you summon/advent/deploy a target Spirit/Nexus, you can put one core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same name as this Nexus, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void onto this Nexus.\n\nThis card's reduction symbols are also treated as Purple/Green/White/Yellow/Blue.\n\n{{gs|2}} [LV1][LV2] Flash - (Either Attack Step)\n(Send two cores from this Nexus to the Void) Put a card from your Hand to the Removed Zone. When you've done so, destroy an opposing Spirit with the same color as the card being put.\n\n{{gs|4}} [LV2] Flash - (Either Attack Step)\n(Once per turn, send four cores from this Nexus to the Void) Pay one cost to summon a \"Proximate\"/\"Astroblazer\" & \"Galaxian\" family Spirit card from your Removed Zone.",
   "image": "BS59-CP07.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "GWrule",
-   "{{tk|Core Charge:|(Galaxian & Cost 3 or more) (Rebirth Nexus)}} ◆When you summon/advent/deploy a target Spirit/Nexus, you can put one core from the Void onto this Nexus. ◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same name as this Nexus, you can send three cards from your decktop to the Trash.",
+   "Core Charge: (Galaxian & Cost 3 or more) (Rebirth Nexus) ◆When you summon/advent/deploy a target Spirit/Nexus, you can put one core from the Void onto this Nexus. ◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same name as this Nexus, you can send three cards from your decktop to the Trash.",
    "For each target card among them, put one core from the Void onto this Nexus.",
    "This card's reduction symbols are also treated as Purple/Green/White/Yellow/Blue.",
    "{{gs|2}} [LV1][LV2] Flash - (Either Attack Step) (Send two cores from this Nexus to the Void) Put a card from your Hand to the Removed Zone. When you've done so, destroy an opposing Spirit with the same color as the card being put.",
@@ -2438,14 +2442,14 @@
   "families": [
    "Grandwalker"
   ],
-  "text": "GWrule\n\n{{tk|Core Charge:|(Winged Beast/Hunter Beast/Proximate/Astroblazer & Cost 3 or more)}}\n◆When you summon/advent a target Spirit, you can put one core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you don't control a Nexus with the same card name as this card, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void onto this Nexus.\n\n[LV1][LV2]\nThis Nexus's symbol is also treated as Green.\n\nGrand Field [LV1][LV2] (Your Attack Step)\nYour LV4 Green/Yellow Spirits can't be blocked. Also, while those Spirits are attacking, cores on opposing Spirits/Grandwalker Nexuses can't be moved.\n\n{{gs|4}} [LV2] Flash - (Either Attack Step)\n(Once per turn, send four cores from this Nexus to the Void) Refresh a \"Winged Beast\"/\"Hunter Beast\" family Spirit you control.",
+  "text": "GWrule\n\nCore Charge: (Winged Beast/Hunter Beast/Proximate/Astroblazer & Cost 3 or more)\n◆When you summon/advent a target Spirit, you can put one core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you don't control a Nexus with the same card name as this card, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void onto this Nexus.\n\n[LV1][LV2]\nThis Nexus's symbol is also treated as Green.\n\nGrand Field [LV1][LV2] (Your Attack Step)\nYour LV4 Green/Yellow Spirits can't be blocked. Also, while those Spirits are attacking, cores on opposing Spirits/Grandwalker Nexuses can't be moved.\n\n{{gs|4}} [LV2] Flash - (Either Attack Step)\n(Once per turn, send four cores from this Nexus to the Void) Refresh a \"Winged Beast\"/\"Hunter Beast\" family Spirit you control.",
   "image": "BS59-CP08.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "GWrule",
-   "{{tk|Core Charge:|(Winged Beast/Hunter Beast/Proximate/Astroblazer & Cost 3 or more)}} ◆When you summon/advent a target Spirit, you can put one core from the Void onto this Nexus. ◆When this Nexus is deployed, if you don't control a Nexus with the same card name as this card, you can send three cards from your decktop to the Trash.",
+   "Core Charge: (Winged Beast/Hunter Beast/Proximate/Astroblazer & Cost 3 or more) ◆When you summon/advent a target Spirit, you can put one core from the Void onto this Nexus. ◆When this Nexus is deployed, if you don't control a Nexus with the same card name as this card, you can send three cards from your decktop to the Trash.",
    "For each target card among them, put one core from the Void onto this Nexus.",
    "[LV1][LV2] This Nexus's symbol is also treated as Green.",
    "Grand Field [LV1][LV2] (Your Attack Step) Your LV4 Green/Yellow Spirits can't be blocked. Also, while those Spirits are attacking, cores on opposing Spirits/Grandwalker Nexuses can't be moved.",
@@ -2777,14 +2781,14 @@
    "Galaxian",
    "Galaxian"
   ],
-  "text": "{{Sumcon|You control one or more Red Spirits}}\n\n{{tk|Double Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}}\nFor each Ultimate Trigger hit, destroy an opposing 15000 BP or less Spirit. Double Hit If it hits twice, also, this Ultimate gains an extra Ultimate symbol.\nwutb\n\n[LV4][LV5] (When Attacks)\nTarget an opposing Spirit. You can attack that Spirit. When the Ultimate Trigger hits, and the targeted Spirit is destroyed, send an opposing Life to the Reserve.",
+  "text": "{{Sumcon|You control one or more Red Spirits}}\n\nDouble Ultimate Trigger [LV3][LV4][LV5] (When Attacks)\nFor each Ultimate Trigger hit, destroy an opposing 15000 BP or less Spirit. Double Hit If it hits twice, also, this Ultimate gains an extra Ultimate symbol.\nwutb\n\n[LV4][LV5] (When Attacks)\nTarget an opposing Spirit. You can attack that Spirit. When the Ultimate Trigger hits, and the targeted Spirit is destroyed, send an opposing Life to the Reserve.",
   "image": "BS61-CP03.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "{{Sumcon|You control one or more Red Spirits}}",
-   "{{tk|Double Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}} For each Ultimate Trigger hit, destroy an opposing 15000 BP or less Spirit. Double Hit If it hits twice, also, this Ultimate gains an extra Ultimate symbol. wutb",
+   "Double Ultimate Trigger [LV3][LV4][LV5] (When Attacks) For each Ultimate Trigger hit, destroy an opposing 15000 BP or less Spirit. Double Hit If it hits twice, also, this Ultimate gains an extra Ultimate symbol. wutb",
    "[LV4][LV5] (When Attacks) Target an opposing Spirit. You can attack that Spirit. When the Ultimate Trigger hits, and the targeted Spirit is destroyed, send an opposing Life to the Reserve."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
@@ -4806,14 +4810,14 @@
    "Zombie",
    "Ultimate Dragon"
   ],
-  "text": "{{sumcon|You control one or more Ultimates/\"Contractor Dionysus\"}}\n\n{{tk|Double Count Ultimate Trigger|[LV3][LV4][LV5][LV6] (When Summoned/Attacks)}}\nFor each Count Ultimate Trigger hits, send as many as three cores from the opposing Field to the Reserve. Double Hit When it hits twice, during this turn, the symbols of all your Cost 6 or more Ultimates are fixed as three Purple symbols.\ndcutb\n\n[LV4][LV5][LV6]\nThis Ultimate's \"Core Removal Effects\" can't be prevented by opposing effects, and effects of the targets depleted by such effects can't activate.",
+  "text": "{{sumcon|You control one or more Ultimates/\"Contractor Dionysus\"}}\n\nDouble Count Ultimate Trigger [LV3][LV4][LV5][LV6] (When Summoned/Attacks)\nFor each Count Ultimate Trigger hits, send as many as three cores from the opposing Field to the Reserve. Double Hit When it hits twice, during this turn, the symbols of all your Cost 6 or more Ultimates are fixed as three Purple symbols.\ndcutb\n\n[LV4][LV5][LV6]\nThis Ultimate's \"Core Removal Effects\" can't be prevented by opposing effects, and effects of the targets depleted by such effects can't activate.",
   "image": "BS74-AX02.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "{{sumcon|You control one or more Ultimates/\"Contractor Dionysus\"}}",
-   "{{tk|Double Count Ultimate Trigger|[LV3][LV4][LV5][LV6] (When Summoned/Attacks)}} For each Count Ultimate Trigger hits, send as many as three cores from the opposing Field to the Reserve. Double Hit When it hits twice, during this turn, the symbols of all your Cost 6 or more Ultimates are fixed as three Purple symbols. dcutb",
+   "Double Count Ultimate Trigger [LV3][LV4][LV5][LV6] (When Summoned/Attacks) For each Count Ultimate Trigger hits, send as many as three cores from the opposing Field to the Reserve. Double Hit When it hits twice, during this turn, the symbols of all your Cost 6 or more Ultimates are fixed as three Purple symbols. dcutb",
    "[LV4][LV5][LV6] This Ultimate's \"Core Removal Effects\" can't be prevented by opposing effects, and effects of the targets depleted by such effects can't activate."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
@@ -4884,14 +4888,14 @@
    "Grandwalker",
    "Uru"
   ],
-  "text": "GWrule\n\n{{tk|Core Charge:|(Ninja Gale/Shellman/Worldswalker/Avatar & Cost 3 or more) (Core Charge via Summon/Advent only once per turn)}}\n◆When you summon/advent a target Spirit, put one core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.\n\nWhen this card is revealed from Deck by your Green effect, you can add it to the Hand.\n\n{{gs|3}} [LV1][LV2] Flash - (Either Attack Step)\n(Once per turn, send three cores from this Nexus to the Void) Put a core from the Void to either your Reserve or to any of your Spirits. Then, you can return a \"Ninja Gale\" family Spirit you control to the Hand.\n\nGrand Field [LV2] (After Your Burst Activates)\nReturn three opposing exhausted Spirits/Ultimates to the Hand. Then, for each card in the opposing Hand, refresh a Spirit you control.",
+  "text": "GWrule\n\nCore Charge: (Ninja Gale/Shellman/Worldswalker/Avatar & Cost 3 or more) (Core Charge via Summon/Advent only once per turn)\n◆When you summon/advent a target Spirit, put one core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.\n\nWhen this card is revealed from Deck by your Green effect, you can add it to the Hand.\n\n{{gs|3}} [LV1][LV2] Flash - (Either Attack Step)\n(Once per turn, send three cores from this Nexus to the Void) Put a core from the Void to either your Reserve or to any of your Spirits. Then, you can return a \"Ninja Gale\" family Spirit you control to the Hand.\n\nGrand Field [LV2] (After Your Burst Activates)\nReturn three opposing exhausted Spirits/Ultimates to the Hand. Then, for each card in the opposing Hand, refresh a Spirit you control.",
   "image": "BS74-CP02.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "GWrule",
-   "{{tk|Core Charge:|(Ninja Gale/Shellman/Worldswalker/Avatar & Cost 3 or more) (Core Charge via Summon/Advent only once per turn)}} ◆When you summon/advent a target Spirit, put one core from the Void onto this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash.",
+   "Core Charge: (Ninja Gale/Shellman/Worldswalker/Avatar & Cost 3 or more) (Core Charge via Summon/Advent only once per turn) ◆When you summon/advent a target Spirit, put one core from the Void onto this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash.",
    "For each target card among them, put a core from the Void onto this Nexus.",
    "When this card is revealed from Deck by your Green effect, you can add it to the Hand.",
    "{{gs|3}} [LV1][LV2] Flash - (Either Attack Step) (Once per turn, send three cores from this Nexus to the Void) Put a core from the Void to either your Reserve or to any of your Spirits. Then, you can return a \"Ninja Gale\" family Spirit you control to the Hand.",
@@ -6343,7 +6347,7 @@
    "Incarnate",
    "Astral Dragon"
   ],
-  "text": "{{Sumcon|You control one or more Red Spirits/Ultimates}}\n\n[LV3][LV4][LV5] (When Summoned)\nYou can reveal four cards from your decktop. Add an Ultimate card among them to the Hand. Return any remaining cards to the deckbottom.\n\n{{tk|Ultimate Trigger|[LV4][LV5] (When Attacks)}}\nWhen Ultimate Trigger hits, opposing Spirits/Ultimates must block if possible.\nutb",
+  "text": "{{Sumcon|You control one or more Red Spirits/Ultimates}}\n\n[LV3][LV4][LV5] (When Summoned)\nYou can reveal four cards from your decktop. Add an Ultimate card among them to the Hand. Return any remaining cards to the deckbottom.\n\nUltimate Trigger [LV4][LV5] (When Attacks)\nWhen Ultimate Trigger hits, opposing Spirits/Ultimates must block if possible.\nutb",
   "image": "LM14-04.png",
   "block": "P",
   "saga": 60,
@@ -6351,7 +6355,7 @@
   "residual": [
    "{{Sumcon|You control one or more Red Spirits/Ultimates}}",
    "[LV3][LV4][LV5] (When Summoned) You can reveal four cards from your decktop. Add an Ultimate card among them to the Hand. Return any remaining cards to the deckbottom.",
-   "{{tk|Ultimate Trigger|[LV4][LV5] (When Attacks)}} When Ultimate Trigger hits, opposing Spirits/Ultimates must block if possible. utb"
+   "Ultimate Trigger [LV4][LV5] (When Attacks) When Ultimate Trigger hits, opposing Spirits/Ultimates must block if possible. utb"
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
   "rcode": "LM"
@@ -7242,13 +7246,13 @@
    "Fighting Spirit",
    "Soldier"
   ],
-  "text": "{{tk|Core Charge:|(\"Ultraman\" & Cost 3 or more)}}\n◆When you summon/advent a target Spirit, you can +1 core to this Nexus.\n◆When this Nexus is deployed, if you don't control a Gandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.\n\nGrand Field [LV1][LV2]\nOnce per turn, when your \"Ultraman\" Spirits would leave the Field due to opposing effects, you can put a core from this Nexus to each of those Spirits. Spirits which had cores put on them by this effect remain on the Field in the same state.\n\nGrand Field [LV2] (Your Attack Step)\nEvery \"Ultraman\" Spirit you control gains +5000 BP, and is treated as being on its highest level.",
+  "text": "Core Charge: (\"Ultraman\" & Cost 3 or more)\n◆When you summon/advent a target Spirit, you can +1 core to this Nexus.\n◆When this Nexus is deployed, if you don't control a Gandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.\n\nGrand Field [LV1][LV2]\nOnce per turn, when your \"Ultraman\" Spirits would leave the Field due to opposing effects, you can put a core from this Nexus to each of those Spirits. Spirits which had cores put on them by this effect remain on the Field in the same state.\n\nGrand Field [LV2] (Your Attack Step)\nEvery \"Ultraman\" Spirit you control gains +5000 BP, and is treated as being on its highest level.",
   "image": "LM19-U07.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "{{tk|Core Charge:|(\"Ultraman\" & Cost 3 or more)}} ◆When you summon/advent a target Spirit, you can +1 core to this Nexus. ◆When this Nexus is deployed, if you don't control a Gandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.",
+   "Core Charge: (\"Ultraman\" & Cost 3 or more) ◆When you summon/advent a target Spirit, you can +1 core to this Nexus. ◆When this Nexus is deployed, if you don't control a Gandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.",
    "Grand Field [LV1][LV2] Once per turn, when your \"Ultraman\" Spirits would leave the Field due to opposing effects, you can put a core from this Nexus to each of those Spirits. Spirits which had cores put on them by this effect remain on the Field in the same state.",
    "Grand Field [LV2] (Your Attack Step) Every \"Ultraman\" Spirit you control gains +5000 BP, and is treated as being on its highest level."
   ],
@@ -7638,14 +7642,14 @@
    "Galaxian",
    "Beast Head"
   ],
-  "text": "{{sumcon|You control one or more Blue Ultimates}}\n\n{{tk|Double Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}}\nFor each Ultimate Trigger hit, destroy an opposing Spirit with the lowest cost.\nDouble Hit Also, when both Ultimate Triggers hit, give this Ultimate an extra Ultimate symbol.\nwutb\n\n[LV4][LV5] (When Attacks)\nWhen this Ultimate's Double Ultimate Trigger double hits, refresh another Ultimate you control.",
+  "text": "{{sumcon|You control one or more Blue Ultimates}}\n\nDouble Ultimate Trigger [LV3][LV4][LV5] (When Attacks)\nFor each Ultimate Trigger hit, destroy an opposing Spirit with the lowest cost.\nDouble Hit Also, when both Ultimate Triggers hit, give this Ultimate an extra Ultimate symbol.\nwutb\n\n[LV4][LV5] (When Attacks)\nWhen this Ultimate's Double Ultimate Trigger double hits, refresh another Ultimate you control.",
   "image": "P18-05.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "{{sumcon|You control one or more Blue Ultimates}}",
-   "{{tk|Double Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}} For each Ultimate Trigger hit, destroy an opposing Spirit with the lowest cost. Double Hit Also, when both Ultimate Triggers hit, give this Ultimate an extra Ultimate symbol. wutb",
+   "Double Ultimate Trigger [LV3][LV4][LV5] (When Attacks) For each Ultimate Trigger hit, destroy an opposing Spirit with the lowest cost. Double Hit Also, when both Ultimate Triggers hit, give this Ultimate an extra Ultimate symbol. wutb",
    "[LV4][LV5] (When Attacks) When this Ultimate's Double Ultimate Trigger double hits, refresh another Ultimate you control."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
@@ -8004,14 +8008,14 @@
    "Grandwalker",
    "Uru"
   ],
-  "text": "GWrule\n\n{{tk|Core Charge:|(Astral Dragon/Zombie/Evil Shadow) (Core Charge via Summon/Advent only once per turn)}}\n◆When you summon/advent a target Spirit, you can put a core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.\n\n{{gs|1}} [LV1][LV2] Flash - (Your Attack Step)\n(Send one core from this Nexus to the Void) During this turn, give an \"Astral Dragon\"/\"Zombie\"/\"Evil Shadow\" family Spirit you control +5000 BP.\n\nGrand Field [LV2] (Your Attack Step)\nWhen only the opposing Spirit/Ultimate is destroyed by comparing BP with your \"Wurm\"-named Spirits, send an opposing Life to the Reserve.",
+  "text": "GWrule\n\nCore Charge: (Astral Dragon/Zombie/Evil Shadow) (Core Charge via Summon/Advent only once per turn)\n◆When you summon/advent a target Spirit, you can put a core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.\n\n{{gs|1}} [LV1][LV2] Flash - (Your Attack Step)\n(Send one core from this Nexus to the Void) During this turn, give an \"Astral Dragon\"/\"Zombie\"/\"Evil Shadow\" family Spirit you control +5000 BP.\n\nGrand Field [LV2] (Your Attack Step)\nWhen only the opposing Spirit/Ultimate is destroyed by comparing BP with your \"Wurm\"-named Spirits, send an opposing Life to the Reserve.",
   "image": "PB01-H01.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "GWrule",
-   "{{tk|Core Charge:|(Astral Dragon/Zombie/Evil Shadow) (Core Charge via Summon/Advent only once per turn)}} ◆When you summon/advent a target Spirit, you can put a core from the Void onto this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash.",
+   "Core Charge: (Astral Dragon/Zombie/Evil Shadow) (Core Charge via Summon/Advent only once per turn) ◆When you summon/advent a target Spirit, you can put a core from the Void onto this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash.",
    "For each target card among them, put a core from the Void onto this Nexus.",
    "{{gs|1}} [LV1][LV2] Flash - (Your Attack Step) (Send one core from this Nexus to the Void) During this turn, give an \"Astral Dragon\"/\"Zombie\"/\"Evil Shadow\" family Spirit you control +5000 BP.",
    "Grand Field [LV2] (Your Attack Step) When only the opposing Spirit/Ultimate is destroyed by comparing BP with your \"Wurm\"-named Spirits, send an opposing Life to the Reserve."
@@ -8042,14 +8046,14 @@
    "Grandwalker",
    "Uru"
   ],
-  "text": "GWrule\n\n{{tk|Core Charge:|(Vassal/Lord & Cost 3 or more)}}\n◆When you summon/advent a target Spirit, you can +1 core to this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.\n\n{{gs|3}} [LV1][LV2] Flash - (Either Attack Step)\n(Once per turn, send three cores from this Nexus to the Void) You can return a \"Vassal\"/\"Lord\" family Spirit card from the Trash to your Hand. When you've done so, return an opposing Spirit/Ultimate to the Hand.\n\nGrand Field [LV2] (Your End Step)\nIf there six cards or more in the opposing Hand, the opponent discard cards from their Hand until they only have four.",
+  "text": "GWrule\n\nCore Charge: (Vassal/Lord & Cost 3 or more)\n◆When you summon/advent a target Spirit, you can +1 core to this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.\n\n{{gs|3}} [LV1][LV2] Flash - (Either Attack Step)\n(Once per turn, send three cores from this Nexus to the Void) You can return a \"Vassal\"/\"Lord\" family Spirit card from the Trash to your Hand. When you've done so, return an opposing Spirit/Ultimate to the Hand.\n\nGrand Field [LV2] (Your End Step)\nIf there six cards or more in the opposing Hand, the opponent discard cards from their Hand until they only have four.",
   "image": "PB01-H02.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "GWrule",
-   "{{tk|Core Charge:|(Vassal/Lord & Cost 3 or more)}} ◆When you summon/advent a target Spirit, you can +1 core to this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.",
+   "Core Charge: (Vassal/Lord & Cost 3 or more) ◆When you summon/advent a target Spirit, you can +1 core to this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.",
    "{{gs|3}} [LV1][LV2] Flash - (Either Attack Step) (Once per turn, send three cores from this Nexus to the Void) You can return a \"Vassal\"/\"Lord\" family Spirit card from the Trash to your Hand. When you've done so, return an opposing Spirit/Ultimate to the Hand.",
    "Grand Field [LV2] (Your End Step) If there six cards or more in the opposing Hand, the opponent discard cards from their Hand until they only have four."
   ],
@@ -8080,14 +8084,14 @@
    "Grandwalker",
    "Uru"
   ],
-  "text": "GWrule\n\n{{tk|Core Charge:|(Song Bird/Imp/Imaginary Beast/Magician/Ogre Wizard) (Core Charge via Summon/Advent only once per turn)}}\n◆When you summon/advent a target Spirit, you can put a core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.\n\n{{gs|3}} [LV1][LV2] Flash - (Either Attack Step)\n(Once per turn, send three cores from this Nexus to the Void) Refresh a Cost 3 or less \"Song Bird\"/\"Imp\"/\"Imaginary Beast\"/\"Magician\"/\"Ogre Wizard\" family Spirit you control.\n\nGrand Field [LV2] (Either Attack Step)\nWhen you use a Magic card, you can return an opposing Spirit/Ultimate to the Hand.",
+  "text": "GWrule\n\nCore Charge: (Song Bird/Imp/Imaginary Beast/Magician/Ogre Wizard) (Core Charge via Summon/Advent only once per turn)\n◆When you summon/advent a target Spirit, you can put a core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.\n\n{{gs|3}} [LV1][LV2] Flash - (Either Attack Step)\n(Once per turn, send three cores from this Nexus to the Void) Refresh a Cost 3 or less \"Song Bird\"/\"Imp\"/\"Imaginary Beast\"/\"Magician\"/\"Ogre Wizard\" family Spirit you control.\n\nGrand Field [LV2] (Either Attack Step)\nWhen you use a Magic card, you can return an opposing Spirit/Ultimate to the Hand.",
   "image": "PB01-H03.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "GWrule",
-   "{{tk|Core Charge:|(Song Bird/Imp/Imaginary Beast/Magician/Ogre Wizard) (Core Charge via Summon/Advent only once per turn)}} ◆When you summon/advent a target Spirit, you can put a core from the Void onto this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash.",
+   "Core Charge: (Song Bird/Imp/Imaginary Beast/Magician/Ogre Wizard) (Core Charge via Summon/Advent only once per turn) ◆When you summon/advent a target Spirit, you can put a core from the Void onto this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash.",
    "For each target card among them, put a core from the Void onto this Nexus.",
    "{{gs|3}} [LV1][LV2] Flash - (Either Attack Step) (Once per turn, send three cores from this Nexus to the Void) Refresh a Cost 3 or less \"Song Bird\"/\"Imp\"/\"Imaginary Beast\"/\"Magician\"/\"Ogre Wizard\" family Spirit you control.",
    "Grand Field [LV2] (Either Attack Step) When you use a Magic card, you can return an opposing Spirit/Ultimate to the Hand."
@@ -8438,14 +8442,14 @@
    "Grandwalker",
    "Terra Dragon"
   ],
-  "text": "GPGWrule\n\n{{tk|Core Charge:|(\"Godzilla\")}}\n◆When you Summon/Advent a target Spirit, you can +1 core to this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.\n\n[LV1][LV2]\nThis Nexus' symbols are also treated as Red.\n\n{{gp|4}} [LV1][LV2] (Start of Your Attack Step)\n(Send four cores from this Nexus to the Void) During this turn, this Nexus is also treated as Spirit with LV1/LV2 20000 BP, and can only be destroyed by Grandwalker Nexuses.\n\nGrand Field [LV2] (Opposing Attack Step)\nWhen an opposing 6000 BP or less Spirit/Ultimate attacks, destroy that Spirit/Ultimate.",
+  "text": "GPGWrule\n\nCore Charge: (\"Godzilla\")\n◆When you Summon/Advent a target Spirit, you can +1 core to this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.\n\n[LV1][LV2]\nThis Nexus' symbols are also treated as Red.\n\n{{gp|4}} [LV1][LV2] (Start of Your Attack Step)\n(Send four cores from this Nexus to the Void) During this turn, this Nexus is also treated as Spirit with LV1/LV2 20000 BP, and can only be destroyed by Grandwalker Nexuses.\n\nGrand Field [LV2] (Opposing Attack Step)\nWhen an opposing 6000 BP or less Spirit/Ultimate attacks, destroy that Spirit/Ultimate.",
   "image": "PB02-G09.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "GPGWrule",
-   "{{tk|Core Charge:|(\"Godzilla\")}} ◆When you Summon/Advent a target Spirit, you can +1 core to this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.",
+   "Core Charge: (\"Godzilla\") ◆When you Summon/Advent a target Spirit, you can +1 core to this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.",
    "[LV1][LV2] This Nexus' symbols are also treated as Red.",
    "{{gp|4}} [LV1][LV2] (Start of Your Attack Step) (Send four cores from this Nexus to the Void) During this turn, this Nexus is also treated as Spirit with LV1/LV2 20000 BP, and can only be destroyed by Grandwalker Nexuses.",
    "Grand Field [LV2] (Opposing Attack Step) When an opposing 6000 BP or less Spirit/Ultimate attacks, destroy that Spirit/Ultimate."
@@ -9347,13 +9351,13 @@
    "Grandwalker",
    "Infernal Lord"
   ],
-  "text": "{{tk|Core Charge:|(\"Kaiju\"/\"Seijin\"/\"Belial\"/\"Zetton\" & Cost 3 or more) (Purple & Thing & Brave)}}\n◆When you summon/advent a target Spirit/Brave, you can +1 core to this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.\n\n[LV1][LV2]\nThis Nexus' symbol is also treated as Red.\n\n{{gp|2}} [LV1][LV2] Flash - (Your Attack Step)\n(Send two cores from this Nexus to the Void) During this turn, this Nexus is also treated as a Spirit with [LV1][LV2] 3000 BP, and can only be destroyed by Grandwalker Nexuses.\n\nGrand Field [LV2] Flash - (Either Attack Step)\nOnce per turn, you can discard a \"Kaiju\"/\"Seijin\"/\"Zetton\" Spirit card from your Hand, and destroy an opposing Spirit with a BP equal or inferior to the LV1 BP of the discarded card.",
+  "text": "Core Charge: (\"Kaiju\"/\"Seijin\"/\"Belial\"/\"Zetton\" & Cost 3 or more) (Purple & Thing & Brave)\n◆When you summon/advent a target Spirit/Brave, you can +1 core to this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.\n\n[LV1][LV2]\nThis Nexus' symbol is also treated as Red.\n\n{{gp|2}} [LV1][LV2] Flash - (Your Attack Step)\n(Send two cores from this Nexus to the Void) During this turn, this Nexus is also treated as a Spirit with [LV1][LV2] 3000 BP, and can only be destroyed by Grandwalker Nexuses.\n\nGrand Field [LV2] Flash - (Either Attack Step)\nOnce per turn, you can discard a \"Kaiju\"/\"Seijin\"/\"Zetton\" Spirit card from your Hand, and destroy an opposing Spirit with a BP equal or inferior to the LV1 BP of the discarded card.",
   "image": "PB08-X02.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "{{tk|Core Charge:|(\"Kaiju\"/\"Seijin\"/\"Belial\"/\"Zetton\" & Cost 3 or more) (Purple & Thing & Brave)}} ◆When you summon/advent a target Spirit/Brave, you can +1 core to this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.",
+   "Core Charge: (\"Kaiju\"/\"Seijin\"/\"Belial\"/\"Zetton\" & Cost 3 or more) (Purple & Thing & Brave) ◆When you summon/advent a target Spirit/Brave, you can +1 core to this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.",
    "[LV1][LV2] This Nexus' symbol is also treated as Red.",
    "{{gp|2}} [LV1][LV2] Flash - (Your Attack Step) (Send two cores from this Nexus to the Void) During this turn, this Nexus is also treated as a Spirit with [LV1][LV2] 3000 BP, and can only be destroyed by Grandwalker Nexuses.",
    "Grand Field [LV2] Flash - (Either Attack Step) Once per turn, you can discard a \"Kaiju\"/\"Seijin\"/\"Zetton\" Spirit card from your Hand, and destroy an opposing Spirit with a BP equal or inferior to the LV1 BP of the discarded card."
@@ -12695,7 +12699,7 @@
  },
  {
   "id": "PB41-RV003",
-  "name": "The Special Tactical Operations Regimental Airborne and Ground Equipment STORAGE Headquarters",
+  "name": "Special Tactical Operations Regiment Airborne & Ground Equipment Storage HQ",
   "name_jp": "対怪獣特殊空挺機甲隊ストレイジ本部",
   "type": "Nexus",
   "color": "white",
@@ -12894,13 +12898,13 @@
    "Grandwalker",
    "Fighting Spirit"
   ],
-  "text": "{{tk|Core Charge:|(White & \"Ultraman\"/\"Special Aircraft\") (\"Beliarok\" & Brave)}}\n◆When you summon/advent a target Spirit/Brave, you can +1 core to this Nexus.\n◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.\n\n{{gs|4}} [LV1][LV2] Flash - (Either Attack Step)\n(Once per turn, send four cores from this Nexus to the Void) Refresh a White “Ultraman”/\"Special Aircraft\" Spirit/Ultimate you control. Or, during this battle, one of your White \"Ultraman\"/\"Special Aircraft\" can't be blocked.\n\nGrand Field [LV2] (Opposing Attack Step)\nAll your White \"Zett\"/\"Special Aircraft\" Spirits can block while exhausted.",
+  "text": "Core Charge: (White & \"Ultraman\"/\"Special Aircraft\") (\"Beliarok\" & Brave)\n◆When you summon/advent a target Spirit/Brave, you can +1 core to this Nexus.\n◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.\n\n{{gs|4}} [LV1][LV2] Flash - (Either Attack Step)\n(Once per turn, send four cores from this Nexus to the Void) Refresh a White “Ultraman”/\"Special Aircraft\" Spirit/Ultimate you control. Or, during this battle, one of your White \"Ultraman\"/\"Special Aircraft\" can't be blocked.\n\nGrand Field [LV2] (Opposing Attack Step)\nAll your White \"Zett\"/\"Special Aircraft\" Spirits can block while exhausted.",
   "image": "PB41-X03.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "{{tk|Core Charge:|(White & \"Ultraman\"/\"Special Aircraft\") (\"Beliarok\" & Brave)}} ◆When you summon/advent a target Spirit/Brave, you can +1 core to this Nexus. ◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.",
+   "Core Charge: (White & \"Ultraman\"/\"Special Aircraft\") (\"Beliarok\" & Brave) ◆When you summon/advent a target Spirit/Brave, you can +1 core to this Nexus. ◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.",
    "{{gs|4}} [LV1][LV2] Flash - (Either Attack Step) (Once per turn, send four cores from this Nexus to the Void) Refresh a White “Ultraman”/\"Special Aircraft\" Spirit/Ultimate you control. Or, during this battle, one of your White \"Ultraman\"/\"Special Aircraft\" can't be blocked.",
    "Grand Field [LV2] (Opposing Attack Step) All your White \"Zett\"/\"Special Aircraft\" Spirits can block while exhausted."
   ],
@@ -13247,13 +13251,13 @@
    "Grandwalker",
    "Kamen"
   ],
-  "text": "{{tk|Core Charge:|(Kamen & Confection) (\"Gavv\" & Magic)}}\n◆When you Summon/Advent a target Spirit, or use a target Magic, you can +1 core to this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.\n\n[LV1][LV2] This Nexus' symbol is also treated as Yellow.\n\n{{gs|3}} [LV1][LV2] Flash - (Either Attack Step)\n(Once per turn, send three cores from this Nexus to Void) Send two cores from an opposing Spirit to the Reserve. Then, you can -1 your counter. When you've done so, during this turn, an opposing Spirit with one core or less on it can't attack/block.\n\nGrand Field [LV2]\n(Can't Stack) When your \"Gavv\" Contract Advents, you can draw a card.",
+  "text": "Core Charge: (Kamen & Confection) (\"Gavv\" & Magic)\n◆When you Summon/Advent a target Spirit, or use a target Magic, you can +1 core to this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.\n\n[LV1][LV2] This Nexus' symbol is also treated as Yellow.\n\n{{gs|3}} [LV1][LV2] Flash - (Either Attack Step)\n(Once per turn, send three cores from this Nexus to Void) Send two cores from an opposing Spirit to the Reserve. Then, you can -1 your counter. When you've done so, during this turn, an opposing Spirit with one core or less on it can't attack/block.\n\nGrand Field [LV2]\n(Can't Stack) When your \"Gavv\" Contract Advents, you can draw a card.",
   "image": "PB42-009.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "{{tk|Core Charge:|(Kamen & Confection) (\"Gavv\" & Magic)}} ◆When you Summon/Advent a target Spirit, or use a target Magic, you can +1 core to this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.",
+   "Core Charge: (Kamen & Confection) (\"Gavv\" & Magic) ◆When you Summon/Advent a target Spirit, or use a target Magic, you can +1 core to this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.",
    "[LV1][LV2] This Nexus' symbol is also treated as Yellow.",
    "{{gs|3}} [LV1][LV2] Flash - (Either Attack Step) (Once per turn, send three cores from this Nexus to Void) Send two cores from an opposing Spirit to the Reserve. Then, you can -1 your counter. When you've done so, during this turn, an opposing Spirit with one core or less on it can't attack/block.",
    "Grand Field [LV2] (Can't Stack) When your \"Gavv\" Contract Advents, you can draw a card."
@@ -13390,13 +13394,13 @@
    "Grandwalker",
    "Kamen"
   ],
-  "text": "{{tk|Core Charge:|(Kamen & Imp) (\"DGP\" & Nexus)}}\n◆When you Summon/Advent/Deploy a target Spirit/Nexus, you can +1 core to this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.\n\n(Can't Stack) When this card is revealed from the deck by your \"Kamen\" & \"Imp\" family effect, you can add it to the Hand.\n\n{{gp|4}} [LV1][LV2] (Start of Your Attack Step)\n(Send four cores from this Nexus to the Void) During this turn, this Nexus is also treated as a \"Imp\" family Spirit with [LV1][LV2] 3000 BP, and can only be destroyed by Grandwalker Nexuses.\n\nGrand Field [LV2]\nWhen your \"DGP\" are destroyed by opposing effects, all those targets can remain on the Field in the same condition.",
+  "text": "Core Charge: (Kamen & Imp) (\"DGP\" & Nexus)\n◆When you Summon/Advent/Deploy a target Spirit/Nexus, you can +1 core to this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.\n\n(Can't Stack) When this card is revealed from the deck by your \"Kamen\" & \"Imp\" family effect, you can add it to the Hand.\n\n{{gp|4}} [LV1][LV2] (Start of Your Attack Step)\n(Send four cores from this Nexus to the Void) During this turn, this Nexus is also treated as a \"Imp\" family Spirit with [LV1][LV2] 3000 BP, and can only be destroyed by Grandwalker Nexuses.\n\nGrand Field [LV2]\nWhen your \"DGP\" are destroyed by opposing effects, all those targets can remain on the Field in the same condition.",
   "image": "PB42-013.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "{{tk|Core Charge:|(Kamen & Imp) (\"DGP\" & Nexus)}} ◆When you Summon/Advent/Deploy a target Spirit/Nexus, you can +1 core to this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.",
+   "Core Charge: (Kamen & Imp) (\"DGP\" & Nexus) ◆When you Summon/Advent/Deploy a target Spirit/Nexus, you can +1 core to this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.",
    "(Can't Stack) When this card is revealed from the deck by your \"Kamen\" & \"Imp\" family effect, you can add it to the Hand.",
    "{{gp|4}} [LV1][LV2] (Start of Your Attack Step) (Send four cores from this Nexus to the Void) During this turn, this Nexus is also treated as a \"Imp\" family Spirit with [LV1][LV2] 3000 BP, and can only be destroyed by Grandwalker Nexuses.",
    "Grand Field [LV2] When your \"DGP\" are destroyed by opposing effects, all those targets can remain on the Field in the same condition."
@@ -13425,13 +13429,13 @@
    "Grandwalker",
    "Kamen"
   ],
-  "text": "{{tk|Core Charge:|(Kamen & Imp) (\"DGP\" & Nexus)}}\n◆When you Summon/Advent/Deploy a target Spirit/Nexus, you can +1 core to this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.\n\n(Can't Stack) When this card is revealed from the deck by your \"Kamen\" & \"Imp\" family effect, you can add it to the Hand.\n\n{{gp|4}} [LV1][LV2] (Start of Your Attack Step)\n(Send four cores from this Nexus to the Void) During this turn, this Nexus is also treated as a \"Imp\" family Spirit with [LV1][LV2] 3000 BP, and can only be destroyed by Grandwalker Nexuses.\n\nGrand Field [LV2]\nWhen your \"DGP\" are destroyed by opposing effects, all those targets can remain on the Field in the same condition.",
+  "text": "Core Charge: (Kamen & Imp) (\"DGP\" & Nexus)\n◆When you Summon/Advent/Deploy a target Spirit/Nexus, you can +1 core to this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.\n\n(Can't Stack) When this card is revealed from the deck by your \"Kamen\" & \"Imp\" family effect, you can add it to the Hand.\n\n{{gp|4}} [LV1][LV2] (Start of Your Attack Step)\n(Send four cores from this Nexus to the Void) During this turn, this Nexus is also treated as a \"Imp\" family Spirit with [LV1][LV2] 3000 BP, and can only be destroyed by Grandwalker Nexuses.\n\nGrand Field [LV2]\nWhen your \"DGP\" are destroyed by opposing effects, all those targets can remain on the Field in the same condition.",
   "image": "PB42-014.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "{{tk|Core Charge:|(Kamen & Imp) (\"DGP\" & Nexus)}} ◆When you Summon/Advent/Deploy a target Spirit/Nexus, you can +1 core to this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.",
+   "Core Charge: (Kamen & Imp) (\"DGP\" & Nexus) ◆When you Summon/Advent/Deploy a target Spirit/Nexus, you can +1 core to this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.",
    "(Can't Stack) When this card is revealed from the deck by your \"Kamen\" & \"Imp\" family effect, you can add it to the Hand.",
    "{{gp|4}} [LV1][LV2] (Start of Your Attack Step) (Send four cores from this Nexus to the Void) During this turn, this Nexus is also treated as a \"Imp\" family Spirit with [LV1][LV2] 3000 BP, and can only be destroyed by Grandwalker Nexuses.",
    "Grand Field [LV2] When your \"DGP\" are destroyed by opposing effects, all those targets can remain on the Field in the same condition."
@@ -13462,13 +13466,13 @@
    "Grandwalker",
    "Kamen"
   ],
-  "text": "{{tk|Core Charge:|(Kamen & Creator) (\"Chemy\" & Brave) (\"Chemy\" & Nexus)}}\n◆When you Summon/Advent/Deploy a target Spirit/Brave/Nexus, you can +1 core to this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.\n\n(Can't Stack) When this card is revealed from the deck by your effect, including being in Soul State, if you control any \"Gotchard\", you can pay one cost to deploy it.\n\n{{gs|4}} [LV1][LV2] Flash - (Your Turn)\n(Send four cores from this Nexus to the Void) By adding a Blue-only \"Gotchard\" from your Trash to one of your Spirits with Advent as a pre-advent card, activate one of the (When Advents) effects written on that card as that Spirit's effect.\n\nGrand Field [LV2] (Your Attack Step)\n(Can't Stack) All the During OC & During Brave effects written on the pre-advent cards of your \"Gotchard\" activate as that Spirit's effect.",
+  "text": "Core Charge: (Kamen & Creator) (\"Chemy\" & Brave) (\"Chemy\" & Nexus)\n◆When you Summon/Advent/Deploy a target Spirit/Brave/Nexus, you can +1 core to this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.\n\n(Can't Stack) When this card is revealed from the deck by your effect, including being in Soul State, if you control any \"Gotchard\", you can pay one cost to deploy it.\n\n{{gs|4}} [LV1][LV2] Flash - (Your Turn)\n(Send four cores from this Nexus to the Void) By adding a Blue-only \"Gotchard\" from your Trash to one of your Spirits with Advent as a pre-advent card, activate one of the (When Advents) effects written on that card as that Spirit's effect.\n\nGrand Field [LV2] (Your Attack Step)\n(Can't Stack) All the During OC & During Brave effects written on the pre-advent cards of your \"Gotchard\" activate as that Spirit's effect.",
   "image": "PB42-015.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "{{tk|Core Charge:|(Kamen & Creator) (\"Chemy\" & Brave) (\"Chemy\" & Nexus)}} ◆When you Summon/Advent/Deploy a target Spirit/Brave/Nexus, you can +1 core to this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.",
+   "Core Charge: (Kamen & Creator) (\"Chemy\" & Brave) (\"Chemy\" & Nexus) ◆When you Summon/Advent/Deploy a target Spirit/Brave/Nexus, you can +1 core to this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.",
    "(Can't Stack) When this card is revealed from the deck by your effect, including being in Soul State, if you control any \"Gotchard\", you can pay one cost to deploy it.",
    "{{gs|4}} [LV1][LV2] Flash - (Your Turn) (Send four cores from this Nexus to the Void) By adding a Blue-only \"Gotchard\" from your Trash to one of your Spirits with Advent as a pre-advent card, activate one of the (When Advents) effects written on that card as that Spirit's effect.",
    "Grand Field [LV2] (Your Attack Step) (Can't Stack) All the During OC & During Brave effects written on the pre-advent cards of your \"Gotchard\" activate as that Spirit's effect."
@@ -14182,14 +14186,14 @@
    "Grandwalker",
    "Idol"
   ],
-  "text": "GPGWrule\n\n{{tk|Core Charge:|(Idol & Cost 3 or more)}}\n◆When you Summon/Advent a target Spirit, you can put a core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.\n\n{{gp|5}} [LV1][LV2] Flash - (Your Attack Step)\n(Send five cores from this Nexus to the Void) Refresh all \"Idol\" family Spirits you control, and during this turn, this Nexus is also treated as a Spirit with [LV1][LV2] 3000 BP, and can only be destroyed by Grandwalker Nexuses. This effect can only be used once per game.\n\n{{gs|2}} [LV2] Flash - (Opposing Attack Step)\n(Send two cores from this Nexus to the Void) Refresh a \"Stage Style\" family Spirit you control.",
+  "text": "GPGWrule\n\nCore Charge: (Idol & Cost 3 or more)\n◆When you Summon/Advent a target Spirit, you can put a core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.\n\n{{gp|5}} [LV1][LV2] Flash - (Your Attack Step)\n(Send five cores from this Nexus to the Void) Refresh all \"Idol\" family Spirits you control, and during this turn, this Nexus is also treated as a Spirit with [LV1][LV2] 3000 BP, and can only be destroyed by Grandwalker Nexuses. This effect can only be used once per game.\n\n{{gs|2}} [LV2] Flash - (Opposing Attack Step)\n(Send two cores from this Nexus to the Void) Refresh a \"Stage Style\" family Spirit you control.",
   "image": "PB44-RV004.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "GPGWrule",
-   "{{tk|Core Charge:|(Idol & Cost 3 or more)}} ◆When you Summon/Advent a target Spirit, you can put a core from the Void onto this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.",
+   "Core Charge: (Idol & Cost 3 or more) ◆When you Summon/Advent a target Spirit, you can put a core from the Void onto this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.",
    "{{gp|5}} [LV1][LV2] Flash - (Your Attack Step) (Send five cores from this Nexus to the Void) Refresh all \"Idol\" family Spirits you control, and during this turn, this Nexus is also treated as a Spirit with [LV1][LV2] 3000 BP, and can only be destroyed by Grandwalker Nexuses. This effect can only be used once per game.",
    "{{gs|2}} [LV2] Flash - (Opposing Attack Step) (Send two cores from this Nexus to the Void) Refresh a \"Stage Style\" family Spirit you control."
   ],
@@ -14835,14 +14839,15 @@
    "Grandwalker",
    "Kamen"
   ],
-  "text": "GWrule\n\n{{tk|Core Charge:|(\"Den-O\"/\"Zeronos\" & Cost 3 or more) (Clown & Brave)}}\n◆When you Summon/Advent a target Spirit/Brave, you can put a core from the void onto this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.\n\n{{gs|3}} [LV1][LV2] Flash - (Opposing Attack Step)\n(Once per turn, send three cores from this Nexus to the Void) By putting a \"Clown\" family Brave card from your Hand onto the Removed Zone, during this battle, your Life can't be reduced by the opponent. This effect can only be used once per turn.\n\nGrand Field [LV2] (Your Main Step)\nWhen you're summoning a \"Kamen\"/\"Clown\" family card, this Nexus gains two extra White symbols.",
+  "text": "GWrule\n\nCore Charge: (\"Den-O\"/\"Zeronos\" & Cost 3 or more) (Clown & Brave)\n◆When you Summon/Advent a target Spirit/Brave, you can put a core from the void onto this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.\n\n{{gs|3}} [LV1][LV2] Flash - (Opposing Attack Step)\n(Once per turn, send three cores from this Nexus to the Void) By putting a \"Clown\" family Brave card from your Hand onto the Removed Zone, during this battle, your Life can't be reduced by the opponent. This effect can only be used once per turn.\n\nGrand Field [LV2] (Your Main Step)\nWhen you're summoning a \"Kamen\"/\"Clown\" family card, this Nexus gains two extra White symbols.",
   "image": "PB46-RV005.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "GWrule",
-   "{{tk|Core Charge:|(\"Den-O\"/\"Zeronos\" & Cost 3 or more) (Clown & Brave)}} ◆When you Summon/Advent a target Spirit/Brave, you can put a core from the void onto this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.",
+   "Core Charge: (\"Den-O\"/\"Zeronos\" & Cost 3 or more) (Clown & Brave) ◆When you Summon/Advent a target Spirit/Brave, you can put a core from the void onto this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash.",
+   "For each target card among them, put a core from the Void onto this Nexus.",
    "{{gs|3}} [LV1][LV2] Flash - (Opposing Attack Step) (Once per turn, send three cores from this Nexus to the Void) By putting a \"Clown\" family Brave card from your Hand onto the Removed Zone, during this battle, your Life can't be reduced by the opponent. This effect can only be used once per turn.",
    "Grand Field [LV2] (Your Main Step) When you're summoning a \"Kamen\"/\"Clown\" family card, this Nexus gains two extra White symbols."
   ],
@@ -14916,14 +14921,15 @@
    "Grandwalker",
    "Kamen"
   ],
-  "text": "GPGWrule\n\n{{tk|Core Charge:|(\"Kabuto\"/\"Gatack\"/\"TheBee\"/\"Sasword\"/\"Drake\"/\"Hopper\")}}\n◆When you Summon/Advent a target Spirit, you can put a core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.\n\n{{gp|1}} [LV1][LV2] Flash - (Your Attack Step)\n(Send one core from this Nexus to the Void) During this turn, this Nexus is also treated as a Spirit that has \"(When Attacks) This Spirit can't be blocked by opposing Spirits\" with [LV1][LV2] 3000 BP, and can only be destroyed by Grandwalker Nexuses. This effect can only be used once per game.\n\n{{gs|3}} [LV2] Flash - (Your Attack Step)\n(Send three cores from this Nexus to the Void) During this battle, one of your Spirits' symbol becomes two Red symbols.",
+  "text": "GPGWrule\n\nCore Charge: (\"Kabuto\"/\"Gatack\"/\"TheBee\"/\"Sasword\"/\"Drake\"/\"Hopper\")\n◆When you Summon/Advent a target Spirit, you can put a core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.\n\n{{gp|1}} [LV1][LV2] Flash - (Your Attack Step)\n(Send one core from this Nexus to the Void) During this turn, this Nexus is also treated as a Spirit that has \"(When Attacks) This Spirit can't be blocked by opposing Spirits\" with [LV1][LV2] 3000 BP, and can only be destroyed by Grandwalker Nexuses. This effect can only be used once per game.\n\n{{gs|3}} [LV2] Flash - (Your Attack Step)\n(Send three cores from this Nexus to the Void) During this battle, one of your Spirits' symbol becomes two Red symbols.",
   "image": "PB46-RV007.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "GPGWrule",
-   "{{tk|Core Charge:|(\"Kabuto\"/\"Gatack\"/\"TheBee\"/\"Sasword\"/\"Drake\"/\"Hopper\")}} ◆When you Summon/Advent a target Spirit, you can put a core from the Void onto this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.",
+   "Core Charge: (\"Kabuto\"/\"Gatack\"/\"TheBee\"/\"Sasword\"/\"Drake\"/\"Hopper\") ◆When you Summon/Advent a target Spirit, you can put a core from the Void onto this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash.",
+   "For each target card among them, put a core from the Void onto this Nexus.",
    "{{gp|1}} [LV1][LV2] Flash - (Your Attack Step) (Send one core from this Nexus to the Void) During this turn, this Nexus is also treated as a Spirit that has \"(When Attacks) This Spirit can't be blocked by opposing Spirits\" with [LV1][LV2] 3000 BP, and can only be destroyed by Grandwalker Nexuses. This effect can only be used once per game.",
    "{{gs|3}} [LV2] Flash - (Your Attack Step) (Send three cores from this Nexus to the Void) During this battle, one of your Spirits' symbol becomes two Red symbols."
   ],
@@ -14953,14 +14959,14 @@
    "Grandwalker",
    "Kamen"
   ],
-  "text": "GWrule\n\n{{tk|Core Charge:|(Kamen & \"W\"/\"Accel\"/\"Skull\")}}\n◆When you summon/advent a target Spirit, you can put a core from the void onto this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void onto this Nexus.\n\n{{gs|3}} [LV1][LV2] Flash - (Either Attack Step)\n(Send three cores from this Nexus to the Void) Exhaust an opposing Spirit, and put a core from the Void to your Trash.\n\nGrand Field [LV2] (Your Attack Step)\nWhen only the opposing Spirit is destroyed by your Cost 6 or more \"W\"-named Spirit via BP comparison, you can refresh that Spirit you control.",
+  "text": "GWrule\n\nCore Charge: (Kamen & \"W\"/\"Accel\"/\"Skull\")\n◆When you summon/advent a target Spirit, you can put a core from the void onto this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void onto this Nexus.\n\n{{gs|3}} [LV1][LV2] Flash - (Either Attack Step)\n(Send three cores from this Nexus to the Void) Exhaust an opposing Spirit, and put a core from the Void to your Trash.\n\nGrand Field [LV2] (Your Attack Step)\nWhen only the opposing Spirit is destroyed by your Cost 6 or more \"W\"-named Spirit via BP comparison, you can refresh that Spirit you control.",
   "image": "PB46-RV008.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "GWrule",
-   "{{tk|Core Charge:|(Kamen & \"W\"/\"Accel\"/\"Skull\")}} ◆When you summon/advent a target Spirit, you can put a core from the void onto this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void onto this Nexus.",
+   "Core Charge: (Kamen & \"W\"/\"Accel\"/\"Skull\") ◆When you summon/advent a target Spirit, you can put a core from the void onto this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void onto this Nexus.",
    "{{gs|3}} [LV1][LV2] Flash - (Either Attack Step) (Send three cores from this Nexus to the Void) Exhaust an opposing Spirit, and put a core from the Void to your Trash.",
    "Grand Field [LV2] (Your Attack Step) When only the opposing Spirit is destroyed by your Cost 6 or more \"W\"-named Spirit via BP comparison, you can refresh that Spirit you control."
   ],
@@ -17540,7 +17546,7 @@
  },
  {
   "id": "PC11-003",
-  "name": "Type-3 Kiryu (Modified) High Mobility Type - Evangelion Production Model Unit-02 Specification -",
+  "name": "Type-3 Kiryu (Modified) High Mobility Type - Evangelion Unit-02 Spec -",
   "name_jp": "3式機龍〈改〉 高機動型 -エヴァンゲリオン 正規実用型 2号機仕様-",
   "type": "Spirit",
   "color": "red",
@@ -18252,13 +18258,13 @@
    "God-King",
    "Winged Beast"
   ],
-  "text": "{{Burst|s|After you or the opponent {{Seal|Seal}}}}\nSummon this card without paying the cost.\n\n[LV1-2-3] (When Summoned)\nYou can put three cores from the Void to any of your \"God-King\"/\"Ten Crown\" family Spirits.\n\n{{Seal|During Seal}} [LV3] (When Attacks)\nOnce per turn, at the end of battle, by sending an opposing Life to the Reserve, refresh this Spirit.",
+  "text": "S Burst: After you or the opponent Seal\nSummon this card without paying the cost.\n\n[LV1-2-3] (When Summoned)\nYou can put three cores from the Void to any of your \"God-King\"/\"Ten Crown\" family Spirits.\n\n{{Seal|During Seal}} [LV3] (When Attacks)\nOnce per turn, at the end of battle, by sending an opposing Life to the Reserve, refresh this Spirit.",
   "image": "PX16-03.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "{{Burst|s|After you or the opponent {{Seal|Seal}}}} Summon this card without paying the cost.",
+   "S Burst: After you or the opponent Seal Summon this card without paying the cost.",
    "[LV1-2-3] (When Summoned) You can put three cores from the Void to any of your \"God-King\"/\"Ten Crown\" family Spirits.",
    "{{Seal|During Seal}} [LV3] (When Attacks) Once per turn, at the end of battle, by sending an opposing Life to the Reserve, refresh this Spirit."
   ],
@@ -18331,13 +18337,13 @@
    "Superstar",
    "Galaxian"
   ],
-  "text": "{{tk|Core Charge:|(Superstar/Galaxian & Cost 3 or more) (Brave)}}\n◆When you summon/advent a target Spirit/Brave, you can +1 core to this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.\n\n[LV1][LV2]\nAdd to your Hand a \"Superstar\"/\"Galaxian\" family card sent to the Trash by this Nexus' Core Charge.\n\nGrand Field [LV1][LV2] (Your Attack Step)\n(Once per turn: Same Name) When your originally Cost 6 or more \"Superstar\"/\"Galaxian\" family Spirit destroys any opposing Spirit, by sending three cores from this Nexus to the Void, send an opposing Life to the Void.\n\nGrand Field [LV2]\nThis Nexus' God symbol is also treated as Red/Purple/Green/White/Yellow/Blue.",
+  "text": "Core Charge: (Superstar/Galaxian & Cost 3 or more) (Brave)\n◆When you summon/advent a target Spirit/Brave, you can +1 core to this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.\n\n[LV1][LV2]\nAdd to your Hand a \"Superstar\"/\"Galaxian\" family card sent to the Trash by this Nexus' Core Charge.\n\nGrand Field [LV1][LV2] (Your Attack Step)\n(Once per turn: Same Name) When your originally Cost 6 or more \"Superstar\"/\"Galaxian\" family Spirit destroys any opposing Spirit, by sending three cores from this Nexus to the Void, send an opposing Life to the Void.\n\nGrand Field [LV2]\nThis Nexus' God symbol is also treated as Red/Purple/Green/White/Yellow/Blue.",
   "image": "PX20-01.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "{{tk|Core Charge:|(Superstar/Galaxian & Cost 3 or more) (Brave)}} ◆When you summon/advent a target Spirit/Brave, you can +1 core to this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.",
+   "Core Charge: (Superstar/Galaxian & Cost 3 or more) (Brave) ◆When you summon/advent a target Spirit/Brave, you can +1 core to this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.",
    "[LV1][LV2] Add to your Hand a \"Superstar\"/\"Galaxian\" family card sent to the Trash by this Nexus' Core Charge.",
    "Grand Field [LV1][LV2] (Your Attack Step) (Once per turn: Same Name) When your originally Cost 6 or more \"Superstar\"/\"Galaxian\" family Spirit destroys any opposing Spirit, by sending three cores from this Nexus to the Void, send an opposing Life to the Void.",
    "Grand Field [LV2] This Nexus' God symbol is also treated as Red/Purple/Green/White/Yellow/Blue."
@@ -25484,14 +25490,14 @@
    "Ancient Dragon",
    "Ancient Dragon"
   ],
-  "text": "{{Sumcon|You control one or more Red Spirits}}\n\n{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}}\nWhen Ultimate Trigger hits, the opponent must block if possible. However, Ultimates don't have to block. If blocked by an opposing Spirit, send an opposing Life to their Reserve.\nutb\n\n[LV4][LV5] Flash - True-Awaken (When Attacks)\nBy sending a core from Spirits you control to this Ultimate, this Ultimate gains +3000 BP.",
+  "text": "{{Sumcon|You control one or more Red Spirits}}\n\nUltimate Trigger [LV3][LV4][LV5] (When Attacks)\nWhen Ultimate Trigger hits, the opponent must block if possible. However, Ultimates don't have to block. If blocked by an opposing Spirit, send an opposing Life to their Reserve.\nutb\n\n[LV4][LV5] Flash - True-Awaken (When Attacks)\nBy sending a core from Spirits you control to this Ultimate, this Ultimate gains +3000 BP.",
   "image": "SD19-X01.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "{{Sumcon|You control one or more Red Spirits}}",
-   "{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}} When Ultimate Trigger hits, the opponent must block if possible. However, Ultimates don't have to block. If blocked by an opposing Spirit, send an opposing Life to their Reserve. utb",
+   "Ultimate Trigger [LV3][LV4][LV5] (When Attacks) When Ultimate Trigger hits, the opponent must block if possible. However, Ultimates don't have to block. If blocked by an opposing Spirit, send an opposing Life to their Reserve. utb",
    "[LV4][LV5] Flash - True-Awaken (When Attacks) By sending a core from Spirits you control to this Ultimate, this Ultimate gains +3000 BP."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
@@ -25789,14 +25795,14 @@
    "Incarnate",
    "Armed Machine"
   ],
-  "text": "{{Sumcon|You control one or more White Spirits}}\n\n{{tk|Ultimate Trigger|[LV4] (When Attacks)}}\nWhen Ultimate Trigger hits, this Ultimate can't be blocked by opposing Spirits.\nutb",
+  "text": "{{Sumcon|You control one or more White Spirits}}\n\nUltimate Trigger [LV4] (When Attacks)\nWhen Ultimate Trigger hits, this Ultimate can't be blocked by opposing Spirits.\nutb",
   "image": "SD20-008.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "{{Sumcon|You control one or more White Spirits}}",
-   "{{tk|Ultimate Trigger|[LV4] (When Attacks)}} When Ultimate Trigger hits, this Ultimate can't be blocked by opposing Spirits. utb"
+   "Ultimate Trigger [LV4] (When Attacks) When Ultimate Trigger hits, this Ultimate can't be blocked by opposing Spirits. utb"
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
   "rcode": "U"
@@ -25830,14 +25836,14 @@
    "Incarnate",
    "Armed Machine"
   ],
-  "text": "{{Sumcon|You control one or more White Spirits}}\n\n{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}}\nWhen Ultimate Trigger hits, this Ultimate can't be blocked by opposing Spirits.\nutb",
+  "text": "{{Sumcon|You control one or more White Spirits}}\n\nUltimate Trigger [LV3][LV4][LV5] (When Attacks)\nWhen Ultimate Trigger hits, this Ultimate can't be blocked by opposing Spirits.\nutb",
   "image": "SD20-009.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "{{Sumcon|You control one or more White Spirits}}",
-   "{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}} When Ultimate Trigger hits, this Ultimate can't be blocked by opposing Spirits. utb"
+   "Ultimate Trigger [LV3][LV4][LV5] (When Attacks) When Ultimate Trigger hits, this Ultimate can't be blocked by opposing Spirits. utb"
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
   "rcode": "U"
@@ -25867,14 +25873,14 @@
    "Incarnate",
    "Armed Machine"
   ],
-  "text": "{{Sumcon|You control one or more White Spirits}}\n\n{{tk|Ultimate Trigger|[LV3][LV4] (When Attacks)}}\nWhen Ultimate Trigger hits, this Ultimate can't be blocked by opposing Spirits.\nutb\n\n[LV4] (Your End Step)\nThis Ultimate refreshes.",
+  "text": "{{Sumcon|You control one or more White Spirits}}\n\nUltimate Trigger [LV3][LV4] (When Attacks)\nWhen Ultimate Trigger hits, this Ultimate can't be blocked by opposing Spirits.\nutb\n\n[LV4] (Your End Step)\nThis Ultimate refreshes.",
   "image": "SD20-010.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "{{Sumcon|You control one or more White Spirits}}",
-   "{{tk|Ultimate Trigger|[LV3][LV4] (When Attacks)}} When Ultimate Trigger hits, this Ultimate can't be blocked by opposing Spirits. utb",
+   "Ultimate Trigger [LV3][LV4] (When Attacks) When Ultimate Trigger hits, this Ultimate can't be blocked by opposing Spirits. utb",
    "[LV4] (Your End Step) This Ultimate refreshes."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
@@ -26064,7 +26070,7 @@
    "Incarnate",
    "Armed Machine"
   ],
-  "text": "{{Sumcon|You control one or more White Spirits}}\n\n[LV3][LV4][LV5] (When Summoned)\nReturn an opposing Spirit to the Hand.\n\n{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}}\nWhen Ultimate Trigger hits, this Ultimate can't be blocked by opposing Spirits.\nutb\n\n[LV4][LV5] (Your End Step)\nThis Ultimate refreshes.",
+  "text": "{{Sumcon|You control one or more White Spirits}}\n\n[LV3][LV4][LV5] (When Summoned)\nReturn an opposing Spirit to the Hand.\n\nUltimate Trigger [LV3][LV4][LV5] (When Attacks)\nWhen Ultimate Trigger hits, this Ultimate can't be blocked by opposing Spirits.\nutb\n\n[LV4][LV5] (Your End Step)\nThis Ultimate refreshes.",
   "image": "SD20-X01.png",
   "block": "P",
   "saga": 60,
@@ -26072,7 +26078,7 @@
   "residual": [
    "{{Sumcon|You control one or more White Spirits}}",
    "[LV3][LV4][LV5] (When Summoned) Return an opposing Spirit to the Hand.",
-   "{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}} When Ultimate Trigger hits, this Ultimate can't be blocked by opposing Spirits. utb",
+   "Ultimate Trigger [LV3][LV4][LV5] (When Attacks) When Ultimate Trigger hits, this Ultimate can't be blocked by opposing Spirits. utb",
    "[LV4][LV5] (Your End Step) This Ultimate refreshes."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
@@ -26359,7 +26365,7 @@
    "Incarnate",
    "Blade Beast"
   ],
-  "text": "{{Sumcon|You control one or more Green Spirits}}\n\nFlash - High Speed\nThis Ultimate card in Hand can be summoned by paying the cost with cores in the Reserve. In this case, cores to be put on this Ultimate must also be from the Reserve.\n\n{{tk|Ultimate Trigger|[LV4] (When Battles)}}\nWhen Ultimate Trigger hits, if only the opposing Spirit is destroyed via comparing BP, refresh this Ultimate.\nutb",
+  "text": "{{Sumcon|You control one or more Green Spirits}}\n\nFlash - High Speed\nThis Ultimate card in Hand can be summoned by paying the cost with cores in the Reserve. In this case, cores to be put on this Ultimate must also be from the Reserve.\n\nUltimate Trigger [LV4] (When Battles)\nWhen Ultimate Trigger hits, if only the opposing Spirit is destroyed via comparing BP, refresh this Ultimate.\nutb",
   "image": "SD22-008.png",
   "block": "P",
   "saga": 60,
@@ -26367,7 +26373,7 @@
   "residual": [
    "{{Sumcon|You control one or more Green Spirits}}",
    "Flash - High Speed This Ultimate card in Hand can be summoned by paying the cost with cores in the Reserve. In this case, cores to be put on this Ultimate must also be from the Reserve.",
-   "{{tk|Ultimate Trigger|[LV4] (When Battles)}} When Ultimate Trigger hits, if only the opposing Spirit is destroyed via comparing BP, refresh this Ultimate. utb"
+   "Ultimate Trigger [LV4] (When Battles) When Ultimate Trigger hits, if only the opposing Spirit is destroyed via comparing BP, refresh this Ultimate. utb"
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
   "rcode": "U"
@@ -26401,14 +26407,14 @@
    "Incarnate",
    "Shellman"
   ],
-  "text": "{{Sumcon|You control one or more Green Spirits}}\n\n{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}}\nWhen Ultimate-Trigger hits, you can summon a Spirit card/Ultimate card with High Speed from your Hand without paying the cost.\nutb",
+  "text": "{{Sumcon|You control one or more Green Spirits}}\n\nUltimate Trigger [LV3][LV4][LV5] (When Attacks)\nWhen Ultimate-Trigger hits, you can summon a Spirit card/Ultimate card with High Speed from your Hand without paying the cost.\nutb",
   "image": "SD22-009.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "{{Sumcon|You control one or more Green Spirits}}",
-   "{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}} When Ultimate-Trigger hits, you can summon a Spirit card/Ultimate card with High Speed from your Hand without paying the cost. utb"
+   "Ultimate Trigger [LV3][LV4][LV5] (When Attacks) When Ultimate-Trigger hits, you can summon a Spirit card/Ultimate card with High Speed from your Hand without paying the cost. utb"
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
   "rcode": "U"
@@ -26442,14 +26448,14 @@
    "Incarnate",
    "Blade Beast"
   ],
-  "text": "{{Sumcon|You control one or more Green Spirits}}\n\n{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}}\nWhen Ultimate Trigger hits, the opponent exhausts two Spirits they control.\nutb\n\n[LV4][LV5] (When Battles)\nThe opponent can't activate their Burst.",
+  "text": "{{Sumcon|You control one or more Green Spirits}}\n\nUltimate Trigger [LV3][LV4][LV5] (When Attacks)\nWhen Ultimate Trigger hits, the opponent exhausts two Spirits they control.\nutb\n\n[LV4][LV5] (When Battles)\nThe opponent can't activate their Burst.",
   "image": "SD22-010.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "{{Sumcon|You control one or more Green Spirits}}",
-   "{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}} When Ultimate Trigger hits, the opponent exhausts two Spirits they control. utb",
+   "Ultimate Trigger [LV3][LV4][LV5] (When Attacks) When Ultimate Trigger hits, the opponent exhausts two Spirits they control. utb",
    "[LV4][LV5] (When Battles) The opponent can't activate their Burst."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
@@ -26650,14 +26656,14 @@
    "Incarnate",
    "Blade Beast"
   ],
-  "text": "{{Sumcon|You control one or more Green Spirits}}\n\n{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}}\nWhen Ultimate Trigger hits, the opponent exhausts two Spirits they control. Critical Hit If the hit card is Cost 3 or less, also, send an opposing Life to their Reserve.\nutb\n\n[LV4][LV5] (When Attacks)\nFor each core on this Ultimate, this Ultimate gets +1000 BP.",
+  "text": "{{Sumcon|You control one or more Green Spirits}}\n\nUltimate Trigger [LV3][LV4][LV5] (When Attacks)\nWhen Ultimate Trigger hits, the opponent exhausts two Spirits they control. Critical Hit If the hit card is Cost 3 or less, also, send an opposing Life to their Reserve.\nutb\n\n[LV4][LV5] (When Attacks)\nFor each core on this Ultimate, this Ultimate gets +1000 BP.",
   "image": "SD22-X01.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "{{Sumcon|You control one or more Green Spirits}}",
-   "{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}} When Ultimate Trigger hits, the opponent exhausts two Spirits they control. Critical Hit If the hit card is Cost 3 or less, also, send an opposing Life to their Reserve. utb",
+   "Ultimate Trigger [LV3][LV4][LV5] (When Attacks) When Ultimate Trigger hits, the opponent exhausts two Spirits they control. Critical Hit If the hit card is Cost 3 or less, also, send an opposing Life to their Reserve. utb",
    "[LV4][LV5] (When Attacks) For each core on this Ultimate, this Ultimate gets +1000 BP."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
@@ -26949,14 +26955,14 @@
    "Incarnate",
    "Divine Spirit"
   ],
-  "text": "{{Sumcon|You control one or more Yellow Spirits}}\n\n{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}}\nWhen Ultimate Trigger hits, during this battle, give an opposing Spirit -5000 BP. When this Ultimate is blocked by opposing Spirits, send a core from the opposing Life to their Reserve.\nutb",
+  "text": "{{Sumcon|You control one or more Yellow Spirits}}\n\nUltimate Trigger [LV3][LV4][LV5] (When Attacks)\nWhen Ultimate Trigger hits, during this battle, give an opposing Spirit -5000 BP. When this Ultimate is blocked by opposing Spirits, send a core from the opposing Life to their Reserve.\nutb",
   "image": "SD23-008.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "{{Sumcon|You control one or more Yellow Spirits}}",
-   "{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}} When Ultimate Trigger hits, during this battle, give an opposing Spirit -5000 BP. When this Ultimate is blocked by opposing Spirits, send a core from the opposing Life to their Reserve. utb"
+   "Ultimate Trigger [LV3][LV4][LV5] (When Attacks) When Ultimate Trigger hits, during this battle, give an opposing Spirit -5000 BP. When this Ultimate is blocked by opposing Spirits, send a core from the opposing Life to their Reserve. utb"
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
   "rcode": "C"
@@ -26986,7 +26992,7 @@
    "Incarnate",
    "Divine Spirit"
   ],
-  "text": "{{Sumcon| You control onr or more Yellow Spirits}}\n\n[LV3][LV4] (When Battles)\nThe cost of all Magic cards in your Hand gets -1.\n\n{{tk|Ultimate Trigger|[LV3][LV4] (When Attacks)}}\nWhen Ultimate Trigger hits, during this battle, give an opposing Spirit -10000 BP. If this Ultimate is blocked by opposing Spirits, send a core from the opposing Life to their Reserve.\nutb",
+  "text": "{{Sumcon| You control onr or more Yellow Spirits}}\n\n[LV3][LV4] (When Battles)\nThe cost of all Magic cards in your Hand gets -1.\n\nUltimate Trigger [LV3][LV4] (When Attacks)\nWhen Ultimate Trigger hits, during this battle, give an opposing Spirit -10000 BP. If this Ultimate is blocked by opposing Spirits, send a core from the opposing Life to their Reserve.\nutb",
   "image": "SD23-009.png",
   "block": "P",
   "saga": 60,
@@ -26994,7 +27000,7 @@
   "residual": [
    "{{Sumcon| You control onr or more Yellow Spirits}}",
    "[LV3][LV4] (When Battles) The cost of all Magic cards in your Hand gets -1.",
-   "{{tk|Ultimate Trigger|[LV3][LV4] (When Attacks)}} When Ultimate Trigger hits, during this battle, give an opposing Spirit -10000 BP. If this Ultimate is blocked by opposing Spirits, send a core from the opposing Life to their Reserve. utb"
+   "Ultimate Trigger [LV3][LV4] (When Attacks) When Ultimate Trigger hits, during this battle, give an opposing Spirit -10000 BP. If this Ultimate is blocked by opposing Spirits, send a core from the opposing Life to their Reserve. utb"
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
   "rcode": "U"
@@ -27028,14 +27034,14 @@
    "Incarnate",
    "Divine Spirit"
   ],
-  "text": "{{Sumcon|You control one or more Yellow Spirits}}\n\n{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}}\nWhen Ultimate Trigger hits, during this battle, give an opposing Spirit -10000 BP. If that opposing Spirit is brought to 0 BP, destroy that Spirit.\nutb\n\n[LV5] Brilliance (When Attacks)\nAt the end of battle, return all Magic cards you used during this battle to your Hand.",
+  "text": "{{Sumcon|You control one or more Yellow Spirits}}\n\nUltimate Trigger [LV3][LV4][LV5] (When Attacks)\nWhen Ultimate Trigger hits, during this battle, give an opposing Spirit -10000 BP. If that opposing Spirit is brought to 0 BP, destroy that Spirit.\nutb\n\n[LV5] Brilliance (When Attacks)\nAt the end of battle, return all Magic cards you used during this battle to your Hand.",
   "image": "SD23-010.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "{{Sumcon|You control one or more Yellow Spirits}}",
-   "{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}} When Ultimate Trigger hits, during this battle, give an opposing Spirit -10000 BP. If that opposing Spirit is brought to 0 BP, destroy that Spirit. utb",
+   "Ultimate Trigger [LV3][LV4][LV5] (When Attacks) When Ultimate Trigger hits, during this battle, give an opposing Spirit -10000 BP. If that opposing Spirit is brought to 0 BP, destroy that Spirit. utb",
    "[LV5] Brilliance (When Attacks) At the end of battle, return all Magic cards you used during this battle to your Hand."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
@@ -27225,14 +27231,14 @@
    "Incarnate",
    "Divine Spirit"
   ],
-  "text": "{{Sumcon|You control one or more Yellow Spirits}}\n\n{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}}\nWhen Ultimate Trigger hits, this Ultimate can't be blocked by opposing Spirits/Ultimates with LV inferior to this Ultimate's. Critical Hit If the hit card is a Magic card, also, return every Magic card of one single color from your Trash to the Hand.\nutb\n\n[LV4][LV5] (When Battles)\nDuring this turn, give an opposing Spirit/Ultimate -3000 BP.",
+  "text": "{{Sumcon|You control one or more Yellow Spirits}}\n\nUltimate Trigger [LV3][LV4][LV5] (When Attacks)\nWhen Ultimate Trigger hits, this Ultimate can't be blocked by opposing Spirits/Ultimates with LV inferior to this Ultimate's. Critical Hit If the hit card is a Magic card, also, return every Magic card of one single color from your Trash to the Hand.\nutb\n\n[LV4][LV5] (When Battles)\nDuring this turn, give an opposing Spirit/Ultimate -3000 BP.",
   "image": "SD23-X01.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "{{Sumcon|You control one or more Yellow Spirits}}",
-   "{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}} When Ultimate Trigger hits, this Ultimate can't be blocked by opposing Spirits/Ultimates with LV inferior to this Ultimate's. Critical Hit If the hit card is a Magic card, also, return every Magic card of one single color from your Trash to the Hand. utb",
+   "Ultimate Trigger [LV3][LV4][LV5] (When Attacks) When Ultimate Trigger hits, this Ultimate can't be blocked by opposing Spirits/Ultimates with LV inferior to this Ultimate's. Critical Hit If the hit card is a Magic card, also, return every Magic card of one single color from your Trash to the Hand. utb",
    "[LV4][LV5] (When Battles) During this turn, give an opposing Spirit/Ultimate -3000 BP."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
@@ -27539,7 +27545,7 @@
    "Next Generation",
    "Fighting Spirit"
   ],
-  "text": "{{Sumcon|You control one or more Cost 1 or higher Spirits}}\n\n[LV3][LV4][LV5] (Opposing Attack Step)\nOpposing Cost 3 or less Spirits can't attack.\n\n{{tk|Ultimate Trigger|[LV4][LV5] (When Attacks)}}\nWhen Ultimate Trigger hits, draw two cards. Then, discard a card from your Hand.\nutb",
+  "text": "{{Sumcon|You control one or more Cost 1 or higher Spirits}}\n\n[LV3][LV4][LV5] (Opposing Attack Step)\nOpposing Cost 3 or less Spirits can't attack.\n\nUltimate Trigger [LV4][LV5] (When Attacks)\nWhen Ultimate Trigger hits, draw two cards. Then, discard a card from your Hand.\nutb",
   "image": "SD24-008.png",
   "block": "P",
   "saga": 60,
@@ -27547,7 +27553,7 @@
   "residual": [
    "{{Sumcon|You control one or more Cost 1 or higher Spirits}}",
    "[LV3][LV4][LV5] (Opposing Attack Step) Opposing Cost 3 or less Spirits can't attack.",
-   "{{tk|Ultimate Trigger|[LV4][LV5] (When Attacks)}} When Ultimate Trigger hits, draw two cards. Then, discard a card from your Hand. utb"
+   "Ultimate Trigger [LV4][LV5] (When Attacks) When Ultimate Trigger hits, draw two cards. Then, discard a card from your Hand. utb"
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
   "rcode": "U"
@@ -27577,7 +27583,7 @@
    "Next Generation",
    "Fighting Spirit"
   ],
-  "text": "{{Sumcon|You control one or more Cost 1 or higher Spirits}}\n\n[LV3][LV4] (When Summoned)\nYou can reveal three cards from the opposing decktop. Discard a card from among them. Return the remaining cards to their decktop in any order.\n\n{{tk|Ultimate Trigger|[LV4] (When Attacks)}}\nWhen Ultimate Trigger hits, discard an opposing Burst. If it is a Magic card, send an opposing Life to their Reserve.\nutb",
+  "text": "{{Sumcon|You control one or more Cost 1 or higher Spirits}}\n\n[LV3][LV4] (When Summoned)\nYou can reveal three cards from the opposing decktop. Discard a card from among them. Return the remaining cards to their decktop in any order.\n\nUltimate Trigger [LV4] (When Attacks)\nWhen Ultimate Trigger hits, discard an opposing Burst. If it is a Magic card, send an opposing Life to their Reserve.\nutb",
   "image": "SD24-009.png",
   "block": "P",
   "saga": 60,
@@ -27585,7 +27591,7 @@
   "residual": [
    "{{Sumcon|You control one or more Cost 1 or higher Spirits}}",
    "[LV3][LV4] (When Summoned) You can reveal three cards from the opposing decktop. Discard a card from among them. Return the remaining cards to their decktop in any order.",
-   "{{tk|Ultimate Trigger|[LV4] (When Attacks)}} When Ultimate Trigger hits, discard an opposing Burst. If it is a Magic card, send an opposing Life to their Reserve. utb"
+   "Ultimate Trigger [LV4] (When Attacks) When Ultimate Trigger hits, discard an opposing Burst. If it is a Magic card, send an opposing Life to their Reserve. utb"
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
   "rcode": "M"
@@ -27619,7 +27625,7 @@
    "Next Generation",
    "Fighting Spirit"
   ],
-  "text": "{{Sumcon|You control one or more Cost 1 or higher Spirits}}\n\n[LV3][LV4][LV5]\nThe cost of the Braves on either player's Brave Spirits are treated as 0.\n\n{{tk|Ultimate Trigger|[LV4][LV5] (When Attacks)}}\nWhen Ultimate Trigger hits, destroy an opposing Cost 6 or less Spirit.\nutb",
+  "text": "{{Sumcon|You control one or more Cost 1 or higher Spirits}}\n\n[LV3][LV4][LV5]\nThe cost of the Braves on either player's Brave Spirits are treated as 0.\n\nUltimate Trigger [LV4][LV5] (When Attacks)\nWhen Ultimate Trigger hits, destroy an opposing Cost 6 or less Spirit.\nutb",
   "image": "SD24-010.png",
   "block": "P",
   "saga": 60,
@@ -27627,7 +27633,7 @@
   "residual": [
    "{{Sumcon|You control one or more Cost 1 or higher Spirits}}",
    "[LV3][LV4][LV5] The cost of the Braves on either player's Brave Spirits are treated as 0.",
-   "{{tk|Ultimate Trigger|[LV4][LV5] (When Attacks)}} When Ultimate Trigger hits, destroy an opposing Cost 6 or less Spirit. utb"
+   "Ultimate Trigger [LV4][LV5] (When Attacks) When Ultimate Trigger hits, destroy an opposing Cost 6 or less Spirit. utb"
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
   "rcode": "U"
@@ -28008,7 +28014,7 @@
    "Incarnate",
    "Flying Fang"
   ],
-  "text": "{{Sumcon|You control one or more Red Spirits}}\n\n[LV3][LV4][LV5] (When Summoned)\nDestroy a Brave on an opposing Brave Spirit.\n\n{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}}\nWhen Ultimate Trigger hits, the opponent must block with their Spirits/Ultimates if possible. When blocked by an opposing Spirit, send an opposing Life to their Reserve.\nutb",
+  "text": "{{Sumcon|You control one or more Red Spirits}}\n\n[LV3][LV4][LV5] (When Summoned)\nDestroy a Brave on an opposing Brave Spirit.\n\nUltimate Trigger [LV3][LV4][LV5] (When Attacks)\nWhen Ultimate Trigger hits, the opponent must block with their Spirits/Ultimates if possible. When blocked by an opposing Spirit, send an opposing Life to their Reserve.\nutb",
   "image": "SD25-005.png",
   "block": "P",
   "saga": 60,
@@ -28016,7 +28022,7 @@
   "residual": [
    "{{Sumcon|You control one or more Red Spirits}}",
    "[LV3][LV4][LV5] (When Summoned) Destroy a Brave on an opposing Brave Spirit.",
-   "{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}} When Ultimate Trigger hits, the opponent must block with their Spirits/Ultimates if possible. When blocked by an opposing Spirit, send an opposing Life to their Reserve. utb"
+   "Ultimate Trigger [LV3][LV4][LV5] (When Attacks) When Ultimate Trigger hits, the opponent must block with their Spirits/Ultimates if possible. When blocked by an opposing Spirit, send an opposing Life to their Reserve. utb"
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
   "rcode": "U"
@@ -28143,14 +28149,14 @@
    "Galaxian",
    "Galaxian"
   ],
-  "text": "{{Sumcon|You control one or more Red Spirits}}\n\n{{tk|Double Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}}\nFor each Ultimate Trigger hit, destroy an opposing 15000 BP or less Spirit. Double Hit If it hits twice, also, this Ultimate gains an extra Ultimate symbol.\nwutb\n\n[LV4][LV5] (When Attacks)\nTarget an opposing Spirit. You can attack that Spirit. When the Ultimate Trigger hits, and the targeted Spirit is destroyed, send an opposing Life to the Reserve.",
+  "text": "{{Sumcon|You control one or more Red Spirits}}\n\nDouble Ultimate Trigger [LV3][LV4][LV5] (When Attacks)\nFor each Ultimate Trigger hit, destroy an opposing 15000 BP or less Spirit. Double Hit If it hits twice, also, this Ultimate gains an extra Ultimate symbol.\nwutb\n\n[LV4][LV5] (When Attacks)\nTarget an opposing Spirit. You can attack that Spirit. When the Ultimate Trigger hits, and the targeted Spirit is destroyed, send an opposing Life to the Reserve.",
   "image": "SD25-X02.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "{{Sumcon|You control one or more Red Spirits}}",
-   "{{tk|Double Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}} For each Ultimate Trigger hit, destroy an opposing 15000 BP or less Spirit. Double Hit If it hits twice, also, this Ultimate gains an extra Ultimate symbol. wutb",
+   "Double Ultimate Trigger [LV3][LV4][LV5] (When Attacks) For each Ultimate Trigger hit, destroy an opposing 15000 BP or less Spirit. Double Hit If it hits twice, also, this Ultimate gains an extra Ultimate symbol. wutb",
    "[LV4][LV5] (When Attacks) Target an opposing Spirit. You can attack that Spirit. When the Ultimate Trigger hits, and the targeted Spirit is destroyed, send an opposing Life to the Reserve."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
@@ -28372,14 +28378,14 @@
    "Incarnate",
    "Astral Dragon"
   ],
-  "text": "{{Sumcon|You control one or more Red Spirits}}\n\n{{tk|Ultimate Trigger|[LV3][LV4] (When Attacks)}}\nWhen Ultimate Trigger hits, the opponent must block if possible. However, Ultimates don't have to block. When blocked by an opposing Spirit, send a core from the opposing Life to their Reserve.\nutb\n\n[LV4]\nIncrease the limit of your Ultimate's \"BP Destruction effects\" by +2000.",
+  "text": "{{Sumcon|You control one or more Red Spirits}}\n\nUltimate Trigger [LV3][LV4] (When Attacks)\nWhen Ultimate Trigger hits, the opponent must block if possible. However, Ultimates don't have to block. When blocked by an opposing Spirit, send a core from the opposing Life to their Reserve.\nutb\n\n[LV4]\nIncrease the limit of your Ultimate's \"BP Destruction effects\" by +2000.",
   "image": "SD26-006.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "{{Sumcon|You control one or more Red Spirits}}",
-   "{{tk|Ultimate Trigger|[LV3][LV4] (When Attacks)}} When Ultimate Trigger hits, the opponent must block if possible. However, Ultimates don't have to block. When blocked by an opposing Spirit, send a core from the opposing Life to their Reserve. utb",
+   "Ultimate Trigger [LV3][LV4] (When Attacks) When Ultimate Trigger hits, the opponent must block if possible. However, Ultimates don't have to block. When blocked by an opposing Spirit, send a core from the opposing Life to their Reserve. utb",
    "[LV4] Increase the limit of your Ultimate's \"BP Destruction effects\" by +2000."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
@@ -28410,14 +28416,14 @@
    "Next Generation",
    "Dragon"
   ],
-  "text": "{{Sumcon|You control one or more Cost 1 or higher Spirits}}\n\n{{tk|Ultimate Trigger|[LV3][LV4] (When Battles)}}\nWhen Ultimate Trigger hits, this Ultimate gains +10000 BP.\nutb\n\n[LV4] (Your Attack Step)\nWhen your \"Ryuuman\"-named Spirit/Ultimate attacks, draw a card. This effect doesn't stack.",
+  "text": "{{Sumcon|You control one or more Cost 1 or higher Spirits}}\n\nUltimate Trigger [LV3][LV4] (When Battles)\nWhen Ultimate Trigger hits, this Ultimate gains +10000 BP.\nutb\n\n[LV4] (Your Attack Step)\nWhen your \"Ryuuman\"-named Spirit/Ultimate attacks, draw a card. This effect doesn't stack.",
   "image": "SD26-007.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "{{Sumcon|You control one or more Cost 1 or higher Spirits}}",
-   "{{tk|Ultimate Trigger|[LV3][LV4] (When Battles)}} When Ultimate Trigger hits, this Ultimate gains +10000 BP. utb",
+   "Ultimate Trigger [LV3][LV4] (When Battles) When Ultimate Trigger hits, this Ultimate gains +10000 BP. utb",
    "[LV4] (Your Attack Step) When your \"Ryuuman\"-named Spirit/Ultimate attacks, draw a card. This effect doesn't stack."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
@@ -28453,7 +28459,7 @@
    "Fencer",
    "Terra Dragon"
   ],
-  "text": "{{Sumcon|You control one or more Red Spirits}}\n\n[LV3][LV4][LV5] (When Summoned)\nReturn an \"Exalted Sword\" family Brave card from your Trash to your Hand.\n\nWhen Braved {{tk|Ultimate Trigger|[LV4][LV5] (When Brave Attacks)}}\nWhen Ultimate Trigger hits, destroy an opposing 10000 BP or less Spirit/Ultimate.\nutb",
+  "text": "{{Sumcon|You control one or more Red Spirits}}\n\n[LV3][LV4][LV5] (When Summoned)\nReturn an \"Exalted Sword\" family Brave card from your Trash to your Hand.\n\nWhen Braved Ultimate Trigger [LV4][LV5] (When Brave Attacks)\nWhen Ultimate Trigger hits, destroy an opposing 10000 BP or less Spirit/Ultimate.\nutb",
   "image": "SD26-008.png",
   "block": "P",
   "saga": 60,
@@ -28461,7 +28467,7 @@
   "residual": [
    "{{Sumcon|You control one or more Red Spirits}}",
    "[LV3][LV4][LV5] (When Summoned) Return an \"Exalted Sword\" family Brave card from your Trash to your Hand.",
-   "When Braved {{tk|Ultimate Trigger|[LV4][LV5] (When Brave Attacks)}} When Ultimate Trigger hits, destroy an opposing 10000 BP or less Spirit/Ultimate. utb"
+   "When Braved Ultimate Trigger [LV4][LV5] (When Brave Attacks) When Ultimate Trigger hits, destroy an opposing 10000 BP or less Spirit/Ultimate. utb"
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
   "rcode": "M"
@@ -28700,7 +28706,7 @@
    "Incarnate",
    "Astral Dragon"
   ],
-  "text": "{{Sumcon|You control one or more Red Spirits}}\n\nWhen Braved [LV3][LV4][LV5]\nThis Ultimate gains an extra Red symbol.\n\n{{tk|Ultimate Trigger|[LV4][LV5] (When Attacks)}}\nWhen Ultimate-Trigger hits, destroy an opposing 7000 BP or less Spirit. When this Ultimate is braved, destroy an opposing 15000 BP or less Spirit/Ultimate instead.\nutb",
+  "text": "{{Sumcon|You control one or more Red Spirits}}\n\nWhen Braved [LV3][LV4][LV5]\nThis Ultimate gains an extra Red symbol.\n\nUltimate Trigger [LV4][LV5] (When Attacks)\nWhen Ultimate-Trigger hits, destroy an opposing 7000 BP or less Spirit. When this Ultimate is braved, destroy an opposing 15000 BP or less Spirit/Ultimate instead.\nutb",
   "image": "SD26-X01.png",
   "block": "P",
   "saga": 60,
@@ -28708,7 +28714,7 @@
   "residual": [
    "{{Sumcon|You control one or more Red Spirits}}",
    "When Braved [LV3][LV4][LV5] This Ultimate gains an extra Red symbol.",
-   "{{tk|Ultimate Trigger|[LV4][LV5] (When Attacks)}} When Ultimate-Trigger hits, destroy an opposing 7000 BP or less Spirit. When this Ultimate is braved, destroy an opposing 15000 BP or less Spirit/Ultimate instead. utb"
+   "Ultimate Trigger [LV4][LV5] (When Attacks) When Ultimate-Trigger hits, destroy an opposing 7000 BP or less Spirit. When this Ultimate is braved, destroy an opposing 15000 BP or less Spirit/Ultimate instead. utb"
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
   "rcode": "X"
@@ -28937,7 +28943,7 @@
    "Next Generation",
    "Astral Deity"
   ],
-  "text": "{{Sumcon|You control one or more Cost 1 or higher Spirits}}\n\n[LV3][LV4][LV5] (Your Turn)\nWhen your \"Galaxian\" family Spirit effects would target opposing Spirits, you can also target opposing Ultimates.\n\n{{tk|Ultimate Trigger|[LV4][LV5] (When Attacks)}}\nWhen Ultimate Trigger hits, return a Spirit card from your Trash to your Hand.\nutb",
+  "text": "{{Sumcon|You control one or more Cost 1 or higher Spirits}}\n\n[LV3][LV4][LV5] (Your Turn)\nWhen your \"Galaxian\" family Spirit effects would target opposing Spirits, you can also target opposing Ultimates.\n\nUltimate Trigger [LV4][LV5] (When Attacks)\nWhen Ultimate Trigger hits, return a Spirit card from your Trash to your Hand.\nutb",
   "image": "SD27-005.png",
   "block": "P",
   "saga": 60,
@@ -28945,7 +28951,7 @@
   "residual": [
    "{{Sumcon|You control one or more Cost 1 or higher Spirits}}",
    "[LV3][LV4][LV5] (Your Turn) When your \"Galaxian\" family Spirit effects would target opposing Spirits, you can also target opposing Ultimates.",
-   "{{tk|Ultimate Trigger|[LV4][LV5] (When Attacks)}} When Ultimate Trigger hits, return a Spirit card from your Trash to your Hand. utb"
+   "Ultimate Trigger [LV4][LV5] (When Attacks) When Ultimate Trigger hits, return a Spirit card from your Trash to your Hand. utb"
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
   "rcode": "M"
@@ -29014,7 +29020,7 @@
    "Next Generation",
    "Astral Deity"
   ],
-  "text": "{{Sumcon|You control one or more Cost 3 or higher Spirits}}\n\n{{Burst|After your Life is reduced}}\nSummon this Ultimate card without paying the cost. Then, if your Life is three or less, destroy an opposing 12000 BP or less Spirit/Ultimate.\n\n{{tk|Ultimate Trigger|[LV4][LV5] (When Attacks)}}\nWhen Ultimate Trigger hits, destroy every opposing Nexus, and draw two cards.\nutb",
+  "text": "{{Sumcon|You control one or more Cost 3 or higher Spirits}}\n\n{{Burst|After your Life is reduced}}\nSummon this Ultimate card without paying the cost. Then, if your Life is three or less, destroy an opposing 12000 BP or less Spirit/Ultimate.\n\nUltimate Trigger [LV4][LV5] (When Attacks)\nWhen Ultimate Trigger hits, destroy every opposing Nexus, and draw two cards.\nutb",
   "image": "SD27-X01.png",
   "block": "P",
   "saga": 60,
@@ -29022,7 +29028,7 @@
   "residual": [
    "{{Sumcon|You control one or more Cost 3 or higher Spirits}}",
    "{{Burst|After your Life is reduced}} Summon this Ultimate card without paying the cost. Then, if your Life is three or less, destroy an opposing 12000 BP or less Spirit/Ultimate.",
-   "{{tk|Ultimate Trigger|[LV4][LV5] (When Attacks)}} When Ultimate Trigger hits, destroy every opposing Nexus, and draw two cards. utb"
+   "Ultimate Trigger [LV4][LV5] (When Attacks) When Ultimate Trigger hits, destroy every opposing Nexus, and draw two cards. utb"
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
   "rcode": "X"
@@ -29056,14 +29062,14 @@
    "Incarnate",
    "Astral Deity"
   ],
-  "text": "{{Sumcon|You control one or more Red Spirit/Ultimate}}\n\n{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}}\nWhen Ultimate Trigger hits, reveal up to twelve cards from your decktop. Summon any number of \"Galaxian\" family Spirit cards from among them, without paying the cost. Discard any remaining cards.\nutb\n\n[LV4][LV5]\nAll your \"Galaxian\" family Spirits are treated as being on their highest LVs, and gain +5000 BP.",
+  "text": "{{Sumcon|You control one or more Red Spirit/Ultimate}}\n\nUltimate Trigger [LV3][LV4][LV5] (When Attacks)\nWhen Ultimate Trigger hits, reveal up to twelve cards from your decktop. Summon any number of \"Galaxian\" family Spirit cards from among them, without paying the cost. Discard any remaining cards.\nutb\n\n[LV4][LV5]\nAll your \"Galaxian\" family Spirits are treated as being on their highest LVs, and gain +5000 BP.",
   "image": "SD27-X02.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "{{Sumcon|You control one or more Red Spirit/Ultimate}}",
-   "{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}} When Ultimate Trigger hits, reveal up to twelve cards from your decktop. Summon any number of \"Galaxian\" family Spirit cards from among them, without paying the cost. Discard any remaining cards. utb",
+   "Ultimate Trigger [LV3][LV4][LV5] (When Attacks) When Ultimate Trigger hits, reveal up to twelve cards from your decktop. Summon any number of \"Galaxian\" family Spirit cards from among them, without paying the cost. Discard any remaining cards. utb",
    "[LV4][LV5] All your \"Galaxian\" family Spirits are treated as being on their highest LVs, and gain +5000 BP."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
@@ -29312,7 +29318,7 @@
    "Next Generation",
    "Shellman"
   ],
-  "text": "{{Sumcon| You control one or more Cost 1 or higher Spirits}}\n\n[LV3][LV4]\nIgnore the summon conditions of all your Green Ultimate cards. The Ultimate symbols of all your \"Shellman\" family Ultimates are also treated as Green symbols.\n\n{{tk|Ultimate Trigger|[LV4] (When Attacks)}}\nWhen Ultimate-Trigger hits, exhaust two opposing Spirits.\nutb",
+  "text": "{{Sumcon| You control one or more Cost 1 or higher Spirits}}\n\n[LV3][LV4]\nIgnore the summon conditions of all your Green Ultimate cards. The Ultimate symbols of all your \"Shellman\" family Ultimates are also treated as Green symbols.\n\nUltimate Trigger [LV4] (When Attacks)\nWhen Ultimate-Trigger hits, exhaust two opposing Spirits.\nutb",
   "image": "SD28-007.png",
   "block": "P",
   "saga": 60,
@@ -29320,7 +29326,7 @@
   "residual": [
    "{{Sumcon| You control one or more Cost 1 or higher Spirits}}",
    "[LV3][LV4] Ignore the summon conditions of all your Green Ultimate cards. The Ultimate symbols of all your \"Shellman\" family Ultimates are also treated as Green symbols.",
-   "{{tk|Ultimate Trigger|[LV4] (When Attacks)}} When Ultimate-Trigger hits, exhaust two opposing Spirits. utb"
+   "Ultimate Trigger [LV4] (When Attacks) When Ultimate-Trigger hits, exhaust two opposing Spirits. utb"
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
   "rcode": "C"
@@ -29351,7 +29357,7 @@
    "Fencer",
    "Shellman"
   ],
-  "text": "{{Sumcon|You control one or more Cost 1 or higher Spirits}}\n\n[LV3][LV4] (When Battles)\nExhaust an opposing Cost 5 or less Spirit.\n\nWhen Braved {{tk|Ultimate Trigger|[LV4] (When this Ultimate Brave Attacks)}}\nWhen Ultimate Trigger hits, return an opposing exhausted Spirit to the decktop.\nutb",
+  "text": "{{Sumcon|You control one or more Cost 1 or higher Spirits}}\n\n[LV3][LV4] (When Battles)\nExhaust an opposing Cost 5 or less Spirit.\n\nWhen Braved Ultimate Trigger [LV4] (When this Ultimate Brave Attacks)\nWhen Ultimate Trigger hits, return an opposing exhausted Spirit to the decktop.\nutb",
   "image": "SD28-008.png",
   "block": "P",
   "saga": 60,
@@ -29359,7 +29365,7 @@
   "residual": [
    "{{Sumcon|You control one or more Cost 1 or higher Spirits}}",
    "[LV3][LV4] (When Battles) Exhaust an opposing Cost 5 or less Spirit.",
-   "When Braved {{tk|Ultimate Trigger|[LV4] (When this Ultimate Brave Attacks)}} When Ultimate Trigger hits, return an opposing exhausted Spirit to the decktop. utb"
+   "When Braved Ultimate Trigger [LV4] (When this Ultimate Brave Attacks) When Ultimate Trigger hits, return an opposing exhausted Spirit to the decktop. utb"
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
   "rcode": "C"
@@ -29393,7 +29399,7 @@
    "Next Generation",
    "Shellman"
   ],
-  "text": "{{Sumcon|You control one or more Cost 3 or higher Spirits}}\n\n[LV3][LV4][LV5] (When Summoned)\nPut two cores from the Void to this Ultimate.\n\n{{tk|Ultimate Trigger|[LV4][LV5] (When Attacks)}}\nWhen Ultimate Trigger hits, exhaust two opposing Spirits. After Ultimate Trigger, if your Life is at three or less, proceed to Cross Ultimate Trigger.\nCross Ultimate Trigger When Cross Ultimate Trigger hits, send an opposing Life to their Trash.\nxutb",
+  "text": "{{Sumcon|You control one or more Cost 3 or higher Spirits}}\n\n[LV3][LV4][LV5] (When Summoned)\nPut two cores from the Void to this Ultimate.\n\nUltimate Trigger [LV4][LV5] (When Attacks)\nWhen Ultimate Trigger hits, exhaust two opposing Spirits. After Ultimate Trigger, if your Life is at three or less, proceed to Cross Ultimate Trigger.\nCross Ultimate Trigger When Cross Ultimate Trigger hits, send an opposing Life to their Trash.\nxutb",
   "image": "SD28-009.png",
   "block": "P",
   "saga": 60,
@@ -29401,7 +29407,7 @@
   "residual": [
    "{{Sumcon|You control one or more Cost 3 or higher Spirits}}",
    "[LV3][LV4][LV5] (When Summoned) Put two cores from the Void to this Ultimate.",
-   "{{tk|Ultimate Trigger|[LV4][LV5] (When Attacks)}} When Ultimate Trigger hits, exhaust two opposing Spirits. After Ultimate Trigger, if your Life is at three or less, proceed to Cross Ultimate Trigger. Cross Ultimate Trigger When Cross Ultimate Trigger hits, send an opposing Life to their Trash. xutb"
+   "Ultimate Trigger [LV4][LV5] (When Attacks) When Ultimate Trigger hits, exhaust two opposing Spirits. After Ultimate Trigger, if your Life is at three or less, proceed to Cross Ultimate Trigger. Cross Ultimate Trigger When Cross Ultimate Trigger hits, send an opposing Life to their Trash. xutb"
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
   "rcode": "M"
@@ -29610,7 +29616,7 @@
    "Incarnate",
    "Shellman"
   ],
-  "text": "{{Sumcon|You control one or more Green Spirits/Ultimates}}\n\n{{Burst|After your Spirit/Ultimate is destroyed by the Opponent}}\nExhaust two opposing Spirits, or an opposing Ultimate. After this effect resolves, summon this Ultimate card.\n\n{{tk|Ultimate Trigger|[LV4][LV5] (When Battles)}}\nWhen Ultimate Trigger hits, at the end of battle, by returning this Ultimate to your Hand, refresh an Ultimate you control.\nutb",
+  "text": "{{Sumcon|You control one or more Green Spirits/Ultimates}}\n\n{{Burst|After your Spirit/Ultimate is destroyed by the Opponent}}\nExhaust two opposing Spirits, or an opposing Ultimate. After this effect resolves, summon this Ultimate card.\n\nUltimate Trigger [LV4][LV5] (When Battles)\nWhen Ultimate Trigger hits, at the end of battle, by returning this Ultimate to your Hand, refresh an Ultimate you control.\nutb",
   "image": "SD28-X01.png",
   "block": "P",
   "saga": 60,
@@ -29618,7 +29624,7 @@
   "residual": [
    "{{Sumcon|You control one or more Green Spirits/Ultimates}}",
    "{{Burst|After your Spirit/Ultimate is destroyed by the Opponent}} Exhaust two opposing Spirits, or an opposing Ultimate. After this effect resolves, summon this Ultimate card.",
-   "{{tk|Ultimate Trigger|[LV4][LV5] (When Battles)}} When Ultimate Trigger hits, at the end of battle, by returning this Ultimate to your Hand, refresh an Ultimate you control. utb"
+   "Ultimate Trigger [LV4][LV5] (When Battles) When Ultimate Trigger hits, at the end of battle, by returning this Ultimate to your Hand, refresh an Ultimate you control. utb"
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
   "rcode": "X"
@@ -33082,14 +33088,14 @@
    "Next Generation",
    "Ancient Dragon"
   ],
-  "text": "{{sumcon|You control one or more Cost 1 or higher Spirits/Ultimates}}\n\n{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Summoned)}}\nWhen Ultimate Trigger hits, send all cores from your Trash to this Ultimate.\nutb\n\n[LV4][LV5] (When Attacks)\nBy destroying an opposing Spirit with a BP equal or inferior to this Ultimate's, draw a card.",
+  "text": "{{sumcon|You control one or more Cost 1 or higher Spirits/Ultimates}}\n\nUltimate Trigger [LV3][LV4][LV5] (When Summoned)\nWhen Ultimate Trigger hits, send all cores from your Trash to this Ultimate.\nutb\n\n[LV4][LV5] (When Attacks)\nBy destroying an opposing Spirit with a BP equal or inferior to this Ultimate's, draw a card.",
   "image": "SD36-X01.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "{{sumcon|You control one or more Cost 1 or higher Spirits/Ultimates}}",
-   "{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Summoned)}} When Ultimate Trigger hits, send all cores from your Trash to this Ultimate. utb",
+   "Ultimate Trigger [LV3][LV4][LV5] (When Summoned) When Ultimate Trigger hits, send all cores from your Trash to this Ultimate. utb",
    "[LV4][LV5] (When Attacks) By destroying an opposing Spirit with a BP equal or inferior to this Ultimate's, draw a card."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
@@ -33169,7 +33175,7 @@
    "Next Generation",
    "Shellman"
   ],
-  "text": "{{sumcon|Your Life is at two or more}}\n\n{{Burst|s|After the opposing Hand increases via an opposing effect}}\nDestroy any number of opposing Spirits up to a total of 20000 BP. After this effect resolves, summon this card without paying the cost.\n\n{{tk|Ultimate Trigger|[LV4][LV5] (When Attacks)}}\nWhen Ultimate Trigger hits, target two opposing Spirits/Ultimates. Exhaust those Spirits/Ultimates, and they can't refresh in the next opposing Refresh Step.\nutb",
+  "text": "{{sumcon|Your Life is at two or more}}\n\n{{Burst|s|After the opposing Hand increases via an opposing effect}}\nDestroy any number of opposing Spirits up to a total of 20000 BP. After this effect resolves, summon this card without paying the cost.\n\nUltimate Trigger [LV4][LV5] (When Attacks)\nWhen Ultimate Trigger hits, target two opposing Spirits/Ultimates. Exhaust those Spirits/Ultimates, and they can't refresh in the next opposing Refresh Step.\nutb",
   "image": "SD36-X03.png",
   "block": "P",
   "saga": 60,
@@ -33177,7 +33183,7 @@
   "residual": [
    "{{sumcon|Your Life is at two or more}}",
    "{{Burst|s|After the opposing Hand increases via an opposing effect}} Destroy any number of opposing Spirits up to a total of 20000 BP. After this effect resolves, summon this card without paying the cost.",
-   "{{tk|Ultimate Trigger|[LV4][LV5] (When Attacks)}} When Ultimate Trigger hits, target two opposing Spirits/Ultimates. Exhaust those Spirits/Ultimates, and they can't refresh in the next opposing Refresh Step. utb"
+   "Ultimate Trigger [LV4][LV5] (When Attacks) When Ultimate Trigger hits, target two opposing Spirits/Ultimates. Exhaust those Spirits/Ultimates, and they can't refresh in the next opposing Refresh Step. utb"
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
   "rcode": "X"
@@ -39601,13 +39607,13 @@
    "Grandwalker",
    "Hindida"
   ],
-  "text": "{{tk|Core Charge:|(Ancient Dragon/Worldswalker/Avatar & Cost 3 or more) (God Arms & Brave)}}\n◆When you Summon/Advent a target Spirit/Brave, you can +1 core to this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.\n\n{{gp|2}} [LV1][LV2] (Start of Your Attack Step)\n(Send two cores from this Nexus to the Void) During this turn, this Nexus is also treated as a Spirit with [LV1][LV2] 5000 BP, and can only be destroyed by Grandwalker Nexuses.\n\nGrand Field [LV2] (Your Attack Step)\nWhile your Brave Spirit is attacking, the opponent can't end the Attack Step via effects.",
+  "text": "Core Charge: (Ancient Dragon/Worldswalker/Avatar & Cost 3 or more) (God Arms & Brave)\n◆When you Summon/Advent a target Spirit/Brave, you can +1 core to this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.\n\n{{gp|2}} [LV1][LV2] (Start of Your Attack Step)\n(Send two cores from this Nexus to the Void) During this turn, this Nexus is also treated as a Spirit with [LV1][LV2] 5000 BP, and can only be destroyed by Grandwalker Nexuses.\n\nGrand Field [LV2] (Your Attack Step)\nWhile your Brave Spirit is attacking, the opponent can't end the Attack Step via effects.",
   "image": "SD48-X03.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "{{tk|Core Charge:|(Ancient Dragon/Worldswalker/Avatar & Cost 3 or more) (God Arms & Brave)}} ◆When you Summon/Advent a target Spirit/Brave, you can +1 core to this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.",
+   "Core Charge: (Ancient Dragon/Worldswalker/Avatar & Cost 3 or more) (God Arms & Brave) ◆When you Summon/Advent a target Spirit/Brave, you can +1 core to this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.",
    "{{gp|2}} [LV1][LV2] (Start of Your Attack Step) (Send two cores from this Nexus to the Void) During this turn, this Nexus is also treated as a Spirit with [LV1][LV2] 5000 BP, and can only be destroyed by Grandwalker Nexuses.",
    "Grand Field [LV2] (Your Attack Step) While your Brave Spirit is attacking, the opponent can't end the Attack Step via effects."
   ],
@@ -40045,14 +40051,14 @@
    "Grandwalker",
    "Galaxian"
   ],
-  "text": "GWrule\n\n{{tk|Core Charge:|(Worldswalker/Avatar/Galaxian & Cost 3 or more)}}\n◆When you Summon/Advent a target Spirit, you can put a core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.\n\nThis card's reduction symbols are also treated as Red/Purple/Green/White/Yellow/Blue.\n\n{{gs|3}} [LV1][LV2] Flash - (Either Attack Step)\n(Send three core from this Nexus to the Void) By destroying an opposing 8000 BP or less Spirit/Ultimate, draw a card.\n\nGrand Field [LV2] (Your Attack Step)\nWhen your originally Cost 6 or more \"Worldswalker\"/\"Avatar\"/\"Galaxian\" family Spirit is blocked, refresh that Spirit.",
+  "text": "GWrule\n\nCore Charge: (Worldswalker/Avatar/Galaxian & Cost 3 or more)\n◆When you Summon/Advent a target Spirit, you can put a core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.\n\nThis card's reduction symbols are also treated as Red/Purple/Green/White/Yellow/Blue.\n\n{{gs|3}} [LV1][LV2] Flash - (Either Attack Step)\n(Send three core from this Nexus to the Void) By destroying an opposing 8000 BP or less Spirit/Ultimate, draw a card.\n\nGrand Field [LV2] (Your Attack Step)\nWhen your originally Cost 6 or more \"Worldswalker\"/\"Avatar\"/\"Galaxian\" family Spirit is blocked, refresh that Spirit.",
   "image": "SD49-X04.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "GWrule",
-   "{{tk|Core Charge:|(Worldswalker/Avatar/Galaxian & Cost 3 or more)}} ◆When you Summon/Advent a target Spirit, you can put a core from the Void onto this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.",
+   "Core Charge: (Worldswalker/Avatar/Galaxian & Cost 3 or more) ◆When you Summon/Advent a target Spirit, you can put a core from the Void onto this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.",
    "This card's reduction symbols are also treated as Red/Purple/Green/White/Yellow/Blue.",
    "{{gs|3}} [LV1][LV2] Flash - (Either Attack Step) (Send three core from this Nexus to the Void) By destroying an opposing 8000 BP or less Spirit/Ultimate, draw a card.",
    "Grand Field [LV2] (Your Attack Step) When your originally Cost 6 or more \"Worldswalker\"/\"Avatar\"/\"Galaxian\" family Spirit is blocked, refresh that Spirit."
@@ -40652,14 +40658,14 @@
    "Grandwalker",
    "Idol"
   ],
-  "text": "GWrule\n\n{{tk|Core Charge:|(Idol & Cost 3 or more)}}\n◆When you Summon/Advent a target Spirit, you can put a core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.\n\nGrand Field [LV1][LV2] (Your Main Step)\nWhen your \"Idol\" & \"School Style\" family Spirit is summoned, if your Hand is five or less, draw a card. This effect doesn't stack.\n\n{{gs|2}} [LV2] (Your Main Step)\n(Send two cores from this Nexus to the Void) During this turn, treat one \"Idol\" family Spirit you control as being one level higher.",
+  "text": "GWrule\n\nCore Charge: (Idol & Cost 3 or more)\n◆When you Summon/Advent a target Spirit, you can put a core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.\n\nGrand Field [LV1][LV2] (Your Main Step)\nWhen your \"Idol\" & \"School Style\" family Spirit is summoned, if your Hand is five or less, draw a card. This effect doesn't stack.\n\n{{gs|2}} [LV2] (Your Main Step)\n(Send two cores from this Nexus to the Void) During this turn, treat one \"Idol\" family Spirit you control as being one level higher.",
   "image": "SD50-CP01.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "GWrule",
-   "{{tk|Core Charge:|(Idol & Cost 3 or more)}} ◆When you Summon/Advent a target Spirit, you can put a core from the Void onto this Nexus. ◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.",
+   "Core Charge: (Idol & Cost 3 or more) ◆When you Summon/Advent a target Spirit, you can put a core from the Void onto this Nexus. ◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.",
    "Grand Field [LV1][LV2] (Your Main Step) When your \"Idol\" & \"School Style\" family Spirit is summoned, if your Hand is five or less, draw a card. This effect doesn't stack.",
    "{{gs|2}} [LV2] (Your Main Step) (Send two cores from this Nexus to the Void) During this turn, treat one \"Idol\" family Spirit you control as being one level higher."
   ],
@@ -40689,14 +40695,14 @@
    "Grandwalker",
    "Idol"
   ],
-  "text": "GPGWrule\n\n{{tk|Core Charge:|(Idol & Cost 3 or more)}}\n◆When you Summon/Advent a target Spirit, you can put a core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.\n\n{{gp|5}} [LV1][LV2] Flash - (Your Attack Step)\n(Send five cores from this Nexus to the Void) Refresh all \"Idol\" family Spirits you control, and during this turn, this Nexus is also treated as a Spirit with [LV1][LV2] 3000 BP, and can only be destroyed by Grandwalker Nexuses. This effect can only be used once per game.\n\n{{gs|2}} [LV2] Flash - (Opposing Attack Step)\n(Send two cores from this Nexus to the Void) Refresh a \"Stage Style\" family Spirit you control.",
+  "text": "GPGWrule\n\nCore Charge: (Idol & Cost 3 or more)\n◆When you Summon/Advent a target Spirit, you can put a core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.\n\n{{gp|5}} [LV1][LV2] Flash - (Your Attack Step)\n(Send five cores from this Nexus to the Void) Refresh all \"Idol\" family Spirits you control, and during this turn, this Nexus is also treated as a Spirit with [LV1][LV2] 3000 BP, and can only be destroyed by Grandwalker Nexuses. This effect can only be used once per game.\n\n{{gs|2}} [LV2] Flash - (Opposing Attack Step)\n(Send two cores from this Nexus to the Void) Refresh a \"Stage Style\" family Spirit you control.",
   "image": "SD50-CP02.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "GPGWrule",
-   "{{tk|Core Charge:|(Idol & Cost 3 or more)}} ◆When you Summon/Advent a target Spirit, you can put a core from the Void onto this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.",
+   "Core Charge: (Idol & Cost 3 or more) ◆When you Summon/Advent a target Spirit, you can put a core from the Void onto this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.",
    "{{gp|5}} [LV1][LV2] Flash - (Your Attack Step) (Send five cores from this Nexus to the Void) Refresh all \"Idol\" family Spirits you control, and during this turn, this Nexus is also treated as a Spirit with [LV1][LV2] 3000 BP, and can only be destroyed by Grandwalker Nexuses. This effect can only be used once per game.",
    "{{gs|2}} [LV2] Flash - (Opposing Attack Step) (Send two cores from this Nexus to the Void) Refresh a \"Stage Style\" family Spirit you control."
   ],
@@ -41271,13 +41277,13 @@
    "Superstar",
    "Uru"
   ],
-  "text": "{{tk|Core Charge:|(Astral Dragon/Avatar & Cost 3 or more)}}\n◆When you summon/advent a target Spirit, you can +1 core to this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the trash. For each target card among them, +1 core to this Nexus.\n\n[LV1][LV2]\nThis Nexus' symbol is also treated as Red.\n\n{{gs|2}} [LV1][LV2] Flash - (Either Attack Step)\n(Once per turn, send two cores from this Nexus to the Void) Send a core from any opposing Spirit/Ultimate to the Trash.\n\nGrand Field [LV2] (Either Attack Step)\nWhen the opponent uses a Magic card, before its effect activates, by banishing four \"Superstar\" family cards from your Trash, immediately negate that effect.",
+  "text": "Core Charge: (Astral Dragon/Avatar & Cost 3 or more)\n◆When you summon/advent a target Spirit, you can +1 core to this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the trash. For each target card among them, +1 core to this Nexus.\n\n[LV1][LV2]\nThis Nexus' symbol is also treated as Red.\n\n{{gs|2}} [LV1][LV2] Flash - (Either Attack Step)\n(Once per turn, send two cores from this Nexus to the Void) Send a core from any opposing Spirit/Ultimate to the Trash.\n\nGrand Field [LV2] (Either Attack Step)\nWhen the opponent uses a Magic card, before its effect activates, by banishing four \"Superstar\" family cards from your Trash, immediately negate that effect.",
   "image": "SD51-CP01.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "{{tk|Core Charge:|(Astral Dragon/Avatar & Cost 3 or more)}} ◆When you summon/advent a target Spirit, you can +1 core to this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the trash. For each target card among them, +1 core to this Nexus.",
+   "Core Charge: (Astral Dragon/Avatar & Cost 3 or more) ◆When you summon/advent a target Spirit, you can +1 core to this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the trash. For each target card among them, +1 core to this Nexus.",
    "[LV1][LV2] This Nexus' symbol is also treated as Red.",
    "{{gs|2}} [LV1][LV2] Flash - (Either Attack Step) (Once per turn, send two cores from this Nexus to the Void) Send a core from any opposing Spirit/Ultimate to the Trash.",
    "Grand Field [LV2] (Either Attack Step) When the opponent uses a Magic card, before its effect activates, by banishing four \"Superstar\" family cards from your Trash, immediately negate that effect."
@@ -43949,14 +43955,14 @@
    "Primal",
    "Wanderer"
   ],
-  "text": "GWrule\n\n{{tk|Core Charge:|(Clown/Primal & Cost 3 or more, Rebirth Spirit) (Rebirth Nexus)}}\n◆When you summon/advent/deploy a target Spirit/Nexus, you can put a core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you do not control any Grandwalker Nexus with the same card name as this card, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.\n\nGrand Field [LV1][LV2] (Your Main Step)\nWhen you are summoning a \"Primal\" family Spirit card, this Nexus' symbol is also treated as Red/Purple/Green/White/Yellow/Blue.\n\n{{gs|3}} [LV2] (Your Main Step)\n(Once per turn, send three cores from this Nexus to the Void) Draw a card. Or, if you have two or less counters, flip a pre-Rebirth Nexus you control.",
+  "text": "GWrule\n\nCore Charge: (Clown/Primal & Cost 3 or more, Rebirth Spirit) (Rebirth Nexus)\n◆When you summon/advent/deploy a target Spirit/Nexus, you can put a core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you do not control any Grandwalker Nexus with the same card name as this card, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.\n\nGrand Field [LV1][LV2] (Your Main Step)\nWhen you are summoning a \"Primal\" family Spirit card, this Nexus' symbol is also treated as Red/Purple/Green/White/Yellow/Blue.\n\n{{gs|3}} [LV2] (Your Main Step)\n(Once per turn, send three cores from this Nexus to the Void) Draw a card. Or, if you have two or less counters, flip a pre-Rebirth Nexus you control.",
   "image": "SD55-X01.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "GWrule",
-   "{{tk|Core Charge:|(Clown/Primal & Cost 3 or more, Rebirth Spirit) (Rebirth Nexus)}} ◆When you summon/advent/deploy a target Spirit/Nexus, you can put a core from the Void onto this Nexus. ◆When this Nexus is deployed, if you do not control any Grandwalker Nexus with the same card name as this card, you can send three cards from your decktop to the Trash.",
+   "Core Charge: (Clown/Primal & Cost 3 or more, Rebirth Spirit) (Rebirth Nexus) ◆When you summon/advent/deploy a target Spirit/Nexus, you can put a core from the Void onto this Nexus. ◆When this Nexus is deployed, if you do not control any Grandwalker Nexus with the same card name as this card, you can send three cards from your decktop to the Trash.",
    "For each target card among them, put a core from the Void onto this Nexus.",
    "Grand Field [LV1][LV2] (Your Main Step) When you are summoning a \"Primal\" family Spirit card, this Nexus' symbol is also treated as Red/Purple/Green/White/Yellow/Blue.",
    "{{gs|3}} [LV2] (Your Main Step) (Once per turn, send three cores from this Nexus to the Void) Draw a card. Or, if you have two or less counters, flip a pre-Rebirth Nexus you control."
@@ -44100,14 +44106,14 @@
    "Grandwalker",
    "Supreme Hero"
   ],
-  "text": "GWrule\n\n{{tk|Core Charge:|(Supreme Hero/Great General & Cost 3 or more) (Burst effect-holder & Magic)}}\n◆When you Summon/Advent a target Spirit or use a target Magic, you can put one core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.\n\n[LV1][LV2]\nThe Nexus's symbol is also treated as White.\n\n{{gs|4}} [LV1][LV2] Flash - (Either Attack Step)\n(Once per turn, send four cores from this Nexus to the Void) Immediately activate one of your \"Supreme Hero\"/\"Great General\" family Bursts, and until after the Burst activates, the effects of every opposing Cost 5 or less Spirit/Nexus can't activate.\n\nGrand Field [LV2] (After Your Burst Activates)\nYou can set a card with Burst effect from your Hand.",
+  "text": "GWrule\n\nCore Charge: (Supreme Hero/Great General & Cost 3 or more) (Burst effect-holder & Magic)\n◆When you Summon/Advent a target Spirit or use a target Magic, you can put one core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.\n\n[LV1][LV2]\nThe Nexus's symbol is also treated as White.\n\n{{gs|4}} [LV1][LV2] Flash - (Either Attack Step)\n(Once per turn, send four cores from this Nexus to the Void) Immediately activate one of your \"Supreme Hero\"/\"Great General\" family Bursts, and until after the Burst activates, the effects of every opposing Cost 5 or less Spirit/Nexus can't activate.\n\nGrand Field [LV2] (After Your Burst Activates)\nYou can set a card with Burst effect from your Hand.",
   "image": "SD56-CP01.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "GWrule",
-   "{{tk|Core Charge:|(Supreme Hero/Great General & Cost 3 or more) (Burst effect-holder & Magic)}} ◆When you Summon/Advent a target Spirit or use a target Magic, you can put one core from the Void onto this Nexus. ◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash.",
+   "Core Charge: (Supreme Hero/Great General & Cost 3 or more) (Burst effect-holder & Magic) ◆When you Summon/Advent a target Spirit or use a target Magic, you can put one core from the Void onto this Nexus. ◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash.",
    "For each target card among them, put a core from the Void onto this Nexus.",
    "[LV1][LV2] The Nexus's symbol is also treated as White.",
    "{{gs|4}} [LV1][LV2] Flash - (Either Attack Step) (Once per turn, send four cores from this Nexus to the Void) Immediately activate one of your \"Supreme Hero\"/\"Great General\" family Bursts, and until after the Burst activates, the effects of every opposing Cost 5 or less Spirit/Nexus can't activate.",
@@ -44775,14 +44781,14 @@
    "Grandwalker",
    "Heavenly Demon King"
   ],
-  "text": "GWrule\n\n{{tk|Core Charge:|(Heavenly Demon King/Evil Shadow/Clever Machine/Machine Beast & Cost 3 or more)}}\n◆When you Summon/Advent a target Spirit, you can put a core from the Void to this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void to this Nexus.\n\n[LV1][LV2]\nThis Nexus's symbol is also treated as Red/Purple/Green/Yellow/Blue.\n\n{{gs|2}} [LV1][LV2] Flash - (Either Attack Step)\n(Once per turn, send two cores from this Nexus to the Void) For each symbol color you have, send a core from an opposing Spirit to the Reserve.\n\nGrand Field [LV2]\nFulfill one symbol color for the conditions of your Six Heaven Rush/Six Heaven Rebirth.",
+  "text": "GWrule\n\nCore Charge: (Heavenly Demon King/Evil Shadow/Clever Machine/Machine Beast & Cost 3 or more)\n◆When you Summon/Advent a target Spirit, you can put a core from the Void to this Nexus.\n◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void to this Nexus.\n\n[LV1][LV2]\nThis Nexus's symbol is also treated as Red/Purple/Green/Yellow/Blue.\n\n{{gs|2}} [LV1][LV2] Flash - (Either Attack Step)\n(Once per turn, send two cores from this Nexus to the Void) For each symbol color you have, send a core from an opposing Spirit to the Reserve.\n\nGrand Field [LV2]\nFulfill one symbol color for the conditions of your Six Heaven Rush/Six Heaven Rebirth.",
   "image": "SD57-CP01.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "GWrule",
-   "{{tk|Core Charge:|(Heavenly Demon King/Evil Shadow/Clever Machine/Machine Beast & Cost 3 or more)}} ◆When you Summon/Advent a target Spirit, you can put a core from the Void to this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash.",
+   "Core Charge: (Heavenly Demon King/Evil Shadow/Clever Machine/Machine Beast & Cost 3 or more) ◆When you Summon/Advent a target Spirit, you can put a core from the Void to this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash.",
    "For each target card among them, put a core from the Void to this Nexus.",
    "[LV1][LV2] This Nexus's symbol is also treated as Red/Purple/Green/Yellow/Blue.",
    "{{gs|2}} [LV1][LV2] Flash - (Either Attack Step) (Once per turn, send two cores from this Nexus to the Void) For each symbol color you have, send a core from an opposing Spirit to the Reserve.",
@@ -45668,13 +45674,13 @@
   "families": [
    "Grandwalker"
   ],
-  "text": "{{tk|Core Charge:|(Grand Siesta, Diva & Cost 5 or more)}}\n◆When you summon/advent a target Spirit, you can +1 core to this Nexus.\n◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.\n\n{{gs|2}} [LV1][LV2] Flash - (Either Attack Step)\n(Once per turn, send two core from this Nexus to the Void) Summon a Cost 5 or less Grand Siesta Spirit card from your Hand by paying one cost. This effect doesn't trigger Core Charge.\n\nGrand Field [LV2]\nYour \"Grand Style\" family Spirits can't be blocked, and when they would leave the Field due to opposing effects, return them to the Hand.",
+  "text": "Core Charge: (Grand Siesta, Diva & Cost 5 or more)\n◆When you summon/advent a target Spirit, you can +1 core to this Nexus.\n◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.\n\n{{gs|2}} [LV1][LV2] Flash - (Either Attack Step)\n(Once per turn, send two core from this Nexus to the Void) Summon a Cost 5 or less Grand Siesta Spirit card from your Hand by paying one cost. This effect doesn't trigger Core Charge.\n\nGrand Field [LV2]\nYour \"Grand Style\" family Spirits can't be blocked, and when they would leave the Field due to opposing effects, return them to the Hand.",
   "image": "SD58-CP01.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "{{tk|Core Charge:|(Grand Siesta, Diva & Cost 5 or more)}} ◆When you summon/advent a target Spirit, you can +1 core to this Nexus. ◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.",
+   "Core Charge: (Grand Siesta, Diva & Cost 5 or more) ◆When you summon/advent a target Spirit, you can +1 core to this Nexus. ◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.",
    "{{gs|2}} [LV1][LV2] Flash - (Either Attack Step) (Once per turn, send two core from this Nexus to the Void) Summon a Cost 5 or less Grand Siesta Spirit card from your Hand by paying one cost. This effect doesn't trigger Core Charge.",
    "Grand Field [LV2] Your \"Grand Style\" family Spirits can't be blocked, and when they would leave the Field due to opposing effects, return them to the Hand."
   ],
@@ -48303,14 +48309,14 @@
    "Celeste",
    "Astroblazer"
   ],
-  "text": "GWrule\n\n{{tk|Core Charge:|(War Dragon/Clever Machine/Proximate/Astroblazer & Cost 3 or more)}}\n◆When you summon/advent a target Spirit, you can put one core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same name as this Nexus, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void onto this Nexus.\n\nGrand Field [LV1][LV2] (Start of Your Attack Step)\nYou can destroy an opposing 5000 BP or less Spirit. Or, you can put a core from the Void to any of your Red-White dual color Grandwalker Nexus. This Grand Field doesn't stack.\n\n{{gs|4}} [LV2] Flash - (Either Attack Step)\n(Send four cores from this Nexus to the Void) Return an opposing Cost 7 or less Spirit to the Hand. Or, return a \"Lord\" family card from the Trash to your Hand.",
+  "text": "GWrule\n\nCore Charge: (War Dragon/Clever Machine/Proximate/Astroblazer & Cost 3 or more)\n◆When you summon/advent a target Spirit, you can put one core from the Void onto this Nexus.\n◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same name as this Nexus, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void onto this Nexus.\n\nGrand Field [LV1][LV2] (Start of Your Attack Step)\nYou can destroy an opposing 5000 BP or less Spirit. Or, you can put a core from the Void to any of your Red-White dual color Grandwalker Nexus. This Grand Field doesn't stack.\n\n{{gs|4}} [LV2] Flash - (Either Attack Step)\n(Send four cores from this Nexus to the Void) Return an opposing Cost 7 or less Spirit to the Hand. Or, return a \"Lord\" family card from the Trash to your Hand.",
   "image": "SD63-CP01.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "GWrule",
-   "{{tk|Core Charge:|(War Dragon/Clever Machine/Proximate/Astroblazer & Cost 3 or more)}} ◆When you summon/advent a target Spirit, you can put one core from the Void onto this Nexus. ◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same name as this Nexus, you can send three cards from your decktop to the Trash.",
+   "Core Charge: (War Dragon/Clever Machine/Proximate/Astroblazer & Cost 3 or more) ◆When you summon/advent a target Spirit, you can put one core from the Void onto this Nexus. ◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same name as this Nexus, you can send three cards from your decktop to the Trash.",
    "For each target card among them, put one core from the Void onto this Nexus.",
    "Grand Field [LV1][LV2] (Start of Your Attack Step) You can destroy an opposing 5000 BP or less Spirit. Or, you can put a core from the Void to any of your Red-White dual color Grandwalker Nexus. This Grand Field doesn't stack.",
    "{{gs|4}} [LV2] Flash - (Either Attack Step) (Send four cores from this Nexus to the Void) Return an opposing Cost 7 or less Spirit to the Hand. Or, return a \"Lord\" family card from the Trash to your Hand."
@@ -49394,7 +49400,7 @@
    "Next Generation",
    "Evil Shadow"
   ],
-  "text": "{{sumcon|You control one or more \"The PartnerDemonLord Javad\", including being in Soul State/pre-advent condition}}\n\n(Once per Turn: Same Name) When your \"Evil God\" family Ultimates would leave the Field due to the opponent, you can summon this card from the Hand, without paying the cost.\n\n{{tk|Count Ultimate Trigger|[LV3][LV4][LV5] (When Summoned/Attacks)}}\nWhen Count Ultimate Trigger hits, once per turn, send two cores from the opposing Field to the Trash.\ncutb",
+  "text": "{{sumcon|You control one or more \"The PartnerDemonLord Javad\", including being in Soul State/pre-advent condition}}\n\n(Once per Turn: Same Name) When your \"Evil God\" family Ultimates would leave the Field due to the opponent, you can summon this card from the Hand, without paying the cost.\n\nCount Ultimate Trigger [LV3][LV4][LV5] (When Summoned/Attacks)\nWhen Count Ultimate Trigger hits, once per turn, send two cores from the opposing Field to the Trash.\ncutb",
   "image": "SD65-X02.png",
   "block": "P",
   "saga": 60,
@@ -49402,7 +49408,7 @@
   "residual": [
    "{{sumcon|You control one or more \"The PartnerDemonLord Javad\", including being in Soul State/pre-advent condition}}",
    "(Once per Turn: Same Name) When your \"Evil God\" family Ultimates would leave the Field due to the opponent, you can summon this card from the Hand, without paying the cost.",
-   "{{tk|Count Ultimate Trigger|[LV3][LV4][LV5] (When Summoned/Attacks)}} When Count Ultimate Trigger hits, once per turn, send two cores from the opposing Field to the Trash. cutb"
+   "Count Ultimate Trigger [LV3][LV4][LV5] (When Summoned/Attacks) When Count Ultimate Trigger hits, once per turn, send two cores from the opposing Field to the Trash. cutb"
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
   "rcode": "X"
@@ -50146,14 +50152,14 @@
    "Incarnate",
    "Infernal Lord"
   ],
-  "text": "{{Sumcon|You control one or more Incarnate Spirits/Ultimates, including being in Soul State/pre-advent condition}}\n\n{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Summoned/Attacks)}}\nWhen Ultimate Trigger hits, send two cores from the opposing Field to the Reserve.\nutb\n\n[LV4][LV5] (Your Attack Step)\nWhen your \"Incarnate\" family Ultimate attacks, you can pay one cost to summon a Cost 4 or less Spirit card from your Trash.",
+  "text": "{{Sumcon|You control one or more Incarnate Spirits/Ultimates, including being in Soul State/pre-advent condition}}\n\nUltimate Trigger [LV3][LV4][LV5] (When Summoned/Attacks)\nWhen Ultimate Trigger hits, send two cores from the opposing Field to the Reserve.\nutb\n\n[LV4][LV5] (Your Attack Step)\nWhen your \"Incarnate\" family Ultimate attacks, you can pay one cost to summon a Cost 4 or less Spirit card from your Trash.",
   "image": "SD67-001.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "{{Sumcon|You control one or more Incarnate Spirits/Ultimates, including being in Soul State/pre-advent condition}}",
-   "{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Summoned/Attacks)}} When Ultimate Trigger hits, send two cores from the opposing Field to the Reserve. utb",
+   "Ultimate Trigger [LV3][LV4][LV5] (When Summoned/Attacks) When Ultimate Trigger hits, send two cores from the opposing Field to the Reserve. utb",
    "[LV4][LV5] (Your Attack Step) When your \"Incarnate\" family Ultimate attacks, you can pay one cost to summon a Cost 4 or less Spirit card from your Trash."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
@@ -50184,7 +50190,7 @@
    "Extreme Contract",
    "Incarnate"
   ],
-  "text": "Flash - {{Contract Advent|Extreme Contract|(Your Turn)}}\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Ultimate.\n\n{{Sumcon|You control one or more “Mugen”, including being in Soul State/pre-advent condition}}\n\n{{tk|Count Ultimate Trigger|[LV3][LV4] (When Advents/Attacks)}}\nWhen Count Ultimate Trigger hits, put two cores from the Void to this Ultimate.\ncutb\n\nDuring OC & During Advent [LV3][LV4] (Your Attack Step)\nWhen your \"Incarnate\" family Ultimate attacks, your counter +1. Also, while your Ultimate is attacking, if your counter is five or more, the opponent can't activate Burst effects.",
+  "text": "Flash - {{Contract Advent|Extreme Contract|(Your Turn)}}\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Ultimate.\n\n{{Sumcon|You control one or more “Mugen”, including being in Soul State/pre-advent condition}}\n\nCount Ultimate Trigger [LV3][LV4] (When Advents/Attacks)\nWhen Count Ultimate Trigger hits, put two cores from the Void to this Ultimate.\ncutb\n\nDuring OC & During Advent [LV3][LV4] (Your Attack Step)\nWhen your \"Incarnate\" family Ultimate attacks, your counter +1. Also, while your Ultimate is attacking, if your counter is five or more, the opponent can't activate Burst effects.",
   "image": "SD67-002.png",
   "block": "P",
   "saga": 60,
@@ -50192,7 +50198,7 @@
   "residual": [
    "Flash - {{Contract Advent|Extreme Contract|(Your Turn)}} By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Ultimate.",
    "{{Sumcon|You control one or more “Mugen”, including being in Soul State/pre-advent condition}}",
-   "{{tk|Count Ultimate Trigger|[LV3][LV4] (When Advents/Attacks)}} When Count Ultimate Trigger hits, put two cores from the Void to this Ultimate. cutb",
+   "Count Ultimate Trigger [LV3][LV4] (When Advents/Attacks) When Count Ultimate Trigger hits, put two cores from the Void to this Ultimate. cutb",
    "During OC & During Advent [LV3][LV4] (Your Attack Step) When your \"Incarnate\" family Ultimate attacks, your counter +1. Also, while your Ultimate is attacking, if your counter is five or more, the opponent can't activate Burst effects."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
@@ -50225,14 +50231,14 @@
    "Incarnate",
    "Armed Machine"
   ],
-  "text": "{{Sumcon|You control one or more Incarnate Spirits/Ultimates, including being in Soul State/pre-advent condition}}\n\n{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks/Blocks)}}\nWhen Ultimate Trigger hits, you can return two opposing Spirits/Nexuses to the deckbottom.\nutb\n\n[LV4][LV5]\nGive all your \"Incarnate\" family Ultimates: \"{{ha|Green/White}} This Ultimate is unaffected by opposing Green/White Spirit/Brave/Nexus/Magic effects.\"",
+  "text": "{{Sumcon|You control one or more Incarnate Spirits/Ultimates, including being in Soul State/pre-advent condition}}\n\nUltimate Trigger [LV3][LV4][LV5] (When Attacks/Blocks)\nWhen Ultimate Trigger hits, you can return two opposing Spirits/Nexuses to the deckbottom.\nutb\n\n[LV4][LV5]\nGive all your \"Incarnate\" family Ultimates: \"{{ha|Green/White}} This Ultimate is unaffected by opposing Green/White Spirit/Brave/Nexus/Magic effects.\"",
   "image": "SD67-003.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "{{Sumcon|You control one or more Incarnate Spirits/Ultimates, including being in Soul State/pre-advent condition}}",
-   "{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks/Blocks)}} When Ultimate Trigger hits, you can return two opposing Spirits/Nexuses to the deckbottom. utb",
+   "Ultimate Trigger [LV3][LV4][LV5] (When Attacks/Blocks) When Ultimate Trigger hits, you can return two opposing Spirits/Nexuses to the deckbottom. utb",
    "[LV4][LV5] Give all your \"Incarnate\" family Ultimates: \"{{ha|Green/White}} This Ultimate is unaffected by opposing Green/White Spirit/Brave/Nexus/Magic effects.\""
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
@@ -50265,14 +50271,14 @@
    "Incarnate",
    "Imaginary Beast"
   ],
-  "text": "{{Sumcon|You control one or more Incarnate Spirits/Ultimates, including being in Soul State/pre-advent condition}}\n\n{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}}\nWhen Ultimate Trigger hits, put two cores from the Void to your Life.\nutb\n\n[LV4][LV5] (Your Attack Step)\nWhen your \"Incarnate\" family Ultimates are destroyed via BP comparison, they remain on the Field, exhausted.",
+  "text": "{{Sumcon|You control one or more Incarnate Spirits/Ultimates, including being in Soul State/pre-advent condition}}\n\nUltimate Trigger [LV3][LV4][LV5] (When Attacks)\nWhen Ultimate Trigger hits, put two cores from the Void to your Life.\nutb\n\n[LV4][LV5] (Your Attack Step)\nWhen your \"Incarnate\" family Ultimates are destroyed via BP comparison, they remain on the Field, exhausted.",
   "image": "SD67-004.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "{{Sumcon|You control one or more Incarnate Spirits/Ultimates, including being in Soul State/pre-advent condition}}",
-   "{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}} When Ultimate Trigger hits, put two cores from the Void to your Life. utb",
+   "Ultimate Trigger [LV3][LV4][LV5] (When Attacks) When Ultimate Trigger hits, put two cores from the Void to your Life. utb",
    "[LV4][LV5] (Your Attack Step) When your \"Incarnate\" family Ultimates are destroyed via BP comparison, they remain on the Field, exhausted."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
@@ -50301,7 +50307,7 @@
    "Extreme Contract",
    "Incarnate"
   ],
-  "text": "Flash - {{Contract Advent|Extreme Contract & C2 or more|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Ultimate.\n\n{{Sumcon|You control one or more “Mugen”, including being in Soul State/pre-advent condition}}\n\n[LV3][LV4] (When Advents/Attacks)\nYour counter +1. Then, you can destroy an opposing Spirit/Ultimate with the lowest cost.\n\nDuring OC {{tk|Count Ultimate Trigger|[LV3][LV4] (When Attacks)}}\nWhen Count Ultimate Trigger hits, you can pay one cost to summon an \"Incarnate\" family Ultimate card from your Hand.\ncutb",
+  "text": "Flash - {{Contract Advent|Extreme Contract & C2 or more|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Ultimate.\n\n{{Sumcon|You control one or more “Mugen”, including being in Soul State/pre-advent condition}}\n\n[LV3][LV4] (When Advents/Attacks)\nYour counter +1. Then, you can destroy an opposing Spirit/Ultimate with the lowest cost.\n\nDuring OC Count Ultimate Trigger [LV3][LV4] (When Attacks)\nWhen Count Ultimate Trigger hits, you can pay one cost to summon an \"Incarnate\" family Ultimate card from your Hand.\ncutb",
   "image": "SD67-005.png",
   "block": "P",
   "saga": 60,
@@ -50310,7 +50316,7 @@
    "Flash - {{Contract Advent|Extreme Contract & C2 or more|(Either Attack Step)}} By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Ultimate.",
    "{{Sumcon|You control one or more “Mugen”, including being in Soul State/pre-advent condition}}",
    "[LV3][LV4] (When Advents/Attacks) Your counter +1. Then, you can destroy an opposing Spirit/Ultimate with the lowest cost.",
-   "During OC {{tk|Count Ultimate Trigger|[LV3][LV4] (When Attacks)}} When Count Ultimate Trigger hits, you can pay one cost to summon an \"Incarnate\" family Ultimate card from your Hand. cutb"
+   "During OC Count Ultimate Trigger [LV3][LV4] (When Attacks) When Count Ultimate Trigger hits, you can pay one cost to summon an \"Incarnate\" family Ultimate card from your Hand. cutb"
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
   "rcode": "M"
@@ -50417,14 +50423,14 @@
    "Ancient Dragon",
    "Ancient Dragon"
   ],
-  "text": "{{Sumcon|You control one or more Red Spirits}}\n\n{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}}\nWhen Ultimate Trigger hits, the opponent must block if possible. However, Ultimates don't have to block. If blocked by an opposing Spirit, send an opposing Life to their Reserve.\nutb\n\n[LV4][LV5] Flash - True-Awaken (When Attacks)\nBy sending a core from Spirits you control to this Ultimate, this Ultimate gains +3000 BP.",
+  "text": "{{Sumcon|You control one or more Red Spirits}}\n\nUltimate Trigger [LV3][LV4][LV5] (When Attacks)\nWhen Ultimate Trigger hits, the opponent must block if possible. However, Ultimates don't have to block. If blocked by an opposing Spirit, send an opposing Life to their Reserve.\nutb\n\n[LV4][LV5] Flash - True-Awaken (When Attacks)\nBy sending a core from Spirits you control to this Ultimate, this Ultimate gains +3000 BP.",
   "image": "SD67-CP01.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "{{Sumcon|You control one or more Red Spirits}}",
-   "{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}} When Ultimate Trigger hits, the opponent must block if possible. However, Ultimates don't have to block. If blocked by an opposing Spirit, send an opposing Life to their Reserve. utb",
+   "Ultimate Trigger [LV3][LV4][LV5] (When Attacks) When Ultimate Trigger hits, the opponent must block if possible. However, Ultimates don't have to block. If blocked by an opposing Spirit, send an opposing Life to their Reserve. utb",
    "[LV4][LV5] Flash - True-Awaken (When Attacks) By sending a core from Spirits you control to this Ultimate, this Ultimate gains +3000 BP."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
@@ -50686,7 +50692,7 @@
    "Incarnate",
    "Ultimate Dragon"
   ],
-  "text": "Flash - {{Contract Advent|Extreme Contract & C6 or more|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Ultimate.\n\n{{Sumcon|You control one or more \"Mugen\", including being in Soul State/pre-advent condition}}\n\n{{tk|Double Count Ultimate Trigger|[LV3][LV4] (When Advents/Attacks)}}\nFor each Count Ultimate Trigger hits, destroy an opposing Spirit/Ultimate with two symbols or less. Double Hit When it hits twice, this effect can't be prevented by opposing effects, and effects of the Spirits destroyed by this effect can't activate.\ndcutb\n\nDuring OC & During Advent [LV3][LV4] (When Attacks)\nFor every 6 costs of the combined cost of the cards hit by your Double Count Ultimate Trigger, send an opposing Life to the Reserve. (Max. 3)",
+  "text": "Flash - {{Contract Advent|Extreme Contract & C6 or more|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Ultimate.\n\n{{Sumcon|You control one or more \"Mugen\", including being in Soul State/pre-advent condition}}\n\nDouble Count Ultimate Trigger [LV3][LV4] (When Advents/Attacks)\nFor each Count Ultimate Trigger hits, destroy an opposing Spirit/Ultimate with two symbols or less. Double Hit When it hits twice, this effect can't be prevented by opposing effects, and effects of the Spirits destroyed by this effect can't activate.\ndcutb\n\nDuring OC & During Advent [LV3][LV4] (When Attacks)\nFor every 6 costs of the combined cost of the cards hit by your Double Count Ultimate Trigger, send an opposing Life to the Reserve. (Max. 3)",
   "image": "SD67-X01.png",
   "block": "P",
   "saga": 60,
@@ -50694,7 +50700,7 @@
   "residual": [
    "Flash - {{Contract Advent|Extreme Contract & C6 or more|(Either Attack Step)}} By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Ultimate.",
    "{{Sumcon|You control one or more \"Mugen\", including being in Soul State/pre-advent condition}}",
-   "{{tk|Double Count Ultimate Trigger|[LV3][LV4] (When Advents/Attacks)}} For each Count Ultimate Trigger hits, destroy an opposing Spirit/Ultimate with two symbols or less. Double Hit When it hits twice, this effect can't be prevented by opposing effects, and effects of the Spirits destroyed by this effect can't activate. dcutb",
+   "Double Count Ultimate Trigger [LV3][LV4] (When Advents/Attacks) For each Count Ultimate Trigger hits, destroy an opposing Spirit/Ultimate with two symbols or less. Double Hit When it hits twice, this effect can't be prevented by opposing effects, and effects of the Spirits destroyed by this effect can't activate. dcutb",
    "During OC & During Advent [LV3][LV4] (When Attacks) For every 6 costs of the combined cost of the cards hit by your Double Count Ultimate Trigger, send an opposing Life to the Reserve. (Max. 3)"
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",

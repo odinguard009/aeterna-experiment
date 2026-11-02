@@ -32,6 +32,7 @@ def clean_text(raw):
     s = re.sub(r'\{\{\s*tk\s*\|\s*team\s*\|([^{}|]*)\}\}', r'[Team: \1]', s, flags=re.I)
     s = re.sub(r'\{\{\s*tk\s*\|\s*teams\s*\|([^{}]*)\}\}', lambda m: '[Teams: ' + m.group(1).replace('|', '/') + ']', s, flags=re.I)
     s = re.sub(r'\{\{\s*tk\s*\|([^{}|]*)\}\}', r'\1', s, flags=re.I)
+    s = re.sub(r'\{\{\s*tk\s*\|([^{}]*)\}\}', lambda m: ' '.join(x.strip() for x in m.group(1).split('|') if x.strip()), s, flags=re.I)
     s = re.sub(r'\{\{\s*ruby\s*\|([^{}|]*)\|[^{}]*\}\}', r'\1', s, flags=re.I)
     s = s.replace("'''", '').replace("''", '').replace('\xa0', ' ')
     s = re.sub(r'[ \t]+', ' ', s)
