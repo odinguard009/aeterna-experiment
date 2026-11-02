@@ -296,3 +296,17 @@ test('K-1026 SD31-001 and SD01-016 have High Speed; SD28-005 is wired as an atta
     return { hs, impl: BS.CARDS['SD28-005'].implemented === true, bp: e.bp, step: e.if.step }; })()`);
   assert.deepEqual(r, { hs: true, impl: true, bp: 3000, step: 'ATTACK' }, JSON.stringify(r));
 });
+
+test('K-1027 SD14-001 gains 1000 BP per Reserve core when attacking; SD55-004 destroys a low-core Spirit and draws', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const s = BS.mkInst('SD14-001'); s.cores = 3; P.spirits = [s]; P.reserve.n = 4;
+    const before = (s.bpMod || 0);
+    await BS.fireFx(P, 'ATTACKS', s, { attacker: s });
+    const gain = (s.bpMod || 0) - before;
+    const d = BS.mkInst('SD55-004'); d.cores = 3; P.spirits = [d]; const t = BS.mkInst('BS01-001'); t.cores = 1; O.spirits = [t];
+    const h0 = P.hand.length; await BS.fireFx(P, 'ATTACKS', d, { attacker: d });
+    return { gain, res: P.reserve.n, left: O.spirits.length, drew: P.hand.length - h0 }; })()`);
+  assert.equal(r.gain, r.res * 1000, JSON.stringify(r));
+  assert.deepEqual([r.left, r.drew], [0, 1], JSON.stringify(r));
+});

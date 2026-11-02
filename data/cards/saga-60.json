@@ -23988,12 +23988,24 @@
   "image": "SD14-001.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (When Attacks) For each core in your Reserve, this Spirit gains +1000 BP."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "BP_PLUS",
+      "n": 1000,
+      "perReserve": true
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD14-002",
@@ -45396,12 +45408,43 @@
   "image": "SD55-004.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Summoned/Attacks) You can destroy an opposing Spirit with one or less cores on it, and when destroys, draw a card."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "DESTROY",
+      "coresLe": 1,
+      "thenDraw": 1
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "DESTROY",
+      "coresLe": 1,
+      "thenDraw": 1
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD55-005",
