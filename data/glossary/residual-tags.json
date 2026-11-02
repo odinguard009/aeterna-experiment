@@ -6472,10 +6472,6 @@
   "M_OPTIONAL",
   "T_ATTACKS"
  ],
- "BS21-084": [
-  "K_RUSH",
-  "T_ACTIVATE"
- ],
  "BS21-X01": [
   "C_LEVEL"
  ],
@@ -13580,20 +13576,12 @@
   "M_OPTIONAL",
   "S_UNAFFECTED"
  ],
- "BS35-086": [
-  "M_OPTIONAL"
- ],
  "BS35-087": [
   "A_REFRESH",
   "A_TRASH_TO_RESERVE",
   "K_BRAVE",
   "M_OPTIONAL",
   "M_THEN"
- ],
- "BS35-088": [
-  "A_SUMMON_FREE",
-  "M_OPTIONAL",
-  "M_REPLACEMENT"
  ],
  "BS35-090": [
   "A_EXHAUST",
@@ -40507,12 +40495,6 @@
   "A_SOUL_STATE",
   "A_VOID",
   "C_CONTROL",
-  "M_THEN"
- ],
- "BS66-085": [
-  "A_SUMMON_FREE",
-  "K_CRUSH",
-  "M_OPTIONAL",
   "M_THEN"
  ],
  "BS66-086": [

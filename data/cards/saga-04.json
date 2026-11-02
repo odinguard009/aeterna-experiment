@@ -13146,15 +13146,46 @@
   "saga": 4,
   "magic": {
    "timing": [
+    "MAIN",
     "FLASH"
    ],
-   "effect": "BP_PLUS",
-   "value": 3000
+   "by": {
+    "FLASH": {
+     "effect": "BP_PLUS",
+     "value": 3000
+    },
+    "MAIN": {
+     "effect": "ACTIONS",
+     "actions": [
+      {
+       "do": "GRANT_FLAG",
+       "flag": "TREAT_HIGHEST"
+      },
+      {
+       "do": "DRAW",
+       "n": 1,
+       "if": {
+        "hasSymbol": [
+         "red",
+         "purple"
+        ]
+       }
+      },
+      {
+       "do": "DRAW",
+       "n": 1,
+       "if": {
+        "hasSymbol": [
+         "red",
+         "purple"
+        ]
+       }
+      }
+     ]
+    }
+   }
   },
-  "fxComplete": false,
-  "residual": [
-   "Main - During this turn, treat a Spirit you control as being at its highest level. {{Rush|Red/Purple}} (While you have Red/Purple symbols, the following effects activate next) : Draw a card from your deck. : Draw a card from your deck."
-  ],
+  "fxComplete": true,
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "rcode": "R"
  },
