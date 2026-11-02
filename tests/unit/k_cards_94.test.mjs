@@ -136,3 +136,13 @@ test('K-1139 SD13-007 destroys an opposing exhausted non-braved Spirit only; SD0
     return { left: O.spirits.length, a: O.spirits.includes(a), b: O.spirits.includes(b), c: O.spirits.includes(c), impl: BS.CARDS['SD13-007'].implemented === true }; })()`);
   assert.equal(r.impl, true, JSON.stringify(r)); assert.deepEqual([r.a, r.b, r.c], [true, false, true], JSON.stringify(r));
 });
+
+test('K-1140 SD02-006 deploys a Nexus from the Trash; SD16-001 mills 2; SD42-006 summons a Kamen Spirit from the Hand', async () => {
+  const { page } = await sharedBoard();
+  let r = await page.evaluate(run('SD02-006', 'DESTROYED', false, `const n = BS.mkInst('BS48-085'); P.trash.push(n);`, `{ nx: P.nexus.length, tr: P.trash.length }`));
+  assert.deepEqual([r.impl, r.nx], [true, 1], JSON.stringify(r));
+  r = await page.evaluate(run('SD16-001', 'ALLY_LOST', false, `const d0 = O.deck.length;`, `{ d: d0 - O.deck.length }`));
+  assert.deepEqual([r.impl, r.d], [true, 2], JSON.stringify(r));
+  r = await page.evaluate(run('SD42-006', 'START_ATTACK', false, `P.hand.push(BS.mkInst('CB15-033'));`, `{ sp: P.spirits.length, h: P.hand.length }`));
+  assert.deepEqual([r.impl, r.sp, r.h], [true, 1, 0], JSON.stringify(r));
+});

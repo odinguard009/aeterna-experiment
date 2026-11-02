@@ -54648,12 +54648,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "SD02-006": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_DESTROYED"
- ],
  "SD02-007": [
   "A_EXHAUST",
   "C_LEVEL"
@@ -55085,11 +55079,6 @@
   "C_LEVEL",
   "M_THEN",
   "T_ATTACKS"
- ],
- "SD16-001": [
-  "A_DISCARD_OPP",
-  "C_LEVEL",
-  "T_ALLY_LOST"
  ],
  "SD16-002": [
   "C_LEVEL",
@@ -56816,12 +56805,6 @@
   "C_LEVEL",
   "M_OPTIONAL",
   "T_ATTACKS"
- ],
- "SD42-006": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_START_ATTACK"
  ],
  "SD42-007": [
   "A_BP_PLUS",

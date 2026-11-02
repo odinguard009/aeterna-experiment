@@ -20348,12 +20348,26 @@
   "image": "SD02-006.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (When Destroyed) You can deploy a Nexus card from your Trash, without paying the cost."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "DEPLOY_TRASH",
+      "match": {
+       "type": "Nexus"
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD02-007",
@@ -24788,12 +24802,32 @@
   "image": "SD16-001.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] When your \"Fighting Spirit\" family Spirits are destroyed by the opponent, discard two cards from the opposing decktop."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ALLY_LOST",
+    "lv": [
+     1,
+     2
+    ],
+    "match": {
+     "family": [
+      "Fighting Spirit"
+     ]
+    },
+    "if": {
+     "byOpp": true
+    },
+    "actions": [
+     {
+      "do": "MILL_OPP",
+      "n": 2
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD16-002",
@@ -37920,12 +37954,27 @@
   "image": "SD42-006.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (Start of Your Attack Step) You can summon a Cost 4 to less \"Kamen\" family Spirit card from your Hand without paying the cost."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "START_ATTACK",
+    "optional": true,
+    "actions": [
+     {
+      "do": "SUMMON_HAND",
+      "match": {
+       "family": [
+        "Kamen"
+       ],
+       "type": "Spirit"
+      },
+      "costLe": 4
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD42-007",
