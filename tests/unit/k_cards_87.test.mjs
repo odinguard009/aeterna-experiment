@@ -70,3 +70,9 @@ test('K-875 BS27-005 and BS22-039 Rush data (hasSymbol-gated second step)', asyn
   const r = await page.evaluate(() => ['BS27-005', 'BS22-039'].map(id => { const c = BS.CARDS[id]; return { ok: c.fxComplete !== false, a: c.effects.find(e => e.actions.some(a => a.if && a.if.hasSymbol)).actions.map(a => a.do + (a.if ? ':' + a.if.hasSymbol : '')) }; }));
   assert.deepEqual(r, [{ ok: true, a: ['DESTROY', 'VOID_TO_CARD:green'] }, { ok: true, a: ['REFRESH_SPIRIT', 'DESTROY:red'] }]);
 });
+
+test('K-876 BS39-043, BS40-RV001, BS51-007 Rush refresh steps are complete and gated', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(() => ['BS39-043', 'BS40-RV001', 'BS51-007'].map(id => { const c = BS.CARDS[id]; const a = c.effects.flatMap(e => e.actions).filter(x => x.if && x.if.hasSymbol); return [c.fxComplete !== false, a.length]; }));
+  assert.deepEqual(r, [[true, 1], [true, 1], [true, 1]]);
+});
