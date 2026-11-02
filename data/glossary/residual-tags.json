@@ -6761,10 +6761,6 @@
   "M_OPTIONAL",
   "T_SUMMONED"
  ],
- "BS22-047": [
-  "C_LEVEL",
-  "C_OPP_TURN"
- ],
  "BS22-048": [
   "A_DISCARD_OPP",
   "A_REFRESH",
@@ -9372,10 +9368,6 @@
  "BS27-042": [
   "C_LEVEL",
   "K_ULTIMATE"
- ],
- "BS27-043": [
-  "C_LEVEL",
-  "T_SUMMONED"
  ],
  "BS27-044": [
   "A_BP_PLUS",
@@ -22838,9 +22830,6 @@
   "M_OPTIONAL",
   "T_DESTROYED",
   "T_DESTROYED_OPP"
- ],
- "BS46-RV006": [
-  "C_LEVEL"
  ],
  "BS46-RV007": [
   "A_VOID",

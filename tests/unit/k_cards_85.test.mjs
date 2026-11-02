@@ -712,3 +712,14 @@ test('K-994 NO_RETURN statics for BS06-005 (Terra Dragon) and BS42-015 (VioletCo
   const r = await page.evaluate(`(() => { const f = id => BS.CARDS[id].effects.find(e => e.flag === 'NO_RETURN'), a = f('BS06-005'), b = f('BS42-015'); return [a.flag, a.match.family[0], b.flag, b.match.name[0], b.if.attackStep]; })()`);
   assert.deepEqual(r, ['NO_RETURN', 'Terra Dragon', 'NO_RETURN', 'VioletCorpse', true], JSON.stringify(r));
 });
+
+test('K-995 STATIC LV_PLUS raises the matching own Spirits one level while the source is at its LV (BS46-RV006)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(() => { BS.testSetup(); const G = BS.G, P = G.p.player; P.spirits.length = 0;
+    const ids = Object.keys(BS.CARDS).filter(i => BS.CARDS[i].type === 'Spirit' && BS.CARDS[i].levels.length > 2 && (BS.CARDS[i].families || []).includes('Investigator') && i !== 'BS46-RV006');
+    const t = BS.mkInst(ids[0]); t.cores = BS.CARDS[ids[0]].levels[0].cores; P.spirits.push(t);
+    const before = BS.lvIndex(t); const s = BS.mkInst('BS46-RV006'); s.cores = BS.CARDS['BS46-RV006'].levels[1].cores; P.spirits.push(s);
+    const during = BS.lvIndex(t); const sLv = BS.lvIndex(s); s.cores = BS.CARDS['BS46-RV006'].levels[0].cores; const off = BS.lvIndex(t);
+    return [before, during, off, sLv >= 1]; })()`);
+  assert.deepEqual(r, [0, 1, 0, true], JSON.stringify(r));
+});
