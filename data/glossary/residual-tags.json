@@ -15562,13 +15562,6 @@
   "T_DESTROYED",
   "T_DESTROYED_OPP"
  ],
- "BS39-046": [
-  "A_EXHAUST",
-  "A_VOID",
-  "C_LEVEL",
-  "K_RUSH",
-  "T_SUMMONED"
- ],
  "BS39-047": [
   "A_SEAL",
   "A_SUMMON_FREE",
