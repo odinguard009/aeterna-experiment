@@ -18,7 +18,7 @@ Object.assign(FX_ACTIONS, {
       io.view({ type: 'board' });
     } },
   /* draw n cards from the bottom of the Deck (Thunderive) */
-  DRAW_BOTTOM: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5, txt: a => `draw ${a.n} card${a.n === 1 ? '' : 's'} from the bottom of the Deck`,
+  DRAW_BOTTOM: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 7, txt: a => `draw ${a.n} card${a.n === 1 ? '' : 's'} from the bottom of the Deck`,
     can: c => c.p.deck.length > 0,
     run: async (c, a) => {
       let k = 0; for (; k < a.n && c.p.deck.length; k++) c.p.hand.push(c.p.deck.pop());
@@ -55,7 +55,7 @@ Object.assign(FX_ACTIONS, {
       c.ctx.did = got > 0;
     } },
   /* put cores from your Void on your Life (Naraka, Temple): only while your Life is at most lifeLe */
-  VOID_TO_LIFE: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 3 && (a.lifeLe == null || Number.isInteger(a.lifeLe)), txt: a => `put ${a.n} core${a.n === 1 ? '' : 's'} from the Void to your Life${a.lifeLe != null ? ' if your Life is ' + a.lifeLe + ' or less' : ''}`,
+  VOID_TO_LIFE: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && (a.lifeLe == null || Number.isInteger(a.lifeLe)), txt: a => `put ${a.n} core${a.n === 1 ? '' : 's'} from the Void to your Life${a.lifeLe != null ? ' if your Life is ' + a.lifeLe + ' or less' : ''}`,
     can: (c, a) => c.p.void > 0 && (a.lifeLe == null || c.p.life <= a.lifeLe),
     run: async (c, a) => {
       if (a.lifeLe != null && c.p.life > a.lifeLe) { c.ctx.did = false; return; }
@@ -64,7 +64,7 @@ Object.assign(FX_ACTIONS, {
       await fireFx(c.p, 'LIFE_UP', null, {});      // v191 "When your Life increases"
     } },
   /* v191 "send a core (not the Soul Core) from your Reserve to your Life" */
-  RESERVE_TO_LIFE: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5, txt: a => `send ${a.n} core${a.n === 1 ? '' : 's'} from your Reserve to your Life`,
+  RESERVE_TO_LIFE: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 7, txt: a => `send ${a.n} core${a.n === 1 ? '' : 's'} from your Reserve to your Life`,
     can: c => c.p.reserve.n > 0,
     run: async (c, a) => {
       const m = Math.min(a.n, c.p.reserve.n); if (!m) { c.ctx.did = false; return; }
@@ -72,14 +72,14 @@ Object.assign(FX_ACTIONS, {
       await fireFx(c.p, 'LIFE_UP', null, {});
     } },
   /* send one of your Lives to this Spirit (cost of BY, Vajdra-of-Magan). Not a Life reduction by damage: no Burst. A Life of 1 can't be sent (that would end the game by an own effect). */
-  LIFE_TO_SELF: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 2, txt: a => `send ${a.n} of your Life to this Spirit`,
+  LIFE_TO_SELF: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 3, txt: a => `send ${a.n} of your Life to this Spirit`,
     can: (c, a) => c.p.life > a.n && c.p.spirits.includes(c.src),
     run: async (c, a) => {
       if (c.p.life <= a.n || !c.p.spirits.includes(c.src)) { c.ctx.did = false; return; }
       lifeTake(c.p, a.n, c.src); log(`${_pn(c)}: ${a.n} Life of ${who(c.p)} moves to ${_pn(c)}.`); io.view({ type: 'board' });
     } },
   /* send n cores from your matching Nexus (name) to this Spirit (Vajrawurm Unleash cost) */
-  NEXUS_CORES_TO_SELF: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && typeof a.name === 'string' && a.name.length > 0, txt: a => `send ${a.n} cores from your "${a.name}" Nexus to this Spirit`,
+  NEXUS_CORES_TO_SELF: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 7 && typeof a.name === 'string' && a.name.length > 0, txt: a => `send ${a.n} cores from your "${a.name}" Nexus to this Spirit`,
     cands: (c, a) => c.p.nexus.filter(x => x.cores >= a.n && CARDS[x.id].name.toLowerCase().includes(a.name.toLowerCase())),
     can: (c, a) => c.p.spirits.includes(c.src) && FX_ACTIONS.NEXUS_CORES_TO_SELF.cands(c, a).length > 0,
     run: async (c, a) => {

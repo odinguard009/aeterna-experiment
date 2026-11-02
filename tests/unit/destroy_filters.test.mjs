@@ -7,7 +7,7 @@
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
-import { ROOT, openGame, closeBrowser } from './lib/game.mjs';
+import { ROOT, openGame, closeBrowser } from './lib/node_board.mjs';
 
 const py = code => JSON.parse(execFileSync('python3', ['-c', `import sys, json; sys.path.insert(0, 'tools'); import compile_effects as ce, compile_v2 as v2\nv2.install()\n${code}`], { cwd: ROOT, encoding: 'utf8' }));
 const compile = (text, extra = {}) => py(`c = json.loads(${JSON.stringify(JSON.stringify(Object.assign({ id: 'T-1', name: 'T', type: 'Spirit', color: 'red', cost: 4, levels: [{ cores: 1, bp: 3000 }, { cores: 3, bp: 5000 }], text }, extra)))})
@@ -80,7 +80,7 @@ test('PK76-04 engine: DESTROY bpLeSelf / bpEqSelf / symbolsGe / costLePer candid
     const e = cands(src, { costLePer: { type: 'Spirit', family: 'Investigator' } }); sp('T76-A'); sp('T76-A'); const e1 = cands(src, { costLePer: { type: 'Spirit', family: 'Investigator' } });
     const D = BS.FX_ACTIONS.DESTROY;
     await run(src, [{ do: 'DESTROY', symbolsGe: 2 }]);
-    return [a, b, c, d0, d2, e, e1, D.chk({ bpLeSelf: true }), D.chk({ symbolsGe: 0 }), D.chk({ costLePer: { type: 'Hand' } }), ids(O), D.txt({ costLePer: { type: 'Nexus' } })];`);
+    return [a, b, c, d0, d2, e, e1, D.chk({ bpLeSelf: true }), D.chk({ symbolsGe: 0 }), D.chk({ costLePer: { type: 'Banana' } }), ids(O), D.txt({ costLePer: { type: 'Nexus' } })];`);
   assert.deepEqual(r, [['T76-A', 'T76-C'], ['T76-C'], ['T76-B'], [], ['T76-A'], [], ['T76-A'], true, false, false, ['T76-A', 'T76-C'],
     'destroy 1 opposing Spirit/Ultimate with a cost equal or less than the number of matching Nexuses you control']);
 });

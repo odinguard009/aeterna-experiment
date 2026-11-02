@@ -1,7 +1,7 @@
 // v0.159.0 LOOT {to:'deckBottom'}: "draw N cards, then return M cards from your Hand to the deckbottom".
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { openGame, closeBrowser } from './lib/game.mjs';
+import { openGame, closeBrowser } from './lib/node_board.mjs';
 
 let g;
 before(async () => { g = await openGame(''); });

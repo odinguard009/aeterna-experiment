@@ -2,7 +2,7 @@
 // (drawEach), "If two cards are returned, draw three cards." (drawIf), and "If returned, ..." following it (ctx.did).
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { openGame, closeBrowser } from './lib/game.mjs';
+import { openGame, closeBrowser } from './lib/node_board.mjs';
 
 let g;
 before(async () => { g = await openGame(''); });

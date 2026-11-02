@@ -3,7 +3,7 @@
 // ctrl.family as a list. Rules: ETR:effects.activation, Standard manual "Examples on Activation Timings" (End Step).
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { openGame, closeBrowser } from './lib/game.mjs';
+import { openGame, closeBrowser } from './lib/node_board.mjs';
 
 let g;
 before(async () => { g = await openGame(''); });

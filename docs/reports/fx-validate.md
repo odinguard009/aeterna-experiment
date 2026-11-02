@@ -2,13 +2,7 @@
 
 Schema: packages/engine/fx-schema.json (up to date). Format: docs/ai/effect-format.md.
 
-Shipped cards: 6924, with errors: 0 (must be 0).
+Shipped cards: 8915, with errors: 0 (must be 0).
 
-Staged pool (tools/compile_v2.py --partial): 5285 compiled cards, with errors: 1. Staged errors do not fail the build; a card with errors cannot be promoted until they are fixed.
-
-## Staged errors
-
-| Error | Cards | Examples |
-|---|---|---|
-| parseCard: invalid "symbols" (0-5) | 1 | BS60-XX01 |
+Staged pool (tools/compile_v2.py --partial): 5162 compiled cards, with errors: 0. Staged errors do not fail the build; a card with errors cannot be promoted until they are fixed.
 

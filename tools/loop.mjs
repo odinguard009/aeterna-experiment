@@ -45,6 +45,17 @@ const steps = [
   ['fx validate', ['tools/fx_validate.mjs', '--static']],      // v0.81 F1: effect format schema + shipped cards (engine parse: test FS03)
 ];
 
+// Chores a finished card used to leave to the session (2026-11-02, each one broke CI once): staging still held cards that data/cards has (I18/I30),
+// and the compiler-wiring report was stale. Both are cheap and idempotent, so the loop does them instead of failing later.
+const py = (args) => { for (const bin of ['python3', 'python']) { const r = spawnSync(bin, args, { encoding: 'utf8' }); if (!r.error) return r; } return { status: 0, stdout: '', stderr: '' }; };
+if (py(['tools/staging_sync.py', '--check']).status === 1) {
+  const r = py(['tools/staging_sync.py']);
+  console.log(r.status === 0 ? `[loop] ${tail(r.stdout, 1)} (commit data/import)` : `[loop] staging sync FAILED
+${tail(`${r.stdout}${r.stderr}`, 8)}`);
+  if (r.status !== 0) process.exit(1);
+}
+run(['tools/compiler_wiring.mjs'], {});                       // rewrites docs/reports/compiler-wiring.md (commit it when it changes)
+
 const failure = (name, out) => {
   const fails = out.split('\n').filter((l) => /^not ok|^# (pass|fail)|Error|error:/.test(l));
   return `[loop] ${name} FAILED\n${(fails.length ? fails.slice(0, 20).join('\n') : tail(out, 15))}`;

@@ -2,7 +2,7 @@
 // Rules: Eternal rule manual VER.17.0 p. 56-57 (Tokens) & Standard block A token data.
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { openGame, closeBrowser } from './lib/game.mjs';
+import { openGame, closeBrowser } from './lib/node_board.mjs';
 
 let g;
 const SWORDISH = '26RSD10-T001';

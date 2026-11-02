@@ -10,7 +10,7 @@ import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
-import { ROOT, openGame, closeBrowser } from './lib/game.mjs';
+import { ROOT, openGame, closeBrowser } from './lib/node_board.mjs';
 
 // v0.60.2: B60-12/13 read data/sources, which the light clone leaves out (like I30)
 const NO_SRC = !existsSync(join(ROOT, 'data/sources/fandom-brave-combine.tsv')) && 'data/sources not checked out (light clone)';

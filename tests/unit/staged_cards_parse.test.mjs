@@ -3,7 +3,7 @@
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { checkStaged, stagedCards, KNOWN_GAPS } from '../../tools/check_staged.mjs';
-import { quietBoard, closeBrowser } from './lib/game.mjs';
+import { quietBoard, closeBrowser } from './lib/node_board.mjs';
 
 after(closeBrowser);
 

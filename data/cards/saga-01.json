@@ -10389,14 +10389,7 @@
       },
       {
        "do": "OPP_CORES_TO_RESERVE",
-       "total": 5,
-       "if": {
-        "prev": true
-       }
-      },
-      {
-       "do": "OPP_CORES_TO_RESERVE",
-       "total": 2,
+       "total": 7,
        "if": {
         "prev": true
        }

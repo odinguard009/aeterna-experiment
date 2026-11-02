@@ -315,3 +315,4 @@ FX_ACTIONS.CANT_ATTACK_BLOCK_ALL = {
     for (const t of L) { t.noAB = true; t.noABTurn = G.turnNo; }
     if (L.length) { log(`${CARDS[c.src.id].name}: ${L.length} Spirit${L.length === 1 ? '' : 's'} can't attack/block during this turn.`); io.view({ type: 'board' }); }
   } };
+wrapImmunity(Object.values(FX_ACTIONS));   // the actions above are defined after 02k: LO01

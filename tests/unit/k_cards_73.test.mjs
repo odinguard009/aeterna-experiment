@@ -2,7 +2,7 @@
 // Next cycle bundle 9 (v0.203.0+): permanent colour treatments stored as the card colours list.
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { sharedBoard, closeBrowser } from './lib/game.mjs';
+import { sharedBoard, closeBrowser } from './lib/node_board.mjs';
 
 after(async () => { await closeBrowser(); });
 

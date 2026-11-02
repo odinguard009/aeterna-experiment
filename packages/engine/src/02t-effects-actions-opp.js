@@ -178,7 +178,7 @@ Object.assign(FX_ACTIONS, {
   OPP_NO_BLOCK: { chk: a => a.minLv == null || (Number.isInteger(a.minLv) && a.minLv >= 1 && a.minLv <= 5), txt: () => 'the opponent can\'t block during this Attack Step',
     run: async (c, a) => { c.opp.noBlock = { turn: G.turnNo, uid: c.src.uid, owner: c.p.key, minLv: a.minLv || 1 }; log(`${CARDS[c.src.id].name}: ${who(c.opp)} can't block during this Attack Step.`); io.view({ type: 'board' }); } },
   /* v0.48 Seal (manual p.49): send your Soul Core to your Life (from wherever it is: Trash, Reserve or a card that keeps enough cores) */
-  LIFE_TO_RESERVE: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 3, txt: a => `send ${a.n} opposing Life to the opposing Reserve`,
+  LIFE_TO_RESERVE: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5, txt: a => `send ${a.n} opposing Life to the opposing Reserve`,
     can: c => c.opp.life > 0,
     run: async (c, a) => {
       const m = Math.min(a.n, c.opp.life); if (!m) { c.ctx.did = false; return; }

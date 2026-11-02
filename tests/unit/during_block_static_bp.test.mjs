@@ -2,7 +2,7 @@
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
-import { ROOT, quietBoard, closeBrowser } from './lib/game.mjs';
+import { ROOT, quietBoard, closeBrowser } from './lib/node_board.mjs';
 
 after(closeBrowser);
 const py = code => JSON.parse(execFileSync('python3', ['-c', `import sys, json; sys.path.insert(0, 'tools'); import compile_effects as ce\n${code}`], { cwd: ROOT, encoding: 'utf8' }));

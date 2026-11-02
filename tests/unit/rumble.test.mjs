@@ -5,7 +5,7 @@
 // and only a Spirit blocker that reached the Trash reduces it. Scenario: tests/scenarios/rumble-end-of-battle-mill.json.
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { openGame, closeBrowser } from './lib/game.mjs';
+import { openGame, closeBrowser } from './lib/node_board.mjs';
 
 let g;
 const FIX = [

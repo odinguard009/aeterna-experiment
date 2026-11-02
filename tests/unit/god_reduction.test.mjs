@@ -4,7 +4,7 @@ import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { openGame, closeBrowser, ROOT } from './lib/game.mjs';
+import { openGame, closeBrowser, ROOT } from './lib/node_board.mjs';
 
 const cards = JSON.parse(readFileSync(join(ROOT, 'build/all-cards.json'), 'utf8'));
 const by = id => cards.find(c => c.id === id);

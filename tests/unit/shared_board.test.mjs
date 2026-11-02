@@ -1,7 +1,7 @@
 // sharedBoard(): one page per file, reset by BS.testSetup() on every call (cuts ~1.2 s of page load per test).
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { sharedBoard, closeBrowser } from './lib/game.mjs';
+import { sharedBoard, closeBrowser } from './lib/node_board.mjs';
 
 after(async () => { await closeBrowser(); });
 

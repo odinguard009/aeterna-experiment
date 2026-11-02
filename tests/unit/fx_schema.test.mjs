@@ -5,7 +5,7 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { buildSchema, schemaText, SCHEMA_PATH, SCHEMA_VERSION } from '../../tools/fx_schema.mjs';
 import { cardErrors, validate } from '../../tools/fx_validate.mjs';
-import { openGame, closeBrowser, ROOT } from './lib/game.mjs';
+import { openGame, closeBrowser, ROOT } from './lib/node_board.mjs';
 
 after(closeBrowser);
 const S = buildSchema();

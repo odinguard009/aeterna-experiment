@@ -124,7 +124,7 @@ Object.assign(FX_ACTIONS, {
   CONTRACT_FIELD_ADVENT: { chk: () => true, txt: () => 'this turn, you can Contract Advent onto your Awakened Dragon Spirits from Soul State',
     can: c => c.p.soulState.some(x => CARDS[x.id].contractAdvent),
     run: async c => { c.p.csAdventTurn = G.turnNo; log(`${CARDS[c.src.id].name}: until the end of this turn, ${who(c.p)} ${c.p.cpu ? 'can' : 'can'} Contract Advent from Soul State.`); } },
-  DECK_TO_TRASH_CORES: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && hasMatch(a.match), txt: a => `send ${a.n} cards from your Deck to the Trash, +1 core to this card for each matching card among them`,
+  DECK_TO_TRASH_CORES: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 7 && hasMatch(a.match), txt: a => `send ${a.n} cards from your Deck to the Trash, +1 core to this card for each matching card among them`,
     can: c => c.p.deck.length > 0,
     run: async (c, a) => {
       const top = c.p.deck.splice(0, Math.min(a.n, c.p.deck.length)); let k = 0;
@@ -148,7 +148,7 @@ Object.assign(FX_ACTIONS, {
     } },
   /* "send your Soul Core to any <name> Nexus": from the Trash, the Reserve or a card where it can leave without depleting a Spirit.
      ask:true = "you can" inside the effect (the human is asked, the CPU does it). Fires SOUL_PLACED for the Nexus. */
-  TRASH_CORES_TO: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && (hasMatch(a.match) || a.toAttacker === true || a.toReserve === true || a.toLife === true || a.toSelf === true || a.toPick === true) && (a.notAttacker == null || a.notAttacker === true) && (a.perDestroyed == null || (a.perDestroyed === true && a.toSelf === true)) && (a.all == null || (a.all === true && a.toPick === true)), txt: a => a.toLife ? `send ${a.n} core (not the Soul Core) from your Trash to your Life` : a.toSelf ? `send ${a.perDestroyed ? 'a core for each Spirit destroyed' : a.n + ' core(s)'} (not the Soul Core) from your Trash to this Spirit` : a.toReserve ? `send ${a.n} core (not the Soul Core) from your Trash to your Reserve` : a.toAttacker ? `send up to ${a.n} cores (not the Soul Core) from your Trash to the attacking Spirit` : `send up to ${a.n} cores (not the Soul Core) from your Trash to ${a.onlyCards ? '' : 'your Reserve and '}your matching Spirits/Nexuses${a.thenDestroyNexus ? '; when you do, destroy an opposing Nexus' : ''}`,
+  TRASH_CORES_TO: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 7 && (hasMatch(a.match) || a.toAttacker === true || a.toReserve === true || a.toLife === true || a.toSelf === true || a.toPick === true) && (a.notAttacker == null || a.notAttacker === true) && (a.perDestroyed == null || (a.perDestroyed === true && a.toSelf === true)) && (a.all == null || (a.all === true && a.toPick === true)), txt: a => a.toLife ? `send ${a.n} core (not the Soul Core) from your Trash to your Life` : a.toSelf ? `send ${a.perDestroyed ? 'a core for each Spirit destroyed' : a.n + ' core(s)'} (not the Soul Core) from your Trash to this Spirit` : a.toReserve ? `send ${a.n} core (not the Soul Core) from your Trash to your Reserve` : a.toAttacker ? `send up to ${a.n} cores (not the Soul Core) from your Trash to the attacking Spirit` : `send up to ${a.n} cores (not the Soul Core) from your Trash to ${a.onlyCards ? '' : 'your Reserve and '}your matching Spirits/Nexuses${a.thenDestroyNexus ? '; when you do, destroy an opposing Nexus' : ''}`,
     can: c => c.p.trashCores.n > 0,
     run: async (c, a) => {
       let moved = 0, fixed; const got = new Map();      // fixed: a.one picks the one target for every core

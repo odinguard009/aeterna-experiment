@@ -1,109 +1,134 @@
 {
-  "advisorModel": "opus",
-  "modelSettings": {
-    "claude-sonnet-5-5": {
-      "autoCompactWindow": 200000
-    }
+  "env": {
+    "MCP_TIMEOUT": "120000"
   },
+  "model": "auto/coding",
   "hooks": {
     "PreToolUse": [
-    {
+      {
         "matcher": "Grep|Glob|Bash",
         "hooks": [
-            {
-                "type": "command",
-                "command": "/root/.local/bin/codebase-memory-mcp",
-                "args": [
-                    "hook-augment"
-                ],
-                "timeout": 5
-            }
+          {
+            "type": "command",
+            "command": "C:/Users/guardino.fahmi.EMTEKGROUP/AppData/Local/Programs/codebase-memory-mcp/codebase-memory-mcp.exe",
+            "args": [
+              "hook-augment"
+            ],
+            "timeout": 5
+          }
         ]
-    }
-],
+      }
+    ],
     "PostToolUse": [
-    {
+      {
         "matcher": "Read",
         "hooks": [
-            {
-                "type": "command",
-                "command": "/root/.local/bin/codebase-memory-mcp",
-                "args": [
-                    "hook-augment"
-                ],
-                "timeout": 5
-            }
+          {
+            "type": "command",
+            "command": "C:/Users/guardino.fahmi.EMTEKGROUP/AppData/Local/Programs/codebase-memory-mcp/codebase-memory-mcp.exe",
+            "args": [
+              "hook-augment"
+            ],
+            "timeout": 5
+          }
         ]
-    }
-],
+      }
+    ],
     "SessionStart": [
-    {
+      {
         "matcher": "startup",
         "hooks": [
-            {
-                "type": "command",
-                "command": "/root/.local/bin/codebase-memory-mcp",
-                "args": [
-                    "hook-augment"
-                ],
-                "timeout": 5
-            }
+          {
+            "type": "command",
+            "command": "C:/Users/guardino.fahmi.EMTEKGROUP/AppData/Local/Programs/codebase-memory-mcp/codebase-memory-mcp.exe",
+            "args": [
+              "hook-augment"
+            ],
+            "timeout": 5
+          }
         ]
-    },
-    {
+      },
+      {
         "matcher": "resume",
         "hooks": [
-            {
-                "type": "command",
-                "command": "/root/.local/bin/codebase-memory-mcp",
-                "args": [
-                    "hook-augment"
-                ],
-                "timeout": 5
-            }
+          {
+            "type": "command",
+            "command": "C:/Users/guardino.fahmi.EMTEKGROUP/AppData/Local/Programs/codebase-memory-mcp/codebase-memory-mcp.exe",
+            "args": [
+              "hook-augment"
+            ],
+            "timeout": 5
+          }
         ]
-    },
-    {
+      },
+      {
         "matcher": "clear",
         "hooks": [
-            {
-                "type": "command",
-                "command": "/root/.local/bin/codebase-memory-mcp",
-                "args": [
-                    "hook-augment"
-                ],
-                "timeout": 5
-            }
+          {
+            "type": "command",
+            "command": "C:/Users/guardino.fahmi.EMTEKGROUP/AppData/Local/Programs/codebase-memory-mcp/codebase-memory-mcp.exe",
+            "args": [
+              "hook-augment"
+            ],
+            "timeout": 5
+          }
         ]
-    },
-    {
+      },
+      {
         "matcher": "compact",
         "hooks": [
-            {
-                "type": "command",
-                "command": "/root/.local/bin/codebase-memory-mcp",
-                "args": [
-                    "hook-augment"
-                ],
-                "timeout": 5
-            }
+          {
+            "type": "command",
+            "command": "C:/Users/guardino.fahmi.EMTEKGROUP/AppData/Local/Programs/codebase-memory-mcp/codebase-memory-mcp.exe",
+            "args": [
+              "hook-augment"
+            ],
+            "timeout": 5
+          }
         ]
-    }
-],
+      }
+    ],
     "SubagentStart": [
-    {
+      {
         "matcher": "*",
         "hooks": [
-            {
-                "type": "command",
-                "command": "/root/.local/bin/codebase-memory-mcp",
-                "args": [
-                    "hook-augment"
-                ],
-                "timeout": 5
-            }
+          {
+            "type": "command",
+            "command": "C:/Users/guardino.fahmi.EMTEKGROUP/AppData/Local/Programs/codebase-memory-mcp/codebase-memory-mcp.exe",
+            "args": [
+              "hook-augment"
+            ],
+            "timeout": 5
+          }
         ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "ui-ux-pro-max@ui-ux-pro-max-skill": true,
+    "tinyfish@anthropic-plugin-directory": true,
+    "superpowers@superpowers-marketplace": true
+  },
+  "extraKnownMarketplaces": {
+    "ui-ux-pro-max-skill": {
+      "source": {
+        "source": "github",
+        "repo": "nextlevelbuilder/ui-ux-pro-max-skill"
+      }
+    },
+    "superpowers-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "obra/superpowers-marketplace"
+      }
     }
-]
-  }
+  },
+  "modelSettings": {
+    "claude-sonnet-5-5": {
+      "autoCompactWindow": 500000
+    }
+  },
+  "advisorModel": "opus",
+  "autoUpdatesChannel": "latest",
+  "theme": "dark"
 }

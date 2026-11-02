@@ -1,7 +1,7 @@
 // v0.183.0: DESTROY_EVERY {bpLe} hits both sides; DESTROY_ANY {kind:'spirit', bpLe} picks one Spirit of either side (CPU: opposing only).
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { openGame, closeBrowser } from './lib/game.mjs';
+import { openGame, closeBrowser } from './lib/node_board.mjs';
 
 let g;
 before(async () => { g = await openGame(''); });

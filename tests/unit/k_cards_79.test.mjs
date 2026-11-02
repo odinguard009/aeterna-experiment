@@ -2,7 +2,7 @@
 // Schemas v256-v258: EXHAUST_OPP lv, CHOOSE_ONE, if.reserveGe. Cards: BS03-032, BS38-066, BS10-098, BS01-052, BS02-071, BS01-118.
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { sharedBoard, closeBrowser } from './lib/game.mjs';
+import { sharedBoard, closeBrowser } from './lib/node_board.mjs';
 
 after(async () => { await closeBrowser(); });
 

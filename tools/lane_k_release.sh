@@ -89,6 +89,7 @@ sed -i -E "s/^- cycle:.*/- cycle: 0\/100 new complete cards since v$next/" docs/
 node tools/build.mjs
 bash tools/release_docs.sh
 npm run -s check
+bash tools/pre_release_check.sh   # cheap gate: staging, heads, compiler wiring, load order, size budgets (2026-11-02)
 git add -A
 git commit -m "release v$next: Lane K, +$new complete cards ($complete of 8,709)"
 git checkout main

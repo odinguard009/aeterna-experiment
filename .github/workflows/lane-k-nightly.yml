@@ -1,0 +1,27 @@
+# Nightly full check of wip/lane-k (its pushes are path-ignored in ci.yml, so Lane K bundles are otherwise untested until a release).
+# A scheduled workflow runs from the default branch and checks out the session branch.
+name: Lane K nightly
+on:
+  schedule:
+    - cron: '47 20 * * *'
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: wip/lane-k
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci && npx playwright install --with-deps chromium
+      - name: Cheap pre-release gate
+        run: if [ -f tools/pre_release_check.sh ]; then bash tools/pre_release_check.sh; else echo 'gate not on wip/lane-k yet (rebase onto main)'; fi
+      - name: Build check and lint
+        run: npm run check && npm run lint
+      - name: Effect format
+        run: node tools/fx_validate.mjs --staged
+      - name: Unit and property tests
+        run: npm test

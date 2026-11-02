@@ -2,7 +2,7 @@
 // Standard block A closing bundle: the last nine partial 26R* cards (schema 246) + the Soul Awaken core fix.
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { sharedBoard, closeBrowser } from './lib/game.mjs';
+import { sharedBoard, closeBrowser } from './lib/node_board.mjs';
 
 after(async () => { await closeBrowser(); });
 const IDS = ['26RBS01-119', '26RBS01-125', '26RBS02-092', '26RBS03-095', '26RDB01-058', '26RSD08-013', '26RDB01-060', '26RBS03-X04', '26RDB01-042'];

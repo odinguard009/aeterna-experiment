@@ -7,7 +7,7 @@
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
-import { ROOT, openGame, closeBrowser } from './lib/game.mjs';
+import { ROOT, openGame, closeBrowser } from './lib/node_board.mjs';
 
 const py = code => JSON.parse(execFileSync('python3', ['-c', `import sys, json; sys.path.insert(0, 'tools'); import compile_effects as ce\n${code}`], { cwd: ROOT, encoding: 'utf8' }));
 const ULT = { id: 'T-U', name: 'Ultimate-T', type: 'Ultimate', color: 'red', cost: 5, levels: [{ cores: 1, bp: 6000 }, { cores: 3, bp: 10000 }] };

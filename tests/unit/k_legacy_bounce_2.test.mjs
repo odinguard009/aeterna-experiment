@@ -1,7 +1,7 @@
-// Lane K tests, shard 2 of 4 (split from k_legacy_bounce.test.mjs; one shared page per shard, see sharedBoard in lib/game.mjs).
+// Lane K tests, shard 2 of 4 (split from k_legacy_bounce.test.mjs; one shared page per shard, see sharedBoard in lib/node_board.mjs).
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { sharedBoard, closeBrowser } from './lib/game.mjs';
+import { sharedBoard, closeBrowser } from './lib/node_board.mjs';
 
 after(async () => { await closeBrowser(); });
 // Magic bases are staged with an allHave gate; these tests drop it and check the new shapes.

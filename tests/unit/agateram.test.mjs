@@ -2,7 +2,7 @@
 // New vocabulary: ALLY_ATTACKS gate `subjBraved` (the attacker is a Brave Spirit), OPP_LIFE_TO_TRASH {perBraveNames}, OPP_NO_BLOCK (this Attack Step).
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { openGame, closeBrowser } from './lib/game.mjs';
+import { openGame, closeBrowser } from './lib/node_board.mjs';
 
 let g;
 before(async () => { g = await openGame(''); });
