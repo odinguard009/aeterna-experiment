@@ -10054,13 +10054,23 @@
       "do": "REFRESH"
      }
     ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "MAGIC_WALL",
+    "to": "self",
+    "colors": [
+     "red",
+     "blue"
+    ],
+    "lv": [
+     1,
+     2
+    ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] {{iw|Red/Blue}} (Opposing Turn) When the opponent uses a Red/Blue Magic effect, by exhausting this Spirit, negate that effect."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image.",
   "rcode": "C"
  },
  {
@@ -16098,13 +16108,37 @@
   "image": "The GuardianBeast Sisinga.jpg",
   "block": "18",
   "saga": 3,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] Cards cannot be discarded from either player's deck.",
-   "[LV1][LV2][LV3] While you control only 1 Spirit, treat this Spirit as being on Lv3."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "C"
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image.",
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "NO_DECK_DISCARD",
+    "to": "self",
+    "lv": [
+     1,
+     2,
+     3
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "TREAT_LV3",
+    "to": "self",
+    "if": {
+     "ctrl": {
+      "type": "Spirit",
+      "nLe": 1
+     }
+    },
+    "lv": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
  },
  {
   "id": "BS18-003",
@@ -16251,13 +16285,37 @@
   "image": "The GuardianBeast Sisingini.jpg",
   "block": "18",
   "saga": 3,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] Cards cannot be discarded from either player's deck.",
-   "[LV1][LV2][LV3] While you control 2 or less Spirits, treat this Spirit as being on LV3."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
-  "rcode": "C"
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image.",
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "NO_DECK_DISCARD",
+    "to": "self",
+    "lv": [
+     1,
+     2,
+     3
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "TREAT_LV3",
+    "to": "self",
+    "if": {
+     "ctrl": {
+      "type": "Spirit",
+      "nLe": 2
+     }
+    },
+    "lv": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
  },
  {
   "id": "BS18-006",

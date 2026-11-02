@@ -575,6 +575,23 @@ function magicText(card) {
   if (m.by) return Object.entries(m.by).map(([k, b]) => `[${k === 'MAIN' ? 'Main' : 'Flash'}] ${MAGIC_FX[b.effect].text(b.value, b)}`).join(' ');
   return `${m.timing.map(x => '[' + (x === 'MAIN' ? 'Main' : 'Flash') + ']').join('')} ${m.effect ? MAGIC_FX[m.effect].text(m.value, m) : card.desc}`;
 }
+/* v392 STATIC MAGIC_WALL {colors} ("{{iw|Red/Purple}} (Opposing Turn) When the opponent uses a Red/Purple Magic effect, by exhausting this Spirit, negate that effect"; Ice Wall):
+   called by castMagic after the cost is paid and before the effect; a refreshed Spirit of the other player (on that player's own opponent's turn only) is exhausted to cancel the effect (the Magic card still goes to the Trash).
+   Not applied to a Magic cast from the Burst. The CPU always negates; a human is asked. */
+async function magicWallNegate(p, opp, inst) {
+  if (!G || G.active !== p.key) return false;
+  const k = CARDS[inst.id], cols = k.colors || [k.symbol];
+  const walls = opp.spirits.filter(s => !s.exhausted && fxEntries(s).some(({ e }) => e.trigger === 'STATIC' && e.flag === 'MAGIC_WALL' && !(e.lv && !e.lv.includes(lvNo(s))) && e.colors.some(x => cols.includes(x))));
+  if (!walls.length) return false;
+  let w = walls[0];
+  if (!opp.cpu) {
+    const v = await ask({ title: '🧊 ' + esc(k.name), html: `The opponent used ${esc(k.name)}. Exhaust a Spirit to negate its effect?`, buttons: walls.map(s => ({ label: 'Exhaust ' + CARDS[s.id].name, cls: 'primary', value: s.uid })).concat([{ label: 'No', cls: 'blue', value: null }]) });
+    w = v == null ? null : walls.find(s => s.uid === v) || walls[0];
+  }
+  if (!w) return false;
+  w.exhausted = true; log(`${who(opp)} exhausts ${CARDS[w.id].name}: the effect of ${k.name} is negated.`);
+  return true;
+}
 async function castMagic(p, ch) {                         // ch = { inst, target, plan }
   const inst = ch.inst, fromTrash = magicFromTrash(p, inst), card = CARDS[inst.id], m = magicFxAt(p, inst, ch.ctx), free = !!ch.free, sm = !free && soulMagicPick(p, card, ch), alt = !sm && !free && costAltActive(p, card), c = free ? 0 : effCost(p, card), opp = G.p[other(p.key)];
   if (!sm && !free) legacyPay(p, inst);
@@ -594,7 +611,8 @@ async function castMagic(p, ch) {                         // ch = { inst, target
   const fromBurst = p.limbo === inst;                       // v0.44: cast from the Burst (burstFlash); maybeBurst moves it to the Trash afterwards
   const prevLimbo = p.limbo; if (!fromBurst) p.limbo = inst;   // the card being resolved is in no zone: count it while its effect runs (SIM invariants)
   try {
-    if (m && m.effect) {
+    if (!fromBurst && await magicWallNegate(p, opp, inst)) { /* v392 negated */ }
+    else if (m && m.effect) {
       const fx = MAGIC_FX[m.effect], t = ch.target;
       if (!fx.side) await fx.apply(p, opp, null, m.value, m, inst);
       else if (t && (fx.side === 'opp' ? opp : p).spirits.includes(t) && fx.ok(t, m.value, m) && !(fx.side === 'opp' && fxImmune(opp, t, { p, src: inst }))) fx.apply(p, opp, t, m.value, m);

@@ -164,6 +164,10 @@ function parseEffects(arr) {
         if (!Array.isArray(e.colors) || !e.colors.length || e.colors.length > 3 || !e.colors.every(c => COLORS.includes(c))) return { error: 'ULT_SYMBOL_AS needs "colors" (1-3 of the six colours)' };
         o.colors = e.colors.slice(); o.to = 'self';
       }
+      if (e.flag === 'MAGIC_WALL') {                              // v392 Ice Wall / {{iw|colours}}: exhaust this Spirit to negate an opposing Magic of those colours
+        if (!Array.isArray(e.colors) || !e.colors.length || e.colors.length > 6 || !e.colors.every(c => COLORS.includes(c))) return { error: 'MAGIC_WALL needs "colors" (the six colours)' };
+        o.colors = e.colors.slice();
+      }
       if (e.flag === 'ALSO_TREATED') {                            // v384 "this Spirit's color and symbol are also treated as Red" (self, level-gated)
         if (!Array.isArray(e.colors) || !e.colors.length || e.colors.length > 6 || !e.colors.every(c => COLORS.includes(c))) return { error: 'ALSO_TREATED needs "colors" (the six colours)' };
         if (e.symbol !== true && e.color !== true) return { error: 'ALSO_TREATED needs "symbol":true and/or "color":true' };

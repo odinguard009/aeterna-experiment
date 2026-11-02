@@ -1717,11 +1717,6 @@
   "M_OPTIONAL",
   "T_BATTLE_WIN"
  ],
- "BS08-036": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "C_OPP_TURN"
- ],
  "BS08-038": [
   "A_SUMMON_FREE",
   "M_OPTIONAL"
@@ -2529,11 +2524,6 @@
   "K_BRAVE",
   "S_UNAFFECTED"
  ],
- "BS11-028": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "C_OPP_TURN"
- ],
  "BS11-030": [
   "C_LEVEL",
   "K_BRAVE",
@@ -2874,11 +2864,6 @@
   "T_SUMMONED"
  ],
  "BS12-027": [
-  "C_LEVEL",
-  "C_OPP_TURN"
- ],
- "BS12-029": [
-  "A_EXHAUST",
   "C_LEVEL",
   "C_OPP_TURN"
  ],
@@ -4472,11 +4457,6 @@
   "K_BURST",
   "T_ATTACKS"
  ],
- "BS16-031": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "C_OPP_TURN"
- ],
  "BS16-032": [
   "A_BP_PLUS",
   "A_EXHAUST",
@@ -5125,17 +5105,11 @@
   "A_VOID",
   "C_LEVEL"
  ],
- "BS18-002": [
-  "C_LEVEL"
- ],
  "BS18-003": [
   "C_LEVEL",
   "M_OPTIONAL",
   "T_ATTACKS",
   "T_SUMMONED"
- ],
- "BS18-005": [
-  "C_LEVEL"
  ],
  "BS18-006": [
   "C_LEVEL",
@@ -11520,11 +11494,6 @@
   "K_BURST",
   "M_BY_DOING",
   "T_ATTACKS"
- ],
- "BS32-028": [
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "S_UNAFFECTED"
  ],
  "BS32-029": [
   "C_LEVEL",

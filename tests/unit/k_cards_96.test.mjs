@@ -81,3 +81,30 @@ test('K-1181 SUMMON_DISCOUNT (SD33-001, BS35-023): matching Spirit cards cost 1 
     return { d1: g0 - g1, d0: o0 - o1, d2: (g0 - g2) - (o0 - o2), ok: ['SD33-001', 'BS35-023', 'BS35-074', 'SD33-010', 'BS23-046', 'BS24-014'].every(k => BS.CARDS[k].fxComplete !== false) }; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.d1, 1, JSON.stringify(r)); assert.equal(r.d0, 0, JSON.stringify(r)); assert.equal(r.d2, 1, JSON.stringify(r));
 });
+
+test('K-1182 BS18-002 is treated as LV3 only while it is the only Spirit; BS32-028 is unaffected by opposing Spirit effects only with a Soul Core', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const ids = Object.values(BS.CARDS).filter(c => /^BS0/.test(c.id) && c.type === 'Spirit' && c.cost <= 2).map(c => c.id);
+    const s = BS.mkInst('BS18-002'); s.cores = 1; P.spirits = [s]; const alone = BS.lvNo(s);
+    const x = BS.mkInst(ids[0]); x.cores = 1; P.spirits = [s, x]; const withOther = BS.lvNo(s);
+    const t = BS.mkInst('BS32-028'); t.cores = 1; P.spirits = [t]; const src = BS.mkInst(ids[1]); O.spirits = [src];
+    const c = { p: O, src, ctx: {} }; t.soul = false; const a0 = BS.fxImmune(P, t, c); t.soul = true; const a1 = BS.fxImmune(P, t, c);
+    return { alone, withOther, a0, a1, ok: ['BS18-002', 'BS18-005', 'BS32-028'].every(k => BS.CARDS[k].fxComplete !== false) }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.alone, 3, JSON.stringify(r)); assert.ok(r.withOther < 3, JSON.stringify(r));
+  assert.equal(r.a0, false, JSON.stringify(r)); assert.equal(r.a1, true, JSON.stringify(r));
+});
+
+test('K-1183 MAGIC_WALL (BS11-028, BS12-029, BS16-031, BS08-036): exhausts to negate a Magic of its colours on the opposing turn only', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const mg = col => Object.values(BS.CARDS).find(c => c.type === 'Magic' && c.symbol === col);
+    const run = async (wallId, col, setup) => { const w = BS.mkInst(wallId); w.cores = 3; P.spirits = [w]; O.spirits = []; G.active = O.key; if (setup) setup(w);
+      const m = BS.mkInst(mg(col).id); await BS.castMagic(O, { inst: m, target: null, plan: null, ctx: 'main', free: true }); return w.exhausted; };
+    const out = { white: await run('BS11-028', 'white'), red: await run('BS11-028', 'red'), exh: await run('BS11-028', 'white', w => { w.exhausted = true; }),
+      own: await (async () => { const w = BS.mkInst('BS11-028'); w.cores = 3; P.spirits = [w]; G.active = P.key; const m = BS.mkInst(mg('white').id); await BS.castMagic(P, { inst: m, target: null, plan: null, ctx: 'main', free: true }); return w.exhausted; })(),
+      multi: await run('BS08-036', 'blue'), ok: ['BS11-028', 'BS12-029', 'BS16-031', 'BS08-036'].every(k => BS.CARDS[k].fxComplete !== false) };
+    return out; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.white, true, JSON.stringify(r)); assert.equal(r.red, false, JSON.stringify(r));
+  assert.equal(r.own, false, JSON.stringify(r)); assert.equal(r.multi, true, JSON.stringify(r));
+});
