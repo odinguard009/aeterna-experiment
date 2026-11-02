@@ -77,3 +77,21 @@ test('K-898 BS22-011: when destroyed, destroys an opposing exhausted Brave of co
   const m = JSON.stringify(r);
   assert.equal(r.br, false, m); assert.equal(r.sp, true, m); assert.equal(r.fresh, true, m);
 });
+
+test('K-899 BS21-064 (Lv1) and BS45-073 (Lv4, own Main Step only) gain an extra Yellow symbol', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player; G.active = P.key; P.cpu = true; P.spirits.length = 0;
+    const b = BS.mkInst('BS21-064'); b.cores = 1; P.spirits.push(b);
+    const u = BS.mkInst('BS45-073'); u.cores = 9; P.spirits.push(u);
+    const STEPS = ['START', 'CORE', 'DRAW', 'REFRESH', 'MAIN', 'ATTACK', 'END'];
+    G.step = STEPS.indexOf('MAIN');
+    const inMain = [BS.extraSymbolsOf(P, b).length, BS.extraSymbolsOf(P, u).length];
+    G.step = STEPS.indexOf('ATTACK');
+    const inAtk = [BS.extraSymbolsOf(P, b).length, BS.extraSymbolsOf(P, u).length];
+    return { inMain, inAtk, lv: BS.lvNo ? BS.lvNo(u) : null };
+  });
+  const m = JSON.stringify(r);
+  assert.deepEqual(r.inMain, [1, 1], m); assert.deepEqual(r.inAtk, [1, 0], m);
+});
