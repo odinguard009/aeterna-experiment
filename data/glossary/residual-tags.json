@@ -1044,9 +1044,6 @@
  "BS05-073": [
   "K_HIGH_SPEED"
  ],
- "BS05-074": [
-  "A_EXHAUST"
- ],
  "BS05-075": [
   "T_ATTACKS",
   "T_BLOCKS"
@@ -5468,11 +5465,6 @@
   "C_LIFE",
   "K_BURST",
   "T_SUMMONED"
- ],
- "BS18-X03": [
-  "C_LIFE",
-  "K_BURST",
-  "T_ALLY_LOST"
  ],
  "BS18-X04": [
   "C_LEVEL",

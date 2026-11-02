@@ -56,3 +56,16 @@ test('K-1179 BS31-097 Soul Aura: all Spirits +3000, a Spirit with Soul Core +300
     return { da: BS.bpOf(a) - a0, db: BS.bpOf(b) - b0, ok: BS.CARDS['BS31-097'].fxComplete !== false }; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.da, 3000, JSON.stringify(r)); assert.equal(r.db, 6000, JSON.stringify(r));
 });
+
+test('K-1180 BS05-074 exhausts two opposing Spirits only with two symbol colours; BS18-X03 burst is wired', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const ids = Object.keys(BS.CARDS).filter(k => /^BS0/.test(k) && BS.CARDS[k].type === 'Spirit');
+    const one = ids.find(k => BS.CARDS[k].symbol && Object.keys(BS.symbolsOn({ spirits: [BS.mkInst(k)], nexus: [] })).length);
+    const mk = () => { const x = BS.mkInst(ids[0]); x.cores = 2; x.exhausted = false; return x; };
+    O.spirits = [mk(), mk(), mk()]; P.spirits = [];
+    const acts = BS.CARDS['BS05-074'].magic.actions; await BS.runActions({ p: P, opp: O, src: BS.mkInst(ids[0]), ctx: {} }, { actions: acts });
+    const none = O.spirits.filter(s => s.exhausted).length;
+    return { none, burst: BS.CARDS['BS18-X03'].burst && BS.CARDS['BS18-X03'].burst.when, ok: BS.CARDS['BS05-074'].fxComplete !== false && BS.CARDS['BS18-X03'].fxComplete !== false }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.none, 0, JSON.stringify(r)); assert.equal(r.burst, 'ALLY_DESTROYED', JSON.stringify(r));
+});
