@@ -21324,13 +21324,42 @@
   "image": "Lightning Ballista.jpg",
   "block": "04",
   "saga": 1,
-  "fxComplete": false,
-  "residual": [
-   "(Your Main Phase) Destroy target spirit your opponent controls with 7000BP or less.",
-   "This effect cannot be used unless you control a spirit with 2 or more gems.",
-   "(Flash Step)(Your Main Phase) Target spirit with 2 or more gems gets +5000BP until end of turn."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "",
+  "magic": {
+   "timing": [
+    "MAIN",
+    "FLASH"
+   ],
+   "by": {
+    "MAIN": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "DESTROY",
+       "bpLe": 7000,
+       "if": {
+        "ctrl": {
+         "n": 1,
+         "type": "Both",
+         "symbolsGe": 2
+        }
+       }
+      }
+     ]
+    },
+    "FLASH": {
+     "effect": "BP_PLUS_MATCH",
+     "value": 5000,
+     "match": {
+      "symbolsGe": 2
+     }
+    }
+   }
+  },
+  "effects": [],
+  "residual": []
  },
  {
   "id": "BS04-092",

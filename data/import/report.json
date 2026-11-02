@@ -1,8 +1,8 @@
 {
  "stats": {
-  "cards": 6589,
+  "cards": 6588,
   "per_saga": {
-   "1": 505,
+   "1": 504,
    "2": 267,
    "3": 340,
    "4": 328,
@@ -22,10 +22,9 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2117,
+  "skipped_curated": 2118,
   "nexus_levels_added": 675,
   "nexus_levels_missing": 43,
-  "number_conflicts": 4,
   "merged": 107,
   "image_problems": 414,
   "brave_unparsed": 171,
@@ -33,6 +32,7 @@
   "odd_reduction": 805,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
+  "number_conflicts": 3,
   "without_image": 412
  },
  "tokens": [
@@ -356,6 +356,7 @@
   "BS04-072",
   "BS04-073",
   "BS04-089",
+  "BS04-091",
   "BS04-094",
   "BS04-097",
   "BS04-098",
@@ -2885,40 +2886,6 @@
   "BS77-CX01",
   "BS77-CX02",
   "BS77-CX03"
- ],
- "number_conflicts": [
-  {
-   "id": "BS04-091",
-   "names": [
-    "Euthanasia",
-    "Lightning Ballista"
-   ],
-   "kept": "Lightning Ballista"
-  },
-  {
-   "id": "BS73-AX01",
-   "names": [
-    "The FungalTreeForgeDeity BigBang-Golem",
-    "The WarParamountRoaringGeneral Mudou"
-   ],
-   "kept": "The FungalTreeForgeDeity BigBang-Golem"
-  },
-  {
-   "id": "BS73-AX02",
-   "names": [
-    "The PrismKnightEmperor Dragonic-Arthur",
-    "The UltimateNetherDragon Ultimate-Mugendragon"
-   ],
-   "kept": "The PrismKnightEmperor Dragonic-Arthur"
-  },
-  {
-   "id": "BS73-AX03",
-   "names": [
-    "The HeavenlyDemonKing God-Sechs -Type Force-",
-    "The RevelationGreatDeity Ultimate-Amaterasu-Dragon"
-   ],
-   "kept": "The HeavenlyDemonKing God-Sechs -Type Force-"
-  }
  ],
  "merged": [
   "BS04-X16",
@@ -10228,6 +10195,32 @@
  ],
  "ut_lines_missing": [
   "BS66-059"
+ ],
+ "number_conflicts": [
+  {
+   "id": "BS73-AX01",
+   "names": [
+    "The FungalTreeForgeDeity BigBang-Golem",
+    "The WarParamountRoaringGeneral Mudou"
+   ],
+   "kept": "The FungalTreeForgeDeity BigBang-Golem"
+  },
+  {
+   "id": "BS73-AX02",
+   "names": [
+    "The PrismKnightEmperor Dragonic-Arthur",
+    "The UltimateNetherDragon Ultimate-Mugendragon"
+   ],
+   "kept": "The PrismKnightEmperor Dragonic-Arthur"
+  },
+  {
+   "id": "BS73-AX03",
+   "names": [
+    "The HeavenlyDemonKing God-Sechs -Type Force-",
+    "The RevelationGreatDeity Ultimate-Amaterasu-Dragon"
+   ],
+   "kept": "The HeavenlyDemonKing God-Sechs -Type Force-"
+  }
  ],
  "level_problems": []
 }

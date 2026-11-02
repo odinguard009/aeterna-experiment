@@ -560,3 +560,17 @@ test('K-979 BS03-124 sends cores from both Reserves to the Trash (CPU: two)', as
     return [P.reserve.n, P.trashCores.n - tp, O.reserve.n, O.trashCores.n - to]; })()`);
   assert.deepEqual(r, [3, 2, 0, 1], JSON.stringify(r));
 });
+
+test('K-980 BS04-091 destroys only while an own Spirit has 2+ symbols', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; P.spirits.length = 0; O.spirits.length = 0;
+    const ids = Object.keys(BS.CARDS).filter(i => BS.CARDS[i].type === 'Spirit');
+    const two = ids.find(i => (BS.CARDS[i].symbols || 0) >= 2), one = ids.find(i => (BS.CARDS[i].symbols || 0) < 2);
+    const lowBp = ids.find(i => BS.CARDS[i].levels && BS.CARDS[i].levels.length && BS.CARDS[i].levels[0].bp <= 4000 && BS.CARDS[i].cost <= 3);
+    const mk = id => { const s = BS.mkInst(id); s.cores = 1; return s; };
+    const out = [];
+    for (const own of [one, two]) { P.spirits.length = 0; O.spirits.length = 0; P.spirits.push(mk(own)); const t = mk(lowBp); O.spirits.push(t);
+      await BS.runActions({ p: P, opp: O, src: BS.mkInst('BS04-091'), ctx: {} }, { actions: BS.CARDS['BS04-091'].magic.by.MAIN.actions }); out.push(O.spirits.length); }
+    return out; })()`);
+  assert.deepEqual(r, [1, 0], JSON.stringify(r));
+});

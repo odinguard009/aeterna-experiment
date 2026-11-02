@@ -368,3 +368,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v330 (Lane K): action `SPIRIT_TO_DECKTOP` ("move target Spirit to the top of its owner's Deck", either side, protected opposing Spirits skipped). Card: BS01-147.
 - v331 (Lane K): `NEXUS_CORES_ALL_TO_TRASH {oppOnly:true}` ("send every core from all opposing Nexuses to their Trash"). Card: BS02-095 (BY DESTROY_OWN_NEXUS then it).
 - v332 (Lane K): actions `SPIRIT_BUT_ONE_TO_RESERVE` ("move all but 1 core from target Spirit to its owner's Reserve", either side) and `RESERVE_TRASH_MIRROR` ("any number of cores from your Reserve to your Trash, then the same number from the opposing Reserve"; human picks 0-5, CPU two). Cards: BS03-125, BS03-124.
+- v333 (Lane K): `ctrl` condition accepts `symbolsGe` (1-5, printed symbols), e.g. "you control a Spirit with 2 or more gems" (BS04-091).
