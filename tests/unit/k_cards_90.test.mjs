@@ -192,6 +192,6 @@ test('K-1016 SD19-015 destroys up to 5000 BP total and returns a Spirit from the
 
 test('K-1017 eight saga-60 Spirits are complete and carry their effects', async () => {
   const { page } = await sharedBoard();
-  const r = await page.evaluate(`(() => ['SD01-021','SD19-005','SD19-006','SD20-003','SD20-006','SD17-007','SD17-004','SD13-003'].map(id => { const c = BS.CARDS[id]; return [id, c.fxComplete !== false && !c.residual && (c.effects || []).length > 0]; }))()`);
+  const r = await page.evaluate(`(() => ['SD01-021','SD19-005','SD19-006','SD20-003','SD20-006','SD17-007','SD17-004','SD13-003'].map(id => { const c = BS.CARDS[id]; return [id, c.implemented === true && !(c.residual || []).length && (c.effects || []).length > 0]; }))()`);
   assert.deepEqual(r.filter(x => !x[1]), [], JSON.stringify(r));
 });
