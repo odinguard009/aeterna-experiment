@@ -17116,12 +17116,6 @@
   "M_OPTIONAL",
   "T_SUMMONED"
  ],
- "BS40-058": [
-  "A_DISCARD_OPP",
-  "C_LEVEL",
-  "T_DESTROYED",
-  "T_DESTROYED_OPP"
- ],
  "BS40-059": [
   "A_DISCARD_OPP",
   "A_EXHAUST",

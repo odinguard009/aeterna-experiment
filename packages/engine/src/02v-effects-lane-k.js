@@ -459,4 +459,11 @@ FX_ACTIONS.SELF_CORE_REFRESH = {
     if (!c.p.spirits.includes(s)) return;
     refreshOne(s); log(`${CARDS[s.id].name} is refreshed.`); await fireFx(c.p, 'REFRESHED', s, {});
   } };
+/* v348 MILL_OPP perMatchSpirit: "For each <family> Spirit you control, discard a card from the opposing decktop." */
+(() => {
+  const M = FX_ACTIONS.MILL_OPP, mChk = M.chk, mTxt = M.txt, mRun = M.run, cnt = (c, a) => Math.min(20, c.p.spirits.filter(x => fxMatch(CARDS[x.id], a.perMatchSpirit, x)).length);
+  M.chk = a => a.perMatchSpirit != null ? (a.n == null && hasMatch(a.perMatchSpirit) && Object.keys(a).every(k => ['do', 'perMatchSpirit', 'if'].includes(k))) : mChk(a);
+  M.txt = a => a.perMatchSpirit ? 'send cards from the top of the opposing Deck to the Trash, one for each matching Spirit you control' : mTxt(a);
+  M.run = async (c, a) => { if (a.perMatchSpirit == null) return mRun(c, a); const n = cnt(c, a); if (!n) { c.ctx.did = false; return; } return mRun(c, { do: 'MILL_OPP', n }); };
+})();
 wrapImmunity(Object.values(FX_ACTIONS));   // the actions above are defined after 02k: LO01

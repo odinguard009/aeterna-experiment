@@ -827,3 +827,12 @@ test('K-1006 BS62-045 refreshes another Golden Cloud Spirit when destroyed by an
     P.trash.push(t); t.lostLv = 1; P.cpu = true; await BS.fireFx(P, 'DESTROYED', t, { subject: t, byOpp: true, byOppFx: true }); return [a.exhausted, b.exhausted, !!g]; })()`);
   assert.deepEqual(r, [false, true, true], JSON.stringify(r));
 });
+
+test('K-1007 MILL_OPP perMatchSpirit: BS40-058 mills one opposing card per Roaring Azure Spirit you control when destroyed by the opponent', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.spirits.length = 0; O.spirits.length = 0; G.turn = 'player';
+    const ra = Object.keys(BS.CARDS).filter(i => i !== 'BS40-058' && BS.CARDS[i].type === 'Spirit' && (BS.CARDS[i].families || []).includes('Roaring Azure')).slice(0, 2), no = Object.keys(BS.CARDS).find(i => BS.CARDS[i].type === 'Spirit' && !(BS.CARDS[i].families || []).includes('Roaring Azure'));
+    const t = BS.mkInst('BS40-058'); P.trash.push(t); t.lostLv = 0; P.spirits.push(...ra.map(i => BS.mkInst(i)), BS.mkInst(no)); const d0 = O.deck.length, t0 = O.trash.length;
+    await BS.fireFx(P, 'DESTROYED', t, { subject: t, byOpp: true }); return [ra.length, d0 - O.deck.length, O.trash.length - t0]; })()`);
+  assert.deepEqual(r, [2, 2, 2], JSON.stringify(r));
+});
