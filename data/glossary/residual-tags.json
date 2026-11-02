@@ -11148,12 +11148,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "BS31-016": [
-  "A_RETURN_TRASH",
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "T_ATTACKS"
- ],
  "BS31-017": [
   "A_DRAW",
   "C_LEVEL",
@@ -13115,14 +13109,6 @@
   "K_ULTIMATE",
   "M_UP_TO",
   "T_ATTACKS",
-  "T_SUMMONED"
- ],
- "BS35-014": [
-  "A_RETURN_TRASH",
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "K_BRAVE",
-  "M_REPLACEMENT",
   "T_SUMMONED"
  ],
  "BS35-015": [
@@ -26906,12 +26892,6 @@
   "K_BRAVE",
   "K_GRANDWALKER",
   "S_UNAFFECTED"
- ],
- "BS51-050": [
-  "A_BOUNCE",
-  "A_VOID",
-  "C_LEVEL",
-  "T_ATTACKS"
  ],
  "BS51-051": [
   "A_BOUNCE",

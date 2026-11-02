@@ -60,3 +60,28 @@ test('K-1130 BS31-002 destroys a 6000 BP or less Spirit only with the Soul Core'
     assert.deepEqual([r.impl, r.sp], [true, sp], JSON.stringify(r));
   }
 });
+
+test('K-1131 BS35-014 draws, or with the Soul Core paid returns an Imagine Brave from the Trash', async () => {
+  const { page } = await sharedBoard();
+  const rd = `{ d: P.hand.length - h0, tr: P.trash.length }`;
+  let r = await page.evaluate(run('BS35-014', 'SUMMONED', false, `const h0 = P.hand.length; P.trash.push(BS.mkInst('BS53-064'));`, rd));
+  assert.equal(r.impl, true, JSON.stringify(r)); assert.deepEqual([r.d, r.tr], [1, 1], JSON.stringify(r));
+  r = await page.evaluate(run('BS35-014', 'SUMMONED', false, `const h0 = P.hand.length; m.soulPaid = true; P.trash.push(BS.mkInst('BS01-001'));`, rd));
+  assert.equal(r.d, 0, JSON.stringify(r));
+});
+
+test('K-1132 BS51-050 puts a core on itself; with the Soul Core it also bounces an opposing Spirit', async () => {
+  const { page } = await sharedBoard();
+  for (const [soul, sp] of [[false, 1], [true, 0]]) {
+    const r = await page.evaluate(run('BS51-050', 'ATTACKS', soul, `${foe(0)} m.cores = 1; P.spirits.push(m); P.void = 5;`, `{ c: m.cores, sp: O.spirits.length }`));
+    assert.deepEqual([r.impl, r.c, r.sp], [true, 2, sp], JSON.stringify(r));
+  }
+});
+
+test('K-1133 BS31-016 sends a core to the Reserve; with the Soul Core it also returns a Purple Spirit', async () => {
+  const { page } = await sharedBoard();
+  for (const [soul, d] of [[false, 0], [true, 1]]) {
+    const r = await page.evaluate(run('BS31-016', 'ATTACKS', soul, `{ const s = BS.mkInst('BS01-001'); s.cores = 2; O.spirits.push(s); } const h0 = P.hand.length; { const t = BS.mkInst('BS01-026'); P.trash.push(t); } `, `{ c: O.spirits[0].cores, d: P.hand.length - h0, col: BS.CARDS['BS01-026'].color }`));
+    assert.deepEqual([r.impl, r.c, r.d], [true, 1, d], JSON.stringify(r));
+  }
+});
