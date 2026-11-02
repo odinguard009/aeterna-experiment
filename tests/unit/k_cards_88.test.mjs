@@ -340,3 +340,23 @@ test('K-911 alsoMagic: a Spirit with a Magic Flash is usable only from the Hand,
   assert.equal(r.main, false, m); assert.equal(r.flash, true, m);
   assert.equal(r.inTrash, true, m); assert.equal(r.inHand, false, m); assert.equal(r.field, false, m);
 });
+
+test('K-912 alsoMagic Spirit with BP_MINUS zeroDestroy destroys a foe brought to 0 BP', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player, O = G.p.opponent; G.active = P.key; P.cpu = true; O.cpu = true;
+    const out = {};
+    for (const [tag, cores] of [['low', 1], ['high', 5]]) {
+      P.spirits.length = 0; O.spirits.length = 0; P.hand.length = 0;
+      const f = BS.mkInst('BS01-002'); f.cores = cores; O.spirits.push(f);
+      const m = BS.mkInst('SD57-RV003'); P.hand.push(m); P.reserve.n = 6;
+      out[tag + 'Bp'] = BS.bpOf(f);
+      await BS.castMagic(P, { inst: m, target: f, plan: null, ctx: 'flash' });
+      out[tag] = O.spirits.length;
+    }
+    return out;
+  });
+  const m = JSON.stringify(r);
+  assert.ok(r.lowBp > 3000 ? r.low === 1 : r.low === 0, m);
+});

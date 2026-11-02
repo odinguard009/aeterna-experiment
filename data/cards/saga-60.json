@@ -44766,13 +44766,24 @@
    "yellow",
    "white"
   ],
-  "fxComplete": false,
-  "residual": [
-   "This Spirit card is also treated as a Magic card.",
-   "Flash (This effect can't be used while on the Field.) During this turn, give an opposing Spirit -3000 BP. Destroy the Spirit whose BP was brought to 0 by this effect."
-  ],
+  "fxComplete": true,
   "note": "Reprint of BS34-042 (same name and stats), added v0.210.0 from the official product list.",
-  "rcode": "C"
+  "rcode": "C",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "alsoMagic": true,
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "BP_MINUS",
+     "n": 3000,
+     "zeroDestroy": true
+    }
+   ]
+  }
  },
  {
   "id": "SD57-RV004",
