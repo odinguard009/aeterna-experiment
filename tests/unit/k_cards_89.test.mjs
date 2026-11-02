@@ -31,3 +31,18 @@ test('K-918 SD01-023: at Lv2 all your White Spirits get +1000 BP, not at Lv1', a
   });
   assert.equal(r.lv2 - r.lv1, 1000, JSON.stringify(r));
 });
+
+test('K-919 SD03-003 attack +2000; K-920 SD03-007 also counts as Red', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(async () => {
+    BS.testSetup(); BS.SETTINGS.speed = 'instant';
+    const G = BS.G, P = G.p.player; G.active = P.key; P.cpu = true; P.spirits.length = 0;
+    const s = BS.mkInst('SD03-003'); s.cores = 1; P.spirits.push(s);
+    const b0 = BS.bpOf(s);
+    await BS.fireFx(P, 'ATTACKS', s, {});
+    const c = BS.CARDS['SD03-007'];
+    return { d: BS.bpOf(s) - b0, colors: c.colors };
+  });
+  assert.equal(r.d, 2000, JSON.stringify(r));
+  assert.deepEqual(r.colors, ['blue', 'red'], JSON.stringify(r));
+});
