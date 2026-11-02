@@ -480,10 +480,10 @@ function bounceCard(owner, t, to) {                   // return a field card to 
   t.cores = 0; t.soul = false; t.exhausted = false; t.heavy = false; t.noAB = false; t.bpMod = 0; t.viaFC = false; t.viaHS = false; t.legacyN = 0; t.viaFx = false;
   for (const u of t.under) { u.under = []; owner.trash.push(u); }
   t.under = [];
-  if (t.token) { shedBrave(owner, t, to === 'deckBottom' ? owner.deck : owner.hand); tokenHome(owner, t); log(`${poss(owner)} ${CARDS[t.id].name} Token returns to the Token supply.`); return; }
-  if (to === 'deckBottom') owner.deck.push(t); else owner.hand.push(t);
-  shedBrave(owner, t, to === 'deckBottom' ? owner.deck : owner.hand);
-  log(`${poss(owner)} ${CARDS[t.id].name} returns to the ${to === 'deckBottom' ? 'bottom of the Deck' : 'Hand'}.`);
+  if (t.token) { shedBrave(owner, t, to === 'deckBottom' || to === 'deckTop' ? owner.deck : owner.hand); tokenHome(owner, t); log(`${poss(owner)} ${CARDS[t.id].name} Token returns to the Token supply.`); return; }
+  if (to === 'deckBottom') owner.deck.push(t); else if (to === 'deckTop') owner.deck.unshift(t); else owner.hand.push(t);      // v393 deckTop
+  shedBrave(owner, t, to === 'deckBottom' || to === 'deckTop' ? owner.deck : owner.hand);
+  log(`${poss(owner)} ${CARDS[t.id].name} returns to the ${to === 'deckBottom' ? 'bottom of the Deck' : to === 'deckTop' ? 'top of the Deck' : 'Hand'}.`);
 }
 const SOUL_SRC = ['self', 'hand', 'trash', 'handOrTrash', 'reveal'];
 const hasMatch = m => !!m && (m.name || m.notName || m.bpBoosted || m.family || m.costGe != null || m.costLe != null || m.costIn || m.type || m.typeAny || m.color || m.notColor || m.familyAll || m.keyword || m.keywordAny || m.notKeyword || m.noText || m.hasTrigger || m.team || m.coresGe != null || m.coresLe != null || m.originalNexus || m.symbolsGe != null || m.hasBrave || m.noBrave || m.hasBurst || m.noBurst);      // v300 symbolsGe counts as a match key

@@ -108,3 +108,16 @@ test('K-1183 MAGIC_WALL (BS11-028, BS12-029, BS16-031, BS08-036): exhausts to ne
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.white, true, JSON.stringify(r)); assert.equal(r.red, false, JSON.stringify(r));
   assert.equal(r.own, false, JSON.stringify(r)); assert.equal(r.multi, true, JSON.stringify(r));
 });
+
+test('K-1184 TRIBUTED (SD02-018/019/021): destroys two 4000 BP or less Spirits, trashes two cores, returns a 5000 BP or less Spirit to the decktop', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const mk = (id, n) => { const s = BS.mkInst(id); s.cores = n; return s; };
+    const low = Object.values(BS.CARDS).filter(c => c.type === 'Spirit' && c.cost <= 2 && BS.bpOf(mk(c.id, 1)) <= 3000).map(c => c.id);
+    const out = {};
+    const a = mk('SD02-018', 3); P.spirits = [a]; O.spirits = [mk(low[0], 1), mk(low[1], 1), mk(low[2], 1)]; await BS.fireFx(P, 'TRIBUTED', a); out.destroyed = 3 - O.spirits.length;
+    const b = mk('SD02-019', 2); P.spirits = [b]; O.spirits = [mk(low[0], 2), mk(low[1], 2)]; const c0 = O.spirits.reduce((n, s) => n + s.cores, 0); await BS.fireFx(P, 'TRIBUTED', b); out.cores = c0 - O.spirits.reduce((n, s) => n + s.cores, 0);
+    const d = mk('SD02-021', 2); P.spirits = [d]; const x = mk(low[0], 1); O.spirits = [x]; await BS.fireFx(P, 'TRIBUTED', d); out.top = O.deck[0] === x && O.spirits.length === 0;
+    out.ok = ['SD02-018', 'SD02-019', 'SD02-021'].every(k => BS.CARDS[k].fxComplete !== false); return out; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.destroyed, 2, JSON.stringify(r)); assert.equal(r.cores, 2, JSON.stringify(r)); assert.equal(r.top, true, JSON.stringify(r));
+});

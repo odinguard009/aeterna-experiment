@@ -428,3 +428,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v390 (Lane K): match key `hasSoul` (boolean; the receiving Spirit has a Soul Core on it): BS31-097.
 - v391 (Lane K): STATIC flag `SUMMON_DISCOUNT {n 1-3, match}` on the own field: "when you are summoning <match>, its cost gets -N" (`summonDiscountOf` in effCost, applies to every effCost caller, not only Hand summons). Cards: BS23-046, BS35-023, SD33-001.
 - v392 (Lane K): STATIC flag `MAGIC_WALL {colors[]}` (to self): "when the opponent casts a Magic of one of these colours on their turn, exhaust this Spirit to negate it" (`magicWallNegate` in castMagic; not applied to Burst-cast Magic). Cards: BS11-028, BS12-029, BS16-031, BS08-036.
+- v393 (Lane K): `BOUNCE_OPP.to` accepts `deckTop` ("return to the decktop"). Cards: SD02-021 (with SD02-018/019 on TRIBUTED).
