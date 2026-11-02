@@ -219,3 +219,19 @@ test('K-1020 SD22-002 / SD28-001 carry High Speed and count complete', async () 
   const r = await page.evaluate(`(() => ['SD22-002','SD28-001'].map(id => { const c = BS.CARDS[id]; return [id, c.highSpeed === true && c.implemented === true]; }))()`);
   assert.deepEqual(r.filter(x => !x[1]), [], JSON.stringify(r));
 });
+
+test('K-1021 SD23-012 gives -2000 BP and refreshes a Yellow Spirit only on the opposing turn', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const out = [];
+    for (const opp of [false, true]) {
+      G.active = opp ? 'opponent' : 'player';
+      const y = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && c.symbol === 'yellow');
+      const my = BS.mkInst(y.id); my.cores = 2; my.exhausted = true; const e = BS.mkInst('BS01-001'); e.cores = 1; P.spirits = [my]; O.spirits = [e]; P.reserve.n = 20;
+      const b = e.bpMod || 0; const m = BS.mkInst('SD23-012'); P.hand = [m];
+      await BS.castMagic(P, { inst: m, target: null, plan: null, ctx: 'flash' });
+      out.push({ d: (e.bpMod || 0) - b, ref: !my.exhausted });
+    }
+    return out; })()`);
+  assert.equal(r[0].d, -2000, JSON.stringify(r)); assert.equal(r[0].ref, false, JSON.stringify(r)); assert.equal(r[1].ref, true, JSON.stringify(r));
+});

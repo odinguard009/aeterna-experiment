@@ -55698,11 +55698,6 @@
   "A_VOID",
   "C_LEVEL"
  ],
- "SD23-012": [
-  "A_BP_MINUS",
-  "A_REFRESH",
-  "C_OPP_TURN"
- ],
  "SD23-013": [
   "A_END_ATTACK",
   "A_RETURN_TRASH",
