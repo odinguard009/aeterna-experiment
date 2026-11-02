@@ -207,3 +207,9 @@ test('K-1018 BS69-CP01 gains +1000 BP on attack only with two Winged Dragon Spir
     return out; })()`);
   assert.deepEqual(r, [0, 1000], JSON.stringify(r));
 });
+
+test('K-1019 SD19-002 / SD64-RV002 are also treated as White and count complete', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(() => ['SD19-002','SD64-RV002'].map(id => { const c = BS.CARDS[id]; return [id, (c.colors || []).includes('white') && (c.colors || []).includes('red') && c.implemented === true]; }))()`);
+  assert.deepEqual(r.filter(x => !x[1]), [], JSON.stringify(r));
+});

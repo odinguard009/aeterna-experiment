@@ -55440,9 +55440,6 @@
   "S_CANT_PREVENT",
   "T_ATTACKS"
  ],
- "SD19-002": [
-  "C_LEVEL"
- ],
  "SD19-007": [
   "C_LEVEL",
   "K_ULTIMATE",
@@ -59701,9 +59698,6 @@
   "C_LEVEL",
   "K_ULTIMATE",
   "T_MIRAGE_LIFE"
- ],
- "SD64-RV002": [
-  "C_LEVEL"
  ],
  "SD64-RV003": [
   "A_BP_PLUS",
