@@ -19285,11 +19285,6 @@
  "BS43-091": [
   "M_THEN"
  ],
- "BS43-092": [
-  "A_REMOVED_ZONE",
-  "K_ULTIMATE",
-  "T_OPP_REMOVED"
- ],
  "BS43-093": [
   "A_EXHAUST",
   "A_RETURN_TRASH",
@@ -39289,9 +39284,6 @@
   "A_SOUL_STATE",
   "K_ULTIMATE",
   "M_UP_TO"
- ],
- "BS65-079": [
-  "K_ULTIMATE"
  ],
  "BS65-080": [
   "A_SUMMON_FREE",

@@ -8268,12 +8268,24 @@
   "image": "65-079.png",
   "block": "65",
   "saga": 14,
-  "fxComplete": false,
-  "residual": [
-   "Flash",
-   "Send one core each from every opposing Spirit/Ultimate to their Reserve, and draw a card for each Spirit/Ultimate depleted."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "OPP_CORES_TO_RESERVE",
+     "allTargets": true,
+     "each": 1,
+     "targets": 1,
+     "drawPerDepleted": true
+    }
+   ]
+  }
  },
  {
   "id": "BS65-080",

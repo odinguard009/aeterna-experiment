@@ -117,3 +117,21 @@ test('K-1121 BS19-051 When Summoned: all opposing Spirits are LV1 this turn', as
   const r = await page.evaluate(runFx('BS19-051', 'SUMMONED', `const a = BS.mkInst('BS01-001'); a.cores = 5; O.spirits.push(a); P.spirits = [];`, `{ n: O.spirits.length }`));
   assert.equal(r.impl, true, JSON.stringify(r)); assert.equal(r.n, 1, JSON.stringify(r));
 });
+
+test('K-1122 BS65-079 Flash: one core from every opposing Spirit; draw per depleted Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.step = 4; G.active = P.key;
+    const a = BS.mkInst('BS01-001'), b = BS.mkInst('BS01-001'); a.cores = 1; b.cores = 3; O.spirits.push(a, b); const r0 = O.reserve.n, h0 = P.hand.length;
+    await BS.runActions({ p: P, opp: O, src: BS.mkInst('BS65-079'), ctx: {} }, { actions: BS.CARDS['BS65-079'].magic.actions });
+    return { impl: BS.CARDS['BS65-079'].implemented === true, res: O.reserve.n - r0, hand: P.hand.length - h0, cb: b.cores }; })()`);
+  assert.equal(r.impl, true, JSON.stringify(r)); assert.equal(r.res, 2, JSON.stringify(r)); assert.equal(r.cb, 2, JSON.stringify(r)); assert.equal(r.hand, 1, JSON.stringify(r));
+});
+
+test('K-1123 BS43-092 Main/Flash variants exist and Flash takes two cores', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.step = 4; G.active = P.key;
+    const a = BS.mkInst('BS01-001'); a.cores = 3; O.spirits.push(a); const m = BS.CARDS['BS43-092'].magic;
+    await BS.runActions({ p: P, opp: O, src: BS.mkInst('BS43-092'), ctx: {} }, { actions: m.by.FLASH.actions });
+    return { impl: BS.CARDS['BS43-092'].implemented === true, main: m.by.MAIN.actions[0].do, cores: a.cores }; })()`);
+  assert.deepEqual(r, { impl: true, main: 'DISCARD_OPP_REMOVED', cores: 1 });
+});

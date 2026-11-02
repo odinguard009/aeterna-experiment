@@ -21423,14 +21423,38 @@
   "image": "Akashic Break.jpg",
   "block": "43",
   "saga": 8,
-  "fxComplete": false,
-  "residual": [
-   "Main",
-   "Discard every card on the opposing Removed Zone.",
-   "Flash",
-   "Send two cores from any opposing Spirits/Ultimates to their Reserve."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass.",
+  "magic": {
+   "timing": [
+    "MAIN",
+    "FLASH"
+   ],
+   "effect": null,
+   "value": 0,
+   "by": {
+    "MAIN": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "DISCARD_OPP_REMOVED",
+       "all": true
+      }
+     ]
+    },
+    "FLASH": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "OPP_CORES_TO_RESERVE",
+       "total": 2
+      }
+     ]
+    }
+   }
+  }
  },
  {
   "id": "BS43-093",
