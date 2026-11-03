@@ -151,3 +151,16 @@ test('K-1037 BS54-074 Freezing Pillar: used free from the Hand when the owner Li
     return { a, inHand: P.hand.length, opp: O.spirits.length, deck: O.deck.length, ok: !BS.CARDS['BS54-074'].partial }; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.a.inHand, 1, JSON.stringify(r)); assert.equal(r.inHand, 0, JSON.stringify(r)); assert.equal(r.opp, 0, JSON.stringify(r));
 });
+
+test('K-1038 BS54-072 Vacuum Slash: only at Life 3 or less; returns two exhausted opposing Spirits ignoring immunity', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = O.key; G.step = 5;
+    const weak = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token);
+    const mk = () => { const v = BS.mkInst(weak); v.cores = 1; v.exhausted = true; return v; };
+    O.spirits = [mk(), mk(), mk()]; P.hand = [BS.mkInst('BS54-072')]; P.life = 4;
+    await BS.maybeBurst(P, 'LIFE_DECREASE', {});
+    const a = { hand: P.hand.length, opp: O.spirits.length };
+    P.life = 3; await BS.maybeBurst(P, 'LIFE_DECREASE', {});
+    return { a, hand: P.hand.length, opp: O.spirits.length, ok: !BS.CARDS['BS54-072'].partial }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.a.hand, 1, JSON.stringify(r)); assert.equal(r.hand, 0, JSON.stringify(r)); assert.equal(r.opp, 1, JSON.stringify(r));
+});

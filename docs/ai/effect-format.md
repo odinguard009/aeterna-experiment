@@ -447,3 +447,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v409 NEXUS_CORES_TO_VOID.ignoreImmune ("can't be prevented").
 - v410 (Lane K): action `OPP_CORES_DOWN_TO_SELF` (cores from an opposing Spirit to the Reserve until it has as many as this Spirit).
 - v411 (Lane K): card field `magic.lifeHand {lifeLe?}`: "When your Life is reduced [to N or less] by the opponent, you can use this card from the Hand without paying the cost" (Flash side, free; fires from `maybeBurst(owner, "LIFE_DECREASE")`, not for own-cost Life loss). BS54-074.
+- v412 (Lane K): `BOUNCE_OPP.ignoreImmune` ("can't be prevented by opposing effects"). BS54-072 (also uses magic.lifeHand {lifeLe:3}).
