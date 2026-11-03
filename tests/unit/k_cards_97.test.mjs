@@ -137,3 +137,15 @@ test('K-1010 BS74-011 (Ometeotl): Cost 4 while the Soul Core is on Contractor Om
     return [!c.partial, c0, c1, O.spirits.length, P.hand.length - h0]; })()`);
   assert.equal(r[0], true, JSON.stringify(r)); assert.equal(r[1] - r[2], 2, JSON.stringify(r)); assert.equal(r[3], 0, JSON.stringify(r)); assert.equal(r[4], 1, JSON.stringify(r));
 });
+
+test('K-1011 BS74-005 (Ometeotl): Mani card; summoned returns Ometeotl/Lava Fish cards, +1 at six counters', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player; P.cpu = true;
+    const nx = BS.mkInst('BS74-CX01'); nx.cores = 1; P.nexus = [nx]; P.count = 6;
+    P.trash = [BS.mkInst('BS74-011'), BS.mkInst('BS74-002'), BS.mkInst('BS74-012')]; const h0 = P.hand.length;
+    const v = BS.mkInst('BS74-005'); v.cores = 3; P.spirits = [v];
+    await BS.fireFx(P, 'SUMMONED', v, {});
+    const c = BS.CARDS['BS74-005'];
+    return [!c.partial, !!c.manifest, P.hand.length - h0, P.trash.length]; })()`);
+  assert.deepEqual(r, [true, true, 2, 1], JSON.stringify(r));
+});
