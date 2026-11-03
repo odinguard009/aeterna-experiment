@@ -174,15 +174,15 @@ Object.assign(FX_ACTIONS, {
     } } });
 Object.assign(FX_ACTIONS, {
   /* v215 "At the end of battle, target one of your X Spirits. Send any number of cores from this Spirit to it." (CPU keeps one.) */
-  CORE_GIVE_ANY: { chk: a => a.match == null || hasMatch(a.match),
+  CORE_GIVE_ANY: { chk: a => (a.match == null || hasMatch(a.match)) && (a.n == null || (Number.isInteger(a.n) && a.n >= 1 && a.n <= 3)),
     txt: a => `send any number of cores from this card to one of your ${a.match ? 'matching ' : ''}Spirits`,
     cands: (c, a) => c.p.spirits.filter(s => s !== c.src && (!a.match || fxMatch(CARDS[s.id], a.match, s))),
-    can: (c, a) => c.src.cores > 1 && FX_ACTIONS.CORE_GIVE_ANY.cands(c, a).length > 0,
+    can: (c, a) => c.src.cores > (a.n || 1) && FX_ACTIONS.CORE_GIVE_ANY.cands(c, a).length > 0,
     run: async (c, a) => {
-      const L = FX_ACTIONS.CORE_GIVE_ANY.cands(c, a); if (!L.length || c.src.cores <= 1) { c.ctx.did = false; return; }
+      const L = FX_ACTIONS.CORE_GIVE_ANY.cands(c, a); if (!L.length || c.src.cores <= (a.n || 1)) { c.ctx.did = false; return; }
       const t = await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the Spirit that receives the cores (glowing).`);
       if (!t) { c.ctx.did = false; return; }
-      const give = Math.max(1, c.src.cores - 1);      // keep one core so this card stays on the Field
+      const give = a.n ? a.n : Math.max(1, c.src.cores - 1);      // keep one core (n: exactly n cores) so this card stays on the Field
       c.src.cores -= give; t.cores += give; c.ctx.did = true;
       log(`${CARDS[c.src.id].name}: ${give} core${give === 1 ? '' : 's'} go to ${CARDS[t.id].name}.`);
     } },

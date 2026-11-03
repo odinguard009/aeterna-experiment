@@ -321,3 +321,13 @@ test('K-1024 BS74-009 Mosasauro (Mani): counter +1 and destroys the lowest-BP op
     return { cnt: P.count - c0, left: O.spirits.length, draw: P.hand.length - h0, ok: !BS.CARDS['BS74-009'].partial }; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.cnt, 1, JSON.stringify(r)); assert.equal(r.left, 1, JSON.stringify(r)); assert.equal(r.draw, 1, JSON.stringify(r));
 });
+
+test('K-1025 BS54-039 Glafira: sends exactly one core to another Ice Princess Spirit and refreshes itself', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const fam = Object.keys(BS.CARDS).find(k => { const c = BS.CARDS[k]; return c.type === 'Spirit' && !c.token && (c.families || []).includes('Ice Princess') && k !== 'BS54-039' && c.levels && c.levels.length; });
+    const gl = BS.mkInst('BS54-039'); gl.cores = 3; gl.exhausted = true; const o = BS.mkInst(fam); o.cores = 1; P.spirits = [gl, o]; O.spirits = [];
+    await BS.fireFx(P, 'ATTACKS', gl, { attacker: gl, subject: gl });
+    return { gl: gl.cores, o: o.cores, ex: !!gl.exhausted, ok: !BS.CARDS['BS54-039'].partial }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.gl, 2, JSON.stringify(r)); assert.equal(r.o, 2, JSON.stringify(r)); assert.equal(r.ex, false, JSON.stringify(r));
+});

@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 6253,
+  "cards": 6252,
   "per_saga": {
    "1": 458,
    "2": 251,
@@ -12,7 +12,7 @@
    "8": 428,
    "9": 471,
    "10": 485,
-   "11": 299,
+   "11": 298,
    "12": 310,
    "13": 387,
    "14": 422,
@@ -22,18 +22,18 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2453,
+  "skipped_curated": 2454,
   "nexus_levels_added": 667,
   "nexus_levels_missing": 43,
   "merged": 107,
-  "image_problems": 399,
+  "image_problems": 398,
   "brave_unparsed": 169,
   "ut_lines_added": 106,
   "odd_reduction": 799,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
   "number_conflicts": 3,
-  "without_image": 397
+  "without_image": 396
  },
  "tokens": [
   "BS73-T001",
@@ -1588,6 +1588,7 @@
   "BS54-021",
   "BS54-034",
   "BS54-037",
+  "BS54-039",
   "BS54-040",
   "BS54-045",
   "BS54-067",
@@ -5058,11 +5059,6 @@
    "id": "BS54-036",
    "name": "Valkyrie Prima",
    "problem": "no image (near: Valkyrie Sliema.png)"
-  },
-  {
-   "id": "BS54-039",
-   "name": "The IceKnight Glafira",
-   "problem": "no image (near: The IceKnight Grafilla.png)"
   },
   {
    "id": "BS55-070",
