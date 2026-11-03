@@ -35,3 +35,14 @@ test('K-1028 BS56-018 RaiunZame: strips a core and draws on depletion; LV2 attac
     return { ok: !BS.CARDS['BS56-018'].partial, gone: !O.spirits.includes(big), h: P.hand.length - h0 }; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.gone, true, JSON.stringify(r));
 });
+
+test('K-1029 BS54-015 Knowledge Snake: attack removes a core, with two counters removes one more', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const w = BS.mkInst('BS54-015'); w.cores = 3; P.spirits = [w]; P.count = 2;
+    const id = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token);
+    const t = BS.mkInst(id); t.cores = 4; O.spirits = [t];
+    await BS.fireFx(P, 'ATTACKS', w, { attacker: w, subject: w });
+    return { ok: !BS.CARDS['BS54-015'].partial, left: t.cores }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.left, 2, JSON.stringify(r));
+});
