@@ -30,6 +30,7 @@ async function doBattleInner(attKey, att) {
   if (!(await payAbTax(A, att, 'attack'))) { io.view({ type: 'board' }); return; }   // v0.47 Plutonic Wall
   if (!(await payAtkTax(A, D, att))) { io.view({ type: 'board' }); return; }          // v223 ATK_TAX
   A.attacksThisTurn = (A.attacksThisTurn || 0) + 1; const lowLim = activeLowAtk(); if (lowLim && CARDS[att.id].cost <= lowLim) G.lowAtkTurn = G.turnNo;      // v214      // v0.185 'first / second or subsequent attack of the turn' (reset in beginTurn)
+  if (att.exhausted && !att.heavy) { att.heavy = true; log(`${CARDS[att.id].name}: Pursuit, heavily exhausted to attack.`); }      // v408 PURSUIT
   att.exhausted = true; G.battleNo = (G.battleNo || 0) + 1; G.blocker = null;      // v0.68: battle counter for (Once Per Battle) / "during this battle" (02l)
   log(`${who(A)} ${A.cpu ? 'attacks' : 'attack'} with ${CARDS[att.id].name} (${bpOf(att)} BP).`);
   G.attacker = att;

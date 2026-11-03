@@ -576,3 +576,4 @@ FX_ACTIONS.TURN_SUMMON_TAX = {
   can: () => true,
   run: async (c, a) => { c.opp.turnTax = (c.opp.turnTax || []).filter(t => t.turn === G.turnNo); c.opp.turnTax.push({ turn: G.turnNo, n: a.n, match: a.match || null }); c.ctx.did = true;
     log(`${CARDS[c.src.id].name}: the cost of opposing cards gets +${a.n} during this turn.`); } };
+const canPursuit = (p, s) => !s.heavy && flagActive(p, 'PURSUIT', s);      // v408 "This exhausted Spirit can heavy exhaust to attack"

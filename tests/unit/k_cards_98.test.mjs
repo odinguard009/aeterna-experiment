@@ -71,3 +71,18 @@ test('K-1031 BS75-055 Robin-Bad: summon gives a counter and two cores to a Khaos
     return { ok: !BS.CARDS['BS75-055'].partial, c1, n1, dh: P.hand.length - h0 }; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.c1, 1, JSON.stringify(r)); assert.equal(r.n1, 2, JSON.stringify(r));
 });
+
+test('K-1032 BS54-RV002 Charger Dragno / BS54-RV001 Assassin Dragno: Pursuit lets an exhausted Spirit attack and go heavy; Dragno BP +3000; low-core Spirits cannot block', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.turnNo = 3;
+    const a = BS.mkInst('BS54-RV001'), b = BS.mkInst('BS54-RV002'); a.cores = 3; b.cores = 3; P.spirits = [a, b]; O.spirits = [];
+    const id = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token);
+    const lo = BS.mkInst(id); lo.cores = 1; const hi = BS.mkInst(id); hi.cores = 3; O.spirits = [lo, hi];
+    P.count = 0; const blk1 = [BS.unblockableLow(P, a, lo), BS.unblockableLow(P, a, hi)];
+    P.count = 3; const blk3 = BS.unblockableLow(P, a, hi);
+    const bp0 = BS.bpOf(a); a.exhausted = true; const pf = BS.flagActive(P, 'PURSUIT', a);
+    P.cpu = false; O.spirits = []; const ok = await BS.applyIntent(P.key, { type: 'attack', uid: a.uid });
+    return { pf, ok, heavy: a.heavy, blk1, blk3, bp: BS.bpOf(b) >= 3000 }; })()`);
+  assert.equal(r.pf, true, JSON.stringify(r)); assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.heavy, true, JSON.stringify(r));
+  assert.deepEqual(r.blk1, [true, false], JSON.stringify(r)); assert.equal(r.blk3, true, JSON.stringify(r));
+});

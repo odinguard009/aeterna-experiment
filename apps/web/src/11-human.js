@@ -298,7 +298,7 @@ async function openFieldModal(key, kind, uid) {
     if (G.turnNo === 1) buttons.push({ label: 'No attacks on the first turn', value: 'x', dis: true });
     else if (f.noAB) buttons.push({ label: 'Cannot attack or block', value: 'x', dis: true });
     else if (cantAttack(G.p.player, f)) buttons.push({ label: 'Cannot attack', value: 'x', dis: true });
-    else if (f.exhausted) buttons.push({ label: 'Spirit is Exhausted', value: 'x', dis: true });
+    else if (f.exhausted && !canPursuit(G.p.player, f)) buttons.push({ label: 'Spirit is Exhausted', value: 'x', dis: true });
     else buttons.push({ label: '⚔ Attack', cls: 'primary', value: 'attack' });
   }
   buttons.push({ label: '✖ Cancel', cls: 'cancel', value: null });

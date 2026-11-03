@@ -214,6 +214,7 @@ function parseEffects(arr) {
       }
       if (e.flag === 'UNBLOCKABLE_LOW') {                         // v213 "can't be blocked by opposing N BP or less Spirits"
         if (e.blockerType != null) { if (e.blockerType !== 'Ultimate' || e.bpLe != null) return { error: 'UNBLOCKABLE_LOW "blockerType" must be "Ultimate" and replaces "bpLe"' }; o.blockerType = 'Ultimate'; }      // v349 "can't be blocked by opposing Ultimates"
+        else if (e.coresLe != null) { if (e.bpLe != null || !Number.isInteger(e.coresLe) || e.coresLe < 0 || e.coresLe > 10) return { error: 'UNBLOCKABLE_LOW "coresLe" (0-10) replaces "bpLe"' }; o.coresLe = e.coresLe; }      // v408 "can't be blocked by opposing Spirits with N cores or less"
         else { if (!Number.isInteger(e.bpLe) || e.bpLe < 0 || e.bpLe > 30000) return { error: 'UNBLOCKABLE_LOW needs a whole-number "bpLe"' };
         o.bpLe = e.bpLe; }
       }
