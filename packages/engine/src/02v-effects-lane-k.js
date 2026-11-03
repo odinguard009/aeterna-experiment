@@ -619,6 +619,9 @@ Object.assign(FX_ACTIONS, {
       const t = await fxPickTarget(c, L.some(s => s.exhausted) ? L.filter(s => s.exhausted) : L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your Spirits/Ultimates to refresh and give a core (glowing).`); if (!t) { c.ctx.did = false; return; }
       if (t.exhausted) { refreshOne(t); log(`${CARDS[t.id].name} is refreshed.`); await fireFx(c.p, 'REFRESHED', t, {}); }
       takeFromVoid(c.p, 1); t.cores++; log(`${CARDS[c.src.id].name}: a core moves from the Void to ${CARDS[t.id].name}.`);
-    } }
+    } },
+  /* v421 OPP_NO_MAGIC {color}: "The opponent can't use <color> Magic cards" (this battle); read by magicUsable */
+  OPP_NO_MAGIC: { chk: a => typeof a.color === 'string' && ['Red', 'Purple', 'Green', 'White', 'Yellow', 'Blue'].includes(a.color), txt: a => `the opponent can't use ${a.color} Magic cards this battle`,
+    run: async (c, a) => { c.opp.noMagicB = { no: G.battleNo, color: a.color }; log(`${CARDS[c.src.id].name}: ${who(c.opp)} can't use ${a.color} Magic this battle.`); } }
 });
 wrapImmunity(Object.values(FX_ACTIONS));

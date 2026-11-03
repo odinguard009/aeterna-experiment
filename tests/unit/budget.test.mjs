@@ -106,8 +106,9 @@ test('B01 index.html without the card pack stays under 1420 KB', () => assert.ok
 // v0.212.0 (Lane K): raised B02 325 -> 330 KB on purpose: the CORES_ANY_TO_RESERVE action, the `depleted` condition, the
 // ALLY_LOST depl/byOpp flags and the ALLY_SUMMONED Legacy read put the gzipped page 155 bytes over the limit.
 // v0.209.1 (owner request, Eternal starters): raised B02 365 -> 370 KB on purpose (42 Eternal starter recipes, ~2 KB gzipped, plus the deck-name fixes).
+// v0.214.0 (Lane K): raised B02 375 -> 380 KB on purpose (Grandwalker Oracle mechanics: anyOf, ORACLE_CORE, REFRESH_PUT_CORE, OPP_NO_MAGIC).
 // v0.213.0 (Lane K): raised B02 370 -> 375 KB on purpose (engine flags SUMMON_DISCOUNT, MAGIC_WALL, ALSO_TREATED etc. added by card work).
-test('B02 index.html without the card pack, gzipped, stays under 375 KB', () => { const n = gzipSync(noFont(code), { level: 9 }).length; assert.ok(n < 375e3, n); });
+test('B02 index.html without the card pack, gzipped, stays under 380 KB', () => { const n = gzipSync(noFont(code), { level: 9 }).length; assert.ok(n < 380e3, n); });
 test('B03 the embedded card pack stays under 2.1 MB (room for all cards; never embed staging data)', () => assert.ok(packLen < 2.1e6, packLen));
 // v0.93.0 (U6): raised 90 -> 96 KB on purpose (roadmap item U allows it with a note): U6-U8 add the My decks page and the
 // deck builder restyle; unused rules were trimmed first in v0.92.0. The next raise needs the same kind of note.

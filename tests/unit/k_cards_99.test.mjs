@@ -172,3 +172,56 @@ test('K-1059 BS46-XX02 Antarc: the Skill refreshes an Investigator Spirit and pu
   assert.equal(r.k.ref, true, JSON.stringify(r)); assert.equal(r.k.cores, 2, JSON.stringify(r)); assert.deepEqual(r.k.cost, { nexusToVoid: 3 }, JSON.stringify(r));
   assert.equal(r.lv1, 0, JSON.stringify(r)); assert.equal(r.lv2.length, 7, JSON.stringify(r)); assert.equal(r.ok2, true, JSON.stringify(r));
 });
+
+const B = `const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4; G.fxBy = P.key;`;
+
+test('K-1060 BS46-061 Shirabel: Summoned reveals 3, adds an Antarc card and returns the other two to the deck bottom; her own main-step summon draws once per turn', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); ${B}
+    const sh = BS.mkInst('BS46-061'); sh.cores = 2; P.spirits = [sh]; const inv = BS.mkInst(${invS}); P.spirits.push(inv);
+    const junk = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && !/Antarc/.test(BS.CARDS[k].name));
+    P.deck = [BS.mkInst('BS46-XX02'), BS.mkInst(junk), BS.mkInst(junk), BS.mkInst(junk)]; const h0 = P.hand.length, d0 = P.deck.length, t0 = P.trash.length;
+    await BS.fireFx(P, 'SUMMONED', sh, { subject: sh });
+    const a = { hand: P.hand.length - h0, deck: P.deck.length, trash: P.trash.length - t0 };
+    const h1 = P.hand.length; await BS.fireFx(P, 'ALLY_SUMMONED', sh, { subject: inv }); await BS.fireFx(P, 'ALLY_SUMMONED', sh, { subject: inv }); const d = P.hand.length - h1;
+    return { a, d, partial: BS.CARDS['BS46-061'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.deepEqual(r.a, { hand: 2, deck: 2, trash: 0 }, JSON.stringify(r)); assert.equal(r.d, 0, JSON.stringify(r));      // Shirabel is an Investigator herself: her own summon draws once (add 1 + draw 1), the second is blocked by once-per-turn
+});
+
+test('K-1061 BS46-069 Eilmer: Attacks bans opposing White Magic this battle (not other colours, not next battle)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); ${B}
+    const e = BS.mkInst('BS46-069'); e.cores = 1; P.spirits = [e]; G.attacker = e; G.battleNo = 3;
+    const mk = col => Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Magic' && (BS.CARDS[k].colors || [BS.CARDS[k].color]).includes(col) && BS.CARDS[k].cost <= 3 && (BS.CARDS[k].magic.timing || []).includes('FLASH') && !BS.CARDS[k].magic.by);
+    const w = mk('white'), rd = mk('red'); O.hand = [BS.mkInst(w), BS.mkInst(rd)]; O.reserve.n = 8; G.active = P.key;
+    const before = BS.magicUsable(O, O.hand[0], 'flash'); await BS.fireFx(P, 'ATTACKS', e, { attacker: e, subject: e });
+    const after = BS.magicUsable(O, O.hand[0], 'flash'), other = BS.magicUsable(O, O.hand[1], 'flash'); G.battleNo = 4; const later = BS.magicUsable(O, O.hand[0], 'flash');
+    return { w: !!w, rd: !!rd, before, after, other, later, partial: BS.CARDS['BS46-069'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.after, false, JSON.stringify(r)); assert.equal(r.later, r.before, JSON.stringify(r));
+  if (r.rd) assert.equal(r.other, true, JSON.stringify(r));
+});
+
+test('K-1062 BS46-RV001 Ozzania: an attacking Investigator gets +3000 BP and draws only with a Hand of four or less', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); ${B}
+    const o = BS.mkInst('BS46-RV001'); o.cores = 1; const inv = BS.mkInst(${invS}); inv.cores = 1; P.spirits = [o, inv]; G.attacker = inv; G.battleNo = 1;
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token);
+    const bp0 = BS.bpOf ? BS.bpOf(inv) : null; P.hand = [1, 2].map(() => BS.mkInst(any)); P.deck = [1, 2, 3, 4, 5, 6, 7].map(() => BS.mkInst(any));
+    await BS.fireFx(P, 'ALLY_ATTACKS', inv, { attacker: inv, subject: inv }); const h1 = P.hand.length;
+    P.hand = [1, 2, 3, 4, 5].map(() => BS.mkInst(any)); await BS.fireFx(P, 'ALLY_ATTACKS', inv, { attacker: inv, subject: inv });
+    return { bp0, bp1: BS.bpOf ? BS.bpOf(inv) : null, h1, h2: P.hand.length, partial: BS.CARDS['BS46-RV001'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.h1, 3, JSON.stringify(r)); assert.equal(r.h2, 5, JSON.stringify(r));
+  if (r.bp0 != null) assert.equal(r.bp1 - r.bp0, 6000, JSON.stringify(r));
+});
+
+test('K-1063 BS46-RV003 Laten: End Step refreshes Investigators; BS46-RV005 Asia: losing an Investigator to the opponent draws a card', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); ${B}
+    const l = BS.mkInst('BS46-RV003'); l.cores = 3; const inv = BS.mkInst(${invS}); inv.exhausted = true; P.spirits = [l, inv]; G.step = 7;
+    await BS.fireFx(P, 'END_STEP', null, {}); const ref = !inv.exhausted;
+    const a = BS.mkInst('BS46-RV005'); a.cores = 1; P.spirits = [a]; const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token);
+    P.deck = [1, 2, 3].map(() => BS.mkInst(any)); const h0 = P.hand.length;
+    await BS.fireFx(P, 'ALLY_LOST', null, { subject: BS.mkInst(${invS}), byOpp: true, byOppFx: true });
+    return { ref, drew: P.hand.length - h0 }; })()`);
+  assert.equal(r.ref, true, JSON.stringify(r)); assert.equal(r.drew, 1, JSON.stringify(r));
+});
