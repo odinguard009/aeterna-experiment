@@ -335,3 +335,38 @@ FX_ACTIONS.USE_TRASH_FLASH = { chk: a => hasMatch(a.match) && Object.keys(a).eve
 FX_ACTIONS.USE_SELF_FLASH = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => 'activate the Flash effect written on this Spirit without paying the cost',
   can: c => { const m = CARDS[c.src.id].magic && magicFxAt(c.p, c.src, 'flash'); return !!m && m.effect === 'ACTIONS'; },
   run: async c => { const m = magicFxAt(c.p, c.src, 'flash'); c.ctx.did = false; if (!m || m.effect !== 'ACTIONS') return; await MAGIC_FX.ACTIONS.apply(c.p, c.opp, null, m.value, m, c.src); c.ctx.did = true; } };
+
+/* v456 NO_OPP_HANDUP: "(Your Turn) when your Hand increases via your effects, the opponent can't activate any 'when Hand increases' effects." */
+function handUpLocked(key) {
+  const p = G.p[key]; if (!G || G.active !== key) return false;
+  return fieldList(p).some(f => { const L = lvNo(f); return fxEntries(f).some(({ e }) => e.trigger === 'STATIC' && e.flag === 'NO_OPP_HANDUP' && (!e.lv || e.lv.includes(L))); });
+}
+
+/* v457 BOUNCE_OPP.lvTop 'max' | 'notMax': "an opposing Spirit that is (not) on its highest level" (the card's own top Level, not a fixed number). */
+(() => {
+  const B = FX_ACTIONS.BOUNCE_OPP, bChk = B.chk, bCands = B.cands, bTxt = B.txt, top = t => lvNo(t) >= CARDS[t.id].levels.length;
+  B.chk = a => bChk({ ...a, lvTop: undefined }) && (a.lvTop == null || (a.lvTop === 'max' || a.lvTop === 'notMax') && a.kind === 'spirit' && a.lv == null);
+  B.cands = (c, a) => bCands(c, a).filter(t => !a.lvTop || (a.lvTop === 'max') === top(t));
+  B.txt = a => bTxt(a) + (a.lvTop ? (a.lvTop === 'max' ? ' (on its highest level)' : ' (not on its highest level)') : '');
+})();
+
+/* v458 magic.trashReturnFlash (Aquamarine): "when this card would be returned from the Trash to the Hand via your Yellow-only effect, you can use its Flash effect without paying the cost".
+   Wraps RETURN_TRASH: a newly returned card with the flag whose source is a Yellow-only card is offered its free Flash (it then ends as any used Flash: Trash, or the free summon of summonAfter). */
+(() => {
+  const R = FX_ACTIONS.RETURN_TRASH, rRun = R.run;
+  R.run = async (c, a) => {
+    const before = new Set(c.p.hand);
+    await rRun(c, a);
+    const sk = CARDS[c.src.id], yellowOnly = sk && (sk.colors || [sk.symbol]).length === 1 && (sk.colors || [sk.symbol])[0] === 'yellow';
+    if (!yellowOnly) return;
+    for (const h of c.p.hand.filter(x => !before.has(x) && CARDS[x.id].magic && CARDS[x.id].magic.trashReturnFlash)) {
+      if (!magicUsable(c.p, h, 'flash', true)) continue;
+      const ok = await chooseCard(c, [h], `✨ ${CARDS[h.id].name}`, 'Use its Flash effect without paying the cost?', true); if (!ok) continue;
+      let ch;
+      if (c.p.cpu) { const tg = magicTargets(c.p, h, 'flash'); ch = { inst: h, target: tg && tg.slice().sort((x, y) => bpOf(y) - bpOf(x))[0] || null, plan: null, ctx: 'flash', free: true }; }
+      else { ch = await prepareHumanMagic(c.p, h, 'flash', true); if (!ch) continue; }
+      log(`${CARDS[h.id].name}: ${who(c.p)} ${c.p.cpu ? 'uses' : 'use'} its Flash effect without paying the cost.`);
+      await castMagic(c.p, ch);
+    }
+  };
+})();

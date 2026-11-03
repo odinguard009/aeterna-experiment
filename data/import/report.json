@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 6169,
+  "cards": 6166,
   "per_saga": {
    "1": 458,
    "2": 251,
@@ -17,19 +17,19 @@
    "13": 385,
    "14": 421,
    "15": 348,
-   "16": 298,
+   "16": 295,
    "17": 105
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2537,
+  "skipped_curated": 2540,
   "nexus_levels_added": 652,
   "nexus_levels_missing": 40,
   "merged": 104,
   "image_problems": 386,
   "brave_unparsed": 169,
   "ut_lines_added": 106,
-  "odd_reduction": 785,
+  "odd_reduction": 782,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
   "number_conflicts": 3,
@@ -1800,6 +1800,7 @@
   "BS73-006",
   "BS73-025",
   "BS73-035",
+  "BS73-044",
   "BS73-047",
   "BS73-049",
   "BS73-050",
@@ -1822,6 +1823,8 @@
   "BS74-049",
   "BS74-050",
   "BS74-052",
+  "BS74-053",
+  "BS74-055",
   "BS74-061",
   "BS74-067",
   "BS74-072",
@@ -9883,12 +9886,6 @@
    ]
   },
   {
-   "id": "BS73-044",
-   "dropped": [
-    "god"
-   ]
-  },
-  {
    "id": "BS73-046",
    "dropped": [
     "god"
@@ -10081,19 +10078,7 @@
    ]
   },
   {
-   "id": "BS74-053",
-   "dropped": [
-    "god"
-   ]
-  },
-  {
    "id": "BS74-054",
-   "dropped": [
-    "god"
-   ]
-  },
-  {
-   "id": "BS74-055",
    "dropped": [
     "god"
    ]

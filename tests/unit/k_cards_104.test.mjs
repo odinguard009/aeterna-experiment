@@ -69,3 +69,46 @@ test('K-1137 BS73-CX02 Morrigan: a Spirit returned to the Hand fires OWN_RETURNE
     return { ev: G.evQ.map(e => e.type), hand: P.hand.length }; })()`);
   assert.ok(r.ev.includes('OWN_RETURNED'), JSON.stringify(r)); assert.equal(r.hand, 1, JSON.stringify(r));
 });
+
+test('K-1138 BS73-044 Quoise: Lv2 reveals three, adds a Mani Prismwing Spirit and a Prismwing Magic/Nexus, discards the rest', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${pre}
+    const q = BS.mkInst('BS73-044'); q.cores = 2; P.spirits = [q]; P.hand = [];
+    P.deck = [BS.mkInst('BS73-050'), BS.mkInst('BS73-080'), BS.mkInst(sp(c => !(c.families || []).includes('Prismwing'))), BS.mkInst(sp(c => c.cost <= 2))]; P.trash = [];
+    await BS.fireFx(P, 'SUMMONED', q, {});
+    return { hand: P.hand.map(x => x.id).sort(), trash: P.trash.length, deck: P.deck.length, partial: BS.CARDS['BS73-044'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.deepEqual(r.hand, ['BS73-050', 'BS73-080'], JSON.stringify(r)); assert.equal(r.trash, 1, JSON.stringify(r));
+});
+
+test('K-1139 BS74-053 Yellodianna: reveals one card per Prismwing Spirit/Nexus, adds a Yellow Magic, rest to the deckbottom; LV2 locks opposing hand-increase effects', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${pre}
+    const y = BS.mkInst('BS74-053'); y.cores = 2; const w = BS.mkInst('BS73-044'); w.cores = 1; P.spirits = [y, w]; P.hand = [];
+    P.deck = [BS.mkInst(sp(c => c.cost <= 2)), BS.mkInst('BS73-080'), BS.mkInst(sp(c => c.cost <= 2))]; P.trash = [];
+    await BS.fireFx(P, 'ATTACKS', y, {});
+    G.active = P.key; const lockOn = handUpLocked(P.key); y.cores = 1; const lockLv1 = handUpLocked(P.key); G.active = O.key; const lockOff = handUpLocked(P.key);
+    return { hand: P.hand.map(x => x.id), deck: P.deck.length, trash: P.trash.length, partial: BS.CARDS['BS74-053'].partial, lockOn, lockLv1, lockOff }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.deepEqual(r.hand, ['BS73-080'], JSON.stringify(r)); assert.equal(r.deck, 2, JSON.stringify(r)); assert.equal(r.trash, 0, JSON.stringify(r));
+  assert.equal(r.lockOn, true, JSON.stringify(r)); assert.equal(r.lockLv1, false, JSON.stringify(r)); assert.equal(r.lockOff, false, JSON.stringify(r));
+});
+
+test('K-1140 BS74-055 Aquamarine: Flash returns a non-highest-level opposing Spirit to the deckbottom, not a highest-level one', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${pre}
+    const m = BS.mkInst('BS74-055'); P.hand = [m];
+    const k = sp(c => c.levels.length === 3); const a = BS.mkInst(k); a.cores = 1; O.spirits = [a];
+    await run(m, 'BS74-055'); const low = O.spirits.length;
+    const b = BS.mkInst(k); b.cores = 9; O.spirits = [b]; await run(m, 'BS74-055');
+    return { low, high: O.spirits.length, partial: BS.CARDS['BS74-055'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.low, 0, JSON.stringify(r)); assert.equal(r.high, 1, JSON.stringify(r));
+});
+
+test('K-1141 BS74-055 Aquamarine: returned from the Trash by a Yellow-only effect, its Flash can be used free', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${pre}
+    const src = BS.mkInst('BS73-044'); P.spirits = [src]; const aq = BS.mkInst('BS74-055'); P.trash = [aq]; P.hand = []; P.reserve.n = 0;
+    const k = sp(c => c.levels.length === 3); const t = BS.mkInst(k); t.cores = 1; O.spirits = [t]; const d0 = O.deck.length;
+    await BS.runActions({ p: P, opp: O, src, ctx: { selfInst: src } }, { actions: [{ do: 'RETURN_TRASH', n: 1, match: { name: ['Aquamarine'] } }] });
+    return { opp: O.spirits.length, deck: O.deck.length - d0, handHas: P.hand.includes(aq), onField: P.spirits.includes(aq) }; })()`);
+  assert.equal(r.opp, 0, JSON.stringify(r)); assert.equal(r.deck, 1, JSON.stringify(r));
+});

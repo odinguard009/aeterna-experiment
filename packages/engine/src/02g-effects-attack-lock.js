@@ -35,11 +35,11 @@ Object.assign(FX_ACTIONS, {
     } },
   /* reveal n cards from the top of your Deck and add up to `add` matching cards to the Hand, discarding the rest (Manevajra: three cards, one "Contractor Indra" or "Thunderive" card;
      with moreIf true (eight counters or more) reveal +1 and add +1) */
-  REVEAL_ADD: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 6 && Number.isInteger(a.add) && a.add >= 1 && a.add <= 3 && hasMatch(a.match) && (a.match2 == null || hasMatch(a.match2)) && (a.moreIf == null || (typeof a.moreIf === 'object' && !parseCond(a.moreIf).error)),
+  REVEAL_ADD: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 6 && Number.isInteger(a.add) && a.add >= 1 && a.add <= 3 && hasMatch(a.match) && (a.match2 == null || hasMatch(a.match2)) && (a.perMatch == null || hasMatch(a.perMatch)) && (a.moreIf == null || (typeof a.moreIf === 'object' && !parseCond(a.moreIf).error)),
     txt: a => `reveal ${a.n} cards from the top of your Deck, add ${a.add === 1 ? 'one matching card' : a.add + ' matching cards'} to the Hand, discard the rest${a.moreIf ? '; if the bonus condition holds reveal +1 and add +1 card' : ''}`,
     can: c => c.p.deck.length > 0,
     run: async (c, a) => {
-      const nm = _pn(c), more = !!a.moreIf && fxIf(c.p, c.opp, a.moreIf, c.ctx), n = a.n + (more ? 1 : 0), want = a.add + (more ? 1 : 0);
+      const nm = _pn(c), more = !!a.moreIf && fxIf(c.p, c.opp, a.moreIf, c.ctx), n = a.perMatch ? Math.min(6, fieldList(c.p).filter(f => fxMatch(CARDS[f.id], a.perMatch, f)).length) : a.n + (more ? 1 : 0), want = a.add + (more ? 1 : 0);
       const top = c.p.deck.splice(0, Math.min(n, c.p.deck.length)); c.p.revealed = top;
       log(`${nm}: ${who(c.p)} ${c.p.cpu ? 'reveals' : 'reveal'} ${top.map(x => CARDS[x.id].name).join(', ') || 'nothing'}.`); io.view({ type: 'board' });
       await revealedFx(c.p);

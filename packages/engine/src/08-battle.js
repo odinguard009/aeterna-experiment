@@ -183,6 +183,7 @@ async function flushBursts() {                         // queued Bursts and even
       await fireFx(G.p[other(ev.key)], 'OPP_DRAWS', null, { drawN: ev.n });
     } else if (ev.type === 'HAND_UP') {
       const q = G.p[other(ev.key)];
+      if (handUpLocked(ev.key)) continue;      // v456 NO_OPP_HANDUP (Yellodianna)
       G.burstQ.push({ key: q.key, when: 'OPP_HAND_UP' });
       await fireFx(q, 'OPP_HAND_UP', null, {});
     } else if (ev.type === 'REMOVED') {

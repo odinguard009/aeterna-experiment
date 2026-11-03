@@ -45721,13 +45721,6 @@
   "T_ALLY_ATTACKS",
   "T_SUMMONED"
  ],
- "BS73-044": [
-  "A_REVEAL_ADD",
-  "A_REVEAL_DECK",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
  "BS73-045": [
   "A_DISCARD_HAND",
   "A_REVEAL_ADD",
@@ -46633,15 +46626,6 @@
   "M_THEN",
   "T_SUMMONED"
  ],
- "BS74-053": [
-  "C_COUNTER",
-  "C_LEVEL",
-  "C_OPP_TURN",
-  "K_MANIFEST",
-  "M_BY_DOING",
-  "M_OPTIONAL",
-  "T_MANIFESTS"
- ],
  "BS74-054": [
   "A_DRAW_BOTTOM",
   "A_SUMMON_FREE",
@@ -46652,14 +46636,6 @@
   "M_OPTIONAL",
   "T_MIRAGE_LIFE",
   "T_SUMMONED"
- ],
- "BS74-055": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "C_ONCE",
-  "K_ULTIMATE",
-  "M_OPTIONAL",
-  "T_ATTACKS"
  ],
  "BS74-056": [
   "A_REVEAL_ADD",
