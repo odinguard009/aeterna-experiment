@@ -84,6 +84,8 @@ async function soulBurstCheck(p) {
 }
 /* v440 trigger OPP_LEFT_BY_BURST (Grandwalker Manaka): maybeBurst1 (08) fires it for the Burst's owner when opposing Spirits/Ultimates left the Field while that Burst resolved (ctx.n) */
 FX_TRIGGER_TEXT.OPP_LEFT_BY_BURST = 'When an opposing Spirit/Ultimate leaves the Field due to your Burst effect';
+/* v441 STATIC DRAW_ONE (Grandwalker Alex): "when either player draws via an effect, they can only draw one card" (any draw outside the Draw Step); read by draw() */
+const drawOneOnly = () => !!G && [G.p.player, G.p.opponent].some(o => fieldList(o).some(f => flagActive(o, 'DRAW_ONE', f)));
 Object.assign(FX_ACTIONS, {
   NEXUS_CORE_TO_RESERVE: { chk: a => typeof a.family === 'string' && a.family.length > 0 && Object.keys(a).every(k => ['do', 'if', 'family'].includes(k)),
     txt: a => `send a core from any of your "${a.family}" Nexus to the Reserve`,
@@ -105,6 +107,20 @@ Object.assign(FX_ACTIONS, {
       const L = c.p.hand.filter(h => h !== c.src && CARDS[h.id].burst); if (!L.length) return;
       const h = c.p.cpu ? L.slice().sort((x, y) => CARDS[x.id].cost - CARDS[y.id].cost)[0] : await chooseCard(c, L, `✨ ${_pn(c)}`, 'You can set a card with Burst effect from your Hand.', true);
       if (!h) return; setBurst(c.p, h, false); io.view({ type: 'board' }); await fireBurstSet(c.p);
+    } },
+  /* v441 PREADVENT_REFRESH: "by adding a card from your Hand as a pre-Advent card underneath a Spirit with Advent you control, refresh that Spirit" (Grandwalker Alex) */
+  PREADVENT_REFRESH: { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => 'by adding a card from your Hand as a pre-Advent card underneath one of your Spirits with Advent, refresh that Spirit',
+    cands: c => c.p.hand.length ? c.p.spirits.filter(s => cardHasKeyword(CARDS[s.id], 'Advent')) : [],
+    can: c => FX_ACTIONS.PREADVENT_REFRESH.cands(c).length > 0,
+    run: async c => {
+      const L = FX_ACTIONS.PREADVENT_REFRESH.cands(c); if (!L.length) { c.ctx.did = false; return; }
+      const t = c.p.cpu ? (L.find(s => s.exhausted) || L[0]) : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap your Spirit with Advent to put a Hand card under it and refresh it.`); if (!t) { c.ctx.did = false; return; }
+      const H = c.p.hand.filter(h => h !== c.src), cost = x => CARDS[x.id].cost;
+      const h = !H.length ? null : c.p.cpu ? H.slice().sort((x, y) => cost(x) - cost(y))[0] : await chooseCard(c, H, `✨ ${_pn(c)}`, 'Choose a card from your Hand to add as a pre-Advent card.', false);
+      if (!h) { c.ctx.did = false; return; }
+      removeFrom(c.p.hand, h); t.under.push(h); log(`${CARDS[c.src.id].name}: ${CARDS[h.id].name} is added under ${CARDS[t.id].name} as a pre-Advent card.`);
+      if (t.exhausted) { refreshOne(t); log(`${CARDS[t.id].name} is refreshed.`); await fireFx(c.p, 'REFRESHED', t, {}); }
+      io.view({ type: 'board' });
     } },
   RETURN_OPP_SNB: { chk: a => a.to === 'deckBottom' && Object.keys(a).every(k => ['do', 'if', 'to', 'unleash'].includes(k)) && (a.unleash == null || (a.unleash.family && typeof a.unleash.family === 'string' && (a.unleash.color == null || COLORS.includes(a.unleash.color)))),
     txt: a => 'return an opposing Spirit, Nexus or set Burst to the bottom of the Deck' + (a.unleash ? `; by sending a core from one of your ${a.unleash.color ? cap(a.unleash.color) + ' ' : ''}${a.unleash.family} Nexus to this card, it can't be prevented` : ''),

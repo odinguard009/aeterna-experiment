@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 6191,
+  "cards": 6190,
   "per_saga": {
    "1": 458,
    "2": 251,
@@ -10,7 +10,7 @@
    "6": 311,
    "7": 456,
    "8": 428,
-   "9": 457,
+   "9": 456,
    "10": 485,
    "11": 274,
    "12": 303,
@@ -22,18 +22,18 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2515,
-  "nexus_levels_added": 660,
+  "skipped_curated": 2516,
+  "nexus_levels_added": 659,
   "nexus_levels_missing": 43,
   "merged": 105,
-  "image_problems": 393,
+  "image_problems": 392,
   "brave_unparsed": 169,
   "ut_lines_added": 106,
-  "odd_reduction": 791,
+  "odd_reduction": 790,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
   "number_conflicts": 3,
-  "without_image": 391
+  "without_image": 390
  },
  "tokens": [
   "BS73-T001",
@@ -1538,6 +1538,7 @@
   "BS45-043",
   "BS45-044",
   "BS45-073",
+  "BS45-XX02",
   "BS46-013",
   "BS46-015",
   "BS46-016",
@@ -3001,7 +3002,6 @@
   "BS45-X07",
   "BS45-X08",
   "BS45-X09",
-  "BS45-XX02",
   "BS45-CP01",
   "BS45-CP02",
   "BS46-087",
@@ -4678,11 +4678,6 @@
    "problem": "no image"
   },
   {
-   "id": "BS45-XX02",
-   "name": "Grandwalker Alex",
-   "problem": "no image (near: The Grandwalker Alex.png)"
-  },
-  {
    "id": "BS45-CP01",
    "name": "Bashin Toppa",
    "problem": "no image"
@@ -6111,12 +6106,6 @@
   },
   {
    "id": "BS45-X06",
-   "dropped": [
-    "god"
-   ]
-  },
-  {
-   "id": "BS45-XX02",
    "dropped": [
     "god"
    ]

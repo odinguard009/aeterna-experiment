@@ -20842,17 +20842,6 @@
   "M_OPTIONAL",
   "T_ATTACKS"
  ],
- "BS45-XX02": [
-  "A_DRAW",
-  "A_MILL",
-  "A_REFRESH",
-  "A_VOID",
-  "C_LEVEL",
-  "K_ADVENT",
-  "K_GRANDWALKER",
-  "M_IF_YOU_DO",
-  "M_OPTIONAL"
- ],
  "BS46-001": [
   "A_BP_PLUS",
   "A_VOID",

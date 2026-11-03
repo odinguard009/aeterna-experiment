@@ -98,3 +98,35 @@ test('K-1103 BS47-XX02 Lv2: an opposing Spirit that leaves due to your Burst sen
     return { first, second, lv1 }; })()`);
   assert.equal(r.first.gone, true, JSON.stringify(r)); assert.equal(r.first.life, 4, JSON.stringify(r)); assert.equal(r.second.life, 5, JSON.stringify(r)); assert.equal(r.lv1.life, 5, JSON.stringify(r));
 });
+
+test('K-1104 BS45-XX02 Grandwalker Alex: Flash puts a Hand card under an Advent Spirit and refreshes it', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const nx = BS.mkInst('BS45-XX02'); nx.cores = 3; P.nexus = [nx]; P.onceUsed = {};
+    const adv = 'BS39-XX01';
+    const sp = BS.mkInst(adv); sp.cores = 1; sp.exhausted = true; P.spirits = [sp]; sp.under = [];
+    const h = BS.mkInst('BS18-X012A'); P.hand = [h];
+    G.attack = G.attack || {}; G.attackStep = true;
+    const idx = BS.CARDS['BS45-XX02'].effects.findIndex(e => e.trigger === 'ACTIVATE');
+    const c = { p: P, opp: O, src: nx, ctx: {} };
+    await BS.FX_ACTIONS.PREADVENT_REFRESH.run(c, { do: 'PREADVENT_REFRESH' });
+    return { adv, under: sp.under.length, refreshed: !sp.exhausted, hand: P.hand.length, idx, partial: BS.CARDS['BS45-XX02'].partial }; })()`);
+  assert.equal(r.under, 1, JSON.stringify(r)); assert.equal(r.refreshed, true, JSON.stringify(r)); assert.equal(r.hand, 0, JSON.stringify(r)); assert.equal(r.partial, false, JSON.stringify(r));
+});
+
+test('K-1105 BS45-XX02 Lv2: both players draw at most one card outside the Draw Step', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4;
+    const nx = BS.mkInst('BS45-XX02'); nx.cores = 3; P.nexus = [nx];
+    const n0 = O.hand.length; await BS.draw(O, 3); const capped = O.hand.length - n0;
+    G.step = 2; const m0 = O.hand.length; await BS.draw(O, 2); const step = O.hand.length - m0;
+    nx.cores = 1; G.step = 4; const k0 = O.hand.length; await BS.draw(O, 3); const lv1 = O.hand.length - k0;
+    return { capped, step, lv1 }; })()`);
+  assert.equal(r.capped, 1, JSON.stringify(r)); assert.equal(r.step, 2, JSON.stringify(r)); assert.equal(r.lv1, 3, JSON.stringify(r));
+});
+
+test('K-1106 BS45-XX02: its colour and symbol are also treated as all six colours', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const nx = BS.mkInst('BS45-XX02'); nx.cores = 3; const e = BS.CARDS['BS45-XX02'].effects.find(x => x.flag === 'ALSO_TREATED'); return { cols: e.colors.length, sym: e.symbol }; })()`);
+  assert.equal(r.cols, 6, JSON.stringify(r)); assert.equal(r.sym, true, JSON.stringify(r));
+});
