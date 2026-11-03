@@ -3,7 +3,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
-import { lanesOf, nextLane, uiQueue } from '../../tools/lane_next.mjs';
+import { kHold, lanesOf, nextLane, uiQueue } from '../../tools/lane_next.mjs';
 
 const log = (...lanes) => '# Changelog\n\nintro\n\n' + lanes.map((l, i) => `## v0.9.${lanes.length - i}\n${l ? `- Lane: ${l}\n` : ''}- notes\n`).join('\n');
 const F = '- **F5 test waits = Q2:** x\n';
@@ -39,5 +39,14 @@ test('LN05 queue empty or missing: K', () => {
 
 test('LN06 the tool prints its one line when run as a script (was silent on Windows: file URL compare)', () => {
   const out = execFileSync(process.execPath, ['tools/lane_next.mjs'], { encoding: 'utf8' }).trim();
-  assert.match(out, /^LANE (K|U\/I) \(/);
+  assert.match(out, /^LANE (K|U\/I|HOLD) \(/);
+});
+
+test('LN07 owner hold on Lane K: K results become HOLD, U/I items are still taken', () => {
+  const H = '- **Accepted, ON HOLD.** x\n';
+  assert.equal(kHold(rm(H)), true);
+  assert.equal(nextLane(log('K'), rm(QE, H)).lane, 'HOLD');
+  assert.equal(nextLane(log('K'), rm(S1, H)).lane, 'HOLD');
+  assert.equal(nextLane(log('K'), rm(Q, H)).lane, 'U/I');
+  assert.equal(nextLane(log('K'), rm(QE)).lane, 'K');
 });

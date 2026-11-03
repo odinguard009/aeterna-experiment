@@ -30,17 +30,25 @@ export function uiQueue(roadmap) {
   return body.split(/[,;]/).map((x) => x.trim().replace(/\.$/, '')).filter(Boolean);
 }
 
+// Owner hold (2026-11-03): item G of roadmap-open.md starts with "- **Accepted, ON HOLD.**" until the owner says start;
+// while it is there no K item is taken (U/I items still are). Delete that line to lift the hold.
+export function kHold(roadmap) {
+  return /^- \*\*Accepted, ON HOLD\.\*\*/m.test(roadmap);
+}
+
 export function nextLane(_changelog, roadmap) {
+  const hold = kHold(roadmap);
+  const k = (why) => (hold ? { lane: 'HOLD', why: 'owner hold on Lane K (roadmap-open.md item G); take no K item' } : { lane: 'K', why });
   if (/^- \*\*F[1-5] /m.test(roadmap)) return { lane: 'U/I', why: 'phase F is still open' };
-  if (/^- \*\*S1 /m.test(roadmap)) return { lane: 'K', why: 'S1 Standard Magic is still open' };
+  if (/^- \*\*S1 /m.test(roadmap)) return k('S1 Standard Magic is still open');
   const q = uiQueue(roadmap);
   if (q.length) return { lane: 'U/I', why: `U/I queue first: ${q[0]} next, ${q.length} left` };
-  return { lane: 'K', why: 'U/I queue is empty: cards, Standard first' };
+  return k('U/I queue is empty: cards, Standard first');
 }
 
 /* Windows note (2026-10-23): `file://` + a bare argv path never matched on Windows (no file:/// + slashes), so the tool
    printed nothing; normalize through pathToFileURL so session_start.sh shows the lane there too (tests/unit/lane_order.test.mjs). */
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   const r = nextLane(readFileSync('CHANGELOG.md', 'utf8'), readFileSync('docs/ai/roadmap-open.md', 'utf8'));
-  console.log(`LANE ${r.lane} (${r.why}; other lane when this one has no ready item)`);
+  console.log(r.lane === 'HOLD' ? `LANE HOLD (${r.why})` : `LANE ${r.lane} (${r.why}; other lane when this one has no ready item)`);
 }
