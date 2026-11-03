@@ -55,3 +55,15 @@ test('K-1004 BS75-X10 Vajrawurm: unpreventable Can\'t Attack/Block, LV3 end-of-b
     return [!c.partial, ef.includes('ALLY_BATTLE_END:3'), P.cantAbFree === G.turnNo]; })()`);
   assert.deepEqual(r, [true, true, true]);
 });
+
+test('K-1005 BS72-017 (Nyx): summoned pays a Nyx core to the Void, discards and draws', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player; P.cpu = true;
+    const nx = BS.mkInst('BS72-CX02'); nx.cores = 2; P.nexus = [nx];
+    const f = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].effects && !BS.CARDS[k].token);
+    P.hand = [BS.mkInst(f)]; for (let i = 0; i < 4; i++) P.deck.push(BS.mkInst(f));
+    const v = BS.mkInst('BS72-017'); v.cores = 1; P.spirits = [v]; const v0 = P.void;
+    await BS.fireFx(P, 'SUMMONED', v, {});
+    return [!BS.CARDS['BS72-017'].partial, nx.cores, P.void - v0, P.hand.length]; })()`);
+  assert.deepEqual(r, [true, 1, 1, 1]);
+});

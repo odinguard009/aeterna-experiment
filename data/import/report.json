@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 6279,
+  "cards": 6278,
   "per_saga": {
    "1": 458,
    "2": 251,
@@ -17,12 +17,12 @@
    "13": 387,
    "14": 422,
    "15": 348,
-   "16": 330,
+   "16": 329,
    "17": 109
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2427,
+  "skipped_curated": 2428,
   "nexus_levels_added": 667,
   "nexus_levels_missing": 43,
   "merged": 107,
@@ -1708,6 +1708,7 @@
   "BS71-CX03",
   "BS71-RV004",
   "BS72-014",
+  "BS72-017",
   "BS72-049",
   "BS72-050",
   "BS72-051",
