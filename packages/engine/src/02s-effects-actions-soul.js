@@ -127,6 +127,7 @@ Object.assign(FX_ACTIONS, {
   DECK_TO_TRASH_CORES: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 7 && hasMatch(a.match), txt: a => `send ${a.n} cards from your Deck to the Trash, +1 core to this card for each matching card among them`,
     can: c => c.p.deck.length > 0,
     run: async (c, a) => {
+      if (a.fresh && c.p.nexus.some(x => x !== c.src && CARDS[x.id].name === CARDS[c.src.id].name)) { c.ctx.did = false; return; }      // v420 Oracle Core Charge: only when no same-named Grandwalker Nexus is controlled
       const top = c.p.deck.splice(0, Math.min(a.n, c.p.deck.length)); let k = 0;
       for (const x of top) { c.p.trash.push(x); if (fxMatch(CARDS[x.id], a.match)) k++; }
       log(`${CARDS[c.src.id].name}: ${top.length} card${top.length === 1 ? '' : 's'} from the Deck go to the Trash.`);
@@ -143,7 +144,7 @@ Object.assign(FX_ACTIONS, {
         removeFrom(c.p.trash, x); c.p.hand.push(x); log(`${CARDS[x.id].name} is added to the Hand (${who(c.p)}).`); handUp(c.p, 1);
       }
       await sentToTrashFx(c, top, 'deck');               // v0.47 Whirling Tide / Thunder Counter / Hades Disaster
-      let got = 0; if (fieldList(c.p).includes(c.src)) for (let j = 0; j < k; j++) if (addCore(c.p, c.src)) got++;
+      let got = 0; if (fieldList(c.p).includes(c.src)) for (let j = 0; j < k; j++) { if (a.void ? (!a.max || c.src.cores < a.max) && (takeFromVoid(c.p, 1), c.src.cores++, true) : addCore(c.p, c.src)) got++; }      // v420 void:true = Oracle (cores come from the Void, max = cap on this Nexus)
       c.ctx.did = got > 0; if (got) log(`${CARDS[c.src.id].name}: +${got} core${got === 1 ? '' : 's'}.`);
     } },
   /* "send your Soul Core to any <name> Nexus": from the Trash, the Reserve or a card where it can leave without depleting a Spirit.

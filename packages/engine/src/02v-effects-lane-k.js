@@ -604,3 +604,21 @@ FX_ACTIONS.OPP_CORES_DOWN_TO_SELF = {
     log(`${_pn(c)}: ${m} core${m === 1 ? '' : 's'} from ${poss(c.opp)} ${CARDS[t.id].name} go to the Reserve.`);
     checkDepletion(c.opp); io.view({ type: 'board' });
   } };
+/* v420 Grandwalker Oracle Core Charge (cores come from the Void, capped on the Nexus) and the Grandwalker Skill "Refresh one of your <match> Spirits/Ultimates and put a core from the Void to it". */
+Object.assign(FX_ACTIONS, {
+  ORACLE_CORE: { chk: a => a.n === 1 && Number.isInteger(a.max) && a.max >= 1 && a.max <= 15 && Object.keys(a).every(k => ['do', 'if', 'n', 'max'].includes(k)),
+    txt: a => `put a core from the Void to this Nexus (up to ${a.max} on it)`,
+    can: (c, a) => c.p.nexus.includes(c.src) && c.src.cores < a.max,
+    run: async (c, a) => { if (!c.p.nexus.includes(c.src) || c.src.cores >= a.max) { c.ctx.did = false; return; } takeFromVoid(c.p, 1); c.src.cores++; log(`${CARDS[c.src.id].name}: +1 core from the Void.`); } },
+  REFRESH_PUT_CORE: { chk: a => hasMatch(a.match) && Object.keys(a).every(k => ['do', 'if', 'match'].includes(k)),
+    txt: () => 'refresh one of your matching Spirits/Ultimates and put a core from the Void to it',
+    cands: (c, a) => c.p.spirits.filter(s => fxMatch(CARDS[s.id], a.match, s)),
+    can: (c, a) => FX_ACTIONS.REFRESH_PUT_CORE.cands(c, a).length > 0,
+    run: async (c, a) => {
+      const L = FX_ACTIONS.REFRESH_PUT_CORE.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
+      const t = await fxPickTarget(c, L.some(s => s.exhausted) ? L.filter(s => s.exhausted) : L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap one of your Spirits/Ultimates to refresh and give a core (glowing).`); if (!t) { c.ctx.did = false; return; }
+      if (t.exhausted) { refreshOne(t); log(`${CARDS[t.id].name} is refreshed.`); await fireFx(c.p, 'REFRESHED', t, {}); }
+      takeFromVoid(c.p, 1); t.cores++; log(`${CARDS[c.src.id].name}: a core moves from the Void to ${CARDS[t.id].name}.`);
+    } }
+});
+wrapImmunity(Object.values(FX_ACTIONS));

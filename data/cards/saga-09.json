@@ -16410,20 +16410,139 @@
   "block": "46",
   "saga": 9,
   "mechanics": [
-   "Core Charge"
+   "Core Charge",
+   "Grandwalker Skill"
   ],
-  "fxComplete": false,
-  "residual": [
-   "GWrule",
-   "Core Charge: ◆When you Summon/Advent a target Spirit/Ultimate, you can +1 core to this Nexus. ◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.",
-   "{{gs|3}} [LV1][LV2] Flash - (Either Attack Step) (Send three cores from this Nexus to the Void) Refresh either a Cost 7 or less Ultimate you control, or an \"Investigator\" family Spirit you control, and put a core from the Void to the refreshed Ultimate/Spirit.",
-   "Grand Field [LV2] Ignore the summon conditions of your Cost 7 or less Ultimate cards. This Nexus's symbol is also treated as Red/Purple/Green/White/Yellow/Blue/Ultimate."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); not yet checked against the card image.",
   "bicon": [
    "5"
   ],
-  "rcode": "XX"
+  "rcode": "XX",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "DECK_TO_TRASH_CORES",
+      "n": 3,
+      "match": {
+       "anyOf": [
+        {
+         "family": [
+          "Investigator"
+         ]
+        },
+        {
+         "type": "Ultimate",
+         "costGe": 3
+        }
+       ]
+      },
+      "void": true,
+      "max": 6,
+      "fresh": true
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "match": {
+     "anyOf": [
+      {
+       "family": [
+        "Investigator"
+       ]
+      },
+      {
+       "type": "Ultimate",
+       "costGe": 3
+      }
+     ]
+    },
+    "actions": [
+     {
+      "do": "ORACLE_CORE",
+      "n": 1,
+      "max": 6
+     }
+    ]
+   },
+   {
+    "trigger": "ACTIVATE",
+    "lv": [
+     1,
+     2
+    ],
+    "timing": [
+     "FLASH"
+    ],
+    "if": {
+     "attackStep": true
+    },
+    "cost": {
+     "nexusToVoid": 3
+    },
+    "actions": [
+     {
+      "do": "REFRESH_PUT_CORE",
+      "match": {
+       "anyOf": [
+        {
+         "type": "Ultimate",
+         "costLe": 7
+        },
+        {
+         "type": "Spirit",
+         "family": [
+          "Investigator"
+         ]
+        }
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "IGNORE_SUMMON_COND",
+    "match": {
+     "type": "Ultimate",
+     "costLe": 7
+    },
+    "lv": [
+     2
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "ALSO_TREATED",
+    "to": "self",
+    "lv": [
+     2
+    ],
+    "symbol": true,
+    "colors": [
+     "red",
+     "purple",
+     "green",
+     "white",
+     "yellow",
+     "blue",
+     "ultimate"
+    ]
+   }
+  ]
  },
  {
   "id": "BS47-001",

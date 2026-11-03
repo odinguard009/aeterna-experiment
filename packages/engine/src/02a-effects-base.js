@@ -38,38 +38,39 @@ function fxEntries(f) {
 /* v189 "When your Nexuses, or your Spirits that are originally Nexuses are destroyed": only queue the event while a card on the Field hears it */
 const nexusDeathHears = p => !!G && !!G.evQ && fieldList(p).some(f => fxEntries(f).some(({ e }) => e.trigger === 'ALLY_NEXUS_DESTROYED'));
 function fxMatch(card, m, inst) {
+  if (m && m.anyOf) return m.anyOf.some(x => fxMatch(card, x, inst));      // v420 OR of match objects
   if (!m || (!m.name && !m.notName && !m.notColor && !m.bpBoosted && !m.family && !m.familyAll && !m.keyword && !m.keywordAny && !m.notKeyword && !m.notKeyword && !m.noText && !m.hasTrigger && m.costGe == null && m.costLe == null && !m.costIn && !m.type && !m.color && !m.noUlt && !m.team && m.symbolsGe == null && m.redColorsGe == null && m.colorsGe == null && !m.hasBrave && !m.noBrave && !m.hasBurst && !m.noBurst && m.bpLe == null && m.bpGe == null && m.exhausted == null && m.hasSoul == null && m.coresGe == null && m.coresLe == null && !m.originalNexus)) return true;      // v214 originalNexus must not be treated as an empty match
-  if (m.notName && m.notName.some(n => card.name.toLowerCase().includes(n.toLowerCase()))) return false;      // v171 "besides <name>"
-  if (m.bpBoosted && !(inst && lvIndex(inst) >= 0 && bpOf(inst) > (card.levels[lvIndex(inst)].bp || 0))) return false;      // v171 "under BP+ effects": current BP above the printed level BP
-  if (m.noUlt && card.type === 'Ultimate') return false;      // v0.59: the text says "Spirit"; texts that include Ultimates print "Spirit/Ultimate"
-  if (m.notColor && [].concat(m.notColor).some(x => (card.colors || [card.symbol]).concat(inst ? alsoTreated(inst, 'color') : []).includes(x))) return false;      // v368 "non-Green"
-  if (m.mono === true && (card.colors || [card.symbol]).length !== 1) return false;      // v366 "<colour> 1-colour" (exactly one colour)
-  if (m.color && ![].concat(m.color).some(x => (card.colors || [card.symbol]).concat(inst ? alsoTreated(inst, 'color') : []).includes(x))) return false;      // v0.39: "Purple" Sorcerer cards (colour = card colour); v0.75: "Red/White" = either colour
+  if (m.notName && m.notName.some(n => card.name.toLowerCase().includes(n.toLowerCase()))) return false;
+  if (m.bpBoosted && !(inst && lvIndex(inst) >= 0 && bpOf(inst) > (card.levels[lvIndex(inst)].bp || 0))) return false;
+  if (m.noUlt && card.type === 'Ultimate') return false;
+  if (m.notColor && [].concat(m.notColor).some(x => (card.colors || [card.symbol]).concat(inst ? alsoTreated(inst, 'color') : []).includes(x))) return false;
+  if (m.mono === true && (card.colors || [card.symbol]).length !== 1) return false;
+  if (m.color && ![].concat(m.color).some(x => (card.colors || [card.symbol]).concat(inst ? alsoTreated(inst, 'color') : []).includes(x))) return false;
   if (m.costGe != null && card.cost < m.costGe) return false;
-  if (m.costLe != null && card.cost > m.costLe) return false;      // v0.69 "Cost N or less" (reveal effects)
-  if (m.costIn && !m.costIn.includes(card.cost)) return false;      // v0.168 "Cost 6/8" = cost 6 or 8
+  if (m.costLe != null && card.cost > m.costLe) return false;
+  if (m.costIn && !m.costIn.includes(card.cost)) return false;
   if (m.type && card.type !== m.type) return false;
-  if (m.hasTrigger && !(card.effects || []).some(e => e.trigger === m.hasTrigger)) return false;      // v162 "a Spirit with When Blocks / When Destroyed effects" (printed trigger)
-  if (m.typeAny && !m.typeAny.includes(card.type)) return false;      // v0.196 "Spirit card/Nexus card" (a list of card types)
+  if (m.hasTrigger && !(card.effects || []).some(e => e.trigger === m.hasTrigger)) return false;
+  if (m.typeAny && !m.typeAny.includes(card.type)) return false;
   if (m.team && !cardTeams(card).includes(m.team)) return false;
   if (m.originalNexus && card.type !== 'Nexus') return false;      // v214 "a Spirit that is originally a Nexus"      // v0.184 (schema 55) "a Red Stella Spirit card": the [Team: X] head line
-  if (m.bpGe != null && !(inst && bpOf(inst) >= m.bpGe)) return false;      // v0.199 "your 10000 BP or more Spirit" (current BP)
-  if (m.coresGe != null && !(inst && totalCores(inst) >= m.coresGe)) return false;      // v189 "with one or more core on it"
-  if (m.coresLe != null && !(inst && totalCores(inst) <= m.coresLe)) return false;      // v293 "with only one core on it" (coresGe 1 + coresLe 1)
-  if (m.hasSoul != null && !(inst && !!inst.soul === m.hasSoul)) return false;      // v390 "your Spirit with (Soul Core) on it"
-  if (m.exhausted != null && !(inst && !!inst.exhausted === m.exhausted)) return false;      // v176 "your exhausted <match> Spirits"
-  if (m.bpLe != null && !(inst && bpOf(inst) <= m.bpLe)) return false;      // v0.183 "an opposing 6000 BP or less Spirit" (current BP; needs the instance)
-  if (m.noBurst && (card.burst || /\{\{Burst\|/.test(card.desc || card.text || ''))) return false;      // v362 "without Burst effects"
-  if (m.hasBurst && !(card.burst || /\{\{Burst\|/.test(card.desc || card.text || ''))) return false;      // v355 "card with a Burst effect": the printed {{Burst|...}} head
-  if (m.noBrave && inst && inst.brave) return false;      // v380 "non-braved Spirit": no Brave combined
-  if (m.hasBrave && !(inst && inst.brave)) return false;      // v350 "Brave Spirit": a Spirit with a Brave combined
-  if (m.colorsGe != null && !((card.colors || [card.symbol]).length >= m.colorsGe)) return false;      // v400 "six-color" (N or more colours)
-  if (m.redColorsGe != null && !(Object.keys(card.reduction || {}).length >= m.redColorsGe)) return false;      // v343 "cost reduction symbols of two or more different colors"
-  if (m.symbolsGe != null && !((card.symbols || 0) >= m.symbolsGe)) return false;      // v0.78 "your Spirit with two or more symbols"
-  if (m.familyAll && !m.familyAll.every(n => (card.families || []).includes(n))) return false;      // v0.88 S1 '"RYUKI" & "Kamen" family' (every listed family)
+  if (m.bpGe != null && !(inst && bpOf(inst) >= m.bpGe)) return false;
+  if (m.coresGe != null && !(inst && totalCores(inst) >= m.coresGe)) return false;
+  if (m.coresLe != null && !(inst && totalCores(inst) <= m.coresLe)) return false;
+  if (m.hasSoul != null && !(inst && !!inst.soul === m.hasSoul)) return false;
+  if (m.exhausted != null && !(inst && !!inst.exhausted === m.exhausted)) return false;
+  if (m.bpLe != null && !(inst && bpOf(inst) <= m.bpLe)) return false;
+  if (m.noBurst && (card.burst || /\{\{Burst\|/.test(card.desc || card.text || ''))) return false;
+  if (m.hasBurst && !(card.burst || /\{\{Burst\|/.test(card.desc || card.text || ''))) return false;
+  if (m.noBrave && inst && inst.brave) return false;
+  if (m.hasBrave && !(inst && inst.brave)) return false;
+  if (m.colorsGe != null && !((card.colors || [card.symbol]).length >= m.colorsGe)) return false;
+  if (m.redColorsGe != null && !(Object.keys(card.reduction || {}).length >= m.redColorsGe)) return false;
+  if (m.symbolsGe != null && !((card.symbols || 0) >= m.symbolsGe)) return false;
+  if (m.familyAll && !m.familyAll.every(n => (card.families || []).includes(n))) return false;
   if (m.keyword && !cardHasKeyword(card, m.keyword)) return false;
-  if (m.notKeyword && cardHasKeyword(card, m.notKeyword)) return false;      // v306 "Spirits without Tribute"
-  if (m.keywordAny && !m.keywordAny.some(k => cardHasKeyword(card, k))) return false;      // v229 keywordAny; v0.90 Clash; v0.120.0 Amplify keywords list
+  if (m.notKeyword && cardHasKeyword(card, m.notKeyword)) return false;
+  if (m.keywordAny && !m.keywordAny.some(k => cardHasKeyword(card, k))) return false;
   if (m.noText) { const t = String(card.desc || card.text || '').trim(); if (t && t !== 'Vanilla card (no effect text).') return false; }      // v0.90 S1 'with no printed effects'
   if (!m.name && !m.family) return true;
   return [].concat(m.name || []).some(n => card.name.toLowerCase().includes(n.toLowerCase())) || (m.family || []).some(n => (card.families || []).includes(n));
@@ -491,4 +492,4 @@ function bounceCard(owner, t, to) {                   // return a field card to 
   log(`${poss(owner)} ${CARDS[t.id].name} returns to the ${to === 'deckBottom' ? 'bottom of the Deck' : to === 'deckTop' ? 'top of the Deck' : 'Hand'}.`);
 }
 const SOUL_SRC = ['self', 'hand', 'trash', 'handOrTrash', 'reveal'];
-const hasMatch = m => !!m && (m.name || m.notName || m.bpBoosted || m.family || m.costGe != null || m.costLe != null || m.costIn || m.type || m.typeAny || m.color || m.notColor || m.familyAll || m.keyword || m.keywordAny || m.notKeyword || m.noText || m.hasTrigger || m.team || m.coresGe != null || m.coresLe != null || m.originalNexus || m.symbolsGe != null || m.hasBrave || m.noBrave || m.hasBurst || m.noBurst);      // v300 symbolsGe counts as a match key
+const hasMatch = m => !!m && (m.anyOf || m.name || m.notName || m.bpBoosted || m.family || m.costGe != null || m.costLe != null || m.costIn || m.type || m.typeAny || m.color || m.notColor || m.familyAll || m.keyword || m.keywordAny || m.notKeyword || m.noText || m.hasTrigger || m.team || m.coresGe != null || m.coresLe != null || m.originalNexus || m.symbolsGe != null || m.hasBrave || m.noBrave || m.hasBurst || m.noBurst);      // v300 symbolsGe counts as a match key

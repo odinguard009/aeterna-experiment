@@ -128,3 +128,47 @@ test('K-1056 BS44-RV003 Kingghepardo: Life 3+ refreshes it once per turn, Life 3
     return { ref4, kept4, ref2, left: O.spirits.length, deck: O.deck.length - d0, partial: BS.CARDS['BS44-RV003'].partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.ref4, true, JSON.stringify(r)); assert.equal(r.kept4, 1, JSON.stringify(r)); assert.equal(r.ref2, false, JSON.stringify(r)); assert.equal(r.left, 0, JSON.stringify(r)); assert.equal(r.deck, 1, JSON.stringify(r));
 });
+
+const invS = `'BS46-043'`;
+
+test('K-1057 BS46-XX02 Grandwalker Antarc (Oracle Core Charge): deploy mills three and adds a Void core per target card; skipped with a same-named Nexus on the Field', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 3; G.fxBy = P.key;
+    const x = BS.mkInst('BS46-XX02'); P.nexus = [x]; P.spirits = []; P.void = 3;
+    const junk = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && !(BS.CARDS[k].families || []).includes('Investigator'));
+    P.deck = [BS.mkInst(${invS}), BS.mkInst(junk), BS.mkInst('BS46-061'), BS.mkInst(junk), BS.mkInst(junk)]; const t0 = P.trash.length;
+    await BS.fireFx(P, 'SUMMONED', x, { subject: x });
+    const a = { cores: x.cores, trash: P.trash.length - t0, deck: P.deck.length };
+    const y = BS.mkInst('BS46-XX02'); P.nexus.push(y); P.deck = P.deck.concat([BS.mkInst(${invS}), BS.mkInst(${invS}), BS.mkInst(${invS})]); const d0 = P.deck.length;
+    await BS.fireFx(P, 'SUMMONED', y, { subject: y });
+    return { a, dup: { cores: y.cores, deck: P.deck.length - d0 }, partial: BS.CARDS['BS46-XX02'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.deepEqual(r.a, { cores: 2, trash: 3, deck: 2 }, JSON.stringify(r)); assert.deepEqual(r.dup, { cores: 0, deck: 0 }, JSON.stringify(r));
+});
+
+test('K-1058 BS46-XX02 Antarc: summoning an Investigator Spirit or a Cost 3+ Ultimate adds a Void core to the Nexus; other Spirits do not; capped at six cores', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 3; G.fxBy = P.key;
+    const x = BS.mkInst('BS46-XX02'); P.nexus = [x]; P.void = 8; P.spirits = [];
+    const junk = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && !(BS.CARDS[k].families || []).includes('Investigator'));
+    const ult = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Ultimate' && BS.CARDS[k].cost >= 3), ult2 = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Ultimate' && BS.CARDS[k].cost < 3);
+    const sm = async id => { const s = BS.mkInst(id); P.spirits.push(s); await BS.fireFx(P, 'SUMMONED', s, { subject: s }); return x.cores; };
+    const out = [await sm(${invS}), await sm(junk), await sm(ult)]; const u2 = ult2 ? await sm(ult2) : null;
+    x.cores = 5; const c5 = await sm(${invS}); const c6 = await sm(${invS});
+    return { out, u2, c5, c6 }; })()`);
+  assert.deepEqual(r.out, [1, 1, 2], JSON.stringify(r)); if (r.u2 != null) assert.equal(r.u2, 2, JSON.stringify(r)); assert.equal(r.c5, 6, JSON.stringify(r)); assert.equal(r.c6, 6, JSON.stringify(r));
+});
+
+test('K-1059 BS46-XX02 Antarc: the Skill refreshes an Investigator Spirit and puts a Void core on it; Grand Field (LV2) ignores Ultimate summon conditions and adds all symbols', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const x = BS.mkInst('BS46-XX02'); x.cores = 3; P.nexus = [x]; const s = BS.mkInst(${invS}); s.cores = 1; s.exhausted = true; P.spirits = [s]; P.void = 3;
+    const e = BS.CARDS['BS46-XX02'].effects.find(q => q.trigger === 'ACTIVATE'); const c = { p: P, opp: O, src: x, ctx: {} };
+    await BS.FX_ACTIONS.REFRESH_PUT_CORE.run(c, e.actions[0]);
+    const k = { ref: !s.exhausted, cores: s.cores, cost: e.cost };
+    const lv1 = BS.alsoTreated ? BS.alsoTreated(x, 'symbol').length : -1; x.cores = 4; const lv2 = BS.alsoTreated ? BS.alsoTreated(x, 'symbol') : [];
+    const ult = Object.keys(BS.CARDS).find(q => BS.CARDS[q].type === 'Ultimate' && BS.CARDS[q].cost <= 7 && BS.CARDS[q].summonIf);
+    P.spirits = []; const ok2 = BS.summonOK(P, BS.CARDS[ult]); x.cores = 0; P.nexus = []; const ok0 = BS.summonOK(P, BS.CARDS[ult]);
+    return { k, lv1, lv2, ok2, ok0 }; })()`);
+  assert.equal(r.k.ref, true, JSON.stringify(r)); assert.equal(r.k.cores, 2, JSON.stringify(r)); assert.deepEqual(r.k.cost, { nexusToVoid: 3 }, JSON.stringify(r));
+  assert.equal(r.lv1, 0, JSON.stringify(r)); assert.equal(r.lv2.length, 7, JSON.stringify(r)); assert.equal(r.ok2, true, JSON.stringify(r));
+});

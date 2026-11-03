@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 6214,
+  "cards": 6213,
   "per_saga": {
    "1": 458,
    "2": 251,
@@ -10,7 +10,7 @@
    "6": 311,
    "7": 456,
    "8": 428,
-   "9": 469,
+   "9": 468,
    "10": 485,
    "11": 274,
    "12": 303,
@@ -22,18 +22,18 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2492,
-  "nexus_levels_added": 667,
+  "skipped_curated": 2493,
+  "nexus_levels_added": 666,
   "nexus_levels_missing": 43,
   "merged": 106,
-  "image_problems": 397,
+  "image_problems": 396,
   "brave_unparsed": 169,
   "ut_lines_added": 106,
   "odd_reduction": 795,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
   "number_conflicts": 3,
-  "without_image": 395
+  "without_image": 394
  },
  "tokens": [
   "BS73-T001",
@@ -1542,6 +1542,7 @@
   "BS46-039",
   "BS46-045",
   "BS46-054",
+  "BS46-XX02",
   "BS46-RV004",
   "BS46-RV006",
   "BS46-RV007",
@@ -2991,7 +2992,6 @@
   "BS46-X10",
   "BS46-X11",
   "BS46-X12",
-  "BS46-XX02",
   "BS46-CP01",
   "BS46-CP02",
   "BS47-094",
@@ -4721,11 +4721,6 @@
    "id": "BS46-X12",
    "name": "Grandwalker Ra",
    "problem": "no image (near: The Grandwalker Ra.png)"
-  },
-  {
-   "id": "BS46-XX02",
-   "name": "Grandwalker Antarc",
-   "problem": "no image (near: The Grandwalker Antarc.png)"
   },
   {
    "id": "BS47-030",
