@@ -19698,16 +19698,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "BS44-CP02": [
-  "A_MILL",
-  "A_VOID",
-  "C_LEVEL",
-  "K_ADVENT",
-  "K_GRANDWALKER",
-  "M_IF_YOU_DO",
-  "M_OPTIONAL",
-  "S_UNAFFECTED"
- ],
  "BS44-CP03": [
   "A_RETURN_TRASH",
   "A_TRASH_TO_RESERVE",
@@ -19894,15 +19884,6 @@
   "M_OPTIONAL",
   "T_ATTACKS",
   "T_SUMMONED"
- ],
- "BS44-XX02": [
-  "A_MILL",
-  "A_VOID",
-  "C_LEVEL",
-  "K_ADVENT",
-  "K_GRANDWALKER",
-  "M_IF_YOU_DO",
-  "M_OPTIONAL"
  ],
  "BS45-001": [
   "A_BP_PLUS",

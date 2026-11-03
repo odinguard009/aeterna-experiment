@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 6195,
+  "cards": 6193,
   "per_saga": {
    "1": 458,
    "2": 251,
@@ -10,7 +10,7 @@
    "6": 311,
    "7": 456,
    "8": 428,
-   "9": 461,
+   "9": 459,
    "10": 485,
    "11": 274,
    "12": 303,
@@ -22,18 +22,18 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2511,
-  "nexus_levels_added": 664,
+  "skipped_curated": 2513,
+  "nexus_levels_added": 662,
   "nexus_levels_missing": 43,
   "merged": 105,
-  "image_problems": 396,
+  "image_problems": 395,
   "brave_unparsed": 169,
   "ut_lines_added": 106,
-  "odd_reduction": 795,
+  "odd_reduction": 793,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
   "number_conflicts": 3,
-  "without_image": 394
+  "without_image": 393
  },
  "tokens": [
   "BS73-T001",
@@ -1529,6 +1529,8 @@
   "BS44-058",
   "BS44-072",
   "BS44-091",
+  "BS44-XX02",
+  "BS44-CP02",
   "BS44-RV003",
   "BS45-020",
   "BS45-029",
@@ -2988,8 +2990,6 @@
   "BS44-X07",
   "BS44-X08",
   "BS44-X09",
-  "BS44-XX02",
-  "BS44-CP02",
   "BS45-085",
   "BS45-086",
   "BS45-087",
@@ -4608,11 +4608,6 @@
    "problem": "no image (near: The Grandwalker Artemis.jpg)"
   },
   {
-   "id": "BS44-XX02",
-   "name": "Grandwalker Lolo",
-   "problem": "no image (near: The Grandwalker Lolo.png)"
-  },
-  {
    "id": "BS45-021",
    "name": "The TrojonLionheart LesserAjax",
    "problem": "no image"
@@ -5897,19 +5892,7 @@
    ]
   },
   {
-   "id": "BS44-XX02",
-   "dropped": [
-    "god"
-   ]
-  },
-  {
    "id": "BS44-10THX01",
-   "dropped": [
-    "god"
-   ]
-  },
-  {
-   "id": "BS44-CP02",
    "dropped": [
     "god"
    ]
