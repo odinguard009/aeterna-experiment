@@ -74,7 +74,7 @@ cardTeams, allHaveShapeOK, allHaveOK, winRiderRun, fxOppMark, blockTaxOK, payAtk
 ## packages/engine/src/02r-effects-actions-deck.js (145 lines, ~5.2k tokens)
 
 
-## packages/engine/src/02s-effects-actions-soul.js (231 lines, ~6k tokens)
+## packages/engine/src/02s-effects-actions-soul.js (233 lines, ~6.1k tokens)
 leaveHook
 
 ## packages/engine/src/02t-effects-actions-opp.js (326 lines, ~8.5k tokens)
@@ -89,7 +89,7 @@ coresFromSpirits, canPursuit
 ## packages/engine/src/02w-effects-indra.js (62 lines, ~1.3k tokens)
 symFixedOnSummon, fxLockBusy, fxLocked, leaveSummonOffer, mirageNexusOf, nexusShielded, nexusVoided, mirageSummonOffer
 
-## packages/engine/src/02x-effects-soul-magic.js (51 lines, ~1.4k tokens)
+## packages/engine/src/02x-effects-soul-magic.js (66 lines, ~1.8k tokens)
 magicFromSoul, magicSoulSrc
 
 ## packages/engine/src/03-imported-cards.js (254 lines, ~7.3k tokens) — IMPORTED CARD DATA

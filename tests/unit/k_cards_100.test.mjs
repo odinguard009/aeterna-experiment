@@ -140,3 +140,21 @@ test('K-1081 BS75-X08 Hazaar: cores per differently-named Soul State card; 3+ co
   })()`);
   assert.equal(r.a.soulTrash, true, JSON.stringify(r)); assert.equal(r.b.soulTrash, false, JSON.stringify(r)); assert.equal(r.c.soulTrash, false, JSON.stringify(r));
 });
+
+test('K-1082 BS75-067 Sage\'s Sanctuary: deploy lets up to three Mitra/Awakened Dragon cards of five enter Soul State; Flash returns five AD cards and summons one revealed AD by paying its cost', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const nx = BS.mkInst('BS75-067'); nx.cores = 1; P.nexus = [nx]; P.spirits = [];
+    const ADs = ['BS74-048','BS74-040','BS74-042','BS74-047','BS74-049'];
+    P.deck = ADs.map(i => BS.mkInst(i)).concat([BS.mkInst('BS74-082')]); P.soulState = [];
+    await BS.fireFx(P, 'SUMMONED', nx, { subject: nx, selfInst: nx });
+    const afterDeploy = P.soulState.length, deckBack = P.deck.length;
+    P.soulState = ADs.map(i => BS.mkInst(i)); P.soulState.forEach(x => x.inSoulState = true);
+    P.deck = [BS.mkInst('BS74-047'), BS.mkInst('BS74-048'), BS.mkInst('BS74-040'), BS.mkInst('BS74-042'), BS.mkInst('BS74-049')]; P.hand = []; P.reserve.n = 12; P.void = 0;
+    const idx = BS.CARDS['BS75-067'].effects.findIndex(e => e.trigger === 'ACTIVATE');
+    const ok = await BS.activateFx(P, nx, idx);
+    return { afterDeploy, deckBack, ok, exhausted: nx.exhausted, soulLeft: P.soulState.length, spirits: P.spirits.length, partial: BS.CARDS['BS75-067'].partial };
+  })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.ok(r.afterDeploy >= 1 && r.afterDeploy <= 3, JSON.stringify(r));
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.exhausted, true); assert.equal(r.soulLeft, 0, JSON.stringify(r)); assert.equal(r.spirits, 1, JSON.stringify(r));
+});

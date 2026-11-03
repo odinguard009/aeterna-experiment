@@ -466,3 +466,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v428 (Lane K, Mitra): `SOUL_ENTER` `src: "trashOrUnder"` (the Trash or this Spirit's pre-advent cards, BS75-030) and `extra.match` + `extra.sameName` on the reveal form (BS74-042: the second card may be any "Awakened Dragon" family card or a "Contractor Mitra", once per turn per name).
 - v429: Magic from Soul State (`magic.soulUse`), actions `SOUL_SWAP`, `SOUL_TO_DECKBOTTOM`, `LIFE_COST_SHIELD`, `MAGIC_BOTTOM`, `OPP_FX_LOCK_TURN`, `SOUL_SUMMON.once` (BS74-082/083, BS75-081).
 - v430: `contractAdvent.freeGe` (with N+ counters, once per turn per name, the Soul Core is treated as sent: no Soul Core needed) and action `SOUL_CORE_TO_TRASH` (BS75-037, BS75-X08).
+- v431: `SOUL_ENTER.upTo` (several picks from the reveal), `SOUL_TO_DECKBOTTOM.n` (all or none) and action `REVEAL_SUMMON_PAY` (BS75-067).

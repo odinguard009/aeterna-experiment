@@ -26,14 +26,29 @@ FX_ACTIONS.SOUL_SWAP = { chk: a => Object.keys(a).every(k => ['do', 'if', 'n', '
     log(`${nm}: ${k} card${k === 1 ? '' : 's'} swapped with Soul State; the revealed cards go to the bottom of the Deck.`);
     c.ctx.did = true;
   } };
-FX_ACTIONS.SOUL_TO_DECKBOTTOM = { chk: a => Object.keys(a).every(k => ['do', 'if', 'match'].includes(k)) && hasMatch(a.match),
-  txt: () => 'return a matching card from your Soul State to the bottom of your Deck',
+FX_ACTIONS.SOUL_TO_DECKBOTTOM = { chk: a => Object.keys(a).every(k => ['do', 'if', 'match', 'n'].includes(k)) && hasMatch(a.match) && (a.n == null || (Number.isInteger(a.n) && a.n >= 1 && a.n <= 5)),
+  txt: a => `return ${a.n > 1 ? a.n + ' matching cards' : 'a matching card'} from your Soul State to the bottom of your Deck`,
   cands: (c, a) => c.p.soulState.filter(x => fxMatch(CARDS[x.id], a.match)),
-  can: (c, a) => FX_ACTIONS.SOUL_TO_DECKBOTTOM.cands(c, a).length > 0,
+  can: (c, a) => FX_ACTIONS.SOUL_TO_DECKBOTTOM.cands(c, a).length >= (a.n || 1),      // v431 n: all of them or none
   run: async (c, a) => {
-    const t = await chooseCard(c, FX_ACTIONS.SOUL_TO_DECKBOTTOM.cands(c, a), `✨ ${CARDS[c.src.id].name}`, 'Choose a card in Soul State to return to the bottom of your Deck.', false);
-    if (!t) { c.ctx.did = false; return; }
-    removeFrom(c.p.soulState, t); t.inSoulState = false; c.p.deck.push(t); c.ctx.did = true; log(`${CARDS[c.src.id].name}: ${CARDS[t.id].name} returns from Soul State to the bottom of the Deck.`);
+    c.ctx.did = false; const n = a.n || 1;
+    if (!FX_ACTIONS.SOUL_TO_DECKBOTTOM.can(c, a)) return;
+    for (let i = 0; i < n; i++) {
+      const t = await chooseCard(c, FX_ACTIONS.SOUL_TO_DECKBOTTOM.cands(c, a), `✨ ${CARDS[c.src.id].name}`, `Choose a card in Soul State to return to the bottom of your Deck (${i + 1}/${n}).`, false);
+      if (!t) return;
+      removeFrom(c.p.soulState, t); t.inSoulState = false; c.p.deck.push(t); c.ctx.did = true; log(`${CARDS[c.src.id].name}: ${CARDS[t.id].name} returns from Soul State to the bottom of the Deck.`);
+    }
+  } };
+/* v431 REVEAL_SUMMON_PAY {n, match}: reveal n cards from the decktop, you can summon one matching Spirit among them by paying its cost, the rest go to the deckbottom (BS75-067). */
+FX_ACTIONS.REVEAL_SUMMON_PAY = { chk: a => Object.keys(a).every(k => ['do', 'if', 'n', 'match'].includes(k)) && Number.isInteger(a.n) && a.n >= 1 && a.n <= 6 && hasMatch(a.match),
+  txt: a => `reveal ${a.n} cards from your decktop, you can summon a matching Spirit among them by paying its cost, return the rest to the deckbottom`, can: c => c.p.deck.length > 0,
+  run: async (c, a) => {
+    const nm = CARDS[c.src.id].name, top = c.p.deck.splice(0, Math.min(a.n, c.p.deck.length)); c.p.revealed = top; c.ctx.did = false;
+    log(`${nm}: ${who(c.p)} ${c.p.cpu ? 'reveals' : 'reveal'} ${top.map(x => CARDS[x.id].name).join(', ') || 'nothing'}.`); io.view({ type: 'board' }); await revealedFx(c.p);
+    const L = c.p.revealed.filter(x => CARDS[x.id].type === 'Spirit' && fxMatch(CARDS[x.id], a.match) && canPlacePaid(c.p, x));
+    const t = L.length ? await chooseCard(c, L, `✨ ${nm}`, 'Pay the cost to summon one of these revealed Spirits?', true) : null;
+    if (t) { removeFrom(c.p.revealed, t); c.p.hand.push(t); if (await summonPaid(c.p, t)) c.ctx.did = true; else { removeFrom(c.p.hand, t); c.p.revealed.push(t); } }
+    const rest = c.p.revealed.splice(0); for (const x of rest) c.p.deck.push(x);
   } };
 FX_ACTIONS.LIFE_COST_SHIELD = { chk: a => Object.keys(a).every(k => ['do', 'if', 'costGe'].includes(k)) && Number.isInteger(a.costGe) && a.costGe >= 1 && a.costGe <= 20,
   txt: a => `during this turn, your Life can't be reduced by the attacks of opposing Cost ${a.costGe} or more Spirits/Ultimates`, can: () => true,
