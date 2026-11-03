@@ -278,3 +278,23 @@ test('K-1093 BS74-X06 ∞: unaffected only by opposing effects whose colour is a
     return { same: BS.fxImmune(P, x, { p: O, src: same }), diff: BS.fxImmune(P, x, { p: O, src: diff }), lv: BS.lvNo(x) }; })()`);
   assert.equal(r.same, true, JSON.stringify(r)); assert.equal(r.diff, false, JSON.stringify(r));
 });
+
+test('K-1094 BS74-X15 Unleash: a core from a White Grandwalker Nexus makes the return unpreventable (immune target); a yellow Nexus does not pay', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const run = async nx => { const x = BS.mkInst('BS74-X15'); x.cores = 5; const w = BS.mkInst('BS74-X06'); w.cores = 1; P.spirits = [x, w]; const n = BS.mkInst(nx); n.cores = 2; P.nexus = [n]; const t = BS.mkInst('BS74-X06'); t.cores = 3; O.spirits = [t]; O.nexus = []; O.burst = null; const d0 = O.deck.length; const imm = BS.fxImmune(O, t, { p: P, src: x });
+      await BS.fireFx(P, 'ATTACKS', x, { attacker: x, subject: x }); return { imm, left: O.spirits.length, deck: O.deck.length - d0, nexCores: n.cores, xCores: x.cores }; };
+    const imm = BS.fxImmune(O, BS.mkInst('BS74-X06'), { p: P, src: BS.mkInst('BS74-X15') });
+    return { imm, yellow: await run('BS75-CX03'), white: await run('BS74-CX03'), partial: BS.CARDS['BS74-X15'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.white.left, 0, JSON.stringify(r)); assert.equal(r.white.nexCores, 1, JSON.stringify(r)); assert.equal(r.white.xCores, 6, JSON.stringify(r));
+  assert.equal(r.yellow.imm, true, JSON.stringify(r)); assert.equal(r.yellow.left, 1, JSON.stringify(r)); assert.equal(r.yellow.nexCores, 2, JSON.stringify(r));
+});
+
+test('K-1095 BS74-X15 Lv4: reveal two, up to two Contractor Mitra / Awakened Dragon cards enter Soul State', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const x = BS.mkInst('BS74-X15'); x.cores = 5; P.spirits = [x]; P.nexus = []; O.spirits = []; O.nexus = []; O.burst = null;
+    const a = BS.mkInst('BS74-X15'), b = BS.mkInst('BS74-X06'); P.deck = [a, b].concat(P.deck); const s0 = P.soulState.length;
+    await BS.fireFx(P, 'ATTACKS', x, { attacker: x, subject: x }); return { soul: P.soulState.length - s0 }; })()`);
+  assert.equal(r.soul, 2, JSON.stringify(r));
+});

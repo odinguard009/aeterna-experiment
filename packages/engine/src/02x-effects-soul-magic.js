@@ -93,16 +93,27 @@ Object.assign(FX_ACTIONS, {
       if (!t || !p.nexus.includes(t)) return;
       coreEvN(p, t.uid, 'reserve', 1, false); t.cores--; p.reserve.n++; c.ctx.did = true; log(`${nm}: a core from ${CARDS[t.id].name} goes to ${poss(p)} Reserve.`); checkDepletion(p); io.view({ type: 'board' });
     } },
-  RETURN_OPP_SNB: { chk: a => a.to === 'deckBottom' && Object.keys(a).every(k => ['do', 'if', 'to'].includes(k)),
-    txt: () => 'return an opposing Spirit, Nexus or set Burst to the bottom of the Deck',
-    kinds: c => ['spirit', 'nexus', 'burst'].filter(k => k === 'burst' ? !!c.opp.burst && !c.opp.burst.mirage : (k === 'spirit' ? c.opp.spirits : c.opp.nexus).some(x => !fxImmune(c.opp, x, c))),
-    can: c => FX_ACTIONS.RETURN_OPP_SNB.kinds(c).length > 0,
+  RETURN_OPP_SNB: { chk: a => a.to === 'deckBottom' && Object.keys(a).every(k => ['do', 'if', 'to', 'unleash'].includes(k)) && (a.unleash == null || (a.unleash.family && typeof a.unleash.family === 'string' && (a.unleash.color == null || COLORS.includes(a.unleash.color)))),
+    txt: a => 'return an opposing Spirit, Nexus or set Burst to the bottom of the Deck' + (a.unleash ? `; by sending a core from one of your ${a.unleash.color ? cap(a.unleash.color) + ' ' : ''}${a.unleash.family} Nexus to this card, it can't be prevented` : ''),
+    kinds: (c, free) => ['spirit', 'nexus', 'burst'].filter(k => k === 'burst' ? !!c.opp.burst && !c.opp.burst.mirage : (k === 'spirit' ? c.opp.spirits : c.opp.nexus).some(x => free || !fxImmune(c.opp, x, c))),
+    pay: (c, a) => !a.unleash || !c.p.spirits.includes(c.src) ? [] : c.p.nexus.filter(x => x.cores - (x.soul ? 1 : 0) > 0 && (CARDS[x.id].families || []).some(f => f.toLowerCase().includes(a.unleash.family.toLowerCase())) && (!a.unleash.color || (CARDS[x.id].colors || [CARDS[x.id].symbol]).includes(a.unleash.color))),
+    can: (c, a) => FX_ACTIONS.RETURN_OPP_SNB.kinds(c, FX_ACTIONS.RETURN_OPP_SNB.pay(c, a).length > 0).length > 0,
     run: async (c, a) => {
-      const K = FX_ACTIONS.RETURN_OPP_SNB.kinds(c), nm = CARDS[c.src.id].name; c.ctx.did = false; if (!K.length) return;
+      const F = FX_ACTIONS.RETURN_OPP_SNB, nm = CARDS[c.src.id].name; c.ctx.did = false;
+      let free = false, K = F.kinds(c, false);
+      const P = F.pay(c, a);
+      if (P.length && F.kinds(c, true).length) {      // v437 Unleash: a core from the matching Nexus to this card makes the return unpreventable
+        const yes = c.p.cpu ? true : await ask({ title: `✨ ${nm}`, peek: true, html: `Send 1 core from a ${a.unleash.family} Nexus to this card so the return can't be prevented?`, buttons: [{ label: 'Send a core', cls: 'primary', value: true }, { label: 'No', cls: 'cancel', value: false }] });
+        if (yes) {
+          const t = P.length === 1 || c.p.cpu ? P.slice().sort((x, y) => y.cores - x.cores)[0] : await fxPickTarget(c, P, `✨ <b>${esc(nm)}</b><br>Tap the Nexus that sends 1 core to this card (glowing).`);
+          if (t && P.includes(t)) { coreEvN(c.p, t.uid, c.src.uid, 1, false); t.cores--; c.src.cores++; log(`${nm}: a core moves from ${CARDS[t.id].name} to ${nm}; the effect can't be prevented.`); free = true; K = F.kinds(c, true); io.view({ type: 'board' }); }
+        }
+      }
+      if (!K.length) return;
       const lbl = { spirit: 'Spirit', nexus: 'Nexus', burst: 'Burst' };
       const k = c.p.cpu || K.length === 1 ? K[0] : await ask({ title: `✨ ${nm}`, peek: true, html: 'Return which opposing card to the bottom of the Deck?', buttons: K.map(x => ({ label: lbl[x], cls: 'primary', value: x })).concat([{ label: 'Skip', cls: 'cancel', value: null }]) });
       if (!k) return;
       if (k === 'burst') { const b = c.opp.burst; if (!b || b.mirage) return; c.opp.burst = null; c.opp.deck.push(b); log(`${nm}: the opposing set Burst goes to the bottom of the Deck.`); c.ctx.did = true; io.view({ type: 'board' }); return; }
-      await FX_ACTIONS.BOUNCE_OPP.run(c, { do: 'BOUNCE_OPP', to: 'deckBottom', kind: k });
+      await FX_ACTIONS.BOUNCE_OPP.run(c, { do: 'BOUNCE_OPP', to: 'deckBottom', kind: k, ignoreImmune: free ? true : undefined });
     } },
 });
