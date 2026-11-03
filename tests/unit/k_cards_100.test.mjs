@@ -219,3 +219,23 @@ test('K-1087 BS74-047 Sat: (When Summoned) pays to summon an Awakened Dragon / H
     return { onField: P.spirits.includes(ad), left: P.soulState.length }; })()`);
   assert.equal(r.onField, true, JSON.stringify(r)); assert.equal(r.left, 0);
 });
+
+test('K-1088 BS74-072 Mitra\'s Revelation Temple: entering Soul State offers a paid deploy', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4; G.fxBy = P.key;
+    const t = BS.mkInst('BS74-072'); P.hand = [t]; P.nexus = []; P.spirits = []; O.spirits = []; P.reserve.n = 9;
+    BS.toSoulState(P, t); const inSoul = P.soulState.includes(t); await BS.flushBursts();
+    return { inSoul, deployed: P.nexus.includes(t), left: P.soulState.length, partial: BS.CARDS['BS74-072'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.inSoul, true); assert.equal(r.deployed, true, JSON.stringify(r)); assert.equal(r.left, 0);
+});
+
+test('K-1089 BS74-072 Lv2: opposing Spirits returned by an Awakened Dragon card of yours lose their leave effects (Lv1 and other sources do not)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4;
+    const t = BS.mkInst('BS74-072'); t.cores = 1; P.nexus = [t]; const ad = BS.mkInst('BS74-048'), other = BS.mkInst('BS75-042'); P.spirits = [ad, other]; O.spirits = [];
+    G.fxBy = P.key; G.fxSrc = ad; const lv2 = BS.bounceLocked(O); G.fxSrc = other; const otherSrc = BS.bounceLocked(O);
+    G.fxSrc = ad; t.cores = 0; const lv1 = BS.bounceLocked(O); t.cores = 1; G.fxBy = O.key; const wrongSide = BS.bounceLocked(O);
+    const s = BS.mkInst('BS75-042'); s.cores = 1; O.spirits = [s]; G.fxBy = P.key; G.fxSrc = ad; BS.bounceCard(O, s, 'hand');
+    return { lv2, otherSrc, lv1, wrongSide, noFxLeft: s.noFx === undefined, adFam: BS.CARDS['BS74-048'].families, lvOf: BS.CARDS['BS74-072'].levels.length }; })()`);
+  assert.ok(r.adFam.includes('Awakened Dragon'), JSON.stringify(r)); assert.equal(r.lv2, true, JSON.stringify(r)); assert.equal(r.otherSrc, false); assert.equal(r.lv1, false, JSON.stringify(r)); assert.equal(r.wrongSide, false); assert.equal(r.noFxLeft, true);
+});

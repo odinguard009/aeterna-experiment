@@ -47,7 +47,18 @@ const mirageNexusOf = (p, n) => { const m = p.mirage && CARDS[p.mirage.id].mirag
 /* v433 BS74-047 Sat: mirageNexus {name, onlyOne, soul}: onlyOne = the shield holds only while exactly one such Nexus is controlled; soul = the Mirage may be set from Soul State and is summoned when a card of that name enters Soul State (soulEnterHook, called by toSoulState), not when cores go to the Void */
 const mirageShield = (p, n) => { const m = mirageNexusOf(p, n); return !!m && (!CARDS[m.id].mirageNexus.onlyOne || p.nexus.filter(x => CARDS[x.id].name.endsWith(CARDS[m.id].mirageNexus.name)).length === 1); };
 function mirageCoreSafe(p, t) { return !!(G && G.fxBy && G.fxBy !== p.key && p.mirage && t && p.nexus.includes(t) && CARDS[p.mirage.id].mirageNexus.onlyOne && mirageShield(p, t)); }
+/* v433 BS74-072 Mitra's Revelation Temple: card field soulDeploy ("When this card enters Soul State, you can deploy it": event SOUL_DEPLOY -> soulDeployOffer, cost paid); STATIC flag OPP_RETURN_FX_LOCK {match} (Lv2: the (would leave) effects of opposing Spirits returned to the Hand/Deck by an effect of a matching card of yours can't activate; bounceCard sets noFx around leaveEvent) */
+function bounceLocked(owner) {
+  const foe = G && G.p[other(owner.key)], src = G && G.fxSrc; if (!foe || !src || G.fxBy !== foe.key) return false;
+  return fieldList(foe).some(f => (CARDS[f.id].effects || []).some(e => e.trigger === 'STATIC' && e.flag === 'OPP_RETURN_FX_LOCK' && (!e.lv || e.lv.includes(lvNo(f))) && fxMatch(CARDS[src.id], e.match, src)));
+}
+async function soulDeployOffer(p, inst) {
+  if (!G || G.over || !p.soulState.includes(inst) || !canPlaceBy(p, inst, true)) return;
+  if (!p.cpu && !await ask({ title: `✨ ${CARDS[inst.id].name}`, peek: true, html: `${esc(CARDS[inst.id].name)} entered Soul State. Deploy it (paying its cost)?`, cards: cardIds([inst]), buttons: [{ label: 'Deploy', cls: 'primary', value: true }, { label: 'No', cls: 'cancel', value: false }] })) return;
+  if (await summonPaid(p, inst)) log(`${CARDS[inst.id].name}: deployed from Soul State.`);
+}
 function soulEnterHook(p, inst) {
+  if (G && G.evQ && CARDS[inst.id].soulDeploy) G.evQ.push({ type: 'SOUL_DEPLOY', key: p.key, inst });
   const mn = G && G.evQ && p.mirage && CARDS[p.mirage.id].mirageNexus;
   if (mn && mn.soul && CARDS[inst.id].name.endsWith(mn.name) && !G.evQ.some(e => e.type === 'MIRAGE_SUMMON' && e.key === p.key)) G.evQ.push({ type: 'MIRAGE_SUMMON', key: p.key, inst });
 }

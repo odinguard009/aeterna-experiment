@@ -47061,15 +47061,6 @@
   "M_UNSTACKABLE",
   "T_OPP_HAND_UP"
  ],
- "BS74-072": [
-  "A_AWAKEN",
-  "A_SOUL_STATE",
-  "C_LEVEL",
-  "F_OTHER_NOSTACK",
-  "K_ULTIMATE",
-  "M_OPTIONAL",
-  "M_UNSTACKABLE"
- ],
  "BS74-073": [
   "A_CORE_TO_SELF",
   "A_VOID",
