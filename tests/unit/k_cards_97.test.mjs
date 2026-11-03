@@ -311,3 +311,13 @@ test('K-1023 BS74-061 Goz (Mani): destroys up to three opposing Cost 3 or less S
   assert.equal(r.ok, true, JSON.stringify(r));
   assert.equal(r.bigStays, true, JSON.stringify(r)); assert.ok(r.left <= 2, JSON.stringify(r));
 });
+
+test('K-1024 BS74-009 Mosasauro (Mani): counter +1 and destroys the lowest-BP opposing Spirit, drawing a card', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const ids = Object.keys(BS.CARDS).filter(k => { const c = BS.CARDS[k]; return c.type === 'Spirit' && !c.token && !c.effects && c.levels && c.levels.length; });
+    const mo = BS.mkInst('BS74-009'); mo.cores = 3; P.spirits = [mo]; const a = BS.mkInst(ids[0]), b = BS.mkInst(ids[5]); a.cores = b.cores = 3; O.spirits = [a, b]; const c0 = P.count, h0 = P.hand.length;
+    await BS.fireFx(P, 'ATTACKS', mo, { attacker: mo, subject: mo });
+    return { cnt: P.count - c0, left: O.spirits.length, draw: P.hand.length - h0, ok: !BS.CARDS['BS74-009'].partial }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.cnt, 1, JSON.stringify(r)); assert.equal(r.left, 1, JSON.stringify(r)); assert.equal(r.draw, 1, JSON.stringify(r));
+});
