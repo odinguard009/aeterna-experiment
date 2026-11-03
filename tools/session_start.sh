@@ -37,9 +37,6 @@ fi
 
 cd "$ROOT"
 git config core.hooksPath .githooks
-# public repo: commits carry the owner's GitHub noreply identity, never a private email (migration 2026-10-17)
-git config user.name odinguard009
-git config user.email 70865815+odinguard009@users.noreply.github.com
 if [ "$WITH_SOURCES" = 1 ]; then
   git sparse-checkout add data/sources
 fi

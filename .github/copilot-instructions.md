@@ -5,7 +5,6 @@ The working agreement is `CLAUDE.md` at the repo root: read it first and follow 
 ## Session start (Codespaces / local checkout)
 - The repo is already checked out: skip `add_repo`, the sparse clone and `register_repo_root`.
 - Dependencies: the dev container installs Playwright and TypeScript (`.devcontainer/devcontainer.json`). Outside it run once: `npm install --no-save playwright typescript@6.0.3 && npx playwright install --with-deps chromium` (same as CI).
-- Commit identity must be the owner's GitHub noreply address: `git config user.email` must end in `@users.noreply.github.com` (set `70865815+odinguard009@users.noreply.github.com` if it does not). Never commit with a personal email address.
 - Then, as in CLAUDE.md: `bash tools/session_start.sh`, then `bash tools/session_gate.sh manual` (exit 3 = a scheduled Claude session holds the lock: stop and tell the owner). If `gh` is not authorised for issue comments, say so once (the owner runs `gh auth login`) and continue; marks expire on their own.
 - `git pull --rebase` before work and before every push; push after every commit. Only one agent may work on `main` at a time.
 
