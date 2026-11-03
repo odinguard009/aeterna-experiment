@@ -45755,18 +45755,6 @@
   "T_MANIFESTS",
   "T_START_ATTACK"
  ],
- "BS73-047": [
-  "A_CANT_ATTACK_BLOCK",
-  "A_CORE_TO_SELF",
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "C_ONCE",
-  "K_GRANDWALKER",
-  "K_ULTIMATE",
-  "M_OPTIONAL",
-  "M_THEN",
-  "T_ATTACKS"
- ],
  "BS73-048": [
   "A_RETURN_TRASH",
   "A_SUMMON_FREE",
@@ -45776,28 +45764,6 @@
   "K_BURST_THEN_MAIN",
   "M_OPTIONAL",
   "T_ALLY_ATTACKS"
- ],
- "BS73-049": [
-  "A_BP_MINUS",
-  "A_DRAW",
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "C_ONCE",
-  "K_ULTIMATE",
-  "M_OPTIONAL",
-  "M_THEN",
-  "M_UP_TO",
-  "T_ATTACKS"
- ],
- "BS73-050": [
-  "A_REFRESH",
-  "A_SUMMON_FREE",
-  "C_COUNTER",
-  "C_LEVEL",
-  "K_MANIFEST",
-  "M_BY_DOING",
-  "M_OPTIONAL",
-  "T_MANIFESTS"
  ],
  "BS73-051": [
   "A_CORE_TO_SELF",
@@ -46053,7 +46019,6 @@
   "M_TRASH_TRIGGER"
  ],
  "BS73-080": [
-  "A_REFRESH",
   "A_SOUL_STATE",
   "A_SUMMON_FREE",
   "C_CONTROL",
@@ -46140,21 +46105,6 @@
   "K_REVIVE",
   "K_TOKEN",
   "M_IF_YOU_DO",
-  "M_OPTIONAL",
-  "M_THEN",
-  "T_ACTIVATE",
-  "T_ALLY_SUMMONED"
- ],
- "BS73-CX02": [
-  "A_CORE_TO_SELF",
-  "A_MILL",
-  "A_SOUL_STATE",
-  "A_SUMMON_FREE",
-  "A_VOID",
-  "C_LEVEL",
-  "C_ONCE",
-  "K_CONTRACT",
-  "K_REVIVE",
   "M_OPTIONAL",
   "M_THEN",
   "T_ACTIVATE",
@@ -46683,13 +46633,6 @@
   "M_THEN",
   "T_SUMMONED"
  ],
- "BS74-052": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "C_ONCE",
-  "C_OPP_TURN",
-  "M_OPTIONAL"
- ],
  "BS74-053": [
   "C_COUNTER",
   "C_LEVEL",
@@ -47106,14 +47049,6 @@
   "K_GRANDWALKER",
   "M_IF_YOU_DO",
   "M_THEN"
- ],
- "BS74-X07": [
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "C_ONCE",
-  "M_OPTIONAL",
-  "M_UP_TO",
-  "T_ATTACKS"
  ],
  "BS74-X08": [
   "A_CANT_ATTACK_BLOCK",

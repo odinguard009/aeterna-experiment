@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 6175,
+  "cards": 6169,
   "per_saga": {
    "1": 458,
    "2": 251,
@@ -17,19 +17,19 @@
    "13": 385,
    "14": 421,
    "15": 348,
-   "16": 304,
+   "16": 298,
    "17": 105
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2531,
+  "skipped_curated": 2537,
   "nexus_levels_added": 652,
-  "nexus_levels_missing": 41,
+  "nexus_levels_missing": 40,
   "merged": 104,
   "image_problems": 386,
   "brave_unparsed": 169,
   "ut_lines_added": 106,
-  "odd_reduction": 788,
+  "odd_reduction": 785,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
   "number_conflicts": 3,
@@ -1800,8 +1800,12 @@
   "BS73-006",
   "BS73-025",
   "BS73-035",
+  "BS73-047",
+  "BS73-049",
+  "BS73-050",
   "BS73-066",
   "BS73-075",
+  "BS73-CX02",
   "BS74-002",
   "BS74-004",
   "BS74-005",
@@ -1817,12 +1821,14 @@
   "BS74-048",
   "BS74-049",
   "BS74-050",
+  "BS74-052",
   "BS74-061",
   "BS74-067",
   "BS74-072",
   "BS74-082",
   "BS74-083",
   "BS74-X06",
+  "BS74-X07",
   "BS74-X12",
   "BS74-X13",
   "BS74-X14",
@@ -3264,7 +3270,6 @@
   "BS71-CX02",
   "BS72-CX03",
   "BS73-CX01",
-  "BS73-CX02",
   "BS73-CX03",
   "BS74-CX02",
   "BS75-CX04",
@@ -9890,18 +9895,6 @@
    ]
   },
   {
-   "id": "BS73-047",
-   "dropped": [
-    "god"
-   ]
-  },
-  {
-   "id": "BS73-049",
-   "dropped": [
-    "god"
-   ]
-  },
-  {
    "id": "BS73-052",
    "dropped": [
     "god"
@@ -10173,12 +10166,6 @@
   },
   {
    "id": "BS74-X05",
-   "dropped": [
-    "god"
-   ]
-  },
-  {
-   "id": "BS74-X07",
    "dropped": [
     "god"
    ]

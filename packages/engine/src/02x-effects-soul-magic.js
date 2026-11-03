@@ -281,3 +281,57 @@ FX_ACTIONS.DEPLOY_SELF_TRASH = { chk: a => Number.isInteger(a.costN) && a.costN 
     removeFrom(c.p.trash, c.src); c.p.hand.push(c.src);
     if (await summonPaid(c.p, c.src, { costN: a.costN })) c.ctx.did = true; else { removeFrom(c.p.hand, c.src); c.p.trash.push(c.src); c.ctx.did = false; }
   } };
+
+/* v453 Grandwalker Morrigan (BS73-CX02) and its family: trigger OWN_RETURNED ("when your Spirit is returned to the Hand", queued once per Nexus from bounceCard),
+   STATIC flag BOUNCE_COST_PLUS (Makala: when returned by the Contract Skill of Morrigan its cost counts +1 per counter), and action MORRIGAN_BOUNCE_SUMMON
+   {match}: return one of your non-battling Yellow-only Spirits to the Hand, then summon/deploy from the Hand a matching card of lower cost without paying. */
+function ownReturned(p, t) {
+  if (!G || !G.evQ || G.over) return;
+  for (const n of p.nexus) if (fxEntries(n).some(({ e }) => e.trigger === 'OWN_RETURNED')) G.evQ.push({ type: 'OWN_RETURNED', key: p.key, inst: n, subj: t });
+}
+const bounceCost = (p, t) => CARDS[t.id].cost + (fxEntries(t).some(({ e }) => e.flag === 'BOUNCE_COST_PLUS') ? p.count : 0);
+FX_ACTIONS.MORRIGAN_BOUNCE_SUMMON = { chk: a => hasMatch(a.match) && Object.keys(a).every(k => ['do', 'match', 'if'].includes(k)), txt: () => 'return one of your non-battling Yellow-only Spirits to the Hand, then summon/deploy a cheaper matching card from the Hand without paying the cost',
+  cands: (c, a) => c.p.spirits.filter(s => s !== G.attacker && s !== G.blocker && fxMatch(CARDS[s.id], { mono: true, color: 'yellow' }) && c.p.hand.some(h => CARDS[h.id].cost < bounceCost(c.p, s) && fxMatch(CARDS[h.id], a.match) && canPlaceFree(c.p, h))),
+  can: (c, a) => FX_ACTIONS.MORRIGAN_BOUNCE_SUMMON.cands(c, a).length > 0,
+  run: async (c, a) => {
+    c.ctx.did = false; const L = FX_ACTIONS.MORRIGAN_BOUNCE_SUMMON.cands(c, a); if (!L.length) return;
+    const t = await chooseCard(c, L, `✨ ${CARDS[c.src.id].name}`, 'Return one of your Yellow-only Spirits to the Hand.', true); if (!t) return;
+    const cap = bounceCost(c.p, t), pick = c.p.hand.filter(h => CARDS[h.id].cost < cap && fxMatch(CARDS[h.id], a.match) && canPlaceFree(c.p, h));
+    bounceCard(c.p, t, 'hand'); if (!c.p.hand.includes(t)) return;
+    const h = await chooseCard(c, pick.filter(x => c.p.hand.includes(x)), `✨ ${CARDS[c.src.id].name}`, 'Summon/deploy a card of lower cost without paying the cost.', false); if (!h) { c.ctx.did = true; return; }
+    c.ctx.did = true; await summonFree(c.p, h);
+  } };
+/* v453 TRASH_SUMMON_PAY {match, costN}: "summon/deploy a <match> card from your Trash by paying N cost" (Fluora);
+   USE_TRASH_FLASH {match}: "activate a Flash effect of a <match> Magic card (or a Spirit treated as one) in your Trash without paying the cost" (Koon-Zite; the card stays in the Trash);
+   USE_SELF_FLASH: "activate the Flash effect written on this Spirit without paying the cost" (Fluora Lv2-3; Flash with no target only). */
+const magicLike = k => k.type === 'Magic' || (k.type === 'Spirit' && k.magic && k.magic.alsoMagic);
+FX_ACTIONS.TRASH_SUMMON_PAY = { chk: a => hasMatch(a.match) && Number.isInteger(a.costN) && a.costN >= 0 && a.costN <= 10 && Object.keys(a).every(k => ['do', 'match', 'costN', 'if'].includes(k)), txt: a => `summon/deploy a matching card from your Trash by paying ${a.costN} cost`,
+  cands: (c, a) => c.p.trash.filter(h => ['Spirit', 'Nexus'].includes(CARDS[h.id].type) && fxMatch(CARDS[h.id], a.match) && canPlacePaid(c.p, h) && reserveTotal(c.p) >= a.costN + minCores(CARDS[h.id])),
+  can: (c, a) => FX_ACTIONS.TRASH_SUMMON_PAY.cands(c, a).length > 0,
+  run: async (c, a) => {
+    c.ctx.did = false; const L = FX_ACTIONS.TRASH_SUMMON_PAY.cands(c, a); if (!L.length) return;
+    const t = await chooseCard(c, L, `✨ ${CARDS[c.src.id].name}`, `Summon/deploy a card from your Trash by paying ${a.costN} cost.`, true); if (!t) return;
+    removeFrom(c.p.trash, t); c.p.hand.push(t);
+    if (await summonPaid(c.p, t, { costN: a.costN })) c.ctx.did = true; else { removeFrom(c.p.hand, t); c.p.trash.push(t); }
+  } };
+const trashFlashOK = (p, h) => { removeFrom(p.trash, h); p.hand.push(h); const ok = magicUsable(p, h, 'flash', true); removeFrom(p.hand, h); p.trash.push(h); return ok; };
+FX_ACTIONS.USE_TRASH_FLASH = { chk: a => hasMatch(a.match) && Object.keys(a).every(k => ['do', 'match', 'if'].includes(k)), txt: () => 'activate a Flash effect of a matching Magic card in your Trash without paying the cost',
+  cands: (c, a) => c.p.trash.filter(h => magicLike(CARDS[h.id]) && fxMatch(CARDS[h.id], a.match) && trashFlashOK(c.p, h)),
+  can: (c, a) => FX_ACTIONS.USE_TRASH_FLASH.cands(c, a).length > 0,
+  run: async (c, a) => {
+    c.ctx.did = false; const L = FX_ACTIONS.USE_TRASH_FLASH.cands(c, a); if (!L.length) return;
+    const h = await chooseCard(c, L, `✨ ${CARDS[c.src.id].name}`, 'Use the Flash effect of which card in your Trash (no cost)?', true); if (!h) return;
+    removeFrom(c.p.trash, h); c.p.hand.push(h);
+    const k = CARDS[h.id], keep = k.magic && k.magic.summonAfter; if (keep) k.magic.summonAfter = false;      // the card must stay in the Trash
+    try {
+      let ch;
+      if (c.p.cpu) { const tg = magicTargets(c.p, h, 'flash'); ch = { inst: h, target: tg && tg.slice().sort((x, y) => bpOf(y) - bpOf(x))[0] || null, plan: null, ctx: 'flash', free: true }; }
+      else { ch = await prepareHumanMagic(c.p, h, 'flash', true); if (!ch) { removeFrom(c.p.hand, h); c.p.trash.push(h); return; } }
+      log(`${CARDS[c.src.id].name}: ${who(c.p)} ${c.p.cpu ? 'uses' : 'use'} the Flash effect of ${k.name} from the Trash without paying the cost.`);
+      await castMagic(c.p, ch); c.ctx.did = true;
+    } finally { if (keep) k.magic.summonAfter = true; }
+    io.view({ type: 'board' });
+  } };
+FX_ACTIONS.USE_SELF_FLASH = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => 'activate the Flash effect written on this Spirit without paying the cost',
+  can: c => { const m = CARDS[c.src.id].magic && magicFxAt(c.p, c.src, 'flash'); return !!m && m.effect === 'ACTIONS'; },
+  run: async c => { const m = magicFxAt(c.p, c.src, 'flash'); c.ctx.did = false; if (!m || m.effect !== 'ACTIONS') return; await MAGIC_FX.ACTIONS.apply(c.p, c.opp, null, m.value, m, c.src); c.ctx.did = true; } };

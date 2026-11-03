@@ -7,78 +7,78 @@ Counts are card numbers (ids) in `data/sources/official-fields.json`: every prin
 | Grandwalker Nexus | Kind | Family (JP) | Family (EN) | Shared | Cards SD44-BS77 | In Aeterna library (SD44-BS77) | Complete in Aeterna (SD44-BS77) | Complete %  | Cards all series | Complete in Aeterna (all series) |
 |---|---|---|---|---|---|---|---|---|---|
 | BS75-CX03 The HeavenlyThunderContractor Indra | Contract | 雷武 | Thunderive |  | 23 | 23 | 23 | 100% | 23 | 23 |
-| BS75-CX03 The HeavenlyThunderContractor Indra | Contract | 眷属 | Devotee | yes | 287 | 287 | 30 | 10% | 290 | 30 |
-| BS75-CX03 The HeavenlyThunderContractor Indra | Contract | 締皇 | Concluser | yes | 62 | 62 | 3 | 5% | 62 | 3 |
+| BS75-CX03 The HeavenlyThunderContractor Indra | Contract | 眷属 | Devotee | yes | 287 | 287 | 37 | 13% | 290 | 37 |
+| BS75-CX03 The HeavenlyThunderContractor Indra | Contract | 締皇 | Concluser | yes | 62 | 62 | 6 | 10% | 62 | 6 |
 | BS75-CX04 The ChaosContractor Khaos | Contract | 勇傑 | Soldier |  | 61 | 61 | 7 | 11% | 111 | 20 |
-| BS75-CX04 The ChaosContractor Khaos | Contract | 原初 | Primordial |  | 106 | 106 | 7 | 7% | 106 | 7 |
-| BS75-CX04 The ChaosContractor Khaos | Contract | 締皇 | Concluser | yes | 62 | 62 | 3 | 5% | 62 | 3 |
+| BS75-CX04 The ChaosContractor Khaos | Contract | 原初 | Primordial |  | 106 | 106 | 8 | 8% | 106 | 8 |
+| BS75-CX04 The ChaosContractor Khaos | Contract | 締皇 | Concluser | yes | 62 | 62 | 6 | 10% | 62 | 6 |
 | BS74-CX01 The Light-DarkContractor Ometeotl | Contract | 溶魚 | Lava Fish |  | 32 | 32 | 13 | 41% | 40 | 19 |
-| BS74-CX01 The Light-DarkContractor Ometeotl | Contract | 眷属 | Devotee | yes | 287 | 287 | 30 | 10% | 290 | 30 |
-| BS74-CX01 The Light-DarkContractor Ometeotl | Contract | 締皇 | Concluser | yes | 62 | 62 | 3 | 5% | 62 | 3 |
+| BS74-CX01 The Light-DarkContractor Ometeotl | Contract | 眷属 | Devotee | yes | 287 | 287 | 37 | 13% | 290 | 37 |
+| BS74-CX01 The Light-DarkContractor Ometeotl | Contract | 締皇 | Concluser | yes | 62 | 62 | 6 | 10% | 62 | 6 |
 | BS74-CX02 The NetherContractor Dionysus | Contract | 無魔 | Zombie |  | 65 | 65 | 6 | 9% | 161 | 44 |
-| BS74-CX02 The NetherContractor Dionysus | Contract | 眷属 | Devotee | yes | 287 | 287 | 30 | 10% | 290 | 30 |
-| BS74-CX02 The NetherContractor Dionysus | Contract | 締皇 | Concluser | yes | 62 | 62 | 3 | 5% | 62 | 3 |
-| BS74-CX03 The CovenantContractor Mitra | Contract | 覚竜 | Awakened Dragon |  | 23 | 23 | 7 | 30% | 23 | 7 |
-| BS74-CX03 The CovenantContractor Mitra | Contract | 眷属 | Devotee | yes | 287 | 287 | 30 | 10% | 290 | 30 |
-| BS74-CX03 The CovenantContractor Mitra | Contract | 締皇 | Concluser | yes | 62 | 62 | 3 | 5% | 62 | 3 |
+| BS74-CX02 The NetherContractor Dionysus | Contract | 眷属 | Devotee | yes | 287 | 287 | 37 | 13% | 290 | 37 |
+| BS74-CX02 The NetherContractor Dionysus | Contract | 締皇 | Concluser | yes | 62 | 62 | 6 | 10% | 62 | 6 |
+| BS74-CX03 The CovenantContractor Mitra | Contract | 覚竜 | Awakened Dragon |  | 23 | 23 | 23 | 100% | 23 | 23 |
+| BS74-CX03 The CovenantContractor Mitra | Contract | 眷属 | Devotee | yes | 287 | 287 | 37 | 13% | 290 | 37 |
+| BS74-CX03 The CovenantContractor Mitra | Contract | 締皇 | Concluser | yes | 62 | 62 | 6 | 10% | 62 | 6 |
 | BS73-CX01 The ForestMasterContractor Yum-Kaax | Contract | 菌樹 | Fungal Tree |  | 18 | 18 | 1 | 6% | 18 | 1 |
-| BS73-CX01 The ForestMasterContractor Yum-Kaax | Contract | 眷属 | Devotee | yes | 287 | 287 | 30 | 10% | 290 | 30 |
-| BS73-CX01 The ForestMasterContractor Yum-Kaax | Contract | 締皇 | Concluser | yes | 62 | 62 | 3 | 5% | 62 | 3 |
+| BS73-CX01 The ForestMasterContractor Yum-Kaax | Contract | 眷属 | Devotee | yes | 287 | 287 | 37 | 13% | 290 | 37 |
+| BS73-CX01 The ForestMasterContractor Yum-Kaax | Contract | 締皇 | Concluser | yes | 62 | 62 | 6 | 10% | 62 | 6 |
 | BS73-CX02 The MagicJewelContractor Morrigan | Contract | 彩羽 | Prismwing |  | 18 | 18 | 0 | 0% | 18 | 0 |
-| BS73-CX02 The MagicJewelContractor Morrigan | Contract | 眷属 | Devotee | yes | 287 | 287 | 30 | 10% | 290 | 30 |
-| BS73-CX02 The MagicJewelContractor Morrigan | Contract | 締皇 | Concluser | yes | 62 | 62 | 3 | 5% | 62 | 3 |
+| BS73-CX02 The MagicJewelContractor Morrigan | Contract | 眷属 | Devotee | yes | 287 | 287 | 37 | 13% | 290 | 37 |
+| BS73-CX02 The MagicJewelContractor Morrigan | Contract | 締皇 | Concluser | yes | 62 | 62 | 6 | 10% | 62 | 6 |
 | BS73-CX03 The CycleForceContractor Yamato Takeru | Contract | 動器 | Machine |  | 24 | 24 | 2 | 8% | 47 | 11 |
 | BS73-CX03 The CycleForceContractor Yamato Takeru | Contract | 氣兵 | Force Fighter |  | 11 | 11 | 1 | 9% | 11 | 1 |
-| BS73-CX03 The CycleForceContractor Yamato Takeru | Contract | 眷属 | Devotee | yes | 287 | 287 | 30 | 10% | 290 | 30 |
-| BS73-CX03 The CycleForceContractor Yamato Takeru | Contract | 締皇 | Concluser | yes | 62 | 62 | 3 | 5% | 62 | 3 |
+| BS73-CX03 The CycleForceContractor Yamato Takeru | Contract | 眷属 | Devotee | yes | 287 | 287 | 37 | 13% | 290 | 37 |
+| BS73-CX03 The CycleForceContractor Yamato Takeru | Contract | 締皇 | Concluser | yes | 62 | 62 | 6 | 10% | 62 | 6 |
 | BS72-CX01 The MartialArtsContractor Lugh | Contract | 武迅 | Martial |  | 26 | 26 | 1 | 4% | 26 | 1 |
-| BS72-CX01 The MartialArtsContractor Lugh | Contract | 眷属 | Devotee | yes | 287 | 287 | 30 | 10% | 290 | 30 |
-| BS72-CX01 The MartialArtsContractor Lugh | Contract | 締皇 | Concluser | yes | 62 | 62 | 3 | 5% | 62 | 3 |
-| BS72-CX02 The NightlyDarknessContractor Nyx | Contract | 幽魔 | Darkling |  | 30 | 30 | 5 | 17% | 46 | 19 |
-| BS72-CX02 The NightlyDarknessContractor Nyx | Contract | 原初 | Primordial |  | 106 | 106 | 7 | 7% | 106 | 7 |
-| BS72-CX02 The NightlyDarknessContractor Nyx | Contract | 締皇 | Concluser | yes | 62 | 62 | 3 | 5% | 62 | 3 |
+| BS72-CX01 The MartialArtsContractor Lugh | Contract | 眷属 | Devotee | yes | 287 | 287 | 37 | 13% | 290 | 37 |
+| BS72-CX01 The MartialArtsContractor Lugh | Contract | 締皇 | Concluser | yes | 62 | 62 | 6 | 10% | 62 | 6 |
+| BS72-CX02 The NightlyDarknessContractor Nyx | Contract | 幽魔 | Darkling |  | 30 | 30 | 12 | 40% | 46 | 26 |
+| BS72-CX02 The NightlyDarknessContractor Nyx | Contract | 原初 | Primordial |  | 106 | 106 | 8 | 8% | 106 | 8 |
+| BS72-CX02 The NightlyDarknessContractor Nyx | Contract | 締皇 | Concluser | yes | 62 | 62 | 6 | 10% | 62 | 6 |
 | BS72-CX03 The MoonlightContractor Artemis | Contract | 機獣 | Machine Beast |  | 110 | 110 | 10 | 9% | 297 | 82 |
-| BS72-CX03 The MoonlightContractor Artemis | Contract | 眷属 | Devotee | yes | 287 | 287 | 30 | 10% | 290 | 30 |
-| BS72-CX03 The MoonlightContractor Artemis | Contract | 締皇 | Concluser | yes | 62 | 62 | 3 | 5% | 62 | 3 |
+| BS72-CX03 The MoonlightContractor Artemis | Contract | 眷属 | Devotee | yes | 287 | 287 | 37 | 13% | 290 | 37 |
+| BS72-CX03 The MoonlightContractor Artemis | Contract | 締皇 | Concluser | yes | 62 | 62 | 6 | 10% | 62 | 6 |
 | BS71-CX01 The ThunderboltContractor Zeus | Contract | 皇獣 | Emperor Beast |  | 84 | 84 | 3 | 4% | 205 | 41 |
-| BS71-CX01 The ThunderboltContractor Zeus | Contract | 眷属 | Devotee | yes | 287 | 287 | 30 | 10% | 290 | 30 |
-| BS71-CX01 The ThunderboltContractor Zeus | Contract | 締皇 | Concluser | yes | 62 | 62 | 3 | 5% | 62 | 3 |
+| BS71-CX01 The ThunderboltContractor Zeus | Contract | 眷属 | Devotee | yes | 287 | 287 | 37 | 13% | 290 | 37 |
+| BS71-CX01 The ThunderboltContractor Zeus | Contract | 締皇 | Concluser | yes | 62 | 62 | 6 | 10% | 62 | 6 |
 | BS71-CX02 The SkyContractor Ra-Harakhti | Contract | 兵虫 | Weapon Insect |  | 31 | 31 | 1 | 3% | 31 | 1 |
-| BS71-CX02 The SkyContractor Ra-Harakhti | Contract | 眷属 | Devotee | yes | 287 | 287 | 30 | 10% | 290 | 30 |
-| BS71-CX02 The SkyContractor Ra-Harakhti | Contract | 締皇 | Concluser | yes | 62 | 62 | 3 | 5% | 62 | 3 |
+| BS71-CX02 The SkyContractor Ra-Harakhti | Contract | 眷属 | Devotee | yes | 287 | 287 | 37 | 13% | 290 | 37 |
+| BS71-CX02 The SkyContractor Ra-Harakhti | Contract | 締皇 | Concluser | yes | 62 | 62 | 6 | 10% | 62 | 6 |
 | BS71-CX03 The SilverArmContractor Nuadha | Contract | 鱗徒 | Scalostle |  | 26 | 26 | 8 | 31% | 26 | 8 |
-| BS71-CX03 The SilverArmContractor Nuadha | Contract | 眷属 | Devotee | yes | 287 | 287 | 30 | 10% | 290 | 30 |
-| BS71-CX03 The SilverArmContractor Nuadha | Contract | 締皇 | Concluser | yes | 62 | 62 | 3 | 5% | 62 | 3 |
+| BS71-CX03 The SilverArmContractor Nuadha | Contract | 眷属 | Devotee | yes | 287 | 287 | 37 | 13% | 290 | 37 |
+| BS71-CX03 The SilverArmContractor Nuadha | Contract | 締皇 | Concluser | yes | 62 | 62 | 6 | 10% | 62 | 6 |
 | BS70-CX01 The CurseConsortContractor Hera | Contract | 呪鬼 | Ogre Wizard |  | 79 | 79 | 3 | 4% | 152 | 29 |
-| BS70-CX01 The CurseConsortContractor Hera | Contract | 眷属 | Devotee | yes | 287 | 287 | 30 | 10% | 290 | 30 |
-| BS70-CX01 The CurseConsortContractor Hera | Contract | 締皇 | Concluser | yes | 62 | 62 | 3 | 5% | 62 | 3 |
+| BS70-CX01 The CurseConsortContractor Hera | Contract | 眷属 | Devotee | yes | 287 | 287 | 37 | 13% | 290 | 37 |
+| BS70-CX01 The CurseConsortContractor Hera | Contract | 締皇 | Concluser | yes | 62 | 62 | 6 | 10% | 62 | 6 |
 | BS70-CX02 The SilverWheelContractor Brigit | Contract | 霜精 | Frostling |  | 26 | 26 | 1 | 4% | 26 | 1 |
-| BS70-CX02 The SilverWheelContractor Brigit | Contract | 眷属 | Devotee | yes | 287 | 287 | 30 | 10% | 290 | 30 |
-| BS70-CX02 The SilverWheelContractor Brigit | Contract | 締皇 | Concluser | yes | 62 | 62 | 3 | 5% | 62 | 3 |
+| BS70-CX02 The SilverWheelContractor Brigit | Contract | 眷属 | Devotee | yes | 287 | 287 | 37 | 13% | 290 | 37 |
+| BS70-CX02 The SilverWheelContractor Brigit | Contract | 締皇 | Concluser | yes | 62 | 62 | 6 | 10% | 62 | 6 |
 | BS70-CX03 The AstralNightContractor Uranus | Contract | 空創 | Cloudbuilt |  | 24 | 24 | 0 | 0% | 24 | 0 |
-| BS70-CX03 The AstralNightContractor Uranus | Contract | 原初 | Primordial |  | 106 | 106 | 7 | 7% | 106 | 7 |
-| BS70-CX03 The AstralNightContractor Uranus | Contract | 締皇 | Concluser | yes | 62 | 62 | 3 | 5% | 62 | 3 |
+| BS70-CX03 The AstralNightContractor Uranus | Contract | 原初 | Primordial |  | 106 | 106 | 8 | 8% | 106 | 8 |
+| BS70-CX03 The AstralNightContractor Uranus | Contract | 締皇 | Concluser | yes | 62 | 62 | 6 | 10% | 62 | 6 |
 | SD69-CX01 The GenesisContractor Brahma | Contract | 古竜 | Ancient Dragon |  | 56 | 56 | 2 | 4% | 124 | 16 |
-| SD69-CX01 The GenesisContractor Brahma | Contract | 眷属 | Devotee | yes | 287 | 287 | 30 | 10% | 290 | 30 |
-| SD69-CX01 The GenesisContractor Brahma | Contract | 締皇 | Concluser | yes | 62 | 62 | 3 | 5% | 62 | 3 |
+| SD69-CX01 The GenesisContractor Brahma | Contract | 眷属 | Devotee | yes | 287 | 287 | 37 | 13% | 290 | 37 |
+| SD69-CX01 The GenesisContractor Brahma | Contract | 締皇 | Concluser | yes | 62 | 62 | 6 | 10% | 62 | 6 |
 | BS69-CX01 The AstralMaterContractor Gaia | Contract | 爬獣 | Reptile Beast |  | 35 | 35 | 7 | 20% | 62 | 28 |
-| BS69-CX01 The AstralMaterContractor Gaia | Contract | 原初 | Primordial |  | 106 | 106 | 7 | 7% | 106 | 7 |
-| BS69-CX01 The AstralMaterContractor Gaia | Contract | 締皇 | Concluser | yes | 62 | 62 | 3 | 5% | 62 | 3 |
+| BS69-CX01 The AstralMaterContractor Gaia | Contract | 原初 | Primordial |  | 106 | 106 | 8 | 8% | 106 | 8 |
+| BS69-CX01 The AstralMaterContractor Gaia | Contract | 締皇 | Concluser | yes | 62 | 62 | 6 | 10% | 62 | 6 |
 | BS69-CX02 The SwiftContractor Hermes | Contract | 剣獣 | Blade Beast |  | 123 | 123 | 19 | 15% | 255 | 57 |
-| BS69-CX02 The SwiftContractor Hermes | Contract | 眷属 | Devotee | yes | 287 | 287 | 30 | 10% | 290 | 30 |
-| BS69-CX02 The SwiftContractor Hermes | Contract | 締皇 | Concluser | yes | 62 | 62 | 3 | 5% | 62 | 3 |
+| BS69-CX02 The SwiftContractor Hermes | Contract | 眷属 | Devotee | yes | 287 | 287 | 37 | 13% | 290 | 37 |
+| BS69-CX02 The SwiftContractor Hermes | Contract | 締皇 | Concluser | yes | 62 | 62 | 6 | 10% | 62 | 6 |
 | BS69-CX03 The RagingGaleContractor Huracan | Contract | 爆蒼 | Roaring Azure |  | 38 | 38 | 1 | 3% | 60 | 7 |
-| BS69-CX03 The RagingGaleContractor Huracan | Contract | 眷属 | Devotee | yes | 287 | 287 | 30 | 10% | 290 | 30 |
-| BS69-CX03 The RagingGaleContractor Huracan | Contract | 締皇 | Concluser | yes | 62 | 62 | 3 | 5% | 62 | 3 |
+| BS69-CX03 The RagingGaleContractor Huracan | Contract | 眷属 | Devotee | yes | 287 | 287 | 37 | 13% | 290 | 37 |
+| BS69-CX03 The RagingGaleContractor Huracan | Contract | 締皇 | Concluser | yes | 62 | 62 | 6 | 10% | 62 | 6 |
 | BS68-CX01 The SorcererContractor Hades | Contract | 冥主 | Infernal Lord |  | 45 | 45 | 4 | 9% | 101 | 21 |
-| BS68-CX01 The SorcererContractor Hades | Contract | 眷属 | Devotee | yes | 287 | 287 | 30 | 10% | 290 | 30 |
-| BS68-CX01 The SorcererContractor Hades | Contract | 締皇 | Concluser | yes | 62 | 62 | 3 | 5% | 62 | 3 |
+| BS68-CX01 The SorcererContractor Hades | Contract | 眷属 | Devotee | yes | 287 | 287 | 37 | 13% | 290 | 37 |
+| BS68-CX01 The SorcererContractor Hades | Contract | 締皇 | Concluser | yes | 62 | 62 | 6 | 10% | 62 | 6 |
 | BS68-CX02 The SteelContractor Athena | Contract | 機人 | Android |  | 74 | 74 | 4 | 5% | 144 | 30 |
-| BS68-CX02 The SteelContractor Athena | Contract | 眷属 | Devotee | yes | 287 | 287 | 30 | 10% | 290 | 30 |
-| BS68-CX02 The SteelContractor Athena | Contract | 締皇 | Concluser | yes | 62 | 62 | 3 | 5% | 62 | 3 |
+| BS68-CX02 The SteelContractor Athena | Contract | 眷属 | Devotee | yes | 287 | 287 | 37 | 13% | 290 | 37 |
+| BS68-CX02 The SteelContractor Athena | Contract | 締皇 | Concluser | yes | 62 | 62 | 6 | 10% | 62 | 6 |
 | BS68-CX03 The ToolcraftContractor Kinich-Ahau | Contract | 動玩 | Puppet Beast |  | 26 | 26 | 1 | 4% | 34 | 4 |
-| BS68-CX03 The ToolcraftContractor Kinich-Ahau | Contract | 眷属 | Devotee | yes | 287 | 287 | 30 | 10% | 290 | 30 |
-| BS68-CX03 The ToolcraftContractor Kinich-Ahau | Contract | 締皇 | Concluser | yes | 62 | 62 | 3 | 5% | 62 | 3 |
+| BS68-CX03 The ToolcraftContractor Kinich-Ahau | Contract | 眷属 | Devotee | yes | 287 | 287 | 37 | 13% | 290 | 37 |
+| BS68-CX03 The ToolcraftContractor Kinich-Ahau | Contract | 締皇 | Concluser | yes | 62 | 62 | 6 | 10% | 62 | 6 |
 | BS62-X09 Grandwalker Kukulkan | Grandwalker | 妖蛇 | Dark Snake |  | 65 | 65 | 5 | 8% | 165 | 43 |
 | BS62-X09 Grandwalker Kukulkan | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
 | BS61-X09 Grandwalker Tezcatlipoca | Grandwalker | 甲獣 | Armored Beast |  | 33 | 33 | 2 | 6% | 54 | 13 |
@@ -174,7 +174,7 @@ Counts are card numbers (ids) in `data/sources/official-fields.json`: every prin
 | BS47-XX02 Grandwalker Manaka | Grandwalker | (cost only) | - | | - | - | - | - | - | - |
 | BS47-XX03 Grandwalker Kei | Grandwalker | (cost only) | - | | - | - | - | - | - | - |
 | BS46-CP01 Hinobori Hajime | Grandwalker | 戦竜 | Dragon Warrior |  | 15 | 15 | 0 | 0% | 37 | 5 |
-| BS46-CP01 Hinobori Hajime | Grandwalker | 覇皇 | Supreme Hero |  | 23 | 23 | 0 | 0% | 70 | 2 |
+| BS46-CP01 Hinobori Hajime | Grandwalker | 覇皇 | Supreme Hero |  | 23 | 23 | 1 | 4% | 70 | 3 |
 | BS46-CP01 Hinobori Hajime | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 7 | 4% | 200 | 7 |
 | BS46-CP01 Hinobori Hajime | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
 | BS46-CP02 Rekka Yukimura | Grandwalker | 武竜 | War Dragon |  | 26 | 26 | 2 | 8% | 66 | 7 |

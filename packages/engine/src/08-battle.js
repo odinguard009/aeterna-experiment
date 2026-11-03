@@ -201,6 +201,7 @@ async function flushBursts() {                         // queued Bursts and even
     } else if (ev.type === 'DESTROYED') await fireFx(G.p[ev.key], 'DESTROYED', ev.inst, { subject: ev.inst, byOpp: !!ev.byOpp, byOppFx: !!ev.byOppFx, depl: !!ev.depl });
     else if (ev.type === 'IMMORTAL') await immortalOffer(G.p[ev.key], ev.inst);
     else if (ev.type === 'NEXUS_DOWN') await fireFx(G.p[ev.key], 'NEXUS_DOWN', ev.inst, {});
+    else if (ev.type === 'OWN_RETURNED') await fireFx(G.p[ev.key], 'OWN_RETURNED', ev.inst, { subject: ev.subj });      // v453 "When your Spirit is returned to the Hand"
     else if (ev.type === 'MIRAGE_SUMMON') await mirageSummonOffer(G.p[ev.key]);
     else if (ev.type === 'SOUL_BURST') await soulBurstCheck(G.p[ev.key]);
     else if (ev.type === 'SOUL_DEPLOY') await soulDeployOffer(G.p[ev.key], ev.inst);

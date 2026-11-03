@@ -387,7 +387,6 @@
     "BS72-059",
     "BS72-071",
     "BS72-AX02",
-    "BS72-CX02",
     "BS72-X03",
     "BS73-016",
     "BS73-017",
@@ -521,7 +520,6 @@
     "BS72-059",
     "BS72-071",
     "BS72-AX02",
-    "BS72-CX02",
     "BS72-X03",
     "BS73-016",
     "BS73-017",
@@ -1078,43 +1076,8 @@
     "BS75-X08"
    ],
    "revival_open": [],
-   "deck_incomplete": [
-    "BS74-040",
-    "BS74-042",
-    "BS74-047",
-    "BS74-048",
-    "BS74-049",
-    "BS74-072",
-    "BS74-082",
-    "BS74-083",
-    "BS74-X06",
-    "BS74-X15",
-    "BS75-028",
-    "BS75-030",
-    "BS75-037",
-    "BS75-067",
-    "BS75-081",
-    "BS75-X08"
-   ],
-   "order_cards": [
-    "BS74-CX03",
-    "BS74-040",
-    "BS74-042",
-    "BS74-047",
-    "BS74-048",
-    "BS74-049",
-    "BS74-072",
-    "BS74-082",
-    "BS74-083",
-    "BS74-X06",
-    "BS74-X15",
-    "BS75-028",
-    "BS75-030",
-    "BS75-037",
-    "BS75-067",
-    "BS75-081",
-    "BS75-X08"
-   ]
+   "deck_incomplete": [],
+   "order_cards": []
   },
   {
    "id": "BS73-CX01",
@@ -1857,9 +1820,6 @@
    ],
    "revival_open": [],
    "deck_incomplete": [
-    "BS60-014",
-    "BS61-008",
-    "BS65-013",
     "BS69-001",
     "BS69-002",
     "BS69-004",
@@ -1925,18 +1885,13 @@
     "BS72-025",
     "BS72-059",
     "BS72-071",
-    "BS72-077",
-    "BS72-078",
     "BS72-AX02",
-    "BS72-CX02",
     "BS72-X03",
     "BS73-016",
     "BS73-017",
     "BS73-019",
     "BS73-020",
     "BS73-021",
-    "BS73-066",
-    "BS73-075",
     "BS73-X03",
     "BS74-020",
     "BS75-018",
@@ -1964,16 +1919,7 @@
     "BS76-089",
     "BS76-X13"
    ],
-   "order_cards": [
-    "BS72-CX02",
-    "BS60-014",
-    "BS61-008",
-    "BS65-013",
-    "BS72-077",
-    "BS72-078",
-    "BS73-066",
-    "BS73-075"
-   ]
+   "order_cards": []
   },
   {
    "id": "BS72-CX03",
@@ -3658,7 +3604,6 @@
     "BS72-059",
     "BS72-071",
     "BS72-AX02",
-    "BS72-CX02",
     "BS72-X03",
     "BS73-016",
     "BS73-017",
@@ -4196,7 +4141,6 @@
     "BS72-059",
     "BS72-071",
     "BS72-AX02",
-    "BS72-CX02",
     "BS72-X03",
     "BS73-002",
     "BS73-016",
@@ -10173,9 +10117,7 @@
    "deck_cards": [],
    "revival_open": [],
    "deck_incomplete": [],
-   "order_cards": [
-    "BS51-XX03"
-   ]
+   "order_cards": []
   },
   {
    "id": "BS50-CP01",
@@ -10214,9 +10156,7 @@
    "deck_cards": [],
    "revival_open": [],
    "deck_incomplete": [],
-   "order_cards": [
-    "BS50-CP01"
-   ]
+   "order_cards": []
   },
   {
    "id": "BS50-X10",
@@ -11877,7 +11817,6 @@
     "BS76-043"
    ],
    "order_cards": [
-    "BS50-X12",
     "BS45-038",
     "BS49-039",
     "BS49-040",
@@ -14225,9 +14164,7 @@
     "BS76-035",
     "BS76-043"
    ],
-   "order_cards": [
-    "BS49-X09"
-   ]
+   "order_cards": []
   },
   {
    "id": "BS49-X10",
@@ -16568,9 +16505,7 @@
     "BS76-009",
     "BS76-CP01"
    ],
-   "order_cards": [
-    "BS48-X08"
-   ]
+   "order_cards": []
   },
   {
    "id": "BS48-X09",
@@ -17040,7 +16975,6 @@
     "BS76-AX01"
    ],
    "order_cards": [
-    "BS48-X09",
     "BS48-016",
     "BS48-017",
     "BS48-028",
@@ -18980,9 +18914,7 @@
    "deck_cards": [],
    "revival_open": [],
    "deck_incomplete": [],
-   "order_cards": [
-    "BS47-XX02"
-   ]
+   "order_cards": []
   },
   {
    "id": "BS47-XX03",
@@ -19021,9 +18953,7 @@
    "deck_cards": [],
    "revival_open": [],
    "deck_incomplete": [],
-   "order_cards": [
-    "BS47-XX03"
-   ]
+   "order_cards": []
   },
   {
    "id": "BS46-CP01",
@@ -19154,7 +19084,6 @@
     "BS74-X01",
     "BS74-X02",
     "BS74-X03",
-    "BS74-X06",
     "BS74-X08",
     "BS74-X10"
    ],
@@ -21584,9 +21513,7 @@
    "deck_cards": [],
    "revival_open": [],
    "deck_incomplete": [],
-   "order_cards": [
-    "BS45-XX02"
-   ]
+   "order_cards": []
   },
   {
    "id": "BS44-CP02",
@@ -21625,9 +21552,7 @@
    "deck_cards": [],
    "revival_open": [],
    "deck_incomplete": [],
-   "order_cards": [
-    "BS44-CP02"
-   ]
+   "order_cards": []
   },
   {
    "id": "BS44-X07",
@@ -22311,9 +22236,7 @@
    "deck_cards": [],
    "revival_open": [],
    "deck_incomplete": [],
-   "order_cards": [
-    "BS44-XX02"
-   ]
+   "order_cards": []
   }
  ],
  "shared_families_jp": [
@@ -26174,7 +26097,7 @@
     "name": "The RevelationDragon Iktis-of-Wisdom",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-046",
@@ -26188,7 +26111,7 @@
     "name": "The RevelationDragon Aath",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-050",
@@ -26265,7 +26188,7 @@
     "name": "The RevelationSacredDragon Ven-Danta",
     "type": "Ultimate",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS75-003",
@@ -26363,21 +26286,21 @@
     "name": "The RevelationDragon Unnis",
     "type": "Spirit",
     "cost": 2,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS75-030",
     "name": "The RevelationDragon Pachhattar",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS75-037",
     "name": "The RevelationDragon Iktalis",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS75-041",
@@ -26433,7 +26356,7 @@
     "name": "The GreatRevelationDragon Hazaar",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS75-X10",
@@ -26862,7 +26785,7 @@
     "name": "The GlacialMasterHero Lord-Dragon-Glazar",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-X07",
@@ -26911,7 +26834,7 @@
     "name": "The RevelationSacredDragon Ven-Danta",
     "type": "Ultimate",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS75-AX01",
@@ -26981,7 +26904,7 @@
     "name": "The GreatRevelationDragon Hazaar",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS75-X10",
@@ -27979,7 +27902,7 @@
     "name": "The NightlyDarknessContractor Nyx",
     "type": "Nexus",
     "cost": 2,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS72-X03",
@@ -28939,7 +28862,7 @@
     "name": "The RevelationDragon Do",
     "type": "Spirit",
     "cost": 2,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-041",
@@ -28953,7 +28876,7 @@
     "name": "The RevelationDragon Iktis-of-Wisdom",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-043",
@@ -28974,21 +28897,21 @@
     "name": "The RevelationDragon Sat",
     "type": "Spirit",
     "cost": 5,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-048",
     "name": "The RevelationDragon Aath",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-049",
     "name": "The RevelationDragon Nao",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-050",
@@ -29002,49 +28925,49 @@
     "name": "Mitra's Revelation Temple",
     "type": "Nexus",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-082",
     "name": "Divine Oracle",
     "type": "Magic",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-083",
     "name": "Revelation Armor",
     "type": "Magic",
     "cost": 5,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-X06",
     "name": "The GlacialMasterHero Lord-Dragon-Glazar",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-X15",
     "name": "The RevelationSacredDragon Ven-Danta",
     "type": "Ultimate",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS75-028",
     "name": "The RevelationDragon Unnis",
     "type": "Spirit",
     "cost": 2,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS75-030",
     "name": "The RevelationDragon Pachhattar",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS75-035",
@@ -29058,7 +28981,7 @@
     "name": "The RevelationDragon Iktalis",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS75-041",
@@ -29072,21 +28995,21 @@
     "name": "The Sage's Sanctuary",
     "type": "Nexus",
     "cost": 5,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS75-081",
     "name": "Dream Revelation",
     "type": "Magic",
     "cost": 5,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS75-X08",
     "name": "The GreatRevelationDragon Hazaar",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    }
   ],
   "菌樹": [
@@ -29784,21 +29707,21 @@
     "name": "Jellime",
     "type": "Spirit",
     "cost": 0,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS61-008",
     "name": "Onnendama",
     "type": "Spirit",
     "cost": 1,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS65-013",
     "name": "The HousekeepingFairy Silkie",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS72-016",
@@ -29896,14 +29819,14 @@
     "name": "Acid Shot",
     "type": "Magic",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS72-078",
     "name": "Amorphous Body",
     "type": "Magic",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS72-AX02",
@@ -29959,14 +29882,14 @@
     "name": "The Forgotten Headspring",
     "type": "Nexus",
     "cost": 5,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-075",
     "name": "Muddy Swing",
     "type": "Magic",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-X03",
@@ -46341,14 +46264,14 @@
     "name": "The YoungGrandwalker Lolo",
     "type": "Nexus",
     "cost": 2,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS44-XX02",
     "name": "Grandwalker Lolo",
     "type": "Nexus",
     "cost": 2,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS45-CP01",
@@ -46369,7 +46292,7 @@
     "name": "Grandwalker Alex",
     "type": "Nexus",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS46-CP01",
@@ -46404,14 +46327,14 @@
     "name": "Grandwalker Manaka",
     "type": "Nexus",
     "cost": 2,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS47-XX03",
     "name": "Grandwalker Kei",
     "type": "Nexus",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS48-SP01",
@@ -46446,7 +46369,7 @@
     "name": "Soaring Grandwalker Alex",
     "type": "Nexus",
     "cost": 2,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS50-XX02",
@@ -46460,7 +46383,7 @@
     "name": "Grandwalker Alex-Lolo",
     "type": "Nexus",
     "cost": 3,
-    "complete": false
+    "complete": true
    }
   ],
   "怪虫": [
@@ -50972,7 +50895,7 @@
     "name": "The GlacialMasterHero Lord-Dragon-Glazar",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-X08",
