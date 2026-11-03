@@ -408,10 +408,10 @@ Object.assign(FX_ACTIONS, {
     } } });
 /* v0.199 LIFE_CORE_SHIELD {cores, battle?}: "during this turn/battle, your Life can't be reduced by the attacks of opposing Spirits with <cores> cores on them" (Rainy Poison, Venomous Bottomless Swamp) */
 Object.assign(FX_ACTIONS, {
-  LIFE_CORE_SHIELD: { chk: a => ((Number.isInteger(a.cores) && a.cores >= 1 && a.cores <= 9 && a.brave == null) || (a.brave === true && a.cores == null)) && (a.battle == null || a.battle === true),      // v309 brave: "the attacks of opposing Brave Spirits"
-    txt: a => a.brave ? `during this ${a.battle ? 'battle' : 'turn'}, your Life can't be reduced by the attacks of opposing Brave Spirits` : `during this ${a.battle ? 'battle' : 'turn'}, your Life can't be reduced by the attacks of opposing Spirits with ${a.cores} core${a.cores === 1 ? '' : 's'} on them`,
+  LIFE_CORE_SHIELD: { chk: a => ((Number.isInteger(a.cores) && a.cores >= 1 && a.cores <= 9 && a.brave == null && a.coresGe == null) || (a.brave === true && a.cores == null && a.coresGe == null) || (Number.isInteger(a.coresGe) && a.coresGe >= 1 && a.coresGe <= 9 && a.cores == null && a.brave == null)) && (a.battle == null || a.battle === true),      // v309 brave: "the attacks of opposing Brave Spirits"
+    txt: a => a.brave ? `during this ${a.battle ? 'battle' : 'turn'}, your Life can't be reduced by the attacks of opposing Brave Spirits` : a.coresGe ? `during this ${a.battle ? 'battle' : 'turn'}, your Life can't be reduced by the attacks of opposing Spirits with ${a.coresGe} or more cores on them` : `during this ${a.battle ? 'battle' : 'turn'}, your Life can't be reduced by the attacks of opposing Spirits with ${a.cores} core${a.cores === 1 ? '' : 's'} on them`,
     can: () => true,
-    run: async (c, a) => { c.p.coreShield = { turn: G.turnNo, cores: a.cores, brave: !!a.brave, b: a.battle ? (G.battleNo || 0) : null }; log(`${CARDS[c.src.id].name}: ${poss(c.p)} Life can't be reduced by the attacks of opposing Spirits with ${a.cores} core${a.cores === 1 ? '' : 's'} this ${a.battle ? 'battle' : 'turn'}.`); } } });
+    run: async (c, a) => { c.p.coreShield = { turn: G.turnNo, cores: a.cores, ge: a.coresGe || null, brave: !!a.brave, b: a.battle ? (G.battleNo || 0) : null }; log(`${CARDS[c.src.id].name}: ${poss(c.p)} Life can't be reduced by the attacks of opposing Spirits with ${a.cores} core${a.cores === 1 ? '' : 's'} this ${a.battle ? 'battle' : 'turn'}.`); } } });
 Object.assign(FX_ACTIONS, {
   BLOCK_EXHAUSTED_OPP: { chk: () => true, txt: () => 'during this battle, an opposing Spirit can block even while exhausted',
     cands: c => c.opp.spirits.filter(t => !fxImmune(c.opp, t)),

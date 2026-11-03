@@ -108,3 +108,17 @@ test('K-1008 BS72-021 (Nyx): Mani card; TURN_SUMMON_TAX raises the opposing six-
     return [!c.partial, !!c.manifest, six ? BS.effCost(O, BS.CARDS[six]) - b6 : 3, BS.effCost(O, BS.CARDS[two]) - b2]; })()`);
   assert.deepEqual(r, [true, true, 3, 0]);
 });
+
+test('K-1009 BS72-024 (Nyx): Mani card; summoned raises opposing cost by 1, LV2 shields Life from 3+ core attackers', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true;
+    const x = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].cost >= 1 && !BS.CARDS[k].effects);
+    const b = BS.effCost(O, BS.CARDS[x]);
+    const v = BS.mkInst('BS72-024'); v.cores = 5; P.spirits = [v];
+    await BS.fireFx(P, 'SUMMONED', v, {});
+    const up = BS.effCost(O, BS.CARDS[x]) - b;
+    await BS.FX_ACTIONS.LIFE_CORE_SHIELD.run({ p: P, opp: O, src: v, ctx: {} }, { coresGe: 3 });
+    const c = BS.CARDS['BS72-024'];
+    return [!c.partial, !!c.manifest, up, P.coreShield.ge, P.coreShield.turn === G.turnNo]; })()`);
+  assert.deepEqual(r, [true, true, 1, 3, true]);
+});
