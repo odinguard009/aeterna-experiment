@@ -6,7 +6,7 @@ Owner order, 2026-10-31: work Lane K for all cards (Standard block A first, then
 - resolved (2026-11-02): the legacy `hscroll_layout` Regression failure was fixed by the test-side Close guard (wip/lane-k run 41398991849); Regression on `main` was green for v0.210.0 (run 41459255561) and v0.211.0 (run 41472688628).
 - status: ON
 - target: all cards (Standard block A first, then Eternal Saga 17 down; roadmap item L)
-- last Lane K release: v0.204.0 (complete 1693)
+- last Lane K release: v0.213.0 (complete 2547)
 - data release: v0.204.1 (complete 1696; 1,785 partial playable cards added without effects, owner order 2026-11-01; not a Lane K cycle)
 - next release: v0.214.0 (complete 2647)
 - cycle: 0/100 new complete cards since v0.213.0
