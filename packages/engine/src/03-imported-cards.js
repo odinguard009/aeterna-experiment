@@ -162,7 +162,7 @@ function parseCard(o) {
   const image = o.image == null ? '' : String(o.image).trim().slice(0, 120);
   const keywords = (Array.isArray(o.keywords) ? o.keywords : []).map(k => String(k).toUpperCase()).filter(k => KEYWORD_GLOSSARY[k]);
   let mirage = null;
-  if (o.mirage != null) { const mc = Number(o.mirage && o.mirage.cost); if (!o.mirage || typeof o.mirage !== 'object' || !int(mc, 0, 30)) return { errors: ['invalid "mirage" (use {"cost": 0-30})'] }; mirage = { cost: mc }; }
+  if (o.mirage != null) { const mc = Number(o.mirage && o.mirage.cost); if (!o.mirage || typeof o.mirage !== 'object' || !int(mc, 0, 30)) return { errors: ['invalid "mirage" (use {"cost": 0-30})'] }; mirage = { cost: mc }; if (o.mirage.noEnd != null) { if (!hasMatch(o.mirage.noEnd)) return { errors: ['invalid "mirage.noEnd" (a match object)'] }; mirage.noEnd = JSON.parse(JSON.stringify(o.mirage.noEnd)); } }
   if (mirage && !keywords.includes('MIRAGE')) keywords.push('MIRAGE');
   if (magic && magic.timing.includes('FLASH') && !keywords.includes('FLASH')) keywords.push('FLASH');
   let contractAdvent = null, manifest = null;

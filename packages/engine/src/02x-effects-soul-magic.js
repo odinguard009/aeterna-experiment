@@ -413,3 +413,9 @@ function soulUnaff(owner, t) {
   const opp = G.p[other(owner.key)];
   return CARDS[t.id].effects.some(e => e.trigger === 'STATIC' && e.flag === 'UNAFFECTED' && e.soulToo && fxIf(owner, opp, e.if, { selfInst: t }));
 }
+
+/* v461 card field mirage.noEnd {match} (Makala BS73-042): while this card is your set Mirage, the opponent can't end the Attack Step via effects while your matching Spirit is attacking */
+function mirageEndLock(owner, att) {
+  const m = owner.mirage && CARDS[owner.mirage.id] && CARDS[owner.mirage.id].mirage;
+  return !!m && !!m.noEnd && fxMatch(CARDS[att.id], m.noEnd, att);
+}

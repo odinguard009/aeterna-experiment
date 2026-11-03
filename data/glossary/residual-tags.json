@@ -45704,13 +45704,6 @@
   "T_ATTACKS",
   "T_SUMMONED"
  ],
- "BS73-042": [
-  "A_END_ATTACK",
-  "C_LEVEL",
-  "K_CONTRACT",
-  "K_MIRAGE",
-  "T_MIRAGE_LIFE"
- ],
  "BS73-043": [
   "A_COUNTER",
   "A_VOID",

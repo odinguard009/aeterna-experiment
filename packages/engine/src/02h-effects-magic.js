@@ -9,7 +9,7 @@
    --------------------------------------------------------------------- */
 function endAttackLocked(by) {                       // true = "by" can't end the current Attack Step via effects
   const att = G && G.attacker, owner = att && ownerOf(att);
-  return !!owner && owner !== by && flagActive(owner, 'NO_END_ATTACK', att);
+  return !!owner && owner !== by && (flagActive(owner, 'NO_END_ATTACK', att) || mirageEndLock(owner, att));      // v461 Mirage "During Set" noEnd
 }
 const _matchTxt = m => m && m.family ? `"${m.family.join('"/"')}" family ` : m && m.name ? `"${m.name.join('"/"')}" ` : '';
 Object.assign(FX_ACTIONS, {

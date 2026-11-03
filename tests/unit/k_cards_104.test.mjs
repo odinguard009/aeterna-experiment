@@ -172,3 +172,14 @@ test('K-1146 BS74-056 Moo: Burst summons it free, then uses revealed Prismwing M
     return { used: P.trash.includes(mag), rest: P.deck.length, refreshed: !a.exhausted }; })()`);
   assert.equal(r.used, true, JSON.stringify(r)); assert.equal(r.rest, 3, JSON.stringify(r)); assert.equal(r.refreshed, true, JSON.stringify(r));
 });
+
+test('K-1147 BS73-042 Makala: as a set Mirage, the opponent can not end the Attack Step via effects while your Prismwing Spirit attacks', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${pre}
+    const mk = BS.mkInst('BS73-042'); mk.mirage = true; const pw = BS.mkInst('BS73-045'); pw.cores = 2;
+    const other = BS.mkInst(sp(c => !(c.families || []).includes('Prismwing') && c.cost <= 3)); other.cores = 2;
+    P.spirits = [pw, other]; G.attacker = pw; const none = endAttackLocked(O);
+    P.mirage = mk; const yes = endAttackLocked(O), own = endAttackLocked(P); G.attacker = other; const no = endAttackLocked(O);
+    G.attacker = null; return { none, yes, own, no, partial: BS.CARDS['BS73-042'].partial, bc: BS.CARDS['BS73-042'].effects.some(e => e.flag === 'BOUNCE_COST_PLUS') }; })()`);
+  assert.deepEqual(r, { none: false, yes: true, own: false, no: false, partial: false, bc: true });
+});
