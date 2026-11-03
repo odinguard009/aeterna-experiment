@@ -225,3 +225,60 @@ test('K-1063 BS46-RV003 Laten: End Step refreshes Investigators; BS46-RV005 Asia
     return { ref, drew: P.hand.length - h0 }; })()`);
   assert.equal(r.ref, true, JSON.stringify(r)); assert.equal(r.drew, 1, JSON.stringify(r));
 });
+
+const INDRA = 'BS75-CX03';
+
+test('K-1064 BS75-044 Manevajra: an opposing destroy sends one Life core to a Thunderive Spirit and it remains; BS75-068 Temple LV2: a Void core goes to Life, once per turn', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = O.key; G.step = 5; G.fxBy = O.key;
+    const th = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && (BS.CARDS[k].families || []).includes('Thunderive') && k !== 'BS75-044');
+    const m = BS.mkInst('BS75-044'); m.cores = 1; const t = BS.mkInst(th); t.cores = 1; P.spirits = [m, t]; P.nexus = []; P.life = 5;
+    BS.removeSpirit(P, t, 'destroyed', true);
+    const stay = P.spirits.includes(t), life1 = P.life, cores = t.cores;
+    P.nexus = [BS.mkInst('BS75-068')]; P.nexus[0].cores = 1; P.spirits = [t]; P.void = 3; P.life = 1; P.nexus[0].leaveTurn = 0;
+    BS.removeSpirit(P, t, 'destroyed', true); const life2 = P.life; P.spirits = [t]; BS.removeSpirit(P, t, 'destroyed', true);
+    return { stay, life1, cores, life2, life3: P.life, p44: BS.CARDS['BS75-044'].partial, p68: BS.CARDS['BS75-068'].partial, cx: BS.CARDS['${INDRA}'].partial }; })()`);
+  assert.equal(r.stay, true, JSON.stringify(r)); assert.equal(r.life1, 4, JSON.stringify(r)); assert.equal(r.cores, 2, JSON.stringify(r));
+  assert.equal(r.life2, 2, JSON.stringify(r)); assert.equal(r.life3, 2, JSON.stringify(r));
+  assert.equal(r.p44, false); assert.equal(r.p68, false); assert.equal(r.cx, false);
+});
+
+test('K-1065 BS76-076 Ward Tower: Life hit puts a core on Contractor Indra; LV2 draws two from the deckbottom when an opposing can\'t attack/block Spirit leaves', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const w = BS.mkInst('BS76-076'); w.cores = 1; const ind = BS.mkInst('${INDRA}'); ind.cores = 0; P.nexus = [w, ind]; P.reserve.n = 3;
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token); const at = BS.mkInst(any); P.spirits = [at];
+    await BS.fireFx(P, 'ALLY_LIFE_HIT', null, { attacker: at, subject: at }); const c1 = ind.cores;
+    const e = BS.mkInst(any); e.noAB = true; O.spirits = [e]; P.deck = [1, 2, 3, 4].map(() => BS.mkInst(any)); P.hand = [];
+    BS.removeSpirit(O, e, 'destroyed', true);
+    return { c1, hand: P.hand.length, deck: P.deck.length, p: BS.CARDS['BS76-076'].partial }; })()`);
+  assert.equal(r.c1, 1, JSON.stringify(r)); assert.equal(r.hand, 2, JSON.stringify(r)); assert.equal(r.deck, 2, JSON.stringify(r)); assert.equal(r.p, false);
+});
+
+test('K-1066 BS76-050 Raishin Vajdra: Summoned sends six cores from opposing Grandwalker Nexuses to the Void; its attack returns a can\'t attack/block Spirit to the deckbottom', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token);
+    const v = BS.mkInst('BS76-050'); v.cores = 2; P.spirits = [v]; const gn = BS.mkInst('${INDRA}'); gn.cores = 7; O.nexus = [gn]; const v0 = O.void;
+    await BS.fireFx(P, 'SUMMONED', v, { subject: v });
+    const left = gn.cores, vo = O.void - v0;
+    const a = BS.mkInst(any), b = BS.mkInst(any); a.cores = b.cores = 1; a.noAB = true; O.spirits = [a, b]; const d0 = O.deck.length; G.attacker = v;
+    await BS.fireFx(P, 'ALLY_ATTACKS', v, { attacker: v, subject: v });
+    return { left, vo, gone: !O.spirits.includes(a), kept: O.spirits.includes(b), deck: O.deck.length - d0, man: !!BS.CARDS['BS76-050'].manifest, p: BS.CARDS['BS76-050'].partial }; })()`);
+  assert.equal(r.p, false); assert.equal(r.man, true); assert.equal(r.left, 1, JSON.stringify(r)); assert.equal(r.vo, 6, JSON.stringify(r));
+  assert.equal(r.gone, true, JSON.stringify(r)); assert.equal(r.kept, true, JSON.stringify(r)); assert.equal(r.deck, 1, JSON.stringify(r));
+});
+
+test('K-1067 BS76-088 Spread Lightning: cost -2 per opposing can\'t attack/block Spirit (max -6); Flash returns one, or three with Contractor Indra', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = O.key; G.step = 5;
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token); const mk = n => { const x = BS.mkInst(any); x.cores = 1; x.noAB = n; return x; };
+    const c = BS.CARDS['BS76-088']; O.spirits = []; const c0 = BS.effCost(P, c); O.spirits = [mk(true), mk(true)]; const c2 = BS.effCost(P, c); O.spirits = [1, 2, 3, 4, 5].map(() => mk(true)); const c5 = BS.effCost(P, c);
+    O.spirits = [mk(true), mk(true), mk(true), mk(false)]; P.nexus = []; P.reserve.n = 20; let m = BS.mkInst('BS76-088'); P.hand = [m];
+    await BS.castMagic(P, { inst: m, target: null, plan: null, ctx: 'flash' }); const n1 = O.spirits.length;
+    const ind = BS.mkInst('${INDRA}'); P.nexus = [ind]; O.spirits = [mk(true), mk(true), mk(true), mk(true), mk(false)]; m = BS.mkInst('BS76-088'); P.hand = [m]; P.reserve.n = 20;
+    await BS.castMagic(P, { inst: m, target: null, plan: null, ctx: 'flash' });
+    return { c0, c2, c5, n1, n2: O.spirits.length, p: c.partial }; })()`);
+  assert.equal(r.p, false); assert.equal(r.c0, 7, JSON.stringify(r)); assert.equal(r.c2, 3, JSON.stringify(r)); assert.equal(r.c5, 1, JSON.stringify(r));
+  assert.equal(r.n1, 3, JSON.stringify(r)); assert.equal(r.n2, 2, JSON.stringify(r));
+});

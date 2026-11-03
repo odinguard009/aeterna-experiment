@@ -2576,17 +2576,59 @@
    "Manifest"
   ],
   "handUnaffected": true,
-  "fxComplete": false,
-  "residual": [
-   "Flash - {{Mani|\"Contractor Indra\" & C5 or more|(Either Attack Step)}} By sending your (Soul Core) to the Trash, pay one cost from the target to summon this card from the Hand.",
-   "[LV1-2-3] (When Summoned) You can send six cores from any opposing Grandwalker Nexuses to the Void.",
-   "[LV2-3] (Your Attack Step) When your \"Thunderive\" family Spirit attacks, you can return an opposing Spirit/Ultimate under \"can't attack/block\" effects to the deckbottom."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); not yet checked against the card image.",
   "bicon": [
    "13"
   ],
-  "rcode": "M"
+  "rcode": "M",
+  "manifest": {
+   "name": "Contractor Indra",
+   "counterGe": 5,
+   "turn": "EITHER_ATTACK"
+  },
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "NEXUS_CORES_TO_VOID",
+      "family": "Grandwalker",
+      "n": 6,
+      "spread": true
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_ATTACKS",
+    "lv": [
+     2,
+     3
+    ],
+    "optional": true,
+    "match": {
+     "family": [
+      "Thunderive"
+     ]
+    },
+    "actions": [
+     {
+      "do": "BOUNCE_OPP",
+      "kind": "spirit",
+      "to": "deckBottom",
+      "match": {
+       "cantAB": true
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS76-051",
@@ -3798,16 +3840,44 @@
   "image": "BS76-076.png",
   "block": "76",
   "saga": 17,
-  "fxComplete": false,
-  "residual": [
-   "[LV1-2] (Your Attack Step) When the opposing Life is reduced, you can +1 core to one of your \"Contractor Indra\" Grandwalker Nexuses.",
-   "[LV2] (Your Turn) Once per turn, when any opposing Spirits/Ultimates under \"can't attack/block\" effects would leave the Field due to the opponent, if you control any \"Contractor Indra\", you can draw two cards from the deckbottom."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); not yet checked against the card image.",
   "bicon": [
    "13"
   ],
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ALLY_LIFE_HIT",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "CORE_TO_NEXUS",
+      "n": 1,
+      "match": {
+       "name": [
+        "Contractor Indra"
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "OPP_LEAVE_DRAW",
+    "lv": [
+     2
+    ],
+    "n": 2,
+    "if": {
+     "controlName": "Contractor Indra"
+    }
+   }
+  ]
  },
  {
   "id": "BS76-077",
@@ -4181,16 +4251,43 @@
   "image": "BS76-088.png",
   "block": "76",
   "saga": 17,
-  "fxComplete": false,
-  "residual": [
-   "When using this card from the Hand, for each opposing Spirit/Ultimate under \"can't attack/block\" effects, this card's cost gets -2.",
-   "(Max.",
-   "-6)",
-   "Flash",
-   "Return an opposing Spirit/Ultimate under \"can't attack/block\" effects to the deckbottom.",
-   "If you control any \"Contractor Indra\", you can return +2 targets to the deck via this effect."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); not yet checked against the card image.",
+  "costPer": {
+   "oppCantAB": true,
+   "n": 2,
+   "max": 6
+  },
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "BOUNCE_OPP",
+     "kind": "spirit",
+     "to": "deckBottom",
+     "match": {
+      "cantAB": true
+     }
+    },
+    {
+     "do": "BOUNCE_OPP",
+     "kind": "spirit",
+     "to": "deckBottom",
+     "n": 2,
+     "upTo": true,
+     "match": {
+      "cantAB": true
+     },
+     "if": {
+      "controlName": "Contractor Indra"
+     }
+    }
+   ]
+  }
  },
  {
   "id": "BS76-089",

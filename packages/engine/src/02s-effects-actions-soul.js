@@ -204,6 +204,24 @@ FX_ACTIONS.SOUL_TRASH_TO = { chk: a => hasMatch(a.match) && Object.keys(a).every
     if (!G.over && c.p.nexus.includes(t)) await fireFx(c.p, 'SOUL_PLACED', t, { subject: t });
   } };
 
+/* v422 leaveHook(p, s, why, battle): "when your Spirits would leave the Field due to the opponent" for the Spirit s of p. Called before it leaves; true = it stays.
+   STATIC REMAIN_LIFE (to own, match): send 1 Life core to it and it remains unchanged (opposing effects only; Life >= 2). LEAVE_VOID_LIFE (once per turn, match): a Void core to your Life.
+   OPP_LEAVE_DRAW {n} (to the source's owner, if): when an opposing Spirit under can't attack/block leaves due to your effect, draw n from the deckbottom (once per turn). */
+function leaveHook(p, s, why, battle) {
+  if (!G || !p.spirits.includes(s)) return false;
+  const q = G.p[other(p.key)], oppFx = !battle && !!G.fxBy && G.fxBy !== p.key;
+  if (!oppFx && !battle) return false;
+  for (const src of fieldList(p)) for (const { e } of fxEntries(src)) {
+    if (e.trigger !== 'STATIC' || e.flag !== 'LEAVE_VOID_LIFE' || (e.lv && !e.lv.includes(lvNo(src))) || (src.leaveTurn != null && src.leaveTurn === G.turnNo) || p.void < 1 || !fxMatch(CARDS[s.id], e.match, s)) continue;
+    src.leaveTurn = G.turnNo; takeFromVoid(p, 1); p.life++; log(`${CARDS[src.id].name}: a core moves from the Void to ${poss(p)} Life.`);
+  }
+  if (oppFx && s.noAB) for (const src of fieldList(q)) for (const { e } of fxEntries(src)) {
+    if (e.trigger !== 'STATIC' || e.flag !== 'OPP_LEAVE_DRAW' || (e.lv && !e.lv.includes(lvNo(src))) || (src.leaveTurn != null && src.leaveTurn === G.turnNo) || !q.deck.length || !fxIf(q, p, e.if || {}, { selfInst: src })) continue;
+    src.leaveTurn = G.turnNo; let k = 0; for (; k < e.n && q.deck.length; k++) q.hand.push(q.deck.pop()); log(`${CARDS[src.id].name}: ${poss(q)} draws ${k} from the deckbottom.`); handUp(q, k);
+  }
+  if (!oppFx || p.life < 2 || (why !== 'destroyed' && why !== 'depleted' && why !== 'returned') || !flagActive(p, 'REMAIN_LIFE', s)) return false;
+  lifeTake(p, 1, s); log(`${CARDS[s.id].name} receives a core from ${poss(p)} Life and remains on the Field.`); return true;
+}
 /* This part loads after 02k, whose load-time pass wraps every action's cands() with the immunity
    filter (trash-safe cards, opposing cards unaffected by this effect). Run it again so the entries
    defined here get the same wrapper; it is idempotent. */

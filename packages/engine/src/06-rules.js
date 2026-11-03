@@ -319,7 +319,7 @@ function effCost(p, card) {                       // cost reduction is mandatory
   const extra = extraReduction(p, card), lp = legacyPlan(p, card, syms, extra);
   const r = lp ? lp.total : reductionOf(card, syms, extra);
   const hc = handCostSet(p, card), base = hc == null ? card.cost : hc;
-  const per = card.costPer ? Math.min(card.costPer.max, card.costPer.n * p.spirits.filter(s => (CARDS[s.id].families || []).includes(card.costPer.family)).length) : 0;      // v0.196 costPer
+  const per = card.costPer ? Math.min(card.costPer.max, card.costPer.n * (card.costPer.oppCantAB ? G.p[other(p.key)].spirits.filter(s => s.noAB) : p.spirits.filter(s => (CARDS[s.id].families || []).includes(card.costPer.family))).length) : 0;      // v0.196 costPer
   const redTotal = Object.values(card.reduction || {}).reduce((a, b) => a + b, 0);
   const redIf = card.reduceIf && G && fxIf(p, G.p[other(p.key)], card.reduceIf, {}) ? (card.reducePerOppReserve ? Math.min(redTotal, G.p[other(p.key)].reserve.n + (G.p[other(p.key)].reserve.soul ? 1 : 0)) : redTotal) : 0;      // v208 "When summoning this card, if <cond>, fulfill all / one per opposing Reserve core of its reduction symbols"
   return Math.max(0, (costAltActive(p, card) ? Math.min(base, card.costAlt.cost) : base) - (redIf ? Math.max(r, redIf) : r) - per - summonDiscountOf(p, card)) + summonTaxOf(p, card);
@@ -387,6 +387,7 @@ function removeSpirit(p, s, why, byOpponent) {
   if (why === 'destroyed' && p.spirits.includes(s) && flagActive(p, 'NO_DESTROY', s)) { log(`${CARDS[s.id].name} cannot be destroyed.`); return; }      // v353 STATIC NO_DESTROY (any cause, battle included)
   if (why === 'destroyed' && byOpponent !== 'battle' && G && G.fxBy && G.fxBy !== p.key && p.spirits.includes(s) && flagActive(p, 'NO_DESTROY_OPP', s)) { log(`${CARDS[s.id].name} cannot be destroyed by opposing effects.`); return; }      // v252 STATIC NO_DESTROY_OPP
   if (why === 'destroyed' && byOpponent !== 'battle' && G && G.fxBy && G.fxBy !== p.key && p.spirits.includes(s) && flagActive(p, 'REMAIN_DESTROY', s)) { s.exhausted = true; log(`${CARDS[s.id].name} remains on the Field, exhausted.`); return; }      // v404 "can remain on the Field, exhausted"
+  if ((why === 'destroyed' || why === 'depleted') && leaveHook(p, s, why, byOpponent === 'battle')) return;      // v422
   const lv = p.spirits.includes(s) ? lvIndex(s) : -1;
   const kill = why === 'destroyed' && byOpponent !== 'battle' && !!G && !!G.evQ && !!G.fxBy && G.fxBy !== p.key && fieldList(G.p[G.fxBy]).some(f => fxEntries(f).some(({ e }) => e.trigger === 'OPP_DESTROYED_FX')),      // v0.196 someone can react to "opposing Spirits destroyed by your effect"
     bp0 = kill ? bpOf(s) : 0, bpAt = why === 'destroyed' ? bpOf(s) : 0;      // v192 OPP_DIED carries the BP it had when it was destroyed

@@ -134,8 +134,8 @@ function parseCard(o) {
   let costPer;
   if (o.costPer != null) {            // v0.196 {"family":"Abyssen","n":2,"max":8}: "For each <family> Spirit you control, the cost of this card in Hand gets -n (Max. -max)"
     const t = o.costPer;
-    if (!t || typeof t !== 'object' || typeof t.family !== 'string' || !t.family.trim() || !int(Number(t.n), 1, 10) || !int(Number(t.max), 1, 30)) return { errors: ['invalid "costPer" (use {"family":"Abyssen","n":2,"max":8})'] };
-    costPer = { family: t.family.trim(), n: Number(t.n), max: Number(t.max) };
+    if (!t || typeof t !== 'object' || (t.oppCantAB !== true && (typeof t.family !== 'string' || !t.family.trim())) || !int(Number(t.n), 1, 10) || !int(Number(t.max), 1, 30)) return { errors: ['invalid "costPer" (use {"family":"Abyssen","n":2,"max":8})'] };
+    costPer = { family: t.oppCantAB === true ? undefined : t.family.trim(), oppCantAB: t.oppCantAB === true || undefined, n: Number(t.n), max: Number(t.max) };      // v422 oppCantAB: per opposing Spirit under can't attack/block
   }
   let tribute;
   if (o.tribute != null) {            // {"costGe":3,"to":"void"} or {"family":"Astral Soul","to":"trash"}: after paying, send all cores from one of your matching Spirits there
