@@ -536,3 +536,25 @@ FX_ACTIONS.ATTACK_SPIRIT = { chk: a => (a.bpLe == null || (Number.isInteger(a.bp
     if (!t) { c.ctx.did = false; return; }
     c.src.atkT = { s: t, b: G.battleNo }; log(`${CARDS[c.src.id].name} targets ${poss(c.opp)} ${CARDS[t.id].name} and attacks it.`);
   } };
+
+/* v330+ OWN_NEXUS_CORE_TO_VOID {n, name}: "send N cores from any of your <name> Nexuses to the Void" (the cost half of BS75-043; use it as the cost of a BY). Fails when no matching own Nexus has a core. */
+FX_ACTIONS.OWN_NEXUS_CORE_TO_VOID = {
+  chk: a => Object.keys(a).every(k => ['do', 'if', 'n', 'name'].includes(k)) && Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && typeof a.name === 'string' && a.name.length > 0,
+  txt: a => `send ${a.n} core${a.n === 1 ? '' : 's'} from any of your "${a.name}" Nexuses to the Void`,
+  cands: (c, a) => c.p.nexus.filter(x => x.cores >= a.n && CARDS[x.id].name.toLowerCase().includes(a.name.toLowerCase())),
+  can: (c, a) => FX_ACTIONS.OWN_NEXUS_CORE_TO_VOID.cands(c, a).length > 0,
+  run: async (c, a) => {
+    const L = FX_ACTIONS.OWN_NEXUS_CORE_TO_VOID.cands(c, a); c.ctx.did = false; if (!L.length) return;
+    const t = L.length === 1 || c.p.cpu ? L.slice().sort((x, y) => y.cores - x.cores)[0] : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap your Nexus to send ${a.n} core${a.n === 1 ? '' : 's'} to the Void (glowing).`);
+    if (!t) return;
+    const k = Math.min(a.n, coreTakeCap(c.p, t, a.n)); if (k < a.n) return;
+    coreEvN(c.p, t.uid, 'void', k, false); c.p.void += k; t.cores -= k; c.ctx.did = true;
+    log(`${CARDS[c.src.id].name}: ${k} core${k === 1 ? '' : 's'} from ${CARDS[t.id].name} are sent to the Void.`);
+  } };
+
+/* v330+ NEXUS_LOCK {costLe}: "until your next Start Step, the effects of every opposing Cost N or less Nexus can't activate" (flag on the locking player, cleared in beginTurn of that player; read by `activatable`). */
+FX_ACTIONS.NEXUS_LOCK = {
+  chk: a => Object.keys(a).every(k => ['do', 'if', 'costLe'].includes(k)) && Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 20,
+  txt: a => `until your next Start Step, the effects of every opposing Cost ${a.costLe} or less Nexus can't activate`,
+  can: () => true,
+  run: async (c, a) => { c.p.nexusLockLe = Math.max(c.p.nexusLockLe == null ? -1 : c.p.nexusLockLe, a.costLe); c.ctx.did = true; log(`${CARDS[c.src.id].name}: opposing Cost ${a.costLe} or less Nexus effects can't activate until ${poss(c.p)} next Start Step.`); } };

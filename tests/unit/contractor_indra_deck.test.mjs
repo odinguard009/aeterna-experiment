@@ -160,8 +160,8 @@ test('Y30 Temple LV1-2: once per turn, when a Thunderive Spirit attacks, draw fr
   assert.deepEqual(r, [[T3], 1]);
 });
 test('Y31 Bilijvern: when a Thunderive Spirit attacks, +1 core to Indra (once per turn)', async () => {
-  const r = await ev(`const i = nx('${INDRA}', P, 0); sp('${BILI}', P, 1); const a = sp('${DRACO}', P, 1); await BS.fireFx(P, 'ALLY_ATTACKS', a, { attacker: a }); await BS.fireFx(P, 'ALLY_ATTACKS', a, { attacker: a }); return [i.cores];`);
-  assert.deepEqual(r, [1]);
+  const r = await ev(`const i = nx('${INDRA}', P, 2); sp('${BILI}', P, 1); const a = sp('${DRACO}', P, 1); const v = P.void; await BS.fireFx(P, 'ALLY_ATTACKS', a, { attacker: a }); await BS.fireFx(P, 'ALLY_ATTACKS', a, { attacker: a }); return [i.cores, P.void - v];`);
+  assert.deepEqual(r, [1, 2]);       // Bilijvern +1 once per turn; Vajdraco's lock cost sends 1 core to the Void per attack (2026-11-03: BS75-043 completed)
 });
 test('Y32 Vajdraco draws from the bottom when ANOTHER Thunderive Spirit is summoned, once per turn, not for itself', async () => {
   const r = await ev(`const d = sp('${DRACO}', P, 1); dk('${T0}'); dk('${T1}'); dk('${T3}'); await BS.fireFx(P, 'SUMMONED', d); const x = P.hand.length; const o = sp('${MAGAN}', P, 1); await BS.fireFx(P, 'SUMMONED', o); const o2 = sp('${MAGAN}', P, 1); await BS.fireFx(P, 'SUMMONED', o2); return [x, P.hand.length];`);

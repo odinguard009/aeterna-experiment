@@ -432,3 +432,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v394 (Lane K): Crush results. Conditions `crushedSpiritGe` (Spirit cards discarded by this effect's CRUSH) and `selfLvGe` (source level gate); BP_PLUS `perCrushed:'spirit'` and VOID_TO_CARD `perCrushed:true` count the cards `ctx.crushed`.
 - v395 (Lane K): `ctrl` entries accept `braved:true` (a Spirit that has a Brave combined). Card: BS10-002 (TREAT_LV3 while you control a Brave Spirit).
 - v396 (Lane K): `OPP_DISCARD.downTo` (instead of `n`): the opponent discards until only that many cards remain. Card: BS08-050.
+- v397 (Lane K): actions `OWN_NEXUS_CORE_TO_VOID {n, name}` (send N cores from your Nexus whose name contains `name` to the Void; a BY cost) and `NEXUS_LOCK {costLe}` ("until your next Start Step, opposing Cost N or less Nexus effects can't activate": flag `p.nexusLockLe`, cleared in beginTurn, read by `activatable`). Grandwalker BS75-CX03 Indra: BS75-043.

@@ -312,6 +312,7 @@ function activatable(p, f, timing) {
   const card = CARDS[f.id], out = [];
   if (!G || !fieldList(p).includes(f)) return out;
   const opp = G.p[other(p.key)], L = lvNo(f);
+  if (opp.nexusLockLe != null && card.type === 'Nexus' && card.cost <= opp.nexusLockLe) return out;      // NEXUS_LOCK
   actList(f).forEach(({ e, idx }) => {
     if (e.trigger !== 'ACTIVATE') return;
     if (timing && !e.timing.includes(timing)) return;
