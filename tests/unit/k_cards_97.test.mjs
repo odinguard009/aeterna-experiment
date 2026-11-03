@@ -192,3 +192,15 @@ test('K-1014 BS52-RV004 Skoll / BS54-RV005 Morrigan (revival): attack refresh; S
     return [!BS.CARDS['BS52-RV004'].partial && !BS.CARDS['BS54-RV005'].partial, [a1, a2, a3, refreshed], [m1, m2, m3, !mo.exhausted]]; })()`);
   assert.equal(r[0], true, JSON.stringify(r)); assert.deepEqual(r[1], [false, true, false, true], JSON.stringify(r)); assert.deepEqual(r[2], [false, true, false, true], JSON.stringify(r));
 });
+
+test('K-1015 BS52-024 Boostrich (Primal pool): burst lock, bounce exhausted Spirit at 1 counter, refresh on first attack', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true;
+    const sp = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && !BS.CARDS[k].effects);
+    const run = async cnt => { P.count = cnt; const v = BS.mkInst('BS52-024'); v.cores = 3; P.spirits = [v]; v.exhausted = true; P.attacksThisTurn = 1; G.noBurst = null;
+      const t = BS.mkInst(sp); t.exhausted = true; O.spirits = [t]; O.hand = [];
+      await BS.fireFx(P, 'ATTACKS', v, {}); return [G.noBurst === O.key, O.spirits.length, O.hand.length, !v.exhausted]; };
+    const a = await run(0), b = await run(1); P.attacksThisTurn = 2; const v = BS.mkInst('BS52-024'); v.cores = 3; P.spirits = [v]; v.exhausted = true; await BS.fireFx(P, 'ATTACKS', v, {});
+    return [!BS.CARDS['BS52-024'].partial, a, b, !v.exhausted]; })()`);
+  assert.equal(r[0], true, JSON.stringify(r)); assert.deepEqual(r[1], [true, 1, 0, true], JSON.stringify(r)); assert.deepEqual(r[2], [true, 0, 1, true], JSON.stringify(r)); assert.equal(r[3], false, JSON.stringify(r));
+});
