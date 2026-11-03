@@ -26854,18 +26854,6 @@
   "T_START_ATTACK",
   "T_SUMMONED"
  ],
- "BS51-XX03": [
-  "A_CORE_TO_SELF",
-  "A_MILL",
-  "A_SUMMON_FREE",
-  "A_VOID",
-  "C_LEVEL",
-  "K_ADVENT",
-  "K_GRANDWALKER",
-  "K_ULTIMATE",
-  "M_IF_YOU_DO",
-  "M_OPTIONAL"
- ],
  "BS52-002": [
   "A_BANISH",
   "A_EXHAUST",

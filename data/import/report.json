@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 6190,
+  "cards": 6189,
   "per_saga": {
    "1": 458,
    "2": 251,
@@ -11,7 +11,7 @@
    "7": 456,
    "8": 428,
    "9": 456,
-   "10": 485,
+   "10": 484,
    "11": 274,
    "12": 303,
    "13": 387,
@@ -22,18 +22,18 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2516,
-  "nexus_levels_added": 659,
+  "skipped_curated": 2517,
+  "nexus_levels_added": 658,
   "nexus_levels_missing": 43,
   "merged": 105,
-  "image_problems": 392,
+  "image_problems": 391,
   "brave_unparsed": 169,
   "ut_lines_added": 106,
   "odd_reduction": 790,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
   "number_conflicts": 3,
-  "without_image": 390
+  "without_image": 389
  },
  "tokens": [
   "BS73-T001",
@@ -1584,6 +1584,7 @@
   "BS51-052",
   "BS51-062",
   "BS51-071",
+  "BS51-XX03",
   "BS52-001",
   "BS52-013",
   "BS52-014",
@@ -3054,7 +3055,6 @@
   "BS51-X08",
   "BS51-X09",
   "BS51-X10",
-  "BS51-XX03",
   "BS52-X07",
   "BS52-X08",
   "BS53-065",
@@ -5021,11 +5021,6 @@
    "id": "BS51-X10",
    "name": "Grandwalker Saraswati",
    "problem": "no image (near: The Grandwalker Sarasvati.png)"
-  },
-  {
-   "id": "BS51-XX03",
-   "name": "Grandwalker Alex-Lolo",
-   "problem": "no image (near: The Grandwalker Alex-Lolo.png)"
   },
   {
    "id": "BS51-RV003",

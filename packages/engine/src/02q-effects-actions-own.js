@@ -116,9 +116,9 @@ Object.assign(FX_ACTIONS, {
       if (n) { const k = draw(c.p, n); log(`${CARDS[c.src.id].name}: ${who(c.p)} ${c.p.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'}.`); handUp(c.p, k); }
     } },
   /* v0.185 (schema 66) DEPLOY_TRASH {match}: "Target a <X> Nexus card in your Trash. Deploy it without paying the cost." (Nexus only) */
-  DEPLOY_TRASH: { chk: a => !!a.match && hasMatch(a.match) && (a.all == null || a.all === true) && Object.keys(a).every(k => ['do', 'match', 'all', 'if'].includes(k)),
-    txt: a => a.all ? 'deploy every matching Nexus card from your Trash without paying the cost' : 'deploy a matching Nexus card from your Trash without paying the cost',
-    cands: (c, a) => c.p.trash.filter(t => CARDS[t.id].type === (a.match.type === 'Spirit' ? 'Spirit' : 'Nexus') && fxMatch(CARDS[t.id], a.match) && canPlaceFree(c.p, t)),      // v0.199 (schema 149) match.type "Spirit" summons a Spirit instead
+  DEPLOY_TRASH: { chk: a => !!a.match && hasMatch(a.match) && (a.all == null || a.all === true) && Object.keys(a).every(k => ['do', 'match', 'all', 'if', 'ownNexusLe'].includes(k)) && (a.ownNexusLe == null || (Number.isInteger(a.ownNexusLe) && a.ownNexusLe >= 0 && a.ownNexusLe <= 2)),      // v442 ownNexusLe: "if you control two or less Grandwalker Nexuses" (counted when it resolves)
+    txt: a => a.ownNexusLe != null ? `if you control ${a.ownNexusLe} or fewer Grandwalker Nexuses, deploy a matching Nexus card from your Trash without paying the cost` : a.all ? 'deploy every matching Nexus card from your Trash without paying the cost' : 'deploy a matching Nexus card from your Trash without paying the cost',
+    cands: (c, a) => a.ownNexusLe != null && c.p.nexus.filter(x => (CARDS[x.id].families || []).includes('Grandwalker')).length > a.ownNexusLe ? [] : c.p.trash.filter(t => CARDS[t.id].type === (a.match.type === 'Spirit' ? 'Spirit' : 'Nexus') && fxMatch(CARDS[t.id], a.match) && canPlaceFree(c.p, t)),      // v0.199 (schema 149) match.type "Spirit" summons a Spirit instead
     can: (c, a) => FX_ACTIONS.DEPLOY_TRASH.cands(c, a).length > 0,
     run: async (c, a) => {
       const L = FX_ACTIONS.DEPLOY_TRASH.cands(c, a); c.ctx.did = false; if (!L.length) return;

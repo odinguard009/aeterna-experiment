@@ -130,3 +130,27 @@ test('K-1106 BS45-XX02: its colour and symbol are also treated as all six colour
   const r = await page.evaluate(`(async () => { BS.testSetup(); const nx = BS.mkInst('BS45-XX02'); nx.cores = 3; const e = BS.CARDS['BS45-XX02'].effects.find(x => x.flag === 'ALSO_TREATED'); return { cols: e.colors.length, sym: e.symbol }; })()`);
   assert.equal(r.cols, 6, JSON.stringify(r)); assert.equal(r.sym, true, JSON.stringify(r));
 });
+
+test('K-1107 BS51-XX03 Grandwalker Alex-Lolo: deploy Core Charge adds one trashed card to the Hand', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4; G.fxBy = P.key;
+    const nx = BS.mkInst('BS51-XX03'); nx.cores = 1; P.nexus = [nx]; P.void = 5;
+    const h0 = P.hand.length, d0 = P.deck.length;
+    await BS.fireFx(P, 'SUMMONED', nx, {});
+    return { hand: P.hand.length - h0, deck: d0 - P.deck.length, partial: BS.CARDS['BS51-XX03'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.hand, 1, JSON.stringify(r)); assert.equal(r.deck, 3, JSON.stringify(r));
+});
+
+test('K-1108 BS51-XX03: Main deploys a Grandwalker Nexus from the Trash only while you control two or fewer Grandwalker Nexuses', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 3; G.fxBy = P.key;
+    const nx = BS.mkInst('BS51-XX03'); nx.cores = 3; P.nexus = [nx]; P.onceUsed = {}; P.void = 0;
+    const t = BS.mkInst('BS47-XX03'); P.trash = [t];
+    const idx = BS.CARDS['BS51-XX03'].effects.findIndex(e => e.trigger === 'ACTIVATE');
+    const ok = await BS.activateFx(P, nx, idx);
+    const deployed = P.nexus.includes(t);
+    const a = BS.mkInst('BS44-XX02'), b = BS.mkInst('BS47-XX02'); P.nexus = [nx, a, b]; nx.cores = 3; P.onceUsed = {}; nx.exhausted = false; const t2 = BS.mkInst('BS47-XX03'); P.trash = [t2];
+    const ok3 = await BS.activateFx(P, nx, idx);
+    return { ok, deployed, three: P.nexus.length, t2in: P.trash.includes(t2), ok3 }; })()`);
+  assert.equal(r.deployed, true, JSON.stringify(r)); assert.equal(r.t2in, true, JSON.stringify(r)); assert.equal(r.three, 3, JSON.stringify(r));
+});

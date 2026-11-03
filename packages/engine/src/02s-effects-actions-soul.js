@@ -150,6 +150,13 @@ Object.assign(FX_ACTIONS, {
       await sentToTrashFx(c, top, 'deck');               // v0.47 Whirling Tide / Thunder Counter / Hades Disaster
       let got = 0; if (fieldList(c.p).includes(c.src)) for (let j = 0; j < k; j++) { if (a.void ? (!a.max || c.src.cores < a.max) && (takeFromVoid(c.p, 1), c.src.cores++, true) : addCore(c.p, c.src)) got++; }      // v420 void:true = Oracle (cores come from the Void, max = cap on this Nexus)
       c.ctx.did = got > 0; if (got) log(`${CARDS[c.src.id].name}: +${got} core${got === 1 ? '' : 's'}.`);
+      if (a.pickToHand) {      // v442 "add one of the cards sent to the Trash by this Nexus' Core Charge to the Hand" (Grandwalker Alex-Lolo)
+        const L = top.filter(y => c.p.trash.includes(y)); if (!L.length) return;
+        let h = null;
+        if (c.p.cpu) h = L.slice().sort((x, y) => CARDS[y.id].cost - CARDS[x.id].cost)[0];
+        else { const id = await ask({ title: `✨ ${CARDS[c.src.id].name}`, peek: true, wide: true, html: 'You can add one of the cards sent to the Trash to your Hand.', cards: cardIds(L), buttons: Array.from(new Set(L.map(x => x.id))).map(i => ({ label: CARDS[i].name, cls: 'primary', value: i })).concat([{ label: 'No', cls: 'cancel', value: null }]) }); h = L.find(x => x.id === id) || null; }
+        if (h) { removeFrom(c.p.trash, h); c.p.hand.push(h); log(`${CARDS[h.id].name} is added to the Hand (${who(c.p)}).`); handUp(c.p, 1); c.ctx.did = true; }
+      }
     } },
   /* "send your Soul Core to any <name> Nexus": from the Trash, the Reserve or a card where it can leave without depleting a Spirit.
      ask:true = "you can" inside the effect (the human is asked, the CPU does it). Fires SOUL_PLACED for the Nexus. */
