@@ -209,3 +209,29 @@ test('K-1042 BS73-006 Haganewurm X: attack gives counter +1; a Rekka Spirit that
     return { counter, drew, ok: !BS.CARDS['BS73-006'].partial }; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.counter, 1, JSON.stringify(r)); assert.equal(r.drew, 1, JSON.stringify(r));
 });
+
+test('K-1043 BS59-074 Oblivion Wind: Winged/Hunter Beast Spirits gain an attack effect that blocks opposing Bursts this turn', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const wid = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && (BS.CARDS[k].families || []).includes('Hunter Beast') && !BS.CARDS[k].token);
+    const other = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !(BS.CARDS[k].families || []).some(f => f === 'Hunter Beast' || f === 'Winged Beast') && !BS.CARDS[k].token);
+    const w = BS.mkInst(wid), o = BS.mkInst(other); P.spirits = [w, o]; O.spirits = [];
+    const a = BS.CARDS['BS59-074'].magic.actions[0]; await BS.FX_ACTIONS.GRANT_FX.run({ p: P, opp: O, src: BS.mkInst('BS59-074'), ctx: {} }, a);
+    const got = (w.grantFx || []).length, none = (o.grantFx || []).length;
+    G.attacker = w; await BS.fireFx(P, 'ATTACKS', w, { attacker: w, subject: w });
+    return { got, none, nb: G.noBurst === O.key, ok: !BS.CARDS['BS59-074'].partial }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.got, 1, JSON.stringify(r)); assert.equal(r.none, 0, JSON.stringify(r)); assert.equal(r.nb, true, JSON.stringify(r));
+});
+
+test('K-1044 BS55-061 Six Heaven Golem: LV2 attack/destroyed deploys a named Nexus from the Trash free (no HeavenlyDemon Nexus is in the library yet; checked with another Nexus name)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const g = BS.mkInst('BS55-061'); g.cores = 3; P.spirits = [g]; O.spirits = []; P.nexus = [];
+    const nid = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Nexus' && !BS.CARDS[k].token && !BS.CARDS[k].partial && !(BS.CARDS[k].cost > 0 && false));
+    P.trash = [BS.mkInst(nid)];
+    const eff = BS.CARDS['BS55-061'].effects.filter(e => e.trigger === 'ATTACKS' || e.trigger === 'DESTROYED');
+    const act = Object.assign({}, eff[0].actions[0], { match: { name: [BS.CARDS[nid].name] } });
+    await BS.FX_ACTIONS.SUMMON_HAND.run({ p: P, opp: O, src: g, ctx: {} }, act);
+    return { nex: P.nexus.length, trash: P.trash.length, two: eff.length, ok: !BS.CARDS['BS55-061'].partial }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.two, 2, JSON.stringify(r)); assert.equal(r.nex, 1, JSON.stringify(r)); assert.equal(r.trash, 0, JSON.stringify(r));
+});
