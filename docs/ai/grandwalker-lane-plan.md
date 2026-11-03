@@ -1,6 +1,6 @@
 # Plan: Lane K ordered per Grandwalker Nexus
 
-Status: **accepted by the owner on 2026-11-03; Lane K work on it has NOT started and is on hold until the owner says start.** Once started, this order replaces the greedy block-A order of `roadmap-open.md` item K for Lane K. The reporting rule and the revival rule are in `CLAUDE.md` (bullet "Grandwalker order"). Revert note: delete that bullet, the hold line in `roadmap-open.md` item G and this file's use.
+Status: **accepted and ACTIVE (owner lifted the hold on 2026-11-03).** This order replaces the greedy block-A order of `roadmap-open.md` item K for Lane K. The reporting rule and the revival rule are in `CLAUDE.md` (bullet "Grandwalker order"). Revert note: delete that bullet and this file's use.
 
 ## 1. Data (generated, official fields only)
 - `python3 tools/grandwalker_data.py` writes `data/kb/grandwalker-nexus.json`, `docs/reports/grandwalker-families.md` and `docs/reports/grandwalker-family-table.md`; `--check` fails when they are stale. Source: `data/sources/official-fields.json` (no network); English names from `data/cards`.
