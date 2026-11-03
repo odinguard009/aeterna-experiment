@@ -406,3 +406,10 @@ FX_ACTIONS.REVEAL_FLASH = {
 FX_ACTIONS.FIRE_MANIFEST = { chk: () => true, txt: () => 'activate this Spirit\'s (When Manifests) effect',
   can: c => !!c.src && fieldList(c.p).includes(c.src),
   run: async c => { if (!fieldList(c.p).includes(c.src)) { c.ctx.did = false; return; } log(`${CARDS[c.src.id].name}: its (When Manifests) effect activates.`); await fireFx(c.p, 'MANIFEST', c.src); } };
+
+/* v460 STATIC UNAFFECTED {soulToo:true, if}: "including being in Soul State, while <condition>, this card is unaffected by opposing effects" (Moo BS74-056); the Field case is the ordinary flagActive check */
+function soulUnaff(owner, t) {
+  if (!owner.soulState || !owner.soulState.includes(t) || !CARDS[t.id] || !CARDS[t.id].effects) return false;
+  const opp = G.p[other(owner.key)];
+  return CARDS[t.id].effects.some(e => e.trigger === 'STATIC' && e.flag === 'UNAFFECTED' && e.soulToo && fxIf(owner, opp, e.if, { selfInst: t }));
+}

@@ -494,3 +494,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v457 (BS74-055 Aquamarine): `BOUNCE_OPP.lvTop` ("max" | "notMax", spirit only, not with `lv`): target an opposing Spirit that is (not) on its own highest Level.
 - v458 (BS74-055 Aquamarine): `magic.trashReturnFlash` (Spirit with alsoMagic: when RETURN_TRASH of a Yellow-only source returns it to the Hand, offer its Flash for free).
 - v459 (Lane K, Amber BS73-045 / Moo): action `REVEAL_FLASH {n, match, rest:"bottom", free:true | pay1:true, max?}` (reveal from the decktop, use Flash of matching Magic cards among them free or paying one cost, rest to the deckbottom) and `FIRE_MANIFEST` (activate this Spirit's When Manifests effect again).
+- v460 (Lane K, Moo BS74-056): STATIC `UNAFFECTED.soulToo:true` (with `if`) also protects the card in Soul State (`soulUnaff`, 02x); `CORE_SAFE.mode:"floor3"` (cores can't be brought below three by opposing effects).

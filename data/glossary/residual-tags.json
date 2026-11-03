@@ -46626,18 +46626,6 @@
   "T_MIRAGE_LIFE",
   "T_SUMMONED"
  ],
- "BS74-056": [
-  "A_REVEAL_ADD",
-  "A_REVEAL_DECK",
-  "A_SOUL_STATE",
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "K_BURST",
-  "K_ULTIMATE",
-  "M_OPTIONAL",
-  "M_THEN",
-  "S_UNAFFECTED"
- ],
  "BS74-057": [
   "A_SUMMON_FREE",
   "C_CONTROL",

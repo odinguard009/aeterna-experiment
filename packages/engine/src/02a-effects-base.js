@@ -241,11 +241,8 @@ const STATIC_FLAGS = ['BOUNCE_COST_PLUS', 'NO_OPP_HANDUP', 'EXHAUST_ON_CORE_PUT'
 /* flag effects: MUST_BLOCK (opposing Spirits must block this attacker), NO_RETURN (cannot be returned by opposing effects), CORES_DRAW (draw once per turn when cores are sent by your effects),
    UNAFFECTED_SOUL (Ometeotl Contract Field: this card is unaffected by opposing effects while a Soul Core is on it),
    NO_END_ATTACK (v0.43: while the matching Spirit of the owner attacks, the opponent can't end the Attack Step via effects; Sunya Lv3, Crimson Crater Lv2) */
-/* v0.58 "unaffected" (session E): STATIC UNAFFECTED { to: 'self'|'own', match, from: { colors, types } } = unaffected by OPPOSING effects
-   whose source card has one of those colours and card types (Armor: Spirit/Nexus/Magic, Heavy Armor: Spirit/Brave/Nexus/Magic,
-   Ultra Armor: Spirit/Ultimate/Nexus/Magic; no "from" = all opposing effects). c = the acting effect { p: its owner, src: its card }.
-   Priority (Eternal manual FAQ Q4): "cannot be prevented" (action ignoreImmune) > "unaffected" > "cannot activate". */
-const fxImmune = (owner, t, c) => !!t && ((!!t.soul && flagActive(owner, 'UNAFFECTED_SOUL', t)) || (!!c && !!c.p && !!c.src && c.p !== owner && (unaffectedBy(owner, t, c.src) || (!!G && t.noMagicB != null && t.noMagicB === G.battleNo && CARDS[c.src.id].type === 'Magic') || (!!G && G.blocker === t && owner.blockUnaffTurn === G.turnNo))));      // v310 BLOCKER_UNAFFECTED
+/* v0.58 STATIC UNAFFECTED {to:self|own, match, from:{colors,types}}: unaffected by OPPOSING effects of that source (no "from" = all); c = {p: owner of the effect, src}. Priority: "cannot be prevented" > "unaffected" > "cannot activate". */
+const fxImmune = (owner, t, c) => !!t && ((!!t.soul && flagActive(owner, 'UNAFFECTED_SOUL', t)) || (!!c && !!c.p && !!c.src && c.p !== owner && (unaffectedBy(owner, t, c.src) || (!!G && t.noMagicB != null && t.noMagicB === G.battleNo && CARDS[c.src.id].type === 'Magic') || (!!G && G.blocker === t && owner.blockUnaffTurn === G.turnNo)))) || (!!c && !!c.p && c.p !== owner && soulUnaff(owner, t));      // v310 BLOCKER_UNAFFECTED
 function unaffectedBy(owner, t, src) {
   const k = CARDS[src.id]; if (!k) return false;
   const cols = (k.colors || [k.symbol]).concat(alsoTreated(src, 'color'));      // v384 ALSO_TREATED
@@ -338,7 +335,7 @@ const coreTakeCap = (owner, target, n) => {
   const mode = coreSafeMode(owner, target);
   if (!mode) return n;
   if (mode === 'move') return 0;
-  return Math.max(0, Math.min(n, (target.cores || 0) - 1));
+  return Math.max(0,Math.min(n,(target.cores||0)-(+mode.slice(5)||1)));
 };
 /* v0.37 "Cost Destruction effects" (destroy a Spirit/Ultimate with cost N or less): the limit grows with STATIC COST_DESTROY_PLUS effects of the owner's Field cards and of a Brave combined with a Nexus
    (Bulwark Temple: +1 per Saga Brave for Celtica/Scalostle sources; Railgun on a Nexus: +1). src = the card whose effect destroys. */

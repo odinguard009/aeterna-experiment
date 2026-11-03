@@ -140,3 +140,35 @@ test('K-1143 BS73-045 Amber: Lv2 Flash discards a Prismwing card from the Hand a
     return Object.assign(a, { noDiscardNoFire: s.exhausted }); })()`);
   assert.equal(r.discarded, true, JSON.stringify(r)); assert.equal(r.exh, false, JSON.stringify(r)); assert.equal(r.noDiscardNoFire, true, JSON.stringify(r));
 });
+
+test('K-1144 BS74-056 Moo: unaffected by opposing effects (also in Soul State) only while Contractor Morrigan is controlled', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${pre}
+    const moo = BS.mkInst('BS74-056'); moo.cores = 3; P.spirits = [moo]; const src = BS.mkInst(sp(c => c.cost <= 3)); O.spirits = [src];
+    const c = { p: O, src };
+    const no = fxImmune(P, moo, c);
+    P.nexus = [BS.mkInst('BS73-CX02')]; const yes = fxImmune(P, moo, c);
+    P.spirits = []; P.soulState = [moo]; const soul = fxImmune(P, moo, c);
+    P.nexus = []; const soulNo = fxImmune(P, moo, c);
+    return { no, yes, soul, soulNo }; })()`);
+  assert.deepEqual(r, { no: false, yes: true, soul: true, soulNo: false });
+});
+
+test('K-1145 BS74-056 Moo: opposing effects cannot bring the cores of your Prismwing Spirits below three', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${pre}
+    const moo = BS.mkInst('BS74-056'); moo.cores = 5; P.spirits = [moo]; G.fxBy = O.key;
+    return { cap: coreTakeCap(P, moo, 5), own: (G.fxBy = P.key, coreTakeCap(P, moo, 5)) }; })()`);
+  assert.deepEqual(r, { cap: 2, own: 5 });
+});
+
+test('K-1146 BS74-056 Moo: Burst summons it free, then uses revealed Prismwing Magic Flashes without paying', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${pre}
+    const moo = BS.mkInst('BS74-056'); P.hand = []; P.reserve.n = 0; const filler = sp(c => c.cost <= 2);
+    const mag = BS.mkInst('BS73-080'); P.deck = [mag, BS.mkInst(filler), BS.mkInst(filler), BS.mkInst(filler)];
+    P.spirits = []; const a = BS.mkInst('BS73-045'); a.exhausted = true; P.spirits = [a];
+    await BS.runActions({ p: P, opp: O, src: moo, ctx: { selfInst: moo } }, { actions: BS.CARDS['BS74-056'].burst.actions });
+    return { used: P.trash.includes(mag), rest: P.deck.length, refreshed: !a.exhausted }; })()`);
+  assert.equal(r.used, true, JSON.stringify(r)); assert.equal(r.rest, 3, JSON.stringify(r)); assert.equal(r.refreshed, true, JSON.stringify(r));
+});
