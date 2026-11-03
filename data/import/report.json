@@ -1,39 +1,39 @@
 {
  "stats": {
-  "cards": 6288,
+  "cards": 6280,
   "per_saga": {
    "1": 458,
    "2": 251,
    "3": 324,
    "4": 299,
-   "5": 576,
+   "5": 574,
    "6": 311,
-   "7": 459,
-   "8": 431,
+   "7": 458,
+   "8": 428,
    "9": 471,
    "10": 485,
    "11": 314,
-   "12": 311,
+   "12": 310,
    "13": 387,
-   "14": 423,
+   "14": 422,
    "15": 348,
    "16": 331,
    "17": 109
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2418,
+  "skipped_curated": 2426,
   "nexus_levels_added": 668,
   "nexus_levels_missing": 43,
   "merged": 107,
-  "image_problems": 402,
+  "image_problems": 399,
   "brave_unparsed": 170,
-  "ut_lines_added": 107,
+  "ut_lines_added": 106,
   "odd_reduction": 804,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
   "number_conflicts": 3,
-  "without_image": 400
+  "without_image": 397
  },
  "tokens": [
   "BS73-T001",
@@ -1181,6 +1181,7 @@
   "BS27-034",
   "BS27-043",
   "BS27-061",
+  "BS27-067",
   "BS27-068",
   "BS27-079",
   "BS28-001",
@@ -1205,6 +1206,7 @@
   "BS29-034",
   "BS29-035",
   "BS29-037",
+  "BS29-052",
   "BS29-073",
   "BS30-002",
   "BS30-003",
@@ -1379,6 +1381,7 @@
   "BS36-050",
   "BS37-001",
   "BS37-004",
+  "BS37-005",
   "BS37-006",
   "BS37-008",
   "BS37-013",
@@ -1478,12 +1481,14 @@
   "BS42-014",
   "BS42-015",
   "BS42-016",
+  "BS42-017",
   "BS42-027",
   "BS42-029",
   "BS42-037",
   "BS42-039",
   "BS42-041",
   "BS42-050",
+  "BS42-058",
   "BS42-063",
   "BS42-RV009",
   "BS42-RV011",
@@ -1497,6 +1502,7 @@
   "BS43-047",
   "BS43-050",
   "BS43-055",
+  "BS43-061",
   "BS43-084",
   "BS43-092",
   "BS43-X05",
@@ -1588,6 +1594,7 @@
   "BS56-015",
   "BS56-024",
   "BS56-033",
+  "BS56-035",
   "BS57-048",
   "BS58-001",
   "BS58-002",
@@ -1619,6 +1626,7 @@
   "BS64-078",
   "BS65-040",
   "BS65-079",
+  "BS66-002",
   "BS66-067",
   "BS66-085",
   "BS66-RV001",
@@ -3751,11 +3759,6 @@
    "problem": "no image (near: The SwordsSaintAngelia Momoel.jpg)"
   },
   {
-   "id": "BS29-052",
-   "name": "The RaptorSwordMaster Peregrine",
-   "problem": "no image"
-  },
-  {
    "id": "BS29-062",
    "name": "The StarDivineStaff Spica",
    "problem": "no image"
@@ -4186,11 +4189,6 @@
    "problem": "no image (near: Wonderland Trump Griffon.jpg)"
   },
   {
-   "id": "BS42-058",
-   "name": "The Wonderland Bandersnatch",
-   "problem": "no image (near: Wonderland Bandersnatch.jpg)"
-  },
-  {
    "id": "BS42-059",
    "name": "The Wonderland RedPenpress",
    "problem": "no image"
@@ -4414,11 +4412,6 @@
    "id": "BS43-058",
    "name": "The RoaringAzurePirateGang Chacope",
    "problem": "no image (near: The AzureBeastPirateGang Chacope.jpg)"
-  },
-  {
-   "id": "BS43-061",
-   "name": "The RoaringAzurePirateGang Kabaku",
-   "problem": "no image (near: The AzureBeastPirateGang Kabaku.jpg)"
   },
   {
    "id": "BS43-064",
@@ -5543,7 +5536,6 @@
   "BS29-048",
   "BS29-050",
   "BS29-051",
-  "BS29-052",
   "BS29-053",
   "BS29-054",
   "BS29-X04",

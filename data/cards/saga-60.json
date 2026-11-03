@@ -5563,16 +5563,31 @@
   "image": "EX011.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "When Braved {{Armor|White}} This Spirit is unaffected by opposing White Spirit/Nexus/Magic effects."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
   "rcode": "EX",
   "brave": {
    "bp": 3000,
    "costGe": 3
-  }
+  },
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "UNAFFECTED",
+    "to": "self",
+    "braved": true,
+    "from": {
+     "colors": [
+      "white"
+     ],
+     "types": [
+      "Spirit",
+      "Nexus",
+      "Magic"
+     ]
+    }
+   }
+  ]
  },
  {
   "id": "EX012",
@@ -37970,12 +37985,30 @@
   "image": "SD41-003.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Flash - {{Accel|Cost 3 ((Purple Core)(Purple Core))}} Summon a Cost 1 or less Purple Spirit card from your Trash, without paying the cost. After this effect resolves, put this card face-up onto the Removed Zone."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ACCEL",
+    "cost": 3,
+    "timing": [
+     "FLASH"
+    ],
+    "actions": [
+     {
+      "do": "DEPLOY_TRASH",
+      "match": {
+       "type": "Spirit",
+       "color": [
+        "purple"
+       ],
+       "costLe": 1
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD41-004",

@@ -9573,13 +9573,36 @@
       }
      }
     ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "BP_PLUS",
+      "n": 5000
+     },
+     {
+      "do": "DESTROY",
+      "nexus": true,
+      "noFx": true,
+      "if": {
+       "ctrl": {
+        "type": "Spirit",
+        "colors": [
+         "red"
+        ],
+        "braved": true
+       }
+      }
+     }
+    ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (When Attacks) This Spirit gains +5000 BP. Also, if you control any Red Brave, destroy an opposing Nexus, and effects of the destroyed Nexus can't activate."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image.",
   "bicon": [
    "10"
   ],
