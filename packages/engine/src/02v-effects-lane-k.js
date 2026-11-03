@@ -558,3 +558,9 @@ FX_ACTIONS.NEXUS_LOCK = {
   txt: a => `until your next Start Step, the effects of every opposing Cost ${a.costLe} or less Nexus can't activate`,
   can: () => true,
   run: async (c, a) => { c.p.nexusLockLe = Math.max(c.p.nexusLockLe == null ? -1 : c.p.nexusLockLe, a.costLe); c.ctx.did = true; log(`${CARDS[c.src.id].name}: opposing Cost ${a.costLe} or less Nexus effects can't activate until ${poss(c.p)} next Start Step.`); } };
+
+/* v398 LIFE_SYMBOL_SHIELD {symbolsGe, battle?}: "during this battle/turn, your Life can't be reduced by the attacks of opposing Spirits/Ultimates with N symbols or more" (BS75-069 Charged Crystal Cave) */
+FX_ACTIONS.LIFE_SYMBOL_SHIELD = { chk: a => Number.isInteger(a.symbolsGe) && a.symbolsGe >= 1 && a.symbolsGe <= 5 && (a.battle == null || a.battle === true),
+  txt: a => `during this ${a.battle ? 'battle' : 'turn'}, your Life can't be reduced by the attacks of opposing Spirits/Ultimates with ${a.symbolsGe} symbols or more`,
+  can: () => true,
+  run: async (c, a) => { c.p.symShield = { turn: G.turnNo, ge: a.symbolsGe, b: a.battle ? (G.battleNo || 0) : null }; c.ctx.did = true; log(`${CARDS[c.src.id].name}: ${poss(c.p)} Life can't be reduced by the attacks of opposing Spirits with ${a.symbolsGe} symbols or more this ${a.battle ? 'battle' : 'turn'}.`); } };

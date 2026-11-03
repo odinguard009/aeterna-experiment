@@ -309,7 +309,7 @@ function summonDiscountOf(p, card) {             // v391 STATIC SUMMON_DISCOUNT 
     for (const { e } of fxEntries(src)) if (e.trigger === 'STATIC' && e.flag === 'SUMMON_DISCOUNT' && !(e.lv && !e.lv.includes(L)) && fxMatch(card, e.match) && fxIf(p, opp, e.if, { selfInst: src })) n += e.n; }
   return n;
 }
-const trashSymsOn = (p, card) => !!card && (card.trashSymbols || !!(card.trashSymbolsIf && (p.attacksThisTurn || 0) >= card.trashSymbolsIf.attacksGe));      // v192 trashSymbolsIf {attacksGe: "if you've made N or more attacks this turn"}
+const trashSymsOn = (p, card) => !!card && (card.trashSymbols || (!!G && fieldList(p).some(f => { const L = lvNo(f); return fxEntries(f).some(({ e }) => e.trigger === 'STATIC' && e.flag === 'TRASH_SYMBOLS' && (!e.lv || e.lv.includes(L)) && (!e.match || fxMatch(card, e.match))); })) || !!(card.trashSymbolsIf && (p.attacksThisTurn || 0) >= card.trashSymbolsIf.attacksGe));      // v192 trashSymbolsIf {attacksGe: "if you've made N or more attacks this turn"}
 function effCost(p, card) {                       // cost reduction is mandatory when possible
   const syms = fieldSymbols(p, card.soulReduce, true);
   if (trashSymsOn(p, card)) for (const t of p.trash) for (const x of symbolAttrs(CARDS[t.id])) syms.push(x);   // v0.47 Lightning Tempest: "you can also use symbols from your Trash to reduce the cost; v192 trashSymbolsIf {attacksGe} ("if you've made N or more attacks this turn")

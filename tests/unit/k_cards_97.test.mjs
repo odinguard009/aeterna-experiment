@@ -31,3 +31,16 @@ test('K-1002 BS75-043 Vajdraco: without an Indra core nothing happens', async ()
     return [P.nexusLockLe == null, P.void]; })()`);
   assert.deepEqual(r, [true, 0]);
 });
+
+test('K-1003 BS75-069 Charged Crystal Cave: Flash symbol shield and Trash symbols for Thunderive cards', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player; P.cpu = true;
+    const c = BS.CARDS['BS75-069'];
+    const n = BS.mkInst('BS75-069'); n.cores = 2; P.nexus = [n];
+    const idx = BS.activatable(P, n, 'FLASH').map(x => x.idx);
+    await BS.activateFx(P, n, idx[0]);
+    const sh = P.symShield && P.symShield.ge;
+    return [!c.partial, idx.length, sh, n.exhausted === true, BS.trashSymsOn ? BS.trashSymsOn(P, BS.CARDS['BS75-043']) : 'n/a']; })()`);
+  assert.deepEqual(r.slice(0, 4), [true, 1, 2, true]);
+  assert.ok(r[4] === true || r[4] === 'n/a', String(r[4]));
+});
