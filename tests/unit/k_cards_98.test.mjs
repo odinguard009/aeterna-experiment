@@ -86,3 +86,17 @@ test('K-1032 BS54-RV002 Charger Dragno / BS54-RV001 Assassin Dragno: Pursuit let
   assert.equal(r.pf, true, JSON.stringify(r)); assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.heavy, true, JSON.stringify(r));
   assert.deepEqual(r.blk1, [true, false], JSON.stringify(r)); assert.equal(r.blk3, true, JSON.stringify(r));
 });
+
+test('K-1033 BS74-004 Scapoonrhynchus: counter +1 and destroys a 7000 BP Spirit; LV2 ally Lava Fish attack voids 3 cores from an opposing Grandwalker Nexus', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const s = BS.mkInst('BS74-004'); s.cores = 2; P.spirits = [s];
+    const gw = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Nexus' && (BS.CARDS[k].families || []).includes('Grandwalker'));
+    const nx = BS.mkInst(gw); nx.cores = 5; O.nexus = [nx];
+    const weak = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && ((BS.CARDS[k].levels || [])[0] || {}).bp <= 3000 && (BS.CARDS[k].levels || []).length === 1);
+    const v = BS.mkInst(weak); v.cores = 1; O.spirits = [v]; const c0 = P.count || 0;
+    await BS.fireFx(P, 'ATTACKS', s, { attacker: s, subject: s });
+    await BS.fireFx(P, 'ALLY_ATTACKS', s, { attacker: s, subject: s });
+    return { dC: (P.count || 0) - c0, left: O.spirits.length, cores: nx.cores, ok: !BS.CARDS['BS74-004'].partial }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.dC, 1, JSON.stringify(r)); assert.equal(r.left, 0, JSON.stringify(r)); assert.equal(r.cores, 2, JSON.stringify(r));
+});

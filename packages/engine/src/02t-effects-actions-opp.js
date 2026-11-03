@@ -203,9 +203,9 @@ Object.assign(FX_ACTIONS, {
       if (c.opp.life <= 0) { win(c.p.key, `${poss(c.opp)} Life reached 0`); return; }
       await maybeBurst(c.opp, 'LIFE_DECREASE', {});
     } },
-  NEXUS_CORES_TO_VOID: { chk: a => typeof a.family === 'string' && a.family.length > 0 && (a.n == null || (Number.isInteger(a.n) && a.n >= 1 && a.n <= 10)) && (a.spread == null || typeof a.spread === 'boolean') && (a.orAllIfLifeLe == null || (Number.isInteger(a.orAllIfLifeLe) && a.n != null)),
-    txt: a => (a.n ? `send ${a.n} core${a.n === 1 ? '' : 's'} from ${a.spread ? 'any opposing "' + a.family + '" Nexuses' : 'an opposing "' + a.family + '" Nexus'}` : `send all cores from an opposing "${a.family}" Nexus`) + ' to the Void' + (a.orAllIfLifeLe != null ? `, or, if your Life is ${a.orAllIfLifeLe} or less, all cores from one such Nexus` : ''),
-    cands: (c, a) => c.opp.nexus.filter(x => x.cores > 0 && !fxImmune(c.opp, x) && (CARDS[x.id].families || []).some(f => f.toLowerCase().includes(a.family.toLowerCase()))),
+  NEXUS_CORES_TO_VOID: { chk: a => typeof a.family === 'string' && a.family.length > 0 && (a.n == null || (Number.isInteger(a.n) && a.n >= 1 && a.n <= 10)) && (a.spread == null || typeof a.spread === 'boolean') && (a.orAllIfLifeLe == null || (Number.isInteger(a.orAllIfLifeLe) && a.n != null)) && (a.ignoreImmune == null || a.ignoreImmune === true),
+    txt: a => (a.ignoreImmune ? "(can't be prevented) " : '') + (a.n ? `send ${a.n} core${a.n === 1 ? '' : 's'} from ${a.spread ? 'any opposing "' + a.family + '" Nexuses' : 'an opposing "' + a.family + '" Nexus'}` : `send all cores from an opposing "${a.family}" Nexus`) + ' to the Void' + (a.orAllIfLifeLe != null ? `, or, if your Life is ${a.orAllIfLifeLe} or less, all cores from one such Nexus` : ''),
+    cands: (c, a) => c.opp.nexus.filter(x => x.cores > 0 && (a.ignoreImmune === true || !fxImmune(c.opp, x)) && (CARDS[x.id].families || []).some(f => f.toLowerCase().includes(a.family.toLowerCase()))),
     can: (c, a) => FX_ACTIONS.NEXUS_CORES_TO_VOID.cands(c, a).length > 0,
     run: async (c, a) => {
       const L = FX_ACTIONS.NEXUS_CORES_TO_VOID.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
