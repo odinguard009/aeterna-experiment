@@ -162,3 +162,16 @@ test('K-1012 BS74-002 (Ometeotl): reveal three, add one Ometeotl/Lava Fish card;
     return [!BS.CARDS['BS74-002'].partial, a, b, d]; })()`);
   assert.equal(r[0], true, JSON.stringify(r)); assert.deepEqual(r[1], [1, 2], JSON.stringify(r)); assert.deepEqual(r[2], [2, 2], JSON.stringify(r)); assert.deepEqual(r[3], [0, 4, 3], JSON.stringify(r));
 });
+
+test('K-1013 BS52-037 Argenica / BS54-037 Pterasonic (Primal pool): attack refresh once, two symbols at 3 counters', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player; P.cpu = true;
+    const out = [];
+    for (const id of ['BS52-037', 'BS54-037']) { for (const cnt of [2, 3]) {
+      P.count = cnt; const v = BS.mkInst(id); v.cores = 3; P.spirits = [v]; v.exhausted = true; G.turnNo += 1;
+      await BS.fireFx(P, 'ATTACKS', v, {}); const ex1 = v.exhausted;
+      out.push([id, cnt, id === 'BS52-037' ? !ex1 : (cnt >= 3 ? !ex1 : ex1), id === 'BS52-037' ? (cnt >= 3 ? BS.fieldSymbols(P).length : 1) : (v.symSet ? v.symSet.n : 0)]); } }
+    return [!BS.CARDS['BS52-037'].partial && !BS.CARDS['BS54-037'].partial, out]; })()`);
+  assert.equal(r[0], true, JSON.stringify(r));
+  assert.deepEqual(r[1], [['BS52-037', 2, true, 1], ['BS52-037', 3, true, 2], ['BS54-037', 2, true, 2], ['BS54-037', 3, true, 2]], JSON.stringify(r));
+});
