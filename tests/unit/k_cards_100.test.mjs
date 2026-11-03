@@ -60,3 +60,14 @@ test('K-1075 BS75-042 Bilijvern: while set it shields Contractor Indra from oppo
     return { shielded, summoned: P.spirits.includes(m), mirageGone: P.mirage === null, partial: BS.CARDS['BS75-042'].partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.shielded, true, JSON.stringify(r)); assert.equal(r.summoned, true, JSON.stringify(r)); assert.equal(r.mirageGone, true, JSON.stringify(r));
 });
+
+test('K-1076 BS75-051 Canonvajdra: set card activates when a Thunderive Spirit attacks with 6+ counters, summons free and zeroes opposing symbols', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 2; G.fxBy = null;
+    const att = BS.mkInst('BS76-044'); att.cores = 1; P.spirits = [att]; const v = BS.mkInst('BS76-044'); v.cores = 1; O.spirits = [v]; v.noFx = false; P.reserve.n = 5;
+    const b = BS.mkInst('BS75-051'); b.mirage = false; P.burst = b; P.count = 5;
+    const low = await BS.maybeBurst(P, 'ALLY_ATTACK', { subject: att, attacker: att }); const stay = P.burst === b;
+    P.count = 6; const hi = await BS.maybeBurst(P, 'ALLY_ATTACK', { subject: att, attacker: att }); await BS.flushBursts();
+    return { low, stay, hi, summoned: P.spirits.includes(b), zeroed: O.spirits.every(s => s.symZeroTurn === G.turnNo), partial: BS.CARDS['BS75-051'].partial, fx: !!BS.CARDS['BS75-051'].fxComplete }; })()`);
+  assert.equal(r.low, false, JSON.stringify(r)); assert.equal(r.stay, true, JSON.stringify(r)); assert.equal(r.hi, true, JSON.stringify(r)); assert.equal(r.summoned, true, JSON.stringify(r)); assert.equal(r.zeroed, true, JSON.stringify(r));
+});

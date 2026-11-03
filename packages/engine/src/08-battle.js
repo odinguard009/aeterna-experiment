@@ -37,7 +37,8 @@ async function doBattleInner(attKey, att) {
   io.view({ type: 'board' }); await wait(450);
   await fireFxMulti([{ owner: A, trigger: 'ATTACKS', src: att, ctx: { attacker: att } }, { owner: A, trigger: 'ALLY_ATTACKS', src: att, ctx: { attacker: att } }, { owner: D, trigger: 'OPP_ATTACKS', src: att, ctx: { attacker: att } }]);   // one simultaneous pool
   if (G.over) { G.attacker = null; return; }
-  if (A.spirits.includes(att)) { await maybeBurst(D, 'OPP_ATTACK', { attacker: att }); await flushBursts(); if (G.over) { G.attacker = null; return; } }   // v0.71 Burst "After an opposing Spirit attacks": after the attack's (When Attacks) effects
+  if (A.spirits.includes(att)) { await maybeBurst(D, 'OPP_ATTACK', { attacker: att }); await flushBursts(); if (G.over) { G.attacker = null; return; }
+    if (A.spirits.includes(att)) { await maybeBurst(A, 'ALLY_ATTACK', { subject: att, attacker: att }); await flushBursts(); if (G.over) { G.attacker = null; return; } } }   // v427 burst.also ALLY_ATTACK (BS75-051)   // v0.71 Burst "After an opposing Spirit attacks": after the attack's (When Attacks) effects
   att = (await flashTiming(attKey, att, null))[0];
   if (G.over) return;
   if (G.battleCut === G.battleNo) { log('The battle ends immediately.'); io.view({ type: 'board' }); return; }

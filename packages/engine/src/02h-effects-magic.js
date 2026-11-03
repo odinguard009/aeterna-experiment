@@ -81,7 +81,7 @@ Object.assign(FX_ACTIONS, {
       for (const t of picked) if (c.opp.spirits.includes(t)) { removeSpirit(c.opp, t, 'destroyed', true); c.ctx.destroyed.push(t); }
       checkDepletion(c.opp); c.ctx.did = c.ctx.destroyed.length > 0; io.view({ type: 'board' });
     } },
-  SYMBOLS_ZERO_OPP: { chk: a => (a.color == null || COLORS.includes(a.color)) && (a.bpLe == null || (Number.isInteger(a.bpLe) && a.bpLe >= 0 && a.bpLe <= 30000)) && (a.pick == null || (a.pick === true && a.color == null)) && Object.keys(a).every(k => ['do', 'if', 'color', 'bpLe', 'pick'].includes(k)),
+  SYMBOLS_ZERO_OPP: { chk: a => (a.color == null || COLORS.includes(a.color)) && (a.bpLe == null || (Number.isInteger(a.bpLe) && a.bpLe >= 0 && a.bpLe <= 30000)) && (a.pick == null || (a.pick === true && a.color == null)) && Object.keys(a).every(k => ['do', 'if', 'color', 'bpLe', 'pick', 'force'].includes(k)),
     txt: a => a.color ? `during this turn, every opposing ${a.bpLe || 0} BP or less Spirit loses a ${cap(a.color)} symbol` : 'during this turn, the symbol of every opposing Spirit/Ultimate is fixed as zero',
     can: c => c.opp.spirits.length > 0,
     run: async (c, a) => {
@@ -93,7 +93,8 @@ Object.assign(FX_ACTIONS, {
         log(`${_pn(c)}: every opposing ${a.bpLe || 0} BP or less Spirit loses a ${cap(color)} symbol this step.`); io.view({ type: 'board' });
         return;
       }
-      for (const t of c.opp.spirits) if (!fxImmune(c.opp, t, c)) t.symZeroTurn = G.turnNo;     // v0.58: unaffected Spirits keep their symbols
+      for (const t of c.opp.spirits) if (a.force || !fxImmune(c.opp, t, c)) t.symZeroTurn = G.turnNo;     // v427 force: "can't be prevented by opposing effects"
+          // v0.58: unaffected Spirits keep their symbols
       c.opp.symZeroAll = G.turnNo; c.opp.symZeroBy = { p: c.p, src: c.src };                      // v0.47: also Spirits/Ultimates that come to the Field later this turn
       log(`${_pn(c)}: the symbols of ${poss(c.opp)} Spirits are zero until the end of the turn.`); io.view({ type: 'board' });
     } }
