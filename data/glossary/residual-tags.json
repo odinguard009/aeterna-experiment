@@ -44,10 +44,6 @@
   "C_OPP_TURN",
   "T_DESTROYED"
  ],
- "BS01-098": [
-  "C_LEVEL",
-  "S_MUST_BLOCK"
- ],
  "BS01-100": [
   "A_EXHAUST",
   "C_LEVEL"
@@ -14357,11 +14353,6 @@
   "C_LEVEL",
   "T_ATTACKS"
  ],
- "BS38-028": [
-  "A_BP_PLUS",
-  "A_SEAL",
-  "C_LEVEL"
- ],
  "BS38-029": [
   "A_BP_PLUS",
   "A_SEAL",
@@ -16090,11 +16081,6 @@
   "K_ULTIMATE",
   "T_ATTACKS"
  ],
- "BS40-030": [
-  "A_DRAW",
-  "C_LEVEL",
-  "K_ADVENT"
- ],
  "BS40-031": [
   "A_EXHAUST",
   "A_REFRESH",
@@ -16148,11 +16134,6 @@
   "K_ADVENT",
   "M_BY_DOING",
   "T_ADVENT"
- ],
- "BS40-039": [
-  "A_DRAW",
-  "C_LEVEL",
-  "K_ADVENT"
  ],
  "BS40-040": [
   "A_SUMMON_FREE",
