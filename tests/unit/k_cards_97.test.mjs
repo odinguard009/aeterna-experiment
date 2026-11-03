@@ -44,3 +44,14 @@ test('K-1003 BS75-069 Charged Crystal Cave: Flash symbol shield and Trash symbol
   assert.deepEqual(r.slice(0, 4), [true, 1, 2, true]);
   assert.ok(r[4] === true || r[4] === 'n/a', String(r[4]));
 });
+
+test('K-1004 BS75-X10 Vajrawurm: unpreventable Can\'t Attack/Block, LV3 end-of-battle summon', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player; P.cpu = true;
+    const c = BS.CARDS['BS75-X10'];
+    const ef = (c.effects || []).map(e => e.trigger + ':' + (e.lv || []).join(''));
+    const src = BS.mkInst('BS75-X10'); src.cores = 3; P.spirits = [src];
+    await BS.FX_ACTIONS.CANT_AB_UNPREVENTABLE.run({ p: P, src, ctx: {} }, {});
+    return [!c.partial, ef.includes('ALLY_BATTLE_END:3'), P.cantAbFree === G.turnNo]; })()`);
+  assert.deepEqual(r, [true, true, true]);
+});

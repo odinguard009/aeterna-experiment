@@ -564,3 +564,7 @@ FX_ACTIONS.LIFE_SYMBOL_SHIELD = { chk: a => Number.isInteger(a.symbolsGe) && a.s
   txt: a => `during this ${a.battle ? 'battle' : 'turn'}, your Life can't be reduced by the attacks of opposing Spirits/Ultimates with ${a.symbolsGe} symbols or more`,
   can: () => true,
   run: async (c, a) => { c.p.symShield = { turn: G.turnNo, ge: a.symbolsGe, b: a.battle ? (G.battleNo || 0) : null }; c.ctx.did = true; log(`${CARDS[c.src.id].name}: ${poss(c.p)} Life can't be reduced by the attacks of opposing Spirits with ${a.symbolsGe} symbols or more this ${a.battle ? 'battle' : 'turn'}.`); } };
+
+/* v399 CANT_AB_UNPREVENTABLE: "during this turn, all your Can't Attack/Block effects can't be prevented by opposing effects" (BS75-X10 Unleash): CANT_ATTACK_BLOCK then also targets Spirits that are unaffected by opposing effects (flag `p.cantAbFree` = turn number) */
+FX_ACTIONS.CANT_AB_UNPREVENTABLE = { chk: () => true, txt: () => "during this turn, your Can't Attack/Block effects can't be prevented by opposing effects", can: () => true,
+  run: async c => { c.p.cantAbFree = G.turnNo; c.ctx.did = true; log(`${CARDS[c.src.id].name}: ${poss(c.p)} Can't Attack/Block effects can't be prevented this turn.`); } };
