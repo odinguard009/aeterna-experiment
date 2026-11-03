@@ -64,3 +64,24 @@ test('K-1050 BS58-028 Torando: Burst exhausts two opposing Spirits, one Void cor
     return { exh: O.spirits.filter(s => s.exhausted).length, res: P.reserve.n - r0, hasSummon: b.actions[2].do, when: b.when, partial: BS.CARDS['BS58-028'].partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.exh, 2, JSON.stringify(r)); assert.equal(r.res, 2, JSON.stringify(r)); assert.equal(r.hasSummon, 'SUMMON_SELF', JSON.stringify(r));
 });
+
+test('K-1051 BS55-RV002 Swordoll: always also White; with a Purple Grandstone Nexus also Yellow and draws when removed by the opponent', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = O.key;
+    const s = BS.mkInst('BS55-RV002'); s.cores = 2; P.spirits = [s]; O.spirits = []; P.nexus = [];
+    const w0 = BS.alsoTreated(s, 'color').join(), y0 = BS.alsoTreated(s, 'symbol').join();
+    P.nexus = [BS.mkInst('BS54-062')]; const w1 = BS.alsoTreated(s, 'color').join();
+    return { w0, y0, w1, partial: BS.CARDS['BS55-RV002'].partial, fx: BS.CARDS['BS55-RV002'].effects.length }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.w0, 'white', JSON.stringify(r)); assert.equal(r.y0, 'white', JSON.stringify(r)); assert.equal(r.w1, 'white,yellow', JSON.stringify(r));
+});
+
+test('K-1052 BS55-RV003 Sekkohkiji: LEAVES by an opposing effect with a Green Grandstone Nexus puts a Void core to the Reserve', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = O.key; G.step = 5; G.fxBy = O.key;
+    const s = BS.mkInst('BS55-RV003'); s.cores = 2; P.spirits = []; s.lostLv = 1; P.trash.push(s); O.spirits = []; P.nexus = [BS.mkInst('BS54-063')]; P.void = 3; const r0 = P.reserve.n;
+    const a = 'red,white';
+    await BS.fireFx(P, 'LEAVES', s, { subject: s, byOpp: true, byOppFx: true });
+    P.nexus = []; const r1 = P.reserve.n; P.void = 3; await BS.fireFx(P, 'LEAVES', s, { subject: s, byOpp: true, byOppFx: true });
+    return { a, gain: r1 - r0, noNex: P.reserve.n - r1, partial: BS.CARDS['BS55-RV003'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.a, 'red,white', JSON.stringify(r)); assert.equal(r.gain, 1, JSON.stringify(r)); assert.equal(r.noNex, 0, JSON.stringify(r));
+});

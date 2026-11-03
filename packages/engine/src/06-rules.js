@@ -27,10 +27,10 @@ function ignoreSumCond(p, card) {
   return false;
 }
 /* v384 STATIC ALSO_TREATED (to self): "this Spirit's color and symbol are also treated as <colours>": symbol:true adds those attributes to every symbol of the card, color:true adds them to its colours (fxMatch colour tests and "unaffected by opposing <colour> effects"); level-gated, no condition, Field only */
-function alsoTreated(i, what) {
+function alsoTreated(i, what) {      // v417: a STATIC ALSO_TREATED may carry an `if` ("while you control a Purple Grandstone Nexus")
   if (!G || !i || !CARDS[i.id] || !(fieldList(G.p.player).includes(i) || fieldList(G.p.opponent).includes(i))) return [];
-  const L = lvNo(i), out = [];
-  for (const { e } of fxEntries(i)) if (e.trigger === 'STATIC' && e.flag === 'ALSO_TREATED' && e[what] && (!e.lv || e.lv.includes(L))) for (const c of e.colors) if (!out.includes(c)) out.push(c);
+  const L = lvNo(i), out = [], own = fieldList(G.p.player).includes(i) ? G.p.player : G.p.opponent;
+  for (const { e } of fxEntries(i)) if (e.trigger === 'STATIC' && e.flag === 'ALSO_TREATED' && e[what] && (!e.lv || e.lv.includes(L)) && (!e.if || fxIf(own, G.p[other(own.key)], e.if, { selfInst: i, srcInst: i }))) for (const c of e.colors) if (!out.includes(c)) out.push(c);
   return out;
 }
 const alsoSyms = (i, arr) => { const x = alsoTreated(i, 'symbol'); return x.length ? arr.map(a => a.concat(x.filter(c => !a.includes(c)))) : arr; };
