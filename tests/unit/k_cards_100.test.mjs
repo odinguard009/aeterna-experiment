@@ -239,3 +239,13 @@ test('K-1089 BS74-072 Lv2: opposing Spirits returned by an Awakened Dragon card 
     return { lv2, otherSrc, lv1, wrongSide, noFxLeft: s.noFx === undefined, adFam: BS.CARDS['BS74-048'].families, lvOf: BS.CARDS['BS74-072'].levels.length }; })()`);
   assert.ok(r.adFam.includes('Awakened Dragon'), JSON.stringify(r)); assert.equal(r.lv2, true, JSON.stringify(r)); assert.equal(r.otherSrc, false); assert.equal(r.lv1, false, JSON.stringify(r)); assert.equal(r.wrongSide, false); assert.equal(r.noFxLeft, true);
 });
+
+test('K-1090 BS74-CX03 Mitra: Neo-Core Charge matches Awakened Dragon cost 3+ and Devotee/Concluser Ultimates only; Contract Field takes Field cores', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4; G.fxBy = P.key;
+    const n = BS.mkInst('BS74-CX03'); n.cores = 1; P.nexus = [n]; P.spirits = []; O.spirits = []; const out = {};
+    for (const id of ['BS75-X01', 'BS74-X01', 'BS74-043', 'BS74-040', 'BS74-X15', 'BS74-AX01']) { const u = BS.mkInst(id); P.spirits.push(u); n.cores = 1; P.reserve.n = 9; const b = n.cores; await BS.fireFx(P, 'ALLY_SUMMONED', null, { subject: u }); out[id] = n.cores - b; }
+    const eff = BS.CARDS['BS74-CX03']; out.partial = eff.partial; return out; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r));
+  assert.equal(r['BS74-043'], 1, JSON.stringify(r)); assert.equal(r['BS74-040'], 0, JSON.stringify(r)); assert.equal(r['BS74-X15'], 1, JSON.stringify(r)); assert.equal(r['BS74-AX01'], 1, JSON.stringify(r)); assert.equal(r['BS75-X01'], 1, JSON.stringify(r));
+});

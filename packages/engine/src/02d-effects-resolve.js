@@ -210,10 +210,20 @@ async function doContractAdvent(p, adv, src, where) {
     }
     if (k > 0) { p.reserve.n -= k; adv.cores += k; log(`${CARDS[adv.id].name}: ${k} core${k === 1 ? '' : 's'} from the Reserve.`); }
   }
+  if (fromSoul && !p.cpu) await adventFieldCores(p, adv);      // v435 "from your Field/Reserve": also cores of your other Field cards (never a Soul Core, never below a Spirit's Lv1)
   checkDepletion(p);
   io.view({ type: 'board' }); await wait(450);
   if (!G.over && p.spirits.includes(adv)) await fireFx(p, 'ADVENT', adv);
   return true;
+}
+async function adventFieldCores(p, adv) {
+  const spare = x => x.cores - (x.soul ? 1 : 0) - (CARDS[x.id].type === 'Nexus' ? 0 : minCores(CARDS[x.id]));
+  const pool = fieldList(p).filter(x => x !== adv && spare(x) > 0), tot = pool.reduce((a, x) => a + spare(x), 0); if (!tot) return;
+  const mx = Math.min(tot, 6), opts = [0, 1, 2, mx].filter((v, i, a) => v <= mx && a.indexOf(v) === i);
+  const v = await ask({ title: `✨ ${CARDS[adv.id].name}`, peek: true, html: 'Contract Field: put how many cores from your other Field cards onto the adventing card?', buttons: opts.map(n => ({ label: n === mx && mx > 2 ? `All (${n})` : String(n), cls: n ? 'primary' : 'cancel', value: n })) });
+  let k = Number.isInteger(v) ? Math.min(v, tot) : 0, moved = 0;
+  for (const x of pool.sort((a, b) => spare(b) - spare(a))) while (moved < k && spare(x) > 0) { coreEv(p, 'core', x.uid, adv.uid, moved); x.cores--; adv.cores++; moved++; }
+  if (moved) log(`${CARDS[adv.id].name}: ${moved} core${moved === 1 ? '' : 's'} from the Field.`);
 }
 /* manifest.turn: 'YOURS' = (Your Turn), Main Step and your Flash Timings; 'EITHER_ATTACK' = (Either Attack Step), Flash Timings of either player's Attack Step; 'YOUR_ATTACK' = (Your Attack Step), Flash Timings of your own Attack Step (v0.38) */
 function manifestTargets(p, inst, where) {

@@ -47207,20 +47207,6 @@
   "T_ACTIVATE",
   "T_ALLY_SUMMONED"
  ],
- "BS74-CX03": [
-  "A_AWAKEN",
-  "A_CORE_TO_SELF",
-  "A_COUNTER",
-  "A_SOUL_STATE",
-  "C_LEVEL",
-  "C_ONCE",
-  "K_ADVENT",
-  "K_CONTRACT",
-  "K_ULTIMATE",
-  "M_OPTIONAL",
-  "M_THEN",
-  "T_ALLY_SUMMONED"
- ],
  "BS74-RV001": [
   "A_SUMMON_FREE",
   "C_LEVEL",
