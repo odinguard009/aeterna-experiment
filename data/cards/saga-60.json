@@ -23300,13 +23300,34 @@
   "image": "SD11-004.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] This Spirit can block while Exhausted.",
-   "[LV2][LV3] (When Blocks) This Spirit gains +3000 BP."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: hand translation); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "BLOCK_EXHAUSTED",
+    "to": "self",
+    "lv": [
+     1,
+     2,
+     3
+    ]
+   },
+   {
+    "trigger": "BLOCKS",
+    "lv": [
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "BP_PLUS",
+      "n": 3000
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD11-005",
@@ -36792,13 +36813,59 @@
   "image": "SD39-002.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] {{ua|Red/Yellow}} This Spirit is unaffected by opposing Red/Yellow Spirit/Ultimate/Nexus/Magic effects.",
-   "[LV2][LV3] (Opposing Attack Step) This Spirit gains +5000 BP. Also, this Spirit can block while exhausted."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "UNAFFECTED",
+    "to": "self",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "from": {
+     "colors": [
+      "red",
+      "yellow"
+     ],
+     "types": [
+      "Spirit",
+      "Ultimate",
+      "Nexus",
+      "Magic"
+     ]
+    }
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 5000,
+    "to": "self",
+    "lv": [
+     2,
+     3
+    ],
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": true
+    }
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "BLOCK_EXHAUSTED",
+    "to": "self",
+    "lv": [
+     2,
+     3
+    ],
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": true
+    }
+   }
+  ]
  },
  {
   "id": "SD39-003",
@@ -44311,14 +44378,52 @@
   "image": "SD52-002.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (Opposing Attack Step) This Spirit can block while exhausted.",
-   "[LV1][LV2][LV3] (When Attacks/Blocks) This Spirit gains +3000 BP.",
-   "[LV2][LV3] {{PSa|Cost 4 or less}} This Spirit is unaffected by opposing Cost 4 or less effects."
-  ],
+  "fxComplete": true,
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "BLOCK_EXHAUSTED",
+    "to": "self",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": true
+    }
+   },
+   {
+    "trigger": "ATTACKS",
+    "alsoBlocks": true,
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "BP_PLUS",
+      "n": 3000
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "UNAFFECTED",
+    "to": "self",
+    "lv": [
+     2,
+     3
+    ],
+    "from": {
+     "costLe": 4
+    }
+   }
+  ]
  },
  {
   "id": "SD52-003",
