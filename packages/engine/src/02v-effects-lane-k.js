@@ -26,7 +26,7 @@ FX_ACTIONS.OWN_LIFE_TO_VOID = {
   } };
 /* v275 HAND_TO_REMOVED {match}: cost "By putting a <X> card from your Hand face-up onto the Removed Zone, ..." (ctx.did = false when the Hand has no such card). */
 FX_ACTIONS.HAND_TO_REMOVED = {
-  chk: a => hasMatch(a.match) && Object.keys(a).every(k => ['do', 'if', 'match'].includes(k)),
+  chk: a => (hasMatch(a.match) || a.any === true) && Object.keys(a).every(k => ['do', 'if', 'match', 'any'].includes(k)),      // v445 any: a card of any kind (face-down)
   txt: () => 'put a matching card from your Hand face-up onto the Removed Zone',
   cands: (c, a) => c.p.hand.filter(h => h !== c.src && fxMatch(CARDS[h.id], a.match)),
   can: (c, a) => FX_ACTIONS.HAND_TO_REMOVED.cands(c, a).length > 0,

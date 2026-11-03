@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 6187,
+  "cards": 6184,
   "per_saga": {
    "1": 458,
    "2": 251,
@@ -11,7 +11,7 @@
    "7": 456,
    "8": 428,
    "9": 456,
-   "10": 482,
+   "10": 479,
    "11": 274,
    "12": 303,
    "13": 387,
@@ -22,18 +22,18 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2519,
-  "nexus_levels_added": 656,
+  "skipped_curated": 2522,
+  "nexus_levels_added": 653,
   "nexus_levels_missing": 43,
   "merged": 105,
-  "image_problems": 389,
+  "image_problems": 386,
   "brave_unparsed": 169,
   "ut_lines_added": 106,
   "odd_reduction": 790,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
   "number_conflicts": 3,
-  "without_image": 387
+  "without_image": 384
  },
  "tokens": [
   "BS73-T001",
@@ -1567,12 +1567,15 @@
   "BS48-024",
   "BS48-041",
   "BS48-090",
+  "BS48-X08",
+  "BS48-X09",
   "BS48-RV007",
   "BS48-RV010",
   "BS49-003",
   "BS49-006",
   "BS49-011",
   "BS49-027",
+  "BS49-X09",
   "BS50-014",
   "BS50-038",
   "BS50-040",
@@ -3028,8 +3031,6 @@
   "BS48-085",
   "BS48-086",
   "BS48-087",
-  "BS48-X08",
-  "BS48-X09",
   "BS48-X10",
   "BS48-XX02",
   "BS48-SP01",
@@ -3038,7 +3039,6 @@
   "BS49-087",
   "BS49-088",
   "BS49-X08",
-  "BS49-X09",
   "BS49-X10",
   "BS49-XX02",
   "BS49-RV008",
@@ -4823,16 +4823,6 @@
    "problem": "no image (near: Shiva Castastrophe.png)"
   },
   {
-   "id": "BS48-X08",
-   "name": "Grandwalker of Creation Brahma",
-   "problem": "no image"
-  },
-  {
-   "id": "BS48-X09",
-   "name": "Grandwalker of Destruction Shiva",
-   "problem": "no image"
-  },
-  {
    "id": "BS48-X10",
    "name": "Grandwalker Aphrodite",
    "problem": "no image (near: The Grandwalker Aphrodite.png)"
@@ -4901,11 +4891,6 @@
    "id": "BS49-X08",
    "name": "Grandwalker Ares",
    "problem": "no image (near: The Grandwalker Ares.png)"
-  },
-  {
-   "id": "BS49-X09",
-   "name": "Grandwalker Krishna",
-   "problem": "no image (near: The Grandwalker Krishna.png)"
   },
   {
    "id": "BS49-X10",

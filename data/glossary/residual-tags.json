@@ -23761,31 +23761,6 @@
   "M_UP_TO",
   "T_ATTACKS"
  ],
- "BS48-X08": [
-  "A_CORE_TO_SELF",
-  "A_MILL",
-  "A_REMOVED_ZONE",
-  "A_VOID",
-  "C_LEVEL",
-  "K_ADVENT",
-  "K_BRAVE",
-  "K_GRANDWALKER",
-  "M_IF_YOU_DO",
-  "M_OPTIONAL"
- ],
- "BS48-X09": [
-  "A_DESTROY_COST",
-  "A_MILL",
-  "A_REMOVED_ZONE",
-  "A_VOID",
-  "C_LEVEL",
-  "K_ADVENT",
-  "K_BRAVE",
-  "K_GRANDWALKER",
-  "K_ULTIMATE",
-  "M_IF_YOU_DO",
-  "M_OPTIONAL"
- ],
  "BS48-X10": [
   "A_CORE_TO_SELF",
   "A_EXHAUST",
@@ -24789,17 +24764,6 @@
   "K_ADVENT",
   "K_GRANDWALKER",
   "K_ULTIMATE",
-  "M_IF_YOU_DO",
-  "M_OPTIONAL"
- ],
- "BS49-X09": [
-  "A_MILL",
-  "A_REFRESH",
-  "A_VOID",
-  "C_LEVEL",
-  "K_ADVENT",
-  "K_BRAVE",
-  "K_GRANDWALKER",
   "M_IF_YOU_DO",
   "M_OPTIONAL"
  ],

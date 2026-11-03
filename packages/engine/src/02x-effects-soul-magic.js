@@ -122,6 +122,24 @@ Object.assign(FX_ACTIONS, {
       c.p.nexus.splice(c.p.nexus.indexOf(t), 1); c.p.spirits.push(t); t.asSpirit = true; t.gpBp = a.bp; t.gp = G.turnNo; if (a.noRefresh) t.gpNoRefresh = true; c.ctx.did = true;
       log(`${CARDS[t.id].name} enters the Grandphosis state (treated as a Spirit this turn).`); io.view({ type: 'board' });
     } },
+  /* v445 SUMMON_HAND_REMOVED {match}: "Summon a <family> card from your Hand/Removed Zone" (the cost is paid) */
+  SUMMON_HAND_REMOVED: { chk: a => hasMatch(a.match) && Object.keys(a).every(k => ['do', 'if', 'match'].includes(k)), txt: () => 'summon a matching card from your Hand/Removed Zone (paying its cost)',
+    cands: (c, a) => c.p.hand.concat(c.p.removed).filter(x => x !== c.src && fxMatch(CARDS[x.id], a.match) && canPlacePaid(c.p, x)),
+    can: (c, a) => FX_ACTIONS.SUMMON_HAND_REMOVED.cands(c, a).length > 0,
+    run: async (c, a) => {
+      const L = FX_ACTIONS.SUMMON_HAND_REMOVED.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
+      const t = c.p.cpu ? L.slice().sort((x, y) => CARDS[y.id].cost - CARDS[x.id].cost)[0] : await chooseCard(c, L, `✨ ${_pn(c)}`, 'Choose a card from your Hand/Removed Zone to summon (you pay its cost).', true);
+      if (!t) { c.ctx.did = false; return; } c.ctx.did = await summonPaid(c.p, t);
+    } },
+  /* v445 REFRESH_SELF_OR: "Refresh either this Nexus, or a <match> Spirit you control" */
+  REFRESH_SELF_OR: { chk: a => hasMatch(a.match) && Object.keys(a).every(k => ['do', 'if', 'match'].includes(k)), txt: () => 'refresh this Nexus or a matching Spirit you control',
+    cands: (c, a) => c.p.nexus.filter(x => x === c.src && x.exhausted).concat(c.p.spirits.filter(x => x.exhausted && !x.asSpirit && fxMatch(CARDS[x.id], a.match))),
+    can: (c, a) => FX_ACTIONS.REFRESH_SELF_OR.cands(c, a).length > 0,
+    run: async (c, a) => {
+      const L = FX_ACTIONS.REFRESH_SELF_OR.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
+      const t = c.p.cpu ? L[0] : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap this Nexus or one of your exhausted Spirits to refresh (glowing).`);
+      if (!t) { c.ctx.did = false; return; } refreshOne(t); c.ctx.did = true; log(`${CARDS[t.id].name} is refreshed.`); await fireFx(c.p, 'REFRESHED', t, {});
+    } },
   /* v442 REFRESH_GP_NEXUS: "Besides any exactly-named <this card>, refresh a Grandphosis state Grandwalker Nexus you control" */
   REFRESH_GP_NEXUS: { chk: a => Object.keys(a).every(k => ['do', 'if', 'exceptSelfName'].includes(k)), txt: () => 'refresh a Grandwalker Nexus of yours in the Grandphosis state (besides one with this card name)',
     cands: (c, a) => c.p.spirits.filter(x => x.gpBp && x.exhausted && isGwNexus(x) && !(a.exceptSelfName && CARDS[x.id].name === CARDS[c.src.id].name)),

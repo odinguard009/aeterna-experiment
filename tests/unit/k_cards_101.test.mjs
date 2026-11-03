@@ -210,3 +210,42 @@ test('K-1112 BS50-X12 Vishnu: Grandphosis cannot be refreshed, and LV2 gives ext
   assert.equal(r.back, true, JSON.stringify(r)); assert.ok(!r.cleared, JSON.stringify(r));
   assert.equal(r.withNx, r.without + 1, JSON.stringify(r)); assert.equal(r.oppTurn, r.without, JSON.stringify(r));
 });
+
+test('K-1113 BS48-X09 Shiva: puts a Hand card onto the Removed Zone to destroy an opposing Spirit with 3 or fewer cores, once per turn', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const nx = BS.mkInst('BS48-X09'); nx.cores = 4; P.nexus = [nx]; P.onceUsed = {};
+    const ids = Object.values(BS.CARDS).filter(c => c.type === 'Spirit').slice(0, 3).map(c => c.id);
+    const lo = BS.mkInst(ids[0]); lo.cores = 3; const hi = BS.mkInst(ids[1]); hi.cores = 4; O.spirits = [lo, hi];
+    P.hand = [BS.mkInst(ids[2]), BS.mkInst(ids[2])];
+    const idx = BS.CARDS['BS48-X09'].effects.findIndex(e => e.trigger === 'ACTIVATE' && e.lv.length === 1);
+    const ok = await BS.activateFx(P, nx, idx);
+    const first = { ok, hand: P.hand.length, removed: P.removed.length, lo: O.spirits.includes(lo), hi: O.spirits.includes(hi) };
+    const ok2 = await BS.activateFx(P, nx, idx);
+    return { first, ok2, hand2: P.hand.length }; })()`);
+  assert.deepEqual(r.first, { ok: true, hand: 1, removed: 1, lo: false, hi: true }, JSON.stringify(r)); assert.equal(r.hand2, 1, JSON.stringify(r));
+});
+
+test('K-1114 BS48-X08 Brahma: Flash sends 2 cores and summons a Creation family card from the Removed Zone paying its cost', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const nx = BS.mkInst('BS48-X08'); nx.cores = 2; P.nexus = [nx]; P.spirits = []; P.onceUsed = {};
+    const cr = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && (c.families || []).includes('Creation') && c.cost <= 3);
+    const t = BS.mkInst(cr.id); P.removed = [t]; P.hand = [];
+    const idx = BS.CARDS['BS48-X08'].effects.findIndex(e => e.actions && e.actions[0].do === 'SUMMON_HAND_REMOVED');
+    const ok = await BS.activateFx(P, nx, idx);
+    return { ok, onField: P.spirits.some(s => s.id === cr.id), left: P.removed.length, cores: nx.cores, cr: cr.id }; })()`);
+  assert.equal(r.onField, true, JSON.stringify(r)); assert.equal(r.left, 0, JSON.stringify(r));
+});
+
+test('K-1115 BS49-X09 Krishna: Flash refreshes either the Nexus or an exhausted Armored Dragon Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const nx = BS.mkInst('BS49-X09'); nx.cores = 6; nx.exhausted = true; P.nexus = [nx]; P.onceUsed = {};
+    const ad = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && (c.families || []).includes('Armored Dragon'));
+    const sp = BS.mkInst(ad.id); sp.cores = 2; sp.exhausted = true; P.spirits = [sp];
+    const idx = BS.CARDS['BS49-X09'].effects.findIndex(e => e.actions && e.actions[0].do === 'REFRESH_SELF_OR');
+    const ok = await BS.activateFx(P, nx, idx);
+    return { ok, one: [nx.exhausted, sp.exhausted], cores: nx.cores }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.one.filter(x => !x).length, 1, JSON.stringify(r));
+});
