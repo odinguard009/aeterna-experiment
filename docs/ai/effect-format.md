@@ -438,3 +438,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v400 (Lane K): action `TURN_SUMMON_TAX {n 1-5, match?}` ("during this turn, increase the LV cost of every opposing <match> Spirit/Ultimate/Nexus by +N"; stored as `opp.turnTax`, read by `summonTaxOf`) and `match.colorsGe` (N or more colours, 2-6, e.g. six-color). Card: BS72-021.
 - v401 (Lane K): `LIFE_CORE_SHIELD.coresGe` ("... Spirits with N or more cores on them", alternative to `cores`/`brave`). Card: BS72-024.
 - v402 (Lane K): condition `counterIn: [n, ...]` ("while you have 1/3/5/7 counters": your counter count is one of the listed numbers; pair with `not` for the "otherwise" branch). Card: BS53-045.
+- v403 (Lane K): STATIC flag `SUMMON_EXHAUSTED` (to: opp; every opposing Spirit/Ultimate summoned by the normal summon or by an effect enters exhausted, filtered by `match`; two entries for an OR such as "Ultimate / Cost 3 Spirit"). Card: BS53-026.

@@ -254,3 +254,17 @@ test('K-1019 BS53-045 Past Pom (Primal pool): all Primal Spirits +2000 BP, +5000
   assert.equal(r[1], true, JSON.stringify(r));
   assert.deepEqual(r[0], [[0, 2000], [1, 5000], [2, 2000], [3, 5000], [7, 5000], [8, 2000], ['lv1', 0]], JSON.stringify(r));
 });
+
+test('K-1020 BS53-026 Racket Hummingbird: opposing Ultimates and Cost 3 Spirits are summoned exhausted in the opposing turn only (schema v403 SUMMON_EXHAUSTED)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true;
+    const s3 = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && BS.CARDS[k].cost === 3 && !BS.CARDS[k].effects && BS.CARDS[k].fxComplete !== false);
+    const s4 = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && BS.CARDS[k].cost === 4 && !BS.CARDS[k].effects && BS.CARDS[k].fxComplete !== false);
+    const ult = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Ultimate' && !BS.CARDS[k].effects);
+    const hb = BS.mkInst('BS53-026'); hb.cores = 3; P.spirits = [hb]; const out = [];
+    for (const [act, id] of [[P.key, s3], [O.key, s3], [O.key, s4], [O.key, ult]]) { G.active = act; G.step = 4; O.spirits = []; O.reserve.n = 30; const m = BS.mkInst(id); O.hand = [m];
+      BS.summon(O, m, null, {}); out.push([act === P.key ? 'own' : 'opp', BS.CARDS[id].cost, !!m.exhausted]); }
+    return [out, !BS.CARDS['BS53-026'].partial]; })()`);
+  assert.equal(r[1], true, JSON.stringify(r));
+  assert.deepEqual(r[0].map(x => x[2]), [false, true, false, true], JSON.stringify(r));
+});

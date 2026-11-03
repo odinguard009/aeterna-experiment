@@ -491,6 +491,7 @@ function summon(p, inst, plan, opts) {
     const got = takeCores(p, card.levels[0].cores, inst.uid);
     inst.cores += got.n; if (got.soul) inst.soul = true;
     p.spirits.push(inst);
+    if (flagActive(p, 'SUMMON_EXHAUSTED', inst)) inst.exhausted = true;      // v403 BS53-026: "they are summoned in exhausted state"
   } else p.nexus.push(inst);
   log(`${who(p)} ${isSpiritForm(card) ? (p.cpu ? 'summons' : 'summon') : (p.cpu ? 'deploys' : 'deploy')} ${card.name} (paid ${c}).`);
   checkDepletion(p);
