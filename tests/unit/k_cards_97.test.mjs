@@ -243,3 +243,14 @@ test('K-1018 BS53-071 Binding Noise (Primal pool): heavy exhausts two, then retu
   assert.equal(r.ok, true, JSON.stringify(r)); assert.deepEqual(r.bn, [[2, 3, 0], [3, 1, 2]], JSON.stringify(r));
   assert.deepEqual(r.od, [[3000, true], [3000, false]], JSON.stringify(r));
 });
+
+test('K-1019 BS53-045 Past Pom (Primal pool): all Primal Spirits +2000 BP, +5000 instead with 1/3/5/7 counters (schema v402 counterIn)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4;
+    const v = BS.mkInst('BS53-045'); v.cores = 3; P.spirits = [v]; const out = [];
+    for (const n of [0, 1, 2, 3, 7, 8]) { P.count = n; out.push([n, BS.bpOf(v) - 3000]); }
+    v.cores = 1; P.count = 1; out.push(['lv1', BS.bpOf(v) - 2000]);
+    return [out, !BS.CARDS['BS53-045'].partial]; })()`);
+  assert.equal(r[1], true, JSON.stringify(r));
+  assert.deepEqual(r[0], [[0, 2000], [1, 5000], [2, 2000], [3, 5000], [7, 5000], [8, 2000], ['lv1', 0]], JSON.stringify(r));
+});
