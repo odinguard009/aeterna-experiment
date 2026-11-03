@@ -45991,16 +45991,6 @@
   "M_THEN",
   "M_TRASH_TRIGGER"
  ],
- "BS73-081": [
-  "A_BP_MINUS",
-  "A_SUMMON_FREE",
-  "K_ADVENT",
-  "K_BURST",
-  "K_ULTIMATE",
-  "M_OPTIONAL",
-  "M_THEN",
-  "T_SUMMONED"
- ],
  "BS73-082": [
   "A_BP_PLUS",
   "A_CORE_TO_SELF",

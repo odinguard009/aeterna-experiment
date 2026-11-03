@@ -210,11 +210,24 @@ test('K-1150 BS73-052 Perid: Lv2 When Attacks returns every Yellow Prismwing Mag
   assert.deepEqual(r, { hand: 2, trash: 1 });
 });
 
-test('K-1151 BS73-AX02 Dragonic-Arthur: Cost 5 at five counters; Flash -20000 BP bottoms its target even if unaffected', async () => {
+test('K-1151 BS73-AX02 Dragonic-Arthur: Cost 5 at five counters; Flash -20000 BP bottoms its target even if unaffected (a plain zeroBottom does not)', async () => {
   const { page } = await sharedBoard();
   const r = await page.evaluate(`(async () => { ${pre}
     const m = BS.mkInst('BS73-AX02'); P.hand = [m]; P.count = 4; const a = costAltActive(P, BS.CARDS['BS73-AX02']); P.count = 5; const b = costAltActive(P, BS.CARDS['BS73-AX02']);
-    const t = BS.mkInst(sp(c => c.levels[0].bp > 0 && c.levels[0].bp <= 20000)); t.cores = 1; O.spirits = [t]; const d0 = O.deck.length;
-    await run(m, 'BS73-AX02'); return { a, b, opp: O.spirits.length, deck: O.deck.length - d0, partial: BS.CARDS['BS73-AX02'].partial }; })()`);
-  assert.deepEqual(r, { a: false, b: true, opp: 0, deck: 1, partial: false });
+    const mk = () => { const t = BS.mkInst('BS52-RV004'); t.cores = 3; O.spirits = [t]; O.count = 2; return t; };
+    mk(); const d0 = O.deck.length; const cx = { p: P, opp: O, src: m, ctx: { selfInst: m } };
+    await BS.runActions(cx, { actions: [{ do: 'BP_MINUS', n: 20000, zeroBottom: true }] }); const plain = O.spirits.length;
+    mk(); await run(m, 'BS73-AX02'); return { a, b, plain, opp: O.spirits.length, deck: O.deck.length - d0, partial: BS.CARDS['BS73-AX02'].partial }; })()`);
+  assert.deepEqual(r, { a: false, b: true, plain: 1, opp: 0, deck: 1, partial: false });
+});
+
+test('K-1152 BS73-081 Absorption: Burst after an opposing When Summoned summons a Prismwing free; Flash -10000 BP destroys at 0 and draws', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${pre}
+    const c = BS.CARDS['BS73-081']; const m = BS.mkInst('BS73-081'); const pw = BS.mkInst('BS73-045'); P.hand = [pw]; P.spirits = []; P.reserve.n = 0;
+    await BS.runActions({ p: P, opp: O, src: m, ctx: { selfInst: m } }, { actions: c.burst.actions }); const summoned = P.spirits.length;
+    const t = BS.mkInst(sp(x => x.levels[0].bp > 0 && x.levels[0].bp <= 10000)); t.cores = 1; O.spirits = [t]; P.deck = [BS.mkInst(sp(x => x.cost <= 2))]; P.hand = [];
+    await run(m, 'BS73-081');
+    return { when: c.burst.when, then: c.burst.thenFlash, summoned, opp: O.spirits.length, hand: P.hand.length, partial: c.partial }; })()`);
+  assert.deepEqual(r, { when: 'OPP_SUMMON_ADV_FX', then: true, summoned: 1, opp: 0, hand: 1, partial: false });
 });
