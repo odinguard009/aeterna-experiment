@@ -474,3 +474,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v436 (Lane K, Mitra): `burst.soulAt` (see v435), no other change.
 - v437 (Lane K, Mitra): `RETURN_OPP_SNB.unleash {family, color?}` (Unleash cost: one core from a matching Nexus to this card makes the return ignore immunity); BS74-X15 also uses `SOUL_ENTER upTo:2`. Card: BS74-X15.
 - v438 (Lane K, Kei): `ACTIVATE_SET_BURST {thenSet?}` activates your set Burst at once (timing ignored via force, other Burst conditions apply); `thenSet` lets you set a Burst card from the Hand afterwards. Match key `hasBurst` (already existing) marks "has a Burst effect".
+- v440 (Lane K, Manaka): trigger `OPP_LEFT_BY_BURST` fires for a Burst owner when opposing Spirits/Ultimates left the Field while that Burst resolved (compared Field before/after, any cause during the resolution; ctx.n = how many).

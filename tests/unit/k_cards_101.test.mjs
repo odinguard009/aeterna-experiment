@@ -63,3 +63,38 @@ test('K-1100 BS47-XX03: nothing to activate without a set Burst (the action is n
     return { can: BS.FX_ACTIONS ? !!BS.FX_ACTIONS.ACTIVATE_SET_BURST.can(c, { do: 'ACTIVATE_SET_BURST' }) : null }; })()`);
   assert.equal(r.can, false, JSON.stringify(r));
 });
+
+test('K-1101 BS47-XX02 Grandwalker Manaka: setting a Burst puts a Void core on the Nexus', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4; G.fxBy = P.key;
+    const nx = BS.mkInst('BS47-XX02'); nx.cores = 1; P.nexus = [nx]; P.void = 3;
+    await BS.fireFx(P, 'BURST_SET', null, {});
+    return { cores: nx.cores, partial: BS.CARDS['BS47-XX02'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.cores, 2, JSON.stringify(r));
+});
+
+test('K-1102 BS47-XX02: Flash destroys an opposing Spirit that has a Burst effect or Advent, never a plain one', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const nx = BS.mkInst('BS47-XX02'); nx.cores = 2; P.nexus = [nx]; P.onceUsed = {}; P.spirits = [];
+    const plain = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].burst && !BS.CARDS[k].token && !(BS.CARDS[k].keywords || []).includes('Advent') && !(BS.CARDS[k].effects || []).some(e => e.trigger === 'ADVENT'));
+    const pl = BS.mkInst(plain); pl.cores = 1; O.spirits = [pl];
+    const idx = BS.CARDS['BS47-XX02'].effects.findIndex(e => e.trigger === 'ACTIVATE');
+    const okPlain = await BS.activateFx(P, nx, idx); const plainLeft = O.spirits.includes(pl);
+    const bs = BS.mkInst('BS18-X012A'); bs.cores = 1; O.spirits = [pl, bs]; nx.cores = 2; P.onceUsed = {}; nx.exhausted = false;
+    const ok = await BS.activateFx(P, nx, idx);
+    return { okPlain, plainLeft, ok, burstGone: !O.spirits.includes(bs), plainStays: O.spirits.includes(pl), cores: nx.cores }; })()`);
+  assert.equal(r.plainLeft, true, JSON.stringify(r)); assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.burstGone, true, JSON.stringify(r)); assert.equal(r.plainStays, true, JSON.stringify(r));
+});
+
+test('K-1103 BS47-XX02 Lv2: an opposing Spirit that leaves due to your Burst sends one opposing Life to the Reserve, once per turn', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const nx = BS.mkInst('BS47-XX02'); nx.cores = 6; P.nexus = [nx]; P.onceUsed = {}; P.spirits = [];
+    const run = async () => { const v = BS.mkInst('BS18-X012A'); v.cores = 1; v.bpMod = -20000; O.spirits = [v]; O.life = 5; const b = BS.mkInst('BS15-074'); P.burst = b; b.mirage = false;
+      const l0 = O.reserve.n; await BS.maybeBurst(P, 'LIFE_DECREASE', {}); return { gone: !O.spirits.includes(v), life: O.life, res: O.reserve.n - l0 }; };
+    const first = await run(); const second = await run();
+    nx.cores = 1; P.onceUsed = {}; G.turnNo += 1; const lv1 = await run();
+    return { first, second, lv1 }; })()`);
+  assert.equal(r.first.gone, true, JSON.stringify(r)); assert.equal(r.first.life, 4, JSON.stringify(r)); assert.equal(r.second.life, 5, JSON.stringify(r)); assert.equal(r.lv1.life, 5, JSON.stringify(r));
+});

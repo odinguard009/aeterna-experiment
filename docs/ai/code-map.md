@@ -89,7 +89,7 @@ coresFromSpirits, canPursuit
 ## packages/engine/src/02w-effects-indra.js (81 lines, ~2k tokens)
 symFixedOnSummon, fxLockBusy, fxLocked, leaveSummonOffer, mirageNexusOf, mirageShield, mirageCoreSafe, bounceLocked, soulDeployOffer, soulEnterHook, nexusShielded, nexusVoided, mirageSummonOffer
 
-## packages/engine/src/02x-effects-soul-magic.js (130 lines, ~3.6k tokens)
+## packages/engine/src/02x-effects-soul-magic.js (132 lines, ~3.6k tokens)
 magicFromSoul, magicSoulSrc, fromCols, soulBurstCheck
 
 ## packages/engine/src/03-imported-cards.js (254 lines, ~7.4k tokens) — IMPORTED CARD DATA
@@ -116,7 +116,7 @@ fieldList, isGW, freeCores, freeTotal, totalCores, reserveTotal, minCores, isSpi
 ## packages/engine/src/07-turn.js (83 lines, ~1.6k tokens) — TURN FLOW
 isMainStep, revertNexusSpirits, setStep, beginTurn, endStep, win, matchLoop, checkInvariants
 
-## packages/engine/src/08-battle.js (213 lines, ~5.4k tokens) — BATTLE
+## packages/engine/src/08-battle.js (215 lines, ~5.4k tokens) — BATTLE
 successor, flashTiming, battleEndAttack, attackStepOver, doBattle, doBattleInner, maybeBurst, maybeBurst1, burstFlash, flushBursts
 
 ## packages/engine/src/09-cpu.js (174 lines, ~3.1k tokens) — CPU

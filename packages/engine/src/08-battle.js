@@ -129,6 +129,7 @@ async function maybeBurst1(owner, trigger, ctx) {
   log(`${who(owner)} ${owner.cpu ? 'activates' : 'activate'} Burst: ${CARDS[b.id].name}!`);
   io.view({ type: 'board' });
   G.resolving = (G.resolving || 0) + 1;
+  const oppBefore = opp.spirits.filter(x => CARDS[x.id].type !== 'Nexus');      // v440 OPP_LEFT_BY_BURST
   try {
     for (const a of def.actions) {
       if (G.over) break;
@@ -137,6 +138,7 @@ async function maybeBurst1(owner, trigger, ctx) {
       await FX_ACTIONS[a.do].run(c, a);
       io.view({ type: 'board' });
     }
+    const leftN = oppBefore.filter(x => !opp.spirits.includes(x)).length; if (leftN && !G.over) await fireFx(owner, 'OPP_LEFT_BY_BURST', null, { n: leftN });
     if (def.thenFlash && !G.over) await burstFlash(owner, b);
     if (def.thenMain && !G.over) await burstFlash(owner, b, 'main');
   } finally {

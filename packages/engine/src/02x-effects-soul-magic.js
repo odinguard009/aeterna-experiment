@@ -82,6 +82,8 @@ async function soulBurstCheck(p) {
     if (await maybeBurst1(p, 'SOUL_BURST', soul ? { force: true, fromSoul: x } : { force: true })) { p.sbTurn[nm] = G.turnNo; break; }
   }
 }
+/* v440 trigger OPP_LEFT_BY_BURST (Grandwalker Manaka): maybeBurst1 (08) fires it for the Burst's owner when opposing Spirits/Ultimates left the Field while that Burst resolved (ctx.n) */
+FX_TRIGGER_TEXT.OPP_LEFT_BY_BURST = 'When an opposing Spirit/Ultimate leaves the Field due to your Burst effect';
 Object.assign(FX_ACTIONS, {
   NEXUS_CORE_TO_RESERVE: { chk: a => typeof a.family === 'string' && a.family.length > 0 && Object.keys(a).every(k => ['do', 'if', 'family'].includes(k)),
     txt: a => `send a core from any of your "${a.family}" Nexus to the Reserve`,
