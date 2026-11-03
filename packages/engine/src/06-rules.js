@@ -82,7 +82,7 @@ function lvIndex(i) {
   if (card.trueRelease && i.soul && L.length > 1 && k < 1) k = 1;   // v0.66 True Release (Standard CR 12-2-1-1): the Soul Core alone fulfils LV2 (a rule, not an effect)
   return k;
 }
-function bpOf(i) { const k = lvIndex(i); if (k < 0) return 0; const b = i.asSpirit ? (k ? 7000 : 5000) : CARDS[i.id].levels[k].bp; return b == null ? 0 : Math.max(0, b + (i.bpMod || 0) + bpBattle(i) + staticBp(i) + braveBp(i) + (ocActive(i) ? CARDS[i.id].overCount.bp : 0)); }
+function bpOf(i) { const k = lvIndex(i); if (k < 0) return 0; const b = i.asSpirit ? (i.gpBp || (k ? 7000 : 5000)) : CARDS[i.id].levels[k].bp; return b == null ? 0 : Math.max(0, b + (i.bpMod || 0) + bpBattle(i) + staticBp(i) + braveBp(i) + (ocActive(i) ? CARDS[i.id].overCount.bp : 0)); }
 /* Over Count (Eternal manual p. 60): active while the owner's Count meets the card's OC condition, whatever the Spirit's Lv; adds its BP like a combined Brave */
 function ocActive(i) { const oc = CARDS[i.id] && CARDS[i.id].overCount; if (!oc || !G) return false; const o = ownerOf(i); return !!o && o.count >= oc.count; }
 /* Brave (manual p. 34-36): a combined Brave (inst.brave) adds its BP+ and symbol to the Spirit; one Brave per Spirit; no cost to combine or separate */
@@ -386,7 +386,7 @@ function leaveEvent(p, s, byOpp, byOppFx) {
   G.evQ.push({ type: 'LEAVES', key: p.key, inst: s, byOppFx: !!byOppFx });
 }
 function removeSpirit(p, s, why, byOpponent) {
-  if (why === 'destroyed' && p.spirits.includes(s) && flagActive(p, 'NO_DESTROY', s)) { log(`${CARDS[s.id].name} cannot be destroyed.`); return; }      // v353 STATIC NO_DESTROY (any cause, battle included)
+  if (why === 'destroyed' && p.spirits.includes(s) && (flagActive(p, 'NO_DESTROY', s) || gpShield(p, s, byOpponent))) { log(`${CARDS[s.id].name} cannot be destroyed.`); return; }      // v353 STATIC NO_DESTROY (any cause, battle included)
   if (why === 'destroyed' && byOpponent !== 'battle' && G && G.fxBy && G.fxBy !== p.key && p.spirits.includes(s) && flagActive(p, 'NO_DESTROY_OPP', s)) { log(`${CARDS[s.id].name} cannot be destroyed by opposing effects.`); return; }      // v252 STATIC NO_DESTROY_OPP
   if (why === 'destroyed' && byOpponent !== 'battle' && G && G.fxBy && G.fxBy !== p.key && p.spirits.includes(s) && flagActive(p, 'REMAIN_DESTROY', s)) { s.exhausted = true; log(`${CARDS[s.id].name} remains on the Field, exhausted.`); return; }      // v404 "can remain on the Field, exhausted"
   if ((why === 'destroyed' || why === 'depleted') && leaveHook(p, s, why, byOpponent === 'battle')) return;      // v422

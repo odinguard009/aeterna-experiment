@@ -131,7 +131,7 @@ Object.assign(FX_ACTIONS, {
   DECK_TO_TRASH_CORES: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 7 && hasMatch(a.match), txt: a => `send ${a.n} cards from your Deck to the Trash, +1 core to this card for each matching card among them`,
     can: c => c.p.deck.length > 0,
     run: async (c, a) => {
-      if (a.fresh && c.p.nexus.some(x => x !== c.src && CARDS[x.id].name === CARDS[c.src.id].name)) { c.ctx.did = false; return; }      // v420 Oracle Core Charge: only when no same-named Grandwalker Nexus is controlled
+      if (a.fresh && c.p.nexus.concat(c.p.spirits.filter(x => x.gpBp)).some(x => x !== c.src && CARDS[x.id].name === CARDS[c.src.id].name)) { c.ctx.did = false; return; }      // v420 Oracle Core Charge: only when no same-named Grandwalker Nexus is controlled
       const top = c.p.deck.splice(0, Math.min(a.n, c.p.deck.length)); let k = 0;
       for (const x of top) { c.p.trash.push(x); if (fxMatch(CARDS[x.id], a.match)) k++; }
       log(`${CARDS[c.src.id].name}: ${top.length} card${top.length === 1 ? '' : 's'} from the Deck go to the Trash.`);

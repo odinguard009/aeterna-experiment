@@ -477,3 +477,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v440 (Lane K, Manaka): trigger `OPP_LEFT_BY_BURST` fires for a Burst owner when opposing Spirits/Ultimates left the Field while that Burst resolved (compared Field before/after, any cause during the resolution; ctx.n = how many).
 - v441 (Lane K, Alex): action `PREADVENT_REFRESH` (Hand card under your Spirit with Advent as a pre-Advent card, refresh it); STATIC flag `DRAW_ONE` (while active, any draw outside the Draw Step draws at most one card, both players).
 - v442 (Lane K, Alex-Lolo): `DECK_TO_TRASH_CORES.pickToHand` (add one of the cards just sent to the Trash to the Hand); `DEPLOY_TRASH.ownNexusLe` (only while you control that many or fewer Grandwalker Nexuses).
+- v443 (Lane K, Alex BS50-CP01): actions `GRANDPHOSIS {bp}` (Nexus also treated as a Spirit for the turn, `gpBp`, only destroyed by Grandwalker Nexus sources) and `REFRESH_GP_NEXUS {exceptSelfName}`.

@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 6189,
+  "cards": 6188,
   "per_saga": {
    "1": 458,
    "2": 251,
@@ -11,7 +11,7 @@
    "7": 456,
    "8": 428,
    "9": 456,
-   "10": 484,
+   "10": 483,
    "11": 274,
    "12": 303,
    "13": 387,
@@ -22,18 +22,18 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2517,
-  "nexus_levels_added": 658,
+  "skipped_curated": 2518,
+  "nexus_levels_added": 657,
   "nexus_levels_missing": 43,
   "merged": 105,
-  "image_problems": 391,
+  "image_problems": 390,
   "brave_unparsed": 169,
   "ut_lines_added": 106,
   "odd_reduction": 790,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
   "number_conflicts": 3,
-  "without_image": 389
+  "without_image": 388
  },
  "tokens": [
   "BS73-T001",
@@ -1578,6 +1578,7 @@
   "BS50-040",
   "BS50-042",
   "BS50-050",
+  "BS50-CP01",
   "BS50-RV006",
   "BS51-007",
   "BS51-050",
@@ -3049,7 +3050,6 @@
   "BS50-X12",
   "BS50-X13",
   "BS50-XX02",
-  "BS50-CP01",
   "BS51-084",
   "BS51-085",
   "BS51-X08",
@@ -4986,11 +4986,6 @@
    "id": "BS50-XX02",
    "name": "Grandwalker Zeus-Lolo",
    "problem": "no image (near: The Grandwalker Zeus-Lolo.png)"
-  },
-  {
-   "id": "BS50-CP01",
-   "name": "Soaring Grandwalker Alex",
-   "problem": "no image (near: The SoaringGrandwalker Alex.png)"
   },
   {
    "id": "BS51-008",

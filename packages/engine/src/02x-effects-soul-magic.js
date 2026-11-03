@@ -85,6 +85,12 @@ async function soulBurstCheck(p) {
 /* v440 trigger OPP_LEFT_BY_BURST (Grandwalker Manaka): maybeBurst1 (08) fires it for the Burst's owner when opposing Spirits/Ultimates left the Field while that Burst resolved (ctx.n) */
 FX_TRIGGER_TEXT.OPP_LEFT_BY_BURST = 'When an opposing Spirit/Ultimate leaves the Field due to your Burst effect';
 /* v441 STATIC DRAW_ONE (Grandwalker Alex): "when either player draws via an effect, they can only draw one card" (any draw outside the Draw Step); read by draw() */
+/* v442 Grandphosis (Grandwalker Nexus): the Nexus is also treated as a Spirit for the rest of the turn (moved into p.spirits with gpBp, its Nexus effects stay on), "can only be destroyed by Grandwalker Nexuses".
+   House reading: by effects only when the source is a Grandwalker Nexus; in battle only when the opposing fighter is a Nexus (a Grandphosis Grandwalker Nexus). */
+const isGwNexus = x => !!x && CARDS[x.id].type === 'Nexus' && (CARDS[x.id].families || []).includes('Grandwalker');
+const gwNexusCount = p => p.nexus.concat(p.spirits.filter(x => x.gpBp)).filter(isGwNexus).length;
+const gpShield = (p, s, by) => !!s.gpBp && by !== 'battle' && !isGwNexus(G && G.fxSrc);
+const gpBattleSafe = (s, foe) => !!s.gpBp && !isGwNexus(foe);
 const drawOneOnly = () => !!G && [G.p.player, G.p.opponent].some(o => fieldList(o).some(f => flagActive(o, 'DRAW_ONE', f)));
 Object.assign(FX_ACTIONS, {
   NEXUS_CORE_TO_RESERVE: { chk: a => typeof a.family === 'string' && a.family.length > 0 && Object.keys(a).every(k => ['do', 'if', 'family'].includes(k)),
@@ -107,6 +113,23 @@ Object.assign(FX_ACTIONS, {
       const L = c.p.hand.filter(h => h !== c.src && CARDS[h.id].burst); if (!L.length) return;
       const h = c.p.cpu ? L.slice().sort((x, y) => CARDS[x.id].cost - CARDS[y.id].cost)[0] : await chooseCard(c, L, `✨ ${_pn(c)}`, 'You can set a card with Burst effect from your Hand.', true);
       if (!h) return; setBurst(c.p, h, false); io.view({ type: 'board' }); await fireBurstSet(c.p);
+    } },
+  /* v442 GRANDPHOSIS {bp}: "During this turn, this Nexus is also treated as a Spirit with LV1/LV2 <bp> BP, and can only be destroyed by Grandwalker Nexuses" (cost: nexusToVoid on the ability) */
+  GRANDPHOSIS: { chk: a => Number.isInteger(a.bp) && a.bp > 0 && Object.keys(a).every(k => ['do', 'bp', 'if'].includes(k)), txt: a => `during this turn, this Nexus is also treated as a Spirit with ${a.bp} BP and can only be destroyed by Grandwalker Nexuses`,
+    can: c => c.p.nexus.includes(c.src) && c.src.cores > 0,
+    run: async (c, a) => {
+      const t = c.src; if (!c.p.nexus.includes(t)) { c.ctx.did = false; return; }
+      c.p.nexus.splice(c.p.nexus.indexOf(t), 1); c.p.spirits.push(t); t.asSpirit = true; t.gpBp = a.bp; t.gp = G.turnNo; c.ctx.did = true;
+      log(`${CARDS[t.id].name} enters the Grandphosis state (treated as a Spirit this turn).`); io.view({ type: 'board' });
+    } },
+  /* v442 REFRESH_GP_NEXUS: "Besides any exactly-named <this card>, refresh a Grandphosis state Grandwalker Nexus you control" */
+  REFRESH_GP_NEXUS: { chk: a => Object.keys(a).every(k => ['do', 'if', 'exceptSelfName'].includes(k)), txt: () => 'refresh a Grandwalker Nexus of yours in the Grandphosis state (besides one with this card name)',
+    cands: (c, a) => c.p.spirits.filter(x => x.gpBp && x.exhausted && isGwNexus(x) && !(a.exceptSelfName && CARDS[x.id].name === CARDS[c.src.id].name)),
+    can: (c, a) => FX_ACTIONS.REFRESH_GP_NEXUS.cands(c, a).length > 0,
+    run: async (c, a) => {
+      const L = FX_ACTIONS.REFRESH_GP_NEXUS.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
+      const t = L.length === 1 || c.p.cpu ? L[0] : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap your Grandwalker Nexus in the Grandphosis state to refresh it.`); if (!t) { c.ctx.did = false; return; }
+      refreshOne(t); log(`${CARDS[t.id].name} is refreshed.`); await fireFx(c.p, 'REFRESHED', t, {}); io.view({ type: 'board' });
     } },
   /* v441 PREADVENT_REFRESH: "by adding a card from your Hand as a pre-Advent card underneath a Spirit with Advent you control, refresh that Spirit" (Grandwalker Alex) */
   PREADVENT_REFRESH: { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => 'by adding a card from your Hand as a pre-Advent card underneath one of your Spirits with Advent, refresh that Spirit',

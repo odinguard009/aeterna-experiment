@@ -2,7 +2,7 @@
    TURN FLOW
    --------------------------------------------------------------------- */
 const isMainStep = () => !!G && (G.step === 4 || (G.format === 'standard' && G.step === 6));   // moved from 11-human.js (v0.82.0)
-function revertNexusSpirits() { for (const k of ['player', 'opponent']) { const q = G.p[k]; for (const i of q.spirits.filter(x => x.asSpirit)) { delete i.asSpirit; q.spirits.splice(q.spirits.indexOf(i), 1); q.nexus.push(i); } } }      // v154
+function revertNexusSpirits() { for (const k of ['player', 'opponent']) { const q = G.p[k]; for (const i of q.spirits.filter(x => x.asSpirit && !(x.gpBp && x.gp === G.turnNo))) { delete i.asSpirit; delete i.gpBp; delete i.gp; q.spirits.splice(q.spirits.indexOf(i), 1); q.nexus.push(i); } } }      // v154
 function setStep(i) { revertNexusSpirits(); G.step = i; checkDepletion(G.p.player); checkDepletion(G.p.opponent); io.view({ type: 'board' }); }
 async function beginTurn(key) {
   const p = G.p[key];

@@ -89,8 +89,8 @@ coresFromSpirits, canPursuit
 ## packages/engine/src/02w-effects-indra.js (81 lines, ~2k tokens)
 symFixedOnSummon, fxLockBusy, fxLocked, leaveSummonOffer, mirageNexusOf, mirageShield, mirageCoreSafe, bounceLocked, soulDeployOffer, soulEnterHook, nexusShielded, nexusVoided, mirageSummonOffer
 
-## packages/engine/src/02x-effects-soul-magic.js (148 lines, ~4.1k tokens)
-magicFromSoul, magicSoulSrc, fromCols, soulBurstCheck, drawOneOnly
+## packages/engine/src/02x-effects-soul-magic.js (171 lines, ~4.8k tokens)
+magicFromSoul, magicSoulSrc, fromCols, soulBurstCheck, isGwNexus, gwNexusCount, gpShield, gpBattleSafe, drawOneOnly
 
 ## packages/engine/src/03-imported-cards.js (254 lines, ~7.4k tokens) — IMPORTED CARD DATA
 COLORS, BUILTIN_IDS, CARDS_KEY, IMPORTED, CARDS_VER, parseLevels, parseMagicOf, parseCard, registerImported, saveImported, importCards, clearImported, PACK_IDS, registerPack, TOKEN_IDS, registerTokens

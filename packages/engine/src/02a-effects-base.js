@@ -29,7 +29,7 @@ const FX_TRIGGER_TEXT = { BURST_SET: 'When you set a Burst', OPP_BURST_SET: 'Whe
 const BR_IDX = 200, GRANT_IDX = 300;
 function fxEntries(f) {
   const card = CARDS[f.id], out = [];
-  if (f.asSpirit) return out;      // v154 NEXUS_AS_SPIRIT: a Nexus treated as a Spirit activates no Nexus effects
+  if (f.asSpirit && !f.gpBp) return out;      // v154 NEXUS_AS_SPIRIT: a Nexus treated as a Spirit activates no Nexus effects
   (card.effects || []).forEach((e, idx) => { if (!e.nexusBrave && (!e.braved || f.brave)) out.push({ e, idx }); });
   if (f.brave && card.type !== 'Nexus' && CARDS[f.brave.id]) (CARDS[f.brave.id].effects || []).forEach((e, j) => { if (e.braved && !e.nexusBrave) out.push({ e, idx: BR_IDX + j, fromBrave: true }); });
   if (f.grantFx) f.grantFx.forEach((g, j) => { if (G && (g.until === 'battle' ? g.battleNo === G.battleNo : g.turnNo === G.turnNo)) out.push({ e: g.e, idx: GRANT_IDX + j }); });      // v0.205 GRANT_FX: a temporarily granted effect (this turn / this battle)

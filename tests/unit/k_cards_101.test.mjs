@@ -154,3 +154,43 @@ test('K-1108 BS51-XX03: Main deploys a Grandwalker Nexus from the Trash only whi
     return { ok, deployed, three: P.nexus.length, t2in: P.trash.includes(t2), ok3 }; })()`);
   assert.equal(r.deployed, true, JSON.stringify(r)); assert.equal(r.t2in, true, JSON.stringify(r)); assert.equal(r.three, 3, JSON.stringify(r));
 });
+
+test('K-1109 BS50-CP01 Grandphosis: Flash pays 3 cores, the Nexus is also a 3000 BP Spirit and stays so for the turn, then reverts', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const nx = BS.mkInst('BS50-CP01'); nx.cores = 5; P.nexus = [nx]; P.spirits = []; P.onceUsed = {};
+    const idx = BS.CARDS['BS50-CP01'].effects.findIndex(e => e.trigger === 'ACTIVATE');
+    const ok = await BS.activateFx(P, nx, idx);
+    const asSp = P.spirits.includes(nx), bp = BS.bpOf ? BS.bpOf(nx) : null, cores = nx.cores;
+    G.step = 6; const stillSp = P.spirits.includes(nx) || (BS.setStep && (BS.setStep(7), P.spirits.includes(nx)));
+    return { ok, asSp, bp, cores, stillSp, partial: BS.CARDS['BS50-CP01'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.asSp, true, JSON.stringify(r)); assert.equal(r.cores, 2, JSON.stringify(r)); assert.equal(r.stillSp, true, JSON.stringify(r));
+  if (r.bp != null) assert.equal(r.bp, 3000, JSON.stringify(r));
+});
+
+test('K-1110 BS50-CP01: a Grandphosis Nexus is destroyed by a Grandwalker Nexus effect only, and a second Nexus refreshes it', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const nx = BS.mkInst('BS50-CP01'); nx.cores = 5; P.nexus = [nx]; P.spirits = []; P.onceUsed = {};
+    await BS.FX_ACTIONS.GRANDPHOSIS.run({ p: P, opp: O, src: nx, ctx: {} }, { do: 'GRANDPHOSIS', bp: 3000 });
+    const plain = BS.mkInst('BS18-X012A'); G.fxSrc = plain; G.fxBy = O.key; BS.removeSpirit(P, nx, 'destroyed', false); const survivedPlain = P.spirits.includes(nx);
+    const gw = BS.mkInst('BS47-XX03'); G.fxSrc = gw; BS.removeSpirit(P, nx, 'destroyed', false); const diedGw = !P.spirits.includes(nx);
+    G.fxSrc = null; G.fxBy = P.key;
+    const nx2 = BS.mkInst('BS51-XX03'); nx2.cores = 3; nx2.gpBp = 3000; nx2.gp = G.turnNo; nx2.asSpirit = true; nx2.exhausted = true; P.spirits = [nx2];
+    const c = { p: P, opp: O, src: nx, ctx: {} };
+    const canSelfName = BS.FX_ACTIONS.REFRESH_GP_NEXUS.can(c, { do: 'REFRESH_GP_NEXUS', exceptSelfName: true });
+    await BS.FX_ACTIONS.REFRESH_GP_NEXUS.run(c, { do: 'REFRESH_GP_NEXUS', exceptSelfName: true });
+    return { survivedPlain, diedGw, canSelfName, refreshed: !nx2.exhausted }; })()`);
+  assert.equal(r.survivedPlain, true, JSON.stringify(r)); assert.equal(r.diedGw, true, JSON.stringify(r)); assert.equal(r.refreshed, true, JSON.stringify(r));
+});
+
+test('K-1111 BS50-CP01: the Grandphosis state ends with the turn (Nexus back on the Field with its cores) and Core Charge needs a Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const nx = BS.mkInst('BS50-CP01'); nx.cores = 4; P.nexus = [nx]; P.spirits = [];
+    await BS.FX_ACTIONS.GRANDPHOSIS.run({ p: P, opp: O, src: nx, ctx: {} }, { do: 'GRANDPHOSIS', bp: 3000 });
+    BS.setStep(6); const same = P.spirits.includes(nx);
+    G.turnNo += 1; BS.setStep(1);
+    return { same, back: P.nexus.includes(nx) && !P.spirits.includes(nx), cores: nx.cores, flags: [nx.asSpirit, nx.gpBp, nx.gp] }; })()`);
+  assert.equal(r.same, true, JSON.stringify(r)); assert.equal(r.back, true, JSON.stringify(r)); assert.equal(r.cores, 4, JSON.stringify(r));
+});
