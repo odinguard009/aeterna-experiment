@@ -177,7 +177,7 @@ function fxIf(owner, opp, c, ctx) {
   if (c.viaLegacy != null && !!(ctx && ctx.viaLegacy) !== c.viaLegacy) return false;
   if (c.legacyGe != null && !((ctx && ctx.selfInst && (ctx.selfInst.legacyN || 0)) >= c.legacyGe)) return false;      // v201 "when N or more cards were banished via this Legacy"
   if (c.viaMagirrate != null && !!(ctx && ctx.viaMagirrate) !== c.viaMagirrate) return false;      // v205 "if this card was used via Magirrate"
-  if (c.blockerKeyword != null && !(G && G.blocker && fieldList(owner).includes(G.blocker) && cardHasKeyword(CARDS[G.blocker.id], c.blockerKeyword))) return false;      // v205 Magirrate blocking; v0.195 Legacy summon
+  if (c.blockerKeyword != null && !(G && G.blocker && fieldList(owner).includes(G.blocker) && cardHasKeyword(CARDS[G.blocker.id], c.blockerKeyword))) return false;      // v205 Magirrate blocking; v0.195 "summoned using Legacy"
   if (c.viaHS != null && !!(ctx && ctx.viaHS) !== c.viaHS) return false;      // v0.194 Rush chain: only when this Spirit was summoned with High Speed
   if (c.pickedCostIn != null && !(ctx && ctx.picked && c.pickedCostIn.includes(CARDS[ctx.picked.id].cost))) return false;      // v0.196 "If that's Cost 2/4/6/8" (the card revealed by REVEAL_PICK peek)
   if (c.pickedFamily != null && !(ctx && ctx.picked && (CARDS[ctx.picked.id].families || []).includes(c.pickedFamily))) return false;      // v0.205 "if the discarded card has the X family"
