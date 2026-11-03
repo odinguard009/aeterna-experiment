@@ -235,3 +235,16 @@ test('K-1044 BS55-061 Six Heaven Golem: LV2 attack/destroyed deploys a named Nex
     return { nex: P.nexus.length, trash: P.trash.length, two: eff.length, ok: !BS.CARDS['BS55-061'].partial }; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.two, 2, JSON.stringify(r)); assert.equal(r.nex, 1, JSON.stringify(r)); assert.equal(r.trash, 0, JSON.stringify(r));
 });
+
+test('K-1045 BS55-036 Jumoku-Ryoken: a Cost 5+ Spiritual Beast/Plant Spirit summon lets it enter from the Hand free', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const ok5 = k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && BS.CARDS[k].cost >= 5 && (BS.CARDS[k].families || []).some(f => f === 'Plant Spirit' || f === 'Spiritual Beast');
+    const bad = k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && BS.CARDS[k].cost <= 4 && !(BS.CARDS[k].families || []).some(f => f === 'Plant Spirit' || f === 'Spiritual Beast');
+    const a = BS.mkInst(Object.keys(BS.CARDS).find(ok5)), b = BS.mkInst(Object.keys(BS.CARDS).find(bad)); P.spirits = [a, b]; O.spirits = [];
+    P.reserve.n = 0; P.hand = [BS.mkInst('BS55-036')]; await BS.fireFx(P, 'ALLY_SUMMONED', null, { subject: b });
+    const noWrong = P.hand.length === 1;
+    await BS.fireFx(P, 'ALLY_SUMMONED', null, { subject: a });
+    return { noWrong, hand: P.hand.length, sp: P.spirits.some(s => s.id === 'BS55-036'), ok: !BS.CARDS['BS55-036'].partial }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.noWrong, true, JSON.stringify(r)); assert.equal(r.sp, true, JSON.stringify(r));
+});

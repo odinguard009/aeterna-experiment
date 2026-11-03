@@ -289,7 +289,7 @@ function parseEffects(arr) {
         if (e.zeroBp === true) o.zeroBp = true;
         if (e.bySrc != null) { const b = e.bySrc; if (!b || typeof b !== 'object' || (b.type != null && !['Spirit', 'Magic'].includes(b.type)) || (b.family != null && !(Array.isArray(b.family) && b.family.length && b.family.length <= 4 && b.family.every(x => typeof x === 'string'))) || (b.type == null && b.family == null)) return { error: '"bySrc" must look like {"type":"Spirit","family":["X"]}' }; o.bySrc = { type: b.type, family: b.family }; }
       }
-      if (e.zone === 'hand' && (e.trigger === 'ALLY_BLOCKED' || e.trigger === 'SILVER_WHEEL' || e.trigger === 'LIFE_GUARD')) o.zone = 'hand';
+      if (e.zone === 'hand' && (e.trigger === 'ALLY_BLOCKED' || e.trigger === 'ALLY_SUMMONED' || e.trigger === 'SILVER_WHEEL' || e.trigger === 'LIFE_GUARD')) o.zone = 'hand';
       if (e.zone === 'trash' && e.trigger === 'LIFE_GUARD') o.zone = 'trash';
       if (e.zone === 'trash' && (e.trigger === 'ALLY_DIED' || e.trigger === 'EXHAUSTED_FX')) o.zone = 'trash';      // v155 the effect works from the Trash ("you can return this card from the Trash")
       if (e.trigger === 'BP_REACHED') { if (!(Number.isInteger(e.bpGe) && e.bpGe >= 1000 && e.bpGe <= 100000)) return { error: 'BP_REACHED needs bpGe (1000-100000)' }; o.bpGe = e.bpGe; if (e.self === true) o.self = true; if (e.match != null) { if (!hasMatch(e.match)) return { error: 'BP_REACHED "match" must look like {"team":"GAIM"}' }; o.match = e.match; } }      // v217
