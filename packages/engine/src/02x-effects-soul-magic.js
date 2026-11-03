@@ -370,3 +370,39 @@ function handUpLocked(key) {
     }
   };
 })();
+
+/* v459 REVEAL_FLASH {n, match, rest:'bottom', free?:true | pay1?:true, max?}: "reveal n cards from your decktop; among them you can use the Flash effect of <match> Magic cards
+   (free: without paying the cost; pay1: paying one cost instead). Return the remaining cards to the deckbottom" (Amber BS73-045, Moo BS74-056).
+   FIRE_MANIFEST: activate this Spirit's own (When Manifests) effects again (Amber Lv2-3 Flash). */
+FX_ACTIONS.REVEAL_FLASH = {
+  chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 6 && hasMatch(a.match) && a.rest === 'bottom' && (a.free === true) !== (a.pay1 === true) && (a.max == null || (Number.isInteger(a.max) && a.max >= 1 && a.max <= 6)),
+  txt: a => `reveal ${a.n} cards from your decktop, use the Flash effect of matching Magic cards among them ${a.free ? 'without paying the cost' : 'paying one cost'}, return the rest to the deckbottom`,
+  can: c => c.p.deck.length > 0,
+  run: async (c, a) => {
+    const nm = CARDS[c.src.id].name, top = c.p.deck.splice(0, Math.min(a.n, c.p.deck.length)); c.p.revealed = top;
+    log(`${nm}: ${who(c.p)} ${c.p.cpu ? 'reveals' : 'reveal'} ${top.map(x => CARDS[x.id].name).join(', ') || 'nothing'}.`); io.view({ type: 'board' });
+    await revealedFx(c.p);
+    let used = 0;
+    for (let j = 0; j < (a.max || 1) && !G.over; j++) {
+      const L = c.p.revealed.filter(x => CARDS[x.id].type === 'Magic' && fxMatch(CARDS[x.id], a.match) && magicUsable(c.p, x, 'flash', true) && (a.free || coresAvailable(c.p) >= 1));
+      if (!L.length) break;
+      let ch;
+      if (c.p.cpu) {
+        const best = L.map(h => ({ h, tg: magicTargets(c.p, h, 'flash') })).filter(x => x.tg === null || x.tg.length).sort((x, y) => CARDS[y.h.id].cost - CARDS[x.h.id].cost)[0];
+        if (!best) break;
+        ch = { inst: best.h, target: best.tg && best.tg.slice().sort((x, y) => bpOf(y) - bpOf(x))[0] || null, plan: null, ctx: 'flash', free: true };
+      } else {
+        const u = await chooseCard(c, L, `✨ ${nm}`, `Use the Flash effect of a revealed card${a.free ? ' (no cost)' : ' (pay one cost)'}?`, true); if (!u) break;
+        ch = await prepareHumanMagic(c.p, u, 'flash', true); if (!ch) break;
+      }
+      if (a.pay1) { payCost(c.p, 1, !c.p.cpu && reserveTotal(c.p) < 1 ? await askPayment(CARDS[ch.inst.id], 1, 0) : null); }
+      removeFrom(c.p.revealed, ch.inst); used++;
+      await castMagic(c.p, ch); io.view({ type: 'board' });
+    }
+    for (const x of c.p.revealed.splice(0)) c.p.deck.push(x);
+    c.ctx.did = used > 0;
+  }
+};
+FX_ACTIONS.FIRE_MANIFEST = { chk: () => true, txt: () => 'activate this Spirit\'s (When Manifests) effect',
+  can: c => !!c.src && fieldList(c.p).includes(c.src),
+  run: async c => { if (!fieldList(c.p).includes(c.src)) { c.ctx.did = false; return; } log(`${CARDS[c.src.id].name}: its (When Manifests) effect activates.`); await fireFx(c.p, 'MANIFEST', c.src); } };

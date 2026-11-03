@@ -112,3 +112,31 @@ test('K-1141 BS74-055 Aquamarine: returned from the Trash by a Yellow-only effec
     return { opp: O.spirits.length, deck: O.deck.length - d0, handHas: P.hand.includes(aq), onField: P.spirits.includes(aq) }; })()`);
   assert.equal(r.opp, 0, JSON.stringify(r)); assert.equal(r.deck, 1, JSON.stringify(r));
 });
+
+test('K-1142 BS73-045 Amber: When Manifests reveals three, pays one cost for a Prismwing Magic Flash, returns the rest to the deckbottom', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${pre}
+    const s = BS.mkInst('BS73-045'); s.cores = 2; s.exhausted = true; P.spirits = [s]; P.hand = []; P.reserve.n = 3;
+    const filler = sp(c => c.cost <= 2);
+    const mag = BS.mkInst('BS73-080'); const f1 = BS.mkInst(filler), f2 = BS.mkInst(filler);
+    P.deck = [mag, f1, f2, BS.mkInst(filler)];
+    const e = BS.CARDS['BS73-045'].effects.find(x => x.trigger === 'MANIFEST');
+    await BS.runActions({ p: P, opp: O, src: s, ctx: { selfInst: s } }, { actions: e.actions });
+    return { reserve: P.reserve.n, trash: P.trash.includes(mag), deck: P.deck.length, bottom: P.deck[P.deck.length - 2] === f2 || P.deck[P.deck.length - 1] === f2, exh: s.exhausted, partial: BS.CARDS['BS73-045'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.reserve, 2, JSON.stringify(r)); assert.equal(r.trash, true, JSON.stringify(r)); assert.equal(r.deck, 3, JSON.stringify(r)); assert.equal(r.exh, false, JSON.stringify(r));
+});
+
+test('K-1143 BS73-045 Amber: Lv2 Flash discards a Prismwing card from the Hand and activates When Manifests again', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${pre}
+    const s = BS.mkInst('BS73-045'); s.cores = 3; P.spirits = [s]; P.reserve.n = 3;
+    const filler = sp(c => c.cost <= 2); const d = BS.mkInst('BS73-049'); P.hand = [d];
+    P.deck = [BS.mkInst('BS73-080'), BS.mkInst(filler), BS.mkInst(filler), BS.mkInst(filler)]; s.exhausted = true;
+    const e = BS.CARDS['BS73-045'].effects.find(x => x.trigger === 'ACTIVATE');
+    await BS.runActions({ p: P, opp: O, src: s, ctx: { selfInst: s } }, { actions: e.actions });
+    const a = { discarded: P.trash.includes(d), exh: s.exhausted };
+    P.hand = []; s.exhausted = true; P.deck.unshift(BS.mkInst('BS73-080'));
+    await BS.runActions({ p: P, opp: O, src: s, ctx: { selfInst: s } }, { actions: e.actions });
+    return Object.assign(a, { noDiscardNoFire: s.exhausted }); })()`);
+  assert.equal(r.discarded, true, JSON.stringify(r)); assert.equal(r.exh, false, JSON.stringify(r)); assert.equal(r.noDiscardNoFire, true, JSON.stringify(r));
+});
