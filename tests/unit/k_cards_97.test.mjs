@@ -79,3 +79,17 @@ test('K-1006 BS72-058 (Nyx): summoned pays +1 core to a Nyx Nexus and draws', as
     return [!BS.CARDS['BS72-058'].partial, nx.cores, P.hand.length - h0]; })()`);
   assert.ok(r[0]); assert.equal(r[2], 1);
 });
+
+test('K-1007 BS72-022 (Nyx): Manifest card; summoned +1 Nyx core, discards 2 Removed, draws', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true;
+    const nx = BS.mkInst('BS72-CX02'); nx.cores = 1; P.nexus = [nx];
+    const f = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].effects && !BS.CARDS[k].token);
+    for (let i = 0; i < 4; i++) P.deck.push(BS.mkInst(f));
+    O.removed = [BS.mkInst(f), BS.mkInst(f), BS.mkInst(f)]; const t0 = O.trash.length, h0 = P.hand.length;
+    const v = BS.mkInst('BS72-022'); v.cores = 2; P.spirits = [v];
+    await BS.fireFx(P, 'SUMMONED', v, {});
+    const c = BS.CARDS['BS72-022'];
+    return [!c.partial, !!c.manifest, nx.cores, O.removed.length, O.trash.length - t0, P.hand.length - h0]; })()`);
+  assert.deepEqual(r, [true, true, 2, 1, 2, 1]);
+});
