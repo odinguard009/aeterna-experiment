@@ -25816,19 +25816,6 @@
   "M_OPTIONAL",
   "M_UP_TO"
  ],
- "BS50-X12": [
-  "A_MILL",
-  "A_REFRESH",
-  "A_SYMBOL",
-  "A_VOID",
-  "C_LEVEL",
-  "C_OPP_TURN",
-  "K_ADVENT",
-  "K_BRAVE",
-  "K_GRANDWALKER",
-  "M_IF_YOU_DO",
-  "M_OPTIONAL"
- ],
  "BS50-X13": [
   "A_CORE_TO_SELF",
   "A_MILL",

@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 6188,
+  "cards": 6187,
   "per_saga": {
    "1": 458,
    "2": 251,
@@ -11,7 +11,7 @@
    "7": 456,
    "8": 428,
    "9": 456,
-   "10": 483,
+   "10": 482,
    "11": 274,
    "12": 303,
    "13": 387,
@@ -22,18 +22,18 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2518,
-  "nexus_levels_added": 657,
+  "skipped_curated": 2519,
+  "nexus_levels_added": 656,
   "nexus_levels_missing": 43,
   "merged": 105,
-  "image_problems": 390,
+  "image_problems": 389,
   "brave_unparsed": 169,
   "ut_lines_added": 106,
   "odd_reduction": 790,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
   "number_conflicts": 3,
-  "without_image": 388
+  "without_image": 387
  },
  "tokens": [
   "BS73-T001",
@@ -1578,6 +1578,7 @@
   "BS50-040",
   "BS50-042",
   "BS50-050",
+  "BS50-X12",
   "BS50-CP01",
   "BS50-RV006",
   "BS51-007",
@@ -3047,7 +3048,6 @@
   "BS50-084",
   "BS50-X10",
   "BS50-X11",
-  "BS50-X12",
   "BS50-X13",
   "BS50-XX02",
   "BS51-084",
@@ -4971,11 +4971,6 @@
    "id": "BS50-X11",
    "name": "Grandwalker Tsukuyomi",
    "problem": "no image (near: The Grandwalker Tsukuyomi.png)"
-  },
-  {
-   "id": "BS50-X12",
-   "name": "Grandwalker of Preservation Vishnu",
-   "problem": "no image"
   },
   {
    "id": "BS50-X13",

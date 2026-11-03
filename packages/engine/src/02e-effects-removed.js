@@ -5,7 +5,7 @@
    Removed Zone = p.removed. A card put onto the opposing Removed Zone queues a REMOVED event; the other player's OPP_REMOVED effects fire from flushBursts.
    --------------------------------------------------------------------- */
 function setHeavy(t) { t.exhausted = true; t.heavy = true; }
-function refreshOne(t) { if (t.heavy) t.heavy = false; else t.exhausted = false; }          // one Refresh: Heavy Exhaust -> Exhaust, Exhaust -> Ready
+function refreshOne(t) { if (t.gpNoRefresh) return; if (t.heavy) t.heavy = false; else t.exhausted = false; }          // one Refresh: Heavy Exhaust -> Exhaust, Exhaust -> Ready
 function toRemoved(owner, card) { owner.removed.push(card); if (G && G.evQ && !G.over) G.evQ.push({ type: 'REMOVED', key: owner.key }); }
 function fromHandRemoved(owner, card) { removeFrom(owner.hand, card); toRemoved(owner, card); }
 const _nm = c => CARDS[c.src.id].name;

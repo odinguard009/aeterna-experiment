@@ -115,11 +115,11 @@ Object.assign(FX_ACTIONS, {
       if (!h) return; setBurst(c.p, h, false); io.view({ type: 'board' }); await fireBurstSet(c.p);
     } },
   /* v442 GRANDPHOSIS {bp}: "During this turn, this Nexus is also treated as a Spirit with LV1/LV2 <bp> BP, and can only be destroyed by Grandwalker Nexuses" (cost: nexusToVoid on the ability) */
-  GRANDPHOSIS: { chk: a => Number.isInteger(a.bp) && a.bp > 0 && Object.keys(a).every(k => ['do', 'bp', 'if'].includes(k)), txt: a => `during this turn, this Nexus is also treated as a Spirit with ${a.bp} BP and can only be destroyed by Grandwalker Nexuses`,
+  GRANDPHOSIS: { chk: a => Number.isInteger(a.bp) && a.bp > 0 && Object.keys(a).every(k => ['do', 'bp', 'if', 'noRefresh'].includes(k)) && (a.noRefresh == null || a.noRefresh === true), txt: a => `during this turn, this Nexus is also treated as a Spirit with ${a.bp} BP${a.noRefresh ? ' that can\'t be refreshed' : ''} and can only be destroyed by Grandwalker Nexuses`,
     can: c => c.p.nexus.includes(c.src) && c.src.cores > 0,
     run: async (c, a) => {
       const t = c.src; if (!c.p.nexus.includes(t)) { c.ctx.did = false; return; }
-      c.p.nexus.splice(c.p.nexus.indexOf(t), 1); c.p.spirits.push(t); t.asSpirit = true; t.gpBp = a.bp; t.gp = G.turnNo; c.ctx.did = true;
+      c.p.nexus.splice(c.p.nexus.indexOf(t), 1); c.p.spirits.push(t); t.asSpirit = true; t.gpBp = a.bp; t.gp = G.turnNo; if (a.noRefresh) t.gpNoRefresh = true; c.ctx.did = true;
       log(`${CARDS[t.id].name} enters the Grandphosis state (treated as a Spirit this turn).`); io.view({ type: 'board' });
     } },
   /* v442 REFRESH_GP_NEXUS: "Besides any exactly-named <this card>, refresh a Grandphosis state Grandwalker Nexus you control" */

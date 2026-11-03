@@ -194,3 +194,19 @@ test('K-1111 BS50-CP01: the Grandphosis state ends with the turn (Nexus back on 
     return { same, back: P.nexus.includes(nx) && !P.spirits.includes(nx), cores: nx.cores, flags: [nx.asSpirit, nx.gpBp, nx.gp] }; })()`);
   assert.equal(r.same, true, JSON.stringify(r)); assert.equal(r.back, true, JSON.stringify(r)); assert.equal(r.cores, 4, JSON.stringify(r));
 });
+
+test('K-1112 BS50-X12 Vishnu: Grandphosis cannot be refreshed, and LV2 gives extra White symbols to itself and cost 6+ Armored Dragon Spirits on your turn', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const nx = BS.mkInst('BS50-X12'); nx.cores = 5; P.nexus = [nx]; P.spirits = [];
+    const ad = Object.values(BS.CARDS).find(c => c.type === 'Spirit' && c.cost >= 6 && (c.families || []).includes('Armored Dragon'));
+    const sp = BS.mkInst(ad.id); sp.cores = 3; P.spirits.push(sp);
+    const withNx = BS.attackSymbols(sp); G.active = O.key; const oppTurn = BS.attackSymbols(sp); G.active = P.key; P.nexus = []; const without = BS.attackSymbols(sp); P.nexus = [nx];
+    await BS.FX_ACTIONS.GRANDPHOSIS.run({ p: P, opp: O, src: nx, ctx: {} }, { do: 'GRANDPHOSIS', bp: 3000, noRefresh: true });
+    nx.exhausted = true; const inSp = P.spirits.includes(nx), flag = nx.gpNoRefresh;
+    G.turnNo += 1; BS.setStep(1);
+    return { inSp, flag, back: P.nexus.includes(nx), cleared: nx.gpNoRefresh, withNx, oppTurn, without, adId: ad.id }; })()`);
+  assert.equal(r.inSp, true, JSON.stringify(r)); assert.equal(r.flag, true, JSON.stringify(r));
+  assert.equal(r.back, true, JSON.stringify(r)); assert.ok(!r.cleared, JSON.stringify(r));
+  assert.equal(r.withNx, r.without + 1, JSON.stringify(r)); assert.equal(r.oppTurn, r.without, JSON.stringify(r));
+});
