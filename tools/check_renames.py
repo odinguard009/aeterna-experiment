@@ -66,6 +66,7 @@ for l in gone:
 # 4. other text literals (quoted or template text with a space, 8+ chars) removed from src and no longer in it
 for l in gone:
     if l.lstrip().startswith(('//', '*')): continue
+    l = re.sub(r'\s//\s.*$', '', l)      # a trailing code comment is not UI text (stripping comments to save script bytes must not trip this)
     for q, body in re.findall(r"(['\"`])((?:(?!\1).){8,120})\1", l):
         for seg in re.split(r'\$\{[^}]*\}', body):
             seg = seg.strip(' :,.()')
