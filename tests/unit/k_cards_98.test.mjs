@@ -126,3 +126,15 @@ test('K-1035 BS53-015 Dominus: returns Grandwalker Dionysus from the Trash; a ze
     return { got: P.hand.length - h0, trash: P.trash.length, cores: v.cores, ok: !BS.CARDS['BS53-015'].partial }; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.got, 1, JSON.stringify(r)); assert.equal(r.cores, 2, JSON.stringify(r));
 });
+
+test('K-1036 BS54-002 Tsuna: with a Soul Core on it, draws up to four cards in Hand when attacking', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const s = BS.mkInst('BS54-002'); s.cores = 3; s.soul = true; P.spirits = [s]; P.hand = [];
+    await BS.fireFx(P, 'ATTACKS', s, { attacker: s, subject: s });
+    const a = P.hand.length;
+    s.soul = false; P.hand = [];
+    await BS.fireFx(P, 'ATTACKS', s, { attacker: s, subject: s });
+    return { withSoul: a, noSoul: P.hand.length, ok: !BS.CARDS['BS54-002'].partial }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.withSoul, 4, JSON.stringify(r)); assert.equal(r.noSoul, 0, JSON.stringify(r));
+});
