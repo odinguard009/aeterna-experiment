@@ -296,3 +296,18 @@ test('K-1022 BS53-067 Nexus Hazard (Primal): destroys an opposing Nexus and draw
   assert.equal(r[1], true, JSON.stringify(r));
   assert.deepEqual(r[0].map(x => x[1]), [1, 1], JSON.stringify(r));
 });
+
+test('K-1023 BS74-061 Goz (Mani): destroys up to three opposing Cost 3 or less Spirits and gains a core; BS73-025 CorCorgi: gets a core and exhausts an opposing Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const lo = Object.keys(BS.CARDS).filter(k => { const c = BS.CARDS[k]; return c.type === 'Spirit' && !c.token && c.cost <= 3 && !c.effects && c.levels && c.levels.length; }).slice(0, 4);
+    const hi = Object.keys(BS.CARDS).find(k => { const c = BS.CARDS[k]; return c.type === 'Spirit' && !c.token && c.cost >= 6 && !c.effects && c.levels && c.levels.length; });
+    const goz = BS.mkInst('BS74-061'); goz.cores = 3; P.spirits = [goz]; O.spirits = lo.map(k => { const m = BS.mkInst(k); m.cores = 1; return m; }); const big = BS.mkInst(hi); big.cores = 3; O.spirits.push(big);
+    await BS.fireFx(P, 'ATTACKS', goz, { attacker: goz, subject: goz });
+    const out = { left: O.spirits.length, bigStays: O.spirits.includes(big) };
+    const cc = BS.mkInst('BS73-025'); cc.cores = 3; const c0 = cc.cores; P.spirits = [cc]; const tgt = BS.mkInst(lo[0]); tgt.cores = 1; O.spirits = [tgt];
+    await BS.fireFx(P, 'SUMMONED', cc); out.cc = [cc.cores - c0, !!tgt.exhausted];
+    out.ok = !BS.CARDS['BS74-061'].partial && !BS.CARDS['BS73-025'].partial; return out; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r));
+  assert.equal(r.bigStays, true, JSON.stringify(r)); assert.ok(r.left <= 2, JSON.stringify(r));
+});
