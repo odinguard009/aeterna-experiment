@@ -486,7 +486,7 @@ function draw(p, n) {
 /* the owner's Hand increased through one of the owner's own effects: the opponent sees an "opposing Hand increase by an opposing effect" */
 function handUp(p, k) { if (G && !G.over && k !== 0 && G.evQ) G.evQ.push({ type: 'HAND_UP', key: p.key }); }
 function summon(p, inst, plan, opts) {
-  const card = CARDS[inst.id]; let c = effCost(p, card);
+  const card = CARDS[inst.id]; let c = opts && opts.costN != null ? opts.costN : effCost(p, card);
   if (opts && opts.viaShaman && card.shamanReduction) c = Math.max(0, card.cost - Object.values(card.reduction || {}).reduce((a, b) => a + b, 0)) + summonTaxOf(p, card);      // v201 "When summoning this card via Shamanism, fulfill all its reduction symbols"
   legacyPay(p, inst);
   removeFrom(p.hand, inst); removeFrom(p.soulState, inst); removeFrom(p.removed, inst); removeFrom(p.trash, inst); inst.inSoulState = false; inst.mirage = false;   // v0.50: Accel Spirits are summoned from the Removed Zone; v0.183 Immortality from the Trash

@@ -37530,16 +37530,6 @@
   "S_UNAFFECTED",
   "T_SUMMONED"
  ],
- "BS65-013": [
-  "A_SOUL_STATE",
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "K_MIRAGE",
-  "M_IF_YOU_DO",
-  "M_OPTIONAL",
-  "T_ATTACKS",
-  "T_SUMMONED"
- ],
  "BS65-014": [
   "A_DRAW",
   "A_END_ATTACK",
@@ -45964,13 +45954,6 @@
   "M_OPTIONAL",
   "S_UNAFFECTED",
   "T_REVEALED"
- ],
- "BS73-066": [
-  "A_EXHAUST",
-  "C_LEVEL",
-  "C_ONCE",
-  "K_ULTIMATE",
-  "M_OPTIONAL"
  ],
  "BS73-067": [
   "A_SEND_TOKEN",

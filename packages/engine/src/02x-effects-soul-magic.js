@@ -251,3 +251,33 @@ FX_ACTIONS.ACTIVATE_MIRAGE_FX = { chk: a => Object.keys(a).every(k => k === 'do'
     const e = (CARDS[c.src.id].effects || []).find(x => x.trigger === 'ACTIVATE' && x.zone === 'mirage'); c.ctx.did = false; if (!e) return;
     log(`${CARDS[c.src.id].name}: the Mirage effect is activated.`); await runActions({ p: c.p, opp: c.opp, src: c.src, ctx: {} }, e, 'ACTIVATE'); c.ctx.did = true;
   } };
+
+/* v451 MIRAGE_SET_TRASH {match}: "set a matching Mirage card from your Trash without paying the cost" (Silkie LV2 When Attacks); only while you have no Mirage set. */
+FX_ACTIONS.MIRAGE_SET_TRASH = { chk: a => hasMatch(a.match) && Object.keys(a).every(k => ['do', 'match', 'if'].includes(k)), txt: () => 'set a matching Mirage card from your Trash without paying the cost', can: c => !c.p.mirage,
+  run: async (c, a) => {
+    const L = c.p.mirage ? [] : c.p.trash.filter(x => CARDS[x.id].mirage && fxMatch(CARDS[x.id], a.match)); c.ctx.did = false; if (!L.length) return;
+    const t = await chooseCard(c, L, `✨ ${CARDS[c.src.id].name}`, 'Choose a Mirage card in your Trash.', true); if (!t) return;
+    removeFrom(c.p.trash, t); t.mirage = true; c.p.mirage = t; c.ctx.did = true;
+    log(`${who(c.p)} ${c.p.cpu ? 'sets' : 'set'} a Mirage from the Trash without paying the cost: ${CARDS[t.id].name}.`);
+    await fireFx(c.p, 'MIRAGE_SET', t, {});
+  } };
+
+/* v452 Headspring (BS73-066): STATIC EXHAUST_ON_CORE_PUT (to:'all') = "Besides via summon, exhaust every Spirit that has cores being put onto it" (Main Steps). runActions snapshots the Spirits' cores around each action in a Main Step; a Spirit already on the field whose cores grew is exhausted (EXHAUSTED_FX fires as for an effect). */
+const coreWatchBegin = () => { if (!G || !isMainStep()) return null; const m = new Map(); for (const s of [G.p.player, G.p.opponent]) for (const sp of s.spirits) m.set(sp, sp.cores); return m; };
+async function coreWatchEnd(m, src) {
+  if (!m || G.over) return;
+  for (const s of [G.p.player, G.p.opponent]) for (const sp of s.spirits) {
+    if (!m.has(sp) || sp.cores <= m.get(sp) || sp.exhausted || !flagActive(s, 'EXHAUST_ON_CORE_PUT', sp)) continue;
+    sp.exhausted = true; log(`${CARDS[sp.id].name} is exhausted (cores were put onto it).`);
+    await fireFx(G.p[other(s.key)], 'EXHAUSTED_FX', null, { side: 'opp', fxSrc: src }); await fireFx(s, 'EXHAUSTED_FX', null, { side: 'own', subject: sp, fxSrc: src });
+  }
+}
+
+/* v452 DEPLOY_SELF_TRASH {costN}: "deploy this card from the Trash by paying N cost" (Headspring); the card must be in the Trash. */
+FX_ACTIONS.DEPLOY_SELF_TRASH = { chk: a => Number.isInteger(a.costN) && a.costN >= 0 && a.costN <= 10 && Object.keys(a).every(k => ['do', 'costN', 'if'].includes(k)), txt: a => `deploy this card from the Trash by paying ${a.costN} cost`,
+  can: (c, a) => c.p.trash.includes(c.src) && canPlacePaid(c.p, c.src) && reserveTotal(c.p) >= a.costN + minCores(CARDS[c.src.id]),
+  run: async (c, a) => {
+    if (!FX_ACTIONS.DEPLOY_SELF_TRASH.can(c, a)) { c.ctx.did = false; return; }
+    removeFrom(c.p.trash, c.src); c.p.hand.push(c.src);
+    if (await summonPaid(c.p, c.src, { costN: a.costN })) c.ctx.did = true; else { removeFrom(c.p.hand, c.src); c.p.trash.push(c.src); c.ctx.did = false; }
+  } };
