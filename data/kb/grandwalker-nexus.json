@@ -75,6 +75,7 @@
     "BS76-088",
     "BS76-X11"
    ],
+   "revival_open": [],
    "deck_incomplete": [
     "BS75-042",
     "BS75-043",
@@ -317,6 +318,9 @@
     "BS76-078",
     "BS76-089",
     "BS76-X13"
+   ],
+   "revival_open": [
+    "BS44-RV006"
    ],
    "deck_incomplete": [
     "BS44-032",
@@ -715,6 +719,7 @@
     "BS75-X02",
     "BS76-002"
    ],
+   "revival_open": [],
    "deck_incomplete": [
     "BS54-001",
     "BS60-003",
@@ -905,6 +910,13 @@
     "BS75-064",
     "BS75-077",
     "BS75-X04"
+   ],
+   "revival_open": [
+    "BS50-RV001",
+    "BS51-RV001",
+    "BS51-RV002",
+    "BS51-RV003",
+    "BS55-RV002"
    ],
    "deck_incomplete": [
     "BS45-015",
@@ -1131,6 +1143,7 @@
     "BS75-081",
     "BS75-X08"
    ],
+   "revival_open": [],
    "deck_incomplete": [
     "BS74-040",
     "BS74-042",
@@ -1249,6 +1262,7 @@
     "BS74-081",
     "BS74-X05"
    ],
+   "revival_open": [],
    "deck_incomplete": [
     "BS73-023",
     "BS73-024",
@@ -1371,6 +1385,7 @@
     "BS74-084",
     "BS74-X07"
    ],
+   "revival_open": [],
    "deck_incomplete": [
     "BS73-042",
     "BS73-044",
@@ -1514,6 +1529,7 @@
     "BS74-X09",
     "BS75-CX02"
    ],
+   "revival_open": [],
    "deck_incomplete": [
     "BS54-031",
     "BS61-035",
@@ -1674,6 +1690,7 @@
     "BS74-066",
     "BS75-CP01"
    ],
+   "revival_open": [],
    "deck_incomplete": [
     "BS72-002",
     "BS72-004",
@@ -1910,6 +1927,7 @@
     "BS76-089",
     "BS76-X13"
    ],
+   "revival_open": [],
    "deck_incomplete": [
     "BS60-014",
     "BS61-008",
@@ -2206,6 +2224,10 @@
     "BS74-046",
     "BS75-039",
     "BS76-032"
+   ],
+   "revival_open": [
+    "BS44-RV004",
+    "BS45-RV003"
    ],
    "deck_incomplete": [
     "BS44-036",
@@ -2561,6 +2583,11 @@
     "BS76-080",
     "BS76-X02"
    ],
+   "revival_open": [
+    "BS45-RV001",
+    "BS71-RV005",
+    "BS74-RV001"
+   ],
    "deck_incomplete": [
     "BS45-001",
     "BS45-004",
@@ -2825,6 +2852,7 @@
     "BS75-X05",
     "BS76-024"
    ],
+   "revival_open": [],
    "deck_incomplete": [
     "BS71-025",
     "BS71-026",
@@ -2983,6 +3011,7 @@
     "BS74-064",
     "BS74-067"
    ],
+   "revival_open": [],
    "deck_incomplete": [
     "BS71-053",
     "BS71-054",
@@ -3153,6 +3182,10 @@
     "BS71-X03",
     "BS76-011",
     "BS76-015"
+   ],
+   "revival_open": [
+    "BS46-RV007",
+    "BS71-RV001"
    ],
    "deck_incomplete": [
     "BS44-020",
@@ -3406,6 +3439,7 @@
     "BS76-036",
     "BS76-063"
    ],
+   "revival_open": [],
    "deck_incomplete": [
     "BS70-037",
     "BS70-038",
@@ -3637,6 +3671,7 @@
     "BS76-089",
     "BS76-X13"
    ],
+   "revival_open": [],
    "deck_incomplete": [
     "BS69-001",
     "BS69-002",
@@ -3869,6 +3904,11 @@
     "BS76-007",
     "BS76-009",
     "BS76-CP01"
+   ],
+   "revival_open": [
+    "BS48-RV001",
+    "BS49-RV001",
+    "BS49-RV002"
    ],
    "deck_incomplete": [
     "BS44-011",
@@ -4170,6 +4210,9 @@
     "BS76-078",
     "BS76-089",
     "BS76-X13"
+   ],
+   "revival_open": [
+    "BS52-RV001"
    ],
    "deck_incomplete": [
     "BS52-RV001",
@@ -4473,6 +4516,13 @@
     "BS76-AX02",
     "BS76-X05"
    ],
+   "revival_open": [
+    "BS44-RV003",
+    "BS52-RV003",
+    "BS71-RV002",
+    "BS74-RV001",
+    "BS75-RV002"
+   ],
    "deck_incomplete": [
     "BS44-027",
     "BS44-029",
@@ -4757,6 +4807,9 @@
     "BS76-054",
     "BS76-X12"
    ],
+   "revival_open": [
+    "BS71-RV004"
+   ],
    "deck_incomplete": [
     "BS54-059",
     "BS60-063",
@@ -4931,6 +4984,9 @@
     "BS76-016",
     "BS76-017",
     "BS76-018"
+   ],
+   "revival_open": [
+    "BS45-RV002"
    ],
    "deck_incomplete": [
     "BS45-RV002",
@@ -5139,6 +5195,10 @@
     "BS75-033",
     "BS75-034",
     "BS75-036"
+   ],
+   "revival_open": [
+    "BS59-RV004",
+    "BS71-RV003"
    ],
    "deck_incomplete": [
     "BS45-034",
@@ -5363,6 +5423,9 @@
     "BS71-047",
     "BS71-RV006"
    ],
+   "revival_open": [
+    "BS71-RV006"
+   ],
    "deck_incomplete": [
     "BS67-X08",
     "BS68-047",
@@ -5529,6 +5592,11 @@
     "BS67-017",
     "BS70-019",
     "BS76-014"
+   ],
+   "revival_open": [
+    "BS44-RV002",
+    "BS46-RV002",
+    "BS51-RV001"
    ],
    "deck_incomplete": [
     "BS44-018",
@@ -5736,6 +5804,10 @@
     "BS71-038",
     "BS75-RV003"
    ],
+   "revival_open": [
+    "BS52-RV004",
+    "BS75-RV003"
+   ],
    "deck_incomplete": [
     "BS44-042",
     "BS52-029",
@@ -5881,6 +5953,9 @@
     "BS73-056",
     "BS73-059",
     "BS74-063"
+   ],
+   "revival_open": [
+    "BS55-RV006"
    ],
    "deck_incomplete": [
     "BS54-X02",
@@ -6033,6 +6108,9 @@
     "BS76-046",
     "BS76-049",
     "BS76-064"
+   ],
+   "revival_open": [
+    "BS59-RV006"
    ],
    "deck_incomplete": [
     "BS58-040",
@@ -6238,6 +6316,7 @@
     "BS76-010",
     "BS76-026"
    ],
+   "revival_open": [],
    "deck_incomplete": [
     "BS45-033",
     "BS47-013",
@@ -6749,6 +6828,31 @@
     "BS75-059",
     "BS75-060",
     "BS76-057"
+   ],
+   "revival_open": [
+    "BS52-RV001",
+    "BS52-RV002",
+    "BS52-RV003",
+    "BS52-RV004",
+    "BS52-RV005",
+    "BS52-RV006",
+    "BS52-RV007",
+    "BS53-RV001",
+    "BS53-RV002",
+    "BS53-RV003",
+    "BS53-RV004",
+    "BS53-RV006",
+    "BS54-RV001",
+    "BS54-RV002",
+    "BS54-RV004",
+    "BS54-RV005",
+    "BS54-RV006",
+    "BS55-RV001",
+    "BS55-RV002",
+    "BS55-RV003",
+    "BS55-RV005",
+    "BS55-RV006",
+    "BS66-RV003"
    ],
    "deck_incomplete": [
     "BS45-064",
@@ -7603,6 +7707,30 @@
     "BS71-050",
     "BS73-040"
    ],
+   "revival_open": [
+    "BS52-RV001",
+    "BS52-RV002",
+    "BS52-RV003",
+    "BS52-RV004",
+    "BS52-RV005",
+    "BS52-RV006",
+    "BS52-RV007",
+    "BS53-RV001",
+    "BS53-RV002",
+    "BS53-RV003",
+    "BS53-RV004",
+    "BS53-RV006",
+    "BS54-RV001",
+    "BS54-RV002",
+    "BS54-RV004",
+    "BS54-RV005",
+    "BS54-RV006",
+    "BS55-RV001",
+    "BS55-RV002",
+    "BS55-RV003",
+    "BS55-RV005",
+    "BS55-RV006"
+   ],
    "deck_incomplete": [
     "BS47-057",
     "BS52-002",
@@ -8216,6 +8344,30 @@
     "BS69-081",
     "BS73-040"
    ],
+   "revival_open": [
+    "BS52-RV001",
+    "BS52-RV002",
+    "BS52-RV003",
+    "BS52-RV004",
+    "BS52-RV005",
+    "BS52-RV006",
+    "BS52-RV007",
+    "BS53-RV001",
+    "BS53-RV002",
+    "BS53-RV003",
+    "BS53-RV004",
+    "BS53-RV006",
+    "BS54-RV001",
+    "BS54-RV002",
+    "BS54-RV004",
+    "BS54-RV005",
+    "BS54-RV006",
+    "BS55-RV001",
+    "BS55-RV002",
+    "BS55-RV003",
+    "BS55-RV005",
+    "BS55-RV006"
+   ],
    "deck_incomplete": [
     "BS52-002",
     "BS52-003",
@@ -8771,6 +8923,29 @@
     "BS74-075",
     "BS74-X11",
     "BS74-X12",
+    "BS75-RV001",
+    "BS75-RV003"
+   ],
+   "revival_open": [
+    "BS48-RV001",
+    "BS48-RV002",
+    "BS48-RV005",
+    "BS49-RV002",
+    "BS49-RV003",
+    "BS49-RV006",
+    "BS50-RV001",
+    "BS50-RV002",
+    "BS50-RV004",
+    "BS50-RV007",
+    "BS50-RV008",
+    "BS50-RV009",
+    "BS51-RV001",
+    "BS51-RV002",
+    "BS51-RV003",
+    "BS51-RV005",
+    "BS51-RV006",
+    "BS51-RV007",
+    "BS52-RV002",
     "BS75-RV001",
     "BS75-RV003"
    ],
@@ -9447,6 +9622,27 @@
     "BS75-077",
     "BS75-X04"
    ],
+   "revival_open": [
+    "BS48-RV001",
+    "BS48-RV002",
+    "BS48-RV005",
+    "BS49-RV002",
+    "BS49-RV003",
+    "BS49-RV006",
+    "BS50-RV001",
+    "BS50-RV002",
+    "BS50-RV004",
+    "BS50-RV007",
+    "BS50-RV008",
+    "BS50-RV009",
+    "BS51-RV001",
+    "BS51-RV002",
+    "BS51-RV003",
+    "BS51-RV005",
+    "BS51-RV006",
+    "BS51-RV007",
+    "BS55-RV002"
+   ],
    "deck_incomplete": [
     "BS45-015",
     "BS46-017",
@@ -9945,6 +10141,26 @@
     "BS76-029",
     "BS76-062"
    ],
+   "revival_open": [
+    "BS48-RV001",
+    "BS48-RV002",
+    "BS48-RV005",
+    "BS49-RV002",
+    "BS49-RV003",
+    "BS49-RV006",
+    "BS50-RV001",
+    "BS50-RV002",
+    "BS50-RV004",
+    "BS50-RV007",
+    "BS50-RV008",
+    "BS50-RV009",
+    "BS51-RV001",
+    "BS51-RV002",
+    "BS51-RV003",
+    "BS51-RV005",
+    "BS51-RV006",
+    "BS51-RV007"
+   ],
    "deck_incomplete": [
     "BS44-032",
     "BS47-027",
@@ -10232,6 +10448,7 @@
    ],
    "own_families_jp": [],
    "deck_cards": [],
+   "revival_open": [],
    "deck_incomplete": [],
    "order_cards": [
     "BS51-XX03"
@@ -10272,6 +10489,7 @@
    ],
    "own_families_jp": [],
    "deck_cards": [],
+   "revival_open": [],
    "deck_incomplete": [],
    "order_cards": [
     "BS50-CP01"
@@ -10541,6 +10759,26 @@
     "BS75-007",
     "BS75-008",
     "BS75-013"
+   ],
+   "revival_open": [
+    "BS48-RV001",
+    "BS48-RV002",
+    "BS48-RV005",
+    "BS49-RV002",
+    "BS49-RV003",
+    "BS49-RV006",
+    "BS50-RV001",
+    "BS50-RV002",
+    "BS50-RV004",
+    "BS50-RV007",
+    "BS50-RV008",
+    "BS50-RV009",
+    "BS51-RV001",
+    "BS51-RV002",
+    "BS51-RV003",
+    "BS51-RV005",
+    "BS51-RV006",
+    "BS51-RV007"
    ],
    "deck_incomplete": [
     "BS44-001",
@@ -11104,6 +11342,29 @@
     "BS73-018",
     "BS76-013",
     "BS76-019"
+   ],
+   "revival_open": [
+    "BS48-RV001",
+    "BS48-RV002",
+    "BS48-RV005",
+    "BS49-RV002",
+    "BS49-RV003",
+    "BS49-RV006",
+    "BS50-RV001",
+    "BS50-RV002",
+    "BS50-RV004",
+    "BS50-RV005",
+    "BS50-RV007",
+    "BS50-RV008",
+    "BS50-RV009",
+    "BS51-RV001",
+    "BS51-RV002",
+    "BS51-RV003",
+    "BS51-RV004",
+    "BS51-RV005",
+    "BS51-RV006",
+    "BS51-RV007",
+    "BS71-RV001"
    ],
    "deck_incomplete": [
     "BS46-020",
@@ -11688,6 +11949,26 @@
     "BS76-035",
     "BS76-043"
    ],
+   "revival_open": [
+    "BS48-RV001",
+    "BS48-RV002",
+    "BS48-RV005",
+    "BS49-RV002",
+    "BS49-RV003",
+    "BS49-RV006",
+    "BS50-RV001",
+    "BS50-RV002",
+    "BS50-RV004",
+    "BS50-RV007",
+    "BS50-RV008",
+    "BS50-RV009",
+    "BS51-RV001",
+    "BS51-RV002",
+    "BS51-RV003",
+    "BS51-RV005",
+    "BS51-RV006",
+    "BS51-RV007"
+   ],
    "deck_incomplete": [
     "BS45-038",
     "BS48-002",
@@ -12229,6 +12510,27 @@
     "BS76-067",
     "BS76-068",
     "BS76-077"
+   ],
+   "revival_open": [
+    "BS48-RV001",
+    "BS48-RV002",
+    "BS48-RV005",
+    "BS49-RV002",
+    "BS49-RV003",
+    "BS49-RV006",
+    "BS50-RV001",
+    "BS50-RV002",
+    "BS50-RV004",
+    "BS50-RV007",
+    "BS50-RV008",
+    "BS50-RV009",
+    "BS51-RV001",
+    "BS51-RV002",
+    "BS51-RV003",
+    "BS51-RV005",
+    "BS51-RV006",
+    "BS51-RV007",
+    "BS59-RV005"
    ],
    "deck_incomplete": [
     "BS44-063",
@@ -12799,6 +13101,15 @@
     "BS57-058",
     "BS57-059",
     "BS57-060"
+   ],
+   "revival_open": [
+    "BS45-RV001",
+    "BS45-RV005",
+    "BS48-RV003",
+    "BS48-RV004",
+    "BS50-RV003",
+    "BS51-RV008",
+    "BS51-RV009"
    ],
    "deck_incomplete": [
     "BS44-007",
@@ -13407,6 +13718,31 @@
     "BS75-X06",
     "BS75-X07"
    ],
+   "revival_open": [
+    "BS46-RV003",
+    "BS48-RV001",
+    "BS48-RV002",
+    "BS48-RV005",
+    "BS49-RV002",
+    "BS49-RV003",
+    "BS49-RV004",
+    "BS49-RV005",
+    "BS49-RV006",
+    "BS50-RV001",
+    "BS50-RV002",
+    "BS50-RV004",
+    "BS50-RV007",
+    "BS50-RV008",
+    "BS50-RV009",
+    "BS51-RV001",
+    "BS51-RV002",
+    "BS51-RV003",
+    "BS51-RV005",
+    "BS51-RV006",
+    "BS51-RV007",
+    "BS74-RV003",
+    "BS74-RV004"
+   ],
    "deck_incomplete": [
     "BS44-035",
     "BS45-025",
@@ -13982,6 +14318,26 @@
     "BS76-035",
     "BS76-043"
    ],
+   "revival_open": [
+    "BS48-RV001",
+    "BS48-RV002",
+    "BS48-RV005",
+    "BS49-RV002",
+    "BS49-RV003",
+    "BS49-RV006",
+    "BS50-RV001",
+    "BS50-RV002",
+    "BS50-RV004",
+    "BS50-RV007",
+    "BS50-RV008",
+    "BS50-RV009",
+    "BS51-RV001",
+    "BS51-RV002",
+    "BS51-RV003",
+    "BS51-RV005",
+    "BS51-RV006",
+    "BS51-RV007"
+   ],
    "deck_incomplete": [
     "BS45-038",
     "BS48-002",
@@ -14483,6 +14839,27 @@
     "BS75-007",
     "BS75-008",
     "BS75-013"
+   ],
+   "revival_open": [
+    "BS48-RV001",
+    "BS48-RV002",
+    "BS48-RV005",
+    "BS49-RV002",
+    "BS49-RV003",
+    "BS49-RV006",
+    "BS49-RV007",
+    "BS50-RV001",
+    "BS50-RV002",
+    "BS50-RV004",
+    "BS50-RV007",
+    "BS50-RV008",
+    "BS50-RV009",
+    "BS51-RV001",
+    "BS51-RV002",
+    "BS51-RV003",
+    "BS51-RV005",
+    "BS51-RV006",
+    "BS51-RV007"
    ],
    "deck_incomplete": [
     "BS44-001",
@@ -15031,6 +15408,27 @@
     "BS76-009",
     "BS76-CP01"
    ],
+   "revival_open": [
+    "BS48-RV001",
+    "BS48-RV002",
+    "BS48-RV005",
+    "BS49-RV001",
+    "BS49-RV002",
+    "BS49-RV003",
+    "BS49-RV006",
+    "BS50-RV001",
+    "BS50-RV002",
+    "BS50-RV004",
+    "BS50-RV007",
+    "BS50-RV008",
+    "BS50-RV009",
+    "BS51-RV001",
+    "BS51-RV002",
+    "BS51-RV003",
+    "BS51-RV005",
+    "BS51-RV006",
+    "BS51-RV007"
+   ],
    "deck_incomplete": [
     "BS44-011",
     "BS44-013",
@@ -15423,6 +15821,11 @@
     "BS76-079",
     "BS76-X01"
    ],
+   "revival_open": [
+    "BS44-RV001",
+    "BS53-RV001",
+    "BS59-RV001"
+   ],
    "deck_incomplete": [
     "BS44-002",
     "BS44-004",
@@ -15798,6 +16201,12 @@
     "BS75-AX01",
     "BS75-X09",
     "BS76-040"
+   ],
+   "revival_open": [
+    "BS48-RV004",
+    "BS53-RV004",
+    "BS59-RV004",
+    "BS66-RV002"
    ],
    "deck_incomplete": [
     "BS44-043",
@@ -16255,6 +16664,27 @@
     "BS76-007",
     "BS76-009",
     "BS76-CP01"
+   ],
+   "revival_open": [
+    "BS48-RV001",
+    "BS48-RV002",
+    "BS48-RV005",
+    "BS49-RV001",
+    "BS49-RV002",
+    "BS49-RV003",
+    "BS49-RV006",
+    "BS50-RV001",
+    "BS50-RV002",
+    "BS50-RV004",
+    "BS50-RV007",
+    "BS50-RV008",
+    "BS50-RV009",
+    "BS51-RV001",
+    "BS51-RV002",
+    "BS51-RV003",
+    "BS51-RV005",
+    "BS51-RV006",
+    "BS51-RV007"
    ],
    "deck_incomplete": [
     "BS44-011",
@@ -16734,6 +17164,26 @@
     "BS76-020",
     "BS76-AX01"
    ],
+   "revival_open": [
+    "BS48-RV001",
+    "BS48-RV002",
+    "BS48-RV005",
+    "BS49-RV002",
+    "BS49-RV003",
+    "BS49-RV006",
+    "BS50-RV001",
+    "BS50-RV002",
+    "BS50-RV004",
+    "BS50-RV007",
+    "BS50-RV008",
+    "BS50-RV009",
+    "BS51-RV001",
+    "BS51-RV002",
+    "BS51-RV003",
+    "BS51-RV005",
+    "BS51-RV006",
+    "BS51-RV007"
+   ],
    "deck_incomplete": [
     "BS48-002",
     "BS48-005",
@@ -17207,6 +17657,26 @@
     "BS70-087",
     "BS72-064"
    ],
+   "revival_open": [
+    "BS48-RV001",
+    "BS48-RV002",
+    "BS48-RV005",
+    "BS49-RV002",
+    "BS49-RV003",
+    "BS49-RV006",
+    "BS50-RV001",
+    "BS50-RV002",
+    "BS50-RV004",
+    "BS50-RV007",
+    "BS50-RV008",
+    "BS50-RV009",
+    "BS51-RV001",
+    "BS51-RV002",
+    "BS51-RV003",
+    "BS51-RV005",
+    "BS51-RV006",
+    "BS51-RV007"
+   ],
    "deck_incomplete": [
     "BS47-056",
     "BS48-002",
@@ -17513,6 +17983,7 @@
     "BS70-X09",
     "BS75-AX01"
    ],
+   "revival_open": [],
    "deck_incomplete": [
     "BS45-002",
     "BS47-005",
@@ -17850,6 +18321,16 @@
     "BS76-079",
     "BS76-CP01",
     "BS76-X01"
+   ],
+   "revival_open": [
+    "BS44-RV001",
+    "BS48-RV001",
+    "BS49-RV001",
+    "BS49-RV002",
+    "BS50-RV001",
+    "BS52-RV001",
+    "BS53-RV001",
+    "BS59-RV001"
    ],
    "deck_incomplete": [
     "BS44-001",
@@ -18225,6 +18706,12 @@
     "BS76-022",
     "BS76-031"
    ],
+   "revival_open": [
+    "BS48-RV003",
+    "BS50-RV003",
+    "BS53-RV003",
+    "BS55-RV003"
+   ],
    "deck_incomplete": [
     "BS44-031",
     "BS46-031",
@@ -18484,6 +18971,12 @@
     "BS75-X09",
     "BS76-040"
    ],
+   "revival_open": [
+    "BS48-RV004",
+    "BS53-RV004",
+    "BS59-RV004",
+    "BS66-RV002"
+   ],
    "deck_incomplete": [
     "BS44-043",
     "BS44-048",
@@ -18690,6 +19183,10 @@
     "BS76-059",
     "BS76-X13"
    ],
+   "revival_open": [
+    "BS52-RV006",
+    "BS55-RV006"
+   ],
    "deck_incomplete": [
     "BS46-068",
     "BS46-071",
@@ -18832,6 +19329,7 @@
    ],
    "own_families_jp": [],
    "deck_cards": [],
+   "revival_open": [],
    "deck_incomplete": [],
    "order_cards": [
     "BS47-XX02"
@@ -18872,6 +19370,7 @@
    ],
    "own_families_jp": [],
    "deck_cards": [],
+   "revival_open": [],
    "deck_incomplete": [],
    "order_cards": [
     "BS47-XX03"
@@ -18965,6 +19464,12 @@
     "BS74-X06",
     "BS74-X08",
     "BS74-X10"
+   ],
+   "revival_open": [
+    "BS45-RV001",
+    "BS48-RV002",
+    "BS48-RV006",
+    "BS50-RV002"
    ],
    "deck_incomplete": [
     "BS45-RV001",
@@ -19124,6 +19629,11 @@
     "BS74-075",
     "BS74-X11",
     "BS74-X12",
+    "BS75-RV001"
+   ],
+   "revival_open": [
+    "BS50-RV007",
+    "BS52-RV002",
     "BS75-RV001"
    ],
    "deck_incomplete": [
@@ -19325,6 +19835,11 @@
     "BS76-008",
     "BS76-080",
     "BS76-X02"
+   ],
+   "revival_open": [
+    "BS45-RV001",
+    "BS71-RV005",
+    "BS74-RV001"
    ],
    "deck_incomplete": [
     "BS45-001",
@@ -19542,6 +20057,10 @@
     "BS76-011",
     "BS76-015"
    ],
+   "revival_open": [
+    "BS46-RV007",
+    "BS71-RV001"
+   ],
    "deck_incomplete": [
     "BS44-020",
     "BS44-021",
@@ -19749,6 +20268,10 @@
     "BS75-034",
     "BS75-036"
    ],
+   "revival_open": [
+    "BS59-RV004",
+    "BS71-RV003"
+   ],
    "deck_incomplete": [
     "BS45-034",
     "BS45-041",
@@ -19949,6 +20472,10 @@
     "BS67-X06",
     "BS69-055"
    ],
+   "revival_open": [
+    "BS48-RV005",
+    "BS59-RV006"
+   ],
    "deck_incomplete": [
     "BS45-052",
     "BS46-055",
@@ -20104,6 +20631,12 @@
     "BS46-RV005",
     "BS46-RV006"
    ],
+   "revival_open": [
+    "BS46-RV001",
+    "BS46-RV002",
+    "BS46-RV003",
+    "BS46-RV005"
+   ],
    "deck_incomplete": [
     "BS46-043",
     "BS46-061",
@@ -20223,6 +20756,11 @@
     "BS76-007",
     "BS76-009",
     "BS76-CP01"
+   ],
+   "revival_open": [
+    "BS48-RV001",
+    "BS49-RV001",
+    "BS49-RV002"
    ],
    "deck_incomplete": [
     "BS44-011",
@@ -20401,6 +20939,17 @@
     "BS68-009",
     "BS70-007",
     "BS74-X14"
+   ],
+   "revival_open": [
+    "BS46-RV001",
+    "BS48-RV001",
+    "BS49-RV001",
+    "BS54-RV001",
+    "BS54-RV002",
+    "BS55-RV001",
+    "BS66-RV002",
+    "BS66-RV003",
+    "BS67-RV001"
    ],
    "deck_incomplete": [
     "BS46-RV001",
@@ -20651,6 +21200,13 @@
     "BS76-061",
     "BS76-AX02",
     "BS76-X05"
+   ],
+   "revival_open": [
+    "BS44-RV003",
+    "BS52-RV003",
+    "BS71-RV002",
+    "BS74-RV001",
+    "BS75-RV002"
    ],
    "deck_incomplete": [
     "BS44-027",
@@ -20913,6 +21469,12 @@
     "BS74-051",
     "BS76-045",
     "BS76-074"
+   ],
+   "revival_open": [
+    "BS44-RV005",
+    "BS45-RV004",
+    "BS54-RV006",
+    "BS55-RV005"
    ],
    "deck_incomplete": [
     "BS44-051",
@@ -21213,6 +21775,11 @@
     "BS75-057",
     "BS76-056"
    ],
+   "revival_open": [
+    "BS44-RV006",
+    "BS45-RV005",
+    "BS48-RV006"
+   ],
    "deck_incomplete": [
     "BS44-059",
     "BS44-060",
@@ -21404,6 +21971,7 @@
    ],
    "own_families_jp": [],
    "deck_cards": [],
+   "revival_open": [],
    "deck_incomplete": [],
    "order_cards": [
     "BS45-XX02"
@@ -21444,6 +22012,7 @@
    ],
    "own_families_jp": [],
    "deck_cards": [],
+   "revival_open": [],
    "deck_incomplete": [],
    "order_cards": [
     "BS44-CP02"
@@ -21565,6 +22134,11 @@
     "BS76-069",
     "BS76-079",
     "BS76-X01"
+   ],
+   "revival_open": [
+    "BS44-RV001",
+    "BS53-RV001",
+    "BS59-RV001"
    ],
    "deck_incomplete": [
     "BS44-002",
@@ -21747,6 +22321,11 @@
     "BS67-017",
     "BS70-019",
     "BS76-014"
+   ],
+   "revival_open": [
+    "BS44-RV002",
+    "BS46-RV002",
+    "BS51-RV001"
    ],
    "deck_incomplete": [
     "BS44-018",
@@ -21976,6 +22555,10 @@
     "BS75-039",
     "BS76-032"
    ],
+   "revival_open": [
+    "BS44-RV004",
+    "BS45-RV003"
+   ],
    "deck_incomplete": [
     "BS44-036",
     "BS44-039",
@@ -22120,6 +22703,7 @@
    ],
    "own_families_jp": [],
    "deck_cards": [],
+   "revival_open": [],
    "deck_incomplete": [],
    "order_cards": [
     "BS44-XX02"
@@ -22134,147 +22718,2025 @@
  ],
  "revival_cards": [
   {
-   "id": "BS68-CX01",
-   "name": "The SorcererContractor Hades",
-   "type": "Nexus",
+   "id": "BS44-RV001",
+   "name": "Phobos-Dragoon",
+   "type": "Spirit",
+   "families_jp": [
+    "星竜"
+   ],
    "complete": false
   },
   {
-   "id": "BS68-CX02",
-   "name": "The SteelContractor Athena",
-   "type": "Nexus",
+   "id": "BS44-RV002",
+   "name": "The HellSerpentineMan Botis",
+   "type": "Spirit",
+   "families_jp": [
+    "妖蛇"
+   ],
    "complete": false
   },
   {
-   "id": "BS68-CX03",
-   "name": "The ToolcraftContractor Kinich-Ahau",
-   "type": "Nexus",
+   "id": "BS44-RV003",
+   "name": "The Hunter Kingghepardo",
+   "type": "Spirit",
+   "families_jp": [
+    "剣獣"
+   ],
    "complete": false
   },
   {
-   "id": "BS69-CX01",
-   "name": "The AstralMaterContractor Gaia",
-   "type": "Nexus",
+   "id": "BS44-RV004",
+   "name": "Dark-Gadphant",
+   "type": "Spirit",
+   "families_jp": [
+    "機獣"
+   ],
    "complete": false
   },
   {
-   "id": "BS69-CX02",
-   "name": "The SwiftContractor Hermes",
-   "type": "Nexus",
+   "id": "BS44-RV005",
+   "name": "The GreatAngelia Tron",
+   "type": "Spirit",
+   "families_jp": [
+    "天霊"
+   ],
    "complete": false
   },
   {
-   "id": "BS69-CX03",
-   "name": "The RagingGaleContractor Huracan",
-   "type": "Nexus",
+   "id": "BS44-RV006",
+   "name": "The RoaringSwordmaster Lowen",
+   "type": "Spirit",
+   "families_jp": [
+    "勇傑",
+    "獣頭"
+   ],
    "complete": false
   },
   {
-   "id": "SD69-CX01",
-   "name": "The GenesisContractor Brahma",
-   "type": "Nexus",
+   "id": "BS44-RV007",
+   "name": "Burst Cross",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
    "complete": false
   },
   {
-   "id": "BS70-CX01",
-   "name": "The CurseConsortContractor Hera",
-   "type": "Nexus",
+   "id": "BS44-RV008",
+   "name": "Mark-of-Zorro",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
    "complete": false
   },
   {
-   "id": "BS70-CX02",
-   "name": "The SilverWheelContractor Brigit",
-   "type": "Nexus",
+   "id": "BS44-RV009",
+   "name": "Thorn Prison",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
    "complete": false
   },
   {
-   "id": "BS70-CX03",
-   "name": "The AstralNightContractor Uranus",
-   "type": "Nexus",
+   "id": "BS44-RV010",
+   "name": "Triple Stab",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
    "complete": false
   },
   {
-   "id": "BS71-CX01",
-   "name": "The ThunderboltContractor Zeus",
-   "type": "Nexus",
+   "id": "BS44-RV011",
+   "name": "Steal Heart",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
    "complete": false
   },
   {
-   "id": "BS71-CX02",
-   "name": "The SkyContractor Ra-Harakhti",
-   "type": "Nexus",
+   "id": "BS44-RV012",
+   "name": "Triangle Ban",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
    "complete": false
   },
   {
-   "id": "BS71-CX03",
-   "name": "The SilverArmContractor Nuadha",
-   "type": "Nexus",
+   "id": "PB44-RV001",
+   "name": "［Crystal Aquarius Coord］Kiriya Aoi",
+   "type": "Spirit",
+   "families_jp": [],
    "complete": false
   },
   {
-   "id": "BS72-CX01",
-   "name": "The MartialArtsContractor Lugh",
-   "type": "Nexus",
+   "id": "PB44-RV002",
+   "name": "［King Leo Coord］Shibuki Ran",
+   "type": "Spirit",
+   "families_jp": [],
    "complete": false
   },
   {
-   "id": "BS72-CX02",
-   "name": "The NightlyDarknessContractor Nyx",
+   "id": "PB44-RV003",
+   "name": "Starlight Academy",
    "type": "Nexus",
+   "families_jp": [],
    "complete": false
   },
   {
-   "id": "BS72-CX03",
-   "name": "The MoonlightContractor Artemis",
+   "id": "PB44-RV004",
+   "name": "Mitsuishi Orihime",
    "type": "Nexus",
+   "families_jp": [],
    "complete": false
   },
   {
-   "id": "BS73-CX01",
-   "name": "The ForestMasterContractor Yum-Kaax",
-   "type": "Nexus",
+   "id": "PB44-RV005",
+   "name": "Idol Activity!",
+   "type": "Magic",
+   "families_jp": [],
    "complete": false
   },
   {
-   "id": "BS73-CX02",
-   "name": "The MagicJewelContractor Morrigan",
-   "type": "Nexus",
+   "id": "PB44-RV006",
+   "name": "Calendar Girl",
+   "type": "Magic",
+   "families_jp": [],
+   "complete": true
+  },
+  {
+   "id": "PB44-RV007",
+   "name": "Masquerade",
+   "type": "Spirit",
+   "families_jp": [],
    "complete": false
   },
   {
-   "id": "BS73-CX03",
-   "name": "The CycleForceContractor Yamato Takeru",
-   "type": "Nexus",
+   "id": "SD44-RV001",
+   "name": "The EvilFlameSwordsman Schmald",
+   "type": "Spirit",
+   "families_jp": [],
    "complete": false
   },
   {
-   "id": "BS74-CX01",
-   "name": "The Light-DarkContractor Ometeotl",
-   "type": "Nexus",
+   "id": "SD44-RV002",
+   "name": "The ArmoredSwordMaster Minotauros",
+   "type": "Spirit",
+   "families_jp": [],
    "complete": false
   },
   {
-   "id": "BS74-CX02",
-   "name": "The NetherContractor Dionysus",
-   "type": "Nexus",
+   "id": "SD44-RV003",
+   "name": "The ShiningSacredSword Shining-Sword",
+   "type": "Brave",
+   "families_jp": [],
    "complete": false
   },
   {
-   "id": "BS74-CX03",
-   "name": "The CovenantContractor Mitra",
-   "type": "Nexus",
+   "id": "SD44-RV004",
+   "name": "The MidnightSunTreasuredSword Midnight-Sun",
+   "type": "Brave",
+   "families_jp": [],
    "complete": false
   },
   {
-   "id": "BS75-CX03",
-   "name": "The HeavenlyThunderContractor Indra",
-   "type": "Nexus",
+   "id": "BS45-RV001",
+   "name": "The KatanaHero Musashied-Ashliger",
+   "type": "Spirit",
+   "families_jp": [
+    "覇皇",
+    "界渡",
+    "皇獣"
+   ],
    "complete": false
   },
   {
-   "id": "BS75-CX04",
-   "name": "The ChaosContractor Khaos",
+   "id": "BS45-RV002",
+   "name": "The SevenShogun Beliot",
+   "type": "Spirit",
+   "families_jp": [
+    "冥主",
+    "魔神"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS45-RV003",
+   "name": "Leading-Orix",
+   "type": "Spirit",
+   "families_jp": [
+    "機獣"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS45-RV004",
+   "name": "The ArcAngelia Saint d'Arc",
+   "type": "Spirit",
+   "families_jp": [
+    "天霊"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS45-RV005",
+   "name": "The BeastChild Panzer",
+   "type": "Spirit",
+   "families_jp": [
+    "界渡",
+    "獣頭"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS45-RV006",
+   "name": "The EarthDeitySword Gaianohoko",
+   "type": "Brave",
+   "families_jp": [
+    "剣刃"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS45-RV007",
+   "name": "Transmigration Flame",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS45-RV008",
+   "name": "Soul Crash",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS45-RV009",
+   "name": "Forest Charge",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS45-RV010",
+   "name": "White Potion",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS45-RV011",
+   "name": "Absolute Zero",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS45-RV012",
+   "name": "Impact Roar",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS46-RV001",
+   "name": "The Investigator Ozzania",
+   "type": "Spirit",
+   "families_jp": [
+    "調査員",
+    "竜人"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS46-RV002",
+   "name": "The Investigator Fric",
+   "type": "Spirit",
+   "families_jp": [
+    "調査員",
+    "妖蛇"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS46-RV003",
+   "name": "The Investigator Laten",
+   "type": "Spirit",
+   "families_jp": [
+    "調査員",
+    "殻人"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS46-RV004",
+   "name": "The Investigator Euro",
+   "type": "Spirit",
+   "families_jp": [
+    "調査員",
+    "氷姫"
+   ],
+   "complete": true
+  },
+  {
+   "id": "BS46-RV005",
+   "name": "The SingingInvestigator Asia",
+   "type": "Spirit",
+   "families_jp": [
+    "調査員",
+    "詩姫"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS46-RV006",
+   "name": "The Investigator Nord",
+   "type": "Spirit",
+   "families_jp": [
+    "調査員",
+    "闘神"
+   ],
+   "complete": true
+  },
+  {
+   "id": "BS46-RV007",
+   "name": "Soul Ogre",
+   "type": "Spirit",
+   "families_jp": [
+    "呪鬼"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS46-RV008",
+   "name": "Shikitsuru",
+   "type": "Spirit",
+   "families_jp": [
+    "界渡",
+    "魔影"
+   ],
+   "complete": true
+  },
+  {
+   "id": "BS46-RV009",
+   "name": "Ardor Flame",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS46-RV010",
+   "name": "Totentanz",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS46-RV011",
+   "name": "Dream Hand",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS46-RV012",
+   "name": "Royal Potion",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "PB46-RV001",
+   "name": "Ryutaros",
+   "type": "Brave",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "PB46-RV002",
+   "name": "Urataros",
+   "type": "Brave",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "PB46-RV003",
+   "name": "Kintaros",
+   "type": "Brave",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "PB46-RV004",
+   "name": "Momotaros",
+   "type": "Brave",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "PB46-RV005",
+   "name": "Henshin!! Kamen Rider Den-O",
    "type": "Nexus",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "PB46-RV006",
+   "name": "Horse Orphnoch Dash Form",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "PB46-RV007",
+   "name": "Henshin!! Kamen Rider Kabuto",
+   "type": "Nexus",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "PB46-RV008",
+   "name": "Henshin!! Kamen Rider W",
+   "type": "Nexus",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "BS47-RV001",
+   "name": "Critical Burst",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS47-RV002",
+   "name": "Round Table Knights",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS47-RV003",
+   "name": "Boerte Salkhi",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS47-RV004",
+   "name": "Dimension Sword",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS47-RV005",
+   "name": "Moonlight Punish",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS47-RV006",
+   "name": "Burst Fist",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS48-RV001",
+   "name": "The FlameDragonDevil Ma-Gwo",
+   "type": "Spirit",
+   "families_jp": [
+    "天渡",
+    "竜人",
+    "古竜"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS48-RV002",
+   "name": "The DarkKnight Lancelot",
+   "type": "Spirit",
+   "families_jp": [
+    "天渡",
+    "覇皇",
+    "魔影"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS48-RV003",
+   "name": "The LittlePhoenix Nix",
+   "type": "Spirit",
+   "families_jp": [
+    "界渡",
+    "爪鳥"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS48-RV004",
+   "name": "The ElectricMan Train",
+   "type": "Spirit",
+   "families_jp": [
+    "界渡",
+    "武装"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS48-RV005",
+   "name": "The PhantomPrincessDeity Echidna",
+   "type": "Spirit",
+   "families_jp": [
+    "天渡",
+    "楽族",
+    "想獣"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS48-RV006",
+   "name": "The AncientBeastKing Gilgamesh",
+   "type": "Spirit",
+   "families_jp": [
+    "覇皇",
+    "獣頭"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS48-RV007",
+   "name": "Brave Draw",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": true
+  },
+  {
+   "id": "BS48-RV008",
+   "name": "Grim Reaper",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS48-RV009",
+   "name": "Thunderstorm",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS48-RV010",
+   "name": "Regain",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": true
+  },
+  {
+   "id": "BS48-RV011",
+   "name": "Flower Dance Draw",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS48-RV012",
+   "name": "Spinning Sword",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS49-RV001",
+   "name": "The AncientDragon Ba-Gaw",
+   "type": "Spirit",
+   "families_jp": [
+    "竜人",
+    "古竜"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS49-RV002",
+   "name": "The GrandBishop Levia",
+   "type": "Spirit",
+   "families_jp": [
+    "天渡",
+    "古竜"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS49-RV003",
+   "name": "The BlackNinthDragon Obsidian-Dragon",
+   "type": "Spirit",
+   "families_jp": [
+    "天渡",
+    "死竜"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS49-RV004",
+   "name": "The Beeman Bumble-B",
+   "type": "Spirit",
+   "families_jp": [
+    "殻人"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS49-RV005",
+   "name": "The ShellBrawler Muguri",
+   "type": "Spirit",
+   "families_jp": [
+    "殻人"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS49-RV006",
+   "name": "The ArmoredDragonBattleship Enterprise",
+   "type": "Spirit",
+   "families_jp": [
+    "天渡",
+    "甲竜"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS49-RV007",
+   "name": "The HollowSeaBeast Emehydral",
+   "type": "Spirit",
+   "families_jp": [
+    "神将",
+    "海首"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS49-RV008",
+   "name": "The Flowering Yellow Castle Gates",
+   "type": "Nexus",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS49-RV009",
+   "name": "Fourth Draw",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS49-RV010",
+   "name": "Strangle Fog",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS49-RV011",
+   "name": "Insect Aura",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS49-RV012",
+   "name": "Möbius Loop",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS49-RV013",
+   "name": "Lead Voice",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS50-RV001",
+   "name": "The ZombieDragon Zom-Sauru",
+   "type": "Spirit",
+   "families_jp": [
+    "天渡",
+    "地竜",
+    "無魔"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS50-RV002",
+   "name": "The CurseHero Chaotic-Seimei",
+   "type": "Spirit",
+   "families_jp": [
+    "天渡",
+    "覇皇",
+    "魔影"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS50-RV003",
+   "name": "The TenSwordMasters Murasame",
+   "type": "Spirit",
+   "families_jp": [
+    "界渡",
+    "剣使",
+    "爪鳥"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS50-RV004",
+   "name": "Moonshouuo",
+   "type": "Spirit",
+   "families_jp": [
+    "天渡",
+    "甲竜"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS50-RV005",
+   "name": "Zashiki Girl",
+   "type": "Spirit",
+   "families_jp": [
+    "妖戒"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS50-RV006",
+   "name": "Nurikabe",
+   "type": "Spirit",
+   "families_jp": [
+    "天渡",
+    "家臣",
+    "妖戒"
+   ],
+   "complete": true
+  },
+  {
+   "id": "BS50-RV007",
+   "name": "Kashaneko",
+   "type": "Spirit",
+   "families_jp": [
+    "天渡",
+    "家臣",
+    "妖戒"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS50-RV008",
+   "name": "Kojirond-Golem",
+   "type": "Spirit",
+   "families_jp": [
+    "天渡",
+    "造兵"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS50-RV009",
+   "name": "Oborogissha",
+   "type": "Brave",
+   "families_jp": [
+    "天渡",
+    "妖戒"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS50-RV010",
+   "name": "Curse of Hades",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS50-RV011",
+   "name": "Turbulence",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS50-RV012",
+   "name": "Recovered Core",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS50-RV013",
+   "name": "Tousenbo Wall",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS50-RV014",
+   "name": "Swallow Counter",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS51-RV001",
+   "name": "The NetherThreeGiants Queen-Merduk",
+   "type": "Spirit",
+   "families_jp": [
+    "天渡",
+    "無魔",
+    "妖蛇"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS51-RV002",
+   "name": "The NetherThreeGiants Zainde-Milion",
+   "type": "Spirit",
+   "families_jp": [
+    "天渡",
+    "無魔"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS51-RV003",
+   "name": "The NetherThreeGiants Baroque-Bordeaux",
+   "type": "Spirit",
+   "families_jp": [
+    "天渡",
+    "魔神",
+    "無魔"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS51-RV004",
+   "name": "The BiwaSwordsman Bokuboku",
+   "type": "Spirit",
+   "families_jp": [
+    "剣使",
+    "妖戒"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS51-RV005",
+   "name": "The DarknessDemonSword Dark-Blade",
+   "type": "Brave",
+   "families_jp": [
+    "神話",
+    "剣刃",
+    "天渡"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS51-RV006",
+   "name": "The Criminal's SkullBlade Executioners",
+   "type": "Brave",
+   "families_jp": [
+    "神話",
+    "剣刃",
+    "天渡"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS51-RV007",
+   "name": "The HurricaneTwinBlade Kamui-Hayate",
+   "type": "Brave",
+   "families_jp": [
+    "神話",
+    "剣刃",
+    "天渡"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS51-RV008",
+   "name": "The LightWingsDivineBlade Angelicfeather",
+   "type": "Brave",
+   "families_jp": [
+    "神話",
+    "剣刃",
+    "界渡"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS51-RV009",
+   "name": "The AbyssGiantSword Abyss-Apocalypse",
+   "type": "Brave",
+   "families_jp": [
+    "神話",
+    "剣刃",
+    "界渡"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS51-RV010",
+   "name": "Victory Fire",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS51-RV011",
+   "name": "Necromancy",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS51-RV012",
+   "name": "Never Give Up",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS51-RV013",
+   "name": "Light Wings Sword",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS51-RV014",
+   "name": "Angelic Pressure",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS51-RV015",
+   "name": "Solid Body",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS52-RV001",
+   "name": "Lizardedge",
+   "type": "Spirit",
+   "families_jp": [
+    "起幻",
+    "爬獣"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS52-RV002",
+   "name": "Onmyou Child",
+   "type": "Spirit",
+   "families_jp": [
+    "起幻",
+    "家臣",
+    "夜族"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS52-RV003",
+   "name": "The GreatTreeGuardian Blanboar",
+   "type": "Spirit",
+   "families_jp": [
+    "起幻",
+    "剣獣"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS52-RV004",
+   "name": "The ArmoredBeast Skoll",
+   "type": "Spirit",
+   "families_jp": [
+    "起幻",
+    "甲獣"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS52-RV005",
+   "name": "The MagicalEmpress Ambrocius",
+   "type": "Spirit",
+   "families_jp": [
+    "起幻",
+    "導魔"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS52-RV006",
+   "name": "The SeaDragonRider Vang-Tholomew",
+   "type": "Spirit",
+   "families_jp": [
+    "起幻",
+    "竜騎",
+    "異合"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS52-RV007",
+   "name": "The ChosenSearcher Alex",
+   "type": "Spirit",
+   "families_jp": [
+    "起幻",
+    "遊撃隊"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS52-RV008",
+   "name": "Diamond Wall",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS53-RV001",
+   "name": "Sprite-Dragoon",
+   "type": "Spirit",
+   "families_jp": [
+    "起幻",
+    "星竜"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS53-RV002",
+   "name": "The Necromancer Yakumo",
+   "type": "Spirit",
+   "families_jp": [
+    "起幻",
+    "夜族"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS53-RV003",
+   "name": "The GreatGrassBird Sotetsunia-Condor",
+   "type": "Spirit",
+   "families_jp": [
+    "起幻",
+    "爪鳥"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS53-RV004",
+   "name": "The TenSwordMasters Vol-Cougar",
+   "type": "Spirit",
+   "families_jp": [
+    "起幻",
+    "剣使",
+    "武装"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS53-RV005",
+   "name": "The Angelia of Olimpics Phaleg",
+   "type": "Spirit",
+   "families_jp": [
+    "起幻",
+    "天霊"
+   ],
+   "complete": true
+  },
+  {
+   "id": "BS53-RV006",
+   "name": "The SakraGeneral Indra",
+   "type": "Spirit",
+   "families_jp": [
+    "起幻",
+    "闘神"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS54-RV001",
+   "name": "The Assassin Dragno",
+   "type": "Spirit",
+   "families_jp": [
+    "起幻",
+    "竜人"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS54-RV002",
+   "name": "The Charger Dragno",
+   "type": "Spirit",
+   "families_jp": [
+    "起幻",
+    "竜人"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS54-RV003",
+   "name": "Gabunohashi",
+   "type": "Spirit",
+   "families_jp": [
+    "起幻",
+    "樹魔"
+   ],
+   "complete": true
+  },
+  {
+   "id": "BS54-RV004",
+   "name": "The ChiefLibrarian Saga",
+   "type": "Spirit",
+   "families_jp": [
+    "起幻",
+    "氷姫"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS54-RV005",
+   "name": "The IceFencer Morrigan",
+   "type": "Spirit",
+   "families_jp": [
+    "起幻",
+    "剣使",
+    "氷姫"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS54-RV006",
+   "name": "The Angelia Prima",
+   "type": "Spirit",
+   "families_jp": [
+    "起幻",
+    "天霊"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS55-RV001",
+   "name": "The Guardsman Dragno",
+   "type": "Spirit",
+   "families_jp": [
+    "起幻",
+    "竜人"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS55-RV002",
+   "name": "Swordoll",
+   "type": "Spirit",
+   "families_jp": [
+    "起幻",
+    "無魔"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS55-RV003",
+   "name": "The ForestBird Sekkohkiji",
+   "type": "Spirit",
+   "families_jp": [
+    "起幻",
+    "爪鳥"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS55-RV004",
+   "name": "The HeavenlyDemonKing God-Sechs -Type Five-",
+   "type": "Spirit",
+   "families_jp": [
+    "天魔王"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS55-RV005",
+   "name": "Cupid",
+   "type": "Spirit",
+   "families_jp": [
+    "起幻",
+    "天霊"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS55-RV006",
+   "name": "Tindalo-Hound",
+   "type": "Spirit",
+   "families_jp": [
+    "起幻",
+    "時冠",
+    "異合"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS56-RV001",
+   "name": "Revol Draw",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS56-RV002",
+   "name": "Crystal Crack",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS56-RV003",
+   "name": "Neo-Hand Reverse",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS56-RV004",
+   "name": "White Crack",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS56-RV005",
+   "name": "Magical Draw",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS56-RV006",
+   "name": "Swallow Tail",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "SD56-RV001",
+   "name": "Ohdoran",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "SD56-RV002",
+   "name": "Dos-Monkey",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": true
+  },
+  {
+   "id": "SD56-RV003",
+   "name": "One-Kengo",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "SD56-RV004",
+   "name": "The FangBeastEmperor Kintarogue-Bear",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "SD56-RV005",
+   "name": "Kiji-Toria",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "SD56-RV006",
+   "name": "The HeroEmperor DeitySword",
+   "type": "Nexus",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "SD56-RV007",
+   "name": "The HeroEmperor DeityShield",
+   "type": "Nexus",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "SD56-RV008",
+   "name": "Burst Flame",
+   "type": "Magic",
+   "families_jp": [],
+   "complete": true
+  },
+  {
+   "id": "SD56-RV009",
+   "name": "Burst Wall",
+   "type": "Magic",
+   "families_jp": [
+    "-"
+   ],
+   "complete": false
+  },
+  {
+   "id": "SD56-RV010",
+   "name": "Burst Storm",
+   "type": "Magic",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "SD57-RV001",
+   "name": "The HeavenlyDemonKing God-Sechs -Type Zero-",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": true
+  },
+  {
+   "id": "SD57-RV002",
+   "name": "Saiborg",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": true
+  },
+  {
+   "id": "SD57-RV003",
+   "name": "Gyuuki",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": true
+  },
+  {
+   "id": "SD57-RV004",
+   "name": "The HeavenlyDemonKing Advents",
+   "type": "Magic",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "SD57-RV005",
+   "name": "Demon King Blade",
+   "type": "Magic",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "BS59-RV001",
+   "name": "The MeteorSwordMaster Shootingstar",
+   "type": "Spirit",
+   "families_jp": [
+    "占征",
+    "剣使",
+    "星竜"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS59-RV002",
+   "name": "The MagicFencer Prisila",
+   "type": "Spirit",
+   "families_jp": [
+    "占征",
+    "剣使",
+    "夜族"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS59-RV003",
+   "name": "Dark-MachG",
+   "type": "Spirit",
+   "families_jp": [
+    "来是",
+    "怪虫",
+    "刃虫"
+   ],
+   "complete": true
+  },
+  {
+   "id": "BS59-RV004",
+   "name": "The Artifact Fjalar",
+   "type": "Spirit",
+   "families_jp": [
+    "来是",
+    "武装",
+    "機人"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS59-RV005",
+   "name": "Tower-Golem",
+   "type": "Spirit",
+   "families_jp": [
+    "来是",
+    "造兵"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS59-RV006",
+   "name": "Chihyu",
+   "type": "Brave",
+   "families_jp": [
+    "占征",
+    "想獣",
+    "戯狩"
+   ],
+   "complete": false
+  },
+  {
+   "id": "SD59-RV001",
+   "name": "The DarkKnight Gaheris",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": true
+  },
+  {
+   "id": "SD59-RV002",
+   "name": "The DarkKnight Lamorak",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "SD59-RV003",
+   "name": "The DarkKnight Bors",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": true
+  },
+  {
+   "id": "SD59-RV004",
+   "name": "The DarkKnight Gawain",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "SD59-RV005",
+   "name": "The Twilight Camelot",
+   "type": "Nexus",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "SD60-RV001",
+   "name": "Night Bladra",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": true
+  },
+  {
+   "id": "SD60-RV002",
+   "name": "Bone-Dile",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": true
+  },
+  {
+   "id": "SD60-RV003",
+   "name": "The Dragon's Holy Sword",
+   "type": "Nexus",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "SD61-RV001",
+   "name": "The NobleBattleship Batiment-de-Gale",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "SD61-RV002",
+   "name": "The NobleGod Grace-Order",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "SD63-RV001",
+   "name": "The Frozen Volcano",
+   "type": "Nexus",
+   "families_jp": [],
+   "complete": true
+  },
+  {
+   "id": "SD64-RV001",
+   "name": "Fizard",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "SD64-RV002",
+   "name": "Mugendra",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": true
+  },
+  {
+   "id": "SD64-RV003",
+   "name": "Edge-Wolf",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": true
+  },
+  {
+   "id": "SD64-RV004",
+   "name": "Mugendragon",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": true
+  },
+  {
+   "id": "SD64-RV005",
+   "name": "Aizendragon",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": true
+  },
+  {
+   "id": "SD64-RV006",
+   "name": "Mugendragon-Nova",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "SD64-RV007",
+   "name": "The Red Dawn Sky",
+   "type": "Nexus",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "SD64-RV008",
+   "name": "The Village of Hunters",
+   "type": "Nexus",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "SD64-RV009",
+   "name": "Neo-Double Draw",
+   "type": "Magic",
+   "families_jp": [],
+   "complete": true
+  },
+  {
+   "id": "SD64-RV010",
+   "name": "Flame Spark",
+   "type": "Magic",
+   "families_jp": [],
+   "complete": true
+  },
+  {
+   "id": "SD65-RV001",
+   "name": "Birgoyle",
+   "type": "Ultimate",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "SD65-RV002",
+   "name": "Evil Draw",
+   "type": "Magic",
+   "families_jp": [],
+   "complete": true
+  },
+  {
+   "id": "SD65-RV003",
+   "name": "Evil Flame",
+   "type": "Magic",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "BS66-RV001",
+   "name": "The Deity Sieg-Catastrophedragon",
+   "type": "Spirit",
+   "families_jp": [
+    "緋炎",
+    "古竜",
+    "虚神"
+   ],
+   "complete": true
+  },
+  {
+   "id": "BS66-RV002",
+   "name": "Ultimate-Grand-Woden",
+   "type": "Ultimate",
+   "families_jp": [
+    "極契約",
+    "新生",
+    "武装"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS66-RV003",
+   "name": "Ultimate-Alexander",
+   "type": "Ultimate",
+   "families_jp": [
+    "極契約",
+    "新生",
+    "闘神"
+   ],
+   "complete": false
+  },
+  {
+   "id": "SD66-RV001",
+   "name": "DarkGoradon",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": true
+  },
+  {
+   "id": "SD66-RV002",
+   "name": "Dinohound",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": true
+  },
+  {
+   "id": "SD66-RV003",
+   "name": "DarkDinohound",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": true
+  },
+  {
+   "id": "SD66-RV004",
+   "name": "Cross Fire",
+   "type": "Magic",
+   "families_jp": [],
+   "complete": true
+  },
+  {
+   "id": "SD66-RV005",
+   "name": "Seventh Crimson",
+   "type": "Magic",
+   "families_jp": [],
+   "complete": true
+  },
+  {
+   "id": "BS67-RV001",
+   "name": "Ultimate-Siegfrieden",
+   "type": "Ultimate",
+   "families_jp": [
+    "極契約",
+    "新生"
+   ],
+   "complete": false
+  },
+  {
+   "id": "SD67-RV001",
+   "name": "The LeonKnight Arocain",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "SD67-RV002",
+   "name": "Wald-Jaeger",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": true
+  },
+  {
+   "id": "SD67-RV003",
+   "name": "Defenzard",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": true
+  },
+  {
+   "id": "SD67-RV004",
+   "name": "Reiki",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "SD67-RV005",
+   "name": "The WarHorse Bucephalus",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "SD67-RV006",
+   "name": "Neo-Flame Tempest",
+   "type": "Magic",
+   "families_jp": [],
+   "complete": true
+  },
+  {
+   "id": "SD68-RV001",
+   "name": "The CometDragon Sungrazer",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": true
+  },
+  {
+   "id": "SD68-RV002",
+   "name": "WhiteHole Dragon",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "SD68-RV003",
+   "name": "The SunEmperor Heliosphere-Dragon",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "SD68-RV004",
+   "name": "Eclipse-Dragon",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "SD69-RV001",
+   "name": "The PalaceDragon Taj Dragon",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "SD69-RV002",
+   "name": "The RishiDragon Ma-Richi -Humanoid Form-",
+   "type": "Spirit",
+   "families_jp": [],
+   "complete": false
+  },
+  {
+   "id": "BS71-RV001",
+   "name": "The DancerDoll †Rumlet†",
+   "type": "Spirit",
+   "families_jp": [
+    "眷属",
+    "呪鬼",
+    "魔影"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS71-RV002",
+   "name": "The BladeBeastQueen Medea",
+   "type": "Spirit",
+   "families_jp": [
+    "眷属",
+    "剣獣"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS71-RV003",
+   "name": "The SteelKing Erichthonios",
+   "type": "Spirit",
+   "families_jp": [
+    "眷属",
+    "機人"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS71-RV004",
+   "name": "The Sixth's ExplosiveBeast Armor Rhider",
+   "type": "Spirit",
+   "families_jp": [
+    "眷属",
+    "爆蒼"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS71-RV005",
+   "name": "The IllustriousArmor Thunder-Z-Brave",
+   "type": "Brave",
+   "families_jp": [
+    "眷属",
+    "皇獣"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS71-RV006",
+   "name": "The StationeryRobot Stationer",
+   "type": "Brave",
+   "families_jp": [
+    "眷属",
+    "動玩"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS74-RV001",
+   "name": "The 44thGenerationStrangeFangShinobiHead Shishinobi",
+   "type": "Spirit",
+   "families_jp": [
+    "忍風",
+    "皇獣",
+    "剣獣"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS74-RV002",
+   "name": "The WindDemon Ikaruga",
+   "type": "Spirit",
+   "families_jp": [
+    "忍風",
+    "爪鳥"
+   ],
+   "complete": true
+  },
+  {
+   "id": "BS74-RV003",
+   "name": "The ArmoredMothHead Kuwagaslayer",
+   "type": "Spirit",
+   "families_jp": [
+    "忍風",
+    "殻人"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS74-RV004",
+   "name": "The ArmoredMothShinobi Tobikage",
+   "type": "Spirit",
+   "families_jp": [
+    "忍風",
+    "殻人"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS75-RV001",
+   "name": "The NinjaHead Souldragon-Hokage",
+   "type": "Spirit",
+   "families_jp": [
+    "烈火",
+    "忍風",
+    "武竜"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS75-RV002",
+   "name": "The StrangeFangGreatShinobi Hyousouga",
+   "type": "Spirit",
+   "families_jp": [
+    "忍風",
+    "剣獣"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS75-RV003",
+   "name": "The CleverMachineNinja Shiomaneki",
+   "type": "Spirit",
+   "families_jp": [
+    "忍風",
+    "甲獣",
+    "機巧"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS75-RV004",
+   "name": "The StarMedium Kushina",
+   "type": "Spirit",
+   "families_jp": [
+    "眷属",
+    "道化"
+   ],
+   "complete": false
+  },
+  {
+   "id": "BS77-RV004",
+   "name": "The FortyFourthMachine Glorious-Racoon",
+   "type": "Spirit",
+   "families_jp": [],
    "complete": false
   }
  ],

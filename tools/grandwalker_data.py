@@ -52,18 +52,15 @@ def parse_group(g):
     return {'raw': g, 'tokens_jp': toks, 'cond_jp': cond or None}
 
 
-REVIVAL = re.compile(r'revive|revival', re.I)
-
-
-def revival_cards(lib):
-    # Revive / Revival text on library cards of BS44+/SD44+ (card name is ignored: "Ryuuman-Revived" is only a name)
+def revival_cards(lib, off):
+    # Revival = reprint with a new effect, printed with the Revival logo; its card number is <set>-RV<nnn> (BS/SD sets and PB boxes numbered 44 or higher)
     out = []
     for cid, c in lib.items():
-        k = set_key(cid.split('-')[0])
-        if not k or k[0] < MIN_SET: continue
-        if REVIVAL.search(json.dumps({a: b for a, b in c.items() if a != 'name'}, ensure_ascii=False)):
-            out.append({'id': cid, 'name': c['name'], 'type': c['type'], 'complete': bool(c.get('fxComplete'))})
-    return sorted(out, key=lambda x: (set_key(x['id'].split('-')[0]), x['id']))
+        m = re.match(r'(BS|SD|PB)(\d+)-RV\d+$', cid)
+        if not m or int(m.group(2)) < MIN_SET: continue
+        fam = [x for x in ((off.get(cid) or {}).get('familiesJp') or '').split('・') if x]
+        out.append({'id': cid, 'name': c['name'], 'type': c['type'], 'families_jp': fam, 'complete': bool(c.get('fxComplete'))})
+    return sorted(out, key=lambda x: (int(re.search(r'\d+', x['id']).group()), x['id']))
 
 
 def build():
@@ -127,6 +124,7 @@ def build():
         for g in r['oracle_groups']:
             g['families_en'] = [en_of(t) for t in g['families_jp']]
             g['tokens_en'] = [en_of(t) for t in g['tokens_jp']]
+    rev = revival_cards(lib, off)
     seen = set()
     for r in rows:     # newest Nexus first takes a card; each card is listed once
         g0f = r['oracle_groups'][0]['families_jp']
@@ -137,12 +135,13 @@ def build():
             for c in fam_cards[t]: ids.setdefault(c['id'], c)
         order_ids = sorted(ids, key=lambda i: (set_key(i.split('-')[0]), i))
         r['deck_cards'] = order_ids
+        r['revival_open'] = [x['id'] for x in rev if not x['complete'] and set(x['families_jp']) & set(own)]   # open Revival cards in the Nexus' own families
         r['deck_incomplete'] = [i for i in order_ids if not ids[i]['complete']]
         self_open = [] if (lib.get(r['id']) or {}).get('fxComplete') else [r['id']]   # the Nexus card itself leads its queue
         r['order_cards'] = self_open + [i for i in order_ids if i not in seen and i != r['id'] and not ids[i]['complete']]   # open cards not already queued under a newer Nexus
         seen.update(order_ids)
     data = {'source': 'official card database fields (data/sources/official-fields.json)', 'count': len(rows),
-            'nexus': rows, 'shared_families_jp': sorted(shared), 'revival_cards': revival_cards(lib), 'family_en': {t: en_of(t) for t in fam_cards}, 'family_cards': fam_cards}
+            'nexus': rows, 'shared_families_jp': sorted(shared), 'revival_cards': rev, 'family_en': {t: en_of(t) for t in fam_cards}, 'family_cards': fam_cards}
     return data
 
 
@@ -178,13 +177,13 @@ def report(d):
          f'{d["count"]} Grandwalker Nexus cards, newest first printing first. "Target" = the 〔...〕 after 《神託》 / 《真・神託》 (Core Charge target). '
          '"Own families" = target families that are not shared (shared: ' + ', '.join(f'{t} ({nm.get(t, t)})' for t in d['shared_families_jp']) + '). '
          '"Deck cards" = library cards of BS44-BS77 / SD44-SD70 in the own families (a card can serve several Nexus); "Open" = not complete yet; "Queue" = open cards not already queued under a newer Nexus (the Lane K order).', '',
-         '| First set | Card | Kind | Colour | Own families | All target families | Other target groups | Deck cards | Open | Queue |', '|---|---|---|---|---|---|---|---|---|---|']
+         '| First set | Card | Kind | Colour | Own families | All target families | Other target groups | Deck cards | Open | Queue | Revival open |', '|---|---|---|---|---|---|---|---|---|---|---|']
     for r in d['nexus']:
         g0 = r['oracle_groups'][0]
         allf = ' / '.join(f'{t} ({nm[t]})' for t in g0['families_jp']) or '-'
         own = ' / '.join(f'{t} ({nm[t]})' for t in r['own_families_jp']) or '-'
         extra = '; '.join(g['raw'] for g in r['oracle_groups'][1:]) or '-'
-        L.append(f'| {r["first_set"]} | {r["id"]} {r["name_en"] or r["name_jp"]} | {"Contract" if r["kind"].startswith("Contract") else "Grandwalker"} | {r["color"]} | {own} | {allf} | {extra} | {len(r["deck_cards"])} | {len(r["deck_incomplete"])} | {len(r["order_cards"])} |')
+        L.append(f'| {r["first_set"]} | {r["id"]} {r["name_en"] or r["name_jp"]} | {"Contract" if r["kind"].startswith("Contract") else "Grandwalker"} | {r["color"]} | {own} | {allf} | {extra} | {len(r["deck_cards"])} | {len(r["deck_incomplete"])} | {len(r["order_cards"])} | {len(r["revival_open"])} |')
     q = sum(len(r['order_cards']) for r in d['nexus'])
     L += ['', f'Queue total: {q} open cards (each once).', '', '## Lane K queue per Nexus (newest Nexus first; cards oldest series first)', '']
     for r in d['nexus']:
