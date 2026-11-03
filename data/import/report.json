@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 6217,
+  "cards": 6216,
   "per_saga": {
    "1": 458,
    "2": 251,
@@ -8,7 +8,7 @@
    "4": 299,
    "5": 574,
    "6": 311,
-   "7": 457,
+   "7": 456,
    "8": 428,
    "9": 471,
    "10": 485,
@@ -22,7 +22,7 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2489,
+  "skipped_curated": 2490,
   "nexus_levels_added": 667,
   "nexus_levels_missing": 43,
   "merged": 106,
@@ -1432,6 +1432,7 @@
   "BS39-RV007",
   "BS39-RV009",
   "BS39-RV011",
+  "BS39-RV012",
   "BS39-RV018",
   "BS40-001",
   "BS40-002",

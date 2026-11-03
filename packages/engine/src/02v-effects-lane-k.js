@@ -333,6 +333,18 @@ FX_ACTIONS.CANT_ATTACK_BLOCK_ALL = {
     for (const t of L) { t.noAB = true; t.noABTurn = G.turnNo; }
     if (L.length) { log(`${CARDS[c.src.id].name}: ${L.length} Spirit${L.length === 1 ? '' : 's'} can't attack/block during this turn.`); io.view({ type: 'board' }); }
   } };
+/* v419 CANT_ATTACK_PICK {match?}: "Target an opposing <match> Spirit/Ultimate. During this turn, it can't attack." One target (fxImmune respected); sets noAtkTurn (read by cantAttack). */
+FX_ACTIONS.CANT_ATTACK_PICK = {
+  chk: a => (a.match == null || hasMatch(a.match)) && Object.keys(a).every(k => ['do', 'if', 'match'].includes(k)),
+  txt: a => `target an opposing ${a.match ? 'matching ' : ''}Spirit/Ultimate. During this turn, it can't attack`,
+  cands: (c, a) => c.opp.spirits.filter(t => t.noAtkTurn !== G.turnNo && !fxImmune(c.opp, t, c) && (!a.match || fxMatch(CARDS[t.id], a.match, t))),
+  can: (c, a) => FX_ACTIONS.CANT_ATTACK_PICK.cands(c, a).length > 0,
+  run: async (c, a) => {
+    const L = FX_ACTIONS.CANT_ATTACK_PICK.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
+    const [t] = await pickOppSpirits(c, L, 1, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the opposing Spirit that can't attack this turn (glowing).`);
+    if (!t) { c.ctx.did = false; return; }
+    t.noAtkTurn = G.turnNo; c.ctx.did = true; log(`${CARDS[c.src.id].name}: ${poss(c.opp)} ${CARDS[t.id].name} can't attack during this turn.`); io.view({ type: 'board' });
+  } };
 /* v354 CANT_BLOCK_OPP_ALL {costLe}: "During this turn, every opposing Cost N or less Spirit can't block." Opposing side only; protected Spirits skipped; mark noBlockT = turn number (read by canBlockState). */
 FX_ACTIONS.CANT_BLOCK_OPP_ALL = {
   chk: a => Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30 && Object.keys(a).every(k => ['do', 'if', 'costLe'].includes(k)),

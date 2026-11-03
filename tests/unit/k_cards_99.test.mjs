@@ -95,3 +95,13 @@ test('K-1053 BS39-RV018 Angelia Coma: Accel flash marks every opposing Spirit un
     return { opp: O.spirits.map(s => !!s.noAB), own: !!m.noAB, cost: e.cost, partial: BS.CARDS['BS39-RV018'].partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.deepEqual(r.opp, [true, true], JSON.stringify(r)); assert.equal(r.own, false, JSON.stringify(r)); assert.equal(r.cost, 7, JSON.stringify(r));
 });
+
+test('K-1054 BS39-RV012 Dolphing: CANT_ATTACK_PICK only targets a braved opposing Spirit and bars it from attacking this turn', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = O.key; G.step = 5;
+    const a = BS.mkInst(${symSpirit('red')}), b = BS.mkInst(${symSpirit('green')}); a.cores = b.cores = 1; b.brave = BS.mkInst(Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Brave')); O.spirits = [a, b]; P.spirits = [];
+    const e = BS.CARDS['BS39-RV012'].effects.find(x => x.trigger === 'OPP_START_ATTACK'); const c = { p: P, opp: O, src: BS.mkInst('BS39-RV012'), ctx: {} };
+    await BS.FX_ACTIONS.CANT_ATTACK_PICK.run(c, e.actions[0]);
+    return { plain: a.noAtkTurn === G.turnNo, braved: b.noAtkTurn === G.turnNo, opt: e.optional, partial: BS.CARDS['BS39-RV012'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.braved, true, JSON.stringify(r)); assert.equal(r.plain, false, JSON.stringify(r)); assert.equal(r.opt, true, JSON.stringify(r));
+});
