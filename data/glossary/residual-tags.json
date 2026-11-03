@@ -1602,10 +1602,6 @@
   "M_OPTIONAL",
   "T_SUMMONED"
  ],
- "BS08-008": [
-  "A_BP_PLUS",
-  "C_LEVEL"
- ],
  "BS08-009": [
   "C_LEVEL",
   "K_HIGH_SPEED",
@@ -15593,11 +15589,6 @@
   "K_ULTIMATE",
   "T_ATTACKS"
  ],
- "BS39-RV009": [
-  "C_LEVEL",
-  "K_BURST",
-  "T_ATTACKS"
- ],
  "BS39-RV010": [
   "A_SUMMON_FREE",
   "C_LEVEL",
@@ -17655,12 +17646,6 @@
   "C_LEVEL",
   "K_BRAVE",
   "S_UNAFFECTED"
- ],
- "BS42-039": [
-  "A_DISCARD_OPP",
-  "C_LEVEL",
-  "K_ADVENT",
-  "K_BURST"
  ],
  "BS42-040": [
   "A_DISCARD_OPP",

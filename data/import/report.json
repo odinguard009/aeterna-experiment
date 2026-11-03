@@ -1,15 +1,15 @@
 {
  "stats": {
-  "cards": 6295,
+  "cards": 6292,
   "per_saga": {
-   "1": 459,
+   "1": 458,
    "2": 251,
    "3": 324,
    "4": 300,
    "5": 576,
    "6": 311,
-   "7": 460,
-   "8": 433,
+   "7": 459,
+   "8": 432,
    "9": 471,
    "10": 486,
    "11": 314,
@@ -22,18 +22,18 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2411,
+  "skipped_curated": 2414,
   "nexus_levels_added": 668,
   "nexus_levels_missing": 43,
   "merged": 107,
-  "image_problems": 403,
+  "image_problems": 402,
   "brave_unparsed": 170,
   "ut_lines_added": 107,
   "odd_reduction": 804,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
   "number_conflicts": 3,
-  "without_image": 401
+  "without_image": 400
  },
  "tokens": [
   "BS73-T001",
@@ -528,6 +528,7 @@
   "BS08-002",
   "BS08-004",
   "BS08-007",
+  "BS08-008",
   "BS08-010",
   "BS08-011",
   "BS08-013",
@@ -1425,6 +1426,7 @@
   "BS39-075",
   "BS39-RV004",
   "BS39-RV007",
+  "BS39-RV009",
   "BS39-RV011",
   "BS40-001",
   "BS40-002",
@@ -1477,6 +1479,7 @@
   "BS42-027",
   "BS42-029",
   "BS42-037",
+  "BS42-039",
   "BS42-041",
   "BS42-050",
   "BS42-063",
@@ -4107,11 +4110,6 @@
    "id": "BS42-036",
    "name": "The HundredSwordsClan TwinkleBlade Miyama",
    "problem": "no image"
-  },
-  {
-   "id": "BS42-039",
-   "name": "Hammer-Kop",
-   "problem": "no image (near: Hammakop.jpg)"
   },
   {
    "id": "BS42-040",
