@@ -528,7 +528,7 @@ function magicFxAt(p, inst, ctx) {
   return m && tu && tu.actions && magicFromTrash(p, inst) ? Object.assign({}, m, { effect: 'ACTIONS', actions: tu.actions }) : m;
 }
 function magicTrashOK(p, inst) { const tu = CARDS[inst.id].magic && CARDS[inst.id].magic.trashUse; return !!tu && (!tu.if || fxIf(p, G.p[other(p.key)], tu.if)); }
-const magicSources = (p, ctx) => p.hand.concat(p.trash.filter(t => CARDS[t.id].type === 'Magic' && magicTrashOK(p, t) && magicUsable(p, t, ctx)));
+const magicSources = (p, ctx) => p.hand.concat(p.trash.filter(t => CARDS[t.id].type === 'Magic' && magicTrashOK(p, t) && magicUsable(p, t, ctx))).concat(magicSoulSrc(p, ctx));
 function magicTargets(p, inst, ctx) {                    // null = no target needed, [] = needed but none available
   const m = magicFx(CARDS[inst.id], ctx); if (!m || !m.effect) return null;
   const fx = MAGIC_FX[m.effect]; if (!fx.side) return null;
@@ -607,7 +607,7 @@ async function castMagic(p, ch) {                         // ch = { inst, target
   if (card.magic && card.magic.once) { p.onceUsed = p.onceUsed || {}; p.onceUsed['magic:' + card.name] = G.turnNo; }      // v303
   inst.soulPaid = false;
   const smHolder = sm ? soulMagicHolder(p) : null;              // chosen before the card leaves the Hand (symbols stay as they are)
-  removeFrom(p.hand, inst); if (fromTrash) removeFrom(p.trash, inst);
+  removeFrom(p.hand, inst); if (fromTrash) removeFrom(p.trash, inst); if (magicFromSoul(p, inst)) { removeFrom(p.soulState, inst); inst.inSoulState = false; }
   if (sm) {                                                     // v0.64 Soul Magic: the whole cost is the Soul Core, which goes to the Trash
     inst.soulPaid = true;
     if (smHolder === 'reserve') p.reserve.soul = false; else smHolder.soul = false;
@@ -633,7 +633,7 @@ async function castMagic(p, ch) {                         // ch = { inst, target
     if (sa && (p.cpu || await ask({ title: '✨ ' + esc(card.name), html: 'Summon this card without paying the cost?', buttons: [{ label: 'Yes', cls: 'primary', value: true }, { label: 'No', cls: 'blue', value: false }] }))) {
       if (card.magic.summonOnce) { p.onceUsed = p.onceUsed || {}; p.onceUsed['sumafter:' + card.name] = G.turnNo; }
       await summonFree(p, inst);
-    } else p.trash.push(inst);
+    } else if (inst.toBottom) { inst.toBottom = false; p.deck.push(inst); } else p.trash.push(inst);
   }
   if (G && G.attacker && G.battleMagic) G.battleMagic.push({ key: p.key, inst });      // v0.78 Brilliance: Magic used during this battle
   /* v0.116 "When you use a <family>/<colour> Magic card": the Magic is in the Trash by now; a Burst is not a use of a Magic card */

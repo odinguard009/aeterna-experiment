@@ -41,15 +41,16 @@ Object.assign(FX_ACTIONS, {
       if (!t) { c.ctx.did = false; return; }
       removeFrom(c.p.soulState, t); t.inSoulState = false; c.p.hand.push(t); handUp(c.p, 1); log(`${CARDS[c.src.id].name}: ${CARDS[t.id].name} returns from Soul State to the Hand.`);
     } },
-  SOUL_SUMMON: { chk: a => hasMatch(a.match) && (a.pay == null || typeof a.pay === 'boolean'), txt: a => `summon/deploy a matching card from Soul State${a.pay ? ' (paying its cost)' : ''}${a.orReturn ? ', or return it to the Hand' : ''}`,
+  SOUL_SUMMON: { chk: a => hasMatch(a.match) && (a.pay == null || typeof a.pay === 'boolean') && (a.once == null || a.once === true), txt: a => `summon/deploy a matching card from Soul State${a.pay ? ' (paying its cost)' : ''}${a.orReturn ? ', or return it to the Hand' : ''}`,
     cands: (c, a) => c.p.soulState.filter(x => fxMatch(CARDS[x.id], a.match) && (a.orReturn || canPlaceBy(c.p, x, a.pay))),
-    can: (c, a) => FX_ACTIONS.SOUL_SUMMON.cands(c, a).length > 0,
+    can: (c, a) => FX_ACTIONS.SOUL_SUMMON.cands(c, a).length > 0 && !(a.once && c.p.onceUsed && c.p.onceUsed['ssum:' + CARDS[c.src.id].name] === G.turnNo),      // v429 once: "(Once per Turn: Same Name)"
     run: async (c, a) => {
+      if (a.once && !FX_ACTIONS.SOUL_SUMMON.can(c, a)) { c.ctx.did = false; return; }
       const t = await chooseCard(c, FX_ACTIONS.SOUL_SUMMON.cands(c, a), `✨ ${CARDS[c.src.id].name}`, 'Choose a card in Soul State.', true);
       if (!t) { c.ctx.did = false; return; }
       let summon = canPlaceBy(c.p, t, a.pay);
       if (summon && a.orReturn && !c.p.cpu) summon = (await ask({ title: `✨ ${CARDS[t.id].name}`, peek: true, wide: true, html: 'Summon/deploy it, or return it to your Hand?', cards: cardIds([t]), buttons: [{ label: 'Summon / deploy', cls: 'primary', value: true }, { label: 'Return to Hand', cls: 'blue', value: false }] })) !== false;
-      if (summon) { if (!(await summonBy(c.p, t, a.pay))) { c.ctx.did = false; return; } }
+      if (summon) { if (!(await summonBy(c.p, t, a.pay))) { c.ctx.did = false; return; } if (a.once) { c.p.onceUsed = c.p.onceUsed || {}; c.p.onceUsed['ssum:' + CARDS[c.src.id].name] = G.turnNo; } }
       else { removeFrom(c.p.soulState, t); t.inSoulState = false; c.p.hand.push(t); handUp(c.p, 1); log(`${CARDS[c.src.id].name}: ${CARDS[t.id].name} returns from Soul State to the Hand.`); }
     } },
   /* v217 Soul Awaken: "send the Soul Core from your Field/Trash to this Spirit; if you did, refresh this Spirit, once per turn." */

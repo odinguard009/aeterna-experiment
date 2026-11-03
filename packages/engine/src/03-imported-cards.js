@@ -43,6 +43,7 @@ function parseMagicOf(o, type, text, err2, int) {
       magic = /** @type {MagicSpec} */ ({ timing: Array.from(new Set(timing)), effect, value });
       if (m.alsoMagic === true && type === 'Spirit') magic.alsoMagic = true;
       if (m.summonAfter === true && type === 'Spirit' && m.alsoMagic === true) { magic.summonAfter = true; if (m.summonOnce === true) magic.summonOnce = true; }      // v373 "After this effect resolves, you can summon this card without paying the cost" (summonOnce: Once per Turn: Same Name)
+      if (m.soulUse === true) magic.soulUse = true;         // v429 "You can use this card from Soul State"
       if (m.noMain === true) magic.noMain = true;           // v0.44 "(Can't Use in Main)"
       if (m.once === true) magic.once = true;               // v303 "(This effect can only be used once per turn.)": one use per card name per turn
       if (m.trashUse != null) {                              // v0.47 "while you control X, you can use this card from the Trash" (+ "when used from the Trash, instead ...", then banish)

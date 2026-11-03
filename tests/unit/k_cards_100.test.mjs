@@ -89,3 +89,28 @@ test('K-1078 BS74-040 Revelation Dragon: when an Awakened Dragon ally is lost, u
     return { moved: before - P.trashCores.n, gain: a.cores + b.cores + P.reserve.n - tot, partial: BS.CARDS['BS74-040'].partial, ok: !BS.CARDS['BS74-040'].partial }; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.moved, 6, JSON.stringify(r)); assert.equal(r.gain, 6, JSON.stringify(r));   // each copy on the field reacts once, up to 3 cores each
 });
+
+test('K-1079 BS74-082/083 and BS75-081 Magic is used from Soul State: swap + free summon, Life cost shield + deckbottom, effect lock + returns', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 2; G.fxBy = null; P.reserve.n = 12; P.void = 0;
+    const out = {}; const mk = id => { const i = BS.mkInst(id); return i; };
+    // 082: swap a revealed Awakened Dragon with a Soul State card, then summon a cost<=5 one free
+    const m82 = mk('BS74-082'); const lo = mk('BS74-040'), hi = mk('BS74-048'); const ok = mk('BS74-040'); P.soulState = [m82, lo, ok]; lo.inSoulState = m82.inSoulState = ok.inSoulState = true; P.spirits = []; O.spirits = []; P.deck.unshift(hi);
+    out.u82 = BS.magicUsable(P, m82, 'flash'); out.src82 = true;
+    await BS.castMagic(P, { inst: m82, target: null, plan: null, ctx: 'flash' });
+    out.m82 = { leftSoul: !P.soulState.includes(m82), trash: P.trash.includes(m82), loOut: !P.soulState.includes(lo), onField: P.spirits.length, hiSeen: P.spirits.includes(hi) || P.soulState.includes(hi) };
+    // 083: refresh + cost shield + goes to deckbottom on the opposing turn
+    const m83 = mk('BS74-083'), dr = mk('BS74-040'); P.soulState = [m83, dr]; m83.inSoulState = dr.inSoulState = true; G.active = O.key; const dn = P.deck.length;
+    await BS.castMagic(P, { inst: m83, target: null, plan: null, ctx: 'flash' });
+    out.m83 = { shield: !!(P.costShield && P.costShield.turn === G.turnNo && P.costShield.ge === 4), bottom: P.deck[P.deck.length - 1] === m83, inTrash: P.trash.includes(m83), soulLeft: P.soulState.includes(dr) };
+    // 081: lock + returns; the second return needs 2 cores from a Mitra Nexus
+    const m81 = mk('BS75-081'); P.soulState = [m81]; m81.inSoulState = true; G.active = P.key; const nx = mk('BS74-CX03'); nx.cores = 4; P.nexus = [nx];
+    const ox = mk('BS74-CX03'); O.nexus = [ox]; const os = mk('BS74-040'); os.cores = 1; O.spirits = [os];
+    await BS.castMagic(P, { inst: m81, target: null, plan: null, ctx: 'flash' });
+    out.m81 = { lock: P.fxLockTurn === G.turnNo, oppSpirits: O.spirits.length, oppNexus: O.nexus.length, nexusCores: nx.cores };
+    return out; })()`);
+  assert.equal(r.u82, true, JSON.stringify(r)); assert.equal(r.src82, true, JSON.stringify(r));
+  assert.deepEqual([r.m82.leftSoul, r.m82.trash, r.m82.loOut, r.m82.onField, r.m82.hiSeen], [true, true, true, 1, true], JSON.stringify(r));
+  assert.equal(r.m83.shield, true, JSON.stringify(r)); assert.equal(r.m83.bottom, true, JSON.stringify(r)); assert.equal(r.m83.inTrash, false, JSON.stringify(r)); assert.equal(r.m83.soulLeft, false, JSON.stringify(r));
+  assert.deepEqual(r.m81, { lock: true, oppSpirits: 0, oppNexus: 0, nexusCores: 2 }, JSON.stringify(r));
+});
