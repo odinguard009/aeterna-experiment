@@ -150,7 +150,7 @@ function fxIf(owner, opp, c, ctx) {
   if (c.onlySymbols != null) { const sy = symbolsOn(owner); if (!((sy[c.onlySymbols] || 0) >= 1) || Object.keys(sy).some(k => k !== c.onlySymbols && sy[k] > 0)) return false; }      // v0.179 "only White symbols on your Field" (at least one, none of another colour)
   if (c.firstBlock != null && ((owner.blocksThisTurn || 0) <= 1) !== c.firstBlock) return false;      // v0.196 (counter bumped when the block is declared; BLOCKS fires after)
   if (c.firstAttack != null && ((owner.attacksThisTurn || 0) <= 1) !== c.firstAttack) return false;      // v0.185 (counter bumped when the attack is declared; the attack triggers fire after)
-  if (c.symbolsOnGe != null && !((symbolsOn(owner)[c.symbolsOnGe.color] || 0) >= c.symbolsOnGe.n)) return false;      // v0.168 "If you control/have three or more White symbols" (Field symbols of the owner, counted when it is checked)
+  if (c.symbolsOnGe != null && !((symbolsOn(owner)[c.symbolsOnGe.color] || 0) >= c.symbolsOnGe.n)) return false;      // v0.168 "If you control/have three or more White symbols"
   if (c.crushedSpiritGe != null && !((ctx && ctx.crushed || []).filter(x => ['Spirit', 'Ultimate', 'Token Spirit'].includes(CARDS[x.id].type)).length >= c.crushedSpiritGe)) return false;      // v394 "when this Spirit's Crush discards any Spirit card"
   if (c.underCostGe != null && !(ctx && ctx.selfInst && ctx.selfInst.under.some(u => CARDS[u.id].cost >= c.underCostGe))) return false;      // v425 "a Cost N or more card among the pre-Advent cards"
   if (c.selfReductionGe != null && !(ctx && ctx.selfInst && Object.values(CARDS[ctx.selfInst.id].reduction || {}).reduce((a, b) => a + b, 0) + extraReduction(owner, CARDS[ctx.selfInst.id]).length >= c.selfReductionGe)) return false;      // v423 "if this card has N or more reduction symbols"
@@ -375,7 +375,7 @@ function rumblePlusOf(p) {      // v210 STATIC RUMBLE_PLUS {n}: "the number of c
   return n;
 }
 function staticBp(i) {
-  if (!G || !isSpiritForm(CARDS[i.id])) return 0;
+  if (!G || !(isSpiritForm(CARDS[i.id]) || i.gpBp)) return 0;      // v446 Grandphosis Nexus
   const o = ownerOf(i); if (!o) return 0;
   const opp = G.p[other(o.key)]; let sum = 0; const seenNS = new Set();
   for (const src of fieldList(o)) {

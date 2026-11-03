@@ -480,3 +480,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v443 (Lane K, Alex BS50-CP01): actions `GRANDPHOSIS {bp}` (Nexus also treated as a Spirit for the turn, `gpBp`, only destroyed by Grandwalker Nexus sources) and `REFRESH_GP_NEXUS {exceptSelfName}`.
 - v444 (Lane K, Vishnu BS50-X12): `GRANDPHOSIS.noRefresh` (the Spirit-form Nexus cannot be refreshed that turn, `gpNoRefresh`).
 - v445 (Lane K, Brahma/Shiva/Krishna): actions `SUMMON_HAND_REMOVED {match}` (summon paying the cost from Hand or Removed Zone), `REFRESH_SELF_OR {match}` (refresh this Nexus or a matching Spirit); `HAND_TO_REMOVED.any` (any card, no match).
+- v446 (Lane K, Sarasvati's Music Temple BS51-086): `REVEAL_ADD.match2` (add one card of each of the two kinds); static BP (`bp`) now applies to a Grandphosis Nexus (`gpBp`).

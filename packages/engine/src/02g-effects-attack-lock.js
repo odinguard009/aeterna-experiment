@@ -35,7 +35,7 @@ Object.assign(FX_ACTIONS, {
     } },
   /* reveal n cards from the top of your Deck and add up to `add` matching cards to the Hand, discarding the rest (Manevajra: three cards, one "Contractor Indra" or "Thunderive" card;
      with moreIf true (eight counters or more) reveal +1 and add +1) */
-  REVEAL_ADD: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 6 && Number.isInteger(a.add) && a.add >= 1 && a.add <= 3 && hasMatch(a.match) && (a.moreIf == null || (typeof a.moreIf === 'object' && !parseCond(a.moreIf).error)),
+  REVEAL_ADD: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 6 && Number.isInteger(a.add) && a.add >= 1 && a.add <= 3 && hasMatch(a.match) && (a.match2 == null || hasMatch(a.match2)) && (a.moreIf == null || (typeof a.moreIf === 'object' && !parseCond(a.moreIf).error)),
     txt: a => `reveal ${a.n} cards from the top of your Deck, add ${a.add === 1 ? 'one matching card' : a.add + ' matching cards'} to the Hand, discard the rest${a.moreIf ? '; if the bonus condition holds reveal +1 and add +1 card' : ''}`,
     can: c => c.p.deck.length > 0,
     run: async (c, a) => {
@@ -44,8 +44,8 @@ Object.assign(FX_ACTIONS, {
       log(`${nm}: ${who(c.p)} ${c.p.cpu ? 'reveals' : 'reveal'} ${top.map(x => CARDS[x.id].name).join(', ') || 'nothing'}.`); io.view({ type: 'board' });
       await revealedFx(c.p);
       let got = 0;
-      for (let j = 0; j < want; j++) {
-        const L = c.p.revealed.filter(x => fxMatch(CARDS[x.id], a.match)); if (!L.length) break;
+      for (const m of a.match2 ? [a.match, a.match2] : Array(want).fill(a.match)) {      // v446 match2: one card of each kind
+        const L = c.p.revealed.filter(x => fxMatch(CARDS[x.id], m)); if (!L.length) { if (a.match2) continue; break; }
         const t = await chooseCard(c, L, `✨ ${nm}`, 'Choose a revealed card to add to your Hand.', true);
         if (!t) break; removeFrom(c.p.revealed, t); c.p.hand.push(t); got++; log(`${nm}: ${CARDS[t.id].name} is added to the Hand.`);
       }

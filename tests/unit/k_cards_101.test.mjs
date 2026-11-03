@@ -249,3 +249,22 @@ test('K-1115 BS49-X09 Krishna: Flash refreshes either the Nexus or an exhausted 
     return { ok, one: [nx.exhausted, sp.exhausted], cores: nx.cores }; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.one.filter(x => !x).length, 1, JSON.stringify(r));
 });
+
+test('K-1116 BS51-086 Sarasvati Temple: reveals 4 and adds a Red/Green Hindida Grandwalker Nexus plus a Red/Green Saga Brave; Grandphosis Nexuses get +2000 BP on your Attack Step', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 3; G.fxBy = P.key;
+    const tm = BS.mkInst('BS51-086'); tm.cores = 2; P.nexus = [tm];
+    const nxC = BS.CARDS['BS48-X08'];
+    const brC = BS.CARDS['BS48-073'];
+    const junk = BS.CARDS['BS48-001'];
+    P.deck = [BS.mkInst(junk.id), BS.mkInst(nxC.id), BS.mkInst(brC.id), BS.mkInst(junk.id), BS.mkInst(junk.id)]; P.hand = [];
+    const n0 = P.deck.length;
+    await BS.fireFx(P, 'SUMMONED', tm);
+    const hand = P.hand.map(h => h.id);
+    const gw = BS.mkInst('BS50-CP01'); gw.cores = 4; P.nexus = [tm, gw]; P.spirits = [];
+    await BS.FX_ACTIONS.GRANDPHOSIS.run({ p: P, opp: O, src: gw, ctx: {} }, { do: 'GRANDPHOSIS', bp: 3000 });
+    G.step = 5; const on = BS.bpOf(gw); G.active = O.key; const off = BS.bpOf(gw);
+    return { hand, nx: nxC.id, br: brC.id, on, off, deck: P.deck.length, n0 }; })()`);
+  assert.ok(r.hand.includes(r.nx) && r.hand.includes(r.br), JSON.stringify(r)); assert.equal(r.deck, r.n0 - 2, JSON.stringify(r));
+  assert.equal(r.on, r.off + 2000, JSON.stringify(r));
+});

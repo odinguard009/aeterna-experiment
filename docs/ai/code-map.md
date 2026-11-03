@@ -38,7 +38,7 @@ setHeavy, refreshOne, toRemoved, fromHandRemoved, _nm, handSafe, handLocked, pic
 ## packages/engine/src/02f-effects-mill-discard.js (160 lines, ~4.1k tokens) — v0.39 PURPLE (Contractor Hades / Sorcerer): Deck-to-Trash (mill), discarding from the Hand, sending opposing cores to the Reserve, once-per-turn Count.
 _pn
 
-## packages/engine/src/02g-effects-attack-lock.js (96 lines, ~2.2k tokens) — v0.40 YELLOW (Contractor Indra / Thunderive): "can't attack/block" (permanent flag noAB), drawing from the bottom of the Deck, discarding the whole Hand,
+## packages/engine/src/02g-effects-attack-lock.js (96 lines, ~2.3k tokens) — v0.40 YELLOW (Contractor Indra / Thunderive): "can't attack/block" (permanent flag noAB), drawing from the bottom of the Deck, discarding the whole Hand,
 
 
 ## packages/engine/src/02h-effects-magic.js (211 lines, ~5.1k tokens) — v0.41 MAGIC effect types (Dana Draw, Whirling Tide, Magic Bullet, Hades Disaster, Thunder Counter, Lightning Tempest).

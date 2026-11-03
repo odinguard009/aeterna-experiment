@@ -26424,14 +26424,6 @@
   "M_THEN",
   "T_ALLY_ATTACKS"
  ],
- "BS51-086": [
-  "A_BP_PLUS",
-  "A_REVEAL_DECK",
-  "C_LEVEL",
-  "K_BRAVE",
-  "K_GRANDWALKER",
-  "M_OPTIONAL"
- ],
  "BS51-087": [
   "A_VOID",
   "K_GRANDWALKER",
