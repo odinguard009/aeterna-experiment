@@ -577,3 +577,18 @@ FX_ACTIONS.TURN_SUMMON_TAX = {
   run: async (c, a) => { c.opp.turnTax = (c.opp.turnTax || []).filter(t => t.turn === G.turnNo); c.opp.turnTax.push({ turn: G.turnNo, n: a.n, match: a.match || null }); c.ctx.did = true;
     log(`${CARDS[c.src.id].name}: the cost of opposing cards gets +${a.n} during this turn.`); } };
 const canPursuit = (p, s) => !s.heavy && flagActive(p, 'PURSUIT', s);      // v408 "This exhausted Spirit can heavy exhaust to attack"
+/* v410 OPP_CORES_DOWN_TO_SELF: "Send cores from an opposing Spirit to the Reserve until the number of cores on that Spirit is the same as this Spirit's" (BS53-020). */
+FX_ACTIONS.OPP_CORES_DOWN_TO_SELF = {
+  chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
+  txt: () => "send cores from an opposing Spirit to the Reserve until it has as many cores as this Spirit",
+  cands: c => c.opp.spirits.filter(t => t.cores > c.src.cores && !fxImmune(c.opp, t)),
+  can: c => FX_ACTIONS.OPP_CORES_DOWN_TO_SELF.cands(c).length > 0,
+  run: async c => {
+    const L = FX_ACTIONS.OPP_CORES_DOWN_TO_SELF.cands(c); if (!L.length) { c.ctx.did = false; return; }
+    const t = c.p.cpu ? L.slice().sort((x, y) => (y.cores - c.src.cores) - (x.cores - c.src.cores))[0] : await fxPickTarget(c, L, `✨ <b>${esc(_pn(c))}</b><br>Tap the opposing Spirit to lower to ${c.src.cores} core(s) (glowing).`);
+    if (!t) { c.ctx.did = false; return; }
+    const m = Math.min(t.cores - c.src.cores, coreTakeCap(c.opp, t, t.cores - c.src.cores)); if (m <= 0) { c.ctx.did = false; return; }
+    coreEvN(c.opp, t.uid, 'reserve', m, false); t.cores -= m; c.opp.reserve.n += m;
+    log(`${_pn(c)}: ${m} core${m === 1 ? '' : 's'} from ${poss(c.opp)} ${CARDS[t.id].name} go to the Reserve.`);
+    checkDepletion(c.opp); io.view({ type: 'board' });
+  } };

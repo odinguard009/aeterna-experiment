@@ -100,3 +100,14 @@ test('K-1033 BS74-004 Scapoonrhynchus: counter +1 and destroys a 7000 BP Spirit;
     return { dC: (P.count || 0) - c0, left: O.spirits.length, cores: nx.cores, ok: !BS.CARDS['BS74-004'].partial }; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.dC, 1, JSON.stringify(r)); assert.equal(r.left, 0, JSON.stringify(r)); assert.equal(r.cores, 2, JSON.stringify(r));
 });
+
+test('K-1034 BS53-020 L\'Evangile: lowers an opposing Spirit to its own core count; destroyed by an opposing effect discards 2 random cards', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const s = BS.mkInst('BS53-020'); s.cores = 2; P.spirits = [s];
+    const weak = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token);
+    const v = BS.mkInst(weak); v.cores = 5; O.spirits = [v];
+    await BS.fireFx(P, 'ATTACKS', s, { attacker: s, subject: s });
+    return { cores: v.cores, ok: !BS.CARDS['BS53-020'].partial }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.cores, 2, JSON.stringify(r));
+});
