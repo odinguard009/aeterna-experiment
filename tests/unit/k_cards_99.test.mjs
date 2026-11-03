@@ -105,3 +105,14 @@ test('K-1054 BS39-RV012 Dolphing: CANT_ATTACK_PICK only targets a braved opposin
     return { plain: a.noAtkTurn === G.turnNo, braved: b.noAtkTurn === G.turnNo, opt: e.optional, partial: BS.CARDS['BS39-RV012'].partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.braved, true, JSON.stringify(r)); assert.equal(r.plain, false, JSON.stringify(r)); assert.equal(r.opt, true, JSON.stringify(r));
 });
+
+test('K-1055 BS46-RV007 Soul Ogre: destroyed by the opponent puts a Void core to a Purple Grandwalker Nexus; draws only with the Soul Core', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = O.key; G.step = 5; G.fxBy = O.key;
+    const nid = 'BS44-X08';
+    const s = BS.mkInst('BS46-RV007'); s.cores = 1; s.lostLv = 1; P.spirits = []; P.trash.push(s); P.deck = BS.mkInst ? [BS.mkInst('BS46-RV007'), BS.mkInst('BS46-RV007')] : P.deck; O.spirits = []; const n = BS.mkInst(nid); n.cores = 0; P.nexus = [n]; P.void = 3; const d0 = P.hand.length;
+    await BS.fireFx(P, 'DESTROYED', s, { subject: s, byOpp: true });
+    const c1 = n.cores, h1 = P.hand.length - d0; s.soulLost = true; await BS.fireFx(P, 'DESTROYED', s, { subject: s, byOpp: true });
+    return { nid: !!nid, c1, h1, h2: P.hand.length - d0 - h1, partial: BS.CARDS['BS46-RV007'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.nid, true, JSON.stringify(r)); assert.equal(r.c1, 1, JSON.stringify(r)); assert.equal(r.h1, 0, JSON.stringify(r)); assert.equal(r.h2, 1, JSON.stringify(r));
+});

@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 6216,
+  "cards": 6215,
   "per_saga": {
    "1": 458,
    "2": 251,
@@ -10,7 +10,7 @@
    "6": 311,
    "7": 456,
    "8": 428,
-   "9": 471,
+   "9": 470,
    "10": 485,
    "11": 274,
    "12": 303,
@@ -22,7 +22,7 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2490,
+  "skipped_curated": 2491,
   "nexus_levels_added": 667,
   "nexus_levels_missing": 43,
   "merged": 106,
@@ -1543,6 +1543,7 @@
   "BS46-054",
   "BS46-RV004",
   "BS46-RV006",
+  "BS46-RV007",
   "BS46-RV008",
   "BS47-001",
   "BS47-028",
