@@ -423,6 +423,9 @@ Object.assign(FX_ACTIONS, {
       t.blockExB = G.battleNo; log(`${CARDS[c.src.id].name}: ${poss(c.opp)} ${CARDS[t.id].name} can block even while exhausted during this battle.`);
     } } });
 /* v0.185 (schema 64) "Target an opposing [N BP or less | exhausted] Spirit [in refreshed state]. During this battle, it must block if possible even while exhausted": marks blockExB + mustB (08-battle binds it) */
+/* v414 ULTRA_CLASH (When Attacks): "Opposing Spirits/Ultimates must block if possible. Can't be prevented by opposing effects": this battle every opposing Spirit that can block is bound, even an unaffected one (08-battle ultraB) */
+FX_ACTIONS.ULTRA_CLASH = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => 'Ultra Clash: opposing Spirits must block if possible, unpreventable', can: () => !!G.attacker,
+  run: async c => { c.src.ultraB = G.battleNo; log(`${CARDS[c.src.id].name}: Ultra Clash, opposing Spirits must block if possible.`); } };
 FX_ACTIONS.MUST_BLOCK_OPP = { chk: a => (a.bpLe == null || (Number.isInteger(a.bpLe) && a.bpLe >= 1000)) && (a.state == null || a.state === 'refreshed' || a.state === 'exhausted') && Object.keys(a).every(k => ['do', 'bpLe', 'state', 'if'].includes(k)),
   txt: () => 'during this battle, an opposing Spirit must block if possible even while exhausted',
   cands: (c, a) => c.opp.spirits.filter(t => (!a.bpLe || bpOf(t) <= a.bpLe) && (!a.state || t.exhausted === (a.state === 'exhausted')) && !fxImmune(c.opp, t)),

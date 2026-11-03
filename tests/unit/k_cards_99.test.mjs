@@ -15,3 +15,27 @@ test('K-1046 BS58-014 Vanderas: Summoned draws a card; the White Rush puts a cor
     return { drew: P.hand.length - h0, partial: BS.CARDS['BS58-014'].partial, c1, c2: v.cores, fx: BS.CARDS['BS58-014'].effects.length }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.fx, 3, JSON.stringify(r)); assert.equal(r.drew, 2, JSON.stringify(r)); assert.equal(r.c1, 3, JSON.stringify(r)); assert.equal(r.c2, 3, JSON.stringify(r));
 });
+
+const symSpirit = c => `Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && (BS.CARDS[k].symbols || 0) >= 1 && (BS.CARDS[k].colors || [BS.CARDS[k].symbol]).includes('${c}'))`;
+
+test('K-1047 BS58-025 Leodoros: Attacks puts two Void cores on Spirits; with a Red symbol it marks Ultra Clash for this battle', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const l = BS.mkInst('BS58-025'); l.cores = 3; const r = BS.mkInst(${symSpirit('red')}); r.cores = 1; P.spirits = [l, r]; O.spirits = []; P.void = 4; G.attacker = l; G.battleNo = 7;
+    const c0 = l.cores + r.cores;
+    await BS.fireFx(P, 'ATTACKS', l, { attacker: l, subject: l });
+    return { put: l.cores + r.cores - c0, ultra: l.ultraB === 7, partial: BS.CARDS['BS58-025'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.put, 2, JSON.stringify(r)); assert.equal(r.ultra, true, JSON.stringify(r));
+});
+
+test('K-1048 BS59-001 Helmet-Streamer-Dragon: Attacks sets Ultra Clash; with Red and Green symbols it gains +5000 BP and refreshes on the first battle only', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const h = BS.mkInst('BS59-001'); h.cores = 4; const a = BS.mkInst(${symSpirit('red')}), b = BS.mkInst(${symSpirit('green')}); P.spirits = [h, a, b]; O.spirits = []; G.attacker = h; G.battleNo = 1;
+    const bp0 = BS.bpOf(h); h.exhausted = true;
+    await BS.fireFx(P, 'ATTACKS', h, { attacker: h, subject: h });
+    const first = { bp: BS.bpOf(h) - bp0, ref: !h.exhausted, ultra: h.ultraB === 1 };
+    h.exhausted = true; G.battleNo = 2; await BS.fireFx(P, 'ATTACKS', h, { attacker: h, subject: h });
+    return { first, secondRef: !h.exhausted, partial: BS.CARDS['BS59-001'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.first.bp, 5000, JSON.stringify(r)); assert.equal(r.first.ref, true, JSON.stringify(r)); assert.equal(r.first.ultra, true, JSON.stringify(r)); assert.equal(r.secondRef, false, JSON.stringify(r));
+});

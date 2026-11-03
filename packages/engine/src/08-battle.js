@@ -47,8 +47,8 @@ async function doBattleInner(attKey, att) {
   let blk = null;
   /* v0.58 priority "cannot" > "must" > "do" = "can" (JP 17.0 item 9): Spirits that can't block were removed above; a Spirit unaffected by the
      attacker's effects is not bound by its "must block" (FAQ Q4: unaffected > the effect) */
-  const bound = blockers.filter(b => !fxImmune(D, b, { p: A, src: att }));
-  const must = bound.length > 0 && flagActive(A, 'MUST_BLOCK', att);
+  const ultra = att.ultraB === G.battleNo, bound = ultra ? blockers : blockers.filter(b => !fxImmune(D, b, { p: A, src: att }));      // v414 Ultra Clash ignores "unaffected"
+  const must = bound.length > 0 && (ultra || flagActive(A, 'MUST_BLOCK', att));
   const marked = bound.filter(b => b.mustB === G.battleNo);      // v0.185 MUST_BLOCK_OPP: only the marked Spirits are bound (and are the only choice)
   if (must) log(`${CARDS[att.id].name}: opposing Spirits must block if possible.`);
   if (blockers.length && !atkT) blk = await askBlock(att, D, marked.length ? marked : blockers, must || marked.length > 0, marked.length ? marked : bound);   // v0.105.0 (M6 step 1): CPU seats answer the port too; cpuAnswer routes this pick to the same cpuChooseBlock
