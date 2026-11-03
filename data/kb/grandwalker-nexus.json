@@ -22132,6 +22132,152 @@
   "眷属",
   "締皇"
  ],
+ "revival_cards": [
+  {
+   "id": "BS68-CX01",
+   "name": "The SorcererContractor Hades",
+   "type": "Nexus",
+   "complete": false
+  },
+  {
+   "id": "BS68-CX02",
+   "name": "The SteelContractor Athena",
+   "type": "Nexus",
+   "complete": false
+  },
+  {
+   "id": "BS68-CX03",
+   "name": "The ToolcraftContractor Kinich-Ahau",
+   "type": "Nexus",
+   "complete": false
+  },
+  {
+   "id": "BS69-CX01",
+   "name": "The AstralMaterContractor Gaia",
+   "type": "Nexus",
+   "complete": false
+  },
+  {
+   "id": "BS69-CX02",
+   "name": "The SwiftContractor Hermes",
+   "type": "Nexus",
+   "complete": false
+  },
+  {
+   "id": "BS69-CX03",
+   "name": "The RagingGaleContractor Huracan",
+   "type": "Nexus",
+   "complete": false
+  },
+  {
+   "id": "SD69-CX01",
+   "name": "The GenesisContractor Brahma",
+   "type": "Nexus",
+   "complete": false
+  },
+  {
+   "id": "BS70-CX01",
+   "name": "The CurseConsortContractor Hera",
+   "type": "Nexus",
+   "complete": false
+  },
+  {
+   "id": "BS70-CX02",
+   "name": "The SilverWheelContractor Brigit",
+   "type": "Nexus",
+   "complete": false
+  },
+  {
+   "id": "BS70-CX03",
+   "name": "The AstralNightContractor Uranus",
+   "type": "Nexus",
+   "complete": false
+  },
+  {
+   "id": "BS71-CX01",
+   "name": "The ThunderboltContractor Zeus",
+   "type": "Nexus",
+   "complete": false
+  },
+  {
+   "id": "BS71-CX02",
+   "name": "The SkyContractor Ra-Harakhti",
+   "type": "Nexus",
+   "complete": false
+  },
+  {
+   "id": "BS71-CX03",
+   "name": "The SilverArmContractor Nuadha",
+   "type": "Nexus",
+   "complete": false
+  },
+  {
+   "id": "BS72-CX01",
+   "name": "The MartialArtsContractor Lugh",
+   "type": "Nexus",
+   "complete": false
+  },
+  {
+   "id": "BS72-CX02",
+   "name": "The NightlyDarknessContractor Nyx",
+   "type": "Nexus",
+   "complete": false
+  },
+  {
+   "id": "BS72-CX03",
+   "name": "The MoonlightContractor Artemis",
+   "type": "Nexus",
+   "complete": false
+  },
+  {
+   "id": "BS73-CX01",
+   "name": "The ForestMasterContractor Yum-Kaax",
+   "type": "Nexus",
+   "complete": false
+  },
+  {
+   "id": "BS73-CX02",
+   "name": "The MagicJewelContractor Morrigan",
+   "type": "Nexus",
+   "complete": false
+  },
+  {
+   "id": "BS73-CX03",
+   "name": "The CycleForceContractor Yamato Takeru",
+   "type": "Nexus",
+   "complete": false
+  },
+  {
+   "id": "BS74-CX01",
+   "name": "The Light-DarkContractor Ometeotl",
+   "type": "Nexus",
+   "complete": false
+  },
+  {
+   "id": "BS74-CX02",
+   "name": "The NetherContractor Dionysus",
+   "type": "Nexus",
+   "complete": false
+  },
+  {
+   "id": "BS74-CX03",
+   "name": "The CovenantContractor Mitra",
+   "type": "Nexus",
+   "complete": false
+  },
+  {
+   "id": "BS75-CX03",
+   "name": "The HeavenlyThunderContractor Indra",
+   "type": "Nexus",
+   "complete": false
+  },
+  {
+   "id": "BS75-CX04",
+   "name": "The ChaosContractor Khaos",
+   "type": "Nexus",
+   "complete": false
+  }
+ ],
  "family_en": {
   "雷武": "Thunderive",
   "眷属": "Devotee",

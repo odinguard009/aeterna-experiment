@@ -52,6 +52,20 @@ def parse_group(g):
     return {'raw': g, 'tokens_jp': toks, 'cond_jp': cond or None}
 
 
+REVIVAL = re.compile(r'revive|revival', re.I)
+
+
+def revival_cards(lib):
+    # Revive / Revival text on library cards of BS44+/SD44+ (card name is ignored: "Ryuuman-Revived" is only a name)
+    out = []
+    for cid, c in lib.items():
+        k = set_key(cid.split('-')[0])
+        if not k or k[0] < MIN_SET: continue
+        if REVIVAL.search(json.dumps({a: b for a, b in c.items() if a != 'name'}, ensure_ascii=False)):
+            out.append({'id': cid, 'name': c['name'], 'type': c['type'], 'complete': bool(c.get('fxComplete'))})
+    return sorted(out, key=lambda x: (set_key(x['id'].split('-')[0]), x['id']))
+
+
 def build():
     off = json.load(open(OFF)); lib = load_cards()
     fd = {c['id']: c for c in json.load(open(FDM))['cards']}
@@ -128,7 +142,7 @@ def build():
         r['order_cards'] = self_open + [i for i in order_ids if i not in seen and i != r['id'] and not ids[i]['complete']]   # open cards not already queued under a newer Nexus
         seen.update(order_ids)
     data = {'source': 'official card database fields (data/sources/official-fields.json)', 'count': len(rows),
-            'nexus': rows, 'shared_families_jp': sorted(shared), 'family_en': {t: en_of(t) for t in fam_cards}, 'family_cards': fam_cards}
+            'nexus': rows, 'shared_families_jp': sorted(shared), 'revival_cards': revival_cards(lib), 'family_en': {t: en_of(t) for t in fam_cards}, 'family_cards': fam_cards}
     return data
 
 
