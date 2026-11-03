@@ -175,6 +175,8 @@ async function soulToNexus(p, t) {
   if (!G.over) await fireFx(p, 'SOUL_PLACED', t, { subject: t });
   return true;
 }
+/* v430 contractAdvent.freeGe: "(Once per Turn: Same Name) with N or more counters, treat the Soul Core as sent to the Trash" = no Soul Core needed */
+const cadvFree = (p, inst) => { const sp = CARDS[inst.id].contractAdvent; return !!sp.freeGe && p.count >= sp.freeGe && !(p.onceUsed && p.onceUsed['cadvfree:' + CARDS[inst.id].name] === G.turnNo); };
 const advTiming = (p, spec, where) => where === 'flash' ? (spec.turn === 'EITHER' || G.active === p.key) : (G.active === p.key);
 const soulAdventOK = (p, inst) => p.soulState.includes(inst) && p.csAdventTurn === G.turnNo && (CARDS[inst.id].families || []).includes('Awakened Dragon');   // Contract Field: this turn only
 const cadvSources = p => p.hand.concat(p.csAdventTurn === G.turnNo ? p.soulState : []).filter(h => CARDS[h.id].contractAdvent);
@@ -183,17 +185,18 @@ function contractAdventTargets(p, inst, where) {
   if (p.count < (spec.counterGe || 0)) return [];
   if (!summonOK(p, CARDS[inst.id])) return [];
   if (spec.soulTo && !p.reserve.soul && !p.trashCores.soul) return [];      // v425 UTadvent: the Soul Core comes from the Reserve/Trash and goes to the target
-  return p.spirits.filter(sp => !isUlt(sp) && (CARDS[sp.id].families || []).includes(spec.family) && CARDS[sp.id].cost >= (spec.costGe || 0) && !sp.under.includes(inst) && (spec.soulTo ? !sp.soul || sp.cores >= minCores(CARDS[inst.id]) : sp.soul ? sp.cores >= minCores(CARDS[inst.id]) : soulCoreHolder(p, null) !== null));
+  return p.spirits.filter(sp => !isUlt(sp) && (CARDS[sp.id].families || []).includes(spec.family) && CARDS[sp.id].cost >= (spec.costGe || 0) && !sp.under.includes(inst) && (spec.soulTo ? !sp.soul || sp.cores >= minCores(CARDS[inst.id]) : sp.soul ? sp.cores >= minCores(CARDS[inst.id]) : (cadvFree(p, inst) || soulCoreHolder(p, null) !== null)));
 }
 async function doContractAdvent(p, adv, src, where) {
   if (!contractAdventTargets(p, adv, where || 'main').includes(src)) return false;
-  const sh = src.soul ? src : soulCoreHolder(p, null), toTarget = !!CARDS[adv.id].contractAdvent.soulTo;
-  if (toTarget) { if (!src.soul) { if (p.reserve.soul) p.reserve.soul = false; else p.trashCores.soul = false; } }      // v425 the Soul Core ends up on the adventing card
+  const free = !CARDS[adv.id].contractAdvent.soulTo && cadvFree(p, adv), sh = src.soul ? src : soulCoreHolder(p, null), toTarget = !!CARDS[adv.id].contractAdvent.soulTo;
+  if (free) { p.onceUsed = p.onceUsed || {}; p.onceUsed['cadvfree:' + CARDS[adv.id].name] = G.turnNo; }      // the Soul Core stays where it is
+  else if (toTarget) { if (!src.soul) { if (p.reserve.soul) p.reserve.soul = false; else p.trashCores.soul = false; } }      // v425 the Soul Core ends up on the adventing card
   else if (CARDS[adv.id].contractAdvent.seal) soulToLife(p, sh); else soulToTrash(p, sh);   // v0.48 Seal Contract Advent: the Soul Core goes to the Life
   const fromSoul = p.soulState.includes(adv);
   removeFrom(p.hand, adv); removeFrom(p.soulState, adv); adv.inSoulState = false;
   const idx = p.spirits.indexOf(src);
-  adv.cores = src.cores; adv.soul = toTarget; adv.exhausted = src.exhausted; adv.summonedTurn = src.summonedTurn; adv.bpMod = src.bpMod; adv.fxUsed = {};
+  adv.cores = src.cores; adv.soul = toTarget || (free && src.soul); adv.exhausted = src.exhausted; adv.summonedTurn = src.summonedTurn; adv.bpMod = src.bpMod; adv.fxUsed = {};
   adv.under = src.under.concat([src]); src.under = []; src.cores = 0; src.soul = false; src.exhausted = false; src.heavy = false; src.noAB = false; src.bpMod = 0;
   p.spirits[idx] = adv;
   if (src.brave) { adv.brave = src.brave; src.brave = null; braveRecheck(p, adv); }

@@ -44,3 +44,8 @@ FX_ACTIONS.MAGIC_BOTTOM = { chk: a => Object.keys(a).every(k => ['do', 'if', 'op
 FX_ACTIONS.OPP_FX_LOCK_TURN = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
   txt: () => "the effects of every opposing Spirit/Nexus can't activate (this turn; Nexus until your next Start Step)", can: () => true,
   run: async c => { c.p.fxLockTurn = G.turnNo; c.p.nexusLockLe = 99; c.ctx.did = true; log(`${CARDS[c.src.id].name}: the effects of every opposing Spirit/Nexus can't activate.`); } };
+
+/* v430 SOUL_CORE_TO_TRASH: "you can send your Soul Core to the Trash" as an effect step (BS75-X08; the Soul Core must be in a place it can leave without depleting a Spirit). */
+FX_ACTIONS.SOUL_CORE_TO_TRASH = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
+  txt: () => 'send your Soul Core to the Trash', can: c => soulCoreHolder(c.p, null) !== null,
+  run: async (c) => { const h = soulCoreHolder(c.p, null); if (h === null) { c.ctx.did = false; return; } if (!c.p.cpu && !(await ask({ title: `✨ ${CARDS[c.src.id].name}`, peek: true, html: 'Send your Soul Core to the Trash?', buttons: [{ label: 'Yes', cls: 'primary', value: true }, { label: 'No', cls: 'cancel', value: false }] }))) { c.ctx.did = false; return; } soulToTrash(c.p, h); c.ctx.did = true; } };

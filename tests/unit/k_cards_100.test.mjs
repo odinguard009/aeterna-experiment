@@ -114,3 +114,29 @@ test('K-1079 BS74-082/083 and BS75-081 Magic is used from Soul State: swap + fre
   assert.equal(r.m83.shield, true, JSON.stringify(r)); assert.equal(r.m83.bottom, true, JSON.stringify(r)); assert.equal(r.m83.inTrash, false, JSON.stringify(r)); assert.equal(r.m83.soulLeft, false, JSON.stringify(r));
   assert.deepEqual(r.m81, { lock: true, oppSpirits: 0, oppNexus: 0, nexusCores: 2 }, JSON.stringify(r));
 });
+
+test('K-1080 BS75-037 Iktalis: with 7+ counters the Contract Advent needs no Soul Core, once per turn per name; BS75-X08 sends the Soul Core to the Trash after 3+ cores via an effect', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const base = BS.mkInst('BS74-048'); base.cores = 3; P.spirits = [base]; const adv = BS.mkInst('BS75-037'); P.hand = [adv];
+    P.reserve.soul = false; P.trashCores.soul = false; P.count = 6; const lo = BS.contractAdventTargets(P, adv, 'flash').length;
+    P.count = 7; const hi = BS.contractAdventTargets(P, adv, 'flash').length;
+    const ok = await BS.doContractAdvent(P, adv, base, 'flash');
+    const adv2 = BS.mkInst('BS75-037'); P.hand = [adv2]; const base2 = BS.mkInst('BS74-048'); base2.cores = 3; P.spirits.push(base2);
+    const again = BS.contractAdventTargets(P, adv2, 'flash').length;
+    return { lo, hi, ok, onField: P.spirits.includes(adv), again, partial: BS.CARDS['BS75-037'].partial, p49: BS.CARDS['BS74-049'].partial, p08: BS.CARDS['BS75-X08'].partial };
+  })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.p49, false); assert.equal(r.p08, false);
+  assert.equal(r.lo, 0, JSON.stringify(r)); assert.equal(r.hi, 1, JSON.stringify(r)); assert.equal(r.ok, true); assert.equal(r.onField, true); assert.equal(r.again, 0, JSON.stringify(r));
+});
+
+test('K-1081 BS75-X08 Hazaar: cores per differently-named Soul State card; 3+ cores via an effect also sends the Soul Core to the Trash', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const run = async (via, n) => { const h = BS.mkInst('BS75-X08'); h.cores = 3; if (via) h.viaFx = true; P.spirits = [h]; P.soulState = []; for (let i = 0; i < n; i++) P.soulState.push(BS.mkInst(['BS74-048','BS74-042','BS74-040','BS74-030'][i]));
+      P.voidCores = 9; if (P.void != null) P.void = 9; P.reserve.soul = true; P.trashCores.soul = false; await BS.fireFx(P, 'SUMMONED', h, { subject: h, selfInst: h }); return { soulTrash: P.trashCores.soul, cores: h.cores }; };
+    const a = await run(true, 3), b = await run(false, 3), c = await run(true, 2);
+    return { a, b, c };
+  })()`);
+  assert.equal(r.a.soulTrash, true, JSON.stringify(r)); assert.equal(r.b.soulTrash, false, JSON.stringify(r)); assert.equal(r.c.soulTrash, false, JSON.stringify(r));
+});
