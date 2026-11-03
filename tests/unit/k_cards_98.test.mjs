@@ -198,3 +198,14 @@ test('K-1041 BS52-027 Rhinoscore: summons a Green Brave from Hand free; attack m
     return { summoned, one, ok: !BS.CARDS['BS52-027'].partial }; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.summoned, true, JSON.stringify(r)); assert.equal(r.one, 1, JSON.stringify(r));
 });
+
+test('K-1042 BS73-006 Haganewurm X: attack gives counter +1; a Rekka Spirit that destroys a blocker draws a card', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const h = BS.mkInst('BS73-006'); h.cores = 2; P.spirits = [h]; O.spirits = []; const c0 = P.count;
+    await BS.fireFx(P, 'ATTACKS', h, { attacker: h, subject: h }); const counter = P.count - c0;
+    P.hand = []; P.deck = P.deck.length ? P.deck : [BS.mkInst(h.id), BS.mkInst(h.id)]; const d0 = P.hand.length;
+    await BS.fireFx(P, 'ALLY_DESTROYS', null, { attacker: h, subject: h }); const drew = P.hand.length - d0;
+    return { counter, drew, ok: !BS.CARDS['BS73-006'].partial }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.counter, 1, JSON.stringify(r)); assert.equal(r.drew, 1, JSON.stringify(r));
+});
