@@ -4,6 +4,15 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.213.0
+- Lane: K
+- **Lane K: +98 complete cards (2,449 -> 2,547 of 10,291; 98 in this release)**
+- Cards: +98 complete by the official count (2,449 -> 2,547 of 10,291), released on the owner's order ("kerjakan sampai rilis versi 0.213") one batch short of the 100-card threshold; the next picks in the greedy order need an engine change (Spirit cost +N, Hand cost = Life) or a multi-clause rewrite.
+- Engine: no schema change in this release (the 383 -> 396 moves came from the wip/lane-k commits that precede it); every card here uses a form the engine already had, so nothing in the save/replay format moved.
+- Batch (data only): ADVENT draw (BS40-030, BS40-039); sealed +5000 BP to a family (BS38-028); first-attack MUST_BLOCK from a Nexus (BS01-098); Clash granted to a family (BS08-008); braved "the opponent can't activate a Burst" (BS39-RV009); Advent discard an opposing Burst (BS42-039); block-while-exhausted (SD11-004, SD39-002, SD52-002, BS40-035); Clash + Rush refresh (BS22-X01); "Start of Your Attack Step by exhausting this Spirit, draw and destroy, refresh if it destroyed" (BS56-002); attack a Spirit instead of the Life + Rush refresh/BP (BS49-011); braved UNAFFECTED (EX011); braved battle BP-minus (BS27-067); Void cores to a Nexus (BS29-052); Accel party +3000 BP / Accel BY-destroy draw / Accel deploy a Nexus from the Trash / Accel Trash core to Life / Accel every opposing Spirit -6000 BP and destroy at 0 (BS43-061, BS37-005, SD41-003, BS42-017, BS42-058); counter + draw + (Red Brave) destroy a Nexus without its effect (BS66-002); Mirage-set Void core to a Proximate & Machine Beast Spirit (BS56-035).
+- Tests: the loop (smoke + changed tests) is green; the card-data suites (data, partial_promotion PA02, coverage_baseline, tooling_reports, staged tests) pass; the pre-release gate is ok. The full quick set runs in CI on main.
+- Limits: this batch is data-only, so every card was checked by `fx_validate` (schema + live parseCard) and the loop, not by a new battle scenario each; the 19 promoted cards had their A1 "Partial card" note stripped so the partial-promotion data test stays green. Cards still needing an engine head are listed in `docs/reports/residual-blockers.md`.
+
 ## v0.212.0
 - Lane: K
 - **Lane K: +100 complete cards (2,349 -> 2,449 of 10,291; 100 in this release)**
