@@ -284,3 +284,15 @@ test('K-1021 BS52-RV001 Lizardedge: red Primal Spirits remain exhausted instead 
   assert.deepEqual(r.retAtk, [true, true, 0], JSON.stringify(r)); assert.deepEqual(r.retMain, [false, 1], JSON.stringify(r));
   assert.deepEqual(r.d1, [true, true], JSON.stringify(r)); assert.deepEqual(r.d2, [false, false], JSON.stringify(r));
 });
+
+test('K-1022 BS53-067 Nexus Hazard (Primal): destroys an opposing Nexus and draws; a second one when the opponent controls three or more', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4; G.fxBy = P.key;
+    const nx = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Nexus' && !BS.CARDS[k].token);
+    const out = [];
+    for (const n of [2, 3]) { O.nexus = []; for (let i = 0; i < n; i++) O.nexus.push(BS.mkInst(nx)); P.hand = []; P.deck = P.deck.length ? P.deck : []; const d0 = P.deck.length;
+      const m = BS.mkInst('BS53-067'); P.hand = [m]; await BS.castMagic(P, { inst: m, target: null, plan: null, ctx: 'flash' }); out.push([n, O.nexus.length, P.hand.length]); }
+    return [out, !BS.CARDS['BS53-067'].partial]; })()`);
+  assert.equal(r[1], true, JSON.stringify(r));
+  assert.deepEqual(r[0].map(x => x[1]), [1, 1], JSON.stringify(r));
+});
