@@ -157,7 +157,7 @@ async function oppAttackHandFx(D) {                    // D = the player whose o
       if (!go) continue;
       ch = await prepareHumanMagic(D, h, 'flash'); if (!ch) continue;
     }
-    gw[0].cores -= oh.gwToVoid; D.void += oh.gwToVoid;
+    gw[0].cores -= oh.gwToVoid; D.void += oh.gwToVoid; nexusVoided(D, gw[0].uid);
     log(`${who(D)} ${D.cpu ? 'sends' : 'send'} ${oh.gwToVoid} cores from ${CARDS[gw[0].id].name} to the Void.`);
     await castMagic(D, ch); io.view({ type: 'board' }); await flushBursts();
   }

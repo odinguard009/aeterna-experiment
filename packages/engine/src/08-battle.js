@@ -190,6 +190,8 @@ async function flushBursts() {                         // queued Bursts and even
       await fireFx(G.p[other(ev.key)], 'OPP_DIED', ev.inst, { subject: ev.inst, bp: ev.bp });      // v192 "When opposing Spirits are destroyed"
     } else if (ev.type === 'DESTROYED') await fireFx(G.p[ev.key], 'DESTROYED', ev.inst, { subject: ev.inst, byOpp: !!ev.byOpp, byOppFx: !!ev.byOppFx, depl: !!ev.depl });
     else if (ev.type === 'IMMORTAL') await immortalOffer(G.p[ev.key], ev.inst);
+    else if (ev.type === 'MIRAGE_SUMMON') await mirageSummonOffer(G.p[ev.key]);
+    else if (ev.type === 'LEAVE_SUMMON') await leaveSummonOffer(G.p[ev.key], ev.inst);
     else if (ev.type === 'LEAVES') await fireFx(G.p[ev.key], 'LEAVES', ev.inst, { subject: ev.inst, byOpp: true, byOppFx: !!ev.byOppFx });
     else if (ev.type === 'BATTLE_WIN') await fireFxMulti([{ owner: G.p[ev.key], trigger: 'BATTLE_WIN', src: ev.inst, ctx: { subject: ev.inst, attacking: !!ev.att, victimId: ev.vic } }, { owner: G.p[ev.key], trigger: 'ALLY_BATTLE_WIN', src: null, ctx: { subject: ev.inst, attacking: !!ev.att } }]), winRiderRun(ev);   // v0.78 also "... with your X Spirit" on other cards
     else if (ev.type === 'DESTROYS') await fireFx(G.p[ev.key], 'ALLY_DESTROYS', null, { attacker: ev.inst, subject: ev.inst });

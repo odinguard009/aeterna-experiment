@@ -219,6 +219,7 @@ function leaveHook(p, s, why, battle) {
     if (e.trigger !== 'STATIC' || e.flag !== 'OPP_LEAVE_DRAW' || (e.lv && !e.lv.includes(lvNo(src))) || (src.leaveTurn != null && src.leaveTurn === G.turnNo) || !q.deck.length || !fxIf(q, p, e.if || {}, { selfInst: src })) continue;
     src.leaveTurn = G.turnNo; let k = 0; for (; k < e.n && q.deck.length; k++) q.hand.push(q.deck.pop()); log(`${CARDS[src.id].name}: ${poss(q)} draws ${k} from the deckbottom.`); handUp(q, k);
   }
+  if (oppFx && G.evQ && p.hand.some(h => CARDS[h.id].leaveSummon && (CARDS[s.id].families || []).includes(CARDS[h.id].leaveSummon.family))) G.evQ.push({ type: 'LEAVE_SUMMON', key: p.key, inst: s });      // v426 BS75-049
   if (!oppFx || p.life < 2 || (why !== 'destroyed' && why !== 'depleted' && why !== 'returned') || !flagActive(p, 'REMAIN_LIFE', s)) return false;
   lifeTake(p, 1, s); log(`${CARDS[s.id].name} receives a core from ${poss(p)} Life and remains on the Field.`); return true;
 }

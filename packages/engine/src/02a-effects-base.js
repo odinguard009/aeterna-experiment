@@ -439,10 +439,11 @@ function activeLowAtk() {
 function lowAtkLocked(p, s) { const lim = activeLowAtk(); return !!lim && !!G && CARDS[s.id].cost <= lim && G.lowAtkTurn === G.turnNo; }
 function takeFromVoid(p, n) { if (n <= 0) return 0; if (p.void < n) { p.made += n - p.void; p.void = n; } p.void -= n; return n; }
 function releaseCores(p, i) {                          // official: a Grandwalker Nexus' cores go to the Void, other cards' cores to the Reserve
-  if (isCountLv(CARDS[i.id])) p.void += i.cores; else p.reserve.n += i.cores;
+  if (isCountLv(CARDS[i.id])) { p.void += i.cores; if (i.cores) nexusVoided(p, i.uid); } else p.reserve.n += i.cores;
   if (i.soul) p.reserve.soul = true;
 }
 function removeNexus(p, n, why) {
+  if (why === 'destroyed' && nexusShielded(p, n)) return;
   if (!removeFrom(p.nexus, n)) return;
   if (why === 'destroyed' && nexusDeathHears(p)) G.evQ.push({ type: 'NEXUS_DIED', key: p.key, inst: n });      // v189 "When your Nexuses ... are destroyed"
   releaseCores(p, n);

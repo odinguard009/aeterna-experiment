@@ -39,3 +39,24 @@ test('K-1073 BS75-AX02 LV2/3: When Attacks/Blocks five opposing Spirits can\'t a
     return { n: O.spirits.filter(s => s.noAB).length, lv: BS.lvNo(ax) }; })()`);
   assert.ok(r.lv >= 2, JSON.stringify(r)); assert.equal(r.n, 5, JSON.stringify(r));
 });
+
+test('K-1074 BS75-049 Airavajdra: when a Thunderive Spirit would leave by an opposing effect it is summoned from the Hand (cost paid); not on a battle loss', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = O.key; G.step = 2; G.fxBy = O.key;
+    const s = BS.mkInst('BS75-046'); s.cores = 1; P.spirits = [s]; O.spirits = []; P.nexus = []; const a = BS.mkInst('BS75-049'); P.hand = [a]; P.reserve.n = 10;
+    const none = BS.mkInst('BS76-047'); none.cores = 1; P.spirits.push(none);
+    G.fxBy = null; BS.removeSpirit(P, none, 'destroyed', 'battle'); await BS.flushBursts(); const afterBattle = P.hand.includes(a);
+    G.fxBy = O.key; BS.removeSpirit(P, s, 'destroyed'); await BS.flushBursts();
+    return { afterBattle, onField: P.spirits.includes(a), inHand: P.hand.includes(a), res: P.reserve.n, leaveSummon: BS.CARDS['BS75-049'].leaveSummon, partial: BS.CARDS['BS75-049'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.afterBattle, true, JSON.stringify(r)); assert.equal(r.onField, true, JSON.stringify(r)); assert.equal(r.inHand, false); assert.ok(r.res < 10, JSON.stringify(r));
+});
+
+test('K-1075 BS75-042 Bilijvern: while set it shields Contractor Indra from opposing destruction, and Void cores from Indra summon the Mirage', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 2; G.fxBy = null;
+    const n = BS.mkInst('BS75-CX03'); n.cores = 4; P.nexus = [n]; P.spirits = []; O.spirits = []; const m = BS.mkInst('BS75-042'); m.mirage = true; P.mirage = m; P.reserve.n = 5; P.void = 0;
+    G.fxBy = O.key; BS.removeNexus(P, n, 'destroyed'); const shielded = P.nexus.includes(n); G.fxBy = null;
+    BS.coreEvN(P, n.uid, 'void', 2, false); n.cores -= 2; P.void += 2; await BS.flushBursts();
+    return { shielded, summoned: P.spirits.includes(m), mirageGone: P.mirage === null, partial: BS.CARDS['BS75-042'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.shielded, true, JSON.stringify(r)); assert.equal(r.summoned, true, JSON.stringify(r)); assert.equal(r.mirageGone, true, JSON.stringify(r));
+});

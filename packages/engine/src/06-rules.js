@@ -648,7 +648,7 @@ async function castMagic(p, ch) {                         // ch = { inst, target
 
 /* manual core movement during the Main Step */
 /* v0.126.0 U14d3: display-only record of one core moving (a uid or 'reserve' at each end); the web host flies it, other hosts ignore it */
-const coreEv = (p, kind, from, to, nth) => io.view({ type: 'core', side: p.key, kind, from, to, nth });
+const coreEv = (p, kind, from, to, nth) => (to === 'void' && typeof from === 'number' && nexusVoided(p, from), io.view({ type: 'core', side: p.key, kind, from, to, nth }));
 const coreEvN = (p, from, to, n, soul) => { for (let i = 0; i < Math.min(n, 5); i++) coreEv(p, 'core', from, to, i); if (soul) coreEv(p, 'soul', from, to, Math.min(n, 5)); };   // v0.149.0: n gems fly one after the other (display cue only)
 function addCore(p, f) { if (p.reserve.n > 0) { coreEv(p, 'core', 'reserve', f.uid); p.reserve.n--; f.cores++; return true; } return false; }
 function removeCore(p, f) { if (f.cores > 0) { coreEv(p, 'core', f.uid, 'reserve'); f.cores--; p.reserve.n++; checkDepletion(p); return true; } return false; }
