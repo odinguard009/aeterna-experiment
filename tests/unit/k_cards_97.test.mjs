@@ -149,3 +149,16 @@ test('K-1011 BS74-005 (Ometeotl): Mani card; summoned returns Ometeotl/Lava Fish
     return [!c.partial, !!c.manifest, P.hand.length - h0, P.trash.length]; })()`);
   assert.deepEqual(r, [true, true, 2, 1], JSON.stringify(r));
 });
+
+test('K-1012 BS74-002 (Ometeotl): reveal three, add one Ometeotl/Lava Fish card; Soul Core to Ometeotl reveals +1 and adds +1', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player; P.cpu = true;
+    const run = async soul => { const nx = BS.mkInst('BS74-CX01'); nx.cores = 1; P.nexus = [nx];
+      const v = BS.mkInst('BS74-002'); v.cores = 2; P.spirits = [v]; P.reserve.soul = false; P.trashCores.soul = false; if (soul) v.soul = true;
+      const f = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && !(BS.CARDS[k].families || []).includes('Lava Fish') && BS.CARDS[k].name !== 'Contractor Ometeotl');
+      P.deck = [BS.mkInst('BS74-011'), BS.mkInst('BS74-012'), BS.mkInst(f), BS.mkInst('BS74-011'), BS.mkInst(f)]; P.trash = []; P.hand = [];
+      await BS.fireFx(P, 'SUMMONED', v, {}); return [P.hand.length, P.trash.length]; };
+    const b = await run(true), a = await run(false);
+    return [!BS.CARDS['BS74-002'].partial, a, b, 0]; })()`);
+  assert.equal(r[0], true, JSON.stringify(r)); assert.deepEqual(r[1], [1, 2], JSON.stringify(r)); assert.deepEqual(r[2], [2, 2], JSON.stringify(r));
+});
