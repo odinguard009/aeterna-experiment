@@ -46,3 +46,16 @@ test('K-1029 BS54-015 Knowledge Snake: attack removes a core, with two counters 
     return { ok: !BS.CARDS['BS54-015'].partial, left: t.cores }; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.left, 2, JSON.stringify(r));
 });
+
+test('K-1030 BS52-014 Lezard: a counter increase strips an opposing core; LV2 locks one-core opposing Spirits', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.fxBy = P.key;
+    const w = BS.mkInst('BS52-014'); w.cores = 3; P.spirits = [w];
+    const id = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token);
+    const t = BS.mkInst(id); t.cores = 3; O.spirits = [t];
+    const v = BS.mkInst('BS54-015'); P.spirits.push(v); v.cores = 1; P.spirits.pop();
+    await BS.fireFx(P, 'COUNTER_UP', null, {});
+    const one = BS.mkInst(id); one.cores = 1; O.spirits.push(one);
+    return { ok: !BS.CARDS['BS52-014'].partial, left: t.cores, locked: !!BS.cantAttack && BS.cantAttack(O, one) }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.left, 2, JSON.stringify(r));
+});
