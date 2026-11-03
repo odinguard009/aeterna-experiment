@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 6225,
+  "cards": 6224,
   "per_saga": {
    "1": 458,
    "2": 251,
@@ -13,7 +13,7 @@
    "9": 471,
    "10": 485,
    "11": 277,
-   "12": 307,
+   "12": 306,
    "13": 387,
    "14": 422,
    "15": 348,
@@ -22,18 +22,18 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2481,
+  "skipped_curated": 2482,
   "nexus_levels_added": 667,
   "nexus_levels_missing": 43,
   "merged": 106,
-  "image_problems": 398,
+  "image_problems": 397,
   "brave_unparsed": 169,
   "ut_lines_added": 106,
   "odd_reduction": 795,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
   "number_conflicts": 3,
-  "without_image": 396
+  "without_image": 395
  },
  "tokens": [
   "BS73-T001",
@@ -1636,6 +1636,7 @@
   "BS57-048",
   "BS58-001",
   "BS58-002",
+  "BS58-014",
   "BS58-019",
   "BS58-021",
   "BS58-024",
@@ -5115,11 +5116,6 @@
    "id": "BS58-013",
    "name": "The Hermit-Ritter Cuadrado",
    "problem": "no image (near: BS58 013.png)"
-  },
-  {
-   "id": "BS58-014",
-   "name": "The Hermit-Ritter Vanderas",
-   "problem": "no image (near: BS58 014.png)"
   },
   {
    "id": "BS58-039",
