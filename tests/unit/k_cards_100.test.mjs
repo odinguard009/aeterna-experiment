@@ -249,3 +249,32 @@ test('K-1090 BS74-CX03 Mitra: Neo-Core Charge matches Awakened Dragon cost 3+ an
   assert.equal(r.partial, false, JSON.stringify(r));
   assert.equal(r['BS74-043'], 1, JSON.stringify(r)); assert.equal(r['BS74-040'], 0, JSON.stringify(r)); assert.equal(r['BS74-X15'], 1, JSON.stringify(r)); assert.equal(r['BS74-AX01'], 1, JSON.stringify(r)); assert.equal(r['BS75-X01'], 1, JSON.stringify(r));
 });
+
+test('K-1091 BS74-X06 Burst: the opposing Life reduced (LIFE_ANY) sends a Grandwalker Nexus core to the Reserve and summons it free', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = O.key; G.step = 4;
+    const n = BS.mkInst('BS74-CX03'); n.cores = 3; P.nexus = [n]; P.spirits = []; O.spirits = []; const x = BS.mkInst('BS74-X06'); P.burst = x; P.reserve.n = 3;
+    const lifeOnly = BS.CARDS['BS74-X06'].burst.when; await BS.maybeBurst(O, 'LIFE_DECREASE', {});
+    return { h: G.history.slice(-6), lifeOnly, onField: P.spirits.includes(x), burstLeft: !!P.burst, nexusCores: n.cores, reserve: P.reserve.n, partial: BS.CARDS['BS74-X06'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.onField, true, JSON.stringify(r)); assert.equal(r.nexusCores, 3, JSON.stringify(r)); assert.equal(r.reserve, 2, JSON.stringify(r)); assert.ok(r.h.some(l => /goes to .* Reserve/.test(l))); assert.equal(r.burstLeft, false);
+});
+
+test('K-1092 BS74-X06 Soul Burst: five cards in Soul State let it activate its Burst from Soul State, once per turn', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4; G.fxBy = P.key;
+    const n = BS.mkInst('BS74-CX03'); n.cores = 3; P.nexus = [n]; P.spirits = []; O.spirits = []; const x = BS.mkInst('BS74-X06'); P.hand = [x]; P.reserve.n = 3;
+    P.soulState = [BS.mkInst('BS74-041'), BS.mkInst('BS74-042'), BS.mkInst('BS74-043'), BS.mkInst('BS74-045')];
+    const early = P.soulState.length; BS.toSoulState(P, x); await BS.flushBursts();
+    return { h: G.history.slice(-5), early, onField: P.spirits.includes(x), soulLeft: P.soulState.length, nexusCores: n.cores }; })()`);
+  assert.equal(r.onField, true, JSON.stringify(r)); assert.equal(r.soulLeft, 4); assert.ok(r.h.some(l => /goes to .* Reserve/.test(l)), JSON.stringify(r));
+});
+
+test('K-1093 BS74-X06 ∞: unaffected only by opposing effects whose colour is a symbol on the opposing Field', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = O.key; G.step = 4;
+    const x = BS.mkInst('BS74-X06'); x.cores = 5; P.spirits = [x]; const sym = BS.mkInst('BS74-043'); O.spirits = [sym]; O.nexus = [];
+    const col = BS.CARDS['BS74-043'].symbol, other = ['red','purple','green','white','yellow','blue'].find(k => k !== col);
+    const same = BS.mkInst('BS74-043'), diff = BS.mkInst(Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Magic' && BS.CARDS[k].symbol === other && (BS.CARDS[k].colors || [BS.CARDS[k].symbol]).every(y => y !== col)));
+    return { same: BS.fxImmune(P, x, { p: O, src: same }), diff: BS.fxImmune(P, x, { p: O, src: diff }), lv: BS.lvNo(x) }; })()`);
+  assert.equal(r.same, true, JSON.stringify(r)); assert.equal(r.diff, false, JSON.stringify(r));
+});

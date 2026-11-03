@@ -59,6 +59,7 @@ async function soulDeployOffer(p, inst) {
 }
 function soulEnterHook(p, inst) {
   if (G && G.evQ && CARDS[inst.id].soulDeploy) G.evQ.push({ type: 'SOUL_DEPLOY', key: p.key, inst });
+  if (G && G.evQ && p.soulState.length >= 5 && (p.soulState.some(x => CARDS[x.id].soulBurst) || (p.burst && CARDS[p.burst.id].soulBurst)) && !G.evQ.some(e => e.type === 'SOUL_BURST' && e.key === p.key)) G.evQ.push({ type: 'SOUL_BURST', key: p.key });
   const mn = G && G.evQ && p.mirage && CARDS[p.mirage.id].mirageNexus;
   if (mn && mn.soul && CARDS[inst.id].name.endsWith(mn.name) && !G.evQ.some(e => e.type === 'MIRAGE_SUMMON' && e.key === p.key)) G.evQ.push({ type: 'MIRAGE_SUMMON', key: p.key, inst });
 }

@@ -64,3 +64,45 @@ FX_ACTIONS.OPP_FX_LOCK_TURN = { chk: a => Object.keys(a).every(k => ['do', 'if']
 FX_ACTIONS.SOUL_CORE_TO_TRASH = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
   txt: () => 'send your Soul Core to the Trash', can: c => soulCoreHolder(c.p, null) !== null,
   run: async (c) => { const h = soulCoreHolder(c.p, null); if (h === null) { c.ctx.did = false; return; } if (!c.p.cpu && !(await ask({ title: `✨ ${CARDS[c.src.id].name}`, peek: true, html: 'Send your Soul Core to the Trash?', buttons: [{ label: 'Yes', cls: 'primary', value: true }, { label: 'No', cls: 'cancel', value: false }] }))) { c.ctx.did = false; return; } soulToTrash(c.p, h); c.ctx.did = true; } };
+
+/* v435 BS74-X06 Lord-Dragon-Glazar: card field soulBurst ("(Once per Turn: Same Name) When your cards enter Soul State, and there are five or more cards in Soul State, you can immediately
+   activate the Soul Burst of this set card / this card in Soul State"): soulEnterHook queues SOUL_BURST, soulBurstCheck runs the Burst through maybeBurst1 (ctx.force skips the "when", ctx.fromSoul = the card in Soul State).
+   Burst when LIFE_ANY (your Life or the opposing Life reduced, see maybeBurst). STATIC UNAFFECTED from.oppField (colours of the symbols on the opposing Field, fromCols).
+   Actions: NEXUS_CORE_TO_RESERVE {family}, RETURN_OPP_SNB (return an opposing Spirit / Nexus / set Burst to the deckbottom). */
+function fromCols(f, cols, owner) {
+  if (f.oppField) { const sy = symbolsOn(G.p[other(owner.key)]); return cols.some(x => sy[x] > 0); }
+  return !f.colors || f.colors.some(x => cols.includes(x));
+}
+async function soulBurstCheck(p) {
+  if (!G || G.over || p.soulState.length < 5) return;
+  p.sbTurn = p.sbTurn || {};
+  const cands = p.soulState.filter(x => CARDS[x.id].soulBurst && CARDS[x.id].burst).map(x => ({ x, soul: true })).concat(p.burst && !p.burst.mirage && CARDS[p.burst.id].soulBurst ? [{ x: p.burst, soul: false }] : []);
+  for (const { x, soul } of cands) {
+    const nm = CARDS[x.id].name; if (p.sbTurn[nm] === G.turnNo) continue;
+    if (await maybeBurst1(p, 'SOUL_BURST', soul ? { force: true, fromSoul: x } : { force: true })) { p.sbTurn[nm] = G.turnNo; break; }
+  }
+}
+Object.assign(FX_ACTIONS, {
+  NEXUS_CORE_TO_RESERVE: { chk: a => typeof a.family === 'string' && a.family.length > 0 && Object.keys(a).every(k => ['do', 'if', 'family'].includes(k)),
+    txt: a => `send a core from any of your "${a.family}" Nexus to the Reserve`,
+    cands: (c, a) => c.p.nexus.filter(x => x.cores - (x.soul ? 1 : 0) > 0 && (CARDS[x.id].families || []).some(f => f.toLowerCase().includes(a.family.toLowerCase()))),
+    can: (c, a) => FX_ACTIONS.NEXUS_CORE_TO_RESERVE.cands(c, a).length > 0,
+    run: async (c, a) => {
+      const L = FX_ACTIONS.NEXUS_CORE_TO_RESERVE.cands(c, a), p = c.p, nm = CARDS[c.src.id].name; c.ctx.did = false; if (!L.length) return;
+      const t = p.cpu ? L.slice().sort((x, y) => y.cores - x.cores)[0] : await chooseCard(c, L, `✨ ${nm}`, 'Send a core from which Nexus to the Reserve?', true);
+      if (!t || !p.nexus.includes(t)) return;
+      coreEvN(p, t.uid, 'reserve', 1, false); t.cores--; p.reserve.n++; c.ctx.did = true; log(`${nm}: a core from ${CARDS[t.id].name} goes to ${poss(p)} Reserve.`); checkDepletion(p); io.view({ type: 'board' });
+    } },
+  RETURN_OPP_SNB: { chk: a => a.to === 'deckBottom' && Object.keys(a).every(k => ['do', 'if', 'to'].includes(k)),
+    txt: () => 'return an opposing Spirit, Nexus or set Burst to the bottom of the Deck',
+    kinds: c => ['spirit', 'nexus', 'burst'].filter(k => k === 'burst' ? !!c.opp.burst && !c.opp.burst.mirage : (k === 'spirit' ? c.opp.spirits : c.opp.nexus).some(x => !fxImmune(c.opp, x, c))),
+    can: c => FX_ACTIONS.RETURN_OPP_SNB.kinds(c).length > 0,
+    run: async (c, a) => {
+      const K = FX_ACTIONS.RETURN_OPP_SNB.kinds(c), nm = CARDS[c.src.id].name; c.ctx.did = false; if (!K.length) return;
+      const lbl = { spirit: 'Spirit', nexus: 'Nexus', burst: 'Burst' };
+      const k = c.p.cpu || K.length === 1 ? K[0] : await ask({ title: `✨ ${nm}`, peek: true, html: 'Return which opposing card to the bottom of the Deck?', buttons: K.map(x => ({ label: lbl[x], cls: 'primary', value: x })).concat([{ label: 'Skip', cls: 'cancel', value: null }]) });
+      if (!k) return;
+      if (k === 'burst') { const b = c.opp.burst; if (!b || b.mirage) return; c.opp.burst = null; c.opp.deck.push(b); log(`${nm}: the opposing set Burst goes to the bottom of the Deck.`); c.ctx.did = true; io.view({ type: 'board' }); return; }
+      await FX_ACTIONS.BOUNCE_OPP.run(c, { do: 'BOUNCE_OPP', to: 'deckBottom', kind: k });
+    } },
+});

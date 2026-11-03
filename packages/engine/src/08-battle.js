@@ -100,15 +100,21 @@ async function doBattleInner(attKey, att) {
   io.view({ type: 'board' });
 }
 /* Burst: a face-down card in the Burst Area flips when its condition happens. All effects are engine actions (card.burst = {when, actions}). */
-async function maybeBurst(owner, trigger, ctx) {
+async function maybeBurst(owner, trigger, ctx) {      // v435 LIFE_ANY: a Life reduction also lets the other player's "your Life or the opposing Life" Burst answer
+  const r = await maybeBurst1(owner, trigger, ctx);
+  if (trigger === 'LIFE_DECREASE' && !(ctx && ctx.selfCost) && G && !G.over) await maybeBurst1(G.p[other(owner.key)], 'OPP_LIFE_DECREASE', {});
+  return r;
+}
+async function maybeBurst1(owner, trigger, ctx) {
   if (trigger === 'LIFE_DECREASE' && !(ctx && ctx.selfCost) && G && !G.over) await lifeHandFx(owner);      // v411 magic.lifeHand
-  const b = owner.burst; if (!b || b.mirage || !G || G.over) return false;
+  const b = (ctx && ctx.fromSoul) || owner.burst; if (!b || b.mirage || !G || G.over) return false;
   if (G.noBurst === owner.key) return false;           // v0.38 "the opponent can't activate Burst effects" (this battle)
   if (burstLocked(owner)) return false;      // v340 static NO_OPP_BURST
   const def = CARDS[b.id].burst, opp = G.p[other(owner.key)];
+  if (def && def.when === 'LIFE_ANY' && (trigger === 'LIFE_DECREASE' || trigger === 'OPP_LIFE_DECREASE')) trigger = 'LIFE_ANY'; else if (trigger === 'OPP_LIFE_DECREASE') return false;
   const when = def && ((def.when === 'OPP_SUMMON_ADV_FX' && (trigger === 'OPP_SUMMON_FX' || trigger === 'OPP_ADVENT_FX')) || (def.when === 'ALLY_LOST' && (trigger === 'ALLY_DESTROYED' || trigger === 'ALLY_LOST'))) ? def.when : trigger;   // v0.71 "(When Summoned/Advents)" Burst condition
   const also = !!def && !!def.also && def.also.when === trigger && (!ctx || !ctx.subject || fxMatch(CARDS[ctx.subject.id], def.also.match)) && (!def.also.if || fxIf(owner, opp, def.also.if));   // v0.47 Dana Draw
-  if (!def || (def.when !== when && !also)) return false;
+  if (!def || (def.when !== when && !also && !(ctx && ctx.force))) return false;
   const c = { p: owner, opp, src: b, ctx: Object.assign({}, ctx), burst: true, summoned: false };
   if (!fxIf(owner, opp, def.if)) return false;
   if (def.noUlt && ctx && ctx.attacker && CARDS[ctx.attacker.id].type === 'Ultimate') return false;   // v0.71 "After an opposing Spirit attacks" (not "Spirit/Ultimate")
@@ -117,16 +123,17 @@ async function maybeBurst(owner, trigger, ctx) {
     title: '💥 Burst', peek: true, wide: true, html: `${esc(CARDS[b.id].name)} can be activated (${esc(BURST_WHEN[def.when])}): ${esc(fxDescribe(def))}.`, cards: cardIds([b]),
     buttons: [{ label: 'Activate Burst', cls: 'primary', value: true }, { label: 'Keep it set', cls: 'cancel', value: false }]
   }));
-  if (!use || owner.burst !== b) return false;
+  if (!use || (owner.burst !== b && !(ctx && ctx.fromSoul === b && owner.soulState.includes(b)))) return false;
   io.view({ type: 'burst', side: owner.key, id: b.id });   // v0.126.0 U14d3: display only, before the card leaves the Burst Area
-  owner.burst = null; owner.limbo = b;                // the card is flipped and leaves the Burst Area while its effect resolves
+  if (ctx && ctx.fromSoul === b) { removeFrom(owner.soulState, b); b.inSoulState = false; } else owner.burst = null; owner.limbo = b;                // the card is flipped and leaves the Burst Area while its effect resolves
   log(`${who(owner)} ${owner.cpu ? 'activates' : 'activate'} Burst: ${CARDS[b.id].name}!`);
   io.view({ type: 'board' });
   G.resolving = (G.resolving || 0) + 1;
   try {
     for (const a of def.actions) {
       if (G.over) break;
-      if (a.if && !fxIf(owner, opp, a.if)) continue;
+      c.ctx.prev = c.ctx.did !== false; c.ctx.did = true;      // v435 {prev:true} between Burst actions
+      if (a.if && !fxIf(owner, opp, a.if, c.ctx)) continue;
       await FX_ACTIONS[a.do].run(c, a);
       io.view({ type: 'board' });
     }
@@ -192,6 +199,7 @@ async function flushBursts() {                         // queued Bursts and even
     } else if (ev.type === 'DESTROYED') await fireFx(G.p[ev.key], 'DESTROYED', ev.inst, { subject: ev.inst, byOpp: !!ev.byOpp, byOppFx: !!ev.byOppFx, depl: !!ev.depl });
     else if (ev.type === 'IMMORTAL') await immortalOffer(G.p[ev.key], ev.inst);
     else if (ev.type === 'MIRAGE_SUMMON') await mirageSummonOffer(G.p[ev.key]);
+    else if (ev.type === 'SOUL_BURST') await soulBurstCheck(G.p[ev.key]);
     else if (ev.type === 'SOUL_DEPLOY') await soulDeployOffer(G.p[ev.key], ev.inst);
     else if (ev.type === 'LEAVE_SUMMON') await leaveSummonOffer(G.p[ev.key], ev.inst);
     else if (ev.type === 'LEAVES') await fireFx(G.p[ev.key], 'LEAVES', ev.inst, { subject: ev.inst, byOpp: true, byOppFx: !!ev.byOppFx });

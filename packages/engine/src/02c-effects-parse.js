@@ -52,7 +52,7 @@ async function tributePay(p, inst) {      // v0.182 Tribute: after the cost is p
 }
 const summonBy = (p, inst, pay, opts) => pay ? summonPaid(p, inst, opts) : summonFree(p, inst, opts);
 function fxDescribe(e) { return (e.invoke && e.cost ? invokeCostText(e.cost) + ' ▶ ' : '') + e.actions.map(a => FX_ACTIONS[a.do].txt(a)).join(', then '); }
-const BURST_WHEN = { LIFE_DECREASE: 'After your Life is reduced', ALLY_DESTROYED: 'After your Spirit is destroyed by the opponent', ALLY_LOST: 'After your Spirit is depleted/destroyed by the opponent', OPP_SUMMON_FX: "After an opposing Spirit's (When Summoned) effect activates", OPP_HAND_UP: 'After the opposing Hand increases with an opposing effect', OPP_ATTACK: 'After an opposing Spirit attacks', OPP_SUMMON_ADV_FX: "After an opposing Spirit's (When Summoned/Advents) effect resolves" };   // v0.71 OPP_ATTACK, OPP_SUMMON_ADV_FX
+const BURST_WHEN = { LIFE_DECREASE: 'After your Life is reduced', LIFE_ANY: 'After your Life or the opposing Life is reduced', ALLY_DESTROYED: 'After your Spirit is destroyed by the opponent', ALLY_LOST: 'After your Spirit is depleted/destroyed by the opponent', OPP_SUMMON_FX: "After an opposing Spirit's (When Summoned) effect activates", OPP_HAND_UP: 'After the opposing Hand increases with an opposing effect', OPP_ATTACK: 'After an opposing Spirit attacks', OPP_SUMMON_ADV_FX: "After an opposing Spirit's (When Summoned/Advents) effect resolves" };   // v0.71 OPP_ATTACK, OPP_SUMMON_ADV_FX
 function parseCond(c) {
   if (typeof c !== 'object' || c === null) return { error: 'effect "if" must be an object' };
   for (const [k, v] of Object.entries(c)) {
@@ -266,8 +266,8 @@ function parseEffects(arr) {
         const f = e.from, TY = ['Spirit', 'Brave', 'Nexus', 'Magic', 'Ultimate'];
         if (typeof f !== 'object' || (f.colors != null && (!Array.isArray(f.colors) || !f.colors.length || f.colors.some(x => !COLORS.includes(x))))
           || (f.types != null && (!Array.isArray(f.types) || !f.types.length || f.types.some(x => !TY.includes(x))))
-          || (f.costLe != null && !(Number.isInteger(f.costLe) && f.costLe >= 0 && f.costLe <= 20) && f.costLe !== 'self' && f.costLe !== 'counters')) return { error: 'UNAFFECTED "from" must look like {"colors":["purple"],"types":["Spirit","Magic"],"costLe":5|"self"|"counters"}' };
-        o.from = {}; if (f.colors) o.from.colors = f.colors.slice(); if (f.types) o.from.types = f.types.slice(); if (f.costLe != null) o.from.costLe = f.costLe;
+          || (f.oppField != null && f.oppField !== true) || (f.costLe != null && !(Number.isInteger(f.costLe) && f.costLe >= 0 && f.costLe <= 20) && f.costLe !== 'self' && f.costLe !== 'counters')) return { error: 'UNAFFECTED "from" must look like {"colors":["purple"],"types":["Spirit","Magic"],"costLe":5|"self"|"counters"}' };
+        o.from = {}; if (f.colors) o.from.colors = f.colors.slice(); if (f.types) o.from.types = f.types.slice(); if (f.costLe != null) o.from.costLe = f.costLe; if (f.oppField) o.from.oppField = true;
       }
       if (e.flag === 'COST_DESTROY_PLUS') {                       // v0.37: the limit of your "Cost Destruction effects" +n (optionally per Saga Brave you control, optionally only for sources of a family)
         if (!Number.isInteger(e.n) || e.n < 1 || e.n > 10) return { error: 'COST_DESTROY_PLUS needs a whole-number "n" (1-10)' };

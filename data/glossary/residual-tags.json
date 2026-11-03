@@ -47314,19 +47314,6 @@
   "M_IF_YOU_DO",
   "M_THEN"
  ],
- "BS74-X06": [
-  "A_SOUL_STATE",
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "C_ONCE",
-  "K_ARMOR",
-  "K_BURST",
-  "K_GRANDWALKER",
-  "M_OPTIONAL",
-  "M_THEN",
-  "S_UNAFFECTED",
-  "T_SUMMONED"
- ],
  "BS74-X07": [
   "A_SUMMON_FREE",
   "C_LEVEL",
