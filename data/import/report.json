@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 6206,
+  "cards": 6203,
   "per_saga": {
    "1": 458,
    "2": 251,
@@ -18,12 +18,12 @@
    "14": 422,
    "15": 348,
    "16": 316,
-   "17": 109
+   "17": 106
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2500,
-  "nexus_levels_added": 666,
+  "skipped_curated": 2503,
+  "nexus_levels_added": 665,
   "nexus_levels_missing": 43,
   "merged": 106,
   "image_problems": 396,
@@ -1865,10 +1865,13 @@
   "BS76-044",
   "BS76-047",
   "BS76-048",
+  "BS76-050",
   "BS76-060",
   "BS76-069",
+  "BS76-076",
   "BS76-079",
   "BS76-080",
+  "BS76-088",
   "BS76-X01",
   "BS76-X02",
   "BS77-040",
@@ -3209,7 +3212,6 @@
   "BS76-073",
   "BS76-074",
   "BS76-075",
-  "BS76-076",
   "BS76-077",
   "BS76-078",
   "BS77-066",
