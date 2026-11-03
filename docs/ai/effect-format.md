@@ -453,3 +453,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v415 (Lane K): `REVEAL_PICK.orMatch`: "add a <A> card, or a <B> card" (a card matching either `match` or `orMatch`; not with also/all/max/peek). BS54-033.
 - v416 (Lane K): `VOID_TO_RESERVE.perExhausted` ("for each Spirit exhausted, put a core from the Void to your Reserve"; reads the count EXHAUST_OPP stores in ctx.exhN). BS58-028 (Burst OPP_HAND_UP).
 - v417 (Lane K): a STATIC `ALSO_TREATED` may carry `if` (e.g. `ctrl` a Grandstone Nexus of a colour): "While you control any <colour> Grandstone Nexus, this Spirit's color and symbol are also treated as <colour>". BS55-RV002, BS55-RV003 (revival).
+- v418 (Lane K): `CANT_ATTACK_BLOCK_ALL` accepts `opp:true` (no cost filter): "During this turn, every opposing Spirit/Ultimate can't attack/block." Used by BS39-RV018 The Angelia Coma (Accel flash).

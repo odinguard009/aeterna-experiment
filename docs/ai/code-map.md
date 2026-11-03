@@ -83,7 +83,7 @@ lifeGuardFx
 ## packages/engine/src/02u-effects-form-change.js (32 lines, ~0.7k tokens) — FORM CHANGE (v0.135.0, schema v8; Kamen Rider cross-over cards): {{F Change|"X" & Cost N}} {{Invoke|Main}}
 fcCands
 
-## packages/engine/src/02v-effects-lane-k.js (594 lines, ~13.7k tokens)
+## packages/engine/src/02v-effects-lane-k.js (594 lines, ~13.8k tokens)
 coresFromSpirits, canPursuit
 
 ## packages/engine/src/03-imported-cards.js (253 lines, ~7k tokens) — IMPORTED CARD DATA

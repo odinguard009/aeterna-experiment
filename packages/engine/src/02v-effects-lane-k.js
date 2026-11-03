@@ -322,11 +322,11 @@ FX_ACTIONS.TREAT_HIGHEST_ALL = {
     if (L.length) { log(`${poss(c.p)} Spirits are treated as being on their highest levels this turn.`); io.view({ type: 'board' }); }
   } };
 
-/* v324 CANT_ATTACK_BLOCK_ALL {costLe | costIn}: "During this turn, all Cost N or less (or Cost A/B) Spirits can't attack nor block." Both fields; protected Spirits are skipped (fxImmune); lasts to the End Step like CANT_ATTACK_BLOCK turn:true. */
+/* v324 CANT_ATTACK_BLOCK_ALL {costLe | costIn | opp:true (every opposing Spirit, no cost filter)}: "During this turn, all Cost N or less (or Cost A/B) Spirits can't attack nor block." Both fields; protected Spirits are skipped (fxImmune); lasts to the End Step like CANT_ATTACK_BLOCK turn:true. */
 FX_ACTIONS.CANT_ATTACK_BLOCK_ALL = {
-  chk: a => Object.keys(a).every(k => ['do', 'if', 'costLe', 'costIn'].includes(k)) && ((Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30) !== (Array.isArray(a.costIn) && a.costIn.length > 0 && a.costIn.every(Number.isInteger))),
-  txt: a => `during this turn, all Spirits with cost ${a.costLe != null ? a.costLe + ' or less' : a.costIn.join('/')} can't attack/block`,
-  cands: (c, a) => [c.p, c.opp].flatMap(side => side.spirits.filter(s => !s.noAB && (a.costLe != null ? CARDS[s.id].cost <= a.costLe : a.costIn.includes(CARDS[s.id].cost)) && (side === c.p || !fxImmune(c.opp, s, c)))),
+  chk: a => Object.keys(a).every(k => ['do', 'if', 'costLe', 'costIn', 'opp'].includes(k)) && (a.opp === true ? a.costLe == null && a.costIn == null : ((Number.isInteger(a.costLe) && a.costLe >= 0 && a.costLe <= 30) !== (Array.isArray(a.costIn) && a.costIn.length > 0 && a.costIn.every(Number.isInteger)))),
+  txt: a => a.opp ? "during this turn, every opposing Spirit can't attack/block" : `during this turn, all Spirits with cost ${a.costLe != null ? a.costLe + ' or less' : a.costIn.join('/')} can't attack/block`,
+  cands: (c, a) => (a.opp ? [c.opp] : [c.p, c.opp]).flatMap(side => side.spirits.filter(s => !s.noAB && (a.opp || (a.costLe != null ? CARDS[s.id].cost <= a.costLe : a.costIn.includes(CARDS[s.id].cost))) && (side === c.p || !fxImmune(c.opp, s, c)))),
   can: (c, a) => FX_ACTIONS.CANT_ATTACK_BLOCK_ALL.cands(c, a).length > 0,
   run: async (c, a) => {
     const L = FX_ACTIONS.CANT_ATTACK_BLOCK_ALL.cands(c, a); c.ctx.did = L.length > 0;

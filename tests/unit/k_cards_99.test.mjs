@@ -85,3 +85,13 @@ test('K-1052 BS55-RV003 Sekkohkiji: LEAVES by an opposing effect with a Green Gr
     return { a, gain: r1 - r0, noNex: P.reserve.n - r1, partial: BS.CARDS['BS55-RV003'].partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.a, 'red,white', JSON.stringify(r)); assert.equal(r.gain, 1, JSON.stringify(r)); assert.equal(r.noNex, 0, JSON.stringify(r));
 });
+
+test('K-1053 BS39-RV018 Angelia Coma: Accel flash marks every opposing Spirit unable to attack/block, own Spirits untouched', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const a = BS.mkInst(${symSpirit('red')}), b = BS.mkInst(${symSpirit('green')}), m = BS.mkInst(${symSpirit('white')}); a.cores = b.cores = m.cores = 1; O.spirits = [a, b]; P.spirits = [m];
+    const e = BS.CARDS['BS39-RV018'].effects.find(x => x.trigger === 'ACCEL'); const c = { p: P, opp: O, src: BS.mkInst('BS39-RV018'), ctx: {} };
+    await BS.FX_ACTIONS.CANT_ATTACK_BLOCK_ALL.run(c, e.actions[0]);
+    return { opp: O.spirits.map(s => !!s.noAB), own: !!m.noAB, cost: e.cost, partial: BS.CARDS['BS39-RV018'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.deepEqual(r.opp, [true, true], JSON.stringify(r)); assert.equal(r.own, false, JSON.stringify(r)); assert.equal(r.cost, 7, JSON.stringify(r));
+});
