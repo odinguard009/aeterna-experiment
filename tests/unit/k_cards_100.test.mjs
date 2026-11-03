@@ -186,3 +186,36 @@ test('K-1084 BS75-028: opposing effects cannot pick its Trash cards (this card a
   assert.ok(r.fam.includes('Awakened Dragon'), JSON.stringify(r));
   assert.equal(r.noFlag, 1, JSON.stringify(r)); assert.equal(r.withFlag, 0, JSON.stringify(r)); assert.equal(r.stale, 1, JSON.stringify(r)); assert.equal(r.own, 0, JSON.stringify(r));
 });
+
+test('K-1085 BS74-047 Sat: set from Soul State for Mirage cost 2; a Mitra entering Soul State offers the summon (cost paid)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4; G.fxBy = P.key;
+    const sat = BS.mkInst('BS74-047'); P.soulState = [sat]; sat.inSoulState = true; P.hand = []; P.spirits = []; O.spirits = []; P.reserve.n = 9; P.mirage = null; P.mirageSetThisTurn = false;
+    const res0 = P.reserve.n; P.cpu = false; const ok = await intentMirage(P, sat); P.cpu = true;
+    const set = { ok, mirage: P.mirage === sat, left: P.soulState.length, paid: res0 - P.reserve.n - (P.trashCores ? 0 : 0) };
+    const mitra = BS.mkInst('BS74-CX03'); P.nexus = [mitra]; P.reserve.n = 9;
+    BS.toSoulState(P, mitra); await BS.flushBursts();
+    return { set, summoned: P.spirits.includes(sat), mirageGone: P.mirage === null, partial: BS.CARDS['BS74-047'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.set.ok, true, JSON.stringify(r)); assert.equal(r.set.mirage, true); assert.equal(r.set.left, 0);
+  assert.equal(r.summoned, true, JSON.stringify(r)); assert.equal(r.mirageGone, true);
+});
+
+test('K-1086 BS74-047 Sat: while exactly one Mitra Nexus is controlled it cannot be destroyed nor have cores moved by opposing effects', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = O.key; G.step = 4;
+    const n = BS.mkInst('BS74-CX03'); n.cores = 4; P.nexus = [n]; P.spirits = []; O.spirits = []; const m = BS.mkInst('BS74-047'); m.mirage = true; P.mirage = m;
+    G.fxBy = O.key; const cap1 = coreTakeCap(P, n, 2); BS.removeNexus(P, n, 'destroyed'); const alive1 = P.nexus.includes(n);
+    const n2 = BS.mkInst('BS74-CX03'); n2.cores = 4; P.nexus = [n, n2]; const cap2 = coreTakeCap(P, n, 2); BS.removeNexus(P, n2, 'destroyed'); const alive2 = P.nexus.includes(n2);
+    P.nexus = [n]; G.fxBy = P.key; const capOwn = coreTakeCap(P, n, 2);
+    return { cap1, alive1, cap2, alive2, capOwn }; })()`);
+  assert.equal(r.cap1, 0, JSON.stringify(r)); assert.equal(r.alive1, true); assert.equal(r.cap2, 2, JSON.stringify(r)); assert.equal(r.alive2, false); assert.equal(r.capOwn, 2);
+});
+
+test('K-1087 BS74-047 Sat: (When Summoned) pays to summon an Awakened Dragon / Hindida card from Soul State', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4; G.fxBy = P.key;
+    const sat = BS.mkInst('BS74-047'), ad = BS.mkInst('BS74-048'); P.spirits = []; O.spirits = []; P.soulState = [ad]; ad.inSoulState = true; P.reserve.n = 9; P.hand = [sat];
+    P.spirits = [sat]; sat.cores = 1; P.hand = []; await BS.fireFx(P, 'SUMMONED', sat, {}); await BS.flushBursts();
+    return { onField: P.spirits.includes(ad), left: P.soulState.length }; })()`);
+  assert.equal(r.onField, true, JSON.stringify(r)); assert.equal(r.left, 0);
+});

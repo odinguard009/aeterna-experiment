@@ -46882,16 +46882,6 @@
   "T_ALLY_LOST",
   "T_SUMMONED"
  ],
- "BS74-047": [
-  "A_AWAKEN",
-  "A_SOUL_STATE",
-  "C_LEVEL",
-  "K_GRANDWALKER",
-  "K_MIRAGE",
-  "M_OPTIONAL",
-  "T_MIRAGE_LIFE",
-  "T_SUMMONED"
- ],
  "BS74-051": [
   "A_REMOVED_ZONE",
   "C_LEVEL",

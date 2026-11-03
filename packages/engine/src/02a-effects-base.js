@@ -316,6 +316,7 @@ function flagActive(owner, flag, subject, pred) {
    to 'oppBlockers' (+match on your attacker) protects the opposing Spirit that blocks your matching Spirit for this battle. */
 function coreSafeMode(owner, target) {
   if (!G || !target || !owner) return null;
+  if (mirageCoreSafe(owner, target)) return 'move';
   const opp = G.p[other(owner.key)];
   for (const side of [owner, opp]) for (const src of fieldList(side)) {
     const L = lvNo(src), sideOpp = side === owner ? opp : owner;
@@ -467,7 +468,7 @@ function toSoulState(p, inst) {                       // any zone (Hand, Trash, 
     if (inst.token) { tokenHome(p, inst); log(`${poss(p)} ${CARDS[inst.id].name} Token returns to the Token supply.`); return false; }
   } else if (![p.hand, p.trash, p.standby, p.deck, p.revealed, p.soulState].some(z => removeFrom(z, inst))) return false;
   inst.cores = 0; inst.soul = false; inst.exhausted = false; inst.heavy = false; inst.noAB = false; inst.bpMod = 0; inst.mirage = false; inst.inSoulState = true;
-  p.soulState.push(inst);
+  p.soulState.push(inst); soulEnterHook(p, inst);
   log(`${poss(p)} ${CARDS[inst.id].name} enters Soul State.`);
   return true;
 }

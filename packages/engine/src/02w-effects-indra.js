@@ -44,18 +44,25 @@ async function leaveSummonOffer(p, s) {
 
 /* v426 BS75-042 Bilijvern: card field mirageNexus {name}. During Set the named Nexuses can't be destroyed by opposing effects; when cores on such a Nexus are sent to the Void the set Mirage may be summoned (nexusVoided is called wherever Nexus cores go to the Void) */
 const mirageNexusOf = (p, n) => { const m = p.mirage && CARDS[p.mirage.id].mirageNexus; return m && n && CARDS[n.id].name.endsWith(m.name) ? p.mirage : null; };
+/* v433 BS74-047 Sat: mirageNexus {name, onlyOne, soul}: onlyOne = the shield holds only while exactly one such Nexus is controlled; soul = the Mirage may be set from Soul State and is summoned when a card of that name enters Soul State (soulEnterHook, called by toSoulState), not when cores go to the Void */
+const mirageShield = (p, n) => { const m = mirageNexusOf(p, n); return !!m && (!CARDS[m.id].mirageNexus.onlyOne || p.nexus.filter(x => CARDS[x.id].name.endsWith(CARDS[m.id].mirageNexus.name)).length === 1); };
+function mirageCoreSafe(p, t) { return !!(G && G.fxBy && G.fxBy !== p.key && p.mirage && t && p.nexus.includes(t) && CARDS[p.mirage.id].mirageNexus.onlyOne && mirageShield(p, t)); }
+function soulEnterHook(p, inst) {
+  const mn = G && G.evQ && p.mirage && CARDS[p.mirage.id].mirageNexus;
+  if (mn && mn.soul && CARDS[inst.id].name.endsWith(mn.name) && !G.evQ.some(e => e.type === 'MIRAGE_SUMMON' && e.key === p.key)) G.evQ.push({ type: 'MIRAGE_SUMMON', key: p.key, inst });
+}
 function nexusShielded(p, n) {
-  if (!G || !G.fxBy || G.fxBy === p.key || !p.nexus.includes(n) || !mirageNexusOf(p, n)) return false;
+  if (!G || !G.fxBy || G.fxBy === p.key || !p.nexus.includes(n) || !mirageShield(p, n)) return false;
   log(`${CARDS[n.id].name} can't be destroyed by opposing effects (${CARDS[p.mirage.id].name} is set).`); return true;
 }
 function nexusVoided(p, uid) {
   if (!G || !G.evQ || G.over || !p.mirage) return;
-  const n = p.nexus.find(x => x.uid === uid); if (!n || !mirageNexusOf(p, n) || G.evQ.some(e => e.type === 'MIRAGE_SUMMON' && e.key === p.key)) return;
+  const n = p.nexus.find(x => x.uid === uid); if (!n || !mirageNexusOf(p, n) || CARDS[p.mirage.id].mirageNexus.soul || G.evQ.some(e => e.type === 'MIRAGE_SUMMON' && e.key === p.key)) return;
   G.evQ.push({ type: 'MIRAGE_SUMMON', key: p.key, inst: n });
 }
 async function mirageSummonOffer(p) {
   const m = p.mirage; if (!G || G.over || !m || !CARDS[m.id].mirageNexus) return;
-  if (!p.cpu && !await ask({ title: `✨ ${CARDS[m.id].name}`, peek: true, html: `Cores on your ${esc(CARDS[m.id].mirageNexus.name)} were sent to the Void. Summon the set Mirage ${esc(CARDS[m.id].name)} (paying its cost)?`, cards: cardIds([m]), buttons: [{ label: 'Summon', cls: 'primary', value: true }, { label: 'No', cls: 'cancel', value: false }] })) return;
+  if (!p.cpu && !await ask({ title: `✨ ${CARDS[m.id].name}`, peek: true, html: `${CARDS[m.id].mirageNexus.soul ? `Your ${esc(CARDS[m.id].mirageNexus.name)} entered Soul State.` : `Cores on your ${esc(CARDS[m.id].mirageNexus.name)} were sent to the Void.`} Summon the set Mirage ${esc(CARDS[m.id].name)} (paying its cost)?`, cards: cardIds([m]), buttons: [{ label: 'Summon', cls: 'primary', value: true }, { label: 'No', cls: 'cancel', value: false }] })) return;
   p.mirage = null; m.mirage = false; p.hand.push(m);
   if (await summonPaid(p, m)) { log(`${CARDS[m.id].name}: the set Mirage is summoned.`); return; }
   removeFrom(p.hand, m); m.mirage = true; p.mirage = m;      // could not be paid: it stays set

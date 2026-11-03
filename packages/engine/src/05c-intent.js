@@ -87,9 +87,11 @@ async function intentMirage(p, inst) {
   const card = CARDS[inst.id];
   if (!card.mirage || p.mirageSetThisTurn || !mirageUsable(p, inst)) return false;
   const c = card.mirage.cost; let plan = null;
+  const zone = () => p.hand.includes(inst) ? p.hand : card.mirageNexus && card.mirageNexus.soul && p.soulState.includes(inst) ? p.soulState : null;      // v433 Sat: set from Soul State
+  if (!zone()) return false;
   if (c > 0 && reserveTotal(p) < c) { plan = await askPayment(card, c, 0); if (!plan) return false; }
-  if (!seatCan(p.key) || !isMainStep() || !p.hand.includes(inst) || p.mirageSetThisTurn) return false;
-  removeFrom(p.hand, inst); payCost(p, c, plan); checkDepletion(p);
+  if (!seatCan(p.key) || !isMainStep() || !zone() || p.mirageSetThisTurn) return false;
+  removeFrom(zone(), inst); inst.inSoulState = false; payCost(p, c, plan); checkDepletion(p);
   setBurst(p, inst, true); boardView();
   await fireFx(p, 'MIRAGE_SET', inst, {});      // v341 During Set (When Set)
   return true;
@@ -176,7 +178,7 @@ async function applyIntent(key, it) {
   if (!main) return false;                            // everything below is a Main Step action
   switch (it.type) {
     case 'summon': case 'cast': case 'burst': case 'mirage': case 'brave': case 'manifest': {
-      const inst = handOf(p, uid); if (!inst) return false;
+      const inst = handOf(p, uid) || (it.type === 'mirage' ? p.soulState.find(x => x.uid === uid) : null); if (!inst) return false;
       if (it.type === 'summon') return intentSummon(p, inst);
       if (it.type === 'cast') return intentCast(p, inst);
       if (it.type === 'mirage') return intentMirage(p, inst);

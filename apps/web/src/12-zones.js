@@ -29,11 +29,13 @@ function openZoneModal(key, zone) {
     case 'soulstate': {
       desc = `Cards in Soul State: ${p.soulState.length}`; list = p.soulState.slice();
       const rv = mine && humanCan() ? reviveTargets(p) : [];
+      const ms = mine && humanCan() && isMainStep() ? p.soulState.filter(x => CARDS[x.id].mirage && CARDS[x.id].mirageNexus && CARDS[x.id].mirageNexus.soul && mirageUsable(p, x)) : [];      // v433 Mirage set from Soul State
       const ca = mine && humanCan() && isMainStep() ? cadvSources(p).filter(x => p.soulState.includes(x) && contractAdventTargets(p, x, 'main').length) : [];
-      if (rv.length || ca.length) {
-        modal({ uiOnly: true, title: `${label} SOUL STATE`, wide: true, html: esc(desc) + cardStripHTML(list, 'Cards'), buttons: rv.map(t => ({ label: `⚡ Revive: deploy ${CARDS[t.id].name}`, cls: 'primary', value: 'r' + t.uid })).concat(ca.map(t => ({ label: `✨ Contract Advent: ${CARDS[t.id].name}`, cls: 'purple', value: 'c' + t.uid }))).concat([{ label: 'Close', cls: 'cancel', value: null }]) })
+      if (rv.length || ca.length || ms.length) {
+        modal({ uiOnly: true, title: `${label} SOUL STATE`, wide: true, html: esc(desc) + cardStripHTML(list, 'Cards'), buttons: rv.map(t => ({ label: `⚡ Revive: deploy ${CARDS[t.id].name}`, cls: 'primary', value: 'r' + t.uid })).concat(ca.map(t => ({ label: `✨ Contract Advent: ${CARDS[t.id].name}`, cls: 'purple', value: 'c' + t.uid }))).concat(ms.map(t => ({ label: `🌀 Set as Mirage: ${CARDS[t.id].name} (Pay ${CARDS[t.id].mirage.cost})`, cls: 'blue', value: 'm' + t.uid }))).concat([{ label: 'Close', cls: 'cancel', value: null }]) })
           .then(async v => {
             if (typeof v !== 'string' || !humanCan()) return;
+            const m = ms.find(x => 'm' + x.uid === v); if (m) { await sendIntent({ type: 'mirage', uid: m.uid }); return; }
             const t = rv.find(x => 'r' + x.uid === v); if (t) { await sendIntent({ type: 'revive', uid: t.uid }); return; }
             const u = ca.find(x => 'c' + x.uid === v); if (u) await sendIntent({ type: 'cadvent', uid: u.uid });
           });
