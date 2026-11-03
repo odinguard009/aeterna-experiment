@@ -59,3 +59,15 @@ test('K-1030 BS52-014 Lezard: a counter increase strips an opposing core; LV2 lo
     return { ok: !BS.CARDS['BS52-014'].partial, left: t.cores, locked: !!BS.cantAttack && BS.cantAttack(O, one) }; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.left, 2, JSON.stringify(r));
 });
+
+test('K-1031 BS75-055 Robin-Bad: summon gives a counter and two cores to a Khaos Nexus; attack draws two and discards two', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player; P.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const w = BS.mkInst('BS75-055'); w.cores = 3; P.spirits = [w];
+    const nx = BS.mkInst('BS75-CX04'); nx.cores = 0; P.nexus = [nx]; P.count = 0;
+    await BS.fireFx(P, 'SUMMONED', w, { subject: w });
+    const c1 = P.count, n1 = nx.cores; const h0 = P.hand.length;
+    await BS.fireFx(P, 'ATTACKS', w, { attacker: w, subject: w });
+    return { ok: !BS.CARDS['BS75-055'].partial, c1, n1, dh: P.hand.length - h0 }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.c1, 1, JSON.stringify(r)); assert.equal(r.n1, 2, JSON.stringify(r));
+});
