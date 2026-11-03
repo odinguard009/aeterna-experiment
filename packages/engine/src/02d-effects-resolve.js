@@ -182,16 +182,18 @@ function contractAdventTargets(p, inst, where) {
   const spec = CARDS[inst.id].contractAdvent; if (!spec || !(p.hand.includes(inst) || soulAdventOK(p, inst)) || !advTiming(p, spec, where)) return [];
   if (p.count < (spec.counterGe || 0)) return [];
   if (!summonOK(p, CARDS[inst.id])) return [];
-  return p.spirits.filter(sp => !isUlt(sp) && (CARDS[sp.id].families || []).includes(spec.family) && !sp.under.includes(inst) && (sp.soul ? sp.cores >= minCores(CARDS[inst.id]) : soulCoreHolder(p, null) !== null));
+  if (spec.soulTo && !p.reserve.soul && !p.trashCores.soul) return [];      // v425 UTadvent: the Soul Core comes from the Reserve/Trash and goes to the target
+  return p.spirits.filter(sp => !isUlt(sp) && (CARDS[sp.id].families || []).includes(spec.family) && CARDS[sp.id].cost >= (spec.costGe || 0) && !sp.under.includes(inst) && (spec.soulTo ? !sp.soul || sp.cores >= minCores(CARDS[inst.id]) : sp.soul ? sp.cores >= minCores(CARDS[inst.id]) : soulCoreHolder(p, null) !== null));
 }
 async function doContractAdvent(p, adv, src, where) {
   if (!contractAdventTargets(p, adv, where || 'main').includes(src)) return false;
-  const sh = src.soul ? src : soulCoreHolder(p, null);
-  if (CARDS[adv.id].contractAdvent.seal) soulToLife(p, sh); else soulToTrash(p, sh);   // v0.48 Seal Contract Advent: the Soul Core goes to the Life
+  const sh = src.soul ? src : soulCoreHolder(p, null), toTarget = !!CARDS[adv.id].contractAdvent.soulTo;
+  if (toTarget) { if (!src.soul) { if (p.reserve.soul) p.reserve.soul = false; else p.trashCores.soul = false; } }      // v425 the Soul Core ends up on the adventing card
+  else if (CARDS[adv.id].contractAdvent.seal) soulToLife(p, sh); else soulToTrash(p, sh);   // v0.48 Seal Contract Advent: the Soul Core goes to the Life
   const fromSoul = p.soulState.includes(adv);
   removeFrom(p.hand, adv); removeFrom(p.soulState, adv); adv.inSoulState = false;
   const idx = p.spirits.indexOf(src);
-  adv.cores = src.cores; adv.soul = false; adv.exhausted = src.exhausted; adv.summonedTurn = src.summonedTurn; adv.bpMod = src.bpMod; adv.fxUsed = {};
+  adv.cores = src.cores; adv.soul = toTarget; adv.exhausted = src.exhausted; adv.summonedTurn = src.summonedTurn; adv.bpMod = src.bpMod; adv.fxUsed = {};
   adv.under = src.under.concat([src]); src.under = []; src.cores = 0; src.soul = false; src.exhausted = false; src.heavy = false; src.noAB = false; src.bpMod = 0;
   p.spirits[idx] = adv;
   if (src.brave) { adv.brave = src.brave; src.brave = null; braveRecheck(p, adv); }

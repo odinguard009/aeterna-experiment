@@ -6,7 +6,7 @@
    --------------------------------------------------------------------- */
 Object.assign(FX_ACTIONS, {
   /* up to n opposing Spirits/Ultimates can't attack/block for the rest of the game (Indra Contract Skill, Nazuma, Vajrawurm) */
-  CANT_ATTACK_BLOCK: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 3,
+  CANT_ATTACK_BLOCK: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5,
     txt: a => `during this game, ${a.n === 1 ? 'an opposing Spirit/Ultimate' : a.n + ' opposing Spirits/Ultimates'} can't attack/block`,
     cands: c => c.opp.spirits.filter(t => !t.noAB && (c.p.cantAbFree === G.turnNo || !fxImmune(c.opp, t))),      // v399 CANT_AB_UNPREVENTABLE
     can: c => FX_ACTIONS.CANT_ATTACK_BLOCK.cands(c).length > 0,

@@ -19,3 +19,14 @@ function fxLocked(f) {      // v422 OPP_CAB_FX_LOCK (Nazuma): effects of opposin
   try { return fieldList(foe).some(src => (CARDS[src.id].effects || []).some(e => e.trigger === 'STATIC' && e.flag === 'OPP_CAB_FX_LOCK' && (!e.lv || e.lv.includes(lvNo(src))) && CARDS[f.id].cost <= foe.count && fxIf(foe, own, e.if, { selfInst: src }))); }
   finally { fxLockBusy = false; }
 }
+
+/* v425 BS75-AX02 Grand-Sagitto-Nova: "for each opposing Spirit/Ultimate under can't attack/block effects, send an opposing Life to the Reserve" */
+FX_ACTIONS.LIFE_TO_RESERVE_PER_CAB = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => "for each opposing Spirit/Ultimate under can't attack/block effects, send an opposing Life to the opposing Reserve",
+  can: c => c.opp.life > 0 && c.opp.spirits.some(t => t.noAB),
+  run: async c => {
+    let m = Math.min(c.opp.spirits.filter(t => t.noAB).length, c.opp.life); if (!m) { c.ctx.did = false; return; }
+    m = await lifeGuardFx(c.opp, m); if (!m) { c.ctx.did = false; return; }
+    lifeTake(c.opp, m, 'reserve'); log(`${CARDS[c.src.id].name}: ${m} opposing Life moves to the opposing Reserve.`); io.view({ type: 'board' });
+    if (c.opp.life <= 0) { win(c.p.key, `${poss(c.opp)} Life reached 0`); return; }
+    await maybeBurst(c.opp, 'LIFE_DECREASE', {});
+  } };
