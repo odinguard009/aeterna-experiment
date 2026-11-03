@@ -229,3 +229,17 @@ test('K-1017 BS53-034 BlackPanther / BS55-025 Swallow (Primal pool): heavy exhau
   assert.equal(r[0], true, JSON.stringify(r)); assert.deepEqual(r[1], [[1, true, 1], [2, false, 0]], JSON.stringify(r));
   assert.deepEqual(r[2], [[1, 5, true, false], [2, 5, true, true], [2, 4, false, false]], JSON.stringify(r));
 });
+
+test('K-1018 BS53-071 Binding Noise (Primal pool): heavy exhausts two, then returns two exhausted to the deckbottom at 3 counters; BS55-073 Overdose: +3000 to all, refresh only in the opposing Attack Step', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4;
+    const sp = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && !BS.CARDS[k].effects);
+    const out = { bn: [], od: [] };
+    for (const cnt of [2, 3]) { P.count = cnt; P.reserve.n = 20; const a = BS.mkInst(sp), b = BS.mkInst(sp), c = BS.mkInst(sp); [a, b, c].forEach(x => x.cores = 3); O.spirits = [a, b, c]; O.deck = [];
+      const m = BS.mkInst('BS53-071'); P.hand = [m]; await BS.castMagic(P, { inst: m, target: null, plan: null, ctx: 'main' }); out.bn.push([cnt, O.spirits.length, O.deck.length]); }
+    for (const [act, step] of [[P.key, 4], [O.key, 5]]) { G.active = act; G.step = step; P.reserve.n = 20; const a = BS.mkInst(sp); a.cores = 2; a.exhausted = true; P.spirits = [a]; const b0 = BS.bpOf(a);
+      const m = BS.mkInst('BS55-073'); P.hand = [m]; await BS.castMagic(P, { inst: m, target: null, plan: null, ctx: 'flash' }); out.od.push([BS.bpOf(a) - b0, !!a.exhausted]); }
+    out.ok = !BS.CARDS['BS53-071'].partial && !BS.CARDS['BS55-073'].partial; return out; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.deepEqual(r.bn, [[2, 3, 0], [3, 1, 2]], JSON.stringify(r));
+  assert.deepEqual(r.od, [[3000, true], [3000, false]], JSON.stringify(r));
+});
