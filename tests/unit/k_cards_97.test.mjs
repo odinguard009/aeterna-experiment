@@ -204,3 +204,13 @@ test('K-1015 BS52-024 Boostrich (Primal pool): burst lock, bounce exhausted Spir
     return [!BS.CARDS['BS52-024'].partial, a, b, !v.exhausted]; })()`);
   assert.equal(r[0], true, JSON.stringify(r)); assert.deepEqual(r[1], [true, 1, 0, true], JSON.stringify(r)); assert.deepEqual(r[2], [true, 0, 1, true], JSON.stringify(r)); assert.equal(r[3], false, JSON.stringify(r));
 });
+
+test('K-1016 BS53-030 Jisaidori (Primal pool): burst lock; end of battle refresh at 2+ counters', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true;
+    const run = async cnt => { P.count = cnt; const v = BS.mkInst('BS53-030'); v.cores = 3; P.spirits = [v]; v.exhausted = true; G.noBurst = null; G.attacker = v; G.eob = []; G.turnNo += 1;
+      await BS.fireFx(P, 'ATTACKS', v, {}); const waiting = G.eob.length, before = v.exhausted; await BS.endOfBattle(); G.attacker = null; return [G.noBurst === O.key, waiting, before, !v.exhausted]; };
+    const a = await run(1), b = await run(2);
+    return [!BS.CARDS['BS53-030'].partial, a, b]; })()`);
+  assert.equal(r[0], true, JSON.stringify(r)); assert.deepEqual(r[1], [true, 1, true, false], JSON.stringify(r)); assert.deepEqual(r[2], [true, 1, true, true], JSON.stringify(r));
+});
