@@ -164,3 +164,14 @@ test('K-1038 BS54-072 Vacuum Slash: only at Life 3 or less; returns two exhauste
     return { a, hand: P.hand.length, opp: O.spirits.length, ok: !BS.CARDS['BS54-072'].partial }; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.a.hand, 1, JSON.stringify(r)); assert.equal(r.hand, 0, JSON.stringify(r)); assert.equal(r.opp, 1, JSON.stringify(r));
 });
+
+test('K-1039 BS52-039 Pure Pentan / BS52-013 Bone-Dober: LIFE_GUARD stops or reduces an opposing Life-reduction effect', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const src = BS.mkInst(Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token)); P.spirits = [src]; O.spirits = [];
+    const run = n => BS.FX_ACTIONS.OPP_LIFE_TO_TRASH.run({ p: P, opp: O, src, ctx: {} }, { do: 'OPP_LIFE_TO_TRASH', n });
+    O.life = 5; O.reserve.n = 10; O.hand = [BS.mkInst('BS52-039')]; const l0 = O.life; await run(1); const prevented = O.life === l0 && O.spirits.length === 1;
+    O.spirits = []; O.hand = []; O.trash = [BS.mkInst('BS52-013')]; O.life = 5; await run(2); const minus = O.life === 4 && O.trash.length === 0 && O.removed.length === 1;
+    return { prevented, minus, life: O.life, ok: !BS.CARDS['BS52-039'].partial && !BS.CARDS['BS52-013'].partial }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.prevented, true, JSON.stringify(r)); assert.equal(r.minus, true, JSON.stringify(r));
+});

@@ -26,7 +26,7 @@ FX_STRICT, FX_WARNED, fxUnknown, FX_COND_KEYS, FX_TRIGGERS, FX_TRIGGER_TEXT, BR_
 ## packages/engine/src/02b-effects-actions.js (146 lines, ~6.1k tokens)
 FX_ACTIONS
 
-## packages/engine/src/02c-effects-parse.js (319 lines, ~10.7k tokens)
+## packages/engine/src/02c-effects-parse.js (320 lines, ~10.7k tokens)
 canPlaceFree, canPlaceBraveFree, summonFree, canPlacePaid, canPlaceBy, summonPaid, tributePay, summonBy, fxDescribe, BURST_WHEN, parseCond, parseActionList, parseBurst, parseEffects
 
 ## packages/engine/src/02d-effects-resolve.js (400 lines, ~8.1k tokens)
@@ -77,8 +77,8 @@ cardTeams, allHaveShapeOK, allHaveOK, winRiderRun, fxOppMark, blockTaxOK, payAtk
 ## packages/engine/src/02s-effects-actions-soul.js (209 lines, ~5.2k tokens)
 
 
-## packages/engine/src/02t-effects-actions-opp.js (306 lines, ~8k tokens)
-
+## packages/engine/src/02t-effects-actions-opp.js (326 lines, ~8.5k tokens)
+lifeGuardFx
 
 ## packages/engine/src/02u-effects-form-change.js (32 lines, ~0.7k tokens) — FORM CHANGE (v0.135.0, schema v8; Kamen Rider cross-over cards): {{F Change|"X" & Cost N}} {{Invoke|Main}}
 fcCands

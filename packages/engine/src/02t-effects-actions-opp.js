@@ -171,7 +171,8 @@ Object.assign(FX_ACTIONS, {
     },
     can: c => c.opp.life > 0,
     run: async (c, a) => {
-      const m = Math.min(FX_ACTIONS.OPP_LIFE_TO_TRASH.count(c, a), c.opp.life); if (!m) { c.ctx.did = false; return; }
+      let m = Math.min(FX_ACTIONS.OPP_LIFE_TO_TRASH.count(c, a), c.opp.life); if (!m) { c.ctx.did = false; return; }
+      m = await lifeGuardFx(c.opp, m); if (!m) { c.ctx.did = false; return; }
       lifeTake(c.opp, m, 'trash'); log(`${CARDS[c.src.id].name}: ${m} opposing Life ${m === 1 ? 'is' : 'are'} sent to the opposing Trash.`); io.view({ type: 'board' });
       if (c.opp.life <= 0) { win(c.p.key, `${poss(c.opp)} Life reached 0`); return; }
       await maybeBurst(c.opp, 'LIFE_DECREASE', {});
@@ -183,7 +184,8 @@ Object.assign(FX_ACTIONS, {
   LIFE_TO_RESERVE: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5, txt: a => `send ${a.n} opposing Life to the opposing Reserve`,
     can: c => c.opp.life > 0,
     run: async (c, a) => {
-      const m = Math.min(a.n, c.opp.life); if (!m) { c.ctx.did = false; return; }
+      let m = Math.min(a.n, c.opp.life); if (!m) { c.ctx.did = false; return; }
+      m = await lifeGuardFx(c.opp, m); if (!m) { c.ctx.did = false; return; }
       lifeTake(c.opp, m, 'reserve'); log(`${CARDS[c.src.id].name}: ${m} opposing Life moves to the opposing Reserve.`); io.view({ type: 'board' });
       if (c.opp.life <= 0) { win(c.p.key, `${poss(c.opp)} Life reached 0`); return; }
       await maybeBurst(c.opp, 'LIFE_DECREASE', {});
@@ -198,7 +200,8 @@ Object.assign(FX_ACTIONS, {
       const k = c.p.revealed.filter(x => a.names.some(s => CARDS[x.id].name.includes(s))).length;
       const got = c.p.revealed.splice(0); for (const x of got) c.p.hand.push(x); if (got.length) { handUp(c.p, got.length); log(`${nm}: ${got.length} revealed card${got.length === 1 ? '' : 's'} added to the Hand.`); }
       c.ctx.did = k > 0;
-      const m = Math.min(k, c.opp.life); if (!m) return;
+      let m = Math.min(k, c.opp.life); if (!m) return;
+      m = await lifeGuardFx(c.opp, m); if (!m) return;
       lifeTake(c.opp, m, 'reserve'); log(`${nm}: ${m} opposing Life moves to the opposing Reserve.`); io.view({ type: 'board' });
       if (c.opp.life <= 0) { win(c.p.key, `${poss(c.opp)} Life reached 0`); return; }
       await maybeBurst(c.opp, 'LIFE_DECREASE', {});
@@ -304,3 +307,20 @@ Object.assign(FX_ACTIONS, {
    filter (trash-safe cards, opposing cards unaffected by this effect). Run it again so the entries
    defined here get the same wrapper; it is idempotent. */
 wrapImmunity(Object.values(FX_ACTIONS));
+/* v413 LIFE_GUARD (zone hand/trash): "When your Life would be reduced by an opposing effect, by <paying the cost to summon this card | banishing this card from the Trash>, <your Life won't be reduced | the effect reduces 1 less Life>" */
+async function lifeGuardFx(D, m) {
+  for (const z of ['hand', 'trash']) for (const h of D[z].slice()) {
+    if (m <= 0 || G.over || !D[z].includes(h)) continue;
+    const g = (CARDS[h.id].effects || []).find(e => e.trigger === 'LIFE_GUARD' && e.zone === z); if (!g) continue;
+    const a = g.actions[0], nm = CARDS[h.id].name;
+    if (a.pay === 'summon' && !canPlacePaid(D, h)) continue;
+    if (!D.cpu && !(await ask({ title: `🛡 ${esc(nm)}`, peek: true, wide: true, html: `Your Life would be reduced by an opposing effect. ${a.pay === 'summon' ? 'Pay the cost to summon' : 'Banish'} ${esc(nm)}${a.pay === 'summon' ? '' : ' from the Trash'} to ${a.mode === 'prevent' ? 'stop the reduction' : 'reduce 1 less Life'}?`, cards: cardIds([h]), buttons: [{ label: 'Yes', cls: 'primary', value: true }, { label: 'No', cls: 'cancel', value: false }] }))) continue;
+    if (a.pay === 'summon') { if (!(await summonPaid(D, h))) continue; }
+    else { D[z].splice(D[z].indexOf(h), 1); toRemoved(D, h); }
+    m = a.mode === 'prevent' ? 0 : m - 1; log(`${who(D)} ${D.cpu ? 'uses' : 'use'} ${nm}: ${a.mode === 'prevent' ? 'the Life reduction is prevented' : 'the effect reduces 1 less Life'}.`); io.view({ type: 'board' });
+  }
+  return Math.max(0, m);
+}
+Object.assign(FX_ACTIONS, {
+  LIFE_GUARD: { chk: a => ['prevent', 'minus1'].includes(a.mode) && ['summon', 'banish'].includes(a.pay) && Object.keys(a).every(k => ['do', 'mode', 'pay', 'if'].includes(k)), txt: a => `${a.mode === 'prevent' ? "prevent the Life reduction" : 'reduce 1 less Life'} (guard from the ${a.pay === 'summon' ? 'Hand' : 'Trash'})`, run: async c => { c.ctx.did = false; } },
+});
