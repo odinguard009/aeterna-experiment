@@ -175,3 +175,14 @@ test('K-1039 BS52-039 Pure Pentan / BS52-013 Bone-Dober: LIFE_GUARD stops or red
     return { prevented, minus, life: O.life, ok: !BS.CARDS['BS52-039'].partial && !BS.CARDS['BS52-013'].partial }; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.prevented, true, JSON.stringify(r)); assert.equal(r.minus, true, JSON.stringify(r));
 });
+
+test('K-1040 BS55-058 Moldavite-Golem / BS52-033 Amenomahitotsu: Brave core, remain on the Field, pay-two bounce', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = O.key;
+    const m = BS.mkInst('BS55-058'); m.cores = 3; const am = BS.mkInst('BS52-033'); am.cores = 3; P.spirits = [m, am]; O.spirits = [];
+    BS.removeSpirit(P, am, 'destroyed'); const stayA = P.spirits.includes(am) && am.exhausted;
+    BS.removeSpirit(P, m, 'destroyed'); const stayM = P.spirits.includes(m) && m.exhausted;
+    const bounceStay = (BS.bounceCard(P, m, 'hand'), P.spirits.includes(m));
+    return { stayA, stayM, bounceStay, ok: !BS.CARDS['BS55-058'].partial && !BS.CARDS['BS52-033'].partial }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.stayA && r.stayM && r.bounceStay, true, JSON.stringify(r));
+});
