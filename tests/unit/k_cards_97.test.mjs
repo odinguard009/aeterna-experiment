@@ -175,3 +175,20 @@ test('K-1013 BS52-037 Argenica / BS54-037 Pterasonic (Primal pool): attack refre
   assert.equal(r[0], true, JSON.stringify(r));
   assert.deepEqual(r[1], [['BS52-037', 2, true, 1], ['BS52-037', 3, true, 2], ['BS54-037', 2, true, 2], ['BS54-037', 3, true, 2]], JSON.stringify(r));
 });
+
+test('K-1014 BS52-RV004 Skoll / BS54-RV005 Morrigan (revival): attack refresh; Skoll immune to Spirit effects at 2 counters; Morrigan immune only braved and attacking', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true;
+    const sp = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token);
+    const mag = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Magic');
+    const brv = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Brave');
+    const by = id => ({ p: O, opp: P, src: BS.mkInst(id) });
+    const sk = BS.mkInst('BS52-RV004'); sk.cores = 4; P.spirits = [sk]; sk.exhausted = true;
+    P.count = 1; const a1 = BS.fxImmune(P, sk, by(sp)); P.count = 2; const a2 = BS.fxImmune(P, sk, by(sp)), a3 = BS.fxImmune(P, sk, by(mag));
+    G.turnNo += 1; await BS.fireFx(P, 'ATTACKS', sk, {}); const refreshed = !sk.exhausted;
+    const mo = BS.mkInst('BS54-RV005'); mo.cores = 4; P.spirits = [mo];
+    G.attacker = mo; const m1 = BS.fxImmune(P, mo, by(sp)); mo.brave = BS.mkInst(brv); const m2 = BS.fxImmune(P, mo, by(sp)); G.attacker = null; const m3 = BS.fxImmune(P, mo, by(sp));
+    mo.exhausted = true; G.turnNo += 1; await BS.fireFx(P, 'ATTACKS', mo, {});
+    return [!BS.CARDS['BS52-RV004'].partial && !BS.CARDS['BS54-RV005'].partial, [a1, a2, a3, refreshed], [m1, m2, m3, !mo.exhausted]]; })()`);
+  assert.equal(r[0], true, JSON.stringify(r)); assert.deepEqual(r[1], [false, true, false, true], JSON.stringify(r)); assert.deepEqual(r[2], [false, true, false, true], JSON.stringify(r));
+});
