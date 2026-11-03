@@ -4,6 +4,21 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.214.0
+- Lane: K
+- **Lane K: +100 complete cards (2,547 -> 2,647 of 10,291; 100 in this release)**
+Lane: K (Grandwalker order)
+
+Grandwalker decks complete and playable this release:
+- BS46-XX02 Antarc (own family part): complete.
+- BS75-CX03 Indra (own family part): complete.
+
+In progress: BS74-CX03 Mitra (Awakened Dragon family): BS74-082, BS74-083, BS74-049, BS74-030, BS74-042, BS74-048, BS75-081, BS75-040, BS75-037, BS75-X08, BS75-067 done. Open: BS74-047, BS74-072, BS74-X06, BS74-X15, BS75-028, BS74-CX03 itself.
+
+New mechanics (schema 429-431): Magic usable from Soul State (soulUse), SOUL_CORE_TO_TRASH, SOUL_TO_DECKBOTTOM with n, REVEAL_SUMMON_PAY, SOUL_ENTER upTo, free Contract Advent (freeGe).
+
+Known limits: the CPU never uses soulUse Magic; Antarc AX02 timing is approximated by any Flash window; 042 Mirage summon cost payment is unverified; 067 Flash timing is approximated by the attack step; 037 free advent is applied automatically whenever eligible.
+
 ## v0.213.0
 - Lane: K
 - **Lane K: +98 complete cards (2,449 -> 2,547 of 10,291; 98 in this release)**
