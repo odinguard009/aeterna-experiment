@@ -22,7 +22,7 @@ FX_ACTIONS.OWN_LIFE_TO_VOID = {
     coreEvN(c.p, 'life', 'void', a.n, false); c.p.life -= a.n; c.p.void += a.n; c.p.lifeRedTurn = G.turnNo;
     log(`${CARDS[c.src.id].name}: ${a.n} core${a.n === 1 ? '' : 's'} move from ${poss(c.p)} Life to the Void.`); io.view({ type: 'board' });
     if (c.p.life <= 0) { win(c.opp.key, `${poss(c.p)} Life reached 0`); return; }
-    await maybeBurst(c.p, 'LIFE_DECREASE', {});
+    await maybeBurst(c.p, 'LIFE_DECREASE', { selfCost: true });
   } };
 /* v275 HAND_TO_REMOVED {match}: cost "By putting a <X> card from your Hand face-up onto the Removed Zone, ..." (ctx.did = false when the Hand has no such card). */
 FX_ACTIONS.HAND_TO_REMOVED = {

@@ -138,3 +138,16 @@ test('K-1036 BS54-002 Tsuna: with a Soul Core on it, draws up to four cards in H
     return { withSoul: a, noSoul: P.hand.length, ok: !BS.CARDS['BS54-002'].partial }; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.withSoul, 4, JSON.stringify(r)); assert.equal(r.noSoul, 0, JSON.stringify(r));
 });
+
+test('K-1037 BS54-074 Freezing Pillar: used free from the Hand when the owner Life is reduced; not for own-cost Life loss', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = O.key; G.step = 5;
+    const weak = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token);
+    const v = BS.mkInst(weak); v.cores = 1; O.spirits = [v];
+    const m = BS.mkInst('BS54-074'); P.hand = [m]; P.reserve.n = 0;
+    await BS.maybeBurst(P, 'LIFE_DECREASE', { selfCost: true });
+    const a = { inHand: P.hand.length, opp: O.spirits.length };
+    await BS.maybeBurst(P, 'LIFE_DECREASE', {});
+    return { a, inHand: P.hand.length, opp: O.spirits.length, deck: O.deck.length, ok: !BS.CARDS['BS54-074'].partial }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.a.inHand, 1, JSON.stringify(r)); assert.equal(r.inHand, 0, JSON.stringify(r)); assert.equal(r.opp, 0, JSON.stringify(r));
+});

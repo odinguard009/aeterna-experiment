@@ -100,6 +100,7 @@ async function doBattleInner(attKey, att) {
 }
 /* Burst: a face-down card in the Burst Area flips when its condition happens. All effects are engine actions (card.burst = {when, actions}). */
 async function maybeBurst(owner, trigger, ctx) {
+  if (trigger === 'LIFE_DECREASE' && !(ctx && ctx.selfCost) && G && !G.over) await lifeHandFx(owner);      // v411 magic.lifeHand
   const b = owner.burst; if (!b || b.mirage || !G || G.over) return false;
   if (G.noBurst === owner.key) return false;           // v0.38 "the opponent can't activate Burst effects" (this battle)
   if (burstLocked(owner)) return false;      // v340 static NO_OPP_BURST

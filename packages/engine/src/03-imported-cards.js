@@ -59,6 +59,11 @@ function parseMagicOf(o, type, text, err2, int) {
         if (!h || !Number.isInteger(h.gwToVoid) || h.gwToVoid < 0 || h.gwToVoid > 5 || !hasMatch(h.match)) err2.push('"magic.oppAttackHand" must look like {"gwToVoid":2,"match":{"name":[...]}}');
         else magic.oppAttackHand = { gwToVoid: h.gwToVoid, match: h.match };
       }
+      if (m.lifeHand != null) {                              // v411 "When your Life is reduced [to N or less] by the opponent, you can use this card from the Hand without paying the cost"
+        const h = m.lifeHand;
+        if (!h || typeof h !== 'object' || Array.isArray(h) || (h.lifeLe != null && !(Number.isInteger(h.lifeLe) && h.lifeLe >= 1 && h.lifeLe <= 5)) || Object.keys(h).some(k => k !== 'lifeLe')) err2.push('"magic.lifeHand" must look like {} or {"lifeLe":3}');
+        else magic.lifeHand = h.lifeLe != null ? { lifeLe: h.lifeLe } : {};
+      }
       if (effect === 'ACTIONS') { const r = parseActionList(Array.isArray(m.actions) ? m.actions : []); if (r.error || !r.actions.length) err2.push('"magic.actions": ' + (r.error || 'is empty')); else magic.actions = r.actions; }
       if (m.by != null) {
         if (typeof m.by !== 'object' || Array.isArray(m.by) || !Object.keys(m.by).length || Object.keys(m.by).some(k => !MAGIC_TIMINGS.includes(k))) err2.push('"magic.by" must look like {"MAIN":{...},"FLASH":{...}}');

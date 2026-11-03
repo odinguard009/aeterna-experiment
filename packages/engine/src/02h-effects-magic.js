@@ -162,6 +162,23 @@ async function oppAttackHandFx(D) {                    // D = the player whose o
     await castMagic(D, ch); io.view({ type: 'board' }); await flushBursts();
   }
 }
+/* v411 magic.lifeHand {lifeLe?}: right after D's Life was reduced by the opponent (combat or effect), D may use that Magic card's Flash from the Hand without paying the cost. */
+async function lifeHandFx(D) {
+  for (const h of D.hand.slice()) {
+    if (G.over || !D.hand.includes(h)) continue;
+    const card = CARDS[h.id], lh = card.magic && card.magic.lifeHand; if (!lh || (lh.lifeLe != null && D.life > lh.lifeLe) || !magicUsable(D, h, 'flash', true)) continue;
+    const tg = magicTargets(D, h, 'flash'); if (tg && !tg.length) continue;
+    let ch;
+    if (D.cpu) { const t = tg && tg.slice().sort((x, y) => bpOf(y) - bpOf(x))[0]; ch = { inst: h, target: t || null, plan: null, ctx: 'flash', free: true }; }
+    else {
+      const go = await ask({ title: `⚡ ${esc(card.name)}`, peek: true, wide: true, html: `Your Life was reduced. Use ${esc(card.name)} from your Hand without paying the cost?`, cards: cardIds([h]), buttons: [{ label: 'Use it', cls: 'primary', value: true }, { label: 'No', cls: 'cancel', value: false }] });
+      if (!go) continue;
+      ch = await prepareHumanMagic(D, h, 'flash', true); if (!ch) continue;
+    }
+    log(`${who(D)} ${D.cpu ? 'uses' : 'use'} ${card.name} from the Hand without paying the cost.`);
+    await castMagic(D, ch); io.view({ type: 'board' });
+  }
+}
 async function braveSummonedFx(p, b) { if (G && !G.over && b) { await maybeBurst(p, 'BRAVE_SUMMONED', { subject: b }); await flushBursts(); } }
 async function braveSummonedEvs(evs) { for (const e of evs) if (e.trigger === 'SUMMONED' && e.src && CARDS[e.src.id] && CARDS[e.src.id].type === 'Brave') await braveSummonedFx(e.owner, e.src); }
 Object.assign(FX_ACTIONS, {

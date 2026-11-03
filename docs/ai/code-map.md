@@ -41,8 +41,8 @@ _pn
 ## packages/engine/src/02g-effects-attack-lock.js (95 lines, ~2.2k tokens) — v0.40 YELLOW (Contractor Indra / Thunderive): "can't attack/block" (permanent flag noAB), drawing from the bottom of the Deck, discarding the whole Hand,
 
 
-## packages/engine/src/02h-effects-magic.js (193 lines, ~4.8k tokens) — v0.41 MAGIC effect types (Dana Draw, Whirling Tide, Magic Bullet, Hades Disaster, Thunder Counter, Lightning Tempest).
-endAttackLocked, _matchTxt, gwCorePlus, sentToTrashFx, abTaxOn, abTaxOK, payAbTax, oppAttackHandFx, braveSummonedFx, braveSummonedEvs
+## packages/engine/src/02h-effects-magic.js (210 lines, ~5.1k tokens) — v0.41 MAGIC effect types (Dana Draw, Whirling Tide, Magic Bullet, Hades Disaster, Thunder Counter, Lightning Tempest).
+endAttackLocked, _matchTxt, gwCorePlus, sentToTrashFx, abTaxOn, abTaxOK, payAbTax, oppAttackHandFx, lifeHandFx, braveSummonedFx, braveSummonedEvs
 
 ## packages/engine/src/02i-effects-keywords.js (72 lines, ~1.4k tokens) — v0.49 KEYWORD EFFECTS as engine data (session D, part 1): High Speed, Crush, Holy Life.
 highSpeedOK, highSpeedSources, highSpeedSummon, cpuHighSpeed, _nmK
@@ -86,7 +86,7 @@ fcCands
 ## packages/engine/src/02v-effects-lane-k.js (594 lines, ~13.7k tokens)
 coresFromSpirits, canPursuit
 
-## packages/engine/src/03-imported-cards.js (248 lines, ~6.9k tokens) — IMPORTED CARD DATA
+## packages/engine/src/03-imported-cards.js (253 lines, ~7k tokens) — IMPORTED CARD DATA
 COLORS, BUILTIN_IDS, CARDS_KEY, IMPORTED, CARDS_VER, parseLevels, parseMagicOf, parseCard, registerImported, saveImported, importCards, clearImported, PACK_IDS, registerPack, TOKEN_IDS, registerTokens
 
 ## packages/engine/src/03a-effects-immunity-final.js (3 lines, ~0.1k tokens)
@@ -110,7 +110,7 @@ fieldList, isGW, freeCores, freeTotal, totalCores, reserveTotal, minCores, isSpi
 ## packages/engine/src/07-turn.js (83 lines, ~1.6k tokens) — TURN FLOW
 isMainStep, revertNexusSpirits, setStep, beginTurn, endStep, win, matchLoop, checkInvariants
 
-## packages/engine/src/08-battle.js (200 lines, ~4.9k tokens) — BATTLE
+## packages/engine/src/08-battle.js (201 lines, ~4.9k tokens) — BATTLE
 successor, flashTiming, battleEndAttack, attackStepOver, doBattle, doBattleInner, maybeBurst, burstFlash, flushBursts
 
 ## packages/engine/src/09-cpu.js (174 lines, ~3.1k tokens) — CPU
