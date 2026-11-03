@@ -79,6 +79,7 @@ def audit(c, r):
     have = set(re.findall(r'(\d+)', fx))  # also the 3 in a key such as oppReserveGe3
     dos = re.findall(r'"do": "(\w+)"', fx)  # N copies of one action also encode "N spirits"
     have |= {str(dos.count(d)) for d in set(dos)} | {str(dos.count(d) // 2) for d in set(dos)}  # a branch pair (if / else) halves it
+    have |= {str(int(n) + 1) for n in re.findall(r'"oppNexusGe": (\d+)', fx)}      # an "opponent controls N Nexus" check that follows a Nexus destroy stores N-1 (BS53-067)
     if '"DESTROY_OPP_DOWN_TO_OWN"' in fx: have.add('2')      # the action itself needs 2+ own Spirits (v321)
     for m in sorted(set(re.findall(r'(\d+)(?=[枚体個点つ])', body)) - {'1'} - have):
         probs.append('count %s in the text is not a number in the compiled effect' % m)
