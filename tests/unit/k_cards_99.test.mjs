@@ -116,3 +116,15 @@ test('K-1055 BS46-RV007 Soul Ogre: destroyed by the opponent puts a Void core to
     return { nid: !!nid, c1, h1, h2: P.hand.length - d0 - h1, partial: BS.CARDS['BS46-RV007'].partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.nid, true, JSON.stringify(r)); assert.equal(r.c1, 1, JSON.stringify(r)); assert.equal(r.h1, 0, JSON.stringify(r)); assert.equal(r.h2, 1, JSON.stringify(r));
 });
+
+test('K-1056 BS44-RV003 Kingghepardo: Life 3+ refreshes it once per turn, Life 3 or less returns an exhausted opposing Spirit to the deckbottom', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const k = BS.mkInst('BS44-RV003'); k.cores = 3; k.exhausted = true; const t = BS.mkInst(${symSpirit('red')}); t.cores = 1; t.exhausted = true; P.spirits = [k]; O.spirits = [t]; G.attacker = k;
+    P.life = 4; const d0 = O.deck.length;
+    await BS.fireFx(P, 'ATTACKS', k, { subject: k }); const ref4 = !k.exhausted, kept4 = O.spirits.length;
+    k.exhausted = true; await BS.fireFx(P, 'ATTACKS', k, { subject: k }); const ref2 = !k.exhausted;
+    P.life = 3; await BS.fireFx(P, 'ATTACKS', k, { subject: k });
+    return { ref4, kept4, ref2, left: O.spirits.length, deck: O.deck.length - d0, partial: BS.CARDS['BS44-RV003'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.ref4, true, JSON.stringify(r)); assert.equal(r.kept4, 1, JSON.stringify(r)); assert.equal(r.ref2, false, JSON.stringify(r)); assert.equal(r.left, 0, JSON.stringify(r)); assert.equal(r.deck, 1, JSON.stringify(r));
+});
