@@ -111,3 +111,18 @@ test('K-1034 BS53-020 L\'Evangile: lowers an opposing Spirit to its own core cou
     return { cores: v.cores, ok: !BS.CARDS['BS53-020'].partial }; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.cores, 2, JSON.stringify(r));
 });
+
+test('K-1035 BS53-015 Dominus: returns Grandwalker Dionysus from the Trash; a zero-core ally attack takes a core from an opposing Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const d = BS.mkInst('BS53-015'); d.cores = 2; P.spirits = [d];
+    const gw = Object.keys(BS.CARDS).find(k => BS.CARDS[k].name === 'Grandwalker Dionysus');
+    P.trash = [BS.mkInst(gw)]; const h0 = P.hand.length;
+    await BS.fireFx(P, 'SUMMONED', d, { subject: d });
+    const z = BS.mkInst('BS53-015'); z.cores = 0; P.spirits = [d, z];
+    const weak = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token);
+    const v = BS.mkInst(weak); v.cores = 3; O.spirits = [v];
+    await BS.fireFx(P, 'ALLY_ATTACKS', d, { attacker: z, subject: z });
+    return { got: P.hand.length - h0, trash: P.trash.length, cores: v.cores, ok: !BS.CARDS['BS53-015'].partial }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.got, 1, JSON.stringify(r)); assert.equal(r.cores, 2, JSON.stringify(r));
+});
