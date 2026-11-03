@@ -145,8 +145,8 @@ async function payAbTax(p, s, verb) {                 // true = the Spirit may a
 }
 async function oppAttackHandFx(D) {                    // D = the player whose opponent starts the Attack Step
   const A = G.p[other(D.key)];
-  for (const h of D.hand.slice()) {
-    if (G.over || !D.hand.includes(h)) continue;
+  for (const h of D.hand.concat(D.trash.filter(x => CARDS[x.id].magic && CARDS[x.id].magic.oppAttackHand && CARDS[x.id].magic.oppAttackHand.trash && !(D.onceGame && D.onceGame[CARDS[x.id].name]))).slice()) {
+    if (G.over || !(D.hand.includes(h) || D.trash.includes(h))) continue;
     const card = CARDS[h.id], oh = card.magic && card.magic.oppAttackHand; if (!oh) continue;
     const gw = D.nexus.filter(n => isGW(n) && fxMatch(CARDS[n.id], oh.match) && n.cores >= oh.gwToVoid);
     if (!gw.length || !magicUsable(D, h, 'flash')) continue;
@@ -158,6 +158,7 @@ async function oppAttackHandFx(D) {                    // D = the player whose o
       if (!go) continue;
       ch = await prepareHumanMagic(D, h, 'flash'); if (!ch) continue;
     }
+    if (oh.trash) { D.onceGame = D.onceGame || {}; D.onceGame[card.name] = true; }      // v447 once per game, same name
     gw[0].cores -= oh.gwToVoid; D.void += oh.gwToVoid; nexusVoided(D, gw[0].uid);
     log(`${who(D)} ${D.cpu ? 'sends' : 'send'} ${oh.gwToVoid} cores from ${CARDS[gw[0].id].name} to the Void.`);
     await castMagic(D, ch); io.view({ type: 'board' }); await flushBursts();

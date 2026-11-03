@@ -71,10 +71,10 @@ function lvPlusStatic(i) {      // STATIC LV_PLUS: "all your <match> Spirits are
 function lvIndex(i) {
   const card = CARDS[i.id], L = card.levels; let t, k = -1;
   if (card.countLv) { const o = ownerOf(i); t = o ? o.count : 0; } else t = totalCores(i);
-  for (let j = 0; j < L.length; j++) if (t >= L[j].cores) k = j;
-  if (k >= 0 && k < 2 && L.length > 1) { const n = treatLv3(i); if (n && L.length >= n && k < n - 1) k = n - 1; }      // v0.181 STATIC TREAT_LV3 "While you control N or less Spirits, this Spirit is treated as being at LV3"; v0.184 n:2 = LV2
+  for (let j = 0; j < L.length; j++) if (t >= L[j].cores + lvCostUp(i)) k = j;
+  if (k >= 0 && k < 2 && L.length > 1) { const n = treatLv3(i); if (n && L.length >= n && k < n - 1) k = n - 1; }      // v0.181 STATIC TREAT_LV3 / v0.184 n:2 = LV2
   if (i.lv2Battle && G && G.attacker && i.lv2Battle === G.battleNo && L.length > 1 && k < 1) k = 1;      // v0.196 TREAT_LV2 battle:true (Level Up)
-  if (i.lv1Battle && G && G.battleNo != null && i.lv1Battle === G.battleNo && k > 0) k = 0;      // v205 TREAT_LV1: "During this battle, treat it as LV1"
+  if (i.lv1Battle && G && G.battleNo != null && i.lv1Battle === G.battleNo && k > 0) k = 0;      // v205 TREAT_LV1 battle
   if (i.lv2Turn && L.length > 1 && k < 1) k = 1;      // v0.196 TREAT_LV2 action
   if ((i.lvHighTurn || treatHighest(i)) && L.length > 1) k = L.length - 1;      // v184 TREAT_LV2 highest
   if ((i.lvPlusTurn || lvPlusStatic(i)) && L.length > 1) k = Math.min(L.length - 1, Math.max(k, 0) + 1);      // v327 LV_UP_TURN
@@ -628,7 +628,7 @@ async function castMagic(p, ch) {                         // ch = { inst, target
       else log(`${card.name}: no valid target remains.`);
     } else log(`${card.name}: this effect is not implemented in this build.`);
   } finally { if (!fromBurst && p.limbo === inst) p.limbo = prevLimbo; }
-  if (fromTrash) { toRemoved(p, inst); log(`${card.name} is banished (used from the Trash).`); }
+  if (fromTrash && !card.magic.rtn) { toRemoved(p, inst); log(`${card.name} is banished (used from the Trash).`); }
   else if (!fromBurst) {
     const sa = card.magic && card.magic.summonAfter && !G.over && canPlaceFree(p, inst) && !(card.magic.summonOnce && p.onceUsed && p.onceUsed['sumafter:' + card.name] === G.turnNo);      // v373 alsoMagic: may be summoned free instead of going to the Trash
     if (sa && (p.cpu || await ask({ title: '✨ ' + esc(card.name), html: 'Summon this card without paying the cost?', buttons: [{ label: 'Yes', cls: 'primary', value: true }, { label: 'No', cls: 'blue', value: false }] }))) {
@@ -649,7 +649,7 @@ async function castMagic(p, ch) {                         // ch = { inst, target
 
 /* manual core movement during the Main Step */
 /* v0.126.0 U14d3: display-only record of one core moving (a uid or 'reserve' at each end); the web host flies it, other hosts ignore it */
-const coreEv = (p, kind, from, to, nth) => (to === 'void' && typeof from === 'number' && nexusVoided(p, from), io.view({ type: 'core', side: p.key, kind, from, to, nth }));
+const coreEv = (p, kind, from, to, nth) => (typeof from === 'number' && (to === 'void' ? nexusVoided(p, from) : nexusCoresDown(p, from)), io.view({ type: 'core', side: p.key, kind, from, to, nth }));
 const coreEvN = (p, from, to, n, soul) => { for (let i = 0; i < Math.min(n, 5); i++) coreEv(p, 'core', from, to, i); if (soul) coreEv(p, 'soul', from, to, Math.min(n, 5)); };   // v0.149.0: n gems fly one after the other (display cue only)
 function addCore(p, f) { if (p.reserve.n > 0) { coreEv(p, 'core', 'reserve', f.uid); p.reserve.n--; f.cores++; return true; } return false; }
 function removeCore(p, f) { if (f.cores > 0) { coreEv(p, 'core', f.uid, 'reserve'); f.cores--; p.reserve.n++; checkDepletion(p); return true; } return false; }

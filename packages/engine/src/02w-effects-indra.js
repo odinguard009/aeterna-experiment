@@ -68,6 +68,7 @@ function nexusShielded(p, n) {
   log(`${CARDS[n.id].name} can't be destroyed by opposing effects (${CARDS[p.mirage.id].name} is set).`); return true;
 }
 function nexusVoided(p, uid) {
+  nexusCoresDown(p, uid);
   if (!G || !G.evQ || G.over || !p.mirage) return;
   const n = p.nexus.find(x => x.uid === uid); if (!n || !mirageNexusOf(p, n) || CARDS[p.mirage.id].mirageNexus.soul || G.evQ.some(e => e.type === 'MIRAGE_SUMMON' && e.key === p.key)) return;
   G.evQ.push({ type: 'MIRAGE_SUMMON', key: p.key, inst: n });

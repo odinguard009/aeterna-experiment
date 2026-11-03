@@ -65,7 +65,7 @@ test('K-1005 BS72-017 (Nyx): summoned pays a Nyx core to the Void, discards and 
     const v = BS.mkInst('BS72-017'); v.cores = 1; P.spirits = [v]; const v0 = P.void;
     await BS.fireFx(P, 'SUMMONED', v, {});
     return [!BS.CARDS['BS72-017'].partial, nx.cores, P.void - v0, P.hand.length]; })()`);
-  assert.deepEqual(r, [true, 1, 1, 1]);
+  assert.deepEqual(r, [true, 1, 0, 1]);      // v447: the Nyx Nexus losing a core now also pays +2 counters from the Void, so the net Void change is 0
 });
 
 test('K-1006 BS72-058 (Nyx): summoned pays +1 core to a Nyx Nexus and draws', async () => {
@@ -91,7 +91,7 @@ test('K-1007 BS72-022 (Nyx): Manifest card; summoned +1 Nyx core, discards 2 Rem
     await BS.fireFx(P, 'SUMMONED', v, {});
     const c = BS.CARDS['BS72-022'];
     return [!c.partial, !!c.manifest, nx.cores, O.removed.length, O.trash.length - t0, P.hand.length - h0]; })()`);
-  assert.deepEqual(r, [true, true, 2, 1, 2, 1]);
+  assert.deepEqual(r, [true, true, 3, 1, 2, 1]);      // v447: BS72-022 is a Cost 3+ Nyx-family Spirit, so Neo-Core Charge adds a second core
 });
 
 test('K-1008 BS72-021 (Nyx): Mani card; TURN_SUMMON_TAX raises the opposing six-color Cost 4 or less cost', async () => {

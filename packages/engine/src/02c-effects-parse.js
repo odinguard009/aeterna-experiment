@@ -30,7 +30,7 @@ const canPlacePaid = (p, inst, noTribute) => { const k = CARDS[inst.id]; return 
 const canPlaceBy = (p, inst, pay, noTribute) => pay ? canPlacePaid(p, inst, noTribute) : canPlaceFree(p, inst);
 async function summonPaid(p, inst, opts) {                  // official: "summon/deploy" without "without paying the cost" pays the cost (with cost reduction)
   if (!canPlacePaid(p, inst, opts && opts.noTribute)) return false;      // v0.183 noTribute: "summon without using Tribute" (the cost is still paid)
-  const card = CARDS[inst.id]; let c = effCost(p, card); const L = minCores(card);
+  const card = CARDS[inst.id]; let c = opts && opts.costN != null ? opts.costN : effCost(p, card); const L = minCores(card);
   if (opts && opts.viaShaman) { inst.viaShamanTurn = G.turnNo; if (card.shamanReduction) c = Math.max(0, c - (Object.values(card.reduction || {}).reduce((a, b) => a + b, 0))); }      // v201 Shamanism: fulfill all reduction symbols
   let plan = null;
   if (!p.cpu && c > 0 && reserveTotal(p) < c + L) { plan = await askPayment(card, c, L); if (!plan) return false; }
@@ -306,7 +306,7 @@ function parseEffects(arr) {
       }
       if (e.zone === 'hand' && (e.trigger === 'ALLY_BLOCKED' || e.trigger === 'ALLY_SUMMONED' || e.trigger === 'SILVER_WHEEL' || e.trigger === 'LIFE_GUARD')) o.zone = 'hand';
       if (e.zone === 'trash' && (e.trigger === 'LIFE_GUARD' || e.trigger === 'ACTIVATE')) o.zone = 'trash';      // v432 ACTIVATE from the Trash (BS75-028)
-      if (e.zone === 'trash' && (e.trigger === 'ALLY_DIED' || e.trigger === 'EXHAUSTED_FX')) o.zone = 'trash';      // v155 the effect works from the Trash ("you can return this card from the Trash")
+      if (e.zone === 'trash' && (e.trigger === 'ALLY_DIED' || e.trigger === 'EXHAUSTED_FX' || e.trigger === 'NEXUS_DOWN')) o.zone = 'trash';      // v155 the effect works from the Trash ("you can return this card from the Trash")
       if (e.trigger === 'BP_REACHED') { if (!(Number.isInteger(e.bpGe) && e.bpGe >= 1000 && e.bpGe <= 100000)) return { error: 'BP_REACHED needs bpGe (1000-100000)' }; o.bpGe = e.bpGe; if (e.self === true) o.self = true; if (e.match != null) { if (!hasMatch(e.match)) return { error: 'BP_REACHED "match" must look like {"team":"GAIM"}' }; o.match = e.match; } }      // v217
       if (e.heavyOnly === true && e.trigger === 'EXHAUSTED_FX') o.heavyOnly = true;      // v155 "heavily exhausted"
       if (e.onceKey != null) { if (!/^[A-Za-z0-9_-]{1,20}$/.test(String(e.onceKey))) return { error: '"onceKey" must be a short name' }; o.onceKey = String(e.onceKey); }

@@ -146,6 +146,7 @@ Object.assign(FX_ACTIONS, {
         if (!yes) continue;
         c.p.onceUsed = c.p.onceUsed || {}; c.p.onceUsed[key] = G.turnNo;
         removeFrom(c.p.trash, x); c.p.hand.push(x); log(`${CARDS[x.id].name} is added to the Hand (${who(c.p)}).`); handUp(c.p, 1);
+        if (CARDS[x.id].trashCore) await trashCoreGw(c);      // v447 Acid Shot: "When you've done so, +1 core to one of your Grandwalker Nexuses"
       }
       await sentToTrashFx(c, top, 'deck');               // v0.47 Whirling Tide / Thunder Counter / Hades Disaster
       let got = 0; if (fieldList(c.p).includes(c.src)) for (let j = 0; j < k; j++) { if (a.void ? (!a.max || c.src.cores < a.max) && (takeFromVoid(c.p, 1), c.src.cores++, true) : addCore(c.p, c.src)) got++; }      // v420 void:true = Oracle (cores come from the Void, max = cap on this Nexus)

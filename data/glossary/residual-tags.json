@@ -45079,23 +45079,6 @@
   "M_UNSTACKABLE",
   "T_REVEALED"
  ],
- "BS72-077": [
-  "A_CORE_TO_SELF",
-  "A_DESTROY_COST",
-  "A_VOID",
-  "K_GRANDWALKER",
-  "K_ULTIMATE",
-  "M_IF_YOU_DO",
-  "M_OPTIONAL",
-  "M_THEN",
-  "M_TRASH_TRIGGER"
- ],
- "BS72-078": [
-  "A_SUMMON_FREE",
-  "A_VOID",
-  "K_GRANDWALKER",
-  "M_THEN"
- ],
  "BS72-079": [
   "A_EXHAUST",
   "A_SUMMON_FREE",
@@ -45198,26 +45181,6 @@
   "T_ACTIVATE",
   "T_ALLY_SUMMONED",
   "T_DURING_BRAVE"
- ],
- "BS72-CX02": [
-  "A_CORE_TO_SELF",
-  "A_COUNTER",
-  "A_MILL",
-  "A_SOUL_STATE",
-  "A_VOID",
-  "C_LEVEL",
-  "C_ONCE",
-  "F_OTHER_NOSTACK",
-  "K_BRAVE",
-  "K_CONTRACT",
-  "K_REVIVE",
-  "K_ULTIMATE",
-  "M_OPTIONAL",
-  "M_THEN",
-  "M_UNSTACKABLE",
-  "M_UP_TO",
-  "T_ACTIVATE",
-  "T_ALLY_SUMMONED"
  ],
  "BS72-CX03": [
   "A_CORE_TO_SELF",
@@ -46091,10 +46054,6 @@
   "K_BURST",
   "K_GRANDWALKER",
   "M_THEN"
- ],
- "BS73-075": [
-  "K_ULTIMATE",
-  "M_OPTIONAL"
  ],
  "BS73-076": [
   "A_REMOVED_ZONE",

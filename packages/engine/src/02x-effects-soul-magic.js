@@ -187,3 +187,60 @@ Object.assign(FX_ACTIONS, {
       await FX_ACTIONS.BOUNCE_OPP.run(c, { do: 'BOUNCE_OPP', to: 'deckBottom', kind: k, ignoreImmune: free ? true : undefined });
     } },
 });
+
+/* v447 Grandwalker Nyx (BS72-CX02) and its family: "when the number of cores on your Contractor Nyx is reduced" (trigger NEXUS_DOWN, queued once per batch by
+   nexusCoresDown from coreEv / nexusVoided, fired on the field and from the Trash with zone:'trash'); "the LV cost of every opposing Spirit/Ultimate gets +1
+   during this turn" (lvCostUp: each LV threshold needs one more core; never for Nexuses); core removal from any opposing Spirit/Ultimate/Nexus down to one core. */
+const nyxNexus = p => p.nexus.filter(n => /Contractor Nyx/i.test(CARDS[n.id].name));
+function lvCostUp(i) { const o = G && CARDS[i.id].type !== 'Nexus' ? ownerOf(i) : null; return o && o.lvCostUp === G.turnNo ? 1 : 0; }
+function nexusCoresDown(p, uid) {
+  if (!G || !G.evQ || G.over) return;
+  const n = p.nexus.find(x => x.uid === uid); if (!n || !/Contractor Nyx/i.test(CARDS[n.id].name) || G.evQ.some(e => e.type === 'NEXUS_DOWN' && e.key === p.key)) return;
+  G.evQ.push({ type: 'NEXUS_DOWN', key: p.key, inst: n });
+}
+Object.assign(FX_ACTIONS, {
+  OPP_LV_COST_UP: { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => 'during this turn, the LV cost of every opposing Spirit/Ultimate gets +1', cands: () => [1], can: () => true,
+    run: async c => { c.opp.lvCostUp = G.turnNo; log(`${_pn(c)}: during this turn, the LV cost of ${poss(c.opp)} Spirits/Ultimates gets +1.`); io.view({ type: 'board' }); } },
+  OPP_CORES_UNTIL_ONE: { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => 'send cores from an opposing Spirit/Ultimate/Nexus to the Reserve until one core remains on it',
+    cands: c => c.opp.spirits.concat(c.opp.nexus).filter(t => totalCores(t) > 1 && t.cores > 0 && !fxImmune(c.opp, t)),
+    can: c => FX_ACTIONS.OPP_CORES_UNTIL_ONE.cands(c).length > 0,
+    run: async c => {
+      const L = FX_ACTIONS.OPP_CORES_UNTIL_ONE.cands(c); if (!L.length) { c.ctx.did = false; return; }
+      const t = c.p.cpu ? L.slice().sort((x, y) => totalCores(y) - totalCores(x))[0] : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the opposing Spirit/Ultimate/Nexus to send cores from (glowing).`);
+      if (!t) { c.ctx.did = false; return; }
+      const m = Math.max(0, Math.min(t.cores, totalCores(t) - 1, coreTakeCap(c.opp, t, Infinity))); if (!m) { c.ctx.did = false; return; }
+      coreEvN(c.opp, t.uid, 'reserve', m, false); t.cores -= m; c.opp.reserve.n += m; c.ctx.did = true;
+      log(`${CARDS[c.src.id].name}: ${m} core${m === 1 ? '' : 's'} from ${poss(c.opp)} ${CARDS[t.id].name} go to the Reserve.`); checkDepletion(c.opp); io.view({ type: 'board' });
+    } },
+  /* NYX_CORES_TO_VOID {n}: "you can send n cores from any of your Contractor Nyx Grandwalker Nexuses to the Void" (optional; c.ctx.did tells the next "when you've done so" action) */
+  NYX_CORES_TO_VOID: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 4 && Object.keys(a).every(k => ['do', 'if', 'n'].includes(k)), txt: a => `you can send ${a.n} cores from any of your Contractor Nyx Nexuses to the Void`,
+    cands: (c, a) => nyxNexus(c.p).filter(n => n.cores >= a.n), can: (c, a) => FX_ACTIONS.NYX_CORES_TO_VOID.cands(c, a).length > 0,
+    run: async (c, a) => {
+      const L = FX_ACTIONS.NYX_CORES_TO_VOID.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
+      if (!c.p.cpu && !await ask({ title: `✨ ${CARDS[c.src.id].name}`, peek: true, html: `Send ${a.n} cores from your Contractor Nyx to the Void?`, buttons: [{ label: 'Send', cls: 'primary', value: true }, { label: 'No', cls: 'cancel', value: false }] })) { c.ctx.did = false; return; }
+      const t = L.length === 1 || c.p.cpu ? L.slice().sort((x, y) => y.cores - x.cores)[0] : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap your Contractor Nyx to send ${a.n} cores to the Void (glowing).`);
+      if (!t) { c.ctx.did = false; return; }
+      coreEvN(c.p, t.uid, 'void', a.n, false); t.cores -= a.n; c.p.void += a.n; c.ctx.did = true; log(`${CARDS[c.src.id].name}: ${a.n} cores from ${CARDS[t.id].name} go to the Void.`); io.view({ type: 'board' });
+    } },
+  /* DESTROY_CORES_GE {n}: "destroy an opposing Spirit/Ultimate with n or more cores on it" (only Armor-style immunity stops it: fxImmune) */
+  DESTROY_CORES_GE: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 9 && Object.keys(a).every(k => ['do', 'if', 'n'].includes(k)), txt: a => `destroy an opposing Spirit/Ultimate with ${a.n} or more cores on it`,
+    cands: (c, a) => c.opp.spirits.filter(t => totalCores(t) >= a.n && !fxImmune(c.opp, t)), can: (c, a) => FX_ACTIONS.DESTROY_CORES_GE.cands(c, a).length > 0,
+    run: async (c, a) => {
+      const L = FX_ACTIONS.DESTROY_CORES_GE.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
+      const t = L.length === 1 || c.p.cpu ? L.slice().sort((x, y) => bpOf(y) - bpOf(x))[0] : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the opposing Spirit to destroy (glowing).`);
+      if (!t) { c.ctx.did = false; return; }
+      removeSpirit(c.opp, t, 'destroyed', true); checkDepletion(c.opp); c.ctx.did = true; io.view({ type: 'board' });
+    } },
+});
+async function trashCoreGw(c) {
+  const L = c.p.nexus.filter(n => isGwNexus(n) && c.p.reserve.n > 0); if (!L.length) return;
+  const t = L.length === 1 || c.p.cpu ? L.slice().sort((x, y) => y.cores - x.cores)[0] : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap your Grandwalker Nexus to put 1 core on (glowing).`);
+  if (t && addCore(c.p, t)) { log(`${CARDS[t.id].name}: +1 core.`); io.view({ type: 'board' }); }
+}
+/* v447 Muddy Swing (BS73-075) Main: "During this turn, when opposing Spirits/Ultimates are depleted, if your Hand is six or less, you can draw a card" (Spirits only: the engine has no Nexus depletion) */
+function muddyDraw(ev) {
+  const q = ev.depl && G.p[other(ev.key)]; if (!q || q.muddyTurn !== G.turnNo || q.hand.length > 6) return;
+  const k = draw(q, 1); log(`${who(q)} ${q.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'} (Muddy Swing).`); handUp(q, k);
+}
+FX_ACTIONS.DRAW_ON_OPP_DEPLETE = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => 'during this turn, when opposing Spirits/Ultimates are depleted, if your Hand is six or less, draw a card', can: () => true,
+  run: async c => { c.p.muddyTurn = G.turnNo; c.ctx.did = true; log(`${CARDS[c.src.id].name}: during this turn, you draw a card when an opposing Spirit is depleted (Hand 6 or less).`); } };
