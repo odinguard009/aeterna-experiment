@@ -74,11 +74,11 @@ function fromCols(f, cols, owner) {
   return !f.colors || f.colors.some(x => cols.includes(x));
 }
 async function soulBurstCheck(p) {
-  if (!G || G.over || p.soulState.length < 5) return;
+  if (!G || G.over) return;
   p.sbTurn = p.sbTurn || {};
   const cands = p.soulState.filter(x => CARDS[x.id].soulBurst && CARDS[x.id].burst).map(x => ({ x, soul: true })).concat(p.burst && !p.burst.mirage && CARDS[p.burst.id].soulBurst ? [{ x: p.burst, soul: false }] : []);
   for (const { x, soul } of cands) {
-    const nm = CARDS[x.id].name; if (p.sbTurn[nm] === G.turnNo) continue;
+    const nm = CARDS[x.id].name; if (p.sbTurn[nm] === G.turnNo || p.soulState.length < ((CARDS[x.id].burst || {}).soulAt || 5)) continue;
     if (await maybeBurst1(p, 'SOUL_BURST', soul ? { force: true, fromSoul: x } : { force: true })) { p.sbTurn[nm] = G.turnNo; break; }
   }
 }

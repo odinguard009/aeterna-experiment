@@ -104,6 +104,7 @@ function parseBurst(b) {
   const o = { when: b.when, actions: r.actions };
   if (b.if != null) { const c = parseCond(b.if); if (c.error) return { error: 'burst: ' + c.error }; o.if = c.cond; }
   if (b.noUlt === true) { if (b.when !== 'OPP_ATTACK') return { error: 'burst: "noUlt" only with OPP_ATTACK' }; o.noUlt = true; }   // v0.71
+  if (b.soulAt != null) { if (!Number.isInteger(b.soulAt) || b.soulAt < 1 || b.soulAt > 10) return { error: 'burst: "soulAt" must be an integer 1-10' }; o.soulAt = b.soulAt; }   // v435 Soul Burst: cards needed in Soul State
   if (b.thenFlash === true) o.thenFlash = true;           // v0.44 "Then by paying the cost, activate this card's (Flash) effect"
   if (b.thenMain === true) o.thenMain = true;             // v0.47 Dana Draw: "Then, by paying the cost, activate the Main effect of this card"
   if (b.also != null) {                                   // v0.47 Dana Draw: "When your Scalostle Brave is summoned, if ..., you can immediately activate this set card"
