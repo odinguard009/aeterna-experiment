@@ -214,3 +214,18 @@ test('K-1016 BS53-030 Jisaidori (Primal pool): burst lock; end of battle refresh
     return [!BS.CARDS['BS53-030'].partial, a, b]; })()`);
   assert.equal(r[0], true, JSON.stringify(r)); assert.deepEqual(r[1], [true, 1, true, false], JSON.stringify(r)); assert.deepEqual(r[2], [true, 1, true, true], JSON.stringify(r));
 });
+
+test('K-1017 BS53-034 BlackPanther / BS55-025 Swallow (Primal pool): heavy exhaust then bounce at 2 counters; Swallow exhausts or heavy exhausts in the Attack Step', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true;
+    const sp = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && !BS.CARDS[k].effects);
+    const opp = () => { const t = BS.mkInst(sp); t.cores = 3; O.spirits = [t]; return t; };
+    const out = [];
+    for (const cnt of [1, 2]) { P.count = cnt; const v = BS.mkInst('BS53-034'); v.cores = 3; P.spirits = [v]; const t = opp(); O.hand = [];
+      await BS.fireFx(P, 'ATTACKS', v, {}); out.push([cnt, !!t.heavy, O.spirits.length]); }
+    const sw = []; for (const [cnt, step] of [[1, 5], [2, 5], [2, 4]]) { P.count = cnt; G.step = step; const v = BS.mkInst('BS55-025'); v.cores = 2; P.spirits = [v]; const t = opp();
+      await BS.fireFx(P, 'SUMMONED', v, {}); sw.push([cnt, step, t.exhausted, !!t.heavy]); }
+    return [!BS.CARDS['BS53-034'].partial && !BS.CARDS['BS55-025'].partial, out, sw]; })()`);
+  assert.equal(r[0], true, JSON.stringify(r)); assert.deepEqual(r[1], [[1, true, 1], [2, false, 0]], JSON.stringify(r));
+  assert.deepEqual(r[2], [[1, 5, true, false], [2, 5, true, true], [2, 4, false, false]], JSON.stringify(r));
+});
