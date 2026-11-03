@@ -268,3 +268,19 @@ test('K-1020 BS53-026 Racket Hummingbird: opposing Ultimates and Cost 3 Spirits 
   assert.equal(r[1], true, JSON.stringify(r));
   assert.deepEqual(r[0].map(x => x[2]), [false, true, false, true], JSON.stringify(r));
 });
+
+test('K-1021 BS52-RV001 Lizardedge: red Primal Spirits remain exhausted instead of returning (own Attack Step); BS53-050 Capricornus: yellow Primal remain instead of being destroyed at 1/3/5/7 counters', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = O.key;
+    const sp = (col) => Object.keys(BS.CARDS).find(k => { const c = BS.CARDS[k]; return c.type === 'Spirit' && !c.token && (c.colors || [c.symbol]).includes(col) && (c.families || []).includes('Primal') && c.levels && c.levels.length; });
+    const red = sp('red'), yel = sp('yellow'); const out = {};
+    const liz = BS.mkInst('BS52-RV001'); liz.cores = 3; const rd = BS.mkInst(red); rd.cores = 3; P.spirits = [liz, rd]; P.hand = [];
+    BS.bounceCard(P, rd, 'hand'); out.retAtk = [P.spirits.includes(rd), !!rd.exhausted, P.hand.length];
+    G.step = 4; rd.exhausted = false; BS.bounceCard(P, rd, 'hand'); out.retMain = [P.spirits.includes(rd), P.hand.length];
+    const cap = BS.mkInst('BS53-050'); cap.cores = 3; const yl = BS.mkInst(yel); yl.cores = 3; P.spirits = [cap, yl]; P.hand = [];
+    for (const n of [1, 2]) { P.count = n; yl.exhausted = false; if (!P.spirits.includes(yl)) P.spirits.push(yl); BS.removeSpirit(P, yl, 'destroyed', true); out['d' + n] = [P.spirits.includes(yl), !!yl.exhausted]; }
+    out.ok = !BS.CARDS['BS52-RV001'].partial && !BS.CARDS['BS53-050'].partial; out.red = red; out.yel = yel; return out; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r));
+  assert.deepEqual(r.retAtk, [true, true, 0], JSON.stringify(r)); assert.deepEqual(r.retMain, [false, 1], JSON.stringify(r));
+  assert.deepEqual(r.d1, [true, true], JSON.stringify(r)); assert.deepEqual(r.d2, [false, false], JSON.stringify(r));
+});
