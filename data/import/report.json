@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 6193,
+  "cards": 6192,
   "per_saga": {
    "1": 458,
    "2": 251,
@@ -10,7 +10,7 @@
    "6": 311,
    "7": 456,
    "8": 428,
-   "9": 459,
+   "9": 458,
    "10": 485,
    "11": 274,
    "12": 303,
@@ -22,18 +22,18 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2513,
-  "nexus_levels_added": 662,
+  "skipped_curated": 2514,
+  "nexus_levels_added": 661,
   "nexus_levels_missing": 43,
   "merged": 105,
-  "image_problems": 395,
+  "image_problems": 394,
   "brave_unparsed": 169,
   "ut_lines_added": 106,
-  "odd_reduction": 793,
+  "odd_reduction": 792,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
   "number_conflicts": 3,
-  "without_image": 393
+  "without_image": 392
  },
  "tokens": [
   "BS73-T001",
@@ -1560,6 +1560,7 @@
   "BS47-028",
   "BS47-053",
   "BS47-065",
+  "BS47-XX03",
   "BS48-021",
   "BS48-024",
   "BS48-041",
@@ -3019,7 +3020,6 @@
   "BS47-X08",
   "BS47-X09",
   "BS47-XX02",
-  "BS47-XX03",
   "BS47-10THX02",
   "BS47-CP07",
   "BS48-085",
@@ -4781,11 +4781,6 @@
    "id": "BS47-XX02",
    "name": "Grandwalker Manaka",
    "problem": "no image (near: The Grandwalker Manaka.png)"
-  },
-  {
-   "id": "BS47-XX03",
-   "name": "Grandwalker Kei",
-   "problem": "no image (near: The Grandwalker Kei.png)"
   },
   {
    "id": "BS47-10THX01",
@@ -6877,12 +6872,6 @@
   },
   {
    "id": "BS47-XX02",
-   "dropped": [
-    "god"
-   ]
-  },
-  {
-   "id": "BS47-XX03",
    "dropped": [
     "god"
    ]

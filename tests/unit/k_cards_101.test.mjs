@@ -41,3 +41,25 @@ test('K-1098 BS44-XX02 Lv2: also treated as all six colours (symbol)', async () 
   assert.deepEqual(r.colours, [true, true, true, true, true, true], JSON.stringify(r));
   assert.deepEqual(r.lv1, [false, false], JSON.stringify(r));
 });
+
+test('K-1099 BS47-XX03 Grandwalker Kei: pays 3 cores, activates the set Burst at once (any timing), then may set a Burst card from the Hand; charges on Cost 3+ Burst Spirits only', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const nx = BS.mkInst('BS47-XX03'); nx.cores = 3; P.nexus = [nx]; P.onceUsed = {}; P.void = 0; P.hand = [BS.mkInst('BS18-X012A')]; P.deck = [BS.mkInst('BS74-048'), BS.mkInst('BS74-049')];
+    const sp = BS.mkInst('BS74-048'); sp.cores = 1; sp.exhausted = true; P.spirits = [sp]; const b = BS.mkInst('BS25-079'); b.mirage = false; P.burst = b; const burstDef = BS.CARDS['BS25-079'].burst; P.burstSetThisTurn = false;
+    const idx = BS.CARDS['BS47-XX03'].effects.findIndex(e => e.trigger === 'ACTIVATE');
+    const ok = await BS.activateFx(P, nx, idx);
+    const newBurst = P.burst && P.burst.id;
+    return { ok, cores: nx.cores, refreshed: !sp.exhausted, newBurst, old: P.trash.includes(b) || P.spirits.includes(b) || P.hand.includes(b), partial: BS.CARDS['BS47-XX03'].partial, when: burstDef.when }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.cores, 0, JSON.stringify(r));
+  assert.equal(r.refreshed, true, JSON.stringify(r)); assert.equal(r.newBurst, 'BS18-X012A', JSON.stringify(r)); assert.equal(r.old, true, JSON.stringify(r));
+});
+
+test('K-1100 BS47-XX03: nothing to activate without a set Burst (the action is not usable)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const nx = BS.mkInst('BS47-XX03'); nx.cores = 3; P.nexus = [nx]; P.burst = null; P.onceUsed = {};
+    const c = { p: P, opp: O, src: nx, ctx: {} };
+    return { can: BS.FX_ACTIONS ? !!BS.FX_ACTIONS.ACTIVATE_SET_BURST.can(c, { do: 'ACTIVATE_SET_BURST' }) : null }; })()`);
+  assert.equal(r.can, false, JSON.stringify(r));
+});

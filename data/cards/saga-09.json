@@ -22772,18 +22772,89 @@
   "mechanics": [
    "Core Charge"
   ],
-  "fxComplete": false,
-  "residual": [
-   "Core Charge:",
-   "◆When you Summon/Advent a target Spirit, you can +1 core to this Nexus.",
-   "◆When this Nexus is deployed, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash.",
-   "For each target card among them, +1 core to this Nexus.",
-   "{{gs|3}} [LV1][LV2] Flash - (Either Attack Step)",
-   "(Send three cores from this Nexus to the Void) Immediately activate one of your set Bursts.",
-   "After that Burst activates, you can set a Burst card from your Hand.",
-   "Grand Field [LV2] (Your Main Step)",
-   "This Nexus's symbol is also treated as Red/Purple/Green/White/Yellow/Blue."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); not yet checked against the card image.",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "DECK_TO_TRASH_CORES",
+      "n": 3,
+      "match": {
+       "costGe": 3,
+       "hasBurst": true
+      },
+      "void": true,
+      "max": 15,
+      "fresh": true
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "match": {
+     "costGe": 3,
+     "hasBurst": true
+    },
+    "actions": [
+     {
+      "do": "ORACLE_CORE",
+      "n": 1,
+      "max": 15
+     }
+    ],
+    "once": true
+   },
+   {
+    "trigger": "ACTIVATE",
+    "lv": [
+     1,
+     2
+    ],
+    "timing": [
+     "FLASH"
+    ],
+    "if": {
+     "attackStep": true
+    },
+    "cost": {
+     "nexusToVoid": 3
+    },
+    "actions": [
+     {
+      "do": "ACTIVATE_SET_BURST",
+      "thenSet": true
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "ALSO_TREATED",
+    "to": "self",
+    "lv": [
+     2
+    ],
+    "symbol": true,
+    "colors": [
+     "red",
+     "purple",
+     "green",
+     "white",
+     "yellow",
+     "blue"
+    ]
+   }
+  ]
  }
 ]

@@ -93,6 +93,17 @@ Object.assign(FX_ACTIONS, {
       if (!t || !p.nexus.includes(t)) return;
       coreEvN(p, t.uid, 'reserve', 1, false); t.cores--; p.reserve.n++; c.ctx.did = true; log(`${nm}: a core from ${CARDS[t.id].name} goes to ${poss(p)} Reserve.`); checkDepletion(p); io.view({ type: 'board' });
     } },
+  /* v438 ACTIVATE_SET_BURST {thenSet}: "Immediately activate one of your set Bursts" (Grandwalker Kei): ignores the Burst's own timing (force), its other conditions still apply; thenSet = "after that Burst activates, you can set a Burst card from your Hand" */
+  ACTIVATE_SET_BURST: { chk: a => Object.keys(a).every(k => ['do', 'if', 'thenSet'].includes(k)) && (a.thenSet == null || a.thenSet === true),
+    txt: a => 'immediately activate your set Burst' + (a.thenSet ? '; after that you can set a Burst card from your Hand' : ''),
+    can: c => !!c.p.burst && !c.p.burst.mirage && !!CARDS[c.p.burst.id].burst && !burstLocked(c.p) && G.noBurst !== c.p.key,
+    run: async (c, a) => {
+      const b = c.p.burst; if (!b || b.mirage) { c.ctx.did = false; return; }
+      const ok = await maybeBurst1(c.p, 'FORCE', { force: true }); c.ctx.did = ok; if (!ok || !a.thenSet || G.over) return;
+      const L = c.p.hand.filter(h => h !== c.src && CARDS[h.id].burst); if (!L.length) return;
+      const h = c.p.cpu ? L.slice().sort((x, y) => CARDS[x.id].cost - CARDS[y.id].cost)[0] : await chooseCard(c, L, `✨ ${_pn(c)}`, 'You can set a card with Burst effect from your Hand.', true);
+      if (!h) return; setBurst(c.p, h, false); io.view({ type: 'board' }); await fireBurstSet(c.p);
+    } },
   RETURN_OPP_SNB: { chk: a => a.to === 'deckBottom' && Object.keys(a).every(k => ['do', 'if', 'to', 'unleash'].includes(k)) && (a.unleash == null || (a.unleash.family && typeof a.unleash.family === 'string' && (a.unleash.color == null || COLORS.includes(a.unleash.color)))),
     txt: a => 'return an opposing Spirit, Nexus or set Burst to the bottom of the Deck' + (a.unleash ? `; by sending a core from one of your ${a.unleash.color ? cap(a.unleash.color) + ' ' : ''}${a.unleash.family} Nexus to this card, it can't be prevented` : ''),
     kinds: (c, free) => ['spirit', 'nexus', 'burst'].filter(k => k === 'burst' ? !!c.opp.burst && !c.opp.burst.mirage : (k === 'spirit' ? c.opp.spirits : c.opp.nexus).some(x => free || !fxImmune(c.opp, x, c))),
