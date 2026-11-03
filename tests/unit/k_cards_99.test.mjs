@@ -53,3 +53,14 @@ test('K-1049 BS54-033 Renata: reveals three; may add a White Grandstone Nexus or
     return { a: P.hand.length - h0 - (P.hand.length - h1), added: P.hand.slice(h0).map(x => x.id), pr, nex: P.hand.some(x => x.id === 'BS54-064'), trash: P.trash.length - t0, partial: BS.CARDS['BS54-033'].partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.a, 1, JSON.stringify(r)); assert.equal(r.added[0], r.pr, JSON.stringify(r)); assert.equal(r.nex, true, JSON.stringify(r)); assert.equal(r.trash, 4, JSON.stringify(r));
 });
+
+test('K-1050 BS58-028 Torando: Burst exhausts two opposing Spirits, one Void core to the Reserve per Spirit exhausted, then summons itself', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = O.key; G.step = 5; G.fxBy = P.key;
+    const sp = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token);
+    const t = BS.mkInst('BS58-028'); P.hand = [t]; P.spirits = []; O.spirits = [BS.mkInst(sp), BS.mkInst(sp), BS.mkInst(sp)]; P.void = 5; const r0 = P.reserve.n;
+    const b = BS.CARDS['BS58-028'].burst; const ctx = {}; const c = { p: P, opp: O, src: t, ctx };
+    await BS.FX_ACTIONS.EXHAUST_OPP.run(c, b.actions[0]); await BS.FX_ACTIONS.VOID_TO_RESERVE.run(c, b.actions[1]);
+    return { exh: O.spirits.filter(s => s.exhausted).length, res: P.reserve.n - r0, hasSummon: b.actions[2].do, when: b.when, partial: BS.CARDS['BS58-028'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.exh, 2, JSON.stringify(r)); assert.equal(r.res, 2, JSON.stringify(r)); assert.equal(r.hasSummon, 'SUMMON_SELF', JSON.stringify(r));
+});
