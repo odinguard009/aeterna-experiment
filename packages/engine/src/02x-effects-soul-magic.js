@@ -239,8 +239,8 @@ async function trashCoreGw(c) {
 }
 /* v447 Muddy Swing (BS73-075) Main: "During this turn, when opposing Spirits/Ultimates are depleted, if your Hand is six or less, you can draw a card" (Spirits only: the engine has no Nexus depletion) */
 function muddyDraw(ev) {
-  const q = ev.depl && G.p[other(ev.key)]; if (!q || q.muddyTurn !== G.turnNo || q.hand.length > 6) return;
+  const q = ev.depl && G.p[other(ev.key)]; if (!q || q.muddyTurn !== G.turnNo || q.hand.length > (q.muddyLe || 6)) return;
   const k = draw(q, 1); log(`${who(q)} ${q.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'} (Muddy Swing).`); handUp(q, k);
 }
-FX_ACTIONS.DRAW_ON_OPP_DEPLETE = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => 'during this turn, when opposing Spirits/Ultimates are depleted, if your Hand is six or less, draw a card', can: () => true,
-  run: async c => { c.p.muddyTurn = G.turnNo; c.ctx.did = true; log(`${CARDS[c.src.id].name}: during this turn, you draw a card when an opposing Spirit is depleted (Hand 6 or less).`); } };
+FX_ACTIONS.DRAW_ON_OPP_DEPLETE = { chk: a => Object.keys(a).every(k => ['do', 'if', 'handLe'].includes(k)) && Number.isInteger(a.handLe) && a.handLe >= 1 && a.handLe <= 10, txt: a => `during this turn, when opposing Spirits/Ultimates are depleted, if your Hand is ${a.handLe} or less, draw a card`, can: () => true,
+  run: async (c, a) => { c.p.muddyTurn = G.turnNo; c.p.muddyLe = a.handLe; c.ctx.did = true; log(`${CARDS[c.src.id].name}: during this turn, you draw a card when an opposing Spirit is depleted (Hand 6 or less).`); } };
