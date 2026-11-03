@@ -186,3 +186,15 @@ test('K-1040 BS55-058 Moldavite-Golem / BS52-033 Amenomahitotsu: Brave core, rem
     return { stayA, stayM, bounceStay, ok: !BS.CARDS['BS55-058'].partial && !BS.CARDS['BS52-033'].partial }; })()`);
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.stayA && r.stayM && r.bounceStay, true, JSON.stringify(r));
 });
+
+test('K-1041 BS52-027 Rhinoscore: summons a Green Brave from Hand free; attack moves one Void core (two while braved)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const rh = BS.mkInst('BS52-027'); rh.cores = 2; P.spirits = [rh]; O.spirits = [];
+    const bid = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Brave' && (BS.CARDS[k].colors || [BS.CARDS[k].symbol]).includes('green') && !BS.CARDS[k].token);
+    P.hand = [BS.mkInst(bid)]; const n0 = P.spirits.length; await BS.fireFx(P, 'SUMMONED', rh, { subject: rh });
+    const summoned = P.hand.length === 0 && P.spirits.length > n0;
+    P.void = 5; P.reserve.n = 0; await BS.fireFx(P, 'ATTACKS', rh, { attacker: rh, subject: rh }); const one = P.reserve.n;
+    return { summoned, one, ok: !BS.CARDS['BS52-027'].partial }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.summoned, true, JSON.stringify(r)); assert.equal(r.one, 1, JSON.stringify(r));
+});
