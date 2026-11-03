@@ -122,3 +122,18 @@ test('K-1009 BS72-024 (Nyx): Mani card; summoned raises opposing cost by 1, LV2 
     return [!c.partial, !!c.manifest, up, P.coreShield.ge, P.coreShield.turn === G.turnNo]; })()`);
   assert.deepEqual(r, [true, true, 1, 3, true]);
 });
+
+test('K-1010 BS74-011 (Ometeotl): Cost 4 while the Soul Core is on Contractor Ometeotl; summoned destroys and draws', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true;
+    const nx = BS.mkInst('BS74-CX01'); nx.cores = 1; P.nexus = [nx];
+    const c = BS.CARDS['BS74-011'];
+    nx.soul = false; const c0 = BS.effCost(P, c); nx.soul = true; const c1 = BS.effCost(P, c);
+    const f = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].effects && !BS.CARDS[k].token && BS.CARDS[k].levels[0].bp <= 12000);
+    for (let i = 0; i < 4; i++) P.deck.push(BS.mkInst(f));
+    const t = BS.mkInst(f); O.spirits = [t]; const h0 = P.hand.length;
+    const v = BS.mkInst('BS74-011'); v.cores = 3; P.spirits = [v];
+    await BS.fireFx(P, 'SUMMONED', v, {});
+    return [!c.partial, c0, c1, O.spirits.length, P.hand.length - h0]; })()`);
+  assert.equal(r[0], true, JSON.stringify(r)); assert.equal(r[1] - r[2], 2, JSON.stringify(r)); assert.equal(r[3], 0, JSON.stringify(r)); assert.equal(r[4], 1, JSON.stringify(r));
+});
