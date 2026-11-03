@@ -71,3 +71,12 @@ test('K-1076 BS75-051 Canonvajdra: set card activates when a Thunderive Spirit a
     return { low, stay, hi, summoned: P.spirits.includes(b), zeroed: O.spirits.every(s => s.symZeroTurn === G.turnNo), partial: BS.CARDS['BS75-051'].partial, fx: !!BS.CARDS['BS75-051'].fxComplete }; })()`);
   assert.equal(r.low, false, JSON.stringify(r)); assert.equal(r.stay, true, JSON.stringify(r)); assert.equal(r.hi, true, JSON.stringify(r)); assert.equal(r.summoned, true, JSON.stringify(r)); assert.equal(r.zeroed, true, JSON.stringify(r));
 });
+
+test('K-1077 BS75-030 Pachhattar: Attacks lets a pre-advent family card enter Soul State; BS74-042 second reveal pick is once per turn per name', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 2; G.fxBy = null;
+    const s = BS.mkInst('BS75-030'); s.cores = 2; const u = BS.mkInst('BS74-040'); s.under = [u]; P.spirits = [s]; O.spirits = [];
+    await BS.fireFx(P, 'ATTACKS', s, { attacker: s }); const inSoul = P.soulState.includes(u), gone = !s.under.includes(u);
+    return { inSoul, gone, p30: !BS.CARDS['BS75-030'].partial, p42: !BS.CARDS['BS74-042'].partial, p48: !BS.CARDS['BS74-048'].partial }; })()`);
+  assert.deepEqual(r, { inSoul: true, gone: true, p30: true, p42: true, p48: true }, JSON.stringify(r));
+});

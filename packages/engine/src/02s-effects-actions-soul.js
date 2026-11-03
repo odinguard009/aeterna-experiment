@@ -8,7 +8,7 @@ Object.assign(FX_ACTIONS, {
   SOUL_ENTER: { chk: a => SOUL_SRC.includes(a.src) && (a.src === 'self' || hasMatch(a.match)) && (a.src !== 'reveal' || (Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && ['bottom', 'trash'].includes(a.rest))),
     txt: a => a.src === 'self' ? 'let this card enter Soul State' : a.src === 'reveal' ? `reveal ${a.n} card${a.n === 1 ? '' : 's'} from the top of your Deck, let a matching card enter Soul State, ${a.rest === 'trash' ? 'discard' : 'return to the bottom of the Deck'} the rest`
       : `let a matching card from your ${a.src === 'handOrTrash' ? 'Hand/Trash' : cap(a.src)} enter Soul State`,
-    cands: (c, a) => (a.src === 'hand' ? c.p.hand : a.src === 'trash' ? c.p.trash : a.src === 'handOrTrash' ? c.p.hand.concat(c.p.trash) : []).filter(x => fxMatch(CARDS[x.id], a.match)),
+    cands: (c, a) => (a.src === 'hand' ? c.p.hand : a.src === 'trash' ? c.p.trash : a.src === 'handOrTrash' ? c.p.hand.concat(c.p.trash) : a.src === 'trashOrUnder' ? c.p.trash.concat(c.src.under || []) : []).filter(x => fxMatch(CARDS[x.id], a.match)),
     can: (c, a) => a.src === 'self' ? fieldList(c.p).includes(c.src) : a.src === 'reveal' ? c.p.deck.length > 0 : FX_ACTIONS.SOUL_ENTER.cands(c, a).length > 0,
     run: async (c, a) => {
       const nm = CARDS[c.src.id].name;
@@ -20,9 +20,9 @@ Object.assign(FX_ACTIONS, {
         let k = 0;
         const t = await chooseCard(c, c.p.revealed.filter(x => fxMatch(CARDS[x.id], a.match)), `✨ ${nm}`, 'Choose a revealed card to let enter Soul State.', true);
         if (t && toSoulState(c.p, t)) k++;
-        if (a.extra && lvNo(c.src) >= a.extra.lv) {
-          const t2 = await chooseCard(c, c.p.revealed.filter(x => fxMatch(CARDS[x.id], { name: [a.extra.name] })), `✨ ${nm}`, `You may also let a revealed "${esc(a.extra.name)}" enter Soul State.`, true);
-          if (t2 && toSoulState(c.p, t2)) k++;
+        if (a.extra && lvNo(c.src) >= a.extra.lv && !(a.extra.sameName && c.p.onceUsed && c.p.onceUsed[onceKey(c.src, 'xtra')] === G.turnNo)) {
+          const t2 = await chooseCard(c, c.p.revealed.filter(x => fxMatch(CARDS[x.id], a.extra.match || { name: [a.extra.name] })), `✨ ${nm}`, `You may also let another matching revealed card enter Soul State.`, true);
+          if (t2 && toSoulState(c.p, t2)) { k++; if (a.extra.sameName) { c.p.onceUsed = c.p.onceUsed || {}; c.p.onceUsed[onceKey(c.src, 'xtra')] = G.turnNo; } }      // v428 extra.match + sameName (BS74-042)
         }
         const rest = c.p.revealed.splice(0);
         if (a.rest === 'trash') { for (const x of rest) c.p.trash.push(x); if (rest.length) log(`${nm}: ${rest.length} card${rest.length === 1 ? '' : 's'} discarded.`); }
@@ -30,6 +30,7 @@ Object.assign(FX_ACTIONS, {
         c.ctx.did = k > 0; return;
       }
       const t = await chooseCard(c, FX_ACTIONS.SOUL_ENTER.cands(c, a), `✨ ${nm}`, 'Choose a card to let enter Soul State.', true);
+      if (t && c.src.under && c.src.under.includes(t)) { removeFrom(c.src.under, t); c.p.trash.push(t); }      // v428 trashOrUnder: a pre-advent card
       c.ctx.did = !!t && toSoulState(c.p, t);
     } },
   SOUL_RETURN: { chk: a => hasMatch(a.match), txt: () => 'return a matching card from Soul State to your Hand',
