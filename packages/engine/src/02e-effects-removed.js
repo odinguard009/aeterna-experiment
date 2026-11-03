@@ -112,9 +112,9 @@ Object.assign(FX_ACTIONS, {
   /* "put a card (or every card) from the opposing Trash onto their Removed Zone" */
   REMOVE_OPP_TRASH: { chk: a => (a.all === true || (Number.isInteger(a.n) && a.n >= 1 && a.n <= 5)),
     txt: a => a.all ? 'banish every card in the opposing Trash' : 'put a card from the opposing Trash onto their Removed Zone',
-    can: c => c.opp.trash.some(t => !trashSafe(t)),
+    can: c => c.opp.trash.some(t => !trashSafe(t, c)),
     run: async (c, a) => {
-      const T = c.opp.trash.filter(t => !trashSafe(t));   // v0.58: "this card in Trash is unaffected by any effects" stays
+      const T = c.opp.trash.filter(t => !trashSafe(t, c));   // v0.58: "this card in Trash is unaffected by any effects" stays
       if (!T.length) { c.ctx.did = false; return; }
       let list = a.all ? T : [];
       if (!a.all) for (let j = 0; j < (a.n || 1); j++) { const L = T.filter(t => !list.includes(t)); if (!L.length) break; const t = await chooseCard(c, L, `✨ ${_nm(c)}`, `Choose a card from the opposing Trash to put onto their Removed Zone.${a.n > 1 ? ' (' + (j + 1) + '/' + a.n + ')' : ''}`, j > 0); if (!t) break; list.push(t); }   // v406: n up to 5 ("banish up to five cards")

@@ -47632,16 +47632,6 @@
   "M_OPTIONAL",
   "T_SUMMONED"
  ],
- "BS75-028": [
-  "A_AWAKEN",
-  "A_CORE_TO_SELF",
-  "A_SOUL_STATE",
-  "C_CONTROL",
-  "C_ONCE",
-  "K_GRANDWALKER",
-  "M_OPTIONAL",
-  "S_UNAFFECTED"
- ],
  "BS75-029": [
   "A_EXHAUST",
   "A_REFRESH",

@@ -9,7 +9,15 @@ function openZoneModal(key, zone) {
     case 'reserve': desc = `Reserve: ${p.reserve.n} core${p.reserve.n === 1 ? '' : 's'}${p.reserve.soul ? ' + Soul Core' : ''}`; break;
     case 'count': desc = `Count Area: ${p.count} cores`; break;
     case 'trashcards':
-    case 'trash': desc = `Trash: ${p.trash.length} cards, ${p.trashCores.n}${p.trashCores.soul ? ' + Soul' : ''} cores`; list = p.trash.slice().reverse(); break;
+    case 'trash': {
+      desc = `Trash: ${p.trash.length} cards, ${p.trashCores.n}${p.trashCores.soul ? ' + Soul' : ''} cores`; list = p.trash.slice().reverse();
+      const ta = []; if (mine && humanCan() && isMainStep()) for (const t of list) for (const { idx, e } of activatable(p, t, 'MAIN')) ta.push({ t, idx, e });      // v432 [Main] effects that work from the Trash
+      if (ta.length) {
+        modal({ uiOnly: true, title: `${label} TRASH`, wide: true, html: esc(desc) + cardStripHTML(list, 'Cards (newest first)'), buttons: ta.map((x, i) => ({ label: `⚡ ${CARDS[x.t.id].name}: ${fxDescribe(x.e)}`.slice(0, 140), cls: 'primary', value: 't' + i })).concat([{ label: 'Close', cls: 'cancel', value: null }]) })
+          .then(async v => { const x = typeof v === 'string' && ta[Number(v.slice(1))]; if (x && humanCan()) await sendIntent({ type: 'act', uid: x.t.uid, idx: x.idx }); });
+        return;
+      }
+      break; }
     case 'deck': desc = `Deck: ${p.deck.length} cards`; break;
     case 'hand': desc = `Hand: ${p.hand.length} cards`; if (mine) list = p.hand.slice(); break;
     case 'burst': {

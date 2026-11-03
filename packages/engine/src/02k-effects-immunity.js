@@ -5,7 +5,15 @@
    ignoreImmune ("cannot be prevented") keeps them: FAQ Q4 order "cannot be prevented" > "unaffected" > "cannot activate".
    Trash: a card with trashUnaffected ("this card in Trash is unaffected by any effects") is never picked from a Trash by an effect.
    ===================================================================== */
-const trashSafe = t => !!(t && CARDS[t.id] && CARDS[t.id].trashUnaffected);
+/* v432: `trashOpp` card flag = "this card in Trash is unaffected by opposing effects"; TRASH_SAFE_TURN sets p.trashSafeFam for a turn (owner-only flag, read here with the acting effect c). */
+const trashSafe = (t, c) => {
+  const d = t && CARDS[t.id]; if (!d) return false;
+  if (d.trashUnaffected) return true;
+  if (!c || !c.p || !G) return false;
+  const own = G.p.player.trash.includes(t) ? G.p.player : G.p.opponent.trash.includes(t) ? G.p.opponent : null;
+  if (!own || c.p === own) return false;
+  return !!d.trashOpp || (own.trashSafeTurn === G.turnNo && !!own.trashSafeFam && (d.families || []).includes(own.trashSafeFam));
+};
 /* v0.106.0: this used to be a bare loop. The action table is now split over 02b and 02q-02t,
    so the parts that load after this one call wrapImmunity() again once they have added their
    entries (the flag makes it idempotent, so calling it more often costs nothing). */
@@ -20,7 +28,7 @@ for (const A of actions) {
     if (!Array.isArray(L) || !c || !c.p || !G) return L;
     const a = rest.find(x => x && typeof x === 'object' && typeof x.do === 'string');
     const opp = G.p[other(c.p.key)], oppField = fieldList(opp);
-    return L.filter(x => !(x && ((G.p.player.trash.includes(x) || G.p.opponent.trash.includes(x)) && trashSafe(x)))
+    return L.filter(x => !(x && ((G.p.player.trash.includes(x) || G.p.opponent.trash.includes(x)) && trashSafe(x, c)))
       && !(x && !(a && a.ignoreImmune === true) && oppField.includes(x) && (fxImmune(opp, x, c) || camouBlocks(opp, x, c))));
   };
   A.cands.immunityWrapped = true;

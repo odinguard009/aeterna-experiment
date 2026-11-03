@@ -315,11 +315,12 @@ function actList(f) {
 function effAt(f, idx) { const x = actList(f).find(y => y.idx === idx); return x ? x.e : null; }
 function activatable(p, f, timing) {
   const card = CARDS[f.id], out = [];
-  if (!G || !fieldList(p).includes(f)) return out;
-  const opp = G.p[other(p.key)], L = lvNo(f);
-  if (opp.nexusLockLe != null && card.type === 'Nexus' && card.cost <= opp.nexusLockLe) return out;      // NEXUS_LOCK
+  const inTrash = !!G && p.trash.includes(f);      // v432 zone:'trash' ACTIVATE (BS75-028): works from the Trash only
+  if (!G || (!inTrash && !fieldList(p).includes(f))) return out;
+  const opp = G.p[other(p.key)], L = inTrash ? 0 : lvNo(f);
+  if (!inTrash && opp.nexusLockLe != null && card.type === 'Nexus' && card.cost <= opp.nexusLockLe) return out;      // NEXUS_LOCK
   actList(f).forEach(({ e, idx }) => {
-    if (e.trigger !== 'ACTIVATE') return;
+    if (e.trigger !== 'ACTIVATE' || (e.zone === 'trash') !== inTrash) return;
     if (timing && !e.timing.includes(timing)) return;
     if (e.lv && !e.nexusBrave && !e.lv.includes(L)) return;
     if (e.oc && !ocActive(f)) return;
@@ -366,7 +367,7 @@ async function activateFx(p, f, idx) {
 async function cpuActivate(p) {
   for (let g = 0; g < 8 && !G.over; g++) {
     let did = false;
-    for (const f of fieldList(p).slice()) {
+    for (const f of fieldList(p).concat(p.trash.filter(x => (CARDS[x.id].effects || []).some(e => e.zone === 'trash'))).slice()) {
       const a = activatable(p, f, 'MAIN').find(x => !x.e.cpuSkip && !x.e.silverWheel && (!x.e.invoke || cpuInvokeOK(p, f, x.e, 'MAIN')));   // v0.50: Silver Wheel waits for the opposing Attack Step (cpuSilverWheel)
       if (!a) continue;
       const v = await portCpu(p.key, 'activate', [f.uid]);                // v0.105.0 (M6 step 3): the host's cpuAnswer re-derives {uid, idx}

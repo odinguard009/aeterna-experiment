@@ -6,7 +6,7 @@
 interface CardDef {
   id: string; name: string; type: string; cost: number; reduction: Record<string, number>;
   levels: { cores: number; bp: number }[]; families?: string[]; symbols?: number | Record<string, number>;
-  effects?: any[]; magic?: MagicSpec | null; brave?: BraveSpec | null; [k: string]: any;
+  effects?: any[]; trashOpp?: boolean; magic?: MagicSpec | null; brave?: BraveSpec | null; [k: string]: any;
 }
 /** One "by timing" variant of a Magic card (`magic.by.MAIN` / `magic.by.FLASH`). */
 interface MagicVariant { effect: string; value: number; actions?: any[]; match?: any; if?: any }

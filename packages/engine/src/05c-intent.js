@@ -197,7 +197,7 @@ async function applyIntent(key, it) {
     }
     case 'summonRemoved': { const t = removedSummonable(p).find(x => x.uid === uid); if (!t) return false; const ok = await summonFromRemoved(p, t); boardView(); return !!ok; }
     case 'act': {
-      const f = fieldOf(p, uid), idx = Number(it.idx); if (!f || !activatable(p, f, 'MAIN').some(x => x.idx === idx)) return false;
+      const f = fieldOf(p, uid) || p.trash.find(x => x.uid === uid), idx = Number(it.idx); if (!f || !activatable(p, f, 'MAIN').some(x => x.idx === idx)) return false;
       await activateFx(p, f, idx); boardView(); return true;
     }
     case 'bcombine': case 'bseparate': { const f = fieldOf(p, uid); return !!f && intentBraveField(p, f, it.type === 'bseparate'); }

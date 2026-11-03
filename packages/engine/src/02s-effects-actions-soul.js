@@ -9,10 +9,10 @@ Object.assign(FX_ACTIONS, {
     txt: a => a.src === 'self' ? 'let this card enter Soul State' : a.src === 'reveal' ? `reveal ${a.n} card${a.n === 1 ? '' : 's'} from the top of your Deck, let a matching card enter Soul State, ${a.rest === 'trash' ? 'discard' : 'return to the bottom of the Deck'} the rest`
       : `let a matching card from your ${a.src === 'handOrTrash' ? 'Hand/Trash' : cap(a.src)} enter Soul State`,
     cands: (c, a) => (a.src === 'hand' ? c.p.hand : a.src === 'trash' ? c.p.trash : a.src === 'handOrTrash' ? c.p.hand.concat(c.p.trash) : a.src === 'trashOrUnder' ? c.p.trash.concat(c.src.under || []) : []).filter(x => fxMatch(CARDS[x.id], a.match)),
-    can: (c, a) => a.src === 'self' ? fieldList(c.p).includes(c.src) : a.src === 'reveal' ? c.p.deck.length > 0 : FX_ACTIONS.SOUL_ENTER.cands(c, a).length > 0,
+    can: (c, a) => a.src === 'self' ? (fieldList(c.p).includes(c.src) || c.p.trash.includes(c.src)) : a.src === 'reveal' ? c.p.deck.length > 0 : FX_ACTIONS.SOUL_ENTER.cands(c, a).length > 0,
     run: async (c, a) => {
       const nm = CARDS[c.src.id].name;
-      if (a.src === 'self') { c.ctx.did = fieldList(c.p).includes(c.src) && toSoulState(c.p, c.src); return; }
+      if (a.src === 'self') { c.ctx.did = (fieldList(c.p).includes(c.src) || c.p.trash.includes(c.src)) && toSoulState(c.p, c.src); return; }
       if (a.src === 'reveal') {
         const top = c.p.deck.splice(0, Math.min(a.n, c.p.deck.length)); c.p.revealed = top;
         log(`${nm}: ${who(c.p)} ${c.p.cpu ? 'reveals' : 'reveal'} ${top.map(x => CARDS[x.id].name).join(', ') || 'nothing'}.`);
@@ -227,6 +227,11 @@ function leaveHook(p, s, why, battle) {
   if (!oppFx || p.life < 2 || (why !== 'destroyed' && why !== 'depleted' && why !== 'returned') || !flagActive(p, 'REMAIN_LIFE', s)) return false;
   lifeTake(p, 1, s); log(`${CARDS[s.id].name} receives a core from ${poss(p)} Life and remains on the Field.`); return true;
 }
+/* v432 TRASH_SAFE_TURN {family}: "during this turn, all your matching family cards in the Trash are unaffected by opposing effects; this can't be prevented by opposing effects" (BS75-028). Read by trashSafe (02k). */
+FX_ACTIONS.TRASH_SAFE_TURN = { chk: a => typeof a.family === 'string' && !!a.family,
+  txt: a => `during this turn, all your "${a.family}" family cards in the Trash are unaffected by opposing effects`,
+  can: () => true,
+  run: async (c, a) => { c.p.trashSafeTurn = G.turnNo; c.p.trashSafeFam = a.family; c.ctx.did = true; log(`${CARDS[c.src.id].name}: ${poss(c.p)} "${a.family}" cards in the Trash are unaffected by opposing effects this turn.`); } };
 /* This part loads after 02k, whose load-time pass wraps every action's cands() with the immunity
    filter (trash-safe cards, opposing cards unaffected by this effect). Run it again so the entries
    defined here get the same wrapper; it is idempotent. */

@@ -277,7 +277,7 @@ function onlineFieldMenu(key, uid) {
     if (att && isSpiritForm(card)) buttons.push({ label: '⚔ Attack', cls: 'primary', value: 'attack' });
     if (main) {
       // v0.110.0 (M8 part 3): activated [Main] effects, Brave combine/separate on the field, and the core moves.
-      for (const { e, idx } of (card.effects || []).map((e, i) => ({ e, idx: i })).filter(x => x.e.trigger === 'ACTIVATE' && x.e.timing && x.e.timing.includes('MAIN'))) {
+      for (const { e, idx } of (card.effects || []).map((e, i) => ({ e, idx: i })).filter(x => x.e.trigger === 'ACTIVATE' && !x.e.zone && x.e.timing && x.e.timing.includes('MAIN'))) {
         buttons.push({ label: `⚡ Activate: ${fxDescribe(e)}`.slice(0, 140), cls: 'primary', value: 'act:' + idx });
       }
       if (card.type === 'Brave' && card.brave && !f.b) buttons.push({ label: '🗡 Combine with a Spirit (Brave)…', cls: 'primary', value: 'bcombine' });

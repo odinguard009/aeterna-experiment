@@ -29,7 +29,7 @@ FX_ACTIONS
 ## packages/engine/src/02c-effects-parse.js (334 lines, ~11.2k tokens)
 canPlaceFree, canPlaceBraveFree, trashSummonLock, summonFree, canPlacePaid, canPlaceBy, summonPaid, tributePay, summonBy, fxDescribe, BURST_WHEN, parseCond, parseActionList, parseBurst, parseEffects
 
-## packages/engine/src/02d-effects-resolve.js (405 lines, ~8.4k tokens)
+## packages/engine/src/02d-effects-resolve.js (406 lines, ~8.4k tokens)
 fxCan, runActions, fireFx, collectFx, fxValid, fireFxMulti, asResolving, flushDerived, resolvePool, soulCoreHolder, soulToTrash, isSealed, soulToLife, lifeTake, soulSource, soulToNexus, cadvFree, advTiming, soulAdventOK, cadvSources, contractAdventTargets, doContractAdvent, manifestTargets, doManifest, humanContractAdvent, humanManifest, cpuAdvents, onceKey, usedThisTurn, markUsed, revealedFx, NB_IDX, actList, effAt, activatable, bpReachedCheck, FX_ACTIVE_BP, activateFx, cpuActivate, reviveKey, reviveTargets, doRevive, cpuRevive
 
 ## packages/engine/src/02e-effects-removed.js (168 lines, ~4.3k tokens) — v0.38 GREEN (Contractor Hermes / Lionheart): Heavy Exhaust, the Removed Zone, exhaust effects, "the opponent can't activate Burst effects".
@@ -50,7 +50,7 @@ highSpeedOK, highSpeedSources, highSpeedSummon, cpuHighSpeed, _nmK
 ## packages/engine/src/02j-effects-accel.js (118 lines, ~2k tokens) — v0.50 KEYWORD EFFECTS part 2 (session D): Accel and Silver Wheel.
 accelList, accelCost, accelMainStep, accelOK, accelSources, accelLabel, useAccel, removedSummonable, summonFromRemoved, immortalCands, immortalOffer, humanAccel, cpuAccelScore, cpuAccelMain, cpuAccelFlash, cpuSilverWheel
 
-## packages/engine/src/02k-effects-immunity.js (29 lines, ~0.5k tokens)
+## packages/engine/src/02k-effects-immunity.js (37 lines, ~0.7k tokens)
 trashSafe, camouBlocks, wrapImmunity
 
 ## packages/engine/src/02l-effects-invoke.js (268 lines, ~6.9k tokens) — v0.68 INVOKE (Standard activations): "{{Invoke|Flash}}" / "{{Invoke|Main}}" + "<cost> ▶ <effect>".
@@ -74,7 +74,7 @@ cardTeams, allHaveShapeOK, allHaveOK, winRiderRun, fxOppMark, blockTaxOK, payAtk
 ## packages/engine/src/02r-effects-actions-deck.js (145 lines, ~5.2k tokens)
 
 
-## packages/engine/src/02s-effects-actions-soul.js (233 lines, ~6.1k tokens)
+## packages/engine/src/02s-effects-actions-soul.js (238 lines, ~6.3k tokens)
 leaveHook
 
 ## packages/engine/src/02t-effects-actions-opp.js (326 lines, ~8.5k tokens)
@@ -131,7 +131,7 @@ modalKind, modalBtns, paintModal, uiInfo, modal, PEEK, endPeek, paintPeek, start
 ## apps/web/src/11-human.js (318 lines, ~7.9k tokens) — HUMAN ACTIONS: the dialogs of the human seat. Board actions are intent records (v0.84.0, F3 = M3 rest):
 humanCan, legalityHTML, FX_KW_START, FX_LINE_STOP, TPL_NAMES, descText, glossText, FX_TERM_RE, familyRowHTML, FX_JUNK, FX_HEAD, fxLevelRuns, effectLines, fxMark, fxTerms, fxMark0, slashBreak, effectTextHTML, cardDetailHTML, residualHTML, ART_HEX, ART_CACHE, artMix, cardArtSVG, cardFacePlaceholder, cardFaceHTML, cardStripHTML, mullCardHTML, openZoom, handButtons, HAND_INTENTS, runHandAction, humanCast, humanAttack, onNext, REB_SIDES, rebirthSideOf, showCardDetail, openHandModal, openFieldModal
 
-## apps/web/src/12-zones.js (98 lines, ~2k tokens) — ZONES, LOG, RULES COVERAGE
+## apps/web/src/12-zones.js (106 lines, ~2.2k tokens) — ZONES, LOG, RULES COVERAGE
 openZoneModal, fieldFxRows, openFieldFx, openLogModal, showRules
 
 ## apps/web/src/13-render.js (379 lines, ~9k tokens) — RENDERING

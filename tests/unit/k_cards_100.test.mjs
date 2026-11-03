@@ -158,3 +158,31 @@ test('K-1082 BS75-067 Sage\'s Sanctuary: deploy lets up to three Mitra/Awakened 
   assert.equal(r.partial, false, JSON.stringify(r)); assert.ok(r.afterDeploy >= 1 && r.afterDeploy <= 3, JSON.stringify(r));
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.exhausted, true); assert.equal(r.soulLeft, 0, JSON.stringify(r)); assert.equal(r.spirits, 1, JSON.stringify(r));
 });
+
+test('K-1083 BS75-028 The RevelationDragon Unnis: activates from the Trash only, enters Soul State, +1 core to a Mitra Nexus', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4; G.fxBy = P.key;
+    const nx = BS.mkInst('BS74-CX03'); nx.cores = 1; P.nexus = [nx]; P.spirits = [];
+    const u = BS.mkInst('BS75-028'), ad = BS.mkInst('BS74-048'); P.trash = [u, ad]; P.reserve.n = 5; P.onceUsed = {};
+    const idx = BS.CARDS['BS75-028'].effects.findIndex(e => e.trigger === 'ACTIVATE');
+    P.trash = [ad]; P.spirits = [u]; const onField = BS.activatable(P, u, 'MAIN').length; P.spirits = []; P.trash = [u, ad];
+    const listed = BS.activatable(P, u, 'MAIN').length;
+    const ok = await BS.activateFx(P, u, idx);
+    return { onField, listed, ok, inTrash: P.trash.includes(u), soul: P.soulState.includes(u), cores: nx.cores, fam: P.trashSafeFam, turn: P.trashSafeTurn === G.turnNo, again: BS.activatable(P, u, 'MAIN').length, partial: BS.CARDS['BS75-028'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.onField, 0, JSON.stringify(r)); assert.equal(r.listed, 1, JSON.stringify(r));
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.inTrash, false); assert.equal(r.soul, true); assert.equal(r.cores, 2, JSON.stringify(r)); assert.equal(r.fam, 'Awakened Dragon'); assert.equal(r.turn, true);
+});
+
+test('K-1084 BS75-028: opposing effects cannot pick its Trash cards (this card always, Awakened Dragon cards for the turn after the activation)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = O.key; G.step = 4; G.fxBy = O.key;
+        const mk = () => { P.trash = [BS.mkInst('BS75-028'), BS.mkInst('BS74-048')]; P.trashSafeTurn = null; P.trashSafeFam = null; };
+    const hit = async (p, q) => { const c = { p, opp: q, src: p.hand[0] || BS.mkInst('BS75-028'), ctx: {} }; const before = q.trash.length; await BS.FX_ACTIONS.REMOVE_OPP_TRASH.run(c, { do: 'REMOVE_OPP_TRASH', all: true }); return before - q.trash.length; };
+    mk(); const noFlag = await hit(O, P);
+    mk(); P.trashSafeTurn = G.turnNo; P.trashSafeFam = 'Awakened Dragon'; const withFlag = await hit(O, P);
+    P.trashSafeTurn = G.turnNo - 1; mk(); P.trashSafeTurn = G.turnNo - 1; P.trashSafeFam = 'Awakened Dragon'; const stale = await hit(O, P);
+    O.trash = [BS.mkInst('BS75-028')]; const own = await hit(P, O);
+    return { noFlag, withFlag, stale, own, fam: BS.CARDS['BS74-048'].families }; })()`);
+  assert.ok(r.fam.includes('Awakened Dragon'), JSON.stringify(r));
+  assert.equal(r.noFlag, 1, JSON.stringify(r)); assert.equal(r.withFlag, 0, JSON.stringify(r)); assert.equal(r.stale, 1, JSON.stringify(r)); assert.equal(r.own, 0, JSON.stringify(r));
+});
