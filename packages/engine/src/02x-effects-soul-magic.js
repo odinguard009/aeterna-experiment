@@ -244,3 +244,10 @@ function muddyDraw(ev) {
 }
 FX_ACTIONS.DRAW_ON_OPP_DEPLETE = { chk: a => Object.keys(a).every(k => ['do', 'if', 'handLe'].includes(k)) && Number.isInteger(a.handLe) && a.handLe >= 1 && a.handLe <= 10, txt: a => `during this turn, when opposing Spirits/Ultimates are depleted, if your Hand is ${a.handLe} or less, draw a card`, can: () => true,
   run: async (c, a) => { c.p.muddyTurn = G.turnNo; c.p.muddyLe = a.handLe; c.ctx.did = true; log(`${CARDS[c.src.id].name}: during this turn, you draw a card when an opposing Spirit is depleted (Hand 6 or less).`); } };
+
+/* v449 ACTIVATE_MIRAGE_FX: "you can activate the Mirage effect written on this Spirit" (Jellime LV2 When Destroyed): runs the card's own zone:'mirage' ACTIVATE effect; the once-per-turn mark is not used. */
+FX_ACTIONS.ACTIVATE_MIRAGE_FX = { chk: a => Object.keys(a).every(k => k === 'do' || k === 'if'), txt: () => 'activate the Mirage effect written on this Spirit', can: () => true,
+  run: async c => {
+    const e = (CARDS[c.src.id].effects || []).find(x => x.trigger === 'ACTIVATE' && x.zone === 'mirage'); c.ctx.did = false; if (!e) return;
+    log(`${CARDS[c.src.id].name}: the Mirage effect is activated.`); await runActions({ p: c.p, opp: c.opp, src: c.src, ctx: {} }, e, 'ACTIVATE'); c.ctx.did = true;
+  } };

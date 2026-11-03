@@ -62,3 +62,46 @@ test('K-1122 BS73-075 Muddy Swing: Flash drops a Spirit to 1 core', async () => 
     return { t: t.cores, partial: BS.CARDS['BS73-075'].partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.t, 1, JSON.stringify(r));
 });
+
+test('K-1123 BS60-014 Jellime: set Mirage Flash discards the decktop; a Blood Crystal card sends 2 cores from an opposing Spirit; once per turn', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${pre}
+    const j = BS.mkInst('BS60-014'); j.mirage = true; P.mirage = j; P.nexus = [];
+    const t = BS.mkInst(sp(c => c.cost >= 3)); t.cores = 4; O.spirits = [t]; O.reserve.n = 0;
+    P.deck = [BS.mkInst('BS60-014'), BS.mkInst(sp(c => !(c.families || []).includes('Blood Crystal')))];
+    const idx = BS.CARDS['BS60-014'].effects.findIndex(e => e.trigger === 'ACTIVATE');
+    const listed = BS.activatable(P, j, 'FLASH').length;
+    const ok = await BS.activateFx(P, j, idx); const after = t.cores; const ok2 = await BS.activateFx(P, j, idx);
+    return { listed, ok, after, ok2, trash: P.trash.length, partial: BS.CARDS['BS60-014'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.listed, 1, JSON.stringify(r)); assert.equal(r.ok, true, JSON.stringify(r));
+  assert.equal(r.after, 2, JSON.stringify(r)); assert.equal(r.ok2, false, JSON.stringify(r)); assert.equal(r.trash, 1, JSON.stringify(r));
+});
+
+test('K-1124 BS60-014 Jellime: not usable from the field; LV2 When Destroyed activates the Mirage effect', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${pre}
+    const j = BS.mkInst('BS60-014'); j.cores = 2; P.spirits = [j];
+    const field = BS.activatable(P, j, 'FLASH').length;
+    const t = BS.mkInst(sp(c => c.cost >= 3)); t.cores = 4; O.spirits = [t]; O.reserve.n = 0; P.deck = [BS.mkInst('BS60-014'), BS.mkInst('BS60-014')];
+    const e = BS.CARDS['BS60-014'].effects.find(x => x.trigger === 'DESTROYED');
+    await BS.FX_ACTIONS.ACTIVATE_MIRAGE_FX.run({ p: P, opp: O, src: j, ctx: {} }, e.actions[0]);
+    return { field, t: t.cores }; })()`);
+  assert.equal(r.field, 0, JSON.stringify(r)); assert.equal(r.t, 2, JSON.stringify(r));
+});
+
+test('K-1125 BS61-008 Onnendama: an effect summon must pay the original cost (CPU without cores cannot summon); When Destroyed gives a counter and destroys a Spirit with 1 core or less', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${pre}
+    P.nexus = []; const on = BS.mkInst('BS61-008'); on.cores = 1; P.spirits = [on];
+    const id = sp(c => c.cost === 3 && !c.effects && !c.token);
+    const h = BS.mkInst(id); P.hand = [h]; P.reserve.n = 0; P.void = 0;
+    const no = await BS.summonFree(P, h); const onField1 = BS.fieldList(P).includes(h);
+    const h2 = BS.mkInst(id); P.hand = [h2]; P.reserve.n = 5; const yes = await BS.summonFree(P, h2); const res = P.reserve.n;
+    const t = BS.mkInst(sp(c => c.cost >= 2)); t.cores = 1; const u = BS.mkInst(sp(c => c.cost >= 2)); u.cores = 3; O.spirits = [t, u]; P.void = 3; P.count = 0;
+    const evs = BS.CARDS['BS61-008'].effects.filter(e => e.trigger === 'DESTROYED');
+    for (const e of evs) for (const a of e.actions) await BS.FX_ACTIONS[a.do].run({ p: P, opp: O, src: on, ctx: {} }, a);
+    return { no, onField1, yes, res, count: P.count, tAlive: O.spirits.includes(t), uAlive: O.spirits.includes(u), partial: BS.CARDS['BS61-008'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.no, false, JSON.stringify(r)); assert.equal(r.onField1, false, JSON.stringify(r));
+  assert.equal(r.yes, true, JSON.stringify(r)); assert.equal(r.res, 1, JSON.stringify(r)); assert.equal(r.count, 1, JSON.stringify(r));
+  assert.equal(r.tAlive, false, JSON.stringify(r)); assert.equal(r.uAlive, true, JSON.stringify(r));
+});

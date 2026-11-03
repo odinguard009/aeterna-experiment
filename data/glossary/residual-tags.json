@@ -32915,15 +32915,6 @@
   "M_OPTIONAL",
   "T_SUMMONED"
  ],
- "BS60-014": [
-  "A_OPP_CORES_TO_RESERVE",
-  "C_LEVEL",
-  "K_MIRAGE",
-  "K_ULTIMATE",
-  "M_OPTIONAL",
-  "T_DESTROYED",
-  "T_MIRAGE_LIFE"
- ],
  "BS60-015": [
   "A_MILL",
   "A_SUMMON_FREE",
@@ -33805,14 +33796,6 @@
   "M_UP_TO",
   "S_UNAFFECTED",
   "T_ADVENT"
- ],
- "BS61-008": [
-  "A_COUNTER",
-  "C_LEVEL",
-  "K_BURST",
-  "M_OPTIONAL",
-  "M_THEN",
-  "T_DESTROYED"
  ],
  "BS61-009": [
   "K_MIRAGE",

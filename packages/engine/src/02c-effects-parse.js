@@ -5,8 +5,12 @@ function trashSummonLock(p, inst) {      // v422 OPP_TRASH_SUMMON_LOCK (Shimavaj
   const foe = G.p[other(p.key)];
   if (fieldList(foe).some(src => (CARDS[src.id].effects || []).some(e => e.trigger === 'STATIC' && e.flag === 'OPP_TRASH_SUMMON_LOCK' && (!e.lv || e.lv.includes(lvNo(src))) && fxIf(foe, p, e.if, { selfInst: src })))) { foe.fxLockTurn = G.turnNo; log(`${CARDS[inst.id].name}: the effects of ${poss(p)} Spirits can't activate during this turn.`); }
 }
+/* v450 STATIC NO_FREE_SUMMON (Onnendama BS61-008): a Spirit summoned by an effect other than a Burst/Magic resolving from the Burst zone must have its original cost paid (printed cost, no reduction), else it is not summoned. */
+const freeSummonLocked = (p, inst) => !!G && CARDS[inst.id].type === 'Spirit' && p.limbo !== inst && [p, G.p[other(p.key)]].some(side => fieldList(side).some(src => (CARDS[src.id].effects || []).some(e => e.trigger === 'STATIC' && e.flag === 'NO_FREE_SUMMON' && (!e.lv || e.lv.includes(lvNo(src))))));
 async function summonFree(p, inst, opts) {           // summon/deploy without paying the cost (Lv1 cores still come from your cores)
-  const card = CARDS[inst.id]; trashSummonLock(p, inst);
+  const card = CARDS[inst.id];
+  if (freeSummonLocked(p, inst)) { log(`${card.name}: its original cost must be paid to be summoned.`); return summonPaid(p, inst, { ...opts, costN: card.cost }); }
+  trashSummonLock(p, inst);
   removeFrom(p.hand, inst); removeFrom(p.soulState, inst); removeFrom(p.trash, inst); removeFrom(p.standby, inst); inst.inSoulState = false; if (p.limbo === inst) p.limbo = null;       // a Burst card that is summoned leaves the resolving zone
   inst.viaFC = !!(opts && opts.formChange); inst.viaHS = false; inst.legacyN = 0; inst.viaFx = true; if (opts && opts.viaShaman) inst.viaShamanTurn = G.turnNo;      // v201 Shamanism summon mark inst.soulPaid = false; inst.soulLost = false; inst.mirage = false; inst.cores = 0; inst.soul = false; inst.exhausted = false; inst.heavy = false; inst.noAB = false; inst.summonedTurn = G.turnNo; inst.bpMod = 0;
   if (card.type === 'Spirit' || card.type === 'Brave' || card.type === 'Ultimate') {
@@ -305,7 +309,8 @@ function parseEffects(arr) {
         if (e.bySrc != null) { const b = e.bySrc; if (!b || typeof b !== 'object' || (b.type != null && !['Spirit', 'Magic'].includes(b.type)) || (b.family != null && !(Array.isArray(b.family) && b.family.length && b.family.length <= 4 && b.family.every(x => typeof x === 'string'))) || (b.type == null && b.family == null)) return { error: '"bySrc" must look like {"type":"Spirit","family":["X"]}' }; o.bySrc = { type: b.type, family: b.family }; }
       }
       if (e.zone === 'hand' && (e.trigger === 'ALLY_BLOCKED' || e.trigger === 'ALLY_SUMMONED' || e.trigger === 'SILVER_WHEEL' || e.trigger === 'LIFE_GUARD')) o.zone = 'hand';
-      if (e.zone === 'trash' && (e.trigger === 'LIFE_GUARD' || e.trigger === 'ACTIVATE')) o.zone = 'trash';      // v432 ACTIVATE from the Trash (BS75-028)
+      if (e.zone === 'trash' && (e.trigger === 'LIFE_GUARD' || e.trigger === 'ACTIVATE')) o.zone = 'trash'; if (e.zone === 'mirage' && e.trigger === 'ACTIVATE') o.zone = 'mirage';      // v449 Mirage Flash (BS60-014)
+           // v432 ACTIVATE from the Trash (BS75-028)
       if (e.zone === 'trash' && (e.trigger === 'ALLY_DIED' || e.trigger === 'EXHAUSTED_FX' || e.trigger === 'NEXUS_DOWN')) o.zone = 'trash';      // v155 the effect works from the Trash ("you can return this card from the Trash")
       if (e.trigger === 'BP_REACHED') { if (!(Number.isInteger(e.bpGe) && e.bpGe >= 1000 && e.bpGe <= 100000)) return { error: 'BP_REACHED needs bpGe (1000-100000)' }; o.bpGe = e.bpGe; if (e.self === true) o.self = true; if (e.match != null) { if (!hasMatch(e.match)) return { error: 'BP_REACHED "match" must look like {"team":"GAIM"}' }; o.match = e.match; } }      // v217
       if (e.heavyOnly === true && e.trigger === 'EXHAUSTED_FX') o.heavyOnly = true;      // v155 "heavily exhausted"

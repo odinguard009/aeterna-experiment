@@ -43,8 +43,8 @@ Object.assign(FX_ACTIONS, {
       checkDepletion(c.opp);
       io.view({ type: 'board' });
     } },
-  MILL: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && (a.family == null || typeof a.family === 'string') && (a.counter == null || (Number.isInteger(a.counter) && a.counter >= 1 && a.counter <= 3)) && (a.draw == null || (Number.isInteger(a.draw) && a.draw >= 1 && a.draw <= 3)),
-    txt: a => `send ${a.n} cards from your Deck to the Trash${a.family ? ', and if a "' + a.family + '" family card is among them' + (a.counter ? ' counter +' + a.counter : '') + (a.draw ? ' and draw ' + a.draw : '') : ''}`,
+  MILL: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && (a.family == null || typeof a.family === 'string') && (a.counter == null || (Number.isInteger(a.counter) && a.counter >= 1 && a.counter <= 3)) && (a.draw == null || (Number.isInteger(a.draw) && a.draw >= 1 && a.draw <= 3)) && (a.cores == null || (Number.isInteger(a.cores) && a.cores >= 1 && a.cores <= 5)),
+    txt: a => `send ${a.n} cards from your Deck to the Trash${a.family ? ', and if a "' + a.family + '" family card is among them' + (a.counter ? ' counter +' + a.counter : '') + (a.draw ? ' and draw ' + a.draw : '') + (a.cores ? ' send ' + a.cores + ' cores from an opposing Spirit/Ultimate to the Reserve' : '') : ''}`,
     can: c => c.p.deck.length > 0 && !deckDiscardLocked(),
     run: async (c, a) => {
       if (deckDiscardLocked()) { c.ctx.did = false; log(`${_pn(c)}: cards can't be discarded from a Deck.`); return; }
@@ -55,6 +55,7 @@ Object.assign(FX_ACTIONS, {
       await sentToTrashFx(c, top, 'deck');               // v0.47 Hades Disaster (an Infernal Lord effect)
       if (a.family && top.some(x => (CARDS[x.id].families || []).includes(a.family))) {
         if (a.counter) await FX_ACTIONS.COUNTER.run(c, { n: a.counter });
+        if (a.cores) await FX_ACTIONS.OPP_CORES_TO_RESERVE.run(c, { targets: 1, each: a.cores });      // v449 Jellime
         if (a.draw) { const k = draw(c.p, a.draw); log(`${_pn(c)}: ${who(c.p)} ${c.p.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'}.`); handUp(c.p, k); }
       }
     } },

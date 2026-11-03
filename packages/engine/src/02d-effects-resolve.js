@@ -326,11 +326,12 @@ function effAt(f, idx) { const x = actList(f).find(y => y.idx === idx); return x
 function activatable(p, f, timing) {
   const card = CARDS[f.id], out = [];
   const inTrash = !!G && p.trash.includes(f);      // v432 zone:'trash' ACTIVATE (BS75-028): works from the Trash only
-  if (!G || (!inTrash && !fieldList(p).includes(f))) return out;
-  const opp = G.p[other(p.key)], L = inTrash ? 0 : lvNo(f);
+  const inMir = !!G && p.mirage === f && !!f.mirage;      // v449 zone:'mirage' ACTIVATE: works only while this card is your set Mirage
+  if (!G || (!inTrash && !inMir && !fieldList(p).includes(f))) return out;
+  const opp = G.p[other(p.key)], L = inTrash || inMir ? 0 : lvNo(f);
   if (!inTrash && opp.nexusLockLe != null && card.type === 'Nexus' && card.cost <= opp.nexusLockLe) return out;      // NEXUS_LOCK
   actList(f).forEach(({ e, idx }) => {
-    if (e.trigger !== 'ACTIVATE' || (e.zone === 'trash') !== inTrash) return;
+    if (e.trigger !== 'ACTIVATE' || (e.zone === 'trash') !== inTrash || (e.zone === 'mirage') !== inMir) return;
     if (timing && !e.timing.includes(timing)) return;
     if (e.lv && !e.nexusBrave && !e.lv.includes(L)) return;
     if (e.oc && !ocActive(f)) return;
