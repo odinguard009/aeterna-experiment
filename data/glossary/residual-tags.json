@@ -45749,17 +45749,6 @@
   "T_ALLY_ATTACKS",
   "T_ATTACKS"
  ],
- "BS73-052": [
-  "A_LIFE_TO_RESERVE",
-  "A_RETURN_TRASH",
-  "A_TRASH_TO_RESERVE",
-  "A_VOID",
-  "C_LEVEL",
-  "C_LIFE",
-  "C_ONCE",
-  "M_REPLACEMENT",
-  "T_ATTACKS"
- ],
  "BS73-053": [
   "A_REVEAL_ADD",
   "A_REVEAL_DECK",
@@ -46041,17 +46030,6 @@
   "M_OPTIONAL",
   "M_UP_TO",
   "T_SUMMONED"
- ],
- "BS73-AX02": [
-  "A_BP_MINUS",
-  "A_REFRESH",
-  "A_SUMMON_FREE",
-  "C_CONTROL",
-  "C_LEVEL",
-  "C_ONCE",
-  "K_GRANDWALKER",
-  "M_OPTIONAL",
-  "S_CANT_PREVENT"
  ],
  "BS73-AX03": [
   "A_SYMBOL",

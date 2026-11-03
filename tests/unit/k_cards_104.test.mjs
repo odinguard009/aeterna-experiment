@@ -183,3 +183,38 @@ test('K-1147 BS73-042 Makala: as a set Mirage, the opponent can not end the Atta
     G.attacker = null; return { none, yes, own, no, partial: BS.CARDS['BS73-042'].partial, bc: BS.CARDS['BS73-042'].effects.some(e => e.flag === 'BOUNCE_COST_PLUS') }; })()`);
   assert.deepEqual(r, { none: false, yes: true, own: false, no: false, partial: false, bc: true });
 });
+
+test('K-1148 BS73-052 Perid: becomes Cost 5 only in the Attack Step while the opposing Life is three or less', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${pre}
+    const c = BS.CARDS['BS73-052']; G.step = 5; O.life = 5; const a = costAltActive(P, c); O.life = 3; const b = costAltActive(P, c); G.step = 4; const d = costAltActive(P, c);
+    return { a, b, d, partial: c.partial }; })()`);
+  assert.deepEqual(r, { a: false, b: true, d: false, partial: false });
+});
+
+test('K-1149 BS73-052 Perid: When Attacks puts a Void core to Life, or with seven counters sends an opposing Life to the Reserve', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${pre}
+    const s = BS.mkInst('BS73-052'); s.cores = 3; P.spirits = [s]; P.void = 3; P.life = 3; O.life = 4; P.count = 2;
+    await BS.fireFx(P, 'ATTACKS', s, {}); const a = { pl: P.life, ol: O.life };
+    P.count = 7; P.onceUsed = {}; await BS.fireFx(P, 'ATTACKS', s, {}); return { a, pl: P.life, ol: O.life }; })()`);
+  assert.deepEqual(r.a, { pl: 4, ol: 4 }, JSON.stringify(r)); assert.equal(r.pl, 4, JSON.stringify(r)); assert.equal(r.ol, 3, JSON.stringify(r));
+});
+
+test('K-1150 BS73-052 Perid: Lv2 When Attacks returns every Yellow Prismwing Magic and Yellow Grandstone Nexus from the Trash', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${pre}
+    const s = BS.mkInst('BS73-052'); s.cores = 3; P.spirits = [s]; P.void = 0; P.hand = [];
+    P.trash = [BS.mkInst('BS73-080'), BS.mkInst('BS73-TX04'), BS.mkInst('BS73-045')];
+    await BS.fireFx(P, 'ATTACKS', s, {}); return { hand: P.hand.length, trash: P.trash.length }; })()`);
+  assert.deepEqual(r, { hand: 2, trash: 1 });
+});
+
+test('K-1151 BS73-AX02 Dragonic-Arthur: Cost 5 at five counters; Flash -20000 BP bottoms its target even if unaffected', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${pre}
+    const m = BS.mkInst('BS73-AX02'); P.hand = [m]; P.count = 4; const a = costAltActive(P, BS.CARDS['BS73-AX02']); P.count = 5; const b = costAltActive(P, BS.CARDS['BS73-AX02']);
+    const t = BS.mkInst(sp(c => c.levels[0].bp > 0 && c.levels[0].bp <= 20000)); t.cores = 1; O.spirits = [t]; const d0 = O.deck.length;
+    await run(m, 'BS73-AX02'); return { a, b, opp: O.spirits.length, deck: O.deck.length - d0, partial: BS.CARDS['BS73-AX02'].partial }; })()`);
+  assert.deepEqual(r, { a: false, b: true, opp: 0, deck: 1, partial: false });
+});

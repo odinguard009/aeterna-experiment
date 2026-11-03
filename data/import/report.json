@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 6163,
+  "cards": 6161,
   "per_saga": {
    "1": 458,
    "2": 251,
@@ -17,22 +17,22 @@
    "13": 385,
    "14": 421,
    "15": 348,
-   "16": 292,
+   "16": 290,
    "17": 105
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2543,
+  "skipped_curated": 2545,
   "nexus_levels_added": 652,
   "nexus_levels_missing": 40,
   "merged": 104,
   "image_problems": 386,
   "brave_unparsed": 169,
   "ut_lines_added": 106,
-  "odd_reduction": 782,
+  "odd_reduction": 780,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "number_conflicts": 3,
+  "number_conflicts": 2,
   "without_image": 384
  },
  "tokens": [
@@ -1806,9 +1806,11 @@
   "BS73-047",
   "BS73-049",
   "BS73-050",
+  "BS73-052",
   "BS73-066",
   "BS73-075",
   "BS73-CX02",
+  "BS73-AX02",
   "BS74-002",
   "BS74-004",
   "BS74-005",
@@ -9895,12 +9897,6 @@
    ]
   },
   {
-   "id": "BS73-052",
-   "dropped": [
-    "god"
-   ]
-  },
-  {
    "id": "BS73-056",
    "dropped": [
     "god"
@@ -9968,12 +9964,6 @@
   },
   {
    "id": "BS73-X06",
-   "dropped": [
-    "god"
-   ]
-  },
-  {
-   "id": "BS73-AX02",
    "dropped": [
     "god"
    ]
@@ -10312,14 +10302,6 @@
     "The WarParamountRoaringGeneral Mudou"
    ],
    "kept": "The FungalTreeForgeDeity BigBang-Golem"
-  },
-  {
-   "id": "BS73-AX02",
-   "names": [
-    "The PrismKnightEmperor Dragonic-Arthur",
-    "The UltimateNetherDragon Ultimate-Mugendragon"
-   ],
-   "kept": "The PrismKnightEmperor Dragonic-Arthur"
   },
   {
    "id": "BS73-AX03",

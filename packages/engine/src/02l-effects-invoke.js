@@ -252,7 +252,7 @@ function cpuInvokeOK(p, f, e, timing) {
       log(`${_nm(c)}: every opposing Spirit gets -${a.n} BP.`);
     } else await mRun(c, a.nPer || a.nLegacy || a.perTrash ? { ...a, n: a.n + (a.nPer ? a.nPer.n * c.p.spirits.filter(x => cardTeams(CARDS[x.id]).includes(a.nPer.team)).length : 0) + (a.nLegacy ? a.nLegacy * (c.src.legacyN || 0) : 0) + (a.perTrash ? a.perTrash.n * c.p.trash.filter(t => fxMatch(CARDS[t.id], a.perTrash.match)).length : 0) } : a);
     if (!a.zeroDestroy && !a.zeroBottom) return;
-    for (const t of c.opp.spirits.slice()) if (before.has(t) && (t.bpMod || 0) < before.get(t) && bpOf(t) === 0 && !fxImmune(c.opp, t, c)) { if (a.zeroBottom) bounceCard(c.opp, t, 'deckBottom'); else { removeSpirit(c.opp, t, 'destroyed', true); if (a.drawN) await FX_ACTIONS.DRAW.run(c, { n: a.drawN }); } checkDepletion(c.opp); }      // v180 zeroBottom, v455 drawN
+    for (const t of c.opp.spirits.slice()) if (before.has(t) && (t.bpMod || 0) < before.get(t) && bpOf(t) === 0 && (a.ignoreImmune === true || !fxImmune(c.opp, t, c))) { if (a.zeroBottom) bounceCard(c.opp, t, 'deckBottom'); else { removeSpirit(c.opp, t, 'destroyed', true); if (a.drawN) await FX_ACTIONS.DRAW.run(c, { n: a.drawN }); } checkDepletion(c.opp); }      // v180 zeroBottom, v455 drawN
   };
 })();
 /* v0.196 "Target a "X" family Spirit you control. During this turn, it can't be blocked." (turn number mark read by the block list in 08-battle) */
