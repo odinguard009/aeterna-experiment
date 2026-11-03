@@ -80,3 +80,12 @@ test('K-1077 BS75-030 Pachhattar: Attacks lets a pre-advent family card enter So
     return { inSoul, gone, p30: !BS.CARDS['BS75-030'].partial, p42: !BS.CARDS['BS74-042'].partial, p48: !BS.CARDS['BS74-048'].partial }; })()`);
   assert.deepEqual(r, { inSoul: true, gone: true, p30: true, p42: true, p48: true }, JSON.stringify(r));
 });
+
+test('K-1078 BS74-040 Revelation Dragon: when an Awakened Dragon ally is lost, up to three cores go from the Trash to matching cards', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = O.key; G.step = 2; G.fxBy = null;
+    const a = BS.mkInst('BS74-040'); a.cores = 1; const b = BS.mkInst('BS74-040'); b.cores = 1; P.spirits = [a, b]; O.spirits = []; P.trashCores.n = 8; const before = P.trashCores.n, tot = a.cores + b.cores + P.reserve.n;
+    await BS.fireFx(P, 'ALLY_LOST', null, { subject: b, depl: false, byOpp: true });
+    return { moved: before - P.trashCores.n, gain: a.cores + b.cores + P.reserve.n - tot, partial: BS.CARDS['BS74-040'].partial, ok: !BS.CARDS['BS74-040'].partial }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.moved, 6, JSON.stringify(r)); assert.equal(r.gain, 6, JSON.stringify(r));   // each copy on the field reacts once, up to 3 cores each
+});
