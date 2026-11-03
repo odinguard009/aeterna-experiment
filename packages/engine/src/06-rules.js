@@ -298,7 +298,9 @@ function handCostSet(p, card) {
   return null;
 }
 function summonTaxOf(p, card) {                  // v180 STATIC SUMMON_TAX on the opposing field: extra cost to summon a matching card
-  if (!G || card.type !== 'Spirit') return 0; const opp = G.p[other(p.key)]; let n = 0;
+  if (!G || !['Spirit', 'Nexus', 'Ultimate'].includes(card.type)) return 0; const opp = G.p[other(p.key)]; let n = 0;
+  for (const t of p.turnTax || []) if (t.turn === G.turnNo && fxMatch(card, t.match)) n += t.n;      // v400 TURN_SUMMON_TAX ("during this turn, increase the LV cost of every ... by +N")
+  if (card.type !== 'Spirit') return n;
   for (const src of fieldList(opp)) { const L = lvNo(src);
     for (const { e } of fxEntries(src)) if (e.trigger === 'STATIC' && e.flag === 'SUMMON_TAX' && !(e.lv && !e.lv.includes(L)) && fxMatch(card, e.match) && fxIf(opp, p, e.if, { selfInst: src })) n += e.n; }
   return n;

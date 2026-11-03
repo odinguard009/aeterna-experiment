@@ -568,3 +568,11 @@ FX_ACTIONS.LIFE_SYMBOL_SHIELD = { chk: a => Number.isInteger(a.symbolsGe) && a.s
 /* v399 CANT_AB_UNPREVENTABLE: "during this turn, all your Can't Attack/Block effects can't be prevented by opposing effects" (BS75-X10 Unleash): CANT_ATTACK_BLOCK then also targets Spirits that are unaffected by opposing effects (flag `p.cantAbFree` = turn number) */
 FX_ACTIONS.CANT_AB_UNPREVENTABLE = { chk: () => true, txt: () => "during this turn, your Can't Attack/Block effects can't be prevented by opposing effects", can: () => true,
   run: async c => { c.p.cantAbFree = G.turnNo; c.ctx.did = true; log(`${CARDS[c.src.id].name}: ${poss(c.p)} Can't Attack/Block effects can't be prevented this turn.`); } };
+
+/* v400 TURN_SUMMON_TAX {n 1-5, match?}: "During this turn, increase the LV cost of every opposing <match> Spirit/Ultimate/Nexus by +N." Stored as opp.turnTax [{turn, n, match}], read by summonTaxOf (effCost). */
+FX_ACTIONS.TURN_SUMMON_TAX = {
+  chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && (a.match == null || hasMatch(a.match)) && Object.keys(a).every(k => ['do', 'if', 'n', 'match'].includes(k)),
+  txt: a => `during this turn, increase the cost of every opposing ${a.match ? 'matching ' : ''}card by +${a.n}`,
+  can: () => true,
+  run: async (c, a) => { c.opp.turnTax = (c.opp.turnTax || []).filter(t => t.turn === G.turnNo); c.opp.turnTax.push({ turn: G.turnNo, n: a.n, match: a.match || null }); c.ctx.did = true;
+    log(`${CARDS[c.src.id].name}: the cost of opposing cards gets +${a.n} during this turn.`); } };

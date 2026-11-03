@@ -38,7 +38,7 @@ function fxEntries(f) {
 /* v189 "When your Nexuses, or your Spirits that are originally Nexuses are destroyed": only queue the event while a card on the Field hears it */
 const nexusDeathHears = p => !!G && !!G.evQ && fieldList(p).some(f => fxEntries(f).some(({ e }) => e.trigger === 'ALLY_NEXUS_DESTROYED'));
 function fxMatch(card, m, inst) {
-  if (!m || (!m.name && !m.notName && !m.notColor && !m.bpBoosted && !m.family && !m.familyAll && !m.keyword && !m.keywordAny && !m.notKeyword && !m.notKeyword && !m.noText && !m.hasTrigger && m.costGe == null && m.costLe == null && !m.costIn && !m.type && !m.color && !m.noUlt && !m.team && m.symbolsGe == null && m.redColorsGe == null && !m.hasBrave && !m.noBrave && !m.hasBurst && !m.noBurst && m.bpLe == null && m.bpGe == null && m.exhausted == null && m.hasSoul == null && m.coresGe == null && m.coresLe == null && !m.originalNexus)) return true;      // v214 originalNexus must not be treated as an empty match
+  if (!m || (!m.name && !m.notName && !m.notColor && !m.bpBoosted && !m.family && !m.familyAll && !m.keyword && !m.keywordAny && !m.notKeyword && !m.notKeyword && !m.noText && !m.hasTrigger && m.costGe == null && m.costLe == null && !m.costIn && !m.type && !m.color && !m.noUlt && !m.team && m.symbolsGe == null && m.redColorsGe == null && m.colorsGe == null && !m.hasBrave && !m.noBrave && !m.hasBurst && !m.noBurst && m.bpLe == null && m.bpGe == null && m.exhausted == null && m.hasSoul == null && m.coresGe == null && m.coresLe == null && !m.originalNexus)) return true;      // v214 originalNexus must not be treated as an empty match
   if (m.notName && m.notName.some(n => card.name.toLowerCase().includes(n.toLowerCase()))) return false;      // v171 "besides <name>"
   if (m.bpBoosted && !(inst && lvIndex(inst) >= 0 && bpOf(inst) > (card.levels[lvIndex(inst)].bp || 0))) return false;      // v171 "under BP+ effects": current BP above the printed level BP
   if (m.noUlt && card.type === 'Ultimate') return false;      // v0.59: the text says "Spirit"; texts that include Ultimates print "Spirit/Ultimate"
@@ -63,6 +63,7 @@ function fxMatch(card, m, inst) {
   if (m.hasBurst && !(card.burst || /\{\{Burst\|/.test(card.desc || card.text || ''))) return false;      // v355 "card with a Burst effect": the printed {{Burst|...}} head
   if (m.noBrave && inst && inst.brave) return false;      // v380 "non-braved Spirit": no Brave combined
   if (m.hasBrave && !(inst && inst.brave)) return false;      // v350 "Brave Spirit": a Spirit with a Brave combined
+  if (m.colorsGe != null && !((card.colors || [card.symbol]).length >= m.colorsGe)) return false;      // v400 "six-color" (N or more colours)
   if (m.redColorsGe != null && !(Object.keys(card.reduction || {}).length >= m.redColorsGe)) return false;      // v343 "cost reduction symbols of two or more different colors"
   if (m.symbolsGe != null && !((card.symbols || 0) >= m.symbolsGe)) return false;      // v0.78 "your Spirit with two or more symbols"
   if (m.familyAll && !m.familyAll.every(n => (card.families || []).includes(n))) return false;      // v0.88 S1 '"RYUKI" & "Kamen" family' (every listed family)

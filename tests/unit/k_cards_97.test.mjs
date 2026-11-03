@@ -93,3 +93,18 @@ test('K-1007 BS72-022 (Nyx): Manifest card; summoned +1 Nyx core, discards 2 Rem
     return [!c.partial, !!c.manifest, nx.cores, O.removed.length, O.trash.length - t0, P.hand.length - h0]; })()`);
   assert.deepEqual(r, [true, true, 2, 1, 2, 1]);
 });
+
+test('K-1008 BS72-021 (Nyx): Mani card; TURN_SUMMON_TAX raises the opposing six-color Cost 4 or less cost', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true;
+    const nx = BS.mkInst('BS72-CX02'); nx.cores = 2; P.nexus = [nx];
+    const six = Object.keys(BS.CARDS).find(k => { const x = BS.CARDS[k]; return x.type === 'Spirit' && x.cost <= 4 && x.cost >= 1 && (x.colors || []).length >= 6; });
+    const two = Object.keys(BS.CARDS).find(k => { const x = BS.CARDS[k]; return x.type === 'Spirit' && x.cost <= 4 && x.cost >= 1 && (x.colors || [x.symbol]).length < 6; });
+    const v = BS.mkInst('BS72-021'); v.cores = 3; P.spirits = [v];
+    const src = { p: P, opp: O, src: v, ctx: {} };
+    const b6 = six ? BS.effCost(O, BS.CARDS[six]) : null, b2 = BS.effCost(O, BS.CARDS[two]);
+    await BS.FX_ACTIONS.TURN_SUMMON_TAX.run(src, { n: 3, match: { colorsGe: 6, costLe: 4 } });
+    const c = BS.CARDS['BS72-021'];
+    return [!c.partial, !!c.manifest, six ? BS.effCost(O, BS.CARDS[six]) - b6 : 3, BS.effCost(O, BS.CARDS[two]) - b2]; })()`);
+  assert.deepEqual(r, [true, true, 3, 0]);
+});
