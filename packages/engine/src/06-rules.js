@@ -316,13 +316,15 @@ function effCost(p, card) {                       // cost reduction is mandatory
   const syms = fieldSymbols(p, card.soulReduce, true);
   if (trashSymsOn(p, card)) for (const t of p.trash) for (const x of symbolAttrs(CARDS[t.id])) syms.push(x);   // v0.47 Lightning Tempest: "you can also use symbols from your Trash to reduce the cost; v192 trashSymbolsIf {attacksGe} ("if you've made N or more attacks this turn")
   for (const x of summonSymbols(p, card)) syms.push(x);
+  symFixedOnSummon(p, card, syms);
   const extra = extraReduction(p, card), lp = legacyPlan(p, card, syms, extra);
   const r = lp ? lp.total : reductionOf(card, syms, extra);
   const hc = handCostSet(p, card), base = hc == null ? card.cost : hc;
   const per = card.costPer ? Math.min(card.costPer.max, card.costPer.n * (card.costPer.oppCantAB ? G.p[other(p.key)].spirits.filter(s => s.noAB) : p.spirits.filter(s => (CARDS[s.id].families || []).includes(card.costPer.family))).length) : 0;      // v0.196 costPer
   const redTotal = Object.values(card.reduction || {}).reduce((a, b) => a + b, 0);
   const redIf = card.reduceIf && G && fxIf(p, G.p[other(p.key)], card.reduceIf, {}) ? (card.reducePerOppReserve ? Math.min(redTotal, G.p[other(p.key)].reserve.n + (G.p[other(p.key)].reserve.soul ? 1 : 0)) : redTotal) : 0;      // v208 "When summoning this card, if <cond>, fulfill all / one per opposing Reserve core of its reduction symbols"
-  return Math.max(0, (costAltActive(p, card) ? Math.min(base, card.costAlt.cost) : base) - (redIf ? Math.max(r, redIf) : r) - per - summonDiscountOf(p, card)) + summonTaxOf(p, card);
+  const redAll = card.reduceAllSlotsGe != null && redTotal + extra.length >= card.reduceAllSlotsGe ? redTotal + extra.length : 0;      // v423 "if this card has N or more reduction symbols, fulfill all of them"
+  return Math.max(0, (costAltActive(p, card) ? Math.min(base, card.costAlt.cost) : base) - Math.max(r, redIf, redAll) - per - summonDiscountOf(p, card)) + summonTaxOf(p, card);
 }
 function legacyPay(p, inst) {                     // v0.69: banish the Legacy cards (call once, before the cost is paid: the state must still be the one effCost saw)
   const lp = legacyPlan(p, CARDS[inst.id]); inst.legacyN = lp ? lp.n : 0; inst.legacyCards = lp ? lp.cards.map(t => t.id) : [];      // v193: the banished ids ("EX Symbols of <family> cards banished via this Legacy")

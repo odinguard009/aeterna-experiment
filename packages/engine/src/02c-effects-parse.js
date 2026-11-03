@@ -1,7 +1,12 @@
 const canPlaceFree = (p, inst) => { const k = CARDS[inst.id]; return (k.type === 'Spirit' || k.type === 'Ultimate' || k.type === 'Nexus') && summonOK(p, k) && minCores(k) <= coresAvailable(p); };
 const canPlaceBraveFree = (p, inst) => CARDS[inst.id].type === 'Brave' && minCores(CARDS[inst.id]) <= coresAvailable(p);        // v0.37: an effect may summon a Brave card as a Spirit (Lv1), without paying its cost
+function trashSummonLock(p, inst) {      // v422 OPP_TRASH_SUMMON_LOCK (Shimavajdra): the opponent summons from the Trash -> this turn the effects of their Spirits can't activate
+  if (!G || !p.trash.includes(inst)) return;
+  const foe = G.p[other(p.key)];
+  if (fieldList(foe).some(src => (CARDS[src.id].effects || []).some(e => e.trigger === 'STATIC' && e.flag === 'OPP_TRASH_SUMMON_LOCK' && (!e.lv || e.lv.includes(lvNo(src))) && fxIf(foe, p, e.if, { selfInst: src })))) { foe.fxLockTurn = G.turnNo; log(`${CARDS[inst.id].name}: the effects of ${poss(p)} Spirits can't activate during this turn.`); }
+}
 async function summonFree(p, inst, opts) {           // summon/deploy without paying the cost (Lv1 cores still come from your cores)
-  const card = CARDS[inst.id];
+  const card = CARDS[inst.id]; trashSummonLock(p, inst);
   removeFrom(p.hand, inst); removeFrom(p.soulState, inst); removeFrom(p.trash, inst); removeFrom(p.standby, inst); inst.inSoulState = false; if (p.limbo === inst) p.limbo = null;       // a Burst card that is summoned leaves the resolving zone
   inst.viaFC = !!(opts && opts.formChange); inst.viaHS = false; inst.legacyN = 0; inst.viaFx = true; if (opts && opts.viaShaman) inst.viaShamanTurn = G.turnNo;      // v201 Shamanism summon mark inst.soulPaid = false; inst.soulLost = false; inst.mirage = false; inst.cores = 0; inst.soul = false; inst.exhausted = false; inst.heavy = false; inst.noAB = false; inst.summonedTurn = G.turnNo; inst.bpMod = 0;
   if (card.type === 'Spirit' || card.type === 'Brave' || card.type === 'Ultimate') {
@@ -29,7 +34,7 @@ async function summonPaid(p, inst, opts) {                  // official: "summon
   if (opts && opts.viaShaman) { inst.viaShamanTurn = G.turnNo; if (card.shamanReduction) c = Math.max(0, c - (Object.values(card.reduction || {}).reduce((a, b) => a + b, 0))); }      // v201 Shamanism: fulfill all reduction symbols
   let plan = null;
   if (!p.cpu && c > 0 && reserveTotal(p) < c + L) { plan = await askPayment(card, c, L); if (!plan) return false; }
-  if (p.limbo === inst) p.limbo = null;
+  if (p.limbo === inst) p.limbo = null; trashSummonLock(p, inst);
   summon(p, inst, plan, opts); if (!(opts && opts.noTribute)) await tributePay(p, inst); io.view({ type: 'board' }); await wait(350);
   if (!G.over && fieldList(p).includes(inst)) await fireFx(p, 'SUMMONED', inst, opts && opts.noFx ? { noSelfFx: true } : undefined);
   return true;
@@ -52,12 +57,12 @@ function parseCond(c) {
   if (typeof c !== 'object' || c === null) return { error: 'effect "if" must be an object' };
   for (const [k, v] of Object.entries(c)) {
     if (k === 'not') { const sub = parseCond(v); if (sub.error || Object.keys(v).length === 0 || 'not' in v) return { error: 'condition "not" must hold one valid condition (no nesting): ' + (sub.error || 'empty') }; continue; }      // v0.135
-    const okInt = ['symColorsGe', 'oppLifeGe', 'blocksGe', 'oppExhaustedGe', 'oppReserveGe', 'reserveGe', 'handLe', 'handGe', 'lifeLe', 'anyLifeLe', 'counterGe', 'soulGe', 'oppHandGe', 'voidGe', 'soulLe', 'putGe', 'lifeGe', 'oppRemovedGe', 'removedGe', 'oppSpiritsLe', 'oppNexusGe', 'oppTrashGe', 'selfBpGe', 'blockerBpLe', 'attackerCostLe', 'oppRefreshedLe', 'legacyGe', 'crushedSpiritGe', 'selfLvGe'].includes(k) && Number.isInteger(v);
+    const okInt = ['symColorsGe', 'oppLifeGe', 'blocksGe', 'oppExhaustedGe', 'oppReserveGe', 'reserveGe', 'handLe', 'handGe', 'lifeLe', 'anyLifeLe', 'counterGe', 'soulGe', 'oppHandGe', 'voidGe', 'soulLe', 'putGe', 'lifeGe', 'oppRemovedGe', 'removedGe', 'oppSpiritsLe', 'oppNexusGe', 'oppTrashGe', 'selfBpGe', 'blockerBpLe', 'attackerCostLe', 'oppRefreshedLe', 'legacyGe', 'crushedSpiritGe', 'selfLvGe', 'selfReductionGe'].includes(k) && Number.isInteger(v);
     const okStr = ((k === 'controlName' || k === 'hasName' || k === 'soulOn' || k === 'nexusBraved' || k === 'pickedKeyword' || k === 'pickedFamily' || k === 'attackerKeyword' || k === 'blockerKeyword') && typeof v === 'string' && v.length > 0 && v.length <= 60)
       || (k === 'controlName' && Array.isArray(v) && v.length > 1 && v.length <= 4 && v.every(y => typeof y === 'string' && y.length > 0 && y.length <= 60));
     const okCol = (k === 'trashAllColor' && COLORS.includes(v)) || k === 'hasSymbol' && (COLORS.includes(v) || (Array.isArray(v) && v.length >= 2 && v.length <= 3 && new Set(v).size === v.length && v.every(y => COLORS.includes(y))));      // v0.184: a list = all of those symbols
     const okStep = k === 'step' && STEPS.includes(v);
-    const okBool = (k === 'srcSoul' || k === 'subjViaEffect' || k === 'outsideDraw' || k === 'firstBattle' || k === 'idle' || k === 'depleted' || k === 'attackerRefreshed' || k === 'selfExhausted' || k === 'soulInTrash' || k === 'soulInReserve' || k === 'byOpp' || k === 'byOppFx' || k === 'utHit' || k === 'prev' || k === 'sealed' || k === 'oppTurn' || k === 'attackStep' || k === 'selfAttacking' || k === 'selfBlocked' || k === 'sameLvBattle' || k === 'firstAttack' || k === 'firstBlock' || k === 'oppRemovedSpirit' || k === 'oppNoAB' || k === 'burstSet' || k === 'mirageSet' || k === 'oppBurstSet' || k === 'soulPaid' || k === 'selfSoul' || k === 'fewerSpirits' || k === 'viaFormChange' || k === 'viaHS' || k === 'viaLegacy' || k === 'viaMagirrate' || k === 'viaEffect' || k === 'oppLostByFx' || k === 'oppDepleted' || k === 'ownLostSpirit' || k === 'oppLifeReduced' || k === 'byBattle' || k === 'trashNoEx' || k === 'handLeOpp') && typeof v === 'boolean';
+    const okBool = (k === 'srcSoul' || k === 'subjViaEffect' || k === 'outsideDraw' || k === 'firstBattle' || k === 'idle' || k === 'depleted' || k === 'attackerRefreshed' || k === 'selfExhausted' || k === 'soulInTrash' || k === 'soulInReserve' || k === 'byOpp' || k === 'byOppFx' || k === 'utHit' || k === 'prev' || k === 'sealed' || k === 'oppTurn' || k === 'attackStep' || k === 'selfAttacking' || k === 'selfBlocked' || k === 'sameLvBattle' || k === 'firstAttack' || k === 'firstBlock' || k === 'oppRemovedSpirit' || k === 'oppNoAB' || k === 'oppAllCantAB' || k === 'burstSet' || k === 'mirageSet' || k === 'oppBurstSet' || k === 'soulPaid' || k === 'selfSoul' || k === 'fewerSpirits' || k === 'viaFormChange' || k === 'viaHS' || k === 'viaLegacy' || k === 'viaMagirrate' || k === 'viaEffect' || k === 'oppLostByFx' || k === 'oppDepleted' || k === 'ownLostSpirit' || k === 'oppLifeReduced' || k === 'byBattle' || k === 'trashNoEx' || k === 'handLeOpp') && typeof v === 'boolean';
     const okNexus = k === 'nexusGe' && v && typeof v === 'object' && (v.n == null || (Number.isInteger(v.n) && v.n >= 1 && v.n <= 5)) && (v.colors == null || (Array.isArray(v.colors) && v.colors.length && v.colors.every(y => COLORS.includes(y))))
       && (v.family == null || (typeof v.family === 'string' && v.family)) && Object.keys(v).every(y => ['n', 'colors', 'family'].includes(y));   // v0.77
     const okCtrl = k === 'ctrl' && [].concat(v).length > 0 && [].concat(v).every(x => x && typeof x === 'object' && ['Spirit', 'Ultimate', 'Both'].includes(x.type) && (x.n == null || (Number.isInteger(x.n) && x.n >= 1 && x.n <= 5)) && (x.nLe == null || (Number.isInteger(x.nLe) && x.nLe >= 0 && x.nLe <= 5)) && (x.keyword == null || (typeof x.keyword === 'string' && x.keyword)) && (x.other == null || x.other === true) && (x.nexus == null || x.nexus === true)
@@ -226,6 +231,10 @@ function parseEffects(arr) {
       if (e.flag === 'OPP_LEAVE_DRAW') {                          // v422 "when an opposing Spirit under can't attack/block leaves due to your effect, draw N from the deckbottom"
         if (!Number.isInteger(e.n) || e.n < 1 || e.n > 4) return { error: 'OPP_LEAVE_DRAW needs a whole-number "n" (1-4)' };
         o.n = e.n;
+      }
+      if (e.flag === 'SYM_FIXED_ON_SUMMON') {                     // v422 "when summoning a <match> card, this Spirit's symbol is fixed as <n> <color> symbols" (Shimavajdra)
+        if (!hasMatch(e.match) || !COLORS.includes(e.color) || !Number.isInteger(e.n) || e.n < 1 || e.n > 3) return { error: 'SYM_FIXED_ON_SUMMON needs "match", a "color" and "n" (1-3)' };
+        o.match = e.match; o.color = e.color; o.n = e.n;
       }
       if (e.flag === 'BLOCK_TAX') {                               // v219 "the opponent can't block your X Spirits unless they pay N costs"
         if (!hasMatch(e.match)) return { error: 'BLOCK_TAX needs a "match"' };

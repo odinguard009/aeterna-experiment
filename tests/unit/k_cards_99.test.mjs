@@ -282,3 +282,48 @@ test('K-1067 BS76-088 Spread Lightning: cost -2 per opposing can\'t attack/block
   assert.equal(r.p, false); assert.equal(r.c0, 7, JSON.stringify(r)); assert.equal(r.c2, 3, JSON.stringify(r)); assert.equal(r.c5, 1, JSON.stringify(r));
   assert.equal(r.n1, 3, JSON.stringify(r)); assert.equal(r.n2, 2, JSON.stringify(r));
 });
+
+test('K-1068 BS76-X11 Nazuma: cost 4 when no opposing Spirit can attack/block; Indra clause locks one and draws from the deckbottom; LV2 locks effects of cheap locked Spirits', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token); const mk = n => { const x = BS.mkInst(any); x.cores = 1; x.noAB = n; return x; };
+    const c = BS.CARDS['BS76-X11']; O.spirits = []; const c0 = BS.effCost(P, c); O.spirits = [mk(false)]; const c1 = BS.effCost(P, c); O.spirits = [mk(true)]; const c2 = BS.effCost(P, c);
+    const nz = BS.mkInst('BS76-X11'); nz.cores = 2; P.spirits = [nz]; P.nexus = [BS.mkInst('${INDRA}')]; P.deck = [1, 2, 3].map(() => BS.mkInst(any)); P.hand = [];
+    const e1 = mk(false); O.spirits = [e1]; await BS.fireFx(P, 'SUMMONED', nz, { subject: nz }); const d1 = P.hand.length, ab1 = e1.noAB;
+    const e2 = mk(false), e3 = mk(false); O.spirits = [e2, e3]; P.hand = []; await BS.fireFx(P, 'SUMMONED', nz, { subject: nz }); const d2 = P.hand.length;
+    const fxc = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && (BS.CARDS[k].effects || []).some(e => e.trigger !== 'STATIC')); const f3 = BS.mkInst(fxc); f3.cores = 1; O.spirits = [f3]; const eff = BS.CARDS[fxc].effects || []; const had = BS.fxEntries(f3).length; const cost = BS.CARDS[fxc].cost; P.count = cost; f3.noAB = true; const locked = BS.fxEntries(f3).filter(x => x.e.trigger !== 'STATIC').length;
+    P.count = 0; const free = BS.fxEntries(f3).length;
+    return { c0, c1, c2, d1, ab1, d2, eff: eff.length, had, locked, free, p: c.partial }; })()`);
+  assert.equal(r.p, false); assert.equal(r.c0, 4, JSON.stringify(r)); assert.equal(r.c1, 6, JSON.stringify(r)); assert.equal(r.c2, 4, JSON.stringify(r));
+  assert.equal(r.d1, 1, JSON.stringify(r)); assert.equal(r.ab1, true, JSON.stringify(r)); assert.equal(r.d2, 0, JSON.stringify(r));
+  assert.ok(r.had > 0, JSON.stringify(r)); assert.equal(r.locked, 0, JSON.stringify(r)); assert.equal(r.free, r.had, JSON.stringify(r));
+});
+
+test('K-1069 BS75-046 Shimavajdra: with Contractor Indra, an opposing Trash summon turns off their Spirit effects this turn; LV2 fixes its symbol as two Yellow for Cost 5+ Thunderive cards', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = O.key; G.step = 4;
+    const fxc = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && (BS.CARDS[k].effects || []).some(e => e.trigger !== 'STATIC'));
+    const sh = BS.mkInst('BS75-046'); sh.cores = 1; P.spirits = [sh]; P.nexus = []; const f = BS.mkInst(fxc); f.cores = 1; O.spirits = [f]; const had = BS.fxEntries(f).length;
+    const t1 = BS.mkInst(fxc); O.trash = [t1]; O.reserve.n = 5; await BS.summonFree(O, t1); const noInd = BS.fxEntries(f).length;
+    P.nexus = [BS.mkInst('${INDRA}')]; const t2 = BS.mkInst(fxc); O.trash = [t2]; await BS.summonFree(O, t2); const lockedN = BS.fxEntries(f).filter(x => x.e.trigger !== 'STATIC').length, mine = BS.fxEntries(sh).length;
+    G.turnNo++; const free = BS.fxEntries(f).length;
+    const th = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && (BS.CARDS[k].families || []).includes('Thunderive') && BS.CARDS[k].cost >= 5 && Object.keys(BS.CARDS[k].reduction || {}).some(c => c === 'yellow'));
+    P.spirits = []; const c0 = BS.effCost(P, BS.CARDS[th]); sh.cores = 3; P.spirits = [sh]; const c1 = BS.effCost(P, BS.CARDS[th]);
+    return { had, noInd, lockedN, mine, free, c0, c1, p: BS.CARDS['BS75-046'].partial, lv: BS.lvNo ? BS.lvNo(sh) : null }; })()`);
+  assert.equal(r.p, false); assert.ok(r.had > 0, JSON.stringify(r)); assert.equal(r.noInd, r.had, JSON.stringify(r));
+  assert.equal(r.lockedN, 0, JSON.stringify(r)); assert.equal(r.free, r.had, JSON.stringify(r)); assert.ok(r.c1 < r.c0, JSON.stringify(r));
+});
+
+test('K-1070 BS76-047 Togevajdra: with four or more reduction symbols (extra symbols count) all are fulfilled and an opposing non-Yellow Spirit goes to the deckbottom', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4; G.fxBy = P.key;
+    const mkc = (want, non) => { const k = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && !BS.CARDS[k].effects && (non ? !(BS.CARDS[k].colors || [BS.CARDS[k].symbol]).includes('yellow') : (BS.CARDS[k].colors || [BS.CARDS[k].symbol]).includes('yellow'))); const x = BS.mkInst(k); x.cores = 1; return x; };
+    const c = BS.CARDS['BS76-047']; P.spirits = []; const c0 = BS.effCost(P, c);
+    const th = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && (BS.CARDS[k].families || []).includes('Thunderive') && BS.CARDS[k].cost >= 5);
+    const sh = BS.mkInst('BS75-046'); sh.cores = 3; P.spirits = [sh]; const c1a = BS.effCost(P, c); const red0 = c.reduction; c.reduction = { yellow: 4 }; const c1 = BS.effCost(P, c);
+    const y = mkc(0, false), n = mkc(0, true); O.spirits = [y, n]; const tg = BS.mkInst('BS76-047'); tg.cores = 1; P.spirits = [sh, tg]; const d0 = O.deck.length;
+    await BS.fireFx(P, 'SUMMONED', tg, { subject: tg }); c.reduction = red0;
+    return { c0, c1a, c1, gone: !O.spirits.includes(n), kept: O.spirits.includes(y), deck: O.deck.length - d0, p: c.partial }; })()`);
+  assert.equal(r.p, false); assert.equal(r.c0, 4, JSON.stringify(r)); assert.equal(r.c1, 0, JSON.stringify(r));
+  assert.equal(r.gone, true, JSON.stringify(r)); assert.equal(r.kept, true, JSON.stringify(r)); assert.equal(r.deck, 1, JSON.stringify(r));
+});

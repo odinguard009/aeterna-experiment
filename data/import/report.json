@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 6203,
+  "cards": 6202,
   "per_saga": {
    "1": 458,
    "2": 251,
@@ -18,11 +18,11 @@
    "14": 422,
    "15": 348,
    "16": 316,
-   "17": 106
+   "17": 105
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2503,
+  "skipped_curated": 2504,
   "nexus_levels_added": 665,
   "nexus_levels_missing": 43,
   "merged": 106,
@@ -1874,6 +1874,7 @@
   "BS76-088",
   "BS76-X01",
   "BS76-X02",
+  "BS76-X11",
   "BS77-040",
   "26RSD01-001",
   "26RSD01-002",
