@@ -143,3 +143,42 @@ FX_ACTIONS.ATTACK_SPIRIT_ALLY = { chk: a => Object.keys(a).every(k => ['do', 'if
     if (!t) { c.ctx.did = false; return; }
     att.atkT = { s: t, b: G.battleNo }; c.ctx.did = true; log(`${CARDS[att.id].name} targets ${poss(c.opp)} ${CARDS[t.id].name} and attacks it.`);
   } };
+/* v487 RETURN_TRASH_DISTINCT {match, n}: "return up to n differently-named <match> cards from your Trash to the Hand" (BS69-007); any card type, one per printed name */
+FX_ACTIONS.RETURN_TRASH_DISTINCT = { chk: a => hasMatch(a.match) && Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && Object.keys(a).every(k => ['do', 'match', 'n', 'if'].includes(k)), txt: a => `return up to ${a.n} differently-named matching cards from your Trash to the Hand`,
+  can: (c, a) => c.p.trash.some(t => fxMatch(CARDS[t.id], a.match)),
+  run: async (c, a) => {
+    let got = 0; const names = new Set();
+    while (got < a.n) {
+      const L = c.p.trash.filter(t => fxMatch(CARDS[t.id], a.match) && !names.has(CARDS[t.id].name)); if (!L.length) break;
+      const t = c.p.cpu ? L[0] : await fxPickTarget(c, L, `✨ <b>${esc(_nm(c))}</b><br>Tap a card to return to the Hand (${got + 1}/${a.n}), or pass.`); if (!t) break;
+      names.add(CARDS[t.id].name); removeFrom(c.p.trash, t); c.p.hand.push(t); got++;
+    }
+    if (!got) { c.ctx.did = false; return; } c.ctx.did = true; log(`${_nm(c)}: ${got} card${got === 1 ? '' : 's'} return from the Trash to the Hand.`); io.view({ type: 'board' });
+  } };
+/* v487 TRASH_CORES_PER_NEXUS {n, family}: "for each <family> Nexus you control, send n cores (not the Soul Core) from your Trash to any of your Spirits/Nexuses" (BS69-008); the cores go to one picked Spirit/Nexus */
+FX_ACTIONS.TRASH_CORES_PER_NEXUS = { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && typeof a.family === 'string' && Object.keys(a).every(k => ['do', 'n', 'family', 'if'].includes(k)), txt: a => `for each "${a.family}" Nexus you control, send ${a.n} cores from your Trash to any of your Spirits/Nexuses`,
+  can: (c, a) => c.p.trashCores.n > 0 && c.p.nexus.some(x => (CARDS[x.id].families || []).includes(a.family)),
+  run: async (c, a) => {
+    const k = c.p.nexus.filter(x => (CARDS[x.id].families || []).includes(a.family)).length, m = Math.min(a.n * k, c.p.trashCores.n), L = c.p.spirits.concat(c.p.nexus);
+    if (!m || !L.length) { c.ctx.did = false; return; }
+    const t = L.length === 1 ? L[0] : c.p.cpu ? L.slice().sort((x, y) => (CARDS[y.id].type === 'Spirit') - (CARDS[x.id].type === 'Spirit'))[0] : await fxPickTarget(c, L, `✨ <b>${esc(_nm(c))}</b><br>Tap the Spirit/Nexus that receives ${m} core${m === 1 ? '' : 's'} from the Trash (glowing).`);
+    if (!t) { c.ctx.did = false; return; }
+    c.p.trashCores.n -= m; t.cores += m; c.ctx.did = true; log(`${_nm(c)}: ${m} core${m === 1 ? '' : 's'} go from the Trash to ${CARDS[t.id].name}.`); io.view({ type: 'board' });
+  } };
+/* v487 DESTROY_OWN_NEXUS_FAMILY {family}: "by destroying one of your <family> Nexuses" (cost half of BS69-011's Mirage Flash; did=false when none); SUMMON_MIRAGE_SELF_PAID: "pay the cost to summon this Mirage" (the paid twin of SUMMON_MIRAGE_SELF) */
+FX_ACTIONS.DESTROY_OWN_NEXUS_FAMILY = { chk: a => typeof a.family === 'string' && Object.keys(a).every(k => ['do', 'family', 'if'].includes(k)), txt: a => `destroy one of your "${a.family}" Nexuses`,
+  can: (c, a) => c.p.nexus.some(n => !n.noFx && (CARDS[n.id].families || []).includes(a.family)),
+  run: async (c, a) => {
+    const L = c.p.nexus.filter(n => !n.noFx && (CARDS[n.id].families || []).includes(a.family)); if (!L.length) { c.ctx.did = false; return; }
+    const t = L.length === 1 || c.p.cpu ? L.slice().sort((x, y) => x.cores - y.cores)[0] : await fxPickTarget(c, L, `✨ <b>${esc(_nm(c))}</b><br>Tap the Nexus to destroy (glowing).`);
+    if (!t) { c.ctx.did = false; return; }
+    log(`${_nm(c)}: ${CARDS[t.id].name} is destroyed.`); removeNexus(c.p, t, 'destroyed'); c.ctx.did = true; io.view({ type: 'board' });
+  } };
+FX_ACTIONS.SUMMON_MIRAGE_SELF_PAID = { chk: () => true, txt: () => 'pay the cost to summon this set Mirage',
+  can: c => c.p.mirage === c.src && !!c.src.mirage,
+  run: async c => {
+    const m = c.src; if (c.p.mirage !== m || !m.mirage) { c.ctx.did = false; return; }
+    c.p.mirage = null; m.mirage = false; c.p.hand.push(m);
+    if (await summonPaid(c.p, m)) { log(`${CARDS[m.id].name}: the set Mirage is summoned (cost paid).`); c.ctx.did = true; return; }
+    removeFrom(c.p.hand, m); m.mirage = true; c.p.mirage = m; c.ctx.did = false;
+  } };

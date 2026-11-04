@@ -519,3 +519,5 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v484 REFRESH_ATTACKER_ONCE: refresh ctx.attacker/subject once per turn (BS66-XV05 Titus XV).
 - v485 COUNTER_UP carries ctx.by (the COUNTER source) and fires zone:trash effects with an optional match on it; OPP_NO_HAND_MAGIC (battle lock on all Hand Magic, magicUsable via noMagicHit); STATIC OPP_HAND_FLASH_ONLY (no-op: the opponent only acts in Flash on your turn); BS67-XV05 AFO = own ATTACKS + ALLY_ATTACKS on Raon at Lv3.
 - v486 ATTACK_SPIRIT_ALLY (the attacker of an ALLY_ATTACKS effect may target an opposing Spirit; BS69-002); BS69-001/004/005 data-only with existing actions (NO_RETURN, CORE_TO_NEXUS, DESTROY_ANY drawIfDone, DESTROY noFx, nexusGe family).
+- v487 RETURN_TRASH_DISTINCT (up to n differently-named matching cards Trash -> Hand; BS69-007), TRASH_CORES_PER_NEXUS (n Trash cores per family Nexus to a picked Spirit/Nexus; BS69-008, Manifest counterGe 3).
+- v488 DESTROY_OWN_NEXUS_FAMILY {family} and SUMMON_MIRAGE_SELF_PAID (summons the Mirage paying its cost via summonPaid); used by BS69-011.

@@ -5639,14 +5639,48 @@
   "image": "BS69-007+.png",
   "block": "69",
   "saga": 15,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Summoned)",
-   "(Once per Turn: Same Name) You can return up to three differently-named \"Primordial\" family Nexus cards from your Trash to the Hand.",
-   "[LV2] (Your Attack Step)",
-   "While your \"Primordial\" family Spirit is attacking, the opponent can't end the Attack Step via effects."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "once": true,
+    "sameName": true,
+    "optional": true,
+    "actions": [
+     {
+      "do": "RETURN_TRASH_DISTINCT",
+      "n": 3,
+      "match": {
+       "type": "Nexus",
+       "family": [
+        "Primordial"
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "lv": [
+     2
+    ],
+    "flag": "NO_END_ATTACK",
+    "to": "own",
+    "match": {
+     "family": [
+      "Primordial"
+     ]
+    },
+    "if": {
+     "attackStep": true,
+     "oppTurn": false
+    }
+   }
+  ]
  },
  {
   "id": "BS69-008",
@@ -5685,17 +5719,79 @@
   "mechanics": [
    "Manifest"
   ],
-  "fxComplete": false,
-  "residual": [
-   "Flash - {{Mani|\"Contractor Gaia\" & C3 or more|(Either Attack Step)}} By sending your (Soul Core) to the Trash, pay one cost from the target to summon this card from the Hand.",
-   "[LV1][LV2][LV3] (When Manifests/Attacks) Once per turn, you can reveal four cards from your decktop. Among them, you can deploy a \"Primordial\" family Nexus card, without paying the cost. Return any remaining cards to the deckbottom.",
-   "[LV2][LV3] (Start of Your Attack Step) For each \"Primordial\" family Nexus you control, you can send two cores, besides , from your Trash to any of your Spirits/Nexuses."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
   "bicon": [
    "11"
   ],
-  "rcode": "M"
+  "rcode": "M",
+  "effects": [
+   {
+    "trigger": "MANIFEST",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "once": true,
+    "onceKey": "geo8",
+    "optional": true,
+    "actions": [
+     {
+      "do": "REVEAL_DEPLOY",
+      "n": 4,
+      "match": {
+       "family": [
+        "Primordial"
+       ],
+       "type": "Nexus"
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "once": true,
+    "onceKey": "geo8",
+    "optional": true,
+    "actions": [
+     {
+      "do": "REVEAL_DEPLOY",
+      "n": 4,
+      "match": {
+       "family": [
+        "Primordial"
+       ],
+       "type": "Nexus"
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "START_ATTACK",
+    "lv": [
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "TRASH_CORES_PER_NEXUS",
+      "n": 2,
+      "family": "Primordial"
+     }
+    ]
+   }
+  ],
+  "manifest": {
+   "name": "Contractor Gaia",
+   "counterGe": 3,
+   "turn": "EITHER_ATTACK"
+  }
  },
  {
   "id": "BS69-009",
@@ -5730,15 +5826,46 @@
   "mechanics": [
    "Burst"
   ],
-  "fxComplete": false,
-  "residual": [
-   "{{Burst|After your Spirit/Nexus is destroyed by the Opponent}}",
-   "Destroy an opposing Spirit/Ultimate with the lowest BP, and draw a card.",
-   "After this effect resolves, summon this card without paying the cost.",
-   "[LV2] (When Attacks)",
-   "You can deploy a \"Primordial\" family Nexus card from your Hand without paying the cost."
+  "fxComplete": true,
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "SUMMON_HAND",
+      "from": "hand",
+      "types": [
+       "Nexus"
+      ],
+      "match": {
+       "family": [
+        "Primordial"
+       ]
+      }
+     }
+    ]
+   }
   ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "burst": {
+   "when": "ALLY_DESTROYED",
+   "actions": [
+    {
+     "do": "DESTROY",
+     "bpRank": "lowest"
+    },
+    {
+     "do": "DRAW",
+     "n": 1
+    },
+    {
+     "do": "SUMMON_SELF"
+    }
+   ]
+  }
  },
  {
   "id": "BS69-010",
@@ -5822,16 +5949,51 @@
   "mechanics": [
    "Mirage"
   ],
-  "fxComplete": false,
-  "residual": [
-   "{{mirage|Cost 2 ()}}",
-   "During Set (Your Attack Step)",
-   "All your \"Primordial\" family Spirits gain +5000 BP.",
-   "During Set Flash - (Either Attack Step)",
-   "By destroying one of your \"Primordial\" family Nexuses, pay one cost to summon this Mirage.",
-   "When you've done so, destroy an opposing 10000 BP or less Spirit/Ultimate."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "effects": [
+   {
+    "trigger": "ALLY_ATTACKS",
+    "zone": "mirage",
+    "match": {
+     "family": [
+      "Primordial"
+     ]
+    },
+    "actions": [
+     {
+      "do": "BP_PLUS",
+      "n": 5000,
+      "to": "attacker"
+     }
+    ]
+   },
+   {
+    "trigger": "ACTIVATE",
+    "zone": "mirage",
+    "timing": [
+     "FLASH"
+    ],
+    "actions": [
+     {
+      "do": "DESTROY_OWN_NEXUS_FAMILY",
+      "family": "Primordial"
+     },
+     {
+      "do": "SUMMON_MIRAGE_SELF_PAID",
+      "if": {
+       "prev": true
+      }
+     },
+     {
+      "do": "DESTROY",
+      "bpLe": 10000,
+      "if": {
+       "prev": true
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS69-012",
