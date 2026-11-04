@@ -180,3 +180,19 @@ test('K-1084 BS49-037 Atalante: Attacks sends an originally Cost 6-8 opposing Sp
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.bigGone, true, JSON.stringify(r)); assert.equal(r.smallStays, true, JSON.stringify(r));
   assert.equal(r.refreshed, true, JSON.stringify(r)); assert.ok(r.noBurst, JSON.stringify(r)); assert.equal(r.removed, 1, JSON.stringify(r));
 });
+
+test('K-1085 BS50-035 Meleagros: a Blade Beast attacking removes a random opposing Hand card; Lv2 reveals one card per Removed card and summons HeroBeast Spirits for 1 each', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && !/HeroBeast/.test(BS.CARDS[k].name));
+    const hero = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && /HeroBeast/.test(BS.CARDS[k].name) && k !== 'BS50-035' && BS.CARDS[k].cost <= 4);
+    const a = BS.mkInst('BS50-035'); a.cores = 4; P.spirits = [a]; G.attacker = a; P.reserve.n = 4;
+    O.hand = [BS.mkInst(any), BS.mkInst(any)]; O.removed = [];
+    await BS.fireFx(P, 'ALLY_ATTACKS', a, { attacker: a, subject: a });
+    const afterHand = O.hand.length, rem = O.removed.length;
+    P.deck = [BS.mkInst(hero), BS.mkInst(any), BS.mkInst(any)]; const sp0 = P.spirits.length, tr0 = P.trash.length;
+    await BS.fireFx(P, 'ATTACKS', a, { attacker: a, subject: a });
+    return { afterHand, rem, summoned: P.spirits.length - sp0, trash: P.trash.length - tr0, partial: BS.CARDS['BS50-035'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.afterHand, 1, JSON.stringify(r)); assert.equal(r.rem, 1, JSON.stringify(r));
+  assert.equal(r.summoned, 1, JSON.stringify(r)); assert.equal(r.trash, 0, JSON.stringify(r));
+});

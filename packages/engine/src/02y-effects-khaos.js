@@ -99,3 +99,22 @@ FX_ACTIONS.VOID_SPLIT_SELF_GW = { chk: a => Number.isInteger(a.n) && a.n >= 1 &&
     }
     c.p.void -= m; c.src.cores += toS; if (nx) nx.cores += toN; else c.src.cores += toN; c.ctx.did = true;
     log(`${nm}: ${m} core${m === 1 ? '' : 's'} taken from the Void (${toS} to this Spirit${nx ? `, ${toN} to ${CARDS[nx.id].name}` : ''}).`); io.view({ type: 'board' }); } };
+
+/* v482 REVEAL_SUMMON_PAY_ANY {match, pay}: "reveal one card from your decktop for each card on the opposing Removed Zone; you can summon any amount of matching Spirit cards among them, paying `pay` cost for each; discard the rest" (BS50-035). The CPU summons every card it can afford. did = true when one was summoned. */
+FX_ACTIONS.REVEAL_SUMMON_PAY_ANY = { chk: a => Number.isInteger(a.pay) && a.pay >= 0 && a.pay <= 3 && hasMatch(a.match) && Object.keys(a).every(k => ['do', 'if', 'pay', 'match'].includes(k)),
+  txt: a => `reveal a card from your decktop for each card on the opposing Removed Zone, summon any amount of matching Spirits among them paying ${a.pay} cost each, discard the rest`,
+  can: c => c.p.deck.length > 0 && c.opp.removed.length > 0,
+  run: async (c, a) => {
+    const nm = CARDS[c.src.id].name; c.ctx.did = false; const n = Math.min(c.opp.removed.length, c.p.deck.length); if (n < 1) return;
+    const top = c.p.deck.splice(0, n); c.p.revealed = top;
+    log(`${nm}: ${who(c.p)} ${c.p.cpu ? 'reveals' : 'reveal'} ${top.map(x => CARDS[x.id].name).join(', ')}.`); io.view({ type: 'board' }); await revealedFx(c.p);
+    for (;;) {
+      const L = c.p.revealed.filter(x => CARDS[x.id].type === 'Spirit' && fxMatch(CARDS[x.id], a.match) && coresAvailable(c.p) >= a.pay && canPlaceFree(c.p, x)); if (!L.length) break;
+      const t = c.p.cpu ? L[0] : await chooseCard(c, L, `✨ ${nm}`, `Pay ${a.pay} cost to summon one of these revealed Spirits?`, true); if (!t) break;
+      if (a.pay && !(await payInvokeCost(c.p, c.src, { pay: a.pay }))) break;
+      removeFrom(c.p.revealed, t); c.p.hand.push(t);
+      if (await summonFree(c.p, t)) c.ctx.did = true; else { removeFrom(c.p.hand, t); c.p.revealed.push(t); break; }
+    }
+    const rest = c.p.revealed.splice(0); for (const x of rest) c.p.trash.push(x);
+    if (rest.length) log(`${nm}: ${rest.length} revealed card${rest.length === 1 ? '' : 's'} discarded.`);
+  } };

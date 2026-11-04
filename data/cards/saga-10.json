@@ -12821,17 +12821,44 @@
   "image": "The ArgoHeroBeast Meleagros.jpg",
   "block": "50",
   "saga": 10,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (Your Attack Step)",
-   "When your \"Blade Beast\" family Spirit attacks, put a random card from the opposing Hand face-up onto the Removed Zone.",
-   "This effect doesn't stack.",
-   "[LV2] (When Attacks)",
-   "You can reveal one card from your decktop for each card on the opposing Removed Zone.",
-   "You can summon any amount of \"HeroBeast\"-named Spirit cards from among them, paying one cost for each of them.",
-   "Discard any remaining cards."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "effects": [
+   {
+    "trigger": "ALLY_ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "match": {
+     "family": [
+      "Blade Beast"
+     ]
+    },
+    "actions": [
+     {
+      "do": "OPP_REMOVE_HAND_RANDOM"
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "REVEAL_SUMMON_PAY_ANY",
+      "pay": 1,
+      "match": {
+       "name": [
+        "HeroBeast"
+       ]
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS50-036",
