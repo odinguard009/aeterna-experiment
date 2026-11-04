@@ -103,3 +103,18 @@ test('K-1137 BS74-026 RiRisu: returns from the Trash when a Grandwalker Nexus is
     return { back, summoned: P.spirits.includes(r2), dep: P.nexus.includes(y2), partial: BS.CARDS['BS74-026'].partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.back, true, JSON.stringify(r)); assert.equal(r.summoned, true, JSON.stringify(r)); assert.equal(r.dep, true, JSON.stringify(r));
 });
+
+test('K-1138 BS73-023 PiPig: summoned free from the Hand when the opposing Hand grows (5+ Hand + Removed, Yum-Kaax, Main Step) and locks opposing Purple draws; Summoned puts Void cores to two other Fungal Tree cards', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4; G.fxBy = P.key;
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && (BS.CARDS[k].families || []).includes('Fungal Tree') && k !== 'BS73-023');
+    const pg = BS.mkInst('BS73-023'); P.hand = [pg]; P.nexus = [BS.mkInst('BS73-CX01')]; const a = BS.mkInst(any), b = BS.mkInst(any); a.cores = 1; b.cores = 1; P.spirits = [a, b]; P.void = 4;
+    O.hand = [1,2,3].map(() => BS.mkInst(any)); O.removed = [BS.mkInst(any), BS.mkInst(any)]; O.trash = [BS.mkInst(any)];
+    await BS.fireFx(P, 'OPP_HAND_UP', null, { handN: 1 }); await flushBursts();
+    const out = { dep: P.spirits.includes(pg), lock: !!G.noDraw && G.noDraw.color === 'purple', ca: a.cores, cb: b.cores, partial: BS.CARDS['BS73-023'].partial };
+    const p2 = BS.mkInst('BS73-023'); P.hand = []; P.trash = [p2]; P.spirits = [a]; G.noDraw = null; O.hand = [BS.mkInst(any)]; O.removed = [BS.mkInst(any)];
+    await BS.fireFx(P, 'OPP_HAND_UP', null, { handN: 1 }); await flushBursts(); out.few = !P.spirits.includes(p2);
+    return out; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.dep, true, JSON.stringify(r)); assert.equal(r.lock, true, JSON.stringify(r));
+  assert.equal(r.ca + r.cb, 4, JSON.stringify(r)); assert.equal(r.few, true, JSON.stringify(r));
+});

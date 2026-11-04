@@ -122,6 +122,7 @@ FX_ACTIONS.REVEAL_SUMMON_PAY_ANY = { chk: a => Number.isInteger(a.pay) && a.pay 
 /* v483 STATIC NO_DRAW_REMOVED: "while this card is in the Removed Zone, neither player can draw via Red/Purple/Yellow/Blue Spirit/Nexus effects" (BS45-024). Read by drawLocked(): an effect draw whose source (G.fxSrc) is a Spirit/Ultimate/Nexus holding one of those colours (or symbol) is cancelled while any Removed Zone card carries the flag. The Draw Step itself is no effect and is never blocked. */
 const removedDrawLocked = () => { const src = G && G.fxSrc, k = src && CARDS[src.id]; if (!k || !['Spirit', 'Ultimate', 'Nexus'].includes(k.type)) return false;
   if (!(k.colors || [k.symbol]).some(x => ['red', 'purple', 'yellow', 'blue'].includes(x))) return false;
+  if (G.noDraw && G.noDraw.turn === G.turnNo && (ownerOf(src) || {}).key === G.noDraw.key && (k.colors || [k.symbol]).includes(G.noDraw.color)) return true;      // v522 DEPLOY_SELF_FROM lockOppDraw
   return [G.p.player, G.p.opponent].some(q => q.removed.some(r => (CARDS[r.id].effects || []).some(e => e.trigger === 'STATIC' && e.flag === 'NO_DRAW_REMOVED'))); };
 
 /* v484 REFRESH_ATTACKER_ONCE {}: "your Spirits with Crush-named effects, when they aren't blocked, can refresh once per turn per Spirit" (BS66-XV05; ALLY_LIFE_HIT = an unblocked attack reached the Life). Refreshes ctx.attacker (or the subject) when exhausted and not yet refreshed this turn by this effect. */
