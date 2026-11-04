@@ -4885,15 +4885,86 @@
   "image": "BS74-AX01.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Flash - {{Mani|\"Contractor Ometeotl\" & C6 or more|(Your Turn)}} By sending your (Soul Core) to the Trash, pay one cost from the target to summon this card from the Hand.",
-   "{{sumcon|Your Life is at three or less, you control one or more \"Contractor Ometeotl\" & C6 or more}}",
-   "[LV3][LV4][LV5] (When Attacks) For each LV this Ultimate has, destroy an opposing Spirit/Ultimate, and the effects of the destroyed targets can't activate.",
-   "[LV4][LV5] (When Attacks) Light-Dark Soul Drive If you banish your (Soul Core) from the game, or send your (Soul Core) to any \"Contractor Ometeotl\" Grandwalker Nexus, send two opposing Lives to the Void."
+  "fxComplete": true,
+  "rcode": "AX",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     3
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "n": 3,
+      "bpLe": 999999,
+      "noFx": true
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     4
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "n": 4,
+      "bpLe": 999999,
+      "noFx": true
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     5
+    ],
+    "actions": [
+     {
+      "do": "DESTROY",
+      "n": 3,
+      "bpLe": 999999,
+      "noFx": true
+     },
+     {
+      "do": "DESTROY",
+      "n": 2,
+      "bpLe": 999999,
+      "noFx": true
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     4,
+     5
+    ],
+    "actions": [
+     {
+      "do": "SOUL_DRIVE_VOID",
+      "match": {
+       "name": [
+        "Contractor Ometeotl"
+       ]
+      },
+      "n": 2
+     }
+    ]
+   }
   ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "AX"
+  "manifest": {
+   "name": "Contractor Ometeotl",
+   "counterGe": 6,
+   "turn": "YOURS"
+  },
+  "summonIf": {
+   "lifeLe": 3,
+   "controlName": "Contractor Ometeotl",
+   "counterGe": 6
+  }
  },
  {
   "id": "BS74-AX02",

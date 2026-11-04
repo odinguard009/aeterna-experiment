@@ -299,3 +299,23 @@ FX_ACTIONS.DISCARD_UNDER = { chk: a => Object.keys(a).every(k => ['do', 'family'
   run: async (c, a) => { c.ctx.did = false; const u = (c.src.under || []).find(x => (CARDS[x.id].families || []).includes(a.family)); if (!u) return;
     if (a.ask && !c.p.cpu && !(await ask({ title: `✨ ${CARDS[c.src.id].name}`, peek: true, html: `You can discard ${esc(CARDS[u.id].name)} (pre-advent card).`, buttons: [{ label: 'Do it', cls: 'primary', value: true }, { label: 'Skip', cls: 'cancel', value: false }] }))) return;
     removeFrom(c.src.under, u); c.p.trash.push(u); c.ctx.did = true; log(`${CARDS[u.id].name} (pre-advent) is discarded.`); } };
+
+/* v510 SOUL_DRIVE_VOID {match, n}: "Light-Dark Soul Drive: if you banish your Soul Core from the game, or send it to a <match> Nexus, send n opposing Lives to the Void" (BS74-AX01 Mudou).
+   The Soul Core goes to a matching Nexus when you have one without it (the CPU always does; a human may decline); otherwise it is banished (a human is asked, the CPU banishes only when it is not needed elsewhere = always allowed).
+   A Life that is the opposing sealed Soul Core cannot go to the Void: it goes to the opposing Trash instead (approximation). */
+FX_ACTIONS.SOUL_DRIVE_VOID = { chk: a => hasMatch(a.match) && Number.isInteger(a.n) && a.n >= 1 && a.n <= 3 && Object.keys(a).every(k => ['do', 'if', 'match', 'n'].includes(k)), txt: a => `Soul Drive: by banishing your Soul Core or sending it to a matching Nexus, send ${a.n} opposing Lives to the Void`,
+  can: c => soulSource(c.p) !== null,
+  run: async (c, a) => { c.ctx.did = false; const src = soulSource(c.p); if (!src) return; const nm = CARDS[c.src.id].name;
+    const L = c.p.nexus.filter(n => !n.soul && fxMatch(CARDS[n.id], a.match));
+    if (!c.p.cpu && !(await ask({ title: `✨ ${nm}`, peek: true, html: L.length ? `Soul Drive: send your Soul Core to ${esc(CARDS[L[0].id].name)}?` : 'Soul Drive: banish your Soul Core from the game?', buttons: [{ label: 'Soul Drive', cls: 'purple', value: true }, { label: 'Skip', cls: 'cancel', value: false }] }))) return;
+    if (L.length) { if (!(await soulToNexus(c.p, L[0]))) return; }
+    else { if (src === 'trash') c.p.trashCores.soul = false; else if (src === 'reserve') c.p.reserve.soul = false; else src.soul = false; log(`${poss(c.p)} Soul Core is banished from the game.`); io.view({ type: 'board' }); }
+    let m = Math.min(a.n, c.opp.life); if (!m) { c.ctx.did = true; return; }
+    m = await lifeGuardFx(c.opp, m); c.ctx.did = true; if (!m) return;
+    const soul = c.opp.lifeSoul && m >= c.opp.life, n = m - (soul ? 1 : 0);
+    if (n > 0) { coreEvN(c.opp, 'life', 'void', n, false); c.opp.life -= n; c.opp.void += n; c.opp.lifeRedTurn = G.turnNo; }
+    if (soul) lifeTake(c.opp, 1, 'trash');
+    log(`${nm}: ${m} opposing Life${m === 1 ? ' is' : 's are'} sent to the Void.`); io.view({ type: 'board' });
+    if (c.opp.life <= 0) { win(c.p.key, `${poss(c.opp)} Life reached 0`); return; }
+    await maybeBurst(c.opp, 'LIFE_DECREASE', {});
+  } };

@@ -213,5 +213,19 @@ test('K-1121 BS62-011 Scapanolancer: Attacks destroys one 12000- Spirit, or thre
     const f = BS.mkInst(fish); const adv = BS.mkInst('BS62-011'); P.hand = [adv]; P.spirits = [f]; P.count = 4; const tg = BS.contractAdventTargets ? BS.contractAdventTargets(P, adv, 'flash').length : -1;
     return { one, three, under, tg, partial: BS.CARDS['BS62-011'].partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.one, 3, JSON.stringify(r)); assert.equal(r.three, 1, JSON.stringify(r)); assert.equal(r.under, 0, JSON.stringify(r));
-  assert.ok(r.tg === -1 || r.tg === 1, JSON.stringify(r));
+  assert.equal(r.tg, 1, JSON.stringify(r));
+});
+
+test('K-1122 BS74-AX01 Mudou: Soul Drive sends the Soul Core to Ometeotl Nexus and two opposing Lives go to the Void; LV3 destroys three', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token);
+    const a = BS.mkInst('BS74-AX01'); a.cores = 9; P.spirits = [a]; G.attacker = a;
+    const nx = BS.mkInst('BS74-CX01'); nx.cores = 1; P.nexus = [nx]; P.trashCores.soul = true;
+    O.spirits = [1,2,3,4].map(() => { const s = BS.mkInst(any); s.cores = 1; return s; }); const life0 = O.life, void0 = O.void;
+    await BS.fireFx(P, 'ATTACKS', a, { attacker: a, subject: a });
+    return { lv: BS.lvNo(a), left: O.spirits.length, soulOnNexus: !!nx.soul, dLife: life0 - O.life, dVoid: O.void - void0, partial: BS.CARDS['BS74-AX01'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.soulOnNexus, true, JSON.stringify(r));
+  assert.equal(r.left, 4 - ({ 3: 3, 4: 4, 5: 5 }[r.lv] || 0) < 0 ? 0 : 4 - ({ 3: 3, 4: 4, 5: 5 }[r.lv] || 0), JSON.stringify(r));
+  if (r.lv >= 4) { assert.equal(r.dLife, 2, JSON.stringify(r)); assert.equal(r.dVoid, 2, JSON.stringify(r)); }
 });
