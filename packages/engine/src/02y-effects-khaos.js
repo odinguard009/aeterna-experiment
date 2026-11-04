@@ -202,3 +202,12 @@ FX_ACTIONS.DEPLOY_SELF_PAID = { chk: a => Number.isInteger(a.costN) && a.costN >
     c.ctx.did = false; if (!FX_ACTIONS.DEPLOY_SELF_PAID.can(c, a)) return;
     c.ctx.did = !!(await summonPaid(c.p, c.src, { costN: a.costN }));
   } };
+/* v493 CORE_SELF_OR_NEXUS {match}: "put a core from the Void onto this Spirit, or +1 core to a <match> Nexus you control" (BS69-027 Lycaon; a human picks, the CPU takes this Spirit) */
+FX_ACTIONS.CORE_SELF_OR_NEXUS = { chk: a => hasMatch(a.match) && Object.keys(a).every(k => ['do', 'match', 'if'].includes(k)), txt: () => 'put a core from the Void onto this Spirit, or +1 core to a matching Nexus',
+  can: () => true,
+  run: async (c, a) => {
+    const nx = c.p.nexus.filter(x => fxMatch(CARDS[x.id], a.match)), self = c.p.spirits.includes(c.src);
+    let nexus = !self && nx.length > 0;
+    if (self && nx.length && !c.p.cpu) nexus = await ask({ title: `✨ ${esc(_nm(c))}`, html: 'Put a core from the Void onto…', buttons: [{ label: 'This Spirit', cls: 'primary', value: false }, { label: 'A Nexus', cls: 'blue', value: true }] });
+    if (nexus) await FX_ACTIONS.CORE_TO_NEXUS.run(c, { do: 'CORE_TO_NEXUS', n: 1, match: a.match }); else if (self) await FX_ACTIONS.VOID_TO_CARD.run(c, { do: 'VOID_TO_CARD', n: 1, to: 'self' }); else c.ctx.did = false;
+  } };

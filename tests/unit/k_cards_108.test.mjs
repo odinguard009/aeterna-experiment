@@ -176,3 +176,17 @@ test('K-1102 BS69-026 Priapus: a Blade Beast summoned in the Attack Step lets it
     return { onField: P.spirits.includes(pc), count: P.count - c0, partial: BS.CARDS['BS69-026'].partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.onField, true, JSON.stringify(r)); assert.equal(r.count, 1, JSON.stringify(r));
 });
+
+test('K-1103 BS69-027 Lycaon: Attacks sends an exhausted opposing Spirit to the Removed Zone and puts a Void core on it; as the set Mirage it refreshes a Green Cost 5+ Blade Beast when cards are removed', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && BS.CARDS[k].cost > 0);
+    const a = BS.mkInst('BS69-027'); a.cores = 1; P.spirits = [a]; const t = BS.mkInst(any); t.exhausted = true; O.spirits = [t]; O.removed = []; P.void = 3; G.attacker = a;
+    await BS.fireFx(P, 'ATTACKS', a, { attacker: a, subject: a });
+    const removed = O.removed.length, cores = a.cores;
+    const bb = Object.keys(BS.CARDS).find(k => { const c = BS.CARDS[k]; return c.type === 'Spirit' && c.symbol === 'green' && c.cost >= 5 && (c.families || []).includes('Blade Beast') && !c.token; });
+    const b = BS.mkInst(bb); b.cores = 1; b.exhausted = true; const m = BS.mkInst('BS69-027'); m.mirage = true; P.mirage = m; P.spirits = [b];
+    await BS.fireFx(P, 'OPP_REMOVED', null, {});
+    return { removed, cores, refreshed: !b.exhausted, partial: BS.CARDS['BS69-027'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.removed, 1, JSON.stringify(r)); assert.equal(r.cores, 2, JSON.stringify(r)); assert.equal(r.refreshed, true, JSON.stringify(r));
+});
