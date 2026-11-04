@@ -46767,20 +46767,6 @@
   "M_THEN",
   "M_UP_TO"
  ],
- "BS74-CX01": [
-  "A_CORE_TO_SELF",
-  "A_SOUL_STATE",
-  "A_VOID",
-  "C_LEVEL",
-  "C_ONCE",
-  "K_CONTRACT",
-  "K_MANIFEST",
-  "K_REVIVE",
-  "K_ULTIMATE",
-  "M_OPTIONAL",
-  "T_ACTIVATE",
-  "T_ALLY_SUMMONED"
- ],
  "BS74-CX02": [
   "A_CORE_TO_SELF",
   "A_COUNTER",

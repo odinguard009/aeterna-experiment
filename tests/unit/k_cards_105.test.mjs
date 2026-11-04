@@ -57,7 +57,7 @@ test('K-1157 BS74-012 Notosaurus: Flash summon needs five counters and a Soul Co
     P.count = 4; const a = highSpeedOK(P, n); P.count = 5; const b = highSpeedOK(P, n);
     await highSpeedSummon(P, n);
     return { a, b, onField: P.spirits.some(s => s.id === 'BS74-012'), soul: nx.soul, viaHS: P.spirits[0] && P.spirits[0].viaHS, res: P.reserve.n }; })()`);
-  assert.deepEqual(r, { a: false, b: true, onField: true, soul: true, viaHS: true, res: 2 });
+  assert.deepEqual(r, { a: false, b: true, onField: true, soul: true, viaHS: true, res: 1 }); // the Nexus' Neo-Core Charge moves one more core onto the new Lava Fish
 });
 
 test('K-1158 BS74-012 Notosaurus: When Summoned destroys up to three Spirits; the BP limit is 7000 + 1000 per counter', async () => {
@@ -88,5 +88,20 @@ test('K-1160 BS74-001 Eurymeteos: High Speed on the opposing turn only; When Sum
     G.active = P.key; const mine = highSpeedOK(P, e); G.active = O.key; const theirs = highSpeedOK(P, e);
     await highSpeedSummon(P, e);
     return { mine, theirs, nexus: P.nexus.length, trash: P.trash.length, partial: BS.CARDS['BS74-001'].partial }; })()`);
-  assert.deepEqual(r, { mine: false, theirs: true, nexus: 1, trash: 0, partial: false });
+  assert.deepEqual(r, { mine: false, theirs: true, nexus: 1, trash: 3, partial: false }); // the revived Nexus' own When Summoned trashes 3 deck cards
+});
+
+test('K-1161 BS74-CX01 Nexus: complete, Revive flag, Flash Destroy needs 5 Nexus cores or the Soul Core; summon trashes 3 deck cards', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${pre}
+    const k = BS.CARDS['BS74-CX01'];
+    const kinds = k.effects.map(e => e.trigger + ':' + (e.actions || []).map(a => a.do).join('+'));
+    const nx = BS.mkInst('BS74-CX01'); nx.soul = true; P.nexus = [nx]; P.count = 0;
+    const d0 = P.deck.length; const t0 = P.trash.length;
+    await BS.fireFx(P, 'SUMMONED', nx, {});
+    return { partial: k.partial, revive: !!k.revive, kinds, moved: (d0 - P.deck.length) <= 3 }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.revive, true);
+  assert.ok(r.kinds.some(s => s.startsWith('ACTIVATE:DESTROY')), JSON.stringify(r.kinds));
+  assert.ok(r.kinds.some(s => s.includes('SOUL_CORE_TO_TRASH+DESTROY')), JSON.stringify(r.kinds));
+  assert.ok(r.kinds.some(s => s.startsWith('SUMMONED:DECK_TO_TRASH_CORES')), JSON.stringify(r.kinds)); assert.ok(r.moved);
 });
