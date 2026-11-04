@@ -48,6 +48,6 @@ test('LA05 flavor index: English only, no markup, every id is a library card, at
 test('LA06 player-visible card text is English: only the cards whose English source is missing keep Japanese (each says so in its note)', () => {
   const JP = /[぀-ヿ㐀-鿿]/;
   const jp = DATA.filter(c => JP.test(c.name) || JP.test(c.text || '') || (c.residual || []).some(x => JP.test(x)));
-  assert.ok(jp.length <= 100, String(jp.length));    // 2026-11-04: 96 cards, no English source found on the wiki (reported, not translated)
+  assert.ok(jp.length <= 100, String(jp.length));    // 2026-11-04: 91 cards, no English source found on the wiki (reported, not translated)
   assert.deepEqual(jp.filter(c => !/pending/.test(c.note || '')).map(c => c.id), []);
 });

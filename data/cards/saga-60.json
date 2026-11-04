@@ -4265,7 +4265,7 @@
    "Incarnate",
    "Ancient Dragon"
   ],
-  "text": "{{Sumcon|You control one or more Red Spirit}}\n\n{{tk|Ultimate Trigger|[LV4] (When Attacks)}}\nWhen Ultimate Trigger hits, the opponent must block if possible. However, Ultimates don't have to block. When blocked by an opposing Spirit, send an opposing Life to their Reserve.\n{{tk|utb",
+  "text": "{{Sumcon|You control one or more Red Spirit}}\n\n{{tk|Ultimate Trigger|[LV4] (When Attacks)}}\nWhen Ultimate Trigger hits, the opponent must block if possible. However, Ultimates don't have to block. When blocked by an opposing Spirit, send an opposing Life to their Reserve.",
   "image": "CP14-01.png",
   "block": "P",
   "saga": 60,
@@ -4273,8 +4273,7 @@
   "residual": [
    "{{Sumcon|You control one or more Red Spirit}}",
    "{{tk|Ultimate Trigger|[LV4] (When Attacks)}}",
-   "When Ultimate Trigger hits, the opponent must block if possible. However, Ultimates don't have to block. When blocked by an opposing Spirit, send an opposing Life to their Reserve.",
-   "{{tk|utb"
+   "When Ultimate Trigger hits, the opponent must block if possible. However, Ultimates don't have to block. When blocked by an opposing Spirit, send an opposing Life to their Reserve."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text from the Fandom page \"Ultimate-Siegfried-Baby\", found by card number; not compared with the official Japanese text.",
   "rcode": "CP"
@@ -13074,7 +13073,7 @@
    "Incarnate",
    "Android"
   ],
-  "text": "{{Sumcon|You control one or more White Spirits}}\n\n[LV3][LV4] (When Blocks)\nThis Ultimate gains +3000 BP.\n\n{{tk|Ultimate Trigger|[LV4] (When Attacks)}}\nWhen Ultimate Trigger hits, this Spirit can't be blocked by opposing Spirits.\n{{tk|utb",
+  "text": "{{Sumcon|You control one or more White Spirits}}\n\n[LV3][LV4] (When Blocks)\nThis Ultimate gains +3000 BP.\n\n{{tk|Ultimate Trigger|[LV4] (When Attacks)}}\nWhen Ultimate Trigger hits, this Spirit can't be blocked by opposing Spirits.",
   "image": "P14-07.png",
   "block": "P",
   "saga": 60,
@@ -13084,8 +13083,7 @@
    "[LV3][LV4] (When Blocks)",
    "This Ultimate gains +3000 BP.",
    "{{tk|Ultimate Trigger|[LV4] (When Attacks)}}",
-   "When Ultimate Trigger hits, this Spirit can't be blocked by opposing Spirits.",
-   "{{tk|utb"
+   "When Ultimate Trigger hits, this Spirit can't be blocked by opposing Spirits."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text from the Fandom page \"Ultimate-Valkyrie\", found by card number; not compared with the official Japanese text.",
   "rcode": "P"
@@ -14712,7 +14710,7 @@
    "Next Generation",
    "Winged Dragon"
   ],
-  "text": "{{sumcon|You control one or more Cost 1 or higher Spirits}}\n\n[LV3][LV4][LV5]\nAll your Ultimate symbols are also treated as Blue symbols.\n\n{{tk|Ultimate Trigger|[LV4][LV5] (When Attacks)}}\nWhen Ultimate Trigger hits, for each one cost of the card sent to the Trash, discard two cards from the opposing decktop.\n{{tk|utb",
+  "text": "{{sumcon|You control one or more Cost 1 or higher Spirits}}\n\n[LV3][LV4][LV5]\nAll your Ultimate symbols are also treated as Blue symbols.\n\n{{tk|Ultimate Trigger|[LV4][LV5] (When Attacks)}}\nWhen Ultimate Trigger hits, for each one cost of the card sent to the Trash, discard two cards from the opposing decktop.",
   "image": "P14-X03.png",
   "block": "P",
   "saga": 60,
@@ -14722,8 +14720,7 @@
    "[LV3][LV4][LV5]",
    "All your Ultimate symbols are also treated as Blue symbols.",
    "{{tk|Ultimate Trigger|[LV4][LV5] (When Attacks)}}",
-   "When Ultimate Trigger hits, for each one cost of the card sent to the Trash, discard two cards from the opposing decktop.",
-   "{{tk|utb"
+   "When Ultimate Trigger hits, for each one cost of the card sent to the Trash, discard two cards from the opposing decktop."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text from the Fandom page \"Ultimate-Galaxydragon\", found by card number; not compared with the official Japanese text.",
   "rcode": "X"
@@ -14758,7 +14755,7 @@
    "Incarnate",
    "Terra Dragon"
   ],
-  "text": "{{Sumcon|You control one or more Red/Blue Spirits}}\n\n[LV3][LV4][LV5] {{Assault|2}} (When Attacks)\nThis Ultimate can, up to twice per turn, be refreshed by exhausting one of your Nexuses.\n\n{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}}\nWhen Ultimate Trigger hits, destroy an opposing 10000 BP or less Spirit.\n{{tk|utb",
+  "text": "{{Sumcon|You control one or more Red/Blue Spirits}}\n\n[LV3][LV4][LV5] {{Assault|2}} (When Attacks)\nThis Ultimate can, up to twice per turn, be refreshed by exhausting one of your Nexuses.\n\n{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}}\nWhen Ultimate Trigger hits, destroy an opposing 10000 BP or less Spirit.",
   "image": "P14-X04.png",
   "block": "P",
   "saga": 60,
@@ -14768,8 +14765,7 @@
    "[LV3][LV4][LV5] {{Assault|2}} (When Attacks)",
    "This Ultimate can, up to twice per turn, be refreshed by exhausting one of your Nexuses.",
    "{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}}",
-   "When Ultimate Trigger hits, destroy an opposing 10000 BP or less Spirit.",
-   "{{tk|utb"
+   "When Ultimate Trigger hits, destroy an opposing 10000 BP or less Spirit."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text from the Fandom page \"Ultimate-Gundinos\", found by card number; not compared with the official Japanese text.",
   "rcode": "X"
@@ -20936,7 +20932,7 @@
    "Evil Shadow",
    "Blade Insect"
   ],
-  "text": "[LV1][LV2][LV3] (When Summoned)\nYou can put two cores from the Void to this Spirit.\n\n[LV1][LV2][LV3] Rebirth3\nWhen opposing Spirits/Ultimates exhaust, you can flip this Spirit.\n\n[LV2][LV3] {{ww|2}} (When Attacks)\nHeavy exhaust two opposing Spirits/Ultimates.\n{{tk|heb",
+  "text": "[LV1][LV2][LV3] (When Summoned)\nYou can put two cores from the Void to this Spirit.\n\n[LV1][LV2][LV3] Rebirth3\nWhen opposing Spirits/Ultimates exhaust, you can flip this Spirit.\n\n[LV2][LV3] {{ww|2}} (When Attacks)\nHeavy exhaust two opposing Spirits/Ultimates.",
   "image": "P21-04.png",
   "block": "P",
   "saga": 60,
@@ -20950,8 +20946,7 @@
    "[LV1][LV2][LV3] Rebirth3",
    "When opposing Spirits/Ultimates exhaust, you can flip this Spirit.",
    "[LV2][LV3] {{ww|2}} (When Attacks)",
-   "Heavy exhaust two opposing Spirits/Ultimates.",
-   "{{tk|heb"
+   "Heavy exhaust two opposing Spirits/Ultimates."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text from the Fandom page \"The DragonKnight Swordius-Dragoon-Grün\", found by card number; not compared with the official Japanese text.",
   "rcode": "Awaken X",
@@ -37232,7 +37227,7 @@
    "Incarnate",
    "Emperor Beast"
   ],
-  "text": "{{Sumcon|You control one or more Red Spirits}}\n\n[LV3][LV4][LV5] (When Summoned)\nBy destroying an opposing 10000 BP or less Spirit, return a Red Spirit card from your Trash to the Hand.\n\n{{tk|Ultimate Trigger|[LV4][LV5] (When Attacks)}}\nWhen Ultimate-Trigger hits, this Ultimate gains +10000 BP.\n{{tk|utb",
+  "text": "{{Sumcon|You control one or more Red Spirits}}\n\n[LV3][LV4][LV5] (When Summoned)\nBy destroying an opposing 10000 BP or less Spirit, return a Red Spirit card from your Trash to the Hand.\n\n{{tk|Ultimate Trigger|[LV4][LV5] (When Attacks)}}\nWhen Ultimate-Trigger hits, this Ultimate gains +10000 BP.",
   "image": "PX14-01.png",
   "block": "P",
   "saga": 60,
@@ -37242,8 +37237,7 @@
    "[LV3][LV4][LV5] (When Summoned)",
    "By destroying an opposing 10000 BP or less Spirit, return a Red Spirit card from your Trash to the Hand.",
    "{{tk|Ultimate Trigger|[LV4][LV5] (When Attacks)}}",
-   "When Ultimate-Trigger hits, this Ultimate gains +10000 BP.",
-   "{{tk|utb"
+   "When Ultimate-Trigger hits, this Ultimate gains +10000 BP."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text from the Fandom page \"Ultimate-Lion-Howl\", found by card number; not compared with the official Japanese text.",
   "rcode": "PX"
@@ -37366,7 +37360,7 @@
    "Incarnate",
    "Blade Beast"
   ],
-  "text": "{{Sumcon|You control one or more Green Spirits}}\n\n[LV3][LV4][LV5] (When Summoned)\nPut a core from the Void each to every Green Spirit/Ultimate you control.\n\n{{tk|Ultimate Trigger|[LV4][LV5] (When Attacks)}}\nWhen Ultimate-Trigger hits, the opponent can't activate Bursts. Critical Hit If the hit card is a Spirit card, also, put two cores from the Void to any of your Ultimates.\n{{tk|utb",
+  "text": "{{Sumcon|You control one or more Green Spirits}}\n\n[LV3][LV4][LV5] (When Summoned)\nPut a core from the Void each to every Green Spirit/Ultimate you control.\n\n{{tk|Ultimate Trigger|[LV4][LV5] (When Attacks)}}\nWhen Ultimate-Trigger hits, the opponent can't activate Bursts. Critical Hit If the hit card is a Spirit card, also, put two cores from the Void to any of your Ultimates.",
   "image": "PX14-04.png",
   "block": "P",
   "saga": 60,
@@ -37376,8 +37370,7 @@
    "[LV3][LV4][LV5] (When Summoned)",
    "Put a core from the Void each to every Green Spirit/Ultimate you control.",
    "{{tk|Ultimate Trigger|[LV4][LV5] (When Attacks)}}",
-   "When Ultimate-Trigger hits, the opponent can't activate Bursts. Critical Hit If the hit card is a Spirit card, also, put two cores from the Void to any of your Ultimates.",
-   "{{tk|utb"
+   "When Ultimate-Trigger hits, the opponent can't activate Bursts. Critical Hit If the hit card is a Spirit card, also, put two cores from the Void to any of your Ultimates."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text from the Fandom page \"Ultimate-Giga-Galrave\", found by card number; not compared with the official Japanese text.",
   "rcode": "X"
@@ -37501,7 +37494,7 @@
    "Incarnate",
    "Nightling"
   ],
-  "text": "{{Sumcon|You control one or more Purple Spirits}}\n\n[LV3][LV4][LV5] (When Summoned)\nSend cores from every opposing Spirits/Ultimates to their Trash until only one core left on each of them.\n\n{{tk|Double Ultimate Trigger|[LV4][LV5] (When Attacks)}}\nFor each Ultimate Trigger hit, destroy an opposing Spirit with one core on it. Double Hit When it hits twice, also, draw a card.\n{{tk|wutb",
+  "text": "{{Sumcon|You control one or more Purple Spirits}}\n\n[LV3][LV4][LV5] (When Summoned)\nSend cores from every opposing Spirits/Ultimates to their Trash until only one core left on each of them.\n\n{{tk|Double Ultimate Trigger|[LV4][LV5] (When Attacks)}}\nFor each Ultimate Trigger hit, destroy an opposing Spirit with one core on it. Double Hit When it hits twice, also, draw a card.",
   "image": "PX14-07.png",
   "block": "P",
   "saga": 60,
@@ -37511,8 +37504,7 @@
    "[LV3][LV4][LV5] (When Summoned)",
    "Send cores from every opposing Spirits/Ultimates to their Trash until only one core left on each of them.",
    "{{tk|Double Ultimate Trigger|[LV4][LV5] (When Attacks)}}",
-   "For each Ultimate Trigger hit, destroy an opposing Spirit with one core on it. Double Hit When it hits twice, also, draw a card.",
-   "{{tk|wutb"
+   "For each Ultimate Trigger hit, destroy an opposing Spirit with one core on it. Double Hit When it hits twice, also, draw a card."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text from the Fandom page \"Ultimate-El-Blood\", found by card number; not compared with the official Japanese text.",
   "rcode": "PX"
@@ -38049,13 +38041,13 @@
    "God-King",
    "Emperor Beast"
   ],
-  "text": "{{Burst|s|After you or the opponent {{Seal|Seal}}}}\nSummon this Spirit card without paying the cost.\n\n[LV1][LV2][LV3] (When Summoned)\nYou can destroy an opposing Spirit without Soul Core on it.\n\n[LV2][LV3] (When Attacks)\nDraw a card.\n{{Seal|When Sealed}} Also, once per turn, this Spirit refreshes.",
+  "text": "{{Burst|After you or the opponent Seal}}\nSummon this Spirit card without paying the cost.\n\n[LV1][LV2][LV3] (When Summoned)\nYou can destroy an opposing Spirit without Soul Core on it.\n\n[LV2][LV3] (When Attacks)\nDraw a card.\n{{Seal|When Sealed}} Also, once per turn, this Spirit refreshes.",
   "image": "PX16-01.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "{{Burst|s|After you or the opponent {{Seal|Seal}}}}",
+   "{{Burst|After you or the opponent Seal}}",
    "Summon this Spirit card without paying the cost.",
    "[LV1][LV2][LV3] (When Summoned)",
    "You can destroy an opposing Spirit without Soul Core on it.",
@@ -38095,13 +38087,13 @@
    "God-King",
    "Ogre Wizard"
   ],
-  "text": "{{Burst|s|After you or the opponent {{Seal|Seal}}}}\nSummon this Spirit card without paying the cost.\n\n[LV1][LV2][LV3] (When Summoned)\nSend three cores from an opposing Spirit to their Reserve. When a Spirit is depleted by this effect, draw three cards.\n\n[LV2][LV3] (When Attacks)\nYou can target and attack an opposing Spirit with three or more cores on it.\n{{Seal|When Sealed}} Also, this Spirit gains +10000 BP.",
+  "text": "{{Burst|After you or the opponent Seal}}\nSummon this Spirit card without paying the cost.\n\n[LV1][LV2][LV3] (When Summoned)\nSend three cores from an opposing Spirit to their Reserve. When a Spirit is depleted by this effect, draw three cards.\n\n[LV2][LV3] (When Attacks)\nYou can target and attack an opposing Spirit with three or more cores on it.\n{{Seal|When Sealed}} Also, this Spirit gains +10000 BP.",
   "image": "PX16-02.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "{{Burst|s|After you or the opponent {{Seal|Seal}}}}",
+   "{{Burst|After you or the opponent Seal}}",
    "Summon this Spirit card without paying the cost.",
    "[LV1][LV2][LV3] (When Summoned)",
    "Send three cores from an opposing Spirit to their Reserve. When a Spirit is depleted by this effect, draw three cards.",
@@ -38183,13 +38175,13 @@
    "God-King",
    "Machine Beast"
   ],
-  "text": "{{Burst|s|After you or the opponent {{Seal|Seal}}}}\nSummon this Spirit card without paying the cost.\n\n[LV1][LV2][LV3] (When Summoned)\nFor each \"God-King\"/\"Ten Crown\" family Spirit you control, return an opposing Spirit to their Hand.\n\n{{Seal|When Sealed}} [LV2][LV3] (Opposing Attack Step)\nAll your \"God-King\"/\"Ten Crown\" family Spirits can block while exhausted.",
+  "text": "{{Burst|After you or the opponent Seal}}\nSummon this Spirit card without paying the cost.\n\n[LV1][LV2][LV3] (When Summoned)\nFor each \"God-King\"/\"Ten Crown\" family Spirit you control, return an opposing Spirit to their Hand.\n\n{{Seal|When Sealed}} [LV2][LV3] (Opposing Attack Step)\nAll your \"God-King\"/\"Ten Crown\" family Spirits can block while exhausted.",
   "image": "PX16-04.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "{{Burst|s|After you or the opponent {{Seal|Seal}}}}",
+   "{{Burst|After you or the opponent Seal}}",
    "Summon this Spirit card without paying the cost.",
    "[LV1][LV2][LV3] (When Summoned)",
    "For each \"God-King\"/\"Ten Crown\" family Spirit you control, return an opposing Spirit to their Hand.",
@@ -38228,7 +38220,7 @@
    "God-King",
    "Imaginary Beast"
   ],
-  "text": "{{Burst|s|After you or the opponent {{Seal|Seal}}}}\nSummon this card without paying the cost.\n\n[LV1-2-3] (When Summoned)\nSend up to three cores, besides (Soul Core), from your Trash to your Life.\n\n{{Seal|During Seal}} [LV2-3] (Either Attack Step)\nAfter your Accel effect resolves, refresh one of your \"God-King\"/\"Ten Crown\" family Spirits.",
+  "text": "{{Burst|After you or the opponent Seal}}\nSummon this card without paying the cost.\n\n[LV1-2-3] (When Summoned)\nSend up to three cores, besides (Soul Core), from your Trash to your Life.\n\n{{Seal|During Seal}} [LV2-3] (Either Attack Step)\nAfter your Accel effect resolves, refresh one of your \"God-King\"/\"Ten Crown\" family Spirits.",
   "image": "PX16-05.png",
   "block": "P",
   "saga": 60,
@@ -38237,7 +38229,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "{{Burst|s|After you or the opponent {{Seal|Seal}}}}",
+   "{{Burst|After you or the opponent Seal}}",
    "Summon this card without paying the cost.",
    "[LV1-2-3] (When Summoned)",
    "Send up to three cores, besides (Soul Core), from your Trash to your Life.",
@@ -38276,13 +38268,13 @@
    "God-King",
    "Roaring Azure"
   ],
-  "text": "{{Burst|s|After you or the opponent {{Seal|Seal}}}}\nSummon this Spirit card without paying the cost.\n\n[LV1][LV2][LV3] (When Summoned)\nDestroy an opposing Cost 7 or more Spirit/Ultimate.\n\n{{Seal|When Sealed}} [LV2][LV3] (Your Attack Step)\nWhen your \"Roaring Azure\" family Spirit is blocked, discard five cards from the opposing decktop.",
+  "text": "{{Burst|After you or the opponent Seal}}\nSummon this Spirit card without paying the cost.\n\n[LV1][LV2][LV3] (When Summoned)\nDestroy an opposing Cost 7 or more Spirit/Ultimate.\n\n{{Seal|When Sealed}} [LV2][LV3] (Your Attack Step)\nWhen your \"Roaring Azure\" family Spirit is blocked, discard five cards from the opposing decktop.",
   "image": "PX16-06.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "{{Burst|s|After you or the opponent {{Seal|Seal}}}}",
+   "{{Burst|After you or the opponent Seal}}",
    "Summon this Spirit card without paying the cost.",
    "[LV1][LV2][LV3] (When Summoned)",
    "Destroy an opposing Cost 7 or more Spirit/Ultimate.",
@@ -83094,7 +83086,7 @@
    "Incarnate",
    "Ancient Dragon"
   ],
-  "text": "{{Sumcon|You control one or more Red Spirits}}\n\n{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}}\nWhen Ultimate Trigger hits, the opponent must block if possible. However, opposing Ultimates don't have to block. If it's blocked by an opposing Spirit, send an opposing Life to the Reserve.\n{{tk|utb",
+  "text": "{{Sumcon|You control one or more Red Spirits}}\n\n{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}}\nWhen Ultimate Trigger hits, the opponent must block if possible. However, opposing Ultimates don't have to block. If it's blocked by an opposing Spirit, send an opposing Life to the Reserve.",
   "image": "SJ14-01.png",
   "block": "P",
   "saga": 60,
@@ -83102,8 +83094,7 @@
   "residual": [
    "{{Sumcon|You control one or more Red Spirits}}",
    "{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}}",
-   "When Ultimate Trigger hits, the opponent must block if possible. However, opposing Ultimates don't have to block. If it's blocked by an opposing Spirit, send an opposing Life to the Reserve.",
-   "{{tk|utb"
+   "When Ultimate Trigger hits, the opponent must block if possible. However, opposing Ultimates don't have to block. If it's blocked by an opposing Spirit, send an opposing Life to the Reserve."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text from the Fandom page \"The UltimateStrongest Dragon\", found by card number; not compared with the official Japanese text.",
   "rcode": "SJ"
@@ -83137,7 +83128,7 @@
    "Incarnate",
    "Ancient Dragon"
   ],
-  "text": "{{Sumcon|You control one or more Red Spirits}}\n\nWhen your \"Siegfried\"-named Spirits/Ultimates are destroyed by the opponent, you can summon this Ultimate card from the Hand, without paying the cost.\n\n{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}}\nWhen Ultimate Trigger hits, the opponent must block if possible. However, opposing Ultimates don't have to block. If it is blocked by an opposing Spirit, send an opposing Life to the Reserve.\n{{tk|utb",
+  "text": "{{Sumcon|You control one or more Red Spirits}}\n\nWhen your \"Siegfried\"-named Spirits/Ultimates are destroyed by the opponent, you can summon this Ultimate card from the Hand, without paying the cost.\n\n{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}}\nWhen Ultimate Trigger hits, the opponent must block if possible. However, opposing Ultimates don't have to block. If it is blocked by an opposing Spirit, send an opposing Life to the Reserve.",
   "image": "SJ14-02.png",
   "block": "P",
   "saga": 60,
@@ -83146,8 +83137,7 @@
    "{{Sumcon|You control one or more Red Spirits}}",
    "When your \"Siegfried\"-named Spirits/Ultimates are destroyed by the opponent, you can summon this Ultimate card from the Hand, without paying the cost.",
    "{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}}",
-   "When Ultimate Trigger hits, the opponent must block if possible. However, opposing Ultimates don't have to block. If it is blocked by an opposing Spirit, send an opposing Life to the Reserve.",
-   "{{tk|utb"
+   "When Ultimate Trigger hits, the opponent must block if possible. However, opposing Ultimates don't have to block. If it is blocked by an opposing Spirit, send an opposing Life to the Reserve."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text from the Fandom page \"Ultimate-Siegfried-Neo\", found by card number; not compared with the official Japanese text.",
   "rcode": "SJ"
@@ -83911,7 +83901,7 @@
    "Incarnate",
    "Dragon Warrior"
   ],
-  "text": "{{Sumcon|You control one or more Red/White Spirits}}\n\n{{Burst|After your Life is reduced}}\nSummon this Ultimate card.\n\n{{tk|Ultimate Trigger|[LV4][LV5] (When Attacks)}}\nWhen Ultimate-Trigger hits, at the end of battle, by setting a card with Burst effects from your Hand, send an opposing Life to their Reserve.\n{{tk|utb",
+  "text": "{{Sumcon|You control one or more Red/White Spirits}}\n\n{{Burst|After your Life is reduced}}\nSummon this Ultimate card.\n\n{{tk|Ultimate Trigger|[LV4][LV5] (When Attacks)}}\nWhen Ultimate-Trigger hits, at the end of battle, by setting a card with Burst effects from your Hand, send an opposing Life to their Reserve.",
   "image": "SJ14-21.png",
   "block": "P",
   "saga": 60,
@@ -83921,8 +83911,7 @@
    "{{Burst|After your Life is reduced}}",
    "Summon this Ultimate card.",
    "{{tk|Ultimate Trigger|[LV4][LV5] (When Attacks)}}",
-   "When Ultimate-Trigger hits, at the end of battle, by setting a card with Burst effects from your Hand, send an opposing Life to their Reserve.",
-   "{{tk|utb"
+   "When Ultimate-Trigger hits, at the end of battle, by setting a card with Burst effects from your Hand, send an opposing Life to their Reserve."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text from the Fandom page \"Ultimate-Lord-Dragon\", found by card number; not compared with the official Japanese text.",
   "rcode": "SJ"
@@ -84124,15 +84113,14 @@
    "Emperor Beast",
    "Song Bird"
   ],
-  "text": "[Summon Condition: You control one or more Cost 1 or higher Spirits]\n\nUltimate Trigger [LV3][LV4][LV5] (When Attacks) When Ultimate Trigger hits, if the hit card is Cost 0/1/2, draw two cards from your deck. If it is Cost 3/4, put a core from the Void to your life. If it is Cost 5 or more, this Ultimate can't be blocked by opposing LV3 or lower Spirits/Ultimates.\n{{tk|utb",
+  "text": "[Summon Condition: You control one or more Cost 1 or higher Spirits]\n\nUltimate Trigger [LV3][LV4][LV5] (When Attacks) When Ultimate Trigger hits, if the hit card is Cost 0/1/2, draw two cards from your deck. If it is Cost 3/4, put a core from the Void to your life. If it is Cost 5 or more, this Ultimate can't be blocked by opposing LV3 or lower Spirits/Ultimates.",
   "image": "SJ14-26.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
    "[Summon Condition: You control one or more Cost 1 or higher Spirits]",
-   "Ultimate Trigger [LV3][LV4][LV5] (When Attacks) When Ultimate Trigger hits, if the hit card is Cost 0/1/2, draw two cards from your deck. If it is Cost 3/4, put a core from the Void to your life. If it is Cost 5 or more, this Ultimate can't be blocked by opposing LV3 or lower Spirits/Ultimates.",
-   "{{tk|utb"
+   "Ultimate Trigger [LV3][LV4][LV5] (When Attacks) When Ultimate Trigger hits, if the hit card is Cost 0/1/2, draw two cards from your deck. If it is Cost 3/4, put a core from the Void to your life. If it is Cost 5 or more, this Ultimate can't be blocked by opposing LV3 or lower Spirits/Ultimates."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text from the Fandom page \"Ultimate-Bellpentan\", found by card number; not compared with the official Japanese text.",
   "rcode": "SJ"
@@ -85615,7 +85603,7 @@
    "Galaxian",
    "Machine Beast"
   ],
-  "text": "{{Sumcon|You control one or more White Spirits}}\n\n{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks/Blocks)}}\nWhen Ultimate Trigger hits, during this turn, make the Ultimate symbols of one of your Ultimates become two. After Ultimate Trigger, if your Life is at three or less, also, proceed to Cross Ultimate-Trigger.\nCross Ultimate Trigger When Cross Ultimate Trigger hits, once per turn, refresh one of your Ultimates.\n{{tk|xutb",
+  "text": "{{Sumcon|You control one or more White Spirits}}\n\n{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks/Blocks)}}\nWhen Ultimate Trigger hits, during this turn, make the Ultimate symbols of one of your Ultimates become two. After Ultimate Trigger, if your Life is at three or less, also, proceed to Cross Ultimate-Trigger.\nCross Ultimate Trigger When Cross Ultimate Trigger hits, once per turn, refresh one of your Ultimates.",
   "image": "SJ16-13.png",
   "block": "P",
   "saga": 60,
@@ -85624,8 +85612,7 @@
    "{{Sumcon|You control one or more White Spirits}}",
    "{{tk|Ultimate Trigger|[LV3][LV4][LV5] (When Attacks/Blocks)}}",
    "When Ultimate Trigger hits, during this turn, make the Ultimate symbols of one of your Ultimates become two. After Ultimate Trigger, if your Life is at three or less, also, proceed to Cross Ultimate-Trigger.",
-   "Cross Ultimate Trigger When Cross Ultimate Trigger hits, once per turn, refresh one of your Ultimates.",
-   "{{tk|xutb"
+   "Cross Ultimate Trigger When Cross Ultimate Trigger hits, once per turn, refresh one of your Ultimates."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text from the Fandom page \"Ultimate-Strikewurm-Leo\", found by card number; not compared with the official Japanese text.",
   "rcode": "SJ"
@@ -85661,7 +85648,7 @@
    "Galaxian",
    "Ancient Dragon"
   ],
-  "text": "{{sumcon|You control one or more Red Spirits}}\n\n{{tk|Double Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}}\nFor each Ultimate Trigger hit, this Ultimate gains an extra Red Symbol. Double Hit When it hits twice, also, you can target and attack an opposing Spirit. Compare the number of symbols with the opposing blocking Spirit, and for each symbol this Ultimate has more than the blocking Spirit, send an opposing Life to their Reserve.\n{{tk|wutb",
+  "text": "{{sumcon|You control one or more Red Spirits}}\n\n{{tk|Double Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}}\nFor each Ultimate Trigger hit, this Ultimate gains an extra Red Symbol. Double Hit When it hits twice, also, you can target and attack an opposing Spirit. Compare the number of symbols with the opposing blocking Spirit, and for each symbol this Ultimate has more than the blocking Spirit, send an opposing Life to their Reserve.",
   "image": "SJ16-14.png",
   "block": "P",
   "saga": 60,
@@ -85669,8 +85656,7 @@
   "residual": [
    "{{sumcon|You control one or more Red Spirits}}",
    "{{tk|Double Ultimate Trigger|[LV3][LV4][LV5] (When Attacks)}}",
-   "For each Ultimate Trigger hit, this Ultimate gains an extra Red Symbol. Double Hit When it hits twice, also, you can target and attack an opposing Spirit. Compare the number of symbols with the opposing blocking Spirit, and for each symbol this Ultimate has more than the blocking Spirit, send an opposing Life to their Reserve.",
-   "{{tk|wutb"
+   "For each Ultimate Trigger hit, this Ultimate gains an extra Red Symbol. Double Hit When it hits twice, also, you can target and attack an opposing Spirit. Compare the number of symbols with the opposing blocking Spirit, and for each symbol this Ultimate has more than the blocking Spirit, send an opposing Life to their Reserve."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text from the Fandom page \"Ultimate-Dragonic-Taurus\", found by card number; not compared with the official Japanese text.",
   "rcode": "SJ"
@@ -85701,7 +85687,7 @@
    "Galaxian",
    "Shellman"
   ],
-  "text": "{{Sumcon|You control one or more Green Spirits}}\n\n{{tk|Ultimate Trigger|[LV3][LV4] (When Attacks)}}\nWhen Ultimate Trigger hits, the opponent can't block unless they block with two Spirits or two Ultimates. When this Ultimate is blocked, choose one of them to battle against. Critical Hit If the hit card is a Spirit card, also, when this Ultimate's attack reduces the opposing Life, send two opposing Lives to their Reserve.\n{{tk|utb",
+  "text": "{{Sumcon|You control one or more Green Spirits}}\n\n{{tk|Ultimate Trigger|[LV3][LV4] (When Attacks)}}\nWhen Ultimate Trigger hits, the opponent can't block unless they block with two Spirits or two Ultimates. When this Ultimate is blocked, choose one of them to battle against. Critical Hit If the hit card is a Spirit card, also, when this Ultimate's attack reduces the opposing Life, send two opposing Lives to their Reserve.",
   "image": "SJ16-15.png",
   "block": "P",
   "saga": 60,
@@ -85709,8 +85695,7 @@
   "residual": [
    "{{Sumcon|You control one or more Green Spirits}}",
    "{{tk|Ultimate Trigger|[LV3][LV4] (When Attacks)}}",
-   "When Ultimate Trigger hits, the opponent can't block unless they block with two Spirits or two Ultimates. When this Ultimate is blocked, choose one of them to battle against. Critical Hit If the hit card is a Spirit card, also, when this Ultimate's attack reduces the opposing Life, send two opposing Lives to their Reserve.",
-   "{{tk|utb"
+   "When Ultimate Trigger hits, the opponent can't block unless they block with two Spirits or two Ultimates. When this Ultimate is blocked, choose one of them to battle against. Critical Hit If the hit card is a Spirit card, also, when this Ultimate's attack reduces the opposing Life, send two opposing Lives to their Reserve."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text from the Fandom page \"Ultimate-Cancerd\", found by card number; not compared with the official Japanese text.",
   "rcode": "SJ"
@@ -86599,7 +86584,7 @@
    "Ultimate Dragon",
    "Winged Beast"
   ],
-  "text": "Flash - Advent: Winged Beast & Cost 6 or more (Either Attack Step)\nBy sending your (Soul Core) to the Trash, stack this from your hand onto your target spirit.\n\n[Summon Condition: Controlling at least one Red/Green Spirit]\n\nDouble Ultimate Trigger [LV3][LV4][LV5][LV6] (When Advents/Attacks) For each Ultimate Trigger that hits, this Ultimate gains an extra Green symbol. *Double Hit*: Also, when both Ultimate Triggers hit, once per turn, this Ultimate refreshes.\n{{tk|wutb",
+  "text": "Flash - Advent: Winged Beast & Cost 6 or more (Either Attack Step)\nBy sending your (Soul Core) to the Trash, stack this from your hand onto your target spirit.\n\n[Summon Condition: Controlling at least one Red/Green Spirit]\n\nDouble Ultimate Trigger [LV3][LV4][LV5][LV6] (When Advents/Attacks) For each Ultimate Trigger that hits, this Ultimate gains an extra Green symbol. *Double Hit*: Also, when both Ultimate Triggers hit, once per turn, this Ultimate refreshes.",
   "image": "SJ18-07.png",
   "block": "P",
   "saga": 60,
@@ -86611,8 +86596,7 @@
    "Flash - Advent: Winged Beast & Cost 6 or more (Either Attack Step)",
    "By sending your (Soul Core) to the Trash, stack this from your hand onto your target spirit.",
    "[Summon Condition: Controlling at least one Red/Green Spirit]",
-   "Double Ultimate Trigger [LV3][LV4][LV5][LV6] (When Advents/Attacks) For each Ultimate Trigger that hits, this Ultimate gains an extra Green symbol. *Double Hit*: Also, when both Ultimate Triggers hit, once per turn, this Ultimate refreshes.",
-   "{{tk|wutb"
+   "Double Ultimate Trigger [LV3][LV4][LV5][LV6] (When Advents/Attacks) For each Ultimate Trigger that hits, this Ultimate gains an extra Green symbol. *Double Hit*: Also, when both Ultimate Triggers hit, once per turn, this Ultimate refreshes."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text from the Fandom page \"The UltimateGodKing Mugen-Gale-Phoenix\", found by card number; not compared with the official Japanese text.",
   "rcode": "SJ"
