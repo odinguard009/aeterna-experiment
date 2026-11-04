@@ -27,7 +27,7 @@ interface BraveSpec { bp: number; family?: string[]; name?: string[]; costGe?: n
 /** `contractAdvent` / `manifest` of a Contract-era Spirit or Ultimate. */
 interface LeaveSummonSpec { family: string }
 interface ContractAdventSpec { family: string; counterGe: number; turn: string; seal?: boolean; costGe?: number; soulTo?: boolean; freeGe?: number }
-interface ManifestSpec { name: string; counterGe: number; turn: string; ultra?: boolean; seal?: boolean }
+interface ManifestSpec { name: string; counterGe: number; turn: string; ultra?: boolean; seal?: boolean; nexusFamily?: string[] }
 /** A modal button (`ask({ buttons })`). */
 interface AskButton { label: string; value: any; cls?: string }
 /** A deck slot in the browser (My decks). */

@@ -75,3 +75,16 @@ test('K-1111 BS69-031 Leonteus: Summoned sends one opposing Spirit to Removed; A
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.gone, true, JSON.stringify(r)); assert.equal(r.sent, 1, JSON.stringify(r));
   assert.equal(r.removed, 0, JSON.stringify(r)); assert.equal(r.deck, 1, JSON.stringify(r)); assert.equal(r.mani, true, JSON.stringify(r));
 });
+
+test('K-1112 BS69-X01 Typhodeus: Attacks deploys a Primordial Nexus from Hand, takes two cores from a Primordial Grandwalker Nexus and destroys a Spirit with two or fewer symbols; manifest targets that Nexus', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const lo = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && BS.CARDS[k].symbols <= 2 && BS.CARDS[k].cost <= 3);
+    const nxId = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Nexus' && (BS.CARDS[k].families || []).includes('Primordial') && !(BS.CARDS[k].families || []).includes('Grandwalker'));
+    const a = BS.mkInst('BS69-X01'); a.cores = 3; P.spirits = [a]; const gw = BS.mkInst('BS69-CX01'); gw.cores = 4; P.nexus = [gw];
+    const h = BS.mkInst(nxId); P.hand = [h]; const t = BS.mkInst(lo); O.spirits = [t]; G.attacker = a; G.p.player.count = 8;
+    await BS.fireFx(P, 'ATTACKS', a, { attacker: a, subject: a });
+    return { deployed: P.nexus.includes(h), gwCores: gw.cores, aCores: a.cores, gone: !O.spirits.includes(t), partial: BS.CARDS['BS69-X01'].partial, mani: BS.CARDS['BS69-X01'].manifest }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.deployed, true, JSON.stringify(r)); assert.equal(r.gwCores, 2, JSON.stringify(r));
+  assert.equal(r.aCores, 5, JSON.stringify(r)); assert.equal(r.gone, true, JSON.stringify(r)); assert.deepEqual(r.mani.nexusFamily, ['Primordial', 'Grandwalker'], JSON.stringify(r));
+});

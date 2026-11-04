@@ -10811,18 +10811,126 @@
   "mechanics": [
    "Manifest"
   ],
-  "fxComplete": false,
-  "residual": [
-   "Flash - {{Mani|Primordial & Grandwalker & C6 or more|(Either Attack Step)}}",
-   "By sending your  to the Trash, pay one cost from the target to summon this card from the Hand.",
-   "{{Unleash|2|Primordial}}  [LV1][LV2][LV3] (When Manifests/Attacks)",
-   "You can deploy a \"Primordial\" family Nexus card from your Hand, without paying the cost.",
-   "Then, you can send two cores from any of your \"Primordial\" family Grandwalker Nexuses to this Spirit.",
-   "When you've done so, destroy an opposing Spirit/Ultimate with two or less symbols.",
-   "[LV2][LV3] (Your Attack Step)",
-   "When your Nexus is destroyed, during this battle, a \"Primordial\" family Spirit you control gains an extra Red symbol."
+  "fxComplete": true,
+  "effects": [
+   {
+    "trigger": "MANIFEST",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "SUMMON_HAND",
+      "match": {
+       "family": [
+        "Primordial"
+       ]
+      },
+      "types": [
+       "Nexus"
+      ]
+     },
+     {
+      "do": "BY",
+      "ask": true,
+      "cost": {
+       "do": "NEXUS_CORES_TO_SELF",
+       "n": 2,
+       "match": {
+        "familyAll": [
+         "Primordial",
+         "Grandwalker"
+        ]
+       }
+      },
+      "then": [
+       {
+        "do": "DESTROY",
+        "symbolsLe": 2
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "SUMMON_HAND",
+      "match": {
+       "family": [
+        "Primordial"
+       ]
+      },
+      "types": [
+       "Nexus"
+      ]
+     },
+     {
+      "do": "BY",
+      "ask": true,
+      "cost": {
+       "do": "NEXUS_CORES_TO_SELF",
+       "n": 2,
+       "match": {
+        "familyAll": [
+         "Primordial",
+         "Grandwalker"
+        ]
+       }
+      },
+      "then": [
+       {
+        "do": "DESTROY",
+        "symbolsLe": 2
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_NEXUS_DESTROYED",
+    "lv": [
+     2,
+     3
+    ],
+    "if": {
+     "step": "ATTACK",
+     "not": {
+      "oppTurn": true
+     }
+    },
+    "actions": [
+     {
+      "do": "SYMBOL_PLUS_TURN",
+      "color": "red",
+      "match": {
+       "family": [
+        "Primordial"
+       ]
+      }
+     }
+    ]
+   }
   ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "manifest": {
+   "name": "",
+   "nexusFamily": [
+    "Primordial",
+    "Grandwalker"
+   ],
+   "counterGe": 6,
+   "turn": "EITHER_ATTACK"
+  }
  },
  {
   "id": "BS69-X02",

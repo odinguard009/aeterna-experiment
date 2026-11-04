@@ -237,7 +237,7 @@ function manifestTargets(p, inst, where) {
   if (spec.turn === 'YOUR_ATTACK' ? !(where === 'flash' && G.step === 5 && G.active === p.key) : spec.turn === 'EITHER_ATTACK' ? !(where === 'flash' && G.step === 5) : G.active !== p.key) return [];
   if (!canPlaceFree(p, inst) || soulCoreHolder(p, null) === null) return [];
   if (spec.ultra && p.onceUsed && p.onceUsed['ultra:' + CARDS[inst.id].name] === G.turnNo) return [];      // (Once per Turn: Same Name)
-  return p.nexus.filter(n => CARDS[n.id].name.toLowerCase().includes(spec.name.toLowerCase()) && (spec.ultra || n.cores >= 1));
+  return p.nexus.filter(n => (spec.nexusFamily ? spec.nexusFamily.every(f => (CARDS[n.id].families || []).includes(f)) : CARDS[n.id].name.toLowerCase().includes(spec.name.toLowerCase())) && (spec.ultra || n.cores >= 1));
 }
 async function doManifest(p, inst, target, where) {
   if (!manifestTargets(p, inst, where || 'main').includes(target)) return false;

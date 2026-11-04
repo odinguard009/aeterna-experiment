@@ -80,8 +80,8 @@ Object.assign(FX_ACTIONS, {
       lifeTake(c.p, a.n, c.src); log(`${_pn(c)}: ${a.n} Life of ${who(c.p)} moves to ${_pn(c)}.`); io.view({ type: 'board' });
     } },
   /* send n cores from your matching Nexus (name) to this Spirit (Vajrawurm Unleash cost) */
-  NEXUS_CORES_TO_SELF: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 7 && typeof a.name === 'string' && a.name.length > 0, txt: a => `send ${a.n} cores from your "${a.name}" Nexus to this Spirit`,
-    cands: (c, a) => c.p.nexus.filter(x => x.cores >= a.n && CARDS[x.id].name.toLowerCase().includes(a.name.toLowerCase())),
+  NEXUS_CORES_TO_SELF: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 7 && ((typeof a.name === 'string' && a.name.length > 0) || hasMatch(a.match)), txt: a => `send ${a.n} cores from your "${a.name || 'matching'}" Nexus to this Spirit`,
+    cands: (c, a) => c.p.nexus.filter(x => x.cores >= a.n && (a.match ? fxMatch(CARDS[x.id], a.match, x) : CARDS[x.id].name.toLowerCase().includes(a.name.toLowerCase()))),
     can: (c, a) => c.p.spirits.includes(c.src) && FX_ACTIONS.NEXUS_CORES_TO_SELF.cands(c, a).length > 0,
     run: async (c, a) => {
       const L = FX_ACTIONS.NEXUS_CORES_TO_SELF.cands(c, a); if (!L.length || !c.p.spirits.includes(c.src)) { c.ctx.did = false; return; }
