@@ -186,3 +186,19 @@ test('K-1143 BS74-X05 Crisarificios: Main Step Hand effect destroys a Bed, redra
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.top, true, JSON.stringify(r)); assert.equal(r.hand, 3, JSON.stringify(r)); assert.equal(r.beds, 0, JSON.stringify(r)); assert.equal(r.removed, false, JSON.stringify(r));
   assert.equal(r.locked, true, JSON.stringify(r)); assert.equal(r.free, true, JSON.stringify(r)); assert.equal(r.cols, 1, JSON.stringify(r));
 });
+
+test('K-1144 BS73-070 Morrigan\'s Jewel Temple: Cost 7+ Prismwing remains exhausted when destroyed by an opposing effect; LV2 caps Life loss against 2+ symbol attackers', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = O.key; G.step = 5; G.fxBy = O.key;
+    const big = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && (BS.CARDS[k].families || []).includes('Prismwing') && BS.CARDS[k].cost >= 7);
+    const small = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && (BS.CARDS[k].families || []).includes('Prismwing') && BS.CARDS[k].cost < 7);
+    const two = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && BS.CARDS[k].symbols >= 2), one = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && BS.CARDS[k].symbols === 1);
+    const n = BS.mkInst('BS73-070'); n.cores = 1; P.nexus = [n]; const a = BS.mkInst(big); a.cores = 3; const b = BS.mkInst(small); b.cores = 3; P.spirits = [a, b];
+    BS.removeSpirit(P, a, 'destroyed', true); BS.removeSpirit(P, b, 'destroyed', true);
+    const keep = P.spirits.includes(a) && a.exhausted === true, gone = !P.spirits.includes(b);
+    const x2 = BS.mkInst(two), x1 = BS.mkInst(one);
+    const cap2 = lifeSym2Cap(P, x2), cap1 = lifeSym2Cap(P, x1); n.cores = 0; const lv1 = lifeSym2Cap(P, x2);
+    return { keep, gone, cap2, cap1, lv1, partial: BS.CARDS['BS73-070'].partial, big, small, two, one }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.keep, true, JSON.stringify(r)); assert.equal(r.gone, true, JSON.stringify(r));
+  assert.equal(r.cap2, true, JSON.stringify(r)); assert.equal(r.cap1, false, JSON.stringify(r)); assert.equal(r.lv1, false, JSON.stringify(r));
+});

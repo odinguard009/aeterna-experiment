@@ -82,3 +82,6 @@ FX_ACTIONS.BED_REMOVED_REDRAW = { chk: a => Number.isInteger(a.n) && a.n >= 1 &&
     await FX_ACTIONS.DISCARD_ALL_HAND.run(c, { do: 'DISCARD_ALL_HAND' });
     const k = draw(c.p, a.n); log(`${_nm(c)}: ${who(c.p)} ${c.p.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'}.`); handUp(c.p, k);
     c.p.removed = c.p.removed.filter(x => x !== c.src); c.p.deck.unshift(c.src); log(`${_nm(c)}: this card returns to the top of ${poss(c.p)} deck.`); io.view({ type: 'board' }); } };
+/* v527 STATIC LIFE_CAP_SYM2 (BS73-070 LV2): "your Life can only be reduced by one per opposing Spirit/Ultimate with two or more symbols per turn". Read by 08-battle; approximated as a cap of one per such attack. */
+STATIC_FLAGS.push('LIFE_CAP_SYM2');
+const lifeSym2Cap = (D, att) => !!att && attackSymbols(att) >= 2 && fieldList(D).some(f => fxEntries(f).some(({ e }) => e.trigger === 'STATIC' && e.flag === 'LIFE_CAP_SYM2' && (!e.lv || e.lv.includes(lvNo(f)))));

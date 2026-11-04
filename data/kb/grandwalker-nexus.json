@@ -1023,44 +1023,8 @@
     "BS74-X05"
    ],
    "revival_open": [],
-   "deck_incomplete": [
-    "BS73-023",
-    "BS73-024",
-    "BS73-027",
-    "BS73-029",
-    "BS73-030",
-    "BS73-031",
-    "BS73-076",
-    "BS73-077",
-    "BS73-AX01",
-    "BS74-026",
-    "BS74-027",
-    "BS74-034",
-    "BS74-035",
-    "BS74-037",
-    "BS74-071",
-    "BS74-081",
-    "BS74-X05"
-   ],
-   "order_cards": [
-    "BS73-023",
-    "BS73-024",
-    "BS73-027",
-    "BS73-029",
-    "BS73-030",
-    "BS73-031",
-    "BS73-076",
-    "BS73-077",
-    "BS73-AX01",
-    "BS74-026",
-    "BS74-027",
-    "BS74-034",
-    "BS74-035",
-    "BS74-037",
-    "BS74-071",
-    "BS74-081",
-    "BS74-X05"
-   ]
+   "deck_incomplete": [],
+   "order_cards": []
   },
   {
    "id": "BS73-CX02",
@@ -25456,7 +25420,7 @@
     "name": "The FungalBeast PiPig",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-025",
@@ -25470,21 +25434,21 @@
     "name": "The FungalBeast WolWolf",
     "type": "Spirit",
     "cost": 5,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-029",
     "name": "The FungalBeast JarJaguar",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-030",
     "name": "The FungalBeast BeaBear",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-034",
@@ -25617,7 +25581,7 @@
     "name": "The FungalTreeForgeDeity BigBang-Golem",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-AX02",
@@ -25750,21 +25714,21 @@
     "name": "The FungalBeast ToToad",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-034",
     "name": "The FungalBeast AriArikui",
     "type": "Spirit",
     "cost": 5,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-035",
     "name": "The FungalBeast LeoLeopard",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-041",
@@ -26459,7 +26423,7 @@
     "name": "The GreatFungalBird Crisarificios",
     "type": "Spirit",
     "cost": 10,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-X06",
@@ -28699,14 +28663,14 @@
     "name": "The FungalBeast PiPig",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-024",
     "name": "The FungalBeast OckOx",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-025",
@@ -28720,105 +28684,105 @@
     "name": "The FungalBeast WolWolf",
     "type": "Spirit",
     "cost": 5,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-029",
     "name": "The FungalBeast JarJaguar",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-030",
     "name": "The FungalBeast BeaBear",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-031",
     "name": "The FungalBeast ZoZou",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-076",
     "name": "Fluffy Reverse",
     "type": "Magic",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-077",
     "name": "Binding Fungus",
     "type": "Magic",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-AX01",
     "name": "The FungalTreeForgeDeity BigBang-Golem",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-026",
     "name": "The FungalBeast RiRisu",
     "type": "Spirit",
     "cost": 1,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-027",
     "name": "The FungalBeast ToToad",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-034",
     "name": "The FungalBeast AriArikui",
     "type": "Spirit",
     "cost": 5,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-035",
     "name": "The FungalBeast LeoLeopard",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-037",
     "name": "The GiantFungalBeast SaSai",
     "type": "Spirit",
     "cost": 10,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-071",
     "name": "The Jungle Where Spores Float",
     "type": "Nexus",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-081",
     "name": "Fungus Attack",
     "type": "Magic",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-X05",
     "name": "The GreatFungalBird Crisarificios",
     "type": "Spirit",
     "cost": 10,
-    "complete": false
+    "complete": true
    }
   ],
   "彩羽": [

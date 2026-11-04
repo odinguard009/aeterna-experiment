@@ -89,7 +89,7 @@ async function doBattleInner(attKey, att) {
       && (!e.lv || e.lv.includes(L)) && (!e.to || e.to !== 'self' || f === att) && (!e.oc || ocActive(f)) && (!e.match || fxMatch(CARDS[att.id], e.match, att))
       && fxIf(A, oppp, e.if || {}, { selfInst: f })) n += e.n; }
     return n; })();
-  const dmg = shield || bedSave ? 0 : Math.min(attackSymbols(att) + lifePlus, D.life, Math.min(att.lifeCapTurn && att.lifeCapTurn.turn === G.turnNo ? att.lifeCapTurn.cap : 99, D.lifeCapAll === G.turnNo ? 1 : 99));      // v196 LIFE_CAP_ONE: "your Life can only be reduced by one by that"
+  const dmg = shield || bedSave ? 0 : Math.min(attackSymbols(att) + lifePlus, D.life, Math.min(att.lifeCapTurn && att.lifeCapTurn.turn === G.turnNo ? att.lifeCapTurn.cap : 99, D.lifeCapAll === G.turnNo || lifeSym2Cap(D, att) ? 1 : 99));      // v196 LIFE_CAP_ONE: "your Life can only be reduced by one by that"
   if (shield) log(`${CARDS[att.id].name}'s attack can't reduce ${poss(D)} Life.`);
   lifeTake(D, dmg, flagActive(A, 'LIFE_CORE_TO_TRASH', att) ? 'trash' : 'reserve');                    // v191 LIFE_CORE_TO_TRASH: "sent to the Trash instead of the Reserve"
   log(`${CARDS[att.id].name} is not blocked: ${who(D)} ${D.cpu ? 'loses' : 'lose'} ${dmg} Life.`);
