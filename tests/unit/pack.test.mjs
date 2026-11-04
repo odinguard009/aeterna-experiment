@@ -57,7 +57,7 @@ test('P08 the built page embeds the compressed pack on one line and it decodes t
   assert.ok(m && !m[0].includes('\n'));
   assert.equal(new TextDecoder().decode(inflateRawSync(Buffer.from(m[1], 'base64'))), packJson(live));
 });
-test('P09 full projected pack (all cards: 8,041 Eternal + Standard block A since v0.62.0): round trip exact, compressed under 2.1 MB', { skip: !staged && 'light clone without data/import' }, () => {
+test('P09 full projected pack (all cards: 8,041 Eternal + Standard block A since v0.62.0): round trip exact, compressed under 3.2 MB', { skip: !staged && 'light clone without data/import' }, () => {
   const cards = projectedCards();
   const ids = new Set(JSON.parse(readFileSync(join(ROOT, 'build/all-cards.json'), 'utf8')).map(c => c.id));      // v0.79.0: A1 partial cards are in both
   for (const f of readdirSync(join(ROOT, 'data/import')).filter(f => /^saga-\d\d\.json$/.test(f))) for (const c of JSON.parse(readFileSync(join(ROOT, 'data/import', f), 'utf8'))) ids.add(c.id);
@@ -66,6 +66,6 @@ test('P09 full projected pack (all cards: 8,041 Eternal + Standard block A since
   assert.ok(total >= 8041 + 600, String(total));
   const m = measure(cards);
   assert.ok(m.roundTrip);
-  assert.ok(m.compact < 2.1e6, String(m.compact));
+  assert.ok(m.compact < 3.2e6, String(m.compact));   // 2.1e6 -> 3.2e6 (2026-11-04): the master import added 5,201 library cards (2.68 MB measured)
   assert.deepEqual(norm(fromExpr(packExpr(cards))), norm(cards));
 });

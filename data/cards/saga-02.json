@@ -16734,5 +16734,966 @@
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
   "rcode": "X"
+ },
+ {
+  "id": "BSC05-001",
+  "name": "Soulhorse",
+  "name_jp": "ソウルホース",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 1,
+  "reduction": {
+   "purple": 1,
+   "red": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 1000
+   },
+   {
+    "cores": 2,
+    "bp": 2000
+   }
+  ],
+  "families": [
+   "Evil Shadow"
+  ],
+  "text": "[LV1][LV2]\nThis Spirit's color and symbol are also treated as Red.",
+  "image": "BSC05-001.png",
+  "block": "4",
+  "saga": 2,
+  "bicon": [
+   "4"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2]",
+   "This Spirit's color and symbol are also treated as Red."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "rcode": "C"
+ },
+ {
+  "id": "BSC05-002",
+  "name": "The Magician Dragonaga",
+  "name_jp": "魔術師ドラゴナーガ",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 4,
+  "reduction": {
+   "purple": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 2000
+   },
+   {
+    "cores": 2,
+    "bp": 5000
+   },
+   {
+    "cores": 5,
+    "bp": 6000
+   }
+  ],
+  "families": [
+   "Dark Snake",
+   "Dragon"
+  ],
+  "text": "[LV1][LV2][LV3] (When Summoned)\nDraw a card.\n\n[LV3] (When Attacks)\nSend a core from any opposing Spirit to their Reserve.",
+  "image": "BSC05-002.png",
+  "block": "P",
+  "saga": 2,
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2][LV3] (When Summoned)",
+   "Draw a card.",
+   "[LV3] (When Attacks)",
+   "Send a core from any opposing Spirit to their Reserve."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "rcode": "U"
+ },
+ {
+  "id": "BSC05-003",
+  "name": "The HellLionKnight Marbalion",
+  "name_jp": "冥獅士マルバレオン",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 5,
+  "reduction": {
+   "purple": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   },
+   {
+    "cores": 3,
+    "bp": 6000
+   },
+   {
+    "cores": 4,
+    "bp": 8000
+   }
+  ],
+  "families": [
+   "Infernal Lord"
+  ],
+  "text": "[LV1][LV2][LV3] (When Summoned) Send cores from two opposing Spirits to the Reserve until only one core remains on each of them.\n\n[LV3] (Your Attack Step) Your first attacking Spirit can target and attack an opposing exhausted Spirit.",
+  "image": "BSC05-003.png",
+  "block": "P",
+  "saga": 2,
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2][LV3] (When Summoned) Send cores from two opposing Spirits to the Reserve until only one core remains on each of them.",
+   "[LV3] (Your Attack Step) Your first attacking Spirit can target and attack an opposing exhausted Spirit."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "rcode": "U"
+ },
+ {
+  "id": "BSC05-004",
+  "name": "The ForestBird Sekkohkiji",
+  "name_jp": "森林のセッコーキジ",
+  "type": "Spirit",
+  "color": "green",
+  "cost": 1,
+  "reduction": {
+   "green": 1,
+   "red": 1
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 1000
+   },
+   {
+    "cores": 2,
+    "bp": 2000
+   }
+  ],
+  "families": [
+   "Winged Beast"
+  ],
+  "text": "[LV1][LV2]\nThis Spirit's color and symbol are also treated as Red.",
+  "image": "BSC05-004.png",
+  "block": "P",
+  "saga": 2,
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2]",
+   "This Spirit's color and symbol are also treated as Red."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "rcode": "C"
+ },
+ {
+  "id": "BSC05-005",
+  "name": "Hinawazaru",
+  "name_jp": "火縄ザル",
+  "type": "Spirit",
+  "color": "green",
+  "cost": 4,
+  "reduction": {
+   "green": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   },
+   {
+    "cores": 3,
+    "bp": 5000
+   }
+  ],
+  "families": [
+   "Imp"
+  ],
+  "text": "[LV1][LV2] (When Summoned)\nPut a core from the Void to any of your Spirits.\n\n[LV2] (When Battles)\nWhen only the opposing Spirit is destroyed via BP comparison, this Spirit refreshes.",
+  "image": "BSC05-005.png",
+  "block": "P",
+  "saga": 2,
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2] (When Summoned)",
+   "Put a core from the Void to any of your Spirits.",
+   "[LV2] (When Battles)",
+   "When only the opposing Spirit is destroyed via BP comparison, this Spirit refreshes."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "rcode": "U"
+ },
+ {
+  "id": "BSC05-006",
+  "name": "The BushinBeast Tigerd-Shingen",
+  "name_jp": "武神獣タイガード・シンゲン",
+  "type": "Spirit",
+  "color": "green",
+  "cost": 5,
+  "reduction": {
+   "green": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 4000
+   },
+   {
+    "cores": 3,
+    "bp": 8000
+   }
+  ],
+  "families": [
+   "Blade Beast",
+   "Emperor Beast"
+  ],
+  "text": "[LV1][LV2] (When Attacks)\nNeither player can remove cores from the battling Spirits.\n\n[LV2] (When Attacks)\nWhen the opposing Life is reduced, besides [The BushinBeast Tigerd-Shingen], refresh a Spirit you control.",
+  "image": "BSC05-006.png",
+  "block": "P",
+  "saga": 2,
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2] (When Attacks)",
+   "Neither player can remove cores from the battling Spirits.",
+   "[LV2] (When Attacks)",
+   "When the opposing Life is reduced, besides [The BushinBeast Tigerd-Shingen], refresh a Spirit you control."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "rcode": "U"
+ },
+ {
+  "id": "BSC05-007",
+  "name": "Igua-Buggy",
+  "name_jp": "イグア・バギー",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 1,
+  "reduction": {
+   "white": 1,
+   "red": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 1000
+   },
+   {
+    "cores": 2,
+    "bp": 3000
+   }
+  ],
+  "families": [
+   "Machine Beast",
+   "Astral Soul"
+  ],
+  "text": "[LV1][LV2]\nThis Spirit's color and symbol are also treated as Red.",
+  "image": "BSC05-007.png",
+  "block": "P",
+  "saga": 2,
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2]",
+   "This Spirit's color and symbol are also treated as Red."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "rcode": "C"
+ },
+ {
+  "id": "BSC05-008",
+  "name": "The CannonBeast Glypdon",
+  "name_jp": "移動砲獣グリプドン",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   },
+   {
+    "cores": 2,
+    "bp": 5000
+   },
+   {
+    "cores": 4,
+    "bp": 7000
+   }
+  ],
+  "families": [
+   "Machine Beast"
+  ],
+  "text": "[LV1][LV2][LV3] The attacks of Cost 2 or less Spirits can't reduce either player's Life.\n\n[LV2][LV3] Armor:White/Blue - This Spirit is unaffected by opposing White/Blue Spirit/Nexus/Magic effects.",
+  "image": "BSC05-008.png",
+  "block": "P",
+  "saga": 2,
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2][LV3] The attacks of Cost 2 or less Spirits can't reduce either player's Life.",
+   "[LV2][LV3] Armor:White/Blue - This Spirit is unaffected by opposing White/Blue Spirit/Nexus/Magic effects."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "rcode": "U"
+ },
+ {
+  "id": "BSC05-009",
+  "name": "The ArtifactDragon Swordrander",
+  "name_jp": "竜機合神ソードランダー",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 5,
+  "reduction": {
+   "white": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 4000
+   },
+   {
+    "cores": 2,
+    "bp": 6000
+   },
+   {
+    "cores": 5,
+    "bp": 8000
+   }
+  ],
+  "families": [
+   "Machine Beast",
+   "Armed Machine"
+  ],
+  "text": "[LV1][LV2][LV3] (Opposing Attack Step)\nThis Spirit can block all opposing non-braved Spirits while exhausted.\n\n[LV3] (When Battles)\nWhen only the opposing Spirit is destroyed via BP comparison, return any number of opposing Spirits up to a total of Cost 4 to the Hand.",
+  "image": "BSC05-009.png",
+  "block": "P",
+  "saga": 2,
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2][LV3] (Opposing Attack Step)",
+   "This Spirit can block all opposing non-braved Spirits while exhausted.",
+   "[LV3] (When Battles)",
+   "When only the opposing Spirit is destroyed via BP comparison, return any number of opposing Spirits up to a total of Cost 4 to the Hand."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "rcode": "U"
+ },
+ {
+  "id": "BSC05-010",
+  "name": "イーズナ",
+  "name_jp": "イーズナ",
+  "type": "Spirit",
+  "color": "yellow",
+  "cost": 1,
+  "reduction": {
+   "yellow": 1,
+   "red": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 1000
+   },
+   {
+    "cores": 2,
+    "bp": 2000
+   },
+   {
+    "cores": 3,
+    "bp": 3000
+   }
+  ],
+  "families": [
+   "戯狩"
+  ],
+  "text": "［Lv1-Lv2-Lv3］\nこのスピリットは赤のスピリットとしても扱う。",
+  "image": "BSC05-010.png",
+  "block": "P",
+  "saga": 2,
+  "fxComplete": false,
+  "residual": [
+   "［Lv1-Lv2-Lv3］",
+   "このスピリットは赤のスピリットとしても扱う。"
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English name pending (Japanese name kept). English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "rcode": "C"
+ },
+ {
+  "id": "BSC05-011",
+  "name": "ElectricFairy Birit",
+  "name_jp": "電精ビリット",
+  "type": "Spirit",
+  "color": "yellow",
+  "cost": 4,
+  "reduction": {
+   "yellow": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   },
+   {
+    "cores": 2,
+    "bp": 4000
+   },
+   {
+    "cores": 3,
+    "bp": 5000
+   }
+  ],
+  "families": [
+   "Fairy"
+  ],
+  "text": "[LV1][LV2][LV3] (When Destroyed) Draw a card from your deck.\n\n[LV3] When another Spirit you control is destroyed, by returning this Spirit to your Hand, the destroyed Spirit returns to the Field in the same condition.",
+  "image": "BSC05-011.png",
+  "block": "P",
+  "saga": 2,
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2][LV3] (When Destroyed) Draw a card from your deck.",
+   "[LV3] When another Spirit you control is destroyed, by returning this Spirit to your Hand, the destroyed Spirit returns to the Field in the same condition."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "rcode": "U"
+ },
+ {
+  "id": "BSC05-012",
+  "name": "The ThunderBeast Raijoule",
+  "name_jp": "雷の獣ライジュール",
+  "type": "Spirit",
+  "color": "yellow",
+  "cost": 5,
+  "reduction": {
+   "yellow": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   },
+   {
+    "cores": 2,
+    "bp": 5000
+   },
+   {
+    "cores": 4,
+    "bp": 7000
+   }
+  ],
+  "families": [
+   "Hunter Beast"
+  ],
+  "text": "[LV1][LV2][LV3] Holy Life (When Attacks) When this Spirit's attack reduces the opposing Life, put a core from the Void to your Life.\n\n[LV3] (Your Attack Step) Your Cost 10 Spirits can't be blocked by opposing Spirits with printed effects.",
+  "image": "BSC05-012.png",
+  "block": "P",
+  "saga": 2,
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2][LV3] Holy Life (When Attacks) When this Spirit's attack reduces the opposing Life, put a core from the Void to your Life.",
+   "[LV3] (Your Attack Step) Your Cost 10 Spirits can't be blocked by opposing Spirits with printed effects."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "rcode": "U"
+ },
+ {
+  "id": "BSC05-013",
+  "name": "The BlackWingDragon Burn-Crow",
+  "name_jp": "黒翼竜バーン・クロウ",
+  "type": "Brave",
+  "color": "purple",
+  "cost": 5,
+  "reduction": {
+   "purple": 2,
+   "red": 2
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 2000
+   }
+  ],
+  "families": [
+   "Evil Shadow",
+   "Astral Soul"
+  ],
+  "text": "When Braved (When Battles)\nWhen this Spirit is destroyed by opposing Spirit via BP comparison, send an opposing Life to their Reserve. Then, the Brave of this Brave Spirit remains on the Field, and only the Spirit returns to the Hand.",
+  "image": "BSC05-013.png",
+  "block": "P",
+  "saga": 2,
+  "brave": {
+   "bp": 2000,
+   "costGe": 5
+  },
+  "fxComplete": false,
+  "residual": [
+   "When Braved (When Battles)",
+   "When this Spirit is destroyed by opposing Spirit via BP comparison, send an opposing Life to their Reserve. Then, the Brave of this Brave Spirit remains on the Field, and only the Spirit returns to the Hand."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "rcode": "U"
+ },
+ {
+  "id": "BSC05-014",
+  "name": "The BladeWolf Beo-Wulf",
+  "name_jp": "刃狼ベオ・ウルフ",
+  "type": "Brave",
+  "color": "green",
+  "cost": 5,
+  "reduction": {
+   "green": 2,
+   "red": 2
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   }
+  ],
+  "families": [
+   "Blade Beast",
+   "Astral Soul"
+  ],
+  "text": "When Braved (When Attacks)\nWhen only the opposing Spirit is destroyed by comparing BP, send two opposing Lives to their Reserve.",
+  "image": "BSC05-014.png",
+  "block": "P",
+  "saga": 2,
+  "brave": {
+   "bp": 3000,
+   "costGe": 5
+  },
+  "fxComplete": false,
+  "residual": [
+   "When Braved (When Attacks)",
+   "When only the opposing Spirit is destroyed by comparing BP, send two opposing Lives to their Reserve."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "rcode": "U"
+ },
+ {
+  "id": "BSC05-015",
+  "name": "The BeastArmor Megabison",
+  "name_jp": "獣装甲メガバイソン",
+  "type": "Brave",
+  "color": "white",
+  "cost": 5,
+  "reduction": {
+   "white": 2,
+   "red": 2
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   }
+  ],
+  "families": [
+   "Machine Beast"
+  ],
+  "text": "During Brave {{Armor|Red/Green/White}}\nThis Spirit is unaffected by opposing Red/Green/White Spirit/Nexus/Magic effects.",
+  "image": "BSC05-015.png",
+  "block": "8",
+  "saga": 2,
+  "bicon": [
+   "8"
+  ],
+  "brave": {
+   "bp": 3000,
+   "costGe": 5
+  },
+  "fxComplete": false,
+  "residual": [
+   "During Brave {{Armor|Red/Green/White}}",
+   "This Spirit is unaffected by opposing Red/Green/White Spirit/Nexus/Magic effects."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "rcode": "U"
+ },
+ {
+  "id": "BSC05-016",
+  "name": "The HeavenHornBeast Bicorn",
+  "name_jp": "天角獣バイコーン",
+  "type": "Brave",
+  "color": "yellow",
+  "cost": 5,
+  "reduction": {
+   "yellow": 2,
+   "red": 2
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   }
+  ],
+  "families": [
+   "Imaginary Beast"
+  ],
+  "text": "When Braved (When Brave Attacks)\nWhen this battle resolves, if the opposing blocking Spirit is 6000 BP or less, by not comparing BP, treat this Spirit as not being blocked.",
+  "image": "BSC05-016.png",
+  "block": "P",
+  "saga": 2,
+  "brave": {
+   "bp": 3000,
+   "costGe": 5
+  },
+  "fxComplete": false,
+  "residual": [
+   "When Braved (When Brave Attacks)",
+   "When this battle resolves, if the opposing blocking Spirit is 6000 BP or less, by not comparing BP, treat this Spirit as not being blocked."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "rcode": "U"
+ },
+ {
+  "id": "BSC05-017",
+  "name": "The Old Devil's Castle",
+  "name_jp": "古の魔王城",
+  "type": "Nexus",
+  "color": "purple",
+  "cost": 4,
+  "reduction": {
+   "purple": 2
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1
+   }
+  ],
+  "families": [],
+  "text": "[LV1][LV2]\nWhen the opponent uses a Spirit/Magic effect that targets your Spirits, you can choose one of your Spirits affected by that effect, and change the target of that effect to that Spirit only.\n\n[LV2] (Either Attack Step)\nWhen your Brave Spirit becomes exhausted, draw a card.",
+  "image": "BSC05-017.png",
+  "block": "P",
+  "saga": 2,
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2]",
+   "When the opponent uses a Spirit/Magic effect that targets your Spirits, you can choose one of your Spirits affected by that effect, and change the target of that effect to that Spirit only.",
+   "[LV2] (Either Attack Step)",
+   "When your Brave Spirit becomes exhausted, draw a card."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "rcode": "C"
+ },
+ {
+  "id": "BSC05-018",
+  "name": "The Immovable Headquarters",
+  "name_jp": "動かざる山の本陣",
+  "type": "Nexus",
+  "color": "green",
+  "cost": 4,
+  "reduction": {
+   "green": 2
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 2
+   }
+  ],
+  "families": [],
+  "text": "[LV1][LV2] (Your Main Step)\nWhen your Spirit-condition Brave is summoned, put a core from the Void to your Reserve.\n\n[LV2] (Your End Step)\nRefresh all your Brave Spirits.",
+  "image": "BSC05-018.png",
+  "block": "P",
+  "saga": 2,
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2] (Your Main Step)",
+   "When your Spirit-condition Brave is summoned, put a core from the Void to your Reserve.",
+   "[LV2] (Your End Step)",
+   "Refresh all your Brave Spirits."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "rcode": "C"
+ },
+ {
+  "id": "BSC05-019",
+  "name": "The Impregnable Fortress",
+  "name_jp": "絶望壁の要塞",
+  "type": "Nexus",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 2
+   }
+  ],
+  "families": [],
+  "text": "[LV1][LV2] (Opposing Turn)\nYour Life can only be reduced by up to one per opposing Spirit per turn.\n\n[LV2]\nGive all your Spirit-condition Braves the effect: \"{{Armor|Red/Blue}} This Spirit is unaffected by opposing Red/Blue Spirit/Nexus/Magic effects.\"",
+  "image": "BSC05-019.png",
+  "block": "P",
+  "saga": 2,
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2] (Opposing Turn)",
+   "Your Life can only be reduced by up to one per opposing Spirit per turn.",
+   "[LV2]",
+   "Give all your Spirit-condition Braves the effect: \"{{Armor|Red/Blue}} This Spirit is unaffected by opposing Red/Blue Spirit/Nexus/Magic effects.\""
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "rcode": "C"
+ },
+ {
+  "id": "BSC05-020",
+  "name": "The Crown of the Starlit Sky",
+  "name_jp": "星空の冠",
+  "type": "Nexus",
+  "color": "yellow",
+  "cost": 4,
+  "reduction": {
+   "yellow": 2
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1
+   }
+  ],
+  "families": [],
+  "text": "[LV1][LV2]\nWhen your Life is reduced, you can reveal a card from your decktop. If it is a Cost 2 or less Spirit card, you can summon it without paying the cost. Add any remaining card to the Hand.\n\n[LV2] (Opposing Turn)\nDestroy every Red/Green/Blue Spirit refreshed by Spirit/Magic effects.",
+  "image": "BSC05-020.png",
+  "block": "10",
+  "saga": 2,
+  "bicon": [
+   "10"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2]",
+   "When your Life is reduced, you can reveal a card from your decktop. If it is a Cost 2 or less Spirit card, you can summon it without paying the cost. Add any remaining card to the Hand.",
+   "[LV2] (Opposing Turn)",
+   "Destroy every Red/Green/Blue Spirit refreshed by Spirit/Magic effects."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "rcode": "C"
+ },
+ {
+  "id": "BSC05-021",
+  "name": "Grim Reaper",
+  "name_jp": "グリムリーパー",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 3,
+  "reduction": {
+   "purple": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Main\nDestroy an exhausted Spirit with only one core on it.\n\nFlash\nDuring this turn, give a Spirit +2000 BP.",
+  "image": "BSC05-021.png",
+  "block": "P",
+  "saga": 2,
+  "fxComplete": false,
+  "residual": [
+   "Main",
+   "Destroy an exhausted Spirit with only one core on it.",
+   "Flash",
+   "During this turn, give a Spirit +2000 BP."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "rcode": "U"
+ },
+ {
+  "id": "BSC05-022",
+  "name": "Greedy Cores",
+  "name_jp": "グリーディコア",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 5,
+  "reduction": {
+   "purple": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nSend two cores from any opposing non-braved Spirits to their Reserve.",
+  "image": "BSC05-022.png",
+  "block": "P",
+  "saga": 2,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Send two cores from any opposing non-braved Spirits to their Reserve."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "rcode": "R"
+ },
+ {
+  "id": "BSC05-023",
+  "name": "Grass Trap",
+  "name_jp": "グラストラップ",
+  "type": "Magic",
+  "color": "green",
+  "cost": 3,
+  "reduction": {
+   "green": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nTarget an opposing Spirit. Exhaust that Spirit, and during this turn, that Spirit can't refresh.",
+  "image": "BSC05-023.png",
+  "block": "P",
+  "saga": 2,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Target an opposing Spirit. Exhaust that Spirit, and during this turn, that Spirit can't refresh."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "rcode": "U"
+ },
+ {
+  "id": "BSC05-024",
+  "name": "Rapid Wind",
+  "name_jp": "ラピッドウィンド",
+  "type": "Magic",
+  "color": "green",
+  "cost": 4,
+  "reduction": {
+   "green": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nTarget a family. Refresh two of your Spirits with the targeted family.",
+  "image": "BSC05-024.png",
+  "block": "P",
+  "saga": 2,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Target a family. Refresh two of your Spirits with the targeted family."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "rcode": "R"
+ },
+ {
+  "id": "BSC05-025",
+  "name": "Magic Boost",
+  "name_jp": "マジックブースト",
+  "type": "Magic",
+  "color": "white",
+  "cost": 3,
+  "reduction": {
+   "white": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nRefresh one of your Brave Spirits, and during this turn, give that Spirit +2000 BP.",
+  "image": "BSC05-025.png",
+  "block": "P",
+  "saga": 2,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Refresh one of your Brave Spirits, and during this turn, give that Spirit +2000 BP."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "rcode": "U"
+ },
+ {
+  "id": "BSC05-026",
+  "name": "Mirage Coat",
+  "name_jp": "ミラージュコート",
+  "type": "Magic",
+  "color": "white",
+  "cost": 5,
+  "reduction": {
+   "white": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDuring this turn, all your Spirit-condition Braves can't be blocked.",
+  "image": "BSC05-026.png",
+  "block": "P",
+  "saga": 2,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "During this turn, all your Spirit-condition Braves can't be blocked."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "rcode": "R"
+ },
+ {
+  "id": "BSC05-027",
+  "name": "Elec Trick",
+  "name_jp": "エレキトリック",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 3,
+  "reduction": {
+   "yellow": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nBy destroying one of your battling Spirits, send a core from that Spirit to your Life.",
+  "image": "BSC05-027.png",
+  "block": "P",
+  "saga": 2,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "By destroying one of your battling Spirits, send a core from that Spirit to your Life."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "rcode": "U"
+ },
+ {
+  "id": "BSC05-028",
+  "name": "Thunder Branch",
+  "name_jp": "サンダーブランチ",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 4,
+  "reduction": {
+   "yellow": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nDuring this turn, treat the LV1/LV2/LV3 BP of every opposing non-braved or non-Tribute Spirit as 2000 BP. This effect can't be used during Main Step.",
+  "image": "BSC05-028.png",
+  "block": "P",
+  "saga": 2,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "During this turn, treat the LV1/LV2/LV3 BP of every opposing non-braved or non-Tribute Spirit as 2000 BP. This effect can't be used during Main Step."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "rcode": "R"
  }
 ]

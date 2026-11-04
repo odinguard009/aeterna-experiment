@@ -4621,6 +4621,247 @@
   "rcode": "CP"
  },
  {
+  "id": "BS76-CP02",
+  "name": "The SorcererInfernalDeityKing Neo-Dark-Clymenus",
+  "name_jp": "魔導冥神帝ネオ・ダーク・クリュメノス",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 10,
+  "reduction": {
+   "purple": 5
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 10000
+   },
+   {
+    "cores": 2,
+    "bp": 13000
+   },
+   {
+    "cores": 4,
+    "bp": 16000
+   }
+  ],
+  "families": [
+   "Devotee",
+   "Concluser",
+   "Infernal Lord"
+  ],
+  "text": "Flash - {{UMani|\"Contractor Hades\" & C10 or more|(Your Attack Step)}}\n(Once per Turn: Same Name) By putting your (Soul Core) on top, +1 core to one of the targets, and summon this card from the Hand, treating all summon costs as paid.\n\n[LV1-2-3] (When Manifests)\nYou can destroy an opposing Spirit/Ultimate with four or more cores on it. This effect can't be prevented by opposing effects.\n\n[LV2-3] (When Attacks)\nYou can summon a Purple \"Sorcerer\" from your Trash. When you've done so, you can activate this Spirit's (When Manifests) effect.",
+  "image": "BS76-CP02.png",
+  "block": "76",
+  "saga": 17,
+  "bicon": [
+   "13"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{UMani|\"Contractor Hades\" & C10 or more|(Your Attack Step)}}",
+   "(Once per Turn: Same Name) By putting your (Soul Core) on top, +1 core to one of the targets, and summon this card from the Hand, treating all summon costs as paid.",
+   "[LV1-2-3] (When Manifests)",
+   "You can destroy an opposing Spirit/Ultimate with four or more cores on it. This effect can't be prevented by opposing effects.",
+   "[LV2-3] (When Attacks)",
+   "You can summon a Purple \"Sorcerer\" from your Trash. When you've done so, you can activate this Spirit's (When Manifests) effect."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "rcode": "CP"
+ },
+ {
+  "id": "BS76-CP03",
+  "name": "The SunDeity Scara-Falcon Omega",
+  "name_jp": "太陽神スカラ・ファルコンΩ",
+  "type": "Spirit",
+  "color": "green",
+  "cost": 9,
+  "reduction": {
+   "green": 6
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 10000
+   },
+   {
+    "cores": 2,
+    "bp": 13000
+   },
+   {
+    "cores": 5,
+    "bp": 21000
+   }
+  ],
+  "families": [
+   "Devotee",
+   "Concluser",
+   "Weapon Insect"
+  ],
+  "text": "Flash - {{UMani|\"Contractor Ra-Harakhti\" & C7 or more|(Either Attack Step)}}\n(Once per Turn: Same Name) By putting your (Soul Core) on top, +1 core to one of the targets, and summon this card from the Hand, treating all summon costs as paid.\n\n[LV1-2-3] (When Manifests)\nPut up to two cores from the Void to any of your \"Weapon Insect\" family Spirits. Then, for each of your set cards, +1 core to any of your \"Contractor Ra-Harakhti\" Grandwalker Nexuses.\n\n[LV2-3] (Your Attack Step)\nWhile your \"Weapon Insect\" family Spirit is attacking, the opponent can't activate Burst effects.",
+  "image": "BS76-CP03.png",
+  "block": "76",
+  "saga": 17,
+  "bicon": [
+   "13"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{UMani|\"Contractor Ra-Harakhti\" & C7 or more|(Either Attack Step)}}",
+   "(Once per Turn: Same Name) By putting your (Soul Core) on top, +1 core to one of the targets, and summon this card from the Hand, treating all summon costs as paid.",
+   "[LV1-2-3] (When Manifests)",
+   "Put up to two cores from the Void to any of your \"Weapon Insect\" family Spirits. Then, for each of your set cards, +1 core to any of your \"Contractor Ra-Harakhti\" Grandwalker Nexuses.",
+   "[LV2-3] (Your Attack Step)",
+   "While your \"Weapon Insect\" family Spirit is attacking, the opponent can't activate Burst effects."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "rcode": "CP"
+ },
+ {
+  "id": "BS76-CP04",
+  "name": "The SilverWheelDivineConsort Arianrod-Tir",
+  "name_jp": "銀輪神妃アリアンロッド・ティール",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 10,
+  "reduction": {
+   "white": 6
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 10000
+   },
+   {
+    "cores": 2,
+    "bp": 15000
+   },
+   {
+    "cores": 5,
+    "bp": 20000
+   }
+  ],
+  "families": [
+   "Devotee",
+   "Concluser",
+   "Frostling"
+  ],
+  "text": "Flash - {{UMani|\"Contractor Brigit\" & C9 or more|(Your Turn)}}\n(Once per Turn: Same Name) By putting your (Soul Core) on top, +1 core to one of the targets, and summon this card from the Hand, treating all summon costs as paid.\n\nWhen this card is revealed from the deck by the effect of your \"Contractor Brigit\", you can add it to the Hand.\n\n{{Unleash|2}} [LV1-2-3] (When Manifests)\nFor each exhausted \"Frostling\" family Spirits you control, during this turn, all your \"Frostling\" family Spirits gain an extra White symbol. Then, by sending two cores from any of your White Grandwalker Nexuses to this Spirit, during this turn, all your \"Arianrod\" are unaffected by opposing effects.",
+  "image": "BS76-CP04.png",
+  "block": "76",
+  "saga": 17,
+  "bicon": [
+   "13"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{UMani|\"Contractor Brigit\" & C9 or more|(Your Turn)}}",
+   "(Once per Turn: Same Name) By putting your (Soul Core) on top, +1 core to one of the targets, and summon this card from the Hand, treating all summon costs as paid.",
+   "When this card is revealed from the deck by the effect of your \"Contractor Brigit\", you can add it to the Hand.",
+   "{{Unleash|2}} [LV1-2-3] (When Manifests)",
+   "For each exhausted \"Frostling\" family Spirits you control, during this turn, all your \"Frostling\" family Spirits gain an extra White symbol. Then, by sending two cores from any of your White Grandwalker Nexuses to this Spirit, during this turn, all your \"Arianrod\" are unaffected by opposing effects."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "rcode": "CP"
+ },
+ {
+  "id": "BS76-CP05",
+  "name": "The GreatGoddess Mahadevi",
+  "name_jp": "大女神マハーディーヴィー",
+  "type": "Spirit",
+  "color": "yellow",
+  "cost": 8,
+  "reduction": {
+   "yellow": 5
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 8000
+   },
+   {
+    "cores": 3,
+    "bp": 13000
+   },
+   {
+    "cores": 4,
+    "bp": 16000
+   }
+  ],
+  "families": [
+   "Astroblazer",
+   "Concluser",
+   "Hunter Beast"
+  ],
+  "text": "Flash - {{UMani|\"Contractor Parvati\" & C1 or more|(Opposing Attack Step)}}\n(Once per Turn: Same Name) By putting your (Soul Core) on top, +1 core to one of the targets, and summon this card from the Hand, treating all summon costs as paid.\n\nWhen this card is sent to the Trash by your Yellow Mirage effect, treat it as Cost 4, and you can add it to the Hand.\n\n[LV1-2-3] (When Manifests)\nYou can immediately end the battle.\n\n[LV2-3] (Your Attack Step)\n(Can't Stack) While you have two counters or more, your Yellow-only Mirage effects reduce +1 core from the opposing Life.",
+  "image": "BS76-CP05.png",
+  "block": "76",
+  "saga": 17,
+  "bicon": [
+   "13"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{UMani|\"Contractor Parvati\" & C1 or more|(Opposing Attack Step)}}",
+   "(Once per Turn: Same Name) By putting your (Soul Core) on top, +1 core to one of the targets, and summon this card from the Hand, treating all summon costs as paid.",
+   "When this card is sent to the Trash by your Yellow Mirage effect, treat it as Cost 4, and you can add it to the Hand.",
+   "[LV1-2-3] (When Manifests)",
+   "You can immediately end the battle.",
+   "[LV2-3] (Your Attack Step)",
+   "(Can't Stack) While you have two counters or more, your Yellow-only Mirage effects reduce +1 core from the opposing Life."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "rcode": "CP"
+ },
+ {
+  "id": "BS76-CP06",
+  "name": "The HolyGuideDeitySoldier Talos-Golem",
+  "name_jp": "聖導神兵ターロス・ゴレム",
+  "type": "Spirit",
+  "color": "blue",
+  "cost": 10,
+  "reduction": {
+   "blue": 5
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 10000
+   },
+   {
+    "cores": 4,
+    "bp": 20000
+   }
+  ],
+  "families": [
+   "Devotee",
+   "Concluser",
+   "Artificial Soldier"
+  ],
+  "text": "Flash - {{UMani|\"Contractor Hephaestus\" & C8 or more|(Your Turn)}}\n(Once per Turn: Same Name) By putting your (Soul Core) on top, +1 core to one of the targets, and summon this card from the Hand, treating all summon costs as paid.\n\n[LV1-2] (When Manifests)\nYou can summon a Blue Saga Brave card from your Trash, without paying the cost. When you've done so, during this turn, all your Spirits are treated as being on their highest levels.\n\n[LV2] (Your Attack Step)\nWhen your \"Artificial Soldier\" family Spirit attacks, you can discard a card from the opposing decktop. If that's a Spirit card, during this battle, the opponent can't use cards from their Hand.",
+  "image": "BS76-CP06.png",
+  "block": "76",
+  "saga": 17,
+  "bicon": [
+   "13"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{UMani|\"Contractor Hephaestus\" & C8 or more|(Your Turn)}}",
+   "(Once per Turn: Same Name) By putting your (Soul Core) on top, +1 core to one of the targets, and summon this card from the Hand, treating all summon costs as paid.",
+   "[LV1-2] (When Manifests)",
+   "You can summon a Blue Saga Brave card from your Trash, without paying the cost. When you've done so, during this turn, all your Spirits are treated as being on their highest levels.",
+   "[LV2] (Your Attack Step)",
+   "When your \"Artificial Soldier\" family Spirit attacks, you can discard a card from the opposing decktop. If that's a Spirit card, during this battle, the opponent can't use cards from their Hand."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "rcode": "CP"
+ },
+ {
   "id": "BS76-CX01",
   "name": "The DemonArmyFlagbearer Amon",
   "name_jp": "魔軍の旗手アモン",
@@ -5528,6 +5769,172 @@
   "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
+  "id": "BS77-001",
+  "name": "Gyaivern",
+  "name_jp": "ギャイバーン",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 0,
+  "reduction": {},
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 1000
+   },
+   {
+    "cores": 3,
+    "bp": 2000
+   }
+  ],
+  "families": [
+   "Bannerace",
+   "Winged Dragon"
+  ],
+  "text": "{{Mirage|Cost 2 ( (Red Core))}}\nDuring Set (Your Main Step)\nOnce per step, you can destroy an opposing 3000 BP or less Spirit. {{Seal|During Seal}} Increase the limit of this \"BP Destruction effect\" by +7000.\n\n[LV1-2] (When Destroyed by the Opponent)\nIncluding being in Soul State/pre-advent condition, if you control any \"The FlameBladeFlagbearer Seiba\", you can send two cores from your Trash to the Reserve. Then, you can set this Spirit. Return your originally set Mirage to the Hand.",
+  "image": "BS77-001.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "{{Mirage|Cost 2 ( (Red Core))}}",
+   "During Set (Your Main Step)",
+   "Once per step, you can destroy an opposing 3000 BP or less Spirit. {{Seal|During Seal}} Increase the limit of this \"BP Destruction effect\" by +7000.",
+   "[LV1-2] (When Destroyed by the Opponent)",
+   "Including being in Soul State/pre-advent condition, if you control any \"The FlameBladeFlagbearer Seiba\", you can send two cores from your Trash to the Reserve. Then, you can set this Spirit. Return your originally set Mirage to the Hand."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
+ },
+ {
+  "id": "BS77-002",
+  "name": "Akame Frog",
+  "name_jp": "アカメフログ",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 1,
+  "reduction": {
+   "red": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 2000
+   },
+   {
+    "cores": 3,
+    "bp": 4000
+   }
+  ],
+  "families": [
+   "Vermillion Contract",
+   "Bannerace",
+   "Reptile Beast"
+  ],
+  "text": "Flash - {{Flag Contract Advent|Vermillion Contract|(Your Turn)}}\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\nDuring Advent [LV1-2] (Your Main Step)\nOnce per step, by paying one cost, send up to two cores from an opposing Grandwalker Nexus to the Void.\n\n{{Seal|During Seal}} [LV2] (End of Your Main Step)\nYou can destroy an opposing 10000 BP or less Spirit.",
+  "image": "BS77-002.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{Flag Contract Advent|Vermillion Contract|(Your Turn)}}",
+   "By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
+   "During Advent [LV1-2] (Your Main Step)",
+   "Once per step, by paying one cost, send up to two cores from an opposing Grandwalker Nexus to the Void.",
+   "{{Seal|During Seal}} [LV2] (End of Your Main Step)",
+   "You can destroy an opposing 10000 BP or less Spirit."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
+ },
+ {
+  "id": "BS77-003",
+  "name": "Shotoran",
+  "name_jp": "ショウトラン",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 3,
+  "reduction": {
+   "red": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 2000
+   },
+   {
+    "cores": 2,
+    "bp": 5000
+   },
+   {
+    "cores": 4,
+    "bp": 6000
+   }
+  ],
+  "families": [
+   "Bannerace",
+   "Emperor Beast"
+  ],
+  "text": "[LV1-2-3] (Your Main Step)\nOnce per step, if you control any \"The FlameBladeFlagbearer Seiba\", by paying two costs, draw a card.\n\n[LV2-3] (End of Your Main Step)\nYou can refresh one of your Red \"Bannerace\" family Spirits. If you have six counters or more, change the \"one\" written in this effect to \"up to three\".",
+  "image": "BS77-003.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "[LV1-2-3] (Your Main Step)",
+   "Once per step, if you control any \"The FlameBladeFlagbearer Seiba\", by paying two costs, draw a card.",
+   "[LV2-3] (End of Your Main Step)",
+   "You can refresh one of your Red \"Bannerace\" family Spirits. If you have six counters or more, change the \"one\" written in this effect to \"up to three\"."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
+ },
+ {
+  "id": "BS77-004",
+  "name": "Pygmeel",
+  "name_jp": "ピグミール",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 4,
+  "reduction": {
+   "red": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   },
+   {
+    "cores": 2,
+    "bp": 5000
+   },
+   {
+    "cores": 5,
+    "bp": 8000
+   }
+  ],
+  "families": [
+   "Bannerace",
+   "Flying Fang"
+  ],
+  "text": "[LV1-2-3] (When Summoned)\nYour counter can +1. Then, (Once per Turn: Same Name) you can return a Red \"Bannerace\" family Spirit card/Brave card/Nexus card from your Trash to the Hand.\n\n[LV2-3]\n(Once per Turn: Same Name) When your Red \"Bannerace\" family Spirits would leave the Field due to opposing effects, by paying two costs, one of such targets remains on the Field, exhausted",
+  "image": "BS77-004.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "[LV1-2-3] (When Summoned)",
+   "Your counter can +1. Then, (Once per Turn: Same Name) you can return a Red \"Bannerace\" family Spirit card/Brave card/Nexus card from your Trash to the Hand.",
+   "[LV2-3]",
+   "(Once per Turn: Same Name) When your Red \"Bannerace\" family Spirits would leave the Field due to opposing effects, by paying two costs, one of such targets remains on the Field, exhausted"
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
+ },
+ {
   "id": "BS77-005",
   "name": "Hitokaku",
   "name_jp": "ヒトカク",
@@ -5653,6 +6060,85 @@
   }
  },
  {
+  "id": "BS77-006",
+  "name": "Cockadrazor",
+  "name_jp": "コッカドレイザー",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 6,
+  "reduction": {
+   "red": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 3,
+    "bp": 11000
+   }
+  ],
+  "families": [
+   "Bannerace",
+   "Emperor Beast"
+  ],
+  "text": "Flash - {{Accel|Cost 5 ( (Red Core) (Red Core))}}\nDestroy an opposing Spirit/Ultimate with two symbols or more. Then, (Once per Turn: Same Name) you can send two cores, besides (Soul Core), from your Trash to any of your Red \"Bannerace\" family Spirits/Nexuses. After this effect resolves, put this card onto the Removed Zone.\n\n[LV2] (When Attacks)\nYou can destroy an opposing Spirit with a BP equal or inferior to this Spirit's.",
+  "image": "BS77-006.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{Accel|Cost 5 ( (Red Core) (Red Core))}}",
+   "Destroy an opposing Spirit/Ultimate with two symbols or more. Then, (Once per Turn: Same Name) you can send two cores, besides (Soul Core), from your Trash to any of your Red \"Bannerace\" family Spirits/Nexuses. After this effect resolves, put this card onto the Removed Zone.",
+   "[LV2] (When Attacks)",
+   "You can destroy an opposing Spirit with a BP equal or inferior to this Spirit's."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
+ },
+ {
+  "id": "BS77-008",
+  "name": "The FlameBladeDragon Kamunavisca",
+  "name_jp": "炎刀龍カムナビスカ",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 8,
+  "reduction": {
+   "red": 4
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 7000
+   },
+   {
+    "cores": 3,
+    "bp": 11000
+   }
+  ],
+  "families": [
+   "Bannerace",
+   "Ancient Dragon"
+  ],
+  "text": "This set card is unaffected by opposing effects.\n\n{{Burst|After your Life is reduced}}\nDuring this turn, when opposing Spirits/Ultimates attack, destroy an opposing 15000 BP or less Spirit/Ultimate, and draw a card. After this effect resolves, summon this card without paying the cost.\n\n[LV2-3] (End of Your Main Step)\nYou can set this Spirit as Burst.",
+  "image": "BS77-008.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "This set card is unaffected by opposing effects.",
+   "{{Burst|After your Life is reduced}}",
+   "During this turn, when opposing Spirits/Ultimates attack, destroy an opposing 15000 BP or less Spirit/Ultimate, and draw a card. After this effect resolves, summon this card without paying the cost.",
+   "[LV2-3] (End of Your Main Step)",
+   "You can set this Spirit as Burst."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
+ },
+ {
   "id": "BS77-010",
   "name": "Murasaki Oomuchi",
   "name_jp": "ムラサキオオムチ",
@@ -5690,6 +6176,799 @@
    "[LV1-2] (When Summoned/Attacks) (Once per Turn: Same Name) You can send a card from your decktop to the Trash. If that's a Purple \"Bannerace\" family card, draw a card."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+ },
+ {
+  "id": "BS77-012",
+  "name": "Maharaja Dragon",
+  "name_jp": "マハラジャドラゴン",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 3,
+  "reduction": {
+   "purple": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 2000
+   },
+   {
+    "cores": 3,
+    "bp": 4000
+   }
+  ],
+  "families": [
+   "Devotee",
+   "Death Dragon"
+  ],
+  "text": "[LV1-2] (When Summoned)\nIf you control any \"Contractor Shiva\", by putting a card from your Hand facedown onto the Removed Zone, draw a card. Then, (Once per Turn: Same Name) by sending a core from any of your \"Shiva\" Grandwalker Nexus to the Void, draw a card.\n\n[LV1-2]\n(Once per Turn: Same Name) When your \"Death Dragon\" family Spirits would leave the Field due to opposing effects, by discarding a facedown card from your Removed Zone, all those targets remain on the Field in the same condition.",
+  "image": "BS77-012.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "[LV1-2] (When Summoned)",
+   "If you control any \"Contractor Shiva\", by putting a card from your Hand facedown onto the Removed Zone, draw a card. Then, (Once per Turn: Same Name) by sending a core from any of your \"Shiva\" Grandwalker Nexus to the Void, draw a card.",
+   "[LV1-2]",
+   "(Once per Turn: Same Name) When your \"Death Dragon\" family Spirits would leave the Field due to opposing effects, by discarding a facedown card from your Removed Zone, all those targets remain on the Field in the same condition."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Rare"
+ },
+ {
+  "id": "BS77-013",
+  "name": "The FestivalDragon Shivaratri Dragon",
+  "name_jp": "祭竜シヴァラートリドラゴン",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 4,
+  "reduction": {
+   "purple": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   },
+   {
+    "cores": 2,
+    "bp": 5000
+   },
+   {
+    "cores": 5,
+    "bp": 8000
+   }
+  ],
+  "families": [
+   "Devotee",
+   "Death Dragon"
+  ],
+  "text": "Flash - {{Mani|\"Contractor Shiva\"|(Your Turn)}}\nBy sending your (Soul Core) to the Trash, pay one cost from the target to summon this card from the Hand.\n\n[LV1-2-3] (When Manifests/Destroyed)\nYou can +1 core to one of your \"Shiva\" Grandwalker Nexuses.\n\n[LV2-3] (When Attacks)\nBy putting a card from your Hand facedown onto the Removed Zone, draw two cards.",
+  "image": "BS77-013.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{Mani|\"Contractor Shiva\"|(Your Turn)}}",
+   "By sending your (Soul Core) to the Trash, pay one cost from the target to summon this card from the Hand.",
+   "[LV1-2-3] (When Manifests/Destroyed)",
+   "You can +1 core to one of your \"Shiva\" Grandwalker Nexuses.",
+   "[LV2-3] (When Attacks)",
+   "By putting a card from your Hand facedown onto the Removed Zone, draw two cards."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
+ },
+ {
+  "id": "BS77-014",
+  "name": "The DancingDragon Bhangra Dragon",
+  "name_jp": "舞踏龍バングラドラゴン",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 5,
+  "reduction": {
+   "purple": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 4000
+   },
+   {
+    "cores": 3,
+    "bp": 8000
+   }
+  ],
+  "families": [
+   "Devotee",
+   "Death Dragon"
+  ],
+  "text": "(Once per Turn: Same Name) When this facedown card is discarded from the Removed Zone via an effect, you can pay one cost to summon it.\n\n[LV1-2] (When Summoned)\nBy discarding a facedown card from your Removed Zone, draw two cards. You can Mani a \"Death Dragon\" family card discarded via this effect.",
+  "image": "BS77-014.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "(Once per Turn: Same Name) When this facedown card is discarded from the Removed Zone via an effect, you can pay one cost to summon it.",
+   "[LV1-2] (When Summoned)",
+   "By discarding a facedown card from your Removed Zone, draw two cards. You can Mani a \"Death Dragon\" family card discarded via this effect."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
+ },
+ {
+  "id": "BS77-015",
+  "name": "Tabla Dragon",
+  "name_jp": "タブラドラゴン",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 6,
+  "reduction": {
+   "purple": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 3,
+    "bp": 7000
+   },
+   {
+    "cores": 5,
+    "bp": 11000
+   }
+  ],
+  "families": [
+   "Devotee",
+   "Death Dragon"
+  ],
+  "text": "Flash - {{Mani|\"Contractor Shiva\" & 3 or more facedown cards in Removed Zone|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, pay one cost from the target to summon this card from the Hand.\n\n[LV1-2-3] (When Summoned)\nYou can put two cards from your decktop facedown onto the Removed Zone. Then, you can send any number of cores, up to one core for every two facedown cards in your Removed Zone, from an opposing Spirit to the Reserve.\n\n[LV1-2-3]\nThis Spirit is unaffected by opposing Mirage effects.",
+  "image": "BS77-015.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{Mani|\"Contractor Shiva\" & 3 or more facedown cards in Removed Zone|(Either Attack Step)}}",
+   "By sending your (Soul Core) to the Trash, pay one cost from the target to summon this card from the Hand.",
+   "[LV1-2-3] (When Summoned)",
+   "You can put two cards from your decktop facedown onto the Removed Zone. Then, you can send any number of cores, up to one core for every two facedown cards in your Removed Zone, from an opposing Spirit to the Reserve.",
+   "[LV1-2-3]",
+   "This Spirit is unaffected by opposing Mirage effects."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Rare"
+ },
+ {
+  "id": "BS77-017",
+  "name": "The HellGuardianGeneral Purson",
+  "name_jp": "冥護将プルソン",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 8,
+  "reduction": {},
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 7000
+   },
+   {
+    "cores": 3,
+    "bp": 12000
+   }
+  ],
+  "families": [
+   "Bannerace",
+   "Infernal Lord"
+  ],
+  "text": "When your Purple-only Spirit Flag Contract Advents, if you have six counters or more, you can immediately activate this set card.\n\n{{Burst|After your Life is reduced}}\nSend up to two cores from the opposing Field to the Reserve. After this effect resolves, summon this card without paying the cost.\n\n[LV2] (When Attacks)\nAt the end of battle, by banishing six \"The DemonArmyFlagbearer Amon\" from your Trash, send up to three cores from any opposing Spirits/Grandwalker Nexuses to the Void.",
+  "image": "BS77-017.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "When your Purple-only Spirit Flag Contract Advents, if you have six counters or more, you can immediately activate this set card.",
+   "{{Burst|After your Life is reduced}}",
+   "Send up to two cores from the opposing Field to the Reserve. After this effect resolves, summon this card without paying the cost.",
+   "[LV2] (When Attacks)",
+   "At the end of battle, by banishing six \"The DemonArmyFlagbearer Amon\" from your Trash, send up to three cores from any opposing Spirits/Grandwalker Nexuses to the Void."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
+ },
+ {
+  "id": "BS77-018",
+  "name": "The WholeRestSoundBeast Restsloth",
+  "name_jp": "全休音獣レストスロース",
+  "type": "Spirit",
+  "color": "green",
+  "cost": 1,
+  "reduction": {},
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 1000
+   },
+   {
+    "cores": 3,
+    "bp": 3000
+   }
+  ],
+  "families": [
+   "Devotee",
+   "Imp"
+  ],
+  "text": "When this card is sent to the Trash by your Core Charge, +1 core to one of your \"Hindida\" family Grandwalker Nexuses.\n\n[LV1-2] (When Summoned)\nYou can deploy one of your \"Hindida\" family Grandwalker Nexuses in Soul State, without paying the cost. Then, if you control any \"Hindida\" family Grandwalker Nexus, you can discard a Magic card on the opposing Field.",
+  "image": "BS77-018.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "When this card is sent to the Trash by your Core Charge, +1 core to one of your \"Hindida\" family Grandwalker Nexuses.",
+   "[LV1-2] (When Summoned)",
+   "You can deploy one of your \"Hindida\" family Grandwalker Nexuses in Soul State, without paying the cost. Then, if you control any \"Hindida\" family Grandwalker Nexus, you can discard a Magic card on the opposing Field."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
+ },
+ {
+  "id": "BS77-019",
+  "name": "The Talking Oohashi",
+  "name_jp": "しゃべるオオハッシー",
+  "type": "Spirit",
+  "color": "green",
+  "cost": 2,
+  "reduction": {
+   "green": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 1000
+   },
+   {
+    "cores": 3,
+    "bp": 2000
+   }
+  ],
+  "families": [
+   "Bannerace",
+   "Song Bird"
+  ],
+  "text": "When your \"Gale Contract\" family Spirits are destroyed by an opposing effect, if you have five counters or more, by discarding this card from the Hand, up to two of those targets remain on the Field, exhausted.\n\n[LV1-2] (When Summoned/Attacks)\nIncluding being in pre-advent condition, if you control any \"The AdventureFlagbearer Liber\", your counter +1.",
+  "image": "BS77-019.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "When your \"Gale Contract\" family Spirits are destroyed by an opposing effect, if you have five counters or more, by discarding this card from the Hand, up to two of those targets remain on the Field, exhausted.",
+   "[LV1-2] (When Summoned/Attacks)",
+   "Including being in pre-advent condition, if you control any \"The AdventureFlagbearer Liber\", your counter +1."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
+ },
+ {
+  "id": "BS77-020",
+  "name": "The FlatSoundBeast Accidental Momon",
+  "name_jp": "フラット音獣アクシデンタルモモン",
+  "type": "Spirit",
+  "color": "green",
+  "cost": 3,
+  "reduction": {
+   "green": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 2000
+   },
+   {
+    "cores": 3,
+    "bp": 6000
+   }
+  ],
+  "families": [
+   "Devotee",
+   "Imp"
+  ],
+  "text": "Flash - {{Mani|\"Contractor Saraswati\"|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, pay one cost from the target to summon this card from the Hand.\n\n[LV1-2] (When Summoned)\nYou can heavy exhaust an opposing Spirit/Ultimate.\n\n[LV2] (When Attacks)\nYou can return an opposing Cost 4 or less exhausted Spirit/Ultimate to the deckbottom.",
+  "image": "BS77-020.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{Mani|\"Contractor Saraswati\"|(Either Attack Step)}}",
+   "By sending your (Soul Core) to the Trash, pay one cost from the target to summon this card from the Hand.",
+   "[LV1-2] (When Summoned)",
+   "You can heavy exhaust an opposing Spirit/Ultimate.",
+   "[LV2] (When Attacks)",
+   "You can return an opposing Cost 4 or less exhausted Spirit/Ultimate to the deckbottom."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
+ },
+ {
+  "id": "BS77-021",
+  "name": "The SharpSoundBeast Kamoshika Accidental",
+  "name_jp": "シャープ音獣カモシカアクシデンタル",
+  "type": "Spirit",
+  "color": "green",
+  "cost": 4,
+  "reduction": {
+   "green": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   },
+   {
+    "cores": 3,
+    "bp": 5000
+   },
+   {
+    "cores": 4,
+    "bp": 8000
+   }
+  ],
+  "families": [
+   "Devotee",
+   "Imp"
+  ],
+  "text": "Flash - {{Mani|\"Contractor Saraswati\"|(Your Turn)}}\nBy sending your (Soul Core) to the Trash, pay one cost from the target to summon this card from the Hand.\n\n[LV1-2-3] (When Summoned)\nYou can reveal three cards from your decktop. Among them, add an \"Imp\" family card to the Hand. Return any remaining cards to the deckbottom.\n\n[LV2-3]\n(Once per Turn: Same Name) You can add a Green \"Devotee\"/\"Concluser\" family Spirit card revealed from the deck by your \"Imp\" family effect to the Hand.",
+  "image": "BS77-021.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{Mani|\"Contractor Saraswati\"|(Your Turn)}}",
+   "By sending your (Soul Core) to the Trash, pay one cost from the target to summon this card from the Hand.",
+   "[LV1-2-3] (When Summoned)",
+   "You can reveal three cards from your decktop. Among them, add an \"Imp\" family card to the Hand. Return any remaining cards to the deckbottom.",
+   "[LV2-3]",
+   "(Once per Turn: Same Name) You can add a Green \"Devotee\"/\"Concluser\" family Spirit card revealed from the deck by your \"Imp\" family effect to the Hand."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Rare"
+ },
+ {
+  "id": "BS77-022",
+  "name": "Judge Beast",
+  "name_jp": "ジャッジビースト",
+  "type": "Spirit",
+  "color": "green",
+  "cost": 4,
+  "reduction": {
+   "green": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 4000
+   },
+   {
+    "cores": 3,
+    "bp": 6000
+   }
+  ],
+  "families": [
+   "Bannerace",
+   "Blade Beast"
+  ],
+  "text": "[LV1-2] (When Summoned)\nYou can reveal three cards from your decktop. Among them, add every Brave card to the Hand. Return any remaining cards to the deckbottom.\n\n[LV2] (Your Attack Step)\nWhen your \"Vortexar\" attacks, if you control any Flag Nexus, including those in pre-advent condition, you can heavy exhaust an opposing Spirit/Ultimate for each Brave you control.",
+  "image": "BS77-022.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "[LV1-2] (When Summoned)",
+   "You can reveal three cards from your decktop. Among them, add every Brave card to the Hand. Return any remaining cards to the deckbottom.",
+   "[LV2] (Your Attack Step)",
+   "When your \"Vortexar\" attacks, if you control any Flag Nexus, including those in pre-advent condition, you can heavy exhaust an opposing Spirit/Ultimate for each Brave you control."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
+ },
+ {
+  "id": "BS77-023",
+  "name": "The StaccatoSoundBeast Notestag",
+  "name_jp": "スタッカート音獣ノーツスタッグ",
+  "type": "Spirit",
+  "color": "green",
+  "cost": 5,
+  "reduction": {
+   "green": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 4000
+   },
+   {
+    "cores": 3,
+    "bp": 8000
+   }
+  ],
+  "families": [
+   "Devotee",
+   "Imp"
+  ],
+  "text": "When the Grandphosis of your \"Saraswati\" activates, you can immediately activate this set card.\n\n{{Burst|After your Life is reduced}}\nReturn up to two opposing exhausted Spirits/Ultimates to the deckbottom. After this effect resolves, summon this card without paying the cost.\n\n[LV2] (Your Attack Step)\nWhile your \"Imp\"/\"Grandwalker\" family Spirit is attacking, the opponent can't activate Burst effects.",
+  "image": "BS77-023.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "When the Grandphosis of your \"Saraswati\" activates, you can immediately activate this set card.",
+   "{{Burst|After your Life is reduced}}",
+   "Return up to two opposing exhausted Spirits/Ultimates to the deckbottom. After this effect resolves, summon this card without paying the cost.",
+   "[LV2] (Your Attack Step)",
+   "While your \"Imp\"/\"Grandwalker\" family Spirit is attacking, the opponent can't activate Burst effects."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
+ },
+ {
+  "id": "BS77-025",
+  "name": "The Adventuring Nijiguyver",
+  "name_jp": "冒険するニジガイバー",
+  "type": "Spirit",
+  "color": "green",
+  "cost": 8,
+  "reduction": {},
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 8000
+   },
+   {
+    "cores": 3,
+    "bp": 10000
+   },
+   {
+    "cores": 5,
+    "bp": 14000
+   }
+  ],
+  "families": [
+   "Bannerace",
+   "Shellman"
+  ],
+  "text": "(Can't Stack) When this card is discarded from the Hand via an effect, you can set it.\n\n{{Burst|After your Life is reduced}}\nExhaust three opposing Spirits/Ultimates. After this effect resolves, summon this card without paying the cost.\n\n[LV1-2-3] (When Summoned)\nIncluding being in pre-advent condition, if you control any Green Flag Nexus, you can put two cores from the Void to your Trash.",
+  "image": "BS77-025.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "(Can't Stack) When this card is discarded from the Hand via an effect, you can set it.",
+   "{{Burst|After your Life is reduced}}",
+   "Exhaust three opposing Spirits/Ultimates. After this effect resolves, summon this card without paying the cost.",
+   "[LV1-2-3] (When Summoned)",
+   "Including being in pre-advent condition, if you control any Green Flag Nexus, you can put two cores from the Void to your Trash."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
+ },
+ {
+  "id": "BS77-026",
+  "name": "Vishnaga-Kalpa",
+  "name_jp": "ヴィシュナーガ・カルパ",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 3,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   },
+   {
+    "cores": 2,
+    "bp": 5000
+   }
+  ],
+  "families": [
+   "Devotee",
+   "Armored Dragon"
+  ],
+  "text": "[LV1-2] {{ha|Purple/Green}}\nThis Spirit is unaffected by opposing Purple/Green Spirit/ Brave/ Nexus/ Magic effects.\n\n[LV1-2]\n(Once per Turn: Same Name) When the number cores on your \"Vishnu\"/\"Krishna\" Grandwalker Nexuses is reduced, you can draw a card.\n\n[LV2] (Opposing Attack Step)\nWhen an opposing Spirit/Ultimate attacks, you can +1 core to one of your \"Vishnu\"/\"Krishna\" Grandwalker Nexuses.",
+  "image": "BS77-026.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "[LV1-2] {{ha|Purple/Green}}",
+   "This Spirit is unaffected by opposing Purple/Green Spirit/ Brave/ Nexus/ Magic effects.",
+   "[LV1-2]",
+   "(Once per Turn: Same Name) When the number cores on your \"Vishnu\"/\"Krishna\" Grandwalker Nexuses is reduced, you can draw a card.",
+   "[LV2] (Opposing Attack Step)",
+   "When an opposing Spirit/Ultimate attacks, you can +1 core to one of your \"Vishnu\"/\"Krishna\" Grandwalker Nexuses."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
+ },
+ {
+  "id": "BS77-028",
+  "name": "Vishnaga-Jyotisha",
+  "name_jp": "ヴィシュナーガ・ジヨーティシャ",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 4000
+   },
+   {
+    "cores": 3,
+    "bp": 7000
+   },
+   {
+    "cores": 5,
+    "bp": 9000
+   }
+  ],
+  "families": [
+   "Devotee",
+   "Armored Dragon"
+  ],
+  "text": "Flash - {{Mani|\"Contractor Vishnu\"|(Your Turn)}}\nBy sending your (Soul Core) to the Trash, pay one cost from the target to summon this card from the Hand.\n\n[LV1-2-3] (When Summoned)\nYou can reveal three cards from your decktop. Among them, add an \"Armored Dragon\" family card to the Hand. Return any remaining cards to the deckbottom.\n\n[LV2-3]\n(Once per Turn: Same Name) You can add a White \"Devotee\"/\"Concluser\" family Spirit card revealed from the deck by your \"Armored Dragon\" family effect to the Hand.",
+  "image": "BS77-028.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{Mani|\"Contractor Vishnu\"|(Your Turn)}}",
+   "By sending your (Soul Core) to the Trash, pay one cost from the target to summon this card from the Hand.",
+   "[LV1-2-3] (When Summoned)",
+   "You can reveal three cards from your decktop. Among them, add an \"Armored Dragon\" family card to the Hand. Return any remaining cards to the deckbottom.",
+   "[LV2-3]",
+   "(Once per Turn: Same Name) You can add a White \"Devotee\"/\"Concluser\" family Spirit card revealed from the deck by your \"Armored Dragon\" family effect to the Hand."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
+ },
+ {
+  "id": "BS77-029",
+  "name": "Moonlite Gazelle",
+  "name_jp": "ムーンライト・ガゼル",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 4000
+   },
+   {
+    "cores": 2,
+    "bp": 7000
+   },
+   {
+    "cores": 4,
+    "bp": 9000
+   }
+  ],
+  "families": [
+   "Devotee",
+   "Machine Beast"
+  ],
+  "text": "[LV1-2-3]\nWhile you control any \"Artemis\" Grandwalker Nexus, this non-attacking Spirit is unaffected by opposing Spirit/Nexus effects. {{Seal|During Seal}} Also, all your \"Machine Beast\" family Spirits gain +5000 BP.\n\n[LV1-2-3] (Either End Step)\nYou can deploy one of your \"Artemis\" Grandwalker Nexus cards from Hand/Soul State, without paying the cost. Then, you can +1 core to one of your \"Artemis\" Grandwalker Nexuses.",
+  "image": "BS77-029.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "[LV1-2-3]",
+   "While you control any \"Artemis\" Grandwalker Nexus, this non-attacking Spirit is unaffected by opposing Spirit/Nexus effects. {{Seal|During Seal}} Also, all your \"Machine Beast\" family Spirits gain +5000 BP.",
+   "[LV1-2-3] (Either End Step)",
+   "You can deploy one of your \"Artemis\" Grandwalker Nexus cards from Hand/Soul State, without paying the cost. Then, you can +1 core to one of your \"Artemis\" Grandwalker Nexuses."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
+ },
+ {
+  "id": "BS77-030",
+  "name": "Vishnaga-Nirukta",
+  "name_jp": "ヴィシュナーガ・ニルクタ",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 5,
+  "reduction": {
+   "white": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 4000
+   },
+   {
+    "cores": 3,
+    "bp": 8000
+   },
+   {
+    "cores": 5,
+    "bp": 11000
+   }
+  ],
+  "families": [
+   "Devotee",
+   "Armored Dragon"
+  ],
+  "text": "Flash - {{Mani|\"Contractor Vishnu\"|(Either Attack Step)}}\nBy sending your (Soul Core) to the Trash, pay one cost from the target to summon this card from the Hand.\n\n[LV1-2-3] (When Manifests)\nYou can return an opposing Nexus to the deckbottom. Then, by exhausting this Spirit, Advent/Mani an \"Armored Dragon\" family card from your Hand/Trash.\n\n[LV2-3] (Your Attack Step)\nWhile there is a total of five or more cards in the opposing Hand and Removed Zone, all your \"Vishnu\" Grandwalker Nexuses and \"Armored Dragon\" family Spirits can't be blocked.",
+  "image": "BS77-030.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{Mani|\"Contractor Vishnu\"|(Either Attack Step)}}",
+   "By sending your (Soul Core) to the Trash, pay one cost from the target to summon this card from the Hand.",
+   "[LV1-2-3] (When Manifests)",
+   "You can return an opposing Nexus to the deckbottom. Then, by exhausting this Spirit, Advent/Mani an \"Armored Dragon\" family card from your Hand/Trash.",
+   "[LV2-3] (Your Attack Step)",
+   "While there is a total of five or more cards in the opposing Hand and Removed Zone, all your \"Vishnu\" Grandwalker Nexuses and \"Armored Dragon\" family Spirits can't be blocked."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Rare"
+ },
+ {
+  "id": "BS77-035",
+  "name": "The FallenCourtLady Jinyi",
+  "name_jp": "堕天宮女ジンイー",
+  "type": "Spirit",
+  "color": "yellow",
+  "cost": 3,
+  "reduction": {
+   "yellow": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 1000
+   },
+   {
+    "cores": 2,
+    "bp": 2000
+   },
+   {
+    "cores": 3,
+    "bp": 3000
+   }
+  ],
+  "families": [
+   "Supreme Contract",
+   "Bannerace",
+   "Dark Artes"
+  ],
+  "text": "Flash - {{Flag Contract Advent|Supreme Contract|(Your Turn)}}\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\nYou can Flag Contract Advent this card from the Removed Zone.\n\n[LV1-2-3] (When Advents/Atacks)\nOnce per turn, you can reveal three cards from your decktop. Among them, add to the Hand or put to the Removed Zone a \"Bannerace\" family card with Accel. Discard any remaining cards.\n\n[LV2-3]\n(Once per Turn: Same Name) You can put a \"Supreme Contract\" family card revealed from deck by this Spirit's effect onto the Removed Zone.",
+  "image": "BS77-035.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{Flag Contract Advent|Supreme Contract|(Your Turn)}}",
+   "By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
+   "You can Flag Contract Advent this card from the Removed Zone.",
+   "[LV1-2-3] (When Advents/Atacks)",
+   "Once per turn, you can reveal three cards from your decktop. Among them, add to the Hand or put to the Removed Zone a \"Bannerace\" family card with Accel. Discard any remaining cards.",
+   "[LV2-3]",
+   "(Once per Turn: Same Name) You can put a \"Supreme Contract\" family card revealed from deck by this Spirit's effect onto the Removed Zone."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Rare"
+ },
+ {
+  "id": "BS77-036",
+  "name": "The EmperorBird Hououro",
+  "name_jp": "皇帝鳥ホウオーロ",
+  "type": "Spirit",
+  "color": "yellow",
+  "cost": 3,
+  "reduction": {
+   "yellow": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 2000
+   },
+   {
+    "cores": 2,
+    "bp": 3000
+   },
+   {
+    "cores": 3,
+    "bp": 4000
+   }
+  ],
+  "families": [
+   "Bannerace",
+   "Imaginary Beast"
+  ],
+  "text": "{{Seal|During Seal}} (Once per Turn: Same Name) When your \"Supreme Contract\" family Spirit would leave the Field due to opposing effects, you can discard this card from the Removed Zone. When you've done so, send a core from your Life to that target. The target that has core sent to it remains on the Field, refreshed.\n\nFlash - {{Accel|Cost 3 ( (Yellow Core) (Yellow Core))}}\nPut any number of Yellow \"Bannerace\" family card from your Hand onto the Removed Zone, and when put, draw a card from the deckbottom. After this effect resolves, put this card onto the Removed Zone.",
+  "image": "BS77-036.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "{{Seal|During Seal}} (Once per Turn: Same Name) When your \"Supreme Contract\" family Spirit would leave the Field due to opposing effects, you can discard this card from the Removed Zone. When you've done so, send a core from your Life to that target. The target that has core sent to it remains on the Field, refreshed.",
+   "Flash - {{Accel|Cost 3 ( (Yellow Core) (Yellow Core))}}",
+   "Put any number of Yellow \"Bannerace\" family card from your Hand onto the Removed Zone, and when put, draw a card from the deckbottom. After this effect resolves, put this card onto the Removed Zone."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Master Rare"
+ },
+ {
+  "id": "BS77-039",
+  "name": "The FallenCourtPrincess Shueri",
+  "name_jp": "堕天宮姫シュエリー",
+  "type": "Spirit",
+  "color": "yellow",
+  "cost": 5,
+  "reduction": {
+   "yellow": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 2,
+    "bp": 6000
+   },
+   {
+    "cores": 3,
+    "bp": 7000
+   }
+  ],
+  "families": [
+   "Bannerace",
+   "Dark Artes"
+  ],
+  "text": "You can set this card from the Removed Zone.\n\n{{Burst|After your Life is reduced}}\nSummon this card without paying the cost. When you've done so, immediately activate one of this Spirit's Accel. However, it doesn't leave the Field.\n\nFlash - {{Accel|Cost 4 ( (Yellow Core) (Yellow Core) (Yellow Core))}}\nDuring this turn, your Life can't be reduced by the attacks of opposing LV1 Spirits. After this effect resolves, put this card onto the Removed Zone.",
+  "image": "BS77-039.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "You can set this card from the Removed Zone.",
+   "{{Burst|After your Life is reduced}}",
+   "Summon this card without paying the cost. When you've done so, immediately activate one of this Spirit's Accel. However, it doesn't leave the Field.",
+   "Flash - {{Accel|Cost 4 ( (Yellow Core) (Yellow Core) (Yellow Core))}}",
+   "During this turn, your Life can't be reduced by the attacks of opposing LV1 Spirits. After this effect resolves, put this card onto the Removed Zone."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
  },
  {
   "id": "BS77-040",
@@ -5758,6 +7037,169 @@
   ]
  },
  {
+  "id": "BS77-041",
+  "name": "The NineDragonsiredBeast Haka",
+  "name_jp": "竜生九獣ハカ",
+  "type": "Spirit",
+  "color": "yellow",
+  "cost": 8,
+  "reduction": {
+   "yellow": 4
+  },
+  "symbols": 2,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 7000
+   },
+   {
+    "cores": 2,
+    "bp": 8000
+   },
+   {
+    "cores": 3,
+    "bp": 9000
+   }
+  ],
+  "families": [
+   "Bannerace",
+   "Imaginary Beast"
+  ],
+  "text": "Flash - {{Accel|Cost 3 ( (Yellow Core) (Yellow Core))}}\nDuring this turn, the symbol of an opposing Spirit/ Ultimate/ Grandwalker Nexus is fixed as zero. After this effect resolves, put this card onto the Removed Zone.\n\n[LV2-3] (Your Attack Step)\nWhile your \"Bannerace\" family Spirit is attacking, the opponent can't end the Attack Step via effects.",
+  "image": "BS77-041.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{Accel|Cost 3 ( (Yellow Core) (Yellow Core))}}",
+   "During this turn, the symbol of an opposing Spirit/ Ultimate/ Grandwalker Nexus is fixed as zero. After this effect resolves, put this card onto the Removed Zone.",
+   "[LV2-3] (Your Attack Step)",
+   "While your \"Bannerace\" family Spirit is attacking, the opponent can't end the Attack Step via effects."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
+ },
+ {
+  "id": "BS77-043",
+  "name": "Fujitsubo-Golem",
+  "name_jp": "フジツボ・ゴレム",
+  "type": "Spirit",
+  "color": "blue",
+  "cost": 1,
+  "reduction": {
+   "blue": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 1000
+   },
+   {
+    "cores": 3,
+    "bp": 3000
+   },
+   {
+    "cores": 4,
+    "bp": 4000
+   }
+  ],
+  "families": [
+   "Bannerace",
+   "Artificial Soldier"
+  ],
+  "text": "[LV1-2-3] (When Summoned)\n(Once per Turn: Same Name) If you control any Cost 5 or more Blue-only \"Bannerace\" family Nexus, draw two cards, then discard two cards from your Hand.\n\n[LV2-3]\nAll your \"Soldnerg\" Spirits are treated as being on their highest levels",
+  "image": "BS77-043.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "[LV1-2-3] (When Summoned)",
+   "(Once per Turn: Same Name) If you control any Cost 5 or more Blue-only \"Bannerace\" family Nexus, draw two cards, then discard two cards from your Hand.",
+   "[LV2-3]",
+   "All your \"Soldnerg\" Spirits are treated as being on their highest levels"
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
+ },
+ {
+  "id": "BS77-044",
+  "name": "The SeaShellMaiden Mariena",
+  "name_jp": "海殻の乙女マリエナ",
+  "type": "Spirit",
+  "color": "blue",
+  "cost": 3,
+  "reduction": {
+   "blue": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 2000
+   },
+   {
+    "cores": 3,
+    "bp": 5000
+   }
+  ],
+  "families": [
+   "Bannerace",
+   "Creator"
+  ],
+  "text": "When the opposing Hand is discarded by your Blue \"Bannerace\" family effect, you can pay one cost to summon this card from the Removed Zone.\n\nFlash - {{Accel|Cost 4 ( (Blue Core) (Blue Core))}}\nIncluding being in Soul State/pre-advent condition, if you control any \"The SeaShellFlagbearer Lije\", destroy an opposing Spirit with the lowest cost. After this effect resolves, put this card onto the Removed Zone.",
+  "image": "BS77-044.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "When the opposing Hand is discarded by your Blue \"Bannerace\" family effect, you can pay one cost to summon this card from the Removed Zone.",
+   "Flash - {{Accel|Cost 4 ( (Blue Core) (Blue Core))}}",
+   "Including being in Soul State/pre-advent condition, if you control any \"The SeaShellFlagbearer Lije\", destroy an opposing Spirit with the lowest cost. After this effect resolves, put this card onto the Removed Zone."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
+ },
+ {
+  "id": "BS77-045",
+  "name": "Armordoll",
+  "name_jp": "アーマードール",
+  "type": "Spirit",
+  "color": "blue",
+  "cost": 4,
+  "reduction": {
+   "blue": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   },
+   {
+    "cores": 4,
+    "bp": 6000
+   }
+  ],
+  "families": [
+   "Bannerace",
+   "Artificial Soldier"
+  ],
+  "text": "[LV1-2] (When Summoned/Attacks)\nOnce per turn, you can put a core from the Void to any of your Spirits. Then, by paying two costs, put a core from the Void to your Trash.\n\n[LV1-2] (When Destroyed by the Opponent)\nBy destroying one of your Nexuses, this Spirit remains on the Field, refreshed.",
+  "image": "BS77-045.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "[LV1-2] (When Summoned/Attacks)",
+   "Once per turn, you can put a core from the Void to any of your Spirits. Then, by paying two costs, put a core from the Void to your Trash.",
+   "[LV1-2] (When Destroyed by the Opponent)",
+   "By destroying one of your Nexuses, this Spirit remains on the Field, refreshed."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
+ },
+ {
   "id": "BS77-048",
   "name": "The RescueLeader Galandy",
   "name_jp": "レスキュー隊長ガランディー",
@@ -5801,6 +7243,86 @@
    "During Advent [LV2-3] (Once per Turn: Same Name) When your Blue \"Bannerace\" family \"Opposing Hand Discarding\" effect activates, if no cards are discarded, you can put two cores from the Void to this Spirit."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+ },
+ {
+  "id": "BS77-050",
+  "name": "Flame Blade Demon-God",
+  "name_jp": "炎刀魔神",
+  "type": "Brave",
+  "color": "red",
+  "cost": 4,
+  "reduction": {
+   "red": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 2000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Bannerace",
+   "War Dragon"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\nDuring Left/Right Brave (When Attacks)\nYour counter +1, and draw a card.\nDouble Drive While this Brave is braved to \"Vermillion Contract\"/\"God-King\" family Spirits on the left and right, the opponent can't use Magic cards/Accel unless they send one of their Lives to the Reserve.",
+  "image": "BS77-050.png",
+  "block": "77",
+  "saga": 17,
+  "brave": {
+   "bp": 2000,
+   "costGe": 3
+  },
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "During Left/Right Brave (When Attacks)",
+   "Your counter +1, and draw a card.",
+   "Double Drive While this Brave is braved to \"Vermillion Contract\"/\"God-King\" family Spirits on the left and right, the opponent can't use Magic cards/Accel unless they send one of their Lives to the Reserve."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
+ },
+ {
+  "id": "BS77-052",
+  "name": "Devil Demon-God",
+  "name_jp": "悪魔魔神",
+  "type": "Brave",
+  "color": "purple",
+  "cost": 4,
+  "reduction": {
+   "purple": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 3000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Bannerace",
+   "Nightling"
+  ],
+  "text": "This Brave does not exhaust, and while in Spirit condition, can't attack or block.\n\n(Once per Turn: Same Name) When your \"Butler Contract\" family Spirit Flag Contract Advents, by summoning this card from the Trash to directly Brave it to that target, send a core from your Life to that target. You can't activate Burst effects/Rebirth via this effect.\n\nDuring Left/Right Brave (When Attacks)\nYou can send a core from the opposing Field to the Reserve.",
+  "image": "BS77-052.png",
+  "block": "77",
+  "saga": 17,
+  "brave": {
+   "bp": 3000,
+   "costGe": 3
+  },
+  "fxComplete": false,
+  "residual": [
+   "This Brave does not exhaust, and while in Spirit condition, can't attack or block.",
+   "(Once per Turn: Same Name) When your \"Butler Contract\" family Spirit Flag Contract Advents, by summoning this card from the Trash to directly Brave it to that target, send a core from your Life to that target. You can't activate Burst effects/Rebirth via this effect.",
+   "During Left/Right Brave (When Attacks)",
+   "You can send a core from the opposing Field to the Reserve."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
  },
  {
   "id": "BS77-053",
@@ -5878,6 +7400,236 @@
   "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
+  "id": "BS77-056",
+  "name": "The ArgentBlade Palomides",
+  "name_jp": "白銀刀パロミデス",
+  "type": "Brave",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 4000
+   }
+  ],
+  "families": [
+   "Exalted Sword",
+   "Bannerace"
+  ],
+  "text": "(Once per Turn: Same Name) When you Flag Contract Advent onto your Flag Nexus, you can return this card from the Trash to the Hand.\n\nDuring Brave {{ha|Purple/Blue}}\nThis Spirit is unaffected by opposing Purple/Blue Spirit/Brave/Nexus/Magic effects.\n\nDuring Brave (When Attacks)\nYou can reveal two cards from your decktop. Swap any number of cards among them with cards in your Hand. Return the revealed cards to the deckbottom.",
+  "image": "BS77-056.png",
+  "block": "77",
+  "saga": 17,
+  "brave": {
+   "bp": 4000,
+   "costGe": 3
+  },
+  "fxComplete": false,
+  "residual": [
+   "(Once per Turn: Same Name) When you Flag Contract Advent onto your Flag Nexus, you can return this card from the Trash to the Hand.",
+   "During Brave {{ha|Purple/Blue}}",
+   "This Spirit is unaffected by opposing Purple/Blue Spirit/Brave/Nexus/Magic effects.",
+   "During Brave (When Attacks)",
+   "You can reveal two cards from your decktop. Swap any number of cards among them with cards in your Hand. Return the revealed cards to the deckbottom."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
+ },
+ {
+  "id": "BS77-058",
+  "name": "Chinese Lion Demon-God",
+  "name_jp": "唐獅子魔神",
+  "type": "Brave",
+  "color": "yellow",
+  "cost": 6,
+  "reduction": {
+   "yellow": 4
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 5000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Bannerace",
+   "Imaginary Beast"
+  ],
+  "text": "This Brave doesn't exhaust and, while in Spirit condition, can't attack nor block.\n\nFlash- {{Accel|Cost 5 ( (Yellow Core) (Yellow Core) (Yellow Core))}}\nDuring this turn, all opposing Spirits can't attack. After this effect resolves, put this card onto the Removed Zone.\n\nDuring Left/Right Brave (When Attacks)\nDuring this battle, an opposing Spirit/Ultimate can't block.",
+  "image": "BS77-058.png",
+  "block": "77",
+  "saga": 17,
+  "brave": {
+   "bp": 5000,
+   "costGe": 3
+  },
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust and, while in Spirit condition, can't attack nor block.",
+   "Flash- {{Accel|Cost 5 ( (Yellow Core) (Yellow Core) (Yellow Core))}}",
+   "During this turn, all opposing Spirits can't attack. After this effect resolves, put this card onto the Removed Zone.",
+   "During Left/Right Brave (When Attacks)",
+   "During this battle, an opposing Spirit/Ultimate can't block."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
+ },
+ {
+  "id": "BS77-059",
+  "name": "Sea Shell Demon-God",
+  "name_jp": "海殻魔神",
+  "type": "Brave",
+  "color": "blue",
+  "cost": 5,
+  "reduction": {
+   "blue": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0,
+    "bp": 4000
+   }
+  ],
+  "families": [
+   "Imagine",
+   "Bannerace",
+   "Fusion Beast"
+  ],
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\n\nDuring Left/Right Brave (When Attacks)\nThe opponent discards a card from their Hand.\nDouble Drive Then, if this Brave is braved to \"Soldnerg\", or \"Sea Contract\"/\"God-King\" family Spirits on the left and right, you can destroy an opposing Cost 9 or less Spirit/Ultimate, ignoring the cost of Braves.",
+  "image": "BS77-059.png",
+  "block": "77",
+  "saga": 17,
+  "brave": {
+   "bp": 4000,
+   "costGe": 3
+  },
+  "fxComplete": false,
+  "residual": [
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "During Left/Right Brave (When Attacks)",
+   "The opponent discards a card from their Hand.",
+   "Double Drive Then, if this Brave is braved to \"Soldnerg\", or \"Sea Contract\"/\"God-King\" family Spirits on the left and right, you can destroy an opposing Cost 9 or less Spirit/Ultimate, ignoring the cost of Braves."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
+ },
+ {
+  "id": "BS77-060",
+  "name": "The Magmarug Maelstrom",
+  "name_jp": "マグマルグの渦潮",
+  "type": "Nexus",
+  "color": "red",
+  "cost": 3,
+  "reduction": {
+   "red": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0
+   },
+   {
+    "cores": 1
+   }
+  ],
+  "families": [
+   "Bannerace"
+  ],
+  "text": "[LV1-2] (When Deployed)\nIncluding being in Soul State/pre-advent condition, if you control any \"The FlameBladeFlagbearer Seiba\", your counter can +1. Then, (Once per Turn: Same Name) if you have four counters or more, you can send two cores, besides (Soul Core), from your Trash to the Reserve.\n\n[LV2] (Either Attack Step)\nEffects of opposing Spirits/Nexuses destroyed by your Red \"Bannerace\" family effects can't activate.",
+  "image": "BS77-060.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "[LV1-2] (When Deployed)",
+   "Including being in Soul State/pre-advent condition, if you control any \"The FlameBladeFlagbearer Seiba\", your counter can +1. Then, (Once per Turn: Same Name) if you have four counters or more, you can send two cores, besides (Soul Core), from your Trash to the Reserve.",
+   "[LV2] (Either Attack Step)",
+   "Effects of opposing Spirits/Nexuses destroyed by your Red \"Bannerace\" family effects can't activate."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
+ },
+ {
+  "id": "BS77-063",
+  "name": "Saraswati's Root Bridge",
+  "name_jp": "サラスヴァティーのルートブリッジ",
+  "type": "Nexus",
+  "color": "green",
+  "cost": 3,
+  "reduction": {
+   "green": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0
+   },
+   {
+    "cores": 1
+   }
+  ],
+  "families": [
+   "Imp"
+  ],
+  "text": "When this card is sent to the Trash from deck by the effect of your \"Saraswati\" Grandwalker Nexus, you can add it to the Hand.\n\n[LV1-2] (When Deployed)\n(Once per Turn: Same Name) You can put one core from the Void each to two \"Imp\" family Spirits you control.\n\n[LV2]\nWhen your Spirits with \"Sound Speed\"-named effects are summoned, you can send two cores from an opposing Grandwalker Nexus to the Void.",
+  "image": "BS77-063.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "When this card is sent to the Trash from deck by the effect of your \"Saraswati\" Grandwalker Nexus, you can add it to the Hand.",
+   "[LV1-2] (When Deployed)",
+   "(Once per Turn: Same Name) You can put one core from the Void each to two \"Imp\" family Spirits you control.",
+   "[LV2]",
+   "When your Spirits with \"Sound Speed\"-named effects are summoned, you can send two cores from an opposing Grandwalker Nexus to the Void."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
+ },
+ {
+  "id": "BS77-064",
+  "name": "Vishnu's Ice Cave Temple",
+  "name_jp": "ヴィシュヌのの氷窟寺院",
+  "type": "Nexus",
+  "color": "white",
+  "cost": 3,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0
+   },
+   {
+    "cores": 1
+   }
+  ],
+  "families": [
+   "Armored Dragon"
+  ],
+  "text": "[LV1-2] (When Deployed)\nYou can reveal five cards from your decktop. Among them, swap any number of \"Vishnu\"/\"Krishna\" Grandwalker Nexus cards with cards from your Hand. Return the revealed cards to the deckbottom.\n\n[LV2] (Opposing Refresh Step)\n(Can't Stack) Refresh all your \"Vishnu\"/\"Krishna\" Grandwalker Nexuses.",
+  "image": "BS77-064.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "[LV1-2] (When Deployed)",
+   "You can reveal five cards from your decktop. Among them, swap any number of \"Vishnu\"/\"Krishna\" Grandwalker Nexus cards with cards from your Hand. Return the revealed cards to the deckbottom.",
+   "[LV2] (Opposing Refresh Step)",
+   "(Can't Stack) Refresh all your \"Vishnu\"/\"Krishna\" Grandwalker Nexuses."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
+ },
+ {
   "id": "BS77-066",
   "name": "The Imperial Palace in the Sea of Clouds",
   "name_jp": "雲海に沈む皇帝宮",
@@ -5910,6 +7662,43 @@
    "[LV2] (Opposing Attack Step) When your Life is reduced, you can summon a \"Bannerace\" family card with Accel from your Removed Zone, without paying the cost."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+ },
+ {
+  "id": "BS77-067",
+  "name": "Heibatch Gravesquare",
+  "name_jp": "ヘイバッチ・グレイブスクエア",
+  "type": "Nexus",
+  "color": "yellow",
+  "cost": 5,
+  "reduction": {
+   "yellow": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0
+   },
+   {
+    "cores": 1
+   }
+  ],
+  "families": [
+   "Bannerace"
+  ],
+  "text": "This card in Hand/Removed Zone/Trash is unaffected by opposing effects, and can be deployed by paying one cost when your deck would be discarded from by an opposing \"Deck-Discarding Effect\", before that effect activates.\n\n[LV1-2]\nCards can't be discarded from either player's deck. Also, this Nexus can't be returned to the Deck by opposing effects, and is unaffected by opposing Mirage effects.\n\n[LV2] (Either Attack Step)\nOnce per turn, by discarding a \"Bannerace\" family card from your Removed Zone, return an opposing LV1 Spirit to the deckbottom.",
+  "image": "BS77-067.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "This card in Hand/Removed Zone/Trash is unaffected by opposing effects, and can be deployed by paying one cost when your deck would be discarded from by an opposing \"Deck-Discarding Effect\", before that effect activates.",
+   "[LV1-2]",
+   "Cards can't be discarded from either player's deck. Also, this Nexus can't be returned to the Deck by opposing effects, and is unaffected by opposing Mirage effects.",
+   "[LV2] (Either Attack Step)",
+   "Once per turn, by discarding a \"Bannerace\" family card from your Removed Zone, return an opposing LV1 Spirit to the deckbottom."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
  },
  {
   "id": "BS77-068",
@@ -5945,6 +7734,69 @@
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
  },
  {
+  "id": "BS77-070",
+  "name": "The Boneshell Underwater Forest",
+  "name_jp": "ボーンシェル水中樹林",
+  "type": "Nexus",
+  "color": "blue",
+  "cost": 5,
+  "reduction": {
+   "blue": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0
+   },
+   {
+    "cores": 2
+   }
+  ],
+  "families": [
+   "Bannerace"
+  ],
+  "text": "When your Blue Flag Nexus is deployed, you can pay two costs to deploy this card from the Hand.\n\n[LV1-2] (When Deployed)\nIf you control any \"The SeaShellFlagbearer Lije\", you can destroy an opposing Cost 3 or less Spirit. This effect can't be prevented by opposing effects.\n\nContract Pre-Advent Nexus [LV2]\n(Can't Stack) Once per turn, when you Flag Contract Advent onto your Nexus, look at the contents of an opposing Burst, and if it's a Spirit card, discard it.",
+  "image": "BS77-070.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "When your Blue Flag Nexus is deployed, you can pay two costs to deploy this card from the Hand.",
+   "[LV1-2] (When Deployed)",
+   "If you control any \"The SeaShellFlagbearer Lije\", you can destroy an opposing Cost 3 or less Spirit. This effect can't be prevented by opposing effects.",
+   "Contract Pre-Advent Nexus [LV2]",
+   "(Can't Stack) Once per turn, when you Flag Contract Advent onto your Nexus, look at the contents of an opposing Burst, and if it's a Spirit card, discard it."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
+ },
+ {
+  "id": "BS77-071",
+  "name": "Unexpended Troops",
+  "name_jp": "アンエクスペンデッドトループス",
+  "type": "Magic",
+  "color": "red",
+  "cost": 3,
+  "reduction": {},
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Bannerace"
+  ],
+  "text": "When any opposing Nexus is deployed, you can use this card from the Hand.\n\nFlash\nDeploy up to one of your single-color Flag Nexus cards from the Hand/Soul State/pre-advent condition, without paying the cost. Then, if you control any Flag Nexus, draw a card. When you've done so, if it's the opposing Main Step, until the next opposing Start Step, the opposing Life can't be reduced by you.",
+  "image": "BS77-071.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "When any opposing Nexus is deployed, you can use this card from the Hand.",
+   "Flash",
+   "Deploy up to one of your single-color Flag Nexus cards from the Hand/Soul State/pre-advent condition, without paying the cost. Then, if you control any Flag Nexus, draw a card. When you've done so, if it's the opposing Main Step, until the next opposing Start Step, the opposing Life can't be reduced by you."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Rare"
+ },
+ {
   "id": "BS77-072",
   "name": "Destroy Beam",
   "name_jp": "デストロイビーム",
@@ -5972,6 +7824,34 @@
    "Then, including being in Soul State/pre-advent condition, if you control any \"The FlameBladeFlagbearer Seiba\", destroy two opposing Spirits/Ultimates with two symbols or more, and during this step, the opponent can't summon Spirit cards."
   ],
   "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS77-073",
+  "name": "Sharv Sweep",
+  "name_jp": "シャルヴスィープ",
+  "type": "Magic",
+  "color": "purple",
+  "cost": 5,
+  "reduction": {
+   "purple": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Death Dragon"
+  ],
+  "text": "When this card is sent to the Trash from deck by the effect of your \"Shiva\" Grandwalker Nexus, you can add it to the Hand. When you've done so, +1 core to one of your Grandwalker Nexuses.\n\nFlash\nSend two cores from the opposing Field to the Reserve. Then, by sending a core from any of your \"Shiva\" Grandwalker Nexus to the Void, destroy an opposing Spirit with a number of cores equal or inferior to the number of facedown cards in your Removed Zone.",
+  "image": "BS77-073.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "When this card is sent to the Trash from deck by the effect of your \"Shiva\" Grandwalker Nexus, you can add it to the Hand. When you've done so, +1 core to one of your Grandwalker Nexuses.",
+   "Flash",
+   "Send two cores from the opposing Field to the Reserve. Then, by sending a core from any of your \"Shiva\" Grandwalker Nexus to the Void, destroy an opposing Spirit with a number of cores equal or inferior to the number of facedown cards in your Removed Zone."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
  },
  {
   "id": "BS77-076",
@@ -6002,6 +7882,61 @@
    "After this effect resolves, if this card was used from the Trash, banish it."
   ],
   "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS77-077",
+  "name": "Immovable",
+  "name_jp": "イムヴァブル",
+  "type": "Magic",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Armored Dragon"
+  ],
+  "text": "When this card is sent to the Trash from deck by the effect of your \"Vishnu\"/\"Krishna\" Grandwalker Nexus, you can add it to the Hand. When you've done so, +1 core to one of your Grandwalker Nexuses.\n\nFlash\nDuring this turn, one of your White-only Grandwalker Nexuses in Grandphosis state can block while exhausted. Then, by sending three cores from any of your \"Vishnu\"/\"Krishna\" Grandwalker Nexuses to the Void, during this turn, your Life can only be reduced by one by opposing effects.",
+  "image": "BS77-077.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "When this card is sent to the Trash from deck by the effect of your \"Vishnu\"/\"Krishna\" Grandwalker Nexus, you can add it to the Hand. When you've done so, +1 core to one of your Grandwalker Nexuses.",
+   "Flash",
+   "During this turn, one of your White-only Grandwalker Nexuses in Grandphosis state can block while exhausted. Then, by sending three cores from any of your \"Vishnu\"/\"Krishna\" Grandwalker Nexuses to the Void, during this turn, your Life can only be reduced by one by opposing effects."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
+ },
+ {
+  "id": "BS77-081",
+  "name": "Bombardment",
+  "name_jp": "ボンバードメント",
+  "type": "Magic",
+  "color": "blue",
+  "cost": 5,
+  "reduction": {
+   "blue": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Bannerace"
+  ],
+  "text": "Flash\nDestroy an opposing Spirit/Ultimate with the highest cost. Then, including being in Soul State/pre-advent condition, if you control any \"The SeaShellFlagbearer Lije\", during this turn, when opposing Cost 4 or more Spirits would attack, unless the opponent discards a card from their Hand, they can't attack.",
+  "image": "BS77-081.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Destroy an opposing Spirit/Ultimate with the highest cost. Then, including being in Soul State/pre-advent condition, if you control any \"The SeaShellFlagbearer Lije\", during this turn, when opposing Cost 4 or more Spirits would attack, unless the opponent discards a card from their Hand, they can't attack."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Common"
  },
  {
   "id": "BS77-AX01",
@@ -6049,6 +7984,218 @@
    "By sending three cores, besides Soul Core, from your Trash to this Spirit, refresh it."
   ],
   "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS77-CP02",
+  "name": "The HeavenBeastDivineEmperor Gayatri-Fox-Om",
+  "name_jp": "天獣神帝ガーヤトリー・フォックス・オーム",
+  "type": "Spirit",
+  "color": "green",
+  "cost": 8,
+  "reduction": {
+   "green": 3,
+   "god": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 8000
+   },
+   {
+    "cores": 3,
+    "bp": 12000
+   },
+   {
+    "cores": 6,
+    "bp": 16000
+   }
+  ],
+  "families": [
+   "Devotee",
+   "Concluser",
+   "Imp"
+  ],
+  "text": "Flash - {{UMani|\"Contractor Saraswati\" & 3 Spirits or more|(Your Attack Step)}}\n(Once per Turn: Same Name) By putting your (Soul Core) on top, +1 core to one of the targets, and summon this card from the Hand, treating all summon costs as paid.\n\n{{Unleash|2}} [LV1-2-3] (When Manifests/Attacks)\nDuring this turn, the opponent can't end the Attack Step via effects. Then, you can send two cores from any of your Green Grandwalker Nexuses to this Spirit. When you've done so, you can activate the Grandphosis of all your \"Saraswati\" Grandwalker Nexuses, treating cores as being sent to the Void.\n\n[LV2-3] Flash - (Your Attack Step)\nOnce per turn, refresh one of your \"Saraswati\" Grandwalker Nexuses, and +1 core to it.",
+  "image": "BS77-CP02.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{UMani|\"Contractor Saraswati\" & 3 Spirits or more|(Your Attack Step)}}",
+   "(Once per Turn: Same Name) By putting your (Soul Core) on top, +1 core to one of the targets, and summon this card from the Hand, treating all summon costs as paid.",
+   "{{Unleash|2}} [LV1-2-3] (When Manifests/Attacks)",
+   "During this turn, the opponent can't end the Attack Step via effects. Then, you can send two cores from any of your Green Grandwalker Nexuses to this Spirit. When you've done so, you can activate the Grandphosis of all your \"Saraswati\" Grandwalker Nexuses, treating cores as being sent to the Void.",
+   "[LV2-3] Flash - (Your Attack Step)",
+   "Once per turn, refresh one of your \"Saraswati\" Grandwalker Nexuses, and +1 core to it."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "X-Rare"
+ },
+ {
+  "id": "BS77-CP03",
+  "name": "The PreserverDeityEmperor Trivi-Krama-Kutastha",
+  "name_jp": "維持神帝トリヴィ・クラマ・クータスタ",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 9,
+  "reduction": {
+   "white": 3,
+   "god": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 9000
+   },
+   {
+    "cores": 2,
+    "bp": 14000
+   },
+   {
+    "cores": 4,
+    "bp": 17000
+   }
+  ],
+  "families": [
+   "Devotee",
+   "Concluser",
+   "Armored Dragon"
+  ],
+  "text": "Flash - {{UMani|\"Contractor Vishnu\" with 6 cores or more|(Either Attack Step)}}\n(Once per Turn: Same Name) By putting your (Soul Core) on top, +1 core to one of the targets, and summon this card from the Hand, treating all summon costs as paid.\n\n{{Unleash|2}} [LV1-2-3] (When Manifests/Attacks)\nYou can return up to four opposing Spirits/Nexuses to the Hand. Then, you can send two cores from any of your White Grandwalker Nexuses to this Spirit. When you've done so, at the end of battle, if it's your Attack Step, you can send an opposing Life to the Reserve for every three cards in the opposing Hand and Removed Zone combined. (Max 3)\n\n[LV2-3] {{uha|Red/White/Yellow/Blue}}\nThis Spirit is unaffected by opposing Red/White/Yellow/Blue effects.",
+  "image": "BS77-CP03.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{UMani|\"Contractor Vishnu\" with 6 cores or more|(Either Attack Step)}}",
+   "(Once per Turn: Same Name) By putting your (Soul Core) on top, +1 core to one of the targets, and summon this card from the Hand, treating all summon costs as paid.",
+   "{{Unleash|2}} [LV1-2-3] (When Manifests/Attacks)",
+   "You can return up to four opposing Spirits/Nexuses to the Hand. Then, you can send two cores from any of your White Grandwalker Nexuses to this Spirit. When you've done so, at the end of battle, if it's your Attack Step, you can send an opposing Life to the Reserve for every three cards in the opposing Hand and Removed Zone combined. (Max 3)",
+   "[LV2-3] {{uha|Red/White/Yellow/Blue}}",
+   "This Spirit is unaffected by opposing Red/White/Yellow/Blue effects."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "X-Rare"
+ },
+ {
+  "id": "BS77-CP04",
+  "name": "The DestructionContractor Shiva",
+  "name_jp": "破壊の契約神シヴァ",
+  "type": "Nexus",
+  "color": "purple",
+  "cost": 2,
+  "reduction": {},
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 0
+   }
+  ],
+  "families": [
+   "Grandwalker",
+   "Hindida"
+  ],
+  "text": "{{tk|Neo-Core Charge:|(Death Dragon/Devotee/Concluser & Cost 3 or more) (\"Shiva\" & Nexus)}}\n◆When your target Spirit/Nexus is summoned/deployed, you can +1 core to this Nexus.\n◆(Once per Turn: Same Name) When this Nexus is deployed, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.\n\nRevive Main - (Once per Turn: Same Name) You can deploy this card from Soul State.\n\nContract Field [LV1]\nFor this Nexus, its symbols are unaffected by opposing effects, and its number of cores can't be brought to less than three by opposing effects. Also, once per turn, when your \"Death Dragon\" family \"Destruction Effect\"/ \"Core Removal Effect\" would activate, by discarding a facedown card from your Removed Zone, that effect can't be prevented by opposing effects.\n\n{{cs|2}} [LV1] Flash\n(Once per turn, send two cores from this Nexus to the Void) By putting a card from your Hand facedown onto the Removed Zone, draw a card. Then, during this turn, you can Advent/Mani your facedown \"Death Dragon\" family cards from the Removed Zone.",
+  "image": "BS77-CP04.png",
+  "block": "77",
+  "saga": 17,
+  "mechanics": [
+   "Contract Nexus"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{tk|Neo-Core Charge:|(Death Dragon/Devotee/Concluser & Cost 3 or more) (\"Shiva\" & Nexus)}}",
+   "◆When your target Spirit/Nexus is summoned/deployed, you can +1 core to this Nexus.",
+   "◆(Once per Turn: Same Name) When this Nexus is deployed, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.",
+   "Revive Main - (Once per Turn: Same Name) You can deploy this card from Soul State.",
+   "Contract Field [LV1]",
+   "For this Nexus, its symbols are unaffected by opposing effects, and its number of cores can't be brought to less than three by opposing effects. Also, once per turn, when your \"Death Dragon\" family \"Destruction Effect\"/ \"Core Removal Effect\" would activate, by discarding a facedown card from your Removed Zone, that effect can't be prevented by opposing effects.",
+   "{{cs|2}} [LV1] Flash",
+   "(Once per turn, send two cores from this Nexus to the Void) By putting a card from your Hand facedown onto the Removed Zone, draw a card. Then, during this turn, you can Advent/Mani your facedown \"Death Dragon\" family cards from the Removed Zone."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Campaign Promo"
+ },
+ {
+  "id": "BS77-CP05",
+  "name": "The MelodyContractor Saraswati",
+  "name_jp": "旋律の契約神サラスヴァティー",
+  "type": "Nexus",
+  "color": "green",
+  "cost": 2,
+  "reduction": {},
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 0
+   }
+  ],
+  "families": [
+   "Grandwalker",
+   "Hindida"
+  ],
+  "text": "{{tk|Neo-Core Charge:|(Imp/Devotee/Concluser & Cost 3 or more) (\"Saraswati\" & Nexus)}}\n◆When your target Spirit/Nexus is summoned/deployed, you can +1 core to this Nexus.\n◆(Once per Turn: Same Name) When this Nexus is deployed, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.\n\nRevive Main - (Once per Turn: Same Name) You can deploy this card from Soul State.\n\nContract Field [LV1]\nFor this Nexus, its symbols are unaffected by opposing effects, and its number of cores can't be brought to less than three by opposing effects. Also, (Can't Stack) when your \"Saraswati\", or your \"Imp\" family Spirit refreshes, if it's your Attack Step, by sending three cores from this Nexus to the Void, send an opposing Life to the Reserve.\n\n{{gp|3}} [LV1] Flash - (Your Attack Step)\n(Send three cores from this Nexus to the Void) During this turn, this Nexus is also treated as a Spirit with [LV1] 3000 BP, and can only be destroyed by Grandwalker Nexuses.",
+  "image": "BS77-CP05.png",
+  "block": "77",
+  "saga": 17,
+  "mechanics": [
+   "Contract Nexus"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{tk|Neo-Core Charge:|(Imp/Devotee/Concluser & Cost 3 or more) (\"Saraswati\" & Nexus)}}",
+   "◆When your target Spirit/Nexus is summoned/deployed, you can +1 core to this Nexus.",
+   "◆(Once per Turn: Same Name) When this Nexus is deployed, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.",
+   "Revive Main - (Once per Turn: Same Name) You can deploy this card from Soul State.",
+   "Contract Field [LV1]",
+   "For this Nexus, its symbols are unaffected by opposing effects, and its number of cores can't be brought to less than three by opposing effects. Also, (Can't Stack) when your \"Saraswati\", or your \"Imp\" family Spirit refreshes, if it's your Attack Step, by sending three cores from this Nexus to the Void, send an opposing Life to the Reserve.",
+   "{{gp|3}} [LV1] Flash - (Your Attack Step)",
+   "(Send three cores from this Nexus to the Void) During this turn, this Nexus is also treated as a Spirit with [LV1] 3000 BP, and can only be destroyed by Grandwalker Nexuses."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Campaign Promo"
+ },
+ {
+  "id": "BS77-CP06",
+  "name": "The PreservationContractor Vishnu",
+  "name_jp": "維持の契約神ヴィシュヌ",
+  "type": "Nexus",
+  "color": "white",
+  "cost": 2,
+  "reduction": {},
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 0
+   }
+  ],
+  "families": [
+   "Grandwalker",
+   "Hindida"
+  ],
+  "text": "{{tk|Neo-Core Charge:|(Armored Dragon/Devotee/Concluser & Cost 3 or more) (\"Vishnu\"/\"Krishna\" & Nexus)}}\n◆When your target Spirit/Nexus is summoned/deployed, you can +1 core to this Nexus.\n◆(Once per Turn: Same Name) When this Nexus is deployed, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.\n\nRevive Main - (Once per Turn: Same Name) You can deploy this card from Soul State.\n\nContract Field [LV1]\nFor this Nexus, its symbols are unaffected by opposing effects, and its number of cores can't be brought to less than three by opposing effects. Also, once per turn, when the number of cores on this Nexus is reduced, if the total number of cards in your Hand and Removed Zone is less than the opponent's, you can +1 core to this Nexus. Then, you can send one core from this Nexus to your Reserve.\n\n{{gp|3}} [LV1] Flash - (Either Attack Step)\n(Send three cores from this Nexus to the Void) During this turn, this Nexus is also treated as a Spirit that can't be refreshed with [LV1] 3000 BP, and can only be destroyed by Grandwalker Nexuses.",
+  "image": "BS77-CP06.png",
+  "block": "77",
+  "saga": 17,
+  "mechanics": [
+   "Contract Nexus"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{tk|Neo-Core Charge:|(Armored Dragon/Devotee/Concluser & Cost 3 or more) (\"Vishnu\"/\"Krishna\" & Nexus)}}",
+   "◆When your target Spirit/Nexus is summoned/deployed, you can +1 core to this Nexus.",
+   "◆(Once per Turn: Same Name) When this Nexus is deployed, you can send three cards from your decktop to the Trash. For each target card among them, +1 core to this Nexus.",
+   "Revive Main - (Once per Turn: Same Name) You can deploy this card from Soul State.",
+   "Contract Field [LV1]",
+   "For this Nexus, its symbols are unaffected by opposing effects, and its number of cores can't be brought to less than three by opposing effects. Also, once per turn, when the number of cores on this Nexus is reduced, if the total number of cards in your Hand and Removed Zone is less than the opponent's, you can +1 core to this Nexus. Then, you can send one core from this Nexus",
+   "to your Reserve.",
+   "{{gp|3}} [LV1] Flash - (Either Attack Step)",
+   "(Send three cores from this Nexus to the Void) During this turn, this Nexus is also treated as a Spirit that can't be refreshed with [LV1] 3000 BP, and can only be destroyed by Grandwalker Nexuses."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "Campaign Promo"
  },
  {
   "id": "BS77-CX01",
@@ -6138,6 +8285,131 @@
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
  },
  {
+  "id": "BS77-RV001",
+  "name": "The FiftyFirstBeast Revol-Koleon",
+  "name_jp": "甲寅獣リボル・コレオン",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 4,
+  "reduction": {
+   "red": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   },
+   {
+    "cores": 3,
+    "bp": 4000
+   },
+   {
+    "cores": 4,
+    "bp": 6000
+   }
+  ],
+  "families": [
+   "Ten Crown",
+   "Emperor Beast"
+  ],
+  "text": "Main- {{Accel|Cost 4 ( (Red Core) (Red Core))}}\nYou can reveal three cards from your decktop. Among them, add an \"Imagine\" family Brave card and a \"God-King\"/\"Ten Crown\" family Spirit card to the Hand. Discard any reemaining cards. After this effect resolves, put this card face-up onto the Removed Zone.\n\n[LV1][LV2][LV3] (When Summoned)\nWhen summoned from the Removed Zone, you can summon an \"Imagine\" family Brave card from your Hand, without paying the cost.",
+  "image": "BS77-RV001.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "Main- {{Accel|Cost 4 ( (Red Core) (Red Core))}}",
+   "You can reveal three cards from your decktop. Among them, add an \"Imagine\" family Brave card and a \"God-King\"/\"Ten Crown\" family Spirit card to the Hand. Discard any reemaining cards. After this effect resolves, put this card face-up onto the Removed Zone.",
+   "[LV1][LV2][LV3] (When Summoned)",
+   "When summoned from the Removed Zone, you can summon an \"Imagine\" family Brave card from your Hand, without paying the cost."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "LM"
+ },
+ {
+  "id": "BS77-RV002",
+  "name": "The TwentyNinthDragon Ourovodra",
+  "name_jp": "壬辰竜ウロヴォドラ",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 4,
+  "reduction": {
+   "purple": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   },
+   {
+    "cores": 3,
+    "bp": 5000
+   },
+   {
+    "cores": 6,
+    "bp": 8000
+   }
+  ],
+  "families": [
+   "Ten Crown",
+   "Death Dragon"
+  ],
+  "text": "Main- {{Accel|Cost 4 ( (Purple Core) (Purple Core))}}\nYou can reveal three cards from your decktop. Among them, add an \"Imagine\" family Brave card and a \"God-King\"/\"Ten Crown\" family Spirit card to the Hand. Discard any remaining cards. After this effect resolves, put this card face-up onto the Removed Zone.\n\n[LV1][LV2][LV3] (When Summoned)\nWhen summoned from the Removed Zone, you can summon an \"Imagine\" family Brave card from your Hand, without paying the cost.",
+  "image": "BS77-RV002.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "Main- {{Accel|Cost 4 ( (Purple Core) (Purple Core))}}",
+   "You can reveal three cards from your decktop. Among them, add an \"Imagine\" family Brave card and a \"God-King\"/\"Ten Crown\" family Spirit card to the Hand. Discard any remaining cards. After this effect resolves, put this card face-up onto the Removed Zone.",
+   "[LV1][LV2][LV3] (When Summoned)",
+   "When summoned from the Removed Zone, you can summon an \"Imagine\" family Brave card from your Hand, without paying the cost."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "LM"
+ },
+ {
+  "id": "BS77-RV003",
+  "name": "The FiftyEighthBird Gale-ChickenKnight",
+  "name_jp": "辛酉鳥ゲイル・チキンナイト",
+  "type": "Spirit",
+  "color": "green",
+  "cost": 4,
+  "reduction": {
+   "green": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 4000
+   },
+   {
+    "cores": 3,
+    "bp": 5000
+   }
+  ],
+  "families": [
+   "Ten Crown",
+   "Winged Beast"
+  ],
+  "text": "Main- {{Accel|Cost 4 ( (Green Core) (Green Core))}}\nYou can reveal three cards from your decktop. Among them, add an \"Imagine\" family Brave card and a \"God-King\"/\"Ten Crown\" family Spirit card to the Hand. Discard any reemaining cards. After this effect resolves, put this card face-up onto the Removed Zone.\n\n[LV1][LV2] (When Summoned)\nWhen summoned from the Removed Zone, you can summon an \"Imagine\" family Brave card from your Hand, without paying the cost.",
+  "image": "BS77-RV003.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "Main- {{Accel|Cost 4 ( (Green Core) (Green Core))}}",
+   "You can reveal three cards from your decktop. Among them, add an \"Imagine\" family Brave card and a \"God-King\"/\"Ten Crown\" family Spirit card to the Hand. Discard any reemaining cards. After this effect resolves, put this card face-up onto the Removed Zone.",
+   "[LV1][LV2] (When Summoned)",
+   "When summoned from the Removed Zone, you can summon an \"Imagine\" family Brave card from your Hand, without paying the cost."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "LM"
+ },
+ {
   "id": "BS77-RV004",
   "name": "The FortyFourthMachine Glorious-Racoon",
   "name_jp": "丁未機グロリアス・ラクーン",
@@ -6176,6 +8448,127 @@
    "[LV1-2] (When Summoned) When summoned from the Removed Zone, you can summon an Imagine Brave card from your Hand/Removed Zone, without paying the cost. When you've done so, you can draw a card."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+ },
+ {
+  "id": "BS77-RV005",
+  "name": "The FiftySeventhMonkeyMaster Onkot-Merlin",
+  "name_jp": "庚申師オンコット・マーリン",
+  "type": "Spirit",
+  "color": "yellow",
+  "cost": 4,
+  "reduction": {
+   "yellow": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   },
+   {
+    "cores": 2,
+    "bp": 4000
+   },
+   {
+    "cores": 3,
+    "bp": 5000
+   }
+  ],
+  "families": [
+   "Ten Crown",
+   "Imaginary Beast"
+  ],
+  "text": "Main- {{Accel|Cost 4 ( (Yellow Core) (Yellow Core))}}\nYou can reveal three cards from your decktop. Among them, add an \"Imagine\" family Brave card and a \"God-King\"/\"Ten Crown\" family Spirit card to the Hand. Discard any remaining cards. After this effect resolves, put this card face-up onto the Removed Zone.\n\n[LV1][LV2][LV3] (When Summoned)\nWhen summoned from the Removed Zone, you can summon an \"Imagine\" family Brave card from your Hand, without paying the cost.",
+  "image": "BS77-RV005.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "Main- {{Accel|Cost 4 ( (Yellow Core) (Yellow Core))}}",
+   "You can reveal three cards from your decktop. Among them, add an \"Imagine\" family Brave card and a \"God-King\"/\"Ten Crown\" family Spirit card to the Hand. Discard any remaining cards. After this effect resolves, put this card face-up onto the Removed Zone.",
+   "[LV1][LV2][LV3] (When Summoned)",
+   "When summoned from the Removed Zone, you can summon an \"Imagine\" family Brave card from your Hand, without paying the cost."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom."
+ },
+ {
+  "id": "BS77-RV006",
+  "name": "The SixtiethKid Calamity-Uri",
+  "name_jp": "癸亥坊カラミティ・ウリ",
+  "type": "Spirit",
+  "color": "blue",
+  "cost": 4,
+  "reduction": {
+   "blue": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 4000
+   },
+   {
+    "cores": 4,
+    "bp": 8000
+   }
+  ],
+  "families": [
+   "Ten Crown",
+   "Roaring Azure"
+  ],
+  "text": "Main - {{Accel|Cost 4 ( (Blue Core) (Blue Core))}}\nYou can reveal three cards from your decktop. Among them, add an \"Imagine\" family Brave card and a \"God-King\"/\"Ten Crown\" family Spirit card to the Hand. Discard any remaining cards. After this effect resolves, put this card face-up onto the Removed Zone.\n\n[LV1][LV2] (When Summoned)\nWhen summoned from the Removed Zone, you can summon an \"Imagine\" family Brave card from your Hand, without paying the cost.",
+  "image": "BS77-RV006.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "Main - {{Accel|Cost 4 ( (Blue Core) (Blue Core))}}",
+   "You can reveal three cards from your decktop. Among them, add an \"Imagine\" family Brave card and a \"God-King\"/\"Ten Crown\" family Spirit card to the Hand. Discard any remaining cards. After this effect resolves, put this card face-up onto the Removed Zone.",
+   "[LV1][LV2] (When Summoned)",
+   "When summoned from the Removed Zone, you can summon an \"Imagine\" family Brave card from your Hand, without paying the cost."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom."
+ },
+ {
+  "id": "BS77-RV007",
+  "name": "The ThreeTreasureDragonSwords Necrocalibur",
+  "name_jp": "三龍宝剣 ネクロキャリバー",
+  "type": "Brave",
+  "color": "purple",
+  "cost": 6,
+  "reduction": {
+   "purple": 2,
+   "god": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 6000
+   }
+  ],
+  "families": [
+   "Saga",
+   "God Arms",
+   "Celeste"
+  ],
+  "text": "During Spirit Brave (When Attacks)\nSend two cores from an opposing Spirit to their Reserve, and draw a card.\n\nDuring Nexus Brave Grand Field (Your Attack Step)\n(At least two cores on this Nexus) When you activate Grandphosis, once per turn, send two cores from any opposing Grandwalker Nexuses to the Void, and put a card from your decktop facedown on your Removed Zone.",
+  "image": "BS77-RV007.png",
+  "block": "77",
+  "saga": 17,
+  "brave": {
+   "bp": 6000,
+   "costGe": 3
+  },
+  "fxComplete": false,
+  "residual": [
+   "During Spirit Brave (When Attacks)",
+   "Send two cores from an opposing Spirit to their Reserve, and draw a card.",
+   "During Nexus Brave Grand Field (Your Attack Step)",
+   "(At least two cores on this Nexus) When you activate Grandphosis, once per turn, send two cores from any opposing Grandwalker Nexuses to the Void, and put a card from your decktop facedown on your Removed Zone."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "X-Rare"
  },
  {
   "id": "BS77-X03",
@@ -6222,5 +8615,236 @@
    "[LV1-2-3] (When Advents/Attacks) You can send three cards from your decktop to the Trash. Then, you can send one core from an opposing Spirit to the Reserve for each \"The DemonArmyFlagbearer Amon\" in your Trash."
   ],
   "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder."
+ },
+ {
+  "id": "BS77-X05",
+  "name": "The Valiant Airs-Lynx",
+  "name_jp": "勇猛たるエアーズ・リンクス",
+  "type": "Spirit",
+  "color": "green",
+  "cost": 4,
+  "reduction": {
+   "green": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 4000
+   },
+   {
+    "cores": 2,
+    "bp": 7000
+   },
+   {
+    "cores": 5,
+    "bp": 12000
+   }
+  ],
+  "families": [
+   "Gale Contract",
+   "Bannerace",
+   "Blade Beast"
+  ],
+  "text": "Flash - {{Flag Contract Advent|Gale Contract|(Your Turn)}}\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\n(Once per Turn: Same Name) When any Green \"Bannerace\" family card is discarded from your Hand, by +1 your counter, summon or return to your Hand this card from the Trash.\n\n[LV1-2-3] (When Summoned/Advents/Destroyed)\nYou can put a core from the Void to this Spirit. Then, you can heavy exhaust an opposing Spirit/Ultimate.\n\n[LV2-3] (Your Attack Step)\nThe Double Drive written on your \"Absolute Wind Demon-God\" can't be prevented by opposing Magic effects.",
+  "image": "BS77-X05.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{Flag Contract Advent|Gale Contract|(Your Turn)}}",
+   "By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
+   "(Once per Turn: Same Name) When any Green \"Bannerace\" family card is discarded from your Hand, by +1 your counter, summon or return to your Hand this card from the Trash.",
+   "[LV1-2-3] (When Summoned/Advents/Destroyed)",
+   "You can put a core from the Void to this Spirit. Then, you can heavy exhaust an opposing Spirit/Ultimate.",
+   "[LV2-3] (Your Attack Step)",
+   "The Double Drive written on your \"Absolute Wind Demon-God\" can't be prevented by opposing Magic effects."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "X-Rare"
+ },
+ {
+  "id": "BS77-X06",
+  "name": "The RabbitTwelveGodKing Mistral-Bit X",
+  "name_jp": "卯の十二神皇ミストラル・ビットX",
+  "type": "Spirit",
+  "color": "green",
+  "cost": 5,
+  "reduction": {
+   "green": 4
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 7000
+   },
+   {
+    "cores": 2,
+    "bp": 12000
+   },
+   {
+    "cores": 4,
+    "bp": 17000
+   }
+  ],
+  "families": [
+   "Concluser",
+   "God-King",
+   "Imp"
+  ],
+  "text": "(Can't Stack) When this card is revealed from the deck by your Green-only Spirit effect, you can add it to the Hand.\n\nFlash - {{Seal|Sound Speed Seal}}\nYou can summon this card from the Hand by paying the summon cost from your Reserve, or paying it by sending cores from your Red/Green Grandwalker Nexuses to the Void. When you've done so, you can send the (Soul Core) from your Reserve/Field to your Life.\n\n{{Seal|During Seal}} [LV2-3] True Leap (When Attacks/Blocks)\nBy returning an opposing exhausted Spirit to the deckbottom, send an opposing Life to the Reserve, and put a core from the Void each to every \"God-King\"/\"Imp\" family Spirit you control.",
+  "image": "BS77-X06.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "(Can't Stack) When this card is revealed from the deck by your Green-only Spirit effect, you can add it to the Hand.",
+   "Flash - {{Seal|Sound Speed Seal}}",
+   "You can summon this card from the Hand by paying the summon cost from your Reserve, or paying it by sending cores from your Red/Green Grandwalker Nexuses to the Void. When you've done so, you can send the (Soul Core) from your Reserve/Field to your Life.",
+   "{{Seal|During Seal}} [LV2-3] True Leap (When Attacks/Blocks)",
+   "By returning an opposing exhausted Spirit to the deckbottom, send an opposing Life to the Reserve, and put a core from the Void each to every \"God-King\"/\"Imp\" family Spirit you control."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "X-Rare"
+ },
+ {
+  "id": "BS77-X08",
+  "name": "The SheepTwelveGodKing Glorious-Sheep X",
+  "name_jp": "未の十二神皇グロリアス・シープX",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 6,
+  "reduction": {
+   "white": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 10000
+   },
+   {
+    "cores": 3,
+    "bp": 15000
+   },
+   {
+    "cores": 5,
+    "bp": 20000
+   }
+  ],
+  "families": [
+   "Concluser",
+   "God-King",
+   "Machine Beast"
+  ],
+  "text": "Flash - {{Mani|Seal|\"Contractor Artemis\" & C2 or more|(Either Attack Step)}}\nBy sending your (Soul Core) from the Field/Reserve to the Life, pay one cost from the target to summon this card from the Hand.\n\nThis card/Spirit gains the \"Devotee\" family.\n\n{{Seal|During Seal}} [LV1-2-3] (Either Attack Step)\nThis Spirit can't be blocked, and is unaffected by opposing effects. Also, when your Life would be reduced by the opponent, by sending the (Soul Core) from your Life to this Spirit, your Life won't be reduced other than via this effect.\n\n[LV2-3] {{Seal|Moonlight Seal}} (When Attacks/Blocks)\n(Once per Turn: Same Name) If you control any \"Contractor Artemis\", you can send the (Soul Core) from this Spirit/your Trash to your Life.",
+  "image": "BS77-X08.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{Mani|Seal|\"Contractor Artemis\" & C2 or more|(Either Attack Step)}}",
+   "By sending your (Soul Core) from the Field/Reserve to the Life, pay one cost from the target to summon this card from the Hand.",
+   "This card/Spirit gains the \"Devotee\" family.",
+   "{{Seal|During Seal}} [LV1-2-3] (Either Attack Step)",
+   "This Spirit can't be blocked, and is unaffected by opposing effects. Also, when your Life would be reduced by the opponent, by sending the (Soul Core) from your Life to this Spirit, your Life won't be reduced other than via this effect.",
+   "[LV2-3] {{Seal|Moonlight Seal}} (When Attacks/Blocks)",
+   "(Once per Turn: Same Name) If you control any \"Contractor Artemis\", you can send the (Soul Core) from this Spirit/your Trash to your Life."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "X-Rare"
+ },
+ {
+  "id": "BS77-X11",
+  "name": "The MonkeyTwelveGodKing Hanumerlin X",
+  "name_jp": "申の十二神皇ハヌマーリンX",
+  "type": "Spirit",
+  "color": "yellow",
+  "cost": 6,
+  "reduction": {
+   "yellow": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 10000
+   },
+   {
+    "cores": 2,
+    "bp": 12000
+   },
+   {
+    "cores": 3,
+    "bp": 15000
+   }
+  ],
+  "families": [
+   "Supreme Contract",
+   "Bannerace",
+   "God-King"
+  ],
+  "text": "Flash - {{SF Advent|Supreme Contract & C6 or more|(Your Turn)}}\n(Once per Turn: Same Name) By sending your (Soul Core) to the Life, stack this from the Hand onto your target Spirit/Nexus.\n\nYou can Flag Contract Advent this card from the Removed Zone.\n\n{{Seal|During Seal}} [LV1-2-3] (Either Attack Step)\nYou can use \"Bannerace\" family Accel from your Hand, without paying the cost. When you've done so, you can summon them without paying the cost, instead of putting them to the Removed Zone.\n\n{{Seal|During Seal}} [LV1-2-3] (When Attacks)\nDuring this turn, the effects of opposing Spirits/Grandwalker Nexuses, one of each, can't activate.",
+  "image": "BS77-X11.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{SF Advent|Supreme Contract & C6 or more|(Your Turn)}}",
+   "(Once per Turn: Same Name) By sending your (Soul Core) to the Life, stack this from the Hand onto your target Spirit/Nexus.",
+   "You can Flag Contract Advent this card from the Removed Zone.",
+   "{{Seal|During Seal}} [LV1-2-3] (Either Attack Step)",
+   "You can use \"Bannerace\" family Accel from your Hand, without paying the cost. When you've done so, you can summon them without paying the cost, instead of putting them to the Removed Zone.",
+   "{{Seal|During Seal}} [LV1-2-3] (When Attacks)",
+   "During this turn, the effects of opposing Spirits/Grandwalker Nexuses, one of each, can't activate."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "X-Rare"
+ },
+ {
+  "id": "BS77-X13",
+  "name": "The BattleRadiantRoaringGod Soldnerg-Eld",
+  "name_jp": "戦輝轟神ゼルドナーグ・エルド",
+  "type": "Spirit",
+  "color": "blue",
+  "cost": 7,
+  "reduction": {
+   "blue": 4
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 7000
+   },
+   {
+    "cores": 2,
+    "bp": 10000
+   },
+   {
+    "cores": 6,
+    "bp": 18000
+   }
+  ],
+  "families": [
+   "Bannerace",
+   "Fighting Spirit"
+  ],
+  "text": "Flash - {{Flag Contract Advent|Blue-only & Bannerace & Cost 4 or more|(Your Turn)}}\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.\n\n[LV1-2-3] (When Summoned/Advents)\nYou can deploy up to two of your Blue Nexus cards with a total cost up to 8 from your Hand/Trash, without paying the cost. For each target deployed via this effect, destroy an opposing Cost 9 or less Spirit.\n\n[LV2-3] Roaring Assault (When Attacks)\nOnce per turn, by exhausting one of your Nexuses, refresh this Spirit. When you've done so, during this turn, this Spirit gains all the symbols of the target exhausted via this effect.",
+  "image": "BS77-X13.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "Flash - {{Flag Contract Advent|Blue-only & Bannerace & Cost 4 or more|(Your Turn)}}",
+   "By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit/Nexus.",
+   "[LV1-2-3] (When Summoned/Advents)",
+   "You can deploy up to two of your Blue Nexus cards with a total cost up to 8 from your Hand/Trash, without paying the cost. For each target deployed via this effect, destroy an opposing Cost 9 or less Spirit.",
+   "[LV2-3] Roaring Assault (When Attacks)",
+   "Once per turn, by exhausting one of your Nexuses, refresh this Spirit. When you've done so, during this turn, this Spirit gains all the symbols of the target exhausted via this effect."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
+  "rcode": "X-Rare"
  }
 ]

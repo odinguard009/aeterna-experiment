@@ -118,7 +118,7 @@ test('B01 index.html without the card pack stays under 1610 KB', () => assert.ok
 // v0.214.0 (Lane K): raised B02 375 -> 380 KB on purpose (Grandwalker Oracle mechanics: anyOf, ORACLE_CORE, REFRESH_PUT_CORE, OPP_NO_MAGIC).
 // v0.213.0 (Lane K): raised B02 370 -> 375 KB on purpose (engine flags SUMMON_DISCOUNT, MAGIC_WALL, ALSO_TREATED etc. added by card work).
 test('B02 index.html without the card pack, gzipped, stays under 420 KB', () => { const n = gzipSync(noFont(code), { level: 9 }).length; assert.ok(n < 420e3, n); });
-test('B03 the embedded card pack stays under 2.1 MB (room for all cards; never embed staging data)', () => assert.ok(packLen < 2.1e6, packLen));
+test('B03 the embedded card pack stays under 3.2 MB (room for all cards; never embed staging data; 2.1e6 -> 3.2e6 on 2026-11-04 after the master import)', () => assert.ok(packLen < 3.2e6, packLen));
 // v0.93.0 (U6): raised 90 -> 96 KB on purpose (roadmap item U allows it with a note): U6-U8 add the My decks page and the
 // deck builder restyle; unused rules were trimmed first in v0.92.0. The next raise needs the same kind of note.
 // v0.151.0: raised B04 205 -> 210 KB on purpose: effect pop-ups, core landing flash and the UI audit fixes (~2 KB).
@@ -153,9 +153,9 @@ test('B10 render() of a started match averages under 60 ms', async () => {
   const ms = await g.page.evaluate(() => { BS.startNewGame({ seed: 7 }); const t = performance.now(); for (let i = 0; i < 20; i++) BS.render(); return (performance.now() - t) / 20; });
   assert.ok(ms < 60, ms);
 });
-test('B11 JS heap after a started match stays under 80 MB', async () => {
+test('B11 JS heap after a started match stays under 90 MB (80 -> 90 on 2026-11-04: master import, measured 81.4)', async () => {
   const mb = await g.page.evaluate(() => performance.memory ? performance.memory.usedJSHeapSize / 1e6 : 0);
-  assert.ok(mb < 80, mb);
+  assert.ok(mb < 90, mb);
 });
 test('B12 starting a new match takes under 1.5 s', async () => {
   const ms = await g.page.evaluate(() => { const t = performance.now(); BS.startNewGame({ seed: 11 }); return performance.now() - t; });
