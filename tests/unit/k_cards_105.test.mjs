@@ -174,3 +174,13 @@ test('K-1166 BS63-016 Thread Sword Paradise destroys opposing Spirits up to 1000
   assert.deepEqual(r.partial, [false, false], JSON.stringify(r)); assert.equal(r.nexusLeft, 0, JSON.stringify(r));
   assert.equal(r.counters, 3, JSON.stringify(r)); assert.equal(r.drew, 1, JSON.stringify(r)); assert.deepEqual(r.boost, { perCounter: 1000 });
 });
+
+test('K-1167 BS75-076 Magma Call: Flash gives a Lava Fish an extra Red symbol, and again after the Soul Core goes to Contractor Ometeotl; Burst summons a Cost 8 or less Lava Fish free', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${pre}
+    const lf = BS.mkInst('BS74-006'); lf.cores = 3; P.spirits = [lf]; const nx = BS.mkInst('BS74-CX01'); nx.soul = false; P.nexus = [nx]; P.reserve.soul = true;
+    const s0 = attackSymbols(lf); const inst = BS.mkInst('BS75-076'); P.hand = [inst];
+    const m = BS.CARDS['BS75-076'].magic; await MAGIC_FX.ACTIONS.apply(P, O, null, 0, m, inst);
+    return { s0, s1: attackSymbols(lf), soul: nx.soul }; })()`);
+  assert.equal(r.s1 - r.s0, 2, JSON.stringify(r)); assert.equal(r.soul, true);
+});
