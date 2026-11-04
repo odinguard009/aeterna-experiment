@@ -95,14 +95,14 @@ function parseCard(o) {
   const id = String(o.id == null ? '' : o.id).trim(), name = String(o.name == null ? '' : o.name).trim();
   if (!/^[A-Za-z0-9][A-Za-z0-9._\-\/ ]{0,39}$/.test(id)) err.push('invalid "id" (letters, digits, . _ - / and spaces only)');
   if (BUILTIN_IDS.has(id)) err.push(`"${id}" is reserved for a built-in card`);
-  if (!name || name.length > 80) err.push('missing or invalid "name"');
+  if (!name || name.length > 200) err.push('missing or invalid "name"');
   const t = String(o.type == null ? 'Spirit' : o.type).toLowerCase();
   const type = t === 'spirit' ? 'Spirit' : t === 'nexus' ? 'Nexus' : t === 'magic' ? 'Magic' : t === 'brave' ? 'Brave' : t === 'ultimate' ? 'Ultimate' : null;
   if (!type) err.push(`type "${o.type}" is not supported yet (only Spirit, Nexus, Magic, Brave and Ultimate)`);
   let colors;                    // optional multicolour card, e.g. ["red","white"]; the first colour is the main one
   if (o.colors != null) {
     const cs = Array.isArray(o.colors) ? [...new Set(o.colors.map(x => String(x).toLowerCase()))] : null;
-    if (!cs || cs.length < 2 || cs.length > 3 || cs.some(x => !COLORS.includes(x))) err.push('invalid "colors" (2-3 of ' + COLORS.join('/') + ')');
+    if (!cs || cs.length < 2 || cs.length > 6 || cs.some(x => !COLORS.includes(x))) err.push('invalid "colors" (2-6 of ' + COLORS.join('/') + ')');
     else colors = cs;
   }
   const symbol = String(o.color || o.symbol || (colors ? colors[0] : '')).toLowerCase();

@@ -3962,6 +3962,56 @@
   "note": "Partial card (v0.79.0 Rebirth import 2026-11-01): Rebirth front side only, effects not wired; the flip/rebirth rule is not in the engine yet."
  },
  {
+  "id": "BS56-TX02",
+  "name": "The DragonKnight Ambrose",
+  "name_jp": "竜騎士アンブローズ",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 4,
+  "reduction": {
+   "purple": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 4000
+   },
+   {
+    "cores": 3,
+    "bp": 6000
+   },
+   {
+    "cores": 5,
+    "bp": 9000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Evil Shadow"
+  ],
+  "text": "[LV1][LV2][LV3] Rebirth5\nWhen your Cost 5 or more \"DragonKnight\"/\"DragonRideEmperor\"-named Spirit reduces the opposing Life, or this Spirit would leave the Field due to the opponent, you can flip this Spirit (Cores on it are sent to the Reserve).\n\n[LV2][LV3] (Your Attack Step)\nWhen your \"DragonKnight\"/\"DragonRideEmperor\"-named Spirit attacks, the opponent can't block unless they, for each counter you have, send a core from any of their Spirits to the Trash.",
+  "image": "BS56-TX02.png",
+  "block": "56",
+  "saga": 12,
+  "bicon": [
+   "8"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2][LV3] Rebirth5",
+   "When your Cost 5 or more \"DragonKnight\"/\"DragonRideEmperor\"-named Spirit reduces the opposing Life, or this Spirit would leave the Field due to the opponent, you can flip this Spirit (Cores on it are sent to the Reserve).",
+   "[LV2][LV3] (Your Attack Step)",
+   "When your \"DragonKnight\"/\"DragonRideEmperor\"-named Spirit attacks, the opponent can't block unless they, for each counter you have, send a core from any of their Spirits to the Trash."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
+  "rcode": "転醒X",
+  "rebirthTo": "BS56-TX02B",
+  "mechanics": [
+   "Rebirth"
+  ]
+ },
+ {
   "id": "BS56-X01",
   "name": "The CosmicCruisingDragon Astra-Dragon",
   "name_jp": "航宙龍アストラ・ドラゴン",
@@ -7434,6 +7484,43 @@
   "rcode": "C"
  },
  {
+  "id": "BS57-064",
+  "name": "The Bal-Masque Castle Bloodrondo",
+  "name_jp": "バル・マスケ居城ブラッドロンド",
+  "type": "Nexus",
+  "color": "purple",
+  "cost": 4,
+  "reduction": {
+   "purple": 2
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Proximate",
+   "Nightling"
+  ],
+  "text": "[LV1] (When Deployed)\nBy discarding a \"Nightling\" family card from your Hand, draw two cards.\n\n[LV1] Rebirth3\nWhen opposing Spirits/Ultimates are depleted/destroyed, or when this Nexus would leave the Field by opposing effects, you can flip this Nexus. When you do, you can put a core from your Field/Reserve to this now-Reborn Spirit.",
+  "image": "BS57-064.png",
+  "block": "57",
+  "saga": 12,
+  "bicon": [
+   "8"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "[LV1] (When Deployed)",
+   "By discarding a \"Nightling\" family card from your Hand, draw two cards.",
+   "[LV1] Rebirth3",
+   "When opposing Spirits/Ultimates are depleted/destroyed, or when this Nexus would leave the Field by opposing effects, you can flip this Nexus. When you do, you can put a core from your Field/Reserve to this now-Reborn Spirit."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
+  "rcode": "転醒R",
+  "rebirthTo": "BS57-064B",
+  "mechanics": [
+   "Rebirth"
+  ]
+ },
+ {
   "id": "BS57-065",
   "name": "Forest Mirage",
   "name_jp": "フォレストミラージュ",
@@ -8157,6 +8244,499 @@
    "8"
   ],
   "rcode": "R"
+ },
+ {
+  "id": "BS57-TCP01",
+  "name": "The Criminal's SkullBlade Executioners X",
+  "name_jp": "咎人の骨剣エグゼキューショナーズX",
+  "type": "Brave",
+  "color": "purple",
+  "cost": 5,
+  "reduction": {
+   "purple": 3
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   }
+  ],
+  "families": [
+   "Exalted Sword"
+  ],
+  "text": "{{Immortality|Cost 2/4/6/8}} (Either Attack Step)\nWhen your Cost 2/4/6/8 Spirits are destroyed, you can summon this card from the Trash.\n\nDuring Brave (When Attacks)\nYou can destroy a Spirit you control, and when destroys, the opponent destroys a Spirit/Ultimate they control.\n\nDuring Brave Rebirth5\nWhen this Spirit is destroyed, you can separate and flip this Brave.",
+  "image": "BS57-TCP01.png",
+  "block": "57",
+  "saga": 12,
+  "bicon": [
+   "8"
+  ],
+  "brave": {
+   "bp": 5000,
+   "costGe": 5
+  },
+  "fxComplete": false,
+  "residual": [
+   "{{Immortality|Cost 2/4/6/8}} (Either Attack Step)",
+   "When your Cost 2/4/6/8 Spirits are destroyed, you can summon this card from the Trash.",
+   "During Brave (When Attacks)",
+   "You can destroy a Spirit you control, and when destroys, the opponent destroys a Spirit/Ultimate they control.",
+   "During Brave Rebirth5",
+   "When this Spirit is destroyed, you can separate and flip this Brave."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
+  "rcode": "CP",
+  "rebirthTo": "BS57-TCP01B",
+  "mechanics": [
+   "Rebirth"
+  ]
+ },
+ {
+  "id": "BS57-TCP02",
+  "name": "The MidnightSunTreasuredSword Midnight-Sun X",
+  "name_jp": "白夜の宝剣ミッドナイト・サンX",
+  "type": "Brave",
+  "color": "white",
+  "cost": 6,
+  "reduction": {
+   "white": 4
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   }
+  ],
+  "families": [
+   "Exalted Sword"
+  ],
+  "text": "During Brave {{ha|Red/Purple/White/Yellow}}\nThis Spirit is unaffected by opposing Red/Purple/White/Yellow Spirit/Brave/Nexus/Magic effects.\n\nDuring Brave Rebirth5\nWhen this Spirit would leave the Field due to the opponent, you can separate and flip this Brave.",
+  "image": "BS57-TCP02.png",
+  "block": "57",
+  "saga": 12,
+  "bicon": [
+   "8"
+  ],
+  "brave": {
+   "bp": 5000,
+   "costGe": 5
+  },
+  "fxComplete": false,
+  "residual": [
+   "During Brave {{ha|Red/Purple/White/Yellow}}",
+   "This Spirit is unaffected by opposing Red/Purple/White/Yellow Spirit/Brave/Nexus/Magic effects.",
+   "During Brave Rebirth5",
+   "When this Spirit would leave the Field due to the opponent, you can separate and flip this Brave."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
+  "rcode": "CP",
+  "rebirthTo": "BS57-TCP02B",
+  "mechanics": [
+   "Rebirth"
+  ]
+ },
+ {
+  "id": "BS57-TCP03",
+  "name": "The LightWingsDivineBlade Angelicfeather X",
+  "name_jp": "光翼の神剣エンジェリックフェザーX",
+  "type": "Brave",
+  "color": "yellow",
+  "cost": 5,
+  "reduction": {
+   "yellow": 3
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   }
+  ],
+  "families": [
+   "Exalted Sword"
+  ],
+  "text": "During Brave (When Attacks)\nDuring this turn, give an opposing Spirit/Ultimate -10000 BP, and if its BP is brought down to 0, refresh this Spirit. Also, this Spirit can't be blocked by opposing Spirits/Ultimates with BP equal or inferior to this Spirit's.\n\nDuring Brave Rebirth5\nWhen this Spirit would leave the Field due to the opponent, you can separate and flip this Brave.",
+  "image": "BS57-TCP03.png",
+  "block": "57",
+  "saga": 12,
+  "bicon": [
+   "8"
+  ],
+  "brave": {
+   "bp": 5000,
+   "costGe": 5
+  },
+  "fxComplete": false,
+  "residual": [
+   "During Brave (When Attacks)",
+   "During this turn, give an opposing Spirit/Ultimate -10000 BP, and if its BP is brought down to 0, refresh this Spirit. Also, this Spirit can't be blocked by opposing Spirits/Ultimates with BP equal or inferior to this Spirit's.",
+   "During Brave Rebirth5",
+   "When this Spirit would leave the Field due to the opponent, you can separate and flip this Brave."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
+  "rcode": "CP",
+  "rebirthTo": "BS57-TCP03B",
+  "mechanics": [
+   "Rebirth"
+  ]
+ },
+ {
+  "id": "BS57-TCP04",
+  "name": "Past Anubis",
+  "name_jp": "アヌビス・パスト",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 4,
+  "reduction": {
+   "red": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   },
+   {
+    "cores": 2,
+    "bp": 6000
+   },
+   {
+    "cores": 5,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Proximate",
+   "Terra Dragon"
+  ],
+  "text": "This card is also treated as being exactly-named \"Grandwalker Anubis\".\n\nWhile this card is in the Trash, increase the limit of your exactly-named \"Grandwalker Anubis\"s and \"Terra Dragon\" family Spirits' \"BP Destruction effects\" by +5000. This effect doesn't stack.\n\n[LV2][LV3] Rebirth5\nWhen either the opposing Life is reduced, or this Spirit would leave the Field due to the opponent, you can flip it. (Cores on it are sent to the Reserve.)",
+  "image": "BS57-TCP04.png",
+  "block": "57",
+  "saga": 12,
+  "bicon": [
+   "8"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "This card is also treated as being exactly-named \"Grandwalker Anubis\".",
+   "While this card is in the Trash, increase the limit of your exactly-named \"Grandwalker Anubis\"s and \"Terra Dragon\" family Spirits' \"BP Destruction effects\" by +5000. This effect doesn't stack.",
+   "[LV2][LV3] Rebirth5",
+   "When either the opposing Life is reduced, or this Spirit would leave the Field due to the opponent, you can flip it. (Cores on it are sent to the Reserve.)"
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
+  "rcode": "CP",
+  "rebirthTo": "BS57-TCP04B",
+  "mechanics": [
+   "Rebirth"
+  ]
+ },
+ {
+  "id": "BS57-TCP05",
+  "name": "Past Osiris",
+  "name_jp": "オシリス・パスト",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 4,
+  "reduction": {
+   "purple": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 2000
+   },
+   {
+    "cores": 3,
+    "bp": 5000
+   },
+   {
+    "cores": 6,
+    "bp": 9000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Proximate",
+   "Dark Snake"
+  ],
+  "text": "This card is also treated as being exactly-named \"Grandwalker Osiris\".\n\n[LV1][LV2][LV3] (When Summoned)\nDraw a card.\n\n[LV2][LV3] Rebirth5\nWhen either the opposing Life is reduced, or this Spirit would leave the Field due to the opponent, you can flip it. (Cores on it are sent to the Reserve.)",
+  "image": "BS57-TCP05.png",
+  "block": "57",
+  "saga": 12,
+  "bicon": [
+   "8"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "This card is also treated as being exactly-named \"Grandwalker Osiris\".",
+   "[LV1][LV2][LV3] (When Summoned)",
+   "Draw a card.",
+   "[LV2][LV3] Rebirth5",
+   "When either the opposing Life is reduced, or this Spirit would leave the Field due to the opponent, you can flip it. (Cores on it are sent to the Reserve.)"
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
+  "rcode": "CP",
+  "rebirthTo": "BS57-TCP05B",
+  "mechanics": [
+   "Rebirth"
+  ]
+ },
+ {
+  "id": "BS57-TCP06",
+  "name": "Past Ra",
+  "name_jp": "ラー・パスト",
+  "type": "Spirit",
+  "color": "yellow",
+  "cost": 2,
+  "reduction": {
+   "yellow": 1,
+   "god": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 2000
+   },
+   {
+    "cores": 2,
+    "bp": 3000
+   },
+   {
+    "cores": 3,
+    "bp": 4000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Proximate",
+   "Imaginary Beast"
+  ],
+  "text": "This card is also treated as being exactly-named \"Grandwalker Ra\".\n\n[LV1][LV2][LV3] (When Attacks)\nYou can summon an “Imaginary Beast” family Spirit card from your Hand. When you've done so, draw a card.\n\n[LV3] Rebirth5\nWhen this Spirit would leave the Field due to the opponent, you can flip it. (Cores on it are sent to the Reserve.)",
+  "image": "BS57-TCP06.png",
+  "block": "57",
+  "saga": 12,
+  "bicon": [
+   "8"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "This card is also treated as being exactly-named \"Grandwalker Ra\".",
+   "[LV1][LV2][LV3] (When Attacks)",
+   "You can summon an “Imaginary Beast” family Spirit card from your Hand. When you've done so, draw a card.",
+   "[LV3] Rebirth5",
+   "When this Spirit would leave the Field due to the opponent, you can flip it. (Cores on it are sent to the Reserve.)"
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
+  "rcode": "CP",
+  "rebirthTo": "BS57-TCP06B",
+  "mechanics": [
+   "Rebirth"
+  ]
+ },
+ {
+  "id": "BS57-TCP07",
+  "name": "Past Horus",
+  "name_jp": "ホルス・パスト",
+  "type": "Ultimate",
+  "color": "green",
+  "cost": 3,
+  "reduction": {
+   "ultimate": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 3,
+    "bp": 7000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Proximate",
+   "Winged Beast"
+  ],
+  "text": "{{sumcon|Your Life is at two or more}}\n\nThis card is also treated as being exactly-named “Grandwalker Horus”, and the symbol and reduction symbols of this card/Ultimate are also treated as Green.\n\n[LV3][LV4] (When Summoned)\nPut a core from the Void to your Trash.\n\n[LV4] Rebirth5\nWhen the opposing Life is reduced, or this Ultimate would leave the Field due to the opponent, you can flip this Ultimate. (Cores on it are sent to the Reserve.)",
+  "image": "BS57-TCP07.png",
+  "block": "57",
+  "saga": 12,
+  "bicon": [
+   "8"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{sumcon|Your Life is at two or more}}",
+   "This card is also treated as being exactly-named “Grandwalker Horus”, and the symbol and reduction symbols of this card/Ultimate are also treated as Green.",
+   "[LV3][LV4] (When Summoned)",
+   "Put a core from the Void to your Trash.",
+   "[LV4] Rebirth5",
+   "When the opposing Life is reduced, or this Ultimate would leave the Field due to the opponent, you can flip this Ultimate. (Cores on it are sent to the Reserve.)"
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
+  "rcode": "CP",
+  "rebirthTo": "BS57-TCP07B",
+  "mechanics": [
+   "Rebirth"
+  ]
+ },
+ {
+  "id": "BS57-TCP08",
+  "name": "Past Thoth",
+  "name_jp": "トト・パスト",
+  "type": "Ultimate",
+  "color": "white",
+  "cost": 5,
+  "reduction": {
+   "ultimate": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 6000
+   },
+   {
+    "cores": 2,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Astroblazer",
+   "Armed Machine"
+  ],
+  "text": "{{sumcon|Your Life is at two or more}}\n\nThis card is also treated as being exactly-named “Grandwalker Thoth”, and the symbol and reduction symbols of this card/Ultimate are also treated as White.\n\n[LV3][LV4] (When Summoned)\nReturn an opposing Spirit with three cores or less on it to the deckbottom.\n\n[LV4] Rebirth5\nWhen the opposing Life is reduced, or this Ultimate would leave the Field due to the opponent, you can flip this Ultimate. (Cores on it are sent to the Reserve.)",
+  "image": "BS57-TCP08.png",
+  "block": "57",
+  "saga": 12,
+  "bicon": [
+   "8"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{sumcon|Your Life is at two or more}}",
+   "This card is also treated as being exactly-named “Grandwalker Thoth”, and the symbol and reduction symbols of this card/Ultimate are also treated as White.",
+   "[LV3][LV4] (When Summoned)",
+   "Return an opposing Spirit with three cores or less on it to the deckbottom.",
+   "[LV4] Rebirth5",
+   "When the opposing Life is reduced, or this Ultimate would leave the Field due to the opponent, you can flip this Ultimate. (Cores on it are sent to the Reserve.)"
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
+  "rcode": "CP",
+  "rebirthTo": "BS57-TCP08B",
+  "mechanics": [
+   "Rebirth"
+  ]
+ },
+ {
+  "id": "BS57-TCP09",
+  "name": "Past Isis",
+  "name_jp": "イシス・パスト",
+  "type": "Ultimate",
+  "color": "yellow",
+  "cost": 5,
+  "reduction": {
+   "ultimate": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 6000
+   },
+   {
+    "cores": 2,
+    "bp": 8000
+   },
+   {
+    "cores": 3,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Astroblazer",
+   "Divine Spirit"
+  ],
+  "text": "{{sumcon|Your Life is at six or less}}\n\nThis card is also treated as being exactly-named \"Grandwalker Isis\", and the symbol and reduction symbols of this card/Ultimate are also treated as Yellow.\n\n[LV3][LV4][LV5] (When Summoned)\nYou can draw a card from the deckbottom.\n\n[LV3][LV4][LV5] Rebirth5\nWhen the opposing Life is reduced, or this Ultimate would leave the Field due to the opponent, you can flip this Ultimate. (Cores on it are sent to the Reserve.)",
+  "image": "BS57-TCP09.png",
+  "block": "57",
+  "saga": 12,
+  "bicon": [
+   "8"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{sumcon|Your Life is at six or less}}",
+   "This card is also treated as being exactly-named \"Grandwalker Isis\", and the symbol and reduction symbols of this card/Ultimate are also treated as Yellow.",
+   "[LV3][LV4][LV5] (When Summoned)",
+   "You can draw a card from the deckbottom.",
+   "[LV3][LV4][LV5] Rebirth5",
+   "When the opposing Life is reduced, or this Ultimate would leave the Field due to the opponent, you can flip this Ultimate. (Cores on it are sent to the Reserve.)"
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
+  "rcode": "CP",
+  "rebirthTo": "BS57-TCP09B",
+  "mechanics": [
+   "Rebirth"
+  ]
+ },
+ {
+  "id": "BS57-TCP10",
+  "name": "Past Set",
+  "name_jp": "セト・パスト",
+  "type": "Ultimate",
+  "color": "blue",
+  "cost": 5,
+  "reduction": {
+   "ultimate": 3
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 7000
+   },
+   {
+    "cores": 3,
+    "bp": 12000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Astroblazer",
+   "Beast Head"
+  ],
+  "text": "{{sumcon|Your Life is at two or more}}\n\nThis card is also treated as being exactly-named \"Grandwalker Set\", and the symbol and reduction symbols of this card/Ultimate are also treated as Blue.\n\n[LV3][LV4] Rebirth5\nWhen the opposing Life is reduced, or this Ultimate would leave the Field due to the opponent, You can flip it. (Send all cores on it to the Reserve.)\n\n[LV4] (When Attacks)\nDestroy an opposing Spirit with the lowest cost.",
+  "image": "BS57-TCP10.png",
+  "block": "57",
+  "saga": 12,
+  "bicon": [
+   "8"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "{{sumcon|Your Life is at two or more}}",
+   "This card is also treated as being exactly-named \"Grandwalker Set\", and the symbol and reduction symbols of this card/Ultimate are also treated as Blue.",
+   "[LV3][LV4] Rebirth5",
+   "When the opposing Life is reduced, or this Ultimate would leave the Field due to the opponent, You can flip it. (Send all cores on it to the Reserve.)",
+   "[LV4] (When Attacks)",
+   "Destroy an opposing Spirit with the lowest cost."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
+  "rcode": "CP",
+  "rebirthTo": "BS57-TCP10B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS57-X01",
@@ -12851,6 +13431,99 @@
   "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
+  "id": "BS58-TCP01",
+  "name": "The FlashSoulBlade Lightning-Shion X",
+  "name_jp": "紫電の霊剣ライトニング・シオンX",
+  "type": "Brave",
+  "color": "purple",
+  "cost": 6,
+  "reduction": {
+   "purple": 3
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   }
+  ],
+  "families": [
+   "Exalted Sword"
+  ],
+  "text": "[LV1] (When Summoned)\nSend three cores from the opposing Field to the Reserve, and draw a card.\n\nDuring Brave (When Attacks)\nTreat this Spirit's color as colorless. Also, send two cores from an opposing Spirit/Ultimate to the Reserve.\n\nDuring Brave Rebirth5\nWhen this Spirit would leave the Field due to the opponent, you can separate and flip this Brave.",
+  "image": "BS58-TCP01.png",
+  "block": "58",
+  "saga": 12,
+  "bicon": [
+   "8"
+  ],
+  "brave": {
+   "bp": 5000,
+   "costGe": 5
+  },
+  "fxComplete": false,
+  "residual": [
+   "[LV1] (When Summoned)",
+   "Send three cores from the opposing Field to the Reserve, and draw a card.",
+   "During Brave (When Attacks)",
+   "Treat this Spirit's color as colorless. Also, send two cores from an opposing Spirit/Ultimate to the Reserve.",
+   "During Brave Rebirth5",
+   "When this Spirit would leave the Field due to the opponent, you can separate and flip this Brave."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
+  "rcode": "CP",
+  "rebirthTo": "BS58-TCP01B",
+  "mechanics": [
+   "Rebirth"
+  ]
+ },
+ {
+  "id": "BS58-TCP02",
+  "name": "The SkyLightSword Crown-Solar X",
+  "name_jp": "天空の光剣クラウン・ソーラーX",
+  "type": "Brave",
+  "color": "white",
+  "cost": 5,
+  "reduction": {
+   "white": 3
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   }
+  ],
+  "families": [
+   "Exalted Sword"
+  ],
+  "text": "When this card is revealed from the deck by your \"Proximate\"/\"Astroblazer\" & \"Armed Machine\" family Spirit effect, you can add it to the Hand. When you've done so, discard a card from your Hand.\n\nDuring Brave (When Attacks/Blocks)\nOnce per turn, this Spirit can refresh.\n\nDuring Brave Rebirth5\nWhen this Spirit would leave the Field due to the opponent, this Brave can separate and flip.",
+  "image": "BS58-TCP02.png",
+  "block": "58",
+  "saga": 12,
+  "bicon": [
+   "10"
+  ],
+  "brave": {
+   "bp": 7000,
+   "costGe": 5
+  },
+  "fxComplete": false,
+  "residual": [
+   "When this card is revealed from the deck by your \"Proximate\"/\"Astroblazer\" & \"Armed Machine\" family Spirit effect, you can add it to the Hand. When you've done so, discard a card from your Hand.",
+   "During Brave (When Attacks/Blocks)",
+   "Once per turn, this Spirit can refresh.",
+   "During Brave Rebirth5",
+   "When this Spirit would leave the Field due to the opponent, this Brave can separate and flip."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
+  "rcode": "CP",
+  "rebirthTo": "BS58-TCP02B",
+  "mechanics": [
+   "Rebirth"
+  ]
+ },
+ {
   "id": "BS58-TCP03",
   "name": "The FantasyHeavenBlade Twilight-Fantasia X",
   "name_jp": "夢幻の天剣トワイライト・ファンタジアX",
@@ -14416,6 +15089,53 @@
    "8"
   ],
   "rcode": "C"
+ },
+ {
+  "id": "BS59-014",
+  "name": "The Bal-Masque Duchess Siegrune",
+  "name_jp": "バル・マスケ 女公爵 ジークルーネ",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 4,
+  "reduction": {
+   "purple": 2,
+   "blue": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   },
+   {
+    "cores": 3,
+    "bp": 6000
+   }
+  ],
+  "families": [
+   "Proximate",
+   "Nightling"
+  ],
+  "text": "[LV1][LV2] (When Attacks)\nDestroy an opposing Spirit/Ultimate with two cores or less on it, and when destroys, draw a card.\n\n[LV2] Rebirth3\nEither by paying one cost during the Flash Timing of Either Attack Step, or when this Spirit would leave the Field due to opposing effects, you can flip it. When you do, this Reborn Brave can either refresh and brave to a Spirit you control, or remain in Spirit condition by putting a core from your Reserve/Spirit onto it.",
+  "image": "BS59-014.png",
+  "block": "59",
+  "saga": 12,
+  "bicon": [
+   "8"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2] (When Attacks)",
+   "Destroy an opposing Spirit/Ultimate with two cores or less on it, and when destroys, draw a card.",
+   "[LV2] Rebirth3",
+   "Either by paying one cost during the Flash Timing of Either Attack Step, or when this Spirit would leave the Field due to opposing effects, you can flip it. When you do, this Reborn Brave can either refresh and brave to a Spirit you control, or remain in Spirit condition by putting a core from your Reserve/Spirit onto it."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
+  "rcode": "転醒R",
+  "rebirthTo": "BS59-014B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS59-015",
@@ -17031,6 +17751,42 @@
   "rcode": "C"
  },
  {
+  "id": "BS59-067",
+  "name": "The Gate of Spacetime",
+  "name_jp": "時空の門",
+  "type": "Nexus",
+  "color": "blue",
+  "cost": 4,
+  "reduction": {
+   "blue": 3
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Chrownos"
+  ],
+  "text": "[LV1] Rebirth3\nWhen this Nexus/your \"Chrownos\" family Spirit is destroyed by the opponent, you can flip this Nexus. When you do, you can put a core from your Field/Reserve to this Reborn Spirit.\n\n[LV1] (Start of Opposing Attack Step)\nWhen you control only \"Chrownos\" family Spirits/Nexuses, by returning three \"Chrownos\" family cards from your Trash to the deckbottom, during this turn, unless the opponent sends a core from their Reserve to the Trash, they can't attack.",
+  "image": "BS59-067.png",
+  "block": "59",
+  "saga": 12,
+  "bicon": [
+   "8"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "[LV1] Rebirth3",
+   "When this Nexus/your \"Chrownos\" family Spirit is destroyed by the opponent, you can flip this Nexus. When you do, you can put a core from your Field/Reserve to this Reborn Spirit.",
+   "[LV1] (Start of Opposing Attack Step)",
+   "When you control only \"Chrownos\" family Spirits/Nexuses, by returning three \"Chrownos\" family cards from your Trash to the deckbottom, during this turn, unless the opponent sends a core from their Reserve to the Trash, they can't attack."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
+  "rcode": "転醒R",
+  "rebirthTo": "BS59-067B",
+  "mechanics": [
+   "Rebirth"
+  ]
+ },
+ {
   "id": "BS59-068",
   "name": "Domination Mirage",
   "name_jp": "ドミネイションミラージュ",
@@ -17335,6 +18091,40 @@
    "Also, if you control any \"Hermit\"-named Spirit, treat this card as colorless."
   ],
   "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+ },
+ {
+  "id": "BS59-076",
+  "name": "Bright Hope",
+  "name_jp": "ブライトホープ",
+  "type": "Magic",
+  "color": "yellow",
+  "cost": 6,
+  "reduction": {
+   "yellow": 4
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [],
+  "text": "Flash\nReturn two opposing LV2 Spirits to the Hand, and draw a card from the deckbottom. After this effect resolves, you can activate this card's Rebirth.\n\nRebirth3\nIf you have a Yellow Mirage set, this card can be flipped. When it is, this Reborn Brave can either brave to a Spirit you control, or stay in Spirit condition by putting a core from your Spirit/Reserve onto it.",
+  "image": "BS59-076.png",
+  "block": "59",
+  "saga": 12,
+  "bicon": [
+   "8"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "Flash",
+   "Return two opposing LV2 Spirits to the Hand, and draw a card from the deckbottom. After this effect resolves, you can activate this card's Rebirth.",
+   "Rebirth3",
+   "If you have a Yellow Mirage set, this card can be flipped. When it is, this Reborn Brave can either brave to a Spirit you control, or stay in Spirit condition by putting a core from your Spirit/Reserve onto it."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
+  "rcode": "転醒R",
+  "rebirthTo": "BS59-076B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS59-077",
@@ -17975,6 +18765,147 @@
    "8"
   ],
   "rcode": "C"
+ },
+ {
+  "id": "BS59-TCP01",
+  "name": "The DarknessDemonSword Dark-Blade X",
+  "name_jp": "暗黒の魔剣ダーク・ブレードX",
+  "type": "Brave",
+  "color": "red",
+  "cost": 6,
+  "reduction": {
+   "red": 3
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   }
+  ],
+  "families": [
+   "Exalted Sword"
+  ],
+  "text": "[LV1] (When Summoned)\nYou can destroy an opposing Nexus, and the effects of the Nexus destroyed can't activate. When this effect destroys, draw two cards.\n\nDuring Brave (When Attacks)\nYou can target and attack an opposing Spirit/Ultimate.\n\nDuring Brave Rebirth5\nWhen this Spirit would leave the Field due to the opponent, you can separate and flip this Brave.",
+  "image": "BS59-TCP01.png",
+  "block": "59",
+  "saga": 12,
+  "bicon": [
+   "8"
+  ],
+  "brave": {
+   "bp": 5000,
+   "costGe": 5
+  },
+  "fxComplete": false,
+  "residual": [
+   "[LV1] (When Summoned)",
+   "You can destroy an opposing Nexus, and the effects of the Nexus destroyed can't activate. When this effect destroys, draw two cards.",
+   "During Brave (When Attacks)",
+   "You can target and attack an opposing Spirit/Ultimate.",
+   "During Brave Rebirth5",
+   "When this Spirit would leave the Field due to the opponent, you can separate and flip this Brave."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
+  "rcode": "CP",
+  "rebirthTo": "BS59-TCP01B",
+  "mechanics": [
+   "Rebirth"
+  ]
+ },
+ {
+  "id": "BS59-TCP02",
+  "name": "The HurricaneTwinBlade Kamui-Hayate X",
+  "name_jp": "疾風の双刃カムイ・ハヤテX",
+  "type": "Brave",
+  "color": "green",
+  "cost": 6,
+  "reduction": {
+   "green": 3
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   }
+  ],
+  "families": [
+   "Exalted Sword"
+  ],
+  "text": "[LV1] (When Summoned)\nYou can exhaust an opposing Spirit/Ultimate, and when exhausts, put two cores from the Void to your Reserve.\n\nDuring Brave (When Attacks)\nOnce per turn, by exhausting an opposing Spirit/Ultimate, this Spirit refreshes.\n\nDuring Brave Rebirth5\nWhen this Spirit would leave the Field due to the opponent, this Brave can separate and flip.",
+  "image": "BS59-TCP02.png",
+  "block": "59",
+  "saga": 12,
+  "bicon": [
+   "8"
+  ],
+  "brave": {
+   "bp": 5000,
+   "costGe": 5
+  },
+  "fxComplete": false,
+  "residual": [
+   "[LV1] (When Summoned)",
+   "You can exhaust an opposing Spirit/Ultimate, and when exhausts, put two cores from the Void to your Reserve.",
+   "During Brave (When Attacks)",
+   "Once per turn, by exhausting an opposing Spirit/Ultimate, this Spirit refreshes.",
+   "During Brave Rebirth5",
+   "When this Spirit would leave the Field due to the opponent, this Brave can separate and flip."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
+  "rcode": "CP",
+  "rebirthTo": "BS59-TCP02B",
+  "mechanics": [
+   "Rebirth"
+  ]
+ },
+ {
+  "id": "BS59-TCP03",
+  "name": "The AzureOceanGreatSword Maelstrom X",
+  "name_jp": "蒼海の大剣メイルシュトロムX",
+  "type": "Brave",
+  "color": "blue",
+  "cost": 6,
+  "reduction": {
+   "blue": 3
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   }
+  ],
+  "families": [
+   "Exalted Sword"
+  ],
+  "text": "[LV1] (When Summoned)\nDuring this turn, you can increase the number of cards to be discarded by the \"opposing-deck-discarding effects\" of your Spirits by +1.\n\nDuring Brave {{Assault|2}} (When Attacks)\nThis Spirit can, up to twice per turn, be refreshed by exhausting a Nexus you control.\n\nDuring Brave Rebirth5\nWhen this Spirit would leave the Field due to the opponent, this Brave can separate and flip.",
+  "image": "BS59-TCP03.png",
+  "block": "59",
+  "saga": 12,
+  "bicon": [
+   "8"
+  ],
+  "brave": {
+   "bp": 5000,
+   "costGe": 5
+  },
+  "fxComplete": false,
+  "residual": [
+   "[LV1] (When Summoned)",
+   "During this turn, you can increase the number of cards to be discarded by the \"opposing-deck-discarding effects\" of your Spirits by +1.",
+   "During Brave {{Assault|2}} (When Attacks)",
+   "This Spirit can, up to twice per turn, be refreshed by exhausting a Nexus you control.",
+   "During Brave Rebirth5",
+   "When this Spirit would leave the Field due to the opponent, this Brave can separate and flip."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
+  "rcode": "CP",
+  "rebirthTo": "BS59-TCP03B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS59-TX01",

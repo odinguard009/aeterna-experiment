@@ -5604,7 +5604,7 @@
   "id": "BS24-X07",
   "name": "Ultimate-Mikafar",
   "name_jp": "アルティメット・ミカファール",
-  "type": "Spirit",
+  "type": "Ultimate",
   "color": "yellow",
   "cost": 6,
   "reduction": {
@@ -5642,14 +5642,14 @@
    "Ultimate Trigger When Ultimate Trigger hits, once per turn, when your Magic effect returns one or more opposing Spirits to the Hand/Deck, send an opposing Life to their Reserve. utb",
    "[LV4][LV5] (When Attacks) You can use a Magic card from your Hand/Removed Zone during the Flash Timing without paying the cost."
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder. v0.217: type corrected to Ultimate (official category).",
   "rcode": "X"
  },
  {
   "id": "BS24-X08",
   "name": "Ultimate-Castle Golem",
   "name_jp": "アルティメット・キャッスルゴレム",
-  "type": "Spirit",
+  "type": "Ultimate",
   "color": "blue",
   "cost": 7,
   "reduction": {
@@ -5687,7 +5687,7 @@
    "Ultimate Trigger When Ultimate Trigger hits, for each cost of the card sent to the Trash, discard three cards from the opposing decktop. utb",
    "[LV4][LV5] (Your Attack Step) Negate all \"cards can't be discarded from Decks\" effects of opposing Cost 5 or less Spirits/Nexuses."
   ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder. v0.217: type corrected to Ultimate (official category).",
   "rcode": "X"
  },
  {

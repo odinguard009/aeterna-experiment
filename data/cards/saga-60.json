@@ -888,26 +888,24 @@
   "name": "The DragonKnight Swordius-Dragoon",
   "name_jp": "竜騎士ソーディアス・ドラグーン",
   "type": "Spirit",
-  "color": "red",
-  "cost": 8,
-  "reduction": {},
+  "color": "purple",
+  "cost": 6,
+  "reduction": {
+   "purple": 3
+  },
   "symbols": 1,
   "levels": [
    {
     "cores": 1,
-    "bp": 8000
+    "bp": 5000
    },
    {
     "cores": 3,
-    "bp": 11000
+    "bp": 7000
    },
    {
-    "cores": 4,
-    "bp": 16000
-   },
-   {
-    "cores": 6,
-    "bp": 20000
+    "cores": 5,
+    "bp": 12000
    }
   ],
   "families": [
@@ -925,7 +923,7 @@
    "[LV1][LV2][LV3] (When Attacks) You can target and attack an opposing Spirit with two cores or more on it.",
    "[LV2][LV3] (When Attacks) If you have two counters or more, send two cores from any opposing Spirits to the Trash, and when depletes, send an opposing Life to the Trash."
   ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified; v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
   "rcode": "Awaken X",
   "rebirthTo": "BS53-TX01B",
   "mechanics": [
@@ -938,21 +936,23 @@
   "name_jp": "星霊獣ペルシフォーネ",
   "type": "Spirit",
   "color": "yellow",
-  "cost": 7,
-  "reduction": {},
+  "cost": 5,
+  "reduction": {
+   "yellow": 3
+  },
   "symbols": 1,
   "levels": [
    {
     "cores": 1,
-    "bp": 5000
+    "bp": 4000
    },
    {
     "cores": 2,
-    "bp": 8000
+    "bp": 6000
    },
    {
     "cores": 3,
-    "bp": 10000
+    "bp": 8000
    }
   ],
   "families": [
@@ -969,47 +969,9 @@
    "[LV1][LV2][LV3] (When Attacks) If your Life is five or less, put a core from the Void to your Life.",
    "[LV2][LV3] Rebirth3 When this Spirit attacks, or would leave the Field due to an opposing effect, you can flip it."
   ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified; v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
   "rcode": "Awaken R",
   "rebirthTo": "BS55-053B",
-  "mechanics": [
-   "Rebirth"
-  ]
- },
- {
-  "id": "BS55-TCP10",
-  "name": "The NewWorld's Alex",
-  "name_jp": "新世界のアレックス",
-  "type": "Nexus",
-  "color": "white",
-  "cost": 2,
-  "reduction": {},
-  "symbols": 0,
-  "levels": [
-   {
-    "cores": 0
-   },
-   {
-    "cores": 2
-   }
-  ],
-  "families": [
-   "Primal"
-  ],
-  "text": "This card's reduction symbols are also treated as Yellow.\n\n[LV1][LV2][LV3] (When Summoned)\nDuring this turn, an opposing Spirit/Nexus can't activate its effects, and return that Spirit/Nexus to the Hand.\n\n[LV1][LV2][LV3]\nThis Spirit's symbol is also treated as Yellow.\n\n[LV2][LV3] Rebirth5\nWhen the opposing Life is reduced, or this Spirit would leave the Field due to the opponent, you can flip it (Cores on it are sent to the Reserve).",
-  "image": "BS55-TCP10.png",
-  "block": "P",
-  "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "This card's reduction symbols are also treated as Yellow.",
-   "[LV1][LV2][LV3] (When Summoned) During this turn, an opposing Spirit/Nexus can't activate its effects, and return that Spirit/Nexus to the Hand.",
-   "[LV1][LV2][LV3] This Spirit's symbol is also treated as Yellow.",
-   "[LV2][LV3] Rebirth5 When the opposing Life is reduced, or this Spirit would leave the Field due to the opponent, you can flip it (Cores on it are sent to the Reserve)."
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP",
-  "rebirthTo": "BS55-TCP10B",
   "mechanics": [
    "Rebirth"
   ]
@@ -1019,18 +981,24 @@
   "name": "The ExplosiveSupremeDragon Explode-Dragon",
   "name_jp": "爆覇龍エクスプロード・ドラゴン",
   "type": "Spirit",
-  "color": "blue",
-  "cost": 8,
-  "reduction": {},
+  "color": "red",
+  "cost": 6,
+  "reduction": {
+   "red": 3
+  },
   "symbols": 1,
   "levels": [
    {
     "cores": 1,
-    "bp": 8000
+    "bp": 5000
+   },
+   {
+    "cores": 2,
+    "bp": 7000
    },
    {
     "cores": 4,
-    "bp": 16000
+    "bp": 11000
    }
   ],
   "families": [
@@ -1047,7 +1015,7 @@
    "[LV1][LV2][LV3] (When Attacks) Destroy an opposing Spirit/Ultimate with BP equal or inferior to this Spirit's.",
    "[LV3] (Your Attack Step) When your \"Dragon\" family Spirit destroys any opposing Spirit/Ultimate, send an opposing Life to the Reserve. This effect doesn't stack."
   ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified; v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
   "rcode": "Awaken X",
   "rebirthTo": "BS55-TX01B",
   "mechanics": [
@@ -1059,9 +1027,12 @@
   "name": "The KamiumiGreatRouseBeast Ooyashima",
   "name_jp": "神産ノ大醒獣オオヤシマ",
   "type": "Spirit",
-  "color": "purple",
+  "color": "green",
   "cost": 8,
-  "reduction": {},
+  "reduction": {
+   "green": 3,
+   "purple": 1
+  },
   "symbols": 1,
   "levels": [
    {
@@ -1071,10 +1042,6 @@
    {
     "cores": 3,
     "bp": 13000
-   },
-   {
-    "cores": 5,
-    "bp": 16000
    }
   ],
   "families": [
@@ -1092,7 +1059,7 @@
    "[LV1][LV2] Rebirth5 When this Spirit summons a Spirit via an effect, or would leave the Field due to the opponent, you can flip this Spirit.",
    "[LV2] (When Attacks) You can summon a \"Spiritual Beast\"/\"Plant Spirit\" family Spirit card from your Hand. If the Spirit summoned via this effect is Cost 5 or more, send an opposing Life to the Reserve."
   ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified; v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
   "rcode": "Awaken X",
   "rebirthTo": "BS55-TX02B",
   "mechanics": [
@@ -1105,21 +1072,19 @@
   "name_jp": "時の監視者ロンバルディア",
   "type": "Spirit",
   "color": "blue",
-  "cost": 12,
-  "reduction": {},
+  "cost": 10,
+  "reduction": {
+   "blue": 6
+  },
   "symbols": 1,
   "levels": [
    {
     "cores": 1,
-    "bp": 12000
+    "bp": 10000
    },
    {
     "cores": 3,
-    "bp": 16000
-   },
-   {
-    "cores": 6,
-    "bp": 30000
+    "bp": 14000
    }
   ],
   "families": [
@@ -1137,54 +1102,9 @@
    "[LV1][LV2] (When Attacks) Destroy an opposing Spirit with the highest cost, and when destroys, during this battle, this Spirit can't be blocked.",
    "[LV2] This Spirit is unaffected by opposing Spirit/Magic effects."
   ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified; v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
   "rcode": "Awaken X",
   "rebirthTo": "BS55-TX03B",
-  "mechanics": [
-   "Rebirth"
-  ]
- },
- {
-  "id": "BS55-TX04",
-  "name": "The Genesis Mega-Grandstone",
-  "name_jp": "創醒の大創界石",
-  "type": "Spirit",
-  "color": "green",
-  "cost": 6,
-  "reduction": {},
-  "symbols": 1,
-  "levels": [
-   {
-    "cores": 1,
-    "bp": 5000
-   },
-   {
-    "cores": 2,
-    "bp": 8000
-   },
-   {
-    "cores": 3,
-    "bp": 11000
-   }
-  ],
-  "families": [
-   "Grandstone",
-   "Primal"
-  ],
-  "text": "GSTrule\n\nRelease: (When your Life or the opposing Life is reduced)\n◆When the Release condition is fulfilled, you can put one core from the Void to this Nexus.\n\n[LV1] Rebirth5\nWhen the number of cores on this Nexus becomes four or more, this Nexus can be flipped (all but one cores on it are sent to the Void).\n\nGrand Mystery [LV1]\nEvery Cost 3 or less Nexus/Grandwalker Nexus has zero symbols. Also, effects of six-colored Nexuses/Grandwalker Nexuses can't activate.",
-  "image": "BS55-TX04.png",
-  "block": "P",
-  "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "GSTrule",
-   "Release: (When your Life or the opposing Life is reduced) ◆When the Release condition is fulfilled, you can put one core from the Void to this Nexus.",
-   "[LV1] Rebirth5 When the number of cores on this Nexus becomes four or more, this Nexus can be flipped (all but one cores on it are sent to the Void).",
-   "Grand Mystery [LV1] Every Cost 3 or less Nexus/Grandwalker Nexus has zero symbols. Also, effects of six-colored Nexuses/Grandwalker Nexuses can't activate."
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "Awaken X",
-  "rebirthTo": "BS55-TX04B",
   "mechanics": [
    "Rebirth"
   ]
@@ -1195,25 +1115,27 @@
   "name_jp": "幻羅星龍ガイ・アスラX",
   "type": "Spirit",
   "color": "red",
-  "cost": 12,
-  "reduction": {},
+  "cost": 10,
+  "reduction": {
+   "red": 6
+  },
   "symbols": 1,
   "levels": [
    {
     "cores": 1,
-    "bp": 12000
+    "bp": 10000
    },
    {
     "cores": 3,
-    "bp": 15000
+    "bp": 12000
    },
    {
     "cores": 6,
-    "bp": 19000
+    "bp": 17000
    },
    {
     "cores": 10,
-    "bp": 30000
+    "bp": 22000
    }
   ],
   "families": [
@@ -1232,46 +1154,9 @@
    "[LV1][LV2][LV3][LV4] Flash - Ultra Awaken You can put any number of cores from your Spirits to this Spirit. When you've done so, refresh this Spirit.",
    "[LV3][LV4] This Spirit gains an extra Red symbol."
   ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified; v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
   "rcode": "Awaken X",
   "rebirthTo": "BS56-TX01B",
-  "mechanics": [
-   "Rebirth"
-  ]
- },
- {
-  "id": "BS56-TX02",
-  "name": "The DragonKnight Ambrose",
-  "name_jp": "竜騎士アンブローズ",
-  "type": "Nexus",
-  "color": "purple",
-  "cost": 4,
-  "reduction": {},
-  "symbols": 0,
-  "levels": [
-   {
-    "cores": 0
-   },
-   {
-    "cores": 3
-   }
-  ],
-  "families": [
-   "Primal",
-   "Evil Shadow"
-  ],
-  "text": "[LV1][LV2][LV3] Rebirth5\nWhen your Cost 5 or more \"DragonKnight\"/\"DragonRideEmperor\"-named Spirit reduces the opposing Life, or this Spirit would leave the Field due to the opponent, you can flip this Spirit (Cores on it are sent to the Reserve).\n\n[LV2][LV3] (Your Attack Step)\nWhen your \"DragonKnight\"/\"DragonRideEmperor\"-named Spirit attacks, the opponent can't block unless they, for each counter you have, send a core from any of their Spirits to the Trash.",
-  "image": "BS56-TX02.png",
-  "block": "P",
-  "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] Rebirth5 When your Cost 5 or more \"DragonKnight\"/\"DragonRideEmperor\"-named Spirit reduces the opposing Life, or this Spirit would leave the Field due to the opponent, you can flip this Spirit (Cores on it are sent to the Reserve).",
-   "[LV2][LV3] (Your Attack Step) When your \"DragonKnight\"/\"DragonRideEmperor\"-named Spirit attacks, the opponent can't block unless they, for each counter you have, send a core from any of their Spirits to the Trash."
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "Awaken X",
-  "rebirthTo": "BS56-TX02B",
   "mechanics": [
    "Rebirth"
   ]
@@ -1282,25 +1167,23 @@
   "name_jp": "竜騎士ソーディアス・ドラグーン",
   "type": "Spirit",
   "color": "purple",
-  "cost": 9,
-  "reduction": {},
+  "cost": 6,
+  "reduction": {
+   "purple": 3
+  },
   "symbols": 1,
   "levels": [
    {
     "cores": 1,
-    "bp": 9000
+    "bp": 5000
    },
    {
     "cores": 3,
+    "bp": 7000
+   },
+   {
+    "cores": 5,
     "bp": 12000
-   },
-   {
-    "cores": 4,
-    "bp": 17000
-   },
-   {
-    "cores": 6,
-    "bp": 21000
    }
   ],
   "families": [
@@ -1318,7 +1201,7 @@
    "[LV1][LV2][LV3] (When Attacks) You can target and attack an opposing Spirit with two cores or more on it.",
    "[LV2][LV3] (When Attacks) If you have two counters or more, send two cores from any opposing Spirits to the Trash, and when depletes, send an opposing Life to the Trash."
   ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified; v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
   "rcode": "Awaken X",
   "rebirthTo": "BS56-TX03B",
   "mechanics": [
@@ -1331,21 +1214,23 @@
   "name_jp": "氷牙機獣ギガノディア",
   "type": "Spirit",
   "color": "white",
-  "cost": 8,
-  "reduction": {},
+  "cost": 6,
+  "reduction": {
+   "white": 3
+  },
   "symbols": 1,
   "levels": [
    {
     "cores": 1,
-    "bp": 8000
+    "bp": 5000
    },
    {
     "cores": 2,
-    "bp": 10000
+    "bp": 8000
    },
    {
     "cores": 4,
-    "bp": 15000
+    "bp": 10000
    }
   ],
   "families": [
@@ -1361,7 +1246,7 @@
    "[LV1][LV2][LV3] (When Attacks) You can set a card with Mirage effects from your Hand. When you've done so, during this turn, this Spirit can't be blocked. This effect can only be used once per turn.",
    "[LV2][LV3] Rebirth3 When this Spirit would leave the Field by opposing effects, or when your effect sets a Mirage during either Attack Step/End Step, you can flip this Spirit."
   ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified; v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
   "rcode": "Awaken R",
   "rebirthTo": "BS57-034B",
   "mechanics": [
@@ -1374,17 +1259,19 @@
   "name_jp": "天使ミレニエル",
   "type": "Spirit",
   "color": "yellow",
-  "cost": 7,
-  "reduction": {},
+  "cost": 5,
+  "reduction": {
+   "yellow": 3
+  },
   "symbols": 1,
   "levels": [
    {
     "cores": 1,
-    "bp": 7000
+    "bp": 3000
    },
    {
     "cores": 2,
-    "bp": 9000
+    "bp": 6000
    }
   ],
   "families": [
@@ -1401,452 +1288,9 @@
    "[LV1][LV2] (When Attacks) Return an opposing LV1 Spirit to the Hand.",
    "[LV2] (When Attacks) Send five cores from any opposing Grandwalker Nexuses to the Void."
   ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified; v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
   "rcode": "Awaken R",
   "rebirthTo": "BS57-043B",
-  "mechanics": [
-   "Rebirth"
-  ]
- },
- {
-  "id": "BS57-064",
-  "name": "The Bal-Masque Castle Bloodrondo",
-  "name_jp": "バル・マスケ居城ブラッドロンド",
-  "type": "Spirit",
-  "color": "purple",
-  "cost": 6,
-  "reduction": {},
-  "symbols": 1,
-  "levels": [
-   {
-    "cores": 1,
-    "bp": 5000
-   },
-   {
-    "cores": 2,
-    "bp": 7000
-   },
-   {
-    "cores": 4,
-    "bp": 9000
-   }
-  ],
-  "families": [
-   "Proximate",
-   "Nightling"
-  ],
-  "text": "[LV1] (When Deployed)\nBy discarding a \"Nightling\" family card from your Hand, draw two cards.\n\n[LV1] Rebirth3\nWhen opposing Spirits/Ultimates are depleted/destroyed, or when this Nexus would leave the Field by opposing effects, you can flip this Nexus. When you do, you can put a core from your Field/Reserve to this now-Reborn Spirit.",
-  "image": "BS57-064.png",
-  "block": "P",
-  "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1] (When Deployed) By discarding a \"Nightling\" family card from your Hand, draw two cards.",
-   "[LV1] Rebirth3 When opposing Spirits/Ultimates are depleted/destroyed, or when this Nexus would leave the Field by opposing effects, you can flip this Nexus. When you do, you can put a core from your Field/Reserve to this now-Reborn Spirit."
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "Awaken R",
-  "rebirthTo": "BS57-064B",
-  "mechanics": [
-   "Rebirth"
-  ]
- },
- {
-  "id": "BS57-TCP01",
-  "name": "The Criminal's SkullBlade Executioners X",
-  "name_jp": "咎人の骨剣エグゼキューショナーズX",
-  "type": "Spirit",
-  "color": "purple",
-  "cost": 7,
-  "reduction": {},
-  "symbols": 1,
-  "levels": [
-   {
-    "cores": 1,
-    "bp": 5000
-   },
-   {
-    "cores": 3,
-    "bp": 8000
-   },
-   {
-    "cores": 4,
-    "bp": 13000
-   }
-  ],
-  "families": [
-   "Exalted Sword"
-  ],
-  "text": "{{Immortality|Cost 2/4/6/8}} (Either Attack Step)\nWhen your Cost 2/4/6/8 Spirits are destroyed, you can summon this card from the Trash.\n\nDuring Brave (When Attacks)\nYou can destroy a Spirit you control, and when destroys, the opponent destroys a Spirit/Ultimate they control.\n\nDuring Brave Rebirth5\nWhen this Spirit is destroyed, you can separate and flip this Brave.",
-  "image": "BS57-TCP01.png",
-  "block": "P",
-  "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "{{Immortality|Cost 2/4/6/8}} (Either Attack Step) When your Cost 2/4/6/8 Spirits are destroyed, you can summon this card from the Trash.",
-   "During Brave (When Attacks) You can destroy a Spirit you control, and when destroys, the opponent destroys a Spirit/Ultimate they control.",
-   "During Brave Rebirth5 When this Spirit is destroyed, you can separate and flip this Brave."
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP",
-  "rebirthTo": "BS57-TCP01B",
-  "mechanics": [
-   "Rebirth"
-  ]
- },
- {
-  "id": "BS57-TCP02",
-  "name": "The MidnightSunTreasuredSword Midnight-Sun X",
-  "name_jp": "白夜の宝剣ミッドナイト・サンX",
-  "type": "Spirit",
-  "color": "white",
-  "cost": 8,
-  "reduction": {},
-  "symbols": 1,
-  "levels": [
-   {
-    "cores": 1,
-    "bp": 6000
-   },
-   {
-    "cores": 2,
-    "bp": 12000
-   }
-  ],
-  "families": [
-   "Exalted Sword"
-  ],
-  "text": "During Brave {{ha|Red/Purple/White/Yellow}}\nThis Spirit is unaffected by opposing Red/Purple/White/Yellow Spirit/Brave/Nexus/Magic effects.\n\nDuring Brave Rebirth5\nWhen this Spirit would leave the Field due to the opponent, you can separate and flip this Brave.",
-  "image": "BS57-TCP02.png",
-  "block": "P",
-  "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "During Brave {{ha|Red/Purple/White/Yellow}} This Spirit is unaffected by opposing Red/Purple/White/Yellow Spirit/Brave/Nexus/Magic effects.",
-   "During Brave Rebirth5 When this Spirit would leave the Field due to the opponent, you can separate and flip this Brave."
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP",
-  "rebirthTo": "BS57-TCP02B",
-  "mechanics": [
-   "Rebirth"
-  ]
- },
- {
-  "id": "BS57-TCP03",
-  "name": "The LightWingsDivineBlade Angelicfeather X",
-  "name_jp": "光翼の神剣エンジェリックフェザーX",
-  "type": "Spirit",
-  "color": "yellow",
-  "cost": 7,
-  "reduction": {},
-  "symbols": 1,
-  "levels": [
-   {
-    "cores": 1,
-    "bp": 6000
-   },
-   {
-    "cores": 2,
-    "bp": 9000
-   },
-   {
-    "cores": 3,
-    "bp": 11000
-   }
-  ],
-  "families": [
-   "Exalted Sword"
-  ],
-  "text": "During Brave (When Attacks)\nDuring this turn, give an opposing Spirit/Ultimate -10000 BP, and if its BP is brought down to 0, refresh this Spirit. Also, this Spirit can't be blocked by opposing Spirits/Ultimates with BP equal or inferior to this Spirit's.\n\nDuring Brave Rebirth5\nWhen this Spirit would leave the Field due to the opponent, you can separate and flip this Brave.",
-  "image": "BS57-TCP03.png",
-  "block": "P",
-  "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "During Brave (When Attacks) During this turn, give an opposing Spirit/Ultimate -10000 BP, and if its BP is brought down to 0, refresh this Spirit. Also, this Spirit can't be blocked by opposing Spirits/Ultimates with BP equal or inferior to this Spirit's.",
-   "During Brave Rebirth5 When this Spirit would leave the Field due to the opponent, you can separate and flip this Brave."
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP",
-  "rebirthTo": "BS57-TCP03B",
-  "mechanics": [
-   "Rebirth"
-  ]
- },
- {
-  "id": "BS57-TCP04",
-  "name": "Past Anubis",
-  "name_jp": "アヌビス・パスト",
-  "type": "Nexus",
-  "color": "red",
-  "cost": 4,
-  "reduction": {},
-  "symbols": 0,
-  "levels": [
-   {
-    "cores": 0
-   },
-   {
-    "cores": 3
-   }
-  ],
-  "families": [
-   "Primal",
-   "Proximate",
-   "Terra Dragon"
-  ],
-  "text": "This card is also treated as being exactly-named \"Grandwalker Anubis\".\n\nWhile this card is in the Trash, increase the limit of your exactly-named \"Grandwalker Anubis\"s and \"Terra Dragon\" family Spirits' \"BP Destruction effects\" by +5000. This effect doesn't stack.\n\n[LV2][LV3] Rebirth5\nWhen either the opposing Life is reduced, or this Spirit would leave the Field due to the opponent, you can flip it. (Cores on it are sent to the Reserve.)",
-  "image": "BS57-TCP04.png",
-  "block": "P",
-  "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "This card is also treated as being exactly-named \"Grandwalker Anubis\".",
-   "While this card is in the Trash, increase the limit of your exactly-named \"Grandwalker Anubis\"s and \"Terra Dragon\" family Spirits' \"BP Destruction effects\" by +5000. This effect doesn't stack.",
-   "[LV2][LV3] Rebirth5 When either the opposing Life is reduced, or this Spirit would leave the Field due to the opponent, you can flip it. (Cores on it are sent to the Reserve.)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP",
-  "rebirthTo": "BS57-TCP04B",
-  "mechanics": [
-   "Rebirth"
-  ]
- },
- {
-  "id": "BS57-TCP05",
-  "name": "Past Osiris",
-  "name_jp": "オシリス・パスト",
-  "type": "Nexus",
-  "color": "purple",
-  "cost": 4,
-  "reduction": {},
-  "symbols": 0,
-  "levels": [
-   {
-    "cores": 0
-   },
-   {
-    "cores": 3
-   }
-  ],
-  "families": [
-   "Primal",
-   "Proximate",
-   "Dark Snake"
-  ],
-  "text": "This card is also treated as being exactly-named \"Grandwalker Osiris\".\n\n[LV1][LV2][LV3] (When Summoned)\nDraw a card.\n\n[LV2][LV3] Rebirth5\nWhen either the opposing Life is reduced, or this Spirit would leave the Field due to the opponent, you can flip it. (Cores on it are sent to the Reserve.)",
-  "image": "BS57-TCP05.png",
-  "block": "P",
-  "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "This card is also treated as being exactly-named \"Grandwalker Osiris\".",
-   "[LV1][LV2][LV3] (When Summoned) Draw a card.",
-   "[LV2][LV3] Rebirth5 When either the opposing Life is reduced, or this Spirit would leave the Field due to the opponent, you can flip it. (Cores on it are sent to the Reserve.)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP",
-  "rebirthTo": "BS57-TCP05B",
-  "mechanics": [
-   "Rebirth"
-  ]
- },
- {
-  "id": "BS57-TCP06",
-  "name": "Past Ra",
-  "name_jp": "ラー・パスト",
-  "type": "Nexus",
-  "color": "yellow",
-  "cost": 4,
-  "reduction": {},
-  "symbols": 0,
-  "levels": [
-   {
-    "cores": 0
-   },
-   {
-    "cores": 3
-   }
-  ],
-  "families": [
-   "Primal",
-   "Proximate",
-   "Imaginary Beast"
-  ],
-  "text": "This card is also treated as being exactly-named \"Grandwalker Ra\".\n\n[LV1][LV2][LV3] (When Attacks)\nYou can summon an “Imaginary Beast” family Spirit card from your Hand. When you've done so, draw a card.\n\n[LV3] Rebirth5\nWhen this Spirit would leave the Field due to the opponent, you can flip it. (Cores on it are sent to the Reserve.)",
-  "image": "BS57-TCP06.png",
-  "block": "P",
-  "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "This card is also treated as being exactly-named \"Grandwalker Ra\".",
-   "[LV1][LV2][LV3] (When Attacks) You can summon an “Imaginary Beast” family Spirit card from your Hand. When you've done so, draw a card.",
-   "[LV3] Rebirth5 When this Spirit would leave the Field due to the opponent, you can flip it. (Cores on it are sent to the Reserve.)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP",
-  "rebirthTo": "BS57-TCP06B",
-  "mechanics": [
-   "Rebirth"
-  ]
- },
- {
-  "id": "BS57-TCP07",
-  "name": "Past Horus",
-  "name_jp": "ホルス・パスト",
-  "type": "Nexus",
-  "color": "green",
-  "cost": 4,
-  "reduction": {},
-  "symbols": 0,
-  "levels": [
-   {
-    "cores": 0
-   },
-   {
-    "cores": 3
-   }
-  ],
-  "families": [
-   "Primal",
-   "Proximate",
-   "Winged Beast"
-  ],
-  "text": "{{sumcon|Your Life is at two or more}}\n\nThis card is also treated as being exactly-named “Grandwalker Horus”, and the symbol and reduction symbols of this card/Ultimate are also treated as Green.\n\n[LV3][LV4] (When Summoned)\nPut a core from the Void to your Trash.\n\n[LV4] Rebirth5\nWhen the opposing Life is reduced, or this Ultimate would leave the Field due to the opponent, you can flip this Ultimate. (Cores on it are sent to the Reserve.)",
-  "image": "BS57-TCP07.png",
-  "block": "P",
-  "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "{{sumcon|Your Life is at two or more}}",
-   "This card is also treated as being exactly-named “Grandwalker Horus”, and the symbol and reduction symbols of this card/Ultimate are also treated as Green.",
-   "[LV3][LV4] (When Summoned) Put a core from the Void to your Trash.",
-   "[LV4] Rebirth5 When the opposing Life is reduced, or this Ultimate would leave the Field due to the opponent, you can flip this Ultimate. (Cores on it are sent to the Reserve.)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP",
-  "rebirthTo": "BS57-TCP07B",
-  "mechanics": [
-   "Rebirth"
-  ]
- },
- {
-  "id": "BS57-TCP08",
-  "name": "Past Thoth",
-  "name_jp": "トト・パスト",
-  "type": "Nexus",
-  "color": "white",
-  "cost": 4,
-  "reduction": {},
-  "symbols": 0,
-  "levels": [
-   {
-    "cores": 0
-   },
-   {
-    "cores": 4
-   }
-  ],
-  "families": [
-   "Primal",
-   "Astroblazer",
-   "Armed Machine"
-  ],
-  "text": "{{sumcon|Your Life is at two or more}}\n\nThis card is also treated as being exactly-named “Grandwalker Thoth”, and the symbol and reduction symbols of this card/Ultimate are also treated as White.\n\n[LV3][LV4] (When Summoned)\nReturn an opposing Spirit with three cores or less on it to the deckbottom.\n\n[LV4] Rebirth5\nWhen the opposing Life is reduced, or this Ultimate would leave the Field due to the opponent, you can flip this Ultimate. (Cores on it are sent to the Reserve.)",
-  "image": "BS57-TCP08.png",
-  "block": "P",
-  "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "{{sumcon|Your Life is at two or more}}",
-   "This card is also treated as being exactly-named “Grandwalker Thoth”, and the symbol and reduction symbols of this card/Ultimate are also treated as White.",
-   "[LV3][LV4] (When Summoned) Return an opposing Spirit with three cores or less on it to the deckbottom.",
-   "[LV4] Rebirth5 When the opposing Life is reduced, or this Ultimate would leave the Field due to the opponent, you can flip this Ultimate. (Cores on it are sent to the Reserve.)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP",
-  "rebirthTo": "BS57-TCP08B",
-  "mechanics": [
-   "Rebirth"
-  ]
- },
- {
-  "id": "BS57-TCP09",
-  "name": "Past Isis",
-  "name_jp": "イシス・パスト",
-  "type": "Nexus",
-  "color": "yellow",
-  "cost": 4,
-  "reduction": {},
-  "symbols": 0,
-  "levels": [
-   {
-    "cores": 0
-   },
-   {
-    "cores": 4
-   }
-  ],
-  "families": [
-   "Primal",
-   "Astroblazer",
-   "Divine Spirit"
-  ],
-  "text": "{{sumcon|Your Life is at six or less}}\n\nThis card is also treated as being exactly-named \"Grandwalker Isis\", and the symbol and reduction symbols of this card/Ultimate are also treated as Yellow.\n\n[LV3][LV4][LV5] (When Summoned)\nYou can draw a card from the deckbottom.\n\n[LV3][LV4][LV5] Rebirth5\nWhen the opposing Life is reduced, or this Ultimate would leave the Field due to the opponent, you can flip this Ultimate. (Cores on it are sent to the Reserve.)",
-  "image": "BS57-TCP09.png",
-  "block": "P",
-  "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "{{sumcon|Your Life is at six or less}}",
-   "This card is also treated as being exactly-named \"Grandwalker Isis\", and the symbol and reduction symbols of this card/Ultimate are also treated as Yellow.",
-   "[LV3][LV4][LV5] (When Summoned) You can draw a card from the deckbottom.",
-   "[LV3][LV4][LV5] Rebirth5 When the opposing Life is reduced, or this Ultimate would leave the Field due to the opponent, you can flip this Ultimate. (Cores on it are sent to the Reserve.)"
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP",
-  "rebirthTo": "BS57-TCP09B",
-  "mechanics": [
-   "Rebirth"
-  ]
- },
- {
-  "id": "BS57-TCP10",
-  "name": "Past Set",
-  "name_jp": "セト・パスト",
-  "type": "Nexus",
-  "color": "blue",
-  "cost": 4,
-  "reduction": {},
-  "symbols": 0,
-  "levels": [
-   {
-    "cores": 0
-   },
-   {
-    "cores": 3
-   }
-  ],
-  "families": [
-   "Primal",
-   "Astroblazer",
-   "Beast Head"
-  ],
-  "text": "{{sumcon|Your Life is at two or more}}\n\nThis card is also treated as being exactly-named \"Grandwalker Set\", and the symbol and reduction symbols of this card/Ultimate are also treated as Blue.\n\n[LV3][LV4] Rebirth5\nWhen the opposing Life is reduced, or this Ultimate would leave the Field due to the opponent, You can flip it. (Send all cores on it to the Reserve.)\n\n[LV4] (When Attacks)\nDestroy an opposing Spirit with the lowest cost.",
-  "image": "BS57-TCP10.png",
-  "block": "P",
-  "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "{{sumcon|Your Life is at two or more}}",
-   "This card is also treated as being exactly-named \"Grandwalker Set\", and the symbol and reduction symbols of this card/Ultimate are also treated as Blue.",
-   "[LV3][LV4] Rebirth5 When the opposing Life is reduced, or this Ultimate would leave the Field due to the opponent, You can flip it. (Send all cores on it to the Reserve.)",
-   "[LV4] (When Attacks) Destroy an opposing Spirit with the lowest cost."
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP",
-  "rebirthTo": "BS57-TCP10B",
   "mechanics": [
    "Rebirth"
   ]
@@ -1857,21 +1301,23 @@
   "name_jp": "機龍皇ヴェルト・ラオム",
   "type": "Spirit",
   "color": "red",
-  "cost": 8,
-  "reduction": {},
+  "cost": 6,
+  "reduction": {
+   "red": 3
+  },
   "symbols": 1,
   "levels": [
    {
     "cores": 1,
-    "bp": 7000
+    "bp": 4000
    },
    {
     "cores": 3,
-    "bp": 12000
+    "bp": 7000
    },
    {
     "cores": 5,
-    "bp": 15000
+    "bp": 12000
    }
   ],
   "families": [
@@ -1887,7 +1333,7 @@
    "[LV1][LV2][LV3] (When Summoned) You can destroy an opposing 12000 BP or less Spirit/Ultimate. This effect can't be prevented by opposing effects, and the effects of the Spirit/Ultimate destroyed by this effect can't activate.",
    "[LV2][LV3] Rebirth5 If you have a Red Mirage set, instead of attacking with this Spirit, you can flip it."
   ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified; v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
   "rcode": "Awaken X",
   "rebirthTo": "BS57-TX01B",
   "mechanics": [
@@ -1901,20 +1347,22 @@
   "type": "Spirit",
   "color": "green",
   "cost": 8,
-  "reduction": {},
+  "reduction": {
+   "green": 4
+  },
   "symbols": 1,
   "levels": [
    {
     "cores": 1,
-    "bp": 13000
+    "bp": 10000
    },
    {
     "cores": 3,
-    "bp": 16000
+    "bp": 13000
    },
    {
-    "cores": 7,
-    "bp": 22000
+    "cores": 6,
+    "bp": 16000
    }
   ],
   "families": [
@@ -1932,7 +1380,7 @@
    "[LV1][LV2][LV3] (When Summoned/Attacks) You can heavy exhaust two opposing Spirits/Ultimates. heb",
    "[LV2][LV3] Rebirth5 When this Spirit attacks, if you have a Green/Yellow Mirage set, you can flip this Spirit."
   ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified; v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
   "rcode": "Awaken X",
   "rebirthTo": "BS57-TX02B",
   "mechanics": [
@@ -1945,21 +1393,20 @@
   "name_jp": "宇宙海賊ギャリー・ハリアス",
   "type": "Spirit",
   "color": "blue",
-  "cost": 7,
-  "reduction": {},
+  "cost": 5,
+  "reduction": {
+   "blue": 2,
+   "purple": 1
+  },
   "symbols": 1,
   "levels": [
    {
     "cores": 1,
-    "bp": 7000
+    "bp": 5000
    },
    {
     "cores": 3,
-    "bp": 10000
-   },
-   {
-    "cores": 5,
-    "bp": 14000
+    "bp": 8000
    }
   ],
   "families": [
@@ -1975,95 +1422,9 @@
    "[LV1][LV2] Rebirth5 When this Spirit attacks, if you have a Purple/Blue Mirage set, you can flip this Spirit.",
    "[LV1][LV2] (When Attacks) You can set a Purple/Blue Nexus you control that has a Mirage effect, without paying the cost. When you do, return the Mirage that you've originally set to the Hand. When this effect sets, put two cores from the Void to your Field."
   ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified; v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
   "rcode": "Awaken X",
   "rebirthTo": "BS57-TX03B",
-  "mechanics": [
-   "Rebirth"
-  ]
- },
- {
-  "id": "BS58-TCP01",
-  "name": "The FlashSoulBlade Lightning-Shion X",
-  "name_jp": "紫電の霊剣ライトニング・シオンX",
-  "type": "Spirit",
-  "color": "purple",
-  "cost": 8,
-  "reduction": {},
-  "symbols": 1,
-  "levels": [
-   {
-    "cores": 1,
-    "bp": 8000
-   },
-   {
-    "cores": 3,
-    "bp": 9000
-   },
-   {
-    "cores": 5,
-    "bp": 10000
-   }
-  ],
-  "families": [
-   "Exalted Sword"
-  ],
-  "text": "[LV1] (When Summoned)\nSend three cores from the opposing Field to the Reserve, and draw a card.\n\nDuring Brave (When Attacks)\nTreat this Spirit's color as colorless. Also, send two cores from an opposing Spirit/Ultimate to the Reserve.\n\nDuring Brave Rebirth5\nWhen this Spirit would leave the Field due to the opponent, you can separate and flip this Brave.",
-  "image": "BS58-TCP01.png",
-  "block": "P",
-  "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1] (When Summoned) Send three cores from the opposing Field to the Reserve, and draw a card.",
-   "During Brave (When Attacks) Treat this Spirit's color as colorless. Also, send two cores from an opposing Spirit/Ultimate to the Reserve.",
-   "During Brave Rebirth5 When this Spirit would leave the Field due to the opponent, you can separate and flip this Brave."
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP",
-  "rebirthTo": "BS58-TCP01B",
-  "mechanics": [
-   "Rebirth"
-  ]
- },
- {
-  "id": "BS58-TCP02",
-  "name": "The SkyLightSword Crown-Solar X",
-  "name_jp": "天空の光剣クラウン・ソーラーX",
-  "type": "Spirit",
-  "color": "white",
-  "cost": 7,
-  "reduction": {},
-  "symbols": 1,
-  "levels": [
-   {
-    "cores": 1,
-    "bp": 7000
-   },
-   {
-    "cores": 3,
-    "bp": 10000
-   },
-   {
-    "cores": 4,
-    "bp": 14000
-   }
-  ],
-  "families": [
-   "Exalted Sword"
-  ],
-  "text": "When this card is revealed from the deck by your \"Proximate\"/\"Astroblazer\" & \"Armed Machine\" family Spirit effect, you can add it to the Hand. When you've done so, discard a card from your Hand.\n\nDuring Brave (When Attacks/Blocks)\nOnce per turn, this Spirit can refresh.\n\nDuring Brave Rebirth5\nWhen this Spirit would leave the Field due to the opponent, this Brave can separate and flip.",
-  "image": "BS58-TCP02.png",
-  "block": "P",
-  "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "When this card is revealed from the deck by your \"Proximate\"/\"Astroblazer\" & \"Armed Machine\" family Spirit effect, you can add it to the Hand. When you've done so, discard a card from your Hand.",
-   "During Brave (When Attacks/Blocks) Once per turn, this Spirit can refresh.",
-   "During Brave Rebirth5 When this Spirit would leave the Field due to the opponent, this Brave can separate and flip."
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP",
-  "rebirthTo": "BS58-TCP02B",
   "mechanics": [
    "Rebirth"
   ]
@@ -2074,17 +1435,19 @@
   "name_jp": "剣王獣ビャク・ガロウX",
   "type": "Spirit",
   "color": "green",
-  "cost": 8,
-  "reduction": {},
+  "cost": 6,
+  "reduction": {
+   "green": 3
+  },
   "symbols": 1,
   "levels": [
    {
     "cores": 1,
-    "bp": 9000
+    "bp": 7000
    },
    {
-    "cores": 3,
-    "bp": 17000
+    "cores": 4,
+    "bp": 9000
    }
   ],
   "families": [
@@ -2101,7 +1464,7 @@
    "[LV1][LV2] Rebirth5 When this Spirit attacks, you can flip it.",
    "[LV2] (When Attacks) When the opposing Life is reduced, the opponent discard a card from their Hand."
   ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified; v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
   "rcode": "CP",
   "rebirthTo": "BS58-TCP06B",
   "mechanics": [
@@ -2114,21 +1477,23 @@
   "name_jp": "天使長ソフィアX",
   "type": "Spirit",
   "color": "yellow",
-  "cost": 8,
-  "reduction": {},
+  "cost": 6,
+  "reduction": {
+   "yellow": 3
+  },
   "symbols": 1,
   "levels": [
    {
     "cores": 1,
-    "bp": 7000
+    "bp": 3000
    },
    {
     "cores": 3,
-    "bp": 10000
+    "bp": 5000
    },
    {
     "cores": 5,
-    "bp": 12000
+    "bp": 6000
    }
   ],
   "families": [
@@ -2144,126 +1509,9 @@
    "[LV1][LV2][LV3] (When Summoned) (Once per Turn: Same Name) You can return a Yellow-only Spirit card/Magic card from your Trash to the Hand. Then, you can summon a \"Divine Spirit\"/\"Imaginary Beast\" family Spirit card from your Hand, without paying the cost.",
    "[LV2][LV3] Rebirth5 When your \"Divine Spirit\"/\"Imaginary Beast\" family Spirit attacks, you can flip this Spirit."
   ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified; v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
   "rcode": "CP",
   "rebirthTo": "BS58-TCP08B",
-  "mechanics": [
-   "Rebirth"
-  ]
- },
- {
-  "id": "BS59-014",
-  "name": "The Bal-Masque Duchess Siegrune",
-  "name_jp": "バル・マスケ 女公爵 ジークルーネ",
-  "type": "Brave",
-  "color": "purple",
-  "cost": 4,
-  "reduction": {},
-  "symbols": 0,
-  "levels": [
-   {
-    "cores": 1,
-    "bp": 3000
-   }
-  ],
-  "families": [
-   "Proximate",
-   "Nightling"
-  ],
-  "text": "[LV1][LV2] (When Attacks)\nDestroy an opposing Spirit/Ultimate with two cores or less on it, and when destroys, draw a card.\n\n[LV2] Rebirth3\nEither by paying one cost during the Flash Timing of Either Attack Step, or when this Spirit would leave the Field due to opposing effects, you can flip it. When you do, this Reborn Brave can either refresh and brave to a Spirit you control, or remain in Spirit condition by putting a core from your Reserve/Spirit onto it.",
-  "image": "BS59-014.png",
-  "block": "P",
-  "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Attacks) Destroy an opposing Spirit/Ultimate with two cores or less on it, and when destroys, draw a card.",
-   "[LV2] Rebirth3 Either by paying one cost during the Flash Timing of Either Attack Step, or when this Spirit would leave the Field due to opposing effects, you can flip it. When you do, this Reborn Brave can either refresh and brave to a Spirit you control, or remain in Spirit condition by putting a core from your Reserve/Spirit onto it."
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "Awaken R",
-  "brave": {
-   "bp": 3000,
-   "costGe": 3
-  },
-  "rebirthTo": "BS59-014B",
-  "mechanics": [
-   "Rebirth"
-  ]
- },
- {
-  "id": "BS59-067",
-  "name": "The Gate of Spacetime",
-  "name_jp": "時空の門",
-  "type": "Spirit",
-  "color": "blue",
-  "cost": 7,
-  "reduction": {},
-  "symbols": 1,
-  "levels": [
-   {
-    "cores": 1,
-    "bp": 7000
-   },
-   {
-    "cores": 3,
-    "bp": 10000
-   },
-   {
-    "cores": 5,
-    "bp": 12000
-   }
-  ],
-  "families": [
-   "Chrownos"
-  ],
-  "text": "[LV1] Rebirth3\nWhen this Nexus/your \"Chrownos\" family Spirit is destroyed by the opponent, you can flip this Nexus. When you do, you can put a core from your Field/Reserve to this Reborn Spirit.\n\n[LV1] (Start of Opposing Attack Step)\nWhen you control only \"Chrownos\" family Spirits/Nexuses, by returning three \"Chrownos\" family cards from your Trash to the deckbottom, during this turn, unless the opponent sends a core from their Reserve to the Trash, they can't attack.",
-  "image": "BS59-067.png",
-  "block": "P",
-  "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1] Rebirth3 When this Nexus/your \"Chrownos\" family Spirit is destroyed by the opponent, you can flip this Nexus. When you do, you can put a core from your Field/Reserve to this Reborn Spirit.",
-   "[LV1] (Start of Opposing Attack Step) When you control only \"Chrownos\" family Spirits/Nexuses, by returning three \"Chrownos\" family cards from your Trash to the deckbottom, during this turn, unless the opponent sends a core from their Reserve to the Trash, they can't attack."
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "Awaken R",
-  "rebirthTo": "BS59-067B",
-  "mechanics": [
-   "Rebirth"
-  ]
- },
- {
-  "id": "BS59-076",
-  "name": "Bright Hope",
-  "name_jp": "ブライトホープ",
-  "type": "Brave",
-  "color": "yellow",
-  "cost": 6,
-  "reduction": {},
-  "symbols": 0,
-  "levels": [
-   {
-    "cores": 1,
-    "bp": 7000
-   }
-  ],
-  "families": [],
-  "text": "Flash\nReturn two opposing LV2 Spirits to the Hand, and draw a card from the deckbottom. After this effect resolves, you can activate this card's Rebirth.\n\nRebirth3\nIf you have a Yellow Mirage set, this card can be flipped. When it is, this Reborn Brave can either brave to a Spirit you control, or stay in Spirit condition by putting a core from your Spirit/Reserve onto it.",
-  "image": "BS59-076.png",
-  "block": "P",
-  "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Flash Return two opposing LV2 Spirits to the Hand, and draw a card from the deckbottom. After this effect resolves, you can activate this card's Rebirth.",
-   "Rebirth3 If you have a Yellow Mirage set, this card can be flipped. When it is, this Reborn Brave can either brave to a Spirit you control, or stay in Spirit condition by putting a core from your Spirit/Reserve onto it."
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "Awaken R",
-  "brave": {
-   "bp": 7000,
-   "costGe": 3
-  },
-  "rebirthTo": "BS59-076B",
   "mechanics": [
    "Rebirth"
   ]
@@ -2390,131 +1638,6 @@
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
   "rcode": "CP"
- },
- {
-  "id": "BS59-TCP01",
-  "name": "The DarknessDemonSword Dark-Blade X",
-  "name_jp": "暗黒の魔剣ダーク・ブレードX",
-  "type": "Spirit",
-  "color": "red",
-  "cost": 8,
-  "reduction": {},
-  "symbols": 1,
-  "levels": [
-   {
-    "cores": 1,
-    "bp": 6000
-   },
-   {
-    "cores": 2,
-    "bp": 9000
-   },
-   {
-    "cores": 5,
-    "bp": 13000
-   }
-  ],
-  "families": [
-   "Exalted Sword"
-  ],
-  "text": "[LV1] (When Summoned)\nYou can destroy an opposing Nexus, and the effects of the Nexus destroyed can't activate. When this effect destroys, draw two cards.\n\nDuring Brave (When Attacks)\nYou can target and attack an opposing Spirit/Ultimate.\n\nDuring Brave Rebirth5\nWhen this Spirit would leave the Field due to the opponent, you can separate and flip this Brave.",
-  "image": "BS59-TCP01.png",
-  "block": "P",
-  "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1] (When Summoned) You can destroy an opposing Nexus, and the effects of the Nexus destroyed can't activate. When this effect destroys, draw two cards.",
-   "During Brave (When Attacks) You can target and attack an opposing Spirit/Ultimate.",
-   "During Brave Rebirth5 When this Spirit would leave the Field due to the opponent, you can separate and flip this Brave."
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP",
-  "rebirthTo": "BS59-TCP01B",
-  "mechanics": [
-   "Rebirth"
-  ]
- },
- {
-  "id": "BS59-TCP02",
-  "name": "The HurricaneTwinBlade Kamui-Hayate X",
-  "name_jp": "疾風の双刃カムイ・ハヤテX",
-  "type": "Spirit",
-  "color": "green",
-  "cost": 8,
-  "reduction": {},
-  "symbols": 1,
-  "levels": [
-   {
-    "cores": 1,
-    "bp": 6000
-   },
-   {
-    "cores": 3,
-    "bp": 12000
-   }
-  ],
-  "families": [
-   "Exalted Sword"
-  ],
-  "text": "[LV1] (When Summoned)\nYou can exhaust an opposing Spirit/Ultimate, and when exhausts, put two cores from the Void to your Reserve.\n\nDuring Brave (When Attacks)\nOnce per turn, by exhausting an opposing Spirit/Ultimate, this Spirit refreshes.\n\nDuring Brave Rebirth5\nWhen this Spirit would leave the Field due to the opponent, this Brave can separate and flip.",
-  "image": "BS59-TCP02.png",
-  "block": "P",
-  "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1] (When Summoned) You can exhaust an opposing Spirit/Ultimate, and when exhausts, put two cores from the Void to your Reserve.",
-   "During Brave (When Attacks) Once per turn, by exhausting an opposing Spirit/Ultimate, this Spirit refreshes.",
-   "During Brave Rebirth5 When this Spirit would leave the Field due to the opponent, this Brave can separate and flip."
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP",
-  "rebirthTo": "BS59-TCP02B",
-  "mechanics": [
-   "Rebirth"
-  ]
- },
- {
-  "id": "BS59-TCP03",
-  "name": "The AzureOceanGreatSword Maelstrom X",
-  "name_jp": "蒼海の大剣メイルシュトロムX",
-  "type": "Spirit",
-  "color": "blue",
-  "cost": 8,
-  "reduction": {},
-  "symbols": 1,
-  "levels": [
-   {
-    "cores": 1,
-    "bp": 8000
-   },
-   {
-    "cores": 3,
-    "bp": 12000
-   },
-   {
-    "cores": 6,
-    "bp": 18000
-   }
-  ],
-  "families": [
-   "Exalted Sword"
-  ],
-  "text": "[LV1] (When Summoned)\nDuring this turn, you can increase the number of cards to be discarded by the \"opposing-deck-discarding effects\" of your Spirits by +1.\n\nDuring Brave {{Assault|2}} (When Attacks)\nThis Spirit can, up to twice per turn, be refreshed by exhausting a Nexus you control.\n\nDuring Brave Rebirth5\nWhen this Spirit would leave the Field due to the opponent, this Brave can separate and flip.",
-  "image": "BS59-TCP03.png",
-  "block": "P",
-  "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1] (When Summoned) During this turn, you can increase the number of cards to be discarded by the \"opposing-deck-discarding effects\" of your Spirits by +1.",
-   "During Brave {{Assault|2}} (When Attacks) This Spirit can, up to twice per turn, be refreshed by exhausting a Nexus you control.",
-   "During Brave Rebirth5 When this Spirit would leave the Field due to the opponent, this Brave can separate and flip."
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP",
-  "rebirthTo": "BS59-TCP03B",
-  "mechanics": [
-   "Rebirth"
-  ]
  },
  {
   "id": "BS60-CP01",
@@ -3777,246 +2900,6 @@
    "bp": 7000,
    "costGe": 3
   }
- },
- {
-  "id": "BS73-TCP01",
-  "name": "The Red World",
-  "name_jp": "赤の世界",
-  "type": "Spirit",
-  "color": "red",
-  "cost": 6,
-  "reduction": {},
-  "symbols": 1,
-  "levels": [
-   {
-    "cores": 1,
-    "bp": 7000
-   },
-   {
-    "cores": 3,
-    "bp": 10000
-   }
-  ],
-  "families": [
-   "Primal",
-   "Devotee"
-  ],
-  "text": "[LV1] Rebirth5\nWhen your Red Cost 5 or more Spirit attacks, or when this Nexus would leave the Field by opposing effects, you can flip this Nexus, putting your onto it.\n\n[LV1] (When Deployed)\nDestroy an opposing Spirit with the lowest BP.\n\n[LV1] (Your Attack Step)\nAt the end of your Red-only, originally Cost 5 or more Spirit's battle, send an opposing Life to the Reserve. This effect doesn't stack.",
-  "image": "BS73-TCP01.png",
-  "block": "P",
-  "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1] Rebirth5 When your Red Cost 5 or more Spirit attacks, or when this Nexus would leave the Field by opposing effects, you can flip this Nexus, putting your onto it.",
-   "[LV1] (When Deployed) Destroy an opposing Spirit with the lowest BP.",
-   "[LV1] (Your Attack Step) At the end of your Red-only, originally Cost 5 or more Spirit's battle, send an opposing Life to the Reserve. This effect doesn't stack."
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP",
-  "rebirthTo": "BS73-TCP01B",
-  "mechanics": [
-   "Rebirth"
-  ]
- },
- {
-  "id": "BS73-TCP02",
-  "name": "The Purple World",
-  "name_jp": "紫の世界",
-  "type": "Spirit",
-  "color": "purple",
-  "cost": 6,
-  "reduction": {},
-  "symbols": 1,
-  "levels": [
-   {
-    "cores": 1,
-    "bp": 7000
-   },
-   {
-    "cores": 3,
-    "bp": 10000
-   }
-  ],
-  "families": [
-   "Primal",
-   "Devotee"
-  ],
-  "text": "[LV1] Rebirth5\nWhen opposing Spirits are depleted/destroyed, or when this Nexus would leave the Field by opposing effects, you can flip this Nexus, putting your onto it.\n\n[LV1] (When Deployed)\nYou can draw a card.\n\n[LV1] (Opposing Attack Step)\n(Can't Stack) While all Nexuses you control are Purple, when an opposing Spirit attacks, you can send a core from that Spirit to the Trash.",
-  "image": "BS73-TCP02.png",
-  "block": "P",
-  "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1] Rebirth5 When opposing Spirits are depleted/destroyed, or when this Nexus would leave the Field by opposing effects, you can flip this Nexus, putting your onto it.",
-   "[LV1] (When Deployed) You can draw a card.",
-   "[LV1] (Opposing Attack Step) (Can't Stack) While all Nexuses you control are Purple, when an opposing Spirit attacks, you can send a core from that Spirit to the Trash."
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP",
-  "rebirthTo": "BS73-TCP02B",
-  "mechanics": [
-   "Rebirth"
-  ]
- },
- {
-  "id": "BS73-TCP03",
-  "name": "The Green World",
-  "name_jp": "緑の世界",
-  "type": "Spirit",
-  "color": "green",
-  "cost": 6,
-  "reduction": {},
-  "symbols": 1,
-  "levels": [
-   {
-    "cores": 1,
-    "bp": 7000
-   },
-   {
-    "cores": 3,
-    "bp": 10000
-   }
-  ],
-  "families": [
-   "Primal",
-   "Devotee"
-  ],
-  "text": "[LV1] Rebirth5\nWhen opposing Spirits/your Cost 6 or more Green Spirits exhaust, or when this Nexus would leave the Field by opposing effects, you can flip this Nexus, putting your onto it.\n\n[LV1] (When Deployed)\nYou can put a core from the Void to your Reserve.\n\n[LV1]\nWhen your Green \"Primal\" effect, besides this Nexus's effect, would increase cores, instead of increasing cores, you can draw a card.",
-  "image": "BS73-TCP03.png",
-  "block": "P",
-  "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1] Rebirth5 When opposing Spirits/your Cost 6 or more Green Spirits exhaust, or when this Nexus would leave the Field by opposing effects, you can flip this Nexus, putting your onto it.",
-   "[LV1] (When Deployed) You can put a core from the Void to your Reserve.",
-   "[LV1] When your Green \"Primal\" effect, besides this Nexus's effect, would increase cores, instead of increasing cores, you can draw a card."
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP",
-  "rebirthTo": "BS73-TCP03B",
-  "mechanics": [
-   "Rebirth"
-  ]
- },
- {
-  "id": "BS73-TCP04",
-  "name": "The White World",
-  "name_jp": "白の世界",
-  "type": "Spirit",
-  "color": "white",
-  "cost": 6,
-  "reduction": {},
-  "symbols": 1,
-  "levels": [
-   {
-    "cores": 1,
-    "bp": 7000
-   },
-   {
-    "cores": 3,
-    "bp": 10000
-   }
-  ],
-  "families": [
-   "Primal",
-   "Devotee"
-  ],
-  "text": "[LV1] Rebirth5\nWhen either your White Spirit blocks/is refreshed by effects, or this Nexus would leave the Field by opposing effects, you can flip this Nexus, putting your onto it.\n\n[LV1] (When Deployed)\nReturn an opposing Spirit with two or more symbols to the deckbottom.\n\n[LV1]\nWhen your Life is reduced, you can return an opposing Spirit to the Hand.",
-  "image": "BS73-TCP04.png",
-  "block": "P",
-  "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1] Rebirth5 When either your White Spirit blocks/is refreshed by effects, or this Nexus would leave the Field by opposing effects, you can flip this Nexus, putting your onto it.",
-   "[LV1] (When Deployed) Return an opposing Spirit with two or more symbols to the deckbottom.",
-   "[LV1] When your Life is reduced, you can return an opposing Spirit to the Hand."
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP",
-  "rebirthTo": "BS73-TCP04B",
-  "mechanics": [
-   "Rebirth"
-  ]
- },
- {
-  "id": "BS73-TCP05",
-  "name": "The Yellow World",
-  "name_jp": "黄の世界",
-  "type": "Spirit",
-  "color": "yellow",
-  "cost": 6,
-  "reduction": {},
-  "symbols": 1,
-  "levels": [
-   {
-    "cores": 1,
-    "bp": 7000
-   },
-   {
-    "cores": 3,
-    "bp": 10000
-   }
-  ],
-  "families": [
-   "Primal",
-   "Devotee"
-  ],
-  "text": "[LV1] Rebirth5\nWhen your Life is either reduced, or increased by your \"Primal\" family effect, or when this Nexus would leave the Field by opposing effects, you can flip this Nexus, putting your onto it.\n\n[LV1] (When Deployed)\nDuring this turn, give an opposing Spirit -6000 BP, and destroy it if its BP is brought to 0.\n\n[LV1] (Opposing Attack Step)\nOpposing originally Cost 6 or less Spirits can't be refreshed by effects.",
-  "image": "BS73-TCP05.png",
-  "block": "P",
-  "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1] Rebirth5 When your Life is either reduced, or increased by your \"Primal\" family effect, or when this Nexus would leave the Field by opposing effects, you can flip this Nexus, putting your onto it.",
-   "[LV1] (When Deployed) During this turn, give an opposing Spirit -6000 BP, and destroy it if its BP is brought to 0.",
-   "[LV1] (Opposing Attack Step) Opposing originally Cost 6 or less Spirits can't be refreshed by effects."
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP",
-  "rebirthTo": "BS73-TCP05B",
-  "mechanics": [
-   "Rebirth"
-  ]
- },
- {
-  "id": "BS73-TCP06",
-  "name": "The Blue World",
-  "name_jp": "青の世界",
-  "type": "Spirit",
-  "color": "blue",
-  "cost": 6,
-  "reduction": {},
-  "symbols": 1,
-  "levels": [
-   {
-    "cores": 1,
-    "bp": 7000
-   },
-   {
-    "cores": 3,
-    "bp": 10000
-   }
-  ],
-  "families": [
-   "Primal",
-   "Devotee"
-  ],
-  "text": "[LV1] Rebirth5\nWhen either your or the opposing Life is reduced, or when this Nexus would leave the Field by opposing effects, you can flip this Nexus, putting your onto it.\n\n[LV1] (When Deployed)\nSend all cores from every opposing Grandwalker Nexus to the Void.\n\n[LV1]\nWhen an opposing Spirit would activate its (When Summoned/Advent/Reborn) effect, before the effect activates, by exhausting a Blue-only \"Primal\" family Spirit you control, immediately negate that effect.",
-  "image": "BS73-TCP06.png",
-  "block": "P",
-  "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "[LV1] Rebirth5 When either your or the opposing Life is reduced, or when this Nexus would leave the Field by opposing effects, you can flip this Nexus, putting your onto it.",
-   "[LV1] (When Deployed) Send all cores from every opposing Grandwalker Nexus to the Void.",
-   "[LV1] When an opposing Spirit would activate its (When Summoned/Advent/Reborn) effect, before the effect activates, by exhausting a Blue-only \"Primal\" family Spirit you control, immediately negate that effect."
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP",
-  "rebirthTo": "BS73-TCP06B",
-  "mechanics": [
-   "Rebirth"
-  ]
  },
  {
   "id": "BS74-AX01",
@@ -26620,21 +25503,19 @@
   "name_jp": "蟻王アント・レス・ロストソード",
   "type": "Spirit",
   "color": "green",
-  "cost": 7,
-  "reduction": {},
+  "cost": 5,
+  "reduction": {
+   "green": 3
+  },
   "symbols": 1,
   "levels": [
    {
     "cores": 1,
+    "bp": 4000
+   },
+   {
+    "cores": 3,
     "bp": 6000
-   },
-   {
-    "cores": 4,
-    "bp": 13000
-   },
-   {
-    "cores": 6,
-    "bp": 16000
    }
   ],
   "families": [
@@ -26651,7 +25532,7 @@
    "[LV1][LV2] Rebirth5 When this Spirit attacks, or would leave the Field due to the opponent, you can flip it.",
    "[LV2] This Spirit is unaffected by opposing Spirit/Nexus effects, and can block while exhausted."
   ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified; v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
   "rcode": "PB",
   "rebirthTo": "PB09-002B",
   "mechanics": [
@@ -26664,21 +25545,23 @@
   "name_jp": "[ひと夏の輝き]ライラ姉妹",
   "type": "Spirit",
   "color": "yellow",
-  "cost": 4,
-  "reduction": {},
+  "cost": 2,
+  "reduction": {
+   "yellow": 1
+  },
   "symbols": 1,
   "levels": [
    {
     "cores": 1,
-    "bp": 3000
+    "bp": 2000
    },
    {
     "cores": 3,
-    "bp": 5000
+    "bp": 4000
    },
    {
     "cores": 4,
-    "bp": 7000
+    "bp": 5000
    }
   ],
   "families": [
@@ -26696,7 +25579,7 @@
    "[LV1][LV2][LV3] When you count the number of Spirits via your Spirit effects, this Spirit is treated as two Spirits.",
    "[LV2][LV3] This Spirit is unaffected by opposing Spirit/Nexus effects."
   ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified; v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
   "rcode": "PB",
   "rebirthTo": "PB09-003B",
   "mechanics": [
@@ -26707,25 +25590,14 @@
   "id": "PB09-004",
   "name": "［Pearly Purple Ballista］Yatagarasu Magoichi",
   "name_jp": "[紫銀の弾道]八咫烏孫市",
-  "type": "Spirit",
+  "type": "Nexus",
   "color": "yellow",
-  "cost": 7,
-  "reduction": {},
-  "symbols": 1,
-  "levels": [
-   {
-    "cores": 1,
-    "bp": 8000
-   },
-   {
-    "cores": 2,
-    "bp": 10000
-   },
-   {
-    "cores": 3,
-    "bp": 12000
-   }
-  ],
+  "cost": 4,
+  "reduction": {
+   "yellow": 2
+  },
+  "symbols": 0,
+  "levels": [],
   "families": [
    "Primal",
    "Avatar",
@@ -26735,14 +25607,20 @@
   "image": "PB09-004.png",
   "block": "P",
   "saga": 60,
+  "bicon": [
+   "7"
+  ],
   "fxComplete": false,
   "residual": [
    "This card/Nexus's reduction symbols are also treated as Red/Purple/Green/White/Blue, and its (When Deployed) effect is unaffected by opposing effects.",
-   "[LV1] Rebirth5 When your \"Magoichi\"/\"Agrs\"/\"Kirika\"-named Spirit attacks, or when this Nexus would leave the Field due to an opposing effect, you can flip this Nexus, putting your onto it.",
-   "[LV1] (When Deployed) You can reveal four cards from your decktop. Among them, you can summon/deploy a \"Magoichi\"/\"Agrs\"/\"Kirika\"-named card without paying the cost. Return any remaining card(s) to the deckbottom. However, any (When Summoned/Deployed) effects of the Spirit/Nexus can't activate.",
-   "[LV1] (Your Main Step) By paying two costs, activate this Nexus's (When Deployed) effect. This effect can only be used once per turn."
+   "[LV1] Rebirth5",
+   "When your \"Magoichi\"/\"Agrs\"/\"Kirika\"-named Spirit attacks, or when this Nexus would leave the Field due to an opposing effect, you can flip this Nexus, putting your onto it.",
+   "[LV1] (When Deployed)",
+   "You can reveal four cards from your decktop. Among them, you can summon/deploy a \"Magoichi\"/\"Agrs\"/\"Kirika\"-named card without paying the cost. Return any remaining card(s) to the deckbottom. However, any (When Summoned/Deployed) effects of the Spirit/Nexus can't activate.",
+   "[LV1] (Your Main Step)",
+   "By paying two costs, activate this Nexus's (When Deployed) effect. This effect can only be used once per turn."
   ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
   "rcode": "PB",
   "rebirthTo": "PB09-004B",
   "mechanics": [
@@ -71562,23 +70440,21 @@
   "id": "SD55-011",
   "name": "The New World",
   "name_jp": "新しき世界",
-  "type": "Spirit",
-  "color": "blue",
-  "cost": 5,
-  "reduction": {},
-  "symbols": 1,
+  "type": "Nexus",
+  "color": "red",
+  "cost": 3,
+  "reduction": {
+   "red": 1,
+   "purple": 1,
+   "green": 1,
+   "white": 1,
+   "yellow": 1,
+   "blue": 1
+  },
+  "symbols": 0,
   "levels": [
    {
-    "cores": 1,
-    "bp": 3000
-   },
-   {
-    "cores": 3,
-    "bp": 5000
-   },
-   {
-    "cores": 4,
-    "bp": 7000
+    "cores": 1
    }
   ],
   "families": [
@@ -71588,14 +70464,28 @@
   "image": "SD55-011.png",
   "block": "P",
   "saga": 60,
+  "colors": [
+   "red",
+   "purple",
+   "green",
+   "white",
+   "yellow",
+   "blue"
+  ],
+  "bicon": [
+   "12"
+  ],
   "fxComplete": false,
   "residual": [
-   "[LV1][LV2] Rebirth3 When either the opposing Life is reduced, or when this Nexus would leave the Field due to opposing effects, you can flip this Nexus, putting your onto it.",
-   "[LV1][LV2] (Your Main Step) When you're summoning a \"Primal\" family Spirit card, this Nexus's symbol is also treated as Red/Purple/Green/White/Yellow/Blue.",
-   "[LV2] While your originally Cost 4/5/6 \"Primal\" family Spirit is attacking, the opponent can't activate Burst effects."
+   "[LV1][LV2] Rebirth3",
+   "When either the opposing Life is reduced, or when this Nexus would leave the Field due to opposing effects, you can flip this Nexus, putting your onto it.",
+   "[LV1][LV2] (Your Main Step)",
+   "When you're summoning a \"Primal\" family Spirit card, this Nexus's symbol is also treated as Red/Purple/Green/White/Yellow/Blue.",
+   "[LV2]",
+   "While your originally Cost 4/5/6 \"Primal\" family Spirit is attacking, the opponent can't activate Burst effects."
   ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "Awaken R",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
+  "rcode": "転醒R",
   "rebirthTo": "SD55-011B",
   "mechanics": [
    "Rebirth"
@@ -71689,22 +70579,24 @@
   "name": "The SpacetimeDragon Chrono-Dragon",
   "name_jp": "時空龍クロノ・ドラゴン",
   "type": "Spirit",
-  "color": "blue",
-  "cost": 7,
-  "reduction": {},
+  "color": "red",
+  "cost": 4,
+  "reduction": {
+   "red": 2
+  },
   "symbols": 1,
   "levels": [
    {
     "cores": 1,
-    "bp": 6000
+    "bp": 3000
    },
    {
     "cores": 3,
-    "bp": 10000
+    "bp": 5000
    },
    {
     "cores": 5,
-    "bp": 13000
+    "bp": 8000
    }
   ],
   "families": [
@@ -71722,11 +70614,19 @@
    "[LV1][LV2][LV3] (When Attacks) Draw a card. Also, the opponent can't activate Burst effects.",
    "[LV2][LV3] Rebirth5 When either the opposing Life is decreased or this Spirit would leave the field due to the opponent, you can flip this Spirit, putting your onto it."
   ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified; v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
   "rcode": "Awaken X",
   "rebirthTo": "SD55-TX01B",
   "mechanics": [
    "Rebirth"
+  ],
+  "colors": [
+   "red",
+   "purple",
+   "green",
+   "white",
+   "yellow",
+   "blue"
   ]
  },
  {
@@ -71772,21 +70672,24 @@
   "name_jp": "無頼漢オニ・ドラゴン",
   "type": "Spirit",
   "color": "red",
-  "cost": 7,
-  "reduction": {},
+  "cost": 5,
+  "reduction": {
+   "red": 2,
+   "white": 1
+  },
   "symbols": 1,
   "levels": [
    {
     "cores": 1,
-    "bp": 7000
+    "bp": 5000
    },
    {
     "cores": 3,
-    "bp": 10000
+    "bp": 7000
    },
    {
     "cores": 6,
-    "bp": 15000
+    "bp": 10000
    }
   ],
   "families": [
@@ -71804,7 +70707,7 @@
    "[LV1][LV2][LV3] Rebirth3 When your Red/White Cost 5 or more Spirit attacks, or after your Burst activates, this Spirit can be flipped.",
    "[LV2][LV3] (When Attacks) Destroy an opposing 5000 BP or less Spirit, and draw a card."
   ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified; v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
   "rcode": "Awaken R",
   "rebirthTo": "SD56-001B",
   "mechanics": [
@@ -71858,12 +70761,28 @@
   "id": "SD56-003",
   "name": "The SeaDragon Cima-Creek II",
   "name_jp": "海皇龍シーマ・クリークII",
-  "type": "Nexus",
+  "type": "Spirit",
   "color": "white",
   "cost": 4,
-  "reduction": {},
-  "symbols": 0,
-  "levels": [],
+  "reduction": {
+   "white": 1,
+   "red": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 4000
+   },
+   {
+    "cores": 2,
+    "bp": 6000
+   },
+   {
+    "cores": 6,
+    "bp": 12000
+   }
+  ],
   "families": [
    "Primal",
    "Supreme Hero",
@@ -71873,14 +70792,20 @@
   "image": "SD56-003.png",
   "block": "P",
   "saga": 60,
+  "bicon": [
+   "7"
+  ],
   "fxComplete": false,
   "residual": [
-   "[LV1][LV2][LV3] (When Summoned) Put a core from the Void each to two \"Supreme Hero\"/\"Great General\" family Spirits you control.",
-   "[LV1][LV2][LV3] Rebirth3 When this Spirit would leave the Field due to the opponent, it can be flipped.",
-   "[LV2][LV3] (Opposing Turn) Your Hand is unaffected by opposing effects, and your Life can only be reduced by up to one per opposing Spirit per turn."
+   "[LV1][LV2][LV3] (When Summoned)",
+   "Put a core from the Void each to two \"Supreme Hero\"/\"Great General\" family Spirits you control.",
+   "[LV1][LV2][LV3] Rebirth3",
+   "When this Spirit would leave the Field due to the opponent, it can be flipped.",
+   "[LV2][LV3] (Opposing Turn)",
+   "Your Hand is unaffected by opposing effects, and your Life can only be reduced by up to one per opposing Spirit per turn."
   ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "Awaken R",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
+  "rcode": "転醒R",
   "rebirthTo": "SD56-003B",
   "mechanics": [
    "Rebirth"
@@ -72287,21 +71212,24 @@
   "name_jp": "英雄龍ロード・ドラゴンX",
   "type": "Spirit",
   "color": "red",
-  "cost": 8,
-  "reduction": {},
+  "cost": 6,
+  "reduction": {
+   "red": 2,
+   "white": 1
+  },
   "symbols": 1,
   "levels": [
    {
     "cores": 1,
-    "bp": 8000
+    "bp": 6000
    },
    {
     "cores": 2,
-    "bp": 12000
+    "bp": 8000
    },
    {
     "cores": 5,
-    "bp": 15000
+    "bp": 12000
    }
   ],
   "families": [
@@ -72319,7 +71247,7 @@
    "[LV1][LV2][LV3] Rebirth5 When this Spirit attacks, if you have a set Burst, you can flip this Spirit.",
    "[LV2][LV3] (When Attacks) You can set down a card with Burst effect from your Hand. When you've done so, draw two cards."
   ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified; v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
   "rcode": "Awaken X",
   "rebirthTo": "SD56-TX01B",
   "mechanics": [
@@ -72605,6 +71533,57 @@
    "bp": 3000,
    "costGe": 3
   }
+ },
+ {
+  "id": "SD57-006",
+  "name": "The Owari World",
+  "name_jp": "オワリノ世界",
+  "type": "Nexus",
+  "color": "red",
+  "cost": 4,
+  "reduction": {
+   "red": 1,
+   "purple": 1,
+   "green": 1,
+   "white": 1,
+   "yellow": 1,
+   "blue": 1
+  },
+  "symbols": 0,
+  "levels": [],
+  "families": [
+   "Primal"
+  ],
+  "text": "[LV1] Rebirth3\nWhen your Spirit with two colors or more attacks, or this Nexus would leave the Field by an opposing effect, you can flip this Nexus, putting your onto it.\n\n[LV1]\nWhen you're summoning a \"God-Sechs\"/\"Six Heaven\"-named card, this Nexus's symbols are also treated as Red/Purple/Green/White/Yellow/Blue.\n\n[LV1] (Your Attack Step)\nEvery \"God-Sechs\"-named Spirit you control is treated as being on its highest level.",
+  "image": "SD57-006(A).png",
+  "block": "P",
+  "saga": 60,
+  "colors": [
+   "red",
+   "purple",
+   "green",
+   "white",
+   "yellow",
+   "blue"
+  ],
+  "bicon": [
+   "7"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "[LV1] Rebirth3",
+   "When your Spirit with two colors or more attacks, or this Nexus would leave the Field by an opposing effect, you can flip this Nexus, putting your onto it.",
+   "[LV1]",
+   "When you're summoning a \"God-Sechs\"/\"Six Heaven\"-named card, this Nexus's symbols are also treated as Red/Purple/Green/White/Yellow/Blue.",
+   "[LV1] (Your Attack Step)",
+   "Every \"God-Sechs\"-named Spirit you control is treated as being on its highest level."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
+  "rcode": "転醒R",
+  "rebirthTo": "SD57-006B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "SD57-CP01",
@@ -74056,21 +73035,23 @@
   "name_jp": "竜騎士ソーディアス・ドラグーン",
   "type": "Spirit",
   "color": "purple",
-  "cost": 8,
-  "reduction": {},
+  "cost": 6,
+  "reduction": {
+   "purple": 3
+  },
   "symbols": 1,
   "levels": [
    {
     "cores": 1,
-    "bp": 8000
+    "bp": 5000
    },
    {
     "cores": 3,
-    "bp": 12000
+    "bp": 7000
    },
    {
     "cores": 5,
-    "bp": 17000
+    "bp": 12000
    }
   ],
   "families": [
@@ -74088,7 +73069,7 @@
    "[LV1][LV2][LV3] (When Attacks) You can target and attack an opposing Spirit with two cores or more on it.",
    "[LV2][LV3] (When Attacks) If you have two counters or more, send two cores from any opposing Spirits to the Trash, and when depletes, send an opposing Life to the Trash."
   ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
+  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified; v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
   "rcode": "Awaken X",
   "rebirthTo": "SD59-TX01B",
   "mechanics": [
@@ -76246,29 +75227,12 @@
   "id": "SD63-TCP02",
   "name": "World Mirage",
   "name_jp": "ワールドミラージュ",
-  "type": "Spirit",
-  "color": "blue",
-  "cost": 8,
+  "type": "Nexus",
+  "color": "red",
+  "cost": 3,
   "reduction": {},
-  "symbols": 1,
-  "levels": [
-   {
-    "cores": 1,
-    "bp": 8000
-   },
-   {
-    "cores": 2,
-    "bp": 12000
-   },
-   {
-    "cores": 4,
-    "bp": 16000
-   },
-   {
-    "cores": 6,
-    "bp": 20000
-   }
-  ],
+  "symbols": 0,
+  "levels": [],
   "families": [
    "Proximate",
    "Astroblazer"
@@ -76277,14 +75241,29 @@
   "image": "SD63-TCP02.png",
   "block": "P",
   "saga": 60,
+  "colors": [
+   "red",
+   "purple",
+   "green",
+   "white",
+   "yellow",
+   "blue"
+  ],
+  "bicon": [
+   "8"
+  ],
   "fxComplete": false,
   "residual": [
-   "{{Mirage|Cost 3}} During Set (Start of Opposing Attack Step) By discarding a \"Proximate\"/\"Astroblazer\" family card from your Hand, during this turn, one of the (When Attacks) effects of an opposing Spirit can't activate.",
-   "During Set Rebirth5 When the opponent Rebirths, after that effect resolves, you can flip this Mirage onto the Field by putting any number of cores from your Field/Reserve onto it.",
-   "[LV1] This Nexus’s symbol is also treated as Red/Purple/Green/Yellow/Blue. Also, this Nexus is unaffected by your effects, other than this Nexus’s own effects."
+   "{{Mirage|Cost 3}}",
+   "During Set (Start of Opposing Attack Step)",
+   "By discarding a \"Proximate\"/\"Astroblazer\" family card from your Hand, during this turn, one of the (When Attacks) effects of an opposing Spirit can't activate.",
+   "During Set Rebirth5",
+   "When the opponent Rebirths, after that effect resolves, you can flip this Mirage onto the Field by putting any number of cores from your Field/Reserve onto it.",
+   "[LV1]",
+   "This Nexus’s symbol is also treated as Red/Purple/Green/Yellow/Blue. Also, this Nexus is unaffected by your effects, other than this Nexus’s own effects."
   ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "Awaken X",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
+  "rcode": "転醒X",
   "rebirthTo": "SD63-TCP02B",
   "mechanics": [
    "Rebirth"

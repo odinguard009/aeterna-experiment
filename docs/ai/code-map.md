@@ -134,7 +134,7 @@ CPU_PROFILES, CPU_PROFILE_NAMES, CPU_SIM_PROFILES, cpuProfileName, cpuW, lifeVal
 ## apps/web/src/10-modals.js (160 lines, ~2.8k tokens) — MODALS (promise based)
 modalKind, modalBtns, paintModal, uiInfo, modal, PEEK, endPeek, paintPeek, startPeek, peekRefresh, closeModal, modalPress, PICK, clearPick, webPick, webPayment
 
-## apps/web/src/11-human.js (321 lines, ~8.1k tokens) — HUMAN ACTIONS: the dialogs of the human seat. Board actions are intent records (v0.84.0, F3 = M3 rest):
+## apps/web/src/11-human.js (322 lines, ~8.2k tokens) — HUMAN ACTIONS: the dialogs of the human seat. Board actions are intent records (v0.84.0, F3 = M3 rest):
 humanCan, legalityHTML, FX_KW_START, FX_LINE_STOP, TPL_NAMES, descText, glossText, FX_TERM_RE, familyRowHTML, FX_JUNK, FX_HEAD, fxLevelRuns, effectLines, fxMark, fxTerms, fxMark0, slashBreak, effectTextHTML, cardDetailHTML, residualHTML, ART_HEX, ART_CACHE, artMix, cardArtSVG, cardFacePlaceholder, cardFaceHTML, cardStripHTML, mullCardHTML, openZoom, handButtons, HAND_INTENTS, runHandAction, humanCast, humanAttack, onNext, REB_SIDES, rebirthSideOf, showCardDetail, openHandModal, openFieldModal
 
 ## apps/web/src/12-zones.js (110 lines, ~2.4k tokens) — ZONES, LOG, RULES COVERAGE

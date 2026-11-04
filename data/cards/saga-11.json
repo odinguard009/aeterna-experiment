@@ -20155,6 +20155,111 @@
   "note": "Partial card (v0.79.0 Rebirth import 2026-11-01): Rebirth front side only, effects not wired; the flip/rebirth rule is not in the engine yet."
  },
  {
+  "id": "BS55-TCP10",
+  "name": "The NewWorld's Alex",
+  "name_jp": "新世界のアレックス",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 4,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   },
+   {
+    "cores": 3,
+    "bp": 5000
+   },
+   {
+    "cores": 4,
+    "bp": 7000
+   }
+  ],
+  "families": [
+   "Primal"
+  ],
+  "text": "This card's reduction symbols are also treated as Yellow.\n\n[LV1][LV2][LV3] (When Summoned)\nDuring this turn, an opposing Spirit/Nexus can't activate its effects, and return that Spirit/Nexus to the Hand.\n\n[LV1][LV2][LV3]\nThis Spirit's symbol is also treated as Yellow.\n\n[LV2][LV3] Rebirth5\nWhen the opposing Life is reduced, or this Spirit would leave the Field due to the opponent, you can flip it (Cores on it are sent to the Reserve).",
+  "image": "BS55-TCP10.png",
+  "block": "55",
+  "saga": 11,
+  "colors": [
+   "white",
+   "yellow"
+  ],
+  "bicon": [
+   "7"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "This card's reduction symbols are also treated as Yellow.",
+   "[LV1][LV2][LV3] (When Summoned)",
+   "During this turn, an opposing Spirit/Nexus can't activate its effects, and return that Spirit/Nexus to the Hand.",
+   "[LV1][LV2][LV3]",
+   "This Spirit's symbol is also treated as Yellow.",
+   "[LV2][LV3] Rebirth5",
+   "When the opposing Life is reduced, or this Spirit would leave the Field due to the opponent, you can flip it (Cores on it are sent to the Reserve)."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
+  "rcode": "CP",
+  "rebirthTo": "BS55-TCP10B",
+  "mechanics": [
+   "Rebirth"
+  ]
+ },
+ {
+  "id": "BS55-TX04",
+  "name": "The Genesis Mega-Grandstone",
+  "name_jp": "創醒の大創界石",
+  "type": "Nexus",
+  "color": "green",
+  "cost": 2,
+  "reduction": {
+   "green": 1,
+   "yellow": 1
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 0
+   }
+  ],
+  "families": [
+   "Grandstone",
+   "Primal"
+  ],
+  "text": "GSTrule\n\nRelease: (When your Life or the opposing Life is reduced)\n◆When the Release condition is fulfilled, you can put one core from the Void to this Nexus.\n\n[LV1] Rebirth5\nWhen the number of cores on this Nexus becomes four or more, this Nexus can be flipped (all but one cores on it are sent to the Void).\n\nGrand Mystery [LV1]\nEvery Cost 3 or less Nexus/Grandwalker Nexus has zero symbols. Also, effects of six-colored Nexuses/Grandwalker Nexuses can't activate.",
+  "image": "BS55-TX04.png",
+  "block": "55",
+  "saga": 11,
+  "colors": [
+   "green",
+   "yellow"
+  ],
+  "bicon": [
+   "7"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "GSTrule",
+   "Release: (When your Life or the opposing Life is reduced)",
+   "◆When the Release condition is fulfilled, you can put one core from the Void to this Nexus.",
+   "[LV1] Rebirth5",
+   "When the number of cores on this Nexus becomes four or more, this Nexus can be flipped (all but one cores on it are sent to the Void).",
+   "Grand Mystery [LV1]",
+   "Every Cost 3 or less Nexus/Grandwalker Nexus has zero symbols. Also, effects of six-colored Nexuses/Grandwalker Nexuses can't activate."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
+  "rcode": "転醒X",
+  "rebirthTo": "BS55-TX04B",
+  "mechanics": [
+   "Rebirth"
+  ]
+ },
+ {
   "id": "BS55-X01",
   "name": "The SupremeDestructionDeity Dragno",
   "name_jp": "ドラグノ覇壊神",
@@ -22475,6 +22580,10 @@
   "symbols": 1,
   "levels": [
    {
+    "cores": 1,
+    "bp": 3000
+   },
+   {
     "cores": 2,
     "bp": 5000
    },
@@ -22507,7 +22616,7 @@
    "[LV2][LV3] Zero Rebirth",
    "During the Flash Timing of either Attack Step, if there is any Spirit with two symbols or more, you can flip this Spirit."
   ],
-  "note": "Partial card (v0.79.0 Rebirth import 2026-11-01): Rebirth front side only, effects not wired; the flip/rebirth rule is not in the engine yet."
+  "note": "Partial card (v0.79.0 Rebirth import 2026-11-01): Rebirth front side only, effects not wired; the flip/rebirth rule is not in the engine yet. v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face)."
  },
  {
   "id": "CB13-011",
@@ -40512,54 +40621,6 @@
    "[LV1] (Your Draw Step)",
    "Increase the amount of cards you draw by +1.",
    "After you draw, discard a card from your Hand."
-  ],
-  "note": "Partial card (v0.79.0 Rebirth import 2026-11-01): Rebirth front side only, effects not wired; the flip/rebirth rule is not in the engine yet."
- },
- {
-  "id": "SD57-006",
-  "name": "The Owari World",
-  "name_jp": "オワリノ世界",
-  "type": "Spirit",
-  "color": "red",
-  "cost": 4,
-  "reduction": {
-   "red": 1,
-   "purple": 1,
-   "green": 1,
-   "white": 1,
-   "yellow": 1,
-   "blue": 1
-  },
-  "symbols": 2,
-  "levels": [
-   {
-    "cores": 1,
-    "bp": 0
-   }
-  ],
-  "families": [
-   "Primal"
-  ],
-  "mechanics": [
-   "Rebirth"
-  ],
-  "text": "[LV1] Rebirth3\nWhen your Spirit with two colors or more attacks, or this Nexus would leave the Field by an opposing effect, you can flip this Nexus, putting your onto it.\n\n[LV1]\nWhen you're summoning a \"God-Sechs\"/\"Six Heaven\"-named card, this Nexus's symbols are also treated as Red/Purple/Green/White/Yellow/Blue.\n\n[LV1] (Your Attack Step)\nEvery \"God-Sechs\"-named Spirit you control is treated as being on its highest level.",
-  "image": "SD57-006(A).png",
-  "block": "7",
-  "saga": 11,
-  "rcode": "Rebirth Rare",
-  "bicon": [
-   "7"
-  ],
-  "rebirthTo": "SD57-006B",
-  "fxComplete": false,
-  "residual": [
-   "[LV1] Rebirth3",
-   "When your Spirit with two colors or more attacks, or this Nexus would leave the Field by an opposing effect, you can flip this Nexus, putting your onto it.",
-   "[LV1]",
-   "When you're summoning a \"God-Sechs\"/\"Six Heaven\"-named card, this Nexus's symbols are also treated as Red/Purple/Green/White/Yellow/Blue.",
-   "[LV1] (Your Attack Step)",
-   "Every \"God-Sechs\"-named Spirit you control is treated as being on its highest level."
   ],
   "note": "Partial card (v0.79.0 Rebirth import 2026-11-01): Rebirth front side only, effects not wired; the flip/rebirth rule is not in the engine yet."
  },

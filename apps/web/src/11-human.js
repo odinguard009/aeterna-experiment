@@ -28,6 +28,7 @@ function descText(raw) {
     n = n.trim(); if (n === '!') return '';
     const nm = TPL_NAMES[n.toLowerCase()] || n.charAt(0).toUpperCase() + n.slice(1);
     const args = a.split('|').slice(1).map(x => x.trim().replace(/^\((.*)\)$/, '$1').replace(/\s*\(\)$/, '').trim()).filter(x => x && x !== '!');
+    if (n.toLowerCase() === 'tk' && args.length > 1) return '⟦' + args[0] + '⟧ ' + args.slice(1).join(' ');     // {{tk|Ultimate Trigger|[LV4][LV5] (When Attacks)}}: the name is the marker, the level tag stays plain text (a level tag inside a marker split the line)
     return '⟦' + nm + (args.length ? ': ' + args.join(' · ') : '') + '⟧';
   });
 }

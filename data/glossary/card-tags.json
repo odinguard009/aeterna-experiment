@@ -49540,6 +49540,17 @@
   "M_OPTIONAL",
   "M_BY_DOING"
  ],
+ "BS55-TCP10": [
+  "T_SUMMONED",
+  "C_LEVEL",
+  "M_OPTIONAL"
+ ],
+ "BS55-TX04": [
+  "A_VOID",
+  "C_LEVEL",
+  "K_GRANDWALKER",
+  "M_OPTIONAL"
+ ],
  "BS55-X01": [
   "T_SUMMONED",
   "T_ATTACKS",
@@ -53221,11 +53232,6 @@
   "C_LEVEL",
   "M_OPTIONAL"
  ],
- "SD57-006": [
-  "T_ALLY_ATTACKS",
-  "C_LEVEL",
-  "M_OPTIONAL"
- ],
  "SD57-TX01": [
   "T_ATTACKS",
   "A_REFRESH",
@@ -53944,6 +53950,11 @@
   "M_OPTIONAL",
   "T_DURING_BRAVE"
  ],
+ "BS56-TX02": [
+  "T_ALLY_LIFE_HIT",
+  "C_LEVEL",
+  "M_OPTIONAL"
+ ],
  "BS56-X01": [
   "T_ATTACKS",
   "A_REFRESH",
@@ -54583,6 +54594,13 @@
   "M_REPLACEMENT",
   "A_MILL"
  ],
+ "BS57-064": [
+  "A_DRAW",
+  "C_LEVEL",
+  "K_ULTIMATE",
+  "M_OPTIONAL",
+  "M_BY_DOING"
+ ],
  "BS57-065": [
   "T_MIRAGE_LIFE",
   "A_VOID",
@@ -54734,6 +54752,79 @@
   "A_SUMMON_FREE",
   "S_UNAFFECTED",
   "K_MIRAGE",
+  "K_ULTIMATE",
+  "M_OPTIONAL"
+ ],
+ "BS57-TCP01": [
+  "T_ATTACKS",
+  "K_BRAVE",
+  "K_ULTIMATE",
+  "T_DESTROYED",
+  "M_OPTIONAL",
+  "T_DURING_BRAVE"
+ ],
+ "BS57-TCP02": [
+  "S_UNAFFECTED",
+  "K_BRAVE",
+  "K_ARMOR",
+  "M_OPTIONAL",
+  "T_DURING_BRAVE"
+ ],
+ "BS57-TCP03": [
+  "T_ATTACKS",
+  "A_REFRESH",
+  "K_BRAVE",
+  "K_ULTIMATE",
+  "M_OPTIONAL",
+  "T_DURING_BRAVE",
+  "A_BP_MINUS"
+ ],
+ "BS57-TCP04": [
+  "C_LEVEL",
+  "K_GRANDWALKER",
+  "M_OPTIONAL"
+ ],
+ "BS57-TCP05": [
+  "T_SUMMONED",
+  "C_LEVEL",
+  "K_GRANDWALKER",
+  "M_OPTIONAL"
+ ],
+ "BS57-TCP06": [
+  "T_ATTACKS",
+  "C_LEVEL",
+  "K_GRANDWALKER",
+  "M_OPTIONAL",
+  "M_IF_YOU_DO"
+ ],
+ "BS57-TCP07": [
+  "T_SUMMONED",
+  "A_VOID",
+  "C_LEVEL",
+  "K_GRANDWALKER",
+  "K_ULTIMATE",
+  "M_OPTIONAL"
+ ],
+ "BS57-TCP08": [
+  "T_SUMMONED",
+  "C_LEVEL",
+  "K_GRANDWALKER",
+  "K_ULTIMATE",
+  "M_OPTIONAL"
+ ],
+ "BS57-TCP09": [
+  "T_SUMMONED",
+  "C_LIFE",
+  "C_LEVEL",
+  "K_GRANDWALKER",
+  "K_ULTIMATE",
+  "M_OPTIONAL",
+  "A_DRAW_BOTTOM"
+ ],
+ "BS57-TCP10": [
+  "T_ATTACKS",
+  "C_LEVEL",
+  "K_GRANDWALKER",
   "K_ULTIMATE",
   "M_OPTIONAL"
  ],
@@ -55511,6 +55602,25 @@
   "K_ULTIMATE",
   "A_DESTROY_COST"
  ],
+ "BS58-TCP01": [
+  "T_SUMMONED",
+  "T_ATTACKS",
+  "C_LEVEL",
+  "K_BRAVE",
+  "K_ULTIMATE",
+  "M_OPTIONAL",
+  "T_DURING_BRAVE",
+  "A_OPP_CORES_TO_RESERVE"
+ ],
+ "BS58-TCP02": [
+  "T_ATTACKS",
+  "T_REVEALED",
+  "A_REFRESH",
+  "K_BRAVE",
+  "M_OPTIONAL",
+  "M_IF_YOU_DO",
+  "T_DURING_BRAVE"
+ ],
  "BS58-TCP03": [
   "T_ATTACKS",
   "T_ALLY_BLOCKED",
@@ -55813,6 +55923,14 @@
   "A_VOID",
   "C_LEVEL",
   "K_RUSH"
+ ],
+ "BS59-014": [
+  "T_ATTACKS",
+  "A_REFRESH",
+  "C_LEVEL",
+  "K_BRAVE",
+  "K_ULTIMATE",
+  "M_OPTIONAL"
  ],
  "BS59-015": [
   "T_SUMMONED",
@@ -56271,6 +56389,12 @@
   "K_MIRAGE",
   "M_OPTIONAL"
  ],
+ "BS59-067": [
+  "T_ALLY_LOST",
+  "A_TRASH_TO_RESERVE",
+  "C_LEVEL",
+  "M_OPTIONAL"
+ ],
  "BS59-068": [
   "T_MIRAGE_LIFE",
   "A_VOID",
@@ -56328,6 +56452,13 @@
   "C_CONTROL",
   "K_BRAVE",
   "M_OPTIONAL"
+ ],
+ "BS59-076": [
+  "C_MIRAGE_SET",
+  "K_MIRAGE",
+  "K_BRAVE",
+  "M_OPTIONAL",
+  "A_DRAW_BOTTOM"
  ],
  "BS59-077": [
   "A_TRASH_TO_RESERVE",
@@ -56440,6 +56571,41 @@
   "T_DURING_BRAVE",
   "A_REMOVED_ZONE",
   "A_VOID_TO_LIFE"
+ ],
+ "BS59-TCP01": [
+  "T_SUMMONED",
+  "T_ATTACKS",
+  "A_DRAW",
+  "A_DESTROY_NEXUS",
+  "C_LEVEL",
+  "K_BRAVE",
+  "K_ULTIMATE",
+  "M_OPTIONAL",
+  "T_DURING_BRAVE"
+ ],
+ "BS59-TCP02": [
+  "T_SUMMONED",
+  "T_ATTACKS",
+  "A_REFRESH",
+  "A_VOID",
+  "A_EXHAUST",
+  "C_LEVEL",
+  "K_BRAVE",
+  "K_ULTIMATE",
+  "M_OPTIONAL",
+  "T_DURING_BRAVE"
+ ],
+ "BS59-TCP03": [
+  "T_SUMMONED",
+  "T_ATTACKS",
+  "A_REFRESH",
+  "A_EXHAUST",
+  "A_DISCARD_OPP",
+  "C_LEVEL",
+  "K_BRAVE",
+  "M_OPTIONAL",
+  "M_UP_TO",
+  "T_DURING_BRAVE"
  ],
  "BS59-TX01": [
   "T_SUMMONED",
@@ -87537,6 +87703,46 @@
   "M_OPTIONAL",
   "A_MILL"
  ],
+ "BS73-TCP01": [
+  "T_ALLY_ATTACKS",
+  "A_LIFE_TO_RESERVE",
+  "C_LEVEL",
+  "M_OPTIONAL"
+ ],
+ "BS73-TCP02": [
+  "C_LEVEL",
+  "M_OPTIONAL",
+  "M_UNSTACKABLE",
+  "F_OTHER_NOSTACK"
+ ],
+ "BS73-TCP03": [
+  "A_VOID",
+  "A_EXHAUST",
+  "C_LEVEL",
+  "M_OPTIONAL",
+  "M_REPLACEMENT"
+ ],
+ "BS73-TCP04": [
+  "A_BOUNCE",
+  "A_REFRESH",
+  "C_LEVEL",
+  "M_OPTIONAL"
+ ],
+ "BS73-TCP05": [
+  "A_REFRESH",
+  "C_LEVEL",
+  "M_OPTIONAL",
+  "A_BP_MINUS"
+ ],
+ "BS73-TCP06": [
+  "T_SUMMONED",
+  "A_VOID",
+  "A_EXHAUST",
+  "C_LEVEL",
+  "K_ADVENT",
+  "K_GRANDWALKER",
+  "M_OPTIONAL"
+ ],
  "BS73-TX01": [
   "A_TRASH_TO_RESERVE",
   "A_RETURN_TRASH",
@@ -99074,11 +99280,6 @@
   "A_DRAW_BOTTOM",
   "A_VOID_TO_LIFE"
  ],
- "BS55-TCP10": [
-  "T_SUMMONED",
-  "C_LEVEL",
-  "M_OPTIONAL"
- ],
  "BS55-TX01": [
   "T_ATTACKS",
   "A_LIFE_TO_RESERVE",
@@ -99102,12 +99303,6 @@
   "K_ACCEL",
   "M_OPTIONAL"
  ],
- "BS55-TX04": [
-  "A_VOID",
-  "C_LEVEL",
-  "K_GRANDWALKER",
-  "M_OPTIONAL"
- ],
  "BS56-TX01": [
   "A_REFRESH",
   "A_AWAKEN",
@@ -99116,11 +99311,6 @@
   "M_OPTIONAL",
   "M_IF_YOU_DO",
   "A_SYMBOL_PLUS"
- ],
- "BS56-TX02": [
-  "T_ALLY_LIFE_HIT",
-  "C_LEVEL",
-  "M_OPTIONAL"
  ],
  "BS56-TX03": [
   "T_ATTACKS",
@@ -99143,86 +99333,6 @@
   "C_LEVEL",
   "K_MIRAGE",
   "K_GRANDWALKER",
-  "M_OPTIONAL"
- ],
- "BS57-064": [
-  "A_DRAW",
-  "C_LEVEL",
-  "K_ULTIMATE",
-  "M_OPTIONAL",
-  "M_BY_DOING"
- ],
- "BS57-TCP01": [
-  "T_ATTACKS",
-  "K_BRAVE",
-  "K_ULTIMATE",
-  "T_DESTROYED",
-  "M_OPTIONAL",
-  "T_DURING_BRAVE"
- ],
- "BS57-TCP02": [
-  "S_UNAFFECTED",
-  "K_BRAVE",
-  "K_ARMOR",
-  "M_OPTIONAL",
-  "T_DURING_BRAVE"
- ],
- "BS57-TCP03": [
-  "T_ATTACKS",
-  "A_REFRESH",
-  "K_BRAVE",
-  "K_ULTIMATE",
-  "M_OPTIONAL",
-  "T_DURING_BRAVE",
-  "A_BP_MINUS"
- ],
- "BS57-TCP04": [
-  "C_LEVEL",
-  "K_GRANDWALKER",
-  "M_OPTIONAL"
- ],
- "BS57-TCP05": [
-  "T_SUMMONED",
-  "C_LEVEL",
-  "K_GRANDWALKER",
-  "M_OPTIONAL"
- ],
- "BS57-TCP06": [
-  "T_ATTACKS",
-  "C_LEVEL",
-  "K_GRANDWALKER",
-  "M_OPTIONAL",
-  "M_IF_YOU_DO"
- ],
- "BS57-TCP07": [
-  "T_SUMMONED",
-  "A_VOID",
-  "C_LEVEL",
-  "K_GRANDWALKER",
-  "K_ULTIMATE",
-  "M_OPTIONAL"
- ],
- "BS57-TCP08": [
-  "T_SUMMONED",
-  "C_LEVEL",
-  "K_GRANDWALKER",
-  "K_ULTIMATE",
-  "M_OPTIONAL"
- ],
- "BS57-TCP09": [
-  "T_SUMMONED",
-  "C_LIFE",
-  "C_LEVEL",
-  "K_GRANDWALKER",
-  "K_ULTIMATE",
-  "M_OPTIONAL",
-  "A_DRAW_BOTTOM"
- ],
- "BS57-TCP10": [
-  "T_ATTACKS",
-  "C_LEVEL",
-  "K_GRANDWALKER",
-  "K_ULTIMATE",
   "M_OPTIONAL"
  ],
  "BS57-TX01": [
@@ -99256,25 +99366,6 @@
   "K_MIRAGE",
   "M_OPTIONAL"
  ],
- "BS58-TCP01": [
-  "T_SUMMONED",
-  "T_ATTACKS",
-  "C_LEVEL",
-  "K_BRAVE",
-  "K_ULTIMATE",
-  "M_OPTIONAL",
-  "T_DURING_BRAVE",
-  "A_OPP_CORES_TO_RESERVE"
- ],
- "BS58-TCP02": [
-  "T_ATTACKS",
-  "T_REVEALED",
-  "A_REFRESH",
-  "K_BRAVE",
-  "M_OPTIONAL",
-  "M_IF_YOU_DO",
-  "T_DURING_BRAVE"
- ],
  "BS58-TCP06": [
   "T_ATTACKS",
   "A_VOID",
@@ -99293,27 +99384,6 @@
   "C_LEVEL",
   "M_OPTIONAL",
   "M_THEN"
- ],
- "BS59-014": [
-  "T_ATTACKS",
-  "A_REFRESH",
-  "C_LEVEL",
-  "K_BRAVE",
-  "K_ULTIMATE",
-  "M_OPTIONAL"
- ],
- "BS59-067": [
-  "T_ALLY_LOST",
-  "A_TRASH_TO_RESERVE",
-  "C_LEVEL",
-  "M_OPTIONAL"
- ],
- "BS59-076": [
-  "C_MIRAGE_SET",
-  "K_MIRAGE",
-  "K_BRAVE",
-  "M_OPTIONAL",
-  "A_DRAW_BOTTOM"
  ],
  "BS59-CP02": [
   "T_SUMMONED",
@@ -99340,41 +99410,6 @@
   "M_OPTIONAL",
   "M_IF_YOU_DO",
   "A_MILL"
- ],
- "BS59-TCP01": [
-  "T_SUMMONED",
-  "T_ATTACKS",
-  "A_DRAW",
-  "A_DESTROY_NEXUS",
-  "C_LEVEL",
-  "K_BRAVE",
-  "K_ULTIMATE",
-  "M_OPTIONAL",
-  "T_DURING_BRAVE"
- ],
- "BS59-TCP02": [
-  "T_SUMMONED",
-  "T_ATTACKS",
-  "A_REFRESH",
-  "A_VOID",
-  "A_EXHAUST",
-  "C_LEVEL",
-  "K_BRAVE",
-  "K_ULTIMATE",
-  "M_OPTIONAL",
-  "T_DURING_BRAVE"
- ],
- "BS59-TCP03": [
-  "T_SUMMONED",
-  "T_ATTACKS",
-  "A_REFRESH",
-  "A_EXHAUST",
-  "A_DISCARD_OPP",
-  "C_LEVEL",
-  "K_BRAVE",
-  "M_OPTIONAL",
-  "M_UP_TO",
-  "T_DURING_BRAVE"
  ],
  "BS60-CP01": [],
  "BS60-CP02": [
@@ -99715,46 +99750,6 @@
   "M_OPTIONAL",
   "M_IF_YOU_DO",
   "A_NO_BURST"
- ],
- "BS73-TCP01": [
-  "T_ALLY_ATTACKS",
-  "A_LIFE_TO_RESERVE",
-  "C_LEVEL",
-  "M_OPTIONAL"
- ],
- "BS73-TCP02": [
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "M_UNSTACKABLE",
-  "F_OTHER_NOSTACK"
- ],
- "BS73-TCP03": [
-  "A_VOID",
-  "A_EXHAUST",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "M_REPLACEMENT"
- ],
- "BS73-TCP04": [
-  "A_BOUNCE",
-  "A_REFRESH",
-  "C_LEVEL",
-  "M_OPTIONAL"
- ],
- "BS73-TCP05": [
-  "A_REFRESH",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "A_BP_MINUS"
- ],
- "BS73-TCP06": [
-  "T_SUMMONED",
-  "A_VOID",
-  "A_EXHAUST",
-  "C_LEVEL",
-  "K_ADVENT",
-  "K_GRANDWALKER",
-  "M_OPTIONAL"
  ],
  "BS74-AX01": [
   "T_ATTACKS",
@@ -108819,6 +108814,11 @@
   "C_LEVEL",
   "K_BRAVE",
   "T_DURING_BRAVE"
+ ],
+ "SD57-006": [
+  "T_ALLY_ATTACKS",
+  "C_LEVEL",
+  "M_OPTIONAL"
  ],
  "SD57-CP01": [
   "A_VOID",

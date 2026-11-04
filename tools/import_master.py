@@ -67,6 +67,7 @@ def build(r):
     jpt = '' if (r.get('text_jp') or '-').strip() in ('', '-') else r['text_jp'].strip()
     en_t = (r.get('text_en') or '').strip()
     text = en_t or jpt
+    if text.lstrip().startswith('{{#tag:') and text.count('{{') > text.count('}}'): text = text.rstrip() + '\n}}'      # the source lost the closing braces of a tabber
     levels = [{'cores': l['cores'], 'bp': l['bp']} if l.get('bp') is not None else {'cores': l['cores']} for l in r.get('levels') or []]
     if r['type'] in ('Spirit', 'Ultimate', 'Brave'):
         levels = [l for l in levels if l.get('bp') is not None]
@@ -109,6 +110,7 @@ for r in M.values():
     new = r['library_status'] == 'missing'
     wrong = FIX and r['library_status'] == 'in_library' and r['id'] in lib and lib[r['id']].get('saga') == 60 and lib[r['id']].get('note', '').startswith('Reprint of') \
         and r.get('sources') and 'official' in r['sources']
+    if new and r['id'] in lib: new = False                       # master library_status is a snapshot: never overwrite a card imported since
     if not (new or wrong): continue
     if r['class'] in ('stub', 'token'): skip[r['class']] += 1; continue
     c = build(r) if r.get('type') else None

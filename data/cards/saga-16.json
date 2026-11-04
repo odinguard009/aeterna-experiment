@@ -10281,6 +10281,264 @@
   "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
  },
  {
+  "id": "BS73-TCP01",
+  "name": "The Red World",
+  "name_jp": "赤の世界",
+  "type": "Nexus",
+  "color": "red",
+  "cost": 3,
+  "reduction": {
+   "red": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0
+   }
+  ],
+  "families": [
+   "Primal",
+   "Devotee"
+  ],
+  "text": "[LV1] Rebirth5\nWhen your Red Cost 5 or more Spirit attacks, or when this Nexus would leave the Field by opposing effects, you can flip this Nexus, putting your onto it.\n\n[LV1] (When Deployed)\nDestroy an opposing Spirit with the lowest BP.\n\n[LV1] (Your Attack Step)\nAt the end of your Red-only, originally Cost 5 or more Spirit's battle, send an opposing Life to the Reserve. This effect doesn't stack.",
+  "image": "BS73-TCP01.png",
+  "block": "73",
+  "saga": 16,
+  "bicon": [
+   "12"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "[LV1] Rebirth5",
+   "When your Red Cost 5 or more Spirit attacks, or when this Nexus would leave the Field by opposing effects, you can flip this Nexus, putting your onto it.",
+   "[LV1] (When Deployed)",
+   "Destroy an opposing Spirit with the lowest BP.",
+   "[LV1] (Your Attack Step)",
+   "At the end of your Red-only, originally Cost 5 or more Spirit's battle, send an opposing Life to the Reserve. This effect doesn't stack."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
+  "rcode": "CP",
+  "rebirthTo": "BS73-TCP01B",
+  "mechanics": [
+   "Rebirth"
+  ]
+ },
+ {
+  "id": "BS73-TCP02",
+  "name": "The Purple World",
+  "name_jp": "紫の世界",
+  "type": "Nexus",
+  "color": "purple",
+  "cost": 3,
+  "reduction": {
+   "purple": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0
+   }
+  ],
+  "families": [
+   "Primal",
+   "Devotee"
+  ],
+  "text": "[LV1] Rebirth5\nWhen opposing Spirits are depleted/destroyed, or when this Nexus would leave the Field by opposing effects, you can flip this Nexus, putting your onto it.\n\n[LV1] (When Deployed)\nYou can draw a card.\n\n[LV1] (Opposing Attack Step)\n(Can't Stack) While all Nexuses you control are Purple, when an opposing Spirit attacks, you can send a core from that Spirit to the Trash.",
+  "image": "BS73-TCP02.png",
+  "block": "73",
+  "saga": 16,
+  "bicon": [
+   "12"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "[LV1] Rebirth5",
+   "When opposing Spirits are depleted/destroyed, or when this Nexus would leave the Field by opposing effects, you can flip this Nexus, putting your onto it.",
+   "[LV1] (When Deployed)",
+   "You can draw a card.",
+   "[LV1] (Opposing Attack Step)",
+   "(Can't Stack) While all Nexuses you control are Purple, when an opposing Spirit attacks, you can send a core from that Spirit to the Trash."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
+  "rcode": "CP",
+  "rebirthTo": "BS73-TCP02B",
+  "mechanics": [
+   "Rebirth"
+  ]
+ },
+ {
+  "id": "BS73-TCP03",
+  "name": "The Green World",
+  "name_jp": "緑の世界",
+  "type": "Nexus",
+  "color": "green",
+  "cost": 3,
+  "reduction": {
+   "green": 1
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0
+   }
+  ],
+  "families": [
+   "Primal",
+   "Devotee"
+  ],
+  "text": "[LV1] Rebirth5\nWhen opposing Spirits/your Cost 6 or more Green Spirits exhaust, or when this Nexus would leave the Field by opposing effects, you can flip this Nexus, putting your onto it.\n\n[LV1] (When Deployed)\nYou can put a core from the Void to your Reserve.\n\n[LV1]\nWhen your Green \"Primal\" effect, besides this Nexus's effect, would increase cores, instead of increasing cores, you can draw a card.",
+  "image": "BS73-TCP03.png",
+  "block": "73",
+  "saga": 16,
+  "bicon": [
+   "12"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "[LV1] Rebirth5",
+   "When opposing Spirits/your Cost 6 or more Green Spirits exhaust, or when this Nexus would leave the Field by opposing effects, you can flip this Nexus, putting your onto it.",
+   "[LV1] (When Deployed)",
+   "You can put a core from the Void to your Reserve.",
+   "[LV1]",
+   "When your Green \"Primal\" effect, besides this Nexus's effect, would increase cores, instead of increasing cores, you can draw a card."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
+  "rcode": "CP",
+  "rebirthTo": "BS73-TCP03B",
+  "mechanics": [
+   "Rebirth"
+  ]
+ },
+ {
+  "id": "BS73-TCP04",
+  "name": "The White World",
+  "name_jp": "白の世界",
+  "type": "Nexus",
+  "color": "white",
+  "cost": 3,
+  "reduction": {
+   "white": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0
+   }
+  ],
+  "families": [
+   "Primal",
+   "Devotee"
+  ],
+  "text": "[LV1] Rebirth5\nWhen either your White Spirit blocks/is refreshed by effects, or this Nexus would leave the Field by opposing effects, you can flip this Nexus, putting your onto it.\n\n[LV1] (When Deployed)\nReturn an opposing Spirit with two or more symbols to the deckbottom.\n\n[LV1]\nWhen your Life is reduced, you can return an opposing Spirit to the Hand.",
+  "image": "BS73-TCP04.png",
+  "block": "73",
+  "saga": 16,
+  "bicon": [
+   "12"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "[LV1] Rebirth5",
+   "When either your White Spirit blocks/is refreshed by effects, or this Nexus would leave the Field by opposing effects, you can flip this Nexus, putting your onto it.",
+   "[LV1] (When Deployed)",
+   "Return an opposing Spirit with two or more symbols to the deckbottom.",
+   "[LV1]",
+   "When your Life is reduced, you can return an opposing Spirit to the Hand."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
+  "rcode": "CP",
+  "rebirthTo": "BS73-TCP04B",
+  "mechanics": [
+   "Rebirth"
+  ]
+ },
+ {
+  "id": "BS73-TCP05",
+  "name": "The Yellow World",
+  "name_jp": "黄の世界",
+  "type": "Nexus",
+  "color": "yellow",
+  "cost": 3,
+  "reduction": {
+   "yellow": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0
+   }
+  ],
+  "families": [
+   "Primal",
+   "Devotee"
+  ],
+  "text": "[LV1] Rebirth5\nWhen your Life is either reduced, or increased by your \"Primal\" family effect, or when this Nexus would leave the Field by opposing effects, you can flip this Nexus, putting your onto it.\n\n[LV1] (When Deployed)\nDuring this turn, give an opposing Spirit -6000 BP, and destroy it if its BP is brought to 0.\n\n[LV1] (Opposing Attack Step)\nOpposing originally Cost 6 or less Spirits can't be refreshed by effects.",
+  "image": "BS73-TCP05.png",
+  "block": "73",
+  "saga": 16,
+  "bicon": [
+   "12"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "[LV1] Rebirth5",
+   "When your Life is either reduced, or increased by your \"Primal\" family effect, or when this Nexus would leave the Field by opposing effects, you can flip this Nexus, putting your onto it.",
+   "[LV1] (When Deployed)",
+   "During this turn, give an opposing Spirit -6000 BP, and destroy it if its BP is brought to 0.",
+   "[LV1] (Opposing Attack Step)",
+   "Opposing originally Cost 6 or less Spirits can't be refreshed by effects."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
+  "rcode": "CP",
+  "rebirthTo": "BS73-TCP05B",
+  "mechanics": [
+   "Rebirth"
+  ]
+ },
+ {
+  "id": "BS73-TCP06",
+  "name": "The Blue World",
+  "name_jp": "青の世界",
+  "type": "Nexus",
+  "color": "blue",
+  "cost": 3,
+  "reduction": {
+   "blue": 2
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 0
+   }
+  ],
+  "families": [
+   "Primal",
+   "Devotee"
+  ],
+  "text": "[LV1] Rebirth5\nWhen either your or the opposing Life is reduced, or when this Nexus would leave the Field by opposing effects, you can flip this Nexus, putting your onto it.\n\n[LV1] (When Deployed)\nSend all cores from every opposing Grandwalker Nexus to the Void.\n\n[LV1]\nWhen an opposing Spirit would activate its (When Summoned/Advent/Reborn) effect, before the effect activates, by exhausting a Blue-only \"Primal\" family Spirit you control, immediately negate that effect.",
+  "image": "BS73-TCP06.png",
+  "block": "73",
+  "saga": 16,
+  "bicon": [
+   "12"
+  ],
+  "fxComplete": false,
+  "residual": [
+   "[LV1] Rebirth5",
+   "When either your or the opposing Life is reduced, or when this Nexus would leave the Field by opposing effects, you can flip this Nexus, putting your onto it.",
+   "[LV1] (When Deployed)",
+   "Send all cores from every opposing Grandwalker Nexus to the Void.",
+   "[LV1]",
+   "When an opposing Spirit would activate its (When Summoned/Advent/Reborn) effect, before the effect activates, by exhausting a Blue-only \"Primal\" family Spirit you control, immediately negate that effect."
+  ],
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. (kept Rebirth link). v0.217: stats rebuilt from the official front face (the old import took the Rebirth back face).",
+  "rcode": "CP",
+  "rebirthTo": "BS73-TCP06B",
+  "mechanics": [
+   "Rebirth"
+  ]
+ },
+ {
   "id": "BS73-TX01",
   "name": "The SengokuDragon Souldragon X",
   "name_jp": "戦国龍ソウルドラゴンX",
