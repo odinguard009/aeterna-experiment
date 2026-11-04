@@ -63,3 +63,30 @@ test('K-1134 BS74-081 Fungus Attack: Cost 4 by destroying a Fungal Bed; exhausts
     return { back, trash: O.trash.length, sp: O.spirits.length, alt: BS.CARDS['BS74-081'].costAlt, partial: BS.CARDS['BS74-081'].partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.back, true, JSON.stringify(r)); assert.equal(r.trash, 1, JSON.stringify(r)); assert.equal(r.sp, 1, JSON.stringify(r)); assert.equal(r.alt.bed, true, JSON.stringify(r));
 });
+
+test('K-1135 BS74-034 AriArikui: Summoned with Yum-Kaax sends a Fungal Bed and puts a core from the Void to each of up to three beds; the Burst chain deploys Yum-Kaax from the Trash', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const yk = BS.mkInst('BS73-CX01'); P.nexus = [yk]; P.tokens = { 'BS73-T001': 3 };
+    const s = BS.mkInst('BS74-034'); s.cores = 2; P.spirits = [s]; P.void = 5;
+    await BS.fireFx(P, 'SUMMONED', s, { subject: s });
+    const beds = P.nexus.filter(n => n.id === 'BS73-T001'); const got = beds.map(b => b.cores);
+    const y2 = BS.mkInst('BS73-CX01'); P.nexus = []; P.trash = [y2];
+    const c = { p: P, opp: O, src: s, ctx: {} }; await BS.FX_ACTIONS.DEPLOY_NAMED_TRASH_SOUL.run(c, { do: 'DEPLOY_NAMED_TRASH_SOUL', name: 'Contractor Yum-Kaax' });
+    return { nb: beds.length, got, dep: P.nexus.includes(y2), hu: BS.CARDS['BS74-034'].handUnaffected, partial: BS.CARDS['BS74-034'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.nb, 1, JSON.stringify(r)); assert.equal(r.got[0] >= 1, true, JSON.stringify(r)); assert.equal(r.dep, true, JSON.stringify(r)); assert.equal(r.hu, true, JSON.stringify(r));
+});
+
+test('K-1136 BS73-076 Fluffy Reverse: Main discards the Hand and draws per opposing Hand/Removed card; at Start of Main it returns from the Trash by destroying two beds', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 2;
+    const ft = Object.keys(BS.CARDS).find(k => (BS.CARDS[k].families || []).includes('Fungal Tree') && BS.CARDS[k].type === 'Spirit');
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token);
+    const m = BS.mkInst('BS73-076'); P.hand = [BS.mkInst(ft), BS.mkInst(any)]; P.deck = [1,2,3,4,5,6,7,8].map(() => BS.mkInst(any)); O.hand = [BS.mkInst(any), BS.mkInst(any)]; O.removed = [BS.mkInst(any)];
+    const c = { p: P, opp: O, src: m, ctx: {} }; await BS.FX_ACTIONS.DISCARD_HAND_FUNGAL_DRAW.run(c, { do: 'DISCARD_HAND_FUNGAL_DRAW' });
+    const hand = P.hand.length, tr = P.trash.length;
+    P.nexus = [BS.mkInst('BS73-T001'), BS.mkInst('BS73-T001')]; P.trash = [m]; P.hand = [];
+    await BS.fireFx(P, 'START_MAIN', null, {});
+    return { hand, tr, back: P.hand.includes(m), beds: P.nexus.length, partial: BS.CARDS['BS73-076'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.hand, 3, JSON.stringify(r)); assert.equal(r.tr, 2, JSON.stringify(r)); assert.equal(r.back, true, JSON.stringify(r)); assert.equal(r.beds, 0, JSON.stringify(r));
+});

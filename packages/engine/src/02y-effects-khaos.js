@@ -426,3 +426,33 @@ FX_ACTIONS.OPP_HAND_BOTTOM_PER_UP = { chk: a => Object.keys(a).every(k => ['do',
 /* REMOVE_OPP_TRASH_PER_EXH: "for each target exhausted by this effect (ctx.exhN), banish a card from the opposing Trash" (up to) */
 FX_ACTIONS.REMOVE_OPP_TRASH_PER_EXH = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => 'for each target exhausted, banish a card from the opposing Trash', can: c => c.opp.trash.length > 0,
   run: async c => { const n = Math.min(c.ctx.exhN || 0, 5); if (!n) { c.ctx.did = false; return; } await FX_ACTIONS.REMOVE_OPP_TRASH.run(c, { do: 'REMOVE_OPP_TRASH', n }); } };
+
+/* v520 VOID_TO_BEDS {n} ("put one core from the Void each to up to n of your Fungal Bed"), DEPLOY_NAMED_TRASH_SOUL {name} ("deploy one of your <name> from the Trash/Soul State without paying the cost"),
+   BEDS_RETURN_SELF {beds} ("by destroying N Fungal Bed, return this card from the Trash to the Hand"; the source must be in the Trash), DISCARD_HAND_FUNGAL_DRAW {} (BS73-076: discard the entire Hand; if
+   any Fungal Tree family card was discarded, draw one card per card in the opposing Hand + Removed Zone). */
+FX_ACTIONS.VOID_TO_BEDS = { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && Object.keys(a).every(k => ['do', 'if', 'n'].includes(k)), txt: a => `put one core from the Void each to up to ${a.n} of your "Fungal Bed"`, can: () => true,      // the Bed may be sent out by the effect just before
+  run: async (c, a) => {
+    c.ctx.did = false; let L = fungalBeds(c.p).sort((x, y) => x.cores - y.cores);
+    for (let j = 0; j < a.n && L.length; j++) {
+      const t = c.p.cpu ? L[0] : await fxPickTarget(c, L, `✨ <b>${esc(_nm(c))}</b><br>Tap a "Fungal Bed" that receives a core from the Void (${j + 1}/${a.n}).`); if (!t) break;
+      if (!takeFromVoid(c.p, 1)) break; t.cores++; L = L.filter(x => x !== t); c.ctx.did = true; log(`${_nm(c)}: a core moves from the Void to ${CARDS[t.id].name}.`);
+    }
+    io.view({ type: 'board' }); } };
+FX_ACTIONS.DEPLOY_NAMED_TRASH_SOUL = { chk: a => typeof a.name === 'string' && a.name.length > 0 && Object.keys(a).every(k => ['do', 'if', 'name'].includes(k)), txt: a => `deploy one of your "${a.name}" from the Trash/Soul State without paying the cost`,
+  can: (c, a) => c.p.trash.concat(c.p.soulState).some(x => CARDS[x.id].name.includes(a.name)),
+  run: async (c, a) => {
+    c.ctx.did = false; const L = c.p.trash.concat(c.p.soulState).filter(x => CARDS[x.id].name.includes(a.name)); if (!L.length) return;
+    const t = c.p.cpu || L.length === 1 ? L[0] : await chooseCard(c, L, `✨ ${_nm(c)}`, `Choose the "${a.name}" to deploy.`, true); if (!t) return;
+    await summonFree(c.p, t); c.ctx.did = true; } };
+FX_ACTIONS.BEDS_RETURN_SELF = { chk: a => Number.isInteger(a.beds) && a.beds >= 1 && a.beds <= 3 && Object.keys(a).every(k => ['do', 'if', 'beds'].includes(k)), txt: a => `by destroying ${a.beds} "Fungal Bed", return this card from the Trash to the Hand`,
+  can: (c, a) => c.p.trash.includes(c.src) && fungalBeds(c.p).length >= a.beds,
+  run: async (c, a) => {
+    c.ctx.did = false; if (!c.p.trash.includes(c.src) || fungalBeds(c.p).length < a.beds) return;
+    for (let j = 0; j < a.beds; j++) bedPay(c.p);
+    removeFrom(c.p.trash, c.src); c.p.hand.push(c.src); handUp(c.p, 1); c.ctx.did = true; log(`${_nm(c)}: returns from the Trash to the Hand (${who(c.p)}).`); io.view({ type: 'board' }); } };
+FX_ACTIONS.DISCARD_HAND_FUNGAL_DRAW = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => 'discard your entire Hand; if any "Fungal Tree" family card was discarded, draw a card for each card in the opposing Hand/Removed Zone', can: () => true,
+  run: async c => {
+    const fam = c.p.hand.some(h => h !== c.src && (CARDS[h.id].families || []).includes('Fungal Tree'));
+    await FX_ACTIONS.DISCARD_ALL_HAND.run(c, { do: 'DISCARD_ALL_HAND' }); c.ctx.did = true;
+    if (!fam) return; const n = c.opp.hand.length + c.opp.removed.length; if (!n) return;
+    const k = draw(c.p, n); log(`${_nm(c)}: ${who(c.p)} ${c.p.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'}.`); handUp(c.p, k); } };
