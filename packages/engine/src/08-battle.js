@@ -52,17 +52,19 @@ async function doBattleInner(attKey, att) {
   const must = bound.length > 0 && (ultra || flagActive(A, 'MUST_BLOCK', att));
   const marked = bound.filter(b => b.mustB === G.battleNo);      // v0.185 MUST_BLOCK_OPP: only the marked Spirits are bound (and are the only choice)
   if (must) log(`${CARDS[att.id].name}: opposing Spirits must block if possible.`);
-  if (blockers.length && !atkT) blk = await askBlock(att, D, marked.length ? marked : blockers, must || marked.length > 0, marked.length ? marked : bound);   // v0.105.0 (M6 step 1): CPU seats answer the port too; cpuAnswer routes this pick to the same cpuChooseBlock
+  const needB = att.blockN && att.blockN.b === G.battleNo ? att.blockN.n : 1; let team = [];      // v477 BLOCK_MIN: block with N Spirits or not at all (BS46-X03)
+  if (blockers.length >= needB && !atkT) { blk = await askBlock(att, D, marked.length ? marked : blockers, must || marked.length > 0, marked.length ? marked : bound);
+    if (blk && needB > 1) { team = [blk]; while (team.length < needB) { const rest = blockers.filter(x => !team.includes(x)), nx = await askBlock(att, D, rest, true, rest); if (!nx) break; team.push(nx); } if (team.length < needB) { team = []; blk = null; } else blk = await pickFightingBlocker(A, att, team); } }   // v0.105.0 (M6 step 1): CPU seats answer the port too; cpuAnswer routes this pick to the same cpuChooseBlock
   if (atkT) blk = atkT;
   if (blk && !atkT && !(await payAbTax(D, blk, 'block'))) blk = null;
   if (blk && !atkT && !(await payBlockTax(D, att, blk))) blk = null;
   if (blk) {
     G.blocker = blk;
     if (atkT) log(`${CARDS[att.id].name} attacks ${CARDS[blk.id].name} (${bpOf(blk)} BP) directly.`);
-    else { blk.exhausted = true; D.blocksThisTurn = (D.blocksThisTurn || 0) + 1;
+    else { blk.exhausted = true; for (const x of team) x.exhausted = true; D.blocksThisTurn = (D.blocksThisTurn || 0) + 1;
     log(`${who(D)} ${D.cpu ? 'blocks' : 'block'} with ${CARDS[blk.id].name} (${bpOf(blk)} BP).`);
     io.view({ type: 'board' }); await wait(450);
-    await fireFxMulti([{ owner: A, trigger: 'ALLY_BLOCKED', src: att, ctx: { attacker: att, blocker: blk } }, { owner: D, trigger: 'BLOCKS', src: blk, ctx: { attacker: att, blocker: blk } }, { owner: D, trigger: 'ALLY_BLOCKS', src: blk, ctx: { attacker: att, blocker: blk, subject: blk } }]); }   // manual p. 30: one pool after the block
+    await fireFxMulti([{ owner: A, trigger: 'ALLY_BLOCKED', src: att, ctx: { attacker: att, blocker: blk } }, { owner: D, trigger: 'BLOCKS', src: blk, ctx: { attacker: att, blocker: blk } }, { owner: D, trigger: 'ALLY_BLOCKS', src: blk, ctx: { attacker: att, blocker: blk, subject: blk } }].concat(team.filter(x => x !== blk).map(x => ({ owner: D, trigger: 'BLOCKS', src: x, ctx: { attacker: att, blocker: x } })))); }   // manual p. 30: one pool after the block
     if (G.over) return;
     [att, blk] = await flashTiming(attKey, att, blk);
     if (G.over) return;

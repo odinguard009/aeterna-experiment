@@ -4925,6 +4925,26 @@
   ],
   "effects": [
    {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "DESTROY_EACH_COST",
+      "costs": [
+       1,
+       3,
+       5,
+       7,
+       9
+      ]
+     }
+    ]
+   },
+   {
     "trigger": "STATIC",
     "bp": 5000,
     "to": "own",
@@ -4942,14 +4962,23 @@
      2,
      3
     ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "ASSAULT",
+      "n": 2
+     }
+    ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Attacks) Ignoring the cost of Braves, destroy opposing Cost 1/3/5/7/9 Spirits, one of each.",
-   "[LV2][LV3] {{Assault|2}} (When Attacks) This Spirit can, up to twice per turn, be refreshed by exhausting one of your Nexuses."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
   "bicon": [
    "5"
   ],
@@ -5277,17 +5306,53 @@
   "mechanics": [
    "Advent"
   ],
-  "fxComplete": false,
-  "residual": [
-   "Flash -  {{Advent|Blade Beast & Cost 6 or more|(Your Turn)}}",
-   "By sending your (Soul Core) to the Trash, stack this from your Hand onto your target Spirit.",
-   "[LV1][LV2][LV3]",
-   "This Spirit is unaffected by opposing Spirit/Ultimate/Nexus effects.",
-   "[LV2][LV3] (When Attacks)",
-   "By heavy exhausting an opposing Spirit, this Spirit refreshes.",
-   "heb"
+  "fxComplete": true,
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "UNAFFECTED",
+    "to": "self",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "from": {
+     "types": [
+      "Spirit",
+      "Ultimate",
+      "Nexus"
+     ]
+    }
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "BY",
+      "cost": {
+       "do": "HEAVY_EXHAUST_OPP",
+       "n": 1
+      },
+      "then": [
+       {
+        "do": "REFRESH"
+       }
+      ],
+      "ask": true
+     }
+    ]
+   }
   ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "contractAdvent": {
+   "family": "Blade Beast",
+   "costGe": 6,
+   "turn": "YOURS"
+  }
  },
  {
   "id": "BS44-X04",
@@ -16569,17 +16634,39 @@
   "mechanics": [
    "Advent"
   ],
-  "fxComplete": false,
-  "residual": [
-   "{{Advent|Blade Beast & Cost 5 or more|(Start of Your Attack Step)}}",
-   "By sending your  to the Trash, stack this from your Hand onto your target Spirit.",
-   "[LV1][LV2] (When Attacks)",
-   "The opponent can only block if they block with three Spirits.",
-   "When this Spirit is blocked, choose one to battle with.",
-   "[LV2] (When Attacks)",
-   "Send two cores each from every opposing Grandwalker Nexus to the Void."
+  "fxComplete": true,
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "BLOCK_MIN",
+      "n": 3
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "OPP_GW_CORES_TO_VOID",
+      "n": 2
+     }
+    ]
+   }
   ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "contractAdvent": {
+   "family": "Blade Beast",
+   "costGe": 5,
+   "turn": "YOURS"
+  }
  },
  {
   "id": "BS46-X04",

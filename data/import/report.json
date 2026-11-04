@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 6142,
+  "cards": 6139,
   "per_saga": {
    "1": 458,
    "2": 251,
@@ -10,7 +10,7 @@
    "6": 311,
    "7": 456,
    "8": 428,
-   "9": 449,
+   "9": 446,
    "10": 477,
    "11": 274,
    "12": 303,
@@ -22,18 +22,18 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2564,
+  "skipped_curated": 2567,
   "nexus_levels_added": 651,
   "nexus_levels_missing": 40,
   "merged": 103,
-  "image_problems": 385,
+  "image_problems": 384,
   "brave_unparsed": 169,
   "ut_lines_added": 106,
-  "odd_reduction": 768,
+  "odd_reduction": 766,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
   "number_conflicts": 2,
-  "without_image": 383
+  "without_image": 382
  },
  "tokens": [
   "BS73-T001",
@@ -1532,11 +1532,13 @@
   "BS44-058",
   "BS44-072",
   "BS44-091",
+  "BS44-X03",
   "BS44-XX02",
   "BS44-CP02",
   "BS44-RV002",
   "BS44-RV003",
   "BS44-RV005",
+  "BS44-RV006",
   "BS45-020",
   "BS45-029",
   "BS45-036",
@@ -1554,6 +1556,7 @@
   "BS46-054",
   "BS46-061",
   "BS46-069",
+  "BS46-X03",
   "BS46-XX02",
   "BS46-RV001",
   "BS46-RV002",
@@ -4733,11 +4736,6 @@
    "problem": "no image (near: Wild Strome.jpg)"
   },
   {
-   "id": "BS46-X03",
-   "name": "The SevenGreatHeroBeasts ToughLionheart Herak-Leios",
-   "problem": "no image (near: The SevenGreatHeroBeasts ToughBrave Herak-Leios.png)"
-  },
-  {
    "id": "BS46-X09",
    "name": "Grandwalker Zeus",
    "problem": "no image (near: The Grandwalker Zeus.png)"
@@ -5853,12 +5851,6 @@
    ]
   },
   {
-   "id": "BS44-X03",
-   "dropped": [
-    "god"
-   ]
-  },
-  {
    "id": "BS44-X04",
    "dropped": [
     "god"
@@ -6424,12 +6416,6 @@
   },
   {
    "id": "BS46-X02",
-   "dropped": [
-    "god"
-   ]
-  },
-  {
-   "id": "BS46-X03",
    "dropped": [
     "god"
    ]
