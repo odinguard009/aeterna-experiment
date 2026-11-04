@@ -1,6 +1,6 @@
 # Plan: Lane K ordered per Grandwalker Nexus
 
-Status: **accepted and ACTIVE (owner lifted the hold on 2026-11-03).** This order replaces the greedy block-A order of `roadmap-open.md` item K for Lane K. The reporting rule and the revival rule are in `CLAUDE.md` (bullet "Grandwalker order"). Revert note: delete that bullet and this file's use.
+Status: **accepted; ON HOLD again since 2026-11-04 (owner: record the plan, do not start Lane K).** Section 2a below supersedes the pool quota and revival rules of section 2. This order replaces the greedy block-A order of `roadmap-open.md` item K for Lane K. The reporting rule and the revival rule are in `CLAUDE.md` (bullet "Grandwalker order"). Revert note: delete that bullet and this file's use.
 
 ## 1. Data (generated, official fields only)
 - `python3 tools/grandwalker_data.py` writes `data/kb/grandwalker-nexus.json`, `docs/reports/grandwalker-families.md` and `docs/reports/grandwalker-family-table.md`; `--check` fails when they are stale. Source: `data/sources/official-fields.json` (no network); English names from `data/cards`.
@@ -15,6 +15,14 @@ Status: **accepted and ACTIVE (owner lifted the hold on 2026-11-03).** This orde
 4. **A Nexus is done** when all its non-pool families are complete.
 5. **Revival between bundles.** Revival = reprint with a new effect under the same name, Revival logo, card number `<set>-RV<nnn>` (e.g. SD57-RV001). Scope: set 44 or higher (BS, SD, PB44/PB46). 228 cards: 38 complete, 190 open (87 share an own family with some Nexus; 48 have no official family data). Between two Nexus bundles take up to 5 open revival cards: first those matching the Nexus just finished or about to start, then oldest set first. About 38 gaps for about 50 Nexus bundles, so the list ends inside the Nexus order.
 6. **Unit of work** = one Nexus: its engine mechanic first (if any), then its family cards. Releases stay per 100 new complete cards, so one release covers several Nexus.
+
+## 2a. Strict order (owner, 2026-11-04; supersedes 2.1, 2.3 and 2.5 where they conflict)
+Reason: the sessions picked random cards and skipped Grandwalker family cards whose effect was not yet supported. Rules:
+1. Pick the **newest Grandwalker Nexus** that is not complete (queue order of section 2.2, newest first). Work that Nexus and **all** its family cards (own families: `deck_cards`; also its Nexus card and Revive/Revival cards of those families) until every one is complete.
+2. Then take the next Grandwalker Nexus and repeat. Never interleave another Nexus before the current one is complete.
+3. **No skipping.** A family card that needs a missing mechanic gets that mechanic built first (engine work is part of the Nexus). Only a card that failed twice is recorded as blocked in the handoff, and the Nexus then counts as incomplete until it is solved.
+4. **Other cards** (pool families, other revival cards, any non-Grandwalker card, block A leftovers) are allowed only when at least **two** Grandwalker Nexus with all their family cards are complete (counted in the current release batch of 100; every release keeps its two Grandwalker decks). Without that, no other card is taken.
+5. Reports name the Grandwalker (id, name), the family part and the cards done (section 3).
 
 ## 3. Reports
 Every progress report (session summary, CHANGELOG bullet, handoff, release notes) names the Grandwalker Nexus (id and name), the family part (own, pool or revival) and the cards done, e.g. `BS74-CX01 Ometeotl: 溶魚 +5, revival +2`.
