@@ -476,3 +476,13 @@ FX_ACTIONS.SOUL_NO_PREVENT = { chk: a => Object.keys(a).every(k => ['do', 'if'].
       checkDepletion(c.opp); c.ctx.destroyedN = got.length; c.ctx.did = true;
     } };
 }
+
+/* v468 SUMMON_MIRAGE_SELF: "summon this Mirage without paying the cost" (Ichziyon BS74-008 During Set Flash, after the Soul Core went to the Nexus). */
+FX_ACTIONS.SUMMON_MIRAGE_SELF = { chk: () => true, txt: () => 'summon this set Mirage without paying the cost',
+  can: c => c.p.mirage === c.src && !!c.src.mirage,
+  run: async c => {
+    const m = c.src; if (c.p.mirage !== m || !m.mirage) { c.ctx.did = false; return; }
+    c.p.mirage = null; m.mirage = false; c.p.hand.push(m);
+    if (await summonFree(c.p, m)) { log(`${CARDS[m.id].name}: the set Mirage is summoned without paying the cost.`); return; }
+    removeFrom(c.p.hand, m); m.mirage = true; c.p.mirage = m; c.ctx.did = false;
+  } };

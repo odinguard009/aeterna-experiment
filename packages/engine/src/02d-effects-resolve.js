@@ -31,7 +31,7 @@ function collectFx(ev) {
   if (!FX_TRIGGERS.includes(trigger)) { fxUnknown('trigger', trigger); return []; }   // v0.59.4 strict effects
   const opp = G.p[other(owner.key)], out = [];
   const add = (trg, f, e, idx) => { if (ctx.noColor && CARDS[f.id].color === ctx.noColor) return; out.push({ owner, opp, f, idx, e, trg, trigger, ctx }); };      // v464 ctx.noColor: the opponent can't activate that colour's effects of this event
-  const collect = (trg, f) => { for (const { e, idx } of fxEntries(f)) if (e.trigger === trg) add(trg, f, e, idx); };
+  const collect = (trg, f) => { for (const { e, idx } of fxEntries(f)) if (e.trigger === trg && (e.zone !== 'mirage' || (owner.mirage === f && f.mirage))) add(trg, f, e, idx); };      // v468 zone:'mirage' triggered effects ("During Set") count only while the card is the set Mirage
   if (trigger === 'ADVENT') { const card = CARDS[src.id]; if (card.effects) card.effects.forEach((e, idx) => { if (e.trigger === 'ADVENT' || (e.trigger === 'SUMMONED' && e.alsoAdvent)) add(e.trigger, src, e, idx); }); ctx.subject = src; }
   else if (trigger === 'SUMMONED' && ctx.noSelfFx) { /* v0.180: the summoned card's own (When Summoned) effects do not activate */ }
   else if (trigger === 'ATTACKS' && src && blocksAsAtkOn(owner, src)) { collect('ATTACKS', src); collect('BLOCKS', src); }      // v218
@@ -39,6 +39,7 @@ function collectFx(ev) {
   else if (trigger === 'BLOCKS') { for (const { e, idx } of fxEntries(src)) { if (e.trigger === 'BLOCKS' || (e.trigger === 'ATTACKS' && e.alsoBlocks)) add('BLOCKS', src, e, idx); } }
   else if (trigger === 'MIRAGE_OWN_LIFE' || trigger === 'MIRAGE_OPP_LIFE' || trigger === 'MIRAGE_SET') { if (owner.mirage) collect(trigger, owner.mirage); }
   else for (const f of fieldList(owner)) collect(trigger, f);
+  if (trigger === 'ALLY_ATTACKS' && owner.mirage && owner.mirage.mirage) for (const { e, idx } of fxEntries(owner.mirage)) if (e.trigger === trigger && e.zone === 'mirage') add(trigger, owner.mirage, e, idx);      // v468 Ichziyon BS74-008
   if (trigger === 'ALLY_DIED' || trigger === 'EXHAUSTED_FX' || trigger === 'NEXUS_DOWN') for (const t of owner.trash) for (const { e, idx } of fxEntries(t)) if (e.trigger === trigger && e.zone === 'trash') add(trigger, t, e, idx);      // v155 zone:'trash'
   if (trigger === 'ALLY_BLOCKED' || trigger === 'SILVER_WHEEL' || trigger === 'ALLY_SUMMONED') for (const h of owner.hand) collect(trigger, h);           // zone:'hand' effects (e.g. deploy this from the Hand)
   if (trigger === 'SUMMONED' || trigger === 'ADVENT') for (const f of fieldList(owner)) collect('ALLY_SUMMONED', f);
@@ -47,7 +48,7 @@ function collectFx(ev) {
 }
 function fxValid(it) {
   const { owner, opp, f, idx, e, trg, ctx } = it, subj = ctx.subject || ctx.attacker;
-  const isMir = trg === 'MIRAGE_OWN_LIFE' || trg === 'MIRAGE_OPP_LIFE' || trg === 'MIRAGE_SET';
+  const isMir = trg === 'MIRAGE_OWN_LIFE' || trg === 'MIRAGE_OPP_LIFE' || trg === 'MIRAGE_SET' || e.zone === 'mirage';
   const fromHand = e.zone === 'hand', fromTrash = e.zone === 'trash', dead = trg === 'DESTROYED' || trg === 'LEAVES';
   if (isMir ? !(owner.mirage === f && f.mirage) : fromTrash ? !owner.trash.includes(f) : fromHand ? !owner.hand.includes(f) : trg === 'LEAVES' ? fieldList(owner).includes(f) : dead ? !(owner.trash.includes(f) || owner.standby.includes(f) || owner.soulState.includes(f)) : !fieldList(owner).includes(f)) return false;
   if (!isMir && !fromHand && !fromTrash && e.lv && !e.lv.includes(dead ? f.lostLv + lvBase(CARDS[f.id]) : lvNo(f))) return false;
@@ -79,6 +80,7 @@ function fxValid(it) {
   }
   if (trg === 'BP_REACHED' && !(subj && bpOf(subj) >= e.bpGe && !(ctx.bpFrom >= e.bpGe))) return false;
   if (e.once && usedThisTurn(owner, f, idx, e)) return false;
+  if (trg === 'DESTROYED' && ctx.byOppFx && flagActive(owner, 'OPP_DESTROY_NO_FX', f)) return false;      // v471 "effects of opposing Spirits destroyed by your effects can't activate"
   if (trg === 'DESTROYED' && ctx.depl && !e.alsoDepleted) return false;      // v0.177 a depletion is not a plain (When Destroyed)
   if (!fxIf(owner, opp, e.if, Object.assign({}, ctx, { viaFC: ctx.viaFC == null ? !!f.viaFC : ctx.viaFC, viaHS: !!f.viaHS, subjViaFx: trg === 'ALLY_SUMMONED' && subj ? !!subj.viaFx : false, viaLegacy: (f.legacyN || 0) > 0 || (trg === 'ALLY_SUMMONED' && subj ? (subj.legacyN || 0) > 0 : false), selfUid: f.uid, selfInst: f }))) return false;      // v212 ALLY_SUMMONED reads the summoned card's Legacy
   return fxCan({ p: owner, opp, src: f, ctx }, e);
@@ -175,6 +177,7 @@ async function soulToNexus(p, t) {
   if (src === 'trash') p.trashCores.soul = false; else if (src === 'reserve') p.reserve.soul = false; else src.soul = false;
   t.soul = true; log(`${poss(p)} Soul Core is sent to ${CARDS[t.id].name}.`); io.view({ type: 'board' }); await wait(300);
   if (!G.over) await fireFx(p, 'SOUL_PLACED', t, { subject: t });
+  if (!G.over && p.burst && !p.burst.mirage && CARDS[p.burst.id].burst && CARDS[p.burst.id].burst.also && CARDS[p.burst.id].burst.also.when === 'SOUL_PLACED') { await maybeBurst(p, 'SOUL_PLACED', { subject: t }); await flushBursts(); }      // v469 Archelon BS74-010: "when the Soul Core is sent to your Nexus, you can activate this set Burst"
   return true;
 }
 /* v430 contractAdvent.freeGe: "(Once per Turn: Same Name) with N or more counters, treat the Soul Core as sent to the Trash" = no Soul Core needed */

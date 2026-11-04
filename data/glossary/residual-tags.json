@@ -46209,29 +46209,6 @@
   "M_OPTIONAL",
   "T_SUMMONED"
  ],
- "BS74-008": [
-  "A_SUMMON_FREE",
-  "A_TRASH_TO_RESERVE",
-  "K_GRANDWALKER",
-  "K_MIRAGE",
-  "K_ULTIMATE",
-  "M_BY_DOING",
-  "M_OPTIONAL",
-  "T_ALLY_ATTACKS",
-  "T_MIRAGE_LIFE"
- ],
- "BS74-010": [
-  "A_DRAW",
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "C_OPP_TURN",
-  "K_ADVENT",
-  "K_BURST",
-  "K_BURST_THEN_MAIN",
-  "K_ULTIMATE",
-  "M_OPTIONAL",
-  "T_SUMMONED"
- ],
  "BS74-013": [
   "A_REVEAL_DECK",
   "A_SUMMON_FREE",
@@ -46634,13 +46611,6 @@
  ],
  "BS74-067": [
   "K_BRAVE"
- ],
- "BS74-068": [
-  "C_LEVEL",
-  "K_GRANDWALKER",
-  "K_ULTIMATE",
-  "M_BY_DOING",
-  "S_NO_RETURN"
  ],
  "BS74-069": [
   "A_COUNTER",

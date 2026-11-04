@@ -120,3 +120,44 @@ test('K-1162 BS74-X13 Aztlan: Soul Unleash Flash moves the Soul Core from the Ne
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.nxSoul, false); assert.equal(r.spSoul, true);
   assert.equal(r.left, 1, JSON.stringify(r)); assert.equal(r.partial, false);
 });
+
+test('K-1163 BS74-008 Ichziyon: set Mirage sends 2 Trash cores to an attacking Lava Fish; Flash (opposing turn) sends the Soul Core to the Nexus and summons it free', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${pre}
+    const m = BS.mkInst('BS74-008'); m.mirage = true; P.mirage = m; const nx = BS.mkInst('BS74-CX01'); nx.soul = false; P.nexus = [nx];
+    const at = BS.mkInst('BS74-006'); at.cores = 3; P.spirits = [at]; P.trashCores.n = 5; P.trashCores.soul = true; P.reserve.soul = false;
+    await BS.fireFx(P, 'ALLY_ATTACKS', at, { attacker: at });
+    const cores = at.cores, tr = P.trashCores.n;
+    G.active = O.key; const listed = BS.activatable(P, m, 'FLASH').length; G.active = P.key; const mine = BS.activatable(P, m, 'FLASH').length; G.active = O.key;
+    const idx = BS.CARDS['BS74-008'].effects.findIndex(e => e.trigger === 'ACTIVATE');
+    const ok = await BS.activateFx(P, m, idx);
+    return { cores, tr, listed, mine, ok, onField: P.spirits.includes(m), mir: !!P.mirage, soul: nx.soul, partial: BS.CARDS['BS74-008'].partial }; })()`);
+  assert.deepEqual(r, { cores: 5, tr: 3, listed: 1, mine: 0, ok: true, onField: true, mir: false, soul: true, partial: false });
+});
+
+test('K-1164 BS74-010 Archelon: Soul Core sent to the Nexus activates the set Burst: destroys opposing 12000 BP or less, draws two, summons it', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${pre}
+    const b = BS.mkInst('BS74-010'); P.burst = b; b.mirage = false; const nx = BS.mkInst('BS74-CX01'); nx.soul = false; P.nexus = [nx]; P.reserve.soul = true; P.spirits = [];
+    const lo = BS.mkInst(sp(x => x.levels[0].bp <= 9000 && x.levels[0].bp > 0)); lo.cores = 1; O.spirits = [lo];
+    const h0 = P.hand.length; await soulToNexus(P, nx);
+    const k = BS.CARDS['BS74-010'];
+    return { nxSoul: nx.soul, oppLeft: O.spirits.length, drew: P.hand.length - h0, onField: P.spirits.some(s => s.id === 'BS74-010'), burstGone: !P.burst, partial: k.partial, lock: k.effects.some(e => e.flag === 'NO_END_ATTACK') }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.nxSoul, true); assert.equal(r.oppLeft, 0, JSON.stringify(r));
+  assert.equal(r.drew, 2, JSON.stringify(r)); assert.equal(r.onField, true, JSON.stringify(r)); assert.equal(r.burstGone, true); assert.equal(r.lock, true);
+});
+
+test('K-1165 BS74-068 Lava Temple: Soul Core to Ometeotl draws at attack start; Lava Fish cannot be bounced; destroyed opposing Spirit effects are locked while Soul Core is on the Nexus', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${pre}
+    const t = BS.mkInst('BS74-068'); t.cores = 1; const nx = BS.mkInst('BS74-CX01'); nx.soul = false; P.nexus = [t, nx]; P.reserve.soul = true; P.spirits = [];
+    const h0 = P.hand.length; await BS.fireFx(P, 'START_ATTACK', null, {}); const drew = P.hand.length - h0;
+    const lf = BS.mkInst('BS74-006'); const other = BS.mkInst(sp(x => !(x.families || []).includes('Lava Fish')));
+    const noRet = flagActive(P, 'NO_RETURN', lf), retOther = flagActive(P, 'NO_RETURN', other);
+    const k = BS.CARDS['BS74-068'];
+    nx.soul = true; const lock = flagActive(O, 'OPP_DESTROY_NO_FX', lf);
+    nx.soul = false; const unlock = flagActive(O, 'OPP_DESTROY_NO_FX', lf);
+    return { drew, soul: nx.soul, noRet, retOther, lock, unlock, partial: k.partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.drew, 1, JSON.stringify(r)); assert.equal(r.noRet, true); assert.equal(r.retOther, false);
+  assert.equal(r.lock, true, JSON.stringify(r)); assert.equal(r.unlock, false);
+});
