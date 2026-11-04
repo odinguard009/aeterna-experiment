@@ -457,3 +457,22 @@ FX_ACTIONS.BANISH_POOL = { chk: a => Object.keys(a).every(k => ['do', 'if'].incl
 /* v466 SOUL_NO_PREVENT: "By sending your Soul Core to <Nexus>, this Destruction / Core Removal effect can't be prevented by opposing effects" (Aquilo-Lamda): carries `if prev` after SOUL_TO_NEXUS; sets ctx.noPrevent, which the Nexus DESTROY and NEXUS_CORES_TO_VOID candidate lists honour. */
 FX_ACTIONS.SOUL_NO_PREVENT = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => "this effect can't be prevented by opposing effects",
   run: async c => { c.ctx.noPrevent = true; c.ctx.did = true; } };
+
+/* v468 DESTROY_SYMBOLS {n, symbols}: "destroy up to n opposing Spirits/Ultimates/Nexuses with up to a total of <symbols> symbols. This effect can't be prevented by opposing effects" (Aztlan BS74-X13). Printed symbols count (a Nexus without a symbol count is one symbol). */
+{
+  const symN = x => { const s = CARDS[x.id].symbols; return typeof s === 'number' ? s : s && typeof s === 'object' ? Object.values(s).reduce((u, v) => u + v, 0) : CARDS[x.id].type === 'Nexus' ? 1 : 0; };
+  const pool = (c, left, got) => c.opp.spirits.concat(c.opp.nexus).filter(x => !got.includes(x) && symN(x) <= left);
+  FX_ACTIONS.DESTROY_SYMBOLS = { chk: a => Object.keys(a).every(k => ['do', 'if', 'n', 'symbols'].includes(k)) && Number.isInteger(a.n) && a.n >= 1 && a.n <= 3 && Number.isInteger(a.symbols) && a.symbols >= 1 && a.symbols <= 6,
+    txt: a => `destroy up to ${a.n} opposing Spirits/Ultimates/Nexuses with up to a total of ${a.symbols} symbols (can't be prevented)`,
+    can: (c, a) => pool(c, a.symbols, []).length > 0,
+    run: async (c, a) => {
+      const got = []; let left = a.symbols;
+      for (let j = 0; j < a.n; j++) {
+        const t = await fxPickTarget(c, pool(c, left, got), `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the opposing Spirit/Nexus to destroy (${j + 1}/${a.n}, up to ${left} symbol${left === 1 ? '' : 's'} left).`);
+        if (!t) break; got.push(t); left -= symN(t);
+      }
+      if (!got.length) { c.ctx.did = false; return; }
+      for (const t of got) { if (c.opp.nexus.includes(t)) removeNexus(c.opp, t, 'destroyed'); else removeSpirit(c.opp, t, 'destroyed', true); }
+      checkDepletion(c.opp); c.ctx.destroyedN = got.length; c.ctx.did = true;
+    } };
+}

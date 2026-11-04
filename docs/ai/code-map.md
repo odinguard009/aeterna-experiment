@@ -44,7 +44,7 @@ _pn
 ## packages/engine/src/02h-effects-magic.js (212 lines, ~5.2k tokens) — v0.41 MAGIC effect types (Dana Draw, Whirling Tide, Magic Bullet, Hades Disaster, Thunder Counter, Lightning Tempest).
 endAttackLocked, _matchTxt, gwCorePlus, sentToTrashFx, abTaxOn, abTaxOK, payAbTax, oppAttackHandFx, lifeHandFx, braveSummonedFx, braveSummonedEvs
 
-## packages/engine/src/02i-effects-keywords.js (79 lines, ~1.7k tokens) — v0.49 KEYWORD EFFECTS as engine data (session D, part 1): High Speed, Crush, Holy Life.
+## packages/engine/src/02i-effects-keywords.js (80 lines, ~1.8k tokens) — v0.49 KEYWORD EFFECTS as engine data (session D, part 1): High Speed, Crush, Holy Life.
 highSpeedOK, fsNexus, highSpeedSources, highSpeedSummon, cpuHighSpeed, _nmK
 
 ## packages/engine/src/02j-effects-accel.js (118 lines, ~2k tokens) — v0.50 KEYWORD EFFECTS part 2 (session D): Accel and Silver Wheel.
@@ -89,7 +89,7 @@ coresFromSpirits, canPursuit
 ## packages/engine/src/02w-effects-indra.js (82 lines, ~2k tokens)
 symFixedOnSummon, fxLockBusy, fxLocked, leaveSummonOffer, mirageNexusOf, mirageShield, mirageCoreSafe, bounceLocked, soulDeployOffer, soulEnterHook, nexusShielded, nexusVoided, mirageSummonOffer
 
-## packages/engine/src/02x-effects-soul-magic.js (459 lines, ~11.8k tokens)
+## packages/engine/src/02x-effects-soul-magic.js (478 lines, ~12.3k tokens)
 magicFromSoul, magicSoulSrc, fromCols, soulBurstCheck, isGwNexus, gwNexusCount, gpShield, gpBattleSafe, drawOneOnly, nyxNexus, lvCostUp, nexusCoresDown, trashCoreGw, muddyDraw, coreWatchBegin, coreWatchEnd, ownReturned, bounceCost, magicLike, trashFlashOK, handUpLocked, soulUnaff, mirageEndLock, nsfOK, nsfPay
 
 ## packages/engine/src/03-imported-cards.js (256 lines, ~7.7k tokens) — IMPORTED CARD DATA

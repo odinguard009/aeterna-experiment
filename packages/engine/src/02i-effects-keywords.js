@@ -16,24 +16,25 @@ function highSpeedOK(p, inst) {
 }
 /* v465 card field flashSummon {counterGe?, nexus: match}: "Flash: (Once per Turn: Same Name) [if N counters,] by sending your Soul Core to a matching Nexus, summon this card from the Hand, treating all summon costs as paid". Returns the Nexus that receives the Soul Core. */
 function fsNexus(p, card) {
-  const f = card.flashSummon; if (!f || !soulSource(p) || (f.counterGe && p.count < f.counterGe) || (p.fsOnce && p.fsOnce[card.name] === G.turnNo)) return null;
+  const f = card.flashSummon; if (f && f.fromNexus) return (f.counterGe && p.count < f.counterGe) || (p.fsOnce && p.fsOnce[card.name] === G.turnNo) ? null : p.nexus.find(n => n.soul && fxMatch(CARDS[n.id], f.nexus)) || null;      // fromNexus: the Soul Core moves from the Nexus onto this card
+  if (!f || !soulSource(p) || (f.counterGe && p.count < f.counterGe) || (p.fsOnce && p.fsOnce[card.name] === G.turnNo)) return null;
   return p.nexus.find(n => !n.soul && fxMatch(CARDS[n.id], f.nexus)) || null;
 }
 const highSpeedSources = p => p.hand.filter(h => highSpeedOK(p, h));
 async function highSpeedSummon(p, inst) {
   if (!highSpeedOK(p, inst)) return false;
   const card = CARDS[inst.id], fs = card.flashSummon ? fsNexus(p, card) : null, c = fs ? 0 : effCost(p, card); if (!fs) legacyPay(p, inst);
-  if (fs) { (p.fsOnce = p.fsOnce || {})[card.name] = G.turnNo; await soulToNexus(p, fs); }
+  const fromN0 = fs && card.flashSummon.fromNexus; if (fs) { (p.fsOnce = p.fsOnce || {})[card.name] = G.turnNo; if (fromN0) { fs.soul = false; log(`${poss(p)} Soul Core moves from ${CARDS[fs.id].name} to ${card.name}.`); } else await soulToNexus(p, fs); }
   if (card.highSpeedOnce) (p.hsOnce = p.hsOnce || {})[card.name] = G.turnNo;
   const fromN = Math.min(c, p.reserve.n), plan = { reserve: fromN, by: {}, rsoul: c > fromN, fsoul: null };
   removeFrom(p.hand, inst); inst.mirage = false;
   const soulPaid = payCost(p, c, plan);
-  inst.viaFC = false; inst.viaHS = true; inst.viaFx = false; inst.soulPaid = soulPaid; inst.soulLost = false; inst.cores = 0; inst.soul = false; inst.exhausted = false; inst.heavy = false; inst.noAB = false; inst.summonedTurn = G.turnNo; inst.bpMod = 0;
-  let need = card.levels[0].cores;                       // Lv1 cores also come from the Reserve only
+  inst.viaFC = false; inst.viaHS = true; inst.viaFx = false; inst.soulPaid = soulPaid; inst.soulLost = false; inst.cores = 0; inst.soul = !!fromN0; inst.exhausted = false; inst.heavy = false; inst.noAB = false; inst.summonedTurn = G.turnNo; inst.bpMod = 0;
+  let need = card.levels[0].cores - (fromN0 ? 1 : 0);                       // Lv1 cores also come from the Reserve only
   while (need > 0 && p.reserve.n > 0) { p.reserve.n--; inst.cores++; need--; }
   if (need > 0 && p.reserve.soul) { p.reserve.soul = false; inst.soul = true; need--; }
   p.spirits.push(inst);
-  log(`${who(p)} ${p.cpu ? 'summons' : 'summon'} ${card.name} ${fs ? 'by sending the Soul Core to ' + CARDS[fs.id].name + ' (costs treated as paid)' : 'with High Speed (paid ' + c + ' from the Reserve)'}.`);
+  log(`${who(p)} ${p.cpu ? 'summons' : 'summon'} ${card.name} ${fs ? 'by ' + (fromN0 ? 'moving the Soul Core from ' : 'sending the Soul Core to ') + CARDS[fs.id].name + ' (costs treated as paid)' : 'with High Speed (paid ' + c + ' from the Reserve)'}.`);
   checkDepletion(p); io.view({ type: 'board' }); await wait(350);
   if (!G.over && p.spirits.includes(inst)) await fireFx(p, 'SUMMONED', inst);
   return true;

@@ -105,3 +105,18 @@ test('K-1161 BS74-CX01 Nexus: complete, Revive flag, Flash Destroy needs 5 Nexus
   assert.ok(r.kinds.some(s => s.includes('SOUL_CORE_TO_TRASH+DESTROY')), JSON.stringify(r.kinds));
   assert.ok(r.kinds.some(s => s.startsWith('SUMMONED:DECK_TO_TRASH_CORES')), JSON.stringify(r.kinds)); assert.ok(r.moved);
 });
+
+test('K-1162 BS74-X13 Aztlan: Soul Unleash Flash moves the Soul Core from the Nexus onto it; destroys up to two with 3 symbols total', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${pre}
+    const z = BS.mkInst('BS74-X13'); const nx = BS.mkInst('BS74-CX01'); nx.soul = true; P.nexus = [nx]; P.hand = [z]; P.reserve.n = 0; P.count = 6;
+    const o = BS.mkInst('BS74-X13'); o.cores = 0; P.spirits = [o]; P.spirits = [];
+    const ok = highSpeedOK(P, z); await highSpeedSummon(P, z);
+    const a = P.spirits.find(s => s.id === 'BS74-X13');
+    const mk = (sy) => { const t = BS.mkInst(sp(x => x.symbols === sy)); t.cores = 1; return t; };
+    O.nexus = []; O.spirits = [mk(1), mk(1), mk(1)];
+    a.cores = 5; await BS.fireFx(P, 'SUMMONED', a, {});
+    return { ok, nxSoul: nx.soul, spSoul: a.soul, left: O.spirits.length, partial: BS.CARDS['BS74-X13'].partial }; })()`);
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.nxSoul, false); assert.equal(r.spSoul, true);
+  assert.equal(r.left, 1, JSON.stringify(r)); assert.equal(r.partial, false);
+});
