@@ -144,6 +144,7 @@ function parseEffects(arr) {
         o.mode = e.mode; o.to = ['self', 'own', 'oppBlockers', 'every'].includes(e.to) ? e.to : 'self';
         if (o.to !== 'self' && o.to !== 'every' && !o.match) return { error: 'CORE_SAFE "to" own/oppBlockers needs a "match"' };
       }
+      if (e.flag === 'REMOVED_LOCK') { if (!COLORS.includes(e.gwColor)) return { error: 'REMOVED_LOCK needs a "gwColor"' }; o.gwColor = e.gwColor; }      // v480 "while you control a <color> Grandwalker Nexus, the opposing Removed Zone can't be used"
       if (e.flag === 'EXTRA_REDUCTION' || e.flag === 'SUMMON_SYMBOL') {                          // v0.40: "all your Thunderive cards gain an extra yellow reduction symbol" (Indra Contract Field, Shimavajdra)
         if (!COLORS.includes(e.color)) return { error: e.flag + ' needs a "color"' };
         o.color = e.color; o.n = Number.isInteger(e.n) && e.n >= 1 && e.n <= 3 ? e.n : 1;

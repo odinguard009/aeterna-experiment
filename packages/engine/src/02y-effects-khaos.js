@@ -55,7 +55,9 @@ FX_ACTIONS.SUMMON_SELF_TRASH = { chk: a => Number.isInteger(a.pay) && a.pay >= 0
     if (await summonFree(c.p, c.src)) c.ctx.did = true; else { removeFrom(c.p.hand, c.src); c.p.trash.push(c.src); } } };
 /* v478 OPP_REMOVED_LOCK {}: "by sending a core from any of your Green Grandwalker Nexus to this Spirit, until your next Start Step, cards in the opposing Removed Zone can't be used by the opponent" (BS45-X03 Unleash; optional, the CPU pays).
    G.removedLock = {by, turn}; removedLocked(p) is read by the Accel summon from the Removed Zone (02j removedSummonable) and SUMMON_HAND_REMOVED (02x); other uses of Removed cards do not exist in the engine. It ends when the source's controller's next turn begins (turnNo + 2). */
-const removedLocked = p => !!G && !!G.removedLock && G.removedLock.by !== p.key && G.turnNo < G.removedLock.turn + 2;
+const removedLocked = p => { if (!G) return false; if (G.removedLock && G.removedLock.by !== p.key && G.turnNo < G.removedLock.turn + 2) return true;
+  const o = G.p[other(p.key)];      // v480 STATIC REMOVED_LOCK {gwColor}: while its controller has a Nexus of that colour among the Grandwalkers
+  return fieldList(o).some(src => fxEntries(src).some(({ e }) => e.trigger === 'STATIC' && e.flag === 'REMOVED_LOCK' && (!e.lv || e.lv.includes(lvNo(src))) && o.nexus.some(n => isGwNexus(n) && CARDS[n.id].symbol === e.gwColor))); };
 FX_ACTIONS.OPP_REMOVED_LOCK = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
   txt: () => "by sending a core from any of your Green Grandwalker Nexus to this Spirit, until your next Start Step, cards in the opposing Removed Zone can't be used by the opponent",
   pay: c => c.p.spirits.includes(c.src) ? c.p.nexus.filter(x => x.cores - (x.soul ? 1 : 0) > 0 && (CARDS[x.id].families || []).includes('Grandwalker') && CARDS[x.id].symbol === 'green') : [],
@@ -81,3 +83,19 @@ FX_ACTIONS.SYMBOL_PER_OPP_REMOVED = { chk: a => COLORS.includes(a.color) && Numb
 async function burstOnDiscard(owner, b) {
   if (!b || b.mirage || !(CARDS[b.id].effects || []).some(e => e.trigger === 'STATIC' && e.flag === 'BURST_ON_DISCARD')) return false;
   return await maybeBurst1(owner, 'DISCARD', { force: true }) && owner.burst !== b; }
+/* v480 VOID_SPLIT_SELF_GW {n, color}: "take N cores from the Void and, in any way you like, put them to this Spirit or to one <color>-only Grandwalker Nexus you control" (BS49-033). Human: asks per core; the CPU puts all on the Nexus when it has one (Grandwalker levels pay off most), else on this Spirit. */
+FX_ACTIONS.VOID_SPLIT_SELF_GW = { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 3 && COLORS.includes(a.color) && Object.keys(a).every(k => ['do', 'if', 'n', 'color'].includes(k)),
+  txt: a => `take ${a.n} cores from the Void and put them, in any way you like, to this Spirit or to one ${cap(a.color)} Grandwalker Nexus you control`,
+  can: c => c.p.void > 0 && c.p.spirits.includes(c.src),
+  run: async (c, a) => {
+    const m = Math.min(a.n, c.p.void); c.ctx.did = false; if (m <= 0 || !c.p.spirits.includes(c.src)) return;
+    const N = c.p.nexus.filter(x => isGwNexus(x) && CARDS[x.id].symbol === a.color), nm = CARDS[c.src.id].name;
+    let nx = N[0] || null; if (N.length > 1 && !c.p.cpu) nx = (await fxPickTarget(c, N, `✨ <b>${esc(nm)}</b><br>Tap the ${cap(a.color)} Grandwalker Nexus that may receive the cores (glowing).`)) || N[0];
+    let toS = 0, toN = 0;
+    for (let i = 0; i < m; i++) {
+      let dest = nx ? 'nexus' : 'self';
+      if (nx && !c.p.cpu) dest = await ask({ title: `✨ ${esc(nm)}`, peek: true, html: `Core ${i + 1}/${m} from the Void goes to:`, buttons: [{ label: 'This Spirit', cls: 'primary', value: 'self' }, { label: CARDS[nx.id].name, cls: 'blue', value: 'nexus' }] }) || 'self';
+      if (dest === 'nexus') toN++; else toS++;
+    }
+    c.p.void -= m; c.src.cores += toS; if (nx) nx.cores += toN; else c.src.cores += toN; c.ctx.did = true;
+    log(`${nm}: ${m} core${m === 1 ? '' : 's'} taken from the Void (${toS} to this Spirit${nx ? `, ${toN} to ${CARDS[nx.id].name}` : ''}).`); io.view({ type: 'board' }); } };

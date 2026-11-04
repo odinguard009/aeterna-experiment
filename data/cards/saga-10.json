@@ -7244,16 +7244,44 @@
   "image": "The HeroBeastBrothers Dioscuri.png",
   "block": "49",
   "saga": 10,
-  "fxComplete": false,
-  "residual": [
-   "This card in Hand is unaffected by opposing effects.",
-   "[LV1][LV2][LV3]",
-   "While you control any Green Grandwalker Nexus, cards in the Removed Zone can't be used by the opponent.",
-   "[LV2][LV3] (When Attacks)",
-   "You can send an opposing exhausted Spirit/Ultimate to the Removed Zone.",
-   "When you've done so, take two cores from the Void, and in anyway you like, either put them to this Spirit or + cores to one Green-only Grandwalker Nexus you control."
+  "fxComplete": true,
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "REMOVED_LOCK",
+    "to": "self",
+    "gwColor": "green",
+    "lv": [
+     1,
+     2,
+     3
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "SEND_REMOVED",
+      "n": 1,
+      "exhaustedOnly": true
+     },
+     {
+      "do": "VOID_SPLIT_SELF_GW",
+      "n": 2,
+      "color": "green",
+      "if": {
+       "prev": true
+      }
+     }
+    ]
+   }
   ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "handUnaffected": true
  },
  {
   "id": "BS49-034",

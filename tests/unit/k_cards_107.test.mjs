@@ -152,3 +152,17 @@ test('K-1082 BS46-037 Theseus: a set Burst discarded by the opponent activates a
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.summoned, true, JSON.stringify(r)); assert.equal(r.burst, false, JSON.stringify(r));
   assert.equal(r.exh, 2, JSON.stringify(r)); assert.equal(r.bp, 10000, JSON.stringify(r)); assert.equal(r.trash, false, JSON.stringify(r));
 });
+
+test('K-1083 BS49-033 Dioscuri: green Grandwalker Nexus locks the opposing Removed Zone; Lv2 Attacks sends an exhausted Spirit to Removed and splits two Void cores', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && k !== 'BS49-033');
+    const gw = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Nexus' && (BS.CARDS[k].families || []).includes('Grandwalker') && BS.CARDS[k].symbol === 'green');
+    const a = BS.mkInst('BS49-033'); a.cores = 3; const n = BS.mkInst(gw); n.cores = 1; P.spirits = [a]; P.nexus = [n]; G.attacker = a;
+    P.void = 3; const lockedBefore = BS.removedLocked(O);
+    const t = BS.mkInst(any); t.exhausted = true; t.cores = 1; O.spirits = [t]; O.removed = [];
+    await BS.fireFx(P, 'ATTACKS', a, { attacker: a, subject: a });
+    return { lockedBefore, removed: O.removed.length, gone: !O.spirits.includes(t), cores: a.cores + n.cores, partial: BS.CARDS['BS49-033'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.lockedBefore, true, JSON.stringify(r)); assert.equal(r.removed, 1, JSON.stringify(r));
+  assert.equal(r.gone, true, JSON.stringify(r)); assert.equal(r.cores, 6, JSON.stringify(r));
+});
