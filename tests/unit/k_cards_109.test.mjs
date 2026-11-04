@@ -169,3 +169,19 @@ test('K-1118 BS60-003 Ryuukin: Summoned destroys a 3000 BP or less Spirit or a N
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.killed, true, JSON.stringify(r)); assert.equal(r.hand, 3, JSON.stringify(r));
   assert.equal(r.banished, true, JSON.stringify(r)); assert.equal(r.gone, true, JSON.stringify(r));
 });
+
+test('K-1119 BS70-002 Saber Gurnard: Summoned destroys two Cost 3 or less Nexuses; set as Mirage it stops opposing effects returning your Scarlet Flame Spirits', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const nxId = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Nexus' && BS.CARDS[k].cost <= 3);
+    const a = BS.mkInst('BS70-002'); a.cores = 1; P.spirits = [a]; O.nexus = [BS.mkInst(nxId), BS.mkInst(nxId), BS.mkInst(nxId)];
+    await BS.fireFx(P, 'SUMMONED', a, { subject: a });
+    const left = O.nexus.length;
+    const sf = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && (BS.CARDS[k].families || []).includes('Scarlet Flame'));
+    const s = BS.mkInst(sf); P.spirits = [s]; P.mirage = null;
+    const before = BS.flagActive(P, 'NO_RETURN', s);
+    const m = BS.mkInst('BS70-002'); m.mirage = true; P.mirage = m;
+    const after = BS.flagActive(P, 'NO_RETURN', s);
+    return { left, before, after, partial: BS.CARDS['BS70-002'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.left, 1, JSON.stringify(r)); assert.equal(r.before, false, JSON.stringify(r)); assert.equal(r.after, true, JSON.stringify(r));
+});

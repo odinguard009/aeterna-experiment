@@ -275,3 +275,8 @@ function nexusSwapSave(p, n) {
 FX_ACTIONS.BANISH_SELF = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => 'banish this Spirit', can: c => c.p.spirits.includes(c.src),
   run: async c => { c.ctx.did = false; if (!c.p.spirits.includes(c.src)) return;
     removeSpirit(c.p, c.src, 'banished', false); const i = c.p.trash.lastIndexOf(c.src); if (i < 0) return; c.p.trash.splice(i, 1); toRemoved(c.p, c.src); c.ctx.did = true; log(`${CARDS[c.src.id].name} is banished.`); } };
+
+/* v505 STATIC with zone:'mirage' ("During Set ..." statics, BS70-002): flagActive also reads the owner's set Mirage, to 'own' + match only (no level; the Mirage is not on the Field). */
+function flagActive(owner, flag, subject, pred) {
+  return flagActiveField(owner, flag, subject, pred) || (!!G && !!owner && !!subject && !!owner.mirage && !!owner.mirage.mirage && fxEntries(owner.mirage).some(({ e }) => e.trigger === 'STATIC' && e.zone === 'mirage' && e.flag === flag && e.to === 'own' && (!pred || pred(e)) && fxMatch(CARDS[subject.id], e.match) && fxIf(owner, G.p[other(owner.key)], e.if, { selfInst: owner.mirage })));
+}

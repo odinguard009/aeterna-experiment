@@ -287,7 +287,7 @@ function chargeAction(c, a) {
   else if (kind === 'bp') b.bpLe += n; else if (kind === 'refresh') { if (b.self || b.perN || b.perBp) return a; b.count = (b.count || 1) + n; } else if (kind === 'bpMinus') b.n = Math.min(30000, b.n + n); else b.n += n;
   return b;
 }
-function flagActive(owner, flag, subject, pred) {
+function flagActiveField(owner, flag, subject, pred) {
   if (!STATIC_FLAGS.includes(flag)) return fxUnknown('flag', flag);                  // v0.59.4 strict effects
   if (!G || !owner || !subject) return false;
   if (subject.grantFlag === flag && subject.grantFlagTurn === G.turnNo && !(pred && !pred({ flag, granted: true }))) return true;      // v209 GRANT_FLAG: "during this turn, give it: <keyword>"
