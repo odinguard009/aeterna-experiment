@@ -65,7 +65,7 @@ async function payInvokeCost(p, f, c) {
   const nm = CARDS[f.id].name;
   if (c.pay) {
     const relief = exhaustCostRelief(p, f), need = Math.max(0, c.pay - relief);      // v224 COST_RELIEF
-    if (coresAvailable(p) < need) return false;
+    if (reserveTotal(p) + fieldList(p).reduce((n, i) => n + (i.uid === f.uid ? 0 : freeTotal(i)), 0) < need) return false;      // the source's own cores are never taken, so they must not count here
     const got = takeCores(p, need, f.uid);      // Reserve first, never the Invoke source itself (A7 review); the cores go to the Trash
     if (got.n + (got.soul ? 1 : 0) < need) return false;
     p.trashCores.n += got.n; if (got.soul) p.trashCores.soul = true; log(`${nm}: ${who(p)} ${p.cpu ? 'pays' : 'pay'} ${need} cost${need === 1 ? '' : 's'}${relief ? ' (one treated as paid)' : ''}.`); checkDepletion(p); return true;

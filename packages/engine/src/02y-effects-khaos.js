@@ -162,7 +162,7 @@ FX_ACTIONS.TRASH_CORES_PER_NEXUS = { chk: a => Number.isInteger(a.n) && a.n >= 1
   run: async (c, a) => {
     const k = c.p.nexus.filter(x => (CARDS[x.id].families || []).includes(a.family)).length, m = Math.min(a.n * k, c.p.trashCores.n), L = c.p.spirits.concat(c.p.nexus);
     if (!m || !L.length) { c.ctx.did = false; return; }
-    const t = L.length === 1 ? L[0] : c.p.cpu ? L.slice().sort((x, y) => (CARDS[y.id].type === 'Spirit') - (CARDS[x.id].type === 'Spirit'))[0] : await fxPickTarget(c, L, `✨ <b>${esc(_nm(c))}</b><br>Tap the Spirit/Nexus that receives ${m} core${m === 1 ? '' : 's'} from the Trash (glowing).`);
+    const t = L.length === 1 ? L[0] : c.p.cpu ? L.slice().sort((x, y) => Number(CARDS[y.id].type === 'Spirit') - Number(CARDS[x.id].type === 'Spirit'))[0] : await fxPickTarget(c, L, `✨ <b>${esc(_nm(c))}</b><br>Tap the Spirit/Nexus that receives ${m} core${m === 1 ? '' : 's'} from the Trash (glowing).`);
     if (!t) { c.ctx.did = false; return; }
     c.p.trashCores.n -= m; t.cores += m; c.ctx.did = true; log(`${_nm(c)}: ${m} core${m === 1 ? '' : 's'} go from the Trash to ${CARDS[t.id].name}.`); io.view({ type: 'board' });
   } };
@@ -368,7 +368,7 @@ FX_ACTIONS.SEND_TOKEN_IF_BANISHED = { chk: a => Number.isInteger(a.costGe) && a.
   txt: a => `if a Cost ${a.costGe}+ card was banished, send out up to ${a.n} "${CARDS[a.token] ? CARDS[a.token].name : a.token}" Tokens`, can: () => true,
   run: async (c, a) => { c.ctx.did = false; if (!(c.ctx.removedCards || []).some(t => CARDS[t.id].cost >= a.costGe)) return; await FX_ACTIONS.SEND_TOKEN.run(c, { do: 'SEND_TOKEN', token: a.token, n: a.n, ask: true }); } };
 /* v516 EXHAUST_FUNGAL_BEDS {}: "you can exhaust any number of your Fungal Bed. For each exhausted, heavy exhaust an opposing Spirit; for each two, draw a card; for each four, put a core from the Void to every Spirit you control" (BS73-030). A human is asked one bed at a time, the CPU exhausts them all. */
-FX_ACTIONS.EXHAUST_FUNGAL_BEDS = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => 'exhaust any number of your "Fungal Bed" (heavy exhaust / draw / cores per beds exhausted)', can: c => c.p.nexus.some(n => isFungalBed(n) && !n.exhausted),
+FX_ACTIONS.EXHAUST_FUNGAL_BEDS = { chk: a => Object.keys(a).every(k => ['do', 'if', 'coresPer'].includes(k)) && (a.coresPer === undefined || a.coresPer === 4), txt: () => 'exhaust any number of your "Fungal Bed" (heavy exhaust / draw / cores per beds exhausted)', can: c => c.p.nexus.some(n => isFungalBed(n) && !n.exhausted),
   run: async c => {
     c.ctx.did = false; const L = c.p.nexus.filter(n => isFungalBed(n) && !n.exhausted); let k = 0;
     for (const n of L) { if (!c.p.cpu && !(await ask({ title: `✨ ${CARDS[c.src.id].name}`, peek: true, html: `Exhaust a "Fungal Bed"? (${k} exhausted so far)`, buttons: [{ label: 'Yes', cls: 'primary', value: true }, { label: 'Stop', cls: 'cancel', value: false }] }))) break; n.exhausted = true; k++; }
