@@ -19713,14 +19713,6 @@
   "M_OPTIONAL",
   "T_ATTACKS"
  ],
- "BS44-RV002": [
-  "A_DRAW",
-  "C_LEVEL",
-  "K_ADVENT",
-  "M_BY_DOING",
-  "M_REPLACEMENT",
-  "T_ADVENT"
- ],
  "BS44-RV004": [
   "A_VOID",
   "C_LEVEL",
@@ -19730,12 +19722,6 @@
   "K_RUSH",
   "S_UNAFFECTED",
   "T_SUMMONED"
- ],
- "BS44-RV005": [
-  "C_LEVEL",
-  "K_ADVENT",
-  "M_BY_DOING",
-  "T_ATTACKS"
  ],
  "BS44-RV006": [
   "A_EXHAUST",

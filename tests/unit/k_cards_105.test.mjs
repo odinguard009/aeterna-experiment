@@ -184,3 +184,33 @@ test('K-1167 BS75-076 Magma Call: Flash gives a Lava Fish an extra Red symbol, a
     return { s0, s1: attackSymbols(lf), soul: nx.soul }; })()`);
   assert.equal(r.s1 - r.s0, 2, JSON.stringify(r)); assert.equal(r.soul, true);
 });
+
+test('K-1168 BS44-RV002 Botis: Flash Advent onto any Cost 5+ Spirit by the Soul Core; draws 1, or 3 when advented onto a Dark Snake', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${pre}
+    const mk = (pred) => { const t = BS.mkInst(sp(x => x.cost >= 5 && !x.families.includes('Dark Snake') === pred)); t.cores = 4; return t; };
+    const out = {};
+    for (const [lab, pred] of [['plain', true], ['snake', false]]) {
+      const tid = sp(x => x.cost >= 5 && x.families.includes('Dark Snake') !== pred && x.levels[0].bp > 0); if (!tid) { out[lab] = 'no card'; continue; }
+      const t = BS.mkInst(tid); t.cores = 4; t.soul = false; P.spirits = [t]; const b = BS.mkInst('BS44-RV002'); P.hand = [b]; P.deck = [1, 2, 3, 4, 5].map(() => BS.mkInst(sp(x => x.cost <= 2)));
+      P.reserve.soul = true; P.trashCores.soul = false; P.count = 0; G.step = 4; G.active = O.key;
+      const n = BS.contractAdventTargets(P, b, 'flash').length; const h0 = P.hand.length;
+      const ok = await BS.doContractAdvent(P, b, t, 'flash'); out[lab] = { n, ok, drew: P.hand.length - (h0 - 1) };
+    }
+    return out; })()`);
+  assert.equal(r.plain.n, 1, JSON.stringify(r)); assert.equal(r.plain.ok, true); assert.equal(r.plain.drew, 1, JSON.stringify(r));
+  assert.equal(r.snake.drew, 3, JSON.stringify(r));
+});
+
+test('K-1169 BS44-RV005 Tron: Advent needs a Divine Spirit Cost 3+; its attack cannot be blocked by Spirits without Advent but can by an advented one', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${pre}
+    const a = BS.mkInst('BS44-RV005'); a.cores = 3; P.spirits = [a];
+    const plain = BS.mkInst(sp(x => x.cost <= 3 && x.levels[0].bp > 0)); const adv = BS.mkInst(sp(x => x.cost <= 3 && x.levels[0].bp > 0)); adv.under = [BS.mkInst(sp(x => x.cost <= 3))];
+    O.spirits = [plain, adv]; G.active = P.key; G.step = 5;
+    const on = [BS.unblockableLow(P, a, plain), BS.unblockableLow(P, a, adv)];
+    const tg = BS.mkInst(sp(x => x.families.includes('Divine Spirit') && x.cost >= 3)); tg.cores = 2; P.spirits = [a, tg]; const h = BS.mkInst('BS44-RV005'); P.hand = [h]; P.reserve.soul = true; G.active = O.key;
+    const targets = BS.contractAdventTargets(P, h, 'flash').map(x => x === tg);
+    return { on, targets, partial: [BS.CARDS['BS44-RV005'].partial, BS.CARDS['BS44-RV002'].partial] }; })()`);
+  assert.deepEqual(r.on, [true, false], JSON.stringify(r)); assert.ok(r.targets.includes(true), JSON.stringify(r)); assert.deepEqual(r.partial, [false, false]);
+});

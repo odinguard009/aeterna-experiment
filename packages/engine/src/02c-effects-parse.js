@@ -62,7 +62,7 @@ function parseCond(c) {
   for (const [k, v] of Object.entries(c)) {
     if (k === 'not') { const sub = parseCond(v); if (sub.error || Object.keys(v).length === 0 || 'not' in v) return { error: 'condition "not" must hold one valid condition (no nesting): ' + (sub.error || 'empty') }; continue; }      // v0.135
     const okInt = ['symColorsGe', 'oppLifeGe', 'blocksGe', 'oppExhaustedGe', 'oppReserveGe', 'reserveGe', 'handLe', 'handGe', 'lifeLe', 'anyLifeLe', 'counterGe', 'soulGe', 'oppHandGe', 'voidGe', 'soulLe', 'putGe', 'lifeGe', 'oppRemovedGe', 'removedGe', 'oppSpiritsLe', 'oppNexusGe', 'oppTrashGe', 'selfBpGe', 'blockerBpLe', 'attackerCostLe', 'oppRefreshedLe', 'legacyGe', 'crushedSpiritGe', 'selfLvGe', 'selfReductionGe', 'underCostGe'].includes(k) && Number.isInteger(v);
-    const okStr = ((k === 'controlName' || k === 'hasName' || k === 'soulOn' || k === 'nexusBraved' || k === 'pickedKeyword' || k === 'pickedFamily' || k === 'attackerKeyword' || k === 'blockerKeyword') && typeof v === 'string' && v.length > 0 && v.length <= 60)
+    const okStr = ((k === 'controlName' || k === 'hasName' || k === 'soulOn' || k === 'nexusBraved' || k === 'pickedKeyword' || k === 'pickedFamily' || k === 'underFamily' || k === 'attackerKeyword' || k === 'blockerKeyword') && typeof v === 'string' && v.length > 0 && v.length <= 60)
       || (k === 'controlName' && Array.isArray(v) && v.length > 1 && v.length <= 4 && v.every(y => typeof y === 'string' && y.length > 0 && y.length <= 60));
     const okCol = (k === 'trashAllColor' && COLORS.includes(v)) || k === 'hasSymbol' && (COLORS.includes(v) || (Array.isArray(v) && v.length >= 2 && v.length <= 3 && new Set(v).size === v.length && v.every(y => COLORS.includes(y))));      // v0.184: a list = all of those symbols
     const okStep = k === 'step' && STEPS.includes(v);
@@ -226,6 +226,7 @@ function parseEffects(arr) {
       }
       if (e.flag === 'UNBLOCKABLE_LOW') {                         // v213 "can't be blocked by opposing N BP or less Spirits"
         if (e.blockerType != null) { if (e.blockerType !== 'Ultimate' || e.bpLe != null) return { error: 'UNBLOCKABLE_LOW "blockerType" must be "Ultimate" and replaces "bpLe"' }; o.blockerType = 'Ultimate'; }      // v349 "can't be blocked by opposing Ultimates"
+        else if (e.noAdvent != null) { if (e.noAdvent !== true || e.bpLe != null) return { error: 'UNBLOCKABLE_LOW "noAdvent" must be true and replaces "bpLe"' }; o.noAdvent = true; }      // v474 "can't be blocked by opposing Spirits without Advent"
         else if (e.coresLe != null) { if (e.bpLe != null || !Number.isInteger(e.coresLe) || e.coresLe < 0 || e.coresLe > 10) return { error: 'UNBLOCKABLE_LOW "coresLe" (0-10) replaces "bpLe"' }; o.coresLe = e.coresLe; }      // v408 "can't be blocked by opposing Spirits with N cores or less"
         else { if (!Number.isInteger(e.bpLe) || e.bpLe < 0 || e.bpLe > 30000) return { error: 'UNBLOCKABLE_LOW needs a whole-number "bpLe"' };
         o.bpLe = e.bpLe; }
