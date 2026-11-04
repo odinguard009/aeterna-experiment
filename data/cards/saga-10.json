@@ -15456,7 +15456,7 @@
        "type": "Spirit"
       },
       "void": true,
-      "max": 15,
+      "max": 5,
       "fresh": true
      }
     ]
@@ -15476,7 +15476,7 @@
      {
       "do": "ORACLE_CORE",
       "n": 1,
-      "max": 15
+      "max": 5
      }
     ],
     "once": true
