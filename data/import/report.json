@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 6084,
+  "cards": 6083,
   "per_saga": {
    "1": 458,
    "2": 251,
@@ -17,12 +17,12 @@
    "13": 381,
    "14": 418,
    "15": 322,
-   "16": 265,
+   "16": 264,
    "17": 104
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2622,
+  "skipped_curated": 2623,
   "nexus_levels_added": 646,
   "nexus_levels_missing": 38,
   "merged": 102,
@@ -1887,6 +1887,7 @@
   "BS74-027",
   "BS74-034",
   "BS74-035",
+  "BS74-037",
   "BS74-038",
   "BS74-040",
   "BS74-041",

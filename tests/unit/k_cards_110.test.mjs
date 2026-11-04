@@ -158,3 +158,16 @@ test('K-1141 BS73-024 OckOx: Summoned reveals three and adds a Contractor Yum-Ka
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.got, 1, JSON.stringify(r)); assert.equal(r.handHasCX, true, JSON.stringify(r));
   assert.equal(r.deck, 3, JSON.stringify(r)); assert.equal(r.cap, 2, JSON.stringify(r));
 });
+
+test('K-1142 BS74-037 SaSai: destroying a Fungal Bed stops an unblocked attack once per turn; LV2 heavy exhausts at either Attack Step start', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = O.key; G.step = 5; G.fxBy = O.key;
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && k !== 'BS74-037');
+    const a = BS.mkInst('BS74-037'); a.cores = 3; P.spirits = [a]; P.nexus = [BS.mkInst('BS74-071'), BS.mkInst('BS74-071')]; P.nexus.forEach(n => n.cores = 1);
+    const t = BS.mkInst(any); t.cores = 1; O.spirits = [t]; const life = P.life;
+    const r1 = await lifeBedSave(P, O, t), r2 = await lifeBedSave(P, O, t);
+    await BS.fireFx(O, 'START_ATTACK', null, {}); await BS.fireFx(P, 'OPP_START_ATTACK', null, {});
+    return { r1, r2, beds: P.nexus.length, life, partial: BS.CARDS['BS74-037'].partial, exh: !!(O.spirits[0] && O.spirits[0].exhausted) }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.r1, true, JSON.stringify(r)); assert.equal(r.r2, false, JSON.stringify(r)); assert.equal(r.beds, 1, JSON.stringify(r));
+  assert.equal(r.exh, true, JSON.stringify(r));
+});

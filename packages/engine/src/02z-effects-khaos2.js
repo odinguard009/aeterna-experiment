@@ -45,3 +45,18 @@ FX_ACTIONS.REMOVE_TRASH_BOTH = { chk: a => Number.isInteger(a.n) && a.n >= 1 && 
       const side = c.p.trash.includes(t) ? c.p : c.opp; if (removeFrom(side.trash, t)) { toRemoved(side, t); c.ctx.removedCards.push(t); c.ctx.removedN++; }
     }
     c.ctx.did = c.ctx.removedN > 0; if (c.ctx.did) log(`${CARDS[c.src.id].name}: ${c.ctx.removedN} card${c.ctx.removedN === 1 ? '' : 's'} are banished from the Trashes.`); } };
+
+/* v525 STATIC LIFE_BED_SAVE {lv} (BS74-037): "once per turn, when your Life would be reduced by the opponent's attack, by destroying one of your Fungal Bed, your Life won't be reduced". The CPU always pays; a human is asked. */
+async function lifeBedSave(D, A, att) {
+  for (const f of fieldList(D)) {
+    const L = lvNo(f);
+    for (const { e } of fxEntries(f)) {
+      if (e.trigger !== 'STATIC' || e.flag !== 'LIFE_BED_SAVE' || (e.lv && !e.lv.includes(L)) || f.bedSaveTurn === G.turnNo) continue;
+      const beds = fungalBeds(D); if (!beds.length) continue;
+      if (!D.cpu && !await ask({ title: `✨ ${CARDS[f.id].name}`, html: `Destroy one of your "Fungal Bed" so your Life isn't reduced by ${esc(CARDS[att.id].name)}?`, buttons: [{ label: 'Destroy a Bed', cls: 'primary', value: true }, { label: 'Skip', cls: 'cancel', value: false }] })) continue;
+      const bed = D.cpu ? beds.sort((x, y) => x.cores - y.cores)[0] : (await fxPickTarget({ p: D, opp: A, src: f, ctx: {} }, beds, `✨ <b>${esc(CARDS[f.id].name)}</b><br>Tap the "Fungal Bed" to destroy.`)) || beds[0];
+      f.bedSaveTurn = G.turnNo; removeNexus(D, bed, 'destroyed'); log(`${CARDS[f.id].name}: ${poss(D)} ${CARDS[bed.id].name} is destroyed, ${poss(D)} Life isn't reduced.`); return true;
+    }
+  }
+  return false;
+}

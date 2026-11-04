@@ -83,12 +83,13 @@ async function doBattleInner(attKey, att) {
     return;
   }
   const shield = (D.symShield && D.symShield.turn === G.turnNo && (D.symShield.b == null || D.symShield.b === G.battleNo) && attackSymbols(att) >= D.symShield.ge) || (att.lifeShield && att.lifeShield.turn === G.turnNo && att.lifeShield.key === D.key) || attackLifeLocked(att) || (D.costShield && D.costShield.turn === G.turnNo && CARDS[att.id].cost >= D.costShield.ge) || (D.coreShield && D.coreShield.turn === G.turnNo && (D.coreShield.b == null || D.coreShield.b === G.battleNo) && (D.coreShield.brave ? !!att.brave : D.coreShield.ge ? totalCores(att) >= D.coreShield.ge : totalCores(att) === D.coreShield.cores));      // v0.199 LIFE_CORE_SHIELD      // v0.186 NO_ATTACK_LIFE      // v0.89 S1 LIFE_SHIELD: "your Life can't be reduced by its attack"
+  const bedSave = !shield && await lifeBedSave(D, A, att);      // v525 STATIC LIFE_BED_SAVE
   const lifePlus = (() => { if (!A) return 0; let n = 0; const oppp = D;      // v222 STATIC LIFE_HIT_PLUS
     for (const f of fieldList(A)) { const L = lvNo(f); for (const { e } of fxEntries(f)) if (e.trigger === 'STATIC' && e.flag === 'LIFE_HIT_PLUS'
       && (!e.lv || e.lv.includes(L)) && (!e.to || e.to !== 'self' || f === att) && (!e.oc || ocActive(f)) && (!e.match || fxMatch(CARDS[att.id], e.match, att))
       && fxIf(A, oppp, e.if || {}, { selfInst: f })) n += e.n; }
     return n; })();
-  const dmg = shield ? 0 : Math.min(attackSymbols(att) + lifePlus, D.life, Math.min(att.lifeCapTurn && att.lifeCapTurn.turn === G.turnNo ? att.lifeCapTurn.cap : 99, D.lifeCapAll === G.turnNo ? 1 : 99));      // v196 LIFE_CAP_ONE: "your Life can only be reduced by one by that"
+  const dmg = shield || bedSave ? 0 : Math.min(attackSymbols(att) + lifePlus, D.life, Math.min(att.lifeCapTurn && att.lifeCapTurn.turn === G.turnNo ? att.lifeCapTurn.cap : 99, D.lifeCapAll === G.turnNo ? 1 : 99));      // v196 LIFE_CAP_ONE: "your Life can only be reduced by one by that"
   if (shield) log(`${CARDS[att.id].name}'s attack can't reduce ${poss(D)} Life.`);
   lifeTake(D, dmg, flagActive(A, 'LIFE_CORE_TO_TRASH', att) ? 'trash' : 'reserve');                    // v191 LIFE_CORE_TO_TRASH: "sent to the Trash instead of the Reserve"
   log(`${CARDS[att.id].name} is not blocked: ${who(D)} ${D.cpu ? 'loses' : 'lose'} ${dmg} Life.`);
