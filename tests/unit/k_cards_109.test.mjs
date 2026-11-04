@@ -30,3 +30,19 @@ test('K-1108 BS69-067 Gaia\'s Crust Temple: ally Primordial attack gives counter
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.c1, 3, JSON.stringify(r)); assert.equal(r.gc, 1, JSON.stringify(r));
   assert.equal(r.gone, true, JSON.stringify(r)); assert.equal(r.drew, 1, JSON.stringify(r));
 });
+
+test('K-1109 BS69-032 Proacher-Choukaku: Flash from Hand needs a Primordial/Gaudy Trooper on the field (once per turn); Summoned reveals two and deploys matching free; Lv2 ally attack heavy exhausts', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.phase = 'attack';
+    const prim = 'BS69-001', other = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && !(BS.CARDS[k].families || []).some(f => f === 'Primordial' || f === 'Gaudy Trooper') && BS.CARDS[k].cost <= 3);
+    const h = BS.mkInst('BS69-032'); P.hand = [h]; P.reserve.n = 12; P.spirits = [BS.mkInst(other)];
+    const noCtrl = BS.highSpeedOK(P, h);
+    const a = BS.mkInst(prim); a.cores = 1; P.spirits = [a]; const withCtrl = BS.highSpeedOK(P, h);
+    const me = BS.mkInst('BS69-032'); me.cores = 5; P.spirits = [a, me]; P.deck = [BS.mkInst(prim), BS.mkInst(other), BS.mkInst(prim)]; const before = P.spirits.length;
+    await BS.fireFx(P, 'SUMMONED', me, { subject: me });
+    const t = BS.mkInst(other); t.cores = 2; O.spirits = [t];
+    await BS.fireFx(P, 'ALLY_ATTACKS', a, { attacker: a, subject: a });
+    return { noCtrl, withCtrl, grew: P.spirits.length - before, heavy: !!t.heavy, partial: BS.CARDS['BS69-032'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.noCtrl, false, JSON.stringify(r)); assert.equal(r.withCtrl, true, JSON.stringify(r));
+  assert.ok(r.grew >= 1, JSON.stringify(r)); assert.equal(r.heavy, true, JSON.stringify(r));
+});
