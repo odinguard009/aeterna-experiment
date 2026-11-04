@@ -144,3 +144,17 @@ test('K-1140 BS73-AX01 BigBang-Golem: Summoned banishes up to ten Trash cards an
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.banished, 5, JSON.stringify(r)); assert.equal(r.exhN, 2, JSON.stringify(r));
   assert.equal(r.cap, 2, JSON.stringify(r)); assert.equal(r.cap2, 5, JSON.stringify(r));
 });
+
+test('K-1141 BS73-024 OckOx: Summoned reveals three and adds a Contractor Yum-Kaax or green Rebirth card; LV2 floors green Devotee/Fungal Tree Spirits at three cores', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && k !== 'BS73-024' && k !== 'BS73-CX01');
+    const a = BS.mkInst('BS73-024'); a.cores = 3; P.spirits = [a]; P.hand = [];
+    P.deck = [BS.mkInst(any), BS.mkInst('BS73-CX01'), BS.mkInst(any), BS.mkInst(any)];
+    await BS.fireFx(P, 'SUMMONED', a, { subject: a });
+    const got = P.hand.map(c => c.id || c.cid || c.card).length, handHasCX = P.hand.some(c => JSON.stringify(c).includes('BS73-CX01'));
+    G.fxBy = O.key; const t = BS.mkInst('BS73-024'); t.cores = 5; P.spirits.push(t); const cap = coreTakeCap(P, t, 5);
+    return { got, handHasCX, deck: P.deck.length, cap, partial: BS.CARDS['BS73-024'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.got, 1, JSON.stringify(r)); assert.equal(r.handHasCX, true, JSON.stringify(r));
+  assert.equal(r.deck, 3, JSON.stringify(r)); assert.equal(r.cap, 2, JSON.stringify(r));
+});
