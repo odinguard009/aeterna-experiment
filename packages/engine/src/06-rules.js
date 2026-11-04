@@ -615,7 +615,7 @@ async function castMagic(p, ch) {                         // ch = { inst, target
     p.trashCores.soul = true;
   } else if (!free) inst.soulPaid = payCost(p, c, ch.plan);      // v370 "If (Soul Core) was used to pay the cost" on a Magic
   log(`${who(p)} ${p.cpu ? 'casts' : 'cast'} ${card.name}${fromTrash ? ' from the Trash' : ''} (${free ? 'without paying the cost' : sm ? 'Soul Magic: paid the Soul Core' : 'paid ' + c}).`);
-  io.view({ type: 'effect', side: p.key, id: inst.id, text: String(magicText(card)).replace(/^(\[[^\]]*\])+ /, '').slice(0, 200), trg: '' });   // v0.205.2: the Effect Active panel also shows a cast Magic (display only)
+  io.view({ type: 'effect', side: p.key, id: inst.id, text: String(magicText(card)).replace(/^(\[[^\]]*\])+ /, '').slice(0, 200), trg: '', magic: true });   // v0.205.2: the Effect Active panel also shows a cast Magic (display only)
   checkDepletion(p);
   const fromBurst = p.limbo === inst;                       // v0.44: cast from the Burst (burstFlash); maybeBurst moves it to the Trash afterwards
   const prevLimbo = p.limbo; if (!fromBurst) p.limbo = inst;   // the card being resolved is in no zone: count it while its effect runs (SIM invariants)

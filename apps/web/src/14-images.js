@@ -276,6 +276,7 @@ document.addEventListener('change', async e => {
   else if (t.id === 'set-cpu') setCpuProfile(t.value);
   else if (t.id === 'set-color') { setTheme('color', t.value); navTools(); if (G) render(); }
   else if (t.id === 'set-mode') { setTheme('mode', t.value); navTools(); if (G) render(); }
+  else if (t.id === 'set-handsort') { if (t.value === 'off') delete SETTINGS.handSort; else SETTINGS.handSort = t.value; saveSettings(); }
   else if (t.id === 'set-effpop') { if (t.value === 'off') SETTINGS.effPop = 'off'; else delete SETTINGS.effPop; saveSettings(); }
   else if (t.id === 'set-anim') { if (['full', 'reduced', 'off'].includes(t.value)) SETTINGS.anim = t.value; else delete SETTINGS.anim; saveSettings(); }
   else if (t.id === 'set-ts') { if (TEXT_SIZES.includes(t.value) && t.value !== 'normal') SETTINGS.textSize = t.value; else delete SETTINGS.textSize; saveSettings(); applyTextSize(); }

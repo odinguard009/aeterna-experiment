@@ -122,7 +122,7 @@ document.addEventListener('click', e => {
       refreshViews(); renderSetPage();
     });
   }
-  else if (a === 'set-reset') { SETTINGS.speed = 'normal'; SETTINGS.sound = false; delete SETTINGS.anim; delete SETTINGS.effPop; delete SETTINGS.textSize; delete SETTINGS.cbShapes; delete SETTINGS.hiContrast; applyTextSize(); applyAccess(); SETTINGS.cpuDeck = 'std03'; SETTINGS.cpuProfile = 'balanced'; delete SETTINGS.cpuRandom; delete SETTINGS.cpuLevel; delete SETTINGS.firstTurn; delete SETTINGS.hints; saveSettings(); renderSettings(); $('set-msg').textContent = 'Settings reset.'; }
+  else if (a === 'set-reset') { SETTINGS.speed = 'normal'; SETTINGS.sound = false; delete SETTINGS.anim; delete SETTINGS.effPop; delete SETTINGS.handSort; delete SETTINGS.textSize; delete SETTINGS.cbShapes; delete SETTINGS.hiContrast; applyTextSize(); applyAccess(); SETTINGS.cpuDeck = 'std03'; SETTINGS.cpuProfile = 'balanced'; delete SETTINGS.cpuRandom; delete SETTINGS.cpuLevel; delete SETTINGS.firstTurn; delete SETTINGS.hints; saveSettings(); renderSettings(); $('set-msg').textContent = 'Settings reset.'; }
   else if (a === 'go-lib') switchView('view-library');
   else if (a === 'set-sec') setSection(v);
   else if (a === 'set-mat-clear') matClear();

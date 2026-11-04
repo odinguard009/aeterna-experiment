@@ -219,7 +219,8 @@ function rebirthSideOf(id) {
   const f = CARDS[id]; if (!f || !f.rebirthTo || typeof BUILTIN_SIDES !== 'string' || !BUILTIN_SIDES) return null;
   if (REB_CACHE[id]) return REB_CACHE[id];
   if (!REB_SIDES) REB_SIDES = loadFlavor(BUILTIN_SIDES);
-  const o = REB_SIDES[id], r = o ? parseCard(o) : null; if (!r || !r.card) return null;
+  const o = REB_SIDES[id] || REB_SIDES[String(f.rebirthTo).replace(/B$/, '')], r = o ? parseCard(o) : null;   // a reprint (SD52-005) has no page of its own: it flips to the back of the print it copies (CB13-027B)
+  if (!r || !r.card) return null;
   const face = (REB_CACHE[id] = Object.assign({}, r.card, { desc: o.text || '', implemented: false, partial: true, residual: (o.residual || []).slice(), side: true }));
   REB_BY_ID[face.id] = face; return face;
 }

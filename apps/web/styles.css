@@ -979,11 +979,12 @@ html[data-ts="small"]{--t:.9;--tb:.92}html[data-ts="large"]{--t:1.15;--tb:1.12}h
   #card-panel .cp-hint { color: var(--ae-text2); font-size: calc(12px*var(--t)); text-align: center; padding: 24px 6px; }
 
   /* ---- U14d battle animation (v0.124.0): arrow attack, destroy flash + shards ---- */
-  .ae-a-beam.arrow { clip-path: polygon(0 38%, calc(100% - 26px) 38%, calc(100% - 26px) 0, 100% 50%, calc(100% - 26px) 100%, calc(100% - 26px) 62%, 0 62%); background: linear-gradient(90deg, transparent, var(--you) 25%, #fff); animation: aeArrow .8s ease-out both; animation-delay: .18s; }
-  .ae-a-beam.arrow.cpu { background: linear-gradient(90deg, transparent, var(--cpu) 25%, #fff); }
+  /* v0.216.0 (owner): the attack arrow is a row of chevrons (>>>) in the theme colour (--you; --cpu for the CPU), drawn with a mask so the colour follows the theme */
+  .ae-a-beam.arrow { clip-path: none; background: var(--you); filter: drop-shadow(0 0 6px var(--you)); transform-origin: 0 50%; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 22'%3E%3Cpath d='M2 0h10l9 11-9 11H2l9-11z'/%3E%3C/svg%3E") 100% 0 / 28px 22px repeat-x; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 22'%3E%3Cpath d='M2 0h10l9 11-9 11H2l9-11z'/%3E%3C/svg%3E") 100% 0 / 28px 22px repeat-x; animation: aeArrow .8s ease-out both; animation-delay: .18s; }
+  .ae-a-beam.arrow.cpu { background: var(--cpu); filter: drop-shadow(0 0 6px var(--cpu)); }
   .ae-a-flash { background: radial-gradient(closest-side, #fff, #fff0); animation: aeFade .35s ease-out both; }
   .ae-a-card-shard { background: linear-gradient(135deg, #fff, var(--ae-card1)); clip-path: polygon(0 0, 100% 30%, 60% 100%); animation: aeShard .7s ease-out both; }
-  @keyframes aeArrow { 0% { transform: var(--r) scaleX(0); opacity: 0; } 40% { opacity: 1; transform: var(--r); } 100% { opacity: 0; transform: var(--r); } }
+  @keyframes aeArrow { 0% { transform: var(--r); clip-path: inset(0 100% 0 0); opacity: 1; } 45% { clip-path: inset(0); opacity: 1; } 100% { clip-path: inset(0); opacity: 0; transform: var(--r); } }
 
   /* ---- U14d2 (v0.125.0): Effect Active panel and emoticons ---- */
   /* v0.151.0: effect pop-ups, info only (stack at the bottom of the left card column on PC, under the top bar on phones; never over the field) */
@@ -1181,3 +1182,12 @@ html[data-hc] :focus-visible{outline:3px solid #fff;outline-offset:2px;box-shado
 #view-playmat:not(.active) #fe-btn { display: none; }
 .fx-list .fxrow { padding: 6px 0; border-bottom: 1px solid var(--ae-line2, #3338); text-align: left; }
 .fx-list .fxrow.cpu b { color: var(--cpu, #ff7a7a); } .fx-list .fxrow.you b { color: var(--you, #7ad0ff); }
+
+/* v0.216.0: Magic card reveal (owner, like Aegis) */
+#ae-fx .ae-magic { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; pointer-events: none; z-index: 6; animation: aeMagic 1.7s ease-out both; }
+#ae-fx .ae-magic-card { width: min(46vw, 250px); aspect-ratio: 5 / 7; border-radius: 10px; box-shadow: 0 0 0 3px var(--you), 0 0 40px var(--you), 0 14px 40px #000a; overflow: hidden; }
+#ae-fx .ae-magic.cpu .ae-magic-card { box-shadow: 0 0 0 3px var(--cpu), 0 0 40px var(--cpu), 0 14px 40px #000a; }
+#ae-fx .ae-magic-card .cface { width: 100%; height: 100%; }
+#ae-fx .ae-magic-h { padding: 4px 12px; font-size: calc(12px*var(--t)); font-weight: 900; letter-spacing: .12em; background: #000b; color: #fff; border-radius: 3px; }
+@keyframes aeMagic { 0% { opacity: 0; transform: scale(.6); } 14% { opacity: 1; transform: scale(1.04); } 22% { transform: scale(1); } 80% { opacity: 1; } 100% { opacity: 0; transform: scale(1.02); } }
+#ae-fx .ae-magic.calm { animation-name: aeFade; animation-duration: 1.7s; }

@@ -28,6 +28,15 @@ function effectPanel(ev) {
   d.dataset.t = String(setTimeout(() => d.remove(), EFF_MS));
   st.appendChild(d);
 }
+/* v0.216.0 (owner, like Aegis): a Magic card played by you or the CPU (Main or Flash) appears large in the middle of the screen for about 1.6 s, then fades out;
+   it never blocks a tap, Off and sims show nothing, Reduced shows it without the zoom. */
+function magicReveal(ev) {
+  if (SIM || animMode() === 'off') return;
+  const L = $('ae-fx'), c = CARDS[ev.id]; if (!L || !c) return;
+  const d = document.createElement('div'); d.className = 'ae-magic' + (ev.side === 'opponent' ? ' cpu' : '') + (animMode() === 'full' ? '' : ' calm');
+  d.innerHTML = `<div class="ae-magic-card">${cardFaceHTML(c, true)}</div><div class="ae-magic-h">${ev.side === 'opponent' ? 'CPU' : 'YOU'} · MAGIC · ${esc(c.name)}</div>`;
+  L.appendChild(d); setTimeout(() => d.remove(), 1700 * spdF());
+}
 function emotePop() {
   /** @type {HTMLElement} */ let p = $('emote-pop');
   if (p) { p.remove(); return; }

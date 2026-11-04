@@ -92,6 +92,11 @@ function burstFlip(ev) {
   const d = aeFx('ae-a-flip', { x: r.x - r.w * .3, y: r.y - r.h * .3, w: r.w * 1.6, h: r.h * 1.6 }, cardFaceHTML(CARDS[ev.id], true), 800);
   if (d) d.style.setProperty('--w', Math.round(r.w * 1.6) + 'px');
 }
+/* v0.216.0 (owner): a card the CPU just put on the field scrolls into view (row and page), so you see what was played; SIM and Off mode never reach this */
+function focusNew(uid) {
+  const e = document.querySelector(`[data-a="field"][data-v$=":${uid}"]`); if (!e || !e.scrollIntoView) return;
+  try { e.scrollIntoView({ behavior: animMode() === 'full' ? 'smooth' : 'auto', inline: 'center', block: 'nearest' }); } catch (_) { /* old WebView: skip */ }
+}
 function animCues() {
   if (SIM || !G) { ANIM = null; return; }
   const mode = animMode(), cards = new Map();
@@ -109,7 +114,7 @@ function animCues() {
   coreFlows(prev, now, full); for (const k in CF_SEEN) delete CF_SEEN[k];
   for (const [uid, c] of cards) {
     const o = prev.cards.get(uid);
-    if (!o) { aeFx('ae-a-sum' + (c.k === 'opponent' ? ' cpu' : ''), c.r, '', 500); continue; }
+    if (!o) { aeFx('ae-a-sum' + (c.k === 'opponent' ? ' cpu' : ''), c.r, '', 500); if (c.k === 'opponent') focusNew(uid); continue; }
     if (full && c.ex !== o.ex) { const e = document.querySelector(`[data-a="field"][data-v$=":${uid}"]`); if (e && e.animate) e.animate([{ transform: `rotate(${o.ex}deg)` }, { transform: `rotate(${c.ex}deg)` }], { duration: 280 * spdF(), easing: 'ease-out' }); }   // one Refresh = one level (180 -> 90 -> 0)
     if (c.lv != null && o.lv != null && c.lv > o.lv) aeFx('ae-a-lv', c.r, '', 600);
     if (c.bp != null && o.bp != null && c.bp !== o.bp) aeFx('ae-a-bp' + (c.bp < o.bp ? ' down' : ''), c.r, `${c.bp > o.bp ? '+' : '−'}${Math.abs(c.bp - o.bp)}`, 650);

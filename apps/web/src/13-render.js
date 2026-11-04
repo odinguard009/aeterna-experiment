@@ -36,6 +36,14 @@ function symBadgeHTML(id) {
   const bg = kinds.length === 1 ? colorVar(kinds[0]) : `conic-gradient(${cols.map((s, i) => `${colorVar(s)} ${Math.round(i * 360 / k)}deg ${Math.round((i + 1) * 360 / k)}deg`).join(', ')})`;
   return `<div class="sym-badge${god ? ' god' : ''}" style="background:${bg}" title="${n} symbol${n > 1 ? 's' : ''}: ${kinds.join(', ')}${god ? ' (God)' : ''}">${n}</div>`;
 }
+/* v0.216.0 (owner): optional display-only hand order (Settings > Hand order); cards are addressed by uid, so the game order is untouched */
+const HAND_TYPE_RANK = { Spirit: 0, Brave: 1, Ultimate: 2, Nexus: 3, Magic: 4 };
+function sortedHand(hand) {
+  const m = SETTINGS.handSort; if (!m || m === 'off') return hand;
+  const cost = h => CARDS[h.id].cost, ty = h => { const t = CARDS[h.id].type; return t in HAND_TYPE_RANK ? HAND_TYPE_RANK[t] : 9; };
+  const cmp = m === 'cost' ? (a, b) => cost(a) - cost(b) : m === 'type' ? (a, b) => ty(a) - ty(b) : (a, b) => cost(a) - cost(b) || ty(a) - ty(b);
+  return hand.slice().sort(cmp);                       // stable, so equal cards keep their drawn order
+}
 function handCardHTML(inst, i, n) {
   const card = CARDS[inst.id], p = G.p.player;
   const can = humanCan() && isMainStep();
@@ -238,7 +246,7 @@ function renderBoard() {
         </div>
       </div>
       <div class="hand-container-wrapper">
-        <div class="hand-area" data-scroll="hand">${P.hand.map((h, i) => handCardHTML(h, i, P.hand.length)).join('')}</div>
+        <div class="hand-area" data-scroll="hand">${sortedHand(P.hand).map((h, i, a) => handCardHTML(h, i, a.length)).join('')}</div>
       </div>
     </div>`;
   dqa('[data-scroll]').forEach(e => { if (keep[e.dataset.scroll]) { e.style.scrollBehavior = 'auto'; e.scrollLeft = keep[e.dataset.scroll]; e.style.scrollBehavior = ''; } });   // v0.92.0: at once, not smooth, so the cues measure the real card places
@@ -362,7 +370,7 @@ function switchView(id) {
   if (id === 'view-card') renderCardPage();
   if (id === 'view-recipe') renderRecipe();
 }
-function renderSettings() { $('set-hist').innerHTML = histHTML(); $('set-cpu').innerHTML = CPU_PROFILE_NAMES.map(n => `<option value="${n}">${cap(n)}</option>`).join(''); $('set-cpu').value = cpuProfileName(null); $('set-speed').value = SETTINGS.speed; $('set-sound').value = SETTINGS.sound ? 'on' : 'off'; $('set-anim').value = SETTINGS.anim || 'auto'; $('set-effpop').value = SETTINGS.effPop === 'off' ? 'off' : 'on'; $('set-lp').value = SETTINGS.longpress === 'off' ? 'off' : 'on'; $('set-cb').value = SETTINGS.cbShapes ? 'on' : 'off'; $('set-hc').value = SETTINGS.hiContrast ? 'on' : 'off'; $('set-ts').value = SETTINGS.textSize || 'normal';
+function renderSettings() { $('set-hist').innerHTML = histHTML(); $('set-cpu').innerHTML = CPU_PROFILE_NAMES.map(n => `<option value="${n}">${cap(n)}</option>`).join(''); $('set-cpu').value = cpuProfileName(null); $('set-speed').value = SETTINGS.speed; $('set-sound').value = SETTINGS.sound ? 'on' : 'off'; $('set-anim').value = SETTINGS.anim || 'auto'; $('set-effpop').value = SETTINGS.effPop === 'off' ? 'off' : 'on'; $('set-handsort').value = SETTINGS.handSort || 'off'; $('set-lp').value = SETTINGS.longpress === 'off' ? 'off' : 'on'; $('set-cb').value = SETTINGS.cbShapes ? 'on' : 'off'; $('set-hc').value = SETTINGS.hiContrast ? 'on' : 'off'; $('set-ts').value = SETTINGS.textSize || 'normal';
   renderSetPage(); $('set-back').hidden = !G || !!G.over; }   // v0.122.0 U14b: Options from a running match shows BACK TO MATCH; v0.68.0 U4: colour grid, Dark/Light, playmat and CPU colour rows (13d-pages.js)
 function renderLobby() {
   renderHome();

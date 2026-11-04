@@ -58,7 +58,7 @@ function webView(ev) {
     case 'screen': switchView(ev.id); break;
     case 'reset': actFlush(); clearPick(); closeModal(null); break;
     case 'matchEnd': actFlush(); if (!SIM) { recordMatch(ev.winner); showGameOver(); } break;
-    case 'effect': effectPanel(ev); break;
+    case 'effect': effectPanel(ev); if (ev.magic) magicReveal(ev); break;
     case 'core': coreFly(ev); break;
     case 'draw': drawFly(ev); break;
     case 'burst': burstFlip(ev); break;

@@ -128,14 +128,14 @@ CPU_PROFILES, CPU_PROFILE_NAMES, CPU_SIM_PROFILES, cpuProfileName, cpuW, lifeVal
 ## apps/web/src/10-modals.js (159 lines, ~2.8k tokens) — MODALS (promise based)
 modalKind, modalBtns, paintModal, uiInfo, modal, PEEK, endPeek, paintPeek, startPeek, peekRefresh, closeModal, modalPress, PICK, clearPick, webPick, webPayment
 
-## apps/web/src/11-human.js (318 lines, ~7.9k tokens) — HUMAN ACTIONS: the dialogs of the human seat. Board actions are intent records (v0.84.0, F3 = M3 rest):
+## apps/web/src/11-human.js (319 lines, ~8k tokens) — HUMAN ACTIONS: the dialogs of the human seat. Board actions are intent records (v0.84.0, F3 = M3 rest):
 humanCan, legalityHTML, FX_KW_START, FX_LINE_STOP, TPL_NAMES, descText, glossText, FX_TERM_RE, familyRowHTML, FX_JUNK, FX_HEAD, fxLevelRuns, effectLines, fxMark, fxTerms, fxMark0, slashBreak, effectTextHTML, cardDetailHTML, residualHTML, ART_HEX, ART_CACHE, artMix, cardArtSVG, cardFacePlaceholder, cardFaceHTML, cardStripHTML, mullCardHTML, openZoom, handButtons, HAND_INTENTS, runHandAction, humanCast, humanAttack, onNext, REB_SIDES, rebirthSideOf, showCardDetail, openHandModal, openFieldModal
 
 ## apps/web/src/12-zones.js (108 lines, ~2.4k tokens) — ZONES, LOG, RULES COVERAGE
 openZoneModal, fieldFxRows, openFieldFx, openLogModal, showRules
 
-## apps/web/src/13-render.js (379 lines, ~9k tokens) — RENDERING
-nameHTML, isPC, applyLayout, _rz, colorVar, cardColors, isMulti, colorSty, symSlices, symCount, isUltimate, cardCls, rebMark, symBadgeHTML, handCardHTML, gemsHTML, fieldCardHTML, rowHTML, burstAreaHTML, soulAreaHTML, PILL_FULL, fieldAreaHTML, zoneBox, pv, zoneChip, trashBox, pileHTML, lifePlate, resPlate, STEP_WARN, stepTargets, stepWarn, stepClick, SLEEVE_TINTS, CORE_LOOKS, deckLook, coreVars, SLEEVE_IMG, sleeveImgCss, applyLook, hintText, renderBoard, fitGems, render, CUE, fxCueReset, aeRibbon, aeStrip, fxCues, LOG_OPEN, updateLogDrawer, toggleFullscreen, toggleLog, magBtnHTML, liveStatusHTML, HIST_KEY, HISTORY, recordMatch, histHTML, lifeTxt, switchView, renderSettings, renderLobby
+## apps/web/src/13-render.js (387 lines, ~9.2k tokens) — RENDERING
+nameHTML, isPC, applyLayout, _rz, colorVar, cardColors, isMulti, colorSty, symSlices, symCount, isUltimate, cardCls, rebMark, symBadgeHTML, HAND_TYPE_RANK, sortedHand, handCardHTML, gemsHTML, fieldCardHTML, rowHTML, burstAreaHTML, soulAreaHTML, PILL_FULL, fieldAreaHTML, zoneBox, pv, zoneChip, trashBox, pileHTML, lifePlate, resPlate, STEP_WARN, stepTargets, stepWarn, stepClick, SLEEVE_TINTS, CORE_LOOKS, deckLook, coreVars, SLEEVE_IMG, sleeveImgCss, applyLook, hintText, renderBoard, fitGems, render, CUE, fxCueReset, aeRibbon, aeStrip, fxCues, LOG_OPEN, updateLogDrawer, toggleFullscreen, toggleLog, magBtnHTML, liveStatusHTML, HIST_KEY, HISTORY, recordMatch, histHTML, lifeTxt, switchView, renderSettings, renderLobby
 
 ## apps/web/src/13a-deckbuilder.js (547 lines, ~13.3k tokens) — DECK BUILDER (v0.53.0 redesign; list performance from v0.52.1)
 DB_COLORS, DB_TYPES, DB_COSTS, DB_GROUP_ALL, DB_TYPE_GROUPS, DB_GROUPS, RAINBOW, filterPipsHTML, filterTypesHTML, DB_BPS, DB_CORES, DB_FAMS, DB_ICONS, DB_VALS, dbVals, dbFamilies, ddMode, ddList, ddSel, ddSortDef, ddButton, ddMenuEl, ddPick, ddReset, DBF, DB_UNDO, DB_IO, dbArr, dbTypeOf, dbSetOf, dbFilterOK, dbPlusOK, dbGroupOK, DBV, DB_GAP, DB_COLL, dbIndex, dbSets, dbActiveCount, DB_RARITY_ORDER, DB_SORT_VAL, DB_SORT_KEYS, dbSortCmp, dbFilter, fxMarked, FX_MARK_LBL, fxMarkHTML, dbCardHTML, dbWindow, dbScroll, dbSearchInput, dbBar, DB_MIN, dbMinApply, dbMinToggle, dbMenu, dbDd, DB_TAB, dbTab, renderDbLook, dbCover, SLEEVE_BLOB, dbSleeveSet, dbSleeveClear, dbLook, dbToggle, dbResetFilters, DB_SAVE_T, dbSaved, dbNameCommit, dbNameInput, dbSave, dbSnap, dbCanAdd, dbChange, dbReplace, dbClear, dbUndo, dbRedo, dbTestHand, DB_SIZE_KEY, DB_SIZE, dbSize, dbFlyFrom, dbFlyTo, DB_LP, DB_PEEK, dbPeekHide, dbTap, dbKey, dbDetect, dbCsv, dbDeckPng, dbImport, dbExport, dbShareCode, dbShareResolve, dbShare, DB_COLCH, dbRingHTML, dbChips, dbStatsHTML, dbRowsHTML, renderDbDeck, dbPlayNow, dbSheet, renderDeckBuilder
@@ -155,8 +155,8 @@ AUDIO, sfx, showGameOver, ACT, ACT_Q, actFlush, webAction, sendIntent, webView, 
 ## apps/web/src/13f-replay.js (61 lines, ~1.4k tokens) — REPLAY VIEWER (v0.86.0, phase F4 part 2 = monorepo step M4 rest; formats: packages/engine/src/15b-replay.js)
 rvName, rvCards, rvField, rvSideHTML, rvFrameHTML, openViewer, replayFromRecord, replayWatch, replaySave, replayOpenFile
 
-## apps/web/src/13g-anim.js (143 lines, ~2.9k tokens) — v0.92.0 U5b LIGHT BATTLE ANIMATIONS (roadmap item U, owner 2026-10-21; docs/DESIGN.md section 0, U5b)
-spdF, animMode, ANIM, rectOf, visEl, aeFx, aeBeam, CF_SEEN, flyGem, coreEnd, coreFly, coreFlows, drawFly, burstFlip, animCues
+## apps/web/src/13g-anim.js (148 lines, ~3k tokens) — v0.92.0 U5b LIGHT BATTLE ANIMATIONS (roadmap item U, owner 2026-10-21; docs/DESIGN.md section 0, U5b)
+spdF, animMode, ANIM, rectOf, visEl, aeFx, aeBeam, CF_SEEN, flyGem, coreEnd, coreFly, coreFlows, drawFly, burstFlip, focusNew, animCues
 
 ## apps/web/src/13h-decks.js (188 lines, ~5.2k tokens) — v0.93.0 U6 MY DECKS (docs/DESIGN.md section 0, mockup docs/design/mockup-v11.html "My decks PC / phone")
 DK_MENU, dkCards, dkUsed, dkFree, dkStatus, dkColors, dkKeyNexus, dkCover, dkFan, dkStats, dkAgo, dkTile, renderDecks, dkMenu, dkNewSlot, dkAct, RC_ID, openRecipe, RC_TYPES, renderRecipe
@@ -170,8 +170,8 @@ ONL_CFG, ONL_ACCOUNT, onlConfig, onlAccount, onlAccountHTML, renderOnlineLobby, 
 ## apps/web/src/13k-cardpanel.js (33 lines, ~0.7k tokens) — CARD PANEL (v0.122.0, U14b battle PC; docs/design/mockup-v14.html)
 PANEL_ID, CP_MIN, cpMinToggle, cardPanelHTML, panelCardOf
 
-## apps/web/src/13l-emote.js (47 lines, ~1k tokens) — EFFECT ACTIVE PANEL + EMOTICONS (v0.125.0, U14d2; docs/design/mockup-v14.html)
-EMOTES, EMOTE_GAP, EMOTE_AT, emoteLeft, EFF_MS, effectPanel, emotePop, emoteSend
+## apps/web/src/13l-emote.js (56 lines, ~1.2k tokens) — EFFECT ACTIVE PANEL + EMOTICONS (v0.125.0, U14d2; docs/design/mockup-v14.html)
+EMOTES, EMOTE_GAP, EMOTE_AT, emoteLeft, EFF_MS, effectPanel, magicReveal, emotePop, emoteSend
 
 ## apps/web/src/13m-lore.js (45 lines, ~1.5k tokens) — LORE (v0.131.0, U14g; docs/design/mockup-v14.html): the English flavor texts of the cards, read in order by series.
 LORE_SET, lore, SAGA_NAMES, SAGA_EXTRA, BS_SAGA_END, sagaOf, LORE_BY, loreKeyOf, loreSeries, loreTitle, LORE_FS, renderLore
@@ -194,7 +194,7 @@ LEARN_KEY, LEARN_CHAPS, learnDone, learnSave, learnNext, renderLearn, learnOpen
 ## apps/web/src/13s-access.js (18 lines, ~0.5k tokens) — v0.138.0 ACCESSIBILITY (mockup "New features"): Text size (Normal / Large / Larger, menu screens) and the keyboard shortcuts list
 TEXT_SIZES, applyTextSize, applyAccess, SHORTCUTS, shortcutsDialog
 
-## apps/web/src/14-images.js (312 lines, ~6.5k tokens) — CARD IMAGES
+## apps/web/src/14-images.js (313 lines, ~6.5k tokens) — CARD IMAGES
 IMG, IDB, normKey, idbOpen, idbTx, setImg, loadImages, shrinkImage, stripExt, findCardByFile, fileCandidates, cardsByKey, ambiguousMsg, findCardByKey, importImages, clearImages, ART_REV, cardImgSrc, imgCls, imgSty, refreshViews, libMsg, renderLibrary, LIBV, LIB_GAP, libSetOf, LIBF, LIB_SIZES, libActive, libFilter, libBar, libMenu, libTool, libCardHTML, libWindow, renderLibraryGrid, libScroll, libSearchInput, deckToText, textToDeck, downloadText, readFileText, libAction
 
 ## packages/engine/src/15-match.js (74 lines, ~1.7k tokens) — MATCH START / END
