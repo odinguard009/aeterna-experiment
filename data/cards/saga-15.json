@@ -10365,7 +10365,14 @@
    "red": 1
   },
   "symbols": 1,
-  "levels": [],
+  "levels": [
+   {
+    "cores": 0
+   },
+   {
+    "cores": 3
+   }
+  ],
   "families": [
    "Grandwalker",
    "Primordial"
@@ -10377,21 +10384,171 @@
   "mechanics": [
    "Neo-Core Charge"
   ],
-  "fxComplete": false,
-  "residual": [
-   "Neo-Core Charge:",
-   "◆When your target Spirit/Nexus is summoned/deployed, you can +1 core to this Nexus.",
-   "◆(Once per Turn: Same Name) When this Nexus is deployed, you can send three cards from your decktop to the Trash.",
-   "For each target card among them, +1 core to this Nexus.",
-   "Revive Main - (Once per Turn: Same Name) You can deploy this card from Soul State.",
-   "Contract Field [LV1][LV2]",
-   "When your other \"Primordial\" family Nexus is deployed, your counter +1.",
-   "(Max.",
-   "up to 8 counters.) Then, (Once per Turn: Same Name) you can draw a card.",
-   "{{cs|4}} [LV2] Flash - (Either Attack Step)",
-   "(Send four cores from this Nexus to the Void) Destroy a Nexus you or the opponent controls, and when destroys, if your counter is six or more, you can refresh a \"Primordial\" family Spirit you control."
+  "fxComplete": true,
+  "effects": [
+   {
+    "trigger": "ALLY_SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "match": {
+     "anyOf": [
+      {
+       "family": [
+        "Reptile Beast",
+        "Primordial",
+        "Concluser"
+       ],
+       "costGe": 3,
+       "type": "Spirit"
+      },
+      {
+       "family": [
+        "Reptile Beast",
+        "Primordial",
+        "Concluser"
+       ],
+       "costGe": 3,
+       "type": "Ultimate"
+      },
+      {
+       "family": [
+        "Primordial"
+       ],
+       "type": "Nexus"
+      }
+     ]
+    },
+    "actions": [
+     {
+      "do": "CORE_TO_SELF",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "once": true,
+    "sameName": true,
+    "optional": true,
+    "actions": [
+     {
+      "do": "DECK_TO_TRASH_CORES",
+      "n": 3,
+      "match": {
+       "anyOf": [
+        {
+         "family": [
+          "Reptile Beast",
+          "Primordial",
+          "Concluser"
+         ],
+         "costGe": 3,
+         "type": "Spirit"
+        },
+        {
+         "family": [
+          "Reptile Beast",
+          "Primordial",
+          "Concluser"
+         ],
+         "costGe": 3,
+         "type": "Ultimate"
+        },
+        {
+         "family": [
+          "Primordial"
+         ],
+         "type": "Nexus"
+        }
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "other": true,
+    "match": {
+     "family": [
+      "Primordial"
+     ],
+     "type": "Nexus"
+    },
+    "actions": [
+     {
+      "do": "COUNTER",
+      "n": 1,
+      "max": 8
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "other": true,
+    "once": true,
+    "sameName": true,
+    "optional": true,
+    "match": {
+     "family": [
+      "Primordial"
+     ],
+     "type": "Nexus"
+    },
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "ACTIVATE",
+    "lv": [
+     2
+    ],
+    "timing": [
+     "FLASH"
+    ],
+    "cost": {
+     "nexusToVoid": 4
+    },
+    "actions": [
+     {
+      "do": "DESTROY_ANY",
+      "kind": "nexus"
+     },
+     {
+      "do": "REFRESH_SPIRIT",
+      "match": {
+       "family": [
+        "Primordial"
+       ]
+      },
+      "if": {
+       "prev": true,
+       "counterGe": 6
+      }
+     }
+    ]
+   }
   ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "revive": true,
+  "contract": true
  },
  {
   "id": "BS69-CX02",

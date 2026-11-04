@@ -85,6 +85,22 @@ test('K-1112 BS69-X01 Typhodeus: Attacks deploys a Primordial Nexus from Hand, t
     const h = BS.mkInst(nxId); P.hand = [h]; const t = BS.mkInst(lo); O.spirits = [t]; G.attacker = a; G.p.player.count = 8;
     await BS.fireFx(P, 'ATTACKS', a, { attacker: a, subject: a });
     return { deployed: P.nexus.includes(h), gwCores: gw.cores, aCores: a.cores, gone: !O.spirits.includes(t), partial: BS.CARDS['BS69-X01'].partial, mani: BS.CARDS['BS69-X01'].manifest }; })()`);
-  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.deployed, true, JSON.stringify(r)); assert.equal(r.gwCores, 2, JSON.stringify(r));
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.deployed, true, JSON.stringify(r)); assert.equal(r.gwCores, 3, JSON.stringify(r));
   assert.equal(r.aCores, 5, JSON.stringify(r)); assert.equal(r.gone, true, JSON.stringify(r)); assert.deepEqual(r.mani.nexusFamily, ['Primordial', 'Grandwalker'], JSON.stringify(r));
+});
+
+test('K-1113 BS69-CX01 Gaia: other Primordial Nexus deployed gives a counter and one draw per turn; Flash destroys a Nexus and refreshes a Primordial Spirit at 6 counters', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4; G.fxBy = P.key;
+    const nxId = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Nexus' && (BS.CARDS[k].families || []).includes('Primordial') && !(BS.CARDS[k].families || []).includes('Grandwalker'));
+    const prim = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && (BS.CARDS[k].families || []).includes('Primordial'));
+    const g = BS.mkInst('BS69-CX01'); g.cores = 6; g.fxUsed = {}; P.onceUsed = {}; P.nexus = [g]; P.count = 0; P.deck = [1,2,3,4,5].map(() => BS.mkInst(prim)); P.hand = [];
+    const o = BS.mkInst(nxId); P.nexus.push(o);
+    await BS.fireFx(P, 'ALLY_SUMMONED', g, { subject: o }); const c1 = P.count, h1 = P.hand.length;
+    await BS.fireFx(P, 'ALLY_SUMMONED', g, { subject: o }); const c2 = P.count, h2 = P.hand.length;
+    P.count = 6; const s = BS.mkInst(prim); s.exhausted = true; s.cores = 1; P.spirits = [s]; g.cores = 6; const on = BS.mkInst(nxId); O.nexus = [on]; G.step = 5;
+    const idx = BS.CARDS['BS69-CX01'].effects.findIndex(e => e.trigger === 'ACTIVATE'); const ok = await BS.activateFx(P, g, idx);
+    return { c1, h1, c2, h2, ok, oppNexus: O.nexus.length, refreshed: !s.exhausted, partial: BS.CARDS['BS69-CX01'].partial, revive: BS.CARDS['BS69-CX01'].revive }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.c1, 1, JSON.stringify(r)); assert.equal(r.h1, 1, JSON.stringify(r)); assert.equal(r.c2, 2, JSON.stringify(r)); assert.equal(r.h2, 1, JSON.stringify(r));
+  assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.oppNexus, 0, JSON.stringify(r)); assert.equal(r.refreshed, true, JSON.stringify(r)); assert.equal(r.revive, true, JSON.stringify(r));
 });
