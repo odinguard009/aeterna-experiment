@@ -1,6 +1,6 @@
 # Plan: Lane K ordered per Grandwalker Nexus
 
-Status: **accepted; ON HOLD again since 2026-11-04 (owner: record the plan, do not start Lane K).** Section 2a below supersedes the pool quota and revival rules of section 2. This order replaces the greedy block-A order of `roadmap-open.md` item K for Lane K. The reporting rule and the revival rule are in `CLAUDE.md` (bullet "Grandwalker order"). Revert note: delete that bullet and this file's use.
+Status: **accepted; ACTIVE since 2026-11-04 (owner lifted the hold).** Section 2a below supersedes the pool quota and revival rules of section 2. This order replaces the greedy block-A order of `roadmap-open.md` item K for Lane K. The reporting rule and the revival rule are in `CLAUDE.md` (bullet "Grandwalker order"). Revert note: delete that bullet and this file's use.
 
 ## 1. Data (generated, official fields only)
 - `python3 tools/grandwalker_data.py` writes `data/kb/grandwalker-nexus.json`, `docs/reports/grandwalker-families.md` and `docs/reports/grandwalker-family-table.md`; `--check` fails when they are stale. Source: `data/sources/official-fields.json` (no network); English names from `data/cards`.
