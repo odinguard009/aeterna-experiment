@@ -169,6 +169,7 @@ function mullCardHTML(card, mark) {   // mark (v0.155.0, mockup mulligan): an "E
 function openZoom(id, uid) {
   const card = CARDS[id], z = $('zoom-overlay'); if (!card || !z) return;
   if (MODAL && MODAL.cfg.uiOnly && MODAL.cfg.title === '🎴 Card Detail' && $('action-modal').classList.contains('active')) closeModal(null);   // 2026-11-02: the zoom sits below dialogs (z 200 < 210), so the magnifier on the Card Detail art opened it behind that dialog
+  z.classList.toggle('top', !!(MODAL && $('action-modal').classList.contains('active')));   // v0.216 UI: opened from a zone sheet (Trash, Removed ...): the card info sits above the sheet, not behind it
   if (uid == null && (['view-library', 'view-card'].some(v => $(v).classList.contains('active')))) return openCardPage(id);   // v0.137.0: the Library card is a page
   /* Aegis-style: landscape / PC = card left, scrolling detail panel right; portrait = card on top, scrolling panel below */
   const W = window.innerWidth, H = window.innerHeight, land = W >= H * 1.1;
@@ -264,6 +265,7 @@ async function openHandModal(uid) {
 async function openFieldModal(key, kind, uid) {
   const p = G.p[key], f = fieldList(p).find(x => x.uid === uid); if (!f) return;
   const card = CARDS[f.id], mine = key === 'player' && humanCan();
+  if (key === 'opponent' || G.watch) { showCardDetail(f.id); return; }   // v0.216 UI: an opponent card (both sides in CPU vs CPU) opens its card info at once, no choice dialog; nothing to act on
   const k = lvIndex(f);
   const stack = f.under.length ? cardStripHTML(f.under, 'Under this card') : '';
   const html = `${esc(card.token ? 'Token Spirit' : card.type)} · Lv${k + lvBase(card)}${isSpiritForm(card) ? ' · ' + bpOf(f) + ' BP' : ''} · Cores ${f.cores}${f.soul ? ' + Soul Core' : ''}${f.exhausted ? ' · Exhausted' : ''}${f.brave ? ' · Brave: ' + esc(CARDS[f.brave.id].name) + ' (+' + CARDS[f.brave.id].brave.bp + ' BP)' : ''}${ocActive(f) ? ' · Over Count active' : ''}${stack}`;

@@ -73,7 +73,7 @@
   <button class="pchip" data-a="go-profile"><span class="av">A</span><span><b>Player</b><br><span class="mut">Offline</span></span></button>
 </nav>
 <div class="phonebar"><span class="brand" data-a="go-lobby"><svg class="lg" aria-hidden="true"><use href="#ae-logo"/></svg><span class="logo" style="font-size:17px;margin:0">AETERNA</span></span><span class="grow" id="pb-title" style="text-align:center;font-weight:800;font-size:.86em;letter-spacing:.12em;text-transform:uppercase;color:var(--text2)">Home</span><button class="ibtn colb" data-a="theme-pop" aria-label="Your colour"></button><button class="ibtn fsb" data-a="fullscreen" aria-label="Full screen" title="Full screen" aria-pressed="false">⛶</button><button class="ibtn" data-a="go-settings" aria-label="Settings">⚙</button><button class="pchip" style="padding:3px" data-a="go-profile" aria-label="Profile"><span class="av" style="width:28px;height:28px">A</span></button></div>
-<div id="theme-pop" class="ae-pop" role="dialog" aria-label="Your colour" hidden><div class="bar"></div><h3>Your colour</h3><div id="theme-grid" class="pgrid"></div></div>
+<div id="theme-pop" class="ae-pop" role="dialog" aria-label="Your colour" hidden><div class="bar"></div><h3>Your colour</h3><div id="theme-grid" class="pgrid"></div><div class="pmode"><span>Mode</span><div class="seg mini" role="group" aria-label="Mode"><button data-a="theme-mode" data-v="dark" aria-pressed="true">Dark</button><button data-a="theme-mode" data-v="light" aria-pressed="false">Light</button></div></div></div>
 
 <div id="view-lobby" class="app-view active">
   <div class="lob-bg" aria-hidden="true"><svg class="lob-logo"><use href="#ae-logo"/></svg></div>
@@ -144,7 +144,7 @@
 
 <div id="view-play" class="app-view">
   <div class="pg scroll">
-    <div class="card hdcard"><div class="grow"><span class="eyebrow">Play</span><h2 class="hd">Start a match</h2><span class="sub">1 · Deck &nbsp; 2 · Opponent &nbsp; 3 · Rules &nbsp; then press Start.</span></div>
+    <div class="card hdcard"><div class="grow"><span class="eyebrow">Play</span><h2 class="hd">Start a match</h2><span class="sub howsteps"><span><b>1</b>Deck</span><span><b>2</b>Opponent</span><span><b>3</b>Rules</span><span class="go">then press Start</span></span></div>
       <div class="row" id="pl-stats" style="gap:18px;font-size:.8em;color:var(--text2)"></div></div>
     <div class="steps3">
       <div class="card stepc"><div class="row"><span class="no">1</span><b>Your deck</b><span class="grow"></span><button class="btn sm" data-a="go-decks">All decks</button></div>

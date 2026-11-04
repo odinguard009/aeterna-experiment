@@ -5,6 +5,15 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
 ## Unreleased (UI, ships with the next release; backup branch `backup/v0.215.0`)
+- Lobby: the "Continue with" panel is hidden when the chosen deck has no cards. Play: the hint is now three step chips (Deck, Opponent, Rules); card text on placeholders is left-aligned; the stray grey scrollbar under the deck tiles is gone.
+- Phone theme popover has the Dark / Light lever next to the colours. Narrow landscape: the profile chip shrinks to the avatar so the top bar never clips.
+- CPU deck choice adds "Random legal Standard deck" and "Random legal Eternal deck" (plain Random stays Standard).
+- Deck recipe cover and Key tag show the highest-cost Spirit, or the Grandwalker Nexus / Contract when the deck has one (display only; the gameplay key is unchanged).
+- Game over and you stay on the board: the Concede button becomes Lobby.
+- Card info opened from a zone sheet (Trash, Removed, Soul) now sits above the sheet instead of behind it.
+- Active Effects: grouped per side (Your Field / CPU Field), larger text, plain tags (Always on, Given by another card, This turn); the Effects button sits flush right of your field.
+- Battle: tapping an opponent card (and, in CPU vs CPU, your own field cards) shows the card info directly, no choice dialog.
+- Cards drawn with a CSS picture (hand, field, soul) fall back to the text face when the picture 404s instead of staying empty.
 - Rebirth: all 216 fronts flip to Side B (reprints such as SD61-TX01 use the original print's back).
 - Attack arrow is now a row of chevrons in the theme colour (CPU colour for the opponent).
 - A Magic card played by you or the CPU appears large mid-screen for about 1.7 s (Full and Reduced modes).

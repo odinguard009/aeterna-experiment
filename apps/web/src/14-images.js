@@ -83,6 +83,7 @@ async function clearImages() { Object.keys(IMG).forEach(id => { URL.revokeObject
    /assets/card-images/<card.id> (Aegis-style). v0.114.0: the key is the card id (not the Fandom
    File: name) because the official battlespirits.com image URL is derived directly from it.
    Empty when neither is available (offline, no image). */
+const IMG_BAD = new Set(), IMG_OK = new Set();   // v0.216 UI: mirror URLs that 404 (no art for that card) and ones that loaded; a bad one falls back to the text face everywhere, also on hand / field cards drawn with a CSS background
 const ART_REV = 2;      // 2 = v0.205.3 (10thX files, Rebirth back faces)
 function cardImgSrc(id) {
   const k = artOf(id);           // v0.132.0 U14g2: the picture picked for this card
@@ -90,7 +91,8 @@ function cardImgSrc(id) {
   const c = CARDS[k] || REB_BY_ID[k];      // a Rebirth back face is not a CARDS entry: its picture is <front id>B on the same mirror
   if (!c || !c.id) return '';
   const origin = (typeof onlineOrigin === 'function') ? onlineOrigin() : null;
-  return origin ? `${origin}/assets/card-images/${encodeURIComponent(c.id)}?a=${ART_REV}` : '';      // ?a=: bump ART_REV when the id -> official file mapping changes, so browser and edge caches drop the old art
+  const url = origin ? `${origin}/assets/card-images/${encodeURIComponent(c.id)}?a=${ART_REV}` : '';
+  return IMG_BAD.has(url) ? '' : url;      // ?a=: bump ART_REV when the id -> official file mapping changes, so browser and edge caches drop the old art
 }
 const imgCls = id => (cardImgSrc(id) ? ' has-img' : '');
 const imgSty = id => { const s = cardImgSrc(id); return s ? `;background-image:url('${s}')` : ''; };
@@ -311,3 +313,20 @@ function libAction(a) {
   }
 }
 
+
+/* v0.216 UI: cards drawn with a CSS background image (hand, field, soul) cannot fire onerror: probe each mirror URL once and, when it 404s, drop the picture so the text face shows instead of an empty card. */
+(function probeCardArt() {
+  if (typeof document === 'undefined') return;
+  const drop = u => document.querySelectorAll('.has-img').forEach(e => { const el = /** @type {HTMLElement} */ (e); if (el.style.backgroundImage.includes(u)) { el.classList.remove('has-img'); el.style.backgroundImage = ''; } });
+  const scan = () => {
+    document.querySelectorAll('.has-img').forEach(e => {
+      const m = /url\(["']?([^"')]+)/.exec(/** @type {HTMLElement} */ (e).style.backgroundImage || ''); if (!m) return;
+      const u = m[1]; if (IMG_OK.has(u) || u.startsWith('blob:') || u.startsWith('data:')) return;
+      if (IMG_BAD.has(u)) { drop(u); return; }
+      IMG_BAD.delete(u); const im = new Image(); IMG_OK.add(u);   // optimistic: one probe per URL
+      im.onerror = () => { IMG_OK.delete(u); IMG_BAD.add(u); drop(u); };
+      im.src = u;
+    });
+  };
+  let q = 0; new MutationObserver(() => { clearTimeout(q); q = setTimeout(scan, 80); }).observe(document.body, { childList: true, subtree: true });
+})();
