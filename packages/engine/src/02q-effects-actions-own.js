@@ -13,7 +13,7 @@ Object.assign(FX_ACTIONS, {
     run: async (c, a) => {
       const n = a.max != null ? Math.max(0, Math.min(a.n, a.max - c.p.count)) : a.n;
       if (!n) { c.ctx.did = false; log(`${CARDS[c.src.id].name}: the counter is already at its maximum.`); return; }
-      takeFromVoid(c.p, n); c.p.count += n; log(`${CARDS[c.src.id].name}: counter +${n}.`); await fireFx(c.p, 'COUNTER_UP', null, {});      // official: Count Area cores come from the Void
+      takeFromVoid(c.p, n); c.p.count += n; log(`${CARDS[c.src.id].name}: counter +${n}.`); await fireFx(c.p, 'COUNTER_UP', null, { by: c.src });      // official: Count Area cores come from the Void
     } },
   /* v0.35 Tokens: "send out (up to) N of your <Token>" — no cost, cores for Lv1 from the Field/Reserve, not a summon; ask:true = "you can" inside the effect */
   SEND_TOKEN: { chk: a => typeof a.token === 'string' && /^[A-Z0-9-]{3,30}$/.test(a.token) && Number.isInteger(a.n) && a.n >= 1 && a.n <= 3 && (a.ask == null || typeof a.ask === 'boolean'),

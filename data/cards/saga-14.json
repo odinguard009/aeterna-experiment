@@ -19672,16 +19672,69 @@
   "mechanics": [
    "AFO"
   ],
-  "fxComplete": false,
-  "residual": [
-   "(Once per Turn: Same Name) When your counter increases via the effect of your \"The PartnerLion Raon\", including those that are in Soul State/pre-advent condition, you can return this card from your Trash to the Hand.",
-   "[LV1][LV2][LV3] (Your Turn) The opponent can't use cards from Hand outside Flash Timing.",
-   "[LV3] AFO Give this Spirit and every \"The PartnerLion Raon\" you control, including those that are in pre-advent condition, the effect: \"Contract Pre-Advent/Spirit (When Attacks) (Once per Turn: Same Name) During this battle, the opponent can't use Magic cards from the Hand during Flash Timing.\""
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
   "bicon": [
    "10"
   ],
-  "rcode": "XV"
+  "rcode": "XV",
+  "effects": [
+   {
+    "trigger": "COUNTER_UP",
+    "zone": "trash",
+    "once": true,
+    "sameName": true,
+    "optional": true,
+    "match": {
+     "name": [
+      "The PartnerLion Raon"
+     ]
+    },
+    "actions": [
+     {
+      "do": "SELF_TO_HAND"
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "flag": "OPP_HAND_FLASH_ONLY"
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     3
+    ],
+    "once": true,
+    "sameName": true,
+    "actions": [
+     {
+      "do": "OPP_NO_HAND_MAGIC"
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_ATTACKS",
+    "lv": [
+     3
+    ],
+    "once": true,
+    "sameName": true,
+    "match": {
+     "name": [
+      "The PartnerLion Raon"
+     ]
+    },
+    "actions": [
+     {
+      "do": "OPP_NO_HAND_MAGIC"
+     }
+    ]
+   }
+  ]
  }
 ]

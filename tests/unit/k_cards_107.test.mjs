@@ -230,3 +230,19 @@ test('K-1087 BS66-XV05 Titus XV: Summoned mills ten then destroys opposing Spiri
   assert.equal(r.partial, false, JSON.stringify(r)); assert.ok(r.milled >= 10, JSON.stringify(r)); assert.equal(r.left, 0, JSON.stringify(r));
   assert.equal(r.ref1, true, JSON.stringify(r)); assert.equal(r.ref2, false, JSON.stringify(r));
 });
+
+test('K-1088 BS67-XV05 Behedoth XV: returns from Trash when a Raon COUNTER raises the counter; Lv3 attack locks opposing Hand Magic this battle', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 3;
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && k !== 'BS67-XV05');
+    const bh = BS.mkInst('BS67-XV05'); P.trash = [bh]; P.hand = [];
+    const raon = BS.mkInst('BS62-CX02'); P.spirits = []; P.void = 5;
+    await BS.FX_ACTIONS.COUNTER.run({ p: P, opp: O, src: raon, ctx: {} }, { do: 'COUNTER', n: 2 });
+    const back = P.hand.includes(bh);
+    const other = BS.mkInst(any); const t = BS.mkInst('BS67-XV05'); t.cores = 6; P.spirits = [t]; G.attacker = t; G.battleNo = 7;
+    await BS.fireFx(P, 'ATTACKS', t, { attacker: t, subject: t });
+    const mag = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Magic');
+    return { back, lock: !!(O.noMagicB && O.noMagicB.all && O.noMagicB.no === 7), usable: BS.magicUsable ? BS.magicUsable(O, BS.mkInst(mag), 'flash') : null, partial: BS.CARDS['BS67-XV05'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.back, true, JSON.stringify(r)); assert.equal(r.lock, true, JSON.stringify(r));
+  if (r.usable !== null) assert.equal(r.usable, false, JSON.stringify(r));
+});
