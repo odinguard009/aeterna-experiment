@@ -329,14 +329,9 @@ function coreSafeMode(owner, target) {
       }
     }
   }
-  return null;
+  return coreFloorMark(owner, target) ? 'floor3' : null;
 }
-const coreTakeCap = (owner, target, n) => {
-  const mode = coreSafeMode(owner, target);
-  if (!mode) return n;
-  if (mode === 'move') return 0;
-  return Math.max(0,Math.min(n,(target.cores||0)-(+mode.slice(5)||1)));
-};
+const coreTakeCap = (owner, target, n) => { const mode = coreSafeMode(owner, target); return !mode ? n : mode === 'move' ? 0 : Math.max(0, Math.min(n, (target.cores || 0) - (+mode.slice(5) || 1))); };
 /* v0.37 "Cost Destruction effects" (destroy a Spirit/Ultimate with cost N or less): the limit grows with STATIC COST_DESTROY_PLUS effects of the owner's Field cards and of a Brave combined with a Nexus
    (Bulwark Temple: +1 per Saga Brave for Celtica/Scalostle sources; Railgun on a Nexus: +1). src = the card whose effect destroys. */
 function costDestroyBonus(p, src) {

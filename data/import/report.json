@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 6087,
+  "cards": 6085,
   "per_saga": {
    "1": 458,
    "2": 251,
@@ -17,22 +17,22 @@
    "13": 381,
    "14": 418,
    "15": 322,
-   "16": 268,
+   "16": 266,
    "17": 104
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2619,
+  "skipped_curated": 2621,
   "nexus_levels_added": 646,
   "nexus_levels_missing": 38,
   "merged": 102,
   "image_problems": 383,
   "brave_unparsed": 169,
   "ut_lines_added": 106,
-  "odd_reduction": 750,
+  "odd_reduction": 749,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
-  "number_conflicts": 2,
+  "number_conflicts": 1,
   "without_image": 381
  },
  "tokens": [
@@ -1852,6 +1852,7 @@
   "BS73-023",
   "BS73-025",
   "BS73-027",
+  "BS73-029",
   "BS73-030",
   "BS73-031",
   "BS73-035",
@@ -1869,6 +1870,7 @@
   "BS73-081",
   "BS73-CX01",
   "BS73-CX02",
+  "BS73-AX01",
   "BS73-AX02",
   "BS74-001",
   "BS74-002",
@@ -9784,12 +9786,6 @@
    ]
   },
   {
-   "id": "BS73-029",
-   "dropped": [
-    "god"
-   ]
-  },
-  {
    "id": "BS73-034",
    "dropped": [
     "god"
@@ -10164,14 +10160,6 @@
   "BS66-059"
  ],
  "number_conflicts": [
-  {
-   "id": "BS73-AX01",
-   "names": [
-    "The FungalTreeForgeDeity BigBang-Golem",
-    "The WarParamountRoaringGeneral Mudou"
-   ],
-   "kept": "The FungalTreeForgeDeity BigBang-Golem"
-  },
   {
    "id": "BS73-AX03",
    "names": [

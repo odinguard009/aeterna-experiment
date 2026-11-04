@@ -30,7 +30,7 @@ Object.assign(FX_ACTIONS, {
       const L = FX_ACTIONS.EXHAUST_OPP.cands(c, a); if (!L.length) { c.ctx.did = false; return; }
       const T = await pickOppSpirits(c, L, a.n, `✨ <b>${esc(_nm(c))}</b><br>Tap the opposing Spirit to exhaust (glowing).`);
       if (!T.length) { c.ctx.did = false; return; }
-      c.ctx.exhN = T.length; for (const t of T) { t.exhausted = true; log(`${_nm(c)}: ${poss(c.opp)} ${CARDS[t.id].name} is exhausted.`); }
+      c.ctx.exhN = T.length; c.ctx.exhT = T; for (const t of T) { t.exhausted = true; log(`${_nm(c)}: ${poss(c.opp)} ${CARDS[t.id].name} is exhausted.`); }
       await fireFx(c.p, 'EXHAUSTED_FX', null, { side: 'opp', fxSrc: c.src });
       for (const t of T) await fireFx(c.opp, 'EXHAUSTED_FX', null, { side: 'own', subject: t, fxSrc: c.src });
     } },

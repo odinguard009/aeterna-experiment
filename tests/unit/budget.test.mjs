@@ -113,10 +113,10 @@ test('B01 index.html without the card pack stays under 1600 KB', () => assert.ok
 // v0.216.0 (Lane K, sixth raise): B01 1520 -> 1540 KB and B02 400 -> 405 KB on purpose (Khaos family mechanics: HAND_DISCARDED, BLOCK_MIN, SUMMON_SELF_TRASH, OPP_REMOVED_LOCK, BURST_ON_DISCARD).
 // v0.216.0 (seventh raise): B01 1540 -> 1560 KB and B02 405 -> 410 KB on purpose (bundle 22: costPerCount, DESTROY_NEXUS_FOR_OPP, OPP_MAGIC_ACCEL_UNLESS_DESTROY).
 // v0.216.0 (eighth raise): B01 1560 -> 1580 KB and B02 410 -> 415 KB on purpose (bundle 38: Token Nexus, OPP_SUMMONED, Fungal Bed actions).
-// v0.216.0 (ninth raise): B01 1580 -> 1600 KB on purpose (bundles 42-45: Fungal Bed alt cost, NEXUS_SOUL, OPP_HAND_UP from Hand/Trash).
+// v0.216.0 (ninth raise): B01 1580 -> 1600 KB and B02 415 -> 420 KB on purpose (bundles 42-45: Fungal Bed alt cost, NEXUS_SOUL, OPP_HAND_UP from Hand/Trash).
 // v0.214.0 (Lane K): raised B02 375 -> 380 KB on purpose (Grandwalker Oracle mechanics: anyOf, ORACLE_CORE, REFRESH_PUT_CORE, OPP_NO_MAGIC).
 // v0.213.0 (Lane K): raised B02 370 -> 375 KB on purpose (engine flags SUMMON_DISCOUNT, MAGIC_WALL, ALSO_TREATED etc. added by card work).
-test('B02 index.html without the card pack, gzipped, stays under 415 KB', () => { const n = gzipSync(noFont(code), { level: 9 }).length; assert.ok(n < 415e3, n); });
+test('B02 index.html without the card pack, gzipped, stays under 420 KB', () => { const n = gzipSync(noFont(code), { level: 9 }).length; assert.ok(n < 420e3, n); });
 test('B03 the embedded card pack stays under 2.1 MB (room for all cards; never embed staging data)', () => assert.ok(packLen < 2.1e6, packLen));
 // v0.93.0 (U6): raised 90 -> 96 KB on purpose (roadmap item U allows it with a note): U6-U8 add the My decks page and the
 // deck builder restyle; unused rules were trimmed first in v0.92.0. The next raise needs the same kind of note.

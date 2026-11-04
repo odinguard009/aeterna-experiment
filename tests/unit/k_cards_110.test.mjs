@@ -118,3 +118,29 @@ test('K-1138 BS73-023 PiPig: summoned free from the Hand when the opposing Hand 
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.dep, true, JSON.stringify(r)); assert.equal(r.lock, true, JSON.stringify(r));
   assert.equal(r.ca + r.cb, 4, JSON.stringify(r)); assert.equal(r.few, true, JSON.stringify(r));
 });
+
+test('K-1139 BS73-029 JarJaguar: Summoned exhausts an opposing Spirit and floors its cores at three for the turn; LV2 opposing Start Step destroys a Fungal Bed so an exhausted Spirit cannot refresh', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && k !== 'BS73-029');
+    const a = BS.mkInst('BS73-029'); a.cores = 2; P.spirits = [a]; const t = BS.mkInst(any); t.cores = 5; O.spirits = [t];
+    await BS.fireFx(P, 'SUMMONED', a, { subject: a });
+    const exh = t.exhausted, cap = coreTakeCap(O, t, 5);
+    P.nexus = [BS.mkInst('BS74-071')]; G.active = O.key; G.step = 1; await BS.fireFx(P, 'OPP_START_STEP', null, {});
+    return { exh, cap, nref: t.noRefreshT === G.turnNo, beds: P.nexus.length, hs: BS.CARDS['BS73-029'].highSpeedBeds, partial: BS.CARDS['BS73-029'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.exh, true, JSON.stringify(r)); assert.equal(r.cap, 2, JSON.stringify(r));
+  assert.equal(r.nref, true, JSON.stringify(r)); assert.equal(r.beds, 0, JSON.stringify(r)); assert.equal(r.hs, 'destroy', JSON.stringify(r));
+});
+
+test('K-1140 BS73-AX01 BigBang-Golem: Summoned banishes up to ten Trash cards and heavy exhausts per two; LV2 floors exhausted Spirits at three cores against opposing effects', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && k !== 'BS73-AX01');
+    const a = BS.mkInst('BS73-AX01'); a.cores = 3; P.spirits = [a]; O.spirits = [1, 2, 3].map(() => { const s = BS.mkInst(any); s.cores = 1; return s; }); O.trash = [1, 2, 3, 4, 5].map(() => BS.mkInst(any));
+    await BS.fireFx(P, 'SUMMONED', a, { subject: a });
+    const banished = O.removed.length, exhN = O.spirits.filter(s => s.exhausted).length;
+    const e = BS.mkInst(any); e.cores = 5; e.exhausted = true; P.spirits.push(e); G.fxBy = O.key; const cap = coreTakeCap(P, e, 5); e.exhausted = false; const cap2 = coreTakeCap(P, e, 5);
+    return { banished, exhN, cap, cap2, partial: BS.CARDS['BS73-AX01'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.banished, 5, JSON.stringify(r)); assert.equal(r.exhN, 2, JSON.stringify(r));
+  assert.equal(r.cap, 2, JSON.stringify(r)); assert.equal(r.cap2, 5, JSON.stringify(r));
+});

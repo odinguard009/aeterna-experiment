@@ -19,3 +19,29 @@ FX_ACTIONS.VOID_TO_FAMILY_OTHERS = { chk: a => Number.isInteger(a.n) && a.n >= 1
       takeFromVoid(c.p, 1); t.cores++; L = L.filter(x => x !== t); c.ctx.did = true; log(`${CARDS[c.src.id].name}: a core moves from the Void to ${CARDS[t.id].name}.`);
     }
     io.view({ type: 'board' }); } };
+/* v523 floor mark: a Spirit with floorT === the current turn can't have its cores brought below three by opposing effects (read by coreSafeMode, 02a). Set by FLOOR_EXH_TARGETS. */
+const coreFloorMark = (owner, target) => !!G && !!target && target.floorT === G.turnNo && !!G.fxBy && G.fxBy !== owner.key;
+/* v523 FLOOR_EXH_TARGETS {}: "during this turn the target exhausted by this effect can't have its core brought to less than three by the opponent" (after EXHAUST_OPP, which keeps ctx.exhT; BS73-029) */
+FX_ACTIONS.FLOOR_EXH_TARGETS = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => "during this turn the exhausted target can't have its cores brought to less than three by the opponent", can: () => true,
+  run: async c => { const T = (c.ctx.exhT || []).filter(t => c.opp.spirits.includes(t)); c.ctx.did = T.length > 0; for (const t of T) t.floorT = G.turnNo; } };
+/* v523 NO_REFRESH_PER_BED {}: "(Opposing Refresh Step) by destroying any number of your Fungal Bed, for each target destroyed an opposing exhausted Spirit can't refresh" (OPP_START_STEP, BS73-029). Marks noRefreshT = this turn (07-turn.js skips the refresh). The CPU uses at most two beds. */
+FX_ACTIONS.NO_REFRESH_PER_BED = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => "by destroying any number of your Fungal Bed, an opposing exhausted Spirit can't refresh for each", can: c => fungalBeds(c.p).length > 0 && c.opp.spirits.some(t => t.exhausted),
+  run: async c => {
+    c.ctx.did = false;
+    for (let j = 0; j < (c.p.cpu ? 2 : 5); j++) {
+      const L = c.opp.spirits.filter(t => t.exhausted && t.noRefreshT !== G.turnNo && !fxImmune(c.opp, t)), B = fungalBeds(c.p); if (!L.length || !B.length) break;
+      const t = c.p.cpu ? L.slice().sort((x, y) => bpOf(y) - bpOf(x))[0] : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Destroy a "Fungal Bed" so this exhausted Spirit can't refresh (${j + 1}); cancel to stop.`); if (!t) break;
+      removeNexus(c.p, B[0], 'destroyed'); t.noRefreshT = G.turnNo; c.ctx.did = true; log(`${CARDS[c.src.id].name}: ${CARDS[t.id].name} can't refresh this Refresh Step.`);
+    } } };
+/* v523 REMOVE_TRASH_BOTH {n}: "banish up to N cards in total from your Trash and the opposing Trash" (BS73-AX01); keeps ctx.removedN / ctx.removedCards like REMOVE_OPP_TRASH so HEAVY_EXHAUST_OPP perRemoved follows. The human picks card by card (cancel stops); the CPU banishes only opposing cards. "Their effects can't activate" is not modelled. */
+FX_ACTIONS.REMOVE_TRASH_BOTH = { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 10 && Object.keys(a).every(k => ['do', 'if', 'n'].includes(k)), txt: a => `banish up to ${a.n} cards in total from your Trash and the opposing Trash`,
+  can: c => c.p.trash.length + c.opp.trash.length > 0,
+  run: async (c, a) => {
+    c.ctx.did = false; c.ctx.removedCards = []; c.ctx.removedN = 0;
+    const own = () => c.p.trash.filter(t => t !== c.src), opp = () => c.opp.trash.filter(t => !trashSafe(t, c));
+    for (let j = 0; j < a.n; j++) {
+      const L = c.p.cpu ? opp() : own().concat(opp()); if (!L.length) break;
+      const t = c.p.cpu ? L[0] : await chooseCard(c, L, `✨ ${esc(CARDS[c.src.id].name)}`, `Choose a card from either Trash to banish (${j + 1}/${a.n}).`, j > 0); if (!t) break;
+      const side = c.p.trash.includes(t) ? c.p : c.opp; if (removeFrom(side.trash, t)) { toRemoved(side, t); c.ctx.removedCards.push(t); c.ctx.removedN++; }
+    }
+    c.ctx.did = c.ctx.removedN > 0; if (c.ctx.did) log(`${CARDS[c.src.id].name}: ${c.ctx.removedN} card${c.ctx.removedN === 1 ? '' : 's'} are banished from the Trashes.`); } };
