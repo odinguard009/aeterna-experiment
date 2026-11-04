@@ -46188,18 +46188,6 @@
   "T_ALLY_LOST",
   "T_ATTACKS"
  ],
- "BS74-001": [
-  "A_CORE_TO_SELF",
-  "A_SOUL_STATE",
-  "A_SUMMON_FREE",
-  "C_LEVEL",
-  "C_ONCE",
-  "K_GRANDWALKER",
-  "M_IF_YOU_DO",
-  "M_OPTIONAL",
-  "M_THEN",
-  "T_ATTACKS"
- ],
  "BS74-003": [
   "A_COUNTER",
   "A_REVEAL_ADD",
@@ -46209,21 +46197,6 @@
   "M_OPTIONAL",
   "M_THEN",
   "T_REVEALED",
-  "T_SUMMONED"
- ],
- "BS74-006": [
-  "A_COUNTER",
-  "A_DESTROY_NEXUS",
-  "A_DRAW",
-  "A_VOID",
-  "C_LEVEL",
-  "K_GRANDWALKER",
-  "K_ULTIMATE",
-  "M_BY_DOING",
-  "M_OPTIONAL",
-  "M_THEN",
-  "S_CANT_PREVENT",
-  "T_ATTACKS",
   "T_SUMMONED"
  ],
  "BS74-007": [
@@ -46257,17 +46230,6 @@
   "K_BURST_THEN_MAIN",
   "K_ULTIMATE",
   "M_OPTIONAL",
-  "T_SUMMONED"
- ],
- "BS74-012": [
-  "A_REFRESH",
-  "C_LEVEL",
-  "C_ONCE",
-  "K_GRANDWALKER",
-  "M_OPTIONAL",
-  "M_THEN",
-  "M_UP_TO",
-  "T_ATTACKS",
   "T_SUMMONED"
  ],
  "BS74-013": [

@@ -453,3 +453,7 @@ FX_ACTIONS.BANISH_POOL = { chk: a => Object.keys(a).every(k => ['do', 'if'].incl
     for (const t of L) { removeFrom(c.opp.trash, t); toRemoved(c.opp, t); log(`${CARDS[c.src.id].name}: ${CARDS[t.id].name} is banished.`); }
     c.ctx.did = true; io.view({ type: 'board' });
   } };
+
+/* v466 SOUL_NO_PREVENT: "By sending your Soul Core to <Nexus>, this Destruction / Core Removal effect can't be prevented by opposing effects" (Aquilo-Lamda): carries `if prev` after SOUL_TO_NEXUS; sets ctx.noPrevent, which the Nexus DESTROY and NEXUS_CORES_TO_VOID candidate lists honour. */
+FX_ACTIONS.SOUL_NO_PREVENT = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => "this effect can't be prevented by opposing effects",
+  run: async c => { c.ctx.noPrevent = true; c.ctx.did = true; } };

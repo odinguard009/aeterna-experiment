@@ -49,3 +49,44 @@ test('K-1156 BS74-077 Magma Breaker: destroys a one-symbol Spirit; with six coun
   assert.equal(r.opp, 0, JSON.stringify(r));
   assert.ok(r.trash + r.removed >= 2, JSON.stringify(r));
 });
+
+test('K-1157 BS74-012 Notosaurus: Flash summon needs five counters and a Soul Core to send; costs are treated as paid, once per turn', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${pre}
+    const n = BS.mkInst('BS74-012'); const nx = BS.mkInst('BS74-CX01'); nx.soul = false; P.nexus = [nx]; P.hand = [n]; P.reserve.n = 3; P.reserve.soul = true; P.trashCores.soul = false;
+    P.count = 4; const a = highSpeedOK(P, n); P.count = 5; const b = highSpeedOK(P, n);
+    await highSpeedSummon(P, n);
+    return { a, b, onField: P.spirits.some(s => s.id === 'BS74-012'), soul: nx.soul, viaHS: P.spirits[0] && P.spirits[0].viaHS, res: P.reserve.n }; })()`);
+  assert.deepEqual(r, { a: false, b: true, onField: true, soul: true, viaHS: true, res: 2 });
+});
+
+test('K-1158 BS74-012 Notosaurus: When Summoned destroys up to three Spirits; the BP limit is 7000 + 1000 per counter', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${pre}
+    const n = BS.mkInst('BS74-012'); P.spirits = [n]; n.cores = 1;
+    const mk = (bp) => { const t = BS.mkInst(sp(x => x.levels[0].bp === bp)); t.cores = 1; return t; };
+    O.spirits = [mk(9000), mk(9000)]; P.count = 1; const k = BS.CARDS['BS74-012'];
+    const acts = k.effects[0].actions; const cands = (cnt) => { P.count = cnt; return FX_ACTIONS.DESTROY.cands({ p: P, opp: O, src: n, ctx: {} }, acts[0]).length; };
+    return { lo: cands(1), hi: cands(2), partial: k.partial, n: acts[0].n }; })()`);
+  assert.deepEqual(r, { lo: 0, hi: 2, partial: false, n: 3 });
+});
+
+test('K-1159 BS74-006 Aquilo-Lamda: counter +1, and the Soul Core makes the Nexus destruction unpreventable', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${pre}
+    const s = BS.mkInst('BS74-006'); s.cores = 3; P.spirits = [s]; const nx = BS.mkInst('BS74-CX01'); nx.soul = false; P.nexus = [nx]; P.reserve.soul = true; P.count = 0;
+    const t = BS.mkInst('BS74-CX01'); O.nexus = [t]; O.nexus[0].cores = 3;
+    await BS.fireFx(P, 'SUMMONED', s, {});
+    return { count: P.count, hit: O.nexus.length === 0 || O.nexus[0].cores < 3, noPrevent: !!(BS.CARDS['BS74-006'].effects[0].actions[2].do === 'SOUL_NO_PREVENT'), soul: nx.soul, partial: BS.CARDS['BS74-006'].partial }; })()`);
+  assert.ok(r.count >= 1, JSON.stringify(r)); assert.ok(r.hit && r.noPrevent, JSON.stringify(r)); assert.equal(r.soul, true, JSON.stringify(r)); assert.equal(r.partial, false);
+});
+
+test('K-1160 BS74-001 Eurymeteos: High Speed on the opposing turn only; When Summoned that way deploys a Contractor Ometeotl from the Trash free', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${pre}
+    const e = BS.mkInst('BS74-001'); P.hand = [e]; P.reserve.n = 5; P.nexus = []; P.trash = [BS.mkInst('BS74-CX01')];
+    G.active = P.key; const mine = highSpeedOK(P, e); G.active = O.key; const theirs = highSpeedOK(P, e);
+    await highSpeedSummon(P, e);
+    return { mine, theirs, nexus: P.nexus.length, trash: P.trash.length, partial: BS.CARDS['BS74-001'].partial }; })()`);
+  assert.deepEqual(r, { mine: false, theirs: true, nexus: 1, trash: 0, partial: false });
+});

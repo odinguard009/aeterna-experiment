@@ -8,15 +8,22 @@
    --------------------------------------------------------------------- */
 function highSpeedOK(p, inst) {
   const card = CARDS[inst.id];
-  if (!card || !card.highSpeed || !isSpiritForm(card) || !p.hand.includes(inst) || !summonOK(p, card)) return false;
+  if (!card || !(card.highSpeed || card.flashSummon) || !isSpiritForm(card) || !p.hand.includes(inst) || !summonOK(p, card)) return false;
   if (card.highSpeedIf && !fxIf(p, G.p[other(p.key)], card.highSpeedIf, {})) return false;      // v138 "Flash - <condition>, you can summon this card from the Hand"
   if (card.highSpeedOnce && p.hsOnce && p.hsOnce[card.name] === G.turnNo) return false;      // "only once per turn per card name"
+  if (card.flashSummon) return !!fsNexus(p, card);      // v465 flashSummon: Soul Core to the Nexus instead of paying
   return effCost(p, card) + minCores(card) <= reserveTotal(p);
+}
+/* v465 card field flashSummon {counterGe?, nexus: match}: "Flash: (Once per Turn: Same Name) [if N counters,] by sending your Soul Core to a matching Nexus, summon this card from the Hand, treating all summon costs as paid". Returns the Nexus that receives the Soul Core. */
+function fsNexus(p, card) {
+  const f = card.flashSummon; if (!f || !soulSource(p) || (f.counterGe && p.count < f.counterGe) || (p.fsOnce && p.fsOnce[card.name] === G.turnNo)) return null;
+  return p.nexus.find(n => !n.soul && fxMatch(CARDS[n.id], f.nexus)) || null;
 }
 const highSpeedSources = p => p.hand.filter(h => highSpeedOK(p, h));
 async function highSpeedSummon(p, inst) {
   if (!highSpeedOK(p, inst)) return false;
-  const card = CARDS[inst.id], c = effCost(p, card); legacyPay(p, inst);
+  const card = CARDS[inst.id], fs = card.flashSummon ? fsNexus(p, card) : null, c = fs ? 0 : effCost(p, card); if (!fs) legacyPay(p, inst);
+  if (fs) { (p.fsOnce = p.fsOnce || {})[card.name] = G.turnNo; await soulToNexus(p, fs); }
   if (card.highSpeedOnce) (p.hsOnce = p.hsOnce || {})[card.name] = G.turnNo;
   const fromN = Math.min(c, p.reserve.n), plan = { reserve: fromN, by: {}, rsoul: c > fromN, fsoul: null };
   removeFrom(p.hand, inst); inst.mirage = false;
@@ -26,7 +33,7 @@ async function highSpeedSummon(p, inst) {
   while (need > 0 && p.reserve.n > 0) { p.reserve.n--; inst.cores++; need--; }
   if (need > 0 && p.reserve.soul) { p.reserve.soul = false; inst.soul = true; need--; }
   p.spirits.push(inst);
-  log(`${who(p)} ${p.cpu ? 'summons' : 'summon'} ${card.name} with High Speed (paid ${c} from the Reserve).`);
+  log(`${who(p)} ${p.cpu ? 'summons' : 'summon'} ${card.name} ${fs ? 'by sending the Soul Core to ' + CARDS[fs.id].name + ' (costs treated as paid)' : 'with High Speed (paid ' + c + ' from the Reserve)'}.`);
   checkDepletion(p); io.view({ type: 'board' }); await wait(350);
   if (!G.over && p.spirits.includes(inst)) await fireFx(p, 'SUMMONED', inst);
   return true;
