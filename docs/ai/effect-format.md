@@ -526,3 +526,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v491 DESTROY n now allows up to 4 targets (BS69-063 Brontes burst).
 - v492 DEPLOY_SELF_PAID {costN}: pay N cost to summon this card from the Hand (BS69-026).
 - v493 CORE_SELF_OR_NEXUS {match}: Void core onto this Spirit or +1 core to a matching Nexus (BS69-027); OPP_REMOVED now also fires from the set Mirage (zone:mirage).
+- v494 STATIC FREE_REDUCTION {n,match,lv}: fulfill n reduction symbols of a matching card being summoned/deployed. v495 REVEAL_ADD moreRevealOnly (bonus reveals +1 but adds only add). BS69-068/072.

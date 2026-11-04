@@ -190,3 +190,32 @@ test('K-1103 BS69-027 Lycaon: Attacks sends an exhausted opposing Spirit to the 
     return { removed, cores, refreshed: !b.exhausted, partial: BS.CARDS['BS69-027'].partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.removed, 1, JSON.stringify(r)); assert.equal(r.cores, 2, JSON.stringify(r)); assert.equal(r.refreshed, true, JSON.stringify(r));
 });
+
+test('K-1104 BS69-068 Sealed Lands Volcano: deploy reveals two (three at 6 counters), adds one other Primordial card, rest to the bottom; FREE_REDUCTION fulfills one reduction symbol', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 3;
+    const pr = Object.keys(BS.CARDS).filter(k => BS.CARDS[k].type === 'Spirit' && (BS.CARDS[k].families || []).includes('Primordial') && !BS.CARDS[k].token && k !== 'BS69-068');
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !(BS.CARDS[k].families || []).includes('Primordial') && !BS.CARDS[k].token);
+    const n = BS.mkInst('BS69-068'); P.nexus = [n]; P.hand = []; const D = [BS.mkInst(any), BS.mkInst(pr[0]), BS.mkInst(any), BS.mkInst(any)]; P.deck = D.slice(); P.count = 0;
+    await BS.fireFx(P, 'SUMMONED', n, { subject: n });
+    const h1 = P.hand.length, d1 = P.deck.length, got = P.hand[0] && P.hand[0].id === pr[0];
+    P.hand = []; P.deck = [BS.mkInst(any), BS.mkInst(any), BS.mkInst(any), BS.mkInst(pr[1])]; P.count = 6;
+    await BS.fireFx(P, 'SUMMONED', n, { subject: n });
+    const h2 = P.hand.length;
+    const card = BS.CARDS[pr.find(k => Object.values(BS.CARDS[k].reduction || {}).reduce((a, b) => a + b, 0) >= 1 && BS.CARDS[k].cost >= 3)];
+    const withN = BS.effCost(P, card); P.nexus = []; const without = BS.effCost(P, card);
+    return { h1, d1, got, h2, diff: without - withN, partial: BS.CARDS['BS69-068'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.h1, 1, JSON.stringify(r)); assert.equal(r.got, true, JSON.stringify(r)); assert.equal(r.d1, 3, JSON.stringify(r));
+  assert.equal(r.h2, 0, JSON.stringify(r)); assert.ok(r.diff >= 1, JSON.stringify(r));
+});
+
+test('K-1105 BS69-072 Sealed Lands Forest: deploy exhausts one opposing Spirit (two at 8 counters)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 3;
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && BS.CARDS[k].cost > 0);
+    const n = BS.mkInst('BS69-072'); P.nexus = [n]; O.spirits = [1, 2, 3].map(() => { const s = BS.mkInst(any); s.cores = 1; return s; }); P.count = 3;
+    await BS.fireFx(P, 'SUMMONED', n, { subject: n }); const e1 = O.spirits.filter(s => s.exhausted).length;
+    O.spirits.forEach(s => { s.exhausted = false; }); P.count = 8; await BS.fireFx(P, 'SUMMONED', n, { subject: n });
+    return { e1, e2: O.spirits.filter(s => s.exhausted).length, partial: BS.CARDS['BS69-072'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.e1, 1, JSON.stringify(r)); assert.equal(r.e2, 2, JSON.stringify(r));
+});

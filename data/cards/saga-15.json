@@ -9232,16 +9232,79 @@
   "image": "BS69-068+.png",
   "block": "69",
   "saga": 15,
-  "fxComplete": false,
-  "residual": [
-   "[LV1] (When Deployed/Destroyed) You can reveal two cards from your decktop. Among them, besides \"The Sealed Lands: Volcano\", add a \"Primordial\" family card to the Hand. Return any remaining cards to the deckbottom. If you have six counters or more, this effect can reveal +1 card.",
-   "[LV1] When you're summoning/deploying a \"Primordial\" family Spirit card/Nexus card, fulfill one of its / reduction symbols."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
   "bicon": [
    "11"
   ],
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "REVEAL_ADD",
+      "n": 2,
+      "add": 1,
+      "match": {
+       "family": [
+        "Primordial"
+       ],
+       "notName": [
+        "The Sealed Lands: Volcano"
+       ]
+      },
+      "rest": "bottom",
+      "moreIf": {
+       "counterGe": 6
+      },
+      "moreRevealOnly": true
+     }
+    ]
+   },
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     1
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "REVEAL_ADD",
+      "n": 2,
+      "add": 1,
+      "match": {
+       "family": [
+        "Primordial"
+       ],
+       "notName": [
+        "The Sealed Lands: Volcano"
+       ]
+      },
+      "rest": "bottom",
+      "moreIf": {
+       "counterGe": 6
+      },
+      "moreRevealOnly": true
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "FREE_REDUCTION",
+    "lv": [
+     1
+    ],
+    "match": {
+     "family": [
+      "Primordial"
+     ]
+    }
+   }
+  ]
  },
  {
   "id": "BS69-069",
@@ -9426,17 +9489,80 @@
   "image": "BS69-072+.png",
   "block": "69",
   "saga": 15,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Deployed/Destroyed) Exhaust an opposing Spirit/Ultimate. If you have eight counters or more, this \"exhaustion effect\" exhausts +1 Spirit/Ultimate.",
-   "[LV1][LV2] When you're summoning/deploying a \"Primordial\" family Spirit card/Nexus card, fulfill one of its // reduction symbols.",
-   "[LV2] (Your Attack Step) While your Cost 5 or more \"Primordial\" family Spirit is attacking, the opponent can't activate Burst effects."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
   "bicon": [
    "11"
   ],
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "EXHAUST_OPP",
+      "n": 1
+     },
+     {
+      "do": "EXHAUST_OPP",
+      "n": 1,
+      "if": {
+       "counterGe": 8
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "EXHAUST_OPP",
+      "n": 1
+     },
+     {
+      "do": "EXHAUST_OPP",
+      "n": 1,
+      "if": {
+       "counterGe": 8
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "FREE_REDUCTION",
+    "lv": [
+     1,
+     2
+    ],
+    "match": {
+     "family": [
+      "Primordial"
+     ]
+    }
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "NO_OPP_BURST",
+    "lv": [
+     2
+    ],
+    "match": {
+     "family": [
+      "Primordial"
+     ],
+     "costGe": 5
+    },
+    "mode": "attacking"
+   }
+  ]
  },
  {
   "id": "BS69-073",
