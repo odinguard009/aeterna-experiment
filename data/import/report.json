@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 6107,
+  "cards": 6106,
   "per_saga": {
    "1": 458,
    "2": 251,
@@ -16,13 +16,13 @@
    "12": 303,
    "13": 383,
    "14": 419,
-   "15": 325,
+   "15": 324,
    "16": 281,
    "17": 105
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2599,
+  "skipped_curated": 2600,
   "nexus_levels_added": 647,
   "nexus_levels_missing": 39,
   "merged": 103,
@@ -1806,6 +1806,7 @@
   "BS70-037",
   "BS70-039",
   "BS70-045",
+  "BS70-048",
   "BS70-072",
   "BS70-X03",
   "BS71-023",

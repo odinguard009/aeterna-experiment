@@ -143,3 +143,15 @@ test('K-1116 BS70-004 Nogihara Geozard: reveals two (three at six counters), add
     return { first, second, drew: P.hand.length, partial: BS.CARDS['BS70-004'].partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.deepEqual(r.first, { hand: 0, trash: 2 }, JSON.stringify(r)); assert.deepEqual(r.second, { hand: 1, trash: 2 }, JSON.stringify(r)); assert.equal(r.drew, 1, JSON.stringify(r));
 });
+
+test('K-1117 BS70-048 HighEvo-Frost: Attacks gives a counter and adds a revealed Burst card; its Burst returns a LV2 Spirit to the deckbottom and summons itself', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const bu = Object.keys(BS.CARDS).find(k => BS.CARDS[k].burst && BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token);
+    const a = BS.mkInst('BS70-048'); a.cores = 3; P.spirits = [a]; P.hand = []; P.count = 0; P.deck = [BS.mkInst(bu), BS.mkInst(bu)]; G.attacker = a;
+    await BS.fireFx(P, 'ATTACKS', a, { attacker: a, subject: a });
+    const c = BS.CARDS['BS70-048'];
+    return { count: P.count, hand: P.hand.length, when: c.burst && c.burst.when, summon: c.burst.actions.some(x => x.do === 'SUMMON_SELF'), partial: c.partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.count, 1, JSON.stringify(r)); assert.equal(r.hand, 1, JSON.stringify(r));
+  assert.equal(r.when, 'LIFE_DECREASE', JSON.stringify(r)); assert.equal(r.summon, true, JSON.stringify(r));
+});
