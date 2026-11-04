@@ -33,6 +33,8 @@ async function beginTurn(key) {
   setStep(4);
   if (!G.over) { await fireFx(p, 'START_MAIN', null, {}); await flushBursts(); checkDepletion(G.p.player); checkDepletion(G.p.opponent); io.view({ type: 'board' }); }      // v0.197 "(Start of Your Main Step)" effects
 }
+const endMainHas = p => fieldList(p).some(f => (CARDS[f.id].effects || []).some(e => e.trigger === 'END_MAIN'));      // lets the human NEXT stay synchronous when nothing fires
+async function endMainFx(p) { if (G.over || !endMainHas(p)) return; await fireFx(p, 'END_MAIN', null, {}); await flushBursts(); checkDepletion(G.p.player); checkDepletion(G.p.opponent); io.view({ type: 'board' }); }      // v513 "(End of Your Main Step)" effects: the first Main Step only, before the Attack Step
 async function endStep(key) {
   setStep(G.steps.length - 1);
   if (!G.over) { await fireFx(G.p[key], 'END_STEP', null, {}); await flushBursts(); checkDepletion(G.p.player); checkDepletion(G.p.opponent); }      // v0.169 "(Your End Step)" effects, before the "during this turn" effects end

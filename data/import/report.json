@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 6101,
+  "cards": 6100,
   "per_saga": {
    "1": 458,
    "2": 251,
@@ -18,22 +18,22 @@
    "14": 418,
    "15": 322,
    "16": 281,
-   "17": 105
+   "17": 104
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2605,
+  "skipped_curated": 2606,
   "nexus_levels_added": 647,
   "nexus_levels_missing": 39,
   "merged": 103,
-  "image_problems": 384,
+  "image_problems": 383,
   "brave_unparsed": 169,
   "ut_lines_added": 106,
   "odd_reduction": 754,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
   "number_conflicts": 2,
-  "without_image": 382
+  "without_image": 381
  },
  "tokens": [
   "BS73-T001",
@@ -1976,6 +1976,7 @@
   "BS76-X01",
   "BS76-X02",
   "BS76-X11",
+  "BS77-005",
   "BS77-040",
   "26RSD01-001",
   "26RSD01-002",
@@ -5281,11 +5282,6 @@
   {
    "id": "BS75-086",
    "name": "Kizuna Mist",
-   "problem": "no image"
-  },
-  {
-   "id": "BS77-005",
-   "name": "Hitokaku",
    "problem": "no image"
   },
   {

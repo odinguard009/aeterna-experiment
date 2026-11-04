@@ -110,19 +110,19 @@ SET_KEY, SETTINGS, SPEEDS, saveSettings, G, fnv, recIn, SIM_DECK_B, SIM_DECK_B_K
 ## packages/engine/src/05b-decide.js (112 lines, ~2.7k tokens) — DECISIONS (v0.83.0, phase F3 = monorepo step M3 part 1; docs/ai/monorepo-plan.md "Design" 1)
 DECISION_KINDS, cardIds, portAsk, decide, ask, info, pickFromField, portPick, portCpu, askBlock, askPayment, uniqById, prepareHumanMagic, humanFlashChoice
 
-## packages/engine/src/05c-intent.js (289 lines, ~4.8k tokens) — INTENTS (v0.84.0, phase F3 part 2 = monorepo step M3 rest; docs/ai/monorepo-plan.md "Design" 1)
+## packages/engine/src/05c-intent.js (290 lines, ~4.8k tokens) — INTENTS (v0.84.0, phase F3 part 2 = monorepo step M3 rest; docs/ai/monorepo-plan.md "Design" 1)
 INTENT_TYPES, CORE_OPS, INTENT_MAX, SEAT_LOOP, seatCan, seatLoopOpen, boardView, endTurnNow, seatTurn, handOf, fieldOf, intentNext, intentSummon, intentCast, intentMirage, intentBraveSummon, intentBraveField, intentCore, intentAttack, applyIntent, cpuPaymentPlan, cpuIntent, cpuAnswer
 
 ## packages/engine/src/06-rules.js (678 lines, ~15k tokens) — RULES HELPERS
 fieldList, isGW, freeCores, freeTotal, totalCores, reserveTotal, minCores, isSpiritForm, isUlt, lvBase, lvNo, summonOK, ignoreSumCond, alsoTreated, alsoSyms, ultSymbolExtra, spare, coresAvailable, isCountLv, _tl3, treatLv3, TH_IDS, thIds, _th, treatHighest, _lp, lvPlusStatic, lvIndex, bpOf, ocActive, braveBp, braveFits, braveTargets, combineBrave, canSeparate, separateBrave, braveAfford, braveSummon, braveRecheck, shedBrave, TOKEN_SUPPLY, tokenIdsOf, prepareTokens, tokenCoreRoom, canSendToken, sendToken, tokenHome, symTurnCols, symZeroAllOn, symSetOn, attackSymbols, symAttrs, symbolAttrs, extraSymbolsOf, fieldSymbols, symbolsOn, reductionOf, noBlockActive, costAltActive, extraReduction, summonSymbols, hasExSym, legacyPlan, handCostSet, summonTaxOf, summonDiscountOf, trashSymsOn, effCost, legacyPay, tributeList, canPlayCard, takeCores, payCost, checkDepletion, leaveEvent, removeSpirit, trashHears, allyDiedHears, oppDiedHears, lostHeard, leaveStandby, releaseStandby, poss, who, keyDrawActive, drawKeyFirst, draw, handUp, summon, setBurst, fireBurstSet, mirageUsable, magicFx, magicFromTrash, magicFxAt, magicTrashOK, magicSources, magicTargets, soulMagicHolder, soulMagicOK, soulMagicPick, magicUsable, magicText, magicWallNegate, castMagic, coreEv, coreEvN, addCore, removeCore, moveSoulTo, moveCore, swapSoul, returnSoul
 
-## packages/engine/src/07-turn.js (83 lines, ~1.6k tokens) — TURN FLOW
-isMainStep, revertNexusSpirits, setStep, beginTurn, endStep, win, matchLoop, checkInvariants
+## packages/engine/src/07-turn.js (85 lines, ~1.7k tokens) — TURN FLOW
+isMainStep, revertNexusSpirits, setStep, beginTurn, endMainHas, endMainFx, endStep, win, matchLoop, checkInvariants
 
 ## packages/engine/src/08-battle.js (221 lines, ~5.8k tokens) — BATTLE
 successor, flashTiming, battleEndAttack, attackStepOver, doBattle, doBattleInner, maybeBurst, maybeBurst1, burstFlash, flushBursts
 
-## packages/engine/src/09-cpu.js (174 lines, ~3.1k tokens) — CPU
+## packages/engine/src/09-cpu.js (175 lines, ~3.1k tokens) — CPU
 cpuCanPlay, cpuLevelUp, cpuBurstFlash, cpuFlashChoice, summonableOpts, cpuCastMain, cpuMain, cpuBrave, cpuAttack, startAttackFx, cpuTurn
 
 ## packages/engine/src/09a-cpu-eval.js (131 lines, ~2.2k tokens) — CPU EVALUATION POLICY (v0.32, Aegis study point 7)

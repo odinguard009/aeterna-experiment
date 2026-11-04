@@ -191,7 +191,7 @@ function contractAdventTargets(p, inst, where) {
   if (p.count < (spec.counterGe || 0)) return [];
   if (!summonOK(p, CARDS[inst.id])) return [];
   if (spec.soulTo && !p.reserve.soul && !p.trashCores.soul) return [];      // v425 UTadvent: the Soul Core comes from the Reserve/Trash and goes to the target
-  return p.spirits.filter(sp => !isUlt(sp) && (spec.family === '*' || [].concat(spec.family).some(f => (CARDS[sp.id].families || []).includes(f))) && CARDS[sp.id].cost >= (spec.costGe || 0) && !sp.under.includes(inst) && (spec.soulTo ? !sp.soul || sp.cores >= minCores(CARDS[inst.id]) : sp.soul ? sp.cores >= minCores(CARDS[inst.id]) : (cadvFree(p, inst) || soulCoreHolder(p, null) !== null)));
+  return p.spirits.concat(spec.nexus && !p.cpu ? p.nexus : []).filter(sp => !isUlt(sp) && (spec.family === '*' || [].concat(spec.family).some(f => (CARDS[sp.id].families || []).includes(f))) && CARDS[sp.id].cost >= (spec.costGe || 0) && !sp.under.includes(inst) && (spec.soulTo ? !sp.soul || sp.cores >= minCores(CARDS[inst.id]) : sp.soul ? sp.cores >= minCores(CARDS[inst.id]) : (cadvFree(p, inst) || soulCoreHolder(p, null) !== null)));
 }
 async function doContractAdvent(p, adv, src, where) {
   if (!contractAdventTargets(p, adv, where || 'main').includes(src)) return false;
@@ -201,10 +201,10 @@ async function doContractAdvent(p, adv, src, where) {
   else if (CARDS[adv.id].contractAdvent.seal) soulToLife(p, sh); else soulToTrash(p, sh);   // v0.48 Seal Contract Advent: the Soul Core goes to the Life
   const fromSoul = p.soulState.includes(adv);
   removeFrom(p.hand, adv); removeFrom(p.soulState, adv); adv.inSoulState = false;
-  const idx = p.spirits.indexOf(src);
+  const nx = p.nexus.indexOf(src), idx = nx >= 0 ? -1 : p.spirits.indexOf(src);
   adv.cores = src.cores; adv.soul = toTarget || (free && src.soul); adv.exhausted = src.exhausted; adv.summonedTurn = src.summonedTurn; adv.bpMod = src.bpMod; adv.fxUsed = {};
   adv.under = src.under.concat([src]); src.under = []; src.cores = 0; src.soul = false; src.exhausted = false; src.heavy = false; src.noAB = false; src.bpMod = 0;
-  p.spirits[idx] = adv;
+  if (nx >= 0) { p.nexus.splice(nx, 1); p.spirits.push(adv); } else p.spirits[idx] = adv;
   if (src.brave) { adv.brave = src.brave; src.brave = null; braveRecheck(p, adv); }
   log(`${who(p)} ${p.cpu ? 'performs' : 'perform'} ${CARDS[adv.id].contractAdvent.seal ? 'Seal ' : ''}Contract Advent${fromSoul ? ' from Soul State' : ''}: ${CARDS[adv.id].name} on ${CARDS[src.id].name}.`);
   if (fromSoul && p.reserve.n > 0) {                       // Contract Field: put any number of Reserve cores onto the adventing card

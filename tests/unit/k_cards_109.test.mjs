@@ -260,3 +260,18 @@ test('K-1124 BS75-X02 Blezion: Flash discard sends the Soul Core to the Ometeotl
   assert.equal(r.r2.gone, true, JSON.stringify(r)); assert.equal(r.r2.bSoul, true, JSON.stringify(r)); assert.equal(r.r2.nxLost, 1, JSON.stringify(r));
   assert.equal(r.noSummon, true, JSON.stringify(r)); assert.equal(r.inTrash, true, JSON.stringify(r));
 });
+
+test('K-1125 BS77-005 Hitokaku: Flag Contract Advent onto a Vermillion Contract Nexus; End of Main Step sends 3 cores of a Grandwalker Nexus to the Void', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = false; G.active = P.key; G.step = 4;
+    const h = BS.mkInst('BS77-005'), nx = BS.mkInst('BS77-CX01'); nx.cores = 3; nx.soul = true; P.hand = [h]; P.nexus = [nx]; P.spirits = []; P.reserve.soul = true;
+    const tg = BS.contractAdventTargets(P, h, 'main').map(t => t.uid === nx.uid);
+    const ok = await BS.doContractAdvent(P, h, nx, 'main');
+    const stacked = P.spirits.includes(h) && !P.nexus.includes(nx) && h.under.includes(nx);
+    const gw = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Nexus' && (BS.CARDS[k].families || []).includes('Grandwalker'));
+    const g = BS.mkInst(gw); g.cores = 4; O.nexus = [g]; h.cores = 3;
+    await BS.fireFx(P, 'END_MAIN', null, {});
+    return { tg, ok, stacked, left: g.cores, partial: BS.CARDS['BS77-005'].partial, cx: BS.CARDS['BS77-CX01'].families }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.tg.length, 1, JSON.stringify(r)); assert.equal(r.ok, true, JSON.stringify(r));
+  assert.equal(r.stacked, true, JSON.stringify(r)); assert.ok(r.left <= 1, JSON.stringify(r));
+});

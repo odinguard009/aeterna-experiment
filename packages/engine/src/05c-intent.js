@@ -50,6 +50,7 @@ const fieldOf = (p, uid) => fieldList(p).find(x => x.uid === uid) || null;
 async function intentNext(key) {
   if (!seatCan(key)) return false;
   if (G.step === 4) {
+    if (endMainHas(G.p[key])) { await endMainFx(G.p[key]); if (!G || G.over) return true; }
     if (G.turnNo === 1) { log(G.format === 'standard' ? 'First turn: the Attack and Second Main Steps are skipped.' : 'First turn: the Attack Step is skipped.'); endTurnNow(); }
     else {
       setStep(5); log('Attack Step: tap a Spirit to attack.'); G.busy = true; boardView();

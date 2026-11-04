@@ -165,6 +165,7 @@ async function cpuTurn(p) {
   await wait(500);
   await cpuMain(p);
   if (G.over) return;
+  await endMainFx(p); if (G.over) return;
   if (G.turnNo > 1) {
     setStep(5); await wait(300); await startAttackFx(p); if (G.over) return; await cpuAttack(p);
     if (G.over) return;

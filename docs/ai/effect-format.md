@@ -541,3 +541,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v510 SOUL_DRIVE_VOID {match, n}: Soul Drive (soul to a matching Nexus or banished, then n opposing Lives to the Void), BS74-AX01 Mudou.
 - v511 NEXUS_SOUL_TO_TRASH, DECK_LOCK_TURN (G.deckLockTurn read by deckDiscardLocked): BS75-062 The Stardust Lava Sea.
 - v512 ACCEL.discard (Flash from the Hand, card to the Trash not the Removed Zone), SUMMON_ACCEL_SELF, SOUL_UNLEASH_SELF {match}, NEGATE_OPP_MAGIC {color} (log only: no stack): BS75-X02 Blezion.
+- v513 (Lane K, BS77-005 Hitokaku): `contractAdvent.nexus:true` (Flag Contract Advent: a Nexus is a legal host, human only; the Nexus leaves `p.nexus`, the advent card joins the Spirits with its cores and under-stack) and trigger `END_MAIN` ("End of Your Main Step", fired once after the first Main Step, human and CPU, before the Attack Step).
