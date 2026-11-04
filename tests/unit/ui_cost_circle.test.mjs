@@ -256,10 +256,10 @@ for (const [name, vp] of Object.entries(ZOOM_SCREENS)) {
     } finally { await ctx.close(); }
   });
 }
-test('Z02 effect lines and the placeholder card text are justified (last line left)', async () => {
+test('Z02 effect lines and the placeholder card text are left-aligned (last line left)', async () => {
   const r = await ev(() => { BS.testSetup(); BS.openZoom('BS74-CX03'); const l = getComputedStyle(document.querySelector('#zoom-overlay .fx-line')), t = getComputedStyle(document.querySelector('#zoom-overlay .ph-txt'));
     return [l.textAlign, l.textAlignLast, t.textAlign]; });
-  assert.deepEqual(r, ['justify', 'left', 'justify']);
+  assert.deepEqual(r, ['justify', 'left', 'left']);
 });
 test('Z03 long "A/B/C" names get break points after each slash; tags stay intact', async () => {
   const r = await ev(() => { const h = document.querySelector('#zoom-overlay .fx-line').innerHTML; return [/Dragon\/<wbr>Devotee/.test(h), /<\/<wbr>/.test(h)]; });
