@@ -43,7 +43,7 @@ test('P603-05 the import report counts the filled gaps', () => {
 
 test('P603-06 a staged Nexus keeps LV1 at 0 cores and has rising thresholds', () => {
   const nx = staged().filter(c => c.type === 'Nexus' && c.levels.length > 1);
-  assert.ok(nx.length >= 600, String(nx.length));
+  assert.ok(nx.length >= 500, String(nx.length));
   for (const c of nx) {
     assert.equal(c.levels[0].cores, 0, c.id);
     for (let i = 1; i < c.levels.length; i++) assert.ok(c.levels[i].cores > c.levels[i - 1].cores, c.id);

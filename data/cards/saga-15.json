@@ -9199,16 +9199,101 @@
   "image": "BS69-067+.png",
   "block": "69",
   "saga": 15,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (Your Attack Step) Once per turn, when your \"Primordial\"/\"Reptile Beast\" family Spirit attacks, if you have four counters or less, your counter +1. If you have five counters or more, +1 core to one of your \"Contractor Gaia\" Grandwalker Nexuses.",
-   "[LV2] (When Destroyed) If you control any \"Contractor Gaia\", destroy an opposing 15000 BP or less Spirit/Ultimate, and draw a card. After this effect resolves, if you have eight counters or more, activate this effect once and only once more."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
   "bicon": [
    "11"
   ],
-  "rcode": "R"
+  "rcode": "R",
+  "effects": [
+   {
+    "trigger": "ALLY_ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "once": true,
+    "onceKey": "gc",
+    "match": {
+     "family": [
+      "Primordial",
+      "Reptile Beast"
+     ]
+    },
+    "if": {
+     "not": {
+      "counterGe": 5
+     }
+    },
+    "actions": [
+     {
+      "do": "COUNTER",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "once": true,
+    "onceKey": "gc",
+    "match": {
+     "family": [
+      "Primordial",
+      "Reptile Beast"
+     ]
+    },
+    "if": {
+     "counterGe": 5
+    },
+    "actions": [
+     {
+      "do": "CORE_TO_NEXUS",
+      "n": 1,
+      "match": {
+       "name": [
+        "Contractor Gaia"
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     2
+    ],
+    "if": {
+     "controlName": "Contractor Gaia"
+    },
+    "actions": [
+     {
+      "do": "DESTROY",
+      "bpLe": 15000,
+      "thenDraw": 1
+     }
+    ]
+   },
+   {
+    "trigger": "DESTROYED",
+    "lv": [
+     2
+    ],
+    "if": {
+     "controlName": "Contractor Gaia",
+     "counterGe": 8
+    },
+    "actions": [
+     {
+      "do": "DESTROY",
+      "bpLe": 15000,
+      "thenDraw": 1
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS69-068",
