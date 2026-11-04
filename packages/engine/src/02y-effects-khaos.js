@@ -261,3 +261,12 @@ FX_ACTIONS.RETURN_OPP_REMOVED = { chk: a => Object.keys(a).every(k => ['do', 'if
     }
     c.ctx.did = true;
   } };
+
+/* v502 STATIC NEXUS_SWAP {match?}: "when your <match> Nexuses are destroyed by your effect, by destroying this Spirit, one of those Nexuses remains on the Field" (BS70-003). Always taken (no prompt); one Spirit per saved Nexus. */
+function nexusSwapSave(p, n) {
+  if (!G || G.fxBy !== p.key || !p.nexus.includes(n)) return false;
+  const src = p.spirits.find(s => fxEntries(s).some(({ e }) => e.trigger === 'STATIC' && e.flag === 'NEXUS_SWAP' && (!e.lv || e.lv.includes(lvNo(s))) && fxIf(p, G.p[other(p.key)], e.if, { selfInst: s }) && (!e.match || fxMatch(CARDS[n.id], e.match, n))));
+  if (!src) return false;
+  removeSpirit(p, src, 'destroyed'); if (p.spirits.includes(src)) return false;
+  log(`${CARDS[src.id].name} is destroyed instead: ${CARDS[n.id].name} remains on the Field.`); return true;
+}

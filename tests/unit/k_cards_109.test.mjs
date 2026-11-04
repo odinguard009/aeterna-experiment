@@ -115,3 +115,16 @@ test('K-1114 BS70-001 Shakson Geosoldier: when your Nexus is destroyed it can be
     return { summoned: P.spirits.includes(c), handLeft: P.hand.includes(c), partial: BS.CARDS['BS70-001'].partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.summoned, true, JSON.stringify(r)); assert.equal(r.handLeft, false, JSON.stringify(r));
 });
+
+test('K-1115 BS70-003 Gecko Geozard: a Primordial Nexus destroyed by your own effect stays when this Spirit is destroyed instead; an opposing effect destroys it normally', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const nxId = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Nexus' && (BS.CARDS[k].families || []).includes('Primordial') && !BS.CARDS[k].token);
+    const a = BS.mkInst('BS70-003'); a.cores = 3; P.spirits = [a]; const n1 = BS.mkInst(nxId); P.nexus = [n1];
+    G.fxBy = P.key; BS.removeNexus(P, n1, 'destroyed'); const kept = P.nexus.includes(n1), gone = !P.spirits.includes(a);
+    const b = BS.mkInst('BS70-003'); b.cores = 3; P.spirits = [b]; const n2 = BS.mkInst(nxId); P.nexus = [n2];
+    G.fxBy = O.key; BS.removeNexus(P, n2, 'destroyed');
+    return { kept, gone, oppKept: P.nexus.includes(n2), bStays: P.spirits.includes(b), partial: BS.CARDS['BS70-003'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.kept, true, JSON.stringify(r)); assert.equal(r.gone, true, JSON.stringify(r));
+  assert.equal(r.oppKept, false, JSON.stringify(r)); assert.equal(r.bStays, true, JSON.stringify(r));
+});

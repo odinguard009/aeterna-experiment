@@ -64,6 +64,7 @@ function soulEnterHook(p, inst) {
   if (mn && mn.soul && CARDS[inst.id].name.endsWith(mn.name) && !G.evQ.some(e => e.type === 'MIRAGE_SUMMON' && e.key === p.key)) G.evQ.push({ type: 'MIRAGE_SUMMON', key: p.key, inst });
 }
 function nexusShielded(p, n) {
+  if (nexusSwapSave(p, n)) return true;
   if (!G || !G.fxBy || G.fxBy === p.key || !p.nexus.includes(n) || !mirageShield(p, n)) return false;
   log(`${CARDS[n.id].name} can't be destroyed by opposing effects (${CARDS[p.mirage.id].name} is set).`); return true;
 }
