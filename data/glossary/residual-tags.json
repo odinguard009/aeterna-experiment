@@ -33760,13 +33760,6 @@
   "C_LEVEL",
   "K_ULTIMATE"
  ],
- "BS61-004": [
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "M_THEN",
-  "T_ATTACKS",
-  "T_SUMMONED"
- ],
  "BS61-005": [
   "A_COUNTER",
   "A_REFRESH",
@@ -35523,14 +35516,6 @@
   "M_THEN",
   "M_UP_TO",
   "T_ATTACKS",
-  "T_SUMMONED"
- ],
- "BS63-016": [
-  "A_DESTROY_TOTAL",
-  "C_LEVEL",
-  "M_OPTIONAL",
-  "M_UP_TO",
-  "S_NO_RETURN",
   "T_SUMMONED"
  ],
  "BS63-017": [

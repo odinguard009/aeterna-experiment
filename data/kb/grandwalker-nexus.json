@@ -681,21 +681,11 @@
     "BS65-003",
     "BS68-001",
     "BS70-002",
-    "BS74-001",
-    "BS74-006",
-    "BS74-008",
-    "BS74-010",
-    "BS74-012",
-    "BS74-068",
-    "BS74-076",
-    "BS74-077",
-    "BS74-X13",
     "BS75-062",
     "BS75-076",
     "BS75-X02"
    ],
    "order_cards": [
-    "BS74-CX01",
     "BS60-003",
     "BS61-004",
     "BS62-011",
@@ -703,15 +693,6 @@
     "BS65-003",
     "BS68-001",
     "BS70-002",
-    "BS74-001",
-    "BS74-006",
-    "BS74-008",
-    "BS74-010",
-    "BS74-012",
-    "BS74-068",
-    "BS74-076",
-    "BS74-077",
-    "BS74-X13",
     "BS75-062",
     "BS75-076",
     "BS75-X02"
@@ -1282,45 +1263,16 @@
    ],
    "revival_open": [],
    "deck_incomplete": [
-    "BS73-042",
-    "BS73-044",
-    "BS73-045",
-    "BS73-047",
-    "BS73-049",
-    "BS73-050",
-    "BS73-052",
     "BS73-070",
     "BS73-080",
-    "BS73-081",
-    "BS73-AX02",
-    "BS74-052",
-    "BS74-053",
-    "BS74-055",
-    "BS74-056",
     "BS74-074",
-    "BS74-084",
-    "BS74-X07"
+    "BS74-084"
    ],
    "order_cards": [
-    "BS73-CX02",
-    "BS73-042",
-    "BS73-044",
-    "BS73-045",
-    "BS73-047",
-    "BS73-049",
-    "BS73-050",
-    "BS73-052",
     "BS73-070",
     "BS73-080",
-    "BS73-081",
-    "BS73-AX02",
-    "BS74-052",
-    "BS74-053",
-    "BS74-055",
-    "BS74-056",
     "BS74-074",
-    "BS74-084",
-    "BS74-X07"
+    "BS74-084"
    ]
   },
   {
@@ -25859,7 +25811,7 @@
     "name": "The AmberFairySummoner Amber",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-046",
@@ -25873,14 +25825,14 @@
     "name": "The BerylJewelShieldFairy Morgana",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-050",
     "name": "The KunziteJewelChainswordsman Koon-Zite",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-055",
@@ -25943,7 +25895,7 @@
     "name": "The PrismKnightEmperor Dragonic-Arthur",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-AX03",
@@ -25964,7 +25916,7 @@
     "name": "The MeteorLavaScorpion Eurymeteos",
     "type": "Spirit",
     "cost": 2,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-002",
@@ -26006,7 +25958,7 @@
     "name": "The LavaAstralFishDragon Notosaurus",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-014",
@@ -26125,21 +26077,21 @@
     "name": "The BlackOnyxFairy Blakyx",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-055",
     "name": "The AzureGemFairy Aquamarine",
     "type": "Spirit",
     "cost": 5,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-056",
     "name": "The MoonstoneFairy Moo",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-060",
@@ -26181,7 +26133,7 @@
     "name": "The EndgameSharkEmperor Aztlan",
     "type": "Ultimate",
     "cost": 10,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-X15",
@@ -26792,7 +26744,7 @@
     "name": "The FluoritePrincessFairy Fluora",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-X08",
@@ -26820,7 +26772,7 @@
     "name": "The EndgameSharkEmperor Aztlan",
     "type": "Ultimate",
     "cost": 10,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-X14",
@@ -28205,7 +28157,7 @@
     "name": "The MeteorLavaScorpion Eurymeteos",
     "type": "Spirit",
     "cost": 2,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-002",
@@ -28233,14 +28185,14 @@
     "name": "The LavaWingedShark Aquilo-Lamda",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-008",
     "name": "The LavaAstralFish Ichziyon",
     "type": "Spirit",
     "cost": 5,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-009",
@@ -28254,7 +28206,7 @@
     "name": "The LavaAstralTurtle Archelon",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-011",
@@ -28268,35 +28220,35 @@
     "name": "The LavaAstralFishDragon Notosaurus",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-068",
     "name": "Ometeotl's Astral Lava Temple",
     "type": "Nexus",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-076",
     "name": "Magma Draw",
     "type": "Magic",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-077",
     "name": "Magma Breaker",
     "type": "Magic",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-X13",
     "name": "The EndgameSharkEmperor Aztlan",
     "type": "Ultimate",
     "cost": 10,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS75-004",
@@ -28389,7 +28341,7 @@
     "name": "The Light-DarkContractor Ometeotl",
     "type": "Nexus",
     "cost": 2,
-    "complete": false
+    "complete": true
    }
   ],
   "無魔": [
@@ -29146,49 +29098,49 @@
     "name": "The MalachiteJewelFairyGirl Makala",
     "type": "Spirit",
     "cost": 2,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-044",
     "name": "The TurquoiseDivinerFairy Quoise",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-045",
     "name": "The AmberFairySummoner Amber",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-047",
     "name": "The BerylJewelShieldFairy Morgana",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-049",
     "name": "The JewelSwordsman Bluezirco",
     "type": "Spirit",
     "cost": 5,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-050",
     "name": "The KunziteJewelChainswordsman Koon-Zite",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-052",
     "name": "The OlivineJewelArcherFairy Perid",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-070",
@@ -29209,42 +29161,42 @@
     "name": "Absorption",
     "type": "Magic",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-AX02",
     "name": "The PrismKnightEmperor Dragonic-Arthur",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-052",
     "name": "The BlackOnyxFairy Blakyx",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-053",
     "name": "The YellowDiamondFairy Yellodianna",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-055",
     "name": "The AzureGemFairy Aquamarine",
     "type": "Spirit",
     "cost": 5,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-056",
     "name": "The MoonstoneFairy Moo",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-074",
@@ -29265,7 +29217,7 @@
     "name": "The FluoritePrincessFairy Fluora",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    }
   ],
   "動器": [

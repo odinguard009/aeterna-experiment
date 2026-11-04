@@ -4,6 +4,7 @@
    load time must load before those parts, which is why the targeting actions stay in 02b;
    every other entry here is read from inside a function.
    ------------------------------------------------------------------------------------ */
+const dtBoost = (c, a) => !a.boost ? 0 : a.boost.perCounter ? a.boost.perCounter * c.p.count : c.p.count >= a.boost.counterGe ? a.boost.n : 0;      // v472 boost.perCounter: +N per counter (BS63-016)
 Object.assign(FX_ACTIONS, {
   /* v212 "Besides this Spirit, target a total of three Spirits you or the opponent controls. Send one core from each of them to the
      Reserve. (The owner chooses which core to send) If depleted, put a core from the Void to this Spirit." */
@@ -233,11 +234,11 @@ Object.assign(FX_ACTIONS, {
     } },
   /* v0.45 "for each differently named <family> family Brave you control, send an opposing Life to the Trash" (Agateram Unleash).
      Braves counted: combined on your Spirits/Nexuses and Brave cards on the Field as Spirits; distinct names. Not damage: one Burst check. */
-  DESTROY_TOTAL: { chk: a => (a.max == null || (Number.isInteger(a.max) && a.max >= 1 && a.max <= 10)) && Number.isInteger(a.total) && (a.byCost === true ? a.total >= 1 && a.total <= 30 : a.total >= 1000 && a.total <= 100000), txt: a => a.byCost ? `destroy any number of opposing Spirits/Ultimates up to a total cost of ${a.total}` : `destroy any number of opposing Spirits up to a total of ${a.total} BP`,
+  DESTROY_TOTAL: { chk: a => (a.boost == null || (typeof a.boost === 'object' && (a.boost.perCounter != null || a.boost.counterGe != null))) && (a.max == null || (Number.isInteger(a.max) && a.max >= 1 && a.max <= 10)) && Number.isInteger(a.total) && (a.byCost === true ? a.total >= 1 && a.total <= 30 : a.total >= 1000 && a.total <= 100000), txt: a => a.byCost ? `destroy any number of opposing Spirits/Ultimates up to a total cost of ${a.total}` : `destroy any number of opposing Spirits up to a total of ${a.total} BP`,
     cands: (c, budget, a) => c.opp.spirits.filter(s => (a && a.byCost ? CARDS[s.id].cost : bpOf(s)) <= budget),
-    can: (c, a) => FX_ACTIONS.DESTROY_TOTAL.cands(c, a.total + (a.boost && c.p.count >= a.boost.counterGe ? a.boost.n : 0), a).length > 0,
+    can: (c, a) => FX_ACTIONS.DESTROY_TOTAL.cands(c, a.total + dtBoost(c, a), a).length > 0,
     run: async (c, a) => {
-      let budget = a.total + (a.boost && c.p.count >= a.boost.counterGe ? a.boost.n : 0); const picked = [];       // v0.41: boost = { counterGe, n } (Dana Draw)
+      let budget = a.total + dtBoost(c, a); const picked = [];       // v0.41: boost = { counterGe, n } (Dana Draw)
       for (let g = 0; g < (a.max || 10); g++) {      // v0.197 max: "up to three"
         const val = x => (a.byCost ? CARDS[x.id].cost : bpOf(x)), L = FX_ACTIONS.DESTROY_TOTAL.cands(c, budget, a).filter(s => !picked.includes(s)); if (!L.length) break;
         let t;

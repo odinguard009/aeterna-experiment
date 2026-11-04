@@ -161,3 +161,16 @@ test('K-1165 BS74-068 Lava Temple: Soul Core to Ometeotl draws at attack start; 
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.drew, 1, JSON.stringify(r)); assert.equal(r.noRet, true); assert.equal(r.retOther, false);
   assert.equal(r.lock, true, JSON.stringify(r)); assert.equal(r.unlock, false);
 });
+
+test('K-1166 BS63-016 Thread Sword Paradise destroys opposing Spirits up to 10000 BP + 1000 per counter; BS61-004 Magmarowana destroys a Cost 3 Nexus and draws, counters +3', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${pre}
+    const k = BS.CARDS['BS63-016'], m = BS.CARDS['BS61-004'];
+    const nx = BS.mkInst('BS74-068'); O.nexus = [nx]; P.count = 4;
+    const t = BS.mkInst('BS61-004'); t.cores = 3; P.spirits = [t]; const c0 = P.count, h0 = P.hand.length;
+    await BS.fireFx(P, 'SUMMONED', t, { subject: t });
+    await BS.fireFx(P, 'ATTACKS', t, { attacker: t });
+    return { partial: [k.partial, m.partial], nexusLeft: O.nexus.length, counters: P.count - c0, drew: P.hand.length - h0, boost: k.effects[0].actions[0].boost }; })()`);
+  assert.deepEqual(r.partial, [false, false], JSON.stringify(r)); assert.equal(r.nexusLeft, 0, JSON.stringify(r));
+  assert.equal(r.counters, 3, JSON.stringify(r)); assert.equal(r.drew, 1, JSON.stringify(r)); assert.deepEqual(r.boost, { perCounter: 1000 });
+});
