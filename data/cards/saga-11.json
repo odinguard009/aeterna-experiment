@@ -4412,7 +4412,11 @@
    "When either the opposing Life is reduced or when this Spirit would leave the Field due to the opponent, it can be flipped. (Cores on it are sent to the Reserve.)"
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "CP"
+  "rcode": "CP",
+  "rebirthTo": "BS52-TCP01B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS52-TCP02",
@@ -4456,7 +4460,11 @@
    "When either the opposing Life is reduced, or this Spirit would leave the Field due to the opponent, it can be flipped (Cores on it are sent to the Reserve)."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "CP"
+  "rcode": "CP",
+  "rebirthTo": "BS52-TCP02B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS52-TCP03",
@@ -4504,7 +4512,11 @@
    "When either the opposing Life is reduced, or this Spirit would leave the Field due to the opponent, it can be flipped (Cores on it are sent to the Reserve)."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "CP"
+  "rcode": "CP",
+  "rebirthTo": "BS52-TCP03B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS52-TX01",

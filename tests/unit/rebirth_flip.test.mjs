@@ -14,7 +14,8 @@ test('RF-01 every Rebirth front has a Side B record that carries its own id and 
   assert.ok(ids.length >= 200, String(ids.length));
   for (const f of ids) {
     const s = sides[f];
-    assert.equal(s.id, f + 'B', f);
+    // a reprint (PB14-X01, SD52-005, SD52-009) carries the back of the print it copies: its Side B id is that print's, and that print has its own record
+    if (s.id !== f + 'B') assert.ok(sides[s.id.replace(/B$/, '')] && sides[s.id.replace(/B$/, '')].id === s.id, f);
     assert.equal(s.rebirthSide, true, f);
     assert.ok(s.name && s.type && s.text, f);
   }

@@ -457,6 +457,120 @@
   ],
   "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
  },
+ "BS52-TCP01": {
+  "id": "BS52-TCP01B",
+  "name": "Future Dionysus",
+  "name_jp": "ディオニュソス・フューチャー",
+  "type": "Nexus",
+  "color": "purple",
+  "cost": 2,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1
+   },
+   {
+    "cores": 3
+   }
+  ],
+  "families": [
+   "Grandwalker",
+   "Primal"
+  ],
+  "text": "Count +1\n\nGrandwalker Rule\n\nCore Charge: (Purple) (Core Charge via Summon/Advent once per turn)\n◆When you Summon/Advent a target Spirit, you can put one core from the Void onto this Nexus.\n◆When you flip into this side, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.\n\n[LV1][LV2] (When Reborn)\nSend two cores from any opposing Grandwalker Nexuses to the Void, and for each core sent this way, put a core from the Void to this Nexus.\n\n{{gs|3}} [LV2] Flash - (Either Attack Step)\n(Once per turn, send three cores from this Nexus to the Void) Destroy an opposing exhausted Spirit.",
+  "image": "fdio.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "Grandwalker Rule",
+   "Core Charge: (Purple) (Core Charge via Summon/Advent once per turn)",
+   "◆When you Summon/Advent a target Spirit, you can put one core from the Void onto this Nexus.",
+   "◆When you flip into this side, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash.",
+   "For each target card among them, put a core from the Void onto this Nexus.",
+   "[LV1][LV2] (When Reborn)",
+   "Send two cores from any opposing Grandwalker Nexuses to the Void, and for each core sent this way, put a core from the Void to this Nexus.",
+   "{{gs|3}} [LV2] Flash - (Either Attack Step)",
+   "(Once per turn, send three cores from this Nexus to the Void) Destroy an opposing exhausted Spirit."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BS52-TCP02": {
+  "id": "BS52-TCP02B",
+  "name": "Future Hermes",
+  "name_jp": "ヘルメス・フューチャー",
+  "type": "Nexus",
+  "color": "green",
+  "cost": 2,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1
+   },
+   {
+    "cores": 1
+   }
+  ],
+  "families": [
+   "Grandwalker",
+   "Primal"
+  ],
+  "text": "Count +1\n\nGrandwalker Rule\n\nCore Charge: (Green) (Core Charge via Summon/Advent once per turn)\n◆When you Summon/Advent a target Spirit, you can put one core from the void onto this Nexus.\n◆When you flip into this side, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.\n\n[LV1][LV2] (When Reborn)\nEither return an opposing exhausted Spirit to the deckbottom, or put two cores from the Void to this Nexus.\n\n{{gs|1}} [LV2] Flash - (Your Attack Step)\n(Once per turn, send a core from this Nexus to the Void) Refresh a Green \"Primal\"/\"Blade Beast\" family Spirit you control.",
+  "image": "fher.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "Grandwalker Rule",
+   "Core Charge: (Green) (Core Charge via Summon/Advent once per turn)",
+   "◆When you Summon/Advent a target Spirit, you can put one core from the void onto this Nexus.",
+   "◆When you flip into this side, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash.",
+   "For each target card among them, put a core from the Void onto this Nexus.",
+   "[LV1][LV2] (When Reborn)",
+   "Either return an opposing exhausted Spirit to the deckbottom, or put two cores from the Void to this Nexus.",
+   "{{gs|1}} [LV2] Flash - (Your Attack Step)",
+   "(Once per turn, send a core from this Nexus to the Void) Refresh a Green \"Primal\"/\"Blade Beast\" family Spirit you control."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BS52-TCP03": {
+  "id": "BS52-TCP03B",
+  "name": "Future Aphrodite",
+  "name_jp": "アプロディーテ・フューチャー",
+  "type": "Nexus",
+  "color": "yellow",
+  "cost": 2,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1
+   },
+   {
+    "cores": 2
+   }
+  ],
+  "families": [
+   "Grandwalker",
+   "Primal"
+  ],
+  "text": "Count +1\n\nGrandwalker Rule\n\nCore Charge: (Yellow) (Core Charge via summon/advent once per turn)\n◆When you summon/advent a target Spirit, you can put a core from the Void onto this Nexus.\n◆When you flip into this side, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void onto this Nexus.\n\n[LV1][LV2] (When Reborn)\nPut two cores from the Void to any \"Aphrodite\"-named Grandwalker Nexuses you control.\n\n{{gs|2}} [LV2] Flash - (Opposing Attack Step)\n(Once per game, send two cores from this Nexus to the Void) Use a Magic card from your Hand, without paying the cost.",
+  "image": "faph.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "Grandwalker Rule",
+   "Core Charge: (Yellow) (Core Charge via summon/advent once per turn)",
+   "◆When you summon/advent a target Spirit, you can put a core from the Void onto this Nexus.",
+   "◆When you flip into this side, if you don't control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash.",
+   "For each target card among them, put one core from the Void onto this Nexus.",
+   "[LV1][LV2] (When Reborn)",
+   "Put two cores from the Void to any \"Aphrodite\"-named Grandwalker Nexuses you control.",
+   "{{gs|2}} [LV2] Flash - (Opposing Attack Step)",
+   "(Once per game, send two cores from this Nexus to the Void) Use a Magic card from your Hand, without paying the cost."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
  "BS52-TX01": {
   "id": "BS52-TX01B",
   "name": "The Red Divine Dragon Emperor",
@@ -1150,6 +1264,52 @@
    "(Send four cores from this Nexus to the Void) Ignoring the cost of Braves, destroy an opposing Cost 6 or less Spirit."
   ],
   "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BS53-TX01": {
+  "id": "BS53-TX01B",
+  "name": "龍騎皇ドラゴニック・アーサー",
+  "name_jp": "龍騎皇ドラゴニック・アーサー",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 8,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 8000
+   },
+   {
+    "cores": 3,
+    "bp": 11000
+   },
+   {
+    "cores": 4,
+    "bp": 16000
+   },
+   {
+    "cores": 6,
+    "bp": 20000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Evil Shadow",
+   "Dragon"
+  ],
+  "text": "この面に裏返ったとき、フィールドに残り、カウント+1する(ボイドからコア1個を自分のカウントエリアに置く)\n［Lv1-Lv2-Lv3-Lv4］『このスピリットの転醒時』\nBP15000以下の相手のスピリット/BP30000以下の相手のアルティメットすべてを破壊する。\n［Lv1-Lv2-Lv3-Lv4］『このスピリットのアタック時』\n相手のスピリット1体を指定してアタックできる。さらに、バトル終了時、ターンに1回、このスピリットは回復できる。\n［Lv4］『このスピリットのアタック時』\n相手のライフのコア2個をボイドに置く。",
+  "image": "BS53-TX01 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "この面に裏返ったとき、フィールドに残り、カウント+1する(ボイドからコア1個を自分のカウントエリアに置く)",
+   "［Lv1-Lv2-Lv3-Lv4］『このスピリットの転醒時』",
+   "BP15000以下の相手のスピリット/BP30000以下の相手のアルティメットすべてを破壊する。",
+   "［Lv1-Lv2-Lv3-Lv4］『このスピリットのアタック時』",
+   "相手のスピリット1体を指定してアタックできる。さらに、バトル終了時、ターンに1回、このスピリットは回復できる。",
+   "［Lv4］『このスピリットのアタック時』",
+   "相手のライフのコア2個をボイドに置く。"
+  ],
+  "note": "Rebirth back face (display only) from the official card database; English name and text pending (Japanese kept); families copied from the front."
  },
  "BS53-TX02": {
   "id": "BS53-TX02B",
@@ -2253,6 +2413,47 @@
   ],
   "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
  },
+ "BS55-053": {
+  "id": "BS55-053B",
+  "name": "The HornedStarDivineBeast Persiphone",
+  "name_jp": "有角の星霊獣ペルシフォーネ",
+  "type": "Spirit",
+  "color": "yellow",
+  "cost": 7,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 2,
+    "bp": 8000
+   },
+   {
+    "cores": 3,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Imaginary Beast"
+  ],
+  "text": "Count +1\n\n[LV1][LV2][LV3] (When Reborn/Attacks)\nYou can put a core from your Life to this Spirit. When you've done so, once per turn, refresh this Spirit. You can't activate Burst effects via this effect.\n\n[LV2][LV3] Flash - (When Attacks)\nOnce per turn, put a core from the Void to your Life, and return either an opposing LV1 Spirit or an opposing LV3 Ultimate to the deckbottom.",
+  "image": "Alicorn.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1][LV2][LV3] (When Reborn/Attacks)",
+   "You can put a core from your Life to this Spirit.",
+   "When you've done so, once per turn, refresh this Spirit.",
+   "You can't activate Burst effects via this effect.",
+   "[LV2][LV3] Flash - (When Attacks)",
+   "Once per turn, put a core from the Void to your Life, and return either an opposing LV1 Spirit or an opposing LV3 Ultimate to the deckbottom."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
  "BS55-062": {
   "id": "BS55-062B",
   "name": "The WBS GreatRookie Aarush",
@@ -2678,6 +2879,204 @@
    "Destroy an opposing Spirit/Ultimate.",
    "[LV1][LV2][LV3] Great Crush (When Attacks)",
    "For each LV this Spirit has, discard five cards from the opposing decktop, and when any card with Burst effects is discarded, destroy an opposing Spirit."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BS55-TCP10": {
+  "id": "BS55-TCP10B",
+  "name": "Grandwalker of the New World Alex",
+  "name_jp": "新しき世界の創界神アレックス",
+  "type": "Nexus",
+  "color": "white",
+  "cost": 2,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1
+   },
+   {
+    "cores": 2
+   }
+  ],
+  "families": [
+   "Grandwalker",
+   "Primal"
+  ],
+  "text": "Count +1\n\nGrandwalker Rule\n\nCore Charge: (Primal & Cost 3 or more)\n◆When you Summon/Advent a target Spirit, you can put one core from the void onto this Nexus.\n◆When you flip into this side, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash. For each target card among them, put a core from the Void onto this Nexus.\n\n[LV1][LV2] (When Reborn)\nPut a core from the Void to your Field/Reserve/this Nexus, and draw a card.\n\nGrand Field [LV2] (Opposing Attack Step)\nWhen your Life would be reduced by an opposing effect, by sending two cores from this Nexus to the Void, your Life isn't reduced.",
+  "image": "New Alex.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "Grandwalker Rule",
+   "Core Charge: (Primal & Cost 3 or more)",
+   "◆When you Summon/Advent a target Spirit, you can put one core from the void onto this Nexus.",
+   "◆When you flip into this side, if you do not control a Grandwalker Nexus with the same card name, you can send three cards from your decktop to the Trash.",
+   "For each target card among them, put a core from the Void onto this Nexus.",
+   "[LV1][LV2] (When Reborn)",
+   "Put a core from the Void to your Field/Reserve/this Nexus, and draw a card.",
+   "Grand Field [LV2] (Opposing Attack Step)",
+   "When your Life would be reduced by an opposing effect, by sending two cores from this Nexus to the Void, your Life isn't reduced."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BS55-TX01": {
+  "id": "BS55-TX01B",
+  "name": "The ExplosiveSupremeForgeDeity BigBang-Golem",
+  "name_jp": "爆覇造神ビッグバン・ゴレム",
+  "type": "Spirit",
+  "color": "blue",
+  "cost": 8,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 8000
+   },
+   {
+    "cores": 4,
+    "bp": 16000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Artificial Soldier"
+  ],
+  "text": "Count +1\n\n[LV1][LV2] (When Reborn)\nIf it is the Attack Step, discard 10 cards from the opposing decktop. For each counter you have, the amount of cards for this \"opposing deck discarding\" effect is increased by +1.\n\n[LV2] (Your Attack Step)\nWhile you have five counters or more, the effects of cards discarded by this Spirit's \"opposing deck discarding\" effect can't activate.",
+  "image": "I honestly didn't expect this.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1][LV2] (When Reborn)",
+   "If it is the Attack Step, discard 10 cards from the opposing decktop.",
+   "For each counter you have, the amount of cards for this \"opposing deck discarding\" effect is increased by +1.",
+   "[LV2] (Your Attack Step)",
+   "While you have five counters or more, the effects of cards discarded by this Spirit's \"opposing deck discarding\" effect can't activate."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BS55-TX02": {
+  "id": "BS55-TX02B",
+  "name": "The YomiRouseBeastEmperor YomotsuOokami",
+  "name_jp": "黄泉ノ醒獣帝ヨモツオオカミ",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 8,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 8000
+   },
+   {
+    "cores": 3,
+    "bp": 13000
+   },
+   {
+    "cores": 5,
+    "bp": 16000
+   }
+  ],
+  "families": [
+   "Pastwalker",
+   "Avatar",
+   "Spiritual Beast"
+  ],
+  "text": "Count +1\n\n[LV1][LV2][LV3] (When Reborn)\nFor each two cores on your Field, send one core from any opposing Spirits/Ultimates to the Trash. This effect can't be prevented by opposing effects.\n\n[LV2][LV3]\nWhen this Spirit would leave the Field due to the opponent, you can return it to the Hand. At the end of this Spirit's battle, send an opposing Life to the Trash.",
+  "image": "This too.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1][LV2][LV3] (When Reborn)",
+   "For each two cores on your Field, send one core from any opposing Spirits/Ultimates to the Trash.",
+   "This effect can't be prevented by opposing effects.",
+   "[LV2][LV3]",
+   "When this Spirit would leave the Field due to the opponent, you can return it to the Hand.",
+   "At the end of this Spirit's battle, send an opposing Life to the Trash."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BS55-TX03": {
+  "id": "BS55-TX03B",
+  "name": "The TimeDestroyer Lombardia-Omega",
+  "name_jp": "時の破壊者ロンバルディア・Ω",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 12,
+  "symbols": 2,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 12000
+   },
+   {
+    "cores": 3,
+    "bp": 16000
+   },
+   {
+    "cores": 6,
+    "bp": 30000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Chrownos",
+   "Fusion Beast"
+  ],
+  "text": "Count +1\n\n[LV1][LV2][LV3] (When Reborn)\nBy banishing three Blue \"Chrownos\" family Spirit cards from your Trash, Main Step doesn't occur for the opponent next turn.\n\n[LV1][LV2][LV3] (When Attacks)\nDestroy an opposing Cost 10 or less Spirit.\n\n[LV2][LV3]\nThis Spirit is unaffected by opposing effects.",
+  "image": "Lombardia-Omega.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1][LV2][LV3] (When Reborn)",
+   "By banishing three Blue \"Chrownos\" family Spirit cards from your Trash, Main Step doesn't occur for the opponent next turn.",
+   "[LV1][LV2][LV3] (When Attacks)",
+   "Destroy an opposing Cost 10 or less Spirit.",
+   "[LV2][LV3]",
+   "This Spirit is unaffected by opposing effects."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BS55-TX04": {
+  "id": "BS55-TX04B",
+  "name": "The EarthDivineChild Vina",
+  "name_jp": "大地の御子ヴィーナ",
+  "type": "Spirit",
+  "color": "yellow",
+  "cost": 6,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 2,
+    "bp": 8000
+   },
+   {
+    "cores": 3,
+    "bp": 11000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Navigator"
+  ],
+  "text": "Count +1\n\n[LV1][LV2][LV3] (When Reborn)\nYou can put two cores from the Void to this Spirit. Or, you can draw two cards from the deckbottom.\n\n[LV3] Flash - (Either Attack Step)\nRefresh a \"Primal\" family Spirit you control, and return this Spirit to being a pre-Rebirth Nexus (All cores on it are sent to the Reserve).",
+  "image": "Yay, Vina!.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1][LV2][LV3] (When Reborn)",
+   "You can put two cores from the Void to this Spirit.",
+   "Or, you can draw two cards from the deckbottom.",
+   "[LV3] Flash - (Either Attack Step)",
+   "Refresh a \"Primal\" family Spirit you control, and return this Spirit to being a pre-Rebirth Nexus (All cores on it are sent to the Reserve)."
   ],
   "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
  },
@@ -3270,6 +3669,137 @@
   ],
   "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
  },
+ "BS56-TX01": {
+  "id": "BS56-TX01B",
+  "name": "The PhantomStarDragon Gai-Asura X -Lucent Rebirth-",
+  "name_jp": "幻羅星龍ガイ・アスラX -転醒絢爛-",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 12,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 12000
+   },
+   {
+    "cores": 3,
+    "bp": 15000
+   },
+   {
+    "cores": 6,
+    "bp": 19000
+   },
+   {
+    "cores": 10,
+    "bp": 30000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Astral Deity",
+   "Astral Dragon"
+  ],
+  "text": "Count +1\n\n[LV1][LV2][LV3][LV4] Phantom Return\nWhen destroyed by the opponent, you can flip and summon this card.\n\n[LV1][LV2][LV3][LV4]\nCores can't be removed from this Spirit.\n\n[LV1][LV2][LV3][LV4] Flash - Phantom Awaken (Either Attack Step)\nYou can put any number of cores from your Counter Area/Spirits to this Spirit. When you've done so, refresh this Spirit.\n\n[LV3][LV4]\nThis Spirit gains an extra Red symbol.",
+  "image": "Gai-Asura Reborn.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1][LV2][LV3][LV4] Phantom Return",
+   "When destroyed by the opponent, you can flip and summon this card.",
+   "[LV1][LV2][LV3][LV4]",
+   "Cores can't be removed from this Spirit.",
+   "[LV1][LV2][LV3][LV4] Flash - Phantom Awaken (Either Attack Step)",
+   "You can put any number of cores from your Counter Area/Spirits to this Spirit.",
+   "When you've done so, refresh this Spirit.",
+   "[LV3][LV4]",
+   "This Spirit gains an extra Red symbol."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BS56-TX02": {
+  "id": "BS56-TX02B",
+  "name": "Grandwalker Merlin",
+  "name_jp": "創界神マーリン",
+  "type": "Nexus",
+  "color": "purple",
+  "cost": 4,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1
+   },
+   {
+    "cores": 3
+   }
+  ],
+  "families": [
+   "Grandwalker",
+   "Primal"
+  ],
+  "text": "Count +1\n\nGrandwalker Rule\n\nCore Charge: (\"DragonKnight\"/\"DarkKnight\" & Cost 3 or more)\n◆When you summon/advent a target Spirit, you can put one core from the Void onto this Nexus.\n◆When you flip into this side, if you don't control a Grandwalker Nexus with the same card name as this card, you can send three cards from your decktop to the Trash. For each target card among them, place one core from the Void onto this Nexus.\n\n{{gs|3}} [LV1][LV2] (Start of Your Attack Step)\n(Send three cores from this Nexus to the Void) During this turn, a \"DragonKnight\"/\"DarkKnight\"/\"DragonRideEmperor\"-named Spirit you control is unaffected by opposing Spirit/Nexus effects, and while that Spirit is attacking, the opponent can't end the Attack Step via effects.\n\n{{gs|3}} [LV2] Flash - (Either Attack Step)\n(Once per turn, send three cores from this Nexus to the Void) Send two cores from any opposing Spirits/Ultimates to the Reserve.",
+  "image": "Barone,_or_not%3F.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "Grandwalker Rule",
+   "Core Charge: (\"DragonKnight\"/\"DarkKnight\" & Cost 3 or more)",
+   "◆When you summon/advent a target Spirit, you can put one core from the Void onto this Nexus.",
+   "◆When you flip into this side, if you don't control a Grandwalker Nexus with the same card name as this card, you can send three cards from your decktop to the Trash.",
+   "For each target card among them, place one core from the Void onto this Nexus.",
+   "{{gs|3}} [LV1][LV2] (Start of Your Attack Step)",
+   "(Send three cores from this Nexus to the Void) During this turn, a \"DragonKnight\"/\"DarkKnight\"/\"DragonRideEmperor\"-named Spirit you control is unaffected by opposing Spirit/Nexus effects, and while that Spirit is attacking, the opponent can't end the Attack Step via effects.",
+   "{{gs|3}} [LV2] Flash - (Either Attack Step)",
+   "(Once per turn, send three cores from this Nexus to the Void) Send two cores from any opposing Spirits/Ultimates to the Reserve."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BS56-TX03": {
+  "id": "BS56-TX03B",
+  "name": "竜騎士皇帝グラン・ドラゴニック・アーサー",
+  "name_jp": "竜騎士皇帝グラン・ドラゴニック・アーサー",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 9,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 9000
+   },
+   {
+    "cores": 3,
+    "bp": 12000
+   },
+   {
+    "cores": 4,
+    "bp": 17000
+   },
+   {
+    "cores": 6,
+    "bp": 21000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Evil Shadow",
+   "Dragon"
+  ],
+  "text": "この面に裏返ったとき、フィールドに残り、カウント+1する(ボイドからコア1個を自分のカウントエリアに置く)\n［Lv1-Lv2-Lv3-Lv4］『このスピリットのアタック時』\nバトル終了時、ターンに1回、このスピリットは回復し、自分のカウント3以上で、ブレイヴとの合体中、このスピリットのシンボル1つにつき、相手のライフのコア1個をトラッシュに置く。\n［Lv2-Lv3-Lv4］\nカード名に「竜騎士」/「龍騎皇」を含む自分のスピリットが消滅/破壊した相手のスピリット/アルティメットの効果を発揮させない。",
+  "image": "BS56-TX03 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "この面に裏返ったとき、フィールドに残り、カウント+1する(ボイドからコア1個を自分のカウントエリアに置く)",
+   "［Lv1-Lv2-Lv3-Lv4］『このスピリットのアタック時』",
+   "バトル終了時、ターンに1回、このスピリットは回復し、自分のカウント3以上で、ブレイヴとの合体中、このスピリットのシンボル1つにつき、相手のライフのコア1個をトラッシュに置く。",
+   "［Lv2-Lv3-Lv4］",
+   "カード名に「竜騎士」/「龍騎皇」を含む自分のスピリットが消滅/破壊した相手のスピリット/アルティメットの効果を発揮させない。"
+  ],
+  "note": "Rebirth back face (display only) from the official card database; English name and text pending (Japanese kept); families copied from the front."
+ },
  "BS57-005": {
   "id": "BS57-005B",
   "name": "The DragonStar Asteroidirt -Drago Form-",
@@ -3469,6 +3999,47 @@
   ],
   "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
  },
+ "BS57-034": {
+  "id": "BS57-034B",
+  "name": "The IceFangSoldier Giganodia -Huma Mode-",
+  "name_jp": "氷牙機兵ギガノディア -ヒューマモード-",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 8,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 8000
+   },
+   {
+    "cores": 2,
+    "bp": 10000
+   },
+   {
+    "cores": 4,
+    "bp": 15000
+   }
+  ],
+  "families": [
+   "Astroblazer",
+   "Machine Beast",
+   "Armed Machine"
+  ],
+  "text": "Count +1\n\n[LV1][LV2][LV3] (When Reborn)\nReturn two opposing Spirits/Ultimates to the deckbottom. Then, put a core from the Void to this Spirit.\n\n[LV2][LV3] {{ha|Red/White/Blue}}\nThis Spirit is unaffected by opposing Red/White/Blue Spirit/Brave/Nexus/Magic effects.",
+  "image": "Huckebein ripoff.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1][LV2][LV3] (When Reborn)",
+   "Return two opposing Spirits/Ultimates to the deckbottom.",
+   "Then, put a core from the Void to this Spirit.",
+   "[LV2][LV3] {{ha|Red/White/Blue}}",
+   "This Spirit is unaffected by opposing Red/White/Blue Spirit/Brave/Nexus/Magic effects."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
  "BS57-040": {
   "id": "BS57-040B",
   "name": "The MagicFistMaster Al-mi'rad",
@@ -3510,6 +4081,42 @@
   ],
   "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
  },
+ "BS57-043": {
+  "id": "BS57-043B",
+  "name": "The Angelia Milleniel -Phoenix Wing-",
+  "name_jp": "天使ミレニエル -フェニックスウィング-",
+  "type": "Spirit",
+  "color": "yellow",
+  "cost": 7,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 7000
+   },
+   {
+    "cores": 2,
+    "bp": 9000
+   }
+  ],
+  "families": [
+   "Astroblazer",
+   "Divine Spirit"
+  ],
+  "text": "Count +1\n\n[LV1][LV2] (When Reborn)\nReturn an opposing LV2 Spirit to the deckbottom.\n\n[LV2] (Your Attack Step)\nThe opponent can't end the Attack Step with effects. Also, once per turn, after a Flash effect, besides During Set effects, of your Magic resolves, refresh this Spirit, and draw a card from the deckbottom.",
+  "image": "Gothic loli upgraded.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1][LV2] (When Reborn)",
+   "Return an opposing LV2 Spirit to the deckbottom.",
+   "[LV2] (Your Attack Step)",
+   "The opponent can't end the Attack Step with effects.",
+   "Also, once per turn, after a Flash effect, besides During Set effects, of your Magic resolves, refresh this Spirit, and draw a card from the deckbottom."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
  "BS57-053": {
   "id": "BS57-053B",
   "name": "The SpacePirate MasterFencer Argyrou",
@@ -3546,6 +4153,45 @@
    "Discard five cards from the opposing decktop, and if a Nexus card was discarded, put a core from the Void to this Spirit.",
    "[LV2][LV3] (Your Attack Step)",
    "At the end of your Blue Cost 7 or less \"Proximate\"/\"Astroblazer\" family Spirit's battle, refresh this Spirit."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BS57-064": {
+  "id": "BS57-064B",
+  "name": "The Bal-Masque Castle Bloodrondo -Devil Form-",
+  "name_jp": "バル・マスケ居城ブラッドロンド -悪魔態-",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 6,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 2,
+    "bp": 7000
+   },
+   {
+    "cores": 4,
+    "bp": 9000
+   }
+  ],
+  "families": [
+   "Astroblazer",
+   "Nightling"
+  ],
+  "text": "Count +1\n\n[LV1][LV2][LV3] (When Reborn)\nYou can summon a \"Nightling\" family card from your Trash without paying the cost.\n\n[LV2][LV3] (Your Attack Step)\nWhile your \"Nightling\" family Spirit is attacking, the opponent can't end the Attack Step with effects.",
+  "image": "Vampire Castle comes to life.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1][LV2][LV3] (When Reborn)",
+   "You can summon a \"Nightling\" family card from your Trash without paying the cost.",
+   "[LV2][LV3] (Your Attack Step)",
+   "While your \"Nightling\" family Spirit is attacking, the opponent can't end the Attack Step with effects."
   ],
   "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
  },
@@ -3628,6 +4274,527 @@
    "[LV2][LV3] (When Attacks)",
    "During this turn, give every opposing Spirit -5000 BP, and destroy it if its BP is brought down to 0.",
    "At the end of battle, if your Life is at five or less, put a core from the Void to your Life."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BS57-TCP01": {
+  "id": "BS57-TCP01B",
+  "name": "The Criminal's SkullBlade Executioners X -Rebirth Incarnate-",
+  "name_jp": "咎人の骨剣 エグゼキューショナーズX -転醒化身-",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 7,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 3,
+    "bp": 8000
+   },
+   {
+    "cores": 4,
+    "bp": 13000
+   }
+  ],
+  "families": [
+   "Exalted Sword",
+   "Zombie"
+  ],
+  "text": "Count +1\n\n[LV1][LV2][LV3] (When Reborn)\nDestroy an opposing exhausted Spirit/Ultimate.\n\n[LV1][LV2][LV3] (When Destroyed)\nDiscard a random card from the opposing Hand. When that is an Ultimate card/Brave card/Nexus card, this Spirit can remain on the Field, refreshed.",
+  "image": "The Undead Judge.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1][LV2][LV3] (When Reborn)",
+   "Destroy an opposing exhausted Spirit/Ultimate.",
+   "[LV1][LV2][LV3] (When Destroyed)",
+   "Discard a random card from the opposing Hand.",
+   "When that is an Ultimate card/Brave card/Nexus card, this Spirit can remain on the Field, refreshed."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BS57-TCP02": {
+  "id": "BS57-TCP02B",
+  "name": "The MidnightSunTreasuredSword Midnight-Sun X -Rebirth Incarnate-",
+  "name_jp": "白夜の宝剣ミッドナイト・サンX -転醒化身-",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 8,
+  "symbols": 2,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 6000
+   },
+   {
+    "cores": 2,
+    "bp": 12000
+   }
+  ],
+  "families": [
+   "Exalted Sword",
+   "Machine Beast"
+  ],
+  "text": "Count +1\n\n[LV1][LV2] (When Reborn)\nReturn an opposing Spirit/Ultimate to the deckbottom.\n\n[LV1][LV2] {{ua|Red/Purple/White/Yellow}}\nThis Spirit is unaffected by opposing Red/Purple/White/Yellow Spirit/Ultimate/Nexus/Magic effects.",
+  "image": "Ninetail-Dark-Robo.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1][LV2] (When Reborn)",
+   "Return an opposing Spirit/Ultimate to the deckbottom.",
+   "[LV1][LV2] {{ua|Red/Purple/White/Yellow}}",
+   "This Spirit is unaffected by opposing Red/Purple/White/Yellow Spirit/Ultimate/Nexus/Magic effects."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BS57-TCP03": {
+  "id": "BS57-TCP03B",
+  "name": "The LightWingsDivineBlade Angelicfeather X -Rebirth Incarnate-",
+  "name_jp": "光翼の神剣エンジェリックフェザーX -転醒化身-",
+  "type": "Spirit",
+  "color": "yellow",
+  "cost": 7,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 6000
+   },
+   {
+    "cores": 2,
+    "bp": 9000
+   },
+   {
+    "cores": 3,
+    "bp": 11000
+   }
+  ],
+  "families": [
+   "Exalted Sword",
+   "Divine Spirit"
+  ],
+  "text": "Count +1\n\n[LV1][LV2][LV3] (When Reborn)\nYou can return a Yellow Magic card from your Trash to the Hand.\n\n[LV2][LV3] (When Attacks)\nDuring this turn, give an opposing Spirit/Ultimate -10000 BP. Then, destroy every opposing 0 BP Spirit/Ultimate.",
+  "image": "Hi, Kizakura!.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1][LV2][LV3] (When Reborn)",
+   "You can return a Yellow Magic card from your Trash to the Hand.",
+   "[LV2][LV3] (When Attacks)",
+   "During this turn, give an opposing Spirit/Ultimate -10000 BP.",
+   "Then, destroy every opposing 0 BP Spirit/Ultimate."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BS57-TCP04": {
+  "id": "BS57-TCP04B",
+  "name": "Future Anubis",
+  "name_jp": "アヌビス・フューチャー",
+  "type": "Nexus",
+  "color": "red",
+  "cost": 4,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1
+   },
+   {
+    "cores": 3
+   }
+  ],
+  "families": [
+   "Grandwalker",
+   "Primal",
+   "Proximate"
+  ],
+  "text": "Count +1\n\nGrandwalker Rule\n\nCore Charge: (Red) (Core Charge via Summon/Advent once per turn)\n◆When you summon/advent a target Spirit, you can put one core from the Void onto this Nexus.\n◆When you flip into this side, if you don't control a Grandwalker Nexus with the same card name as this card, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void onto this Nexus.\n\n[LV1][LV2] (When Reborn)\nReturn a \"Proximate\"/\"Terra Dragon\" family card from your Trash to the Hand.\n\n{{gs|3}} [LV2] Flash - (Your Attack Step)\n(Send three cores from this Nexus to the Void) Summon a Red Cost 4 or more \"Proximate\"/\"Terra Dragon\" family Spirit card from your Hand, treating all reduction symbols as fulfilled. This effect doesn't trigger Core Charge.",
+  "image": "Samurai Anubis.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "Grandwalker Rule",
+   "Core Charge: (Red) (Core Charge via Summon/Advent once per turn)",
+   "◆When you summon/advent a target Spirit, you can put one core from the Void onto this Nexus.",
+   "◆When you flip into this side, if you don't control a Grandwalker Nexus with the same card name as this card, you can send three cards from your decktop to the Trash.",
+   "For each target card among them, put one core from the Void onto this Nexus.",
+   "[LV1][LV2] (When Reborn)",
+   "Return a \"Proximate\"/\"Terra Dragon\" family card from your Trash to the Hand.",
+   "{{gs|3}} [LV2] Flash - (Your Attack Step)",
+   "(Send three cores from this Nexus to the Void) Summon a Red Cost 4 or more \"Proximate\"/\"Terra Dragon\" family Spirit card from your Hand, treating all reduction symbols as fulfilled.",
+   "This effect doesn't trigger Core Charge."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BS57-TCP05": {
+  "id": "BS57-TCP05B",
+  "name": "Future Osiris",
+  "name_jp": "オシリス・フューチャー",
+  "type": "Nexus",
+  "color": "purple",
+  "cost": 4,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1
+   },
+   {
+    "cores": 3
+   }
+  ],
+  "families": [
+   "Grandwalker",
+   "Primal",
+   "Proximate"
+  ],
+  "text": "Count +1\n\nGrandwalker Rule\n\nCore Charge: (Purple) (Core Charge via Summon/Advent once per turn)\n◆When you summon/advent a target Spirit, you can put one core from the Void onto this Nexus.\n◆When you flip into this side, if you don't control a Grandwalker Nexus with the same card name as this card, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void onto this Nexus.\n\n[LV1][LV2] (When Reborn)\nYou can summon a Cost 3 or less “Proximate”/\"Dark Snake\" family Spirit card from your Trash, without paying the cost. Or, put two cores from Void to any “Osiris”-named Grandwalker Nexuses you control.\n\n{{gs|3}} [LV2] Flash - (Either Attack Step)\n(Send three cores from this Nexus to the Void) Send two cores from an opposing Spirit/Ultimate to the Reserve/Trash, one to each area.",
+  "image": "Current Osiris.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "Grandwalker Rule",
+   "Core Charge: (Purple) (Core Charge via Summon/Advent once per turn)",
+   "◆When you summon/advent a target Spirit, you can put one core from the Void onto this Nexus.",
+   "◆When you flip into this side, if you don't control a Grandwalker Nexus with the same card name as this card, you can send three cards from your decktop to the Trash.",
+   "For each target card among them, put one core from the Void onto this Nexus.",
+   "[LV1][LV2] (When Reborn)",
+   "You can summon a Cost 3 or less “Proximate”/\"Dark Snake\" family Spirit card from your Trash, without paying the cost.",
+   "Or, put two cores from Void to any “Osiris”-named Grandwalker Nexuses you control.",
+   "{{gs|3}} [LV2] Flash - (Either Attack Step)",
+   "(Send three cores from this Nexus to the Void) Send two cores from an opposing Spirit/Ultimate to the Reserve/Trash, one to each area."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BS57-TCP06": {
+  "id": "BS57-TCP06B",
+  "name": "Future Ra",
+  "name_jp": "ラー・フューチャー",
+  "type": "Nexus",
+  "color": "yellow",
+  "cost": 4,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1
+   },
+   {
+    "cores": 3
+   }
+  ],
+  "families": [
+   "Grandwalker",
+   "Primal",
+   "Proximate"
+  ],
+  "text": "Count +1\n\nGrandwalker Rule\n\nCore Charge: (Yellow) (Core Charge via Summon/Advent once per turn)\n◆When you summon/advent a target Spirit, you can put one core from the Void onto this Nexus.\n◆When you flip into this side, if you don't control a Grandwalker Nexus with the same card name as this card, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void onto this Nexus.\n\nGrand Field [LV1][LV2]\nWhen your “Imaginary Beast” family Spirits are destroyed by the opponent, put a core from Void to any “Ra”-named Grandwalker Nexus you control.\n\nGrand Field [LV2] (Opposing Attack Step)\nWhen an opposing Spirit/Ultimate attacks, by sending three cores from this Nexus to the Void, you can summon an “Imaginary Beast” family Spirit card from your Hand. This effect doesn't trigger Core Charge.",
+  "image": "He would become ruler of Egyt.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "Grandwalker Rule",
+   "Core Charge: (Yellow) (Core Charge via Summon/Advent once per turn)",
+   "◆When you summon/advent a target Spirit, you can put one core from the Void onto this Nexus.",
+   "◆When you flip into this side, if you don't control a Grandwalker Nexus with the same card name as this card, you can send three cards from your decktop to the Trash.",
+   "For each target card among them, put one core from the Void onto this Nexus.",
+   "Grand Field [LV1][LV2]",
+   "When your “Imaginary Beast” family Spirits are destroyed by the opponent, put a core from Void to any “Ra”-named Grandwalker Nexus you control.",
+   "Grand Field [LV2] (Opposing Attack Step)",
+   "When an opposing Spirit/Ultimate attacks, by sending three cores from this Nexus to the Void, you can summon an “Imaginary Beast” family Spirit card from your Hand.",
+   "This effect doesn't trigger Core Charge."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BS57-TCP07": {
+  "id": "BS57-TCP07B",
+  "name": "Future Horus",
+  "name_jp": "ホルス・フューチャー",
+  "type": "Nexus",
+  "color": "green",
+  "cost": 4,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1
+   },
+   {
+    "cores": 3
+   }
+  ],
+  "families": [
+   "Grandwalker",
+   "Primal",
+   "Proximate"
+  ],
+  "text": "Count +1\n\nGrandwalker Rule\n\nCore Charge: (Green) (Green & Ultimate) (Core Charge via Summon/Advent once per turn)\n◆When you summon/advent a target Spirit/Ultimate, you can put one core from the Void onto this Nexus.\n◆When you flip into this side, if you don't control a Grandwalker Nexus with the same card name as this card, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void onto this Nexus.\n\n[LV1][LV2]\nThis Nexus's symbol is also treated as Ultimate.\n\n[LV1][LV2] (When Reborn)\nSend four cores from any opposing Grandwalker Nexuses to the Void. Then, put one core each from the Void to every “Horus”-named Grandwalker Nexus you control.\n\n{{gs|3}} [LV2] Flash - (Either Attack Step)\n(Send three cores from this Nexus to the Void) Heavy exhaust an opposing Spirit/Ultimate. (A Heavy Exhausted card is turned upside down and becomes Exhausted after one refresh.)",
+  "image": "Horus ascends.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "Grandwalker Rule",
+   "Core Charge: (Green) (Green & Ultimate) (Core Charge via Summon/Advent once per turn)",
+   "◆When you summon/advent a target Spirit/Ultimate, you can put one core from the Void onto this Nexus.",
+   "◆When you flip into this side, if you don't control a Grandwalker Nexus with the same card name as this card, you can send three cards from your decktop to the Trash.",
+   "For each target card among them, put one core from the Void onto this Nexus.",
+   "[LV1][LV2]",
+   "This Nexus's symbol is also treated as Ultimate.",
+   "[LV1][LV2] (When Reborn)",
+   "Send four cores from any opposing Grandwalker Nexuses to the Void.",
+   "Then, put one core each from the Void to every “Horus”-named Grandwalker Nexus you control.",
+   "{{gs|3}} [LV2] Flash - (Either Attack Step) (Send three cores from this Nexus to the Void) Heavy exhaust an opposing Spirit/Ultimate. (A Heavy Exhausted card is turned upside down and becomes Exhausted after one refresh.)"
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BS57-TCP08": {
+  "id": "BS57-TCP08B",
+  "name": "Future Thoth",
+  "name_jp": "トト・フューチャー",
+  "type": "Nexus",
+  "color": "white",
+  "cost": 4,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1
+   },
+   {
+    "cores": 4
+   }
+  ],
+  "families": [
+   "Grandwalker",
+   "Primal",
+   "Proximate"
+  ],
+  "text": "Count +1\n\nGrandwalker Rule\n\nCore Charge: (White) (White & Ultimate) (Core Charge via Summon/Advent once per turn)\n◆When you summon/advent a target Spirit/Ultimate, you can put one core from the Void onto this Nexus.\n◆When you flip into this side, if you don't control a Grandwalker Nexus with the same card name as this card, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void onto this Nexus.\n\n[LV1][LV2]\nThis Nexus's symbol is also treated as Ultimate.\n\n[LV1][LV2] (When Reborn)\nReturn an opposing Spirit/Ultimate to the deckbottom. \n\n{{gs|4}} [LV2] (Opposing Start Step)\n(Send four cores from this Nexus to the Void) The opponent switches their order of Main Step and Attack Step of this turn.",
+  "image": "Scientific Grandwalker.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "Grandwalker Rule",
+   "Core Charge: (White) (White & Ultimate) (Core Charge via Summon/Advent once per turn)",
+   "◆When you summon/advent a target Spirit/Ultimate, you can put one core from the Void onto this Nexus.",
+   "◆When you flip into this side, if you don't control a Grandwalker Nexus with the same card name as this card, you can send three cards from your decktop to the Trash.",
+   "For each target card among them, put one core from the Void onto this Nexus.",
+   "[LV1][LV2]",
+   "This Nexus's symbol is also treated as Ultimate.",
+   "[LV1][LV2] (When Reborn)",
+   "Return an opposing Spirit/Ultimate to the deckbottom.",
+   "{{gs|4}} [LV2] (Opposing Start Step)",
+   "(Send four cores from this Nexus to the Void) The opponent switches their order of Main Step and Attack Step of this turn."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BS57-TCP09": {
+  "id": "BS57-TCP09B",
+  "name": "Future Isis",
+  "name_jp": "イシス・フューチャー",
+  "type": "Nexus",
+  "color": "yellow",
+  "cost": 4,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1
+   },
+   {
+    "cores": 4
+   }
+  ],
+  "families": [
+   "Grandwalker",
+   "Primal",
+   "Proximate"
+  ],
+  "text": "Grandwalker Rule\n\nCore Charge: (Yellow) (Yellow & Ultimate) (Core Charge via summon/advent once per turn)\n◆When you summon/advent a target Spirit/Ultimate, you can put one core from the Void onto this Nexus.\n◆When you flip into this side, if you don't control a Grandwalker Nexus with the same card name as this card, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void onto this Nexus.\n\n[LV1][LV2]\nThis Nexus's symbol is also treated as Ultimate.\n\n[LV1][LV2] (When Reborn)\nPut a core from the Void to your Life.\n\n{{gs|4}} [LV2] Flash - (Your Attack Step)\n(Send four cores from this Nexus to the Void) You can put a core from your Life to this Nexus. When you've done so, return an opposing Spirit/Ultimate to the deckbottom.",
+  "image": "What did you eat for your feather ears to grow like that?.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Grandwalker Rule",
+   "Core Charge: (Yellow) (Yellow & Ultimate) (Core Charge via summon/advent once per turn)",
+   "◆When you summon/advent a target Spirit/Ultimate, you can put one core from the Void onto this Nexus.",
+   "◆When you flip into this side, if you don't control a Grandwalker Nexus with the same card name as this card, you can send three cards from your decktop to the Trash.",
+   "For each target card among them, put one core from the Void onto this Nexus.",
+   "[LV1][LV2]",
+   "This Nexus's symbol is also treated as Ultimate.",
+   "[LV1][LV2] (When Reborn)",
+   "Put a core from the Void to your Life.",
+   "{{gs|4}} [LV2] Flash - (Your Attack Step)",
+   "(Send four cores from this Nexus to the Void) You can put a core from your Life to this Nexus.",
+   "When you've done so, return an opposing Spirit/Ultimate to the deckbottom."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BS57-TCP10": {
+  "id": "BS57-TCP10B",
+  "name": "Future Set",
+  "name_jp": "セト・フューチャー",
+  "type": "Nexus",
+  "color": "blue",
+  "cost": 4,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1
+   },
+   {
+    "cores": 3
+   }
+  ],
+  "families": [
+   "Grandwalker",
+   "Primal",
+   "Proximate"
+  ],
+  "text": "Count +1\n\nGrandwalker Rule\n\nCore Charge: (Blue) (Blue & Ultimate) (Core Charge via Summon/Advent once per turn)\n◆When you summon/advent a target Spirit/Ultimate, you can put one core from the Void onto this Nexus.\n◆When you flip into this side, if you don't control a Grandwalker Nexus with the same card name as this card, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void onto this Nexus.\n\n[LV1][LV2]\nThis Nexus's symbol is also treated as Ultimate.\n\n[LV1][LV2] (When Reborn)\nIgnoring the costs of Braves, destroy an opposing Cost 9 or less Spirit/Ultimate.\n\nGrand Field [LV2] (Your Attack Step)\nWhen your \"Beast Head\" family Spirit/Ultimate attacks, by sending three cores from this Nexus to the Void, return a card from the opposing Trash to the decktop.",
+  "image": "King of Beasts Set.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "Grandwalker Rule",
+   "Core Charge: (Blue) (Blue & Ultimate) (Core Charge via Summon/Advent once per turn)",
+   "◆When you summon/advent a target Spirit/Ultimate, you can put one core from the Void onto this Nexus.",
+   "◆When you flip into this side, if you don't control a Grandwalker Nexus with the same card name as this card, you can send three cards from your decktop to the Trash.",
+   "For each target card among them, put one core from the Void onto this Nexus.",
+   "[LV1][LV2]",
+   "This Nexus's symbol is also treated as Ultimate.",
+   "[LV1][LV2] (When Reborn)",
+   "Ignoring the costs of Braves, destroy an opposing Cost 9 or less Spirit/Ultimate.",
+   "Grand Field [LV2] (Your Attack Step)",
+   "When your \"Beast Head\" family Spirit/Ultimate attacks, by sending three cores from this Nexus to the Void, return a card from the opposing Trash to the decktop."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BS57-TX01": {
+  "id": "BS57-TX01B",
+  "name": "The MachineDragonEmperor Welt-Raum -G.O.D. Mode-",
+  "name_jp": "機龍皇ヴェルト・ラオム -G.O.D.モード-",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 8,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 7000
+   },
+   {
+    "cores": 3,
+    "bp": 12000
+   },
+   {
+    "cores": 5,
+    "bp": 15000
+   }
+  ],
+  "families": [
+   "Astroblazer",
+   "Machine Dragon"
+  ],
+  "text": "Count +1\n\n[LV1][LV2][LV3] (When Reborn/Attacks)\nYou can draw a card.\n\n[LV2][LV3] Flash\nBy returning a “Machine Dragon” family card from your Hand to the deckbottom, destroy an opposing Spirit/Ultimate with the highest BP. This effect can't be prevented by opposing effects, and the effects of the Spirit/Ultimate destroyed by this effect can't activate.",
+  "image": "Welt-Raum GOD Mode.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1][LV2][LV3] (When Reborn/Attacks)",
+   "You can draw a card.",
+   "[LV2][LV3] Flash",
+   "By returning a “Machine Dragon” family card from your Hand to the deckbottom, destroy an opposing Spirit/Ultimate with the highest BP.",
+   "This effect can't be prevented by opposing effects, and the effects of the Spirit/Ultimate destroyed by this effect can't activate."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BS57-TX02": {
+  "id": "BS57-TX02B",
+  "name": "The SpacetimePolice InvestigatingOfficer Ricky -Hercules Form-",
+  "name_jp": "時空警察リッキー捜査官 -ヘラクレスフォーム-",
+  "type": "Spirit",
+  "color": "green",
+  "cost": 8,
+  "symbols": 2,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 13000
+   },
+   {
+    "cores": 3,
+    "bp": 16000
+   },
+   {
+    "cores": 7,
+    "bp": 22000
+   }
+  ],
+  "families": [
+   "Astroblazer",
+   "Blade Insect",
+   "Shellman"
+  ],
+  "text": "Count +1\n\n[LV1][LV2][LV3] (When Reborn/Attacks)\nDuring this battle, the opponent can't activate Burst effects. Also, once per turn, by paying two costs, refresh this Spirit.\n\n[LV2][LV3] (Your Attack Step)\nWhen the opponent would use a card from Hand outside of Flash Timing, unless they exhaust two Spirits they control, they can't use it.",
+  "image": "Ricky 1 the Super Robot.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1][LV2][LV3] (When Reborn/Attacks)",
+   "During this battle, the opponent can't activate Burst effects.",
+   "Also, once per turn, by paying two costs, refresh this Spirit.",
+   "[LV2][LV3] (Your Attack Step)",
+   "When the opponent would use a card from Hand outside of Flash Timing, unless they exhaust two Spirits they control, they can't use it."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BS57-TX03": {
+  "id": "BS57-TX03B",
+  "name": "The SpacePirateGreatCaptain Gary-Harius",
+  "name_jp": "宇宙海賊 大船長ギャリー・ハリアス",
+  "type": "Spirit",
+  "color": "blue",
+  "cost": 7,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 7000
+   },
+   {
+    "cores": 3,
+    "bp": 10000
+   },
+   {
+    "cores": 5,
+    "bp": 14000
+   }
+  ],
+  "families": [
+   "Astroblazer",
+   "Beast Head"
+  ],
+  "text": "Count +1\n\n[LV1][LV2][LV3] (When Reborn/Attacks)\nYou can deploy a Purple/Blue Cost 4 or less Nexus card from your Hand/Trash without paying the cost. When you've done so, you can destroy an opposing Cost 7 or less Spirit.\n\n[LV2][LV3] (When Attacks)\nAt the end of battle, for each two \"SpacePirate\"-named Spirits/Nexuses you control, send an opposing Life to the Reserve (Max. 3).",
+  "image": "Super Sharkhead Pirate.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1][LV2][LV3] (When Reborn/Attacks)",
+   "You can deploy a Purple/Blue Cost 4 or less Nexus card from your Hand/Trash without paying the cost.",
+   "When you've done so, you can destroy an opposing Cost 7 or less Spirit.",
+   "[LV2][LV3] (When Attacks)",
+   "At the end of battle, for each two \"SpacePirate\"-named Spirits/Nexuses you control, send an opposing Life to the Reserve (Max.",
+   "3)."
   ],
   "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
  },
@@ -4068,6 +5235,90 @@
   ],
   "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
  },
+ "BS58-TCP01": {
+  "id": "BS58-TCP01B",
+  "name": "The FlashSoulBlade Lightning-Shion X -Rebirth Incarnate-",
+  "name_jp": "紫電の霊剣 ライトニング・シオンX -転醒化身-",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 8,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 8000
+   },
+   {
+    "cores": 3,
+    "bp": 9000
+   },
+   {
+    "cores": 5,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Exalted Sword",
+   "Nightling",
+   "Dark Snake"
+  ],
+  "text": "Count +1\n\n[LV1][LV2][LV3] (When Reborn)\nDuring this turn, this Spirit's color is treated as colorless. Also, send three cores from any opposing Spirits/Ultimates to the Reserve, and for each Spirit/Ultimate depleted, put a core from the Void to your Reserve. \n\n[LV2][LV3] (When Attacks)\nThis Spirit's color is treated as colorless. Also, send three cores from the opposing Field to the Reserve.",
+  "image": "Suou in Shion.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1][LV2][LV3] (When Reborn)",
+   "During this turn, this Spirit's color is treated as colorless.",
+   "Also, send three cores from any opposing Spirits/Ultimates to the Reserve, and for each Spirit/Ultimate depleted, put a core from the Void to your Reserve.",
+   "[LV2][LV3] (When Attacks)",
+   "This Spirit's color is treated as colorless.",
+   "Also, send three cores from the opposing Field to the Reserve."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BS58-TCP02": {
+  "id": "BS58-TCP02B",
+  "name": "The SkyLightSword Crown-Solar X -Rebirth Incarnate-",
+  "name_jp": "天空の光剣クラウン・ソーラーX -転醒化身-",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 7,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 7000
+   },
+   {
+    "cores": 3,
+    "bp": 10000
+   },
+   {
+    "cores": 4,
+    "bp": 14000
+   }
+  ],
+  "families": [
+   "Exalted Sword",
+   "Armed Machine"
+  ],
+  "text": "Count +1\n\n[LV1][LV2][LV3] (When Reborn/Attacks)\nOnce per turn, target another Spirit you control. That Spirit refreshes and, during this turn, can't be blocked.\n\n[LV2][LV3]\nThis Spirit is unaffected by opposing Spirit/Nexus effects.\n\n[LV3] (When Attacks)\nReturn an opposing Spirit to the deckbottom.",
+  "image": "Kugel Solar.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1][LV2][LV3] (When Reborn/Attacks)",
+   "Once per turn, target another Spirit you control.",
+   "That Spirit refreshes and, during this turn, can't be blocked.",
+   "[LV2][LV3]",
+   "This Spirit is unaffected by opposing Spirit/Nexus effects.",
+   "[LV3] (When Attacks)",
+   "Return an opposing Spirit to the deckbottom."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
  "BS58-TCP03": {
   "id": "BS58-TCP03B",
   "name": "The FantasyHeavenBlade Twilight-Fantasia X -Rebirth Incarnate-",
@@ -4190,6 +5441,43 @@
   ],
   "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
  },
+ "BS58-TCP06": {
+  "id": "BS58-TCP06B",
+  "name": "The HundredBeastBladeKing Byak-Garo-Getsuga X",
+  "name_jp": "百獣剣王ビャク・ガロウ・月雅X",
+  "type": "Spirit",
+  "color": "green",
+  "cost": 8,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 9000
+   },
+   {
+    "cores": 3,
+    "bp": 17000
+   }
+  ],
+  "families": [
+   "Astroblazer",
+   "Blade Beast"
+  ],
+  "text": "Count +1\n\n[LV1][LV2] (When Reborn)\nFor each exhausted Spirit/Ultimate/Nexus/Grandwalker Nexus the opponent controls, the opponent discards a card from their Hand (Max. 2).\n\n[LV2] (When Attacks)\n(Once per Turn: Same Name) When the opposing Life is reduced, you can return an opposing exhausted Spirit/Ultimate to the Hand. When you've done so, send an opposing Life to the Void.",
+  "image": "Getsugaten.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1][LV2] (When Reborn)",
+   "For each exhausted Spirit/Ultimate/Nexus/Grandwalker Nexus the opponent controls, the opponent discards a card from their Hand (Max.",
+   "2).",
+   "[LV2] (When Attacks)",
+   "(Once per Turn: Same Name) When the opposing Life is reduced, you can return an opposing exhausted Spirit/Ultimate to the Hand.",
+   "When you've done so, send an opposing Life to the Void."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
  "BS58-TCP07": {
   "id": "BS58-TCP07B",
   "name": "The WingDeity Grand-Woden X",
@@ -4227,6 +5515,46 @@
    "Return an opposing Spirit to the deckbottom, or discard an opposing Burst.",
    "[LV2][LV3] (Your Turn)",
    "When the opponent uses a card from Hand outside of Flash Timing, before that effect activates, by exhausting an \"Armed Machine\" family Spirit you control, immediately negate that effect."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BS58-TCP08": {
+  "id": "BS58-TCP08B",
+  "name": "The GreatArcAngelia Sophia X",
+  "name_jp": "大天使長ソフィアX",
+  "type": "Spirit",
+  "color": "yellow",
+  "cost": 8,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 7000
+   },
+   {
+    "cores": 3,
+    "bp": 10000
+   },
+   {
+    "cores": 5,
+    "bp": 12000
+   }
+  ],
+  "families": [
+   "Astroblazer",
+   "Divine Spirit"
+  ],
+  "text": "Count +1\n\n[LV1][LV2][LV3] (When Reborn)\nPut a core from the Void to your Life. Also, during this turn, all opposing Cost 4 or more Spirits/Ultimates can't block. \n\n[LV2][LV3] (Your Attack Step)\nWhile your “Divine Spirit”/“Imaginary Beast” family Spirit is attacking, the opponent can't end the Attack Step via effects.",
+  "image": "New Angel Class.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1][LV2][LV3] (When Reborn)",
+   "Put a core from the Void to your Life.",
+   "Also, during this turn, all opposing Cost 4 or more Spirits/Ultimates can't block.",
+   "[LV2][LV3] (Your Attack Step)",
+   "While your “Divine Spirit”/“Imaginary Beast” family Spirit is attacking, the opponent can't end the Attack Step via effects."
   ],
   "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
  },
@@ -4482,6 +5810,35 @@
   ],
   "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
  },
+ "BS59-014": {
+  "id": "BS59-014B",
+  "name": "The BloodLinkSword Blood-Lady",
+  "name_jp": "連血剣ブラッド・レディ",
+  "type": "Brave",
+  "color": "purple",
+  "cost": 4,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   }
+  ],
+  "families": [
+   "Proximate",
+   "Exalted Sword"
+  ],
+  "text": "Count +1\n\n[LV1] (When Reborn)\nDiscard two cards from your decktop, and draw two cards.",
+  "image": "Sure not elizabeth.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1] (When Reborn)",
+   "Discard two cards from your decktop, and draw two cards."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
  "BS59-020": {
   "id": "BS59-020B",
   "name": "The SpacetimeTenBlade Extreme-Jitte",
@@ -4608,6 +5965,45 @@
   ],
   "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
  },
+ "BS59-067": {
+  "id": "BS59-067B",
+  "name": "The SpacetimeProtectorDragon Giltachyon",
+  "name_jp": "時空守護龍ギルタキオン",
+  "type": "Spirit",
+  "color": "blue",
+  "cost": 7,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 7000
+   },
+   {
+    "cores": 3,
+    "bp": 10000
+   },
+   {
+    "cores": 5,
+    "bp": 12000
+   }
+  ],
+  "families": [
+   "Chrownos"
+  ],
+  "text": "Count +1\n\n[LV1][LV2][LV3] (When Reborn)\nDestroy an opposing Cost 6 or less Spirit. If you have a Mirage set, instead, destroy three opposing Cost 6 or less Spirits.\n\n[LV2][LV3] Flash - (Either Attack Step)\nBy returning four \"Chrownos\" family cards from your Trash to the deckbottom, this Spirit refreshes.",
+  "image": "BS59-067 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1][LV2][LV3] (When Reborn)",
+   "Destroy an opposing Cost 6 or less Spirit.",
+   "If you have a Mirage set, instead, destroy three opposing Cost 6 or less Spirits.",
+   "[LV2][LV3] Flash - (Either Attack Step)",
+   "By returning four \"Chrownos\" family cards from your Trash to the deckbottom, this Spirit refreshes."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
  "BS59-070": {
   "id": "BS59-070B",
   "name": "Nebula Demon-God",
@@ -4669,6 +6065,155 @@
    "Ignoring the costs of Braves, destroy an opposing Cost 8 or less Spirit/Ultimate.",
    "During Left/Right Brave (When Attacks)",
    "By returning three \"Chrownos\" family cards from your Trash to the deckbottom, the opponent can't use Cost 5 or less Magic cards."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BS59-076": {
+  "id": "BS59-076B",
+  "name": "The SkyWingBlade Heaven's Edge",
+  "name_jp": "天空翼刃ヘヴンズエッジ",
+  "type": "Brave",
+  "color": "yellow",
+  "cost": 6,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 7000
+   }
+  ],
+  "families": [
+   "Astroblazer",
+   "Exalted Sword"
+  ],
+  "text": "Count +1\n\n[LV1] (When Reborn)\nReturn two opposing LV1 Spirits to the deckbottom.\n\nDuring Brave\nWhile you have a Yellow Magic card Mirage set, this Spirit gains an extra Yellow symbol.",
+  "image": "BS59-076 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1] (When Reborn)",
+   "Return two opposing LV1 Spirits to the deckbottom.",
+   "During Brave",
+   "While you have a Yellow Magic card Mirage set, this Spirit gains an extra Yellow symbol."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BS59-TCP01": {
+  "id": "BS59-TCP01B",
+  "name": "The DarknessDemonSword Dark-Blade X -Rebirth Incarnate-",
+  "name_jp": "暗黒の魔剣ダーク・ブレードX -転醒化身-",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 8,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 6000
+   },
+   {
+    "cores": 2,
+    "bp": 9000
+   },
+   {
+    "cores": 5,
+    "bp": 13000
+   }
+  ],
+  "families": [
+   "Exalted Sword",
+   "Terra Dragon"
+  ],
+  "text": "Count +1\n\n[LV1][LV2][LV3] (When Reborn)\nThis Spirit refreshes. Also, during this turn, every Spirit you control gains +10000 BP.\n\n[LV2][LV3] (When Attacks)\nYou can target and attack an opposing Spirit/Ultimate. Or, you can destroy an opposing Nexus.",
+  "image": "Dark tyr RV when.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1][LV2][LV3] (When Reborn)",
+   "This Spirit refreshes.",
+   "Also, during this turn, every Spirit you control gains +10000 BP.",
+   "[LV2][LV3] (When Attacks)",
+   "You can target and attack an opposing Spirit/Ultimate.",
+   "Or, you can destroy an opposing Nexus."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BS59-TCP02": {
+  "id": "BS59-TCP02B",
+  "name": "The HurricaneTwinBlade Kamui-Hayate X -Rebirth Incarnate-",
+  "name_jp": "疾風の双刃カムイ・ハヤテX -転醒化身-",
+  "type": "Spirit",
+  "color": "green",
+  "cost": 8,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 6000
+   },
+   {
+    "cores": 3,
+    "bp": 12000
+   }
+  ],
+  "families": [
+   "Exalted Sword",
+   "Winged Beast"
+  ],
+  "text": "Count +1\n\n[LV1][LV2] (When Reborn)\nYou can reveal three cards from your decktop. You can summon an \"Exalted Sword\" family Brave card among them, without paying the cost. Discard any remaining cards.\n\n[LV2] (When Attacks)\nYou can exhaust three opposing Spirits/Grandwalker Nexuses, and when this effect exhausts three, this Spirit can refresh.",
+  "image": "BS59-TCP02 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1][LV2] (When Reborn)",
+   "You can reveal three cards from your decktop.",
+   "You can summon an \"Exalted Sword\" family Brave card among them, without paying the cost.",
+   "Discard any remaining cards.",
+   "[LV2] (When Attacks)",
+   "You can exhaust three opposing Spirits/Grandwalker Nexuses, and when this effect exhausts three, this Spirit can refresh."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BS59-TCP03": {
+  "id": "BS59-TCP03B",
+  "name": "The AzureOceanGreatSword Maelstrom X -Rebirth Incarnate-",
+  "name_jp": "蒼海の大剣メイルシュトロムX -転醒化身-",
+  "type": "Spirit",
+  "color": "blue",
+  "cost": 8,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 8000
+   },
+   {
+    "cores": 3,
+    "bp": 12000
+   },
+   {
+    "cores": 6,
+    "bp": 18000
+   }
+  ],
+  "families": [
+   "Exalted Sword",
+   "Fighting Spirit"
+  ],
+  "text": "Count +1\n\n[LV1][LV2][LV3] (When Reborn/Attacks)\nDestroy an opposing Spirit/Ultimate with the lowest cost.\n\n[LV2][LV3] {{Great Assault|2}} (When Attacks)\nThis Spirit can, up to twice per turn, be refreshed by exhausting a Nexus you control. When refreshed by this effect, discard five cards from the opposing decktop.",
+  "image": "BS59-TCP03 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1][LV2][LV3] (When Reborn/Attacks)",
+   "Destroy an opposing Spirit/Ultimate with the lowest cost.",
+   "[LV2][LV3] {{Great Assault|2}} (When Attacks)",
+   "This Spirit can, up to twice per turn, be refreshed by exhausting a Nexus you control.",
+   "When refreshed by this effect, discard five cards from the opposing decktop."
   ],
   "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
  },
@@ -5263,6 +6808,228 @@
   ],
   "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
  },
+ "BS73-TCP01": {
+  "id": "BS73-TCP01B",
+  "name": "赤き神龍皇",
+  "name_jp": "赤き神龍皇",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 6,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 7000
+   },
+   {
+    "cores": 3,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Devotee"
+  ],
+  "text": "この面に裏返ったとき、フィールドに残り、カウント+1する。\n［Lv1-Lv2］『このスピリットの転醒/アタック時』\nBP20000以下の相手のスピリット/アルティメット1体を破壊する。\n［Lv1-Lv2］【根幻回帰】\n相手の効果でフィールドを離れるとき、裏返して配置できる。\n［Lv1-Lv2］\n〔重複不可〕本来のコストが5以上の自分の赤のスピリットすべてに赤シンボル1つを追加する。",
+  "image": "BS73-TCP01 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "この面に裏返ったとき、フィールドに残り、カウント+1する。",
+   "［Lv1-Lv2］『このスピリットの転醒/アタック時』",
+   "BP20000以下の相手のスピリット/アルティメット1体を破壊する。",
+   "［Lv1-Lv2］【根幻回帰】",
+   "相手の効果でフィールドを離れるとき、裏返して配置できる。",
+   "［Lv1-Lv2］",
+   "〔重複不可〕本来のコストが5以上の自分の赤のスピリットすべてに赤シンボル1つを追加する。"
+  ],
+  "note": "Rebirth back face (display only) from the official card database; English name and text pending (Japanese kept); families copied from the front."
+ },
+ "BS73-TCP02": {
+  "id": "BS73-TCP02B",
+  "name": "紫の悪魔神",
+  "name_jp": "紫の悪魔神",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 6,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 7000
+   },
+   {
+    "cores": 3,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Devotee"
+  ],
+  "text": "この面に裏返ったとき、フィールドに残り、カウント+1する。\n［Lv1-Lv2］『このスピリットの転醒時』\n自分のトラッシュにある系統：「締皇」を持つ紫1色のカード1枚につきコア1個を、相手のスピリット/アルティメット1体からトラッシュに置く。\n［Lv1-Lv2］【根幻回帰】\n相手の効果でフィールドを離れるとき、裏返して配置できる。\n［Lv1-Lv2］\n自分の紫1色の効果で相手のスピリット/アルティメットを消滅/破壊したとき、自分のトラッシュにある系統：「眷属」/「締皇」を持つコスト4以下の紫1色のスピリットカード1枚を、1コスト支払って召喚できる。",
+  "image": "BS73-TCP02 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "この面に裏返ったとき、フィールドに残り、カウント+1する。",
+   "［Lv1-Lv2］『このスピリットの転醒時』",
+   "自分のトラッシュにある系統：「締皇」を持つ紫1色のカード1枚につきコア1個を、相手のスピリット/アルティメット1体からトラッシュに置く。",
+   "［Lv1-Lv2］【根幻回帰】",
+   "相手の効果でフィールドを離れるとき、裏返して配置できる。",
+   "［Lv1-Lv2］",
+   "自分の紫1色の効果で相手のスピリット/アルティメットを消滅/破壊したとき、自分のトラッシュにある系統：「眷属」/「締皇」を持つコスト4以下の紫1色のスピリットカード1枚を、1コスト支払って召喚できる。"
+  ],
+  "note": "Rebirth back face (display only) from the official card database; English name and text pending (Japanese kept); families copied from the front."
+ },
+ "BS73-TCP03": {
+  "id": "BS73-TCP03B",
+  "name": "緑の自然神",
+  "name_jp": "緑の自然神",
+  "type": "Spirit",
+  "color": "green",
+  "cost": 6,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 7000
+   },
+   {
+    "cores": 3,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Devotee"
+  ],
+  "text": "この面に裏返ったとき、フィールドに残り、カウント+1する。\n［Lv1-Lv2］『このスピリットの転醒/アタック時』\n疲労状態のコスト6以下の相手のスピリット1体をデッキの下に戻せる。\n［Lv1-Lv2］【根幻回帰】\n相手の効果でフィールドを離れるとき、裏返して配置できる。\n［Lv1-Lv2］\nターンに1回、自分の効果でボイドからコアが増えたとき、系統：「眷属」/「締皇」を持つ自分の緑1色のスピリットの以外のコア1個をボイドに置くことで、自分はデッキから1枚ドローする。",
+  "image": "BS73-TCP03 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "この面に裏返ったとき、フィールドに残り、カウント+1する。",
+   "［Lv1-Lv2］『このスピリットの転醒/アタック時』",
+   "疲労状態のコスト6以下の相手のスピリット1体をデッキの下に戻せる。",
+   "［Lv1-Lv2］【根幻回帰】",
+   "相手の効果でフィールドを離れるとき、裏返して配置できる。",
+   "［Lv1-Lv2］",
+   "ターンに1回、自分の効果でボイドからコアが増えたとき、系統：「眷属」/「締皇」を持つ自分の緑1色のスピリットの以外のコア1個をボイドに置くことで、自分はデッキから1枚ドローする。"
+  ],
+  "note": "Rebirth back face (display only) from the official card database; English name and text pending (Japanese kept); families copied from the front."
+ },
+ "BS73-TCP04": {
+  "id": "BS73-TCP04B",
+  "name": "白き機神",
+  "name_jp": "白き機神",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 6,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 7000
+   },
+   {
+    "cores": 3,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Devotee"
+  ],
+  "text": "この面に裏返ったとき、フィールドに残り、カウント+1する。\n［Lv1-Lv2］『このスピリットの転醒時』\n〔ターンに1回：同名〕自分のトラッシュに白1色のスピリットカードが3枚以上あるとき、自分は、相手の手札2枚を内容を見ないで破棄する。\n［Lv1-Lv2］【根幻回帰】\n相手の効果でフィールドを離れるとき、裏返して配置できる。\n［Lv1-Lv2］『このスピリットのアタック/ブロック時』\n相手のスピリット/アルティメット1体を手札に戻せる。この効果は相手の効果では防げない。",
+  "image": "BS73-TCP04 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "この面に裏返ったとき、フィールドに残り、カウント+1する。",
+   "［Lv1-Lv2］『このスピリットの転醒時』",
+   "〔ターンに1回：同名〕自分のトラッシュに白1色のスピリットカードが3枚以上あるとき、自分は、相手の手札2枚を内容を見ないで破棄する。",
+   "［Lv1-Lv2］【根幻回帰】",
+   "相手の効果でフィールドを離れるとき、裏返して配置できる。",
+   "［Lv1-Lv2］『このスピリットのアタック/ブロック時』",
+   "相手のスピリット/アルティメット1体を手札に戻せる。この効果は相手の効果では防げない。"
+  ],
+  "note": "Rebirth back face (display only) from the official card database; English name and text pending (Japanese kept); families copied from the front."
+ },
+ "BS73-TCP05": {
+  "id": "BS73-TCP05B",
+  "name": "黄の夢想神",
+  "name_jp": "黄の夢想神",
+  "type": "Spirit",
+  "color": "yellow",
+  "cost": 6,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 7000
+   },
+   {
+    "cores": 3,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Devotee"
+  ],
+  "text": "この面に裏返ったとき、フィールドに残り、カウント+1する。\n［Lv1-Lv2］『このスピリットの転醒時』\n自分のカウント1につき、このターンの間、相手のスピリット1体はアタック/ブロックできない。\n［Lv1-Lv2］【根幻回帰】\n相手の効果でフィールドを離れるとき、裏返して配置できる。\n［Lv1-Lv2］『お互いのアタックステップ』\n自分が黄1色のカードを使用したとき、このターンの間、相手のスピリット1体をBP-10000できる。この効果でBP0になったとき破壊し、ターンに1回、自分はデッキから1枚ドローする。",
+  "image": "BS73-TCP05 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "この面に裏返ったとき、フィールドに残り、カウント+1する。",
+   "［Lv1-Lv2］『このスピリットの転醒時』",
+   "自分のカウント1につき、このターンの間、相手のスピリット1体はアタック/ブロックできない。",
+   "［Lv1-Lv2］【根幻回帰】",
+   "相手の効果でフィールドを離れるとき、裏返して配置できる。",
+   "［Lv1-Lv2］『お互いのアタックステップ』",
+   "自分が黄1色のカードを使用したとき、このターンの間、相手のスピリット1体をBP-10000できる。この効果でBP0になったとき破壊し、ターンに1回、自分はデッキから1枚ドローする。"
+  ],
+  "note": "Rebirth back face (display only) from the official card database; English name and text pending (Japanese kept); families copied from the front."
+ },
+ "BS73-TCP06": {
+  "id": "BS73-TCP06B",
+  "name": "青き異神",
+  "name_jp": "青き異神",
+  "type": "Spirit",
+  "color": "blue",
+  "cost": 6,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 7000
+   },
+   {
+    "cores": 3,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Devotee"
+  ],
+  "text": "この面に裏返ったとき、フィールドに残り、カウント+1する。\n［Lv1-Lv2］『このスピリットの転醒時』\n相手のスピリット1体か、コスト4以下の相手の創界神ネクサス1つを破壊できる。\n［Lv1-Lv2］【根幻回帰】\n相手の効果でフィールドを離れるとき、裏返して配置できる。\n［Lv1-Lv2］『自分のアタックステップ』\n系統：「眷属」/「締皇」を持つ自分の青のスピリットすべては、BP比べで破壊されない。",
+  "image": "BS73-TCP06 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "この面に裏返ったとき、フィールドに残り、カウント+1する。",
+   "［Lv1-Lv2］『このスピリットの転醒時』",
+   "相手のスピリット1体か、コスト4以下の相手の創界神ネクサス1つを破壊できる。",
+   "［Lv1-Lv2］【根幻回帰】",
+   "相手の効果でフィールドを離れるとき、裏返して配置できる。",
+   "［Lv1-Lv2］『自分のアタックステップ』",
+   "系統：「眷属」/「締皇」を持つ自分の青のスピリットすべては、BP比べで破壊されない。"
+  ],
+  "note": "Rebirth back face (display only) from the official card database; English name and text pending (Japanese kept); families copied from the front."
+ },
  "BS73-TX01": {
   "id": "BS73-TX01B",
   "name": "The SengokuDragonEmperor Burning-Souldragon X",
@@ -5436,6 +7203,769 @@
    "When you've done so, (Once per Game: Same Name) if you have five counters or more, until the End Step of your next turn, even if your deck is zero, or your Life becomes zero, you won't lose the game."
   ],
   "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BSC39-008": {
+  "id": "BSC39-008B",
+  "name": "［Dragon Emperor Rebirth - Red Diva Deity］Shinry-Auryu",
+  "name_jp": "［龍皇転醒・赤き詩姫神］シンリィ・オーリュー",
+  "type": "Spirit",
+  "color": "yellow",
+  "cost": 6,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 4000
+   },
+   {
+    "cores": 3,
+    "bp": 5000
+   },
+   {
+    "cores": 4,
+    "bp": 8000
+   }
+  ],
+  "families": [
+   "Diva",
+   "Stage Style"
+  ],
+  "text": "Count +1\n\nShiny Hearts\n\n[LV1][LV2][LV3] Curtain Call\nWhen this Spirit would leave the Field due to opposing effects, you can return it to the Hand. When you've done so, return an opposing Spirit with the lowest BP to the deckbottom.\n\n[LV2][LV3] (Your Attack Step)\nEvery originally Cost 6 or more Shiny Hearts Spirit you control gains an extra Yellow symbol. This effect doesn't stack.",
+  "image": "Red World Diva.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "Shiny Hearts",
+   "[LV1][LV2][LV3] Curtain Call",
+   "When this Spirit would leave the Field due to opposing effects, you can return it to the Hand.",
+   "When you've done so, return an opposing Spirit with the lowest BP to the deckbottom.",
+   "[LV2][LV3] (Your Attack Step)",
+   "Every originally Cost 6 or more Shiny Hearts Spirit you control gains an extra Yellow symbol.",
+   "This effect doesn't stack."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BSC39-015": {
+  "id": "BSC39-015B",
+  "name": "［Abyssal Rebirth - Blue Diva Deity］Minarea-Aoki",
+  "name_jp": "[異海転醒・青き詩姫神]ミナレア・アオキ",
+  "type": "Spirit",
+  "color": "yellow",
+  "cost": 6,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 4000
+   },
+   {
+    "cores": 2,
+    "bp": 5000
+   },
+   {
+    "cores": 4,
+    "bp": 8000
+   }
+  ],
+  "families": [
+   "Diva",
+   "Stage Style"
+  ],
+  "text": "Count +1\n\nAbsolutes\n\n[LV1][LV2][LV3] Curtain Call\nWhen this Spirit would leave the Field due to opposing effects, you can return it to the Hand. When you've done so, return an opposing Spirit to the Hand.\n\n[LV2][LV3] (Your Attack Step)\nYour Absolutes Spirits can't be destroyed via BP comparison.",
+  "image": "Blue World Diva.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "Absolutes",
+   "[LV1][LV2][LV3] Curtain Call",
+   "When this Spirit would leave the Field due to opposing effects, you can return it to the Hand.",
+   "When you've done so, return an opposing Spirit to the Hand.",
+   "[LV2][LV3] (Your Attack Step)",
+   "Your Absolutes Spirits can't be destroyed via BP comparison."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BSC39-024": {
+  "id": "BSC39-024B",
+  "name": "［Demon Rebirth - Purple Diva Deity］Akshera-Mashrun",
+  "name_jp": "[悪魔転醒・紫の詩姫神]アクシェラ・マシュルーン",
+  "type": "Spirit",
+  "color": "yellow",
+  "cost": 6,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 4000
+   },
+   {
+    "cores": 2,
+    "bp": 5000
+   },
+   {
+    "cores": 4,
+    "bp": 8000
+   }
+  ],
+  "families": [
+   "Diva",
+   "Stage Style"
+  ],
+  "text": "Count +1\n\nTwilight Gothic\n\n[LV1][LV2][LV3] Curtain Call\nWhen this Spirit would leave the Field due to opposing effects, you can return it to the Hand. When you've done so, for each Song Magic card on your Field, send a core from a single opposing Spirit to the Trash.\n\n[LV2][LV3]\nWhen your Twilight Gothic Spirit blocks, the opponent discards a card from their Hand. This effect doesn't stack.",
+  "image": "No one understands her world.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "Twilight Gothic",
+   "[LV1][LV2][LV3] Curtain Call",
+   "When this Spirit would leave the Field due to opposing effects, you can return it to the Hand.",
+   "When you've done so, for each Song Magic card on your Field, send a core from a single opposing Spirit to the Trash.",
+   "[LV2][LV3]",
+   "When your Twilight Gothic Spirit blocks, the opponent discards a card from their Hand.",
+   "This effect doesn't stack."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BSC39-029": {
+  "id": "BSC39-029B",
+  "name": "［Nature Rebirth - Green Diva Deity］Shinra-Shijen",
+  "name_jp": "[自然転醒・緑の詩姫神]シンラ・シージェン",
+  "type": "Spirit",
+  "color": "yellow",
+  "cost": 6,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 2,
+    "bp": 7000
+   },
+   {
+    "cores": 3,
+    "bp": 9000
+   }
+  ],
+  "families": [
+   "Diva",
+   "Stage Style"
+  ],
+  "text": "Count +1\n\nPretty Animals\n\n[LV1][LV2][LV3] Curtain Call\nWhen this Spirit would leave the Field due to opposing effects, you can return it to the Hand. When you've done so, return an opposing exhausted Spirit to the deckbottom.\n\n[LV2][LV3]\nWhen your Pretty Animals Spirits are summoned by an effect, put a core from the Void to any of your Spirits.",
+  "image": "Green world Diva.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "Pretty Animals",
+   "[LV1][LV2][LV3] Curtain Call",
+   "When this Spirit would leave the Field due to opposing effects, you can return it to the Hand.",
+   "When you've done so, return an opposing exhausted Spirit to the deckbottom.",
+   "[LV2][LV3]",
+   "When your Pretty Animals Spirits are summoned by an effect, put a core from the Void to any of your Spirits."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BSC39-035": {
+  "id": "BSC39-035B",
+  "name": "［Machine World Rebirth - White Diva Deity］Silky-Sunset",
+  "name_jp": "[機界転醒・白き詩姫神]シルキー・サンセット",
+  "type": "Spirit",
+  "color": "yellow",
+  "cost": 6,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 4000
+   },
+   {
+    "cores": 2,
+    "bp": 6000
+   }
+  ],
+  "families": [
+   "Diva",
+   "Grand Style"
+  ],
+  "text": "Count +1\n\nGrand Siesta\n\n[LV1][LV2] Curtain Call\nWhen this Spirit would leave the Field due to opposing effects, you can return it to the Hand. When you've done so, discard a random card from the opposing Hand.\n\n[LV2] (When Attacks/Blocks)\nOnce per turn, you can return an opposing Spirit to the Hand. When you've done so, refresh a Grand Siesta Spirit you control.",
+  "image": "White World Diva.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "Grand Siesta",
+   "[LV1][LV2] Curtain Call",
+   "When this Spirit would leave the Field due to opposing effects, you can return it to the Hand.",
+   "When you've done so, discard a random card from the opposing Hand.",
+   "[LV2] (When Attacks/Blocks)",
+   "Once per turn, you can return an opposing Spirit to the Hand.",
+   "When you've done so, refresh a Grand Siesta Spirit you control."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BSC39-041": {
+  "id": "BSC39-041B",
+  "name": "［Dream Rebirth - Yellow Diva Deity］Kirin-Musoshin",
+  "name_jp": "[夢想転醒・黄の詩姫神]キリン・ムソーシン",
+  "type": "Spirit",
+  "color": "yellow",
+  "cost": 6,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   },
+   {
+    "cores": 2,
+    "bp": 4000
+   },
+   {
+    "cores": 3,
+    "bp": 7000
+   }
+  ],
+  "families": [
+   "Diva",
+   "Stage Style"
+  ],
+  "text": "Count +1\n\nCoZ12\n\n[LV1][LV2][LV3] Curtain Call\nWhen this Spirit would leave the Field due to opposing effects, you can return it to the Hand. When you've done so, during this turn, an opposing Spirit can't attack/block.\n\n[LV2][LV3] (Your Attack Step)\nWhen your CoZ12 Spirit attacks, during this turn, give an opposing Spirit -5000 BP, and destroy it when its BP is brought to 0.",
+  "image": "Yellow World Diva.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "CoZ12",
+   "[LV1][LV2][LV3] Curtain Call",
+   "When this Spirit would leave the Field due to opposing effects, you can return it to the Hand.",
+   "When you've done so, during this turn, an opposing Spirit can't attack/block.",
+   "[LV2][LV3] (Your Attack Step)",
+   "When your CoZ12 Spirit attacks, during this turn, give an opposing Spirit -5000 BP, and destroy it when its BP is brought to 0."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "BSC47-RV003": {
+  "id": "BSC47-RV003B",
+  "name": "氷翼零装ミロスラーヴァ",
+  "name_jp": "氷翼零装ミロスラーヴァ",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 5,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 2,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Ice Princess"
+  ],
+  "text": "この面に裏返ったとき、フィールドに残り、カウント+1する。\n［Lv1-Lv2］『このスピリットの転醒/アタック時』\n自分の白の創界神ネクサス/創界石ネクサス1つにコア+1できる。その後、相手のスピリット/アルティメット1体を手札に戻せる。\n［Lv2］『自分のアタックステップ』\n系統：「氷姫」/「ウル」を持つ自分の白1色の「手札/デッキに戻す」効果は相手の効果では防げない。",
+  "image": "BSC47-RV003 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "この面に裏返ったとき、フィールドに残り、カウント+1する。",
+   "［Lv1-Lv2］『このスピリットの転醒/アタック時』",
+   "自分の白の創界神ネクサス/創界石ネクサス1つにコア+1できる。その後、相手のスピリット/アルティメット1体を手札に戻せる。",
+   "［Lv2］『自分のアタックステップ』",
+   "系統：「氷姫」/「ウル」を持つ自分の白1色の「手札/デッキに戻す」効果は相手の効果では防げない。"
+  ],
+  "note": "Rebirth back face (display only) from the official card database; English name and text pending (Japanese kept); families copied from the front."
+ },
+ "BSC47-RV007": {
+  "id": "BSC47-RV007B",
+  "name": "睡蓮女神アンビカー",
+  "name_jp": "睡蓮女神アンビカー",
+  "type": "Spirit",
+  "color": "yellow",
+  "cost": 6,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 6000
+   },
+   {
+    "cores": 2,
+    "bp": 7000
+   },
+   {
+    "cores": 3,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Proximate",
+   "Hunter Beast"
+  ],
+  "text": "この面に裏返ったとき、フィールドに残り、カウント+1する。\n［Lv1-Lv2-Lv3］『このスピリットの転醒/アタック時』\n自分の手札にある系統：「戯狩」を持つスピリットカード1枚を、コストを支払わずに召喚できる。\n［Lv1-Lv2-Lv3］\nターンに1回、系統：「戯狩」を持つ自分のスピリットが相手の効果でフィールドを離れるとき、自分のライフのコア1個をボイドに置くことで、その対象すべてを手札に戻すか、同じ状態でフィールドに残す。",
+  "image": "BSC47-RV007 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "この面に裏返ったとき、フィールドに残り、カウント+1する。",
+   "［Lv1-Lv2-Lv3］『このスピリットの転醒/アタック時』",
+   "自分の手札にある系統：「戯狩」を持つスピリットカード1枚を、コストを支払わずに召喚できる。",
+   "［Lv1-Lv2-Lv3］",
+   "ターンに1回、系統：「戯狩」を持つ自分のスピリットが相手の効果でフィールドを離れるとき、自分のライフのコア1個をボイドに置くことで、その対象すべてを手札に戻すか、同じ状態でフィールドに残す。"
+  ],
+  "note": "Rebirth back face (display only) from the official card database; English name and text pending (Japanese kept); families copied from the front."
+ },
+ "BSC47-RV009": {
+  "id": "BSC47-RV009B",
+  "name": "時空竜軍団長タイムラー・ダイムラー",
+  "name_jp": "時空竜軍団長タイムラー・ダイムラー",
+  "type": "Spirit",
+  "color": "blue",
+  "cost": 7,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 7000
+   },
+   {
+    "cores": 3,
+    "bp": 10000
+   },
+   {
+    "cores": 5,
+    "bp": 12000
+   }
+  ],
+  "families": [
+   "Chrownos"
+  ],
+  "text": "この面に裏返ったとき、フィールドに残り、カウント+1する。\n［Lv1-Lv2-Lv3］『このスピリットの転醒/アタック時』\nブレイヴのコストを無視して、コスト合計6まで相手のスピリットを好きなだけ破壊し、破壊したとき、ボイドからコア1個をこのスピリットに置く。\n［Lv2-Lv3］『自分のアタックステップ』\n系統：「時冠」を持つ自分のスピリットがアタックしている間、相手がバーストの発動を宣言するとき、相手はそのカードのコストを支払わなければ発動できない。",
+  "image": "BSC47-RV009 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "この面に裏返ったとき、フィールドに残り、カウント+1する。",
+   "［Lv1-Lv2-Lv3］『このスピリットの転醒/アタック時』",
+   "ブレイヴのコストを無視して、コスト合計6まで相手のスピリットを好きなだけ破壊し、破壊したとき、ボイドからコア1個をこのスピリットに置く。",
+   "［Lv2-Lv3］『自分のアタックステップ』",
+   "系統：「時冠」を持つ自分のスピリットがアタックしている間、相手がバーストの発動を宣言するとき、相手はそのカードのコストを支払わなければ発動できない。"
+  ],
+  "note": "Rebirth back face (display only) from the official card database; English name and text pending (Japanese kept); families copied from the front."
+ },
+ "BSC47-RV010": {
+  "id": "BSC47-RV010B",
+  "name": "時の狭間",
+  "name_jp": "時の狭間",
+  "type": "Nexus",
+  "color": "blue",
+  "cost": 4,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   },
+   {
+    "cores": 3,
+    "bp": 6000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Chrownos",
+   "Fusion Beast"
+  ],
+  "text": "この面に裏返ったとき、フィールドに残り、カウント+1する。\n［Lv1-Lv2］『このネクサスの転醒/破壊時』\n相手が、相手の手札にあるマジックカード1枚を破棄しなければ、系統：「時冠」を持たないスピリット/アルティメットすべてを破壊する。\n［Lv2］『自分のアタックステップ』\nターンに1回、系統：「時冠」を持つ自分のスピリットが相手の効果でフィールドを離れるとき、自分のカウントエリアのコア1個ずつをそれらの対象に好きなように置ける。この効果でコアを置いた対象すべてを同じ状態でフィールドに残す。",
+  "image": "BSC47-RV010 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "この面に裏返ったとき、フィールドに残り、カウント+1する。",
+   "［Lv1-Lv2］『このネクサスの転醒/破壊時』",
+   "相手が、相手の手札にあるマジックカード1枚を破棄しなければ、系統：「時冠」を持たないスピリット/アルティメットすべてを破壊する。",
+   "［Lv2］『自分のアタックステップ』",
+   "ターンに1回、系統：「時冠」を持つ自分のスピリットが相手の効果でフィールドを離れるとき、自分のカウントエリアのコア1個ずつをそれらの対象に好きなように置ける。この効果でコアを置いた対象すべてを同じ状態でフィールドに残す。"
+  ],
+  "note": "Rebirth back face (display only) from the official card database; English name and text pending (Japanese kept); families copied from the front."
+ },
+ "BSC47-RV012": {
+  "id": "BSC47-RV012B",
+  "name": "時空守護龍ギルタキオン",
+  "name_jp": "時空守護龍ギルタキオン",
+  "type": "Spirit",
+  "color": "blue",
+  "cost": 7,
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 7000
+   },
+   {
+    "cores": 3,
+    "bp": 10000
+   },
+   {
+    "cores": 5,
+    "bp": 12000
+   }
+  ],
+  "families": [
+   "Chrownos"
+  ],
+  "text": "この面に裏返ったとき、フィールドに残り、カウント+1する。\n［Lv1-Lv2-Lv3］『このスピリットの転醒時』\nコスト7以下の相手のスピリット1体を破壊できる。自分のミラージュをセットしているとき、かわりに、ブレイヴのコストを無視して、コスト7以下の相手のスピリット3体までを破壊する。\n［Lv2-Lv3］『自分のアタックステップ』\n自分のスピリットすべてに“『このスピリットのアタック時』自分のトラッシュにある系統：「時冠」を持つカード2枚をデッキの下に戻すことで、このスピリットを最高Lvとして扱う”を与える。",
+  "image": "BSC47-RV012 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "この面に裏返ったとき、フィールドに残り、カウント+1する。",
+   "［Lv1-Lv2-Lv3］『このスピリットの転醒時』",
+   "コスト7以下の相手のスピリット1体を破壊できる。自分のミラージュをセットしているとき、かわりに、ブレイヴのコストを無視して、コスト7以下の相手のスピリット3体までを破壊する。",
+   "［Lv2-Lv3］『自分のアタックステップ』",
+   "自分のスピリットすべてに“『このスピリットのアタック時』自分のトラッシュにある系統：「時冠」を持つカード2枚をデッキの下に戻すことで、このスピリットを最高Lvとして扱う”を与える。"
+  ],
+  "note": "Rebirth back face (display only) from the official card database; English name and text pending (Japanese kept); families copied from the front."
+ },
+ "BSC47-RV013": {
+  "id": "BSC47-RV013B",
+  "name": "氷魔神姫",
+  "name_jp": "氷魔神姫",
+  "type": "Brave",
+  "color": "white",
+  "cost": 6,
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Grandstone",
+   "Primal"
+  ],
+  "text": "この面に裏返ったとき、フィールドに残り、カウント+1する。\nこのブレイヴは、疲労せず、スピリット状態のとき、アタックとブロックができない。\n［Lv1］『このブレイヴの転醒時』\n相手のスピリット/アルティメット2体までを手札に戻し、戻した対象1体につき、ボイドからコア1個を自分のスピリットに置く。\n左右合体条件：氷姫\n【左合体中/右合体中】『このスピリットのアタック時』\nこのスピリットはブロックされない。",
+  "image": "BSC47-RV013 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "この面に裏返ったとき、フィールドに残り、カウント+1する。",
+   "このブレイヴは、疲労せず、スピリット状態のとき、アタックとブロックができない。",
+   "［Lv1］『このブレイヴの転醒時』",
+   "相手のスピリット/アルティメット2体までを手札に戻し、戻した対象1体につき、ボイドからコア1個を自分のスピリットに置く。",
+   "左右合体条件：氷姫",
+   "【左合体中/右合体中】『このスピリットのアタック時』",
+   "このスピリットはブロックされない。"
+  ],
+  "note": "Rebirth back face (display only) from the official card database; English name and text pending (Japanese kept); families copied from the front."
+ },
+ "BSC47-RV014": {
+  "id": "BSC47-RV014B",
+  "name": "時冠魔神",
+  "name_jp": "時冠魔神",
+  "type": "Brave",
+  "color": "blue",
+  "cost": 6,
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Grandstone",
+   "Chrownos"
+  ],
+  "text": "この面に裏返ったとき、フィールドに残り、カウント+1する。\nこのブレイヴは、疲労せず、スピリット状態のとき、アタックとブロックができない。\n［Lv1］『このブレイヴの転醒時』\nブレイヴのコストを無視して、コスト合計8まで相手のスピリット/アルティメットを好きなだけ破壊する。\n左右合体条件：時冠＆コスト4以上\n【左合体中/右合体中】『このスピリットのアタック時』\n自分のトラッシュにある系統：「時冠」を持つカード3枚をデッキの下に戻すことで、相手はマジックカード/【アクセル】を使用できない。",
+  "image": "BSC47-RV014 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "この面に裏返ったとき、フィールドに残り、カウント+1する。",
+   "このブレイヴは、疲労せず、スピリット状態のとき、アタックとブロックができない。",
+   "［Lv1］『このブレイヴの転醒時』",
+   "ブレイヴのコストを無視して、コスト合計8まで相手のスピリット/アルティメットを好きなだけ破壊する。",
+   "左右合体条件：時冠＆コスト4以上",
+   "【左合体中/右合体中】『このスピリットのアタック時』",
+   "自分のトラッシュにある系統：「時冠」を持つカード3枚をデッキの下に戻すことで、相手はマジックカード/【アクセル】を使用できない。"
+  ],
+  "note": "Rebirth back face (display only) from the official card database; English name and text pending (Japanese kept); families copied from the front."
+ },
+ "BSC47-RVTX01": {
+  "id": "BSC47-RVTX01B",
+  "name": "ムサシード・アシュライガー・オリジン",
+  "name_jp": "ムサシード・アシュライガー・オリジン",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 7,
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 7000
+   },
+   {
+    "cores": 3,
+    "bp": 10000
+   },
+   {
+    "cores": 4,
+    "bp": 13000
+   }
+  ],
+  "families": [
+   "眷属",
+   "締皇",
+   "覇皇"
+  ],
+  "text": "この面に裏返ったとき、フィールドに残り、カウント+1する。\n［Lv1-Lv2-Lv3］『このスピリットの転醒/アタック時』\nBP10000以下の相手のスピリット/アルティメット1体を破壊できる。この効果は相手の効果では防げず、この効果で破壊した対象の効果を発揮させない。\n［Lv2-Lv3］『このスピリットのアタック/ブロック時』\nこのスピリットをBP+10000する。さらに、自分のターンなら、相手のスピリットを消滅/破壊したときと、バトル終了時、相手のライフのコア1個をトラッシュに置く。",
+  "image": "BSC47-RVTX01 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "この面に裏返ったとき、フィールドに残り、カウント+1する。",
+   "［Lv1-Lv2-Lv3］『このスピリットの転醒/アタック時』",
+   "BP10000以下の相手のスピリット/アルティメット1体を破壊できる。この効果は相手の効果では防げず、この効果で破壊した対象の効果を発揮させない。",
+   "［Lv2-Lv3］『このスピリットのアタック/ブロック時』",
+   "このスピリットをBP+10000する。さらに、自分のターンなら、相手のスピリットを消滅/破壊したときと、バトル終了時、相手のライフのコア1個をトラッシュに置く。"
+  ],
+  "note": "Rebirth back face (display only) from the official card database; English name and text pending (Japanese kept); families copied from the front."
+ },
+ "BSC47-RVTX02": {
+  "id": "BSC47-RVTX02B",
+  "name": "ソーディアス・アーサー・オリジン",
+  "name_jp": "ソーディアス・アーサー・オリジン",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 12,
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 10000
+   },
+   {
+    "cores": 3,
+    "bp": 16000
+   },
+   {
+    "cores": 4,
+    "bp": 21000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Supreme Hero"
+  ],
+  "text": "この面に裏返ったとき、フィールドに残り、カウント+1する。\n［Lv1-Lv2-Lv3］『このスピリットの転醒/アタック時』\n自分のトラッシュにあるコスト7以下の紫1色のスピリットカード/ブレイヴカード1枚を、コストを支払わずに召喚できる。ただし、『このスピリット/ブレイヴの召喚時』効果は発揮されない。\n［Lv2-Lv3］『このスピリットのアタック時』\n疲労状態の相手のスピリット/アルティメット1体を破壊する。さらに、ターンに1回、自分のカウント3以上のとき、相手のライフ/フィールドの以外のコア1個をボイドに置く。",
+  "image": "BSC47-RVTX02 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "この面に裏返ったとき、フィールドに残り、カウント+1する。",
+   "［Lv1-Lv2-Lv3］『このスピリットの転醒/アタック時』",
+   "自分のトラッシュにあるコスト7以下の紫1色のスピリットカード/ブレイヴカード1枚を、コストを支払わずに召喚できる。ただし、『このスピリット/ブレイヴの召喚時』効果は発揮されない。",
+   "［Lv2-Lv3］『このスピリットのアタック時』",
+   "疲労状態の相手のスピリット/アルティメット1体を破壊する。さらに、ターンに1回、自分のカウント3以上のとき、相手のライフ/フィールドの以外のコア1個をボイドに置く。"
+  ],
+  "note": "Rebirth back face (display only) from the official card database; English name and text pending (Japanese kept); families copied from the front."
+ },
+ "BSC47-RVTX03": {
+  "id": "BSC47-RVTX03B",
+  "name": "ドルクス・ウシワカ・オリジン",
+  "name_jp": "ドルクス・ウシワカ・オリジン",
+  "type": "Spirit",
+  "color": "green",
+  "cost": 5,
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 3,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Supreme Hero"
+  ],
+  "text": "この面に裏返ったとき、フィールドに残り、カウント+1する。\n［Lv1-Lv2］『このスピリットの転醒時』\n相手の創界神ネクサスが1つだけになるように破壊できる。この効果発揮後、相手のトラッシュにあるカード10枚までをゲームから除外できる。\n［Lv2］『このスピリットのアタック/ブロック時』\nこのスピリットを手札に戻せる。さらに、相手のスピリット/アルティメット1体を重疲労できる。",
+  "image": "BSC47-RVTX03 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "この面に裏返ったとき、フィールドに残り、カウント+1する。",
+   "［Lv1-Lv2］『このスピリットの転醒時』",
+   "相手の創界神ネクサスが1つだけになるように破壊できる。この効果発揮後、相手のトラッシュにあるカード10枚までをゲームから除外できる。",
+   "［Lv2］『このスピリットのアタック/ブロック時』",
+   "このスピリットを手札に戻せる。さらに、相手のスピリット/アルティメット1体を重疲労できる。"
+  ],
+  "note": "Rebirth back face (display only) from the official card database; English name and text pending (Japanese kept); families copied from the front."
+ },
+ "BSC47-RVTX04": {
+  "id": "BSC47-RVTX04B",
+  "name": "ミブロック・バラガン・オリジン",
+  "name_jp": "ミブロック・バラガン・オリジン",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 7,
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 6000
+   },
+   {
+    "cores": 2,
+    "bp": 9000
+   },
+   {
+    "cores": 4,
+    "bp": 12000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Supreme Hero"
+  ],
+  "text": "この面に裏返ったとき、フィールドに残り、カウント+1する。\n［Lv1-Lv2-Lv3］『このスピリットの転醒時』\nこのバトルが終了したとき、アタックステップを終了する。\n［Lv1-Lv2-Lv3］『このスピリットのアタック時』\n相手のスピリット/アルティメット1体をデッキの下に戻せる。\n［Lv2-Lv3］『お互いのアタックステップ開始時』\n自分の手札にあるバーストカード1枚をセットできる。さらに、相手のスピリット/アルティメット1体をデッキの下に戻せる。",
+  "image": "BSC47-RVTX04 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "この面に裏返ったとき、フィールドに残り、カウント+1する。",
+   "［Lv1-Lv2-Lv3］『このスピリットの転醒時』",
+   "このバトルが終了したとき、アタックステップを終了する。",
+   "［Lv1-Lv2-Lv3］『このスピリットのアタック時』",
+   "相手のスピリット/アルティメット1体をデッキの下に戻せる。",
+   "［Lv2-Lv3］『お互いのアタックステップ開始時』",
+   "自分の手札にあるバーストカード1枚をセットできる。さらに、相手のスピリット/アルティメット1体をデッキの下に戻せる。"
+  ],
+  "note": "Rebirth back face (display only) from the official card database; English name and text pending (Japanese kept); families copied from the front."
+ },
+ "BSC47-RVTX05": {
+  "id": "BSC47-RVTX05B",
+  "name": "天醒槍ロンゴ・ミニアス",
+  "name_jp": "天醒槍ロンゴ・ミニアス",
+  "type": "Brave",
+  "color": "yellow",
+  "cost": 6,
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   }
+  ],
+  "families": [
+   "Primal"
+  ],
+  "text": "この面に裏返ったとき、フィールドに残り、カウント+1する。\n［Lv1］『このブレイヴの転醒時』\nこのターンの間、自分のライフは相手のスピリット/アルティメットのアタックでは1しか減らない。\n合体条件：コスト3以上＆C6以上、コスト5以上\n【合体中】\nこのスピリットのLvを1つ上のものとして扱う。さらに、自分のカウント3以上の間、このスピリットに神シンボル1つを追加する。",
+  "image": "BSC47-RVTX05 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "この面に裏返ったとき、フィールドに残り、カウント+1する。",
+   "［Lv1］『このブレイヴの転醒時』",
+   "このターンの間、自分のライフは相手のスピリット/アルティメットのアタックでは1しか減らない。",
+   "合体条件：コスト3以上＆C6以上、コスト5以上",
+   "【合体中】",
+   "このスピリットのLvを1つ上のものとして扱う。さらに、自分のカウント3以上の間、このスピリットに神シンボル1つを追加する。"
+  ],
+  "note": "Rebirth back face (display only) from the official card database; English name and text pending (Japanese kept); families copied from the front."
+ },
+ "BSC47-RVTX06": {
+  "id": "BSC47-RVTX06B",
+  "name": "クレオパトラス・オリジン",
+  "name_jp": "クレオパトラス・オリジン",
+  "type": "Spirit",
+  "color": "yellow",
+  "cost": 7,
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 6000
+   },
+   {
+    "cores": 2,
+    "bp": 8000
+   },
+   {
+    "cores": 3,
+    "bp": 11000
+   }
+  ],
+  "families": [
+   "眷属",
+   "締皇",
+   "覇皇"
+  ],
+  "text": "この面に裏返ったとき、フィールドに残り、カウント+1する。\n［Lv1-Lv2-Lv3］『このスピリットの転醒時』\n自分のトラッシュにある、「ギフト・オブ・ザ・ナイル」以外の転醒スピリットカード/転醒マジックカード1枚を手札に戻せる。そうしたとき、ただちにバトルを終了できる。\n［Lv2-Lv3］『このスピリットのアタック時』\nこのスピリットはブロックされない。さらに、自分の手札にあるマジックカード1枚のフラッシュ効果を、コストを支払わずにただちに使用できる。バトル終了時、自分のトラッシュにある、このバトルで使用したマジックカード1枚を手札に戻せる。",
+  "image": "BSC47-RVTX06 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "この面に裏返ったとき、フィールドに残り、カウント+1する。",
+   "［Lv1-Lv2-Lv3］『このスピリットの転醒時』",
+   "自分のトラッシュにある、「ギフト・オブ・ザ・ナイル」以外の転醒スピリットカード/転醒マジックカード1枚を手札に戻せる。そうしたとき、ただちにバトルを終了できる。",
+   "［Lv2-Lv3］『このスピリットのアタック時』",
+   "このスピリットはブロックされない。さらに、自分の手札にあるマジックカード1枚のフラッシュ効果を、コストを支払わずにただちに使用できる。バトル終了時、自分のトラッシュにある、このバトルで使用したマジックカード1枚を手札に戻せる。"
+  ],
+  "note": "Rebirth back face (display only) from the official card database; English name and text pending (Japanese kept); families copied from the front."
+ },
+ "BSC47-RVTX07": {
+  "id": "BSC47-RVTX07B",
+  "name": "サイゴード・ゴレム・オリジン",
+  "name_jp": "サイゴード・ゴレム・オリジン",
+  "type": "Spirit",
+  "color": "blue",
+  "cost": 8,
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 8000
+   },
+   {
+    "cores": 3,
+    "bp": 11000
+   },
+   {
+    "cores": 6,
+    "bp": 18000
+   }
+  ],
+  "families": [
+   "眷属",
+   "締皇",
+   "覇皇"
+  ],
+  "text": "この面に裏返ったとき、フィールドに残り、カウント+1する。\n［Lv1-Lv2-Lv3］『このスピリットの転醒/アタック時』\nターンに1回、相手のスピリット/アルティメット1体を破壊できる。\n［Lv1-Lv2-Lv3］【大粉砕】『このスピリットのアタック時』\n相手のデッキを上から、このスピリットのLv1につき5枚破棄し、バーストカードが破棄されたとき、相手のスピリット1体を破壊する。",
+  "image": "BSC47-RVTX07 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "この面に裏返ったとき、フィールドに残り、カウント+1する。",
+   "［Lv1-Lv2-Lv3］『このスピリットの転醒/アタック時』",
+   "ターンに1回、相手のスピリット/アルティメット1体を破壊できる。",
+   "［Lv1-Lv2-Lv3］【大粉砕】『このスピリットのアタック時』",
+   "相手のデッキを上から、このスピリットのLv1につき5枚破棄し、バーストカードが破棄されたとき、相手のスピリット1体を破壊する。"
+  ],
+  "note": "Rebirth back face (display only) from the official card database; English name and text pending (Japanese kept); families copied from the front."
  },
  "CB13-004": {
   "id": "CB13-004B",
@@ -7193,6 +9723,44 @@
   ],
   "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
  },
+ "CB18-044": {
+  "id": "CB18-044B",
+  "name": "Ultraman Tiga Sky Type",
+  "name_jp": "ウルトラマンティガ スカイタイプ",
+  "type": "Spirit",
+  "color": "blue",
+  "cost": 6,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 6000
+   },
+   {
+    "cores": 3,
+    "bp": 8000
+   },
+   {
+    "cores": 5,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Fighting Spirit"
+  ],
+  "text": "Count +1\n\n[LV1][LV2][LV3] (When Reborn)\nDraw two cards, then discard two cards from your Hand.\n\n[LV2][LV3] (When Attacks)\nUnless the opponent sends two cores from their Reserve to the Trash, they can't block.",
+  "image": "CB18-044 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1][LV2][LV3] (When Reborn)",
+   "Draw two cards, then discard two cards from your Hand.",
+   "[LV2][LV3] (When Attacks)",
+   "Unless the opponent sends two cores from their Reserve to the Trash, they can't block."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
  "CB18-049": {
   "id": "CB18-049B",
   "name": "Ultraman Tiga Power Type",
@@ -7446,6 +10014,36 @@
   ],
   "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
  },
+ "CB21-050": {
+  "id": "CB21-050B",
+  "name": "Makinami Mari Illustrious -Plugsuit-",
+  "name_jp": "真希波・マリ・イラストリアス -プラグスーツ-",
+  "type": "Brave",
+  "color": "red",
+  "cost": 4,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 1000
+   }
+  ],
+  "families": [
+   "Pilot",
+   "NERV"
+  ],
+  "text": "Count +1\n\nThis Brave in Spirit condition can't attack or block.\n\nDuring Brave (When Attacks)\nAt the end of battle, by sending three cores from this Spirit to the Trash, refresh this Spirit.",
+  "image": "CB21-050 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "This Brave in Spirit condition can't attack or block.",
+   "During Brave (When Attacks)",
+   "At the end of battle, by sending three cores from this Spirit to the Trash, refresh this Spirit."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
  "CB21-051": {
   "id": "CB21-051B",
   "name": "Ayanami Rei -Plugsuit-",
@@ -7473,6 +10071,330 @@
    "This Brave in Spirit condition can't attack or block.",
    "During Brave (When Attacks/Blocks)",
    "You can return an opposing Spirit with two cores or less on it to the Hand."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "P20-06": {
+  "id": "P20-06B",
+  "name": "天醒獅機ストライクヴルム・レオ・ブレイカー",
+  "name_jp": "天醒獅機ストライクヴルム・レオ・ブレイカー",
+  "type": "Spirit",
+  "color": "blue",
+  "cost": 8,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 11000
+   },
+   {
+    "cores": 2,
+    "bp": 13000
+   },
+   {
+    "cores": 4,
+    "bp": 18000
+   }
+  ],
+  "families": [
+   "起幻",
+   "光導",
+   "機獣"
+  ],
+  "text": "この面に裏返ったとき、フィールドに残り、カウント+1する(ボイドからコア1個を自分のカウントエリアに置く)\n［Lv1-Lv2-Lv3］『このスピリットの転醒/アタック時』\n最もコストの高い相手のスピリット1体を破壊し、破壊した相手のスピリットのシンボル1つにつき、このバトルの間、このスピリットに白シンボル1つを追加する。\n［Lv2-Lv3］『お互いのアタックステップ』\n相手は、相手のフィールドにあるシンボルと同じ色を含まない、バースト効果の発揮/マジックカードを使用できない。",
+  "image": "P20-06 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "この面に裏返ったとき、フィールドに残り、カウント+1する(ボイドからコア1個を自分のカウントエリアに置く)",
+   "［Lv1-Lv2-Lv3］『このスピリットの転醒/アタック時』",
+   "最もコストの高い相手のスピリット1体を破壊し、破壊した相手のスピリットのシンボル1つにつき、このバトルの間、このスピリットに白シンボル1つを追加する。",
+   "［Lv2-Lv3］『お互いのアタックステップ』",
+   "相手は、相手のフィールドにあるシンボルと同じ色を含まない、バースト効果の発揮/マジックカードを使用できない。"
+  ],
+  "note": "Rebirth back face (display only) from the official card database; English name and text pending (Japanese kept); families copied from the front."
+ },
+ "P21-04": {
+  "id": "P21-04B",
+  "name": "龍騎皇ドラゴニック・アーサー・リーラ",
+  "name_jp": "龍騎皇ドラゴニック・アーサー・リーラ",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 8,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 7000
+   },
+   {
+    "cores": 3,
+    "bp": 12000
+   },
+   {
+    "cores": 5,
+    "bp": 17000
+   },
+   {
+    "cores": 7,
+    "bp": 19000
+   }
+  ],
+  "families": [
+   "起幻",
+   "魔影",
+   "刃虫"
+  ],
+  "text": "この面に裏返ったとき、フィールドに残り、カウント+1する(ボイドからコア1個を自分のカウントエリアに置く)\n［Lv1-Lv2-Lv3-Lv4］『このスピリットの転醒時』\n疲労状態の相手のスピリット/アルティメット2体を破壊し、1体以上破壊したとき、自分はデッキから1枚ドローする。\n［Lv2-Lv3-Lv4］『このスピリットのアタック時』\n相手のスピリット/アルティメット1体のコア3個をリザーブに置く。さらに、このスピリットのアタックによって相手のライフを減らしたとき、相手のライフのコア1個をリザーブに置く。",
+  "image": "P21-04 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "この面に裏返ったとき、フィールドに残り、カウント+1する(ボイドからコア1個を自分のカウントエリアに置く)",
+   "［Lv1-Lv2-Lv3-Lv4］『このスピリットの転醒時』",
+   "疲労状態の相手のスピリット/アルティメット2体を破壊し、1体以上破壊したとき、自分はデッキから1枚ドローする。",
+   "［Lv2-Lv3-Lv4］『このスピリットのアタック時』",
+   "相手のスピリット/アルティメット1体のコア3個をリザーブに置く。さらに、このスピリットのアタックによって相手のライフを減らしたとき、相手のライフのコア1個をリザーブに置く。"
+  ],
+  "note": "Rebirth back face (display only) from the official card database; English name and text pending (Japanese kept); families copied from the front."
+ },
+ "PB09-002": {
+  "id": "PB09-002B",
+  "name": "The FangBeastAntKingBeast Ant-Res",
+  "name_jp": "牙獣の蟻王ビースト アント・レス",
+  "type": "Spirit",
+  "color": "green",
+  "cost": 7,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 6000
+   },
+   {
+    "cores": 4,
+    "bp": 13000
+   },
+   {
+    "cores": 6,
+    "bp": 16000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Shellman",
+   "Blade Beast"
+  ],
+  "text": "Count +1\n\n[LV1][LV2][LV3] (When Reborn)\nPut three cores from the Void to this Spirit. Also, if you have two counters or more, refresh this Spirit.\n\n[LV2][LV3] Flash - {{ww|2}} (When Attacks)\nOnce per turn, heavy exhaust two opposing Spirits/Ultimates.",
+  "image": "PB09-002(B).jpg",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1][LV2][LV3] (When Reborn)",
+   "Put three cores from the Void to this Spirit.",
+   "Also, if you have two counters or more, refresh this Spirit.",
+   "[LV2][LV3] Flash - {{ww|2}} (When Attacks)",
+   "Once per turn, heavy exhaust two opposing Spirits/Ultimates."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "PB09-003": {
+  "id": "PB09-003B",
+  "name": "［Memories Are Forever...］Laila Sisters",
+  "name_jp": "［思い出永遠に］ライラ姉妹",
+  "type": "Spirit",
+  "color": "yellow",
+  "cost": 4,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   },
+   {
+    "cores": 3,
+    "bp": 5000
+   },
+   {
+    "cores": 4,
+    "bp": 7000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Diva",
+   "Private Wear"
+  ],
+  "text": "Count +1\n\n[LV1][LV2][LV3] (When Reborn)\nIf your Life is five or less, put a core from the Void to your Life.\n\n[LV1][LV2][LV3]\nWhen you count the number of Spirits via your Spirit effects, this Spirit is treated as two Spirits.\n\n[LV2][LV3] (When Attacks)\nDraw a card from the deckbottom. If you control four or more Spirits, this effect draws +1 card.",
+  "image": "PB09-003(B).jpg",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1][LV2][LV3] (When Reborn)",
+   "If your Life is five or less, put a core from the Void to your Life.",
+   "[LV1][LV2][LV3]",
+   "When you count the number of Spirits via your Spirit effects, this Spirit is treated as two Spirits.",
+   "[LV2][LV3] (When Attacks)",
+   "Draw a card from the deckbottom.",
+   "If you control four or more Spirits, this effect draws +1 card."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "PB09-004": {
+  "id": "PB09-004B",
+  "name": "［Mode AGRS］Yatagarasu Magoichi",
+  "name_jp": "［modeAGRS］八咫烏孫市",
+  "type": "Spirit",
+  "color": "yellow",
+  "cost": 7,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 8000
+   },
+   {
+    "cores": 2,
+    "bp": 10000
+   },
+   {
+    "cores": 3,
+    "bp": 12000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Avatar",
+   "Diva"
+  ],
+  "text": "Count +1\n\n[LV1][LV2][LV3] (When Attacks)\nOnce per turn, put two cores from the Void to this Spirit, and this Spirit can refresh. Also, if you have two counters or more, during this turn, this Spirit gains an extra Yellow symbol.\n\n[LV3] (When Attacks)\nReturn an opposing Spirit/Nexus to the deckbottom. If you control another \"Magoichi\"/\"Agrs\"/\"Kirika\"-named Spirit, negate the effects of that Spirit/Nexus.",
+  "image": "PB09-004_b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1][LV2][LV3] (When Attacks)",
+   "Once per turn, put two cores from the Void to this Spirit, and this Spirit can refresh.",
+   "Also, if you have two counters or more, during this turn, this Spirit gains an extra Yellow symbol.",
+   "[LV3] (When Attacks)",
+   "Return an opposing Spirit/Nexus to the deckbottom.",
+   "If you control another \"Magoichi\"/\"Agrs\"/\"Kirika\"-named Spirit, negate the effects of that Spirit/Nexus."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "PB14-X01": {
+  "id": "BS54-TX04B",
+  "name": "The HeavenRouseSpear Rhongo-Mynias",
+  "name_jp": "天醒槍ロンゴ・ミニアス",
+  "type": "Brave",
+  "color": "red",
+  "cost": 4,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   }
+  ],
+  "families": [
+   "Exalted Sword",
+   "Primal"
+  ],
+  "text": "Count +1\n\n[LV1] (When Reborn)\nDuring this turn, your Life can only be reduced by one by attacks of opposing Spirits/Ultimates.\n\nDuring Brave\nThis Spirit is treated as one level higher. Also, while you have three counters or more, this Spirit gains an extra God symbol.",
+  "image": "BS54-TX04 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1] (When Reborn)",
+   "During this turn, your Life can only be reduced by one by attacks of opposing Spirits/Ultimates.",
+   "During Brave",
+   "This Spirit is treated as one level higher.",
+   "Also, while you have three counters or more, this Spirit gains an extra God symbol."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "SD52-005": {
+  "id": "CB13-027B",
+  "name": "Aile Strike Gundam",
+  "name_jp": "エールストライクガンダム",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 5,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 2,
+    "bp": 7000
+   },
+   {
+    "cores": 4,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "MS",
+   "OMNI"
+  ],
+  "text": "Count +0\n\n[LV1][LV2][LV3] (When Reborn/Attacks)\nBy putting one core from the Void to any of your White \"MS\" family Spirit, during this turn, that Spirit gains +5000 BP.\n\n[LV2][LV3] {{PSa|Cost 4 or less}}\nThis Spirit is unaffected by opposing Cost 4 or less effects.",
+  "image": "CB13-027 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +0",
+   "[LV1][LV2][LV3] (When Reborn/Attacks)",
+   "By putting one core from the Void to any of your White \"MS\" family Spirit, during this turn, that Spirit gains +5000 BP.",
+   "[LV2][LV3] {{PSa|Cost 4 or less}}",
+   "This Spirit is unaffected by opposing Cost 4 or less effects."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "SD52-009": {
+  "id": "CB13-029B",
+  "name": "Aegis Gundam ［MA Form］",
+  "name_jp": "イージスガンダム［MA形態］",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 6,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 5000
+   },
+   {
+    "cores": 2,
+    "bp": 8000
+   },
+   {
+    "cores": 4,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "MS",
+   "MA",
+   "ZAFT"
+  ],
+  "text": "Count +0\n\n[LV1][LV2][LV3] (When Reborn)\nTarget an opposing Spirit. Exhaust that Spirit, and it can't refresh until the next opposing End Step.\n\n[LV1][LV2][LV3] (When Attacks)\nAt the end of battle, this Spirit can flip back into a pre-Rebirth Spirit.\n\n[LV2][LV3] {{PSa|Cost 4 or less}}\nThis Spirit is unaffected by opposing Cost 4 or less effects.",
+  "image": "CB13-029 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +0",
+   "[LV1][LV2][LV3] (When Reborn)",
+   "Target an opposing Spirit.",
+   "Exhaust that Spirit, and it can't refresh until the next opposing End Step.",
+   "[LV1][LV2][LV3] (When Attacks)",
+   "At the end of battle, this Spirit can flip back into a pre-Rebirth Spirit.",
+   "[LV2][LV3] {{PSa|Cost 4 or less}}",
+   "This Spirit is unaffected by opposing Cost 4 or less effects."
   ],
   "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
  },
@@ -7510,6 +10432,204 @@
    "Increase the amount of cards you draw by +1.",
    "[LV2]",
    "This Spirit can't attack, and is unaffected by opposing effects."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "SD55-011": {
+  "id": "SD55-011B",
+  "name": "The ElegantDragon Elea-Ragoon",
+  "name_jp": "風雅龍エレア・ラグーン",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 5,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   },
+   {
+    "cores": 3,
+    "bp": 5000
+   },
+   {
+    "cores": 4,
+    "bp": 7000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Ancient Dragon"
+  ],
+  "text": "Count +1\n\n[LV1][LV2][LV3] (When Reborn)\nPut two cores from the Void to any Spirits you control.\n\n[LV1][LV2][LV3]\nWhile your Reborn Spirit is attacking, the opponent can’t activate Burst effects.",
+  "image": "ragoon.jpg",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1][LV2][LV3] (When Reborn)",
+   "Put two cores from the Void to any Spirits you control.",
+   "[LV1][LV2][LV3]",
+   "While your Reborn Spirit is attacking, the opponent can’t activate Burst effects."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "SD55-TX01": {
+  "id": "SD55-TX01B",
+  "name": "The SpacetimeDragonEmperor Chronobirth-Dragoon",
+  "name_jp": "時空龍皇クロノバース・ドラグーン",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 7,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 6000
+   },
+   {
+    "cores": 3,
+    "bp": 10000
+   },
+   {
+    "cores": 5,
+    "bp": 13000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Avatar",
+   "Chrownos"
+  ],
+  "text": "Count +1\n\n[LV1][LV2][LV3] (When Reborn)\nDestroy an opposing non-\"Primal\" family Grandwalker Nexus. Also, refresh this Spirit.\n\n[LV2][LV3] (When Attacks)\nThe opponent can't activate Burst effects. Also, if you have three counters or more, send two opposing Lives to the Reserve.",
+  "image": "SD55 TX01(B).png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1][LV2][LV3] (When Reborn)",
+   "Destroy an opposing non-\"Primal\" family Grandwalker Nexus.",
+   "Also, refresh this Spirit.",
+   "[LV2][LV3] (When Attacks)",
+   "The opponent can't activate Burst effects.",
+   "Also, if you have three counters or more, send two opposing Lives to the Reserve."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "SD56-001": {
+  "id": "SD56-001B",
+  "name": "The BuraiMusha Oni-Dragon",
+  "name_jp": "無頼武者オニ・ドラゴン",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 7,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 7000
+   },
+   {
+    "cores": 3,
+    "bp": 10000
+   },
+   {
+    "cores": 6,
+    "bp": 15000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Great General",
+   "Dragon"
+  ],
+  "text": "Count +1\n\n[LV1][LV2][LV3] (When Reborn/Attacks)\nDestroy an opposing 7000 BP or less Spirit. Effects of the Spirit destroyed by this effect can't activate.\n\n[LV1][LV2][LV3] Pursuit (Your Attack Step)\nThis exhausted Spirit can heavy exhaust to attack.\n(A Heavy Exhausted card is turned upside down and becomes Exhausted after one refresh.)\n\n[LV2][LV3] (When Attacks)\nThis Spirit gains +10000 BP and an extra Red symbol.",
+  "image": "SD56-001 (B).png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1][LV2][LV3] (When Reborn/Attacks)",
+   "Destroy an opposing 7000 BP or less Spirit.",
+   "Effects of the Spirit destroyed by this effect can't activate.",
+   "[LV1][LV2][LV3] Pursuit (Your Attack Step)",
+   "This exhausted Spirit can heavy exhaust to attack.",
+   "(A Heavy Exhausted card is turned upside down and becomes Exhausted after one refresh.)",
+   "[LV2][LV3] (When Attacks)",
+   "This Spirit gains +10000 BP and an extra Red symbol."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "SD56-003": {
+  "id": "SD56-003B",
+  "name": "The Dragon Palace",
+  "name_jp": "竜宮城",
+  "type": "Nexus",
+  "color": "white",
+  "cost": 4,
+  "symbols": 2,
+  "levels": [
+   {
+    "cores": 1
+   }
+  ],
+  "families": [
+   "Primal"
+  ],
+  "text": "Count +1\n\n[LV1]\nYour Hand is unaffected by opposing effects.\n\n[LV1] (After Your Burst Activates)\nPut a core from the Void to your Reserve/Spirit. This effect can only be used once per turn.",
+  "image": "SD56 003(B).png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1]",
+   "Your Hand is unaffected by opposing effects.",
+   "[LV1] (After Your Burst Activates)",
+   "Put a core from the Void to your Reserve/Spirit.",
+   "This effect can only be used once per turn."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "SD56-TX01": {
+  "id": "SD56-TX01B",
+  "name": "The ExplosionHero Lord-Dragon-Bazzel X",
+  "name_jp": "爆炎の覇王ロード・ドラゴン・バゼルX",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 8,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 8000
+   },
+   {
+    "cores": 2,
+    "bp": 12000
+   },
+   {
+    "cores": 5,
+    "bp": 15000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Supreme Hero",
+   "Dragon Warrior"
+  ],
+  "text": "Count +1\n\n[LV1][LV2][LV3] (When Reborn/Attacks)\nYou can immediately activate one of your Bursts. The Burst effects of a Red/White \"Supreme Hero\" family card activated by this effect can't be prevented by opposing effects. After that Burst activates, you can set a card with Burst effect from your Hand.\n\n[LV2][LV3] (After Your Burst Activates)\nIf it's your Attack Step, you can refresh this Spirit. When you've done so, send an opposing Life to the Reserve.",
+  "image": "SD56 TX01(B).png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1][LV2][LV3] (When Reborn/Attacks)",
+   "You can immediately activate one of your Bursts.",
+   "The Burst effects of a Red/White \"Supreme Hero\" family card activated by this effect can't be prevented by opposing effects.",
+   "After that Burst activates, you can set a card with Burst effect from your Hand.",
+   "[LV2][LV3] (After Your Burst Activates)",
+   "If it's your Attack Step, you can refresh this Spirit.",
+   "When you've done so, send an opposing Life to the Reserve."
   ],
   "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
  },
@@ -7665,6 +10785,48 @@
   ],
   "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
  },
+ "SD59-TX01": {
+  "id": "SD59-TX01B",
+  "name": "The DragonKnightKing Swordius-Dragoon-Koenig",
+  "name_jp": "竜騎士王ソーディアス・ドラグーン・ケーニヒ",
+  "type": "Spirit",
+  "color": "purple",
+  "cost": 8,
+  "symbols": 2,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 8000
+   },
+   {
+    "cores": 3,
+    "bp": 12000
+   },
+   {
+    "cores": 5,
+    "bp": 17000
+   }
+  ],
+  "families": [
+   "Primal",
+   "Evil Shadow",
+   "Death Dragon"
+  ],
+  "text": "Count +1\n\n[LV1][LV2][LV3] (When Reborn)\nYou can refresh this Spirit. Then, you can summon a Purple \"Knight\"-named non-Rebirth card from your Trash, without paying the cost.\n\n[LV2][LV3] (When Attacks)\nDestroy an opposing Spirit/Ultimate with three cores or less on it. If you have three counters or more, instead, destroy an opposing Spirit/Ultimate with five cores or less on it.",
+  "image": "SD59-TX01 (B).png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1][LV2][LV3] (When Reborn)",
+   "You can refresh this Spirit.",
+   "Then, you can summon a Purple \"Knight\"-named non-Rebirth card from your Trash, without paying the cost.",
+   "[LV2][LV3] (When Attacks)",
+   "Destroy an opposing Spirit/Ultimate with three cores or less on it.",
+   "If you have three counters or more, instead, destroy an opposing Spirit/Ultimate with five cores or less on it."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
  "SD60-TX01": {
   "id": "SD60-TX01B",
   "name": "The WingDeity Grand-Woden-Zwei",
@@ -7705,6 +10867,47 @@
    "Once per turn, when the opponent uses a Magic card without Mirage effects, before that effect activates, by exhausting a Purple/White \"Proximate\"/\"Astroblazer\" family Spirit you control, immediately negate that effect."
   ],
   "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "SD61-TX01": {
+  "id": "SD61-TX01B",
+  "name": "終焉の騎神ラグナ・ロックX",
+  "name_jp": "終焉の騎神ラグナ・ロックX",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 9,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 10000
+   },
+   {
+    "cores": 2,
+    "bp": 13000
+   },
+   {
+    "cores": 5,
+    "bp": 18000
+   }
+  ],
+  "families": [
+   "Astroblazer",
+   "Armed Machine",
+   "Mounted Warrior"
+  ],
+  "text": "この面に裏返ったとき、フィールドに残り、カウント+1する(ボイドからコア1個を自分のカウントエリアに置く)\n［Lv1-Lv2-Lv3］『このスピリットの転醒時』\nボイドからコア3個をこのスピリットに置ける。さらに、系統：「占征」を持つ自分のスピリットのブロックで転醒していたとき、ボイドからコア3個を自分のスピリットに置ける。\n［Lv2-Lv3：フラッシュ］『お互いのアタックステップ』\nターンに1回、このスピリットは回復する。その後、相手のスピリット/アルティメット1体を重疲労させる。\n（重疲労状態のカードは逆向きにし、1回の回復で疲労状態になる）",
+  "image": "SD61-TX01 b.png",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "この面に裏返ったとき、フィールドに残り、カウント+1する(ボイドからコア1個を自分のカウントエリアに置く)",
+   "［Lv1-Lv2-Lv3］『このスピリットの転醒時』",
+   "ボイドからコア3個をこのスピリットに置ける。さらに、系統：「占征」を持つ自分のスピリットのブロックで転醒していたとき、ボイドからコア3個を自分のスピリットに置ける。",
+   "［Lv2-Lv3：フラッシュ］『お互いのアタックステップ』",
+   "ターンに1回、このスピリットは回復する。その後、相手のスピリット/アルティメット1体を重疲労させる。",
+   "（重疲労状態のカードは逆向きにし、1回の回復で疲労状態になる）"
+  ],
+  "note": "Rebirth back face (display only) from the official card database; English name and text pending (Japanese kept); families copied from the front."
  },
  "SD62-TX01": {
   "id": "SD62-TX01B",
@@ -7789,6 +10992,49 @@
    "The effects of the Nexus destroyed by this effect can't activate.",
    "[LV3] (When Attacks)",
    "If you have seven or more Nexus cards in your Trash, send two opposing Lives to the Reserve."
+  ],
+  "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
+ },
+ "SD63-TCP02": {
+  "id": "SD63-TCP02B",
+  "name": "The OracleTwentyOnePillars XXI The World",
+  "name_jp": "オラクル二十一柱 XXI ザ・ワールド",
+  "type": "Spirit",
+  "color": "red",
+  "cost": 8,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 8000
+   },
+   {
+    "cores": 2,
+    "bp": 12000
+   },
+   {
+    "cores": 4,
+    "bp": 16000
+   },
+   {
+    "cores": 6,
+    "bp": 20000
+   }
+  ],
+  "families": [
+   "Proximate",
+   "Astroblazer"
+  ],
+  "text": "Count +1\n\n[LV1][LV2][LV3][LV4] (When Reborn)\nDuring this turn, this Spirit is unaffected by opposing Spirit/Brave/Nexus effects.\n\n[LV2][LV3][LV4] Flash - (When Attacks)\nOnce per turn, if you have five or less counters, by putting two cores from your Counter Area to this Spirit, this Spirit refreshes, and during this turn, this Spirit gains two different colored symbols from among Red/Purple/Green/White/Yellow/Blue.",
+  "image": "SD63-TCP02(B).jpg",
+  "rebirthSide": true,
+  "fxComplete": false,
+  "residual": [
+   "Count +1",
+   "[LV1][LV2][LV3][LV4] (When Reborn)",
+   "During this turn, this Spirit is unaffected by opposing Spirit/Brave/Nexus effects.",
+   "[LV2][LV3][LV4] Flash - (When Attacks)",
+   "Once per turn, if you have five or less counters, by putting two cores from your Counter Area to this Spirit, this Spirit refreshes, and during this turn, this Spirit gains two different colored symbols from among Red/Purple/Green/White/Yellow/Blue."
   ],
   "note": "Rebirth back face (display only): the flip rule is not in the engine yet."
  },

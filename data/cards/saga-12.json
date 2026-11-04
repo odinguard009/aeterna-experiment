@@ -19010,7 +19010,11 @@
    "At the end of the battle of your originally Cost 6 or higher Shiny Hearts Spirit, send an opposing Life to the Reserve. This effect doesn't stack."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒R"
+  "rcode": "転醒R",
+  "rebirthTo": "BSC39-008B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BSC39-009",
@@ -19318,7 +19322,11 @@
    "Besides \"Minarea-Aoki\", every Absolutes Spirit you control is unaffected by opposing Spirits' (When Summoned/Advents/Reborn) effects."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒R"
+  "rcode": "転醒R",
+  "rebirthTo": "BSC39-015B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BSC39-016",
@@ -19747,7 +19755,11 @@
    "While there is any Song Magic cards on your Field, when an opposing Spirit attacks, you can send a core from that Spirit to the Reserve. This effect doesn't stack."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒R"
+  "rcode": "転醒R",
+  "rebirthTo": "BSC39-024B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BSC39-025",
@@ -19983,7 +19995,11 @@
    "When your Pretty Animals Spirits are summoned by an effect, put a core from the Void to any of your Spirits."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒R"
+  "rcode": "転醒R",
+  "rebirthTo": "BSC39-029B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BSC39-030",
@@ -20265,7 +20281,11 @@
    "When your Life is reduced, you can return an opposing Spirit to the Hand. This effect doesn't stack."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒R"
+  "rcode": "転醒R",
+  "rebirthTo": "BSC39-035B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BSC39-036",
@@ -20541,7 +20561,11 @@
    "You can exhaust an opposing Spirit. Also, during this turn, every opposing originally Cost 6 or less Spirit can't refresh."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒R"
+  "rcode": "転醒R",
+  "rebirthTo": "BSC39-041B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BSC39-042",
@@ -23857,7 +23881,11 @@
    "コア5個以上のこのスピリットがアタックしたとき、このスピリットを裏返せる。"
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒R"
+  "rcode": "転醒R",
+  "rebirthTo": "CB18-044B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "CB18-045",
@@ -32906,7 +32934,11 @@
    "When your \"Unit-02\"/\"Unit-05\"/\"Unit-08\"-named Spirit is summoned, you can flip this Nexus. When you do, this now-Reborn Brave either brave to your Spirit, or stay in Spirit condition."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒R"
+  "rcode": "転醒R",
+  "rebirthTo": "CB21-050B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "CB21-051",

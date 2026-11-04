@@ -926,7 +926,11 @@
    "[LV2][LV3] (When Attacks) If you have two counters or more, send two cores from any opposing Spirits to the Trash, and when depletes, send an opposing Life to the Trash."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "Awaken X"
+  "rcode": "Awaken X",
+  "rebirthTo": "BS53-TX01B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS55-053",
@@ -966,7 +970,11 @@
    "[LV2][LV3] Rebirth3 When this Spirit attacks, or would leave the Field due to an opposing effect, you can flip it."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "Awaken R"
+  "rcode": "Awaken R",
+  "rebirthTo": "BS55-053B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS55-TCP10",
@@ -1000,7 +1008,11 @@
    "[LV2][LV3] Rebirth5 When the opposing Life is reduced, or this Spirit would leave the Field due to the opponent, you can flip it (Cores on it are sent to the Reserve)."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP"
+  "rcode": "CP",
+  "rebirthTo": "BS55-TCP10B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS55-TX01",
@@ -1036,7 +1048,11 @@
    "[LV3] (Your Attack Step) When your \"Dragon\" family Spirit destroys any opposing Spirit/Ultimate, send an opposing Life to the Reserve. This effect doesn't stack."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "Awaken X"
+  "rcode": "Awaken X",
+  "rebirthTo": "BS55-TX01B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS55-TX02",
@@ -1077,7 +1093,11 @@
    "[LV2] (When Attacks) You can summon a \"Spiritual Beast\"/\"Plant Spirit\" family Spirit card from your Hand. If the Spirit summoned via this effect is Cost 5 or more, send an opposing Life to the Reserve."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "Awaken X"
+  "rcode": "Awaken X",
+  "rebirthTo": "BS55-TX02B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS55-TX03",
@@ -1118,7 +1138,11 @@
    "[LV2] This Spirit is unaffected by opposing Spirit/Magic effects."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "Awaken X"
+  "rcode": "Awaken X",
+  "rebirthTo": "BS55-TX03B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS55-TX04",
@@ -1159,7 +1183,11 @@
    "Grand Mystery [LV1] Every Cost 3 or less Nexus/Grandwalker Nexus has zero symbols. Also, effects of six-colored Nexuses/Grandwalker Nexuses can't activate."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "Awaken X"
+  "rcode": "Awaken X",
+  "rebirthTo": "BS55-TX04B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS56-TX01",
@@ -1205,7 +1233,11 @@
    "[LV3][LV4] This Spirit gains an extra Red symbol."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "Awaken X"
+  "rcode": "Awaken X",
+  "rebirthTo": "BS56-TX01B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS56-TX02",
@@ -1238,7 +1270,11 @@
    "[LV2][LV3] (Your Attack Step) When your \"DragonKnight\"/\"DragonRideEmperor\"-named Spirit attacks, the opponent can't block unless they, for each counter you have, send a core from any of their Spirits to the Trash."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "Awaken X"
+  "rcode": "Awaken X",
+  "rebirthTo": "BS56-TX02B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS56-TX03",
@@ -1283,7 +1319,11 @@
    "[LV2][LV3] (When Attacks) If you have two counters or more, send two cores from any opposing Spirits to the Trash, and when depletes, send an opposing Life to the Trash."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "Awaken X"
+  "rcode": "Awaken X",
+  "rebirthTo": "BS56-TX03B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS57-034",
@@ -1322,7 +1362,11 @@
    "[LV2][LV3] Rebirth3 When this Spirit would leave the Field by opposing effects, or when your effect sets a Mirage during either Attack Step/End Step, you can flip this Spirit."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "Awaken R"
+  "rcode": "Awaken R",
+  "rebirthTo": "BS57-034B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS57-043",
@@ -1358,7 +1402,11 @@
    "[LV2] (When Attacks) Send five cores from any opposing Grandwalker Nexuses to the Void."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "Awaken R"
+  "rcode": "Awaken R",
+  "rebirthTo": "BS57-043B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS57-064",
@@ -1397,7 +1445,11 @@
    "[LV1] Rebirth3 When opposing Spirits/Ultimates are depleted/destroyed, or when this Nexus would leave the Field by opposing effects, you can flip this Nexus. When you do, you can put a core from your Field/Reserve to this now-Reborn Spirit."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "Awaken R"
+  "rcode": "Awaken R",
+  "rebirthTo": "BS57-064B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS57-TCP01",
@@ -1436,7 +1488,11 @@
    "During Brave Rebirth5 When this Spirit is destroyed, you can separate and flip this Brave."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP"
+  "rcode": "CP",
+  "rebirthTo": "BS57-TCP01B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS57-TCP02",
@@ -1470,7 +1526,11 @@
    "During Brave Rebirth5 When this Spirit would leave the Field due to the opponent, you can separate and flip this Brave."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP"
+  "rcode": "CP",
+  "rebirthTo": "BS57-TCP02B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS57-TCP03",
@@ -1508,7 +1568,11 @@
    "During Brave Rebirth5 When this Spirit would leave the Field due to the opponent, you can separate and flip this Brave."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP"
+  "rcode": "CP",
+  "rebirthTo": "BS57-TCP03B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS57-TCP04",
@@ -1543,7 +1607,11 @@
    "[LV2][LV3] Rebirth5 When either the opposing Life is reduced, or this Spirit would leave the Field due to the opponent, you can flip it. (Cores on it are sent to the Reserve.)"
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP"
+  "rcode": "CP",
+  "rebirthTo": "BS57-TCP04B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS57-TCP05",
@@ -1578,7 +1646,11 @@
    "[LV2][LV3] Rebirth5 When either the opposing Life is reduced, or this Spirit would leave the Field due to the opponent, you can flip it. (Cores on it are sent to the Reserve.)"
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP"
+  "rcode": "CP",
+  "rebirthTo": "BS57-TCP05B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS57-TCP06",
@@ -1613,7 +1685,11 @@
    "[LV3] Rebirth5 When this Spirit would leave the Field due to the opponent, you can flip it. (Cores on it are sent to the Reserve.)"
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP"
+  "rcode": "CP",
+  "rebirthTo": "BS57-TCP06B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS57-TCP07",
@@ -1649,7 +1725,11 @@
    "[LV4] Rebirth5 When the opposing Life is reduced, or this Ultimate would leave the Field due to the opponent, you can flip this Ultimate. (Cores on it are sent to the Reserve.)"
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP"
+  "rcode": "CP",
+  "rebirthTo": "BS57-TCP07B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS57-TCP08",
@@ -1685,7 +1765,11 @@
    "[LV4] Rebirth5 When the opposing Life is reduced, or this Ultimate would leave the Field due to the opponent, you can flip this Ultimate. (Cores on it are sent to the Reserve.)"
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP"
+  "rcode": "CP",
+  "rebirthTo": "BS57-TCP08B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS57-TCP09",
@@ -1721,7 +1805,11 @@
    "[LV3][LV4][LV5] Rebirth5 When the opposing Life is reduced, or this Ultimate would leave the Field due to the opponent, you can flip this Ultimate. (Cores on it are sent to the Reserve.)"
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP"
+  "rcode": "CP",
+  "rebirthTo": "BS57-TCP09B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS57-TCP10",
@@ -1757,7 +1845,11 @@
    "[LV4] (When Attacks) Destroy an opposing Spirit with the lowest cost."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP"
+  "rcode": "CP",
+  "rebirthTo": "BS57-TCP10B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS57-TX01",
@@ -1796,7 +1888,11 @@
    "[LV2][LV3] Rebirth5 If you have a Red Mirage set, instead of attacking with this Spirit, you can flip it."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "Awaken X"
+  "rcode": "Awaken X",
+  "rebirthTo": "BS57-TX01B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS57-TX02",
@@ -1837,7 +1933,11 @@
    "[LV2][LV3] Rebirth5 When this Spirit attacks, if you have a Green/Yellow Mirage set, you can flip this Spirit."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "Awaken X"
+  "rcode": "Awaken X",
+  "rebirthTo": "BS57-TX02B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS57-TX03",
@@ -1876,7 +1976,11 @@
    "[LV1][LV2] (When Attacks) You can set a Purple/Blue Nexus you control that has a Mirage effect, without paying the cost. When you do, return the Mirage that you've originally set to the Hand. When this effect sets, put two cores from the Void to your Field."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "Awaken X"
+  "rcode": "Awaken X",
+  "rebirthTo": "BS57-TX03B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS58-TCP01",
@@ -1915,7 +2019,11 @@
    "During Brave Rebirth5 When this Spirit would leave the Field due to the opponent, you can separate and flip this Brave."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP"
+  "rcode": "CP",
+  "rebirthTo": "BS58-TCP01B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS58-TCP02",
@@ -1954,7 +2062,11 @@
    "During Brave Rebirth5 When this Spirit would leave the Field due to the opponent, this Brave can separate and flip."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP"
+  "rcode": "CP",
+  "rebirthTo": "BS58-TCP02B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS58-TCP06",
@@ -1990,7 +2102,11 @@
    "[LV2] (When Attacks) When the opposing Life is reduced, the opponent discard a card from their Hand."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP"
+  "rcode": "CP",
+  "rebirthTo": "BS58-TCP06B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS58-TCP08",
@@ -2029,7 +2145,11 @@
    "[LV2][LV3] Rebirth5 When your \"Divine Spirit\"/\"Imaginary Beast\" family Spirit attacks, you can flip this Spirit."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP"
+  "rcode": "CP",
+  "rebirthTo": "BS58-TCP08B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS59-014",
@@ -2064,7 +2184,11 @@
   "brave": {
    "bp": 3000,
    "costGe": 3
-  }
+  },
+  "rebirthTo": "BS59-014B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS59-067",
@@ -2102,7 +2226,11 @@
    "[LV1] (Start of Opposing Attack Step) When you control only \"Chrownos\" family Spirits/Nexuses, by returning three \"Chrownos\" family cards from your Trash to the deckbottom, during this turn, unless the opponent sends a core from their Reserve to the Trash, they can't attack."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "Awaken R"
+  "rcode": "Awaken R",
+  "rebirthTo": "BS59-067B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS59-076",
@@ -2134,7 +2262,11 @@
   "brave": {
    "bp": 7000,
    "costGe": 3
-  }
+  },
+  "rebirthTo": "BS59-076B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS59-CP02",
@@ -2296,7 +2428,11 @@
    "During Brave Rebirth5 When this Spirit would leave the Field due to the opponent, you can separate and flip this Brave."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP"
+  "rcode": "CP",
+  "rebirthTo": "BS59-TCP01B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS59-TCP02",
@@ -2331,7 +2467,11 @@
    "During Brave Rebirth5 When this Spirit would leave the Field due to the opponent, this Brave can separate and flip."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP"
+  "rcode": "CP",
+  "rebirthTo": "BS59-TCP02B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS59-TCP03",
@@ -2370,7 +2510,11 @@
    "During Brave Rebirth5 When this Spirit would leave the Field due to the opponent, this Brave can separate and flip."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP"
+  "rcode": "CP",
+  "rebirthTo": "BS59-TCP03B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS60-CP01",
@@ -3668,7 +3812,11 @@
    "[LV1] (Your Attack Step) At the end of your Red-only, originally Cost 5 or more Spirit's battle, send an opposing Life to the Reserve. This effect doesn't stack."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP"
+  "rcode": "CP",
+  "rebirthTo": "BS73-TCP01B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS73-TCP02",
@@ -3704,7 +3852,11 @@
    "[LV1] (Opposing Attack Step) (Can't Stack) While all Nexuses you control are Purple, when an opposing Spirit attacks, you can send a core from that Spirit to the Trash."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP"
+  "rcode": "CP",
+  "rebirthTo": "BS73-TCP02B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS73-TCP03",
@@ -3740,7 +3892,11 @@
    "[LV1] When your Green \"Primal\" effect, besides this Nexus's effect, would increase cores, instead of increasing cores, you can draw a card."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP"
+  "rcode": "CP",
+  "rebirthTo": "BS73-TCP03B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS73-TCP04",
@@ -3776,7 +3932,11 @@
    "[LV1] When your Life is reduced, you can return an opposing Spirit to the Hand."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP"
+  "rcode": "CP",
+  "rebirthTo": "BS73-TCP04B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS73-TCP05",
@@ -3812,7 +3972,11 @@
    "[LV1] (Opposing Attack Step) Opposing originally Cost 6 or less Spirits can't be refreshed by effects."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP"
+  "rcode": "CP",
+  "rebirthTo": "BS73-TCP05B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS73-TCP06",
@@ -3848,7 +4012,11 @@
    "[LV1] When an opposing Spirit would activate its (When Summoned/Advent/Reborn) effect, before the effect activates, by exhausting a Blue-only \"Primal\" family Spirit you control, immediately negate that effect."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "CP"
+  "rcode": "CP",
+  "rebirthTo": "BS73-TCP06B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BS74-AX01",
@@ -21141,7 +21309,11 @@
    "ターンに1回、このスピリットは回復する。"
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English name pending (Japanese name kept). English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
-  "rcode": "転醒X"
+  "rcode": "転醒X",
+  "rebirthTo": "P20-06B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "P20-07",
@@ -21896,7 +22068,11 @@
    "（重疲労状態のカードは逆向きにし、1回の回復で疲労状態になる）"
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English name pending (Japanese name kept). English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
-  "rcode": "転醒X"
+  "rcode": "転醒X",
+  "rebirthTo": "P21-04B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "P21-05",
@@ -26476,7 +26652,11 @@
    "[LV2] This Spirit is unaffected by opposing Spirit/Nexus effects, and can block while exhausted."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "PB"
+  "rcode": "PB",
+  "rebirthTo": "PB09-002B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "PB09-003",
@@ -26517,7 +26697,11 @@
    "[LV2][LV3] This Spirit is unaffected by opposing Spirit/Nexus effects."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "PB"
+  "rcode": "PB",
+  "rebirthTo": "PB09-003B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "PB09-004",
@@ -26559,7 +26743,11 @@
    "[LV1] (Your Main Step) By paying two costs, activate this Nexus's (When Deployed) effect. This effect can only be used once per turn."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "PB"
+  "rcode": "PB",
+  "rebirthTo": "PB09-004B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "PB12-01",
@@ -71407,7 +71595,11 @@
    "[LV2] While your originally Cost 4/5/6 \"Primal\" family Spirit is attacking, the opponent can't activate Burst effects."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "Awaken R"
+  "rcode": "Awaken R",
+  "rebirthTo": "SD55-011B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "SD55-012",
@@ -71531,7 +71723,11 @@
    "[LV2][LV3] Rebirth5 When either the opposing Life is decreased or this Spirit would leave the field due to the opponent, you can flip this Spirit, putting your onto it."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "Awaken X"
+  "rcode": "Awaken X",
+  "rebirthTo": "SD55-TX01B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "SD55-X01",
@@ -71609,7 +71805,11 @@
    "[LV2][LV3] (When Attacks) Destroy an opposing 5000 BP or less Spirit, and draw a card."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "Awaken R"
+  "rcode": "Awaken R",
+  "rebirthTo": "SD56-001B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "SD56-002",
@@ -71680,7 +71880,11 @@
    "[LV2][LV3] (Opposing Turn) Your Hand is unaffected by opposing effects, and your Life can only be reduced by up to one per opposing Spirit per turn."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "Awaken R"
+  "rcode": "Awaken R",
+  "rebirthTo": "SD56-003B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "SD56-CP01",
@@ -72116,7 +72320,11 @@
    "[LV2][LV3] (When Attacks) You can set down a card with Burst effect from your Hand. When you've done so, draw two cards."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "Awaken X"
+  "rcode": "Awaken X",
+  "rebirthTo": "SD56-TX01B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "SD56-X01",
@@ -73881,7 +74089,11 @@
    "[LV2][LV3] (When Attacks) If you have two counters or more, send two cores from any opposing Spirits to the Trash, and when depletes, send an opposing Life to the Trash."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "Awaken X"
+  "rcode": "Awaken X",
+  "rebirthTo": "SD59-TX01B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "SD59-X01",
@@ -75010,7 +75222,11 @@
    "Give all your White \"Proximate\"/\"Astroblazer\" family Spirits: \"Red/White This Spirit is unaffected by opposing Red/White Spirit/Brave/Nexus/Magic effects.\""
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Replaces a v0.210.0 clone whose stats differed from the official data.",
-  "rcode": "転醒X"
+  "rcode": "転醒X",
+  "rebirthTo": "SD61-TX01B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "SD61-X01",
@@ -76068,7 +76284,11 @@
    "[LV1] This Nexus’s symbol is also treated as Red/Purple/Green/Yellow/Blue. Also, this Nexus is unaffected by your effects, other than this Nexus’s own effects."
   ],
   "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "Awaken X"
+  "rcode": "Awaken X",
+  "rebirthTo": "SD63-TCP02B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "SD63-X01",

@@ -26496,7 +26496,11 @@
    "When your White-only Spirit blocks/refreshes by an effect, you can flip this Spirit."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒R"
+  "rcode": "転醒R",
+  "rebirthTo": "BSC47-RV003B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BSC47-RV004",
@@ -26679,7 +26683,11 @@
    "When this Spirit would leave the Field due to the opponent, you can flip it."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒R"
+  "rcode": "転醒R",
+  "rebirthTo": "BSC47-RV007B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BSC47-RV008",
@@ -26770,7 +26778,11 @@
    "Discard three cards from your decktop, and destroy an opposing Cost 6 or less Spirit."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒R"
+  "rcode": "転醒R",
+  "rebirthTo": "BSC47-RV009B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BSC47-RV010",
@@ -26813,7 +26825,11 @@
    "When your \"Chrownos\" family Spirit reduces the opposing Life, or this Spirit would leave the Field due to the opponent, you can flip it."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒R"
+  "rcode": "転醒R",
+  "rebirthTo": "BSC47-RV010B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BSC47-RV011",
@@ -26889,7 +26905,11 @@
    "When you control only \"Chrownos\" family Spirits/Nexuses, by returning three \"Chrownos\" family cards from your Trash to the deckbottom, during this turn, unless the opponent sends a core from their Reserve to the Trash, they can't attack."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒R"
+  "rcode": "転醒R",
+  "rebirthTo": "BSC47-RV012B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BSC47-RV013",
@@ -26930,7 +26950,11 @@
    "All your \"Ice Princess\" family Spirits gain +5000 BP. Also, when you block for the first time this turn, refresh a Spirit you control."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒R"
+  "rcode": "転醒R",
+  "rebirthTo": "BSC47-RV013B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BSC47-RV014",
@@ -26970,7 +26994,11 @@
    "Once per turn, when your \"Chrownos\" family Spirit is summoned, draw a card, then discard a card from your Hand."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒R"
+  "rcode": "転醒R",
+  "rebirthTo": "BSC47-RV014B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BSC47-RV015",
@@ -27041,7 +27069,11 @@
    "Destroy two opposing 10000 BP or less Spirits/Ultimates."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒X"
+  "rcode": "転醒X",
+  "rebirthTo": "BSC47-RVTX01B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BSC47-RVTX02",
@@ -27078,7 +27110,11 @@
    "Destroy two opposing Spirits/Ultimates with three cores or less on them."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒X"
+  "rcode": "転醒X",
+  "rebirthTo": "BSC47-RVTX02B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BSC47-RVTX03",
@@ -27115,7 +27151,11 @@
    "Return an opposing exhausted Spirit/Ultimate to the deckbottom."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒X"
+  "rcode": "転醒X",
+  "rebirthTo": "BSC47-RVTX03B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BSC47-RVTX04",
@@ -27152,7 +27192,11 @@
    "During this battle, your Life can't be reduced."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒X"
+  "rcode": "転醒X",
+  "rebirthTo": "BSC47-RVTX04B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BSC47-RVTX05",
@@ -27183,7 +27227,11 @@
    "When this Magic effect destroys any opposing Spirit/Ultimate, you can flip this card. When you do, this Reborn Brave can either brave to a Spirit you control, or remain in Spirit condition by putting a core from your Reserve/Spirit onto it."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒X"
+  "rcode": "転醒X",
+  "rebirthTo": "BSC47-RVTX05B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BSC47-RVTX06",
@@ -27222,7 +27270,11 @@
    "During this turn, two opposing Spirits/Ultimates can't attack/block."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒X"
+  "rcode": "転醒X",
+  "rebirthTo": "BSC47-RVTX06B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BSC47-RVTX07",
@@ -27261,7 +27313,11 @@
    "Destroy an opposing Spirit/Ultimate with the highest cost."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒X"
+  "rcode": "転醒X",
+  "rebirthTo": "BSC47-RVTX07B",
+  "mechanics": [
+   "Rebirth"
+  ]
  },
  {
   "id": "BSC47-RVX01",
