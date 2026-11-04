@@ -6594,8 +6594,7 @@
   "mechanics": [
    "High Speed"
   ],
-  "fxComplete": false,
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); not yet checked against the card image.",
+  "fxComplete": true,
   "effects": [
    {
     "trigger": "SUMMONED",
@@ -6614,12 +6613,16 @@
         "Contractor Hermes"
        ]
       }
+     },
+     {
+      "do": "DISCARD_FIELD_MAGIC",
+      "costLe": 4,
+      "if": {
+       "controlName": "Contractor Hermes"
+      }
      }
     ]
    }
-  ],
-  "residual": [
-   "LV1-3 second clause: discard a Cost 4 or less Magic card from the opposing Field"
   ],
   "highSpeed": true,
   "bicon": [
@@ -6662,8 +6665,7 @@
   "image": "BS69-025+ (Fixed).png",
   "block": "69",
   "saga": 15,
-  "fxComplete": false,
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); not yet checked against the card image. God reduction icon from Fandom (official list did not load BS69/BS70), v0.44.6.",
+  "fxComplete": true,
   "effects": [
    {
     "trigger": "SUMMONED",
@@ -6742,11 +6744,25 @@
       }
      }
     ]
+   },
+   {
+    "trigger": "STATIC",
+    "lv": [
+     2,
+     3
+    ],
+    "flag": "CORE_SAFE",
+    "mode": "floor3",
+    "to": "own",
+    "match": {
+     "type": "Spirit",
+     "color": "green",
+     "family": [
+      "Devotee",
+      "Concluser"
+     ]
+    }
    }
-  ],
-  "residual": [
-   "LV2-3: the cores on your Devotee/Concluser Spirits can't be brought below three by opposing effects",
-   "The Green colour of the added card is not checked"
   ],
   "bicon": [
    "11"

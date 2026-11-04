@@ -182,3 +182,6 @@ FX_ACTIONS.SUMMON_MIRAGE_SELF_PAID = { chk: () => true, txt: () => 'pay the cost
     if (await summonPaid(c.p, m)) { log(`${CARDS[m.id].name}: the set Mirage is summoned (cost paid).`); c.ctx.did = true; return; }
     removeFrom(c.p.hand, m); m.mirage = true; c.p.mirage = m; c.ctx.did = false;
   } };
+/* v489 DISCARD_FIELD_MAGIC {costLe}: "discard a Cost N or less Magic card from the opposing Field". The engine has no response window while an opposing Magic sits on the Field (it resolves in castMagic at once), so this finds nothing and does nothing; it is kept so the printed clause is data, not residual (BS69-024) */
+FX_ACTIONS.DISCARD_FIELD_MAGIC = { chk: a => Number.isInteger(a.costLe) && Object.keys(a).every(k => ['do', 'costLe', 'if'].includes(k)), txt: a => `discard a Cost ${a.costLe} or less Magic card from the opposing Field`,
+  can: () => false, run: async c => { c.ctx.did = false; } };

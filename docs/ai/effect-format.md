@@ -521,3 +521,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v486 ATTACK_SPIRIT_ALLY (the attacker of an ALLY_ATTACKS effect may target an opposing Spirit; BS69-002); BS69-001/004/005 data-only with existing actions (NO_RETURN, CORE_TO_NEXUS, DESTROY_ANY drawIfDone, DESTROY noFx, nexusGe family).
 - v487 RETURN_TRASH_DISTINCT (up to n differently-named matching cards Trash -> Hand; BS69-007), TRASH_CORES_PER_NEXUS (n Trash cores per family Nexus to a picked Spirit/Nexus; BS69-008, Manifest counterGe 3).
 - v488 DESTROY_OWN_NEXUS_FAMILY {family} and SUMMON_MIRAGE_SELF_PAID (summons the Mirage paying its cost via summonPaid); used by BS69-011.
+- v489 DISCARD_FIELD_MAGIC {costLe}: discards a Magic from the opposing Field; the engine has no response window so it never finds one (BS69-024).

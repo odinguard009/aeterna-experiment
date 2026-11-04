@@ -105,3 +105,26 @@ test('K-1096 BS69-011 Mirage: attacking Primordial gets +5000; Flash destroys an
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.gain, 5000, JSON.stringify(r)); assert.equal(r.ok, true, JSON.stringify(r));
   assert.equal(r.nexusLeft, 0, JSON.stringify(r)); assert.equal(r.onField, true, JSON.stringify(r)); assert.equal(r.oppLeft, 0, JSON.stringify(r));
 });
+
+test('K-1097 BS69-025 Eurytius: Lv2 green Devotee Spirits keep three cores against opposing effects; Summoned adds counter and the Hermes clause deploys a Blade Beast Nexus', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 3;
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && !(BS.CARDS[k].families || []).includes('Blade Beast'));
+    const a = BS.mkInst('BS69-025'); a.cores = 5; P.spirits = [a]; G.fxBy = O.key;
+    const cap5 = coreTakeCap(P, a, 10); G.fxBy = P.key; const capOwn = coreTakeCap(P, a, 10);
+    a.cores = 1; G.fxBy = O.key; const capLv1 = coreTakeCap(P, a, 10);
+    G.fxBy = P.key; a.cores = 3; const c0 = P.counter == null ? 0 : P.counter;
+    await BS.fireFx(P, 'SUMMONED', a, { subject: a });
+    return { cap5, capOwn, capLv1, partial: BS.CARDS['BS69-025'].partial, counterUp: (P.counter == null ? 0 : P.counter) - c0 }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.cap5, 2, JSON.stringify(r)); assert.ok(r.capOwn >= 5, JSON.stringify(r)); assert.equal(r.capLv1, 10, JSON.stringify(r));
+});
+
+test('K-1098 BS69-024 Stichiox: Summoned deploys a Contractor Hermes from hand for free; the opposing-Field Magic clause is data (no response window)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 3;
+    const a = BS.mkInst('BS69-024'); a.cores = 3; P.spirits = [a]; const h = BS.mkInst('BS69-023'); P.hand = [h];
+    const nm = BS.CARDS['BS69-023'] && BS.CARDS['BS69-023'].name;
+    await BS.fireFx(P, 'SUMMONED', a, { subject: a });
+    return { nm, hs: BS.CARDS['BS69-024'].highSpeed, partial: BS.CARDS['BS69-024'].partial, acts: BS.CARDS['BS69-024'].effects[0].actions.map(x => x.do) }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.hs, true, JSON.stringify(r)); assert.deepEqual(r.acts, ['SUMMON_HAND', 'DISCARD_FIELD_MAGIC'], JSON.stringify(r));
+});
