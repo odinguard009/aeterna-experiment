@@ -128,3 +128,40 @@ test('K-1098 BS69-024 Stichiox: Summoned deploys a Contractor Hermes from hand f
     return { nm, hs: BS.CARDS['BS69-024'].highSpeed, partial: BS.CARDS['BS69-024'].partial, acts: BS.CARDS['BS69-024'].effects[0].actions.map(x => x.do) }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.hs, true, JSON.stringify(r)); assert.deepEqual(r.acts, ['SUMMON_HAND', 'DISCARD_FIELD_MAGIC'], JSON.stringify(r));
 });
+
+test('K-1099 BS69-042 Brachiores-Titan: costs 4 with three Primordial Spirits/Nexuses; own Primordial Nexuses ignore opposing cost-5-or-less effects', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 3;
+    const c = BS.mkInst('BS69-042'); P.hand = [c]; P.spirits = []; P.nexus = [];
+    const base = BS.effCost(P, BS.CARDS['BS69-042']);
+    P.nexus = [BS.mkInst('BS69-068'), BS.mkInst('BS69-072')]; P.spirits = [BS.mkInst('BS69-007')];
+    const three = BS.effCost(P, BS.CARDS['BS69-042']);
+    return { base, three, partial: BS.CARDS['BS69-042'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.base, 6, JSON.stringify(r)); assert.equal(r.three, 4, JSON.stringify(r));
+});
+
+test('K-1100 BS69-049 Lovolgis: Attacks gives -5000 BP twice with four counters; zero BP returns the Spirit to the deckbottom', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && BS.CARDS[k].levels[0].bp > 0 && BS.CARDS[k].levels[0].bp <= 5000);
+    const a = BS.mkInst('BS69-049'); a.cores = 2; P.spirits = [a]; P.counter = 4; P.count = 4;
+    const t = BS.mkInst(any); t.cores = 1; O.spirits = [t]; const deck0 = O.deck.length;
+    G.attacker = a; await BS.fireFx(P, 'ATTACKS', a, { attacker: a, subject: a });
+    return { gone: !O.spirits.includes(t), bottom: O.deck.length - deck0, partial: BS.CARDS['BS69-049'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.gone, true, JSON.stringify(r)); assert.equal(r.bottom, 1, JSON.stringify(r));
+});
+
+test('K-1101 BS69-063 Brontes: Lv2 attack with a Primordial Grandwalker Nexus draws two, discards one and deploys a discarded Primordial Nexus; Burst destroys four cost-7-or-less Spirits and summons it', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && BS.CARDS[k].cost <= 7 && BS.CARDS[k].cost > 0 && BS.CARDS[k].levels[0].bp > 0);
+    const gw = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Nexus' && (BS.CARDS[k].families || []).includes('Primordial') && BS.CARDS[k].grandwalker);
+    const a = BS.mkInst('BS69-063'); a.cores = 3; P.spirits = [a]; P.nexus = gw ? [BS.mkInst(gw)] : [BS.mkInst('BS69-068')]; P.hand = [BS.mkInst('BS69-068')];
+    P.deck = [BS.mkInst('BS69-072'), BS.mkInst('BS69-078'), BS.mkInst(any)];
+    G.attacker = a; await BS.fireFx(P, 'ATTACKS', a, { attacker: a, subject: a });
+    const handAfter = P.hand.length, nx = P.nexus.length;
+    P.spirits = []; O.spirits = [1,2,3,4,5].map(() => { const s = BS.mkInst(any); s.cores = 1; return s; }); P.burst = BS.mkInst('BS69-063'); P.reserve.n = 8; G.active = O.key; P.life = 5;
+    await BS.maybeBurst(P, 'LIFE_DECREASE', {});
+    return { handAfter, nx, oppLeft: O.spirits.length, onField: P.spirits.some(s => s.id === 'BS69-063'), partial: BS.CARDS['BS69-063'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.oppLeft, 1, JSON.stringify(r)); assert.equal(r.onField, true, JSON.stringify(r)); assert.equal(r.handAfter, 2, JSON.stringify(r));
+});

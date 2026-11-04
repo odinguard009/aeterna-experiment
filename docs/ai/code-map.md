@@ -71,7 +71,7 @@ cardTeams, allHaveShapeOK, allHaveOK, winRiderRun, fxOppMark, blockTaxOK, payAtk
 ## packages/engine/src/02q-effects-actions-own.js (251 lines, ~7.6k tokens)
 
 
-## packages/engine/src/02r-effects-actions-deck.js (145 lines, ~5.2k tokens)
+## packages/engine/src/02r-effects-actions-deck.js (146 lines, ~5.2k tokens)
 
 
 ## packages/engine/src/02s-effects-actions-soul.js (246 lines, ~6.6k tokens)
@@ -92,7 +92,7 @@ symFixedOnSummon, fxLockBusy, fxLocked, leaveSummonOffer, mirageNexusOf, mirageS
 ## packages/engine/src/02x-effects-soul-magic.js (488 lines, ~12.4k tokens)
 magicFromSoul, magicSoulSrc, fromCols, soulBurstCheck, isGwNexus, gwNexusCount, gpShield, gpBattleSafe, drawOneOnly, nyxNexus, lvCostUp, nexusCoresDown, trashCoreGw, muddyDraw, coreWatchBegin, coreWatchEnd, ownReturned, bounceCost, magicLike, trashFlashOK, handUpLocked, soulUnaff, mirageEndLock, nsfOK, nsfPay
 
-## packages/engine/src/02y-effects-khaos.js (187 lines, ~5.8k tokens)
+## packages/engine/src/02y-effects-khaos.js (197 lines, ~6k tokens)
 burstSetSafe, pickFightingBlocker, coreSafeEvery, removedLocked, burstOnDiscard, removedDrawLocked, noMagicHit
 
 ## packages/engine/src/03-imported-cards.js (257 lines, ~7.7k tokens) — IMPORTED CARD DATA

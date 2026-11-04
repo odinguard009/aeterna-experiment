@@ -522,3 +522,5 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v487 RETURN_TRASH_DISTINCT (up to n differently-named matching cards Trash -> Hand; BS69-007), TRASH_CORES_PER_NEXUS (n Trash cores per family Nexus to a picked Spirit/Nexus; BS69-008, Manifest counterGe 3).
 - v488 DESTROY_OWN_NEXUS_FAMILY {family} and SUMMON_MIRAGE_SELF_PAID (summons the Mirage paying its cost via summonPaid); used by BS69-011.
 - v489 DISCARD_FIELD_MAGIC {costLe}: discards a Magic from the opposing Field; the engine has no response window so it never finds one (BS69-024).
+- v490 DEPLOY_LAST_DISCARDED {match} (reads ctx.lastDiscarded, now set by LOOT); BS69-042 handCost via ctrl {nexus}, BS69-049 BP_MINUS zeroBottom, BS69-063 SET_UNAFFECTED + LOOT.
+- v491 DESTROY n now allows up to 4 targets (BS69-063 Brontes burst).

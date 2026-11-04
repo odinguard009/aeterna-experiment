@@ -185,3 +185,13 @@ FX_ACTIONS.SUMMON_MIRAGE_SELF_PAID = { chk: () => true, txt: () => 'pay the cost
 /* v489 DISCARD_FIELD_MAGIC {costLe}: "discard a Cost N or less Magic card from the opposing Field". The engine has no response window while an opposing Magic sits on the Field (it resolves in castMagic at once), so this finds nothing and does nothing; it is kept so the printed clause is data, not residual (BS69-024) */
 FX_ACTIONS.DISCARD_FIELD_MAGIC = { chk: a => Number.isInteger(a.costLe) && Object.keys(a).every(k => ['do', 'costLe', 'if'].includes(k)), txt: a => `discard a Cost ${a.costLe} or less Magic card from the opposing Field`,
   can: () => false, run: async c => { c.ctx.did = false; } };
+/* v490 DEPLOY_LAST_DISCARDED {match}: "When this effect discards a <match> card, you can deploy that card without paying the cost" (the card LOOT discarded last, ctx.lastDiscarded; asks a human) */
+FX_ACTIONS.DEPLOY_LAST_DISCARDED = { chk: a => hasMatch(a.match) && Object.keys(a).every(k => ['do', 'match', 'if'].includes(k)), txt: a => 'when this effect discards a matching card, you can deploy it without paying the cost',
+  can: () => true,
+  run: async (c, a) => {
+    const d = c.ctx.lastDiscarded; c.ctx.did = false;
+    if (!d || !c.p.trash.includes(d) || !fxMatch(CARDS[d.id], a.match) || !canPlaceFree(c.p, d)) return;
+    if (!c.p.cpu && !await ask({ title: `✨ ${esc(_nm(c))}`, html: `Deploy ${esc(CARDS[d.id].name)} without paying the cost?`, buttons: [{ label: 'Yes', cls: 'primary', value: true }, { label: 'No', cls: 'blue', value: false }] })) return;
+    removeFrom(c.p.trash, d); c.p.hand.push(d);
+    if (await summonFree(c.p, d)) c.ctx.did = true; else { removeFrom(c.p.hand, d); c.p.trash.push(d); }
+  } };

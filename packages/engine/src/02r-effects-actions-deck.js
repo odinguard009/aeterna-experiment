@@ -95,6 +95,7 @@ Object.assign(FX_ACTIONS, {
         removeFrom(c.p.hand, d); (a.to === 'deckBottom' ? c.p.deck : c.p.trash).push(d); last = d;
         log(a.to === 'deckBottom' ? `${nm}: ${who(c.p)} ${c.p.cpu ? 'returns' : 'return'} a card from the Hand to the deckbottom.` : `${nm}: ${who(c.p)} ${c.p.cpu ? 'discards' : 'discard'} ${CARDS[d.id].name}.`);
       }
+      c.ctx.lastDiscarded = last;      // v490 DEPLOY_LAST_DISCARDED
       if (a.famCostDestroy) { const hit = !!last && (CARDS[last.id].families || []).includes(a.famCostDestroy); c.ctx.discardedCost = hit ? CARDS[last.id].cost : null; c.ctx.did = hit; }
     } },
   /* v0.165 "Show up to N <X> cards from your Hand to the opponent. Return them to the deckbottom in any order. For each card returned, draw a card." (drawEach), or
