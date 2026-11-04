@@ -1534,16 +1534,56 @@
   "image": null,
   "block": "44",
   "saga": 9,
-  "fxComplete": false,
-  "residual": [
-   "When this card in Hand is discarded by an opposing effect, you can draw up to three cards.",
-   "[LV1][LV2][LV3] (When Summoned)",
-   "Exhaust an opposing Spirit.",
-   "[LV2][LV3] (When Attacks)",
-   "You can banish a card from the opposing Trash.",
-   "When you've done so, return an opposing exhausted Spirit to the Hand."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "effects": [
+   {
+    "trigger": "HAND_DISCARDED",
+    "optional": true,
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 3
+     }
+    ]
+   },
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "EXHAUST_OPP",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "REMOVE_OPP_TRASH",
+      "n": 1
+     },
+     {
+      "do": "BOUNCE_OPP",
+      "to": "hand",
+      "kind": "spirit",
+      "exhaustedOnly": true,
+      "if": {
+       "prev": true
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS44-033",

@@ -142,6 +142,7 @@ Object.assign(FX_ACTIONS, {
       if (!d) { c.ctx.did = true; log(`${nm}: ${who(o)} ${o.cpu ? 'does' : 'do'} not discard a Magic card.`); return; }
       removeFrom(o.hand, d); o.trash.push(d); c.ctx.did = false;
       log(`${nm}: ${who(o)} ${o.cpu ? 'discards' : 'discard'} ${CARDS[d.id].name}, the effect does not apply.`);
+      await handDiscardedFx(o, d);
     } },
   /* v0.180 "The opponent discards N card(s) from their Hand": the opponent picks (modal for the human, the CPU throws away the cheapest). */
   OPP_DISCARD: { chk: a => a.downTo != null ? (Number.isInteger(a.downTo) && a.downTo >= 1 && a.downTo <= 5 && a.n == null) : (Number.isInteger(a.n) && a.n >= 1 && a.n <= 3),      // v396 downTo: "discards until only N cards remain"
@@ -156,6 +157,7 @@ Object.assign(FX_ACTIONS, {
         else { const v = await ask({ title: `✨ ${nm}`, peek: true, html: 'Choose a card from your Hand to discard.', buttons: L.slice(0, 12).map(x => ({ label: CARDS[x.id].name, cls: 'primary', value: x.uid })) }, o.key || 'player'); d = L.find(x => x.uid === v) || L[0]; }
         removeFrom(o.hand, d); o.trash.push(d); k++;
         log(`${nm}: ${who(o)} ${o.cpu ? 'discards' : 'discard'} ${CARDS[d.id].name}.`);
+        await handDiscardedFx(o, d);
       }
       if (!k) c.ctx.did = false;
       io.view({ type: 'board' });

@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 6148,
+  "cards": 6147,
   "per_saga": {
    "1": 458,
    "2": 251,
@@ -10,7 +10,7 @@
    "6": 311,
    "7": 456,
    "8": 428,
-   "9": 454,
+   "9": 453,
    "10": 478,
    "11": 274,
    "12": 303,
@@ -22,18 +22,18 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2558,
+  "skipped_curated": 2559,
   "nexus_levels_added": 651,
   "nexus_levels_missing": 40,
   "merged": 103,
-  "image_problems": 386,
+  "image_problems": 385,
   "brave_unparsed": 169,
   "ut_lines_added": 106,
-  "odd_reduction": 772,
+  "odd_reduction": 771,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
   "number_conflicts": 2,
-  "without_image": 384
+  "without_image": 383
  },
  "tokens": [
   "BS73-T001",
@@ -1522,6 +1522,7 @@
   "BS44-017",
   "BS44-022",
   "BS44-028",
+  "BS44-032",
   "BS44-037",
   "BS44-038",
   "BS44-049",
@@ -4592,11 +4593,6 @@
    "problem": "no image (near: The PyroxeneTwelveGem MarcchArmyGod Marchius.jpg)"
   },
   {
-   "id": "BS44-032",
-   "name": "The HeroBeast ArcheryGeneral Pandaro-Cross",
-   "problem": "no image (near: The HeroBeast ArcheryGeneral Pandaro-Clus.png)"
-  },
-  {
    "id": "BS44-056",
    "name": "The DivineWorldNavigator Trickster",
    "problem": "no image (near: The DivineWorldGuide Trickster.png)"
@@ -5673,12 +5669,6 @@
   },
   {
    "id": "BS44-025",
-   "dropped": [
-    "god"
-   ]
-  },
-  {
-   "id": "BS44-032",
    "dropped": [
     "god"
    ]

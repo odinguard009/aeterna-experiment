@@ -82,7 +82,7 @@ FX_ACTIONS.OPP_DISCARD_RANDOM = {
   run: async (c, a) => { let k = 0;
     for (let j = 0; j < a.n; j++) { const L = c.opp.hand.filter(x => !handSafe(x, c.opp, c)); if (!L.length) break;
       const d = L[Math.floor(rng() * L.length)]; removeFrom(c.opp.hand, d); c.opp.trash.push(d); k++;
-      log(`${CARDS[c.src.id].name}: ${who(c.opp)} ${c.opp.cpu ? 'discards' : 'discard'} ${CARDS[d.id].name} (random).`); }
+      log(`${CARDS[c.src.id].name}: ${who(c.opp)} ${c.opp.cpu ? 'discards' : 'discard'} ${CARDS[d.id].name} (random).`); await handDiscardedFx(c.opp, d); }
     if (!k) c.ctx.did = false; io.view({ type: 'board' }); } };
 /* v0.208 DRAW_BOTH {n}: "Each player draws N cards" (own side first). */
 FX_ACTIONS.DRAW_BOTH = {

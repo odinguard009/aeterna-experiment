@@ -320,6 +320,26 @@ async function revealedFx(p) {
     }
   }
 }
+/* v0.216 HAND_DISCARDED: card d was just discarded from o's Hand by an opposing effect (OPP_DISCARD*); it is already in o.trash. */
+FX_TRIGGER_TEXT.HAND_DISCARDED = 'When this card in Hand is discarded by an opposing effect';
+async function handDiscardedFx(o, d) {
+  if (!G || G.over) return;
+  const card = CARDS[d.id]; if (!card.effects) return;
+  for (let idx = 0; idx < card.effects.length; idx++) {
+    const e = card.effects[idx];
+    if (e.trigger !== 'HAND_DISCARDED' || G.over) continue;
+    const c = { p: o, opp: G.p[other(o.key)], src: d, ctx: {} };
+    if (!fxIf(o, c.opp, e.if, c.ctx) || !fxCan(c, e)) continue;
+    if (e.optional && !o.cpu) {
+      const yes = await ask({ title: `✨ ${card.name}`, peek: true, html: `[${FX_TRIGGER_TEXT.HAND_DISCARDED}] You can ${esc(fxDescribe(e))}.`,
+        buttons: [{ label: 'Use effect', cls: 'primary', value: true }, { label: 'Skip', cls: 'cancel', value: false }] }, o.key || 'player');
+      if (!yes) continue;
+    }
+    log(`${card.name}: [${FX_TRIGGER_TEXT.HAND_DISCARDED}] ${fxDescribe(e)}.`);
+    await runActions(c, e, 'HAND_DISCARDED');
+    io.view({ type: 'board' }); await wait(300);
+  }
+}
 /* v0.35 Saga Brave on a Grandwalker Nexus (manual p. 38): the Nexus gains the Brave's [While Combined with a Nexus] effects (nexusBrave:true), indexed from 100 */
 const NB_IDX = 100;
 function actList(f) {

@@ -29,8 +29,8 @@ FX_ACTIONS
 ## packages/engine/src/02c-effects-parse.js (342 lines, ~11.6k tokens)
 canPlaceFree, canPlaceBraveFree, trashSummonLock, freeSummonLocked, summonFree, canPlacePaid, canPlaceBy, summonPaid, tributePay, summonBy, fxDescribe, BURST_WHEN, parseCond, parseActionList, parseBurst, parseEffects
 
-## packages/engine/src/02d-effects-resolve.js (422 lines, ~9.1k tokens)
-fxCan, runActions, fireFx, collectFx, fxValid, fireFxMulti, asResolving, flushDerived, resolvePool, soulCoreHolder, soulToTrash, isSealed, soulToLife, lifeTake, soulSource, soulToNexus, cadvFree, advTiming, soulAdventOK, cadvSources, contractAdventTargets, doContractAdvent, adventFieldCores, manifestTargets, doManifest, humanContractAdvent, humanManifest, cpuAdvents, onceKey, usedThisTurn, markUsed, revealedFx, NB_IDX, actList, effAt, activatable, bpReachedCheck, FX_ACTIVE_BP, activateFx, cpuActivate, reviveKey, reviveTargets, doRevive, cpuRevive
+## packages/engine/src/02d-effects-resolve.js (442 lines, ~9.4k tokens)
+fxCan, runActions, fireFx, collectFx, fxValid, fireFxMulti, asResolving, flushDerived, resolvePool, soulCoreHolder, soulToTrash, isSealed, soulToLife, lifeTake, soulSource, soulToNexus, cadvFree, advTiming, soulAdventOK, cadvSources, contractAdventTargets, doContractAdvent, adventFieldCores, manifestTargets, doManifest, humanContractAdvent, humanManifest, cpuAdvents, onceKey, usedThisTurn, markUsed, revealedFx, handDiscardedFx, NB_IDX, actList, effAt, activatable, bpReachedCheck, FX_ACTIVE_BP, activateFx, cpuActivate, reviveKey, reviveTargets, doRevive, cpuRevive
 
 ## packages/engine/src/02e-effects-removed.js (168 lines, ~4.4k tokens) — v0.38 GREEN (Contractor Hermes / Lionheart): Heavy Exhaust, the Removed Zone, exhaust effects, "the opponent can't activate Burst effects".
 setHeavy, refreshOne, toRemoved, fromHandRemoved, _nm, handSafe, handLocked, pickOppSpirits
@@ -77,7 +77,7 @@ cardTeams, allHaveShapeOK, allHaveOK, winRiderRun, fxOppMark, blockTaxOK, payAtk
 ## packages/engine/src/02s-effects-actions-soul.js (246 lines, ~6.6k tokens)
 leaveHook
 
-## packages/engine/src/02t-effects-actions-opp.js (327 lines, ~8.6k tokens)
+## packages/engine/src/02t-effects-actions-opp.js (329 lines, ~8.6k tokens)
 dtBoost, lifeGuardFx
 
 ## packages/engine/src/02u-effects-form-change.js (32 lines, ~0.7k tokens) — FORM CHANGE (v0.135.0, schema v8; Kamen Rider cross-over cards): {{F Change|"X" & Cost N}} {{Invoke|Main}}
