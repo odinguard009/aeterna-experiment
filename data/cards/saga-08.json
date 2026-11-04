@@ -26410,7 +26410,7 @@
  },
  {
   "id": "BSC31-017",
-  "name": "[学園制服]アメディス・ソーニャック",
+  "name": "［Academy Uniform］Amedis Sognac",
   "name_jp": "[学園制服]アメディス・ソーニャック",
   "type": "Spirit",
   "color": "yellow",
@@ -26434,7 +26434,7 @@
    "School Style",
    "Stage Style"
   ],
-  "text": "【チーム：アブソリューツ】\nトラッシュにあるこのスピリットカードは、【ダブルビビッド】を持つ自分のスピリットが、コストを支払って召喚されたとき、手札に戻る。\n［Lv2］『このスピリットのアタック時』\nこのスピリットをデッキの下に戻すことで、自分のトラッシュにある「アメディス・ソーニャック」1枚を、コストを支払わずに召喚する。",
+  "text": "[Team: Absolutes]\n\nWhen your Double Vivid Spirit is summoned by paying costs, return this Spirit card from your Trash to the Hand.\n\n[LV2] (When Attacks)\nBy returning this Spirit to the deckbottom, summon a \"Amedis Sognac\" from your Trash, without paying the cost.",
   "image": "BSC31-017.png",
   "block": "4",
   "saga": 8,
@@ -26443,12 +26443,12 @@
   ],
   "fxComplete": false,
   "residual": [
-   "【チーム：アブソリューツ】",
-   "トラッシュにあるこのスピリットカードは、【ダブルビビッド】を持つ自分のスピリットが、コストを支払って召喚されたとき、手札に戻る。",
-   "［Lv2］『このスピリットのアタック時』",
-   "このスピリットをデッキの下に戻すことで、自分のトラッシュにある「アメディス・ソーニャック」1枚を、コストを支払わずに召喚する。"
+   "[Team: Absolutes]",
+   "When your Double Vivid Spirit is summoned by paying costs, return this Spirit card from your Trash to the Hand.",
+   "[LV2] (When Attacks)",
+   "By returning this Spirit to the deckbottom, summon a \"Amedis Sognac\" from your Trash, without paying the cost."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English name pending (Japanese name kept). English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text from the Fandom page \"［Academy Uniform］Amedis Sognac\", found by card number; not compared with the official Japanese text.",
   "rcode": "C"
  },
  {
@@ -35150,7 +35150,7 @@
  },
  {
   "id": "CB03-CP01",
-  "name": "ズバモン",
+  "name": "Zubamon",
   "name_jp": "ズバモン",
   "type": "Brave",
   "color": "red",
@@ -35174,7 +35174,7 @@
    "Rookie",
    "Machine Dragon"
   ],
-  "text": "［Lv1］【進化：全色】『自分のアタックステップ開始時』\nこのスピリットを手札に戻すことで、手札にある系統：「成熟期」を持つスピリットカード1枚を、コストを支払わずに召喚する。\n《合体条件：コスト4以上》\n【合体時】\nこのブレイヴは、合体しているスピリットが【超進化】するとき、回復状態にし、召喚されたスピリットに合体できる。",
+  "text": "[LV1] {{digiv|All}} (Start of Your Attack Step)\nBy returning this Spirit to the Hand, summon a \"Champion\" family Spirit card from your Hand, without paying the cost.\n\nWhen Braved\nWhen the braved Spirit activates Super Digivolution, this Brave enters refreshed condition, and can brave to the summoned Spirit.",
   "image": "CB03-CP01.png",
   "block": "4",
   "saga": 8,
@@ -35195,13 +35195,12 @@
   },
   "fxComplete": false,
   "residual": [
-   "［Lv1］【進化：全色】『自分のアタックステップ開始時』",
-   "このスピリットを手札に戻すことで、手札にある系統：「成熟期」を持つスピリットカード1枚を、コストを支払わずに召喚する。",
-   "《合体条件：コスト4以上》",
-   "【合体時】",
-   "このブレイヴは、合体しているスピリットが【超進化】するとき、回復状態にし、召喚されたスピリットに合体できる。"
+   "[LV1] {{digiv|All}} (Start of Your Attack Step)",
+   "By returning this Spirit to the Hand, summon a \"Champion\" family Spirit card from your Hand, without paying the cost.",
+   "When Braved",
+   "When the braved Spirit activates Super Digivolution, this Brave enters refreshed condition, and can brave to the summoned Spirit."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English name pending (Japanese name kept). English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text from the Fandom page of the same card; its Japanese text differs slightly from the official text (reprint or erratum).",
   "rcode": "CP"
  },
  {
@@ -36831,7 +36830,7 @@
  },
  {
   "id": "CB04-038",
-  "name": "仮面ライダーゼロノス ベガフォーム",
+  "name": "Kamen Rider Zeronos Vega Form",
   "name_jp": "仮面ライダーゼロノス ベガフォーム",
   "type": "Spirit",
   "color": "white",
@@ -36853,7 +36852,7 @@
   "families": [
    "Kamen"
   ],
-  "text": "［フラッシュ］【チェンジ】コスト4（この効果は手札から使用できる）\nコスト3以下の相手のスピリットすべてを手札に戻す。\nこの効果発揮後、このカードを破棄するか、系統：「仮面」を持つコスト6以下の自分のスピリットと回復状態で入れ替える。バトル中ならバトルを続ける。\n［Lv2］\n系統：「仮面」を持つ自分のスピリットすべては、相手の効果で破壊されない。",
+  "text": "Flash - {{Change|Cost 4 ( (White Core) (White Core))}}\nReturn every opposing Cost 3 or less Spirit to the Hand. After this effect resolves, either discard this card, or replace one of your Cost 6 or less \"Kamen\" family Spirits with this card in refreshed condition. If the Spirit is currently battling, continue the battle.\n\n[LV2]\nYour \"Kamen\" family Spirits can't be destroyed by opposing effects.",
   "image": "CB04-038.png",
   "block": "4",
   "saga": 8,
@@ -36862,13 +36861,12 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［フラッシュ］【チェンジ】コスト4（この効果は手札から使用できる）",
-   "コスト3以下の相手のスピリットすべてを手札に戻す。",
-   "この効果発揮後、このカードを破棄するか、系統：「仮面」を持つコスト6以下の自分のスピリットと回復状態で入れ替える。バトル中ならバトルを続ける。",
-   "［Lv2］",
-   "系統：「仮面」を持つ自分のスピリットすべては、相手の効果で破壊されない。"
+   "Flash - {{Change|Cost 4 ( (White Core) (White Core))}}",
+   "Return every opposing Cost 3 or less Spirit to the Hand. After this effect resolves, either discard this card, or replace one of your Cost 6 or less \"Kamen\" family Spirits with this card in refreshed condition. If the Spirit is currently battling, continue the battle.",
+   "[LV2]",
+   "Your \"Kamen\" family Spirits can't be destroyed by opposing effects."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English name pending (Japanese name kept). English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page).",
   "rcode": "C"
  },
  {

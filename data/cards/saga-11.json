@@ -25742,7 +25742,7 @@
  },
  {
   "id": "CB13-X03",
-  "name": "プロヴィデンスガンダム",
+  "name": "Providence Gundam",
   "name_jp": "プロヴィデンスガンダム",
   "type": "Spirit",
   "color": "white",
@@ -25769,7 +25769,7 @@
    "MS",
    "ZAFT"
   ],
-  "text": "［Lv1-Lv2-Lv3］【PS装甲：コスト7以下】\nこのスピリットはコスト7以下の相手の効果を受けない。\n［Lv1-Lv2-Lv3：フラッシュ］『お互いのアタックステップ』\n2コスト支払うことで、このターンの間、相手のスピリットすべてのコストを-1する。その後、コスト7以下の相手のスピリット1体を手札に戻す。\n［Lv2-Lv3］『お互いのアタックステップ』\n相手が手札のコスト5以下のカードを使用したとき、その効果発揮前に、自分の手元の系統：「ザフト」を持つカード1枚を破棄することで、ただちにその効果を無効にする。",
+  "text": "[LV1][LV2][LV3] {{PSa|Cost 7 or less}}\nThis Spirit is unaffected by opposing Cost 7 or less effects.\n\n[LV1][LV2][LV3] Flash - (Either Attack Step)\nBy paying two costs, during this turn, every opposing Spirit's cost gets -1. Then, return an opposing Cost 7 or less Spirit to the Hand.\n\n[LV2][LV3] (Either Attack Step)\nWhen the opponent uses a Cost 5 or less card from their Hand, before that effect activates, by discarding a \"ZAFT\" family card from your Removed Zone, immediately negate that effect.",
   "image": "CB13-X03.png",
   "block": "7",
   "saga": 11,
@@ -25778,14 +25778,14 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2-Lv3］【PS装甲：コスト7以下】",
-   "このスピリットはコスト7以下の相手の効果を受けない。",
-   "［Lv1-Lv2-Lv3：フラッシュ］『お互いのアタックステップ』",
-   "2コスト支払うことで、このターンの間、相手のスピリットすべてのコストを-1する。その後、コスト7以下の相手のスピリット1体を手札に戻す。",
-   "［Lv2-Lv3］『お互いのアタックステップ』",
-   "相手が手札のコスト5以下のカードを使用したとき、その効果発揮前に、自分の手元の系統：「ザフト」を持つカード1枚を破棄することで、ただちにその効果を無効にする。"
+   "[LV1][LV2][LV3] {{PSa|Cost 7 or less}}",
+   "This Spirit is unaffected by opposing Cost 7 or less effects.",
+   "[LV1][LV2][LV3] Flash - (Either Attack Step)",
+   "By paying two costs, during this turn, every opposing Spirit's cost gets -1. Then, return an opposing Cost 7 or less Spirit to the Hand.",
+   "[LV2][LV3] (Either Attack Step)",
+   "When the opponent uses a Cost 5 or less card from their Hand, before that effect activates, by discarding a \"ZAFT\" family card from your Removed Zone, immediately negate that effect."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English name pending (Japanese name kept). English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page).",
   "rcode": "X"
  },
  {
@@ -30300,7 +30300,7 @@
  },
  {
   "id": "CB15-026",
-  "name": "仮面ライダーアークワン",
+  "name": "Kamen Rider Ark One",
   "name_jp": "仮面ライダーアークワン",
   "type": "Spirit",
   "color": "purple",
@@ -30327,7 +30327,7 @@
    "Kamen",
    "Infernal Lord"
   ],
-  "text": "このカード/スピリットはカード名に「ゼロワン」を含むものとしても扱う。\n［フラッシュ］【チェンジ】コスト6（この効果は手札から使用できる）\n相手のスピリット1体を疲労させる。その後、疲労状態の相手のスピリット1体を破壊する。\nこの効果発揮後、このカードを破棄するか、カード名に「ゼロワン」/「アーク」を含む自分のスピリットと回復状態で入れ替える。\n［Lv2-Lv3］『このスピリットのアタック時』\nバトル終了時、相手のライフのコア1個をトラッシュに置く。",
+  "text": "This card/Spirit is also treated as \"Zero-One\"-named.\n\nFlash - {{Change|Cost 6 ( (Purple Core) (Purple Core) (Green Core) (Green Core))}}\nExhaust an opposing Spirit, Then, destroy an opposing exhausted Spirit. After this effect resolves, either discard this card or replace one of your \"Zero-One\"/\"Ark\"-named Spirits with this card in refreshed state.\n\n[LV2][LV3] (When Attacks)\nAt the end of battle, send an opposing Life to the Trash.",
   "image": "CB15-026.png",
   "block": "7",
   "saga": 11,
@@ -30336,14 +30336,13 @@
   ],
   "fxComplete": false,
   "residual": [
-   "このカード/スピリットはカード名に「ゼロワン」を含むものとしても扱う。",
-   "［フラッシュ］【チェンジ】コスト6（この効果は手札から使用できる）",
-   "相手のスピリット1体を疲労させる。その後、疲労状態の相手のスピリット1体を破壊する。",
-   "この効果発揮後、このカードを破棄するか、カード名に「ゼロワン」/「アーク」を含む自分のスピリットと回復状態で入れ替える。",
-   "［Lv2-Lv3］『このスピリットのアタック時』",
-   "バトル終了時、相手のライフのコア1個をトラッシュに置く。"
+   "This card/Spirit is also treated as \"Zero-One\"-named.",
+   "Flash - {{Change|Cost 6 ( (Purple Core) (Purple Core) (Green Core) (Green Core))}}",
+   "Exhaust an opposing Spirit, Then, destroy an opposing exhausted Spirit. After this effect resolves, either discard this card or replace one of your \"Zero-One\"/\"Ark\"-named Spirits with this card in refreshed state.",
+   "[LV2][LV3] (When Attacks)",
+   "At the end of battle, send an opposing Life to the Trash."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English name pending (Japanese name kept). English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text from the Fandom page \"Kamen Rider Ark One\", found by card number; not compared with the official Japanese text.",
   "rcode": "M"
  },
  {

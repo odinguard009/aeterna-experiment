@@ -7557,6 +7557,32 @@
   "rcode": "C"
  },
  {
+  "id": "BS77-061",
+  "name": "Shiva's Gopuram",
+  "name_jp": "シヴァのゴープラム",
+  "type": "Nexus",
+  "color": "purple",
+  "cost": 3,
+  "reduction": {},
+  "symbols": 1,
+  "levels": [],
+  "families": [
+   "Death Dragon"
+  ],
+  "text": "[LV1-2] (When Deployed/Destroyed)\nYou can put a card from your Hand facedown onto the Removed Zone. When you've done so, +1 core to one of your \"Shiva\" Grandwalker Nexuses.\n\n[LV2] (When Destroyed)\nDraw a card. Then, the opponent reveals a facedown card from your Removed Zone. If that's a \"Death Dragon\" family card, this Nexus remains on the Field in the same condition. Return the revealed card to its original position.",
+  "image": "BS77-061.png",
+  "block": "77",
+  "saga": 17,
+  "fxComplete": false,
+  "residual": [
+   "[LV1-2] (When Deployed/Destroyed)",
+   "You can put a card from your Hand facedown onto the Removed Zone. When you've done so, +1 core to one of your \"Shiva\" Grandwalker Nexuses.",
+   "[LV2] (When Destroyed)",
+   "Draw a card. Then, the opponent reveals a facedown card from your Removed Zone. If that's a \"Death Dragon\" family card, this Nexus remains on the Field in the same condition. Return the revealed card to its original position."
+  ],
+  "note": "Added by tools/master/resolve_stubs.py from the Fandom card page (no official record); effects not wired yet, stats unverified."
+ },
+ {
   "id": "BS77-063",
   "name": "Saraswati's Root Bridge",
   "name_jp": "サラスヴァティーのルートブリッジ",

@@ -25152,6 +25152,46 @@
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
+  "id": "BSC32-PX17",
+  "name": "The CretaceousMarshal Lay-Saurer",
+  "name_jp": "白亜元帥レイ・ザウラー",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 7,
+  "reduction": {
+   "white": 4
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 6000
+   },
+   {
+    "cores": 2,
+    "bp": 8000
+   },
+   {
+    "cores": 4,
+    "bp": 11000
+   }
+  ],
+  "families": [
+   "Machine Beast"
+  ],
+  "text": "[LV1][LV2][LV3]\nThis Spirit is unaffected by opposing Spirit effects.\n\n[LV1][LV2][LV3] (Start of Opposing Attack Step)\nYou can target an opposing Spirit. During this turn, that targeted Spirit can't attack.\n\n[LV2][LV3] (When Attacks/Blocks)\nAt the end of the battle, by returning a White Spirit you control to your Hand, this Spirit refreshes.",
+  "image": "BSC32-PX17.png",
+  "block": "5",
+  "saga": 9,
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2][LV3] This Spirit is unaffected by opposing Spirit effects.",
+   "[LV1][LV2][LV3] (Start of Opposing Attack Step) You can target an opposing Spirit. During this turn, that targeted Spirit can't attack.",
+   "[LV2][LV3] (When Attacks/Blocks) At the end of the battle, by returning a White Spirit you control to your Hand, this Spirit refreshes."
+  ],
+  "note": "Reprint of PX17 (same name on the Fandom set page); added by tools/master/resolve_stubs.py."
+ },
+ {
   "id": "BSC33-001",
   "name": "［Winter Attire］Emma Jean",
   "name_jp": "[冬の装い]エマ・ジーン",
@@ -32890,7 +32930,7 @@
    "Kamen",
    "Nightling"
   ],
-  "text": "［Lv1-Lv2-Lv3］『このスピリットの召喚時』\n相手のスピリットすべてのコア2個ずつを相手のリザーブに置き、自分のライフのコア1個を自分のトラッシュに置く。この効果で自分のバーストは発動できない。\n［Lv2-Lv3］『このスピリットのアタック時』\n相手のスピリット/アルティメット1体のコア3個を相手のリザーブに置く。この効果で消滅したとき、自分のトラッシュの以外のコア1個を自分のライフに置ける。",
+  "text": "[LV1][LV2][LV3] (When Summoned)\nSend two cores each from every opposing Spirit to their Reserve, and send one of your Lives to your Trash. Your Burst can't activate via this effect.\n\n[LV2][LV3] (When Attacks)\nSend three cores from one opposing Spirit/Ultimate to their Reserve. When this effect depletes, besides (Soul Core), you can send a core from your Trash to your Life.",
   "image": "CB06-038.png",
   "block": "5",
   "saga": 9,
@@ -32899,12 +32939,12 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2-Lv3］『このスピリットの召喚時』",
-   "相手のスピリットすべてのコア2個ずつを相手のリザーブに置き、自分のライフのコア1個を自分のトラッシュに置く。この効果で自分のバーストは発動できない。",
-   "［Lv2-Lv3］『このスピリットのアタック時』",
-   "相手のスピリット/アルティメット1体のコア3個を相手のリザーブに置く。この効果で消滅したとき、自分のトラッシュの以外のコア1個を自分のライフに置ける。"
+   "[LV1][LV2][LV3] (When Summoned)",
+   "Send two cores each from every opposing Spirit to their Reserve, and send one of your Lives to your Trash. Your Burst can't activate via this effect.",
+   "[LV2][LV3] (When Attacks)",
+   "Send three cores from one opposing Spirit/Ultimate to their Reserve. When this effect depletes, besides (Soul Core), you can send a core from your Trash to your Life."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English text pending (Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
   "rcode": "R"
  },
  {
@@ -35511,7 +35551,7 @@
  },
  {
   "id": "CB07-009",
-  "name": "メギドラモン",
+  "name": "Megidramon",
   "name_jp": "メギドラモン",
   "type": "Spirit",
   "color": "red",
@@ -35538,7 +35578,7 @@
    "Mega",
    "Ruin Dragon"
   ],
-  "text": "自分のトラッシュに系統：「滅龍」を持つカードがある間、セットしているこのカードは相手の効果を受けない。\n［バースト：相手の『このスピリットの召喚/煌臨時』発揮後］\nBP合計15000まで相手のスピリットを好きなだけ破壊する。この効果で破壊したスピリットの効果は発揮されない。\nこの効果発揮後、このカードをコストを支払わずに召喚する。\n［Lv2-Lv3］『このスピリットのアタック時』\nこのスピリットのBP以下の相手のスピリット1体を破壊する。",
+  "text": "While there is any \"Ruin Dragon\" family card in your Trash, this set card is unaffected by opposing effects.\n\n{{Burst|After an opposing Spirit's (When Summoned/Advents) effect resolves}}\nDestroy any number of opposing Spirits up to a total of 15000 BP. Effects of Spirits destroyed by this effect can't activate. After this effect resolves, summon this card without paying the cost.\n\n[LV2][LV3] (When Attacks)\nDestroy an opposing Spirit with a BP equal or inferior to this Spirit's.",
   "image": "CB07-009.png",
   "block": "5",
   "saga": 9,
@@ -35547,14 +35587,13 @@
   ],
   "fxComplete": false,
   "residual": [
-   "自分のトラッシュに系統：「滅龍」を持つカードがある間、セットしているこのカードは相手の効果を受けない。",
-   "［バースト：相手の『このスピリットの召喚/煌臨時』発揮後］",
-   "BP合計15000まで相手のスピリットを好きなだけ破壊する。この効果で破壊したスピリットの効果は発揮されない。",
-   "この効果発揮後、このカードをコストを支払わずに召喚する。",
-   "［Lv2-Lv3］『このスピリットのアタック時』",
-   "このスピリットのBP以下の相手のスピリット1体を破壊する。"
+   "While there is any \"Ruin Dragon\" family card in your Trash, this set card is unaffected by opposing effects.",
+   "{{Burst|After an opposing Spirit's (When Summoned/Advents) effect resolves}}",
+   "Destroy any number of opposing Spirits up to a total of 15000 BP. Effects of Spirits destroyed by this effect can't activate. After this effect resolves, summon this card without paying the cost.",
+   "[LV2][LV3] (When Attacks)",
+   "Destroy an opposing Spirit with a BP equal or inferior to this Spirit's."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English name pending (Japanese name kept). English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page).",
   "rcode": "M"
  },
  {
@@ -36844,7 +36883,7 @@
  },
  {
   "id": "CB07-038",
-  "name": "ケルビモン（悪）",
+  "name": "Evil Cherubimon",
   "name_jp": "ケルビモン（悪）",
   "type": "Spirit",
   "color": "yellow",
@@ -36873,7 +36912,7 @@
    "Divine Spirit",
    "Imaginary Beast"
   ],
-  "text": "［バースト：相手のスピリット/アルティメットのアタック後］\nこのカードをコストを支払わずに召喚する。\n［Lv1-Lv2-Lv3］『このスピリットの召喚/アタック時』\nこのターンの間、相手のスピリット/アルティメット1体をBP-10000する。この効果でBP0になったスピリット/アルティメットを破壊する。\n［Lv2-Lv3］『相手のアタックステップ』\n相手の『このスピリットのアタック時』効果は発揮されない。",
+  "text": "{{Burst|After an opposing Spirit/Ultimate attacks}}\nSummon this card without paying the cost.\n\n[LV1][LV2][LV3] (When Summoned/Attacks)\nDuring this turn, give an opposing Spirit/Ultimate -10000 BP. Destroy any Spirit/Ultimate whose BP is brought to 0 by this effect.\n\n[LV2][LV3] (Opposing Attack Step)\nThe (When Attacks) effects of opposing Spirits can't activate.",
   "image": "CB07-038.png",
   "block": "5",
   "saga": 9,
@@ -36886,14 +36925,14 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［バースト：相手のスピリット/アルティメットのアタック後］",
-   "このカードをコストを支払わずに召喚する。",
-   "［Lv1-Lv2-Lv3］『このスピリットの召喚/アタック時』",
-   "このターンの間、相手のスピリット/アルティメット1体をBP-10000する。この効果でBP0になったスピリット/アルティメットを破壊する。",
-   "［Lv2-Lv3］『相手のアタックステップ』",
-   "相手の『このスピリットのアタック時』効果は発揮されない。"
+   "{{Burst|After an opposing Spirit/Ultimate attacks}}",
+   "Summon this card without paying the cost.",
+   "[LV1][LV2][LV3] (When Summoned/Attacks)",
+   "During this turn, give an opposing Spirit/Ultimate -10000 BP. Destroy any Spirit/Ultimate whose BP is brought to 0 by this effect.",
+   "[LV2][LV3] (Opposing Attack Step)",
+   "The (When Attacks) effects of opposing Spirits can't activate."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English name pending (Japanese name kept). English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text from the Fandom page of the same card; its Japanese text differs slightly from the official text (reprint or erratum).",
   "rcode": "M"
  },
  {
@@ -40085,7 +40124,7 @@
  },
  {
   "id": "CB08-038",
-  "name": "仮面ライダーレーザー バイクゲーマー レベル1",
+  "name": "Kamen Rider Lazer Bike Gamer Level 1",
   "name_jp": "仮面ライダーレーザー バイクゲーマー レベル1",
   "type": "Spirit",
   "color": "white",
@@ -40123,7 +40162,7 @@
    "［Lv2］",
    "カード名に「ゲーマー」を含む自分のスピリットすべてをBP+2000する。"
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English name pending (Japanese name kept). English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
   "rcode": "C"
  },
  {

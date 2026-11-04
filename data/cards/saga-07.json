@@ -30752,19 +30752,19 @@
    "Diva",
    "Stage Style"
   ],
-  "text": "【チーム：プリティアニマルズ/シャイニーハーツ】\n［Lv1-Lv2-Lv3］『相手のアタックステップ』\n相手のアタックによって自分のライフが減るとき、このスピリットをデッキの下に戻すことで、自分のライフは減らない。\n［Lv2-Lv3］『このスピリットのアタック時』\nこのターンの間、系統：「衣装」を持つ自分のスピリット1体はブロックされない。",
+  "text": "[Teams: Pretty Animals/Shiny Hearts]\n\n[LV1][LV2][LV3] (Opposing Attack Step)\nWhen your Life would be decreased by an opposing attack, by returning this Spirit to your deckbottom, your Life won't be decreased.\n\n[LV2][LV3] (When Attacks)\nDuring this turn, a \"Stage Style\" family Spirit you control can't be blocked.",
   "image": "BSC28-041.png",
   "block": "P",
   "saga": 7,
   "fxComplete": false,
   "residual": [
-   "【チーム：プリティアニマルズ/シャイニーハーツ】",
-   "［Lv1-Lv2-Lv3］『相手のアタックステップ』",
-   "相手のアタックによって自分のライフが減るとき、このスピリットをデッキの下に戻すことで、自分のライフは減らない。",
-   "［Lv2-Lv3］『このスピリットのアタック時』",
-   "このターンの間、系統：「衣装」を持つ自分のスピリット1体はブロックされない。"
+   "[Teams: Pretty Animals/Shiny Hearts]",
+   "[LV1][LV2][LV3] (Opposing Attack Step)",
+   "When your Life would be decreased by an opposing attack, by returning this Spirit to your deckbottom, your Life won't be decreased.",
+   "[LV2][LV3] (When Attacks)",
+   "During this turn, a \"Stage Style\" family Spirit you control can't be blocked."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English text pending (Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English text from the Fandom page of the same card; its Japanese text differs slightly from the official text (reprint or erratum).",
   "rcode": "R"
  },
  {

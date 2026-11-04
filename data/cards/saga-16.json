@@ -38003,7 +38003,7 @@
  },
  {
   "id": "BSC50-043",
-  "name": "アブソリュートストライクLT",
+  "name": "Absolute Strike LT",
   "name_jp": "アブソリュートストライクLT",
   "type": "Magic",
   "color": "white",
@@ -38016,7 +38016,7 @@
   "families": [
    "Astral Deity"
   ],
-  "text": "〔ターンに1回：同名〕トラッシュにあるこのカードは、自分のエンドステップに、自分のカウント4以上で、自分の創界神ネクサスの「バローネ」があるとき、手札に戻せる。\n手札にあるこのカードは、相手のアタックステップ開始時に使用できる。\n［フラッシュ］\n相手のスピリット/アルティメット1体を指定する。このターンの間、その対象は、次に可能ならアタックする。さらに、自分の「ストライク」があるとき、このターンの間、その指定した対象の色とシンボルは白として扱う。",
+  "text": "(Once per Turn: Same Name) During your End Step, if you have four counters or more, and control any \"Barone\" Grandwalker Nexus, you can return this card from the Trash to the Hand.\n\nYou can use this card from the Hand at the start of opposing Attack Step.\n\nFlash\nTarget an opposing Spirit/Ultimate. During this turn, that target must attack next if possible. Also, if you control any \"Strike\", during this turn, the chosen target's color and symbol are treated as White.",
   "image": "BSC50-043.png",
   "block": "12",
   "saga": 16,
@@ -38025,12 +38025,12 @@
   ],
   "fxComplete": false,
   "residual": [
-   "〔ターンに1回：同名〕トラッシュにあるこのカードは、自分のエンドステップに、自分のカウント4以上で、自分の創界神ネクサスの「バローネ」があるとき、手札に戻せる。",
-   "手札にあるこのカードは、相手のアタックステップ開始時に使用できる。",
-   "［フラッシュ］",
-   "相手のスピリット/アルティメット1体を指定する。このターンの間、その対象は、次に可能ならアタックする。さらに、自分の「ストライク」があるとき、このターンの間、その指定した対象の色とシンボルは白として扱う。"
+   "(Once per Turn: Same Name) During your End Step, if you have four counters or more, and control any \"Barone\" Grandwalker Nexus, you can return this card from the Trash to the Hand.",
+   "You can use this card from the Hand at the start of opposing Attack Step.",
+   "Flash",
+   "Target an opposing Spirit/Ultimate. During this turn, that target must attack next if possible. Also, if you control any \"Strike\", during this turn, the chosen target's color and symbol are treated as White."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English name pending (Japanese name kept). English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text from the Fandom page of the same card; its Japanese text differs slightly from the official text (reprint or erratum).",
   "rcode": "C"
  },
  {

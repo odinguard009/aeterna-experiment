@@ -30474,7 +30474,7 @@
  },
  {
   "id": "BSC15-001",
-  "name": "リューマン・ハマー",
+  "name": "Ryuuman-Hammer",
   "name_jp": "リューマン・ハマー",
   "type": "Spirit",
   "color": "red",
@@ -30500,18 +30500,17 @@
   "families": [
    "Dragon"
   ],
-  "text": "［バースト：自分のライフ減少後］\nBP4000以下の相手のスピリット3体を破壊する。この効果発揮後、自分の赤のアルティメットがいるとき、このスピリットカードを召喚する。\n［Lv2-Lv3］『このスピリットの破壊時』\n相手の合体スピリットのブレイヴ1つを破壊する。",
+  "text": "☼[ Burst: After Your Life is Decreased ]\nDestroy three opposing 4000 BP or less Spirits. After this effect resolves, if you control any Ultimate, summon this Spirit card.\n\n[LV2][LV3] (When Destroyed) Destroy a Brave on an opposing Brave Spirit.",
   "image": "BSC15-001.png",
   "block": "P",
   "saga": 5,
   "fxComplete": false,
   "residual": [
-   "［バースト：自分のライフ減少後］",
-   "BP4000以下の相手のスピリット3体を破壊する。この効果発揮後、自分の赤のアルティメットがいるとき、このスピリットカードを召喚する。",
-   "［Lv2-Lv3］『このスピリットの破壊時』",
-   "相手の合体スピリットのブレイヴ1つを破壊する。"
+   "☼[ Burst: After Your Life is Decreased ]",
+   "Destroy three opposing 4000 BP or less Spirits. After this effect resolves, if you control any Ultimate, summon this Spirit card.",
+   "[LV2][LV3] (When Destroyed) Destroy a Brave on an opposing Brave Spirit."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English name pending (Japanese name kept). English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page).",
   "rcode": "C"
  },
  {
@@ -31010,6 +31009,129 @@
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
   "rcode": "C"
+ },
+ {
+  "id": "BSC15-P069",
+  "name": "Lord-Bravan",
+  "name_jp": "ロード・ブレイバン",
+  "type": "Brave",
+  "color": "red",
+  "cost": 4,
+  "reduction": {
+   "red": 1,
+   "white": 1
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   }
+  ],
+  "families": [
+   "Machine Dragon"
+  ],
+  "text": "☼[ Burst: After Your Life is Decreased ]\nSummon this Brave card.\n\n[When Braved] (When This Spirit Brave Attacks) When this Spirit's attack reduced the opposing Life, send a core from the opposing Life to the Reserve.",
+  "image": "BSC15-P069.png",
+  "block": "P",
+  "saga": 5,
+  "colors": [
+   "red",
+   "white"
+  ],
+  "brave": {
+   "bp": 5000,
+   "costGe": 4
+  },
+  "fxComplete": false,
+  "residual": [
+   "☼[ Burst: After Your Life is Decreased ]",
+   "Summon this Brave card.",
+   "[When Braved] (When This Spirit Brave Attacks) When this Spirit's attack reduced the opposing Life, send a core from the opposing Life to the Reserve."
+  ],
+  "note": "Reprint of P069 (same name on the Fandom set page); added by tools/master/resolve_stubs.py."
+ },
+ {
+  "id": "BSC15-P070",
+  "name": "Chaotic-Rikugo",
+  "name_jp": "カオティック・リクゴー",
+  "type": "Brave",
+  "color": "purple",
+  "cost": 4,
+  "reduction": {
+   "purple": 1,
+   "yellow": 1
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   }
+  ],
+  "families": [
+   "Evil Shadow"
+  ],
+  "text": "☼[ Burst: After Your Life is Decreased ]\nSummon this Brave card.\n\n[When Braved] (When Battles) When the battle resolves, instead of the Spirit with the lower BP, the Spirit with the higher BP is destroyed. If both Spirits have the same BP, both Spirits are destroyed.",
+  "image": "BSC15-P070.png",
+  "block": "P",
+  "saga": 5,
+  "colors": [
+   "purple",
+   "yellow"
+  ],
+  "brave": {
+   "bp": 0,
+   "costGe": 3
+  },
+  "fxComplete": false,
+  "residual": [
+   "☼[ Burst: After Your Life is Decreased ]",
+   "Summon this Brave card.",
+   "[When Braved] (When Battles) When the battle resolves, instead of the Spirit with the lower BP, the Spirit with the higher BP is destroyed. If both Spirits have the same BP, both Spirits are destroyed."
+  ],
+  "note": "Reprint of P070 (same name on the Fandom set page); added by tools/master/resolve_stubs.py."
+ },
+ {
+  "id": "BSC15-P071",
+  "name": "Saigord-Arms",
+  "name_jp": "サイゴード・アームズ",
+  "type": "Brave",
+  "color": "green",
+  "cost": 4,
+  "reduction": {
+   "green": 1,
+   "blue": 1
+  },
+  "symbols": 0,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 3000
+   }
+  ],
+  "families": [
+   "Artificial Soldier"
+  ],
+  "text": "☼[ Burst: After Your Life is Decreased ]\nSummon this Brave card.\n\n[When Braved] (When This Spirit Brave Attacks) Discard two cards from the opposing decktop, and when a card with Burst effect is discarded, put a core from the Void to any Spirit you control.",
+  "image": "BSC15-P071.png",
+  "block": "P",
+  "saga": 5,
+  "colors": [
+   "green",
+   "blue"
+  ],
+  "brave": {
+   "bp": 3000,
+   "costGe": 3
+  },
+  "fxComplete": false,
+  "residual": [
+   "☼[ Burst: After Your Life is Decreased ]",
+   "Summon this Brave card.",
+   "[When Braved] (When This Spirit Brave Attacks) Discard two cards from the opposing decktop, and when a card with Burst effect is discarded, put a core from the Void to any Spirit you control."
+  ],
+  "note": "Reprint of P071 (same name on the Fandom set page); added by tools/master/resolve_stubs.py."
  },
  {
   "id": "BSC15-X01",
@@ -33343,6 +33465,89 @@
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
   "rcode": "R"
+ },
+ {
+  "id": "BSC17-PX17",
+  "name": "The CretaceousMarshal Lay-Saurer",
+  "name_jp": "白亜元帥レイ・ザウラー",
+  "type": "Spirit",
+  "color": "white",
+  "cost": 7,
+  "reduction": {
+   "white": 4
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 6000
+   },
+   {
+    "cores": 2,
+    "bp": 8000
+   },
+   {
+    "cores": 4,
+    "bp": 11000
+   }
+  ],
+  "families": [
+   "Machine Beast"
+  ],
+  "text": "[LV1][LV2][LV3]\nThis Spirit is unaffected by opposing Spirit effects.\n\n[LV1][LV2][LV3] (Start of Opposing Attack Step)\nYou can target an opposing Spirit. During this turn, that targeted Spirit can't attack.\n\n[LV2][LV3] (When Attacks/Blocks)\nAt the end of the battle, by returning a White Spirit you control to your Hand, this Spirit refreshes.",
+  "image": "BSC17-PX17.png",
+  "block": "P",
+  "saga": 5,
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2][LV3] This Spirit is unaffected by opposing Spirit effects.",
+   "[LV1][LV2][LV3] (Start of Opposing Attack Step) You can target an opposing Spirit. During this turn, that targeted Spirit can't attack.",
+   "[LV2][LV3] (When Attacks/Blocks) At the end of the battle, by returning a White Spirit you control to your Hand, this Spirit refreshes."
+  ],
+  "note": "Reprint of PX17 (same name on the Fandom set page); added by tools/master/resolve_stubs.py."
+ },
+ {
+  "id": "BSC17-PX19",
+  "name": "The TwinAxeEmperor Gordias",
+  "name_jp": "双斧帝ゴルディアス",
+  "type": "Spirit",
+  "color": "blue",
+  "cost": 7,
+  "reduction": {
+   "blue": 4
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 6000
+   },
+   {
+    "cores": 4,
+    "bp": 10000
+   },
+   {
+    "cores": 7,
+    "bp": 13000
+   }
+  ],
+  "families": [
+   "Fighting Spirit"
+  ],
+  "text": "[LV1][LV2][LV3]\nCards in every player's Trash are unaffected by any other effects except this one.\n\n[LV2][LV3] (When Attacks)\nDestroy an opposing Cost 4 or less Spirit. When any Spirit is destroyed by this effect, refresh this Spirit.\n\n[LV3] (Your Attack Step)\nAt the beginning of the step, you can target an opposing Spirit. During this turn, the targeted Spirit is also treated as Cost 3.",
+  "image": "BSC17-PX19.png",
+  "block": "P",
+  "saga": 5,
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2][LV3]",
+   "Cards in every player's Trash are unaffected by any other effects except this one.",
+   "[LV2][LV3] (When Attacks)",
+   "Destroy an opposing Cost 4 or less Spirit. When any Spirit is destroyed by this effect, refresh this Spirit.",
+   "[LV3] (Your Attack Step)",
+   "At the beginning of the step, you can target an opposing Spirit. During this turn, the targeted Spirit is also treated as Cost 3."
+  ],
+  "note": "Reprint of PX19 (same name on the Fandom set page); added by tools/master/resolve_stubs.py."
  },
  {
   "id": "BSC17-X01",
@@ -35963,7 +36168,7 @@
  },
  {
   "id": "BSC19-013",
-  "name": "ファイヤーラドン",
+  "name": "Fire Rodan",
   "name_jp": "ファイヤーラドン",
   "type": "Spirit",
   "color": "red",
@@ -35989,18 +36194,16 @@
   "families": [
    "Winged Dragon"
   ],
-  "text": "［Lv1-Lv2-Lv3］『このスピリットのアタック時』\nBP5000以下の相手のスピリット1体を破壊する。\n［Lv1-Lv2-Lv3］『このスピリットの破壊時』\n自分のトラッシュにある、カード名に「ゴジラ」と入っている赤のスピリットカード1枚を、コストを支払わずに召喚できる。",
+  "text": "[LV1][LV2][LV3] (When Attacks) Destroy an opposing 5000 BP or less Spirit.\n\n[LV1][LV2][LV3] (When Destroyed) You can summon a Red \"Godzilla\"-named Spirit card from your Trash without paying the cost.",
   "image": "BSC19-013.png",
   "block": "P",
   "saga": 5,
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2-Lv3］『このスピリットのアタック時』",
-   "BP5000以下の相手のスピリット1体を破壊する。",
-   "［Lv1-Lv2-Lv3］『このスピリットの破壊時』",
-   "自分のトラッシュにある、カード名に「ゴジラ」と入っている赤のスピリットカード1枚を、コストを支払わずに召喚できる。"
+   "[LV1][LV2][LV3] (When Attacks) Destroy an opposing 5000 BP or less Spirit.",
+   "[LV1][LV2][LV3] (When Destroyed) You can summon a Red \"Godzilla\"-named Spirit card from your Trash without paying the cost."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English name pending (Japanese name kept). English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page).",
   "rcode": "R"
  },
  {
@@ -36092,7 +36295,7 @@
  },
  {
   "id": "BSC19-016",
-  "name": "オルガ",
+  "name": "Orga",
   "name_jp": "オルガ",
   "type": "Spirit",
   "color": "red",
@@ -36119,7 +36322,7 @@
   "families": [
    "Astral Dragon"
   ],
-  "text": "［バースト：自分のライフ減少後］\nこのスピリットカードを召喚する。その後、自分のライフが5以下のとき、ボイドからコア1個を自分のライフに置く。\n［Lv2-Lv3］『このスピリットのバトル時』\nBP3000以下の相手のスピリット1体を破壊する。\n［Lv3］『このスピリットの破壊時』\nこのスピリットは手札に戻る。",
+  "text": "☼[ Burst: After Your Life Decreases ]\nSummon this Spirit card. Then, if your Life is 5 or less, put one core from the Void to your Life.\n\n[LV2][LV3] (When Battles) Destroy an opposing 3000 BP or less Spirit.\n\n[LV3] (When Destroyed) This Spirit returns to your Hand.",
   "image": "BSC19-016.png",
   "block": "P",
   "saga": 5,
@@ -36129,14 +36332,12 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［バースト：自分のライフ減少後］",
-   "このスピリットカードを召喚する。その後、自分のライフが5以下のとき、ボイドからコア1個を自分のライフに置く。",
-   "［Lv2-Lv3］『このスピリットのバトル時』",
-   "BP3000以下の相手のスピリット1体を破壊する。",
-   "［Lv3］『このスピリットの破壊時』",
-   "このスピリットは手札に戻る。"
+   "☼[ Burst: After Your Life Decreases ]",
+   "Summon this Spirit card. Then, if your Life is 5 or less, put one core from the Void to your Life.",
+   "[LV2][LV3] (When Battles) Destroy an opposing 3000 BP or less Spirit.",
+   "[LV3] (When Destroyed) This Spirit returns to your Hand."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English name pending (Japanese name kept). English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page).",
   "rcode": "M"
  },
  {
@@ -36634,7 +36835,7 @@
  },
  {
   "id": "BSC19-030",
-  "name": "スーパーＸIII",
+  "name": "Super X3",
   "name_jp": "スーパーＸIII",
   "type": "Spirit",
   "color": "white",
@@ -36656,18 +36857,16 @@
   "families": [
    "Machine"
   ],
-  "text": "［Lv1-Lv2］『このスピリットの召喚時』\n相手のネクサス1つを手札に戻す。\n［Lv2］『このスピリットのアタック時』\n相手の赤のスピリット1体を手札に戻す。",
+  "text": "[LV1][LV2] (When Summoned) Return an opposing Nexus to the Hand.\n\n[LV2] (When Attacks) Return an opposing Red Spirit to the Hand.",
   "image": "BSC19-030.png",
   "block": "P",
   "saga": 5,
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2］『このスピリットの召喚時』",
-   "相手のネクサス1つを手札に戻す。",
-   "［Lv2］『このスピリットのアタック時』",
-   "相手の赤のスピリット1体を手札に戻す。"
+   "[LV1][LV2] (When Summoned) Return an opposing Nexus to the Hand.",
+   "[LV2] (When Attacks) Return an opposing Red Spirit to the Hand."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English name pending (Japanese name kept). English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page).",
   "rcode": "C"
  },
  {
@@ -36914,7 +37113,7 @@
  },
  {
   "id": "BSC19-037",
-  "name": "3式機龍",
+  "name": "Type-3 Kiryu",
   "name_jp": "3式機龍",
   "type": "Spirit",
   "color": "white",
@@ -36940,20 +37139,17 @@
   "families": [
    "Machine Beast"
   ],
-  "text": "［Lv1-Lv2-Lv3］『このスピリットの召喚時』\n相手のスピリット/アルティメット1体を手札に戻す。\n［Lv1-Lv2-Lv3］【超装甲：赤/緑】\nこのスピリットは、相手の赤/緑のスピリット/アルティメット/ネクサス/マジックの効果を受けない。\n［Lv2-Lv3］\n相手の赤のスピリットがいる間、このスピリットをBP+10000する。",
+  "text": "[LV1][LV2][LV3] (When Summoned) Return an opposing Spirit/Ultimate to the Hand.\n\n[LV1][LV2][LV3] Ultra Armor: Red/Green - This Spirit is unaffected by opposing Red/Green Spirit/Ultimate/Nexus/Magic effects.\n\n[LV2][LV3] While your opponent controls a Red Spirit, this Spirit gets +10000 BP.",
   "image": "BSC19-037.png",
   "block": "P",
   "saga": 5,
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2-Lv3］『このスピリットの召喚時』",
-   "相手のスピリット/アルティメット1体を手札に戻す。",
-   "［Lv1-Lv2-Lv3］【超装甲：赤/緑】",
-   "このスピリットは、相手の赤/緑のスピリット/アルティメット/ネクサス/マジックの効果を受けない。",
-   "［Lv2-Lv3］",
-   "相手の赤のスピリットがいる間、このスピリットをBP+10000する。"
+   "[LV1][LV2][LV3] (When Summoned) Return an opposing Spirit/Ultimate to the Hand.",
+   "[LV1][LV2][LV3] Ultra Armor: Red/Green - This Spirit is unaffected by opposing Red/Green Spirit/Ultimate/Nexus/Magic effects.",
+   "[LV2][LV3] While your opponent controls a Red Spirit, this Spirit gets +10000 BP."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English name pending (Japanese name kept). English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text from the Fandom page \"Type-3 Kiryu\", found by card number; not compared with the official Japanese text.",
   "rcode": "M"
  },
  {

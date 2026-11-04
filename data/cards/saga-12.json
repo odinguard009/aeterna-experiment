@@ -24794,7 +24794,7 @@
   "families": [
    "Fighting Spirit"
   ],
-  "text": "[LV1][LV2] (When Summoned)\nPut a core from the Void to this Spirit. Also, while you control another \"Tiga\"/Dyna\"/\"Gaia\"-named Spirit, put a core from the Void to your Trash.\n\n[LV2] Rebirth3\nWhen this Spirit with five cores or more on it attacks, you can flip it.|jpeffect=Lv1・Lv2『このスピリットの召喚時』\nボイドからコア1個をこのスピリットに置く。さらに、このスピリット以外のカード名に「ティガ」/「ダイナ」/「ガイア」を含む自分のスピリットがいるとき、ボイドからコア1個を自分のトラッシュに置く。\n\nLv2《転醒：自分のカウント3以下(転醒は同時に使えない)》\nコア5個以上のこのスピリットがアタックしたとき、このスピリットを裏返せる。",
+  "text": "[LV1][LV2] (When Summoned)\nPut a core from the Void to this Spirit. Also, while you control another \"Tiga\"/Dyna\"/\"Gaia\"-named Spirit, put a core from the Void to your Trash.\n\n[LV2] Rebirth3\nWhen this Spirit with five cores or more on it attacks, you can flip it.",
   "image": "CB18-044.png",
   "block": "8",
   "saga": 12,
@@ -24806,12 +24806,9 @@
    "[LV1][LV2] (When Summoned)",
    "Put a core from the Void to this Spirit. Also, while you control another \"Tiga\"/Dyna\"/\"Gaia\"-named Spirit, put a core from the Void to your Trash.",
    "[LV2] Rebirth3",
-   "When this Spirit with five cores or more on it attacks, you can flip it.|jpeffect=Lv1・Lv2『このスピリットの召喚時』",
-   "ボイドからコア1個をこのスピリットに置く。さらに、このスピリット以外のカード名に「ティガ」/「ダイナ」/「ガイア」を含む自分のスピリットがいるとき、ボイドからコア1個を自分のトラッシュに置く。",
-   "Lv2《転醒：自分のカウント3以下(転醒は同時に使えない)》",
-   "コア5個以上のこのスピリットがアタックしたとき、このスピリットを裏返せる。"
+   "When this Spirit with five cores or more on it attacks, you can flip it."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English text from the Fandom page \"Ultraman Tiga Multi Type (CB18-044 (A))\", found by card number; not compared with the official Japanese text.",
   "rcode": "Awaken R",
   "rebirthTo": "CB18-044B",
   "mechanics": [

@@ -18203,7 +18203,7 @@
  },
  {
   "id": "BSC20-018",
-  "name": "青剣明王",
+  "name": "The Blue Swords WisdomKing",
   "name_jp": "青剣明王",
   "type": "Spirit",
   "color": "blue",
@@ -18226,19 +18226,16 @@
    "Vassal",
    "Fighting Spirit"
   ],
-  "text": "［Lv1-Lv2］『このスピリットのアタック時』\n相手のデッキを上から3枚破棄する。\nこのスピリットに(ソウルコア)が置かれているとき、さらに、自分のトラッシュにある系統：「闘神」を持つスピリットカード1枚を手札に戻す。\n[Lv2]『このスピリットのアタック時』\nコスト4以下の相手のスピリット1体を破壊する。",
+  "text": "[LV1][LV2] (When Attacks) Discard three cards from the opposing decktop. While (Soul Core)(Soul Core) is on this Spirit, also, return a \"Fighting Spirit\" family Spirit card from your Trash to the Hand.\n\n[LV2] (When Attacks) Destroy an opposing Cost 4 or less Spirit.",
   "image": "BSC20-018.png",
   "block": "P",
   "saga": 6,
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2］『このスピリットのアタック時』",
-   "相手のデッキを上から3枚破棄する。",
-   "このスピリットに(ソウルコア)が置かれているとき、さらに、自分のトラッシュにある系統：「闘神」を持つスピリットカード1枚を手札に戻す。",
-   "[Lv2]『このスピリットのアタック時』",
-   "コスト4以下の相手のスピリット1体を破壊する。"
+   "[LV1][LV2] (When Attacks) Discard three cards from the opposing decktop. While (Soul Core)(Soul Core) is on this Spirit, also, return a \"Fighting Spirit\" family Spirit card from your Trash to the Hand.",
+   "[LV2] (When Attacks) Destroy an opposing Cost 4 or less Spirit."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English name pending (Japanese name kept). English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page).",
   "rcode": "U"
  },
  {
@@ -18360,7 +18357,7 @@
  },
  {
   "id": "BSC20-022",
-  "name": "翠遁之術",
+  "name": "Verdant Release Technique",
   "name_jp": "翠遁之術",
   "type": "Magic",
   "color": "green",
@@ -18371,18 +18368,56 @@
   "symbols": 0,
   "levels": [],
   "families": [],
-  "text": "［フラッシュ］\n相手のスピリット/アルティメット1体を疲労させる。\nコストの支払いに(ソウルコア)を使用していたら、さらに、ボイドからコア2個を自分のスピリット1体に置く。",
+  "text": "Flash- Exhaust an opposing Spirit/Ultimate. When (Soul Core)(Soul Core) was used to pay the cost, also, put two cores from the Void to one of your Spirits.",
   "image": "BSC20-022.png",
   "block": "P",
   "saga": 6,
   "fxComplete": false,
   "residual": [
-   "［フラッシュ］",
-   "相手のスピリット/アルティメット1体を疲労させる。",
-   "コストの支払いに(ソウルコア)を使用していたら、さらに、ボイドからコア2個を自分のスピリット1体に置く。"
+   "Flash- Exhaust an opposing Spirit/Ultimate. When (Soul Core)(Soul Core) was used to pay the cost, also, put two cores from the Void to one of your Spirits."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English name pending (Japanese name kept). English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page).",
   "rcode": "C"
+ },
+ {
+  "id": "BSC20-PX15",
+  "name": "The HornetKing Fong-Need",
+  "name_jp": "蜂王フォン・ニード",
+  "type": "Spirit",
+  "color": "green",
+  "cost": 7,
+  "reduction": {
+   "green": 4
+  },
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 6000
+   },
+   {
+    "cores": 4,
+    "bp": 10000
+   }
+  ],
+  "families": [
+   "Shellman",
+   "Parasite"
+  ],
+  "text": "[LV1][LV2] (When Summoned)\nPut three cores from the Void to this Spirit.\n\n[LV1][LV2] (When Attacks)\nExhaust any number of opposing Spirits up to a total of 10000 BP.\n\n[LV2] (When Attacks)\nWhen the opposing Life is reduced, by sending three cores from this Spirit to your Trash, refresh this Spirit.",
+  "image": "BSC20-PX15.png",
+  "block": "4",
+  "saga": 6,
+  "fxComplete": false,
+  "residual": [
+   "[LV1][LV2] (When Summoned)",
+   "Put three cores from the Void to this Spirit.",
+   "[LV1][LV2] (When Attacks)",
+   "Exhaust any number of opposing Spirits up to a total of 10000 BP.",
+   "[LV2] (When Attacks)",
+   "When the opposing Life is reduced, by sending three cores from this Spirit to your Trash, refresh this Spirit."
+  ],
+  "note": "Reprint of PX15 (same name on the Fandom set page); added by tools/master/resolve_stubs.py."
  },
  {
   "id": "BSC20-X01",
@@ -24180,17 +24215,19 @@
   "symbols": 0,
   "levels": [],
   "families": [],
-  "text": "［フラッシュ］\nボイドからコア4個を自分のスピリット1体に置く。エンドステップに、自分のコア4個をボイドに置く。\nコストの支払いに（ソウルコア）を使用していたら、さらに、自分のトラッシュにあるカード名に「魔界七将」と入っているスピリットカード1枚を、コストを支払わずに召喚できる。エンドステップに、この効果で召喚したスピリット1体を破壊する。",
+  "text": "Original (Jap Version) = Flash- Put four cores from the Void to a Spirit. At the End Step, send four of your cores to the Void.\n|-|\nOriginal (Eng Version) = (Flash Step) Gain 4 cores on target spirit. At end of turn, remove a total of 4 cores from cards you control, your Reserve, and/or your Trash. This effect cannot be used in your Main Phase.\n|-|\nRevival = Flash- Put four cores from the Void to a Spirit you control. At the End Step, send four of your cores to the Void. Also, if (Soul Core) (Soul Core) was used to pay the cost, you can summon a \"SevenShogun\"-named Spirit card from your Trash, without paying the cost. At the End Step, destroy a Spirit summoned by this effect.",
   "image": "BSC22-CP01.png",
   "block": "P",
   "saga": 6,
   "fxComplete": false,
   "residual": [
-   "［フラッシュ］",
-   "ボイドからコア4個を自分のスピリット1体に置く。エンドステップに、自分のコア4個をボイドに置く。",
-   "コストの支払いに（ソウルコア）を使用していたら、さらに、自分のトラッシュにあるカード名に「魔界七将」と入っているスピリットカード1枚を、コストを支払わずに召喚できる。エンドステップに、この効果で召喚したスピリット1体を破壊する。"
+   "Original (Jap Version) = Flash- Put four cores from the Void to a Spirit. At the End Step, send four of your cores to the Void.",
+   "|-|",
+   "Original (Eng Version) = (Flash Step) Gain 4 cores on target spirit. At end of turn, remove a total of 4 cores from cards you control, your Reserve, and/or your Trash. This effect cannot be used in your Main Phase.",
+   "|-|",
+   "Revival = Flash- Put four cores from the Void to a Spirit you control. At the End Step, send four of your cores to the Void. Also, if (Soul Core) (Soul Core) was used to pay the cost, you can summon a \"SevenShogun\"-named Spirit card from your Trash, without paying the cost. At the End Step, destroy a Spirit summoned by this effect."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English text pending (Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English text from the Fandom page of the same card; its Japanese text differs slightly from the official text (reprint or erratum).",
   "rcode": "U"
  },
  {
@@ -24206,19 +24243,19 @@
   "symbols": 0,
   "levels": [],
   "families": [],
-  "text": "［メイン］\n自分はデッキから3枚ドローする。その後、自分は手札2枚を破棄する。\n［フラッシュ］\nこのターンの間、スピリット1体をBP+3000する。\nコストの支払いに（ソウルコア）を使用していたら、さらに、このターンの間、自分のカード名に「キングタウロス」と入っているスピリット/アルティメットすべてをBP+10000する。",
+  "text": "Original = (Your Main Phase) Draw 3 cards, then discard 2 cards.\n\n(Flash Step)(Your Main Phase) Target spirit gets +3000BP until end of turn.\n|-|\nRevival = (Your Main Phase) Draw 3 cards, then discard 2 cards from your hand.\n\n(Flash Step)(Your Main Phase) Target spirit gets +3000BP until end of turn. If (Soul Core) (Soul Core) was used to pay the cost, additionally, all your Spirits/Ultimates with \"Kingtaurus\" in the name get +10000 BP until the end of this turn.",
   "image": "BSC22-CP02.png",
   "block": "P",
   "saga": 6,
   "fxComplete": false,
   "residual": [
-   "［メイン］",
-   "自分はデッキから3枚ドローする。その後、自分は手札2枚を破棄する。",
-   "［フラッシュ］",
-   "このターンの間、スピリット1体をBP+3000する。",
-   "コストの支払いに（ソウルコア）を使用していたら、さらに、このターンの間、自分のカード名に「キングタウロス」と入っているスピリット/アルティメットすべてをBP+10000する。"
+   "Original = (Your Main Phase) Draw 3 cards, then discard 2 cards.",
+   "(Flash Step)(Your Main Phase) Target spirit gets +3000BP until end of turn.",
+   "|-|",
+   "Revival = (Your Main Phase) Draw 3 cards, then discard 2 cards from your hand.",
+   "(Flash Step)(Your Main Phase) Target spirit gets +3000BP until end of turn. If (Soul Core) (Soul Core) was used to pay the cost, additionally, all your Spirits/Ultimates with \"Kingtaurus\" in the name get +10000 BP until the end of this turn."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English text pending (Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English text from the Fandom page of the same card; its Japanese text differs slightly from the official text (reprint or erratum).",
   "rcode": "C"
  },
  {
@@ -24234,7 +24271,7 @@
   "symbols": 0,
   "levels": [],
   "families": [],
-  "text": "［フラッシュ］\nこのターンの間、自分のスピリット1体はブロックされない。\nコストの支払いに（ソウルコア）を使用していたら、さらに、自分のカード名に「オーディーン」と入っているスピリット/アルティメットすべてに白のシンボル1つを追加する。",
+  "text": "Flash\nTarget a Spirit. During this turn, the targeted Spirit can't be blocked.",
   "image": "BSC22-CP03.png",
   "block": "10",
   "saga": 6,
@@ -24243,11 +24280,10 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［フラッシュ］",
-   "このターンの間、自分のスピリット1体はブロックされない。",
-   "コストの支払いに（ソウルコア）を使用していたら、さらに、自分のカード名に「オーディーン」と入っているスピリット/アルティメットすべてに白のシンボル1つを追加する。"
+   "Flash",
+   "Target a Spirit. During this turn, the targeted Spirit can't be blocked."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English text pending (Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English text from the Fandom page \"Invisible Cloak\", found by card number; not compared with the official Japanese text.",
   "rcode": "R"
  },
  {
@@ -25771,7 +25807,7 @@
  },
  {
   "id": "BSC23-033",
-  "name": "[明星アイドル]ショコ",
+  "name": "［Morning Star Idol］Choco",
   "name_jp": "[明星アイドル]ショコ",
   "type": "Spirit",
   "color": "yellow",
@@ -25798,7 +25834,7 @@
    "Diva",
    "Stage Style"
   ],
-  "text": "【チーム：プリティアニマルズ】\n［Lv1-Lv2-Lv3］【マイユニット：1】『このスピリットのアタック時』\n系統：「詩姫」を持つ回復状態の自分のスピリット1体をこのスピリットの右隣に並べることで、自分のトラッシュにある【プリティアニマルズ】を持つスピリットカード1枚を手札に戻す。",
+  "text": "[Team: Pretty Animals]\n\n[LV1][LV2][LV3] My Unit: 1 - (When Attacks) By arranging one of your refreshed \"Diva\" family Spirits on the right side of this Spirit, return a [Pretty Animals] Spirit card from your Trash to the Hand.",
   "image": "BSC23-033.png",
   "block": "5",
   "saga": 6,
@@ -25807,11 +25843,10 @@
   ],
   "fxComplete": false,
   "residual": [
-   "【チーム：プリティアニマルズ】",
-   "［Lv1-Lv2-Lv3］【マイユニット：1】『このスピリットのアタック時』",
-   "系統：「詩姫」を持つ回復状態の自分のスピリット1体をこのスピリットの右隣に並べることで、自分のトラッシュにある【プリティアニマルズ】を持つスピリットカード1枚を手札に戻す。"
+   "[Team: Pretty Animals]",
+   "[LV1][LV2][LV3] My Unit: 1 - (When Attacks) By arranging one of your refreshed \"Diva\" family Spirits on the right side of this Spirit, return a [Pretty Animals] Spirit card from your Trash to the Hand."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English name pending (Japanese name kept). English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page).",
   "rcode": "R"
  },
  {
@@ -26115,7 +26150,7 @@
  },
  {
   "id": "BSC23-041",
-  "name": "きぐるみフーリン",
+  "name": "Kigurumi Fuurin",
   "name_jp": "きぐるみフーリン",
   "type": "Brave",
   "color": "yellow",
@@ -26133,7 +26168,7 @@
   "families": [
    "Youkai"
   ],
-  "text": "《合体条件：詩姫》\n《合体時》『相手によるこのスピリットの破壊時』\n自分のトラッシュにあるマジックカード1枚を手札に戻す。",
+  "text": "When Braved (When Destroyed by the Opponent)\nReturn a Magic card from your Trash to the Hand.",
   "image": "BSC23-041.png",
   "block": "P",
   "saga": 6,
@@ -26143,11 +26178,10 @@
   },
   "fxComplete": false,
   "residual": [
-   "《合体条件：詩姫》",
-   "《合体時》『相手によるこのスピリットの破壊時』",
-   "自分のトラッシュにあるマジックカード1枚を手札に戻す。"
+   "When Braved (When Destroyed by the Opponent)",
+   "Return a Magic card from your Trash to the Hand."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English name pending (Japanese name kept). English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text from the Fandom page of the same card; its Japanese text differs slightly from the official text (reprint or erratum).",
   "rcode": "U"
  },
  {

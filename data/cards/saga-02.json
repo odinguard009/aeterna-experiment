@@ -17095,7 +17095,7 @@
  },
  {
   "id": "BSC05-010",
-  "name": "イーズナ",
+  "name": "Izuna",
   "name_jp": "イーズナ",
   "type": "Spirit",
   "color": "yellow",
@@ -17122,16 +17122,15 @@
   "families": [
    "Hunter Beast"
   ],
-  "text": "［Lv1-Lv2-Lv3］\nこのスピリットは赤のスピリットとしても扱う。",
+  "text": "[LV1][LV2][LV3] This Spirit is also treated as a Red Spirit.",
   "image": "BSC05-010.png",
   "block": "P",
   "saga": 2,
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2-Lv3］",
-   "このスピリットは赤のスピリットとしても扱う。"
+   "[LV1][LV2][LV3] This Spirit is also treated as a Red Spirit."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English name pending (Japanese name kept). English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page).",
   "rcode": "C"
  },
  {
