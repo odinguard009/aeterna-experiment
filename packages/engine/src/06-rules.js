@@ -634,7 +634,7 @@ async function castMagic(p, ch) {                         // ch = { inst, target
     if (sa && (p.cpu || await ask({ title: '✨ ' + esc(card.name), html: 'Summon this card without paying the cost?', buttons: [{ label: 'Yes', cls: 'primary', value: true }, { label: 'No', cls: 'blue', value: false }] }))) {
       if (card.magic.summonOnce) { p.onceUsed = p.onceUsed || {}; p.onceUsed['sumafter:' + card.name] = G.turnNo; }
       await summonFree(p, inst);
-    } else if (inst.toBottom) { inst.toBottom = false; p.deck.push(inst); } else p.trash.push(inst);
+    } else if (inst.toBottom) { inst.toBottom = false; p.deck.push(inst); } else magicToTrash(p, inst);
   }
   if (G && G.attacker && G.battleMagic) G.battleMagic.push({ key: p.key, inst });      // v0.78 Brilliance: Magic used during this battle
   /* v0.116 "When you use a <family>/<colour> Magic card": the Magic is in the Trash by now; a Burst is not a use of a Magic card */

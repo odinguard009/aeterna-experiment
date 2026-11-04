@@ -130,6 +130,7 @@ async function sentToTrashFx(c, cards, from) {
       removeFrom(c.p.trash, x); c.p.hand.push(x); log(`${card.name} is added to the Hand (${who(c.p)}).`); handUp(c.p, 1);
     }
     if (tt.gwCore) await gwCorePlus(c, tt.gwCore, card.name);
+    if (tt.token && FX_ACTIONS.SEND_TOKEN) await FX_ACTIONS.SEND_TOKEN.run(c, { do: 'SEND_TOKEN', token: tt.token, n: 1, ask: true });      // v518 BS73-077: "when you've done so, you can send out one of your Fungal Bed Tokens"
   }
 }
 const abTaxOn = (p) => !!G && p.abTax === G.turnNo;

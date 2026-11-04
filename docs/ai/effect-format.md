@@ -546,3 +546,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v515 OPP_SUMMONED trigger (the opponent's summon/advent/deploy, collected from your field) with `costLeCounters: true` (subject cost <= your counters), actions DESTROY_FUNGAL_BED and EXHAUST_SUBJECT (Yum-Kaax Contract Field).
 - v516 Fungal Bed family: actions SEND_TOKEN_IF_BANISHED {costGe, token, n} (after REMOVE_OPP_TRASH, which now keeps ctx.removedCards) and EXHAUST_FUNGAL_BEDS; card field highSpeedBeds "destroy"|"exhaust" (High Speed summon pays one cost per Fungal Bed)
 - v517 BOUNCE_EXHAUSTED_CORES {} (return every opposing exhausted Spirit to the Hand, a Void core to this Spirit per card; BS73-031)
+- v518 MAGIC_BACK_HAND {beds} (exhaust N Fungal Beds, the used Magic returns to the Hand; magicToTrash), COUNTER_OR_CORE_NAMED {name}, Mirage zone also for ALLY_SUMMONED, trashTrigger.token (send a token after the add; BS73-077, BS74-027)

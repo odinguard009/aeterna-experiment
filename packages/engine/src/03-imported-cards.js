@@ -185,9 +185,9 @@ function parseCard(o) {
   let trashTrigger;                                       // v0.47 "when this card is sent to the Trash from the Deck/Hand by the effect of your X: you can add it to the Hand (add), +1 core to a Grandwalker Nexus (gwCore)"
   if (o.trashTrigger != null) {
     const t = o.trashTrigger;
-    if (!t || !Array.isArray(t.from) || !t.from.length || t.from.some(x => !['deck', 'hand'].includes(x)) || !hasMatch(t.by) || (t.add != null && typeof t.add !== 'boolean') || (t.gwCore != null && (!Number.isInteger(t.gwCore) || t.gwCore < 0 || t.gwCore > 3)))
+    if (!t || !Array.isArray(t.from) || !t.from.length || t.from.some(x => !['deck', 'hand'].includes(x)) || !hasMatch(t.by) || (t.add != null && typeof t.add !== 'boolean') || (t.gwCore != null && (!Number.isInteger(t.gwCore) || t.gwCore < 0 || t.gwCore > 3)) || (t.token != null && !(typeof t.token === 'string' && /^[A-Z0-9-]{3,30}$/.test(t.token))))
       return { errors: ['invalid "trashTrigger" (use {"from":["deck"],"by":{"name":[...]},"add":true,"gwCore":1})'] };
-    trashTrigger = { from: t.from.slice(), by: t.by, add: t.add === true, gwCore: t.gwCore || 0 };
+    trashTrigger = { from: t.from.slice(), by: t.by, add: t.add === true, gwCore: t.gwCore || 0, token: t.token || undefined };
   }
   if (o.soulMagic != null && (type !== 'Magic' || !COLORS.includes(o.soulMagic))) return { errors: ['invalid "soulMagic" (a colour, on Magic cards only)'] };   // v0.64 Soul Magic
   if (o.trueRelease != null && (o.trueRelease !== true || !['Spirit', 'Nexus'].includes(type) || !Array.isArray(o.levels) || o.levels.length < 2)) return { errors: ['invalid "trueRelease" (true, on Spirit / Nexus cards with an LV2)'] };   // v0.66 True Release

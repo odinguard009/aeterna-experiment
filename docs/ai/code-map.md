@@ -41,7 +41,7 @@ _pn
 ## packages/engine/src/02g-effects-attack-lock.js (96 lines, ~2.4k tokens) — v0.40 YELLOW (Contractor Indra / Thunderive): "can't attack/block" (permanent flag noAB), drawing from the bottom of the Deck, discarding the whole Hand,
 
 
-## packages/engine/src/02h-effects-magic.js (212 lines, ~5.2k tokens) — v0.41 MAGIC effect types (Dana Draw, Whirling Tide, Magic Bullet, Hades Disaster, Thunder Counter, Lightning Tempest).
+## packages/engine/src/02h-effects-magic.js (213 lines, ~5.3k tokens) — v0.41 MAGIC effect types (Dana Draw, Whirling Tide, Magic Bullet, Hades Disaster, Thunder Counter, Lightning Tempest).
 endAttackLocked, _matchTxt, gwCorePlus, sentToTrashFx, abTaxOn, abTaxOK, payAbTax, oppAttackHandFx, lifeHandFx, braveSummonedFx, braveSummonedEvs
 
 ## packages/engine/src/02i-effects-keywords.js (80 lines, ~1.9k tokens) — v0.49 KEYWORD EFFECTS as engine data (session D, part 1): High Speed, Crush, Holy Life.
@@ -92,8 +92,8 @@ symFixedOnSummon, fxLockBusy, fxLocked, leaveSummonOffer, mirageNexusOf, mirageS
 ## packages/engine/src/02x-effects-soul-magic.js (488 lines, ~12.4k tokens)
 magicFromSoul, magicSoulSrc, fromCols, soulBurstCheck, isGwNexus, gwNexusCount, gpShield, gpBattleSafe, drawOneOnly, nyxNexus, lvCostUp, nexusCoresDown, trashCoreGw, muddyDraw, coreWatchBegin, coreWatchEnd, ownReturned, bounceCost, magicLike, trashFlashOK, handUpLocked, soulUnaff, mirageEndLock, nsfOK, nsfPay
 
-## packages/engine/src/02y-effects-khaos.js (384 lines, ~12.3k tokens)
-burstSetSafe, pickFightingBlocker, coreSafeEvery, removedLocked, burstOnDiscard, removedDrawLocked, noMagicHit, freeRed, costPerCount, nexusSwapSave, flagActive, ownDiscardCheck, isFungalBed, fungalBeds, useFungalBeds
+## packages/engine/src/02y-effects-khaos.js (400 lines, ~12.9k tokens)
+burstSetSafe, pickFightingBlocker, coreSafeEvery, removedLocked, burstOnDiscard, removedDrawLocked, noMagicHit, freeRed, costPerCount, nexusSwapSave, flagActive, ownDiscardCheck, isFungalBed, fungalBeds, useFungalBeds, magicToTrash
 
 ## packages/engine/src/03-imported-cards.js (257 lines, ~7.9k tokens) — IMPORTED CARD DATA
 COLORS, BUILTIN_IDS, CARDS_KEY, IMPORTED, CARDS_VER, parseLevels, parseMagicOf, parseCard, registerImported, saveImported, importCards, clearImported, PACK_IDS, registerPack, TOKEN_IDS, registerTokens

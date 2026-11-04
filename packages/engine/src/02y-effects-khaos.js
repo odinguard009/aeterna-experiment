@@ -382,3 +382,19 @@ FX_ACTIONS.BOUNCE_EXHAUSTED_CORES = { chk: a => Object.keys(a).every(k => ['do',
     const L = c.opp.spirits.filter(t => t.exhausted); c.ctx.did = false; if (!L.length) return;
     for (const t of L) { removeFrom(c.opp.spirits, t); c.opp.hand.push(t); log(`${CARDS[t.id].name} returns to the Hand.`); if (c.p.spirits.includes(c.src) && takeFromVoid(c.p, 1)) { c.src.cores += 1; log(`${CARDS[c.src.id].name}: a core moves from the Void to this Spirit.`); } }
     c.ctx.did = true; checkDepletion(c.opp); io.view({ type: 'board' }); } };
+/* v518 magicToTrash(p, inst): a used Magic goes to the Trash, or back to the Hand when its effect set inst.toHand (MAGIC_BACK_HAND). */
+function magicToTrash(p, inst) { if (inst.toHand) { inst.toHand = false; p.hand.push(inst); log(`${CARDS[inst.id].name} returns to the Hand (${who(p)}).`); } else p.trash.push(inst); }
+/* v518 MAGIC_BACK_HAND {beds}: "by exhausting <beds> of your Fungal Bed, return this card to the Hand" (BS73-077 Flash). The CPU always pays. */
+FX_ACTIONS.MAGIC_BACK_HAND = { chk: a => Number.isInteger(a.beds) && a.beds >= 1 && a.beds <= 5 && Object.keys(a).every(k => ['do', 'if', 'beds'].includes(k)), txt: a => `by exhausting ${a.beds} "Fungal Bed", return this card to the Hand`,
+  can: (c, a) => c.p.nexus.filter(n => isFungalBed(n) && !n.exhausted).length >= a.beds,
+  run: async (c, a) => {
+    c.ctx.did = false; const L = c.p.nexus.filter(n => isFungalBed(n) && !n.exhausted); if (L.length < a.beds) return;
+    if (!c.p.cpu && !(await ask({ title: `✨ ${CARDS[c.src.id].name}`, html: `Exhaust ${a.beds} "Fungal Bed" to return this card to your Hand?`, buttons: [{ label: 'Yes', cls: 'primary', value: true }, { label: 'No', cls: 'cancel', value: false }] }))) return;
+    for (const n of L.slice(0, a.beds)) n.exhausted = true; c.src.toHand = true; c.ctx.did = true; log(`${CARDS[c.src.id].name}: ${a.beds} "Fungal Bed" exhausted, this card returns to the Hand.`); } };
+/* v518 COUNTER_OR_CORE_NAMED {name}: "your counter +1, or +1 core to one of your <name> Grandwalker Nexuses" (BS74-027 Mirage). The CPU takes the counter while it has fewer than ten. */
+FX_ACTIONS.COUNTER_OR_CORE_NAMED = { chk: a => typeof a.name === 'string' && a.name.length >= 3 && Object.keys(a).every(k => ['do', 'if', 'name'].includes(k)), txt: a => `+1 counter, or +1 core to your "${a.name}" Grandwalker Nexus`, can: () => true,
+  run: async (c, a) => {
+    const L = c.p.nexus.filter(n => CARDS[n.id].name.toLowerCase().includes(a.name.toLowerCase())); let counter = true;
+    if (L.length) counter = c.p.cpu ? c.p.count < 10 : (await ask({ title: `✨ ${CARDS[c.src.id].name}`, html: 'Choose what you get.', buttons: [{ label: '+1 counter', cls: 'primary', value: 'counter' }, { label: `+1 core to ${CARDS[L[0].id].name}`, cls: 'primary', value: 'core' }] })) === 'counter';
+    if (counter) { await FX_ACTIONS.COUNTER.run(c, { n: 1 }); return; }
+    c.ctx.did = false; if (addCore(c.p, L[0])) { c.ctx.did = true; log(`${CARDS[c.src.id].name}: +1 core to ${CARDS[L[0].id].name}.`); io.view({ type: 'board' }); } } };
