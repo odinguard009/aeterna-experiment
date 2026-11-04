@@ -118,3 +118,8 @@ FX_ACTIONS.REVEAL_SUMMON_PAY_ANY = { chk: a => Number.isInteger(a.pay) && a.pay 
     const rest = c.p.revealed.splice(0); for (const x of rest) c.p.trash.push(x);
     if (rest.length) log(`${nm}: ${rest.length} revealed card${rest.length === 1 ? '' : 's'} discarded.`);
   } };
+
+/* v483 STATIC NO_DRAW_REMOVED: "while this card is in the Removed Zone, neither player can draw via Red/Purple/Yellow/Blue Spirit/Nexus effects" (BS45-024). Read by drawLocked(): an effect draw whose source (G.fxSrc) is a Spirit/Ultimate/Nexus holding one of those colours (or symbol) is cancelled while any Removed Zone card carries the flag. The Draw Step itself is no effect and is never blocked. */
+const removedDrawLocked = () => { const src = G && G.fxSrc, k = src && CARDS[src.id]; if (!k || !['Spirit', 'Ultimate', 'Nexus'].includes(k.type)) return false;
+  if (!(k.colors || [k.symbol]).some(x => ['red', 'purple', 'yellow', 'blue'].includes(x))) return false;
+  return [G.p.player, G.p.opponent].some(q => q.removed.some(r => (CARDS[r.id].effects || []).some(e => e.trigger === 'STATIC' && e.flag === 'NO_DRAW_REMOVED'))); };

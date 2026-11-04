@@ -196,3 +196,19 @@ test('K-1085 BS50-035 Meleagros: a Blade Beast attacking removes a random opposi
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.afterHand, 1, JSON.stringify(r)); assert.equal(r.rem, 1, JSON.stringify(r));
   assert.equal(r.summoned, 1, JSON.stringify(r)); assert.equal(r.trash, 0, JSON.stringify(r));
 });
+
+test('K-1086 BS45-024 Hector: in a Removed Zone it blocks effect draws by R/P/Y/B Spirit sources only; Attacks stops opposing Bursts', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const sp = Object.keys(BS.CARDS).filter(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && k !== 'BS45-024');
+    const col = c => (BS.CARDS[c].colors || [BS.CARDS[c].symbol]);
+    const blue = sp.find(k => col(k).includes('blue')), green = sp.find(k => col(k).length === 1 && col(k)[0] === 'green');
+    P.deck = [1, 2, 3, 4, 5, 6].map(() => BS.mkInst(sp[0]));
+    const before = P.hand.length; P.removed = [BS.mkInst('BS45-024')];
+    const g = BS.G; g.fxSrc = null;
+    const run = async id => { const src = BS.mkInst(id); P.spirits = [src]; g.fxSrc = src; const h = P.hand.length; await BS.FX_ACTIONS.DRAW.run({ p: P, opp: O, src, ctx: {} }, { do: 'DRAW', n: 1 }); g.fxSrc = null; return P.hand.length - h; };
+    const b = await run(blue), gr = await run(green);
+    const a = BS.mkInst('BS45-024'); a.cores = 3; P.spirits = [a]; G.attacker = a; G.noBurst = null; await BS.fireFx(P, 'ATTACKS', a, { attacker: a, subject: a });
+    return { b, gr, noBurst: G.noBurst, partial: BS.CARDS['BS45-024'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.b, 0, JSON.stringify(r)); assert.equal(r.gr, 1, JSON.stringify(r)); assert.ok(r.noBurst, JSON.stringify(r));
+});

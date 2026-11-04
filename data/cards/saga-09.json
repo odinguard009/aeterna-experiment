@@ -6868,16 +6868,38 @@
   "mechanics": [
    "Accel"
   ],
-  "fxComplete": false,
-  "residual": [
-   "While this card is in the Removed Zone, neither player can draw via Red/Purple/Yellow/Blue Spirit/Nexus effects.",
-   "Main - {{Accel|Cost 3 ()}}",
-   "Put a core from the Void to your Trash.",
-   "After this effect resolves, put this card face-up onto the Removed Zone.",
-   "[LV1][LV2] (When Attacks)",
-   "The opposing Burst can't activate."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "NO_DRAW_REMOVED"
+   },
+   {
+    "trigger": "ACCEL",
+    "cost": 3,
+    "timing": [
+     "MAIN"
+    ],
+    "actions": [
+     {
+      "do": "VOID_TO_TRASH",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "NO_BURST_BATTLE"
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS45-025",
