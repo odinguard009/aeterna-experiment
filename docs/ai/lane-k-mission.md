@@ -95,6 +95,14 @@ Owner order, 2026-10-31: work Lane K for all cards (Standard block A first, then
 - Never edit `index.html`, `build/` or generated reports by hand; `node tools/build.mjs` owns them.
 - One session at a time. Never start while the gate reports a running session.
 
+- **Efficiency rules (owner, 2026-11-04):**
+  - Red CI or Regression on `main`: no release until fixed. A red Regression after a Lane K release usually means a legacy `tests/suites/*.py` check still expects the card as partial; update the expectation to the completed card (verify first with `tests/unit/lib/node_board.mjs`, no browser needed).
+  - Queue order: the Grandwalker order above stays strict; inside one Grandwalker family, take the mechanic that unlocks the most cards first (`python3 tools/residual_tags.py --block A`), reuse an existing effect before writing a new one.
+  - Light tests only in a session: `npm run -s loop` plus a new `tests/unit/k_cards_<n>.test.mjs` (at most 25 tests, `sharedBoard()`); the full set and the legacy Python suites run in CI.
+  - Shared files: only the Lane K release edits `CHANGELOG.md`, `CLAUDE.md` and `docs/progress.html`; U/I work adds its notes to an `## Unreleased` section that the next Lane K release folds into its entry.
+  - Big audits (images, text, counts) run once per release or per new set, not per bundle.
+  - Before choosing the next queue, read the Blocked list below so dropped cards are not retried.
+
 ## Blocked
 - Deferred to a later bundle (all block A; needs the engine piece in brackets): 26RBS01-103 [treat-as-LV1 action + a "blocking with family X" condition], 26RBS03-079 [untargetable-by-opposing-Magic static + "Life can only be reduced by one" action], 26RDB01-051 [cost-substitution replacement], 26RBS03-044 [grant "When Blocks as When Attacks"], 26RSD06-013 [destroy-own-Nexus cost upgrade], 26RSD06-011 [per-LV attack tax], 26RDB01-042 [Flash summon this card from the Hand]. None failed twice; they are cost/priority deferrals, not errors.
 - Eternal Saga 17 (blocks 76/77) measured 2026-11-01: 124 of 127 partial, and almost none is a cheap single-tag win. About 12 Spirits (BS76-015/017/019/023/027/031/035/038/041 and Platinum/Bannerace Mirage cards such as BS76-037) need `Flag Contract Advent` (stack onto a Spirit **or Nexus**, "Contract Pre-Advent/Nexus" Flag cards BS76-CX01..03, BS77-CX01..03, "FArule", Soul State pre-advent). That framework does not exist in the engine yet (only family-based `contractAdvent` on Spirits); build it as one mechanic bundle first, then the Spirits fall out. Next cheapest levers by greedy order: K_BRAVE, K_ULTIMATE (33 cards), C_OPP_TURN, K_GRANDWALKER.

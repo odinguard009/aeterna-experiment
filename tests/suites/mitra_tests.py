@@ -247,7 +247,7 @@ with sync_playwright() as p:
     ev(pg, "window.pr=BS.fireFx(BS.G.p.player,'SUMMONED',pc);0"); settle(pg)
     chk('Pachhattar: no Reserve core -> Mitra cannot be charged -> the Soul State card stays', ev(pg, "mi.cores===2&&BS.G.p.player.soulState.length===1"), ev(pg, "[mi.cores,BS.G.p.player.soulState.length]"))
     # Unnis
-    pg, errs = setup2("window.un=mk('player','BS75-028',1);")
+    pg, errs = setup2("window.un=put('player','trash','BS75-028');")   # the effect works from the Trash (card text)
     ev(pg, "window.pr=BS.activateFx(BS.G.p.player,un,0);0"); settle(pg)
     chk('Unnis: enters Soul State and Mitra gets +1 core', ev(pg, "BS.G.p.player.soulState.some(x=>x.id==='BS75-028')&&mi.cores===3"), ev(pg, "[mi.cores,BS.G.p.player.soulState.length]"))
     chk('F: no page errors (last page)', not errs, errs)
