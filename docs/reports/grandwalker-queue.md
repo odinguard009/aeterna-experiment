@@ -25,10 +25,10 @@ Rule (owner 2026-11-04): Nexus with 50 or fewer own-family cards (SD44+, pool fa
 | 19 | small | BS61-X09 Grandwalker Tezcatlipoca | OPEN, first | Armored Beast | 33 | 2 | open |
 | 20 | small | BS59-X09 Grandwalker Chronos | OPEN, first | Chrownos | 20 | 1 | open |
 | 21 | small | BS58-X09 Grandwalker Parvati | OPEN, first | Hunter Beast | 42 | 3 | open |
-| 22 | small | BS53-X09 Grandwalker Lakshmi | OPEN, first | Fighting Spirit | 50 | 3 | open |
+| 22 | small | BS53-X09 Grandwalker Lakshmi | OPEN, first | Fighting Spirit | 50 | 4 | open |
 | 23 | small | BS52-X07 Grandwalker Demeter | OPEN, first | Dark Artes | 33 | 0 | open |
 | 24 | small | BS52-X08 The GuideGirl Vina | OPEN, first | (pool or cost-only: Nexus card only) | 0 | 0 | open |
-| 25 | small | BS51-X10 Grandwalker Saraswati | OPEN, first | Imp | 44 | 2 | open |
+| 25 | small | BS51-X10 Grandwalker Saraswati | OPEN, first | Imp | 44 | 3 | open |
 | 26 | small | BS51-XX03 Grandwalker Alex-Lolo | complete | (pool or cost-only: Nexus card only) | 0 | 0 | done |
 | 27 | small | BS50-CP01 Soaring Grandwalker Alex | complete | (pool or cost-only: Nexus card only) | 0 | 0 | done |
 | 28 | small | BS50-X10 Grandwalker Anubis | OPEN, first | Terra Dragon | 49 | 7 | open |
@@ -39,7 +39,7 @@ Rule (owner 2026-11-04): Nexus with 50 or fewer own-family cards (SD44+, pool fa
 | 33 | small | BS48-XX02 Grandwalker Lilia | OPEN, first | Astral Deity, Galaxian, Astral Soul | 40 | 0 | open |
 | 34 | small | BS47-XX02 Grandwalker Manaka | complete | (pool or cost-only: Nexus card only) | 0 | 0 | done |
 | 35 | small | BS47-XX03 Grandwalker Kei | complete | (pool or cost-only: Nexus card only) | 0 | 0 | done |
-| 36 | small | BS46-CP01 Hinobori Hajime | OPEN, first | Dragon Warrior, Supreme Hero | 36 | 1 | open |
+| 36 | small | BS46-CP01 Hinobori Hajime | OPEN, first | Dragon Warrior, Supreme Hero | 36 | 2 | open |
 | 37 | small | BS46-CP02 Rekka Yukimura | OPEN, first | War Dragon, Vassal, Lord | 47 | 6 | open |
 | 38 | small | BS46-XX02 Grandwalker Antarc | complete | Investigator | 9 | 9 | done |
 | 39 | small | BS45-X07 Grandwalker Hermes | OPEN, first | (pool or cost-only: Nexus card only) | 0 | 0 | open |
@@ -47,7 +47,7 @@ Rule (owner 2026-11-04): Nexus with 50 or fewer own-family cards (SD44+, pool fa
 | 41 | small | BS44-CP02 The YoungGrandwalker Lolo | complete | (pool or cost-only: Nexus card only) | 0 | 0 | done |
 | 42 | small | BS44-X09 Grandwalker Artemis | OPEN, first | (pool or cost-only: Nexus card only) | 0 | 0 | open |
 | 43 | small | BS44-XX02 Grandwalker Lolo | complete | (pool or cost-only: Nexus card only) | 0 | 0 | done |
-| 44 | large | BS75-CX04 The ChaosContractor Khaos | OPEN, first | Soldier | 61 | 7 | open |
+| 44 | large | BS75-CX04 The ChaosContractor Khaos | OPEN, first | Soldier | 61 | 25 | open |
 | 45 | large | BS74-CX02 The NetherContractor Dionysus | OPEN, first | Zombie | 65 | 6 | open |
 | 46 | large | BS71-CX01 The ThunderboltContractor Zeus | OPEN, first | Emperor Beast | 84 | 3 | open |
 | 47 | large | BS70-CX01 The CurseConsortContractor Hera | OPEN, first | Ogre Wizard | 79 | 3 | open |
@@ -59,7 +59,7 @@ Rule (owner 2026-11-04): Nexus with 50 or fewer own-family cards (SD44+, pool fa
 | 53 | large | BS51-X09 Grandwalker Dionysus | OPEN, first | Zombie | 65 | 6 | open |
 | 54 | large | BS50-X11 Grandwalker Tsukuyomi | OPEN, first | Evil Shadow, Youkai | 108 | 8 | open |
 | 55 | large | BS50-X13 Grandwalker Hephaestus | OPEN, first | Artificial Soldier | 81 | 6 | open |
-| 56 | large | BS50-XX02 Grandwalker Zeus-Lolo | OPEN, first | Worldswalker | 200 | 7 | open |
+| 56 | large | BS50-XX02 Grandwalker Zeus-Lolo | OPEN, first | Worldswalker | 200 | 14 | open |
 | 57 | large | BS49-X08 Grandwalker Ares | OPEN, first | Parasite, Shellman | 82 | 6 | open |
 | 58 | large | BS49-X10 Grandwalker Susanoo | OPEN, first | Terra Dragon, Ocean Emperor | 83 | 8 | open |
 | 59 | large | BS49-XX02 Grandwalker Guren | OPEN, first | Ancient Dragon | 56 | 2 | open |
@@ -77,6 +77,6 @@ Rule (owner 2026-11-04): Nexus with 50 or fewer own-family cards (SD44+, pool fa
 | 71 | large | BS45-CP01 Bashin Toppa | OPEN, first | Ancient Dragon | 56 | 2 | open |
 | 72 | large | BS45-CP02 Rei the Number One Star | OPEN, first | Incarnate, Dragon | 53 | 6 | open |
 | 73 | large | BS45-X08 Grandwalker Isis | OPEN, first | Divine Spirit | 81 | 4 | open |
-| 74 | large | BS45-X09 Grandwalker Set | OPEN, first | Beast Head | 90 | 3 | open |
+| 74 | large | BS45-X09 Grandwalker Set | OPEN, first | Beast Head | 90 | 5 | open |
 | 75 | large | BS44-X07 Grandwalker Apollon | OPEN, first | Astral Dragon | 65 | 5 | open |
 | 76 | large | BS44-X08 Grandwalker Osiris | OPEN, first | Dark Snake | 65 | 6 | open |

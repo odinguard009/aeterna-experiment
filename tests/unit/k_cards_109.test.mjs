@@ -155,3 +155,17 @@ test('K-1117 BS70-048 HighEvo-Frost: Attacks gives a counter and adds a revealed
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.count, 1, JSON.stringify(r)); assert.equal(r.hand, 1, JSON.stringify(r));
   assert.equal(r.when, 'LIFE_DECREASE', JSON.stringify(r)); assert.equal(r.summon, true, JSON.stringify(r));
 });
+
+test('K-1118 BS60-003 Ryuukin: Summoned destroys a 3000 BP or less Spirit or a Nexus; Attacks with six counters banishes itself to draw three', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5; G.fxBy = P.key;
+    const lo = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && (BS.CARDS[k].levels[0].bp || 0) <= 3000 && (BS.CARDS[k].levels[0].bp || 0) > 0);
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token);
+    const a = BS.mkInst('BS60-003'); a.cores = 3; P.spirits = [a]; const t = BS.mkInst(lo); t.cores = 1; O.spirits = [t]; O.nexus = [];
+    await BS.fireFx(P, 'SUMMONED', a, { subject: a }); const killed = !O.spirits.includes(t);
+    P.count = 6; P.hand = []; P.deck = [1,2,3,4].map(() => BS.mkInst(any)); G.attacker = a;
+    await BS.fireFx(P, 'ATTACKS', a, { attacker: a, subject: a });
+    return { killed, hand: P.hand.length, banished: P.removed.includes(a), gone: !P.spirits.includes(a), partial: BS.CARDS['BS60-003'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.killed, true, JSON.stringify(r)); assert.equal(r.hand, 3, JSON.stringify(r));
+  assert.equal(r.banished, true, JSON.stringify(r)); assert.equal(r.gone, true, JSON.stringify(r));
+});

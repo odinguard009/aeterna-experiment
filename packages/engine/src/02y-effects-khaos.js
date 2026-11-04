@@ -270,3 +270,8 @@ function nexusSwapSave(p, n) {
   removeSpirit(p, src, 'destroyed'); if (p.spirits.includes(src)) return false;
   log(`${CARDS[src.id].name} is destroyed instead: ${CARDS[n.id].name} remains on the Field.`); return true;
 }
+
+/* v504 BANISH_SELF {}: "by banishing this Spirit" (BS60-003 Ryuukin): the source leaves the Field to your Removed Zone (not destroyed, no Destroyed effects). */
+FX_ACTIONS.BANISH_SELF = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => 'banish this Spirit', can: c => c.p.spirits.includes(c.src),
+  run: async c => { c.ctx.did = false; if (!c.p.spirits.includes(c.src)) return;
+    removeSpirit(c.p, c.src, 'banished', false); const i = c.p.trash.lastIndexOf(c.src); if (i < 0) return; c.p.trash.splice(i, 1); toRemoved(c.p, c.src); c.ctx.did = true; log(`${CARDS[c.src.id].name} is banished.`); } };
