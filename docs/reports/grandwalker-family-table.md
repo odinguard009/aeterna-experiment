@@ -9,7 +9,7 @@ Counts are card numbers (ids) in `data/sources/official-fields.json`: every prin
 | BS75-CX03 The HeavenlyThunderContractor Indra | Contract | 雷武 | Thunderive |  | 23 | 23 | 23 | 100% | 23 | 23 |
 | BS75-CX03 The HeavenlyThunderContractor Indra | Contract | 眷属 | Devotee | yes | 287 | 287 | 47 | 16% | 290 | 47 |
 | BS75-CX03 The HeavenlyThunderContractor Indra | Contract | 締皇 | Concluser | yes | 62 | 62 | 8 | 13% | 62 | 8 |
-| BS75-CX04 The ChaosContractor Khaos | Contract | 勇傑 | Soldier |  | 61 | 61 | 23 | 38% | 111 | 36 |
+| BS75-CX04 The ChaosContractor Khaos | Contract | 勇傑 | Soldier |  | 61 | 61 | 25 | 41% | 111 | 38 |
 | BS75-CX04 The ChaosContractor Khaos | Contract | 原初 | Primordial |  | 106 | 106 | 8 | 8% | 106 | 8 |
 | BS75-CX04 The ChaosContractor Khaos | Contract | 締皇 | Concluser | yes | 62 | 62 | 8 | 13% | 62 | 8 |
 | BS74-CX01 The Light-DarkContractor Ometeotl | Contract | 溶魚 | Lava Fish |  | 32 | 32 | 25 | 78% | 40 | 31 |
@@ -87,7 +87,7 @@ Counts are card numbers (ids) in `data/sources/official-fields.json`: every prin
 | BS58-X09 Grandwalker Parvati | Grandwalker | 戯狩 | Hunter Beast |  | 42 | 42 | 3 | 7% | 85 | 21 |
 | BS55-X09 Grandwalkers Izanagi & Izanami | Grandwalker | 霊獣 | Spiritual Beast |  | 31 | 31 | 4 | 13% | 87 | 37 |
 | BS55-X09 Grandwalkers Izanagi & Izanami | Grandwalker | 樹魔 | Plant Spirit |  | 42 | 42 | 5 | 12% | 78 | 26 |
-| BS53-X09 Grandwalker Lakshmi | Grandwalker | 闘神 | Fighting Spirit |  | 50 | 50 | 3 | 6% | 177 | 29 |
+| BS53-X09 Grandwalker Lakshmi | Grandwalker | 闘神 | Fighting Spirit |  | 50 | 50 | 4 | 8% | 177 | 30 |
 | BS53-X09 Grandwalker Lakshmi | Grandwalker | 起幻 | Primal |  | 275 | 275 | 46 | 17% | 275 | 46 |
 | BS52-X07 Grandwalker Demeter | Grandwalker | 導魔 | Dark Artes |  | 33 | 33 | 0 | 0% | 58 | 4 |
 | BS52-X07 Grandwalker Demeter | Grandwalker | 起幻 | Primal |  | 275 | 275 | 46 | 17% | 275 | 46 |
@@ -206,7 +206,7 @@ Counts are card numbers (ids) in `data/sources/official-fields.json`: every prin
 | BS45-X08 Grandwalker Isis | Grandwalker | 天霊 | Divine Spirit |  | 81 | 81 | 4 | 5% | 207 | 31 |
 | BS45-X08 Grandwalker Isis | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 14 | 7% | 200 | 14 |
 | BS45-X08 Grandwalker Isis | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
-| BS45-X09 Grandwalker Set | Grandwalker | 獣頭 | Beast Head |  | 90 | 90 | 4 | 4% | 190 | 37 |
+| BS45-X09 Grandwalker Set | Grandwalker | 獣頭 | Beast Head |  | 90 | 90 | 5 | 6% | 190 | 38 |
 | BS45-X09 Grandwalker Set | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 14 | 7% | 200 | 14 |
 | BS45-X09 Grandwalker Set | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
 | BS45-XX02 Grandwalker Alex | Grandwalker | (cost only) | - | | - | - | - | - | - | - |

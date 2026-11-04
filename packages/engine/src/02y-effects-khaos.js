@@ -135,3 +135,11 @@ FX_ACTIONS.REFRESH_ATTACKER_ONCE = { chk: a => Object.keys(a).every(k => ['do', 
 const noMagicHit = (p, card) => !!p.noMagicB && p.noMagicB.no === G.battleNo && !!G.attacker && (!!p.noMagicB.all || (card.colors || [card.color]).includes(p.noMagicB.color));
 FX_ACTIONS.OPP_NO_HAND_MAGIC = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => "during this battle, the opponent can't use Magic cards from the Hand during Flash Timing",
   run: async c => { c.opp.noMagicB = { no: G.battleNo, all: true }; c.ctx.did = true; log(`${_nm(c)}: ${poss(c.opp)} can't use Magic from the Hand this battle.`); } };
+/* v486 ATTACK_SPIRIT_ALLY: "your <X> Spirits can target and attack an opposing Spirit" (BS69-002): same targeting as ATTACK_SPIRIT but for the attacker of an ALLY_ATTACKS effect (G.attacker), not the effect's own card */
+FX_ACTIONS.ATTACK_SPIRIT_ALLY = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => 'the attacking Spirit can target an opposing Spirit and attack it',
+  can: c => !!G.attacker && c.opp.spirits.some(t => CARDS[t.id].type !== 'Ultimate' && !fxImmune(c.opp, t)),
+  run: async c => {
+    const att = G.attacker, L = att ? c.opp.spirits.filter(t => CARDS[t.id].type !== 'Ultimate' && !fxImmune(c.opp, t)) : [], t = L.length && await fxPickTarget(c, L, `✨ <b>${esc(_nm(c))}</b><br>Tap the opposing Spirit that ${esc(CARDS[att.id].name)} attacks instead of the Life (glowing).`);
+    if (!t) { c.ctx.did = false; return; }
+    att.atkT = { s: t, b: G.battleNo }; c.ctx.did = true; log(`${CARDS[att.id].name} targets ${poss(c.opp)} ${CARDS[t.id].name} and attacks it.`);
+  } };

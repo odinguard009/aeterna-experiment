@@ -5130,16 +5130,53 @@
   "image": "BS69-001+.png",
   "block": "69",
   "saga": 15,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (Your Attack Step) All your \"Primordial\"/\"Reptile Beast\" family Spirits can't be returned to the Hand/Deck via opposing effects.",
-   "[LV2] (When Attacks) +1 core to one of your \"Contractor Gaia\" Grandwalker Nexuses, and draw a card."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
   "bicon": [
    "11"
   ],
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "lv": [
+     1,
+     2
+    ],
+    "flag": "NO_RETURN",
+    "to": "own",
+    "if": {
+     "attackStep": true,
+     "oppTurn": false
+    },
+    "match": {
+     "family": [
+      "Primordial",
+      "Reptile Beast"
+     ]
+    }
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "CORE_TO_NEXUS",
+      "n": 1,
+      "match": {
+       "name": [
+        "Contractor Gaia"
+       ]
+      }
+     },
+     {
+      "do": "DRAW",
+      "n": 1
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS69-002",
@@ -5171,16 +5208,69 @@
   "image": "BS69-002+.png",
   "block": "69",
   "saga": 15,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Attacks) You can reveal three cards from your decktop. Among them, add a “Primordial” family Nexus card, or a “Primordial” & “Concluser” family Spirit card to the Hand. Discard any remaining cards.",
-   "[LV2] (Your Attack Step) While you control a “Primordial” family Nexus, each of your “Primordial”/“Reptile Beast” family Spirits can target and attack an opposing Spirit/Ultimate."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
   "bicon": [
    "11"
   ],
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "REVEAL_ADD",
+      "n": 3,
+      "add": 1,
+      "match": {
+       "anyOf": [
+        {
+         "type": "Nexus",
+         "family": [
+          "Primordial"
+         ]
+        },
+        {
+         "type": "Spirit",
+         "familyAll": [
+          "Primordial",
+          "Concluser"
+         ]
+        }
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_ATTACKS",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "match": {
+     "family": [
+      "Primordial",
+      "Reptile Beast"
+     ]
+    },
+    "if": {
+     "nexusGe": {
+      "n": 1,
+      "family": "Primordial"
+     }
+    },
+    "actions": [
+     {
+      "do": "ATTACK_SPIRIT_ALLY"
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS69-003",
@@ -5256,16 +5346,46 @@
   "image": "BS69-004+.png",
   "block": "69",
   "saga": 15,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Summoned) You can destroy a Nexus you or the opponent controls, and when destroyed, draw a card.",
-   "[LV2] (When Attacks) If you control any \"Primordial\" family Nexus, destroy an opposing 7000 BP or less Spirit/Ultimate."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
   "bicon": [
    "11"
   ],
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "DESTROY_ANY",
+      "kind": "nexus",
+      "drawIfDone": true
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "if": {
+     "nexusGe": {
+      "n": 1,
+      "family": "Primordial"
+     }
+    },
+    "actions": [
+     {
+      "do": "DESTROY",
+      "bpLe": 7000
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS69-005",
@@ -5301,15 +5421,120 @@
   "image": "BS69-005+.png",
   "block": "69",
   "saga": 15,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Summoned/Attacks)",
-   "Once per turn, you can destroy an opposing 5000 BP or less Spirit/Ultimate.",
-   "If you control any \"Primordial\" family Nexus, effects of the target destroyed by this effect can't activate.",
-   "[LV2][LV3] (When Attacks)",
-   "Draw a card."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "once": true,
+    "onceKey": "geo5",
+    "optional": true,
+    "if": {
+     "nexusGe": {
+      "n": 1,
+      "family": "Primordial"
+     }
+    },
+    "actions": [
+     {
+      "do": "DESTROY",
+      "bpLe": 5000,
+      "noFx": true
+     }
+    ]
+   },
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "once": true,
+    "onceKey": "geo5",
+    "optional": true,
+    "if": {
+     "not": {
+      "nexusGe": {
+       "n": 1,
+       "family": "Primordial"
+      }
+     }
+    },
+    "actions": [
+     {
+      "do": "DESTROY",
+      "bpLe": 5000
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "once": true,
+    "onceKey": "geo5",
+    "optional": true,
+    "if": {
+     "nexusGe": {
+      "n": 1,
+      "family": "Primordial"
+     }
+    },
+    "actions": [
+     {
+      "do": "DESTROY",
+      "bpLe": 5000,
+      "noFx": true
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "once": true,
+    "onceKey": "geo5",
+    "optional": true,
+    "if": {
+     "not": {
+      "nexusGe": {
+       "n": 1,
+       "family": "Primordial"
+      }
+     }
+    },
+    "actions": [
+     {
+      "do": "DESTROY",
+      "bpLe": 5000
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS69-006",

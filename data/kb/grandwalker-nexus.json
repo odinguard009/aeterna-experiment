@@ -288,8 +288,6 @@
    ],
    "revival_open": [],
    "deck_incomplete": [
-    "BS66-XV05",
-    "BS67-XV05",
     "BS69-001",
     "BS69-002",
     "BS69-004",
@@ -405,8 +403,6 @@
    ],
    "order_cards": [
     "BS75-CX04",
-    "BS66-XV05",
-    "BS67-XV05",
     "BS69-001",
     "BS69-002",
     "BS69-004",
@@ -6795,7 +6791,6 @@
     "BS65-060",
     "BS66-046",
     "BS66-RV003",
-    "BS66-XV05",
     "BS67-056",
     "BS68-067",
     "BS69-013",
@@ -21263,7 +21258,6 @@
     "BS67-052",
     "BS67-054",
     "BS67-X07",
-    "BS67-XV05",
     "BS68-060",
     "BS68-062",
     "BS68-068",
@@ -26946,14 +26940,14 @@
     "name": "The GiantHero Titus XV",
     "type": "Spirit",
     "cost": 10,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS67-XV05",
     "name": "The HugeBeastLord Behedoth XV",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-023",
@@ -37663,7 +37657,7 @@
     "name": "The GiantHero Titus XV",
     "type": "Spirit",
     "cost": 10,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS67-056",
@@ -52776,7 +52770,7 @@
     "name": "The HugeBeastLord Behedoth XV",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS68-060",
