@@ -4,6 +4,14 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.218.1
+- Lane: K
+- **Card library: English-only card data completed (0 Japanese left in player-visible card data)**
+Patch on top of v0.218.0: the v0.218.0 tag and game file were cut at d48c835, before this translation, so its notes (91 cards keep Japanese, 3 families untranslated) are outdated. This release replaces them.
+- English, last step: the remaining 103 cards (names, effect texts, 3 family names, 2 collaboration labels) were translated by hand where no English source exists. This is unofficial wording; each note says so. Families: 戦極 = Ultimate Trooper, 星龍 = Astral Dragon, マスター = Master. Collaboration labels: Kamen Rider, Utahime (own romanisation of 詩姫). Player-visible Japanese text left: 0 (LA04 and LA06 now require 0).
+- Standard audit: all 674 `26R*` cards run every printed effect (0 partial); block A has 0 open tags, so no Lane K item is added before the Grandwalker lane.
+- Tests: library audit LA04 and LA06 now require zero Japanese in names, texts, residual lines, families and collaboration labels, and no "pending" notes.
+
 ## v0.218.0
 - Lane: K
 - **Card library: master database import (15,548 cards playable, 6 numbers still missing), English-only card data, flavor text in the Lore tab**
@@ -13,8 +21,6 @@ Released on the owner's order. Library work; one engine fix: a multi-colour Magi
 - English: family names (713 cards) and rarity codes (476 cards) normalised; 644 card names and 636 effect texts (550 by Japanese name, 80 by card number, 6 copied from a library card with the same Japanese name); 25 more names resolved from promo pages; 91 cards keep Japanese (90 texts, 6 names) with a "pending" note (no English source found; nothing was translated by hand).
 - Flavor text: 11,001 entries (was 6,453); Lore tab ordered by Saga then product kind. Deck builder: Awaken R/X/CP and Contract X rarities, block icons 2-13.
 - 18 cards that the clone rebuild had turned partial keep their wired effects again (same printed text, official stats). Old tests updated for the import (reprint pair, Lore order, 4-6 colour lists, Contractor symbols).
-- English, last step: the remaining 103 cards (names, effect texts, 3 family names, 2 collaboration labels) were translated by hand where no English source exists. This is unofficial wording; each note says so. Families: 戦極 = Ultimate Trooper, 星龍 = Astral Dragon, マスター = Master. Collaboration labels: Kamen Rider, Utahime (own romanisation of 詩姫). Player-visible Japanese text left: 0 (LA04 and LA06 now require 0).
-- Standard audit: all 674 `26R*` cards run every printed effect (0 partial); block A has 0 open tags, so no Lane K item is added before the Grandwalker lane.
 - Tests: library audit LA01-LA06 (unique ids, Rebirth faces, rarity vocabulary, English families, English flavor, English card text with a documented allowance).
 - Still open: 6 numbers not in the library (4 tokens, left out because effects create them and they cannot go in a deck: SD69-T001, BS73-T001, BS76-T001, 26RSD10-T001; BS77-AX02 and AX03 stay in staging: no Fandom page under their English names and no official entry, so no stats); 3 family names with no verified English source (戦極, 星龍, マスター); BSC24-004, BSC24-036, EX028, P080, P13-18, SJ12-08 keep a Japanese name.
 
