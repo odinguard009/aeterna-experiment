@@ -31,7 +31,7 @@ test('LA03 rarity codes: no long labels or Japanese, a small closed set', () => 
 test('LA04 family names are English: no Japanese characters, no case variants', () => {
   const fams = new Set(DATA.flatMap(c => c.families || []));
   const jp = [...fams].filter(f => /[぀-ヿ㐀-鿿]/.test(f));
-  assert.ok(jp.length <= 10, jp.join(','));          // 10 families have no English source yet (reported, not invented)
+  assert.ok(jp.length <= 3, jp.join(','));          // 3 families have no verified English source (戦極, 星龍, マスター) (reported, not invented)
   const norm = new Map(), clash = [];
   for (const f of fams) { const k = f.toLowerCase().replace(/[^a-z0-9]/g, ''); if (k && norm.has(k) && norm.get(k) !== f) clash.push([norm.get(k), f]); norm.set(k, f); }
   assert.deepEqual(clash, []);

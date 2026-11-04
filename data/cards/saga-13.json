@@ -8892,15 +8892,40 @@
   "bicon": [
    "9"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (Your Draw Step)",
-   "Increase the amount of cards you draw by +1. After you draw, discard a card from your Hand.",
-   "[LV2] (Your Attack Step)",
-   "Every Spirit you control gains +1000 BP."
-  ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Replaces a v0.210.0 clone whose stats differed from the official data.",
-  "rcode": "CP"
+  "fxComplete": true,
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Replaces a v0.210.0 clone whose stats differed from the official data. Effect data carried over from the earlier clone (same printed text); stats are the official ones.",
+  "rcode": "CP",
+  "effects": [
+   {
+    "trigger": "DRAW_STEP",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     },
+     {
+      "do": "DISCARD_HAND",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "bp": 1000,
+    "to": "own",
+    "lv": [
+     2
+    ],
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": false
+    }
+   }
+  ]
  },
  {
   "id": "BS61-CP05",
@@ -8924,15 +8949,36 @@
   "bicon": [
    "9"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2]",
-   "Your Hand is unaffected by opposing Spirit/Brave/Nexus/Magic effects.",
-   "[LV2] (Opposing Turn)",
-   "When the opponent draws outside of Draw Step, you can draw a card."
-  ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). Replaces a v0.210.0 clone whose stats differed from the official data.",
-  "rcode": "CP"
+  "fxComplete": true,
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). Replaces a v0.210.0 clone whose stats differed from the official data. Effect data carried over from the earlier clone (same printed text); stats are the official ones.",
+  "rcode": "CP",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "lv": [
+     1,
+     2
+    ],
+    "flag": "HAND_UNAFFECTED"
+   },
+   {
+    "trigger": "OPP_DRAWS",
+    "lv": [
+     2
+    ],
+    "optional": true,
+    "if": {
+     "oppTurn": true,
+     "outsideDraw": true
+    },
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS61-CP06",
@@ -13079,15 +13125,43 @@
   "bicon": [
    "9"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Deployed)",
-   "Draw a card.",
-   "[LV2] (Your Attack Step)",
-   "When your \"Zombie\" family Spirit attacks, send a core from any opposing Spirits to the Reserve."
-  ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). Replaces a v0.210.0 clone whose stats differed from the official data.",
-  "rcode": "CP"
+  "fxComplete": true,
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). Replaces a v0.210.0 clone whose stats differed from the official data. Effect data carried over from the earlier clone (same printed text); stats are the official ones.",
+  "rcode": "CP",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_ATTACKS",
+    "lv": [
+     2
+    ],
+    "match": {
+     "family": [
+      "Zombie"
+     ],
+     "noUlt": true
+    },
+    "actions": [
+     {
+      "do": "OPP_CORES_TO_RESERVE",
+      "targets": 1,
+      "each": 1
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS62-CP05",
@@ -17823,15 +17897,33 @@
   "bicon": [
    "9"
   ],
-  "fxComplete": false,
-  "residual": [
-   "Main",
-   "Destroy every LV1 Nexus.",
-   "Flash",
-   "During this turn, give a Spirit +3000 BP."
-  ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Replaces a v0.210.0 clone whose stats differed from the official data.",
-  "rcode": "CP"
+  "fxComplete": true,
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Replaces a v0.210.0 clone whose stats differed from the official data. Effect data carried over from the earlier clone (same printed text); stats are the official ones.",
+  "rcode": "CP",
+  "magic": {
+   "timing": [
+    "MAIN",
+    "FLASH"
+   ],
+   "effect": null,
+   "value": 0,
+   "by": {
+    "MAIN": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "DESTROY_NEXUS_ALL",
+       "lv": 1
+      }
+     ]
+    },
+    "FLASH": {
+     "effect": "BP_PLUS",
+     "value": 3000
+    }
+   }
+  }
  },
  {
   "id": "BS63-CX01",

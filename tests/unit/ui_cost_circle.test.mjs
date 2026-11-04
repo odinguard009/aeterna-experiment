@@ -206,7 +206,8 @@ test('S29 import: a two-colour card keeps both colours; its main colour is the f
   assert.deepEqual(await ev(() => [BS.CARDS['U32-RW'].colors, BS.CARDS['U32-RW'].symbol]), [['red', 'white'], 'red']);
 });
 test('S30 import: bad colour lists are refused', async () => {
-  const r = await ev(() => [['red'], ['red', 'pink'], 'red', ['red', 'white', 'blue', 'green']].map(cs => (BS.parseCard({ id: 'U32-BC', name: 'B', type: 'Spirit', colors: cs, cost: 1, levels: [{ cores: 1, bp: 1000 }] }).errors || []).some(e => /colors/.test(e)))
+  const r = await ev(() => [['red'], ['red', 'pink'], 'red', ['red', 'white', 'blue', 'green', 'yellow', 'purple', 'pink']].map(cs =>   // 4-6 colours load since v0.217 (multi-colour library cards)
+     (BS.parseCard({ id: 'U32-BC', name: 'B', type: 'Spirit', colors: cs, cost: 1, levels: [{ cores: 1, bp: 1000 }] }).errors || []).some(e => /colors/.test(e)))
     .concat([(BS.parseCard({ id: 'U32-BC', name: 'B', type: 'Spirit', color: 'blue', colors: ['red', 'white'], cost: 1, levels: [{ cores: 1, bp: 1000 }] }).errors || []).some(e => /one of "colors"/.test(e))]));
   assert.deepEqual(r, [true, true, true, true, true]);
 });

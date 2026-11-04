@@ -133,7 +133,7 @@ FX_ACTIONS.REFRESH_ATTACKER_ONCE = { chk: a => Object.keys(a).every(k => ['do', 
     t.crushRefT = G.turnNo; refreshOne(t); c.ctx.did = true; log(`${CARDS[t.id].name} is refreshed.`); await fireFx(ownerOf(t) || c.p, 'REFRESHED', t, {}); } };
 
 /* v485 OPP_NO_HAND_MAGIC: "during this battle the opponent can't use Magic cards from the Hand during Flash Timing" (noMagicB.all); noMagicHit also carries the v421 colour lock out of magicUsable */
-const noMagicHit = (p, card) => !!p.noMagicB && p.noMagicB.no === G.battleNo && !!G.attacker && (!!p.noMagicB.all || (card.colors || [card.color]).includes(p.noMagicB.color));
+const noMagicHit = (p, card) => !!p.noMagicB && p.noMagicB.no === G.battleNo && !!G.attacker && (!!p.noMagicB.all || (card.colors || [card.color]).some(x => String(x).toLowerCase() === String(p.noMagicB.color).toLowerCase()));   // multi-colour cards list lowercase colours, the ban stores "White"
 FX_ACTIONS.OPP_NO_HAND_MAGIC = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => "during this battle, the opponent can't use Magic cards from the Hand during Flash Timing",
   run: async c => { c.opp.noMagicB = { no: G.battleNo, all: true }; c.ctx.did = true; log(`${_nm(c)}: ${poss(c.opp)} can't use Magic from the Hand this battle.`); } };
 /* v486 ATTACK_SPIRIT_ALLY: "your <X> Spirits can target and attack an opposing Spirit" (BS69-002): same targeting as ATTACK_SPIRIT but for the attacker of an ALLY_ATTACKS effect (G.attacker), not the effect's own card */

@@ -7,13 +7,14 @@ Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.m
 ## v0.218.0
 - Lane: K
 - **Card library: master database import (15,548 cards playable, 6 numbers still missing), English-only card data, flavor text in the Lore tab**
-Released on the owner's order. Library work only, no engine change.
+Released on the owner's order. Library work; one engine fix: a multi-colour Magic card was not blocked by "can't use <colour> Magic" (colour compare was case-sensitive).
 - Master database (official site + Fandom wiki + library, `data/master`): every card number classified as standalone, alt art, reprint, token or stub; 58 stubs resolved (35 library clones, 23 built from the wiki page). Imported cards without full effect wiring are partial ("!" mark, `fxComplete: false` + `residual`) and playable in decks.
 - Rebirth: all 289 Rebirth cards have a front and a back face (LA02); front stats taken from the back face fixed (54 cards).
 - English: family names (713 cards) and rarity codes (476 cards) normalised; 644 card names and 636 effect texts (550 by Japanese name, 80 by card number, 6 copied from a library card with the same Japanese name); 25 more names resolved from promo pages; 91 cards keep Japanese (90 texts, 6 names) with a "pending" note (no English source found; nothing was translated by hand).
 - Flavor text: 11,001 entries (was 6,453); Lore tab ordered by Saga then product kind. Deck builder: Awaken R/X/CP and Contract X rarities, block icons 2-13.
+- 18 cards that the clone rebuild had turned partial keep their wired effects again (same printed text, official stats). Old tests updated for the import (reprint pair, Lore order, 4-6 colour lists, Contractor symbols).
 - Tests: library audit LA01-LA06 (unique ids, Rebirth faces, rarity vocabulary, English families, English flavor, English card text with a documented allowance).
-- Still open: 6 numbers not in the library (4 tokens, left out because effects create them and they cannot go in a deck: SD69-T001, BS73-T001, BS76-T001, 26RSD10-T001; BS77-AX02 and AX03 stay in staging: no Fandom page under their English names and no official entry, so no stats); 10 family names with no English source (27 cards); BSC24-004, BSC24-036, EX028, P080, P13-18, SJ12-08 keep a Japanese name.
+- Still open: 6 numbers not in the library (4 tokens, left out because effects create them and they cannot go in a deck: SD69-T001, BS73-T001, BS76-T001, 26RSD10-T001; BS77-AX02 and AX03 stay in staging: no Fandom page under their English names and no official entry, so no stats); 3 family names with no verified English source (戦極, 星龍, マスター); BSC24-004, BSC24-036, EX028, P080, P13-18, SJ12-08 keep a Japanese name.
 
 ## v0.217.0
 - Lane: K

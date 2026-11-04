@@ -86,8 +86,9 @@ test('R18 import accepts six-colour / Ultimate / God reduction symbols and rejec
     return [t({ all: 1 }), t({ ultimate: 1 }), t({ god: 1 }), t({ pink: 1 }) > 0, (BS.parseCard({ id: 'R-Y', name: 'Y', type: 'Nexus', color: 'red', cost: 1, symbolColors: ['god-pink'], levels: [{ cores: 0 }] }).errors || []).length > 0];`);
   assert.deepEqual(r, [0, 0, 0, true, true]);
 });
+// imported Contractor Nexus cards with no known symbol (symbols 0) are excluded: nothing to reduce with
 test('R19 the built-in pack keeps its reductions (every Contract Grandwalker reduces its own colour)', async () => {
-  const r = await ev(`return Object.keys(BS.CARDS).filter(k => BS.CARDS[k].type === 'Nexus' && (BS.CARDS[k].families || []).includes('Grandwalker') && /Contractor/.test(BS.CARDS[k].name)).map(k => { const a = BS.symbolAttrs(BS.CARDS[k]); return a.length === 1 && a[0].includes('god') && a[0].includes(BS.CARDS[k].symbol); });`);
+  const r = await ev(`return Object.keys(BS.CARDS).filter(k => BS.CARDS[k].type === 'Nexus' && (BS.CARDS[k].families || []).includes('Grandwalker') && /Contractor/.test(BS.CARDS[k].name) && BS.CARDS[k].symbols > 0).map(k => { const a = BS.symbolAttrs(BS.CARDS[k]); return a.length === 1 && a[0].includes('god') && a[0].includes(BS.CARDS[k].symbol); });`);
   assert.ok(r.length >= 5 && r.every(Boolean), JSON.stringify(r));
 });
 test('R20 no page errors', () => { assert.deepEqual(g.errors, []); });

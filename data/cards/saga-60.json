@@ -6496,15 +6496,40 @@
   "image": "EX13-03.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Flash- {{Accel|Cost 4 ()}}",
-   "Exhaust an opposing Spirit/Ultimate. After this effect resolves, put this card face-up onto the Removed Zone.",
-   "[LV1][LV2] (When Summoned)",
-   "Put a core from the Void to your Reserve."
+  "fxComplete": true,
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Replaces a v0.210.0 clone whose stats differed from the official data. Effect data carried over from the earlier clone (same printed text); stats are the official ones.",
+  "rcode": "EX",
+  "effects": [
+   {
+    "trigger": "ACCEL",
+    "cost": 4,
+    "timing": [
+     "FLASH"
+    ],
+    "actions": [
+     {
+      "do": "EXHAUST_OPP",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "VOID_TO_RESERVE",
+      "n": 1
+     }
+    ]
+   }
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Replaces a v0.210.0 clone whose stats differed from the official data.",
-  "rcode": "EX"
+  "mechanics": [
+   "Accel"
+  ]
  },
  {
   "id": "EX13-04",
@@ -9214,13 +9239,13 @@
   "families": [
    "Emperor Beast"
   ],
-  "text": "{{Tribute|Cost 3 or more &rarr; Trash}}\nAfter paying for the summoning cost, you must send all cores from one of your Cost 3 or more Spirits to the Trash.\n\n[LV1][LV2][LV3] (When Summoned)\nDestroy a 4000 BP or less Spirit, and draw a card.",
+  "text": "{{Tribute|Cost 3 or more → Trash}}\nAfter paying for the summoning cost, you must send all cores from one of your Cost 3 or more Spirits to the Trash.\n\n[LV1][LV2][LV3] (When Summoned)\nDestroy a 4000 BP or less Spirit, and draw a card.",
   "image": "P019.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "{{Tribute|Cost 3 or more &rarr; Trash}}",
+   "{{Tribute|Cost 3 or more → Trash}}",
    "After paying for the summoning cost, you must send all cores from one of your Cost 3 or more Spirits to the Trash.",
    "[LV1][LV2][LV3] (When Summoned)",
    "Destroy a 4000 BP or less Spirit, and draw a card."
@@ -14794,7 +14819,7 @@
    }
   ],
   "families": [
-   "先導者"
+   "Forerunner"
   ],
   "text": "When Spirits with Rush you control are destroyed by the opponent, return this Spirit card from your Trash to the Hand.\n\n[LV1][LV2][LV3] (When Summoned)\nIf your Life is three or less, you can summon an \"Exalted Sword\" family Brave card from your Hand/Trash, without paying the cost.",
   "image": "P14-X05.png",
@@ -14836,7 +14861,7 @@
    }
   ],
   "families": [
-   "先導者"
+   "Forerunner"
   ],
   "text": "When Spirits with Charge you control are destroyed by the opponent, return this Spirit card from the Trash to your Hand.\n\n[LV1][LV2][LV3] (When Summoned)\nWhen your Life is three or less, you can summon a \"Fencer\" family Spirit card from your Hand, without paying the cost.",
   "image": "P14-X06.png",
@@ -17539,7 +17564,7 @@
    }
   ],
   "families": [
-   "創造神"
+   "Creation Deity"
   ],
   "text": "Main - {{Advent|\"ClownDeity\"/\"Searcher\"|(Your Main Step)}}\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit.\n\n[LV1][LV2][LV3]\nThis Spirit gains an extra symbol that is also treated as Red/Purple/Green/White/Yellow/Blue.\n\n[LV2][LV3]\nBesides this Spirit, all your During Advent Spirits gain an extra symbol that is also treated as Red/Purple/Green/White/Yellow/Blue.\n\nDuring Advent [LV3]\nThis Spirit is unaffected by opposing effects.",
   "image": "P17-06.png",
@@ -18444,7 +18469,7 @@
    }
   ],
   "families": [
-   "極限"
+   "Extreme"
   ],
   "text": "[LV1][LV2][LV3] (When Summoned)\nDestroy an opposing 20000 BP or less Spirit/Ultimate.\n\n[LV2][LV3] Flash - Extreme Drive (Opposing Attack Step)\nIf you banish cards until [Eight cards left in your Deck counting from deckbottom & 0 cards in your Trash], destroy every opposing 30000 BP or less Spirit/Ultimate. Draw as many cards from your deck as you like up to the number of Spirits/Ultimates destroyed by this effect. Extreme Drive can only be used once per game.",
   "image": "P17-EXG01.png",
@@ -18489,7 +18514,7 @@
    }
   ],
   "families": [
-   "極限"
+   "Extreme"
   ],
   "text": "[LV1][LV2][LV3] (When Summoned)\nDraw two cards.\n\n[LV2][LV3] Flash - Extreme Drive (Opposing Attack Step)\nIf you banish cards until [Three cards left in your Deck counting from deckbottom & 0 cards in your Trash], discard cards from the opposing Hand until only two cards left. For each card discarded by this effect, send a core from any opposing Spirits/Ultimates to their Reserve. Extreme Drive can only be used once per game.",
   "image": "P17-EXG02.png",
@@ -18534,7 +18559,7 @@
    }
   ],
   "families": [
-   "極限"
+   "Extreme"
   ],
   "text": "[LV1][LV2][LV3] (When Summoned)\nExhaust three opposing Spirits/Ultimates.\n\n[LV2][LV3] Flash - Extreme Drive (Opposing Attack Step)\nIf you banish cards until [Five cards left in your Deck counting from deckbottom & 0 cards in your Trash], exhaust any number of opposing Spirits/Ultimates. During this game, opposing Spirits/Ultimates that are exhausted at this point can't refresh. After this effect resolves, banish all cards in the opposing Trash. Extreme Drive can only be used once per game.",
   "image": "P17-EXG03.png",
@@ -18579,7 +18604,7 @@
    }
   ],
   "families": [
-   "極限"
+   "Extreme"
   ],
   "text": "[LV1][LV2][LV3] (When Summoned)\nDiscard an opposing Burst.\n\n[LV2][LV3] Flash - Extreme Drive (Opposing Attack Step)\nIf you banish cards until [Three cards left in your Deck counting from deckbottom & 0 cards in your Trash], return all opposing Spirits/Ultimates/Nexuses to the Hand. When Brave Spirits/Brave Ultimates are returned to the Hand by this effect, the Braves can't remain on the Field. Then, immediately end the battle. Extreme Drive can only be used once per game.",
   "image": "P17-EXG04.png",
@@ -18624,7 +18649,7 @@
    }
   ],
   "families": [
-   "極限"
+   "Extreme"
   ],
   "text": "[LV1][LV2][LV3] (When Summoned)\nDuring this turn, give an opposing Spirit/Ultimate -12000 BP. Destroy any Spirit/Ultimate whose BP is brought to 0 by this effect.\n\n[LV2][LV3] Flash - Extreme Drive (Opposing Attack Step)\nIf you banish cards until [Six cards left in your Deck counting from deckbottom & 0 cards in your Trash], during this turn, the symbols of every opposing Spirit/Ultimate become 0. Then, put cores from the Void to your Life until you have five Lives. Extreme Drive can only be used once per game.",
   "image": "P17-EXG05.png",
@@ -18669,7 +18694,7 @@
    }
   ],
   "families": [
-   "極限"
+   "Extreme"
   ],
   "text": "[LV1][LV2][LV3] (When Summoned)\nDestroy an opposing Spirit/Ultimate with the highest cost.\n\n[LV2][LV3] Flash - Extreme Drive (Opposing Attack Step)\nIf you banish cards until [Three cards left in your Deck counting from deckbottom & 0 cards in your Trash], discard ten cards from the opposing decktop. When any Magic card is discarded by this effect, end this turn. Extreme Drive can only be used once per game.",
   "image": "P17-EXG06.png",
@@ -25968,7 +25993,8 @@
    }
   ],
   "families": [
-   "Evil Deity\n| family2 = Nightling"
+   "Evil Deity",
+   "Nightling"
   ],
   "text": "[LV1][LV2][LV3] (When Summoned)\nExhaust every opposing Spirit with only one core on it.\n\n[LV2][LV3] (When Attacks)\nDraw a card.\n\n| related =\n* Ultimate-El-Blood",
   "image": "PB12-PX04.png",
@@ -29080,13 +29106,28 @@
   "bicon": [
    "11"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV2] (Opposing Start Step)",
-   "If you control only Yellow Spirits/Nexuses, send two cores from your Trash to your Reserve."
-  ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Replaces a v0.210.0 clone whose stats differed from the official data.",
-  "rcode": "PB"
+  "fxComplete": true,
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Replaces a v0.210.0 clone whose stats differed from the official data. Effect data carried over from the earlier clone (same printed text); stats are the official ones.",
+  "rcode": "PB",
+  "effects": [
+   {
+    "trigger": "OPP_START_STEP",
+    "lv": [
+     2
+    ],
+    "if": {
+     "allHave": {
+      "color": "yellow"
+     }
+    },
+    "actions": [
+     {
+      "do": "TRASH_TO_RESERVE",
+      "n": 2
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "PB39-RV002",
@@ -33466,15 +33507,38 @@
   "bicon": [
    "9"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1]",
-   "This Spirit's color and symbol are also treated as Blue.",
-   "[LV2][LV3]",
-   "This Spirit's color and symbol are also treated as Red."
-  ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Replaces a v0.210.0 clone whose stats differed from the official data.",
-  "rcode": "PC"
+  "fxComplete": true,
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Replaces a v0.210.0 clone whose stats differed from the official data. Effect data carried over from the earlier clone (same printed text); stats are the official ones.",
+  "rcode": "PC",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "ALSO_TREATED",
+    "to": "self",
+    "lv": [
+     1
+    ],
+    "colors": [
+     "blue"
+    ],
+    "symbol": true,
+    "color": true
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "ALSO_TREATED",
+    "to": "self",
+    "lv": [
+     2,
+     3
+    ],
+    "colors": [
+     "red"
+    ],
+    "symbol": true,
+    "color": true
+   }
+  ]
  },
  {
   "id": "PC01-RV003",
@@ -36877,7 +36941,7 @@
    "Astral Dragon",
    "Ancient Dragon"
   ],
-  "text": "{{Tribute|Cost 5 or more &rarr; Void}}\nAfter paying for the summoning cost, you must send all cores from a Cost 5 or more Spirit you control to the Void.\n\n[LV1][LV2][LV3] (When Summoned)\nFor each \"Wurm\"-named Spirit you control, destroy an opposing Spirit. For each Spirit destroyed via this effect, put one core from the Void to your Life.\n\nWhen Braved [LV3] (When Battles)\nThis Spirit gains +5000 BP.",
+  "text": "{{Tribute|Cost 5 or more → Void}}\nAfter paying for the summoning cost, you must send all cores from a Cost 5 or more Spirit you control to the Void.\n\n[LV1][LV2][LV3] (When Summoned)\nFor each \"Wurm\"-named Spirit you control, destroy an opposing Spirit. For each Spirit destroyed via this effect, put one core from the Void to your Life.\n\nWhen Braved [LV3] (When Battles)\nThis Spirit gains +5000 BP.",
   "image": "PX12.png",
   "block": "P",
   "saga": 60,
@@ -36887,7 +36951,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "{{Tribute|Cost 5 or more &rarr; Void}}",
+   "{{Tribute|Cost 5 or more → Void}}",
    "After paying for the summoning cost, you must send all cores from a Cost 5 or more Spirit you control to the Void.",
    "[LV1][LV2][LV3] (When Summoned)",
    "For each \"Wurm\"-named Spirit you control, destroy an opposing Spirit. For each Spirit destroyed via this effect, put one core from the Void to your Life.",
@@ -40620,7 +40684,7 @@
   ],
   "families": [
    "Concluser",
-   "六楯帝"
+   "Six Shield Emperor"
   ],
   "text": "You can set this card from the Trash.\n\n{{Mirage|Cost 2 ( (Six-Color Core))}}\nDuring Set\nIncluding being in Soul State/pre-advent condition, while you control any Contract Spirit/Contract Grandwalker Nexus, your set Bursts which include the color of those targets are unaffected by opposing effects.\n\n[LV1][LV2][LV3] (When Summoned)\n(Once per Turn: Same Name) You can return a Burst card from your Trash to the Hand. When this effect returns any \"Concluser\" family card, for every 4 costs of the target, +1 core to any of your Grandwalker Nexuses.",
   "image": "PX25-04.png",
@@ -44932,15 +44996,47 @@
   "image": "SD03-015.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Main",
-   "Draw two cards. Then, reveal three cards from your decktop. Among them, add a Saga Brave card to the Hand. Return any remaining cards to either the decktop only or the deckbottom only.",
-   "Flash",
-   "During this turn, give a Spirit +2000 BP."
-  ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Replaces a v0.210.0 clone whose stats differed from the official data.",
-  "rcode": "U"
+  "fxComplete": true,
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Replaces a v0.210.0 clone whose stats differed from the official data. Effect data carried over from the earlier clone (same printed text); stats are the official ones.",
+  "rcode": "U",
+  "magic": {
+   "timing": [
+    "MAIN",
+    "FLASH"
+   ],
+   "effect": null,
+   "value": 0,
+   "by": {
+    "MAIN": {
+     "effect": "ACTIONS",
+     "value": 0,
+     "actions": [
+      {
+       "do": "DRAW",
+       "n": 2
+      },
+      {
+       "do": "REVEAL_PICK",
+       "n": 3,
+       "match": {
+        "family": [
+         "Saga"
+        ],
+        "type": "Brave"
+       },
+       "rest": "either",
+       "if": {
+        "prev": true
+       }
+      }
+     ]
+    },
+    "FLASH": {
+     "effect": "BP_PLUS",
+     "value": 2000
+    }
+   }
+  }
  },
  {
   "id": "SD03-016",
@@ -45166,7 +45262,7 @@
    "Dragon Knight",
    "Dragon Emperor"
   ],
-  "text": "{{Tribute|Cost 3 or more &rarr; Trash}}\nAfter paying for the summoning cost, you must send all cores from a Cost 3 or more Spirit you control to the Trash.\n\n[LV1][LV2][LV3] (When Summoned)\nDestroy every 3000 BP or less Spirit. For each Spirit destroyed by this effect, put a core from the Void to this Spirit.\n\n[LV3] (When Attacks)\nThis Spirit gains +5000 BP.",
+  "text": "{{Tribute|Cost 3 or more → Trash}}\nAfter paying for the summoning cost, you must send all cores from a Cost 3 or more Spirit you control to the Trash.\n\n[LV1][LV2][LV3] (When Summoned)\nDestroy every 3000 BP or less Spirit. For each Spirit destroyed by this effect, put a core from the Void to this Spirit.\n\n[LV3] (When Attacks)\nThis Spirit gains +5000 BP.",
   "image": "SD04-X003A.png",
   "block": "P",
   "saga": 60,
@@ -45175,7 +45271,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "{{Tribute|Cost 3 or more &rarr; Trash}}",
+   "{{Tribute|Cost 3 or more → Trash}}",
    "After paying for the summoning cost, you must send all cores from a Cost 3 or more Spirit you control to the Trash.",
    "[LV1][LV2][LV3] (When Summoned)",
    "Destroy every 3000 BP or less Spirit.",
@@ -45215,7 +45311,7 @@
    "Dragon Knight",
    "Dragon Emperor"
   ],
-  "text": "{{Tribute|Cost 3 or more &rarr; Trash}}\nAfter paying for the summoning cost, you must send all cores from a Cost 3 or more Spirit you control to the Trash.\n\n[LV1][LV2][LV3] (When Summoned)\nDestroy every 3000 BP or less Spirit. For each Spirit destroyed by this effect, put a core from the Void to this Spirit.\n\n[LV3] (When Attacks)\nThis Spirit gains +5000 BP.",
+  "text": "{{Tribute|Cost 3 or more → Trash}}\nAfter paying for the summoning cost, you must send all cores from a Cost 3 or more Spirit you control to the Trash.\n\n[LV1][LV2][LV3] (When Summoned)\nDestroy every 3000 BP or less Spirit. For each Spirit destroyed by this effect, put a core from the Void to this Spirit.\n\n[LV3] (When Attacks)\nThis Spirit gains +5000 BP.",
   "image": "SD04-X003E.png",
   "block": "P",
   "saga": 60,
@@ -45224,7 +45320,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "{{Tribute|Cost 3 or more &rarr; Trash}}",
+   "{{Tribute|Cost 3 or more → Trash}}",
    "After paying for the summoning cost, you must send all cores from a Cost 3 or more Spirit you control to the Trash.",
    "[LV1][LV2][LV3] (When Summoned)",
    "Destroy every 3000 BP or less Spirit.",
@@ -45264,7 +45360,7 @@
    "Dragon Knight",
    "Dragon Emperor"
   ],
-  "text": "{{Tribute|Cost 3 or more &rarr; Trash}}\nAfter paying for the summoning cost, you must send all cores from a Cost 3 or more Spirit you control to the Trash.\n\n[LV1][LV2][LV3] (When Summoned)\nDestroy every 3000 BP or less Spirit. For each Spirit destroyed by this effect, put a core from the Void to this Spirit.\n\n[LV3] (When Attacks)\nThis Spirit gains +5000 BP.",
+  "text": "{{Tribute|Cost 3 or more → Trash}}\nAfter paying for the summoning cost, you must send all cores from a Cost 3 or more Spirit you control to the Trash.\n\n[LV1][LV2][LV3] (When Summoned)\nDestroy every 3000 BP or less Spirit. For each Spirit destroyed by this effect, put a core from the Void to this Spirit.\n\n[LV3] (When Attacks)\nThis Spirit gains +5000 BP.",
   "image": "SD04-X003S.png",
   "block": "P",
   "saga": 60,
@@ -45273,7 +45369,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "{{Tribute|Cost 3 or more &rarr; Trash}}",
+   "{{Tribute|Cost 3 or more → Trash}}",
    "After paying for the summoning cost, you must send all cores from a Cost 3 or more Spirit you control to the Trash.",
    "[LV1][LV2][LV3] (When Summoned)",
    "Destroy every 3000 BP or less Spirit.",
@@ -45313,7 +45409,7 @@
    "Dragon Knight",
    "Dragon Emperor"
   ],
-  "text": "{{Tribute|Cost 3 or more &rarr; Trash}}\nAfter paying for the summoning cost, you must send all cores from a Cost 3 or more Spirit you control to the Trash.\n\n[LV1][LV2][LV3] (When Summoned)\nDestroy every 3000 BP or less Spirit. For each Spirit destroyed by this effect, put a core from the Void to this Spirit.\n\n[LV3] (When Attacks)\nThis Spirit gains +5000 BP.",
+  "text": "{{Tribute|Cost 3 or more → Trash}}\nAfter paying for the summoning cost, you must send all cores from a Cost 3 or more Spirit you control to the Trash.\n\n[LV1][LV2][LV3] (When Summoned)\nDestroy every 3000 BP or less Spirit. For each Spirit destroyed by this effect, put a core from the Void to this Spirit.\n\n[LV3] (When Attacks)\nThis Spirit gains +5000 BP.",
   "image": "SD04-X003T.png",
   "block": "P",
   "saga": 60,
@@ -45322,7 +45418,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "{{Tribute|Cost 3 or more &rarr; Trash}}",
+   "{{Tribute|Cost 3 or more → Trash}}",
    "After paying for the summoning cost, you must send all cores from a Cost 3 or more Spirit you control to the Trash.",
    "[LV1][LV2][LV3] (When Summoned)",
    "Destroy every 3000 BP or less Spirit.",
@@ -50267,7 +50363,7 @@
    }
   ],
   "families": [
-   "Terra Dragon\n|ability = Clash"
+   "Terra Dragon"
   ],
   "text": "[LV1][LV2][LV3] Clash (When Attacks) The opponent must block if possible.",
   "image": "SD18-003.png",
@@ -73852,15 +73948,37 @@
   "bicon": [
    "12"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Summoned)",
-   "Draw a card.",
-   "{{Six Heaven Rush|2}}",
-   "If you have two or more symbol colors, destroy an opposing exhausted Spirit."
+  "fxComplete": true,
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). Replaces a v0.210.0 clone whose stats differed from the official data. Effect data carried over from the earlier clone (same printed text); stats are the official ones.",
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     },
+     {
+      "do": "DESTROY",
+      "match": {
+       "exhausted": true
+      },
+      "if": {
+       "symColorsGe": 2
+      }
+     }
+    ]
+   }
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). Replaces a v0.210.0 clone whose stats differed from the official data.",
-  "rcode": "C"
+  "mechanics": [
+   "Six Heaven Rush"
+  ]
  },
  {
   "id": "SD57-RV002",
@@ -73895,15 +74013,22 @@
   "bicon": [
    "7"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3]",
-   "This Spirit's color and symbol are also treated as Red.",
-   "[LV1][LV2][LV3]",
-   "For each symbol color you have, this Spirit gains +2000 BP."
-  ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Replaces a v0.210.0 clone whose stats differed from the official data.",
-  "rcode": "C"
+  "fxComplete": true,
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Replaces a v0.210.0 clone whose stats differed from the official data. Effect data carried over from the earlier clone (same printed text); stats are the official ones.",
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "bp": 2000,
+    "to": "self",
+    "perSymbolColors": true
+   }
+  ]
  },
  {
   "id": "SD57-RV003",
@@ -73938,16 +74063,24 @@
   "bicon": [
    "7"
   ],
-  "fxComplete": false,
-  "residual": [
-   "This Spirit card is also treated as a Magic card.",
-   "Flash (This effect can't be used while on the Field.)",
-   "During this turn, give an opposing Spirit -3000 BP. Destroy the Spirit whose BP was brought to 0 by this effect.",
-   "[LV1][LV2]",
-   "This Spirit's color and symbol are also treated as White."
-  ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Replaces a v0.210.0 clone whose stats differed from the official data.",
-  "rcode": "C"
+  "fxComplete": true,
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Replaces a v0.210.0 clone whose stats differed from the official data. Effect data carried over from the earlier clone (same printed text); stats are the official ones.",
+  "rcode": "C",
+  "magic": {
+   "timing": [
+    "FLASH"
+   ],
+   "alsoMagic": true,
+   "effect": "ACTIONS",
+   "value": 0,
+   "actions": [
+    {
+     "do": "BP_MINUS",
+     "n": 3000,
+     "zeroDestroy": true
+    }
+   ]
+  }
  },
  {
   "id": "SD57-RV004",
@@ -75054,13 +75187,22 @@
   "bicon": [
    "8"
   ],
-  "fxComplete": false,
-  "residual": [
-   "{{Immortality|Cost 3}} (Either Attack Step)",
-   "You can summon this Spirit card from the Trash when your Cost 3 Spirit is destroyed."
+  "fxComplete": true,
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Replaces a v0.210.0 clone whose stats differed from the official data. Effect data carried over from the earlier clone (same printed text); stats are the official ones.",
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "IMMORTALITY",
+    "to": "self",
+    "costIn": [
+     3
+    ]
+   }
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Replaces a v0.210.0 clone whose stats differed from the official data.",
-  "rcode": "C"
+  "mechanics": [
+   "Immortality"
+  ]
  },
  {
   "id": "SD59-RV002",
@@ -75133,13 +75275,22 @@
   "bicon": [
    "8"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] {{Immortality|Cost 5}} (Either Attack Step)",
-   "You can summon this Spirit card from the Trash when your Cost 5 Spirit is destroyed."
+  "fxComplete": true,
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Replaces a v0.210.0 clone whose stats differed from the official data. Effect data carried over from the earlier clone (same printed text); stats are the official ones.",
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "IMMORTALITY",
+    "to": "self",
+    "costIn": [
+     5
+    ]
+   }
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Replaces a v0.210.0 clone whose stats differed from the official data.",
-  "rcode": "C"
+  "mechanics": [
+   "Immortality"
+  ]
  },
  {
   "id": "SD59-RV004",
@@ -75789,13 +75940,24 @@
   "bicon": [
    "8"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (Your Main Step)",
-   "This Spirit gains two extra White symbols."
-  ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Replaces a v0.210.0 clone whose stats differed from the official data.",
-  "rcode": "C"
+  "fxComplete": true,
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Replaces a v0.210.0 clone whose stats differed from the official data. Effect data carried over from the earlier clone (same printed text); stats are the official ones.",
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "lv": [
+     1,
+     2
+    ],
+    "flag": "EXTRA_SYMBOL",
+    "color": "white",
+    "n": 2,
+    "if": {
+     "step": "MAIN"
+    }
+   }
+  ]
  },
  {
   "id": "SD60-RV003",
@@ -77402,15 +77564,46 @@
   "bicon": [
    "8"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (Opposing Turn)",
-   "When the opposing Hand increases via an opposing effect, for each card increased, the opponent discards a card from their Hand.",
-   "[LV2] (Opposing Attack Step)",
-   "When an opposing Spirit attacks, refresh a \"Machine Beast\" family Spirit you control."
-  ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). Replaces a v0.210.0 clone whose stats differed from the official data.",
-  "rcode": "C"
+  "fxComplete": true,
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). Replaces a v0.210.0 clone whose stats differed from the official data. Effect data carried over from the earlier clone (same printed text); stats are the official ones.",
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "OPP_ATTACKS",
+    "lv": [
+     2
+    ],
+    "match": {
+     "noUlt": true
+    },
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT",
+      "match": {
+       "family": [
+        "Machine Beast"
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "OPP_HAND_UP",
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "oppTurn": true
+    },
+    "actions": [
+     {
+      "do": "OPP_DISCARD",
+      "n": 1
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD63-TCP02",
@@ -79390,15 +79583,50 @@
   "bicon": [
    "10"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] Flash - Awaken",
-   "You can send any number of cores from your Spirits to this Spirit.",
-   "[LV3] (When Attacks)",
-   "When only the opposing Spirit is destroyed via BP comparison, besides [DarkDinohound], refresh a Spirit with Awaken you control."
+  "fxComplete": true,
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). Replaces a v0.210.0 clone whose stats differed from the official data. Effect data carried over from the earlier clone (same printed text); stats are the official ones.",
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ACTIVATE",
+    "timing": [
+     "MAIN",
+     "FLASH"
+    ],
+    "once": false,
+    "cpuSkip": true,
+    "optional": true,
+    "actions": [
+     {
+      "do": "AWAKEN"
+     }
+    ],
+    "lv": [
+     1,
+     2,
+     3
+    ]
+   },
+   {
+    "trigger": "BATTLE_WIN",
+    "lv": [
+     3
+    ],
+    "attackingOnly": true,
+    "actions": [
+     {
+      "do": "REFRESH_SPIRIT",
+      "other": true,
+      "match": {
+       "keyword": "Awaken"
+      }
+     }
+    ]
+   }
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). Replaces a v0.210.0 clone whose stats differed from the official data.",
-  "rcode": "C"
+  "mechanics": [
+   "Awaken"
+  ]
  },
  {
   "id": "SD66-RV004",
@@ -80529,13 +80757,29 @@
   "bicon": [
    "11"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] (When Attacks)",
-   "Draw a card, and destroy an opposing 3000 BP or less Spirit."
-  ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Replaces a v0.210.0 clone whose stats differed from the official data.",
-  "rcode": "C"
+  "fxComplete": true,
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Replaces a v0.210.0 clone whose stats differed from the official data. Effect data carried over from the earlier clone (same printed text); stats are the official ones.",
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     },
+     {
+      "do": "DESTROY",
+      "bpLe": 3000
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SD68-RV002",
@@ -84292,7 +84536,7 @@
    "[LV2][LV3] Consecutive Blade (When Attacks)",
    "By sending (Soul Core) (Soul Core) from this Spirit to your Trash, the opponent must block with two of their Spirits/Ultimates if possible, and simultaneously battle this Spirit."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text from the Fandom page of the same card; its Japanese text differs slightly from the official text (reprint or erratum).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text from the Fandom page of the same card; its Japanese text differs slightly from the official text (reprint or erratum). English family name pending (Japanese family kept).",
   "rcode": "SJ"
  },
  {
@@ -84328,7 +84572,7 @@
   "residual": [
    "This card is limited to one copy per deck."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English family name pending (Japanese family kept).",
   "rcode": "X"
  },
  {
@@ -84368,7 +84612,7 @@
   "residual": [
    "[LV1][LV2][LV3] (When Summoned) Reveal five cards from your decktop. Among them, add an \"Ultimate Trooper\" family Spirit card to your Hand. Return any remaining card(s) to the deckbottom in any order."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English family name pending (Japanese family kept).",
   "rcode": "SJ"
  },
  {
@@ -84409,7 +84653,7 @@
    "[LV1][LV2][LV3] (When Destroyed)",
    "Destroy an opposing 5000 BP or less Spirit. If (Soul Core)(Soul Core) is on this Spirit, also, draw two cards."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English family name pending (Japanese family kept).",
   "rcode": "SJ"
  },
  {
@@ -84452,7 +84696,7 @@
    "[LV2][LV3] (Your Main Step)",
    "While you control [The ThreeVassalsDragon Lancefighting Shougen], [The ThreeVassalsDragon Ingenious Hyoubu] and [The ThreeVassalsDragon Fuse Cland], at least one of each, all [The WarParamountWarDragon BuraiDragon] in your Hand becomes Cost 4."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text from the Fandom page \"The ThreeVassalsDragon Ingenious Hyoubu\", found by card number; not compared with the official Japanese text.",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text from the Fandom page \"The ThreeVassalsDragon Ingenious Hyoubu\", found by card number; not compared with the official Japanese text. English family name pending (Japanese family kept).",
   "rcode": "SJ"
  },
  {
@@ -84491,7 +84735,7 @@
    "[LV2] (When Attacks)",
    "Destroy an opposing braved Brave. Or, destroy an opposing Nexus."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English family name pending (Japanese family kept).",
   "rcode": "SJ"
  },
  {
@@ -84534,7 +84778,7 @@
    "[LV2][LV3] (When Attacks)",
    "By sending cores from your Life to any of your Spirits until you have one Life left, during this turn, all your \"Ultimate Trooper\" family Spirits get +5000 BP and one extra Red symbol."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English family name pending (Japanese family kept).",
   "rcode": "SJ"
  },
  {
@@ -84602,7 +84846,7 @@
    "[LV2][LV3] (Either Attack Step)",
    "When your \"Ultimate Trooper\" family Spirit is destroyed, destroy an opposing 5000 BP or less Spirit."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English family name pending (Japanese family kept).",
   "rcode": "SJ"
  },
  {
@@ -84756,7 +85000,7 @@
    "[LV1][LV2][LV3][LV4] Flash - Awaken - You can put any number of cores from Spirits you control to this Spirit.",
    "[LV2][LV3][LV4] While (Soul Core)(Soul Core) is on this Spirit, all Spirits with Awaken you control gain +10000 BP."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English family name pending (Japanese family kept).",
   "rcode": "SJ"
  },
  {
@@ -84800,7 +85044,7 @@
    "[LV2][LV3] {{Catl|All Color}} (When Attacks)",
    "By sending this Spirit's (Soul Core)(Soul Core) to your Trash, immediately activate one of your Soul Bursts."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English family name pending (Japanese family kept).",
   "rcode": "SJ"
  },
  {
@@ -84841,7 +85085,7 @@
    "[LV1][LV2][LV3] Showdown (Opposing Start Step) Your opponent chooses one of their Spirits and compares BP with this Spirit. Destroy the Spirit(s) with equal or lower BP. When only the opposing Spirit is destroyed, activate the following effect:",
    "■ When there are five or more \"War Dragon\" family Spirit cards in your Trash, send an opposing Life to their Reserve."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English family name pending (Japanese family kept).",
   "rcode": "SJ"
  },
  {
@@ -86495,7 +86739,7 @@
    "［Lv2-Lv3］『自分のアタックステップ』",
    "コスト3以下の自分のスピリットがアタックしたとき、自分のデッキを上から1枚破棄できる。この効果でコスト0のカードが破棄されたとき、そのスピリットを回復させる。"
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept). English family name pending (Japanese family kept).",
   "rcode": "SJ"
  },
  {
@@ -87268,7 +87512,7 @@
    "Dragon Knight",
    "Dragon Emperor"
   ],
-  "text": "{{Tribute|Cost 3 or more &rarr; Trash}}\nAfter paying for the summoning cost, you must send all cores from a Cost 3 or more Spirit you control to the Trash.\n\n[LV1][LV2][LV3] (When Summoned)\nDestroy every 3000 BP or less Spirit. For each Spirit destroyed by this effect, put a core from the Void to this Spirit.\n\n[LV3] (When Attacks)\nThis Spirit gains +5000 BP.",
+  "text": "{{Tribute|Cost 3 or more → Trash}}\nAfter paying for the summoning cost, you must send all cores from a Cost 3 or more Spirit you control to the Trash.\n\n[LV1][LV2][LV3] (When Summoned)\nDestroy every 3000 BP or less Spirit. For each Spirit destroyed by this effect, put a core from the Void to this Spirit.\n\n[LV3] (When Attacks)\nThis Spirit gains +5000 BP.",
   "image": "X003A.png",
   "block": "P",
   "saga": 60,
@@ -87278,7 +87522,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "{{Tribute|Cost 3 or more &rarr; Trash}}",
+   "{{Tribute|Cost 3 or more → Trash}}",
    "After paying for the summoning cost, you must send all cores from a Cost 3 or more Spirit you control to the Trash.",
    "[LV1][LV2][LV3] (When Summoned)",
    "Destroy every 3000 BP or less Spirit. For each Spirit destroyed by this effect, put a core from the Void to this Spirit.",
@@ -87318,7 +87562,7 @@
    "Dragon Knight",
    "Dragon Emperor"
   ],
-  "text": "{{Tribute|Cost 3 or more &rarr; Trash}}\nAfter paying for the summoning cost, you must send all cores from a Cost 3 or more Spirit you control to the Trash.\n\n[LV1][LV2][LV3] (When Summoned)\nDestroy every 3000 BP or less Spirit. For each Spirit destroyed by this effect, put a core from the Void to this Spirit.\n\n[LV3] (When Attacks)\nThis Spirit gains +5000 BP.",
+  "text": "{{Tribute|Cost 3 or more → Trash}}\nAfter paying for the summoning cost, you must send all cores from a Cost 3 or more Spirit you control to the Trash.\n\n[LV1][LV2][LV3] (When Summoned)\nDestroy every 3000 BP or less Spirit. For each Spirit destroyed by this effect, put a core from the Void to this Spirit.\n\n[LV3] (When Attacks)\nThis Spirit gains +5000 BP.",
   "image": "X003D.png",
   "block": "P",
   "saga": 60,
@@ -87328,7 +87572,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "{{Tribute|Cost 3 or more &rarr; Trash}}",
+   "{{Tribute|Cost 3 or more → Trash}}",
    "After paying for the summoning cost, you must send all cores from a Cost 3 or more Spirit you control to the Trash.",
    "[LV1][LV2][LV3] (When Summoned)",
    "Destroy every 3000 BP or less Spirit. For each Spirit destroyed by this effect, put a core from the Void to this Spirit.",
@@ -87368,7 +87612,7 @@
    "Dragon Knight",
    "Dragon Emperor"
   ],
-  "text": "{{Tribute|Cost 3 or more &rarr; Trash}}\nAfter paying for the summoning cost, you must send all cores from a Cost 3 or more Spirit you control to the Trash.\n\n[LV1][LV2][LV3] (When Summoned)\nDestroy every 3000 BP or less Spirit. For each Spirit destroyed by this effect, put a core from the Void to this Spirit.\n\n[LV3] (When Attacks)\nThis Spirit gains +5000 BP.",
+  "text": "{{Tribute|Cost 3 or more → Trash}}\nAfter paying for the summoning cost, you must send all cores from a Cost 3 or more Spirit you control to the Trash.\n\n[LV1][LV2][LV3] (When Summoned)\nDestroy every 3000 BP or less Spirit. For each Spirit destroyed by this effect, put a core from the Void to this Spirit.\n\n[LV3] (When Attacks)\nThis Spirit gains +5000 BP.",
   "image": "X003E.png",
   "block": "P",
   "saga": 60,
@@ -87378,7 +87622,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "{{Tribute|Cost 3 or more &rarr; Trash}}",
+   "{{Tribute|Cost 3 or more → Trash}}",
    "After paying for the summoning cost, you must send all cores from a Cost 3 or more Spirit you control to the Trash.",
    "[LV1][LV2][LV3] (When Summoned)",
    "Destroy every 3000 BP or less Spirit. For each Spirit destroyed by this effect, put a core from the Void to this Spirit.",
@@ -87418,7 +87662,7 @@
    "Dragon Knight",
    "Dragon Emperor"
   ],
-  "text": "{{Tribute|Cost 3 or more &rarr; Trash}}\nAfter paying for the summoning cost, you must send all cores from a Cost 3 or more Spirit you control to the Trash.\n\n[LV1][LV2][LV3] (When Summoned)\nDestroy every 3000 BP or less Spirit. For each Spirit destroyed by this effect, put a core from the Void to this Spirit.\n\n[LV3] (When Attacks)\nThis Spirit gains +5000 BP.",
+  "text": "{{Tribute|Cost 3 or more → Trash}}\nAfter paying for the summoning cost, you must send all cores from a Cost 3 or more Spirit you control to the Trash.\n\n[LV1][LV2][LV3] (When Summoned)\nDestroy every 3000 BP or less Spirit. For each Spirit destroyed by this effect, put a core from the Void to this Spirit.\n\n[LV3] (When Attacks)\nThis Spirit gains +5000 BP.",
   "image": "X003S.png",
   "block": "P",
   "saga": 60,
@@ -87428,7 +87672,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "{{Tribute|Cost 3 or more &rarr; Trash}}",
+   "{{Tribute|Cost 3 or more → Trash}}",
    "After paying for the summoning cost, you must send all cores from a Cost 3 or more Spirit you control to the Trash.",
    "[LV1][LV2][LV3] (When Summoned)",
    "Destroy every 3000 BP or less Spirit. For each Spirit destroyed by this effect, put a core from the Void to this Spirit.",
@@ -87468,7 +87712,7 @@
    "Dragon Knight",
    "Dragon Emperor"
   ],
-  "text": "{{Tribute|Cost 3 or more &rarr; Trash}}\nAfter paying for the summoning cost, you must send all cores from a Cost 3 or more Spirit you control to the Trash.\n\n[LV1][LV2][LV3] (When Summoned)\nDestroy every 3000 BP or less Spirit. For each Spirit destroyed by this effect, put a core from the Void to this Spirit.\n\n[LV3] (When Attacks)\nThis Spirit gains +5000 BP.",
+  "text": "{{Tribute|Cost 3 or more → Trash}}\nAfter paying for the summoning cost, you must send all cores from a Cost 3 or more Spirit you control to the Trash.\n\n[LV1][LV2][LV3] (When Summoned)\nDestroy every 3000 BP or less Spirit. For each Spirit destroyed by this effect, put a core from the Void to this Spirit.\n\n[LV3] (When Attacks)\nThis Spirit gains +5000 BP.",
   "image": "X003T.png",
   "block": "P",
   "saga": 60,
@@ -87478,7 +87722,7 @@
   ],
   "fxComplete": false,
   "residual": [
-   "{{Tribute|Cost 3 or more &rarr; Trash}}",
+   "{{Tribute|Cost 3 or more → Trash}}",
    "After paying for the summoning cost, you must send all cores from a Cost 3 or more Spirit you control to the Trash.",
    "[LV1][LV2][LV3] (When Summoned)",
    "Destroy every 3000 BP or less Spirit. For each Spirit destroyed by this effect, put a core from the Void to this Spirit.",
@@ -87834,7 +88078,7 @@
    "When Braved [LV2][LV3] (Your Attack Step)",
    "All your \"Astral Deity\" family Spirits can target and attack an opposing Spirit."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English text from the Fandom page of the same card; its Japanese text differs slightly from the official text (reprint or erratum).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English text from the Fandom page of the same card; its Japanese text differs slightly from the official text (reprint or erratum). English family name pending (Japanese family kept).",
   "rcode": "X"
  },
  {
@@ -87993,13 +88237,13 @@
    "Emperor Beast",
    "Song Bird"
   ],
-  "text": "{{Tribute|Song Bird &rarr; Void}}\nAfter paying for the summoning cost, you must send all core from a \"Song Bird\" family Spirit you control to the Void.\n\n[LV1][LV2][LV3] (When Summoned)\nIf \"The Kaiser Empereur\" was used for the Tribute, summon any number of \"Pentan\"-named Spirit cards from your Hand/Trash, without paying the cost. However, the (When Summoned) effects of those Spirits can't activate.\n\n[LV3] (When Attacks)\nBy destroying three \"Pentan\"-named Spirits you control, this Spirit refreshes.",
+  "text": "{{Tribute|Song Bird → Void}}\nAfter paying for the summoning cost, you must send all core from a \"Song Bird\" family Spirit you control to the Void.\n\n[LV1][LV2][LV3] (When Summoned)\nIf \"The Kaiser Empereur\" was used for the Tribute, summon any number of \"Pentan\"-named Spirit cards from your Hand/Trash, without paying the cost. However, the (When Summoned) effects of those Spirits can't activate.\n\n[LV3] (When Attacks)\nBy destroying three \"Pentan\"-named Spirits you control, this Spirit refreshes.",
   "image": "X010.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "{{Tribute|Song Bird &rarr; Void}}",
+   "{{Tribute|Song Bird → Void}}",
    "After paying for the summoning cost, you must send all core from a \"Song Bird\" family Spirit you control to the Void.",
    "[LV1][LV2][LV3] (When Summoned)",
    "If \"The Kaiser Empereur\" was used for the Tribute, summon any number of \"Pentan\"-named Spirit cards from your Hand/Trash, without paying the cost. However, the (When Summoned) effects of those Spirits can't activate.",
@@ -88612,7 +88856,7 @@
    }
   ],
   "families": [
-   "交渉人"
+   "Negotiator"
   ],
   "text": "[LV1][LV2]\nThis Spirit is also treated as a Red/Purple Spirit.\n\n[LV1][LV2] (Your Attack Step)\nAll your \"Astral Deity\"/\"Galaxian\"/\"Astral Soul\" family Spirits gain +1000 BP.\n\n[LV2]\nWhen this Spirit or any [The Astronomer Lilia] you control are destroyed by the opponent, return them to your Hand.",
   "image": "X019.png",
@@ -88659,7 +88903,7 @@
    }
   ],
   "families": [
-   "星文学者"
+   "Astronomer"
   ],
   "text": "[LV1][LV2]\nThis Spirit is also treated as a Green/White Spirit.\n\n[LV1][LV2]\nWhen the opposing Life is reduced, you can summon a \"Galaxian\" family Spirit card from your Hand, without paying the cost.\n\n[LV2]\nWhile you control [The Negotiator Mix], all your \"Galaxian\"/\"Astral Soul\" family Spirits are treated as being at their highest levels.",
   "image": "X020.png",
@@ -89001,7 +89245,7 @@
    }
   ],
   "families": [
-   "竜騎士"
+   "Dragon Rider"
   ],
   "text": "{{Burst|After your Spirit is destroyed by the opponent}}\nWhen the total color of Spirits you control is two or more, summon this Spirit card.\n\n[LV1][LV2][LV3][LV4] (When Attacks)\nDestroy an opposing \"Supreme Hero\" family Spirit.\n\n[LV2][LV3][LV4]\nWhile the opponent has a Burst set/controls any Spirit with a Burst effect, this Spirit gains +10000 BP.",
   "image": "X13-16.png",
@@ -89050,7 +89294,7 @@
    }
   ],
   "families": [
-   "六楯帝"
+   "Six Shield Emperor"
   ],
   "text": "This Spirit card can't be summoned without paying at least one cost.\n\n[LV1][LV2][LV3] (Either Attack Step)\nAll your Spirits are unaffected by opposing Burst effects.\n\n[LV3] (Your End Step)\nBy returning one of your Spirits to the deckbottom, activate your Burst of the same color and an equal or lower cost than that returned Spirit, ignoring the Burst condition.",
   "image": "X13-17.png",

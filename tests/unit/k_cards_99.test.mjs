@@ -192,7 +192,7 @@ test('K-1061 BS46-069 Eilmer: Attacks bans opposing White Magic this battle (not
   const { page } = await sharedBoard();
   const r = await page.evaluate(`(async () => { BS.testSetup(); ${B}
     const e = BS.mkInst('BS46-069'); e.cores = 1; P.spirits = [e]; G.attacker = e; G.battleNo = 3;
-    const mk = col => Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Magic' && (BS.CARDS[k].colors || [BS.CARDS[k].color]).includes(col) && BS.CARDS[k].cost <= 3 && (BS.CARDS[k].magic.timing || []).includes('FLASH') && !BS.CARDS[k].magic.by);
+    const mk = col => Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Magic' && (BS.CARDS[k].colors || [BS.CARDS[k].color]).includes(col) && (col === 'white' || !(BS.CARDS[k].colors || [BS.CARDS[k].color]).includes('white')) && BS.CARDS[k].cost <= 3 && (BS.CARDS[k].magic.timing || []).includes('FLASH') && !BS.CARDS[k].magic.by);
     const w = mk('white'), rd = mk('red'); O.hand = [BS.mkInst(w), BS.mkInst(rd)]; O.reserve.n = 8; G.active = P.key;
     const before = BS.magicUsable(O, O.hand[0], 'flash'); await BS.fireFx(P, 'ATTACKS', e, { attacker: e, subject: e });
     const after = BS.magicUsable(O, O.hand[0], 'flash'), other = BS.magicUsable(O, O.hand[1], 'flash'); G.battleNo = 4; const later = BS.magicUsable(O, O.hand[0], 'flash');

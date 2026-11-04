@@ -18274,18 +18274,69 @@
   "bicon": [
    "8"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Attacks)",
-   "Exhaust an opposing Spirit.",
-   "{{Rush|Blue}}",
-   "(While you have a Blue symbol, the following effect activates next)",
-   ": Draw two cards. Then, discard two cards from your Hand.",
-   "[LV2] (Your Attack Step)",
-   "When the attack of this Spirit or your Spirits with High Speed reduces the opposing Life, send a core from the opposing Life to their Reserve."
+  "fxComplete": true,
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Replaces a v0.210.0 clone whose stats differed from the official data. Effect data carried over from the earlier clone (same printed text); stats are the official ones.",
+  "rcode": "CP",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "EXHAUST_OPP",
+      "n": 1
+     },
+     {
+      "do": "DRAW",
+      "n": 2,
+      "if": {
+       "hasSymbol": "blue"
+      }
+     },
+     {
+      "do": "DISCARD_HAND",
+      "n": 2,
+      "if": {
+       "hasSymbol": "blue"
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_LIFE_HIT",
+    "lv": [
+     2
+    ],
+    "self": true,
+    "actions": [
+     {
+      "do": "LIFE_TO_RESERVE",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_LIFE_HIT",
+    "lv": [
+     2
+    ],
+    "match": {
+     "keyword": "High Speed"
+    },
+    "actions": [
+     {
+      "do": "LIFE_TO_RESERVE",
+      "n": 1
+     }
+    ]
+   }
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Replaces a v0.210.0 clone whose stats differed from the official data.",
-  "rcode": "CP"
+  "mechanics": [
+   "Rush"
+  ]
  },
  {
   "id": "BS59-CP04",

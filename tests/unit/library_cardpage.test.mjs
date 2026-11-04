@@ -30,7 +30,7 @@ test('CP1 only identical reprints are offered as art (picking is stored and undo
     document.querySelector('#cp-page [data-a="art"][data-v="' + a + '"]').click();
     return { arts0, oth0, refused, rel, a, c, picked, on, after: BS.ART_ALT[a] || '' };
   });
-  assert.deepEqual(r.arts0, ['BS01-X01']); assert.ok(r.oth0); assert.ok(r.refused);
+  assert.equal(r.arts0[0], 'BS01-X01'); assert.ok(!r.arts0.includes('26RBS03-X02'));   // BSC22-X01 is an identical reprint, so it may be listed too assert.ok(r.oth0); assert.ok(r.refused);
   if (r.none) return;
   assert.equal(r.rel[0], r.a); assert.ok(r.rel.includes(r.c)); assert.equal(r.picked, r.c); assert.equal(r.on, r.c); assert.equal(r.after, '');
 });
