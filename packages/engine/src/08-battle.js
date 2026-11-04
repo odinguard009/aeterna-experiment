@@ -8,7 +8,7 @@ async function flashTiming(attKey, att, blk) {
   let passes = 0, turn = 0, plays = 0;
   while (passes < 2 && plays < 8 && !G.over) {
     const p = G.p[order[turn % 2]];
-    const ch = p.cpu ? cpuFlashChoice(p, attKey, att, blk) : await humanFlashChoice(p, attKey, att, blk);
+    const ch = G.noFlash === p.key ? null : p.cpu ? cpuFlashChoice(p, attKey, att, blk) : await humanFlashChoice(p, attKey, att, blk);
     if (ch && ch.cadv) { passes = 0; plays++; if (p.cpu) await doContractAdvent(p, ch.cadv, ch.target, 'flash'); else await humanContractAdvent(ch.cadv, 'flash'); } else if (ch && ch.manifest) { passes = 0; plays++; if (p.cpu) await doManifest(p, ch.manifest, ch.target, 'flash'); else await humanManifest(ch.manifest, 'flash'); } else if (ch && ch.hs) { passes = 0; plays++; await highSpeedSummon(p, ch.hs); } else if (ch && ch.accel) { passes = 0; plays++; await useAccel(p, ch.accel.inst, ch.accel.idx, ch.accel.plan, 'FLASH'); } else if (ch && ch.act) { passes = 0; plays++; await activateFx(p, ch.act.f, ch.act.idx); } else if (ch) { passes = 0; plays++; await castMagic(p, ch); io.view({ type: 'board' }); await wait(650); await flushBursts(); } else passes++;
     turn++;
     att = successor(G.p[attKey], att) || att; if (blk) blk = successor(G.p[other(attKey)], blk) || blk; G.attacker = att; if (blk) G.blocker = blk;
@@ -24,7 +24,7 @@ function battleEndAttack() {                          // v0.43 "when this battle
   G.attackEnded = G.turnNo; log('The battle ends, and with it the Attack Step.');
 }
 const attackStepOver = () => !!G && G.attackEnded === G.turnNo;
-async function doBattle(attKey, att) { try { G.eob = []; G.battleMagic = []; G.battleResolved = false; await doBattleInner(attKey, att); if (G && !G.over && G.eob && G.eob.length) await endOfBattle(); const a2 = G && G.attacker; if (a2 && !G.over && G.p[attKey].spirits.includes(a2)) await fireFx(G.p[attKey], 'ALLY_BATTLE_END', null, { subject: a2, attacker: a2 }); } finally { if (G) { G.eob = null; G.battleMagic = null; G.battleResolved = false; battleEndAttack(); G.attacker = null; G.blocker = null; G.noBurst = null; for (const k of ['player', 'opponent']) for (const f of fieldList(G.p[k])) { f.symBattle = 0; f.symLockBattle = null; f.symLockN = 0; } } } }
+async function doBattle(attKey, att) { try { G.eob = []; G.battleMagic = []; G.battleResolved = false; await doBattleInner(attKey, att); if (G && !G.over && G.eob && G.eob.length) await endOfBattle(); const a2 = G && G.attacker; if (a2 && !G.over && G.p[attKey].spirits.includes(a2)) await fireFx(G.p[attKey], 'ALLY_BATTLE_END', null, { subject: a2, attacker: a2 }); } finally { if (G) { G.eob = null; G.battleMagic = null; G.battleResolved = false; battleEndAttack(); G.attacker = null; G.blocker = null; G.noBurst = null; G.noFlash = null; for (const k of ['player', 'opponent']) for (const f of fieldList(G.p[k])) { f.symBattle = 0; f.symLockBattle = null; f.symLockN = 0; } } } }
 async function doBattleInner(attKey, att) {
   const A = G.p[attKey], D = G.p[other(attKey)];
   if (!(await payAbTax(A, att, 'attack'))) { io.view({ type: 'board' }); return; }   // v0.47 Plutonic Wall

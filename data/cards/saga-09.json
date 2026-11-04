@@ -1615,15 +1615,67 @@
   "image": "The HeroBeast OldGeneral Tiger-Nestor.png",
   "block": "44",
   "saga": 9,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Summoned)",
-   "You can put two cores from the Void to this Spirit.",
-   "Also, banish all cards in the opposing Trash, and for each three cards banished, heavy exhaust an opposing Spirit.",
-   "[LV2] (When Attacks)",
-   "Once per turn, by paying one cost, this Spirit refreshes."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "VOID_TO_SELF",
+      "n": 2
+     }
+    ]
+   },
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "REMOVE_OPP_TRASH",
+      "all": true
+     },
+     {
+      "do": "HEAVY_EXHAUST_OPP",
+      "n": 1,
+      "perRemoved": 3,
+      "if": {
+       "prev": true
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "once": true,
+    "actions": [
+     {
+      "do": "BY",
+      "ask": true,
+      "cost": {
+       "do": "PAY_COST",
+       "n": 1
+      },
+      "then": [
+       {
+        "do": "REFRESH_SPIRIT",
+        "self": true
+       }
+      ]
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS44-034",
@@ -1663,6 +1715,22 @@
   ],
   "effects": [
    {
+    "trigger": "STATIC",
+    "flag": "SET_UNAFFECTED",
+    "to": "self",
+    "if": {
+     "trashGe": {
+      "n": 1,
+      "match": {
+       "family": [
+        "Blade Beast"
+       ],
+       "type": "Spirit"
+      }
+     }
+    }
+   },
+   {
     "trigger": "SUMMONED",
     "lv": [
      1,
@@ -1677,19 +1745,37 @@
       "exhaustedOnly": true
      }
     ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "NO_BURST_BATTLE"
+     }
+    ]
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "While there is any \"Blade Beast\" family Spirit card in your Trash, this set card is unaffected by opposing effects.",
-   "{{Burst|After an opposing Spirit's (When Summoned/Advents) effect resolves}} Exhaust three opposing Spirits. After this effect resolves, summon this card without paying the cost.",
-   "[LV2][LV3] (When Attacks) The opposing Burst can't activate."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
   "bicon": [
    "5"
   ],
-  "rcode": "M"
+  "rcode": "M",
+  "burst": {
+   "when": "OPP_SUMMON_ADV_FX",
+   "actions": [
+    {
+     "do": "EXHAUST_OPP",
+     "n": 3
+    },
+    {
+     "do": "SUMMON_SELF"
+    }
+   ]
+  }
  },
  {
   "id": "BS44-035",
@@ -12639,15 +12725,26 @@
   "block": "46",
   "saga": 9,
   "handUnaffected": true,
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Summoned) Put a random card from the opposing Hand onto their Removed Zone, and when any Spirit card/Ultimate card is put, put two cores from the Void to this Spirit."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
   "bicon": [
    "5"
   ],
-  "rcode": "R"
+  "rcode": "R",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "OPP_REMOVE_HAND_RANDOM",
+      "thenVoidSelf": 2
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS46-034",
@@ -18701,18 +18798,88 @@
   "image": "The HeroBeast Captain-Jason.png",
   "block": "47",
   "saga": 9,
-  "fxComplete": false,
-  "residual": [
-   "This card in Hand is unaffected by opposing effects.",
-   "[LV1][LV2] (When Summoned/Attacks)",
-   "Put a random card from the opposing Hand onto their Removed Zone.",
-   "Also, return an opposing exhausted Spirit to the deckbottom.",
-   "[LV1][LV2]",
-   "This Spirit is unaffected by opposing Nexus/Purple Spirit effects.",
-   "[LV2] (When Attacks)",
-   "The opposing Burst can't activate."
+  "fxComplete": true,
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "OPP_REMOVE_HAND_RANDOM"
+     },
+     {
+      "do": "BOUNCE_OPP",
+      "to": "deckBottom",
+      "kind": "spirit",
+      "exhaustedOnly": true
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2
+    ],
+    "actions": [
+     {
+      "do": "OPP_REMOVE_HAND_RANDOM"
+     },
+     {
+      "do": "BOUNCE_OPP",
+      "to": "deckBottom",
+      "kind": "spirit",
+      "exhaustedOnly": true
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "UNAFFECTED",
+    "to": "self",
+    "lv": [
+     1,
+     2
+    ],
+    "from": {
+     "types": [
+      "Nexus"
+     ]
+    }
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "UNAFFECTED",
+    "to": "self",
+    "lv": [
+     1,
+     2
+    ],
+    "from": {
+     "colors": [
+      "purple"
+     ],
+     "types": [
+      "Spirit"
+     ]
+    }
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "NO_BURST_BATTLE"
+     }
+    ]
+   }
   ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "handUnaffected": true
  },
  {
   "id": "BS47-036",

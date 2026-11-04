@@ -551,9 +551,9 @@ FX_ACTIONS.ATTACK_SPIRIT = { chk: a => (a.bpLe == null || (Number.isInteger(a.bp
 
 /* v330+ OWN_NEXUS_CORE_TO_VOID {n, name}: "send N cores from any of your <name> Nexuses to the Void" (the cost half of BS75-043; use it as the cost of a BY). Fails when no matching own Nexus has a core. */
 FX_ACTIONS.OWN_NEXUS_CORE_TO_VOID = {
-  chk: a => Object.keys(a).every(k => ['do', 'if', 'n', 'name'].includes(k)) && Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && typeof a.name === 'string' && a.name.length > 0,
-  txt: a => `send ${a.n} core${a.n === 1 ? '' : 's'} from any of your "${a.name}" Nexuses to the Void`,
-  cands: (c, a) => c.p.nexus.filter(x => x.cores >= a.n && CARDS[x.id].name.toLowerCase().includes(a.name.toLowerCase())),
+  chk: a => Object.keys(a).every(k => ['do', 'if', 'n', 'name', 'gwColor'].includes(k)) && Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && (a.gwColor ? (a.name == null && ['red', 'purple', 'green', 'white', 'yellow', 'blue'].includes(a.gwColor)) : typeof a.name === 'string' && a.name.length > 0),
+  txt: a => a.gwColor ? `send ${a.n} cores from any of your ${a.gwColor}-only Grandwalker Nexuses to the Void` : `send ${a.n} core${a.n === 1 ? '' : 's'} from any of your "${a.name}" Nexuses to the Void`,
+  cands: (c, a) => c.p.nexus.filter(x => x.cores >= a.n && (a.gwColor ? (CARDS[x.id].families || []).includes('Grandwalker') && CARDS[x.id].symbol === a.gwColor : CARDS[x.id].name.toLowerCase().includes(a.name.toLowerCase()))),
   can: (c, a) => FX_ACTIONS.OWN_NEXUS_CORE_TO_VOID.cands(c, a).length > 0,
   run: async (c, a) => {
     const L = FX_ACTIONS.OWN_NEXUS_CORE_TO_VOID.cands(c, a); c.ctx.did = false; if (!L.length) return;

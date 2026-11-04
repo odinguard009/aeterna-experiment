@@ -1,6 +1,6 @@
 {
  "stats": {
-  "cards": 6147,
+  "cards": 6142,
   "per_saga": {
    "1": 458,
    "2": 251,
@@ -10,8 +10,8 @@
    "6": 311,
    "7": 456,
    "8": 428,
-   "9": 453,
-   "10": 478,
+   "9": 449,
+   "10": 477,
    "11": 274,
    "12": 303,
    "13": 383,
@@ -22,14 +22,14 @@
   },
   "tokens": 3,
   "missing_page": 3,
-  "skipped_curated": 2559,
+  "skipped_curated": 2564,
   "nexus_levels_added": 651,
   "nexus_levels_missing": 40,
   "merged": 103,
   "image_problems": 385,
   "brave_unparsed": 169,
   "ut_lines_added": 106,
-  "odd_reduction": 771,
+  "odd_reduction": 768,
   "brave_no_data": 2,
   "ut_lines_missing": 1,
   "number_conflicts": 2,
@@ -1523,6 +1523,8 @@
   "BS44-022",
   "BS44-028",
   "BS44-032",
+  "BS44-033",
+  "BS44-034",
   "BS44-037",
   "BS44-038",
   "BS44-049",
@@ -1545,6 +1547,7 @@
   "BS46-013",
   "BS46-015",
   "BS46-016",
+  "BS46-033",
   "BS46-039",
   "BS46-043",
   "BS46-045",
@@ -1562,12 +1565,14 @@
   "BS46-RV008",
   "BS47-001",
   "BS47-028",
+  "BS47-035",
   "BS47-053",
   "BS47-065",
   "BS47-XX02",
   "BS47-XX03",
   "BS48-021",
   "BS48-024",
+  "BS48-039",
   "BS48-041",
   "BS48-090",
   "BS48-X08",
@@ -5674,12 +5679,6 @@
    ]
   },
   {
-   "id": "BS44-033",
-   "dropped": [
-    "god"
-   ]
-  },
-  {
    "id": "BS44-035",
    "dropped": [
     "god"
@@ -6604,12 +6603,6 @@
    ]
   },
   {
-   "id": "BS47-035",
-   "dropped": [
-    "god"
-   ]
-  },
-  {
    "id": "BS47-037",
    "dropped": [
     "god"
@@ -7037,12 +7030,6 @@
   },
   {
    "id": "BS48-038",
-   "dropped": [
-    "god"
-   ]
-  },
-  {
-   "id": "BS48-039",
    "dropped": [
     "god"
    ]

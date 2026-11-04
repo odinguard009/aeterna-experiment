@@ -165,7 +165,7 @@ Object.assign(FX_ACTIONS, {
     } },
   RETURN_OPP_SNB: { chk: a => a.to === 'deckBottom' && Object.keys(a).every(k => ['do', 'if', 'to', 'unleash'].includes(k)) && (a.unleash == null || (a.unleash.family && typeof a.unleash.family === 'string' && (a.unleash.color == null || COLORS.includes(a.unleash.color)))),
     txt: a => 'return an opposing Spirit, Nexus or set Burst to the bottom of the Deck' + (a.unleash ? `; by sending a core from one of your ${a.unleash.color ? cap(a.unleash.color) + ' ' : ''}${a.unleash.family} Nexus to this card, it can't be prevented` : ''),
-    kinds: (c, free) => ['spirit', 'nexus', 'burst'].filter(k => k === 'burst' ? !!c.opp.burst && !c.opp.burst.mirage : (k === 'spirit' ? c.opp.spirits : c.opp.nexus).some(x => free || !fxImmune(c.opp, x, c))),
+    kinds: (c, free) => ['spirit', 'nexus', 'burst'].filter(k => k === 'burst' ? !!c.opp.burst && !c.opp.burst.mirage && !burstSetSafe(c.opp) : (k === 'spirit' ? c.opp.spirits : c.opp.nexus).some(x => free || !fxImmune(c.opp, x, c))),
     pay: (c, a) => !a.unleash || !c.p.spirits.includes(c.src) ? [] : c.p.nexus.filter(x => x.cores - (x.soul ? 1 : 0) > 0 && (CARDS[x.id].families || []).some(f => f.toLowerCase().includes(a.unleash.family.toLowerCase())) && (!a.unleash.color || (CARDS[x.id].colors || [CARDS[x.id].symbol]).includes(a.unleash.color))),
     can: (c, a) => FX_ACTIONS.RETURN_OPP_SNB.kinds(c, FX_ACTIONS.RETURN_OPP_SNB.pay(c, a).length > 0).length > 0,
     run: async (c, a) => {
