@@ -4897,7 +4897,7 @@
      {
       "do": "DESTROY",
       "n": 3,
-      "bpLe": 999999,
+      "bpLe": 90000,
       "noFx": true
      }
     ]
@@ -4911,7 +4911,7 @@
      {
       "do": "DESTROY",
       "n": 4,
-      "bpLe": 999999,
+      "bpLe": 90000,
       "noFx": true
      }
     ]
@@ -4925,13 +4925,13 @@
      {
       "do": "DESTROY",
       "n": 3,
-      "bpLe": 999999,
+      "bpLe": 90000,
       "noFx": true
      },
      {
       "do": "DESTROY",
       "n": 2,
-      "bpLe": 999999,
+      "bpLe": 90000,
       "noFx": true
      }
     ]

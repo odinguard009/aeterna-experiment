@@ -42,7 +42,8 @@ async function useAccel(p, inst, idx, plan, timing) {
   const prev = p.limbo; p.limbo = inst;                    // the card is revealed while its effect resolves (in no zone)
   try { io.view({ type: 'board' }); await wait(300); await asResolving(() => runActions({ p, opp, src: inst, ctx: {} }, e, 'ACCEL')); }
   finally { if (p.limbo === inst) p.limbo = prev; }
-  if (G && !p.removed.includes(inst)) { toRemoved(p, inst); log(`${card.name} is put onto the Removed Zone (Accel).`); }
+  if (G && e.discard) { if (!p.spirits.includes(inst) && !p.trash.includes(inst) && !p.removed.includes(inst)) { p.trash.push(inst); log(`${card.name} is discarded to the Trash.`); } }      // v512 discard: not Removed
+  else if (G && !p.removed.includes(inst)) { toRemoved(p, inst); log(`${card.name} is put onto the Removed Zone (Accel).`); }
   checkDepletion(p); checkDepletion(opp);
   io.view({ type: 'board' }); await wait(300); await flushBursts();
   return true;

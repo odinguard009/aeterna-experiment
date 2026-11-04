@@ -324,6 +324,7 @@ function parseEffects(arr) {
         if (!o.timing) return { error: 'ACCEL needs "timing": ["MAIN"] or ["FLASH"]' };
         if (e.reduction != null) { if (typeof e.reduction !== 'object' || Object.entries(e.reduction).some(([k, n]) => !(COLORS.includes(k) || k === 'all') || !Number.isInteger(n) || n < 1 || n > 5)) return { error: 'ACCEL "reduction" must look like {"white":2}' }; o.reduction = Object.assign({}, e.reduction); }
         if (e.cpuSkip) o.cpuSkip = true;
+        if (e.discard === true) o.discard = true;           // v512: "By discarding this card from the Hand" (BS75-X02): the card goes to the Trash instead of the Removed Zone
       }
       if (e.trigger === 'ACTIVATE') {
         if (e.silverWheel === true) o.silverWheel = true;   // v0.50 "Flash - Silver Wheel": fires SILVER_WHEEL after it resolves

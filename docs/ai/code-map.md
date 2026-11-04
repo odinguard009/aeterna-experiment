@@ -26,7 +26,7 @@ FX_STRICT, FX_WARNED, fxUnknown, FX_COND_KEYS, FX_TRIGGERS, FX_TRIGGER_TEXT, BR_
 ## packages/engine/src/02b-effects-actions.js (146 lines, ~6.2k tokens)
 FX_ACTIONS
 
-## packages/engine/src/02c-effects-parse.js (343 lines, ~11.8k tokens)
+## packages/engine/src/02c-effects-parse.js (344 lines, ~11.9k tokens)
 canPlaceFree, canPlaceBraveFree, trashSummonLock, freeSummonLocked, summonFree, canPlacePaid, canPlaceBy, summonPaid, tributePay, summonBy, fxDescribe, BURST_WHEN, parseCond, parseActionList, parseBurst, parseEffects
 
 ## packages/engine/src/02d-effects-resolve.js (443 lines, ~9.5k tokens)
@@ -47,7 +47,7 @@ endAttackLocked, _matchTxt, gwCorePlus, sentToTrashFx, abTaxOn, abTaxOK, payAbTa
 ## packages/engine/src/02i-effects-keywords.js (80 lines, ~1.8k tokens) — v0.49 KEYWORD EFFECTS as engine data (session D, part 1): High Speed, Crush, Holy Life.
 highSpeedOK, fsNexus, highSpeedSources, highSpeedSummon, cpuHighSpeed, _nmK
 
-## packages/engine/src/02j-effects-accel.js (119 lines, ~2.1k tokens) — v0.50 KEYWORD EFFECTS part 2 (session D): Accel and Silver Wheel.
+## packages/engine/src/02j-effects-accel.js (120 lines, ~2.1k tokens) — v0.50 KEYWORD EFFECTS part 2 (session D): Accel and Silver Wheel.
 accelList, accelCost, accelMainStep, accelOK, accelSources, accelLabel, useAccel, removedSummonable, summonFromRemoved, immortalCands, immortalOffer, humanAccel, cpuAccelScore, cpuAccelMain, cpuAccelFlash, cpuSilverWheel
 
 ## packages/engine/src/02k-effects-immunity.js (37 lines, ~0.7k tokens)
@@ -92,7 +92,7 @@ symFixedOnSummon, fxLockBusy, fxLocked, leaveSummonOffer, mirageNexusOf, mirageS
 ## packages/engine/src/02x-effects-soul-magic.js (488 lines, ~12.4k tokens)
 magicFromSoul, magicSoulSrc, fromCols, soulBurstCheck, isGwNexus, gwNexusCount, gpShield, gpBattleSafe, drawOneOnly, nyxNexus, lvCostUp, nexusCoresDown, trashCoreGw, muddyDraw, coreWatchBegin, coreWatchEnd, ownReturned, bounceCost, magicLike, trashFlashOK, handUpLocked, soulUnaff, mirageEndLock, nsfOK, nsfPay
 
-## packages/engine/src/02y-effects-khaos.js (330 lines, ~10k tokens)
+## packages/engine/src/02y-effects-khaos.js (349 lines, ~10.9k tokens)
 burstSetSafe, pickFightingBlocker, coreSafeEvery, removedLocked, burstOnDiscard, removedDrawLocked, noMagicHit, freeRed, costPerCount, nexusSwapSave, flagActive, ownDiscardCheck
 
 ## packages/engine/src/03-imported-cards.js (257 lines, ~7.8k tokens) — IMPORTED CARD DATA

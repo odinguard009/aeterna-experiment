@@ -540,3 +540,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v509 (Lane K, Grandwalker Ometeotl BS74-CX01): action `DISCARD_UNDER {family, ask?}` (plain action: one pre-advent card of that family under the source goes to the Trash, did = true; the next action tests `prev` for the "instead" branch, BS62-011); `contractAdvent.family` may be an array (any of; "Flame Contract/Lava Fish").
 - v510 SOUL_DRIVE_VOID {match, n}: Soul Drive (soul to a matching Nexus or banished, then n opposing Lives to the Void), BS74-AX01 Mudou.
 - v511 NEXUS_SOUL_TO_TRASH, DECK_LOCK_TURN (G.deckLockTurn read by deckDiscardLocked): BS75-062 The Stardust Lava Sea.
+- v512 ACCEL.discard (Flash from the Hand, card to the Trash not the Removed Zone), SUMMON_ACCEL_SELF, SOUL_UNLEASH_SELF {match}, NEGATE_OPP_MAGIC {color} (log only: no stack): BS75-X02 Blezion.

@@ -328,3 +328,22 @@ FX_ACTIONS.NEXUS_SOUL_TO_TRASH = { chk: a => Object.keys(a).every(k => ['do', 'i
 /* v511 DECK_LOCK_TURN {}: "during this turn, cards can't be discarded from either player's deck" (BS75-062): sets G.deckLockTurn, read by deckDiscardLocked. */
 FX_ACTIONS.DECK_LOCK_TURN = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => "this turn, cards can't be discarded from either player's deck", can: () => true,
   run: async c => { G.deckLockTurn = G.turnNo; c.ctx.did = true; log(`${CARDS[c.src.id].name}: cards can't be discarded from either deck this turn.`); } };
+
+/* v512 SUMMON_ACCEL_SELF {}: "you can summon this discarded card, treating all summon costs as paid" (BS75-X02 Flash from the Hand, ACCEL with discard:true): the card is still in limbo (c.src) when this runs. */
+FX_ACTIONS.SUMMON_ACCEL_SELF = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => 'you can summon this discarded card without paying the cost', can: c => canPlaceFree(c.p, c.src),
+  run: async c => { c.ctx.did = false; if (!canPlaceFree(c.p, c.src)) return;
+    if (!c.p.cpu && !(await ask({ title: `✨ ${CARDS[c.src.id].name}`, peek: true, html: `Summon ${esc(CARDS[c.src.id].name)} without paying its cost?`, buttons: [{ label: 'Summon', cls: 'primary', value: true }, { label: 'Skip', cls: 'cancel', value: false }] }))) return;
+    await summonFree(c.p, c.src); c.summoned = true; c.ctx.did = true; } };
+/* v512 SOUL_UNLEASH_SELF {match}: Soul Unleash "send the Soul Core and one core from your <match> Grandwalker Nexus to this Spirit" (BS75-X02): both or nothing (did = false when either is missing); a human may decline. */
+FX_ACTIONS.SOUL_UNLEASH_SELF = { chk: a => hasMatch(a.match) && Object.keys(a).every(k => ['do', 'if', 'match'].includes(k)), txt: () => 'you can send the Soul Core and one core from your matching Nexus to this Spirit',
+  nx: (c, a) => c.p.nexus.find(n => fxMatch(CARDS[n.id], a.match) && n.cores - (n.soul ? 1 : 0) > 0),
+  from: c => { const p = c.p; return p.spirits.find(s => s !== c.src && s.soul) || p.nexus.find(n => n.soul) || (p.reserve.soul && p.reserve.n > 0 ? 'reserve' : null) || (p.trashCores.soul && p.trashCores.n > 0 ? 'trash' : null) || null; },
+  can: (c, a) => !!FX_ACTIONS.SOUL_UNLEASH_SELF.nx(c, a) && !!FX_ACTIONS.SOUL_UNLEASH_SELF.from(c) && c.p.spirits.includes(c.src),
+  run: async (c, a) => { c.ctx.did = false; const F = FX_ACTIONS.SOUL_UNLEASH_SELF; const n = F.nx(c, a), from = F.from(c); if (!n || !from || !c.p.spirits.includes(c.src) || c.src.soul) return;
+    if (!c.p.cpu && !(await ask({ title: `✨ ${CARDS[c.src.id].name}`, peek: true, html: `Soul Unleash: send your Soul Core and one core from ${esc(CARDS[n.id].name)} to this Spirit?`, buttons: [{ label: 'Unleash', cls: 'purple', value: true }, { label: 'Skip', cls: 'cancel', value: false }] }))) return;
+    if (from === 'reserve') { c.p.reserve.soul = false; c.p.reserve.n--; } else if (from === 'trash') { c.p.trashCores.soul = false; c.p.trashCores.n--; } else { from.soul = false; from.cores--; }
+    n.cores--; c.src.cores += 2; c.src.soul = true; c.ctx.did = true; log(`${CARDS[c.src.id].name}: Soul Unleash, the Soul Core and a core of ${CARDS[n.id].name} are put on it.`); checkDepletion(c.p); io.view({ type: 'board' }); } };
+/* v512 NEGATE_OPP_MAGIC {color}: "negate an opposing active <color> Magic effect, besides on-field effects" (BS75-X02). Effects resolve one at a time here (events raised during a Magic wait until it ends, G.derivedQ),
+   so no Magic is ever "active" when this runs: the action only logs it (documented approximation). */
+FX_ACTIONS.NEGATE_OPP_MAGIC = { chk: a => typeof a.color === 'string' && COLORS.includes(a.color) && Object.keys(a).every(k => ['do', 'if', 'color'].includes(k)), txt: a => `negate an opposing active ${a.color} Magic effect`, can: () => true,
+  run: async (c, a) => { c.ctx.did = false; log(`${CARDS[c.src.id].name}: no opposing active ${a.color} Magic effect to negate.`); } };

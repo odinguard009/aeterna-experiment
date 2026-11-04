@@ -244,3 +244,19 @@ test('K-1123 BS75-062 The Stardust Lava Sea: Mirage Flash pays the Soul Core fro
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.gone, true, JSON.stringify(r)); assert.equal(r.soulTrash, true, JSON.stringify(r));
   assert.equal(r.soulOnNx, false, JSON.stringify(r)); assert.equal(r.locked, true, JSON.stringify(r));
 });
+
+test('K-1124 BS75-X02 Blezion: Flash discard sends the Soul Core to the Ometeotl Nexus and, with 8 counters, summons it free; Unleash destroys a Spirit and takes the Soul Core plus a Nexus core', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token);
+    const nx = BS.mkInst('BS74-CX01'); nx.cores = 3; P.nexus = [nx]; P.trashCores.soul = true; P.trashCores.n = 1; P.count = 8;
+    const tg = BS.mkInst(any); tg.cores = 1; O.spirits = [tg]; const b = BS.mkInst('BS75-X02'); P.hand = [b]; const used = await BS.useAccel(P, b, 0, null, 'FLASH');
+    const sum = P.spirits.includes(b), soulNx = nx.soul || b.soul;
+    const r2 = { gone: !O.spirits.includes(tg), bSoul: !!b.soul, nxLost: 3 - nx.cores, bCores: b.cores };
+    P.count = 3; P.onceUsed = {}; const b2 = BS.mkInst('BS75-X02'); P.hand = [b2]; nx.soul = false; P.trashCores.soul = true; P.trashCores.n = 1; P.spirits = [];
+    await BS.useAccel(P, b2, 0, null, 'FLASH');
+    return { used, sum, soulNx, r2, noSummon: !P.spirits.includes(b2), inTrash: P.trash.includes(b2), partial: BS.CARDS['BS75-X02'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.used, true, JSON.stringify(r)); assert.equal(r.sum, true, JSON.stringify(r)); assert.equal(r.soulNx, true, JSON.stringify(r));
+  assert.equal(r.r2.gone, true, JSON.stringify(r)); assert.equal(r.r2.bSoul, true, JSON.stringify(r)); assert.equal(r.r2.nxLost, 1, JSON.stringify(r));
+  assert.equal(r.noSummon, true, JSON.stringify(r)); assert.equal(r.inTrash, true, JSON.stringify(r));
+});
