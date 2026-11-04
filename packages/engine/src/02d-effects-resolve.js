@@ -41,7 +41,7 @@ function collectFx(ev) {
   else for (const f of fieldList(owner)) collect(trigger, f);
   if ((trigger === 'ALLY_ATTACKS' || trigger === 'OPP_REMOVED') && owner.mirage && owner.mirage.mirage) for (const { e, idx } of fxEntries(owner.mirage)) if (e.trigger === trigger && e.zone === 'mirage') add(trigger, owner.mirage, e, idx);      // v468 Ichziyon BS74-008
   if (trigger === 'ALLY_DIED' || trigger === 'EXHAUSTED_FX' || trigger === 'NEXUS_DOWN' || trigger === 'COUNTER_UP') for (const t of owner.trash) for (const { e, idx } of fxEntries(t)) if (e.trigger === trigger && e.zone === 'trash') add(trigger, t, e, idx);      // v155 zone:'trash'
-  if (trigger === 'ALLY_BLOCKED' || trigger === 'SILVER_WHEEL' || trigger === 'ALLY_SUMMONED') for (const h of owner.hand) collect(trigger, h);           // zone:'hand' effects (e.g. deploy this from the Hand)
+  if (trigger === 'ALLY_BLOCKED' || trigger === 'SILVER_WHEEL' || trigger === 'ALLY_SUMMONED' || trigger === 'ALLY_NEXUS_DESTROYED') for (const h of owner.hand) collect(trigger, h);           // zone:'hand' effects (e.g. deploy this from the Hand)
   if (trigger === 'SUMMONED' || trigger === 'ADVENT') for (const f of fieldList(owner)) collect('ALLY_SUMMONED', f);
   if (out.some(i => i.e.noStack)) { const seen = new Set(); return out.filter(i => { if (!i.e.noStack) return true; const k = CARDS[i.f.id].name + ':' + i.idx; if (seen.has(k)) return false; seen.add(k); return true; }); }     // v0.40 (Can't Stack): the same-name effect works once
   return out;

@@ -104,3 +104,14 @@ test('K-1113 BS69-CX01 Gaia: other Primordial Nexus deployed gives a counter and
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.c1, 1, JSON.stringify(r)); assert.equal(r.h1, 1, JSON.stringify(r)); assert.equal(r.c2, 2, JSON.stringify(r)); assert.equal(r.h2, 1, JSON.stringify(r));
   assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.oppNexus, 0, JSON.stringify(r)); assert.equal(r.refreshed, true, JSON.stringify(r)); assert.equal(r.revive, true, JSON.stringify(r));
 });
+
+test('K-1114 BS70-001 Shakson Geosoldier: when your Nexus is destroyed it can be summoned from the Hand by paying one cost, once per turn', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = O.key; G.step = 5; G.fxBy = O.key;
+    const nxId = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Nexus' && !BS.CARDS[k].token);
+    const c = BS.mkInst('BS70-001'); P.hand = [c]; P.spirits = []; P.onceUsed = {}; P.reserve.n = 4;
+    const nx = BS.mkInst(nxId); P.nexus = [nx];
+    await BS.fireFx(P, 'ALLY_NEXUS_DESTROYED', nx, { subject: nx });
+    return { summoned: P.spirits.includes(c), handLeft: P.hand.includes(c), partial: BS.CARDS['BS70-001'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.summoned, true, JSON.stringify(r)); assert.equal(r.handLeft, false, JSON.stringify(r));
+});

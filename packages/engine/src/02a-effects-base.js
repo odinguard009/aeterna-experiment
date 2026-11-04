@@ -35,7 +35,7 @@ function fxEntries(f) {
   return G && !fxLockBusy && (card.type === 'Spirit' || card.type === 'Ultimate') && fxLocked(f) ? out.filter(({ e }) => e.trigger === 'STATIC') : out;
 }
 /* v189 "When your Nexuses, or your Spirits that are originally Nexuses are destroyed": only queue the event while a card on the Field hears it */
-const nexusDeathHears = p => !!G && !!G.evQ && fieldList(p).some(f => fxEntries(f).some(({ e }) => e.trigger === 'ALLY_NEXUS_DESTROYED'));
+const nexusDeathHears = p => !!G && !!G.evQ && fieldList(p).concat(p.hand).some(f => fxEntries(f).some(({ e }) => e.trigger === 'ALLY_NEXUS_DESTROYED'));
 function fxMatch(card, m, inst) {
   if (m && m.anyOf) return m.anyOf.some(x => fxMatch(card, x, inst));      // v420 OR of match objects
   if (!m || (!m.name && !m.notName && !m.notColor && !m.bpBoosted && !m.family && !m.familyAll && !m.keyword && !m.keywordAny && !m.notKeyword && !m.notKeyword && !m.noText && !m.hasTrigger && m.costGe == null && m.costLe == null && !m.costIn && !m.type && !m.color && !m.noUlt && !m.team && m.symbolsGe == null && m.redColorsGe == null && m.colorsGe == null && !m.hasBrave && !m.noBrave && !m.hasBurst && !m.noBurst && m.bpLe == null && m.bpGe == null && m.exhausted == null && m.cantAB == null && m.hasSoul == null && m.coresGe == null && m.coresLe == null && !m.originalNexus)) return true;      // v214 originalNexus must not be treated as an empty match
