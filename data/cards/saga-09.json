@@ -40148,7 +40148,7 @@
    "Kamen",
    "Puppet Beast"
   ],
-  "text": "［Lv1-Lv2］『相手によるこのスピリットの破壊時』\n相手のスピリット1体を手札に戻す。\n［Lv2］\nカード名に「ゲーマー」を含む自分のスピリットすべてをBP+2000する。",
+  "text": "[LV1][LV2] (When Destroyed by the Opponent)\nReturn an opposing Spirit to the Hand.\n\n[LV2]\nAll your Spirits with \"Gamer\" in their card name gain +2000 BP.",
   "image": "CB08-038.png",
   "block": "5",
   "saga": 9,
@@ -40157,12 +40157,12 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2］『相手によるこのスピリットの破壊時』",
-   "相手のスピリット1体を手札に戻す。",
-   "［Lv2］",
-   "カード名に「ゲーマー」を含む自分のスピリットすべてをBP+2000する。"
+   "[LV1][LV2] (When Destroyed by the Opponent)",
+   "Return an opposing Spirit to the Hand.",
+   "[LV2]",
+   "All your Spirits with \"Gamer\" in their card name gain +2000 BP."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "C"
  },
  {

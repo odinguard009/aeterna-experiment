@@ -27015,7 +27015,7 @@
  },
  {
   "id": "BSC24-004",
-  "name": "宇宙大怪獣ベムスター",
+  "name": "Great Space Kaiju Bemstar",
   "name_jp": "宇宙大怪獣ベムスター",
   "type": "Spirit",
   "color": "red",
@@ -27037,16 +27037,16 @@
   "families": [
    "Astral Dragon"
   ],
-  "text": "［Lv1-Lv2］『このスピリットのアタック時』\nこのスピリットをBP+5000する。",
+  "text": "[LV1][LV2] (When Attacks)\nThis Spirit gains +5000 BP.",
   "image": "BSC24-004.png",
   "block": "P",
   "saga": 6,
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2］『このスピリットのアタック時』",
-   "このスピリットをBP+5000する。"
+   "[LV1][LV2] (When Attacks)",
+   "This Spirit gains +5000 BP."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English name pending (Japanese name kept). English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English name/text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "U"
  },
  {
@@ -28277,7 +28277,7 @@
  },
  {
   "id": "BSC24-036",
-  "name": "棲星怪獣ジャミラ",
+  "name": "Planet-Dwelling Kaiju Jamila",
   "name_jp": "棲星怪獣ジャミラ",
   "type": "Spirit",
   "color": "blue",
@@ -28308,7 +28308,7 @@
   "block": "P",
   "saga": 6,
   "fxComplete": true,
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English name pending (Japanese name kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English name translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "C"
  },
  {

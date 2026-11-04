@@ -31,7 +31,7 @@ test('LA03 rarity codes: no long labels or Japanese, a small closed set', () => 
 test('LA04 family names are English: no Japanese characters, no case variants', () => {
   const fams = new Set(DATA.flatMap(c => c.families || []));
   const jp = [...fams].filter(f => /[぀-ヿ㐀-鿿]/.test(f));
-  assert.ok(jp.length <= 3, jp.join(','));          // 3 families have no verified English source (戦極, 星龍, マスター) (reported, not invented)
+  assert.deepEqual(jp, []);          // 2026-11-04: the last 3 (戦極, 星龍, マスター) were translated by hand (Ultimate Trooper, Astral Dragon, Master)
   const norm = new Map(), clash = [];
   for (const f of fams) { const k = f.toLowerCase().replace(/[^a-z0-9]/g, ''); if (k && norm.has(k) && norm.get(k) !== f) clash.push([norm.get(k), f]); norm.set(k, f); }
   assert.deepEqual(clash, []);
@@ -45,9 +45,9 @@ test('LA05 flavor index: English only, no markup, every id is a library card, at
   assert.ok(e.filter(([k]) => !ids.has(k)).length <= 1);
 });
 
-test('LA06 player-visible card text is English: only the cards whose English source is missing keep Japanese (each says so in its note)', () => {
+test('LA06 player-visible card text is English: no Japanese in names, text, residual lines, families or collaboration labels', () => {
   const JP = /[぀-ヿ㐀-鿿]/;
-  const jp = DATA.filter(c => JP.test(c.name) || JP.test(c.text || '') || (c.residual || []).some(x => JP.test(x)));
-  assert.ok(jp.length <= 100, String(jp.length));    // 2026-11-04: 91 cards, no English source found on the wiki (reported, not translated)
-  assert.deepEqual(jp.filter(c => !/pending/.test(c.note || '')).map(c => c.id), []);
+  const bad = DATA.filter(c => JP.test(c.name) || JP.test(c.text || '') || (c.residual || []).some(x => JP.test(x)) || (c.families || []).some(x => JP.test(x)) || [].concat(c.collab || []).some(x => JP.test(x)));
+  assert.deepEqual(bad.map(c => c.id), []);    // 2026-11-04: the last 103 cards were translated by hand (unofficial wording, says so in the note)
+  assert.deepEqual(DATA.filter(c => /pending/.test(c.note || '')).map(c => c.id), []);
 });

@@ -68,7 +68,7 @@
   "block": "P",
   "saga": 60,
   "fxComplete": true,
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending. Wired: ATTACKS BP_PLUS 2000.",
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified Wired: ATTACKS BP_PLUS 2000.",
   "rcode": "C",
   "effects": [
    {
@@ -220,7 +220,7 @@
   "block": "P",
   "saga": 60,
   "fxComplete": true,
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified; English text/name pending. Wired v366: match.mono. Burst clause on the Void placement treated as no-op (Void core placement never fires Burst).",
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; effects not wired yet, symbols unverified Wired v366: match.mono. Burst clause on the Void placement treated as no-op (Void core placement never fires Burst).",
   "rcode": "CP",
   "effects": [
    {
@@ -5142,7 +5142,7 @@
   "block": "P",
   "saga": 60,
   "fxComplete": true,
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified; English text/name pending.",
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified.",
   "rcode": "EX"
  },
  {
@@ -5231,7 +5231,7 @@
   "block": "P",
   "saga": 60,
   "fxComplete": true,
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified; English text/name pending.",
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified.",
   "rcode": "EX"
  },
  {
@@ -6044,18 +6044,18 @@
    "Fighting Spirit",
    "Soldier"
   ],
-  "text": "［Lv1-Lv2］【強襲：1】『このスピリットのアタック時』\nこのスピリットは、ターン中に1回まで、自分のネクサス1つを疲労させることで回復できる。\n［Lv2］『このスピリットのアタック時』\n相手のコスト3以下のスピリット1体を破壊する。",
+  "text": "[LV1][LV2] {{Assault|1}} (When Attacks)\nThis Spirit can, up to once per turn, be refreshed by exhausting one of your Nexuses.\n\n[LV2] (When Attacks)\nDestroy an opposing Cost 3 or less Spirit.",
   "image": "EX023.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2］【強襲：1】『このスピリットのアタック時』",
-   "このスピリットは、ターン中に1回まで、自分のネクサス1つを疲労させることで回復できる。",
-   "［Lv2］『このスピリットのアタック時』",
-   "相手のコスト3以下のスピリット1体を破壊する。"
+   "[LV1][LV2] {{Assault|1}} (When Attacks)",
+   "This Spirit can, up to once per turn, be refreshed by exhausting one of your Nexuses.",
+   "[LV2] (When Attacks)",
+   "Destroy an opposing Cost 3 or less Spirit."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "EX"
  },
  {
@@ -6214,7 +6214,7 @@
  },
  {
   "id": "EX028",
-  "name": "龍帝",
+  "name": "Dragon Emperor",
   "name_jp": "龍帝",
   "type": "Magic",
   "color": "red",
@@ -6226,7 +6226,7 @@
   "symbols": 0,
   "levels": [],
   "families": [],
-  "text": "［メイン］\n自分はデッキから1枚ドローする。\n［フラッシュ］\nコスト3以下の相手のスピリット1体を破壊する。",
+  "text": "Main\nDraw a card from your deck.\n\nFlash\nDestroy an opposing Cost 3 or less Spirit.",
   "image": "EX028.png",
   "block": "P",
   "saga": 60,
@@ -6236,12 +6236,12 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［メイン］",
-   "自分はデッキから1枚ドローする。",
-   "［フラッシュ］",
-   "コスト3以下の相手のスピリット1体を破壊する。"
+   "Main",
+   "Draw a card from your deck.",
+   "Flash",
+   "Destroy an opposing Cost 3 or less Spirit."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English name pending (Japanese name kept). English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English name/text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "EX"
  },
  {
@@ -6289,7 +6289,7 @@
   "symbols": 0,
   "levels": [],
   "families": [],
-  "text": "［メイン］\n相手のスピリット2体を手札に戻す。\n［フラッシュ］\n相手のネクサスすべてを破壊する。",
+  "text": "Main\nReturn two opposing Spirits to the Hand.\n\nFlash\nDestroy every opposing Nexus.",
   "image": "EX030.png",
   "block": "P",
   "saga": 60,
@@ -6299,12 +6299,12 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［メイン］",
-   "相手のスピリット2体を手札に戻す。",
-   "［フラッシュ］",
-   "相手のネクサスすべてを破壊する。"
+   "Main",
+   "Return two opposing Spirits to the Hand.",
+   "Flash",
+   "Destroy every opposing Nexus."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "EX"
  },
  {
@@ -6321,7 +6321,7 @@
   "symbols": 0,
   "levels": [],
   "families": [],
-  "text": "［メイン］\nBP10000以下の相手のスピリット1体を破壊する。\n［フラッシュ］\n相手は、相手のスピリット3体を疲労させる。",
+  "text": "Main\nDestroy an opposing 10000 BP or less Spirit.\n\nFlash\nThe opponent exhausts three of their own Spirits.",
   "image": "EX031.png",
   "block": "P",
   "saga": 60,
@@ -6331,12 +6331,12 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［メイン］",
-   "BP10000以下の相手のスピリット1体を破壊する。",
-   "［フラッシュ］",
-   "相手は、相手のスピリット3体を疲労させる。"
+   "Main",
+   "Destroy an opposing 10000 BP or less Spirit.",
+   "Flash",
+   "The opponent exhausts three of their own Spirits."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "EX"
  },
  {
@@ -7244,18 +7244,18 @@
    }
   ],
   "families": [],
-  "text": "［Lv1-Lv2］『お互いのアタックステップ』\nカード名に「カーネル」/「ケンタ」と入っている自分のスピリットすべてをBP+2000する。\n［Lv2］『相手のメインステップ』\n相手のスピリットすべての『このスピリットの召喚時』効果は発揮されない。",
+  "text": "[LV1][LV2] (Either Attack Step)\nAll your Spirits with \"Colonel\"/\"Kenta\" in their card name gain +2000 BP.\n\n[LV2] (Opposing Main Step)\nThe (When Summoned) effects of all opposing Spirits can't be activated.",
   "image": "KF-07.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2］『お互いのアタックステップ』",
-   "カード名に「カーネル」/「ケンタ」と入っている自分のスピリットすべてをBP+2000する。",
-   "［Lv2］『相手のメインステップ』",
-   "相手のスピリットすべての『このスピリットの召喚時』効果は発揮されない。"
+   "[LV1][LV2] (Either Attack Step)",
+   "All your Spirits with \"Colonel\"/\"Kenta\" in their card name gain +2000 BP.",
+   "[LV2] (Opposing Main Step)",
+   "The (When Summoned) effects of all opposing Spirits can't be activated."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "KF"
  },
  {
@@ -9579,18 +9579,18 @@
    "Fighting Spirit",
    "Soldier"
   ],
-  "text": "［Lv1-Lv2］【強襲：1】『このスピリットのアタック時』\nこのスピリットは、ターン中に1回まで、自分のネクサス1つを疲労させることで回復できる。\n［Lv2］『このスピリットのアタック時』\n相手のコスト3以下のスピリット1体を破壊する。",
+  "text": "[LV1][LV2] {{Assault|1}} (When Attacks)\nThis Spirit can, up to once per turn, be refreshed by exhausting one of your Nexuses.\n\n[LV2] (When Attacks)\nDestroy an opposing Cost 3 or less Spirit.",
   "image": "P027.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2］【強襲：1】『このスピリットのアタック時』",
-   "このスピリットは、ターン中に1回まで、自分のネクサス1つを疲労させることで回復できる。",
-   "［Lv2］『このスピリットのアタック時』",
-   "相手のコスト3以下のスピリット1体を破壊する。"
+   "[LV1][LV2] {{Assault|1}} (When Attacks)",
+   "This Spirit can, up to once per turn, be refreshed by exhausting one of your Nexuses.",
+   "[LV2] (When Attacks)",
+   "Destroy an opposing Cost 3 or less Spirit."
   ],
-  "note": "Reprint of EX023 (same name, text and stats in the master database); added by tools/import_master.py. English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Reprint of EX023 (same name, text and stats in the master database); added by tools/import_master.py. English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "P"
  },
  {
@@ -9626,7 +9626,7 @@
    "When Braved {{Armor|White}}",
    "This Spirit is unaffected by opposing White Spirit/Nexus/Magic effects."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English text pending (Japanese official text kept). English text copied from library card EX011 (same Japanese name, type and cost).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English text copied from library card EX011 (same Japanese name, type and cost).",
   "rcode": "P"
  },
  {
@@ -10390,16 +10390,17 @@
   "symbols": 0,
   "levels": [],
   "families": [],
-  "text": "［バースト：自分のライフ減少後］BP3000以下の相手のスピリット2体を破壊する。その後コストを支払うことで、このカードのフラッシュ効果を発揮する。\n［フラッシュ］相手のネクサス1つを破壊する。",
+  "text": "Burst: After your Life decreases - Destroy two opposing 3000 BP or less Spirits. After this, by paying the cost, activate this card's Flash effect.\n\nFlash\nDestroy an opposing Nexus.",
   "image": "P048.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "［バースト：自分のライフ減少後］BP3000以下の相手のスピリット2体を破壊する。その後コストを支払うことで、このカードのフラッシュ効果を発揮する。",
-   "［フラッシュ］相手のネクサス1つを破壊する。"
+   "Burst: After your Life decreases - Destroy two opposing 3000 BP or less Spirits. After this, by paying the cost, activate this card's Flash effect.",
+   "Flash",
+   "Destroy an opposing Nexus."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "P"
  },
  {
@@ -10696,16 +10697,17 @@
   "symbols": 0,
   "levels": [],
   "families": [],
-  "text": "［バースト：相手による自分のスピリット破壊後］相手のスピリット1体を手札に戻す。その後コストを支払うことで、このカードのフラッシュ効果を発揮する。\n［フラッシュ］相手のネクサス1つを手札に戻す。",
+  "text": "Burst: After an opposing effect destroys your Spirit - Return an opposing Spirit to the Hand. After this, by paying the cost, activate this card's Flash effect.\n\nFlash\nReturn an opposing Nexus to the Hand.",
   "image": "P056.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "［バースト：相手による自分のスピリット破壊後］相手のスピリット1体を手札に戻す。その後コストを支払うことで、このカードのフラッシュ効果を発揮する。",
-   "［フラッシュ］相手のネクサス1つを手札に戻す。"
+   "Burst: After an opposing effect destroys your Spirit - Return an opposing Spirit to the Hand. After this, by paying the cost, activate this card's Flash effect.",
+   "Flash",
+   "Return an opposing Nexus to the Hand."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "P"
  },
  {
@@ -11165,16 +11167,17 @@
   "symbols": 0,
   "levels": [],
   "families": [],
-  "text": "［バースト：自分のライフ減少後］コアが1個の相手のスピリットすべてを疲労させる。その後コストを支払うことで、このカードのフラッシュ効果を発揮する。\n［フラッシュ］ボイドからコア1個を自分のスピリットに置く。さらに、ボイドからコア1個を、自分の［風の覇王ドルクス・ウシワカ］か、［グラント・ベンケイ］に置く。",
+  "text": "Burst: After your Life decreases - Exhaust every opposing Spirit that has one core. After this, by paying the cost, activate this card's Flash effect.\n\nFlash\nPut one core from the Void to your Spirit. Also, put one core from the Void to your [The WindOverlord Dorx-Ushiwaka] or [Grant-Benkei].",
   "image": "P068.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "［バースト：自分のライフ減少後］コアが1個の相手のスピリットすべてを疲労させる。その後コストを支払うことで、このカードのフラッシュ効果を発揮する。",
-   "［フラッシュ］ボイドからコア1個を自分のスピリットに置く。さらに、ボイドからコア1個を、自分の［風の覇王ドルクス・ウシワカ］か、［グラント・ベンケイ］に置く。"
+   "Burst: After your Life decreases - Exhaust every opposing Spirit that has one core. After this, by paying the cost, activate this card's Flash effect.",
+   "Flash",
+   "Put one core from the Void to your Spirit. Also, put one core from the Void to your [The WindOverlord Dorx-Ushiwaka] or [Grant-Benkei]."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "P"
  },
  {
@@ -11613,7 +11616,7 @@
  },
  {
   "id": "P080",
-  "name": "龍帝",
+  "name": "Dragon Emperor",
   "name_jp": "龍帝",
   "type": "Magic",
   "color": "red",
@@ -11625,7 +11628,7 @@
   "symbols": 0,
   "levels": [],
   "families": [],
-  "text": "［メイン］\n自分はデッキから1枚ドローする。\n［フラッシュ］\nコスト3以下の相手のスピリット1体を破壊する。",
+  "text": "Main\nDraw a card from your deck.\n\nFlash\nDestroy an opposing Cost 3 or less Spirit.",
   "image": "P080.png",
   "block": "P",
   "saga": 60,
@@ -11635,12 +11638,12 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［メイン］",
-   "自分はデッキから1枚ドローする。",
-   "［フラッシュ］",
-   "コスト3以下の相手のスピリット1体を破壊する。"
+   "Main",
+   "Draw a card from your deck.",
+   "Flash",
+   "Destroy an opposing Cost 3 or less Spirit."
   ],
-  "note": "Reprint of EX028 (same name, text and stats in the master database); added by tools/import_master.py. English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Reprint of EX028 (same name, text and stats in the master database); added by tools/import_master.py. English name/text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "P"
  },
  {
@@ -11688,7 +11691,7 @@
   "symbols": 0,
   "levels": [],
   "families": [],
-  "text": "［メイン］\n相手のスピリット2体を手札に戻す。\n［フラッシュ］\n相手のネクサスすべてを破壊する。",
+  "text": "Main\nReturn two opposing Spirits to the Hand.\n\nFlash\nDestroy every opposing Nexus.",
   "image": "P082.png",
   "block": "P",
   "saga": 60,
@@ -11698,12 +11701,12 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［メイン］",
-   "相手のスピリット2体を手札に戻す。",
-   "［フラッシュ］",
-   "相手のネクサスすべてを破壊する。"
+   "Main",
+   "Return two opposing Spirits to the Hand.",
+   "Flash",
+   "Destroy every opposing Nexus."
   ],
-  "note": "Reprint of EX030 (same name, text and stats in the master database); added by tools/import_master.py. English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Reprint of EX030 (same name, text and stats in the master database); added by tools/import_master.py. English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "P"
  },
  {
@@ -11720,7 +11723,7 @@
   "symbols": 0,
   "levels": [],
   "families": [],
-  "text": "［メイン］\nBP10000以下の相手のスピリット1体を破壊する。\n［フラッシュ］\n相手は、相手のスピリット3体を疲労させる。",
+  "text": "Main\nDestroy an opposing 10000 BP or less Spirit.\n\nFlash\nThe opponent exhausts three of their own Spirits.",
   "image": "P083.png",
   "block": "P",
   "saga": 60,
@@ -11730,12 +11733,12 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［メイン］",
-   "BP10000以下の相手のスピリット1体を破壊する。",
-   "［フラッシュ］",
-   "相手は、相手のスピリット3体を疲労させる。"
+   "Main",
+   "Destroy an opposing 10000 BP or less Spirit.",
+   "Flash",
+   "The opponent exhausts three of their own Spirits."
   ],
-  "note": "Reprint of EX031 (same name, text and stats in the master database); added by tools/import_master.py. English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Reprint of EX031 (same name, text and stats in the master database); added by tools/import_master.py. English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "P"
  },
  {
@@ -12369,7 +12372,7 @@
    }
   ],
   "families": [],
-  "text": "［Lv1-Lv2]\n自分の合体スピリットが相手によって破壊されたとき、その合体スピリットのブレイヴを残し、スピリットだけを手札に戻すことができる。\n［Lv2］『自分のアタックステップ』\n自分の合体スピリットがアタックしたとき、BP4000以下の相手のスピリット1体を破壊する。この効果は重複しない。",
+  "text": "[LV1][LV2]\nWhen your Brave Spirit is destroyed by the opponent, you can leave that Brave Spirit's Brave and return only the Spirit to the Hand.\n\n[LV2] (Your Attack Step)\nWhen your Brave Spirit attacks, destroy an opposing 4000 BP or less Spirit. This effect doesn't stack.",
   "image": "P13-16.png",
   "block": "P",
   "saga": 60,
@@ -12379,12 +12382,12 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2]",
-   "自分の合体スピリットが相手によって破壊されたとき、その合体スピリットのブレイヴを残し、スピリットだけを手札に戻すことができる。",
-   "［Lv2］『自分のアタックステップ』",
-   "自分の合体スピリットがアタックしたとき、BP4000以下の相手のスピリット1体を破壊する。この効果は重複しない。"
+   "[LV1][LV2]",
+   "When your Brave Spirit is destroyed by the opponent, you can leave that Brave Spirit's Brave and return only the Spirit to the Hand.",
+   "[LV2] (Your Attack Step)",
+   "When your Brave Spirit attacks, destroy an opposing 4000 BP or less Spirit. This effect doesn't stack."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "P"
  },
  {
@@ -12407,7 +12410,7 @@
   "families": [
    "Exalted Sword"
   ],
-  "text": "《合体条件：コスト4以上》\n《合体時》『このスピリットの合体アタック時』\n自分はデッキから1枚ドローし、BP3000以下の相手のスピリット1体を破壊する。",
+  "text": "《Brave Condition: Cost 4 or more》\nDuring Brave (When Brave Attacks)\nDraw a card from your deck and destroy an opposing 3000 BP or less Spirit.",
   "image": "P13-17.png",
   "block": "P",
   "saga": 60,
@@ -12417,16 +12420,16 @@
   },
   "fxComplete": false,
   "residual": [
-   "《合体条件：コスト4以上》",
-   "《合体時》『このスピリットの合体アタック時』",
-   "自分はデッキから1枚ドローし、BP3000以下の相手のスピリット1体を破壊する。"
+   "《Brave Condition: Cost 4 or more》",
+   "During Brave (When Brave Attacks)",
+   "Draw a card from your deck and destroy an opposing 3000 BP or less Spirit."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "P"
  },
  {
   "id": "P13-18",
-  "name": "遊びの楽園",
+  "name": "Paradise of Play",
   "name_jp": "遊びの楽園",
   "type": "Nexus",
   "color": "red",
@@ -12441,18 +12444,18 @@
    }
   ],
   "families": [],
-  "text": "［Lv1-Lv2］『自分のアタックステップ』\n自分のスピリットすべてをBP+2000する。\n［Lv2］『自分のアタックステップ』\n自分のスピリットのアタックによって相手のライフを減らしたとき、自分はデッキから1枚ドローする。",
+  "text": "[LV1][LV2] (Your Attack Step)\nAll your Spirits gain +2000 BP.\n\n[LV2] (Your Attack Step)\nWhen your Spirit's attack reduces the opponent's Life, draw a card from your deck.",
   "image": "P13-18.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2］『自分のアタックステップ』",
-   "自分のスピリットすべてをBP+2000する。",
-   "［Lv2］『自分のアタックステップ』",
-   "自分のスピリットのアタックによって相手のライフを減らしたとき、自分はデッキから1枚ドローする。"
+   "[LV1][LV2] (Your Attack Step)",
+   "All your Spirits gain +2000 BP.",
+   "[LV2] (Your Attack Step)",
+   "When your Spirit's attack reduces the opponent's Life, draw a card from your deck."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English name pending (Japanese name kept). English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English name/text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "P"
  },
  {
@@ -12793,18 +12796,18 @@
   "families": [
    "Dragon"
   ],
-  "text": "［Lv1-Lv2-Lv3］【激突】『このスピリットのアタック時』\n相手は可能ならば必ずブロックする。\n［Lv2-Lv3］『このスピリットのアタック時』\n自分はデッキから1枚ドローする。",
+  "text": "[LV1][LV2][LV3] Rage (When Attacks)\nThe opponent must block if possible.\n\n[LV2][LV3] (When Attacks)\nDraw a card from your deck.",
   "image": "P13-27.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2-Lv3］【激突】『このスピリットのアタック時』",
-   "相手は可能ならば必ずブロックする。",
-   "［Lv2-Lv3］『このスピリットのアタック時』",
-   "自分はデッキから1枚ドローする。"
+   "[LV1][LV2][LV3] Rage (When Attacks)",
+   "The opponent must block if possible.",
+   "[LV2][LV3] (When Attacks)",
+   "Draw a card from your deck."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "P"
  },
  {
@@ -13360,18 +13363,18 @@
    "Incarnate",
    "Shellman"
   ],
-  "text": "《召喚条件：自分の緑スピリット1体以上》\n【Uトリガー】［Lv3-Lv4］『このアルティメットのアタック時』\nUトリガーがヒットしたとき、相手のスピリット1体を疲労させる。クリティカルヒット：ヒットしたカードのコストが3以下なら、さらに、相手はバーストを発動できない。\n（Uトリガー：相手のデッキの1枚目をトラッシュに置く。そのカードのコストが、このアルティメットより低ければヒットとする）",
+  "text": "《Summon Condition: You control one or more Green Spirits》\nUltimate Trigger [LV3][LV4] (When Attacks)\nWhen Ultimate Trigger hits, exhaust an opposing Spirit. Critical Hit: If the hit card is Cost 3 or less, also, the opponent can't activate Bursts.\n(Ultimate Trigger: Send the top card of the opposing deck to the Trash. If that card's cost is lower than this Ultimate's, it is a hit.)",
   "image": "P14-15.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "《召喚条件：自分の緑スピリット1体以上》",
-   "【Uトリガー】［Lv3-Lv4］『このアルティメットのアタック時』",
-   "Uトリガーがヒットしたとき、相手のスピリット1体を疲労させる。クリティカルヒット：ヒットしたカードのコストが3以下なら、さらに、相手はバーストを発動できない。",
-   "（Uトリガー：相手のデッキの1枚目をトラッシュに置く。そのカードのコストが、このアルティメットより低ければヒットとする）"
+   "《Summon Condition: You control one or more Green Spirits》",
+   "Ultimate Trigger [LV3][LV4] (When Attacks)",
+   "When Ultimate Trigger hits, exhaust an opposing Spirit. Critical Hit: If the hit card is Cost 3 or less, also, the opponent can't activate Bursts.",
+   "(Ultimate Trigger: Send the top card of the opposing deck to the Trash. If that card's cost is lower than this Ultimate's, it is a hit.)"
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "P"
  },
  {
@@ -13512,18 +13515,18 @@
    }
   ],
   "families": [],
-  "text": "［Lv1-Lv2］『相手のアタックステップ』\nアルティメットとバトルしている自分のスピリットすべてをBP+5000する。\n［Lv2］『自分のアタックステップ』\n自分の合体スピリットがブロックされたとき、ボイドからコア1個を自分のスピリットに置く。",
+  "text": "[LV1][LV2] (Opposing Attack Step)\nAll your Spirits battling an Ultimate gain +5000 BP.\n\n[LV2] (Your Attack Step)\nWhen your Brave Spirit is blocked, put one core from the Void to your Spirit.",
   "image": "P14-19.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2］『相手のアタックステップ』",
-   "アルティメットとバトルしている自分のスピリットすべてをBP+5000する。",
-   "［Lv2］『自分のアタックステップ』",
-   "自分の合体スピリットがブロックされたとき、ボイドからコア1個を自分のスピリットに置く。"
+   "[LV1][LV2] (Opposing Attack Step)",
+   "All your Spirits battling an Ultimate gain +5000 BP.",
+   "[LV2] (Your Attack Step)",
+   "When your Brave Spirit is blocked, put one core from the Void to your Spirit."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "P"
  },
  {
@@ -14905,18 +14908,18 @@
   "families": [
    "Ancient Dragon"
   ],
-  "text": "［Lv1-Lv2-Lv3］『このスピリットの召喚時』\nBP3000以下の相手のスピリット/アルティメット30体を破壊する。\n［Lv3］『このスピリットのアタック時』\n自分のスピリット/アルティメットのコスト合計が30以上のとき、BP30000以下の相手のアルティメット1体を破壊する。",
+  "text": "[LV1][LV2][LV3] (When Summoned)\nDestroy thirty opposing 3000 BP or less Spirits/Ultimates.\n\n[LV3] (When Attacks)\nWhile the total cost of your Spirits/Ultimates is 30 or more, destroy an opposing 30000 BP or less Ultimate.",
   "image": "P14-X07.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2-Lv3］『このスピリットの召喚時』",
-   "BP3000以下の相手のスピリット/アルティメット30体を破壊する。",
-   "［Lv3］『このスピリットのアタック時』",
-   "自分のスピリット/アルティメットのコスト合計が30以上のとき、BP30000以下の相手のアルティメット1体を破壊する。"
+   "[LV1][LV2][LV3] (When Summoned)",
+   "Destroy thirty opposing 3000 BP or less Spirits/Ultimates.",
+   "[LV3] (When Attacks)",
+   "While the total cost of your Spirits/Ultimates is 30 or more, destroy an opposing 30000 BP or less Ultimate."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "X"
  },
  {
@@ -14987,18 +14990,18 @@
   "families": [
    "Fighting Spirit"
   ],
-  "text": "［Lv1-Lv2-Lv3］【粉砕】『このスピリットのアタック時』\n相手のデッキを上から、このスピリットのLvと同じ枚数破棄する。\n［Lv1-Lv2-Lv3］\nこのスピリットに（ソウルコア）が置かれている間、系統：「闘神」を持つ自分のスピリットすべてをBP+3000する。",
+  "text": "[LV1][LV2][LV3] Crush (When Attacks)\nDiscard a number of cards equal to this Spirit's level from the opposing decktop.\n\n[LV1][LV2][LV3]\nWhile (Soul Core) is on this Spirit, all your \"Fighting Spirit\" family Spirits gain +3000 BP.",
   "image": "P15-02.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2-Lv3］【粉砕】『このスピリットのアタック時』",
-   "相手のデッキを上から、このスピリットのLvと同じ枚数破棄する。",
-   "［Lv1-Lv2-Lv3］",
-   "このスピリットに（ソウルコア）が置かれている間、系統：「闘神」を持つ自分のスピリットすべてをBP+3000する。"
+   "[LV1][LV2][LV3] Crush (When Attacks)",
+   "Discard a number of cards equal to this Spirit's level from the opposing decktop.",
+   "[LV1][LV2][LV3]",
+   "While (Soul Core) is on this Spirit, all your \"Fighting Spirit\" family Spirits gain +3000 BP."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "P"
  },
  {
@@ -15025,17 +15028,17 @@
   "families": [
    "Spiritual Beast"
   ],
-  "text": "トラッシュにあるこのスピリットカードはコスト1として扱う。\n［Lv1-Lv2］『このスピリットの召喚時』\nこのスピリットがトラッシュから召喚されていたら、自分はデッキから1枚ドローする。",
+  "text": "This Spirit card in the Trash is treated as Cost 1.\n\n[LV1][LV2] (When Summoned)\nIf this Spirit was summoned from the Trash, draw a card from your deck.",
   "image": "P15-03.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "トラッシュにあるこのスピリットカードはコスト1として扱う。",
-   "［Lv1-Lv2］『このスピリットの召喚時』",
-   "このスピリットがトラッシュから召喚されていたら、自分はデッキから1枚ドローする。"
+   "This Spirit card in the Trash is treated as Cost 1.",
+   "[LV1][LV2] (When Summoned)",
+   "If this Spirit was summoned from the Trash, draw a card from your deck."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "P"
  },
  {
@@ -15221,18 +15224,18 @@
    "War Dragon",
    "Ruin Dragon"
   ],
-  "text": "［Lv1-Lv2-Lv3］【連刃】『このスピリットのアタック時』\nこのスピリットの（ソウルコア）を自分のトラッシュに置くことで、相手は可能ならスピリット/アルティメット2体でブロックし、同時にバトルする。\n［Lv2-Lv3］『このスピリットのアタック時』\n【連刃】でBPを比べ、破壊した相手のスピリット/アルティメットすべてのコアすべてはボイドに置かれる。",
+  "text": "[LV1][LV2][LV3] Consecutive Blade (When Attacks)\nBy sending (Soul Core) from this Spirit to your Trash, the opponent must block with two Spirits/Ultimates if possible, and they battle simultaneously.\n\n[LV2][LV3] (When Attacks)\nCompare BP with Consecutive Blade; every core on every opposing Spirit/Ultimate destroyed this way is put in the Void.",
   "image": "P15-08.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2-Lv3］【連刃】『このスピリットのアタック時』",
-   "このスピリットの（ソウルコア）を自分のトラッシュに置くことで、相手は可能ならスピリット/アルティメット2体でブロックし、同時にバトルする。",
-   "［Lv2-Lv3］『このスピリットのアタック時』",
-   "【連刃】でBPを比べ、破壊した相手のスピリット/アルティメットすべてのコアすべてはボイドに置かれる。"
+   "[LV1][LV2][LV3] Consecutive Blade (When Attacks)",
+   "By sending (Soul Core) from this Spirit to your Trash, the opponent must block with two Spirits/Ultimates if possible, and they battle simultaneously.",
+   "[LV2][LV3] (When Attacks)",
+   "Compare BP with Consecutive Blade; every core on every opposing Spirit/Ultimate destroyed this way is put in the Void."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "X"
  },
  {
@@ -15346,19 +15349,17 @@
    "Vassal",
    "Fighting Spirit"
   ],
-  "text": "［Ｓバースト：相手の効果によって相手の手札が増えた後］\n相手の手札が4枚以上のとき、相手は、相手の手札を3枚になるように破棄する。\nこの効果発揮後、このスピリットカードをコストを支払わずに召喚する。\n［Lv2-Lv3］『このスピリットのアタック時』\nこのスピリットのコスト以下の相手のスピリット1体を破壊する。",
+  "text": "Soul Burst: After an opposing effect increases the opponent's Hand - If the opponent has four or more cards in their Hand, the opponent discards cards from their Hand until they have three. After this effect resolves, summon this Spirit card without paying the cost.\n\n[LV2][LV3] (When Attacks)\nDestroy an opposing Spirit with a cost equal or inferior to this Spirit's.",
   "image": "P15-11.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "［Ｓバースト：相手の効果によって相手の手札が増えた後］",
-   "相手の手札が4枚以上のとき、相手は、相手の手札を3枚になるように破棄する。",
-   "この効果発揮後、このスピリットカードをコストを支払わずに召喚する。",
-   "［Lv2-Lv3］『このスピリットのアタック時』",
-   "このスピリットのコスト以下の相手のスピリット1体を破壊する。"
+   "Soul Burst: After an opposing effect increases the opponent's Hand - If the opponent has four or more cards in their Hand, the opponent discards cards from their Hand until they have three. After this effect resolves, summon this Spirit card without paying the cost.",
+   "[LV2][LV3] (When Attacks)",
+   "Destroy an opposing Spirit with a cost equal or inferior to this Spirit's."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "P"
  },
  {
@@ -15427,20 +15428,20 @@
    "Lord",
    "War Dragon"
   ],
-  "text": "［Lv1-Lv2-Lv3］【連刃】『このスピリットのアタック時』\nこのスピリットの（ソウルコア）を自分のトラッシュに置くことで、相手は可能ならスピリット/アルティメット2体でブロックし、同時にバトルする。\n［Lv1-Lv2-Lv3］『このスピリットのアタック時』\nこのスピリットをBP+3000する。\n［Lv2-Lv3］『このスピリットのアタック時』\n自分はデッキから1枚ドローする。",
+  "text": "[LV1][LV2][LV3] Consecutive Blade (When Attacks)\nBy sending (Soul Core) from this Spirit to your Trash, the opponent must block with two Spirits/Ultimates if possible, and they battle simultaneously.\n\n[LV1][LV2][LV3] (When Attacks)\nThis Spirit gains +3000 BP.\n\n[LV2][LV3] (When Attacks)\nDraw a card from your deck.",
   "image": "P15-13.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2-Lv3］【連刃】『このスピリットのアタック時』",
-   "このスピリットの（ソウルコア）を自分のトラッシュに置くことで、相手は可能ならスピリット/アルティメット2体でブロックし、同時にバトルする。",
-   "［Lv1-Lv2-Lv3］『このスピリットのアタック時』",
-   "このスピリットをBP+3000する。",
-   "［Lv2-Lv3］『このスピリットのアタック時』",
-   "自分はデッキから1枚ドローする。"
+   "[LV1][LV2][LV3] Consecutive Blade (When Attacks)",
+   "By sending (Soul Core) from this Spirit to your Trash, the opponent must block with two Spirits/Ultimates if possible, and they battle simultaneously.",
+   "[LV1][LV2][LV3] (When Attacks)",
+   "This Spirit gains +3000 BP.",
+   "[LV2][LV3] (When Attacks)",
+   "Draw a card from your deck."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "X"
  },
  {
@@ -15472,17 +15473,17 @@
    "Vassal",
    "War Dragon"
   ],
-  "text": "［Lv1-Lv2-Lv3］『このスピリットのアタック時』\n自分はデッキから1枚ドローする。\nこのスピリットに（ソウルコア）が置かれている間、さらに、このスピリットは“【真・激突】相手は可能ならスピリット/アルティメットでブロックする”を得る。",
+  "text": "[LV1][LV2][LV3] (When Attacks)\nDraw a card from your deck.\nWhile (Soul Core) is on this Spirit, also, this Spirit gains \"True Rage: The opponent must block with a Spirit/Ultimate if possible.\"",
   "image": "P15-14.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2-Lv3］『このスピリットのアタック時』",
-   "自分はデッキから1枚ドローする。",
-   "このスピリットに（ソウルコア）が置かれている間、さらに、このスピリットは“【真・激突】相手は可能ならスピリット/アルティメットでブロックする”を得る。"
+   "[LV1][LV2][LV3] (When Attacks)",
+   "Draw a card from your deck.",
+   "While (Soul Core) is on this Spirit, also, this Spirit gains \"True Rage: The opponent must block with a Spirit/Ultimate if possible.\""
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "P"
  },
  {
@@ -15614,17 +15615,17 @@
    "Incarnate",
    "War Dragon"
   ],
-  "text": "[ミニーズ大運動会]はデッキに何枚でも入れることができる。\n［Lv1-Lv2-Lv3］\n自分の[ミニーズ大運動会]1体につき、自分のスピリットすべてをBP+1000する。",
+  "text": "You can include any number of [The Minis' Great Athletics Meeting] in your deck.\n\n[LV1][LV2][LV3]\nFor each [The Minis' Great Athletics Meeting] you control, all your Spirits gain +1000 BP.",
   "image": "P15-17.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "[ミニーズ大運動会]はデッキに何枚でも入れることができる。",
-   "［Lv1-Lv2-Lv3］",
-   "自分の[ミニーズ大運動会]1体につき、自分のスピリットすべてをBP+1000する。"
+   "You can include any number of [The Minis' Great Athletics Meeting] in your deck.",
+   "[LV1][LV2][LV3]",
+   "For each [The Minis' Great Athletics Meeting] you control, all your Spirits gain +1000 BP."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "P"
  },
  {
@@ -15651,17 +15652,17 @@
   "families": [
    "Youkai"
   ],
-  "text": "このスピリットカードは、マジックカードとしても扱う。\n［フラッシュ］（この効果は、フィールドにいる間、使用できない）\nBPを比べるとき、BPを比べずにバトルを終了させる。",
+  "text": "This Spirit card is also treated as a Magic card.\n\nFlash (This effect can't be used while on the Field.)\nWhen comparing BP, end the battle without comparing BP.",
   "image": "P15-18.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "このスピリットカードは、マジックカードとしても扱う。",
-   "［フラッシュ］（この効果は、フィールドにいる間、使用できない）",
-   "BPを比べるとき、BPを比べずにバトルを終了させる。"
+   "This Spirit card is also treated as a Magic card.",
+   "Flash (This effect can't be used while on the Field.)",
+   "When comparing BP, end the battle without comparing BP."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "P"
  },
  {
@@ -15789,20 +15790,20 @@
    "Clever Machine",
    "Armored Dragon"
   ],
-  "text": "《召喚条件：自分のライフ4以下》\n［Lv3-Lv4-Lv5］【超装甲：赤/紫/白/青】\nこのアルティメットは、相手の赤/紫/白/青のスピリット/アルティメット/ネクサス/マジックの効果を受けない。\n［Lv4-Lv5］『このアルティメットのアタック時』\nコスト5以下の相手のスピリット/アルティメット1体を手札に戻す。\n【ソウルドライブ】このアルティメットの（ソウルコア）をゲームから除外すると、さらに、このアルティメットはブロックされない。",
+  "text": "《Summon Condition: Your Life is 4 or less》\n[LV3][LV4][LV5] Ultra Armor: Red/Purple/White/Blue\nThis Ultimate is unaffected by opposing Red/Purple/White/Blue Spirit/Ultimate/Nexus/Magic effects.\n\n[LV4][LV5] (When Attacks)\nReturn an opposing Cost 5 or less Spirit/Ultimate to the Hand.\nSoul Drive By banishing this Ultimate's (Soul Core) from the game, also, this Ultimate can't be blocked.",
   "image": "P15-21.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "《召喚条件：自分のライフ4以下》",
-   "［Lv3-Lv4-Lv5］【超装甲：赤/紫/白/青】",
-   "このアルティメットは、相手の赤/紫/白/青のスピリット/アルティメット/ネクサス/マジックの効果を受けない。",
-   "［Lv4-Lv5］『このアルティメットのアタック時』",
-   "コスト5以下の相手のスピリット/アルティメット1体を手札に戻す。",
-   "【ソウルドライブ】このアルティメットの（ソウルコア）をゲームから除外すると、さらに、このアルティメットはブロックされない。"
+   "《Summon Condition: Your Life is 4 or less》",
+   "[LV3][LV4][LV5] Ultra Armor: Red/Purple/White/Blue",
+   "This Ultimate is unaffected by opposing Red/Purple/White/Blue Spirit/Ultimate/Nexus/Magic effects.",
+   "[LV4][LV5] (When Attacks)",
+   "Return an opposing Cost 5 or less Spirit/Ultimate to the Hand.",
+   "Soul Drive By banishing this Ultimate's (Soul Core) from the game, also, this Ultimate can't be blocked."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "X"
  },
  {
@@ -15860,18 +15861,18 @@
    "War Dragon",
    "Astral Dragon"
   ],
-  "text": "［Lv1-Lv2-Lv3］『このスピリットの召喚時』\n自分のデッキを上から6枚オープンできる。その中の系統：「武竜」/「星竜」を持つコスト8のスピリットカード1枚を、コストを支払わずに召喚できる。召喚しない、または、残ったカードは好きな順番でデッキの下に戻す。\n［Lv2-Lv3］\n系統：「武竜」/「星竜」を持つ自分のスピリットすべてに“【真・激突】『このスピリットのアタック時』相手は可能ならスピリット/アルティメットでブロックする”を与える。",
+  "text": "[LV1][LV2][LV3] (When Summoned)\nYou can reveal six cards from your decktop. Among them, you can summon one Cost 8 \"War Dragon\"/\"Astral Dragon\" family Spirit card without paying the cost. Return any cards you don't summon to the deckbottom in any order.\n\n[LV2][LV3]\nGive all your \"War Dragon\"/\"Astral Dragon\" family Spirits \"True Rage (When Attacks) The opponent must block with a Spirit/Ultimate if possible.\"",
   "image": "P15-23.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2-Lv3］『このスピリットの召喚時』",
-   "自分のデッキを上から6枚オープンできる。その中の系統：「武竜」/「星竜」を持つコスト8のスピリットカード1枚を、コストを支払わずに召喚できる。召喚しない、または、残ったカードは好きな順番でデッキの下に戻す。",
-   "［Lv2-Lv3］",
-   "系統：「武竜」/「星竜」を持つ自分のスピリットすべてに“【真・激突】『このスピリットのアタック時』相手は可能ならスピリット/アルティメットでブロックする”を与える。"
+   "[LV1][LV2][LV3] (When Summoned)",
+   "You can reveal six cards from your decktop. Among them, you can summon one Cost 8 \"War Dragon\"/\"Astral Dragon\" family Spirit card without paying the cost. Return any cards you don't summon to the deckbottom in any order.",
+   "[LV2][LV3]",
+   "Give all your \"War Dragon\"/\"Astral Dragon\" family Spirits \"True Rage (When Attacks) The opponent must block with a Spirit/Ultimate if possible.\""
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "P"
  },
  {
@@ -16050,7 +16051,7 @@
    }
   ],
   "families": [],
-  "text": "［Lv1-Lv2］『自分のターン』\n3月1日～5月31日の間、自分が、緑のスピリットカードを召喚するとき、疲労状態で召喚できる。疲労状態で召喚したとき、相手のスピリット1体を疲労させる。\n［Lv2］『自分のエンドステップ』\n自分の緑のスピリット1体を回復させる。",
+  "text": "[LV1][LV2] (Your Turn)\nFrom March 1 to May 31, when you summon a Green Spirit card, you can summon it exhausted. When you summon it exhausted, exhaust an opposing Spirit.\n\n[LV2] (Your End Step)\nRefresh one of your Green Spirits.",
   "image": "P16-03.png",
   "block": "P",
   "saga": 60,
@@ -16059,12 +16060,12 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2］『自分のターン』",
-   "3月1日～5月31日の間、自分が、緑のスピリットカードを召喚するとき、疲労状態で召喚できる。疲労状態で召喚したとき、相手のスピリット1体を疲労させる。",
-   "［Lv2］『自分のエンドステップ』",
-   "自分の緑のスピリット1体を回復させる。"
+   "[LV1][LV2] (Your Turn)",
+   "From March 1 to May 31, when you summon a Green Spirit card, you can summon it exhausted. When you summon it exhausted, exhaust an opposing Spirit.",
+   "[LV2] (Your End Step)",
+   "Refresh one of your Green Spirits."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "P"
  },
  {
@@ -16957,7 +16958,7 @@
    }
   ],
   "families": [],
-  "text": "［Lv1-Lv2］『自分のエンドステップ』\n12月1日～2月29日の間、自分の白のスピリットすべてを回復させる。\n［Lv2］\n相手のスピリット/アルティメットの効果で相手の手札が増えたとき、増えたカード1枚につき、自分はデッキから1枚ドローできる。",
+  "text": "[LV1][LV2] (Your End Step)\nFrom December 1 to February 29, refresh all your White Spirits.\n\n[LV2]\nWhen an opposing Spirit/Ultimate effect increases the opponent's Hand, for each card added, you can draw a card from your deck.",
   "image": "P16-19.png",
   "block": "P",
   "saga": 60,
@@ -16966,12 +16967,12 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2］『自分のエンドステップ』",
-   "12月1日～2月29日の間、自分の白のスピリットすべてを回復させる。",
-   "［Lv2］",
-   "相手のスピリット/アルティメットの効果で相手の手札が増えたとき、増えたカード1枚につき、自分はデッキから1枚ドローできる。"
+   "[LV1][LV2] (Your End Step)",
+   "From December 1 to February 29, refresh all your White Spirits.",
+   "[LV2]",
+   "When an opposing Spirit/Ultimate effect increases the opponent's Hand, for each card added, you can draw a card from your deck."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "P"
  },
  {
@@ -17121,7 +17122,7 @@
    }
   ],
   "families": [],
-  "text": "［Lv1-Lv2］『このネクサスの配置時』\n2月1日～3月31日の間、コスト7以上の相手のスピリット1体を手札に戻すことで、自分はデッキから1枚ドローする。\n［Lv2］『自分のスタートステップ』\n自分のトラッシュにあるコスト2以下のスピリットカード1枚を、コストを支払わずに召喚できる。",
+  "text": "[LV1][LV2] (When Deployed)\nFrom February 1 to March 31, by returning an opposing Cost 7 or more Spirit to the Hand, draw a card from your deck.\n\n[LV2] (Your Start Step)\nYou can summon one Cost 2 or less Spirit card from your Trash without paying the cost.",
   "image": "P16-23.png",
   "block": "P",
   "saga": 60,
@@ -17135,12 +17136,12 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2］『このネクサスの配置時』",
-   "2月1日～3月31日の間、コスト7以上の相手のスピリット1体を手札に戻すことで、自分はデッキから1枚ドローする。",
-   "［Lv2］『自分のスタートステップ』",
-   "自分のトラッシュにあるコスト2以下のスピリットカード1枚を、コストを支払わずに召喚できる。"
+   "[LV1][LV2] (When Deployed)",
+   "From February 1 to March 31, by returning an opposing Cost 7 or more Spirit to the Hand, draw a card from your deck.",
+   "[LV2] (Your Start Step)",
+   "You can summon one Cost 2 or less Spirit card from your Trash without paying the cost."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "P"
  },
  {
@@ -17376,7 +17377,7 @@
    "Imagine",
    "Death Dragon"
   ],
-  "text": "このブレイヴは、疲労せず、スピリット状態のとき、アタックとブロックができない。\n左右合体条件：コスト4以上\n【左合体時/右合体時】『このスピリットのアタック時』\n相手のスピリット/アルティメット1体を疲労させることで、自分はデッキから1枚ドローする。\n【ダブルドライブ】その後、このブレイヴの左右に系統：「神皇」を持つスピリットが合体しているとき、疲労状態の相手のスピリット/アルティメット1体を破壊することで、このスピリットは回復する。",
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\nLeft/Right Brave Condition: Cost 4 or more\nDuring Left/Right Brave (When Attacks)\nBy exhausting an opposing Spirit/Ultimate, draw a card from your deck.\nDouble Drive After that, while \"God-Emperor\" family Spirits are braved to both the left and right of this Brave, by destroying an exhausted opposing Spirit/Ultimate, refresh this Spirit.",
   "image": "P17-02.png",
   "block": "P",
   "saga": 60,
@@ -17389,13 +17390,13 @@
   },
   "fxComplete": false,
   "residual": [
-   "このブレイヴは、疲労せず、スピリット状態のとき、アタックとブロックができない。",
-   "左右合体条件：コスト4以上",
-   "【左合体時/右合体時】『このスピリットのアタック時』",
-   "相手のスピリット/アルティメット1体を疲労させることで、自分はデッキから1枚ドローする。",
-   "【ダブルドライブ】その後、このブレイヴの左右に系統：「神皇」を持つスピリットが合体しているとき、疲労状態の相手のスピリット/アルティメット1体を破壊することで、このスピリットは回復する。"
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "Left/Right Brave Condition: Cost 4 or more",
+   "During Left/Right Brave (When Attacks)",
+   "By exhausting an opposing Spirit/Ultimate, draw a card from your deck.",
+   "Double Drive After that, while \"God-Emperor\" family Spirits are braved to both the left and right of this Brave, by destroying an exhausted opposing Spirit/Ultimate, refresh this Spirit."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "X"
  },
  {
@@ -17952,7 +17953,7 @@
    "God-King",
    "Machine Beast"
   ],
-  "text": "［フラッシュ］《煌臨：白＆コスト5以上》『自分のアタックステップ』\n自分のをトラッシュに置くことで、対象の自分のスピリットに手札から重ねる。\n【煌臨中】［Lv1-Lv2］【砲撃D】『このスピリットの煌臨/アタック時』\n自分のデッキを上から1枚オープンできる。そのカードが、系統：「機獣」を持つスピリットカードのとき、相手のライフのコア1個を相手のリザーブに置く。《煌臨》を持つスピリットカードのとき、このスピリットは回復する。そのカードは手札に加える。",
+  "text": "Flash - 《Advent: White & Cost 5 or more》(Your Attack Step)\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit.\n\nWhile Advented [LV1][LV2] Bombardment D (When Advents/Attacks)\nYou can reveal the top card of your deck. If it is a \"Machine Beast\" family Spirit card, send one core from the opposing Life to the opposing Reserve. If it is a Spirit card with Advent, refresh this Spirit. Add that card to your Hand.",
   "image": "P17-14.png",
   "block": "P",
   "saga": 60,
@@ -17961,12 +17962,12 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［フラッシュ］《煌臨：白＆コスト5以上》『自分のアタックステップ』",
-   "自分のをトラッシュに置くことで、対象の自分のスピリットに手札から重ねる。",
-   "【煌臨中】［Lv1-Lv2］【砲撃D】『このスピリットの煌臨/アタック時』",
-   "自分のデッキを上から1枚オープンできる。そのカードが、系統：「機獣」を持つスピリットカードのとき、相手のライフのコア1個を相手のリザーブに置く。《煌臨》を持つスピリットカードのとき、このスピリットは回復する。そのカードは手札に加える。"
+   "Flash - 《Advent: White & Cost 5 or more》(Your Attack Step)",
+   "By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit.",
+   "While Advented [LV1][LV2] Bombardment D (When Advents/Attacks)",
+   "You can reveal the top card of your deck. If it is a \"Machine Beast\" family Spirit card, send one core from the opposing Life to the opposing Reserve. If it is a Spirit card with Advent, refresh this Spirit. Add that card to your Hand."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "X"
  },
  {
@@ -18045,7 +18046,7 @@
   "families": [
    "Exalted Sword"
   ],
-  "text": "《合体条件：コスト4以上》\n【合体時】『自分のアタックステップ開始時』\n自分の手札/トラッシュにある、コスト4以下のスピリットカード1枚を、コストを支払わずに召喚できる。ただし、『このスピリットの召喚時』効果は発揮されない。",
+  "text": "《Brave Condition: Cost 4 or more》\nDuring Brave (At the Start of Your Attack Step)\nYou can summon one Cost 4 or less Spirit card from your Hand/Trash without paying the cost. However, its (When Summoned) effect doesn't activate.",
   "image": "P17-16.png",
   "block": "P",
   "saga": 60,
@@ -18058,11 +18059,11 @@
   },
   "fxComplete": false,
   "residual": [
-   "《合体条件：コスト4以上》",
-   "【合体時】『自分のアタックステップ開始時』",
-   "自分の手札/トラッシュにある、コスト4以下のスピリットカード1枚を、コストを支払わずに召喚できる。ただし、『このスピリットの召喚時』効果は発揮されない。"
+   "《Brave Condition: Cost 4 or more》",
+   "During Brave (At the Start of Your Attack Step)",
+   "You can summon one Cost 4 or less Spirit card from your Hand/Trash without paying the cost. However, its (When Summoned) effect doesn't activate."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "P"
  },
  {
@@ -19704,7 +19705,7 @@
    "Avatar",
    "Ancient Dragon"
   ],
-  "text": "［Lv1-Lv2-Lv3］『このスピリットの召喚時』\n相手の創界神ネクサス1つのコア50個をボイドに置く。\n【界放：2】［Lv2-Lv3］『このスピリットのアタック時』\nターンに1回、このスピリットは回復する。さらに、自分の創界神ネクサスのコア2個をこのスピリットに置くことで、BP10000以下の相手のスピリット/アルティメット50体までを破壊する。この効果で破壊したスピリット/アルティメットの効果は発揮されない。",
+  "text": "[LV1][LV2][LV3] (When Summoned)\nSend fifty cores from one opposing Grandwalker Nexus to the Void.\n\nUnleash: 2 [LV2][LV3] (When Attacks)\nOnce per turn, refresh this Spirit. Also, by sending two cores from your Grandwalker Nexus to this Spirit, destroy up to fifty opposing 10000 BP or less Spirits/Ultimates. The effects of Spirits/Ultimates destroyed this way don't activate.",
   "image": "P19-16.png",
   "block": "P",
   "saga": 60,
@@ -19721,12 +19722,12 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2-Lv3］『このスピリットの召喚時』",
-   "相手の創界神ネクサス1つのコア50個をボイドに置く。",
-   "【界放：2】［Lv2-Lv3］『このスピリットのアタック時』",
-   "ターンに1回、このスピリットは回復する。さらに、自分の創界神ネクサスのコア2個をこのスピリットに置くことで、BP10000以下の相手のスピリット/アルティメット50体までを破壊する。この効果で破壊したスピリット/アルティメットの効果は発揮されない。"
+   "[LV1][LV2][LV3] (When Summoned)",
+   "Send fifty cores from one opposing Grandwalker Nexus to the Void.",
+   "Unleash: 2 [LV2][LV3] (When Attacks)",
+   "Once per turn, refresh this Spirit. Also, by sending two cores from your Grandwalker Nexus to this Spirit, destroy up to fifty opposing 10000 BP or less Spirits/Ultimates. The effects of Spirits/Ultimates destroyed this way don't activate."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "P"
  },
  {
@@ -20201,7 +20202,7 @@
    "Galaxian",
    "Machine Beast"
   ],
-  "text": "このカードの軽減シンボルは赤/紫/緑/白/黄/青としても扱う。\n［Lv1-Lv2-Lv3］《転醒：自分のカウント3以下(転醒は同時に使えない)》\n系統：「光導」を持つ自分のスピリットがブロック/効果で回復したとき、このスピリットを裏返せる。\n［Lv1-Lv2-Lv3］【超装甲：緑/白/黄/青】\nこのスピリットは、相手の緑/白/黄/青のスピリット/アルティメット/ネクサス/マジックの効果を受けない。\n［Lv2-Lv3］『このスピリットのアタック/ブロック時』\nターンに1回、このスピリットは回復する。",
+  "text": "This card's reduction symbols are also treated as Red/Purple/Green/White/Yellow/Blue.\n\n[LV1][LV2][LV3] 《Rebirth: Your count is 3 or less (Rebirth effects can't be used simultaneously)》\nWhen your \"Galaxian\" family Spirit refreshes by blocking/by an effect, you can flip this Spirit.\n\n[LV1][LV2][LV3] Ultra Armor: Green/White/Yellow/Blue\nThis Spirit is unaffected by opposing Green/White/Yellow/Blue Spirit/Ultimate/Nexus/Magic effects.\n\n[LV2][LV3] (When Attacks/Blocks)\nOnce per turn, refresh this Spirit.",
   "image": "P20-06.png",
   "block": "P",
   "saga": 60,
@@ -20210,15 +20211,15 @@
   ],
   "fxComplete": false,
   "residual": [
-   "このカードの軽減シンボルは赤/紫/緑/白/黄/青としても扱う。",
-   "［Lv1-Lv2-Lv3］《転醒：自分のカウント3以下(転醒は同時に使えない)》",
-   "系統：「光導」を持つ自分のスピリットがブロック/効果で回復したとき、このスピリットを裏返せる。",
-   "［Lv1-Lv2-Lv3］【超装甲：緑/白/黄/青】",
-   "このスピリットは、相手の緑/白/黄/青のスピリット/アルティメット/ネクサス/マジックの効果を受けない。",
-   "［Lv2-Lv3］『このスピリットのアタック/ブロック時』",
-   "ターンに1回、このスピリットは回復する。"
+   "This card's reduction symbols are also treated as Red/Purple/Green/White/Yellow/Blue.",
+   "[LV1][LV2][LV3] 《Rebirth: Your count is 3 or less (Rebirth effects can't be used simultaneously)》",
+   "When your \"Galaxian\" family Spirit refreshes by blocking/by an effect, you can flip this Spirit.",
+   "[LV1][LV2][LV3] Ultra Armor: Green/White/Yellow/Blue",
+   "This Spirit is unaffected by opposing Green/White/Yellow/Blue Spirit/Ultimate/Nexus/Magic effects.",
+   "[LV2][LV3] (When Attacks/Blocks)",
+   "Once per turn, refresh this Spirit."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "Awaken X",
   "rebirthTo": "P20-06B",
   "mechanics": [
@@ -20250,7 +20251,7 @@
    "Primal",
    "Evil Shadow"
   ],
-  "text": "［Lv1-Lv2］『このスピリットのアタック時』\n疲労状態の相手のスピリットのコア1個をトラッシュに置く。さらに、自分のカウント2以上のとき、疲労状態の相手のスピリットのコア1個をトラッシュに置く。\n［Lv2］『自分のアタックステップ』\n自分のカウント1につき、系統：「起幻」を持つ自分の紫1色のスピリットすべてをBP+2000する。",
+  "text": "[LV1][LV2] (When Attacks)\nPut one core from an exhausted opposing Spirit to the Trash. Also, if your count is 2 or more, put one more core from an exhausted opposing Spirit to the Trash.\n\n[LV2] (Your Attack Step)\nFor each count you have, all your Purple-only \"Ominous Illusion\" family Spirits gain +2000 BP.",
   "image": "P20-07.png",
   "block": "P",
   "saga": 60,
@@ -20259,12 +20260,12 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2］『このスピリットのアタック時』",
-   "疲労状態の相手のスピリットのコア1個をトラッシュに置く。さらに、自分のカウント2以上のとき、疲労状態の相手のスピリットのコア1個をトラッシュに置く。",
-   "［Lv2］『自分のアタックステップ』",
-   "自分のカウント1につき、系統：「起幻」を持つ自分の紫1色のスピリットすべてをBP+2000する。"
+   "[LV1][LV2] (When Attacks)",
+   "Put one core from an exhausted opposing Spirit to the Trash. Also, if your count is 2 or more, put one more core from an exhausted opposing Spirit to the Trash.",
+   "[LV2] (Your Attack Step)",
+   "For each count you have, all your Purple-only \"Ominous Illusion\" family Spirits gain +2000 BP."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "P"
  },
  {
@@ -20304,7 +20305,7 @@
    "[LV2] (Your Attack Step)",
    "All your \"Dragon\"/\"Winged Dragon\" family Spirits gain +1000 BP."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English text pending (Japanese official text kept). English text copied from library card EX002 (same Japanese name, type and cost).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English text copied from library card EX002 (same Japanese name, type and cost).",
   "rcode": "P"
  },
  {
@@ -21420,7 +21421,7 @@
    "Proximate",
    "Astral Dragon"
   ],
-  "text": "［ミラージュ：コスト5（このカードは手札からセットできる）］\n【セット中】『自分のアタックステップ』\n自分のスピリットがブロックされたとき、BP10000以下の相手のスピリット/アルティメット1体を破壊し、破壊したスピリット/アルティメットの効果を発揮させない。\n［Lv1-Lv2-Lv3］【超・激突】『このスピリットのアタック時』\n相手のスピリット/アルティメットは、可能ならブロックする。この効果は相手の効果では防げない。",
+  "text": "Mirage: Cost 5 (This card can be set from the Hand)\nDuring Set (Your Attack Step)\nWhen your Spirit is blocked, destroy an opposing 10000 BP or less Spirit/Ultimate; the effect of the destroyed Spirit/Ultimate doesn't activate.\n\n[LV1][LV2][LV3] Super Rage (When Attacks)\nOpposing Spirits/Ultimates must block if possible. This effect can't be prevented by opposing effects.",
   "image": "P21-15.png",
   "block": "P",
   "saga": 60,
@@ -21429,13 +21430,13 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［ミラージュ：コスト5（このカードは手札からセットできる）］",
-   "【セット中】『自分のアタックステップ』",
-   "自分のスピリットがブロックされたとき、BP10000以下の相手のスピリット/アルティメット1体を破壊し、破壊したスピリット/アルティメットの効果を発揮させない。",
-   "［Lv1-Lv2-Lv3］【超・激突】『このスピリットのアタック時』",
-   "相手のスピリット/アルティメットは、可能ならブロックする。この効果は相手の効果では防げない。"
+   "Mirage: Cost 5 (This card can be set from the Hand)",
+   "During Set (Your Attack Step)",
+   "When your Spirit is blocked, destroy an opposing 10000 BP or less Spirit/Ultimate; the effect of the destroyed Spirit/Ultimate doesn't activate.",
+   "[LV1][LV2][LV3] Super Rage (When Attacks)",
+   "Opposing Spirits/Ultimates must block if possible. This effect can't be prevented by opposing effects."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "P"
  },
  {
@@ -21546,7 +21547,7 @@
    "Galaxian",
    "Evil Deity"
   ],
-  "text": "自分のミラージュをセットしている間、セットしているこのカードは相手の効果を受けない。\n［バースト：相手による自分のスピリット破壊後］\n相手のスピリット/アルティメット1体のコア3個をトラッシュに置き、消滅したとき、自分はデッキから3枚ドローする。\nこの効果発揮後、このカードをコストを支払わずに召喚する。\n［Lv2-Lv3］\n系統：「光導」を持つ自分のスピリットすべては、BPを比べ破壊されたとき、回復状態でフィールドに残ることができる。",
+  "text": "While you have a Mirage set, this set card is unaffected by opposing effects.\n\nBurst: After an opposing effect destroys your Spirit - Put three cores from one opposing Spirit/Ultimate to the Trash, and if it is removed, draw three cards from your deck. After this effect resolves, summon this card without paying the cost.\n\n[LV2][LV3]\nWhen your \"Galaxian\" family Spirits are destroyed by comparing BP, they can remain on the Field refreshed.",
   "image": "P21-18.png",
   "block": "P",
   "saga": 60,
@@ -21555,14 +21556,12 @@
   ],
   "fxComplete": false,
   "residual": [
-   "自分のミラージュをセットしている間、セットしているこのカードは相手の効果を受けない。",
-   "［バースト：相手による自分のスピリット破壊後］",
-   "相手のスピリット/アルティメット1体のコア3個をトラッシュに置き、消滅したとき、自分はデッキから3枚ドローする。",
-   "この効果発揮後、このカードをコストを支払わずに召喚する。",
-   "［Lv2-Lv3］",
-   "系統：「光導」を持つ自分のスピリットすべては、BPを比べ破壊されたとき、回復状態でフィールドに残ることができる。"
+   "While you have a Mirage set, this set card is unaffected by opposing effects.",
+   "Burst: After an opposing effect destroys your Spirit - Put three cores from one opposing Spirit/Ultimate to the Trash, and if it is removed, draw three cards from your deck. After this effect resolves, summon this card without paying the cost.",
+   "[LV2][LV3]",
+   "When your \"Galaxian\" family Spirits are destroyed by comparing BP, they can remain on the Field refreshed."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "X"
  },
  {
@@ -22165,7 +22164,7 @@
    "Showa",
    "Bike"
   ],
-  "text": "このカードの軽減シンボルは赤/紫/白/黄/青としても扱う。\n［Lv1-Lv2-Lv3］【集結：2（仮面）】『このスピリットの召喚/アタック時』\n〔ターンに1回：【集結】〕自分のデッキを上から2枚オープンできる。その中の系統：「仮面」を持つカードを、コストを支払わずに好きなだけ召喚する。残ったカードはデッキの下に戻す。\n［Lv2-Lv3］『自分のアタックステップ』\n系統：「昭和」を持つ自分のスピリットがアタックしたとき、相手のスピリット1体を疲労させ、ボイドからコア1個を自分のリザーブに置く。",
+  "text": "This card's reduction symbols are also treated as Red/Purple/White/Yellow/Blue.\n\n[LV1][LV2][LV3] Assemble: 2 (Kamen) (When Summoned/Attacks)\n(Once per turn: Assemble) You can reveal two cards from your decktop. Among them, summon any number of \"Kamen\" family cards without paying the cost. Return the remaining cards to the deckbottom.\n\n[LV2][LV3] (Your Attack Step)\nWhen your \"Showa\" family Spirit attacks, exhaust an opposing Spirit and put one core from the Void to your Reserve.",
   "image": "P22-07.png",
   "block": "P",
   "saga": 60,
@@ -22174,13 +22173,13 @@
   ],
   "fxComplete": false,
   "residual": [
-   "このカードの軽減シンボルは赤/紫/白/黄/青としても扱う。",
-   "［Lv1-Lv2-Lv3］【集結：2（仮面）】『このスピリットの召喚/アタック時』",
-   "〔ターンに1回：【集結】〕自分のデッキを上から2枚オープンできる。その中の系統：「仮面」を持つカードを、コストを支払わずに好きなだけ召喚する。残ったカードはデッキの下に戻す。",
-   "［Lv2-Lv3］『自分のアタックステップ』",
-   "系統：「昭和」を持つ自分のスピリットがアタックしたとき、相手のスピリット1体を疲労させ、ボイドからコア1個を自分のリザーブに置く。"
+   "This card's reduction symbols are also treated as Red/Purple/White/Yellow/Blue.",
+   "[LV1][LV2][LV3] Assemble: 2 (Kamen) (When Summoned/Attacks)",
+   "(Once per turn: Assemble) You can reveal two cards from your decktop. Among them, summon any number of \"Kamen\" family cards without paying the cost. Return the remaining cards to the deckbottom.",
+   "[LV2][LV3] (Your Attack Step)",
+   "When your \"Showa\" family Spirit attacks, exhaust an opposing Spirit and put one core from the Void to your Reserve."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "X"
  },
  {
@@ -22290,7 +22289,7 @@
   "families": [
    "School"
   ],
-  "text": "〔ターンに1回：同名〕トラッシュにあるこのカードは、自分の「スレッタ」が召喚されたとき、手札に戻せる。\n［フラッシュ］\nこのターンの間、相手のスピリット1体はアタック/ブロックできない。自分の「ガンダム」がいるとき、かわりに、このターンの間、相手のスピリット2体はアタック/ブロックできない。",
+  "text": "(Once per turn: same name) When your \"Suletta\" is summoned, you can return this card from the Trash to the Hand.\n\nFlash\nDuring this turn, one opposing Spirit can't attack/block. If you control your \"Gundam\", instead, during this turn, two opposing Spirits can't attack/block.",
   "image": "P22-10.png",
   "block": "P",
   "saga": 60,
@@ -22299,11 +22298,11 @@
   ],
   "fxComplete": false,
   "residual": [
-   "〔ターンに1回：同名〕トラッシュにあるこのカードは、自分の「スレッタ」が召喚されたとき、手札に戻せる。",
-   "［フラッシュ］",
-   "このターンの間、相手のスピリット1体はアタック/ブロックできない。自分の「ガンダム」がいるとき、かわりに、このターンの間、相手のスピリット2体はアタック/ブロックできない。"
+   "(Once per turn: same name) When your \"Suletta\" is summoned, you can return this card from the Trash to the Hand.",
+   "Flash",
+   "During this turn, one opposing Spirit can't attack/block. If you control your \"Gundam\", instead, during this turn, two opposing Spirits can't attack/block."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "P"
  },
  {
@@ -22589,7 +22588,7 @@
   "families": [
    "School"
   ],
-  "text": "［フラッシュ］\n手札/魂状態/煌臨元の系統：「学園」を持つ自分のカード1枚を、本来のコストを支払って召喚/配置できる。この効果で「エアリアル」/「スレッタ」/「ミオリネ」を召喚/配置したとき、このターンの間、自分のライフは、魂状態を含む自分の「エアリアル」1体のコスト以下の相手のスピリット/アルティメットのアタックでは減らない。",
+  "text": "Flash\nYou can summon/deploy one of your \"School\" family cards from the Hand/Soul/pre-Advent card, by paying its original cost. When you summon/deploy \"Aerial\"/\"Suletta\"/\"Miorine\" with this effect, during this turn, your Life can't be reduced by the attack of an opposing Spirit/Ultimate with a cost equal or inferior to one of your \"Aerial\" (including a Soul-condition one).",
   "image": "P23-02.png",
   "block": "P",
   "saga": 60,
@@ -22598,10 +22597,10 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［フラッシュ］",
-   "手札/魂状態/煌臨元の系統：「学園」を持つ自分のカード1枚を、本来のコストを支払って召喚/配置できる。この効果で「エアリアル」/「スレッタ」/「ミオリネ」を召喚/配置したとき、このターンの間、自分のライフは、魂状態を含む自分の「エアリアル」1体のコスト以下の相手のスピリット/アルティメットのアタックでは減らない。"
+   "Flash",
+   "You can summon/deploy one of your \"School\" family cards from the Hand/Soul/pre-Advent card, by paying its original cost. When you summon/deploy \"Aerial\"/\"Suletta\"/\"Miorine\" with this effect, during this turn, your Life can't be reduced by the attack of an opposing Spirit/Ultimate with a cost equal or inferior to one of your \"Aerial\" (including a Soul-condition one)."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "P"
  },
  {
@@ -22790,7 +22789,7 @@
    "Dragon Emperor",
    "Ancient Dragon"
   ],
-  "text": "［Lv1-Lv2-Lv3］『このスピリットの召喚時』\n自分の手札にある「ジーク」1枚を、召喚条件を無視して、コストを支払わず、【転召】させずに召喚できる。または、〔ターンに1回：同名〕自分のカウント6以上のとき、自分の手札にある「ジーク」1枚を、をトラッシュに置いたものとして《契約煌臨》できる。\n［Lv1-Lv2-Lv3：フラッシュ］【ソル覚醒】\n自分のフィールドのコアを、このスピリットに好きなだけ置ける。この効果で置いたとき、ターンに1回、相手のネクサス1つを破壊する。",
+  "text": "[LV1][LV2][LV3] (When Summoned)\nYou can summon one \"Sieg\" from your Hand, ignoring the summon condition, without paying the cost, and without Transfer-Summon. Or, (Once per turn: same name) while your count is 6 or more, you can Contract Advent one \"Sieg\" from your Hand as if (Soul Core) had been sent to the Trash.\n\n[LV1][LV2][LV3]: Flash Sol Awakening\nYou can put any number of cores on your Field to this Spirit. When you do, once per turn, destroy an opposing Nexus.",
   "image": "P23-07.png",
   "block": "P",
   "saga": 60,
@@ -22799,12 +22798,12 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2-Lv3］『このスピリットの召喚時』",
-   "自分の手札にある「ジーク」1枚を、召喚条件を無視して、コストを支払わず、【転召】させずに召喚できる。または、〔ターンに1回：同名〕自分のカウント6以上のとき、自分の手札にある「ジーク」1枚を、をトラッシュに置いたものとして《契約煌臨》できる。",
-   "［Lv1-Lv2-Lv3：フラッシュ］【ソル覚醒】",
-   "自分のフィールドのコアを、このスピリットに好きなだけ置ける。この効果で置いたとき、ターンに1回、相手のネクサス1つを破壊する。"
+   "[LV1][LV2][LV3] (When Summoned)",
+   "You can summon one \"Sieg\" from your Hand, ignoring the summon condition, without paying the cost, and without Transfer-Summon. Or, (Once per turn: same name) while your count is 6 or more, you can Contract Advent one \"Sieg\" from your Hand as if (Soul Core) had been sent to the Trash.",
+   "[LV1][LV2][LV3]: Flash Sol Awakening",
+   "You can put any number of cores on your Field to this Spirit. When you do, once per turn, destroy an opposing Nexus."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "P"
  },
  {
@@ -22841,7 +22840,7 @@
    "Vanity Deity",
    "Ancient Dragon"
   ],
-  "text": "［フラッシュ］《契約煌臨：緋炎＆C7以上》『お互いのアタックステップ』\n自分のをトラッシュに置くことで、対象の自分のスピリットに手札から重ねる。\n［Lv1-Lv2-Lv3］『このスピリットの召喚/煌臨時』\n相手のカウント-2することで、自分はデッキから2枚ドローする。\n《OC条件：カウント8以上》\n【OC中】［Lv1-Lv2-Lv3］『このスピリットのアタック時』\n相手のスピリット/アルティメットは、可能ならブロックする。この効果は相手の効果では防げない。さらに、ブロックされたとき、相手のライフのコア1個をリザーブに置き、このスピリットは回復する。",
+  "text": "Flash - 《Contract Advent: Scarlet Flame & C7 or more》(Either Attack Step)\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Summoned/Advents)\nBy decreasing the opponent's count by 2, draw 2 cards from your deck.\n\n《OC Condition: Count 8 or more》\nWhile OC [LV1][LV2][LV3] (When Attacks)\nOpposing Spirits/Ultimates must block if possible. This effect can't be prevented by opposing effects. Also, when blocked, send one core from the opposing Life to the Reserve, and refresh this Spirit.",
   "image": "P23-08.png",
   "block": "P",
   "saga": 60,
@@ -22850,15 +22849,15 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［フラッシュ］《契約煌臨：緋炎＆C7以上》『お互いのアタックステップ』",
-   "自分のをトラッシュに置くことで、対象の自分のスピリットに手札から重ねる。",
-   "［Lv1-Lv2-Lv3］『このスピリットの召喚/煌臨時』",
-   "相手のカウント-2することで、自分はデッキから2枚ドローする。",
-   "《OC条件：カウント8以上》",
-   "【OC中】［Lv1-Lv2-Lv3］『このスピリットのアタック時』",
-   "相手のスピリット/アルティメットは、可能ならブロックする。この効果は相手の効果では防げない。さらに、ブロックされたとき、相手のライフのコア1個をリザーブに置き、このスピリットは回復する。"
+   "Flash - 《Contract Advent: Scarlet Flame & C7 or more》(Either Attack Step)",
+   "By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit.",
+   "[LV1][LV2][LV3] (When Summoned/Advents)",
+   "By decreasing the opponent's count by 2, draw 2 cards from your deck.",
+   "《OC Condition: Count 8 or more》",
+   "While OC [LV1][LV2][LV3] (When Attacks)",
+   "Opposing Spirits/Ultimates must block if possible. This effect can't be prevented by opposing effects. Also, when blocked, send one core from the opposing Life to the Reserve, and refresh this Spirit."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "XV"
  },
  {
@@ -22924,7 +22923,7 @@
    "Heat Contract",
    "Scarlet Flame"
   ],
-  "text": "［フラッシュ］《契約煌臨：緋炎＆C1以上》『お互いのアタックステップ』\n自分のをトラッシュに置くことで、対象の自分のスピリットに手札から重ねる。\n［Lv1-Lv2］『このスピリットの煌臨/アタック時』\n自分のカウント+1する。その後、BP5000以下の相手のスピリット1体と、BP7000以下の相手のアルティメット1体を破壊する。\n《OC条件：カウント2以上》\n【OC中】［Lv1-Lv2］『お互いのアタックステップ』\n自分のカウント1につき、このスピリットの「BP破壊効果」の上限を+2000する。",
+  "text": "Flash - 《Contract Advent: Scarlet Flame & C1 or more》(Either Attack Step)\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit.\n\n[LV1][LV2] (When Advents/Attacks)\nYour count +1. Then, destroy an opposing 5000 BP or less Spirit and an opposing 7000 BP or less Ultimate.\n\n《OC Condition: Count 2 or more》\nWhile OC [LV1][LV2] (Either Attack Step)\nFor each count you have, increase this Spirit's \"BP Destruction effect\" limit by +2000.",
   "image": "P23-10.png",
   "block": "P",
   "saga": 60,
@@ -22933,15 +22932,15 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［フラッシュ］《契約煌臨：緋炎＆C1以上》『お互いのアタックステップ』",
-   "自分のをトラッシュに置くことで、対象の自分のスピリットに手札から重ねる。",
-   "［Lv1-Lv2］『このスピリットの煌臨/アタック時』",
-   "自分のカウント+1する。その後、BP5000以下の相手のスピリット1体と、BP7000以下の相手のアルティメット1体を破壊する。",
-   "《OC条件：カウント2以上》",
-   "【OC中】［Lv1-Lv2］『お互いのアタックステップ』",
-   "自分のカウント1につき、このスピリットの「BP破壊効果」の上限を+2000する。"
+   "Flash - 《Contract Advent: Scarlet Flame & C1 or more》(Either Attack Step)",
+   "By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit.",
+   "[LV1][LV2] (When Advents/Attacks)",
+   "Your count +1. Then, destroy an opposing 5000 BP or less Spirit and an opposing 7000 BP or less Ultimate.",
+   "《OC Condition: Count 2 or more》",
+   "While OC [LV1][LV2] (Either Attack Step)",
+   "For each count you have, increase this Spirit's \"BP Destruction effect\" limit by +2000."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "P"
  },
  {
@@ -23407,7 +23406,7 @@
    "Concluser",
    "Astral Dragon"
   ],
-  "text": "［フラッシュ］《顕現：契約創界神ネクサス＆C8以上》『自分のターン』\n自分のをトラッシュに置くことで、対象から1コスト支払って手札から召喚する。\n［Lv1-Lv2-Lv3-Lv4］\nこのスピリットのコアは移動できず、このスピリットはフィールドから入れ替わらない。\n［Lv1-Lv2-Lv3-Lv4：フラッシュ］【契約覚醒】『お互いのアタックステップ』\n自分のスピリット/契約創界神ネクサスのコアを、このスピリットに好きなだけ置ける。そうしたとき、このスピリットは回復する。\n［Lv4］『このスピリットのアタック時』\n相手は効果でアタックステップを終了できない。",
+  "text": "Flash - 《Manifest: Contract Grandwalker Nexus & C8 or more》(Your Turn)\nBy sending your (Soul Core) to the Trash, pay one cost from the target to summon this card from the Hand.\n\n[LV1][LV2][LV3][LV4]\nThe cores on this Spirit can't be moved, and this Spirit can't be swapped off the Field.\n\n[LV1][LV2][LV3][LV4]: Flash Contract Awakening (Either Attack Step)\nYou can put any number of cores from your Spirits/Contract Grandwalker Nexuses to this Spirit. When you do, refresh this Spirit.\n\n[LV4] (When Attacks)\nThe opponent can't end the Attack Step with effects.",
   "image": "P24-06.png",
   "block": "P",
   "saga": 60,
@@ -23416,16 +23415,16 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［フラッシュ］《顕現：契約創界神ネクサス＆C8以上》『自分のターン』",
-   "自分のをトラッシュに置くことで、対象から1コスト支払って手札から召喚する。",
-   "［Lv1-Lv2-Lv3-Lv4］",
-   "このスピリットのコアは移動できず、このスピリットはフィールドから入れ替わらない。",
-   "［Lv1-Lv2-Lv3-Lv4：フラッシュ］【契約覚醒】『お互いのアタックステップ』",
-   "自分のスピリット/契約創界神ネクサスのコアを、このスピリットに好きなだけ置ける。そうしたとき、このスピリットは回復する。",
-   "［Lv4］『このスピリットのアタック時』",
-   "相手は効果でアタックステップを終了できない。"
+   "Flash - 《Manifest: Contract Grandwalker Nexus & C8 or more》(Your Turn)",
+   "By sending your (Soul Core) to the Trash, pay one cost from the target to summon this card from the Hand.",
+   "[LV1][LV2][LV3][LV4]",
+   "The cores on this Spirit can't be moved, and this Spirit can't be swapped off the Field.",
+   "[LV1][LV2][LV3][LV4]: Flash Contract Awakening (Either Attack Step)",
+   "You can put any number of cores from your Spirits/Contract Grandwalker Nexuses to this Spirit. When you do, refresh this Spirit.",
+   "[LV4] (When Attacks)",
+   "The opponent can't end the Attack Step with effects."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "XV"
  },
  {
@@ -23731,7 +23730,7 @@
   "families": [
    "Scalostle"
   ],
-  "text": "［Lv1-Lv2-Lv3］『このスピリットのアタック時』\nコスト3以下の相手のスピリット/アルティメット1体を破壊する。系統：「鱗徒」を持つ自分のブレイヴ1つにつき、この「コスト破壊効果」の上限を+1する。\n［Lv2-Lv3］『自分のターン』\n〔ターンに1回：同名〕自分の手札にある、系統：「霊装」と「鱗徒」を持つブレイヴカード1枚は、自分の効果で破棄されるとき、トラッシュに置くかわりに、召喚できる。",
+  "text": "[LV1][LV2][LV3] (When Attacks)\nDestroy an opposing Cost 3 or less Spirit/Ultimate. For each of your \"Scalostle\" family Braves, increase this \"Cost Destruction effect\" limit by +1.\n\n[LV2][LV3] (Your Turn)\n(Once per turn: same name) When one of your \"Spirit Armor\" and \"Scalostle\" family Brave cards in your Hand would be discarded by your effect, you can summon it instead of putting it in the Trash.",
   "image": "P25-01.png",
   "block": "P",
   "saga": 60,
@@ -23740,12 +23739,12 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2-Lv3］『このスピリットのアタック時』",
-   "コスト3以下の相手のスピリット/アルティメット1体を破壊する。系統：「鱗徒」を持つ自分のブレイヴ1つにつき、この「コスト破壊効果」の上限を+1する。",
-   "［Lv2-Lv3］『自分のターン』",
-   "〔ターンに1回：同名〕自分の手札にある、系統：「霊装」と「鱗徒」を持つブレイヴカード1枚は、自分の効果で破棄されるとき、トラッシュに置くかわりに、召喚できる。"
+   "[LV1][LV2][LV3] (When Attacks)",
+   "Destroy an opposing Cost 3 or less Spirit/Ultimate. For each of your \"Scalostle\" family Braves, increase this \"Cost Destruction effect\" limit by +1.",
+   "[LV2][LV3] (Your Turn)",
+   "(Once per turn: same name) When one of your \"Spirit Armor\" and \"Scalostle\" family Brave cards in your Hand would be discarded by your effect, you can summon it instead of putting it in the Trash."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "P"
  },
  {
@@ -23969,7 +23968,7 @@
    "Galaxian",
    "Evil Deity"
   ],
-  "text": "〔ターンに1回：同名〕トラッシュにあるこのカードは、系統：「星魂」/「光導」/「妖蛇」を持つ自分のスピリットが相手によって破壊されたとき、1コスト支払って召喚することで、その対象すべてを回復状態でフィールドに残す。\n［Lv1-Lv2-Lv3］『このスピリットの召喚/アタック時』\n〔ターンに1回：同名〕系統：「星魂」を持つ自分か相手のスピリット1体を破壊することで、自分はデッキから3枚ドローする。\n［Lv2-Lv3］『このスピリットのアタック/ブロック時』\nバトル解決時、バトルしている相手のスピリットの以外のコアすべてをボイドに置く。",
+  "text": "(Once per turn: same name) When your \"Star Soul\"/\"Galaxian\"/\"Wicked Serpent\" family Spirit is destroyed by the opponent, you can summon this card from the Trash by paying one cost, leaving all those targets on the Field refreshed.\n\n[LV1][LV2][LV3] (When Summoned/Attacks)\n(Once per turn: same name) By destroying one of your or the opposing \"Star Soul\" family Spirits, draw 3 cards from your deck.\n\n[LV2][LV3] (When Attacks/Blocks)\nWhen the battle resolves, put all cores other than (Soul Core) on the battling opposing Spirit to the Void.",
   "image": "P25-06.png",
   "block": "P",
   "saga": 60,
@@ -23978,13 +23977,13 @@
   ],
   "fxComplete": false,
   "residual": [
-   "〔ターンに1回：同名〕トラッシュにあるこのカードは、系統：「星魂」/「光導」/「妖蛇」を持つ自分のスピリットが相手によって破壊されたとき、1コスト支払って召喚することで、その対象すべてを回復状態でフィールドに残す。",
-   "［Lv1-Lv2-Lv3］『このスピリットの召喚/アタック時』",
-   "〔ターンに1回：同名〕系統：「星魂」を持つ自分か相手のスピリット1体を破壊することで、自分はデッキから3枚ドローする。",
-   "［Lv2-Lv3］『このスピリットのアタック/ブロック時』",
-   "バトル解決時、バトルしている相手のスピリットの以外のコアすべてをボイドに置く。"
+   "(Once per turn: same name) When your \"Star Soul\"/\"Galaxian\"/\"Wicked Serpent\" family Spirit is destroyed by the opponent, you can summon this card from the Trash by paying one cost, leaving all those targets on the Field refreshed.",
+   "[LV1][LV2][LV3] (When Summoned/Attacks)",
+   "(Once per turn: same name) By destroying one of your or the opposing \"Star Soul\" family Spirits, draw 3 cards from your deck.",
+   "[LV2][LV3] (When Attacks/Blocks)",
+   "When the battle resolves, put all cores other than (Soul Core) on the battling opposing Spirit to the Void."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "XV"
  },
  {
@@ -27406,7 +27405,7 @@
   "families": [
    "Imagine"
   ],
-  "text": "このブレイヴは、疲労せず、スピリット状態のとき、アタックとブロックができず、1コスト以上支払わなければ召喚できない。\n［Lv1］『このブレイヴの召喚時』\n自分のデッキすべてを破棄する。その後、自分のトラッシュにある系統：「神皇」を持つスピリットカード12枚までを、コストを支払わずに召喚できる。ただし、『このスピリットの召喚時』効果は発揮されない。\n左右合体条件：コスト5以上\n【左合体時/右合体時】『このスピリットのアタック時』\n【ダブルドライブ】このブレイヴの左右に系統：「神皇」を持つスピリットが合体しているとき、このスピリットは、左右に合体しているスピリットのBPを合計し、系統：「神皇」を持つ自分のスピリットすべてのシンボルを得る。",
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block. It also can't be summoned unless you pay one or more cost.\n\n[LV1] (When Summoned)\nDiscard your entire deck. Then, summon up to twelve \"God-Emperor\" family Spirit cards from your Trash without paying the cost. However, their (When Summoned) effects don't activate.\nLeft/Right Brave Condition: Cost 5 or more\nDuring Left/Right Brave (When Attacks)\nDouble Drive While \"God-Emperor\" family Spirits are braved to both the left and right of this Brave, this Spirit adds up the BP of the Spirits braved to its left and right, and all your \"God-Emperor\" family Spirits gain these symbols.",
   "image": "PB16-DD01.png",
   "block": "P",
   "saga": 60,
@@ -27424,14 +27423,14 @@
   },
   "fxComplete": false,
   "residual": [
-   "このブレイヴは、疲労せず、スピリット状態のとき、アタックとブロックができず、1コスト以上支払わなければ召喚できない。",
-   "［Lv1］『このブレイヴの召喚時』",
-   "自分のデッキすべてを破棄する。その後、自分のトラッシュにある系統：「神皇」を持つスピリットカード12枚までを、コストを支払わずに召喚できる。ただし、『このスピリットの召喚時』効果は発揮されない。",
-   "左右合体条件：コスト5以上",
-   "【左合体時/右合体時】『このスピリットのアタック時』",
-   "【ダブルドライブ】このブレイヴの左右に系統：「神皇」を持つスピリットが合体しているとき、このスピリットは、左右に合体しているスピリットのBPを合計し、系統：「神皇」を持つ自分のスピリットすべてのシンボルを得る。"
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block. It also can't be summoned unless you pay one or more cost.",
+   "[LV1] (When Summoned)",
+   "Discard your entire deck. Then, summon up to twelve \"God-Emperor\" family Spirit cards from your Trash without paying the cost. However, their (When Summoned) effects don't activate.",
+   "Left/Right Brave Condition: Cost 5 or more",
+   "During Left/Right Brave (When Attacks)",
+   "Double Drive While \"God-Emperor\" family Spirits are braved to both the left and right of this Brave, this Spirit adds up the BP of the Spirits braved to its left and right, and all your \"God-Emperor\" family Spirits gain these symbols."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "PB"
  },
  {
@@ -37723,18 +37722,18 @@
   "families": [
    "Fighting Spirit"
   ],
-  "text": "［Lv1-Lv2-Lv3］【強襲：4】『このスピリットのアタック時』\nこのスピリットは、ターンに4回まで、自分のネクサス1つを疲労させることで回復する。\n［Lv2-Lv3］『自分のアタックステップ』\n自分のスピリットの【強襲】で、ソウルコアが置かれている自分のネクサスが疲労したとき、相手は、相手のリザーブのコア3個を相手のトラッシュに置かなければブロックできない。",
+  "text": "[LV1][LV2][LV3] {{Assault|4}} (When Attacks)\nThis Spirit is refreshed up to four times per turn by exhausting one of your Nexuses.\n\n[LV2][LV3] (Your Attack Step)\nWhen your Spirit's Assault exhausts your Nexus with (Soul Core) on it, the opponent can't block unless they put three cores from their Reserve to their Trash.",
   "image": "PX15-01.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2-Lv3］【強襲：4】『このスピリットのアタック時』",
-   "このスピリットは、ターンに4回まで、自分のネクサス1つを疲労させることで回復する。",
-   "［Lv2-Lv3］『自分のアタックステップ』",
-   "自分のスピリットの【強襲】で、ソウルコアが置かれている自分のネクサスが疲労したとき、相手は、相手のリザーブのコア3個を相手のトラッシュに置かなければブロックできない。"
+   "[LV1][LV2][LV3] {{Assault|4}} (When Attacks)",
+   "This Spirit is refreshed up to four times per turn by exhausting one of your Nexuses.",
+   "[LV2][LV3] (Your Attack Step)",
+   "When your Spirit's Assault exhausts your Nexus with (Soul Core) on it, the opponent can't block unless they put three cores from their Reserve to their Trash."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "PX"
  },
  {
@@ -37766,18 +37765,18 @@
    "Clever Machine",
    "Armed Machine"
   ],
-  "text": "［Lv1-Lv2-Lv3］\nこのスピリットとソウルコアが置かれている自分のスピリットは、相手のスピリット/アルティメット/ブレイヴの効果を受けない。\n［Lv2-Lv3］『相手のターン』\n相手がマジックカードを使用したとき、自分のスピリットの（ソウルコア）を自分のトラッシュに置くことで、その効果を無効にする。",
+  "text": "[LV1][LV2][LV3]\nThis Spirit and your Spirit with (Soul Core) on it are unaffected by opposing Spirit/Ultimate/Brave effects.\n\n[LV2][LV3] (Opposing Turn)\nWhen the opponent uses a Magic card, by sending (Soul Core) from your Spirit to your Trash, negate that effect.",
   "image": "PX15-02.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2-Lv3］",
-   "このスピリットとソウルコアが置かれている自分のスピリットは、相手のスピリット/アルティメット/ブレイヴの効果を受けない。",
-   "［Lv2-Lv3］『相手のターン』",
-   "相手がマジックカードを使用したとき、自分のスピリットの（ソウルコア）を自分のトラッシュに置くことで、その効果を無効にする。"
+   "[LV1][LV2][LV3]",
+   "This Spirit and your Spirit with (Soul Core) on it are unaffected by opposing Spirit/Ultimate/Brave effects.",
+   "[LV2][LV3] (Opposing Turn)",
+   "When the opponent uses a Magic card, by sending (Soul Core) from your Spirit to your Trash, negate that effect."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "PX"
  },
  {
@@ -37846,18 +37845,18 @@
    "Nightling",
    "Ogre Wizard"
   ],
-  "text": "［Lv1-Lv2-Lv3］『このスピリットのアタック時』\nLv2の相手のスピリット1体を破壊する。\n［Lv2-Lv3］『自分のアタックステップ』\nソウルコアが置かれている自分のスピリットがアタックしたとき、相手のスピリット/アルティメット1体のコア2個を相手のトラッシュに置くことで、ボイドからコア2個を自分のリザーブに置く。",
+  "text": "[LV1][LV2][LV3] (When Attacks)\nDestroy an opposing LV2 Spirit.\n\n[LV2][LV3] (Your Attack Step)\nWhen your Spirit with (Soul Core) on it attacks, by putting two cores from an opposing Spirit/Ultimate to the opposing Trash, put two cores from the Void to your Reserve.",
   "image": "PX15-04.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2-Lv3］『このスピリットのアタック時』",
-   "Lv2の相手のスピリット1体を破壊する。",
-   "［Lv2-Lv3］『自分のアタックステップ』",
-   "ソウルコアが置かれている自分のスピリットがアタックしたとき、相手のスピリット/アルティメット1体のコア2個を相手のトラッシュに置くことで、ボイドからコア2個を自分のリザーブに置く。"
+   "[LV1][LV2][LV3] (When Attacks)",
+   "Destroy an opposing LV2 Spirit.",
+   "[LV2][LV3] (Your Attack Step)",
+   "When your Spirit with (Soul Core) on it attacks, by putting two cores from an opposing Spirit/Ultimate to the opposing Trash, put two cores from the Void to your Reserve."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "PX"
  },
  {
@@ -37889,18 +37888,18 @@
    "War Princess",
    "Divine Spirit"
   ],
-  "text": "［Lv1-Lv2-Lv3］\n自分がマジックカードを使用するとき、自分の（ソウルコア）1個でコストすべてを支払うことができる。\n［Lv2-Lv3］『お互いのアタックステップ』\nカード名に「戦国姫」と入っている自分のスピリットが疲労したとき、自分はデッキから1枚ドローする。",
+  "text": "[LV1][LV2][LV3]\nWhen you use a Magic card, you can pay its entire cost with one of your (Soul Core).\n\n[LV2][LV3] (Either Attack Step)\nWhen your Spirit with \"Sengoku Princess\" in its card name becomes exhausted, draw a card from your deck.",
   "image": "PX15-05.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2-Lv3］",
-   "自分がマジックカードを使用するとき、自分の（ソウルコア）1個でコストすべてを支払うことができる。",
-   "［Lv2-Lv3］『お互いのアタックステップ』",
-   "カード名に「戦国姫」と入っている自分のスピリットが疲労したとき、自分はデッキから1枚ドローする。"
+   "[LV1][LV2][LV3]",
+   "When you use a Magic card, you can pay its entire cost with one of your (Soul Core).",
+   "[LV2][LV3] (Either Attack Step)",
+   "When your Spirit with \"Sengoku Princess\" in its card name becomes exhausted, draw a card from your deck."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "PX"
  },
  {
@@ -37933,18 +37932,18 @@
    "War Dragon",
    "Astral Dragon"
   ],
-  "text": "［Lv1-Lv2-Lv3］『このスピリットの召喚時』\nカード名に「ジークヴルム」と入っている自分のスピリット1体か、このスピリット以外の系統：「主君」を持つ自分のスピリット1体のコアすべてを自分のトラッシュに置くことで、自分のライフが5になるように、ボイドからコアを置く。\n［Lv2-Lv3］『このスピリットのアタック時』\nBP合計10000まで相手のスピリット/アルティメットを好きなだけ破壊する。その後、相手は可能ならスピリット/アルティメットでブロックする。",
+  "text": "[LV1][LV2][LV3] (When Summoned)\nBy putting all cores from one of your Spirits with \"Siegwurm\" in its card name, or from one of your \"Lord\" family Spirits other than this Spirit, to your Trash, put cores from the Void so that your Life becomes 5.\n\n[LV2][LV3] (When Attacks)\nDestroy any number of opposing Spirits/Ultimates up to a total of 10000 BP. Then, the opponent must block with a Spirit/Ultimate if possible.",
   "image": "PX15-06.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2-Lv3］『このスピリットの召喚時』",
-   "カード名に「ジークヴルム」と入っている自分のスピリット1体か、このスピリット以外の系統：「主君」を持つ自分のスピリット1体のコアすべてを自分のトラッシュに置くことで、自分のライフが5になるように、ボイドからコアを置く。",
-   "［Lv2-Lv3］『このスピリットのアタック時』",
-   "BP合計10000まで相手のスピリット/アルティメットを好きなだけ破壊する。その後、相手は可能ならスピリット/アルティメットでブロックする。"
+   "[LV1][LV2][LV3] (When Summoned)",
+   "By putting all cores from one of your Spirits with \"Siegwurm\" in its card name, or from one of your \"Lord\" family Spirits other than this Spirit, to your Trash, put cores from the Void so that your Life becomes 5.",
+   "[LV2][LV3] (When Attacks)",
+   "Destroy any number of opposing Spirits/Ultimates up to a total of 10000 BP. Then, the opponent must block with a Spirit/Ultimate if possible."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "PX"
  },
  {
@@ -39349,7 +39348,7 @@
    "Superstar",
    "Galaxian"
   ],
-  "text": "このネクサスは創界神ネクサス対象の効果しか受けない。このネクサスには神託と創界神ネクサス対象の効果でしかコアを置けず、そのコアは創界神ネクサス対象の効果しか受けず移動できない。\n◆対象の自分のスピリット/ブレイヴを召喚/煌臨したとき、ボイドからコア1個をこのネクサスに置ける。\n◆このネクサスを配置したとき、同じカード名の自分の創界神ネクサスがなければ、自分のデッキの上から3枚をトラッシュに置ける。その中の対象カード1枚につき、ボイドからコア1個をこのネクサスに置く。\n\n《神託》〔超星/光導＆コスト3以上〕〔ブレイヴ〕\nこのカードはカード名：「ヴィオレ魔ゐ」としても扱う。\n【神技：4】［Lv1-Lv2：フラッシュ］『お互いのアタックステップ』\n〔ターンに1回、このネクサスのコア4個をボイドに置く〕自分はデッキから1枚ドローし、相手のスピリットのコア1個をリザーブに置く。\n【神域】［Lv2］\nこのネクサスの神シンボルは赤/紫としても扱う。さらに、自分のカード名：「永遠のキズナ 馬神 弾」と「永遠のキズナ 紫乃宮 まゐ」がそれぞれ1つの間、それらのネクサスは破壊されない。",
+  "text": "This Nexus is only affected by Grandwalker Nexus-target effects. Cores can only be put on this Nexus by Core Charge and Grandwalker Nexus-target effects, and those cores are only affected by Grandwalker Nexus-target effects and can't be moved.\n◆When you summon/advent a target Spirit/Brave, you can put one core from the Void to this Nexus.\n◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same name, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void to this Nexus.\n\n《Core Charge》〔\"Super Star\"/\"Galaxian\" family & Cost 3 or more〕〔Brave〕\nThis card is also treated as the card name \"Viole Mai\".\nGrand Skill: 4 [LV1][LV2]: Flash (Either Attack Step)\n(Once per turn, send four cores from this Nexus to the Void) Draw a card from your deck, and put one core from an opposing Spirit to the Reserve.\nGrand Field [LV2]\nThis Nexus's Grandwalker symbol is also treated as Red/Purple. Also, while you control one each of the cards named \"Eternal Bonds Bajin Dan\" and \"Eternal Bonds Shinomiya Mai\", those Nexuses can't be destroyed.",
   "image": "PX20-02.png",
   "block": "P",
   "saga": 60,
@@ -39366,17 +39365,17 @@
   ],
   "fxComplete": false,
   "residual": [
-   "このネクサスは創界神ネクサス対象の効果しか受けない。このネクサスには神託と創界神ネクサス対象の効果でしかコアを置けず、そのコアは創界神ネクサス対象の効果しか受けず移動できない。",
-   "◆対象の自分のスピリット/ブレイヴを召喚/煌臨したとき、ボイドからコア1個をこのネクサスに置ける。",
-   "◆このネクサスを配置したとき、同じカード名の自分の創界神ネクサスがなければ、自分のデッキの上から3枚をトラッシュに置ける。その中の対象カード1枚につき、ボイドからコア1個をこのネクサスに置く。",
-   "《神託》〔超星/光導＆コスト3以上〕〔ブレイヴ〕",
-   "このカードはカード名：「ヴィオレ魔ゐ」としても扱う。",
-   "【神技：4】［Lv1-Lv2：フラッシュ］『お互いのアタックステップ』",
-   "〔ターンに1回、このネクサスのコア4個をボイドに置く〕自分はデッキから1枚ドローし、相手のスピリットのコア1個をリザーブに置く。",
-   "【神域】［Lv2］",
-   "このネクサスの神シンボルは赤/紫としても扱う。さらに、自分のカード名：「永遠のキズナ 馬神 弾」と「永遠のキズナ 紫乃宮 まゐ」がそれぞれ1つの間、それらのネクサスは破壊されない。"
+   "This Nexus is only affected by Grandwalker Nexus-target effects. Cores can only be put on this Nexus by Core Charge and Grandwalker Nexus-target effects, and those cores are only affected by Grandwalker Nexus-target effects and can't be moved.",
+   "◆When you summon/advent a target Spirit/Brave, you can put one core from the Void to this Nexus.",
+   "◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same name, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void to this Nexus.",
+   "《Core Charge》〔\"Super Star\"/\"Galaxian\" family & Cost 3 or more〕〔Brave〕",
+   "This card is also treated as the card name \"Viole Mai\".",
+   "Grand Skill: 4 [LV1][LV2]: Flash (Either Attack Step)",
+   "(Once per turn, send four cores from this Nexus to the Void) Draw a card from your deck, and put one core from an opposing Spirit to the Reserve.",
+   "Grand Field [LV2]",
+   "This Nexus's Grandwalker symbol is also treated as Red/Purple. Also, while you control one each of the cards named \"Eternal Bonds Bajin Dan\" and \"Eternal Bonds Shinomiya Mai\", those Nexuses can't be destroyed."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "PX"
  },
  {
@@ -39455,7 +39454,7 @@
    "Grandwalker",
    "Primal"
   ],
-  "text": "このネクサスは創界神ネクサス対象の効果しか受けない。このネクサスには神託と創界神ネクサス対象の効果でしかコアを置けず、そのコアは創界神ネクサス対象の効果しか受けず移動できない。\n◆対象の自分のスピリットを召喚/煌臨したとき、ボイドからコア1個をこのネクサスに置ける。\n◆このネクサスを配置したとき、同じカード名の自分の創界神ネクサスがなければ、自分のデッキの上から3枚をトラッシュに置ける。その中の対象カード1枚につき、ボイドからコア1個をこのネクサスに置く。\n\n《神託》〔紫＆起幻＆コスト3以上〕\n【神域】［Lv1-Lv2］『自分のメインステップ』\n自分が転醒スピリットカードを召喚するとき、その軽減シンボル紫2つを満たす。この効果は重複しない。\n【神域】［Lv2］『自分のアタックステップ』\n自分の転醒前スピリットが転醒したとき、このネクサスのコア3個をボイドに置くことで、自分のトラッシュの以外のコア3個までを、その転醒後スピリットに置く。",
+  "text": "This Nexus is only affected by Grandwalker Nexus-target effects. Cores can only be put on this Nexus by Core Charge and Grandwalker Nexus-target effects, and those cores are only affected by Grandwalker Nexus-target effects and can't be moved.\n◆When you summon/advent a target Spirit, you can put one core from the Void to this Nexus.\n◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same name, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void to this Nexus.\n\n《Core Charge》〔Purple & \"Ominous Illusion\" family & Cost 3 or more〕\nGrand Field [LV1][LV2] (Your Main Step)\nWhen you summon a Rebirth Spirit card, you satisfy its two Purple reduction symbols. This effect doesn't stack.\nGrand Field [LV2] (Your Attack Step)\nWhen your pre-Rebirth Spirit is reborn, by sending three cores from this Nexus to the Void, put up to three cores other than (Soul Core) from your Trash to that post-Rebirth Spirit.",
   "image": "PX20-04.png",
   "block": "P",
   "saga": 60,
@@ -39464,16 +39463,16 @@
   ],
   "fxComplete": false,
   "residual": [
-   "このネクサスは創界神ネクサス対象の効果しか受けない。このネクサスには神託と創界神ネクサス対象の効果でしかコアを置けず、そのコアは創界神ネクサス対象の効果しか受けず移動できない。",
-   "◆対象の自分のスピリットを召喚/煌臨したとき、ボイドからコア1個をこのネクサスに置ける。",
-   "◆このネクサスを配置したとき、同じカード名の自分の創界神ネクサスがなければ、自分のデッキの上から3枚をトラッシュに置ける。その中の対象カード1枚につき、ボイドからコア1個をこのネクサスに置く。",
-   "《神託》〔紫＆起幻＆コスト3以上〕",
-   "【神域】［Lv1-Lv2］『自分のメインステップ』",
-   "自分が転醒スピリットカードを召喚するとき、その軽減シンボル紫2つを満たす。この効果は重複しない。",
-   "【神域】［Lv2］『自分のアタックステップ』",
-   "自分の転醒前スピリットが転醒したとき、このネクサスのコア3個をボイドに置くことで、自分のトラッシュの以外のコア3個までを、その転醒後スピリットに置く。"
+   "This Nexus is only affected by Grandwalker Nexus-target effects. Cores can only be put on this Nexus by Core Charge and Grandwalker Nexus-target effects, and those cores are only affected by Grandwalker Nexus-target effects and can't be moved.",
+   "◆When you summon/advent a target Spirit, you can put one core from the Void to this Nexus.",
+   "◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same name, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void to this Nexus.",
+   "《Core Charge》〔Purple & \"Ominous Illusion\" family & Cost 3 or more〕",
+   "Grand Field [LV1][LV2] (Your Main Step)",
+   "When you summon a Rebirth Spirit card, you satisfy its two Purple reduction symbols. This effect doesn't stack.",
+   "Grand Field [LV2] (Your Attack Step)",
+   "When your pre-Rebirth Spirit is reborn, by sending three cores from this Nexus to the Void, put up to three cores other than (Soul Core) from your Trash to that post-Rebirth Spirit."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "PX"
  },
  {
@@ -39542,7 +39541,7 @@
   "families": [
    "Grandwalker"
   ],
-  "text": "このネクサスは創界神ネクサス対象の効果しか受けない。このネクサスには神託と創界神ネクサス対象の効果でしかコアを置けず、そのコアは創界神ネクサス対象の効果しか受けず移動できない。\n◆対象の自分のスピリットを召喚/煌臨したとき、ボイドからコア1個をこのネクサスに置ける。\n◆このネクサスを配置したとき、同じカード名の自分の創界神ネクサスがなければ、自分のデッキの上から3枚をトラッシュに置ける。その中の対象カード1枚につき、ボイドからコア1個をこのネクサスに置く。\n\n《神託》〔コスト3以上、「ガイ・アスラ」〕（召喚/煌臨での神託はターンに1回）\n［Lv1-Lv2］『このネクサスの配置時』\n自分のトラッシュにあるカード名に「ガイ・アスラ」を含むスピリットカード1枚とカード名：「幻星創られし場所」1枚を手札に戻せる。その後、ボイドからコア3個をこのネクサスに置ける。\n【神技：3】［Lv2：フラッシュ］『自分のアタックステップ』\n〔このネクサスのコア3個をボイドに置く〕軽減シンボルを2色以上持つ自分のスピリット1体を回復させる。",
+  "text": "This Nexus is only affected by Grandwalker Nexus-target effects. Cores can only be put on this Nexus by Core Charge and Grandwalker Nexus-target effects, and those cores are only affected by Grandwalker Nexus-target effects and can't be moved.\n◆When you summon/advent a target Spirit, you can put one core from the Void to this Nexus.\n◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same name, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void to this Nexus.\n\n《Core Charge》〔Cost 3 or more, \"Gai-Asura\"〕(Core Charge by summon/advent is once per turn)\n[LV1][LV2] (When Deployed)\nYou can return one Spirit card with \"Gai-Asura\" in its card name and one card named \"The Place Where Phantom Stars Are Made\" from your Trash to the Hand. Then, you can put three cores from the Void to this Nexus.\nGrand Skill: 3 [LV2]: Flash (Your Attack Step)\n(Send three cores from this Nexus to the Void) Refresh one of your Spirits that has two or more colours of reduction symbols.",
   "image": "PX21-01.png",
   "block": "P",
   "saga": 60,
@@ -39551,16 +39550,16 @@
   ],
   "fxComplete": false,
   "residual": [
-   "このネクサスは創界神ネクサス対象の効果しか受けない。このネクサスには神託と創界神ネクサス対象の効果でしかコアを置けず、そのコアは創界神ネクサス対象の効果しか受けず移動できない。",
-   "◆対象の自分のスピリットを召喚/煌臨したとき、ボイドからコア1個をこのネクサスに置ける。",
-   "◆このネクサスを配置したとき、同じカード名の自分の創界神ネクサスがなければ、自分のデッキの上から3枚をトラッシュに置ける。その中の対象カード1枚につき、ボイドからコア1個をこのネクサスに置く。",
-   "《神託》〔コスト3以上、「ガイ・アスラ」〕（召喚/煌臨での神託はターンに1回）",
-   "［Lv1-Lv2］『このネクサスの配置時』",
-   "自分のトラッシュにあるカード名に「ガイ・アスラ」を含むスピリットカード1枚とカード名：「幻星創られし場所」1枚を手札に戻せる。その後、ボイドからコア3個をこのネクサスに置ける。",
-   "【神技：3】［Lv2：フラッシュ］『自分のアタックステップ』",
-   "〔このネクサスのコア3個をボイドに置く〕軽減シンボルを2色以上持つ自分のスピリット1体を回復させる。"
+   "This Nexus is only affected by Grandwalker Nexus-target effects. Cores can only be put on this Nexus by Core Charge and Grandwalker Nexus-target effects, and those cores are only affected by Grandwalker Nexus-target effects and can't be moved.",
+   "◆When you summon/advent a target Spirit, you can put one core from the Void to this Nexus.",
+   "◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same name, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void to this Nexus.",
+   "《Core Charge》〔Cost 3 or more, \"Gai-Asura\"〕(Core Charge by summon/advent is once per turn)",
+   "[LV1][LV2] (When Deployed)",
+   "You can return one Spirit card with \"Gai-Asura\" in its card name and one card named \"The Place Where Phantom Stars Are Made\" from your Trash to the Hand. Then, you can put three cores from the Void to this Nexus.",
+   "Grand Skill: 3 [LV2]: Flash (Your Attack Step)",
+   "(Send three cores from this Nexus to the Void) Refresh one of your Spirits that has two or more colours of reduction symbols."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "PX"
  },
  {
@@ -39762,7 +39761,7 @@
   "families": [
    "Grandwalker"
   ],
-  "text": "このネクサスは創界神ネクサス対象の効果しか受けない。このネクサスには神託と創界神ネクサス対象の効果でしかコアを置けず、そのコアは創界神ネクサス対象の効果しか受けず移動できない。\n◆対象の自分のスピリットを召喚/煌臨したとき、ボイドからコア1個をこのネクサスに置ける。\n◆このネクサスを配置したとき、同じカード名の自分の創界神ネクサスがなければ、自分のデッキの上から3枚をトラッシュに置ける。その中の対象カード1枚につき、ボイドからコア1個をこのネクサスに置く。\n\n《神託》〔白＆コスト3以上〕（このネクサスに置けるコアは最大5個）\n［Lv1-Lv2］『このネクサスの配置時』\n次の自分のスタートステップまで、自分の白1色のスピリット1体は、相手のスピリット/ネクサスの効果を受けない。\n【神技：3】［Lv2：フラッシュ］『自分のアタックステップ』\n〔このネクサスのコア3個をボイドに置く〕ボイドからコア1個を自分のカウントに置き、相手のスピリット/アルティメット1体を手札に戻す。",
+  "text": "This Nexus is only affected by Grandwalker Nexus-target effects. Cores can only be put on this Nexus by Core Charge and Grandwalker Nexus-target effects, and those cores are only affected by Grandwalker Nexus-target effects and can't be moved.\n◆When you summon/advent a target Spirit, you can put one core from the Void to this Nexus.\n◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same name, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void to this Nexus.\n\n《Core Charge》〔White & Cost 3 or more〕(At most five cores can be put on this Nexus)\n[LV1][LV2] (When Deployed)\nUntil your next Start Step, one of your White-only Spirits is unaffected by opposing Spirit/Nexus effects.\nGrand Skill: 3 [LV2]: Flash (Your Attack Step)\n(Send three cores from this Nexus to the Void) Put one core from the Void to your count, and return an opposing Spirit/Ultimate to the Hand.",
   "image": "PX22-01.png",
   "block": "P",
   "saga": 60,
@@ -39771,16 +39770,16 @@
   ],
   "fxComplete": false,
   "residual": [
-   "このネクサスは創界神ネクサス対象の効果しか受けない。このネクサスには神託と創界神ネクサス対象の効果でしかコアを置けず、そのコアは創界神ネクサス対象の効果しか受けず移動できない。",
-   "◆対象の自分のスピリットを召喚/煌臨したとき、ボイドからコア1個をこのネクサスに置ける。",
-   "◆このネクサスを配置したとき、同じカード名の自分の創界神ネクサスがなければ、自分のデッキの上から3枚をトラッシュに置ける。その中の対象カード1枚につき、ボイドからコア1個をこのネクサスに置く。",
-   "《神託》〔白＆コスト3以上〕（このネクサスに置けるコアは最大5個）",
-   "［Lv1-Lv2］『このネクサスの配置時』",
-   "次の自分のスタートステップまで、自分の白1色のスピリット1体は、相手のスピリット/ネクサスの効果を受けない。",
-   "【神技：3】［Lv2：フラッシュ］『自分のアタックステップ』",
-   "〔このネクサスのコア3個をボイドに置く〕ボイドからコア1個を自分のカウントに置き、相手のスピリット/アルティメット1体を手札に戻す。"
+   "This Nexus is only affected by Grandwalker Nexus-target effects. Cores can only be put on this Nexus by Core Charge and Grandwalker Nexus-target effects, and those cores are only affected by Grandwalker Nexus-target effects and can't be moved.",
+   "◆When you summon/advent a target Spirit, you can put one core from the Void to this Nexus.",
+   "◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same name, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void to this Nexus.",
+   "《Core Charge》〔White & Cost 3 or more〕(At most five cores can be put on this Nexus)",
+   "[LV1][LV2] (When Deployed)",
+   "Until your next Start Step, one of your White-only Spirits is unaffected by opposing Spirit/Nexus effects.",
+   "Grand Skill: 3 [LV2]: Flash (Your Attack Step)",
+   "(Send three cores from this Nexus to the Void) Put one core from the Void to your count, and return an opposing Spirit/Ultimate to the Hand."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "PX"
  },
  {
@@ -39805,7 +39804,7 @@
   "families": [
    "Grandwalker"
   ],
-  "text": "このネクサスは創界神ネクサス対象の効果しか受けない。このネクサスには神託と創界神ネクサス対象の効果でしかコアを置けず、そのコアは創界神ネクサス対象の効果しか受けず移動できない。\n◆対象の自分のスピリットを召喚/煌臨したとき、ボイドからコア1個をこのネクサスに置ける。\n◆このネクサスを配置したとき、同じカード名の自分の創界神ネクサスがなければ、自分のデッキの上から3枚をトラッシュに置ける。その中の対象カード1枚につき、ボイドからコア1個をこのネクサスに置く。\n\n《神託》〔緑＆コスト3以上〕（このネクサスに置けるコアは最大5個）\n［Lv1-Lv2］『このネクサスの配置時』\nボイドからコア1個ずつを、このネクサスと自分の緑1色のスピリット1体に置ける。自分のカウント5以上のとき、この効果でスピリットに置くコアを+1個する。\n【神技：3】［Lv2：フラッシュ］『自分のアタックステップ』\n〔このネクサスのコア3個をボイドに置く〕ボイドからコア1個を自分のカウントに置き、相手のスピリット/アルティメット2体を疲労させる。",
+  "text": "This Nexus is only affected by Grandwalker Nexus-target effects. Cores can only be put on this Nexus by Core Charge and Grandwalker Nexus-target effects, and those cores are only affected by Grandwalker Nexus-target effects and can't be moved.\n◆When you summon/advent a target Spirit, you can put one core from the Void to this Nexus.\n◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same name, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void to this Nexus.\n\n《Core Charge》〔Green & Cost 3 or more〕(At most five cores can be put on this Nexus)\n[LV1][LV2] (When Deployed)\nYou can put one core each from the Void to this Nexus and to one of your Green-only Spirits. While your count is 5 or more, put +1 core on the Spirit with this effect.\nGrand Skill: 3 [LV2]: Flash (Your Attack Step)\n(Send three cores from this Nexus to the Void) Put one core from the Void to your count, and exhaust two opposing Spirits/Ultimates.",
   "image": "PX22-02.png",
   "block": "P",
   "saga": 60,
@@ -39814,16 +39813,16 @@
   ],
   "fxComplete": false,
   "residual": [
-   "このネクサスは創界神ネクサス対象の効果しか受けない。このネクサスには神託と創界神ネクサス対象の効果でしかコアを置けず、そのコアは創界神ネクサス対象の効果しか受けず移動できない。",
-   "◆対象の自分のスピリットを召喚/煌臨したとき、ボイドからコア1個をこのネクサスに置ける。",
-   "◆このネクサスを配置したとき、同じカード名の自分の創界神ネクサスがなければ、自分のデッキの上から3枚をトラッシュに置ける。その中の対象カード1枚につき、ボイドからコア1個をこのネクサスに置く。",
-   "《神託》〔緑＆コスト3以上〕（このネクサスに置けるコアは最大5個）",
-   "［Lv1-Lv2］『このネクサスの配置時』",
-   "ボイドからコア1個ずつを、このネクサスと自分の緑1色のスピリット1体に置ける。自分のカウント5以上のとき、この効果でスピリットに置くコアを+1個する。",
-   "【神技：3】［Lv2：フラッシュ］『自分のアタックステップ』",
-   "〔このネクサスのコア3個をボイドに置く〕ボイドからコア1個を自分のカウントに置き、相手のスピリット/アルティメット2体を疲労させる。"
+   "This Nexus is only affected by Grandwalker Nexus-target effects. Cores can only be put on this Nexus by Core Charge and Grandwalker Nexus-target effects, and those cores are only affected by Grandwalker Nexus-target effects and can't be moved.",
+   "◆When you summon/advent a target Spirit, you can put one core from the Void to this Nexus.",
+   "◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same name, you can send three cards from your decktop to the Trash. For each target card among them, put one core from the Void to this Nexus.",
+   "《Core Charge》〔Green & Cost 3 or more〕(At most five cores can be put on this Nexus)",
+   "[LV1][LV2] (When Deployed)",
+   "You can put one core each from the Void to this Nexus and to one of your Green-only Spirits. While your count is 5 or more, put +1 core on the Spirit with this effect.",
+   "Grand Skill: 3 [LV2]: Flash (Your Attack Step)",
+   "(Send three cores from this Nexus to the Void) Put one core from the Void to your count, and exhaust two opposing Spirits/Ultimates."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "PX"
  },
  {
@@ -40027,7 +40026,7 @@
    "Silver Zero",
    "Armored Beast"
   ],
-  "text": "［フラッシュ］《契約煌臨：銀零＆ライフ3以下》『お互いのアタックステップ』\n自分のをトラッシュに置くことで、対象の自分のスピリットに手札から重ねる。\n〔ターンに1回：同名〕手札にあるこのカードは、相手のターンなら、をトラッシュに置いたものとして《契約煌臨》できる。そうしたとき、Lv1の相手のスピリット1体か、Lv3の相手のアルティメット1体をデッキの下に戻せる。\n《OC条件：カウント6以上》\n【OC中】［Lv1-Lv2］『相手のアタックステップ』\nこのスピリットは相手の効果を受けない。",
+  "text": "Flash - 《Contract Advent: Silver Zero & Life 3 or less》(Either Attack Step)\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit.\n(Once per turn: same name) During the opponent's turn, this card in your Hand can be Contract Advented as if (Soul Core) had been sent to the Trash. When you do, you can return an opposing LV1 Spirit or an opposing LV3 Ultimate to the deckbottom.\n\n《OC Condition: Count 6 or more》\nWhile OC [LV1][LV2] (Opposing Attack Step)\nThis Spirit is unaffected by opposing effects.",
   "image": "PX23-01.png",
   "block": "P",
   "saga": 60,
@@ -40036,14 +40035,14 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［フラッシュ］《契約煌臨：銀零＆ライフ3以下》『お互いのアタックステップ』",
-   "自分のをトラッシュに置くことで、対象の自分のスピリットに手札から重ねる。",
-   "〔ターンに1回：同名〕手札にあるこのカードは、相手のターンなら、をトラッシュに置いたものとして《契約煌臨》できる。そうしたとき、Lv1の相手のスピリット1体か、Lv3の相手のアルティメット1体をデッキの下に戻せる。",
-   "《OC条件：カウント6以上》",
-   "【OC中】［Lv1-Lv2］『相手のアタックステップ』",
-   "このスピリットは相手の効果を受けない。"
+   "Flash - 《Contract Advent: Silver Zero & Life 3 or less》(Either Attack Step)",
+   "By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit.",
+   "(Once per turn: same name) During the opponent's turn, this card in your Hand can be Contract Advented as if (Soul Core) had been sent to the Trash. When you do, you can return an opposing LV1 Spirit or an opposing LV3 Ultimate to the deckbottom.",
+   "《OC Condition: Count 6 or more》",
+   "While OC [LV1][LV2] (Opposing Attack Step)",
+   "This Spirit is unaffected by opposing effects."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "PXV"
  },
  {
@@ -40076,7 +40075,7 @@
    "Azure Wave",
    "Fusion Beast"
   ],
-  "text": "［フラッシュ］《契約煌臨：蒼波＆ライフ3以下》『お互いのアタックステップ』\n自分のをトラッシュに置くことで、対象の自分のスピリットに手札から重ねる。\n［Lv1-Lv2］『このスピリットの煌臨時』\nコスト合計（5+自分のカウント）まで、相手のスピリット/アルティメットを好きなだけ破壊し、破壊したスピリット/アルティメット1体につき、相手のデッキを上から3枚破棄する。\n《OC条件：カウント5以上》\n【OC中＆煌臨中】［Lv1-Lv2］『このスピリットのアタック/ブロック時』\n相手のデッキを上から5枚破棄する。",
+  "text": "Flash - 《Contract Advent: Azure Wave & Life 3 or less》(Either Attack Step)\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit.\n\n[LV1][LV2] (When Advents)\nDestroy any number of opposing Spirits/Ultimates up to a total cost of (5 + your count), and for each Spirit/Ultimate destroyed, discard three cards from the opposing decktop.\n\n《OC Condition: Count 5 or more》\nWhile OC & Advented [LV1][LV2] (When Attacks/Blocks)\nDiscard five cards from the opposing decktop.",
   "image": "PX23-02.png",
   "block": "P",
   "saga": 60,
@@ -40085,15 +40084,15 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［フラッシュ］《契約煌臨：蒼波＆ライフ3以下》『お互いのアタックステップ』",
-   "自分のをトラッシュに置くことで、対象の自分のスピリットに手札から重ねる。",
-   "［Lv1-Lv2］『このスピリットの煌臨時』",
-   "コスト合計（5+自分のカウント）まで、相手のスピリット/アルティメットを好きなだけ破壊し、破壊したスピリット/アルティメット1体につき、相手のデッキを上から3枚破棄する。",
-   "《OC条件：カウント5以上》",
-   "【OC中＆煌臨中】［Lv1-Lv2］『このスピリットのアタック/ブロック時』",
-   "相手のデッキを上から5枚破棄する。"
+   "Flash - 《Contract Advent: Azure Wave & Life 3 or less》(Either Attack Step)",
+   "By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit.",
+   "[LV1][LV2] (When Advents)",
+   "Destroy any number of opposing Spirits/Ultimates up to a total cost of (5 + your count), and for each Spirit/Ultimate destroyed, discard three cards from the opposing decktop.",
+   "《OC Condition: Count 5 or more》",
+   "While OC & Advented [LV1][LV2] (When Attacks/Blocks)",
+   "Discard five cards from the opposing decktop."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "PXV"
  },
  {
@@ -40126,7 +40125,7 @@
    "Scarlet Flame",
    "Emperor Beast"
   ],
-  "text": "［フラッシュ］《契約煌臨：緋炎＆ライフ3以下》『お互いのアタックステップ』\n自分のをトラッシュに置くことで、対象の自分のスピリットに手札から重ねる。\n〔ターンに1回：同名〕手札にあるこのカードは、自分のメインステップに、自分のカウント6以上なら、《契約煌臨》できる。\n［Lv1-Lv2］『このスピリットの煌臨/破壊時』\nBP12000以下の相手のスピリットすべてと、BP17000以下の相手のアルティメットすべてを破壊し、破壊したスピリット/アルティメット1体につき、自分はデッキから1枚ドローする。自分のカウント6以上のとき、この「BP破壊効果」は【重装甲】/【超装甲】以外では防げない。",
+  "text": "Flash - 《Contract Advent: Scarlet Flame & Life 3 or less》(Either Attack Step)\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit.\n(Once per turn: same name) During your Main Step, if your count is 6 or more, this card in your Hand can be Contract Advented.\n\n[LV1][LV2] (When Advents/Destroyed)\nDestroy every opposing 12000 BP or less Spirit and every opposing 17000 BP or less Ultimate, and for each Spirit/Ultimate destroyed, draw a card from your deck. While your count is 6 or more, this \"BP Destruction effect\" can't be prevented except by Heavy Armor/Ultra Armor.",
   "image": "PX23-03.png",
   "block": "P",
   "saga": 60,
@@ -40135,13 +40134,13 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［フラッシュ］《契約煌臨：緋炎＆ライフ3以下》『お互いのアタックステップ』",
-   "自分のをトラッシュに置くことで、対象の自分のスピリットに手札から重ねる。",
-   "〔ターンに1回：同名〕手札にあるこのカードは、自分のメインステップに、自分のカウント6以上なら、《契約煌臨》できる。",
-   "［Lv1-Lv2］『このスピリットの煌臨/破壊時』",
-   "BP12000以下の相手のスピリットすべてと、BP17000以下の相手のアルティメットすべてを破壊し、破壊したスピリット/アルティメット1体につき、自分はデッキから1枚ドローする。自分のカウント6以上のとき、この「BP破壊効果」は【重装甲】/【超装甲】以外では防げない。"
+   "Flash - 《Contract Advent: Scarlet Flame & Life 3 or less》(Either Attack Step)",
+   "By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit.",
+   "(Once per turn: same name) During your Main Step, if your count is 6 or more, this card in your Hand can be Contract Advented.",
+   "[LV1][LV2] (When Advents/Destroyed)",
+   "Destroy every opposing 12000 BP or less Spirit and every opposing 17000 BP or less Ultimate, and for each Spirit/Ultimate destroyed, draw a card from your deck. While your count is 6 or more, this \"BP Destruction effect\" can't be prevented except by Heavy Armor/Ultra Armor."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "PXV"
  },
  {
@@ -40174,7 +40173,7 @@
    "Blood Crystal",
    "Nightling"
   ],
-  "text": "［フラッシュ］《契約煌臨：血晶＆ライフ3以下》『お互いのアタックステップ』\n自分のをトラッシュに置くことで、対象の自分のスピリットに手札から重ねる。\n手元にあるこのカードは《契約煌臨》できる。\n［Lv1-Lv2］『このスピリットの煌臨/アタック時』\n相手のスピリット/アルティメットすべてのコアを、それぞれ1個になるようにリザーブに置ける。\n［Lv2］『このスピリットのアタック時』\nコア1個以下の相手のスピリット/アルティメット3体を破壊し、破壊したスピリット/アルティメット1体につき、自分はデッキから1枚ドローする。",
+  "text": "Flash - 《Contract Advent: Blood Crystal & Life 3 or less》(Either Attack Step)\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit.\nThis card in your Hand can be Contract Advented.\n\n[LV1][LV2] (When Advents/Attacks)\nYou can put cores on all opposing Spirits/Ultimates into the Reserve until each has one core.\n\n[LV2] (When Attacks)\nDestroy three opposing Spirits/Ultimates with one or fewer cores, and for each Spirit/Ultimate destroyed, draw a card from your deck.",
   "image": "PX23-04.png",
   "block": "P",
   "saga": 60,
@@ -40183,15 +40182,15 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［フラッシュ］《契約煌臨：血晶＆ライフ3以下》『お互いのアタックステップ』",
-   "自分のをトラッシュに置くことで、対象の自分のスピリットに手札から重ねる。",
-   "手元にあるこのカードは《契約煌臨》できる。",
-   "［Lv1-Lv2］『このスピリットの煌臨/アタック時』",
-   "相手のスピリット/アルティメットすべてのコアを、それぞれ1個になるようにリザーブに置ける。",
-   "［Lv2］『このスピリットのアタック時』",
-   "コア1個以下の相手のスピリット/アルティメット3体を破壊し、破壊したスピリット/アルティメット1体につき、自分はデッキから1枚ドローする。"
+   "Flash - 《Contract Advent: Blood Crystal & Life 3 or less》(Either Attack Step)",
+   "By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit.",
+   "This card in your Hand can be Contract Advented.",
+   "[LV1][LV2] (When Advents/Attacks)",
+   "You can put cores on all opposing Spirits/Ultimates into the Reserve until each has one core.",
+   "[LV2] (When Attacks)",
+   "Destroy three opposing Spirits/Ultimates with one or fewer cores, and for each Spirit/Ultimate destroyed, draw a card from your deck."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "PXV"
  },
  {
@@ -40224,7 +40223,7 @@
    "Golden Cloud",
    "Imaginary Beast"
   ],
-  "text": "［フラッシュ］《契約煌臨：金雲＆ライフ3以下》『お互いのアタックステップ』\n自分のをトラッシュに置くことで、対象の自分のスピリットに手札から重ねる。\n［Lv1-Lv2］『このスピリットの煌臨時』\n〔ターンに1回：同名〕自分のトラッシュにある黄のマジックカードすべてを手札に戻せる。\n《OC条件：カウント5以上》\n【OC中】［Lv2］『このスピリットのアタック時』\n〔ターンに1回：同名〕自分のフィールドにあるマジックカード1枚のフラッシュ効果1つを発揮できる。",
+  "text": "Flash - 《Contract Advent: Golden Cloud & Life 3 or less》(Either Attack Step)\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit.\n\n[LV1][LV2] (When Advents)\n(Once per turn: same name) You can return all Yellow Magic cards in your Trash to the Hand.\n\n《OC Condition: Count 5 or more》\nWhile OC [LV2] (When Attacks)\n(Once per turn: same name) You can activate one Flash effect of a Magic card on your Field.",
   "image": "PX23-05.png",
   "block": "P",
   "saga": 60,
@@ -40233,15 +40232,15 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［フラッシュ］《契約煌臨：金雲＆ライフ3以下》『お互いのアタックステップ』",
-   "自分のをトラッシュに置くことで、対象の自分のスピリットに手札から重ねる。",
-   "［Lv1-Lv2］『このスピリットの煌臨時』",
-   "〔ターンに1回：同名〕自分のトラッシュにある黄のマジックカードすべてを手札に戻せる。",
-   "《OC条件：カウント5以上》",
-   "【OC中】［Lv2］『このスピリットのアタック時』",
-   "〔ターンに1回：同名〕自分のフィールドにあるマジックカード1枚のフラッシュ効果1つを発揮できる。"
+   "Flash - 《Contract Advent: Golden Cloud & Life 3 or less》(Either Attack Step)",
+   "By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit.",
+   "[LV1][LV2] (When Advents)",
+   "(Once per turn: same name) You can return all Yellow Magic cards in your Trash to the Hand.",
+   "《OC Condition: Count 5 or more》",
+   "While OC [LV2] (When Attacks)",
+   "(Once per turn: same name) You can activate one Flash effect of a Magic card on your Field."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "PXV"
  },
  {
@@ -40274,7 +40273,7 @@
    "Jade Thunder",
    "Blade Beast"
   ],
-  "text": "［フラッシュ］《契約煌臨：碧雷＆ライフ3以下》『お互いのアタックステップ』\n自分のをトラッシュに置くことで、対象の自分のスピリットに手札から重ねる。\n系統：「碧雷」を持つ自分のスピリットの「召喚する」効果を発揮するとき、手札にあるこのカードをコスト5にできる。\n［Lv1-Lv2］『このスピリットの召喚/煌臨時』\nボイドからコア1個ずつを、系統：「碧雷」を持つ自分のスピリット/ネクサスすべてに置ける。さらに、このスピリットが《煌臨》していたとき、相手のスピリット/アルティメットすべてを疲労させる。\n［Lv2］『このスピリットのアタック時』\nこのスピリットに緑シンボル1つを追加する。",
+  "text": "Flash - 《Contract Advent: Jade Thunder & Life 3 or less》(Either Attack Step)\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit.\nWhen activating the \"summon\" effect of your \"Jade Thunder\" family Spirit, this card in your Hand can be treated as Cost 5.\n\n[LV1][LV2] (When Summoned/Advents)\nYou can put one core each from the Void to all your \"Jade Thunder\" family Spirits/Nexuses. Also, if this Spirit Advented, exhaust all opposing Spirits/Ultimates.\n\n[LV2] (When Attacks)\nThis Spirit gains one extra Green symbol.",
   "image": "PX24-01.png",
   "block": "P",
   "saga": 60,
@@ -40283,15 +40282,15 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［フラッシュ］《契約煌臨：碧雷＆ライフ3以下》『お互いのアタックステップ』",
-   "自分のをトラッシュに置くことで、対象の自分のスピリットに手札から重ねる。",
-   "系統：「碧雷」を持つ自分のスピリットの「召喚する」効果を発揮するとき、手札にあるこのカードをコスト5にできる。",
-   "［Lv1-Lv2］『このスピリットの召喚/煌臨時』",
-   "ボイドからコア1個ずつを、系統：「碧雷」を持つ自分のスピリット/ネクサスすべてに置ける。さらに、このスピリットが《煌臨》していたとき、相手のスピリット/アルティメットすべてを疲労させる。",
-   "［Lv2］『このスピリットのアタック時』",
-   "このスピリットに緑シンボル1つを追加する。"
+   "Flash - 《Contract Advent: Jade Thunder & Life 3 or less》(Either Attack Step)",
+   "By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit.",
+   "When activating the \"summon\" effect of your \"Jade Thunder\" family Spirit, this card in your Hand can be treated as Cost 5.",
+   "[LV1][LV2] (When Summoned/Advents)",
+   "You can put one core each from the Void to all your \"Jade Thunder\" family Spirits/Nexuses. Also, if this Spirit Advented, exhaust all opposing Spirits/Ultimates.",
+   "[LV2] (When Attacks)",
+   "This Spirit gains one extra Green symbol."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "PXV"
  },
  {
@@ -40414,7 +40413,7 @@
    "Grandwalker",
    "Uru"
   ],
-  "text": "《神託》〔紫〕（召喚/煌臨での神託はターンに1回）\n◆対象の自分のスピリットを召喚/煌臨したとき、このネクサスにコア+1できる。\n◆このネクサスを配置したとき、同じカード名の自分の創界神ネクサスがなければ、自分のデッキの上から3枚をトラッシュに置ける。その中の対象カード1枚につき、このネクサスにコア+1する。\n［Lv1-Lv2］『このネクサスの配置時』\nこのネクサスにコア+2する。その後、自分はデッキから1枚ドローできる。\n【神技：2】［Lv2：フラッシュ］『お互いのアタックステップ』\n〔このネクサスのコア2個をボイドに置く〕相手のスピリット/アルティメットのコア1個をリザーブに置き、消滅したとき、自分のカウント+1する。",
+  "text": "《Core Charge》〔Purple〕(Core Charge by summon/advent is once per turn)\n◆When you summon/advent a target Spirit, you can put +1 core on this Nexus.\n◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same name, you can send three cards from your decktop to the Trash. For each target card among them, put +1 core on this Nexus.\n[LV1][LV2] (When Deployed)\nPut +2 cores on this Nexus. Then, you can draw a card from your deck.\nGrand Skill: 2 [LV2]: Flash (Either Attack Step)\n(Send two cores from this Nexus to the Void) Put one core from an opposing Spirit/Ultimate to the Reserve, and if it is removed, your count +1.",
   "image": "PX24-04.png",
   "block": "P",
   "saga": 60,
@@ -40423,15 +40422,15 @@
   ],
   "fxComplete": false,
   "residual": [
-   "《神託》〔紫〕（召喚/煌臨での神託はターンに1回）",
-   "◆対象の自分のスピリットを召喚/煌臨したとき、このネクサスにコア+1できる。",
-   "◆このネクサスを配置したとき、同じカード名の自分の創界神ネクサスがなければ、自分のデッキの上から3枚をトラッシュに置ける。その中の対象カード1枚につき、このネクサスにコア+1する。",
-   "［Lv1-Lv2］『このネクサスの配置時』",
-   "このネクサスにコア+2する。その後、自分はデッキから1枚ドローできる。",
-   "【神技：2】［Lv2：フラッシュ］『お互いのアタックステップ』",
-   "〔このネクサスのコア2個をボイドに置く〕相手のスピリット/アルティメットのコア1個をリザーブに置き、消滅したとき、自分のカウント+1する。"
+   "《Core Charge》〔Purple〕(Core Charge by summon/advent is once per turn)",
+   "◆When you summon/advent a target Spirit, you can put +1 core on this Nexus.",
+   "◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same name, you can send three cards from your decktop to the Trash. For each target card among them, put +1 core on this Nexus.",
+   "[LV1][LV2] (When Deployed)",
+   "Put +2 cores on this Nexus. Then, you can draw a card from your deck.",
+   "Grand Skill: 2 [LV2]: Flash (Either Attack Step)",
+   "(Send two cores from this Nexus to the Void) Put one core from an opposing Spirit/Ultimate to the Reserve, and if it is removed, your count +1."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "PX"
  },
  {
@@ -40500,7 +40499,7 @@
    "Grandwalker",
    "Uru"
   ],
-  "text": "《神託》〔緑〕（召喚/煌臨での神託はターンに1回）\n◆対象の自分のスピリットを召喚/煌臨したとき、このネクサスにコア+1できる。\n◆このネクサスを配置したとき、同じカード名の自分の創界神ネクサスがなければ、自分のデッキの上から3枚をトラッシュに置ける。その中の対象カード1枚につき、このネクサスにコア+1する。\n［Lv1-Lv2］『このネクサスの配置時』\nこのネクサスにコア+2する。その後、ボイドからコア1個を自分の緑1色のスピリット/トラッシュに置ける。\n【神技：4】［Lv2：フラッシュ］『お互いのアタックステップ』\n〔このネクサスのコア4個をボイドに置く〕相手のスピリット/アルティメット1体を重疲労させる。",
+  "text": "《Core Charge》〔Green〕(Core Charge by summon/advent is once per turn)\n◆When you summon/advent a target Spirit, you can put +1 core on this Nexus.\n◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same name, you can send three cards from your decktop to the Trash. For each target card among them, put +1 core on this Nexus.\n[LV1][LV2] (When Deployed)\nPut +2 cores on this Nexus. Then, you can put one core from the Void to one of your Green-only Spirits/to your Trash.\nGrand Skill: 4 [LV2]: Flash (Either Attack Step)\n(Send four cores from this Nexus to the Void) Double-exhaust an opposing Spirit/Ultimate.",
   "image": "PX24-06.png",
   "block": "P",
   "saga": 60,
@@ -40509,15 +40508,15 @@
   ],
   "fxComplete": false,
   "residual": [
-   "《神託》〔緑〕（召喚/煌臨での神託はターンに1回）",
-   "◆対象の自分のスピリットを召喚/煌臨したとき、このネクサスにコア+1できる。",
-   "◆このネクサスを配置したとき、同じカード名の自分の創界神ネクサスがなければ、自分のデッキの上から3枚をトラッシュに置ける。その中の対象カード1枚につき、このネクサスにコア+1する。",
-   "［Lv1-Lv2］『このネクサスの配置時』",
-   "このネクサスにコア+2する。その後、ボイドからコア1個を自分の緑1色のスピリット/トラッシュに置ける。",
-   "【神技：4】［Lv2：フラッシュ］『お互いのアタックステップ』",
-   "〔このネクサスのコア4個をボイドに置く〕相手のスピリット/アルティメット1体を重疲労させる。"
+   "《Core Charge》〔Green〕(Core Charge by summon/advent is once per turn)",
+   "◆When you summon/advent a target Spirit, you can put +1 core on this Nexus.",
+   "◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same name, you can send three cards from your decktop to the Trash. For each target card among them, put +1 core on this Nexus.",
+   "[LV1][LV2] (When Deployed)",
+   "Put +2 cores on this Nexus. Then, you can put one core from the Void to one of your Green-only Spirits/to your Trash.",
+   "Grand Skill: 4 [LV2]: Flash (Either Attack Step)",
+   "(Send four cores from this Nexus to the Void) Double-exhaust an opposing Spirit/Ultimate."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "PX"
  },
  {
@@ -40543,7 +40542,7 @@
    "Grandwalker",
    "Uru"
   ],
-  "text": "《神託》〔青〕（召喚/煌臨での神託はターンに1回）\n◆対象の自分のスピリットを召喚/煌臨したとき、このネクサスにコア+1できる。\n◆このネクサスを配置したとき、同じカード名の自分の創界神ネクサスがなければ、自分のデッキの上から3枚をトラッシュに置ける。その中の対象カード1枚につき、このネクサスにコア+1する。\n［Lv1-Lv2］『このネクサスの配置時』\nこのネクサスにコア+2する。その後、〔ターンに1回：同名〕自分のトラッシュにあるコスト4以下の青1色のネクサスカード1枚を、コストを支払わずに配置できる。\n【神技：4】［Lv2：フラッシュ］『お互いのアタックステップ』\n〔このネクサスのコア4個をボイドに置く〕最もコストの低い相手のスピリット/アルティメット1体を破壊する。",
+  "text": "《Core Charge》〔Blue〕(Core Charge by summon/advent is once per turn)\n◆When you summon/advent a target Spirit, you can put +1 core on this Nexus.\n◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same name, you can send three cards from your decktop to the Trash. For each target card among them, put +1 core on this Nexus.\n[LV1][LV2] (When Deployed)\nPut +2 cores on this Nexus. Then, (Once per turn: same name) you can deploy one Cost 4 or less Blue-only Nexus card from your Trash without paying the cost.\nGrand Skill: 4 [LV2]: Flash (Either Attack Step)\n(Send four cores from this Nexus to the Void) Destroy the lowest-cost opposing Spirit/Ultimate.",
   "image": "PX25-01.png",
   "block": "P",
   "saga": 60,
@@ -40552,15 +40551,15 @@
   ],
   "fxComplete": false,
   "residual": [
-   "《神託》〔青〕（召喚/煌臨での神託はターンに1回）",
-   "◆対象の自分のスピリットを召喚/煌臨したとき、このネクサスにコア+1できる。",
-   "◆このネクサスを配置したとき、同じカード名の自分の創界神ネクサスがなければ、自分のデッキの上から3枚をトラッシュに置ける。その中の対象カード1枚につき、このネクサスにコア+1する。",
-   "［Lv1-Lv2］『このネクサスの配置時』",
-   "このネクサスにコア+2する。その後、〔ターンに1回：同名〕自分のトラッシュにあるコスト4以下の青1色のネクサスカード1枚を、コストを支払わずに配置できる。",
-   "【神技：4】［Lv2：フラッシュ］『お互いのアタックステップ』",
-   "〔このネクサスのコア4個をボイドに置く〕最もコストの低い相手のスピリット/アルティメット1体を破壊する。"
+   "《Core Charge》〔Blue〕(Core Charge by summon/advent is once per turn)",
+   "◆When you summon/advent a target Spirit, you can put +1 core on this Nexus.",
+   "◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same name, you can send three cards from your decktop to the Trash. For each target card among them, put +1 core on this Nexus.",
+   "[LV1][LV2] (When Deployed)",
+   "Put +2 cores on this Nexus. Then, (Once per turn: same name) you can deploy one Cost 4 or less Blue-only Nexus card from your Trash without paying the cost.",
+   "Grand Skill: 4 [LV2]: Flash (Either Attack Step)",
+   "(Send four cores from this Nexus to the Void) Destroy the lowest-cost opposing Spirit/Ultimate."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "PX"
  },
  {
@@ -40586,7 +40585,7 @@
    "Grandwalker",
    "Uru"
   ],
-  "text": "《神託》〔白〕（召喚/煌臨での神託はターンに1回）\n◆対象の自分のスピリットを召喚/煌臨したとき、このネクサスにコア+1できる。\n◆このネクサスを配置したとき、同じカード名の自分の創界神ネクサスがなければ、自分のデッキの上から3枚をトラッシュに置ける。その中の対象カード1枚につき、このネクサスにコア+1する。\n［Lv1-Lv2］『このネクサスの配置時』\nこのネクサスにコア+2する。その後、自分のデッキを上から2枚オープンできる。その中の、コスト5以下の白のカード1枚を、コストを支払わずに召喚できる。残ったカードはデッキの下に戻す。\n【神技：4】［Lv2：フラッシュ］『自分のアタックステップ』\n〔このネクサスのコア4個をボイドに置く〕このバトルの間、自分のスピリット1体はブロックされない。",
+  "text": "《Core Charge》〔White〕(Core Charge by summon/advent is once per turn)\n◆When you summon/advent a target Spirit, you can put +1 core on this Nexus.\n◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same name, you can send three cards from your decktop to the Trash. For each target card among them, put +1 core on this Nexus.\n[LV1][LV2] (When Deployed)\nPut +2 cores on this Nexus. Then, you can reveal two cards from your decktop. Among them, you can summon one Cost 5 or less White card without paying the cost. Return the remaining cards to the deckbottom.\nGrand Skill: 4 [LV2]: Flash (Your Attack Step)\n(Send four cores from this Nexus to the Void) During this battle, one of your Spirits can't be blocked.",
   "image": "PX25-02.png",
   "block": "P",
   "saga": 60,
@@ -40595,15 +40594,15 @@
   ],
   "fxComplete": false,
   "residual": [
-   "《神託》〔白〕（召喚/煌臨での神託はターンに1回）",
-   "◆対象の自分のスピリットを召喚/煌臨したとき、このネクサスにコア+1できる。",
-   "◆このネクサスを配置したとき、同じカード名の自分の創界神ネクサスがなければ、自分のデッキの上から3枚をトラッシュに置ける。その中の対象カード1枚につき、このネクサスにコア+1する。",
-   "［Lv1-Lv2］『このネクサスの配置時』",
-   "このネクサスにコア+2する。その後、自分のデッキを上から2枚オープンできる。その中の、コスト5以下の白のカード1枚を、コストを支払わずに召喚できる。残ったカードはデッキの下に戻す。",
-   "【神技：4】［Lv2：フラッシュ］『自分のアタックステップ』",
-   "〔このネクサスのコア4個をボイドに置く〕このバトルの間、自分のスピリット1体はブロックされない。"
+   "《Core Charge》〔White〕(Core Charge by summon/advent is once per turn)",
+   "◆When you summon/advent a target Spirit, you can put +1 core on this Nexus.",
+   "◆When this Nexus is deployed, if you don't control a Grandwalker Nexus with the same name, you can send three cards from your decktop to the Trash. For each target card among them, put +1 core on this Nexus.",
+   "[LV1][LV2] (When Deployed)",
+   "Put +2 cores on this Nexus. Then, you can reveal two cards from your decktop. Among them, you can summon one Cost 5 or less White card without paying the cost. Return the remaining cards to the deckbottom.",
+   "Grand Skill: 4 [LV2]: Flash (Your Attack Step)",
+   "(Send four cores from this Nexus to the Void) During this battle, one of your Spirits can't be blocked."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "PX"
  },
  {
@@ -40906,7 +40905,7 @@
    "Devotee",
    "Clown"
   ],
-  "text": "自分の効果でデッキからオープンされたこのカードは、セットできる。\n〔ターンに1回：同名〕セットしているこのカードは、系統：「旗種」/「十冠」/「神皇」を持つ自分のスピリットがアタックしたとき、ただちに発動できる。\n［Ｓバースト：自分か相手の《封印》後］\n1枚ドローし、ボイドからコア1個を自分のリザーブに置く。\nこの効果発揮後、このカードをコストを支払わずに召喚する。\n［Lv2-3］\nこのスピリットのシンボルは赤/紫/緑/白/青としても扱う。",
+  "text": "A copy of this card revealed from your deck by your effect can be set.\n(Once per turn: same name) When your \"Bannerace\"/\"Ten Crown\"/\"God-Emperor\" family Spirit attacks, this set card can be activated immediately.\n\nSoul Burst: After your or the opponent's Seal - Draw a card and put one core from the Void to your Reserve. After this effect resolves, summon this card without paying the cost.\n\n[LV2][LV3]\nThis Spirit's symbols are also treated as Red/Purple/Green/White/Blue.",
   "image": "PX26-02.png",
   "block": "P",
   "saga": 60,
@@ -40923,15 +40922,13 @@
   ],
   "fxComplete": false,
   "residual": [
-   "自分の効果でデッキからオープンされたこのカードは、セットできる。",
-   "〔ターンに1回：同名〕セットしているこのカードは、系統：「旗種」/「十冠」/「神皇」を持つ自分のスピリットがアタックしたとき、ただちに発動できる。",
-   "［Ｓバースト：自分か相手の《封印》後］",
-   "1枚ドローし、ボイドからコア1個を自分のリザーブに置く。",
-   "この効果発揮後、このカードをコストを支払わずに召喚する。",
-   "［Lv2-3］",
-   "このスピリットのシンボルは赤/紫/緑/白/青としても扱う。"
+   "A copy of this card revealed from your deck by your effect can be set.",
+   "(Once per turn: same name) When your \"Bannerace\"/\"Ten Crown\"/\"God-Emperor\" family Spirit attacks, this set card can be activated immediately.",
+   "Soul Burst: After your or the opponent's Seal - Draw a card and put one core from the Void to your Reserve. After this effect resolves, summon this card without paying the cost.",
+   "[LV2][LV3]",
+   "This Spirit's symbols are also treated as Red/Purple/Green/White/Blue."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "PX"
  },
  {
@@ -41696,7 +41693,7 @@
   "families": [
    "Primordial"
   ],
-  "text": "［フラッシュ］《大地顕現：「契約神ガイア」＆C6以上》『お互いのアタックステップ』\n自分のをトラッシュに置くことで、対象から1コスト支払って手札から配置する。\n［Lv1-2］『このネクサスの配置/破壊時』\nターンに1回、自分の「契約神ガイア」があるとき、相手の創界神ネクサス1つを破壊できる。その後、6色以外の系統：「原初」を持つ自分のネクサスの色1色につき、相手のスピリット1体を破壊できる。\n［Lv2］『自分のメインステップ』\nターンに1回、このネクサス以外の自分のネクサス1つを破壊することで、自分の手札にある系統：「原初」と「爬獣」を持つスピリットカード1枚を、コストを支払わずに召喚する。",
+  "text": "Flash - 《Terra Manifest: \"Contractor Gaia\" & C6 or more》(Either Attack Step)\nBy sending your (Soul Core) to the Trash, pay one cost from the target to deploy this card from the Hand.\n\n[LV1][LV2] (When Deployed/Destroyed)\nOnce per turn, while you control your \"Contractor Gaia\", you can destroy one opposing Grandwalker Nexus. Then, for each colour of your \"Primordial\" family Nexuses that aren't six-coloured, you can destroy an opposing Spirit.\n\n[LV2] (Your Main Step)\nOnce per turn, by destroying one of your Nexuses other than this Nexus, summon one \"Primordial\" and \"Reptile Beast\" family Spirit card from your Hand without paying the cost.",
   "image": "PX26-19.png",
   "block": "P",
   "saga": 60,
@@ -41713,14 +41710,14 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［フラッシュ］《大地顕現：「契約神ガイア」＆C6以上》『お互いのアタックステップ』",
-   "自分のをトラッシュに置くことで、対象から1コスト支払って手札から配置する。",
-   "［Lv1-2］『このネクサスの配置/破壊時』",
-   "ターンに1回、自分の「契約神ガイア」があるとき、相手の創界神ネクサス1つを破壊できる。その後、6色以外の系統：「原初」を持つ自分のネクサスの色1色につき、相手のスピリット1体を破壊できる。",
-   "［Lv2］『自分のメインステップ』",
-   "ターンに1回、このネクサス以外の自分のネクサス1つを破壊することで、自分の手札にある系統：「原初」と「爬獣」を持つスピリットカード1枚を、コストを支払わずに召喚する。"
+   "Flash - 《Terra Manifest: \"Contractor Gaia\" & C6 or more》(Either Attack Step)",
+   "By sending your (Soul Core) to the Trash, pay one cost from the target to deploy this card from the Hand.",
+   "[LV1][LV2] (When Deployed/Destroyed)",
+   "Once per turn, while you control your \"Contractor Gaia\", you can destroy one opposing Grandwalker Nexus. Then, for each colour of your \"Primordial\" family Nexuses that aren't six-coloured, you can destroy an opposing Spirit.",
+   "[LV2] (Your Main Step)",
+   "Once per turn, by destroying one of your Nexuses other than this Nexus, summon one \"Primordial\" and \"Reptile Beast\" family Spirit card from your Hand without paying the cost."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "PX"
  },
  {
@@ -42925,7 +42922,7 @@
   "block": "P",
   "saga": 60,
   "fxComplete": true,
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified; English text/name pending.",
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified.",
   "rcode": "C"
  },
  {
@@ -44413,7 +44410,7 @@
   "block": "P",
   "saga": 60,
   "fxComplete": true,
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified; English text/name pending.",
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified.",
   "rcode": "C"
  },
  {
@@ -45504,7 +45501,7 @@
   "block": "P",
   "saga": 60,
   "fxComplete": true,
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified; English text/name pending.",
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified.",
   "rcode": "C"
  },
  {
@@ -46293,18 +46290,18 @@
    "Fighting Spirit",
    "Soldier"
   ],
-  "text": "［Lv1-Lv2］【強襲：1】『このスピリットのアタック時』\nこのスピリットは、ターン中に1回まで、自分のネクサス1つを疲労させることで回復できる。\n［Lv2］『このスピリットのアタック時』\n相手のコスト3以下のスピリット1体を破壊する。",
+  "text": "[LV1][LV2] {{Assault|1}} (When Attacks)\nThis Spirit can, up to once per turn, be refreshed by exhausting one of your Nexuses.\n\n[LV2] (When Attacks)\nDestroy an opposing Cost 3 or less Spirit.",
   "image": "SD09-EX023.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2］【強襲：1】『このスピリットのアタック時』",
-   "このスピリットは、ターン中に1回まで、自分のネクサス1つを疲労させることで回復できる。",
-   "［Lv2］『このスピリットのアタック時』",
-   "相手のコスト3以下のスピリット1体を破壊する。"
+   "[LV1][LV2] {{Assault|1}} (When Attacks)",
+   "This Spirit can, up to once per turn, be refreshed by exhausting one of your Nexuses.",
+   "[LV2] (When Attacks)",
+   "Destroy an opposing Cost 3 or less Spirit."
   ],
-  "note": "Reprint of EX023 (same name on the Fandom set page); added by tools/master/resolve_stubs.py. English text/name pending (no English source found; Japanese official text kept)."
+  "note": "Reprint of EX023 (same name on the Fandom set page); added by tools/master/resolve_stubs.py. English text translated by hand from the Japanese official text (unofficial wording)."
  },
  {
   "id": "SD09-X001",
@@ -51051,7 +51048,7 @@
   "block": "P",
   "saga": 60,
   "fxComplete": true,
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified; English text/name pending.",
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified.",
   "rcode": "C"
  },
  {
@@ -51815,7 +51812,7 @@
   "block": "P",
   "saga": 60,
   "fxComplete": true,
-  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified; English text/name pending.",
+  "note": "Product-only card (v0.210.0): stats and Japanese text from the official card database; vanilla card (no printed ability), symbols unverified.",
   "rcode": "C"
  },
  {
@@ -82314,7 +82311,7 @@
  },
  {
   "id": "SJ12-08",
-  "name": "最強炎龍王ジークファイアードラゴン",
+  "name": "The StrongestFlameDragonKing Sieg-Fire-Dragon",
   "name_jp": "最強炎龍王ジークファイアードラゴン",
   "type": "Spirit",
   "color": "red",
@@ -82340,16 +82337,16 @@
   "families": [
    "Ancient Dragon"
   ],
-  "text": "［Lv1-Lv2-Lv3］『このスピリットのアタック時』自分はデッキから1枚ドローする。\n［Lv2-Lv3］『自分のアタックステップ』カード名に「最強」と入っている自分のスピリットすべては、アタックするとき相手のスピリット1体を指定し、そのスピリットにアタックできる。",
+  "text": "[LV1][LV2][LV3] (When Attacks) Draw a card from your deck.\n\n[LV2][LV3] (Your Attack Step) All your Spirits with \"Strongest\" in their card name, when attacking, can designate one opposing Spirit and attack it.",
   "image": "SJ12-08.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2-Lv3］『このスピリットのアタック時』自分はデッキから1枚ドローする。",
-   "［Lv2-Lv3］『自分のアタックステップ』カード名に「最強」と入っている自分のスピリットすべては、アタックするとき相手のスピリット1体を指定し、そのスピリットにアタックできる。"
+   "[LV1][LV2][LV3] (When Attacks) Draw a card from your deck.",
+   "[LV2][LV3] (Your Attack Step) All your Spirits with \"Strongest\" in their card name, when attacking, can designate one opposing Spirit and attack it."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English name pending (Japanese name kept). English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English name/text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "SJ"
  },
  {
@@ -83065,16 +83062,16 @@
   "families": [
    "Armed Machine"
   ],
-  "text": "［Lv1-Lv2-Lv3］『お互いのアタックステップ』\n相手がコスト3のマジックカードを使用したとき、その効果発揮後、相手のスピリット1体を手札に戻す。",
+  "text": "[LV1][LV2][LV3] (Either Attack Step)\nWhen the opponent uses a Cost 3 Magic card, after its effect resolves, return an opposing Spirit to the Hand.",
   "image": "SJ13-20.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2-Lv3］『お互いのアタックステップ』",
-   "相手がコスト3のマジックカードを使用したとき、その効果発揮後、相手のスピリット1体を手札に戻す。"
+   "[LV1][LV2][LV3] (Either Attack Step)",
+   "When the opponent uses a Cost 3 Magic card, after its effect resolves, return an opposing Spirit to the Hand."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "SJ"
  },
  {
@@ -84522,7 +84519,7 @@
    }
   ],
   "families": [
-   "戦極",
+   "Ultimate Trooper",
    "War Dragon"
   ],
   "text": "[LV1][LV2][LV3] (Your Attack Step)\nAll your \"Ultimate Trooper\"/\"War Dragon\" family Spirits gain +5000 BP.\n\n[LV2][LV3] Consecutive Blade (When Attacks)\nBy sending (Soul Core) (Soul Core) from this Spirit to your Trash, the opponent must block with two of their Spirits/Ultimates if possible, and simultaneously battle this Spirit.",
@@ -84536,7 +84533,7 @@
    "[LV2][LV3] Consecutive Blade (When Attacks)",
    "By sending (Soul Core) (Soul Core) from this Spirit to your Trash, the opponent must block with two of their Spirits/Ultimates if possible, and simultaneously battle this Spirit."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text from the Fandom page of the same card; its Japanese text differs slightly from the official text (reprint or erratum). English family name pending (Japanese family kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text from the Fandom page of the same card; its Japanese text differs slightly from the official text (reprint or erratum). English family translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "SJ"
  },
  {
@@ -84561,7 +84558,7 @@
    }
   ],
   "families": [
-   "戦極",
+   "Ultimate Trooper",
    "War Dragon"
   ],
   "text": "This card is limited to one copy per deck.",
@@ -84572,7 +84569,7 @@
   "residual": [
    "This card is limited to one copy per deck."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English family name pending (Japanese family kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English family translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "X"
  },
  {
@@ -84601,7 +84598,7 @@
    }
   ],
   "families": [
-   "戦極",
+   "Ultimate Trooper",
    "War Dragon"
   ],
   "text": "[LV1][LV2][LV3] (When Summoned) Reveal five cards from your decktop. Among them, add an \"Ultimate Trooper\" family Spirit card to your Hand. Return any remaining card(s) to the deckbottom in any order.",
@@ -84612,7 +84609,7 @@
   "residual": [
    "[LV1][LV2][LV3] (When Summoned) Reveal five cards from your decktop. Among them, add an \"Ultimate Trooper\" family Spirit card to your Hand. Return any remaining card(s) to the deckbottom in any order."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English family name pending (Japanese family kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English family translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "SJ"
  },
  {
@@ -84641,7 +84638,7 @@
    }
   ],
   "families": [
-   "戦極",
+   "Ultimate Trooper",
    "War Dragon"
   ],
   "text": "[LV1][LV2][LV3] (When Destroyed)\nDestroy an opposing 5000 BP or less Spirit. If (Soul Core)(Soul Core) is on this Spirit, also, draw two cards.",
@@ -84653,7 +84650,7 @@
    "[LV1][LV2][LV3] (When Destroyed)",
    "Destroy an opposing 5000 BP or less Spirit. If (Soul Core)(Soul Core) is on this Spirit, also, draw two cards."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English family name pending (Japanese family kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English family translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "SJ"
  },
  {
@@ -84682,7 +84679,7 @@
    }
   ],
   "families": [
-   "戦極",
+   "Ultimate Trooper",
    "War Dragon"
   ],
   "text": "[LV1][LV2][LV3] (When Summoned)\nReturn all \"Ultimate Trooper\" family Spirit cards from your Trash to the Hand.\n\n[LV2][LV3] (Your Main Step)\nWhile you control [The ThreeVassalsDragon Lancefighting Shougen], [The ThreeVassalsDragon Ingenious Hyoubu] and [The ThreeVassalsDragon Fuse Cland], at least one of each, all [The WarParamountWarDragon BuraiDragon] in your Hand becomes Cost 4.",
@@ -84696,7 +84693,7 @@
    "[LV2][LV3] (Your Main Step)",
    "While you control [The ThreeVassalsDragon Lancefighting Shougen], [The ThreeVassalsDragon Ingenious Hyoubu] and [The ThreeVassalsDragon Fuse Cland], at least one of each, all [The WarParamountWarDragon BuraiDragon] in your Hand becomes Cost 4."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text from the Fandom page \"The ThreeVassalsDragon Ingenious Hyoubu\", found by card number; not compared with the official Japanese text. English family name pending (Japanese family kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text from the Fandom page \"The ThreeVassalsDragon Ingenious Hyoubu\", found by card number; not compared with the official Japanese text. English family translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "SJ"
  },
  {
@@ -84721,7 +84718,7 @@
    }
   ],
   "families": [
-   "戦極",
+   "Ultimate Trooper",
    "War Dragon"
   ],
   "text": "[LV1][LV2] (When Summoned)\nDestroy any number of opposing Spirits up to a total of 5000 BP. If (Soul Core)(Soul Core) was used to pay the summon cost, increase the limit of this \"BP Destruction Effect\" by +5000.\n\n[LV2] (When Attacks)\nDestroy an opposing braved Brave. Or, destroy an opposing Nexus.",
@@ -84735,7 +84732,7 @@
    "[LV2] (When Attacks)",
    "Destroy an opposing braved Brave. Or, destroy an opposing Nexus."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English family name pending (Japanese family kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English family translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "SJ"
  },
  {
@@ -84764,7 +84761,7 @@
    }
   ],
   "families": [
-   "戦極",
+   "Ultimate Trooper",
    "War Dragon"
   ],
   "text": "[LV1][LV2][LV3] (Your Attack Step)\nWhen your \"Ultimate Trooper\" family Spirit attacks, destroy an opposing Spirit/Ultimate with BP equal or inferior to that Spirit's.\n\n[LV2][LV3] (When Attacks)\nBy sending cores from your Life to any of your Spirits until you have one Life left, during this turn, all your \"Ultimate Trooper\" family Spirits get +5000 BP and one extra Red symbol.",
@@ -84778,7 +84775,7 @@
    "[LV2][LV3] (When Attacks)",
    "By sending cores from your Life to any of your Spirits until you have one Life left, during this turn, all your \"Ultimate Trooper\" family Spirits get +5000 BP and one extra Red symbol."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English family name pending (Japanese family kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English family translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "SJ"
  },
  {
@@ -84794,16 +84791,16 @@
   "symbols": 0,
   "levels": [],
   "families": [],
-  "text": "［フラッシュ］\nこのターンの間、自分のスピリット1体をBP+4000する。そのスピリットがBPを比べ相手のスピリット/アルティメットだけを破壊したとき、自分はデッキから2枚ドローする。",
+  "text": "Flash\nDuring this turn, one of your Spirits gains +4000 BP. When that Spirit destroys only an opposing Spirit/Ultimate by comparing BP, draw 2 cards from your deck.",
   "image": "SJ15-08.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "［フラッシュ］",
-   "このターンの間、自分のスピリット1体をBP+4000する。そのスピリットがBPを比べ相手のスピリット/アルティメットだけを破壊したとき、自分はデッキから2枚ドローする。"
+   "Flash",
+   "During this turn, one of your Spirits gains +4000 BP. When that Spirit destroys only an opposing Spirit/Ultimate by comparing BP, draw 2 cards from your deck."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "SJ"
  },
  {
@@ -84832,7 +84829,7 @@
    }
   ],
   "families": [
-   "戦極",
+   "Ultimate Trooper",
    "War Dragon"
   ],
   "text": "[LV1][LV2][LV3] Flash - (When Attacks)\nBy sending (Soul Core)(Soul Core) on this Spirit to your Trash, destroy one of your Spirits, and add all of that Spirit's BP and symbols to this Spirit.\n\n[LV2][LV3] (Either Attack Step)\nWhen your \"Ultimate Trooper\" family Spirit is destroyed, destroy an opposing 5000 BP or less Spirit.",
@@ -84846,7 +84843,7 @@
    "[LV2][LV3] (Either Attack Step)",
    "When your \"Ultimate Trooper\" family Spirit is destroyed, destroy an opposing 5000 BP or less Spirit."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English family name pending (Japanese family kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English family translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "SJ"
  },
  {
@@ -84987,7 +84984,7 @@
    }
   ],
   "families": [
-   "戦極",
+   "Ultimate Trooper",
    "War Dragon",
    "Ancient Dragon"
   ],
@@ -85000,7 +84997,7 @@
    "[LV1][LV2][LV3][LV4] Flash - Awaken - You can put any number of cores from Spirits you control to this Spirit.",
    "[LV2][LV3][LV4] While (Soul Core)(Soul Core) is on this Spirit, all Spirits with Awaken you control gain +10000 BP."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English family name pending (Japanese family kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English family translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "SJ"
  },
  {
@@ -85030,7 +85027,7 @@
   ],
   "families": [
    "Catalyst",
-   "戦極",
+   "Ultimate Trooper",
    "War Dragon"
   ],
   "text": "[LV1][LV2][LV3] (When Summoned)\nDestroy every opposing Nexus. For each Nexus destroyed by this effect, draw a card.\n\n[LV2][LV3] {{Catl|All Color}} (When Attacks)\nBy sending this Spirit's (Soul Core)(Soul Core) to your Trash, immediately activate one of your Soul Bursts.",
@@ -85044,7 +85041,7 @@
    "[LV2][LV3] {{Catl|All Color}} (When Attacks)",
    "By sending this Spirit's (Soul Core)(Soul Core) to your Trash, immediately activate one of your Soul Bursts."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English family name pending (Japanese family kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English family translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "SJ"
  },
  {
@@ -85073,7 +85070,7 @@
    }
   ],
   "families": [
-   "戦極",
+   "Ultimate Trooper",
    "War Dragon"
   ],
   "text": "[LV1][LV2][LV3] Showdown (Opposing Start Step) Your opponent chooses one of their Spirits and compares BP with this Spirit. Destroy the Spirit(s) with equal or lower BP. When only the opposing Spirit is destroyed, activate the following effect:\n■ When there are five or more \"War Dragon\" family Spirit cards in your Trash, send an opposing Life to their Reserve.",
@@ -85085,7 +85082,7 @@
    "[LV1][LV2][LV3] Showdown (Opposing Start Step) Your opponent chooses one of their Spirits and compares BP with this Spirit. Destroy the Spirit(s) with equal or lower BP. When only the opposing Spirit is destroyed, activate the following effect:",
    "■ When there are five or more \"War Dragon\" family Spirit cards in your Trash, send an opposing Life to their Reserve."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English family name pending (Japanese family kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English family translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "SJ"
  },
  {
@@ -85101,7 +85098,7 @@
   "symbols": 0,
   "levels": [],
   "families": [],
-  "text": "［Sバースト：自分のライフ減少後］\nBP5000以下の相手のスピリット2体を破壊する。この効果でスピリット2体を破壊したとき、自分はデッキから1枚ドローする。\nその後コストを支払うことで、このカードのメイン効果を発揮する。\n［メイン］\n自分はデッキから2枚ドローする。",
+  "text": "Soul Burst: After your Life decreases - Destroy two opposing 5000 BP or less Spirits. When you destroy two Spirits with this effect, draw a card from your deck. After this, by paying the cost, activate this card's Main effect.\n\nMain\nDraw 2 cards from your deck.",
   "image": "SJ15-16.png",
   "block": "P",
   "saga": 60,
@@ -85110,13 +85107,11 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［Sバースト：自分のライフ減少後］",
-   "BP5000以下の相手のスピリット2体を破壊する。この効果でスピリット2体を破壊したとき、自分はデッキから1枚ドローする。",
-   "その後コストを支払うことで、このカードのメイン効果を発揮する。",
-   "［メイン］",
-   "自分はデッキから2枚ドローする。"
+   "Soul Burst: After your Life decreases - Destroy two opposing 5000 BP or less Spirits. When you destroy two Spirits with this effect, draw a card from your deck. After this, by paying the cost, activate this card's Main effect.",
+   "Main",
+   "Draw 2 cards from your deck."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "SJ"
  },
  {
@@ -85150,19 +85145,19 @@
    "War Dragon",
    "Beast Head"
   ],
-  "text": "［Lv1-Lv2-Lv3］『このスピリットの召喚時』\nコスト8以下の相手のスピリット1体を破壊する。\n［Lv2-Lv3］『このスピリットのアタック時』\n相手は紫/白/黄のマジックカードを使用できない。\nこのスピリットの（ソウルコア）を自分のトラッシュに置くことで、さらに、コスト6以下の相手のスピリット2体までを破壊する。",
+  "text": "[LV1][LV2][LV3] (When Summoned)\nDestroy an opposing Cost 8 or less Spirit.\n\n[LV2][LV3] (When Attacks)\nThe opponent can't use Purple/White/Yellow Magic cards.\nBy sending this Spirit's (Soul Core) to your Trash, also, destroy up to two opposing Cost 6 or less Spirits.",
   "image": "SJ15-17.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2-Lv3］『このスピリットの召喚時』",
-   "コスト8以下の相手のスピリット1体を破壊する。",
-   "［Lv2-Lv3］『このスピリットのアタック時』",
-   "相手は紫/白/黄のマジックカードを使用できない。",
-   "このスピリットの（ソウルコア）を自分のトラッシュに置くことで、さらに、コスト6以下の相手のスピリット2体までを破壊する。"
+   "[LV1][LV2][LV3] (When Summoned)",
+   "Destroy an opposing Cost 8 or less Spirit.",
+   "[LV2][LV3] (When Attacks)",
+   "The opponent can't use Purple/White/Yellow Magic cards.",
+   "By sending this Spirit's (Soul Core) to your Trash, also, destroy up to two opposing Cost 6 or less Spirits."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "SJ"
  },
  {
@@ -85192,19 +85187,19 @@
    "Ninja Gale",
    "War Dragon"
   ],
-  "text": "［Lv1-Lv2］『このスピリットの召喚時』\nBP10000以下の相手のスピリット1体を破壊することで、ボイドからコア2個をこのスピリットに置く。\n［Lv2］『このスピリットのアタック時』\nBPを比べ相手のスピリットだけを破壊したとき、このスピリットは回復する。\nこのスピリットの（ソウルコア）を自分のトラッシュに置くことで、さらに、相手のスピリット2体までを疲労させる。",
+  "text": "[LV1][LV2] (When Summoned)\nBy destroying an opposing 10000 BP or less Spirit, put two cores from the Void to this Spirit.\n\n[LV2] (When Attacks)\nWhen you destroy only an opposing Spirit by comparing BP, refresh this Spirit.\nBy sending this Spirit's (Soul Core) to your Trash, also, exhaust up to two opposing Spirits.",
   "image": "SJ15-18.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2］『このスピリットの召喚時』",
-   "BP10000以下の相手のスピリット1体を破壊することで、ボイドからコア2個をこのスピリットに置く。",
-   "［Lv2］『このスピリットのアタック時』",
-   "BPを比べ相手のスピリットだけを破壊したとき、このスピリットは回復する。",
-   "このスピリットの（ソウルコア）を自分のトラッシュに置くことで、さらに、相手のスピリット2体までを疲労させる。"
+   "[LV1][LV2] (When Summoned)",
+   "By destroying an opposing 10000 BP or less Spirit, put two cores from the Void to this Spirit.",
+   "[LV2] (When Attacks)",
+   "When you destroy only an opposing Spirit by comparing BP, refresh this Spirit.",
+   "By sending this Spirit's (Soul Core) to your Trash, also, exhaust up to two opposing Spirits."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "SJ"
  },
  {
@@ -85237,20 +85232,18 @@
    "War Dragon",
    "Emperor Beast"
   ],
-  "text": "［Ｓバースト：自分のライフ減少後］\n自分のライフが3以下のとき、自分の手札にあるカード名に「ソウルドラゴン」と入っているスピリットカードを、コストを支払わずに好きなだけ召喚する。\nこの効果発揮後、このスピリットカードをコストを支払わずに召喚する。\n［Lv2-Lv3］『このスピリットのアタック時』\n自分はデッキから1枚ドローする。\nこのスピリットの（ソウルコア）を自分のトラッシュに置くことで、さらに、BP7000以下の相手のスピリット2体までを破壊する。",
+  "text": "Soul Burst: After your Life decreases - While your Life is 3 or less, summon any number of Spirit cards with \"Souldragon\" in their card name from your Hand without paying the cost. After this effect resolves, summon this Spirit card without paying the cost.\n\n[LV2][LV3] (When Attacks)\nDraw a card from your deck.\nBy sending this Spirit's (Soul Core) to your Trash, also, destroy up to two opposing 7000 BP or less Spirits.",
   "image": "SJ15-19.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "［Ｓバースト：自分のライフ減少後］",
-   "自分のライフが3以下のとき、自分の手札にあるカード名に「ソウルドラゴン」と入っているスピリットカードを、コストを支払わずに好きなだけ召喚する。",
-   "この効果発揮後、このスピリットカードをコストを支払わずに召喚する。",
-   "［Lv2-Lv3］『このスピリットのアタック時』",
-   "自分はデッキから1枚ドローする。",
-   "このスピリットの（ソウルコア）を自分のトラッシュに置くことで、さらに、BP7000以下の相手のスピリット2体までを破壊する。"
+   "Soul Burst: After your Life decreases - While your Life is 3 or less, summon any number of Spirit cards with \"Souldragon\" in their card name from your Hand without paying the cost. After this effect resolves, summon this Spirit card without paying the cost.",
+   "[LV2][LV3] (When Attacks)",
+   "Draw a card from your deck.",
+   "By sending this Spirit's (Soul Core) to your Trash, also, destroy up to two opposing 7000 BP or less Spirits."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "SJ"
  },
  {
@@ -85284,7 +85277,7 @@
    "Heavenly Demon King",
    "War Dragon"
   ],
-  "text": "このスピリット/スピリットカードは[天魔王ゴッド・ゼクス]としても扱う。\n［Lv2-Lv3］『このスピリットのアタック時』\n相手のスピリット2体のコア2個ずつを相手のトラッシュに置く。\n【六天連鎖：条件《シンボル3色》】\n自分のシンボルが3色以上あるとき、この効果で消滅したスピリット1体につき、相手のライフのコア1個を相手のリザーブに置く。",
+  "text": "This Spirit/Spirit card is also treated as [The HeavenlyDemonKing God-Sechs].\n\n[LV2][LV3] (When Attacks)\nPut two cores each from two opposing Spirits to the opposing Trash.\nSix Heavens Chain: Condition 《Three Symbol colours》\nWhile you have symbols of three or more colours, for each Spirit removed by this effect, send one core from the opposing Life to the opposing Reserve.",
   "image": "SJ15-20.png",
   "block": "P",
   "saga": 60,
@@ -85294,13 +85287,13 @@
   ],
   "fxComplete": false,
   "residual": [
-   "このスピリット/スピリットカードは[天魔王ゴッド・ゼクス]としても扱う。",
-   "［Lv2-Lv3］『このスピリットのアタック時』",
-   "相手のスピリット2体のコア2個ずつを相手のトラッシュに置く。",
-   "【六天連鎖：条件《シンボル3色》】",
-   "自分のシンボルが3色以上あるとき、この効果で消滅したスピリット1体につき、相手のライフのコア1個を相手のリザーブに置く。"
+   "This Spirit/Spirit card is also treated as [The HeavenlyDemonKing God-Sechs].",
+   "[LV2][LV3] (When Attacks)",
+   "Put two cores each from two opposing Spirits to the opposing Trash.",
+   "Six Heavens Chain: Condition 《Three Symbol colours》",
+   "While you have symbols of three or more colours, for each Spirit removed by this effect, send one core from the opposing Life to the opposing Reserve."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English text pending (Japanese official text kept). Symbols unverified (not on the official page).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "X"
  },
  {
@@ -85414,7 +85407,7 @@
    "Winged Beast",
    "Emperor Beast"
   ],
-  "text": "このブレイヴは、疲労せず、スピリット状態のとき、アタックとブロックができない。\n右合体条件：コスト4以上\n左合体条件：コスト4以上\n【右合体時】『このスピリットのアタック時』\nこのスピリットのコア1個につき、BP5000以下の相手のスピリット1体を破壊する。\n【左合体時】『このスピリットのアタック時』\nボイドからコア1個を自分の合体スピリットに置き、相手のスピリット1体を疲労させる。",
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\nRight Brave Condition: Cost 4 or more\nLeft Brave Condition: Cost 4 or more\nDuring Right Brave (When Attacks)\nFor each core on this Spirit, destroy an opposing 5000 BP or less Spirit.\nDuring Left Brave (When Attacks)\nPut one core from the Void to your Brave Spirit and exhaust an opposing Spirit.",
   "image": "SJ16-03.png",
   "block": "P",
   "saga": 60,
@@ -85427,15 +85420,15 @@
   },
   "fxComplete": false,
   "residual": [
-   "このブレイヴは、疲労せず、スピリット状態のとき、アタックとブロックができない。",
-   "右合体条件：コスト4以上",
-   "左合体条件：コスト4以上",
-   "【右合体時】『このスピリットのアタック時』",
-   "このスピリットのコア1個につき、BP5000以下の相手のスピリット1体を破壊する。",
-   "【左合体時】『このスピリットのアタック時』",
-   "ボイドからコア1個を自分の合体スピリットに置き、相手のスピリット1体を疲労させる。"
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "Right Brave Condition: Cost 4 or more",
+   "Left Brave Condition: Cost 4 or more",
+   "During Right Brave (When Attacks)",
+   "For each core on this Spirit, destroy an opposing 5000 BP or less Spirit.",
+   "During Left Brave (When Attacks)",
+   "Put one core from the Void to your Brave Spirit and exhaust an opposing Spirit."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "SJ"
  },
  {
@@ -85536,16 +85529,16 @@
   "families": [
    "Youkai"
   ],
-  "text": "［Lv1-Lv2-Lv3］『このスピリットのアタック時』\nターンに1回、自分のスピリットの（ソウルコア）を他の自分のスピリットに移動させることができる。そうしたとき、（ソウルコア）が置かれた自分のスピリット1体を回復させる。",
+  "text": "[LV1][LV2][LV3] (When Attacks)\nOnce per turn, you can move the (Soul Core) on your Spirit to another of your Spirits. When you do, refresh one of your Spirits that received the (Soul Core).",
   "image": "SJ16-06.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2-Lv3］『このスピリットのアタック時』",
-   "ターンに1回、自分のスピリットの（ソウルコア）を他の自分のスピリットに移動させることができる。そうしたとき、（ソウルコア）が置かれた自分のスピリット1体を回復させる。"
+   "[LV1][LV2][LV3] (When Attacks)",
+   "Once per turn, you can move the (Soul Core) on your Spirit to another of your Spirits. When you do, refresh one of your Spirits that received the (Soul Core)."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "SJ"
  },
  {
@@ -85704,18 +85697,18 @@
   "families": [
    "Emperor Beast"
   ],
-  "text": "［Lv1-Lv2］\nこのスピリットの色とシンボルは赤としても扱う。\n［Lv1-Lv2］『自分のメインステップ』\n自分の手札にある[翠の神馬エグゼシード・グリーン]を召喚するとき、そのコストを-1する。",
+  "text": "[LV1][LV2]\nThis Spirit's colour and symbol are also treated as Red.\n\n[LV1][LV2] (Your Main Step)\nWhen you summon [Green Divine Steed Exceed-Green] from your Hand, its cost is reduced by 1.",
   "image": "SJ16-10.png",
   "block": "P",
   "saga": 60,
   "fxComplete": false,
   "residual": [
-   "［Lv1-Lv2］",
-   "このスピリットの色とシンボルは赤としても扱う。",
-   "［Lv1-Lv2］『自分のメインステップ』",
-   "自分の手札にある[翠の神馬エグゼシード・グリーン]を召喚するとき、そのコストを-1する。"
+   "[LV1][LV2]",
+   "This Spirit's colour and symbol are also treated as Red.",
+   "[LV1][LV2] (Your Main Step)",
+   "When you summon [Green Divine Steed Exceed-Green] from your Hand, its cost is reduced by 1."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "SJ"
  },
  {
@@ -85744,7 +85737,7 @@
    "Imagine",
    "Machine Dragon"
   ],
-  "text": "このブレイヴは、疲労せず、スピリット状態のとき、アタックとブロックができない。\n右合体条件：コスト3以上\n左合体条件：コスト3以上\n【右合体時】『このスピリットのアタック時』\n相手のデッキを上から1枚破棄できる。この効果でスピリットカードが破棄されたとき、このスピリットはブロックされない。\n【左合体時】『このスピリットのアタック時』\nBP5000以下の相手のスピリット1体をデッキの上に戻すことで、自分はデッキから1枚ドローする。",
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\nRight Brave Condition: Cost 3 or more\nLeft Brave Condition: Cost 3 or more\nDuring Right Brave (When Attacks)\nYou can discard the top card of the opposing deck. When a Spirit card is discarded this way, this Spirit can't be blocked.\nDuring Left Brave (When Attacks)\nBy returning an opposing 5000 BP or less Spirit to the decktop, draw a card from your deck.",
   "image": "SJ16-11.png",
   "block": "P",
   "saga": 60,
@@ -85762,15 +85755,15 @@
   },
   "fxComplete": false,
   "residual": [
-   "このブレイヴは、疲労せず、スピリット状態のとき、アタックとブロックができない。",
-   "右合体条件：コスト3以上",
-   "左合体条件：コスト3以上",
-   "【右合体時】『このスピリットのアタック時』",
-   "相手のデッキを上から1枚破棄できる。この効果でスピリットカードが破棄されたとき、このスピリットはブロックされない。",
-   "【左合体時】『このスピリットのアタック時』",
-   "BP5000以下の相手のスピリット1体をデッキの上に戻すことで、自分はデッキから1枚ドローする。"
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "Right Brave Condition: Cost 3 or more",
+   "Left Brave Condition: Cost 3 or more",
+   "During Right Brave (When Attacks)",
+   "You can discard the top card of the opposing deck. When a Spirit card is discarded this way, this Spirit can't be blocked.",
+   "During Left Brave (When Attacks)",
+   "By returning an opposing 5000 BP or less Spirit to the decktop, draw a card from your deck."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "SJ"
  },
  {
@@ -85795,7 +85788,7 @@
    "Imagine",
    "Ocean Emperor"
   ],
-  "text": "このブレイヴは、疲労せず、スピリット状態のとき、アタックとブロックができない。\n右合体条件：コスト5以上\n左合体条件：コスト5以上\n【右合体時】【強襲：1】『このスピリットのアタック時』\nこのスピリットは、ターンに1回まで、自分のネクサス1つを疲労させることで回復する。\n【左合体時】『このスピリットのアタック時』\n相手のスピリットのコア1個を相手のリザーブに置くことで、自分のトラッシュにあるネクサスカード1枚を、コストを支払わずに配置できる。",
+  "text": "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.\nRight Brave Condition: Cost 5 or more\nLeft Brave Condition: Cost 5 or more\nDuring Right Brave {{Assault|1}} (When Attacks)\nThis Spirit is refreshed up to once per turn by exhausting one of your Nexuses.\nDuring Left Brave (When Attacks)\nBy putting one core from an opposing Spirit to the opposing Reserve, you can deploy one Nexus card from your Trash without paying the cost.",
   "image": "SJ16-12.png",
   "block": "P",
   "saga": 60,
@@ -85805,15 +85798,15 @@
   },
   "fxComplete": false,
   "residual": [
-   "このブレイヴは、疲労せず、スピリット状態のとき、アタックとブロックができない。",
-   "右合体条件：コスト5以上",
-   "左合体条件：コスト5以上",
-   "【右合体時】【強襲：1】『このスピリットのアタック時』",
-   "このスピリットは、ターンに1回まで、自分のネクサス1つを疲労させることで回復する。",
-   "【左合体時】『このスピリットのアタック時』",
-   "相手のスピリットのコア1個を相手のリザーブに置くことで、自分のトラッシュにあるネクサスカード1枚を、コストを支払わずに配置できる。"
+   "This Brave doesn't exhaust, and while in Spirit condition, can't attack or block.",
+   "Right Brave Condition: Cost 5 or more",
+   "Left Brave Condition: Cost 5 or more",
+   "During Right Brave {{Assault|1}} (When Attacks)",
+   "This Spirit is refreshed up to once per turn by exhausting one of your Nexuses.",
+   "During Left Brave (When Attacks)",
+   "By putting one core from an opposing Spirit to the opposing Reserve, you can deploy one Nexus card from your Trash without paying the cost."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "SJ"
  },
  {
@@ -86117,7 +86110,7 @@
    "Lord",
    "War Dragon"
   ],
-  "text": "［フラッシュ］《煌臨：赤&コスト6以上》『お互いのアタックステップ』\n自分のをトラッシュに置くことで、対象の自分のスピリットに手札から重ねる。\n［Lv1-Lv2-Lv3］『このスピリットの煌臨時』\n自分のトラッシュのを、このスピリットに置く。\n系統：「武竜」を持つ自分のスピリットに《煌臨》していたら、さらに、BP20000以下の相手のアルティメットすべてを破壊する。\n【煌臨中】［Lv2-Lv3］『このスピリットのアタック時』\n相手のスピリット2体までを指定して同時にバトルできる。",
+  "text": "Flash - 《Advent: Red & Cost 6 or more》(Either Attack Step)\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Advents)\nPut your (Soul Core) from the Trash on this Spirit.\nIf you Advented onto your \"War Dragon\" family Spirit, also, destroy every opposing 20000 BP or less Ultimate.\n\nWhile Advented [LV2][LV3] (When Attacks)\nYou can designate up to two opposing Spirits and battle them simultaneously.",
   "image": "SJ17-03.png",
   "block": "P",
   "saga": 60,
@@ -86126,15 +86119,15 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［フラッシュ］《煌臨：赤&コスト6以上》『お互いのアタックステップ』",
-   "自分のをトラッシュに置くことで、対象の自分のスピリットに手札から重ねる。",
-   "［Lv1-Lv2-Lv3］『このスピリットの煌臨時』",
-   "自分のトラッシュのを、このスピリットに置く。",
-   "系統：「武竜」を持つ自分のスピリットに《煌臨》していたら、さらに、BP20000以下の相手のアルティメットすべてを破壊する。",
-   "【煌臨中】［Lv2-Lv3］『このスピリットのアタック時』",
-   "相手のスピリット2体までを指定して同時にバトルできる。"
+   "Flash - 《Advent: Red & Cost 6 or more》(Either Attack Step)",
+   "By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit.",
+   "[LV1][LV2][LV3] (When Advents)",
+   "Put your (Soul Core) from the Trash on this Spirit.",
+   "If you Advented onto your \"War Dragon\" family Spirit, also, destroy every opposing 20000 BP or less Ultimate.",
+   "While Advented [LV2][LV3] (When Attacks)",
+   "You can designate up to two opposing Spirits and battle them simultaneously."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "X"
  },
  {
@@ -86713,9 +86706,9 @@
    }
   ],
   "families": [
-   "マスター"
+   "Master"
   ],
-  "text": "［フラッシュ］《煌臨：コスト2以下》『お互いのアタックステップ』\n自分のをトラッシュに置くことで、対象の自分のスピリットに手札から重ねる。\n［Lv1-Lv2-Lv3］『このスピリットの煌臨時』\nこのターンの間、コスト2以下の自分のスピリットすべてに赤のシンボル1つを追加する。\n［Lv2-Lv3］『自分のアタックステップ』\nコスト3以下の自分のスピリットがアタックしたとき、自分のデッキを上から1枚破棄できる。この効果でコスト0のカードが破棄されたとき、そのスピリットを回復させる。",
+  "text": "Flash - 《Advent: Cost 2 or less》(Either Attack Step)\nBy sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit.\n\n[LV1][LV2][LV3] (When Advents)\nDuring this turn, add one Red symbol to all your Cost 2 or less Spirits.\n\n[LV2][LV3] (Your Attack Step)\nWhen your Cost 3 or less Spirit attacks, you can discard the top card of your deck. When a Cost 0 card is discarded this way, refresh that Spirit.",
   "image": "SJ18-05.png",
   "block": "P",
   "saga": 60,
@@ -86732,14 +86725,14 @@
   ],
   "fxComplete": false,
   "residual": [
-   "［フラッシュ］《煌臨：コスト2以下》『お互いのアタックステップ』",
-   "自分のをトラッシュに置くことで、対象の自分のスピリットに手札から重ねる。",
-   "［Lv1-Lv2-Lv3］『このスピリットの煌臨時』",
-   "このターンの間、コスト2以下の自分のスピリットすべてに赤のシンボル1つを追加する。",
-   "［Lv2-Lv3］『自分のアタックステップ』",
-   "コスト3以下の自分のスピリットがアタックしたとき、自分のデッキを上から1枚破棄できる。この効果でコスト0のカードが破棄されたとき、そのスピリットを回復させる。"
+   "Flash - 《Advent: Cost 2 or less》(Either Attack Step)",
+   "By sending your (Soul Core) to the Trash, stack this from the Hand onto your target Spirit.",
+   "[LV1][LV2][LV3] (When Advents)",
+   "During this turn, add one Red symbol to all your Cost 2 or less Spirits.",
+   "[LV2][LV3] (Your Attack Step)",
+   "When your Cost 3 or less Spirit attacks, you can discard the top card of your deck. When a Cost 0 card is discarded this way, refresh that Spirit."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/name pending (no English source found; Japanese official text kept). English family name pending (Japanese family kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text/family translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "SJ"
  },
  {
@@ -88065,7 +88058,7 @@
   ],
   "families": [
    "Astral Deity",
-   "星龍"
+   "Astral Dragon"
   ],
   "text": "[LV1][LV2][LV3] (When Summoned)\nYou can summon an \"Apollo\"-named Spirit card from your Hand, without paying the cost.\n\nWhen Braved [LV2][LV3] (Your Attack Step)\nAll your \"Astral Deity\" family Spirits can target and attack an opposing Spirit.",
   "image": "X006.png",
@@ -88078,7 +88071,7 @@
    "When Braved [LV2][LV3] (Your Attack Step)",
    "All your \"Astral Deity\" family Spirits can target and attack an opposing Spirit."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English text from the Fandom page of the same card; its Japanese text differs slightly from the official text (reprint or erratum). English family name pending (Japanese family kept).",
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. English text from the Fandom page of the same card; its Japanese text differs slightly from the official text (reprint or erratum). English family translated by hand from the Japanese official text (unofficial wording).",
   "rcode": "X"
  },
  {
