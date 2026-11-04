@@ -5,6 +5,7 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
 ## Unreleased (UI, ships with the next release; backup branch `backup/v0.215.0`)
+- Light mode: the effect text in the card info next to the zoomed card was dark on the dark zoom overlay and invisible; it now uses light text. Revert: delete the last 3 lines of `apps/web/mk-glue.css`.
 - Lobby: the "Continue with" panel is hidden when the chosen deck has no cards. Play: the hint is now three step chips (Deck, Opponent, Rules); card text on placeholders is left-aligned; the stray grey scrollbar under the deck tiles is gone.
 - Phone theme popover has the Dark / Light lever next to the colours. Narrow landscape: the profile chip shrinks to the avatar so the top bar never clips.
 - CPU deck choice adds "Random legal Standard deck" and "Random legal Eternal deck" (plain Random stays Standard).

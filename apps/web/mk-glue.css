@@ -381,3 +381,6 @@ html:not(.layout-pc) .mk #view-deckbuilder.db-open-deck:not([data-dsize="min"]) 
 /* v0.216 UI: narrow landscape / small tablet - the profile chip keeps only the avatar so the top bar never clips it */
 @media (max-width:900px){.mk .pchip{padding:5px 14px 5px 10px;flex:none}.mk .pchip>span:not(.av){display:none}}
 .decksel{scrollbar-width:none}.decksel::-webkit-scrollbar{display:none}   /* v0.216 UI: the grey scrollbar under the deck tiles looked like a stray bar */
+/* v0.216 UI: Light mode - the card info beside the zoomed card sits on the dark zoom overlay, so its text must be light (it inherited the dark page text and vanished) */
+[data-mode="light"] #zoom-overlay .zc-info{color:#eef2f7;--text:#eef2f7;--text2:#cfd6e0;--text3:#b4bdca}
+[data-mode="light"] #zoom-overlay .zc-info .cd-info{color:#141922}
