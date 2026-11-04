@@ -288,42 +288,13 @@
    ],
    "revival_open": [],
    "deck_incomplete": [
-    "BS69-001",
-    "BS69-002",
-    "BS69-004",
-    "BS69-005",
-    "BS69-007",
-    "BS69-008",
-    "BS69-009",
-    "BS69-011",
     "BS69-018",
-    "BS69-024",
-    "BS69-025",
-    "BS69-026",
-    "BS69-027",
-    "BS69-031",
-    "BS69-032",
-    "BS69-033",
-    "BS69-042",
-    "BS69-049",
-    "BS69-063",
-    "BS69-067",
-    "BS69-068",
-    "BS69-072",
-    "BS69-078",
-    "BS69-CX01",
-    "BS69-NX01",
-    "BS69-X01",
-    "BS70-001",
-    "BS70-003",
-    "BS70-004",
     "BS70-008",
     "BS70-010",
     "BS70-012",
     "BS70-028",
     "BS70-029",
     "BS70-031",
-    "BS70-048",
     "BS70-049",
     "BS70-051",
     "BS70-052",
@@ -403,42 +374,13 @@
    ],
    "order_cards": [
     "BS75-CX04",
-    "BS69-001",
-    "BS69-002",
-    "BS69-004",
-    "BS69-005",
-    "BS69-007",
-    "BS69-008",
-    "BS69-009",
-    "BS69-011",
     "BS69-018",
-    "BS69-024",
-    "BS69-025",
-    "BS69-026",
-    "BS69-027",
-    "BS69-031",
-    "BS69-032",
-    "BS69-033",
-    "BS69-042",
-    "BS69-049",
-    "BS69-063",
-    "BS69-067",
-    "BS69-068",
-    "BS69-072",
-    "BS69-078",
-    "BS69-CX01",
-    "BS69-NX01",
-    "BS69-X01",
-    "BS70-001",
-    "BS70-003",
-    "BS70-004",
     "BS70-008",
     "BS70-010",
     "BS70-012",
     "BS70-028",
     "BS70-029",
     "BS70-031",
-    "BS70-048",
     "BS70-049",
     "BS70-051",
     "BS70-052",
@@ -635,24 +577,8 @@
     "BS76-002"
    ],
    "revival_open": [],
-   "deck_incomplete": [
-    "BS60-003",
-    "BS62-011",
-    "BS65-003",
-    "BS68-001",
-    "BS70-002",
-    "BS75-062",
-    "BS75-X02"
-   ],
-   "order_cards": [
-    "BS60-003",
-    "BS62-011",
-    "BS65-003",
-    "BS68-001",
-    "BS70-002",
-    "BS75-062",
-    "BS75-X02"
-   ]
+   "deck_incomplete": [],
+   "order_cards": []
   },
   {
    "id": "BS74-CX02",
@@ -1728,33 +1654,10 @@
    ],
    "revival_open": [],
    "deck_incomplete": [
-    "BS69-001",
-    "BS69-002",
-    "BS69-004",
-    "BS69-005",
-    "BS69-007",
-    "BS69-008",
-    "BS69-009",
-    "BS69-011",
     "BS69-018",
-    "BS69-032",
-    "BS69-042",
-    "BS69-049",
-    "BS69-063",
-    "BS69-067",
-    "BS69-068",
-    "BS69-072",
-    "BS69-078",
-    "BS69-CX01",
-    "BS69-NX01",
-    "BS69-X01",
-    "BS70-001",
-    "BS70-003",
-    "BS70-004",
     "BS70-008",
     "BS70-010",
     "BS70-012",
-    "BS70-048",
     "BS70-049",
     "BS70-051",
     "BS70-052",
@@ -3444,33 +3347,10 @@
    ],
    "revival_open": [],
    "deck_incomplete": [
-    "BS69-001",
-    "BS69-002",
-    "BS69-004",
-    "BS69-005",
-    "BS69-007",
-    "BS69-008",
-    "BS69-009",
-    "BS69-011",
     "BS69-018",
-    "BS69-032",
-    "BS69-042",
-    "BS69-049",
-    "BS69-063",
-    "BS69-067",
-    "BS69-068",
-    "BS69-072",
-    "BS69-078",
-    "BS69-CX01",
-    "BS69-NX01",
-    "BS69-X01",
-    "BS70-001",
-    "BS70-003",
-    "BS70-004",
     "BS70-008",
     "BS70-010",
     "BS70-012",
-    "BS70-048",
     "BS70-049",
     "BS70-051",
     "BS70-052",
@@ -3981,35 +3861,12 @@
     "BS62-004",
     "BS63-003",
     "BS65-001",
-    "BS69-001",
-    "BS69-002",
-    "BS69-004",
-    "BS69-005",
-    "BS69-007",
-    "BS69-008",
-    "BS69-009",
-    "BS69-011",
     "BS69-018",
-    "BS69-032",
-    "BS69-042",
-    "BS69-049",
-    "BS69-063",
-    "BS69-067",
-    "BS69-068",
-    "BS69-072",
-    "BS69-078",
     "BS69-079",
     "BS69-080",
-    "BS69-CX01",
-    "BS69-NX01",
-    "BS69-X01",
-    "BS70-001",
-    "BS70-003",
-    "BS70-004",
     "BS70-008",
     "BS70-010",
     "BS70-012",
-    "BS70-048",
     "BS70-049",
     "BS70-051",
     "BS70-052",
@@ -4085,7 +3942,6 @@
     "BS76-X13"
    ],
    "order_cards": [
-    "BS69-CX01",
     "BS60-002",
     "BS62-004",
     "BS63-003",
@@ -4337,12 +4193,6 @@
     "BS67-023",
     "BS67-059",
     "BS68-028",
-    "BS69-024",
-    "BS69-025",
-    "BS69-026",
-    "BS69-027",
-    "BS69-031",
-    "BS69-033",
     "BS69-071",
     "BS69-083",
     "BS69-084",
@@ -4988,7 +4838,6 @@
     "BS69-037",
     "BS69-039",
     "BS69-040",
-    "BS69-042",
     "BS69-043",
     "BS69-074",
     "BS69-085",
@@ -5858,7 +5707,6 @@
     "BS67-037",
     "BS67-040",
     "BS67-044",
-    "BS69-049",
     "BS71-051",
     "BS73-046",
     "BS74-054",
@@ -6797,7 +6645,6 @@
     "BS69-016",
     "BS69-019",
     "BS69-022",
-    "BS69-063",
     "BS69-069",
     "BS69-081",
     "BS70-066",
@@ -15811,7 +15658,6 @@
     "BS67-X05",
     "BS68-041",
     "BS68-X01",
-    "BS69-042",
     "BS70-040",
     "BS70-X09",
     "BS70-XV04",
@@ -17963,24 +17809,10 @@
     "BS68-069",
     "BS68-X01",
     "BS68-X02",
-    "BS69-001",
-    "BS69-002",
     "BS69-003",
-    "BS69-004",
-    "BS69-005",
-    "BS69-007",
-    "BS69-008",
-    "BS69-009",
     "BS69-010",
-    "BS69-011",
-    "BS69-067",
     "BS69-079",
     "BS69-080",
-    "BS69-NX01",
-    "BS69-X01",
-    "BS70-001",
-    "BS70-003",
-    "BS70-004",
     "BS70-006",
     "BS70-008",
     "BS70-012",
@@ -18234,7 +18066,6 @@
     "BS67-021",
     "BS68-025",
     "BS68-X04",
-    "BS69-032",
     "BS70-XV03",
     "BS71-NX02",
     "BS74-028",
@@ -18517,7 +18348,6 @@
     "BS67-X04",
     "BS67-X05",
     "BS68-041",
-    "BS69-042",
     "BS70-040",
     "BS70-XV04",
     "BS71-043",
@@ -19787,7 +19617,6 @@
     "BS69-037",
     "BS69-039",
     "BS69-040",
-    "BS69-042",
     "BS69-043",
     "BS69-074",
     "BS69-085",
@@ -20697,12 +20526,6 @@
     "BS67-023",
     "BS67-059",
     "BS68-028",
-    "BS69-024",
-    "BS69-025",
-    "BS69-026",
-    "BS69-027",
-    "BS69-031",
-    "BS69-033",
     "BS69-071",
     "BS69-083",
     "BS69-084",
@@ -24556,14 +24379,14 @@
     "name": "Grass Geozard",
     "type": "Spirit",
     "cost": 2,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-002",
     "name": "Wood Geozard",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-003",
@@ -24577,14 +24400,14 @@
     "name": "Rock Geosoldier",
     "type": "Spirit",
     "cost": 5,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-008",
     "name": "Volcano Geozard",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-010",
@@ -24598,7 +24421,7 @@
     "name": "Island Geotortoise",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-012",
@@ -24647,14 +24470,14 @@
     "name": "The QuickSwordLionheart Stichiox",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-025",
     "name": "The Lionheart Eurytius",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-028",
@@ -24675,14 +24498,14 @@
     "name": "The HeavyCrossbowLionheart Leonteus",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-033",
     "name": "The SturdyLionheart Guneus",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-036",
@@ -24780,7 +24603,7 @@
     "name": "The HundredArmGiantLizard Gigatoncheir",
     "type": "Spirit",
     "cost": 13,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-NX02",
@@ -24941,7 +24764,7 @@
     "name": "HighEvo-Frost",
     "type": "Spirit",
     "cost": 2,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS70-054",
@@ -26420,7 +26243,7 @@
     "name": "The GreatPhantomDemonBeast Typhodeus",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-X03",
@@ -26735,7 +26558,7 @@
     "name": "The RedLavaSeaDragon Blezion",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS75-X03",
@@ -26961,28 +26784,28 @@
     "name": "The QuickSwordLionheart Stichiox",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-025",
     "name": "The Lionheart Eurytius",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-026",
     "name": "The RuffianLionheart Priapus",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-027",
     "name": "The BraveBeastMarquis Lycaon",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-028",
@@ -27010,14 +26833,14 @@
     "name": "The HeavyCrossbowLionheart Leonteus",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-033",
     "name": "The SturdyLionheart Guneus",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS70-028",
@@ -27257,28 +27080,28 @@
     "name": "Grass Geozard",
     "type": "Spirit",
     "cost": 2,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-002",
     "name": "Wood Geozard",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-004",
     "name": "Rock Geozard",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-005",
     "name": "River Geosnake",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-006",
@@ -27292,28 +27115,28 @@
     "name": "Rock Geosoldier",
     "type": "Spirit",
     "cost": 5,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-008",
     "name": "Volcano Geozard",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-009",
     "name": "Sunken Rock Geogator",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-011",
     "name": "Island Geotortoise",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-018",
@@ -27327,98 +27150,98 @@
     "name": "The YellowTurbanPreacher Proacher-Choukaku",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-042",
     "name": "The PrimordialAndroid Brachiores-Titan",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-049",
     "name": "The PrimordialWolf Lovolgis",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-063",
     "name": "The PrimordialGiantDeity Brontes",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-067",
     "name": "Gaia's Crust Temple",
     "type": "Nexus",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-068",
     "name": "The Sealed Lands: Volcano",
     "type": "Nexus",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-072",
     "name": "The Sealed Lands: Forest",
     "type": "Nexus",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-078",
     "name": "The Sealed Lands: Ocean",
     "type": "Nexus",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-CX01",
     "name": "The AstralMaterContractor Gaia",
     "type": "Nexus",
     "cost": 2,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-NX01",
     "name": "The HundredArmGiantLizard Gigatoncheir",
     "type": "Spirit",
     "cost": 13,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-X01",
     "name": "The GreatPhantomDemonBeast Typhodeus",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS70-001",
     "name": "Shakson Geosoldier",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS70-003",
     "name": "Gecko Geozard",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS70-004",
     "name": "Nogihara Geozard",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS70-008",
@@ -27446,7 +27269,7 @@
     "name": "HighEvo-Frost",
     "type": "Spirit",
     "cost": 2,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS70-049",
@@ -28008,7 +27831,7 @@
     "name": "Ryuukin",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS61-004",
@@ -28022,7 +27845,7 @@
     "name": "The LavaEmperorFish Scapanolancer",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS63-016",
@@ -28036,7 +27859,7 @@
     "name": "Kirihoubou",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS66-002",
@@ -28050,14 +27873,14 @@
     "name": "Shuriken Fish",
     "type": "Spirit",
     "cost": 2,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS70-002",
     "name": "Saber Gurnard",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-001",
@@ -28197,7 +28020,7 @@
     "name": "The Stardust Lava Sea",
     "type": "Nexus",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS75-076",
@@ -28211,7 +28034,7 @@
     "name": "The RedLavaSeaDragon Blezion",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS76-002",
@@ -32433,7 +32256,7 @@
     "name": "HighEvo-Frost",
     "type": "Spirit",
     "cost": 2,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS70-049",
@@ -33046,28 +32869,28 @@
     "name": "Grass Geozard",
     "type": "Spirit",
     "cost": 2,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-002",
     "name": "Wood Geozard",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-004",
     "name": "Rock Geozard",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-005",
     "name": "River Geosnake",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-006",
@@ -33081,35 +32904,35 @@
     "name": "Rock Geosoldier",
     "type": "Spirit",
     "cost": 5,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-008",
     "name": "Volcano Geozard",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-009",
     "name": "Sunken Rock Geogator",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-011",
     "name": "Island Geotortoise",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-067",
     "name": "Gaia's Crust Temple",
     "type": "Nexus",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-079",
@@ -33130,35 +32953,35 @@
     "name": "The HundredArmGiantLizard Gigatoncheir",
     "type": "Spirit",
     "cost": 13,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-X01",
     "name": "The GreatPhantomDemonBeast Typhodeus",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS70-001",
     "name": "Shakson Geosoldier",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS70-003",
     "name": "Gecko Geozard",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS70-004",
     "name": "Nogihara Geozard",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS70-008",
@@ -33860,28 +33683,28 @@
     "name": "The QuickSwordLionheart Stichiox",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-025",
     "name": "The Lionheart Eurytius",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-026",
     "name": "The RuffianLionheart Priapus",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-027",
     "name": "The BraveBeastMarquis Lycaon",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-028",
@@ -33909,14 +33732,14 @@
     "name": "The HeavyCrossbowLionheart Leonteus",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-033",
     "name": "The SturdyLionheart Guneus",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-071",
@@ -35133,7 +34956,7 @@
     "name": "The PrimordialAndroid Brachiores-Titan",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS69-043",
@@ -36818,7 +36641,7 @@
     "name": "The PrimordialWolf Lovolgis",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS71-051",
@@ -37678,7 +37501,7 @@
     "name": "The PrimordialGiantDeity Brontes",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS70-066",
@@ -48836,7 +48659,7 @@
     "name": "The PrimordialAndroid Brachiores-Titan",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS70-040",
@@ -49999,7 +49822,7 @@
     "name": "The YellowTurbanPreacher Proacher-Choukaku",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS70-XV03",

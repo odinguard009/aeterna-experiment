@@ -5,7 +5,7 @@ Rule (owner 2026-11-04): Nexus with 50 or fewer own-family cards (SD44+, pool fa
 | Order | Group | Grandwalker Nexus | Nexus card | Own families | Cards SD44+ | Complete | State |
 |--:|---|---|---|---|--:|--:|---|
 | 1 | small | BS75-CX03 The HeavenlyThunderContractor Indra | complete | Thunderive | 23 | 23 | done |
-| 2 | small | BS74-CX01 The Light-DarkContractor Ometeotl | complete | Lava Fish | 32 | 25 | open |
+| 2 | small | BS74-CX01 The Light-DarkContractor Ometeotl | complete | Lava Fish | 32 | 32 | done |
 | 3 | small | BS74-CX03 The CovenantContractor Mitra | complete | Awakened Dragon | 23 | 23 | done |
 | 4 | small | BS73-CX01 The ForestMasterContractor Yum-Kaax | OPEN, first | Fungal Tree | 18 | 1 | open |
 | 5 | small | BS73-CX02 The MagicJewelContractor Morrigan | complete | Prismwing | 18 | 14 | open |
@@ -16,16 +16,16 @@ Rule (owner 2026-11-04): Nexus with 50 or fewer own-family cards (SD44+, pool fa
 | 10 | small | BS71-CX02 The SkyContractor Ra-Harakhti | OPEN, first | Weapon Insect | 31 | 1 | open |
 | 11 | small | BS71-CX03 The SilverArmContractor Nuadha | OPEN, first | Scalostle | 26 | 8 | open |
 | 12 | small | BS70-CX02 The SilverWheelContractor Brigit | OPEN, first | Frostling | 26 | 1 | open |
-| 13 | small | BS70-CX03 The AstralNightContractor Uranus | OPEN, first | Cloudbuilt | 24 | 0 | open |
-| 14 | small | BS69-CX01 The AstralMaterContractor Gaia | OPEN, first | Reptile Beast | 35 | 7 | open |
+| 13 | small | BS70-CX03 The AstralNightContractor Uranus | OPEN, first | Cloudbuilt | 24 | 1 | open |
+| 14 | small | BS69-CX01 The AstralMaterContractor Gaia | complete | Reptile Beast | 35 | 21 | open |
 | 15 | small | BS69-CX02 The SwiftContractor Hermes | OPEN, first | (pool or cost-only: Nexus card only) | 0 | 0 | open |
 | 16 | small | BS69-CX03 The RagingGaleContractor Huracan | OPEN, first | Roaring Azure | 38 | 1 | open |
 | 17 | small | BS68-CX01 The SorcererContractor Hades | OPEN, first | Infernal Lord | 45 | 4 | open |
 | 18 | small | BS68-CX03 The ToolcraftContractor Kinich-Ahau | OPEN, first | Puppet Beast | 26 | 1 | open |
 | 19 | small | BS61-X09 Grandwalker Tezcatlipoca | OPEN, first | Armored Beast | 33 | 2 | open |
 | 20 | small | BS59-X09 Grandwalker Chronos | OPEN, first | Chrownos | 20 | 1 | open |
-| 21 | small | BS58-X09 Grandwalker Parvati | OPEN, first | Hunter Beast | 42 | 3 | open |
-| 22 | small | BS53-X09 Grandwalker Lakshmi | OPEN, first | Fighting Spirit | 50 | 4 | open |
+| 21 | small | BS58-X09 Grandwalker Parvati | OPEN, first | Hunter Beast | 42 | 4 | open |
+| 22 | small | BS53-X09 Grandwalker Lakshmi | OPEN, first | Fighting Spirit | 50 | 5 | open |
 | 23 | small | BS52-X07 Grandwalker Demeter | OPEN, first | Dark Artes | 33 | 0 | open |
 | 24 | small | BS52-X08 The GuideGirl Vina | OPEN, first | (pool or cost-only: Nexus card only) | 0 | 0 | open |
 | 25 | small | BS51-X10 Grandwalker Saraswati | OPEN, first | Imp | 44 | 3 | open |
@@ -47,12 +47,12 @@ Rule (owner 2026-11-04): Nexus with 50 or fewer own-family cards (SD44+, pool fa
 | 41 | small | BS44-CP02 The YoungGrandwalker Lolo | complete | (pool or cost-only: Nexus card only) | 0 | 0 | done |
 | 42 | small | BS44-X09 Grandwalker Artemis | OPEN, first | (pool or cost-only: Nexus card only) | 0 | 0 | open |
 | 43 | small | BS44-XX02 Grandwalker Lolo | complete | (pool or cost-only: Nexus card only) | 0 | 0 | done |
-| 44 | large | BS75-CX04 The ChaosContractor Khaos | OPEN, first | Soldier | 61 | 25 | open |
+| 44 | large | BS75-CX04 The ChaosContractor Khaos | OPEN, first | Soldier | 61 | 31 | open |
 | 45 | large | BS74-CX02 The NetherContractor Dionysus | OPEN, first | Zombie | 65 | 6 | open |
 | 46 | large | BS71-CX01 The ThunderboltContractor Zeus | OPEN, first | Emperor Beast | 84 | 3 | open |
 | 47 | large | BS70-CX01 The CurseConsortContractor Hera | OPEN, first | Ogre Wizard | 79 | 3 | open |
 | 48 | large | SD69-CX01 The GenesisContractor Brahma | OPEN, first | Ancient Dragon | 56 | 2 | open |
-| 49 | large | BS68-CX02 The SteelContractor Athena | OPEN, first | Android | 74 | 4 | open |
+| 49 | large | BS68-CX02 The SteelContractor Athena | OPEN, first | Android | 74 | 5 | open |
 | 50 | large | BS62-X09 Grandwalker Kukulkan | OPEN, first | Dark Snake | 65 | 6 | open |
 | 51 | large | BS55-X09 Grandwalkers Izanagi & Izanami | OPEN, first | Spiritual Beast, Plant Spirit | 73 | 9 | open |
 | 52 | large | BS51-X08 Grandwalker Amaterasu | OPEN, first | War Dragon, Clever Machine, Vassal, Lord | 51 | 7 | open |
@@ -64,15 +64,15 @@ Rule (owner 2026-11-04): Nexus with 50 or fewer own-family cards (SD44+, pool fa
 | 58 | large | BS49-X10 Grandwalker Susanoo | OPEN, first | Terra Dragon, Ocean Emperor | 83 | 8 | open |
 | 59 | large | BS49-XX02 Grandwalker Guren | OPEN, first | Ancient Dragon | 56 | 2 | open |
 | 60 | large | BS48-SP01 Bashin Dan | OPEN, first | Astral Dragon, Astral Soul, Astral Deity, Galaxian | 101 | 5 | open |
-| 61 | large | BS48-SP02 The Moonlight Barone | OPEN, first | Armed Machine, Astral Soul, Astral Deity, Galaxian | 127 | 3 | open |
+| 61 | large | BS48-SP02 The Moonlight Barone | OPEN, first | Armed Machine, Astral Soul, Astral Deity, Galaxian | 127 | 4 | open |
 | 62 | large | BS48-X08 Grandwalker of Creation Brahma | complete | Ancient Dragon | 56 | 2 | open |
-| 63 | large | BS47-CP07 Clash King Dan | OPEN, first | Reptile Beast, Terra Dragon, Winged Dragon, Ancient Dragon, Astral Dragon | 232 | 24 | open |
-| 64 | large | BS47-X07 Grandwalker Horus | OPEN, first | Winged Beast | 71 | 12 | open |
-| 65 | large | BS47-X08 Grandwalker Thoth | OPEN, first | Armed Machine | 89 | 3 | open |
+| 63 | large | BS47-CP07 Clash King Dan | OPEN, first | Reptile Beast, Terra Dragon, Winged Dragon, Ancient Dragon, Astral Dragon | 232 | 38 | open |
+| 64 | large | BS47-X07 Grandwalker Horus | OPEN, first | Winged Beast | 71 | 13 | open |
+| 65 | large | BS47-X08 Grandwalker Thoth | OPEN, first | Armed Machine | 89 | 4 | open |
 | 66 | large | BS47-X09 Grandwalker Poseidon | OPEN, first | Fusion Beast | 63 | 1 | open |
 | 67 | large | BS46-X09 Grandwalker Zeus | OPEN, first | Emperor Beast | 84 | 3 | open |
 | 68 | large | BS46-X10 Grandwalker Hera | OPEN, first | Ogre Wizard | 79 | 3 | open |
-| 69 | large | BS46-X11 Grandwalker Athena | OPEN, first | Android | 74 | 4 | open |
+| 69 | large | BS46-X11 Grandwalker Athena | OPEN, first | Android | 74 | 5 | open |
 | 70 | large | BS46-X12 Grandwalker Ra | OPEN, first | Imaginary Beast | 57 | 4 | open |
 | 71 | large | BS45-CP01 Bashin Toppa | OPEN, first | Ancient Dragon | 56 | 2 | open |
 | 72 | large | BS45-CP02 Rei the Number One Star | OPEN, first | Incarnate, Dragon | 53 | 6 | open |
