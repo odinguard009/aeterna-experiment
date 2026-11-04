@@ -289,3 +289,25 @@ test('K-1126 BS73-CX01 Yum-Kaax: ACTIVATE gives counters +2 and a Fungal Bed Tok
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.counters >= 2, true, JSON.stringify(r));
   assert.equal(r.bed, 1, JSON.stringify(r)); assert.equal(r.bedAfter, 0, JSON.stringify(r)); assert.equal(r.exhausted, true, JSON.stringify(r));
 });
+
+test('K-1127 BS73-027: ATTACKS banishes up to 3 Trash cards and sends Fungal Bed Tokens only when a Cost 8+ card was banished', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const big = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && BS.CARDS[k].cost >= 8);
+    const a = BS.mkInst('BS73-027'); a.cores = 4; P.spirits = [a]; P.tokens = { 'BS73-T001': 3 }; G.attacker = a;
+    O.trash = [BS.mkInst(big), BS.mkInst(big)];
+    await BS.fireFx(P, 'ATTACKS', a, { attacker: a, subject: a });
+    return { trash: O.trash.length, beds: P.nexus.filter(n => n.id === 'BS73-T001').length, partial: BS.CARDS['BS73-027'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.trash, 0, JSON.stringify(r)); assert.ok(r.beds >= 1, JSON.stringify(r));
+});
+
+test('K-1128 BS73-030: MANIFEST exhausts every Fungal Bed (CPU) and draws one card per two beds', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token);
+    const s = BS.mkInst('BS73-030'); s.cores = 3; P.spirits = [s]; O.spirits = [BS.mkInst(any), BS.mkInst(any)]; P.deck = [1,2,3,4,5].map(() => BS.mkInst(any)); P.hand = [];
+    P.nexus = [BS.mkInst('BS73-T001'), BS.mkInst('BS73-T001')];
+    await BS.fireFx(P, 'MANIFEST', s, { subject: s });
+    return { ex: P.nexus.filter(n => n.exhausted).length, hand: P.hand.length, partial: BS.CARDS['BS73-030'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.ex, 2, JSON.stringify(r)); assert.equal(r.hand, 1, JSON.stringify(r));
+});

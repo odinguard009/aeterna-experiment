@@ -350,6 +350,9 @@ FX_ACTIONS.NEGATE_OPP_MAGIC = { chk: a => typeof a.color === 'string' && COLORS.
 
 /* v515 DESTROY_FUNGAL_BED {} / EXHAUST_SUBJECT {}: Yum-Kaax's Contract Field. A "Fungal Bed" is the BS73-T001 Token Nexus (BS74-071 counts as one). DESTROY_FUNGAL_BED: did = true when one of your Fungal Beds was destroyed; EXHAUST_SUBJECT exhausts the card that was just summoned/deployed (ctx.subject, a Spirit or Nexus on the opposing field). */
 const isFungalBed = n => n.id === 'BS73-T001' || n.id === 'BS74-071';
+/* v516 card field highSpeedBeds 'destroy'|'exhaust' (BS73-029 / BS73-AX01 "Flash - summon this card from the Hand; by destroying/exhausting any number of your Fungal Bed, treat up to one cost per bed as paid from the Reserve"): the High Speed summon (02i) pays that many costs with beds; the fewest beds needed are used. */
+const fungalBeds = (p, mode) => p.nexus.filter(n => isFungalBed(n) && !n.noFx && (mode !== 'exhaust' || !n.exhausted));
+function useFungalBeds(p, card, k) { for (const n of fungalBeds(p, card.highSpeedBeds).slice(0, k)) { if (card.highSpeedBeds === 'destroy') removeNexus(p, n, 'destroyed'); else n.exhausted = true; } log(`${poss(p)} ${k} "Fungal Bed" ${card.highSpeedBeds === 'destroy' ? 'destroyed' : 'exhausted'} to pay ${k} cost for ${card.name}.`); }
 FX_ACTIONS.DESTROY_FUNGAL_BED = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => 'destroy one of your "Fungal Bed"', can: c => c.p.nexus.some(n => !n.noFx && isFungalBed(n)),
   run: async c => {
     const L = c.p.nexus.filter(n => !n.noFx && isFungalBed(n)); if (!L.length) { c.ctx.did = false; return; }
@@ -359,3 +362,17 @@ FX_ACTIONS.DESTROY_FUNGAL_BED = { chk: a => Object.keys(a).every(k => ['do', 'if
 FX_ACTIONS.EXHAUST_SUBJECT = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => 'exhaust that card', can: c => !!c.ctx.subject,
   run: async c => { const t = c.ctx.subject; c.ctx.did = false; if (!t || t.exhausted) return; t.exhausted = true; c.ctx.did = true; log(`${_nm(c)}: ${CARDS[t.id].name} is exhausted.`); io.view({ type: 'board' }); } };
 FX_TRIGGER_TEXT.OPP_SUMMONED = 'When the opponent summons or deploys';
+/* v516 SEND_TOKEN_IF_BANISHED {costGe, token, n}: "when this effect banished any Cost <costGe> or more card, you can send out up to n <token> Tokens" (BS73-027; after REMOVE_OPP_TRASH, which keeps ctx.removedCards). */
+FX_ACTIONS.SEND_TOKEN_IF_BANISHED = { chk: a => Number.isInteger(a.costGe) && a.costGe >= 1 && a.costGe <= 20 && typeof a.token === 'string' && Number.isInteger(a.n) && a.n >= 1 && a.n <= 3 && Object.keys(a).every(k => ['do', 'if', 'costGe', 'token', 'n'].includes(k)),
+  txt: a => `if a Cost ${a.costGe}+ card was banished, send out up to ${a.n} "${CARDS[a.token] ? CARDS[a.token].name : a.token}" Tokens`, can: () => true,
+  run: async (c, a) => { c.ctx.did = false; if (!(c.ctx.removedCards || []).some(t => CARDS[t.id].cost >= a.costGe)) return; await FX_ACTIONS.SEND_TOKEN.run(c, { do: 'SEND_TOKEN', token: a.token, n: a.n, ask: true }); } };
+/* v516 EXHAUST_FUNGAL_BEDS {}: "you can exhaust any number of your Fungal Bed. For each exhausted, heavy exhaust an opposing Spirit; for each two, draw a card; for each four, put a core from the Void to every Spirit you control" (BS73-030). A human is asked one bed at a time, the CPU exhausts them all. */
+FX_ACTIONS.EXHAUST_FUNGAL_BEDS = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => 'exhaust any number of your "Fungal Bed" (heavy exhaust / draw / cores per beds exhausted)', can: c => c.p.nexus.some(n => isFungalBed(n) && !n.exhausted),
+  run: async c => {
+    c.ctx.did = false; const L = c.p.nexus.filter(n => isFungalBed(n) && !n.exhausted); let k = 0;
+    for (const n of L) { if (!c.p.cpu && !(await ask({ title: `✨ ${CARDS[c.src.id].name}`, peek: true, html: `Exhaust a "Fungal Bed"? (${k} exhausted so far)`, buttons: [{ label: 'Yes', cls: 'primary', value: true }, { label: 'Stop', cls: 'cancel', value: false }] }))) break; n.exhausted = true; k++; }
+    if (!k) return; c.ctx.did = true; log(`${CARDS[c.src.id].name}: ${k} "Fungal Bed" exhausted.`);
+    for (let i = 0; i < k; i++) { c.ctx.did = true; await FX_ACTIONS.HEAVY_EXHAUST_OPP.run(c, { do: 'HEAVY_EXHAUST_OPP', n: 1 }); }
+    if (k >= 2) await FX_ACTIONS.DRAW.run(c, { do: 'DRAW', n: Math.min(7, k >> 1) });
+    for (let i = 0; i < (k >> 2); i++) await FX_ACTIONS.VOID_TO_CARD.run(c, { do: 'VOID_TO_CARD', n: 1, to: 'eachSpirit' });
+    c.ctx.did = true; io.view({ type: 'board' }); } };

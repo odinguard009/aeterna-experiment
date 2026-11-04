@@ -12,7 +12,7 @@ function highSpeedOK(p, inst) {
   if (card.highSpeedIf && !fxIf(p, G.p[other(p.key)], card.highSpeedIf, {})) return false;      // v138 "Flash - <condition>, you can summon this card from the Hand"
   if (card.highSpeedOnce && p.hsOnce && p.hsOnce[card.name] === G.turnNo) return false;      // "only once per turn per card name"
   if (card.flashSummon) return !!fsNexus(p, card);      // v465 flashSummon: Soul Core to the Nexus instead of paying
-  return effCost(p, card) + minCores(card) <= reserveTotal(p);
+  return Math.max(0, effCost(p, card) - (card.highSpeedBeds ? fungalBeds(p, card.highSpeedBeds).length : 0)) + minCores(card) <= reserveTotal(p);      // v516 highSpeedBeds: each Fungal Bed destroyed/exhausted pays one cost
 }
 /* v465 card field flashSummon {counterGe?, nexus: match}: "Flash: (Once per Turn: Same Name) [if N counters,] by sending your Soul Core to a matching Nexus, summon this card from the Hand, treating all summon costs as paid". Returns the Nexus that receives the Soul Core. */
 function fsNexus(p, card) {
@@ -23,7 +23,7 @@ function fsNexus(p, card) {
 const highSpeedSources = p => p.hand.filter(h => highSpeedOK(p, h));
 async function highSpeedSummon(p, inst) {
   if (!highSpeedOK(p, inst)) return false;
-  const card = CARDS[inst.id], fs = card.flashSummon ? fsNexus(p, card) : null, c = fs ? 0 : effCost(p, card); if (!fs) legacyPay(p, inst);
+  const card = CARDS[inst.id], fs = card.flashSummon ? fsNexus(p, card) : null, c0 = fs ? 0 : effCost(p, card), bu = !fs && card.highSpeedBeds ? Math.min(c0, Math.max(0, c0 + minCores(card) - reserveTotal(p))) : 0, c = c0 - bu; if (bu) useFungalBeds(p, card, bu); if (!fs) legacyPay(p, inst);
   const fromN0 = fs && card.flashSummon.fromNexus; if (fs) { (p.fsOnce = p.fsOnce || {})[card.name] = G.turnNo; if (fromN0) { fs.soul = false; log(`${poss(p)} Soul Core moves from ${CARDS[fs.id].name} to ${card.name}.`); } else await soulToNexus(p, fs); }
   if (card.highSpeedOnce) (p.hsOnce = p.hsOnce || {})[card.name] = G.turnNo;
   const fromN = Math.min(c, p.reserve.n), plan = { reserve: fromN, by: {}, rsoul: c > fromN, fsoul: null };

@@ -1043,7 +1043,6 @@
     "BS74-X05"
    ],
    "order_cards": [
-    "BS73-CX01",
     "BS73-023",
     "BS73-024",
     "BS73-027",
@@ -28064,7 +28063,7 @@
     "name": "The ForestMasterContractor Yum-Kaax",
     "type": "Nexus",
     "cost": 2,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-CX01",

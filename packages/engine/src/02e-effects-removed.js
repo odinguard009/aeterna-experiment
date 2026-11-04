@@ -118,7 +118,7 @@ Object.assign(FX_ACTIONS, {
       if (!T.length) { c.ctx.did = false; return; }
       let list = a.all ? T : [];
       if (!a.all) for (let j = 0; j < (a.n || 1); j++) { const L = T.filter(t => !list.includes(t)); if (!L.length) break; const t = await chooseCard(c, L, `✨ ${_nm(c)}`, `Choose a card from the opposing Trash to put onto their Removed Zone.${a.n > 1 ? ' (' + (j + 1) + '/' + a.n + ')' : ''}`, j > 0); if (!t) break; list.push(t); }   // v406: n up to 5 ("banish up to five cards")
-      let k = 0; for (const t of list) { if (t && removeFrom(c.opp.trash, t)) { toRemoved(c.opp, t); k++; } }
+      let k = 0; c.ctx.removedCards = []; for (const t of list) { if (t && removeFrom(c.opp.trash, t)) { toRemoved(c.opp, t); k++; c.ctx.removedCards.push(t); } }
       c.ctx.removedN = k; if (!k) { c.ctx.did = false; return; }
       log(`${_nm(c)}: ${k} card${k === 1 ? '' : 's'} from ${poss(c.opp)} Trash go onto their Removed Zone.`);
     } },
