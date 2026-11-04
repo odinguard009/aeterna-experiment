@@ -6798,9 +6798,35 @@
   "image": "BS69-026+ (Fixed).png",
   "block": "69",
   "saga": 15,
-  "fxComplete": false,
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); not yet checked against the card image.",
+  "fxComplete": true,
   "effects": [
+   {
+    "trigger": "ALLY_SUMMONED",
+    "zone": "hand",
+    "optional": true,
+    "if": {
+     "attackStep": true
+    },
+    "match": {
+     "type": "Spirit",
+     "family": [
+      "Blade Beast"
+     ]
+    },
+    "actions": [
+     {
+      "do": "DEPLOY_SELF_PAID",
+      "costN": 1
+     },
+     {
+      "do": "COUNTER",
+      "n": 1,
+      "if": {
+       "prev": true
+      }
+     }
+    ]
+   },
    {
     "trigger": "SUMMONED",
     "lv": [
@@ -6841,9 +6867,6 @@
      }
     ]
    }
-  ],
-  "residual": [
-   "Summon from the Hand (paying one cost) when your Blade Beast Spirit is summoned in either Attack Step, then counter +1"
   ],
   "bicon": [
    "11"

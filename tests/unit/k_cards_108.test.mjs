@@ -165,3 +165,14 @@ test('K-1101 BS69-063 Brontes: Lv2 attack with a Primordial Grandwalker Nexus dr
     return { handAfter, nx, oppLeft: O.spirits.length, onField: P.spirits.some(s => s.id === 'BS69-063'), partial: BS.CARDS['BS69-063'].partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.oppLeft, 1, JSON.stringify(r)); assert.equal(r.onField, true, JSON.stringify(r)); assert.equal(r.handAfter, 2, JSON.stringify(r));
 });
+
+test('K-1102 BS69-026 Priapus: a Blade Beast summoned in the Attack Step lets it be summoned from Hand for one cost (+1 counter); Lv1 summon exhausts', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const bb = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && (BS.CARDS[k].families || []).includes('Blade Beast') && !BS.CARDS[k].token && k !== 'BS69-026');
+    const pc = BS.mkInst('BS69-026'); P.hand = [pc]; P.reserve.n = 6; const c0 = P.count;
+    const s = BS.mkInst(bb); s.cores = 1; P.spirits = [s];
+    await BS.fireFx(P, 'ALLY_SUMMONED', s, { subject: s });
+    return { onField: P.spirits.includes(pc), count: P.count - c0, partial: BS.CARDS['BS69-026'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.onField, true, JSON.stringify(r)); assert.equal(r.count, 1, JSON.stringify(r));
+});

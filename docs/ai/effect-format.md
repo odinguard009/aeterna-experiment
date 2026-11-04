@@ -524,3 +524,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v489 DISCARD_FIELD_MAGIC {costLe}: discards a Magic from the opposing Field; the engine has no response window so it never finds one (BS69-024).
 - v490 DEPLOY_LAST_DISCARDED {match} (reads ctx.lastDiscarded, now set by LOOT); BS69-042 handCost via ctrl {nexus}, BS69-049 BP_MINUS zeroBottom, BS69-063 SET_UNAFFECTED + LOOT.
 - v491 DESTROY n now allows up to 4 targets (BS69-063 Brontes burst).
+- v492 DEPLOY_SELF_PAID {costN}: pay N cost to summon this card from the Hand (BS69-026).

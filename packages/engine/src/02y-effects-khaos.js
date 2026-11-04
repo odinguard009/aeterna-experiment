@@ -195,3 +195,10 @@ FX_ACTIONS.DEPLOY_LAST_DISCARDED = { chk: a => hasMatch(a.match) && Object.keys(
     removeFrom(c.p.trash, d); c.p.hand.push(d);
     if (await summonFree(c.p, d)) c.ctx.did = true; else { removeFrom(c.p.hand, d); c.p.trash.push(d); }
   } };
+/* v492 DEPLOY_SELF_PAID {costN}: "pay N cost to summon this card from the Hand" (BS69-026 Priapus; only from the Hand, the cost is paid, did=false when not paid) */
+FX_ACTIONS.DEPLOY_SELF_PAID = { chk: a => Number.isInteger(a.costN) && a.costN >= 0 && a.costN <= 10 && Object.keys(a).every(k => ['do', 'costN', 'if'].includes(k)), txt: a => `pay ${a.costN} cost to summon this card from the Hand`,
+  can: (c, a) => c.p.hand.includes(c.src) && canPlacePaid(c.p, c.src) && reserveTotal(c.p) >= a.costN + minCores(CARDS[c.src.id]),
+  run: async (c, a) => {
+    c.ctx.did = false; if (!FX_ACTIONS.DEPLOY_SELF_PAID.can(c, a)) return;
+    c.ctx.did = !!(await summonPaid(c.p, c.src, { costN: a.costN }));
+  } };
