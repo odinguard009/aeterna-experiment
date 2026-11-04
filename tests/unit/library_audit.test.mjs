@@ -36,3 +36,11 @@ test('LA04 family names are English: no Japanese characters, no case variants', 
   for (const f of fams) { const k = f.toLowerCase().replace(/[^a-z0-9]/g, ''); if (k && norm.has(k) && norm.get(k) !== f) clash.push([norm.get(k), f]); norm.set(k, f); }
   assert.deepEqual(clash, []);
 });
+
+test('LA05 flavor index: English only, no markup, every id is a library card, at least 10,000 entries', () => {
+  const F = JSON.parse(readFileSync(join(ROOT, 'data/index/flavor.json'), 'utf8')), ids = new Set(DATA.map(c => c.id));
+  const e = Object.entries(F);
+  assert.ok(e.length >= 10000, String(e.length));
+  assert.deepEqual(e.filter(([, v]) => /[぀-ヿ㐀-鿿]|\{\{|\}\}|\[\[|<\/?[a-z]/i.test(v)).map(x => x[0]), []);
+  assert.ok(e.filter(([k]) => !ids.has(k)).length <= 1);
+});

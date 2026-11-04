@@ -180,8 +180,9 @@ test('B13 with all cards in the pack the phone layout is ready in under 4 s with
     assert.ok(r.ms < 4000, String(r.ms));
   } finally { await ctx.close(); rmSync(dir, { recursive: true, force: true }); }
 });
-test('B15 the Lore flavor blob (compressed English flavor texts) stays under 500 KB and is decoded lazily', () => {
-  const m = html.match(FLAVOR_RE); assert.ok(m, 'blob present'); assert.ok(m[0].length < 500e3, m[0].length);
+// 2026-11-04: B15 500 -> 900 KB: flavor texts for the master import (6,453 -> 11,001 cards); data only, lazily decoded.
+test('B15 the Lore flavor blob (compressed English flavor texts) stays under 900 KB and is decoded lazily', () => {
+  const m = html.match(FLAVOR_RE); assert.ok(m, 'blob present'); assert.ok(m[0].length < 900e3, m[0].length);
   assert.match(html, /const lore = \(\) => LORE_DATA \|\|/);
 });
 

@@ -179,8 +179,8 @@ PANEL_ID, CP_MIN, cpMinToggle, cardPanelHTML, panelCardOf
 ## apps/web/src/13l-emote.js (56 lines, ~1.2k tokens) — EFFECT ACTIVE PANEL + EMOTICONS (v0.125.0, U14d2; docs/design/mockup-v14.html)
 EMOTES, EMOTE_GAP, EMOTE_AT, emoteLeft, EFF_MS, effectPanel, magicReveal, emotePop, emoteSend
 
-## apps/web/src/13m-lore.js (45 lines, ~1.5k tokens) — LORE (v0.131.0, U14g; docs/design/mockup-v14.html): the English flavor texts of the cards, read in order by series.
-LORE_SET, lore, SAGA_NAMES, SAGA_EXTRA, BS_SAGA_END, sagaOf, LORE_BY, loreKeyOf, loreSeries, loreTitle, LORE_FS, renderLore
+## apps/web/src/13m-lore.js (51 lines, ~1.7k tokens) — LORE (v0.131.0, U14g; docs/design/mockup-v14.html): the English flavor texts of the cards, read in order by series.
+LORE_SET, lore, SAGA_NAMES, SAGA_EXTRA, BS_SAGA_END, sagaOf, LORE_KIND, loreSetRank, loreSetCmp, LORE_BY, loreKeyOf, loreSeries, loreTitle, LORE_FS, renderLore
 
 ## apps/web/src/13n-cardpage.js (73 lines, ~2.5k tokens) — CARD PAGE (v0.132.0, U14g2; docs/design/mockup-v14.html): what the Library's card zoom adds under the card detail: the same
 ART_KEY, normTxt, printSig, sameName, sameArt, artOk, artOf, ART_ALT, usedInDecks, setArt, cardPageHTML, cardTilt, CP_ID, cpIds, openCardPage, renderCardPage

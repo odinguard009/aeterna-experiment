@@ -38,6 +38,9 @@ def clean(t):
     t = re.sub(r'\[\[(?:[^\]|]*\|)?([^\]]*)\]\]', r'\1', t)
     t = re.sub(r'\{\{[^{}|]*\|([^{}|]*)[^{}]*\}\}', r'\1', t)
     t = t.replace("'''", '').replace("''", '')
+    t = re.sub(r'^\s*<tabber>\s*[^=<]{1,20}=\s*', '', t)                 # a tabber wrapped around the field: keep the first tab's text
+    t = re.sub(r'<br\s*(?=[^\w/>])', ' ', t); t = re.sub(r'</?[a-z]+>', '', t, flags=re.I)   # stray <br—, <i>..</i>
+    if '{{' in t or '}}' in t or '<' in t: return ''                       # unresolved template or markup: leave it out rather than show it
     return re.sub(r'\s+', ' ', t).strip()
 
 
