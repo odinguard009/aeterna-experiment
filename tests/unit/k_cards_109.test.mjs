@@ -128,3 +128,18 @@ test('K-1115 BS70-003 Gecko Geozard: a Primordial Nexus destroyed by your own ef
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.kept, true, JSON.stringify(r)); assert.equal(r.gone, true, JSON.stringify(r));
   assert.equal(r.oppKept, false, JSON.stringify(r)); assert.equal(r.bStays, true, JSON.stringify(r));
 });
+
+test('K-1116 BS70-004 Nogihara Geozard: reveals two (three at six counters), adds a Primordial Nexus, discards the rest; draws when your Nexus is destroyed', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 3;
+    const nxId = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Nexus' && (BS.CARDS[k].families || []).includes('Primordial') && !BS.CARDS[k].token);
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && !(BS.CARDS[k].families || []).includes('Primordial'));
+    const a = BS.mkInst('BS70-004'); a.cores = 3; P.spirits = [a]; P.hand = []; P.trash = []; P.onceUsed = {}; P.count = 0;
+    P.deck = [BS.mkInst(any), BS.mkInst(any), BS.mkInst(nxId), BS.mkInst(any), BS.mkInst(any)];
+    await BS.fireFx(P, 'SUMMONED', a, { subject: a }); const first = { hand: P.hand.length, trash: P.trash.length };
+    P.onceUsed = {}; a.fxUsed = {}; P.count = 6; P.hand = []; P.trash = []; P.deck = [BS.mkInst(any), BS.mkInst(any), BS.mkInst(nxId), BS.mkInst(any)];
+    await BS.fireFx(P, 'SUMMONED', a, { subject: a }); const second = { hand: P.hand.length, trash: P.trash.length };
+    P.hand = []; P.deck = [BS.mkInst(any), BS.mkInst(any)]; const nx = BS.mkInst(nxId); P.nexus = [nx]; await BS.fireFx(P, 'ALLY_NEXUS_DESTROYED', a, { subject: nx });
+    return { first, second, drew: P.hand.length, partial: BS.CARDS['BS70-004'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.deepEqual(r.first, { hand: 0, trash: 2 }, JSON.stringify(r)); assert.deepEqual(r.second, { hand: 1, trash: 2 }, JSON.stringify(r)); assert.equal(r.drew, 1, JSON.stringify(r));
+});
