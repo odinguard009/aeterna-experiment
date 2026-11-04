@@ -12,9 +12,9 @@ async function runActions(c, e, trg) {
     if (!FX_ACTIONS[a.do]) { fxUnknown('action', a.do); continue; }             // v0.59.4 strict effects (release: skip it)
     c.ctx.did = true;
     const by = G.fxBy, bySrc = G.fxSrc; G.fxBy = c.p.key; G.fxSrc = c.src;                 // v0.73: whose effect is resolving (LEAVES / byOppFx: "due to opposing effects", depletion and returns included)
-    const cw = coreWatchBegin();
+    const cw = coreWatchBegin(), hs = c.p.hand.slice();
     try { await FX_ACTIONS[a.do].run(c, chargeAction(c, a)); } finally { G.fxBy = by; G.fxSrc = bySrc; }
-    await coreWatchEnd(cw, c.src);
+    await coreWatchEnd(cw, c.src); await ownDiscardCheck(c, hs);
     last = c.ctx.did !== false;
     if (a.cost && !last) return;                        // v0.43: a cost that could not be paid stops the rest of the effect
   }
@@ -39,7 +39,7 @@ function collectFx(ev) {
   else if (trigger === 'BLOCKS') { for (const { e, idx } of fxEntries(src)) { if (e.trigger === 'BLOCKS' || (e.trigger === 'ATTACKS' && e.alsoBlocks)) add('BLOCKS', src, e, idx); } }
   else if (trigger === 'MIRAGE_OWN_LIFE' || trigger === 'MIRAGE_OPP_LIFE' || trigger === 'MIRAGE_SET') { if (owner.mirage) collect(trigger, owner.mirage); }
   else for (const f of fieldList(owner)) collect(trigger, f);
-  if ((trigger === 'ALLY_ATTACKS' || trigger === 'OPP_REMOVED') && owner.mirage && owner.mirage.mirage) for (const { e, idx } of fxEntries(owner.mirage)) if (e.trigger === trigger && e.zone === 'mirage') add(trigger, owner.mirage, e, idx);      // v468 Ichziyon BS74-008
+  if ((trigger === 'ALLY_ATTACKS' || trigger === 'OPP_REMOVED' || trigger === 'OWN_DISCARD') && owner.mirage && owner.mirage.mirage) for (const { e, idx } of fxEntries(owner.mirage)) if (e.trigger === trigger && e.zone === 'mirage') add(trigger, owner.mirage, e, idx);      // v468 Ichziyon BS74-008
   if (trigger === 'ALLY_DIED' || trigger === 'EXHAUSTED_FX' || trigger === 'NEXUS_DOWN' || trigger === 'COUNTER_UP') for (const t of owner.trash) for (const { e, idx } of fxEntries(t)) if (e.trigger === trigger && e.zone === 'trash') add(trigger, t, e, idx);      // v155 zone:'trash'
   if (trigger === 'ALLY_BLOCKED' || trigger === 'SILVER_WHEEL' || trigger === 'ALLY_SUMMONED' || trigger === 'ALLY_NEXUS_DESTROYED') for (const h of owner.hand) collect(trigger, h);           // zone:'hand' effects (e.g. deploy this from the Hand)
   if (trigger === 'SUMMONED' || trigger === 'ADVENT') for (const f of fieldList(owner)) collect('ALLY_SUMMONED', f);
@@ -55,7 +55,7 @@ function fxValid(it) {
   if (e.oc && (dead || !ocActive(f))) return false;
   if (e.braved && !f.brave) return false;
   if ((trg === 'ALLY_ATTACKS' || trg === 'OPP_ATTACKS' || trg === 'ALLY_DESTROYS' || trg === 'ALLY_BLOCKED' || trg === 'ALLY_BLOCKS' || trg === 'ALLY_SUMMONED' || trg === 'SPIRIT_DIED' || trg === 'ALLY_LIFE_HIT' || trg === 'ALLY_LOST' || trg === 'ALLY_DIED' || trg === 'SOUL_PLACED' || trg === 'ALLY_BATTLE_WIN' || trg === 'ALLY_BATTLE_END' || trg === 'BP_REACHED' || trg === 'MAGIC_USED' || trg === 'OPP_MAGIC_USED' || trg === 'AMPLIFY') && !(subj && fxMatch(CARDS[subj.id], e.match, subj))) return false;
-  if (trg === 'COUNTER_UP' && e.match && !(ctx.by && fxMatch(CARDS[ctx.by.id], e.match))) return false;      // v485 "via your <X>'s effect"
+  if ((trg === 'COUNTER_UP' || trg === 'OWN_DISCARD') && e.match && !(ctx.by && fxMatch(CARDS[ctx.by.id], e.match))) return false;      // v485 "via your <X>'s effect"
   if (trg === 'BP_REACHED' && e.match && !(subj && fxMatch(CARDS[subj.id], e.match, subj))) return false;      // v217
   if (trg === 'OPP_DIED' && e.match) {      // v192 the destroyed Spirit's BP when it was destroyed (ctx.bp), not its coreless instance
     const mm = Object.assign({}, e.match); delete mm.bpLe;

@@ -4918,16 +4918,66 @@
   "mechanics": [
    "Mirage"
   ],
-  "fxComplete": false,
-  "residual": [
-   "{{mirage|Cost 2 ()}} During Set (Either Attack Step) When your Hand is discarded via your \"Scarlet Flame\" family effect, your counter +1. Then, once per turn, you can draw a card.",
-   "During Set Flash - (Either Attack Step) By discarding a card from your Hand, summon this Mirage without paying the cost."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
   "bicon": [
    "10"
   ],
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "OWN_DISCARD",
+    "zone": "mirage",
+    "match": {
+     "family": [
+      "Scarlet Flame"
+     ]
+    },
+    "actions": [
+     {
+      "do": "COUNTER",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "OWN_DISCARD",
+    "zone": "mirage",
+    "match": {
+     "family": [
+      "Scarlet Flame"
+     ]
+    },
+    "once": true,
+    "optional": true,
+    "actions": [
+     {
+      "do": "DRAW",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "ACTIVATE",
+    "zone": "mirage",
+    "timing": [
+     "FLASH"
+    ],
+    "actions": [
+     {
+      "do": "BY",
+      "cost": {
+       "do": "DISCARD_HAND",
+       "n": 1
+      },
+      "then": [
+       {
+        "do": "SUMMON_MIRAGE_SELF"
+       }
+      ]
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS65-004",

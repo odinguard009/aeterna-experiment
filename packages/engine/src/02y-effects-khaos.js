@@ -280,3 +280,14 @@ FX_ACTIONS.BANISH_SELF = { chk: a => Object.keys(a).every(k => ['do', 'if'].incl
 function flagActive(owner, flag, subject, pred) {
   return flagActiveField(owner, flag, subject, pred) || (!!G && !!owner && !!subject && !!owner.mirage && !!owner.mirage.mirage && fxEntries(owner.mirage).some(({ e }) => e.trigger === 'STATIC' && e.zone === 'mirage' && e.flag === flag && e.to === 'own' && (!pred || pred(e)) && fxMatch(CARDS[subject.id], e.match) && fxIf(owner, G.p[other(owner.key)], e.if, { selfInst: owner.mirage })));
 }
+
+/* v506 OWN_DISCARD ("When your Hand is discarded via your <X> effect", BS65-003): fired by runActions after an action whose own effect moved cards from the Hand to the Trash; ctx.by = the effect's source (the trigger's match tests it), ctx.discarded = the cards.
+   Cards already reported this turn are not reported twice (a BY cost and its wrapper both pass here). */
+FX_TRIGGER_TEXT.OWN_DISCARD = 'When your Hand is discarded via your effect';
+async function ownDiscardCheck(c, hs) {
+  if (!G || G.over || !c.src || !c.src.id) return;
+  const gone = hs.filter(x => !c.p.hand.includes(x) && c.p.trash.includes(x) && x.odTurn !== G.turnNo);
+  if (!gone.length) return;
+  for (const x of gone) x.odTurn = G.turnNo;
+  await fireFx(c.p, 'OWN_DISCARD', null, { by: c.src, discarded: gone });
+}

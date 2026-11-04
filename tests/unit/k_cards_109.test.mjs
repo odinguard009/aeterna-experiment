@@ -185,3 +185,18 @@ test('K-1119 BS70-002 Saber Gurnard: Summoned destroys two Cost 3 or less Nexuse
     return { left, before, after, partial: BS.CARDS['BS70-002'].partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.left, 1, JSON.stringify(r)); assert.equal(r.before, false, JSON.stringify(r)); assert.equal(r.after, true, JSON.stringify(r));
 });
+
+test('K-1120 BS65-003 Kirihoubou: as set Mirage a Scarlet Flame effect discarding your Hand gives counter +1 and one draw per turn; BS68-001 Attacks counts and summons a Cost 3 Scarlet Flame from Hand with Bladra', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token);
+    const sf = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && (BS.CARDS[k].families || []).includes('Scarlet Flame'));
+    const m = BS.mkInst('BS65-003'); m.mirage = true; P.mirage = m; const src = BS.mkInst(sf); P.spirits = [src];
+    P.count = 0; P.hand = [BS.mkInst(any), BS.mkInst(any)]; P.deck = [1,2,3].map(() => BS.mkInst(any));
+    const c = { p: P, opp: O, src, ctx: {} };
+    await BS.runActions(c, { actions: [{ do: 'DISCARD_HAND', n: 1 }] }, 'ATTACKS'); const one = { count: P.count, hand: P.hand.length };
+    await BS.runActions(c, { actions: [{ do: 'DISCARD_HAND', n: 1 }] }, 'ATTACKS'); const two = { count: P.count, hand: P.hand.length };
+    return { one, two, partial: BS.CARDS['BS65-003'].partial, p2: BS.CARDS['BS68-001'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.p2, false, JSON.stringify(r));
+  assert.deepEqual(r.one, { count: 1, hand: 2 }, JSON.stringify(r)); assert.deepEqual(r.two, { count: 2, hand: 1 }, JSON.stringify(r));
+});

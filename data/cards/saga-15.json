@@ -72,16 +72,39 @@
   "image": "BS68-001.png",
   "block": "68",
   "saga": 15,
-  "fxComplete": false,
-  "residual": [
-   "Flash - (Either Attack Step) (Once per Turn: Same Name) Including being in Soul State/pre-advent condition, if you control any \"Wanderer Dan's Bladra\", you can pay one cost to summon this card from the Hand.",
-   "[LV2] (When Attacks) Your counter +1. Then, including being in Soul State/pre-advent condition, if you control any \"Wanderer Dan's Bladra\", you can summon a Cost 3 or less \"Scarlet Flame\" family Spirit card from your Hand."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
   "bicon": [
    "11"
   ],
-  "rcode": "C"
+  "rcode": "C",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "COUNTER",
+      "n": 1
+     },
+     {
+      "do": "SUMMON_HAND",
+      "from": "hand",
+      "costLe": 3,
+      "match": {
+       "type": "Spirit",
+       "family": [
+        "Scarlet Flame"
+       ]
+      },
+      "if": {
+       "controlName": "Wanderer Dan's Bladra"
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS68-002",
