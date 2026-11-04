@@ -229,3 +229,18 @@ test('K-1122 BS74-AX01 Mudou: Soul Drive sends the Soul Core to Ometeotl Nexus a
   assert.equal(r.left, 4 - ({ 3: 3, 4: 4, 5: 5 }[r.lv] || 0) < 0 ? 0 : 4 - ({ 3: 3, 4: 4, 5: 5 }[r.lv] || 0), JSON.stringify(r));
   if (r.lv >= 4) { assert.equal(r.dLife, 2, JSON.stringify(r)); assert.equal(r.dVoid, 2, JSON.stringify(r)); }
 });
+
+test('K-1123 BS75-062 The Stardust Lava Sea: Mirage Flash pays the Soul Core from a Nexus to destroy a 10000 BP or less Spirit; LV1 locks Deck discards for the turn', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key;
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && BS.CARDS[k].levels && BS.CARDS[k].levels[0].bp <= 10000);
+    const src = BS.mkInst('BS75-062'); const nx = BS.mkInst('BS74-CX01'); nx.cores = 1; nx.soul = true; P.nexus = [nx]; P.trashCores.soul = false;
+    const t = BS.mkInst(any); t.cores = 1; O.spirits = [t];
+    const c = { p: P, opp: O, src, ctx: {} }; const eff = BS.CARDS['BS75-062'].effects;
+    for (const a of eff[0].actions) { if (a.if && !c.ctx.did) continue; await BS.FX_ACTIONS[a.do].run(c, a); }
+    const gone = !O.spirits.includes(t), soulTrash = P.trashCores.soul, soulOnNx = nx.soul;
+    BS.G.deckLockTurn = undefined; const c2 = { p: P, opp: O, src, ctx: {} }; await BS.FX_ACTIONS.DECK_LOCK_TURN.run(c2, { do: 'DECK_LOCK_TURN' });
+    return { gone, soulTrash, soulOnNx, locked: BS.G.deckLockTurn === BS.G.turnNo, partial: BS.CARDS['BS75-062'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.gone, true, JSON.stringify(r)); assert.equal(r.soulTrash, true, JSON.stringify(r));
+  assert.equal(r.soulOnNx, false, JSON.stringify(r)); assert.equal(r.locked, true, JSON.stringify(r));
+});

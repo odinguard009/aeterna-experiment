@@ -319,3 +319,12 @@ FX_ACTIONS.SOUL_DRIVE_VOID = { chk: a => hasMatch(a.match) && Number.isInteger(a
     if (c.opp.life <= 0) { win(c.p.key, `${poss(c.opp)} Life reached 0`); return; }
     await maybeBurst(c.opp, 'LIFE_DECREASE', {});
   } };
+
+/* v511 NEXUS_SOUL_TO_TRASH {}: "by sending your Soul Core from your Nexus to the Trash" (BS75-062): did = true when the Soul Core sat on one of your Nexuses and went to the Trash (a plain action: the next action tests {"prev":true}). */
+FX_ACTIONS.NEXUS_SOUL_TO_TRASH = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => 'send your Soul Core from your Nexus to the Trash', can: c => c.p.nexus.some(n => n.soul),
+  run: async c => { c.ctx.did = false; const n = c.p.nexus.find(x => x.soul); if (!n) return;
+    if (!c.p.cpu && !(await ask({ title: `✨ ${CARDS[c.src.id].name}`, peek: true, html: `Send your Soul Core from ${esc(CARDS[n.id].name)} to the Trash?`, buttons: [{ label: 'Yes', cls: 'primary', value: true }, { label: 'No', cls: 'cancel', value: false }] }))) return;
+    n.soul = false; c.p.trashCores.soul = true; c.ctx.did = true; log(`${CARDS[c.src.id].name}: ${poss(c.p)} Soul Core goes from ${CARDS[n.id].name} to the Trash.`); io.view({ type: 'board' }); } };
+/* v511 DECK_LOCK_TURN {}: "during this turn, cards can't be discarded from either player's deck" (BS75-062): sets G.deckLockTurn, read by deckDiscardLocked. */
+FX_ACTIONS.DECK_LOCK_TURN = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => "this turn, cards can't be discarded from either player's deck", can: () => true,
+  run: async c => { G.deckLockTurn = G.turnNo; c.ctx.did = true; log(`${CARDS[c.src.id].name}: cards can't be discarded from either deck this turn.`); } };

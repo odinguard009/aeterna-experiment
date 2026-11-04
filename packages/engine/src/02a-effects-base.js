@@ -264,8 +264,8 @@ function drawPlusOf(p) {
 }
 /* v0.186 STATIC NO_ATTACK_LIFE {costLe} ("Neither player's Life can be reduced by the attacks of Cost N or less Spirits."): while any Spirit/Nexus of either player carries it, an unblocked attack of a Spirit with cost <= N takes no Life */
 const attackLifeLocked = att => !!G && ['player', 'opponent'].some(k => fieldList(G.p[k]).some(s => flagActive(G.p[k], 'NO_ATTACK_LIFE', s, e => e.costIn ? e.costIn.includes(CARDS[att.id].cost) && !(e.noTribute && cardHasKeyword(CARDS[att.id], 'Tribute')) : CARDS[att.id].cost <= e.costLe)));      // v308 costIn / noTribute
-/* v0.180 STATIC NO_DECK_DISCARD ("Cards can't be discarded from either deck."): while any Spirit/Nexus of either player carries it, nothing goes from a Deck to a Trash */
-const deckDiscardLocked = () => !!G && ['player', 'opponent'].some(k => fieldList(G.p[k]).some(s => flagActive(G.p[k], 'NO_DECK_DISCARD', s)));
+/* v0.180 STATIC NO_DECK_DISCARD ("Cards can't be discarded from either deck."): nothing goes from a Deck to a Trash  (v511 + G.deckLockTurn) */
+const deckDiscardLocked = () => !!G && (G.deckLockTurn === G.turnNo || ['player', 'opponent'].some(k => fieldList(G.p[k]).some(s => flagActive(G.p[k], 'NO_DECK_DISCARD', s))));
 /* v143 STATIC NO_BP_COMPARE (to:'all', usually if {selfAttacking:true}): "Neither player's Spirits would be destroyed by BP comparison" */
 const bpCompareLocked = s => !!G && ['player', 'opponent'].some(k => flagActive(G.p[k], 'NO_BP_COMPARE', s));
 /* v250 Charge: STATIC CHARGE { kind, n, noUlt? } raises the numbers of the owner's matching effects (cores = core removal, mill = opposing-deck discard, bp = BP destruction limit, exhaust = opponent-targeting exhaustion). Sums over the owner's Field. */
