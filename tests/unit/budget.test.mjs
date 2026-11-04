@@ -94,7 +94,7 @@ const FONT_URL = /url\(data:font\/woff2;base64,[A-Za-z0-9+/=]+\)/g, SIDES_RE = /
 // v0.207 cycle (Lane K): raised B01 1295 -> 1300 KB on purpose (OWN_CORES_TO_TRASH, OPP_SELF_CORES_TO_TRASH, OWN_CORE_TO_VOID).
 // v0.207.0 (merge of main): raised B01 1305 -> 1320 KB and B02 350 -> 355 KB on purpose: the UI work on main (text size setting, PWA, fullscreen) plus Lane K engine code.
 // v0.208.0: B01 limit 1340 KB (merge with main).
-test('B01 index.html without the card pack stays under 1560 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 1560e3, Buffer.byteLength(noFont(code))));
+test('B01 index.html without the card pack stays under 1580 KB', () => assert.ok(Buffer.byteLength(noFont(code)) < 1580e3, Buffer.byteLength(noFont(code))));
 // v0.186.0 (Brave costLe): raised B02 290 -> 292 KB on purpose: the Brave combine condition costLe (parser, braveFits, types) put the page 0.9 KB over the limit.
 // v0.188.0 (R2): raised B02 292 -> 294 KB on purpose: the Family list, BP / core and colour-mode filters (shared by the Deck Builder and the Library) put the page 0.04 KB over the limit.
 // v0.195.0 (Lane K): raised B02 294 -> 296 KB on purpose: viaLegacy and BOUNCE_OPP n/bpLe put the engine 0.01 KB over the limit.
@@ -112,9 +112,10 @@ test('B01 index.html without the card pack stays under 1560 KB', () => assert.ok
 // v0.215.0 (Lane K, fifth raise): B01 1500 -> 1520 KB and B02 395 -> 400 KB on purpose (Ometeotl family mechanics: flashSummon, DESTROY_SYMBOLS, SOUL_NO_PREVENT).
 // v0.216.0 (Lane K, sixth raise): B01 1520 -> 1540 KB and B02 400 -> 405 KB on purpose (Khaos family mechanics: HAND_DISCARDED, BLOCK_MIN, SUMMON_SELF_TRASH, OPP_REMOVED_LOCK, BURST_ON_DISCARD).
 // v0.216.0 (seventh raise): B01 1540 -> 1560 KB and B02 405 -> 410 KB on purpose (bundle 22: costPerCount, DESTROY_NEXUS_FOR_OPP, OPP_MAGIC_ACCEL_UNLESS_DESTROY).
+// v0.216.0 (eighth raise): B01 1560 -> 1580 KB and B02 410 -> 415 KB on purpose (bundle 38: Token Nexus, OPP_SUMMONED, Fungal Bed actions).
 // v0.214.0 (Lane K): raised B02 375 -> 380 KB on purpose (Grandwalker Oracle mechanics: anyOf, ORACLE_CORE, REFRESH_PUT_CORE, OPP_NO_MAGIC).
 // v0.213.0 (Lane K): raised B02 370 -> 375 KB on purpose (engine flags SUMMON_DISCOUNT, MAGIC_WALL, ALSO_TREATED etc. added by card work).
-test('B02 index.html without the card pack, gzipped, stays under 410 KB', () => { const n = gzipSync(noFont(code), { level: 9 }).length; assert.ok(n < 410e3, n); });
+test('B02 index.html without the card pack, gzipped, stays under 415 KB', () => { const n = gzipSync(noFont(code), { level: 9 }).length; assert.ok(n < 415e3, n); });
 test('B03 the embedded card pack stays under 2.1 MB (room for all cards; never embed staging data)', () => assert.ok(packLen < 2.1e6, packLen));
 // v0.93.0 (U6): raised 90 -> 96 KB on purpose (roadmap item U allows it with a note): U6-U8 add the My decks page and the
 // deck builder restyle; unused rules were trimmed first in v0.92.0. The next raise needs the same kind of note.

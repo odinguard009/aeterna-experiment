@@ -43,6 +43,7 @@ function collectFx(ev) {
   if (trigger === 'ALLY_DIED' || trigger === 'EXHAUSTED_FX' || trigger === 'NEXUS_DOWN' || trigger === 'COUNTER_UP') for (const t of owner.trash) for (const { e, idx } of fxEntries(t)) if (e.trigger === trigger && e.zone === 'trash') add(trigger, t, e, idx);      // v155 zone:'trash'
   if (trigger === 'ALLY_BLOCKED' || trigger === 'SILVER_WHEEL' || trigger === 'ALLY_SUMMONED' || trigger === 'ALLY_NEXUS_DESTROYED') for (const h of owner.hand) collect(trigger, h);           // zone:'hand' effects (e.g. deploy this from the Hand)
   if (trigger === 'SUMMONED' || trigger === 'ADVENT') for (const f of fieldList(owner)) collect('ALLY_SUMMONED', f);
+  if (trigger === 'SUMMONED' || trigger === 'ADVENT') for (const f of fieldList(opp)) for (const { e, idx } of fxEntries(f)) if (e.trigger === 'OPP_SUMMONED') out.push({ owner: opp, opp: owner, f, idx, e, trg: 'OPP_SUMMONED', trigger, ctx });      // v515 Contract Field: the opponent's summon/deploy
   if (out.some(i => i.e.noStack)) { const seen = new Set(); return out.filter(i => { if (!i.e.noStack) return true; const k = CARDS[i.f.id].name + ':' + i.idx; if (seen.has(k)) return false; seen.add(k); return true; }); }     // v0.40 (Can't Stack): the same-name effect works once
   return out;
 }
@@ -69,6 +70,7 @@ function fxValid(it) {
   if (e.exOnly && !(ctx.exCount > 0)) return false;      // v0.185 RUMBLE_DISCARD "cards with EX Symbols"
   if (e.attackingOnly && (trg === 'BATTLE_WIN' || trg === 'ALLY_BATTLE_WIN') && !ctx.attacking) return false;     // v0.72 (During Attack) battle result: only as the attacker
   if (e.blockingOnly && (trg === 'BATTLE_WIN' || trg === 'ALLY_BATTLE_WIN') && ctx.attacking) return false;     // v0.74 (When Blocks) battle result: only as the blocker
+  if (trg === 'OPP_SUMMONED' && !(subj && fxMatch(CARDS[subj.id], e.match, subj) && (!e.costLeCounters || CARDS[subj.id].cost <= owner.count))) return false;      // v515 costLeCounters: cost <= your counters
   if (trg === 'ALLY_SUMMONED' && subj && CARDS[subj.id].type === 'Brave' && !(e.match && e.match.type === 'Brave')) return false;     // a Brave summon is not a Spirit summon (manual p. 35)
   if (trg === 'OWN_LIFE_HIT' && e.match && !(ctx.attacker && fxMatch(CARDS[ctx.attacker.id], e.match))) return false;      // v0.177 "by opposing Spirits / Ultimates"
   if (trg === 'EXHAUSTED_FX' && e.match && !(subj && fxMatch(CARDS[subj.id], e.match, subj))) return false;      // v220

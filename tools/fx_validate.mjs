@@ -75,7 +75,7 @@ export async function engineErrors(cards) {
   try {
     return await page.evaluate((cs) => {
       const out = {};
-      for (const c of cs) { const r = BS.parseCard(c.type === 'Token Spirit' ? Object.assign({}, c, { type: 'Spirit' }) : c);   /* as registerTokens() does */ if (!r.card) out[c.id] = r.errors.map((e) => e.replace(/"[^"]*" is reserved for a built-in card/, 'reserved id')); }
+      for (const c of cs) { const r = BS.parseCard(/^Token (Spirit|Nexus)$/.test(c.type) ? Object.assign({}, c, { type: c.type === 'Token Nexus' ? 'Nexus' : 'Spirit' }) : c);   /* as registerTokens() does */ if (!r.card) out[c.id] = r.errors.map((e) => e.replace(/"[^"]*" is reserved for a built-in card/, 'reserved id')); }
       return out;
     }, cards);
   } finally { await closeBrowser(); }

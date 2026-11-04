@@ -148,7 +148,7 @@ function sendToken(p, id) {
   p.tokens[id]--;
   const t = mkInst(id); t.token = true; t.summonedTurn = G.turnNo;
   const got = takeCores(p, minCores(CARDS[id]), t.uid); t.cores = got.n; t.soul = got.soul;
-  p.spirits.push(t);
+  (CARDS[id].type === 'Nexus' ? p.nexus : p.spirits).push(t);      // v514 a Token Nexus (Fungal Bed) joins the Nexuses
   log(`${who(p)} ${p.cpu ? 'sends' : 'send'} out a "${CARDS[id].name}" Token.`);
   checkDepletion(p);
   return t;

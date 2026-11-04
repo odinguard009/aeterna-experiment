@@ -347,3 +347,15 @@ FX_ACTIONS.SOUL_UNLEASH_SELF = { chk: a => hasMatch(a.match) && Object.keys(a).e
    so no Magic is ever "active" when this runs: the action only logs it (documented approximation). */
 FX_ACTIONS.NEGATE_OPP_MAGIC = { chk: a => typeof a.color === 'string' && COLORS.includes(a.color) && Object.keys(a).every(k => ['do', 'if', 'color'].includes(k)), txt: a => `negate an opposing active ${a.color} Magic effect`, can: () => true,
   run: async (c, a) => { c.ctx.did = false; log(`${CARDS[c.src.id].name}: no opposing active ${a.color} Magic effect to negate.`); } };
+
+/* v515 DESTROY_FUNGAL_BED {} / EXHAUST_SUBJECT {}: Yum-Kaax's Contract Field. A "Fungal Bed" is the BS73-T001 Token Nexus (BS74-071 counts as one). DESTROY_FUNGAL_BED: did = true when one of your Fungal Beds was destroyed; EXHAUST_SUBJECT exhausts the card that was just summoned/deployed (ctx.subject, a Spirit or Nexus on the opposing field). */
+const isFungalBed = n => n.id === 'BS73-T001' || n.id === 'BS74-071';
+FX_ACTIONS.DESTROY_FUNGAL_BED = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => 'destroy one of your "Fungal Bed"', can: c => c.p.nexus.some(n => !n.noFx && isFungalBed(n)),
+  run: async c => {
+    const L = c.p.nexus.filter(n => !n.noFx && isFungalBed(n)); if (!L.length) { c.ctx.did = false; return; }
+    const t = L.length === 1 || c.p.cpu ? L.slice().sort((x, y) => x.cores - y.cores)[0] : await fxPickTarget(c, L, `✨ <b>${esc(_nm(c))}</b><br>Tap the "Fungal Bed" to destroy (glowing).`);
+    if (!t) { c.ctx.did = false; return; }
+    log(`${_nm(c)}: ${CARDS[t.id].name} is destroyed.`); removeNexus(c.p, t, 'destroyed'); c.ctx.did = true; io.view({ type: 'board' }); } };
+FX_ACTIONS.EXHAUST_SUBJECT = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => 'exhaust that card', can: c => !!c.ctx.subject,
+  run: async c => { const t = c.ctx.subject; c.ctx.did = false; if (!t || t.exhausted) return; t.exhausted = true; c.ctx.did = true; log(`${_nm(c)}: ${CARDS[t.id].name} is exhausted.`); io.view({ type: 'board' }); } };
+FX_TRIGGER_TEXT.OPP_SUMMONED = 'When the opponent summons or deploys';

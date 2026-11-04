@@ -275,3 +275,17 @@ test('K-1125 BS77-005 Hitokaku: Flag Contract Advent onto a Vermillion Contract 
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.tg.length, 1, JSON.stringify(r)); assert.equal(r.ok, true, JSON.stringify(r));
   assert.equal(r.stacked, true, JSON.stringify(r)); assert.ok(r.left <= 1, JSON.stringify(r));
 });
+
+test('K-1126 BS73-CX01 Yum-Kaax: ACTIVATE gives counters +2 and a Fungal Bed Token Nexus; opposing summon with cost <= counters destroys a Fungal Bed and exhausts the card', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = true; O.cpu = true; G.active = P.key; G.step = 4;
+    const y = BS.mkInst('BS73-CX01'); y.cores = 3; P.nexus = [y]; P.count = 0; P.tokens = { 'BS73-T001': 3 };
+    const idx = BS.CARDS['BS73-CX01'].effects.findIndex(e => e.trigger === 'ACTIVATE'); const ok = await BS.activateFx(P, y, idx);
+    const bed = P.nexus.filter(n => n.id === 'BS73-T001').length;
+    const cheap = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && BS.CARDS[k].cost <= 2);
+    const s = BS.mkInst(cheap); O.spirits = [s]; y.cores = 3; G.active = O.key;
+    await BS.fireFx(O, 'SUMMONED', s, { subject: s });
+    return { ok, counters: P.count, bed, bedAfter: P.nexus.filter(n => n.id === 'BS73-T001').length, exhausted: !!s.exhausted, partial: BS.CARDS['BS73-CX01'].partial, done: BS.CARDS['BS73-CX01'].fxComplete }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.ok, true, JSON.stringify(r)); assert.equal(r.counters >= 2, true, JSON.stringify(r));
+  assert.equal(r.bed, 1, JSON.stringify(r)); assert.equal(r.bedAfter, 0, JSON.stringify(r)); assert.equal(r.exhausted, true, JSON.stringify(r));
+});

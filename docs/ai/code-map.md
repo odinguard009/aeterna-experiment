@@ -26,10 +26,10 @@ FX_STRICT, FX_WARNED, fxUnknown, FX_COND_KEYS, FX_TRIGGERS, FX_TRIGGER_TEXT, BR_
 ## packages/engine/src/02b-effects-actions.js (146 lines, ~6.2k tokens)
 FX_ACTIONS
 
-## packages/engine/src/02c-effects-parse.js (344 lines, ~11.9k tokens)
+## packages/engine/src/02c-effects-parse.js (345 lines, ~11.9k tokens)
 canPlaceFree, canPlaceBraveFree, trashSummonLock, freeSummonLocked, summonFree, canPlacePaid, canPlaceBy, summonPaid, tributePay, summonBy, fxDescribe, BURST_WHEN, parseCond, parseActionList, parseBurst, parseEffects
 
-## packages/engine/src/02d-effects-resolve.js (443 lines, ~9.5k tokens)
+## packages/engine/src/02d-effects-resolve.js (445 lines, ~9.7k tokens)
 fxCan, runActions, fireFx, collectFx, fxValid, fireFxMulti, asResolving, flushDerived, resolvePool, soulCoreHolder, soulToTrash, isSealed, soulToLife, lifeTake, soulSource, soulToNexus, cadvFree, advTiming, soulAdventOK, cadvSources, contractAdventTargets, doContractAdvent, adventFieldCores, manifestTargets, doManifest, humanContractAdvent, humanManifest, cpuAdvents, onceKey, usedThisTurn, markUsed, revealedFx, handDiscardedFx, NB_IDX, actList, effAt, activatable, bpReachedCheck, FX_ACTIVE_BP, activateFx, cpuActivate, reviveKey, reviveTargets, doRevive, cpuRevive
 
 ## packages/engine/src/02e-effects-removed.js (168 lines, ~4.5k tokens) — v0.38 GREEN (Contractor Hermes / Lionheart): Heavy Exhaust, the Removed Zone, exhaust effects, "the opponent can't activate Burst effects".
@@ -92,10 +92,10 @@ symFixedOnSummon, fxLockBusy, fxLocked, leaveSummonOffer, mirageNexusOf, mirageS
 ## packages/engine/src/02x-effects-soul-magic.js (488 lines, ~12.4k tokens)
 magicFromSoul, magicSoulSrc, fromCols, soulBurstCheck, isGwNexus, gwNexusCount, gpShield, gpBattleSafe, drawOneOnly, nyxNexus, lvCostUp, nexusCoresDown, trashCoreGw, muddyDraw, coreWatchBegin, coreWatchEnd, ownReturned, bounceCost, magicLike, trashFlashOK, handUpLocked, soulUnaff, mirageEndLock, nsfOK, nsfPay
 
-## packages/engine/src/02y-effects-khaos.js (349 lines, ~10.9k tokens)
-burstSetSafe, pickFightingBlocker, coreSafeEvery, removedLocked, burstOnDiscard, removedDrawLocked, noMagicHit, freeRed, costPerCount, nexusSwapSave, flagActive, ownDiscardCheck
+## packages/engine/src/02y-effects-khaos.js (361 lines, ~11.3k tokens)
+burstSetSafe, pickFightingBlocker, coreSafeEvery, removedLocked, burstOnDiscard, removedDrawLocked, noMagicHit, freeRed, costPerCount, nexusSwapSave, flagActive, ownDiscardCheck, isFungalBed
 
-## packages/engine/src/03-imported-cards.js (257 lines, ~7.8k tokens) — IMPORTED CARD DATA
+## packages/engine/src/03-imported-cards.js (257 lines, ~7.9k tokens) — IMPORTED CARD DATA
 COLORS, BUILTIN_IDS, CARDS_KEY, IMPORTED, CARDS_VER, parseLevels, parseMagicOf, parseCard, registerImported, saveImported, importCards, clearImported, PACK_IDS, registerPack, TOKEN_IDS, registerTokens
 
 ## packages/engine/src/03a-effects-immunity-final.js (3 lines, ~0.1k tokens)
