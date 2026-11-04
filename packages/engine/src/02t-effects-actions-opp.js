@@ -123,7 +123,7 @@ Object.assign(FX_ACTIONS, {
       setBurst(c.p, h, false); io.view({ type: 'board' }); await fireBurstSet(c.p);
     } },
   DISCARD_OPP_BURST: { chk: () => true, txt: () => 'discard the opposing Burst',
-    run: async c => { const b = c.opp.burst; if (!b || burstSetSafe(c.opp)) { c.ctx.did = false; return; } c.opp.burst = null; b.mirage = false; c.opp.trash.push(b); log(`${CARDS[c.src.id].name}: the opposing Burst is discarded.`); } },
+    run: async c => { const b = c.opp.burst; if (!b || burstSetSafe(c.opp)) { c.ctx.did = false; return; } if (await burstOnDiscard(c.opp, b)) return; c.opp.burst = null; b.mirage = false; c.opp.trash.push(b); log(`${CARDS[c.src.id].name}: the opposing Burst is discarded.`); } },
   /* v0.42 "Unless the opponent discards a Magic card from their Hand, <next actions>": the opponent chooses (modal for the human, CPU rule).
      ctx.did = true when the effect goes ahead (no Magic card to discard, or the opponent declines), false when they discarded, so the
      following actions use {"if":{"prev":true}}. {needExhausted:true}: nothing to ask when this card is not exhausted (refresh clauses). */

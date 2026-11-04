@@ -124,7 +124,7 @@ Object.assign(FX_ACTIONS, {
     } },
   /* v445 SUMMON_HAND_REMOVED {match}: "Summon a <family> card from your Hand/Removed Zone" (the cost is paid) */
   SUMMON_HAND_REMOVED: { chk: a => hasMatch(a.match) && Object.keys(a).every(k => ['do', 'if', 'match'].includes(k)), txt: () => 'summon a matching card from your Hand/Removed Zone (paying its cost)',
-    cands: (c, a) => c.p.hand.concat(c.p.removed).filter(x => x !== c.src && fxMatch(CARDS[x.id], a.match) && canPlacePaid(c.p, x)),
+    cands: (c, a) => c.p.hand.concat(removedLocked(c.p) ? [] : c.p.removed).filter(x => x !== c.src && fxMatch(CARDS[x.id], a.match) && canPlacePaid(c.p, x)),
     can: (c, a) => FX_ACTIONS.SUMMON_HAND_REMOVED.cands(c, a).length > 0,
     run: async (c, a) => {
       const L = FX_ACTIONS.SUMMON_HAND_REMOVED.cands(c, a); if (!L.length) { c.ctx.did = false; return; }

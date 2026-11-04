@@ -92,8 +92,8 @@ symFixedOnSummon, fxLockBusy, fxLocked, leaveSummonOffer, mirageNexusOf, mirageS
 ## packages/engine/src/02x-effects-soul-magic.js (488 lines, ~12.4k tokens)
 magicFromSoul, magicSoulSrc, fromCols, soulBurstCheck, isGwNexus, gwNexusCount, gpShield, gpBattleSafe, drawOneOnly, nyxNexus, lvCostUp, nexusCoresDown, trashCoreGw, muddyDraw, coreWatchBegin, coreWatchEnd, ownReturned, bounceCost, magicLike, trashFlashOK, handUpLocked, soulUnaff, mirageEndLock, nsfOK, nsfPay
 
-## packages/engine/src/02y-effects-khaos.js (55 lines, ~1.7k tokens)
-burstSetSafe, pickFightingBlocker, coreSafeEvery
+## packages/engine/src/02y-effects-khaos.js (83 lines, ~2.6k tokens)
+burstSetSafe, pickFightingBlocker, coreSafeEvery, removedLocked, burstOnDiscard
 
 ## packages/engine/src/03-imported-cards.js (257 lines, ~7.7k tokens) — IMPORTED CARD DATA
 COLORS, BUILTIN_IDS, CARDS_KEY, IMPORTED, CARDS_VER, parseLevels, parseMagicOf, parseCard, registerImported, saveImported, importCards, clearImported, PACK_IDS, registerPack, TOKEN_IDS, registerTokens

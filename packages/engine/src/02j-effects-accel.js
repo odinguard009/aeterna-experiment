@@ -47,7 +47,7 @@ async function useAccel(p, inst, idx, plan, timing) {
   return true;
 }
 /* Fandom Q5: an Accel Spirit in your Removed Zone can be summoned in your Main Step by paying its cost */
-const removedSummonable = p => accelMainStep(p) ? p.removed.filter(x => isSpiritForm(CARDS[x.id]) && accelList(CARDS[x.id]).length > 0 && canPlacePaid(p, x)) : [];
+const removedSummonable = p => accelMainStep(p) && !removedLocked(p) ? p.removed.filter(x => isSpiritForm(CARDS[x.id]) && accelList(CARDS[x.id]).length > 0 && canPlacePaid(p, x)) : [];
 async function summonFromRemoved(p, inst) {
   if (!removedSummonable(p).includes(inst)) return false;
   log(`${who(p)} ${p.cpu ? 'summons' : 'summon'} ${CARDS[inst.id].name} from the Removed Zone.`);

@@ -10892,16 +10892,41 @@
   "mechanics": [
    "Unleash"
   ],
-  "fxComplete": false,
-  "residual": [
-   "This card in Hand is unaffected by opposing effects.",
-   "{{Unleash|1}} [LV1][LV2][LV3] (When Attacks)",
-   "Send two opposing Spirits/Ultimates to the Removed Zone.",
-   "Also, by sending a core from any of your Green Grandwalker Nexus to this Spirit, until your next Start Step, cards in the opposing Removed Zone can't be used by the opponent.",
-   "[LV2][LV3] (When Attacks)",
-   "For each two cards in the opposing Removed Zone, this Spirit gains an extra Green symbol."
+  "fxComplete": true,
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "SEND_REMOVED",
+      "n": 2
+     },
+     {
+      "do": "OPP_REMOVED_LOCK"
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "SYMBOL_PER_OPP_REMOVED",
+      "color": "green",
+      "per": 2
+     }
+    ]
+   }
   ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "handUnaffected": true
  },
  {
   "id": "BS45-X04",
@@ -13001,16 +13026,52 @@
   "mechanics": [
    "Burst"
   ],
-  "fxComplete": false,
-  "residual": [
-   "This card in Hand is unaffected by opposing effects, and when this set card is discarded by the opponent, you can activate it, ignoring the Burst condition.",
-   "{{Burst|After an opposing Spirit/Ultimate attacks}}",
-   "Summon this card without paying the cost.",
-   "Then, exhaust two opposing Spirits/Ultimates, and during this turn, all your \"Blade Beast\" family Spirits gain +10000 BP.",
-   "[LV2] (When Attacks/Blocks)",
-   "When only the opposing Spirit/Ultimate is destroyed by BP comparison, this Spirit refreshes."
+  "fxComplete": true,
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "BURST_ON_DISCARD",
+    "to": "self",
+    "lv": [
+     1,
+     2
+    ]
+   },
+   {
+    "trigger": "BATTLE_WIN",
+    "lv": [
+     2
+    ],
+    "actions": [
+     {
+      "do": "REFRESH"
+     }
+    ]
+   }
   ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "handUnaffected": true,
+  "burst": {
+   "when": "OPP_ATTACK",
+   "actions": [
+    {
+     "do": "SUMMON_SELF"
+    },
+    {
+     "do": "EXHAUST_OPP",
+     "n": 2
+    },
+    {
+     "do": "BP_PLUS",
+     "n": 10000,
+     "to": "own",
+     "match": {
+      "family": [
+       "Blade Beast"
+      ]
+     }
+    }
+   ]
+  }
  },
  {
   "id": "BS46-038",

@@ -53,3 +53,31 @@ FX_ACTIONS.SUMMON_SELF_TRASH = { chk: a => Number.isInteger(a.pay) && a.pay >= 0
     if (!c.p.trash.includes(c.src) || !canPlaceFree(c.p, c.src)) return;
     removeFrom(c.p.trash, c.src); c.p.hand.push(c.src);
     if (await summonFree(c.p, c.src)) c.ctx.did = true; else { removeFrom(c.p.hand, c.src); c.p.trash.push(c.src); } } };
+/* v478 OPP_REMOVED_LOCK {}: "by sending a core from any of your Green Grandwalker Nexus to this Spirit, until your next Start Step, cards in the opposing Removed Zone can't be used by the opponent" (BS45-X03 Unleash; optional, the CPU pays).
+   G.removedLock = {by, turn}; removedLocked(p) is read by the Accel summon from the Removed Zone (02j removedSummonable) and SUMMON_HAND_REMOVED (02x); other uses of Removed cards do not exist in the engine. It ends when the source's controller's next turn begins (turnNo + 2). */
+const removedLocked = p => !!G && !!G.removedLock && G.removedLock.by !== p.key && G.turnNo < G.removedLock.turn + 2;
+FX_ACTIONS.OPP_REMOVED_LOCK = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
+  txt: () => "by sending a core from any of your Green Grandwalker Nexus to this Spirit, until your next Start Step, cards in the opposing Removed Zone can't be used by the opponent",
+  pay: c => c.p.spirits.includes(c.src) ? c.p.nexus.filter(x => x.cores - (x.soul ? 1 : 0) > 0 && (CARDS[x.id].families || []).includes('Grandwalker') && CARDS[x.id].symbol === 'green') : [],
+  can: c => FX_ACTIONS.OPP_REMOVED_LOCK.pay(c).length > 0,
+  run: async c => {
+    c.ctx.did = false; const P = FX_ACTIONS.OPP_REMOVED_LOCK.pay(c), nm = CARDS[c.src.id].name; if (!P.length) return;
+    const yes = c.p.cpu ? true : await ask({ title: `✨ ${nm}`, peek: true, html: "Send 1 core from a Green Grandwalker Nexus to this Spirit so the opposing Removed Zone can't be used until your next Start Step?", buttons: [{ label: 'Send a core', cls: 'primary', value: true }, { label: 'No', cls: 'cancel', value: false }] });
+    if (!yes) return;
+    const t = P.length === 1 || c.p.cpu ? P.slice().sort((x, y) => y.cores - x.cores)[0] : await fxPickTarget(c, P, `✨ <b>${esc(nm)}</b><br>Tap the Green Grandwalker Nexus that sends 1 core to this Spirit (glowing).`);
+    if (!t || !P.includes(t)) return;
+    coreEvN(c.p, t.uid, c.src.uid, 1, false); t.cores--; c.src.cores++; G.removedLock = { by: c.p.key, turn: G.turnNo }; c.ctx.did = true;
+    log(`${nm}: a core moves from ${CARDS[t.id].name} to ${nm}; ${poss(c.opp)} Removed Zone can't be used until ${poss(c.p)} next Start Step.`); io.view({ type: 'board' }); } };
+/* v478 SYMBOL_PER_OPP_REMOVED {color, per}: "for each N cards in the opposing Removed Zone, this Spirit gains an extra <color> symbol" (this turn, like SYMBOL_PLUS_TURN self) */
+FX_ACTIONS.SYMBOL_PER_OPP_REMOVED = { chk: a => COLORS.includes(a.color) && Number.isInteger(a.per) && a.per >= 1 && a.per <= 5 && Object.keys(a).every(k => ['do', 'if', 'color', 'per'].includes(k)),
+  txt: a => `for each ${a.per} cards in the opposing Removed Zone, this Spirit gains an extra ${cap(a.color)} symbol this turn`,
+  can: (c, a) => Math.floor(c.opp.removed.length / a.per) > 0 && (c.p.spirits.includes(c.src) || c.p.nexus.includes(c.src)),
+  run: async (c, a) => {
+    const n = Math.floor(c.opp.removed.length / a.per); if (n <= 0 || !FX_ACTIONS.SYMBOL_PER_OPP_REMOVED.can(c, a)) { c.ctx.did = false; return; }
+    const s = c.src; if (!s.symTurn || s.symTurn.turn !== G.turnNo) s.symTurn = { turn: G.turnNo, cols: [] };
+    for (let i = 0; i < n; i++) s.symTurn.cols.push(a.color);
+    log(`${_nm(c)}: gains ${n} extra ${cap(a.color)} symbol${n === 1 ? '' : 's'} this turn.`); io.view({ type: 'board' }); } };
+/* v478 STATIC BURST_ON_DISCARD: "when this set card is discarded by the opponent, you can activate it, ignoring the Burst condition" (BS46-037). Called by DISCARD_OPP_BURST before the card leaves the Burst Area: the owner may activate it now (maybeBurst1 with force, which skips the "when" check but still honours the Burst's own `if`). True when it was activated. */
+async function burstOnDiscard(owner, b) {
+  if (!b || b.mirage || !(CARDS[b.id].effects || []).some(e => e.trigger === 'STATIC' && e.flag === 'BURST_ON_DISCARD')) return false;
+  return await maybeBurst1(owner, 'DISCARD', { force: true }) && owner.burst !== b; }

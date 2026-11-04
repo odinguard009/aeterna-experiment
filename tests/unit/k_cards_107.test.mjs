@@ -125,3 +125,30 @@ test('K-1080 BS45-032 Agamemnon: a Blade Beast ally winning on your attack sends
     return { life: O.life }; })()`);
   assert.equal(r.life, 4, JSON.stringify(r));
 });
+
+test('K-1081 BS45-X03 Odyssaber: Attacks sends two opposing Spirits to Removed, Unleash core locks their Removed Zone, extra Green symbols per two removed', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && k !== 'BS45-X03');
+    const gw = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Nexus' && (BS.CARDS[k].families || []).includes('Grandwalker') && BS.CARDS[k].symbol === 'green');
+    const a = BS.mkInst('BS45-X03'); a.cores = 3; const n = BS.mkInst(gw); n.cores = 3; P.spirits = [a]; P.nexus = [n]; G.attacker = a;
+    const t1 = BS.mkInst(any), t2 = BS.mkInst(any), t3 = BS.mkInst(any); [t1, t2, t3].forEach(t => t.cores = 1); O.spirits = [t1, t2, t3]; O.removed = [BS.mkInst(any), BS.mkInst(any)];
+    await BS.fireFx(P, 'ATTACKS', a, { attacker: a, subject: a });
+    return { oppSpirits: O.spirits.length, removed: O.removed.length, nexusCores: n.cores, spiritCores: a.cores, locked: !!G.removedLock, sym: a.symTurn && a.symTurn.cols.length, partial: BS.CARDS['BS45-X03'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.oppSpirits, 1, JSON.stringify(r)); assert.equal(r.removed, 4, JSON.stringify(r));
+  assert.equal(r.nexusCores, 2, JSON.stringify(r)); assert.equal(r.spiritCores, 4, JSON.stringify(r)); assert.equal(r.locked, true, JSON.stringify(r)); assert.equal(r.sym, 2, JSON.stringify(r));
+});
+
+test('K-1082 BS46-037 Theseus: a set Burst discarded by the opponent activates anyway (summon, exhaust two, Blade Beast +10000); Lv2 win refreshes', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = O.key; G.step = 5; G.fxBy = O.key;
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && !(BS.CARDS[k].families || []).includes('Blade Beast'));
+    const bb = Object.keys(BS.CARDS).find(k => (BS.CARDS[k].families || []).includes('Blade Beast') && BS.CARDS[k].type === 'Spirit' && k !== 'BS46-037');
+    const b = BS.mkInst('BS46-037'); P.burst = b; P.reserve.n = 3; const ally = BS.mkInst(bb); ally.cores = 2; P.spirits = [ally];
+    const t1 = BS.mkInst(any), t2 = BS.mkInst(any); t1.cores = t2.cores = 1; O.spirits = [t1, t2];
+    const src = BS.mkInst(any); await BS.FX_ACTIONS.DISCARD_OPP_BURST.run({ p: O, opp: P, src, ctx: {} }, { do: 'DISCARD_OPP_BURST' });
+    const s = P.spirits.find(x => x.id === 'BS46-037');
+    return { summoned: !!s, burst: !!P.burst, trash: P.trash.includes(b), exh: O.spirits.filter(x => x.exhausted).length, bp: ally.bpMod, partial: BS.CARDS['BS46-037'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.summoned, true, JSON.stringify(r)); assert.equal(r.burst, false, JSON.stringify(r));
+  assert.equal(r.exh, 2, JSON.stringify(r)); assert.equal(r.bp, 10000, JSON.stringify(r)); assert.equal(r.trash, false, JSON.stringify(r));
+});
