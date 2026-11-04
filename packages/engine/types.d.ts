@@ -13,7 +13,7 @@ interface MagicVariant { effect: string; value: number; actions?: any[]; match?:
 /** `magic` of a Magic card after parseCard. */
 interface MagicSpec {
   timing: string[]; effect: string | null; value: number; noMain?: boolean; once?: boolean; soulUse?: boolean; lifeHand?: { lifeLe?: number };
-  trashUse?: { if?: any; actions?: any[] }; oppAttackHand?: { gwToVoid: number; match: any };
+  trashUse?: { if?: any; actions?: any[] }; oppAttackHand?: { gwToVoid: number; match: any; trash?: boolean }; trashReturnFlash?: boolean; nsf?: { match: any }; rtn?: boolean;
   actions?: any[]; alsoMagic?: any; summonAfter?: any; summonOnce?: any; by?: Record<string, MagicVariant>;
 }
 /** `costAlt`: a lower cost while a condition holds. */

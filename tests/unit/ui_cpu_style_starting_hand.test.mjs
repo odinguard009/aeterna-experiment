@@ -103,7 +103,7 @@ test('U12 the Contract card choice moves it out of the Hand and keeps the card c
   assert.deepEqual(r, { before: 1, after: 0, n: 4, total: true });
 });
 test('U13 contractToDeck does nothing when the Hand has no Contract card', async () => {
-  const r = await ev(() => { const p = BS.newGame(BS.PREBUILT.find(x => x.id === 'red').cards, BS.PREBUILT.find(x => x.id === 'red').cards).p.player, h = p.hand.map(i => i.uid).join();
+  const r = await ev(() => { const d = Object.fromEntries(Object.entries(BS.PREBUILT.find(x => x.id === 'red').cards).filter(([id]) => !BS.CARDS[id].contract)), p = BS.newGame(d, d).p.player, h = p.hand.map(i => i.uid).join();
     return { moved: BS.contractToDeck(p), same: p.hand.map(i => i.uid).join() === h }; });
   assert.deepEqual(r, { moved: false, same: true });
 });

@@ -3,6 +3,7 @@
 // The block decision of a CPU defender (08-battle.js askBlock) is the first converted decision: hosts answer it with the
 // same cpuChooseBlock policy, so the records of the routed match are bit-identical to the inline CPU (hashes below were
 // measured on the pre-change build 93bf8b7; seed 11 re-measured at v0.182.0 after card promotions changed a log line, winner and pick counts unchanged).
+// v0.215.0: all six matches re-measured after the Flash Advent, Soul Magic and Revival changes of this release (pin refresh; 09-cpu.js also changed, one line so the CPU counts a Mirage Spirit in its Field scan; the cause of the shift was not bisected).
 // v0.214.0: seeds 3 and 11 and both M6-02 matches re-measured after the Mitra and Soul State card promotions (winners and CPU pick counts for seeds 2, 8, 11 unchanged; seed 3 summon 8 -> 7, activate 6 -> 5).
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
@@ -13,10 +14,10 @@ after(async () => { await closeBrowser(); });
 
 test('M6-01 CPU decisions answer the port with the unchanged CPU policy: sims stay bit-identical', async () => {
   for (const [seed, winner, hash, asks] of [
-    [2, 'player', '1dd0b275', { block: 1, summon: 10, activate: 5, revive: 0, advent: 0, brave: 8, attack: 11 }],
-    [3, 'opponent', '64dbb8eb', { block: 1, summon: 7, activate: 5, revive: 0, advent: 2, brave: 7, attack: 12 }],
-    [8, 'player', 'ac0aeae3', { block: 3, summon: 9, activate: 5, revive: 0, advent: 0, brave: 6, attack: 12 }],
-    [11, 'opponent', '9beb532f', { block: 4, summon: 14, activate: 3, revive: 0, advent: 0, brave: 9, attack: 16 }],
+    [2, 'opponent', '9080714', { block: 0, summon: 8, activate: 4, revive: 0, advent: 1, brave: 5, attack: 10 }],
+    [3, 'player', '8915f8ae', { block: 0, summon: 9, activate: 8, revive: 0, advent: 0, brave: 6, attack: 9 }],
+    [8, 'player', '5dd4c498', { block: 1, summon: 9, activate: 4, revive: 0, advent: 0, brave: 6, attack: 11 }],
+    [11, 'player', '15d4bfc', { block: 6, summon: 26, activate: 11, revive: 2, advent: 2, brave: 21, attack: 33 }],
   ]) {
     const r = await playHeadless({ seed });
     assert.deepEqual(r.errors, [], 'seed ' + seed);
@@ -30,8 +31,8 @@ test('M6-01 CPU decisions answer the port with the unchanged CPU policy: sims st
 
 test('M6-02 a human seat vs CPU: the CPU defender block pick reaches the host as a cpu-marked record and the match is unchanged', async () => {
   for (const [deckA, deckB, seed, winner, hash, asks] of [
-    ['yellow', 'mitra', 7, 'player', 'd1c42233', 1],
-    ['mitra', 'yellow', 10, 'opponent', 'a043d981', 3],
+    ['yellow', 'mitra', 7, 'player', 'fb4f22de', 1],
+    ['mitra', 'yellow', 10, 'opponent', 'bfc6098a', 3],
   ]) {
     const r = await playHeadless({ seed, deckA, deckB, human: true });
     const cpu = r.decisions.filter(d => d.cpu);
