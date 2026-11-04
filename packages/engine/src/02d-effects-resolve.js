@@ -30,7 +30,7 @@ function collectFx(ev) {
   if (trigger === 'SUMMONED') ctx.subject = src;
   if (!FX_TRIGGERS.includes(trigger)) { fxUnknown('trigger', trigger); return []; }   // v0.59.4 strict effects
   const opp = G.p[other(owner.key)], out = [];
-  const add = (trg, f, e, idx) => out.push({ owner, opp, f, idx, e, trg, trigger, ctx });
+  const add = (trg, f, e, idx) => { if (ctx.noColor && CARDS[f.id].color === ctx.noColor) return; out.push({ owner, opp, f, idx, e, trg, trigger, ctx }); };      // v464 ctx.noColor: the opponent can't activate that colour's effects of this event
   const collect = (trg, f) => { for (const { e, idx } of fxEntries(f)) if (e.trigger === trg) add(trg, f, e, idx); };
   if (trigger === 'ADVENT') { const card = CARDS[src.id]; if (card.effects) card.effects.forEach((e, idx) => { if (e.trigger === 'ADVENT' || (e.trigger === 'SUMMONED' && e.alsoAdvent)) add(e.trigger, src, e, idx); }); ctx.subject = src; }
   else if (trigger === 'SUMMONED' && ctx.noSelfFx) { /* v0.180: the summoned card's own (When Summoned) effects do not activate */ }

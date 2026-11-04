@@ -89,10 +89,10 @@ coresFromSpirits, canPursuit
 ## packages/engine/src/02w-effects-indra.js (82 lines, ~2k tokens)
 symFixedOnSummon, fxLockBusy, fxLocked, leaveSummonOffer, mirageNexusOf, mirageShield, mirageCoreSafe, bounceLocked, soulDeployOffer, soulEnterHook, nexusShielded, nexusVoided, mirageSummonOffer
 
-## packages/engine/src/02x-effects-soul-magic.js (421 lines, ~10.9k tokens)
-magicFromSoul, magicSoulSrc, fromCols, soulBurstCheck, isGwNexus, gwNexusCount, gpShield, gpBattleSafe, drawOneOnly, nyxNexus, lvCostUp, nexusCoresDown, trashCoreGw, muddyDraw, coreWatchBegin, coreWatchEnd, ownReturned, bounceCost, magicLike, trashFlashOK, handUpLocked, soulUnaff, mirageEndLock
+## packages/engine/src/02x-effects-soul-magic.js (455 lines, ~11.7k tokens)
+magicFromSoul, magicSoulSrc, fromCols, soulBurstCheck, isGwNexus, gwNexusCount, gpShield, gpBattleSafe, drawOneOnly, nyxNexus, lvCostUp, nexusCoresDown, trashCoreGw, muddyDraw, coreWatchBegin, coreWatchEnd, ownReturned, bounceCost, magicLike, trashFlashOK, handUpLocked, soulUnaff, mirageEndLock, nsfOK, nsfPay
 
-## packages/engine/src/03-imported-cards.js (255 lines, ~7.5k tokens) — IMPORTED CARD DATA
+## packages/engine/src/03-imported-cards.js (256 lines, ~7.6k tokens) — IMPORTED CARD DATA
 COLORS, BUILTIN_IDS, CARDS_KEY, IMPORTED, CARDS_VER, parseLevels, parseMagicOf, parseCard, registerImported, saveImported, importCards, clearImported, PACK_IDS, registerPack, TOKEN_IDS, registerTokens
 
 ## packages/engine/src/03a-effects-immunity-final.js (3 lines, ~0.1k tokens)
@@ -104,7 +104,7 @@ deckTotal, cleanDeck, validateDeck, keyOfDeck, pickKey, fmtName, fmtButton, setF
 ## packages/engine/src/05-state.js (69 lines, ~1.4k tokens) — GAME STATE
 SET_KEY, SETTINGS, SPEEDS, saveSettings, G, fnv, recIn, SIM_DECK_B, SIM_DECK_B_KEY, SIM_HUMAN, DELAYS, delay, engineIdle, wait, log, mkInst, newPlayer, contractToDeck, redrawHand, cpuWantsRedraw, newGame
 
-## packages/engine/src/05b-decide.js (111 lines, ~2.5k tokens) — DECISIONS (v0.83.0, phase F3 = monorepo step M3 part 1; docs/ai/monorepo-plan.md "Design" 1)
+## packages/engine/src/05b-decide.js (112 lines, ~2.7k tokens) — DECISIONS (v0.83.0, phase F3 = monorepo step M3 part 1; docs/ai/monorepo-plan.md "Design" 1)
 DECISION_KINDS, cardIds, portAsk, decide, ask, info, pickFromField, portPick, portCpu, askBlock, askPayment, uniqById, prepareHumanMagic, humanFlashChoice
 
 ## packages/engine/src/05c-intent.js (289 lines, ~4.8k tokens) — INTENTS (v0.84.0, phase F3 part 2 = monorepo step M3 rest; docs/ai/monorepo-plan.md "Design" 1)

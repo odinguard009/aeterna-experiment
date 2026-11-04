@@ -180,12 +180,12 @@ async function flushBursts() {                         // queued Bursts and even
     }
     const ev = G.evQ.shift();
     if (ev.type === 'DRAWS') {
-      await fireFx(G.p[other(ev.key)], 'OPP_DRAWS', null, { drawN: ev.n });
+      await fireFx(G.p[other(ev.key)], 'OPP_DRAWS', null, { drawN: ev.n, noColor: ev.noColor });
     } else if (ev.type === 'HAND_UP') {
       const q = G.p[other(ev.key)];
       if (handUpLocked(ev.key)) continue;      // v456 NO_OPP_HANDUP (Yellodianna)
-      G.burstQ.push({ key: q.key, when: 'OPP_HAND_UP' });
-      await fireFx(q, 'OPP_HAND_UP', null, {});
+      if (!(ev.noColor && q.burst && CARDS[q.burst.id].color === ev.noColor)) G.burstQ.push({ key: q.key, when: 'OPP_HAND_UP' });
+      await fireFx(q, 'OPP_HAND_UP', null, { noColor: ev.noColor });
     } else if (ev.type === 'REMOVED') {
       await fireFx(G.p[other(ev.key)], 'OPP_REMOVED', null, {});
     } else if (ev.type === 'FXKILL') {

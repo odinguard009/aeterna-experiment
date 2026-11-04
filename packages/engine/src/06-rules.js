@@ -566,7 +566,7 @@ function magicUsable(p, inst, ctx, free) {   // free: "without paying the cost" 
   if (ctx === 'flash' && !timing.includes('FLASH')) return false;
   if (ctx !== 'flash' && card.magic && card.magic.noMain) return false;   // v0.44 (Can't Use in Main)
   if (card.magic && card.magic.once && p.onceUsed && p.onceUsed['magic:' + card.name] === G.turnNo) return false;      // v303 once per turn
-  if (!free && effCost(p, card) > coresAvailable(p) && !soulMagicOK(p, card)) return false;   // v0.64: Soul Magic pays with the Soul Core only
+  if (!free && effCost(p, card) > coresAvailable(p) && !soulMagicOK(p, card) && !nsfOK(p, card)) return false;   // v0.64: Soul Magic pays with the Soul Core only
   if (magicFromTrash(p, inst) && !magicTrashOK(p, inst)) return false;
   const fm = magicFxAt(p, inst, ctx); if (card.magic && card.magic.by && !fm) return false;
   if (fm && fm.if && !fxIf(p, G.p[other(p.key)], fm.if)) return false;

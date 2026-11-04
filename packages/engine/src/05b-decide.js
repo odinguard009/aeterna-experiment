@@ -73,6 +73,7 @@ async function prepareHumanMagic(p, inst, ctx, free) {
     if (!target) return null;
   }
   let plan = null, soulMagic = false;
+  if (!free && nsfOK(p, card) && (c > coresAvailable(p) || (await ask({ title: `✨ ${esc(card.name)}`, html: 'Send the Soul Core from your Nexus to the Trash to use this card without paying the cost?', buttons: [{ label: 'Send the Soul Core', cls: 'purple', value: true }, { label: `Pay ${c}`, cls: 'primary', value: false }, { label: 'Cancel', cls: 'cancel', value: null }] })) === true)) { nsfPay(p, card); return { inst, target, plan: null, ctx, soulMagic: false, free: true }; }      // v464 magic.nsf
   if (!free && soulMagicOK(p, card)) {                              // v0.64 Soul Magic: pay the whole cost with the Soul Core, or pay normally
     if (c > coresAvailable(p)) soulMagic = true;
     else {

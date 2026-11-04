@@ -419,3 +419,37 @@ function mirageEndLock(owner, att) {
   const m = owner.mirage && CARDS[owner.mirage.id] && CARDS[owner.mirage.id].mirage;
   return !!m && !!m.noEnd && fxMatch(CARDS[att.id], m.noEnd, att);
 }
+
+/* v464 magic.nsf {match} (Magma Breaker): "(Once per Turn: Same Name) when using this card from the Hand, by sending the Soul Core from your <match> Nexus to the Trash, use it without paying the cost."
+   nsfOK is read by magicUsable (06-rules) and prepareHumanMagic (05b-decide); nsfPay takes the Soul Core off the Nexus and marks the use. The CPU never picks this route (it pays the normal cost). */
+function nsfOK(p, card) {
+  const n = card && card.magic && card.magic.nsf; if (!n || !G) return false;
+  return p.hand.some(h => CARDS[h.id] === card) && !(p.onceUsed && p.onceUsed['nsf:' + card.name] === G.turnNo) && p.nexus.some(x => x.soul && fxMatch(CARDS[x.id], n.match));
+}
+function nsfPay(p, card) {
+  const x = p.nexus.find(y => y.soul && fxMatch(CARDS[y.id], card.magic.nsf.match)); if (!x) return;
+  x.soul = false; p.trashCores.soul = true; p.onceUsed = p.onceUsed || {}; p.onceUsed['nsf:' + card.name] = G.turnNo;
+  log(`${who(p)} ${p.cpu ? 'sends' : 'send'} the Soul Core from ${CARDS[x.id].name} to the Trash.`); checkDepletion(p);
+}
+/* v464 OPP_REACT_LOCK {color}: "the opponent can't activate <colour> 'when draw / when Hand increases' effects via this effect" (Magma Draw): tags the Draw / Hand-increase events this player has queued so far. */
+FX_ACTIONS.OPP_REACT_LOCK = { chk: a => Object.keys(a).every(k => ['do', 'if', 'color'].includes(k)) && COLORS.includes(a.color), txt: a => `the opponent can't activate ${a.color} "when draw / when Hand increases" effects via this effect`,
+  run: async (c, a) => { for (const ev of G.evQ || []) if ((ev.type === 'DRAWS' || ev.type === 'HAND_UP') && ev.key === c.p.key) ev.noColor = a.color; c.ctx.did = true; } };
+
+/* v464 DESTROY.banishOpt + BANISH_POOL (Magma Breaker): "You can banish all targets destroyed by these effects." DESTROY with banishOpt:true collects the cards it sent to the opposing Trash in ctx.bpool;
+   BANISH_POOL then asks once and puts the ones still in the Trash onto the Removed Zone. */
+(() => {
+  const D = FX_ACTIONS.DESTROY, run0 = D.run;
+  D.run = async (c, a) => {
+    if (!a.banishOpt) return run0(c, a);
+    const before = new Set(c.opp.trash); await run0(c, a);
+    c.ctx.bpool = (c.ctx.bpool || []).concat(c.opp.trash.filter(t => !before.has(t) && CARDS[t.id].type !== 'Nexus'));
+  };
+})();
+FX_ACTIONS.BANISH_POOL = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => 'you can banish all targets destroyed by these effects',
+  run: async c => {
+    const L = (c.ctx.bpool || []).filter(t => c.opp.trash.includes(t)); c.ctx.bpool = []; c.ctx.did = false; if (!L.length) return;
+    const yes = c.p.cpu ? true : await ask({ title: `✨ ${esc(CARDS[c.src.id].name)}`, peek: true, wide: true, html: `Banish the destroyed Spirit${L.length === 1 ? '' : 's'}?`, cards: cardIds(L), buttons: [{ label: 'Banish', cls: 'primary', value: true }, { label: 'Keep in the Trash', cls: 'cancel', value: false }] });
+    if (!yes) return;
+    for (const t of L) { removeFrom(c.opp.trash, t); toRemoved(c.opp, t); log(`${CARDS[c.src.id].name}: ${CARDS[t.id].name} is banished.`); }
+    c.ctx.did = true; io.view({ type: 'board' });
+  } };
