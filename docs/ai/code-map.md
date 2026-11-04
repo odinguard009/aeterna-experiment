@@ -47,7 +47,7 @@ endAttackLocked, _matchTxt, gwCorePlus, sentToTrashFx, abTaxOn, abTaxOK, payAbTa
 ## packages/engine/src/02i-effects-keywords.js (80 lines, ~1.8k tokens) — v0.49 KEYWORD EFFECTS as engine data (session D, part 1): High Speed, Crush, Holy Life.
 highSpeedOK, fsNexus, highSpeedSources, highSpeedSummon, cpuHighSpeed, _nmK
 
-## packages/engine/src/02j-effects-accel.js (118 lines, ~2k tokens) — v0.50 KEYWORD EFFECTS part 2 (session D): Accel and Silver Wheel.
+## packages/engine/src/02j-effects-accel.js (119 lines, ~2.1k tokens) — v0.50 KEYWORD EFFECTS part 2 (session D): Accel and Silver Wheel.
 accelList, accelCost, accelMainStep, accelOK, accelSources, accelLabel, useAccel, removedSummonable, summonFromRemoved, immortalCands, immortalOffer, humanAccel, cpuAccelScore, cpuAccelMain, cpuAccelFlash, cpuSilverWheel
 
 ## packages/engine/src/02k-effects-immunity.js (37 lines, ~0.7k tokens)
@@ -92,8 +92,8 @@ symFixedOnSummon, fxLockBusy, fxLocked, leaveSummonOffer, mirageNexusOf, mirageS
 ## packages/engine/src/02x-effects-soul-magic.js (488 lines, ~12.4k tokens)
 magicFromSoul, magicSoulSrc, fromCols, soulBurstCheck, isGwNexus, gwNexusCount, gpShield, gpBattleSafe, drawOneOnly, nyxNexus, lvCostUp, nexusCoresDown, trashCoreGw, muddyDraw, coreWatchBegin, coreWatchEnd, ownReturned, bounceCost, magicLike, trashFlashOK, handUpLocked, soulUnaff, mirageEndLock, nsfOK, nsfPay
 
-## packages/engine/src/02y-effects-khaos.js (219 lines, ~6.6k tokens)
-burstSetSafe, pickFightingBlocker, coreSafeEvery, removedLocked, burstOnDiscard, removedDrawLocked, noMagicHit, freeRed
+## packages/engine/src/02y-effects-khaos.js (249 lines, ~7.6k tokens)
+burstSetSafe, pickFightingBlocker, coreSafeEvery, removedLocked, burstOnDiscard, removedDrawLocked, noMagicHit, freeRed, costPerCount
 
 ## packages/engine/src/03-imported-cards.js (257 lines, ~7.7k tokens) — IMPORTED CARD DATA
 COLORS, BUILTIN_IDS, CARDS_KEY, IMPORTED, CARDS_VER, parseLevels, parseMagicOf, parseCard, registerImported, saveImported, importCards, clearImported, PACK_IDS, registerPack, TOKEN_IDS, registerTokens

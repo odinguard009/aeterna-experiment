@@ -529,3 +529,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v494 STATIC FREE_REDUCTION {n,match,lv}: fulfill n reduction symbols of a matching card being summoned/deployed. v495 REVEAL_ADD moreRevealOnly (bonus reveals +1 but adds only add). BS69-068/072.
 - v496 STATIC ATK_TAX costLe (alternative to lvLimit): an opposing attacker of that cost or less must send pay Reserve cores to the Trash or it cannot attack (BS69-078).
 - v497 Burst `also` accepts `{when:'OPP_REMOVED'}`: a set Burst card may be activated at once when cards are put onto the opposing Removed Zone.
+- v498 `costPer {nexusTrash:true,n,max}`; actions `DESTROY_NEXUS_FOR_OPP {unpreventableCounterGe?}` and `OPP_MAGIC_ACCEL_UNLESS_DESTROY` (BS69-NX01).

@@ -217,3 +217,33 @@ function freeRed(p, card, r, tot) {
   for (const src of fieldList(p)) { const L = lvNo(src); for (const { e } of fxEntries(src)) if (e.trigger === 'STATIC' && e.flag === 'FREE_REDUCTION' && (!e.lv || e.lv.includes(L)) && fxMatch(card, e.match)) n += e.n || 1; }
   return n ? Math.min(tot, r + n) : 0;
 }
+/* v498 costPer {nexusTrash:true}: "for each Nexus you control, and each Nexus card in your Trash and the opposing Trash combined, this card's cost in Hand gets -n (Max -max)" (BS69-NX01); one counting helper for all costPer shapes (06-rules reads it) */
+function costPerCount(p, t) {
+  const o = G.p[other(p.key)];
+  if (t.oppCantAB) return o.spirits.filter(s => s.noAB).length;
+  if (t.nexusTrash) return p.nexus.length + p.trash.concat(o.trash).filter(x => CARDS[x.id].type === 'Nexus').length;
+  return p.spirits.filter(s => (CARDS[s.id].families || []).includes(t.family)).length;
+}
+/* v498 DESTROY_NEXUS_FOR_OPP {unpreventableIf?}: "You can destroy any number of Nexuses you control. For each Nexus destroyed via this effect, destroy an opposing Spirit/Ultimate. If you have N counters or more, this effect can't be prevented by opposing effects." House reading: every own Nexus is destroyed while an opposing target remains (the CPU and a human both take the maximum); immune targets are skipped unless the counter clause holds. */
+FX_ACTIONS.DESTROY_NEXUS_FOR_OPP = { chk: a => Object.keys(a).every(k => ['do', 'if', 'unpreventableCounterGe'].includes(k)) && (a.unpreventableCounterGe == null || (Number.isInteger(a.unpreventableCounterGe) && a.unpreventableCounterGe >= 1 && a.unpreventableCounterGe <= 10)),
+  txt: a => `destroy any number of your Nexuses; for each, destroy an opposing Spirit/Ultimate${a.unpreventableCounterGe ? ` (can't be prevented with ${a.unpreventableCounterGe} counters or more)` : ''}`,
+  can: c => c.p.nexus.some(n => !n.noFx) && c.opp.spirits.length > 0,
+  run: async (c, a) => {
+    const free = a.unpreventableCounterGe != null && c.p.count >= a.unpreventableCounterGe, tg = () => c.opp.spirits.filter(s => free || !fxImmune(c.opp, s));
+    let k = 0;
+    while (c.p.nexus.some(n => !n.noFx) && tg().length) {
+      const n = c.p.nexus.filter(x => !x.noFx).sort((x, y) => x.cores - y.cores)[0];
+      log(`${_nm(c)}: ${CARDS[n.id].name} is destroyed.`); removeNexus(c.p, n, 'destroyed');
+      const t = await fxPickTarget(c, tg(), `✨ <b>${esc(_nm(c))}</b><br>Tap the opposing Spirit to destroy (glowing).`); if (!t) break;
+      removeSpirit(c.opp, t, 'destroyed', true); checkDepletion(c.opp); k++;
+    }
+    c.ctx.did = k > 0; io.view({ type: 'board' });
+  } };
+/* v498 OPP_MAGIC_ACCEL_UNLESS_DESTROY: "Unless the opponent destroys a Spirit/Ultimate they control, they can't use Magic cards/Accel." (this battle). A CPU opponent destroys its cheapest Spirit only when it has two or more; a human is asked. The lock is noMagicB.all (Magic from the Hand) plus noAccelB (read by accelOK). */
+FX_ACTIONS.OPP_MAGIC_ACCEL_UNLESS_DESTROY = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => "unless the opponent destroys a Spirit they control, they can't use Magic or Accel this battle",
+  run: async c => {
+    const o = c.opp; let pay = false;
+    if (o.spirits.length) pay = o.cpu ? o.spirits.length >= 2 : !!await ask({ title: `✨ ${esc(_nm(c))}`, html: "Destroy one of your Spirits? If you don't, you can't use Magic or Accel this battle.", buttons: [{ label: 'Destroy a Spirit', cls: 'primary', value: true }, { label: "Don't", cls: 'blue', value: false }] });
+    if (pay) { const t = o.cpu ? o.spirits.slice().sort((x, y) => CARDS[x.id].cost - CARDS[y.id].cost)[0] : await fxPickTarget({ p: o, opp: c.p, src: c.src, ctx: c.ctx }, o.spirits, 'Tap your Spirit to destroy (glowing).'); if (t) { log(`${poss(o)} ${CARDS[t.id].name} is destroyed.`); removeSpirit(o, t, 'destroyed', true); checkDepletion(o); c.ctx.did = true; return; } }
+    o.noMagicB = { no: G.battleNo, all: true }; o.noAccelB = G.battleNo; c.ctx.did = true; log(`${_nm(c)}: ${poss(o)} can't use Magic or Accel this battle.`);
+  } };

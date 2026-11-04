@@ -17,6 +17,7 @@ const accelMainStep = p => !!G && !G.over && G.active === p.key && (G.step === 4
 function accelOK(p, inst, idx, timing) {
   if (!G || G.over || !p.hand.includes(inst)) return false;
   const e = (CARDS[inst.id].effects || [])[idx]; if (!e || e.trigger !== 'ACCEL') return false;
+  if (p.noAccelB != null && p.noAccelB === G.battleNo && G.attacker) return false;      // v498 BS69-NX01
   if (timing === 'FLASH' ? !e.timing.includes('FLASH') : !accelMainStep(p)) return false;
   if (e.once && usedThisTurn(p, inst, idx, e)) return false;
   const opp = G.p[other(p.key)], ctx = {};

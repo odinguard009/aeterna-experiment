@@ -46,3 +46,18 @@ test('K-1109 BS69-032 Proacher-Choukaku: Flash from Hand needs a Primordial/Gaud
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.noCtrl, false, JSON.stringify(r)); assert.equal(r.withCtrl, true, JSON.stringify(r));
   assert.ok(r.grew >= 1, JSON.stringify(r)); assert.equal(r.heavy, true, JSON.stringify(r));
 });
+
+test('K-1110 BS69-NX01 Gigatoncheir: cost -2 per Nexus (field + both Trashes, max -12); attack destroys own Nexuses for opposing Spirits; the opponent either destroys a Spirit or loses Magic/Accel', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const nx = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Nexus' && !BS.CARDS[k].token);
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && BS.CARDS[k].cost <= 3);
+    const card = BS.CARDS['BS69-NX01']; const base = BS.effCost(P, card);
+    P.nexus = [BS.mkInst(nx)]; P.trash = [BS.mkInst(nx)]; O.trash = [BS.mkInst(nx)]; const cut = base - BS.effCost(P, card);
+    const a = BS.mkInst('BS69-NX01'); a.cores = 5; P.spirits = [a]; P.count = 8;
+    const t1 = BS.mkInst(any), t2 = BS.mkInst(any), t3 = BS.mkInst(any); t1.cores = t2.cores = t3.cores = 2; O.spirits = [t1, t2, t3];
+    await BS.fireFx(P, 'ATTACKS', a, { attacker: a, subject: a }); G.attacker = a;
+    return { cut, nexusLeft: P.nexus.length, oppLeft: O.spirits.length, locked: O.noAccelB === G.battleNo || O.noMagicB != null, partial: card.partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.cut, 6, JSON.stringify(r)); assert.equal(r.nexusLeft, 0, JSON.stringify(r));
+  assert.ok(r.oppLeft <= 1, JSON.stringify(r));
+});

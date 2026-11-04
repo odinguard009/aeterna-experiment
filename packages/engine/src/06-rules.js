@@ -320,7 +320,7 @@ function effCost(p, card) {                       // cost reduction is mandatory
   const extra = extraReduction(p, card), lp = legacyPlan(p, card, syms, extra);
   const r = lp ? lp.total : reductionOf(card, syms, extra);
   const hc = handCostSet(p, card), base = hc == null ? card.cost : hc;
-  const per = card.costPer ? Math.min(card.costPer.max, card.costPer.n * (card.costPer.oppCantAB ? G.p[other(p.key)].spirits.filter(s => s.noAB) : p.spirits.filter(s => (CARDS[s.id].families || []).includes(card.costPer.family))).length) : 0;      // v0.196 costPer
+  const per = card.costPer ? Math.min(card.costPer.max, card.costPer.n * costPerCount(p, card.costPer)) : 0;      // v0.196 costPer
   const redTotal = Object.values(card.reduction || {}).reduce((a, b) => a + b, 0);
   const redIf = card.reduceIf && G && fxIf(p, G.p[other(p.key)], card.reduceIf, {}) ? (card.reducePerOppReserve ? Math.min(redTotal, G.p[other(p.key)].reserve.n + (G.p[other(p.key)].reserve.soul ? 1 : 0)) : redTotal) : 0;      // v208 "When summoning this card, if <cond>, fulfill all / one per opposing Reserve core of its reduction symbols"
   const redAll = card.reduceAllSlotsGe != null && redTotal + extra.length >= card.reduceAllSlotsGe ? redTotal + extra.length : 0;      // v423 "if this card has N or more reduction symbols, fulfill all of them"
