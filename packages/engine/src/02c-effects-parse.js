@@ -113,7 +113,7 @@ function parseBurst(b) {
   if (b.thenMain === true) o.thenMain = true;             // v0.47 Dana Draw: "Then, by paying the cost, activate the Main effect of this card"
   if (b.also != null) {                                   // v0.47 Dana Draw: "When your Scalostle Brave is summoned, if ..., you can immediately activate this set card"
     const x = b.also;
-    if (!x || !['BRAVE_SUMMONED', 'ALLY_ATTACK', 'SOUL_PLACED'].includes(x.when) || (x.match != null && !hasMatch(x.match))) return { error: 'burst "also" must look like {"when":"BRAVE_SUMMONED","match":{...},"if":{...}}' };
+    if (!x || !['BRAVE_SUMMONED', 'ALLY_ATTACK', 'SOUL_PLACED', 'OPP_REMOVED'].includes(x.when) || (x.match != null && !hasMatch(x.match))) return { error: 'burst "also" must look like {"when":"BRAVE_SUMMONED","match":{...},"if":{...}}' };
     o.also = { when: x.when, match: x.match || null };
     if (x.if != null) { const c = parseCond(x.if); if (c.error) return { error: 'burst.also: ' + c.error }; o.also.if = c.cond; }
   }

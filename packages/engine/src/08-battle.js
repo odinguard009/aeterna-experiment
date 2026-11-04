@@ -189,6 +189,7 @@ async function flushBursts() {                         // queued Bursts and even
       if (!(ev.noColor && q.burst && CARDS[q.burst.id].color === ev.noColor)) G.burstQ.push({ key: q.key, when: 'OPP_HAND_UP' });
       await fireFx(q, 'OPP_HAND_UP', null, { noColor: ev.noColor });
     } else if (ev.type === 'REMOVED') {
+      { const q = G.p[other(ev.key)]; if (q.burst && CARDS[q.burst.id].burst && CARDS[q.burst.id].burst.also && CARDS[q.burst.id].burst.also.when === 'OPP_REMOVED') G.burstQ.push({ key: q.key, when: 'OPP_REMOVED' }); }      // v497 "When cards are put onto the opposing Removed Zone, you can immediately activate this set card"
       await fireFx(G.p[other(ev.key)], 'OPP_REMOVED', null, {});
     } else if (ev.type === 'FXKILL') {
       await fireFx(G.p[ev.key], 'OPP_DESTROYED_FX', null, { bp: ev.bp, fxSrc: ev.src });

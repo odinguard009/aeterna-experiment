@@ -119,7 +119,7 @@ fieldList, isGW, freeCores, freeTotal, totalCores, reserveTotal, minCores, isSpi
 ## packages/engine/src/07-turn.js (83 lines, ~1.6k tokens) — TURN FLOW
 isMainStep, revertNexusSpirits, setStep, beginTurn, endStep, win, matchLoop, checkInvariants
 
-## packages/engine/src/08-battle.js (220 lines, ~5.7k tokens) — BATTLE
+## packages/engine/src/08-battle.js (221 lines, ~5.8k tokens) — BATTLE
 successor, flashTiming, battleEndAttack, attackStepOver, doBattle, doBattleInner, maybeBurst, maybeBurst1, burstFlash, flushBursts
 
 ## packages/engine/src/09-cpu.js (174 lines, ~3.1k tokens) — CPU
