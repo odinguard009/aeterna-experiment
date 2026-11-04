@@ -483,7 +483,7 @@ const blockTaxOK = (D, att, s) => { const q = att.blockTax; return !q || q.battl
 async function payAtkTax(A, D, att) {
   let q = null;
   if (D) for (const f of fieldList(D)) { const L = lvNo(f); for (const { e } of fxEntries(f)) if (e.trigger === 'STATIC' && e.flag === 'ATK_TAX'
-    && (!e.lv || e.lv.includes(L)) && e.lvLimit === lvNo(att) && (!e.oc || ocActive(f)) && fxIf(D, A, e.if || {}, { selfInst: f })) { q = { pay: e.pay }; break; } if (q) break; }
+    && (!e.lv || e.lv.includes(L)) && (e.costLe != null ? CARDS[att.id].cost <= e.costLe : e.lvLimit === lvNo(att)) && (!e.oc || ocActive(f)) && fxIf(D, A, e.if || {}, { selfInst: f })) { q = { pay: e.pay }; break; } if (q) break; }
   if (!q) return true;
   const need = q.pay || 1;
   if (A.reserve.n < need) { log(`${CARDS[att.id].name} can't attack: ${poss(A)} Reserve cannot pay ${need} cost${need === 1 ? '' : 's'}.`); return false; }

@@ -9776,6 +9776,19 @@
   "saga": 15,
   "effects": [
    {
+    "trigger": "STATIC",
+    "flag": "FREE_REDUCTION",
+    "lv": [
+     1,
+     2
+    ],
+    "match": {
+     "family": [
+      "Primordial"
+     ]
+    }
+   },
+   {
     "trigger": "DESTROYED",
     "lv": [
      1,
@@ -9787,14 +9800,23 @@
       "costRank": "lowest"
      }
     ]
+   },
+   {
+    "trigger": "STATIC",
+    "lv": [
+     2
+    ],
+    "flag": "ATK_TAX",
+    "to": "own",
+    "costLe": 3,
+    "pay": 1,
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": true
+    }
    }
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] When you're summoning/deploying a \"Primordial\" family Spirit card/Nexus card, fulfill one of its // reduction symbols.",
-   "[LV2] (Opposing Attack Step) When an opposing Cost 3 or less Spirit/Ultimate would attack, unless the opponent sends a core from their Reserve to their Trash, it can't attack."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
   "bicon": [
    "11"
   ],

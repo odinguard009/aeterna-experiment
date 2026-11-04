@@ -262,9 +262,9 @@ function parseEffects(arr) {
         o.n = e.n;
       }
       if (e.flag === 'ATK_TAX') {                                 // v223 "when an opposing LVn Spirit would attack, unless it pays N costs, it can't attack"
-        if (!Number.isInteger(e.lvLimit) || e.lvLimit < 1 || e.lvLimit > 4) return { error: 'ATK_TAX needs a whole-number "lvLimit" (1-4)' };
+        if (e.costLe != null ? !Number.isInteger(e.costLe) || e.costLe < 0 || e.costLe > 30 || e.lvLimit != null : !Number.isInteger(e.lvLimit) || e.lvLimit < 1 || e.lvLimit > 4) return { error: 'ATK_TAX needs a whole-number "lvLimit" (1-4) or "costLe" (v496: the attacker costs that or less)' };
         if (!Number.isInteger(e.pay) || e.pay < 1 || e.pay > 3) return { error: 'ATK_TAX needs a whole-number "pay" (1-3)' };
-        o.lvLimit = e.lvLimit; o.pay = e.pay;
+        o.lvLimit = e.lvLimit; o.costLe = e.costLe; o.pay = e.pay;
       }
       if (e.flag === 'COST_RELIEF') {                             // v224 "when you would pay costs via your X effects, you can exhaust this Nexus: treat one cost as paid"
         if (!Number.isInteger(e.n) || e.n < 1 || e.n > 2) return { error: 'COST_RELIEF needs a whole-number "n" (1-2)' };

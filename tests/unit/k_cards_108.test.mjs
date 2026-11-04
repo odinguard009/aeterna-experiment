@@ -219,3 +219,17 @@ test('K-1105 BS69-072 Sealed Lands Forest: deploy exhausts one opposing Spirit (
     return { e1, e2: O.spirits.filter(s => s.exhausted).length, partial: BS.CARDS['BS69-072'].partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.e1, 1, JSON.stringify(r)); assert.equal(r.e2, 2, JSON.stringify(r));
 });
+
+test('K-1106 BS69-078 Sealed Lands Ocean: Lv2 taxes an opposing Cost 3 or less attacker one Reserve core; destroyed it destroys the lowest-cost opposing Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = O.key; G.step = 5;
+    const lo = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && BS.CARDS[k].cost >= 1 && BS.CARDS[k].cost <= 3);
+    const hi = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && BS.CARDS[k].cost >= 6);
+    const n = BS.mkInst('BS69-078'); n.cores = 3; P.nexus = [n]; const a = BS.mkInst(lo); a.cores = 1; O.spirits = [a]; O.reserve.n = 0;
+    const broke = await BS.payAtkTax(O, P, a); O.reserve.n = 2; const paid = await BS.payAtkTax(O, P, a); const left = O.reserve.n;
+    const b = BS.mkInst(hi); b.cores = 3; O.spirits = [a, b]; G.active = P.key;
+    P.nexus = []; n.lostLv = 1; P.trash.push(n); await BS.fireFx(P, 'DESTROYED', n, { subject: n });
+    return { broke, paid, left, lowGone: !O.spirits.includes(a), hiStays: O.spirits.includes(b), partial: BS.CARDS['BS69-078'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.broke, false, JSON.stringify(r)); assert.equal(r.paid, true, JSON.stringify(r)); assert.equal(r.left, 1, JSON.stringify(r));
+  assert.equal(r.lowGone, true, JSON.stringify(r)); assert.equal(r.hiStays, true, JSON.stringify(r));
+});
