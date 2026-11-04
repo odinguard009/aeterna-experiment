@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "context7": { "command": "npx", "args": ["-y", "@upstash/context7-mcp"] },
+    "sequential-thinking": { "command": "npx", "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"] },
+    "serena": { "command": "uvx", "args": ["--from", "serena-agent", "serena", "start-mcp-server", "--context", "ide-assistant", "--project-from-cwd"] },
+    "codebase-memory-mcp": { "command": "${HOME}/.local/bin/codebase-memory-mcp", "args": [] }
+  }
+}

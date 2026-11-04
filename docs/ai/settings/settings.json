@@ -125,10 +125,11 @@
   },
   "modelSettings": {
     "claude-sonnet-5-5": {
-      "autoCompactWindow": 500000
+      "autoCompactWindow": 300000
     }
   },
   "advisorModel": "opus",
   "autoUpdatesChannel": "latest",
-  "theme": "dark"
+  "theme": "dark",
+  "agentPushNotifEnabled": true
 }

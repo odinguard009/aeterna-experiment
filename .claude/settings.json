@@ -16,6 +16,17 @@
           }
         ]
       }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR\"/tools/cloud_bootstrap.sh",
+            "timeout": 300
+          }
+        ]
+      }
     ]
   }
 }
