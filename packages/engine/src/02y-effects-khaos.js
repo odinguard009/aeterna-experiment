@@ -291,3 +291,11 @@ async function ownDiscardCheck(c, hs) {
   for (const x of gone) x.odTurn = G.turnNo;
   await fireFx(c.p, 'OWN_DISCARD', null, { by: c.src, discarded: gone });
 }
+
+/* v508 DISCARD_UNDER {family, ask?}: "by discarding a <family> pre-advent card underneath this Spirit, instead ..." (BS62-011): one card of c.src.under of that family goes to the Trash. A plain action (not a BY cost, so a missing card does not stop the effect):
+   did = true when a card was discarded, so the next action can test {"prev":true} (the stronger result) and {"not":{"prev":true}} (the plain one). ask: a human may decline. */
+FX_ACTIONS.DISCARD_UNDER = { chk: a => Object.keys(a).every(k => ['do', 'family', 'ask', 'if'].includes(k)) && typeof a.family === 'string' && (a.ask == null || typeof a.ask === 'boolean'), txt: a => `${a.ask ? 'you can, ' : ''}discard a "${a.family}" family pre-advent card underneath this Spirit`,
+  can: (c, a) => !!c.src.under && c.src.under.some(u => (CARDS[u.id].families || []).includes(a.family)),
+  run: async (c, a) => { c.ctx.did = false; const u = (c.src.under || []).find(x => (CARDS[x.id].families || []).includes(a.family)); if (!u) return;
+    if (a.ask && !c.p.cpu && !(await ask({ title: `✨ ${CARDS[c.src.id].name}`, peek: true, html: `You can discard ${esc(CARDS[u.id].name)} (pre-advent card).`, buttons: [{ label: 'Do it', cls: 'primary', value: true }, { label: 'Skip', cls: 'cancel', value: false }] }))) return;
+    removeFrom(c.src.under, u); c.p.trash.push(u); c.ctx.did = true; log(`${CARDS[u.id].name} (pre-advent) is discarded.`); } };

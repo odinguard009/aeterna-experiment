@@ -200,3 +200,18 @@ test('K-1120 BS65-003 Kirihoubou: as set Mirage a Scarlet Flame effect discardin
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.p2, false, JSON.stringify(r));
   assert.deepEqual(r.one, { count: 1, hand: 2 }, JSON.stringify(r)); assert.deepEqual(r.two, { count: 2, hand: 1 }, JSON.stringify(r));
 });
+
+test('K-1121 BS62-011 Scapanolancer: Attacks destroys one 12000- Spirit, or three when a Lava Fish pre-advent card is discarded; Contract Advent accepts a Lava Fish target; OC Flash returns a Lava Fish Spirit', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const low = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && BS.CARDS[k].levels && BS.CARDS[k].levels[0].bp <= 5000 && BS.CARDS[k].cost <= 3 && !k.startsWith('TRAIN'));
+    const fish = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && (BS.CARDS[k].families || []).includes('Lava Fish') && BS.CARDS[k].cost >= 3 && k !== 'BS62-011');
+    const a = BS.mkInst('BS62-011'); a.cores = 3; P.spirits = [a]; O.spirits = [1,2,3,4].map(() => { const x = BS.mkInst(low); x.cores = 1; return x; }); G.attacker = a;
+    await BS.fireFx(P, 'ATTACKS', a, { attacker: a, subject: a }); const one = O.spirits.length;
+    a.under = [BS.mkInst(fish)]; O.spirits = [1,2,3,4].map(() => { const x = BS.mkInst(low); x.cores = 1; return x; });
+    await BS.fireFx(P, 'ATTACKS', a, { attacker: a, subject: a }); const three = O.spirits.length, under = a.under.length;
+    const f = BS.mkInst(fish); const adv = BS.mkInst('BS62-011'); P.hand = [adv]; P.spirits = [f]; P.count = 4; const tg = BS.contractAdventTargets ? BS.contractAdventTargets(P, adv, 'flash').length : -1;
+    return { one, three, under, tg, partial: BS.CARDS['BS62-011'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.one, 3, JSON.stringify(r)); assert.equal(r.three, 1, JSON.stringify(r)); assert.equal(r.under, 0, JSON.stringify(r));
+  assert.ok(r.tg === -1 || r.tg === 1, JSON.stringify(r));
+});

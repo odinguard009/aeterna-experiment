@@ -191,7 +191,7 @@ function contractAdventTargets(p, inst, where) {
   if (p.count < (spec.counterGe || 0)) return [];
   if (!summonOK(p, CARDS[inst.id])) return [];
   if (spec.soulTo && !p.reserve.soul && !p.trashCores.soul) return [];      // v425 UTadvent: the Soul Core comes from the Reserve/Trash and goes to the target
-  return p.spirits.filter(sp => !isUlt(sp) && (spec.family === '*' || (CARDS[sp.id].families || []).includes(spec.family)) && CARDS[sp.id].cost >= (spec.costGe || 0) && !sp.under.includes(inst) && (spec.soulTo ? !sp.soul || sp.cores >= minCores(CARDS[inst.id]) : sp.soul ? sp.cores >= minCores(CARDS[inst.id]) : (cadvFree(p, inst) || soulCoreHolder(p, null) !== null)));
+  return p.spirits.filter(sp => !isUlt(sp) && (spec.family === '*' || [].concat(spec.family).some(f => (CARDS[sp.id].families || []).includes(f))) && CARDS[sp.id].cost >= (spec.costGe || 0) && !sp.under.includes(inst) && (spec.soulTo ? !sp.soul || sp.cores >= minCores(CARDS[inst.id]) : sp.soul ? sp.cores >= minCores(CARDS[inst.id]) : (cadvFree(p, inst) || soulCoreHolder(p, null) !== null)));
 }
 async function doContractAdvent(p, adv, src, where) {
   if (!contractAdventTargets(p, adv, where || 'main').includes(src)) return false;
