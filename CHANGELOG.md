@@ -4,6 +4,27 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.215.0
+- Lane: K
+- **Lane K: +55 complete cards (2,647 -> 2,702 of 10,291; 55 in this release)**
+Lane: K (Grandwalker order). Released on the owner's order ("rilis ver.0.215") at 55 new complete cards, below the 100 threshold.
+
+Grandwalker Nexus decks complete and playable in this release (own-family part, `deck_incomplete` = 0 in `data/kb/grandwalker-nexus.json`):
+- BS74-CX03 Mitra (new in this release): BS75-028 Unnis, BS74-047 Sat, BS74-072 Revelation Temple, BS74-CX03 Nexus, BS74-X06 Lord-Dragon-Glazar, BS74-X15 Ven-Danta.
+- BS75-CX03 Indra and BS46-XX02 Antarc (already released as complete in v0.214.0, still complete).
+
+Grandwalker work in progress (not complete decks yet):
+- BS72-CX02 Contractor Nyx: Nexus, Acid Shot, Amorphous Body, Muddy Swing, Silkie, Forgotten Headspring, Jellime, Onnendama.
+- BS73-CX02 Morrigan: Nexus + Perid, Dragonic-Arthur, Makala, Moo, Amber, Quoise, Yellodianna, Aquamarine, Absorption. Open: BS73-070, BS74-074, BS73-080, BS74-084 (need a Field Flash Magic mechanic).
+- BS74-CX01 Ometeotl: Nexus, Notosaurus, Aquilo-Lamda, Eurymeteos, Magma Draw, Magma Breaker, Aztlan, Ichziyon, Archelon, Lava Temple, BS63-016, BS61-004, BS75-076. Open: BS60-003, BS62-011, BS70-002, BS75-062, BS75-X02.
+- Nexus own cards: Lolo (BS44-CP02, BS44-XX02), Kei, Manaka, Alex, Alex-Lolo, Soaring Alex, Vishnu, Brahma, Shiva, Krishna; support BS51-086 Sarasvati's Music Temple.
+- Revival: BS44-RV002 Botis, BS44-RV005 Tron.
+- BS75-CX04 Khaos, BS74-CX02 Dionysus, BS73-CX03 Yamato Takeru, BS72-CX01 Lugh, BS72-CX03 Artemis: not started. BS75-X01 Yum-Kaax is blocked (its Fungal Bed Token data is unavailable and will not be invented).
+
+Engine: effect schema 431 -> 474 (43 steps), including Mirage zones, SOUL_PLACED Burst, OPP_DESTROY_NO_FX, DESTROY_TOTAL boost, plain Flash Advent (`contractAdvent.family "*"`), `underFamily`, UNBLOCKABLE_LOW `noAdvent`. Tests: `tests/unit/k_cards_105.test.mjs` (K-1153..K-1169).
+
+Known limits: Omitted Awakened Nexus bracket; Yellow colour approximated; Dragonic-Arthur's Yellow-only Contract Nexus approximated; Magma Draw's `trashHand` is once per turn per name and its CX01 clause uses `soulOn` as an approximation; the CPU never uses the Magma Breaker alt-cost route; Eurymeteos uses High Speed (Reserve-only payment); Notosaurus Lv1 cores still come from the Reserve; Aztlan's DESTROY_SYMBOLS uses printed symbols and picks up to two without a skip option; Archelon's NO_END_ATTACK applies to any of my attacking Spirits and its SOUL_PLACED burst only triggers through `soulToNexus`; the Lava Temple lock test checks the flag directly; the BS75-076 test covers the Flash only; `noAdvent` counts any card under a Spirit as Advent; the full quick test set runs in CI on main, locally only the loop ran.
+
 ## v0.214.0
 - Lane: K
 - **Lane K: +100 complete cards (2,547 -> 2,647 of 10,291; 100 in this release)**
