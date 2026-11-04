@@ -101,3 +101,27 @@ test('K-1078 BLOCK_MIN: fewer than three eligible blockers cannot block; with th
   assert.equal(r.two.exhausted, 0, JSON.stringify(r));
   assert.equal(r.three.exhausted, 2, JSON.stringify(r));      // the fighting blocker is destroyed (3 cores vs 4 cores attacker is a guess), the two others stay exhausted assert.equal(r.three.lifeLost, 0, JSON.stringify(r));
 });
+
+test('K-1079 BS45-032 Agamemnon: discarded by an opposing effect pays 1 and summons from Trash then draws 3; Lv2 protects cores; Blade Beast win trashes a Life', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = O.key; G.step = 5; G.fxBy = O.key;
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && k !== 'BS45-032');
+    const pc = BS.mkInst('BS45-032'); P.hand = [pc]; P.deck = [1,2,3,4,5,6].map(() => BS.mkInst(any)); P.spirits = []; P.reserve.n = 4;
+    const src = BS.mkInst(any); O.spirits = [src];
+    await BS.FX_ACTIONS.OPP_DISCARD.run({ p: O, opp: P, src, ctx: {} }, { do: 'OPP_DISCARD', n: 1 });
+    const summoned = P.spirits.includes(pc), hand = P.hand.length;
+    pc.cores = 3; const t = BS.mkInst(any); t.cores = 3; O.spirits = [t]; const before = t.cores;
+    const cap = BS.coreTakeCap(O, t, 2);
+    return { summoned, hand, cap, before, partial: BS.CARDS['BS45-032'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.summoned, true, JSON.stringify(r)); assert.equal(r.hand, 3, JSON.stringify(r));
+  assert.equal(r.cap, 0, JSON.stringify(r));
+});
+
+test('K-1080 BS45-032 Agamemnon: a Blade Beast ally winning on your attack sends an opposing Life to the Trash', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const a = BS.mkInst('BS45-032'); a.cores = 3; const bb = Object.keys(BS.CARDS).find(k => (BS.CARDS[k].families || []).includes('Blade Beast') && BS.CARDS[k].type === 'Spirit' && k !== 'BS45-032'); const w = BS.mkInst(bb); w.cores = 2; P.spirits = [a, w]; O.life = 5; G.attacker = w;
+    await BS.fireFx(P, 'ALLY_BATTLE_WIN', a, { subject: w, attacking: true });
+    return { life: O.life }; })()`);
+  assert.equal(r.life, 4, JSON.stringify(r));
+});

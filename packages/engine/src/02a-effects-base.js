@@ -314,7 +314,7 @@ function flagActive(owner, flag, subject, pred) {
    to 'oppBlockers' (+match on your attacker) protects the opposing Spirit that blocks your matching Spirit for this battle. */
 function coreSafeMode(owner, target) {
   if (!G || !target || !owner) return null;
-  if (mirageCoreSafe(owner, target)) return 'move';
+  if (mirageCoreSafe(owner, target) || coreSafeEvery(target)) return 'move';
   const opp = G.p[other(owner.key)];
   for (const side of [owner, opp]) for (const src of fieldList(side)) {
     const L = lvNo(src), sideOpp = side === owner ? opp : owner;

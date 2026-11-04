@@ -141,8 +141,8 @@ function parseEffects(arr) {
       if (e.flag === 'UNAFFECTED' && e.soulToo === true) o.soulToo = true;      // v460 also while in Soul State
       if (e.flag === 'CORE_SAFE') {                               // v190 "the cores can't be moved / can't be brought to less than one"
         if (!['move', 'floor', 'floor3'].includes(e.mode)) return { error: 'CORE_SAFE "mode" must be "move", "floor" or "floor3"' };
-        o.mode = e.mode; o.to = ['self', 'own', 'oppBlockers'].includes(e.to) ? e.to : 'self';
-        if (o.to !== 'self' && !o.match) return { error: 'CORE_SAFE "to" own/oppBlockers needs a "match"' };
+        o.mode = e.mode; o.to = ['self', 'own', 'oppBlockers', 'every'].includes(e.to) ? e.to : 'self';
+        if (o.to !== 'self' && o.to !== 'every' && !o.match) return { error: 'CORE_SAFE "to" own/oppBlockers needs a "match"' };
       }
       if (e.flag === 'EXTRA_REDUCTION' || e.flag === 'SUMMON_SYMBOL') {                          // v0.40: "all your Thunderive cards gain an extra yellow reduction symbol" (Indra Contract Field, Shimavajdra)
         if (!COLORS.includes(e.color)) return { error: e.flag + ' needs a "color"' };

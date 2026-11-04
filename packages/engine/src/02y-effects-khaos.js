@@ -40,3 +40,16 @@ FX_ACTIONS.OPP_GW_CORES_TO_VOID = { chk: a => Number.isInteger(a.n) && a.n >= 1 
       coreEvN(c.opp, t.uid, 'void', k, false); c.opp.void += k; t.cores -= k; c.ctx.did = true;
       log(`${_nm(c)}: ${k} core${k === 1 ? '' : 's'} from ${poss(c.opp)} ${CARDS[t.id].name} are sent to the Void.`); }
     if (c.ctx.did) io.view({ type: 'board' }); } };
+/* v478 CORE_SAFE to:"every" mode "move" (STATIC): "besides the Soul Core, neither player can remove cores from their Spirits/Ultimates" (BS45-032 Lv2). Any Field card of either player with that STATIC entry protects every Spirit/Ultimate that does not hold the Soul Core (approximation: the Soul holder is not protected at all, so its other cores can also be removed). */
+const coreSafeEvery = target => !!G && !!target && !target.soul && ['Spirit', 'Ultimate'].includes(CARDS[target.id].type) && ['player', 'opponent'].some(k => fieldList(G.p[k]).some(src => fxEntries(src).some(({ e }) => e.trigger === 'STATIC' && e.flag === 'CORE_SAFE' && e.to === 'every' && (!e.lv || e.lv.includes(lvNo(src))) && fxIf(G.p[k], G.p[other(k)], e.if, { selfInst: src }))));
+/* v478 SUMMON_SELF_TRASH {pay}: "pay N cost to summon this card" from the Trash (HAND_DISCARDED; the discarded card is already in the Trash). did = false when the cost cannot be paid or the card cannot be summoned. */
+FX_ACTIONS.SUMMON_SELF_TRASH = { chk: a => Number.isInteger(a.pay) && a.pay >= 0 && a.pay <= 5 && Object.keys(a).every(k => ['do', 'if', 'pay'].includes(k)),
+  txt: a => `pay ${a.pay} cost to summon this card from the Trash`,
+  can: (c, a) => c.p.trash.includes(c.src) && coresAvailable(c.p) >= a.pay && canPlaceFree(c.p, c.src),
+  run: async (c, a) => {
+    c.ctx.did = false;
+    if (!FX_ACTIONS.SUMMON_SELF_TRASH.can(c, a)) return;
+    if (a.pay && !(await payInvokeCost(c.p, c.src, { pay: a.pay }))) return;
+    if (!c.p.trash.includes(c.src) || !canPlaceFree(c.p, c.src)) return;
+    removeFrom(c.p.trash, c.src); c.p.hand.push(c.src);
+    if (await summonFree(c.p, c.src)) c.ctx.did = true; else { removeFrom(c.p.hand, c.src); c.p.trash.push(c.src); } } };

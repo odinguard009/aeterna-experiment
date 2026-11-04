@@ -7256,16 +7256,58 @@
   "image": "The SevenGreatHeroBeasts Agamemnon.jpg",
   "block": "45",
   "saga": 9,
-  "fxComplete": false,
-  "residual": [
-   "When this card in Hand is discarded by an opposing effect, you can pay one cost to summon it.",
-   "When you've done so, draw three cards.",
-   "[LV1][LV2] (Your Attack Step)",
-   "When only the opposing Spirit/Ultimate is destroyed by comparing BP with your \"Blade Beast\" family Spirit, send an opposing Life to their Trash.",
-   "[LV2]",
-   "Besides , neither player can remove cores from their Spirits/Ultimates."
-  ],
-  "note": "Partial card (v0.79.0 bulk playable pass 2026-11-01): printed text only, effects not wired; staging record kept in data/import for a later compiler pass."
+  "fxComplete": true,
+  "effects": [
+   {
+    "trigger": "HAND_DISCARDED",
+    "optional": true,
+    "actions": [
+     {
+      "do": "SUMMON_SELF_TRASH",
+      "pay": 1
+     },
+     {
+      "do": "DRAW",
+      "n": 3,
+      "if": {
+       "prev": true
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_BATTLE_WIN",
+    "lv": [
+     1,
+     2
+    ],
+    "attackingOnly": true,
+    "match": {
+     "family": [
+      "Blade Beast"
+     ]
+    },
+    "if": {
+     "step": "ATTACK",
+     "oppTurn": false
+    },
+    "actions": [
+     {
+      "do": "OPP_LIFE_TO_TRASH",
+      "n": 1
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "lv": [
+     2
+    ],
+    "flag": "CORE_SAFE",
+    "mode": "move",
+    "to": "every"
+   }
+  ]
  },
  {
   "id": "BS45-033",
