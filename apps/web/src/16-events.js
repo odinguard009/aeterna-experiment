@@ -255,7 +255,7 @@ function loadScenario(spec) {
       const mk = e => { const o = typeof e === 'string' ? { id: e } : (e || {}); if (!CARDS[o.id]) throw new Error(`unknown card "${o.id}"`); const i = mkInst(o.id); if (o.as) { if (refs[o.as]) throw new Error(`alias "${o.as}" used twice`); refs[o.as] = i; } return [i, o]; };
       p.cpu = sp.cpu !== false;
       for (const z of ['hand', 'deck', 'trash', 'soulState']) { p[z] = (sp[z] || []).map(e => { const [i] = mk(e); if (z === 'soulState') i.inSoulState = true; return i; }); }
-      p.spirits = []; p.nexus = []; p.removed = []; p.revealed = []; p.burst = null; p.mirage = null; p.limbo = null;
+      p.spirits = []; p.nexus = []; p.removed = []; p.revealed = []; p.burst = null; p.mirage = null; p.fieldMag = []; p.limbo = null;
       if (sp.burst) { const [i] = mk(sp.burst); if (!CARDS[i.id].burst) throw new Error(`${i.id} has no Burst effect`); p.burst = i; }   // v0.55.2: a set Burst card
       let soulOnField = 0;
       for (const z of ['spirits', 'nexus']) for (const e of sp[z] || []) {

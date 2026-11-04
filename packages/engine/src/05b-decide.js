@@ -89,7 +89,7 @@ async function prepareHumanMagic(p, inst, ctx, free) {
 async function humanFlashChoice(p, attKey, att, blk) {
   for (let g = 0; g < 6; g++) {
     const usable = magicSources(p, 'flash').filter(h => magicUsable(p, h, 'flash'));
-    const acts = []; for (const f of fieldList(p).concat(p.mirage ? [p.mirage] : [])) for (const x of activatable(p, f, 'FLASH')) acts.push({ f, idx: x.idx, e: x.e });
+    const acts = []; for (const f of fieldList(p).concat(p.mirage ? [p.mirage] : [], p.fieldMag || [])) for (const x of activatable(p, f, 'FLASH')) acts.push({ f, idx: x.idx, e: x.e });
     const cadv = cadvSources(p).filter(h => contractAdventTargets(p, h, 'flash').length);
     const mani = p.hand.filter(h => CARDS[h.id].manifest && manifestTargets(p, h, 'flash').length);
     const hsp = highSpeedSources(p);                                   // v0.49 High Speed

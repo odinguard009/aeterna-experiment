@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { sharedBoard } from './lib/node_board.mjs';
 
 test('K-1131 BS73-077 Binding Fungus: sent to the Trash from the Deck by Yum-Kaax is added to the Hand and sends a Fungal Bed; Flash heavy exhausts and returns to the Hand by exhausting three beds', async () => {
@@ -220,4 +221,45 @@ test('K-1145 BS74-074 Jewel Garden: redeploys from the Trash after a Prismwing M
     return { dep, cost2, base, exh, cost3, safe, partial: BS.CARDS['BS74-074'].partial, locked: typeof deckDiscardLocked === 'function' ? deckDiscardLocked() : null }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.dep, true, JSON.stringify(r)); assert.equal(r.cost2, r.cost3 - 2, JSON.stringify(r));
   assert.equal(r.exh, true, JSON.stringify(r)); assert.equal(r.safe, true, JSON.stringify(r)); assert.equal(r.locked, true, JSON.stringify(r));
+});
+
+test('K-1146 BS73-080 Healing Gem: Flash refreshes a Prismwing Spirit and goes onto the Field when a Contractor Morrigan is controlled; the Field Activate discards it to deploy Morrigan from the Trash', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4; G.fxBy = P.key;
+    const pw = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && (BS.CARDS[k].families || []).includes('Prismwing'));
+    const s = BS.mkInst(pw); s.cores = 2; s.exhausted = true; P.spirits = [s]; const gem = BS.mkInst('BS73-080'); P.hand = [gem];
+    await BS.castMagic(P, { inst: gem, free: true });
+    const noMor = { field: P.fieldMag.length, trash: P.trash.includes(gem) }; P.trash = []; P.fieldMag = [];
+    const w = BS.mkInst('BS73-CX02'); w.cores = 1; P.nexus = [w]; const gem2 = BS.mkInst('BS73-080'); P.hand = [gem2]; s.exhausted = true;
+    await BS.castMagic(P, { inst: gem2, free: true });
+    const onField = P.fieldMag.includes(gem2), refreshed = s.exhausted === false, notTrash = !P.trash.includes(gem2);
+    const mor = BS.mkInst('BS73-CX02'); P.nexus = []; P.trash = [mor];
+    const acts = BS.activatable(P, gem2, 'FLASH').length; await BS.activateFx(P, gem2, BS.activatable(P, gem2, 'FLASH')[0].idx);
+    return { noMor, onField, refreshed, notTrash, acts, dep: P.nexus.includes(mor), gone: !P.fieldMag.includes(gem2), inTrash: P.trash.includes(gem2), partial: BS.CARDS['BS73-080'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.deepEqual(r.noMor, { field: 0, trash: true }, JSON.stringify(r));
+  assert.equal(r.onField, true, JSON.stringify(r)); assert.equal(r.refreshed, true, JSON.stringify(r)); assert.equal(r.notTrash, true, JSON.stringify(r));
+  assert.equal(r.acts, 1, JSON.stringify(r)); assert.equal(r.dep, true, JSON.stringify(r)); assert.equal(r.gone, true, JSON.stringify(r)); assert.equal(r.inTrash, true, JSON.stringify(r));
+});
+
+test('K-1147 BS74-084 Fluoral Charge: Flash -5000 BP destroys at 0 and goes onto the Field; the Field Activate discards it to run Morrigan\'s Contract Skill ignoring once-per-turn', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4; G.fxBy = P.key;
+    const weak = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && (BS.CARDS[k].levels || [{}])[0].bp <= 5000);
+    const t = BS.mkInst(weak); t.cores = 1; O.spirits = [t]; const w = BS.mkInst('BS73-CX02'); w.cores = 4; P.nexus = [w];
+    const f = BS.mkInst('BS74-084'); P.hand = [f]; await BS.castMagic(P, { inst: f, free: true });
+    const killed = !O.spirits.includes(t), onField = P.fieldMag.includes(f);
+    G.step = 5; const voidBefore = P.void, cntBefore = P.count; w.fxUsed = { 2: G.turnNo }; P.onceUsed = {};
+    const acts = BS.activatable(P, f, 'FLASH'); if (acts.length) await BS.activateFx(P, f, acts[0].idx);
+    return { killed, onField, acts: acts.length, cnt: P.count - cntBefore, voidSame: P.void === voidBefore, coresKept: w.cores, gone: !P.fieldMag.includes(f), inTrash: P.trash.includes(f), partial: BS.CARDS['BS74-084'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.killed, true, JSON.stringify(r)); assert.equal(r.onField, true, JSON.stringify(r));
+  assert.equal(r.acts, 1, JSON.stringify(r)); assert.equal(r.cnt >= 2, true, JSON.stringify(r)); assert.equal(r.coresKept, 4, JSON.stringify(r)); assert.equal(r.gone, true, JSON.stringify(r)); assert.equal(r.inTrash, true, JSON.stringify(r));
+});
+
+test('K-1148 Field Flash scenario field-flash-healing-gem: cast from the Hand with a Morrigan in play, the card rests on the Field and is Activatable from there', async () => {
+  const { page } = await sharedBoard();
+  const spec = JSON.parse(readFileSync(new URL('../scenarios/field-flash-healing-gem.json', import.meta.url), 'utf8'));
+  const r = await page.evaluate(`(async () => { BS.loadScenario(${JSON.stringify(spec)}); const G = BS.G, P = G.p.player, gem = P.hand[0];
+    await BS.castMagic(P, { inst: gem, free: true });
+    return { field: P.fieldMag.length, inHand: P.hand.includes(gem), inTrash: P.trash.includes(gem), refreshed: P.spirits[0].exhausted === false, acts: BS.activatable(P, gem, 'FLASH').length }; })()`);
+  assert.deepEqual(r, { field: 1, inHand: false, inTrash: false, refreshed: true, acts: 1 }, JSON.stringify(r));
 });

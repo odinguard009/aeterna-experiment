@@ -321,7 +321,7 @@ function parseEffects(arr) {
         if (e.bySrc != null) { const b = e.bySrc; if (!b || typeof b !== 'object' || (b.type != null && !['Spirit', 'Magic'].includes(b.type)) || (b.family != null && !(Array.isArray(b.family) && b.family.length && b.family.length <= 4 && b.family.every(x => typeof x === 'string'))) || (b.type == null && b.family == null)) return { error: '"bySrc" must look like {"type":"Spirit","family":["X"]}' }; o.bySrc = { type: b.type, family: b.family }; }
       }
       if (e.zone === 'hand' && (e.trigger === 'ALLY_BLOCKED' || e.trigger === 'ALLY_SUMMONED' || e.trigger === 'SILVER_WHEEL' || e.trigger === 'LIFE_GUARD' || e.trigger === 'ALLY_NEXUS_DESTROYED' || e.trigger === 'NEXUS_SOUL' || e.trigger === 'OPP_HAND_UP' || e.trigger === 'START_MAIN')) o.zone = 'hand';
-      if (e.zone === 'trash' && (e.trigger === 'LIFE_GUARD' || e.trigger === 'ACTIVATE')) o.zone = 'trash'; if (e.zone === 'mirage' && (e.trigger === 'ACTIVATE' || e.trigger === 'ALLY_ATTACKS' || e.trigger === 'OPP_REMOVED' || e.trigger === 'OWN_DISCARD' || e.trigger === 'ALLY_SUMMONED')) o.zone = 'mirage';      // v449 Mirage Flash (BS60-014)
+      if (e.zone === 'trash' && (e.trigger === 'LIFE_GUARD' || e.trigger === 'ACTIVATE')) o.zone = 'trash'; if (e.zone === 'field' && e.trigger === 'ACTIVATE') o.zone = 'field'; if (e.zone === 'mirage' && (e.trigger === 'ACTIVATE' || e.trigger === 'ALLY_ATTACKS' || e.trigger === 'OPP_REMOVED' || e.trigger === 'OWN_DISCARD' || e.trigger === 'ALLY_SUMMONED')) o.zone = 'mirage';      // v449 Mirage Flash (BS60-014)
            // v432 ACTIVATE from the Trash (BS75-028)
       if (e.zone === 'trash' && (e.trigger === 'ALLY_DIED' || e.trigger === 'EXHAUSTED_FX' || e.trigger === 'NEXUS_DOWN' || e.trigger === 'COUNTER_UP' || e.trigger === 'START_MAIN' || e.trigger === 'ALLY_NEXUS_DESTROYED' || e.trigger === 'OPP_HAND_UP' || e.trigger === 'MAGIC_USED')) o.zone = 'trash';      // v155 the effect works from the Trash ("you can return this card from the Trash")
       if (e.trigger === 'BP_REACHED') { if (!(Number.isInteger(e.bpGe) && e.bpGe >= 1000 && e.bpGe <= 100000)) return { error: 'BP_REACHED needs bpGe (1000-100000)' }; o.bpGe = e.bpGe; if (e.self === true) o.self = true; if (e.match != null) { if (!hasMatch(e.match)) return { error: 'BP_REACHED "match" must look like {"team":"GAIM"}' }; o.match = e.match; } }      // v217
@@ -342,8 +342,8 @@ function parseEffects(arr) {
         if (e.invoke === true) {      // v0.68 Invoke (02l-effects-invoke.js): when / oncePer / Invoke costs
           const r = invokeParse(e, o); if (r) return { error: r };
         } else if (e.cost != null) {
-          if (typeof e.cost !== 'object' || (e.cost.nexusToVoid == null && e.cost.exhaustSelf !== true) || (e.cost.nexusToVoid != null && (!Number.isInteger(e.cost.nexusToVoid) || e.cost.nexusToVoid < 1 || e.cost.nexusToVoid > 5)) || (e.cost.exhaustSelf != null && e.cost.exhaustSelf !== true)) return { error: 'ACTIVATE "cost" must look like {"nexusToVoid":3} or {"exhaustSelf":true}' };
-          o.cost = {}; if (e.cost.nexusToVoid != null) o.cost.nexusToVoid = e.cost.nexusToVoid; if (e.cost.exhaustSelf) o.cost.exhaustSelf = true;   // v0.38: "by exhausting this Nexus"
+          if (typeof e.cost !== 'object' || (e.cost.nexusToVoid == null && e.cost.exhaustSelf !== true && e.cost.discardSelf !== true) || (e.cost.nexusToVoid != null && (!Number.isInteger(e.cost.nexusToVoid) || e.cost.nexusToVoid < 1 || e.cost.nexusToVoid > 5)) || (e.cost.exhaustSelf != null && e.cost.exhaustSelf !== true)) return { error: 'ACTIVATE "cost" must look like {"nexusToVoid":3} or {"exhaustSelf":true}' };
+          o.cost = {}; if (e.cost.discardSelf) o.cost.discardSelf = true; if (e.cost.nexusToVoid != null) o.cost.nexusToVoid = e.cost.nexusToVoid; if (e.cost.exhaustSelf) o.cost.exhaustSelf = true;   // v0.38: "by exhausting this Nexus"
         }
       }
     }

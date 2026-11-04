@@ -40,7 +40,7 @@ function boardSnapshot(viewerKey) {
     hand: local ? (p.cpu ? p.hand.length : p.hand.map(h => h.id)) : (p.key === viewerKey ? p.hand.map(h => h.id) : p.hand.length),
     hu: !local && p.key === viewerKey ? p.hand.map(h => h.uid) : undefined,   // v0.108.0 (M8): the seat's hand uids, same order as `hand`, so the online client can send intents by uid
     spirits: p.spirits.map(fc), nexus: p.nexus.map(fc), trash: p.trash.map(x => x.id), soulState: p.soulState.map(x => x.id),
-    removed: p.removed.map(x => x.id), burst: p.burst ? (local ? (p.cpu ? 'set' : p.burst.id) : (p.key === viewerKey ? p.burst.id : 'set')) : null, mirage: p.mirage ? p.mirage.id : null
+    removed: p.removed.map(x => x.id), burst: p.burst ? (local ? (p.cpu ? 'set' : p.burst.id) : (p.key === viewerKey ? p.burst.id : 'set')) : null, mirage: p.mirage ? p.mirage.id : null, fieldMag: (p.fieldMag || []).map(x => x.id)
   });
   // v0.110.0 (M8 part 3): log = the recent game log for the online client's log panel. Only for a seat view
   // (local viewer replays keep their own record and need no log); capped so the frame stays bounded. The log

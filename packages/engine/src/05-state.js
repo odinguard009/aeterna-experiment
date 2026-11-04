@@ -37,7 +37,7 @@ function newPlayer(key, name, cpu, counts) {
   const P = {
     key, name, cpu, deckSize: deckTotal(counts), deck: all, hand, spirits: [], nexus: [], soulState: [], standby: [], trash: [], removed: [],
     life: 5, lifeSoul: false, made: 8, reserve: { n: 3, soul: true }, trashCores: { n: 0, soul: false }, count: 0, void: 0, revealed: [], onceUsed: {},
-    burst: null, burstSetThisTurn: false, mirage: null, mirageSetThisTurn: false
+    burst: null, burstSetThisTurn: false, mirage: null, mirageSetThisTurn: false, fieldMag: []
   };
   prepareTokens(P, counts);                 // Token cards are prepared outside the Deck (no shuffle, no RNG use)
   return P;

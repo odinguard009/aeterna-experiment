@@ -107,3 +107,18 @@ function ccost(card, inst) {
   let n = 0; for (const f of fieldList(p)) for (const { e } of fxEntries(f)) if (e.trigger === 'STATIC' && e.flag === 'COST_PLUS' && (!e.lv || e.lv.includes(lvNo(f))) && (card.families || []).some(x => (e.match.family || []).includes(x))) n += e.n;
   return card.cost + n;
 }
+
+/* v530 Field Flash: a resolved Magic marked inst.toBottom goes to the deckbottom, inst.toField onto the Field (p.fieldMag, activatable via zone:'field' ACTIVATE; cost {discardSelf:true} moves it to the Trash). */
+function magicRest(p, inst) {
+  if (inst.toField) { inst.toField = false; p.fieldMag = p.fieldMag || []; p.fieldMag.push(inst); log(`${CARDS[inst.id].name} is put onto ${poss(p)} Field.`); }
+  else { inst.toBottom = false; p.deck.push(inst); }
+}
+FX_ACTIONS.PUT_SELF_ONTO_FIELD = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
+  txt: () => 'put this card onto your Field', can: () => true,
+  run: async c => { c.ctx.did = CARDS[c.src.id].type === 'Magic' && c.p.limbo === c.src && !c.src.fromTrash; if (c.ctx.did) c.src.toField = true; } };
+/* v530 CONTRACT_SKILL_RUN {name}: "immediately activate a Contract Skill written on a <name> Grandwalker Nexus you control, ignoring once per turn, treating the cores as sent to the Void":
+   runs the actions of that Nexus's cost-bearing ACTIVATE effect (its Contract Skill) with no cost paid and no once-per-turn mark. */
+const _csEff = (c, a) => { for (const n of c.p.nexus) if (CARDS[n.id].name.toLowerCase().includes(a.name.toLowerCase())) for (const x of actList(n)) if (x.e.trigger === 'ACTIVATE' && x.e.cost && x.e.cost.nexusToVoid) return { n, e: x.e }; return null; };
+FX_ACTIONS.CONTRACT_SKILL_RUN = { chk: a => typeof a.name === 'string' && a.name.length > 0 && Object.keys(a).every(k => ['do', 'if', 'name'].includes(k)),
+  txt: a => `immediately activate a Contract Skill of your "${a.name}" Nexus, ignoring once per turn, treating the cores as sent to the Void`, can: (c, a) => !!_csEff(c, a),
+  run: async (c, a) => { const x = _csEff(c, a); c.ctx.did = !!x; if (!x) return; log(`${CARDS[c.src.id].name}: activates the Contract Skill of ${CARDS[x.n.id].name}.`); await runActions({ p: c.p, opp: c.opp, src: x.n, ctx: {} }, x.e, 'ACTIVATE'); } };

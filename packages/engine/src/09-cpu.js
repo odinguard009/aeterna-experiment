@@ -75,7 +75,7 @@ function cpuFlashChoice(p, attKey, att, blk) {
     if (hits) return { manifest: h, target: T.sort((a, b) => b.cores - a.cores)[0] };
   }
   /* Flash effects of the field cards that are clearly useful */
-  for (const f of fieldList(p).concat(p.mirage ? [p.mirage] : [])) {
+  for (const f of fieldList(p).concat(p.mirage ? [p.mirage] : [], p.fieldMag || [])) {
     for (const x of activatable(p, f, 'FLASH')) {
       if (x.e.cpuSkip) continue;
       if (x.e.invoke) { if (cpuInvokeOK(p, f, x.e, 'FLASH')) return { act: { f, idx: x.idx } }; continue; }   // v0.68 Invoke (02l)

@@ -355,11 +355,12 @@ function activatable(p, f, timing) {
   const card = CARDS[f.id], out = [];
   const inTrash = !!G && p.trash.includes(f);      // v432 zone:'trash' ACTIVATE (BS75-028): works from the Trash only
   const inMir = !!G && p.mirage === f && !!f.mirage;      // v449 zone:'mirage' ACTIVATE: works only while this card is your set Mirage
-  if (!G || (!inTrash && !inMir && !fieldList(p).includes(f))) return out;
-  const opp = G.p[other(p.key)], L = inTrash || inMir ? 0 : lvNo(f);
+  const inFM = !!G && (p.fieldMag || []).includes(f);      // v530 Field Flash: a Magic put onto your Field (zone:'field' ACTIVATE)
+  if (!G || (!inTrash && !inMir && !inFM && !fieldList(p).includes(f))) return out;
+  const opp = G.p[other(p.key)], L = inTrash || inMir || inFM ? 0 : lvNo(f);
   if (!inTrash && opp.nexusLockLe != null && card.type === 'Nexus' && card.cost <= opp.nexusLockLe) return out;      // NEXUS_LOCK
   actList(f).forEach(({ e, idx }) => {
-    if (e.trigger !== 'ACTIVATE' || (e.zone === 'trash') !== inTrash || (e.zone === 'mirage') !== inMir) return;
+    if (e.trigger !== 'ACTIVATE' || (e.zone === 'trash') !== inTrash || (e.zone === 'mirage') !== inMir || (e.zone === 'field') !== inFM) return;
     if (timing && !e.timing.includes(timing)) return;
     if (e.lv && !e.nexusBrave && !e.lv.includes(L)) return;
     if (e.oc && !ocActive(f)) return;
@@ -391,6 +392,7 @@ async function activateFx(p, f, idx) {
   await bpReachedCheck(p, 'base');
   if (e.cost && e.cost.nexusToVoid) { f.cores -= e.cost.nexusToVoid; p.void += e.cost.nexusToVoid; nexusVoided(p, f.uid); log(`${card.name}: ${e.cost.nexusToVoid} cores are sent to the Void.`); }
   if (e.cost && e.cost.exhaustSelf) { f.exhausted = true; log(`${card.name} is exhausted.`); }
+  if (e.cost && e.cost.discardSelf && (p.fieldMag || []).includes(f)) { removeFrom(p.fieldMag, f); p.trash.push(f); log(`${card.name} is discarded from the Field.`); }
   if (e.invoke && !(await payInvokeCost(p, f, e.cost))) return false;      // v0.68: part A must resolve in full (Std FAQ on Effects Q11)
   if (e.oncePer === 'battle') markUsedBattle(f, idx); else markUsed(p, f, idx, e);      // marked after a paid cost (A7 review)
   log(`${card.name}: [${e.invoke ? 'Invoke' : 'Activate'}] ${fxDescribe(e)}.`);

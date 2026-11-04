@@ -76,7 +76,7 @@ function checkInvariants() {
     if (normal !== p.made) throw new Error(`Core mismatch for ${p.name}: ${normal}`);
     const soul = (p.reserve.soul ? 1 : 0) + (p.lifeSoul ? 1 : 0) + (p.trashCores.soul ? 1 : 0) + fieldList(p).filter(i => i.soul).length;
     if (soul !== 1) throw new Error(`Soul Core count for ${p.name}: ${soul}`);
-    const cards = p.deck.length + p.hand.length + p.spirits.filter(i => !i.token).length + p.nexus.length + p.soulState.length + p.standby.length + p.trash.length + p.removed.length + (p.burst ? 1 : 0) + (p.mirage ? 1 : 0) + (p.limbo ? 1 : 0) + p.revealed.length + fieldList(p).reduce((s, i) => s + i.under.length + (i.brave ? 1 : 0), 0);
+    const cards = p.deck.length + p.hand.length + p.spirits.filter(i => !i.token).length + p.nexus.length + p.soulState.length + p.standby.length + p.trash.length + p.removed.length + (p.burst ? 1 : 0) + (p.mirage ? 1 : 0) + (p.fieldMag ? p.fieldMag.length : 0) + (p.limbo ? 1 : 0) + p.revealed.length + fieldList(p).reduce((s, i) => s + i.under.length + (i.brave ? 1 : 0), 0);
     if (cards !== p.deckSize) throw new Error(`Card mismatch for ${p.name}: ${cards} vs ${p.deckSize}`);
     for (const s of p.spirits) if (totalCores(s) < CARDS[s.id].levels[0].cores) throw new Error(`Undepleted spirit ${CARDS[s.id].name}`);
     if (p.void < 0 || p.count < 0 || p.reserve.n < 0) throw new Error(`Negative core zone for ${p.name}`);
