@@ -31,6 +31,12 @@ function dkCover(cards, key, cover) {                // up to 3 card ids, the ch
   const rank = id => (cover && id === cover ? -1 : key && id === key ? 0 : dkKeyNexus(id) ? 1 : 2);
   return have.sort((a, b) => rank(a) - rank(b) || cards[b] - cards[a] || DB_COLL.compare(a, b)).slice(0, 3);
 }
+// v0.216 UI: the front card of a ready-made deck = its Grandwalker Nexus / Contract Nexus when it has one (that card only), else its highest-cost Spirit
+function dkFront(cards) {
+  const ids = Object.keys(cards).filter(id => CARDS[id] && cards[id] > 0 && !CARDS[id].token);
+  const best = list => list.sort((x, y) => (CARDS[y].cost || 0) - (CARDS[x].cost || 0) || cards[y] - cards[x] || DB_COLL.compare(x, y))[0] || null;
+  return best(ids.filter(dkKeyNexus)) || best(ids.filter(id => CARDS[id].type === 'Spirit'));
+}
 function dkFan(cards, key, cover) {                         // tile art: the cover cards, fanned (mockup .stack); the key card is the middle, front one
   const top = dkCover(cards, key, cover), kid = top[0]; if (top.length === 3) top.splice(1, 0, top.shift());   // key card to the middle slot
   return `<div class="stack" aria-hidden="true">${top.map(id => `<div class="cf${id === kid ? ' key' : ''}">${cardFaceHTML(CARDS[id], false)}</div>`).join('')}</div>`;
@@ -55,7 +61,7 @@ function dkTile(i, name, cards, starter) {
   const stat = `<div class="stat"><span>${deckTotal(cards)}/40 cards</span>${ds ? `<span>${ds.wr == null ? 'No matches' : 'Win ' + ds.wr + '%'}</span><span>${dkAgo(ds.last)}</span>` : ''}</div>`;
   const btns = starter ? `<div class="row dk-st-btns" style="gap:6px;flex-wrap:nowrap"><button class="btn sm" data-a="dk-recipe" data-v="${i}" aria-label="View the recipe of ${nm}">Recipe</button><button class="btn sm grow" data-a="dk-copy" data-v="${i}" aria-label="Copy ${nm} to my decks">Copy</button></div>`
     : `<button class="btn sm grow" data-a="dk-edit" data-v="${i}" aria-label="Edit ${nm}">Edit</button><button class="btn sm pri grow" data-a="dk-play" data-v="${i}" aria-label="Play with ${nm}"${st.ok ? '' : ' disabled'}>Play</button><button class="ibtn sq dk-more" data-a="dk-more" data-v="${i}" aria-label="More actions for ${nm}" aria-haspopup="menu" aria-expanded="${open}">⋯</button>`;
-  if (starter) { const kc = dkCover(cards, key)[0];   // the thumbnail is the Key Spirit (else the most played card)
+  if (starter) { const kc = dkFront(cards) || dkCover(cards, key)[0];   // the thumbnail is the Key Spirit (else the most played card)
     return `<div class="card flat dk-st-row" data-v="${i}"><div class="dk-st-th">${kc ? cardFaceHTML(CARDS[kc], false) : ''}</div><div class="dk-st-nm"><b>${nm}</b> ${kb}<span class="dk-st-sub">${esc(st.ok ? st.txt : deckTotal(cards) + ' cards')}</span></div>${btns}</div>`; }
   return `<div class="card dtile${act ? ' on' : ''}${open ? ' open' : ''}" data-v="${i}">${dkFan(cards, key, SLOTS[i] && SLOTS[i].cover)}<div class="row"><b class="grow" style="font-size:1.02em" title="${nm}">${nm}</b>${kb}${act ? '<span class="tag">Active</span>' : ''}</div><div class="row" style="gap:6px">${dots}<span class="grow"></span><span class="${st.ok ? 'vc' : 'vc warn'}">${st.ok ? '✓ Legal' : deckTotal(cards) < 40 ? 'Needs ' + (40 - deckTotal(cards)) + ' more' : 'Not legal'}</span></div>${stat}<div class="row" style="gap:6px">${btns}</div>${menu}</div>`;
 }
@@ -170,7 +176,7 @@ function renderRecipe() {
   const cnt = t => (grp[t] || []).reduce((n, id) => n + rec[id], 0);
   const curve = {}; for (const id of ids) { const c = CARDS[id]; if (c) { const k = Math.min(c.cost, 9); curve[k] = (curve[k] || 0) + rec[id]; } }
   const mx = Math.max(1, ...Object.values(curve)), cols = dkColors(d.cards).map(c => `<span class="tag dim" style="display:inline-flex;align-items:center;gap:6px"><i style="display:inline-block;width:10px;height:10px;background:${colorVar(c)};clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)"></i>${cap(c)}</span>`).join('');
-  const key = d.key && CARDS[d.key] ? `<span class="tag dim" title="Key Spirit: draws favour it">Key · ${esc(CARDS[d.key].name)}</span>` : '';
+  const fr = dkFront(d.cards), key = fr ? `<span class="tag dim" title="${dkKeyNexus(fr) ? 'Cover card: the Grandwalker Nexus of the deck' : 'Key Spirit: the highest-cost Spirit, draws favour it'}">${dkKeyNexus(fr) ? 'Cover' : 'Key'} · ${esc(CARDS[fr].name)}</span>` : '';
   const src = d.source ? `<a class="tag dim" href="${esc(d.source)}" target="_blank" rel="noopener" title="Official deck-feature page on battlespirits.com">Official recipe ↗</a>` : '';
   const row = id => { const c = CARDS[id], n = rec[id]; return c
     ? `<button class="rc-row" data-a="cp-open" data-v="${esc(id)}" aria-label="Open ${esc(c.name)}"><b class="rc-n">${n}×</b><span class="rc-nm" translate="no">${esc(c.name)}</span><span class="rc-id">${esc(id)}</span><span class="rc-c">${c.type === 'Magic' || c.type === 'Nexus' ? '' : 'Cost '}${c.cost}</span></button>`

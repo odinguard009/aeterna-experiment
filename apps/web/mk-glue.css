@@ -358,3 +358,29 @@ html.layout-pc #ae-eff-stack { left: 8px; top: 46px; bottom: auto; }
 html:not(.layout-pc) #ae-eff-stack { top: 38px; }
 /* phone: while the deck sheet covers the builder (normal or maximized) the Hide/Show filters button is hidden; it sat above the sheet and covered its minimize button (owner 2026-11-02) */
 html:not(.layout-pc) .mk #view-deckbuilder.db-open-deck:not([data-dsize="min"]) #db-tbar .r1>#db-min{display:none}
+/* v0.216 UI: Dark/Light lever inside the colour popover (phone has no header lever) */
+.ae-pop .pmode{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px;padding-top:10px;border-top:1px solid var(--line2);font-size:.82em;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text2)}
+/* v0.216 UI: tidy text. Card-face text never justifies (wide word gaps in small tiles); Play steps hint reads as three chips */
+.cface.ph .ph-txt{text-align:left!important;text-align-last:left!important;hyphens:manual!important}
+.howsteps{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;font-size:.84em}
+.howsteps>span{display:inline-flex;align-items:center;gap:6px;padding:3px 10px 3px 4px;border:1px solid var(--line2);border-radius:999px;color:var(--text);white-space:nowrap}
+.howsteps>span b{display:inline-grid;place-items:center;width:1.5em;height:1.5em;border-radius:50%;background:var(--you);color:var(--you-ink);font-size:.82em}
+.howsteps>.go{border:0;padding:3px 2px;color:var(--text2)}
+/* v0.216 UI: card info opened from a zone sheet (Trash, Removed, Soul) stacks above that sheet (sheet 210) */
+#zoom-overlay.top{z-index:220}
+/* v0.216 UI: Active Effects sheet - grouped per side, readable size */
+.fx-list{text-align:left;font-size:15px;line-height:1.45}
+.fx-list .fxgrp h4{margin:10px 0 4px;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.fx-list .fxgrp.you h4{color:var(--you,#7ad0ff)}.fx-list .fxgrp.cpu h4{color:var(--cpu,#ff7a7a)}
+.fx-list .fxrow{padding:8px 0;border-bottom:1px solid var(--ae-line2,#3338)}
+.fx-list .fxhd{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+.fx-list .fxhd b{font-size:16px}
+.fx-list .fxtag{font-size:12px;padding:1px 8px;border-radius:999px;border:1px solid currentColor;opacity:.8}
+.fx-list .fxtx{margin-top:3px;font-size:15px}
+#zoom-overlay.top{background:rgba(0,0,0,.97)}
+/* v0.216 UI: narrow landscape / small tablet - the profile chip keeps only the avatar so the top bar never clips it */
+@media (max-width:900px){.mk .pchip{padding:5px 14px 5px 10px;flex:none}.mk .pchip>span:not(.av){display:none}}
+.decksel{scrollbar-width:none}.decksel::-webkit-scrollbar{display:none}   /* v0.216 UI: the grey scrollbar under the deck tiles looked like a stray bar */
+/* v0.216 UI: Light mode - the card info beside the zoomed card sits on the dark zoom overlay, so its text must be light (it inherited the dark page text and vanished) */
+[data-mode="light"] #zoom-overlay .zc-info{color:#eef2f7;--text:#eef2f7;--text2:#cfd6e0;--text3:#b4bdca}
+[data-mode="light"] #zoom-overlay .zc-info .cd-info{color:#141922}

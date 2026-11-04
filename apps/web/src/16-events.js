@@ -193,6 +193,7 @@ function gameAct(a, v) {
   else if (a === 'field') { const [k, kind, u] = v.split(':'); openFieldModal(k, kind, Number(u)); }
   else if (a === 'zone') { const [k, z] = v.split(':'); openZoneModal(k, z); }
   else if (a === 'next') onNext();
+  else if (a === 'leave' && G && G.over) { SESSION++; clearPick(); G = null; switchView('view-lobby'); }   // v0.216 UI: after the game ended the button reads Lobby and leaves without asking
   else if (a === 'leave') {
     modal({ uiOnly: true, title: 'Concede the match?', html: 'It counts as a loss. You can replay it from History.', buttons: [{ label: 'Keep Playing', cls: 'primary', value: false }, { label: 'Concede', cls: 'danger', value: true }] })
       .then(r => { if (r) { SESSION++; clearPick(); G = null; switchView('view-lobby'); } });
@@ -318,7 +319,7 @@ function toggleFullscreen() {
     const w = rows.length ? rows[rows.length - 1].closest('.field-row-wrapper') : null; if (!w) return;
     const r = w.getBoundingClientRect(), vr = view.getBoundingClientRect();
     b.style.right = 'auto'; b.style.bottom = 'auto';
-    b.style.left = Math.max(0, r.right - vr.left - b.offsetWidth - 6) + 'px'; b.style.top = Math.max(0, r.bottom - vr.top - b.offsetHeight - 6) + 'px';
+    b.style.left = Math.max(0, r.right - vr.left - b.offsetWidth - 2) + 'px';   b.style.top = Math.max(0, r.bottom - vr.top - b.offsetHeight - 6) + 'px';
   };
   let q = 0; const soon = () => { clearTimeout(q); q = setTimeout(place, 30); };
   new MutationObserver(soon).observe($('app'), { childList: true, subtree: true });

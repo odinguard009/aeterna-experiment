@@ -199,7 +199,9 @@ function cpuDeckFor(format) {                          // the CPU deck: the chos
   const usable = d => !d.missing && validateDeck(d.cards, format).ok;      // an incomplete starter is never picked for the CPU
   const pick = PREBUILT.find(d => d.id === sel);
   if (pick && usable(pick)) { CPU_DECK_NAME = pick.name; CPU_KEY = keyOfDeck(pick.cards, pick.key); return pick.cards; }
-  const legal = PREBUILT.filter(d => usable(d) && !d.hidden && d.id !== 'train' && prebuiltFmt(d) === 'standard');      // the random pick only takes listed decks (hidden fixtures and the training deck stay selectable by id)
+  const want = sel === 'random-eternal' ? 'eternal' : 'standard';   // v0.216 UI: "Random legal Eternal deck" / "Random legal Standard deck"; plain 'random' stays Standard
+  let legal = PREBUILT.filter(d => usable(d) && !d.hidden && d.id !== 'train' && prebuiltFmt(d) === want);
+  if (!legal.length) legal = PREBUILT.filter(d => usable(d) && !d.hidden && d.id !== 'train' && prebuiltFmt(d) === 'standard');   // Standard match + Eternal pick: Eternal decks are illegal, fall back      // the random pick only takes listed decks (hidden fixtures and the training deck stay selectable by id)
   const d = legal.length ? legal[Math.floor(rng() * legal.length)] : PREBUILT[0];
   CPU_DECK_NAME = d.name; CPU_KEY = keyOfDeck(d.cards, d.key); return d.cards;
 }

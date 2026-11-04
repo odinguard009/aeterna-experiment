@@ -79,7 +79,9 @@ function fieldFxRows() {
 function openFieldFx() {
   if (!G) return;
   const rows = fieldFxRows();
-  const html = rows.length ? `<div class="log-list fx-list">${rows.map(r => `<div class="fxrow ${r.key === 'opponent' ? 'cpu' : 'you'}"><b>${r.key === 'opponent' ? 'CPU' : 'YOU'} · ${esc(r.name)}</b> <span class="mut">(${r.tag})</span><br>${esc(r.t)}</div>`).join('')}</div>` : 'No continuous effect is in force on the Field right now.';
+  const lab = { continuous: 'Always on', granted: 'Given by another card', BP: 'This turn' };
+  const grp = k => { const rs = rows.filter(r => r.key === k); return rs.length ? `<div class="fxgrp ${k === 'opponent' ? 'cpu' : 'you'}"><h4>${k === 'opponent' ? 'CPU Field' : 'Your Field'}</h4>${rs.map(r => `<div class="fxrow"><div class="fxhd"><b>${esc(r.name)}</b><span class="fxtag">${lab[r.tag] || r.tag}</span></div><div class="fxtx">${esc(r.t)}</div></div>`).join('')}</div>` : ''; };
+  const html = rows.length ? `<div class="fx-list">${grp('player')}${grp('opponent')}</div>` : 'No continuous effect is in force on the Field right now.';
   uiInfo('Active Effects', html);
 }
 function openLogModal() {

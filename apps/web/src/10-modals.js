@@ -36,6 +36,7 @@ function uiInfo(title, html) { return modal({ uiOnly: true, title, html, buttons
 function modal(cfg) {
   return new Promise(resolve => {
     if (MODAL && MODAL.resolve) { const r = MODAL.resolve; MODAL = null; r(null); }
+    { const zo = $('zoom-overlay'); if (zo) zo.classList.remove('top'); }   // a new dialog (e.g. a glossary pop-up from the card info) goes above the zoom again
     /* v0.104.0 (A1e fix): only modals that stand for an engine decision go into the input record; UI-only dialogs
        (card menus, zone views, info/confirm prompts) are not part of a match's record, so replaying a record now hits
        exactly one recorded answer per engine prompt (a UI menu's answer used to close the replay's own modal and diverge). */
