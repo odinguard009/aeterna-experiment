@@ -4,6 +4,15 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## Unreleased (UI, ships with the next release; backup branch `backup/v0.215.0`)
+- Rebirth: all 216 fronts flip to Side B (reprints such as SD61-TX01 use the original print's back).
+- Attack arrow is now a row of chevrons in the theme colour (CPU colour for the opponent).
+- A Magic card played by you or the CPU appears large mid-screen for about 1.7 s (Full and Reduced modes).
+- Settings > Game > Hand order: as drawn, by cost, by type, or cost then type (display only).
+- The field scrolls to a card the CPU just played.
+- Image audit: 37 cards lack official art; 21 have a Fandom fallback, 16 BS77 cards have none until release (2026-11-21).
+- Revert: `git revert` the commit "UI: Rebirth Side B for reprints ...".
+
 ## v0.215.0
 - Lane: K
 - **Lane K: +55 complete cards (2,647 -> 2,702 of 10,291; 55 in this release)**
