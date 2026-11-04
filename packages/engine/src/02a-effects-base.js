@@ -38,15 +38,15 @@ function fxEntries(f) {
 const nexusDeathHears = p => !!G && !!G.evQ && fieldList(p).concat(p.hand, p.trash).some(f => fxEntries(f).some(({ e }) => e.trigger === 'ALLY_NEXUS_DESTROYED'));
 function fxMatch(card, m, inst) {
   if (m && m.anyOf) return m.anyOf.some(x => fxMatch(card, x, inst));      // v420 OR of match objects
-  if (!m || (!m.name && !m.notName && !m.notColor && !m.bpBoosted && !m.family && !m.familyAll && !m.keyword && !m.keywordAny && !m.notKeyword && !m.notKeyword && !m.noText && !m.hasTrigger && m.costGe == null && m.costLe == null && !m.costIn && !m.type && !m.color && !m.noUlt && !m.team && m.symbolsGe == null && m.redColorsGe == null && m.colorsGe == null && !m.hasBrave && !m.noBrave && !m.hasBurst && !m.noBurst && m.bpLe == null && m.bpGe == null && m.exhausted == null && m.cantAB == null && m.hasSoul == null && m.coresGe == null && m.coresLe == null && !m.originalNexus)) return true;      // v214 originalNexus must not be treated as an empty match
+  if (!m || (!m.name && !m.notName && !m.notColor && !m.bpBoosted && !m.family && !m.familyAll && !m.keyword && !m.keywordAny && !m.notKeyword && !m.noText && !m.hasTrigger && m.costGe == null && m.costLe == null && !m.costIn && !m.type && !m.color && !m.noUlt && !m.team && m.symbolsGe == null && m.redColorsGe == null && m.colorsGe == null && !m.hasBrave && !m.noBrave && !m.hasBurst && !m.noBurst && m.bpLe == null && m.bpGe == null && m.exhausted == null && m.cantAB == null && m.hasSoul == null && m.coresGe == null && m.coresLe == null && !m.originalNexus)) return true;      // v214 originalNexus must not be treated as an empty match
   if (m.notName && m.notName.some(n => card.name.toLowerCase().includes(n.toLowerCase()))) return false;
   if (m.bpBoosted && !(inst && lvIndex(inst) >= 0 && bpOf(inst) > (card.levels[lvIndex(inst)].bp || 0))) return false;
   if (m.noUlt && card.type === 'Ultimate') return false;
   if (m.notColor && [].concat(m.notColor).some(x => (card.colors || [card.symbol]).concat(inst ? alsoTreated(inst, 'color') : []).includes(x))) return false;
   if (m.mono === true && (card.colors || [card.symbol]).length !== 1) return false;
   if (m.color && ![].concat(m.color).some(x => (card.colors || [card.symbol]).concat(inst ? alsoTreated(inst, 'color') : []).includes(x))) return false;
-  if (m.costGe != null && card.cost < m.costGe) return false;
-  if (m.costLe != null && card.cost > m.costLe) return false;
+  if (m.costGe != null && ccost(card, inst) < m.costGe) return false;
+  if (m.costLe != null && ccost(card, inst) > m.costLe) return false;
   if (m.costIn && !m.costIn.includes(card.cost)) return false;
   if (m.type && card.type !== m.type) return false;
   if (m.hasTrigger && !(card.effects || []).some(e => e.trigger === m.hasTrigger)) return false;
@@ -299,7 +299,7 @@ function flagActiveField(owner, flag, subject, pred) {
       if (side !== owner ? e.to !== 'all' && e.to !== 'opp' : e.to === 'opp') continue;      // v249 to:'opp' = only the OPPOSING Spirits of the source's owner ("Opposing Cost 0 Spirits can't attack")
       if (e.lv && !e.lv.includes(L)) continue;
       if (e.oc && !ocActive(src)) continue;
-      if (e.to === 'own' || e.to === 'all' || e.to === 'opp' ? !fxMatch(CARDS[subject.id], e.match) : src !== subject) continue;
+      if (e.to === 'own' || e.to === 'all' || e.to === 'opp' ? !fxMatch(CARDS[subject.id], e.match, subject) : src !== subject) continue;
       if (!fxIf(side, sideOpp, e.if, { selfInst: src })) continue;
       return true;
     }

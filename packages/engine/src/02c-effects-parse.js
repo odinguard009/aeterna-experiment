@@ -196,6 +196,10 @@ function parseEffects(arr) {
         if (!o.match) return { error: 'SUMMON_DISCOUNT needs a "match"' };
         o.n = e.n;
       }
+      if (e.flag === 'COST_PLUS') {                               // v529 "the cost of every <match> Spirit in refreshed state you control gets +n" (ccost, 02z)
+        if (!Number.isInteger(e.n) || e.n < 1 || e.n > 3 || !o.match) return { error: 'COST_PLUS needs "n" (1-3) and a "match"' };
+        o.n = e.n;
+      }
       if (e.flag === 'MAGIC_COST_EXHAUST') {                      // v528 "treat up to n costs of a <match> Magic as paid by exhausting this Nexus" (magicDiscount, 02z)
         if (!Number.isInteger(e.n) || e.n < 1 || e.n > 2 || !o.match) return { error: 'MAGIC_COST_EXHAUST needs "n" (1-2) and a "match"' };
         o.n = e.n;

@@ -99,3 +99,11 @@ FX_ACTIONS.MAGIC_RELIEF_EXHAUST = { chk: a => Object.keys(a).every(k => ['do', '
   can: () => true,
   run: async c => { const s = c.ctx.subject; c.ctx.did = false; if (!s || !c.src || c.src.exhausted || G.active !== c.p.key || !c.p.nexus.includes(c.src) || CARDS[s.id].cost < 1) return;
     c.src.exhausted = true; c.ctx.did = true; log(`${CARDS[c.src.id].name} is exhausted: up to two costs of ${CARDS[s.id].name} are treated as paid.`); io.view({ type: 'board' }); } };
+/* v529 STATIC COST_PLUS {n, match}: "(Either Attack Step) the cost of every <match> Spirit in refreshed state you control gets +n" (BS73-070). ccost(card, inst) is the printed cost plus this bonus; fxMatch costGe/costLe read it (a direct CARDS[].cost check elsewhere does not). */
+STATIC_FLAGS.push('COST_PLUS');
+function ccost(card, inst) {
+  if (!inst || !G || G.step !== 5 || inst.exhausted || card.type !== 'Spirit') return card.cost;
+  const p = G.p.player.spirits.includes(inst) ? G.p.player : G.p.opponent.spirits.includes(inst) ? G.p.opponent : null; if (!p) return card.cost;
+  let n = 0; for (const f of fieldList(p)) for (const { e } of fxEntries(f)) if (e.trigger === 'STATIC' && e.flag === 'COST_PLUS' && (!e.lv || e.lv.includes(lvNo(f))) && (card.families || []).some(x => (e.match.family || []).includes(x))) n += e.n;
+  return card.cost + n;
+}

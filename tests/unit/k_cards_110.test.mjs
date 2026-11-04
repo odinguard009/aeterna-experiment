@@ -196,10 +196,14 @@ test('K-1144 BS73-070 Morrigan\'s Jewel Temple: Cost 7+ Prismwing remains exhaus
     const n = BS.mkInst('BS73-070'); n.cores = 1; P.nexus = [n]; const a = BS.mkInst(big); a.cores = 3; const b = BS.mkInst(small); b.cores = 3; P.spirits = [a, b];
     BS.removeSpirit(P, a, 'destroyed', true); BS.removeSpirit(P, b, 'destroyed', true);
     const keep = P.spirits.includes(a) && a.exhausted === true, gone = !P.spirits.includes(b);
+    const mid = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && (BS.CARDS[k].families || []).includes('Prismwing') && BS.CARDS[k].cost >= 5 && BS.CARDS[k].cost <= 6);
+    const m1 = BS.mkInst(mid); m1.cores = 3; P.spirits = [m1]; G.step = 4; const c4 = fxMatch(BS.CARDS[mid], { costGe: 7 }, m1); G.step = 5; const c5 = fxMatch(BS.CARDS[mid], { costGe: 7 }, m1); m1.exhausted = true; const cEx = fxMatch(BS.CARDS[mid], { costGe: 7 }, m1);
+    BS.removeSpirit(P, m1, 'destroyed', true); m1.exhausted = false;
     const x2 = BS.mkInst(two), x1 = BS.mkInst(one);
     const cap2 = lifeSym2Cap(P, x2), cap1 = lifeSym2Cap(P, x1); n.cores = 0; const lv1 = lifeSym2Cap(P, x2);
-    return { keep, gone, cap2, cap1, lv1, partial: BS.CARDS['BS73-070'].partial, big, small, two, one }; })()`);
+    return { keep, gone, mid, c4, c5, cEx, cap2, cap1, lv1, partial: BS.CARDS['BS73-070'].partial, big, small, two, one }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.keep, true, JSON.stringify(r)); assert.equal(r.gone, true, JSON.stringify(r));
+  assert.equal(r.c4, false, JSON.stringify(r)); assert.equal(r.c5, true, JSON.stringify(r)); assert.equal(r.cEx, false, JSON.stringify(r));
   assert.equal(r.cap2, true, JSON.stringify(r)); assert.equal(r.cap1, false, JSON.stringify(r)); assert.equal(r.lv1, false, JSON.stringify(r));
 });
 
