@@ -1107,18 +1107,8 @@
     "BS74-X07"
    ],
    "revival_open": [],
-   "deck_incomplete": [
-    "BS73-070",
-    "BS73-080",
-    "BS74-074",
-    "BS74-084"
-   ],
-   "order_cards": [
-    "BS73-070",
-    "BS73-080",
-    "BS74-074",
-    "BS74-084"
-   ]
+   "deck_incomplete": [],
+   "order_cards": []
   },
   {
    "id": "BS73-CX03",
@@ -28840,14 +28830,14 @@
     "name": "Morrigan's Jewel Temple",
     "type": "Nexus",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-080",
     "name": "Healing Gem",
     "type": "Magic",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-081",
@@ -28896,14 +28886,14 @@
     "name": "Jewel Garden",
     "type": "Nexus",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-084",
     "name": "Fluoral Charge",
     "type": "Magic",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-X07",

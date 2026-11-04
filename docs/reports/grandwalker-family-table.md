@@ -24,7 +24,7 @@ Counts are card numbers (ids) in `data/sources/official-fields.json`: every prin
 | BS73-CX01 The ForestMasterContractor Yum-Kaax | Contract | 菌樹 | Fungal Tree |  | 18 | 18 | 18 | 100% | 18 | 18 |
 | BS73-CX01 The ForestMasterContractor Yum-Kaax | Contract | 眷属 | Devotee | yes | 287 | 287 | 66 | 23% | 290 | 66 |
 | BS73-CX01 The ForestMasterContractor Yum-Kaax | Contract | 締皇 | Concluser | yes | 62 | 62 | 11 | 18% | 62 | 11 |
-| BS73-CX02 The MagicJewelContractor Morrigan | Contract | 彩羽 | Prismwing |  | 18 | 18 | 14 | 78% | 18 | 14 |
+| BS73-CX02 The MagicJewelContractor Morrigan | Contract | 彩羽 | Prismwing |  | 18 | 18 | 18 | 100% | 18 | 18 |
 | BS73-CX02 The MagicJewelContractor Morrigan | Contract | 眷属 | Devotee | yes | 287 | 287 | 66 | 23% | 290 | 66 |
 | BS73-CX02 The MagicJewelContractor Morrigan | Contract | 締皇 | Concluser | yes | 62 | 62 | 11 | 18% | 62 | 11 |
 | BS73-CX03 The CycleForceContractor Yamato Takeru | Contract | 動器 | Machine |  | 24 | 24 | 2 | 8% | 47 | 11 |
