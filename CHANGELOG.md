@@ -4,6 +4,34 @@ Release notes, newest first. Each version also has a GitHub Release with the gam
 
 Older releases (v0.80.0 and earlier): [CHANGELOG-archive.md](CHANGELOG-archive.md).
 
+## v0.217.0
+- Lane: K
+- **Lane K: +78 complete cards (2,702 -> 2,780 of 10,291; 78 in this release)**
+Lane: K (Grandwalker order). Released on the owner's order at about 78 new complete cards, below the 100 threshold.
+
+Grandwalker Nexus decks complete in this release (own-family part):
+- BS73-CX01 Yum-Kaax and BS73-CX02 Contractor Morrigan (all family cards, including BS73-070, BS74-074, BS73-080, BS74-084).
+- Next in the queue: BS73-CX03 Yamato Takeru (family 3/34). Work on BS72-CX02 Nyx and BS74-CX01 Ometeotl continues; BS75-CX04 Khaos not complete.
+
+Engine: effect schema 474 -> 530, including Field Flash v1 (Magic cards resting on the Field, ACTIVATE zone field with discardSelf cost, PUT_SELF_ONTO_FIELD, CONTRACT_SKILL_RUN). Tests: tests/unit/k_cards_110.test.mjs (K-1131..K-1148), scenario field-flash-healing-gem.
+
+Known limits (approximations):
+- Yum-Kaax BS73-CX01: Rebirth Nexus charge group not modelled; LV core thresholds 0/2 assumed; Contract Field Burst/Mani exclusion not modelled; Fungal Bed LV1 replacement effect not modelled.
+- BS73-023: Purple draw lock covers Spirit/Ultimate/Nexus sources only (not Magic); once-per-turn is per effect entry (Hand and Trash entries separate).
+- BS73-024: the "level costs can't be changed" half is not modelled (only the 3-core floor).
+- BS73-027: "Then" modelled as independent effects. BS73-029: Flash summon uses the engine highSpeed path. BS73-030: any number of beds asked one at a time. BS73-031: "any number of exhausted Spirits" = all of them.
+- BS73-AX01: banished cards' effects can't activate not modelled; HEAVY_EXHAUST perRemoved caps at 3 targets; CPU banishes only opposing cards.
+- BS74-026: "Contract Grandwalker Nexus" matched as any Grandwalker family Nexus. BS74-027: once-per-turn per effect, Can't Stack not modelled. BS74-034: handUnaffected is wider than printed. BS74-071: LV cost lock + Can't Stack not modelled. BS74-081: optional skip of final bounce not offered.
+- BS74-037: Life save covers unblocked attack damage only (not effect-based Life loss); the CPU always pays.
+- BS74-X05: Hand effect offered only at the start of the Main Step (START_MAIN), CPU uses it only with a Hand of 2 or fewer; core-move lock covers moveCore only (not effect-driven moves); extra Green symbol via ALLY_ATTACKS.
+- BS77-005: Flag Contract Advent onto a Nexus human-only; "then" = two independent END_MAIN effects. BS74-AX01: Soul Drive banish Soul Core modelled as dropping it. BS75-062: LV1 Deck-discard negation = own Flash setting a deck lock. BS75-X02: NEGATE_OPP_MAGIC log-only, CPU never uses the Accel.
+- Also earlier: BS45-032, BS46-X03, BS49-037, BS50-035, BS45-024, BS66-XV05, BS67-XV05, BS69 set, BS70-003/004/048/002, BS60-003, BS68-001, BS65-003, BS62-011.
+- Deferred: BS69-018 (02a size), Khaos BS75-CX04 + Primordial family, BS70-010/012/008.
+- BS73-070: the +2 cost on refreshed Prismwing Spirits only reaches fxMatch costGe/costLe tests (not direct card-cost reads) and only during the Attack Step; LV2 Life cap is one per such attack, not per turn.
+- BS74-074: LV2 Magic cost relief is a passive -2 while the Nexus is refreshed on your turn, and the Nexus exhausts after a Prismwing Magic with printed cost >= 1 is used (not chosen per cast); the Trash re-deploy fires on any Prismwing Magic use.
+- BS73-080 / BS74-084 (Field Flash v1): the "you can put this card onto your Field" choice is automatic (always put when the condition holds); a Magic cast from the Soul State also counts as "from the Hand"; the Field zone has no on-screen display for the human (activate from the Flash prompt only). BS74-084: Contract Skill run = the cost-bearing ACTIVATE of the Morrigan Nexus (only BS73-CX02 has one), no cost and no once-per-turn mark; the Field effect is Flash-timing only, which stands for "can't use in the Main Step".
+- Only the loop ran locally; the full quick test set runs in CI on main.
+
 ## v0.216.0
 - Lane: U/I
 - **UI: lobby, Light mode fixes, CPU random Standard/Eternal decks, Lobby button, card info above sheets, clearer Effects sheet**
