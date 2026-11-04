@@ -530,3 +530,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v496 STATIC ATK_TAX costLe (alternative to lvLimit): an opposing attacker of that cost or less must send pay Reserve cores to the Trash or it cannot attack (BS69-078).
 - v497 Burst `also` accepts `{when:'OPP_REMOVED'}`: a set Burst card may be activated at once when cards are put onto the opposing Removed Zone.
 - v498 `costPer {nexusTrash:true,n,max}`; actions `DESTROY_NEXUS_FOR_OPP {unpreventableCounterGe?}` and `OPP_MAGIC_ACCEL_UNLESS_DESTROY` (BS69-NX01).
+- v499 (Lane K, Grandwalker Khaos BS75-CX04): action `RETURN_OPP_REMOVED {voidIfCostGe?, voidN?}` (return a card from the opposing Removed Zone to the deckbottom; a Cost N+ card also puts M Void cores onto your Spirits); `PAY_COST.n` cap raised 5 to 7 ("by paying seven costs"). Card: BS69-031 (Mani Hermes, CHOOSE_ONE pay 7 then send up to 10 Spirits to the Removed Zone).

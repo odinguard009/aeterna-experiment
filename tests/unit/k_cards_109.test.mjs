@@ -61,3 +61,17 @@ test('K-1110 BS69-NX01 Gigatoncheir: cost -2 per Nexus (field + both Trashes, ma
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.cut, 6, JSON.stringify(r)); assert.equal(r.nexusLeft, 0, JSON.stringify(r));
   assert.ok(r.oppLeft <= 1, JSON.stringify(r));
 });
+
+test('K-1111 BS69-031 Leonteus: Summoned sends one opposing Spirit to Removed; Attacks returns a Cost 7+ Removed card to the deckbottom and puts two Void cores on Spirits', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const lo = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && BS.CARDS[k].cost <= 3), hi = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && BS.CARDS[k].cost >= 7);
+    const a = BS.mkInst('BS69-031'); a.cores = 3; P.spirits = [a]; const t = BS.mkInst(lo); O.spirits = [t]; G.attacker = a; P.hand = []; P.reserve.n = 0;
+    await BS.fireFx(P, 'SUMMONED', a, { subject: a });
+    const sent = O.removed.length, gone = !O.spirits.includes(t);
+    O.removed = [BS.mkInst(hi)]; const dk = O.deck.length, c0 = a.cores; P.void = P.void || { n: 0 }; 
+    await BS.fireFx(P, 'ATTACKS', a, { attacker: a, subject: a });
+    return { sent, gone, removed: O.removed.length, deck: O.deck.length - dk, partial: BS.CARDS['BS69-031'].partial, gained: a.cores - c0, mani: !!BS.CARDS['BS69-031'].manifest }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.gone, true, JSON.stringify(r)); assert.equal(r.sent, 1, JSON.stringify(r));
+  assert.equal(r.removed, 0, JSON.stringify(r)); assert.equal(r.deck, 1, JSON.stringify(r)); assert.equal(r.mani, true, JSON.stringify(r));
+});

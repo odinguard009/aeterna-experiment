@@ -270,7 +270,7 @@ Object.assign(FX_ACTIONS, {
   /* "By doing X, do Y" (Eternal Rule Manual FAQ, About Effects in General Q5): X must be performable, X is not done when Y cannot be done,
      and the player chooses whether to do it (ask:true asks the human; the CPU does it). {do:'BY', cost:{action X}, then:[actions Y], ask} */
   /* v0.196 PAY_COST {n}: the "pay N cost" step of "you can pay one cost. If you've done so, ..." (BY.cost); the cores go to the Trash like an Invoke cost */
-  PAY_COST: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5,
+  PAY_COST: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 7,
     txt: a => `pay ${a.n} cost${a.n === 1 ? '' : 's'}`,
     can: (c, a) => coresAvailable(c.p) >= a.n,
     run: async (c, a) => { if (!(await payInvokeCost(c.p, c.src, { pay: a.n }))) c.ctx.did = false; } },

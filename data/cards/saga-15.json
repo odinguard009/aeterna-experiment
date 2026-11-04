@@ -7253,8 +7253,7 @@
   "mechanics": [
    "Manifest"
   ],
-  "fxComplete": false,
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); not yet checked against the card image.",
+  "fxComplete": true,
   "effects": [
    {
     "trigger": "SUMMONED",
@@ -7266,8 +7265,25 @@
     "optional": true,
     "actions": [
      {
-      "do": "SEND_REMOVED",
-      "n": 1
+      "do": "CHOOSE_ONE",
+      "options": [
+       [
+        {
+         "do": "PAY_COST",
+         "n": 7
+        },
+        {
+         "do": "SEND_REMOVED",
+         "n": 10
+        }
+       ],
+       [
+        {
+         "do": "SEND_REMOVED",
+         "n": 1
+        }
+       ]
+      ]
      }
     ]
    },
@@ -7281,15 +7297,43 @@
     "optional": true,
     "actions": [
      {
-      "do": "SEND_REMOVED",
-      "n": 1
+      "do": "CHOOSE_ONE",
+      "options": [
+       [
+        {
+         "do": "PAY_COST",
+         "n": 7
+        },
+        {
+         "do": "SEND_REMOVED",
+         "n": 10
+        }
+       ],
+       [
+        {
+         "do": "SEND_REMOVED",
+         "n": 1
+        }
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2,
+     3
+    ],
+    "optional": true,
+    "actions": [
+     {
+      "do": "RETURN_OPP_REMOVED",
+      "voidIfCostGe": 7,
+      "voidN": 2
      }
     ]
    }
-  ],
-  "residual": [
-   "By paying seven costs the number sent becomes ten",
-   "LV2-3 (When Attacks): return a card from the opposing Removed Zone to the deck bottom; Cost 7+ puts two cores from the Void to your Spirits"
   ],
   "manifest": {
    "name": "Contractor Hermes",

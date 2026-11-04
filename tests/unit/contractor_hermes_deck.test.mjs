@@ -132,7 +132,7 @@ test('G25 Pelops: an opposing Hand of five stays as it is', async () => {
   assert.deepEqual(r, [5, 0]);
 });
 test('G26 Leonteus: sends the strongest opposing Spirit to the Removed Zone and its cores go to their Reserve', async () => {
-  const r = await ev(`const l = sp('${LEON}', P, 1); const a = sp('${T8}', O, 3), b = sp('${T3}', O); O.reserve.n = 0; await BS.fireFx(P, 'SUMMONED', l); return [ids(O.spirits), ids(O.removed), ids(O.trash), O.reserve.n];`);
+  const r = await ev(`const l = sp('${LEON}', P, 1); const a = sp('${T8}', O, 3), b = sp('${T3}', O); O.reserve.n = 0; P.reserve.n = 0; P.reserve.soul = false; await BS.fireFx(P, 'SUMMONED', l); return [ids(O.spirits), ids(O.removed), ids(O.trash), O.reserve.n];`);
   assert.deepEqual(r, [[T3], [T8], [], 3]);
 });
 test('G27 Messenger Post LV2: exhausts an opposing Spirit when cards go onto the opposing Removed Zone', async () => {

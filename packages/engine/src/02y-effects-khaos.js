@@ -247,3 +247,17 @@ FX_ACTIONS.OPP_MAGIC_ACCEL_UNLESS_DESTROY = { chk: a => Object.keys(a).every(k =
     if (pay) { const t = o.cpu ? o.spirits.slice().sort((x, y) => CARDS[x.id].cost - CARDS[y.id].cost)[0] : await fxPickTarget({ p: o, opp: c.p, src: c.src, ctx: c.ctx }, o.spirits, 'Tap your Spirit to destroy (glowing).'); if (t) { log(`${poss(o)} ${CARDS[t.id].name} is destroyed.`); removeSpirit(o, t, 'destroyed', true); checkDepletion(o); c.ctx.did = true; return; } }
     o.noMagicB = { no: G.battleNo, all: true }; o.noAccelB = G.battleNo; c.ctx.did = true; log(`${_nm(c)}: ${poss(o)} can't use Magic or Accel this battle.`);
   } };
+/* v499 RETURN_OPP_REMOVED {voidIfCostGe?, voidN?}: "return a card from the opposing Removed Zone to the deckbottom. When this effect returns a Cost N or more card, put M cores from the Void to your Spirits." (BS69-031) The CPU takes the most expensive card; the cores go one each to the lowest-core Spirits. */
+FX_ACTIONS.RETURN_OPP_REMOVED = { chk: a => Object.keys(a).every(k => ['do', 'if', 'voidIfCostGe', 'voidN'].includes(k)) && (a.voidIfCostGe == null || (Number.isInteger(a.voidIfCostGe) && Number.isInteger(a.voidN) && a.voidN >= 1 && a.voidN <= 5)),
+  txt: a => `return a card from the opposing Removed Zone to the deckbottom${a.voidIfCostGe != null ? `; when that is a Cost ${a.voidIfCostGe}+ card, put ${a.voidN} cores from the Void to your Spirits` : ''}`,
+  can: c => c.opp.removed.length > 0,
+  run: async (c, a) => {
+    const L = c.opp.removed; if (!L.length) { c.ctx.did = false; return; }
+    const t = c.p.cpu ? L.slice().sort((x, y) => CARDS[y.id].cost - CARDS[x.id].cost)[0] : await chooseCard(c, L, `✨ ${_nm(c)}`, 'Choose a card from the opposing Removed Zone to return to the bottom of their Deck.');
+    if (!t || !removeFrom(c.opp.removed, t)) { c.ctx.did = false; return; }
+    c.opp.deck.push(t); log(`${_nm(c)}: a card from ${poss(c.opp)} Removed Zone returns to the bottom of their Deck.`);
+    if (a.voidIfCostGe != null && CARDS[t.id].cost >= a.voidIfCostGe) for (let j = 0; j < a.voidN && c.p.spirits.length; j++) {
+      const s = c.p.spirits.slice().sort((x, y) => x.cores - y.cores)[0]; if (!takeFromVoid(c.p, 1)) break; s.cores++; log(`${_nm(c)}: a core moves from the Void to ${CARDS[s.id].name}.`);
+    }
+    c.ctx.did = true;
+  } };
