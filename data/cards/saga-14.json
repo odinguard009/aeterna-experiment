@@ -14530,16 +14530,54 @@
   "mechanics": [
    "XV Crush"
   ],
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2][LV3] XV Crush (When Summoned) (Once per Turn: Same Name) You can discard ten cards from the opposing decktop. Then, if there is any opposing cards being banished, destroy any number of opposing Spirits/Ultimates up to a total cost of 15.",
-   "[LV2][LV3] (Your Attack Step) When your Spirits with \"Crush\"-named effects aren't blocked, they can refresh once per turn per Spirit."
-  ],
-  "note": "Stats and text from the owner-supplied Fandom export (owner decision 2026-10-14); effects compiled by tools/compile_effects.py (v0.52.0) with the v2 clause grammar of tools/compile_v2.py (v0.61.0) and smoke-checked; not yet checked against the card image. Partial card (v0.79.0, roadmap item A1): the printed paragraphs in \"residual\" do not run yet; the card shows a \"!\" mark in the Library and the deck builder.",
+  "fxComplete": true,
   "bicon": [
    "10"
   ],
-  "rcode": "XV"
+  "rcode": "XV",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "once": true,
+    "sameName": true,
+    "optional": true,
+    "actions": [
+     {
+      "do": "MILL_OPP",
+      "n": 10
+     },
+     {
+      "do": "DESTROY_TOTAL",
+      "byCost": true,
+      "total": 15,
+      "if": {
+       "oppRemovedGe": 1
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "ALLY_LIFE_HIT",
+    "lv": [
+     2,
+     3
+    ],
+    "match": {
+     "keyword": "Crush"
+    },
+    "optional": true,
+    "actions": [
+     {
+      "do": "REFRESH_ATTACKER_ONCE"
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS67-001",

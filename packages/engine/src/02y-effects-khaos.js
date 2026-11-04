@@ -123,3 +123,10 @@ FX_ACTIONS.REVEAL_SUMMON_PAY_ANY = { chk: a => Number.isInteger(a.pay) && a.pay 
 const removedDrawLocked = () => { const src = G && G.fxSrc, k = src && CARDS[src.id]; if (!k || !['Spirit', 'Ultimate', 'Nexus'].includes(k.type)) return false;
   if (!(k.colors || [k.symbol]).some(x => ['red', 'purple', 'yellow', 'blue'].includes(x))) return false;
   return [G.p.player, G.p.opponent].some(q => q.removed.some(r => (CARDS[r.id].effects || []).some(e => e.trigger === 'STATIC' && e.flag === 'NO_DRAW_REMOVED'))); };
+
+/* v484 REFRESH_ATTACKER_ONCE {}: "your Spirits with Crush-named effects, when they aren't blocked, can refresh once per turn per Spirit" (BS66-XV05; ALLY_LIFE_HIT = an unblocked attack reached the Life). Refreshes ctx.attacker (or the subject) when exhausted and not yet refreshed this turn by this effect. */
+FX_ACTIONS.REFRESH_ATTACKER_ONCE = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)),
+  txt: () => 'refresh the attacking Spirit (once per turn per Spirit)',
+  can: c => { const t = c.ctx.attacker || c.ctx.subject; return !!t && t.exhausted && t.crushRefT !== G.turnNo; },
+  run: async c => { const t = c.ctx.attacker || c.ctx.subject; c.ctx.did = false; if (!t || !t.exhausted || t.crushRefT === G.turnNo) return;
+    t.crushRefT = G.turnNo; refreshOne(t); c.ctx.did = true; log(`${CARDS[t.id].name} is refreshed.`); await fireFx(ownerOf(t) || c.p, 'REFRESHED', t, {}); } };

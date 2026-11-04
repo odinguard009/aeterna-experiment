@@ -516,3 +516,4 @@ Test FS02 (`tests/unit/fx_schema.test.mjs`) compares the schema with the live en
 - v481 SEND_REMOVED gains `match` (fxMatch on the printed card, e.g. costIn [6,7,8]) and `armor: true` (respect UNAFFECTED/Armor flags via fxImmune). Card BS49-037.
 - v482 REVEAL_SUMMON_PAY_ANY {match, pay}: reveal one decktop card per card on the opposing Removed Zone, summon any amount of matching Spirits among them paying `pay` cost each, discard the rest. Card BS50-035 (its ALLY_ATTACKS random Hand-to-Removed reuses OPP_REMOVE_HAND_RANDOM; "does not stack" is not modelled).
 - v483 STATIC `NO_DRAW_REMOVED`: while a card with it is in either Removed Zone, effect draws by Red/Purple/Yellow/Blue Spirit/Ultimate/Nexus sources are cancelled (G.fxSrc, read by drawLocked). Card BS45-024 (its Accel to the Removed Zone is the generic Accel rule).
+- v484 REFRESH_ATTACKER_ONCE: refresh ctx.attacker/subject once per turn (BS66-XV05 Titus XV).

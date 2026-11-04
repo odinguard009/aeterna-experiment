@@ -286,26 +286,8 @@
     "BS76-089",
     "BS76-X13"
    ],
-   "revival_open": [
-    "BS44-RV006"
-   ],
+   "revival_open": [],
    "deck_incomplete": [
-    "BS44-032",
-    "BS44-033",
-    "BS44-034",
-    "BS44-RV006",
-    "BS44-X03",
-    "BS45-024",
-    "BS45-032",
-    "BS45-X03",
-    "BS46-033",
-    "BS46-037",
-    "BS46-X03",
-    "BS47-035",
-    "BS48-039",
-    "BS49-033",
-    "BS49-037",
-    "BS50-035",
     "BS66-XV05",
     "BS67-XV05",
     "BS69-001",
@@ -423,22 +405,6 @@
    ],
    "order_cards": [
     "BS75-CX04",
-    "BS44-032",
-    "BS44-033",
-    "BS44-034",
-    "BS44-RV006",
-    "BS44-X03",
-    "BS45-024",
-    "BS45-032",
-    "BS45-X03",
-    "BS46-033",
-    "BS46-037",
-    "BS46-X03",
-    "BS47-035",
-    "BS48-039",
-    "BS49-033",
-    "BS49-037",
-    "BS50-035",
     "BS66-XV05",
     "BS67-XV05",
     "BS69-001",
@@ -675,26 +641,20 @@
    "revival_open": [],
    "deck_incomplete": [
     "BS60-003",
-    "BS61-004",
     "BS62-011",
-    "BS63-016",
     "BS65-003",
     "BS68-001",
     "BS70-002",
     "BS75-062",
-    "BS75-076",
     "BS75-X02"
    ],
    "order_cards": [
     "BS60-003",
-    "BS61-004",
     "BS62-011",
-    "BS63-016",
     "BS65-003",
     "BS68-001",
     "BS70-002",
     "BS75-062",
-    "BS75-076",
     "BS75-X02"
    ]
   },
@@ -4323,43 +4283,29 @@
     "BS44-027",
     "BS44-029",
     "BS44-030",
-    "BS44-033",
-    "BS44-034",
     "BS44-069",
-    "BS44-X03",
     "BS45-019",
     "BS45-021",
     "BS45-022",
     "BS45-023",
-    "BS45-024",
     "BS45-026",
     "BS45-027",
     "BS45-028",
     "BS45-030",
-    "BS45-032",
     "BS45-033",
     "BS45-037",
     "BS45-071",
     "BS45-081",
-    "BS45-X03",
     "BS46-032",
-    "BS46-033",
     "BS46-035",
-    "BS46-037",
     "BS46-083",
-    "BS46-X03",
     "BS47-033",
-    "BS47-035",
     "BS47-CP03",
     "BS48-032",
     "BS48-033",
     "BS48-036",
     "BS48-038",
-    "BS48-039",
-    "BS49-033",
-    "BS49-037",
     "BS50-030",
-    "BS50-035",
     "BS51-035",
     "BS51-044",
     "BS52-022",
@@ -5378,7 +5324,6 @@
     "BS76-014"
    ],
    "revival_open": [
-    "BS44-RV002",
     "BS51-RV001"
    ],
    "deck_incomplete": [
@@ -5388,7 +5333,6 @@
     "BS44-024",
     "BS44-025",
     "BS44-068",
-    "BS44-RV002",
     "BS44-X02",
     "BS45-008",
     "BS45-012",
@@ -5451,7 +5395,6 @@
     "BS44-024",
     "BS44-025",
     "BS44-068",
-    "BS44-RV002",
     "BS44-X02",
     "BS45-008",
     "BS45-012",
@@ -9786,7 +9729,6 @@
     "BS51-RV007"
    ],
    "deck_incomplete": [
-    "BS44-032",
     "BS47-027",
     "BS48-002",
     "BS48-005",
@@ -12710,7 +12652,6 @@
     "BS44-020",
     "BS44-021",
     "BS44-024",
-    "BS44-032",
     "BS44-035",
     "BS44-042",
     "BS44-043",
@@ -12725,9 +12666,7 @@
     "BS45-015",
     "BS45-017",
     "BS45-023",
-    "BS45-024",
     "BS45-028",
-    "BS45-032",
     "BS45-034",
     "BS45-037",
     "BS45-038",
@@ -12777,7 +12716,6 @@
     "BS46-082",
     "BS46-084",
     "BS46-085",
-    "BS46-X03",
     "BS46-X06",
     "BS46-X07",
     "BS46-X08",
@@ -12829,7 +12767,6 @@
     "BS48-031",
     "BS48-036",
     "BS48-037",
-    "BS48-039",
     "BS48-040",
     "BS48-042",
     "BS48-044",
@@ -12855,7 +12792,6 @@
     "BS48-X06",
     "BS49-022",
     "BS49-024",
-    "BS49-037",
     "BS49-050",
     "BS49-066",
     "BS49-068",
@@ -12869,7 +12805,6 @@
     "BS50-024",
     "BS50-030",
     "BS50-033",
-    "BS50-035",
     "BS50-044",
     "BS50-046",
     "BS50-048",
@@ -19004,7 +18939,6 @@
    ],
    "deck_incomplete": [
     "BS45-RV001",
-    "BS46-037",
     "BS47-CP01",
     "BS47-CP02",
     "BS47-CP03",
@@ -20710,43 +20644,29 @@
     "BS44-027",
     "BS44-029",
     "BS44-030",
-    "BS44-033",
-    "BS44-034",
     "BS44-069",
-    "BS44-X03",
     "BS45-019",
     "BS45-021",
     "BS45-022",
     "BS45-023",
-    "BS45-024",
     "BS45-026",
     "BS45-027",
     "BS45-028",
     "BS45-030",
-    "BS45-032",
     "BS45-033",
     "BS45-037",
     "BS45-071",
     "BS45-081",
-    "BS45-X03",
     "BS46-032",
-    "BS46-033",
     "BS46-035",
-    "BS46-037",
     "BS46-083",
-    "BS46-X03",
     "BS47-033",
-    "BS47-035",
     "BS47-CP03",
     "BS48-032",
     "BS48-033",
     "BS48-036",
     "BS48-038",
-    "BS48-039",
-    "BS49-033",
-    "BS49-037",
     "BS50-030",
-    "BS50-035",
     "BS51-035",
     "BS51-044",
     "BS52-022",
@@ -20964,7 +20884,6 @@
     "BS76-074"
    ],
    "revival_open": [
-    "BS44-RV005",
     "BS45-RV004",
     "BS54-RV006",
     "BS55-RV005"
@@ -20975,7 +20894,6 @@
     "BS44-055",
     "BS44-057",
     "BS44-071",
-    "BS44-RV005",
     "BS44-X05",
     "BS45-045",
     "BS45-046",
@@ -21056,7 +20974,6 @@
     "BS44-055",
     "BS44-057",
     "BS44-071",
-    "BS44-RV005",
     "BS44-X05",
     "BS45-045",
     "BS45-047",
@@ -21268,7 +21185,6 @@
     "BS76-056"
    ],
    "revival_open": [
-    "BS44-RV006",
     "BS45-RV005",
     "BS48-RV006"
    ],
@@ -21279,7 +21195,6 @@
     "BS44-062",
     "BS44-064",
     "BS44-065",
-    "BS44-RV006",
     "BS44-X06",
     "BS45-056",
     "BS45-058",
@@ -21810,7 +21725,6 @@
     "BS76-014"
    ],
    "revival_open": [
-    "BS44-RV002",
     "BS51-RV001"
    ],
    "deck_incomplete": [
@@ -21820,7 +21734,6 @@
     "BS44-024",
     "BS44-025",
     "BS44-068",
-    "BS44-RV002",
     "BS44-X02",
     "BS45-008",
     "BS45-012",
@@ -22214,7 +22127,7 @@
    "families_jp": [
     "妖蛇"
    ],
-   "complete": false
+   "complete": true
   },
   {
    "id": "BS44-RV003",
@@ -22241,7 +22154,7 @@
    "families_jp": [
     "天霊"
    ],
-   "complete": false
+   "complete": true
   },
   {
    "id": "BS44-RV006",
@@ -22251,7 +22164,7 @@
     "勇傑",
     "獣頭"
    ],
-   "complete": false
+   "complete": true
   },
   {
    "id": "BS44-RV007",
@@ -26921,112 +26834,112 @@
     "name": "The HeroBeast ArcheryGeneral Pandaro-Cross",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS44-033",
     "name": "The HeroBeast OldGeneral Tiger-Nestor",
     "type": "Spirit",
     "cost": 5,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS44-034",
     "name": "The SevenGreatHeroBeasts Lio-Ajax",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS44-RV006",
     "name": "The RoaringSwordmaster Lowen",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS44-X03",
     "name": "The SevenGreatHeroBeasts WhirlwindKing Achilleser",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS45-024",
     "name": "The SevenGreatHeroBeasts Hector",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS45-032",
     "name": "The SevenGreatHeroBeasts Agamemnon",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS45-X03",
     "name": "The SevenGreatHeroBeasts LightSpeedDeityKing Odyssaber",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS46-033",
     "name": "The HeroBeast Peirithus",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS46-037",
     "name": "The SevenGreatHeroBeasts SupremeKingBeast Theseus",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS46-X03",
     "name": "The SevenGreatHeroBeasts ToughLionheart Herak-Leios",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS47-035",
     "name": "The HeroBeast Captain-Jason",
     "type": "Spirit",
     "cost": 5,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS48-039",
     "name": "The HeroBeast Bear-Cadmus",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS49-033",
     "name": "The HeroBeastBrothers Dioscuri",
     "type": "Spirit",
     "cost": 5,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS49-037",
     "name": "The ArgoHeroBeast Atalante",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS50-035",
     "name": "The ArgoHeroBeast Meleagros",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS66-XV05",
@@ -28108,7 +28021,7 @@
     "name": "Magmarowana",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS62-011",
@@ -28122,7 +28035,7 @@
     "name": "Thread Sword Paradise",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS65-003",
@@ -28297,7 +28210,7 @@
     "name": "Magma Call",
     "type": "Magic",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS75-X02",
@@ -33365,14 +33278,14 @@
     "name": "The HeroBeast OldGeneral Tiger-Nestor",
     "type": "Spirit",
     "cost": 5,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS44-034",
     "name": "The SevenGreatHeroBeasts Lio-Ajax",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS44-069",
@@ -33393,7 +33306,7 @@
     "name": "The SevenGreatHeroBeasts WhirlwindKing Achilleser",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS45-019",
@@ -33428,7 +33341,7 @@
     "name": "The SevenGreatHeroBeasts Hector",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS45-026",
@@ -33463,7 +33376,7 @@
     "name": "The SevenGreatHeroBeasts Agamemnon",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS45-033",
@@ -33498,7 +33411,7 @@
     "name": "The SevenGreatHeroBeasts LightSpeedDeityKing Odyssaber",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS46-032",
@@ -33512,7 +33425,7 @@
     "name": "The HeroBeast Peirithus",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS46-035",
@@ -33526,7 +33439,7 @@
     "name": "The SevenGreatHeroBeasts SupremeKingBeast Theseus",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS46-083",
@@ -33540,7 +33453,7 @@
     "name": "The SevenGreatHeroBeasts ToughLionheart Herak-Leios",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS47-028",
@@ -33561,7 +33474,7 @@
     "name": "The HeroBeast Captain-Jason",
     "type": "Spirit",
     "cost": 5,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS47-CP03",
@@ -33603,21 +33516,21 @@
     "name": "The HeroBeast Bear-Cadmus",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS49-033",
     "name": "The HeroBeastBrothers Dioscuri",
     "type": "Spirit",
     "cost": 5,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS49-037",
     "name": "The ArgoHeroBeast Atalante",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS50-030",
@@ -33631,7 +33544,7 @@
     "name": "The ArgoHeroBeast Meleagros",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS51-035",
@@ -35545,7 +35458,7 @@
     "name": "The HellSerpentineMan Botis",
     "type": "Spirit",
     "cost": 5,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS44-X02",
@@ -35974,7 +35887,7 @@
     "name": "The SevenGreatHeroBeasts LightSpeedDeityKing Odyssaber",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS45-X05",
@@ -42329,7 +42242,7 @@
     "name": "The HeroBeast ArcheryGeneral Pandaro-Cross",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS47-027",
@@ -44735,7 +44648,7 @@
     "name": "The HeroBeast ArcheryGeneral Pandaro-Cross",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS44-035",
@@ -44847,7 +44760,7 @@
     "name": "The SevenGreatHeroBeasts Hector",
     "type": "Spirit",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS45-028",
@@ -44861,7 +44774,7 @@
     "name": "The SevenGreatHeroBeasts Agamemnon",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS45-034",
@@ -45225,7 +45138,7 @@
     "name": "The SevenGreatHeroBeasts ToughLionheart Herak-Leios",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS46-X06",
@@ -45596,7 +45509,7 @@
     "name": "The HeroBeast Bear-Cadmus",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS48-040",
@@ -45785,7 +45698,7 @@
     "name": "The ArgoHeroBeast Atalante",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS49-050",
@@ -45883,7 +45796,7 @@
     "name": "The ArgoHeroBeast Meleagros",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS50-044",
@@ -50714,7 +50627,7 @@
     "name": "The SevenGreatHeroBeasts SupremeKingBeast Theseus",
     "type": "Spirit",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS47-CP01",
@@ -51783,7 +51696,7 @@
     "name": "The GreatAngelia Tron",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS44-X05",
@@ -52373,7 +52286,7 @@
     "name": "The RoaringSwordmaster Lowen",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS44-X06",

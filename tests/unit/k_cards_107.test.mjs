@@ -212,3 +212,21 @@ test('K-1086 BS45-024 Hector: in a Removed Zone it blocks effect draws by R/P/Y/
     return { b, gr, noBurst: G.noBurst, partial: BS.CARDS['BS45-024'].partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.b, 0, JSON.stringify(r)); assert.equal(r.gr, 1, JSON.stringify(r)); assert.ok(r.noBurst, JSON.stringify(r));
 });
+
+test('K-1087 BS66-XV05 Titus XV: Summoned mills ten then destroys opposing Spirits up to total cost 15 only if the opposing Removed Zone has a card; an unblocked Crush Spirit refreshes once per turn', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const sp = Object.keys(BS.CARDS).filter(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && k !== 'BS66-XV05');
+    const small = sp.find(k => BS.CARDS[k].cost <= 3);
+    const a = BS.mkInst('BS66-XV05'); a.cores = 5; P.spirits = [a];
+    O.deck = Array.from({ length: 12 }, () => BS.mkInst(small)); O.spirits = [BS.mkInst(small), BS.mkInst(small)]; O.spirits.forEach(s => s.cores = 1); O.removed = [BS.mkInst(small)]; O.trash = [];
+    await BS.fireFx(P, 'SUMMONED', a, { subject: a });
+    const milled = O.trash.length, left = O.spirits.length;
+    a.exhausted = true; a.crushRefT = 0; G.attacker = a;
+    await BS.fireFx(P, 'ALLY_LIFE_HIT', null, { attacker: a });
+    const ref1 = !a.exhausted; a.exhausted = true;
+    await BS.fireFx(P, 'ALLY_LIFE_HIT', null, { attacker: a });
+    return { milled, left, ref1, ref2: !a.exhausted, partial: BS.CARDS['BS66-XV05'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.ok(r.milled >= 10, JSON.stringify(r)); assert.equal(r.left, 0, JSON.stringify(r));
+  assert.equal(r.ref1, true, JSON.stringify(r)); assert.equal(r.ref2, false, JSON.stringify(r));
+});

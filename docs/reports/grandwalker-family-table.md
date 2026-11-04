@@ -9,10 +9,10 @@ Counts are card numbers (ids) in `data/sources/official-fields.json`: every prin
 | BS75-CX03 The HeavenlyThunderContractor Indra | Contract | 雷武 | Thunderive |  | 23 | 23 | 23 | 100% | 23 | 23 |
 | BS75-CX03 The HeavenlyThunderContractor Indra | Contract | 眷属 | Devotee | yes | 287 | 287 | 47 | 16% | 290 | 47 |
 | BS75-CX03 The HeavenlyThunderContractor Indra | Contract | 締皇 | Concluser | yes | 62 | 62 | 8 | 13% | 62 | 8 |
-| BS75-CX04 The ChaosContractor Khaos | Contract | 勇傑 | Soldier |  | 61 | 61 | 7 | 11% | 111 | 20 |
+| BS75-CX04 The ChaosContractor Khaos | Contract | 勇傑 | Soldier |  | 61 | 61 | 23 | 38% | 111 | 36 |
 | BS75-CX04 The ChaosContractor Khaos | Contract | 原初 | Primordial |  | 106 | 106 | 8 | 8% | 106 | 8 |
 | BS75-CX04 The ChaosContractor Khaos | Contract | 締皇 | Concluser | yes | 62 | 62 | 8 | 13% | 62 | 8 |
-| BS74-CX01 The Light-DarkContractor Ometeotl | Contract | 溶魚 | Lava Fish |  | 32 | 32 | 22 | 69% | 40 | 28 |
+| BS74-CX01 The Light-DarkContractor Ometeotl | Contract | 溶魚 | Lava Fish |  | 32 | 32 | 25 | 78% | 40 | 31 |
 | BS74-CX01 The Light-DarkContractor Ometeotl | Contract | 眷属 | Devotee | yes | 287 | 287 | 47 | 16% | 290 | 47 |
 | BS74-CX01 The Light-DarkContractor Ometeotl | Contract | 締皇 | Concluser | yes | 62 | 62 | 8 | 13% | 62 | 8 |
 | BS74-CX02 The NetherContractor Dionysus | Contract | 無魔 | Zombie |  | 65 | 65 | 6 | 9% | 161 | 44 |
@@ -64,7 +64,7 @@ Counts are card numbers (ids) in `data/sources/official-fields.json`: every prin
 | BS69-CX01 The AstralMaterContractor Gaia | Contract | 爬獣 | Reptile Beast |  | 35 | 35 | 7 | 20% | 62 | 28 |
 | BS69-CX01 The AstralMaterContractor Gaia | Contract | 原初 | Primordial |  | 106 | 106 | 8 | 8% | 106 | 8 |
 | BS69-CX01 The AstralMaterContractor Gaia | Contract | 締皇 | Concluser | yes | 62 | 62 | 8 | 13% | 62 | 8 |
-| BS69-CX02 The SwiftContractor Hermes | Contract | 剣獣 | Blade Beast |  | 123 | 123 | 19 | 15% | 255 | 57 |
+| BS69-CX02 The SwiftContractor Hermes | Contract | 剣獣 | Blade Beast |  | 123 | 123 | 33 | 27% | 255 | 71 |
 | BS69-CX02 The SwiftContractor Hermes | Contract | 眷属 | Devotee | yes | 287 | 287 | 47 | 16% | 290 | 47 |
 | BS69-CX02 The SwiftContractor Hermes | Contract | 締皇 | Concluser | yes | 62 | 62 | 8 | 13% | 62 | 8 |
 | BS69-CX03 The RagingGaleContractor Huracan | Contract | 爆蒼 | Roaring Azure |  | 38 | 38 | 1 | 3% | 60 | 7 |
@@ -79,10 +79,10 @@ Counts are card numbers (ids) in `data/sources/official-fields.json`: every prin
 | BS68-CX03 The ToolcraftContractor Kinich-Ahau | Contract | 動玩 | Puppet Beast |  | 26 | 26 | 1 | 4% | 34 | 4 |
 | BS68-CX03 The ToolcraftContractor Kinich-Ahau | Contract | 眷属 | Devotee | yes | 287 | 287 | 47 | 16% | 290 | 47 |
 | BS68-CX03 The ToolcraftContractor Kinich-Ahau | Contract | 締皇 | Concluser | yes | 62 | 62 | 8 | 13% | 62 | 8 |
-| BS62-X09 Grandwalker Kukulkan | Grandwalker | 妖蛇 | Dark Snake |  | 65 | 65 | 5 | 8% | 165 | 43 |
-| BS62-X09 Grandwalker Kukulkan | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
+| BS62-X09 Grandwalker Kukulkan | Grandwalker | 妖蛇 | Dark Snake |  | 65 | 65 | 6 | 9% | 165 | 44 |
+| BS62-X09 Grandwalker Kukulkan | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
 | BS61-X09 Grandwalker Tezcatlipoca | Grandwalker | 甲獣 | Armored Beast |  | 33 | 33 | 2 | 6% | 54 | 13 |
-| BS61-X09 Grandwalker Tezcatlipoca | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
+| BS61-X09 Grandwalker Tezcatlipoca | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
 | BS59-X09 Grandwalker Chronos | Grandwalker | 時冠 | Chrownos |  | 20 | 20 | 1 | 5% | 20 | 1 |
 | BS58-X09 Grandwalker Parvati | Grandwalker | 戯狩 | Hunter Beast |  | 42 | 42 | 3 | 7% | 85 | 21 |
 | BS55-X09 Grandwalkers Izanagi & Izanami | Grandwalker | 霊獣 | Spiritual Beast |  | 31 | 31 | 4 | 13% | 87 | 37 |
@@ -97,63 +97,63 @@ Counts are card numbers (ids) in `data/sources/official-fields.json`: every prin
 | BS51-X08 Grandwalker Amaterasu | Grandwalker | 家臣 | Vassal |  | 21 | 21 | 5 | 24% | 109 | 19 |
 | BS51-X08 Grandwalker Amaterasu | Grandwalker | 主君 | Lord |  | 12 | 12 | 0 | 0% | 22 | 0 |
 | BS51-X08 Grandwalker Amaterasu | Grandwalker | 天渡 | Celeste |  | 177 | 177 | 10 | 6% | 177 | 10 |
-| BS51-X08 Grandwalker Amaterasu | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
+| BS51-X08 Grandwalker Amaterasu | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
 | BS51-X09 Grandwalker Dionysus | Grandwalker | 無魔 | Zombie |  | 65 | 65 | 6 | 9% | 161 | 44 |
 | BS51-X09 Grandwalker Dionysus | Grandwalker | 天渡 | Celeste |  | 177 | 177 | 10 | 6% | 177 | 10 |
-| BS51-X09 Grandwalker Dionysus | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
-| BS51-X10 Grandwalker Saraswati | Grandwalker | 遊精 | Imp |  | 44 | 44 | 2 | 5% | 112 | 41 |
+| BS51-X09 Grandwalker Dionysus | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
+| BS51-X10 Grandwalker Saraswati | Grandwalker | 遊精 | Imp |  | 44 | 44 | 3 | 7% | 112 | 42 |
 | BS51-X10 Grandwalker Saraswati | Grandwalker | 天渡 | Celeste |  | 177 | 177 | 10 | 6% | 177 | 10 |
-| BS51-X10 Grandwalker Saraswati | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
+| BS51-X10 Grandwalker Saraswati | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
 | BS51-XX03 Grandwalker Alex-Lolo | Grandwalker | (cost only) | - | | - | - | - | - | - | - |
 | BS50-CP01 Soaring Grandwalker Alex | Grandwalker | (cost only) | - | | - | - | - | - | - | - |
 | BS50-X10 Grandwalker Anubis | Grandwalker | 地竜 | Terra Dragon |  | 49 | 49 | 7 | 14% | 153 | 62 |
 | BS50-X10 Grandwalker Anubis | Grandwalker | 天渡 | Celeste |  | 177 | 177 | 10 | 6% | 177 | 10 |
-| BS50-X10 Grandwalker Anubis | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
+| BS50-X10 Grandwalker Anubis | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
 | BS50-X11 Grandwalker Tsukuyomi | Grandwalker | 魔影 | Evil Shadow |  | 90 | 90 | 5 | 6% | 173 | 27 |
 | BS50-X11 Grandwalker Tsukuyomi | Grandwalker | 妖戒 | Youkai |  | 21 | 21 | 3 | 14% | 55 | 17 |
 | BS50-X11 Grandwalker Tsukuyomi | Grandwalker | 天渡 | Celeste |  | 177 | 177 | 10 | 6% | 177 | 10 |
-| BS50-X11 Grandwalker Tsukuyomi | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
+| BS50-X11 Grandwalker Tsukuyomi | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
 | BS50-X12 Grandwalker of Preservation Vishnu | Grandwalker | 甲竜 | Armored Dragon |  | 48 | 48 | 6 | 12% | 85 | 18 |
 | BS50-X12 Grandwalker of Preservation Vishnu | Grandwalker | 天渡 | Celeste |  | 177 | 177 | 10 | 6% | 177 | 10 |
-| BS50-X12 Grandwalker of Preservation Vishnu | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
+| BS50-X12 Grandwalker of Preservation Vishnu | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
 | BS50-X13 Grandwalker Hephaestus | Grandwalker | 造兵 | Artificial Soldier |  | 81 | 81 | 6 | 7% | 167 | 27 |
 | BS50-X13 Grandwalker Hephaestus | Grandwalker | 天渡 | Celeste |  | 177 | 177 | 10 | 6% | 177 | 10 |
-| BS50-X13 Grandwalker Hephaestus | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
-| BS50-XX02 Grandwalker Zeus-Lolo | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 7 | 4% | 200 | 7 |
-| BS50-XX02 Grandwalker Zeus-Lolo | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
+| BS50-X13 Grandwalker Hephaestus | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
+| BS50-XX02 Grandwalker Zeus-Lolo | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 14 | 7% | 200 | 14 |
+| BS50-XX02 Grandwalker Zeus-Lolo | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
 | BS49-X08 Grandwalker Ares | Grandwalker | 怪虫 | Parasite |  | 4 | 4 | 2 | 50% | 68 | 48 |
 | BS49-X08 Grandwalker Ares | Grandwalker | 殻人 | Shellman |  | 79 | 79 | 4 | 5% | 181 | 29 |
 | BS49-X08 Grandwalker Ares | Grandwalker | 天渡 | Celeste |  | 177 | 177 | 10 | 6% | 177 | 10 |
-| BS49-X08 Grandwalker Ares | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
+| BS49-X08 Grandwalker Ares | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
 | BS49-X09 Grandwalker Krishna | Grandwalker | 甲竜 | Armored Dragon |  | 48 | 48 | 6 | 12% | 85 | 18 |
 | BS49-X09 Grandwalker Krishna | Grandwalker | 天渡 | Celeste |  | 177 | 177 | 10 | 6% | 177 | 10 |
-| BS49-X09 Grandwalker Krishna | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
+| BS49-X09 Grandwalker Krishna | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
 | BS49-X10 Grandwalker Susanoo | Grandwalker | 地竜 | Terra Dragon |  | 49 | 49 | 7 | 14% | 153 | 62 |
 | BS49-X10 Grandwalker Susanoo | Grandwalker | 海首 | Ocean Emperor |  | 35 | 35 | 1 | 3% | 53 | 4 |
 | BS49-X10 Grandwalker Susanoo | Grandwalker | 天渡 | Celeste |  | 177 | 177 | 10 | 6% | 177 | 10 |
-| BS49-X10 Grandwalker Susanoo | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
+| BS49-X10 Grandwalker Susanoo | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
 | BS49-XX02 Grandwalker Guren | Grandwalker | 古竜 | Ancient Dragon |  | 56 | 56 | 2 | 4% | 124 | 16 |
 | BS49-XX02 Grandwalker Guren | Grandwalker | 天渡 | Celeste |  | 177 | 177 | 10 | 6% | 177 | 10 |
-| BS49-XX02 Grandwalker Guren | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
+| BS49-XX02 Grandwalker Guren | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
 | BS48-SP01 Bashin Dan | Grandwalker | 星竜 | Astral Dragon |  | 65 | 65 | 5 | 8% | 156 | 28 |
 | BS48-SP01 Bashin Dan | Grandwalker | 星魂 | Astral Soul |  | 1 | 1 | 0 | 0% | 136 | 35 |
 | BS48-SP01 Bashin Dan | Grandwalker | 神星 | Astral Deity |  | 4 | 4 | 0 | 0% | 25 | 1 |
 | BS48-SP01 Bashin Dan | Grandwalker | 光導 | Galaxian |  | 35 | 35 | 0 | 0% | 63 | 1 |
-| BS48-SP01 Bashin Dan | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 7 | 4% | 200 | 7 |
+| BS48-SP01 Bashin Dan | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 14 | 7% | 200 | 14 |
 | BS48-SP02 The Moonlight Barone | Grandwalker | 武装 | Armed Machine |  | 89 | 89 | 3 | 3% | 262 | 53 |
 | BS48-SP02 The Moonlight Barone | Grandwalker | 星魂 | Astral Soul |  | 1 | 1 | 0 | 0% | 136 | 35 |
 | BS48-SP02 The Moonlight Barone | Grandwalker | 神星 | Astral Deity |  | 4 | 4 | 0 | 0% | 25 | 1 |
 | BS48-SP02 The Moonlight Barone | Grandwalker | 光導 | Galaxian |  | 35 | 35 | 0 | 0% | 63 | 1 |
-| BS48-SP02 The Moonlight Barone | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 7 | 4% | 200 | 7 |
+| BS48-SP02 The Moonlight Barone | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 14 | 7% | 200 | 14 |
 | BS48-X08 Grandwalker of Creation Brahma | Grandwalker | 古竜 | Ancient Dragon |  | 56 | 56 | 2 | 4% | 124 | 16 |
 | BS48-X08 Grandwalker of Creation Brahma | Grandwalker | 天渡 | Celeste |  | 177 | 177 | 10 | 6% | 177 | 10 |
-| BS48-X08 Grandwalker of Creation Brahma | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
+| BS48-X08 Grandwalker of Creation Brahma | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
 | BS48-X09 Grandwalker of Destruction Shiva | Grandwalker | 死竜 | Death Dragon |  | 32 | 32 | 2 | 6% | 81 | 14 |
 | BS48-X09 Grandwalker of Destruction Shiva | Grandwalker | 天渡 | Celeste |  | 177 | 177 | 10 | 6% | 177 | 10 |
-| BS48-X09 Grandwalker of Destruction Shiva | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
+| BS48-X09 Grandwalker of Destruction Shiva | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
 | BS48-X10 Grandwalker Aphrodite | Grandwalker | 楽族 | Fairy |  | 30 | 30 | 0 | 0% | 98 | 22 |
 | BS48-X10 Grandwalker Aphrodite | Grandwalker | 天渡 | Celeste |  | 177 | 177 | 10 | 6% | 177 | 10 |
-| BS48-X10 Grandwalker Aphrodite | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
+| BS48-X10 Grandwalker Aphrodite | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
 | BS48-XX02 Grandwalker Lilia | Grandwalker | 神星 | Astral Deity |  | 4 | 4 | 0 | 0% | 25 | 1 |
 | BS48-XX02 Grandwalker Lilia | Grandwalker | 光導 | Galaxian |  | 35 | 35 | 0 | 0% | 63 | 1 |
 | BS48-XX02 Grandwalker Lilia | Grandwalker | 星魂 | Astral Soul |  | 1 | 1 | 0 | 0% | 136 | 35 |
@@ -163,61 +163,61 @@ Counts are card numbers (ids) in `data/sources/official-fields.json`: every prin
 | BS47-CP07 Clash King Dan | Grandwalker | 古竜 | Ancient Dragon |  | 56 | 56 | 2 | 4% | 124 | 16 |
 | BS47-CP07 Clash King Dan | Grandwalker | 星竜 | Astral Dragon |  | 65 | 65 | 5 | 8% | 156 | 28 |
 | BS47-X07 Grandwalker Horus | Grandwalker | 爪鳥 | Winged Beast |  | 71 | 71 | 12 | 17% | 218 | 62 |
-| BS47-X07 Grandwalker Horus | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 7 | 4% | 200 | 7 |
-| BS47-X07 Grandwalker Horus | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
+| BS47-X07 Grandwalker Horus | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 14 | 7% | 200 | 14 |
+| BS47-X07 Grandwalker Horus | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
 | BS47-X08 Grandwalker Thoth | Grandwalker | 武装 | Armed Machine |  | 89 | 89 | 3 | 3% | 262 | 53 |
-| BS47-X08 Grandwalker Thoth | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 7 | 4% | 200 | 7 |
-| BS47-X08 Grandwalker Thoth | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
+| BS47-X08 Grandwalker Thoth | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 14 | 7% | 200 | 14 |
+| BS47-X08 Grandwalker Thoth | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
 | BS47-X09 Grandwalker Poseidon | Grandwalker | 異合 | Fusion Beast |  | 63 | 63 | 1 | 2% | 224 | 55 |
-| BS47-X09 Grandwalker Poseidon | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 7 | 4% | 200 | 7 |
-| BS47-X09 Grandwalker Poseidon | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
+| BS47-X09 Grandwalker Poseidon | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 14 | 7% | 200 | 14 |
+| BS47-X09 Grandwalker Poseidon | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
 | BS47-XX02 Grandwalker Manaka | Grandwalker | (cost only) | - | | - | - | - | - | - | - |
 | BS47-XX03 Grandwalker Kei | Grandwalker | (cost only) | - | | - | - | - | - | - | - |
 | BS46-CP01 Hinobori Hajime | Grandwalker | 戦竜 | Dragon Warrior |  | 15 | 15 | 0 | 0% | 37 | 5 |
-| BS46-CP01 Hinobori Hajime | Grandwalker | 覇皇 | Supreme Hero |  | 23 | 23 | 1 | 4% | 70 | 3 |
-| BS46-CP01 Hinobori Hajime | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 7 | 4% | 200 | 7 |
-| BS46-CP01 Hinobori Hajime | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
+| BS46-CP01 Hinobori Hajime | Grandwalker | 覇皇 | Supreme Hero |  | 23 | 23 | 2 | 9% | 70 | 4 |
+| BS46-CP01 Hinobori Hajime | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 14 | 7% | 200 | 14 |
+| BS46-CP01 Hinobori Hajime | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
 | BS46-CP02 Rekka Yukimura | Grandwalker | 武竜 | War Dragon |  | 26 | 26 | 2 | 8% | 66 | 7 |
 | BS46-CP02 Rekka Yukimura | Grandwalker | 家臣 | Vassal |  | 21 | 21 | 5 | 24% | 109 | 19 |
 | BS46-CP02 Rekka Yukimura | Grandwalker | 主君 | Lord |  | 12 | 12 | 0 | 0% | 22 | 0 |
-| BS46-CP02 Rekka Yukimura | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 7 | 4% | 200 | 7 |
-| BS46-CP02 Rekka Yukimura | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
+| BS46-CP02 Rekka Yukimura | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 14 | 7% | 200 | 14 |
+| BS46-CP02 Rekka Yukimura | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
 | BS46-X09 Grandwalker Zeus | Grandwalker | 皇獣 | Emperor Beast |  | 84 | 84 | 3 | 4% | 205 | 41 |
-| BS46-X09 Grandwalker Zeus | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 7 | 4% | 200 | 7 |
-| BS46-X09 Grandwalker Zeus | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
+| BS46-X09 Grandwalker Zeus | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 14 | 7% | 200 | 14 |
+| BS46-X09 Grandwalker Zeus | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
 | BS46-X10 Grandwalker Hera | Grandwalker | 呪鬼 | Ogre Wizard |  | 79 | 79 | 3 | 4% | 152 | 29 |
-| BS46-X10 Grandwalker Hera | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 7 | 4% | 200 | 7 |
-| BS46-X10 Grandwalker Hera | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
+| BS46-X10 Grandwalker Hera | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 14 | 7% | 200 | 14 |
+| BS46-X10 Grandwalker Hera | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
 | BS46-X11 Grandwalker Athena | Grandwalker | 機人 | Android |  | 74 | 74 | 4 | 5% | 144 | 30 |
-| BS46-X11 Grandwalker Athena | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 7 | 4% | 200 | 7 |
-| BS46-X11 Grandwalker Athena | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
+| BS46-X11 Grandwalker Athena | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 14 | 7% | 200 | 14 |
+| BS46-X11 Grandwalker Athena | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
 | BS46-X12 Grandwalker Ra | Grandwalker | 想獣 | Imaginary Beast |  | 57 | 57 | 4 | 7% | 165 | 35 |
-| BS46-X12 Grandwalker Ra | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 7 | 4% | 200 | 7 |
-| BS46-X12 Grandwalker Ra | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
+| BS46-X12 Grandwalker Ra | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 14 | 7% | 200 | 14 |
+| BS46-X12 Grandwalker Ra | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
 | BS46-XX02 Grandwalker Antarc | Grandwalker | 調査員 | Investigator |  | 9 | 9 | 9 | 100% | 17 | 14 |
 | BS45-CP01 Bashin Toppa | Grandwalker | 古竜 | Ancient Dragon |  | 56 | 56 | 2 | 4% | 124 | 16 |
-| BS45-CP01 Bashin Toppa | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 7 | 4% | 200 | 7 |
-| BS45-CP01 Bashin Toppa | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
+| BS45-CP01 Bashin Toppa | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 14 | 7% | 200 | 14 |
+| BS45-CP01 Bashin Toppa | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
 | BS45-CP02 Rei the Number One Star | Grandwalker | 新生 | Incarnate |  | 13 | 13 | 0 | 0% | 99 | 9 |
 | BS45-CP02 Rei the Number One Star | Grandwalker | 竜人 | Dragon |  | 40 | 40 | 6 | 15% | 111 | 30 |
-| BS45-X07 Grandwalker Hermes | Grandwalker | 剣獣 | Blade Beast |  | 123 | 123 | 19 | 15% | 255 | 57 |
-| BS45-X07 Grandwalker Hermes | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 7 | 4% | 200 | 7 |
-| BS45-X07 Grandwalker Hermes | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
-| BS45-X08 Grandwalker Isis | Grandwalker | 天霊 | Divine Spirit |  | 81 | 81 | 3 | 4% | 207 | 30 |
-| BS45-X08 Grandwalker Isis | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 7 | 4% | 200 | 7 |
-| BS45-X08 Grandwalker Isis | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
-| BS45-X09 Grandwalker Set | Grandwalker | 獣頭 | Beast Head |  | 90 | 90 | 3 | 3% | 190 | 36 |
-| BS45-X09 Grandwalker Set | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 7 | 4% | 200 | 7 |
-| BS45-X09 Grandwalker Set | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
+| BS45-X07 Grandwalker Hermes | Grandwalker | 剣獣 | Blade Beast |  | 123 | 123 | 33 | 27% | 255 | 71 |
+| BS45-X07 Grandwalker Hermes | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 14 | 7% | 200 | 14 |
+| BS45-X07 Grandwalker Hermes | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
+| BS45-X08 Grandwalker Isis | Grandwalker | 天霊 | Divine Spirit |  | 81 | 81 | 4 | 5% | 207 | 31 |
+| BS45-X08 Grandwalker Isis | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 14 | 7% | 200 | 14 |
+| BS45-X08 Grandwalker Isis | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
+| BS45-X09 Grandwalker Set | Grandwalker | 獣頭 | Beast Head |  | 90 | 90 | 4 | 4% | 190 | 37 |
+| BS45-X09 Grandwalker Set | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 14 | 7% | 200 | 14 |
+| BS45-X09 Grandwalker Set | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
 | BS45-XX02 Grandwalker Alex | Grandwalker | (cost only) | - | | - | - | - | - | - | - |
 | BS44-CP02 The YoungGrandwalker Lolo | Grandwalker | (cost only) | - | | - | - | - | - | - | - |
 | BS44-X07 Grandwalker Apollon | Grandwalker | 星竜 | Astral Dragon |  | 65 | 65 | 5 | 8% | 156 | 28 |
-| BS44-X07 Grandwalker Apollon | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 7 | 4% | 200 | 7 |
-| BS44-X07 Grandwalker Apollon | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
-| BS44-X08 Grandwalker Osiris | Grandwalker | 妖蛇 | Dark Snake |  | 65 | 65 | 5 | 8% | 165 | 43 |
-| BS44-X08 Grandwalker Osiris | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 7 | 4% | 200 | 7 |
-| BS44-X08 Grandwalker Osiris | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
+| BS44-X07 Grandwalker Apollon | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 14 | 7% | 200 | 14 |
+| BS44-X07 Grandwalker Apollon | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
+| BS44-X08 Grandwalker Osiris | Grandwalker | 妖蛇 | Dark Snake |  | 65 | 65 | 6 | 9% | 165 | 44 |
+| BS44-X08 Grandwalker Osiris | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 14 | 7% | 200 | 14 |
+| BS44-X08 Grandwalker Osiris | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
 | BS44-X09 Grandwalker Artemis | Grandwalker | 機獣 | Machine Beast |  | 110 | 110 | 10 | 9% | 297 | 82 |
-| BS44-X09 Grandwalker Artemis | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 7 | 4% | 200 | 7 |
-| BS44-X09 Grandwalker Artemis | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
+| BS44-X09 Grandwalker Artemis | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 14 | 7% | 200 | 14 |
+| BS44-X09 Grandwalker Artemis | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 1 | 2% | 51 | 1 |
 | BS44-XX02 Grandwalker Lolo | Grandwalker | (cost only) | - | | - | - | - | - | - | - |
