@@ -95,8 +95,8 @@ magicFromSoul, magicSoulSrc, fromCols, soulBurstCheck, isGwNexus, gwNexusCount, 
 ## packages/engine/src/02y-effects-khaos.js (464 lines, ~14.9k tokens)
 burstSetSafe, pickFightingBlocker, coreSafeEvery, removedLocked, burstOnDiscard, removedDrawLocked, noMagicHit, freeRed, costPerCount, nexusSwapSave, flagActive, ownDiscardCheck, isFungalBed, fungalBeds, useFungalBeds, magicToTrash, bedPay, _sendBedToken, _deployPool
 
-## packages/engine/src/02z-effects-khaos2.js (62 lines, ~2k tokens)
-coreFloorMark, lifeBedSave
+## packages/engine/src/02z-effects-khaos2.js (84 lines, ~2.8k tokens)
+coreFloorMark, lifeBedSave, coreMoveLocked
 
 ## packages/engine/src/03-imported-cards.js (257 lines, ~7.9k tokens) — IMPORTED CARD DATA
 COLORS, BUILTIN_IDS, CARDS_KEY, IMPORTED, CARDS_VER, parseLevels, parseMagicOf, parseCard, registerImported, saveImported, importCards, clearImported, PACK_IDS, registerPack, TOKEN_IDS, registerTokens

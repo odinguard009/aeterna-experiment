@@ -171,3 +171,18 @@ test('K-1142 BS74-037 SaSai: destroying a Fungal Bed stops an unblocked attack o
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.r1, true, JSON.stringify(r)); assert.equal(r.r2, false, JSON.stringify(r)); assert.equal(r.beds, 1, JSON.stringify(r));
   assert.equal(r.exh, true, JSON.stringify(r));
 });
+
+test('K-1143 BS74-X05 Crisarificios: Main Step Hand effect destroys a Bed, redraws three and returns to the decktop; locks opposing core moves and adds a Green symbol at ten counters', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4; G.fxBy = P.key;
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && k !== 'BS74-X05');
+    const x = BS.mkInst('BS74-X05'); P.hand = [x, BS.mkInst(any)]; P.deck = [1, 2, 3, 4, 5].map(() => BS.mkInst(any)); P.nexus = [BS.mkInst('BS74-071')]; P.nexus[0].cores = 1;
+    await BS.fireFx(P, 'START_MAIN', null, {});
+    const top = P.deck[0] === x, hand = P.hand.length, beds = P.nexus.length, removed = P.removed.includes(x);
+    const a = BS.mkInst('BS74-X05'); a.cores = 3; P.spirits = [a]; const f = BS.mkInst(any); f.cores = 2; const g = BS.mkInst(any); g.cores = 1; O.spirits = [f, g];
+    G.attacker = a; const locked = !BS.moveCore(O, f, g); G.attacker = null; const free = BS.moveCore(O, f, g);
+    P.count = 10; G.attacker = a; G.active = P.key; await BS.fireFx(P, 'ALLY_ATTACKS', a, { attacker: a, subject: a });
+    return { top, hand, beds, removed, locked, free, cols: a.symTurn ? a.symTurn.cols.length : 0, partial: BS.CARDS['BS74-X05'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.top, true, JSON.stringify(r)); assert.equal(r.hand, 3, JSON.stringify(r)); assert.equal(r.beds, 0, JSON.stringify(r)); assert.equal(r.removed, false, JSON.stringify(r));
+  assert.equal(r.locked, true, JSON.stringify(r)); assert.equal(r.free, true, JSON.stringify(r)); assert.equal(r.cols, 1, JSON.stringify(r));
+});

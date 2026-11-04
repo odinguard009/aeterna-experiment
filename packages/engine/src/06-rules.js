@@ -663,7 +663,7 @@ function moveSoulTo(p, f) {
   coreEv(p, 'soul', from.uid, f.uid); from.soul = false; f.soul = true; return 'ok';
 }
 function moveCore(p, from, to) {
-  if (from === to || from.cores < 1 || isGW(from) || isGW(to)) return false;     // manual p. 22: Grandwalker cores cannot be moved, nor moved onto one
+  if (from === to || from.cores < 1 || isGW(from) || isGW(to) || coreMoveLocked(p)) return false;     // manual p. 22: Grandwalker cores cannot be moved, nor moved onto one
   coreEv(p, 'core', from.uid, to.uid); from.cores--; to.cores++; checkDepletion(p); return true;
 }
 function swapSoul(p, withSoul, other) {       // Soul Core and a normal core trade places (totals unchanged, nothing depletes)

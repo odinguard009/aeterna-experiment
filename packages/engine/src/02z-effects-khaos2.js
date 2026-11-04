@@ -60,3 +60,25 @@ async function lifeBedSave(D, A, att) {
   }
   return false;
 }
+
+/* v526 STATIC OPP_CORE_MOVE_LOCK {lv, match}: "while your <match> Spirit is attacking, besides Soul Core the opponent can't move cores from their Field/Grandwalker Nexuses" (BS74-X05). Read by moveCore (06-rules): covers the player's own core moves only, effect-driven core moves are not blocked. */
+function coreMoveLocked(p) {
+  if (!G || !G.attacker) return false;
+  const A = G.p[other(p.key)]; if (!A.spirits.includes(G.attacker)) return false;
+  return fieldList(A).some(f => fxEntries(f).some(({ e }) => e.trigger === 'STATIC' && e.flag === 'OPP_CORE_MOVE_LOCK' && (!e.lv || e.lv.includes(lvNo(f))) && fxMatch(CARDS[G.attacker.id], e.match, G.attacker)));
+}
+/* v526 SYMBOL_ATTACKER_PLUS {color}: "that Spirit gains an extra <colour> symbol" (ALLY_ATTACKS with `if`; the attacker is ctx.attacker/subject). */
+FX_ACTIONS.SYMBOL_ATTACKER_PLUS = { chk: a => COLORS.includes(a.color) && Object.keys(a).every(k => ['do', 'if', 'color'].includes(k)), txt: a => `that Spirit gains an extra ${cap(a.color)} symbol this turn`, can: () => true,
+  run: async (c, a) => {
+    const s = c.ctx.attacker || c.ctx.subject; c.ctx.did = !!s && c.p.spirits.includes(s); if (!c.ctx.did) return;
+    if (!s.symTurn || s.symTurn.turn !== G.turnNo) s.symTurn = { turn: G.turnNo, cols: [] }; s.symTurn.cols.push(a.color); log(`${_nm(c)}: ${CARDS[s.id].name} gains an extra ${cap(a.color)} symbol this turn.`); } };
+/* v526 BED_REMOVED_REDRAW {n} (BS74-X05, zone hand): "by destroying one of your Fungal Bed, put this card from the Hand onto the Removed Zone; when you've done so, discard all your Hand and draw n cards; then return this card from the Removed Zone to your decktop". Main Step only; offered at the start of the Main Step (START_MAIN, zone hand), the CPU only with a Hand of two or fewer. */
+FX_ACTIONS.BED_REMOVED_REDRAW = { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 5 && Object.keys(a).every(k => ['do', 'if', 'n'].includes(k)), txt: a => `by destroying one of your "Fungal Bed", put this card from the Hand onto the Removed Zone; discard your entire Hand, draw ${a.n} cards, then return this card to your decktop`,
+  can: c => c.p.hand.includes(c.src) && (!c.p.cpu || c.p.hand.length <= 2) && (G.step === 4 || (G.format === 'standard' && G.step === 6)) && fungalBeds(c.p).length > 0,
+  run: async (c, a) => {
+    c.ctx.did = false; if (!FX_ACTIONS.BED_REMOVED_REDRAW.can(c, a)) return;
+    const beds = fungalBeds(c.p), bed = c.p.cpu ? beds.slice().sort((x, y) => x.cores - y.cores)[0] : await fxPickTarget(c, beds, `✨ <b>${esc(_nm(c))}</b><br>Tap the "Fungal Bed" to destroy.`); if (!bed) return;
+    removeNexus(c.p, bed, 'destroyed'); c.p.hand = c.p.hand.filter(h => h !== c.src); c.p.removed.push(c.src); c.ctx.did = true; log(`${_nm(c)}: ${poss(c.p)} ${CARDS[bed.id].name} is destroyed; this card goes to the Removed Zone.`);
+    await FX_ACTIONS.DISCARD_ALL_HAND.run(c, { do: 'DISCARD_ALL_HAND' });
+    const k = draw(c.p, a.n); log(`${_nm(c)}: ${who(c.p)} ${c.p.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'}.`); handUp(c.p, k);
+    c.p.removed = c.p.removed.filter(x => x !== c.src); c.p.deck.unshift(c.src); log(`${_nm(c)}: this card returns to the top of ${poss(c.p)} deck.`); io.view({ type: 'board' }); } };
