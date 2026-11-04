@@ -123,9 +123,9 @@ Object.assign(FX_ACTIONS, {
       log(`${_nm(c)}: ${k} card${k === 1 ? '' : 's'} from ${poss(c.opp)} Trash go onto their Removed Zone.`);
     } },
   /* "send an opposing Spirit/Ultimate to the Removed Zone" (cores go to its Reserve; Tokens return to the supply instead) */
-  SEND_REMOVED: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 10 && (a.costLe == null || Number.isInteger(a.costLe)) && (a.exhaustedOnly == null || a.exhaustedOnly === true),
+  SEND_REMOVED: { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 10 && (a.costLe == null || Number.isInteger(a.costLe)) && (a.exhaustedOnly == null || a.exhaustedOnly === true) && (a.match == null || hasMatch(a.match)) && (a.armor == null || a.armor === true),
     txt: a => `send ${a.n === 1 ? 'an' : a.n} opposing ${a.exhaustedOnly ? 'exhausted ' : ''}Spirit${a.n === 1 ? '' : 's'}${a.costLe != null ? ' with cost ' + a.costLe + ' or less' : ''} to the Removed Zone`,
-    cands: (c, a) => c.opp.spirits.filter(t => !fxImmune(c.opp, t) && (a.costLe == null || CARDS[t.id].cost <= a.costLe) && (!a.exhaustedOnly || t.exhausted)),
+    cands: (c, a) => c.opp.spirits.filter(t => !fxImmune(c.opp, t, a.armor ? c : undefined) && (!a.match || fxMatch(CARDS[t.id], a.match, t)) && (a.costLe == null || CARDS[t.id].cost <= a.costLe) && (!a.exhaustedOnly || t.exhausted)),
     can: (c, a) => FX_ACTIONS.SEND_REMOVED.cands(c, a).length > 0,
     run: async (c, a) => {
       const L = FX_ACTIONS.SEND_REMOVED.cands(c, a); if (!L.length) { c.ctx.did = false; return; }

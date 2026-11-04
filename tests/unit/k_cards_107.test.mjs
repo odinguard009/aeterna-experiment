@@ -166,3 +166,17 @@ test('K-1083 BS49-033 Dioscuri: green Grandwalker Nexus locks the opposing Remov
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.lockedBefore, true, JSON.stringify(r)); assert.equal(r.removed, 1, JSON.stringify(r));
   assert.equal(r.gone, true, JSON.stringify(r)); assert.equal(r.cores, 6, JSON.stringify(r));
 });
+
+test('K-1084 BS49-037 Atalante: Attacks sends an originally Cost 6-8 opposing Spirit to Removed and refreshes; Lv2 stops Bursts and discards a Red/White card from their Removed Zone', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const sp = Object.keys(BS.CARDS).filter(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token);
+    const big = sp.find(k => [6, 7, 8].includes(BS.CARDS[k].cost) && k !== 'BS49-037'), small = sp.find(k => BS.CARDS[k].cost <= 3);
+    const red = sp.find(k => (BS.CARDS[k].colors || [BS.CARDS[k].symbol]).includes('red'));
+    const a = BS.mkInst('BS49-037'); a.cores = 4; a.exhausted = true; P.spirits = [a]; G.attacker = a;
+    const t1 = BS.mkInst(big), t2 = BS.mkInst(small); t1.cores = t2.cores = 1; O.spirits = [t2, t1]; O.removed = [BS.mkInst(red)];
+    await BS.fireFx(P, 'ATTACKS', a, { attacker: a, subject: a });
+    return { bigGone: !O.spirits.includes(t1), smallStays: O.spirits.includes(t2), removed: O.removed.length, refreshed: !a.exhausted, noBurst: G.noBurst, trash: O.trash.length, partial: BS.CARDS['BS49-037'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.bigGone, true, JSON.stringify(r)); assert.equal(r.smallStays, true, JSON.stringify(r));
+  assert.equal(r.refreshed, true, JSON.stringify(r)); assert.ok(r.noBurst, JSON.stringify(r)); assert.equal(r.removed, 1, JSON.stringify(r));
+});
