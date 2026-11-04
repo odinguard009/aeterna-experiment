@@ -90,3 +90,16 @@ test('K-1136 BS73-076 Fluffy Reverse: Main discards the Hand and draws per oppos
     return { hand, tr, back: P.hand.includes(m), beds: P.nexus.length, partial: BS.CARDS['BS73-076'].partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.hand, 3, JSON.stringify(r)); assert.equal(r.tr, 2, JSON.stringify(r)); assert.equal(r.back, true, JSON.stringify(r)); assert.equal(r.beds, 0, JSON.stringify(r));
 });
+
+test('K-1137 BS74-026 RiRisu: returns from the Trash when a Grandwalker Nexus is destroyed by an opposing effect; from the Hand it is summoned when one enters Soul State and deploys another; Void core when destroyed by the opponent', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = O.key; G.step = 5;
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token);
+    const rr = BS.mkInst('BS74-026'); P.trash = [rr]; const yk = BS.mkInst('BS73-CX01'); P.nexus = [yk];
+    G.fxBy = O.key; BS.removeNexus(P, yk, 'destroyed'); await flushBursts(); G.fxBy = null;
+    const back = P.hand.includes(rr);
+    const r2 = BS.mkInst('BS74-026'); P.hand = [r2]; P.trash = []; const y1 = BS.mkInst('BS73-CX01'), y2 = BS.mkInst('BS73-CX01'); P.nexus = [y1]; P.soulState = [y2]; y2.inSoulState = true; P.spirits = []; O.spirits = [BS.mkInst(any)]; O.spirits[0].cores = 1;
+    G.fxBy = O.key; BS.toSoulState(P, y1); await flushBursts(); G.fxBy = null;
+    return { back, summoned: P.spirits.includes(r2), dep: P.nexus.includes(y2), partial: BS.CARDS['BS74-026'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.back, true, JSON.stringify(r)); assert.equal(r.summoned, true, JSON.stringify(r)); assert.equal(r.dep, true, JSON.stringify(r));
+});

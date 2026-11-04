@@ -438,11 +438,12 @@ FX_ACTIONS.VOID_TO_BEDS = { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <
       if (!takeFromVoid(c.p, 1)) break; t.cores++; L = L.filter(x => x !== t); c.ctx.did = true; log(`${_nm(c)}: a core moves from the Void to ${CARDS[t.id].name}.`);
     }
     io.view({ type: 'board' }); } };
-FX_ACTIONS.DEPLOY_NAMED_TRASH_SOUL = { chk: a => typeof a.name === 'string' && a.name.length > 0 && Object.keys(a).every(k => ['do', 'if', 'name'].includes(k)), txt: a => `deploy one of your "${a.name}" from the Trash/Soul State without paying the cost`,
-  can: (c, a) => c.p.trash.concat(c.p.soulState).some(x => CARDS[x.id].name.includes(a.name)),
+const _deployPool = (c, a) => (a.soulOnly ? c.p.soulState : c.p.trash.concat(c.p.soulState)).filter(x => a.family ? (CARDS[x.id].families || []).includes(a.family) : CARDS[x.id].name.includes(a.name));      // v521 family / soulOnly (BS74-026)
+FX_ACTIONS.DEPLOY_NAMED_TRASH_SOUL = { chk: a => ((typeof a.name === 'string' && a.name.length > 0) !== (typeof a.family === 'string' && a.family.length > 0)) && (a.soulOnly == null || a.soulOnly === true) && Object.keys(a).every(k => ['do', 'if', 'name', 'family', 'soulOnly'].includes(k)), txt: a => `deploy one of your "${a.name || a.family}" from the ${a.soulOnly ? '' : 'Trash/'}Soul State without paying the cost`,
+  can: (c, a) => _deployPool(c, a).length > 0,
   run: async (c, a) => {
-    c.ctx.did = false; const L = c.p.trash.concat(c.p.soulState).filter(x => CARDS[x.id].name.includes(a.name)); if (!L.length) return;
-    const t = c.p.cpu || L.length === 1 ? L[0] : await chooseCard(c, L, `✨ ${_nm(c)}`, `Choose the "${a.name}" to deploy.`, true); if (!t) return;
+    c.ctx.did = false; const L = _deployPool(c, a); if (!L.length) return;
+    const t = c.p.cpu || L.length === 1 ? L[0] : await chooseCard(c, L, `✨ ${_nm(c)}`, `Choose the "${a.name || a.family}" to deploy.`, true); if (!t) return;
     await summonFree(c.p, t); c.ctx.did = true; } };
 FX_ACTIONS.BEDS_RETURN_SELF = { chk: a => Number.isInteger(a.beds) && a.beds >= 1 && a.beds <= 3 && Object.keys(a).every(k => ['do', 'if', 'beds'].includes(k)), txt: a => `by destroying ${a.beds} "Fungal Bed", return this card from the Trash to the Hand`,
   can: (c, a) => c.p.trash.includes(c.src) && fungalBeds(c.p).length >= a.beds,
@@ -456,3 +457,7 @@ FX_ACTIONS.DISCARD_HAND_FUNGAL_DRAW = { chk: a => Object.keys(a).every(k => ['do
     await FX_ACTIONS.DISCARD_ALL_HAND.run(c, { do: 'DISCARD_ALL_HAND' }); c.ctx.did = true;
     if (!fam) return; const n = c.opp.hand.length + c.opp.removed.length; if (!n) return;
     const k = draw(c.p, n); log(`${_nm(c)}: ${who(c.p)} ${c.p.cpu ? 'draws' : 'draw'} ${k} card${k === 1 ? '' : 's'}.`); handUp(c.p, k); } };
+
+/* v521 TRASH_SELF_TO_HAND {}: "return this card from the Trash to your Hand" (BS74-026; the source must be in the Trash). */
+FX_ACTIONS.TRASH_SELF_TO_HAND = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => 'return this card from the Trash to your Hand', can: c => c.p.trash.includes(c.src),
+  run: async c => { c.ctx.did = false; if (!removeFrom(c.p.trash, c.src)) return; c.p.hand.push(c.src); handUp(c.p, 1); c.ctx.did = true; log(`${_nm(c)}: returns from the Trash to the Hand (${who(c.p)}).`); io.view({ type: 'board' }); } };

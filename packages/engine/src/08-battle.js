@@ -198,8 +198,10 @@ async function flushBursts() {                         // queued Bursts and even
       for (const q of [G.p.player, G.p.opponent]) await fireFx(q, 'SPIRIT_DIED', null, { subject: ev.inst, byBattle: !!ev.byBattle });      // v240 "when any Spirit is destroyed"      // v191 byBattle: "destroyed via BP comparison"
     } else if (ev.type === 'LOST') {
       await fireFx(G.p[ev.key], 'ALLY_LOST', null, { subject: ev.inst, depl: !!ev.depl, byOpp: !!ev.byOpp }); muddyDraw(ev);      // v212
+    } else if (ev.type === 'NEXUS_SOUL') {
+      await fireFx(G.p[ev.key], 'NEXUS_SOUL', ev.inst, { subject: ev.inst, byOppFx: !!ev.byOppFx });      // v521 "When your Grandwalker Nexuses enter Soul State due to opposing effects"
     } else if (ev.type === 'NEXUS_DIED') {
-      await fireFx(G.p[ev.key], 'ALLY_NEXUS_DESTROYED', ev.inst, { subject: ev.inst, byBattle: !!ev.byBattle });      // v189 "When your Nexuses ... are destroyed"
+      await fireFx(G.p[ev.key], 'ALLY_NEXUS_DESTROYED', ev.inst, { subject: ev.inst, byBattle: !!ev.byBattle, byOppFx: !!ev.byOppFx });      // v189 "When your Nexuses ... are destroyed"
     } else if (ev.type === 'OPP_DIED') {
       await fireFx(G.p[other(ev.key)], 'OPP_DIED', ev.inst, { subject: ev.inst, bp: ev.bp });      // v192 "When opposing Spirits are destroyed"
     } else if (ev.type === 'DESTROYED') await fireFx(G.p[ev.key], 'DESTROYED', ev.inst, { subject: ev.inst, byOpp: !!ev.byOpp, byOppFx: !!ev.byOppFx, depl: !!ev.depl });

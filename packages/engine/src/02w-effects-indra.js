@@ -58,6 +58,7 @@ async function soulDeployOffer(p, inst) {
   if (await summonPaid(p, inst)) log(`${CARDS[inst.id].name}: deployed from Soul State.`);
 }
 function soulEnterHook(p, inst) {
+  if (G && G.evQ && CARDS[inst.id].type === 'Nexus') G.evQ.push({ type: 'NEXUS_SOUL', key: p.key, inst, byOppFx: !!G.fxBy && G.fxBy !== p.key });
   if (G && G.evQ && CARDS[inst.id].soulDeploy) G.evQ.push({ type: 'SOUL_DEPLOY', key: p.key, inst });
   if (G && G.evQ && (p.soulState.some(x => CARDS[x.id].soulBurst && p.soulState.length >= ((CARDS[x.id].burst || {}).soulAt || 5)) || (p.burst && CARDS[p.burst.id].soulBurst && p.soulState.length >= ((CARDS[p.burst.id].burst || {}).soulAt || 5))) && !G.evQ.some(e => e.type === 'SOUL_BURST' && e.key === p.key)) G.evQ.push({ type: 'SOUL_BURST', key: p.key });
   const mn = G && G.evQ && p.mirage && CARDS[p.mirage.id].mirageNexus;
