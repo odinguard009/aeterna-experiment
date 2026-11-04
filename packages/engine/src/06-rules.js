@@ -306,8 +306,8 @@ function summonTaxOf(p, card) {                  // v180 STATIC SUMMON_TAX on th
     for (const { e } of fxEntries(src)) if (e.trigger === 'STATIC' && e.flag === 'SUMMON_TAX' && !(e.lv && !e.lv.includes(L)) && fxMatch(card, e.match) && fxIf(opp, p, e.if, { selfInst: src })) n += e.n; }
   return n;
 }
-function summonDiscountOf(p, card) {             // v391 STATIC SUMMON_DISCOUNT on the own field: "when you're summoning <match>, its cost gets -N"
-  if (!G || card.type !== 'Spirit') return 0; const opp = G.p[other(p.key)]; let n = 0;
+function summonDiscountOf(p, card) {             // v391 STATIC SUMMON_DISCOUNT: "when summoning <match>, cost -N"
+  if (!G) return 0; if (card.type !== 'Spirit') return magicDiscount(p, card); const opp = G.p[other(p.key)]; let n = 0;
   for (const src of fieldList(p)) { const L = lvNo(src);
     for (const { e } of fxEntries(src)) if (e.trigger === 'STATIC' && e.flag === 'SUMMON_DISCOUNT' && !(e.lv && !e.lv.includes(L)) && fxMatch(card, e.match) && fxIf(p, opp, e.if, { selfInst: src })) n += e.n; }
   return n;

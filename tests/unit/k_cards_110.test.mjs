@@ -202,3 +202,18 @@ test('K-1144 BS73-070 Morrigan\'s Jewel Temple: Cost 7+ Prismwing remains exhaus
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.keep, true, JSON.stringify(r)); assert.equal(r.gone, true, JSON.stringify(r));
   assert.equal(r.cap2, true, JSON.stringify(r)); assert.equal(r.cap1, false, JSON.stringify(r)); assert.equal(r.lv1, false, JSON.stringify(r));
 });
+
+test('K-1145 BS74-074 Jewel Garden: redeploys from the Trash after a Prismwing Magic; no deck discards; guards Contractor Morrigan; LV2 Magic relief exhausts it', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4; G.fxBy = P.key;
+    const mag = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Magic' && (BS.CARDS[k].families || []).includes('Prismwing') && BS.CARDS[k].cost >= 2);
+    const g = BS.mkInst('BS74-074'); P.trash = [g]; const m = BS.mkInst(mag);
+    await BS.fireFx(P, 'MAGIC_USED', null, { subject: m });
+    const dep = P.nexus.includes(g); g.cores = 2;
+    const cost2 = BS.effCost(P, BS.CARDS[mag]); const base = BS.CARDS[mag].cost;
+    await BS.fireFx(P, 'MAGIC_USED', null, { subject: m }); const exh = g.exhausted === true; const cost3 = BS.effCost(P, BS.CARDS[mag]);
+    g.exhausted = false; const w = BS.mkInst('BS73-CX02'); P.nexus.push(w); G.fxBy = O.key; BS.removeNexus(P, w, 'destroyed'); const safe = P.nexus.includes(w);
+    return { dep, cost2, base, exh, cost3, safe, partial: BS.CARDS['BS74-074'].partial, locked: typeof deckDiscardLocked === 'function' ? deckDiscardLocked() : null }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.dep, true, JSON.stringify(r)); assert.equal(r.cost2, r.cost3 - 2, JSON.stringify(r));
+  assert.equal(r.exh, true, JSON.stringify(r)); assert.equal(r.safe, true, JSON.stringify(r)); assert.equal(r.locked, true, JSON.stringify(r));
+});

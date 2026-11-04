@@ -85,3 +85,17 @@ FX_ACTIONS.BED_REMOVED_REDRAW = { chk: a => Number.isInteger(a.n) && a.n >= 1 &&
 /* v527 STATIC LIFE_CAP_SYM2 (BS73-070 LV2): "your Life can only be reduced by one per opposing Spirit/Ultimate with two or more symbols per turn". Read by 08-battle; approximated as a cap of one per such attack. */
 STATIC_FLAGS.push('LIFE_CAP_SYM2');
 const lifeSym2Cap = (D, att) => !!att && attackSymbols(att) >= 2 && fieldList(D).some(f => fxEntries(f).some(({ e }) => e.trigger === 'STATIC' && e.flag === 'LIFE_CAP_SYM2' && (!e.lv || e.lv.includes(lvNo(f)))));
+/* v528 STATIC NEXUS_SAFE_OPP {match}: "your <match> Nexuses can't be destroyed by opposing effects" (read by nexusShielded, 02w). */
+STATIC_FLAGS.push('NEXUS_SAFE_OPP');
+const nexusGuarded = (p, n) => !!G && !!G.fxBy && G.fxBy !== p.key && p.nexus.includes(n) && fieldList(p).some(f => fxEntries(f).some(({ e }) => e.trigger === 'STATIC' && e.flag === 'NEXUS_SAFE_OPP' && (!e.lv || e.lv.includes(lvNo(f))) && fxMatch(CARDS[n.id], e.match)));
+/* v528 STATIC MAGIC_COST_EXHAUST {n, match}: "(Your Turn) when you would use a <match> Magic card, by exhausting this Nexus, treat as up to n costs being paid" (BS74-074 LV2). House reading: while the Nexus is refreshed on your turn the matching Magic costs n less (read by summonDiscountOf, 06); MAGIC_RELIEF_EXHAUST on MAGIC_USED then exhausts it. */
+STATIC_FLAGS.push('MAGIC_COST_EXHAUST');
+function magicDiscount(p, card) {
+  if (card.type !== 'Magic' || !G || G.active !== p.key) return 0; let n = 0;
+  for (const f of p.nexus) if (!f.exhausted) for (const { e } of fxEntries(f)) if (e.trigger === 'STATIC' && e.flag === 'MAGIC_COST_EXHAUST' && (!e.lv || e.lv.includes(lvNo(f))) && fxMatch(card, e.match)) n += e.n;
+  return n;
+}
+FX_ACTIONS.MAGIC_RELIEF_EXHAUST = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => 'exhaust this Nexus (its cost relief for the Magic card was used)',
+  can: () => true,
+  run: async c => { const s = c.ctx.subject; c.ctx.did = false; if (!s || !c.src || c.src.exhausted || G.active !== c.p.key || !c.p.nexus.includes(c.src) || CARDS[s.id].cost < 1) return;
+    c.src.exhausted = true; c.ctx.did = true; log(`${CARDS[c.src.id].name} is exhausted: up to two costs of ${CARDS[s.id].name} are treated as paid.`); io.view({ type: 'board' }); } };

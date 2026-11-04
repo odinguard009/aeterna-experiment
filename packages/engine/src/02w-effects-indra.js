@@ -66,6 +66,7 @@ function soulEnterHook(p, inst) {
 }
 function nexusShielded(p, n) {
   if (nexusSwapSave(p, n)) return true;
+  if (nexusGuarded(p, n)) return true;
   if (!G || !G.fxBy || G.fxBy === p.key || !p.nexus.includes(n) || !mirageShield(p, n)) return false;
   log(`${CARDS[n.id].name} can't be destroyed by opposing effects (${CARDS[p.mirage.id].name} is set).`); return true;
 }
