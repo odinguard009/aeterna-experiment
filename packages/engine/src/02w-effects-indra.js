@@ -46,7 +46,7 @@ async function leaveSummonOffer(p, s) {
 const mirageNexusOf = (p, n) => { const m = p.mirage && CARDS[p.mirage.id].mirageNexus; return m && n && CARDS[n.id].name.endsWith(m.name) ? p.mirage : null; };
 /* v433 BS74-047 Sat: mirageNexus {name, onlyOne, soul}: onlyOne = the shield holds only while exactly one such Nexus is controlled; soul = the Mirage may be set from Soul State and is summoned when a card of that name enters Soul State (soulEnterHook, called by toSoulState), not when cores go to the Void */
 const mirageShield = (p, n) => { const m = mirageNexusOf(p, n); return !!m && (!CARDS[m.id].mirageNexus.onlyOne || p.nexus.filter(x => CARDS[x.id].name.endsWith(CARDS[m.id].mirageNexus.name)).length === 1); };
-function mirageCoreSafe(p, t) { return !!(G && G.fxBy && G.fxBy !== p.key && p.mirage && t && p.nexus.includes(t) && CARDS[p.mirage.id].mirageNexus.onlyOne && mirageShield(p, t)); }
+function mirageCoreSafe(p, t) { return !!(G && G.fxBy && G.fxBy !== p.key && p.mirage && t && p.nexus.includes(t) && CARDS[p.mirage.id].mirageNexus && CARDS[p.mirage.id].mirageNexus.onlyOne && mirageShield(p, t)); }
 /* v433 BS74-072 Mitra's Revelation Temple: card field soulDeploy ("When this card enters Soul State, you can deploy it": event SOUL_DEPLOY -> soulDeployOffer, cost paid); STATIC flag OPP_RETURN_FX_LOCK {match} (Lv2: the (would leave) effects of opposing Spirits returned to the Hand/Deck by an effect of a matching card of yours can't activate; bounceCard sets noFx around leaveEvent) */
 function bounceLocked(owner) {
   const foe = G && G.p[other(owner.key)], src = G && G.fxSrc; if (!foe || !src || G.fxBy !== foe.key) return false;

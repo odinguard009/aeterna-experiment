@@ -214,3 +214,10 @@ test('K-1169 BS44-RV005 Tron: Advent needs a Divine Spirit Cost 3+; its attack c
     return { on, targets, partial: [BS.CARDS['BS44-RV005'].partial, BS.CARDS['BS44-RV002'].partial] }; })()`);
   assert.deepEqual(r.on, [true, false], JSON.stringify(r)); assert.ok(r.targets.includes(true), JSON.stringify(r)); assert.deepEqual(r.partial, [false, false]);
 });
+test('K-1170 mirageCoreSafe does not throw when the Mirage Spirit card has no mirageNexus data (CI props seed 2946096323)', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { ${pre}
+    const m = BS.mkInst(sp(x => !x.mirageNexus)); P.mirage = m; const t = BS.mkInst(sp(x => true)); P.nexus = [t]; G.fxBy = O.key;
+    try { return { v: BS.mirageCoreSafe(P, t) }; } catch (e) { return { err: e.message }; } })()`);
+  assert.equal(r.err, undefined, JSON.stringify(r)); assert.equal(r.v, false);
+});

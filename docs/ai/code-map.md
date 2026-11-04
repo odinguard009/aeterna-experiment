@@ -86,7 +86,7 @@ fcCands
 ## packages/engine/src/02v-effects-lane-k.js (627 lines, ~14.7k tokens)
 coresFromSpirits, canPursuit
 
-## packages/engine/src/02w-effects-indra.js (82 lines, ~2k tokens)
+## packages/engine/src/02w-effects-indra.js (82 lines, ~2.1k tokens)
 symFixedOnSummon, fxLockBusy, fxLocked, leaveSummonOffer, mirageNexusOf, mirageShield, mirageCoreSafe, bounceLocked, soulDeployOffer, soulEnterHook, nexusShielded, nexusVoided, mirageSummonOffer
 
 ## packages/engine/src/02x-effects-soul-magic.js (488 lines, ~12.4k tokens)
