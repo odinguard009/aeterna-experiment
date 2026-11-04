@@ -117,7 +117,7 @@ test('B01 index.html without the card pack stays under 1610 KB', () => assert.ok
 // v0.216.0 (ninth raise): B01 1580 -> 1600 KB and B02 415 -> 420 KB on purpose (bundles 42-45: Fungal Bed alt cost, NEXUS_SOUL, OPP_HAND_UP from Hand/Trash).
 // v0.214.0 (Lane K): raised B02 375 -> 380 KB on purpose (Grandwalker Oracle mechanics: anyOf, ORACLE_CORE, REFRESH_PUT_CORE, OPP_NO_MAGIC).
 // v0.213.0 (Lane K): raised B02 370 -> 375 KB on purpose (engine flags SUMMON_DISCOUNT, MAGIC_WALL, ALSO_TREATED etc. added by card work).
-test('B02 index.html without the card pack, gzipped, stays under 420 KB', () => { const n = gzipSync(noFont(code), { level: 9 }).length; assert.ok(n < 420e3, n); });
+test('B02 index.html without the card pack, gzipped, stays under 425 KB', () => { const n = gzipSync(noFont(code), { level: 9 }).length; assert.ok(n < 425e3, n); });
 test('B03 the embedded card pack stays under 3.2 MB (room for all cards; never embed staging data; 2.1e6 -> 3.2e6 on 2026-11-04 after the master import)', () => assert.ok(packLen < 3.2e6, packLen));
 // v0.93.0 (U6): raised 90 -> 96 KB on purpose (roadmap item U allows it with a note): U6-U8 add the My decks page and the
 // deck builder restyle; unused rules were trimmed first in v0.92.0. The next raise needs the same kind of note.
@@ -195,6 +195,7 @@ test('B16 the Rebirth Side B blob stays under 80 KB and is decoded lazily', () =
 // 2026-11-02: B01 1380 -> 1400 KB (v365 perCounter + SYMBOL_PLUS_TURN all; the body was 288 bytes over).
 // 2026-11-02: B01 1400 -> 1420 KB (v394 Crush results; the body was 35 bytes over).
 // 2026-11-03: B01 1420 -> 1440 KB (v422 Indra flags + cantAB; the body was 1.7 KB over).
+// 2026-11-04: B02 420 -> 425 KB (master import audit: 6-colour/long-name limits, {{tk}} marker fix; the code was 88 bytes over).
 // 2026-11-03: B01 1440 -> 1460 KB (v429-431 Soul State Magic, Contract Advent freeGe; the body was 0.9 KB over).
 // 2026-11-03: B01 1460 -> 1470 KB (v438-442 Grandwalker Nexus mechanics: ACTIVATE_SET_BURST, OPP_LEFT_BY_BURST, PREADVENT_REFRESH, DRAW_ONE, pickToHand, ownNexusLe; the body was 1.2 KB over).
 // 2026-11-03: B01 1470 -> 1480 KB (v447 Contractor Nyx mechanics: NEXUS_DOWN, OPP_CORES_UNTIL_ONE, NYX_CORES_TO_VOID, DESTROY_CORES_GE, trashCore, magic.rtn; the body was 3.8 KB over).
