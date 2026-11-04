@@ -4441,7 +4441,7 @@
   "bicon": [
    "11"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS68-CX02",
@@ -10721,7 +10721,7 @@
   "bicon": [
    "11"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS69-CX03",
@@ -20995,7 +20995,7 @@
   "bicon": [
    "11"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS71-CX02",
@@ -21151,7 +21151,7 @@
   "bicon": [
    "11"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS71-NX01",
@@ -25859,7 +25859,7 @@
    "Your counter +2. Then, during this turn, give an opposing Spirit -5000 BP, and destroy it when it is brought to 0 BP. While braved, change the \"-5000 BP\" written on this effect to \"-12000 BP\"."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BSC43-CX02",
@@ -25903,7 +25903,7 @@
    "Your counter +1. Then, during this battle, this Spirit can't be blocked by opposing LV1 Spirits."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BSC43-CX03",
@@ -25946,7 +25946,7 @@
    "Once per turn, when your Spirits would leave the Field due to opposing effects, you can send the (Soul Core) from your Trash to the Reserve."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BSC43-RV001",
@@ -27585,7 +27585,7 @@
    "Once per turn, while you only control \"Kukulkan\" as Nexuses, you can pay one cost from your Life to summon a Cost 7 \"Dark Snake\" family Spirit card from your Hand."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BSC44-CX02",
@@ -27629,7 +27629,7 @@
    "You can attack simultaneously with two \"Shellman\" family Spirits. The opponent can block one of them, but the other can't be blocked (Both battles conclude at the same time)."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BSC44-CX03",
@@ -27673,7 +27673,7 @@
    "While you control only \"Tezcatlipoca\" as Nexuses, your Life can only be reduced by one per turn by opposing effects."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BSC44-CX04",
@@ -27717,7 +27717,7 @@
    "Once per turn, you can use the Flash effect of a Flower Magic card from your Hand, without paying the cost. This effect doesn't trigger Core Charge."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BSC44-CX05",
@@ -27761,7 +27761,7 @@
    "The (When Reborn) effects of Spirits/Braves/Nexuses can't activate."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BSC44-RV001",
@@ -28086,7 +28086,7 @@
   "symbols": 0,
   "levels": [],
   "families": [
-   "殻人"
+   "Shellman"
   ],
   "text": "When this card was either revealed from deck by the effect of your exactly-named \"Godseeker HeavenKnight Aureich\", or sent to the Trash from deck by the effect of your exactly-named \"Grandwalker Ares\", you can add it to the Hand. When you've done so, put one core from the Void to any Grandwalker Nexus you control.\n\nMain\nDiscard your entire Hand. When this effect discarded any \"Shellman\" family card, draw a card for each card on the opposing Hand/Removed Zone. Then, by sending one core from your exactly-named \"Grandwalker Ares\" to the Void, this effect doesn't trigger opposing effects and the opposing Burst can't activate.",
   "image": "BSC44-RV008.png",
@@ -28118,7 +28118,7 @@
   "symbols": 0,
   "levels": [],
   "families": [
-   "楽族"
+   "Fairy"
   ],
   "text": "This card has \"Fairy\" family.\n\nType: Flower\nWhile placed on the Field, the following effect is active.\n█ When your Life would be reduced by an opposing effect, by discarding this card, your Life won't be reduced.\n\nMain\nReveal two cards from your decktop. Among them, besides any exactly-named \"Primrose Field\", add a \"Fairy\" family card, and an exactly-named \"Grandwalker Aphrodite\" to the Hand. Return any remaining cards to either only the decktop or deckbottom in any order. Then, put this card onto your Field.",
   "image": "BSC44-RV009.png",
@@ -28153,7 +28153,7 @@
   "symbols": 0,
   "levels": [],
   "families": [
-   "楽族"
+   "Fairy"
   ],
   "text": "This card has \"Fairy\" family.\n\nType: Flower\nWhile on the field, the following effect is active:\n█ While there are two or more \"Fairy\" family Magic cards on your Field, all your \"Fairy\" family Spirits gain +2000 BP; While there are four or more, the number of cores on them can't become one or below due to opposing effects; While there are six or more, they can't be returned to the Hand/Deck due to opposing effects.\n\nFlash\nDuring this turn, give an opposing Spirit/Ultimate -5000 BP. Then, you can destroy an opposing 0 BP Spirit/Ultimate. Then, put this card on your Field.",
   "image": "BSC44-RV010.png",
@@ -28188,7 +28188,7 @@
   "symbols": 0,
   "levels": [],
   "families": [
-   "楽族"
+   "Fairy"
   ],
   "text": "This card has \"Fairy\" family.\n\nType: Flower\nWhile on the Field, the following effect is active:\n█ Your “BP- effect” decreases 1000 further.\n\nFlash\nDuring this turn, give every opposing Spirit/Ultimate -12000 BP. Then, you can destroy every 0 BP Spirit/Ultimate. Then, put this card on your Field.",
   "image": "BSC44-RV011.png",
@@ -35589,7 +35589,7 @@
    "Your counter +1. Then, you can destroy an opposing Spirit with a BP equal or inferior to this Spirit's, and when destroys, once per turn, you can return a Magic card with Song from your Field/Trash to the Hand."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BSC46-CX02",
@@ -35637,7 +35637,7 @@
    "Your counter +2. Then, you can return an opposing Spirit with a cost equal or inferior to this Spirit's to the deckbottom."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BSC46-CX03",
@@ -35685,7 +35685,7 @@
    "Your counter +2. Then, for each Spirit with a different team you control, send one core from one single opposing Spirit to the Reserve."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BSC46-CX04",
@@ -35728,7 +35728,7 @@
    "(Send four cores from this Nexus to the Void) During this battle, one of your Spirits with Mani gains an extra Yellow symbol."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BSC46-RV001",
@@ -38071,7 +38071,7 @@
    "By sending (Soul Core) from this Spirit to the Reserve, this Spirit can only be blocked by opposing Spirits with \"Clock Up\"-named effects."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "CB31-CX02",
@@ -38113,7 +38113,7 @@
    "Your counter +2. Then, either exhaust an opposing Spirit/Ultimate with a cost equal or inferior to your number of counters, or you can return an opposing exhausted Spirit/Ultimate with a cost equal or inferior to your number of counters to the Hand."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "CB31-CX03",
@@ -38156,7 +38156,7 @@
    "Your counter +2. Then, during this turn, you can give an opposing Spirit/Ultimate -4000 BP for each color of \"Baron\"/\"Arms\" Spirit you control, and return it to the deckbottom when it is brought to 0 BP."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "CB31-CX04",
@@ -38199,7 +38199,7 @@
    "Your counter +1. Then, you can reveal a card from your decktop. If that's a \"Magician\" family card, you can put it onto your Removed Zone. Return any remaining cards to the deckbottom."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "CB31-RV001",
@@ -38588,7 +38588,7 @@
    }
   ],
   "families": [
-   "仇敵"
+   "Enemy"
   ],
   "text": "[LV1][LV2] (Opposing Attack Step)\nWhen opposing Cost 5 or less Spirit/Ultimate is exhausted, draw a card.\n\n[LV2] (Your Attack Step)\nWhile your \"Dopant\"-named Spirit is attacking, that Spirit's color is treated as colorless.",
   "image": "CB31-RV009.png",
@@ -41312,7 +41312,7 @@
   "symbols": 0,
   "levels": [],
   "families": [
-   "仇敵"
+   "Enemy"
   ],
   "text": "When this card is sent to the Trash from deck by your \"Belial\" Grandwalker Nexus effect, you can add it to the Hand. When you've done so, +1 core to one of your Grandwalker Nexuses.\n\nFlash\nDestroy an opposing Spirit with one symbol. Then, if you have eight counters or more, destroy three opposing Spirits/Ultimates with three cores or less on them.",
   "image": "CB32-053.png",
@@ -41676,7 +41676,7 @@
    "Your counter +2. Then, for each 10000 BP this Spirit has, draw a card (Max. 3)."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "CB32-CX02",
@@ -41718,7 +41718,7 @@
    "Your counter +2. Then, send two cores from an opposing Spirit/Ultimate to the Reserve."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "CB32-CX03",
@@ -41760,7 +41760,7 @@
    "Your counter +2. Then, target a card type. During this turn, the opponent can't activate Burst effects of the targeted card type."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "CB32-CX04",
@@ -41806,7 +41806,7 @@
    "At the end of the battle of your Cost 5 or more \"Kaiju\"/\"Belial\"/\"Zetton\", you can send a core, besides (Soul Core), from your Trash to any Spirit. Then, (Can't Stack) you can send an opposing Life to the Reserve."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "CB32-X01",
@@ -45744,7 +45744,7 @@
    "Your counters +2. Then, by paying one cost, Contract Advent a \"Persona\"/\"Chariot Arcana\" family card from your Hand, treating (Soul Core) as being sent to the Trash, onto this Spirit, or any \"S.E.E.S.\" family Spirit you control."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "CB33-CX02",
@@ -45792,7 +45792,7 @@
    "(Can't Stack) When your \"Shadow\" family Spirits are destroyed, your counter +1/+2. Also, when destroyed by the opponent, instead of sending them to the Trash, you can put them onto the Removed Zone."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "CB33-X01",
@@ -49545,7 +49545,7 @@
    "Your counter +1, and draw a card. Then, you can discard a card from your Hand. When you've done so, send two cores from an opposing Spirit to the Reserve."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "CB34-CX02",
@@ -49587,7 +49587,7 @@
    "Your counter +1. Then, you can reveal two cards from your decktop. Among them, add a \"Kuuga\" to the Hand. Discard any remaining cards."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "CB34-CX03",
@@ -49629,7 +49629,7 @@
    "Your counter +2. Then, you can reveal one card from your decktop. If that's a Spirit card, put a core from the Void to this Spirit. Discard the revealed card."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "CB34-RV001",
@@ -50688,6 +50688,6 @@
   "bicon": [
    "11"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  }
 ]

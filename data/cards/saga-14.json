@@ -4058,7 +4058,7 @@
   "bicon": [
    "10"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS64-CX02",
@@ -4100,7 +4100,7 @@
   "bicon": [
    "10"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS64-CX03",
@@ -4142,7 +4142,7 @@
   "bicon": [
    "10"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS64-X01",
@@ -8778,7 +8778,7 @@
   "bicon": [
    "10"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS65-CX02",
@@ -8820,7 +8820,7 @@
   "bicon": [
    "10"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS65-CX03",
@@ -8862,7 +8862,7 @@
   "bicon": [
    "10"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS65-CX04",
@@ -13829,7 +13829,7 @@
   "bicon": [
    "10"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS66-CX02",
@@ -13870,7 +13870,7 @@
   "bicon": [
    "10"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS66-CX03",
@@ -13914,7 +13914,7 @@
   "bicon": [
    "10"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS66-RV001",
@@ -19035,7 +19035,7 @@
   "bicon": [
    "10"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS67-CX02",
@@ -19076,7 +19076,7 @@
   "bicon": [
    "10"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS67-CX03",
@@ -19117,7 +19117,7 @@
   "bicon": [
    "10"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS67-RV001",
@@ -25367,7 +25367,7 @@
    "Your counters +2. Then, if you have eight counters or more, during this battle, this Spirit's \"BP Destruction effects\" can only be prevented by Heavy Armor/Ultra Heavy Armor. After this effect resolves, destroy an opposing 5000 BP or less Spirit/Ultimate."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "CB28-CX02",
@@ -25409,7 +25409,7 @@
    "Your counters +2. Then, if this Spirit isn't braved, and you have five counters or more, this Spirit can, once per turn, be refreshed; If you have ten counters or more, this Spirit can, once per turn, be refreshed."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "CB28-CX03",
@@ -25460,7 +25460,7 @@
    "For each of your symbols, you can reveal a card from your decktop (Max. 5). Destroy any number of opposing Spirits up to (the total number of symbols among the \"Destoroyah\" revealed). Return the revealed cards to the deckbottom."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "CB28-CX04",
@@ -25502,7 +25502,7 @@
    "Your counters +2. Then, if you have 6 counters or more, during this battle, opposing cards to be returned to the Hand via this Spirit's effect are returned to the deckbottom instead. After this effect resolves, you can return an opposing Spirit to the Hand."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "CB28-RV001",
@@ -30170,7 +30170,7 @@
    "(Once per Turn: Same Name) You can summon a \"School\" family Spirit card with a cost equal or inferior to your number of counters from your Hand."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "CB29-CX02",
@@ -30217,7 +30217,7 @@
    "Your counters +2. Then, you can return a \"CB\"/\"Federation\" family card from your Hand/Trash to the deckbottom. When you've done so, you can destroy an opposing Spirit with a cost equal or inferior to that card's."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "CB29-X01",
@@ -34237,7 +34237,7 @@
    "Your counter +2. Then, draw a card."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "CB30-CX02",
@@ -34280,7 +34280,7 @@
    "Your counter +2. Then, destroy a Spirit/Ultimate you or the opponent controls with a number of cores equal or inferior to your number of counters, and when destroys, draw a card."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "CB30-CX03",
@@ -34327,7 +34327,7 @@
    "Your counter +2. Then, if you control any \"DGP\", you can return an opposing Spirit to the Hand. If you don't, you can reveal eight cards from your decktop. Deploy one \"DGP\" among them, without paying the cost. Return any remaining cards to the deckbottom."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "CB30-CX04",
@@ -34372,7 +34372,7 @@
    "Your counter +2. Then, you can destroy an opposing Spirit with a cost equal or inferior to this Spirit's."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "CB30-X01",

@@ -4892,7 +4892,7 @@
   "bicon": [
    "13"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS76-CX02",
@@ -4925,7 +4925,7 @@
   "bicon": [
    "13"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS76-CX03",
@@ -4958,7 +4958,7 @@
   "bicon": [
    "13"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS76-X01",
@@ -5034,7 +5034,7 @@
   ],
   "families": [
    "Concluser",
-   "God King",
+   "God-King",
    "Emperor Beast"
   ],
   "text": "(Flash) SEAL MANIFEST \"Contractor Zeus\" & C6 or more (Your Turn): by sending your Soul Core from the Field/Reserve to the Life, pay one cost from the target to summon this card from the Hand. This card/Spirit is also treated as \"Z\". [During Seal][LV1-2-3] Thunder God Bombardment (When Attacks): you can reveal two cards from your decktop; among them, for each \"Zeus\"/\"Z\"/\"GodKing\", send an opposing Life to the Reserve. Add the revealed cards to the Hand. [LV2-3] Once per turn, when your Thunder God Bombardment doesn't reduce the opposing Life, you can refresh this Spirit.",
@@ -5804,7 +5804,7 @@
    "Including being in Soul State/pre-advent condition, if you control any \"The FlameBladeFlagbearer Seiba\", you can send two cores from your Trash to the Reserve. Then, you can set this Spirit. Return your originally set Mirage to the Hand."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-002",
@@ -5846,7 +5846,7 @@
    "You can destroy an opposing 10000 BP or less Spirit."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-003",
@@ -5889,7 +5889,7 @@
    "You can refresh one of your Red \"Bannerace\" family Spirits. If you have six counters or more, change the \"one\" written in this effect to \"up to three\"."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-004",
@@ -5932,7 +5932,7 @@
    "(Once per Turn: Same Name) When your Red \"Bannerace\" family Spirits would leave the Field due to opposing effects, by paying two costs, one of such targets remains on the Field, exhausted"
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-005",
@@ -6096,7 +6096,7 @@
    "You can destroy an opposing Spirit with a BP equal or inferior to this Spirit's."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-008",
@@ -6136,7 +6136,7 @@
    "You can set this Spirit as Burst."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-010",
@@ -6214,7 +6214,7 @@
    "(Once per Turn: Same Name) When your \"Death Dragon\" family Spirits would leave the Field due to opposing effects, by discarding a facedown card from your Removed Zone, all those targets remain on the Field in the same condition."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Rare"
+  "rcode": "R"
  },
  {
   "id": "BS77-013",
@@ -6259,7 +6259,7 @@
    "By putting a card from your Hand facedown onto the Removed Zone, draw two cards."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-014",
@@ -6297,7 +6297,7 @@
    "By discarding a facedown card from your Removed Zone, draw two cards. You can Mani a \"Death Dragon\" family card discarded via this effect."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-015",
@@ -6342,7 +6342,7 @@
    "This Spirit is unaffected by opposing Mirage effects."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Rare"
+  "rcode": "R"
  },
  {
   "id": "BS77-017",
@@ -6380,7 +6380,7 @@
    "At the end of battle, by banishing six \"The DemonArmyFlagbearer Amon\" from your Trash, send up to three cores from any opposing Spirits/Grandwalker Nexuses to the Void."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-018",
@@ -6416,7 +6416,7 @@
    "You can deploy one of your \"Hindida\" family Grandwalker Nexuses in Soul State, without paying the cost. Then, if you control any \"Hindida\" family Grandwalker Nexus, you can discard a Magic card on the opposing Field."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-019",
@@ -6454,7 +6454,7 @@
    "Including being in pre-advent condition, if you control any \"The AdventureFlagbearer Liber\", your counter +1."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-020",
@@ -6495,7 +6495,7 @@
    "You can return an opposing Cost 4 or less exhausted Spirit/Ultimate to the deckbottom."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-021",
@@ -6540,7 +6540,7 @@
    "(Once per Turn: Same Name) You can add a Green \"Devotee\"/\"Concluser\" family Spirit card revealed from the deck by your \"Imp\" family effect to the Hand."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Rare"
+  "rcode": "R"
  },
  {
   "id": "BS77-022",
@@ -6579,7 +6579,7 @@
    "When your \"Vortexar\" attacks, if you control any Flag Nexus, including those in pre-advent condition, you can heavy exhaust an opposing Spirit/Ultimate for each Brave you control."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-023",
@@ -6619,7 +6619,7 @@
    "While your \"Imp\"/\"Grandwalker\" family Spirit is attacking, the opponent can't activate Burst effects."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-025",
@@ -6661,7 +6661,7 @@
    "Including being in pre-advent condition, if you control any Green Flag Nexus, you can put two cores from the Void to your Trash."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-026",
@@ -6702,7 +6702,7 @@
    "When an opposing Spirit/Ultimate attacks, you can +1 core to one of your \"Vishnu\"/\"Krishna\" Grandwalker Nexuses."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-028",
@@ -6747,7 +6747,7 @@
    "(Once per Turn: Same Name) You can add a White \"Devotee\"/\"Concluser\" family Spirit card revealed from the deck by your \"Armored Dragon\" family effect to the Hand."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-029",
@@ -6790,7 +6790,7 @@
    "You can deploy one of your \"Artemis\" Grandwalker Nexus cards from Hand/Soul State, without paying the cost. Then, you can +1 core to one of your \"Artemis\" Grandwalker Nexuses."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-030",
@@ -6835,7 +6835,7 @@
    "While there is a total of five or more cards in the opposing Hand and Removed Zone, all your \"Vishnu\" Grandwalker Nexuses and \"Armored Dragon\" family Spirits can't be blocked."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Rare"
+  "rcode": "R"
  },
  {
   "id": "BS77-035",
@@ -6882,7 +6882,7 @@
    "(Once per Turn: Same Name) You can put a \"Supreme Contract\" family card revealed from deck by this Spirit's effect onto the Removed Zone."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Rare"
+  "rcode": "R"
  },
  {
   "id": "BS77-036",
@@ -6924,7 +6924,7 @@
    "Put any number of Yellow \"Bannerace\" family card from your Hand onto the Removed Zone, and when put, draw a card from the deckbottom. After this effect resolves, put this card onto the Removed Zone."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Master Rare"
+  "rcode": "M"
  },
  {
   "id": "BS77-039",
@@ -6968,7 +6968,7 @@
    "During this turn, your Life can't be reduced by the attacks of opposing LV1 Spirits. After this effect resolves, put this card onto the Removed Zone."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-040",
@@ -7077,7 +7077,7 @@
    "While your \"Bannerace\" family Spirit is attacking, the opponent can't end the Attack Step via effects."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-043",
@@ -7120,7 +7120,7 @@
    "All your \"Soldnerg\" Spirits are treated as being on their highest levels"
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-044",
@@ -7158,7 +7158,7 @@
    "Including being in Soul State/pre-advent condition, if you control any \"The SeaShellFlagbearer Lije\", destroy an opposing Spirit with the lowest cost. After this effect resolves, put this card onto the Removed Zone."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-045",
@@ -7197,7 +7197,7 @@
    "By destroying one of your Nexuses, this Spirit remains on the Field, refreshed."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-048",
@@ -7282,7 +7282,7 @@
    "Double Drive While this Brave is braved to \"Vermillion Contract\"/\"God-King\" family Spirits on the left and right, the opponent can't use Magic cards/Accel unless they send one of their Lives to the Reserve."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-052",
@@ -7322,7 +7322,7 @@
    "You can send a core from the opposing Field to the Reserve."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-053",
@@ -7437,7 +7437,7 @@
    "You can reveal two cards from your decktop. Swap any number of cards among them with cards in your Hand. Return the revealed cards to the deckbottom."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-058",
@@ -7478,7 +7478,7 @@
    "During this battle, an opposing Spirit/Ultimate can't block."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-059",
@@ -7518,7 +7518,7 @@
    "Double Drive Then, if this Brave is braved to \"Soldnerg\", or \"Sea Contract\"/\"God-King\" family Spirits on the left and right, you can destroy an opposing Cost 9 or less Spirit/Ultimate, ignoring the cost of Braves."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-060",
@@ -7554,7 +7554,7 @@
    "Effects of opposing Spirits/Nexuses destroyed by your Red \"Bannerace\" family effects can't activate."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-063",
@@ -7591,7 +7591,7 @@
    "When your Spirits with \"Sound Speed\"-named effects are summoned, you can send two cores from an opposing Grandwalker Nexus to the Void."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-064",
@@ -7627,7 +7627,7 @@
    "(Can't Stack) Refresh all your \"Vishnu\"/\"Krishna\" Grandwalker Nexuses."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-066",
@@ -7698,7 +7698,7 @@
    "Once per turn, by discarding a \"Bannerace\" family card from your Removed Zone, return an opposing LV1 Spirit to the deckbottom."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-068",
@@ -7768,7 +7768,7 @@
    "(Can't Stack) Once per turn, when you Flag Contract Advent onto your Nexus, look at the contents of an opposing Burst, and if it's a Spirit card, discard it."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-071",
@@ -7794,7 +7794,7 @@
    "Deploy up to one of your single-color Flag Nexus cards from the Hand/Soul State/pre-advent condition, without paying the cost. Then, if you control any Flag Nexus, draw a card. When you've done so, if it's the opposing Main Step, until the next opposing Start Step, the opposing Life can't be reduced by you."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Rare"
+  "rcode": "R"
  },
  {
   "id": "BS77-072",
@@ -7851,7 +7851,7 @@
    "Send two cores from the opposing Field to the Reserve. Then, by sending a core from any of your \"Shiva\" Grandwalker Nexus to the Void, destroy an opposing Spirit with a number of cores equal or inferior to the number of facedown cards in your Removed Zone."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-076",
@@ -7909,7 +7909,7 @@
    "During this turn, one of your White-only Grandwalker Nexuses in Grandphosis state can block while exhausted. Then, by sending three cores from any of your \"Vishnu\"/\"Krishna\" Grandwalker Nexuses to the Void, during this turn, your Life can only be reduced by one by opposing effects."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-081",
@@ -7936,7 +7936,7 @@
    "Destroy an opposing Spirit/Ultimate with the highest cost. Then, including being in Soul State/pre-advent condition, if you control any \"The SeaShellFlagbearer Lije\", during this turn, when opposing Cost 4 or more Spirits would attack, unless the opponent discards a card from their Hand, they can't attack."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Common"
+  "rcode": "C"
  },
  {
   "id": "BS77-AX01",
@@ -8030,7 +8030,7 @@
    "Once per turn, refresh one of your \"Saraswati\" Grandwalker Nexuses, and +1 core to it."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "X-Rare"
+  "rcode": "X"
  },
  {
   "id": "BS77-CP03",
@@ -8077,7 +8077,7 @@
    "This Spirit is unaffected by opposing Red/White/Yellow/Blue effects."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "X-Rare"
+  "rcode": "X"
  },
  {
   "id": "BS77-CP04",
@@ -8116,7 +8116,7 @@
    "(Once per turn, send two cores from this Nexus to the Void) By putting a card from your Hand facedown onto the Removed Zone, draw a card. Then, during this turn, you can Advent/Mani your facedown \"Death Dragon\" family cards from the Removed Zone."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Campaign Promo"
+  "rcode": "CP"
  },
  {
   "id": "BS77-CP05",
@@ -8155,7 +8155,7 @@
    "(Send three cores from this Nexus to the Void) During this turn, this Nexus is also treated as a Spirit with [LV1] 3000 BP, and can only be destroyed by Grandwalker Nexuses."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Campaign Promo"
+  "rcode": "CP"
  },
  {
   "id": "BS77-CP06",
@@ -8195,7 +8195,7 @@
    "(Send three cores from this Nexus to the Void) During this turn, this Nexus is also treated as a Spirit that can't be refreshed with [LV1] 3000 BP, and can only be destroyed by Grandwalker Nexuses."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "Campaign Promo"
+  "rcode": "CP"
  },
  {
   "id": "BS77-CX01",
@@ -8568,7 +8568,7 @@
    "(At least two cores on this Nexus) When you activate Grandphosis, once per turn, send two cores from any opposing Grandwalker Nexuses to the Void, and put a card from your decktop facedown on your Removed Zone."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "X-Rare"
+  "rcode": "X"
  },
  {
   "id": "BS77-X03",
@@ -8661,7 +8661,7 @@
    "The Double Drive written on your \"Absolute Wind Demon-God\" can't be prevented by opposing Magic effects."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "X-Rare"
+  "rcode": "X"
  },
  {
   "id": "BS77-X06",
@@ -8706,7 +8706,7 @@
    "By returning an opposing exhausted Spirit to the deckbottom, send an opposing Life to the Reserve, and put a core from the Void each to every \"God-King\"/\"Imp\" family Spirit you control."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "X-Rare"
+  "rcode": "X"
  },
  {
   "id": "BS77-X08",
@@ -8753,7 +8753,7 @@
    "(Once per Turn: Same Name) If you control any \"Contractor Artemis\", you can send the (Soul Core) from this Spirit/your Trash to your Life."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "X-Rare"
+  "rcode": "X"
  },
  {
   "id": "BS77-X11",
@@ -8800,7 +8800,7 @@
    "During this turn, the effects of opposing Spirits/Grandwalker Nexuses, one of each, can't activate."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "X-Rare"
+  "rcode": "X"
  },
  {
   "id": "BS77-X13",
@@ -8845,6 +8845,6 @@
    "Once per turn, by exhausting one of your Nexuses, refresh this Spirit. When you've done so, during this turn, this Spirit gains all the symbols of the target exhausted via this effect."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Fandom data only (no official page found); symbols from Fandom.",
-  "rcode": "X-Rare"
+  "rcode": "X"
  }
 ]

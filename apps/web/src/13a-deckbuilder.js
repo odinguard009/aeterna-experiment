@@ -25,7 +25,7 @@ const DB_BPS = [['≤2,000', 0, 3000], ['3,000–4,000', 3000, 5000], ['5,000–
 /** @type {[string, number, number][]} */
 const DB_CORES = [['≤2', 0, 3], ['3', 3, 4], ['4', 4, 5], ['5', 5, 6], ['6+', 6, 99]];
 const DB_FAMS = { ver: -1, list: [] };
-const DB_ICONS = ['A', ...Array.from({ length: 11 }, (_, i) => String(i + 3)), 'none'];
+const DB_ICONS = ['A', ...Array.from({ length: 12 }, (_, i) => String(i + 2)), 'none'];
 /** R3: distinct values of one official card field (rarity or collaboration), in data order of first appearance. */
 const DB_VALS = {};
 const dbVals = key => { const m = DB_VALS[key]; if (m && m.ver === CARDS_VER) return m.list; const list = [...new Set(Object.values(CARDS).flatMap(c => c[key] || []))].sort(DB_COLL.compare); DB_VALS[key] = { ver: CARDS_VER, list }; return list; };
@@ -123,7 +123,7 @@ function dbIndex() {
 function dbSets() { return [...new Set(dbIndex().map(e => dbSetOf(e.id)))].sort(DB_COLL.compare); }
 function dbActiveCount() { return DBF.colors.size + DBF.costs.size + DBF.types.size + DBF.groups.size + DBF.bps.size + DBF.cores.size + DBF.fams.size + DBF.icons.size + DBF.rars.size + DBF.collabs.size + (DBF.set ? 1 : 0) + (DBF.family ? 1 : 0) + (DBF.fmt ? 1 : 0) + (DBF.status ? 1 : 0) + (DBF.only ? 1 : 0) + ((($('db-search') || {}).value) ? 1 : 0); }
 /** R9: Sort menu. A value of null (no BP on a Magic, no rarity, ...) sorts last in both directions; ties fall back to the card code. */
-const DB_RARITY_ORDER = ['C', 'CP', 'U', 'R', 'M', 'X', 'XX', 'XV', 'NX', 'AX'];
+const DB_RARITY_ORDER = ['C', 'CP', 'U', 'R', 'M', 'X', 'XX', 'XV', 'NX', 'AX', 'Awaken R', 'Awaken X', 'Awaken CP', 'Contract X'];
 const DB_SORT_VAL = {
   set: (c, id) => id, name: c => c.name, cost: c => c.cost,
   colour: c => { const i = DB_COLORS.indexOf(cardColors(c)[0]); return i < 0 ? null : i; },

@@ -4385,7 +4385,7 @@
   "bicon": [
    "12"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS72-CX02",
@@ -5339,7 +5339,7 @@
   "image": "BS73-007.png",
   "block": "12",
   "saga": 16,
-  "rcode": "Rebirth Rare",
+  "rcode": "Awaken R",
   "bicon": [
    "12"
   ],
@@ -6355,7 +6355,7 @@
   "image": "BS73-026.png",
   "block": "12",
   "saga": 16,
-  "rcode": "Rebirth Rare",
+  "rcode": "Awaken R",
   "bicon": [
    "12"
   ],
@@ -6520,7 +6520,7 @@
   "image": "BS73-028.png",
   "block": "12",
   "saga": 16,
-  "rcode": "Rebirth Rare",
+  "rcode": "Awaken R",
   "bicon": [
    "12"
   ],
@@ -7438,7 +7438,7 @@
   "image": "BS73-043.png",
   "block": "12",
   "saga": 16,
-  "rcode": "Rebirth Rare",
+  "rcode": "Awaken R",
   "bicon": [
    "12"
   ],
@@ -7835,7 +7835,7 @@
   "image": "BS73-048.png",
   "block": "12",
   "saga": 16,
-  "rcode": "Rebirth Rare",
+  "rcode": "Awaken R",
   "bicon": [
    "12"
   ],
@@ -8078,7 +8078,7 @@
   "image": "BS73-051.png",
   "block": "12",
   "saga": 16,
-  "rcode": "Rebirth Rare",
+  "rcode": "Awaken R",
   "bicon": [
    "12"
   ],
@@ -8271,7 +8271,7 @@
   "image": "BS73-054.png",
   "block": "12",
   "saga": 16,
-  "rcode": "Rebirth Rare",
+  "rcode": "Awaken R",
   "bicon": [
    "12"
   ],
@@ -8583,7 +8583,7 @@
   "image": "BS73-061.png",
   "block": "12",
   "saga": 16,
-  "rcode": "Rebirth Rare",
+  "rcode": "Awaken R",
   "bicon": [
    "12"
   ],
@@ -8666,7 +8666,7 @@
   "image": "BS73-063.png",
   "block": "12",
   "saga": 16,
-  "rcode": "Rebirth Rare",
+  "rcode": "Awaken R",
   "bicon": [
    "12"
   ],
@@ -8856,7 +8856,7 @@
   "image": "BS73-067.png",
   "block": "12",
   "saga": 16,
-  "rcode": "Rebirth Rare",
+  "rcode": "Awaken R",
   "bicon": [
    "12"
   ],
@@ -8898,7 +8898,7 @@
   "image": "BS73-068.png",
   "block": "12",
   "saga": 16,
-  "rcode": "Rebirth Rare",
+  "rcode": "Awaken R",
   "bicon": [
    "12"
   ],
@@ -9047,7 +9047,7 @@
   "image": "BS73-071.png",
   "block": "12",
   "saga": 16,
-  "rcode": "Rebirth Rare",
+  "rcode": "Awaken R",
   "bicon": [
    "12"
   ],
@@ -10577,7 +10577,7 @@
   "image": "BS73-TX01.png",
   "block": "12",
   "saga": 16,
-  "rcode": "Rebirth X-Rare",
+  "rcode": "Awaken X",
   "bicon": [
    "12"
   ],
@@ -10627,7 +10627,7 @@
   "image": "BS73-TX02.png",
   "block": "12",
   "saga": 16,
-  "rcode": "Rebirth X-Rare",
+  "rcode": "Awaken X",
   "bicon": [
    "12"
   ],
@@ -10683,7 +10683,7 @@
   "image": "BS73-TX03.png",
   "block": "12",
   "saga": 16,
-  "rcode": "Rebirth X-Rare",
+  "rcode": "Awaken X",
   "bicon": [
    "12"
   ],
@@ -10727,7 +10727,7 @@
   "image": "BS73-TX04.png",
   "block": "12",
   "saga": 16,
-  "rcode": "Rebirth X-Rare",
+  "rcode": "Awaken X",
   "bicon": [
    "12"
   ],
@@ -17000,7 +17000,7 @@
   "bicon": [
    "12"
   ],
-  "rcode": "契約X",
+  "rcode": "Contract X",
   "revive": true,
   "contract": true
  },
@@ -17227,7 +17227,7 @@
   "bicon": [
    "12"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS74-RV001",
@@ -24641,7 +24641,7 @@
   "bicon": [
    "12"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS75-CX02",
@@ -24687,7 +24687,7 @@
   "bicon": [
    "12"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS75-CX03",
@@ -24836,7 +24836,7 @@
   "bicon": [
    "12"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS75-CX04",
@@ -26487,7 +26487,7 @@
    "(Once per turn, send four cores from this Nexus to the Void) Return a \"Yomi\"/\"Kamiumi\" from your Trash to your Hand. Or, summon a \"Yomi\"/\"Kamiumi\" from your Hand/Trash."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BSC47-CX02",
@@ -26532,7 +26532,7 @@
    "Once per step, when the opposing Hand increases via an effect, if your Hand is four or less, you can draw a card."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BSC47-CX03",
@@ -26577,7 +26577,7 @@
    "Once per turn, when your \"Hunter Beast\" family Spirit attacks, you can draw a card from the deckbottom. Then, you can return a card from your Hand to the decktop."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BSC47-CX04",
@@ -26621,7 +26621,7 @@
    "Once per turn, when your \"Chrownos\" family Spirit/Nexus is summoned/deployed/reborn, you can refresh a Spirit you control."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BSC47-RV001",
@@ -26754,7 +26754,7 @@
    "When your White-only Spirit blocks/refreshes by an effect, you can flip this Spirit."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒R",
+  "rcode": "Awaken R",
   "rebirthTo": "BSC47-RV003B",
   "mechanics": [
    "Rebirth"
@@ -26941,7 +26941,7 @@
    "When this Spirit would leave the Field due to the opponent, you can flip it."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒R",
+  "rcode": "Awaken R",
   "rebirthTo": "BSC47-RV007B",
   "mechanics": [
    "Rebirth"
@@ -27036,7 +27036,7 @@
    "Discard three cards from your decktop, and destroy an opposing Cost 6 or less Spirit."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒R",
+  "rcode": "Awaken R",
   "rebirthTo": "BSC47-RV009B",
   "mechanics": [
    "Rebirth"
@@ -27083,7 +27083,7 @@
    "When your \"Chrownos\" family Spirit reduces the opposing Life, or this Spirit would leave the Field due to the opponent, you can flip it."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒R",
+  "rcode": "Awaken R",
   "rebirthTo": "BSC47-RV010B",
   "mechanics": [
    "Rebirth"
@@ -27163,7 +27163,7 @@
    "When you control only \"Chrownos\" family Spirits/Nexuses, by returning three \"Chrownos\" family cards from your Trash to the deckbottom, during this turn, unless the opponent sends a core from their Reserve to the Trash, they can't attack."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒R",
+  "rcode": "Awaken R",
   "rebirthTo": "BSC47-RV012B",
   "mechanics": [
    "Rebirth"
@@ -27208,7 +27208,7 @@
    "All your \"Ice Princess\" family Spirits gain +5000 BP. Also, when you block for the first time this turn, refresh a Spirit you control."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒R",
+  "rcode": "Awaken R",
   "rebirthTo": "BSC47-RV013B",
   "mechanics": [
    "Rebirth"
@@ -27252,7 +27252,7 @@
    "Once per turn, when your \"Chrownos\" family Spirit is summoned, draw a card, then discard a card from your Hand."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒R",
+  "rcode": "Awaken R",
   "rebirthTo": "BSC47-RV014B",
   "mechanics": [
    "Rebirth"
@@ -27272,7 +27272,7 @@
   "symbols": 0,
   "levels": [],
   "families": [
-   "氷姫"
+   "Ice Princess"
   ],
   "text": "This card has \"Primal\"/\"Ice Princess\" family.\n\nFlash\nReturn an opposing Spirit/Ultimate to the deckbottom. Also, if there are four or more \"Ice Princess\" family Spirit cards in your Trash, during this turn, your Life can only be reduced by one.",
   "image": "BSC47-RV015.png",
@@ -27304,9 +27304,9 @@
   "symbols": 0,
   "levels": [],
   "families": [
-   "眷属",
-   "締皇",
-   "覇皇"
+   "Devotee",
+   "Concluser",
+   "Supreme Hero"
   ],
   "text": "This card has \"Primal\"/\"Supreme Hero\" family.\n\nSupremacy\nWhile this card is in your Hand, when an opposing Spirit/Ultimate attacks, you can use the following effect, without paying the cost. Supremacy can only be used once per turn.\n█ Destroy an opposing Nexus, and effects of the destroyed Cost 3 or less Nexus can't activate. When it destroys, after this effect resolves, you can activate this card's Rebirth.\n\nRebirth5\nBy paying two costs, flip this card. When you do, put any number of cores from your Field/Reserve to this now-Reborn Spirit.\n\nFlash\nDestroy two opposing 10000 BP or less Spirits/Ultimates.",
   "image": "BSC47-RVTX01.png",
@@ -27327,7 +27327,7 @@
    "Destroy two opposing 10000 BP or less Spirits/Ultimates."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒X",
+  "rcode": "Awaken X",
   "rebirthTo": "BSC47-RVTX01B",
   "mechanics": [
    "Rebirth"
@@ -27368,7 +27368,7 @@
    "Destroy two opposing Spirits/Ultimates with three cores or less on them."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒X",
+  "rcode": "Awaken X",
   "rebirthTo": "BSC47-RVTX02B",
   "mechanics": [
    "Rebirth"
@@ -27409,7 +27409,7 @@
    "Return an opposing exhausted Spirit/Ultimate to the deckbottom."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒X",
+  "rcode": "Awaken X",
   "rebirthTo": "BSC47-RVTX03B",
   "mechanics": [
    "Rebirth"
@@ -27450,7 +27450,7 @@
    "During this battle, your Life can't be reduced."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒X",
+  "rcode": "Awaken X",
   "rebirthTo": "BSC47-RVTX04B",
   "mechanics": [
    "Rebirth"
@@ -27485,7 +27485,7 @@
    "When this Magic effect destroys any opposing Spirit/Ultimate, you can flip this card. When you do, this Reborn Brave can either brave to a Spirit you control, or remain in Spirit condition by putting a core from your Reserve/Spirit onto it."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒X",
+  "rcode": "Awaken X",
   "rebirthTo": "BSC47-RVTX05B",
   "mechanics": [
    "Rebirth"
@@ -27505,9 +27505,9 @@
   "symbols": 0,
   "levels": [],
   "families": [
-   "眷属",
-   "締皇",
-   "覇皇"
+   "Devotee",
+   "Concluser",
+   "Supreme Hero"
   ],
   "text": "This card has \"Primal\"/\"Supreme Hero\" family.\n\nSupremacy\nWhile this card is in your Hand, when your Life is reduced by the opponent, you can use the following effect, without paying the cost. Supremacy can only be used once per turn.\n█ If your Life is seven or less, put a core from the Void to your Life, and if the Life increases, after this effect resolves, you can activate this card's Rebirth.\n\nRebirth5\nBy paying two costs, flip this card. When you do, put any number of cores from your Field/Reserve to this now-Reborn Spirit.\n\nFlash\nDuring this turn, two opposing Spirits/Ultimates can't attack/block.",
   "image": "BSC47-RVTX06.png",
@@ -27528,7 +27528,7 @@
    "During this turn, two opposing Spirits/Ultimates can't attack/block."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒X",
+  "rcode": "Awaken X",
   "rebirthTo": "BSC47-RVTX06B",
   "mechanics": [
    "Rebirth"
@@ -27548,9 +27548,9 @@
   "symbols": 0,
   "levels": [],
   "families": [
-   "眷属",
-   "締皇",
-   "覇皇"
+   "Devotee",
+   "Concluser",
+   "Supreme Hero"
   ],
   "text": "This card has \"Primal\"/\"Supreme Hero\" family.\n\nSupremacy\nWhile this card is in your Hand, when an opposing Spirit's/Ultimate's (When Summoned) effect activates, you can use the following effect, without paying the cost. Supremacy can only be used once per turn.\n█ Discard five cards from the opposing decktop, and if any Grandwalker Nexus card is discarded, after this effect resolves, you can activate this card's Rebirth.\n\nRebirth5\nBy paying two costs, flip this card. When you do, put any number of cores from your Field/Reserve to this now-Reborn Spirit.\n\nFlash\nDestroy an opposing Spirit/Ultimate with the highest cost.",
   "image": "BSC47-RVTX07.png",
@@ -27571,7 +27571,7 @@
    "Destroy an opposing Spirit/Ultimate with the highest cost."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "転醒X",
+  "rcode": "Awaken X",
   "rebirthTo": "BSC47-RVTX07B",
   "mechanics": [
    "Rebirth"
@@ -29793,7 +29793,7 @@
    }
   ],
   "families": [
-   "家臣"
+   "Vassal"
   ],
   "text": "[LV1][LV2] (Your Start Step)\nBy putting a Spirit card/Brave card from your Hand onto the Removed Zone, draw a card.\n\n[LV2] (Opposing Turn)\nYou can destroy every Red/Green/Blue Spirit/Ultimate refreshed via effects.",
   "image": "BSC48-043.png",
@@ -30589,7 +30589,7 @@
    "(Once per Turn: Same Name) When your Cost 6 or more \"Tiger\"/\"LeonLancer\"'s \"Destruction effect\" activates, if the opponent controls no Spirits/Ultimates, by sending six cores from this Nexus to the Void, send up to two opposing Lives to the Reserve."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BSC48-CX02",
@@ -30636,7 +30636,7 @@
    "(Once per Turn: Same Name, send five cores from this Nexus to the Void) During this turn, while your \"God-Sechs\" is attacking, unless the opponent sends their (Soul Core) to the Trash, they can't use Magic cards."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BSC48-CX03",
@@ -30677,7 +30677,7 @@
    "(Once per Turn: Same Name, four or more cores on this Nexus) When your \"LotusMonarch\"/\"WisdomKing\" with (Soul Core) on it attacks, you can send 1-2 cores from this Nexus to that target. When you've done so, you can destroy every opposing Spirit/Ultimate with the lowest cost."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BSC48-X01",
@@ -38014,7 +38014,7 @@
   "symbols": 0,
   "levels": [],
   "families": [
-   "神星"
+   "Astral Deity"
   ],
   "text": "〔ターンに1回：同名〕トラッシュにあるこのカードは、自分のエンドステップに、自分のカウント4以上で、自分の創界神ネクサスの「バローネ」があるとき、手札に戻せる。\n手札にあるこのカードは、相手のアタックステップ開始時に使用できる。\n［フラッシュ］\n相手のスピリット/アルティメット1体を指定する。このターンの間、その対象は、次に可能ならアタックする。さらに、自分の「ストライク」があるとき、このターンの間、その指定した対象の色とシンボルは白として扱う。",
   "image": "BSC50-043.png",
@@ -38260,7 +38260,7 @@
    "(Can't Stack) Besides (Soul Core), send up to one core for every counter you have from your Trash to any of your \"Apollo\"/\"LT\" Spirits/Nexuses. When four or more cores are sent via this effect, you can draw a card."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BSC50-CX02",
@@ -38303,7 +38303,7 @@
    "(Once per turn, send three cores from this Nexus to the Void) Either return a \"Wurm\" from your Trash to your Hand, or deploy a \"Bashin Dan\"/\"Viole Mai\" from your Trash by paying one cost."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BSC50-CX03",
@@ -38348,7 +38348,7 @@
    "When the \"Hand/Deck Returning\" effects of your \"Strike\" would activate, by exhausting this Nexus, that effect can't be prevented by opposing effects."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BSC50-X01",

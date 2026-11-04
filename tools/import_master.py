@@ -23,6 +23,8 @@ for f in sorted(glob.glob(os.path.join(ROOT, 'data/cards/saga-[0-9][0-9].json'))
 by_jp = {}
 for c in lib.values():
     if c.get('name_jp') and c['name'] != c['name_jp'] and not c.get('note', '').startswith('Reprint of') and 'pending' not in c.get('note', ''): by_jp.setdefault((c['name_jp'], c['type']), c)
+RCODE = {'Common': 'C', 'Rare': 'R', 'X-Rare': 'X', 'Master Rare': 'M', 'Campaign Promo': 'CP', 'Campaign Rare': 'CP', 'Rebirth Rare': 'Awaken R', 'Rebirth X-Rare': 'Awaken X',
+         'Rebirth Campaign Promo': 'Awaken CP', 'Rebirth Campaign Rare': 'Awaken CP', '転醒R': 'Awaken R', '転醒X': 'Awaken X', '契約X': 'Contract X'}   # same map as tools/master/normalize_rcode.py
 RED = {'赤': 'red', '黄': 'yellow', '紫': 'purple', '白': 'white', '青': 'blue', '緑': 'green', '神': 'god', '極': 'ultimate'}
 TYPES = ('Spirit', 'Ultimate', 'Brave', 'Nexus', 'Magic', 'Contract Nexus')
 BSC = {5: 2, **{n: 5 for n in range(15, 20)}, **{n: 6 for n in range(20, 25)}, **{n: 7 for n in range(25, 30)}, 30: 8, 31: 8, 32: 9, 33: 9, 34: 10, 35: 10,
@@ -55,7 +57,7 @@ def clone(src, r):
     c = json.loads(json.dumps(src)); c['id'] = r['id']; sg, bl = place(r)
     c['saga'], c['block'] = sg, bl; c['image'] = r['id'] + '.png'
     c['note'] = 'Reprint of %s (same name, text and stats in the master database); added by tools/import_master.py.' % src['id']
-    if r.get('rarity'): c['rcode'] = r['rarity']
+    if r.get('rarity') not in (None, '', '-', '－'): c['rcode'] = RCODE.get(r['rarity'], r['rarity'])
     return c
 def build(r):
     if r['type'] not in TYPES: return None
@@ -103,7 +105,7 @@ def build(r):
     if 'official' not in r['sources']: notes.append('Fandom data only (no official page found); symbols from Fandom.')
     elif not (twin and sym == twin['symbols']): notes.append('Symbols unverified (not on the official page).')
     c['note'] = ' '.join(notes)
-    if r.get('rarity'): c['rcode'] = r['rarity']
+    if r.get('rarity') not in (None, '', '-', '－'): c['rcode'] = RCODE.get(r['rarity'], r['rarity'])
     return c
 out, skip, bad = [], collections.Counter(), []
 for r in M.values():

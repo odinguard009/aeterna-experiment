@@ -30749,8 +30749,8 @@
    }
   ],
   "families": [
-   "詩姫",
-   "衣装"
+   "Diva",
+   "Stage Style"
   ],
   "text": "【チーム：プリティアニマルズ/シャイニーハーツ】\n［Lv1-Lv2-Lv3］『相手のアタックステップ』\n相手のアタックによって自分のライフが減るとき、このスピリットをデッキの下に戻すことで、自分のライフは減らない。\n［Lv2-Lv3］『このスピリットのアタック時』\nこのターンの間、系統：「衣装」を持つ自分のスピリット1体はブロックされない。",
   "image": "BSC28-041.png",
@@ -31935,8 +31935,7 @@
    "[LV2] (Your Attack Step)",
    "When your Spirit attacks, destroy an opposing \"Crab\"-named Spirit."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC29-005",
@@ -31966,8 +31965,7 @@
    "[LV2] (Your Attack Step)",
    "When only the opposing Spirit is destroyed by comparing BP with your [The ShineCentaurusDeity Sagitto-Apollodragon], for each of your braved Braves, send an opposing Life to the Reserve."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC29-006",
@@ -31997,8 +31995,7 @@
    "[LV2] (Opposing Attack Step)",
    "When your Life is reduced by the opponent, destroy an opposing 7000 BP or less Spirit."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC29-007",
@@ -32036,8 +32033,7 @@
    "[LV2] (Your Draw Step)",
    "Instead of drawing, you can reveal three cards from your decktop. Add one card among them to your Hand. Return the remaining cards to the decktop in any order."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC29-008",
@@ -32067,8 +32063,7 @@
    "[LV2] (Your End Step)",
    "Draw a card."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC29-009",
@@ -32103,8 +32098,7 @@
    "[LV2]",
    "When your Brave Spirit is destroyed by the opponent, separate the destroyed Spirit and return it to the Hand."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC29-010",
@@ -32134,8 +32128,7 @@
    "[LV2] (Either Attack Step)",
    "While your [The RoosterTwelveGodKing Gale-Phoenix] is battling, opposing Bursts can't activate."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC29-011",
@@ -32165,8 +32158,7 @@
    "[LV2] (Either Attack Step)",
    "When only the opposing Spirit is destroyed by comparing BP with your Green Spirit, put a core from the Void to any of your Spirits."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC29-012",
@@ -32196,8 +32188,7 @@
    "[LV2] (Your Attack Step)",
    "When your Yellow Spirits are destroyed by the opponent, by discarding a Magic card from your Hand, one of those destroyed Spirits remains on the Field , exhausted."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC29-013",
@@ -32235,8 +32226,7 @@
    "[LV2] (Your Attack Step)",
    "When your Ultimate attacks, destroy an opposing 5000 BP or less Spirit."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC29-014",
@@ -32279,8 +32269,7 @@
    "During Seal [LV2]",
    "All your \"TwelveGodKing\"-named Spirits gain +5000 BP."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC29-015",
@@ -32306,8 +32295,7 @@
    "Flash",
    "During this turn, give a Spirit +3000 BP."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC29-016",
@@ -32332,8 +32320,7 @@
    "Flash",
    "Destroy two opposing 4000 BP or less Spirits."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC29-017",
@@ -32357,8 +32344,7 @@
    "Flash",
    "Destroy any number of opposing Spirits up to a total of 5000 BP. Or, destroy an opposing Nexus. If you control any \"Apollo\"-named Spirit/Ultimate, instead, destroy any number of opposing Spirits up to a total of 10000 BP, and destroy an opposing Nexus."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC29-018",
@@ -32382,8 +32368,7 @@
    "Flash",
    "Destroy an opposing \"God-King\" family Spirit."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC29-019",
@@ -32417,8 +32402,7 @@
    "Flash",
    "During this turn, give a Spirit +3000 BP."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC29-020",
@@ -32442,8 +32426,7 @@
    "Flash",
    "Destroy an opposing exhausted Cost 6 or less Spirit/Ultimate. If you control any \"SevenShogun\"-named Spirit, also, send a core each from every opposing Spirit/Ultimate to their Reserve."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC29-021",
@@ -32467,8 +32450,7 @@
    "Flash",
    "During this turn, when summoning a Spirit card with a \"High Speed\"/\"Swift\"-named effect from your Hand, you can change its Cost to 4. This effect can't be used during the Main Step."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC29-022",
@@ -32492,8 +32474,7 @@
    "Flash",
    "Exhaust an opposing Spirit. Then, if you control any [The BladeKingBeast Byak-Garo], return every opposing exhausted Spirit/Ultimate to the Hand."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC29-023",
@@ -32518,8 +32499,7 @@
    "Flash",
    "Return an opposing exhausted Spirit/Ultimate to the Hand."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC29-024",
@@ -32543,8 +32523,7 @@
    "Flash",
    "When this battle ends, end the Attack Step. If you control any [The SheepTwelveGodKing Glorious-Sheep], instead, when this battle ends, end the Attack Step, and put a core from the Void to your Life."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC29-025",
@@ -32573,8 +32552,7 @@
    "Flash",
    "Return an opposing Spirit to the Hand. Or, exhaust an opposing Spirit. Then, if your control any exactly-named \"The DoomKnightLord Ragna-Rock\", refresh all your Spirits, and exhaust every opposing Spirit."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC29-026",
@@ -32598,8 +32576,7 @@
    "Flash",
    "During this turn, give an opposing Spirit/Ultimate -2000 BP. A Spirit/Ultimate whose BP was brought to 0 by this effect is returned to the Hand."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC29-027",
@@ -32624,8 +32601,7 @@
    "Flash",
    "Target an opposing Spirit/Ultimate. During this turn, that Spirit/Ultimate can't attack/block."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC29-028",
@@ -32651,8 +32627,7 @@
    "Flash",
    "During this turn, give a Spirit +3000 BP."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC29-029",
@@ -32684,8 +32659,7 @@
    "Flash",
    "During this turn, give a Spirit +2000 BP."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC29-030",
@@ -32719,7 +32693,6 @@
    "Flash",
    "Exhaust every Spirit/Ultimate."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  }
 ]

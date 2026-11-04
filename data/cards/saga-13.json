@@ -4657,7 +4657,7 @@
   "bicon": [
    "9"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS60-CX02",
@@ -4698,7 +4698,7 @@
   "bicon": [
    "9"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS60-CX03",
@@ -4739,7 +4739,7 @@
   "bicon": [
    "9"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS60-CX04",
@@ -4780,7 +4780,7 @@
   "bicon": [
    "9"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS60-CX05",
@@ -4821,7 +4821,7 @@
   "bicon": [
    "9"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS60-CX06",
@@ -4862,7 +4862,7 @@
   "bicon": [
    "9"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS60-X01",
@@ -8883,7 +8883,7 @@
   "symbols": 0,
   "levels": [],
   "families": [
-   "緋炎"
+   "Scarlet Flame"
   ],
   "text": "[LV1][LV2] (Your Draw Step)\nIncrease the amount of cards you draw by +1. After you draw, discard a card from your Hand.\n\n[LV2] (Your Attack Step)\nEvery Spirit you control gains +1000 BP.",
   "image": "BS61-CP04.png",
@@ -8915,7 +8915,7 @@
   "symbols": 0,
   "levels": [],
   "families": [
-   "銀零"
+   "Silver Zero"
   ],
   "text": "[LV1][LV2]\nYour Hand is unaffected by opposing Spirit/Brave/Nexus/Magic effects.\n\n[LV2] (Opposing Turn)\nWhen the opponent draws outside of Draw Step, you can draw a card.",
   "image": "BS61-CP05.png",
@@ -8947,7 +8947,7 @@
   "symbols": 0,
   "levels": [],
   "families": [
-   "蒼波"
+   "Azure Wave"
   ],
   "text": "[LV1][LV2]\nThe (When Summoned) effects of Spirits/Braves, and (When Deployed) effects of Nexuses can't activate.\n\n[LV2] Flash - (Your Attack Step)\nBy sending a core from this Nexus to your Trash, once per turn, refresh this Nexus.",
   "image": "BS61-CP06.png",
@@ -9005,7 +9005,7 @@
   "bicon": [
    "9"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS61-CX02",
@@ -9046,7 +9046,7 @@
   "bicon": [
    "9"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS61-X01",
@@ -13070,7 +13070,7 @@
   "symbols": 0,
   "levels": [],
   "families": [
-   "血晶"
+   "Blood Crystal"
   ],
   "text": "[LV1][LV2] (When Deployed)\nDraw a card.\n\n[LV2] (Your Attack Step)\nWhen your \"Zombie\" family Spirit attacks, send a core from any opposing Spirits to the Reserve.",
   "image": "BS62-CP04.png",
@@ -13102,7 +13102,7 @@
   "symbols": 0,
   "levels": [],
   "families": [
-   "碧雷"
+   "Jade Thunder"
   ],
   "text": "[LV1][LV2] (Your Core Step)\nBy not putting a core from the Void to your Reserve, draw a card.\n\n[LV2] (Opposing Attack Step)\nWhen your Life is reduced by the opponent, put a core from the Void each to every Brave Spirit you control.",
   "image": "BS62-CP05.png",
@@ -13134,7 +13134,7 @@
   "symbols": 0,
   "levels": [],
   "families": [
-   "金雲"
+   "Golden Cloud"
   ],
   "text": "[LV1][LV2] (Opposing Turn)\nWhen your Yellow Spirits are destroyed, you can summon a \"Pentan\"-named Spirit card from your Hand, without paying the cost. However, any (When Summoned) effects of that Spirit can't activate.\n\n[LV2] (Your Attack Step)\nWhen your attacking \"Pentan\"/\"Empereur\"-named Spirit is blocked by an opposing Spirit with the same LV, refresh the attacking Spirit.",
   "image": "BS62-CP06.png",
@@ -13192,7 +13192,7 @@
   "bicon": [
    "9"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS62-CX02",
@@ -13233,7 +13233,7 @@
   "bicon": [
    "9"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS62-X01",
@@ -17875,7 +17875,7 @@
   "bicon": [
    "9"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS63-CX02",
@@ -17916,7 +17916,7 @@
   "bicon": [
    "9"
   ],
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BS63-X01",
@@ -21209,7 +21209,7 @@
    "Your counter +1. Then, you can reveal a card from your decktop. If that's \"Fongneena\", add it to the Hand. Return any remaining card to the deckbottom."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BSC40-CX02",
@@ -21257,7 +21257,7 @@
    "For every two counters you have, send a core from any opposing Spirits to the Reserve."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "BSC40-RV001",
@@ -24124,9 +24124,7 @@
   "reduction": {},
   "symbols": 0,
   "levels": [],
-  "families": [
-   "－"
-  ],
+  "families": [],
   "text": "This card can only be used if there are four or more differently-named “Angel” family cards in your Trash.\n\nFlash\n(Once per Game: Same Name) Destroy all Spirits without the “Angel” family, and the effects of the destroyed Spirits can't activate. This effect can't be prevented by either player's effects.",
   "image": "CB23-060.png",
   "block": "9",
@@ -24185,9 +24183,7 @@
   },
   "symbols": 0,
   "levels": [],
-  "families": [
-   "－"
-  ],
+  "families": [],
   "text": "This card can only be used if you control \"Ikari Gendo\", \"Golgotha Object\", and Cost 14 or more \"Unit-13\".\n\nType: Field(While on the Field, the following effects are active)\n█ You can summon/deploy/use/set any Purple cards from your Hand, without paying the cost.\n█ All your \"Unit-13\" are treated as being at their highest levels.\n\nFlash\n(Once per Game: Same Name) The opponent targets a Spirit they control. Destroy every opposing Spirit/Nexus except that Spirit. Then, put this card onto your Field.",
   "image": "CB23-062.png",
   "block": "9",
@@ -28344,7 +28340,7 @@
    "You can attack simultaneously with \"Kamen\" family \"Revi\"/\"Vice\" Spirits, one of each. The opponent can block one of them, but the other can't be blocked (Both battles conclude at the same time)."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "CB24-X01",
@@ -32045,7 +32041,7 @@
    "Destroy an opposing Spirit with BP equal or inferior to this Spirit's. While braved to \"Amuro\", this effect can't be prevented by opposing effects."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "CB25-CX02",
@@ -32088,7 +32084,7 @@
    "(Once per Turn: Same Name) While braved to a \"Flash\" family Brave, when the opposing Life is reduced, send an opposing Life to the Reserve."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "CB25-CX03",
@@ -32130,7 +32126,7 @@
    "Your counter +1, and draw a card from the deckbottom."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "CB25-X01",
@@ -36135,7 +36131,7 @@
    "During this battle, this Spirit gains +5000 BP."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "CB26-CX02",
@@ -36188,7 +36184,7 @@
    "When your effect discards any Spirit cards from the opposing deck, during this battle, this Spirit is treated as being on its highest level."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "CB26-CX03",
@@ -36241,7 +36237,7 @@
    "If this Spirit is \"SKY HIGH\", you can activate a During Advent effect of this Spirit, ignoring LV."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "CB26-CX04",
@@ -36283,7 +36279,7 @@
    "(Once per turn: Same Name) When this Spirit reduces the opposing Life, you can summon a Cost 5 or less \"NEXT\" family card from your Hand, without paying the cost."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "CB26-CX05",
@@ -36331,7 +36327,7 @@
    "(Once per turn: Same Name) After your \"BP- effect\" resolves, you can refresh a Spirit you control."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "CB26-CX06",
@@ -36379,7 +36375,7 @@
    "Every During Advent Spirit you control gains +5000 BP."
   ],
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "契約X"
+  "rcode": "Contract X"
  },
  {
   "id": "CB26-X01",

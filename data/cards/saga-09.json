@@ -23538,8 +23538,7 @@
    "During Brave [LV2][LV3] (When Attacks)",
    "Destroy an opposing 7000 BP or less Spirit, and draw a card."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-002",
@@ -23585,8 +23584,7 @@
    "Flash - {{Accel|Cost 5 ( (Purple Core) (Purple Core) (Purple Core))}}",
    "Destroy an opposing Spirit/Ultimate with three or less cores on it. After this effect resolves, put this card face-up on the Removed Zone."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-003",
@@ -23633,8 +23631,7 @@
    "[LV3]",
    "When this Spirit would become the target of an opposing Spirit/Magic effect, by exhausting an opposing Spirit, besides any exactly-named \"The RichHarvest Koganehime\", this Spirit is unaffected by that effect."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-004",
@@ -23686,8 +23683,7 @@
    "[LV2][LV3] (When Attacks)",
    "Draw a card. Then, either put a core from the Void to this Spirit, or to any of your Red-only/Green-only Grandwalker Nexus."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-005",
@@ -23735,8 +23731,7 @@
    "[LV3] (Either Attack Step)",
    "While you control five or more \"Diva\" family Spirits, opposing Cost 3/4/5/7/9 Spirits can't attack/block."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-006",
@@ -23783,8 +23778,7 @@
    "{{Unleash|4}} [LV3] (When Attacks)",
    "By putting four cores from any of your Yellow Grandwalker Nexuses to this Spirit, this Spirit is unaffected by opposing effects, and the opponent can't end the Attack Step via effects."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-007",
@@ -23831,8 +23825,7 @@
    "[LV2]",
    "This Spirit is unaffected by opposing effects, but can't attack/block and loses its symbol."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-008",
@@ -23892,8 +23885,7 @@
    "[LV2][LV3] (When Attacks/Blocks)",
    "Draw a card, or put a core from the Void to this Spirit."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-009",
@@ -23928,8 +23920,7 @@
    "[LV2]",
    "The (When Summoned) effects of Spirits/Braves can't activate. Also, while there are five or more cores on one of your Blue-only Grandwalker Nexuses, (When Advents) effects of Spirits can't activate."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-010",
@@ -23970,8 +23961,7 @@
    "Flash",
    "Choose one color. Treat this Magic's color as colorless, and destroy all Spirits/Ultimates/Nexuses of the chosen color. Braves of the Brave Spirits/Brave Ultimates destroyed by this effect can't remain on the Field."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-011",
@@ -24015,8 +24005,7 @@
    "Grand Field [LV2] (Start of Your Attack Step)",
    "Send any amount of cores from this Nexus to any of your Red-only \"Uru\" family Grandwalker Nexuses."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-012",
@@ -24060,8 +24049,7 @@
    "Grand Field [LV2] (Your Attack Step)",
    "When any opposing Spirit/Ultimate is destroyed by your effect, refresh an \"Emperor Beast\" family Spirit/Ultimate you control."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-013",
@@ -24105,8 +24093,7 @@
    "Grand Field [LV2] (Either Attack Step)",
    "Once per turn, when any opposing Spirit is depleted by your \"God-King\"/\"Death Dragon\" family Spirit/Ultimate effect, you can send an opposing Life to their Reserve."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-014",
@@ -24149,8 +24136,7 @@
    "Grand Field [LV2] (Your Attack Step)",
    "When the attack of your \"Blade Beast\" family Spirit/Ultimate reduces the opposing Life, you can return an opposing exhausted Spirit/Ultimate to the deckbottom."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-015",
@@ -24194,8 +24180,7 @@
    "Grand Field [LV2] (Your Attack Step)",
    "When your Spirit with \"High Speed\"/\"Swift\"-named effects reduces the opposing Life, once per turn per Spirit, it can be refreshed. This effect doesn't stack."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-016",
@@ -24240,8 +24225,7 @@
    "Grand Field [LV2] (After Your Burst Activates)",
    "Return three opposing exhausted Spirits/Ultimates to the Hand. Then, for each card in the opposing Hand, refresh a Spirit you control."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-017",
@@ -24285,8 +24269,7 @@
    "Grand Field [LV2]",
    "When your \"Machine\"/\"Armed Machine\" family Spirits/Ultimates are destroyed by effects, by paying one cost, they remain on the Field, exhausted."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-018",
@@ -24330,8 +24313,7 @@
    "{{gs|5}} [LV2] Flash - (Either Attack Step)",
    "(Send five core from this Nexus to the Void) Return an opposing Spirit/Ultimate to the deckbottom."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-019",
@@ -24375,8 +24357,7 @@
    "Grand Field [LV2] (Your Attack Step)",
    "When the battle of your \"Divine Spirit\"/\"Imaginary Beast\" family Spirit/Ultimate resolves, when they have equal or higher level than the blocking opposing Spirit/Ultimate, BP is not compared and the attack is treated as not blocked."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-020",
@@ -24420,8 +24401,7 @@
    "{{gs|4}} [LV2] Flash - (Your Attack Step)",
    "(Send four cores from this Nexus to the Void) By refreshing this Nexus, discard up to five cards from the opposing decktop."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-021",
@@ -24465,8 +24445,7 @@
    "Grand Field [LV2] (Opposing Turn)",
    "When an opposing Spirit/Ultimate is exhausted, you can draw a card."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-022",
@@ -24509,8 +24488,7 @@
    "Grand Field [LV2] (Your Attack Step)",
    "When your \"Makai\" Spirit attacks, send a core from any opposing Spirit/Ultimate to the Reserve."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-023",
@@ -24554,8 +24532,7 @@
    "Grand Field [LV2] (Your Turn)",
    "Give all your \"Supreme Hero\"/\"Galaxian\" family Spirits: \"Spell Blight (When Destroyed by the Opponent) By sending an opposing Life core to their Trash, this Spirit remains on the Field, refreshed.\""
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-024",
@@ -24601,8 +24578,7 @@
    "(Send seven cores from this Nexus to the Void) Heavy exhaust every opposing Spirit. Then, refresh all your Spirits.",
    "heb"
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-025",
@@ -24646,8 +24622,7 @@
    "Grand Field [LV2] (After Your Burst Activates)",
    "You can reveal three cards from your decktop. Among them, you can set a card with Burst effects, and pay one cost to summon an \"Android\"/\"Supreme Hero\" family Spirit card. Discard any remaining cards."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-026",
@@ -24691,8 +24666,7 @@
    "Grand Field [LV2] (Your Attack Step)",
    "When your Ultimate attacks, you can summon a \"Divine Spirit\"/\"Ultimate Dragon\"/\"Tri-Dragon Deity\" family Ultimate card from your Hand, ignoring the summoning condition and treating all reductions as filled."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-027",
@@ -24736,8 +24710,7 @@
    "Grand Field [LV2]",
    "All opposing Spirits/Ultimates can't activate their effects, and are treated as \"Yellow/Cost 0/\"Pentan\"-named/Family: Song Bird, Drifting Spirit/Level 1: 1 core, 1000 BP/ (Yellow Core)\" Spirits."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-028",
@@ -24781,8 +24754,7 @@
    "Grand Field [LV2] (Your Attack Step)",
    "When your \"Imaginary Beast\" family Spirit is blocked by opposing Spirits: If that opposing Spirit is Cost 3 or less, refresh your attacking Spirit. If it is Cost 3 or more, put a core from the Void to your Life."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-029",
@@ -24826,8 +24798,7 @@
    "Grand Field [LV2] (Your Attack Step)",
    "When your \"Beast Head\" family Spirit/Ultimate attacks, you can destroy an opposing Cost 1 or less Spirit. For each Spirit card in the opposing Trash, this effect destroys +1 cost."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-030",
@@ -24871,8 +24842,7 @@
    "Grand Field [LV2] (Your Attack Step)",
    "When the attack of your \"Fighting Spirit\" family Spirit reduces the opposing Life, discard seven cards from the opposing decktop."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-031",
@@ -24902,8 +24872,7 @@
    "Flash",
    "During this turn, give a Spirit +1000 BP."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-032",
@@ -24932,8 +24901,7 @@
    "Flash",
    "Destroy an opposing 12000 BP or less Spirit. Also, refresh an exactly-named \"The SupernovaDragon Siegwurm-Nova\" you control."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-033",
@@ -24962,8 +24930,7 @@
    "Flash",
    "Separate any amount of braved Braves you control. Then, refresh all your \"Exalted Sword\" family Spirit-condition Braves, and during this turn, give them the following effect: \"(When Attacks) This Spirit can't be blocked.\""
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-034",
@@ -24994,8 +24961,7 @@
    "Flash",
    "During this turn, give a Spirit +4000 BP."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-035",
@@ -25024,8 +24990,7 @@
    "Flash",
    "Pay one cost to summon an exactly-named \"Shikitsuru\" from your Trash."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-036",
@@ -25061,8 +25026,7 @@
    "Flash",
    "If you control no Spirits, set this card."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-037",
@@ -25090,8 +25054,7 @@
    "Flash",
    "Reveal four cards from your decktop. Deploy an \"Uru\" family Grandwalker Nexus card from among them, without paying the cost. When this effect deploys, during this turn, two Spirits/Ultimates you control gain +5000 BP. Return any remaining cards to the deckbottom in any order."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-038",
@@ -25123,8 +25086,7 @@
    "Flash",
    "Immediately end the Attack Step."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-039",
@@ -25153,8 +25115,7 @@
    "Flash",
    "During this turn, give a Spirit +2000 BP."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC32-040",
@@ -25188,8 +25149,7 @@
    "Flash",
    "If you control ten or more different LV2 \"Uru\" family Grandwalker Nexuses, send ten opposing Lives to their Reserve."
   ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "-"
+  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet."
  },
  {
   "id": "BSC33-001",
@@ -32927,8 +32887,8 @@
    }
   ],
   "families": [
-   "仮面",
-   "夜族"
+   "Kamen",
+   "Nightling"
   ],
   "text": "［Lv1-Lv2-Lv3］『このスピリットの召喚時』\n相手のスピリットすべてのコア2個ずつを相手のリザーブに置き、自分のライフのコア1個を自分のトラッシュに置く。この効果で自分のバーストは発動できない。\n［Lv2-Lv3］『このスピリットのアタック時』\n相手のスピリット/アルティメット1体のコア3個を相手のリザーブに置く。この効果で消滅したとき、自分のトラッシュの以外のコア1個を自分のライフに置ける。",
   "image": "CB06-038.png",
@@ -35575,8 +35535,8 @@
    }
   ],
   "families": [
-   "究極体",
-   "滅龍"
+   "Mega",
+   "Ruin Dragon"
   ],
   "text": "自分のトラッシュに系統：「滅龍」を持つカードがある間、セットしているこのカードは相手の効果を受けない。\n［バースト：相手の『このスピリットの召喚/煌臨時』発揮後］\nBP合計15000まで相手のスピリットを好きなだけ破壊する。この効果で破壊したスピリットの効果は発揮されない。\nこの効果発揮後、このカードをコストを支払わずに召喚する。\n［Lv2-Lv3］『このスピリットのアタック時』\nこのスピリットのBP以下の相手のスピリット1体を破壊する。",
   "image": "CB07-009.png",
@@ -36909,9 +36869,9 @@
    }
   ],
   "families": [
-   "究極体",
-   "天霊",
-   "想獣"
+   "Mega",
+   "Divine Spirit",
+   "Imaginary Beast"
   ],
   "text": "［バースト：相手のスピリット/アルティメットのアタック後］\nこのカードをコストを支払わずに召喚する。\n［Lv1-Lv2-Lv3］『このスピリットの召喚/アタック時』\nこのターンの間、相手のスピリット/アルティメット1体をBP-10000する。この効果でBP0になったスピリット/アルティメットを破壊する。\n［Lv2-Lv3］『相手のアタックステップ』\n相手の『このスピリットのアタック時』効果は発揮されない。",
   "image": "CB07-038.png",
@@ -40146,8 +40106,8 @@
    }
   ],
   "families": [
-   "仮面",
-   "動玩"
+   "Kamen",
+   "Puppet Beast"
   ],
   "text": "［Lv1-Lv2］『相手によるこのスピリットの破壊時』\n相手のスピリット1体を手札に戻す。\n［Lv2］\nカード名に「ゲーマー」を含む自分のスピリットすべてをBP+2000する。",
   "image": "CB08-038.png",
