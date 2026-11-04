@@ -398,3 +398,31 @@ FX_ACTIONS.COUNTER_OR_CORE_NAMED = { chk: a => typeof a.name === 'string' && a.n
     if (L.length) counter = c.p.cpu ? c.p.count < 10 : (await ask({ title: `✨ ${CARDS[c.src.id].name}`, html: 'Choose what you get.', buttons: [{ label: '+1 counter', cls: 'primary', value: 'counter' }, { label: `+1 core to ${CARDS[L[0].id].name}`, cls: 'primary', value: 'core' }] })) === 'counter';
     if (counter) { await FX_ACTIONS.COUNTER.run(c, { n: 1 }); return; }
     c.ctx.did = false; if (addCore(c.p, L[0])) { c.ctx.did = true; log(`${CARDS[c.src.id].name}: +1 core to ${CARDS[L[0].id].name}.`); io.view({ type: 'board' }); } } };
+
+/* v519 Fungal Bed replacements (BS74-071 / BS74-081). SEND_TOKEN of the Fungal Bed Token is wrapped: "(Once per Turn: Same Name) when you would send out 'Fungal Bed', deploy BS74-071 from the Hand/Trash without paying the cost instead" and
+   "... return BS74-081 from the Trash to the Hand instead". The human is asked; the CPU always takes the replacement. bedPay: the card field costAlt.bed (BS74-081 "by destroying one of your Fungal Bed, Cost 4"). */
+function bedPay(p) { const n = fungalBeds(p).sort((x, y) => x.cores - y.cores)[0]; if (n) { removeNexus(p, n, 'destroyed'); log(`${who(p)} destroy${p.cpu ? 's' : ''} ${CARDS[n.id].name} to pay for the Magic.`); } }
+const _sendBedToken = FX_ACTIONS.SEND_TOKEN.run;
+FX_ACTIONS.SEND_TOKEN.run = async (c, a) => {
+  const p = c.p; p.onceUsed = p.onceUsed || {};
+  if (a.token === 'BS73-T001' && canSendToken(p, a.token)) {
+    const fresh = id => p.onceUsed['bedrep:' + id] !== G.turnNo, nx = fresh('BS74-071') && p.hand.concat(p.trash).find(i => i.id === 'BS74-071'), mg = !nx && fresh('BS74-081') && p.trash.find(i => i.id === 'BS74-081'), pick = nx || mg;
+    if (pick) {
+      const yes = p.cpu ? 1 : await ask({ title: `✨ ${CARDS[pick.id].name}`, peek: true, html: `Instead of sending out a "Fungal Bed" Token, ${nx ? 'deploy' : 'return'} "${esc(CARDS[pick.id].name)}"${nx ? ' without paying the cost' : ' to your Hand'}?`, buttons: [{ label: 'Replace', cls: 'primary', value: 1 }, { label: 'Send the Token', cls: 'cancel', value: 0 }] });
+      if (yes) {
+        p.onceUsed['bedrep:' + pick.id] = G.turnNo;
+        if (nx) await summonFree(p, pick); else { removeFrom(p.trash, pick); p.hand.push(pick); handUp(p, 1); log(`${CARDS[pick.id].name} returns from the Trash to the Hand (${who(p)}).`); }
+        c.ctx.did = true; if (a.n > 1) await _sendBedToken(c, { ...a, n: a.n - 1 }); return;
+      }
+    }
+  }
+  return _sendBedToken(c, a);
+};
+FX_ACTIONS.DESTROY_SELF_NEXUS = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => 'destroy this Nexus', can: c => c.p.nexus.includes(c.src),
+  run: async c => { c.ctx.did = false; if (!c.p.nexus.includes(c.src)) return; log(`${_nm(c)}: ${CARDS[c.src.id].name} is destroyed.`); removeNexus(c.p, c.src, 'destroyed'); c.ctx.did = true; io.view({ type: 'board' }); } };
+/* OPP_HAND_BOTTOM_PER_UP: "for each card increased (ctx.handN of the OPP_HAND_UP event), the opponent returns a card from their Hand to the deckbottom" */
+FX_ACTIONS.OPP_HAND_BOTTOM_PER_UP = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => 'for each card the opposing Hand increased, the opponent returns a card from their Hand to the deckbottom', can: c => c.opp.hand.length > 0,
+  run: async c => { const n = Math.min(c.ctx.handN || 1, 4); await FX_ACTIONS.OPP_HAND_TO_BOTTOM.run(c, { do: 'OPP_HAND_TO_BOTTOM', n }); } };
+/* REMOVE_OPP_TRASH_PER_EXH: "for each target exhausted by this effect (ctx.exhN), banish a card from the opposing Trash" (up to) */
+FX_ACTIONS.REMOVE_OPP_TRASH_PER_EXH = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => 'for each target exhausted, banish a card from the opposing Trash', can: c => c.opp.trash.length > 0,
+  run: async c => { const n = Math.min(c.ctx.exhN || 0, 5); if (!n) { c.ctx.did = false; return; } await FX_ACTIONS.REMOVE_OPP_TRASH.run(c, { do: 'REMOVE_OPP_TRASH', n }); } };

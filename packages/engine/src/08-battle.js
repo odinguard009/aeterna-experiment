@@ -187,7 +187,7 @@ async function flushBursts() {                         // queued Bursts and even
       const q = G.p[other(ev.key)];
       if (handUpLocked(ev.key)) continue;      // v456 NO_OPP_HANDUP (Yellodianna)
       if (!(ev.noColor && q.burst && CARDS[q.burst.id].color === ev.noColor)) G.burstQ.push({ key: q.key, when: 'OPP_HAND_UP' });
-      await fireFx(q, 'OPP_HAND_UP', null, { noColor: ev.noColor });
+      await fireFx(q, 'OPP_HAND_UP', null, { noColor: ev.noColor, handN: ev.k });
     } else if (ev.type === 'REMOVED') {
       { const q = G.p[other(ev.key)]; if (q.burst && CARDS[q.burst.id].burst && CARDS[q.burst.id].burst.also && CARDS[q.burst.id].burst.also.when === 'OPP_REMOVED') G.burstQ.push({ key: q.key, when: 'OPP_REMOVED' }); }      // v497 "When cards are put onto the opposing Removed Zone, you can immediately activate this set card"
       await fireFx(G.p[other(ev.key)], 'OPP_REMOVED', null, {});

@@ -232,6 +232,7 @@ function noBlockActive(D) {
 function costAltActive(p, card) {                 // e.g. Wurm Draw: "(Once per Turn: Same Name) when using this card, if you control any Wurm, this card can become Cost 3"
   const a = card.costAlt; if (!a || !G) return false;
   if (a.once && p.onceUsed && p.onceUsed['costalt:' + card.name] === G.turnNo) return false;
+  if (a.bed && !fungalBeds(p).length) return false;
   return fxIf(p, G.p[other(p.key)], a.if);
 }
 /* v0.40: STATIC EXTRA_REDUCTION of your Field cards ("all your Thunderive cards gain an extra yellow reduction symbol"): extra slots for the card being paid */
@@ -483,8 +484,8 @@ function draw(p, n) {
   if (k && G && !G.over && G.evQ) G.evQ.push({ type: 'DRAWS', key: p.key, n: k });      // v236 "when the opponent draws"
   return k;
 }
-/* the owner's Hand increased through one of the owner's own effects: the opponent sees an "opposing Hand increase by an opposing effect" */
-function handUp(p, k) { if (G && !G.over && k !== 0 && G.evQ) G.evQ.push({ type: 'HAND_UP', key: p.key }); }
+/* the owner's Hand grew by k through an own effect: the opponent sees an "opposing Hand increase" */
+function handUp(p, k) { if (G && !G.over && k !== 0 && G.evQ) G.evQ.push({ type: 'HAND_UP', key: p.key, k }); }
 function summon(p, inst, plan, opts) {
   const card = CARDS[inst.id]; let c = opts && opts.costN != null ? opts.costN : effCost(p, card);
   if (opts && opts.viaShaman && card.shamanReduction) c = Math.max(0, card.cost - Object.values(card.reduction || {}).reduce((a, b) => a + b, 0)) + summonTaxOf(p, card);      // v201 "When summoning this card via Shamanism, fulfill all its reduction symbols"
@@ -604,7 +605,7 @@ async function magicWallNegate(p, opp, inst) {
 async function castMagic(p, ch) {                         // ch = { inst, target, plan }
   const inst = ch.inst, fromTrash = magicFromTrash(p, inst), card = CARDS[inst.id], m = magicFxAt(p, inst, ch.ctx), free = !!ch.free, sm = !free && soulMagicPick(p, card, ch), alt = !sm && !free && costAltActive(p, card), c = free ? 0 : effCost(p, card), opp = G.p[other(p.key)];
   if (!sm && !free) legacyPay(p, inst);
-  if (alt) { p.onceUsed = p.onceUsed || {}; p.onceUsed['costalt:' + card.name] = G.turnNo; }
+  if (alt) { p.onceUsed = p.onceUsed || {}; p.onceUsed['costalt:' + card.name] = G.turnNo; if (card.costAlt.bed) bedPay(p); }
   if (card.magic && card.magic.once) { p.onceUsed = p.onceUsed || {}; p.onceUsed['magic:' + card.name] = G.turnNo; }      // v303
   inst.soulPaid = false;
   const smHolder = sm ? soulMagicHolder(p) : null;              // chosen before the card leaves the Hand (symbols stay as they are)

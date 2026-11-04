@@ -131,7 +131,7 @@ function parseCard(o) {
   if (o.costAlt != null) {
     const a = o.costAlt;
     if (!a || typeof a !== 'object' || !int(Number(a.cost), 0, 30)) return { errors: ['invalid "costAlt" (use {"cost":3,"if":{...},"once":true})'] };
-    costAlt = /** @type {CostAlt} */ ({ cost: Number(a.cost), once: a.once === true });
+    costAlt = /** @type {CostAlt} */ ({ cost: Number(a.cost), once: a.once === true, bed: a.bed === true });
     if (a.if != null) { const cr = parseCond(a.if); if (cr.error) return { errors: [cr.error] }; costAlt.if = cr.cond; }
   }
   let costPer;
