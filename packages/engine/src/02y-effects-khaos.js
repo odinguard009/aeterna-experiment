@@ -376,3 +376,9 @@ FX_ACTIONS.EXHAUST_FUNGAL_BEDS = { chk: a => Object.keys(a).every(k => ['do', 'i
     if (k >= 2) await FX_ACTIONS.DRAW.run(c, { do: 'DRAW', n: Math.min(7, k >> 1) });
     for (let i = 0; i < (k >> 2); i++) await FX_ACTIONS.VOID_TO_CARD.run(c, { do: 'VOID_TO_CARD', n: 1, to: 'eachSpirit' });
     c.ctx.did = true; io.view({ type: 'board' }); } };
+/* v517 BOUNCE_EXHAUSTED_CORES {}: "return any number of opposing exhausted Spirits/Ultimates to the Hand; for each returned, put a core from the Void to this Spirit" (BS73-031). "Any number" is modelled as all of them (the effect is optional). */
+FX_ACTIONS.BOUNCE_EXHAUSTED_CORES = { chk: a => Object.keys(a).every(k => ['do', 'if'].includes(k)), txt: () => 'return all opposing exhausted Spirits/Ultimates to the Hand; a core from the Void to this Spirit for each', can: c => c.opp.spirits.some(t => t.exhausted),
+  run: async c => {
+    const L = c.opp.spirits.filter(t => t.exhausted); c.ctx.did = false; if (!L.length) return;
+    for (const t of L) { removeFrom(c.opp.spirits, t); c.opp.hand.push(t); log(`${CARDS[t.id].name} returns to the Hand.`); if (c.p.spirits.includes(c.src) && takeFromVoid(c.p, 1)) { c.src.cores += 1; log(`${CARDS[c.src.id].name}: a core moves from the Void to this Spirit.`); } }
+    c.ctx.did = true; checkDepletion(c.opp); io.view({ type: 'board' }); } };

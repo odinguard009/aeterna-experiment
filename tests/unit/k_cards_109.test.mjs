@@ -311,3 +311,29 @@ test('K-1128 BS73-030: MANIFEST exhausts every Fungal Bed (CPU) and draws one ca
     return { ex: P.nexus.filter(n => n.exhausted).length, hand: P.hand.length, partial: BS.CARDS['BS73-030'].partial }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.ex, 2, JSON.stringify(r)); assert.equal(r.hand, 1, JSON.stringify(r));
 });
+
+test('K-1129 BS73-031: SUMMONED returns every opposing exhausted Spirit to the Hand and gains a core each; Fungal Tree life hit sends an opposing Life to the Reserve', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4;
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token && k !== 'BS73-031');
+    const z = BS.mkInst('BS73-031'); z.cores = 3; P.spirits = [z]; P.void = Math.max(P.void || 0, 5);
+    const e1 = BS.mkInst(any), e2 = BS.mkInst(any), r1 = BS.mkInst(any); e1.exhausted = e2.exhausted = true; r1.cores = 1; O.spirits = [e1, e2, r1]; O.hand = [];
+    await BS.fireFx(P, 'SUMMONED', z, { subject: z });
+    const ft = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && (BS.CARDS[k].families || []).includes('Fungal Tree') && k !== 'BS73-031');
+    const a = BS.mkInst(ft); a.cores = 3; P.spirits.push(a); const life = O.life; G.attacker = a;
+    await BS.fireFx(P, 'ALLY_LIFE_HIT', a, { attacker: a, subject: a });
+    return { hand: O.hand.length, left: O.spirits.length, gained: z.cores - 3, life: life - O.life, partial: BS.CARDS['BS73-031'].partial, burst: BS.CARDS['BS73-031'].burst && BS.CARDS['BS73-031'].burst.when }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.hand, 2, JSON.stringify(r)); assert.equal(r.left, 1, JSON.stringify(r));
+  assert.equal(r.life, 1, JSON.stringify(r)); assert.equal(r.burst, 'LIFE_DECREASE', JSON.stringify(r));
+});
+
+test('K-1130 BS74-035: ATTACKS heavy exhausts an opposing Spirit and, controlling Contractor Yum-Kaax, sends a Fungal Bed Token', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const any = Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token);
+    const a = BS.mkInst('BS74-035'); a.cores = 3; const y = BS.mkInst('BS73-CX01'); y.cores = 2; P.spirits = [a]; P.nexus = [y]; P.tokens = { 'BS73-T001': 3 }; G.attacker = a;
+    const t = BS.mkInst(any); t.cores = 1; O.spirits = [t];
+    await BS.fireFx(P, 'ATTACKS', a, { attacker: a, subject: a });
+    return { ex: !!t.exhausted, beds: P.nexus.filter(n => n.id === 'BS73-T001').length, partial: BS.CARDS['BS74-035'].partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.ex, true, JSON.stringify(r)); assert.equal(r.beds, 1, JSON.stringify(r));
+});
