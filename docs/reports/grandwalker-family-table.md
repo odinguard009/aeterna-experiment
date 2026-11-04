@@ -12,7 +12,7 @@ Counts are card numbers (ids) in `data/sources/official-fields.json`: every prin
 | BS75-CX04 The ChaosContractor Khaos | Contract | 勇傑 | Soldier |  | 61 | 61 | 7 | 11% | 111 | 20 |
 | BS75-CX04 The ChaosContractor Khaos | Contract | 原初 | Primordial |  | 106 | 106 | 8 | 8% | 106 | 8 |
 | BS75-CX04 The ChaosContractor Khaos | Contract | 締皇 | Concluser | yes | 62 | 62 | 8 | 13% | 62 | 8 |
-| BS74-CX01 The Light-DarkContractor Ometeotl | Contract | 溶魚 | Lava Fish |  | 32 | 32 | 22 | 69% | 40 | 28 |
+| BS74-CX01 The Light-DarkContractor Ometeotl | Contract | 溶魚 | Lava Fish |  | 32 | 32 | 25 | 78% | 40 | 31 |
 | BS74-CX01 The Light-DarkContractor Ometeotl | Contract | 眷属 | Devotee | yes | 287 | 287 | 47 | 16% | 290 | 47 |
 | BS74-CX01 The Light-DarkContractor Ometeotl | Contract | 締皇 | Concluser | yes | 62 | 62 | 8 | 13% | 62 | 8 |
 | BS74-CX02 The NetherContractor Dionysus | Contract | 無魔 | Zombie |  | 65 | 65 | 6 | 9% | 161 | 44 |
@@ -79,7 +79,7 @@ Counts are card numbers (ids) in `data/sources/official-fields.json`: every prin
 | BS68-CX03 The ToolcraftContractor Kinich-Ahau | Contract | 動玩 | Puppet Beast |  | 26 | 26 | 1 | 4% | 34 | 4 |
 | BS68-CX03 The ToolcraftContractor Kinich-Ahau | Contract | 眷属 | Devotee | yes | 287 | 287 | 47 | 16% | 290 | 47 |
 | BS68-CX03 The ToolcraftContractor Kinich-Ahau | Contract | 締皇 | Concluser | yes | 62 | 62 | 8 | 13% | 62 | 8 |
-| BS62-X09 Grandwalker Kukulkan | Grandwalker | 妖蛇 | Dark Snake |  | 65 | 65 | 5 | 8% | 165 | 43 |
+| BS62-X09 Grandwalker Kukulkan | Grandwalker | 妖蛇 | Dark Snake |  | 65 | 65 | 6 | 9% | 165 | 44 |
 | BS62-X09 Grandwalker Kukulkan | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
 | BS61-X09 Grandwalker Tezcatlipoca | Grandwalker | 甲獣 | Armored Beast |  | 33 | 33 | 2 | 6% | 54 | 13 |
 | BS61-X09 Grandwalker Tezcatlipoca | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
@@ -203,7 +203,7 @@ Counts are card numbers (ids) in `data/sources/official-fields.json`: every prin
 | BS45-X07 Grandwalker Hermes | Grandwalker | 剣獣 | Blade Beast |  | 123 | 123 | 19 | 15% | 255 | 57 |
 | BS45-X07 Grandwalker Hermes | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 7 | 4% | 200 | 7 |
 | BS45-X07 Grandwalker Hermes | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
-| BS45-X08 Grandwalker Isis | Grandwalker | 天霊 | Divine Spirit |  | 81 | 81 | 3 | 4% | 207 | 30 |
+| BS45-X08 Grandwalker Isis | Grandwalker | 天霊 | Divine Spirit |  | 81 | 81 | 4 | 5% | 207 | 31 |
 | BS45-X08 Grandwalker Isis | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 7 | 4% | 200 | 7 |
 | BS45-X08 Grandwalker Isis | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
 | BS45-X09 Grandwalker Set | Grandwalker | 獣頭 | Beast Head |  | 90 | 90 | 3 | 3% | 190 | 36 |
@@ -214,7 +214,7 @@ Counts are card numbers (ids) in `data/sources/official-fields.json`: every prin
 | BS44-X07 Grandwalker Apollon | Grandwalker | 星竜 | Astral Dragon |  | 65 | 65 | 5 | 8% | 156 | 28 |
 | BS44-X07 Grandwalker Apollon | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 7 | 4% | 200 | 7 |
 | BS44-X07 Grandwalker Apollon | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
-| BS44-X08 Grandwalker Osiris | Grandwalker | 妖蛇 | Dark Snake |  | 65 | 65 | 5 | 8% | 165 | 43 |
+| BS44-X08 Grandwalker Osiris | Grandwalker | 妖蛇 | Dark Snake |  | 65 | 65 | 6 | 9% | 165 | 44 |
 | BS44-X08 Grandwalker Osiris | Grandwalker | 界渡 | Worldswalker | yes | 200 | 200 | 7 | 4% | 200 | 7 |
 | BS44-X08 Grandwalker Osiris | Grandwalker | 化神 | Avatar | yes | 51 | 51 | 0 | 0% | 51 | 0 |
 | BS44-X09 Grandwalker Artemis | Grandwalker | 機獣 | Machine Beast |  | 110 | 110 | 10 | 9% | 297 | 82 |

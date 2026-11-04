@@ -675,26 +675,20 @@
    "revival_open": [],
    "deck_incomplete": [
     "BS60-003",
-    "BS61-004",
     "BS62-011",
-    "BS63-016",
     "BS65-003",
     "BS68-001",
     "BS70-002",
     "BS75-062",
-    "BS75-076",
     "BS75-X02"
    ],
    "order_cards": [
     "BS60-003",
-    "BS61-004",
     "BS62-011",
-    "BS63-016",
     "BS65-003",
     "BS68-001",
     "BS70-002",
     "BS75-062",
-    "BS75-076",
     "BS75-X02"
    ]
   },
@@ -5378,7 +5372,6 @@
     "BS76-014"
    ],
    "revival_open": [
-    "BS44-RV002",
     "BS51-RV001"
    ],
    "deck_incomplete": [
@@ -5388,7 +5381,6 @@
     "BS44-024",
     "BS44-025",
     "BS44-068",
-    "BS44-RV002",
     "BS44-X02",
     "BS45-008",
     "BS45-012",
@@ -5451,7 +5443,6 @@
     "BS44-024",
     "BS44-025",
     "BS44-068",
-    "BS44-RV002",
     "BS44-X02",
     "BS45-008",
     "BS45-012",
@@ -20964,7 +20955,6 @@
     "BS76-074"
    ],
    "revival_open": [
-    "BS44-RV005",
     "BS45-RV004",
     "BS54-RV006",
     "BS55-RV005"
@@ -20975,7 +20965,6 @@
     "BS44-055",
     "BS44-057",
     "BS44-071",
-    "BS44-RV005",
     "BS44-X05",
     "BS45-045",
     "BS45-046",
@@ -21056,7 +21045,6 @@
     "BS44-055",
     "BS44-057",
     "BS44-071",
-    "BS44-RV005",
     "BS44-X05",
     "BS45-045",
     "BS45-047",
@@ -21810,7 +21798,6 @@
     "BS76-014"
    ],
    "revival_open": [
-    "BS44-RV002",
     "BS51-RV001"
    ],
    "deck_incomplete": [
@@ -21820,7 +21807,6 @@
     "BS44-024",
     "BS44-025",
     "BS44-068",
-    "BS44-RV002",
     "BS44-X02",
     "BS45-008",
     "BS45-012",
@@ -22214,7 +22200,7 @@
    "families_jp": [
     "妖蛇"
    ],
-   "complete": false
+   "complete": true
   },
   {
    "id": "BS44-RV003",
@@ -22241,7 +22227,7 @@
    "families_jp": [
     "天霊"
    ],
-   "complete": false
+   "complete": true
   },
   {
    "id": "BS44-RV006",
@@ -28108,7 +28094,7 @@
     "name": "Magmarowana",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS62-011",
@@ -28122,7 +28108,7 @@
     "name": "Thread Sword Paradise",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS65-003",
@@ -28297,7 +28283,7 @@
     "name": "Magma Call",
     "type": "Magic",
     "cost": 7,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS75-X02",
@@ -35545,7 +35531,7 @@
     "name": "The HellSerpentineMan Botis",
     "type": "Spirit",
     "cost": 5,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS44-X02",
@@ -51783,7 +51769,7 @@
     "name": "The GreatAngelia Tron",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS44-X05",
