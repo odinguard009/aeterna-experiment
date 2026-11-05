@@ -48,7 +48,7 @@ const cardHasKeyword = (card, kw) => (card.keywords || []).some(k => String(k).t
   || (String(kw).toUpperCase() === 'SHAMANISM' && /\{\{Shaman\|/.test(card.desc || card.text || ''));      // v0.167 "Spirit with Shamanism": the {{Shaman|...}} holder template
 /* v550 MAGIC_SOUL_TAX_TURN {match}: "during this turn, while your <match> is attacking, unless the opponent sends their Soul Core to the Trash, they can't use Magic cards" (BSC48-CX02). p.magicTax = {turn, match}; noMagicHit locks Magic while it applies and the Soul Core cannot (or Magic cannot be afforded without it) be paid; otherwise castMagic pays it once (the lock is then lifted for the turn) */
 const magicTaxOn = p => { const t = p.magicTax, a = G.attacker, o = a && ownerOf(a); return !!(t && t.turn === G.turnNo && !t.paid && o && o !== p && fxMatch(CARDS[a.id], t.match, a)); };
-const magicTaxHit = (p, card) => magicTaxOn(p) && (soulCoreHolder(p, null) === null || effCost(p, card) > coresAvailable(p));
+const magicTaxHit = (p, card) => flashCostLocked(card) || magicTaxOn(p) && (soulCoreHolder(p, null) === null || effCost(p, card) > coresAvailable(p));
 const magicTaxPay = p => { if (magicTaxOn(p)) { p.magicTax.paid = true; soulToTrash(p, soulCoreHolder(p, null)); } };
 FX_ACTIONS.MAGIC_SOUL_TAX_TURN = { chk: a => hasMatch(a.match) && Object.keys(a).every(k => ['do', 'match', 'if'].includes(k)), txt: () => "during this turn, while your matching Spirit is attacking, the opponent can't use Magic cards unless they send their Soul Core to the Trash",
   run: async (c, a) => { c.opp.magicTax = { turn: G.turnNo, match: a.match }; c.ctx.did = true; log(`${_nm(c)}: ${poss(c.opp)} Magic is locked while the attack lasts, unless the Soul Core goes to the Trash.`); } };

@@ -77728,24 +77728,6 @@
   "M_UP_TO",
   "T_MANIFESTS"
  ],
- "BS73-TX02": [
-  "A_EXHAUST",
-  "A_SEND_TOKEN",
-  "A_SOUL_STATE",
-  "A_VOID",
-  "A_VOID_TO_MATCHING",
-  "C_CONTROL",
-  "C_LEVEL",
-  "C_ONCE",
-  "F_OTHER_NOSTACK",
-  "K_TOKEN",
-  "K_ULTIMATE",
-  "M_OPTIONAL",
-  "M_THEN",
-  "M_UNSTACKABLE",
-  "T_ALLY_ATTACKS",
-  "T_SUMMONED"
- ],
  "BS73-TX03": [
   "A_DESTROY_COST",
   "A_REFRESH",

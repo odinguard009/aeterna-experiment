@@ -11020,18 +11020,103 @@
    "12"
   ],
   "rebirthTo": "BS73-TX02B",
-  "fxComplete": false,
-  "residual": [
-   "[LV1][LV2] (When Summoned)",
-   "(Once per Turn: Same Name) You can put three cores from the Void to this Spirit.",
-   "Then, you can put one core from the Void each to two \"Fungal Bed\" you control.",
-   "[LV1][LV2] Rebirth6m",
-   "When your \"Fungal Bed\" Token is sent out, or this Spirit would leave the Field due to opposing effects, including being in Soul State, if you control any \"Contractor Yum-Kaax\", you can flip this Spirit.",
-   "[LV2] (Your Attack Step)",
-   "(Can't Stack) When your \"Concluser\"/\"Fungal Tree\" family Spirit attacks, you can send out one of your \"Fungal Bed\" Tokens.",
-   "Then, you can heavy exhaust an opposing Spirit/Ultimate."
-  ],
-  "note": "Partial card (v0.79.0 Rebirth import 2026-11-01): Rebirth front side only, effects not wired; the flip/rebirth rule is not in the engine yet."
+  "fxComplete": true,
+  "note": "BS73-TX02 front (v580): BED_SENT trigger (Fungal Bed Token sent out) flips with Yum-Kaax.",
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "once": true,
+    "optional": true,
+    "actions": [
+     {
+      "do": "VOID_TO_CARD",
+      "n": 3,
+      "to": "self"
+     },
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "anyNexus",
+      "match": {
+       "name": [
+        "Fungal Bed"
+       ]
+      }
+     },
+     {
+      "do": "VOID_TO_CARD",
+      "n": 1,
+      "to": "anyNexus",
+      "match": {
+       "name": [
+        "Fungal Bed"
+       ]
+      },
+      "if": {
+       "prev": true
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "BED_SENT",
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "controlName": "Contractor Yum-Kaax"
+    },
+    "actions": [
+     {
+      "do": "REBIRTH_FLIP",
+      "ask": true
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "REBIRTH_ON_LEAVE",
+    "to": "self",
+    "lv": [
+     1,
+     2
+    ],
+    "if": {
+     "controlName": "Contractor Yum-Kaax"
+    }
+   },
+   {
+    "trigger": "ALLY_ATTACKS",
+    "lv": [
+     2
+    ],
+    "noStack": true,
+    "optional": true,
+    "match": {
+     "family": [
+      "Concluser",
+      "Fungal Tree"
+     ]
+    },
+    "actions": [
+     {
+      "do": "SEND_TOKEN",
+      "token": "BS73-T001",
+      "n": 1,
+      "ask": true
+     },
+     {
+      "do": "HEAVY_EXHAUST_OPP",
+      "n": 1
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "BS73-TX03",

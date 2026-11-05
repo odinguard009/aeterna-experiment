@@ -232,6 +232,7 @@ async function flushBursts() {                         // queued Bursts and even
     else if (ev.type === 'SOUL_BURST') await soulBurstCheck(G.p[ev.key]);
     else if (ev.type === 'SOUL_DEPLOY') await soulDeployOffer(G.p[ev.key], ev.inst);
     else if (ev.type === 'LEAVE_SUMMON') await leaveSummonOffer(G.p[ev.key], ev.inst);
+    else if (ev.type === 'BED_SENT') await fireFx(G.p[ev.key], 'BED_SENT', ev.inst, { subject: ev.inst });
     else if (ev.type === 'ALLY_LEAVES') await fireFx(G.p[ev.key], 'ALLY_LEAVES', ev.inst, { subject: ev.inst, byOpp: true, byOppFx: true });
     else if (ev.type === 'REBORN') await rebirthAfter(G.p[ev.key], ev.inst);
     else if (ev.type === 'LEAVES') await fireFx(G.p[ev.key], 'LEAVES', ev.inst, { subject: ev.inst, byOpp: true, byOppFx: !!ev.byOppFx });

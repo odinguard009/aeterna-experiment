@@ -286,3 +286,37 @@ function allyLeaves(p, s, byOppFx) {
 }
 /* v579 condition bedsGe N: "if you control N or more Fungal Bed" */
 function bedsGeOk(p, n) { return p.nexus.filter(x => !x.noFx && isFungalBed(x)).length >= n; }
+/* v580 BED_SENT: "when your Fungal Bed Token is sent out" - SEND_TOKEN is wrapped; a rise in the Bed Token count queues the event (BS73-TX02) */
+const _sendTokenBed = FX_ACTIONS.SEND_TOKEN.run;
+FX_ACTIONS.SEND_TOKEN.run = async (c, a) => {
+  const p = c.p, cnt = () => p.nexus.filter(x => x.id === 'BS73-T001' && x.token).length, before = cnt();
+  await _sendTokenBed(c, a);
+  const now = cnt();
+  if (now > before && G && G.evQ && fieldList(p).some(f => fxEntries(f).some(({ e }) => e.trigger === 'BED_SENT'))) G.evQ.push({ type: 'BED_SENT', key: p.key, inst: p.nexus[p.nexus.length - 1] });
+};
+/* v580 STATIC FLASH_COST_LOCK (BS73-TX02B): "(Your Attack Step) neither player can use cards with a cost equal or inferior to your number of counters during Flash Timing". Read by magicTaxHit (Magic cards only; High Speed / Accel are not covered). */
+STATIC_FLAGS.push('FLASH_COST_LOCK');
+function flashCostLocked(card) {
+  if (!G || G.step !== 5 || !G.active || !card) return false;
+  const A = G.p[G.active];
+  return A.spirits.some(s => !s.noFx && fxEntries(s).some(({ e }) => e.trigger === 'STATIC' && e.flag === 'FLASH_COST_LOCK' && (!e.lv || e.lv.includes(lvNo(s))))) && card.cost <= A.count;
+}
+/* v580 REVEAL_BED_SUMMON {n, match}: "reveal n cards from your decktop. By destroying any number of Fungal Bed you control, for each target destroyed, summon one <match> Spirit among them without paying the cost. Return the rest to the deckbottom" (BS73-TX02B). House reading: the fewest-core Bed is destroyed first; only Spirit cards are summoned. */
+FX_ACTIONS.REVEAL_BED_SUMMON = { chk: a => Number.isInteger(a.n) && a.n >= 1 && a.n <= 6 && hasMatch(a.match) && Object.keys(a).every(k => ['do', 'n', 'match', 'if'].includes(k)),
+  txt: a => `reveal ${a.n} cards from your decktop; for each Fungal Bed you destroy, summon one matching Spirit among them without paying the cost; return the rest to the deckbottom`,
+  can: c => c.p.deck.length > 0,
+  run: async (c, a) => {
+    const nm = _pn(c), top = c.p.deck.splice(0, Math.min(a.n, c.p.deck.length)); c.p.revealed = top; c.ctx.did = false;
+    log(`${nm}: ${who(c.p)} ${c.p.cpu ? 'reveals' : 'reveal'} ${top.map(x => CARDS[x.id].name).join(', ') || 'nothing'}.`); io.view({ type: 'board' });
+    await revealedFx(c.p);
+    for (;;) {
+      const beds = fungalBeds(c.p).sort((x, y) => x.cores - y.cores); if (!beds.length) break;
+      const L = c.p.revealed.filter(x => CARDS[x.id].type === 'Spirit' && fxMatch(CARDS[x.id], a.match) && canPlaceFree(c.p, x)); if (!L.length) break;
+      const t = await chooseCard(c, L, `✨ ${nm}`, 'Destroy a Fungal Bed to summon one of these? (Cancel to stop)', true); if (!t) break;
+      removeFrom(c.p.revealed, t); c.p.hand.push(t);
+      removeNexus(c.p, beds[0], 'destroyed'); log(`${nm}: ${CARDS[beds[0].id].name} is destroyed.`);
+      if (await summonFree(c.p, t)) c.ctx.did = true; else { removeFrom(c.p.hand, t); c.p.revealed.push(t); break; }
+    }
+    const rest = c.p.revealed.splice(0); for (const x of rest) c.p.deck.push(x);
+    if (rest.length) log(`${nm}: ${rest.length} card${rest.length === 1 ? '' : 's'} returned to the deckbottom.`);
+  } };

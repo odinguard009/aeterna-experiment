@@ -1067,17 +1067,9 @@
    ],
    "revival_open": [],
    "deck_incomplete": [
-    "BS73-026",
-    "BS73-028",
-    "BS73-067",
-    "BS73-TX02",
     "BS75-CP03"
    ],
    "order_cards": [
-    "BS73-026",
-    "BS73-028",
-    "BS73-067",
-    "BS73-TX02",
     "BS75-CP03"
    ]
   },
@@ -29500,7 +29492,7 @@
     "name": "The FungalBeast SheeSheep -Symbiotic Form-",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-027",
@@ -29514,7 +29506,7 @@
     "name": "The FungalBeast GoriGorilla -Symbiotic Form-",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-029",
@@ -29745,7 +29737,7 @@
     "name": "The FungalBeastKing Uaxa-Ctuun -Symbiotic Form-",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-TX03",
@@ -30748,7 +30740,7 @@
     "name": "The FungalBeastKing Uaxa-Ctuun -Symbiotic Form-",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-TX03",
@@ -33289,7 +33281,7 @@
     "name": "The FungalBeast SheeSheep -Symbiotic Form-",
     "type": "Spirit",
     "cost": 4,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-027",
@@ -33303,7 +33295,7 @@
     "name": "The FungalBeast GoriGorilla -Symbiotic Form-",
     "type": "Spirit",
     "cost": 6,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-029",
@@ -33331,7 +33323,7 @@
     "name": "Yum-Kaax's Slime Mold Temple",
     "type": "Nexus",
     "cost": 3,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS73-076",
@@ -33359,7 +33351,7 @@
     "name": "The FungalBeastKing Uaxa-Ctuun -Symbiotic Form-",
     "type": "Spirit",
     "cost": 8,
-    "complete": false
+    "complete": true
    },
    {
     "id": "BS74-026",

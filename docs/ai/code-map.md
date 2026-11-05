@@ -95,8 +95,8 @@ magicFromSoul, magicSoulSrc, fromCols, soulBurstCheck, isGwNexus, gwNexusCount, 
 ## packages/engine/src/02y-effects-khaos.js (465 lines, ~15k tokens)
 burstSetSafe, pickFightingBlocker, coreSafeEvery, removedLocked, burstOnDiscard, removedDrawLocked, noMagicHit, freeRed, costPerCount, nexusSwapSave, flagActive, ownDiscardCheck, isFungalBed, fungalBeds, useFungalBeds, magicToTrash, bedPay, _sendBedToken, _deployPool
 
-## packages/engine/src/02z-effects-khaos2.js (288 lines, ~8.4k tokens)
-coreFloorMark, lifeBedSave, coreMoveLocked, lifeSym2Cap, nexusGuarded, magicDiscount, ccost, magicRest, _csEff, _chgView, changeView, effCostM, _chgCands, changeRep, allyLeaves, bedsGeOk
+## packages/engine/src/02z-effects-khaos2.js (322 lines, ~9.2k tokens)
+coreFloorMark, lifeBedSave, coreMoveLocked, lifeSym2Cap, nexusGuarded, magicDiscount, ccost, magicRest, _csEff, _chgView, changeView, effCostM, _chgCands, changeRep, allyLeaves, bedsGeOk, _sendTokenBed, flashCostLocked
 
 ## packages/engine/src/03-imported-cards.js (264 lines, ~8.6k tokens) — IMPORTED CARD DATA
 COLORS, BUILTIN_IDS, CARDS_KEY, IMPORTED, CARDS_VER, parseLevels, parseMagicOf, parseCard, registerImported, saveImported, importCards, clearImported, PACK_IDS, registerPack, TOKEN_IDS, registerTokens
@@ -125,7 +125,7 @@ fieldList, isGW, freeCores, freeTotal, totalCores, reserveTotal, minCores, isSpi
 ## packages/engine/src/07-turn.js (85 lines, ~1.8k tokens) — TURN FLOW
 isMainStep, revertNexusSpirits, setStep, beginTurn, endMainHas, endMainFx, endStep, win, matchLoop, checkInvariants
 
-## packages/engine/src/08-battle.js (245 lines, ~6.4k tokens) — BATTLE
+## packages/engine/src/08-battle.js (246 lines, ~6.4k tokens) — BATTLE
 successor, flashTiming, battleEndAttack, attackStepOver, doBattle, doBattleInner, maybeBurst, lifeFlashDiscard, maybeBurst1, burstFlash, flushBursts
 
 ## packages/engine/src/09-cpu.js (175 lines, ~3.1k tokens) — CPU

@@ -550,5 +550,84 @@
     }
    }
   ]
+ },
+ {
+  "id": "BS73-TX02B",
+  "name": "The FungalBeastKing Uaxa-Ctuun -Battle Form-",
+  "name_jp": "菌獣王ワシャ・クトゥーン -戦闘態-",
+  "type": "Spirit",
+  "color": "green",
+  "cost": 10,
+  "symbols": 1,
+  "levels": [
+   {
+    "cores": 1,
+    "bp": 10000
+   },
+   {
+    "cores": 3,
+    "bp": 15000
+   },
+   {
+    "cores": 5,
+    "bp": 25000
+   }
+  ],
+  "families": [
+   "Devotee",
+   "Concluser",
+   "Fungal Tree"
+  ],
+  "text": "Count +1\n\n{{Unleash|2}} [LV1][LV2][LV3] (When Reborn)\nBy sending two cores from any of your Green Grandwalker Nexuses to this Spirit, during this turn, opposing \"can't summon\" effects don't activate. Then, (Once per Turn: Same Name) you can reveal four cards from your decktop. By destroying any number of \"Fungal Bed\" you control, for each target destroyed, summon one \"Fungal Tree\" family card among them, without paying the cost. Return any remaining cards to the deckbottom.\n\n[LV2][LV3] (Your Attack Step)\nNeither player can use cards with a cost equal or inferior to your number of counters during Flash Timing.",
+  "image": "BS73-TX02b.png",
+  "rebirthSide": true,
+  "fxComplete": true,
+  "note": "Back face of BS73-TX02 (v580). Count +1 by the flip. Unleash = the two-core payment from a green Grandwalker Nexus. The opposing can't-summon clause has no engine effect to suppress (none exists). FLASH_COST_LOCK covers Magic cards only. Only Spirit cards are summoned from the reveal.",
+  "effects": [
+   {
+    "trigger": "REBORN",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "once": true,
+    "optional": true,
+    "actions": [
+     {
+      "do": "NEXUS_CORES_TO_SELF",
+      "n": 2,
+      "match": {
+       "family": [
+        "Grandwalker"
+       ],
+       "color": [
+        "Green"
+       ]
+      }
+     },
+     {
+      "do": "REVEAL_BED_SUMMON",
+      "n": 4,
+      "match": {
+       "family": [
+        "Fungal Tree"
+       ]
+      },
+      "if": {
+       "prev": true
+      }
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "FLASH_COST_LOCK",
+    "lv": [
+     2,
+     3
+    ]
+   }
+  ]
  }
 ]
