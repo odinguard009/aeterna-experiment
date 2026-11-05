@@ -1638,5 +1638,15 @@
     "status": "full",
     "example": "BSC48-013",
     "rule": "Engine: each core is put on a Nexus of your choice among the matching ones, any split."
+  },
+  {
+    "id": "K_DECK_SUMMON",
+    "kind": "keyword",
+    "meaning": "summon this card when an opposing effect would discard from the Deck",
+    "pattern": "would be discarded by an opposing \"Deck-discarding effect\", before sending it to the Trash, you can summon it",
+    "engine": "card.deckSummon (MILL_OPP)",
+    "status": "full",
+    "example": "BSC48-014",
+    "rule": "Engine: before an opposing MILL_OPP resolves, flagged cards in the Hand/Trash and among the discarded cards can be summoned without paying the cost."
   }
 ]

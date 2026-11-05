@@ -91214,7 +91214,8 @@
   "S_UNAFFECTED",
   "K_BRAVE",
   "K_ULTIMATE",
-  "M_OPTIONAL"
+  "M_OPTIONAL",
+  "K_DECK_SUMMON"
  ],
  "BSC48-015": [
   "C_LEVEL",

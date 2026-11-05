@@ -1,3 +1,11 @@
+const deckSummonOffer = async (p, pool, from) => {      // v544 deckSummon cards (BSC48-014): summon (free) before the discard resolves; `from` = the discarded list to remove it from
+  for (const x of pool.filter(h => CARDS[h.id].deckSummon && canPlaceFree(p, h))) {
+    if (!canPlaceFree(p, x)) continue;
+    const go = p.cpu || await ask({ title: `✨ ${esc(CARDS[x.id].name)}`, peek: true, html: 'Summon this card without paying the cost?', buttons: [{ label: 'Summon', cls: 'primary', value: true }, { label: 'No', cls: 'cancel', value: false }] });
+    if (!go) continue;
+    if (from) removeFrom(from, x); else { removeFrom(p.hand, x); removeFrom(p.trash, x); }
+    await summonFree(p, x);
+  } };
 /* ---------------------------------------------------------------------
    v0.39 PURPLE (Contractor Hades / Sorcerer): Deck-to-Trash (mill), discarding from the Hand, sending opposing cores to the Reserve, once-per-turn Count.
    Rules: manual "Depletion" - a Spirit left with fewer cores than its Lv1 requirement is depleted (not destroyed; checkDepletion);
@@ -11,7 +19,9 @@ Object.assign(FX_ACTIONS, {
     can: c => c.opp.deck.length > 0 && !deckDiscardLocked(),
     run: async (c, a) => {
       if (deckDiscardLocked()) { c.ctx.did = false; log(`${_pn(c)}: cards can't be discarded from a Deck.`); return; }
+      if (c.opp.deck.length) await deckSummonOffer(c.opp, c.opp.hand.concat(c.opp.trash));      // v544 "can be summoned when your Deck would be discarded" (Hand/Trash)
       const top = c.opp.deck.splice(0, Math.min(a.perLostCores ? (c.src.lostCores || 0) : a.perOppHand ? c.opp.hand.length : a.n, c.opp.deck.length)); if (!top.length) { c.ctx.did = false; return; }
+      await deckSummonOffer(c.opp, top.slice(), top);      // v544 "would be discarded by an opposing Deck-discarding effect, before sending it to the Trash, you can summon it"
       for (const x of top) c.opp.trash.push(x);
       log(`${_pn(c)}: ${top.length} card${top.length === 1 ? '' : 's'} from the opposing Deck go to the Trash.`);
       io.view({ type: 'board' });

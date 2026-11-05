@@ -255,3 +255,13 @@ test('K-1165 BSC48-013: High Speed, Void cores to two God-Sechs or two cores in 
     return { nexCores: n1.cores, void: P.void, hs: K.highSpeed, partial: K.partial, nx }; })()`);
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.nexCores, 3, JSON.stringify(r)); assert.equal(r.void, 1, JSON.stringify(r)); assert.equal(r.hs, true, JSON.stringify(r));
 });
+
+test('K-1166 BSC48-014: summoned for free when an opposing Deck-discarding effect would discard it', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 5;
+    const K = BS.CARDS['BSC48-014'];
+    const me = BS.mkInst('BSC48-014'); O.spirits = []; O.deck = [me, BS.mkInst('BSC48-014'), BS.mkInst('BSC48-014')]; O.trash = []; O.reserve.n = 5;
+    await BS.runActions({ p: P, opp: O, src: BS.mkInst('BSC48-014'), ctx: {} }, { actions: [{ do: 'MILL_OPP', n: 1 }] });
+    return { summoned: O.spirits.includes(me), inTrash: O.trash.includes(me), ds: K.deckSummon, hu: K.handUnaffected, partial: K.partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.summoned, true, JSON.stringify(r)); assert.equal(r.inTrash, false, JSON.stringify(r));
+});

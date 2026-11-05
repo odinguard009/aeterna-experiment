@@ -28983,15 +28983,45 @@
   "bicon": [
    "12"
   ],
-  "fxComplete": false,
-  "residual": [
-   "When this card would be discarded by an opposing \"Deck-discarding effect\", before sending it to the Trash, you can summon it.",
-   "This card in Hand/Trash is unaffected by opposing effects, and can be summoned when your deck would be discarded by an opposing \"Deck-discarding effect\", before that effect activates.",
-   "[LV1][LV2][LV3]",
-   "Cards can't be discarded from either player's deck. Also, while you control any \"Contractor Dairokuten Maou\", if it's the opposing Turn, this Spirit is unaffected by opposing Spirit/Ultimate/Brave/Nexus effects."
-  ],
+  "fxComplete": true,
   "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet.",
-  "rcode": "C"
+  "rcode": "C",
+  "deckSummon": true,
+  "handUnaffected": true,
+  "trashUnaffected": true,
+  "effects": [
+   {
+    "trigger": "STATIC",
+    "flag": "NO_DECK_DISCARD",
+    "lv": [
+     1,
+     2,
+     3
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "UNAFFECTED",
+    "to": "self",
+    "lv": [
+     1,
+     2,
+     3
+    ],
+    "if": {
+     "controlName": "Contractor Dairokuten Maou",
+     "oppTurn": true
+    },
+    "from": {
+     "types": [
+      "Spirit",
+      "Ultimate",
+      "Brave",
+      "Nexus"
+     ]
+    }
+   }
+  ]
  },
  {
   "id": "BSC48-015",

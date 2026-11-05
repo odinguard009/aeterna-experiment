@@ -79685,14 +79685,6 @@
   "T_START_ATTACK",
   "T_SUMMONED"
  ],
- "BSC48-014": [
-  "A_DISCARD_OPP",
-  "C_LEVEL",
-  "K_BRAVE",
-  "K_ULTIMATE",
-  "M_OPTIONAL",
-  "S_UNAFFECTED"
- ],
  "BSC48-015": [
   "A_REMOVED_ZONE",
   "C_LEVEL",
