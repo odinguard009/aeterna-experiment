@@ -73,3 +73,22 @@ test('K-1152 BS35-041 Type Five: also Green/Yellow, refreshes at the end of batt
   assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.both, true, JSON.stringify(r)); assert.equal(r.refreshed, true, JSON.stringify(r));
   assert.equal(r.gsFree, true, JSON.stringify(r)); assert.equal(r.srcFree, false, JSON.stringify(r)); assert.equal(r.otherFree, false, JSON.stringify(r));
 });
+
+test('K-1153 BS35-XX02 Type The End: Flash swap keeps cores/state and returns the God-Sechs, Lv3 unaffected, six colours = 6 symbols', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key; G.step = 4;
+    const K = BS.CARDS['BS35-XX02'], E = K.effects;
+    const me = BS.mkInst('BS35-XX02'), gs = BS.mkInst('SD32-X02'); gs.cores = 3; gs.exhausted = true; P.hand = [me]; P.spirits = [gs];
+    const mainOk = BS.accelOK(P, me, 0, 'MAIN'); G.step = 5; G.attacker = gs; const flashOk = BS.accelOK(P, me, 0, 'FLASH');
+    await BS.useAccel(P, me, 0, null, 'FLASH'); const out = { onField: P.spirits.includes(me), cores: me.cores, exh: me.exhausted, back: P.hand.includes(gs), removed: P.removed.includes(me), atk: G.attacker === me, gsCores: gs.cores };
+    G.attacker = null;
+    me.cores = 5; const unaff = BS.fxImmune(P, me, { p: O, src: BS.mkInst(Object.keys(BS.CARDS).find(k => BS.CARDS[k].type === 'Spirit' && !BS.CARDS[k].token)) });
+    const sy0 = BS.attackSymbols(me);
+    const byColor = {}; for (const k of Object.keys(BS.CARDS)) { const c = BS.CARDS[k]; if (c.type === 'Spirit' && !c.token && (c.colors || [c.symbol]).length === 1 && c.symbols >= 1 && !byColor[c.symbol]) byColor[c.symbol] = k; }
+    P.spirits = [me].concat(Object.values(byColor).map(k => { const q = BS.mkInst(k); q.cores = 5; return q; }));
+    const sy6 = BS.attackSymbols(me);
+    return { mainOk, flashOk, out, unaff, sy0, sy6, partial: K.partial }; })()`);
+  assert.equal(r.partial, false, JSON.stringify(r)); assert.equal(r.mainOk, false, JSON.stringify(r)); assert.equal(r.flashOk, true, JSON.stringify(r));
+  assert.deepEqual(r.out, { onField: true, cores: 3, exh: true, back: true, removed: false, atk: true, gsCores: 0 }, JSON.stringify(r));
+  assert.equal(r.unaff, true, JSON.stringify(r)); assert.equal(r.sy6, 6, JSON.stringify(r));
+});

@@ -18,7 +18,7 @@ function accelOK(p, inst, idx, timing) {
   if (!G || G.over || !p.hand.includes(inst)) return false;
   const e = (CARDS[inst.id].effects || [])[idx]; if (!e || e.trigger !== 'ACCEL') return false;
   if (p.noAccelB != null && p.noAccelB === G.battleNo && G.attacker) return false;      // v498 BS69-NX01
-  if (timing === 'FLASH' ? !e.timing.includes('FLASH') : !accelMainStep(p)) return false;
+  if (timing === 'FLASH' ? !e.timing.includes('FLASH') : (e.flashOnly || !accelMainStep(p))) return false;
   if (e.once && usedThisTurn(p, inst, idx, e)) return false;
   const opp = G.p[other(p.key)], ctx = {};
   if (!fxIf(p, opp, e.if, ctx)) return false;
@@ -43,7 +43,7 @@ async function useAccel(p, inst, idx, plan, timing) {
   try { io.view({ type: 'board' }); await wait(300); await asResolving(() => runActions({ p, opp, src: inst, ctx: {} }, e, 'ACCEL')); }
   finally { if (p.limbo === inst) p.limbo = prev; }
   if (G && e.discard) { if (!p.spirits.includes(inst) && !p.trash.includes(inst) && !p.removed.includes(inst)) { p.trash.push(inst); log(`${card.name} is discarded to the Trash.`); } }      // v512 discard: not Removed
-  else if (G && !p.removed.includes(inst)) { toRemoved(p, inst); log(`${card.name} is put onto the Removed Zone (Accel).`); }
+  else if (G && !p.removed.includes(inst) && !p.spirits.includes(inst)) { toRemoved(p, inst); log(`${card.name} is put onto the Removed Zone (Accel).`); }
   checkDepletion(p); checkDepletion(opp);
   io.view({ type: 'board' }); await wait(300); await flushBursts();
   return true;

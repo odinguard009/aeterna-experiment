@@ -1468,5 +1468,25 @@
     "status": "wired",
     "example": "{\"do\":\"DESTROY_PER_SYMBOL_COLOR\",\"if\":{\"symColorsGe\":4,\"selfSoul\":true}}",
     "rule": "For each color you have a symbol of, one opposing Spirit/Ultimate of that color is destroyed; a card is never counted for two colors. Engine: DESTROY_PER_SYMBOL_COLOR (card text of BS34-XX02)."
+  },
+  {
+    "id": "K_SWAP_HAND_WITH_FIELD",
+    "kind": "phrase",
+    "meaning": "Swap this card from the Hand with a matching Spirit you control in the same condition",
+    "pattern": "swap this card from hand with",
+    "engine": "ACCEL {cost:0,timing:[FLASH],flashOnly:true} + SWAP_HAND_WITH_FIELD {match}",
+    "status": "wired",
+    "example": "{\"do\":\"SWAP_HAND_WITH_FIELD\",\"match\":{\"name\":\"God-Sechs\"}}",
+    "rule": "The card from the Hand takes the place of the chosen Spirit with its cores, Soul Core and exhausted state; that Spirit goes to the Hand. Engine: SWAP_HAND_WITH_FIELD (card text of BS35-XX02)."
+  },
+  {
+    "id": "K_SYM_ALL_COLORS",
+    "kind": "phrase",
+    "meaning": "The symbols of your attacking Spirit are fixed as one of each of the six colors",
+    "pattern": "symbols of your attacking spirit are fixed as",
+    "engine": "STATIC SYM_ALL_COLORS {to:self, if:{symColorsGe:6}}",
+    "status": "wired",
+    "example": "{\"trigger\":\"STATIC\",\"flag\":\"SYM_ALL_COLORS\",\"to\":\"self\",\"if\":{\"symColorsGe\":6}}",
+    "rule": "While you have six symbol colors the Spirit attacks with six symbols. Engine: SYM_ALL_COLORS (card text of BS35-XX02; the colors themselves are not tracked per attack symbol)."
   }
 ]

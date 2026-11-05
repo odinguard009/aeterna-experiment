@@ -121,3 +121,26 @@ Object.assign(FX_ACTIONS, {
       checkDepletion(c.opp); c.ctx.did = gone.length > 0;
       io.view({ type: 'board' });
     } } });
+Object.assign(FX_ACTIONS, {
+  /* v535 "swap this card from the Hand with a <match> Spirit you control in the same condition" (BS35-XX02): this card takes the Spirit's place with its cores, Soul Core, exhausted/heavy state and battle role; the Spirit returns to the Hand. */
+  SWAP_HAND_WITH_FIELD: { chk: a => hasMatch(a.match) && Object.keys(a).every(k => ['do', 'if', 'match'].includes(k)),
+    txt: () => 'swap this card from the Hand with a matching Spirit you control in the same condition',
+    cands: (c, a) => c.p.spirits.filter(s => s !== c.src && !s.under.length && fxMatch(CARDS[s.id], a.match, s)),
+    can: (c, a) => (c.p.hand.includes(c.src) || c.p.limbo === c.src) && CARDS[c.src.id].type === 'Spirit' && FX_ACTIONS.SWAP_HAND_WITH_FIELD.cands(c, a).length > 0,
+    run: async (c, a) => {
+      if (!FX_ACTIONS.SWAP_HAND_WITH_FIELD.can(c, a)) { c.ctx.did = false; return; }
+      const L = FX_ACTIONS.SWAP_HAND_WITH_FIELD.cands(c, a);
+      const t = c.p.cpu ? L.slice().sort((x, y) => y.cores - x.cores)[0] : await fxPickTarget(c, L, `✨ <b>${esc(CARDS[c.src.id].name)}</b><br>Tap the Spirit to swap with (glowing).`);
+      if (!t) { c.ctx.did = false; return; }
+      const n = c.src, i = c.p.spirits.indexOf(t);
+      removeFrom(c.p.hand, n); if (c.p.limbo === n) c.p.limbo = null; c.p.spirits[i] = n;
+      n.cores = t.cores; n.soul = t.soul; n.exhausted = t.exhausted; n.heavy = t.heavy; n.viaFx = true;
+      t.cores = 0; t.soul = false; t.exhausted = false; t.heavy = false; t.noAB = false; t.bpMod = 0; t.symBattle = 0; t.viaFC = false; t.viaHS = false; t.legacyN = 0;
+      c.p.hand.push(t);
+      if (G.attacker === t) G.attacker = n; if (G.blocker === t) G.blocker = n;
+      log(`${CARDS[n.id].name} swaps places with ${CARDS[t.id].name} (the cores stay).`);
+      checkDepletion(c.p); c.ctx.did = true;
+      io.view({ type: 'board' });
+    } } });
+/* v535 SYM_ALL_COLORS (Six Heaven Rush 6, BS35-XX02): the attacker's symbols are fixed as one of each of the six colours (six symbols) */
+const symAllColorsOn = i => !!G && i.symLoseTurn !== G.turnNo && flagActive(G.p.player.spirits.includes(i) ? G.p.player : G.p.opponent, 'SYM_ALL_COLORS', i);
