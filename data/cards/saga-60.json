@@ -73938,14 +73938,65 @@
   "image": "SD57-002.png",
   "block": "P",
   "saga": 60,
-  "fxComplete": false,
-  "residual": [
-   "Flash - High Speed This card in Hand can be summoned by paying the cost with cores in the Reserve. In this case, cores to be put on this Spirit must also be from the Reserve.",
-   "[LV1][LV2] (When Summoned) Either put a core from the Void each to two Purple Spirits you control, or put two cores from the Void to a Grandwalker Nexus with two colors or more you control. This effect can only be used once per turn.",
-   "[LV2] This Spirit’s color and symbol are also treated as Purple."
-  ],
-  "note": "Product-only card (v0.210.0): stats and text from the official card database (English: Fandom wiki); effects not wired yet, symbols unverified;",
-  "rcode": "C"
+  "fxComplete": true,
+  "note": "Hand-authored (Lane K priority list). High Speed Flash summon from Hand; summon effect once per turn.",
+  "rcode": "C",
+  "highSpeed": true,
+  "effects": [
+   {
+    "trigger": "SUMMONED",
+    "lv": [
+     1,
+     2
+    ],
+    "once": true,
+    "actions": [
+     {
+      "do": "CHOOSE_ONE",
+      "options": [
+       [
+        {
+         "do": "VOID_TO_MATCHING",
+         "targets": 2,
+         "match": {
+          "type": "Spirit",
+          "color": [
+           "purple"
+          ]
+         }
+        }
+       ],
+       [
+        {
+         "do": "VOID_TO_CARD",
+         "n": 2,
+         "to": "anyNexus",
+         "match": {
+          "family": [
+           "Grandwalker"
+          ],
+          "colorsGe": 2
+         }
+        }
+       ]
+      ]
+     }
+    ]
+   },
+   {
+    "trigger": "STATIC",
+    "flag": "ALSO_TREATED",
+    "to": "self",
+    "lv": [
+     2
+    ],
+    "colors": [
+     "purple"
+    ],
+    "symbol": true,
+    "color": true
+   }
+  ]
  },
  {
   "id": "SD57-003",

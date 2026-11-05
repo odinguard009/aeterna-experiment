@@ -110,3 +110,13 @@ test('K-1184 SD57-001: reveals three and adds the Tenma Nobunaga Nexus and an Ev
     return { fc: BS.CARDS['SD57-001'].partial === false, hand: P.hand.map(x => x.id).sort(), other, red: !!sy.red, white: !!sy.white }; })()`);
   assert.equal(r.fc, true, JSON.stringify(r)); assert.ok(r.hand.includes('SD57-CP01') && r.hand.includes(r.other) && !r.hand.includes('SD57-001'), JSON.stringify(r));
 });
+
+test('K-1185 SD57-002: Flash-capable; summon voids a core onto each of two Purple Spirits', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player; P.cpu = true; G.active = P.key;
+    const pu = Object.keys(BS.CARDS).filter(k => BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].symbol === 'purple' && BS.CARDS[k].levels.length > 0).slice(0, 2);
+    const me = BS.mkInst('SD57-002'); me.cores = 3; const a = BS.mkInst(pu[0]); a.cores = 1; const b = BS.mkInst(pu[1]); b.cores = 1; P.spirits = [me, a, b]; P.void = Math.max(P.void || 0, 0);
+    await BS.fireFx(P, 'SUMMONED', me, {});
+    return { fc: BS.CARDS['SD57-002'].partial === false, hs: !!BS.CARDS['SD57-002'].highSpeed, a: a.cores, b: b.cores }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.hs, true, JSON.stringify(r));
+});

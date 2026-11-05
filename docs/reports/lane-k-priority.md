@@ -2,7 +2,7 @@
 
 Standing list (owner 2026-11-04): groups top to bottom, all before the Grandwalker queue. Edit data/kb/lane-k-priority.json with the tool (`--add`, `--top`, `--after`, `--remove`).
 
-## 1. God-Sech, Six Heaven (Rush), Tenma Nobunaga and Dairokuten Maou cards (god-sech-six-heaven-53): 34 of 53 complete
+## 1. God-Sech, Six Heaven (Rush), Tenma Nobunaga and Dairokuten Maou cards (god-sech-six-heaven-53): 38 of 53 complete
 Added 2026-11-04. Cards that name or mention them; owner removed BS10-029, BS12-024, BSC49-027, CB10-032.
 
 | Card | Name | State |
@@ -15,11 +15,7 @@ Added 2026-11-04. Cards that name or mention them; owner removed BS10-029, BS12-
 | PB17-X02 | The HeavenlyDemonKing Pentan -Type God-Sechs- | OPEN |
 | PB39-RVX02 | The HeavenlyDemonKing Pentan -Type God-Sechs- | OPEN |
 | SD32-006 | The Six Heaven Castle Dyed in Red | OPEN |
-| SD57-001 | The Six Heaven Soldier | OPEN |
 | SD57-002 | The Six Heaven Falcon | OPEN |
-| SD57-003 | The Six Heaven Head | OPEN |
-| SD57-004 | The Six Heaven Conjurer | OPEN |
-| SD57-005 | The HeavenlyDemonKing Weapons | OPEN |
 | SD57-006 | The Owari World | OPEN |
 | SD57-CP01 | Tenma Nobunaga | OPEN |
 | SD57-RV004 | The HeavenlyDemonKing Advents | OPEN |
@@ -27,16 +23,16 @@ Added 2026-11-04. Cards that name or mention them; owner removed BS10-029, BS12-
 | SD57-X02 | The HeavenlyDemonKing God-Sechs -Type Shadow- | OPEN |
 | SJ15-20 | The HeavenlyDemonKing God-Sechs -Type Souldragon- | OPEN |
 
-## 2. Grandwalker The CovenantContractor Mitra (BS74-CX03) and its deck (grandwalker-mitra): 24 of 24 complete - DONE
+## 2. Grandwalker The CovenantContractor Mitra (BS74-CX03) and its deck (grandwalker-mitra): 24 of 26 complete
 Added 2026-11-05. Nexus card plus its deck cards from data/kb/grandwalker-nexus.json.
-
-## 3. Awakened Dragon family (awakened-dragon-family): 0 of 2 complete
-Added 2026-11-05. Every card whose families list holds Awakened Dragon (not cards that only have it in the name).
 
 | Card | Name | State |
 |---|---|---|
 | BS74-AX03 | The RevelationGreatDeity Ultimate-Amaterasu-Dragon | OPEN |
 | P25-05 | The RevelationDragon Bahattar | OPEN |
+
+## 3. Awakened Dragon family (awakened-dragon-family): 0 of 0 complete - DONE
+Added 2026-11-05. Every card whose families list holds Awakened Dragon (not cards that only have it in the name).
 
 ## 4. Grandwalker Nuadha + Scalostle family (nuadha): 8 of 28 complete
 Added 2026-11-05. owner 2026-11-05
