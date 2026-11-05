@@ -118,3 +118,30 @@ Object.assign(FX_ACTIONS, {
       }
       if (!got.length) c.ctx.did = false; checkDepletion(c.opp); io.view({ type: 'board' });
     } } });
+
+/* v557 OPP_SPIRITS_CORES_TRASH {spirits, cores, lifeIf}: "put N cores each from M opposing Spirits to the opposing Trash"; with `lifeIf` (a condition) true, for each Spirit removed (depleted) by it send 1 opposing Life core to the opposing Reserve (SJ15-20). */
+Object.assign(FX_ACTIONS, {
+  OPP_SPIRITS_CORES_TRASH: { chk: a => Number.isInteger(a.spirits) && a.spirits >= 1 && a.spirits <= 3 && Number.isInteger(a.cores) && a.cores >= 1 && a.cores <= 3 && Object.keys(a).every(k => ['do', 'if', 'spirits', 'cores', 'lifeIf'].includes(k)),
+    txt: a => `put ${a.cores} cores each from ${a.spirits} opposing Spirits to the opposing Trash`,
+    can: c => c.opp.spirits.some(t => t.cores > 0 && !fxImmune(c.opp, t)),
+    run: async (c, a) => {
+      const hit = [];
+      for (let j = 0; j < a.spirits; j++) {
+        const L = c.opp.spirits.filter(t => t.cores > 0 && !hit.includes(t) && !fxImmune(c.opp, t)); if (!L.length) break;
+        const t = c.p.cpu ? L.slice().sort((x, y) => bpOf(y) - bpOf(x))[0] : await fxPickTarget(c, L, `✨ <b>${esc(_pn(c))}</b><br>Tap an opposing Spirit (${j + 1}/${a.spirits}).`);
+        if (!t) break;
+        const m = Math.min(a.cores, t.cores, coreTakeCap(c.opp, t, a.cores)); hit.push(t); if (m <= 0) continue;
+        coreEvN(c.opp, t.uid, 'trash', m, false); t.cores -= m; c.opp.trashCores.n += m;
+        log(`${_pn(c)}: ${m} core${m === 1 ? '' : 's'} from ${poss(c.opp)} ${CARDS[t.id].name} go to the Trash.`);
+      }
+      if (!hit.length) { c.ctx.did = false; return; }
+      checkDepletion(c.opp);
+      const gone = hit.filter(t => !c.opp.spirits.includes(t)).length;
+      if (gone && a.lifeIf && fxIf(c.p, c.opp, a.lifeIf, { selfInst: c.src })) {
+        const m = await lifeGuardFx(c.opp, Math.min(gone, c.opp.life));
+        if (m) { lifeTake(c.opp, m, 'reserve'); log(`${_pn(c)}: ${m} opposing Life moves to the opposing Reserve.`); }
+        if (c.opp.life <= 0) { win(c.p.key, `${poss(c.opp)} Life reached 0`); return; }
+        if (m) await maybeBurst(c.opp, 'LIFE_DECREASE', {});
+      }
+      io.view({ type: 'board' });
+    } } });

@@ -1788,5 +1788,15 @@
     "status": "full",
     "example": "SD32-X01",
     "rule": "Engine: counts your symbol colours, lets you pick that many opposing Spirits one by one, and returns them; with the Soul Core used for the summon cost their cores go to the Trash."
+  },
+  {
+    "id": "K_OPP_SPIRITS_CORES_TRASH",
+    "kind": "effect",
+    "meaning": "Put cores from several opposing Spirits to the opposing Trash, then Life per removed Spirit",
+    "pattern": "cores each from two opposing Spirits to the opposing Trash",
+    "engine": "OPP_SPIRITS_CORES_TRASH",
+    "status": "full",
+    "example": "SJ15-20",
+    "rule": "Engine: picks up to the listed number of opposing Spirits and moves the listed cores from each; with the chain condition met each Spirit that ends with no cores costs the opponent one Life core."
   }
 ]

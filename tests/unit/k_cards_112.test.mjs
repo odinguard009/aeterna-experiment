@@ -155,3 +155,18 @@ test('K-1188 SD32-X01: summon returns one opposing Spirit per symbol colour; Sou
   assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.left, Math.max(0, 3 - r.colors), JSON.stringify(r));
   assert.equal(r.reserve, 0, JSON.stringify(r)); assert.equal(r.trash, 2 * Math.min(3, r.colors), JSON.stringify(r));
 });
+
+test('K-1189 SJ15-20: attack trashes 2 cores each from two opposing Spirits; each depleted Spirit costs a Life with 3+ symbol colours', async () => {
+  const { page } = await sharedBoard();
+  const r = await page.evaluate(`(async () => { BS.testSetup(); const G = BS.G, P = G.p.player, O = G.p.opponent; P.cpu = O.cpu = true; G.active = P.key;
+    const me = BS.mkInst('SJ15-20'); me.cores = 4; P.spirits = [me];
+    const extra = Object.keys(BS.CARDS).filter(k => BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].levels.length > 0).slice(0, 6);
+    for (const k of extra) { const x = BS.mkInst(k); x.cores = 1; P.spirits.push(x); }
+    const sp = Object.keys(BS.CARDS).filter(k => BS.CARDS[k].type === 'Spirit' && BS.CARDS[k].levels.length > 0).slice(10, 13);
+    O.spirits = sp.map(k => { const x = BS.mkInst(k); x.cores = 2; return x; }); O.trashCores.n = 0; const life0 = O.life;
+    const cols = Object.values(symbolsOn(P)).filter(Boolean).length;
+    await BS.fireFx(P, 'ATTACKS', me, {});
+    return { fc: BS.CARDS['SJ15-20'].partial === false, cols, left: O.spirits.length, trash: O.trashCores.n, dl: life0 - O.life }; })()`);
+  assert.equal(r.fc, true, JSON.stringify(r)); assert.equal(r.trash, 4, JSON.stringify(r)); assert.equal(r.left, 1, JSON.stringify(r));
+  assert.equal(r.dl, r.cols >= 3 ? 2 : 0, JSON.stringify(r));
+});

@@ -85995,16 +85995,28 @@
    "purple",
    "red"
   ],
-  "fxComplete": false,
-  "residual": [
-   "This Spirit/Spirit card is also treated as [The HeavenlyDemonKing God-Sechs].",
-   "[LV2][LV3] (When Attacks)",
-   "Put two cores each from two opposing Spirits to the opposing Trash.",
-   "Six Heavens Chain: Condition 《Three Symbol colours》",
-   "While you have symbols of three or more colours, for each Spirit removed by this effect, send one core from the opposing Life to the opposing Reserve."
-  ],
-  "note": "Added by tools/import_master.py from the master database (data/master): official card database + Fandom wiki; effects not wired yet. Symbols unverified (not on the official page). English text translated by hand from the Japanese official text (unofficial wording).",
-  "rcode": "X"
+  "fxComplete": true,
+  "note": "The alias line (also treated as [The HeavenlyDemonKing God-Sechs]) is covered by substring name matching: every name match on 'God-Sechs' already includes this card.",
+  "rcode": "X",
+  "effects": [
+   {
+    "trigger": "ATTACKS",
+    "lv": [
+     2,
+     3
+    ],
+    "actions": [
+     {
+      "do": "OPP_SPIRITS_CORES_TRASH",
+      "spirits": 2,
+      "cores": 2,
+      "lifeIf": {
+       "symColorsGe": 3
+      }
+     }
+    ]
+   }
+  ]
  },
  {
   "id": "SJ16-01",
